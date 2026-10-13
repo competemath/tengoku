@@ -117,14 +117,18 @@ private lemma abs_bernoulliFun_le (s : ℕ) (x : ℝ) (hx : x ∈ Icc 0 1) :
   rw [abs_pow]
   exact pow_le_one₀ (abs_nonneg x) (abs_le.mpr ⟨by linarith [hx.1], hx.2⟩)
 
-/-- The absolute value of `saw s` is bounded by the explicit constant `sawBound s`. -/
+/-- The absolute value of `saw s` is bounded by the explicit constant `sawBound s`.
+@isnad1 id=le.0h2v.s4.300af2033c35 from=translated src=- shape=c70b9a26 vocab=e1af8fa4
+-/
 lemma abs_saw_le (s : ℕ) (x : ℝ) : |saw s x| ≤ sawBound s := by
   have hs : 0 ≤ (s.factorial : ℝ)⁻¹ := by positivity
   rw [saw_eq_bernoulliFun_fract, sawBound, abs_mul, abs_of_nonneg hs]
   exact mul_le_mul_of_nonneg_left
     (abs_bernoulliFun_le s _ (unitInterval.fract_mem x)) hs
 
-/-- The uniform bound for `saw` is nonnegative. -/
+/-- The uniform bound for `saw` is nonnegative.
+@isnad1 id=le.0h1v.s3.3e7a98eb0772 from=translated src=- shape=b9369acb vocab=e25197ea
+-/
 @[simp] lemma sawBound_nonneg {s : ℕ} : 0 ≤ sawBound s := by
   simp only [sawBound]
   positivity
@@ -316,7 +320,9 @@ private lemma trapezoid_sum_eq_integral_add [CompleteSpace E]
     · exact (fc.continuousOn.mono (by simpa only [hb'])).intervalIntegrable_of_Icc (by linarith)
     · exact (fc.continuousOn.mono (by simpa only [hb'])).intervalIntegrable_of_Icc (by linarith)
 
-/-- The arbitrary-order Euler--Maclaurin formula for a sum over consecutive integers. -/
+/-- The arbitrary-order Euler--Maclaurin formula for a sum over consecutive integers.
+@isnad1 id=eq.3h6v.s9.8fbe191291df from=translated src=- shape=51c19fc6 vocab=4a9916e8
+-/
 theorem sum_Icc_eq_integral_add [CompleteSpace E]
     (fc : ContDiffOn ℝ (s + 1) f t) (u : UniqueDiffOn ℝ t)
     (abt : Icc (a : ℝ) (a + n) ⊆ t) :

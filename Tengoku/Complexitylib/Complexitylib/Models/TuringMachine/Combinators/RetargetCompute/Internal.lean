@@ -27,14 +27,18 @@ namespace TM
 variable {k : ℕ}
 
 /-- The started wrapper has exactly the same transition behavior as the
-ordinary retargeted-input machine. -/
+ordinary retargeted-input machine.
+@isnad1 id=eq.0h3v.s6.9a65865b9938 from=translated src=- shape=0eb9e4a4 vocab=e7ba46e2
+-/
 theorem retargetInputStarted_step_eq_internal (M : TM k)
     (c : Cfg (k + 1) M.Q) :
     (retargetInputStarted M).step c = (retargetInput M).step c := by
   rfl
 
 /-- Any bounded run of the ordinary retargeted-input machine is also a run of
-the started wrapper. -/
+the started wrapper.
+@isnad1 id=reachesi.1h5v.s6.61e9a5857d1c from=translated src=- shape=5b0ef5e2 vocab=77477b44
+-/
 theorem retargetInputStarted_reachesIn_of_retargetInput_internal (M : TM k)
     {t : ℕ} {c c' : Cfg (k + 1) M.Q}
     (hreach : (retargetInput M).reachesIn t c c') :
@@ -47,7 +51,9 @@ theorem retargetInputStarted_reachesIn_of_retargetInput_internal (M : TM k)
   exact hstep
 
 /-- In the nondegenerate case, the wrapper start state is exactly the source
-state after its first transition from the all-sentinel configuration. -/
+state after its first transition from the all-sentinel configuration.
+@isnad1 id=eq.1h3v.s6.63e57e60432d from=translated src=- shape=eb92581b vocab=099ac8d4
+-/
 theorem retargetInputStarted_qstart_eq_startedCfg_state_internal (M : TM k)
     (y : List Bool) (hne : M.qstart ≠ M.qhalt) :
     (retargetInputStarted M).qstart = (startedCfg M y hne).state := by
@@ -55,7 +61,9 @@ theorem retargetInputStarted_qstart_eq_startedCfg_state_internal (M : TM k)
     Tape.read, Tape.init]
 
 /-- In the nondegenerate case, the canonical wrapper entry is the ordinary
-`retargetWrap` of the source's exact post-sentinel configuration. -/
+`retargetWrap` of the source's exact post-sentinel configuration.
+@isnad1 id=eq.1h4v.s6.73d6ab00a7a4 from=translated src=- shape=8be04475 vocab=c087b450
+-/
 theorem retargetInputStartedCfg_eq_retargetWrap_internal (M : TM k)
     (y : List Bool) (realInput : Tape) (hne : M.qstart ≠ M.qhalt) :
     retargetInputStartedCfg M y realInput =
@@ -101,7 +109,9 @@ private theorem computes_eq_nil_of_qstart_eq_qhalt (M : TM k)
 
 /-- Virtual-input computation seam crediting the saved first transition: the
 wrapper's run time plus one is at most the source's bound `T |y|`. For an
-initially halted source the credit is zero (the wrapper takes zero steps). -/
+initially halted source the credit is zero (the wrapper takes zero steps).
+@isnad1 id=ex.1h6v.s7.41facae58596 from=translated src=- shape=593ea30d vocab=52bdeda2
+-/
 theorem retargetInputStarted_computesVirtual_exact_internal (M : TM k)
     {f : List Bool → List Bool} {T : ℕ → ℕ}
     (hcomp : M.ComputesInTime f T) (y : List Bool) (realInput : Tape) :
@@ -157,7 +167,9 @@ theorem retargetInputStarted_computesVirtual_exact_internal (M : TM k)
           · show cM.output.HasOutput (f y)
             exact hout
 
-/-- Same-time form of the virtual-input computation seam. -/
+/-- Same-time form of the virtual-input computation seam.
+@isnad1 id=ex.1h6v.s7.438fe6ccc003 from=translated src=- shape=041d2c12 vocab=6feee227
+-/
 theorem retargetInputStarted_computesVirtual_internal (M : TM k)
     {f : List Bool → List Bool} {T : ℕ → ℕ}
     (hcomp : M.ComputesInTime f T) (y : List Bool) (realInput : Tape) :
@@ -172,7 +184,9 @@ theorem retargetInputStarted_computesVirtual_internal (M : TM k)
   exact ⟨c', t, by omega, hreach, hhalt, hout⟩
 
 /-- A decider run can be resumed on a virtual input with the same advertised
-time bound while retaining both verdict implications. -/
+time bound while retaining both verdict implications.
+@isnad1 id=ex.1h6v.s7.10d905082dd3 from=translated src=- shape=16a2b413 vocab=f6959a70
+-/
 theorem retargetInputStarted_decidesVirtual_internal (M : TM k)
     {L : Language} {T : ℕ → ℕ}
     (hdec : M.DecidesInTime L T) (y : List Bool) (realInput : Tape) :
@@ -190,7 +204,9 @@ theorem retargetInputStarted_decidesVirtual_internal (M : TM k)
     (qstart_ne_qhalt_of_decidesInTime M hdec)]
   exact retargetInputStarted_reachesIn_of_retargetInput_internal M hreach
 
-/-- Hoare form of the same-time virtual-input seam. -/
+/-- Hoare form of the same-time virtual-input seam.
+@isnad1 id=hoaretim.1h5v.s7.5786508cc911 from=translated src=- shape=2d9e9981 vocab=a5b4daef
+-/
 theorem retargetInputStarted_hoareTime_internal (M : TM k)
     {f : List Bool → List Bool} {T : ℕ → ℕ}
     (hcomp : M.ComputesInTime f T) (y : List Bool) :
@@ -214,7 +230,9 @@ theorem retargetInputStarted_hoareTime_internal (M : TM k)
 
 /-- Combined placement seam with an exact preserved physical frame. The source
 work tapes and virtual input occupy the placed middle block; all prefix and
-suffix tapes are returned unchanged. -/
+suffix tapes are returned unchanged.
+@isnad1 id=ex.3h9v.s9.7778301afed3 from=translated src=- shape=7587bf0b vocab=36067cef
+-/
 theorem placeWorkTM_retargetInputStarted_computesVirtual_internal (M : TM k)
     (pre post : ℕ) (extras : Fin (pre + (k + 1) + post) → Tape)
     {f : List Bool → List Bool} {T : ℕ → ℕ}
@@ -246,7 +264,9 @@ theorem placeWorkTM_retargetInputStarted_computesVirtual_internal (M : TM k)
   · show c'.output.HasOutput (f y)
     exact hout
 
-/-- Placed virtual-input decision with an exact preserved physical frame. -/
+/-- Placed virtual-input decision with an exact preserved physical frame.
+@isnad1 id=ex.3h9v.s9.8acc781be7d9 from=translated src=- shape=89c3f08a vocab=60ce97a3
+-/
 theorem placeWorkTM_retargetInputStarted_decidesVirtual_internal (M : TM k)
     (pre post : ℕ) (extras : Fin (pre + (k + 1) + post) → Tape)
     {L : Language} {T : ℕ → ℕ}

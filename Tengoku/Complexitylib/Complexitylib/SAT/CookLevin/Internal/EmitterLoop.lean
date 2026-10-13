@@ -36,13 +36,17 @@ open TM
 -- ════════════════════════════════════════════════════════════════════════
 
 /-- Peel the last iteration off a `flatMap` over `List.range`:
-    `(range (i+1)).flatMap E = (range i).flatMap E ++ E i`. -/
+    `(range (i+1)).flatMap E = (range i).flatMap E ++ E i`.
+@isnad1 id=eq.0h3v.s5.a2d8c3f6a519 from=translated src=- shape=3a71ce96 vocab=7dfcba1c
+-/
 theorem flatMap_range_succ {α : Type _} (E : ℕ → List α) (i : ℕ) :
     (List.range (i + 1)).flatMap E = (List.range i).flatMap E ++ E i := by
   rw [List.range_succ, List.flatMap_append]
   simp
 
-/-- `CNF.encode` distributes over `flatMap`. -/
+/-- `CNF.encode` distributes over `flatMap`.
+@isnad1 id=eq.0h3v.s4.c61ab51bba28 from=translated src=- shape=59eb78fa vocab=c7efd143
+-/
 theorem CNF.encode_flatMap {α : Type _} (l : List α) (F : α → CNF) :
     CNF.encode (l.flatMap F) = l.flatMap (fun a => CNF.encode (F a)) := by
   induction l with
@@ -55,7 +59,9 @@ theorem CNF.encode_flatMap {α : Type _} (l : List α) (F : α → CNF) :
 -- ════════════════════════════════════════════════════════════════════════
 
 /-- **One cap rules them all**: digits below their radices and
-    `4·A·B·C·D ≤ M` bound every intermediate mixed-radix value. -/
+    `4·A·B·C·D ≤ M` bound every intermediate mixed-radix value.
+@isnad1 id=and.6h10v.s8.a0d5c6f361ee from=translated src=- shape=591c2497 vocab=923b6325
+-/
 theorem flatCaps {A B C D M tag a b c d : ℕ} (htag : tag ≤ 3)
     (ha : a < A) (hb : b < B) (hc : c < C) (hd : d < D)
     (hM : 4 * A * B * C * D ≤ M) :
@@ -101,7 +107,9 @@ theorem flatCaps {A B C D M tag a b c d : ℕ} (htag : tag ≤ 3)
   have gA : 4 ≤ 4 * A := by omega
   exact ⟨by omega, by omega, by omega, by omega, by omega⟩
 
-/-- The radices themselves sit below the master cap. -/
+/-- The radices themselves sit below the master cap.
+@isnad1 id=and.5h5v.s6.f317be2633fd from=translated src=- shape=98566d86 vocab=708244b1
+-/
 theorem radix_caps {A B C D M : ℕ} (hA1 : 1 ≤ A) (hB1 : 1 ≤ B) (hC1 : 1 ≤ C)
     (hD1 : 1 ≤ D) (hM : 4 * A * B * C * D ≤ M) :
     A ≤ M ∧ B ≤ M ∧ C ≤ M ∧ D ≤ M := by
@@ -139,7 +147,9 @@ def emitLoopTM (body : TM n) (ctr fuel : Fin n) : TM n :=
     runs within `inner`. -/
 def loopBudget (M inner : ℕ) : ℕ := M * (inner + 1 + opBudget M + 2) + (M + 2)
 
-/-- `loopBudget M` is monotone in the inner budget. -/
+/-- `loopBudget M` is monotone in the inner budget.
+@isnad1 id=le.1h3v.s4.763e552312d5 from=translated src=- shape=32f89d1d vocab=acfeca60
+-/
 theorem loopBudget_mono {M inner inner' : ℕ} (h : inner ≤ inner') :
     loopBudget M inner ≤ loopBudget M inner' := by
   have := Nat.mul_le_mul_left M (show inner + 1 + opBudget M + 2
@@ -147,21 +157,27 @@ theorem loopBudget_mono {M inner inner' : ℕ} (h : inner ≤ inner') :
   rw [loopBudget, loopBudget]
   omega
 
-/-- The raw loop bound rounds up to `loopBudget`. -/
+/-- The raw loop bound rounds up to `loopBudget`.
+@isnad1 id=le.1h3v.s6.c7c8e681c9ad from=translated src=- shape=2f369cde vocab=db36766d
+-/
 theorem loop_le_loopBudget {v M inner : ℕ} (hv : v ≤ M) :
     v * ((inner + 1 + opBudget M) + 2) + (v + 2) ≤ loopBudget M inner := by
   rw [loopBudget]
   have := Nat.mul_le_mul_right ((inner + 1 + opBudget M) + 2) hv
   omega
 
-/-- `clauseBudget · M` is monotone in the literal count. -/
+/-- `clauseBudget · M` is monotone in the literal count.
+@isnad1 id=le.1h3v.s4.45abdf0e37bd from=translated src=- shape=11958600 vocab=ed09d80b
+-/
 theorem clauseBudget_mono {L L' M : ℕ} (h : L ≤ L') :
     clauseBudget L M ≤ clauseBudget L' M := by
   rw [clauseBudget, clauseBudget]
   have := Nat.mul_le_mul_right (emitVarBudget M + 1) h
   omega
 
-/-- `cnfBudget · · M` is monotone in both the clause count and the literal count. -/
+/-- `cnfBudget · · M` is monotone in both the clause count and the literal count.
+@isnad1 id=le.2h5v.s5.20eaa2ced89f from=translated src=- shape=442a2203 vocab=65574c68
+-/
 theorem cnfBudget_mono {K K' L L' M : ℕ} (hK : K ≤ K') (hL : L ≤ L') :
     cnfBudget K L M ≤ cnfBudget K' L' M := by
   rw [cnfBudget, cnfBudget]
@@ -176,7 +192,9 @@ theorem cnfBudget_mono {K K' L L' M : ℕ} (hK : K ≤ K') (hL : L ≤ L') :
 /-- **`emitLoopTM` Hoare rule.** From `fuel = v` and `ctr = 0`, run the body
     at every `i < v`; the body sees `ctr = i` (fuel tape parked mid-loop),
     emits `E i`, and restores the work tapes. Afterwards `ctr = v` and the
-    output extends by `(range v).flatMap E`. -/
+    output extends by `(range v).flatMap E`.
+@isnad1 id=hoaretim.7h11v.s8.9880c5b74f66 from=translated src=- shape=9f83751a vocab=4432adc0
+-/
 theorem emitLoop_hoareTime (body : TM n) (ctr fuel : Fin n) (hcf : ctr ≠ fuel)
     (v M b_body : ℕ) (hv : v ≤ M)
     (E : ℕ → List Bool)
@@ -264,7 +282,9 @@ theorem emitLoop_hoareTime (body : TM n) (ctr fuel : Fin n) (hcf : ctr ≠ fuel)
 /-- **`emitLoopTM` Hoare rule, offset form**: the counter starts at `s` and
     ends at `s + v`; the body at iteration `i < v` sees `ctr = s + i`. Used
     by the pairwise at-most-one families, whose inner position loops start
-    just past the outer position. -/
+    just past the outer position.
+@isnad1 id=hoaretim.7h12v.s8.95632cdc7ffa from=translated src=- shape=1f51ef21 vocab=4432adc0
+-/
 theorem emitLoopFrom_hoareTime (body : TM n) (ctr fuel : Fin n)
     (hcf : ctr ≠ fuel) (s v M b_body : ℕ) (hsv : s + v ≤ M)
     (E : ℕ → List Bool)
@@ -349,7 +369,9 @@ theorem emitLoopFrom_hoareTime (body : TM n) (ctr fuel : Fin n)
     iterations — shrinking inner fuels, mirrored counters), and the counter
     value is an arbitrary ghost `ctrVal`. The body at iteration `i` carries
     `u i` to `u (i + 1)`-with-the-counter-still-old; the loop's own increment
-    finishes the move. -/
+    finishes the move.
+@isnad1 id=hoaretim.7h12v.s8.c85ce6099a26 from=translated src=- shape=e390bc06 vocab=4432adc0
+-/
 theorem emitLoopGen_hoareTime (body : TM n) (ctr fuel : Fin n)
     (hcf : ctr ≠ fuel) (v M b_body : ℕ)
     (ctrVal : ℕ → ℕ) (hctrM : ∀ i, i < v → ctrVal i ≤ M)

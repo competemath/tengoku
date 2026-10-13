@@ -143,7 +143,9 @@ private theorem writeTM_goRight_to_done (sym : Γw) (c : Cfg n (writeTM sym).Q)
 /-- `writeTM sym` writes `sym.toΓ` to output cell 1 and halts.
     **Pre**: output tape well-formed (cell 0 = ▷, cells ≥ 1 ≠ ▷), head ≤ B.
     **Post**: output cell 1 = sym.toΓ.
-    **Time**: B + 3 steps. -/
+    **Time**: B + 3 steps.
+@isnad1 id=hoaretim.0h3v.s6.f57713dbd919 from=translated src=- shape=605bad61 vocab=d0ebd5c9
+-/
 theorem writeTM_hoareTime (sym : Γw) (B : ℕ) :
     (writeTM (n := n) sym).HoareTime
       (fun _ _ out => out.cells 0 = Γ.start ∧
@@ -249,7 +251,9 @@ private theorem rewindWorkTM_moveRight_to_done (idx : Fin n)
 /-- `rewindWorkTM idx` rewinds work tape `idx` to cell 1 and halts.
     **Pre**: work tape `idx` well-formed (cell 0 = ▷, cells ≥ 1 ≠ ▷), head ≤ B.
     **Post**: work tape `idx` head = 1.
-    **Time**: B + 2 steps. -/
+    **Time**: B + 2 steps.
+@isnad1 id=hoaretim.0h3v.s6.e98c735118c8 from=translated src=- shape=5337eab1 vocab=f90a1b47
+-/
 theorem rewindWorkTM_hoareTime (idx : Fin n) (B : ℕ) :
     (rewindWorkTM idx).HoareTime
       (fun _ work _ => (work idx).cells 0 = Γ.start ∧
@@ -350,7 +354,9 @@ private theorem rewindInputTM_moveRight_to_done
 /-- `rewindInputTM` rewinds the input tape to cell 1 and halts.
     **Pre**: input tape well-formed (cell 0 = ▷, cells ≥ 1 ≠ ▷), head ≤ B.
     **Post**: input head = 1.
-    **Time**: B + 2 steps. -/
+    **Time**: B + 2 steps.
+@isnad1 id=hoaretim.0h2v.s6.4435035ea639 from=translated src=- shape=d39bfe58 vocab=1bd1e338
+-/
 theorem rewindInputTM_hoareTime (B : ℕ) :
     (rewindInputTM (n := n)).HoareTime
       (fun inp _ _ => inp.cells 0 = Γ.start ∧
@@ -379,7 +385,9 @@ theorem rewindInputTM_hoareTime (B : ℕ) :
 /-- Rich HoareTime for `rewindInputTM` that preserves an arbitrary predicate P
     through the rewind, provided P is stable when the input cells are unchanged
     and the input head is reset to 1. Work and output tapes are preserved
-    exactly under the usual non-start-under-head side conditions. -/
+    exactly under the usual non-start-under-head side conditions.
+@isnad1 id=hoaretim.0h4v.s7.875f5f374414 from=translated src=- shape=56b08d5a vocab=04b4e463
+-/
 theorem rewindInputTM_hoareTime_frame {n : ℕ} (B_input : ℕ)
     {P : Tape → (Fin n → Tape) → Tape → Prop}
     (hP_preserved : ∀ (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -501,7 +509,9 @@ theorem rewindInputTM_hoareTime_frame {n : ℕ} (B_input : ℕ)
       by rw [hcells_f, hcells1], hwork_f, hout_f⟩
 
 /-- Nondeterministic form of `rewindInputTM_hoareTime`, for phase compositions
-    that run deterministic setup subroutines through `TM.toNTM`. -/
+    that run deterministic setup subroutines through `TM.toNTM`.
+@isnad1 id=hoaretim.0h2v.s6.e01946824500 from=translated src=- shape=5179c596 vocab=02785d3b
+-/
 theorem rewindInputTM_toNTM_hoareTime (B : ℕ) :
     ((rewindInputTM (n := n)).toNTM).HoareTime
       (fun inp _ _ => inp.cells 0 = Γ.start ∧
@@ -511,7 +521,9 @@ theorem rewindInputTM_toNTM_hoareTime (B : ℕ) :
       (B + 2) :=
   (rewindInputTM_hoareTime (n := n) B).toNTM
 
-/-- Nondeterministic form of `rewindInputTM_hoareTime_frame`. -/
+/-- Nondeterministic form of `rewindInputTM_hoareTime_frame`.
+@isnad1 id=hoaretim.0h4v.s7.387e0bec51bf from=translated src=- shape=4233d5b8 vocab=44c585ee
+-/
 theorem rewindInputTM_toNTM_hoareTime_frame {n : ℕ} (B_input : ℕ)
     {P : Tape → (Fin n → Tape) → Tape → Prop}
     (hP_preserved : ∀ (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -548,7 +560,9 @@ theorem rewindInputTM_toNTM_hoareTime_frame {n : ℕ} (B_input : ℕ)
     The caller provides `hP_preserved` showing that P is stable under:
     - target tape cells unchanged, head set to 1
     - all other work tapes unchanged
-    - input and output unchanged -/
+    - input and output unchanged
+@isnad1 id=hoaretim.0h5v.s8.e354f8f30687 from=translated src=- shape=d245a23c vocab=776fa6eb
+-/
 theorem rewindWorkTM_hoareTime_frame {n : ℕ} (idx : Fin n) (B_tape : ℕ)
     {P : Tape → (Fin n → Tape) → Tape → Prop}
     (hP_preserved : ∀ (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -845,7 +859,9 @@ private theorem blankWorkTM_loop {n : ℕ} (idx : Fin n) (x : List Bool) :
 
 /-- If work tape `idx` holds a started Boolean string `x`, then `blankWorkTM
 idx` clears that tape in `|x| + 1` steps and leaves the head at the first
-blank cell after the erased string. -/
+blank cell after the erased string.
+@isnad1 id=hoaretim.0h3v.s6.6e426589c0fa from=translated src=- shape=d7f7f2b9 vocab=a67d50b5
+-/
 theorem blankWorkTM_started_hoareTime {n : ℕ}
     (idx : Fin n) (x : List Bool) :
     (blankWorkTM idx).HoareTime
@@ -888,7 +904,9 @@ theorem blankWorkTM_started_hoareTime {n : ℕ}
 /-- Rich HoareTime for `blankWorkTM`: erase a started Boolean work tape while
 preserving arbitrary frame data on the input tape, output tape, and all other
 work tapes. This is the form needed to recycle a staged work tape inside a
-larger verifier pipeline. -/
+larger verifier pipeline.
+@isnad1 id=hoaretim.0h5v.s8.072450c09306 from=translated src=- shape=d9eb6992 vocab=521d14dc
+-/
 theorem blankWorkTM_hoareTime_frame_of_binaryString {n : ℕ}
     (idx : Fin n) (x : List Bool)
     {P : Tape → (Fin n → Tape) → Tape → Prop}
@@ -1156,7 +1174,9 @@ theorem blankWorkTM_hoareTime_frame_of_binaryString {n : ℕ}
 /-- Rich HoareTime for `clearWorkTM`: erase a started Boolean work tape and
 rewind it to the standard started blank tape while preserving the external
 frame. The user predicate only needs to be stable once the target tape has
-reached the final started blank configuration. -/
+reached the final started blank configuration.
+@isnad1 id=hoaretim.0h5v.s8.817f5ca8cb76 from=translated src=- shape=3dc831a7 vocab=9c5fdea3
+-/
 theorem clearWorkTM_hoareTime_frame_of_binaryString {n : ℕ}
     (idx : Fin n) (x : List Bool)
     {P : Tape → (Fin n → Tape) → Tape → Prop}
@@ -1465,7 +1485,9 @@ private theorem copyInputToWorkTM_loop {n : ℕ} (idx : Fin n) (x : List Bool) :
 
 /-- `copyInputToWorkTM idx` can be started with the input and target work tape
 already positioned at cell `1`: it copies the entire Boolean input to a binary
-prefix on work tape `idx` and halts within `|x| + 1` steps. -/
+prefix on work tape `idx` and halts within `|x| + 1` steps.
+@isnad1 id=hoaretim.0h3v.s6.6d7334c55606 from=translated src=- shape=a307ce5b vocab=e0da088e
+-/
 theorem copyInputToWorkTM_started_hoareTime {n : ℕ} (idx : Fin n) (x : List Bool) :
     (copyInputToWorkTM idx).HoareTime
       (fun inp work _out =>
@@ -1647,7 +1669,9 @@ private theorem copyWorkToWorkTM_loop {n : ℕ}
 /-- If `src` holds a started Boolean string `x` and `dst` is a started blank
 work tape, then `copyWorkToWorkTM src dst` copies `x` onto `dst` within
 `|x| + 1` steps. The source contents are preserved, while its head advances
-to the first blank cell after the copied data. -/
+to the first blank cell after the copied data.
+@isnad1 id=hoaretim.1h4v.s6.eec95b421412 from=translated src=- shape=7aee42f2 vocab=47adb665
+-/
 theorem copyWorkToWorkTM_started_hoareTime {n : ℕ}
     (src dst : Fin n) (hne : src ≠ dst) (x : List Bool) :
     (copyWorkToWorkTM src dst).HoareTime
@@ -1686,7 +1710,9 @@ another started blank work tape while preserving arbitrary frame data on the
 input tape, output tape, and all unrelated work tapes. The source cells are
 preserved while its head advances to the first blank after the copied string,
 and the destination accumulates the copied prefix without losing its left-end
-marker. -/
+marker.
+@isnad1 id=hoaretim.1h6v.s8.875e16138a1b from=translated src=- shape=1b69a0f7 vocab=1b831d5f
+-/
 theorem copyWorkToWorkTM_hoareTime_frame_of_binaryString {n : ℕ}
     (src dst : Fin n) (hne : src ≠ dst) (x : List Bool)
     {P : Tape → (Fin n → Tape) → Tape → Prop}

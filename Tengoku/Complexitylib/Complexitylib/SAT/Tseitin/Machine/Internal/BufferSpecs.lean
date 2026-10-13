@@ -69,37 +69,61 @@ def BufferValues.work (v : BufferValues) (i : Fin workTapeCount) : Tape :=
   else if i = bufferCReg then TM.regTape v.c
   else TM.regTape v.scratch
 
+/--
+@isnad1 id=eq.0h1v.s3.688675c177ff from=translated src=- shape=2b3c3bca vocab=6ea74624
+-/
 @[simp] theorem BufferValues.work_fresh (v : BufferValues) :
     v.work freshReg = TM.regTape v.fresh := by
   simp [BufferValues.work]
 
+/--
+@isnad1 id=eq.0h1v.s3.b5537480283a from=translated src=- shape=2b3c3bca vocab=3cdb80df
+-/
 @[simp] theorem BufferValues.work_current (v : BufferValues) :
     v.work currentReg = TM.regTape v.current := by
   simp [BufferValues.work, freshReg, currentReg]
 
+/--
+@isnad1 id=eq.0h1v.s3.d619b0d23599 from=translated src=- shape=2b3c3bca vocab=eef7a7bf
+-/
 @[simp] theorem BufferValues.work_a (v : BufferValues) :
     v.work bufferAReg = TM.regTape v.a := by
   simp [BufferValues.work, freshReg, currentReg, bufferAReg]
 
+/--
+@isnad1 id=eq.0h1v.s3.7f773fca9ae1 from=translated src=- shape=2b3c3bca vocab=bcfa225d
+-/
 @[simp] theorem BufferValues.work_b (v : BufferValues) :
     v.work bufferBReg = TM.regTape v.b := by
   simp [BufferValues.work, freshReg, currentReg, bufferAReg, bufferBReg]
 
+/--
+@isnad1 id=eq.0h1v.s3.7542089ecacd from=translated src=- shape=2b3c3bca vocab=3ccef863
+-/
 @[simp] theorem BufferValues.work_c (v : BufferValues) :
     v.work bufferCReg = TM.regTape v.c := by
   simp [BufferValues.work, freshReg, currentReg, bufferAReg, bufferBReg, bufferCReg]
 
+/--
+@isnad1 id=eq.0h1v.s3.4124c1fe7538 from=translated src=- shape=2b3c3bca vocab=4f740ac5
+-/
 @[simp] theorem BufferValues.work_scratch (v : BufferValues) :
     v.work scratchReg = TM.regTape v.scratch := by
   simp [BufferValues.work, freshReg, currentReg, bufferAReg, bufferBReg,
     bufferCReg, scratchReg]
 
+/--
+@isnad1 id=parked.0h2v.s3.2b2bb0220851 from=translated src=- shape=fe2de859 vocab=f486007d
+-/
 theorem BufferValues.work_parked (v : BufferValues) :
     ∀ i, TM.Parked (v.work i) := by
   intro i
   simp only [BufferValues.work]
   split_ifs <;> exact TM.parked_regTape _
 
+/--
+@isnad1 id=eq.0h2v.s5.ebad8fc08ae0 from=translated src=- shape=7c8914e1 vocab=9f5c069b
+-/
 @[simp] theorem BufferValues.update_fresh (v : BufferValues) (x : ℕ) :
     Function.update v.work freshReg (TM.regTape x) =
       ({ v with fresh := x } : BufferValues).work := by
@@ -107,6 +131,9 @@ theorem BufferValues.work_parked (v : BufferValues) :
   fin_cases i <;> simp [BufferValues.work, freshReg, currentReg, bufferAReg,
     bufferBReg, bufferCReg]
 
+/--
+@isnad1 id=eq.0h2v.s5.07fdd9e0a6fc from=translated src=- shape=f4a95273 vocab=8f7ec2c9
+-/
 @[simp] theorem BufferValues.update_current (v : BufferValues) (x : ℕ) :
     Function.update v.work currentReg (TM.regTape x) =
       ({ v with current := x } : BufferValues).work := by
@@ -114,6 +141,9 @@ theorem BufferValues.work_parked (v : BufferValues) :
   fin_cases i <;> simp [BufferValues.work, freshReg, currentReg, bufferAReg,
     bufferBReg, bufferCReg]
 
+/--
+@isnad1 id=eq.0h2v.s5.00fef4d55c34 from=translated src=- shape=8509fd48 vocab=b0c9c923
+-/
 @[simp] theorem BufferValues.update_a (v : BufferValues) (x : ℕ) :
     Function.update v.work bufferAReg (TM.regTape x) =
       ({ v with a := x } : BufferValues).work := by
@@ -121,6 +151,9 @@ theorem BufferValues.work_parked (v : BufferValues) :
   fin_cases i <;> simp [BufferValues.work, freshReg, currentReg, bufferAReg,
     bufferBReg, bufferCReg]
 
+/--
+@isnad1 id=eq.0h2v.s5.30a16bc87ce7 from=translated src=- shape=4e3466b1 vocab=80f50403
+-/
 @[simp] theorem BufferValues.update_b (v : BufferValues) (x : ℕ) :
     Function.update v.work bufferBReg (TM.regTape x) =
       ({ v with b := x } : BufferValues).work := by
@@ -128,6 +161,9 @@ theorem BufferValues.work_parked (v : BufferValues) :
   fin_cases i <;> simp [BufferValues.work, freshReg, currentReg, bufferAReg,
     bufferBReg, bufferCReg]
 
+/--
+@isnad1 id=eq.0h2v.s5.27a68c529ad1 from=translated src=- shape=a16c5ae0 vocab=439ed30b
+-/
 @[simp] theorem BufferValues.update_c (v : BufferValues) (x : ℕ) :
     Function.update v.work bufferCReg (TM.regTape x) =
       ({ v with c := x } : BufferValues).work := by
@@ -170,7 +206,9 @@ def unaryUpdateTime (v : ℕ) : ℕ := 2 * v + 4
 /-! ## Clause emitters -/
 
 /-- Emit exactly one encoded three-literal clause, preserving every tape
-except for append-only output growth. -/
+except for append-only output growth.
+@isnad1 id=hoaretim.5h12v.s6.6acade9c0bcf from=translated src=- shape=3d6e6068 vocab=8c31a744
+-/
 theorem emitClauseTM_hoareTime_internal
     (aSign bSign cSign : Bool) (aReg bReg cReg : Fin workTapeCount)
     (a b c : ℕ) (inp : Tape) (work : Fin workTapeCount → Tape)
@@ -212,7 +250,9 @@ theorem emitClauseTM_hoareTime_internal
   simpa [emitClauseTM, clauseBits, clauseTime, literalTime, literalBits,
     List.append_assoc] using hAll.hoareTime
 
-/-- Specialized wide-link emitter `(a ∨ b ∨ fresh)`. -/
+/-- Specialized wide-link emitter `(a ∨ b ∨ fresh)`.
+@isnad1 id=hoaretim.1h5v.s5.d61622c49928 from=translated src=- shape=fb8c5071 vocab=ca366c49
+-/
 theorem emitWideLinkTM_hoareTime_internal
     (aSign bSign : Bool) (v : BufferValues) (inp : Tape) (ys : List Bool)
     (hinp : TM.Parked inp) :
@@ -247,7 +287,9 @@ def pendingTime (pending : PendingSigns) (v : BufferValues) : ℕ :=
   | .three _ _ _ => clauseTime v.a v.b v.c
 
 /-- Emit the exact-3 gadget selected by `PendingSigns`, leaving all registers
-unchanged. -/
+unchanged.
+@isnad1 id=hoaretim.1h4v.s5.0263ea78dc76 from=translated src=- shape=7f3256f8 vocab=e5210ead
+-/
 theorem emitPendingTM_hoareTime_internal
     (pending : PendingSigns) (v : BufferValues) (inp : Tape) (ys : List Bool)
     (hinp : TM.Parked inp) :
@@ -300,7 +342,9 @@ def clearBuffersTime (v : BufferValues) : ℕ :=
     (unaryUpdateTime v.a + 1 +
       (unaryUpdateTime v.b + 1 + unaryUpdateTime v.c))
 
-/-- Clear all literal registers, preserving fresh/scratch and output. -/
+/-- Clear all literal registers, preserving fresh/scratch and output.
+@isnad1 id=hoaretim.1h3v.s4.bc5650d437d8 from=translated src=- shape=a6cdfa22 vocab=0c65bf73
+-/
 theorem clearBuffersTM_hoareTime_internal
     (v : BufferValues) (inp : Tape) (ys : List Bool) (hinp : TM.Parked inp) :
     clearBuffersTM.HoareTime
@@ -356,7 +400,9 @@ def rollWideBuffersTime (v : BufferValues) : ℕ :=
       (copyTime v.current v.c + 1 +
         (unaryUpdateTime v.fresh + 1 + unaryUpdateTime v.current)))
 
-/-- Rotate the three pending buffers after emitting a wide link. -/
+/-- Rotate the three pending buffers after emitting a wide link.
+@isnad1 id=hoaretim.1h3v.s4.334777e050fe from=translated src=- shape=a6cdfa22 vocab=5e089aed
+-/
 theorem rollWideBuffersTM_hoareTime_internal
     (v : BufferValues) (inp : Tape) (ys : List Bool) (hinp : TM.Parked inp) :
     rollWideBuffersTM.HoareTime
@@ -421,7 +467,9 @@ def commitLiteralTime (pending : PendingSigns) (v : BufferValues) : ℕ :=
   | .three _ _ _ => clauseTime v.a v.b v.fresh + 1 + rollWideBuffersTime v
 
 /-- Commit the current decoded literal: buffer it when fewer than three are
-pending, or emit and roll a wide link otherwise. -/
+pending, or emit and roll a wide link otherwise.
+@isnad1 id=hoaretim.1h4v.s5.4de81e638e0a from=translated src=- shape=5ec33083 vocab=103989bf
+-/
 theorem commitLiteralTM_hoareTime_internal
     (pending : PendingSigns) (v : BufferValues) (inp : Tape) (ys : List Bool)
     (hinp : TM.Parked inp) :
@@ -505,7 +553,9 @@ def closeClauseTime (pending : PendingSigns) (v : BufferValues) : ℕ :=
     (advanceFreshTime pending v + 1 + clearBuffersTime (v.advanced pending))
 
 /-- Emit the pending clause, perform the empty-clause fresh increment when
-needed, and reset all literal buffers. -/
+needed, and reset all literal buffers.
+@isnad1 id=hoaretim.1h4v.s5.e3aa22e31c3f from=translated src=- shape=5ec33083 vocab=10ab457a
+-/
 theorem closeClauseTM_hoareTime_internal
     (pending : PendingSigns) (v : BufferValues) (inp : Tape) (ys : List Bool)
     (hinp : TM.Parked inp) :

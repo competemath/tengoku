@@ -46,7 +46,9 @@ variable {freq δ : ι → ℝ} (h : Adm freq δ)
 def itv (t : ι) : Set ℝ := Set.Ioo (freq t - δ t / 2) (freq t + δ t / 2)
 
 omit [Fintype ι] [DecidableEq ι] in
-/-- Centers are far apart: `(δ t + δ t')/2 ≤ |freq t − freq t'|` for `t ≠ t'`. -/
+/-- Centers are far apart: `(δ t + δ t')/2 ≤ |freq t − freq t'|` for `t ≠ t'`.
+@isnad1 id=le.2h5v.s6.23e9acb6a0a7 from=translated src=- shape=d4986698 vocab=20bab02a
+-/
 lemma centers_far (h : Adm freq δ) {t t' : ι} (htt : t ≠ t') :
     (δ t + δ t') / 2 ≤ |freq t - freq t'| := by
   have h1 := h.le t t' htt
@@ -54,7 +56,9 @@ lemma centers_far (h : Adm freq δ) {t t' : ι} (htt : t ≠ t') :
   rw [abs_sub_comm] at h2
   rcases le_total (δ t) (δ t') with hd | hd <;> linarith
 
-/-- The intervals are pairwise disjoint. -/
+/-- The intervals are pairwise disjoint.
+@isnad1 id=pairwise.1h3v.s5.20c2af480405 from=translated src=- shape=3d1f2803 vocab=99d5971d
+-/
 lemma itv_disjoint (h : Adm freq δ) :
     Set.univ.PairwiseDisjoint (fun t : ι => Adm.itv (freq := freq) (δ := δ) t) := by
   intro t _ t' _ htt
@@ -66,7 +70,9 @@ lemma itv_disjoint (h : Adm freq δ) :
     linarith [hu.1, hu.2, hu'.1, hu'.2]
 
 omit [Fintype ι] [DecidableEq ι] in
-/-- For `u ∈ I_t`, `t ≠ s`: `|freq s − u| ≤ (3/2)|freq s − freq t|` and `δ s/2 ≤ |u − freq s|`. -/
+/-- For `u ∈ I_t`, `t ≠ s`: `|freq s − u| ≤ (3/2)|freq s − freq t|` and `δ s/2 ≤ |u − freq s|`.
+@isnad1 id=and.3h6v.s7.661e55d4b291 from=translated src=- shape=1a47bfc6 vocab=e388441c
+-/
 lemma abs_le_of_mem_itv (h : Adm freq δ) {s t : ι} (hts : t ≠ s) {u : ℝ}
     (hu : u ∈ Adm.itv (freq := freq) (δ := δ) t) :
     |freq s - u| ≤ 3 / 2 * |freq s - freq t| ∧ δ s / 2 ≤ |u - freq s| := by
@@ -86,7 +92,9 @@ lemma abs_le_of_mem_itv (h : Adm freq δ) {s t : ι} (hts : t ≠ s) {u : ℝ}
     rw [abs_sub_comm u (freq s)]
     linarith
 
-/-- Closed-form tail integrals: `∫_{Icc a b} (u−c)⁻² du = (a−c)⁻¹ − (b−c)⁻¹` for `c ∉ [a,b]`. -/
+/-- Closed-form tail integrals: `∫_{Icc a b} (u−c)⁻² du = (a−c)⁻¹ − (b−c)⁻¹` for `c ∉ [a,b]`.
+@isnad1 id=eq.2h3v.s6.5808532a906e from=translated src=- shape=d604a8e2 vocab=9bdf85f3
+-/
 lemma integral_inv_sq_Icc {a b c : ℝ} (hab : a ≤ b) (hc : c < a ∨ b < c) :
     ∫ u in Set.Icc a b, ((u - c) ^ 2)⁻¹ = (a - c)⁻¹ - (b - c)⁻¹ := by
   have h0 : (0:ℝ) ∉ Set.uIcc (a - c) (b - c) := by
@@ -103,7 +111,9 @@ lemma integral_inv_sq_Icc {a b c : ℝ} (hab : a ≤ b) (hc : c < a ∨ b < c) :
   norm_num [zpow_neg]
   ring
 
-/-- `∫_{Icc a b} (u−c)⁻⁴ du = ((a−c)⁻³ − (b−c)⁻³)/3` for `c ∉ [a,b]`. -/
+/-- `∫_{Icc a b} (u−c)⁻⁴ du = ((a−c)⁻³ − (b−c)⁻³)/3` for `c ∉ [a,b]`.
+@isnad1 id=eq.2h3v.s7.a6f7f8e704d8 from=translated src=- shape=b1ff4492 vocab=174c3535
+-/
 lemma integral_inv_four_Icc {a b c : ℝ} (hab : a ≤ b) (hc : c < a ∨ b < c) :
     ∫ u in Set.Icc a b, ((u - c) ^ 4)⁻¹ = ((a - c) ^ (3:ℕ))⁻¹ / 3 - ((b - c) ^ (3:ℕ))⁻¹ / 3 := by
   have h0 : (0:ℝ) ∉ Set.uIcc (a - c) (b - c) := by
@@ -125,7 +135,9 @@ lemma integral_inv_four_Icc {a b c : ℝ} (hab : a ≤ b) (hc : c < a ∨ b < c)
   linarith
 
 omit [Fintype ι] [DecidableEq ι] in
-/-- Closed-interval version of the membership bounds (for use on closures `J t`). -/
+/-- Closed-interval version of the membership bounds (for use on closures `J t`).
+@isnad1 id=and.3h6v.s7.ff781276cf3e from=translated src=- shape=d9cc87ea vocab=ae503081
+-/
 lemma abs_bounds_closed (h : Adm freq δ) {s t : ι} (hts : t ≠ s) {u : ℝ}
     (hut : |u - freq t| ≤ δ t / 2) :
     |freq s - u| ≤ 3 / 2 * |freq s - freq t| ∧ δ s / 2 ≤ |u - freq s| := by
@@ -179,7 +191,9 @@ private lemma window_integrable {s : ι} {R : ℝ} (hδs : 0 < δ s) {k : ℕ} (
     · simp only [Set.mem_Icc] at hu; intro hh; nlinarith [hu.1]
   exact ((continuous_sub_right (freq s)).pow k).continuousOn.inv₀ hne
 
-/-- **Spacing lemma, σ = 2**: `Σ_{t≠s} δ t/(freq s − freq t)² ≤ 9/δ s`. -/
+/-- **Spacing lemma, σ = 2**: `Σ_{t≠s} δ t/(freq s − freq t)² ≤ 9/δ s`.
+@isnad1 id=le.1h4v.s6.343702313848 from=translated src=- shape=e43e5920 vocab=e500f54f
+-/
 theorem spacing_sq (h : Adm freq δ) (s : ι) :
     ∑ t ∈ Finset.univ.erase s, δ t / (freq s - freq t) ^ 2 ≤ 9 / δ s := by
   classical
@@ -314,7 +328,9 @@ theorem spacing_sq (h : Adm freq δ) (s : ι) :
 
 end MainSpacing
 
-/-- **Spacing lemma, σ = 4**: `Σ_{t≠s} δ t/(freq s − freq t)⁴ ≤ 27/(δ s)³`. -/
+/-- **Spacing lemma, σ = 4**: `Σ_{t≠s} δ t/(freq s − freq t)⁴ ≤ 27/(δ s)³`.
+@isnad1 id=le.1h4v.s6.246a9eb6256d from=translated src=- shape=7984eede vocab=e500f54f
+-/
 theorem spacing_four (h : Adm freq δ) (s : ι) :
     ∑ t ∈ Finset.univ.erase s, δ t / (freq s - freq t) ^ 4 ≤ 27 / δ s ^ 3 := by
   classical
@@ -444,7 +460,9 @@ theorem spacing_four (h : Adm freq δ) (s : ι) :
         gcongr
     _ = 27 / δ s ^ 3 := by field_simp; ring
 
-/-- **Two-point lemma** (replaces Preissmann Lemme 6 at constant 36). -/
+/-- **Two-point lemma** (replaces Preissmann Lemme 6 at constant 36).
+@isnad1 id=le.2h5v.s7.114e58a5101b from=translated src=- shape=35c4e3e0 vocab=ef4b7f90
+-/
 theorem two_point (h : Adm freq δ) {l m : ι} (hlm : l ≠ m) :
     ∑ k ∈ (Finset.univ.erase l).erase m,
         δ k / ((freq k - freq l) ^ 2 * (freq k - freq m) ^ 2)

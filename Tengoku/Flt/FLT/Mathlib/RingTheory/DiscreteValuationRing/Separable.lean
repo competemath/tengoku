@@ -37,7 +37,9 @@ Proof: if `P.map (algebraMap R K)` is not separable, it has a monic common facto
 degree with its derivative. Since `R` is integrally closed and `g` is a monic divisor of the
 monic `P`, Gauss's lemma descends `g` to a monic `Q ∈ R[X]`, which then divides `P` and
 `derivative P` already in `R[X]` (`map_dvd_map`). Reducing mod `𝔪_R`, the reduction of `Q` is a
-common factor of positive degree of `P̄` and `derivative P̄`, contradicting `P̄.Separable`. -/
+common factor of positive degree of `P̄` and `derivative P̄`, contradicting `P̄.Separable`.
+@isnad1 id=separabl.2h3v.s7.b28e54be3fad from=translated src=- shape=b6d9df08 vocab=16579140
+-/
 theorem Polynomial.Monic.separable_map_algebraMap_of_separable_map_residue {P : R[X]}
     (hmonic : P.Monic) (hsep : (P.map (residue R)).Separable) :
     (P.map (algebraMap R K)).Separable := by

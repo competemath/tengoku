@@ -28,6 +28,9 @@ noncomputable def C_JN (d : ℕ) : ℝ :=
   Using δ = 1/4 gives C_iter = 4 · 144 = 576; we round up to 1024 for margin. -/
 noncomputable def C_iter : ℝ := 1024
 
+/--
+@isnad1 id=lt.0h0v.s3.c86a4e987caa from=translated src=- shape=ff3a10fc vocab=5b776d5d
+-/
 theorem C_iter_pos : 0 < C_iter := by
   unfold C_iter; positivity
 

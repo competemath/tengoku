@@ -27,6 +27,9 @@ variable {α : Type} [LinearOrder α]
 def above (S : Finset α) (a : α) : Finset α :=
   S.filter (a < ·)
 
+/--
+@isnad1 id=iff.0h4v.s5.0c32f8466209 from=translated src=- shape=af0978d7 vocab=dc88e759
+-/
 theorem mem_above {S : Finset α} {a b : α} : b ∈ above S a ↔ b ∈ S ∧ a < b :=
   mem_filter
 
@@ -36,14 +39,23 @@ noncomputable def cycNext (S : Finset α) (a : α) : α :=
   if h : (above S a).Nonempty then (above S a).min' h
   else if h' : S.Nonempty then S.min' h' else a
 
+/--
+@isnad1 id=eq.1h3v.s5.c24d0b9f1a9e from=translated src=- shape=2f98c1e0 vocab=7ad3c152
+-/
 theorem cycNext_of_nonempty {S : Finset α} {a : α} (h : (above S a).Nonempty) :
     cycNext S a = (above S a).min' h := by
   rw [cycNext, dite_eq_left h]
 
+/--
+@isnad1 id=eq.2h3v.s5.cf354bcc67e2 from=translated src=- shape=12d63e66 vocab=7ad3c152
+-/
 theorem cycNext_of_not_nonempty {S : Finset α} {a : α} (h : ¬(above S a).Nonempty)
     (h' : S.Nonempty) : cycNext S a = S.min' h' := by
   rw [cycNext, dite_eq_right h, dite_eq_left h']
 
+/--
+@isnad1 id=mem.1h3v.s4.21d1348fdc16 from=translated src=- shape=505431da vocab=331bc78b
+-/
 theorem cycNext_mem {S : Finset α} (hS : S.Nonempty) (a : α) : cycNext S a ∈ S := by
   by_cases h : (above S a).Nonempty
   · rw [cycNext_of_nonempty h]
@@ -51,31 +63,43 @@ theorem cycNext_mem {S : Finset α} (hS : S.Nonempty) (a : α) : cycNext S a ∈
   · rw [cycNext_of_not_nonempty h hS]
     exact min'_mem _ hS
 
-/-- Nothing of `S` lies strictly between `a` and its successor. -/
+/-- Nothing of `S` lies strictly between `a` and its successor.
+@isnad1 id=le.2h4v.s6.0cc307e673f6 from=translated src=- shape=454c920e vocab=28ce2e75
+-/
 theorem not_between_cycNext {S : Finset α} {a b : α} (hb : b ∈ S) (hab : a < b) :
     cycNext S a ≤ b := by
   have h : (above S a).Nonempty := ⟨b, mem_above.mpr ⟨hb, hab⟩⟩
   rw [cycNext_of_nonempty h]
   exact min'_le _ _ (mem_above.mpr ⟨hb, hab⟩)
 
+/--
+@isnad1 id=lt.1h3v.s5.4f2ee9b6d637 from=translated src=- shape=d1f7642b vocab=f62440bb
+-/
 theorem lt_cycNext_of_above {S : Finset α} {a : α} (h : (above S a).Nonempty) :
     a < cycNext S a := by
   rw [cycNext_of_nonempty h]
   exact (mem_above.mp (min'_mem _ h)).2
 
+/--
+@isnad1 id=le.2h3v.s5.595a6c658984 from=translated src=- shape=01f8be9b vocab=cf05b385
+-/
 theorem cycNext_le_of_not_above {S : Finset α} {a : α} (ha : a ∈ S)
     (h : ¬(above S a).Nonempty) : cycNext S a ≤ a := by
   rw [cycNext_of_not_nonempty h ⟨a, ha⟩]
   exact min'_le _ _ ha
 
-/-- An element is the greatest of `S` iff nothing of `S` is above it. -/
+/-- An element is the greatest of `S` iff nothing of `S` is above it.
+@isnad1 id=iff.0h3v.s5.fea5cd7c5cc7 from=translated src=- shape=7e14d9b6 vocab=582ddcd8
+-/
 theorem not_above_iff {S : Finset α} {a : α} :
     ¬(above S a).Nonempty ↔ ∀ b ∈ S, b ≤ a := by
   rw [Finset.not_nonempty_iff_eq_empty, Finset.eq_empty_iff_forall_notMem]
   exact ⟨fun h b hb => not_lt.mp fun hab => h b (mem_above.mpr ⟨hb, hab⟩),
     fun h b hb => (h b (mem_above.mp hb).1).not_gt (mem_above.mp hb).2⟩
 
-/-- The cyclic successor is injective on `S`. -/
+/-- The cyclic successor is injective on `S`.
+@isnad1 id=injon.0h2v.s4.a35fca20e1d6 from=translated src=- shape=5dd59669 vocab=cffed024
+-/
 theorem cycNext_injOn (S : Finset α) : Set.InjOn (cycNext S) S := by
   intro a ha b hb hab
   by_contra hne
@@ -92,7 +116,9 @@ theorem cycNext_injOn (S : Finset α) : Set.InjOn (cycNext S) S := by
 
 /-- A subset of `S` closed under the cyclic successor cannot start below its
 complement in `S`: the greatest element of `S` below the least element of the
-complement is in the subset, and its successor is that least element. -/
+complement is in the subset, and its successor is that least element.
+@isnad1 id=not.4h3v.s6.f170079f0488 from=translated src=- shape=b7e47029 vocab=57e8bf58
+-/
 theorem not_min_lt_of_cycNext_closed {S T : Finset α} (hTS : T ⊆ S)
     (hT : ∀ a ∈ T, cycNext S a ∈ T) (h₁ : T.Nonempty) (h₂ : (S \ T).Nonempty) :
     ¬T.min' h₁ < (S \ T).min' h₂ := by

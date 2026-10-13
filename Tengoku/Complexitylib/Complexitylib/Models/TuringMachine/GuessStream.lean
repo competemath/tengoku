@@ -56,19 +56,30 @@ def traceD (M : TM n) : ℕ → Cfg n M.Q → Cfg n M.Q
   | 0, c => c
   | T + 1, c => if c.state = M.qhalt then c else M.traceD T (M.stepCfg c)
 
+/--
+@isnad1 id=eq.0h3v.s4.c0cd5fd962cf from=translated src=- shape=bc2f4787 vocab=e6ba0eaa
+-/
 @[simp] theorem traceD_zero (M : TM n) (c : Cfg n M.Q) : M.traceD 0 c = c := rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.a2f879280aa8 from=translated src=- shape=fbdfeda7 vocab=c2bf91ea
+-/
 theorem traceD_succ_of_not_halted (M : TM n) (T : ℕ) {c : Cfg n M.Q}
     (h : c.state ≠ M.qhalt) : M.traceD (T + 1) c = M.traceD T (M.stepCfg c) := by
   rw [traceD, ite_eq_right h]
 
+/--
+@isnad1 id=eq.1h4v.s5.c7037ee1e7d0 from=translated src=- shape=d9357eed vocab=a85828fc
+-/
 theorem traceD_of_halted (M : TM n) (T : ℕ) {c : Cfg n M.Q} (h : c.state = M.qhalt) :
     M.traceD T c = c := by
   cases T with
   | zero => rfl
   | succ T => rw [traceD, ite_eq_left h]
 
-/-- A run of `T + 1` steps is a run of `T` steps followed by one more. -/
+/-- A run of `T + 1` steps is a run of `T` steps followed by one more.
+@isnad1 id=eq.0h4v.s6.d7bf36904cca from=translated src=- shape=6d4ceb64 vocab=96ad5a5b
+-/
 theorem traceD_succ_back (M : TM n) : ∀ (T : ℕ) (c : Cfg n M.Q),
     M.traceD (T + 1) c =
       if (M.traceD T c).state = M.qhalt then M.traceD T c else M.stepCfg (M.traceD T c) := by
@@ -85,7 +96,9 @@ theorem traceD_succ_back (M : TM n) : ∀ (T : ℕ) (c : Cfg n M.Q),
       · rw [traceD_of_halted M _ h, traceD_of_halted M _ h, ite_eq_left h]
       · rw [traceD_succ_of_not_halted M (T + 1) h, traceD_succ_of_not_halted M T h, ih]
 
-/-- A fixed-length run is a `reachesIn` run, stopped early exactly when the machine halts. -/
+/-- A fixed-length run is a `reachesIn` run, stopped early exactly when the machine halts.
+@isnad1 id=ex.0h4v.s5.e9c0446c1901 from=translated src=- shape=5ade448f vocab=a3e2bdc0
+-/
 theorem reachesIn_traceD (M : TM n) (T : ℕ) (c : Cfg n M.Q) :
     ∃ t ≤ T, M.reachesIn t c (M.traceD T c) ∧ (t < T → M.halted (M.traceD T c)) := by
   induction T generalizing c with
@@ -127,7 +140,9 @@ structure GuessProtocol (M : TM (k + 1)) (Adv : M.Q → Bool) : Prop where
     visible (M.δ q iHead (Fin.snoc ww g) oHead) = visible (M.δ q iHead (Fin.snoc ww g') oHead)
 
 /-- **A run of a fixed length is the deterministic trace.** A machine's step is a function, so
-the configuration reached in exactly `t` steps is `TM.traceD t`. -/
+the configuration reached in exactly `t` steps is `TM.traceD t`.
+@isnad1 id=eq.1h5v.s5.77e905186e19 from=translated src=- shape=553dcf4e vocab=19992bdc
+-/
 theorem traceD_of_reachesIn (M : TM n) : ∀ (t : ℕ) {c c' : Cfg n M.Q},
     M.reachesIn t c c' → M.traceD t c = c' := by
   intro t
@@ -149,7 +164,9 @@ theorem traceD_of_reachesIn (M : TM n) : ∀ (t : ℕ) {c c' : Cfg n M.Q},
           rw [Option.some.inj hcfg]
           exact ih hrest
 
-/-- **Traces compose.** -/
+/-- **Traces compose.**
+@isnad1 id=eq.0h5v.s5.5b6d2dccd28f from=translated src=- shape=07631be5 vocab=1ee56d76
+-/
 theorem traceD_add (M : TM n) : ∀ (a b : ℕ) (c : Cfg n M.Q),
     M.traceD (a + b) c = M.traceD b (M.traceD a c) := by
   intro a
@@ -162,7 +179,9 @@ theorem traceD_add (M : TM n) : ∀ (a b : ℕ) (c : Cfg n M.Q),
       · rw [show a + 1 + b = (a + b) + 1 by omega, traceD_succ_of_not_halted M (a + b) h,
           traceD_succ_of_not_halted M a h, ih]
 
-/-- **Once halted, a longer trace stays put.** -/
+/-- **Once halted, a longer trace stays put.**
+@isnad1 id=eq.3h6v.s5.751eb92d3ac2 from=translated src=- shape=12515791 vocab=9fb97422
+-/
 theorem traceD_of_reachesIn_halted (M : TM n) {t T : ℕ} (hle : t ≤ T) {c c' : Cfg n M.Q}
     (h : M.reachesIn t c c') (hhalt : M.halted c') : M.traceD T c = c' := by
   obtain ⟨d, rfl⟩ : ∃ d, T = t + d := ⟨T - t, by omega⟩
@@ -179,13 +198,17 @@ private theorem snoc_init_self' {α : Type} (f : Fin (k + 1) → α) :
   Fin.snoc_init_self f
 
 open TM in
-/-- The transition of `NTM.ofGuess M` is the visible part of `M`'s. -/
+/-- The transition of `NTM.ofGuess M` is the visible part of `M`'s.
+@isnad1 id=eq.0h7v.s7.77253efcc257 from=translated src=- shape=f2ef1234 vocab=0fe0bacd
+-/
 theorem ofGuess_δ (M : TM (k + 1)) (b : Bool) (q : M.Q) (iHead : Γ) (ww : Fin k → Γ)
     (oHead : Γ) :
     (ofGuess M).δ b q iHead ww oHead =
       TM.visible (M.δ q iHead (Fin.snoc ww (Γ.ofBool b)) oHead) := rfl
 
-/-- **One step of `M` is one step of `NTM.ofGuess M` along the bit under the guess head.** -/
+/-- **One step of `M` is one step of `NTM.ofGuess M` along the bit under the guess head.**
+@isnad1 id=eq.1h4v.s7.6d813f52bf9c from=translated src=- shape=2b5e8a5d vocab=21fb7666
+-/
 theorem dropChoice_stepCfg (M : TM (k + 1)) {c : Cfg (k + 1) M.Q} {b : Bool}
     (hread : (c.work (Fin.last k)).read = Γ.ofBool b) :
     dropChoice (M.stepCfg c) = stepCfg (ofGuess M) b (dropChoice c) := by
@@ -205,20 +228,32 @@ def nrunAt (N : NTM k) (choices : ℕ → Bool) (c : Cfg k N.Q) : ℕ → Cfg k 
     let cᵢ := nrunAt N choices c i
     if cᵢ.state = N.qhalt then cᵢ else stepCfg N (choices i) cᵢ
 
+/--
+@isnad1 id=eq.0h4v.s5.7bd1293d5cf2 from=translated src=- shape=1f4816ce vocab=1a21eb0d
+-/
 @[simp] theorem nrunAt_zero (N : NTM k) (choices : ℕ → Bool) (c : Cfg k N.Q) :
     nrunAt N choices c 0 = c := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.431b40acc61e from=translated src=- shape=79ed0afc vocab=4c37f96a
+-/
 theorem nrunAt_succ (N : NTM k) (choices : ℕ → Bool) (c : Cfg k N.Q) (i : ℕ) :
     nrunAt N choices c (i + 1) =
       if (nrunAt N choices c i).state = N.qhalt then nrunAt N choices c i
       else stepCfg N (choices i) (nrunAt N choices c i) := rfl
 
+/--
+@isnad1 id=eq.1h5v.s5.21df3c510961 from=translated src=- shape=a281770c vocab=ba04b36a
+-/
 theorem nrunAt_of_halted (N : NTM k) (choices : ℕ → Bool) {c : Cfg k N.Q}
     (h : c.state = N.qhalt) (i : ℕ) : nrunAt N choices c i = c := by
   induction i with
   | zero => rfl
   | succ i ih => erw [nrunAt_succ, ih, ite_eq_left h]
 
+/--
+@isnad1 id=eq.1h5v.s6.7433beb58766 from=translated src=- shape=dc479565 vocab=c7d1bc74
+-/
 theorem nrunAt_succ_front (N : NTM k) (choices : ℕ → Bool) {c : Cfg k N.Q}
     (h : c.state ≠ N.qhalt) (i : ℕ) :
     nrunAt N choices c (i + 1)
@@ -230,7 +265,9 @@ theorem nrunAt_succ_front (N : NTM k) (choices : ℕ → Bool) {c : Cfg k N.Q}
       erw [ite_eq_right h]
   | succ i ih => erw [nrunAt_succ, ih, nrunAt_succ]
 
-/-- The absolutely-indexed run is `NTM.trace`. -/
+/-- The absolutely-indexed run is `NTM.trace`.
+@isnad1 id=eq.0h5v.s5.0b2ec219d7f2 from=translated src=- shape=5bc3f7f5 vocab=9f1ce3b7
+-/
 theorem trace_eq_nrunAt (N : NTM k) (choices : ℕ → Bool) :
     ∀ (T : ℕ) (c : Cfg k N.Q),
       N.trace T (fun i => choices i.val) c = nrunAt N choices c T := by
@@ -249,7 +286,9 @@ def guessBit (M : TM (k + 1)) (c : Cfg (k + 1) M.Q) (i : ℕ) : Bool :=
   decide (((M.traceD i c).work (Fin.last k)).read = Γ.one)
 
 /-- A step preserves the guess tape and moves its head at most one cell right, so a tape holding
-bits for `T + 1` cells still holds them for `T`. -/
+bits for `T + 1` cells still holds them for `T`.
+@isnad1 id=boolfrom.3h5v.s7.f268e36c4564 from=translated src=- shape=cbbf024d vocab=88337b2c
+-/
 theorem boolFrom_stepCfg (M : TM (k + 1)) {Adv : M.Q → Bool} (hP : TM.GuessProtocol M Adv)
     {T : ℕ} {c : Cfg (k + 1) M.Q} (hq : c.state ≠ M.qhalt)
     (h : (c.work (Fin.last k)).BoolFrom (T + 1)) :
@@ -268,7 +307,9 @@ theorem boolFrom_stepCfg (M : TM (k + 1)) {Adv : M.Q → Bool} (hP : TM.GuessPro
   · exact h.move_right
   · exact h.mono (by omega)
 
-/-- **A run of `M` is a trace of `NTM.ofGuess M` along the bits it reads.** -/
+/-- **A run of `M` is a trace of `NTM.ofGuess M` along the bits it reads.**
+@isnad1 id=eq.2h5v.s7.6e4f87099fea from=translated src=- shape=8f72f192 vocab=b41b549d
+-/
 theorem dropChoice_traceD (M : TM (k + 1)) {Adv : M.Q → Bool} (hP : TM.GuessProtocol M Adv) :
     ∀ (T : ℕ) (c : Cfg (k + 1) M.Q), (c.work (Fin.last k)).BoolFrom T →
       dropChoice (M.traceD T c)
@@ -303,7 +344,9 @@ theorem dropChoice_traceD (M : TM (k + 1)) {Adv : M.Q → Bool} (hP : TM.GuessPr
 
 /-! ## Every choice sequence comes from a loaded tape -/
 
-/-- Outside the advancing states the choice bit does not matter. -/
+/-- Outside the advancing states the choice bit does not matter.
+@isnad1 id=eq.3h6v.s7.fc654c7c5380 from=translated src=- shape=b6e8b8d8 vocab=10b36038
+-/
 theorem stepCfg_indep (M : TM (k + 1)) {Adv : M.Q → Bool} (hP : TM.GuessProtocol M Adv)
     {c : Cfg k M.Q} (hq : c.state ≠ M.qhalt) (h : ¬ Adv c.state) (b b' : Bool) :
     stepCfg (ofGuess M) b c = stepCfg (ofGuess M) b' c := by
@@ -318,19 +361,31 @@ def attach {Q : Type} (d : Cfg k Q) (τ : Tape) : Cfg (k + 1) Q where
   work := Fin.snoc d.work τ
   output := d.output
 
+/--
+@isnad1 id=eq.0h4v.s5.bc91589aae5a from=translated src=- shape=05952396 vocab=e3afa808
+-/
 @[simp] theorem attach_work_last {Q : Type} (d : Cfg k Q) (τ : Tape) :
     (attach d τ).work (Fin.last k) = τ := by
   simp [attach]
 
+/--
+@isnad1 id=eq.0h4v.s4.a2251408a1f2 from=translated src=- shape=670d3dc2 vocab=85b94672
+-/
 @[simp] theorem dropChoice_attach {Q : Type} (d : Cfg k Q) (τ : Tape) :
     dropChoice (attach d τ) = d := by
   refine Cfg.ext rfl rfl ?_ rfl
   funext i
   simp [dropChoice, attach]
 
+/--
+@isnad1 id=eq.0h4v.s5.4878ce69f534 from=translated src=- shape=86662aa8 vocab=dc877b59
+-/
 @[simp] theorem attach_state {Q : Type} (d : Cfg k Q) (τ : Tape) :
     (attach d τ).state = d.state := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.1fc51305fc78 from=translated src=- shape=5d343243 vocab=58d4226e
+-/
 theorem loadCfg_eq_attach (M : TM (k + 1)) (x : List Bool) (g : ℕ → Bool) :
     loadCfg M x g = attach ((ofGuess M).initCfg x) (loadTape g) := by
   refine Cfg.ext rfl rfl ?_ rfl
@@ -345,6 +400,9 @@ def searchIdx (P : ℕ → Bool) : ℕ → ℕ
   | 0 => 0
   | T + 1 => if P T then T else searchIdx P T
 
+/--
+@isnad1 id=eq.3h3v.s5.a534f896b1bb from=translated src=- shape=b6da1665 vocab=acf5a655
+-/
 theorem searchIdx_eq {P : ℕ → Bool} {T i : ℕ} (hi : i < T) (hP : P i = true)
     (huniq : ∀ j, P j = true → j = i) : searchIdx P T = i := by
   induction T with
@@ -374,15 +432,24 @@ def cursor : ℕ → ℕ
   | 0 => 1
   | i + 1 => cursor i + (if consumes M Adv choices d i then 1 else 0)
 
+/--
+@isnad1 id=le.0h6v.s6.119d27748edc from=translated src=- shape=9751c0b2 vocab=24f8e1d2
+-/
 theorem one_le_cursor (i : ℕ) : 1 ≤ cursor M Adv choices d i := by
   induction i with
   | zero => exact le_rfl
   | succ i ih => rw [cursor]; omega
 
+/--
+@isnad1 id=le.0h6v.s6.a4de4514f64e from=translated src=- shape=6334cf39 vocab=24f8e1d2
+-/
 theorem cursor_le_succ (i : ℕ) :
     cursor M Adv choices d i ≤ cursor M Adv choices d (i + 1) := by
   rw [cursor]; omega
 
+/--
+@isnad1 id=le.1h7v.s6.c71ee8dac1d6 from=translated src=- shape=95391771 vocab=24f8e1d2
+-/
 theorem cursor_mono : ∀ {i j : ℕ}, i ≤ j →
     cursor M Adv choices d i ≤ cursor M Adv choices d j := by
   intro i j
@@ -396,12 +463,18 @@ theorem cursor_mono : ∀ {i j : ℕ}, i ≤ j →
         subst hij
         exact le_rfl
 
+/--
+@isnad1 id=lt.2h7v.s6.35943daeec1b from=translated src=- shape=fb62fbc7 vocab=4feff8fe
+-/
 theorem cursor_lt_of_consumes {i j : ℕ} (hij : i < j) (hi : consumes M Adv choices d i = true) :
     cursor M Adv choices d i < cursor M Adv choices d j := by
   refine lt_of_lt_of_le ?_ (cursor_mono M Adv choices d hij)
   rw [cursor, ite_eq_left hi]
   omega
 
+/--
+@isnad1 id=eq.3h7v.s6.4031e92c4d10 from=translated src=- shape=acd5341c vocab=600c0a92
+-/
 theorem cursor_inj_of_consumes {i j : ℕ} (hi : consumes M Adv choices d i = true)
     (hj : consumes M Adv choices d j = true)
     (h : cursor M Adv choices d i = cursor M Adv choices d j) : i = j := by
@@ -416,6 +489,9 @@ def guessOf (T : ℕ) (p : ℕ) : Bool :=
   choices (searchIdx (fun i =>
     consumes M Adv choices d i && decide (cursor M Adv choices d i = p + 1)) T)
 
+/--
+@isnad1 id=eq.2h7v.s6.3db11dafdafa from=translated src=- shape=66895ca4 vocab=70d05bf5
+-/
 theorem guessOf_eq {T i : ℕ} (hi : i < T) (hc : consumes M Adv choices d i = true) :
     guessOf M Adv choices d T (cursor M Adv choices d i - 1) = choices i := by
   have hpos := one_le_cursor M Adv choices d i
@@ -424,7 +500,9 @@ theorem guessOf_eq {T i : ℕ} (hi : i < T) (hc : consumes M Adv choices d i = t
   simp only [Bool.and_eq_true, decide_eq_true_eq] at hj
   exact cursor_inj_of_consumes M Adv choices d hj.1 hc (by omega)
 
-/-- A step moves the guess head on exactly in the advancing states. -/
+/-- A step moves the guess head on exactly in the advancing states.
+@isnad1 id=eq.3h4v.s8.ba362b209b9c from=translated src=- shape=e9f25d8a vocab=df2e8818
+-/
 theorem work_last_stepCfg' {Adv' : M.Q → Bool} (hP : TM.GuessProtocol M Adv')
     (c : Cfg (k + 1) M.Q) (hq : c.state ≠ M.qhalt)
     (hread : (c.work (Fin.last k)).read ≠ Γ.start) :
@@ -443,7 +521,9 @@ theorem work_last_stepCfg' {Adv' : M.Q → Bool} (hP : TM.GuessProtocol M Adv')
 /-- **Every choice sequence is realized by a loaded guess tape.** Running `M` on the tape
 `NTM.guessOf` builds reproduces, step for step, the path of `NTM.ofGuess M` along `choices`: the
 guesses land where the advancing steps read them, and the bits the machine never looks at are
-free. -/
+free.
+@isnad1 id=and.2h7v.s7.5ad17cd82995 from=translated src=- shape=b678cdd7 vocab=63a502d6
+-/
 theorem traceD_guessOf {Adv : M.Q → Bool} (hP : TM.GuessProtocol M Adv) (T : ℕ) :
     ∀ i ≤ T,
       dropChoice (M.traceD i (attach d (loadTape (guessOf M Adv choices d T))))
@@ -515,7 +595,9 @@ end Cursor
 nondeterministic construction is built on: design and verify `M` deterministically, with its
 guesses arriving on the last work tape, and read the result off here as a statement about the
 paths of `NTM.ofGuess M`. Unlike `NTM.ofGuess_trace` it asks nothing of `M` between guesses, so
-`M` may be assembled from the ordinary deterministic combinators. -/
+`M` may be assembled from the ordinary deterministic combinators.
+@isnad1 id=ex.1h6v.s7.052d9ab0fd42 from=translated src=- shape=e0f2b849 vocab=756868ba
+-/
 theorem exists_loadTape (M : TM (k + 1)) {Adv : M.Q → Bool} (hP : TM.GuessProtocol M Adv)
     (x : List Bool) (T : ℕ) (choices : Fin T → Bool) :
     ∃ (g : ℕ → Bool) (c' : Cfg (k + 1) M.Q) (t : ℕ), t ≤ T ∧

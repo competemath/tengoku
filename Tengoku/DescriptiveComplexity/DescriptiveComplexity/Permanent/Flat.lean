@@ -39,7 +39,9 @@ def flatAttach (M₀ : V → V → ℤ) (site : S → Site V) :
 
 omit [Fintype V] in
 /-- The flat matrix only depends on the sites through the sites themselves:
-it is invariant under an injective reindexing of the sites. -/
+it is invariant under an injective reindexing of the sites.
+@isnad1 id=eq.2h9v.s7.c09427b6ea14 from=translated src=- shape=537f88d9 vocab=fd174d4d
+-/
 theorem flatAttach_map {S' : Type} [DecidableEq S'] (M₀ : V → V → ℤ) (site : S → Site V)
     (site' : S' → Site V) (f : S → S') (hf : Function.Injective f)
     (hsite : ∀ s, site' (f s) = site s) (n n' : V ⊕ (S × Fin 4)) :
@@ -73,6 +75,9 @@ def ofFlat : ∀ l : List S, V ⊕ ({s // s ∈ l} × Fin 4) → AttachType V (l
       else Sum.inl (ofFlat l (Sum.inr (⟨s.1, (List.mem_cons.mp s.2).resolve_left h⟩, x)))
 
 omit [Fintype V] [DecidableEq V] [DecidableEq S] in
+/--
+@isnad1 id=eq.0h5v.s6.cd26a948fb9a from=translated src=- shape=63a2d387 vocab=3d8f86c1
+-/
 theorem toFlat_base : ∀ (l : List S) (a : V), toFlat site l (base (l.map site) a) = Sum.inl a
   | [], _ => rfl
   | s₀ :: l, a => by
@@ -81,6 +86,9 @@ theorem toFlat_base : ∀ (l : List S) (a : V), toFlat site l (base (l.map site)
     rfl
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=eq.0h5v.s5.208290cdce8a from=translated src=- shape=6ffc9cd1 vocab=b915ae08
+-/
 theorem ofFlat_inl : ∀ (l : List S) (a : V), ofFlat site l (Sum.inl a) = base (l.map site) a
   | [], _ => rfl
   | _ :: l, a => by
@@ -88,6 +96,9 @@ theorem ofFlat_inl : ∀ (l : List S) (a : V), ofFlat site l (Sum.inl a) = base 
     rfl
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=eq.1h5v.s5.e02dc0482950 from=translated src=- shape=f374ac78 vocab=d16a17d6
+-/
 theorem ofFlat_toFlat : ∀ (l : List S), l.Nodup → ∀ n : AttachType V (l.map site),
     ofFlat site l (toFlat site l n) = n
   | [], _, _ => rfl
@@ -106,6 +117,9 @@ theorem ofFlat_toFlat : ∀ (l : List S), l.Nodup → ∀ n : AttachType V (l.ma
     rw [toFlat, ofFlat, dite_eq_left rfl]
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=eq.0h5v.s6.e5aa9e86b12f from=translated src=- shape=1ffc2166 vocab=03a7c1c0
+-/
 theorem toFlat_ofFlat : ∀ (l : List S) (n : V ⊕ ({s // s ∈ l} × Fin 4)),
     toFlat site l (ofFlat site l n) = n
   | [], Sum.inl _ => rfl
@@ -130,18 +144,26 @@ def flatEquiv (l : List S) (hl : l.Nodup) :
   right_inv := toFlat_ofFlat site l
 
 omit [Fintype V] [DecidableEq V] [DecidableEq S] in
+/--
+@isnad1 id=injectiv.1h4v.s5.009af26457b9 from=translated src=- shape=b6919680 vocab=61951a40
+-/
 theorem toFlat_injective (l : List S) (hl : l.Nodup) : Function.Injective (toFlat site l) := by
   classical
   exact (flatEquiv site l hl).injective
 
 omit [Fintype V] [DecidableEq V] [DecidableEq S] in
+/--
+@isnad1 id=iff.1h6v.s6.e3063b8ddfc1 from=translated src=- shape=3cea96c4 vocab=cdf8884a
+-/
 theorem toFlat_eq_inl_iff (l : List S) (hl : l.Nodup) (n : AttachType V (l.map site)) (a : V) :
     toFlat site l n = Sum.inl a ↔ n = base (l.map site) a :=
   ⟨fun h => toFlat_injective site l hl (h.trans (toFlat_base site l a).symm),
     fun h => h ▸ toFlat_base site l a⟩
 
 omit [Fintype V] in
-/-- **The attached matrix, entry by entry, is the flat one.** -/
+/-- **The attached matrix, entry by entry, is the flat one.**
+@isnad1 id=eq.1h7v.s7.16018732c423 from=translated src=- shape=2b99b9bb vocab=2ab02751
+-/
 theorem attachAll_eq_flatAttach (M₀ : V → V → ℤ) :
     ∀ (l : List S), l.Nodup → ∀ n n' : AttachType V (l.map site),
       attachAll M₀ (l.map site) n n' =
@@ -201,7 +223,9 @@ theorem attachAll_eq_flatAttach (M₀ : V → V → ℤ) :
       simp only [flatAttach, ↓reduceIte]
 
 /-- The permanent of the flat attachment along a list is that of the nested
-one. -/
+one.
+@isnad1 id=eq.1h5v.s9.ceb7bca48fa4 from=translated src=- shape=c590b99f vocab=c36d424e
+-/
 theorem bperm_flatAttach_list (M₀ : V → V → ℤ) (l : List S) (hl : l.Nodup) :
     bperm (flatAttach M₀ fun s : {s // s ∈ l} => site s.1) =
       bperm (attachAll M₀ (l.map site)) := by
@@ -212,7 +236,9 @@ theorem bperm_flatAttach_list (M₀ : V → V → ℤ) (l : List S) (hl : l.Nodu
     ((flatEquiv site l hl).apply_symm_apply n')).symm
 
 /-- **The permanent of the flat attachment is that of the nested one**, the
-sites enumerated in any order. -/
+sites enumerated in any order.
+@isnad1 id=eq.0h4v.s8.7f64e9516b94 from=translated src=- shape=3dca89b8 vocab=6c9b9752
+-/
 theorem bperm_flatAttach [Fintype S] (M₀ : V → V → ℤ) :
     bperm (flatAttach M₀ site) = bperm (attachAll M₀ (univ.toList.map site)) := by
   rw [← bperm_flatAttach_list site M₀ univ.toList (Finset.nodup_toList _)]

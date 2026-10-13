@@ -62,7 +62,9 @@ variable (R G Q) in
 attribute [local instance] Ideal.Quotient.field in
 /-- Let `G` be a finite group acting on `S`, and `R` be the fixed subring.
 If `Q` is a prime of `S` with finite residue field,
-then there exists a Frobenius element `σ : G` at `Q`. -/
+then there exists a Frobenius element `σ : G` at `Q`.
+@isnad1 id=ex.0h4v.s8.62ec3a8072fa from=translated src=- shape=c4d9a839 vocab=73ee6c64
+-/
 lemma exists_of_isInvariant_of_profinite
     [Q.IsMaximal] [Finite (R ⧸ Q.under R)] : ∃ σ : G, IsArithFrobAt R σ Q := by
   let : TopologicalSpace S := ⊥
@@ -89,6 +91,9 @@ lemma exists_of_isInvariant_of_profinite
   exact DFunLike.congr_fun hσ (Ideal.Quotient.mk Q x)
 
 variable (S G) in
+/--
+@isnad1 id=ex.0h4v.s8.b588e6df2f63 from=translated src=- shape=bceca43c vocab=1da41424
+-/
 lemma exists_primesOver_isConj_of_profinite (P : Ideal R) [Finite (R ⧸ P)] [P.IsPrime] :
     ∃ σ : Ideal.primesOver P S → G, (∀ Q, IsArithFrobAt R (σ Q) Q.1) ∧
       (∀ Q₁ Q₂, IsConj (σ Q₁) (σ Q₂)) := by
@@ -117,6 +122,9 @@ noncomputable
 def _root_.arithFrobAt' [Q.IsPrime] [Finite (R ⧸ Q.under R)] : G :=
   (exists_primesOver_isConj_of_profinite S G (Q.under R)).choose ⟨Q, ‹_›, ⟨rfl⟩⟩
 
+/--
+@isnad1 id=isarithf.0h4v.s8.e39c166c7ad4 from=translated src=- shape=545c4140 vocab=17ae6100
+-/
 protected lemma arithFrobAt' [Q.IsPrime] [Finite (R ⧸ Q.under R)] :
     IsArithFrobAt R (arithFrobAt' R G Q) Q :=
   (exists_primesOver_isConj_of_profinite S G (Q.under R)).choose_spec.1 ⟨Q, ‹_›, ⟨rfl⟩⟩

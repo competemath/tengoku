@@ -60,6 +60,9 @@ def Tape.HoldsExact (t : Tape) (syms : List Γw) : Prop :=
 
 namespace Tape.HoldsExact
 
+/--
+@isnad1 id=startinv.1h2v.s3.1c6a1d123487 from=translated src=- shape=cc170e3a vocab=e5529967
+-/
 theorem startInvariant {t : Tape} {syms : List Γw} (h : t.HoldsExact syms) : t.StartInvariant := by
   refine ⟨h.1, fun j hj => ?_⟩
   obtain ⟨i, rfl⟩ : ∃ i, j = i + 1 := ⟨j - 1, by omega⟩
@@ -68,24 +71,32 @@ theorem startInvariant {t : Tape} {syms : List Γw} (h : t.HoldsExact syms) : t.
   · next => cases syms[i] <;> simp [Γw.toΓ]
   · simp
 
-/-- Cells within the contents. -/
+/-- Cells within the contents.
+@isnad1 id=eq.2h3v.s5.c4c86441eaba from=translated src=- shape=cfdf31c4 vocab=ed9d45dd
+-/
 theorem cells_lt {t : Tape} {syms : List Γw} (h : t.HoldsExact syms)
     {i : ℕ} (hi : i < syms.length) : t.cells (i + 1) = (syms[i]).toΓ := by
   rw [h.2 i, dite_eq_left hi]
 
-/-- Cells beyond the contents are blank. -/
+/-- Cells beyond the contents are blank.
+@isnad1 id=eq.2h3v.s5.898c34db43b0 from=translated src=- shape=cb679d8d vocab=371a7700
+-/
 theorem cells_ge {t : Tape} {syms : List Γw} (h : t.HoldsExact syms)
     {i : ℕ} (hi : syms.length ≤ i) : t.cells (i + 1) = Γ.blank := by
   rw [h.2 i, dite_eq_right (by omega)]
 
-/-- The all-blank (cleared) tape characterization. -/
+/-- The all-blank (cleared) tape characterization.
+@isnad1 id=iff.0h1v.s5.ae5b9a491381 from=translated src=- shape=6294a118 vocab=a0cbfd06
+-/
 theorem nil_iff {t : Tape} :
     t.HoldsExact [] ↔ t.cells 0 = Γ.start ∧ ∀ i : ℕ, t.cells (i + 1) = Γ.blank := by
   constructor
   · exact fun h => ⟨h.1, fun i => cells_ge h (Nat.zero_le i)⟩
   · exact fun ⟨h0, h1⟩ => ⟨h0, fun i => by rw [h1 i]; simp⟩
 
-/-- A freshly initialized (empty) tape holds `[]`. -/
+/-- A freshly initialized (empty) tape holds `[]`.
+@isnad1 id=holdsexa.0h0v.s2.395dd737b5a9 from=translated src=- shape=5f8c0c92 vocab=5be593ab
+-/
 theorem init_nil : (Tape.init []).HoldsExact [] := by
   refine ⟨by simp [Tape.init], fun i => ?_⟩
   simp [Tape.init]
@@ -104,25 +115,37 @@ def VShift (sim utm : Tape) : Prop :=
 
 namespace VShift
 
+/--
+@isnad1 id=eq.1h2v.s4.a9cefdd5fe22 from=translated src=- shape=9fd5d23a vocab=c10c9c27
+-/
 theorem head_eq {sim utm : Tape} (h : VShift sim utm) : utm.head = sim.head + 1 := h.2
 
+/--
+@isnad1 id=le.1h2v.s4.dacfda6f256e from=translated src=- shape=e05b7378 vocab=6266dbfb
+-/
 theorem head_pos {sim utm : Tape} (h : VShift sim utm) : 1 ≤ utm.head := by
   rw [h.2]; omega
 
-/-- Away from the simulated origin, the shadow reads the simulated symbol. -/
+/-- Away from the simulated origin, the shadow reads the simulated symbol.
+@isnad1 id=eq.2h2v.s4.26a4e91af244 from=translated src=- shape=5a20e1f0 vocab=675e9146
+-/
 theorem read_eq {sim utm : Tape} (h : VShift sim utm) (hp : 1 ≤ sim.head) :
     utm.read = sim.read := by
   rw [Tape.read, Tape.read, h.1, h.2]
   simp only [show sim.head + 1 ≠ 0 by omega, ite_false,
     show sim.head + 1 ≠ 1 by omega, ite_false, Nat.add_sub_cancel]
 
-/-- At the simulated origin, the shadow reads the permanent `□`. -/
+/-- At the simulated origin, the shadow reads the permanent `□`.
+@isnad1 id=eq.2h2v.s4.880d536b4230 from=translated src=- shape=af17257b vocab=04ba6ff9
+-/
 theorem read_blank {sim utm : Tape} (h : VShift sim utm) (hp : sim.head = 0) :
     utm.read = Γ.blank := by
   rw [Tape.read, h.1, h.2, hp]
   simp
 
-/-- The shadow never reads `▷` (given the simulated tape is well-formed). -/
+/-- The shadow never reads `▷` (given the simulated tape is well-formed).
+@isnad1 id=ne.2h2v.s4.5e3c774c902d from=translated src=- shape=2b137923 vocab=76a73dc6
+-/
 theorem read_ne_start {sim utm : Tape} (h : VShift sim utm) (hsim : sim.StartInvariant) :
     utm.read ≠ Γ.start := by
   rcases Nat.eq_zero_or_pos sim.head with hp | hp
@@ -131,7 +154,9 @@ theorem read_ne_start {sim utm : Tape} (h : VShift sim utm) (hsim : sim.StartInv
     exact hsim.2 sim.head hp
 
 /-- The shadow's cells beyond 1 never hold `▷` (given the simulated tape is
-    well-formed). -/
+    well-formed).
+@isnad1 id=startinv.2h2v.s3.7497729a83d7 from=translated src=- shape=a72c41e2 vocab=9755b2b1
+-/
 theorem startInvariant {sim utm : Tape} (h : VShift sim utm) (hsim : sim.StartInvariant) :
     utm.StartInvariant := by
   constructor
@@ -145,7 +170,9 @@ theorem startInvariant {sim utm : Tape} (h : VShift sim utm) (hsim : sim.StartIn
       exact hsim.2 (j - 1) (by omega)
 
 /-- Moves correspond, provided a left move never happens at the simulated
-    origin (sanitized dynamics guarantee this). -/
+    origin (sanitized dynamics guarantee this).
+@isnad1 id=vshift.2h3v.s5.b62af9325fe7 from=translated src=- shape=66612d52 vocab=959195db
+-/
 theorem move {sim utm : Tape} (h : VShift sim utm) (d : Dir3)
     (hd : sim.head = 0 → d = Dir3.right) :
     VShift (sim.move d) (utm.move d) := by
@@ -160,7 +187,9 @@ theorem move {sim utm : Tape} (h : VShift sim utm) (d : Dir3)
       · simp only [Tape.move, h.2]
         omega
 
-/-- Writes away from the simulated origin correspond. -/
+/-- Writes away from the simulated origin correspond.
+@isnad1 id=vshift.2h3v.s4.6301dd8c399b from=translated src=- shape=c6c42cbc vocab=07f3f05f
+-/
 theorem write {sim utm : Tape} (h : VShift sim utm) (s : Γw) (hp : 1 ≤ sim.head) :
     VShift (sim.write s.toΓ) (utm.write s.toΓ) := by
   have hh : utm.head = sim.head + 1 := h.2
@@ -186,7 +215,9 @@ theorem write {sim utm : Tape} (h : VShift sim utm) (s : Γw) (hp : 1 ≤ sim.he
         rw [Function.update_of_ne (by rw [hh] at hk; omega)]
 
 /-- A simulated write at the origin is a no-op; the shadow writes `□` over
-    the permanent `□` at cell 1 — also a no-op on cells. -/
+    the permanent `□` at cell 1 — also a no-op on cells.
+@isnad1 id=vshift.2h2v.s4.3afafeabf013 from=translated src=- shape=f104951a vocab=44f860ed
+-/
 theorem write_origin {sim utm : Tape} (h : VShift sim utm) (hp : sim.head = 0) :
     VShift sim (utm.write Γ.blank) := by
   have hh : utm.head = sim.head + 1 := h.2
@@ -205,7 +236,9 @@ theorem write_origin {sim utm : Tape} (h : VShift sim utm) (hp : sim.head = 0) :
 /-- **One full simulated tape action corresponds**: writing `s` and moving
     `d` on the simulated tape is shadowed by writing
     `if at-origin then □ else s` and moving `d`, provided the sanitized
-    direction discipline (`▷ ⇒ right`) holds. -/
+    direction discipline (`▷ ⇒ right`) holds.
+@isnad1 id=vshift.2h4v.s5.b762b7603dbc from=translated src=- shape=df25747f vocab=71f654d6
+-/
 theorem writeAndMove {sim utm : Tape} (h : VShift sim utm) (s : Γw) (d : Dir3)
     (hd : sim.head = 0 → d = Dir3.right) :
     VShift (sim.writeAndMove s.toΓ d)
@@ -221,7 +254,9 @@ theorem writeAndMove {sim utm : Tape} (h : VShift sim utm) (s : Γw) (d : Dir3)
       (fun h0 => absurd (by rwa [Tape.write_head] at h0) (by omega))
 
 /-- The initial correspondence: the simulated initial tape (contents `l`)
-    is shadowed by `▷ □ l ⋯` with head at cell 1. -/
+    is shadowed by `▷ □ l ⋯` with head at cell 1.
+@isnad1 id=vshift.0h1v.s6.343ee4eaca06 from=translated src=- shape=7153b683 vocab=d72796b3
+-/
 theorem init (l : List Γ) :
     VShift (Tape.init l)
       ⟨1, fun k => if k = 0 then Γ.start else if k = 1 then Γ.blank

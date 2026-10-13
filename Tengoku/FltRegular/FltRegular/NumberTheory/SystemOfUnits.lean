@@ -27,11 +27,17 @@ structure systemOfUnits (s : ℕ) where
 
 namespace systemOfUnits
 
+/--
+@isnad1 id=nonempty.0h2v.s5.2c40106f2af6 from=translated src=- shape=84af3d0a vocab=a4143fc5
+-/
 lemma existence0 : Nonempty (systemOfUnits p G 0) :=
   ⟨⟨fun _ ↦ 0, linearIndependent_empty_type⟩⟩
 
 include hp
 
+/--
+@isnad1 id=eq.2h4v.s8.c2eb3bddd3d6 from=translated src=- shape=705ef47a vocab=85e2910e
+-/
 lemma finrank_spanA {R : ℕ} (f : Fin R → G) (hf : LinearIndependent A f) :
     finrank ℤ (Submodule.span A (Set.range f)) = (p - 1) * R := by
   have := Fact.mk hp
@@ -43,6 +49,9 @@ lemma finrank_spanA {R : ℕ} (f : Fin R → G) (hf : LinearIndependent A f) :
 include hf
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=ex.3h5v.s7.c6c178494f2b from=translated src=- shape=a121f906 vocab=e7703a7a
+-/
 lemma ex_not_mem [Module.Free ℤ G] {R : ℕ} (S : systemOfUnits p G R) (hR : R < s) :
     ∃ g, ∀ (k : ℤ), k ≠ 0 → ¬(k • g ∈ Submodule.span A (Set.range S.units)) := by
   have := Fact.mk hp
@@ -64,6 +73,9 @@ include hp hf
 
 variable [Module.Free ℤ G]
 
+/--
+@isnad1 id=nonempty.3h5v.s6.b0c040e0a015 from=translated src=- shape=e940f6f9 vocab=363df33b
+-/
 lemma existence' [Module A G] {R : ℕ} (S : systemOfUnits p G R) (hR : R < s) :
     Nonempty (systemOfUnits p G (R + 1)) := by
   obtain ⟨g, hg⟩ := ex_not_mem p hp G s hf S hR
@@ -79,6 +91,9 @@ lemma existence' [Module A G] {R : ℕ} (S : systemOfUnits p G R) (hR : R < s) :
   rw [hy']
   exact Submodule.neg_mem _ (Submodule.smul_mem _ _ hy)
 
+/--
+@isnad1 id=nonempty.3h4v.s6.3894128d7480 from=translated src=- shape=896d14d1 vocab=f933fb38
+-/
 lemma existence'' [Module A G] {R : ℕ} (hR : R ≤ s) : Nonempty (systemOfUnits p G R) := by
   induction R with
   | zero => exact existence0 p G
@@ -86,6 +101,9 @@ lemma existence'' [Module A G] {R : ℕ} (hR : R ≤ s) : Nonempty (systemOfUnit
       obtain ⟨S⟩ := ih (le_trans (Nat.le_succ n) hR)
       exact existence' p hp G s hf S (lt_of_lt_of_le (Nat.lt_add_one n) hR)
 
+/--
+@isnad1 id=nonempty.2h3v.s6.5c3ca471fb71 from=translated src=- shape=322edb5a vocab=740fc669
+-/
 lemma existence [Module A G] : Nonempty (systemOfUnits p G s) := existence'' p hp G s hf rfl.le
 
 end systemOfUnits

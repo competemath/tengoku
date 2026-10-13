@@ -38,6 +38,9 @@ def exponentialSum
     VariableObject ℂ :=
   fun i ↦ exponentialSumAt (F i) (T i) (N i) (a i) (b i)
 
+/--
+@isnad1 id=eq.0h6v.s5.b9c7509b2326 from=translated src=- shape=c626918e vocab=96492d6d
+-/
 @[simp] theorem exponentialSum_apply
     (F : VariableFunction (VariableObject.fixed ℝ) ℝ)
     (T N : VariableObject ℝ) (a b : VariableObject ℕ) (i : ℕ) :
@@ -61,6 +64,9 @@ def IsExponentSumBound (α : ℝ≥0) (β : ℝ) : Prop :=
 def exponentSumBounds (α : ℝ≥0) : Set ℝ :=
   {β : ℝ | IsExponentSumBound α β}
 
+/--
+@isnad1 id=iff.0h2v.s4.20a960b210c0 from=translated src=- shape=90fc51fb vocab=d53513ee
+-/
 @[simp] theorem mem_exponentSumBounds {α : ℝ≥0} {β : ℝ} :
     β ∈ exponentSumBounds α ↔ IsExponentSumBound α β :=
   Iff.rfl
@@ -75,7 +81,9 @@ The candidate set is upward closed, nonempty, and bounded below.
 
 ### Monotonicity -/
 
-/-- Admissible exponential-sum bounds are monotone in the exponent. -/
+/-- Admissible exponential-sum bounds are monotone in the exponent.
+@isnad1 id=isexpone.2h3v.s4.6300e77f8a0c from=translated src=- shape=85d87de9 vocab=502931d1
+-/
 theorem IsExponentSumBound.mono {α : ℝ≥0} {β γ : ℝ}
     (hβ : IsExponentSumBound α β) (hβγ : β ≤ γ) :
     IsExponentSumBound α γ := by

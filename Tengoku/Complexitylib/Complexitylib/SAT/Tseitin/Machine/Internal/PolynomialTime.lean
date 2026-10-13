@@ -43,7 +43,9 @@ def reductionMachineTime (n : ℕ) : ℕ :=
   6 * n + 16384 * (n + 2) ^ 4 + 49
 
 /-- The explicit running-time allowance is bounded pointwise by one shifted
-quartic monomial. -/
+quartic monomial.
+@isnad1 id=le.0h1v.s5.ace2dbaf6cbc from=translated src=- shape=11bad5fb vocab=1056de96
+-/
 theorem reductionMachineTime_le_quartic_internal (n : ℕ) :
     reductionMachineTime n ≤ 16439 * (n + 2) ^ 4 := by
   have hbase : n + 2 ≤ (n + 2) ^ 4 := by
@@ -53,7 +55,9 @@ theorem reductionMachineTime_le_quartic_internal (n : ℕ) :
   omega
 
 /-- In the standard asymptotic convention, the uniform allowance is
-`O(n⁴)`. -/
+`O(n⁴)`.
+@isnad1 id=bigo.0h0v.s4.a07d5b914b3c from=translated src=- shape=3efa0af9 vocab=5ed34b00
+-/
 theorem reductionMachineTime_bigO_quartic_internal :
     Complexity.BigO reductionMachineTime ((· ^ 4) : ℕ → ℕ) := by
   unfold Complexity.BigO
@@ -75,7 +79,9 @@ theorem reductionMachineTime_bigO_quartic_internal :
       (1327159 : ℝ) * ((n ^ 4 : ℕ) : ℝ) by exact_mod_cast htime)
 
 /-- The concrete machine computes the total encoded Tseitin reduction within
-the uniform quartic allowance on every bit string. -/
+the uniform quartic allowance on every bit string.
+@isnad1 id=computes.0h0v.s2.8fd14c3daddf from=translated src=- shape=93eefbde vocab=321119a1
+-/
 theorem reductionTM_computesInTime_internal :
     reductionTM.ComputesInTime ThreeSAT.reduction reductionMachineTime := by
   intro z

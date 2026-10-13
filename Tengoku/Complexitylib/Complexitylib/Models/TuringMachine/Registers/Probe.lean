@@ -859,7 +859,9 @@ private theorem symProbeTM_backQ_run : ∀ (h : ℕ),
 /-- **`symProbeTM` Hoare specification.** Reads the input symbol at the
     position held by register `r` and adds its `f`-index to register `q`;
     the input (parked at cell 1), the register `r`, and every other tape are
-    restored exactly. -/
+    restored exactly.
+@isnad1 id=hoaretim.7h9v.s7.1e3a3424d1af from=translated src=- shape=daf1e97d vocab=83d48a01
+-/
 theorem symProbeTM_hoareTime (f : Γ → Fin 4) (r q : Fin n) (hrq : r ≠ q)
     (pos d : ℕ) (inp₀ : Tape) (work₀ : Fin n → Tape) (ys : List Bool)
     (hinp₀ : Parked inp₀) (hhead : inp₀.head = 1)

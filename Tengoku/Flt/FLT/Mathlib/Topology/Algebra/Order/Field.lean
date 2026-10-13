@@ -26,6 +26,7 @@ variable {F S : Type*} [Field F] [Field S] [LinearOrder S] [IsStrictOrderedRing 
 /--
 If `v` is a nontrivial absolute value, and `w` is another absolute value such that `w x < 1`
 if `v x < 1`, then we must also have `v x < 1` if `w x < 1`.
+@isnad1 id=iff.2h5v.s9.8f6a6929a3c8 from=translated src=- shape=ca67af97 vocab=95d59575
 -/
 theorem lt_one_iff_of_lt_one_imp [Archimedean S] [TopologicalSpace S] [OrderTopology S]
       (hv : v.IsNontrivial) (h : ∀ x, v x < 1 → w x < 1) {a : F} :
@@ -52,6 +53,7 @@ theorem lt_one_iff_of_lt_one_imp [Archimedean S] [TopologicalSpace S] [OrderTopo
 /--
 If `v` and `w` are two real absolute values on `F`, `v` is non-trivial, and `v x < 1` if and
 only if `w x < 1`, then `log (v a) / log (w a)` is constant for all `a ∈ K`.
+@isnad1 id=other.2h3v.s8.0f482fbae74c from=translated src=- shape=e2dc289e vocab=87ae9585
 -/
 theorem log_div_image_eq_singleton_of_le_one_iff {v w : AbsoluteValue F ℝ}
     (hv : v.IsNontrivial)
@@ -88,6 +90,9 @@ theorem log_div_image_eq_singleton_of_le_one_iff {v w : AbsoluteValue F ℝ}
       ← one_lt_div (zpow_pos (by linarith) _), ← map_pow, ← map_zpow₀, ← map_div₀] at this
   exact not_lt_of_gt ((h _).1 h₀) h₁
 
+/--
+@isnad1 id=ex.2h3v.s8.44c0da738b75 from=translated src=- shape=942cf66b vocab=2998918d
+-/
 theorem exists_rpow_of_one_lt {v w : AbsoluteValue F ℝ} (hv : v.IsNontrivial)
     (h : ∀ x, v x < 1 ↔ w x < 1) :
     ∃ (t : ℝ) (_ : 0 < t), ∀ x, 1 < v x → v x = w x ^ t := by
@@ -128,6 +133,7 @@ theorem eq_rpow_iff_lt_one_iff {v : AbsoluteValue F ℝ} (w : AbsoluteValue F �
 /--
 If `v` is non-trivial and `v = w ^ t` for some `t > 0`, then we can find an `a ∈ F` such that
 `v a < 1` while `1 ≤ w a`.
+@isnad1 id=ex.2h3v.s7.906d7273f5ef from=translated src=- shape=c4870b12 vocab=1a3ceaef
 -/
 theorem exists_lt_one_one_le_of_ne_rpow {v w : AbsoluteValue F ℝ}
     (hv : v.IsNontrivial)
@@ -136,6 +142,9 @@ theorem exists_lt_one_one_le_of_ne_rpow {v w : AbsoluteValue F ℝ}
   contrapose! h
   exact eq_rpow_iff_lt_one_iff _ hv |>.2 <| fun  _ => lt_one_iff_of_lt_one_imp hv h
 
+/--
+@isnad1 id=not.1h3v.s7.54a5c5e665b2 from=translated src=- shape=02204e0e vocab=71a271a2
+-/
 theorem ne_pow_symm {v w : AbsoluteValue F ℝ} (h : ¬∃ (t : ℝ) (_ : 0 < t), ∀ x, v x = (w x) ^ t) :
     ¬∃ (t : ℝ) (_ : 0 < t), ∀ x, w x = (v x) ^ t := by
   simp only [exists_prop, not_exists, not_and, not_forall] at h ⊢
@@ -146,6 +155,7 @@ theorem ne_pow_symm {v w : AbsoluteValue F ℝ} (h : ¬∃ (t : ℝ) (_ : 0 < t)
 /--
 If `v` and `w` are two non-trivial absolute values such that `v = w ^ t` for some `t > 0`, then
 we can find an `a ∈ K` such that `1 < v a` while `w a  < 1`.
+@isnad1 id=ex.3h3v.s7.4788f2ab0e2a from=translated src=- shape=11783646 vocab=2998918d
 -/
 theorem exists_one_lt_lt_one_of_ne_rpow {v w : AbsoluteValue F ℝ}
     (hv : v.IsNontrivial)

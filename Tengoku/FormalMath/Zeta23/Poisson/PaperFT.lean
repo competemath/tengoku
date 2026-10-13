@@ -21,6 +21,9 @@ namespace Zeta23
 sign `+i`, no `2π`, complex argument.  This file supplies the dictionary to Mathlib's `𝓕`
 (`∫ f(v) e^{-2πi v w} dv`) and the decay bound [eq:hfbound]. -/
 
+/--
+@isnad1 id=eq.0h2v.s5.0dac2646688c from=translated src=- shape=bcdbb779 vocab=716fddca
+-/
 theorem paperFT_def (f : ℝ → ℂ) (z : ℂ) : paperFT f z = ∫ u : ℝ, f u * cexp (I * z * u) := rfl
 
 /-! Mathlib's `integral_const_mul` / `integral_mul_const` are stated for a general `RCLike L`,
@@ -28,14 +31,22 @@ and their instance path (RCLike-derived `NormedAddCommGroup ℂ`) does not match
 directly-synthesized `Complex.instNormedAddCommGroup` under `rw`'s reducible unification.
 These ℂ-specialized restatements (same proofs) rewrite reliably. -/
 
+/--
+@isnad1 id=eq.0h2v.s6.8c9071d4af6c from=translated src=- shape=84987c26 vocab=8cecdb08
+-/
 theorem integral_const_mul_C (r : ℂ) (f : ℝ → ℂ) : (∫ a, r * f a) = r * ∫ a, f a :=
   integral_const_mul r f
 
+/--
+@isnad1 id=eq.0h2v.s6.b9514019ada5 from=translated src=- shape=c8a29f89 vocab=8cecdb08
+-/
 theorem integral_mul_const_C (r : ℂ) (f : ℝ → ℂ) : (∫ a, f a * r) = (∫ a, f a) * r :=
   integral_mul_const r f
 
 /-- Convention dictionary: for REAL argument `s`,
-`h_f(s) = 𝓕 f (-s / (2π))` where `𝓕` is Mathlib's Fourier transform. -/
+`h_f(s) = 𝓕 f (-s / (2π))` where `𝓕` is Mathlib's Fourier transform.
+@isnad1 id=eq.0h2v.s6.df085340961d from=translated src=- shape=91afd142 vocab=cbd2a1b6
+-/
 theorem paperFT_ofReal_eq_fourier (f : ℝ → ℂ) (s : ℝ) :
     paperFT f s = 𝓕 f (-s / (2 * π)) := by
   rw [Real.fourier_real_eq_integral_exp_smul]
@@ -47,7 +58,9 @@ theorem paperFT_ofReal_eq_fourier (f : ℝ → ℂ) (s : ℝ) :
   push_cast
   field_simp
 
-/-- Equivalent form of the dictionary: `𝓕 f w = h_f(-2π w)`. -/
+/-- Equivalent form of the dictionary: `𝓕 f w = h_f(-2π w)`.
+@isnad1 id=eq.0h2v.s6.96b77109279e from=translated src=- shape=e6d4467e vocab=a1f8de5e
+-/
 theorem fourier_eq_paperFT (f : ℝ → ℂ) (w : ℝ) :
     𝓕 f w = paperFT f (-(2 * π * w)) := by
   have := paperFT_ofReal_eq_fourier f (-(2 * π * w))
@@ -61,11 +74,17 @@ theorem fourier_eq_paperFT (f : ℝ → ℂ) (w : ℝ) :
 by parts (`h_f(z) = (iz)⁻² ∫ f''(u) e^{izu} du` and `|e^{izu}| = e^{−yu} ≤ e^{|y|Λ_f}` on
 `supp f`)."  We prove the two bounds separately, in multiplied-out form. -/
 
+/--
+@isnad1 id=eq.0h2v.s5.f1e5c1a051f8 from=translated src=- shape=aa53cc8a vocab=2f92f82d
+-/
 theorem norm_cexp_I_mul (z : ℂ) (u : ℝ) : ‖cexp (I * z * u)‖ = Real.exp (-(z.im * u)) := by
   rw [Complex.norm_exp]
   congr 1
   simp [Complex.mul_re, Complex.mul_im]
 
+/--
+@isnad1 id=le.1h3v.s5.6b46de6ff6a5 from=translated src=- shape=1613a11a vocab=0aae3a19
+-/
 theorem norm_cexp_I_mul_le {z : ℂ} {u Λ : ℝ} (hu : |u| ≤ Λ) :
     ‖cexp (I * z * u)‖ ≤ Real.exp (|z.im| * Λ) := by
   rw [norm_cexp_I_mul, Real.exp_le_exp]
@@ -73,7 +92,9 @@ theorem norm_cexp_I_mul_le {z : ℂ} {u Λ : ℝ} (hu : |u| ≤ Λ) :
     _ = |z.im| * |u| := abs_mul _ _
     _ ≤ |z.im| * Λ := by gcongr
 
-/-- [eq:hfbound], zeroth order: `supp f ⊆ [−Λ, Λ]` ⇒ `‖h_f(z)‖ ≤ e^{|Im z| Λ} ‖f‖₁`. -/
+/-- [eq:hfbound], zeroth order: `supp f ⊆ [−Λ, Λ]` ⇒ `‖h_f(z)‖ ≤ e^{|Im z| Λ} ‖f‖₁`.
+@isnad1 id=le.2h3v.s7.20cc6e27199a from=translated src=- shape=49d525bf vocab=6e986650
+-/
 theorem norm_paperFT_le {f : ℝ → ℂ} {Λ : ℝ} (hfi : Integrable f)
     (hsupp : ∀ u, f u ≠ 0 → |u| ≤ Λ) (z : ℂ) :
     ‖paperFT f z‖ ≤ Real.exp (|z.im| * Λ) * ∫ u, ‖f u‖ := by
@@ -86,7 +107,9 @@ theorem norm_paperFT_le {f : ℝ → ℂ} {Λ : ℝ} (hfi : Integrable f)
     gcongr
     exact norm_cexp_I_mul_le (hsupp u hu)
 
-/-- One integration by parts: `(f')^(z) = −iz · f̂(z)` for `f ∈ C_c¹`. -/
+/-- One integration by parts: `(f')^(z) = −iz · f̂(z)` for `f ∈ C_c¹`.
+@isnad1 id=eq.2h2v.s7.8080eb5b9a3a from=translated src=- shape=6ae43526 vocab=1b11ad58
+-/
 theorem paperFT_deriv {f : ℝ → ℂ} (hf : ContDiff ℝ 1 f) (hsupp : HasCompactSupport f) (z : ℂ) :
     paperFT (deriv f) z = -(I * z) * paperFT f z := by
   have hf' : Continuous (deriv f) := hf.continuous_deriv le_rfl
@@ -112,7 +135,9 @@ theorem paperFT_deriv {f : ℝ → ℂ} (hf : ContDiff ℝ 1 f) (hsupp : HasComp
     rw [paperFT_def, paperFT_def]; exact key
   linear_combination key'
 
-/-- Two integrations by parts: `(f'')^(z) = −z² · f̂(z)`, i.e. "`h_f(z) = (iz)⁻² ∫ f''(u)e^{izu} du`". -/
+/-- Two integrations by parts: `(f'')^(z) = −z² · f̂(z)`, i.e. "`h_f(z) = (iz)⁻² ∫ f''(u)e^{izu} du`".
+@isnad1 id=eq.2h2v.s7.4e91195603e0 from=translated src=- shape=1bead694 vocab=51f4e0b1
+-/
 theorem paperFT_deriv_deriv {f : ℝ → ℂ} (hf : ContDiff ℝ 2 f) (hsupp : HasCompactSupport f)
     (z : ℂ) : paperFT (deriv (deriv f)) z = -z ^ 2 * paperFT f z := by
   have h1 : ContDiff ℝ 1 (deriv f) := hf.deriv'
@@ -121,18 +146,26 @@ theorem paperFT_deriv_deriv {f : ℝ → ℂ} (hf : ContDiff ℝ 2 f) (hsupp : H
   rw [I_sq]
   ring
 
+/--
+@isnad1 id=hascompa.1h3v.s5.919d5500b9f6 from=translated src=- shape=c575c334 vocab=7b7e4a5e
+-/
 theorem hasCompactSupport_of_support_subset_abs {E : Type*} [Zero E] {f : ℝ → E} {Λ : ℝ}
     (hsupp : ∀ u, f u ≠ 0 → |u| ≤ Λ) : HasCompactSupport f := by
   refine HasCompactSupport.of_support_subset_isCompact (isCompact_Icc (a := -Λ) (b := Λ)) ?_
   intro u hu
   exact abs_le.mp (hsupp u hu)
 
+/--
+@isnad1 id=le.1h3v.s5.091467de88aa from=translated src=- shape=f3f4c827 vocab=c5dd3ede
+-/
 theorem tsupport_subset_of_support_subset_abs {E : Type*} [Zero E] {f : ℝ → E} {Λ : ℝ}
     (hsupp : ∀ u, f u ≠ 0 → |u| ≤ Λ) : tsupport f ⊆ Icc (-Λ) Λ :=
   closure_minimal (fun u hu => abs_le.mp (hsupp u hu)) isClosed_Icc
 
 /-- [eq:hfbound], second order: `supp f ⊆ [−Λ, Λ]`, `f ∈ C²` ⇒
-`‖h_f(z)‖ · ‖z‖² ≤ e^{|Im z| Λ} ‖f''‖₁`. -/
+`‖h_f(z)‖ · ‖z‖² ≤ e^{|Im z| Λ} ‖f''‖₁`.
+@isnad1 id=le.2h3v.s8.f921b6f643f8 from=translated src=- shape=b40372c0 vocab=c44f0e9a
+-/
 theorem norm_paperFT_mul_sq_le {f : ℝ → ℂ} {Λ : ℝ} (hf : ContDiff ℝ 2 f)
     (hsupp : ∀ u, f u ≠ 0 → |u| ≤ Λ) (z : ℂ) :
     ‖paperFT f z‖ * ‖z‖ ^ 2 ≤ Real.exp (|z.im| * Λ) * ∫ u, ‖deriv (deriv f) u‖ := by
@@ -149,7 +182,9 @@ theorem norm_paperFT_mul_sq_le {f : ℝ → ℂ} {Λ : ℝ} (hf : ContDiff ℝ 2
   rw [paperFT_deriv_deriv hf hcs, norm_mul, norm_neg, norm_pow, mul_comm] at this
   exact this
 
-/-- [eq:hfbound] in the paper's form for `z ≠ 0`: `‖h_f(z)‖ ≤ e^{|Im z|Λ} ‖f''‖₁ / ‖z‖²`. -/
+/-- [eq:hfbound] in the paper's form for `z ≠ 0`: `‖h_f(z)‖ ≤ e^{|Im z|Λ} ‖f''‖₁ / ‖z‖²`.
+@isnad1 id=le.3h3v.s8.e6dd6a92dcbb from=translated src=- shape=773dee29 vocab=ea4c0d80
+-/
 theorem norm_paperFT_le_div {f : ℝ → ℂ} {Λ : ℝ} (hf : ContDiff ℝ 2 f)
     (hsupp : ∀ u, f u ≠ 0 → |u| ≤ Λ) {z : ℂ} (hz : z ≠ 0) :
     ‖paperFT f z‖ ≤ Real.exp (|z.im| * Λ) * (∫ u, ‖deriv (deriv f) u‖) / ‖z‖ ^ 2 := by

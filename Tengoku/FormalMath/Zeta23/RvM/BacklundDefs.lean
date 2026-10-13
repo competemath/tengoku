@@ -26,6 +26,9 @@ namespace RvM
 def reZeroSet (T : ℝ) : Set ℝ :=
   {σ | σ ∈ Set.Icc (1/2 : ℝ) 2 ∧ (riemannZeta (σ + T * I)).re = 0}
 
+/--
+@isnad1 id=iff.0h2v.s6.d79738286fbe from=translated src=- shape=60c0a290 vocab=a5513de8
+-/
 lemma mem_reZeroSet {T σ : ℝ} :
     σ ∈ reZeroSet T ↔ σ ∈ Set.Icc (1/2 : ℝ) 2 ∧ (riemannZeta (σ + T * I)).re = 0 := Iff.rfl
 

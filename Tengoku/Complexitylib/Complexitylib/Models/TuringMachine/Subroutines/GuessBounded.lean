@@ -206,7 +206,9 @@ def guessBoundedNTM (witnessIdx counterIdx : Fin n) : NTM n where
 -- ════════════════════════════════════════════════════════════════════════
 
 /-- One step of `guessBoundedNTM` leaves the input tape unchanged, provided
-    the input head is not on the `▷` marker. -/
+    the input head is not on the `▷` marker.
+@isnad1 id=eq.1h5v.s6.0a2f5f4e8d9b from=translated src=- shape=ca1a9d8a vocab=2f9d9151
+-/
 theorem guessBoundedNTM_trace_one_input_eq
     (witnessIdx counterIdx : Fin n) (choice : Bool)
     (c : Cfg n (guessBoundedNTM witnessIdx counterIdx).Q)
@@ -229,7 +231,9 @@ theorem guessBoundedNTM_trace_one_input_eq
     · exact (hhalt hstate).elim
 
 /-- Any run of `guessBoundedNTM` leaves the input tape unchanged, provided
-    the input head is not on the `▷` marker. -/
+    the input head is not on the `▷` marker.
+@isnad1 id=eq.1h6v.s6.7d752bf44ae5 from=translated src=- shape=3a9bcc42 vocab=2f9d9151
+-/
 theorem guessBoundedNTM_trace_preserves_input
     (witnessIdx counterIdx : Fin n) (T : ℕ)
     (choices : Fin T → Bool)
@@ -246,7 +250,9 @@ theorem guessBoundedNTM_trace_preserves_input
     (choices ⟨time, htime⟩) current hreadCurrent).trans hcurrent
 
 /-- One step of `guessBoundedNTM` leaves the output tape unchanged, provided
-    the output head is not on the `▷` marker. -/
+    the output head is not on the `▷` marker.
+@isnad1 id=eq.1h5v.s6.d8be8f45606c from=translated src=- shape=ca1a9d8a vocab=02277360
+-/
 theorem guessBoundedNTM_trace_one_output_eq
     (witnessIdx counterIdx : Fin n) (choice : Bool)
     (c : Cfg n (guessBoundedNTM witnessIdx counterIdx).Q)
@@ -268,7 +274,9 @@ theorem guessBoundedNTM_trace_one_output_eq
     · exact (hhalt hstate).elim
 
 /-- Any run of `guessBoundedNTM` leaves the output tape unchanged, provided
-    the output head is not on the `▷` marker. -/
+    the output head is not on the `▷` marker.
+@isnad1 id=eq.1h6v.s6.d75a7dc476e3 from=translated src=- shape=3a9bcc42 vocab=02277360
+-/
 theorem guessBoundedNTM_trace_preserves_output
     (witnessIdx counterIdx : Fin n) (T : ℕ)
     (choices : Fin T → Bool)
@@ -285,7 +293,9 @@ theorem guessBoundedNTM_trace_preserves_output
     (choices ⟨time, htime⟩) current hreadCurrent).trans hcurrent
 
 /-- One step of `guessBoundedNTM` leaves any work tape other than the witness
-    and counter tapes unchanged, provided its head is not on `▷`. -/
+    and counter tapes unchanged, provided its head is not on `▷`.
+@isnad1 id=eq.3h6v.s6.40eeb63c4663 from=translated src=- shape=65c551be vocab=8d94eccc
+-/
 theorem guessBoundedNTM_trace_one_preserves_other_work
     (witnessIdx counterIdx otherIdx : Fin n) (choice : Bool)
     (c : Cfg n (guessBoundedNTM witnessIdx counterIdx).Q)
@@ -315,7 +325,9 @@ theorem guessBoundedNTM_trace_one_preserves_other_work
     · exact (hhalt hstate).elim
 
 /-- Any run of `guessBoundedNTM` leaves any work tape other than the witness
-    and counter tapes unchanged, provided its head is not on `▷`. -/
+    and counter tapes unchanged, provided its head is not on `▷`.
+@isnad1 id=eq.3h7v.s6.753887153d36 from=translated src=- shape=49453341 vocab=8d94eccc
+-/
 theorem guessBoundedNTM_trace_preserves_other_work
     (witnessIdx counterIdx otherIdx : Fin n) (T : ℕ)
     (choices : Fin T → Bool)
@@ -340,7 +352,9 @@ theorem guessBoundedNTM_trace_preserves_other_work
 -- ════════════════════════════════════════════════════════════════════════
 
 /-- In the `choose` state with a blank counter, one step moves to `rewind`
-    regardless of the nondeterministic choice. -/
+    regardless of the nondeterministic choice.
+@isnad1 id=eq.1h7v.s6.e5433031a4f8 from=translated src=- shape=3f8753bc vocab=358730b7
+-/
 theorem guessBoundedNTM_choose_counter_blank_state
     (witnessIdx counterIdx : Fin n) (choice : Bool)
     (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -351,7 +365,9 @@ theorem guessBoundedNTM_choose_counter_blank_state
   simp [NTM.trace, guessBoundedNTM, hcounter]
 
 /-- In the `choose` state with a non-blank counter, choosing `false` stops the
-    guess phase by moving to `rewind`. -/
+    guess phase by moving to `rewind`.
+@isnad1 id=eq.1h6v.s6.4f3e8431a89d from=translated src=- shape=28fe67ac vocab=f4be432e
+-/
 theorem guessBoundedNTM_choose_stop_state
     (witnessIdx counterIdx : Fin n)
     (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -362,7 +378,9 @@ theorem guessBoundedNTM_choose_stop_state
   simp [NTM.trace, guessBoundedNTM, hcounter]
 
 /-- In the `choose` state with a non-blank counter, choosing `true` continues
-    the guess phase by moving to `write`. -/
+    the guess phase by moving to `write`.
+@isnad1 id=eq.1h6v.s6.4fb66c0c2fa9 from=translated src=- shape=28fe67ac vocab=e25c509f
+-/
 theorem guessBoundedNTM_choose_continue_state
     (witnessIdx counterIdx : Fin n)
     (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -373,7 +391,9 @@ theorem guessBoundedNTM_choose_continue_state
   simp [NTM.trace, guessBoundedNTM, hcounter]
 
 /-- A continuing choose-step preserves the counter tape while moving to the
-    `write` state. -/
+    `write` state.
+@isnad1 id=hascount.2h8v.s6.4f003367e076 from=translated src=- shape=75b73797 vocab=c731c33a
+-/
 theorem guessBoundedNTM_choose_continue_preserves_counter
     (witnessIdx counterIdx : Fin n)
     (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -401,7 +421,9 @@ theorem guessBoundedNTM_choose_continue_preserves_counter
   exact hcounter
 
 /-- A continuing choose-step preserves the current witness prefix while moving
-    to the `write` state. -/
+    to the `write` state.
+@isnad1 id=hasbinar.3h9v.s6.12e9aa3aaa1a from=translated src=- shape=94ba7e01 vocab=b0b5b370
+-/
 theorem guessBoundedNTM_choose_continue_preserves_witness
     (witnessIdx counterIdx : Fin n)
     (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -430,7 +452,9 @@ theorem guessBoundedNTM_choose_continue_preserves_witness
   rw [hpreserve]
   exact hwitness
 
-/-- A continuing choose-step preserves the witness tape's left-end marker. -/
+/-- A continuing choose-step preserves the witness tape's left-end marker.
+@isnad1 id=eq.4h9v.s6.fb4d6f1d4873 from=translated src=- shape=767617bf vocab=14029cc8
+-/
 theorem guessBoundedNTM_choose_continue_preserves_witness_cell0
     (witnessIdx counterIdx : Fin n)
     (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -461,7 +485,9 @@ theorem guessBoundedNTM_choose_continue_preserves_witness_cell0
   exact hcell0
 
 /-- If the guess phase stops by choice, the choose-step preserves the witness
-    prefix while entering rewind. -/
+    prefix while entering rewind.
+@isnad1 id=hasbinar.2h7v.s6.1373470641f2 from=translated src=- shape=875a759d vocab=edb44280
+-/
 theorem guessBoundedNTM_choose_stop_preserves_witness
     (witnessIdx counterIdx : Fin n)
     (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -486,7 +512,9 @@ theorem guessBoundedNTM_choose_stop_preserves_witness
   exact hwitness
 
 /-- If the guess phase stops by choice, the choose-step preserves the witness
-    tape's left-end marker. -/
+    tape's left-end marker.
+@isnad1 id=eq.3h7v.s6.d681b41b39a6 from=translated src=- shape=f702f421 vocab=9703963a
+-/
 theorem guessBoundedNTM_choose_stop_preserves_witness_cell0
     (witnessIdx counterIdx : Fin n)
     (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -512,7 +540,9 @@ theorem guessBoundedNTM_choose_stop_preserves_witness_cell0
   exact hcell0
 
 /-- If the counter is empty, the choose-step is forced into rewind and preserves
-    the witness prefix. -/
+    the witness prefix.
+@isnad1 id=hasbinar.2h8v.s6.8fb077fb67f1 from=translated src=- shape=94549f03 vocab=7085704e
+-/
 theorem guessBoundedNTM_choose_counter_blank_preserves_witness
     (witnessIdx counterIdx : Fin n) (choice : Bool)
     (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -537,7 +567,9 @@ theorem guessBoundedNTM_choose_counter_blank_preserves_witness
   exact hwitness
 
 /-- If the counter is empty, the choose-step preserves the witness tape's
-    left-end marker. -/
+    left-end marker.
+@isnad1 id=eq.3h8v.s6.7f46305245ad from=translated src=- shape=4a26e067 vocab=23d45daf
+-/
 theorem guessBoundedNTM_choose_counter_blank_preserves_witness_cell0
     (witnessIdx counterIdx : Fin n) (choice : Bool)
     (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -563,7 +595,9 @@ theorem guessBoundedNTM_choose_counter_blank_preserves_witness_cell0
   exact hcell0
 
 /-- In the `write` state with a blank counter, one step moves to `rewind`
-    without writing a bit. -/
+    without writing a bit.
+@isnad1 id=eq.1h7v.s6.9b4e767d9ffb from=translated src=- shape=3f8753bc vocab=eb02265c
+-/
 theorem guessBoundedNTM_write_counter_blank_state
     (witnessIdx counterIdx : Fin n) (choice : Bool)
     (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -574,7 +608,9 @@ theorem guessBoundedNTM_write_counter_blank_state
   simp [NTM.trace, guessBoundedNTM, hcounter]
 
 /-- In the `write` state with a non-blank counter, one step writes a bit and
-    returns to the `choose` state. -/
+    returns to the `choose` state.
+@isnad1 id=eq.1h7v.s6.f9446bdceff7 from=translated src=- shape=eace2f51 vocab=4f2d3326
+-/
 theorem guessBoundedNTM_write_consume_state
     (witnessIdx counterIdx : Fin n) (choice : Bool)
     (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -585,7 +621,9 @@ theorem guessBoundedNTM_write_consume_state
   simp [NTM.trace, guessBoundedNTM, hcounter]
 
 /-- In the writing state, if the counter tape has remaining unary marks, one
-    NTM step consumes exactly one mark from the counter. -/
+    NTM step consumes exactly one mark from the counter.
+@isnad1 id=hascount.3h9v.s6.f430e95f0b4b from=translated src=- shape=5debd4b8 vocab=bc2aad41
+-/
 theorem guessBoundedNTM_write_consumes_counter
     (witnessIdx counterIdx : Fin n) (hne : witnessIdx ≠ counterIdx)
     (choice : Bool) (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -602,7 +640,9 @@ theorem guessBoundedNTM_write_consumes_counter
     Ne.symm hne, Tape.hasCounterRemainder_consume hcounter hlt]
 
 /-- In the writing state, the witness tape receives the chosen bit and advances
-    to the next blank cell. -/
+    to the next blank cell.
+@isnad1 id=hasbinar.2h8v.s6.097ef839db52 from=translated src=- shape=5f1b1228 vocab=7b79377e
+-/
 theorem guessBoundedNTM_hasBinaryPrefix_append_of_write
     (witnessIdx counterIdx : Fin n)
     (choice : Bool) (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -619,7 +659,9 @@ theorem guessBoundedNTM_hasBinaryPrefix_append_of_write
   exact Tape.hasBinaryPrefix_write_bit choice hwitness
 
 /-- In the writing state, writing a bit preserves the witness tape's left-end
-    marker. -/
+    marker.
+@isnad1 id=eq.3h8v.s6.00c04f11c055 from=translated src=- shape=1b6e7363 vocab=c4648683
+-/
 theorem guessBoundedNTM_write_preserves_witness_cell0
     (witnessIdx counterIdx : Fin n)
     (choice : Bool) (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -637,7 +679,9 @@ theorem guessBoundedNTM_write_preserves_witness_cell0
   exact Tape.hasBinaryPrefix_write_bit_cell0 choice hwitness hcell0
 
 /-- The normal two-step continue/write sequence consumes one counter mark.
-    This is the induction step used by bounded guessing proofs. -/
+    This is the induction step used by bounded guessing proofs.
+@isnad1 id=hascount.3h9v.s6.1d4094727889 from=translated src=- shape=f9d96e86 vocab=665a5798
+-/
 theorem guessBoundedNTM_continue_write_consumes_counter
     (witnessIdx counterIdx : Fin n) (hne : witnessIdx ≠ counterIdx)
     (bit : Bool) (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -674,7 +718,9 @@ theorem guessBoundedNTM_continue_write_consumes_counter
     exact guessBoundedNTM_write_consumes_counter witnessIdx counterIdx hne bit
       inp1 work1 out1 hcounter1 hlt
 
-/-- The normal two-step continue/write sequence returns to the `choose` state. -/
+/-- The normal two-step continue/write sequence returns to the `choose` state.
+@isnad1 id=eq.2h9v.s6.b38939a01a02 from=translated src=- shape=4fde3c43 vocab=f6c41c89
+-/
 theorem guessBoundedNTM_continue_write_state
     (witnessIdx counterIdx : Fin n)
     (bit : Bool) (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -715,7 +761,9 @@ theorem guessBoundedNTM_continue_write_state
       inp1 work1 out1 hcounter1_read
 
 /-- The normal two-step continue/write sequence appends the chosen bit to the
-    witness tape. -/
+    witness tape.
+@isnad1 id=hasbinar.3h10v.s7.788a65fcaa06 from=translated src=- shape=2d59daf1 vocab=b2acb71a
+-/
 theorem guessBoundedNTM_continue_write_extends_witness
     (witnessIdx counterIdx : Fin n)
     (bit : Bool) (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -762,7 +810,9 @@ theorem guessBoundedNTM_continue_write_extends_witness
       inp1 work1 out1 hwitness1 hcounter1_read
 
 /-- The normal two-step continue/write sequence preserves the witness tape's
-    left-end marker. -/
+    left-end marker.
+@isnad1 id=eq.4h10v.s7.3147702c70dc from=translated src=- shape=32339e3b vocab=5e82ba6c
+-/
 theorem guessBoundedNTM_continue_write_preserves_witness_cell0
     (witnessIdx counterIdx : Fin n)
     (bit : Bool) (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -814,7 +864,9 @@ theorem guessBoundedNTM_continue_write_preserves_witness_cell0
     exact guessBoundedNTM_write_preserves_witness_cell0 witnessIdx counterIdx bit
       inp1 work1 out1 hwitness1 hcell01 hcounter1_read
 
-/-- Bundled invariant update for one successful continue/write iteration. -/
+/-- Bundled invariant update for one successful continue/write iteration.
+@isnad1 id=other.5h10v.s7.5dde7bc95448 from=translated src=- shape=1ebf31c2 vocab=79343316
+-/
 theorem guessBoundedNTM_continue_write_invariants
     (witnessIdx counterIdx : Fin n) (hne : witnessIdx ≠ counterIdx)
     (bit : Bool) (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -841,7 +893,9 @@ theorem guessBoundedNTM_continue_write_invariants
       bit inp work out hwitness hcell0 hcounter hlt
 
 /-- In the `rewind` state with the witness head on `▷`, one step halts by
-    moving to `done`. -/
+    moving to `done`.
+@isnad1 id=eq.1h7v.s6.30f678e9e8ef from=translated src=- shape=9289c92c vocab=269976fd
+-/
 theorem guessBoundedNTM_rewind_at_start_state
     (witnessIdx counterIdx : Fin n) (choice : Bool)
     (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -852,7 +906,9 @@ theorem guessBoundedNTM_rewind_at_start_state
   simp [NTM.trace, guessBoundedNTM, hwitness]
 
 /-- In the `rewind` state with the witness head not on `▷`, one step stays in
-    the `rewind` state. -/
+    the `rewind` state.
+@isnad1 id=eq.1h7v.s6.8e9ecc5053d5 from=translated src=- shape=34a6365f vocab=57294179
+-/
 theorem guessBoundedNTM_rewind_left_state
     (witnessIdx counterIdx : Fin n) (choice : Bool)
     (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -967,7 +1023,9 @@ private theorem guessBoundedNTM_rewind_loop (witnessIdx counterIdx : Fin n) :
 
 /-- From the `rewind` state with a binary prefix on the witness tape, the
     machine halts within `bits.length + 2` steps with a completed witness
-    string and the left-end marker intact. -/
+    string and the left-end marker intact.
+@isnad1 id=other.3h6v.s7.f5f4bd6998b7 from=translated src=- shape=05814d79 vocab=c1455d9c
+-/
 theorem guessBoundedNTM_rewind_completes_witness
     (witnessIdx counterIdx : Fin n)
     (bits : List Bool)
@@ -989,7 +1047,9 @@ theorem guessBoundedNTM_rewind_completes_witness
     by rw [hloop.2.2]; exact hcell0⟩
 
 /-- If the counter is already blank in the choose state, the guess phase is
-    forced to stop and then rewind the current witness prefix. -/
+    forced to stop and then rewind the current witness prefix.
+@isnad1 id=other.3h8v.s7.f15382d9c52d from=translated src=- shape=826d8d6c vocab=b887730a
+-/
 theorem guessBoundedNTM_choose_counter_blank_completes_witness
     (witnessIdx counterIdx : Fin n)
     (bits : List Bool)
@@ -1030,7 +1090,9 @@ theorem guessBoundedNTM_choose_counter_blank_completes_witness
   exact hrewind
 
 /-- If the first choice from `choose` is `false`, the guess phase stops early
-    and rewinds the current witness prefix. -/
+    and rewinds the current witness prefix.
+@isnad1 id=other.4h8v.s7.c419174e772b from=translated src=- shape=d7ae2e45 vocab=51277e8f
+-/
 theorem guessBoundedNTM_hasBinaryString_of_choose_stop
     (witnessIdx counterIdx : Fin n)
     (bits : List Bool)
@@ -1234,7 +1296,9 @@ private theorem guessBoundedNTM_choose_reaches_bounded_witness_aux
 /-- From any `choose` configuration with a completed unary counter and a
 binary prefix on the witness tape, every path halts within `guessBoundedTime`
 and leaves a completed witness string no longer than the prefix plus the
-counter bound. -/
+counter bound.
+@isnad1 id=other.5h7v.s7.111fa97ed73d from=translated src=- shape=8c798cfa vocab=2d4ca10d
+-/
 theorem guessBoundedNTM_halted_hasBoundedBinaryString_of_choose
     (witnessIdx counterIdx : Fin n) (hne : witnessIdx ≠ counterIdx)
     (B : ℕ) (bits : List Bool)
@@ -1272,7 +1336,9 @@ theorem guessBoundedNTM_halted_hasBoundedBinaryString_of_choose
   exact hshort
 
 /-- Hoare-style all-path specification for `guessBoundedNTM`, starting from an
-empty binary prefix and a unary counter of length `B`. -/
+empty binary prefix and a unary counter of length `B`.
+@isnad1 id=hoaretim.1h4v.s6.29ae0c38cb61 from=translated src=- shape=6923b1da vocab=01c7d061
+-/
 theorem guessBoundedNTM_hoareTime
     (witnessIdx counterIdx : Fin n) (hne : witnessIdx ≠ counterIdx)
     (B : ℕ) :
@@ -1298,7 +1364,9 @@ theorem guessBoundedNTM_hoareTime
   exact ⟨finalBits, by simpa using hlen, hwitness⟩
 
 /-- Stronger Hoare-style specification for `guessBoundedNTM` that retains the
-left-end marker fact needed by later tape consumers. -/
+left-end marker fact needed by later tape consumers.
+@isnad1 id=hoaretim.1h4v.s6.57e462375090 from=translated src=- shape=50747afc vocab=01c7d061
+-/
 theorem guessBoundedNTM_hoareTime_with_cell0
     (witnessIdx counterIdx : Fin n) (hne : witnessIdx ≠ counterIdx)
     (B : ℕ) :
@@ -1326,7 +1394,9 @@ theorem guessBoundedNTM_hoareTime_with_cell0
   exact ⟨⟨finalBits, by simpa using hlen, hwitness⟩, hcell0_final⟩
 
 /-- Hoare-style all-path specification for `guessBoundedNTM` with the
-    completed witness tape in exact initialized-tape form. -/
+    completed witness tape in exact initialized-tape form.
+@isnad1 id=hoaretim.1h4v.s6.6a4df660f8b1 from=translated src=- shape=93bd2fd5 vocab=d09f0be5
+-/
 theorem guessBoundedNTM_hoareTime_initTape_move_right
     (witnessIdx counterIdx : Fin n) (hne : witnessIdx ≠ counterIdx)
     (B : ℕ) :
@@ -1347,7 +1417,9 @@ theorem guessBoundedNTM_hoareTime_initTape_move_right
 /-- Framed exact-tape Hoare specification for `guessBoundedNTM`: besides
     producing an exact initialized witness tape, the real input, output, and
     every non-witness/non-counter work tape whose head is already past `▷`
-    are preserved unchanged. -/
+    are preserved unchanged.
+@isnad1 id=hoaretim.4h7v.s7.1fabea4830c5 from=translated src=- shape=7a2907ad vocab=695056cc
+-/
 theorem guessBoundedNTM_hoareTime_init_move_right_frame
     (witnessIdx counterIdx : Fin n) (hne : witnessIdx ≠ counterIdx)
     (B : ℕ) (input0 output0 : Tape) (frame : Fin n → Tape)
@@ -1527,7 +1599,9 @@ private theorem guessBoundedNTM_choose_generates_suffix_aux
         simpa [List.append_assoc] using htail
 
 /-- Completeness of the bounded guess phase: any suffix within the unary
-counter bound can be produced by some nondeterministic path. -/
+counter bound can be produced by some nondeterministic path.
+@isnad1 id=ex.6h7v.s7.b245e799f448 from=translated src=- shape=f760a5df vocab=95a19d07
+-/
 theorem guessBoundedNTM_choose_generates_witness
     (witnessIdx counterIdx : Fin n) (hne : witnessIdx ≠ counterIdx)
     (B : ℕ) (bits suffix : List Bool)
@@ -1563,7 +1637,9 @@ theorem guessBoundedNTM_choose_generates_witness
   exact hshort
 
 /-- Exact-tape form of `guessBoundedNTM_choose_generates_witness`, convenient
-    for feeding a chosen witness directly into pair construction. -/
+    for feeding a chosen witness directly into pair construction.
+@isnad1 id=ex.6h7v.s7.daad60c351ff from=translated src=- shape=df4d30e7 vocab=d31f235e
+-/
 theorem guessBoundedNTM_choose_generates_witness_initTape_move_right
     (witnessIdx counterIdx : Fin n) (hne : witnessIdx ≠ counterIdx)
     (B : ℕ) (bits suffix : List Bool)

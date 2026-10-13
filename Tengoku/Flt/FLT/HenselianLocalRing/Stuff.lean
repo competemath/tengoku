@@ -41,11 +41,17 @@ instance {R R' S : Type*} [CommSemiring R] [CommSemiring R'] [Semiring S] [Algeb
     {e : S} (he : IsIdempotentElem e) : IsScalarTower R R' he.Corner :=
   .of_algebraMap_eq fun _ ↦ Subtype.ext (IsScalarTower.algebraMap_smul _ _ _).symm
 
+/--
+@isnad1 id=surjecti.1h2v.s7.400f18a99090 from=translated src=- shape=b2c99d73 vocab=3bec7688
+-/
 lemma IsIdempotentElem.toCorner_surjective
     {R : Type*} [CommSemiring R] {e : R} (he : IsIdempotentElem e) :
     Function.Surjective (algebraMap R he.Corner) :=
   fun x ↦ ⟨x.1, Subtype.ext ((Subsemigroup.mem_corner_iff he).mp x.2).2⟩
 
+/--
+@isnad1 id=eq.1h2v.s8.6bdb3cc7e68e from=translated src=- shape=a341d1fe vocab=0b443ed8
+-/
 lemma IsIdempotentElem.ker_toCorner
     {R : Type*} [CommRing R] {e : R} (he : IsIdempotentElem e) :
     RingHom.ker (algebraMap R he.Corner) = Ideal.span {1 - e} := by
@@ -67,15 +73,24 @@ local instance {R S : Type*} [CommRing R] [CommRing S] [Algebra R S]
     Algebra.IsSeparable p.ResidueField q.ResidueField :=
   ((Algebra.isUnramifiedAt_iff_map_eq _ _ _).mp inferInstance).1
 
+/--
+@isnad1 id=isradica.0h3v.s6.92e719e7f28e from=translated src=- shape=0446a213 vocab=b17fa58c
+-/
 lemma Ideal.isRadical_ker {R S : Type*} [CommRing R] [CommRing S] [IsReduced S] (f : R →+* S) :
     (RingHom.ker f).IsRadical := by
   simpa [IsRadical, SetLike.le_def, Ideal.mem_radical_iff] using fun _ _ ↦ eq_zero_of_pow_eq_zero
 
+/--
+@isnad1 id=iff.2h4v.s7.fb4e51899257 from=translated src=- shape=f18338fd vocab=73fbb32b
+-/
 lemma Ideal.IsRadical.pow_mem_iff {R : Type*} [CommRing R] {I : Ideal R} (hI : I.IsRadical)
     {x : R} {n : ℕ} (hn : n ≠ 0) :
     x ^ n ∈ I ↔ x ∈ I :=
   ⟨fun h ↦ hI ⟨_, h⟩, (Ideal.pow_mem_of_mem _ · _ hn.bot_lt)⟩
 
+/--
+@isnad1 id=isfield.0h2v.s5.7d60672ed952 from=translated src=- shape=9e2de261 vocab=076a3d36
+-/
 lemma Algebra.FormallyUnramified.isField_of_isLocalRing
     (R S : Type*) [Field R] [CommRing S] [Algebra R S]
     [Algebra.EssFiniteType R S] [Algebra.FormallyUnramified R S] [IsLocalRing S] : IsField S :=

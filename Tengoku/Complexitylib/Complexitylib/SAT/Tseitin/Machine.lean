@@ -34,7 +34,9 @@ namespace ThreeSAT
 namespace Machine
 
 /-- The concrete Tseitin reduction machine computes the total encoded
-reduction within an explicit quartic time bound. -/
+reduction within an explicit quartic time bound.
+@isnad1 id=computes.0h0v.s6.85e7a17c3a00 from=translated src=- shape=5a81847d vocab=50393788
+-/
 theorem reductionTM_computesInTime :
     reductionTM.ComputesInTime reduction
       (fun n => 6 * n + 16384 * (n + 2) ^ 4 + 49) := by
@@ -43,7 +45,9 @@ theorem reductionTM_computesInTime :
 end Machine
 
 /-- The total encoded CNF-SAT-to-3SAT reduction is polynomial-time
-computable. -/
+computable.
+@isnad1 id=mem.0h0v.s4.3985839f835e from=translated src=- shape=08f40544 vocab=323a7cb5
+-/
 theorem reduction_mem_FP : reduction ∈ FP := by
   rw [mem_FP_iff_computesInTime_polynomial]
   let p : Polynomial ℕ :=

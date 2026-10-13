@@ -69,7 +69,9 @@ def Hoare (tm : TM n) (pre post : TapePred n) : Prop :=
 -- Structural rules
 -- ════════════════════════════════════════════════════════════════════════
 
-/-- **Consequence rule**: weaken the precondition and strengthen the postcondition. -/
+/-- **Consequence rule**: weaken the precondition and strengthen the postcondition.
+@isnad1 id=hoaretim.2h10v.s6.b5ea611ac10f from=translated src=- shape=0a889879 vocab=3739777c
+-/
 theorem HoareTime.consequence {tm : TM n}
     {pre pre' post post' : TapePred n} {b b' : ℕ}
     (h : tm.HoareTime pre post b)
@@ -81,7 +83,9 @@ theorem HoareTime.consequence {tm : TM n}
   obtain ⟨c', t, ht, hreach, hhalt, hpost_c⟩ := h inp work out (hpre _ _ _ hpre')
   exact ⟨c', t, le_trans ht hbound, hreach, hhalt, hpost _ _ _ hpost_c⟩
 
-/-- **Precondition weakening**: if `pre'` implies `pre`, lift the Hoare triple. -/
+/-- **Precondition weakening**: if `pre'` implies `pre`, lift the Hoare triple.
+@isnad1 id=hoaretim.1h7v.s5.cf0ab1a861f3 from=translated src=- shape=b6e7bad6 vocab=ef588e59
+-/
 theorem HoareTime.weaken_pre {tm : TM n}
     {pre pre' post : TapePred n} {b : ℕ}
     (h : tm.HoareTime pre post b)
@@ -89,7 +93,9 @@ theorem HoareTime.weaken_pre {tm : TM n}
     tm.HoareTime pre' post b :=
   h.consequence hpre (fun _ _ _ h => h) le_rfl
 
-/-- **Postcondition strengthening**: if `post` implies `post'`, lift the triple. -/
+/-- **Postcondition strengthening**: if `post` implies `post'`, lift the triple.
+@isnad1 id=hoaretim.1h7v.s5.6665c310acee from=translated src=- shape=103402e4 vocab=ef588e59
+-/
 theorem HoareTime.strengthen_post {tm : TM n}
     {pre post post' : TapePred n} {b : ℕ}
     (h : tm.HoareTime pre post b)
@@ -97,14 +103,18 @@ theorem HoareTime.strengthen_post {tm : TM n}
     tm.HoareTime pre post' b :=
   h.consequence (fun _ _ _ h => h) hpost le_rfl
 
-/-- **Time monotonicity**: increase the time bound. -/
+/-- **Time monotonicity**: increase the time bound.
+@isnad1 id=hoaretim.2h6v.s5.0d0edbc86611 from=translated src=- shape=b96a07c7 vocab=bb07ede1
+-/
 theorem HoareTime.mono_bound {tm : TM n}
     {pre post : TapePred n} {b b' : ℕ}
     (h : tm.HoareTime pre post b) (hle : b ≤ b') :
     tm.HoareTime pre post b' :=
   h.consequence (fun _ _ _ h => h) (fun _ _ _ h => h) hle
 
-/-- Bounded implies unbounded. -/
+/-- Bounded implies unbounded.
+@isnad1 id=hoare.1h5v.s4.2808e7d6883b from=translated src=- shape=7774c896 vocab=1269dc2e
+-/
 theorem HoareTime.toHoare {tm : TM n}
     {pre post : TapePred n} {b : ℕ}
     (h : tm.HoareTime pre post b) :
@@ -117,7 +127,9 @@ theorem HoareTime.toHoare {tm : TM n}
 -- Connection to DecidesInTime
 -- ════════════════════════════════════════════════════════════════════════
 
-/-- `DecidesInTime` implies a family of Hoare triples, one per input. -/
+/-- `DecidesInTime` implies a family of Hoare triples, one per input.
+@isnad1 id=hoaretim.1h5v.s6.609191fc99c6 from=translated src=- shape=453f4ef0 vocab=fe862b15
+-/
 theorem hoareTime_of_decidesInTime {tm : TM n} {L : Language} {T : ℕ → ℕ}
     (h : tm.DecidesInTime L T) (x : List Bool) :
     tm.HoareTime
@@ -152,7 +164,9 @@ def HoareTime (tm : NTM n) (pre post : TapePred n) (bound : ℕ) : Prop :=
         { state := tm.qstart, input := inp, work := work, output := out }
       tm.halted c' ∧ post c'.input c'.work c'.output
 
-/-- Consequence rule for NTM Hoare triples. -/
+/-- Consequence rule for NTM Hoare triples.
+@isnad1 id=hoaretim.1h9v.s6.479d33396c06 from=translated src=- shape=44ea0794 vocab=e7a22be5
+-/
 theorem HoareTime.consequence {tm : NTM n}
     {pre pre' post post' : TapePred n} {b : ℕ}
     (h : tm.HoareTime pre post b)
@@ -163,7 +177,9 @@ theorem HoareTime.consequence {tm : NTM n}
   exact (h inp work out (hpre _ _ _ hpre') choices).imp
     (fun hhalt => hhalt) (fun hp => hpost _ _ _ hp)
 
-/-- Precondition weakening for NTM Hoare triples. -/
+/-- Precondition weakening for NTM Hoare triples.
+@isnad1 id=hoaretim.1h7v.s5.13005ad2b788 from=translated src=- shape=b6e7bad6 vocab=e7a22be5
+-/
 theorem HoareTime.weaken_pre {tm : NTM n}
     {pre pre' post : TapePred n} {b : ℕ}
     (h : tm.HoareTime pre post b)
@@ -171,7 +187,9 @@ theorem HoareTime.weaken_pre {tm : NTM n}
     tm.HoareTime pre' post b :=
   h.consequence hpre (fun _ _ _ h => h)
 
-/-- Postcondition strengthening for NTM Hoare triples. -/
+/-- Postcondition strengthening for NTM Hoare triples.
+@isnad1 id=hoaretim.1h7v.s5.23a573775c62 from=translated src=- shape=103402e4 vocab=e7a22be5
+-/
 theorem HoareTime.strengthen_post {tm : NTM n}
     {pre post post' : TapePred n} {b : ℕ}
     (h : tm.HoareTime pre post b)
@@ -180,7 +198,9 @@ theorem HoareTime.strengthen_post {tm : NTM n}
   h.consequence (fun _ _ _ h => h) hpost
 
 /-- Time monotonicity for NTM Hoare triples. Since `NTM.trace` is fixed after
-    halting, a proof for `b` steps also gives a proof for any larger bound. -/
+    halting, a proof for `b` steps also gives a proof for any larger bound.
+@isnad1 id=hoaretim.2h6v.s5.c3f57ae29561 from=translated src=- shape=b96a07c7 vocab=f09eb5b0
+-/
 theorem HoareTime.mono_bound {tm : NTM n}
     {pre post : TapePred n} {b b' : ℕ}
     (h : tm.HoareTime pre post b) (hle : b ≤ b') :
@@ -203,7 +223,9 @@ theorem HoareTime.mono_bound {tm : NTM n}
 /-- If a finite NTM trace is halted at time `T`, then it has a least halted
     prefix time. This is useful for phase-composed machines: Hoare-time facts
     give halting by a fixed bound, while phase exits need the first local halt
-    time. -/
+    time.
+@isnad1 id=ex.1h5v.s6.66549d359499 from=translated src=- shape=665f08b1 vocab=b7afeef2
+-/
 theorem exists_first_halt_time_of_trace_halted (tm : NTM n) (T : ℕ)
     (choices : Fin T → Bool) (c : Cfg n tm.Q)
     (hhalt : tm.halted (tm.trace T choices c)) :
@@ -228,7 +250,9 @@ theorem exists_first_halt_time_of_trace_halted (tm : NTM n) (T : ℕ)
 
 /-- Hoare-time corollary of `exists_first_halt_time_of_trace_halted`: every
     all-path halting proof yields a least halting prefix for each fixed choice
-    sequence. -/
+    sequence.
+@isnad1 id=ex.1h10v.s6.5b0335e037fc from=translated src=- shape=ded8817c vocab=763cac29
+-/
 theorem HoareTime.exists_first_halt_time {tm : NTM n}
     {pre post : TapePred n} {bound : ℕ}
     (h : tm.HoareTime pre post bound)
@@ -246,7 +270,9 @@ theorem HoareTime.exists_first_halt_time {tm : NTM n}
     { state := tm.qstart, input := inp, work := work, output := out } hhalt
 
 /-- Hoare-time first-halt extraction, preserving the Hoare postcondition at the
-    first halted prefix. -/
+    first halted prefix.
+@isnad1 id=ex.1h10v.s7.477089207ed8 from=translated src=- shape=7675ba7b vocab=2a98a3f3
+-/
 theorem HoareTime.exists_first_halt_time_with_post {tm : NTM n}
     {pre post : TapePred n} {bound : ℕ}
     (h : tm.HoareTime pre post bound)
@@ -284,7 +310,9 @@ namespace TM
 variable {n : ℕ}
 
 /-- A deterministic Hoare triple lifts to an NTM Hoare triple for `TM.toNTM`.
-    The bound is unchanged because `toNTM` ignores the choice bit. -/
+    The bound is unchanged because `toNTM` ignores the choice bit.
+@isnad1 id=hoaretim.1h5v.s4.4048bc12eebf from=translated src=- shape=5353ed19 vocab=9188a6b9
+-/
 theorem HoareTime.toNTM {tm : TM n} {pre post : TapePred n} {b : ℕ}
     (h : tm.HoareTime pre post b) :
     tm.toNTM.HoareTime pre post b := by

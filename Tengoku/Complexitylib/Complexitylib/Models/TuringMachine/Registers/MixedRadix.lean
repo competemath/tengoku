@@ -47,7 +47,9 @@ def hornerStepTM (X tmp tmp2 : Fin n) : DigitSrc n → TM n
   | .inr c => hornerLayerConstTM X tmp tmp2 c
 
 /-- **`hornerStepTM` Hoare specification** (raw form, arbitrary scratch
-    values). -/
+    values).
+@isnad1 id=hoaretim.13h13v.s7.0d5386136acd from=translated src=- shape=eef96b14 vocab=dc152df9
+-/
 theorem hornerStepTM_hoareTime {X tmp tmp2 : Fin n} (s : DigitSrc n)
     (hXt : X ≠ tmp) (hXt2 : X ≠ tmp2) (htt2 : tmp ≠ tmp2)
     (M x v w u : ℕ) (hx : x ≤ M) (hv : v ≤ M) (hu : u ≤ M)
@@ -77,7 +79,9 @@ theorem hornerStepTM_hoareTime {X tmp tmp2 : Fin n} (s : DigitSrc n)
 def scratch (work₀ : Fin n → Tape) (tmp tmp2 : Fin n) (z : ℕ) : Fin n → Tape :=
   Function.update (Function.update work₀ tmp2 (regTape z)) tmp (regTape z)
 
-/-- A scratch state built from a parked register family is parked on every tape. -/
+/-- A scratch state built from a parked register family is parked on every tape.
+@isnad1 id=parked.1h6v.s5.5f6e5c69d5bf from=translated src=- shape=62bea009 vocab=c716a5e3
+-/
 theorem scratch_parked {work₀ : Fin n → Tape} {tmp tmp2 : Fin n} (z : ℕ)
     (hwork₀ : ∀ i, Parked (work₀ i)) : ∀ i, Parked (scratch work₀ tmp tmp2 z i) := by
   intro i
@@ -89,23 +93,31 @@ theorem scratch_parked {work₀ : Fin n → Tape} {tmp tmp2 : Fin n} (z : ℕ)
     · subst hi2; rw [Function.update_self]; exact parked_regTape _
     · rw [Function.update_of_ne hi2]; exact hwork₀ i
 
-/-- `scratch` leaves every register other than the two scratches unchanged. -/
+/-- `scratch` leaves every register other than the two scratches unchanged.
+@isnad1 id=eq.2h6v.s5.e972a31cfff8 from=translated src=- shape=377e4143 vocab=7a9bcc24
+-/
 theorem scratch_apply_ne {work₀ : Fin n → Tape} {tmp tmp2 : Fin n} {z : ℕ}
     {i : Fin n} (hit : i ≠ tmp) (hit2 : i ≠ tmp2) :
     scratch work₀ tmp tmp2 z i = work₀ i := by
   rw [scratch, Function.update_of_ne hit, Function.update_of_ne hit2]
 
-/-- In the scratch state at `z`, the register `tmp` holds `z`. -/
+/-- In the scratch state at `z`, the register `tmp` holds `z`.
+@isnad1 id=eq.0h5v.s4.1571974bf845 from=translated src=- shape=dc9320d1 vocab=bf70d760
+-/
 theorem scratch_apply_tmp {work₀ : Fin n → Tape} {tmp tmp2 : Fin n} {z : ℕ} :
     scratch work₀ tmp tmp2 z tmp = regTape z := by
   rw [scratch, Function.update_self]
 
-/-- In the scratch state at `z`, the register `tmp2` holds `z` (when the scratches differ). -/
+/-- In the scratch state at `z`, the register `tmp2` holds `z` (when the scratches differ).
+@isnad1 id=eq.1h5v.s5.aa2301b7db6d from=translated src=- shape=b82d5cc5 vocab=bf70d760
+-/
 theorem scratch_apply_tmp2 {work₀ : Fin n → Tape} {tmp tmp2 : Fin n} {z : ℕ}
     (htt2 : tmp ≠ tmp2) : scratch work₀ tmp tmp2 z tmp2 = regTape z := by
   rw [scratch, Function.update_of_ne (fun h => htt2 h.symm), Function.update_self]
 
-/-- Updating a parked family with a parked tape stays parked. -/
+/-- Updating a parked family with a parked tape stays parked.
+@isnad1 id=parked.2h5v.s5.580e8bf5dbd0 from=translated src=- shape=bd49bb55 vocab=0542738a
+-/
 theorem parked_update {W : Fin n → Tape} (hW : ∀ i, Parked (W i)) {j : Fin n}
     {t : Tape} (ht : Parked t) : ∀ i, Parked (Function.update W j t i) := by
   intro i
@@ -113,7 +125,9 @@ theorem parked_update {W : Fin n → Tape} (hW : ∀ i, Parked (W i)) {j : Fin n
   · subst hij; rw [Function.update_self]; exact ht
   · rw [Function.update_of_ne hij]; exact hW i
 
-/-- Updates at other registers slide past the scratch pair. -/
+/-- Updates at other registers slide past the scratch pair.
+@isnad1 id=eq.2h7v.s6.da8252ad8e05 from=translated src=- shape=87fc88b1 vocab=c69f0283
+-/
 theorem scratch_update_comm {work₀ : Fin n → Tape} {tmp tmp2 i : Fin n}
     (hit : i ≠ tmp) (hit2 : i ≠ tmp2) (z : ℕ) (t : Tape) :
     Function.update (scratch work₀ tmp tmp2 z) i t
@@ -122,14 +136,18 @@ theorem scratch_update_comm {work₀ : Fin n → Tape} {tmp tmp2 i : Fin n}
   rw [Function.update_comm (fun h => hit h.symm),
     Function.update_comm (fun h => hit2 h.symm)]
 
-/-- Scratching twice keeps only the second value. -/
+/-- Scratching twice keeps only the second value.
+@isnad1 id=eq.1h6v.s5.82d18f5557a7 from=translated src=- shape=c7dc6982 vocab=7a9bcc24
+-/
 theorem scratch_idem {work₀ : Fin n → Tape} {tmp tmp2 : Fin n}
     (htt2 : tmp ≠ tmp2) (z z' : ℕ) :
     scratch (scratch work₀ tmp tmp2 z) tmp tmp2 z' = scratch work₀ tmp tmp2 z' := by
   simp only [scratch]
   rw [Function.update_comm htt2, Function.update_idem, Function.update_idem]
 
-/-- Source specifications survive scratching (sources avoid the scratches). -/
+/-- Source specifications survive scratching (sources avoid the scratches).
+@isnad1 id=digitsrc.1h7v.s5.cfde7b492339 from=translated src=- shape=476b2f79 vocab=cabef725
+-/
 theorem DigitSrcSpec.scratch {work₀ : Fin n → Tape} {tmp tmp2 : Fin n} {s : DigitSrc n}
     {w : ℕ} (hs : DigitSrcSpec work₀ tmp tmp2 s w) (z : ℕ) :
     DigitSrcSpec (TM.scratch work₀ tmp tmp2 z) tmp tmp2 s w := by
@@ -140,7 +158,9 @@ theorem DigitSrcSpec.scratch {work₀ : Fin n → Tape} {tmp tmp2 : Fin n} {s : 
   | inr c => exact hs
 
 /-- **`hornerStepTM` on canonical scratch states.** The composable form:
-    scratches at `v` in, scratches at `v·x + w` out. -/
+    scratches at `v` in, scratches at `v·x + w` out.
+@isnad1 id=hoaretim.10h12v.s7.4330c1972d2c from=translated src=- shape=ea70b111 vocab=0178d1cd
+-/
 theorem hornerStepTM_hoareTime_scratch (X tmp tmp2 : Fin n) (s : DigitSrc n)
     (hXt : X ≠ tmp) (hXt2 : X ≠ tmp2) (htt2 : tmp ≠ tmp2)
     (M x v w : ℕ) (hx : x ≤ M) (hv : v ≤ M) (hres : v * x + w ≤ M)
@@ -187,7 +207,9 @@ def loadBudget (M : ℕ) : ℕ := opBudget M + 4 * layerBudget M + 4
 
 /-- **`loadFlatVarTM` Hoare specification.** All four radices from registers,
     all intermediate numeral values capped by `M`; ends on the canonical
-    scratch state at the full numeral. -/
+    scratch state at the full numeral.
+@isnad1 id=hoaretim.32h26v.s9.b7165130a833 from=translated src=- shape=72d97761 vocab=a5b27cc1
+-/
 theorem loadFlatVarTM_hoareTime (rA rB rC rD tmp tmp2 : Fin n) (tag : ℕ)
     (sa sb sc sd : DigitSrc n)
     (hAt : rA ≠ tmp) (hAt2 : rA ≠ tmp2) (hBt : rB ≠ tmp) (hBt2 : rB ≠ tmp2)
@@ -279,7 +301,9 @@ def emitVarBudget (M : ℕ) : ℕ := loadBudget M + opBudget M + 1
 /-- **`emitVarLitTM` Hoare specification.** Appends
     `[sign, sign] ++ 2·var trues ++ [false, true]` for the mixed-radix
     variable index `var`, leaving the scratches at `var` and everything else
-    untouched. -/
+    untouched.
+@isnad1 id=hoaretim.32h27v.s9.229e3e16fd69 from=translated src=- shape=f1594abe vocab=ad15d2d5
+-/
 theorem emitVarLitTM_hoareTime (rA rB rC rD tmp tmp2 : Fin n) (sign : Bool)
     (tag : ℕ) (sa sb sc sd : DigitSrc n)
     (hAt : rA ≠ tmp) (hAt2 : rA ≠ tmp2) (hBt : rB ≠ tmp) (hBt2 : rB ≠ tmp2)
@@ -329,7 +353,9 @@ theorem emitVarLitTM_hoareTime (rA rB rC rD tmp tmp2 : Fin n) (sign : Bool)
 
 /-- **`emitVarLitTM` on canonical scratch states** — the composable form used
     by the clause emitters: scratches at any `z ≤ M` in, scratches at the
-    emitted variable out. -/
+    emitted variable out.
+@isnad1 id=hoaretim.29h26v.s9.16e5c2eb56c0 from=translated src=- shape=72d3f41f vocab=ad15d2d5
+-/
 theorem emitVarLitTM_hoareTime_scratch (rA rB rC rD tmp tmp2 : Fin n) (sign : Bool)
     (tag : ℕ) (sa sb sc sd : DigitSrc n)
     (hAt : rA ≠ tmp) (hAt2 : rA ≠ tmp2) (hBt : rB ≠ tmp) (hBt2 : rB ≠ tmp2)
@@ -379,7 +405,9 @@ def resetScratchTM (tmp tmp2 : Fin n) : TM n :=
   seqTM (setConstTM tmp 0) (setConstTM tmp2 0)
 
 /-- **`resetScratchTM` Hoare specification**: canonical scratches at `z` to
-    canonical scratches at `0`. -/
+    canonical scratches at `0`.
+@isnad1 id=hoaretim.4h8v.s6.2d080b7770e8 from=translated src=- shape=66ca4f7d vocab=ee0ba27b
+-/
 theorem resetScratchTM_hoareTime (tmp tmp2 : Fin n) (htt2 : tmp ≠ tmp2)
     (M z : ℕ) (hz : z ≤ M)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (ys : List Bool)

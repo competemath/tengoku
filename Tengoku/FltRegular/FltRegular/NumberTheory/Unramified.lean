@@ -27,12 +27,17 @@ variable {R} {S}
 omit [IsDedekindDomain R] [IsIntegralClosure S R L] [FiniteDimensional K L] in
 include K L in
 /-- In the AKLB setup, the map from `R` to the integral closure `S` of `R` in `L` is
-injective. -/
+injective.
+@isnad1 id=injectiv.0h4v.s7.fd33b7570daa from=translated src=- shape=4587c5a7 vocab=82cd10d7
+-/
 lemma algebraMap_injective_of_isIntegralClosure : Function.Injective (algebraMap R S) := by
   refine Function.Injective.of_comp (f := algebraMap S L) ?_
   rw [← RingHom.coe_comp, ← IsScalarTower.algebraMap_eq, IsScalarTower.algebraMap_eq R K L]
   exact (algebraMap K L).injective.comp (IsFractionRing.injective _ _)
 
+/--
+@isnad1 id=eq.1h5v.s10.ce916b2872cd from=translated src=- shape=290f15f4 vocab=3fa5bded
+-/
 lemma comap_map_eq_of_unramified [IsGalois K L] [Algebra.Unramified R S] (I : Ideal S)
     (hI : ∀ σ : L ≃ₐ[K] L, I.comap (galRestrict R K L S σ) = I) :
     (I.comap (algebraMap R S)).map (algebraMap R S) = I := by
@@ -104,6 +109,9 @@ lemma comap_map_eq_of_unramified [IsGalois K L] [Algebra.Unramified R S] (I : Id
 open nonZeroDivisors Polynomial
 
 attribute [local instance] Ideal.Quotient.field in
+/--
+@isnad1 id=isunrami.3h6v.s9.a037601b1871 from=translated src=- shape=b814d213 vocab=cb39c1f2
+-/
 lemma isUnramifiedAt_of_Separable_minpoly' [Algebra.IsSeparable K L]
     (P : Ideal S) [hP : P.IsPrime] (hPbot : P ≠ ⊥) (x : S)
     (hx' : Algebra.adjoin K {algebraMap S L x} = ⊤)
@@ -139,6 +147,9 @@ lemma isUnramifiedAt_of_Separable_minpoly' [Algebra.IsSeparable K L]
   · rw [derivative_map, ← Polynomial.map_map]
     simpa [aeval_map_algebraMap] using hxP
 
+/--
+@isnad1 id=isunrami.4h6v.s9.fb5db25f51bc from=translated src=- shape=98fdd6b7 vocab=478fc91f
+-/
 lemma isUnramifiedAt_of_Separable_minpoly [Algebra.IsSeparable K L]
     (P : Ideal S) [hP : P.IsPrime] (hPbot : P ≠ ⊥) (x : L) (hx : IsIntegral R x)
     (hx' : Algebra.adjoin K {x} = ⊤)

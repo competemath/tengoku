@@ -54,7 +54,9 @@ section Rank
 variable (hlin : IsLinOrd M.Le)
 include hlin
 
-/-- **The rank is injective on positions.** -/
+/-- **The rank is injective on positions.**
+@isnad1 id=eq.4h4v.s6.03e511b3050b from=translated src=- shape=64aeec0c vocab=e172d700
+-/
 theorem bitRank_inj {x y : A} (hx : M.Posn x) (hy : M.Posn y)
     (h : bitRank M.Le M.Posn x = bitRank M.Le M.Posn y) : x = y := by
   rcases hlin.2.2.2 x y with hle | hle
@@ -65,7 +67,9 @@ theorem bitRank_inj {x y : A} (hx : M.Posn x) (hy : M.Posn y)
     · rfl
     · exact absurd h.symm (Nat.ne_of_lt (bitRank_lt hlin hy hle hne))
 
-/-- **Comparing ranks compares positions.** -/
+/-- **Comparing ranks compares positions.**
+@isnad1 id=le.4h4v.s6.6dd67813cc28 from=translated src=- shape=9c5dc9b4 vocab=923a87a5
+-/
 theorem le_of_bitRank_le {x y : A} (hx : M.Posn x) (hy : M.Posn y)
     (h : bitRank M.Le M.Posn x ≤ bitRank M.Le M.Posn y) : M.Le x y := by
   rcases hlin.2.2.2 x y with hle | hle
@@ -74,7 +78,9 @@ theorem le_of_bitRank_le {x y : A} (hx : M.Posn x) (hy : M.Posn y)
     · exact hlin.1 _
     · exact absurd (bitRank_lt hlin hy hle hne) (by omega)
 
-/-- **A position is the highest one exactly when its rank is.** -/
+/-- **A position is the highest one exactly when its rank is.**
+@isnad1 id=iff.3h4v.s6.ee3a83aa32d4 from=translated src=- shape=4b1f743c vocab=ba9156a2
+-/
 theorem maxPos_iff_rank {x p₁ : A} (hx : M.Posn x) (hmax : MaxPos M.Le M.Posn p₁) :
     MaxPos M.Le M.Posn x ↔ bitRank M.Le M.Posn x = bitRank M.Le M.Posn p₁ := by
   constructor
@@ -85,7 +91,9 @@ theorem maxPos_iff_rank {x p₁ : A} (hx : M.Posn x) (hmax : MaxPos M.Le M.Posn 
 
 /-- **Iterating `nextPos` enumerates the positions above `t` in order**: the
 `j`-th one is a position of rank `rank t + j`, as long as the budget
-`rank p₁ - rank t` has not run out. -/
+`rank p₁ - rank t` has not run out.
+@isnad1 id=and.4h5v.s7.75a26cdcef95 from=translated src=- shape=394dc7fa vocab=3bdd80da
+-/
 theorem posSeq_spec {t p₁ : A} (ht : M.Posn t) (hmax : MaxPos M.Le M.Posn p₁) :
     ∀ j, j ≤ bitRank M.Le M.Posn p₁ - bitRank M.Le M.Posn t →
       M.Posn (M.posSeq t j) ∧
@@ -106,7 +114,9 @@ theorem posSeq_spec {t p₁ : A} (ht : M.Posn t) (hmax : MaxPos M.Le M.Posn p₁
     rw [posSeq_succ, bitRank_succPos hlin hsucc, hr]
     omega
 
-/-- Consecutive positions of the enumeration are immediate successors. -/
+/-- Consecutive positions of the enumeration are immediate successors.
+@isnad1 id=succpos.4h5v.s6.cac05a41011d from=translated src=- shape=e817ebec vocab=a10a8dde
+-/
 theorem posSeq_succPos {t p₁ : A} (ht : M.Posn t) (hmax : MaxPos M.Le M.Posn p₁) {j : ℕ}
     (hj : j < bitRank M.Le M.Posn p₁ - bitRank M.Le M.Posn t) :
     SuccPos M.Le M.Posn (M.posSeq t j) (M.posSeq t (j + 1)) := by
@@ -116,7 +126,9 @@ theorem posSeq_succPos {t p₁ : A} (ht : M.Posn t) (hmax : MaxPos M.Le M.Posn p
   omega
 
 /-- The enumeration reaches the highest position exactly at the end of the
-budget. -/
+budget.
+@isnad1 id=eq.3h4v.s6.974993327477 from=translated src=- shape=cc756a43 vocab=800854c1
+-/
 theorem posSeq_budget {t p₁ : A} (ht : M.Posn t) (hmax : MaxPos M.Le M.Posn p₁) :
     M.posSeq t (bitRank M.Le M.Posn p₁ - bitRank M.Le M.Posn t) = p₁ := by
   have hrp₁ : bitRank M.Le M.Posn t ≤ bitRank M.Le M.Posn p₁ :=
@@ -135,7 +147,9 @@ sequence leaves the block, it accepts, it gets stuck – and up to there it is a
 `DescriptiveComplexity.ATMData.BlockPlay`. The only thing asked of the sequence
 is that it takes a genuine step whenever none of the four has happened, which
 is what both a legal walk and the greedy continuation of
-`DescriptiveComplexity.ATMData.greedy` provide. -/
+`DescriptiveComplexity.ATMData.greedy` provide.
+@isnad1 id=ex.2h6v.s7.a01deab8d69f from=translated src=- shape=76bbff6b vocab=b3052207
+-/
 theorem exists_play_of_seq {i : ℕ} {c : Config A} {g : ℕ → Config A} (n : ℕ)
     (hg0 : g 0 = c)
     (hgstep : ∀ j, j < n → M.Blk i (g j).state → ¬M.Acc (g j).state → ¬M.Stuck (g j) →
@@ -173,7 +187,9 @@ theorem exists_play_of_seq {i : ℕ} {c : Config A} {g : ℕ → Config A} (n : 
     · exact Or.inr (Or.inr (Or.inr h))
 
 omit [Finite A] in
-/-- **A play depends only on its first `ℓ + 1` configurations.** -/
+/-- **A play depends only on its first `ℓ + 1` configurations.**
+@isnad1 id=blockpla.2h7v.s5.da9bdd7d8c6f from=translated src=- shape=1e0f54fa vocab=c59536d4
+-/
 theorem BlockPlay.congr {i : ℕ} {c : Config A} {ℓ : ℕ} {f g : ℕ → Config A}
     (h : ∀ j, j ≤ ℓ → f j = g j) (hf : M.BlockPlay i c ℓ f) : M.BlockPlay i c ℓ g := by
   refine ⟨by rw [← h 0 (Nat.zero_le _)]; exact hf.1, fun j hj => ?_, fun j hj => ?_⟩
@@ -188,7 +204,9 @@ theorem BlockPlay.congr {i : ℕ} {c : Config A} {ℓ : ℕ} {f g : ℕ → Conf
 position `t`, whose configuration is in block `i`, follow the walk along the
 order: the configurations form a play of block `i`, and it stops at the first
 moment one of the four things happens that end a block – the budget runs out,
-the walk leaves the block, it accepts, or it gets stuck. -/
+the walk leaves the block, it accepts, or it gets stuck.
+@isnad1 id=ex.4h6v.s7.aea7d48a9129 from=translated src=- shape=b625bfae vocab=cccb1819
+-/
 theorem exists_play_of_legalBelow (hlin : IsLinOrd M.Le)
     {i : ℕ} {w : A → Config A} (hw : M.LegalBelow (i + 1) w) {t p₁ : A}
     (ht : M.Posn t) (hmax : MaxPos M.Le M.Posn p₁) :

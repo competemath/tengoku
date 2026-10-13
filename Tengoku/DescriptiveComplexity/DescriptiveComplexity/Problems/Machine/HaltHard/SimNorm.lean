@@ -82,6 +82,9 @@ def FrameSym (σ : SimSym c) : Prop :=
   σ = .bk ∨ σ = .one ∨ σ = .com ∨ σ = .hCons₂ ∨
     (∃ p, σ = .hCons₁ p) ∨ (∃ p, σ = .hComp p) ∨ (∃ p, σ = .hFix p)
 
+/--
+@isnad1 id=or.1h3v.s5.b73320ec8889 from=translated src=- shape=3d865a27 vocab=59644cdf
+-/
 theorem mem_encVal {v : List ℕ} {σ : SimSym c} (h : σ ∈ encVal v) :
     σ = .one ∨ σ = .com := by
   induction v with
@@ -95,6 +98,9 @@ theorem mem_encVal {v : List ℕ} {σ : SimSym c} (h : σ ∈ encVal v) :
       · exact Or.inr (by simpa using h)
     · exact ih h
 
+/--
+@isnad1 id=framesym.2h4v.s5.4f607b3065a5 from=translated src=- shape=24d8372f vocab=01f698e4
+-/
 theorem FrameSeg.mem_frameSym {k : PCont c} {fr : List (SimSym c)} (h : FrameSeg k fr) :
     ∀ σ ∈ fr, FrameSym σ := by
   induction h with
@@ -133,7 +139,9 @@ theorem FrameSeg.mem_frameSym {k : PCont c} {fr : List (SimSym c)} (h : FrameSeg
     · exact Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr ⟨_, rfl⟩)))))
     · exact ih σ hσ
 
-/-- What a frame letter is not: none of the markers, none of the primes. -/
+/-- What a frame letter is not: none of the markers, none of the primes.
+@isnad1 id=and.1h2v.s5.fbb19431c912 from=translated src=- shape=b5b95536 vocab=21c1130f
+-/
 theorem FrameSym.ne {σ : SimSym c} (h : FrameSym σ) :
     σ ≠ .endL ∧ σ ≠ .mid ∧ σ ≠ .endR ∧ σ ≠ .one' ∧ σ ≠ .com' := by
   rcases h with rfl | rfl | rfl | rfl | ⟨p, rfl⟩ | ⟨p, rfl⟩ | ⟨p, rfl⟩ <;>
@@ -148,45 +156,79 @@ section Pass
 
 variable {σ : SimSym c} {p : CPos c}
 
+/--
+@isnad1 id=eq.1h2v.s5.dbe71fd1ae89 from=translated src=- shape=3905d539 vocab=c314ad9c
+-/
 theorem pass_retL (h : σ ≠ .endL) : simStep (c := c) .retL σ = some (σ, .retL, false) := by
   cases σ <;> first | rfl | exact absurd rfl h
 
+/--
+@isnad1 id=eq.1h3v.s5.152472fc0aac from=translated src=- shape=7ca832ca vocab=85715ff5
+-/
 theorem pass_nSeekL (h : σ ≠ .mid) : simStep (.nSeekL p) σ = some (σ, .nSeekL p, false) := by
   cases σ <;> first | rfl | exact absurd rfl h
 
+/--
+@isnad1 id=eq.1h3v.s5.1a4802b204da from=translated src=- shape=7ca832ca vocab=ea9526b8
+-/
 theorem pass_nSeekR (h : σ ≠ .mid) : simStep (.nSeekR p) σ = some (σ, .nSeekR p, true) := by
   cases σ <;> first | rfl | exact absurd rfl h
 
+/--
+@isnad1 id=eq.1h2v.s5.5f638d261104 from=translated src=- shape=3905d539 vocab=fa08b36e
+-/
 theorem pass_zGo (h : σ ≠ .endR) : simStep (c := c) .zGo σ = some (σ, .zGo, true) := by
   cases σ <;> first | rfl | exact absurd rfl h
 
+/--
+@isnad1 id=eq.1h2v.s5.94de045b638d from=translated src=- shape=3905d539 vocab=b4e17db3
+-/
 theorem pass_suGo (h : σ ≠ .endR) : simStep (c := c) .suGo σ = some (σ, .suGo, true) := by
   cases σ <;> first | rfl | exact absurd rfl h
 
+/--
+@isnad1 id=eq.1h2v.s5.53b2a16e4871 from=translated src=- shape=3905d539 vocab=15b18202
+-/
 theorem pass_tlGo (h : σ ≠ .endR) : simStep (c := c) .tlGo σ = some (σ, .tlGo, true) := by
   cases σ <;> first | rfl | exact absurd rfl h
 
+/--
+@isnad1 id=eq.1h3v.s5.56d6f1ed7103 from=translated src=- shape=7ca832ca vocab=3c7abe96
+-/
 theorem pass_caGo (h : σ ≠ .endR) : simStep (.caGo p) σ = some (σ, .caGo p, true) := by
   cases σ <;> first | rfl | exact absurd rfl h
 
+/--
+@isnad1 id=eq.1h3v.s5.033a48ccba1a from=translated src=- shape=7ca832ca vocab=10c5944a
+-/
 theorem pass_coHdr (h : σ ≠ .endL) : simStep (.coHdr p) σ = some (σ, .coHdr p, false) := by
   cases σ <;> first | rfl | exact absurd rfl h
 
+/--
+@isnad1 id=eq.1h3v.s5.72f2dfb46d38 from=translated src=- shape=7ca832ca vocab=4744b0be
+-/
 theorem pass_fiHdr (h : σ ≠ .endL) : simStep (.fiHdr p) σ = some (σ, .fiHdr p, false) := by
   cases σ <;> first | rfl | exact absurd rfl h
 
+/--
+@isnad1 id=eq.1h2v.s6.920d1348b2e1 from=translated src=- shape=83c290e1 vocab=08f8e259
+-/
 theorem pass_suKill (h : σ = .one ∨ σ = .com ∨ σ = .bk) :
     simStep (c := c) .suKill σ = some (.bk, .suKill, false) := by
   rcases h with rfl | rfl | rfl <;> rfl
 
 end Pass
 
-/-- Reachability transported along equalities of the two configurations. -/
+/-- Reachability transported along equalities of the two configurations.
+@isnad1 id=reach.3h5v.s5.2dd0f7cc9c73 from=translated src=- shape=fb429287 vocab=6beee1bb
+-/
 theorem Reach.cast {x x' y y' : LCfg c} (hx : x = x') (hy : y = y') (h : Reach x' y') :
     Reach x y := hx ▸ hy ▸ h
 
 /-- Gluing the letter behind the head back onto a run of its own kind – the
-shape the region equalities take after a walk re-crosses a run it wrote. -/
+shape the region equalities take after a walk re-crosses a run it wrote.
+@isnad1 id=eq.0h4v.s6.7ba9bdfd329e from=translated src=- shape=7545aef9 vocab=d8d23913
+-/
 theorem replicate_glue (a : SimSym c) (n : ℕ) (R : List (SimSym c)) :
     List.replicate n a ++ a :: R = List.replicate (n + 1) a ++ R := by
   rw [List.replicate_succ']
@@ -203,7 +245,9 @@ section StepWalk
 
 variable {q q' : SimQ c} {P : SimSym c → Prop} {f : SimSym c → SimSym c} {s σ' : SimSym c}
 
-/-- A rightward hand-over step, then a rightward walk to the stop letter. -/
+/-- A rightward hand-over step, then a rightward walk to the stop letter.
+@isnad1 id=reach.2h11v.s7.70175ab57a9d from=translated src=- shape=90cdefb8 vocab=e96e285f
+-/
 theorem reach_step_walkR (hs : simStep q s = some (σ', q', true))
     (hq : ∀ σ, P σ → simStep q' σ = some (σ, q', true)) (w : List (SimSym c))
     (hw : ∀ σ ∈ w, P σ) (L : List (SimSym c)) (t : SimSym c) (R : List (SimSym c)) :
@@ -215,7 +259,9 @@ theorem reach_step_walkR (hs : simStep q s = some (σ', q', true))
     exact Reach.cast rfl (by simp) h
 
 /-- A leftward hand-over step, then a leftward walk to the stop letter,
-rewriting each crossed letter by `f`. -/
+rewriting each crossed letter by `f`.
+@isnad1 id=reach.2h12v.s7.219dc39b9ce6 from=translated src=- shape=86b7181a vocab=b51330dc
+-/
 theorem reach_step_walkL_map (hs : simStep q s = some (σ', q', false))
     (hq : ∀ σ, P σ → simStep q' σ = some (f σ, q', false)) (w : List (SimSym c))
     (hw : ∀ σ ∈ w, P σ) (t : SimSym c) (L R : List (SimSym c)) :
@@ -226,7 +272,9 @@ theorem reach_step_walkL_map (hs : simStep q s = some (σ', q', false))
     have h := reach_walkL_map hq w (fun σ hσ => hw σ (by simp [hσ])) (hw a (by simp)) t L (σ' :: R)
     exact Reach.cast rfl (by simp) h
 
-/-- A leftward hand-over step, then a leftward walk to the stop letter. -/
+/-- A leftward hand-over step, then a leftward walk to the stop letter.
+@isnad1 id=reach.2h11v.s7.d3be25e1356e from=translated src=- shape=8c27f6a3 vocab=27d16c99
+-/
 theorem reach_step_walkL (hs : simStep q s = some (σ', q', false))
     (hq : ∀ σ, P σ → simStep q' σ = some (σ, q', false)) (w : List (SimSym c))
     (hw : ∀ σ ∈ w, P σ) (t : SimSym c) (L R : List (SimSym c)) :
@@ -261,7 +309,9 @@ def pStepNormal (p : CPos c) (k : PCont c) (v : List ℕ) : PCont c × List ℕ 
   · rw [codeAt_c₂_case _h, _h]; simp; try omega
   · rw [codeAt_c₁_fix _h, _h]; simp; try omega
 
-/-- The positioned `stepNormal` projects onto the library's. -/
+/-- The positioned `stepNormal` projects onto the library's.
+@isnad1 id=eq.0h4v.s5.c6292fb3dbe1 from=translated src=- shape=f6a0e396 vocab=a2d53161
+-/
 theorem pStepNormal_toCont (p : CPos c) (k : PCont c) (v : List ℕ) :
     stepNormal (codeAt p) k.toCont v =
       Cfg.ret (pStepNormal p k v).1.toCont (pStepNormal p k v).2 := by
@@ -295,7 +345,9 @@ theorem pStepNormal_toCont (p : CPos c) (k : PCont c) (v : List ℕ) :
 
 /-- **`zero'`**: walk to `endR`, append a separator, return to rest. The
 value gains a `0` in front – a separator at the right end of the mirrored
-region. -/
+region.
+@isnad1 id=reach.3h8v.s6.eb5ededc7a9c from=translated src=- shape=5f84c201 vocab=20fcafe0
+-/
 theorem norm_zero' {p : CPos c} (h : codeAt p = .zero') {Q : SimQ c}
     (hQ : simStep Q .mid = some (dispatch p)) (g : ℕ) {fr : List (SimSym c)}
     (hfr : ∀ σ ∈ fr, FrameSym σ) (v : List ℕ) (j t : ℕ) :
@@ -362,7 +414,9 @@ theorem norm_zero' {p : CPos c} (h : codeAt p = .zero') {Q : SimQ c}
 /-- **`comp` push**: walk left over the frames to `endL`, write the `comp`
 header over it, re-write `endL` one cell into the left blanks, and walk back
 to `mid` to dispatch the second child: the frame region gains a bare header,
-the left blanks lose a cell. -/
+the left blanks lose a cell.
+@isnad1 id=reach.3h10v.s6.a576efce7d35 from=translated src=- shape=1246a76f vocab=8792bfce
+-/
 theorem norm_comp {p : CPos c} {f g₂ : Code} (h : codeAt p = .comp f g₂)
     {Q : SimQ c} (hQ : simStep Q .mid = some (dispatch p)) (g : ℕ)
     {fr : List (SimSym c)} (hfr : ∀ σ ∈ fr, FrameSym σ) (v : List ℕ) (j t : ℕ) :
@@ -395,7 +449,9 @@ theorem norm_comp {p : CPos c} {f g₂ : Code} (h : codeAt p = .comp f g₂)
 /-- **`succ`**: append a digit at `endR` – a fresh separator and a digit, if
 the value was empty – then walk back over the head block and erase every
 letter between it and `mid`: the value becomes the singleton successor of its
-head, the erased blocks joining the inner gap. -/
+head, the erased blocks joining the inner gap.
+@isnad1 id=ex.3h8v.s6.85d5d73c0df8 from=translated src=- shape=98b16e45 vocab=ae3778c3
+-/
 theorem norm_succ {p : CPos c} (h : codeAt p = .succ) {Q : SimQ c}
     (hQ : simStep Q .mid = some (dispatch p)) (g : ℕ) {fr : List (SimSym c)}
     (hfr : ∀ σ ∈ fr, FrameSym σ) (v : List ℕ) (j t : ℕ) :
@@ -522,7 +578,9 @@ theorem norm_succ {p : CPos c} (h : codeAt p = .succ) {Q : SimQ c}
 /-- **`tail`**: walk to `endR`, erase it, and look at the last letter of the
 value – a blank for an empty value, restored after a probe step to its right;
 a lone separator, consumed; a digit, starting an erasure of the head block
-down to its separator – then re-write `endR` and return to rest. -/
+down to its separator – then re-write `endR` and return to rest.
+@isnad1 id=ex.3h8v.s6.3f931d331df3 from=translated src=- shape=614c6697 vocab=a5b35884
+-/
 theorem norm_tail {p : CPos c} (h : codeAt p = .tail) {Q : SimQ c}
     (hQ : simStep Q .mid = some (dispatch p)) (g : ℕ) {fr : List (SimSym c)}
     (hfr : ∀ σ ∈ fr, FrameSym σ) (v : List ℕ) (j t : ℕ) :
@@ -648,7 +706,9 @@ theorem norm_tail {p : CPos c} (h : codeAt p = .tail) {Q : SimQ c}
 /-- **`case`, zero or empty head**: walk to `endR`, look left of it – a blank
 for an empty value, restored after a probe step to its right, or the head
 block's separator, consumed – re-write `endR` and walk back to `mid` to
-dispatch the first child on the tail of the value. -/
+dispatch the first child on the tail of the value.
+@isnad1 id=ex.4h10v.s6.76878d400037 from=translated src=- shape=baa014c9 vocab=4502751e
+-/
 theorem norm_case_zero {p : CPos c} {f g₂ : Code} (h : codeAt p = .case f g₂)
     {Q : SimQ c} (hQ : simStep Q .mid = some (dispatch p)) (g : ℕ) {fr : List (SimSym c)}
     (_hfr : ∀ σ ∈ fr, FrameSym σ) {v : List ℕ} (hv : v.headI = 0) (j t : ℕ) :
@@ -719,7 +779,9 @@ theorem norm_case_zero {p : CPos c} {f g₂ : Code} (h : codeAt p = .case f g₂
 
 /-- **`case`, positive head**: walk to `endR`, find a digit left of it – the
 head block is nonempty – consume it as `endR` and walk back to `mid` to
-dispatch the second child on the decremented head. -/
+dispatch the second child on the decremented head.
+@isnad1 id=ex.4h11v.s7.1ba0f4db6b76 from=translated src=- shape=4ded1e21 vocab=567a10e9
+-/
 theorem norm_case_succ {p : CPos c} {f g₂ : Code} (h : codeAt p = .case f g₂)
     {Q : SimQ c} (hQ : simStep Q .mid = some (dispatch p)) (g : ℕ) {fr : List (SimSym c)}
     (_hfr : ∀ σ ∈ fr, FrameSym σ) {v : List ℕ} {y : ℕ} (hv : v.headI = y + 1) (j t : ℕ) :
@@ -767,7 +829,9 @@ theorem norm_case_succ {p : CPos c} {f g₂ : Code} (h : codeAt p = .case f g₂
 /-- **`fix` push**: walk left over the frames to `endL`, write the `fix`
 header over it, re-write `endL` one cell into the left blanks, and walk back
 to `mid` to dispatch the body: the frame region gains a bare header, the left
-blanks lose a cell. -/
+blanks lose a cell.
+@isnad1 id=reach.3h9v.s6.d85afac8e73d from=translated src=- shape=e3bd8d7f vocab=fb778d23
+-/
 theorem norm_fix {p : CPos c} {f : Code} (h : codeAt p = .fix f)
     {Q : SimQ c} (hQ : simStep Q .mid = some (dispatch p)) (g : ℕ)
     {fr : List (SimSym c)} (hfr : ∀ σ ∈ fr, FrameSym σ) (v : List ℕ) (j t : ℕ) :

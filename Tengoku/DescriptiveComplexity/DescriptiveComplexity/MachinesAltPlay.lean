@@ -49,13 +49,17 @@ variable {A : Type} {M : ATMData A} {k : ℕ}
 
 /-! ### Reading the block structure -/
 
-/-- **A state has only one block.** -/
+/-- **A state has only one block.**
+@isnad1 id=eq.3h6v.s5.6d3eede8be31 from=translated src=- shape=253d87bd vocab=841de0ab
+-/
 theorem blk_unique (hbwf : M.BlocksWellFormed k) {q : A} {j j' : ℕ}
     (h : M.Blk j q) (h' : M.Blk j' q) : j = j' := by
   obtain ⟨j₀, -, -, huniq⟩ := hbwf.1 q
   exact (huniq j h).trans (huniq j' h').symm
 
-/-- A state of an existential block belongs to the existential player. -/
+/-- A state of an existential block belongs to the existential player.
+@isnad1 id=not.3h6v.s5.40acb18c50ad from=translated src=- shape=9e236277 vocab=ebbc1d7c
+-/
 theorem not_isUniv_of_blk (hbwf : M.BlocksWellFormed k) {start : Bool} {i : ℕ} {q : A}
     (h : M.Blk i q) (hpol : blockPol start i = true) : ¬M.IsUniv start q := by
   rintro ⟨j, hj, hpolj⟩
@@ -63,13 +67,17 @@ theorem not_isUniv_of_blk (hbwf : M.BlocksWellFormed k) {start : Bool} {i : ℕ}
   rw [hpol] at hpolj
   exact Bool.noConfusion hpolj
 
-/-- A state of a universal block belongs to the universal player. -/
+/-- A state of a universal block belongs to the universal player.
+@isnad1 id=isuniv.2h5v.s4.89be940e5b02 from=translated src=- shape=55c7e420 vocab=c5abf8a7
+-/
 theorem isUniv_of_blk {start : Bool} {i : ℕ} {q : A} (h : M.Blk i q)
     (hpol : blockPol start i = false) : M.IsUniv start q :=
   ⟨i, h, hpol⟩
 
 /-- **A step stays in its block or moves to the next one**: the alternation
-bound, read on a single step. -/
+bound, read on a single step.
+@isnad1 id=or.3h6v.s5.2cd4950aecf5 from=translated src=- shape=19c27425 vocab=80c2f186
+-/
 theorem blk_step (hbwf : M.BlocksWellFormed k) {i : ℕ} {c d : Config A}
     (hstep : M.Step c d) (hi : M.Blk i c.state) :
     M.Blk i d.state ∨ M.Blk (i + 1) d.state := by
@@ -113,12 +121,20 @@ def consPlay (c : Config A) (f : ℕ → Config A) : ℕ → Config A
   | 0 => c
   | j + 1 => f j
 
+/--
+@isnad1 id=eq.0h3v.s4.f6273d55d0f8 from=translated src=- shape=9ab4b4ab vocab=9e70c04b
+-/
 @[simp] theorem consPlay_zero (c : Config A) (f : ℕ → Config A) : consPlay c f 0 = c := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.9453781ee905 from=translated src=- shape=12cb30f9 vocab=5f4a5ef2
+-/
 @[simp] theorem consPlay_succ (c : Config A) (f : ℕ → Config A) (j : ℕ) :
     consPlay c f (j + 1) = f j := rfl
 
-/-- Prepending a step to a play of the same block. -/
+/-- Prepending a step to a play of the same block.
+@isnad1 id=blockpla.4h7v.s6.b6d67e75cca2 from=translated src=- shape=b9ede177 vocab=0c908665
+-/
 theorem BlockPlay.cons {i : ℕ} {c d : Config A} {ℓ : ℕ} {f : ℕ → Config A}
     (h : M.BlockPlay i d ℓ f) (hstep : M.Step c d) (hblk : M.Blk i c.state)
     (hacc : ¬M.Acc c.state) : M.BlockPlay i c (ℓ + 1) (consPlay c f) := by
@@ -131,7 +147,9 @@ theorem BlockPlay.cons {i : ℕ} {c d : Config A} {ℓ : ℕ} {f : ℕ → Confi
     | zero => exact ⟨hblk, hacc⟩
     | succ j => exact hfb j (by omega)
 
-/-- The play `f` with its first configuration dropped. -/
+/-- The play `f` with its first configuration dropped.
+@isnad1 id=blockpla.1h6v.s6.a01638bd64a5 from=translated src=- shape=1080498a vocab=5baf7c9a
+-/
 theorem BlockPlay.tail {i : ℕ} {c : Config A} {ℓ : ℕ} {f : ℕ → Config A}
     (h : M.BlockPlay i c (ℓ + 1) f) : M.BlockPlay i (f 1) ℓ (fun j => f (j + 1)) :=
   ⟨rfl, fun j hj => h.2.1 (j + 1) (by omega), fun j hj => h.2.2 (j + 1) (by omega)⟩
@@ -140,7 +158,9 @@ theorem BlockPlay.tail {i : ℕ} {c : Config A} {ℓ : ℕ} {f : ℕ → Config 
 
 /-- **A run of moves that all belong to the existential player accepts as soon
 as its end does.** This is the “easy” half of both collapses: the budget is
-spent one step at a time, and each step is a legitimate existential choice. -/
+spent one step at a time, and each step is a legitimate existential choice.
+@isnad1 id=altacc.4h6v.s6.57e277a24212 from=translated src=- shape=52ec405d vocab=a7dcfb4d
+-/
 theorem altAcc_of_steps {start : Bool} :
     ∀ (ℓ n : ℕ) (f : ℕ → Config A), ℓ ≤ n →
       (∀ j, j < ℓ → M.Step (f j) (f (j + 1))) →
@@ -160,7 +180,9 @@ theorem altAcc_of_steps {start : Bool} :
 
 /-! ### The existential collapse -/
 
-/-- **The moves of an existential block collapse into one play.** -/
+/-- **The moves of an existential block collapse into one play.**
+@isnad1 id=iff.3h7v.s6.24c79b970699 from=translated src=- shape=cb1d4139 vocab=11ca999e
+-/
 theorem altAcc_iff_exists_play (hbwf : M.BlocksWellFormed k) {start : Bool} {i : ℕ}
     {c : Config A} (hpol : blockPol start i = true) (hi : M.Blk i c.state) (n : ℕ) :
     M.AltAcc start n c ↔
@@ -248,7 +270,9 @@ private theorem univPlayOk_of_altAcc {start : Bool} {i : ℕ}
         · exact Or.inl h
         · exact Or.inr ⟨by omega, hex⟩⟩
 
-/-- **The moves of a universal block collapse into one play.** -/
+/-- **The moves of a universal block collapse into one play.**
+@isnad1 id=iff.3h7v.s6.ad01944d8fac from=translated src=- shape=c3e22e2c vocab=913fd559
+-/
 theorem altAcc_iff_forall_play (hbwf : M.BlocksWellFormed k) {start : Bool} {i : ℕ}
     {c : Config A} (hpol : blockPol start i = false) (hi : M.Blk i c.state) (n : ℕ) :
     M.AltAcc start n c ↔

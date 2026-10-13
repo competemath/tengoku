@@ -24,7 +24,9 @@ namespace PairCeiling
 variable {s : ℕ → ℝ} {N : ℕ}
 
 /-- **CEILING (abstract form).** Validity of the certificate at the configuration (masses s at j/N, simple fraction p₁)
-bounds the certificate's value by p₁ plus the stability error. -/
+bounds the certificate's value by p₁ plus the stability error.
+@isnad1 id=le.8h9v.s8.1bde6487f87c from=translated src=- shape=d10e5f6b vocab=bdfb4cc2
+-/
 theorem ceiling_of_valid_at (hN : 0 < N) {r g h : ℝ → ℝ} {T : Set ℝ} (hT : T.Countable) {M p₁ c₀ : ℝ}
     (hr : ∀ x ∈ Icc (0:ℝ) 1, HasDerivAt r (g x) x) (hg : ContinuousOn g (Icc (0:ℝ) 1))
     (hgh : ∀ x ∈ Ioo (0:ℝ) 1 \ T, HasDerivAt g (h x) x) (hh : IntervalIntegrable h volume 0 1)
@@ -40,7 +42,9 @@ theorem ceiling_of_valid_at (hN : 0 < N) {r g h : ℝ → ℝ} {T : Set ℝ} (hT
   linarith
 
 /-- **CEILING (parametrised corollary).** With numeric bounds |D(1)| ≤ d₁, |E(1)| ≤ e₁, sup|E| ≤ M for the configuration
-and |r(1)| ≤ a, |r′(1)| ≤ b, ∫₀¹|r″| ≤ c for the certificate:  v ≤ p₁ + d₁·a + e₁·b + M·c. -/
+and |r(1)| ≤ a, |r′(1)| ≤ b, ∫₀¹|r″| ≤ c for the certificate:  v ≤ p₁ + d₁·a + e₁·b + M·c.
+@isnad1 id=le.13h14v.s9.6a7e7f9e82db from=translated src=- shape=5e6794a3 vocab=bdfb4cc2
+-/
 theorem ceiling_numeric (hN : 0 < N) {r g h : ℝ → ℝ} {T : Set ℝ} (hT : T.Countable)
     {M p₁ c₀ d₁ e₁ a b c : ℝ}
     (hr : ∀ x ∈ Icc (0:ℝ) 1, HasDerivAt r (g x) x) (hg : ContinuousOn g (Icc (0:ℝ) 1))

@@ -27,7 +27,9 @@ private theorem regTape_startInvariant (v : ℕ) : (TM.regTape v).StartInvariant
   intro j hj
   exact TM.regCells_ne_start (by omega)
 
-/-- The concrete linear setup has a canonical endpoint and explicit linear time. -/
+/-- The concrete linear setup has a canonical endpoint and explicit linear time.
+@isnad1 id=hoaretim.0h1v.s6.475e896163ef from=translated src=- shape=0808f262 vocab=6c018674
+-/
 theorem linearMachine_prepares_internal (x : List Bool) :
     linearMachine.HoareTime (fresh x) (ready x (x.length + 1))
       (4 * x.length + 11) := by
@@ -65,7 +67,9 @@ theorem linearMachine_prepares_internal (x : List Bool) :
     rw [hw, Function.update_self]
     exact ⟨rfl, regTape_startInvariant _⟩
 
-/-- The setup's actual running time bounds every charged head on every prefix. -/
+/-- The setup's actual running time bounds every charged head on every prefix.
+@isnad1 id=hoaresaf.0h1v.s6.3b82886c57f3 from=translated src=- shape=03f88b34 vocab=3da16df5
+-/
 theorem linearMachine_withinSpace_internal (x : List Bool) :
     linearMachine.HoareSafety (fresh x)
       (fun inp work out =>

@@ -18,7 +18,9 @@ Material for `Mathlib.FieldTheory.Separable`.
 open Polynomial
 
 /-- A nonzero polynomial over a field that is not separable has a monic common divisor of
-positive degree with its derivative, namely its normalized gcd with the derivative. -/
+positive degree with its derivative, namely its normalized gcd with the derivative.
+@isnad1 id=ex.2h2v.s9.1e009c40a811 from=translated src=- shape=00fbd848 vocab=944a0cce
+-/
 theorem Polynomial.exists_monic_dvd_dvd_derivative_of_not_separable {k : Type*} [Field k]
     {p : k[X]} (hp : p ≠ 0) (hns : ¬p.Separable) :
     ∃ q : k[X], q.Monic ∧ 0 < q.natDegree ∧ q ∣ p ∧ q ∣ derivative p := by

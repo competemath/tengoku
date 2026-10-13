@@ -17,6 +17,9 @@ public import Tengoku
 
 namespace Nat
 
+/--
+@isnad1 id=or.1h1v.s5.8db0b55a6841 from=translated src=- shape=a9b6587f vocab=eca7dd5f
+-/
 theorem three_dvd_or_four_dvd_or_prime_dvd {n : ℕ} (hn : 3 ≤ n) :
     3 ∣ n ∨ 4 ∣ n ∨ ∃ p, (p.Prime ∧ 5 ≤ p ∧ p ∣ n) := by
   -- a result in Lean's library says that either 4 divides n or some odd prime divides n
@@ -32,7 +35,9 @@ theorem three_dvd_or_four_dvd_or_prime_dvd {n : ℕ} (hn : 3 ≤ n) :
 
 end Nat
 
-/-- If Fermat's Last Theorem is true for primes `p ≥ 5`, then FLT is true. -/
+/-- If Fermat's Last Theorem is true for primes `p ≥ 5`, then FLT is true.
+@isnad1 id=fermatla.1h0v.s4.21f514480fbb from=translated src=- shape=56d65ace vocab=a99637b8
+-/
 lemma FermatLastTheorem.of_p_ge_5 (H : ∀ p ≥ 5, p.Prime → FermatLastTheoremFor p) :
     FermatLastTheorem := by
   -- let n ≥ 3 and let's prove a^n + b^n ≠ c^n for positive
@@ -54,7 +59,9 @@ lemma FermatLastTheorem.of_p_ge_5 (H : ∀ p ≥ 5, p.Prime → FermatLastTheore
     exact H _ hp5 hpp
 
 /-- Fermat's Last Theorem as stated in mathlib (a statement `FermatLastTheorem` about naturals)
-implies Fermat's Last Theorem stated in terms of positive integers. -/
+implies Fermat's Last Theorem stated in terms of positive integers.
+@isnad1 id=ne.2h4v.s6.190946d6ccfd from=translated src=- shape=eb4268c0 vocab=0ba60362
+-/
 theorem PNat.pow_add_pow_ne_pow_of_FermatLastTheorem :
     FermatLastTheorem → ∀ (a b c : ℕ+) (n : ℕ) (_ : n > 2),
     a ^ n + b ^ n ≠ c ^ n := by

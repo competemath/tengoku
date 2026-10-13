@@ -89,7 +89,9 @@ def TapeLetter.isState : TapeLetter A → Bool
   | _ => false
 
 /-- A letter of the words below is never a boot or halting letter; this is
-the shape the case analyses need. -/
+the shape the case analyses need.
+@isnad1 id=var.1h5v.s4.aa6524401088 from=translated src=- shape=fc53accc vocab=0e4a5b99
+-/
 theorem TapeLetter.absurd_of_ne {P : Prop} {a b : TapeLetter A} (h : a = b)
     (hne : a ≠ b := by simp) : P := absurd h hne
 
@@ -138,7 +140,9 @@ inductive MRule (M : TMData A) : List (TapeLetter A) → List (TapeLetter A) →
 variable {M : TMData A}
 
 /-- No side of a rule is empty – the promise the domino construction
-requires. -/
+requires.
+@isnad1 id=and.1h4v.s5.f2c9f68c615f from=translated src=- shape=c18aa410 vocab=6c3fd1b5
+-/
 theorem mRule_ne {l r : List (TapeLetter A)} (h : MRule M l r) : l ≠ [] ∧ r ≠ [] := by
   cases h <;> exact ⟨by simp, by simp⟩
 
@@ -155,6 +159,9 @@ variable (M) in
 def CellLt (x y : ℤ × A) : Prop :=
   x.1 < y.1 ∨ (x.1 = y.1 ∧ M.Le x.2 y.2 ∧ x.2 ≠ y.2)
 
+/--
+@isnad1 id=celllt.3h5v.s5.32ad2013609c from=translated src=- shape=cb8e275e vocab=7da51dc6
+-/
 theorem CellLt.trans (hlin : IsLinOrd M.Le) {x y z : ℤ × A}
     (hxy : CellLt M x y) (hyz : CellLt M y z) : CellLt M x z := by
   rcases hxy with h1 | ⟨h1, h2, h3⟩ <;> rcases hyz with h4 | ⟨h4, h5, h6⟩
@@ -164,18 +171,26 @@ theorem CellLt.trans (hlin : IsLinOrd M.Le) {x y z : ℤ × A}
   · refine Or.inr ⟨h1.trans h4, hlin.2.1 _ _ _ h2 h5, fun hcon => ?_⟩
     exact h3 (hlin.2.2.1 _ _ h2 (hcon ▸ h5))
 
+/--
+@isnad1 id=ne.1h4v.s4.bdefe9c8ce59 from=translated src=- shape=89891fae vocab=a0b9e208
+-/
 theorem CellLt.ne {x y : ℤ × A} (h : CellLt M x y) : x ≠ y := by
   rintro rfl
   rcases h with h | ⟨-, -, h⟩
   · exact absurd h (lt_irrefl _)
   · exact h rfl
 
+/--
+@isnad1 id=celllt.1h4v.s4.ce50769c88e1 from=translated src=- shape=17258da9 vocab=618946c2
+-/
 theorem cellLt_of_succCell {x y : ℤ × A} (h : M.SuccCell x y) : CellLt M x y := by
   rcases h with ⟨hz, hp⟩ | ⟨hz, -, -⟩
   · exact Or.inr ⟨hz.symm, hp.2.2.1, hp.2.2.2.1⟩
   · exact Or.inl (by omega)
 
-/-- A chain of successive cells is duplicate-free and increasing. -/
+/-- A chain of successive cells is duplicate-free and increasing.
+@isnad1 id=pairwise.2h3v.s5.58415b5881b9 from=translated src=- shape=14c6f3b5 vocab=bce0eddd
+-/
 theorem pairwise_cellLt_of_isChain (hlin : IsLinOrd M.Le) :
     ∀ {l : List (ℤ × A)}, l.IsChain M.SuccCell → l.Pairwise (CellLt M)
   | [], _ => List.Pairwise.nil
@@ -201,7 +216,9 @@ section CellSteps
 variable [Finite A]
 
 omit [Finite A] in
-/-- `SuccPos` mirrors along the reversed order. -/
+/-- `SuccPos` mirrors along the reversed order.
+@isnad1 id=iff.0h5v.s5.3886f4c7011e from=translated src=- shape=de84d9e2 vocab=b9eee1bc
+-/
 theorem succPos_reverse {Le : A → A → Prop} {Posn : A → Prop} {p q : A} :
     SuccPos (fun a b => Le b a) Posn p q ↔ SuccPos Le Posn q p := by
   constructor
@@ -210,14 +227,18 @@ theorem succPos_reverse {Le : A → A → Prop} {Posn : A → Prop} {p q : A} :
   · rintro ⟨hp, hq, hle, hne, hbet⟩
     exact ⟨hq, hp, hle, hne.symm, fun r hr h1 h2 => (hbet r hr h2 h1).symm⟩
 
-/-- Every position that is not the highest has one immediately above it. -/
+/-- Every position that is not the highest has one immediately above it.
+@isnad1 id=ex.2h5v.s5.2a80ea7dbebf from=translated src=- shape=e6bc08e8 vocab=c50f86c0
+-/
 theorem exists_succPos {Le : A → A → Prop} {Posn : A → Prop} (hlin : IsLinOrd Le) {p : A}
     (hp : Posn p) (hmax : ¬MaxPos Le Posn p) : ∃ q, SuccPos Le Posn p q := by
   have hmin : ¬MinPos (fun a b => Le b a) Posn p := fun h => hmax ⟨h.1, h.2⟩
   obtain ⟨q, hq⟩ := exists_predPos hlin.reverse hp hmin
   exact ⟨q, succPos_reverse.mp hq⟩
 
-/-- Every cell over a position has a next cell. -/
+/-- Every cell over a position has a next cell.
+@isnad1 id=ex.2h3v.s5.02c474ea4a39 from=translated src=- shape=39b6ba35 vocab=b793f2fb
+-/
 theorem exists_succCell (hwf : M.WellFormed) {x : ℤ × A} (hx : M.Posn x.2) :
     ∃ y, M.SuccCell x y := by
   by_cases hmax : MaxPos M.Le M.Posn x.2
@@ -226,7 +247,9 @@ theorem exists_succCell (hwf : M.WellFormed) {x : ℤ × A} (hx : M.Posn x.2) :
   · obtain ⟨q, hq⟩ := exists_succPos hwf.1 hx hmax
     exact ⟨(x.1, q), Or.inl ⟨rfl, hq⟩⟩
 
-/-- Every cell over a position has a previous cell. -/
+/-- Every cell over a position has a previous cell.
+@isnad1 id=ex.2h3v.s5.5f9a21c9e618 from=translated src=- shape=4eb8625e vocab=b793f2fb
+-/
 theorem exists_predCell (hwf : M.WellFormed) {x : ℤ × A} (hx : M.Posn x.2) :
     ∃ y, M.SuccCell y x := by
   by_cases hmin : MinPos M.Le M.Posn x.2
@@ -236,40 +259,52 @@ theorem exists_predCell (hwf : M.WellFormed) {x : ℤ × A} (hx : M.Posn x.2) :
     exact ⟨(x.1, q), Or.inl ⟨rfl, hq⟩⟩
 
 omit [Finite A] in
-/-- Lowest positions are unique. -/
+/-- Lowest positions are unique.
+@isnad1 id=eq.3h5v.s5.11f08e7ee1c4 from=translated src=- shape=10cf9864 vocab=e728b522
+-/
 theorem minPos_unique {Le : A → A → Prop} {Posn : A → Prop} (hlin : IsLinOrd Le) {p q : A}
     (hp : MinPos Le Posn p) (hq : MinPos Le Posn q) : p = q :=
   hlin.2.2.1 _ _ (hp.2 q hq.1) (hq.2 p hp.1)
 
 omit [Finite A] in
-/-- Highest positions are unique. -/
+/-- Highest positions are unique.
+@isnad1 id=eq.3h5v.s5.4129f530cfd9 from=translated src=- shape=10cf9864 vocab=dba4c862
+-/
 theorem maxPos_unique {Le : A → A → Prop} {Posn : A → Prop} (hlin : IsLinOrd Le) {p q : A}
     (hp : MaxPos Le Posn p) (hq : MaxPos Le Posn q) : p = q :=
   hlin.2.2.1 _ _ (hq.2 p hp.1) (hp.2 q hq.1)
 
 omit [Finite A] in
-/-- The element immediately above a given one is unique. -/
+/-- The element immediately above a given one is unique.
+@isnad1 id=eq.3h6v.s5.e443f4aa2b9f from=translated src=- shape=5fcd2101 vocab=47aa5c03
+-/
 theorem succPos_right_unique {Le : A → A → Prop} {Posn : A → Prop} (hlin : IsLinOrd Le)
     {p q q' : A} (h : SuccPos Le Posn p q) (h' : SuccPos Le Posn p q') : q = q' :=
   succPos_left_unique (Posn := Posn) hlin.reverse
     (succPos_reverse.mpr h) (succPos_reverse.mpr h')
 
 omit [Finite A] in
-/-- A position with a successor is not the highest. -/
+/-- A position with a successor is not the highest.
+@isnad1 id=not.2h5v.s5.f61457a13b00 from=translated src=- shape=9c4dc5b4 vocab=2aca3a6a
+-/
 theorem succPos_not_maxPos {Le : A → A → Prop} {Posn : A → Prop} (hlin : IsLinOrd Le)
     {p q : A} (h : SuccPos Le Posn p q) : ¬MaxPos Le Posn p := by
   rintro ⟨-, hmax⟩
   exact h.2.2.2.1 (hlin.2.2.1 _ _ h.2.2.1 (hmax q h.2.1))
 
 omit [Finite A] in
-/-- A position with a predecessor is not the lowest. -/
+/-- A position with a predecessor is not the lowest.
+@isnad1 id=not.2h5v.s5.80b99cb3b93b from=translated src=- shape=e81f0443 vocab=44238de9
+-/
 theorem succPos_not_minPos {Le : A → A → Prop} {Posn : A → Prop} (hlin : IsLinOrd Le)
     {p q : A} (h : SuccPos Le Posn p q) : ¬MinPos Le Posn q := by
   rintro ⟨-, hmin⟩
   exact h.2.2.2.1 (hlin.2.2.1 _ _ h.2.2.1 (hmin p h.1))
 
 omit [Finite A] in
-/-- The cell after a given one is unique. -/
+/-- The cell after a given one is unique.
+@isnad1 id=eq.3h5v.s5.bfb1e0967190 from=translated src=- shape=b81f3ef9 vocab=2eb2ab92
+-/
 theorem succCell_right_unique (hwf : M.WellFormed) {x y y' : ℤ × A}
     (h : M.SuccCell x y) (h' : M.SuccCell x y') : y = y' := by
   rcases h with ⟨hz, hp⟩ | ⟨hz, hmax, hmin⟩ <;>
@@ -280,7 +315,9 @@ theorem succCell_right_unique (hwf : M.WellFormed) {x y y' : ℤ × A}
   · exact Prod.ext (hz.trans hz'.symm) (minPos_unique hwf.1 hmin hmin')
 
 omit [Finite A] in
-/-- The cell before a given one is unique. -/
+/-- The cell before a given one is unique.
+@isnad1 id=eq.3h5v.s5.ba7532819911 from=translated src=- shape=6736878e vocab=2eb2ab92
+-/
 theorem succCell_left_unique (hwf : M.WellFormed) {x x' y : ℤ × A}
     (h : M.SuccCell x y) (h' : M.SuccCell x' y) : x = x' := by
   rcases h with ⟨hz, hp⟩ | ⟨hz, hmax, hmin⟩ <;>
@@ -291,14 +328,18 @@ theorem succCell_left_unique (hwf : M.WellFormed) {x x' y : ℤ × A}
   · exact Prod.ext (by omega) (maxPos_unique hwf.1 hmax hmax')
 
 omit [Finite A] in
-/-- The successor cell keeps to the positions. -/
+/-- The successor cell keeps to the positions.
+@isnad1 id=posn.1h4v.s4.1cdd42de2edb from=translated src=- shape=c99adf27 vocab=0f87dbfd
+-/
 theorem posn_of_succCell {x y : ℤ × A} (h : M.SuccCell x y) : M.Posn y.2 := by
   rcases h with ⟨-, hp⟩ | ⟨-, -, hmin⟩
   · exact hp.2.1
   · exact hmin.1
 
 omit [Finite A] in
-/-- The previous cell keeps to the positions, too. -/
+/-- The previous cell keeps to the positions, too.
+@isnad1 id=posn.1h4v.s4.12a7758565d3 from=translated src=- shape=d186ee24 vocab=0f87dbfd
+-/
 theorem posn_of_succCell_left {x y : ℤ × A} (h : M.SuccCell x y) : M.Posn x.2 := by
   rcases h with ⟨-, hp⟩ | ⟨-, hmax, -⟩
   · exact hp.1
@@ -320,16 +361,27 @@ open Pcp
 def cellSyms (c : ConfigU A) (l : List (ℤ × A)) : List (TapeLetter A) :=
   l.map fun x => TapeLetter.sym (c.tape x)
 
+/--
+@isnad1 id=eq.0h2v.s4.d4f049666e49 from=translated src=- shape=a3d5cb28 vocab=b6446536
+-/
 @[simp] theorem cellSyms_nil (c : ConfigU A) : cellSyms c [] = [] := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.d9bcceb8e048 from=translated src=- shape=6a40d0e6 vocab=27490b86
+-/
 @[simp] theorem cellSyms_cons (c : ConfigU A) (x : ℤ × A) (l : List (ℤ × A)) :
     cellSyms c (x :: l) = TapeLetter.sym (c.tape x) :: cellSyms c l := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.c461cd80354f from=translated src=- shape=bd815ac4 vocab=d007d545
+-/
 @[simp] theorem cellSyms_append (c : ConfigU A) (l l' : List (ℤ × A)) :
     cellSyms c (l ++ l') = cellSyms c l ++ cellSyms c l' := by
   simp [cellSyms]
 
-/-- Two configurations agreeing on a window write it the same way. -/
+/-- Two configurations agreeing on a window write it the same way.
+@isnad1 id=eq.1h4v.s5.c60509e2d708 from=translated src=- shape=e57c0dc3 vocab=59d556b7
+-/
 theorem cellSyms_congr {c c' : ConfigU A} {l : List (ℤ × A)}
     (h : ∀ x ∈ l, c'.tape x = c.tape x) : cellSyms c' l = cellSyms c l :=
   List.map_congr_left fun x hx => by rw [h x hx]
@@ -352,31 +404,61 @@ def Represents (w : List (TapeLetter A)) (c : ConfigU A) : Prop :=
 A configuration word carries no boot and no halting letter, and exactly one
 state letter; these two facts drive the case analysis on a rewriting step. -/
 
+/--
+@isnad1 id=eq.0h1v.s3.6d1ee6c36fe4 from=translated src=- shape=b81ee291 vocab=5cc505f0
+-/
 @[simp] theorem isState_lft : (TapeLetter.lft (A := A)).isState = false := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.b10dbb5e54eb from=translated src=- shape=b81ee291 vocab=804837bb
+-/
 @[simp] theorem isState_rgt : (TapeLetter.rgt (A := A)).isState = false := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.3651dd315d3e from=translated src=- shape=b81ee291 vocab=c3227abf
+-/
 @[simp] theorem isState_boot : (TapeLetter.boot (A := A)).isState = false := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.6945b808c406 from=translated src=- shape=b81ee291 vocab=1725504d
+-/
 @[simp] theorem isState_halt : (TapeLetter.halt (A := A)).isState = false := rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.6270deadf261 from=translated src=- shape=caa32e0f vocab=b6f90904
+-/
 @[simp] theorem isState_sym (a : A) : (TapeLetter.sym a).isState = false := rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.7119f7ac257a from=translated src=- shape=caa32e0f vocab=9664670e
+-/
 @[simp] theorem isState_state (q : A) : (TapeLetter.state q).isState = true := rfl
 
 /-- The number of state letters of a word. -/
 def stateCount (l : List (TapeLetter A)) : ℕ := l.countP TapeLetter.isState
 
+/--
+@isnad1 id=eq.0h1v.s3.9717c616e4b1 from=translated src=- shape=1beffefa vocab=ec828866
+-/
 @[simp] theorem stateCount_nil : stateCount ([] : List (TapeLetter A)) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.d75afddd7751 from=translated src=- shape=ecb250b4 vocab=f0e4a765
+-/
 theorem stateCount_append (l l' : List (TapeLetter A)) :
     stateCount (l ++ l') = stateCount l + stateCount l' :=
   List.countP_append
 
+/--
+@isnad1 id=eq.0h3v.s5.c508dae41f13 from=translated src=- shape=792eb97a vocab=4f06ffd5
+-/
 theorem stateCount_cons (a : TapeLetter A) (l : List (TapeLetter A)) :
     stateCount (a :: l) = stateCount l + if a.isState then 1 else 0 :=
   List.countP_cons
 
+/--
+@isnad1 id=eq.0h3v.s4.683802b9de74 from=translated src=- shape=8aec83da vocab=d1f6781f
+-/
 @[simp] theorem stateCount_cellSyms (c : ConfigU A) (l : List (ℤ × A)) :
     stateCount (cellSyms c l) = 0 :=
   List.countP_eq_zero.mpr fun x hx => by
@@ -384,7 +466,9 @@ theorem stateCount_cons (a : TapeLetter A) (l : List (TapeLetter A)) :
     simp
 
 /-- A word without state letters is exactly a word of vanishing state
-count. -/
+count.
+@isnad1 id=iff.0h2v.s5.753868064935 from=translated src=- shape=ae9709b2 vocab=2130c1fe
+-/
 theorem stateCount_eq_zero {l : List (TapeLetter A)} :
     stateCount l = 0 ↔ ∀ x ∈ l, x.isState = false := by
   rw [stateCount, List.countP_eq_zero]
@@ -392,7 +476,9 @@ theorem stateCount_eq_zero {l : List (TapeLetter A)} :
     fun h x hx => by simp [h x hx]⟩
 
 /-- **Alignment at the state letter**: two decompositions of one word around a
-state letter, neither prefix carrying one, agree. -/
+state letter, neither prefix carrying one, agree.
+@isnad1 id=and.3h7v.s7.72725a1b9abb from=translated src=- shape=14f1cb0c vocab=a2675f04
+-/
 theorem state_align : ∀ {u₁ u₂ v₁ v₂ : List (TapeLetter A)} {q₁ q₂ : A},
     u₁ ++ TapeLetter.state q₁ :: v₁ = u₂ ++ TapeLetter.state q₂ :: v₂ →
     (∀ x ∈ u₁, x.isState = false) → (∀ x ∈ u₂, x.isState = false) →
@@ -421,7 +507,9 @@ theorem state_align : ∀ {u₁ u₂ v₁ v₂ : List (TapeLetter A)} {q₁ q₂
       (fun x hx => h₂ x (List.mem_cons_of_mem b hx))
     exact ⟨by rw [hab, hu], hq, hv⟩
 
-/-- The prefix of a configuration word carries no state letter. -/
+/-- The prefix of a configuration word carries no state letter.
+@isnad1 id=eq.1h4v.s5.c57a97c83ee5 from=translated src=- shape=b8d25336 vocab=3c01f71f
+-/
 theorem prefix_state_free (c : ConfigU A) (ls : List (ℤ × A)) :
     ∀ x ∈ TapeLetter.lft :: cellSyms c ls, x.isState = false := by
   intro x hx
@@ -430,7 +518,9 @@ theorem prefix_state_free (c : ConfigU A) (ls : List (ℤ × A)) :
   · obtain ⟨y, -, rfl⟩ := List.mem_map.mp hx
     rfl
 
-/-- No boot letter and no halting letter occurs in a configuration word. -/
+/-- No boot letter and no halting letter occurs in a configuration word.
+@isnad1 id=and.1h4v.s5.7a8097009efa from=translated src=- shape=fa92a8da vocab=007a0e7a
+-/
 theorem boot_halt_notMem {w : List (TapeLetter A)} {c : ConfigU A}
     (h : Represents M w c) :
     TapeLetter.boot ∉ w ∧ TapeLetter.halt ∉ w := by
@@ -441,7 +531,9 @@ theorem boot_halt_notMem {w : List (TapeLetter A)} {c : ConfigU A}
     simp [cellSyms] at hmem
 
 /-- The two halves of a window sit strictly below and strictly above the
-head. -/
+head.
+@isnad1 id=and.2h5v.s6.a811e3fbd2ca from=translated src=- shape=c03f4aa5 vocab=2ae6ce0b
+-/
 theorem window_lt {ls rs : List (ℤ × A)} {h : ℤ × A} (hlin : IsLinOrd M.Le)
     (hchain : (ls ++ h :: rs).IsChain M.SuccCell) :
     (∀ z ∈ ls, CellLt M z h) ∧ ∀ z ∈ rs, CellLt M h z := by
@@ -451,7 +543,9 @@ theorem window_lt {ls rs : List (ℤ × A)} {h : ℤ × A} (hlin : IsLinOrd M.Le
   rw [List.pairwise_cons] at h2
   exact ⟨fun z hz => h3 z hz h List.mem_cons_self, fun z hz => h2.1 z hz⟩
 
-/-- A configuration word has exactly one state letter. -/
+/-- A configuration word has exactly one state letter.
+@isnad1 id=eq.0h4v.s6.18be5b541b6f from=translated src=- shape=44c3a8a6 vocab=c23c4354
+-/
 theorem stateCount_word (c : ConfigU A) (ls rs : List (ℤ × A)) :
     stateCount ((TapeLetter.lft :: cellSyms c ls) ++ TapeLetter.state c.state ::
       TapeLetter.sym (c.tape c.head) :: (cellSyms c rs ++ [TapeLetter.rgt])) = 1 := by
@@ -465,6 +559,9 @@ rule on the current – hence accepting – state. Each move rule carries exactl
 one state letter on its left-hand side, and a configuration word carries
 exactly one, so the rule can only apply at the head. -/
 
+/--
+@isnad1 id=or.3h5v.s5.f0160e2a2bfa from=translated src=- shape=2ca16552 vocab=084a1d7f
+-/
 theorem step_inversion [Finite A] (hwf : M.WellFormed) {w w₁ : List (TapeLetter A)}
     {c : ConfigU A} (hrep : Represents M w c)
     (hstep : History.Step (MRule M) w w₁) :
@@ -801,6 +898,9 @@ The forward direction: one machine step is one rewriting step – the boundary
 variants of the moves extend the window in the same stroke, so no separate
 padding step is ever needed. -/
 
+/--
+@isnad1 id=ex.3h5v.s5.c3a4ef11d2ec from=translated src=- shape=5abcf642 vocab=4d3f5b06
+-/
 theorem exists_step_of_stepU [Finite A] (hwf : M.WellFormed) {w : List (TapeLetter A)}
     {c c' : ConfigU A} (hrep : Represents M w c) (h : M.StepU c c') :
     ∃ w', History.Step (MRule M) w w' ∧ Represents M w' c' := by
@@ -983,7 +1083,9 @@ theorem exists_step_of_stepU [Finite A] (hwf : M.WellFormed) {w : List (TapeLett
 
 /-! ### Whole runs, and the halting phase -/
 
-/-- A run of the machine is a derivation between words of its endpoints. -/
+/-- A run of the machine is a derivation between words of its endpoints.
+@isnad1 id=ex.3h6v.s5.c3e85dd76c57 from=translated src=- shape=ff0e7e9b vocab=0e50d006
+-/
 theorem derives_of_run [Finite A] (hwf : M.WellFormed) :
     ∀ {n : ℕ} {c c' : ConfigU A}, M.StepsInU n c c' →
       ∀ {w}, Represents M w c →
@@ -995,7 +1097,9 @@ theorem derives_of_run [Finite A] (hwf : M.WellFormed) :
     obtain ⟨w', hd, hrep'⟩ := derives_of_run hwf hrest hrep₁
     exact ⟨w', Relation.ReflTransGen.head h1 hd, hrep'⟩
 
-/-- The halting letter melts a block of symbols to its left away. -/
+/-- The halting letter melts a block of symbols to its left away.
+@isnad1 id=derives.0h3v.s5.7fd7f7822932 from=translated src=- shape=f54cc209 vocab=95026ccc
+-/
 theorem derives_eraseL (u : List A) :
     History.Derives (MRule M) (u.map TapeLetter.sym ++ [TapeLetter.halt])
       [TapeLetter.halt] := by
@@ -1010,7 +1114,9 @@ theorem derives_eraseL (u : List A) :
     have := ih.congr [TapeLetter.sym a] []
     simpa using this
 
-/-- The halting letter melts a block of symbols to its right away. -/
+/-- The halting letter melts a block of symbols to its right away.
+@isnad1 id=derives.0h3v.s5.276f0eb3b810 from=translated src=- shape=1c083cf8 vocab=85e83351
+-/
 theorem derives_eraseR (u : List A) :
     History.Derives (MRule M) (TapeLetter.halt :: u.map TapeLetter.sym)
       [TapeLetter.halt] := by
@@ -1023,7 +1129,9 @@ theorem derives_eraseR (u : List A) :
         History.Step (MRule M) _ (TapeLetter.halt :: u.map TapeLetter.sym)) ih
 
 /-- **From an accepting configuration the derivation closes**: the state
-letter becomes the halting letter, which then swallows the whole word. -/
+letter becomes the halting letter, which then swallows the whole word.
+@isnad1 id=derives.2h4v.s5.1eb318d33c0f from=translated src=- shape=4f5cb0c3 vocab=ed8cf88f
+-/
 theorem derives_halt_of_acc {w : List (TapeLetter A)} {c : ConfigU A}
     (hrep : Represents M w c) (hacc : M.Acc c.state) :
     History.Derives (MRule M) w [TapeLetter.halt] := by
@@ -1091,7 +1199,9 @@ symbols of the page. -/
 def startWord (inp : List A) : List (TapeLetter A) :=
   TapeLetter.lft :: TapeLetter.boot :: (inp.map TapeLetter.sym ++ [TapeLetter.rgt])
 
-/-- A machine with a position has a nonempty enumeration. -/
+/-- A machine with a position has a nonempty enumeration.
+@isnad1 id=ne.2h3v.s4.55aa43ee4730 from=translated src=- shape=c7e1fb6b vocab=ef74270d
+-/
 theorem IsPosEnum.ne_nil (hwf : M.WellFormed) {ps : List A} (hps : IsPosEnum M ps) :
     ps ≠ [] := by
   obtain ⟨p, hp⟩ := hwf.2.1
@@ -1099,7 +1209,9 @@ theorem IsPosEnum.ne_nil (hwf : M.WellFormed) {ps : List A} (hps : IsPosEnum M p
   rw [h] at hps
   exact absurd ((hps.2 p).mpr hp) (by simp)
 
-/-- Consecutive entries of an enumeration are consecutive positions. -/
+/-- Consecutive entries of an enumeration are consecutive positions.
+@isnad1 id=ischain.2h3v.s4.67e498ddda3b from=translated src=- shape=739074cd vocab=d5f6c474
+-/
 theorem IsPosEnum.isChain (hlin : IsLinOrd M.Le) {ps : List A} (hps : IsPosEnum M ps) :
     ps.IsChain (SuccPos M.Le M.Posn) := by
   rw [List.isChain_iff_forall_rel_of_append_cons_cons]
@@ -1125,7 +1237,9 @@ theorem IsPosEnum.isChain (hlin : IsLinOrd M.Le) {ps : List A} (hps : IsPosEnum 
     · have h := hpw3.1 r hr4
       exact absurd (hlin.2.2.1 q r h.1 hrq) h.2
 
-/-- The first entry of an enumeration is the lowest position. -/
+/-- The first entry of an enumeration is the lowest position.
+@isnad1 id=minpos.2h4v.s5.57147b66d34c from=translated src=- shape=ea085e8a vocab=1650d440
+-/
 theorem IsPosEnum.head_minPos (hlin : IsLinOrd M.Le) {p : A} {pr : List A}
     (hps : IsPosEnum M (p :: pr)) : MinPos M.Le M.Posn p := by
   refine ⟨(hps.2 p).mp (by simp), fun q hq => ?_⟩
@@ -1134,7 +1248,9 @@ theorem IsPosEnum.head_minPos (hlin : IsLinOrd M.Le) {p : A} {pr : List A}
   · exact ((List.pairwise_cons.mp hps.1).1 q hq').1
 
 /-- **A well-formed machine with a start state has an initial configuration on
-the unbounded tape**, its input page filled by choice and the rest blank. -/
+the unbounded tape**, its input page filled by choice and the rest blank.
+@isnad1 id=ex.2h3v.s5.a070160a5d49 from=translated src=- shape=aaf4d0eb vocab=0962fbbd
+-/
 theorem exists_isInitU [Finite A] (hwf : M.WellFormed) {q₀ : A} (hq : M.Start q₀) :
     ∃ c₀ : ConfigU A, M.IsInitU c₀ ∧ c₀.state = q₀ := by
   classical
@@ -1151,7 +1267,9 @@ theorem exists_isInitU [Finite A] (hwf : M.WellFormed) {q₀ : A} (hq : M.Start 
   · simpa only [dite_eq_right (fun hcon : (z = 0) ∧ ∃ a, M.Inp p a => hz hcon.1)] using hb₀
 
 /-- **The word of an initial configuration**: the input page between the
-endmarkers, the state in front of its first cell. -/
+endmarkers, the state in front of its first cell.
+@isnad1 id=represen.4h5v.s6.900cd2bbc1e2 from=translated src=- shape=c1f61c31 vocab=fa081476
+-/
 theorem represents_of_isInitU [Finite A] (hwf : M.WellFormed) {ps inp : List A}
     (hps : IsPosEnum M ps) (hinp : List.Forall₂ M.InitTape ps inp)
     {c₀ : ConfigU A} (hinit : M.IsInitU c₀) :
@@ -1205,7 +1323,9 @@ theorem represents_of_isInitU [Finite A] (hwf : M.WellFormed) {ps inp : List A}
     · exact (htape z p hp).2 hz
 
 /-- No letter of a start word is a state or halting letter, and its only boot
-letter is the one in the state slot. -/
+letter is the one in the state slot.
+@isnad1 id=eq.0h2v.s4.d17c303a4a8a from=translated src=- shape=184c4776 vocab=b131ca25
+-/
 theorem stateCount_startWord (inp : List A) : stateCount (startWord inp) = 0 := by
   rw [stateCount_eq_zero]
   intro x hx
@@ -1222,7 +1342,9 @@ theorem stateCount_startWord (inp : List A) : stateCount (startWord inp) = 0 := 
 /-! ### The equivalence -/
 
 /-- The backward reading: a derivation from a configuration word to the
-halting word yields an accepting run from that configuration. -/
+halting word yields an accepting run from that configuration.
+@isnad1 id=ex.3h4v.s6.71247da6f014 from=translated src=- shape=18690159 vocab=f5a3e6ad
+-/
 theorem acceptsU_of_derives [Finite A] (hwf : M.WellFormed) {w : List (TapeLetter A)}
     (hder : History.Derives (MRule M) w [TapeLetter.halt]) :
     ∀ c : ConfigU A, Represents M w c →
@@ -1243,7 +1365,9 @@ theorem acceptsU_of_derives [Finite A] (hwf : M.WellFormed) {w : List (TapeLette
     · exact ⟨c, 0, rfl, hacc⟩
 
 /-- **Acceptance is derivability**: the machine accepts exactly when the
-rewriting system derives the halting word from the start word. -/
+rewriting system derives the halting word from the start word.
+@isnad1 id=iff.3h4v.s5.a18cac077d93 from=translated src=- shape=50dc85bc vocab=faede598
+-/
 theorem acceptsU_iff_derives [Finite A] (hwf : M.WellFormed) {ps inp : List A}
     (hps : IsPosEnum M ps) (hinp : List.Forall₂ M.InitTape ps inp) :
     M.AcceptsU ↔ History.Derives (MRule M) (startWord inp) [TapeLetter.halt] := by
@@ -1326,7 +1450,9 @@ theorem acceptsU_iff_derives [Finite A] (hwf : M.WellFormed) {ps inp : List A}
       exact ⟨c₀, c', n, hinit, hrun, hacc⟩
 
 /-- **Acceptance is having a match**: the domino system of the machine's
-rewriting rules has a match exactly when the machine accepts. -/
+rewriting rules has a match exactly when the machine accepts.
+@isnad1 id=iff.3h4v.s5.960114bfce0a from=translated src=- shape=6188ac74 vocab=0ae050ca
+-/
 theorem acceptsU_iff_hasMatch [Finite A] (hwf : M.WellFormed) {ps inp : List A}
     (hps : IsPosEnum M ps) (hinp : List.Forall₂ M.InitTape ps inp) :
     M.AcceptsU ↔

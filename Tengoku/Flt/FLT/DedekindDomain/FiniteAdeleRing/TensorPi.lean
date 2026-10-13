@@ -29,6 +29,9 @@ open DirectSum Function
 
 section
 
+/--
+@isnad1 id=ex.0h2v.s9.1bbcd0ff3fe2 from=translated src=- shape=8eb31ee1 vocab=7324ba21
+-/
 theorem Module.FinitePresentation.exists_fin_exact (R : Type*) (M : Type*)
   [Ring R] [AddCommGroup M] [Module R M] [fp : Module.FinitePresentation R M] :
   ∃ (n m : ℕ) (f : (Fin m → R) →ₗ[R] (Fin n → R)) (g : (Fin n → R) →ₗ[R] M),

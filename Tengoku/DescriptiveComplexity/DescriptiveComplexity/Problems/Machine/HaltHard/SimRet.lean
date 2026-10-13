@@ -50,7 +50,9 @@ inductive TopSeg : PCont c → List (SimSym c) → Prop
   | fix {p : CPos c} {k : PCont c} {w : List (SimSym c)} :
       FrameSeg k w → TopSeg (.fix p k) (.hFix p :: w)
 
-/-- A frame region splits into its leading gap and its top frame. -/
+/-- A frame region splits into its leading gap and its top frame.
+@isnad1 id=ex.1h3v.s5.a0c596435d2d from=translated src=- shape=f5232b8a vocab=f7802d6b
+-/
 theorem FrameSeg.gap_split {k : PCont c} {fr : List (SimSym c)} (h : FrameSeg k fr) :
     ∃ n w, fr = List.replicate n SimSym.bk ++ w ∧ TopSeg k w := by
   induction h with
@@ -63,7 +65,9 @@ theorem FrameSeg.gap_split {k : PCont c} {fr : List (SimSym c)} (h : FrameSeg k 
   | comp h => exact ⟨0, _, rfl, TopSeg.comp h⟩
   | fix h => exact ⟨0, _, rfl, TopSeg.fix h⟩
 
-/-- Gaps may be prepended to a frame region wholesale. -/
+/-- Gaps may be prepended to a frame region wholesale.
+@isnad1 id=frameseg.1h4v.s5.141ccb5f433f from=translated src=- shape=777e8371 vocab=f02a733d
+-/
 theorem FrameSeg.gaps {k : PCont c} {w : List (SimSym c)} (n : ℕ) (h : FrameSeg k w) :
     FrameSeg k (List.replicate n SimSym.bk ++ w) := by
   induction n with
@@ -76,90 +80,145 @@ section Pass
 
 variable {σ : SimSym c} {p : CPos c}
 
+/--
+@isnad1 id=eq.1h3v.s5.d580f73d905a from=translated src=- shape=7ca832ca vocab=4909ef92
+-/
 theorem pass_fxGo (h : σ ≠ .endR) : simStep (.fxGo p) σ = some (σ, .fxGo p, true) := by
   cases σ <;> first | rfl | exact absurd rfl h
 
+/--
+@isnad1 id=eq.1h2v.s5.7d912bd1705b from=translated src=- shape=3905d539 vocab=aa64f519
+-/
 theorem pass_fxDropL (h : σ ≠ .endL) :
     simStep (c := c) .fxDropL σ = some (σ, .fxDropL, false) := by
   cases σ <;> first | rfl | exact absurd rfl h
 
+/--
+@isnad1 id=eq.1h2v.s5.4ddb71aa97f5 from=translated src=- shape=3905d539 vocab=d168f782
+-/
 theorem pass_swGo (h : σ ≠ .endR) : simStep (c := c) .swGo σ = some (σ, .swGo, true) := by
   cases σ <;> first | rfl | exact absurd rfl h
 
+/--
+@isnad1 id=eq.1h2v.s5.a95e0ae25ae6 from=translated src=- shape=3905d539 vocab=2d8b1254
+-/
 theorem pass_swCar₁ (h : σ ≠ .endL) :
     simStep (c := c) .swCar₁ σ = some (σ, .swCar₁, false) := by
   cases σ <;> first | rfl | exact absurd rfl h
 
+/--
+@isnad1 id=eq.1h2v.s5.d202f2f791d5 from=translated src=- shape=3905d539 vocab=2c4ba604
+-/
 theorem pass_swCarC (h : σ ≠ .endL) :
     simStep (c := c) .swCarC σ = some (σ, .swCarC, false) := by
   cases σ <;> first | rfl | exact absurd rfl h
 
+/--
+@isnad1 id=eq.1h2v.s5.cc83d4720177 from=translated src=- shape=3905d539 vocab=b761cf36
+-/
 theorem pass_swHdr (h : σ ≠ .endL) :
     simStep (c := c) .swHdr σ = some (σ, .swHdr, false) := by
   cases σ <;> first | rfl | exact absurd rfl h
 
+/--
+@isnad1 id=eq.1h2v.s5.51d27e8c9c2f from=translated src=- shape=deb29c9a vocab=9158e8ac
+-/
 theorem pass_swOut (h : ∀ q, σ ≠ .hCons₁ q) :
     simStep (c := c) .swOut σ = some (σ, .swOut, true) := by
   cases σ <;> first | rfl | exact absurd rfl (h _)
 
+/--
+@isnad1 id=eq.1h2v.s5.1e0e15fd9fb7 from=translated src=- shape=3905d539 vocab=3f481977
+-/
 theorem pass_swApp₁ (h : σ ≠ .endR) :
     simStep (c := c) .swApp₁ σ = some (σ, .swApp₁, true) := by
   cases σ <;> first | rfl | exact absurd rfl h
 
+/--
+@isnad1 id=eq.1h2v.s5.ecb817bf5c88 from=translated src=- shape=3905d539 vocab=4f49dbfa
+-/
 theorem pass_swAppC (h : σ ≠ .endR) :
     simStep (c := c) .swAppC σ = some (σ, .swAppC, true) := by
   cases σ <;> first | rfl | exact absurd rfl h
 
+/--
+@isnad1 id=eq.1h2v.s5.72f1eef7d424 from=translated src=- shape=3905d539 vocab=5b56f003
+-/
 theorem pass_swBack (h : σ ≠ .endL) :
     simStep (c := c) .swBack σ = some (σ, .swBack, false) := by
   cases σ <;> first | rfl | exact absurd rfl h
 
+/--
+@isnad1 id=eq.1h2v.s5.364ff5a03043 from=translated src=- shape=3905d539 vocab=f55028c4
+-/
 theorem pass_ppGo (h : σ ≠ .endR) : simStep (c := c) .ppGo σ = some (σ, .ppGo, true) := by
   cases σ <;> first | rfl | exact absurd rfl h
 
+/--
+@isnad1 id=eq.1h2v.s5.040dcc001e8e from=translated src=- shape=3905d539 vocab=0a5215ea
+-/
 theorem pass_ppBack (h : σ ≠ .endL) :
     simStep (c := c) .ppBack σ = some (σ, .ppBack, false) := by
   cases σ <;> first | rfl | exact absurd rfl h
 
+/--
+@isnad1 id=eq.1h2v.s5.2d4f010e4970 from=translated src=- shape=3905d539 vocab=80b2d382
+-/
 theorem pass_ppCar (h : σ ≠ .endR) : simStep (c := c) .ppCar σ = some (σ, .ppCar, true) := by
   cases σ <;> first | rfl | exact absurd rfl h
 
-/-- `fxDropR` re-crosses the gap blanks. -/
+/-- `fxDropR` re-crosses the gap blanks.
+@isnad1 id=eq.1h2v.s5.3c8330772a30 from=translated src=- shape=b9968de1 vocab=7d7df3d7
+-/
 theorem pass_fxDropR (h : σ = .bk) :
     simStep (c := c) .fxDropR σ = some (σ, .fxDropR, true) := by
   subst h; rfl
 
-/-- `fxOnes` erases the digits of the head block, walking left. -/
+/-- `fxOnes` erases the digits of the head block, walking left.
+@isnad1 id=eq.1h3v.s5.91edcb2d087d from=translated src=- shape=c0928870 vocab=1116449c
+-/
 theorem pass_fxOnes (h : σ = .one) :
     simStep (.fxOnes p) σ = some (.bk, .fxOnes p, false) := by
   subst h; rfl
 
-/-- `ppFind` crosses the gap blanks. -/
+/-- `ppFind` crosses the gap blanks.
+@isnad1 id=eq.1h2v.s5.99340d1da5b7 from=translated src=- shape=b9968de1 vocab=f6f7fdc0
+-/
 theorem pass_ppFind (h : σ = .bk) :
     simStep (c := c) .ppFind σ = some (σ, .ppFind, true) := by
   subst h; rfl
 
-/-- `ppScan` passes the frame content. -/
+/-- `ppScan` passes the frame content.
+@isnad1 id=eq.1h2v.s5.527f0ea9957f from=translated src=- shape=c558c1d5 vocab=4b6ae117
+-/
 theorem pass_ppScan (h : σ = .one ∨ σ = .com) :
     simStep (c := c) .ppScan σ = some (σ, .ppScan, true) := by
   rcases h with rfl | rfl <;> rfl
 
-/-- `ppScan` stops on the first letter that is not frame content. -/
+/-- `ppScan` stops on the first letter that is not frame content.
+@isnad1 id=eq.2h2v.s5.cebfaa9e7104 from=translated src=- shape=64bac54f vocab=96dab42d
+-/
 theorem stop_ppScan (h1 : σ ≠ .one) (h2 : σ ≠ .com) :
     simStep (c := c) .ppScan σ = some (σ, .ppLast, false) := by
   cases σ <;> first | rfl | exact absurd rfl h1 | exact absurd rfl h2
 
-/-- `ppKill` erases the spent frame content, walking left. -/
+/-- `ppKill` erases the spent frame content, walking left.
+@isnad1 id=eq.1h2v.s5.cd7b5ec6ba75 from=translated src=- shape=e94dc5eb vocab=27132ce7
+-/
 theorem pass_ppKill (h : σ = .one ∨ σ = .com) :
     simStep (c := c) .ppKill σ = some (.bk, .ppKill, false) := by
   rcases h with rfl | rfl <;> rfl
 
-/-- `swScan` passes the frame content. -/
+/-- `swScan` passes the frame content.
+@isnad1 id=eq.1h2v.s5.4f85bd59ae73 from=translated src=- shape=c558c1d5 vocab=416aaf41
+-/
 theorem pass_swScan (h : σ = .one ∨ σ = .com) :
     simStep (c := c) .swScan σ = some (σ, .swScan, true) := by
   rcases h with rfl | rfl <;> rfl
 
-/-- `swScan` stops on the first letter that is not frame content. -/
+/-- `swScan` stops on the first letter that is not frame content.
+@isnad1 id=eq.2h2v.s5.36de535be7ab from=translated src=- shape=64bac54f vocab=efe7cc5a
+-/
 theorem stop_swScan (h1 : σ ≠ .one) (h2 : σ ≠ .com) :
     simStep (c := c) .swScan σ = some (σ, .swLast, false) := by
   cases σ <;> first | rfl | exact absurd rfl h1 | exact absurd rfl h2
@@ -174,7 +233,9 @@ a content letter – frames start with headers – so a rightward scan over
 letter, absorbing an erased zone of blanks in front. -/
 
 /-- A frame region followed by `mid` starts with a letter that is not frame
-content. -/
+content.
+@isnad1 id=ex.1h4v.s6.f9099c233756 from=translated src=- shape=4ffe0ad2 vocab=64d20840
+-/
 theorem FrameSeg.head_split {k' : PCont c} {w' : List (SimSym c)} (hw' : FrameSeg k' w')
     (R : List (SimSym c)) :
     ∃ x X, w' ++ SimSym.mid :: R = x :: X ∧ x ≠ SimSym.one ∧ x ≠ SimSym.com := by
@@ -186,7 +247,9 @@ theorem FrameSeg.head_split {k' : PCont c} {w' : List (SimSym c)} (hw' : FrameSe
   | comp _ => exact ⟨.hComp _, _, rfl, by simp, by simp⟩
   | fix _ => exact ⟨.hFix _, _, rfl, by simp, by simp⟩
 
-/-- A blank run in front preserves the shape of the stop letter. -/
+/-- A blank run in front preserves the shape of the stop letter.
+@isnad1 id=ex.2h4v.s6.c65c7cdf4f16 from=translated src=- shape=d79779d8 vocab=e93a0d55
+-/
 theorem bk_head_split (e : ℕ) {x : SimSym c} (hx1 : x ≠ SimSym.one)
     (hx2 : x ≠ SimSym.com) (X : List (SimSym c)) :
     ∃ x₂ X₂, List.replicate e SimSym.bk ++ x :: X = x₂ :: X₂ ∧
@@ -199,7 +262,9 @@ theorem bk_head_split (e : ℕ) {x : SimSym c} (hx1 : x ≠ SimSym.one)
 /-! ### The `comp` pop -/
 
 /-- **Popping a `comp` frame**: seek the top frame, erase its header, and
-walk to the dispatch point of its code. The header cell joins the gap. -/
+walk to the dispatch point of its code. The header cell joins the gap.
+@isnad1 id=reach.1h9v.s6.0ab3fe35f86e from=translated src=- shape=ce1d332d vocab=5c81306a
+-/
 theorem pop_comp {p : CPos c} {k' : PCont c} (n : ℕ) {w' : List (SimSym c)}
     (hw' : FrameSeg k' w') (g : ℕ) (v : List ℕ) (j t : ℕ) :
     Reach (restCfg g (List.replicate n SimSym.bk ++ SimSym.hComp p :: w') v j t)
@@ -228,7 +293,9 @@ theorem pop_comp {p : CPos c} {k' : PCont c} (n : ℕ) {w' : List (SimSym c)}
 /-! ### The `halt` pop -/
 
 /-- **The empty continuation accepts**: the frame region is a bare blank gap,
-so the wake-up walk crosses it, meets `mid` and accepts. -/
+so the wake-up walk crosses it, meets `mid` and accepts.
+@isnad1 id=ex.0h6v.s5.bfa8fd706d00 from=translated src=- shape=b49163d0 vocab=bcb73bb8
+-/
 theorem pop_halt (n g : ℕ) (v : List ℕ) (j t : ℕ) :
     ∃ y : LCfg c, y.q = .acc ∧
       Reach (restCfg g (List.replicate n SimSym.bk) v j t) y := by
@@ -256,7 +323,9 @@ theorem pop_halt (n g : ℕ) (v : List ℕ) (j t : ℕ) :
 
 /-- **Dropping a spent `fix` frame**: from `fxDropL` on `endL`, re-cross the
 gap, erase the kept header stepping left, and walk home to rest – the header
-cell joins the gap. -/
+cell joins the gap.
+@isnad1 id=reach.0h6v.s7.184bc086129d from=translated src=- shape=07d2f236 vocab=adbd48a6
+-/
 theorem fix_drop {p : CPos c} (n g : ℕ) {w' : List (SimSym c)} (R : List (SimSym c)) :
     Reach ⟨.fxDropL, List.replicate g SimSym.bk, SimSym.endL,
         List.replicate n SimSym.bk ++ SimSym.hFix p :: (w' ++ SimSym.mid :: R)⟩
@@ -283,7 +352,9 @@ theorem fix_drop {p : CPos c} (n g : ℕ) {w' : List (SimSym c)} (R : List (SimS
 header and `fxGo` inspects the last letter of the value at `endR` – a blank
 for the empty value, restored after a probe step, or the head block's lone
 separator, consumed as the new `endR` – then `fxDropL`/`fxDropR` drop the
-kept frame and return to rest over the tail of the value. -/
+kept frame and return to rest over the tail of the value.
+@isnad1 id=ex.2h9v.s6.784eb8f8bb13 from=translated src=- shape=644878bb vocab=c14f0d0d
+-/
 theorem pop_fix_stop {p : CPos c} {k' : PCont c} (n : ℕ) {w' : List (SimSym c)}
     (hw' : FrameSeg k' w') (g : ℕ) {v : List ℕ} (hv : v.headI = 0) (j t : ℕ) :
     ∃ t', Reach (restCfg g (List.replicate n SimSym.bk ++ SimSym.hFix p :: w') v j t)
@@ -403,7 +474,9 @@ theorem pop_fix_stop {p : CPos c} {k' : PCont c} (n : ℕ) {w' : List (SimSym c)
 /-- **Popping a `fix` frame, positive flag**: `fxGo` finds a digit at `endR`,
 `fxOnes` erases the head block down to its separator – which becomes the new
 `endR` – and `nSeekL` walks back to `mid` to dispatch the body over the tail
-of the value, the frame kept in place. -/
+of the value, the frame kept in place.
+@isnad1 id=ex.2h10v.s7.4795e392c9ee from=translated src=- shape=7b7e361f vocab=a7243be6
+-/
 theorem pop_fix_go {p : CPos c} {k' : PCont c} (n : ℕ) {w' : List (SimSym c)}
     (hw' : FrameSeg k' w') (g : ℕ) {v : List ℕ} {y : ℕ} (hv : v.headI = y + 1) (j t : ℕ) :
     ∃ t', Reach (restCfg g (List.replicate n SimSym.bk ++ SimSym.hFix p :: w') v j t)
@@ -483,7 +556,9 @@ theorem pop_fix_go {p : CPos c} {k' : PCont c} (n : ℕ) {w' : List (SimSym c)}
 
 /-! ### The `cons₂` pop -/
 
-/-- Merging two adjacent blank runs – the shape the frame erasures leave. -/
+/-- Merging two adjacent blank runs – the shape the frame erasures leave.
+@isnad1 id=eq.0h5v.s6.67ea6d0fe052 from=translated src=- shape=33e71a5f vocab=a80eb6e1
+-/
 theorem replicate_merge (a b : ℕ) (s : SimSym c) (l : List (SimSym c)) :
     List.replicate a s ++ (List.replicate b s ++ l) = List.replicate (a + b) s ++ l := by
   simp [← List.append_assoc]
@@ -492,7 +567,9 @@ theorem replicate_merge (a b : ℕ) (s : SimSym c) (l : List (SimSym c)) :
 of the remaining content, step back onto its last digit, erase it, carry it
 to `endR`, append it by the endR-shift and walk back to the header. The
 erased zone right of the content – abstracted, with the letter after it, into
-`x :: Y'` – grows by one blank, the appended run by one digit. -/
+`x :: Y'` – grows by one blank, the appended run by one digit.
+@isnad1 id=reach.4h8v.s8.c09a6fcfb561 from=translated src=- shape=cb1c2647 vocab=0dc264eb
+-/
 theorem pp_iter {x : SimSym c} {Y' : List (SimSym c)}
     (hx1 : x ≠ SimSym.one) (hx2 : x ≠ SimSym.com)
     (hY : ∀ σ ∈ x :: Y', σ ≠ SimSym.endR ∧ σ ≠ SimSym.endL)
@@ -599,7 +676,9 @@ theorem pp_iter {x : SimSym c} {Y' : List (SimSym c)}
 
 /-- **The `cons₂` transfer loop**: the rounds of
 `DescriptiveComplexity.HaltHard.pp_iter`, iterated over the digits of the
-head block – the rightmost content letters, the frame being mirrored. -/
+head block – the rightmost content letters, the frame being mirrored.
+@isnad1 id=reach.4h9v.s8.e3114a67196b from=translated src=- shape=e4cb8e92 vocab=350c8b8a
+-/
 theorem pp_loop {C : List (SimSym c)} (hC : ∀ σ ∈ C, σ = SimSym.one ∨ σ = SimSym.com)
     (n g : ℕ) : ∀ (y : ℕ) {x : SimSym c} {Y' : List (SimSym c)},
     x ≠ SimSym.one → x ≠ SimSym.com →
@@ -644,7 +723,9 @@ theorem pp_loop {C : List (SimSym c)} (hC : ∀ σ ∈ C, σ = SimSym.one ∨ σ
 
 /-- **Discarding the spent `cons₂` frame**: the digits gone, the scan finds
 the head block's separator last; `ppLast` erases it, `ppKill` sweeps the rest
-of the content into blanks, erases the header, and `retL` walks home. -/
+of the content into blanks, erases the header, and `retL` walks home.
+@isnad1 id=reach.3h7v.s8.401840560e81 from=translated src=- shape=795e96fe vocab=e2e8c763
+-/
 theorem pp_kill {x : SimSym c} (e : ℕ) {T' : List (SimSym c)}
     (hx1 : x ≠ SimSym.one) (hx2 : x ≠ SimSym.com)
     {B : List (SimSym c)} (hB : ∀ σ ∈ B, σ = SimSym.one ∨ σ = SimSym.com)
@@ -704,7 +785,9 @@ the header; the transfer loop moves the digits of the frame's head block –
 the rightmost content letters, the frame being mirrored – one by one to
 `endR`; and once the separator is reached the rest of the frame is swept into
 blanks and the machine returns to rest, the head of the stored value now
-prepended to the value. -/
+prepended to the value.
+@isnad1 id=ex.1h9v.s7.58018b9dc3f2 from=translated src=- shape=d3ea6b8c vocab=d2016426
+-/
 theorem pop_cons₂ {k' : PCont c} (ns : List ℕ) (n : ℕ) {w' : List (SimSym c)}
     (hw' : FrameSeg k' w') (g : ℕ) (v : List ℕ) (j t : ℕ) :
     ∃ t', Reach
@@ -867,7 +950,9 @@ erased, the last value letter peeked, `endR` slides onto its cell, the letter
 is carried over the whole tape – the middle abstracted into `M` – to `endL`
 and written by the endL-shift, and `swGo` walks back onto `endR`. Stated over
 an abstract carry state so the digit and separator instances share the
-proof. -/
+proof.
+@isnad1 id=reach.7h8v.s8.240054422957 from=translated src=- shape=978bb730 vocab=64866d33
+-/
 theorem sw_iter {u : SimSym c} {Qcar : SimQ c}
     (hu : u = SimSym.one ∨ u = SimSym.com)
     (h1 : simStep (c := c) .swPeek u = some (.endR, Qcar, false))
@@ -932,7 +1017,9 @@ theorem sw_iter {u : SimSym c} {Qcar : SimQ c}
 
 /-- **The value move, iterated**: the whole value crosses into the region at
 `endL`, mirrored – consumed at `endR`, written by endL-shifts – while the
-left blanks shrink and the right pad grows by its length. -/
+left blanks shrink and the right pad grows by its length.
+@isnad1 id=reach.3h6v.s8.ae2dfd2f0b28 from=translated src=- shape=50727521 vocab=4309abb3
+-/
 theorem sw_loop {M : List (SimSym c)}
     (hM : ∀ σ ∈ M, σ ≠ SimSym.endL ∧ σ ≠ SimSym.endR) :
     ∀ (V : List (SimSym c)), (∀ σ ∈ V, σ = SimSym.one ∨ σ = SimSym.com) →
@@ -984,7 +1071,9 @@ the new frame – its content and the gap abstracted into `DN` – `swScan`
 crosses the remaining content, `swLast` steps back onto its last letter,
 erases it, and the carry appends it at `endR` by the endR-shift before
 `swBack`/`swOut` re-enter. Stated over an abstract carry state so the digit
-and separator instances share the proof. -/
+and separator instances share the proof.
+@isnad1 id=reach.10h11v.s9.da0a77abffa1 from=translated src=- shape=fb065414 vocab=b040c0e6
+-/
 theorem sw2_iter {p : CPos c} {u : SimSym c} {Qapp : SimQ c}
     (hu : u = SimSym.one ∨ u = SimSym.com)
     (h1 : simStep (c := c) .swLast u = some (.bk, Qapp, true))
@@ -1094,7 +1183,9 @@ theorem sw2_iter {p : CPos c} {u : SimSym c} {Qapp : SimQ c}
 /-- **The stored-value move, iterated**: the stored value crosses out to the
 value region, mirrored – consumed at the content's right end, appended by
 endR-shifts – while the erased zone between the old header and what follows
-grows by its length. -/
+grows by its length.
+@isnad1 id=reach.7h10v.s8.f3f071b5a48d from=translated src=- shape=f331f2ea vocab=974709f8
+-/
 theorem sw2_loop {p : CPos c} {DN : List (SimSym c)}
     (hDN : ∀ σ ∈ DN, (∀ q, σ ≠ SimSym.hCons₁ q) ∧ σ ≠ SimSym.endL)
     {C₂ : List (SimSym c)} (hC₂ : ∀ σ ∈ C₂, σ = SimSym.one ∨ σ = SimSym.com)
@@ -1161,7 +1252,9 @@ mirrored – and closes it with its header; phase two finds the old `cons₁`
 header – the first such header right of `endL` – and moves its stored value
 out to `endR` the same way, so the value region receives it mirrored; the old
 header erased, `nSeekR` walks to `mid` to dispatch the body of the pending
-`fix`. -/
+`fix`.
+@isnad1 id=ex.1h10v.s7.46592708ac16 from=translated src=- shape=d79ecaa9 vocab=5616de70
+-/
 theorem pop_cons₁ {p : CPos c} {as : List ℕ} {k' : PCont c} (n : ℕ)
     {w' : List (SimSym c)} (hw' : FrameSeg k' w') (g : ℕ) (v : List ℕ) (j t : ℕ) :
     ∃ t', Reach

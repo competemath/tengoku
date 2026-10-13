@@ -22,7 +22,9 @@ predicates (`DescriptiveComplexity.card_subsets_eq_two_pow`).
 namespace DescriptiveComplexity
 
 /-- The sets of elements satisfying `p` are as many as two to the number of
-such elements. -/
+such elements.
+@isnad1 id=eq.0h2v.s5.8baa7f2e8167 from=translated src=- shape=0c68e4bf vocab=91f6e85b
+-/
 theorem card_subsets_eq_two_pow {α : Type} [Finite α] (p : α → Prop) :
     Nat.card {ν : α → Prop // ∀ x, ν x → p x} = 2 ^ Nat.card {x // p x} := by
   have e : {ν : α → Prop // ∀ x, ν x → p x} ≃ ({x // p x} → Prop) :=
@@ -38,7 +40,9 @@ section Digits
 variable {ι : Type} [Fintype ι] (m : ι → ℕ) {B : ℕ}
 
 /-- The terms of exponent below `p` add up to less than `B ^ p`, when fewer
-than `B` terms share each exponent. -/
+than `B` terms share each exponent.
+@isnad1 id=lt.2h4v.s6.9e3074b96901 from=translated src=- shape=55467d1b vocab=a8b1c806
+-/
 theorem sum_pow_lt (hB : 0 < B)
     (h : ∀ q, (Finset.univ.filter fun i => m i = q).card < B) (p : ℕ) :
     (∑ i, if m i < p then B ^ m i else 0) < B ^ p := by
@@ -67,7 +71,9 @@ theorem sum_pow_lt (hB : 0 < B)
 
 /-- **Digit extraction**: in the sum `∑ i, B ^ m i`, read in base `B`, the
 digit of rank `p` is the number of indices of exponent `p`, when fewer than `B`
-indices share each exponent. -/
+indices share each exponent.
+@isnad1 id=eq.2h4v.s7.4e5c12472062 from=translated src=- shape=e5075b6e vocab=f3a078c1
+-/
 theorem sum_pow_div_mod (hB : 0 < B)
     (h : ∀ q, (Finset.univ.filter fun i => m i = q).card < B) (p : ℕ) :
     (∑ i, B ^ m i) / B ^ p % B = (Finset.univ.filter fun i => m i = p).card := by

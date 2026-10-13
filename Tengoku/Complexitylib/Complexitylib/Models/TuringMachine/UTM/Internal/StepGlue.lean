@@ -26,7 +26,9 @@ namespace Complexity
 
 namespace TM.UTMBody
 
-/-- A well-formed tape reads `▷` exactly at cell 0. -/
+/-- A well-formed tape reads `▷` exactly at cell 0.
+@isnad1 id=iff.1h1v.s4.855048c8dddd from=translated src=- shape=ce2733a2 vocab=d5ff8a42
+-/
 theorem read_start_iff {t : Tape} (h : t.StartInvariant) :
     t.read = Γ.start ↔ t.head = 0 := by
   constructor
@@ -38,7 +40,9 @@ theorem read_start_iff {t : Tape} (h : t.StartInvariant) :
     exact h.1
 
 /-- The simulated read, reconstructed from the honest flag and the live
-    shadow read, is exactly the simulated tape's read. -/
+    shadow read, is exactly the simulated tape's read.
+@isnad1 id=eq.2h2v.s5.86ad0b65be80 from=translated src=- shape=29344378 vocab=7c359fc1
+-/
 theorem simRead_flag_eq {sim utm : Tape} (h : VShift sim utm)
     (hwf : sim.StartInvariant) :
     simRead (decide (sim.head = 0)) utm.read = sim.read := by
@@ -49,7 +53,9 @@ theorem simRead_flag_eq {sim utm : Tape} (h : VShift sim utm)
     exact h.read_eq (by omega)
 
 /-- Every entry produced by `parseEntry` has an in-range target, so the
-    interpreter's `min`-clamp is the identity on it. -/
+    interpreter's `min`-clamp is the identity on it.
+@isnad1 id=lt.1h3v.s5.1cd101ffbe0c from=translated src=- shape=bf34cf56 vocab=79040e54
+-/
 theorem parseEntry_q'_lt {w : ℕ} {seg : List Γw} {e : DescEntry}
     (hp : parseEntry w seg = some e) : e.act.q' < 2 ^ w := by
   unfold parseEntry at hp
@@ -65,7 +71,9 @@ theorem parseEntry_q'_lt {w : ℕ} {seg : List Γw} {e : DescEntry}
       (Nat.pow_le_pow_right (by omega) (by rw [List.length_take]; omega))
 
 /-- Writing back the read symbol (the interpreter's default action) and
-    moving is just the move, on a well-formed tape. -/
+    moving is just the move, on a well-formed tape.
+@isnad1 id=eq.1h2v.s4.0be98e31e088 from=translated src=- shape=501f6e3d vocab=7c335105
+-/
 theorem writeAndMove_readback_eq_move {t : Tape} (hwf : t.StartInvariant) (d : Dir3) :
     t.writeAndMove (TMDesc.readback t.read).toΓ d = t.move d := by
   show (t.write _).move d = t.move d
@@ -82,7 +90,9 @@ theorem writeAndMove_readback_eq_move {t : Tape} (hwf : t.StartInvariant) (d : D
     rw [Function.update_eq_self]
 
 /-- The value slice copied to scratch, restricted to its first `w` cells,
-    is the segment's new-state field. -/
+    is the segment's new-state field.
+@isnad1 id=eq.0h2v.s5.788e8793b1dc from=translated src=- shape=8642c223 vocab=7d3e7e35
+-/
 theorem valueSlice_take (seg : List Γw) (w : ℕ) :
     ((seg.drop (w + 6)).take (w + 10)).take w = (seg.drop (w + 6)).take w := by
   rw [List.take_take]
@@ -90,7 +100,9 @@ theorem valueSlice_take (seg : List Γw) (w : ℕ) :
   omega
 
 /-- Scratch cells holding the value slice decode, at the action offsets, to
-    the segment's action bits. -/
+    the segment's action bits.
+@isnad1 id=eq.3h4v.s7.e2c12d5262aa from=translated src=- shape=1eee5dc3 vocab=a63e5188
+-/
 theorem scratch_cellBit_eq_segBit {t : Tape} {seg : List Γw} {w k : ℕ}
     (hk : k < 10) (hlen : 2 * w + 16 ≤ seg.length)
     (h : t.HoldsExact ((seg.drop (w + 6)).take (w + 10))) :

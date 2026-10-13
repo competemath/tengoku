@@ -53,7 +53,9 @@ def IsEnum (Lt : α → α → Prop) (S : α → Prop) (ps : List α) : Prop :=
   ps.Pairwise Lt ∧ ∀ p, p ∈ ps ↔ S p
 
 /-- Over a finite type ordered by a linear order *relation*, every predicate
-has a strictly increasing enumeration: sort the elements satisfying it. -/
+has a strictly increasing enumeration: sort the elements satisfying it.
+@isnad1 id=ex.1h3v.s5.a8c46c57ebd4 from=translated src=- shape=27603830 vocab=72c87765
+-/
 theorem exists_isEnum [Finite α] {Le : α → α → Prop} (h : IsLinOrd Le) (S : α → Prop) :
     ∃ ps : List α, IsEnum (fun a b => Le a b ∧ a ≠ b) S ps := by
   classical
@@ -78,12 +80,16 @@ section Sorted
 
 variable {α : Type} {Lt : α → α → Prop}
 
-/-- An asymmetric relation is irreflexive. -/
+/-- An asymmetric relation is irreflexive.
+@isnad1 id=not.1h3v.s4.897c811eb4a6 from=translated src=- shape=5df2f9a8 vocab=e3b0c442
+-/
 theorem irrefl_of_asymm (has : ∀ a b, Lt a b → Lt b a → False) (a : α) : ¬Lt a a :=
   fun h => has a a h h
 
 /-- In a strictly sorted list, one entry precedes another exactly when its
-index is smaller. -/
+index is smaller.
+@isnad1 id=iff.4h5v.s6.75fdff4a2c0d from=translated src=- shape=f66effaa vocab=2b005fc8
+-/
 theorem lt_getElem_iff (has : ∀ a b, Lt a b → Lt b a → False) {l : List α}
     (hl : l.Pairwise Lt) {i j : ℕ} (hi : i < l.length) (hj : j < l.length) :
     Lt l[i] l[j] ↔ i < j := by
@@ -104,7 +110,9 @@ variable {γ α β : Type} {R : α → β → Prop} {f : γ → List α} {g : γ
 
 /-- Two `flatMap`s over the same list are related entry by entry as soon as
 their blocks are: the parse of a concatenation is the concatenation of the
-parses. -/
+parses.
+@isnad1 id=forall.1h7v.s5.01f3928c6bed from=translated src=- shape=4da1e980 vocab=29a03fa2
+-/
 theorem forall₂_flatMap :
     ∀ {l : List γ}, (∀ c ∈ l, List.Forall₂ R (f c) (g c)) →
       List.Forall₂ R (l.flatMap f) (l.flatMap g)
@@ -114,7 +122,9 @@ theorem forall₂_flatMap :
     exact List.rel_append (h c (mem_cons_self ..))
       (forall₂_flatMap fun c' hc' => h c' (mem_cons_of_mem _ hc'))
 
-/-- A list of witnesses for a list of existentials. -/
+/-- A list of witnesses for a list of existentials.
+@isnad1 id=ex.1h4v.s5.7324e43c927c from=translated src=- shape=cbc707a8 vocab=e2ab4e92
+-/
 theorem exists_forall₂ {R : α → β → Prop} :
     ∀ {l : List α}, (∀ a ∈ l, ∃ b, R a b) → ∃ w : List β, List.Forall₂ R l w
   | [], _ => ⟨[], List.Forall₂.nil⟩
@@ -155,12 +165,16 @@ strict orders. -/
 def LexOf (R : D → D → Prop) (S : α → α → Prop) : D × α → D × α → Prop :=
   fun x y => R x.1 y.1 ∨ (x.1 = y.1 ∧ S x.2 y.2)
 
-/-- The strict part of a linear order relation is asymmetric. -/
+/-- The strict part of a linear order relation is asymmetric.
+@isnad1 id=false.3h4v.s5.c61d6b68e9a8 from=translated src=- shape=ae24e7cb vocab=af5b1183
+-/
 theorem asymm_strict {Le : D → D → Prop} (h : IsLinOrd Le) (a b : D)
     (hab : Le a b ∧ a ≠ b) (hba : Le b a ∧ b ≠ a) : False :=
   hab.2 (h.2.2.1 a b hab.1 hba.1)
 
-/-- The lexicographic order of two asymmetric relations is asymmetric. -/
+/-- The lexicographic order of two asymmetric relations is asymmetric.
+@isnad1 id=false.4h6v.s6.0899a9aa7156 from=translated src=- shape=0c58a8c5 vocab=9eeb2d63
+-/
 theorem asymm_lexOf {R : D → D → Prop} {S : α → α → Prop}
     (hR : ∀ a b, R a b → R b a → False) (hS : ∀ a b, S a b → S b a → False) (x y : D × α)
     (hxy : LexOf R S x y) (hyx : LexOf R S y x) : False := by
@@ -187,6 +201,9 @@ block by block. -/
 def parseIx (slots : List D) (ps : D → List α) : List (D × α) :=
   slots.flatMap fun s => (ps s).map fun p => (s, p)
 
+/--
+@isnad1 id=iff.0h5v.s5.165f63a1dc71 from=translated src=- shape=49189463 vocab=f185d7af
+-/
 @[simp]
 theorem mem_parseIx {x : D × α} : x ∈ parseIx slots ps ↔ x.1 ∈ slots ∧ x.2 ∈ ps x.1 := by
   obtain ⟨s, p⟩ := x
@@ -198,7 +215,9 @@ theorem mem_parseIx {x : D × α} : x ∈ parseIx slots ps ↔ x.1 ∈ slots ∧
     exact ⟨s, hs, p, hp, rfl, rfl⟩
 
 /-- The index list of a parse is sorted lexicographically: the blocks come in
-order, and the positions inside a block come in order. -/
+order, and the positions inside a block come in order.
+@isnad1 id=pairwise.2h6v.s5.4c4ff313c1cd from=translated src=- shape=44b22a63 vocab=c4333e19
+-/
 theorem pairwise_parseIx {R : D → D → Prop} {S : α → α → Prop} (hs : slots.Pairwise R)
     (hp : ∀ s, (ps s).Pairwise S) : (parseIx slots ps).Pairwise (LexOf R S) := by
   refine List.pairwise_flatMap.mpr ⟨fun s _ => ?_, hs.imp fun {s t} hst x hx y hy => ?_⟩
@@ -208,7 +227,9 @@ theorem pairwise_parseIx {R : D → D → Prop} {S : α → α → Prop} (hs : s
     exact Or.inl hst
 
 /-- The letters of a parse, read along its index list, are the letters of the
-concatenation. -/
+concatenation.
+@isnad1 id=forall.1h7v.s6.add480548e95 from=translated src=- shape=726e68d1 vocab=9238bbe8
+-/
 theorem forall₂_parseIx {T : D → α → β → Prop} {ws : D → List β}
     (h : ∀ s ∈ slots, List.Forall₂ (T s) (ps s) (ws s)) :
     List.Forall₂ (fun x ℓ => T x.1 x.2 ℓ) (parseIx slots ps) (slots.flatMap ws) :=
@@ -227,12 +248,16 @@ section AsFunction
 variable {α β : Type} {R : α → β → Prop} {l₁ : List α} {l₂ : List β}
 
 /-- Entries of two lists related by `List.Forall₂` are related index by
-index. -/
+index.
+@isnad1 id=var.3h6v.s6.f3047191a79f from=translated src=- shape=26036b48 vocab=892b4b52
+-/
 theorem forall₂_getElem (h : List.Forall₂ R l₁ l₂) {i : ℕ} (h₁ : i < l₁.length)
     (h₂ : i < l₂.length) : R l₁[i] l₂[i] :=
   (forall₂_iff_get.mp h).2 i h₁ h₂
 
-/-- A `List.Forall₂` is a function on the indices of its left list. -/
+/-- A `List.Forall₂` is a function on the indices of its left list.
+@isnad1 id=ex.1h5v.s6.8a6ba9169e2c from=translated src=- shape=5b969c00 vocab=0571b6b9
+-/
 theorem exists_fun_of_forall₂ (h : List.Forall₂ R l₁ l₂) :
     ∃ g : Fin l₁.length → β,
       (List.finRange l₁.length).map g = l₂ ∧ ∀ i, R (l₁.get i) (g i) := by
@@ -257,7 +282,9 @@ a relation variable – that it lands in the two lists, that it is defined
 everywhere on both, and that it reflects the two orders – and this is already
 enough to make it the unique order isomorphism, hence to identify the two
 lists entry by entry. Functionality and injectivity are *not* hypotheses: they
-follow from reflecting the order. -/
+follow from reflecting the order.
+@isnad1 id=forall.8h7v.s7.d37295afc09c from=translated src=- shape=0cd05568 vocab=5a61a68b
+-/
 theorem forall₂_of_matching (has₁ : ∀ a b, Lt₁ a b → Lt₁ b a → False)
     (has₂ : ∀ a b, Lt₂ a b → Lt₂ b a → False) :
     ∀ {L₁ : List α} {L₂ : List β} {M : α → β → Prop}, L₁.Pairwise Lt₁ → L₂.Pairwise Lt₂ →
@@ -319,25 +346,33 @@ def IdxMatch (L₁ : List α) (L₂ : List β) (x : α) (y : β) : Prop :=
 
 variable {L₁ : List α} {L₂ : List β}
 
-/-- The index pairing relates members of the two lists. -/
+/-- The index pairing relates members of the two lists.
+@isnad1 id=and.1h6v.s5.673b221920ad from=translated src=- shape=f43725c8 vocab=10192534
+-/
 theorem idxMatch_mem {x : α} {y : β} (h : IdxMatch L₁ L₂ x y) : x ∈ L₁ ∧ y ∈ L₂ := by
   obtain ⟨i, h₁, h₂, rfl, rfl⟩ := h
   exact ⟨List.getElem_mem h₁, List.getElem_mem h₂⟩
 
-/-- The index pairing is defined on every member of the left list. -/
+/-- The index pairing is defined on every member of the left list.
+@isnad1 id=ex.2h5v.s5.f482aaf42782 from=translated src=- shape=0c86be3c vocab=8be78081
+-/
 theorem idxMatch_left (hlen : L₁.length = L₂.length) {x : α} (hx : x ∈ L₁) :
     ∃ y, IdxMatch L₁ L₂ x y := by
   obtain ⟨i, h₁, rfl⟩ := List.getElem_of_mem hx
   exact ⟨L₂[i]'(hlen ▸ h₁), i, h₁, hlen ▸ h₁, rfl, rfl⟩
 
-/-- The index pairing is defined on every member of the right list. -/
+/-- The index pairing is defined on every member of the right list.
+@isnad1 id=ex.2h5v.s5.67db7c963c65 from=translated src=- shape=a7c3f181 vocab=8be78081
+-/
 theorem idxMatch_right (hlen : L₁.length = L₂.length) {y : β} (hy : y ∈ L₂) :
     ∃ x, IdxMatch L₁ L₂ x y := by
   obtain ⟨i, h₂, rfl⟩ := List.getElem_of_mem hy
   exact ⟨L₁[i]'(hlen ▸ h₂), i, hlen ▸ h₂, h₂, rfl, rfl⟩
 
 /-- The index pairing reflects the orders of two strictly sorted lists: both
-read as the order of the indices. -/
+read as the order of the indices.
+@isnad1 id=iff.6h10v.s6.44b7ad231302 from=translated src=- shape=e3d054aa vocab=99694b46
+-/
 theorem idxMatch_mono {Lt₁ : α → α → Prop} {Lt₂ : β → β → Prop}
     (has₁ : ∀ a b, Lt₁ a b → Lt₁ b a → False) (has₂ : ∀ a b, Lt₂ a b → Lt₂ b a → False)
     (hp₁ : L₁.Pairwise Lt₁) (hp₂ : L₂.Pairwise Lt₂) {x y x' y' : _}

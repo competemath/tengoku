@@ -234,7 +234,9 @@ private lemma mertensFractionalError_le {t : ℕ} (ht : 2 ≤ t) :
         exact (div_le_iff₀ htR).mpr hcheb
 
 /-- Bounded-error form of Mertens' estimate:
-`∑_{q ≤ t} Λ(q) / q = log t + O(1)` on the natural numbers. -/
+`∑_{q ≤ t} Λ(q) / q = log t + O(1)` on the natural numbers.
+@isnad1 id=ex.0h0v.s5.60295b05b729 from=translated src=- shape=93536eb8 vocab=e4b71a72
+-/
 lemma mertensEstimate :
     ∃ C : ℝ, 0 < C ∧
       ∀ ⦃t : ℕ⦄, 2 ≤ t →

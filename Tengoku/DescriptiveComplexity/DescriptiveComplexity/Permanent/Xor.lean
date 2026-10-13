@@ -28,16 +28,34 @@ open Finset
 def xorGadget : Fin 4 → Fin 4 → ℤ :=
   ![![0, 1, -1, -1], ![1, -1, 1, 1], ![0, 1, 1, 2], ![0, 1, 3, 0]]
 
+/--
+@isnad1 id=eq.0h0v.s6.d6a1edb9f8a4 from=translated src=- shape=2e03880c vocab=f32ec676
+-/
 theorem xorGadget_internal : pdel xorGadget ∅ ∅ = 0 := by decide
 
+/--
+@isnad1 id=eq.0h0v.s6.3e1e37baef46 from=translated src=- shape=b5ae27ec vocab=759dc268
+-/
 theorem xorGadget_first : pdel xorGadget {3} {0} = 4 := by decide
 
+/--
+@isnad1 id=eq.0h0v.s6.3ff623949594 from=translated src=- shape=b5ae27ec vocab=759dc268
+-/
 theorem xorGadget_second : pdel xorGadget {0} {3} = 4 := by decide
 
+/--
+@isnad1 id=eq.0h0v.s6.f5d7b8e851ff from=translated src=- shape=b5ae27ec vocab=759dc268
+-/
 theorem xorGadget_cross₁ : pdel xorGadget {3} {3} = 0 := by decide
 
+/--
+@isnad1 id=eq.0h0v.s6.96546233f21a from=translated src=- shape=b5ae27ec vocab=759dc268
+-/
 theorem xorGadget_cross₂ : pdel xorGadget {0} {0} = 0 := by decide
 
+/--
+@isnad1 id=eq.0h0v.s7.870f71e89ff4 from=translated src=- shape=fb506eb2 vocab=382f47cc
+-/
 theorem xorGadget_both : pdel xorGadget {3, 0} {0, 3} = 0 := by decide
 
 section Attach
@@ -50,7 +68,9 @@ abbrev attachValiant : V ⊕ Fin 4 → V ⊕ Fin 4 → ℤ :=
   attachXor M₀ xorGadget u u' v v' 0 3 3 0
 
 /-- **The expansion of Valiant's gadget**: four times the covers using exactly
-one of the two edges. -/
+one of the two edges.
+@isnad1 id=eq.4h8v.s8.a381b9db0769 from=translated src=- shape=addca1b4 vocab=9e06b1d9
+-/
 theorem pdel_attachValiant (A B : Finset V) (huu' : u ≠ u') (hvv' : v ≠ v') (hv : v ∉ B)
     (hv' : v' ∉ B) :
     pdel (attachValiant M₀ u u' v v') (A.map Function.Embedding.inl)

@@ -30,19 +30,26 @@ variable {S : ℕ → ℝ} {N : ℕ}
 /-- the atom masses of a configuration with form factor S. -/
 def massOf (S : ℕ → ℝ) (N : ℕ) : ℕ → ℝ := fun j => S j / N
 
+/--
+@isnad1 id=eq.0h3v.s4.c777ea543e47 from=translated src=- shape=3a203231 vocab=857dd888
+-/
 lemma Csum_massOf (m : ℕ) : Csum (massOf S N) m = T S m / N := by
   induction m with
   | zero => simp [T_zero]
   | succ m ih => rw [Csum_succ, ih, T_succ]; simp [massOf, add_div]
 
-/-- D at a grid point is the right value. -/
+/-- D at a grid point is the right value.
+@isnad1 id=eq.2h3v.s5.898f589e09d8 from=translated src=- shape=2ab4d9be vocab=eafaf546
+-/
 lemma Dfun_grid_eq_Dright (hN : 0 < N) {m : ℕ} (hm : m ≤ N) : Dfun (massOf S N) N ((m : ℝ) / N) = Dright S N m := by
   have hNr : (0 : ℝ) < N := by exact_mod_cast hN
   rw [Dfun_grid hN hm, Csum_massOf]
   unfold Dright
   field_simp
 
-/-- on the open cell (m/N, (m+1)/N), D lies between Dleft (m+1) and Dright m. -/
+/-- on the open cell (m/N, (m+1)/N), D lies between Dleft (m+1) and Dright m.
+@isnad1 id=and.3h4v.s6.602c74d9805e from=translated src=- shape=d0045037 vocab=4f1a9535
+-/
 lemma Dfun_cell_bounds (hN : 0 < N) {m : ℕ} (hm : m < N) {t : ℝ} (ht : t ∈ Ioo ((m : ℝ) / N) ((m + 1 : ℝ) / N)) :
     Dleft S N (m + 1) ≤ Dfun (massOf S N) N t ∧ Dfun (massOf S N) N t ≤ Dright S N m := by
   have hNr : (0 : ℝ) < N := by exact_mod_cast hN
@@ -62,7 +69,9 @@ lemma Dfun_cell_bounds (hN : 0 < N) {m : ℕ} (hm : m < N) {t : ℝ} (ht : t ∈
 
 /-! ## §2. The sup bridges -/
 
-/-- **sup|D| from the grid**: one-sided grid bounds give |D| ≤ B₁ on all of [0,1]. -/
+/-- **sup|D| from the grid**: one-sided grid bounds give |D| ≤ B₁ on all of [0,1].
+@isnad1 id=le.3h4v.s6.1d7934f8132e from=translated src=- shape=0336046e vocab=9337ca66
+-/
 theorem abs_Dfun_le_of_grid (hN : 0 < N) {B₁ : ℝ}
     (hD : ∀ j, 1 ≤ j → j ≤ N → |Dleft S N j| ≤ B₁ ∧ |Dright S N j| ≤ B₁) :
     ∀ t ∈ Icc (0 : ℝ) 1, |Dfun (massOf S N) N t| ≤ B₁ := by
@@ -100,7 +109,9 @@ theorem abs_Dfun_le_of_grid (hN : 0 < N) {B₁ : ℝ}
         rw [abs_le] at h2
         linarith [h2.2]
 
-/-- E at a grid point is Egrid. -/
+/-- E at a grid point is Egrid.
+@isnad1 id=eq.2h3v.s5.322d75a484d4 from=translated src=- shape=2ab4d9be vocab=9a994b05
+-/
 lemma Efun_grid_eq_Egrid (hN : 0 < N) {m : ℕ} (hm : m ≤ N) : Efun (massOf S N) N ((m : ℝ) / N) = Egrid S N m := by
   have hNr : (0 : ℝ) < N := by exact_mod_cast hN
   rw [Efun_grid hN hm]
@@ -115,7 +126,9 @@ lemma Efun_grid_eq_Egrid (hN : 0 < N) {m : ℕ} (hm : m ≤ N) : Efun (massOf S 
     field_simp
     ring
 
-/-- **sup|E| from the grid**: the combined grid bounds give |E| ≤ B₂ on all of [0,1]. -/
+/-- **sup|E| from the grid**: the combined grid bounds give |E| ≤ B₂ on all of [0,1].
+@isnad1 id=le.3h4v.s7.498885ef2936 from=translated src=- shape=3f950731 vocab=d51fde12
+-/
 theorem abs_Efun_le_of_grid (hN : 0 < N) {B₂ : ℝ}
     (hE : ∀ i j, 1 ≤ i → i ≤ N → 1 ≤ j → j ≤ N →
         |Egrid S N j| + |Dleft S N i| / N ≤ B₂ ∧ |Egrid S N j| + |Dright S N i| / N ≤ B₂) :
@@ -202,7 +215,9 @@ theorem abs_Efun_le_of_grid (hN : 0 < N) {B₂ : ℝ}
 /-! ## §3. The package consumed by the ceiling-stability theorem -/
 
 /-- **from a checked certificate to the interval hypotheses**: for every form factor S inside the enclosures, the atom masses
-s := S/N satisfy |D(1)| ≤ bD1, |E(1)| ≤ bE1, |D| ≤ b1 on [0,1], |E| ≤ b2 on [0,1]. -/
+s := S/N satisfy |D(1)| ≤ bD1, |E(1)| ≤ bE1, |D| ≤ b1 on [0,1], |E| ≤ b2 on [0,1].
+@isnad1 id=and.2h2v.s7.c1bd4f20b0c7 from=translated src=- shape=add8cd8f vocab=5d8a5eab
+-/
 theorem package_of_check (d : CertData) (hc : check d = true) (S : ℕ → ℝ) (hS : EnclOK d.K S 0 d.encl) :
     |Dfun (massOf S d.N) d.N 1| ≤ (d.bD1n : ℝ) / d.bD1d ∧ |Efun (massOf S d.N) d.N 1| ≤ (d.bE1n : ℝ) / d.bE1d ∧
     (∀ t ∈ Icc (0 : ℝ) 1, |Dfun (massOf S d.N) d.N t| ≤ (d.b1n : ℝ) / d.b1d) ∧

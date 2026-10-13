@@ -19,6 +19,9 @@ namespace Set
 
 variable {ι : Type*} {α : ι → Type*} {s₁ s₂ : Set ι} {t : ∀ i, Set (α i)} {i : ι}
 
+/--
+@isnad1 id=le.1h5v.s5.a8cf6cde1a8e from=translated src=- shape=8c0467d8 vocab=85652738
+-/
 theorem pi_subset_pi_of_superset (h : s₁ ⊆ s₂) : pi s₂ t ⊆ pi s₁ t :=
   fun _ hx i hi ↦ hx i <| h hi
 

@@ -38,15 +38,24 @@ section some_other_files
 
 namespace TwoSidedIdeal
 
+/--
+@isnad1 id=iff.0h2v.s5.022e5c991723 from=translated src=- shape=e800f5a8 vocab=d26d58ee
+-/
 @[local simp]
 lemma span_eq_bot {R : Type*} [NonUnitalNonAssocRing R] {s : Set R} :
     span s = ⊥ ↔ ∀ x ∈ s, x = 0 := eq_bot_iff.trans
   ⟨fun H _ h => (mem_bot R).mp <| H <| subset_span h,
    fun H => span_le.mpr fun x h => (mem_bot R).mpr <| H x h⟩
 
+/--
+@isnad1 id=iff.0h2v.s5.e156618e1067 from=translated src=- shape=f8daf9bc vocab=19474c8d
+-/
 lemma span_singleton_eq_bot {R : Type*} [NonUnitalNonAssocRing R] {x : R} :
   span ({x} : Set R) = ⊥ ↔ x = 0 := by simp
 
+/--
+@isnad1 id=eq.0h4v.s6.4a4ade469c2e from=translated src=- shape=54166c64 vocab=b2f251f7
+-/
 lemma map_bot {R S : Type*}
     [NonUnitalNonAssocRing R] [NonUnitalNonAssocRing S]
     {F : Type*} [FunLike F R S] [ZeroHomClass F R S] {f : F} :
@@ -54,6 +63,9 @@ lemma map_bot {R S : Type*}
   ext x
   simp [map, coe_bot, Set.image_singleton, map_zero f, mem_bot, span_singleton_eq_bot.2]
 
+/--
+@isnad1 id=mem.1h6v.s6.de2cd0296c82 from=translated src=- shape=16f9c2c9 vocab=fde72861
+-/
 protected theorem mem_map_of_mem {R S : Type*}
     [NonUnitalNonAssocRing R] [NonUnitalNonAssocRing S]
     {F : Type*} [FunLike F R S] {f : F} {I : TwoSidedIdeal R}
@@ -62,6 +74,9 @@ protected theorem mem_map_of_mem {R S : Type*}
 
 end TwoSidedIdeal
 
+/--
+@isnad1 id=iff.0h5v.s7.8ef6fe1e4036 from=translated src=- shape=c4e0aa40 vocab=ee4baba1
+-/
 theorem Submodule.mem_span_range_iff_exists {α M R : Type*}
     [Semiring R] [AddCommMonoid M] [Module R M] {v : α → M} {x : M} :
     x ∈ Submodule.span R (Set.range v) ↔ ∃ (s : Finset α) (c : α → R), ∑ i ∈ s, c i • v i = x := by
@@ -168,6 +183,9 @@ lemma TwoSidedIdeal.eq_bot_of_map_comap_eq_bot [hA : IsSimpleRing A]
   specialize main s c (by simpa [← TensorProduct.tmul_eq_smul_one_tmul] using hx)
   simp +contextual [main]
 
+/--
+@isnad1 id=eq.0h4v.s10.ef05898fa766 from=translated src=- shape=b6ca128f vocab=06463ece
+-/
 lemma TensorProduct.map_comap_eq [IsSimpleRing A] [Algebra.IsCentral K A] [hB : IsSimpleRing B]
     (I : TwoSidedIdeal (A ⊗[K] B)) :
     letI f : B →ₐ[K] A ⊗[K] B := Algebra.TensorProduct.includeRight
@@ -194,6 +212,9 @@ lemma TensorProduct.map_comap_eq [IsSimpleRing A] [Algebra.IsCentral K A] [hB : 
     rw [SetLike.mem_coe, TwoSidedIdeal.mem_comap] at hx
     exact hx
 
+/--
+@isnad1 id=issimple.0h3v.s7.113710bf1226 from=translated src=- shape=9ba65430 vocab=9009fde7
+-/
 local instance TensorProduct.simple {A B : Type*} [Ring A] [IsSimpleRing A] [Algebra K A] [Ring B]
     [Algebra K B] [Algebra.IsCentral K A] [isSimple_B : IsSimpleRing B] :
     IsSimpleRing (A ⊗[K] B) := by

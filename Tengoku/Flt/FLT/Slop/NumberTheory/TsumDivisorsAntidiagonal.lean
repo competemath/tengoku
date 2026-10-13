@@ -81,7 +81,9 @@ variable {𝕜 : Type*} [Field 𝕜] [TopologicalSpace 𝕜] [IsTopologicalRing 
 with the analytic inputs as hypotheses: `hgeo` says each row `rᵐ/(1-rᵐ)` has its geometric
 expansion `∑_{j≥1} r^{mj}`, and `hsum` says the double series is (unconditionally)
 summable. Given these, the double series is regrouped along the fibres of `(m, j) ↦ mj`,
-which are exactly the divisor pairs of `N`. -/
+which are exactly the divisor pairs of `N`.
+@isnad1 id=eq.2h3v.s8.a704f4c98faa from=translated src=- shape=df09d77e vocab=2e31b461
+-/
 theorem tsum_lambert_of_summable (r : 𝕜) (c : ℕ → 𝕜)
     (hgeo : ∀ m : ℕ+, HasSum (fun j : ℕ ↦ r ^ ((m : ℕ) * (j + 1)))
       (r ^ (m : ℕ) / (1 - r ^ (m : ℕ))))
@@ -122,7 +124,9 @@ example (r : 𝕜)
 Hausdorff topological field, `r` is topologically nilpotent iff the geometric partial sums
 `∑_{n<N} rⁿ` converge to `(1-r)⁻¹`. This *sequential* convergence is weaker than `HasSum`, but
 combined with row summability from `hsum` (through `Summable.hasSum_iff_tendsto_nat`) it recovers
-the row `HasSum` that `tsum_lambert_of_summable` takes as `hgeo`. -/
+the row `HasSum` that `tsum_lambert_of_summable` takes as `hgeo`.
+@isnad1 id=iff.0h2v.s7.6d4393810b5f from=translated src=- shape=946bf5a4 vocab=72bf7715
+-/
 theorem isTopologicallyNilpotent_iff_tendsto_geomSum (r : 𝕜) :
     IsTopologicallyNilpotent r ↔
       Filter.Tendsto (fun N ↦ ∑ n ∈ Finset.range N, r ^ n) Filter.atTop (nhds (1 - r)⁻¹) := by
@@ -161,7 +165,9 @@ variable {𝕜 : Type*} [Field 𝕜] [UniformSpace 𝕜] [IsUniformAddGroup 𝕜
 
 /-- The Lambert series rearrangement from topological nilpotency, over a complete uniform field: the
 companion to `tsum_lambert_of_summable` that trades the per-row hypothesis `hgeo` for the single
-assumption `IsTopologicallyNilpotent r`, at the cost of assuming `𝕜` complete. -/
+assumption `IsTopologicallyNilpotent r`, at the cost of assuming `𝕜` complete.
+@isnad1 id=eq.2h3v.s8.e34a0dc99765 from=translated src=- shape=51fbaeaf vocab=3825089f
+-/
 theorem tsum_lambert_of_summable_of_isTopologicallyNilpotent (r : 𝕜) (c : ℕ → 𝕜)
     (htn : IsTopologicallyNilpotent r)
     (hsum : Summable fun p : ℕ+ × ℕ+ ↦ c p.1 * r ^ ((p.1 : ℕ) * (p.2 : ℕ))) :
@@ -215,7 +221,9 @@ omit [CompleteSpace 𝕜] in
 /-- The geometric series of `rᵐ`, indexed from the first term: for `‖r‖ < 1` and `m ≠ 0`,
 `∑_{j≥1} r^{mj} = rᵐ/(1-rᵐ)`. This discharges the `hgeo` hypothesis of
 `tsum_lambert_of_summable` over a normed field (no completeness is needed: the limit is
-explicit). -/
+explicit).
+@isnad1 id=hassum.2h3v.s7.6d0a59b5cd59 from=translated src=- shape=4fdbf9c7 vocab=10996713
+-/
 theorem hasSum_geometric_pow_mul_succ (hr : ‖r‖ < 1) {m : ℕ} (hm : m ≠ 0) :
     HasSum (fun j : ℕ ↦ r ^ (m * (j + 1))) (r ^ m / (1 - r ^ m)) := by
   have hrm : ‖r ^ m‖ < 1 := by
@@ -227,7 +235,9 @@ theorem hasSum_geometric_pow_mul_succ (hr : ‖r‖ < 1) {m : ℕ} (hm : m ≠ 0
 
 /-- The variant of `summable_prod_mul_pow` with the weight on the *first* coordinate.
 This discharges the `hsum` hypothesis of `tsum_lambert_of_summable` for the weights `dᵏ`
-over a complete normed field. -/
+over a complete normed field.
+@isnad1 id=summable.1h3v.s7.39b00825b6ce from=translated src=- shape=972535af vocab=a131cf92
+-/
 theorem summable_prod_mul_pow' [NormSMulClass ℤ 𝕜] (k : ℕ) (hr : ‖r‖ < 1) :
     Summable fun p : ℕ+ × ℕ+ ↦ ((p.1 : ℕ) : 𝕜) ^ k * r ^ ((p.1 : ℕ) * (p.2 : ℕ)) := by
   refine (summable_prod_mul_pow k hr).prod_symm.congr fun p ↦ ?_

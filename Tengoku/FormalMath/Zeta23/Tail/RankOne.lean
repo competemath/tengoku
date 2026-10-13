@@ -42,19 +42,29 @@ for Hermitian E). Paper: "the trace norm ‖Ê‖₁" in [prop:tail]; consumed i
 def traceNorm {E : Matrix n n ℂ} (hE : E.IsHermitian) : ℝ := ∑ i, |hE.eigenvalues i|
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=eq.1h2v.s6.8bdd2ea01d08 from=translated src=- shape=238318db vocab=7f0ec0e2
+-/
 lemma traceNorm_def [DecidableEq n] {E : Matrix n n ℂ} (hE : E.IsHermitian) :
     traceNorm hE = ∑ i, |hE.eigenvalues i| := rfl
 
+/--
+@isnad1 id=le.1h2v.s5.ce6f73080bc0 from=translated src=- shape=a3aa147d vocab=8b48d784
+-/
 lemma traceNorm_nonneg {E : Matrix n n ℂ} (hE : E.IsHermitian) : 0 ≤ traceNorm hE :=
   sum_nonneg fun _ _ => abs_nonneg _
 
-/-- |tr E| ≤ ‖E‖₁ (used in [prop:zeroside-rank]: "|tr Ê| ≤ ‖Ê‖₁"). -/
+/-- |tr E| ≤ ‖E‖₁ (used in [prop:zeroside-rank]: "|tr Ê| ≤ ‖Ê‖₁").
+@isnad1 id=le.1h2v.s5.ce4a4e29da67 from=translated src=- shape=24a649a4 vocab=65b5ed3f
+-/
 lemma abs_rtrace_le_traceNorm {E : Matrix n n ℂ} (hE : E.IsHermitian) :
     |rtrace E| ≤ traceNorm hE := by
   rw [rtrace_eq_sum_eigenvalues hE]
   exact abs_sum_le_sum_abs _ _
 
-/-- ‖E‖_F² ≤ ‖E‖₁² (used in [prop:zeroside-rank]: "‖Â‖_F ≤ ‖Ĝ‖_F + ‖Ê‖_F ≤ ‖Ĝ‖_F + ‖Ê‖₁"). -/
+/-- ‖E‖_F² ≤ ‖E‖₁² (used in [prop:zeroside-rank]: "‖Â‖_F ≤ ‖Ĝ‖_F + ‖Ê‖_F ≤ ‖Ĝ‖_F + ‖Ê‖₁").
+@isnad1 id=le.1h2v.s6.82cb92718922 from=translated src=- shape=03fc7c07 vocab=6d74939b
+-/
 lemma frobSq_le_traceNorm_sq {E : Matrix n n ℂ} (hE : E.IsHermitian) :
     frobSq E ≤ (traceNorm hE) ^ 2 := by
   rw [frobSq_hermitian_eq_sum_sq_eigenvalues hE, traceNorm]
@@ -63,7 +73,9 @@ lemma frobSq_le_traceNorm_sq {E : Matrix n n ℂ} (hE : E.IsHermitian) :
       sum_sq_le_sq_sum_of_nonneg (fun i _ => abs_nonneg _)
 
 /-- Every |λᵢ(E)| is at most ‖E‖₁ (so a trace-norm bound is also an operator-norm bound in
-the shape RHLinalg.weyl_posIndexAbove_le wants). -/
+the shape RHLinalg.weyl_posIndexAbove_le wants).
+@isnad1 id=le.1h3v.s6.baa270ba358b from=translated src=- shape=446b4150 vocab=3cf6ea08
+-/
 lemma abs_eigenvalues_le_traceNorm {E : Matrix n n ℂ} (hE : E.IsHermitian) (i : n) :
     |hE.eigenvalues i| ≤ traceNorm hE :=
   single_le_sum (f := fun i => |hE.eigenvalues i|) (fun _ _ => abs_nonneg _) (mem_univ i)
@@ -75,7 +87,9 @@ private lemma mul_le_half_sq_add_sq (a b : ℝ) : a * b ≤ (a ^ 2 + b ^ 2) / 2 
 /-- **[eq:Enormsum], trace-norm form.** If a Hermitian matrix E is the convergent sum
 ∑_ρ c_ρ · u_ρ u_ρᵀ (c_ρ ≥ 0, u_ρ ∈ ℂⁿ, vecMulVec u u = u uᵀ — no conjugation) and
 ∑_ρ c_ρ ‖u_ρ‖₂² converges to S, then ‖E‖₁ = ∑ᵢ|λᵢ(E)| ≤ S.
-Paper: "‖uuᵀ‖ = ‖u‖₂²" and "‖uuᵀ‖₁ = ‖u‖₂² as well". -/
+Paper: "‖uuᵀ‖ = ‖u‖₂²" and "‖uuᵀ‖₁ = ‖u‖₂² as well".
+@isnad1 id=le.4h6v.s7.332c882005e8 from=translated src=- shape=11befdd1 vocab=b8989975
+-/
 theorem traceNorm_le_of_hasSum_vecMulVec {ι : Type*} {E : Matrix n n ℂ}
     (hE : E.IsHermitian) (c : ι → ℝ) (hc : ∀ ρ, 0 ≤ c ρ) (u : ι → n → ℂ) {S : ℝ}
     (hS : HasSum (fun ρ => c ρ * ∑ k, ‖u ρ k‖ ^ 2) S)
@@ -163,7 +177,9 @@ theorem traceNorm_le_of_hasSum_vecMulVec {ι : Type*} {E : Matrix n n ℂ}
 
 /-- **[eq:Enormsum], operator-norm form** (the shape RHLinalg.weyl_posIndexAbove_le wants):
 under the same hypotheses every eigenvalue satisfies |λᵢ(E)| ≤ S, i.e. ‖E‖ ≤ S.
-Paper: "‖E‖ ≤ ∑_{γ∉I'} m_ρ ‖u_ρ‖₂²". -/
+Paper: "‖E‖ ≤ ∑_{γ∉I'} m_ρ ‖u_ρ‖₂²".
+@isnad1 id=le.4h7v.s7.228267864102 from=translated src=- shape=1f89eed7 vocab=175ec0ee
+-/
 theorem abs_eigenvalues_le_of_hasSum_vecMulVec {ι : Type*} {E : Matrix n n ℂ}
     (hE : E.IsHermitian) (c : ι → ℝ) (hc : ∀ ρ, 0 ≤ c ρ) (u : ι → n → ℂ) {S : ℝ}
     (hS : HasSum (fun ρ => c ρ * ∑ k, ‖u ρ k‖ ^ 2) S)

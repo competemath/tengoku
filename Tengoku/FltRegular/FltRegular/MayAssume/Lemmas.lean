@@ -10,6 +10,9 @@ namespace FltRegular
 
 namespace MayAssume
 
+/--
+@isnad1 id=and.2h4v.s9.72af147969ab from=translated src=- shape=d6719a43 vocab=4ec1c5d3
+-/
 theorem coprime {a b c : ℤ} {n : ℕ} (H : a ^ n + b ^ n = c ^ n) (hprod : a * b * c ≠ 0) :
     letI d := ({a, b, c} : Finset ℤ).gcd id
     (a / d) ^ n + (b / d) ^ n = (c / d) ^ n ∧
@@ -33,6 +36,9 @@ theorem coprime {a b c : ℤ} {n : ℕ} (H : a ^ n + b ^ n = c ^ n) (hprod : a *
 
 end MayAssume
 
+/--
+@isnad1 id=dvd.5h4v.s6.dd58ae86248f from=translated src=- shape=6348da01 vocab=e956bbe6
+-/
 theorem p_dvd_c_of_ab_of_anegc {p : ℕ} {a b c : ℤ} (hpri : p.Prime)
     (hp : p ≠ 3) (h : a ^ p + b ^ p = c ^ p) (hab : a ≡ b [ZMOD p])
     (hbc : b ≡ -c [ZMOD p]) : ↑p ∣ c := by
@@ -50,6 +56,9 @@ theorem p_dvd_c_of_ab_of_anegc {p : ℕ} {a b c : ℤ} (hpri : p.Prime)
     Nat.dvd_prime Nat.prime_three] at h3
   exact h3.elim hpri.ne_one hp
 
+/--
+@isnad1 id=ex.6h4v.s8.3e4ad141f957 from=translated src=- shape=610aa53e vocab=f888efcb
+-/
 theorem a_not_cong_b {p : ℕ} {a b c : ℤ} (hpri : p.Prime) (hp5 : 5 ≤ p)
     (hprod : a * b * c ≠ 0)
     (h : a ^ p + b ^ p = c ^ p) (hgcd : ({a, b, c} : Finset ℤ).gcd id = 1)

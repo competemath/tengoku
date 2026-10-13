@@ -28,6 +28,9 @@ def InverseLimit : Type _ := {x : (i : ι) → G i // ∀ i j h, f i j h (x j) =
 
 namespace InverseLimit
 
+/--
+@isnad1 id=eq.0h4v.s7.06187dda10b9 from=translated src=- shape=01217a39 vocab=4b0f3651
+-/
 lemma InverseLimit_def : InverseLimit G f = {x : (i : ι) → G i // ∀ i j h, f i j h (x j) = (x i)} :=
   rfl
 
@@ -36,9 +39,15 @@ variable (i : ι) (x y z : InverseLimit G f)
 instance : CoeOut (InverseLimit G f) ((i : ι) → G i) where
   coe x := x.val
 
+/--
+@isnad1 id=eq.1h7v.s7.03f224c23155 from=translated src=- shape=64b60554 vocab=749f7ff0
+-/
 @[local simp]
 lemma prop : ∀ (i j : _) (h : i ≤ j), f i j h (x.1 j) = x.1 i := x.2
 
+/--
+@isnad1 id=eq.1h6v.s7.d5d48438b323 from=translated src=- shape=e82f6d98 vocab=749f7ff0
+-/
 @[ext]
 lemma ext_lemma (h : ∀ i, x.1 i = y.1 i) : x = y := by
   simp only [InverseLimit_def]
@@ -54,6 +63,9 @@ variable [∀ i j h, OneHomClass (T h) (G j) (G i)]
 @[to_additive] instance instOne : One (InverseLimit G f) where
   one := ⟨fun _ ↦ 1, by simp⟩
 
+/--
+@isnad1 id=eq.0h4v.s7.5083bb4a8e4f from=translated src=- shape=80ad9b4b vocab=be16df55
+-/
 @[to_additive (attr := simp)] theorem one_def : (1 : InverseLimit G f).1 = 1 := rfl
 
 end ZeroOne
@@ -64,6 +76,9 @@ variable [∀ i, Mul (G i)] [∀ i j h, MulHomClass (T h) (G j) (G i)]
 @[to_additive] instance : Mul (InverseLimit G f) where
   mul x y := ⟨fun (i : ι) ↦ (x.1 i) * (y.1 i), by simp⟩
 
+/--
+@isnad1 id=eq.0h6v.s8.c738018b5e53 from=translated src=- shape=e84dad21 vocab=f9fde71d
+-/
 @[to_additive (attr := simp)] theorem mul_def :
     (x * y).1 = (x.1 * y.1) := rfl
 
@@ -87,6 +102,9 @@ variable [∀ i, SMul R (G i)] [∀ i j h, MulActionHomClass (T h) R (G j) (G i)
 @[to_additive] instance : SMul R (InverseLimit G f) where
   smul r x := ⟨fun (i : ι) ↦ (r • (x.1 i)), by simp⟩
 
+/--
+@isnad1 id=eq.0h7v.s8.ab4acdb79cd0 from=translated src=- shape=22241625 vocab=d15fa748
+-/
 @[to_additive (attr := simp)] theorem smul_def (r : R) : (r • x).1 = (r • x.1) := rfl
 
 end SMul
@@ -112,6 +130,9 @@ variable [instMonoidG : ∀ i, Monoid (G i)] [∀ i j h, MonoidHomClass (T h) (G
   npow_zero x := by simp_rw [HPow.hPow, Pow.pow]; ext i; simp
   npow_succ n x := by ext i; simp only [mul_def]; exact pow_succ (x.1 i) n
 
+/--
+@isnad1 id=eq.0h6v.s8.87c3bc1cc236 from=translated src=- shape=46e41a27 vocab=be542135
+-/
 @[to_additive (attr := simp)] theorem npow_def (n : ℕ) : (x ^ n).1 = (x.1 ^ n) := rfl
 
 end Monoid
@@ -141,10 +162,19 @@ set_option backward.isDefEq.respectTransparency.types false in
     exact (instGroupG i).zpow_neg' n (x.1 i)
   inv_mul_cancel a := by ext i; simp
 
+/--
+@isnad1 id=eq.0h5v.s8.1b041b6bfce1 from=translated src=- shape=bbc89589 vocab=87aa3edb
+-/
 @[to_additive (attr := simp)] theorem inv_def : x⁻¹.1 = x.1⁻¹ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.9efd6b582320 from=translated src=- shape=e84dad21 vocab=bdf1ff99
+-/
 @[to_additive (attr := simp)] theorem div_def : (x / y).1 = (x.1 / y.1) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.ae50af47d2a8 from=translated src=- shape=46e41a27 vocab=6169ae31
+-/
 @[to_additive (attr := simp)] theorem zpow_def (n : ℤ) : (x ^ n).1 = (x.1 ^ n) := rfl
 
 end Group
@@ -205,10 +235,19 @@ instance : DivInvMonoid (InverseLimit G f) where
     ext i
     exact (instGroupWithZeroG i).zpow_neg' n (x.1 i)
 
+/--
+@isnad1 id=eq.0h5v.s8.e3194aabb2a8 from=translated src=- shape=bbc89589 vocab=badb021f
+-/
 @[simp] theorem inv₀_def : x⁻¹.1 = x.1⁻¹ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.1e85ed06bae8 from=translated src=- shape=e84dad21 vocab=4df36601
+-/
 @[simp] theorem div₀_def : (x / y).1 = (x.1 / y.1) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.b1cd638016cd from=translated src=- shape=46e41a27 vocab=36595366
+-/
 @[simp] theorem zpow₀_def (n : ℤ) : (x ^ n).1 = (x.1 ^ n) := rfl
 
 end GroupWithZero
@@ -233,6 +272,9 @@ instance : AddMonoidWithOne (InverseLimit G f) where
   natCast_succ n := by ext i; simp
   one := ⟨1, by intros; simp⟩
 
+/--
+@isnad1 id=eq.0h5v.s8.bfcea8a55656 from=translated src=- shape=bfbdf705 vocab=f791350c
+-/
 @[simp] theorem natCast_def (n : ℕ) :
     (n : InverseLimit G f).1 = n := rfl
 
@@ -375,6 +417,9 @@ and for the linear map see `toComponentLinearMap`.
 -/
 def toComponent (i : ι) : InverseLimit G f → G i := fun (z : InverseLimit G f) ↦ z.1 i
 
+/--
+@isnad1 id=eq.0h5v.s7.7494a10220d4 from=translated src=- shape=65c605af vocab=5e4ce7bd
+-/
 lemma toComponent_def : toComponent G f i = fun (z : InverseLimit G f) ↦ z.1 i := rfl
 
 variable (G f) in
@@ -434,6 +479,9 @@ homomorphism see `liftRingHom`, for the linear map see `liftLinearMap`.
 def lift : W → InverseLimit G f :=
   fun w ↦ ⟨fun i ↦ maps i w, fun i j h ↦ inverseSystemHom i j h w⟩
 
+/--
+@isnad1 id=eq.1h7v.s7.aa4faa0bfbf1 from=translated src=- shape=4058f669 vocab=9625354f
+-/
 lemma lift_def : lift G f maps inverseSystemHom =
     fun w ↦ ⟨fun i ↦ maps i w, fun i j h ↦ inverseSystemHom i j h w⟩
   := rfl

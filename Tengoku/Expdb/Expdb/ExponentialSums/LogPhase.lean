@@ -24,7 +24,9 @@ def logPhase : VariableFunction (VariableObject.fixed ℝ) ℝ :=
   fun _ ↦ Real.log
 
 /-- The derivatives of `log` on the phase interval agree with the reference derivatives for
-model exponent one. -/
+model exponent one.
+@isnad1 id=eq.0h2v.s6.17d5c326c115 from=translated src=- shape=05239553 vocab=90c93c95
+-/
 theorem iteratedDerivWithin_log_eq_rpow_neg_one
     (p : ℕ) (u : phaseInterval) :
     iteratedDerivWithin (p + 1) Real.log phaseInterval u =
@@ -43,7 +45,9 @@ theorem iteratedDerivWithin_log_eq_rpow_neg_one
   exact (Real.rpow_neg_one v).symm
 
 /-- The fixed logarithmic phase `u ↦ log u` is a model phase function, with model exponent
-`σ = 1`. -/
+`σ = 1`.
+@isnad1 id=ismodelp.0h0v.s1.2542d4babdc4 from=translated src=- shape=49959d42 vocab=8a922908
+-/
 theorem isModelPhaseFunction_log : IsModelPhaseFunction logPhase := by
   refine ⟨?_, 1, zero_lt_one, ?_⟩
   · intro i
@@ -57,7 +61,9 @@ theorem isModelPhaseFunction_log : IsModelPhaseFunction logPhase := by
       iteratedDerivWithin_log_eq_rpow_neg_one, sub_self, norm_zero]
     exact tendsto_const_nhds
 
-/-- On a dyadic interval, `log (n / N)` is `1 / (2 * N)`-separated. -/
+/-- On a dyadic interval, `log (n / N)` is `1 / (2 * N)`-separated.
+@isnad1 id=issepara.3h3v.s7.bd27b80910ef from=translated src=- shape=9d30ad52 vocab=33caa0b9
+-/
 theorem log_div_separated
     {N : ℝ} {a b : ℕ} (hN : 0 < N) (ha : N ≤ a) (hb : (b : ℝ) ≤ 2 * N) :
     IsSeparatedFamily (1 / (2 * N))
@@ -107,7 +113,9 @@ def logPhaseMainTerm (N T : ℝ) : ℂ :=
   (N : ℂ) * (2 * 𝐞 (T * Real.log 2) - 1) /
     (1 + (2 * Real.pi : ℂ) * Complex.I * T)
 
-/-- The logarithmic oscillatory integral is exactly `logPhaseMainTerm`. -/
+/-- The logarithmic oscillatory integral is exactly `logPhaseMainTerm`.
+@isnad1 id=eq.1h2v.s7.a3eada5bd032 from=translated src=- shape=023d3221 vocab=198bce9f
+-/
 theorem logPhase_integral_eq_mainTerm
     {N T : ℝ} (hN : 0 < N) :
     (∫ x in N..2 * N, (𝐞 (T * Real.log (x / N)) : ℂ)) =

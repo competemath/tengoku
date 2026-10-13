@@ -37,14 +37,23 @@ variable [DirectedSystem M f] [IsDirectLimit f g]
 
 namespace IsDirectLimit
 
+/--
+@isnad1 id=eq.1h8v.s6.d8f866374ccd from=translated src=- shape=27557d07 vocab=b940f25f
+-/
 theorem compatibility' {i j hij} (x : M i) : g j (f i j hij x) = g i x :=
   IsDirectLimit.compatibility i j hij x
 
+/--
+@isnad1 id=ex.1h9v.s7.10ccfef5e95e from=translated src=- shape=b291c915 vocab=b940f25f
+-/
 theorem is_injective {i j} {mi : M i} {mj : M j} (h : g i mi = g j mj) :
     ∃ (k : ι) (hik : i ≤ k) (hjk : j ≤ k), f i k hik mi = f j k hjk mj :=
   IsDirectLimit.inj i j mi mj h
 
 include f in
+/--
+@isnad1 id=ex.0h6v.s6.547eca748e84 from=translated src=- shape=9ba0208a vocab=b940f25f
+-/
 theorem is_surjective : ∀ m : P, ∃ i, ∃ mi : M i, g i mi = m :=
   IsDirectLimit.surj f
 
@@ -61,6 +70,9 @@ Given an element `p : P` in the direct limit, `preimage f g p` returns an elemen
 noncomputable def preimage (p : P) : M (preimageIndex f g p) :=
   (is_surjective f g p).choose_spec.choose
 
+/--
+@isnad1 id=eq.0h6v.s6.8e0284a2a515 from=translated src=- shape=81bcbf98 vocab=80909a0c
+-/
 theorem image_preimage (p : P) :
     g (preimageIndex f g p) (preimage f g p) = p :=
   (is_surjective f g p).choose_spec.choose_spec
@@ -74,6 +86,9 @@ in some component `M i` and applying `g₂ i`. Used to define morphisms out of d
 noncomputable def lift [IsDirectLimit f g₁] (p : P₁) : P₂ :=
   g₂ (preimageIndex f g₁ p) (preimage f g₁ p)
 
+/--
+@isnad1 id=eq.1h9v.s6.8616d486fc93 from=translated src=- shape=64e6016d vocab=2158b259
+-/
 @[simp]
 theorem lift_of [IsDirectLimit f g₁] (Hg : ∀ i j hij x, g₂ j (f i j hij x) = g₂ i x) {i} (x) :
     (lift f g₁ g₂) (g₁ i x) = g₂ i x := by
@@ -95,11 +110,17 @@ noncomputable def Equiv [h₁ : IsDirectLimit f g₁] [h₂ : IsDirectLimit f g�
     rw [← hmi]
     simp only [compatibility', implies_true, lift_of]
 
+/--
+@isnad1 id=eq.0h9v.s6.9b0872f74e24 from=translated src=- shape=1ca80b19 vocab=bebdecd4
+-/
 @[simp]
 lemma Equiv_apply (i : ι) (x : M i) [IsDirectLimit f g₁] [IsDirectLimit f g₂] :
   Equiv f g₁ g₂ (g₁ i x) = g₂ i x := by
   simp [Equiv, Equiv.coe_fn_mk, compatibility', implies_true, lift_of]
 
+/--
+@isnad1 id=eq.0h9v.s6.38aee2f6b34e from=translated src=- shape=98b62234 vocab=6189a7dc
+-/
 @[simp]
 lemma linearEquiv_symm_apply (i : ι) (x : M i) [IsDirectLimit f g₁]
   [IsDirectLimit f g₂] : (Equiv f g₁ g₂).symm (g₂ i x) = g₁ i x := by
@@ -115,6 +136,9 @@ variable [AddCommMonoid P₁] [Module R P₁] [AddCommMonoid P₂] [Module R P�
   (g₁ : ∀ i, M i →ₗ[R] P₁) (g₂ : ∀ i, M i →ₗ[R] P₂) [h₁ : IsDirectLimit (f · · ·) (g₁ · ·)]
 
 omit [IsDirected ι (· ≤ ·)] in
+/--
+@isnad1 id=eq.1h9v.s9.c67acb1cc904 from=translated src=- shape=529acd3c vocab=32b5068e
+-/
 theorem compatibility_module {i j hij} (x : M i) : g₁ j (f i j hij x) = g₁ i x :=
   compatibility' (f · · ·) (g₁ · ·) x
 
@@ -148,12 +172,18 @@ noncomputable def lift
     obtain ⟨k, hixk, hirxk, h_smul⟩ := is_injective (f · · ·) (g₁ · ·) smul_eq
     simpa [Hg] using! congr_arg (g₂ k) h_smul
 
+/--
+@isnad1 id=eq.1h10v.s9.eeecb72c834a from=translated src=- shape=f5918591 vocab=ac5c046f
+-/
 @[simp]
 theorem lift_of (Hg : ∀ i j hij x, g₂ j (f i j hij x) = g₂ i x) {i} (x) :
     (Module.lift f g₁ g₂ Hg) (g₁ i x) = g₂ i x := by
   dsimp [lift, IsDirectLimit.lift_of]
   exact IsDirectLimit.lift_of (f · · ·) (g₁ · ·) (g₂ · ·) Hg x
 
+/--
+@isnad1 id=eq.0h9v.s9.b35427769091 from=translated src=- shape=57031771 vocab=81df449b
+-/
 theorem lift_unique (F : P₁ →ₗ[R] P₂) (x) : F x = (Module.lift f g₁ (fun i ↦ F.comp <| g₁ i)
     (fun i j hij x ↦ by
       simp only [LinearMap.coe_comp, Function.comp_apply]
@@ -170,11 +200,17 @@ noncomputable def linearEquiv : P₁ ≃ₗ[R] P₂ :=
     map_add' := (lift f g₁ g₂ h₂.compatibility).map_add'
     map_smul' := (lift f g₁ g₂ h₂.compatibility).map_smul'}
 
+/--
+@isnad1 id=eq.0h10v.s9.dd197404066a from=translated src=- shape=d17ac29a vocab=a7bace73
+-/
 @[simp]
 lemma linearEquiv_apply (i : ι) (x : M i) :
   linearEquiv f g₁ g₂ (g₁ i x) = g₂ i x :=
   IsDirectLimit.Equiv_apply (f · · ·) (g₁ · ·) (g₂ · ·) i x
 
+/--
+@isnad1 id=eq.0h10v.s9.b48d7582db8f from=translated src=- shape=af27c17c vocab=e6db6886
+-/
 @[simp]
 lemma linearEquiv_symm_apply (i : ι) (x : M i) :
   (linearEquiv f g₁ g₂).symm (g₂ i x) = g₁ i x :=

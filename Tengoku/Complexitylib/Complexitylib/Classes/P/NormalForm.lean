@@ -26,14 +26,18 @@ public section
 namespace Complexity
 
 /-- A language belongs to `P` exactly when some deterministic machine decides
-it within the evaluation of a natural-coefficient polynomial. -/
+it within the evaluation of a natural-coefficient polynomial.
+@isnad1 id=iff.0h1v.s5.a833fed00664 from=translated src=- shape=e4beaf76 vocab=ab7ff540
+-/
 theorem mem_P_iff_decidesInTime_polynomial {L : Language} :
     L ∈ P ↔ ∃ (k : ℕ) (tm : TM k) (p : Polynomial ℕ),
       tm.DecidesInTime L p.eval := by
   exact mem_P_iff_decidesInTime_polynomial_internal
 
 /-- A function belongs to `FP` exactly when some deterministic machine
-computes it within the evaluation of a natural-coefficient polynomial. -/
+computes it within the evaluation of a natural-coefficient polynomial.
+@isnad1 id=iff.0h1v.s5.e51b2df2b839 from=translated src=- shape=282f50ba vocab=233c5dee
+-/
 theorem mem_FP_iff_computesInTime_polynomial {f : List Bool → List Bool} :
     f ∈ FP ↔ ∃ (k : ℕ) (tm : TM k) (p : Polynomial ℕ),
       tm.ComputesInTime f p.eval := by

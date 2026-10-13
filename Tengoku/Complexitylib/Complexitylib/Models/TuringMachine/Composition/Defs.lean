@@ -45,6 +45,9 @@ abbrev compositionTapeCount (nf ng : ℕ) := 0 + (nf + 1) + (ng + 1)
 def compositionRawOutputIdx (nf ng : ℕ) : Fin (compositionTapeCount nf ng) :=
   ⟨nf, by simp [compositionTapeCount]; omega⟩
 
+/--
+@isnad1 id=eq.0h2v.s3.ad111d201703 from=translated src=- shape=f542c5e3 vocab=17be519c
+-/
 @[simp] theorem compositionRawOutputIdx_val (nf ng : ℕ) :
     (compositionRawOutputIdx nf ng).val = nf := rfl
 
@@ -52,10 +55,15 @@ def compositionRawOutputIdx (nf ng : ℕ) : Fin (compositionTapeCount nf ng) :=
 def compositionVirtualInputIdx (nf ng : ℕ) : Fin (compositionTapeCount nf ng) :=
   ⟨nf + 1 + ng, by simp [compositionTapeCount]⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.d2d59bb3bda6 from=translated src=- shape=6d3115ef vocab=02b8bbd2
+-/
 @[simp] theorem compositionVirtualInputIdx_val (nf ng : ℕ) :
     (compositionVirtualInputIdx nf ng).val = nf + 1 + ng := rfl
 
-/-- The two pipeline tapes occupy distinct physical coordinates. -/
+/-- The two pipeline tapes occupy distinct physical coordinates.
+@isnad1 id=ne.0h2v.s3.a2092c46eb7b from=translated src=- shape=3d206383 vocab=ee0692e5
+-/
 theorem compositionRawOutputIdx_ne_virtualInputIdx (nf ng : ℕ) :
     compositionRawOutputIdx nf ng ≠ compositionVirtualInputIdx nf ng := by
   intro h
@@ -64,7 +72,9 @@ theorem compositionRawOutputIdx_ne_virtualInputIdx (nf ng : ℕ) :
   omega
 
 /-- The raw-output coordinate is the placed last work tape of
-`tmF.retargetOutput`. -/
+`tmF.retargetOutput`.
+@isnad1 id=eq.0h2v.s5.5abd559e50e0 from=translated src=- shape=3aa5b6f2 vocab=6c251729
+-/
 theorem compositionRawOutputIdx_eq_firstPlacedLast (nf ng : ℕ) :
     compositionRawOutputIdx nf ng =
       placeWorkIdx 0 (ng + 1) (Fin.last nf) := by
@@ -72,7 +82,9 @@ theorem compositionRawOutputIdx_eq_firstPlacedLast (nf ng : ℕ) :
   simp [compositionRawOutputIdx, placeWorkIdx]
 
 /-- The virtual-input coordinate is the placed last work tape of
-`retargetInputStarted tmG`. -/
+`retargetInputStarted tmG`.
+@isnad1 id=eq.0h2v.s5.692c203fdaf6 from=translated src=- shape=38ebeb08 vocab=06438d90
+-/
 theorem compositionVirtualInputIdx_eq_secondPlacedLast (nf ng : ℕ) :
     compositionVirtualInputIdx nf ng =
       placeWorkIdx (0 + (nf + 1)) 0 (Fin.last ng) := by
@@ -84,6 +96,9 @@ def compositionPrefixIdx (nf ng : ℕ) (i : Fin nf) :
     Fin (compositionTapeCount nf ng) :=
   ⟨i.val, by simp [compositionTapeCount]; omega⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.876fc8679a77 from=translated src=- shape=2bc23a7b vocab=c68ba2b9
+-/
 @[simp] theorem compositionPrefixIdx_val (nf ng : ℕ) (i : Fin nf) :
     (compositionPrefixIdx nf ng i).val = i.val := rfl
 
@@ -92,6 +107,9 @@ def compositionSecondWorkIdx (nf ng : ℕ) (j : Fin ng) :
     Fin (compositionTapeCount nf ng) :=
   placeWorkIdx (0 + (nf + 1)) 0 (Fin.castSucc j)
 
+/--
+@isnad1 id=eq.0h3v.s5.365baf5afdaf from=translated src=- shape=e74f8730 vocab=7663343a
+-/
 @[simp] theorem compositionSecondWorkIdx_val (nf ng : ℕ) (j : Fin ng) :
     (compositionSecondWorkIdx nf ng j).val = nf + 1 + j.val := by
   simp [compositionSecondWorkIdx, placeWorkIdx]

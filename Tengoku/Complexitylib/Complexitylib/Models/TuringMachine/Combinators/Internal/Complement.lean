@@ -34,12 +34,16 @@ def complementCfg (tm : TM n) (c : Cfg n tm.Q) : Cfg n (tm.complementTM.Q) :=
   { state := Sum.inl c.state, input := c.input, work := c.work, output := c.output }
 
 /-- Embedding the initial configuration of `tm` on input `x` yields the initial
-    configuration of `tm.complementTM` on `x`. -/
+    configuration of `tm.complementTM` on `x`.
+@isnad1 id=eq.0h3v.s4.c568731d3e1b from=translated src=- shape=25b3ae7c vocab=0a762a0d
+-/
 theorem compCfg_initCfg (tm : TM n) (x : List Bool) :
     complementCfg tm (tm.initCfg x) = tm.complementTM.initCfg x := rfl
 
 /-- The embedding sends configurations in `tm`'s start state to configurations in
-    `tm.complementTM`'s start state, preserving all tapes. -/
+    `tm.complementTM`'s start state, preserving all tapes.
+@isnad1 id=eq.0h5v.s5.47c087255170 from=translated src=- shape=c61751b6 vocab=999739b3
+-/
 theorem compCfg_qstart (tm : TM n) (inp : Tape) (work : Fin n → Tape) (out : Tape) :
     complementCfg tm ⟨tm.qstart, inp, work, out⟩ =
       ⟨tm.complementTM.qstart, inp, work, out⟩ := rfl
@@ -58,7 +62,9 @@ private theorem complementTM_step_sim (tm : TM n) {c c' : Cfg n tm.Q}
   rw [← hstep]
 
 /-- `tm.complementTM` simulates `tm` step-for-step on embedded configurations: a
-    `t`-step run of `tm` lifts to a `t`-step run of the complement machine. -/
+    `t`-step run of `tm` lifts to a `t`-step run of the complement machine.
+@isnad1 id=reachesi.1h5v.s5.e1f6c85a0019 from=translated src=- shape=10018361 vocab=6f750a66
+-/
 theorem complementTM_simulation (tm : TM n) {c c' : Cfg n tm.Q} {t : ℕ}
     (hreach : tm.reachesIn t c c') :
     tm.complementTM.reachesIn t (complementCfg tm c) (complementCfg tm c') :=
@@ -132,7 +138,9 @@ private theorem rewind_loop (tm : TM n) :
 -- ════════════════════════════════════════════════════════════════════════
 
 /-- From halted complementCfg, reach done state with flipped output.
-    Takes ≤ `output.head + 4` steps. -/
+    Takes ≤ `output.head + 4` steps.
+@isnad1 id=ex.3h3v.s7.6f4e98ddf313 from=translated src=- shape=e56efa1d vocab=db2e4bc4
+-/
 theorem complementTM_rewind_and_flip (tm : TM n)
     (c_halt : Cfg n tm.Q)
     (hhalt : tm.halted c_halt)
@@ -199,7 +207,9 @@ theorem complementTM_rewind_and_flip (tm : TM n)
 -- ════════════════════════════════════════════════════════════════════════
 
 /-- If `tm` decides `L` in time `f`, then `complementTM tm` decides `Lᶜ`
-    in time `2 * f + 4`. -/
+    in time `2 * f + 4`.
+@isnad1 id=decidesi.1h4v.s5.9f315e6b884a from=translated src=- shape=33384656 vocab=1cdae734
+-/
 theorem complementTM_decidesInTime (tm : TM n) {L : Language} {f : ℕ → ℕ}
     (hdec : tm.DecidesInTime L f) :
     tm.complementTM.DecidesInTime Lᶜ (fun n => 2 * f n + 4) := by

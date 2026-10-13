@@ -34,6 +34,9 @@ def QuotientGroup.continuousMulEquiv {G H : Type*} [Group G] (N : Subgroup G)
     simp only [MonoidHom.coe_comp, coe_mk', MonoidHom.coe_coe]
     exact Continuous.comp continuous_quot_mk e.symm.continuous
 
+/--
+@isnad1 id=isopenqu.0h2v.s5.aa7342e88e4d from=translated src=- shape=9bc71da9 vocab=3ee7e838
+-/
 theorem QuotientGroup.isOpenQuotientMap_rightrel_mk {G : Type*} [Group G] [TopologicalSpace G]
   [ContinuousMul G] (H : Subgroup G) : IsOpenQuotientMap (Quot.mk ⇑(QuotientGroup.rightRel H))
   := {surjective := Quot.mk_surjective, continuous := continuous_quot_mk,

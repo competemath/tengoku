@@ -20,12 +20,16 @@ namespace ValuativeRel
 variable {R : Type*} [Ring R] [ValuativeRel R]
 
 /-- Naturals have valuation at most `1`: they lie in the integer subring
-`(valuation R).integer` of the valuation. -/
+`(valuation R).integer` of the valuation.
+@isnad1 id=le.0h2v.s6.5944848960da from=translated src=- shape=6462a411 vocab=72d5f2dc
+-/
 theorem valuation_natCast_le_one (m : ℕ) : valuation R (m : R) ≤ 1 :=
   (Valuation.mem_integer_iff _ _).mp (natCast_mem (valuation R).integer m)
 
 /-- Integers have valuation at most `1`: they lie in the integer subring
-`(valuation R).integer` of the valuation. -/
+`(valuation R).integer` of the valuation.
+@isnad1 id=le.0h2v.s6.06be495657fa from=translated src=- shape=6462a411 vocab=b5279c4f
+-/
 theorem valuation_intCast_le_one (m : ℤ) : valuation R (m : R) ≤ 1 :=
   (Valuation.mem_integer_iff _ _).mp (intCast_mem (valuation R).integer m)
 
@@ -33,7 +37,9 @@ theorem valuation_intCast_le_one (m : ℤ) : valuation R (m : R) ≤ 1 :=
 rank-one hypothesis on the value group enters (via the strictly monotone embedding into
 `ℝ≥0` provided by `IsRankLeOne`, where the statement is the usual archimedean one): an
 abstract value group of higher rank need not be archimedean, and the statement would be
-false. -/
+false.
+@isnad1 id=ex.1h3v.s8.2d591586ef38 from=translated src=- shape=fb226358 vocab=c933552d
+-/
 theorem exists_pow_valuation_lt [IsRankLeOne R] (q : R) (hq : valuation R q < 1)
     (γ : (ValueGroupWithZero R)ˣ) : ∃ N : ℕ, valuation R q ^ N < γ := by
   rcases eq_or_ne (valuation R q) 0 with h0 | h0
@@ -61,7 +67,9 @@ variable {K : Type*} [Field K] [ValuativeRel K]
 
 /-- On an integral element, the adic valuation attached to the maximal ideal of `𝒪[K]` is
 less than `1` exactly when the canonical valuation is: both detect membership in the
-maximal ideal, i.e. non-unitality in `𝒪[K]`. -/
+maximal ideal, i.e. non-unitality in `𝒪[K]`.
+@isnad1 id=iff.0h2v.s11.6d537665c318 from=translated src=- shape=ddd6f591 vocab=ff6bf186
+-/
 theorem adicValuation_lt_one_iff {x : (valuation K).integer} :
     (IsDiscreteValuationRing.maximalIdeal (valuation K).integer).valuation K
         (algebraMap (valuation K).integer K x) < 1 ↔
@@ -73,7 +81,9 @@ theorem adicValuation_lt_one_iff {x : (valuation K).integer} :
       (mem_nonunits_iff.mpr (Valuation.Integer.not_isUnit_iff_valuation_lt_one.mpr h))⟩
 
 /-- On an integral element, the adic valuation attached to the maximal ideal of `𝒪[K]`
-equals `1` exactly when the canonical valuation does: both detect unitality in `𝒪[K]`. -/
+equals `1` exactly when the canonical valuation does: both detect unitality in `𝒪[K]`.
+@isnad1 id=iff.0h2v.s11.712c417ca260 from=translated src=- shape=ddd6f591 vocab=903e6fff
+-/
 theorem adicValuation_eq_one_iff {x : (valuation K).integer} :
     (IsDiscreteValuationRing.maximalIdeal (valuation K).integer).valuation K
         (algebraMap (valuation K).integer K x) = 1 ↔
@@ -107,19 +117,25 @@ variable {A B : Type*} [CommRing A] [Ring B] [ValuativeRel A] [ValuativeRel B]
   [Algebra A B] [ValuativeExtension A B]
 
 /-- A valuative extension maps the closed unit disc into the closed unit disc; in other
-words, `algebraMap A B` maps the ring of integers `𝒪[A]` into `𝒪[B]`. -/
+words, `algebraMap A B` maps the ring of integers `𝒪[A]` into `𝒪[B]`.
+@isnad1 id=le.1h3v.s8.66f1062a04bf from=translated src=- shape=25c8b7a0 vocab=aadcc07a
+-/
 theorem valuation_algebraMap_le_one {x : A} (hx : valuation A x ≤ 1) :
     valuation B (algebraMap A B x) ≤ 1 := by
   simpa using (mapValueGroupWithZero_strictMono (A := A) (B := B)).monotone hx
 
 /-- A valuative extension maps the open unit disc into the open unit disc; in other
-words, `algebraMap A B` maps the maximal ideal of `𝒪[A]` into that of `𝒪[B]`. -/
+words, `algebraMap A B` maps the maximal ideal of `𝒪[A]` into that of `𝒪[B]`.
+@isnad1 id=lt.1h3v.s8.7a044a60f4a2 from=translated src=- shape=25c8b7a0 vocab=e15077b8
+-/
 theorem valuation_algebraMap_lt_one {x : A} (hx : valuation A x < 1) :
     valuation B (algebraMap A B x) < 1 := by
   simpa using mapValueGroupWithZero_strictMono (A := A) (B := B) hx
 
 /-- A valuative extension maps the unit circle into the unit circle; in other words,
-`algebraMap A B` maps units of `𝒪[A]` to units of `𝒪[B]`. -/
+`algebraMap A B` maps units of `𝒪[A]` to units of `𝒪[B]`.
+@isnad1 id=eq.1h3v.s8.f528228ee067 from=translated src=- shape=25c8b7a0 vocab=fa2372bf
+-/
 theorem valuation_algebraMap_eq_one {x : A} (hx : valuation A x = 1) :
     valuation B (algebraMap A B x) = 1 := by
   rw [← mapValueGroupWithZero_valuation (B := B) x, hx, map_one]

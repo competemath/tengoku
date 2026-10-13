@@ -25,7 +25,9 @@ namespace TM
 
 /-- A relation preserved by one successful step transports an exact run. The relation
 may carry a source invariant and an evolving extra-tape frame; both remain explicit in
-the caller's one-step obligation. No halt reflection or injectivity is required. -/
+the caller's one-step obligation. No halt reflection or injectivity is required.
+@isnad1 id=ex.2h10v.s7.ce157e6e7990 from=translated src=- shape=10eb49f6 vocab=d32afb57
+-/
 theorem reachesIn_transport {n n' : ℕ} {tm : TM n} {tm' : TM n'}
     (R : Cfg n tm.Q → Cfg n' tm'.Q → Prop)
     (h_step : ∀ {c c' d}, R c d → tm.step c = some c' →
@@ -42,7 +44,9 @@ theorem reachesIn_transport {n n' : ℕ} {tm : TM n} {tm' : TM n'}
 
 /-- Cross-arity generalization of `reachesIn_map`: the simulating
     machine may have a different number of work tapes. If `wrap` commutes
-    with `step`, then `reachesIn` lifts through the embedding. -/
+    with `step`, then `reachesIn` lifts through the embedding.
+@isnad1 id=reachesi.2h8v.s6.dc039fa07f53 from=translated src=- shape=6d1002c0 vocab=d32afb57
+-/
 theorem reachesIn_map' {n n' : ℕ} {tm : TM n} {tm' : TM n'}
     (wrap : Cfg n tm.Q → Cfg n' tm'.Q)
     (h_step : ∀ c c' : Cfg n tm.Q, tm.step c = some c' →
@@ -56,7 +60,9 @@ theorem reachesIn_map' {n n' : ℕ} {tm : TM n} {tm' : TM n'}
 
 /-- If optional steps commute with an embedding, every target configuration reachable
 from an embedded start is the image of a reachable source configuration. This includes
-all prefixes, not just successful endpoints; no injectivity assumption is needed. -/
+all prefixes, not just successful endpoints; no injectivity assumption is needed.
+@isnad1 id=ex.2h7v.s6.6be9bcdc05cc from=translated src=- shape=59c23c3d vocab=97dceddb
+-/
 theorem reaches_map_reflect {n n' : ℕ} {tm : TM n} {tm' : TM n'}
     (wrap : Cfg n tm.Q → Cfg n' tm'.Q)
     (h_step : ∀ c, tm'.step (wrap c) = (tm.step c).map wrap)

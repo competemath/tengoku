@@ -21,7 +21,9 @@ namespace Erdos
 /-- If eventually `count p x ≥ x / (4 log x)`, then eventually
 `nth p j ≤ (j+2)²`.  (Key step: at `x = (j+2)²` the hypothesis gives
 `count p x ≥ (j+2)²/(8 log (j+2)) > j` for large `j`, using
-`log y ≤ 2√y`; conclude with `Nat.nth_lt_of_lt_count`.) -/
+`log y ≤ 2√y`; conclude with `Nat.nth_lt_of_lt_count`.)
+@isnad1 id=eventual.1h1v.s6.95892f66a85c from=translated src=- shape=9718fa64 vocab=92e8fe2c
+-/
 theorem nth_le_sq_of_count_ge (p : ℕ → Prop) [DecidablePred p]
     (h : ∀ᶠ x : ℕ in atTop, (x : ℝ) / (4 * Real.log x) ≤ Nat.count p x) :
     ∀ᶠ j : ℕ in atTop, (Nat.nth p j : ℝ) ≤ ((j : ℝ) + 2) ^ 2 := by
@@ -89,33 +91,49 @@ noncomputable def m (t : ℕ) : ℕ := ∏ i ∈ Finset.range t, p1 i
 /-- [easy] There are infinitely many primes `≡ 3 mod 4`.  Sketch: in
 Mathlib as a special case of Dirichlet
 (`Nat.forall_exists_prime_gt_and_modEq`), or by the classical elementary
-argument. -/
+argument.
+@isnad1 id=infinite.0h0v.s4.4aa3a4978fe2 from=translated src=- shape=93fec4b9 vocab=97d12efe
+-/
 theorem infinite_setOf_q3 : {n | n.Prime ∧ n % 4 = 3}.Infinite := by
   have h : {p : ℕ | p.Prime ∧ p ≡ 3 [MOD 4]}.Infinite :=
     Nat.infinite_setOfPred_prime_and_modEq (by norm_num) (by decide)
   convert! h using 2 with n
 
 /-- [easy] There are infinitely many primes `≡ 1 mod 4`.
-(Proved by Aristotle, 2026-06-11.) -/
+(Proved by Aristotle, 2026-06-11.)
+@isnad1 id=infinite.0h0v.s4.b76f25b047ec from=translated src=- shape=93fec4b9 vocab=97d12efe
+-/
 theorem infinite_setOf_p1 : {n | n.Prime ∧ n % 4 = 1}.Infinite :=
   Nat.infinite_setOfPred_prime_modEq_one <| by decide
 
 /-- [easy given infinitude] `q3 j` is prime and `≡ 3 mod 4`
-(`Nat.nth_mem_of_infinite`). -/
+(`Nat.nth_mem_of_infinite`).
+@isnad1 id=and.0h1v.s4.fc4bbf288e56 from=translated src=- shape=3e5397b1 vocab=c2ca94ea
+-/
 theorem q3_spec (j : ℕ) : (q3 j).Prime ∧ q3 j % 4 = 3 :=
   Nat.nth_mem_of_infinite infinite_setOf_q3 j
 
-/-- [easy given infinitude] `p1 i` is prime and `≡ 1 mod 4`. -/
+/-- [easy given infinitude] `p1 i` is prime and `≡ 1 mod 4`.
+@isnad1 id=and.0h1v.s4.345bc3d071a9 from=translated src=- shape=3e5397b1 vocab=12a22f61
+-/
 theorem p1_spec (i : ℕ) : (p1 i).Prime ∧ p1 i % 4 = 1 :=
   Nat.nth_mem_of_infinite infinite_setOf_p1 i
 
+/--
+@isnad1 id=strictmo.0h0v.s2.ca28e557ac05 from=translated src=- shape=e3d48bcb vocab=d9886fa4
+-/
 theorem q3_strictMono : StrictMono q3 :=
   Nat.nth_strictMono infinite_setOf_q3
 
+/--
+@isnad1 id=strictmo.0h0v.s2.699ecec59fa1 from=translated src=- shape=e3d48bcb vocab=f3232891
+-/
 theorem p1_strictMono : StrictMono p1 :=
   Nat.nth_strictMono infinite_setOf_p1
 
-/-- [easy] `m t ≥ 2^t` (each prime factor is `≥ 5`). -/
+/-- [easy] `m t ≥ 2^t` (each prime factor is `≥ 5`).
+@isnad1 id=le.0h1v.s4.d3feec7d4e15 from=translated src=- shape=82643d74 vocab=df0fd678
+-/
 theorem m_ge (t : ℕ) : 2 ^ t ≤ m t := by
   calc 2 ^ t = ∏ _i ∈ Finset.range t, 2 := by simp
   _ ≤ m t := Finset.prod_le_prod' fun i _ => (p1_spec i).1.two_le

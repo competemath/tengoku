@@ -21,6 +21,9 @@ abbrev VerticalPattern (m : ℕ) : Fin m → Fin 1 → Prop := AllPattern m 1
 abbrev HorizontalPattern (n : ℕ) : Fin 1 → Fin n → Prop := AllPattern 1 n
 abbrev TrivialPattern : Fin 1 → Fin 1 → Prop := AllPattern 1 1
 
+/--
+@isnad1 id=eq.0h0v.s4.4b5e229d7622 from=translated src=- shape=167d8263 vocab=7c4653ff
+-/
 @[simp] lemma identityPattern_one : IdentityPattern 1 = TrivialPattern := by
   ext i j; simp [IdentityPattern, AllPattern, Subsingleton.elim i j]
 
@@ -32,15 +35,24 @@ def HatPattern : Fin 2 → Fin 3 → Prop :=
 
 /-! ### Proofs -/
 
+/--
+@isnad1 id=eq.0h4v.s5.9e4eae892b0a from=translated src=- shape=dcc755f6 vocab=fd4f7b37
+-/
 @[simp] lemma ex_of_isEmpty [IsEmpty α] [IsEmpty β] (P : α → β → Prop) (n : ℕ) : ex P n = 0 := by
   simp [ex]
 
+/--
+@isnad1 id=eq.0h1v.s5.32e0ee40f266 from=translated src=- shape=abcd7f9b vocab=905963fb
+-/
 @[simp] lemma ex_trivialPattern (n : ℕ) : ex TrivialPattern n = 0 := by
   simp only [ex, sup_eq_zero, mem_filter, Finset.mem_univ, true_and, density, card_eq_zero,
     not_imp_comm (a := Contains _ _), ← Finset.nonempty_iff_ne_empty, Finset.Nonempty, Prod.exists,
     forall_exists_index]
   exact fun M i j hij ↦ ⟨fun _ ↦ i, by simp [StrictMono], ![j], by simp [StrictMono], by simp [hij]⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.9b1a6c863507 from=translated src=- shape=c0bb8e41 vocab=dffd1398
+-/
 @[simp] theorem ex_identityPattern_two (n : ℕ) : ex (IdentityPattern 2) n = 2 * n - 1 := by
   obtain rfl | hn := eq_zero_or_neZero n
   · simp
@@ -110,6 +122,9 @@ def HatPattern : Fin 2 → Fin 3 → Prop :=
       exact ⟨![b.1, a.1], by simpa [StrictMono, Fin.forall_fin_two], ![b.2, a.2], by
       simpa [StrictMono, Fin.forall_fin_two], by simp [IdentityPattern, *]⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.9115b1afeadf from=translated src=- shape=0083f852 vocab=24d3e107
+-/
 lemma ex_verticalPattern_two (n : ℕ) : ex (VerticalPattern 2) n = n := by
   classical
   refine le_antisymm ?_ ?_
@@ -209,6 +224,9 @@ example (n : ℕ) : ex (HorizontalPattern 2) n ≤ n := by
     _ ≤ n + 0 := by simp only [dm2, add_le_add_iff_left]
     _ ≤ n := by omega
 
+/--
+@isnad1 id=le.0h2v.s5.e5d5f2cf1050 from=translated src=- shape=eb3eb020 vocab=6ca0676b
+-/
 theorem ex_horizontal (k n : ℕ) : ex (HorizontalPattern k) n ≤ n*(k-1) := by
   classical
   simp only [ex, Finset.sup_le_iff, mem_filter, Finset.mem_univ, true_and]
@@ -225,6 +243,9 @@ theorem ex_horizontal (k n : ℕ) : ex (HorizontalPattern k) n ≤ n*(k-1) := by
   intro j
   simpa [s] using s.orderEmbOfCardLe_mem h j
 
+/--
+@isnad1 id=le.0h2v.s5.bfd9d29af462 from=translated src=- shape=4a5c13e4 vocab=672ead6b
+-/
 theorem ex_vertical (k n : ℕ) : ex (VerticalPattern k) n ≤ n*(k-1) := by
   classical
   calc
@@ -252,6 +273,9 @@ theorem ex_vertical (k n : ℕ) : ex (VerticalPattern k) n ≤ n*(k-1) := by
       density M = density M' := dmeqdm'
       _        ≤ ex (tranpose (VerticalPattern k)) n := (density_le_ex_of_not_contains M' hM')
 
+/--
+@isnad1 id=le.0h1v.s5.ce4784155caf from=translated src=- shape=78a84e1f vocab=9430c2c0
+-/
 theorem ex_hat (n : ℕ) : ex HatPattern n ≤ 3 * n := by
   classical
   simp only [ex, Finset.sup_le_iff, mem_filter, Finset.mem_univ, true_and]

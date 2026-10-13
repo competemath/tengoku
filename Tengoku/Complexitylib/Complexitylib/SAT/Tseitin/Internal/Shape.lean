@@ -25,7 +25,9 @@ namespace SAT
 
 namespace CNF
 
-/-- Exact-width-three shape is preserved by concatenating formulas. -/
+/-- Exact-width-three shape is preserved by concatenating formulas.
+@isnad1 id=is3cnf.2h2v.s4.1df95f56fb4c from=translated src=- shape=255dce7b vocab=cdd1dd7c
+-/
 theorem is3CNF_append_internal {φ ψ : CNF} (hφ : φ.Is3CNF) (hψ : ψ.Is3CNF) :
     (φ ++ ψ).Is3CNF := by
   intro c hc
@@ -37,19 +39,25 @@ end CNF
 
 namespace Clause
 
-/-- On a nonempty clause, the fresh count is exactly `length - 3`. -/
+/-- On a nonempty clause, the fresh count is exactly `length - 3`.
+@isnad1 id=eq.1h1v.s4.9ab21803d7b0 from=translated src=- shape=f22bb455 vocab=2cbd8dc5
+-/
 theorem tseitinFreshCount_eq_length_sub_three_internal {c : Clause} (hc : c ≠ []) :
     c.tseitinFreshCount = c.length - 3 := by
   simp [tseitinFreshCount, hc]
 
 /-- One wide-clause split consumes one variable and leaves the remaining count
-to the recursive suffix. -/
+to the recursive suffix.
+@isnad1 id=eq.0h6v.s5.545216210920 from=translated src=- shape=f2476a6b vocab=5d3429f8
+-/
 theorem tseitinFreshCount_wide_internal (next : ℕ) (a b c d : Lit) (rest : List Lit) :
     Clause.tseitinFreshCount (a :: b :: c :: d :: rest) =
       Clause.tseitinFreshCount (Lit.negVar next :: c :: d :: rest) + 1 := by
   simp [Clause.tseitinFreshCount]
 
-/-- A clause never consumes more than one plus its number of literals. -/
+/-- A clause never consumes more than one plus its number of literals.
+@isnad1 id=le.0h1v.s4.541394058398 from=translated src=- shape=fc64b45a vocab=52d8e691
+-/
 theorem tseitinFreshCount_le_length_add_one_internal (c : Clause) :
     c.tseitinFreshCount ≤ c.length + 1 := by
   by_cases hc : c = []
@@ -58,7 +66,9 @@ theorem tseitinFreshCount_le_length_add_one_internal (c : Clause) :
   · rw [tseitinFreshCount_eq_length_sub_three_internal hc]
     omega
 
-/-- Every clause emitted by the single-clause splitter has exactly three literals. -/
+/-- Every clause emitted by the single-clause splitter has exactly three literals.
+@isnad1 id=is3cnf.0h2v.s3.703e6c1fbd31 from=translated src=- shape=c57da3d9 vocab=24066a8d
+-/
 theorem to3CNF_is3CNF_internal (next : ℕ) (c : Clause) :
     (c.to3CNF next).Is3CNF := by
   induction next, c using Clause.to3CNF.induct with
@@ -71,7 +81,9 @@ theorem to3CNF_is3CNF_internal (next : ℕ) (c : Clause) :
       exact ⟨rfl, ih⟩
 
 /-- The splitter emits exactly one more clause than the number of fresh variables
-that it consumes. -/
+that it consumes.
+@isnad1 id=eq.0h2v.s4.d49f911e7f3f from=translated src=- shape=44deac31 vocab=0c6adb74
+-/
 theorem length_to3CNF_internal (next : ℕ) (c : Clause) :
     (c.to3CNF next).length = c.tseitinFreshCount + 1 := by
   induction next, c using Clause.to3CNF.induct with
@@ -83,14 +95,18 @@ theorem length_to3CNF_internal (next : ℕ) (c : Clause) :
       rw [Clause.to3CNF.eq_5, List.length_cons, ih,
         tseitinFreshCount_wide_internal next a b c d rest]
 
-/-- Coarse clause-count bound for one split clause. -/
+/-- Coarse clause-count bound for one split clause.
+@isnad1 id=le.0h2v.s4.1d93492545be from=translated src=- shape=f2ce09d6 vocab=6f891805
+-/
 theorem length_to3CNF_le_internal (next : ℕ) (c : Clause) :
     (c.to3CNF next).length ≤ c.length + 2 := by
   rw [length_to3CNF_internal]
   exact Nat.add_le_add_right (tseitinFreshCount_le_length_add_one_internal c) 1
 
 /-- Assuming all source variables precede `next`, every literal emitted for one
-clause precedes the returned fresh counter. -/
+clause precedes the returned fresh counter.
+@isnad1 id=lt.3h4v.s5.19ced07c2cdf from=translated src=- shape=6210ab14 vocab=68c6b832
+-/
 theorem var_lt_of_mem_to3CNF_internal (next : ℕ) (c : Clause)
     : (∀ ℓ ∈ c, ℓ.var < next) → ∀ {out : Clause},
       out ∈ c.to3CNF next → ∀ {ℓ : Lit}, ℓ ∈ out →
@@ -170,7 +186,9 @@ end Clause
 
 namespace CNF
 
-/-- Splitting every clause preserves exact-width-three shape. -/
+/-- Splitting every clause preserves exact-width-three shape.
+@isnad1 id=is3cnf.0h2v.s3.4b0ec858f1a6 from=translated src=- shape=4c3eae24 vocab=e5f92dff
+-/
 theorem to3Aux_is3CNF_internal (next : ℕ) (φ : CNF) :
     (to3Aux next φ).1.Is3CNF := by
   induction φ generalizing next with
@@ -180,11 +198,15 @@ theorem to3Aux_is3CNF_internal (next : ℕ) (φ : CNF) :
       exact is3CNF_append_internal (Clause.to3CNF_is3CNF_internal next c)
         (ih (next + c.tseitinFreshCount))
 
-/-- The top-level transformation produces exact 3-CNF. -/
+/-- The top-level transformation produces exact 3-CNF.
+@isnad1 id=is3cnf.0h1v.s2.05202b0973e4 from=translated src=- shape=76a08d12 vocab=dfcc4412
+-/
 theorem to3_is3CNF_internal (φ : CNF) : φ.to3.Is3CNF := by
   exact to3Aux_is3CNF_internal (φ.maxVar + 1) φ
 
-/-- `to3Aux` returns exactly the first counter after all fresh variables. -/
+/-- `to3Aux` returns exactly the first counter after all fresh variables.
+@isnad1 id=eq.0h2v.s4.b5753c17effa from=translated src=- shape=5229bf6a vocab=65f2fdcc
+-/
 theorem to3Aux_counter_internal (next : ℕ) (φ : CNF) :
     (to3Aux next φ).2 = next + φ.tseitinFreshCount := by
   induction φ generalizing next with
@@ -194,7 +216,9 @@ theorem to3Aux_counter_internal (next : ℕ) (φ : CNF) :
       rw [ih]
       simp [tseitinFreshCount, Nat.add_assoc]
 
-/-- Total fresh-variable use is bounded by source literals plus source clauses. -/
+/-- Total fresh-variable use is bounded by source literals plus source clauses.
+@isnad1 id=le.0h1v.s4.a04d34024ad3 from=translated src=- shape=32847cb4 vocab=e4439ede
+-/
 theorem tseitinFreshCount_le_literalCount_add_length_internal (φ : CNF) :
     φ.tseitinFreshCount ≤ φ.literalCount + φ.length := by
   induction φ with
@@ -205,7 +229,9 @@ theorem tseitinFreshCount_le_literalCount_add_length_internal (φ : CNF) :
         c.length + CNF.literalCount cs + (cs.length + 1)
       omega
 
-/-- The output clause count is exactly fresh variables plus source clauses. -/
+/-- The output clause count is exactly fresh variables plus source clauses.
+@isnad1 id=eq.0h2v.s4.043bcb280e24 from=translated src=- shape=f23cdd55 vocab=f91951b6
+-/
 theorem length_to3Aux_internal (next : ℕ) (φ : CNF) :
     (to3Aux next φ).1.length = φ.tseitinFreshCount + φ.length := by
   induction φ generalizing next with
@@ -216,14 +242,18 @@ theorem length_to3Aux_internal (next : ℕ) (φ : CNF) :
       simp [tseitinFreshCount]
       omega
 
-/-- Coarse output clause-count bound in source literals and clauses. -/
+/-- Coarse output clause-count bound in source literals and clauses.
+@isnad1 id=le.0h2v.s5.8c8db8557335 from=translated src=- shape=644bd08f vocab=c40cbf17
+-/
 theorem length_to3Aux_le_internal (next : ℕ) (φ : CNF) :
     (to3Aux next φ).1.length ≤ φ.literalCount + 2 * φ.length := by
   rw [length_to3Aux_internal]
   have h := tseitinFreshCount_le_literalCount_add_length_internal φ
   omega
 
-/-- Exact 3-CNF has three literal occurrences per clause. -/
+/-- Exact 3-CNF has three literal occurrences per clause.
+@isnad1 id=eq.1h1v.s4.935c17f324d5 from=translated src=- shape=60a68b4d vocab=fb4e5628
+-/
 theorem literalCount_eq_three_mul_length_of_is3CNF_internal {φ : CNF}
     (hφ : φ.Is3CNF) : φ.literalCount = 3 * φ.length := by
   induction φ with
@@ -237,13 +267,17 @@ theorem literalCount_eq_three_mul_length_of_is3CNF_internal {φ : CNF}
       rw [hc, ih hcs]
       omega
 
-/-- Exact literal count of the transformed formula. -/
+/-- Exact literal count of the transformed formula.
+@isnad1 id=eq.0h2v.s5.78ab36141a9d from=translated src=- shape=353c68d7 vocab=bee1ccf9
+-/
 theorem literalCount_to3Aux_internal (next : ℕ) (φ : CNF) :
     (to3Aux next φ).1.literalCount = 3 * (φ.tseitinFreshCount + φ.length) := by
   rw [literalCount_eq_three_mul_length_of_is3CNF_internal
     (to3Aux_is3CNF_internal next φ), length_to3Aux_internal]
 
-/-- Coarse transformed literal-count bound used by the later encoded-size proof. -/
+/-- Coarse transformed literal-count bound used by the later encoded-size proof.
+@isnad1 id=le.0h2v.s5.3b9862792aa8 from=translated src=- shape=9625dae6 vocab=c40cbf17
+-/
 theorem literalCount_to3Aux_le_internal (next : ℕ) (φ : CNF) :
     (to3Aux next φ).1.literalCount ≤ 3 * (φ.literalCount + 2 * φ.length) := by
   rw [literalCount_to3Aux_internal]
@@ -251,7 +285,9 @@ theorem literalCount_to3Aux_le_internal (next : ℕ) (φ : CNF) :
   omega
 
 /-- Assuming source variables precede `next`, every transformed literal precedes
-the returned fresh counter. -/
+the returned fresh counter.
+@isnad1 id=lt.3h4v.s6.ae0ab7568731 from=translated src=- shape=38cb8200 vocab=0b50111e
+-/
 theorem var_lt_of_mem_to3Aux_internal (next : ℕ) (φ : CNF)
     (hsource : ∀ c ∈ φ, ∀ ℓ ∈ c, ℓ.var < next) {out : Clause}
     (hout : out ∈ (to3Aux next φ).1) {ℓ : Lit} (hℓ : ℓ ∈ out) :
@@ -274,7 +310,9 @@ theorem var_lt_of_mem_to3Aux_internal (next : ℕ) (φ : CNF)
         change ℓ.var < next + (c.tseitinFreshCount + CNF.tseitinFreshCount cs)
         omega
 
-/-- Every literal produced by `to3` lies below its final fresh counter. -/
+/-- Every literal produced by `to3` lies below its final fresh counter.
+@isnad1 id=lt.2h3v.s5.47e67ea84d62 from=translated src=- shape=0efc18e6 vocab=cc06b976
+-/
 theorem var_lt_of_mem_to3_internal (φ : CNF) {out : Clause} (hout : out ∈ φ.to3)
     {ℓ : Lit} (hℓ : ℓ ∈ out) :
     ℓ.var < φ.maxVar + 1 + φ.tseitinFreshCount := by

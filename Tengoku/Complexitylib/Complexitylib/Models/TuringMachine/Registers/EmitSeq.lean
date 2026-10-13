@@ -32,7 +32,9 @@ def bigSeqTM : List (TM n) → TM n
 
 /-- **Indexed chain rule.** Machine `ms[k]` carries the `EmitPred` state from
     stage `k` to stage `k + 1`; the fold carries stage `0` to stage
-    `ms.length`, in `|ms| · (b + 1) + 1` steps. -/
+    `ms.length`, in `|ms| · (b + 1) + 1` steps.
+@isnad1 id=hoaretim.3h6v.s7.5f823eeeef5b from=translated src=- shape=e65d3fc6 vocab=c539448d
+-/
 theorem bigSeqTM_hoareTime (ms : List (TM n)) (inp₀ : Tape)
     (W : ℕ → Fin n → Tape) (Y : ℕ → List Bool) (b : ℕ)
     (hinp₀ : Parked inp₀)

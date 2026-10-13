@@ -43,7 +43,9 @@ namespace PrimeSide
 section CrossMuP
 variable (cϱ lam : ℝ)
 
-/-- `𝓜[μ, P_X]` as the finite sum `−π⁻¹ Σ_n a_n 𝓜[μ, cos(· y_n)]` (§5.4, Fubini/linearity). -/
+/-- `𝓜[μ, P_X]` as the finite sum `−π⁻¹ Σ_n a_n 𝓜[μ, cos(· y_n)]` (§5.4, Fubini/linearity).
+@isnad1 id=eq.2h2v.s6.820fc941cfc3 from=translated src=- shape=9d83c438 vocab=9f3cfb98
+-/
 lemma Mform_mu_PX_eq {p : Setting} {F : LocalFun} (hΦ : Continuous F.Phi) (hμ : Continuous Zeta23.mu) :
     Mform F.Phi p.T Zeta23.mu (Zeta23.PX p.X)
       = ∑ n ∈ primeRange p.X, (-(1 / Real.pi) * acoef n)
@@ -64,7 +66,9 @@ lemma Mform_mu_PX_eq {p : Setting} {F : LocalFun} (hΦ : Continuous F.Phi) (hμ 
     simpa only using this
 
 /-- **[prop:cross] (i)** (§5.4): `𝓜[μ,P_X] ≪ l√X`, stated in the `∃ C, EventuallyAtCore cϱ lam …`
-form used by the results of `PrimeSideA.lean` (which imports this file). -/
+form used by the results of `PrimeSideA.lean` (which imports this file).
+@isnad1 id=ex.3h2v.s6.f687cee81c85 from=translated src=- shape=07fc1ecf vocab=943726bd
+-/
 theorem prop_cross_muP (hΓ : Zeta23.GammaFacts) (hcheb : Zeta23.ChebyshevMertens)
     (hlam : 0 < lam ∧ lam ≤ 1) :
     ∃ C : ℝ, EventuallyAtCore cϱ lam (fun p F =>

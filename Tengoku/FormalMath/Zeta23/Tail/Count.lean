@@ -34,6 +34,9 @@ namespace Tail
 
 /-! #### Telescoping sums replacing ∫ x⁻³ and ∫ x⁻² -/
 
+/--
+@isnad1 id=le.1h1v.s7.b7615b2a8ab5 from=translated src=- shape=ccf23c36 vocab=99ce26ac
+-/
 lemma inv_pow_three_step {a : ℝ} (ha : 0 < a) :
     ((a + 1) ^ 3)⁻¹ ≤ ((a ^ 2)⁻¹ - ((a + 1) ^ 2)⁻¹) / 2 := by
   rw [← sub_nonneg]
@@ -42,6 +45,9 @@ lemma inv_pow_three_step {a : ℝ} (ha : 0 < a) :
     field_simp; ring
   rw [key]; positivity
 
+/--
+@isnad1 id=le.1h1v.s6.5d16944703ee from=translated src=- shape=5897217e vocab=246bc4e7
+-/
 lemma inv_pow_two_step {a : ℝ} (ha : 0 < a) :
     ((a + 1) ^ 2)⁻¹ ≤ a⁻¹ - (a + 1)⁻¹ := by
   rw [← sub_nonneg]
@@ -49,6 +55,9 @@ lemma inv_pow_two_step {a : ℝ} (ha : 0 < a) :
     field_simp; ring
   rw [key]; positivity
 
+/--
+@isnad1 id=le.1h2v.s7.3416617c3f44 from=translated src=- shape=55f1b755 vocab=9b7f9fe4
+-/
 lemma sum_inv_pow_three_le_telescope {D : ℝ} (hD : 0 < D) (n : ℕ) :
     ∑ i ∈ range (n + 1), ((D + i) ^ 3)⁻¹ ≤ (D ^ 3)⁻¹ + ((D ^ 2)⁻¹ - ((D + n) ^ 2)⁻¹) / 2 := by
   induction n with
@@ -62,6 +71,9 @@ lemma sum_inv_pow_three_le_telescope {D : ℝ} (hD : 0 < D) (n : ℕ) :
           + (((D + n) ^ 2)⁻¹ - ((D + n + 1) ^ 2)⁻¹) / 2 := add_le_add ih hstep
       _ = _ := by ring
 
+/--
+@isnad1 id=le.1h2v.s6.5e1a0e37e960 from=translated src=- shape=8abb56ad vocab=57a5e29c
+-/
 lemma sum_inv_pow_two_le_telescope {D : ℝ} (hD : 0 < D) (n : ℕ) :
     ∑ i ∈ range (n + 1), ((D + i) ^ 2)⁻¹ ≤ (D ^ 2)⁻¹ + (D⁻¹ - (D + n)⁻¹) := by
   induction n with
@@ -75,7 +87,9 @@ lemma sum_inv_pow_two_le_telescope {D : ℝ} (hD : 0 < D) (n : ℕ) :
           add_le_add ih hstep
       _ = _ := by ring
 
-/-- ∑_{i<n} (D + i)⁻³ ≤ D⁻³ + D⁻²/2 for D > 0 (any n). -/
+/-- ∑_{i<n} (D + i)⁻³ ≤ D⁻³ + D⁻²/2 for D > 0 (any n).
+@isnad1 id=le.1h2v.s6.c25e1c115ca7 from=translated src=- shape=bea7f933 vocab=b1e27856
+-/
 lemma sum_inv_pow_three_le {D : ℝ} (hD : 0 < D) (n : ℕ) :
     ∑ i ∈ range n, ((D + i) ^ 3)⁻¹ ≤ (D ^ 3)⁻¹ + (D ^ 2)⁻¹ / 2 := by
   cases n with
@@ -85,7 +99,9 @@ lemma sum_inv_pow_three_le {D : ℝ} (hD : 0 < D) (n : ℕ) :
     have : 0 ≤ ((D + n) ^ 2)⁻¹ := by positivity
     linarith
 
-/-- ∑_{i<n} (D + i)⁻² ≤ D⁻² + D⁻¹ for D > 0 (any n). -/
+/-- ∑_{i<n} (D + i)⁻² ≤ D⁻² + D⁻¹ for D > 0 (any n).
+@isnad1 id=le.1h2v.s6.b215579dcb99 from=translated src=- shape=15cee1ae vocab=af55c78f
+-/
 lemma sum_inv_pow_two_le {D : ℝ} (hD : 0 < D) (n : ℕ) :
     ∑ i ∈ range n, ((D + i) ^ 2)⁻¹ ≤ (D ^ 2)⁻¹ + D⁻¹ := by
   cases n with
@@ -95,7 +111,9 @@ lemma sum_inv_pow_two_le {D : ℝ} (hD : 0 < D) (n : ℕ) :
     have : 0 ≤ (D + n)⁻¹ := by positivity
     linarith
 
-/-- log(B + j) ≤ log B + j/B. -/
+/-- log(B + j) ≤ log B + j/B.
+@isnad1 id=le.2h2v.s5.ecfbfbf8b7f7 from=translated src=- shape=dc01f101 vocab=591a6914
+-/
 lemma log_add_le_log_add_div {B j : ℝ} (hB : 0 < B) (hj : 0 ≤ j) :
     Real.log (B + j) ≤ Real.log B + j / B := by
   have e : B + j = B * (1 + j / B) := by field_simp
@@ -106,7 +124,9 @@ lemma log_add_le_log_add_div {B j : ℝ} (hB : 0 < B) (hj : 0 ≤ j) :
 /-! #### Summing the window weights -/
 
 /-- The window weights: for a finite set F of window indices j with j + 1 ≥ D₀ (D₀ ≥ 2),
-∑_{j∈F} max(D₀,j)⁻³ · log(B + j) ≤ (2D₀⁻³ + D₀⁻²/2)·log B + (2D₀⁻² + D₀⁻¹)/B. -/
+∑_{j∈F} max(D₀,j)⁻³ · log(B + j) ≤ (2D₀⁻³ + D₀⁻²/2)·log B + (2D₀⁻² + D₀⁻¹)/B.
+@isnad1 id=le.3h3v.s8.9eaacdc3760d from=translated src=- shape=0aeaefe4 vocab=0acbbfd7
+-/
 lemma sum_window_weights_le (F : Finset ℕ) {B D₀ : ℝ} (hB : 1 ≤ B) (hD₀ : 2 ≤ D₀)
     (hF : ∀ j ∈ F, D₀ ≤ (j : ℝ) + 1) :
     ∑ j ∈ F, ((max D₀ j) ^ 3)⁻¹ * Real.log (B + j)
@@ -192,7 +212,9 @@ lemma sum_window_weights_le (F : Finset ℕ) {B D₀ : ℝ} (hB : 1 ≤ B) (hD�
 /-! #### One side of the tail, abstractly -/
 
 /-- One side of the tail: zeros at (signed) distance x_ρ ≥ D₀ beyond an endpoint of I,
-grouped by an integer key with key ≤ x ≤ key + 1, each group counted by A₀ log(B + key). -/
+grouped by an integer key with key ≤ x ≤ key + 1, each group counted by A₀ log(B + key).
+@isnad1 id=le.7h8v.s8.f0c8bc04d79b from=translated src=- shape=ec8af6c4 vocab=0d9c4cc1
+-/
 lemma one_side_sum_le {ι : Type*} (s : Finset ι) (x : ι → ℝ) (m : ι → ℕ) (key : ι → ℕ)
     {A₀ B D₀ : ℝ} (hA₀ : 0 ≤ A₀) (hB : 1 ≤ B) (hD₀ : 2 ≤ D₀)
     (hx : ∀ ρ ∈ s, D₀ ≤ x ρ) (hkey_le : ∀ ρ ∈ s, (key ρ : ℝ) ≤ x ρ)
@@ -238,13 +260,18 @@ lemma one_side_sum_le {ι : Type*} (s : Finset ι) (x : ι → ℝ) (m : ι → 
 
 /-! #### Numerics at T ≥ T₀ -/
 
+/--
+@isnad1 id=le.1h1v.s5.88fc7862154f from=translated src=- shape=b9b8c8d9 vocab=4831f532
+-/
 lemma one_le_log_four_mul {T : ℝ} (hT : T₀ ≤ T) : 1 ≤ Real.log (4 * T) := by
   have hT' : (300 : ℝ) ≤ T := hT
   rw [Real.le_log_iff_exp_le (by linarith)]
   have := Real.exp_one_lt_d9
   linarith
 
-/-- The window-weight total, doubled (two sides), is ≤ 4 log(4T)/T for T ≥ T₀. -/
+/-- The window-weight total, doubled (two sides), is ≤ 4 log(4T)/T for T ≥ T₀.
+@isnad1 id=le.1h1v.s8.25db63ac83bc from=translated src=- shape=5e8ebfef vocab=e8f20444
+-/
 lemma two_sides_numeric {T : ℝ} (hT : T₀ ≤ T) :
     2 * ((2 * (Real.sqrt T ^ 3)⁻¹ + (Real.sqrt T ^ 2)⁻¹ / 2) * Real.log (2 * T + 4)
           + (2 * (Real.sqrt T ^ 2)⁻¹ + (Real.sqrt T)⁻¹) / (2 * T + 4))
@@ -286,7 +313,9 @@ lemma two_sides_numeric {T : ℝ} (hT : T₀ ≤ T) :
 /-! #### The zero-count sum -/
 
 /-- **Zero-count sum** (proof of [prop:tail]). For T ≥ T₀ and every finite set s of tail
-zeros (γ_ρ ∉ I'), ∑_{ρ∈s} m_ρ · dist(γ_ρ, I)⁻³ ≤ 4 A₀ log(4T) / D₀², with D₀² = T. -/
+zeros (γ_ρ ∉ I'), ∑_{ρ∈s} m_ρ · dist(γ_ρ, I)⁻³ ≤ 4 A₀ log(4T) / D₀², with D₀² = T.
+@isnad1 id=le.3h6v.s7.e73d3ddd55ff from=translated src=- shape=ffa0626b vocab=46636514
+-/
 theorem tail_count_sum_le {ι : Type*} {γ : ι → ℝ} {m : ι → ℕ} {A₀ T : ℝ}
     (hN : LocalCount γ m A₀) (hT : T₀ ≤ T) (s : Finset ι) (hs : ∀ ρ ∈ s, InTail T (γ ρ)) :
     ∑ ρ ∈ s, (m ρ : ℝ) * ((distI T (γ ρ)) ^ 3)⁻¹ ≤ 4 * A₀ * Real.log (4 * T) / T := by
@@ -387,7 +416,9 @@ theorem tail_count_sum_le {ι : Type*} {γ : ι → ℝ} {m : ι → ℕ} {A₀ 
 /-! #### The boundary count N(I' ∖ I) -/
 
 /-- Counting by unit windows: if every zero of s falls in one of K windows (key < K) and each
-window holds total multiplicity ≤ C, then ∑_s m ≤ K·C. -/
+window holds total multiplicity ≤ C, then ∑_s m ≤ K·C.
+@isnad1 id=le.2h6v.s6.43865544b1af from=translated src=- shape=b8640b41 vocab=57371fcf
+-/
 lemma sum_mult_le_of_windows {ι : Type*} (s : Finset ι) (m : ι → ℕ) (key : ι → ℕ) (K : ℕ)
     {C : ℝ} (hkey : ∀ ρ ∈ s, key ρ < K)
     (hcount : ∀ j < K, ∑ ρ ∈ s with key ρ = j, (m ρ : ℝ) ≤ C) :
@@ -402,7 +433,9 @@ lemma sum_mult_le_of_windows {ι : Type*} (s : Finset ι) (m : ι → ℕ) (key 
 [prop:zeroside], [prop:zeroside-rank]: "N(I'∖I) ≪ D₀ l by N(t+1)−N(t) ≤ A₀ log(t+3)").
 Explicit form: for T ≥ T₀ and every finite set s of zeros with
 γ_ρ ∈ (T−√T, T] ∪ (2T, 2T+√T], ∑_{ρ∈s} m_ρ ≤ 3 · A₀ · √T · log(4T)
-(and log(4T) ≤ 2 log(T/2π) = 2l for T ≥ T₀, see log_four_mul_le_two_mul_l). -/
+(and log(4T) ≤ 2 log(T/2π) = 2l for T ≥ T₀, see log_four_mul_le_two_mul_l).
+@isnad1 id=le.3h6v.s7.083748ed0195 from=translated src=- shape=afaf6812 vocab=35cd508c
+-/
 theorem boundary_count_le {ι : Type*} {γ : ι → ℝ} {m : ι → ℕ} {A₀ T : ℝ}
     (hN : LocalCount γ m A₀) (hT : T₀ ≤ T) (s : Finset ι)
     (hs : ∀ ρ ∈ s, (T - Real.sqrt T < γ ρ ∧ γ ρ ≤ T)

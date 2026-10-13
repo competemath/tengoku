@@ -36,7 +36,9 @@ variable {A : Type} [Finite A] {M : ATMData A} {k : ℕ}
 
 omit [Finite A] in
 /-- **The blocks along a play never decrease**: a play takes genuine steps, and
-a step never lowers the block. -/
+a step never lowers the block.
+@isnad1 id=le.5h9v.s6.8aa80cc0430f from=translated src=- shape=886ffc12 vocab=5c4f6641
+-/
 theorem le_blk_of_blockPlay (hbwf : M.BlocksWellFormed k) {i : ℕ} {c : Config A} {ℓ : ℕ}
     {f : ℕ → Config A} (hplay : M.BlockPlay i c ℓ f) (hc : M.Blk i c.state) :
     ∀ j, j ≤ ℓ → ∀ jj, M.Blk jj (f j).state → i ≤ jj := by
@@ -55,14 +57,18 @@ theorem le_blk_of_blockPlay (hbwf : M.BlocksWellFormed k) {i : ℕ} {c : Config 
         (Nat.le_of_eq (blk_unique hbwf h hjj)))
 
 omit [Finite A] in
-/-- Both readings of the end of a play depend only on its last configuration. -/
+/-- Both readings of the end of a play depend only on its last configuration.
+@isnad1 id=playends.2h8v.s5.43162e9be43d from=translated src=- shape=d2aae01a vocab=3d031bad
+-/
 theorem PlayEnds.congr {start : Bool} {i n ℓ : ℕ} {f g : ℕ → Config A} (h : f ℓ = g ℓ)
     (hf : M.PlayEnds start i n ℓ f) : M.PlayEnds start i n ℓ g := by
   unfold PlayEnds at hf ⊢
   rwa [← h]
 
 omit [Finite A] in
-/-- The universal reading likewise. -/
+/-- The universal reading likewise.
+@isnad1 id=univplay.2h8v.s5.8c6326638876 from=translated src=- shape=d2aae01a vocab=26b2be3b
+-/
 theorem UnivPlayOk.congr {start : Bool} {i n ℓ : ℕ} {f g : ℕ → Config A} (h : f ℓ = g ℓ)
     (hf : M.UnivPlayOk start i n ℓ f) : M.UnivPlayOk start i n ℓ g := by
   unfold UnivPlayOk at hf ⊢
@@ -72,7 +78,9 @@ theorem UnivPlayOk.congr {start : Bool} {i n ℓ : ℕ} {f g : ℕ → Config A}
 
 /-- **An absorbing configuration is never left.** Once a walk is accepting or
 stuck at a position whose block it still answers for, its legality forces it to
-stand still at every later position. -/
+stand still at every later position.
+@isnad1 id=eq.7h6v.s6.f19747f08b3e from=translated src=- shape=af4bcf6e vocab=0a37d598
+-/
 theorem constant_of_absorbing (hlin : IsLinOrd M.Le) {i : ℕ} {w : A → Config A}
     (hw : M.LegalBelow i w) {x : A} (hx : M.Posn x) (hb : M.BlkLt i (w x).state)
     (habs : M.Acc (w x).state ∨ M.Stuck (w x)) :
@@ -94,7 +102,9 @@ variable (hbwf : M.BlocksWellFormed k) (hlin : IsLinOrd M.Le) {p₁ : A}
 include hbwf hlin hmax
 
 omit hbwf in
-/-- A position above `t` is the one the enumeration reaches at its rank. -/
+/-- A position above `t` is the one the enumeration reaches at its rank.
+@isnad1 id=eq.5h5v.s6.cef0028ea5cf from=translated src=- shape=be0b2a33 vocab=800854c1
+-/
 theorem posSeq_eq_of_le {t s : A} (ht : M.Posn t) (hs : M.Posn s) (hle : M.Le t s) :
     s = M.posSeq t (bitRank M.Le M.Posn s - bitRank M.Le M.Posn t) := by
   have h1 : bitRank M.Le M.Posn t ≤ bitRank M.Le M.Posn s :=
@@ -107,7 +117,9 @@ theorem posSeq_eq_of_le {t s : A} (ht : M.Posn t) (hs : M.Posn s) (hle : M.Le t 
 
 /-- **What the rest of the game decides**: the game from round `i + 1` holds
 exactly when the play of block `i` that round `i`'s walk describes ends well –
-in either of the two readings the collapse lemmas use. -/
+in either of the two readings the collapse lemmas use.
+@isnad1 id=and.11h10v.s9.737ce8ef5a68 from=translated src=- shape=785097a4 vocab=ba470fba
+-/
 theorem game_iff_end (start : Bool) {i m : ℕ}
     (hIH : ∀ (v : A → Config A) (t' : A), M.LegalBelow (i + 1) v → M.Posn t' →
       M.Blk (i + 1) (v t').state →
@@ -231,7 +243,9 @@ below `i + 1`, to start the round at `c`, to keep the past in low blocks, and
 to be met by the walk `DescriptiveComplexity.ATMData.splice` builds out of any
 play that ends the way a round may end. -/
 
-/-- **One round of the game.** -/
+/-- **One round of the game.**
+@isnad1 id=iff.10h10v.s9.b2195e5e96fb from=translated src=- shape=0b07b9bf vocab=a04b6a96
+-/
 theorem altAcc_iff_guardQ (start : Bool) {i m : ℕ}
     (hIH : ∀ (v : A → Config A) (t' : A), M.LegalBelow (i + 1) v → M.Posn t' →
       M.Blk (i + 1) (v t').state →
@@ -368,7 +382,9 @@ theorem altAcc_iff_guardQ (start : Bool) {i m : ℕ}
 `i`.** The induction is on the number of rounds left; the base case is vacuous
 because a state of block `k` does not exist, and the step is
 `DescriptiveComplexity.ATMData.altAcc_iff_guardQ` with the agreement condition
-of the round as its admissibility. -/
+of the round as its admissibility.
+@isnad1 id=iff.9h9v.s7.23ad07fee841 from=translated src=- shape=eea86022 vocab=0a81dc60
+-/
 theorem gameFrom_iff (start : Bool) :
     ∀ (m i : ℕ), i + m = k → 0 < i → ∀ (prev : A → Config A) (t : A),
       M.LegalBelow i prev → M.Posn t → M.Blk i (prev t).state →
@@ -410,7 +426,9 @@ theorem gameFrom_iff (start : Bool) :
 nothing to inherit, so it is the general round with the initial configuration
 as its own choice – which is why
 `DescriptiveComplexity.ATMData.AltAccepts` quantifies that configuration at the
-polarity of block `0`. -/
+polarity of block `0`.
+@isnad1 id=iff.5h6v.s6.7ed3626bf0a4 from=translated src=- shape=a75a5421 vocab=bdc2d83f
+-/
 theorem altAccepts_iff_altGame (start : Bool) {p₀ : A} (hmin : MinPos M.Le M.Posn p₀)
     (hk : 0 < k) : M.AltAccepts start ↔ M.AltGame start k := by
   obtain ⟨m, rfl⟩ : ∃ m, k = m + 1 := ⟨k - 1, by omega⟩

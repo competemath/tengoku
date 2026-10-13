@@ -60,25 +60,40 @@ def retargetInputStartedCfg (M : TM k) (y : List Bool) (realInput : Tape) :
     else (Tape.init (y.map Γ.ofBool)).move Dir3.right
   output := (Tape.init []).move Dir3.right
 
+/--
+@isnad1 id=eq.0h4v.s6.588b0a0b4f68 from=translated src=- shape=bca41d35 vocab=30ff8770
+-/
 @[simp] theorem retargetInputStartedCfg_state (M : TM k) (y : List Bool)
     (realInput : Tape) :
     (retargetInputStartedCfg M y realInput).state = (retargetInputStarted M).qstart := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.95c8fca08005 from=translated src=- shape=36488845 vocab=fda320b6
+-/
 @[simp] theorem retargetInputStartedCfg_input (M : TM k) (y : List Bool)
     (realInput : Tape) :
     (retargetInputStartedCfg M y realInput).input = realInput := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.bb03242a188b from=translated src=- shape=934e8705 vocab=1654a913
+-/
 @[simp] theorem retargetInputStartedCfg_output (M : TM k) (y : List Bool)
     (realInput : Tape) :
     (retargetInputStartedCfg M y realInput).output =
       (Tape.init []).move Dir3.right := rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.c9f09999a2b6 from=translated src=- shape=b17c687a vocab=160766bf
+-/
 theorem retargetInputStartedCfg_work_lt (M : TM k) (y : List Bool)
     (realInput : Tape) (i : Fin (k + 1)) (h : i.val < k) :
     (retargetInputStartedCfg M y realInput).work i =
       (Tape.init []).move Dir3.right := by
   simp [retargetInputStartedCfg, h]
 
+/--
+@isnad1 id=eq.0h4v.s6.33c0c62c8617 from=translated src=- shape=9664bb18 vocab=dc1d8a2f
+-/
 @[simp] theorem retargetInputStartedCfg_work_last (M : TM k) (y : List Bool)
     (realInput : Tape) :
     (retargetInputStartedCfg M y realInput).work ⟨k, by omega⟩ =

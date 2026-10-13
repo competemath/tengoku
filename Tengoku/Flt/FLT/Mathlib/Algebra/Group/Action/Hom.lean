@@ -67,6 +67,9 @@ def MulActionHom.evalAlgHom (G R X Y : Type*) [CommSemiring R] [Semiring Y] [Alg
   toFun x := (Pi.evalAlgHom _ _ x).comp MulActionHom.toFunAlgHom
   map_smul' σ x := by ext f; exact f.map_smul σ x
 
+/--
+@isnad1 id=eq.0h6v.s10.a760a798625c from=translated src=- shape=39e517c0 vocab=ec660ba3
+-/
 @[simp]
 lemma MulActionHom.evalAlgHom_apply {G R X Y : Type*} [CommSemiring R] [Semiring Y] [Algebra R Y]
     [Monoid G] [MulAction G X] [MulSemiringAction G Y] [SMulCommClass G R Y] (x f) :

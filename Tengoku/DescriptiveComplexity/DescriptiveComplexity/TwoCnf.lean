@@ -53,10 +53,16 @@ abbrev Lit (V : Type) : Type := V × Bool
 /-- The negation of a literal. -/
 def neg (p : Lit V) : Lit V := (p.1, !p.2)
 
+/--
+@isnad1 id=eq.0h2v.s3.462076a0b064 from=translated src=- shape=b2c15103 vocab=4b03d746
+-/
 @[simp]
 theorem neg_neg (p : Lit V) : neg (neg p) = p := by
   simp [neg]
 
+/--
+@isnad1 id=eq.0h2v.s4.b1e418aae2f9 from=translated src=- shape=5f5a09ce vocab=a0ab3f45
+-/
 @[simp]
 theorem neg_fst (p : Lit V) : (neg p).1 = p.1 := rfl
 
@@ -64,6 +70,9 @@ theorem neg_fst (p : Lit V) : (neg p).1 = p.1 := rfl
 def LitTrue (ν : V → Prop) (p : Lit V) : Prop :=
   if p.2 then ν p.1 else ¬ν p.1
 
+/--
+@isnad1 id=iff.0h3v.s4.ee3d58d30933 from=translated src=- shape=9e493073 vocab=f0aed589
+-/
 theorem litTrue_neg {ν : V → Prop} {p : Lit V} : LitTrue ν (neg p) ↔ ¬LitTrue ν p := by
   obtain ⟨x, s⟩ := p
   cases s <;> simp [LitTrue, neg]
@@ -85,12 +94,16 @@ def Step (p q : Lit V) : Prop :=
 abbrev Reach : Lit V → Lit V → Prop :=
   Relation.ReflTransGen (Step Cl)
 
-/-- **Contraposition, one step**: the implication `p → q` is also `¬q → ¬p`. -/
+/-- **Contraposition, one step**: the implication `p → q` is also `¬q → ¬p`.
+@isnad1 id=step.1h4v.s4.37ab52f1bb94 from=translated src=- shape=1ef281bb vocab=e5ee14e4
+-/
 theorem step_neg {p q : Lit V} (h : Step Cl p q) : Step Cl (neg q) (neg p) := by
   rw [Step, neg_neg]
   exact h.symm
 
-/-- **Contraposition**: `p ⇝ q` gives `¬q ⇝ ¬p`. -/
+/-- **Contraposition**: `p ⇝ q` gives `¬q ⇝ ¬p`.
+@isnad1 id=reach.1h4v.s4.d05e1c34ca25 from=translated src=- shape=1ef281bb vocab=bff83ce0
+-/
 theorem reach_neg {p q : Lit V} (h : Reach Cl p q) : Reach Cl (neg q) (neg p) := by
   induction h with
   | refl => exact Relation.ReflTransGen.refl
@@ -102,7 +115,9 @@ section Sound
 
 variable {Cl} {ν : V → Prop}
 
-/-- One implication step preserves truth. -/
+/-- One implication step preserves truth.
+@isnad1 id=littrue.3h5v.s5.f91976f8dcb2 from=translated src=- shape=72c6722c vocab=e346fffb
+-/
 theorem litTrue_of_step (hν : Satisfies Cl ν) {p q : Lit V} (hstep : Step Cl p q)
     (hp : LitTrue ν p) : LitTrue ν q := by
   rcases hstep with h | h
@@ -113,7 +128,9 @@ theorem litTrue_of_step (hν : Satisfies Cl ν) {p q : Lit V} (hstep : Step Cl p
     · exact h'
     · exact absurd hp (litTrue_neg.mp h')
 
-/-- **Implications are sound**: reachability preserves truth. -/
+/-- **Implications are sound**: reachability preserves truth.
+@isnad1 id=littrue.3h5v.s5.b1cb3d4bf22d from=translated src=- shape=72c6722c vocab=741efac4
+-/
 theorem litTrue_of_reach (hν : Satisfies Cl ν) {p q : Lit V} (h : Reach Cl p q)
     (hp : LitTrue ν p) : LitTrue ν q := by
   induction h with
@@ -123,7 +140,9 @@ theorem litTrue_of_reach (hν : Satisfies Cl ν) {p q : Lit V} (h : Reach Cl p q
 end Sound
 
 /-- **A satisfiable 2-CNF has no bad cycle**: a literal reaching its own
-negation and back would be both true and false. -/
+negation and back would be both true and false.
+@isnad1 id=not.1h4v.s5.ca1f95c712d4 from=translated src=- shape=ddc7fb6f vocab=072c9c0f
+-/
 theorem no_bad_cycle_of_satisfies {ν : V → Prop} (hν : Satisfies Cl ν) (p : Lit V) :
     ¬(Reach Cl p (neg p) ∧ Reach Cl (neg p) p) := by
   rintro ⟨h1, h2⟩
@@ -147,10 +166,16 @@ def Consistent (T : Set (Lit V)) : Prop :=
 def Decides (T : Set (Lit V)) (x : V) : Prop :=
   ((x, true) : Lit V) ∈ T ∨ ((x, false) : Lit V) ∈ T
 
+/--
+@isnad1 id=closed.0h2v.s4.db96f8b3bc28 from=translated src=- shape=23d2f592 vocab=44899111
+-/
 theorem closed_empty : Closed Cl (∅ : Set (Lit V)) := by
   intro p hp
   exact hp.elim
 
+/--
+@isnad1 id=consiste.0h1v.s3.1ee17d2c9369 from=translated src=- shape=2498945e vocab=dfd9fb7c
+-/
 theorem consistent_empty : Consistent (∅ : Set (Lit V)) := by
   intro p hp
   exact hp.elim
@@ -158,7 +183,9 @@ theorem consistent_empty : Consistent (∅ : Set (Lit V)) := by
 variable {Cl}
 
 /-- **The extension step**: a closed consistent set that does not decide `x`
-can be extended to one that does, provided `x` has no bad cycle. -/
+can be extended to one that does, provided `x` has no bad cycle.
+@isnad1 id=ex.4h4v.s6.01ea6a124e4a from=translated src=- shape=6c7d4427 vocab=e134b0ce
+-/
 theorem exists_extend {T : Set (Lit V)} (hclosed : Closed Cl T) (hcons : Consistent T)
     {x : V} (hx : ¬Decides T x)
     (hcyc : ∀ s : Bool, ¬(Reach Cl ((x, s) : Lit V) (neg (x, s)) ∧
@@ -204,7 +231,9 @@ theorem exists_extend {T : Set (Lit V)} (hclosed : Closed Cl T) (hcons : Consist
     | false => exact Or.inr (Or.inr Relation.ReflTransGen.refl)
     | true => exact Or.inl (Or.inr Relation.ReflTransGen.refl)
 
-/-- Deciding a whole finite set of variables, one extension at a time. -/
+/-- Deciding a whole finite set of variables, one extension at a time.
+@isnad1 id=ex.1h3v.s6.fe869791895e from=translated src=- shape=abb5e629 vocab=56087093
+-/
 theorem exists_closed_consistent_deciding
     (hcyc : ∀ (x : V) (s : Bool), ¬(Reach Cl ((x, s) : Lit V) (neg (x, s)) ∧
       Reach Cl (neg ((x, s) : Lit V)) (x, s)))
@@ -233,7 +262,9 @@ theorem exists_closed_consistent_deciding
 variable [Finite V]
 
 /-- **The criterion**: a 2-CNF with no literal reaching its own negation and
-back is satisfiable. -/
+back is satisfiable.
+@isnad1 id=ex.1h2v.s5.fdad62eecb53 from=translated src=- shape=d38eaf72 vocab=3429047d
+-/
 theorem exists_satisfies_of_no_bad_cycle
     (hcyc : ∀ (x : V) (s : Bool), ¬(Reach Cl ((x, s) : Lit V) (neg (x, s)) ∧
       Reach Cl (neg ((x, s) : Lit V)) (x, s))) :
@@ -314,14 +345,18 @@ def CarryStep (a b : CarryNode V) : Prop :=
 variable {Cl}
 
 /-- A walk of the cycle-witnessing graph projects to a walk of the implication
-graph. -/
+graph.
+@isnad1 id=reach.1h4v.s5.7af15caa7e9c from=translated src=- shape=84750642 vocab=7e4f46b8
+-/
 theorem reach_of_carryReach {a b : CarryNode V}
     (h : Relation.ReflTransGen (CarryStep Cl) a b) : Reach Cl a.2.1 b.2.1 := by
   induction h with
   | refl => exact Relation.ReflTransGen.refl
   | tail _ hstep ih => exact ih.tail hstep.2.1
 
-/-- The start component is constant along a walk. -/
+/-- The start component is constant along a walk.
+@isnad1 id=eq.1h4v.s5.fec457f3790d from=translated src=- shape=4adbec09 vocab=1f04963d
+-/
 theorem start_of_carryReach {a b : CarryNode V}
     (h : Relation.ReflTransGen (CarryStep Cl) a b) : b.1 = a.1 := by
   induction h with
@@ -329,7 +364,9 @@ theorem start_of_carryReach {a b : CarryNode V}
   | tail _ hstep ih => exact hstep.1.trans ih
 
 /-- A walk of the implication graph lifts to one of the cycle-witnessing graph
-at any fixed start and flag. -/
+at any fixed start and flag.
+@isnad1 id=refltran.1h6v.s5.2dcdb13282c8 from=translated src=- shape=a8e85ac6 vocab=8d08f7c0
+-/
 theorem carryReach_of_reach (s : Lit V) (ph : Bool) {a b : Lit V} (h : Reach Cl a b) :
     Relation.ReflTransGen (CarryStep Cl) (s, a, ph) (s, b, ph) := by
   induction h with
@@ -337,7 +374,9 @@ theorem carryReach_of_reach (s : Lit V) (ph : Bool) {a b : Lit V} (h : Reach Cl 
   | tail _ hstep ih => exact ih.tail ⟨rfl, hstep, Or.inl rfl⟩
 
 /-- What a walk that has raised its flag witnesses: the start's negation was
-passed on the way. -/
+passed on the way.
+@isnad1 id=and.2h5v.s6.83966a5b12b0 from=translated src=- shape=24ca682c vocab=64f1bc6a
+-/
 theorem reach_neg_of_carryReach {s a : Lit V} {d : CarryNode V}
     (h : Relation.ReflTransGen (CarryStep Cl) ((s, a, false) : CarryNode V) d)
     (hd : d.2.2 = true) : Reach Cl a (neg s) ∧ Reach Cl (neg s) d.2.1 := by
@@ -365,7 +404,9 @@ theorem reach_neg_of_carryReach {s a : Lit V} {d : CarryNode V}
 
 /-- **A bad cycle is a single walk**: the literal `p` reaches its own negation
 and comes back exactly when the cycle-witnessing graph takes `(p, p, false)` to
-`(p, p, true)`. -/
+`(p, p, true)`.
+@isnad1 id=iff.0h3v.s5.cdf7df104f86 from=translated src=- shape=142badc3 vocab=77351eaa
+-/
 theorem carryReach_iff (p : Lit V) :
     Relation.ReflTransGen (CarryStep Cl) ((p, p, false) : CarryNode V) (p, p, true) ↔
       (Reach Cl p (neg p) ∧ Reach Cl (neg p) p) := by

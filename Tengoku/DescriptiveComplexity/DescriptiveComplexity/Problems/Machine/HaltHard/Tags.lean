@@ -66,6 +66,9 @@ def CPos : Code → Type
   | .case f g => Unit ⊕ CPos f ⊕ CPos g
   | .fix f => Unit ⊕ CPos f
 
+/--
+@isnad1 id=finite.0h1v.s2.5eb65ab71497 from=translated src=- shape=76a08d12 vocab=c0a7f184
+-/
 instance instFiniteCPos : ∀ c : Code, Finite (CPos c)
   | .zero' => inferInstanceAs (Finite Unit)
   | .succ => inferInstanceAs (Finite Unit)
@@ -141,6 +144,9 @@ def codeAt : ∀ {c : Code}, CPos c → Code
     | .inl _ => .fix f
     | .inr q => codeAt q
 
+/--
+@isnad1 id=eq.0h1v.s3.1df48de376c9 from=translated src=- shape=86a320aa vocab=31759d8a
+-/
 @[simp] theorem codeAt_cRoot : ∀ c : Code, codeAt (cRoot c) = c
   | .zero' => rfl
   | .succ => rfl
@@ -226,7 +232,9 @@ def rchild? : Code → Option Code
   | _ => none
 
 /-- The code at the first child is the first subterm of the code at the
-position. -/
+position.
+@isnad1 id=eq.0h2v.s4.6590f9e33379 from=translated src=- shape=abafb71a vocab=c63e1dd7
+-/
 theorem codeAt_child₁ : ∀ {c : Code} (p : CPos c),
     (child₁ p).map (fun q => codeAt q) = lchild? (codeAt p)
   | .zero', _ => rfl
@@ -245,7 +253,9 @@ theorem codeAt_child₁ : ∀ {c : Code} (p : CPos c),
   | .fix _, .inr q => (Option.map_map _ _ _).trans (codeAt_child₁ q)
 
 /-- The code at the second child is the second subterm of the code at the
-position. -/
+position.
+@isnad1 id=eq.0h2v.s4.40159862319f from=translated src=- shape=abafb71a vocab=6ecd34c6
+-/
 theorem codeAt_child₂ : ∀ {c : Code} (p : CPos c),
     (child₂ p).map (fun q => codeAt q) = rchild? (codeAt p)
   | .zero', _ => rfl
@@ -273,7 +283,9 @@ def c₁ (p : CPos c) : CPos c := (child₁ p).getD (cRoot c)
 def c₂ (p : CPos c) : CPos c := (child₂ p).getD (cRoot c)
 
 /-- The code at the first child, when the position holds a code with a first
-subterm. -/
+subterm.
+@isnad1 id=eq.1h3v.s4.72187e75fc61 from=translated src=- shape=4504de15 vocab=def3cd52
+-/
 theorem codeAt_c₁ {p : CPos c} {f : Code} (h : lchild? (codeAt p) = some f) :
     codeAt (c₁ p) = f := by
   have hm := codeAt_child₁ p
@@ -286,7 +298,9 @@ theorem codeAt_c₁ {p : CPos c} {f : Code} (h : lchild? (codeAt p) = some f) :
     exact Option.some_injective _ hm
 
 /-- The code at the second child, when the position holds a code with a
-second subterm. -/
+second subterm.
+@isnad1 id=eq.1h3v.s4.d700eb7abc84 from=translated src=- shape=4504de15 vocab=28a8ebac
+-/
 theorem codeAt_c₂ {p : CPos c} {g : Code} (h : rchild? (codeAt p) = some g) :
     codeAt (c₂ p) = g := by
   have hm := codeAt_child₂ p
@@ -298,24 +312,45 @@ theorem codeAt_c₂ {p : CPos c} {g : Code} (h : rchild? (codeAt p) = some g) :
     rw [c₂, hq, Option.getD_some]
     exact Option.some_injective _ hm
 
+/--
+@isnad1 id=eq.1h4v.s4.1b5953aac0e9 from=translated src=- shape=18ac2e8f vocab=6153ab47
+-/
 @[simp] theorem codeAt_c₁_cons {p : CPos c} {f fs : Code} (h : codeAt p = .cons f fs) :
     codeAt (c₁ p) = f := codeAt_c₁ (by rw [h]; rfl)
 
+/--
+@isnad1 id=eq.1h4v.s4.b732289cb4fd from=translated src=- shape=a5dd2eab vocab=bf9a7a87
+-/
 @[simp] theorem codeAt_c₂_cons {p : CPos c} {f fs : Code} (h : codeAt p = .cons f fs) :
     codeAt (c₂ p) = fs := codeAt_c₂ (by rw [h]; rfl)
 
+/--
+@isnad1 id=eq.1h4v.s4.b9e266f95cbb from=translated src=- shape=18ac2e8f vocab=3d69564c
+-/
 @[simp] theorem codeAt_c₁_comp {p : CPos c} {f g : Code} (h : codeAt p = .comp f g) :
     codeAt (c₁ p) = f := codeAt_c₁ (by rw [h]; rfl)
 
+/--
+@isnad1 id=eq.1h4v.s4.9a95db83da47 from=translated src=- shape=a5dd2eab vocab=e24747e8
+-/
 @[simp] theorem codeAt_c₂_comp {p : CPos c} {f g : Code} (h : codeAt p = .comp f g) :
     codeAt (c₂ p) = g := codeAt_c₂ (by rw [h]; rfl)
 
+/--
+@isnad1 id=eq.1h4v.s4.5a203211c77d from=translated src=- shape=18ac2e8f vocab=0d470093
+-/
 @[simp] theorem codeAt_c₁_case {p : CPos c} {f g : Code} (h : codeAt p = .case f g) :
     codeAt (c₁ p) = f := codeAt_c₁ (by rw [h]; rfl)
 
+/--
+@isnad1 id=eq.1h4v.s4.16062fa0ea7e from=translated src=- shape=a5dd2eab vocab=bebd6b3c
+-/
 @[simp] theorem codeAt_c₂_case {p : CPos c} {f g : Code} (h : codeAt p = .case f g) :
     codeAt (c₂ p) = g := codeAt_c₂ (by rw [h]; rfl)
 
+/--
+@isnad1 id=eq.1h3v.s4.2090c94d734c from=translated src=- shape=914df013 vocab=84cbee1c
+-/
 @[simp] theorem codeAt_c₁_fix {p : CPos c} {f : Code} (h : codeAt p = .fix f) :
     codeAt (c₁ p) = f := codeAt_c₁ (by rw [h]; rfl)
 
@@ -411,14 +446,26 @@ its digits – so that the head block ends at the movable marker `endR` and
 every operation on it has the blank half-tape to grow into. -/
 def encVal (v : List ℕ) : List (SimSym c) := v.flatMap encNum
 
+/--
+@isnad1 id=ne.0h2v.s3.720e96547994 from=translated src=- shape=7965503c vocab=763440de
+-/
 @[simp] theorem encNum_ne_nil (n : ℕ) : encNum (c := c) n ≠ [] := by
   simp [encNum]
 
+/--
+@isnad1 id=eq.0h2v.s4.200681963e20 from=translated src=- shape=b7b54bf1 vocab=25a68f90
+-/
 @[simp] theorem length_encNum (n : ℕ) : (encNum (c := c) n).length = n + 1 := by
   simp [encNum]
 
+/--
+@isnad1 id=eq.0h1v.s3.6ea6c48a0464 from=translated src=- shape=b86de9df vocab=fe3192dc
+-/
 @[simp] theorem encVal_nil : encVal (c := c) [] = [] := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.9f1eea1e24e2 from=translated src=- shape=61f385a6 vocab=b362ebba
+-/
 @[simp] theorem encVal_cons (n : ℕ) (v : List ℕ) :
     encVal (c := c) (n :: v) = encNum n ++ encVal v := rfl
 

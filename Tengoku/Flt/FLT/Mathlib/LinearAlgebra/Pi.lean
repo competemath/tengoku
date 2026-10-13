@@ -57,10 +57,16 @@ the `R × S` action on `M × N`. -/
 class Prod.IsProdSMul (R S M N : Type*) [SMul R M] [SMul S N] [SMul (R × S) (M × N)] : Prop where
   map_smul (x : R × S) (y : M × N)  : x • y = (x.1 • y.1, x.2 • y.2)
 
+/--
+@isnad1 id=eq.0h6v.s6.83f4e3d8940a from=translated src=- shape=b7f57546 vocab=886ddfe8
+-/
 theorem Prod.IsProdSMul.smul_fst {R S M N : Type*} [SMul R M] [SMul S N] [SMul (R × S) (M × N)]
     [Prod.IsProdSMul R S M N] (x : R × S) (y : M × N) : (x • y).1 = x.1 • y.1 := by
   rw [Prod.IsProdSMul.map_smul x y]
 
+/--
+@isnad1 id=eq.0h6v.s6.510a1b7775e9 from=translated src=- shape=209fd151 vocab=eba82ba4
+-/
 theorem Prod.IsProdSMul.smul_snd {R S M N : Type*} [SMul R M] [SMul S N] [SMul (R × S) (M × N)]
     [Prod.IsProdSMul R S M N] (x : R × S) (y : M × N) : (x • y).2 = x.2 • y.2 := by
   rw [Prod.IsProdSMul.map_smul x y]

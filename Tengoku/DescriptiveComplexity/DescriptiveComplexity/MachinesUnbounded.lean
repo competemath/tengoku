@@ -113,7 +113,9 @@ section Steps
 
 variable {M}
 
-/-- A run extended by one more step at its end. -/
+/-- A run extended by one more step at its end.
+@isnad1 id=stepsinu.2h6v.s5.c89393f5cc97 from=translated src=- shape=a6c21d36 vocab=d519f061
+-/
 theorem StepsInU.trans_step : ∀ {n : ℕ} {c d e : ConfigU A},
     M.StepsInU n c d → M.StepU d e → M.StepsInU (n + 1) c e := by
   intro n
@@ -123,7 +125,9 @@ theorem StepsInU.trans_step : ∀ {n : ℕ} {c d e : ConfigU A},
     rintro c d e ⟨m, hstep, hrest⟩ hde
     exact ⟨m, hstep, ih hrest hde⟩
 
-/-- Runs compose; the step counts add. -/
+/-- Runs compose; the step counts add.
+@isnad1 id=stepsinu.2h7v.s5.3ce3589decfb from=translated src=- shape=470bb070 vocab=96cb7535
+-/
 theorem StepsInU.trans : ∀ {n m : ℕ} {c d e : ConfigU A},
     M.StepsInU n c d → M.StepsInU m d e → M.StepsInU (n + m) c e := by
   intro n
@@ -150,7 +154,9 @@ section Band
 
 variable {M}
 
-/-- One step moves the head by at most one page, in either direction. -/
+/-- One step moves the head by at most one page, in either direction.
+@isnad1 id=le.1h4v.s5.ef80e678b96f from=translated src=- shape=657272ad vocab=dfab7516
+-/
 theorem page_dist_stepU {c c' : ConfigU A} (h : M.StepU c c') :
     (c'.head.1 - c.head.1).natAbs ≤ 1 := by
   obtain ⟨_, _, _, _, _, _, _, hmove⟩ := h
@@ -163,7 +169,9 @@ theorem page_dist_stepU {c c' : ConfigU A} (h : M.StepU c c') :
   · rcases hcell _ _ hs with hz | hz <;> omega
 
 /-- **The band of a run**: after `n` steps the head is within `n` pages of where
-it started. -/
+it started.
+@isnad1 id=le.1h5v.s5.051319fb9b25 from=translated src=- shape=8582f3d1 vocab=f4fcd9c3
+-/
 theorem page_dist_stepsInU : ∀ {n : ℕ} {c c' : ConfigU A},
     M.StepsInU n c c' → (c'.head.1 - c.head.1).natAbs ≤ n := by
   intro n
@@ -224,7 +232,9 @@ theorem _root_.DescriptiveComplexity.ConfigU.map_injective (u : B ≃ A) :
 
 /-- Highest positions correspond, the companion of
 `DescriptiveComplexity.TMData.Agree.minPos`: the bounded model never mentions a
-highest position, but the page-crossing move does. -/
+highest position, but the page-crossing move does.
+@isnad1 id=iff.1h6v.s5.85547d4a3f7d from=translated src=- shape=57c2e350 vocab=d6faba99
+-/
 theorem Agree.maxPos (h : Agree u N M) {b : B} :
     MaxPos N.Le N.Posn b ↔ MaxPos M.Le M.Posn (u b) := by
   refine and_congr (h.posn b) ⟨fun hm a ha => ?_, fun hm a ha => ?_⟩
@@ -232,12 +242,18 @@ theorem Agree.maxPos (h : Agree u N M) {b : B} :
     rwa [(h.le _ _), Equiv.apply_symm_apply] at this
   · exact (h.le _ _).mpr (hm (u a) ((h.posn a).mp ha))
 
+/--
+@isnad1 id=iff.1h7v.s6.a05ff1225f9d from=translated src=- shape=e035ca06 vocab=a782fd8f
+-/
 theorem Agree.succCell (h : Agree u N M) {c c' : ℤ × B} :
     N.SuccCell c c' ↔ M.SuccCell (c.1, u c.2) (c'.1, u c'.2) := by
   refine or_congr (and_congr Iff.rfl h.succPos) (and_congr Iff.rfl (and_congr ?_ ?_))
   · exact h.maxPos
   · exact h.minPos
 
+/--
+@isnad1 id=iff.1h6v.s5.6a49d033c300 from=translated src=- shape=78460b8e vocab=6b430fb2
+-/
 theorem Agree.isInitU (h : Agree u N M) {c : ConfigU B} :
     N.IsInitU c ↔ M.IsInitU (c.map u) := by
   refine and_congr (h.start _) (and_congr Iff.rfl (and_congr h.minPos ?_))
@@ -253,6 +269,9 @@ theorem Agree.isInitU (h : Agree u N M) {c : ConfigU B} :
     refine ⟨fun hz => (h.initTape (u := u)).mpr (by simpa using this.1 hz),
       fun hz => (h.blank _).mpr (by simpa using this.2 hz)⟩
 
+/--
+@isnad1 id=iff.1h7v.s5.72e0f1f4120d from=translated src=- shape=78002ba0 vocab=d87323cf
+-/
 theorem Agree.stepU (h : Agree u N M) {c c' : ConfigU B} :
     N.StepU c c' ↔ M.StepU (c.map u) (c'.map u) := by
   constructor
@@ -290,6 +309,9 @@ theorem Agree.stepU (h : Agree u N M) {c c' : ConfigU B} :
         rw [← Equiv.apply_symm_apply u τ]
         exact (h.right _).mp hcon
 
+/--
+@isnad1 id=iff.1h8v.s5.8fa5a393a9d8 from=translated src=- shape=a664bfdb vocab=c49a952c
+-/
 theorem Agree.stepsInU (h : Agree u N M) :
     ∀ (n : ℕ) (c c' : ConfigU B), N.StepsInU n c c' ↔ M.StepsInU n (c.map u) (c'.map u) := by
   intro n
@@ -307,7 +329,9 @@ theorem Agree.stepsInU (h : Agree u N M) :
       obtain ⟨d₀, rfl⟩ := ConfigU.map_surjective u d
       exact ⟨d₀, h.stepU.mpr hstep, (ih d₀ c').mpr hrest⟩
 
-/-- **Acceptance on an unbounded tape transports along an equivalence.** -/
+/-- **Acceptance on an unbounded tape transports along an equivalence.**
+@isnad1 id=iff.1h5v.s4.087776bcb9df from=translated src=- shape=ab6a24bb vocab=6dbcc4ae
+-/
 theorem Agree.acceptsU (h : Agree u N M) : N.AcceptsU ↔ M.AcceptsU := by
   constructor
   · rintro ⟨c₀, c, n, hinit, hrun, hacc⟩

@@ -84,24 +84,34 @@ columns in `B` deleted. -/
 noncomputable def pdel (M : α → β → R) (A : Finset α) (B : Finset β) : R :=
   bperm fun (a : {a // a ∉ A}) (b : {b // b ∉ B}) => M a b
 
+/--
+@isnad1 id=eq.0h4v.s5.6aec4c6ffade from=translated src=- shape=3cb892c5 vocab=40c7ddf8
+-/
 theorem pdel_empty (M : α → β → R) : pdel M ∅ ∅ = bperm M := by
   unfold pdel
   exact (bperm_reindex (Equiv.subtypeUnivEquiv fun a => Finset.notMem_empty a)
     (Equiv.subtypeUnivEquiv fun b => Finset.notMem_empty b)
     fun (a : {a // a ∉ (∅ : Finset α)}) (b : {b // b ∉ (∅ : Finset β)}) => M a b).symm
 
+/--
+@isnad1 id=eq.0h6v.s6.a500464f8893 from=translated src=- shape=35e4f45e vocab=40c679f0
+-/
 theorem pdel_flip (M : α → β → R) (A : Finset α) (B : Finset β) :
     pdel (fun b a => M a b) B A = pdel M A B :=
   bperm_flip _
 
-/-- Deleting the same sets gives the same minor. -/
+/-- Deleting the same sets gives the same minor.
+@isnad1 id=eq.2h8v.s6.9d232c59de0f from=translated src=- shape=7fd55234 vocab=40c679f0
+-/
 theorem pdel_congr (M : α → β → R) {A A' : Finset α} {B B' : Finset β} (hA : A = A')
     (hB : B = B') : pdel M A B = pdel M A' B' := by
   subst hA hB
   rfl
 
 /-- **The Laplace expansion of a minor along the rows in `I`**, restricted to
-the columns `T` those rows are supported on. -/
+the columns `T` those rows are supported on.
+@isnad1 id=eq.3h8v.s8.1173587bbabe from=translated src=- shape=06647136 vocab=5a6fcfca
+-/
 theorem pdel_laplace_of_support (M : α → β → R) (A : Finset α) (B : Finset β) (I : Finset α)
     (T : Finset β) (hIA : ∀ a ∈ I, a ∉ A) (hTB : ∀ b ∈ T, b ∉ B)
     (hT : ∀ a ∈ I, ∀ b, b ∉ B → b ∉ T → M a b = 0) :
@@ -125,7 +135,9 @@ theorem pdel_laplace_of_support (M : α → β → R) (A : Finset α) (B : Finse
     · rw [Finset.mem_union, not_or]
     · rw [Finset.mem_union, not_or]
 
-/-- **Block factorization**: rows supported on as many columns. -/
+/-- **Block factorization**: rows supported on as many columns.
+@isnad1 id=eq.4h8v.s8.b4ebd8ae6d16 from=translated src=- shape=d12e6b37 vocab=44cc9e10
+-/
 theorem pdel_block (M : α → β → R) (A : Finset α) (B : Finset β) (I : Finset α) (J : Finset β)
     (hIA : ∀ a ∈ I, a ∉ A) (hJB : ∀ b ∈ J, b ∉ B) (hJ : J.card = I.card)
     (hT : ∀ a ∈ I, ∀ b, b ∉ B → b ∉ J → M a b = 0) :
@@ -133,7 +145,9 @@ theorem pdel_block (M : α → β → R) (A : Finset α) (B : Finset β) (I : Fi
   rw [pdel_laplace_of_support M A B I J hIA hJB hT, ← hJ, powersetCard_self, Finset.sum_singleton]
 
 omit [Fintype α] [Fintype β] in
-/-- The permanent of a `1 × 1` block is its entry. -/
+/-- The permanent of a `1 × 1` block is its entry.
+@isnad1 id=eq.0h6v.s8.b7ed436cc2ff from=translated src=- shape=06f7b35b vocab=91bc7d8f
+-/
 theorem bperm_singleton (M : α → β → R) (a : α) (b : β) :
     bperm (fun (x : ({a} : Finset α)) (y : ({b} : Finset β)) => M x y) = M a b := by
   have : Unique {x // x ∈ ({a} : Finset α)} :=
@@ -143,7 +157,9 @@ theorem bperm_singleton (M : α → β → R) (a : α) (b : β) :
   rw [bperm_of_unique]
   exact congrArg₂ M (mem_singleton.mp (Subtype.mem _)) (mem_singleton.mp (Subtype.mem _))
 
-/-- **Expansion along a row.** -/
+/-- **Expansion along a row.**
+@isnad1 id=eq.1h7v.s7.ff2c411392c2 from=translated src=- shape=28feee4e vocab=ad4518d9
+-/
 theorem pdel_row (M : α → β → R) (A : Finset α) (B : Finset β) {a : α} (ha : a ∉ A) :
     pdel M A B = ∑ b ∈ Bᶜ, M a b * pdel M (insert a A) (insert b B) := by
   rw [pdel_laplace_of_support M A B {a} Bᶜ (fun x hx => (mem_singleton.mp hx) ▸ ha)
@@ -153,13 +169,17 @@ theorem pdel_row (M : α → β → R) (A : Finset α) (B : Finset β) {a : α} 
   rw [Function.Embedding.coeFn_mk, bperm_singleton, Finset.union_comm, ← Finset.insert_eq,
     Finset.union_comm, ← Finset.insert_eq]
 
-/-- **Expansion along a column.** -/
+/-- **Expansion along a column.**
+@isnad1 id=eq.1h7v.s7.0613fce7c2cc from=translated src=- shape=6b912bbf vocab=ad4518d9
+-/
 theorem pdel_col (M : α → β → R) (A : Finset α) (B : Finset β) {b : β} (hb : b ∉ B) :
     pdel M A B = ∑ a ∈ Aᶜ, M a b * pdel M (insert a A) (insert b B) := by
   rw [← pdel_flip, pdel_row _ _ _ hb]
   exact Finset.sum_congr rfl fun a _ => by rw [pdel_flip]
 
-/-- A row with a single nonzero entry. -/
+/-- A row with a single nonzero entry.
+@isnad1 id=eq.3h8v.s7.f57e2982a407 from=translated src=- shape=7b91e8e3 vocab=9efb747e
+-/
 theorem pdel_row_single (M : α → β → R) (A : Finset α) (B : Finset β) {a : α} (ha : a ∉ A)
     {b : β} (hb : b ∉ B) (h : ∀ b', b' ∉ B → b' ≠ b → M a b' = 0) :
     pdel M A B = M a b * pdel M (insert a A) (insert b B) := by
@@ -167,7 +187,9 @@ theorem pdel_row_single (M : α → β → R) (A : Finset α) (B : Finset β) {a
   exact Finset.sum_eq_single b (fun b' hb' hne => by rw [h b' (mem_compl.mp hb') hne, zero_mul])
     fun hb' => absurd (mem_compl.mpr hb) hb'
 
-/-- A column with a single nonzero entry. -/
+/-- A column with a single nonzero entry.
+@isnad1 id=eq.3h8v.s7.51ae8dd7ec46 from=translated src=- shape=545be464 vocab=9efb747e
+-/
 theorem pdel_col_single (M : α → β → R) (A : Finset α) (B : Finset β) {b : β} (hb : b ∉ B)
     {a : α} (ha : a ∉ A) (h : ∀ a', a' ∉ A → a' ≠ a → M a' b = 0) :
     pdel M A B = M a b * pdel M (insert a A) (insert b B) := by
@@ -175,13 +197,17 @@ theorem pdel_col_single (M : α → β → R) (A : Finset α) (B : Finset β) {b
   exact Finset.sum_eq_single a (fun a' ha' hne => by rw [h a' (mem_compl.mp ha') hne, zero_mul])
     fun ha' => absurd (mem_compl.mpr ha) ha'
 
-/-- A zero row. -/
+/-- A zero row.
+@isnad1 id=eq.2h7v.s6.136cec4e318f from=translated src=- shape=f3260a15 vocab=3c047bfb
+-/
 theorem pdel_row_zero (M : α → β → R) (A : Finset α) (B : Finset β) {a : α} (ha : a ∉ A)
     (h : ∀ b, b ∉ B → M a b = 0) : pdel M A B = 0 := by
   rw [pdel_row M A B ha]
   exact Finset.sum_eq_zero fun b hb => by rw [h b (mem_compl.mp hb), zero_mul]
 
-/-- A zero column. -/
+/-- A zero column.
+@isnad1 id=eq.2h7v.s6.4f8e41b38cbb from=translated src=- shape=6b39f950 vocab=3c047bfb
+-/
 theorem pdel_col_zero (M : α → β → R) (A : Finset α) (B : Finset β) {b : β} (hb : b ∉ B)
     (h : ∀ a, a ∉ A → M a b = 0) : pdel M A B = 0 := by
   rw [pdel_col M A B hb]
@@ -204,7 +230,9 @@ def notExtraEquiv : {a : α ⊕ Unit // a ∉ ({Sum.inr ()} : Finset (α ⊕ Uni
 
 omit [Fintype β] [DecidableEq β] in
 /-- **Adding a node with a self-loop and no other outgoing edge does not
-change the permanent.** -/
+change the permanent.**
+@isnad1 id=eq.3h4v.s7.32ea49a3706d from=translated src=- shape=4172c6a7 vocab=406d61ce
+-/
 theorem bperm_extend_loop (M : α → α → R) (N : α ⊕ Unit → α ⊕ Unit → R)
     (hN : ∀ a b, N (Sum.inl a) (Sum.inl b) = M a b) (hloop : N (Sum.inr ()) (Sum.inr ()) = 1)
     (hrow : ∀ b, N (Sum.inr ()) (Sum.inl b) = 0) :

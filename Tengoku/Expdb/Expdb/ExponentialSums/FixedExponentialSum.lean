@@ -28,10 +28,16 @@ def oscillatory (F : ℝ → ℝ) (T N : ℝ) (x : ℝ) : ℂ :=
 def exponentialSumAt (F : ℝ → ℝ) (T N : ℝ) (a b : ℕ) : ℂ :=
   ∑ n ∈ Finset.Icc a b, oscillatory F T N n
 
+/--
+@isnad1 id=eq.0h4v.s4.fd1775df2705 from=translated src=- shape=8e3f62e5 vocab=5907841f
+-/
 @[simp] theorem exponentialSumAt_self (F : ℝ → ℝ) (T N : ℝ) (a : ℕ) :
     exponentialSumAt F T N a a = oscillatory F T N a := by
   simp [exponentialSumAt]
 
+/--
+@isnad1 id=eq.1h5v.s5.d8983ac4c2e9 from=translated src=- shape=d415ab62 vocab=40c09c0b
+-/
 theorem exponentialSumAt_of_lt {a b : ℕ} (hab : b < a) (F : ℝ → ℝ) (T N : ℝ) :
     exponentialSumAt F T N a b = 0 := by
   simp [exponentialSumAt, Finset.Icc_eq_empty (by omega : ¬ a ≤ b)]

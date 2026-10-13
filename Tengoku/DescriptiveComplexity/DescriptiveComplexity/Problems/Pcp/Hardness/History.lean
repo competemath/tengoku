@@ -77,20 +77,34 @@ inductive Letter (Γ : Type) where
 variable {Γ : Type}
 
 /-- Two different constructors of the alphabet are never equal; the shape in
-which the case analyses below need it. -/
+which the case analyses below need it.
+@isnad1 id=var.1h5v.s4.e36e9db8558b from=translated src=- shape=fc53accc vocab=83b37128
+-/
 theorem absurd_of_ne {P : Prop} {a b : Letter Γ} (h : a = b)
     (hne : a ≠ b := by simp) : P := absurd h hne
 
 /-- A word of the rewriting system, as a word of the alphabet above. -/
 def symW (w : List Γ) : List (Letter Γ) := w.map Letter.sym
 
+/--
+@isnad1 id=eq.0h1v.s3.685a15ade429 from=translated src=- shape=926f3dd5 vocab=5dfaa345
+-/
 @[simp] theorem symW_nil : symW ([] : List Γ) = [] := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.8df29b1bf1e8 from=translated src=- shape=48c169db vocab=bc1c10a3
+-/
 @[simp] theorem symW_cons (a : Γ) (w : List Γ) : symW (a :: w) = Letter.sym a :: symW w := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.32906b32dc34 from=translated src=- shape=777c1eca vocab=e980e299
+-/
 @[simp] theorem symW_append (w w' : List Γ) : symW (w ++ w') = symW w ++ symW w' := by
   simp [symW]
 
+/--
+@isnad1 id=not.0h2v.s4.d8fe449f0ccb from=translated src=- shape=c237be9a vocab=39bc7058
+-/
 theorem sep_not_mem_symW (w : List Γ) : Letter.sep ∉ symW w := by
   induction w with
   | nil => simp
@@ -106,22 +120,40 @@ def starR : List (Letter Γ) → List (Letter Γ)
   | [] => []
   | a :: w => a :: Letter.star :: starR w
 
+/--
+@isnad1 id=eq.0h1v.s3.67863ea5c94f from=translated src=- shape=397e0786 vocab=ae0c42ba
+-/
 @[simp] theorem starL_nil : starL ([] : List (Letter Γ)) = [] := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.64a9d1c915d0 from=translated src=- shape=440d77ef vocab=eafc2b7e
+-/
 @[simp] theorem starL_cons (a : Letter Γ) (w : List (Letter Γ)) :
     starL (a :: w) = Letter.star :: a :: starL w := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.c8c2eb94a818 from=translated src=- shape=397e0786 vocab=41f514fd
+-/
 @[simp] theorem starR_nil : starR ([] : List (Letter Γ)) = [] := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.3f8232c4c296 from=translated src=- shape=81905f6c vocab=79b2000c
+-/
 @[simp] theorem starR_cons (a : Letter Γ) (w : List (Letter Γ)) :
     starR (a :: w) = a :: Letter.star :: starR w := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.816d1f184303 from=translated src=- shape=49126a3b vocab=7aebd07c
+-/
 @[simp] theorem starL_append (w w' : List (Letter Γ)) :
     starL (w ++ w') = starL w ++ starL w' := by
   induction w with
   | nil => simp
   | cons a w ih => simp [ih]
 
+/--
+@isnad1 id=eq.0h3v.s5.1b6a33a6e8e2 from=translated src=- shape=49126a3b vocab=fc6e0921
+-/
 @[simp] theorem starR_append (w w' : List (Letter Γ)) :
     starR (w ++ w') = starR w ++ starR w' := by
   induction w with
@@ -130,7 +162,9 @@ def starR : List (Letter Γ) → List (Letter Γ)
 
 /-- **The half-letter offset**: decorating on the left and closing with a
 `star` is decorating on the right and opening with one. This one identity is
-what makes the top and the bottom words of a match spell the same word. -/
+what makes the top and the bottom words of a match spell the same word.
+@isnad1 id=eq.0h2v.s5.824d0b1b5270 from=translated src=- shape=196e79f3 vocab=61273a01
+-/
 theorem starL_star (w : List (Letter Γ)) :
     starL w ++ [Letter.star] = Letter.star :: starR w := by
   induction w with
@@ -139,7 +173,9 @@ theorem starL_star (w : List (Letter Γ)) :
 
 /-- **One decorated word is a prefix of the other.** Two decorated words
 opening a common word are comparable, and the longer one continues with the
-decoration of the difference. -/
+decoration of the difference.
+@isnad1 id=or.1h5v.s7.c472d459b04f from=translated src=- shape=49cda5b9 vocab=7aebd07c
+-/
 theorem starL_prefix_cases : ∀ (y z S S' : List (Letter Γ)),
     starL y ++ S = starL z ++ S' →
     (∃ t, z = y ++ t ∧ S = starL t ++ S') ∨ (∃ t, y = z ++ t ∧ starL t ++ S = S')
@@ -167,11 +203,17 @@ abbrev Derives : List Γ → List Γ → Prop := Relation.ReflTransGen (Step Rul
 
 variable {Rule}
 
+/--
+@isnad1 id=step.1h6v.s6.8235b7bf463f from=translated src=- shape=3c59528b vocab=e8c4501d
+-/
 theorem Step.congr {u v : List Γ} (h : Step Rule u v) (x y : List Γ) :
     Step Rule (x ++ u ++ y) (x ++ v ++ y) := by
   obtain ⟨x', l, r, y', hr, rfl, rfl⟩ := h
   exact ⟨x ++ x', l, r, y' ++ y, hr, by simp, by simp⟩
 
+/--
+@isnad1 id=derives.1h6v.s6.c6cad7e9ccba from=translated src=- shape=3c59528b vocab=b0fa5db4
+-/
 theorem Derives.congr {u v : List Γ} (h : Derives Rule u v) (x y : List Γ) :
     Derives Rule (x ++ u ++ y) (x ++ v ++ y) := by
   induction h with
@@ -190,6 +232,9 @@ inductive ParStep (Rule : List Γ → List Γ → Prop) : List Γ → List Γ �
   /-- A rule may be applied. -/
   | rule {l r u v : List Γ} : Rule l r → ParStep Rule u v → ParStep Rule (l ++ u) (r ++ v)
 
+/--
+@isnad1 id=derives.1h4v.s4.0a98848d645f from=translated src=- shape=69000141 vocab=7a90b0d5
+-/
 theorem ParStep.derives {u v : List Γ} (h : ParStep Rule u v) : Derives Rule u v := by
   induction h with
   | nil => exact Relation.ReflTransGen.refl
@@ -198,6 +243,9 @@ theorem ParStep.derives {u v : List Γ} (h : ParStep Rule u v) : Derives Rule u 
     refine Relation.ReflTransGen.head (b := r ++ u) ⟨[], l, r, u, hr, by simp, by simp⟩ ?_
     simpa using ih.congr r []
 
+/--
+@isnad1 id=parstep.1h5v.s5.7f0b885b76f1 from=translated src=- shape=d083e6cb vocab=ac9541fa
+-/
 theorem ParStep.snoc_keep {u v : List Γ} (h : ParStep Rule u v) (a : Γ) :
     ParStep Rule (u ++ [a]) (v ++ [a]) := by
   induction h with
@@ -205,6 +253,9 @@ theorem ParStep.snoc_keep {u v : List Γ} (h : ParStep Rule u v) (a : Γ) :
   | keep b _ ih => simpa using ih.keep b
   | rule hr _ ih => simpa using ih.rule hr
 
+/--
+@isnad1 id=parstep.1h7v.s6.72d6857430c3 from=translated src=- shape=587a3fdf vocab=b6797aeb
+-/
 theorem ParStep.snoc_rule {u v l r : List Γ} (h : ParStep Rule u v) (hr : Rule l r) :
     ParStep Rule (u ++ l) (v ++ r) := by
   induction h with
@@ -259,20 +310,38 @@ def tops (halt : Γ) (l : List (Dom Γ)) : List (Letter Γ) := (l.map (topW halt
 /-- The word spelt by the bottom of a list of dominoes. -/
 def bots (C₀ : List Γ) (l : List (Dom Γ)) : List (Letter Γ) := (l.map (botW C₀)).flatten
 
+/--
+@isnad1 id=eq.0h2v.s4.3648a19dc80a from=translated src=- shape=a34c11d6 vocab=ecf26edd
+-/
 @[simp] theorem tops_nil (halt : Γ) : tops halt ([] : List (Dom Γ)) = [] := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.91db5ac7f1a1 from=translated src=- shape=df395365 vocab=fbe3ea78
+-/
 @[simp] theorem tops_cons (halt : Γ) (d : Dom Γ) (l : List (Dom Γ)) :
     tops halt (d :: l) = topW halt d ++ tops halt l := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.d731b379f42e from=translated src=- shape=ef157551 vocab=80eed5cb
+-/
 @[simp] theorem bots_nil (C₀ : List Γ) : bots C₀ ([] : List (Dom Γ)) = [] := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.d6cf9bfe8053 from=translated src=- shape=acd989a8 vocab=901c57ae
+-/
 @[simp] theorem bots_cons (C₀ : List Γ) (d : Dom Γ) (l : List (Dom Γ)) :
     bots C₀ (d :: l) = botW C₀ d ++ bots C₀ l := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.487463be0289 from=translated src=- shape=7cee7b28 vocab=fb4ea0c0
+-/
 @[simp] theorem tops_append (halt : Γ) (l l' : List (Dom Γ)) :
     tops halt (l ++ l') = tops halt l ++ tops halt l' := by
   simp [tops]
 
+/--
+@isnad1 id=eq.0h4v.s6.2617b1b625a0 from=translated src=- shape=6d41b27b vocab=26103174
+-/
 @[simp] theorem bots_append (C₀ : List Γ) (l l' : List (Dom Γ)) :
     bots C₀ (l ++ l') = bots C₀ l ++ bots C₀ l' := by
   simp [bots]
@@ -298,11 +367,17 @@ variable {C₀ : List Γ} {halt : Γ}
 /-- The dominoes copying a word letter by letter. -/
 def copies (w : List Γ) : List (Dom Γ) := w.map Dom.copy
 
+/--
+@isnad1 id=ok.1h4v.s5.de73c50b91aa from=translated src=- shape=1d38861f vocab=efc8e352
+-/
 theorem ok_copies (w : List Γ) : ∀ d ∈ copies w, Ok Rule d := by
   intro d hd
   obtain ⟨a, _, rfl⟩ := List.mem_map.mp hd
   trivial
 
+/--
+@isnad1 id=eq.0h3v.s4.52f3f50b87e5 from=translated src=- shape=0194a839 vocab=1676256a
+-/
 @[simp] theorem tops_copies (w : List Γ) : tops halt (copies w) = starL (symW w) := by
   induction w with
   | nil => rfl
@@ -311,6 +386,9 @@ theorem ok_copies (w : List Γ) : ∀ d ∈ copies w, Ok Rule d := by
     rw [hc, tops_cons, ih]
     simp [topW]
 
+/--
+@isnad1 id=eq.0h3v.s4.8ac505891ca8 from=translated src=- shape=84441ab9 vocab=6b55173a
+-/
 @[simp] theorem bots_copies (w : List Γ) : bots C₀ (copies w) = starR (symW w) := by
   induction w with
   | nil => rfl
@@ -320,7 +398,9 @@ theorem ok_copies (w : List Γ) : ∀ d ∈ copies w, Ok Rule d := by
     simp [botW]
 
 /-- **The dominoes of one step**: they consume a configuration and its
-separator, and write the next configuration and its separator. -/
+separator, and write the next configuration and its separator.
+@isnad1 id=ex.2h6v.s7.719d22f9cf62 from=translated src=- shape=d05cf3e1 vocab=6bceef97
+-/
 theorem exists_block (hne : ∀ l r, Rule l r → l ≠ [] ∧ r ≠ []) {u v : List Γ} (h : Step Rule u v) :
     ∃ ds : List (Dom Γ), (∀ d ∈ ds, Ok Rule d) ∧
       tops halt ds = starL (symW u ++ [Letter.sep]) ∧
@@ -342,7 +422,9 @@ theorem exists_block (hne : ∀ l r, Rule l r → l ≠ [] ∧ r ≠ []) {u v : 
 
 /-- **The dominoes of a derivation**: they consume every configuration but the
 last, and write every configuration but the first, so the word they consume and
-the word they write are the same history read one configuration apart. -/
+the word they write are the same history read one configuration apart.
+@isnad1 id=ex.2h6v.s7.c07bd9bcbb31 from=translated src=- shape=5bbff1fd vocab=d3ab5d93
+-/
 theorem exists_run (hne : ∀ l r, Rule l r → l ≠ [] ∧ r ≠ []) {u v : List Γ} (h : Derives Rule u v) :
     ∃ (ds : List (Dom Γ)) (T B : List (Letter Γ)), (∀ d ∈ ds, Ok Rule d) ∧
       tops halt ds = starL T ∧ bots C₀ ds = starR B ∧
@@ -362,7 +444,9 @@ theorem exists_run (hne : ∀ l r, Rule l r → l ≠ [] ∧ r ≠ []) {u v : Li
     · simp only [List.append_assoc] at heq ⊢
       rw [heq]
 
-/-- **A derivation gives a match.** -/
+/-- **A derivation gives a match.**
+@isnad1 id=hasmatch.2h4v.s5.881e100cb66e from=translated src=- shape=8d651712 vocab=5823648a
+-/
 theorem hasMatch_of_derives (hne : ∀ l r, Rule l r → l ≠ [] ∧ r ≠ [])
     (h : Derives Rule C₀ [halt]) : HasMatch Rule C₀ halt := by
   obtain ⟨ds, T, B, hok, htop, hbot, heq⟩ :=
@@ -418,6 +502,9 @@ def topRest : Dom Γ → List (Letter Γ)
   | .close => [Letter.star, Letter.dia]
   | _ => []
 
+/--
+@isnad1 id=eq.0h3v.s5.0b8564b6759d from=translated src=- shape=9545917c vocab=78f4c8ab
+-/
 theorem topW_eq (halt : Γ) (d : Dom Γ) :
     topW halt d = starL (topUW halt d) ++ topRest d := by
   cases d <;> simp [topW, topUW, topRest]
@@ -430,11 +517,15 @@ def Inv (z : List (Letter Γ)) : Prop :=
   ∃ α β γ : List Γ, z = symW β ++ [Letter.sep] ++ symW γ ∧
     Derives Rule C₀ (α ++ β) ∧ ParStep Rule α γ
 
-/-- A queue carries a separator. -/
+/-- A queue carries a separator.
+@isnad1 id=mem.0h3v.s6.4faccb9fee6d from=translated src=- shape=a21d3b62 vocab=3dd8acaf
+-/
 theorem sep_mem_queue (β γ : List Γ) :
     Letter.sep ∈ symW β ++ [Letter.sep] ++ symW γ := by simp
 
-/-- A queue carries nothing but letters of the system and the separator. -/
+/-- A queue carries nothing but letters of the system and the separator.
+@isnad1 id=or.1h4v.s6.dd329aea08a2 from=translated src=- shape=671255c8 vocab=37798fc0
+-/
 theorem mem_queue {c : Letter Γ} {β γ : List Γ}
     (h : c ∈ symW β ++ [Letter.sep] ++ symW γ) : c = Letter.sep ∨ ∃ a, c = Letter.sym a := by
   simp only [List.mem_append, List.mem_singleton] at h
@@ -447,7 +538,9 @@ theorem mem_queue {c : Letter Γ} {β γ : List Γ}
 
 /-- **The word a domino consumes is a prefix of the queue.** A top word cannot
 run past the separator: the only word of the system reaching it is the one the
-closing domino consumes, and the queue is then exactly that word. -/
+closing domino consumes, and the queue is then exactly that word.
+@isnad1 id=ex.2h5v.s7.07f27e271555 from=translated src=- shape=c6c0fd3c vocab=0ea9d346
+-/
 theorem prefix_of_align {z Y S S' : List (Letter Γ)} (h : starL z ++ S = starL Y ++ S')
     (hY : ∀ t, Y = z ++ t → t = []) :
     ∃ t, z = Y ++ t ∧ starL t ++ S = S' := by
@@ -456,13 +549,17 @@ theorem prefix_of_align {z Y S S' : List (Letter Γ)} (h : starL z ++ S = starL 
     exact ⟨[], by simpa using hYt.symm, by simpa using hS⟩
   · exact ⟨t, hzt, hS⟩
 
-/-- A word without a separator is no extension of a queue. -/
+/-- A word without a separator is no extension of a queue.
+@isnad1 id=eq.3h4v.s6.5b5b79eddafa from=translated src=- shape=7ed4357b vocab=e96f1e86
+-/
 theorem no_ext_of_sep_notMem {Y z : List (Letter Γ)} (hsep : Letter.sep ∈ z)
     (hY : Letter.sep ∉ Y) : ∀ t, Y = z ++ t → t = [] := by
   intro t ht
   exact absurd (ht ▸ List.mem_append_left t hsep) hY
 
-/-- No domino consumes more than the queue holds. -/
+/-- No domino consumes more than the queue holds.
+@isnad1 id=eq.2h5v.s6.a26083c7f62e from=translated src=- shape=7309c4e4 vocab=b116a8d1
+-/
 theorem topUW_no_ext {d : Dom Γ} {z : List (Letter Γ)} (hsep : Letter.sep ∈ z) :
     ∀ t, topUW halt d = z ++ t → t = [] := by
   cases d with
@@ -490,6 +587,9 @@ theorem topUW_no_ext {d : Dom Γ} {z : List (Letter Γ)} (hsep : Letter.sep ∈ 
       have h2 : z = [] ∧ t = [] := by simpa using ht.2
       exact h2.2
 
+/--
+@isnad1 id=ex.1h5v.s7.e8e22dcdacbf from=translated src=- shape=29f4960c vocab=af932f0f
+-/
 theorem symW_prefix {l : List Γ} {t : List (Letter Γ)} {β γ : List Γ}
     (h : symW l ++ t = symW β ++ [Letter.sep] ++ symW γ) :
     ∃ β', β = l ++ β' ∧ t = symW β' ++ [Letter.sep] ++ symW γ := by
@@ -511,7 +611,9 @@ theorem symW_prefix {l : List Γ} {t : List (Letter Γ)} {β γ : List Γ}
 
 /-- **The queue lemma**: a list of dominoes whose bottom words, appended to the
 current overhang, spell what its top words spell, walks the queue from a
-history to the halting configuration. -/
+history to the halting configuration.
+@isnad1 id=derives.3h6v.s6.539b6aa955bd from=translated src=- shape=cb705a32 vocab=19b62dd6
+-/
 theorem derives_of_align : ∀ (l : List (Dom Γ)) (z : List (Letter Γ)),
     (∀ d ∈ l, Ok Rule d) →
     (starL z ++ [Letter.star]) ++ bots C₀ l = tops halt l →
@@ -634,7 +736,9 @@ theorem derives_of_align : ∀ (l : List (Dom Γ)) (z : List (Letter Γ)),
 /-- **A match gives a derivation.** The first domino of a match can only be
 the one that opens a history, since every top word begins with the decoration
 and no other bottom word does; from there the queue lemma reads the match as a
-computation. -/
+computation.
+@isnad1 id=eq.1h4v.s5.215de1100c72 from=translated src=- shape=902f59d2 vocab=7001617d
+-/
 theorem topW_head {d : Dom Γ} (halt : Γ) (hd : Ok Rule d) :
     (topW halt d).head? = some Letter.star := by
   cases d with
@@ -645,12 +749,18 @@ theorem topW_head {d : Dom Γ} (halt : Γ) (hd : Ok Rule d) :
     · simp [topW, symW]
   | _ => simp [topW]
 
+/--
+@isnad1 id=ne.1h4v.s4.ff73b023ad09 from=translated src=- shape=44fb9748 vocab=a240de0b
+-/
 theorem topW_ne_nil {d : Dom Γ} (halt : Γ) (hd : Ok Rule d) : topW halt d ≠ [] := by
   intro h
   have := topW_head (Rule := Rule) halt hd
   rw [h] at this
   simp at this
 
+/--
+@isnad1 id=ne.1h4v.s5.a28df997f634 from=translated src=- shape=82931775 vocab=90f68d8d
+-/
 theorem botW_ne_nil {d : Dom Γ} (C₀ : List Γ) (hd : Ok Rule d) : botW C₀ d ≠ [] := by
   cases d with
   | rule l' r =>
@@ -661,7 +771,9 @@ theorem botW_ne_nil {d : Dom Γ} (C₀ : List Γ) (hd : Ok Rule d) : botW C₀ d
   | _ => simp [botW]
 
 /-- Only the domino opening a history has a bottom word beginning with the
-decoration; every other one begins with a letter. -/
+decoration; every other one begins with a letter.
+@isnad1 id=ne.2h4v.s5.5208ca4f77bd from=translated src=- shape=e6747896 vocab=3d0fcc8e
+-/
 theorem botW_head_ne {d : Dom Γ} (C₀ : List Γ) (hd : Ok Rule d) (hne : d ≠ Dom.start) :
     (botW C₀ d).head? ≠ some Letter.star := by
   cases d with
@@ -676,7 +788,9 @@ theorem botW_head_ne {d : Dom Γ} (C₀ : List Γ) (hd : Ok Rule d) (hne : d ≠
 /-- **A match gives a derivation.** The first domino of a match can only be
 the one that opens a history, since every top word begins with the decoration
 and no other bottom word does; from there the queue lemma reads the match as a
-computation. -/
+computation.
+@isnad1 id=derives.1h4v.s4.ee835744d140 from=translated src=- shape=82bf979d vocab=5823648a
+-/
 theorem derives_of_hasMatch (h : HasMatch Rule C₀ halt) : Derives Rule C₀ [halt] := by
   obtain ⟨l, hlne, hok, heq⟩ := h
   rcases l with _ | ⟨d, l⟩
@@ -702,7 +816,9 @@ theorem derives_of_hasMatch (h : HasMatch Rule C₀ halt) : Derives Rule C₀ [h
 end Backward
 
 /-- **The dominoes decide derivability**: the system has a match exactly when
-its start word derives the halting configuration. -/
+its start word derives the halting configuration.
+@isnad1 id=iff.1h4v.s5.632516c11ebc from=translated src=- shape=a3b27c8a vocab=5823648a
+-/
 theorem hasMatch_iff (hne : ∀ l r, Rule l r → l ≠ [] ∧ r ≠ []) (C₀ : List Γ) (halt : Γ) :
     HasMatch Rule C₀ halt ↔ Derives Rule C₀ [halt] :=
   ⟨derives_of_hasMatch, hasMatch_of_derives hne⟩

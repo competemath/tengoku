@@ -29,17 +29,25 @@ variable {s : ℕ → ℝ} {N : ℕ}
 
 /-! ### 0. cell bookkeeping -/
 
+/--
+@isnad1 id=le.1h2v.s6.0f099f37ab9e from=translated src=- shape=37e82a2a vocab=54cd24a2
+-/
 lemma cell_le (hN : 0 < N) (m : ℕ) : (m:ℝ)/N ≤ (m+1:ℝ)/N := by
   have hNr : (0 : ℝ) < N := by exact_mod_cast hN
   gcongr; linarith
 
+/--
+@isnad1 id=le.2h2v.s6.2460fe51a239 from=translated src=- shape=df0a497a vocab=962a2583
+-/
 lemma cell_subset (hN : 0 < N) {m : ℕ} (hm : m < N) : uIcc ((m:ℝ)/N) ((m+1:ℝ)/N) ⊆ Icc (0:ℝ) 1 := by
   have hNr : (0 : ℝ) < N := by exact_mod_cast hN
   rw [uIcc_of_le (cell_le hN m)]
   refine Icc_subset_Icc (by positivity) ?_
   rw [div_le_one hNr]; exact_mod_cast hm
 
-/-- a.e. on the cell (for the interval-integral measure), C = C_m. -/
+/-- a.e. on the cell (for the interval-integral measure), C = C_m.
+@isnad1 id=eventual.2h3v.s6.15020cdf57b0 from=translated src=- shape=05e37c17 vocab=04a5bacd
+-/
 lemma Cstep_ae_cell (hN : 0 < N) {m : ℕ} (hm : m < N) :
     ∀ᵐ x ∂volume, x ∈ Ι ((m:ℝ)/N) ((m+1:ℝ)/N) → Cstep s N x = Csum s m := by
   have : ∀ᵐ x ∂volume, x ≠ ((m+1:ℝ)/N) := by
@@ -48,7 +56,9 @@ lemma Cstep_ae_cell (hN : 0 < N) {m : ℕ} (hm : m < N) :
   rw [uIoc_of_le (cell_le hN m)] at hx
   exact Cstep_eq_Csum_of_mem hN (Nat.succ_le_of_lt hm) ⟨hx.1.le, lt_of_le_of_ne hx.2 hxb⟩
 
-/-- g·C is interval-integrable on each cell when g is continuous there. -/
+/-- g·C is interval-integrable on each cell when g is continuous there.
+@isnad1 id=interval.3h4v.s7.4d4f548de8e2 from=translated src=- shape=c9b017f0 vocab=508c9d33
+-/
 lemma intervalIntegrable_gC_cell (hN : 0 < N) {m : ℕ} (hm : m < N) {g : ℝ → ℝ}
     (hg : ContinuousOn g (uIcc ((m:ℝ)/N) ((m+1:ℝ)/N))) :
     IntervalIntegrable (fun x => g x * Cstep s N x) volume ((m:ℝ)/N) ((m+1:ℝ)/N) := by
@@ -61,7 +71,9 @@ lemma intervalIntegrable_gC_cell (hN : 0 < N) {m : ℕ} (hm : m < N) {g : ℝ �
 
 /-! ### 1. (A): ∫₀¹ g·C via cells and Abel summation -/
 
-/-- one cell: ∫ g·C = C_m (r(b) − r(a)). -/
+/-- one cell: ∫ g·C = C_m (r(b) − r(a)).
+@isnad1 id=eq.4h5v.s8.863c42f4195b from=translated src=- shape=ad8cadba vocab=5004b53b
+-/
 lemma integral_cell (hN : 0 < N) {m : ℕ} (hm : m < N) {r g : ℝ → ℝ}
     (hr : ∀ x ∈ uIcc ((m:ℝ)/N) ((m+1:ℝ)/N), HasDerivAt r (g x) x)
     (hg : ContinuousOn g (uIcc ((m:ℝ)/N) ((m+1:ℝ)/N))) :
@@ -74,7 +86,9 @@ lemma integral_cell (hN : 0 < N) {m : ℕ} (hm : m < N) {r g : ℝ → ℝ}
   rw [h1, intervalIntegral.integral_mul_const, intervalIntegral.integral_eq_sub_of_hasDerivAt hr hg.intervalIntegrable]
   ring
 
-/-- (A) summed: ∫₀¹ g·C = Σ_{m<N} C_m (r((m+1)/N) − r(m/N)). -/
+/-- (A) summed: ∫₀¹ g·C = Σ_{m<N} C_m (r((m+1)/N) − r(m/N)).
+@isnad1 id=eq.3h4v.s7.de45e79ccf13 from=translated src=- shape=5f098b74 vocab=0a3e8bff
+-/
 lemma integral_gC_eq_sum (hN : 0 < N) {r g : ℝ → ℝ}
     (hr : ∀ x ∈ Icc (0:ℝ) 1, HasDerivAt r (g x) x) (hg : ContinuousOn g (Icc (0:ℝ) 1)) :
     ∫ x in (0:ℝ)..1, g x * Cstep s N x = ∑ m ∈ Finset.range N, Csum s m * (r ((m+1:ℝ)/N) - r ((m:ℝ)/N)) := by
@@ -91,7 +105,9 @@ lemma integral_gC_eq_sum (hN : 0 < N) {r g : ℝ → ℝ}
   simpa [Nat.cast_succ] using
     integral_cell (s := s) hN hm' (fun x hx => hr x (cell_subset hN hm' hx)) (hg.mono (cell_subset hN hm'))
 
-/-- Abel summation: Σ_{m<N} C_m (r_{m+1} − r_m) = C_N r(1) − Σ_{j=1}^{N} s_j r(j/N). -/
+/-- Abel summation: Σ_{m<N} C_m (r_{m+1} − r_m) = C_N r(1) − Σ_{j=1}^{N} s_j r(j/N).
+@isnad1 id=eq.1h3v.s7.83dc5e98db00 from=translated src=- shape=0d4700a2 vocab=fb019101
+-/
 lemma abel (hN : 0 < N) (r : ℝ → ℝ) :
     ∑ m ∈ Finset.range N, Csum s m * (r ((m+1:ℝ)/N) - r ((m:ℝ)/N))
       = Csum s N * r 1 - ∑ j ∈ Finset.Icc 1 N, s j * r ((j:ℝ)/N) := by
@@ -107,13 +123,17 @@ lemma abel (hN : 0 < N) (r : ℝ → ℝ) :
     push_cast
     ring
 
-/-- (A): ∫₀¹ g·C = C_N r(1) − Σ_j s_j r(j/N). -/
+/-- (A): ∫₀¹ g·C = C_N r(1) − Σ_j s_j r(j/N).
+@isnad1 id=eq.3h4v.s7.0b11ffcf2522 from=translated src=- shape=e5699623 vocab=53f84657
+-/
 theorem integral_gC (hN : 0 < N) {r g : ℝ → ℝ}
     (hr : ∀ x ∈ Icc (0:ℝ) 1, HasDerivAt r (g x) x) (hg : ContinuousOn g (Icc (0:ℝ) 1)) :
     ∫ x in (0:ℝ)..1, g x * Cstep s N x = Csum s N * r 1 - ∑ j ∈ Finset.Icc 1 N, s j * r ((j:ℝ)/N) := by
   rw [integral_gC_eq_sum hN hr hg, abel hN r]
 
-/-- integrability of g·C on [0,1] (from the cells). -/
+/-- integrability of g·C on [0,1] (from the cells).
+@isnad1 id=interval.2h3v.s6.d38df15336c1 from=translated src=- shape=e9cdc91c vocab=3a693b3b
+-/
 lemma intervalIntegrable_gC (hN : 0 < N) {g : ℝ → ℝ} (hg : ContinuousOn g (Icc (0:ℝ) 1)) :
     IntervalIntegrable (fun x => g x * Cstep s N x) volume 0 1 := by
   have hNr : (0 : ℝ) < N := by exact_mod_cast hN
@@ -124,7 +144,9 @@ lemma intervalIntegrable_gC (hN : 0 < N) {g : ℝ → ℝ} (hg : ContinuousOn g 
 
 /-! ### 2. first-order identity -/
 
-/-- ∫₀¹ r(x)·x dx = r(1)/2 − ∫₀¹ g(x)·(x²/2) dx. -/
+/-- ∫₀¹ r(x)·x dx = r(1)/2 − ∫₀¹ g(x)·(x²/2) dx.
+@isnad1 id=eq.2h2v.s7.7b4376143f06 from=translated src=- shape=e8669b57 vocab=c0fad6a1
+-/
 lemma integral_r_mul_id {r g : ℝ → ℝ} (hr : ∀ x ∈ Icc (0:ℝ) 1, HasDerivAt r (g x) x)
     (hg : ContinuousOn g (Icc (0:ℝ) 1)) :
     ∫ x in (0:ℝ)..1, r x * x = r 1 / 2 - ∫ x in (0:ℝ)..1, g x * (x ^ 2 / 2) := by
@@ -140,7 +162,9 @@ lemma integral_r_mul_id {r g : ℝ → ℝ} (hr : ∀ x ∈ Icc (0:ℝ) 1, HasDe
   simp
   ring
 
-/-- **(1) FIRST-ORDER IDENTITY.** Σ_{j=1}^N s_j r(j/N) − ∫₀¹ r(x)x dx = r(1)·D(1) − ∫₀¹ g·D. -/
+/-- **(1) FIRST-ORDER IDENTITY.** Σ_{j=1}^N s_j r(j/N) − ∫₀¹ r(x)x dx = r(1)·D(1) − ∫₀¹ g·D.
+@isnad1 id=eq.3h4v.s8.f6fa6dcc77cc from=translated src=- shape=cb8eaa13 vocab=c3237e1b
+-/
 theorem abel_ibp_first (hN : 0 < N) {r g : ℝ → ℝ}
     (hr : ∀ x ∈ Icc (0:ℝ) 1, HasDerivAt r (g x) x) (hg : ContinuousOn g (Icc (0:ℝ) 1)) :
     ∑ j ∈ Finset.Icc 1 N, s j * r ((j:ℝ)/N) - ∫ x in (0:ℝ)..1, r x * x
@@ -160,7 +184,9 @@ theorem abel_ibp_first (hN : 0 < N) {r g : ℝ → ℝ}
 
 /-! ### 3. first-order bound -/
 
-/-- |Σ s_j r(j/N) − ∫₀¹ r x·x| ≤ |r 1|·|D 1| + M₁·∫₀¹|g| whenever |D| ≤ M₁ on [0,1]. -/
+/-- |Σ s_j r(j/N) − ∫₀¹ r x·x| ≤ |r 1|·|D 1| + M₁·∫₀¹|g| whenever |D| ≤ M₁ on [0,1].
+@isnad1 id=le.4h5v.s8.6e17e1d6f811 from=translated src=- shape=230788e5 vocab=ea2e0d09
+-/
 theorem first_order_bound (hN : 0 < N) {r g : ℝ → ℝ} {M₁ : ℝ}
     (hr : ∀ x ∈ Icc (0:ℝ) 1, HasDerivAt r (g x) x) (hg : ContinuousOn g (Icc (0:ℝ) 1))
     (hM : ∀ x ∈ Icc (0:ℝ) 1, |Dfun s N x| ≤ M₁) :
@@ -192,9 +218,14 @@ theorem first_order_bound (hN : 0 < N) {r g : ℝ → ℝ} {M₁ : ℝ}
 /-- the grid {m/N : m ∈ ℕ}. -/
 def grid (N : ℕ) : Set ℝ := Set.range (fun m : ℕ => (m:ℝ)/N)
 
+/--
+@isnad1 id=countabl.0h1v.s2.424ac2cc0753 from=translated src=- shape=1a6c1393 vocab=51ca89db
+-/
 lemma grid_countable : (grid N).Countable := Set.countable_range _
 
-/-- Cstep is measurable (a finite sum of scaled indicators). -/
+/-- Cstep is measurable (a finite sum of scaled indicators).
+@isnad1 id=measurab.0h2v.s3.4cbead997a77 from=translated src=- shape=b05f641c vocab=de20660c
+-/
 lemma measurable_Cstep : Measurable (Cstep s N) := by
   have : Cstep s N = fun x => ∑ j ∈ Finset.Icc 1 N, if ((j:ℕ):ℝ)/N ≤ x then s j else 0 := by
     funext x; simp [Cstep, Finset.sum_filter]
@@ -202,23 +233,32 @@ lemma measurable_Cstep : Measurable (Cstep s N) := by
   refine Finset.measurable_sum _ fun j _ => ?_
   exact Measurable.ite (measurableSet_le measurable_const measurable_id) measurable_const measurable_const
 
+/--
+@isnad1 id=measurab.0h2v.s3.4f877a65b7f2 from=translated src=- shape=b05f641c vocab=ce9a0f8a
+-/
 lemma measurable_Dfun : Measurable (Dfun s N) :=
   measurable_Cstep.sub ((measurable_id.pow_const 2).div_const 2)
 
-/-- D is interval-integrable on [0,1]. -/
+/-- D is interval-integrable on [0,1].
+@isnad1 id=interval.1h2v.s5.7aa280d1b097 from=translated src=- shape=314dfda9 vocab=b900eb0e
+-/
 lemma intervalIntegrable_Dfun (hN : 0 < N) : IntervalIntegrable (Dfun s N) volume 0 1 := by
   have h1 : IntervalIntegrable (fun x => (1:ℝ) * Cstep s N x) volume 0 1 := intervalIntegrable_gC hN continuousOn_const
   simp only [one_mul] at h1
   exact h1.sub ((by fun_prop : Continuous fun x : ℝ => x ^ 2 / 2).intervalIntegrable _ _)
 
-/-- E is continuous on [0,1]. -/
+/-- E is continuous on [0,1].
+@isnad1 id=continuo.1h2v.s5.ce5689d302a3 from=translated src=- shape=98a10487 vocab=e3ccbdfd
+-/
 lemma continuousOn_Efun (hN : 0 < N) : ContinuousOn (Efun s N) (Icc (0:ℝ) 1) := by
   have := intervalIntegral.continuousOn_primitive_interval' (intervalIntegrable_Dfun (s := s) hN)
     (by simp : (0:ℝ) ∈ uIcc (0:ℝ) 1)
   rw [uIcc_of_le zero_le_one] at this
   exact this
 
-/-- off the grid, a point of (0,1) sits in an open cell (m/N, (m+1)/N) with m < N. -/
+/-- off the grid, a point of (0,1) sits in an open cell (m/N, (m+1)/N) with m < N.
+@isnad1 id=ex.2h2v.s6.7b149fff749b from=translated src=- shape=ec79145a vocab=746db804
+-/
 lemma exists_cell (hN : 0 < N) {x : ℝ} (hx : x ∈ Ioo (0:ℝ) 1 \ grid N) :
     ∃ m : ℕ, m < N ∧ x ∈ Ioo ((m:ℝ)/N) ((m+1:ℝ)/N) := by
   have hNr : (0 : ℝ) < N := by exact_mod_cast hN
@@ -240,19 +280,25 @@ lemma exists_cell (hN : 0 < N) {x : ℝ} (hx : x ∈ Ioo (0:ℝ) 1 \ grid N) :
     push_cast at this ⊢
     linarith [mul_comm (N:ℝ) x]
 
-/-- on an open cell D agrees with the continuous function C_m − t²/2. -/
+/-- on an open cell D agrees with the continuous function C_m − t²/2.
+@isnad1 id=eqon.2h3v.s6.211a7d294da7 from=translated src=- shape=2c3129e5 vocab=f825524b
+-/
 lemma Dfun_eqOn_cell (hN : 0 < N) {m : ℕ} (hm : m < N) :
     EqOn (Dfun s N) (fun t => Csum s m - t ^ 2 / 2) (Ioo ((m:ℝ)/N) ((m+1:ℝ)/N)) := fun t ht => by
   simp [Dfun, Cstep_eq_Csum_of_mem hN (Nat.succ_le_of_lt hm) (Ioo_subset_Ico_self ht)]
 
-/-- D is continuous at every non-grid point of (0,1). -/
+/-- D is continuous at every non-grid point of (0,1).
+@isnad1 id=continuo.2h3v.s6.9ec61a4c1409 from=translated src=- shape=256c4086 vocab=069fd81b
+-/
 lemma continuousAt_Dfun (hN : 0 < N) {x : ℝ} (hx : x ∈ Ioo (0:ℝ) 1 \ grid N) : ContinuousAt (Dfun s N) x := by
   obtain ⟨m, hm, hxm⟩ := exists_cell hN hx
   have hopen : IsOpen (Ioo ((m:ℝ)/N) ((m+1:ℝ)/N)) := isOpen_Ioo
   have hcont : ContinuousOn (fun t : ℝ => Csum s m - t ^ 2 / 2) (Ioo ((m:ℝ)/N) ((m+1:ℝ)/N)) := by fun_prop
   exact ((hcont.congr (Dfun_eqOn_cell hN hm)).continuousAt (hopen.mem_nhds hxm))
 
-/-- E′ = D off the grid. -/
+/-- E′ = D off the grid.
+@isnad1 id=hasderiv.2h3v.s6.085c655ce851 from=translated src=- shape=fc892bc2 vocab=4103cc96
+-/
 lemma hasDerivAt_Efun (hN : 0 < N) {x : ℝ} (hx : x ∈ Ioo (0:ℝ) 1 \ grid N) :
     HasDerivAt (Efun s N) (Dfun s N x) x := by
   obtain ⟨m, hm, hxm⟩ := exists_cell hN hx
@@ -266,7 +312,9 @@ lemma hasDerivAt_Efun (hN : 0 < N) {x : ℝ} (hx : x ∈ Ioo (0:ℝ) 1 \ grid N)
 /-! ### 5. second-order identity and the ceiling-stability bound -/
 
 /-- **(2) SECOND-ORDER IDENTITY.** If additionally g is differentiable off a countable set T ⊆ ℝ with derivative h,
-h interval-integrable on [0,1]:  Σ s_j r(j/N) − ∫₀¹ r x·x = r(1)·D(1) − g(1)·E(1) + ∫₀¹ h·E. -/
+h interval-integrable on [0,1]:  Σ s_j r(j/N) − ∫₀¹ r x·x = r(1)·D(1) − g(1)·E(1) + ∫₀¹ h·E.
+@isnad1 id=eq.6h6v.s8.033dfb7eeb13 from=translated src=- shape=dd262807 vocab=33afac4f
+-/
 theorem abel_ibp_second (hN : 0 < N) {r g h : ℝ → ℝ} {T : Set ℝ} (hT : T.Countable)
     (hr : ∀ x ∈ Icc (0:ℝ) 1, HasDerivAt r (g x) x) (hg : ContinuousOn g (Icc (0:ℝ) 1))
     (hgh : ∀ x ∈ Ioo (0:ℝ) 1 \ T, HasDerivAt g (h x) x) (hh : IntervalIntegrable h volume 0 1) :
@@ -296,7 +344,9 @@ theorem abel_ibp_second (hN : 0 < N) {r g h : ℝ → ℝ} {T : Set ℝ} (hT : T
   linarith
 
 /-- **CEILING STABILITY (L1).** With |E| ≤ M on [0,1]:
-  |Σ_{j=1}^{N} s_j r(j/N) − ∫₀¹ r(x)x dx| ≤ |r 1|·|D 1| + |g 1|·|E 1| + M·∫₀¹|h|. -/
+  |Σ_{j=1}^{N} s_j r(j/N) − ∫₀¹ r(x)x dx| ≤ |r 1|·|D 1| + |g 1|·|E 1| + M·∫₀¹|h|.
+@isnad1 id=le.7h7v.s8.5910f63e0ced from=translated src=- shape=8d697a41 vocab=db51fb99
+-/
 theorem ceiling_stability (hN : 0 < N) {r g h : ℝ → ℝ} {T : Set ℝ} (hT : T.Countable) {M : ℝ}
     (hr : ∀ x ∈ Icc (0:ℝ) 1, HasDerivAt r (g x) x) (hg : ContinuousOn g (Icc (0:ℝ) 1))
     (hgh : ∀ x ∈ Ioo (0:ℝ) 1 \ T, HasDerivAt g (h x) x) (hh : IntervalIntegrable h volume 0 1)

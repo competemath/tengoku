@@ -23,6 +23,9 @@ attribute [local instance 10] LieAlgebra.toModule
 
 open Nat Filter Set Function Complex Real ComplexConjugate MeasureTheory
 
+/--
+@isnad1 id=le.4h5v.s7.4d850f2972c0 from=translated src=- shape=b651232a vocab=30b4c2bd
+-/
 lemma AnalyticOn.norm_le_of_norm_le_on_sphere {C r R : ℝ} {f : ℂ → ℂ} {w : ℂ}
     (hyp_r : r ≤ R)
     (analytic : AnalyticOn ℂ f (Metric.closedBall 0 R))
@@ -41,6 +44,9 @@ lemma AnalyticOn.norm_le_of_norm_le_on_sphere {C r R : ℝ} {f : ℂ → ℂ} {w
   · rw [Metric.closure_closedBall]
     exact wInS
 
+/--
+@isnad1 id=le.7h5v.s7.70ac087b6ba4 from=translated src=- shape=cf022635 vocab=73d401e6
+-/
 theorem borelCaratheodory' {M r R : ℝ} {f : ℂ → ℂ} {z : ℂ}
     (Mpos : 0 < M) (Rpos : 0 < R) (hyp_r : r < R)
     (analytic : AnalyticOn ℂ f (Metric.ball 0 R))
@@ -62,6 +68,9 @@ theorem borelCaratheodory' {M r R : ℝ} {f : ℂ → ℂ} {z : ℂ}
   gcongr
   · exact mul_nonneg (mul_nonneg (zero_le_two) (le_of_lt Mpos)) (le_trans (norm_nonneg z) hyp_z)
 
+/--
+@isnad1 id=eq.4h5v.s8.c33c44df5fe1 from=translated src=- shape=13dcc0cd vocab=be3b24f3
+-/
 lemma cauchy_formula_deriv {r r' R : ℝ} {f : ℂ → ℂ} {z : ℂ}
     (r_lt_r' : r < r') (r'_lt_R : r' < R)
     (hf_on_ball : DifferentiableOn ℂ f (Metric.ball 0 R))
@@ -72,6 +81,9 @@ lemma cauchy_formula_deriv {r r' R : ℝ} {f : ℂ → ℂ} {z : ℂ}
   simp [← Complex.two_pi_I_inv_smul_circleIntegral_sub_sq_inv_smul_of_differentiable
       Metric.isOpen_ball (Metric.closedBall_subset_ball r'_lt_R) hf_on_ball hz_in_ball]
 
+/--
+@isnad1 id=ex.4h3v.s8.b1683062b8b3 from=translated src=- shape=4d826ceb vocab=0a940a4b
+-/
 theorem LogOfAnalyticFunction {r R : ℝ} {B : ℂ → ℂ}
     (zero_lt_r : 0 < r) (r_lt_R : r < R)
     (BanalyticOnNhdOfDR : AnalyticOnNhd ℂ B (Metric.closedBall (0 : ℂ) R))
@@ -131,6 +143,9 @@ theorem LogOfAnalyticFunction {r R : ℝ} {B : ℂ → ℂ}
   · intro z hz
     exact (hJB.1 z (Metric.closedBall_subset_ball r_lt_R hz)).deriv
 
+/--
+@isnad1 id=ex.5h4v.s8.59abad1f14e2 from=translated src=- shape=6956362d vocab=0a940a4b
+-/
 theorem LogOfAnalyticFunction' {r' r R : ℝ} {B : ℂ → ℂ}
     (r'_pos : 0 < r') (r'_lt_r : r' < r) (r_lt_R : r < R)
     (BanalyticOnNhdOfDR : AnalyticOnNhd ℂ B (Metric.closedBall (0 : ℂ) R))
@@ -144,6 +159,9 @@ theorem LogOfAnalyticFunction' {r' r R : ℝ} {B : ℂ → ℂ}
 
 def SetOfZeros (R : ℝ) (f : ℂ → ℂ) : Set ℂ := {ρ : ℂ | ‖ρ‖ ≤ R ∧ f ρ = 0}
 
+/--
+@isnad1 id=finite.2h2v.s5.b7b566a9f7a8 from=translated src=- shape=33df2d95 vocab=4e3515ca
+-/
 lemma finiteSetOfZeros_mono {r : ℝ} {f : ℂ → ℂ}
     (r_lt_one : r < 1)
     (finiteZeros : (SetOfZeros 1 f).Finite) :
@@ -162,6 +180,9 @@ noncomputable def ZeroFactor (f : ℂ → ℂ) (z : ℂ) : ℂ :=
     else 0
   else 0
 
+/--
+@isnad1 id=ex.4h3v.s7.dbbf277b80eb from=translated src=- shape=16a760f6 vocab=49e62988
+-/
 lemma ZeroFactorization {R : ℝ} {f : ℂ → ℂ} {ρ : ℂ}
     (RleOne : R < 1)
     (hfAnalytic : AnalyticOnNhd ℂ f (Metric.closedBall (0 : ℂ) 1))
@@ -197,6 +218,9 @@ noncomputable def Cf (r : ℝ) (f : ℂ → ℂ) (z : ℂ) : ℂ :=
       f z / ∏ ρ ∈ (finite_zeros_mono.toFinset), (z - ρ) ^ (analyticOrderNatAt f ρ)
   else 1
 
+/--
+@isnad1 id=analytic.0h3v.s6.ca4b27e65d31 from=translated src=- shape=9678d8ad vocab=c0574293
+-/
 lemma analyticAt_finset_prod_sub_pow (s : Finset ℂ) (g : ℂ → ℕ) (w : ℂ) :
     AnalyticAt ℂ (fun z => ∏ ρ ∈ s, (z - ρ) ^ g ρ) w := by
   induction s using Finset.induction with
@@ -209,6 +233,9 @@ lemma analyticAt_finset_prod_sub_pow (s : Finset ℂ) (g : ℂ → ℕ) (w : ℂ
     rw [this]
     exact ((analyticAt_id.sub analyticAt_const).pow _).mul ih
 
+/--
+@isnad1 id=analytic.4h3v.s7.10578b3cbbcc from=translated src=- shape=b5c286ad vocab=fbc6b46b
+-/
 lemma CfAnalytic {r R : ℝ} {f : ℂ → ℂ}
     (r_lt_R : r < R) (R_lt_one : R < 1)
     (hfAnalytic : AnalyticOnNhd ℂ f (Metric.closedBall (0 : ℂ) 1))
@@ -265,6 +292,9 @@ noncomputable def BlaschkeB (r R : ℝ) (f : ℂ → ℂ) (z : ℂ) : ℂ :=
     (Cf r f) z * (∏ ρ ∈ finite_zeros_mono.toFinset, (R - z * (conj ρ) / R) ^ (analyticOrderNatAt f ρ))
   else 1
 
+/--
+@isnad1 id=analytic.6h3v.s7.45b43c63373a from=translated src=- shape=53c38697 vocab=eceefbb1
+-/
 lemma BlaschkeAnalytic {r R : ℝ} {f : ℂ → ℂ}
     (r_pos : 0 < r) (r_lt_R : r < R) (R_lt_one : R < 1)
     (finiteZeros : (SetOfZeros 1 f).Finite)
@@ -284,6 +314,9 @@ lemma BlaschkeAnalytic {r R : ℝ} {f : ℂ → ℂ}
   · simp only [finite_zeros_mono, ↓reduceDIte]
     exact analyticOnNhd_const
 
+/--
+@isnad1 id=eq.5h3v.s7.0e2540420544 from=translated src=- shape=994d0802 vocab=9fcc8358
+-/
 lemma BlaschkeOfZero {r R : ℝ} {f : ℂ → ℂ}
     (r_pos : 0 < r) (r_lt_one : r < 1) (r_lt_R : r < R)
     (finiteZeros : (SetOfZeros 1 f).Finite)
@@ -303,6 +336,9 @@ lemma BlaschkeOfZero {r R : ℝ} {f : ℂ → ℂ}
   rw[← Finset.prod_inv_distrib, ← Finset.prod_mul_distrib]
   simp only [div_eq_inv_mul, mul_pow, inv_pow]
 
+/--
+@isnad1 id=le.5h3v.s6.a45410c84779 from=translated src=- shape=42eb2b4e vocab=16f5307a
+-/
 lemma norm_fOfZero_le_norm_BlaschkeOfZero {r R : ℝ} {f : ℂ → ℂ}
     (r_pos : 0 < r) (r_lt_R : r < R) (R_lt_one : R < 1)
     (finiteZeros : (SetOfZeros 1 f).Finite)
@@ -325,6 +361,9 @@ lemma norm_fOfZero_le_norm_BlaschkeOfZero {r R : ℝ} {f : ℂ → ℂ}
       rw [h] at hρ
       exact hf_neq_zero_at_zero hρ.2
 
+/--
+@isnad1 id=le.8h5v.s7.6355e9da3a0a from=translated src=- shape=c50bad34 vocab=1c9f226b
+-/
 lemma DiskBound {B r R : ℝ} {f : ℂ → ℂ} {z : ℂ}
     (r_pos : 0 < r) (r_lt_R : r < R) (R_lt_one : R < 1)
     (finiteZeros : (SetOfZeros 1 f).Finite)
@@ -362,6 +401,9 @@ lemma DiskBound {B r R : ℝ} {f : ℂ → ℂ} {z : ℂ}
   rw[Bf_eq_f_at_w]
   exact fz_bound w (le_of_eq hw)
 
+/--
+@isnad1 id=ne.7h4v.s7.8369d6b4c3bd from=translated src=- shape=c4c72480 vocab=8bbefe01
+-/
 lemma BlaschkeNonzero {r R : ℝ} {f : ℂ → ℂ}
     (r_pos : 0 < r) (r_lt_R : r < R) (R_lt_one : R < 1)
     (finiteZeros : (SetOfZeros 1 f).Finite)
@@ -401,6 +443,9 @@ lemma BlaschkeNonzero {r R : ℝ} {f : ℂ → ℂ}
       (Finset.prod_ne_zero_iff.mpr fun ρ hρ =>
         pow_ne_zero _ (sub_ne_zero.mpr fun h => z_in_zeros (h ▸ hFin.mem_toFinset.mp hρ)))) hBProd
 
+/--
+@isnad1 id=le.8h4v.s7.4f9600ef5607 from=translated src=- shape=a2913efb vocab=f954c41a
+-/
 theorem ZerosBound {B r R : ℝ} {f : ℂ → ℂ}
     (r_pos : 0 < r) (r_lt_one : r < 1) (r_lt_R : r < R) (R_lt_one : R < 1)
     (hfAnalytic : AnalyticOnNhd ℂ f (Metric.closedBall (0 : ℂ) 1)) (hf0_eq_one : f 0 = 1)

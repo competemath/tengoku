@@ -79,7 +79,9 @@ variable {A : Type} {M : ATMData A} {k : ℕ}
 /-- **Induction upwards from a position**: a property holding at `s` and
 inherited along immediate successors holds at every position above `s`. The
 same induction as `DescriptiveComplexity.TMData.stepsIn_of_segment`, isolated
-because the game needs it for properties that are not about runs. -/
+because the game needs it for properties that are not about runs.
+@isnad1 id=var.4h7v.s6.f5f639157a17 from=translated src=- shape=7775a774 vocab=6f711d04
+-/
 theorem le_induction [Finite A] (hlin : IsLinOrd M.Le) {P : A → Prop} {s : A}
     (hs : M.Posn s) (hP : P s)
     (hstep : ∀ p q, SuccPos M.Le M.Posn p q → M.Le s p → P p → P q) :
@@ -109,6 +111,9 @@ open Classical in
 noncomputable def nextPos (M : ATMData A) (t : A) : A :=
   if h : ∃ q, SuccPos M.Le M.Posn t q then h.choose else t
 
+/--
+@isnad1 id=succpos.1h3v.s5.dcf08609c9a0 from=translated src=- shape=f5ee8bc7 vocab=90e98568
+-/
 theorem succPos_nextPos {t : A} (h : ∃ q, SuccPos M.Le M.Posn t q) :
     SuccPos M.Le M.Posn t (M.nextPos t) := by
   classical
@@ -120,13 +125,21 @@ noncomputable def posSeq (M : ATMData A) (t : A) : ℕ → A
   | 0 => t
   | j + 1 => M.nextPos (M.posSeq t j)
 
+/--
+@isnad1 id=eq.0h3v.s4.3e9c9cc7dd7b from=translated src=- shape=23149532 vocab=e64cca07
+-/
 @[simp] theorem posSeq_zero (M : ATMData A) (t : A) : M.posSeq t 0 = t := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.2047a0c845d0 from=translated src=- shape=7916c0e9 vocab=3150eb97
+-/
 @[simp] theorem posSeq_succ (M : ATMData A) (t : A) (j : ℕ) :
     M.posSeq t (j + 1) = M.nextPos (M.posSeq t j) := rfl
 
 /-- **The rank increases by one along `nextPos`**, as long as the highest
-position has not been reached. -/
+position has not been reached.
+@isnad1 id=succpos.3h3v.s5.3ed8d3a10e49 from=translated src=- shape=c52111bf vocab=e9a19425
+-/
 theorem succPos_nextPos_of_not_max [Finite A] (hlin : IsLinOrd M.Le) {t : A}
     (ht : M.Posn t) (hmax : ¬MaxPos M.Le M.Posn t) :
     SuccPos M.Le M.Posn t (M.nextPos t) :=
@@ -175,7 +188,9 @@ def RoundCond (i : ℕ) (prev w : A → Config A) : Prop :=
 
 section Blocks
 
-/-- Membership in a block below `i`, once the block is known. -/
+/-- Membership in a block below `i`, once the block is known.
+@isnad1 id=iff.2h6v.s5.cabcfcb92215 from=translated src=- shape=92bb0973 vocab=8f7cba3d
+-/
 theorem blkLt_iff (hbwf : M.BlocksWellFormed k) {i j : ℕ} {q : A} (hj : M.Blk j q) :
     M.BlkLt i q ↔ j < i := by
   constructor
@@ -184,7 +199,9 @@ theorem blkLt_iff (hbwf : M.BlocksWellFormed k) {i j : ℕ} {q : A} (hj : M.Blk 
   · exact fun h => ⟨j, h, hj⟩
 
 /-- **A walk enters the blocks in order**: the first time whose block is not
-below `i` is in block `i` exactly, since the step into it is legal. -/
+below `i` is in block `i` exactly, since the step into it is legal.
+@isnad1 id=blk.5h7v.s6.874c30945b6d from=translated src=- shape=4b4b4b55 vocab=f0cf3223
+-/
 theorem blk_eq_of_entry (hbwf : M.BlocksWellFormed k) {w : A → Config A} {i : ℕ}
     (hw : M.LegalBelow i w) {p q : A} (hpq : SuccPos M.Le M.Posn p q)
     (hp : M.BlkLt i (w p).state) (hq : ¬M.BlkLt i (w q).state) :
@@ -199,7 +216,9 @@ theorem blk_eq_of_entry (hbwf : M.BlocksWellFormed k) {w : A → Config A} {i : 
       exact hEq ▸ h
   · exact absurd (heq ▸ hp) hq
 
-/-- **The times of the low blocks form a prefix.** -/
+/-- **The times of the low blocks form a prefix.**
+@isnad1 id=blklt.7h7v.s6.8c5bd484b554 from=translated src=- shape=4743c1ec vocab=829e4347
+-/
 theorem blkLt_of_le [Finite A] (hbwf : M.BlocksWellFormed k) (hlin : IsLinOrd M.Le)
     {w : A → Config A} (hmono : M.BlkMono w) {i : ℕ} {s q : A}
     (hs : M.Posn s) (hq : M.Posn q) (hle : M.Le s q) (h : M.BlkLt i (w q).state) :
@@ -239,7 +258,9 @@ def AltGame (start : Bool) : ℕ → Prop
       guardQ (blockPol start 0) (fun w => M.LegalBelow 1 w) fun w => M.gameFrom start 1 m w
 
 /-- The first round of the game is the general round with any predecessor:
-agreement below block `0` is vacuous. -/
+agreement below block `0` is vacuous.
+@isnad1 id=iff.0h5v.s5.c1270902fc6f from=translated src=- shape=4b9205a5 vocab=080f584f
+-/
 theorem altGame_eq_gameFrom (start : Bool) (m : ℕ) (prev : A → Config A) :
     M.AltGame start (m + 1) ↔ M.gameFrom start 0 (m + 1) prev := by
   refine guardQ_congr (blockPol start 0) (fun w => ?_) (fun _ _ => Iff.rfl)
@@ -254,7 +275,9 @@ theorem altGame_eq_gameFrom (start : Bool) (m : ℕ) (prev : A → Config A) :
 
 /-- **Once every time is in a low block the game is decided**: each remaining
 round can only copy what it inherited, so the outcome is whether the walk
-accepts. -/
+accepts.
+@isnad1 id=iff.2h6v.s5.4045ab64f9d7 from=translated src=- shape=94a6dfe2 vocab=485d9c83
+-/
 theorem gameFrom_of_blkLt (start : Bool) :
     ∀ (m i : ℕ) (prev : A → Config A), M.LegalBelow i prev →
       (∀ s, M.Posn s → M.BlkLt i (prev s).state) →

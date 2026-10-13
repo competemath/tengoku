@@ -120,7 +120,9 @@ private lemma norm_extend_subsequence_apply
 
 /-- **Automatic uniform bound (blueprint `auto`, case (i)).**
     If f(x) = O(1) for every variable x ∈ E, then after passing to a
-    subsequence there exists a *fixed* C with |f(x)| ≤ C for all x ∈ E. -/
+    subsequence there exists a *fixed* C with |f(x)| ≤ C for all x ∈ E.
+@isnad1 id=ex.2h3v.s6.57f78cd654bf from=translated src=- shape=26470371 vocab=3756331d
+-/
 theorem automatic_uniformity_of_choicewise_bounded
     (E : VariableObject (Set ℝ)) (hE : ∀ i, (E i).Nonempty)
     (f : VariableFunction (fun i ↦ E i) α)
@@ -166,7 +168,9 @@ theorem automatic_uniformity_of_choicewise_bounded
 
 /-- **Automatic uniform infinitesimal (blueprint `auto`, case (ii)).**
     If f(x) = o(1) for every variable x ∈ E, then after passing to a
-    subsequence there exists an *infinitesimal* c with |f(x)| ≤ c for all x ∈ E. -/
+    subsequence there exists an *infinitesimal* c with |f(x)| ≤ c for all x ∈ E.
+@isnad1 id=ex.2h3v.s6.0b8593da4348 from=translated src=- shape=6e17e060 vocab=08d6b62d
+-/
 theorem automatic_uniformity_of_choicewise_infinitesimal
     (E : VariableObject (Set ℝ)) (hE : ∀ i, (E i).Nonempty)
     (f : VariableFunction (fun i ↦ E i) α)
@@ -209,7 +213,9 @@ theorem automatic_uniformity_of_choicewise_infinitesimal
 /-! ### Full-tail uniformity -/
 
 /-- Boundedness along every variable choice is equivalent to an eventual bound uniform over
-the original variable sets. This strengthens `automatic_uniformity_of_choicewise_bounded`. -/
+the original variable sets. This strengthens `automatic_uniformity_of_choicewise_bounded`.
+@isnad1 id=iff.1h3v.s6.495734e52757 from=translated src=- shape=6778d22e vocab=9d50f371
+-/
 theorem VariableFunction.isChoicewiseBounded_iff_eventually_uniform
     (E : VariableObject (Set ℝ)) (hE : ∀ i, (E i).Nonempty)
     (f : VariableFunction (fun i ↦ E i) α) :
@@ -241,7 +247,9 @@ theorem VariableFunction.isChoicewiseBounded_iff_eventually_uniform
 
 /-- Infinitesimality along every variable choice is equivalent to convergence that is eventually
 uniform over the original variable sets. This strengthens
-`automatic_uniformity_of_choicewise_infinitesimal`. -/
+`automatic_uniformity_of_choicewise_infinitesimal`.
+@isnad1 id=iff.1h3v.s6.d253a1b52cc0 from=translated src=- shape=b0a64f36 vocab=e3f01e3a
+-/
 theorem VariableFunction.isChoicewiseInfinitesimal_iff_forall_pos_uniform
     (E : VariableObject (Set ℝ)) (hE : ∀ i, (E i).Nonempty)
     (f : VariableFunction (fun i ↦ E i) α) :

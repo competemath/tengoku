@@ -38,7 +38,9 @@ namespace ThreeSAT
 
 namespace Machine
 
-/-- Simulate a successful pure streaming run over a framed token suffix. -/
+/-- Simulate a successful pure streaming run over a framed token suffix.
+@isnad1 id=ex.3h8v.s7.862bae14af74 from=translated src=- shape=92be8fc9 vocab=bfe1afe9
+-/
 theorem validEmitterTM_streaming_run_internal {Q : Type}
     {st st' : Streaming.State} (pre toks : List EncToken) (cap : ℕ)
     (c : Cfg workTapeCount Q)

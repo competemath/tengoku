@@ -42,14 +42,23 @@ variable {ϱ : ℝ → ℝ} {lam L w : ℝ}
 
 /-! ### pointwise / support facts (sentence 1 of §7.1) -/
 
+/--
+@isnad1 id=eq.0h5v.s4.cd76f1ad02c0 from=translated src=- shape=a74ae448 vocab=782d46c9
+-/
 theorem phiD_even (u : ℝ) : phiD ϱ lam L w (-u) = phiD ϱ lam L w u := by
   unfold phiD vStar
   rw [Taper.phi_even]
   norm_num [neg_div, mul_neg, Real.cos_neg]
 
+/--
+@isnad1 id=le.1h5v.s4.b7f73875a142 from=translated src=- shape=0ec3a26c vocab=321b06a3
+-/
 theorem phiD_nonneg (hϱ : TaperProfile ϱ) (u : ℝ) : 0 ≤ phiD ϱ lam L w u :=
   mul_nonneg (Real.sqrt_nonneg _) (Taper.phi_nonneg hϱ u)
 
+/--
+@isnad1 id=le.1h5v.s4.dca87bfdafc9 from=translated src=- shape=f57263fc vocab=321b06a3
+-/
 theorem phiD_le_one (hϱ : TaperProfile ϱ) (u : ℝ) : phiD ϱ lam L w u ≤ 1 := by
   unfold phiD
   calc Real.sqrt (vStar lam (u / L)) * Taper.phi ϱ L w u
@@ -59,13 +68,18 @@ theorem phiD_le_one (hϱ : TaperProfile ϱ) (u : ℝ) : phiD ϱ lam L w u ≤ 1 
         exact Real.sqrt_le_sqrt (by unfold vStar; exact Real.cos_le_one _)
     _ = 1 := mul_one 1
 
+/--
+@isnad1 id=eq.3h5v.s6.4260664aa317 from=translated src=- shape=011f77a7 vocab=18f3916f
+-/
 theorem phiD_eq_zero (hϱ : TaperProfile ϱ) (hw : 0 < w) {u : ℝ} (hu : L / 2 ≤ |u|) :
     phiD ϱ lam L w u = 0 := by
   unfold phiD
   rw [Taper.phi_eq_zero hϱ hw hu, mul_zero]
 
 /-- on the support, the cosine factor is bounded below: for |u| ≤ L/2 (0 < λ ≤ 1, L > 0),
-cos(√2 λ u/L) ≥ 3/4. -/
+cos(√2 λ u/L) ≥ 3/4.
+@isnad1 id=le.4h3v.s6.b7291403a758 from=translated src=- shape=978fcd9e vocab=9ea20cbc
+-/
 theorem cos_factor_ge (h0 : 0 < lam) (h1 : lam ≤ 1) (hL : 0 < L) {u : ℝ}
     (hu : |u| ≤ L / 2) : 3 / 4 ≤ vStar lam (u / L) := by
   unfold vStar
@@ -84,7 +98,9 @@ theorem cos_factor_ge (h0 : 0 < lam) (h1 : lam ≤ 1) (hL : 0 < L) {u : ℝ}
     nlinarith [mul_nonneg (sub_nonneg.mpr hlam2) hq0]
   linarith
 
-/-- φ_D ∈ C² (product of the C³ ramp with √cos, smooth near the support; glued with 0 off it). -/
+/-- φ_D ∈ C² (product of the C³ ramp with √cos, smooth near the support; glued with 0 off it).
+@isnad1 id=contdiff.5h4v.s6.c1e808840d2d from=translated src=- shape=a99702e8 vocab=000b4ee5
+-/
 theorem phiD_contDiff (hϱ : TaperProfile ϱ) (h0 : 0 < lam) (h1 : lam ≤ 1) (hw : 0 < w)
     (hwL : 2 * w ≤ L) : ContDiff ℝ 2 (phiD ϱ lam L w) := by
   have hL : 0 < L := by linarith
@@ -136,7 +152,9 @@ theorem phiD_contDiff (hϱ : TaperProfile ϱ) (h0 : 0 < lam) (h1 : lam ≤ 1) (h
     filter_upwards [hopen.mem_nhds hmem] with v hv
     exact phiD_eq_zero hϱ hw (le_of_lt hv)
 
-/-- φ_D is nonincreasing in |u|: antitone on [0, ∞). -/
+/-- φ_D is nonincreasing in |u|: antitone on [0, ∞).
+@isnad1 id=antitone.5h4v.s6.486bc0fedec3 from=translated src=- shape=aa475b6d vocab=8c9b9375
+-/
 theorem phiD_antitoneOn (hϱ : TaperProfile ϱ) (h0 : 0 < lam) (h1 : lam ≤ 1) (hw : 0 < w)
     (hwL : 2 * w ≤ L) : AntitoneOn (phiD ϱ lam L w) (Set.Ici 0) := by
   have hL : 0 < L := by linarith
@@ -253,7 +271,9 @@ private theorem integral_abs_deriv_le_two {f : ℝ → ℝ} {M : ℝ} (hM : 0 < 
   rw [hhalf, hsplit, hfar, hnear, hfM]
   linarith
 
-/-- ‖φ_D'‖₁ ≤ 2 (even, nonincreasing in |u|, 0 ≤ φ_D ≤ 1, compact support). -/
+/-- ‖φ_D'‖₁ ≤ 2 (even, nonincreasing in |u|, 0 ≤ φ_D ≤ 1, compact support).
+@isnad1 id=le.5h4v.s7.44e42dc682da from=translated src=- shape=6d0e3b81 vocab=0e918f03
+-/
 theorem integral_abs_deriv_phiD_le (hϱ : TaperProfile ϱ) (h0 : 0 < lam) (h1 : lam ≤ 1)
     (hw : 0 < w) (hwL : 2 * w ≤ L) : ∫ u, |deriv (phiD ϱ lam L w) u| ≤ 2 := by
   have hL : 0 < L := by linarith
@@ -262,7 +282,9 @@ theorem integral_abs_deriv_phiD_le (hϱ : TaperProfile ϱ) (h0 : 0 < lam) (h1 : 
     (phiD_antitoneOn hϱ h0 h1 hw hwL) (phiD_le_one hϱ)
     (fun x hx => phiD_eq_zero hϱ hw hx)
 
-/-- ‖(φ_D²)'‖₁ ≤ 2 (same mechanism for φ_D²). -/
+/-- ‖(φ_D²)'‖₁ ≤ 2 (same mechanism for φ_D²).
+@isnad1 id=le.5h4v.s7.2ed14b91bc22 from=translated src=- shape=9278964b vocab=96f547fc
+-/
 theorem integral_abs_deriv_phiD_sq_le (hϱ : TaperProfile ϱ) (h0 : 0 < lam) (h1 : lam ≤ 1)
     (hw : 0 < w) (hwL : 2 * w ≤ L) :
     ∫ u, |deriv (fun u => phiD ϱ lam L w u ^ 2) u| ≤ 2 := by
@@ -287,7 +309,9 @@ def cDT (ϱ : ℝ → ℝ) (lam : ℝ) : ℝ :=
   64 * (Taper.cRho ϱ + 1) * (1 + lam ^ 2)
 
 /-- φ_D² = (cosine factor) · φ², with no square root: (√v)² = v wherever φ ≠ 0 (there v ≥ 3/4),
-and both sides vanish elsewhere. -/
+and both sides vanish elsewhere.
+@isnad1 id=eq.5h4v.s7.e0ed8649e732 from=translated src=- shape=e644d50b vocab=0a0b4e16
+-/
 theorem phiD_sq_eq (hϱ : TaperProfile ϱ) (h0 : 0 < lam) (h1 : lam ≤ 1) (hw : 0 < w)
     (hwL : 2 * w ≤ L) :
     (fun u => phiD ϱ lam L w u ^ 2)
@@ -354,6 +378,9 @@ private theorem deriv2_eq_zero_outside {f : ℝ → ℝ} {M : ℝ}
     rw [hEq.deriv_eq, deriv_const]
   rw [h1.deriv_eq, deriv_const]
 
+/--
+@isnad1 id=le.5h4v.s7.e98d0f1bc1c7 from=translated src=- shape=85c16130 vocab=467fdf5e
+-/
 theorem integral_abs_deriv2_phiD_sq_le (hϱ : TaperProfile ϱ) (h0 : 0 < lam) (h1 : lam ≤ 1)
     (hw : 1 ≤ w) (hwL : 8 * w ≤ L) :
     ∫ u, |deriv (deriv (fun u => phiD ϱ lam L w u ^ 2)) u| ≤ cDT ϱ lam / w := by
@@ -607,6 +634,9 @@ theorem integral_abs_deriv2_phiD_sq_le (hϱ : TaperProfile ϱ) (h0 : 0 < lam) (h
   linarith [hωL, hfin]
 
 set_option maxHeartbeats 1000000 in
+/--
+@isnad1 id=le.5h4v.s7.64d64ba501cc from=translated src=- shape=0410992b vocab=d5b6e045
+-/
 theorem integral_abs_deriv2_phiD_le (hϱ : TaperProfile ϱ) (h0 : 0 < lam) (h1 : lam ≤ 1)
     (hw : 1 ≤ w) (hwL : 8 * w ≤ L) :
     ∫ u, |deriv (deriv (phiD ϱ lam L w)) u| ≤ cDT ϱ lam / w := by
@@ -1089,7 +1119,9 @@ private theorem integral_scale {v : ℝ → ℝ} {L : ℝ} (hL : 0 < L) :
     show -(L/2) / L = -(1:ℝ)/2 by field_simp; try ring,
     show L/2 / L = (1:ℝ)/2 by rw [div_div]; rw [div_eq_div_iff (by positivity) (by norm_num)]; ring]
 
-/-- a_D := L⁻¹∫φ_D²;  |a_D − a*_λ| ≤ 4w/L. -/
+/-- a_D := L⁻¹∫φ_D²;  |a_D − a*_λ| ≤ 4w/L.
+@isnad1 id=le.5h4v.s7.3e82d25ee624 from=translated src=- shape=1d08506b vocab=a079e37b
+-/
 theorem aD_close (hϱ : TaperProfile ϱ) (h0 : 0 < lam) (h1 : lam ≤ 1) (hw : 1 ≤ w)
     (hwL : 8 * w ≤ L) :
     |L⁻¹ * (∫ u, phiD ϱ lam L w u ^ 2) - aStar lam| ≤ 4 * w / L := by
@@ -1138,7 +1170,9 @@ theorem aD_close (hϱ : TaperProfile ϱ) (h0 : 0 < lam) (h1 : lam ≤ 1) (hw : 1
         rw [div_eq_mul_inv]
         nlinarith [hw0.le, inv_pos.mpr hL]
 
-/-- b_D := L⁻¹∫φ_D⁴;  |b_D − b*_λ| ≤ 4w/L. -/
+/-- b_D := L⁻¹∫φ_D⁴;  |b_D − b*_λ| ≤ 4w/L.
+@isnad1 id=le.5h4v.s7.a38641a80f6e from=translated src=- shape=1d08506b vocab=de4d21e4
+-/
 theorem bD_close (hϱ : TaperProfile ϱ) (h0 : 0 < lam) (h1 : lam ≤ 1) (hw : 1 ≤ w)
     (hwL : 8 * w ≤ L) :
     |L⁻¹ * (∫ u, phiD ϱ lam L w u ^ 4) - bStar lam| ≤ 4 * w / L := by
@@ -1212,7 +1246,9 @@ def Cfun (lam L : ℝ) (y : ℝ) : ℝ :=
     + Real.sin (Real.sqrt 2 * lam * (1 / L) * (L - y)) / (2 * (Real.sqrt 2 * lam * (1 / L)))
 
 /-- product-to-sum evaluation: for 0 ≤ y ≤ L,
-∫ u in −L/2..(L/2−y), v(u/L)·v((u+y)/L) du = Cfun y. -/
+∫ u in −L/2..(L/2−y), v(u/L)·v((u+y)/L) du = Cfun y.
+@isnad1 id=eq.2h3v.s7.fd77eab20792 from=translated src=- shape=92a267d4 vocab=18361f33
+-/
 theorem integral_cos_overlap (h0 : 0 < lam) (hL : 0 < L) (y : ℝ) :
     ∫ u in (-(L/2))..(L/2 - y), vStar lam (u / L) * vStar lam ((u + y) / L)
       = Cfun lam L y := by
@@ -1256,7 +1292,9 @@ theorem integral_cos_overlap (h0 : 0 < lam) (hL : 0 < L) (y : ℝ) :
   ring
 
 /-- the y-moment of the sharp autocorrelation, in closed form:
-∫_0^L Cfun(y)·y dy = (L³/2)·(sin(2ϑ)/(8ϑ³) − cos(2ϑ)/(4ϑ²))  (explicit antiderivatives). -/
+∫_0^L Cfun(y)·y dy = (L³/2)·(sin(2ϑ)/(8ϑ³) − cos(2ϑ)/(4ϑ²))  (explicit antiderivatives).
+@isnad1 id=eq.3h2v.s7.018e7fe93e6e from=translated src=- shape=4046dead vocab=5e505cab
+-/
 theorem integral_Cfun_moment (h0 : 0 < lam) (_h1 : lam ≤ 1) (hL : 0 < L) :
     ∫ y in (0:ℝ)..L, Cfun lam L y * y
       = L ^ 3 / 2 * (Real.sin (2 * theta lam) / (8 * theta lam ^ 3)
@@ -1334,7 +1372,9 @@ theorem integral_Cfun_moment (h0 : 0 < lam) (_h1 : lam ≤ 1) (hL : 0 < L) :
 def sharpW (lam L : ℝ) (u : ℝ) : ℝ :=
   (Set.Icc (-(L/2)) (L/2)).indicator (fun u => vStar lam (u / L)) u
 
-/-- the sharp-window autocorrelation (full line) equals the overlap integral, i.e. Cfun. -/
+/-- the sharp-window autocorrelation (full line) equals the overlap integral, i.e. Cfun.
+@isnad1 id=eq.4h3v.s6.dd4006261578 from=translated src=- shape=41d7e4a7 vocab=50fdf876
+-/
 theorem sharp_autocorr_eq (h0 : 0 < lam) (hL : 0 < L) {y : ℝ}
     (hy0 : 0 ≤ y) (hyL : y ≤ L) :
     ∫ u, sharpW lam L u * sharpW lam L (u + y) = Cfun lam L y := by
@@ -1360,7 +1400,9 @@ theorem sharp_autocorr_eq (h0 : 0 < lam) (hL : 0 < L) {y : ℝ}
     ← intervalIntegral.integral_of_le (by linarith : -(L/2) ≤ L/2 - y)]
   exact integral_cos_overlap h0 hL y
 
-/-- the window and the sharp cutoff differ by at most 2w in L¹. -/
+/-- the window and the sharp cutoff differ by at most 2w in L¹.
+@isnad1 id=le.5h4v.s7.1060b5e5c3cf from=translated src=- shape=a9c3d516 vocab=c769949c
+-/
 theorem integral_abs_phiDsq_sub_sharp (hϱ : TaperProfile ϱ) (h0 : 0 < lam) (h1 : lam ≤ 1)
     (hw : 0 < w) (hwL : 2 * w ≤ L) :
     ∫ u, |phiD ϱ lam L w u ^ 2 - sharpW lam L u| ≤ 2 * w := by
@@ -1473,7 +1515,9 @@ theorem integral_abs_phiDsq_sub_sharp (hϱ : TaperProfile ϱ) (h0 : 0 < lam) (h1
           ENNReal.toReal_ofReal (by linarith), ENNReal.toReal_ofReal (by linarith)]
         ring
 
-/-- pointwise comparison of the window autocorrelation with the sharp one: ≤ 4w on [0, L]. -/
+/-- pointwise comparison of the window autocorrelation with the sharp one: ≤ 4w on [0, L].
+@isnad1 id=le.7h5v.s7.feb1dcd81309 from=translated src=- shape=4e3bd9a7 vocab=463b396d
+-/
 theorem autocorr_phiDsq_close (hϱ : TaperProfile ϱ) (h0 : 0 < lam) (h1 : lam ≤ 1)
     (hw : 0 < w) (hwL : 2 * w ≤ L) {y : ℝ} (hy0 : 0 ≤ y) (hyL : y ≤ L) :
     |Params.autocorr (fun u => phiD ϱ lam L w u ^ 2) y - Cfun lam L y| ≤ 4 * w := by
@@ -1603,7 +1647,9 @@ theorem autocorr_phiDsq_close (hϱ : TaperProfile ϱ) (h0 : 0 < lam) (h1 : lam �
 
 end JMoment
 
-/-- J_D := (2/L³)∫_0^L g_D(y)·y dy, g_D = φ_D² ⋆ φ_D² [eq:abJ];  |J_D − J*_λ| ≤ 16w/L. -/
+/-- J_D := (2/L³)∫_0^L g_D(y)·y dy, g_D = φ_D² ⋆ φ_D² [eq:abJ];  |J_D − J*_λ| ≤ 16w/L.
+@isnad1 id=le.5h4v.s7.003602dc4bbb from=translated src=- shape=af9a8055 vocab=a85cd49b
+-/
 theorem jD_close (hϱ : TaperProfile ϱ) (h0 : 0 < lam) (h1 : lam ≤ 1) (hw : 1 ≤ w)
     (hwL : 8 * w ≤ L) :
     |2 / L ^ 3 * (∫ y in (0:ℝ)..L, Params.autocorr (fun u => phiD ϱ lam L w u ^ 2) y * y)
@@ -1699,6 +1745,9 @@ private theorem autocorr_eq_conv (heven : ∀ x : ℝ, h (-x) = h x) :
     rw [show t - y = -(y - t) by ring, heven]
   rw [e2, mul_comm]
 
+/--
+@isnad1 id=and.5h1v.s8.cb13ff9602e7 from=translated src=- shape=9c1dafeb vocab=10410adc
+-/
 theorem autocorr_deriv_facts (hC : ContDiff ℝ 1 h) (hcs : HasCompactSupport h)
     (heven : ∀ x : ℝ, h (-x) = h x) (hb : ∀ u : ℝ, |h u| ≤ 1)
     (hI : ∫ u, |deriv h u| ≤ 2) :
@@ -1745,7 +1794,9 @@ theorem autocorr_deriv_facts (hC : ContDiff ℝ 1 h) (hcs : HasCompactSupport h)
       _ ≤ 2 := hI
 
 /-- the φ_D²-instance: g_D := autocorr(φ_D²) is C¹ with |g_D'| ≤ 2 (the paper's
-"|g'| ≤ ‖(φ²)'‖₁ ≤ 2"), the exact hypotheses of ThmD/PP.sumA2g_close. -/
+"|g'| ≤ ‖(φ²)'‖₁ ≤ 2"), the exact hypotheses of ThmD/PP.sumA2g_close.
+@isnad1 id=and.5h4v.s8.a5485469b914 from=translated src=- shape=ccb9d0c9 vocab=7bb9fb65
+-/
 theorem gD_deriv_facts (hϱ : TaperProfile ϱ) (h0 : 0 < lam) (h1 : lam ≤ 1)
     (hw : 0 < w) (hwL : 2 * w ≤ L) :
     Differentiable ℝ (Params.autocorr (fun u => phiD ϱ lam L w u ^ 2))

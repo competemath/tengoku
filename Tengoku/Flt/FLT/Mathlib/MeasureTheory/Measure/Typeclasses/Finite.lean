@@ -19,6 +19,9 @@ section IsOpenEmbeddingComap
 
 open MeasureTheory Measure
 
+/--
+@isnad1 id=isfinite.1h4v.s5.033001d19b04 from=translated src=- shape=d9b19c56 vocab=52389a47
+-/
 lemma Topology.IsOpenEmbedding.isFiniteMeasureOnCompacts_comap {X Y : Type*}
     [TopologicalSpace X] [MeasurableSpace X] [BorelSpace X]
     [TopologicalSpace Y] [MeasurableSpace Y] [BorelSpace Y]

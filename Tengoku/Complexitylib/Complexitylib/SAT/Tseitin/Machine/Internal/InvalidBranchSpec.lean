@@ -40,7 +40,9 @@ def invalidReductionPost (z : List Bool) : TapePred workTapeCount :=
   TM.EmitPred (validatedInputTape z) (frontEndWork z) fallbackEncoding
 
 /-- The explicit invalid-path budget is bounded by a single-coefficient
-linear polynomial. -/
+linear polynomial.
+@isnad1 id=le.0h1v.s5.f88f03db9694 from=translated src=- shape=035ebc79 vocab=ebd7a482
+-/
 theorem invalidReductionTime_le_linear_internal (n : ℕ) :
     5 * n + 49 ≤ 49 * (n + 1) := by
   omega
@@ -84,7 +86,9 @@ private theorem validation_to_invalid_then (z : List Bool)
 /-- **Invalid branch of the total reduction.**  For every supplied valid-side
 emitter, a rejected input selects the else branch, clears the validator
 verdict, emits exactly `fallbackEncoding`, and halts within `5|z| + 49`
-steps. -/
+steps.
+@isnad1 id=hoaretim.1h2v.s6.34678e10c8ee from=translated src=- shape=855882ff vocab=8283fc6b
+-/
 theorem reductionTMWith_invalid_hoareTime_internal
     (validEmitter : TM workTapeCount) (z : List Bool)
     (hvalid : validEncoding z = false) :
@@ -140,7 +144,9 @@ theorem reductionTMWith_invalid_hoareTime_internal
     (4 * z.length + 11) + 1 + (z.length + 37) ≤ 5 * z.length + 49)
   exact hallBound
 
-/-- Execution-level corollary from the standard initial configuration. -/
+/-- Execution-level corollary from the standard initial configuration.
+@isnad1 id=ex.1h2v.s6.54c1e0801a00 from=translated src=- shape=12334aa4 vocab=a011cce2
+-/
 theorem reductionTMWith_invalid_reachesIn_internal
     (validEmitter : TM workTapeCount) (z : List Bool)
     (hvalid : validEncoding z = false) :

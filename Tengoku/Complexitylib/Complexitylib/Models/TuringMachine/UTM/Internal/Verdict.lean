@@ -29,7 +29,9 @@ namespace Complexity
 
 namespace TM.UTMBody
 
-/-- A blank-free `Γw` list is the symbol image of its own bits. -/
+/-- A blank-free `Γw` list is the symbol image of its own bits.
+@isnad1 id=eq.1h1v.s4.ab0720c90775 from=translated src=- shape=9b21ec72 vocab=8ed5ef35
+-/
 theorem bitsToSyms_filterMap_of_ne_blank :
     ∀ {l : List Γw}, (∀ s ∈ l, s ≠ Γw.blank) →
       bitsToSyms (l.filterMap symBit?) = l
@@ -48,20 +50,26 @@ def qhaltField (dSyms : List Γw) : List Γw :=
   (takeField (takeField dSyms).2).1
 
 /-- The qhalt field of a decoded description determines its halt state:
-    `fieldNat` if the width matches, the sentinel `2^w` otherwise. -/
+    `fieldNat` if the width matches, the sentinel `2^w` otherwise.
+@isnad1 id=eq.0h1v.s5.52adeccae955 from=translated src=- shape=91cbe8dd vocab=c9b42b2f
+-/
 theorem decodeDesc_qhalt (α : List Bool) :
     (decodeDesc α).qhalt =
       if (qhaltField (groupPairs α)).length = (decodeDesc α).w then
         fieldNat (qhaltField (groupPairs α))
       else 2 ^ (decodeDesc α).w := rfl
 
-/-- The decoded width is the first field's length. -/
+/-- The decoded width is the first field's length.
+@isnad1 id=eq.0h1v.s4.0604e66a0f7a from=translated src=- shape=5a15d166 vocab=da9bab3a
+-/
 theorem decodeDesc_w (α : List Bool) :
     (decodeDesc α).w = (takeField (groupPairs α)).1.length := rfl
 
 /-- **Running-state verdict**: for `q < 2^w` (with `w` the decoded width),
     the state tape's `w`-bit encoding of `q` equals the qhalt field iff the
-    interpreted machine's state `q` is its halt state. -/
+    interpreted machine's state `q` is its halt state.
+@isnad1 id=iff.1h2v.s6.f14f1f94e32e from=translated src=- shape=a2d360f1 vocab=d473ef9c
+-/
 theorem verdict_running (α : List Bool) {q : ℕ}
     (hq : q < 2 ^ (decodeDesc α).w) :
     (bitsToSyms (Nat.toBits (decodeDesc α).w q) = qhaltField (groupPairs α))

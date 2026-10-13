@@ -15,6 +15,9 @@ Material destined for Mathlib.
 
 @[expose] public section
 
+/--
+@isnad1 id=continuo.0h4v.s7.fd15e346640c from=translated src=- shape=0ecf70c5 vocab=7ce962de
+-/
 theorem Basis.toMatrix_continuous {ι R M : Type*} [AddCommGroup M]
     [Finite ι] [TopologicalSpace M] [NontriviallyNormedField R] [Module R M]
     [IsTopologicalAddGroup M] [ContinuousSMul R M] [CompleteSpace R] [T2Space M]

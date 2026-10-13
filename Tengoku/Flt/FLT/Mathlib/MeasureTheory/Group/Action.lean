@@ -81,18 +81,27 @@ local instance : MeasurableMul H where
   measurable_mul_const c := Measurable.subtype_mk (by measurability)
   measurable_const_mul c := Measurable.subtype_mk (by measurability)
 
+/--
+@isnad1 id=ismullef.1h3v.s7.93338d2fe38f from=translated src=- shape=ce572e78 vocab=85b36564
+-/
 @[to_additive]
 lemma isMulLeftInvariant_subtypeVal (μ : Measure G) [μ.IsMulLeftInvariant]
   (hH : MeasurableSet (H : Set G)) : (μ.comap Subtype.val : Measure H).IsMulLeftInvariant :=
   have hφ : MeasurableEmbedding H.subtype := MeasurableEmbedding.subtype_coe hH
   hφ.isMulLeftInvariant_comap μ
 
+/--
+@isnad1 id=ismulrig.1h3v.s7.c676e163e9a1 from=translated src=- shape=ce572e78 vocab=8d83b814
+-/
 @[to_additive]
 lemma isMulRightInvariant_subtypeVal (μ : Measure G) [μ.IsMulRightInvariant]
     (hH : MeasurableSet (H : Set G)) : (μ.comap Subtype.val : Measure H).IsMulRightInvariant :=
   have hφ : MeasurableEmbedding H.subtype := MeasurableEmbedding.subtype_coe hH
   hφ.isMulRightInvariant_comap μ
 
+/--
+@isnad1 id=eq.3h4v.s7.833f9cf4f19d from=translated src=- shape=c6983c45 vocab=1198ad0d
+-/
 @[to_additive index_mul_addHaar_addSubgroup_eq_addHaar_addSubgroup]
 lemma index_mul_haar_subgroup_eq_haar_subgroup [H.IsFiniteRelIndex K] (hHK : H ≤ K)
     (hH : MeasurableSet (H : Set G)) (hK : MeasurableSet (K : Set G)) (μ : Measure G)

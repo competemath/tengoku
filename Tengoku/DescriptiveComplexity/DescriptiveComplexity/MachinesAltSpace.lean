@@ -54,6 +54,9 @@ def Config.equivProd (A : Type) : Config A ≃ A × A × (A → A) where
   left_inv _ := rfl
   right_inv _ := rfl
 
+/--
+@isnad1 id=finite.0h1v.s3.4f7502aaf204 from=translated src=- shape=9c5f631c vocab=dbde2efe
+-/
 instance Config.instFinite {A : Type} [Finite A] : Finite (Config A) :=
   Finite.of_equiv _ (Config.equivProd A).symm
 
@@ -91,7 +94,9 @@ def AltAcceptsSpace (start : Bool) : Prop :=
 
 variable {M}
 
-/-- A budgeted win is a win. -/
+/-- A budgeted win is a win.
+@isnad1 id=altwin.1h5v.s4.258c40880532 from=translated src=- shape=93340744 vocab=14394ab5
+-/
 theorem altWin_of_altAcc {start : Bool} :
     ∀ (n : ℕ) {c : Config A}, M.AltAcc start n c → M.AltWin start c := by
   intro n
@@ -106,7 +111,9 @@ theorem altWin_of_altAcc {start : Bool} :
 
 /-- A win is a budgeted win, the budget being the depth of the winning
 strategy. The universal case takes the greatest budget its successors need,
-which is where the finiteness of the configuration space is used. -/
+which is where the finiteness of the configuration space is used.
+@isnad1 id=ex.1h4v.s4.b118bc070dad from=translated src=- shape=7638f2d5 vocab=0857a0cb
+-/
 theorem exists_altAcc_of_altWin [Finite A] {start : Bool} {c : Config A}
     (h : M.AltWin start c) : ∃ n, M.AltAcc start n c := by
   classical
@@ -130,7 +137,9 @@ theorem exists_altAcc_of_altWin [Finite A] {start : Bool} {c : Config A}
 /-- **The two presentations agree**: winning is accepting within some budget.
 Over a finite configuration space the budgeted recursion of
 `DescriptiveComplexity.ATMData.AltAcc` computes the least fixed point, one
-stage at a time. -/
+stage at a time.
+@isnad1 id=iff.0h4v.s4.f4bb6fffcd28 from=translated src=- shape=ab33ac5f vocab=0857a0cb
+-/
 theorem altWin_iff_exists_altAcc [Finite A] {start : Bool} {c : Config A} :
     M.AltWin start c ↔ ∃ n, M.AltAcc start n c :=
   ⟨exists_altAcc_of_altWin, fun ⟨_, h⟩ => altWin_of_altAcc _ h⟩
@@ -141,7 +150,9 @@ theorem altWin_iff_exists_altAcc [Finite A] {start : Bool} {c : Config A} :
 alternating model is a conservative extension of the space-bounded
 nondeterministic one, exactly as
 `DescriptiveComplexity.ATMData.altAcc_iff_stepsIn` says of the budgeted
-model. -/
+model.
+@isnad1 id=iff.1h4v.s5.8af4c1398633 from=translated src=- shape=d395319f vocab=11f656a5
+-/
 theorem altWin_iff_reach {start : Bool} (hex : ∀ q : A, ¬M.IsUniv start q) (c : Config A) :
     M.AltWin start c ↔ ∃ d, Relation.ReflTransGen M.Step c d ∧ M.Acc d.state := by
   constructor
@@ -158,7 +169,9 @@ theorem altWin_iff_reach {start : Bool} (hex : ∀ q : A, ¬M.IsUniv start q) (c
     | head hstep _ ih => exact .ex (hex _) hstep ih
 
 /-- **Acceptance in bounded space, without a universal state, is acceptance in
-bounded space of the underlying machine.** -/
+bounded space of the underlying machine.**
+@isnad1 id=iff.1h2v.s4.a6262615c41c from=translated src=- shape=7dcdac5e vocab=62754387
+-/
 theorem altAcceptsSpace_true_iff_acceptsSpace (hex : ∀ q : A, ¬M.IsUniv true q) :
     M.AltAcceptsSpace true ↔ M.toTMData.AcceptsSpace := by
   constructor
@@ -185,7 +198,9 @@ variable {M}
 /-- **Block `1` is the universal player.** With the marks split in two, the
 polarity bookkeeping of `DescriptiveComplexity.blockPol` collapses to a single
 mark, so the model reads as an ordinary alternating machine with an
-existential and a universal set of states. -/
+existential and a universal set of states.
+@isnad1 id=iff.1h3v.s4.24ced556d769 from=translated src=- shape=aeea268d vocab=5b0869a9
+-/
 theorem isUniv_true_iff_blk_one (hsplit : M.BlocksSplit) (q : A) :
     M.IsUniv true q ↔ M.Blk 1 q := by
   constructor
@@ -212,7 +227,9 @@ variable {B : Type} {u : B ≃ A} {N : ATMData B}
 /-- **Winning transports along an equivalence of universes.** Stated as an
 implication rather than an equivalence, and proved without any finiteness: the
 converse comes from the agreement in the other direction, which the
-isomorphism-invariance of a decision problem has anyway. -/
+isomorphism-invariance of a decision problem has anyway.
+@isnad1 id=altwin.2h7v.s5.22c5aa8eafb3 from=translated src=- shape=b356b7c7 vocab=43719d65
+-/
 theorem AltAgree.altWin_mp (h : AltAgree u N M) (start : Bool) :
     ∀ {c : Config B}, N.AltWin start c → M.AltWin start (c.map u) := by
   intro c hw
@@ -228,7 +245,9 @@ theorem AltAgree.altWin_mp (h : AltAgree u N M) (start : Bool) :
       obtain ⟨e₀, rfl⟩ := Config.map_surjective u e
       exact ih e₀ (h.base.step.mpr he)
 
-/-- **Acceptance in bounded space transports along an equivalence.** -/
+/-- **Acceptance in bounded space transports along an equivalence.**
+@isnad1 id=altaccep.2h6v.s5.7fe88df4ee35 from=translated src=- shape=7ce58471 vocab=10831c0f
+-/
 theorem AltAgree.altAcceptsSpace_mp (h : AltAgree u N M) (start : Bool) :
     N.AltAcceptsSpace start → M.AltAcceptsSpace start := by
   cases start with
@@ -241,7 +260,9 @@ theorem AltAgree.altAcceptsSpace_mp (h : AltAgree u N M) (start : Bool) :
     obtain ⟨d₀, rfl⟩ := Config.map_surjective u d
     exact h.altWin_mp false (hf d₀ (h.base.isInit.mpr hd))
 
-/-- **The two-block split transports along an equivalence.** -/
+/-- **The two-block split transports along an equivalence.**
+@isnad1 id=blockssp.2h5v.s4.bc5edf504138 from=translated src=- shape=d994780f vocab=a949a77b
+-/
 theorem AltAgree.blocksSplit_mp (h : AltAgree u N M) : N.BlocksSplit → M.BlocksSplit := by
   intro hf q
   obtain ⟨j, hjk, hj, huq⟩ := hf (u.symm q)

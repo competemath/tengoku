@@ -253,7 +253,9 @@ private theorem exists_cnf_of_validEncoding {z : List Bool}
         _ = φ.encode := CNF.encodeTokens_tokens φ
 
 /-- The pure finite-state validator accepts exactly the inputs on which the
-existing executable CNF decoder succeeds. -/
+existing executable CNF decoder succeeds.
+@isnad1 id=eq.0h1v.s3.84947952a4bc from=translated src=- shape=36712815 vocab=182a08dc
+-/
 theorem validEncoding_eq_decode?_isSome_internal (z : List Bool) :
     validEncoding z = (CNF.decode? z).isSome := by
   cases hdecode : CNF.decode? z with

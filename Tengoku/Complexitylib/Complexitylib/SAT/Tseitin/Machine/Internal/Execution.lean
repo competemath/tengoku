@@ -52,7 +52,9 @@ private theorem validationTM_step_init (z : List Bool) :
 
 /-- **Exact validation execution.** Starting from `initCfg z`, the machine
 halts in exactly `|z|+2` steps, preserves the input cells and all work cells,
-and writes the Boolean `validEncoding z` to output cell one. -/
+and writes the Boolean `validEncoding z` to output cell one.
+@isnad1 id=ex.0h2v.s7.0fbb0a9fe6e7 from=translated src=- shape=09cb83ad vocab=f5184cc4
+-/
 theorem validationTM_reachesIn_internal (z : List Bool) :
     ∃ c', (validationTM (n := n)).reachesIn (z.length + 2)
         ((validationTM (n := n)).initCfg z) c' ∧
@@ -77,7 +79,9 @@ theorem validationTM_reachesIn_internal (z : List Bool) :
   · cases hvalid : validEncoding z <;>
       simpa [hvalid, Γ.ofBool] using hoCell
 
-/-- Hoare interface for the exact initial-tape execution theorem. -/
+/-- Hoare interface for the exact initial-tape execution theorem.
+@isnad1 id=hoaretim.0h2v.s7.ee73c5f6cfdf from=translated src=- shape=539dfaea vocab=9bd7d890
+-/
 theorem validationTM_hoareTime_internal (z : List Bool) :
     (validationTM (n := n)).HoareTime
       (fun inp work out =>

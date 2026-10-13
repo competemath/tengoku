@@ -10,6 +10,9 @@ open scoped nonZeroDivisors
 open Polynomial
 
 open FractionalIdeal in
+/--
+@isnad1 id=ex.4h5v.s9.2e696ded4906 from=translated src=- shape=0db1e094 vocab=81997feb
+-/
 lemma exists_not_dvd_spanSingleton_eq {R : Type*} [CommRing R] [IsDedekindDomain R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]
     {x : R} (hx : Prime x) (I J : Ideal R)

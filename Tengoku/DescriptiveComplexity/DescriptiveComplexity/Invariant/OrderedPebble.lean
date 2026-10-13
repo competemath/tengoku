@@ -52,6 +52,9 @@ variable {A : Type} {k : ℕ} {β : Type*} [LinearOrder β]
 def IncompRel (O : PebbleRel A k) : PebbleRel A k :=
   fun u v => ¬O u v ∧ ¬O v u
 
+/--
+@isnad1 id=incompre.0h6v.s4.5ddff141e924 from=translated src=- shape=5ab65035 vocab=898a0e6e
+-/
 theorem IncompRel.symm {O : PebbleRel A k} {u v : Fin k → A}
     (h : IncompRel O u v) : IncompRel O v u :=
   ⟨h.2, h.1⟩
@@ -69,6 +72,9 @@ def MovesEq (O : PebbleRel A k) (j : Fin k) (u v : Fin k → A) : Prop :=
 def MovesDiff (O : PebbleRel A k) (j : Fin k) (u v x : Fin k → A) : Prop :=
   ¬(InMoves O j u x ↔ InMoves O j v x)
 
+/--
+@isnad1 id=movesdif.1h7v.s5.e77ec7964865 from=translated src=- shape=7b76fa06 vocab=04ffe064
+-/
 theorem MovesDiff.symm {O : PebbleRel A k} {j : Fin k} {u v x : Fin k → A}
     (h : MovesDiff O j u v x) : MovesDiff O j v u x :=
   fun hiff => h hiff.symm
@@ -92,6 +98,9 @@ def colorAgree : PebbleRel A k :=
   fun u v => c₀ u = c₀ v
 
 omit [LinearOrder β] in
+/--
+@isnad1 id=equivale.0h4v.s4.659b2b1e840e from=translated src=- shape=55742036 vocab=1dea22f1
+-/
 theorem colorAgree_equivalence : Equivalence (colorAgree c₀) :=
   ⟨fun _ => rfl, fun h => h.symm, fun h h' => h.trans h'⟩
 
@@ -113,12 +122,16 @@ is transitive and asymmetric, so it is a linear order on the
 def OrdK : PebbleRel A k :=
   fun u v => ∃ n, ordStage c₀ n u v
 
-/-- The chain grows: one round only ever adds pairs. -/
+/-- The chain grows: one round only ever adds pairs.
+@isnad1 id=ordstage.0h8v.s5.db1d86bfab2a from=translated src=- shape=380cdbbb vocab=00a5a0cc
+-/
 theorem ordStage_le_succ (n : ℕ) {u v : Fin k → A} (h : ordStage c₀ n u v) :
     ordStage c₀ (n + 1) u v :=
   Or.inl h
 
-/-- The chain grows, monotonically. -/
+/-- The chain grows, monotonically.
+@isnad1 id=ordstage.1h9v.s5.46f027e7477a from=translated src=- shape=e2c74c0d vocab=3057a960
+-/
 theorem ordStage_le_of_le {m n : ℕ} (hmn : m ≤ n) {u v : Fin k → A}
     (h : ordStage c₀ m u v) : ordStage c₀ n u v := by
   induction n with
@@ -144,7 +157,9 @@ variable (hinc : ∀ u v w : Fin k → A,
   IncompRel O u v → IncompRel O v w → IncompRel O u w)
 
 include htrans hinc in
-/-- Comparability is a congruence for incomparability, on the right. -/
+/-- Comparability is a congruence for incomparability, on the right.
+@isnad1 id=var.0h10v.s6.f8ce018181ce from=translated src=- shape=478fa685 vocab=898a0e6e
+-/
 theorem IncompRel.congr_left {u v w : Fin k → A} (h : O u v)
     (hvw : IncompRel O v w) : O u w := by
   by_contra huw
@@ -153,7 +168,9 @@ theorem IncompRel.congr_left {u v w : Fin k → A} (h : O u v)
   · exact (hinc u w v ⟨huw, hwu⟩ hvw.symm).1 h
 
 include htrans hinc in
-/-- Comparability is a congruence for incomparability, on the left. -/
+/-- Comparability is a congruence for incomparability, on the left.
+@isnad1 id=var.0h10v.s6.ee7a9e3c6be8 from=translated src=- shape=8e671d44 vocab=898a0e6e
+-/
 theorem IncompRel.congr_right {u v w : Fin k → A} (huv : IncompRel O u v)
     (h : O v w) : O u w := by
   by_contra huw
@@ -162,7 +179,9 @@ theorem IncompRel.congr_right {u v w : Fin k → A} (huv : IncompRel O u v)
   · exact (hinc v u w huv.symm ⟨huw, hwu⟩).1 h
 
 include hinc in
-/-- Membership in a move set only depends on the class of the target. -/
+/-- Membership in a move set only depends on the class of the target.
+@isnad1 id=inmoves.1h9v.s6.410d7879c26e from=translated src=- shape=ebb924b2 vocab=5b2f9841
+-/
 theorem InMoves.congr {j : Fin k} {u x y : Fin k → A}
     (h : InMoves O j u x) (hxy : IncompRel O x y) : InMoves O j u y := by
   obtain ⟨a, ha⟩ := h
@@ -170,7 +189,9 @@ theorem InMoves.congr {j : Fin k} {u x y : Fin k → A}
 
 include hasymm htrans in
 /-- If the move sets differ, one compares below the other: the least
-separating class lands on one of the two sides. -/
+separating class lands on one of the two sides.
+@isnad1 id=or.2h7v.s6.f7677403ac92 from=translated src=- shape=3e371b9f vocab=7f067851
+-/
 theorem setLess_or [Finite A] {j : Fin k} {u v : Fin k → A}
     (h : ¬MovesEq O j u v) : SetLess O j u v ∨ SetLess O j v u := by
   classical
@@ -190,7 +211,9 @@ theorem setLess_or [Finite A] {j : Fin k} {u v : Fin k → A}
 
 include hinc in
 /-- Set comparison is asymmetric: the two candidate least separating classes
-would be incomparable, hence equal as classes, hence on the same side. -/
+would be incomparable, hence equal as classes, hence on the same side.
+@isnad1 id=not.1h7v.s6.3077d04668b5 from=translated src=- shape=aebd0443 vocab=76add033
+-/
 theorem setLess_asymm {j : Fin k} {u v : Fin k → A} (h : SetLess O j u v) :
     ¬SetLess O j v u := by
   rintro ⟨y, hyv, hyu, hymin⟩
@@ -208,14 +231,18 @@ private theorem movesDiff_trans {O : PebbleRel A k} {j : Fin k}
   · exact Or.inr fun hvw => h (huv.trans hvw)
   · exact Or.inl huv
 
-/-- Set comparison is invariant under move-set equality on the right. -/
+/-- Set comparison is invariant under move-set equality on the right.
+@isnad1 id=setless.2h7v.s5.8e9b69379acc from=translated src=- shape=ff5c2200 vocab=4ecf3a55
+-/
 theorem SetLess.congr_right {O : PebbleRel A k} {j : Fin k} {u v w : Fin k → A}
     (h : SetLess O j u v) (hvw : MovesEq O j v w) : SetLess O j u w := by
   obtain ⟨x, hxu, hxv, hxmin⟩ := h
   refine ⟨x, hxu, fun hxw => hxv ((hvw x).mpr hxw), fun y hy => hxmin y ?_⟩
   exact fun hiff => hy (hiff.trans (hvw y))
 
-/-- Set comparison is invariant under move-set equality on the left. -/
+/-- Set comparison is invariant under move-set equality on the left.
+@isnad1 id=setless.2h7v.s5.9fa0ff79e1c2 from=translated src=- shape=c4c78aa8 vocab=4ecf3a55
+-/
 theorem SetLess.congr_left {O : PebbleRel A k} {j : Fin k} {u v w : Fin k → A}
     (huv : MovesEq O j u v) (h : SetLess O j v w) : SetLess O j u w := by
   obtain ⟨x, hxv, hxw, hxmin⟩ := h
@@ -224,7 +251,9 @@ theorem SetLess.congr_left {O : PebbleRel A k} {j : Fin k} {u v w : Fin k → A}
 
 include htrans hinc in
 /-- Set comparison is transitive: compare the two least separating classes,
-and reuse the smaller one. -/
+and reuse the smaller one.
+@isnad1 id=setless.2h9v.s6.90f22005d883 from=translated src=- shape=be8c5b0a vocab=76add033
+-/
 theorem setLess_trans {j : Fin k} {u v w : Fin k → A}
     (h₁ : SetLess O j u v) (h₂ : SetLess O j v w) : SetLess O j u w := by
   obtain ⟨a, hau, hav, hamin⟩ := h₁
@@ -247,14 +276,18 @@ theorem setLess_trans {j : Fin k} {u v w : Fin k → A}
     · -- incomparable candidates are the same class: contradiction at `v`
       exact absurd (InMoves.congr hinc hbv ⟨hba, hab⟩) hav
 
-/-- Move-set equality contradicts set comparison at the same pebble. -/
+/-- Move-set equality contradicts set comparison at the same pebble.
+@isnad1 id=false.2h6v.s5.6a9faebc4683 from=translated src=- shape=de68dceb vocab=4ecf3a55
+-/
 theorem SetLess.not_movesEq {O : PebbleRel A k} {j : Fin k} {u v : Fin k → A}
     (h : SetLess O j u v) (heq : MovesEq O j u v) : False := by
   obtain ⟨x, hxu, hxv, -⟩ := h
   exact hxv ((heq x).mp hxu)
 
 include hinc in
-/-- Lexicographic move-set comparison is asymmetric. -/
+/-- Lexicographic move-set comparison is asymmetric.
+@isnad1 id=not.1h6v.s6.06c0f43bb4c2 from=translated src=- shape=1d17b7ee vocab=d5660bef
+-/
 theorem movesLess_asymm {u v : Fin k → A} (h : MovesLess O u v) :
     ¬MovesLess O v u := by
   rintro ⟨j₂, hpre₂, hless₂⟩
@@ -266,7 +299,9 @@ theorem movesLess_asymm {u v : Fin k → A} (h : MovesLess O u v) :
   · exact hless₂.not_movesEq fun x => (hpre₁ j₂ hlt x).symm
 
 include htrans hinc in
-/-- Lexicographic move-set comparison is transitive. -/
+/-- Lexicographic move-set comparison is transitive.
+@isnad1 id=movesles.2h8v.s6.ffd0cb27a4d8 from=translated src=- shape=5816494a vocab=d5660bef
+-/
 theorem movesLess_trans {u v w : Fin k → A} (h₁ : MovesLess O u v)
     (h₂ : MovesLess O v w) : MovesLess O u w := by
   obtain ⟨j₁, hpre₁, hless₁⟩ := h₁
@@ -282,7 +317,9 @@ theorem movesLess_trans {u v w : Fin k → A} (h₁ : MovesLess O u v)
 
 include hasymm htrans in
 /-- If the move sets differ at some pebble, the tuples compare one way or the
-other lexicographically: cut at the first differing pebble. -/
+other lexicographically: cut at the first differing pebble.
+@isnad1 id=or.2h6v.s6.bbde4a9525e1 from=translated src=- shape=a5ec924b vocab=cb6df3ad
+-/
 theorem movesLess_or [Finite A] {u v : Fin k → A} (h : ¬∀ j, MovesEq O j u v) :
     MovesLess O u v ∨ MovesLess O v u := by
   classical
@@ -307,7 +344,9 @@ variable [Finite A]
 /-- **The stage invariant of the ordered refinement**: every stage is
 asymmetric and transitive, and its incomparability is the corresponding
 pebble stage relative to color agreement. One simultaneous induction
-establishes all three. -/
+establishes all three.
+@isnad1 id=and.0h5v.s6.87792117c662 from=translated src=- shape=dd226179 vocab=b1eaec57
+-/
 theorem ordStage_invariant (n : ℕ) :
     (∀ u v : Fin k → A, ordStage c₀ n u v → ¬ordStage c₀ n v u) ∧
     (∀ u v w : Fin k → A, ordStage c₀ n u v → ordStage c₀ n v w →
@@ -432,7 +471,9 @@ theorem ordStage_invariant (n : ℕ) :
 
 /-! ### The limit -/
 
-/-- The canonical order is asymmetric. -/
+/-- The canonical order is asymmetric.
+@isnad1 id=not.0h7v.s5.33f52890f05e from=translated src=- shape=af8768b1 vocab=0b08f229
+-/
 theorem ordK_asymm {u v : Fin k → A} (h : OrdK c₀ u v) : ¬OrdK c₀ v u := by
   obtain ⟨n, hn⟩ := h
   rintro ⟨m, hm⟩
@@ -440,7 +481,9 @@ theorem ordK_asymm {u v : Fin k → A} (h : OrdK c₀ u v) : ¬OrdK c₀ v u := 
     (ordStage_le_of_le c₀ (le_max_left n m) hn)
     (ordStage_le_of_le c₀ (le_max_right n m) hm)
 
-/-- The canonical order is transitive. -/
+/-- The canonical order is transitive.
+@isnad1 id=ordk.0h9v.s5.d78aedee9ad0 from=translated src=- shape=dbeff6ac vocab=0b08f229
+-/
 theorem ordK_trans {u v w : Fin k → A} (h₁ : OrdK c₀ u v) (h₂ : OrdK c₀ v w) :
     OrdK c₀ u w := by
   obtain ⟨n, hn⟩ := h₁
@@ -450,7 +493,9 @@ theorem ordK_trans {u v w : Fin k → A} (h₁ : OrdK c₀ u v) (h₂ : OrdK c�
     (ordStage_le_of_le c₀ (le_max_right n m) hm)⟩
 
 /-- **Incomparability in the canonical order is `≡ᵏ`**: the limit linearly
-orders the `≡ᵏ`-classes. -/
+orders the `≡ᵏ`-classes.
+@isnad1 id=eq.0h4v.s5.9c0e75907323 from=translated src=- shape=9250de84 vocab=9a71bad4
+-/
 theorem incompRel_ordK_eq :
     IncompRel (OrdK c₀) = EquivK (colorAgree c₀) := by
   funext u v
@@ -467,7 +512,9 @@ theorem incompRel_ordK_eq :
       rw [← (ordStage_invariant c₀ n).2.2] at this
       exact this.2 hn
 
-/-- Inequivalent tuples are comparable in the canonical order. -/
+/-- Inequivalent tuples are comparable in the canonical order.
+@isnad1 id=or.1h6v.s5.0b28e3d3c0e7 from=translated src=- shape=5e9c63bc vocab=f545cd55
+-/
 theorem ordK_or_of_not_equivK {u v : Fin k → A}
     (h : ¬EquivK (colorAgree c₀) u v) : OrdK c₀ u v ∨ OrdK c₀ v u := by
   by_contra hc
@@ -476,14 +523,18 @@ theorem ordK_or_of_not_equivK {u v : Fin k → A}
   rw [incompRel_ordK_eq] at hi
   exact h hi
 
-/-- Incomparability in the canonical order is transitive. -/
+/-- Incomparability in the canonical order is transitive.
+@isnad1 id=incompre.0h9v.s6.1c2e3c9e48fd from=translated src=- shape=28b6e1bc vocab=1b46bb25
+-/
 theorem incompRel_ordK_trans {u v w : Fin k → A}
     (h₁ : IncompRel (OrdK c₀) u v) (h₂ : IncompRel (OrdK c₀) v w) :
     IncompRel (OrdK c₀) u w := by
   rw [incompRel_ordK_eq] at h₁ h₂ ⊢
   exact (equivK_equivalence (colorAgree_equivalence c₀)).trans h₁ h₂
 
-/-- The canonical order is a congruence for `≡ᵏ` on the right. -/
+/-- The canonical order is a congruence for `≡ᵏ` on the right.
+@isnad1 id=ordk.0h9v.s5.a8796ff99649 from=translated src=- shape=1ddf3f3e vocab=f545cd55
+-/
 theorem OrdK.congr_left {u v w : Fin k → A} (h : OrdK c₀ u v)
     (hvw : EquivK (colorAgree c₀) v w) : OrdK c₀ u w := by
   have hvw' : IncompRel (OrdK c₀) v w := by
@@ -493,7 +544,9 @@ theorem OrdK.congr_left {u v w : Fin k → A} (h : OrdK c₀ u v)
     (fun a b c h1 h2 => ordK_trans c₀ h1 h2)
     (fun a b c h1 h2 => incompRel_ordK_trans c₀ h1 h2) h hvw'
 
-/-- The canonical order is a congruence for `≡ᵏ` on the left. -/
+/-- The canonical order is a congruence for `≡ᵏ` on the left.
+@isnad1 id=ordk.0h9v.s5.665a5c1625b0 from=translated src=- shape=60943e2f vocab=f545cd55
+-/
 theorem OrdK.congr_right {u v w : Fin k → A} (huv : EquivK (colorAgree c₀) u v)
     (h : OrdK c₀ v w) : OrdK c₀ u w := by
   have huv' : IncompRel (OrdK c₀) u v := by

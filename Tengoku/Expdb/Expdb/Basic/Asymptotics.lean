@@ -51,13 +51,17 @@ def IsBounded (X : VariableObject α) : Prop :=
 def IsUnbounded (X : VariableObject α) : Prop :=
   Tendsto (fun i ↦ ‖X i‖) atTop atTop
 
-/-- A variable object is unbounded iff its norm eventually exceeds every fixed threshold. -/
+/-- A variable object is unbounded iff its norm eventually exceeds every fixed threshold.
+@isnad1 id=iff.0h2v.s5.d73acb22ea1c from=translated src=- shape=8d100891 vocab=6d981734
+-/
 theorem isUnbounded_iff_forall_eventually_norm_ge (X : VariableObject α) :
     X.IsUnbounded ↔ ∀ C : ℝ, ∀ᶠ i in atTop, C ≤ ‖X i‖ := by
   rw [IsUnbounded, tendsto_atTop]
 
 /-- For a nonnegative real variable object, being unbounded is the same as tending to
-infinity. -/
+infinity.
+@isnad1 id=iff.1h1v.s5.cd3dbb0cfae4 from=translated src=- shape=342275c8 vocab=7542d9c1
+-/
 theorem isUnbounded_iff_tendsto_atTop {X : VariableObject ℝ} (hX : ∀ i, 0 ≤ X i) :
     X.IsUnbounded ↔ Tendsto X atTop atTop := by
   rw [IsUnbounded]
@@ -68,7 +72,9 @@ def IsInfinitesimal (X : VariableObject α) : Prop :=
   Tendsto (fun i ↦ ‖X i‖) atTop (nhds 0)
 
 /-- A variable object is infinitesimal iff its norm is eventually below every positive
-tolerance. -/
+tolerance.
+@isnad1 id=iff.0h2v.s5.da056466239a from=translated src=- shape=143c6b99 vocab=77bb6abd
+-/
 theorem isInfinitesimal_iff_forall_pos (X : VariableObject α) :
     X.IsInfinitesimal ↔
     ∀ δ : ℝ, 0 < δ → ∀ᶠ i in atTop, ‖X i‖ < δ := by
@@ -151,35 +157,45 @@ private theorem isEqUpToInfinitesimal_iff_tendsto_sub
     Tendsto (fun i ↦ X i - Y i) atTop (nhds 0)
   exact tendsto_zero_iff_norm_tendsto_zero.symm
 
-/-- The relation `=o` is reflexive. -/
+/-- The relation `=o` is reflexive.
+@isnad1 id=isequpto.0h2v.s3.a9685701da40 from=translated src=- shape=82448d51 vocab=066fbbcb
+-/
 theorem IsEqUpToInfinitesimal.refl (X : VariableObject E) :
     X =o X := by
   rw [isEqUpToInfinitesimal_iff_tendsto_sub]
   simpa only [Pi.sub_apply, sub_self] using
     (tendsto_const_nhds : Tendsto (fun _ : ℕ ↦ (0 : E)) atTop (nhds 0))
 
-/-- The relation `=o` is symmetric. -/
+/-- The relation `=o` is symmetric.
+@isnad1 id=isequpto.1h3v.s4.dd33e49ca0b8 from=translated src=- shape=1a0a78f4 vocab=066fbbcb
+-/
 theorem IsEqUpToInfinitesimal.symm
     {X Y : VariableObject E} (h : X =o Y) :
     Y =o X := by
   rw [isEqUpToInfinitesimal_iff_tendsto_sub] at h ⊢
   simpa only [Pi.sub_apply, neg_sub, neg_zero] using h.neg
 
-/-- The relation `=o` is transitive. -/
+/-- The relation `=o` is transitive.
+@isnad1 id=isequpto.2h4v.s4.b2701175b7bb from=translated src=- shape=5499c893 vocab=066fbbcb
+-/
 theorem IsEqUpToInfinitesimal.trans
     {X Y Z : VariableObject E} (hXY : X =o Y) (hYZ : Y =o Z) :
     X =o Z := by
   rw [isEqUpToInfinitesimal_iff_tendsto_sub] at hXY hYZ ⊢
   simpa only [sub_add_sub_cancel, zero_add] using hXY.add hYZ
 
-/-- The relation `=o` is preserved by negation. -/
+/-- The relation `=o` is preserved by negation.
+@isnad1 id=isequpto.1h3v.s6.afa9845aa9d6 from=translated src=- shape=40b5e8d3 vocab=7caf3e6c
+-/
 theorem IsEqUpToInfinitesimal.neg
     {X Y : VariableObject E} (h : X =o Y) :
     -X =o -Y := by
   rw [isEqUpToInfinitesimal_iff_tendsto_sub] at h ⊢
   simpa [sub_eq_add_neg, add_comm] using h.neg
 
-/-- The relation `=o` is preserved by addition. -/
+/-- The relation `=o` is preserved by addition.
+@isnad1 id=isequpto.2h5v.s6.b38b09565f9e from=translated src=- shape=2f9b2499 vocab=65ba97a9
+-/
 theorem IsEqUpToInfinitesimal.add
     {X₁ X₂ Y₁ Y₂ : VariableObject E}
     (h₁ : X₁ =o Y₁) (h₂ : X₂ =o Y₂) :
@@ -187,14 +203,18 @@ theorem IsEqUpToInfinitesimal.add
   rw [isEqUpToInfinitesimal_iff_tendsto_sub] at h₁ h₂ ⊢
   simpa only [Pi.add_apply, add_sub_add_comm, zero_add] using h₁.add h₂
 
-/-- The relation `=o` is preserved by subtraction. -/
+/-- The relation `=o` is preserved by subtraction.
+@isnad1 id=isequpto.2h5v.s6.8b9412a408c6 from=translated src=- shape=2f9b2499 vocab=b3e32654
+-/
 theorem IsEqUpToInfinitesimal.sub
     {X₁ X₂ Y₁ Y₂ : VariableObject E}
     (h₁ : X₁ =o Y₁) (h₂ : X₂ =o Y₂) :
     X₁ - X₂ =o Y₁ - Y₂ := by
   simpa only [sub_eq_add_neg] using h₁.add h₂.neg
 
-/-- The relation `=o` is preserved by multiplication by a fixed scalar. -/
+/-- The relation `=o` is preserved by multiplication by a fixed scalar.
+@isnad1 id=isequpto.1h5v.s7.a0f64ee3d3ed from=translated src=- shape=46d7c0c3 vocab=f2eda8a3
+-/
 theorem IsEqUpToInfinitesimal.const_smul
     {𝕜 : Type u} {F : Type v}
     [NormedField 𝕜] [SeminormedAddCommGroup F] [NormedSpace 𝕜 F]
@@ -203,7 +223,9 @@ theorem IsEqUpToInfinitesimal.const_smul
   rw [isEqUpToInfinitesimal_iff_tendsto_sub] at h ⊢
   simpa only [Pi.sub_apply, Pi.smul_apply, smul_sub, smul_zero] using h.const_smul c
 
-/-- `X =o Y` iff `X` and `Y` are eventually within every positive tolerance. -/
+/-- `X =o Y` iff `X` and `Y` are eventually within every positive tolerance.
+@isnad1 id=iff.0h3v.s6.b72e0cde3c04 from=translated src=- shape=12114bc7 vocab=b7dd476b
+-/
 theorem isEqUpToInfinitesimal_iff_forall_pos
     (X Y : VariableObject E) :
     (X =o Y) ↔
@@ -213,7 +235,9 @@ theorem isEqUpToInfinitesimal_iff_forall_pos
 
 end InfinitesimalRelations
 
-/-- `X ≤o Y` iff `X i ≤ Y i + δ` eventually for every `δ > 0`. -/
+/-- `X ≤o Y` iff `X i ≤ Y i + δ` eventually for every `δ > 0`.
+@isnad1 id=iff.0h2v.s5.ec01fbee0a0e from=translated src=- shape=cb58b26a vocab=6e9a0573
+-/
 theorem isLEUpToInfinitesimal_iff_forall_pos (X Y : VariableObject ℝ) :
     (X ≤o Y) ↔
     ∀ δ : ℝ, 0 < δ → ∀ᶠ i in atTop, X i ≤ Y i + δ := by
@@ -229,7 +253,9 @@ theorem isLEUpToInfinitesimal_iff_forall_pos (X Y : VariableObject ℝ) :
     rw [Real.norm_eq_abs, abs_of_nonneg (le_max_right _ _)]
     exact max_lt (by linarith) hδ
 
-/-- For real variable objects, `X =o Y` iff `X ≤o Y` and `Y ≤o X`. -/
+/-- For real variable objects, `X =o Y` iff `X ≤o Y` and `Y ≤o X`.
+@isnad1 id=iff.0h2v.s4.fb00ece71506 from=translated src=- shape=21359b47 vocab=b675caf4
+-/
 theorem isEqUpToInfinitesimal_iff_leUpToInfinitesimal
     (X Y : VariableObject ℝ) :
     (X =o Y) ↔ (X ≤o Y ∧ Y ≤o X) := by
@@ -255,7 +281,9 @@ theorem isEqUpToInfinitesimal_iff_leUpToInfinitesimal
     constructor <;> linarith
 
 /-- **Underspill principle.** The relation `X ≤ Y + o(1)` holds if and only if
-`X ≤ Y + ε + o(1)` for every fixed `ε > 0`. -/
+`X ≤ Y + ε + o(1)` for every fixed `ε > 0`.
+@isnad1 id=iff.0h2v.s5.aea47e010269 from=translated src=- shape=771c71e4 vocab=70cd315a
+-/
 theorem underspill (X Y : VariableObject ℝ) :
     (X ≤o Y) ↔
     (∀ ε : ℝ, ε > 0 → X ≤o (fun i => Y i + ε)) := by

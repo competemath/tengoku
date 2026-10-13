@@ -24,6 +24,9 @@ namespace Padic
 
 local instance {p : Nat.Primes} : Fact p.1.Prime := ⟨p.2⟩
 
+/--
+@isnad1 id=finite.0h1v.s6.8f23fd8d8fcb from=translated src=- shape=a297c96c vocab=b09b312b
+-/
 theorem setOf_norm_one_lt_finite (x : ℚ) :
     {p : Nat.Primes | 1 < ‖(x : ℚ_[p])‖}.Finite := by
   apply Set.Finite.subset _ fun p ↦ mt (Padic.norm_rat_le_one) ∘ not_le.2
@@ -37,6 +40,9 @@ namespace RestrictedProduct
 
 local instance {p : Nat.Primes} : Fact p.1.Prime := ⟨p.2⟩
 
+/--
+@isnad1 id=lt.1h2v.s8.577a87be6b0d from=translated src=- shape=5e0e948f vocab=69a5e422
+-/
 theorem padic_valuation_neg_of_mem_indexSupport
     {x : Πʳ (p : Nat.Primes), [ℚ_[p], subring p]} {p : Nat.Primes} (hp : p ∈ x.indexSupport) :
     (x p).valuation < 0 := by
@@ -48,6 +54,9 @@ noncomputable def padicNatDen
     (x : Πʳ (p : Nat.Primes), [ℚ_[p], subring p]) : ℕ :=
   ∏ p ∈ x.indexSupport, p.1 ^ (x p).valuation.natAbs
 
+/--
+@isnad1 id=ne.0h1v.s6.b353f6deaf11 from=translated src=- shape=9bcb840a vocab=2130f01e
+-/
 theorem padicNatDen_ne_zero (x : Πʳ (p : Nat.Primes), [ℚ_[p], subring p]) :
     x.padicNatDen ≠ 0 := by
   rw [padicNatDen, Finset.prod_ne_zero_iff]
@@ -55,6 +64,9 @@ theorem padicNatDen_ne_zero (x : Πʳ (p : Nat.Primes), [ℚ_[p], subring p]) :
   simp [p.2.ne_zero]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.1h2v.s9.3fc9ebd8b906 from=translated src=- shape=364b6f7b vocab=fba32bf3
+-/
 theorem padicNatDen_norm_of_mem {x : Πʳ (p : Nat.Primes), [ℚ_[p], subring p]} {p : Nat.Primes}
     (hp : p ∈ x.indexSupport) :
     ‖(x.padicNatDen : ℚ_[p])‖ = (p.1 : ℝ) ^ (-((x p).valuation.natAbs : ℤ)) := by
@@ -67,6 +79,9 @@ theorem padicNatDen_norm_of_mem {x : Πʳ (p : Nat.Primes), [ℚ_[p], subring p]
     · exact (Nat.coprime_primes p.2 q.2).2 (by simpa [Subtype.val_inj] using! hpq.symm)
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.1h2v.s8.b0d478a7dfee from=translated src=- shape=0aa84ec0 vocab=a1bb1107
+-/
 theorem padicNatDen_norm_of_notMem {x : Πʳ (p : Nat.Primes), [ℚ_[p], subring p]} {p : Nat.Primes}
     (hp : p ∉ x.indexSupport) :
     ‖(x.padicNatDen : ℚ_[p])‖ = 1 := by
@@ -77,6 +92,9 @@ theorem padicNatDen_norm_of_notMem {x : Πʳ (p : Nat.Primes), [ℚ_[p], subring
   · exact (Nat.coprime_primes p.2 q.2).2
       (by simpa [Subtype.val_inj] using! ne_of_mem_of_not_mem hq hp |>.symm)
 
+/--
+@isnad1 id=le.0h2v.s8.4f12d7463510 from=translated src=- shape=ff1f562a vocab=7d8a1218
+-/
 theorem padicNatDen_norm_mul_le_one (x : Πʳ (p : Nat.Primes), [ℚ_[p], subring p]) (p : Nat.Primes) :
     ‖(x.padicNatDen : ℚ) * x p‖ ≤  1 := by
   by_cases hp : p ∈ x.indexSupport
@@ -93,6 +111,9 @@ noncomputable def padicNum (x : Πʳ (p : Nat.Primes), [ℚ_[p], subring p]) (p 
   ⟨x.padicNatDen * x p, x.padicNatDen_norm_mul_le_one p⟩
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=ex.0h1v.s9.bbd9baf183fd from=translated src=- shape=f9e17140 vocab=3cfd5246
+-/
 theorem padic_exists_sub_mem_padicInt
     (x : Πʳ (p : Nat.Primes), [ℚ_[p], subring p]) :
     ∃ q : ℚ, ∀ p : Nat.Primes, q - x p ∈ subring p := by
@@ -140,6 +161,9 @@ noncomputable instance : Algebra ℚ (Πʳ (p : Nat.Primes), [ℚ_[p], subring p
   }
   f.toAlgebra
 
+/--
+@isnad1 id=ex.0h1v.s11.4c4e11fc5d77 from=translated src=- shape=5949b347 vocab=ee5d4442
+-/
 theorem padic_exists_sub_mem_structureSubring
     (a : Πʳ (p : Nat.Primes), [ℚ_[p], subring p]) :
     ∃ q : ℚ, a - algebraMap ℚ _ q ∈ structureSubring _ _ _ := by

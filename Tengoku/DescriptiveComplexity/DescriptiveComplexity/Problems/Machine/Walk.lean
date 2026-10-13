@@ -38,7 +38,9 @@ section Rank
 variable {A : Type} [Finite A] {Le : A → A → Prop} {Posn : A → Prop}
 
 omit [Finite A] in
-/-- The lowest position has rank `0`. -/
+/-- The lowest position has rank `0`.
+@isnad1 id=eq.2h4v.s5.e1364fa74c35 from=translated src=- shape=15cb38da vocab=4040e0e0
+-/
 theorem bitRank_eq_zero_of_minPos (hlin : IsLinOrd Le) {p : A} (h : MinPos Le Posn p) :
     bitRank Le Posn p = 0 := by
   have hempty : {r : A | Posn r ∧ Le r p ∧ r ≠ p} = ∅ := by
@@ -49,7 +51,9 @@ theorem bitRank_eq_zero_of_minPos (hlin : IsLinOrd Le) {p : A} (h : MinPos Le Po
     exact hlin.2.2.1 r p hrp (h.2 r hr)
   rw [bitRank, hempty, Set.ncard_empty]
 
-/-- Rank increases by one along an immediate successor. -/
+/-- Rank increases by one along an immediate successor.
+@isnad1 id=eq.2h5v.s5.07d01958e906 from=translated src=- shape=76c0c740 vocab=c005670a
+-/
 theorem bitRank_succPos (hlin : IsLinOrd Le) {p q : A} (h : SuccPos Le Posn p q) :
     bitRank Le Posn q = bitRank Le Posn p + 1 := by
   obtain ⟨hp, hq, hpq, hne, hbetween⟩ := h
@@ -73,7 +77,9 @@ theorem bitRank_succPos (hlin : IsLinOrd Le) {p q : A} (h : SuccPos Le Posn p q)
   have hpmem : p ∉ {r : A | Posn r ∧ Le r p ∧ r ≠ p} := fun hmem => hmem.2.2 rfl
   rw [bitRank, hset, Set.ncard_insert_of_notMem hpmem (Set.toFinite _), bitRank]
 
-/-- The rank of a position is below the number of positions. -/
+/-- The rank of a position is below the number of positions.
+@isnad1 id=lt.0h5v.s5.02b451de60f1 from=translated src=- shape=fd23958e vocab=2726df23
+-/
 theorem bitRank_lt_card {p : A} (hp : Posn p) :
     bitRank Le Posn p < Nat.card {x : A // Posn x} := by
   have hcard : Nat.card {x : A // Posn x} = ({x : A | Posn x} : Set A).ncard :=
@@ -82,7 +88,9 @@ theorem bitRank_lt_card {p : A} (hp : Posn p) :
   refine Set.ncard_lt_ncard ⟨fun r hr => hr.1, fun hsub => ?_⟩ (Set.toFinite _)
   exact absurd rfl (hsub hp).2.2
 
-/-- The highest position has the greatest rank. -/
+/-- The highest position has the greatest rank.
+@isnad1 id=eq.1h4v.s5.c5c1c4aeaf78 from=translated src=- shape=b556e023 vocab=c0744960
+-/
 theorem bitRank_maxPos {p : A} (h : MaxPos Le Posn p) :
     bitRank Le Posn p + 1 = Nat.card {x : A // Posn x} := by
   have hcard : Nat.card {x : A // Posn x} = ({x : A | Posn x} : Set A).ncard :=
@@ -119,7 +127,9 @@ def IsWalk (conf : A → Config A) : Prop :=
 
 variable {M}
 
-/-- A run of `n` steps, presented as its sequence of configurations. -/
+/-- A run of `n` steps, presented as its sequence of configurations.
+@isnad1 id=ex.1h5v.s6.f66338feadb2 from=translated src=- shape=138000a5 vocab=f1bfe104
+-/
 theorem exists_run : ∀ (n : ℕ) (c d : Config A), M.StepsIn n c d →
     ∃ f : ℕ → Config A, f 0 = c ∧ f n = d ∧ ∀ i, i < n → M.Step (f i) (f (i + 1)) := by
   intro n
@@ -137,7 +147,9 @@ theorem exists_run : ∀ (n : ℕ) (c d : Config A), M.StepsIn n c d →
 
 /-- **A walk is a run**: the configuration at a position is reached from the
 one at the lowest position in at most as many steps as the position has
-positions below it, a stutter costing none. -/
+positions below it, a stutter costing none.
+@isnad1 id=ex.4h5v.s6.f8eae55a9685 from=translated src=- shape=80208f5d vocab=c606cbe9
+-/
 theorem IsWalk.exists_stepsIn [Finite A] (hlin : IsLinOrd M.Le) {conf : A → Config A}
     (h : M.IsWalk conf) {p₀ : A} (hp₀ : MinPos M.Le M.Posn p₀) :
     ∀ p, M.Posn p → ∃ n ≤ bitRank M.Le M.Posn p, M.StepsIn n (conf p₀) (conf p) := by
@@ -160,7 +172,9 @@ theorem IsWalk.exists_stepsIn [Finite A] (hlin : IsLinOrd M.Le) {conf : A → Co
         · exact ⟨n, by omega, heq ▸ hsteps⟩
   exact fun p hp => key _ p hp rfl
 
-/-- **Acceptance is a walk along the positions.** -/
+/-- **Acceptance is a walk along the positions.**
+@isnad1 id=iff.1h2v.s4.42509a7ba6c9 from=translated src=- shape=fe75ea56 vocab=da7762b5
+-/
 theorem accepts_iff_exists_walk [Finite A] (hwf : M.WellFormed) :
     M.Accepts ↔ ∃ conf : A → Config A, M.IsWalk conf := by
   obtain ⟨hlin, hne, -⟩ := hwf
@@ -257,7 +271,9 @@ the head cell and the tape contents the three functional relations name. -/
 noncomputable def RelWalk.conf (h : M.RelWalk Q H T) (t : A) : Config A :=
   ⟨(h.qex t).choose, (h.hex t).choose, fun p => (h.tex t p).choose⟩
 
-/-- A relational walk is a walk, through the configurations it describes. -/
+/-- A relational walk is a walk, through the configurations it describes.
+@isnad1 id=iswalk.1h5v.s5.d301070348a5 from=translated src=- shape=67a2295a vocab=9dad806c
+-/
 theorem RelWalk.isWalk (h : M.RelWalk Q H T) : M.IsWalk h.conf := by
   refine ⟨?_, ?_, ?_⟩
   · -- the configuration chosen at the lowest time is initial
@@ -286,7 +302,9 @@ theorem RelWalk.isWalk (h : M.RelWalk Q H T) : M.IsWalk h.conf := by
   · intro t ht
     exact h.acc t ht _ (h.qex t).choose_spec
 
-/-- A walk is a relational walk, through the graphs of its configurations. -/
+/-- A walk is a relational walk, through the graphs of its configurations.
+@isnad1 id=relwalk.1h3v.s5.5bbfd9f1c72c from=translated src=- shape=33587dea vocab=3a6d13fc
+-/
 theorem IsWalk.relWalk {conf : A → Config A} (h : M.IsWalk conf) :
     M.RelWalk (fun t q => q = (conf t).state) (fun t p => p = (conf t).head)
       (fun t p a => a = (conf t).tape p) := by
@@ -321,7 +339,9 @@ theorem IsWalk.relWalk {conf : A → Config A} (h : M.IsWalk conf) :
 
 /-- **The two forms of a walk agree.** Left to right the relations are read off
 the configurations; right to left the configurations are chosen, which is what
-the functionality clauses make well defined. -/
+the functionality clauses make well defined.
+@isnad1 id=iff.0h2v.s6.a67aaa2ec8d9 from=translated src=- shape=9ca6296a vocab=ec41ce99
+-/
 theorem exists_relWalk_iff_exists_walk :
     (∃ Q H T, M.RelWalk Q H T) ↔ ∃ conf : A → Config A, M.IsWalk conf :=
   ⟨fun ⟨_, _, _, h⟩ => ⟨_, h.isWalk⟩, fun ⟨_, h⟩ => ⟨_, _, _, h.relWalk⟩⟩

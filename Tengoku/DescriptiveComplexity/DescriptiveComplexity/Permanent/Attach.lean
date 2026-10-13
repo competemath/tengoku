@@ -58,6 +58,9 @@ def withGadget (A : Finset V) : Finset (V ⊕ X) :=
   A.map Function.Embedding.inl ∪ univ.map Function.Embedding.inr
 
 omit [Fintype V] in
+/--
+@isnad1 id=iff.0h4v.s6.45e9da51fd2c from=translated src=- shape=fedd23da vocab=d9fc60a1
+-/
 theorem mem_withGadget (A : Finset V) (w : V ⊕ X) :
     w ∈ withGadget (X := X) A ↔ (∃ a ∈ A, w = Sum.inl a) ∨ ∃ x, w = Sum.inr x := by
   simp only [withGadget, mem_union, mem_map, Function.Embedding.inl_apply,
@@ -84,7 +87,9 @@ def notWithGadgetEquiv (A : Finset V) : {w // w ∉ withGadget (X := X) A} ≃ {
   right_inv _ := rfl
 
 /-- Deleting all the gadget rows and columns leaves a minor of the base
-matrix. -/
+matrix.
+@isnad1 id=eq.0h9v.s7.37e2025d181b from=translated src=- shape=1784a810 vocab=95c41f72
+-/
 theorem pdel_attach_withGadget (A B : Finset V) :
     pdel (attach M₀ D ins outs) (withGadget A) (withGadget B) = pdel M₀ A B := by
   unfold pdel
@@ -98,12 +103,18 @@ def gadgetRows (O : Finset X) : Finset (V ⊕ X) :=
   (univ.filter (· ∉ O)).map Function.Embedding.inr
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=iff.0h4v.s6.223520df88f1 from=translated src=- shape=fcffcbfd vocab=d646272b
+-/
 theorem mem_gadgetRows (O : Finset X) (w : V ⊕ X) :
     w ∈ gadgetRows (V := V) O ↔ ∃ x, w = Sum.inr x ∧ x ∉ O := by
   simp only [gadgetRows, mem_map, mem_filter, mem_univ, true_and, Function.Embedding.inr_apply]
   exact exists_congr fun x => ⟨fun h => ⟨h.2.symm, h.1⟩, fun h => ⟨h.2, h.1.symm⟩⟩
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=eq.0h3v.s6.b46cb58c6bf9 from=translated src=- shape=ac8272e8 vocab=ba0511e2
+-/
 theorem card_gadgetRows (O : Finset X) :
     (gadgetRows (V := V) O).card = (univ.filter (· ∉ O)).card :=
   card_map _
@@ -126,7 +137,9 @@ def gadgetRowsEquiv (O : Finset X) : gadgetRows (V := V) O ≃ {x // x ∉ O} wh
   right_inv _ := rfl
 
 omit [Fintype V] in
-/-- A block of the gadget, read as a minor of `D`. -/
+/-- A block of the gadget, read as a minor of `D`.
+@isnad1 id=eq.1h10v.s9.a82ce5d5d795 from=translated src=- shape=91ceb234 vocab=ced578ee
+-/
 theorem bperm_gadgetRows (O Y : Finset X) (S : Finset (V ⊕ X))
     (hS : ∀ w, w ∈ S ↔ ∃ y, w = Sum.inr y ∧ y ∉ Y) :
     bperm (fun (x : gadgetRows (V := V) O) (y : S) => attach M₀ D ins outs x y) = pdel D O Y := by
@@ -136,7 +149,9 @@ theorem bperm_gadgetRows (O Y : Finset X) (S : Finset (V ⊕ X))
   refine (bperm_reindex (gadgetRowsEquiv O) (gadgetRowsEquiv Y) _).symm.trans ?_
   rfl
 
-/-- A sum over the rows of the attached matrix outside the base rows `A`. -/
+/-- A sum over the rows of the attached matrix outside the base rows `A`.
+@isnad1 id=eq.0h5v.s7.e812872cd0a8 from=translated src=- shape=e859c9fc vocab=9afa37a6
+-/
 theorem sum_compl_map_inl (A : Finset V) (f : V ⊕ X → R) :
     ∑ w ∈ (A.map Function.Embedding.inl)ᶜ, f w = ∑ a ∈ Aᶜ, f (Sum.inl a) + ∑ x, f (Sum.inr x) := by
   rw [← Finset.sum_disjSum]
@@ -144,18 +159,26 @@ theorem sum_compl_map_inl (A : Finset V) (f : V ⊕ X → R) :
   cases w <;> simp
 
 omit [Fintype V] [Fintype X] [DecidableEq V] [DecidableEq X] in
+/--
+@isnad1 id=not.0h4v.s5.e336cbb1dde2 from=translated src=- shape=6383182d vocab=4c629974
+-/
 theorem notMem_map_inl_of_inr (A : Finset V) (x : X) :
     Sum.inr x ∉ A.map (Function.Embedding.inl : V ↪ V ⊕ X) := by
   simp
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=le.0h3v.s5.33dbbb065f7f from=translated src=- shape=699d49ca vocab=10ea5925
+-/
 theorem gadgetRows_subset (O : Finset X) : gadgetRows (V := V) O ⊆ gadgetRows ∅ := by
   intro w hw
   obtain ⟨x, rfl, -⟩ := (mem_gadgetRows O w).mp hw
   exact (mem_gadgetRows ∅ _).mpr ⟨x, rfl, Finset.notMem_empty x⟩
 
 /-- Deleting all the gadget rows and columns, in whichever presentation,
-leaves a minor of the base matrix. -/
+leaves a minor of the base matrix.
+@isnad1 id=eq.2h11v.s8.8362b8308266 from=translated src=- shape=8a1cb25c vocab=6ed5021b
+-/
 theorem pdel_attach_of_mem (A B : Finset V) (A' B' : Finset (V ⊕ X))
     (hA : ∀ w, w ∈ A' ↔ (∃ a ∈ A, w = Sum.inl a) ∨ ∃ x, w = Sum.inr x)
     (hB : ∀ w, w ∈ B' ↔ (∃ b ∈ B, w = Sum.inl b) ∨ ∃ x, w = Sum.inr x) :
@@ -179,36 +202,52 @@ abbrev attachXor : V ⊕ X → V ⊕ X → R :=
 variable {M₀ D u u' v v' xin xin' o o'}
 
 omit [Fintype V] [Fintype X] in
+/--
+@isnad1 id=eq.0h15v.s6.7a0127d10d30 from=translated src=- shape=d175f0c7 vocab=c6375a42
+-/
 theorem attachXor_inl_inl (a b : V) :
     attachXor M₀ D u u' v v' xin xin' o o' (Sum.inl a) (Sum.inl b) = M₀ a b :=
   rfl
 
 omit [Fintype V] [Fintype X] in
+/--
+@isnad1 id=eq.0h15v.s6.751aad9cb40e from=translated src=- shape=d53f8935 vocab=570abe62
+-/
 theorem attachXor_inr_inr (x y : X) :
     attachXor M₀ D u u' v v' xin xin' o o' (Sum.inr x) (Sum.inr y) = D x y :=
   rfl
 
 omit [Fintype V] [Fintype X] in
+/--
+@isnad1 id=eq.0h15v.s7.0851e6b4200d from=translated src=- shape=8b3e4fb2 vocab=7c9aef0f
+-/
 theorem attachXor_inr_inl (x : X) (b : V) :
     attachXor M₀ D u u' v v' xin xin' o o' (Sum.inr x) (Sum.inl b) =
       (if x = o ∧ b = v then 1 else 0) + if x = o' ∧ b = v' then 1 else 0 :=
   rfl
 
 omit [Fintype V] [Fintype X] in
+/--
+@isnad1 id=eq.0h15v.s7.4c98f88c53d0 from=translated src=- shape=77449303 vocab=7c9aef0f
+-/
 theorem attachXor_inl_inr (a : V) (x : X) :
     attachXor M₀ D u u' v v' xin xin' o o' (Sum.inl a) (Sum.inr x) =
       (if a = u ∧ x = xin then 1 else 0) + if a = u' ∧ x = xin' then 1 else 0 :=
   rfl
 
 omit [Fintype V] [Fintype X] in
-/-- An out-edge to a deleted column vanishes. -/
+/-- An out-edge to a deleted column vanishes.
+@isnad1 id=eq.3h16v.s7.673410183ec5 from=translated src=- shape=24bcb167 vocab=3a370448
+-/
 theorem attachXor_inr_inl_eq_zero {B : Finset V} (hv : v ∈ B) (hv' : v' ∈ B) (x : X) {b : V}
     (hb : b ∉ B) : attachXor M₀ D u u' v v' xin xin' o o' (Sum.inr x) (Sum.inl b) = 0 := by
   rw [attachXor_inr_inl, ite_eq_right fun (h : x = o ∧ b = v) => hb (h.2 ▸ hv),
     ite_eq_right fun (h : x = o' ∧ b = v') => hb (h.2 ▸ hv'), add_zero]
 
 omit [Fintype V] [Fintype X] in
-/-- An in-edge to a column that is no in-port vanishes. -/
+/-- An in-edge to a column that is no in-port vanishes.
+@isnad1 id=eq.2h15v.s6.3aa6f1403dc7 from=translated src=- shape=6a79de4e vocab=8dc96d7c
+-/
 theorem attachXor_inl_inr_eq_zero (a : V) {x : X} (hx : x ≠ xin) (hx' : x ≠ xin') :
     attachXor M₀ D u u' v v' xin xin' o o' (Sum.inl a) (Sum.inr x) = 0 := by
   rw [attachXor_inl_inr, ite_eq_right fun (h : a = u ∧ x = xin) => hx h.2,
@@ -218,6 +257,9 @@ variable (hxx' : xin ≠ xin')
 
 omit [Fintype V] [Fintype X] in
 include hxx' in
+/--
+@isnad1 id=eq.2h14v.s6.3745a88f4ebe from=translated src=- shape=130a67e1 vocab=8dc96d7c
+-/
 theorem attachXor_inl_inr_xin {a : V} (ha : a ≠ u) :
     attachXor M₀ D u u' v v' xin xin' o o' (Sum.inl a) (Sum.inr xin) = 0 := by
   rw [attachXor_inl_inr, ite_eq_right fun (h : a = u ∧ xin = xin) => ha h.1,
@@ -225,6 +267,9 @@ theorem attachXor_inl_inr_xin {a : V} (ha : a ≠ u) :
 
 omit [Fintype V] [Fintype X] in
 include hxx' in
+/--
+@isnad1 id=eq.2h14v.s6.36bac78416bd from=translated src=- shape=c9beaa16 vocab=8dc96d7c
+-/
 theorem attachXor_inl_inr_xin' {a : V} (ha : a ≠ u') :
     attachXor M₀ D u u' v v' xin xin' o o' (Sum.inl a) (Sum.inr xin') = 0 := by
   rw [attachXor_inl_inr, ite_eq_right fun (h : a = u ∧ xin' = xin) => hxx' h.2.symm,
@@ -232,12 +277,18 @@ theorem attachXor_inl_inr_xin' {a : V} (ha : a ≠ u') :
 
 omit [Fintype V] [Fintype X] in
 include hxx' in
+/--
+@isnad1 id=eq.1h13v.s6.32d4a6c6915f from=translated src=- shape=59442756 vocab=8dc96d7c
+-/
 theorem attachXor_u_xin : attachXor M₀ D u u' v v' xin xin' o o' (Sum.inl u) (Sum.inr xin) = 1 := by
   rw [attachXor_inl_inr, ite_eq_left ⟨rfl, rfl⟩,
     ite_eq_right fun (h : u = u' ∧ xin = xin') => hxx' h.2, add_zero]
 
 omit [Fintype V] [Fintype X] in
 include hxx' in
+/--
+@isnad1 id=eq.1h13v.s6.6e5459d37290 from=translated src=- shape=e49c8b8d vocab=8dc96d7c
+-/
 theorem attachXor_u'_xin' :
     attachXor M₀ D u u' v v' xin xin' o o' (Sum.inl u') (Sum.inr xin') = 1 := by
   rw [attachXor_inl_inr, ite_eq_right fun (h : u' = u ∧ xin' = xin) => hxx' h.2.symm,
@@ -245,7 +296,9 @@ theorem attachXor_u'_xin' :
 
 omit [Fintype V] in
 /-- The deleted rows after a base row `a` reaches a gadget column: all the
-gadget rows, and the base rows in `insert a A`. -/
+gadget rows, and the base rows in `insert a A`.
+@isnad1 id=iff.0h6v.s7.7a2a0a6f6e69 from=translated src=- shape=3de26ad5 vocab=0a455f3e
+-/
 theorem mem_insert_inl_union_gadgetRows (A : Finset V) (a : V) (o₀ : X) (w : V ⊕ X) :
     w ∈ insert (Sum.inl a) (insert (Sum.inr o₀) (A.map Function.Embedding.inl) ∪
         gadgetRows (V := V) {o₀}) ↔
@@ -262,7 +315,9 @@ theorem mem_insert_inl_union_gadgetRows (A : Finset V) (a : V) (o₀ : X) (w : V
 
 omit [Fintype V] in
 /-- The deleted columns after the in-port `x` has been reached: all the gadget
-columns, and the base columns in `B`. -/
+columns, and the base columns in `B`.
+@isnad1 id=iff.0h5v.s7.f1a0bf0c5c06 from=translated src=- shape=78077904 vocab=0a455f3e
+-/
 theorem mem_insert_inr_union_gadgetRows (B : Finset V) (x : X) (w : V ⊕ X) :
     w ∈ insert (Sum.inr x) (B.map Function.Embedding.inl ∪ gadgetRows (V := V) {x}) ↔
       (∃ b ∈ B, w = Sum.inl b) ∨ ∃ y, w = Sum.inr y := by
@@ -278,7 +333,9 @@ theorem mem_insert_inr_union_gadgetRows (B : Finset V) (x : X) (w : V ⊕ X) :
 
 omit [Fintype V] in
 /-- The support condition of the gadget rows, once the out-columns are
-deleted. -/
+deleted.
+@isnad1 id=eq.5h17v.s7.5ed9627e142d from=translated src=- shape=48f60908 vocab=836e7c9f
+-/
 theorem attachXor_support {B : Finset V} (hv : v ∈ B) (hv' : v' ∈ B) (O : Finset X) :
     ∀ w ∈ gadgetRows (V := V) O, ∀ b, b ∉ B.map Function.Embedding.inl → b ∉ gadgetRows ∅ →
       attachXor M₀ D u u' v v' xin xin' o o' w b = 0 := by
@@ -291,7 +348,9 @@ theorem attachXor_support {B : Finset V} (hv : v ∈ B) (hv' : v' ∈ B) (O : Fi
   | inr y => exact absurd ((mem_gadgetRows ∅ _).mpr ⟨y, rfl, Finset.notMem_empty y⟩) hb'
 
 /-- **No gadget row deleted**: with the out-columns deleted, the gadget is a
-block of its own. -/
+block of its own.
+@isnad1 id=eq.2h15v.s7.698c286e7690 from=translated src=- shape=2caaba16 vocab=6bef69d0
+-/
 theorem pdel_attachXor_block (A B : Finset V) (hv : v ∈ B) (hv' : v' ∈ B) :
     pdel (attachXor M₀ D u u' v v' xin xin' o o') (A.map Function.Embedding.inl)
       (B.map Function.Embedding.inl) = pdel D ∅ ∅ * pdel M₀ A B := by
@@ -310,6 +369,9 @@ theorem pdel_attachXor_block (A B : Finset V) (hv : v ∈ B) (hv' : v' ∈ B) :
     exact or_congr (exists_congr fun a => and_congr_right fun _ => eq_comm) Iff.rfl
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=eq.0h3v.s5.4c513703e516 from=translated src=- shape=6b856e66 vocab=c0a44895
+-/
 theorem card_gadgetRows_singleton (x : X) :
     (gadgetRows (V := V) {x}).card = Fintype.card X - 1 := by
   rw [card_gadgetRows]
@@ -317,6 +379,9 @@ theorem card_gadgetRows_singleton (x : X) :
   rw [Finset.filter_ne', card_erase_of_mem (mem_univ x), card_univ]
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=eq.1h4v.s5.28d9ff85a3ed from=translated src=- shape=625327fe vocab=c72cd884
+-/
 theorem card_gadgetRows_pair {x y : X} (hxy : x ≠ y) :
     (gadgetRows (V := V) {x, y}).card = Fintype.card X - 2 := by
   rw [card_gadgetRows, show univ.filter (fun z => z ∉ ({x, y} : Finset X)) = (univ.erase x).erase y
@@ -325,12 +390,17 @@ theorem card_gadgetRows_pair {x y : X} (hxy : x ≠ y) :
   omega
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=eq.0h2v.s4.00419965abc4 from=translated src=- shape=711fa2db vocab=6f546b62
+-/
 theorem card_gadgetRows_empty : (gadgetRows (V := V) (∅ : Finset X)).card = Fintype.card X := by
   rw [card_gadgetRows]
   simp
 
 omit [Fintype V] [DecidableEq V] in
-/-- A set of gadget rows missing the row `inr x` lies outside `x`. -/
+/-- A set of gadget rows missing the row `inr x` lies outside `x`.
+@isnad1 id=le.2h4v.s6.eb3d8817b344 from=translated src=- shape=9b272eae vocab=5f5e8b05
+-/
 theorem subset_gadgetRows_singleton {S : Finset (V ⊕ X)} (hS : S ⊆ gadgetRows ∅) {x : X}
     (hx : Sum.inr x ∉ S) : S ⊆ gadgetRows {x} := by
   intro w hw
@@ -339,7 +409,9 @@ theorem subset_gadgetRows_singleton {S : Finset (V ⊕ X)} (hS : S ⊆ gadgetRow
 
 omit [Fintype V] [DecidableEq V] in
 /-- Among the sets of gadget rows of size one less than all, one not missing
-two given rows is determined by the one row it misses. -/
+two given rows is determined by the one row it misses.
+@isnad1 id=ex.4h5v.s7.95f6137135c3 from=translated src=- shape=18d9e875 vocab=9be23f46
+-/
 theorem exists_notMem_of_ne {S : Finset (V ⊕ X)} (hS : S ⊆ gadgetRows ∅)
     (hcard : S.card = Fintype.card X - 1) {x x' : X} (h : S ≠ gadgetRows {x})
     (h' : S ≠ gadgetRows {x'}) : ∃ z, Sum.inr z ∉ S ∧ z ≠ x ∧ z ≠ x' := by
@@ -359,7 +431,9 @@ theorem exists_notMem_of_ne {S : Finset (V ⊕ X)} (hS : S ⊆ gadgetRows ∅)
 
 omit [Fintype V] [DecidableEq V] in
 /-- Among the sets of gadget rows of size two less than all, one that is not
-the set outside `{x, x'}` misses some other row. -/
+the set outside `{x, x'}` misses some other row.
+@isnad1 id=ex.4h5v.s7.ef0b3a42a348 from=translated src=- shape=e50a9ad5 vocab=7b8e26ed
+-/
 theorem exists_notMem_of_ne_pair {S : Finset (V ⊕ X)} (_hS : S ⊆ gadgetRows ∅)
     (hcard : S.card = Fintype.card X - 2) {x x' : X} (hxx' : x ≠ x')
     (h : S ≠ gadgetRows {x, x'}) : ∃ z, Sum.inr z ∉ S ∧ z ≠ x ∧ z ≠ x' := by
@@ -385,7 +459,9 @@ theorem eq_inl_of_notMem {C : Finset (V ⊕ X)} (hC : ∀ x, Sum.inr x ∈ C) {w
 include hxx' in
 /-- **One gadget row deleted**, the out-columns deleted: the row's out-port
 has left, and some in-port is entered from outside – from `u` through `xin`
-or from `u'` through `xin'`. -/
+or from `u'` through `xin'`.
+@isnad1 id=eq.3h16v.s8.cc3a68facd11 from=translated src=- shape=82338032 vocab=948fc585
+-/
 theorem pdel_attachXor_one (A B : Finset V) (hv : v ∈ B) (hv' : v' ∈ B) (o₀ : X) :
     pdel (attachXor M₀ D u u' v v' xin xin' o o')
       (insert (Sum.inr o₀) (A.map Function.Embedding.inl))
@@ -494,6 +570,9 @@ theorem pdel_attachXor_one (A B : Finset V) (hv : v ∈ B) (hv' : v' ∈ B) (o�
         exact attachXor_inl_inr_xin' hxx' fun h => hne (congrArg _ h)
 
 omit [Fintype V] in
+/--
+@isnad1 id=iff.0h8v.s8.92275a47ecd5 from=translated src=- shape=856c62fc vocab=0a455f3e
+-/
 theorem mem_insert_inl_inl_union_gadgetRows (A : Finset V) (a a' : V) (o₀ o₁ : X) (w : V ⊕ X) :
     w ∈ insert (Sum.inl a') (insert (Sum.inl a) (insert (Sum.inr o₀) (insert (Sum.inr o₁)
         (A.map Function.Embedding.inl)) ∪ gadgetRows (V := V) {o₀, o₁})) ↔
@@ -507,6 +586,9 @@ theorem mem_insert_inl_inl_union_gadgetRows (A : Finset V) (a a' : V) (o₀ o₁
     tauto
 
 omit [Fintype V] in
+/--
+@isnad1 id=iff.0h6v.s7.df0ed23a7723 from=translated src=- shape=e697ee31 vocab=0a455f3e
+-/
 theorem mem_insert_inr_inr_union_gadgetRows (B : Finset V) (x x' : X) (w : V ⊕ X) :
     w ∈ insert (Sum.inr x') (insert (Sum.inr x) (B.map Function.Embedding.inl ∪
         gadgetRows (V := V) {x, x'})) ↔
@@ -519,7 +601,9 @@ theorem mem_insert_inr_inr_union_gadgetRows (B : Finset V) (x x' : X) (w : V ⊕
 
 include hxx' in
 /-- **Both gadget rows `o`, `o'` deleted**, the out-columns deleted: both
-in-ports are entered from outside. -/
+in-ports are entered from outside.
+@isnad1 id=eq.5h15v.s8.b7cd85188c21 from=translated src=- shape=3757452e vocab=8710ec2c
+-/
 theorem pdel_attachXor_two (A B : Finset V) (hv : v ∈ B) (hv' : v' ∈ B) (hoo' : o ≠ o')
     (huu' : u ≠ u') :
     pdel (attachXor M₀ D u u' v v' xin xin' o o')
@@ -620,7 +704,9 @@ theorem pdel_attachXor_two (A B : Finset V) (hv : v ∈ B) (hv' : v' ∈ B) (hoo
     exact attachXor_inl_inr_xin hxx' fun h => hne (congrArg _ h)
 
 /-- A sum over the rows outside a deleted set made of base rows and gadget
-rows. -/
+rows.
+@isnad1 id=eq.1h7v.s7.f82a0c705d94 from=translated src=- shape=624b8801 vocab=33854221
+-/
 theorem sum_compl_of_mem (C : Finset (V ⊕ X)) (A : Finset V) (O : Finset X)
     (hC : ∀ w, w ∈ C ↔ (∃ a ∈ A, w = Sum.inl a) ∨ ∃ x ∈ O, w = Sum.inr x) (f : V ⊕ X → R) :
     ∑ w ∈ Cᶜ, f w = ∑ a ∈ Aᶜ, f (Sum.inl a) + ∑ x ∈ Oᶜ, f (Sum.inr x) := by
@@ -630,7 +716,9 @@ theorem sum_compl_of_mem (C : Finset (V ⊕ X)) (A : Finset V) (O : Finset X)
   cases w <;> simp
 
 /-- The sum over the rows outside `A` of a term vanishing at `u` is the sum
-over the rows outside `insert u A`. -/
+over the rows outside `insert u A`.
+@isnad1 id=eq.1h5v.s7.6bfe392b39b6 from=translated src=- shape=1134b73a vocab=41481e99
+-/
 theorem sum_ite_insert (A : Finset V) {u : V} (hu : u ∉ A) (g : V → R) :
     ∑ a ∈ Aᶜ, (if u ∈ insert a A then 0 else g a) = ∑ a ∈ (insert u A)ᶜ, g a := by
   rw [Finset.compl_insert, ← Finset.sum_erase_add _ _ (mem_compl.mpr hu),
@@ -641,6 +729,9 @@ theorem sum_ite_insert (A : Finset V) {u : V} (hu : u ∉ A) (g : V → R) :
   exact ⟨fun h => (mem_erase.mp ha).1 h.symm, hu⟩
 
 omit [Fintype V] [Fintype X] in
+/--
+@isnad1 id=eq.0h4v.s6.2fc98c05f13a from=translated src=- shape=1dc21b39 vocab=b5d31827
+-/
 theorem insert_inl_map (a : V) (A : Finset V) :
     insert (Sum.inl a) (A.map Function.Embedding.inl) =
       (insert a A).map (Function.Embedding.inl : V ↪ V ⊕ X) := by
@@ -648,7 +739,9 @@ theorem insert_inl_map (a : V) (A : Finset V) :
   rfl
 
 /-- The expansion of a base minor along a column, with the row entering
-excluded by the condition of the pattern. -/
+excluded by the condition of the pattern.
+@isnad1 id=eq.1h8v.s7.4e46eed53578 from=translated src=- shape=7f0567b9 vocab=94c6434a
+-/
 theorem sum_expand_ite (A B' : Finset V) {u b : V} (hb : b ∉ B') (P : R) :
     ∑ a ∈ Aᶜ, M₀ a b * (P * (if u ∈ insert a A then 0
       else pdel M₀ (insert u (insert a A)) (insert b B'))) =
@@ -670,7 +763,9 @@ permanent of the gadget minor of the pattern times the permanent of the base
 minor with the rows entering and the columns left: no port used; the first
 in-port entered from `u` and the first out-port left to `v`, or the second
 out-port left to `v'`; the second in-port entered from `u'` likewise; both
-in-ports entered and both out-ports left. -/
+in-ports entered and both out-ports left.
+@isnad1 id=eq.6h15v.s9.959744af5fd9 from=translated src=- shape=798b5611 vocab=ec9930f4
+-/
 theorem pdel_attachXor (A B : Finset V) (hoo' : o ≠ o') (huu' : u ≠ u') (hvv' : v ≠ v')
     (hv : v ∉ B) (hv' : v' ∉ B) :
     pdel (attachXor M₀ D u u' v v' xin xin' o o') (A.map Function.Embedding.inl)

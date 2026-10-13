@@ -39,6 +39,9 @@ def AlgHom.rTensor {R : Type*} [CommSemiring R] (M : Type*) {N : Type*}
       | add x y _ _ => simp_all
   }
 
+/--
+@isnad1 id=eq.0h7v.s9.1abdae509746 from=translated src=- shape=e8a8a3f7 vocab=2c638b1d
+-/
 lemma AlgHom.rTensor_map_smul {R : Type*} [CommSemiring R] (M : Type*) {N : Type*}
     {P : Type*} [AddCommMonoid M] [Semiring N] [Semiring P] [Module R M]
     [Algebra R N] [Algebra R P] (f : N →ₐ[R] P) (n : N) (nm : N ⊗[R] M) :

@@ -65,7 +65,9 @@ def satGuessVerifyTime (f : ℕ → ℕ) (n : ℕ) : ℕ :=
     (TM.pairBuildTime n (n + 1) + satVerifierWindowTime f n)
 
 /-- The verifier window bound dominates `f` on any pair `⟨x, y⟩` whose witness
-    `y` has length at most `|x| + 1`. -/
+    `y` has length at most `|x| + 1`.
+@isnad1 id=le.1h3v.s5.83b5ab338e0e from=translated src=- shape=bcfd4563 vocab=a38c1a9e
+-/
 theorem satVerifierWindowTime_bounds_pair (f : ℕ → ℕ) (x y : List Bool)
     (hlen : y.length ≤ x.length + 1) :
     f (pair x y).length ≤ satVerifierWindowTime f x.length := by
@@ -88,25 +90,33 @@ def satCounterIdx (k : ℕ) : Fin (k + 3) := ⟨k + 2, by omega⟩
 def satVerifierWorkIdx {k : ℕ} (i : Fin k) : Fin (k + 3) :=
   ⟨i.val, by omega⟩
 
-/-- The witness tape and the pair tape are distinct work tapes. -/
+/-- The witness tape and the pair tape are distinct work tapes.
+@isnad1 id=ne.0h1v.s4.00b7a0b25531 from=translated src=- shape=704cff23 vocab=1993fb2b
+-/
 theorem satWitnessIdx_ne_pairIdx (k : ℕ) : satWitnessIdx k ≠ satPairIdx k := by
   intro h
   have := congrArg Fin.val h
   simp [satWitnessIdx, satPairIdx] at this
 
-/-- The counter tape and the pair tape are distinct work tapes. -/
+/-- The counter tape and the pair tape are distinct work tapes.
+@isnad1 id=ne.0h1v.s4.74fdeda0a081 from=translated src=- shape=704cff23 vocab=e51baf0b
+-/
 theorem satCounterIdx_ne_pairIdx (k : ℕ) : satCounterIdx k ≠ satPairIdx k := by
   intro h
   have := congrArg Fin.val h
   simp [satCounterIdx, satPairIdx] at this
 
-/-- The counter tape and the witness tape are distinct work tapes. -/
+/-- The counter tape and the witness tape are distinct work tapes.
+@isnad1 id=ne.0h1v.s4.8e3261b37cf4 from=translated src=- shape=704cff23 vocab=32173cdd
+-/
 theorem satCounterIdx_ne_witnessIdx (k : ℕ) : satCounterIdx k ≠ satWitnessIdx k := by
   intro h
   have := congrArg Fin.val h
   simp [satCounterIdx, satWitnessIdx] at this
 
-/-- Embedded verifier work tapes are distinct from the pair tape. -/
+/-- Embedded verifier work tapes are distinct from the pair tape.
+@isnad1 id=ne.0h2v.s4.128d67c34869 from=translated src=- shape=7451783b vocab=5e0c4fe5
+-/
 theorem satVerifierWorkIdx_ne_pairIdx {k : ℕ} (i : Fin k) :
     satVerifierWorkIdx i ≠ satPairIdx k := by
   intro h
@@ -114,7 +124,9 @@ theorem satVerifierWorkIdx_ne_pairIdx {k : ℕ} (i : Fin k) :
   simp [satVerifierWorkIdx, satPairIdx] at this
   omega
 
-/-- Embedded verifier work tapes are distinct from the witness tape. -/
+/-- Embedded verifier work tapes are distinct from the witness tape.
+@isnad1 id=ne.0h2v.s4.36bc6a0cb175 from=translated src=- shape=7451783b vocab=a08a190f
+-/
 theorem satVerifierWorkIdx_ne_witnessIdx {k : ℕ} (i : Fin k) :
     satVerifierWorkIdx i ≠ satWitnessIdx k := by
   intro h
@@ -122,7 +134,9 @@ theorem satVerifierWorkIdx_ne_witnessIdx {k : ℕ} (i : Fin k) :
   simp [satVerifierWorkIdx, satWitnessIdx] at this
   omega
 
-/-- Embedded verifier work tapes are distinct from the counter tape. -/
+/-- Embedded verifier work tapes are distinct from the counter tape.
+@isnad1 id=ne.0h2v.s4.bbb2d227d100 from=translated src=- shape=7451783b vocab=2b905842
+-/
 theorem satVerifierWorkIdx_ne_counterIdx {k : ℕ} (i : Fin k) :
     satVerifierWorkIdx i ≠ satCounterIdx k := by
   intro h
@@ -380,7 +394,9 @@ def satVerifyInnerCfg (M : TM k) (c : Cfg (k + 3) M.Q) : Cfg k M.Q :=
 
 /-- If the SAT verifier wrapper has just entered the verifier state with the
     pair tape as virtual input and blank started verifier work/output tapes,
-    its projection is exactly `M`'s post-start configuration on that pair. -/
+    its projection is exactly `M`'s post-start configuration on that pair.
+@isnad1 id=eq.5h4v.s7.4ae32b30e9bb from=translated src=- shape=1868a957 vocab=443a7a77
+-/
 theorem satVerifyInnerCfg_eq_startedCfg (M : TM k) (z : List Bool)
     (hne : M.qstart ≠ M.qhalt) (c : Cfg (k + 3) M.Q)
     (hstate : c.state = verifierStartedState M)
@@ -409,7 +425,9 @@ theorem satVerifyInnerCfg_eq_startedCfg (M : TM k) (z : List Bool)
 /-- A verifier that decides a language also halts from its post-start
     configuration. This is the verifier suffix shape used by the composed SAT
     machine, whose phase boundary has already performed the first move off
-    `▷`. -/
+    `▷`.
+@isnad1 id=ex.1h5v.s6.9a0a108c0b81 from=translated src=- shape=13950981 vocab=c16fc67a
+-/
 theorem verifier_started_trace_halts_of_decidesInTime (M : TM k)
     {L : Language} {f : ℕ → ℕ} (hM : M.DecidesInTime L f) (z : List Bool) :
     ∃ V, V + 1 ≤ f z.length ∧
@@ -440,7 +458,9 @@ theorem verifier_started_trace_halts_of_decidesInTime (M : TM k)
   exact hhalt
 
 /-- Output-carrying version of
-    `verifier_started_trace_halts_of_decidesInTime`. -/
+    `verifier_started_trace_halts_of_decidesInTime`.
+@isnad1 id=ex.1h5v.s7.76adde6f0176 from=translated src=- shape=b29819c0 vocab=c270eb19
+-/
 theorem verifier_started_trace_decides_of_decidesInTime (M : TM k)
     {L : Language} {f : ℕ → ℕ} (hM : M.DecidesInTime L f) (z : List Bool) :
     ∃ V, V + 1 ≤ f z.length ∧
@@ -505,7 +525,9 @@ private theorem tape_write_readBack_move_cells_ne_start (t : Tape) (d : Dir3)
 
 /-- One verifier-phase step projects to one ordinary verifier step, provided
     the virtual-input/pair tape is structurally stable for the no-op
-    `readBackWrite`. -/
+    `readBackWrite`.
+@isnad1 id=eq.2h4v.s7.9611b2ff6150 from=translated src=- shape=2f284272 vocab=bea30b5d
+-/
 theorem satVerifyPhaseTM_trace_one_project (M : TM k)
     (choice : Bool) (c : Cfg (k + 3) M.Q)
     (hstate : c.state ≠ M.qhalt)
@@ -526,7 +548,9 @@ theorem satVerifyPhaseTM_trace_one_project (M : TM k)
 
 /-- Multi-step projection from the SAT verifier phase back to `M.toNTM`,
     assuming the virtual-input/pair tape is stable for each proper verifier
-    prefix. -/
+    prefix.
+@isnad1 id=eq.0h6v.s8.bc44fa4a1980 from=translated src=- shape=c811b047 vocab=45282691
+-/
 theorem satVerifyPhaseTM_trace_project_prefix (M : TM k) :
     ∀ (T : ℕ) (choices : Fin T → Bool) (c : Cfg (k + 3) M.Q),
       (∀ t (ht : t < T),
@@ -579,13 +603,17 @@ theorem satVerifyPhaseTM_trace_project_prefix (M : TM k) :
         rw [hone]
 
 /-- The verifier-phase wrapper halts exactly when its projection to `M`
-    halts. -/
+    halts.
+@isnad1 id=iff.0h3v.s5.6bea7924e56b from=translated src=- shape=e6c4a7ce vocab=e4e761c6
+-/
 theorem satVerifyPhaseTM_halted_iff (M : TM k) (c : Cfg (k + 3) M.Q) :
     (satVerifyPhaseTM M).halted c ↔ M.halted (satVerifyInnerCfg M c) :=
   Iff.rfl
 
 /-- Halting transfers from the projected verifier trace back to the SAT
-    verifier phase. -/
+    verifier phase.
+@isnad1 id=halted.1h6v.s8.ceffe6bc9464 from=translated src=- shape=bbc3d443 vocab=e425a74c
+-/
 theorem satVerifyPhaseTM_halts_of_inner_trace_halts (M : TM k)
     (T : ℕ) (choices : Fin T → Bool) (c : Cfg (k + 3) M.Q)
     (hpair : ∀ t (ht : t < T),
@@ -600,7 +628,9 @@ theorem satVerifyPhaseTM_halts_of_inner_trace_halts (M : TM k)
   exact hinner
 
 /-- One verifier-phase step preserves the invariant that the SAT pair tape has
-    no start markers outside cell zero. -/
+    no start markers outside cell zero.
+@isnad1 id=ne.2h5v.s7.01cbc93aefc5 from=translated src=- shape=3b38e6a7 vocab=c6fd7b0d
+-/
 theorem satVerifyPhaseTM_pair_cells_ne_start_trace_one (M : TM k)
     (choice : Bool) (c : Cfg (k + 3) M.Q)
     (hclean : ∀ j, j ≥ 1 → (c.work (satPairIdx k)).cells j ≠ Γ.start) :
@@ -616,7 +646,9 @@ theorem satVerifyPhaseTM_pair_cells_ne_start_trace_one (M : TM k)
         exact tape_write_readBack_move_cells_ne_start (work (satPairIdx k)) _ hclean j hj
 
 /-- The SAT pair tape stays free of start markers outside cell zero throughout
-    the verifier phase. -/
+    the verifier phase.
+@isnad1 id=ne.2h6v.s7.255eb52145e7 from=translated src=- shape=2f29676e vocab=c6fd7b0d
+-/
 theorem satVerifyPhaseTM_pair_cells_ne_start_trace (M : TM k) :
     ∀ (T : ℕ) (choices : Fin T → Bool) (c : Cfg (k + 3) M.Q),
       (∀ j, j ≥ 1 → (c.work (satPairIdx k)).cells j ≠ Γ.start) →
@@ -633,7 +665,9 @@ theorem satVerifyPhaseTM_pair_cells_ne_start_trace (M : TM k) :
 
 /-- A clean SAT pair tape supplies the structural guard needed by the verifier
     projection: if the pair head is away from cell zero, it cannot be reading a
-    start marker. -/
+    start marker.
+@isnad1 id=other.2h6v.s8.55debe344983 from=translated src=- shape=6172969e vocab=9e44efc9
+-/
 theorem satVerifyPhaseTM_pair_guard_of_clean (M : TM k)
     (T : ℕ) (choices : Fin T → Bool) (c : Cfg (k + 3) M.Q)
     (hclean : ∀ j, j ≥ 1 → (c.work (satPairIdx k)).cells j ≠ Γ.start) :
@@ -680,7 +714,9 @@ def satVerifyWrap (M : TM k) (c : Cfg (k + 3) M.Q) :
   { state := .verify c.state, input := c.input, work := c.work, output := c.output }
 
 /-- The composed machine halts on a wrapped verifier configuration exactly
-    when the verifier-phase machine halts on the unwrapped one. -/
+    when the verifier-phase machine halts on the unwrapped one.
+@isnad1 id=iff.0h3v.s5.e48612a2c068 from=translated src=- shape=123a512e vocab=9f720e9a
+-/
 theorem satGuessVerify_verify_halted_iff (M : TM k) (c : Cfg (k + 3) M.Q) :
     (satGuessVerifyNTM M).halted (satVerifyWrap M c) ↔
       (satVerifyPhaseTM M).halted c :=
@@ -700,14 +736,18 @@ def satBoundaryOutput (out : Tape) : Tape :=
   out.writeAndMove (readBackWrite out.read) (idleDir out.read)
 
 /-- A phase boundary leaves the input tape unchanged when its head is past
-    cell zero and no start markers occur beyond cell zero. -/
+    cell zero and no start markers occur beyond cell zero.
+@isnad1 id=eq.2h1v.s5.be155ba04c8c from=translated src=- shape=e1db1886 vocab=85aee35b
+-/
 theorem satBoundaryInput_stable (inp : Tape)
     (hhead : inp.head ≥ 1) (hns : ∀ j, j ≥ 1 → inp.cells j ≠ Γ.start) :
     satBoundaryInput inp = inp :=
   tape_move_idleDir_stable inp hhead hns
 
 /-- A phase boundary leaves a work tape unchanged when its head is past cell
-    zero and no start markers occur beyond cell zero. -/
+    zero and no start markers occur beyond cell zero.
+@isnad1 id=eq.2h3v.s6.7befe6379849 from=translated src=- shape=a08f8488 vocab=82b9649a
+-/
 theorem satBoundaryWork_stable (work : Fin (k + 3) → Tape) (i : Fin (k + 3))
     (hhead : (work i).head ≥ 1)
     (hns : ∀ j, j ≥ 1 → (work i).cells j ≠ Γ.start) :
@@ -715,7 +755,9 @@ theorem satBoundaryWork_stable (work : Fin (k + 3) → Tape) (i : Fin (k + 3))
   tape_writeAndMove_stable (work i) hhead hns
 
 /-- A phase boundary leaves a work tape unchanged when it is not currently
-    reading a start marker. -/
+    reading a start marker.
+@isnad1 id=eq.1h3v.s5.f2035429ee2f from=translated src=- shape=824cde25 vocab=efc04f85
+-/
 theorem satBoundaryWork_stable_of_read_ne_start
     (work : Fin (k + 3) → Tape) (i : Fin (k + 3))
     (hread : (work i).read ≠ Γ.start) :
@@ -724,7 +766,9 @@ theorem satBoundaryWork_stable_of_read_ne_start
     Tape.writeAndMove_readBack_idle_of_ne_start (work i) hread
 
 /-- Exact initialized Boolean contents on the SAT pair tape imply the clean-tape
-    invariant required by the verifier phase. -/
+    invariant required by the verifier phase.
+@isnad1 id=ne.2h5v.s6.58efad677de8 from=translated src=- shape=7ca76caa vocab=e9c55b3e
+-/
 theorem satPair_cells_ne_start_of_initTape_ofBool_move_right (M : TM k)
     (bits : List Bool) (c : Cfg (k + 3) M.Q)
     (hpair : c.work (satPairIdx k) =
@@ -746,7 +790,9 @@ private theorem tape_eq_initTape_ofBool_move_right_of_head_cells
       exact ⟨rfl, rfl⟩
 
 /-- A phase boundary leaves every work tape unchanged when all heads are past
-    cell zero and no start markers occur beyond cell zero. -/
+    cell zero and no start markers occur beyond cell zero.
+@isnad1 id=eq.2h2v.s6.0e2a96371ea9 from=translated src=- shape=395833f3 vocab=82b9649a
+-/
 theorem satBoundaryWork_stable_all (work : Fin (k + 3) → Tape)
     (hhead : ∀ i, (work i).head ≥ 1)
     (hns : ∀ i j, j ≥ 1 → (work i).cells j ≠ Γ.start) :
@@ -755,14 +801,18 @@ theorem satBoundaryWork_stable_all (work : Fin (k + 3) → Tape)
   exact satBoundaryWork_stable work i (hhead i) (hns i)
 
 /-- A phase boundary leaves the output tape unchanged when its head is past
-    cell zero and no start markers occur beyond cell zero. -/
+    cell zero and no start markers occur beyond cell zero.
+@isnad1 id=eq.2h1v.s5.0303d45bd6bc from=translated src=- shape=e1db1886 vocab=0f655e5f
+-/
 theorem satBoundaryOutput_stable (out : Tape)
     (hhead : out.head ≥ 1) (hns : ∀ j, j ≥ 1 → out.cells j ≠ Γ.start) :
     satBoundaryOutput out = out :=
   tape_writeAndMove_stable out hhead hns
 
 /-- A phase boundary leaves the output tape unchanged when it is not currently
-    reading a start marker. -/
+    reading a start marker.
+@isnad1 id=eq.1h1v.s3.e9f5a88dfda8 from=translated src=- shape=ca317965 vocab=de503c70
+-/
 theorem satBoundaryOutput_stable_of_read_ne_start (out : Tape)
     (hread : out.read ≠ Γ.start) :
     satBoundaryOutput out = out := by
@@ -770,7 +820,9 @@ theorem satBoundaryOutput_stable_of_read_ne_start (out : Tape)
     Tape.writeAndMove_readBack_idle_of_ne_start out hread
 
 /-- One composed-machine step on a non-done counter configuration simulates
-    one step of the counter subroutine. -/
+    one step of the counter subroutine.
+@isnad1 id=eq.1h4v.s7.42efc170bf58 from=translated src=- shape=2a4065b3 vocab=607e50e9
+-/
 theorem satGuessVerify_counter_trace_one (M : TM k)
     (choice : Bool) (c : Cfg (k + 3) TM.LinearCounterPhase)
     (hstate : c.state ≠ TM.LinearCounterPhase.done) :
@@ -786,7 +838,9 @@ theorem satGuessVerify_counter_trace_one (M : TM k)
       TM.toNTM, TM.inputLengthPlusOneCounterTM, hstate']
 
 /-- Multi-step counter-phase simulation up to, but not across, the counter
-    subroutine's halt state. -/
+    subroutine's halt state.
+@isnad1 id=eq.1h5v.s8.c82b047c538d from=translated src=- shape=d8145eae vocab=dcc0a704
+-/
 theorem satGuessVerify_counter_trace_prefix (M : TM k) :
     ∀ (T : ℕ) (choices : Fin T → Bool)
       (c : Cfg (k + 3) TM.LinearCounterPhase),
@@ -801,7 +855,9 @@ theorem satGuessVerify_counter_trace_prefix (M : TM k) :
     (satGuessVerifyNTM M) (satCounterWrap M) (satGuessVerify_counter_trace_one M)
 
 /-- If the counter subroutine first reaches `done` at time `T`, then the
-    composed machine exits the counter phase on the next step. -/
+    composed machine exits the counter phase on the next step.
+@isnad1 id=other.2h5v.s9.b7f9de39dac6 from=translated src=- shape=500c736f vocab=b7905ded
+-/
 theorem satGuessVerify_counter_trace_exit (M : TM k) (T : ℕ)
     (choices : Fin (T + 1) → Bool)
     (c : Cfg (k + 3) TM.LinearCounterPhase)
@@ -997,7 +1053,9 @@ private theorem satCounter_init_boundary_started_blank_output
 
 /-- From the actual composed-machine initial configuration, the counter setup
     phase reaches the input-rewind phase within the counter bound plus the
-    one boundary step. -/
+    one boundary step.
+@isnad1 id=ex.0h4v.s9.8c60d7a1798f from=translated src=- shape=7149175e vocab=0d655395
+-/
 theorem satGuessVerify_counter_init_exits (M : TM k) (x : List Bool)
     (choices : Fin (TM.inputLengthPlusOneCounterTime x.length + 1) → Bool) :
     ∃ t, ∃ ht : t ≤ TM.inputLengthPlusOneCounterTime x.length,
@@ -1132,7 +1190,9 @@ theorem satGuessVerify_counter_init_exits (M : TM k) (x : List Bool)
     simpa [counterNTM, counterChoices, cT, c0] using houtput
 
 /-- One composed-machine step on a non-done rewind configuration simulates one
-    step of the input-rewind subroutine. -/
+    step of the input-rewind subroutine.
+@isnad1 id=eq.1h4v.s7.60c083af0845 from=translated src=- shape=2315dbda vocab=099dedd5
+-/
 theorem satGuessVerify_rewindInput_trace_one (M : TM k)
     (choice : Bool) (c : Cfg (k + 3) TM.RewindPhase)
     (hstate : c.state ≠ TM.RewindPhase.done) :
@@ -1148,7 +1208,9 @@ theorem satGuessVerify_rewindInput_trace_one (M : TM k)
       TM.toNTM, TM.rewindInputTM, hstate']
 
 /-- Multi-step input-rewind simulation up to, but not across, the rewind
-    subroutine's halt state. -/
+    subroutine's halt state.
+@isnad1 id=eq.1h5v.s8.76fc58ce8c17 from=translated src=- shape=e4d3d545 vocab=a26d2270
+-/
 theorem satGuessVerify_rewindInput_trace_prefix (M : TM k) :
     ∀ (T : ℕ) (choices : Fin T → Bool)
       (c : Cfg (k + 3) TM.RewindPhase),
@@ -1163,7 +1225,9 @@ theorem satGuessVerify_rewindInput_trace_prefix (M : TM k) :
     (satRewindInputWrap M) (satGuessVerify_rewindInput_trace_one M)
 
 /-- If the input-rewind subroutine first reaches `done` at time `T`, then the
-    composed machine exits the rewind phase on the next step. -/
+    composed machine exits the rewind phase on the next step.
+@isnad1 id=other.2h5v.s9.cd1001e31fea from=translated src=- shape=f3d0523b vocab=8670970e
+-/
 theorem satGuessVerify_rewindInput_trace_exit (M : TM k) (T : ℕ)
     (choices : Fin (T + 1) → Bool)
     (c : Cfg (k + 3) TM.RewindPhase)
@@ -1219,7 +1283,9 @@ theorem satGuessVerify_rewindInput_trace_exit (M : TM k) (T : ℕ)
   rfl
 
 /-- From a standard input-rewind phase start, the composed machine reaches
-    bounded guessing within the input-rewind bound plus the one boundary step. -/
+    bounded guessing within the input-rewind bound plus the one boundary step.
+@isnad1 id=ex.1h7v.s9.d18a6e87bbdf from=translated src=- shape=72d427f8 vocab=11e325c3
+-/
 theorem satGuessVerify_rewindInput_exits (M : TM k) (B : ℕ)
     (inp : Tape) (work : Fin (k + 3) → Tape) (out : Tape)
     (hpre : inp.cells 0 = Γ.start ∧
@@ -1285,7 +1351,9 @@ theorem satGuessVerify_rewindInput_exits (M : TM k) (B : ℕ)
 
 /-- Rich input-rewind exit theorem: in addition to reaching the guess phase
     with the input head restored, preserve all work tapes and output through
-    the boundary when their heads are already past `▷`. -/
+    the boundary when their heads are already past `▷`.
+@isnad1 id=ex.3h7v.s9.f64dec30ce58 from=translated src=- shape=809be52c vocab=752d9363
+-/
 theorem satGuessVerify_rewindInput_exits_with_frames (M : TM k) (B : ℕ)
     (inp : Tape) (work : Fin (k + 3) → Tape) (out : Tape)
     (hpre : inp.cells 0 = Γ.start ∧
@@ -1393,7 +1461,9 @@ theorem satGuessVerify_rewindInput_exits_with_frames (M : TM k) (B : ℕ)
     exact satBoundaryOutput_stable_of_read_ne_start out hout.1
 
 /-- Exact-input corollary of the rich rewind exit, specialized for an input
-    tape whose cells are the initialized encoding of `x`. -/
+    tape whose cells are the initialized encoding of `x`.
+@isnad1 id=ex.4h8v.s9.dd26c5a4aadd from=translated src=- shape=80508f3c vocab=6b950239
+-/
 theorem satGuessVerify_rewindInput_exits_with_frames_exact_input (M : TM k) (B : ℕ)
     (x : List Bool) (inp : Tape) (work : Fin (k + 3) → Tape) (out : Tape)
     (hpre : inp.cells 0 = Γ.start ∧
@@ -1448,7 +1518,9 @@ theorem satGuessVerify_rewindInput_exits_with_frames_exact_input (M : TM k) (B :
     (satBoundaryInput cT.input) x hrich'.2.1 (by rw [hrich'.2.2.1, hinput_cells])
 
 /-- One composed-machine step on a non-done guess configuration simulates one
-    step of the bounded-guessing subroutine with the same choice bit. -/
+    step of the bounded-guessing subroutine with the same choice bit.
+@isnad1 id=eq.1h4v.s7.5019b1572176 from=translated src=- shape=1c49bde5 vocab=0339249d
+-/
 theorem satGuessVerify_guess_trace_one (M : TM k)
     (choice : Bool) (c : Cfg (k + 3) NTM.GuessBoundedPhase)
     (hstate : c.state ≠ NTM.GuessBoundedPhase.done) :
@@ -1464,7 +1536,9 @@ theorem satGuessVerify_guess_trace_one (M : TM k)
       NTM.guessBoundedNTM, hstate']
 
 /-- Multi-step bounded-guess simulation up to, but not across, the guess
-    subroutine's halt state. -/
+    subroutine's halt state.
+@isnad1 id=eq.1h5v.s7.81e7e1764e48 from=translated src=- shape=845c65a4 vocab=7bd22d69
+-/
 theorem satGuessVerify_guess_trace_prefix (M : TM k) :
     ∀ (T : ℕ) (choices : Fin T → Bool)
       (c : Cfg (k + 3) NTM.GuessBoundedPhase),
@@ -1479,7 +1553,9 @@ theorem satGuessVerify_guess_trace_prefix (M : TM k) :
     (satGuessVerifyNTM M) (satGuessWrap M) (satGuessVerify_guess_trace_one M)
 
 /-- If the bounded-guess subroutine first reaches `done` at time `T`, then
-    the composed machine exits the guess phase on the next step. -/
+    the composed machine exits the guess phase on the next step.
+@isnad1 id=other.2h5v.s9.f0d399cbd14f from=translated src=- shape=9853da7e vocab=a45b13bc
+-/
 theorem satGuessVerify_guess_trace_exit (M : TM k) (T : ℕ)
     (choices : Fin (T + 1) → Bool)
     (c : Cfg (k + 3) NTM.GuessBoundedPhase)
@@ -1535,7 +1611,9 @@ theorem satGuessVerify_guess_trace_exit (M : TM k) (T : ℕ)
   rfl
 
 /-- From a standard bounded-guess phase start, the composed machine reaches
-    pair building within the guess bound plus the one boundary step. -/
+    pair building within the guess bound plus the one boundary step.
+@isnad1 id=ex.1h7v.s9.9ceedb316803 from=translated src=- shape=59fad323 vocab=355027dc
+-/
 theorem satGuessVerify_guess_exits (M : TM k) (B : ℕ)
     (inp : Tape) (work : Fin (k + 3) → Tape) (out : Tape)
     (hpre : (work (satWitnessIdx k)).HasBinaryPrefix [] ∧
@@ -1606,7 +1684,9 @@ theorem satGuessVerify_guess_exits (M : TM k) (B : ℕ)
 
 /-- Arbitrary-choice guess exit with the frame facts needed by pair building:
     the produced witness is bounded by the counter, while the real input, pair
-    tape, output, and verifier work tapes are preserved through the boundary. -/
+    tape, output, and verifier work tapes are preserved through the boundary.
+@isnad1 id=ex.4h7v.s9.0b17d00f6568 from=translated src=- shape=ec9663d5 vocab=6c4c184d
+-/
 theorem satGuessVerify_guess_exits_with_frames (M : TM k) (B : ℕ)
     (inp : Tape) (work : Fin (k + 3) → Tape) (out : Tape)
     (hpre : (work (satWitnessIdx k)).HasBinaryPrefix [] ∧
@@ -1723,7 +1803,9 @@ theorem satGuessVerify_guess_exits_with_frames (M : TM k) (B : ℕ)
 
 /-- Completeness-oriented guess exit: for any requested witness within the
     unary counter bound, there is a nondeterministic choice sequence that exits
-    the guess phase with exactly that witness and leaves the pair tape blank. -/
+    the guess phase with exactly that witness and leaves the pair tape blank.
+@isnad1 id=ex.2h7v.s9.8c5f59586ad7 from=translated src=- shape=457019d0 vocab=606c4eab
+-/
 theorem satGuessVerify_guess_generates_with_pair_frame (M : TM k) (B : ℕ)
     (y : List Bool) (inp : Tape) (work : Fin (k + 3) → Tape) (out : Tape)
     (hlen : y.length ≤ B)
@@ -1851,7 +1933,9 @@ theorem satGuessVerify_guess_generates_with_pair_frame (M : TM k) (B : ℕ)
 
 /-- Started-input strengthening of `satGuessVerify_guess_generates_with_pair_frame`.
     Besides producing the requested witness and preserving the blank pair tape,
-    the phase exit keeps the exact started input tape needed by pair building. -/
+    the phase exit keeps the exact started input tape needed by pair building.
+@isnad1 id=ex.3h8v.s9.3d3cf9e5655d from=translated src=- shape=4b3b2731 vocab=606c4eab
+-/
 theorem satGuessVerify_guess_generates_with_input_pair_frame (M : TM k) (B : ℕ)
     (x y : List Bool) (inp : Tape) (work : Fin (k + 3) → Tape) (out : Tape)
     (hlen : y.length ≤ B)
@@ -1915,7 +1999,9 @@ theorem satGuessVerify_guess_generates_with_input_pair_frame (M : TM k) (B : ℕ
 /-- Compose input rewind with the completeness-oriented guess phase. Starting
     from a rewind configuration whose work/output frames already satisfy the
     guess preconditions, there is a choice sequence reaching pair-building with
-    exact input, witness, and blank pair tapes. -/
+    exact input, witness, and blank pair tapes.
+@isnad1 id=ex.6h8v.s9.aa38e2dc9a86 from=translated src=- shape=cda29dad vocab=06180496
+-/
 theorem satGuessVerify_rewind_then_guess_generates_pair (M : TM k) (B : ℕ)
     (x y : List Bool) (inp : Tape) (work : Fin (k + 3) → Tape) (out : Tape)
     (hrewindPre : inp.cells 0 = Γ.start ∧
@@ -2059,7 +2145,9 @@ theorem satGuessVerify_rewind_then_guess_generates_pair (M : TM k) (B : ℕ)
 /-- Compose counter setup, input rewind, and the completeness-oriented guess
     phase from the actual composed-machine initial configuration. The result is
     a pair-phase configuration with exact input, requested witness, and a blank
-    pair tape. -/
+    pair tape.
+@isnad1 id=ex.1h4v.s8.ad123598ea59 from=translated src=- shape=185ae92f vocab=77818515
+-/
 theorem satGuessVerify_setup_generates_pair (M : TM k) (x y : List Bool)
     (hlen : y.length ≤ x.length + 1) :
     ∃ T, ∃ choices : Fin T → Bool,
@@ -2205,7 +2293,9 @@ theorem satGuessVerify_setup_generates_pair (M : TM k) (x y : List Bool)
 /-- Arbitrary-choice setup composition from the real initial configuration.
     Within the setup budget, every setup choice prefix reaches pair building
     with some bounded witness, exact started input, blank pair/output tapes, and
-    blank verifier work tapes. -/
+    blank verifier work tapes.
+@isnad1 id=ex.0h4v.s8.87a5e5e148da from=translated src=- shape=c52c4e2d vocab=d689ccbb
+-/
 theorem satGuessVerify_setup_exits_with_pair_frames (M : TM k) (x : List Bool)
     (choices : Fin (satGuessVerifySetupTime x.length) → Bool) :
     ∃ T, ∃ hT : T ≤ satGuessVerifySetupTime x.length,
@@ -2469,7 +2559,9 @@ theorem satGuessVerify_setup_exits_with_pair_frames (M : TM k) (x : List Bool)
     exact hothers (satVerifierWorkIdx i) (satVerifierWorkIdx_ne_counterIdx i)
 
 /-- One composed-machine step on a non-done pair configuration simulates one
-    step of the pair-builder subroutine. -/
+    step of the pair-builder subroutine.
+@isnad1 id=eq.1h4v.s7.bfd94b8d857f from=translated src=- shape=4ef08a2a vocab=f6720443
+-/
 theorem satGuessVerify_pair_trace_one (M : TM k)
     (choice : Bool) (c : Cfg (k + 3) TM.PairBuildPhase)
     (hstate : c.state ≠ TM.PairBuildPhase.done) :
@@ -2485,7 +2577,9 @@ theorem satGuessVerify_pair_trace_one (M : TM k)
       TM.toNTM, TM.pairBuildTM, hstate']
 
 /-- Multi-step pair-builder simulation up to, but not across, the pair
-    subroutine's halt state. -/
+    subroutine's halt state.
+@isnad1 id=eq.1h5v.s8.6b89b3e0b4e7 from=translated src=- shape=dfb4e46a vocab=81d747ec
+-/
 theorem satGuessVerify_pair_trace_prefix (M : TM k) :
     ∀ (T : ℕ) (choices : Fin T → Bool)
       (c : Cfg (k + 3) TM.PairBuildPhase),
@@ -2500,7 +2594,9 @@ theorem satGuessVerify_pair_trace_prefix (M : TM k) :
     (satGuessVerifyNTM M) (satPairWrap M) (satGuessVerify_pair_trace_one M)
 
 /-- If the pair-builder subroutine first reaches `done` at time `T`, then the
-    composed machine exits the pair phase on the next step. -/
+    composed machine exits the pair phase on the next step.
+@isnad1 id=other.2h5v.s9.651777e0d35f from=translated src=- shape=43ba217e vocab=b55d341a
+-/
 theorem satGuessVerify_pair_trace_exit (M : TM k) (T : ℕ)
     (choices : Fin (T + 1) → Bool)
     (c : Cfg (k + 3) TM.PairBuildPhase)
@@ -2557,7 +2653,9 @@ theorem satGuessVerify_pair_trace_exit (M : TM k) (T : ℕ)
 
 /-- From a standard pair-builder phase start, the composed machine reaches
     verifier simulation within the pair-builder bound plus the one boundary
-    step. -/
+    step.
+@isnad1 id=ex.1h7v.s9.e182e433a7d7 from=translated src=- shape=aebb7300 vocab=bd0944d1
+-/
 theorem satGuessVerify_pair_exits (M : TM k) (x y : List Bool)
     (work : Fin (k + 3) → Tape) (out : Tape)
     (hpre :
@@ -2635,7 +2733,9 @@ theorem satGuessVerify_pair_exits (M : TM k) (x y : List Bool)
 
 /-- Pair-builder exit with the verifier frame exposed. Besides the exact pair
     tape, this packages preservation of the output tape and every internal
-    verifier work tape through pair construction and the boundary step. -/
+    verifier work tape through pair construction and the boundary step.
+@isnad1 id=ex.3h7v.s9.d832f9c8580f from=translated src=- shape=3476fbc0 vocab=6e25fe19
+-/
 theorem satGuessVerify_pair_exits_with_verifier_frames (M : TM k) (x y : List Bool)
     (work : Fin (k + 3) → Tape) (out : Tape)
     (hpre :
@@ -2715,7 +2815,9 @@ theorem satGuessVerify_pair_exits_with_verifier_frames (M : TM k) (x y : List Bo
     exact hwork_cT
 
 /-- One composed-machine step on a non-halted verifier configuration simulates
-    one step of the verifier-phase machine. -/
+    one step of the verifier-phase machine.
+@isnad1 id=eq.1h4v.s7.ec8e3360d839 from=translated src=- shape=a5a2d353 vocab=17784058
+-/
 theorem satGuessVerify_verify_trace_one (M : TM k)
     (choice : Bool) (c : Cfg (k + 3) M.Q)
     (hstate : c.state ≠ M.qhalt) :
@@ -2730,7 +2832,9 @@ theorem satGuessVerify_verify_trace_one (M : TM k)
       satVerifyTransition, satVerifyPhaseTM, NTM.trace, TM.toNTM, hstate']
 
 /-- Multi-step verifier-phase simulation up to, but not across, `M`'s halt
-    state. -/
+    state.
+@isnad1 id=eq.1h5v.s7.eb24292d4d52 from=translated src=- shape=2b43855e vocab=fc226c84
+-/
 theorem satGuessVerify_verify_trace_prefix (M : TM k) :
     ∀ (T : ℕ) (choices : Fin T → Bool)
       (c : Cfg (k + 3) M.Q),
@@ -2745,7 +2849,9 @@ theorem satGuessVerify_verify_trace_prefix (M : TM k) :
     (satVerifyWrap M) (satGuessVerify_verify_trace_one M)
 
 /-- If the verifier phase has halted by time `T`, then the composed SAT
-    machine, started in verifier phase, is halted by time `T` as well. -/
+    machine, started in verifier phase, is halted by time `T` as well.
+@isnad1 id=halted.1h5v.s6.375809e49123 from=translated src=- shape=e16c466d vocab=3a341faa
+-/
 theorem satGuessVerify_verify_halts_of_phase_halts (M : TM k)
     (T : ℕ) (choices : Fin T → Bool) (c : Cfg (k + 3) M.Q)
     (hhalt : (satVerifyPhaseTM M).halted
@@ -2777,7 +2883,9 @@ theorem satGuessVerify_verify_halts_of_phase_halts (M : TM k)
   exact hhalt_composed_t
 
 /-- If the projected verifier computation halts, then the full SAT machine
-    started in verifier phase halts under the same time bound. -/
+    started in verifier phase halts under the same time bound.
+@isnad1 id=halted.1h6v.s8.144b7b182212 from=translated src=- shape=8c1b3238 vocab=98558d5e
+-/
 theorem satGuessVerify_verify_halts_of_inner_trace_halts (M : TM k)
     (T : ℕ) (choices : Fin T → Bool) (c : Cfg (k + 3) M.Q)
     (hpair : ∀ t (ht : t < T),
@@ -2794,7 +2902,9 @@ theorem satGuessVerify_verify_halts_of_inner_trace_halts (M : TM k)
 
 /-- If the projected verifier computation halts and the SAT pair tape is clean,
     then the full SAT machine started in verifier phase halts under the same
-    time bound. -/
+    time bound.
+@isnad1 id=halted.2h5v.s6.1c057e660100 from=translated src=- shape=2403a9fe vocab=63af1737
+-/
 theorem satGuessVerify_verify_halts_of_inner_trace_halts_clean (M : TM k)
     (T : ℕ) (choices : Fin T → Bool) (c : Cfg (k + 3) M.Q)
     (hclean : ∀ j, j ≥ 1 → (c.work (satPairIdx k)).cells j ≠ Γ.start)
@@ -2806,7 +2916,9 @@ theorem satGuessVerify_verify_halts_of_inner_trace_halts_clean (M : TM k)
 
 /-- If the projected verifier computation halts with accepting output and the
     SAT pair tape is clean, then the full SAT machine started in verifier phase
-    also halts with accepting output. -/
+    also halts with accepting output.
+@isnad1 id=other.3h6v.s7.dbb06113c968 from=translated src=- shape=354359d2 vocab=5afaaaea
+-/
 theorem satGuessVerify_verify_outputs_of_inner_trace_output_clean (M : TM k)
     (T : ℕ) (choices : Fin T → Bool) (c : Cfg (k + 3) M.Q)
     (hclean : ∀ j, j ≥ 1 → (c.work (satPairIdx k)).cells j ≠ Γ.start)
@@ -2867,7 +2979,9 @@ theorem satGuessVerify_verify_outputs_of_inner_trace_output_clean (M : TM k)
 
 /-- If the projected verifier computation halts with accepting output and the
     SAT pair tape is clean, then the full SAT machine started in verifier phase
-    also halts with accepting output. -/
+    also halts with accepting output.
+@isnad1 id=other.3h5v.s7.463835f46354 from=translated src=- shape=8b0dabfc vocab=ba3c2cdd
+-/
 theorem satGuessVerify_verify_accepts_of_inner_trace_accepts_clean (M : TM k)
     (T : ℕ) (choices : Fin T → Bool) (c : Cfg (k + 3) M.Q)
     (hclean : ∀ j, j ≥ 1 → (c.work (satPairIdx k)).cells j ≠ Γ.start)
@@ -2881,7 +2995,9 @@ theorem satGuessVerify_verify_accepts_of_inner_trace_accepts_clean (M : TM k)
     hclean Γ.one hinnerHalt hinnerOut
 
 /-- If a composed SAT trace prefix has reached the verifier phase, then any
-    halting projected verifier suffix gives a halting full composed trace. -/
+    halting projected verifier suffix gives a halting full composed trace.
+@isnad1 id=halted.3h7v.s7.e589b7ee50f8 from=translated src=- shape=78c5b633 vocab=d14cd7c0
+-/
 theorem satGuessVerify_halts_after_verify_prefix (M : TM k)
     (T V : ℕ) (choices : Fin (T + V) → Bool)
     (c0 : Cfg (k + 3) (GuessVerifyPhase M.Q)) (c : Cfg (k + 3) M.Q)
@@ -2901,7 +3017,9 @@ theorem satGuessVerify_halts_after_verify_prefix (M : TM k)
     (fun i => choices (Fin.natAdd T i)) c hclean hinner
 
 /-- If a composed SAT trace prefix has reached the verifier phase, then any
-    accepting projected verifier suffix gives an accepting full composed trace. -/
+    accepting projected verifier suffix gives an accepting full composed trace.
+@isnad1 id=other.4h7v.s8.82d0f745ddc5 from=translated src=- shape=66476829 vocab=ac954520
+-/
 theorem satGuessVerify_accepts_after_verify_prefix (M : TM k)
     (T V : ℕ) (choices : Fin (T + V) → Bool)
     (c0 : Cfg (k + 3) (GuessVerifyPhase M.Q)) (c : Cfg (k + 3) M.Q)
@@ -2925,7 +3043,9 @@ theorem satGuessVerify_accepts_after_verify_prefix (M : TM k)
 
 /-- If a composed SAT trace prefix has reached the verifier phase, then any
     projected verifier suffix preserves its final output cell through the
-    composed machine. -/
+    composed machine.
+@isnad1 id=other.4h8v.s8.2ce39b3352ff from=translated src=- shape=182671e2 vocab=ac5dfb32
+-/
 theorem satGuessVerify_outputs_after_verify_prefix (M : TM k)
     (T V : ℕ) (choices : Fin (T + V) → Bool)
     (c0 : Cfg (k + 3) (GuessVerifyPhase M.Q)) (c : Cfg (k + 3) M.Q)
@@ -2949,7 +3069,9 @@ theorem satGuessVerify_outputs_after_verify_prefix (M : TM k)
     (fun i => choices (Fin.natAdd T i)) c hclean g hinnerHalt hinnerOut
 
 /-- Generic trace composition for the composed SAT machine: if a prefix reaches
-    a configuration whose suffix trace halts, then the combined trace halts. -/
+    a configuration whose suffix trace halts, then the combined trace halts.
+@isnad1 id=halted.2h7v.s7.db0205cd2caf from=translated src=- shape=00d9c26e vocab=5d66d092
+-/
 theorem satGuessVerify_halts_after_prefix (M : TM k)
     (T U : ℕ) (choices : Fin (T + U) → Bool)
     (c0 c1 : Cfg (k + 3) (GuessVerifyPhase M.Q))
@@ -2967,7 +3089,9 @@ theorem satGuessVerify_halts_after_prefix (M : TM k)
 
 /-- Generic trace composition for the composed SAT machine: if a prefix reaches
     a configuration whose suffix trace accepts, then the combined trace
-    accepts. -/
+    accepts.
+@isnad1 id=other.1h8v.s8.6e79ea338c5e from=translated src=- shape=13de5d6e vocab=9e37ccb8
+-/
 theorem satGuessVerify_accepts_after_prefix (M : TM k)
     (T U : ℕ) (choices : Fin (T + U) → Bool)
     (c0 c1 : Cfg (k + 3) (GuessVerifyPhase M.Q))
@@ -2985,7 +3109,9 @@ theorem satGuessVerify_accepts_after_prefix (M : TM k)
   exact hsuffix
 
 /-- Guess-phase exit followed by any halting pair/verifier suffix gives a
-    halting combined run. -/
+    halting combined run.
+@isnad1 id=halted.2h7v.s7.cfe95f2db5b0 from=translated src=- shape=5e0d2f74 vocab=16a1bc21
+-/
 theorem satGuessVerify_guess_exit_then_suffix_halts (M : TM k)
     (T U : ℕ) (choices : Fin (T + U) → Bool)
     (c0 : Cfg (k + 3) NTM.GuessBoundedPhase)
@@ -3005,7 +3131,9 @@ theorem satGuessVerify_guess_exit_then_suffix_halts (M : TM k)
     (satPairWrap M cPair) hprefix hsuffix
 
 /-- Input-rewind exit followed by any halting guess/pair/verifier suffix gives
-    a halting combined run. -/
+    a halting combined run.
+@isnad1 id=halted.2h7v.s7.265ae64ddc5b from=translated src=- shape=5e0d2f74 vocab=6e4e9231
+-/
 theorem satGuessVerify_rewindInput_exit_then_suffix_halts (M : TM k)
     (T U : ℕ) (choices : Fin (T + U) → Bool)
     (c0 : Cfg (k + 3) TM.RewindPhase)
@@ -3025,7 +3153,9 @@ theorem satGuessVerify_rewindInput_exit_then_suffix_halts (M : TM k)
     (satGuessWrap M cGuess) hprefix hsuffix
 
 /-- Counter-setup exit followed by any halting rewind/guess/pair/verifier suffix
-    gives a halting combined run. -/
+    gives a halting combined run.
+@isnad1 id=halted.2h7v.s7.f54960f41b36 from=translated src=- shape=5e0d2f74 vocab=e39a0077
+-/
 theorem satGuessVerify_counter_exit_then_suffix_halts (M : TM k)
     (T U : ℕ) (choices : Fin (T + U) → Bool)
     (c0 : Cfg (k + 3) TM.LinearCounterPhase)
@@ -3046,7 +3176,9 @@ theorem satGuessVerify_counter_exit_then_suffix_halts (M : TM k)
 
 /-- Pair-builder-to-verifier composition: once a SAT trace prefix has exited the
     pair phase with the exact encoded `(x, y)` pair tape, a halting projected
-    verifier suffix makes the full composed machine halt. -/
+    verifier suffix makes the full composed machine halt.
+@isnad1 id=halted.3h9v.s7.724a95ad1480 from=translated src=- shape=6b7a3116 vocab=bc3320a5
+-/
 theorem satGuessVerify_pair_exit_then_verify_halts (M : TM k)
     (x y : List Bool) (T V : ℕ) (choices : Fin (T + V) → Bool)
     (c0 : Cfg (k + 3) TM.PairBuildPhase) (c : Cfg (k + 3) M.Q)
@@ -3067,7 +3199,9 @@ theorem satGuessVerify_pair_exit_then_verify_halts (M : TM k)
     (satPair_cells_ne_start_of_initTape_ofBool_move_right M (pair x y) c hpair)
     hinner
 
-/-- Pair-builder-to-verifier composition with accepting output. -/
+/-- Pair-builder-to-verifier composition with accepting output.
+@isnad1 id=other.4h9v.s8.1730787f8824 from=translated src=- shape=e2c9537c vocab=f7bd4f7b
+-/
 theorem satGuessVerify_pair_exit_then_verify_accepts (M : TM k)
     (x y : List Bool) (T V : ℕ) (choices : Fin (T + V) → Bool)
     (c0 : Cfg (k + 3) TM.PairBuildPhase) (c : Cfg (k + 3) M.Q)
@@ -3093,7 +3227,9 @@ theorem satGuessVerify_pair_exit_then_verify_accepts (M : TM k)
     hinnerHalt hinnerOut
 
 /-- Pair-builder-to-verifier composition preserving the projected verifier's
-    final output cell. -/
+    final output cell.
+@isnad1 id=other.4h10v.s8.4e093c948ed6 from=translated src=- shape=fd509259 vocab=683c8c36
+-/
 theorem satGuessVerify_pair_exit_then_verify_outputs (M : TM k)
     (x y : List Bool) (T V : ℕ) (choices : Fin (T + V) → Bool)
     (c0 : Cfg (k + 3) TM.PairBuildPhase) (c : Cfg (k + 3) M.Q)
@@ -3121,7 +3257,9 @@ theorem satGuessVerify_pair_exit_then_verify_outputs (M : TM k)
 
 /-- Bounded pair-building followed by a halting verifier suffix gives a bounded
     halting run of the composed machine. The existential `t` is the first
-    pair-builder halt time supplied by `satGuessVerify_pair_exits`. -/
+    pair-builder halt time supplied by `satGuessVerify_pair_exits`.
+@isnad1 id=ex.1h9v.s9.37f0a7ca36c5 from=translated src=- shape=45a689d2 vocab=c62d53df
+-/
 theorem satGuessVerify_pair_exits_then_verify_halts (M : TM k)
     (x y : List Bool) (work : Fin (k + 3) → Tape) (out : Tape)
     (hpre :
@@ -3214,7 +3352,9 @@ theorem satGuessVerify_pair_exits_then_verify_halts (M : TM k)
 
 /-- Pair-start completeness with a real deciding verifier. If the pair phase
     starts from exact input/witness/pair tapes and blank verifier frame tapes,
-    then pair construction followed by verifier simulation halts. -/
+    then pair construction followed by verifier simulation halts.
+@isnad1 id=ex.4h8v.s8.2416999ed8b1 from=translated src=- shape=4983c417 vocab=eb161d79
+-/
 theorem satGuessVerify_pair_start_halts_of_decidesInTime (M : TM k)
     {L : Language} {f : ℕ → ℕ} (hM : M.DecidesInTime L f)
     (x y : List Bool) (work : Fin (k + 3) → Tape) (out : Tape)
@@ -3313,7 +3453,9 @@ theorem satGuessVerify_pair_start_halts_of_decidesInTime (M : TM k)
 /-- Pair-start all-path halting under the uniform SAT witness bound. Once the
     witness tape contains any `y` with `|y| ≤ |x|+1`, every remaining choice
     sequence reaches a halt within the pair-builder worst-case plus verifier
-    window budget. -/
+    window budget.
+@isnad1 id=other.5h9v.s8.8b13e2d7ac2a from=translated src=- shape=d33cf874 vocab=556d9a4c
+-/
 theorem satGuessVerify_pair_start_halts_within_bound_of_decidesInTime (M : TM k)
     {L : Language} {f : ℕ → ℕ} (hM : M.DecidesInTime L f)
     (x y : List Bool) (work : Fin (k + 3) → Tape) (out : Tape)
@@ -3428,7 +3570,9 @@ theorem satGuessVerify_pair_start_halts_within_bound_of_decidesInTime (M : TM k)
 /-- Pair-start bounded deciding suffix under the uniform SAT witness bound.
     Once setup has produced a bounded witness `y`, every remaining choice
     sequence halts within the pair/verifier window and outputs the correct
-    verifier bit for `pair x y`. -/
+    verifier bit for `pair x y`.
+@isnad1 id=other.5h9v.s8.7dcc03142681 from=translated src=- shape=707ca420 vocab=763d3518
+-/
 theorem satGuessVerify_pair_start_decides_within_bound_of_decidesInTime (M : TM k)
     {L : Language} {f : ℕ → ℕ} (hM : M.DecidesInTime L f)
     (x y : List Bool) (work : Fin (k + 3) → Tape) (out : Tape)
@@ -3573,7 +3717,9 @@ theorem satGuessVerify_pair_start_decides_within_bound_of_decidesInTime (M : TM 
     exact hdecide.2.2 hnotmem
 
 /-- Pair-start completeness with accepting output from a real deciding
-    verifier. -/
+    verifier.
+@isnad1 id=ex.5h8v.s8.2ed26cd62fdf from=translated src=- shape=e62bcbcb vocab=2d10fe3b
+-/
 theorem satGuessVerify_pair_start_accepts_of_decidesInTime (M : TM k)
     {L : Language} {f : ℕ → ℕ} (hM : M.DecidesInTime L f)
     (x y : List Bool) (work : Fin (k + 3) → Tape) (out : Tape)
@@ -3681,7 +3827,9 @@ theorem satGuessVerify_pair_start_accepts_of_decidesInTime (M : TM k)
     fits the SAT linear witness bound and the projected verifier suffix halts
     from every possible pair-builder first halt for the exact `(x, y)` pair
     setup, then there is a full nondeterministic run of `satGuessVerifyNTM M`
-    from the real initial configuration that halts. -/
+    from the real initial configuration that halts.
+@isnad1 id=ex.1h6v.s9.3c2f26b8c3ea from=translated src=- shape=50745f2a vocab=bd4a4123
+-/
 theorem satGuessVerify_init_generates_witness_then_verify_halts (M : TM k)
     (x y : List Bool) (V : ℕ) (hlen : y.length ≤ x.length + 1)
     (hinner :
@@ -3794,7 +3942,9 @@ theorem satGuessVerify_init_generates_witness_then_verify_halts (M : TM k)
 /-- End-to-end completeness halting from a real deciding verifier. For any SAT
     witness candidate `y` within the linear bound, the SAT-specialized
     guess-and-verify machine has a nondeterministic run from its real initial
-    configuration that reaches a halted state. -/
+    configuration that reaches a halted state.
+@isnad1 id=ex.2h6v.s7.f57cedcff445 from=translated src=- shape=fa4c5d07 vocab=fc696d2d
+-/
 theorem satGuessVerify_init_generates_witness_halts_of_decidesInTime (M : TM k)
     {L : Language} {f : ℕ → ℕ} (hM : M.DecidesInTime L f)
     (x y : List Bool) (hlen : y.length ≤ x.length + 1) :
@@ -3865,7 +4015,9 @@ theorem satGuessVerify_init_generates_witness_halts_of_decidesInTime (M : TM k)
 /-- End-to-end accepting completeness from a real deciding verifier. For any
     SAT witness candidate `y` within the linear bound whose encoded pair is in
     the verifier language, the SAT-specialized guess-and-verify machine has a
-    nondeterministic accepting run from its real initial configuration. -/
+    nondeterministic accepting run from its real initial configuration.
+@isnad1 id=ex.3h6v.s8.a014437195fd from=translated src=- shape=572314e9 vocab=f2b400e9
+-/
 theorem satGuessVerify_init_generates_witness_accepts_of_decidesInTime (M : TM k)
     {L : Language} {f : ℕ → ℕ} (hM : M.DecidesInTime L f)
     (x y : List Bool) (hlen : y.length ≤ x.length + 1)
@@ -3938,7 +4090,9 @@ theorem satGuessVerify_init_generates_witness_accepts_of_decidesInTime (M : TM k
 
 /-- The end-to-end accepting completeness theorem packaged in the standard
     `NTM.AcceptsInTime` interface, using the concrete witness-dependent run
-    budget from the phase construction. -/
+    budget from the phase construction.
+@isnad1 id=acceptsi.3h6v.s7.137dcec526db from=translated src=- shape=856dfdbf vocab=15d7aa27
+-/
 theorem satGuessVerify_acceptsInTime_of_witness_of_decidesInTime (M : TM k)
     {L : Language} {f : ℕ → ℕ} (hM : M.DecidesInTime L f)
     (x y : List Bool) (hlen : y.length ≤ x.length + 1)
@@ -3954,7 +4108,9 @@ theorem satGuessVerify_acceptsInTime_of_witness_of_decidesInTime (M : TM k)
   exact NTM.AcceptsInTime.mono hT ⟨choices, hrun⟩
 
 /-- The accepting witness run under the uniform SAT-specialized bound depending
-    only on `|x|` and the verifier time window. -/
+    only on `|x|` and the verifier time window.
+@isnad1 id=acceptsi.3h6v.s6.fa4ad3eed6d2 from=translated src=- shape=e6e9a904 vocab=46592537
+-/
 theorem satGuessVerify_acceptsInTime_of_witness_bound_of_decidesInTime (M : TM k)
     {L : Language} {f : ℕ → ℕ} (hM : M.DecidesInTime L f)
     (x y : List Bool) (hlen : y.length ≤ x.length + 1)
@@ -3974,7 +4130,9 @@ theorem satGuessVerify_acceptsInTime_of_witness_bound_of_decidesInTime (M : TM k
       omega) hacc
 
 /-- SAT-specific accepting run from any concrete satisfying assignment, assuming
-    `M` decides the SAT verifier pair language. -/
+    `M` decides the SAT verifier pair language.
+@isnad1 id=acceptsi.2h5v.s7.ed8d16e022e0 from=translated src=- shape=a9dff9c0 vocab=5d2015b6
+-/
 theorem satGuessVerify_acceptsInTime_of_RSAT_of_decidesInTime (M : TM k)
     {f : ℕ → ℕ} (hM : M.DecidesInTime (pairLang Witness) f)
     (x y : List Bool) (hR : Witness x y) :
@@ -3989,7 +4147,9 @@ theorem satGuessVerify_acceptsInTime_of_RSAT_of_decidesInTime (M : TM k)
     hmem
 
 /-- SAT-specific accepting run from any concrete satisfying assignment under
-    the uniform SAT-specialized bound. -/
+    the uniform SAT-specialized bound.
+@isnad1 id=acceptsi.2h5v.s5.cdd4f64b39ab from=translated src=- shape=4e68bc81 vocab=04589abc
+-/
 theorem satGuessVerify_acceptsInTime_of_RSAT_bound_of_decidesInTime (M : TM k)
     {f : ℕ → ℕ} (hM : M.DecidesInTime (pairLang Witness) f)
     (x y : List Bool) (hR : Witness x y) :
@@ -4000,7 +4160,9 @@ theorem satGuessVerify_acceptsInTime_of_RSAT_bound_of_decidesInTime (M : TM k)
     hlen hmem
 
 /-- Timed yes-instance half for `language` under the uniform SAT-specialized bound,
-    assuming `M` decides the SAT verifier pair language. -/
+    assuming `M` decides the SAT verifier pair language.
+@isnad1 id=acceptsi.2h4v.s5.ffb500f5a6b3 from=translated src=- shape=c6f44fa4 vocab=64fa974d
+-/
 theorem satGuessVerify_acceptsInTime_of_mem_LSAT_of_decidesInTime (M : TM k)
     {f : ℕ → ℕ} (hM : M.DecidesInTime (pairLang Witness) f)
     (x : List Bool) (hx : x ∈ language) :
@@ -4011,7 +4173,9 @@ theorem satGuessVerify_acceptsInTime_of_mem_LSAT_of_decidesInTime (M : TM k)
 /-- Yes-instances of `language` are accepted by the SAT-specialized
     guess-and-verify machine, assuming `M` decides the SAT verifier pair
     language. This is the unbounded acceptance half of the final NP decision
-    theorem. -/
+    theorem.
+@isnad1 id=accepts.2h4v.s5.1e8a9a968058 from=translated src=- shape=4eefa231 vocab=067e4f9a
+-/
 theorem satGuessVerify_accepts_of_mem_LSAT_of_decidesInTime (M : TM k)
     {f : ℕ → ℕ} (hM : M.DecidesInTime (pairLang Witness) f)
     (x : List Bool) (hx : x ∈ language) :
@@ -4020,7 +4184,9 @@ theorem satGuessVerify_accepts_of_mem_LSAT_of_decidesInTime (M : TM k)
     (satGuessVerify_acceptsInTime_of_mem_LSAT_of_decidesInTime M hM x hx)
 
 /-- All computation paths of the SAT-specialized machine halt within the
-    uniform bound induced by the setup budget and the verifier time window. -/
+    uniform bound induced by the setup budget and the verifier time window.
+@isnad1 id=allpaths.1h4v.s5.bc16689986c9 from=translated src=- shape=13425972 vocab=83f613dc
+-/
 theorem satGuessVerify_allPathsHaltIn_of_decidesInTime (M : TM k)
     {L : Language} {f : ℕ → ℕ} (hM : M.DecidesInTime L f) :
     (satGuessVerifyNTM M).AllPathsHaltIn (satGuessVerifyTime f) := by
@@ -4113,7 +4279,9 @@ theorem satGuessVerify_allPathsHaltIn_of_decidesInTime (M : TM k)
 
 /-- Every full SAT-specialized run within the uniform bound factors through
     some bounded guessed witness `y`, and the final output bit matches the
-    verifier's decision on `pair x y`. -/
+    verifier's decision on `pair x y`.
+@isnad1 id=ex.1h6v.s8.7741c70cf88f from=translated src=- shape=2e10e350 vocab=63c99360
+-/
 theorem satGuessVerify_trace_decides_for_some_setup_witness_of_decidesInTime
     (M : TM k) {L : Language} {f : ℕ → ℕ} (hM : M.DecidesInTime L f)
     (x : List Bool) (choices : Fin (satGuessVerifyTime f x.length) → Bool) :
@@ -4241,7 +4409,9 @@ theorem satGuessVerify_trace_decides_for_some_setup_witness_of_decidesInTime
     exact hshortNo hnotmem
 
 /-- No SAT instance outside `language` has an accepting run within the uniform
-    SAT-specialized bound, assuming the verifier decides `pairLang Witness`. -/
+    SAT-specialized bound, assuming the verifier decides `pairLang Witness`.
+@isnad1 id=not.2h4v.s5.182c38ac37d9 from=translated src=- shape=5d46489a vocab=64fa974d
+-/
 theorem satGuessVerify_not_acceptsInTime_of_not_mem_LSAT_of_decidesInTime (M : TM k)
     {f : ℕ → ℕ} (hM : M.DecidesInTime (pairLang Witness) f)
     (x : List Bool) (hx : x ∉ language) :
@@ -4264,7 +4434,9 @@ theorem satGuessVerify_not_acceptsInTime_of_not_mem_LSAT_of_decidesInTime (M : T
   exact hzero_ne_one hout
 
 /-- The SAT-specialized machine decides `language` within the uniform bound
-    `satGuessVerifyTime`, assuming `M` decides the SAT verifier pair language. -/
+    `satGuessVerifyTime`, assuming `M` decides the SAT verifier pair language.
+@isnad1 id=decidesi.1h3v.s5.7856eca633ca from=translated src=- shape=3252f517 vocab=5956d443
+-/
 theorem satGuessVerify_decidesInTime_of_decidesInTime (M : TM k)
     {f : ℕ → ℕ} (hM : M.DecidesInTime (pairLang Witness) f) :
     (satGuessVerifyNTM M).DecidesInTime language (satGuessVerifyTime f) := by
@@ -4278,7 +4450,9 @@ theorem satGuessVerify_decidesInTime_of_decidesInTime (M : TM k)
 
 /-- If the verifier time bound is polynomial, then the SAT-specialized
     witness-independent runtime `satGuessVerifyTime` is pointwise bounded by
-    an explicit polynomial. -/
+    an explicit polynomial.
+@isnad1 id=ex.1h2v.s5.11bdc93f52b6 from=translated src=- shape=b2bb8726 vocab=c68a8aef
+-/
 theorem satGuessVerifyTime_polynomial_bound {f : ℕ → ℕ} {c : ℕ}
     (hfO : f =O (· ^ c)) :
     ∃ q : Polynomial ℕ, ∀ n, satGuessVerifyTime f n ≤ q.eval n := by
@@ -4311,7 +4485,9 @@ theorem satGuessVerifyTime_polynomial_bound {f : ℕ → ℕ} {c : ℕ}
       simp [q, lin, Polynomial.eval_comp, Nat.mul_comm, Nat.add_assoc, Nat.add_comm]
 
 /-- If the verifier time bound is polynomial, then the SAT-specialized
-    runtime `satGuessVerifyTime` is polynomial too. -/
+    runtime `satGuessVerifyTime` is polynomial too.
+@isnad1 id=ex.1h2v.s5.2f17259652e1 from=translated src=- shape=cde288f2 vocab=ce5c41bc
+-/
 theorem satGuessVerifyTime_bigO_of_bigO {f : ℕ → ℕ} {c : ℕ}
     (hfO : f =O (· ^ c)) :
     ∃ d : ℕ, satGuessVerifyTime f =O (· ^ d) := by
@@ -4323,7 +4499,9 @@ theorem satGuessVerifyTime_bigO_of_bigO {f : ℕ → ℕ} {c : ℕ}
     in `NP`. It packages the concrete construction proved in this file
     directly, without going through the generic witness-language interface
     `NP.WitnessNTMConstruction` (itself proved downstream as
-    `NP.witnessNTMConstruction`, from the finite-certificate compiler). -/
+    `NP.witnessNTMConstruction`, from the finite-certificate compiler).
+@isnad1 id=mem.1h0v.s4.4da9f593aef8 from=translated src=- shape=2c97fe03 vocab=e059a01b
+-/
 theorem language_mem_NP_of_verifierP_direct (h : pairLang Witness ∈ P) :
     language ∈ NP := by
   obtain ⟨c, k, M, f, hM, hfO⟩ := Set.mem_iUnion.mp h
@@ -4331,7 +4509,9 @@ theorem language_mem_NP_of_verifierP_direct (h : pairLang Witness ∈ P) :
   refine Set.mem_iUnion.mpr ⟨d, k + 3, satGuessVerifyNTM M, satGuessVerifyTime f, ?_, hgO⟩
   exact satGuessVerify_decidesInTime_of_decidesInTime M hM
 
-/-- The full boundary step from counter setup into input rewind. -/
+/-- The full boundary step from counter setup into input rewind.
+@isnad1 id=eq.0h6v.s7.866073962c68 from=translated src=- shape=0b4e7663 vocab=acbcfdf8
+-/
 theorem satGuessVerify_counter_done_trace_one (M : TM k)
     (choice : Bool) (inp : Tape) (work : Fin (k + 3) → Tape) (out : Tape) :
     (satGuessVerifyNTM M).trace 1 (fun _ => choice)
@@ -4347,7 +4527,9 @@ theorem satGuessVerify_counter_done_trace_one (M : TM k)
   funext i
   rfl
 
-/-- The full boundary step from input rewind into bounded guessing. -/
+/-- The full boundary step from input rewind into bounded guessing.
+@isnad1 id=eq.0h6v.s7.9671254eccee from=translated src=- shape=0b4e7663 vocab=d2f4384d
+-/
 theorem satGuessVerify_rewind_done_trace_one (M : TM k)
     (choice : Bool) (inp : Tape) (work : Fin (k + 3) → Tape) (out : Tape) :
     (satGuessVerifyNTM M).trace 1 (fun _ => choice)
@@ -4363,7 +4545,9 @@ theorem satGuessVerify_rewind_done_trace_one (M : TM k)
   funext i
   rfl
 
-/-- The full boundary step from bounded guessing into pair building. -/
+/-- The full boundary step from bounded guessing into pair building.
+@isnad1 id=eq.0h6v.s7.cdbdae28c152 from=translated src=- shape=0b4e7663 vocab=754a6778
+-/
 theorem satGuessVerify_guess_done_trace_one (M : TM k)
     (choice : Bool) (inp : Tape) (work : Fin (k + 3) → Tape) (out : Tape) :
     (satGuessVerifyNTM M).trace 1 (fun _ => choice)
@@ -4379,7 +4563,9 @@ theorem satGuessVerify_guess_done_trace_one (M : TM k)
   funext i
   rfl
 
-/-- The full boundary step from pair building into verifier simulation. -/
+/-- The full boundary step from pair building into verifier simulation.
+@isnad1 id=eq.0h6v.s7.2dccb9d1d955 from=translated src=- shape=1c525de9 vocab=14b67422
+-/
 theorem satGuessVerify_pair_done_trace_one (M : TM k)
     (choice : Bool) (inp : Tape) (work : Fin (k + 3) → Tape) (out : Tape) :
     (satGuessVerifyNTM M).trace 1 (fun _ => choice)
@@ -4396,7 +4582,9 @@ theorem satGuessVerify_pair_done_trace_one (M : TM k)
   rfl
 
 /-- State-only form of the boundary step from a finished counter phase into
-    input rewinding. -/
+    input rewinding.
+@isnad1 id=eq.0h6v.s7.e010c31b390e from=translated src=- shape=8ea3e8cc vocab=d66ef024
+-/
 theorem satGuessVerify_counter_done_trace_one_state (M : TM k)
     (choice : Bool) (inp : Tape) (work : Fin (k + 3) → Tape) (out : Tape) :
     ((satGuessVerifyNTM M).trace 1 (fun _ => choice)
@@ -4406,7 +4594,9 @@ theorem satGuessVerify_counter_done_trace_one_state (M : TM k)
   simp [satGuessVerifyNTM, satGuessVerifyDelta, phaseBoundary, NTM.trace]
 
 /-- State-only form of the boundary step from a finished rewind phase into
-    bounded guessing. -/
+    bounded guessing.
+@isnad1 id=eq.0h6v.s7.b7fe02bc9f98 from=translated src=- shape=8ea3e8cc vocab=83304d1b
+-/
 theorem satGuessVerify_rewind_done_trace_one_state (M : TM k)
     (choice : Bool) (inp : Tape) (work : Fin (k + 3) → Tape) (out : Tape) :
     ((satGuessVerifyNTM M).trace 1 (fun _ => choice)
@@ -4416,7 +4606,9 @@ theorem satGuessVerify_rewind_done_trace_one_state (M : TM k)
   simp [satGuessVerifyNTM, satGuessVerifyDelta, phaseBoundary, NTM.trace]
 
 /-- State-only form of the boundary step from a finished guess phase into pair
-    building. -/
+    building.
+@isnad1 id=eq.0h6v.s7.8a4f2fe6d05e from=translated src=- shape=8ea3e8cc vocab=c015bcc7
+-/
 theorem satGuessVerify_guess_done_trace_one_state (M : TM k)
     (choice : Bool) (inp : Tape) (work : Fin (k + 3) → Tape) (out : Tape) :
     ((satGuessVerifyNTM M).trace 1 (fun _ => choice)
@@ -4425,6 +4617,9 @@ theorem satGuessVerify_guess_done_trace_one_state (M : TM k)
       GuessVerifyPhase.pair TM.PairBuildPhase.init := by
   simp [satGuessVerifyNTM, satGuessVerifyDelta, phaseBoundary, NTM.trace]
 
+/--
+@isnad1 id=eq.0h6v.s7.75493950baa8 from=translated src=- shape=3e203b11 vocab=ec4d7b46
+-/
 theorem satGuessVerify_pair_done_trace_one_state (M : TM k)
     (choice : Bool) (inp : Tape) (work : Fin (k + 3) → Tape) (out : Tape) :
     ((satGuessVerifyNTM M).trace 1 (fun _ => choice)

@@ -101,7 +101,9 @@ private theorem validation_to_valid_else (z : List Bool)
 /-- **Generic valid branch of the total reduction.**  A valid input reaches
 the supplied emitter only after the exact `validEmitterPre` frame has been
 established.  The result is returned under any emitter postcondition stable
-under the final `ifTM` combinator transition. -/
+under the final `ifTM` combinator transition.
+@isnad1 id=hoaretim.2h5v.s7.52ec40a01790 from=translated src=- shape=6986cadf vocab=565e684b
+-/
 theorem reductionTMWith_valid_hoareTime_internal
     (validEmitter : TM workTapeCount) (z : List Bool)
     {emitterPost : TapePred workTapeCount} {emitterTime : ℕ}
@@ -161,7 +163,9 @@ theorem reductionTMWith_valid_hoareTime_internal
   simpa only [reductionTMWith, validBranch, invalidBranch] using hallBound
 
 /-- Specialization for an emitter that preserves the source and initialized
-work frame while accumulating an exact bit string. -/
+work frame while accumulating an exact bit string.
+@isnad1 id=hoaretim.2h4v.s7.6786e3872577 from=translated src=- shape=cb5b2f2d vocab=6bf5e78e
+-/
 theorem reductionTMWith_valid_emit_hoareTime_internal
     (validEmitter : TM workTapeCount) (z ys : List Bool)
     (emitterTime : ℕ) (hvalid : validEncoding z = true)
@@ -182,7 +186,9 @@ theorem reductionTMWith_valid_emit_hoareTime_internal
     (TM.emitPred_transition (TM.parked_init_input z)
       (frontEndWork_parked z) ys)
 
-/-- Execution-level corollary for an exact-output valid emitter. -/
+/-- Execution-level corollary for an exact-output valid emitter.
+@isnad1 id=ex.2h4v.s6.40ecde1b75f6 from=translated src=- shape=dfc10e6a vocab=62ffb177
+-/
 theorem reductionTMWith_valid_emit_reachesIn_internal
     (validEmitter : TM workTapeCount) (z ys : List Bool)
     (emitterTime : ℕ) (hvalid : validEncoding z = true)

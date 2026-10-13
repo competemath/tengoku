@@ -19,13 +19,17 @@ namespace PairCeiling
 
 variable {s : ℕ → ℝ} {N : ℕ}
 
-/-- a.e. on a cell, D is the polynomial C_i − t²/2. -/
+/-- a.e. on a cell, D is the polynomial C_i − t²/2.
+@isnad1 id=eventual.2h3v.s7.1554b49a12df from=translated src=- shape=013cc9cd vocab=3b1f7b69
+-/
 lemma Dfun_ae_cell (hN : 0 < N) {i : ℕ} (hi : i < N) :
     ∀ᵐ t ∂volume, t ∈ Ι ((i:ℝ)/N) ((i+1:ℝ)/N) → Dfun s N t = Csum s i - t ^ 2 / 2 := by
   filter_upwards [Cstep_ae_cell (s := s) hN hi] with t ht hmem
   simp [Dfun, ht hmem]
 
-/-- the cell integral of D. -/
+/-- the cell integral of D.
+@isnad1 id=eq.2h3v.s7.4741fae312a3 from=translated src=- shape=3a87d55a vocab=2c712adb
+-/
 lemma integral_Dfun_cell (hN : 0 < N) {i : ℕ} (hi : i < N) :
     ∫ t in ((i:ℝ)/N)..((i+1:ℝ)/N), Dfun s N t
       = Csum s i / N - ((((i:ℝ)+1)/N) ^ 3 - ((i:ℝ)/N) ^ 3) / 6 := by
@@ -43,7 +47,9 @@ lemma integral_Dfun_cell (hN : 0 < N) {i : ℕ} (hi : i < N) :
   field_simp
   ring
 
-/-- **E at the grid points.** -/
+/-- **E at the grid points.**
+@isnad1 id=eq.2h3v.s7.7352e326f77c from=translated src=- shape=01d3d802 vocab=4fafa996
+-/
 theorem Efun_grid (hN : 0 < N) {m : ℕ} (hm : m ≤ N) :
     Efun s N ((m:ℝ)/N) = ∑ i ∈ Finset.range m, (Csum s i / N - ((((i:ℝ)+1)/N) ^ 3 - ((i:ℝ)/N) ^ 3) / 6) := by
   have hNr : (0 : ℝ) < N := by exact_mod_cast hN
@@ -61,7 +67,9 @@ theorem Efun_grid (hN : 0 < N) {m : ℕ} (hm : m ≤ N) :
   have hi' : i < N := lt_of_lt_of_le (Finset.mem_range.mp hi) hm
   simpa [Nat.cast_succ] using integral_Dfun_cell (s := s) hN hi'
 
-/-- D at the grid points (right value): D(m/N) = C_m − (m/N)²/2, m ≤ N. -/
+/-- D at the grid points (right value): D(m/N) = C_m − (m/N)²/2, m ≤ N.
+@isnad1 id=eq.2h3v.s6.47bdf28fc083 from=translated src=- shape=054d48b8 vocab=921d777e
+-/
 theorem Dfun_grid (hN : 0 < N) {m : ℕ} (hm : m ≤ N) :
     Dfun s N ((m:ℝ)/N) = Csum s m - ((m:ℝ)/N) ^ 2 / 2 := by
   rcases Nat.lt_or_ge m N with h | h

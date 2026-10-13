@@ -43,6 +43,9 @@ private lemma TM.reaches_toNTM_trace (tm : TM n) {a c' : Cfg n tm.Q}
       simp [TM.stepRel] at hstep; simp [hstep]
     rw [this]; exact hT _
 
+/--
+@isnad1 id=reaches.0h5v.s4.16df23b7d248 from=translated src=- shape=fc0a941d vocab=1ceb5903
+-/
 lemma TM.toNTM_trace_reaches (tm : TM n) (c : Cfg n tm.Q)
     (T : ℕ) (choices : Fin T → Bool) :
     tm.reaches c (tm.toNTM.trace T choices c) := by
@@ -59,7 +62,9 @@ lemma TM.toNTM_trace_reaches (tm : TM n) (c : Cfg n tm.Q)
         (ih _ _)
 
 /-- For `toNTM`, the trace is independent of the choice sequence since both
-    transition functions are identical. -/
+    transition functions are identical.
+@isnad1 id=eq.0h6v.s5.4b048567a03e from=translated src=- shape=1f81c1f8 vocab=37958248
+-/
 lemma TM.toNTM_trace_choice_irrel (tm : TM n) (T : ℕ) (c : Cfg n tm.Q)
     (ch₁ ch₂ : Fin T → Bool) :
     tm.toNTM.trace T ch₁ c = tm.toNTM.trace T ch₂ c := by
@@ -72,7 +77,9 @@ lemma TM.toNTM_trace_choice_irrel (tm : TM n) (T : ℕ) (c : Cfg n tm.Q)
     · exact ih _ _ _
 
 /-- If a DTM halts within `t ≤ T` steps, then `toNTM.trace T` reaches the same
-    halted configuration regardless of choices. -/
+    halted configuration regardless of choices.
+@isnad1 id=eq.3h7v.s5.201f80d6d95b from=translated src=- shape=fe0e1954 vocab=8cc4f4e9
+-/
 lemma TM.toNTM_trace_of_reachesIn (tm : TM n) {c c' : Cfg n tm.Q}
     {t T : ℕ} (h : tm.reachesIn t c c') (hhalt : tm.halted c')
     (hle : t ≤ T) (ch : Fin T → Bool) :
@@ -101,7 +108,9 @@ lemma TM.toNTM_trace_of_reachesIn (tm : TM n) {c c' : Cfg n tm.Q}
       rw [this]
       exact ih hrest (by omega) _
 
-/-- The DTM and its NTM embedding agree on acceptance. -/
+/-- The DTM and its NTM embedding agree on acceptance.
+@isnad1 id=iff.0h3v.s4.94967f81840c from=translated src=- shape=6789761e vocab=39f6a5ba
+-/
 theorem TM.toNTM_accepts_iff (tm : TM n) (x : List Bool) :
     tm.Accepts x ↔ (tm.toNTM).Accepts x := by
   constructor
@@ -114,7 +123,9 @@ theorem TM.toNTM_accepts_iff (tm : TM n) (x : List Bool) :
     exact ⟨_, tm.toNTM_trace_reaches _ T choices, hhalt, hout⟩
 
 /-- If a DTM decides `L` in time `f`, then its NTM embedding also decides `L`
-    in time `f`. This is the key internal lemma for `DTIME ⊆ NTIME`. -/
+    in time `f`. This is the key internal lemma for `DTIME ⊆ NTIME`.
+@isnad1 id=decidesi.1h4v.s4.5acce4d4534e from=translated src=- shape=0e599073 vocab=5edc26d8
+-/
 theorem TM.toNTM_decidesInTime (tm : TM n) {L : Language} {f : ℕ → ℕ}
     (h : tm.DecidesInTime L f) : tm.toNTM.DecidesInTime L f := by
   refine ⟨?_, ?_⟩
@@ -175,7 +186,9 @@ private lemma TM.output_head_step_bound (tm : TM n) {c c' : Cfg n tm.Q}
     rw [← h]
     exact Tape.head_writeAndMove_le _ _ _
 
-/-- After `t` steps, each work tape head is at most `t` plus its initial value. -/
+/-- After `t` steps, each work tape head is at most `t` plus its initial value.
+@isnad1 id=le.1h6v.s5.ae388bfa7736 from=translated src=- shape=0a4cc04f vocab=2e761ced
+-/
 theorem TM.work_head_reachesIn_bound (tm : TM n) {c c' : Cfg n tm.Q} {t : ℕ}
     (h : tm.reachesIn t c c') (i : Fin n) :
     (c'.work i).head ≤ (c.work i).head + t := by
@@ -185,7 +198,9 @@ theorem TM.work_head_reachesIn_bound (tm : TM n) {c c' : Cfg n tm.Q} {t : ℕ}
     have := tm.work_head_step_bound hstep i
     omega
 
-/-- After `t` steps, the input head is at most `t` plus its initial value. -/
+/-- After `t` steps, the input head is at most `t` plus its initial value.
+@isnad1 id=le.1h5v.s5.32d5016547e6 from=translated src=- shape=aff3bac1 vocab=eea1ff0b
+-/
 theorem TM.input_head_reachesIn_bound (tm : TM n) {c c' : Cfg n tm.Q} {t : ℕ}
     (h : tm.reachesIn t c c') : c'.input.head ≤ c.input.head + t := by
   induction h with
@@ -194,7 +209,9 @@ theorem TM.input_head_reachesIn_bound (tm : TM n) {c c' : Cfg n tm.Q} {t : ℕ}
     have := tm.input_head_step_bound hstep
     omega
 
-/-- After `t` steps, the output head is at most `t` plus its initial value. -/
+/-- After `t` steps, the output head is at most `t` plus its initial value.
+@isnad1 id=le.1h5v.s5.f6a004535585 from=translated src=- shape=aff3bac1 vocab=c36d5fd0
+-/
 theorem TM.output_head_reachesIn_bound (tm : TM n) {c c' : Cfg n tm.Q} {t : ℕ}
     (h : tm.reachesIn t c c') : c'.output.head ≤ c.output.head + t := by
   induction h with
@@ -204,7 +221,9 @@ theorem TM.output_head_reachesIn_bound (tm : TM n) {c c' : Cfg n tm.Q} {t : ℕ}
     omega
 
 /-- Deterministic runs have unique endpoints: reaching two configurations in
-    the same number of steps forces them to coincide. -/
+    the same number of steps forces them to coincide.
+@isnad1 id=eq.2h6v.s5.fef47077ae35 from=translated src=- shape=973fa831 vocab=303cafe7
+-/
 theorem TM.reachesIn_right_unique {tm : TM n} {t : ℕ} {c c' c'' : Cfg n tm.Q}
     (h₁ : tm.reachesIn t c c') (h₂ : tm.reachesIn t c c'') : c' = c'' := by
   induction h₁ with
@@ -216,7 +235,9 @@ theorem TM.reachesIn_right_unique {tm : TM n} {t : ℕ} {c c' c'' : Cfg n tm.Q}
       simp only [Option.some.injEq] at heq; subst heq
       exact ih₁ h₂'
 
-/-- Convert `reaches` to `reachesIn`. -/
+/-- Convert `reaches` to `reachesIn`.
+@isnad1 id=ex.1h4v.s5.84f688699334 from=translated src=- shape=7310073c vocab=2087c9c7
+-/
 theorem TM.reaches_to_reachesIn (tm : TM n) {c c' : Cfg n tm.Q}
     (h : tm.reaches c c') : ∃ t, tm.reachesIn t c c' := by
   induction h using Relation.ReflTransGen.head_induction_on with
@@ -230,7 +251,9 @@ private lemma TM.step_det (tm : TM n) {c c₁ c₂ : Cfg n tm.Q}
     (h₁ : tm.step c = some c₁) (h₂ : tm.step c = some c₂) : c₁ = c₂ := by
   rw [h₁] at h₂; exact Option.some.inj h₂
 
-/-- If a DTM halts at step `t_halt`, then any `reachesIn t` has `t ≤ t_halt`. -/
+/-- If a DTM halts at step `t_halt`, then any `reachesIn t` has `t ≤ t_halt`.
+@isnad1 id=le.3h7v.s5.df2250a6bd16 from=translated src=- shape=4bf82da9 vocab=3f7239c9
+-/
 theorem TM.reachesIn_le_halt (tm : TM n) {c c' c_halt : Cfg n tm.Q}
     {t t_halt : ℕ} (hr : tm.reachesIn t c c')
     (hh : tm.reachesIn t_halt c c_halt) (hhalt : tm.halted c_halt) :
@@ -249,20 +272,28 @@ theorem TM.reachesIn_le_halt (tm : TM n) {c c' c_halt : Cfg n tm.Q}
       subst this
       exact Nat.succ_le_succ (ih hr' hh')
 
-/-- Initial work tape heads are all at position 0. -/
+/-- Initial work tape heads are all at position 0.
+@isnad1 id=eq.0h4v.s4.d0dcd7788c39 from=translated src=- shape=e501a8c2 vocab=459ee58d
+-/
 lemma TM.initCfg_work_head_zero (tm : TM n) (x : List Bool) (i : Fin n) :
     ((tm.initCfg x).work i).head = 0 := by
   simp [Tape.init]
 
-/-- The initial input head is at position zero. -/
+/-- The initial input head is at position zero.
+@isnad1 id=eq.0h3v.s4.7a7c8a1c4955 from=translated src=- shape=5285afd9 vocab=8d3f0d8e
+-/
 lemma TM.initCfg_input_head_zero (tm : TM n) (x : List Bool) :
     (tm.initCfg x).input.head = 0 := rfl
 
-/-- The initial output head is at position zero. -/
+/-- The initial output head is at position zero.
+@isnad1 id=eq.0h3v.s4.f6d357706e4f from=translated src=- shape=5285afd9 vocab=21ebe32e
+-/
 lemma TM.initCfg_output_head_zero (tm : TM n) (x : List Bool) :
     (tm.initCfg x).output.head = 0 := rfl
 
-/-- If a DTM is a transducer, so is its NTM embedding. -/
+/-- If a DTM is a transducer, so is its NTM embedding.
+@isnad1 id=istransd.1h2v.s3.c16f39533571 from=translated src=- shape=08ded1e7 vocab=7ad2b7f6
+-/
 theorem TM.toNTM_isTransducer (tm : TM n) (h : tm.IsTransducer) : tm.toNTM.IsTransducer := by
   intro b q iHead wHeads oHead
   simp only [TM.toNTM]
@@ -270,7 +301,9 @@ theorem TM.toNTM_isTransducer (tm : TM n) (h : tm.IsTransducer) : tm.toNTM.IsTra
 
 /-- If a DTM decides `L` in space `f`, then its NTM embedding also decides `L`
     in space `f`. The uniform time bound is constructed as the maximum halting
-    time over all inputs of each length. -/
+    time over all inputs of each length.
+@isnad1 id=decidesi.1h4v.s4.0c5ffd0f702c from=translated src=- shape=0e599073 vocab=262ac4eb
+-/
 theorem TM.toNTM_decidesInSpace (tm : TM n) {L : Language} {f : ℕ → ℕ}
     (h : tm.DecidesInSpace L f) : tm.toNTM.DecidesInSpace L f := by
   -- Extract per-input halting times
@@ -373,6 +406,9 @@ private theorem output_noStart_step {tm : TM n} {c c' : Cfg n tm.Q}
   simp only [step, hne, ↓reduceIte, Option.some.injEq] at hs; subst hs
   exact tape_noStart_preserved _ _ _ (Γw.toΓ_ne_start _) hno
 
+/--
+@isnad1 id=eq.2h5v.s5.43b93565d997 from=translated src=- shape=7ac19dc1 vocab=dcb91789
+-/
 theorem output_cells_zero_eq_start_of_reachesIn {tm : TM n} {t : ℕ} {c₀ c : Cfg n tm.Q}
     (h : tm.reachesIn t c₀ c) (h0 : c₀.output.cells 0 = Γ.start) :
     c.output.cells 0 = Γ.start := by
@@ -381,7 +417,9 @@ theorem output_cells_zero_eq_start_of_reachesIn {tm : TM n} {t : ℕ} {c₀ c : 
   | step hs _ ih => exact ih (output_cell0_step hs h0)
 
 /-- Cell zero of any named work tape remains the left-end marker throughout a
-deterministic run. -/
+deterministic run.
+@isnad1 id=eq.2h6v.s5.5a67add7f007 from=translated src=- shape=e08df6fe vocab=e2bf0172
+-/
 theorem work_cells_zero_eq_start_of_reachesIn {tm : TM n} {t : ℕ}
     {c₀ c : Cfg n tm.Q} (idx : Fin n) (h : tm.reachesIn t c₀ c)
     (h0 : (c₀.work idx).cells 0 = Γ.start) :
@@ -390,6 +428,9 @@ theorem work_cells_zero_eq_start_of_reachesIn {tm : TM n} {t : ℕ}
   | zero => exact h0
   | step hs _ ih => exact ih (work_cell0_step idx hs h0)
 
+/--
+@isnad1 id=ne.3h6v.s6.a328b6d7b954 from=translated src=- shape=72831b3b vocab=562b51b9
+-/
 theorem output_cells_ne_start_of_reachesIn {tm : TM n} {t : ℕ} {c₀ c : Cfg n tm.Q}
     (h : tm.reachesIn t c₀ c)
     (hno : ∀ i, i ≥ 1 → c₀.output.cells i ≠ Γ.start) :
@@ -398,12 +439,18 @@ theorem output_cells_ne_start_of_reachesIn {tm : TM n} {t : ℕ} {c₀ c : Cfg n
   | zero => exact hno
   | step hs _ ih => exact ih (output_noStart_step hs hno)
 
+/--
+@isnad1 id=eq.1h4v.s5.3ad5cd541679 from=translated src=- shape=6ac49ebf vocab=4abdcd25
+-/
 theorem input_cells_eq_of_step {tm : TM n} {c c' : Cfg n tm.Q}
     (hs : tm.step c = some c') : c'.input.cells = c.input.cells := by
   have hne := state_ne_qhalt_of_step hs
   simp only [step, hne, ↓reduceIte, Option.some.injEq] at hs; subst hs
   exact Tape.move_cells _ _
 
+/--
+@isnad1 id=eq.1h5v.s5.519a112b1f42 from=translated src=- shape=96cd9589 vocab=6a7f0ea1
+-/
 theorem input_cells_eq_of_reachesIn {tm : TM n} {t : ℕ} {c₀ c : Cfg n tm.Q}
     (h : tm.reachesIn t c₀ c) : c.input.cells = c₀.input.cells := by
   induction h with
@@ -432,7 +479,9 @@ private theorem step_head_bound (tm : TM n) (c c' : Cfg n tm.Q)
       exact hm
 
 /-- A tape head moves at most one cell per step, relative to an arbitrary
-starting configuration. -/
+starting configuration.
+@isnad1 id=and.1h5v.s6.1cca60d4a2d6 from=translated src=- shape=9c91d1c8 vocab=44e444f8
+-/
 theorem head_le_start_add_of_reachesIn (tm : TM n)
     {t : ℕ} {c₀ c : Cfg n tm.Q}
     (hreach : tm.reachesIn t c₀ c) :
@@ -450,7 +499,9 @@ theorem head_le_start_add_of_reachesIn (tm : TM n)
       omega⟩
 
 /-- A tape head moves at most 1 cell per step. After `t` steps starting
-    from `initCfg`, the head is at position ≤ `t`. -/
+    from `initCfg`, the head is at position ≤ `t`.
+@isnad1 id=and.1h5v.s6.4331fe491eb3 from=translated src=- shape=e84903cf vocab=ea2a5053
+-/
 theorem head_le_of_reachesIn (tm : TM n)
     {t : ℕ} {c : Cfg n tm.Q}
     (hreach : tm.reachesIn t (tm.initCfg x) c) :
@@ -459,7 +510,9 @@ theorem head_le_of_reachesIn (tm : TM n)
   simpa [Tape.init] using h
 end TM
 
-/-- The invariant is preserved across one DTM step, on every tape. -/
+/-- The invariant is preserved across one DTM step, on every tape.
+@isnad1 id=and.4h4v.s6.36dc80df5b5c from=translated src=- shape=fd8bdc35 vocab=e8c09c90
+-/
 theorem Tape.StartInvariant.step {n : ℕ} (tm : TM n)
     {c c' : Cfg n tm.Q} (hstep : tm.step c = some c')
     (hinp : c.input.StartInvariant) (hwork : ∀ i, (c.work i).StartInvariant)
@@ -487,7 +540,9 @@ namespace NTM
 variable {n : ℕ}
 
 /-- NTM traces never alter input tape cells; the input tape is read-only and
-    only its head moves. -/
+    only its head moves.
+@isnad1 id=eq.0h5v.s5.a98c6b18347b from=translated src=- shape=8615ea41 vocab=04a370ac
+-/
 theorem input_cells_trace (tm : NTM n) (T : ℕ)
     (choices : Fin T → Bool) (c : Cfg n tm.Q) :
     (tm.trace T choices c).input.cells = c.input.cells := by
@@ -501,7 +556,9 @@ theorem input_cells_trace (tm : NTM n) (T : ℕ)
         cases (tm.δ (choices ⟨0, Nat.zero_lt_succ T⟩) c.state c.input.read
           (fun i => (c.work i).read) c.output.read).2.2.2.1 <;> rfl
 
-/-- During an NTM trace, the input head increases by at most one per step. -/
+/-- During an NTM trace, the input head increases by at most one per step.
+@isnad1 id=le.0h5v.s5.c0e1d1d9d223 from=translated src=- shape=b6e444e6 vocab=26e2f0c9
+-/
 theorem input_head_trace_le (tm : NTM n) (T : ℕ)
     (choices : Fin T → Bool) (c : Cfg n tm.Q) :
     (tm.trace T choices c).input.head ≤ c.input.head + T := by
@@ -530,7 +587,9 @@ theorem input_head_trace_le (tm : NTM n) (T : ℕ)
           _ ≤ (c.input.head + 1) + T := by omega
           _ ≤ c.input.head + (T + 1) := by omega
 
-/-- During an NTM trace, every work-tape head increases by at most one per step. -/
+/-- During an NTM trace, every work-tape head increases by at most one per step.
+@isnad1 id=le.0h6v.s5.883f93be91c3 from=translated src=- shape=1923d92f vocab=7f6cc55a
+-/
 theorem work_head_trace_le (tm : NTM n) (T : ℕ)
     (choices : Fin T → Bool) (c : Cfg n tm.Q) (i : Fin n) :
     ((tm.trace T choices c).work i).head ≤ (c.work i).head + T := by
@@ -554,7 +613,9 @@ theorem work_head_trace_le (tm : NTM n) (T : ℕ)
           (c.work i).head + (T + 1)
         omega
 
-/-- During an NTM trace, the output-tape head increases by at most one per step. -/
+/-- During an NTM trace, the output-tape head increases by at most one per step.
+@isnad1 id=le.0h5v.s5.de77ba0188cc from=translated src=- shape=b6e444e6 vocab=4cc6cac1
+-/
 theorem output_head_trace_le (tm : NTM n) (T : ℕ)
     (choices : Fin T → Bool) (c : Cfg n tm.Q) :
     (tm.trace T choices c).output.head ≤ c.output.head + T := by
@@ -578,7 +639,9 @@ theorem output_head_trace_le (tm : NTM n) (T : ℕ)
           c.output.head + (T + 1)
         omega
 
-/-- Split a two-step trace into two one-step traces. -/
+/-- Split a two-step trace into two one-step traces.
+@isnad1 id=eq.0h4v.s6.44d45498ff2d from=translated src=- shape=9e4a9481 vocab=47237d27
+-/
 theorem trace_two (tm : NTM n) (choices : Fin 2 → Bool) (c : Cfg n tm.Q) :
     tm.trace 2 choices c =
       tm.trace 1 (fun _ => choices ⟨1, by omega⟩)
@@ -588,7 +651,9 @@ theorem trace_two (tm : NTM n) (choices : Fin 2 → Bool) (c : Cfg n tm.Q) :
   · simp [NTM.trace, hhalt]
 
 /-- Split the first step off a nonzero trace. If the machine is already
-    halted, both sides reduce to the starting configuration. -/
+    halted, both sides reduce to the starting configuration.
+@isnad1 id=eq.0h5v.s7.f3386e80bff2 from=translated src=- shape=78a67545 vocab=762bd132
+-/
 theorem trace_succ (tm : NTM n) (T : ℕ)
     (choices : Fin (T + 1) → Bool) (c : Cfg n tm.Q) :
     tm.trace (T + 1) choices c =
@@ -599,7 +664,9 @@ theorem trace_succ (tm : NTM n) (T : ℕ)
     exact (tm.trace_halted T (fun i => choices ⟨i.val + 1, by omega⟩) hhalt).symm
   · simp [NTM.trace, hhalt]
 
-/-- Split the first two steps off a trace. -/
+/-- Split the first two steps off a trace.
+@isnad1 id=eq.0h5v.s7.6df98b74c1d7 from=translated src=- shape=3ebc1d1f vocab=fc87a864
+-/
 theorem trace_add_two (tm : NTM n) (T : ℕ)
     (choices : Fin (T + 2) → Bool) (c : Cfg n tm.Q) :
     tm.trace (T + 2) choices c =
@@ -612,7 +679,9 @@ theorem trace_add_two (tm : NTM n) (T : ℕ)
     (tm.trace 1 (fun x => choices ⟨0, by omega⟩) c)]
   rw [← trace_two tm (fun i : Fin 2 => choices ⟨i.val, by omega⟩) c]
 
-/-- Reindex a trace along an equality of time bounds. -/
+/-- Reindex a trace along an equality of time bounds.
+@isnad1 id=eq.1h6v.s5.27e1394a9d38 from=translated src=- shape=0b590995 vocab=b4855a8a
+-/
 theorem trace_cast (tm : NTM n) {T T' : ℕ} (h : T = T')
     (choices : Fin T → Bool) (c : Cfg n tm.Q) :
     tm.trace T choices c =
@@ -623,7 +692,9 @@ theorem trace_cast (tm : NTM n) {T T' : ℕ} (h : T = T')
 /-- Split the first `T` steps off a trace.
 
 This version uses `Fin.castLE`/`Fin.natAdd` for the prefix and suffix choice
-sequences, which keeps later proofs away from ad-hoc dependent index casts. -/
+sequences, which keeps later proofs away from ad-hoc dependent index casts.
+@isnad1 id=eq.0h6v.s6.3bbb48bd4031 from=translated src=- shape=9da69ddb vocab=c6867e7e
+-/
 theorem trace_add (tm : NTM n) (T U : ℕ)
     (choices : Fin (T + U) → Bool) (c : Cfg n tm.Q) :
     tm.trace (T + U) choices c =
@@ -662,7 +733,9 @@ theorem trace_add (tm : NTM n) (T U : ℕ)
     exact Fin.ext (by simp [Fin.val_natAdd]; omega)
 
 /-- Split a trace driven by an infinite choice stream at a natural-number
-offset. This is the cast-free form used by fixed-schedule simulations. -/
+offset. This is the cast-free form used by fixed-schedule simulations.
+@isnad1 id=eq.0h6v.s6.675305db5bce from=translated src=- shape=81ceaa13 vocab=7587ecfd
+-/
 theorem trace_add_fun (tm : NTM n) (T U : ℕ)
     (choices : ℕ → Bool) (c : Cfg n tm.Q) :
     tm.trace (T + U) (fun i => choices i.val) c =

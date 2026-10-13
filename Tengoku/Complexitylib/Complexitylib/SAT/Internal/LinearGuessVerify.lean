@@ -29,7 +29,9 @@ namespace Complexity
 namespace SAT
 
 /-- A member with a linearly bounded witness has an accepting run of the
-generic guess-and-verify machine. -/
+generic guess-and-verify machine.
+@isnad1 id=acceptsi.4h6v.s6.25afbaec0977 from=translated src=- shape=7918a6ae vocab=789942f3
+-/
 theorem linearGuessVerify_acceptsInTime_of_mem
     {R : List Bool → List Bool → Prop} {L : Language}
     (hbound : ∀ x y, R x y → y.length ≤ x.length + 1)
@@ -43,7 +45,9 @@ theorem linearGuessVerify_acceptsInTime_of_mem
   exact ⟨x, y, rfl, hR⟩
 
 /-- A nonmember has no accepting run of the generic guess-and-verify machine
-within its uniform time bound. -/
+within its uniform time bound.
+@isnad1 id=not.3h6v.s6.7d7c7dad60f7 from=translated src=- shape=b3c77c51 vocab=6d33e4ca
+-/
 theorem linearGuessVerify_not_acceptsInTime_of_not_mem
     {R : List Bool → List Bool → Prop} {L : Language}
     (hchar : ∀ x, x ∈ L ↔ ∃ y, R x y)
@@ -69,7 +73,9 @@ theorem linearGuessVerify_not_acceptsInTime_of_not_mem
   exact hzero_ne_one hout
 
 /-- The generic SAT guess-and-verify machine decides any language described
-by a linearly bounded relation whose paired language is decided by `M`. -/
+by a linearly bounded relation whose paired language is decided by `M`.
+@isnad1 id=decidesi.3h5v.s6.1a1d1083fe60 from=translated src=- shape=c45eb3f8 vocab=c60168e1
+-/
 theorem linearGuessVerify_decidesInTime
     {R : List Bool → List Bool → Prop} {L : Language}
     (hbound : ∀ x y, R x y → y.length ≤ x.length + 1)
@@ -85,7 +91,9 @@ theorem linearGuessVerify_decidesInTime
     exact linearGuessVerify_not_acceptsInTime_of_not_mem hchar M hM x hx hacc
 
 /-- A relation with witnesses bounded by `|x| + 1` and a verifier in `P`
-places its existential language in `NP`. -/
+places its existential language in `NP`.
+@isnad1 id=mem.3h2v.s6.dd6cabdadfde from=translated src=- shape=85c063fa vocab=f559dda7
+-/
 theorem language_mem_NP_of_linear_witness_verifierP_direct
     {R : List Bool → List Bool → Prop} {L : Language}
     (hbound : ∀ x y, R x y → y.length ≤ x.length + 1)

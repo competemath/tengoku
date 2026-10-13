@@ -48,7 +48,9 @@ private lemma coeff_eq_zero_of_sum_norm_sq_eq_zero
       (fun i (_ : i ∈ Finset.univ) ↦ sq_nonneg ‖a i‖)).1 h) r (Finset.mem_univ r)
   nlinarith [norm_nonneg (a r)]
 
-/-- An exponential sum is continuous in its evaluation point. -/
+/-- An exponential sum is continuous in its evaluation point.
+@isnad1 id=continuo.0h3v.s5.5d4fb0b6c3f9 from=translated src=- shape=9903cb15 vocab=0c7acf80
+-/
 @[fun_prop]
 lemma expSum_continuous {ι : Type*} [Fintype ι] (a : ι → ℂ) (ξ : ι → ℝ) :
     Continuous (expSum a ξ) := by
@@ -817,7 +819,9 @@ private lemma smoothing_error_bound :
   `∫ |∑ r, a r * 𝐞 (ξ r * t)|² dt =
     (T + O(N)) * ∑ r, ‖a r‖²`.
   The conclusion expresses `O(N)` as `θ * N`, with `θ` bounded by a universal
-  constant. -/
+  constant.
+@isnad1 id=ex.0h0v.s8.83066d0e69be from=translated src=- shape=4cfcd163 vocab=7af468ac
+-/
 theorem l2_integral_estimate :
     ∃ C : ℝ, 0 < C ∧
     ∀ {ι : Type*} [Fintype ι] (a : ι → ℂ) (ξ : ι → ℝ) (N : ℝ),
@@ -860,7 +864,9 @@ theorem l2_integral_estimate :
 
 /-- Absolute-error form of the `L²` integral estimate: for a `1 / N`-separated family,
     the integral differs from `T * ∑ r, ‖a r‖²` by at most a universal constant times
-    `N * ∑ r, ‖a r‖²`. -/
+    `N * ∑ r, ‖a r‖²`.
+@isnad1 id=ex.0h0v.s8.009bfe64ac08 from=translated src=- shape=8639d102 vocab=98393511
+-/
 theorem l2_integral_estimate_error :
     ∃ C : ℝ, 0 < C ∧
     ∀ {ι : Type*} [Fintype ι] (a : ι → ℂ) (ξ : ι → ℝ) (N : ℝ),
@@ -887,7 +893,9 @@ theorem l2_integral_estimate_error :
     _ ≤ C * N * S := by gcongr
 
 /-- A long enough interval contains a point where a separated exponential sum has at least
-half of its mean-square mass. -/
+half of its mean-square mass.
+@isnad1 id=ex.0h0v.s8.2fee124b8b8d from=translated src=- shape=bd848d62 vocab=d213ec72
+-/
 theorem l2_integral_estimate_exists_norm_sq_ge :
     ∃ C : ℝ, 0 < C ∧
     ∀ {ι : Type*} [Fintype ι] (a : ι → ℂ) (ξ : ι → ℝ) (N : ℝ),

@@ -16,7 +16,9 @@ noncomputable section
 
 namespace Zeta23.LeafIntegrals
 
-/-- ∫_T^{2T} ((1+(τ−T))²)⁻¹ dτ = 1 − 1/(1+T) ≤ 1 -/
+/-- ∫_T^{2T} ((1+(τ−T))²)⁻¹ dτ = 1 − 1/(1+T) ≤ 1
+@isnad1 id=le.1h1v.s6.56f342cba120 from=translated src=- shape=8d9d447d vocab=47e58066
+-/
 lemma integral_left (T : ℝ) (hT : 0 < T) :
     ∫ τ in T..(2 * T), ((1 + (τ - T)) ^ 2)⁻¹ ≤ 1 := by
   have hderiv : ∀ x ∈ uIcc T (2 * T),
@@ -42,7 +44,9 @@ lemma integral_left (T : ℝ) (hT : 0 < T) :
   have : 0 < (1 + T)⁻¹ := by positivity
   linarith
 
-/-- ∫_T^{2T} ((1+(2T−τ))²)⁻¹ dτ = 1 − 1/(1+T) ≤ 1 -/
+/-- ∫_T^{2T} ((1+(2T−τ))²)⁻¹ dτ = 1 − 1/(1+T) ≤ 1
+@isnad1 id=le.1h1v.s6.c01f74114f50 from=translated src=- shape=12a2dd4c vocab=47e58066
+-/
 lemma integral_right (T : ℝ) (hT : 0 < T) :
     ∫ τ in T..(2 * T), ((1 + (2 * T - τ)) ^ 2)⁻¹ ≤ 1 := by
   have hderiv : ∀ x ∈ uIcc T (2 * T),
@@ -68,7 +72,9 @@ lemma integral_right (T : ℝ) (hT : 0 < T) :
   have : 0 < (1 + T)⁻¹ := by positivity
   linarith
 
-/-- the (Ig) core: ∫_{[T,2T]} (1 + min(τ−T, 2T−τ))⁻² dτ ≤ 2. -/
+/-- the (Ig) core: ∫_{[T,2T]} (1 + min(τ−T, 2T−τ))⁻² dτ ≤ 2.
+@isnad1 id=le.1h1v.s7.d54b3fdeae54 from=translated src=- shape=062cc685 vocab=90c62462
+-/
 theorem Ig_core (T : ℝ) (hT : 0 < T) :
     ∫ τ in Icc T (2 * T), ((1 + min (τ - T) (2 * T - τ)) ^ 2)⁻¹ ≤ 2 := by
   have hle : T ≤ 2 * T := by linarith
@@ -110,7 +116,9 @@ theorem Ig_core (T : ℝ) (hT : 0 < T) :
 
 /-- Abstract form of lem:ends' leaf (W3): for ψ : ℝ → ℝ with ψ(|r|) = ψ(r), 0 ≤ ψ ≤ L,
 ψ(r) ≤ c/(w r²) (r ≠ 0) and ψ² integrable:  ψ²(2+|r|)² is integrable and
-∫ ψ(r)²(2+|r|)² dr ≤ 18L² + 18(c/w)²  (majorant 9L² on |r| ≤ 1, 9(c/w)²/r² on |r| ≥ 1). -/
+∫ ψ(r)²(2+|r|)² dr ≤ 18L² + 18(c/w)²  (majorant 9L² on |r| ≤ 1, 9(c/w)²/r² on |r| ≥ 1).
+@isnad1 id=and.6h4v.s8.a2533ecbf326 from=translated src=- shape=2f514d6d vocab=6cbf9154
+-/
 theorem W3_core (ψ : ℝ → ℝ) (L c w : ℝ) (hw : 0 < w)
     (habs : ∀ r, ψ |r| = ψ r) (hnn : ∀ r, 0 ≤ ψ r) (hleL : ∀ r, ψ r ≤ L)
     (hdecay : ∀ r, r ≠ 0 → ψ r ≤ c / (w * r ^ 2)) (hint : Integrable (fun r => ψ r ^ 2)) :

@@ -22,7 +22,9 @@ noncomputable section
 namespace Zeta23
 namespace PairCeiling
 
-/-- **the row certificate of the N = 256 law, unpacked**: near-CUE rows with τ = 3·10⁻⁴⁰ and |D(1)| ≤ 0.82395317. -/
+/-- **the row certificate of the N = 256 law, unpacked**: near-CUE rows with τ = 3·10⁻⁴⁰ and |D(1)| ≤ 0.82395317.
+@isnad1 id=and.1h1v.s7.72dec917ad10 from=translated src=- shape=fdaf6c31 vocab=a2eb1e73
+-/
 theorem lawN256_rows (S : ℕ → ℝ) (hS : EnclOK LawN256.K S 0 LawN256.encl) :
     NearCUE S 256 ((3 : ℝ) / 10 ^ 40) ∧ |Dfun (massOf S 256) 256 1| ≤ (82395317 : ℝ) / 10 ^ 8 := by
   obtain ⟨_, h1, h2⟩ := cert_of_checkRows LawN256 LawN256_check S hS
@@ -34,7 +36,9 @@ theorem lawN256_rows (S : ℕ → ℝ) (hS : EnclOK LawN256.K S 0 LawN256.encl) 
   simp only [eN, etn, etd, edn, edd, Nat.cast_ofNat, Nat.cast_pow] at h1 h2
   exact ⟨h1, h2⟩
 
-/-- **CEILING AT THE N = 256 LAW (Theorem 1′ instance, exact constants).** -/
+/-- **CEILING AT THE N = 256 LAW (Theorem 1′ instance, exact constants).**
+@isnad1 id=le.7h7v.s9.9a3afbbd6b96 from=translated src=- shape=53d0aa3d vocab=a5ace66a
+-/
 theorem ceiling_law256 (S : ℕ → ℝ) (hS : EnclOK LawN256.K S 0 LawN256.encl)
     {r g h : ℝ → ℝ} {T : Set ℝ} (hT : T.Countable) {c₀ p : ℝ}
     (hr : ∀ x ∈ Icc (0:ℝ) 1, HasDerivAt r (g x) x) (hg : ContinuousOn g (Icc (0:ℝ) 1))
@@ -49,7 +53,9 @@ theorem ceiling_law256 (S : ℕ → ℝ) (hS : EnclOK LawN256.K S 0 LawN256.encl
   push_cast at this
   exact this
 
-/-- **the same with decimal constants**: v ≤ p + 0.82395317·|r(1)| + 2.5431316·10⁻⁶·|r′(1)| + 2.5431316·10⁻⁶·∫₀¹|r″|. -/
+/-- **the same with decimal constants**: v ≤ p + 0.82395317·|r(1)| + 2.5431316·10⁻⁶·|r′(1)| + 2.5431316·10⁻⁶·∫₀¹|r″|.
+@isnad1 id=le.7h7v.s8.1a7bfd9a8f64 from=translated src=- shape=7bbe98db vocab=849a0b12
+-/
 theorem ceiling_law256_decimal (S : ℕ → ℝ) (hS : EnclOK LawN256.K S 0 LawN256.encl)
     {r g h : ℝ → ℝ} {T : Set ℝ} (hT : T.Countable) {c₀ p : ℝ}
     (hr : ∀ x ∈ Icc (0:ℝ) 1, HasDerivAt r (g x) x) (hg : ContinuousOn g (Icc (0:ℝ) 1))

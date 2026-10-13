@@ -166,7 +166,9 @@ private theorem copyWorkOutput_loop {n : ℕ}
 
 /-! ## Hoare specification -/
 
-/-- Exact raw-output copy from a concrete tape configuration. -/
+/-- Exact raw-output copy from a concrete tape configuration.
+@isnad1 id=ex.4h7v.s7.4f9658bcd964 from=translated src=- shape=c61674fe vocab=cfdef285
+-/
 theorem copyWorkToWorkTM_reachesIn_of_hasOutput_internal {n : ℕ}
     (src dst : Fin n) (hne : src ≠ dst) (x : List Bool)
     {inp out : Tape} {work : Fin n → Tape}
@@ -189,7 +191,9 @@ theorem copyWorkToWorkTM_reachesIn_of_hasOutput_internal {n : ℕ}
     (by simpa using hdst) rfl (Nat.zero_le _)
 
 /-- A raw `HasOutput` source is copied exactly through its first blank.
-Arbitrary source cells after that delimiter are preserved and ignored. -/
+Arbitrary source cells after that delimiter are preserved and ignored.
+@isnad1 id=hoaretim.1h5v.s7.d9d45898ab75 from=translated src=- shape=7da221a3 vocab=b1fa79dd
+-/
 theorem copyWorkToWorkTM_hoareTime_of_hasOutput_internal {n : ℕ}
     (src dst : Fin n) (hne : src ≠ dst) (x : List Bool) (source : Tape) :
     (copyWorkToWorkTM src dst).HoareTime
@@ -292,7 +296,9 @@ private theorem copyWorkOutput_reachesIn_frame {n : ℕ} (src dst : Fin n)
 
 /-- Frame-rich raw-output copy. The input tape, output tape, and unrelated work
 tapes are preserved exactly, allowing an arbitrary predicate to be threaded
-through the copy. -/
+through the copy.
+@isnad1 id=hoaretim.1h7v.s8.16ca4b3b5944 from=translated src=- shape=2448f59b vocab=45098bca
+-/
 theorem copyWorkToWorkTM_hoareTime_frame_of_hasOutput_internal {n : ℕ}
     (src dst : Fin n) (hne : src ≠ dst) (x : List Bool) (source : Tape)
     {P : Tape → (Fin n → Tape) → Tape → Prop}

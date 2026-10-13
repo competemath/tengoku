@@ -54,7 +54,9 @@ variable {n : ℕ}
     × (per-mark sweep length). -/
 def opBudget (M : ℕ) : ℕ := 32 * ((M + 2) * (M + 2) * (M + 2))
 
-/-- Anything at most quadratic in `M + 2` (with constant `6`) fits in `opBudget M`. -/
+/-- Anything at most quadratic in `M + 2` (with constant `6`) fits in `opBudget M`.
+@isnad1 id=le.1h2v.s5.eaf6d16a52f5 from=translated src=- shape=2ad36346 vocab=8d619ce3
+-/
 theorem le_opBudget_of_le {a M : ℕ} (h : a ≤ 6 * (M + 2) * (M + 2)) :
     a ≤ opBudget M := by
   refine le_trans h ?_
@@ -67,19 +69,27 @@ theorem le_opBudget_of_le {a M : ℕ} (h : a ≤ 6 * (M + 2) * (M + 2)) :
         omega
     _ = 32 * ((M + 2) * (M + 2) * (M + 2)) := by ring
 
-/-- `incRegTM` fits the budget. -/
+/-- `incRegTM` fits the budget.
+@isnad1 id=le.1h2v.s5.660bf8f89051 from=translated src=- shape=65649e43 vocab=8d619ce3
+-/
 theorem incRegTM_le_opBudget {d M : ℕ} (h : d ≤ M) : 2 * d + 4 ≤ opBudget M :=
   le_opBudget_of_le (by nlinarith)
 
-/-- `clearRegTM` fits the budget. -/
+/-- `clearRegTM` fits the budget.
+@isnad1 id=le.1h2v.s5.660bf8f89051 from=translated src=- shape=65649e43 vocab=8d619ce3
+-/
 theorem clearRegTM_le_opBudget {d M : ℕ} (h : d ≤ M) : 2 * d + 4 ≤ opBudget M :=
   incRegTM_le_opBudget h
 
-/-- `skipTM` fits the budget. -/
+/-- `skipTM` fits the budget.
+@isnad1 id=le.0h1v.s3.1961ce69cb15 from=translated src=- shape=8a62b088 vocab=4d3129ba
+-/
 theorem one_le_opBudget {M : ℕ} : 1 ≤ opBudget M :=
   le_opBudget_of_le (by nlinarith)
 
-/-- `addIntoTM` fits the budget. -/
+/-- `addIntoTM` fits the budget.
+@isnad1 id=le.2h3v.s6.89f1857129c9 from=translated src=- shape=48128bc9 vocab=8d619ce3
+-/
 theorem addIntoTM_le_opBudget {a b M : ℕ} (ha : a ≤ M) (hab : b + a ≤ M) :
     a * ((2 * (b + a) + 4) + 2) + (a + 2) ≤ opBudget M := by
   refine le_opBudget_of_le ?_
@@ -87,7 +97,9 @@ theorem addIntoTM_le_opBudget {a b M : ℕ} (ha : a ≤ M) (hab : b + a ≤ M) :
     Nat.mul_le_mul ha (by omega)
   nlinarith
 
-/-- `iterTM (incRegTM q) c` fits the budget. -/
+/-- `iterTM (incRegTM q) c` fits the budget.
+@isnad1 id=le.1h3v.s6.69c85ef48106 from=translated src=- shape=6d8823e3 vocab=8d619ce3
+-/
 theorem iterTM_incRegTM_le_opBudget {c d M : ℕ} (h : d + c ≤ M) :
     c * (2 * (d + c) + 5) + 1 ≤ opBudget M := by
   refine le_opBudget_of_le ?_
@@ -95,7 +107,9 @@ theorem iterTM_incRegTM_le_opBudget {c d M : ℕ} (h : d + c ≤ M) :
     Nat.mul_le_mul (by omega) (by omega)
   nlinarith
 
-/-- `copyIntoTM` fits the budget. -/
+/-- `copyIntoTM` fits the budget.
+@isnad1 id=le.2h3v.s7.3902cb1cfb8a from=translated src=- shape=550154c5 vocab=8d619ce3
+-/
 theorem copyIntoTM_le_opBudget {a b M : ℕ} (ha : a ≤ M) (hb : b ≤ M) :
     (2 * b + 4) + 1 + (a * ((2 * (0 + a) + 4) + 2) + (a + 2)) ≤ opBudget M := by
   refine le_opBudget_of_le ?_
@@ -103,19 +117,25 @@ theorem copyIntoTM_le_opBudget {a b M : ℕ} (ha : a ≤ M) (hb : b ≤ M) :
     Nat.mul_le_mul ha (by omega)
   nlinarith
 
-/-- `setConstTM` fits the budget. -/
+/-- `setConstTM` fits the budget.
+@isnad1 id=le.2h3v.s6.5570076351e6 from=translated src=- shape=75e7f98e vocab=8d619ce3
+-/
 theorem setConstTM_le_opBudget {c d M : ℕ} (hc : c ≤ M) (hd : d ≤ M) :
     (2 * d + 4) + 1 + (c * (2 * c + 5) + 1) ≤ opBudget M := by
   refine le_opBudget_of_le ?_
   have h1 : c * (2 * c + 5) ≤ M * (2 * M + 5) := Nat.mul_le_mul hc (by omega)
   nlinarith
 
-/-- `emitLitTM` fits the budget. -/
+/-- `emitLitTM` fits the budget.
+@isnad1 id=le.1h2v.s5.8e363fd26a18 from=translated src=- shape=65649e43 vocab=8d619ce3
+-/
 theorem emitLitTM_le_opBudget {v M : ℕ} (h : v ≤ M) : 3 * v + 9 ≤ opBudget M :=
   le_opBudget_of_le (by nlinarith)
 
 /-- `mulAddIntoTM` fits the budget, provided the accumulated product stays
-    below `M`. -/
+    below `M`.
+@isnad1 id=le.3h4v.s6.1409399335e7 from=translated src=- shape=3a4147b4 vocab=af00f7db
+-/
 theorem mulAddIntoTM_le_opBudget {a b d M : ℕ} (ha : a ≤ M) (hb : b ≤ M)
     (hd : d + a * b ≤ M) :
     a * (mulAddBound a b d + 2) + (a + 2) ≤ opBudget M := by
@@ -137,7 +157,9 @@ theorem mulAddIntoTM_le_opBudget {a b d M : ℕ} (ha : a ≤ M) (hb : b ≤ M)
 def setConstTM (q : Fin n) (c : ℕ) : TM n :=
   seqTM (clearRegTM q) (iterTM (incRegTM q) c)
 
-/-- **`setConstTM` Hoare specification.** -/
+/-- **`setConstTM` Hoare specification.**
+@isnad1 id=hoaretim.3h7v.s7.d3c6515998b8 from=translated src=- shape=96de4e5e vocab=3550bac9
+-/
 theorem setConstTM_hoareTime (q : Fin n) (c d : ℕ) (inp₀ : Tape)
     (work₀ : Fin n → Tape) (ys : List Bool)
     (hinp₀ : Parked inp₀) (hwork₀ : ∀ i, Parked (work₀ i))
@@ -191,7 +213,9 @@ variable {X comp tmp tmp2 : Fin n}
 /-- **`hornerLayerRegTM` Hoare specification.** From `tmp = v`, `X = x`,
     `comp = w` (and any `tmp2 = u`), reach `tmp = tmp2 = v·x + w` with all
     other tapes untouched, within `layerBudget M` steps, provided every value
-    in play is at most `M`. -/
+    in play is at most `M`.
+@isnad1 id=hoaretim.14h13v.s7.52ba764a7a69 from=translated src=- shape=32aea46d vocab=0e3da2be
+-/
 theorem hornerLayerRegTM_hoareTime
     (hXt : X ≠ tmp) (hXt2 : X ≠ tmp2) (htt2 : tmp ≠ tmp2)
     (hct2 : comp ≠ tmp2)
@@ -274,7 +298,9 @@ theorem hornerLayerRegTM_hoareTime
   exact ⟨g1, by rw [g2, hC], g3⟩
 
 /-- **`hornerLayerConstTM` Hoare specification.** From `tmp = v`, `X = x`
-    (and any `tmp2 = u`), reach `tmp = tmp2 = v·x + c`. -/
+    (and any `tmp2 = u`), reach `tmp = tmp2 = v·x + c`.
+@isnad1 id=hoaretim.12h12v.s7.b5d413d705e0 from=translated src=- shape=3ef1278d vocab=eacda650
+-/
 theorem hornerLayerConstTM_hoareTime
     (hXt : X ≠ tmp) (hXt2 : X ≠ tmp2) (htt2 : tmp ≠ tmp2)
     (M x v c u : ℕ) (hx : x ≤ M) (hv : v ≤ M) (hu : u ≤ M)
@@ -364,14 +390,20 @@ def hornerFold (x : ℕ) : List ℕ → ℕ → ℕ
   | [], a => a
   | c :: cs, a => hornerFold x cs (a * x + c)
 
-/-- `hornerFold` over the empty coefficient list returns the accumulator. -/
+/-- `hornerFold` over the empty coefficient list returns the accumulator.
+@isnad1 id=eq.0h2v.s3.a42d113b80b5 from=translated src=- shape=50c26012 vocab=e29846a5
+-/
 @[simp] theorem hornerFold_nil (x a : ℕ) : hornerFold x [] a = a := rfl
 
-/-- Unfolding lemma: one Horner layer replaces the accumulator `a` by `a * x + c`. -/
+/-- Unfolding lemma: one Horner layer replaces the accumulator `a` by `a * x + c`.
+@isnad1 id=eq.0h4v.s5.c46120d12b18 from=translated src=- shape=f5638d45 vocab=3050fdc7
+-/
 theorem hornerFold_cons (x c a : ℕ) (cs : List ℕ) :
     hornerFold x (c :: cs) a = hornerFold x cs (a * x + c) := rfl
 
-/-- The Horner fold of a reversed coefficient window is the polynomial sum. -/
+/-- The Horner fold of a reversed coefficient window is the polynomial sum.
+@isnad1 id=eq.0h4v.s6.e956b33fee8c from=translated src=- shape=22d3a7a7 vocab=1bb7116c
+-/
 theorem hornerFold_reverse_range (f : ℕ → ℕ) (x : ℕ) :
     ∀ (k a : ℕ),
     hornerFold x ((List.range k).map f).reverse a
@@ -387,7 +419,9 @@ theorem hornerFold_reverse_range (f : ℕ → ℕ) (x : ℕ) :
     rw [hornerFold_cons, ih, Finset.sum_range_succ]
     ring
 
-/-- Crude but monotone bound on the Horner accumulator. -/
+/-- Crude but monotone bound on the Horner accumulator.
+@isnad1 id=le.0h3v.s6.fb89297ac01f from=translated src=- shape=5e034778 vocab=31cf9291
+-/
 theorem hornerFold_le (x : ℕ) : ∀ (cs : List ℕ) (a : ℕ),
     hornerFold x cs a ≤ (a + cs.sum) * (x + 1) ^ cs.length := by
   intro cs
@@ -409,7 +443,9 @@ theorem hornerFold_le (x : ℕ) : ∀ (cs : List ℕ) (a : ℕ),
 
 /-- Every prefix of the Horner fold is bounded by the full coefficient sum
     times the dominating power — the hypothesis-discharger for
-    `hornerLayersTM_hoareTime`'s value cap. -/
+    `hornerLayersTM_hoareTime`'s value cap.
+@isnad1 id=le.0h3v.s6.76d9fbb27e12 from=translated src=- shape=d0fcce71 vocab=a47f074a
+-/
 theorem hornerFold_take_le (x : ℕ) (cs : List ℕ) (k : ℕ) :
     hornerFold x (cs.take k) 0 ≤ (cs.sum + 1) * (x + 1) ^ cs.length := by
   refine le_trans (hornerFold_le x _ 0) ?_
@@ -430,7 +466,9 @@ def hornerLayersTM (X tmp tmp2 : Fin n) (cs : List ℕ) : TM n :=
 
 /-- **`hornerLayersTM` Hoare specification** (nonempty coefficient list).
     From `tmp = v`, reach `tmp = tmp2 = hornerFold x (c :: cs) v`, provided
-    every intermediate accumulator value is at most `M`. -/
+    every intermediate accumulator value is at most `M`.
+@isnad1 id=hoaretim.11h13v.s7.0fad9551f07d from=translated src=- shape=4044d946 vocab=6746f743
+-/
 theorem hornerLayersTM_hoareTime (X tmp tmp2 : Fin n)
     (hXt : X ≠ tmp) (hXt2 : X ≠ tmp2) (htt2 : tmp ≠ tmp2)
     (M x : ℕ) (hx : x ≤ M) (inp₀ : Tape) (hinp₀ : Parked inp₀) :
@@ -532,16 +570,22 @@ theorem hornerLayersTM_hoareTime (X tmp tmp2 : Fin n)
 def polyCoeffs (p : Polynomial ℕ) : List ℕ :=
   ((List.range (p.natDegree + 1)).map p.coeff).reverse
 
-/-- The coefficient list of a polynomial is never empty (it has `natDegree + 1` entries). -/
+/-- The coefficient list of a polynomial is never empty (it has `natDegree + 1` entries).
+@isnad1 id=ne.0h1v.s3.4341037a1baa from=translated src=- shape=3d203508 vocab=a1d6720b
+-/
 theorem polyCoeffs_ne_nil (p : Polynomial ℕ) : polyCoeffs p ≠ [] := by
   simp [polyCoeffs]
 
-/-- `polyCoeffs p` has exactly `p.natDegree + 1` entries. -/
+/-- `polyCoeffs p` has exactly `p.natDegree + 1` entries.
+@isnad1 id=eq.0h1v.s4.8aa02453015f from=translated src=- shape=072a7f5b vocab=fa0c11cb
+-/
 @[simp] theorem polyCoeffs_length (p : Polynomial ℕ) :
     (polyCoeffs p).length = p.natDegree + 1 := by
   simp [polyCoeffs]
 
-/-- **The Horner fold computes `p.eval`.** -/
+/-- **The Horner fold computes `p.eval`.**
+@isnad1 id=eq.0h2v.s4.95e9578213f5 from=translated src=- shape=7d09d7e8 vocab=d582e469
+-/
 theorem hornerFold_polyCoeffs (p : Polynomial ℕ) (x : ℕ) :
     hornerFold x (polyCoeffs p) 0 = p.eval x := by
   rw [polyCoeffs, hornerFold_reverse_range, Polynomial.eval_eq_sum_range]
@@ -554,7 +598,9 @@ def polyEvalTM (X tmp tmp2 : Fin n) (p : Polynomial ℕ) : TM n :=
 
 /-- **`polyEvalTM` Hoare specification.** From `X = x` (and any `tmp = v`,
     `tmp2 = u`), reach `tmp = tmp2 = p.eval x`, provided `M` caps `x`, the
-    starting scratch values, and every Horner prefix value. -/
+    starting scratch values, and every Horner prefix value.
+@isnad1 id=hoaretim.12h12v.s8.77d04bec9764 from=translated src=- shape=ccc86f4b vocab=ebf5cdfb
+-/
 theorem polyEvalTM_hoareTime (X tmp tmp2 : Fin n)
     (hXt : X ≠ tmp) (hXt2 : X ≠ tmp2) (htt2 : tmp ≠ tmp2)
     (p : Polynomial ℕ) (M x v u : ℕ) (hx : x ≤ M) (hv : v ≤ M) (hu : u ≤ M)

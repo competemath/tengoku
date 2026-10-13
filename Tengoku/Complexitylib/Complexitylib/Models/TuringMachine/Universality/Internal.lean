@@ -24,11 +24,17 @@ namespace TM
 
 variable {firstTapes secondTapes thirdTapes : ℕ}
 
+/--
+@isnad1 id=simulate.0h2v.s3.30cf04548982 from=translated src=- shape=5fca6213 vocab=2d6356e4
+-/
 theorem simulates_refl_internal (machine : TM firstTapes) :
     machine.Simulates machine id where
   halts_iff _ := Iff.rfl
   produces_iff _ _ := Iff.rfl
 
+/--
+@isnad1 id=simulate.2h8v.s5.a80084d71e72 from=translated src=- shape=014dd85b vocab=80afe1f3
+-/
 theorem simulates_comp_internal {first : TM firstTapes} {second : TM secondTapes}
     {third : TM thirdTapes} {compileFirst : List Bool → List Bool}
     {compileSecond : List Bool → List Bool}
@@ -41,11 +47,17 @@ theorem simulates_comp_internal {first : TM firstTapes} {second : TM secondTapes
     (hFirst.produces_iff (compileSecond program) output).trans
       (hSecond.produces_iff program output)
 
+/--
+@isnad1 id=hasaddit.0h0v.s3.ed2b47a45c1f from=translated src=- shape=bbf18520 vocab=a4c41115
+-/
 theorem additiveProgramOverhead_id_internal :
     HasAdditiveProgramOverhead id 0 := by
   intro program
   simp
 
+/--
+@isnad1 id=hasaddit.2h3v.s4.89109dd00a55 from=translated src=- shape=8c4751ed vocab=54a2a0ee
+-/
 theorem additiveProgramOverhead_mono_internal {compile : List Bool → List Bool}
     {first second : ℕ} (hbound : first ≤ second)
     (hoverhead : HasAdditiveProgramOverhead compile first) :
@@ -53,6 +65,9 @@ theorem additiveProgramOverhead_mono_internal {compile : List Bool → List Bool
   intro program
   exact (hoverhead program).trans (by omega)
 
+/--
+@isnad1 id=hasaddit.2h4v.s5.ed0c49e5ab8a from=translated src=- shape=12b9d3e5 vocab=1fbb2495
+-/
 theorem additiveProgramOverhead_comp_internal
     {compileFirst compileSecond : List Bool → List Bool} {first second : ℕ}
     (hFirst : HasAdditiveProgramOverhead compileFirst first)
@@ -64,11 +79,17 @@ theorem additiveProgramOverhead_comp_internal
     have := hSecond program
     omega)
 
+/--
+@isnad1 id=simulate.0h2v.s4.f93f67bc066d from=translated src=- shape=ed6f81a7 vocab=07ef65f0
+-/
 theorem simulatesInTime_refl_internal (machine : TM firstTapes) :
     machine.SimulatesInTime machine id (fun _ sourceTime => sourceTime) where
   halts _program _sourceTime hhalt := hhalt
   produces _program _output _sourceTime hproduce := hproduce
 
+/--
+@isnad1 id=simulate.2h7v.s5.6d80b0037b1f from=translated src=- shape=d4565858 vocab=272c30c9
+-/
 theorem simulatesInTime_mono_internal {simulator : TM firstTapes}
     {source : TM secondTapes} {compile : List Bool → List Bool}
     {firstClock secondClock : TimeOverhead}
@@ -82,6 +103,9 @@ theorem simulatesInTime_mono_internal {simulator : TM firstTapes}
     (hsim.produces program output sourceTime hproduce).mono
       (hclock program sourceTime)
 
+/--
+@isnad1 id=simulate.2h10v.s6.6c0784dbcc16 from=translated src=- shape=045a4427 vocab=e1eddde7
+-/
 theorem simulatesInTime_comp_internal {first : TM firstTapes}
     {second : TM secondTapes} {third : TM thirdTapes}
     {compileFirst compileSecond : List Bool → List Bool}
@@ -98,12 +122,18 @@ theorem simulatesInTime_comp_internal {first : TM firstTapes}
     hFirst.produces (compileSecond program) output (clockSecond program sourceTime)
       (hSecond.produces program output sourceTime hproduce)
 
+/--
+@isnad1 id=polynomi.0h0v.s2.d98c66ca1f19 from=translated src=- shape=9483f484 vocab=a51de042
+-/
 theorem polynomialTimeOverhead_identity_internal :
     PolynomialTimeOverhead (fun _program sourceTime => sourceTime) := by
   refine ⟨1, 1, fun program sourceTime => ?_⟩
   simp only [one_mul, pow_one]
   omega
 
+/--
+@isnad1 id=polynomi.3h4v.s5.578f9011da8c from=translated src=- shape=7cc963ba vocab=a442247e
+-/
 theorem polynomialTimeOverhead_comp_internal
     {compileInner : List Bool → List Bool} {additive : ℕ}
     {clockOuter clockInner : TimeOverhead}
@@ -160,6 +190,9 @@ theorem polynomialTimeOverhead_comp_internal
           base ^ ((innerExponent + 1) * outerExponent) := by
       simp only [mul_pow, power, ← pow_mul, Nat.mul_assoc]
 
+/--
+@isnad1 id=isuniver.1h3v.s4.c644b8cc819e from=translated src=- shape=3c964571 vocab=1c5eb34d
+-/
 theorem efficientlyUniversalFor_isUniversal_internal {simulator : TM firstTapes}
     {admissible : TimeOverhead → Prop}
     (h : simulator.IsEfficientlyUniversalFor admissible) : simulator.IsUniversal := by
@@ -168,6 +201,9 @@ theorem efficientlyUniversalFor_isUniversal_internal {simulator : TM firstTapes}
     h sourceTapes source
   exact ⟨compile, hcompile, hsim⟩
 
+/--
+@isnad1 id=iseffici.1h5v.s5.58e7f964f2fb from=translated src=- shape=96bf3fe0 vocab=aef309ab
+-/
 theorem efficientlyUniversalFor_mono_internal {simulator : TM firstTapes}
     {firstPolicy secondPolicy : TimeOverhead → Prop}
     (hpolicy : ∀ clock, firstPolicy clock → secondPolicy clock)

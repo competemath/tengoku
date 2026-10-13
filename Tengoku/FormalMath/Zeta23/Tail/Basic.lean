@@ -17,13 +17,22 @@ namespace Tail
 [prop:tail]); equals 0 for γ ∈ I, T − γ for γ < T, γ − 2T for γ > 2T. -/
 def distI (T γ : ℝ) : ℝ := max 0 (max (T - γ) (γ - 2 * T))
 
+/--
+@isnad1 id=le.0h2v.s4.c7872e456d7c from=translated src=- shape=a120b2a8 vocab=03ef8674
+-/
 lemma distI_nonneg (T γ : ℝ) : 0 ≤ distI T γ := le_max_left _ _
 
+/--
+@isnad1 id=eq.2h2v.s5.be8d632c5275 from=translated src=- shape=92f84062 vocab=2c34e6c1
+-/
 lemma distI_of_le {T γ : ℝ} (hT : 0 ≤ T) (h : γ ≤ T) : distI T γ = T - γ := by
   unfold distI
   have h1 : max (T - γ) (γ - 2 * T) = T - γ := max_eq_left (by linarith)
   rw [h1, max_eq_right (by linarith)]
 
+/--
+@isnad1 id=eq.2h2v.s6.c2466485a53a from=translated src=- shape=6bf2c619 vocab=ecec98d9
+-/
 lemma distI_of_ge {T γ : ℝ} (hT : 0 ≤ T) (h : 2 * T ≤ γ) : distI T γ = γ - 2 * T := by
   unfold distI
   have h1 : max (T - γ) (γ - 2 * T) = γ - 2 * T := max_eq_right (by linarith)
@@ -35,10 +44,16 @@ lemma distI_of_ge {T γ : ℝ} (hT : 0 ≤ T) (h : 2 * T ≤ γ) : distI T γ = 
 zeros with γ ≤ 0.) -/
 def InTail (T γ : ℝ) : Prop := γ ≤ T - Real.sqrt T ∨ 2 * T + Real.sqrt T < γ
 
+/--
+@isnad1 id=iff.0h2v.s5.34212000304e from=translated src=- shape=4a504663 vocab=903c8baf
+-/
 lemma InTail_iff_not_mem_Ioc (T γ : ℝ) :
     InTail T γ ↔ γ ∉ Set.Ioc (T - Real.sqrt T) (2 * T + Real.sqrt T) := by
   simp only [InTail, Set.mem_Ioc, not_and_or, not_lt, not_le]
 
+/--
+@isnad1 id=le.2h2v.s4.da021e33588c from=translated src=- shape=e12d1048 vocab=ce0405dd
+-/
 lemma sqrt_le_distI_of_InTail {T γ : ℝ} (hT : 0 ≤ T) (h : InTail T γ) :
     Real.sqrt T ≤ distI T γ := by
   have hs := Real.sqrt_nonneg T
@@ -52,6 +67,9 @@ lemma sqrt_le_distI_of_InTail {T γ : ℝ} (hT : 0 ≤ T) (h : InTail T γ) :
 absolute constant would also do. -/
 def T₀ : ℝ := 300
 
+/--
+@isnad1 id=lt.0h0v.s3.5d2920dc5495 from=translated src=- shape=ff3a10fc vocab=342f7f72
+-/
 lemma T₀_pos : 0 < T₀ := by norm_num [T₀]
 
 /-- Local zero-count hypothesis of [prop:tail]: "Let A₀ ≥ 1 be an absolute constant such
@@ -68,6 +86,9 @@ structure LocalCount {ι : Type*} (γ : ι → ℝ) (m : ι → ℕ) (A₀ : ℝ
   window : ∀ t : ℝ, ∀ s : Finset ι, (∀ ρ ∈ s, t < γ ρ ∧ γ ρ ≤ t + 1) →
     (∑ ρ ∈ s, (m ρ : ℝ)) ≤ A₀ * Real.log (|t| + 3)
 
+/--
+@isnad1 id=lt.1h4v.s4.1324609d54a3 from=translated src=- shape=33b5d46d vocab=77ad6059
+-/
 lemma LocalCount.A₀_pos {ι : Type*} {γ : ι → ℝ} {m : ι → ℕ} {A₀ : ℝ}
     (h : LocalCount γ m A₀) : 0 < A₀ := lt_of_lt_of_le one_pos h.one_le
 

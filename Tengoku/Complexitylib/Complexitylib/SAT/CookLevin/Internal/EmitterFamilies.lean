@@ -87,7 +87,9 @@ open Emit
 -- Descriptor mirrors of the one-hot builders
 -- ════════════════════════════════════════════════════════════════════════
 
-/-- Pointwise `Forall₂` between two maps of the same list. -/
+/-- Pointwise `Forall₂` between two maps of the same list.
+@isnad1 id=forall.0h8v.s5.85dc7611d29c from=translated src=- shape=05808d0a vocab=ed6cb17e
+-/
 theorem forall₂_map_map {α β γ : Type _} {R : β → γ → Prop} (g : α → β)
     (h : α → γ) {l : List α} (hp : ∀ a ∈ l, R (g a) (h a)) :
     List.Forall₂ R (l.map g) (l.map h) := by
@@ -97,7 +99,9 @@ theorem forall₂_map_map {α β γ : Type _} {R : β → γ → Prop} (g : α �
     exact .cons (hp a List.mem_cons_self)
       (ih fun a' ha' => hp a' (List.mem_cons_of_mem _ ha'))
 
-/-- `Forall₂` is preserved by appending componentwise-related lists. -/
+/-- `Forall₂` is preserved by appending componentwise-related lists.
+@isnad1 id=forall.2h7v.s6.a30f39bc35ff from=translated src=- shape=0e7eefd5 vocab=dd458759
+-/
 theorem forall₂_append {α β : Type _} {R : α → β → Prop} :
     ∀ {l₁ u₁ : List α} {l₂ u₂ : List β}, List.Forall₂ R l₁ l₂ →
     List.Forall₂ R u₁ u₂ → List.Forall₂ R (l₁ ++ u₁) (l₂ ++ u₂) := by
@@ -119,7 +123,9 @@ def exactlyOneD (mkPos mkNeg : ℕ → LitDesc n) (qs : List ℕ) :
   qs.map mkPos :: atMostOneD mkNeg qs
 
 /-- `atMostOneD mk qs` denotes `atMostOne (qs.map f)` clause-by-clause,
-    provided each descriptor `mk q` denotes the negative literal on `f q`. -/
+    provided each descriptor `mk q` denotes the negative literal on `f q`.
+@isnad1 id=forall.0h6v.s6.f2fe8537c8dc from=translated src=- shape=35d28939 vocab=387bdeb3
+-/
 theorem forall₂_atMostOneD {R : LitDesc n → Lit → Prop} (mk : ℕ → LitDesc n)
     (f : ℕ → ℕ) :
     ∀ {qs : List ℕ}, (∀ q ∈ qs, R (mk q) ⟨false, f q⟩) →
@@ -138,7 +144,9 @@ theorem forall₂_atMostOneD {R : LitDesc n → Lit → Prop} (mk : ℕ → LitD
       (.cons (hp q' (List.mem_cons_of_mem _ hq')) .nil)
 
 /-- `exactlyOneD mkPos mkNeg qs` denotes `exactlyOne (qs.map f)`
-    clause-by-clause, given the positive/negative literal denotations. -/
+    clause-by-clause, given the positive/negative literal denotations.
+@isnad1 id=forall.0h8v.s6.cc6682c63d24 from=translated src=- shape=947b3182 vocab=210ecc9b
+-/
 theorem forall₂_exactlyOneD {R : LitDesc n → Lit → Prop}
     (mkPos mkNeg : ℕ → LitDesc n) (f : ℕ → ℕ) {qs : List ℕ}
     (hpos : ∀ q ∈ qs, R (mkPos q) ⟨true, f q⟩)
@@ -150,7 +158,9 @@ theorem forall₂_exactlyOneD {R : LitDesc n → Lit → Prop}
   rw [atLeastOne, List.map_map]
   exact forall₂_map_map _ _ fun q hq => hpos q hq
 
-/-- Clause sizes in `atMostOneD` are 2. -/
+/-- Clause sizes in `atMostOneD` are 2.
+@isnad1 id=le.1h4v.s5.2e2ef411fdbb from=translated src=- shape=8fc9b37e vocab=5d673c7d
+-/
 theorem atMostOneD_length_le (mk : ℕ → LitDesc n) :
     ∀ (qs : List ℕ), ∀ c ∈ atMostOneD mk qs, c.length ≤ 2 := by
   intro qs
@@ -164,7 +174,9 @@ theorem atMostOneD_length_le (mk : ℕ → LitDesc n) :
       simp
     · exact ih c hc
 
-/-- `atMostOneD` over `m` indices has at most `m²` clauses. -/
+/-- `atMostOneD` over `m` indices has at most `m²` clauses.
+@isnad1 id=le.0h3v.s5.71ad50d05ecb from=translated src=- shape=6b472a9c vocab=8943fbb6
+-/
 theorem atMostOneD_card_le (mk : ℕ → LitDesc n) :
     ∀ (qs : List ℕ), (atMostOneD mk qs).length ≤ qs.length * qs.length := by
   intro qs
@@ -189,7 +201,9 @@ noncomputable def emitAcceptTM (N : NTM 1) : TM nT :=
   emitCNFTM rA rB rC rD tmp tmp2 (acceptDescs N)
 
 /-- **`emitAcceptTM` Hoare specification**: appends the encoded accept
-    clauses. -/
+    clauses.
+@isnad1 id=hoaretim.8h7v.s8.441ad8738a8d from=translated src=- shape=43b703de vocab=49fcdafd
+-/
 theorem emitAcceptTM_hoareTime (N : NTM 1) (steps P M : ℕ)
     (hM : 4 * (steps + 1) * (max (Fintype.card N.Q) 3) * (P + 2) * 4 ≤ M)
     (inp₀ : Tape) (work₀ : Fin nT → Tape) (ys : List Bool)
@@ -255,7 +269,9 @@ def emitOneHotStatesTM (Qc : ℕ) : TM nT :=
   emitLoopTM (emitCNFTM rA rB rC rD tmp tmp2 (oneHotStatesLeafD Qc)) tReg tFuel
 
 /-- **`emitOneHotStatesTM` Hoare specification**: appends the encoded
-    state one-hot family, leaving the row counter at `steps + 1`. -/
+    state one-hot family, leaving the row counter at `steps + 1`.
+@isnad1 id=hoaretim.9h7v.s8.36cc975efae4 from=translated src=- shape=09e45f76 vocab=702b06bb
+-/
 theorem emitOneHotStatesTM_hoareTime (N : NTM 1) (steps P M : ℕ)
     (hM : 4 * (steps + 1) * (max (Fintype.card N.Q) 3) * (P + 2) * 4 ≤ M)
     (inp₀ : Tape) (work₀ : Fin nT → Tape) (ys : List Bool)
@@ -429,7 +445,9 @@ def emitOneHotCellsTM : TM nT := emitLoopTM cellsBodyTM tReg tFuel
 def posChunkBudget (M : ℕ) : ℕ :=
   loopBudget M (cnfBudget 17 6 M) + 1 + opBudget M
 
-/-- **`posChunkTM` Hoare specification** (at row `i`, tape index `tp`). -/
+/-- **`posChunkTM` Hoare specification** (at row `i`, tape index `tp`).
+@isnad1 id=hoaretim.12h9v.s8.63aa0b747d85 from=translated src=- shape=fe466d2e vocab=021296ac
+-/
 theorem posChunkTM_hoareTime (tp : ℕ) (htp : tp < 3) (Qc steps P M i : ℕ)
     (hM : 4 * (steps + 1) * (max Qc 3) * (P + 2) * 4 ≤ M)
     (hi : i ≤ steps)
@@ -595,7 +613,9 @@ theorem posChunkTM_hoareTime (tp : ℕ) (htp : tp < 3) (Qc steps P M i : ℕ)
 /-- Budget of the `oneHotCells` row body. -/
 def cellsBodyBudget (M : ℕ) : ℕ := 3 * posChunkBudget M + 2
 
-/-- **`cellsBodyTM` Hoare specification** (at row `i`). -/
+/-- **`cellsBodyTM` Hoare specification** (at row `i`).
+@isnad1 id=hoaretim.11h8v.s8.9e0ae17e952f from=translated src=- shape=5c731c7a vocab=108e3d93
+-/
 theorem cellsBodyTM_hoareTime (Qc steps P M i : ℕ)
     (hM : 4 * (steps + 1) * (max Qc 3) * (P + 2) * 4 ≤ M)
     (hi : i ≤ steps)
@@ -640,7 +660,9 @@ theorem cellsBodyTM_hoareTime (Qc steps P M i : ℕ)
   exact g3
 
 /-- **`emitOneHotCellsTM` Hoare specification**: appends the encoded cell
-    one-hot family, leaving the row counter at `steps + 1`. -/
+    one-hot family, leaving the row counter at `steps + 1`.
+@isnad1 id=hoaretim.11h7v.s8.66742ca01ba3 from=translated src=- shape=fa2a15e7 vocab=7dbdb974
+-/
 theorem emitOneHotCellsTM_hoareTime (Qc steps P M : ℕ)
     (hM : 4 * (steps + 1) * (max Qc 3) * (P + 2) * 4 ≤ M)
     (inp₀ : Tape) (work₀ : Fin nT → Tape) (ys : List Bool)
@@ -742,7 +764,9 @@ theorem emitOneHotCellsTM_hoareTime (Qc steps P M : ℕ)
 -- Family: oneHotHeadsF
 -- ════════════════════════════════════════════════════════════════════════
 
-/-- `flatMap` respects pointwise-equal functions on the list's members. -/
+/-- `flatMap` respects pointwise-equal functions on the list's members.
+@isnad1 id=eq.1h5v.s5.2c8260a96500 from=translated src=- shape=832dc7ab vocab=f582198d
+-/
 theorem flatMap_congr {α β : Type _} {l : List α} {f g : α → List β}
     (h : ∀ a ∈ l, f a = g a) : l.flatMap f = l.flatMap g := by
   induction l with
@@ -752,7 +776,9 @@ theorem flatMap_congr {α β : Type _} {l : List α} {f g : α → List β}
       ih (fun a' ha' => h a' (List.mem_cons_of_mem _ ha'))]
 
 /-- `atMostOne` over a mapped range as rectangle loops with shrinking inner
-    ranges — the shape the head emitter's nested loops produce. -/
+    ranges — the shape the head emitter's nested loops produce.
+@isnad1 id=eq.0h2v.s6.dbd7929e3a1e from=translated src=- shape=0c8f2397 vocab=6131e7e5
+-/
 theorem atMostOne_map_range : ∀ (m : ℕ) (f : ℕ → ℕ),
     atMostOne ((List.range m).map f)
       = (List.range m).flatMap (fun q =>
@@ -804,7 +830,9 @@ def headAtLeastBudget (M : ℕ) : ℕ :=
   loopBudget M (emitVarBudget M + 1 + (2 * opBudget M + 1)) + 1
     + (2 + 1 + opBudget M)
 
-/-- The head-literal denotation lemma, shared by both head clause shapes. -/
+/-- The head-literal denotation lemma, shared by both head clause shapes.
+@isnad1 id=spec.8h10v.s7.565fa286665c from=translated src=- shape=238425dd vocab=2ba49274
+-/
 theorem headLitD_spec {tp : ℕ} (htp : tp < 3) {Qc steps P M i pos : ℕ}
     (hM : 4 * (steps + 1) * (max Qc 3) * (P + 2) * 4 ≤ M)
     (hi : i ≤ steps) (hpos : pos ≤ P)
@@ -820,7 +848,9 @@ theorem headLitD_spec {tp : ℕ} (htp : tp < 3) {Qc steps P M i pos : ℕ}
   exact ⟨i, tp, pos, 0, ⟨hbt, by decide, by decide⟩, rfl, ⟨hbp, hst, hst2⟩,
     rfl, rfl, rfl, k0, k1, k2, k3, k4⟩
 
-/-- **`headAtLeastTM` Hoare specification** (at row `i`, tape index `tp`). -/
+/-- **`headAtLeastTM` Hoare specification** (at row `i`, tape index `tp`).
+@isnad1 id=hoaretim.12h9v.s8.0ff4f882d76d from=translated src=- shape=7bf52a54 vocab=80449e09
+-/
 theorem headAtLeastTM_hoareTime (tp : ℕ) (htp : tp < 3) (Qc steps P M i : ℕ)
     (hM : 4 * (steps + 1) * (max Qc 3) * (P + 2) * 4 ≤ M) (hi : i ≤ steps)
     (inp₀ : Tape) (V : Fin nT → Tape) (ys : List Bool)
@@ -1000,7 +1030,9 @@ def pairWord (Qc steps P i tp q : ℕ) : List Bool :=
 
 /-- **`headPairBodyTM` Hoare specification** (at row `i`, outer position
     `q`): emits the pair clauses `(q, q')` for all `q' > q`, mirrors the
-    counters home, and shrinks the fuel. -/
+    counters home, and shrinks the fuel.
+@isnad1 id=hoaretim.12h10v.s8.69a6250a955e from=translated src=- shape=8835b718 vocab=263e94ff
+-/
 theorem headPairBodyTM_hoareTime (tp : ℕ) (htp : tp < 3) (Qc steps P M i q : ℕ)
     (hM : 4 * (steps + 1) * (max Qc 3) * (P + 2) * 4 ≤ M) (hi : i ≤ steps)
     (hq : q ≤ P)
@@ -1287,7 +1319,9 @@ def headAtMostBudget (M : ℕ) : ℕ :=
 
 /-- **`headAtMostTM` Hoare specification** (at row `i`, tape index `tp`):
     appends the encoded pairwise at-most-one clauses, consuming the shrink
-    fuel (`auxReg`: `P` in, `0` out). -/
+    fuel (`auxReg`: `P` in, `0` out).
+@isnad1 id=hoaretim.14h9v.s8.507a91136eea from=translated src=- shape=aa84b05e vocab=3ac86b73
+-/
 theorem headAtMostTM_hoareTime (tp : ℕ) (htp : tp < 3) (Qc steps P M i : ℕ)
     (hM : 4 * (steps + 1) * (max Qc 3) * (P + 2) * 4 ≤ M) (hi : i ≤ steps)
     (inp₀ : Tape) (V : Fin nT → Tape) (ys : List Bool)
@@ -1439,7 +1473,9 @@ def headLeafTM (tp : ℕ) : TM nT :=
 def headLeafBudget (M : ℕ) : ℕ :=
   opBudget M + 1 + (headAtLeastBudget M + 1 + headAtMostBudget M)
 
-/-- **`headLeafTM` Hoare specification** (at row `i`, tape index `tp`). -/
+/-- **`headLeafTM` Hoare specification** (at row `i`, tape index `tp`).
+@isnad1 id=hoaretim.15h9v.s8.40474a8b174f from=translated src=- shape=21e89d79 vocab=eb609465
+-/
 theorem headLeafTM_hoareTime (tp : ℕ) (htp : tp < 3) (Qc steps P M i : ℕ)
     (hM : 4 * (steps + 1) * (max Qc 3) * (P + 2) * 4 ≤ M) (hi : i ≤ steps)
     (inp₀ : Tape) (V : Fin nT → Tape) (ys : List Bool)
@@ -1524,7 +1560,9 @@ def emitOneHotHeadsTM : TM nT := emitLoopTM headsBodyTM tReg tFuel
 /-- Budget of the `oneHotHeads` row body. -/
 def headsBodyBudget (M : ℕ) : ℕ := 3 * headLeafBudget M + 2
 
-/-- **`headsBodyTM` Hoare specification** (at row `i`). -/
+/-- **`headsBodyTM` Hoare specification** (at row `i`).
+@isnad1 id=hoaretim.14h8v.s8.662d621c5377 from=translated src=- shape=931befc2 vocab=fb3645f3
+-/
 theorem headsBodyTM_hoareTime (Qc steps P M i : ℕ)
     (hM : 4 * (steps + 1) * (max Qc 3) * (P + 2) * 4 ≤ M) (hi : i ≤ steps)
     (inp₀ : Tape) (V : Fin nT → Tape) (ys : List Bool)
@@ -1569,7 +1607,9 @@ theorem headsBodyTM_hoareTime (Qc steps P M i : ℕ)
   exact g3
 
 /-- **`emitOneHotHeadsTM` Hoare specification**: appends the encoded head
-    one-hot family, leaving the row counter at `steps + 1`. -/
+    one-hot family, leaving the row counter at `steps + 1`.
+@isnad1 id=hoaretim.14h7v.s8.4bbcf9ade93c from=translated src=- shape=1783b81a vocab=f773ae28
+-/
 theorem emitOneHotHeadsTM_hoareTime (Qc steps P M : ℕ)
     (hM : 4 * (steps + 1) * (max Qc 3) * (P + 2) * 4 ≤ M)
     (inp₀ : Tape) (work₀ : Fin nT → Tape) (ys : List Bool)
@@ -1676,7 +1716,9 @@ theorem emitOneHotHeadsTM_hoareTime (Qc steps P M : ℕ)
 -- Family: frameClausesF
 -- ════════════════════════════════════════════════════════════════════════
 
-/-- `Forall₂` is preserved by `flatMap` with pointwise-related images. -/
+/-- `Forall₂` is preserved by `flatMap` with pointwise-related images.
+@isnad1 id=forall.1h7v.s5.6dbeb0104402 from=translated src=- shape=1c409f6c vocab=29a03fa2
+-/
 theorem forall₂_flatMap {α β γ : Type _} {R : β → γ → Prop} (F : α → List β)
     (G : α → List γ) {l : List α}
     (h : ∀ a ∈ l, List.Forall₂ R (F a) (G a)) :
@@ -1736,7 +1778,9 @@ def frameRowBudget (M : ℕ) : ℕ :=
   opBudget M + 1 + (3 * framePosChunkBudget M + 2)
 
 /-- **`framePosChunkTM` Hoare specification** (at row `i`, tape `tp`; the
-    successor-row register holds `i + 1`). -/
+    successor-row register holds `i + 1`).
+@isnad1 id=hoaretim.13h9v.s8.0282ae27179c from=translated src=- shape=1a310f44 vocab=2866b2ac
+-/
 theorem framePosChunkTM_hoareTime (tp : ℕ) (htp : tp < 3)
     (Qc steps P M i : ℕ)
     (hM : 4 * (steps + 1) * (max Qc 3) * (P + 2) * 4 ≤ M)
@@ -1905,7 +1949,9 @@ theorem framePosChunkTM_hoareTime (tp : ℕ) (htp : tp < 3)
   exact hseq.mono_bound (by rw [framePosChunkBudget])
 
 /-- **`frameRowTM` Hoare specification** (at row `i < steps`; the
-    successor-row register enters at `i` and leaves at `i + 1`). -/
+    successor-row register enters at `i` and leaves at `i + 1`).
+@isnad1 id=hoaretim.12h8v.s8.da1884c20b77 from=translated src=- shape=5abf4e15 vocab=a2e40807
+-/
 theorem frameRowTM_hoareTime (Qc steps P M i : ℕ)
     (hM : 4 * (steps + 1) * (max Qc 3) * (P + 2) * 4 ≤ M)
     (hi : i < steps)
@@ -1977,7 +2023,9 @@ theorem frameRowTM_hoareTime (Qc steps P M i : ℕ)
   exact g3
 
 /-- **`emitFrameTM` Hoare specification**: appends the encoded frame family,
-    leaving row counter and successor-row register at `steps`. -/
+    leaving row counter and successor-row register at `steps`.
+@isnad1 id=hoaretim.12h7v.s8.1e5405c5daf4 from=translated src=- shape=405313c5 vocab=072ecbc1
+-/
 theorem emitFrameTM_hoareTime (Qc steps P M : ℕ)
     (hM : 4 * (steps + 1) * (max Qc 3) * (P + 2) * 4 ≤ M)
     (inp₀ : Tape) (work₀ : Fin nT → Tape) (ys : List Bool)

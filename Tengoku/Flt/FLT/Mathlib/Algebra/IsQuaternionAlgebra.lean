@@ -27,6 +27,9 @@ def Minpoly.toAdjoin' (R : Type*) {S : Type*} [CommRing R] [Ring S] [Algebra R S
     (by change aeval _ _ = _; simp [← Subalgebra.coe_eq_zero, aeval_subalgebra_coe])
 
 open Algebra Polynomial in
+/--
+@isnad1 id=surjecti.0h3v.s9.8a62d7b2283b from=translated src=- shape=7a3e2979 vocab=bbf0337d
+-/
 lemma Minpoly.toAdjoin'_surjective
     (R : Type*) {S : Type*} [CommRing R] [Ring S] [Algebra R S] (x : S) :
     Function.Surjective (Minpoly.toAdjoin' R x) := by
@@ -61,11 +64,17 @@ variable (F : Type*) [Field F] (D : Type*) [Ring D] [Algebra F D] [IsQuaternionA
 
 instance : Module.Finite F D := FiniteDimensional.of_rank_eq_nat dim_four
 
+/--
+@isnad1 id=eq.0h2v.s5.89d685ec9dee from=translated src=- shape=c91357cd vocab=7e9164d9
+-/
 lemma finrank_eq_four : Module.finrank F D = 4 :=
   Module.finrank_eq_of_rank_eq IsQuaternionAlgebra.dim_four
 
 open scoped IsMulCommutative in
 include F in
+/--
+@isnad1 id=not.0h2v.s5.0605a8fad44e from=translated src=- shape=b42af6cb vocab=9667f4e1
+-/
 lemma not_isMulCommutative : ¬ IsMulCommutative D := by
   intro H
   by_cases h : (⊥ : Subalgebra F D) = ⊤
@@ -73,6 +82,9 @@ lemma not_isMulCommutative : ¬ IsMulCommutative D := by
   · rw [← Algebra.IsCentral.center_eq_bot F D, Subalgebra.center_eq_top] at h; contradiction
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=or.0h2v.s7.e5011b8f6db1 from=translated src=- shape=d93fe5ac vocab=7c0f3e39
+-/
 lemma nomepty_algEquiv_matrix_or_forall_isUnit :
     (Nonempty (D ≃ₐ[F] Matrix (Fin 2) (Fin 2) F)) ∨ (∀ a : D, a ≠ 0 → IsUnit a) := by
   have := IsArtinianRing.of_finite F D
@@ -89,6 +101,9 @@ lemma nomepty_algEquiv_matrix_or_forall_isUnit :
     refine .inl ⟨e.trans e'.mapMatrix.symm⟩
   · cases Nat.eq_zero_or_pos (Module.finrank F K) <;> lia
 
+/--
+@isnad1 id=eq.1h3v.s7.77b13b573a70 from=translated src=- shape=88dadca4 vocab=49732e96
+-/
 lemma Algebra.finrank_adjoin_singleton (F : Type*) {A : Type*} [Field F] [Ring A]
     [Algebra F A] (x : A) (hx : IsIntegral F x) :
     Module.finrank F (Algebra.adjoin F {x}) = (minpoly F x).natDegree := by
@@ -97,6 +112,9 @@ lemma Algebra.finrank_adjoin_singleton (F : Type*) {A : Type*} [Field F] [Ring A
 
 -- bad proof. Should be something something reduced char poly.
 variable {D} in
+/--
+@isnad1 id=le.0h3v.s5.78cf957f8530 from=translated src=- shape=bef36ccd vocab=80acded5
+-/
 lemma natDegree_minpoly_le_two (x : D) : (minpoly F x).natDegree ≤ 2 := by
   obtain ⟨⟨e⟩⟩ | H := nomepty_algEquiv_matrix_or_forall_isUnit F D
   · rw [← minpoly.algHom_eq e.toAlgHom e.injective]

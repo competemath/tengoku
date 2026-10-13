@@ -49,7 +49,9 @@ open AdjoinRoot in
 field of a discrete valuation ring `R` lifts to an unramified extension `L` of its fraction field
 `K`: there is a finite separable extension `L/K` with `[L : K] = [k' : k]` and a discrete
 valuation ring `S` with fraction field `L`, containing `R` via a local homomorphism, whose residue
-field is `k'`. (The residue degree being `[L : K]` forces ramification index `1`.) -/
+field is `k'`. (The residue degree being `[L : K]` forces ramification index `1`.)
+@isnad1 id=ex.0h3v.s9.89aa1e9c6002 from=translated src=- shape=bd9e8c1f vocab=f1ed6ecc
+-/
 theorem exists_unramified_extension_of_residueField
     (k' : Type u) [Field k'] [Algebra (ResidueField R) k']
     [FiniteDimensional (ResidueField R) k'] [Algebra.IsSeparable (ResidueField R) k'] :

@@ -21,6 +21,9 @@ the Sobolev witness layer for smooth functions. -/
 noncomputable def smoothGradNorm (u : E → ℝ) : E → ℝ :=
   fun x => ‖WithLp.toLp 2 (fun i => (fderiv ℝ u x) (EuclideanSpace.single i 1))‖
 
+/--
+@isnad1 id=le.7h6v.s8.6b618cd8cad5 from=translated src=- shape=0092af43 vocab=798b7e95
+-/
 theorem weighted_power_mean_setIntegral
     {α : Type*} [MeasurableSpace α] {μ : Measure α}
     {s : Set α} (hs : MeasurableSet s)

@@ -11,7 +11,9 @@ This file gives a criterion for bounding the order of a unit in `ZMod` from belo
 @[expose] public section
 
 /-- If no positive power through `n` is `1` modulo `b`, then the multiplicative order exceeds
-`n`. -/
+`n`.
+@isnad1 id=lt.2h3v.s6.a14d8ea06f68 from=translated src=- shape=467b3002 vocab=26642acf
+-/
 lemma orderOf_lt_of {a b n : ℕ} [hn : Fact (b.Prime)] (h : a.Coprime b)
     (H : ∀ i ≤ n, 1 ≤ i → a ^ i % b ≠ 1) :
     n < orderOf (ZMod.unitOfCoprime _ h) := by

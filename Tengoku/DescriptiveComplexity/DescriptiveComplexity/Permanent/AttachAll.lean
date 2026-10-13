@@ -67,6 +67,9 @@ def base : ∀ l : List (Site V), V → AttachType V l
   | _ :: l, a => Sum.inl (base l a)
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=injectiv.0h2v.s3.c51c91240876 from=translated src=- shape=5d566cc2 vocab=46184629
+-/
 theorem base_injective : ∀ l : List (Site V), Function.Injective (base l)
   | [] => fun _ _ h => h
   | _ :: l => fun _ _ h => base_injective l (Sum.inl.inj h)
@@ -76,11 +79,17 @@ def baseEmb (l : List (Site V)) : V ↪ AttachType V l :=
   ⟨base l, base_injective l⟩
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=eq.0h4v.s6.3e43b0c5875e from=translated src=- shape=5dbcedf6 vocab=f24ecd20
+-/
 theorem map_baseEmb_cons (s : Site V) (l : List (Site V)) (A : Finset V) :
     A.map (baseEmb (s :: l)) = (A.map (baseEmb l)).map Function.Embedding.inl :=
   (Finset.map_map (baseEmb l) Function.Embedding.inl A).symm
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=eq.0h2v.s4.65814f5d7df0 from=translated src=- shape=1adafe64 vocab=f9f54f8b
+-/
 theorem map_baseEmb_nil (A : Finset V) : A.map (baseEmb []) = A :=
   Finset.map_refl
 
@@ -104,6 +113,9 @@ def cols : List (Site V) → List V
   | s :: l => s.v :: s.v' :: cols l
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=mem.1h3v.s5.b6d192bd3982 from=translated src=- shape=b2b8f606 vocab=a5a37e33
+-/
 theorem mem_cols_v (l : List (Site V)) (t : Site V) (ht : t ∈ l) : t.v ∈ cols l := by
   induction l with
   | nil => simp at ht
@@ -113,6 +125,9 @@ theorem mem_cols_v (l : List (Site V)) (t : Site V) (ht : t ∈ l) : t.v ∈ col
     · exact List.mem_cons_of_mem _ (List.mem_cons_of_mem _ (ih ht))
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=mem.1h3v.s5.12f34aaa95b3 from=translated src=- shape=b2b8f606 vocab=f4ddc361
+-/
 theorem mem_cols_v' (l : List (Site V)) (t : Site V) (ht : t ∈ l) : t.v' ∈ cols l := by
   induction l with
   | nil => simp at ht
@@ -122,7 +137,9 @@ theorem mem_cols_v' (l : List (Site V)) (t : Site V) (ht : t ∈ l) : t.v' ∈ c
     · exact List.mem_cons_of_mem _ (List.mem_cons_of_mem _ (ih ht))
 
 /-- **Attaching a gadget at every site multiplies the permanent by `4` per
-site and leaves the XOR sum.** -/
+site and leaves the XOR sum.**
+@isnad1 id=eq.3h5v.s7.f97ddd8827d8 from=translated src=- shape=d7bfe380 vocab=31c1578a
+-/
 theorem pdel_attachAll (M₀ : V → V → ℤ) :
     ∀ (l : List (Site V)) (A B : Finset V), (∀ s ∈ l, s.u ≠ s.u') → (cols l).Nodup →
       (∀ s ∈ l, s.v ∉ B ∧ s.v' ∉ B) →
@@ -163,15 +180,24 @@ def delRows (l : List (Site V)) (T : Finset (Site V)) : Finset V :=
   l.toFinset.image fun s => if s ∈ T then s.u else s.u'
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h2v.s4.17ff2a05cd70 from=translated src=- shape=2f1182d0 vocab=5ad7bc4c
+-/
 theorem delRows_nil (T : Finset (Site V)) : delRows [] T = ∅ := by
   simp [delRows]
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h4v.s6.7efd3e9743c5 from=translated src=- shape=3416fedb vocab=27bff3f9
+-/
 theorem delRows_cons (s : Site V) (l : List (Site V)) (T : Finset (Site V)) :
     delRows (s :: l) T = insert (if s ∈ T then s.u else s.u') (delRows l T) := by
   rw [delRows, delRows, List.toFinset_cons, Finset.image_insert]
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h4v.s5.569cde67afc7 from=translated src=- shape=6623015a vocab=aabef984
+-/
 theorem delRows_insert_of_notMem {s : Site V} {l : List (Site V)} (hs : s ∉ l)
     (T : Finset (Site V)) : delRows l (insert s T) = delRows l T :=
   Finset.image_congr fun t ht => by
@@ -181,7 +207,9 @@ theorem delRows_insert_of_notMem {s : Site V} {l : List (Site V)} (hs : s ∉ l)
 /-- **The XOR sum of self-loop sites**: when every site pairs two self-loops,
 the sum is over the subsets `T` of the sites, the first loop chosen at the
 sites of `T` and the second elsewhere, of the principal minor of the base
-matrix with the chosen rows deleted. -/
+matrix with the chosen rows deleted.
+@isnad1 id=eq.3h4v.s7.efce6c347f42 from=translated src=- shape=8dc50f49 vocab=0867fd52
+-/
 theorem xorSum_eq_sum (M₀ : V → V → ℤ) :
     ∀ (l : List (Site V)), (cols l).Nodup → (∀ s ∈ l, s.v = s.u ∧ s.v' = s.u') →
       ∀ A : Finset V, (∀ s ∈ l, s.u ∉ A ∧ s.u' ∉ A) →

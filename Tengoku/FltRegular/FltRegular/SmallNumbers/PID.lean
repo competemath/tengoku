@@ -21,7 +21,9 @@ local notation "M " K:70 => (4 / π) ^ nrComplexPlaces K *
 namespace RingOfIntegers
 
 /-- A Galois number field has principal ring of integers when the ideals arising from all relevant
-small primes satisfy the stated norm or principality alternative. -/
+small primes satisfy the stated norm or principality alternative.
+@isnad1 id=isprinci.2h2v.s11.3d1af91c58bb from=translated src=- shape=62a2e072 vocab=91210058
+-/
 theorem PIDGalois [IsGalois ℚ K] {θ : 𝓞 K} (hθ : exponent θ = 1)
     (h : ∀ p ∈ Finset.Icc 1 ⌊(M K)⌋₊, (hp : p.Prime) →
       haveI : Fact (p.Prime) := ⟨hp⟩

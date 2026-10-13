@@ -21,6 +21,9 @@ namespace NTM
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=eq.0h5v.s6.d1d1d68e6aa7 from=translated src=- shape=b4986973 vocab=24a81a79
+-/
 theorem trace_snoc_internal (tm : NTM n) (T : ℕ)
     (choices : Fin (T + 1) → Bool) (c : Cfg n tm.Q) :
     tm.trace (T + 1) choices c =
@@ -28,6 +31,9 @@ theorem trace_snoc_internal (tm : NTM n) (T : ℕ)
         (tm.trace T (fun i => choices i.castSucc) c) := by
   exact tm.trace_add T 1 choices c
 
+/--
+@isnad1 id=var.0h8v.s6.bebb2c169aaf from=translated src=- shape=234f13d2 vocab=d3623e6a
+-/
 theorem trace_invariant_internal (tm : NTM n) (T : ℕ)
     (choices : Fin T → Bool) (c : Cfg n tm.Q)
     (invariant : ℕ → Cfg n tm.Q → Prop)
@@ -47,6 +53,9 @@ theorem trace_invariant_internal (tm : NTM n) (T : ℕ)
       · intro time htime current hcurrent
         simpa using step time (Nat.lt_succ_of_lt htime) current hcurrent
 
+/--
+@isnad1 id=eq.2h8v.s7.8384610344df from=translated src=- shape=d795a06d vocab=38138b3d
+-/
 theorem trace_map_prefix_internal {n' : ℕ} (source : NTM n) (target : NTM n')
     (wrap : Cfg n source.Q → Cfg n' target.Q)
     (step : ∀ (choice : Bool) (c : Cfg n source.Q), c.state ≠ source.qhalt →

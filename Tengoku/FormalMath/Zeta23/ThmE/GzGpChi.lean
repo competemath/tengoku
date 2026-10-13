@@ -27,7 +27,9 @@ namespace GzGpChi
 
 variable (P : Params) (κ q : ℕ) (c : ℕ → ℂ) (T : ℝ)
 
-/-- Prime side: the [eq:EF]_χ right-hand side at (f_k, f_l) is literally (G^{prime}_χ)_{kl}. No hypotheses. -/
+/-- Prime side: the [eq:EF]_χ right-hand side at (f_k, f_l) is literally (G^{prime}_χ)_{kl}. No hypotheses.
+@isnad1 id=eq.0h7v.s7.6ff84f9a8b2a from=translated src=- shape=bc4f1c66 vocab=b39e9923
+-/
 lemma EFrhs_eq_GpChi (k l : Fin (P.d T)) :
     (∫ τ : ℝ, paperFT (P.fk T k) τ * conj (paperFT (P.fk T l) τ) *
       (ThmE.nuXc κ q c (Real.exp (P.L T)) τ : ℂ)) = ThmE.GpChi P κ q c T k l := by
@@ -43,7 +45,9 @@ lemma EFrhs_eq_GpChi (k l : Fin (P.d T)) :
 end GzGpChi
 
 /-- **The H-EF(χ) bridge**: zero-side and prime-side matrices for L(s,χ) agree, given H-EF(χ), L > 0,
-φ ∈ C² and supp φ ⊆ [−L/2, L/2]. -/
+φ ∈ C² and supp φ ⊆ [−L/2, L/2].
+@isnad1 id=eq.4h6v.s7.b1d87292f181 from=translated src=- shape=66569478 vocab=f42b8948
+-/
 theorem ZeroConfig.Gz_eq_GpChi (Z : ZeroConfig) (P : Params) (κ q : ℕ) (c : ℕ → ℂ) (T : ℝ)
     (hEF : ThmE.ExplicitFormulaPaperChi κ q c Z) (hL : 0 < P.L T)
     (hφC2 : ContDiff ℝ 2 (fun u => (P.phi T u : ℂ)))
@@ -54,7 +58,9 @@ theorem ZeroConfig.Gz_eq_GpChi (Z : ZeroConfig) (P : Params) (κ q : ℕ) (c : �
     (GzGp.fk_contDiff P T hφC2 l) (GzGp.fk_tsupport P T hφsupp k) (GzGp.fk_tsupport P T hφsupp l)
   rw [GzGp.Gz_eq_W, hW, GzGpChi.EFrhs_eq_GpChi]
 
-/-- Under H-EF(χ) the zero-side entries are absolutely summable (for the χ-tail file). -/
+/-- Under H-EF(χ) the zero-side entries are absolutely summable (for the χ-tail file).
+@isnad1 id=summable.4h8v.s7.83b519b2f1f0 from=translated src=- shape=11415a07 vocab=4fd71604
+-/
 theorem ZeroConfig.summable_Gsummand_chi (Z : ZeroConfig) (P : Params) (κ q : ℕ) (c : ℕ → ℂ) (T : ℝ)
     (hEF : ThmE.ExplicitFormulaPaperChi κ q c Z) (hL : 0 < P.L T)
     (hφC2 : ContDiff ℝ 2 (fun u => (P.phi T u : ℂ)))

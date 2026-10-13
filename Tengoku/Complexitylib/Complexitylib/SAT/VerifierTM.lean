@@ -390,7 +390,9 @@ private theorem satLengthCheck_scan_prefix_loop (α : List Bool) (B : ℕ) :
 /-- Started-tape correctness for the witness-length checker. The input tape is
 already positioned at cell `1`, the counter tape stores a unary bound `B`, and
 the output tape is the started blank tape. The machine halts with output `1`
-iff `|α| ≤ B`. -/
+iff `|α| ≤ B`.
+@isnad1 id=hoaretim.0h2v.s6.0a2f6bf96b59 from=translated src=- shape=fb882fc8 vocab=cf4a5519
+-/
 theorem satLengthCheckTM_started_hoareTime (B : ℕ) (α : List Bool) :
     satLengthCheckTM.HoareTime
       (fun inp work out =>
@@ -464,7 +466,9 @@ theorem satLengthCheckTM_started_hoareTime (B : ℕ) (α : List Bool) :
 The last work tape supplies the witness bits, work tape `0` supplies a unary
 counter bound, and the output tape receives `1` iff the witness length is at
 most that bound. The counter tape precondition includes the structural
-no-`▷` invariant required by `retargetInput`. -/
+no-`▷` invariant required by `retargetInput`.
+@isnad1 id=hoaretim.0h2v.s8.e956aae268bd from=translated src=- shape=4d90ef49 vocab=491ca6ae
+-/
 theorem retargetInput_satLengthCheckTM_started_hoareTime (B : ℕ) (α : List Bool) :
     (TM.retargetInput satLengthCheckTM).HoareTime
       (fun _inp work out =>
@@ -537,7 +541,9 @@ def satCounter3TM : TM 3 :=
 
 /-- Build the unary counter `|z| + 1` on tape `0` from staged formula tape `2`
 while preserving the staged witness on tape `1` and leaving the output tape in
-the started blank configuration. -/
+the started blank configuration.
+@isnad1 id=hoaretim.0h2v.s8.b898ddab429e from=translated src=- shape=3536ec75 vocab=a23a1ee9
+-/
 theorem satCounter3TM_started_hoareTime (z α : List Bool) :
     satCounter3TM.HoareTime
       (fun _inp work out =>
@@ -638,7 +644,9 @@ theorem satCounter3TM_started_hoareTime (z α : List Bool) :
     hinner.2.2.2.2.2.2⟩
 
 /-- Richer started-tape wrapper for `satCounter3TM` that also records that the
-real input tape remains stable when it starts past `▷`. -/
+real input tape remains stable when it starts past `▷`.
+@isnad1 id=hoaretim.0h2v.s8.5b16d29d75e2 from=translated src=- shape=7feebd4a vocab=9dfc4d64
+-/
 theorem satCounter3TM_started_stableInput_hoareTime (z α : List Bool) :
     satCounter3TM.HoareTime
       (fun inp work out =>
@@ -975,7 +983,9 @@ private theorem satLengthCheckPassive_scan_prefix_loop (α β : List Bool) (B : 
         omega
 
 /-- Started-tape correctness for `satLengthCheckPassiveTM`: the machine checks
-`|α| ≤ B` while leaving work tape `1` unchanged. -/
+`|α| ≤ B` while leaving work tape `1` unchanged.
+@isnad1 id=hoaretim.0h3v.s7.912be6c1c718 from=translated src=- shape=7f131899 vocab=9296fa51
+-/
 theorem satLengthCheckPassiveTM_started_hoareTime (B : ℕ) (α β : List Bool) :
     satLengthCheckPassiveTM.HoareTime
       (fun inp work out =>
@@ -1056,7 +1066,9 @@ def satLengthCheck3TM : TM 3 :=
 
 /-- Virtual-input/work-tape version of `satLengthCheckPassiveTM`: work tape
 `2` supplies the witness bits, work tape `0` supplies the unary bound, and
-work tape `1` is preserved exactly. -/
+work tape `1` is preserved exactly.
+@isnad1 id=hoaretim.0h3v.s7.68c0db0e199b from=translated src=- shape=1914b4b8 vocab=de79a57a
+-/
 theorem satLengthCheck3TM_started_hoareTime (B : ℕ) (α β : List Bool) :
     satLengthCheck3TM.HoareTime
       (fun _inp work out =>
@@ -1483,7 +1495,9 @@ private lemma parseEvalResult_invalid_raw (α : Assignment) (toks : List EncToke
       · simp [RawInvalid.decodeRaw?_eq_none hbad]
       · simp [RawInvalid.ne_nil hbad]
 
-/-- A singleton clause evaluates to the value of its unique literal. -/
+/-- A singleton clause evaluates to the value of its unique literal.
+@isnad1 id=eq.0h2v.s4.8721428d0cba from=translated src=- shape=84e112d7 vocab=75c3fc17
+-/
 @[simp] theorem Clause.eval_singleton (α : Assignment) (ℓ : Lit) :
     Clause.eval α [ℓ] = Lit.eval α ℓ := by
   simp [Clause.eval]
@@ -1584,7 +1598,9 @@ private lemma satEvalSemRun_correct (α : Assignment) (toks : List EncToken) :
 
 /-- Correctness of the pure evaluator: `satEvalSemBits α z` is `false` when
 `z` fails to decode as a CNF, and otherwise is `CNF.eval α` of the decoded
-formula. -/
+formula.
+@isnad1 id=eq.0h2v.s4.b305f141d793 from=translated src=- shape=d9b99313 vocab=13882a94
+-/
 theorem satEvalSemBits_eq_decode_eval (α z : List Bool) :
     satEvalSemBits α z =
       match CNF.decode? z with
@@ -1609,7 +1625,9 @@ def verifyPairSem (w : List Bool) : Bool :=
   | some (z, α) => decide (α.length ≤ z.length + 1) && satEvalSemBits α z
 
 /-- The pure semantic model agrees with the reference Boolean verifier
-`SAT.verifyPair` on every input. -/
+`SAT.verifyPair` on every input.
+@isnad1 id=eq.0h1v.s3.482b1e71b63c from=translated src=- shape=44e33ebc vocab=724abf1b
+-/
 theorem verifyPairSem_eq_verifyPair (w : List Bool) :
     verifyPairSem w = verifyPair w := by
   unfold verifyPairSem verifyPair
@@ -1623,13 +1641,17 @@ theorem verifyPairSem_eq_verifyPair (w : List Bool) :
       cases CNF.decode? z <;> simp
 
 /-- `verifyPairSem` accepts exactly the members of the paired witness
-language `pairLang Witness`. -/
+language `pairLang Witness`.
+@isnad1 id=iff.0h1v.s4.87e971016042 from=translated src=- shape=b62a3d99 vocab=a472d758
+-/
 theorem verifyPairSem_eq_true_iff_mem_pairLang (w : List Bool) :
     verifyPairSem w = true ↔ w ∈ pairLang Witness := by
   rw [verifyPairSem_eq_verifyPair, verifyPair_eq_true_iff_mem_pairLang]
 
 /-- Set-level restatement: `pairLang Witness` is the language accepted by the
-pure semantic verifier `verifyPairSem`. -/
+pure semantic verifier `verifyPairSem`.
+@isnad1 id=eq.0h0v.s3.3c17b2aeb4ef from=translated src=- shape=3255e942 vocab=5da96136
+-/
 theorem pairLang_witness_eq_verifyPairSemLang :
     pairLang Witness = {w | verifyPairSem w = true} := by
   ext w
@@ -2004,7 +2026,9 @@ literal may rewind the assignment tape. -/
 def verifyPairTMTime (n : ℕ) : ℕ :=
   (n + 3) * (n + 3) + 6 * n + 20
 
-/-- The verifier's time budget `verifyPairTMTime` is `O(n²)`. -/
+/-- The verifier's time budget `verifyPairTMTime` is `O(n²)`.
+@isnad1 id=bigo.0h0v.s4.04f7eda593fa from=translated src=- shape=3efa0af9 vocab=2cb6c9f3
+-/
 theorem verifyPairTMTime_bigO_quadratic :
     Complexity.BigO verifyPairTMTime ((· ^ 2) : ℕ → ℕ) := by
   unfold Complexity.BigO
@@ -2018,7 +2042,9 @@ theorem verifyPairTMTime_bigO_quadratic :
   exact hcalc
 
 /-- The verifier's time budget is polynomially bounded (witnessed by
-degree `2`), the form needed for polynomial-time verifier packaging. -/
+degree `2`), the form needed for polynomial-time verifier packaging.
+@isnad1 id=ex.0h0v.s4.1caeca8dc65c from=translated src=- shape=4337b07c vocab=2cb6c9f3
+-/
 theorem verifyPairTMTime_polynomial :
     ∃ d : ℕ, Complexity.BigO verifyPairTMTime ((· ^ d) : ℕ → ℕ) :=
   ⟨2, verifyPairTMTime_bigO_quadratic⟩

@@ -39,7 +39,9 @@ namespace TMData
 
 variable {A : Type} [Finite A] {M : TMData A}
 
-/-- The rank of a position is monotone along the order. -/
+/-- The rank of a position is monotone along the order.
+@isnad1 id=le.3h4v.s5.d31aa1cfe3b5 from=translated src=- shape=67e0d3dc vocab=c3356022
+-/
 theorem bitRank_le_of_le (hlin : IsLinOrd M.Le) {p q : A} (hp : M.Posn p)
     (hle : M.Le p q) : bitRank M.Le M.Posn p ≤ bitRank M.Le M.Posn q := by
   rcases eq_or_ne p q with rfl | hne
@@ -56,7 +58,9 @@ private theorem not_minPos_of_lt (hlin : IsLinOrd M.Le) {p₀ p : A} (hp₀ : M.
 omit [Finite A] in
 /-- **The successor of a position is unique.** `DescriptiveComplexity.succPos_left_unique`
 gives the predecessor; a step of a machine needs this direction, since the head
-moves to *the* neighbor in the direction the transition names. -/
+moves to *the* neighbor in the direction the transition names.
+@isnad1 id=eq.3h5v.s5.f4765d5f3e96 from=translated src=- shape=9b3541b6 vocab=94eb089f
+-/
 theorem succPos_right_unique (hlin : IsLinOrd M.Le) {p q q' : A}
     (h : SuccPos M.Le M.Posn p q) (h' : SuccPos M.Le M.Posn p q') : q = q' := by
   rcases hlin.2.2.2 q q' with hle | hle
@@ -75,7 +79,9 @@ that names the transition asked for at *this* configuration only.
 That is what a program which guesses in one phase has: everywhere but the guess,
 the state and the symbol read name the transition, and the two remaining clauses
 – that a transition has one destination and writes one symbol – hold outright.
-Feed it to `DescriptiveComplexity.TMData.uniqueFrom_of_invariant`. -/
+Feed it to `DescriptiveComplexity.TMData.uniqueFrom_of_invariant`.
+@isnad1 id=eq.6h5v.s7.b5a938e33460 from=translated src=- shape=76127dce vocab=8ebdcbcf
+-/
 theorem step_functional_at (hlin : IsLinOrd M.Le)
     (hdstf : ∀ (τ q q' : A), M.Dst τ q → M.Dst τ q' → q = q')
     (hwritef : ∀ (τ a a' : A), M.Write τ a → M.Write τ a' → a = a')
@@ -100,7 +106,9 @@ omit [Finite A] in
 /-- **A deterministic machine takes at most one step** from any configuration:
 the transition is pinned by the state and the symbol read, its effect by the
 functionality of `Dst` and `Write`, and the new head by uniqueness of the
-neighbor in the direction the transition names. -/
+neighbor in the direction the transition names.
+@isnad1 id=eq.4h5v.s5.a514405547d0 from=translated src=- shape=ca9480a7 vocab=d493636b
+-/
 theorem step_functional (hlin : IsLinOrd M.Le) (hdet : M.Deterministic)
     {c c₁ c₂ : Config A} (h₁ : M.Step c c₁) (h₂ : M.Step c c₂) : c₁ = c₂ :=
   step_functional_at hlin hdet.2.2.1 hdet.2.2.2
@@ -109,7 +117,9 @@ theorem step_functional (hlin : IsLinOrd M.Le) (hdet : M.Deterministic)
 
 omit [Finite A] in
 /-- **Deterministic runs of equal length agree**: the run is unique, which is
-what lets a least fixed point compute it. -/
+what lets a least fixed point compute it.
+@isnad1 id=eq.4h6v.s5.053a94ec9f3e from=translated src=- shape=3f227e2e vocab=ee8b3145
+-/
 theorem stepsIn_functional (hlin : IsLinOrd M.Le) (hdet : M.Deterministic) :
     ∀ {n : ℕ} {c d d' : Config A}, M.StepsIn n c d → M.StepsIn n c d' → d = d' := by
   intro n
@@ -123,7 +133,9 @@ theorem stepsIn_functional (hlin : IsLinOrd M.Le) (hdet : M.Deterministic) :
     exact ih hrest hrest'
 
 /-- Every position that is not the highest has one immediately above it – the
-mirror of `DescriptiveComplexity.exists_predPos`, read in the reversed order. -/
+mirror of `DescriptiveComplexity.exists_predPos`, read in the reversed order.
+@isnad1 id=ex.3h3v.s5.d23b385edcc6 from=translated src=- shape=cd736b6b vocab=171bd3a6
+-/
 theorem exists_succPos' (hlin : IsLinOrd M.Le) {p : A} (hp : M.Posn p)
     (hmax : ¬ MaxPos M.Le M.Posn p) : ∃ q, SuccPos M.Le M.Posn p q := by
   obtain ⟨q, hq⟩ := exists_predPos (Le := fun a b => M.Le b a) hlin.reverse hp hmax
@@ -134,7 +146,9 @@ theorem exists_succPos' (hlin : IsLinOrd M.Le) {p : A} (hp : M.Posn p)
 `DescriptiveComplexity.TMData.stepsIn_of_segment`: when each consecutive pair of a
 segment carries a step *downwards*, the machine walks from the top of the
 segment to any position of it. The check sweeps of a reduction alternate
-direction, so both readings are needed. -/
+direction, so both readings are needed.
+@isnad1 id=stepsin.6h6v.s6.18217656d3f7 from=translated src=- shape=8545b86b vocab=e549b8ae
+-/
 theorem stepsIn_of_segment_down (hlin : IsLinOrd M.Le) {conf : A → Config A} {p₀ p₁ : A}
     (hp₁ : M.Posn p₁)
     (hstep : ∀ p q, SuccPos M.Le M.Posn p q → M.Le p₀ p → M.Le q p₁ →
@@ -176,7 +190,9 @@ later position, in exactly the number of steps their ranks differ by.
 
 This is the sweep primitive: a reduction describes a phase by giving its
 intended configuration at each position and discharging the single-step
-obligation, with no induction of its own. -/
+obligation, with no induction of its own.
+@isnad1 id=stepsin.6h6v.s6.8a90ddad571e from=translated src=- shape=4a400f29 vocab=e549b8ae
+-/
 theorem stepsIn_of_segment (hlin : IsLinOrd M.Le) {conf : A → Config A} {p₀ p₁ : A}
     (hp₀ : M.Posn p₀)
     (hstep : ∀ p q, SuccPos M.Le M.Posn p q → M.Le p₀ p → M.Le q p₁ →

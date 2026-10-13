@@ -65,7 +65,9 @@ private theorem traceD_dropChoice_congr_prefix (W : WitnessTM k) :
             hcells (j + 1) (by omega)
 
 /-- The visible result of a bounded witness run depends only on the corresponding
-finite Boolean prefix. Unread witness tails need not agree. -/
+finite Boolean prefix. Unread witness tails need not agree.
+@isnad1 id=eq.1h6v.s6.100fe66df388 from=translated src=- shape=cd66e462 vocab=0abd0f93
+-/
 theorem run_congr_prefix_internal (W : WitnessTM k) (x : List Bool) (t : ℕ)
     (g h : ℕ → Bool) (hprefix : ∀ i < t, g i = h i) :
     NTM.dropChoice (W.run x g t) = NTM.dropChoice (W.run x h t) := by
@@ -77,6 +79,9 @@ theorem run_congr_prefix_internal (W : WitnessTM k) (x : List Bool) (t : ℕ)
     simp only [NTM.loadCfg_work_last, NTM.loadTape_head]
     rw [Nat.add_comm 1 j, NTM.loadTape_cells_succ, NTM.loadTape_cells_succ, hprefix j hj]
 
+/--
+@isnad1 id=ex.0h5v.s6.6283145f7452 from=translated src=- shape=866cf201 vocab=c2a69cf7
+-/
 theorem exists_run_eq_trace_internal (W : WitnessTM k) (x : List Bool) (t : ℕ)
     (choices : Fin t → Bool) :
     ∃ g, NTM.dropChoice (W.run x g t) = W.toNTM.trace t choices (W.toNTM.initCfg x) := by
@@ -90,6 +95,9 @@ theorem exists_run_eq_trace_internal (W : WitnessTM k) (x : List Bool) (t : ℕ)
   rw [hrun]
   exact heq
 
+/--
+@isnad1 id=ex.0h5v.s6.0e251da55f60 from=translated src=- shape=ef276f16 vocab=d3488709
+-/
 theorem exists_trace_eq_run_internal (W : WitnessTM k) (x : List Bool) (t : ℕ)
     (g : ℕ → Bool) :
     ∃ choices, W.toNTM.trace t choices (W.toNTM.initCfg x) =
@@ -100,6 +108,9 @@ theorem exists_trace_eq_run_internal (W : WitnessTM k) (x : List Bool) (t : ℕ)
   have hinit := NTM.dropChoice_loadCfg W.machine x g
   exact (congrArg (fun c => W.toNTM.trace t _ c) hinit).symm.trans h.symm
 
+/--
+@isnad1 id=iff.0h5v.s6.2c5d54695906 from=translated src=- shape=06eb6906 vocab=c2a69cf7
+-/
 theorem exists_run_iff_internal (W : WitnessTM k) (x : List Bool) (t : ℕ)
     (P : Cfg k W.machine.Q → Prop) :
     (∃ g, P (NTM.dropChoice (W.run x g t))) ↔
@@ -112,6 +123,9 @@ theorem exists_run_iff_internal (W : WitnessTM k) (x : List Bool) (t : ℕ)
     obtain ⟨g, heq⟩ := exists_run_eq_trace_internal W x t choices
     exact ⟨g, heq.symm ▸ hc⟩
 
+/--
+@isnad1 id=iff.0h5v.s6.75d2a51c61eb from=translated src=- shape=72f7a031 vocab=c2a69cf7
+-/
 theorem forall_run_iff_internal (W : WitnessTM k) (x : List Bool) (t : ℕ)
     (P : Cfg k W.machine.Q → Prop) :
     (∀ g, P (NTM.dropChoice (W.run x g t))) ↔
@@ -124,6 +138,9 @@ theorem forall_run_iff_internal (W : WitnessTM k) (x : List Bool) (t : ℕ)
     obtain ⟨choices, heq⟩ := exists_trace_eq_run_internal W x t g
     exact heq ▸ h choices
 
+/--
+@isnad1 id=iff.0h4v.s4.ee22086a1e3a from=translated src=- shape=4d926e7c vocab=6ef667b3
+-/
 theorem decidesInTime_iff_internal (W : WitnessTM k) (L : Language) (T : ℕ → ℕ) :
     W.DecidesInTime L T ↔ W.toNTM.DecidesInTime L T := by
   have hh : W.AllWitnessesHaltIn T ↔ W.toNTM.AllPathsHaltIn T := by
@@ -135,6 +152,9 @@ theorem decidesInTime_iff_internal (W : WitnessTM k) (L : Language) (T : ℕ →
       (fun c => c.state = W.machine.qhalt ∧ c.output.cells 1 = Γ.one)
   exact and_congr hh (forall_congr' fun x => iff_congr Iff.rfl (ha x))
 
+/--
+@isnad1 id=iff.0h5v.s4.dfc94a666b12 from=translated src=- shape=7a3f3bc7 vocab=f22c02cd
+-/
 theorem decidesInTimeSpace_iff_internal (W : WitnessTM k) (L : Language) (T S : ℕ → ℕ) :
     W.DecidesInTimeSpace L T S ↔ W.toNTM.DecidesInTimeSpace L T S := by
   refine and_congr (decidesInTime_iff_internal W L T) ?_
@@ -158,6 +178,9 @@ end WitnessTM
 
 namespace NTM
 
+/--
+@isnad1 id=eq.0h2v.s3.6eb19fcb5e4d from=translated src=- shape=6ddf6d3e vocab=bb049302
+-/
 theorem toNTM_toWitnessTM_internal (N : NTM k) : N.toWitnessTM.toNTM = N := by
   cases N
   simp only [WitnessTM.toNTM, toWitnessTM, ofGuess, choiceTM]

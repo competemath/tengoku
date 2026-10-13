@@ -1503,7 +1503,9 @@ private theorem initTM_hoareTime_core (α x : List Bool) {c₁ : Cfg 6 initTM.Q}
     * copied the qstart field `(takeField (groupPairs α)).1` onto the state
       tape (work 3);
     * left work tapes 1, 2, 5 and the output tape blank;
-    * parked every work-tape head and the output head at cell 1. -/
+    * parked every work-tape head and the output head at cell 1.
+@isnad1 id=hoaretim.0h2v.s9.25677d435fe1 from=translated src=- shape=2e2b9f02 vocab=6a609f78
+-/
 theorem initTM_hoareTime (α x : List Bool) :
     initTM.HoareTime
       (fun inp work out =>
@@ -1548,7 +1550,9 @@ theorem initTM_hoareTime (α x : List Bool) :
     work tape is `(Tape.init []).move Dir3.right` (blank cells, head 1), and
     the output tape is blank with head 1. This is the form in which a lifted
     `initTM` receives its tapes when it runs mid-sequence rather than as the
-    first phase of a machine. -/
+    first phase of a machine.
+@isnad1 id=hoaretim.0h2v.s9.d3abad68509c from=translated src=- shape=59f8fcdd vocab=8461998e
+-/
 theorem initTM_hoareTime_started (α x : List Bool) :
     initTM.HoareTime
       (fun inp work out =>

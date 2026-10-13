@@ -45,7 +45,9 @@ namespace BinEnum
 
 variable {Le : A → A → Prop} {Posn : A → Prop} {e : Fin N → A}
 
-/-- The rank of a position is its index. -/
+/-- The rank of a position is its index.
+@isnad1 id=eq.1h6v.s5.4a835fc0cd8d from=translated src=- shape=0f0a9920 vocab=c931361a
+-/
 theorem bitRank_eq (h : BinEnum Le Posn e) (p : Fin N) : bitRank Le Posn (e p) = (p : ℕ) := by
   classical
   have hset : {q : A | Posn q ∧ Le q (e p) ∧ q ≠ e p} = e '' ↑(Finset.Iio p) := by
@@ -62,7 +64,9 @@ theorem bitRank_eq (h : BinEnum Le Posn e) (p : Fin N) : bitRank Le Posn (e p) =
   rw [hset, Set.ncard_image_of_injective _ h.injective, Set.ncard_coe_finset, Fin.card_Iio]
 
 open Classical in
-/-- The decoded number is the sum of the place values of its bits. -/
+/-- The decoded number is the sum of the place values of its bits.
+@isnad1 id=eq.1h6v.s6.38fdda5b6456 from=translated src=- shape=eb7223f9 vocab=799247a7
+-/
 theorem binNum_eq_sum (h : BinEnum Le Posn e) (b : A → Prop) :
     binNum Le Posn b = ∑ p : Fin N, if b (e p) then 2 ^ (p : ℕ) else 0 := by
   have hset : {q : A | Posn q ∧ b q} = e '' ↑(Finset.univ.filter fun p : Fin N => b (e p)) := by
@@ -80,7 +84,9 @@ theorem binNum_eq_sum (h : BinEnum Le Posn e) (b : A → Prop) :
     Finset.sum_filter]
 
 /-- **The decoding.** A set of positions carrying the binary digits of a number
-that fits in `N` positions decodes to that number. -/
+that fits in `N` positions decodes to that number.
+@isnad1 id=eq.3h7v.s6.212b931b43a2 from=translated src=- shape=b7e93ea4 vocab=401026f4
+-/
 theorem binNum_eq_of_testBit (h : BinEnum Le Posn e) (w : ℕ) (hw : w < 2 ^ N) (b : A → Prop)
     (hb : ∀ p : Fin N, b (e p) ↔ w.testBit (p : ℕ)) : binNum Le Posn b = w := by
   classical
@@ -90,7 +96,9 @@ theorem binNum_eq_of_testBit (h : BinEnum Le Posn e) (w : ℕ) (hw : w < 2 ^ N) 
   refine Finset.sum_congr rfl fun p _ => ?_
   by_cases hp : w.testBit (p : ℕ) <;> simp [binEncode, hb p, hp]
 
-/-- The universe `Fin N`, every element a position, in its own order. -/
+/-- The universe `Fin N`, every element a position, in its own order.
+@isnad1 id=binenum.1h2v.s5.b8e436be5228 from=translated src=- shape=97603f88 vocab=9112f14f
+-/
 theorem fin {Le : Fin N → Fin N → Prop} (hle : ∀ a b, Le a b ↔ a ≤ b) :
     BinEnum Le (fun _ => True) (id : Fin N → Fin N) where
   injective := Function.injective_id
@@ -100,7 +108,9 @@ theorem fin {Le : Fin N → Fin N → Prop} (hle : ∀ a b, Le a b ↔ a ≤ b) 
 end BinEnum
 
 /-- On the universe `Fin N`, ordered as usual and with every element a
-position, the `Nat.testBit` digits of a number below `2 ^ N` decode to it. -/
+position, the `Nat.testBit` digits of a number below `2 ^ N` decode to it.
+@isnad1 id=eq.3h4v.s6.b773ea80aa07 from=translated src=- shape=7dd18237 vocab=6ef3c4a9
+-/
 theorem binNum_fin_of_testBit {N : ℕ} {Le : Fin N → Fin N → Prop}
     (hle : ∀ a b, Le a b ↔ a ≤ b) (w : ℕ) (hw : w < 2 ^ N) (b : Fin N → Prop)
     (hb : ∀ p : Fin N, b p ↔ w.testBit (p : ℕ)) : binNum Le (fun _ => True) b = w :=

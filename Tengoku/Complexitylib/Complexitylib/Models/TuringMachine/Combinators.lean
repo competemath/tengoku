@@ -78,16 +78,22 @@ def idleDir (head : Γ) : Dir3 :=
 def moveLeftDir (head : Γ) : Dir3 :=
   if head = Γ.start then .right else .left
 
-/-- `idleDir` moves right when reading the start symbol `▷`. -/
+/-- `idleDir` moves right when reading the start symbol `▷`.
+@isnad1 id=eq.0h0v.s2.f5ba9875ec3e from=translated src=- shape=4b736592 vocab=de16c2b1
+-/
 theorem idleDir_start : idleDir Γ.start = Dir3.right := rfl
 
 /-- If the head reads `▷`, then `idleDir` moves right — the shape of the
-    `δ_right_of_start` obligation for idle tapes. -/
+    `δ_right_of_start` obligation for idle tapes.
+@isnad1 id=eq.1h1v.s3.12599afc8952 from=translated src=- shape=7ffac59c vocab=ebbf6b5a
+-/
 theorem idleDir_right_of_start (h : head = Γ.start) : idleDir head = Dir3.right := by
   subst h; rfl
 
 /-- If the head reads `▷`, then `moveLeftDir` moves right — the shape of the
-    `δ_right_of_start` obligation for tapes being rewound. -/
+    `δ_right_of_start` obligation for tapes being rewound.
+@isnad1 id=eq.1h1v.s3.5666a6d1a3d7 from=translated src=- shape=7ffac59c vocab=079fb53a
+-/
 theorem moveLeftDir_right_of_start (h : head = Γ.start) : moveLeftDir head = Dir3.right :=
   by subst h; rfl
 
@@ -100,12 +106,16 @@ def readBackWrite (g : Γ) : Γw :=
   | .blank => .blank
   | .start => .blank
 
-/-- `readBackWrite` recovers the original symbol away from the left-end marker. -/
+/-- `readBackWrite` recovers the original symbol away from the left-end marker.
+@isnad1 id=eq.1h1v.s3.fff1ca8a1d8c from=translated src=- shape=c8beee5b vocab=b1904952
+-/
 theorem toΓ_readBackWrite_of_ne_start {g : Γ} (h : g ≠ Γ.start) :
     (readBackWrite g).toΓ = g := by
   cases g <;> simp_all [readBackWrite, Γw.toΓ]
 
-/-- Writing back the symbol under an off-start head is a no-op. -/
+/-- Writing back the symbol under an off-start head is a no-op.
+@isnad1 id=eq.1h1v.s4.365e1fa7e9f3 from=translated src=- shape=c5737d78 vocab=d150609b
+-/
 theorem write_readBack (t : Tape) (hread : t.read ≠ Γ.start) :
     t.write (readBackWrite t.read) = t := by
   rw [Tape.write]
@@ -115,7 +125,9 @@ theorem write_readBack (t : Tape) (hread : t.read ≠ Γ.start) :
     show Function.update t.cells t.head (readBackWrite t.read).toΓ = t.cells
     rw [toΓ_readBackWrite_of_ne_start hread, Tape.read, Function.update_eq_self]
 
-/-- Writing back the symbol under an off-start head and moving is just the move. -/
+/-- Writing back the symbol under an off-start head and moving is just the move.
+@isnad1 id=eq.1h2v.s4.5a8e0e8b6498 from=translated src=- shape=dc4d5349 vocab=94d628d3
+-/
 theorem writeAndMove_readBack (t : Tape) (hread : t.read ≠ Γ.start) (d : Dir3) :
     t.writeAndMove (readBackWrite t.read) d = t.move d := by
   show (t.write _).move d = t.move d
@@ -137,14 +149,18 @@ def allReadBack {σ : Type} {k : ℕ}
   (newState, fun i => readBackWrite (wHeads i), readBackWrite oHead,
     idleDir iHead, fun i => idleDir (wHeads i), idleDir oHead)
 
-/-- Proof that all-idle directions satisfy `δ_right_of_start`. -/
+/-- Proof that all-idle directions satisfy `δ_right_of_start`.
+@isnad1 id=and.0h4v.s5.e5b859145b2e from=translated src=- shape=2409bd00 vocab=4ca6c063
+-/
 theorem rightOfStart_allIdle (iHead : Γ) (wHeads : Fin k → Γ) (oHead : Γ) :
     (iHead = Γ.start → idleDir iHead = Dir3.right) ∧
     (∀ i, wHeads i = Γ.start → idleDir (wHeads i) = Dir3.right) ∧
     (oHead = Γ.start → idleDir oHead = Dir3.right) :=
   ⟨idleDir_right_of_start, fun _ => idleDir_right_of_start, idleDir_right_of_start⟩
 
-/-- `allReadBack` satisfies the one-sided-tape direction invariant. -/
+/-- `allReadBack` satisfies the one-sided-tape direction invariant.
+@isnad1 id=and.0h4v.s5.e5b859145b2e from=translated src=- shape=2409bd00 vocab=4ca6c063
+-/
 theorem rightOfStart_allReadBack (iHead : Γ) (wHeads : Fin k → Γ) (oHead : Γ) :
     (iHead = Γ.start → idleDir iHead = Dir3.right) ∧
     (∀ i, wHeads i = Γ.start → idleDir (wHeads i) = Dir3.right) ∧

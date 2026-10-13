@@ -67,6 +67,9 @@ def ContinuousMulEquiv.mapUnits {M N : Type*} [TopologicalSpace M] [TopologicalS
   continuous_toFun := by apply Continuous.units_map _ f.continuous_toFun
   continuous_invFun := by apply Continuous.units_map _ f.continuous_invFun
 
+/--
+@isnad1 id=eq.0h3v.s7.97ae163b0241 from=translated src=- shape=17b08bbe vocab=de29b3c4
+-/
 @[to_additive]
 theorem ContinuousMulEquiv.coe_toHomeomorph {M N : Type*} [TopologicalSpace M]
     [TopologicalSpace N] [CommMonoid M] [CommMonoid N]

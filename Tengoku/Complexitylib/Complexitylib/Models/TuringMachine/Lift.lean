@@ -126,24 +126,34 @@ def liftCfgWith (tm : TM n) (m : ℕ) (extras : Fin m → Tape) (c : Cfg n tm.Q)
     else extras (extraIdx i (Nat.le_of_not_lt h))
   output := c.output
 
-/-- `liftCfgWith` leaves the state unchanged. -/
+/-- `liftCfgWith` leaves the state unchanged.
+@isnad1 id=eq.0h5v.s5.87b8923e9eed from=translated src=- shape=b0a08e47 vocab=00cd15a8
+-/
 @[simp] theorem liftCfgWith_state (tm : TM n) (m : ℕ) (extras : Fin m → Tape)
     (c : Cfg n tm.Q) : (liftCfgWith tm m extras c).state = c.state := rfl
 
-/-- `liftCfgWith` leaves the input tape unchanged. -/
+/-- `liftCfgWith` leaves the input tape unchanged.
+@isnad1 id=eq.0h5v.s5.769054d1cfea from=translated src=- shape=3eaa226b vocab=d7f05f87
+-/
 @[simp] theorem liftCfgWith_input (tm : TM n) (m : ℕ) (extras : Fin m → Tape)
     (c : Cfg n tm.Q) : (liftCfgWith tm m extras c).input = c.input := rfl
 
-/-- `liftCfgWith` leaves the output tape unchanged. -/
+/-- `liftCfgWith` leaves the output tape unchanged.
+@isnad1 id=eq.0h5v.s5.33821b787a64 from=translated src=- shape=3eaa226b vocab=5088f62a
+-/
 @[simp] theorem liftCfgWith_output (tm : TM n) (m : ℕ) (extras : Fin m → Tape)
     (c : Cfg n tm.Q) : (liftCfgWith tm m extras c).output = c.output := rfl
 
-/-- `liftCfgWith` maps the first `n` work tapes to `c`'s work tapes. -/
+/-- `liftCfgWith` maps the first `n` work tapes to `c`'s work tapes.
+@isnad1 id=eq.1h6v.s6.7c18d95d0f39 from=translated src=- shape=55126b54 vocab=e5247b02
+-/
 theorem liftCfgWith_work_lt (tm : TM n) (m : ℕ) (extras : Fin m → Tape)
     (c : Cfg n tm.Q) (i : Fin (n + m)) (h : i.val < n) :
     (liftCfgWith tm m extras c).work i = c.work ⟨i.val, h⟩ := dite_eq_left h
 
-/-- `liftCfgWith` maps the extra work tapes to the pinned tapes. -/
+/-- `liftCfgWith` maps the extra work tapes to the pinned tapes.
+@isnad1 id=eq.1h6v.s6.c00d84d2cf9f from=translated src=- shape=c16b33c4 vocab=3568bb9d
+-/
 theorem liftCfgWith_work_ge (tm : TM n) (m : ℕ) (extras : Fin m → Tape)
     (c : Cfg n tm.Q) (i : Fin (n + m)) (h : n ≤ i.val) :
     (liftCfgWith tm m extras c).work i = extras (extraIdx i h) :=
@@ -160,35 +170,49 @@ def liftCfg (tm : TM n) (m : ℕ) (c : Cfg n tm.Q) : Cfg (n + m) tm.Q where
     if h : i.val < n then c.work ⟨i.val, h⟩ else (Tape.init []).move Dir3.right
   output := c.output
 
-/-- `liftCfg` leaves the state unchanged. -/
+/-- `liftCfg` leaves the state unchanged.
+@isnad1 id=eq.0h4v.s5.d0d73826c6bf from=translated src=- shape=c05dc2fd vocab=d76bad2d
+-/
 @[simp] theorem liftCfg_state (tm : TM n) (m : ℕ) (c : Cfg n tm.Q) :
     (tm.liftCfg m c).state = c.state := rfl
 
-/-- `liftCfg` leaves the input tape unchanged. -/
+/-- `liftCfg` leaves the input tape unchanged.
+@isnad1 id=eq.0h4v.s5.9bfa40a503d5 from=translated src=- shape=f2aa162d vocab=d7eb2709
+-/
 @[simp] theorem liftCfg_input (tm : TM n) (m : ℕ) (c : Cfg n tm.Q) :
     (tm.liftCfg m c).input = c.input := rfl
 
-/-- `liftCfg` leaves the output tape unchanged. -/
+/-- `liftCfg` leaves the output tape unchanged.
+@isnad1 id=eq.0h4v.s5.b782e490661e from=translated src=- shape=f2aa162d vocab=4881219d
+-/
 @[simp] theorem liftCfg_output (tm : TM n) (m : ℕ) (c : Cfg n tm.Q) :
     (tm.liftCfg m c).output = c.output := rfl
 
-/-- `liftCfg` maps the first `n` work tapes to `c`'s work tapes. -/
+/-- `liftCfg` maps the first `n` work tapes to `c`'s work tapes.
+@isnad1 id=eq.1h5v.s6.e8fda11b3be2 from=translated src=- shape=5a173f06 vocab=f0f3ac3c
+-/
 theorem liftCfg_work_lt (tm : TM n) (m : ℕ) (c : Cfg n tm.Q)
     (i : Fin (n + m)) (h : i.val < n) :
     (tm.liftCfg m c).work i = c.work ⟨i.val, h⟩ := dite_eq_left h
 
-/-- `liftCfg` maps the extra work tapes to the parked blank tape. -/
+/-- `liftCfg` maps the extra work tapes to the parked blank tape.
+@isnad1 id=eq.1h5v.s6.3b8c7a2aa08c from=translated src=- shape=65d15864 vocab=2228a030
+-/
 theorem liftCfg_work_ge (tm : TM n) (m : ℕ) (c : Cfg n tm.Q)
     (i : Fin (n + m)) (h : n ≤ i.val) :
     (tm.liftCfg m c).work i = (Tape.init []).move Dir3.right :=
   dite_eq_right (Nat.not_lt.mpr h)
 
-/-- The canonical lifted embedding is the arbitrary-frame embedding with blank parked extras. -/
+/-- The canonical lifted embedding is the arbitrary-frame embedding with blank parked extras.
+@isnad1 id=eq.0h4v.s5.7a55fc376637 from=translated src=- shape=4c48ab5c vocab=2b267f3d
+-/
 theorem liftCfgWith_blank (tm : TM n) (m : ℕ) (c : Cfg n tm.Q) :
     liftCfgWith tm m (fun _ => (Tape.init []).move Dir3.right) c = tm.liftCfg m c := rfl
 
 /-- A lifted step simulates the source step and applies one idle action to each extra tape.
-The frame is arbitrary: it need not be blank, start-invariant, or already parked. -/
+The frame is arbitrary: it need not be blank, start-invariant, or already parked.
+@isnad1 id=eq.0h5v.s6.1177944b451e from=translated src=- shape=fe85b631 vocab=1484c615
+-/
 theorem liftTM_step_liftCfgWith_frame (tm : TM n) (m : ℕ)
     (extras : Fin m → Tape) (c : Cfg n tm.Q) :
     (tm.liftTM m).step (liftCfgWith tm m extras c) =
@@ -217,7 +241,9 @@ theorem liftTM_step_liftCfgWith_frame (tm : TM n) (m : ℕ)
         refine congrArg some (Cfg.ext rfl rfl (funext fun i => ?_) rfl)
         by_cases hi : i.val < n <;> simp only [liftCfgWith, hi, ↓reduceDIte]
 
-/-- Non-marker extra tapes form a stable arbitrary frame for a lifted step. -/
+/-- Non-marker extra tapes form a stable arbitrary frame for a lifted step.
+@isnad1 id=eq.1h5v.s6.f76abbb3a7a9 from=translated src=- shape=7fd3ad9f vocab=2324277c
+-/
 theorem liftTM_step_liftCfgWith (tm : TM n) (m : ℕ) {extras : Fin m → Tape}
     (hex : ∀ j : Fin m, (extras j).read ≠ Γ.start) (c : Cfg n tm.Q) :
     (tm.liftTM m).step (liftCfgWith tm m extras c) =
@@ -231,7 +257,9 @@ theorem liftTM_step_liftCfgWith (tm : TM n) (m : ℕ) {extras : Fin m → Tape}
   rw [hframe]
 
 /-- **Step commutation** on embedded configurations: once the extra tapes
-    are parked, `tm.liftTM m` steps exactly as `tm` does through `liftCfg`. -/
+    are parked, `tm.liftTM m` steps exactly as `tm` does through `liftCfg`.
+@isnad1 id=eq.0h4v.s6.6264b3ba67f2 from=translated src=- shape=af6d01a3 vocab=dd364b13
+-/
 theorem liftTM_step_liftCfg (tm : TM n) (m : ℕ) (c : Cfg n tm.Q) :
     (tm.liftTM m).step (tm.liftCfg m c) = (tm.step c).map (tm.liftCfg m) :=
   liftTM_step_liftCfgWith tm m (extras := fun _ => (Tape.init []).move Dir3.right)
@@ -274,7 +302,9 @@ private theorem liftTM_reachesIn_init (tm : TM n) (m : ℕ) (x : List Bool)
 /-- A positive-length run of a lifted machine from genuine initialization has
 the exact `liftCfg` endpoint of the underlying run. The positivity hypothesis
 excludes the sole mismatch at time zero, when the extra tapes have not yet
-bounced from cell `0` to their canonical parked position at cell `1`. -/
+bounced from cell `0` to their canonical parked position at cell `1`.
+@isnad1 id=reachesi.2h6v.s6.6a6f6fe15d51 from=translated src=- shape=50052028 vocab=340e2f77
+-/
 theorem liftTM_reachesIn_initCfg_of_pos (tm : TM n) (m : ℕ) (x : List Bool)
     {t : ℕ} {c' : Cfg n tm.Q} (ht : 0 < t)
     (h : tm.reachesIn t (tm.initCfg x) c') :
@@ -342,7 +372,9 @@ private theorem liftTM_reaches_init_inv (tm : TM n) (m : ℕ) (x : List Bool)
 
 /-- **Lifting preserves deciding, with the same time bound.** The extra
     work tapes never interfere: the lifted machine's run tracks `tm`'s run
-    step for step. -/
+    step for step.
+@isnad1 id=decidesi.1h5v.s5.0b2371dc6614 from=translated src=- shape=589aea07 vocab=67177ae0
+-/
 theorem liftTM_decidesInTime (tm : TM n) (m : ℕ) {L : Language} {T : ℕ → ℕ}
     (h : tm.DecidesInTime L T) : (tm.liftTM m).DecidesInTime L T := by
   intro x
@@ -354,7 +386,9 @@ theorem liftTM_decidesInTime (tm : TM n) (m : ℕ) {L : Language} {T : ℕ → �
   · rw [hout]; exact hyes hx
   · rw [hout]; exact hno hx
 
-/-- **Lifting preserves function computation, with the same time bound.** -/
+/-- **Lifting preserves function computation, with the same time bound.**
+@isnad1 id=computes.1h5v.s5.231672cf258d from=translated src=- shape=49530bf1 vocab=0b8327fa
+-/
 theorem liftTM_computesInTime (tm : TM n) (m : ℕ) {f : List Bool → List Bool}
     {T : ℕ → ℕ} (h : tm.ComputesInTime f T) :
     (tm.liftTM m).ComputesInTime f T := by
@@ -368,7 +402,9 @@ theorem liftTM_computesInTime (tm : TM n) (m : ℕ) {f : List Bool → List Bool
 
 /-- **Lifting preserves space bounds up to the parked cell.** The extra
     work tapes' heads never move past cell 1, so `tm.liftTM m` decides `L`
-    in space `max (S ·) 1`. -/
+    in space `max (S ·) 1`.
+@isnad1 id=decidesi.1h5v.s5.eabcafa3eb96 from=translated src=- shape=a4f90fbe vocab=776bbc7a
+-/
 theorem liftTM_decidesInSpace (tm : TM n) (m : ℕ) {L : Language} {S : ℕ → ℕ}
     (h : tm.DecidesInSpace L S) :
     (tm.liftTM m).DecidesInSpace L (fun k => max (S k) 1) := by
@@ -448,20 +484,28 @@ def retargetCfg (tm : TM n) (c : Cfg n tm.Q) : Cfg (n + 1) tm.Q where
   work := fun i => if h : i.val < n then c.work ⟨i.val, h⟩ else c.output
   output := (Tape.init []).move Dir3.right
 
-/-- `retargetCfg` leaves the state unchanged. -/
+/-- `retargetCfg` leaves the state unchanged.
+@isnad1 id=eq.0h3v.s5.27d15272fb60 from=translated src=- shape=4332b5db vocab=8528e1ca
+-/
 @[simp] theorem retargetCfg_state (tm : TM n) (c : Cfg n tm.Q) :
     (tm.retargetCfg c).state = c.state := rfl
 
-/-- `retargetCfg` leaves the input tape unchanged. -/
+/-- `retargetCfg` leaves the input tape unchanged.
+@isnad1 id=eq.0h3v.s5.146fe1c1eebd from=translated src=- shape=f9fde661 vocab=affcf1ab
+-/
 @[simp] theorem retargetCfg_input (tm : TM n) (c : Cfg n tm.Q) :
     (tm.retargetCfg c).input = c.input := rfl
 
-/-- `retargetCfg` maps the first `n` work tapes to `c`'s work tapes. -/
+/-- `retargetCfg` maps the first `n` work tapes to `c`'s work tapes.
+@isnad1 id=eq.1h4v.s6.a8a5a53c90b5 from=translated src=- shape=487c1f8b vocab=9d71173d
+-/
 theorem retargetCfg_work_lt (tm : TM n) (c : Cfg n tm.Q)
     (i : Fin (n + 1)) (h : i.val < n) :
     (tm.retargetCfg c).work i = c.work ⟨i.val, h⟩ := dite_eq_left h
 
-/-- `retargetCfg` maps the last work tape to `c`'s output tape. -/
+/-- `retargetCfg` maps the last work tape to `c`'s output tape.
+@isnad1 id=eq.0h3v.s5.ae03b44adfb5 from=translated src=- shape=931301df vocab=ec5c2cb3
+-/
 theorem retargetCfg_work_last (tm : TM n) (c : Cfg n tm.Q) :
     (tm.retargetCfg c).work (Fin.last n) = c.output := dite_eq_right (Nat.lt_irrefl n)
 
@@ -513,7 +557,9 @@ private theorem retargetOutput_step_of_extras (tm : TM n) {c : Cfg n tm.Q}
 
 /-- **Step commutation** on embedded configurations: once the real output
     tape is parked, `tm.retargetOutput` steps exactly as `tm` does through
-    `retargetCfg`. -/
+    `retargetCfg`.
+@isnad1 id=eq.0h3v.s6.a892be73da7f from=translated src=- shape=d70119c0 vocab=49f6b281
+-/
 theorem retargetOutput_step_retargetCfg (tm : TM n) (c : Cfg n tm.Q) :
     (tm.retargetOutput).step (tm.retargetCfg c) = (tm.step c).map tm.retargetCfg :=
   retargetOutput_step_of_extras tm rfl rfl (fun _ h => dite_eq_left h)
@@ -538,7 +584,9 @@ private theorem retargetOutput_reachesIn_retargetCfg (tm : TM n) {t : ℕ}
     (fun a a' ha => by rw [retargetOutput_step_retargetCfg, ha]; rfl) h
 
 /-- Redirecting output to a fresh work tape preserves every exact run through
-the canonical configuration embedding. -/
+the canonical configuration embedding.
+@isnad1 id=reachesi.1h5v.s5.893051858c66 from=translated src=- shape=0cf7916d vocab=ef7ee230
+-/
 theorem retargetOutput_reachesIn_retargetCfg_frame (tm : TM n) {t : ℕ}
     {c c' : Cfg n tm.Q} (h : tm.reachesIn t c c') :
     (tm.retargetOutput).reachesIn t (tm.retargetCfg c) (tm.retargetCfg c') :=
@@ -562,7 +610,9 @@ private theorem retargetOutput_reachesIn_init (tm : TM n) (x : List Bool)
 
 /-- A run of an output-retargeted machine leaves the virtual output on the
 last work tape and keeps the real output blank with its head at cell zero or
-one. A subsequent combinator transition therefore parks it at cell one. -/
+one. A subsequent combinator transition therefore parks it at cell one.
+@isnad1 id=ex.1h5v.s7.b69ac4994830 from=translated src=- shape=262a400f vocab=c6e829af
+-/
 theorem retargetOutput_reachesIn_init_boundary (tm : TM n) (x : List Bool)
     {t : ℕ} {c' : Cfg n tm.Q} (h : tm.reachesIn t (tm.initCfg x) c') :
     ∃ C' : Cfg (n + 1) tm.Q,
@@ -583,7 +633,9 @@ theorem retargetOutput_reachesIn_init_boundary (tm : TM n) (x : List Bool)
     bound.** If `tm` computes `f` within time `T`, then `retargetOutput
     tm` halts within `T(|x|)` steps with `f x` written on work tape `n`
     (the `Fin.last n` tape). This is the form needed to compose "compute a
-    clock value onto a work tape". -/
+    clock value onto a work tape".
+@isnad1 id=ex.1h5v.s7.0e5866f88583 from=translated src=- shape=21fc866d vocab=6e99e40f
+-/
 theorem retargetOutput_computesInTime (tm : TM n) {f : List Bool → List Bool}
     {T : ℕ → ℕ} (h : tm.ComputesInTime f T) (x : List Bool) :
     ∃ (c' : Cfg (n + 1) tm.Q) (t : ℕ), t ≤ T x.length ∧
@@ -598,7 +650,9 @@ theorem retargetOutput_computesInTime (tm : TM n) {f : List Bool → List Bool}
   · rw [hwork]; exact hout
 
 /-- Output retargeting with the blank real-output frame exposed. This is the
-form used by sequential function composition. -/
+form used by sequential function composition.
+@isnad1 id=ex.1h5v.s7.5f5310662353 from=translated src=- shape=427d5da2 vocab=6354cc24
+-/
 theorem retargetOutput_computesInTime_boundary (tm : TM n)
     {f : List Bool → List Bool} {T : ℕ → ℕ}
     (h : tm.ComputesInTime f T) (x : List Bool) :
@@ -617,14 +671,18 @@ theorem retargetOutput_computesInTime_boundary (tm : TM n)
   · rw [hwork]
     exact hout
 
-/-- Padding by unused work tapes preserves one-way output behavior. -/
+/-- Padding by unused work tapes preserves one-way output behavior.
+@isnad1 id=istransd.1h3v.s4.4e94a8f27833 from=translated src=- shape=02f9ca34 vocab=b7c462cc
+-/
 theorem IsTransducer.liftTM {tm : TM n} (h : tm.IsTransducer) (m : ℕ) :
     (tm.liftTM m).IsTransducer := by
   intro q iHead wHeads oHead
   exact h q iHead (fun i => wHeads (Fin.castAdd m i)) oHead
 
 /-- Redirecting output to a work tape leaves the real output direction idle,
-so the resulting machine is always a one-way-output transducer. -/
+so the resulting machine is always a one-way-output transducer.
+@isnad1 id=istransd.0h2v.s4.24383880e4b5 from=translated src=- shape=06e2db94 vocab=683140ba
+-/
 theorem retargetOutput_isTransducer (tm : TM n) :
     tm.retargetOutput.IsTransducer := by
   intro q iHead wHeads oHead

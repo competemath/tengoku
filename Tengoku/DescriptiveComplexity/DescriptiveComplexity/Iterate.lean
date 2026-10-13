@@ -43,7 +43,9 @@ variable {α : Type*} {f : α → α}
 /-! ### Constancy from a plateau -/
 
 /-- Once an orbit reaches a fixed point, it stays there: the orbit is constant
-from any index whose value is a fixed point. -/
+from any index whose value is a fixed point.
+@isnad1 id=eq.2h5v.s5.73ff202e340a from=translated src=- shape=726d6ecc vocab=a116919f
+-/
 theorem iterate_eq_of_isFixedPt {a : α} {N : ℕ} (h : IsFixedPt f (f^[N] a)) {n : ℕ}
     (hn : N ≤ n) : f^[n] a = f^[N] a := by
   conv_lhs => rw [← Nat.sub_add_cancel hn, Function.iterate_add_apply]
@@ -51,7 +53,9 @@ theorem iterate_eq_of_isFixedPt {a : α} {N : ℕ} (h : IsFixedPt f (f^[N] a)) {
 
 /-! ### Pigeonhole: repeats and eventual periodicity -/
 
-/-- An orbit on a finite type repeats within `Nat.card α` steps. -/
+/-- An orbit on a finite type repeats within `Nat.card α` steps.
+@isnad1 id=ex.0h3v.s5.7880c3754285 from=translated src=- shape=fc3fbd1a vocab=8452b734
+-/
 theorem exists_iterate_eq_of_finite [Finite α] (f : α → α) (a : α) :
     ∃ i j, i < j ∧ j ≤ Nat.card α ∧ f^[i] a = f^[j] a := by
   cases nonempty_fintype α
@@ -65,7 +69,9 @@ theorem exists_iterate_eq_of_finite [Finite α] (f : α → α) (a : α) :
 /-- **If an orbit on a finite type ever reaches a fixed point, the
 `Nat.card α`-th iterate already is one.** This is what bounds the partial
 fixed-point iteration: convergence, if it happens at all, happens within the
-number of states. -/
+number of states.
+@isnad1 id=iff.0h3v.s5.a121fac50033 from=translated src=- shape=46467218 vocab=2240f9dd
+-/
 theorem isFixedPt_iterate_card_iff [Finite α] (f : α → α) (a : α) :
     IsFixedPt f (f^[Nat.card α] a) ↔ ∃ n, IsFixedPt f (f^[n] a) := by
   refine ⟨fun h => ⟨_, h⟩, fun h => ?_⟩
@@ -104,7 +110,9 @@ The bound here is `Nat.card X` – the height of the subset lattice – rather
 than the `2 ^ Nat.card X` states a bare pigeonhole would give. -/
 
 /-- A monotone chain of subsets of a finite type plateaus within `Nat.card X`
-steps. -/
+steps.
+@isnad1 id=ex.1h2v.s6.8c06c5b57ff3 from=translated src=- shape=cbcbc330 vocab=5f2c2f65
+-/
 theorem exists_succ_eq_of_monotone_subset {X : Type*} [Finite X] {c : ℕ → Set X}
     (hc : ∀ n, c n ⊆ c (n + 1)) : ∃ N ≤ Nat.card X, c (N + 1) = c N := by
   by_contra hcon
@@ -127,7 +135,9 @@ theorem exists_succ_eq_of_monotone_subset {X : Type*} [Finite X] {c : ℕ → Se
 
 /-- An antitone chain of subsets of a finite type plateaus within `Nat.card X`
 steps: the dual of `DescriptiveComplexity.exists_succ_eq_of_monotone_subset`,
-for descending refinement chains. -/
+for descending refinement chains.
+@isnad1 id=ex.1h2v.s6.a2259c91568a from=translated src=- shape=1d3be551 vocab=5f2c2f65
+-/
 theorem exists_succ_eq_of_antitone_subset {X : Type*} [Finite X] {c : ℕ → Set X}
     (hc : ∀ n, c (n + 1) ⊆ c n) : ∃ N ≤ Nat.card X, c (N + 1) = c N := by
   obtain ⟨N, hN, heq⟩ := exists_succ_eq_of_monotone_subset
@@ -136,7 +146,9 @@ theorem exists_succ_eq_of_antitone_subset {X : Type*} [Finite X] {c : ℕ → Se
 
 /-- **An inflationary map on the subsets of a finite type reaches a fixed
 point within `Nat.card X` steps**, from any starting point: the chain of
-iterates can only grow `Nat.card X` many times. -/
+iterates can only grow `Nat.card X` many times.
+@isnad1 id=isfixedp.1h3v.s5.dd914dbb93d4 from=translated src=- shape=edcb8813 vocab=8f137821
+-/
 theorem isFixedPt_iterate_card_of_subset {X : Type*} [Finite X] {f : Set X → Set X}
     (hf : ∀ s, s ⊆ f s) (s : Set X) : IsFixedPt f (f^[Nat.card X] s) := by
   obtain ⟨N, hN, heq⟩ := exists_succ_eq_of_monotone_subset

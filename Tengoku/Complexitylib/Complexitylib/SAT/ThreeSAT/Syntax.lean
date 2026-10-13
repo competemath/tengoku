@@ -157,7 +157,9 @@ private theorem foldl_cnf_eq_start_iff (formula : CNF) :
       · rw [ite_eq_right hclause, foldl_invalid]
         simp [tokenStart, CNF.is3CNF_cons, hclause]
 
-/-- A typed CNF's bit encoding is accepted exactly when it is exact 3-CNF. -/
+/-- A typed CNF's bit encoding is accepted exactly when it is exact 3-CNF.
+@isnad1 id=iff.0h1v.s3.2dc7f2cc9455 from=translated src=- shape=0daa9ccf vocab=0c2ce5c4
+-/
 @[simp] theorem encode_mem_language_iff (formula : CNF) :
     formula.encode ∈ language ↔ formula.Is3CNF := by
   change accept (formula.encode.foldl bitStep bitStart) = true ↔ formula.Is3CNF
@@ -174,12 +176,16 @@ private theorem foldl_cnf_eq_start_iff (formula : CNF) :
 def syntaxTM : TM 0 :=
   TM.scannerTM bitStart bitStep (fun state => if accept state then .one else .zero)
 
-/-- The syntax checker decides its regular language in exactly `n + 2` steps. -/
+/-- The syntax checker decides its regular language in exactly `n + 2` steps.
+@isnad1 id=decidesi.0h0v.s4.bee0dff485c8 from=translated src=- shape=78aae65d vocab=fdf23232
+-/
 theorem syntaxTM_decidesInTime :
     syntaxTM.DecidesInTime language (fun n => n + 2) := by
   exact TM.scannerTM_decidesInTime bitStart bitStep accept (fun _ => Iff.rfl)
 
-/-- The exact-3 syntax language is decidable in linear time. -/
+/-- The exact-3 syntax language is decidable in linear time.
+@isnad1 id=mem.0h0v.s3.2c2701303fed from=translated src=- shape=d1530203 vocab=c0d0cd40
+-/
 theorem language_mem_P : language ∈ P := by
   refine Set.mem_iUnion.mpr ⟨1, 0, syntaxTM, fun n => n + 2,
     syntaxTM_decidesInTime, ?_⟩
@@ -188,7 +194,9 @@ theorem language_mem_P : language ∈ P := by
 
 end Syntax
 
-/-- 3SAT is CNF-SAT intersected with the regular exact-3 syntax language. -/
+/-- 3SAT is CNF-SAT intersected with the regular exact-3 syntax language.
+@isnad1 id=eq.0h0v.s3.0dc5de027255 from=translated src=- shape=e32de86c vocab=e0b0109c
+-/
 theorem language_eq_cnfsat_inter_syntax :
     language = CNFSAT.language ∩ Syntax.language := by
   ext z

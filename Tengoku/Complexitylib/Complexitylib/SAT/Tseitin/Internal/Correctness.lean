@@ -35,7 +35,9 @@ end CNF
 namespace Clause
 
 /-- Every assignment satisfying a split clause chain satisfies the original
-clause, independently of freshness. -/
+clause, independently of freshness.
+@isnad1 id=eq.1h3v.s4.8da2c6382348 from=translated src=- shape=1e7cad48 vocab=60e4fbd8
+-/
 theorem evalTotal_to3CNF_sound_internal (α : TotalAssignment) (next : ℕ)
     (c : Clause) (h : CNF.evalTotal α (c.to3CNF next) = true) :
     Clause.evalTotal α c = true := by
@@ -62,7 +64,9 @@ theorem evalTotal_to3CNF_sound_internal (α : TotalAssignment) (next : ℕ)
 
 /-- If every source variable precedes `next`, a satisfying assignment for one
 source clause extends to a satisfying assignment for its exact-3 split while
-preserving every variable below `next`. -/
+preserving every variable below `next`.
+@isnad1 id=ex.2h3v.s5.d0b4a5671d2c from=translated src=- shape=512ce0f6 vocab=463af0ae
+-/
 theorem exists_evalTotal_to3CNF_internal (next : ℕ) (c : Clause)
     (α : TotalAssignment) (hsource : ∀ ℓ ∈ c, ℓ.var < next)
     (h : Clause.evalTotal α c = true) :
@@ -144,7 +148,9 @@ end Clause
 
 namespace CNF
 
-/-- A satisfying assignment for a transformed CNF satisfies the source CNF. -/
+/-- A satisfying assignment for a transformed CNF satisfies the source CNF.
+@isnad1 id=eq.1h3v.s4.15925d6c0c58 from=translated src=- shape=9ff0234f vocab=a500ab02
+-/
 theorem evalTotal_to3Aux_sound_internal (α : TotalAssignment) (next : ℕ)
     (φ : CNF) (h : evalTotal α (to3Aux next φ).1 = true) :
     evalTotal α φ = true := by
@@ -159,7 +165,9 @@ theorem evalTotal_to3Aux_sound_internal (α : TotalAssignment) (next : ℕ)
       simpa [evalTotal] using And.intro hc' hcs'
 
 /-- A satisfying assignment for a source CNF extends across all fresh ranges
-to satisfy the transformed CNF, preserving every variable below `next`. -/
+to satisfy the transformed CNF, preserving every variable below `next`.
+@isnad1 id=ex.2h3v.s6.bb79399ac95d from=translated src=- shape=ad8a01d6 vocab=6b3304b0
+-/
 theorem exists_evalTotal_to3Aux_internal (next : ℕ) (φ : CNF)
     (α : TotalAssignment)
     (hsource : ∀ c ∈ φ, ∀ ℓ ∈ c, ℓ.var < next)
@@ -201,7 +209,9 @@ theorem exists_evalTotal_to3Aux_internal (next : ℕ) (φ : CNF)
             (hsource c List.mem_cons_self) hout hℓ
 
 /-- Function-valued satisfiability is preserved and reflected by `to3Aux`
-whenever its initial counter is fresh for every source variable. -/
+whenever its initial counter is fresh for every source variable.
+@isnad1 id=iff.1h2v.s5.997deae2d506 from=translated src=- shape=d002b00d vocab=44da3407
+-/
 theorem functionSatisfiable_to3Aux_iff_internal (next : ℕ) (φ : CNF)
     (hsource : ∀ c ∈ φ, ∀ ℓ ∈ c, ℓ.var < next) :
     (to3Aux next φ).1.FunctionSatisfiable ↔ φ.FunctionSatisfiable := by
@@ -214,7 +224,9 @@ theorem functionSatisfiable_to3Aux_iff_internal (next : ℕ) (φ : CNF)
     exact ⟨β, hout⟩
 
 /-- Existing finite-list satisfiability is preserved and reflected by `to3Aux`
-whenever its initial counter is fresh for every source variable. -/
+whenever its initial counter is fresh for every source variable.
+@isnad1 id=iff.1h2v.s5.2800fee3e21f from=translated src=- shape=d002b00d vocab=d073c115
+-/
 theorem satisfiable_to3Aux_iff_internal (next : ℕ) (φ : CNF)
     (hsource : ∀ c ∈ φ, ∀ ℓ ∈ c, ℓ.var < next) :
     (to3Aux next φ).1.Satisfiable ↔ φ.Satisfiable := by
@@ -222,7 +234,9 @@ theorem satisfiable_to3Aux_iff_internal (next : ℕ) (φ : CNF)
     satisfiable_iff_functionSatisfiable_internal,
     functionSatisfiable_to3Aux_iff_internal next φ hsource]
 
-/-- Function-valued satisfiability is preserved and reflected by `to3`. -/
+/-- Function-valued satisfiability is preserved and reflected by `to3`.
+@isnad1 id=iff.0h1v.s3.5735058591df from=translated src=- shape=6a405104 vocab=c3533fbb
+-/
 theorem functionSatisfiable_to3_iff_internal (φ : CNF) :
     φ.to3.FunctionSatisfiable ↔ φ.FunctionSatisfiable := by
   apply functionSatisfiable_to3Aux_iff_internal
@@ -231,7 +245,9 @@ theorem functionSatisfiable_to3_iff_internal (φ : CNF) :
   have hlit := Clause.var_le_maxVar hℓ
   omega
 
-/-- Existing finite-list satisfiability is preserved and reflected by `to3`. -/
+/-- Existing finite-list satisfiability is preserved and reflected by `to3`.
+@isnad1 id=iff.0h1v.s3.1e0978051082 from=translated src=- shape=6a405104 vocab=c95d9bf1
+-/
 theorem satisfiable_to3_iff_internal (φ : CNF) :
     φ.to3.Satisfiable ↔ φ.Satisfiable := by
   apply satisfiable_to3Aux_iff_internal

@@ -47,7 +47,9 @@ def validEmitterFinalState (phi : CNF) : Streaming.State :=
     emitted := (phi.to3Aux (phi.encode.length + 1)).1.tokens }
 
 /-- The front-end unary registers are exactly the register representation of
-the pure streaming initial state. -/
+the pure streaming initial state.
+@isnad1 id=eq.0h1v.s4.9a6d256a5240 from=translated src=- shape=a38b924e vocab=63202c30
+-/
 theorem frontEndWork_eq_initialBufferValues_internal (z : List Bool) :
     frontEndWork z =
       (BufferValues.ofStreaming (Streaming.initial (z.length + 1))).work := by
@@ -59,7 +61,9 @@ theorem frontEndWork_eq_initialBufferValues_internal (z : List Bool) :
       bufferAReg, bufferBReg, bufferCReg]
 
 /-- On a typed CNF encoding, the concrete valid emitter halts with the exact
-register and output representation of the pure streaming endpoint. -/
+register and output representation of the pure streaming endpoint.
+@isnad1 id=hoaretim.0h1v.s4.ddef841c671d from=translated src=- shape=d170219a vocab=c4a316b9
+-/
 theorem validEmitterTM_hoareTime_internal (phi : CNF) :
     validEmitterTM.HoareTime
       (validEmitterPre phi.encode)
@@ -139,7 +143,9 @@ theorem validEmitterTM_hoareTime_internal (phi : CNF) :
     exact hpredRun
 
 /-- Quartic-rounded typed-input specification for the concrete valid
-emitter. -/
+emitter.
+@isnad1 id=hoaretim.0h1v.s5.97c83ba627dd from=translated src=- shape=4727db58 vocab=7c48b0ed
+-/
 theorem validEmitterTM_hoareTime_quartic_internal (phi : CNF) :
     validEmitterTM.HoareTime
       (validEmitterPre phi.encode)

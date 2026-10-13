@@ -33,18 +33,29 @@ variable {κ q : ℕ}
 /-- the abscissa `a := 1/4 + κ/2`. -/
 def absc (κ : ℕ) : ℝ := 1 / 4 + (κ : ℝ) / 2
 
+/--
+@isnad1 id=lt.0h1v.s3.a267df7f6fdc from=translated src=- shape=b9369acb vocab=7b9cbc4f
+-/
 theorem absc_pos (κ : ℕ) : 0 < absc κ := by unfold absc; positivity
 
+/--
+@isnad1 id=lt.1h1v.s4.d6936b18158b from=translated src=- shape=eed96abc vocab=6bbcc412
+-/
 theorem absc_lt_one (hκ : κ ≤ 1) : absc κ < 1 := by
   unfold absc
   have : (κ : ℝ) ≤ 1 := by exact_mod_cast hκ
   linarith
 
+/--
+@isnad1 id=le.0h1v.s4.428ee59b613f from=translated src=- shape=35953d7b vocab=86255b89
+-/
 theorem quarter_le_absc (κ : ℕ) : 1 / 4 ≤ absc κ := by
   unfold absc; have : (0:ℝ) ≤ (κ : ℝ) / 2 := by positivity
   linarith
 
-/-- `μ_χ(τ) = (1/2π)·Re ψ(a + i·τ/2) + (1/2π)·log(q/π)`. -/
+/-- `μ_χ(τ) = (1/2π)·Re ψ(a + i·τ/2) + (1/2π)·log(q/π)`.
+@isnad1 id=eq.0h3v.s7.b08e26933ef2 from=translated src=- shape=27ded344 vocab=7a75ab3b
+-/
 theorem muq_eq (κ q : ℕ) (τ : ℝ) :
     muq κ q τ = (1 / (2 * Real.pi))
         * (Complex.digamma (((absc κ : ℝ) : ℂ) + Complex.I * ((τ / 2 : ℝ) : ℂ))).re
@@ -55,12 +66,18 @@ theorem muq_eq (κ q : ℕ) (τ : ℝ) :
     push_cast; ring
   rw [e]; ring
 
+/--
+@isnad1 id=mem.1h2v.s5.99847257e7b7 from=translated src=- shape=3c9745b4 vocab=38bbf329
+-/
 theorem arg_mem (hκ : κ ≤ 1) (t : ℝ) :
     ((absc κ : ℝ) : ℂ) + Complex.I * (t : ℂ) ∈ Complex.integerComplement :=
   MuFields.abscissa_mem (absc_pos κ) (absc_lt_one hκ) t
 
 /-! ### even -/
 
+/--
+@isnad1 id=eq.1h3v.s4.40b20dd3f275 from=translated src=- shape=d852db27 vocab=16c7c194
+-/
 theorem muq_even (hκ : κ ≤ 1) (τ : ℝ) : muq κ q (-τ) = muq κ q τ := by
   rw [muq_eq, muq_eq]
   congr 2
@@ -72,6 +89,9 @@ theorem muq_even (hκ : κ ≤ 1) (τ : ℝ) : muq κ q (-τ) = muq κ q τ := b
 
 /-! ### monotone, minimum at 0 -/
 
+/--
+@isnad1 id=monotone.1h2v.s4.29d3fab9b6f7 from=translated src=- shape=56d9cfb8 vocab=ba0aca36
+-/
 theorem muq_monotoneOn (hκ : κ ≤ 1) : MonotoneOn (muq κ q) (Set.Ici (0 : ℝ)) := by
   intro t₁ h₁ t₂ h₂ h12
   rw [muq_eq, muq_eq]
@@ -83,6 +103,9 @@ theorem muq_monotoneOn (hκ : κ ≤ 1) : MonotoneOn (muq κ q) (Set.Ici (0 : �
   have := mul_le_mul_of_nonneg_left hmono h2π
   linarith
 
+/--
+@isnad1 id=le.1h3v.s5.5f7dc4ce86fe from=translated src=- shape=162d3689 vocab=8c437bc4
+-/
 theorem muq_zero_le (hκ : κ ≤ 1) (τ : ℝ) : muq κ q 0 ≤ muq κ q τ := by
   rcases le_total 0 τ with h | h
   · exact muq_monotoneOn hκ (Set.mem_Ici.mpr le_rfl) (Set.mem_Ici.mpr h) h
@@ -91,7 +114,9 @@ theorem muq_zero_le (hκ : κ ≤ 1) (τ : ℝ) : muq κ q 0 ≤ muq κ q τ := 
 
 /-! ### Stirling (the conductor constant cancels) -/
 
-/-- Stirling for μ_χ with the explicit, conductor-free constant 20/(2π). -/
+/-- Stirling for μ_χ with the explicit, conductor-free constant 20/(2π).
+@isnad1 id=le.3h3v.s7.bd7d615ddd25 from=translated src=- shape=40d4cad7 vocab=e2b12875
+-/
 theorem muq_stirling_const (hκ : κ ≤ 1) (hq : 1 ≤ q) (τ : ℝ) (hτ : 1 ≤ |τ|) :
     |muq κ q τ - (1 / (2 * Real.pi)) * Real.log (q * |τ| / (2 * Real.pi))|
       ≤ (20 / (2 * Real.pi)) / τ ^ 2 := by
@@ -115,12 +140,18 @@ theorem muq_stirling_const (hκ : κ ≤ 1) (hq : 1 ≤ q) (τ : ℝ) (hτ : 1 �
   calc 1 / (2 * Real.pi) * |D| ≤ 1 / (2 * Real.pi) * (5 / (τ / 2) ^ 2) := by gcongr
     _ = 20 / (2 * Real.pi) / τ ^ 2 := by field_simp; ring
 
+/--
+@isnad1 id=ex.2h2v.s7.d3ab51d5bae3 from=translated src=- shape=ac526924 vocab=e2b12875
+-/
 theorem muq_stirling (hκ : κ ≤ 1) (hq : 1 ≤ q) : ∃ C : ℝ, ∀ τ : ℝ, 1 ≤ |τ| →
     |muq κ q τ - (1 / (2 * Real.pi)) * Real.log (q * |τ| / (2 * Real.pi))| ≤ C / τ ^ 2 :=
   ⟨20 / (2 * Real.pi), muq_stirling_const hκ hq⟩
 
 /-! ### μ_χ(0) > −1 -/
 
+/--
+@isnad1 id=lt.2h2v.s5.28d332d909e4 from=translated src=- shape=52201715 vocab=8c072843
+-/
 theorem neg_one_lt_muq_zero (hκ : κ ≤ 1) (hq : 1 ≤ q) : (-1 : ℝ) < muq κ q 0 := by
   rw [muq_eq, show ((0 : ℝ) / 2 : ℝ) = (0 : ℝ) by norm_num]
   have ha0 := absc_pos κ
@@ -183,7 +214,9 @@ private lemma gamma_ne_neg_nat {z : ℂ} (hz : 0 < z.re) : ∀ m : ℕ, z ≠ -m
   simp only [Complex.neg_re, Complex.natCast_re] at hz
   exact (not_lt.mpr (neg_nonpos.mpr (Nat.cast_nonneg m))) hz
 
-/-- ψ is analytic on the right half-plane. -/
+/-- ψ is analytic on the right half-plane.
+@isnad1 id=analytic.1h1v.s5.0fa5736ca971 from=translated src=- shape=f4fff64d vocab=a15ab8d8
+-/
 theorem analyticAt_digamma' {z : ℂ} (hz : 0 < z.re) :
     AnalyticAt ℂ Complex.digamma z := by
   have hU : IsOpen {w : ℂ | 0 < w.re} := isOpen_lt continuous_const Complex.continuous_re
@@ -200,6 +233,9 @@ theorem analyticAt_digamma' {z : ℂ} (hz : 0 < z.re) :
     rfl)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=contdiff.0h2v.s5.670013572ef3 from=translated src=- shape=918bb0fe vocab=25c15299
+-/
 theorem muq_smooth (κ q : ℕ) : ContDiff ℝ ⊤ (muq κ q) := by
   have hfun : muq κ q = fun τ : ℝ => (1 / (2 * Real.pi))
         * (Complex.digamma (((absc κ : ℝ) : ℂ) + Complex.I * (τ : ℂ) / 2)).re
@@ -231,6 +267,9 @@ theorem muq_smooth (κ q : ℕ) : ContDiff ℝ ⊤ (muq κ q) := by
 /-! ### μ_χ′ ≪ 1/|τ| (mirror of MuFields.mu_deriv_bound at abscissa a ≥ 1/4) -/
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=le.2h3v.s6.8f6aba60bb89 from=translated src=- shape=fd356d3e vocab=e0d32698
+-/
 theorem muq_deriv_bound_const (hκ : κ ≤ 1) (τ : ℝ) (hτ : 1 ≤ |τ|) :
     |deriv (muq κ q) τ| ≤ (24 / Real.pi) / |τ| := by
   have hτ0 : (0 : ℝ) < |τ| := by linarith
@@ -347,13 +386,18 @@ theorem muq_deriv_bound_const (hκ : κ ≤ 1) (τ : ℝ) (hτ : 1 ≤ |τ|) :
         have e2 : |τ| * |τ|⁻¹ = 1 := mul_inv_cancel₀ hτ0.ne'
         nlinarith [e1, e2]
 
+/--
+@isnad1 id=ex.1h2v.s6.68294bc7687c from=translated src=- shape=18e5493b vocab=a612fd9b
+-/
 theorem muq_deriv_bound (hκ : κ ≤ 1) : ∃ C : ℝ, ∀ τ : ℝ, 1 ≤ |τ| → |deriv (muq κ q) τ| ≤ C / |τ| :=
   ⟨24 / Real.pi, muq_deriv_bound_const hκ⟩
 
 /-! ### The bundle -/
 
 /-- H-Γ(χ) from the two integral fields (supplied by Zeta23/ThmE/IntMuChi.lean from
-`muq_stirling` + continuity by the FTC computations with log(qτ/2π)). -/
+`muq_stirling` + continuity by the FTC computations with log(qτ/2π)).
+@isnad1 id=gammafac.4h2v.s8.cc84bd890557 from=translated src=- shape=3fc5ca41 vocab=fca37737
+-/
 theorem gammaFactsChi_of_int (hκ : κ ≤ 1) (hq : 1 ≤ q)
     (hint : ∃ C T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T →
       |(∫ τ in T..(2 * T), muq κ q τ) - T * ell1q q T / (2 * Real.pi)| ≤ C / T)
@@ -365,7 +409,9 @@ theorem gammaFactsChi_of_int (hκ : κ ≤ 1) (hq : 1 ≤ q)
     muq_stirling hκ hq, muq_deriv_bound hκ, hint, hint2⟩
 
 /-- **H-Γ(χ), unconditionally** (parity κ ≤ 1, modulus q ≥ 1): all nine fields are theorems
-(the two ∫ fields via Zeta23/ThmE/IntMuChi.lean). -/
+(the two ∫ fields via Zeta23/ThmE/IntMuChi.lean).
+@isnad1 id=gammafac.2h2v.s4.b3cca507ebef from=translated src=- shape=be13d4a8 vocab=79e9e9a6
+-/
 theorem gammaFactsChi (hκ : κ ≤ 1) (hq : 1 ≤ q) : GammaFactsChi κ q :=
   gammaFactsChi_of_int hκ hq
     (IntMuChi.int_muq_of_stirling hq (muq_smooth κ q).continuous (muq_stirling hκ hq))
@@ -374,7 +420,9 @@ theorem gammaFactsChi (hκ : κ ≤ 1) (hq : 1 ≤ q) : GammaFactsChi κ q :=
 /-- **H-Γ(χ) with one constant for all parities κ ≤ 1 and all moduli q ≥ 1**
 (`GammaFactsChiBounded`; consumed by the q-uniform RvM(χ)): every constant and threshold
 above is conductor-free (the Stirling constant 20/2π, the derivative constant 24/π, and
-int_muq_uniform / int_muq_sq_uniform whose constants are explicit in the Stirling constant). -/
+int_muq_uniform / int_muq_sq_uniform whose constants are explicit in the Stirling constant).
+@isnad1 id=ex.0h0v.s5.520d9a34902a from=translated src=- shape=430cc944 vocab=ae522b80
+-/
 theorem gammaFactsChi_uniform :
     ∃ C : ℝ, ∀ (κ q : ℕ), κ ≤ 1 → 1 ≤ q → GammaFactsChiBounded κ q C := by
   set Cs : ℝ := 20 / (2 * Real.pi) with hCs

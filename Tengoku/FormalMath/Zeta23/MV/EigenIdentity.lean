@@ -42,7 +42,9 @@ private lemma norm_sq_eq_re_mul_conj (z : ℂ) : ‖z‖ ^ 2 = (z * conj z).re :
 private lemma re_mul_conj_comm (a b : ℂ) : (a * conj b).re = (b * conj a).re := by
   simp [Complex.mul_re]; ring
 
-/-- **Preissmann–Lévêque eigen-identity** (arXiv:2203.14950 Lemma 2.1). -/
+/-- **Preissmann–Lévêque eigen-identity** (arXiv:2203.14950 Lemma 2.1).
+@isnad1 id=eq.3h6v.s8.5c89dfc56a88 from=translated src=- shape=66bb1170 vocab=b4278508
+-/
 theorem eigen_identity' (hinj : Function.Injective freq) (c : ι → ℝ) (hc : ∀ r, 0 < c r)
     (u : ι → ℂ) (μ : ℝ)
     (heig : ∀ m, ∑ n ∈ Finset.univ.erase m,

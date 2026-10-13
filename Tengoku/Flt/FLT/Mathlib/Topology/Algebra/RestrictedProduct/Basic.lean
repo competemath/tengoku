@@ -64,6 +64,9 @@ def RestrictedProduct.mapAlongLinearMap :
     ext i
     apply map_smul (φ i)
 
+/--
+@isnad1 id=eq.2h15v.s9.3fa48208ef1e from=translated src=- shape=113940df vocab=6b8a9c25
+-/
 @[simp]
 lemma RestrictedProduct.mapAlongLinearMap_apply (x : Πʳ i, [R₁ i, B₁ i]_[𝓕₁]) (j : ι₂) :
     x.mapAlongLinearMap R₁ R₂ f hf φ hφ j = φ j (x (f j)) :=
@@ -83,6 +86,9 @@ def RestrictedProduct.inclusionLinearMap
   mapAlongLinearMap R R id h (fun _ ↦ .id)
   (Filter.Eventually.of_forall <| fun _ _ ↦ id)
 
+/--
+@isnad1 id=eq.1h7v.s10.c9d98d6bc7d3 from=translated src=- shape=8a74dbee vocab=0e6259a3
+-/
 lemma inclusionLinearMap_apply {𝓕 𝓖 : Filter ι} (h : 𝓕 ≤ 𝓖) (x : Πʳ i, [R i, C i]_[𝓖]) :
   inclusionLinearMap A R C h x = ⟨x.1, x.2.filter_mono h⟩ := rfl
 
@@ -115,11 +121,17 @@ def mulSupport (u : Πʳ i, [G i, A i]) : Set ι :=
   {i : ι | u i ≠ 1}
 
 variable [(i : ι) → One (G i)] in
+/--
+@isnad1 id=iff.0h6v.s7.76929aa37cf9 from=translated src=- shape=8b14c547 vocab=0b6956a1
+-/
 @[to_additive (attr := simp)]
 lemma not_mem_mulSupport {u : Πʳ i, [G i, A i]} (i : ι) :
   i ∉ mulSupport u ↔ u i = 1 := by simp [mulSupport]
 
 variable [(i : ι) → Monoid (G i)] [∀ i, SubmonoidClass (S i) (G i)] in
+/--
+@isnad1 id=eq.1h6v.s8.b9b205b6294b from=translated src=- shape=a51781b9 vocab=130563fe
+-/
 @[to_additive]
 lemma mul_comm_of_disjoint_mulSupport {u v : Πʳ i, [G i, A i]}
     (h : mulSupport u ∩ mulSupport v = ∅) : u * v = v * u := by
@@ -134,6 +146,9 @@ lemma mul_comm_of_disjoint_mulSupport {u v : Πʳ i, [G i, A i]}
     simp [hi]
 
 variable [(i : ι) → Monoid (G i)] [∀ i, SubmonoidClass (S i) (G i)] in
+/--
+@isnad1 id=le.2h7v.s8.bc0a1813b5f9 from=translated src=- shape=9addd85e vocab=0ee40d85
+-/
 @[to_additive]
 lemma mulSupport_mul_subset {u v : Πʳ i, [G i, A i]} {J : Set ι} (hu : mulSupport u ⊆ J)
     (hv : mulSupport v ⊆ J) : mulSupport (u * v) ⊆ J := by
@@ -143,6 +158,9 @@ lemma mulSupport_mul_subset {u v : Πʳ i, [G i, A i]} {J : Set ι} (hu : mulSup
     (not_mem_mulSupport i).1 (fun a ↦ hi (hv a))]
 
 variable [(i : ι) → Group (G i)] [∀ i, SubgroupClass (S i) (G i)] in
+/--
+@isnad1 id=eq.0h5v.s7.12be5734e896 from=translated src=- shape=58ccfee8 vocab=0ca30318
+-/
 @[to_additive (attr := simp)]
 lemma mulSupport_inv {u : Πʳ i, [G i, A i]} : mulSupport u⁻¹ = mulSupport u := by
   ext i
@@ -166,6 +184,7 @@ open scoped Pointwise in
 /--
 If `U` is a product at `i` and `g` is supported at `i` then `UgU` can be written as
 a disjoint union of cosets `gᵢU` with the `gᵢ` supported at `i`.
+@isnad1 id=ex.3h9v.s10.ceed4474adc8 from=translated src=- shape=b9b9c243 vocab=922f8697
 -/
 lemma mem_coset_and_mulSupport_subset_of_isProductAt
     {U : T} (i : ι) (g : Πʳ i, [G i, A i])
@@ -192,6 +211,9 @@ noncomputable
 def indexSupport (u : Πʳ i, [G i, A i]) : Finset ι :=
   Set.Finite.toFinset (s := {x | u x ∉ A x}) (by simpa using! u.2)
 
+/--
+@isnad1 id=iff.0h6v.s7.be8b7db8950b from=translated src=- shape=80162cf8 vocab=0299122f
+-/
 @[simp]
 theorem mem_indexSupport_iff {u : Πʳ i, [G i, A i]} {i : ι} :
     i ∈ indexSupport u ↔ u i ∉ A i := by
@@ -209,10 +231,16 @@ variable (g : (j : ι₂) → G (f j) → G₂ j) (hcomponent : ∀ x j, φ x j 
 
 include hcomponent in
 variable {φ} {g} in
+/--
+@isnad1 id=eq.1h11v.s8.84add67edb5a from=translated src=- shape=2a5a8b38 vocab=272c9b52
+-/
 lemma components_comp_coe_eq_coe_apply : (fun a j ↦ g j (a (f j))) ∘ (⇑) = (⇑) ∘ φ := by
   ext x i
   simp [hcomponent]
 
+/--
+@isnad1 id=ex.1h7v.s7.7295159d528d from=translated src=- shape=55732562 vocab=df369b69
+-/
 lemma exists_update (x : Πʳ i, [G i, C i]_[ℱ]) (i : ι) (a : G i)
     (h : {i}ᶜ ∈ ℱ) : ∃ y : Πʳ i, [G i, C i]_[ℱ], y i = a ∧ ∀ j ≠ i, y j = x j := by
   classical
@@ -222,6 +250,9 @@ lemma exists_update (x : Πʳ i, [G i, C i]_[ℱ]) (i : ι) (a : G i)
     aesop⟩
 
 variable (C) in
+/--
+@isnad1 id=ex.1h6v.s6.7997675828f9 from=translated src=- shape=e911abe2 vocab=f7d9c3b6
+-/
 lemma exists_apply_eq [∀ i, Nonempty (C i)] (i : ι) (a : G i) (h : {i}ᶜ ∈ ℱ) :
     ∃ x : Πʳ i, [G i, C i]_[ℱ], x i = a := by
   let y : Πʳ i, [G i, C i]_[ℱ] := ⟨fun i ↦ (Classical.ofNonempty : C i),
@@ -232,6 +263,9 @@ lemma exists_apply_eq [∀ i, Nonempty (C i)] (i : ι) (a : G i) (h : {i}ᶜ ∈
 variable [∀ j, Nonempty (C₂ j)]
 
 include hcomponent in
+/--
+@isnad1 id=surjecti.3h12v.s7.b2a0bf3e5bd0 from=translated src=- shape=a488e874 vocab=450bfbbf
+-/
 lemma surjective_components_of_surjective (hφ : Function.Surjective φ) (j : ι₂) (hj : {j}ᶜ ∈ 𝒢) :
     Function.Surjective (g j) := by
   intro y
@@ -241,6 +275,9 @@ lemma surjective_components_of_surjective (hφ : Function.Surjective φ) (j : ι
   rw [← hcomponent, hx, hy']
 
 include hf hcomponent in
+/--
+@isnad1 id=eventual.3h11v.s7.039153b8fa10 from=translated src=- shape=4267037a vocab=605d4bd3
+-/
 lemma eventually_surjOn_of_surjective (hφ : Function.Surjective φ) :
     ∀ᶠ (j : ι₂) in 𝒢, Set.SurjOn (g j) (C (f j)) (C₂ j) := by
   classical
@@ -286,6 +323,9 @@ def structureMapRingHom {ι : Type*} (M : ι → Type*) [(i : ι) → Ring (M i)
   map_mul' := by intros; rfl
   map_add' := by intros; rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.1decf8e76c3f from=translated src=- shape=2b858784 vocab=9edf5651
+-/
 @[simp]
 lemma structureMapRingHom_apply_apply {ι : Type*} (M : ι → Type*) [(i : ι) → Ring (M i)]
     {S : ι → Type*} [∀ i, SetLike (S i) (M i)] [∀ i, SubringClass (S i) (M i)] (A : Π i, S i)
@@ -298,6 +338,9 @@ def structureSubring {ι : Type*} (R : ι → Type*) {S : ι → Type*}
     Subring (Πʳ i, [R i, A i]_[𝓕]) :=
   (RestrictedProduct.structureMapRingHom R A 𝓕).range
 
+/--
+@isnad1 id=iff.0h6v.s8.fc7ff00f1410 from=translated src=- shape=b2fbf558 vocab=4ce2f8e0
+-/
 @[simp]
 theorem mem_structureSubring_iff {ι : Type*} {R : ι → Type*} {S : ι → Type*}
     {A : (i : ι) → (S i)} {𝓕 : Filter ι} [(i : ι) → SetLike (S i) (R i)] [(i : ι) → Ring (R i)]

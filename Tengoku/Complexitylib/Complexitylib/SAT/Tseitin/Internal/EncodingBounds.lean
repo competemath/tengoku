@@ -23,7 +23,9 @@ namespace Complexity
 
 namespace SAT
 
-/-- A clause has no more literal occurrences than bits in its encoding. -/
+/-- A clause has no more literal occurrences than bits in its encoding.
+@isnad1 id=le.0h1v.s3.4e7ed360fb35 from=translated src=- shape=e05e6c38 vocab=168beaaa
+-/
 theorem Clause.length_le_encode_length_internal (c : Clause) :
     c.length ≤ c.encode.length := by
   induction c with
@@ -34,7 +36,9 @@ theorem Clause.length_le_encode_length_internal (c : Clause) :
         Lit.encodeRaw_length, List.length_nil]
       omega
 
-/-- A CNF has no more clauses than bits in its encoding. -/
+/-- A CNF has no more clauses than bits in its encoding.
+@isnad1 id=le.0h1v.s3.e260c70bbdff from=translated src=- shape=e05e6c38 vocab=d9b40661
+-/
 theorem CNF.length_le_encode_length_internal (φ : CNF) :
     φ.length ≤ φ.encode.length := by
   induction φ with
@@ -44,7 +48,9 @@ theorem CNF.length_le_encode_length_internal (φ : CNF) :
       simp only [List.length_cons, List.length_append, List.length_nil]
       omega
 
-/-- The total number of literal occurrences is bounded by encoded length. -/
+/-- The total number of literal occurrences is bounded by encoded length.
+@isnad1 id=le.0h1v.s3.a8cff5c2ba1f from=translated src=- shape=b4e3cde8 vocab=3a491a33
+-/
 theorem CNF.literalCount_le_encode_length_internal (φ : CNF) :
     φ.literalCount ≤ φ.encode.length := by
   induction φ with
@@ -57,7 +63,9 @@ theorem CNF.literalCount_le_encode_length_internal (φ : CNF) :
       omega
 
 /-- A three-literal clause whose variables are at most `B` uses at most
-`6 * B + 12` bits in the unary-variable encoding. -/
+`6 * B + 12` bits in the unary-variable encoding.
+@isnad1 id=le.2h2v.s6.c6b796a4ce98 from=translated src=- shape=b850a690 vocab=b650320f
+-/
 theorem Clause.encode_length_le_of_length_eq_three_internal
     {c : Clause} {B : ℕ} (hlen : c.length = 3)
     (hvar : ∀ ℓ ∈ c, ℓ.var ≤ B) :
@@ -77,7 +85,9 @@ theorem Clause.encode_length_le_of_length_eq_three_internal
   | _ :: _ :: _ :: _ :: _ => simp at hlen
 
 /-- An exact-3 CNF with `M` clauses and variables at most `B` has encoded
-length at most `M * (6 * B + 14)`, including clause separators. -/
+length at most `M * (6 * B + 14)`, including clause separators.
+@isnad1 id=le.2h2v.s6.de28c6ef53ba from=translated src=- shape=f773fade vocab=cd54bd84
+-/
 theorem CNF.encode_length_le_of_is3CNF_internal {φ : CNF} {B : ℕ}
     (h3 : φ.Is3CNF)
     (hvar : ∀ c ∈ φ, ∀ ℓ ∈ c, ℓ.var ≤ B) :

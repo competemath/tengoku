@@ -16,7 +16,9 @@ noncomputable section
 namespace Zeta23
 /-! ## Window arithmetic for Ncount -/
 
-/-- windows split: zerosIn a c = zerosIn a b ∪ zerosIn b c for a ≤ b ≤ c. -/
+/-- windows split: zerosIn a c = zerosIn a b ∪ zerosIn b c for a ≤ b ≤ c.
+@isnad1 id=eq.2h3v.s5.8c3fc672b434 from=translated src=- shape=f5498cce vocab=58d8ab82
+-/
 theorem zerosIn_union {a b c : ℝ} (h1 : a ≤ b) (h2 : b ≤ c) :
     zerosIn a c = zerosIn a b ∪ zerosIn b c := by
   ext ρ
@@ -30,7 +32,9 @@ theorem zerosIn_union {a b c : ℝ} (h1 : a ≤ b) (h2 : b ≤ c) :
     · exact ⟨hρ, ha, le_trans hb h2⟩
     · exact ⟨hρ, lt_of_le_of_lt h1 ha, hb⟩
 
-/-- window additivity: N(a,c] = N(a,b] + N(b,c]. -/
+/-- window additivity: N(a,c] = N(a,b] + N(b,c].
+@isnad1 id=eq.2h3v.s5.4f54f846a5e9 from=translated src=- shape=be2d3d3e vocab=919ea763
+-/
 theorem Ncount_add {a b c : ℝ} (h1 : a ≤ b) (h2 : b ≤ c) :
     Ncount a c = Ncount a b + Ncount b c := by
   unfold Ncount
@@ -40,7 +44,9 @@ theorem Ncount_add {a b c : ℝ} (h1 : a ≤ b) (h2 : b ≤ c) :
   rintro ρ ⟨_, _, hb⟩ ⟨_, ha, _⟩
   exact absurd hb (not_le.2 ha)
 
-/-- window monotonicity: (a,b] ⊆ (c,d] ⇒ N(a,b] ≤ N(c,d]. -/
+/-- window monotonicity: (a,b] ⊆ (c,d] ⇒ N(a,b] ≤ N(c,d].
+@isnad1 id=le.2h4v.s4.74e115e71603 from=translated src=- shape=8268fbc7 vocab=7686c2a7
+-/
 theorem Ncount_mono {a b c d : ℝ} (hca : c ≤ a) (hbd : b ≤ d) : Ncount a b ≤ Ncount c d := by
   unfold Ncount
   have hsub : zerosIn a b ⊆ zerosIn c d := by

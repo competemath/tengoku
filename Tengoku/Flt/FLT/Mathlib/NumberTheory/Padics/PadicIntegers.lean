@@ -26,22 +26,43 @@ variable {x : ℤ_[p]}
 
 attribute [local simp] coe_eq_zero
 
+/--
+@isnad1 id=eq.0h1v.s7.0d125e128bfa from=translated src=- shape=4aa0daf1 vocab=b0ab22ad
+-/
 @[local simp, norm_cast] lemma coe_coeRingHom : ⇑(Coe.ringHom (p := p)) = (↑) := rfl
 
+/--
+@isnad1 id=injectiv.0h1v.s5.c070b64cef61 from=translated src=- shape=52fcb72b vocab=d7025ff1
+-/
 lemma coe_injective : Injective ((↑) : ℤ_[p] → ℚ_[p]) := Subtype.val_injective
 
+/--
+@isnad1 id=iff.0h3v.s6.d47b28a4c9b1 from=translated src=- shape=2b770ce6 vocab=b6dc7197
+-/
 @[local simp] lemma coe_inj {x y : ℤ_[p]} : (x : ℚ_[p]) = (y : ℚ_[p]) ↔ x = y := coe_injective.eq_iff
 
 local instance : Infinite ℤ_[p] := CharZero.infinite _
 
+/--
+@isnad1 id=eq.0h1v.s6.ee6994aac22e from=translated src=- shape=c5c34f3a vocab=c7a868dd
+-/
 @[local simp] lemma nnnorm_p : ‖(p : ℤ_[p])‖₊ = (p : ℝ≥0)⁻¹ := by simp [nnnorm]; rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.ef3732a230d9 from=translated src=- shape=3aa59947 vocab=50c9538b
+-/
 @[local simp] protected lemma nnnorm_units (u : ℤ_[p]ˣ) : ‖(u : ℤ_[p])‖₊ = 1 := by
   simp [← norm_toNNReal]
 
+/--
+@isnad1 id=ex.1h2v.s7.c63bd0c61bea from=translated src=- shape=f2803ac3 vocab=2daed63a
+-/
 lemma exists_unit_mul_p_pow_eq (hx : x ≠ 0) : ∃ (u : ℤ_[p]ˣ) (n : ℕ), (u : ℤ_[p]) * p ^ n = x :=
   ⟨_, _, (unitCoeff_spec hx).symm⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.d1378f504b8b from=translated src=- shape=52cfce53 vocab=820736e1
+-/
 @[local simp] lemma image_coe_smul_set (x : ℤ_[p]) (s : Set ℤ_[p]) :
     ((↑) '' (x • s) : Set ℚ_[p]) = x • (↑) '' s := Set.image_comm fun _ ↦ rfl
 
@@ -60,6 +81,9 @@ lemma _root_.AddSubgroup.comap_smul_one (R A : Type*) [CommRing R] [CommRing A] 
   rw [Algebra.smul_def, ← map_mul, Injective.eq_iff]
   rwa [← faithfulSMul_iff_algebraMap_injective R A]
 
+/--
+@isnad1 id=eq.1h2v.s8.b7bf888c7d05 from=translated src=- shape=d8112fae vocab=be1ee979
+-/
 lemma index_span_p_pow (hx : x ≠ 0) :
     (Submodule.toAddSubgroup (Ideal.span {(p : ℤ_[p]) ^ x.valuation})).index =
       ‖(x : ℚ_[p])‖₊⁻¹ := by
@@ -77,6 +101,9 @@ lemma index_span_p_pow (hx : x ≠ 0) :
   simp [AddSubgroup.index, quotients_defeq, card_eq_zmod, NNReal.eq_iff,
     norm_eq_zpow_neg_valuation hx]
 
+/--
+@isnad1 id=eq.0h2v.s10.b79374dcf6d0 from=translated src=- shape=8a61aa05 vocab=3ab7a7f3
+-/
 lemma smul_submodule_one_index :
     (x • (1 : Submodule ℤ_[p] ℤ_[p])).toAddSubgroup.index = ‖(x : ℚ_[p])‖₊⁻¹ := by
   by_cases hx: x = 0
@@ -87,7 +114,9 @@ lemma smul_submodule_one_index :
       Submodule.span_singleton_smul_eq (Units.isUnit _),
       Ideal.submodule_span_eq, index_span_p_pow hx]
 
-/-- `x • S` has index `‖x‖⁻¹` in `S`, where `S` is the copy of `ℤ_[p]` inside `ℚ_[p]` -/
+/-- `x • S` has index `‖x‖⁻¹` in `S`, where `S` is the copy of `ℤ_[p]` inside `ℚ_[p]`
+@isnad1 id=eq.0h2v.s9.5a11c37acfdf from=translated src=- shape=daf5582b vocab=c9a61950
+-/
 lemma smul_submodule_one_relIndex :
     (x • (1 : Submodule ℤ_[p] ℚ_[p]).toAddSubgroup).relIndex
       (1 : Submodule ℤ_[p] ℚ_[p]).toAddSubgroup = ‖x.val‖₊⁻¹ := by
@@ -113,7 +142,9 @@ lemma smul_submodule_one_relIndex :
   rw [map_top, map_H_Q] at relIndex_preserved
   rwa [relIndex_preserved] at relIndex_in_z_p
 
-/-- `x • S` has finite  in `S`, where `S` is the copy of `ℤ_[p]` inside `ℚ_[p]` -/
+/-- `x • S` has finite  in `S`, where `S` is the copy of `ℤ_[p]` inside `ℚ_[p]`
+@isnad1 id=isfinite.1h2v.s9.63217b786a92 from=translated src=- shape=b657adec vocab=abec5e56
+-/
 lemma smul_submodule_one_isFiniteRelIndex (hx : x ≠ 0) :
     (x • (1 : Submodule ℤ_[p] ℚ_[p]).toAddSubgroup).IsFiniteRelIndex
     (1 : Submodule ℤ_[p] ℚ_[p]).toAddSubgroup where
@@ -127,7 +158,9 @@ noncomputable local instance : Coe ℤ_[p]⁰ ℚ_[p]ˣ where
     Coe.ringHom coe_injective x.2
 
 set_option backward.isDefEq.respectTransparency.types false in
-/-- Non-zero p-adic integers generate non-zero p-adic numbers as a group. -/
+/-- Non-zero p-adic integers generate non-zero p-adic numbers as a group.
+@isnad1 id=eq.0h1v.s9.207937db01da from=translated src=- shape=153bc1b2 vocab=e71431fe
+-/
 lemma closure_nonZeroDivisors_padicInt :
     Subgroup.closure (Set.range ((↑) : ℤ_[p]⁰ → ℚ_[p]ˣ)) = ⊤ := by
   set H := Subgroup.closure (Set.range ((↑) : ℤ_[p]⁰ → ℚ_[p]ˣ))
@@ -147,6 +180,9 @@ end PadicInt
 
 namespace Padic
 
+/--
+@isnad1 id=eq.0h1v.s8.8ab7bbf1bbb2 from=translated src=- shape=ea625c7c vocab=f1b70475
+-/
 lemma submodule_one_eq_closedBall :
     (1 : Submodule ℤ_[p] ℚ_[p]) = Metric.closedBall (0 : ℚ_[p]) 1 := by ext x; simp; simp [PadicInt]
 

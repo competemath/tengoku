@@ -23,7 +23,9 @@ namespace PairCeiling
 
 variable {s : ℕ → ℝ} {N : ℕ}
 
-/-- **signed ceiling**: r(1) ≥ 0 and D(1) ≥ 0 kill the edge term. -/
+/-- **signed ceiling**: r(1) ≥ 0 and D(1) ≥ 0 kill the edge term.
+@isnad1 id=le.10h9v.s8.dc5914ff6b70 from=translated src=- shape=ad68fe8e vocab=bdfb4cc2
+-/
 theorem ceiling_signed (hN : 0 < N) {r g h : ℝ → ℝ} {T : Set ℝ} (hT : T.Countable) {M p₁ c₀ : ℝ}
     (hr : ∀ x ∈ Icc (0:ℝ) 1, HasDerivAt r (g x) x) (hg : ContinuousOn g (Icc (0:ℝ) 1))
     (hgh : ∀ x ∈ Ioo (0:ℝ) 1 \ T, HasDerivAt g (h x) x) (hh : IntervalIntegrable h volume 0 1)
@@ -50,7 +52,9 @@ theorem ceiling_signed (hN : 0 < N) {r g h : ℝ → ℝ} {T : Set ℝ} (hT : T.
   have hint : -(∫ x in (0:ℝ)..1, h x * Efun s N x) ≤ M * ∫ x in (0:ℝ)..1, |h x| := (neg_le_abs _).trans h3
   linarith
 
-/-- **signed ceiling for a near-CUE law.** -/
+/-- **signed ceiling for a near-CUE law.**
+@isnad1 id=le.11h9v.s9.728312a716b2 from=translated src=- shape=0ea785f3 vocab=7bec26e7
+-/
 theorem ceiling_nearCUE_signed (hN : 0 < N) (S : ℕ → ℝ) {τ : ℝ} (hτ : 0 ≤ τ) (hS : NearCUE S N τ)
     (hD1 : 0 ≤ Dfun (massOf S N) N 1)
     {r g h : ℝ → ℝ} {T : Set ℝ} (hT : T.Countable) {c₀ p : ℝ}
@@ -72,6 +76,9 @@ theorem ceiling_nearCUE_signed (hN : 0 < N) (S : ℕ → ℝ) {τ : ℝ} (hτ : 
 def edgeNonneg (d : RowCertData) : Bool := decide ((d.K : ℤ) * d.N ≤ 2 * sumLo d.encl) && decide (0 < d.K) && decide (0 < d.N)
   && decide (d.encl.length = d.N)
 
+/--
+@isnad1 id=le.2h2v.s5.23559b0048d6 from=translated src=- shape=a6a8c692 vocab=aceaa1f8
+-/
 theorem D1_nonneg_of_edgeNonneg (d : RowCertData) (hc : edgeNonneg d = true) (S : ℕ → ℝ) (hS : EnclOK d.K S 0 d.encl) :
     0 ≤ Dfun (massOf S d.N) d.N 1 := by
   simp only [edgeNonneg, Bool.and_eq_true, decide_eq_true_eq] at hc
@@ -86,11 +93,15 @@ theorem D1_nonneg_of_edgeNonneg (d : RowCertData) (hc : edgeNonneg d = true) (S 
   rw [Dfun_one hN, Csum_massOf, sub_nonneg, div_le_div_iff₀ (by norm_num : (0:ℝ) < 2) hNr]
   nlinarith
 
-/-- the N = 256 law's edge discrepancy is nonnegative (kernel evaluation). -/
+/-- the N = 256 law's edge discrepancy is nonnegative (kernel evaluation).
+@isnad1 id=eq.0h0v.s2.cc951f8ecda9 from=translated src=- shape=4b736592 vocab=f91421e1
+-/
 theorem LawN256_edge : edgeNonneg LawN256 = true := by decide +kernel
 
 /-- **SIGNED CEILING AT THE N = 256 LAW**: for certificates with r(1) ≥ 0 the edge term vanishes —
-      c₀ + ∫₀¹ r(x)·x dx ≤ p + 2.5431316·10⁻⁶·|r′(1)| + 2.5431316·10⁻⁶·∫₀¹|r″|. -/
+      c₀ + ∫₀¹ r(x)·x dx ≤ p + 2.5431316·10⁻⁶·|r′(1)| + 2.5431316·10⁻⁶·∫₀¹|r″|.
+@isnad1 id=le.8h7v.s8.bc1d7e5194c2 from=translated src=- shape=877c5de4 vocab=849a0b12
+-/
 theorem ceiling_law256_signed (S : ℕ → ℝ) (hS : EnclOK LawN256.K S 0 LawN256.encl)
     {r g h : ℝ → ℝ} {T : Set ℝ} (hT : T.Countable) {c₀ p : ℝ}
     (hr : ∀ x ∈ Icc (0:ℝ) 1, HasDerivAt r (g x) x) (hg : ContinuousOn g (Icc (0:ℝ) 1))

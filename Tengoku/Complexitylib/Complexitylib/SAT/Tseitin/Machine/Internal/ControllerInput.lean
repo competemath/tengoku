@@ -33,14 +33,18 @@ def framedTokenInput (pre rest : List EncToken) : Tape :=
   { head := (encodeTokens pre).length + 1
     cells := (Tape.init ((encodeTokens (pre ++ rest)).map Γ.ofBool)).cells }
 
-/-- Every framed token input is parked. -/
+/-- Every framed token input is parked.
+@isnad1 id=parked.0h2v.s3.ddc1335f3025 from=translated src=- shape=1a819891 vocab=3f9e2ed4
+-/
 theorem framedTokenInput_parked (pre rest : List EncToken) :
     TM.Parked (framedTokenInput pre rest) := by
   refine ⟨by simp [framedTokenInput], fun j hj => ?_⟩
   simp only [framedTokenInput]
   exact Tape.init_ofBool_cells_ne_start (encodeTokens (pre ++ rest)) j hj
 
-/-- The next two cells of a nonempty remainder are exactly its first token. -/
+/-- The next two cells of a nonempty remainder are exactly its first token.
+@isnad1 id=inputtok.0h3v.s4.a383688fe45e from=translated src=- shape=33e693d6 vocab=551144f0
+-/
 theorem framedTokenInput_tokenAt (pre rest : List EncToken) (tok : EncToken) :
     InputTokenAt (framedTokenInput pre (tok :: rest)) tok := by
   constructor
@@ -59,7 +63,9 @@ theorem framedTokenInput_tokenAt (pre rest : List EncToken) (tok : EncToken) :
     rw [Tape.init_ofBool_cells_lt _ _ hlt]
     simp [token_encode_eq_bits]
 
-/-- Consuming the next token advances the framing prefix by that token. -/
+/-- Consuming the next token advances the framing prefix by that token.
+@isnad1 id=eq.1h6v.s5.8ca8b28b5749 from=translated src=- shape=bc1397df vocab=feb9744d
+-/
 theorem controllerScheduledCfg_framedTokenInput
     (mode : StreamMode) (pre rest : List EncToken) (tok : EncToken)
     {Q : Type} (c : Cfg workTapeCount Q)
@@ -73,7 +79,9 @@ theorem controllerScheduledCfg_framedTokenInput
     simp [framedTokenInput, List.append_assoc]
 
 /-- With no tokens remaining, the framed input head reads the first trailing
-blank. -/
+blank.
+@isnad1 id=eq.0h1v.s3.72e280071834 from=translated src=- shape=543c8f89 vocab=9d344d54
+-/
 theorem framedTokenInput_nil_read (pre : List EncToken) :
     (framedTokenInput pre []).read = Γ.blank := by
   rw [Tape.read]
@@ -82,7 +90,9 @@ theorem framedTokenInput_nil_read (pre : List EncToken) :
     Tape.init_ofBool_cells_ge (encodeTokens pre) (encodeTokens pre).length hge
 
 /-- The empty-prefix frame is the input tape handed to the controller after
-rewind. -/
+rewind.
+@isnad1 id=eq.0h1v.s4.ff2949c71565 from=translated src=- shape=538e9b7d vocab=5ff2a2d6
+-/
 theorem framedTokenInput_nil_prefix (toks : List EncToken) :
     framedTokenInput [] toks =
       ⟨1, (Tape.init ((encodeTokens toks).map Γ.ofBool)).cells⟩ := by

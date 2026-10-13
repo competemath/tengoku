@@ -22,7 +22,9 @@ public section
 namespace Complexity
 
 /-- Internal proof that `P` membership is equivalent to decision within the
-evaluation of a natural-coefficient polynomial. -/
+evaluation of a natural-coefficient polynomial.
+@isnad1 id=iff.0h1v.s5.a833fed00664 from=translated src=- shape=e4beaf76 vocab=ab7ff540
+-/
 theorem mem_P_iff_decidesInTime_polynomial_internal {L : Language} :
     L ∈ P ↔ ∃ (k : ℕ) (tm : TM k) (p : Polynomial ℕ),
       tm.DecidesInTime L p.eval := by
@@ -37,7 +39,9 @@ theorem mem_P_iff_decidesInTime_polynomial_internal {L : Language} :
     exact BigO.of_polynomial_bound p fun _ => le_rfl
 
 /-- Internal proof that `FP` membership is equivalent to computation within
-the evaluation of a natural-coefficient polynomial. -/
+the evaluation of a natural-coefficient polynomial.
+@isnad1 id=iff.0h1v.s5.e51b2df2b839 from=translated src=- shape=282f50ba vocab=233c5dee
+-/
 theorem mem_FP_iff_computesInTime_polynomial_internal
     {f : List Bool → List Bool} :
     f ∈ FP ↔ ∃ (k : ℕ) (tm : TM k) (p : Polynomial ℕ),

@@ -67,16 +67,22 @@ def OutAcc (ys : List Bool) (out : Tape) : Prop :=
 
 namespace OutAcc
 
-/-- The accumulator head sits just past the `|ys|` stored bits, at cell `|ys| + 1`. -/
+/-- The accumulator head sits just past the `|ys|` stored bits, at cell `|ys| + 1`.
+@isnad1 id=eq.1h2v.s4.36ca561d5a80 from=translated src=- shape=1f9735f0 vocab=0aa16697
+-/
 theorem head_eq {ys : List Bool} {out : Tape} (h : OutAcc ys out) :
     out.head = ys.length + 1 := h.1
 
-/-- The accumulator reads the first blank. -/
+/-- The accumulator reads the first blank.
+@isnad1 id=eq.1h2v.s3.d69484da25d1 from=translated src=- shape=dc9f44a5 vocab=ffe290b7
+-/
 theorem read_blank {ys : List Bool} {out : Tape} (h : OutAcc ys out) :
     out.read = Γ.blank := by
   rw [Tape.read, h.1]; exact h.2.2.2 _ (le_refl _)
 
-/-- An accumulator tape is parked (bits and blanks are never `▷`). -/
+/-- An accumulator tape is parked (bits and blanks are never `▷`).
+@isnad1 id=parked.1h2v.s3.accff78f110f from=translated src=- shape=1aa3f2d2 vocab=8b1516fa
+-/
 theorem parked {ys : List Bool} {out : Tape} (h : OutAcc ys out) : Parked out := by
   refine ⟨by rw [h.1]; omega, fun j hj => ?_⟩
   rcases Nat.lt_or_ge j (ys.length + 1) with hlt | hge
@@ -85,12 +91,16 @@ theorem parked {ys : List Bool} {out : Tape} (h : OutAcc ys out) : Parked out :=
     cases ys[i] <;> decide
   · rw [h.2.2.2 j hge]; decide
 
-/-- The bridge to `ComputesInTime`: an accumulated output `HasOutput` its bits. -/
+/-- The bridge to `ComputesInTime`: an accumulated output `HasOutput` its bits.
+@isnad1 id=hasoutpu.1h2v.s3.db8df57a617e from=translated src=- shape=cdb8c755 vocab=e13b0372
+-/
 theorem hasOutput {ys : List Bool} {out : Tape} (h : OutAcc ys out) :
     out.HasOutput ys :=
   ⟨fun i hi => h.2.2.1 i hi, h.2.2.2 _ (le_refl _)⟩
 
-/-- An output accumulator is uniquely determined by its accumulated word. -/
+/-- An output accumulator is uniquely determined by its accumulated word.
+@isnad1 id=eq.2h3v.s4.1fdc0609621d from=translated src=- shape=7803f35e vocab=7c524d94
+-/
 theorem eq {ys : List Bool} {first second : Tape}
     (hfirst : OutAcc ys first) (hsecond : OutAcc ys second) :
     first = second := by
@@ -108,7 +118,9 @@ theorem eq {ys : List Bool} {first second : Tape}
 
 end OutAcc
 
-/-- The empty accumulator: a blank output tape with the head bumped to cell 1. -/
+/-- The empty accumulator: a blank output tape with the head bumped to cell 1.
+@isnad1 id=outacc.0h0v.s3.5ba135bd3888 from=translated src=- shape=c067a72d vocab=a6a21453
+-/
 theorem outAcc_nil_init : OutAcc [] { head := 1, cells := (Tape.init []).cells } := by
   refine ⟨rfl, by simp [Tape.init], fun i hi => absurd hi (by simp), fun j hj => ?_⟩
   show (Tape.init []).cells j = Γ.blank
@@ -117,7 +129,9 @@ theorem outAcc_nil_init : OutAcc [] { head := 1, cells := (Tape.init []).cells }
   simp
 
 /-- **Appending one bit.** Writing `Γ.ofBool b` at the accumulator head and
-    moving right extends the accumulator by `b`. -/
+    moving right extends the accumulator by `b`.
+@isnad1 id=outacc.1h3v.s5.218df0e17e02 from=translated src=- shape=930c1480 vocab=1c0d997a
+-/
 theorem outAcc_append_bit {ys : List Bool} {out : Tape} (h : OutAcc ys out) (b : Bool) :
     OutAcc (ys ++ [b]) (out.writeAndMove (Γ.ofBool b) .right) := by
   obtain ⟨hhead, hc0, hbits, hblank⟩ := h
@@ -180,7 +194,9 @@ def bumpTM : TM n where
      Dir3.right, fun _ => Dir3.right, Dir3.right)
   δ_right_of_start := fun _ _ _ _ => ⟨fun _ => rfl, fun _ _ => rfl, fun _ => rfl⟩
 
-/-- The input tape of the initial configuration, bumped to cell 1, is parked. -/
+/-- The input tape of the initial configuration, bumped to cell 1, is parked.
+@isnad1 id=parked.0h1v.s4.19f167cc6765 from=translated src=- shape=1e734ac3 vocab=446178f5
+-/
 theorem parked_init_input (x : List Bool) :
     Parked { head := 1, cells := (Tape.init (x.map Γ.ofBool)).cells } := by
   refine ⟨le_refl 1, fun j hj => ?_⟩
@@ -195,7 +211,9 @@ theorem parked_init_input (x : List Bool) :
 
 /-- **`bumpTM` Hoare specification.** From the initial configuration's tapes,
     one step establishes: parked input (cells intact), zero registers on all
-    work tapes, and the empty output accumulator. -/
+    work tapes, and the empty output accumulator.
+@isnad1 id=hoaretim.0h2v.s6.25d90a53d4a3 from=translated src=- shape=a6a73ed5 vocab=c30f840c
+-/
 theorem bumpTM_hoareTime (x : List Bool) :
     (bumpTM (n := n)).HoareTime
       (fun inp work out =>
@@ -290,7 +308,9 @@ private theorem emitBitsTM_run (w : List Bool) (m : ℕ) :
       List.getElem_cons_drop] at hout'
 
 /-- Exact fixed-word emission appends `w`, preserves the complete input/work
-frame, and reaches the halt state in exactly `|w|` steps. -/
+frame, and reaches the halt state in exactly `|w|` steps.
+@isnad1 id=ex.3h6v.s7.6428b2c04fb5 from=translated src=- shape=1454e0f4 vocab=994585c1
+-/
 theorem emitBitsTM_reachesIn_frame (w : List Bool) (inp₀ : Tape)
     (work₀ : Fin n → Tape) (out₀ : Tape) (ys : List Bool)
     (hinp₀ : Parked inp₀) (hwork₀ : ∀ i, Parked (work₀ i))
@@ -312,7 +332,9 @@ theorem emitBitsTM_reachesIn_frame (w : List Bool) (inp₀ : Tape)
   refine ⟨c', hreach, hhalt, hinput, hwork, ?_⟩
   rwa [List.drop_zero] at houtput
 
-/-- Fixed-word emission satisfies the one-way-output transducer discipline. -/
+/-- Fixed-word emission satisfies the one-way-output transducer discipline.
+@isnad1 id=istransd.0h2v.s3.4536823076ba from=translated src=- shape=ba2dff7d vocab=ea126867
+-/
 theorem emitBitsTM_isTransducer (w : List Bool) :
     (emitBitsTM (n := n) w).IsTransducer := by
   intro k iHead wHeads oHead
@@ -324,7 +346,9 @@ theorem emitBitsTM_isTransducer (w : List Bool) :
 /-- **`emitBitsTM` Hoare specification.** Appends the word `w` to the output
     accumulator in `|w|` steps, leaving the (parked) input and work tapes
     literally unchanged. Ghost-parametrized by the initial tapes for
-    `seqTM` composition. -/
+    `seqTM` composition.
+@isnad1 id=hoaretim.2h5v.s6.20d18fc94811 from=translated src=- shape=23ed857d vocab=319c4ccb
+-/
 theorem emitBitsTM_hoareTime (w : List Bool) (inp₀ : Tape) (work₀ : Fin n → Tape)
     (ys : List Bool) (hinp₀ : Parked inp₀) (hwork₀ : ∀ i, Parked (work₀ i)) :
     (emitBitsTM (n := n) w).HoareTime
@@ -738,7 +762,9 @@ private theorem emitUnaryTM_back_run (h : ℕ) :
 /-- **`emitUnaryTM` Hoare specification.** Appends `2v` trues (the doubled
     unary body of a literal with variable index `v`) to the output accumulator
     in `3v + 3` steps, restoring all tapes exactly: the scanned register `r`
-    included. -/
+    included.
+@isnad1 id=hoaretim.3h6v.s7.187deb9e4100 from=translated src=- shape=c15a97a6 vocab=af9076dd
+-/
 theorem emitUnaryTM_hoareTime (r : Fin n) (v : ℕ) (inp₀ : Tape) (work₀ : Fin n → Tape)
     (ys : List Bool) (hinp₀ : Parked inp₀) (hwork₀ : ∀ i, i ≠ r → Parked (work₀ i))
     (hreg : IsReg v (work₀ r)) :
@@ -815,7 +841,9 @@ def EmitPred (inp₀ : Tape) (work₀ : Fin n → Tape) (ys : List Bool) : TapeP
 /-- Emit-spec states pass through combinator phase boundaries unchanged:
     parked ghosts and the accumulator are fixed points of
     `transitionTape` / `transitionInput`. The `h_trans` obligation of
-    `seqTM_hoareTime` for any two composed emitters. -/
+    `seqTM_hoareTime` for any two composed emitters.
+@isnad1 id=emitpred.2h8v.s5.337399351b2b from=translated src=- shape=fb41062c vocab=b477ad56
+-/
 theorem emitPred_transition {inp₀ : Tape} {work₀ : Fin n → Tape}
     (hinp₀ : Parked inp₀) (hworkAll : ∀ i, Parked (work₀ i)) (ys : List Bool) :
     ∀ inp work out, EmitPred inp₀ work₀ ys inp work out →
@@ -842,7 +870,9 @@ def emitLitTM (s : Bool) (r : Fin n) : TM n :=
 /-- **`emitLitTM` Hoare specification.** Appends the encoded literal in
     `3v + 9` steps, preserving the input and work tapes (the scanned register
     included). The first `seqTM`-composed emitter spec; later emitters chain
-    the same way. -/
+    the same way.
+@isnad1 id=hoaretim.3h7v.s7.c934358c64c4 from=translated src=- shape=8a3489ee vocab=685850ba
+-/
 theorem emitLitTM_hoareTime (s : Bool) (r : Fin n) (v : ℕ) (inp₀ : Tape)
     (work₀ : Fin n → Tape) (ys : List Bool) (hinp₀ : Parked inp₀)
     (hwork₀ : ∀ i, i ≠ r → Parked (work₀ i)) (hreg : IsReg v (work₀ r)) :

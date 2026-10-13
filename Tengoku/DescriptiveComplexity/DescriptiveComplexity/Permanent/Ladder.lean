@@ -64,6 +64,9 @@ abbrev lvl (q : Rung K wd) : Λ := q.1.2.2.1
 /-- The index of a rung at its level. -/
 abbrev idx (q : Rung K wd) : Fin K := q.1.2.2.2
 
+/--
+@isnad1 id=eq.4h6v.s6.440997cf4352 from=translated src=- shape=8e6fa87e vocab=96477522
+-/
 theorem ext {q q' : Rung K wd} (ha : q.src = q'.src) (hb : q.tgt = q'.tgt) (hℓ : q.lvl = q'.lvl)
     (hj : q.idx = q'.idx) : q = q' :=
   Subtype.ext (Prod.ext ha (Prod.ext hb (Prod.ext hℓ hj)))
@@ -92,10 +95,16 @@ noncomputable def ladder (K : ℕ) (wd : V → V → Λ → ℕ) (n n' : V ⊕ R
 
 variable {K : ℕ} {wd : V → V → Λ → ℕ}
 
+/--
+@isnad1 id=not.0h6v.s5.51eab25202a8 from=translated src=- shape=cfedb4ce vocab=b1be98be
+-/
 theorem ladderEdge_inl_inl (a b : V) : ¬LadderEdge K wd (Sum.inl a) (Sum.inl b) := by
   intro h
   cases h
 
+/--
+@isnad1 id=iff.0h6v.s6.4255d8a22032 from=translated src=- shape=980060d2 vocab=71d2218d
+-/
 theorem ladderEdge_inl_inr {a : V} {q : Rung K wd} :
     LadderEdge K wd (Sum.inl a) (Sum.inr q) ↔ q.src = a ∧ q.lvl = ⊥ := by
   constructor
@@ -105,6 +114,9 @@ theorem ladderEdge_inl_inr {a : V} {q : Rung K wd} :
   · rintro ⟨rfl, h⟩
     exact .enter q h
 
+/--
+@isnad1 id=iff.0h6v.s6.d232ad2a1922 from=translated src=- shape=84f99d17 vocab=92351271
+-/
 theorem ladderEdge_inr_inl {q : Rung K wd} {b : V} :
     LadderEdge K wd (Sum.inr q) (Sum.inl b) ↔ q.tgt = b ∧ q.lvl = ⊤ := by
   constructor
@@ -114,6 +126,9 @@ theorem ladderEdge_inr_inl {q : Rung K wd} {b : V} :
   · rintro ⟨rfl, h⟩
     exact .leave q h
 
+/--
+@isnad1 id=iff.0h6v.s7.57e4592cb2cc from=translated src=- shape=fdc126ed vocab=187caba0
+-/
 theorem ladderEdge_inr_inr {q q' : Rung K wd} :
     LadderEdge K wd (Sum.inr q) (Sum.inr q') ↔
       q = q' ∨ (q.src = q'.src ∧ q.tgt = q'.tgt ∧ q.lvl ⋖ q'.lvl) := by
@@ -134,11 +149,15 @@ section Levels
 
 variable {Λ : Type} [LinearOrder Λ]
 
-/-- The next level is unique. -/
+/-- The next level is unique.
+@isnad1 id=eq.2h4v.s5.25840cc6406e from=translated src=- shape=c81f75e9 vocab=903d23fd
+-/
 theorem covBy_right_unique {ℓ ℓ₁ ℓ₂ : Λ} (h₁ : ℓ ⋖ ℓ₁) (h₂ : ℓ ⋖ ℓ₂) : ℓ₁ = ℓ₂ :=
   le_antisymm (h₁.ge_of_gt h₂.lt) (h₂.ge_of_gt h₁.lt)
 
-/-- The previous level is unique. -/
+/-- The previous level is unique.
+@isnad1 id=eq.2h4v.s5.8d4d9a96ac09 from=translated src=- shape=4b975559 vocab=903d23fd
+-/
 theorem covBy_left_unique {ℓ₁ ℓ₂ ℓ : Λ} (h₁ : ℓ₁ ⋖ ℓ) (h₂ : ℓ₂ ⋖ ℓ) : ℓ₁ = ℓ₂ :=
   le_antisymm (h₂.le_of_lt h₁.lt) (h₁.le_of_lt h₂.lt)
 
@@ -149,17 +168,29 @@ noncomputable def lvlSucc (ℓ : Λ) : Λ :=
   if h : ℓ = ⊤ then ℓ
   else Classical.choose (exists_covBy_of_wellFoundedLT (isMax_iff_eq_top.not.mpr h))
 
+/--
+@isnad1 id=covby.1h2v.s6.30bd222e4b19 from=translated src=- shape=6cca98f3 vocab=81c4ac57
+-/
 theorem covBy_lvlSucc {ℓ : Λ} (h : ℓ ≠ ⊤) : ℓ ⋖ lvlSucc ℓ := by
   rw [lvlSucc, dite_eq_right h]
   exact Classical.choose_spec (exists_covBy_of_wellFoundedLT (isMax_iff_eq_top.not.mpr h))
 
+/--
+@isnad1 id=eq.3h3v.s6.35804849edb1 from=translated src=- shape=4124bc54 vocab=089ed261
+-/
 theorem lvlSucc_injective {ℓ ℓ' : Λ} (h : ℓ ≠ ⊤) (h' : ℓ' ≠ ⊤) (he : lvlSucc ℓ = lvlSucc ℓ') :
     ℓ = ℓ' :=
   covBy_left_unique (covBy_lvlSucc h) (he ▸ covBy_lvlSucc h')
 
+/--
+@isnad1 id=ne.1h2v.s6.fb89bf4654fe from=translated src=- shape=d0a70bc4 vocab=6b46caf8
+-/
 theorem lvlSucc_ne_bot {ℓ : Λ} (h : ℓ ≠ ⊤) : lvlSucc ℓ ≠ ⊥ :=
   fun hb => (hb ▸ (covBy_lvlSucc h).lt).not_ge bot_le
 
+/--
+@isnad1 id=ne.1h2v.s6.cd146cea1d8f from=translated src=- shape=9dab050f vocab=089ed261
+-/
 theorem lvlSucc_ne {ℓ : Λ} (h : ℓ ≠ ⊤) : lvlSucc ℓ ≠ ℓ :=
   (covBy_lvlSucc h).lt.ne'
 
@@ -183,15 +214,30 @@ include hK
 def act (c : Choice wd) (a : V) (ℓ : Λ) : Rung K wd :=
   ⟨(a, c.1 a, ℓ, ⟨(c.2 a ℓ).val, lt_of_lt_of_le (c.2 a ℓ).2 (hK a (c.1 a) ℓ)⟩), (c.2 a ℓ).2⟩
 
+/--
+@isnad1 id=eq.1h7v.s5.65d75992ac48 from=translated src=- shape=b44d6482 vocab=e1d7e154
+-/
 theorem act_src (c : Choice wd) (a : V) (ℓ : Λ) : (act hK c a ℓ).src = a := rfl
 
+/--
+@isnad1 id=eq.1h7v.s6.17985fb321f0 from=translated src=- shape=83a8a112 vocab=284cdc3b
+-/
 theorem act_tgt (c : Choice wd) (a : V) (ℓ : Λ) : (act hK c a ℓ).tgt = c.1 a := rfl
 
+/--
+@isnad1 id=eq.1h7v.s5.4da6ded3412f from=translated src=- shape=9981a21d vocab=715bbf48
+-/
 theorem act_lvl (c : Choice wd) (a : V) (ℓ : Λ) : (act hK c a ℓ).lvl = ℓ := rfl
 
+/--
+@isnad1 id=eq.1h7v.s7.b14785ec0c92 from=translated src=- shape=4d475dee vocab=84ef9abd
+-/
 theorem act_idx_val (c : Choice wd) (a : V) (ℓ : Λ) :
     (act hK c a ℓ).idx.val = (c.2 a ℓ).val := rfl
 
+/--
+@isnad1 id=and.2h9v.s6.8c7d96ab7f6a from=translated src=- shape=bc4d486b vocab=791eed20
+-/
 theorem act_injective (c : Choice wd) {a a' : V} {ℓ ℓ' : Λ}
     (h : act hK c a ℓ = act hK c a' ℓ') : a = a' ∧ ℓ = ℓ' :=
   ⟨congrArg Rung.src h, congrArg Rung.lvl h⟩
@@ -200,6 +246,9 @@ theorem act_injective (c : Choice wd) {a a' : V} {ℓ ℓ' : Λ}
 def IsAct (c : Choice wd) (q : Rung K wd) : Prop :=
   q.tgt = c.1 q.src ∧ q.idx.val = (c.2 q.src q.lvl).val
 
+/--
+@isnad1 id=iff.1h6v.s6.248cf3d75349 from=translated src=- shape=f8afdbce vocab=b3aa64ec
+-/
 theorem isAct_iff (c : Choice wd) (q : Rung K wd) : IsAct c q ↔ q = act hK c q.src q.lvl := by
   constructor
   · rintro ⟨hb, hj⟩
@@ -207,6 +256,9 @@ theorem isAct_iff (c : Choice wd) (q : Rung K wd) : IsAct c q ↔ q = act hK c q
   · intro h
     exact ⟨congrArg Rung.tgt h, congrArg (fun q : Rung K wd => q.idx.val) h⟩
 
+/--
+@isnad1 id=isact.1h7v.s5.e2e9c9a6fbdf from=translated src=- shape=27515092 vocab=185d2bd5
+-/
 theorem isAct_act (c : Choice wd) (a : V) (ℓ : Λ) : IsAct c (act hK c a ℓ) :=
   (isAct_iff hK c _).mpr rfl
 
@@ -224,23 +276,37 @@ noncomputable def toCover (c : Choice wd) : V ⊕ Rung K wd → V ⊕ Rung K wd
         if q.lvl = ⊤ then Sum.inl q.tgt else Sum.inr (act hK c q.src (lvlSucc q.lvl))
       else Sum.inr q
 
+/--
+@isnad1 id=eq.1h6v.s7.df80558bd6f3 from=translated src=- shape=99074034 vocab=fc30bb99
+-/
 theorem toCover_inl (c : Choice wd) (a : V) : toCover hK c (Sum.inl a) = Sum.inr (act hK c a ⊥) :=
   rfl
 
+/--
+@isnad1 id=eq.2h6v.s6.92432273c195 from=translated src=- shape=840f6476 vocab=1f59f2b0
+-/
 theorem toCover_inr_of_not (c : Choice wd) {q : Rung K wd} (h : ¬IsAct c q) :
     toCover hK c (Sum.inr q) = Sum.inr q := by
   rw [toCover, ite_eq_right h]
 
+/--
+@isnad1 id=eq.3h6v.s7.10edad21cd01 from=translated src=- shape=0ace8fe6 vocab=8acb1e5d
+-/
 theorem toCover_inr_top (c : Choice wd) {q : Rung K wd} (h : IsAct c q) (ht : q.lvl = ⊤) :
     toCover hK c (Sum.inr q) = Sum.inl q.tgt := by
   rw [toCover, ite_eq_left h, ite_eq_left ht]
 
+/--
+@isnad1 id=eq.3h6v.s7.c1e608f0b2e0 from=translated src=- shape=fb4315e4 vocab=692abbac
+-/
 theorem toCover_inr_of_ne_top (c : Choice wd) {q : Rung K wd} (h : IsAct c q)
     (ht : q.lvl ≠ ⊤) : toCover hK c (Sum.inr q) = Sum.inr (act hK c q.src (lvlSucc q.lvl)) := by
   rw [toCover, ite_eq_left h, ite_eq_right ht]
 
 /-- Every edge of the cover determined by a choice is an edge of the ladder
-graph. -/
+graph.
+@isnad1 id=laddered.1h6v.s6.bbe7baa9a733 from=translated src=- shape=306ca10e vocab=22d93350
+-/
 theorem ladderEdge_toCover (c : Choice wd) (n : V ⊕ Rung K wd) :
     LadderEdge K wd n (toCover hK c n) := by
   rcases n with a | q
@@ -254,6 +320,9 @@ theorem ladderEdge_toCover (c : Choice wd) (n : V ⊕ Rung K wd) :
     · rw [toCover_inr_of_not hK c h]
       exact .loop q
 
+/--
+@isnad1 id=ne.2h6v.s6.21b0340675f7 from=translated src=- shape=ce87e582 vocab=1f59f2b0
+-/
 theorem toCover_inr_ne (c : Choice wd) {q : Rung K wd} (h : IsAct c q) :
     toCover hK c (Sum.inr q) ≠ Sum.inr q := by
   by_cases ht : q.lvl = ⊤
@@ -263,7 +332,9 @@ theorem toCover_inr_ne (c : Choice wd) {q : Rung K wd} (h : IsAct c q) :
     intro he
     exact lvlSucc_ne ht (congrArg Rung.lvl (Sum.inr.inj he))
 
-/-- The cover determined by a choice is injective. -/
+/-- The cover determined by a choice is injective.
+@isnad1 id=injectiv.1h5v.s6.246010e4f571 from=translated src=- shape=3590d355 vocab=28e56377
+-/
 theorem toCover_injective (c : Choice wd) : Function.Injective (toCover hK c) := by
   intro n n' h
   rcases n with a | q <;> rcases n' with a' | q'
@@ -335,11 +406,16 @@ noncomputable def toCoverEquiv (c : Choice wd) :
   ⟨Equiv.ofBijective _ (Finite.injective_iff_bijective.mp (toCover_injective hK c)),
     ladderEdge_toCover hK c⟩
 
+/--
+@isnad1 id=eq.1h6v.s8.2dd06b58ef15 from=translated src=- shape=e244cef2 vocab=56db6633
+-/
 theorem toCoverEquiv_apply (c : Choice wd) (n : V ⊕ Rung K wd) :
     (toCoverEquiv hK c).1 n = toCover hK c n :=
   rfl
 
-/-- Distinct choices determine distinct covers. -/
+/-- Distinct choices determine distinct covers.
+@isnad1 id=injectiv.1h4v.s7.aa19f137bd3c from=translated src=- shape=3dac79bf vocab=51a087ae
+-/
 theorem toCoverEquiv_injective : Function.Injective (toCoverEquiv hK) := by
   rintro ⟨σ, r⟩ ⟨σ', r'⟩ h
   have h' : ∀ n, toCover hK ⟨σ, r⟩ n = toCover hK ⟨σ', r'⟩ n := fun n =>
@@ -368,17 +444,25 @@ def Act (q : Rung K wd) : Prop :=
   e (Sum.inr q) ≠ Sum.inr q
 
 omit [LinearOrder Λ] [BoundedOrder Λ] in
+/--
+@isnad1 id=act.1h7v.s7.212fe87e34a5 from=translated src=- shape=e68a72e4 vocab=f073526c
+-/
 theorem act_of_eq_inl {a : V} {q : Rung K wd} (h : e (Sum.inl a) = Sum.inr q) : Act e q :=
   fun h' => Sum.inl_ne_inr (e.injective (h.trans h'.symm))
 
 omit [LinearOrder Λ] [BoundedOrder Λ] in
+/--
+@isnad1 id=act.2h7v.s7.1479464d82bf from=translated src=- shape=bf6a25f7 vocab=7a9803e5
+-/
 theorem act_of_eq_inr {q' q : Rung K wd} (h : e (Sum.inr q') = Sum.inr q) (hne : q' ≠ q) :
     Act e q :=
   fun h' => hne (Sum.inr.inj (e.injective (h.trans h'.symm)))
 
 include he in
 /-- The edge entering an active rung: from the source at the least level, or
-from an active rung of the previous level. -/
+from an active rung of the previous level.
+@isnad1 id=or.2h6v.s8.7c8e88eb514b from=translated src=- shape=a39d58a7 vocab=1991db45
+-/
 theorem of_act {q : Rung K wd} (h : Act e q) :
     (q.lvl = ⊥ ∧ e (Sum.inl q.src) = Sum.inr q) ∨
       ∃ q' : Rung K wd, q'.src = q.src ∧ q'.tgt = q.tgt ∧ q'.lvl ⋖ q.lvl ∧ Act e q' ∧
@@ -397,7 +481,9 @@ theorem of_act {q : Rung K wd} (h : Act e q) :
 
 include he in
 /-- The edge leaving an active rung: to the target from the greatest level,
-to an active rung of the next level otherwise. -/
+to an active rung of the next level otherwise.
+@isnad1 id=or.2h6v.s8.ec06950e6cbd from=translated src=- shape=a8d1caa0 vocab=6355f799
+-/
 theorem act_step {q : Rung K wd} (h : Act e q) :
     (q.lvl = ⊤ ∧ e (Sum.inr q) = Sum.inl q.tgt) ∨
       ∃ q' : Rung K wd, q'.src = q.src ∧ q'.tgt = q.tgt ∧ q.lvl ⋖ q'.lvl ∧ Act e q' ∧
@@ -413,6 +499,9 @@ theorem act_step {q : Rung K wd} (h : Act e q) :
         act_of_eq_inr e hn fun h' : q = q' => hℓ.lt.ne (congrArg Rung.lvl h'), rfl⟩
 
 include he in
+/--
+@isnad1 id=eq.3h6v.s8.5b322ee71e0f from=translated src=- shape=1a79f4d4 vocab=28bfc6cc
+-/
 theorem act_top {q : Rung K wd} (h : Act e q) (ht : q.lvl = ⊤) :
     e (Sum.inr q) = Sum.inl q.tgt := by
   rcases act_step e he h with ⟨_, h'⟩ | ⟨q', _, _, hℓ, _, _⟩
@@ -424,13 +513,18 @@ def tgt (a : V) : V :=
   Sum.elim (fun _ => a) Rung.tgt (e (Sum.inl a))
 
 omit [LinearOrder Λ] [BoundedOrder Λ] in
+/--
+@isnad1 id=eq.1h7v.s7.82f43d0a8dc4 from=translated src=- shape=47097c2d vocab=22d61f39
+-/
 theorem tgt_eq {a : V} {q : Rung K wd} (h : e (Sum.inl a) = Sum.inr q) : tgt e a = q.tgt := by
   rw [tgt, h]
   rfl
 
 include he in
 /-- The cover sends `a` to a rung of the least level of the edge to
-`tgt e a`. -/
+`tgt e a`.
+@isnad1 id=ex.1h6v.s8.2658a839a6ec from=translated src=- shape=8755c705 vocab=24b15b92
+-/
 theorem exists_act_bot (a : V) :
     ∃ q : Rung K wd, q.src = a ∧ q.tgt = tgt e a ∧ q.lvl = ⊥ ∧ Act e q ∧
       e (Sum.inl a) = Sum.inr q := by
@@ -444,7 +538,9 @@ theorem exists_act_bot (a : V) :
 variable [Finite Λ]
 
 include he in
-/-- **No rung of an unused edge is active.** -/
+/-- **No rung of an unused edge is active.**
+@isnad1 id=not.2h6v.s7.4c7848de820e from=translated src=- shape=f57cdd80 vocab=85da8f4d
+-/
 theorem not_act_of_ne (q : Rung K wd) (hq : q.tgt ≠ tgt e q.src) : ¬Act e q := by
   induction hℓ : q.lvl using WellFoundedLT.induction generalizing q with
   | _ ℓ ih =>
@@ -454,7 +550,9 @@ theorem not_act_of_ne (q : Rung K wd) (hq : q.tgt ≠ tgt e q.src) : ¬Act e q :
   · exact ih q'.lvl (hℓ ▸ hℓ'.lt) q' (by rw [hb, ha]; exact hq) rfl hact
 
 include he in
-/-- **Every level of a used edge has exactly one active rung.** -/
+/-- **Every level of a used edge has exactly one active rung.**
+@isnad1 id=existsun.1h7v.s7.ffc86b278e21 from=translated src=- shape=4d926f0f vocab=eb67f130
+-/
 theorem existsUnique_act (a : V) (ℓ : Λ) :
     ∃! q : Rung K wd, q.src = a ∧ q.tgt = tgt e a ∧ q.lvl = ℓ ∧ Act e q := by
   induction ℓ using WellFoundedLT.induction with
@@ -482,6 +580,9 @@ theorem existsUnique_act (a : V) (ℓ : Λ) :
 noncomputable def actRung (a : V) (ℓ : Λ) : Rung K wd :=
   Classical.choose (existsUnique_act e he a ℓ).exists
 
+/--
+@isnad1 id=and.1h7v.s7.34f59bce9cfa from=translated src=- shape=f2b05833 vocab=c58dc825
+-/
 theorem actRung_spec (a : V) (ℓ : Λ) :
     (actRung e he a ℓ).src = a ∧ (actRung e he a ℓ).tgt = tgt e a ∧
       (actRung e he a ℓ).lvl = ℓ ∧ Act e (actRung e he a ℓ) :=
@@ -493,7 +594,9 @@ theorem eq_actRung {q : Rung K wd} (h : Act e q) : q = actRung e he q.src q.lvl 
 
 include he in
 /-- The target map of a cover is injective: the active rung of the greatest
-level is the only way into the target. -/
+level is the only way into the target.
+@isnad1 id=injectiv.1h5v.s7.3e766dbdc945 from=translated src=- shape=d029efaa vocab=597ebbe5
+-/
 theorem tgt_injective : Function.Injective (tgt e) := by
   intro a a' h
   have h1 := act_top e he (actRung_spec e he a ⊤).2.2.2 (actRung_spec e he a ⊤).2.2.1
@@ -516,11 +619,17 @@ noncomputable def ofCover : Choice wd :=
         (actRung_spec e he a ℓ).2.2.1] at h
       exact h⟩⟩
 
+/--
+@isnad1 id=eq.2h7v.s7.cb4d29eceaa3 from=translated src=- shape=131a41e9 vocab=96ed96ae
+-/
 theorem act_ofCover (hK : ∀ a b ℓ, wd a b ℓ ≤ K) (a : V) (ℓ : Λ) :
     act hK (ofCover e he) a ℓ = actRung e he a ℓ :=
   Rung.ext (actRung_spec e he a ℓ).1.symm (actRung_spec e he a ℓ).2.1.symm
     (actRung_spec e he a ℓ).2.2.1.symm (Fin.ext rfl)
 
+/--
+@isnad1 id=iff.2h6v.s7.c58733ce3d64 from=translated src=- shape=10366289 vocab=7938254b
+-/
 theorem isAct_ofCover_iff (hK : ∀ a b ℓ, wd a b ℓ ≤ K) (q : Rung K wd) :
     IsAct (ofCover e he) q ↔ Act e q := by
   rw [isAct_iff hK, act_ofCover e he hK]
@@ -530,7 +639,9 @@ theorem isAct_ofCover_iff (hK : ∀ a b ℓ, wd a b ℓ ≤ K) (q : Rung K wd) :
     exact (actRung_spec e he _ _).2.2.2
   · exact eq_actRung e he
 
-/-- **The cover of the choice underneath a cover is that cover.** -/
+/-- **The cover of the choice underneath a cover is that cover.**
+@isnad1 id=eq.2h6v.s8.69bf745a5806 from=translated src=- shape=4b35980b vocab=61c3c67d
+-/
 theorem toCover_ofCover (hK : ∀ a b ℓ, wd a b ℓ ≤ K) (n : V ⊕ Rung K wd) :
     toCover hK (ofCover e he) n = e n := by
   rcases n with a | q
@@ -554,14 +665,18 @@ section Main
 
 variable {V Λ : Type} [LinearOrder Λ] [BoundedOrder Λ] {K : ℕ} {wd : V → V → Λ → ℕ}
 
-/-- **The covers of the ladder graph are the choices.** -/
+/-- **The covers of the ladder graph are the choices.**
+@isnad1 id=bijectiv.1h4v.s7.08ec90872f23 from=translated src=- shape=5f29ae26 vocab=2c58640c
+-/
 theorem toCoverEquiv_bijective [Finite V] [Finite Λ] (hK : ∀ a b ℓ, wd a b ℓ ≤ K) :
     Function.Bijective (toCoverEquiv hK) :=
   ⟨toCoverEquiv_injective hK, fun ⟨e, he⟩ => ⟨ofCover e he, Subtype.ext (Equiv.ext fun n =>
     (toCoverEquiv_apply hK _ n).trans (toCover_ofCover e he hK n))⟩⟩
 
 /-- **The permanent of the ladder expansion is the permanent of the matrix of
-the products of the widths.** -/
+the products of the widths.**
+@isnad1 id=eq.1h4v.s7.d282b31a3af6 from=translated src=- shape=a4387e67 vocab=8067ad2c
+-/
 theorem bperm_ladder [Fintype V] [DecidableEq V] [Fintype Λ] (hK : ∀ a b ℓ, wd a b ℓ ≤ K) :
     bperm (ladder K wd) = bperm fun a b => ∏ ℓ, wd a b ℓ := by
   classical

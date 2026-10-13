@@ -43,31 +43,43 @@ namespace TM.UTMBody
 -- Bit-symbol translation helpers
 -- ════════════════════════════════════════════════════════════════════════
 
-/-- `bitSym` and `bitCell` denote the same cell content. -/
+/-- `bitSym` and `bitCell` denote the same cell content.
+@isnad1 id=eq.0h1v.s3.b72958b83581 from=translated src=- shape=7718e021 vocab=b1c065a9
+-/
 theorem bitSym_toΓ (b : Bool) : (bitSym b).toΓ = bitCell b := by
   cases b <;> rfl
 
-/-- `bitSym` is injective. -/
+/-- `bitSym` is injective.
+@isnad1 id=injectiv.0h0v.s2.52db94a607f4 from=translated src=- shape=54c8eceb vocab=680ebb3c
+-/
 theorem bitSym_injective : Function.Injective bitSym := by
   intro a b h
   cases a <;> cases b <;> simp [bitSym] at h ⊢
 
-/-- `bitsToSyms` is injective. -/
+/-- `bitsToSyms` is injective.
+@isnad1 id=injectiv.0h0v.s2.15685e74013e from=translated src=- shape=324b2a5c vocab=f9056d45
+-/
 theorem bitsToSyms_injective : Function.Injective bitsToSyms :=
   fun _ _ h => List.map_injective_iff.mpr bitSym_injective h
 
-/-- `bitsToSyms` commutes with `take`. -/
+/-- `bitsToSyms` commutes with `take`.
+@isnad1 id=eq.0h2v.s4.47395aa352c3 from=translated src=- shape=86071d65 vocab=d43d4c03
+-/
 theorem bitsToSyms_take (l : List Bool) (n : ℕ) :
     bitsToSyms (l.take n) = (bitsToSyms l).take n :=
   List.map_take ..
 
-/-- `bitsToSyms` commutes with `drop`. -/
+/-- `bitsToSyms` commutes with `drop`.
+@isnad1 id=eq.0h2v.s4.2e76b94eebcd from=translated src=- shape=86071d65 vocab=45238c16
+-/
 theorem bitsToSyms_drop (l : List Bool) (n : ℕ) :
     bitsToSyms (l.drop n) = (bitsToSyms l).drop n :=
   List.map_drop ..
 
 /-- On a `□`-free list the (total) bit translation is the machine's
-    `cellBit` read of each cell. -/
+    `cellBit` read of each cell.
+@isnad1 id=eq.1h1v.s5.69a21b80e76d from=translated src=- shape=e709018d vocab=04edd0bc
+-/
 theorem filterMap_symBit?_eq_map_cellBit :
     ∀ {l : List Γw}, (∀ s ∈ l, s ≠ Γw.blank) →
       l.filterMap symBit? = l.map fun s => cellBit s.toΓ
@@ -116,11 +128,16 @@ def keyCells (f : VFlags) (v0 v1 v2 : Γ) : List Γw :=
   bitsToSyms ((simRead f.1 v0).encode ++ (simRead f.2.1 v1).encode ++
     (simRead f.2.2 v2).encode)
 
+/--
+@isnad1 id=eq.0h4v.s4.b10a3af4178c from=translated src=- shape=2b42ae58 vocab=3cd187c3
+-/
 @[simp] theorem keyCells_length (f : VFlags) (v0 v1 v2 : Γ) :
     (keyCells f v0 v1 v2).length = 6 := by
   simp [keyCells, Γ.length_encode]
 
-/-- `keyCells` read as `Γ` cells is exactly `keyCell 0 .. keyCell 5`. -/
+/-- `keyCells` read as `Γ` cells is exactly `keyCell 0 .. keyCell 5`.
+@isnad1 id=eq.0h4v.s7.805e8ddaf1e8 from=translated src=- shape=40206f66 vocab=d157003f
+-/
 theorem keyCells_map_toΓ (f : VFlags) (v0 v1 v2 : Γ) :
     (keyCells f v0 v1 v2).map Γw.toΓ =
       [keyCell f v0 v1 v2 0, keyCell f v0 v1 v2 1, keyCell f v0 v1 v2 2,
@@ -132,7 +149,9 @@ theorem keyCells_map_toΓ (f : VFlags) (v0 v1 v2 : Γ) :
   cases s0 <;> cases s1 <;> cases s2 <;> rfl
 
 /-- Pointwise form: cell `idx` of `keyCells`, read as `Γ`, is
-    `keyCell idx`. -/
+    `keyCell idx`.
+@isnad1 id=eq.0h5v.s5.a18f4c843b59 from=translated src=- shape=72e5a625 vocab=f474cae7
+-/
 theorem keyCells_get (f : VFlags) (v0 v1 v2 : Γ) (idx : Fin 6) :
     ((keyCells f v0 v1 v2)[idx.val]'
         (by rw [keyCells_length]; exact idx.isLt)).toΓ
@@ -204,7 +223,9 @@ private theorem parseEntry_eq (w : ℕ) (seg : List Γw) :
 /-- **The parse bridge**: on a `□`-free segment, the machine's acceptance
     predicate (state field = the `w`-bit encoding of `q`, six key cells =
     `keyCells` of the simulated reads, full value length) holds iff the
-    segment parses to an entry whose key is exactly `(q, simRead …)`. -/
+    segment parses to an entry whose key is exactly `(q, simRead …)`.
+@isnad1 id=iff.2h7v.s7.6b9e70268383 from=translated src=- shape=e9592385 vocab=30ffe755
+-/
 theorem machMatch_iff_parse {w q : ℕ} (hq : q < 2 ^ w) (f : VFlags)
     (v0 v1 v2 : Γ) {seg : List Γw} (hnb : ∀ s ∈ seg, s ≠ Γw.blank) :
     MachMatch w (bitsToSyms (Nat.toBits w q)) (keyCells f v0 v1 v2) seg ↔
@@ -315,7 +336,9 @@ def machFind (w : ℕ) (stSyms keyCs : List Γw) : List Γw → Option (List Γw
   decreasing_by
     all_goals exact Nat.lt_succ_of_le (takeField_cons_rest_length s rest)
 
-/-- One-step unfolding of `machFind` on a segment-headed input. -/
+/-- One-step unfolding of `machFind` on a segment-headed input.
+@isnad1 id=eq.1h5v.s6.ba5b489f1564 from=translated src=- shape=61d10bc1 vocab=5e229d40
+-/
 theorem machFind_cons_of_ne_blank {s : Γw} (hs : s ≠ Γw.blank)
     (w : ℕ) (stSyms keyCs rest : List Γw) :
     machFind w stSyms keyCs (s :: rest) =
@@ -327,7 +350,9 @@ theorem machFind_cons_of_ne_blank {s : Γw} (hs : s ≠ Γw.blank)
   | zero => rw [machFind]; exact fun h => nomatch h
   | one => rw [machFind]; exact fun h => nomatch h
 
-/-- What `machFind` returns is a `□`-free segment that `MachMatch`es. -/
+/-- What `machFind` returns is a `□`-free segment that `MachMatch`es.
+@isnad1 id=and.1h5v.s5.84a7aae6c46e from=translated src=- shape=32288c5e vocab=5512fe03
+-/
 theorem machFind_matches (w : ℕ) (stSyms keyCs : List Γw) :
     ∀ R seg : List Γw, machFind w stSyms keyCs R = some seg →
       MachMatch w stSyms keyCs seg ∧ ∀ s ∈ seg, s ≠ Γw.blank
@@ -354,7 +379,9 @@ theorem machFind_matches (w : ℕ) (stSyms keyCs : List Γw) :
 def keyMatch (q : ℕ) (si sw so : Γ) (e : DescEntry) : Bool :=
   e.q == q && e.si == si && e.sw == sw && e.so == so
 
-/-- `TMDesc.lookup` in terms of `keyMatch`. -/
+/-- `TMDesc.lookup` in terms of `keyMatch`.
+@isnad1 id=eq.0h5v.s5.1da6fac6e18c from=translated src=- shape=eb813026 vocab=a0a81c63
+-/
 theorem lookup_eq_find? (d : TMDesc) (q : ℕ) (si sw so : Γ) :
     d.lookup q si sw so =
       match d.entries.find? (keyMatch q si sw so) with
@@ -363,7 +390,9 @@ theorem lookup_eq_find? (d : TMDesc) (q : ℕ) (si sw so : Γ) :
 
 /-- **The first-match correspondence**, combined form: the `find?` hit of
     the parsed table is exactly the parse of the machine's first
-    `MachMatch`-ing segment. -/
+    `MachMatch`-ing segment.
+@isnad1 id=eq.1h7v.s6.14f5a665d250 from=translated src=- shape=eb4848dc vocab=9ff402c3
+-/
 theorem find?_parseEntries_eq_machFind (w q : ℕ) (hq : q < 2 ^ w)
     (f : VFlags) (v0 v1 v2 : Γ) :
     ∀ R : List Γw,
@@ -408,7 +437,9 @@ theorem find?_parseEntries_eq_machFind (w q : ℕ) (hq : q < 2 ^ w)
 
 /-- **(a) The machine's first hit is the lookup's first hit**: if the
     machine's segment walk accepts `seg`, then `seg` parses to an entry `e`,
-    and `e` is exactly the table's `find?` hit for the sought key. -/
+    and `e` is exactly the table's `find?` hit for the sought key.
+@isnad1 id=ex.2h8v.s7.381074158a71 from=translated src=- shape=7d406139 vocab=908ca1da
+-/
 theorem machFind_some_find? {w q : ℕ} (hq : q < 2 ^ w) (f : VFlags)
     (v0 v1 v2 : Γ) {R seg : List Γw}
     (h : machFind w (bitsToSyms (Nat.toBits w q)) (keyCells f v0 v1 v2) R
@@ -425,7 +456,9 @@ theorem machFind_some_find? {w q : ℕ} (hq : q < 2 ^ w) (f : VFlags)
   exact hpe
 
 /-- **(b) No machine hit ⟺ no lookup hit**: if the machine's segment walk
-    rejects every segment, the table's `find?` misses. -/
+    rejects every segment, the table's `find?` misses.
+@isnad1 id=eq.2h7v.s6.328d5dbcfc09 from=translated src=- shape=6533f2cb vocab=f70ea03f
+-/
 theorem machFind_none_find? {w q : ℕ} (hq : q < 2 ^ w) (f : VFlags)
     (v0 v1 v2 : Γ) {R : List Γw}
     (h : machFind w (bitsToSyms (Nat.toBits w q)) (keyCells f v0 v1 v2) R
@@ -438,7 +471,9 @@ theorem machFind_none_find? {w q : ℕ} (hq : q < 2 ^ w) (f : VFlags)
 
 /-- **First-match ⇒ lookup**: the action of the entry parsed from the
     machine's first `MachMatch`-ing segment is exactly what `TMDesc.lookup`
-    returns on the table parsed from the same entry region. -/
+    returns on the table parsed from the same entry region.
+@isnad1 id=ex.2h10v.s7.b875f7805652 from=translated src=- shape=4b40ef81 vocab=62ba427f
+-/
 theorem firstMatch_lookup {w q : ℕ} (hq : q < 2 ^ w) (f : VFlags)
     (v0 v1 v2 : Γ) (qs qh : ℕ) {R seg : List Γw}
     (h : machFind w (bitsToSyms (Nat.toBits w q)) (keyCells f v0 v1 v2) R
@@ -452,7 +487,9 @@ theorem firstMatch_lookup {w q : ℕ} (hq : q < 2 ^ w) (f : VFlags)
 
 /-- **No match ⇒ default**: if the machine's segment walk rejects every
     segment, `TMDesc.lookup` on the parsed table falls to the default
-    action. -/
+    action.
+@isnad1 id=eq.2h9v.s7.874cc6f738e5 from=translated src=- shape=80212dcd vocab=73e1ca39
+-/
 theorem noMatch_lookup {w q : ℕ} (hq : q < 2 ^ w) (f : VFlags)
     (v0 v1 v2 : Γ) (qs qh : ℕ) {R : List Γw}
     (h : machFind w (bitsToSyms (Nat.toBits w q)) (keyCells f v0 v1 v2) R
@@ -472,7 +509,9 @@ theorem noMatch_lookup {w q : ℕ} (hq : q < 2 ^ w) (f : VFlags)
     cell as `Γ` and applies `cellBit`). -/
 def segBit (seg : List Γw) (i : ℕ) : Bool := cellBit ((seg.getD i Γw.blank).toΓ)
 
-/-- In range, `segBit` is the `cellBit` read of the cell. -/
+/-- In range, `segBit` is the `cellBit` read of the cell.
+@isnad1 id=eq.1h2v.s5.1e735d88b73c from=translated src=- shape=b55d0484 vocab=220926e4
+-/
 theorem segBit_eq {seg : List Γw} {i : ℕ} (h : i < seg.length) :
     segBit seg i = cellBit ((seg[i]'h).toΓ) := by
   rw [segBit, List.getD, List.getElem?_eq_getElem h, Option.getD_some]
@@ -493,7 +532,9 @@ private theorem filterMap_getElem_eq_segBit {seg : List Γw}
     the `w`-cell state field at offset `w+6` is the bit-symbol encoding of
     `e.act.q'`, and the five 2-cell groups at offsets `2w+6 .. 2w+14`
     decode via `grpΓw`/`grpDir` of the `cellBit` cell reads to
-    `ww`/`wo`/`di`/`dw`/`dOut`. -/
+    `ww`/`wo`/`di`/`dw`/`dOut`.
+@isnad1 id=and.2h3v.s8.5c9e2f16d5b1 from=translated src=- shape=e6bc82a3 vocab=b001ee43
+-/
 theorem value_slices {w : ℕ} {seg : List Γw} {e : DescEntry}
     (hnb : ∀ s ∈ seg, s ≠ Γw.blank) (hp : parseEntry w seg = some e) :
     (seg.drop (w + 6)).take w = bitsToSyms (Nat.toBits w e.act.q') ∧

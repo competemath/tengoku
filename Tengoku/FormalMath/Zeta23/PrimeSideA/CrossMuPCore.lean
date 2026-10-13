@@ -23,6 +23,9 @@ namespace PrimeSide
 section CrossMuPCore
 variable {Φ : ℝ → ℝ} {T : ℝ}
 
+/--
+@isnad1 id=integrab.3h4v.s7.3677d845adb4 from=translated src=- shape=28ebc82b vocab=1ea9a0e3
+-/
 lemma Mform_integrableOn' (hΦ : Continuous Φ) {u v : ℝ → ℝ} (hu : Continuous u)
     (hv : Continuous v) :
     IntegrableOn (fun q : ℝ × ℝ => (Φ (q.1 - q.2)) ^ 2 * u q.1 * v q.2)
@@ -31,7 +34,9 @@ lemma Mform_integrableOn' (hΦ : Continuous Φ) {u v : ℝ → ℝ} (hu : Contin
   apply Continuous.continuousOn
   fun_prop
 
-/-- `∫_S Φ(x−y)² dy ≤ ∫_ℝ Φ²`. -/
+/-- `∫_S Φ(x−y)² dy ≤ ∫_ℝ Φ²`.
+@isnad1 id=le.1h3v.s7.2603391c137f from=translated src=- shape=91914b5c vocab=3d7c2df5
+-/
 lemma setIntegral_sq_shift_le_left (hΦint : Integrable (fun x => Φ x ^ 2)) (S : Set ℝ) (x : ℝ) :
     ∫ y in S, Φ (x - y) ^ 2 ≤ ∫ y, Φ y ^ 2 := by
   calc ∫ y in S, Φ (x - y) ^ 2 ≤ ∫ y, Φ (x - y) ^ 2 :=
@@ -39,13 +44,17 @@ lemma setIntegral_sq_shift_le_left (hΦint : Integrable (fun x => Φ x ^ 2)) (S 
           (Filter.Eventually.of_forall fun y => sq_nonneg _)
     _ = ∫ y, Φ y ^ 2 := integral_sub_left_eq_self (fun y => Φ y ^ 2) volume x
 
-/-- Icc-set-integral = interval integral (`T ≤ 2T`). -/
+/-- Icc-set-integral = interval integral (`T ≤ 2T`).
+@isnad1 id=eq.1h2v.s6.dc4af7d8418e from=translated src=- shape=789fa10a vocab=4090373e
+-/
 lemma setIntegral_Icc_eq_intervalIntegral (hT : 0 ≤ T) (f : ℝ → ℝ) :
     ∫ x in Icc T (2 * T), f x = ∫ x in T..(2 * T), f x := by
   rw [intervalIntegral.integral_of_le (by linarith), integral_Icc_eq_integral_Ioc]
 
 /-- Fubini for `𝓜` with the first variable outer:
-`𝓜[u,v] = ∫_I u(τ) (∫_I Φ(τ−τ′)² v(τ′) dτ′) dτ`. -/
+`𝓜[u,v] = ∫_I u(τ) (∫_I Φ(τ−τ′)² v(τ′) dτ′) dτ`.
+@isnad1 id=eq.3h4v.s7.a1f0f5d271b2 from=translated src=- shape=399b8663 vocab=649782e7
+-/
 lemma Mform_eq_iter (hΦ : Continuous Φ) {u v : ℝ → ℝ} (hu : Continuous u) (hv : Continuous v) :
     Mform Φ T u v
       = ∫ τ in Icc T (2 * T), u τ * ∫ τ' in Icc T (2 * T), Φ (τ - τ') ^ 2 * v τ' := by
@@ -55,7 +64,9 @@ lemma Mform_eq_iter (hΦ : Continuous Φ) {u v : ℝ → ℝ} (hu : Continuous u
   rw [← integral_const_mul]
   exact integral_congr_ae (ae_of_all _ fun τ' => by ring)
 
-/-- `∫_S Φ(y − c)² dy ≤ ∫_ℝ Φ²` (translation invariance, `Φ² ≥ 0`). -/
+/-- `∫_S Φ(y − c)² dy ≤ ∫_ℝ Φ²` (translation invariance, `Φ² ≥ 0`).
+@isnad1 id=le.1h3v.s7.c7d63f1ea45e from=translated src=- shape=075d2f20 vocab=3d7c2df5
+-/
 lemma setIntegral_sq_shift_le' (hΦint : Integrable (fun x => Φ x ^ 2)) (S : Set ℝ) (c : ℝ) :
     ∫ y in S, Φ (y - c) ^ 2 ≤ ∫ y, Φ y ^ 2 := by
   calc ∫ y in S, Φ (y - c) ^ 2 ≤ ∫ y, Φ (y - c) ^ 2 :=
@@ -64,7 +75,9 @@ lemma setIntegral_sq_shift_le' (hΦint : Integrable (fun x => Φ x ^ 2)) (S : Se
     _ = ∫ y, Φ y ^ 2 := integral_sub_right_eq_self (fun y => Φ y ^ 2) c
 
 /-- **IBP in `τ`** (§5.4 "integrating by parts in τ"), for fixed `τ′`:
-`∫_T^{2T} u(τ)(Φ²)′(τ−τ′) dτ = u(2T)Φ(2T−τ′)² − u(T)Φ(T−τ′)² − ∫_T^{2T} u′(τ)Φ(τ−τ′)² dτ`. -/
+`∫_T^{2T} u(τ)(Φ²)′(τ−τ′) dτ = u(2T)Φ(2T−τ′)² − u(T)Φ(T−τ′)² − ∫_T^{2T} u′(τ)Φ(τ−τ′)² dτ`.
+@isnad1 id=eq.2h4v.s8.8d6061539aed from=translated src=- shape=08d50278 vocab=fd3c9f5c
+-/
 lemma outer_ibp (hΦ : ContDiff ℝ 1 Φ) {u : ℝ → ℝ} (hu : ContDiff ℝ 1 u) (τ' : ℝ) :
     ∫ τ in T..(2 * T), u τ * deriv (fun x => Φ x ^ 2) (τ - τ')
       = u (2 * T) * Φ (2 * T - τ') ^ 2 - u T * Φ (T - τ') ^ 2
@@ -88,7 +101,9 @@ lemma outer_ibp (hΦ : ContDiff ℝ 1 Φ) {u : ℝ → ℝ} (hu : ContDiff ℝ 1
   rw [hibp]
 
 /-- **IBP in `τ′`** (§5.4 "integrating by parts"), for fixed `τ`, `y ≠ 0` and a phase `θ`:
-`∫_T^{2T} Φ(τ−τ′)² cos(τ′y+θ) dτ′ = [Φ(τ−τ′)² sin(τ′y+θ)/y]_T^{2T} + y⁻¹ ∫_T^{2T} (Φ²)′(τ−τ′) sin(τ′y+θ) dτ′`. -/
+`∫_T^{2T} Φ(τ−τ′)² cos(τ′y+θ) dτ′ = [Φ(τ−τ′)² sin(τ′y+θ)/y]_T^{2T} + y⁻¹ ∫_T^{2T} (Φ²)′(τ−τ′) sin(τ′y+θ) dτ′`.
+@isnad1 id=eq.2h5v.s8.d749ed8c037d from=translated src=- shape=277fea1f vocab=a322f99e
+-/
 lemma inner_ibp_phase (hΦ : ContDiff ℝ 1 Φ) {y : ℝ} (hy : y ≠ 0) (θ τ : ℝ) :
     ∫ τ' in T..(2 * T), Φ (τ - τ') ^ 2 * Real.cos (τ' * y + θ)
       = (Φ (τ - 2 * T) ^ 2 * Real.sin (2 * T * y + θ) - Φ (τ - T) ^ 2 * Real.sin (T * y + θ)) / y
@@ -125,7 +140,9 @@ lemma inner_ibp_phase (hΦ : ContDiff ℝ 1 Φ) {y : ℝ} (hy : y ≠ 0) (θ τ 
 phase-shifted form: if `Φ, u ∈ C¹`, `|u| ≤ B` and `|u′| ≤ D` on `I = [T,2T]`, `T ≥ 0`, `y ≠ 0`, then for every
 phase `θ`, `|𝓜[u, cos(·y + θ)]| ≤ (4B + D·T)·(∫_ℝ Φ²)/|y|` (covers `sin` at `θ = −π/2`; used for the
 complex-coefficient prime sums of Theorem E, where `Re(c·e^{−iτy}) = ‖c‖·cos(τy − arg c)`; the case `θ = 0` is
-`abs_Mform_cos_le` below). -/
+`abs_Mform_cos_le` below).
+@isnad1 id=le.7h7v.s8.431ad312c661 from=translated src=- shape=14010757 vocab=39b40c4c
+-/
 theorem abs_Mform_cos_phase_le (hT : 0 ≤ T) (hΦ : ContDiff ℝ 1 Φ)
     (hΦint : Integrable (fun x => Φ x ^ 2)) {u : ℝ → ℝ} (hu : ContDiff ℝ 1 u) {B D : ℝ}
     (hB : ∀ τ ∈ Set.Icc T (2 * T), |u τ| ≤ B) (hD : ∀ τ ∈ Set.Icc T (2 * T), |deriv u τ| ≤ D)
@@ -267,7 +284,9 @@ theorem abs_Mform_cos_phase_le (hT : 0 ≤ T) (hΦ : ContDiff ℝ 1 Φ)
 
 /-- **The oscillatory bound** (§5.4: "`|∫_I m(τ′)cos(τ′y)dτ′| ≤ (2 sup|m| + ∫_I|m′|)/y`"), here in
 the explicit form: if `Φ, u ∈ C¹`, `|u| ≤ B` and `|u′| ≤ D` on `I = [T,2T]`, `T ≥ 0`, `y ≠ 0`, then
-`|𝓜[u, cos(·y)]| ≤ (4B + D·T)·(∫_ℝ Φ²)/|y|` — the case `θ = 0` of `abs_Mform_cos_phase_le`. -/
+`|𝓜[u, cos(·y)]| ≤ (4B + D·T)·(∫_ℝ Φ²)/|y|` — the case `θ = 0` of `abs_Mform_cos_phase_le`.
+@isnad1 id=le.7h6v.s8.af8585a353f0 from=translated src=- shape=d2ad2c12 vocab=39b40c4c
+-/
 theorem abs_Mform_cos_le (hT : 0 ≤ T) (hΦ : ContDiff ℝ 1 Φ)
     (hΦint : Integrable (fun x => Φ x ^ 2)) {u : ℝ → ℝ} (hu : ContDiff ℝ 1 u) {B D : ℝ}
     (hB : ∀ τ ∈ Icc T (2 * T), |u τ| ≤ B) (hD : ∀ τ ∈ Icc T (2 * T), |deriv u τ| ≤ D)

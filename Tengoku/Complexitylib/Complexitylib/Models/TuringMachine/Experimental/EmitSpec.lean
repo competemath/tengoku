@@ -51,7 +51,9 @@ structure EmitSpec (machine : TM n) (input : Tape)
     (EmitPred input beforeWork beforeOutput)
     (EmitPred input afterWork afterOutput) time
 
-/-- Package one concrete machine's endpoint-and-time contract. -/
+/-- Package one concrete machine's endpoint-and-time contract.
+@isnad1 id=emitspec.3h8v.s5.d41a0e1f74f4 from=translated src=- shape=fb86f046 vocab=7a86ea8e
+-/
 theorem EmitSpec.ofHoareTime {machine : TM n} {input : Tape}
     {beforeWork afterWork : Fin n → Tape}
     {beforeOutput afterOutput : List Bool} {time : ℕ}
@@ -66,7 +68,9 @@ theorem EmitSpec.ofHoareTime {machine : TM n} {input : Tape}
 
 /-- Compose two emitter effects. The intermediate parked frame discharges the
 concrete `seqTM` transition seam, and the resulting bound includes that real
-one-step phase change. -/
+one-step phase change.
+@isnad1 id=emitspec.2h12v.s6.4ac757776155 from=translated src=- shape=57bd6a7c vocab=2be76b46
+-/
 theorem EmitSpec.seq {first second : TM n} {input : Tape}
     {startWork middleWork endWork : Fin n → Tape}
     {startOutput middleOutput endOutput : List Bool}

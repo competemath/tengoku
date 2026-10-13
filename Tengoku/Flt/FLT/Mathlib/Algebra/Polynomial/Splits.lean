@@ -18,7 +18,9 @@ Material for `Mathlib.Algebra.Polynomial.Splits`.
 namespace Polynomial
 
 /-- A polynomial of degree at most `2` over a field splits as soon as it has a root: the root
-splits off a linear factor and the cofactor is linear. -/
+splits off a linear factor and the cofactor is linear.
+@isnad1 id=splits.2h3v.s5.e45c7df31a61 from=translated src=- shape=90fc3173 vocab=667805d2
+-/
 theorem Splits.of_natDegree_le_two_of_isRoot {k : Type*} [Field k] {p : k[X]}
     (hdeg : p.natDegree ≤ 2) {x : k} (hx : p.IsRoot x) : p.Splits := by
   rcases eq_or_ne p 0 with rfl | hp0

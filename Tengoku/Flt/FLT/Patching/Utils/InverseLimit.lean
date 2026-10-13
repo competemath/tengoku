@@ -26,6 +26,9 @@ variable (hf : ∀ i j h, Continuous (f i j h))
 
 set_option backward.isDefEq.respectTransparency.types false in
 include hf in
+/--
+@isnad1 id=dense.2h4v.s8.5360fa6a8f0e from=translated src=- shape=90eb49fb vocab=fa1ea446
+-/
 lemma dense_inverseLimit_of_forall_image_dense
     (s : Set { v : Π i, α i // ∀ i j (h : i ≤ j), f i j h (v i) = v j })
     (hs : ∀ i, Dense ((fun x ↦ (Subtype.val x) i) '' s)) : Dense s := by
@@ -41,6 +44,9 @@ lemma dense_inverseLimit_of_forall_image_dense
   exact ⟨z, hu₂ (by simpa [U, z.2] using hz₁), hz₂⟩
 
 include hf in
+/--
+@isnad1 id=denseran.2h5v.s8.ccf987ad91a9 from=translated src=- shape=d96565f8 vocab=892a5af8
+-/
 lemma denseRange_inverseLimit {β}
     (g : β → { v : Π i, α i // ∀ i j (h : i ≤ j), f i j h (v i) = v j })
     (hg : ∀ i, DenseRange (fun x ↦ (g x).1 i)) : DenseRange g := by
@@ -62,6 +68,9 @@ open CategoryTheory
 set_option backward.isDefEq.respectTransparency.types false in
 omit [Nonempty ι] [IsDirected ι (· ≥ ·)] in
 include hf₀ hf hl hl' in
+/--
+@isnad1 id=nonempty.4h4v.s7.2656db0cdfad from=translated src=- shape=9b65d34d vocab=5f6ee997
+-/
 theorem nonempty_inverseLimit_of_finite [∀ i, Finite (α i)] [∀ i, Nonempty (α i)] :
     Nonempty { v : Π i, α i // ∀ i j (h : i ≤ j), f i j h (v i) = v j } := by
   let f' : ιᵒᵈᵒᵖ ⥤ Type _ :=

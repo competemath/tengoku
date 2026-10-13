@@ -79,30 +79,40 @@ section Steps
 
 variable {q q' : SimQ c} {σ σ' : SimSym c}
 
-/-- A right move with a recorded cell to enter. -/
+/-- A right move with a recorded cell to enter.
+@isnad1 id=eq.1h8v.s6.0aae4834c633 from=translated src=- shape=f9d6b28d vocab=bce04deb
+-/
 theorem lstep_right (h : simStep q σ = some (σ', q', true)) (L : List (SimSym c))
     (t : SimSym c) (R : List (SimSym c)) :
     lstep ⟨q, L, σ, t :: R⟩ = some ⟨q', σ' :: L, t, R⟩ := by
   simp [lstep, h]
 
-/-- A right move off the recorded region: the entered cell is blank. -/
+/-- A right move off the recorded region: the entered cell is blank.
+@isnad1 id=eq.1h6v.s6.a7d4c47a6ea5 from=translated src=- shape=fc19f7fc vocab=c6dcbdea
+-/
 theorem lstep_right_end (h : simStep q σ = some (σ', q', true)) (L : List (SimSym c)) :
     lstep ⟨q, L, σ, []⟩ = some ⟨q', σ' :: L, .bk, []⟩ := by
   simp [lstep, h]
 
-/-- A left move with a recorded cell to enter. -/
+/-- A left move with a recorded cell to enter.
+@isnad1 id=eq.1h8v.s6.876f63e98a40 from=translated src=- shape=d34441be vocab=67057c0c
+-/
 theorem lstep_left (h : simStep q σ = some (σ', q', false)) (t : SimSym c)
     (L R : List (SimSym c)) :
     lstep ⟨q, t :: L, σ, R⟩ = some ⟨q', L, t, σ' :: R⟩ := by
   simp [lstep, h]
 
-/-- A left move off the recorded region: the entered cell is blank. -/
+/-- A left move off the recorded region: the entered cell is blank.
+@isnad1 id=eq.1h6v.s6.983348fed64d from=translated src=- shape=991a5976 vocab=31bc747e
+-/
 theorem lstep_left_end (h : simStep q σ = some (σ', q', false)) (R : List (SimSym c)) :
     lstep ⟨q, [], σ, R⟩ = some ⟨q', [], .bk, σ' :: R⟩ := by
   simp [lstep, h]
 
 /-- A right move into a run of blanks – recorded or materialized, the
-entered cell is blank either way. -/
+entered cell is blank either way.
+@isnad1 id=eq.1h7v.s6.e4ce9ba719e7 from=translated src=- shape=48bd3f9e vocab=c21dd372
+-/
 theorem lstep_right_pad (h : simStep q σ = some (σ', q', true)) (L : List (SimSym c))
     (t : ℕ) :
     lstep ⟨q, L, σ, List.replicate t .bk⟩ =
@@ -112,7 +122,9 @@ theorem lstep_right_pad (h : simStep q σ = some (σ', q', true)) (L : List (Sim
   · exact lstep_right (h := h) L .bk (List.replicate t .bk)
 
 /-- A left move into a run of blanks – recorded or materialized, the entered
-cell is blank either way. -/
+cell is blank either way.
+@isnad1 id=eq.1h7v.s6.ba5cebad9e36 from=translated src=- shape=d1d59211 vocab=e8cb98f6
+-/
 theorem lstep_left_pad (h : simStep q σ = some (σ', q', false)) (g : ℕ)
     (R : List (SimSym c)) :
     lstep ⟨q, List.replicate g .bk, σ, R⟩ =
@@ -127,14 +139,26 @@ end Steps
 
 namespace Reach
 
+/--
+@isnad1 id=reach.0h2v.s3.d7421ecee8f0 from=translated src=- shape=f3577ae2 vocab=6beee1bb
+-/
 theorem refl (x : LCfg c) : Reach x x := Relation.ReflTransGen.refl
 
+/--
+@isnad1 id=reach.1h3v.s4.890e34c5c33b from=translated src=- shape=da954ed3 vocab=efbbe18f
+-/
 theorem single {x y : LCfg c} (h : lstep x = some y) : Reach x y :=
   Relation.ReflTransGen.single h
 
+/--
+@isnad1 id=reach.2h4v.s5.5b0d5593888f from=translated src=- shape=7bca89ef vocab=efbbe18f
+-/
 theorem head {x y z : LCfg c} (h : lstep x = some y) (hr : Reach y z) : Reach x z :=
   Relation.ReflTransGen.head h hr
 
+/--
+@isnad1 id=reach.2h4v.s4.3d91b4b32f00 from=translated src=- shape=de5dbc67 vocab=6beee1bb
+-/
 theorem trans {x y z : LCfg c} (h : Reach x y) (h' : Reach y z) : Reach x z :=
   Relation.ReflTransGen.trans h h'
 
@@ -142,7 +166,9 @@ end Reach
 
 /-! ### Counted steps, and determinism -/
 
-/-- A counted run, extended by one step at its end. -/
+/-- A counted run, extended by one step at its end.
+@isnad1 id=stepsto.2h5v.s5.2e9223c14b76 from=translated src=- shape=c8005018 vocab=f10d7293
+-/
 theorem stepsTo.trans_step : ∀ {n : ℕ} {x y z : LCfg c},
     stepsTo n x y → lstep y = some z → stepsTo (n + 1) x z := by
   intro n
@@ -152,7 +178,9 @@ theorem stepsTo.trans_step : ∀ {n : ℕ} {x y z : LCfg c},
     rintro x y z ⟨d, hstep, hrest⟩ hyz
     exact ⟨d, hstep, ih hrest hyz⟩
 
-/-- Counted runs compose. -/
+/-- Counted runs compose.
+@isnad1 id=stepsto.2h6v.s5.456b91ff188d from=translated src=- shape=6828037c vocab=af00174a
+-/
 theorem stepsTo.trans : ∀ {n m : ℕ} {x y z : LCfg c},
     stepsTo n x y → stepsTo m y z → stepsTo (n + m) x z := by
   intro n
@@ -166,7 +194,9 @@ theorem stepsTo.trans : ∀ {n m : ℕ} {x y z : LCfg c},
     rw [Nat.succ_add]
     exact ⟨d, hstep, ih hrest hyz⟩
 
-/-- Reachability is a counted run of some length. -/
+/-- Reachability is a counted run of some length.
+@isnad1 id=iff.0h3v.s4.043de15be64e from=translated src=- shape=23b633fb vocab=96f7967a
+-/
 theorem reach_iff_stepsTo {x y : LCfg c} : Reach x y ↔ ∃ n, stepsTo n x y := by
   constructor
   · intro h
@@ -183,7 +213,9 @@ theorem reach_iff_stepsTo {x y : LCfg c} : Reach x y ↔ ∃ n, stepsTo n x y :=
       exact Reach.head hstep (ih hrest)
 
 /-- **The machine is deterministic**: a counted run to anywhere follows the
-run to a terminal configuration, step for step. -/
+run to a terminal configuration, step for step.
+@isnad1 id=stepsto.3h6v.s5.9a5b51da5130 from=translated src=- shape=ad427da2 vocab=c0bc0bf9
+-/
 theorem stepsTo_det : ∀ {m n : ℕ} {x y z : LCfg c},
     stepsTo m x y → stepsTo n x z → m ≤ n → stepsTo (n - m) y z := by
   intro m
@@ -203,7 +235,9 @@ theorem stepsTo_det : ∀ {m n : ℕ} {x y z : LCfg c},
     exact ih hrest hrest' (by omega)
 
 /-- A run cannot leave a terminal configuration, so it is at least as long as
-any run from the same start. -/
+any run from the same start.
+@isnad1 id=le.3h6v.s5.4c450a9ff65a from=translated src=- shape=2f275e65 vocab=879a238b
+-/
 theorem le_of_stepsTo_terminal : ∀ {n m : ℕ} {x y z : LCfg c},
     stepsTo n x y → lstep y = none → stepsTo m x z → m ≤ n := by
   intro n m x y z hxy hy hxz
@@ -229,7 +263,9 @@ variable {q : SimQ c} {P : SimSym c → Prop} {f : SimSym c → SimSym c}
 
 /-- **Walking right** over a run of passed letters, rewriting each by `f` –
 the transducing form: erasure sweeps take `f := fun _ => .bk`, unpriming
-takes the unpriming map. -/
+takes the unpriming map.
+@isnad1 id=reach.1h11v.s7.2f19831b52bd from=translated src=- shape=013c4b82 vocab=9f18a9bd
+-/
 theorem reach_walkR_map (hq : ∀ σ, P σ → simStep q σ = some (f σ, q, true)) :
     ∀ (w : List (SimSym c)), (∀ σ ∈ w, P σ) → ∀ {s : SimSym c}, P s →
       ∀ (L : List (SimSym c)) (t : SimSym c) (R : List (SimSym c)),
@@ -245,7 +281,9 @@ theorem reach_walkR_map (hq : ∀ σ, P σ → simStep q σ = some (f σ, q, tru
     have h := ih (fun σ hσ => hw σ (by simp [hσ])) (hw a (by simp)) (f s :: L) t R
     simpa using h
 
-/-- **Walking left** over a run of passed letters, rewriting each by `f`. -/
+/-- **Walking left** over a run of passed letters, rewriting each by `f`.
+@isnad1 id=reach.1h11v.s7.df4bc1734ef3 from=translated src=- shape=27566782 vocab=b51330dc
+-/
 theorem reach_walkL_map (hq : ∀ σ, P σ → simStep q σ = some (f σ, q, false)) :
     ∀ (w : List (SimSym c)), (∀ σ ∈ w, P σ) → ∀ {s : SimSym c}, P s →
       ∀ (t : SimSym c) (L R : List (SimSym c)),
@@ -261,7 +299,9 @@ theorem reach_walkL_map (hq : ∀ σ, P σ → simStep q σ = some (f σ, q, fal
     have h := ih (fun σ hσ => hw σ (by simp [hσ])) (hw a (by simp)) t L (f s :: R)
     simpa using h
 
-/-- **Walking right** over a run of passed letters, unchanged. -/
+/-- **Walking right** over a run of passed letters, unchanged.
+@isnad1 id=reach.1h10v.s7.a1c5059c52d5 from=translated src=- shape=b8f09b48 vocab=e96e285f
+-/
 theorem reach_walkR (hq : ∀ σ, P σ → simStep q σ = some (σ, q, true)) :
     ∀ (w : List (SimSym c)), (∀ σ ∈ w, P σ) → ∀ {s : SimSym c}, P s →
       ∀ (L : List (SimSym c)) (t : SimSym c) (R : List (SimSym c)),
@@ -270,7 +310,9 @@ theorem reach_walkR (hq : ∀ σ, P σ → simStep q σ = some (σ, q, true)) :
   have h := reach_walkR_map (f := id) (fun σ hσ => hq σ hσ) w hw hs L t R
   simpa using h
 
-/-- **Walking left** over a run of passed letters, unchanged. -/
+/-- **Walking left** over a run of passed letters, unchanged.
+@isnad1 id=reach.1h10v.s7.2ba8e482f19b from=translated src=- shape=9bb540e0 vocab=27d16c99
+-/
 theorem reach_walkL (hq : ∀ σ, P σ → simStep q σ = some (σ, q, false)) :
     ∀ (w : List (SimSym c)), (∀ σ ∈ w, P σ) → ∀ {s : SimSym c}, P s →
       ∀ (t : SimSym c) (L R : List (SimSym c)),

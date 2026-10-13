@@ -40,7 +40,9 @@ namespace TM
 
 variable {n : ℕ}
 
-/-- **Sequential composition of Hoare triples**. -/
+/-- **Sequential composition of Hoare triples**.
+@isnad1 id=hoaretim.2h10v.s6.24c4ee488007 from=translated src=- shape=dd92a4d5 vocab=c5137f45
+-/
 theorem seqTM_hoareTime (tm₁ tm₂ : TM n)
     {pre mid mid' post : TapePred n} {b₁ b₂ : ℕ}
     (h₁ : tm₁.HoareTime pre mid b₁)
@@ -64,7 +66,9 @@ theorem seqTM_hoareTime (tm₁ tm₂ : TM n)
 identity when every tape is reading something other than the left-end marker.
 This shared read-local boundary certificate matches the transition shape
 accepted by both time-only and time-space sequential composition; it
-deliberately does not require parked heads or global tape well-formedness. -/
+deliberately does not require parked heads or global tape well-formedness.
+@isnad1 id=and.3h4v.s5.52f978180a38 from=translated src=- shape=27964524 vocab=dd53a608
+-/
 theorem phaseTransition_eq_self_of_reads_ne_start
     {inp out : Tape} {work : Fin n → Tape}
     (hinput : inp.read ≠ Γ.start)
@@ -88,7 +92,9 @@ def AllTapesWF (inp : Tape) (work : Fin n → Tape) (out : Tape) : Prop :=
 -- ════════════════════════════════════════════════════════════════════════
 
 /-- AllTapesWF is preserved through the standard combinator phase transition
-    (`transitionTape` / `transitionInput`). -/
+    (`transitionTape` / `transitionInput`).
+@isnad1 id=and.1h4v.s6.d522a32624e5 from=translated src=- shape=e423386a vocab=0041128b
+-/
 theorem AllTapesWF.transition {inp : Tape} {work : Fin n → Tape} {out : Tape}
     (h : AllTapesWF inp work out) :
     (transitionInput inp).head ≥ 1 ∧
@@ -112,7 +118,9 @@ theorem AllTapesWF.transition {inp : Tape} {work : Fin n → Tape} {out : Tape}
 /-- **Complement Hoare triple**. If `tm` satisfies a Hoare triple whose
     postcondition provides output WF (for rewind), a head bound, and a
     property of output cell 1, then `complementTM tm` satisfies a triple
-    where output cell 1 is flipped. Time: `b + p_bound + 4`. -/
+    where output cell 1 is flipped. Time: `b + p_bound + 4`.
+@isnad1 id=hoaretim.1h6v.s7.bb4db62b3136 from=translated src=- shape=dfe0d585 vocab=a7de2e21
+-/
 theorem complementTM_hoareTime (tm : TM n)
     {pre : TapePred n} {b p_bound : ℕ}
     {cell1_pred : Γ → Prop}
@@ -148,7 +156,9 @@ theorem complementTM_hoareTime (tm : TM n)
     precondition on transitioned tapes (output gets head = 1, cells preserved).
 
     Time: `b_test + p_bound + max b_then b_else + 5`
-    (test + transition + rewind + check + branch + halt). -/
+    (test + transition + rewind + check + branch + halt).
+@isnad1 id=hoaretim.5h19v.s8.fc20cd901dcc from=translated src=- shape=9074a702 vocab=eb7d8bd7
+-/
 theorem ifTM_hoareTime (tmTest tmThen tmElse : TM n)
     {pre mid_test mid_then mid_else post_then post_else post : TapePred n}
     {b_test b_then b_else p_bound : ℕ}
@@ -353,7 +363,9 @@ private theorem loopTM_hoareTime_aux (tmBody tmTest : TM n)
 
 /-- **Loop invariant rule**. Each iteration (≤ `b_iter` steps) either halts with
     `post` or returns to the loop start with `inv` preserved and `variant` decreased.
-    The `variant` is bounded by `k` under `inv`, giving total time `(k + 1) * b_iter`. -/
+    The `variant` is bounded by `k` under `inv`, giving total time `(k + 1) * b_iter`.
+@isnad1 id=hoaretim.2h8v.s8.fff961db68c8 from=translated src=- shape=f20e7e7f vocab=da0768af
+-/
 theorem loopTM_hoareTime (tmBody tmTest : TM n)
     {inv post : TapePred n} {b_iter k : ℕ}
     {variant : Tape → (Fin n → Tape) → Tape → ℕ}

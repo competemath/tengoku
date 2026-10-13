@@ -45,10 +45,16 @@ def unprime : SimSym c → SimSym c
   | .com' => .com
   | σ => σ
 
+/--
+@isnad1 id=eq.1h2v.s4.be271cbb45e5 from=translated src=- shape=8c498a55 vocab=d4a70121
+-/
 theorem unprime_prime {σ : SimSym c} (h : σ = .one ∨ σ = .com) :
     unprime (prime σ) = σ := by
   rcases h with rfl | rfl <;> rfl
 
+/--
+@isnad1 id=and.1h2v.s5.1659c522aa43 from=translated src=- shape=c57a9359 vocab=0e3f6ae5
+-/
 theorem prime_ne {σ : SimSym c} (h : σ = .one ∨ σ = .com) :
     prime σ ≠ .endL ∧ prime σ ≠ .mid ∧ prime σ ≠ .endR := by
   rcases h with rfl | rfl <;> exact ⟨by simp [prime], by simp [prime], by simp [prime]⟩
@@ -60,7 +66,9 @@ section StepWalk
 variable {q q₂ : SimQ c} {σ σ' : SimSym c} {P : SimSym c → Prop} {f : SimSym c → SimSym c}
 
 /-- One left move, then a leftward walk over passed letters: the fused form
-every carry uses, sound whether or not the walked span is empty. -/
+every carry uses, sound whether or not the walked span is empty.
+@isnad1 id=reach.2h11v.s7.bb6a60da3274 from=translated src=- shape=a9838120 vocab=27d16c99
+-/
 theorem reach_step_then_walkL (hstep : simStep q σ = some (σ', q₂, false))
     (hpass : ∀ τ, P τ → simStep q₂ τ = some (τ, q₂, false))
     (w : List (SimSym c)) (hw : ∀ τ ∈ w, P τ) (x : SimSym c) (L R : List (SimSym c)) :
@@ -73,7 +81,9 @@ theorem reach_step_then_walkL (hstep : simStep q σ = some (σ', q₂, false))
     refine Reach.cast rfl ?_ h
     simp
 
-/-- One right move, then a rightward walk over passed letters. -/
+/-- One right move, then a rightward walk over passed letters.
+@isnad1 id=reach.2h11v.s7.6d6dfbb7604a from=translated src=- shape=85471f95 vocab=e96e285f
+-/
 theorem reach_step_then_walkR (hstep : simStep q σ = some (σ', q₂, true))
     (hpass : ∀ τ, P τ → simStep q₂ τ = some (τ, q₂, true))
     (w : List (SimSym c)) (hw : ∀ τ ∈ w, P τ) (x : SimSym c) (L R : List (SimSym c)) :
@@ -86,7 +96,9 @@ theorem reach_step_then_walkR (hstep : simStep q σ = some (σ', q₂, true))
     refine Reach.cast rfl ?_ h
     simp
 
-/-- One right move, then a rightward transducing walk. -/
+/-- One right move, then a rightward transducing walk.
+@isnad1 id=reach.2h12v.s7.d3cd165d2df9 from=translated src=- shape=cfd801fd vocab=9f18a9bd
+-/
 theorem reach_step_then_walkR_map (hstep : simStep q σ = some (σ', q₂, true))
     (hpass : ∀ τ, P τ → simStep q₂ τ = some (f τ, q₂, true))
     (w : List (SimSym c)) (hw : ∀ τ ∈ w, P τ) (x : SimSym c) (L R : List (SimSym c)) :
@@ -107,32 +119,51 @@ section Pass
 
 variable {σ : SimSym c} {p : CPos c}
 
+/--
+@isnad1 id=eq.1h3v.s5.10663aa587f6 from=translated src=- shape=7ca832ca vocab=b4b54bd6
+-/
 theorem pass_cpCar₁ (h : σ ≠ .endL) :
     simStep (.cpCar₁ p) σ = some (σ, .cpCar₁ p, false) := by
   cases σ <;> first | rfl | exact absurd rfl h
 
+/--
+@isnad1 id=eq.1h3v.s5.d035d7e693f6 from=translated src=- shape=7ca832ca vocab=8e2decd8
+-/
 theorem pass_cpCarC (h : σ ≠ .endL) :
     simStep (.cpCarC p) σ = some (σ, .cpCarC p, false) := by
   cases σ <;> first | rfl | exact absurd rfl h
 
+/--
+@isnad1 id=eq.1h3v.s5.95fbda06b557 from=translated src=- shape=7ca832ca vocab=de5e579b
+-/
 theorem pass_cpBack (h : σ ≠ .mid) :
     simStep (.cpBack p) σ = some (σ, .cpBack p, true) := by
   cases σ <;> first | rfl | exact absurd rfl h
 
+/--
+@isnad1 id=eq.1h3v.s5.c1ed9ad642a0 from=translated src=- shape=7ca832ca vocab=95c969b6
+-/
 theorem pass_cpHdr (h : σ ≠ .endL) :
     simStep (.cpHdr p) σ = some (σ, .cpHdr p, false) := by
   cases σ <;> first | rfl | exact absurd rfl h
 
+/--
+@isnad1 id=eq.1h3v.s5.a08220f36139 from=translated src=- shape=7ca832ca vocab=8a54827e
+-/
 theorem pass_cpUnp (h : σ ≠ .mid) :
     simStep (.cpUnp p) σ = some (σ, .cpUnp p, true) := by
   cases σ <;> first | rfl | exact absurd rfl h
 
-/-- The scan passes blanks and primed letters. -/
+/-- The scan passes blanks and primed letters.
+@isnad1 id=eq.1h3v.s6.f00982e05dd2 from=translated src=- shape=ed747baa vocab=14e9ea31
+-/
 theorem pass_cpFetch (h : σ = .bk ∨ σ = .one' ∨ σ = .com') :
     simStep (.cpFetch p) σ = some (σ, .cpFetch p, true) := by
   rcases h with rfl | rfl | rfl <;> rfl
 
-/-- The unpriming sweep, as a transducing pass. -/
+/-- The unpriming sweep, as a transducing pass.
+@isnad1 id=eq.1h3v.s6.d56bee39868f from=translated src=- shape=84a75fa8 vocab=d546ac9b
+-/
 theorem pass_cpUnp₂ (h : σ = .bk ∨ σ = .one' ∨ σ = .com') :
     simStep (.cpUnp₂ p) σ = some (unprime σ, .cpUnp₂ p, true) := by
   rcases h with rfl | rfl | rfl <;> rfl
@@ -144,7 +175,9 @@ end Pass
 /-- **One iteration of the copy**: with the scan on the next unprimed letter,
 prime it, carry it home to `endL`, write it by the endL-shift and walk back
 onto the gap – the loop entry one letter further. Stated over an abstract
-carry state so the digit and separator instances share the proof. -/
+carry state so the digit and separator instances share the proof.
+@isnad1 id=reach.6h9v.s8.235ca9177d4d from=translated src=- shape=a277e266 vocab=32ed886f
+-/
 theorem cp_iter (p : CPos c) {u : SimSym c} {Qcar : SimQ c}
     (hu : u = SimSym.one ∨ u = SimSym.com)
     (h1 : simStep (.cpFetch p) u = some (prime u, Qcar, false))
@@ -223,7 +256,9 @@ prefix `P` already primed and copied and `U` still to do, the scan fetches
 each letter of `U` in turn, carries it to `endL`, writes it by the endL-shift
 and returns; the loop ends with the scan on `endR`. The copied content sits
 between `endL` and the old frame region, spatially reversed – which is what
-makes it `encVal v` when the value region held `(encVal v).reverse`. -/
+makes it `encVal v` when the value region held `(encVal v).reverse`.
+@isnad1 id=reach.3h8v.s8.b869623b84c2 from=translated src=- shape=881a88be vocab=b7d6a511
+-/
 theorem cp_loop (p : CPos c) : ∀ (U P : List (SimSym c)),
     (∀ σ ∈ U, σ = SimSym.one ∨ σ = SimSym.com) →
     (∀ σ ∈ P, σ = SimSym.one ∨ σ = SimSym.com) →
@@ -308,7 +343,9 @@ theorem cp_loop (p : CPos c) : ∀ (U P : List (SimSym c)),
     have hlen : g - 1 - U'.length = g - (U'.length + 1) := by omega
     simp [hlen]
 
-/-- Unpriming undoes priming, letterwise on a value word. -/
+/-- Unpriming undoes priming, letterwise on a value word.
+@isnad1 id=eq.1h2v.s5.aa78df3a15c6 from=translated src=- shape=251549b2 vocab=3311de07
+-/
 theorem unprime_map_prime {l : List (SimSym c)}
     (hl : ∀ σ ∈ l, σ = SimSym.one ∨ σ = SimSym.com) :
     (l.map prime).map unprime = l := by
@@ -317,7 +354,9 @@ theorem unprime_map_prime {l : List (SimSym c)}
 
 /-- **The `cons` dispatch**: copy the value into a fresh `cons₁` frame at
 `endL` – mirrored back to straight by the endL-shifts – write the header,
-unprime the value, and dispatch the first child. -/
+unprime the value, and dispatch the first child.
+@isnad1 id=reach.3h10v.s7.77933c55d09a from=translated src=- shape=31c2325f vocab=50767afe
+-/
 theorem norm_cons {p : CPos c} {f fs : Code} (h : codeAt p = .cons f fs) {Q : SimQ c}
     (hQ : simStep Q .mid = some (dispatch p)) (g : ℕ) {fr : List (SimSym c)}
     (hfr : ∀ σ ∈ fr, FrameSym σ) (v : List ℕ) (j t : ℕ) :
@@ -462,38 +501,62 @@ section Shapes
 
 variable {p : CPos c} {k : PCont c} {v : List ℕ}
 
+/--
+@isnad1 id=eq.1h4v.s5.2678202fe9af from=translated src=- shape=ac21ce98 vocab=1bc1b9a1
+-/
 theorem pStepNormal_zero' (h : codeAt p = .zero') : pStepNormal p k v = (k, 0 :: v) := by
   rw [pStepNormal.eq_def]
   split <;> simp_all
 
+/--
+@isnad1 id=eq.1h4v.s5.c9bb46096d63 from=translated src=- shape=b95f0f64 vocab=0142201f
+-/
 theorem pStepNormal_succ (h : codeAt p = .succ) : pStepNormal p k v = (k, [v.headI.succ]) := by
   rw [pStepNormal.eq_def]
   split <;> simp_all
 
+/--
+@isnad1 id=eq.1h4v.s5.2db9f6792260 from=translated src=- shape=1a698c11 vocab=84e1550d
+-/
 theorem pStepNormal_tail (h : codeAt p = .tail) : pStepNormal p k v = (k, v.tail) := by
   rw [pStepNormal.eq_def]
   split <;> simp_all
 
+/--
+@isnad1 id=eq.1h6v.s5.143c572696bb from=translated src=- shape=dfbe32ca vocab=8188d4d9
+-/
 theorem pStepNormal_cons {f fs : Code} (h : codeAt p = .cons f fs) :
     pStepNormal p k v = pStepNormal (c₁ p) (.cons₁ (c₂ p) v k) v := by
   rw [pStepNormal.eq_def]
   split <;> simp_all
 
+/--
+@isnad1 id=eq.1h6v.s5.b9a9068aafad from=translated src=- shape=da4c98e0 vocab=22eb264e
+-/
 theorem pStepNormal_comp {f g₂ : Code} (h : codeAt p = .comp f g₂) :
     pStepNormal p k v = pStepNormal (c₂ p) (.comp (c₁ p) k) v := by
   rw [pStepNormal.eq_def]
   split <;> simp_all
 
+/--
+@isnad1 id=eq.2h6v.s5.0d737e05ae6f from=translated src=- shape=734670b5 vocab=7872e1f9
+-/
 theorem pStepNormal_case_zero {f g₂ : Code} (h : codeAt p = .case f g₂)
     (hv : v.headI = 0) : pStepNormal p k v = pStepNormal (c₁ p) k v.tail := by
   rw [pStepNormal.eq_def]
   split <;> simp_all
 
+/--
+@isnad1 id=eq.2h7v.s6.81b5c752bebf from=translated src=- shape=f5ef38c2 vocab=f375c1d6
+-/
 theorem pStepNormal_case_succ {f g₂ : Code} {y : ℕ} (h : codeAt p = .case f g₂)
     (hv : v.headI = y + 1) : pStepNormal p k v = pStepNormal (c₂ p) k (y :: v.tail) := by
   rw [pStepNormal.eq_def]
   split <;> simp_all
 
+/--
+@isnad1 id=eq.1h5v.s5.2fb15783bd1c from=translated src=- shape=c0a69480 vocab=2a178820
+-/
 theorem pStepNormal_fix {f : Code} (h : codeAt p = .fix f) :
     pStepNormal p k v = pStepNormal (c₁ p) (.fix (c₁ p) k) v := by
   rw [pStepNormal.eq_def]
@@ -503,14 +566,18 @@ end Shapes
 
 /-! ### The assembled dispatch phase -/
 
-/-- Every code has size at least one. -/
+/-- Every code has size at least one.
+@isnad1 id=le.0h1v.s3.1288face7c97 from=translated src=- shape=049d0308 vocab=53b6f33e
+-/
 theorem one_le_sizeOf_code (c' : Code) : 1 ≤ sizeOf c' := by
   cases c' <;> simp <;> omega
 
 /-- **The dispatch phase of the simulation**: from the dispatch of the code
 at `p` – any state that hands over to `dispatch p` on `mid` – the machine
 reaches the resting configuration of `pStepNormal p k v`, by induction on the
-size of the dispatched code. -/
+size of the dispatched code.
+@isnad1 id=ex.3h10v.s7.90584179be78 from=translated src=- shape=a723cf51 vocab=39e77937
+-/
 theorem sim_norm : ∀ (n : ℕ) (p : CPos c), sizeOf (codeAt p) ≤ n →
     ∀ (k : PCont c) (v : List ℕ) {Q : SimQ c}, simStep Q .mid = some (dispatch p) →
     ∀ (g : ℕ) {fr : List (SimSym c)}, FrameSeg k fr → ∀ (j t : ℕ),

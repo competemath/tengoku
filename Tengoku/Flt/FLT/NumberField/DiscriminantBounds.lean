@@ -20,12 +20,18 @@ open scoped Nat
 open Real
 
 -- upstream
+/--
+@isnad1 id=strictmo.1h3v.s5.2d786d3fa231 from=translated src=- shape=c0804124 vocab=1868d122
+-/
 theorem strictMonoOn_Ici_nat_of_lt_succ {α : Type*} [Preorder α] {f : ℕ → α} {x : ℕ}
     (h : ∀ n, x ≤ n → f n < f (n + 1)) :
     StrictMonoOn f {i | x ≤ i} :=
   fun _ ha _ _ ↦ Nat.rel_of_forall_rel_succ_of_le_of_lt (· < ·) h ha
 
 -- upstream
+/--
+@isnad1 id=strictmo.1h3v.s5.743e5e34a8bb from=translated src=- shape=601f0f16 vocab=4fbd618d
+-/
 theorem strictMonoOn_Ioi_nat_of_lt_succ {α : Type*} [Preorder α] {f : ℕ → α} {x : ℕ}
     (h : ∀ n, x < n → f n < f (n + 1)) :
     StrictMonoOn f (Set.Ioi x) :=
@@ -104,6 +110,9 @@ the discriminant) of a totally complex number field of degree `n`.
 noncomputable def rootDiscrBound (n : ℕ) : ℝ :=
   (π / 4) * (n ^ 2 / (n ! : ℝ) ^ (2 / n : ℝ))
 
+/--
+@isnad1 id=strictmo.0h0v.s2.502f5bce475b from=translated src=- shape=54c8eceb vocab=5452a275
+-/
 lemma rootDiscrBound_strictMono : StrictMono rootDiscrBound := by
   refine .const_mul (StrictMonoOn.Iic_union_Ici (a := 1) ?_ ?_) (by positivity)
   next =>
@@ -166,6 +175,9 @@ private lemma rootDiscrBound_fourteen_gt :
     all_goals positivity
   exact h₂.trans h₁
 
+/--
+@isnad1 id=iff.0h1v.s6.d09a29b29617 from=translated src=- shape=6c055e8b vocab=564ce3ea
+-/
 theorem rootDiscrBound_lt_iff_lt_fourteen {n : ℕ} :
     rootDiscrBound n < 2 ^ (2 / 3 : ℝ) * 3 ^ (7 / 8 : ℝ) ↔ n < 14 := by
   refine ⟨fun h ↦ ?mp, fun h ↦ ?mpr⟩
@@ -174,6 +186,9 @@ theorem rootDiscrBound_lt_iff_lt_fourteen {n : ℕ} :
     replace h : n ≤ 13 := by omega
     exact (rootDiscrBound_strictMono.le_iff_le.mpr h).trans_lt rootDiscrBound_thirteen_lt
 
+/--
+@isnad1 id=iff.0h1v.s4.a9c023d0d7fd from=translated src=- shape=1a9360f1 vocab=edc7501c
+-/
 theorem rootDiscrBound_lt_iff_lt_five {n : ℕ} :
     rootDiscrBound n < 2.75 ↔ n < 5 := by
   refine ⟨fun h ↦ ?mp, fun h ↦ ?mpr⟩
@@ -182,10 +197,16 @@ theorem rootDiscrBound_lt_iff_lt_five {n : ℕ} :
     replace h : n ≤ 4 := by omega
     exact (rootDiscrBound_strictMono.le_iff_le.mpr h).trans_lt rootDiscrBound_four_lt
 
+/--
+@isnad1 id=le.1h1v.s6.06063a8ee11d from=translated src=- shape=3f23f713 vocab=60440018
+-/
 theorem le_fourteen_of_rootDiscrBound {n : ℕ}
     (h : rootDiscrBound n < 2 ^ (2 / 3 : ℝ) * 3 ^ (7 / 8 : ℝ)) : n ≤ 14 :=
   (rootDiscrBound_lt_iff_lt_fourteen.mp h).le
 
+/--
+@isnad1 id=le.1h1v.s6.1ca465b4789d from=translated src=- shape=8ded7cba vocab=af48e7bf
+-/
 theorem le_five_of_rootDiscrBound {n : ℕ}
     (h : (π / 4) * (n ^ 2 / (n !) ^ (2 / n : ℝ)) < 2.75) : n ≤ 5 :=
   (rootDiscrBound_lt_iff_lt_five.mp h).le

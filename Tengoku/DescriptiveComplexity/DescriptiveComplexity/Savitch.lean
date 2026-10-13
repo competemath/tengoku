@@ -72,12 +72,18 @@ section Congr
 
 variable {cls : St → T} {R : St → St → Prop}
 
+/--
+@isnad1 id=savstep.4h8v.s5.20b21e80286b from=translated src=- shape=12b5fb3b vocab=d3e718bb
+-/
 theorem savStep_congr (h : SavInv cls R) {X X' Y Y' : St} (hX : cls X = cls X')
     (hY : cls Y = cls Y') (hs : SavStep cls R X Y) : SavStep cls R X' Y' := by
   rcases hs with he | hr
   · exact Or.inl (hX ▸ hY ▸ he)
   · exact Or.inr (h X X' Y Y' hX hY hr)
 
+/--
+@isnad1 id=savle.4h9v.s6.d97c106cb29c from=translated src=- shape=0cfca74e vocab=96e214fb
+-/
 theorem savLe_congr (h : SavInv cls R) :
     ∀ (n : ℕ) {X X' Y Y' : St}, cls X = cls X' → cls Y = cls Y' →
       SavLe cls R n X Y → SavLe cls R n X' Y' := by
@@ -88,6 +94,9 @@ theorem savLe_congr (h : SavInv cls R) :
     rintro X X' Y Y' hX hY ⟨Z, hZ, hs⟩
     exact ⟨Z, ih hX rfl hZ, savStep_congr h rfl hY hs⟩
 
+/--
+@isnad1 id=savpow.4h9v.s6.4c002893883c from=translated src=- shape=0cfca74e vocab=5044d9be
+-/
 theorem savPow_congr (h : SavInv cls R) :
     ∀ (k : ℕ) {X X' Y Y' : St}, cls X = cls X' → cls Y = cls Y' →
       SavPow cls R k X Y → SavPow cls R k X' Y' := by
@@ -106,9 +115,15 @@ section Linear
 
 variable {cls : St → T} {R : St → St → Prop}
 
+/--
+@isnad1 id=savle.1h7v.s5.45075d834cfa from=translated src=- shape=ab07595c vocab=6df5e88a
+-/
 theorem savLe_succ {n : ℕ} {X Y : St} (hs : SavLe cls R n X Y) : SavLe cls R (n + 1) X Y :=
   ⟨Y, hs, Or.inl rfl⟩
 
+/--
+@isnad1 id=savle.2h8v.s5.47d05e350bf5 from=translated src=- shape=c91b8400 vocab=7569557c
+-/
 theorem savLe_of_le {m n : ℕ} (hmn : m ≤ n) {X Y : St} (hs : SavLe cls R m X Y) :
     SavLe cls R n X Y := by
   induction n with
@@ -118,11 +133,16 @@ theorem savLe_of_le {m n : ℕ} (hmn : m ≤ n) {X Y : St} (hs : SavLe cls R m X
     · exact savLe_succ (ih (Nat.lt_succ_iff.mp hlt))
     · exact heq ▸ hs
 
+/--
+@isnad1 id=savle.1h6v.s5.0c43737db369 from=translated src=- shape=6b91ecbd vocab=47adab12
+-/
 theorem savLe_of_savStep {X Y : St} (hs : SavStep cls R X Y) : SavLe cls R 1 X Y :=
   ⟨X, rfl, hs⟩
 
 /-- **The linear staging composes**: walking `a + b` moves is walking `a` and
-then `b`. -/
+then `b`.
+@isnad1 id=iff.1h8v.s6.0b8a21875ff8 from=translated src=- shape=bb689eee vocab=20f13737
+-/
 theorem savLe_add (h : SavInv cls R) :
     ∀ (a b : ℕ) {X Y : St},
       SavLe cls R (a + b) X Y ↔ ∃ Z, SavLe cls R a X Z ∧ SavLe cls R b Z Y := by
@@ -149,7 +169,9 @@ section Pow
 variable {cls : St → T} {R : St → St → Prop}
 
 /-- **Savitch's staging is the linear one at `2 ^ k`**: `k` nested midpoints
-describe a walk of exponentially many moves. -/
+describe a walk of exponentially many moves.
+@isnad1 id=iff.1h7v.s5.5ab7d8c7f722 from=translated src=- shape=2f8c3eef vocab=d41b5815
+-/
 theorem savPow_iff_savLe (h : SavInv cls R) :
     ∀ (k : ℕ) {X Y : St}, SavPow cls R k X Y ↔ SavLe cls R (2 ^ k) X Y := by
   intro k
@@ -172,6 +194,9 @@ section Reach
 
 variable {cls : St → T} {R : St → St → Prop}
 
+/--
+@isnad1 id=ex.1h6v.s5.e82dca5ea885 from=translated src=- shape=d7541f7b vocab=074c2f6a
+-/
 theorem exists_savLe_of_reflTransGen {X Y : St} (hr : Relation.ReflTransGen R X Y) :
     ∃ n : ℕ, SavLe cls R n X Y := by
   induction hr with
@@ -180,7 +205,9 @@ theorem exists_savLe_of_reflTransGen {X Y : St} (hr : Relation.ReflTransGen R X 
     obtain ⟨n, hn⟩ := ih
     exact ⟨n + 1, c, hn, Or.inr hcd⟩
 
-/-- A bounded walk is a genuine walk, up to the class of its endpoint. -/
+/-- A bounded walk is a genuine walk, up to the class of its endpoint.
+@isnad1 id=ex.2h7v.s5.977654ade8f3 from=translated src=- shape=cb0159a0 vocab=776c81f8
+-/
 theorem reflTransGen_of_savLe (h : SavInv cls R) :
     ∀ (n : ℕ) {X Y : St}, SavLe cls R n X Y →
       ∃ Y' : St, cls Y' = cls Y ∧ Relation.ReflTransGen R X Y' := by
@@ -197,7 +224,9 @@ theorem reflTransGen_of_savLe (h : SavInv cls R) :
 /-- **The pigeonhole**: a walk saturates after as many moves as there are
 classes. The set of classes reached in at most `n` moves grows with `n`, and as
 soon as it stops growing it stops growing for good, so it is stable by the time
-`n` reaches `Nat.card T`. -/
+`n` reaches `Nat.card T`.
+@isnad1 id=savle.2h7v.s5.71729f3a8c35 from=translated src=- shape=521fb227 vocab=754167f9
+-/
 theorem savLe_card [Finite T] (h : SavInv cls R) (X : St) :
     ∀ (n : ℕ) {Y : St}, SavLe cls R n X Y → SavLe cls R (Nat.card T) X Y := by
   classical
@@ -251,7 +280,9 @@ theorem savLe_card [Finite T] (h : SavInv cls R) (X : St) :
   exact savLe_congr h N rfl hY' hle
 
 /-- **Savitch's staging computes reachability**, as soon as it is deep enough
-for the number of classes. -/
+for the number of classes.
+@isnad1 id=savpow.3h7v.s6.5dd782b7707b from=translated src=- shape=7f749d50 vocab=c6833c11
+-/
 theorem savPow_of_reflTransGen [Finite T] (h : SavInv cls R) {k : ℕ} (hk : Nat.card T ≤ 2 ^ k)
     {X Y : St} (hr : Relation.ReflTransGen R X Y) : SavPow cls R k X Y := by
   obtain ⟨n, hn⟩ := exists_savLe_of_reflTransGen (cls := cls) hr

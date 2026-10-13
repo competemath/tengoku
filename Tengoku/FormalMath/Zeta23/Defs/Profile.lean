@@ -16,7 +16,9 @@ noncomputable section
 
 namespace Zeta23
 
-/-- Real.smoothTransition is a taper profile in the paper's sense. -/
+/-- Real.smoothTransition is a taper profile in the paper's sense.
+@isnad1 id=taperpro.0h0v.s1.189d49fbdb52 from=translated src=- shape=49959d42 vocab=953ce011
+-/
 theorem taperProfile_smoothTransition : TaperProfile Real.smoothTransition where
   contDiff := Real.smoothTransition.contDiff
   monotone := Real.smoothTransition.monotone
@@ -26,9 +28,14 @@ theorem taperProfile_smoothTransition : TaperProfile Real.smoothTransition where
 /-- The canonical profile used for the headline theorems. -/
 def stdProfile : ℝ → ℝ := Real.smoothTransition
 
+/--
+@isnad1 id=taperpro.0h0v.s1.00dcb845978d from=translated src=- shape=49959d42 vocab=fec4c229
+-/
 theorem taperProfile_stdProfile : TaperProfile stdProfile := taperProfile_smoothTransition
 
-/-- "such a ϱ exists". -/
+/-- "such a ϱ exists".
+@isnad1 id=ex.0h0v.s3.e59a3cbd74b5 from=translated src=- shape=ebd786ab vocab=79e1fd8a
+-/
 theorem exists_taperProfile : ∃ ϱ : ℝ → ℝ, TaperProfile ϱ := ⟨_, taperProfile_smoothTransition⟩
 
 end Zeta23
