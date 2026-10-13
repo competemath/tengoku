@@ -1461,7 +1461,10 @@ class Intake(unittest.TestCase):
         """2026-10-13: lean-pool part 11 (#546, #548) was refused with `Sabidussi/Statement.lean: imports them., which is not the tree`: the module doc's last line
         before `-/` was `import them.` (a sentence), and the import scan read every line of the file, comments included."""
         r = self.repo()
-        self.bundle(r, mod=self.MOD + "\n/-!\nThis module holds the public statements; proof modules build on it, but it does not\nimport them.\n-/\n")
+        self.bundle(
+            r,
+            mod=self.MOD + "\n/-!\nThis module holds the public statements; proof modules build on it, but it does not\nimport them.\n-/\n",
+        )
         rc, out = r.gate("intake_check.py")
         self.assertEqual(rc, 0, out)
 

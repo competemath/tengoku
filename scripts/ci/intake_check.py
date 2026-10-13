@@ -238,7 +238,8 @@ for p in sorted(p for _, p in files if p.endswith(LEAN) and p != ALL):
         continue
     total += len(text)
     body = []
-    code = code_only(text).split("\n")  # comments and strings blanked, newlines kept: a docstring line that reads `import them.` is prose, not an import
+    # comments and strings blanked, newlines kept: a docstring line that reads `import them.` is prose, not an import
+    code = code_only(text).split("\n")
     for k, ln in enumerate(text.split("\n")):
         m = IMPORT_LINE.match(code[k])  # a comment after the module name is blank here, so it is part of the line
         if m and not TREE_IMPORT.match(m.group(1)):
