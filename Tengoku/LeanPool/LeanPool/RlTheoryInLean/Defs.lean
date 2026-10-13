@@ -1,0 +1,67 @@
+/-
+Copyright (c) 2026 Shangtong Zhang. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Shangtong Zhang
+-/
+module
+
+public import Tengoku
+
+/-!
+# LeanPool.RlTheoryInLean.Defs
+-/
+
+@[expose] public section
+
+open MeasureTheory ProbabilityTheory Filter
+
+lemma Tendsto.filter_congr
+  {α β : Type*} {f : α → β} {a : Filter α} {b b' : Filter β}
+  (hb : b = b') (hf : Tendsto f a b) : Tendsto f a b' := by
+  simp_all
+
+lemma Kernel.congrFun_apply
+  {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
+  {κ₁ κ₂ : Kernel α β}
+  (h : κ₁ = κ₂) :
+  ∀ a, κ₁ a = κ₂ a := by
+  simp_all
+
+lemma Measurable.congr
+  {α β : Type*} {ma : MeasurableSpace α} {mb : MeasurableSpace β} {f g : α → β}
+  (hfg : f = g) : Measurable f → Measurable g := by
+  simp_all
+
+lemma Integrable.measure_congr
+  {α : Type*} {mα : MeasurableSpace α} {μ ν : Measure α}
+  {β : Type*} {f : α → β}
+  [NormedAddCommGroup β]
+  {hμν : μ = ν}
+  (hf : Integrable f μ) : Integrable f ν := by
+  simp_all
+
+lemma Integral.measure_congr
+  {α : Type*} {mα : MeasurableSpace α} {μ ν : Measure α}
+  {β : Type*} {f : α → β}
+  [NormedAddCommGroup β] [NormedSpace ℝ β]
+  {hμν : μ = ν} : ∫ x, f x ∂ μ = ∫ x, f x ∂ ν := by
+  rw [hμν]
+
+lemma HasDerivAt.congr
+  {f g : ℝ → ℝ} {f' : ℝ} {x : ℝ} (hfg : f = g)
+  (h : HasDerivAt f f' x) : HasDerivAt g f' x := by
+  simp_all
+
+lemma HasDerivAt.congr_congr
+  {f g : ℝ → ℝ} {f' g' : ℝ} {x : ℝ}
+  (h : HasDerivAt f f' x)
+  (hfg : f = g) (hfg' : f' = g') : HasDerivAt g g' x := by
+  simp_all
+
+namespace RLTheory
+
+variable {d : ℕ}
+/-- Euclidean space of dimension `d`, used for finite-dimensional RL iterates. -/
+abbrev E (d : ℕ) := EuclideanSpace ℝ (Fin d)
+
+end RLTheory
