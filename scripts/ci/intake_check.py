@@ -42,6 +42,7 @@ import sys
 from _git import ROOT, blob, changed_files, fail, module_name, module_stem, pascal, run
 from allowlist import violations
 from bundle_tar import write_tar
+from lean_lex import code_only
 
 args = sys.argv[1:]
 base, head = args[0], args[1]
@@ -237,8 +238,10 @@ for p in sorted(p for _, p in files if p.endswith(LEAN) and p != ALL):
         continue
     total += len(text)
     body = []
-    for ln in text.split("\n"):
-        m = IMPORT_LINE.match(ln.split("--", 1)[0])  # a comment after the module name is part of the line
+    # comments and strings blanked, newlines kept: a docstring line that reads `import them.` is prose, not an import
+    code = code_only(text).split("\n")
+    for k, ln in enumerate(text.split("\n")):
+        m = IMPORT_LINE.match(code[k])  # a comment after the module name is blank here, so it is part of the line
         if m and not TREE_IMPORT.match(m.group(1)):
             errors.append(f"{p}: imports {m.group(1)}, which is not the tree")
         body.append("" if m or MODULE_LINE.match(ln) else ln)

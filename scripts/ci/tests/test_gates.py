@@ -1457,6 +1457,24 @@ class Intake(unittest.TestCase):
         rc, out = r.gate("intake_check.py")
         self.assertEqual(rc, 0, out)
 
+    def test_a_docstring_line_that_reads_like_an_import_is_prose(self):
+        """2026-10-13: lean-pool part 11 (#546, #548) was refused with `Sabidussi/Statement.lean: imports them., which is not the tree`: the module doc's last line
+        before `-/` was `import them.` (a sentence), and the import scan read every line of the file, comments included."""
+        r = self.repo()
+        self.bundle(
+            r,
+            mod=self.MOD + "\n/-!\nThis module holds the public statements; proof modules build on it, but it does not\nimport them.\n-/\n",
+        )
+        rc, out = r.gate("intake_check.py")
+        self.assertEqual(rc, 0, out)
+
+    def test_an_import_of_a_module_outside_the_tree_is_still_refused(self):
+        r = self.repo()
+        self.bundle(r, mod="import Mathlib.Data.Nat.Basic\n" + self.MOD.replace("import Tengoku\n", "", 1))
+        rc, out = r.gate("intake_check.py")
+        self.assertNotEqual(rc, 0)
+        self.assertIn("which is not the tree", out)
+
     def with_record(self, name):
         """A repository whose base (main) already holds a trusted record of that name, then the bundle's branch."""
         r = self.repo()
