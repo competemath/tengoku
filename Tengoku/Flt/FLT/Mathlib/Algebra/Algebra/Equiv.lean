@@ -16,7 +16,9 @@ Material for `Mathlib.Algebra.Algebra.Equiv`.
 @[expose] public section
 
 /-- An algebra isomorphism identifies the images of the base ring: `e x` lies in the image of `F`
-if and only if `x` does. -/
+if and only if `x` does.
+@isnad1 id=iff.0h5v.s7.bee23ff322cb from=translated src=- shape=f45bdb7a vocab=8d79d821
+-/
 theorem AlgEquiv.apply_mem_range_algebraMap_iff {F A B : Type*} [CommSemiring F] [Semiring A]
     [Semiring B] [Algebra F A] [Algebra F B] (e : A ≃ₐ[F] B) {x : A} :
     e x ∈ Set.range (algebraMap F B) ↔ x ∈ Set.range (algebraMap F A) :=

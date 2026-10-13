@@ -284,7 +284,9 @@ def LawN256 : RowCertData where
   dn := 82395317
   dd := 100000000
 
-/-- the integer row checker accepts (kernel evaluation). -/
+/-- the integer row checker accepts (kernel evaluation).
+@isnad1 id=eq.0h0v.s2.e2f79f3fd419 from=translated src=- shape=4b736592 vocab=268360ae
+-/
 theorem LawN256_check : checkRows LawN256 = true := by decide +kernel
 
 end PairCeiling

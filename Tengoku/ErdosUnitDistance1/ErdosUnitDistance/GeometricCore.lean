@@ -37,6 +37,9 @@ def box (r : ι → ℝ) (c : ℝ) : Set (ι → ℂ) :=
   {x | ∀ i, ‖x i‖ ≤ c * r i}
 
 omit [Fintype ι] in
+/--
+@isnad1 id=le.2h4v.s5.2fd265d8cc46 from=translated src=- shape=91dc062d vocab=c972b4e6
+-/
 theorem box_mono {r : ι → ℝ} (hr : ∀ i, 0 ≤ r i) {c c' : ℝ} (h : c ≤ c') :
     box r c ⊆ box r c' :=
   fun x hx i => (hx i).trans (by have := hr i; nlinarith)
@@ -102,7 +105,9 @@ square cells of side `ε * r i / √2`; there are at most
 `⌈2√2 * c/ε⌉² ≤ (4c/ε)²` cells per coordinate (using `ε ≤ c`).  Map each
 point to its tuple of cell indices: two points with the same tuple differ
 by at most `ε * r i` in every coordinate, contradicting separation; so the
-map into `ι → (Fin M × Fin M)` is injective. -/
+map into `ι → (Fin M × Fin M)` is injective.
+@isnad1 id=and.5h5v.s7.18cf0e4aa680 from=translated src=- shape=7f562aa4 vocab=a4e7046c
+-/
 theorem finite_and_card_le_of_separated (r : ι → ℝ) (hr : ∀ i, 0 < r i)
     {c ε : ℝ} (hε : 0 < ε) (hεc : ε ≤ c)
     {S : Set (ι → ℂ)} (hS : S ⊆ box r c)
@@ -148,7 +153,9 @@ box.**  If every nonzero element of `Λ` escapes the small polydisc
 `box r ρ`, then `Λ ∩ box r 2` is finite of cardinality at most
 `(8/ρ)^(2·#ι)`.  Sketch: differences of distinct elements of `Λ ∩ box r 2`
 are nonzero elements of `Λ`, so the separation hypothesis of the grid
-pigeonhole holds with `c = 2`, `ε = ρ`. -/
+pigeonhole holds with `c = 2`, `ε = ρ`.
+@isnad1 id=and.4h4v.s8.132a9caa765a from=translated src=- shape=47e71b2a vocab=70874090
+-/
 theorem lattice_inter_box_finite_card (r : ι → ℝ) (hr : ∀ i, 0 < r i)
     (Λ : AddSubgroup (ι → ℂ)) {ρ : ℝ} (hρ0 : 0 < ρ) (hρ2 : ρ ≤ 2)
     (hsep : ∀ x ∈ Λ, x ≠ 0 → ∃ i, ρ * r i < ‖x i‖) :
@@ -178,7 +185,9 @@ an element of `Λ` vanishing at `i₀`), giving the cardinality statement.
 `dist (proj a) (proj (a + z)) = ‖z i₀‖ / r i₀ = 1`.  The assignment
 `(a, z) ↦ (proj a, proj (a + z))` is injective into ordered pairs (recover
 `a` from the first component by injectivity, then `z i₀`, then `z`), and
-each image pair is a distinct-points pair at distance one. -/
+each image pair is a distinct-points pair at distance one.
+@isnad1 id=and.5h5v.s9.3f83708153c0 from=translated src=- shape=81a51abb vocab=04616cad
+-/
 theorem le_unitPairsC_of_translates (r : ι → ℝ) (hr : ∀ i, 0 < r i)
     (Λ : AddSubgroup (ι → ℂ))
     (hinj : ∀ x ∈ Λ, x i₀ = 0 → x = 0)

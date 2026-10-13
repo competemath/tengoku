@@ -52,17 +52,26 @@ namespace Tape
 def BoolFrom (t : Tape) (T : ℕ) : Prop :=
   ∀ j < T, ∃ b : Bool, t.cells (t.head + j) = Γ.ofBool b
 
+/--
+@isnad1 id=ex.1h2v.s4.a213dce741ff from=translated src=- shape=52a02699 vocab=29532131
+-/
 theorem BoolFrom.read {t : Tape} {T : ℕ} (h : t.BoolFrom (T + 1)) :
     ∃ b : Bool, t.read = Γ.ofBool b := by
   obtain ⟨b, hb⟩ := h 0 (Nat.succ_pos T)
   exact ⟨b, by simpa [Tape.read] using hb⟩
 
+/--
+@isnad1 id=ne.1h2v.s4.65910f7cd74c from=translated src=- shape=100db27b vocab=7150532b
+-/
 theorem BoolFrom.read_ne_start {t : Tape} {T : ℕ} (h : t.BoolFrom (T + 1)) :
     t.read ≠ Γ.start := by
   obtain ⟨b, hb⟩ := h.read
   rw [hb]
   exact Γ.ofBool_ne_start b
 
+/--
+@isnad1 id=boolfrom.1h2v.s4.d30daf34bd77 from=translated src=- shape=c7dc4f51 vocab=c23fc044
+-/
 theorem BoolFrom.move_right {t : Tape} {T : ℕ} (h : t.BoolFrom (T + 1)) :
     (t.move Dir3.right).BoolFrom T := by
   intro j hj
@@ -72,6 +81,9 @@ theorem BoolFrom.move_right {t : Tape} {T : ℕ} (h : t.BoolFrom (T + 1)) :
   rw [show t.head + 1 + j = t.head + (j + 1) by omega]
   exact hb
 
+/--
+@isnad1 id=boolfrom.2h3v.s4.99f2ba110094 from=translated src=- shape=a33034a2 vocab=2077a323
+-/
 theorem BoolFrom.mono {t : Tape} {T T' : ℕ} (h : t.BoolFrom T) (hle : T' ≤ T) :
     t.BoolFrom T' :=
   fun j hj => h j (by omega)
@@ -116,10 +128,19 @@ def ofGuess (M : TM (k + 1)) : NTM k where
     refine ⟨h.1, fun i hi => ?_, h.2.2⟩
     exact h.2.1 i.castSucc (by rwa [Fin.snoc_castSucc])
 
+/--
+@isnad1 id=eq.0h2v.s5.35cee6b2fb9d from=translated src=- shape=a2d56025 vocab=d55bec6d
+-/
 @[simp] theorem ofGuess_Q (M : TM (k + 1)) : (ofGuess M).Q = M.Q := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.482694643441 from=translated src=- shape=2d54df32 vocab=e1d40f20
+-/
 @[simp] theorem ofGuess_qhalt (M : TM (k + 1)) : (ofGuess M).qhalt = M.qhalt := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.e1562d4da9f7 from=translated src=- shape=2d54df32 vocab=9ef10adf
+-/
 @[simp] theorem ofGuess_qstart (M : TM (k + 1)) : (ofGuess M).qstart = M.qstart := rfl
 
 private theorem snoc_init_self' {α : Type} (f : Fin (k + 1) → α) :
@@ -127,7 +148,9 @@ private theorem snoc_init_self' {α : Type} (f : Fin (k + 1) → α) :
   Fin.snoc_init_self f
 
 /-- **The round trip is the identity on transitions.** Reattaching the guess tape to
-`NTM.ofGuess M` recovers `M`, wherever the guess cell holds a bit. -/
+`NTM.ofGuess M` recovers `M`, wherever the guess cell holds a bit.
+@isnad1 id=eq.2h7v.s7.aa04fa2451bb from=translated src=- shape=a253dd8f vocab=2aef5695
+-/
 theorem choiceTM_ofGuess_δ (M : TM (k + 1)) (hM : TM.GuessDiscipline M)
     (q : M.Q) (iHead : Γ) (wHeads : Fin (k + 1) → Γ) (oHead : Γ) (b : Bool)
     (hb : wHeads (Fin.last k) = Γ.ofBool b) :
@@ -138,7 +161,9 @@ theorem choiceTM_ofGuess_δ (M : TM (k + 1)) (hM : TM.GuessDiscipline M)
   rw [hcell, snoc_init_self' wHeads, ← hM.write q iHead wHeads oHead,
     ← hM.dir q iHead wHeads oHead, snoc_init_self', snoc_init_self']
 
-/-- **The round trip is the identity on steps**, wherever the guess cell holds a bit. -/
+/-- **The round trip is the identity on steps**, wherever the guess cell holds a bit.
+@isnad1 id=eq.2h3v.s7.db4d7464e5cf from=translated src=- shape=8e4c521a vocab=66841845
+-/
 theorem step_ofGuess (M : TM (k + 1)) (hM : TM.GuessDiscipline M) {c : Cfg (k + 1) M.Q}
     (hb : ∃ b : Bool, (c.work (Fin.last k)).read = Γ.ofBool b) :
     (choiceTM (ofGuess M)).step c = M.step c := by
@@ -158,7 +183,9 @@ theorem step_ofGuess (M : TM (k + 1)) (hM : TM.GuessDiscipline M) {c : Cfg (k + 
     simp only [TM.stepCfg, hδ]
     rfl
 
-/-- **A step leaves the guess tape alone and advances its head.** -/
+/-- **A step leaves the guess tape alone and advances its head.**
+@isnad1 id=eq.2h3v.s7.fe88e908be0a from=translated src=- shape=60293776 vocab=344da9e0
+-/
 theorem work_last_stepCfg (M : TM (k + 1)) (hM : TM.GuessDiscipline M) (c : Cfg (k + 1) M.Q)
     (hread : (c.work (Fin.last k)).read ≠ Γ.start) :
     (M.stepCfg c).work (Fin.last k) = (c.work (Fin.last k)).move Dir3.right := by
@@ -171,7 +198,9 @@ theorem work_last_stepCfg (M : TM (k + 1)) (hM : TM.GuessDiscipline M) (c : Cfg 
   exact TM.writeAndMove_readBack _ hread Dir3.right
 
 /-- **The round trip is the identity on runs**, as long as the guess tape holds bits for as many
-cells as the run has steps. -/
+cells as the run has steps.
+@isnad1 id=iff.2h5v.s7.1290bc7a3023 from=translated src=- shape=24e0c321 vocab=1b9c916e
+-/
 theorem reachesIn_ofGuess_iff (M : TM (k + 1)) (hM : TM.GuessDiscipline M) :
     ∀ (t : ℕ) (c c' : Cfg (k + 1) M.Q), (c.work (Fin.last k)).BoolFrom t →
       ((choiceTM (ofGuess M)).reachesIn t c c' ↔ M.reachesIn t c c') := by
@@ -223,7 +252,9 @@ theorem reachesIn_ofGuess_iff (M : TM (k + 1)) (hM : TM.GuessDiscipline M) :
 /-- **A run of `M` on a loaded guess tape is a trace of `NTM.ofGuess M`.** This is the transfer
 that lets a nondeterministic construction be carried out deterministically: build `M`, prove
 whatever is wanted of its runs with the deterministic toolkit, and read it off here as a
-statement about the paths of `NTM.ofGuess M`. -/
+statement about the paths of `NTM.ofGuess M`.
+@isnad1 id=ex.4h4v.s8.234d28ddb5a2 from=translated src=- shape=c429d3dc vocab=96dd758a
+-/
 theorem ofGuess_simulates (M : TM (k + 1)) (hM : TM.GuessDiscipline M) (T : ℕ)
     (c : Cfg (k + 1) M.Q)
     (hinv : (c.work (Fin.last k)).StartInvariant)
@@ -236,7 +267,9 @@ theorem ofGuess_simulates (M : TM (k + 1)) (hM : TM.GuessDiscipline M) (T : ℕ)
   exact ⟨c', t, hle, (reachesIn_ofGuess_iff M hM t c c' (hbool.mono hle)).mp hreach, hstop, heq⟩
 
 /-- **Reading back a loaded guess tape.** A tape whose cells from the head onward spell `g`
-presents exactly `g` as its choice stream. -/
+presents exactly `g` as its choice stream.
+@isnad1 id=eq.2h6v.s6.70a5d2618560 from=translated src=- shape=6342b79f vocab=612ab912
+-/
 theorem choiceStream_of_loaded {Q : Type} {c : Cfg (k + 1) Q} {g : ℕ → Bool} {T : ℕ}
     (h : ∀ j < T, (c.work (Fin.last k)).cells ((c.work (Fin.last k)).head + j) = Γ.ofBool (g j))
     {j : ℕ} (hj : j < T) : choiceStream c j = g j := by
@@ -250,18 +283,30 @@ def loadTape (g : ℕ → Bool) : Tape where
   head := 1
   cells := fun j => if j = 0 then Γ.start else Γ.ofBool (g (j - 1))
 
+/--
+@isnad1 id=eq.0h1v.s3.f606c6554683 from=translated src=- shape=611782bb vocab=067bf887
+-/
 @[simp] theorem loadTape_head (g : ℕ → Bool) : (loadTape g).head = 1 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.2d923e65ac07 from=translated src=- shape=666e3622 vocab=2bb91a49
+-/
 theorem loadTape_cells_succ (g : ℕ → Bool) (j : ℕ) :
     (loadTape g).cells (j + 1) = Γ.ofBool (g j) := by
   simp [loadTape]
 
+/--
+@isnad1 id=startinv.0h1v.s2.8763e230449a from=translated src=- shape=723ef0fc vocab=75e8a098
+-/
 theorem loadTape_startInvariant (g : ℕ → Bool) : (loadTape g).StartInvariant := by
   refine ⟨by simp [loadTape], fun j hj => ?_⟩
   obtain ⟨j, rfl⟩ : ∃ i, j = i + 1 := ⟨j - 1, by omega⟩
   rw [loadTape_cells_succ]
   exact Γ.ofBool_ne_start _
 
+/--
+@isnad1 id=boolfrom.0h2v.s3.aa065a438301 from=translated src=- shape=90f0fba0 vocab=5e968ae9
+-/
 theorem loadTape_boolFrom (g : ℕ → Bool) (T : ℕ) : (loadTape g).BoolFrom T := by
   intro j _
   exact ⟨g j, by simp [loadTape]⟩
@@ -274,10 +319,16 @@ def loadCfg (M : TM (k + 1)) (x : List Bool) (g : ℕ → Bool) : Cfg (k + 1) M.
   work := Fin.snoc (fun _ => Tape.init ([] : List Γ)) (loadTape g)
   output := Tape.init ([] : List Γ)
 
+/--
+@isnad1 id=eq.0h4v.s6.cebed351711c from=translated src=- shape=f12900ca vocab=1b01d9ab
+-/
 @[simp] theorem loadCfg_work_last (M : TM (k + 1)) (x : List Bool) (g : ℕ → Bool) :
     (loadCfg M x g).work (Fin.last k) = loadTape g := by
   simp [loadCfg]
 
+/--
+@isnad1 id=eq.0h4v.s6.7a268d5674f7 from=translated src=- shape=36f2ba21 vocab=08c57a40
+-/
 theorem dropChoice_loadCfg (M : TM (k + 1)) (x : List Bool) (g : ℕ → Bool) :
     dropChoice (loadCfg M x g) = (ofGuess M).initCfg x := by
   refine Cfg.ext rfl rfl ?_ rfl
@@ -286,7 +337,9 @@ theorem dropChoice_loadCfg (M : TM (k + 1)) (x : List Bool) (g : ℕ → Bool) :
 
 /-- **The paths of `NTM.ofGuess M` are the runs of `M` on a loaded guess tape.** This is the
 form a construction uses: design `M` so that its run on guess string `g` does what the path
-along `g` should do, and this reads that back as a statement about `NTM.ofGuess M`. -/
+along `g` should do, and this reads that back as a statement about `NTM.ofGuess M`.
+@isnad1 id=ex.1h5v.s7.612c108e9c7d from=translated src=- shape=83957eef vocab=7a07d0b7
+-/
 theorem ofGuess_trace (M : TM (k + 1)) (hM : TM.GuessDiscipline M) (x : List Bool) (T : ℕ)
     (g : ℕ → Bool) :
     ∃ (c' : Cfg (k + 1) M.Q) (t : ℕ), t ≤ T ∧ M.reachesIn t (loadCfg M x g) c' ∧

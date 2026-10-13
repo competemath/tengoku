@@ -81,10 +81,15 @@ The polarities alternate, so the parity of `j` decides. -/
 def blockPol (start : Bool) (j : ℕ) : Bool :=
   if j % 2 = 0 then start else !start
 
+/--
+@isnad1 id=eq.0h1v.s3.a61fd1b71cec from=translated src=- shape=bb0110a5 vocab=b4937880
+-/
 @[simp]
 theorem blockPol_zero (start : Bool) : blockPol start 0 = start := rfl
 
-/-- The polarities of consecutive blocks are opposite. -/
+/-- The polarities of consecutive blocks are opposite.
+@isnad1 id=eq.0h2v.s4.b088c730bb92 from=translated src=- shape=8ad2ba2d vocab=70ca1a38
+-/
 theorem blockPol_succ (start : Bool) (j : ℕ) : blockPol start (j + 1) = !blockPol start j := by
   unfold blockPol
   rcases Nat.mod_two_eq_zero_or_one j with h | h
@@ -105,14 +110,22 @@ def guardQ (pol : Bool) {α : Type} (C P : α → Prop) : Prop :=
   | true => ∃ a, C a ∧ P a
   | false => (∃ a, C a) ∧ ∀ a, C a → P a
 
+/--
+@isnad1 id=iff.0h3v.s4.5dc631488d5e from=translated src=- shape=7011a23a vocab=63a31b00
+-/
 theorem guardQ_true {α : Type} (C P : α → Prop) :
     guardQ true C P ↔ ∃ a, C a ∧ P a := Iff.rfl
 
+/--
+@isnad1 id=iff.0h3v.s5.d34aa16216d1 from=translated src=- shape=2ac4e02b vocab=cc44f3d6
+-/
 theorem guardQ_false {α : Type} (C P : α → Prop) :
     guardQ false C P ↔ (∃ a, C a) ∧ ∀ a, C a → P a := Iff.rfl
 
 /-- Guarded quantification only depends on its two predicates up to pointwise
-equivalence. -/
+equivalence.
+@isnad1 id=iff.2h6v.s5.309f779bb56c from=translated src=- shape=5c9a2190 vocab=b0a1ce9e
+-/
 theorem guardQ_congr (pol : Bool) {α : Type} {C C' P P' : α → Prop}
     (hC : ∀ a, C a ↔ C' a) (hP : ∀ a, C a → (P a ↔ P' a)) :
     guardQ pol C P ↔ guardQ pol C' P' := by
@@ -199,12 +212,16 @@ section Basic
 
 variable {M}
 
-/-- Being stuck is the negation of having a successor. -/
+/-- Being stuck is the negation of having a successor.
+@isnad1 id=iff.0h3v.s4.42433cc3e469 from=translated src=- shape=8bcb4bf3 vocab=99cec715
+-/
 theorem stuck_iff_not_exists_step {c : Config A} : M.Stuck c ↔ ¬∃ c', M.Step c c' := by
   simp only [Stuck, not_exists]
 
 /-- **Spare budget is never harmful**: one more step to spare cannot turn an
-accepting configuration into a rejecting one. -/
+accepting configuration into a rejecting one.
+@isnad1 id=altacc.1h5v.s5.0ac5ac9b8146 from=translated src=- shape=597e4f10 vocab=5fa79f66
+-/
 theorem altAcc_succ {start : Bool} :
     ∀ (n : ℕ) {c : Config A}, M.AltAcc start n c → M.AltAcc start (n + 1) c := by
   intro n
@@ -217,7 +234,9 @@ theorem altAcc_succ {start : Bool} :
     · exact Or.inr (Or.inl ⟨hu, hex, fun c' hc' => ih (hall c' hc')⟩)
     · exact Or.inr (Or.inr ⟨hu, c', hstep, ih hacc⟩)
 
-/-- **Acceptance is monotone in the budget.** -/
+/-- **Acceptance is monotone in the budget.**
+@isnad1 id=altacc.2h6v.s5.e2e6ea7e3424 from=translated src=- shape=a870a75d vocab=e280a029
+-/
 theorem altAcc_mono {start : Bool} :
     ∀ {m n : ℕ}, n ≤ m → ∀ {c : Config A}, M.AltAcc start n c → M.AltAcc start m c := by
   intro m
@@ -231,7 +250,9 @@ theorem altAcc_mono {start : Bool} :
     · exact altAcc_succ m (ih (Nat.lt_succ_iff.mp hlt) h)
     · rwa [Nat.le_antisymm hn hge] at h
 
-/-- An accepting state accepts, whatever the budget. -/
+/-- An accepting state accepts, whatever the budget.
+@isnad1 id=altacc.1h5v.s4.f977b493098d from=translated src=- shape=770e0ae0 vocab=619dbf86
+-/
 theorem altAcc_of_acc {start : Bool} {n : ℕ} {c : Config A} (h : M.Acc c.state) :
     M.AltAcc start n c := by
   cases n with
@@ -242,7 +263,9 @@ theorem altAcc_of_acc {start : Bool} {n : ℕ} {c : Config A} (h : M.Acc c.state
 recursion unfolds to “some run of at most `n` steps reaches an accepting
 state”. This is what makes the one-block problem the machine problem of
 `DescriptiveComplexity.Machines` again, and it is why the alternating model is
-a conservative extension rather than a new one. -/
+a conservative extension rather than a new one.
+@isnad1 id=iff.1h5v.s5.346512f02edb from=translated src=- shape=6592b983 vocab=5b978f15
+-/
 theorem altAcc_iff_stepsIn {start : Bool} (hex : ∀ q : A, ¬M.IsUniv start q) :
     ∀ (n : ℕ) (c : Config A),
       M.AltAcc start n c ↔ ∃ m, m ≤ n ∧ ∃ d, M.StepsIn m c d ∧ M.Acc d.state := by
@@ -273,7 +296,9 @@ theorem altAcc_iff_stepsIn {start : Bool} (hex : ∀ q : A, ¬M.IsUniv start q) 
 
 /-- **The one-block model accepts exactly when the underlying machine does.**
 Stated at an existential outermost polarity, where the initial configuration is
-chosen existentially, as `DescriptiveComplexity.TMData.Accepts` chooses it. -/
+chosen existentially, as `DescriptiveComplexity.TMData.Accepts` chooses it.
+@isnad1 id=iff.2h2v.s5.7701691a0ad7 from=translated src=- shape=be47e403 vocab=ea5792f1
+-/
 theorem altAccepts_true_iff_accepts [Finite A] (hex : ∀ q : A, ¬M.IsUniv true q)
     (hne : ∃ p, M.Posn p) : M.AltAccepts true ↔ M.Accepts := by
   have hpos : 0 < Nat.card {p : A // M.Posn p} := by
@@ -306,12 +331,16 @@ structure AltAgree (u : B ≃ A) (N : ATMData B) (M : ATMData A) : Prop where
 
 variable {u : B ≃ A} {N : ATMData B}
 
-/-- Universality of a state transports along an equivalence. -/
+/-- Universality of a state transports along an equivalence.
+@isnad1 id=iff.1h7v.s5.27bcd037aedc from=translated src=- shape=9effa4a9 vocab=5601dd3e
+-/
 theorem AltAgree.isUniv (h : AltAgree u N M) (start : Bool) (b : B) :
     N.IsUniv start b ↔ M.IsUniv start (u b) :=
   exists_congr fun j => and_congr_left' (h.blk j b)
 
-/-- Being stuck transports along an equivalence. -/
+/-- Being stuck transports along an equivalence.
+@isnad1 id=iff.1h6v.s5.a4c7a0703d63 from=translated src=- shape=7686d817 vocab=23575cb3
+-/
 theorem AltAgree.stuck (h : AltAgree u N M) (c : Config B) :
     N.Stuck c ↔ M.Stuck (c.map u) := by
   constructor
@@ -322,7 +351,9 @@ theorem AltAgree.stuck (h : AltAgree u N M) (c : Config B) :
     exact hs (d.map u) (h.base.step.mp hd)
 
 /-- **Alternating acceptance within a budget transports along an
-equivalence.** -/
+equivalence.**
+@isnad1 id=iff.1h8v.s5.00816bb7df69 from=translated src=- shape=8e2b2cc4 vocab=66fa30d8
+-/
 theorem AltAgree.altAcc (h : AltAgree u N M) (start : Bool) :
     ∀ (n : ℕ) (c : Config B), N.AltAcc start n c ↔ M.AltAcc start n (c.map u) := by
   intro n
@@ -357,7 +388,9 @@ theorem AltAgree.altAcc (h : AltAgree u N M) (start : Bool) :
       (or_congr (and_congr (h.isUniv start _) (and_congr hex hall))
         (and_congr (not_congr (h.isUniv start _)) hsome))
 
-/-- **Alternating acceptance transports along an equivalence.** -/
+/-- **Alternating acceptance transports along an equivalence.**
+@isnad1 id=iff.1h6v.s5.2cd5f1f07503 from=translated src=- shape=f324bbbc vocab=2e9df231
+-/
 theorem AltAgree.altAccepts (h : AltAgree u N M) (start : Bool) :
     N.AltAccepts start ↔ M.AltAccepts start := by
   have hcard : Nat.card {b : B // N.Posn b} = Nat.card {a : A // M.Posn a} :=
@@ -384,7 +417,9 @@ theorem AltAgree.altAccepts (h : AltAgree u N M) (start : Bool) :
     · exact (h.altAcc false _ c).mpr (hcard ▸ hf _ (h.base.isInit.mp hc))
 
 /-- **Well-formedness of the block structure transports along an
-equivalence.** -/
+equivalence.**
+@isnad1 id=iff.1h6v.s5.b0d2b2bb84bd from=translated src=- shape=f324bbbc vocab=917c2708
+-/
 theorem AltAgree.blocksWellFormed (h : AltAgree u N M) (k : ℕ) :
     N.BlocksWellFormed k ↔ M.BlocksWellFormed k := by
   have huniq : (∀ q : B, ∃ j, j < k ∧ N.Blk j q ∧ ∀ j', N.Blk j' q → j' = j) ↔

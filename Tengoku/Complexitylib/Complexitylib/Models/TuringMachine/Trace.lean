@@ -30,7 +30,9 @@ namespace NTM
 variable {n : ℕ}
 
 /-- Split the final step off a nonempty trace. The prefix uses `Fin.castSucc`,
-and the final choice is selected by `Fin.last`. -/
+and the final choice is selected by `Fin.last`.
+@isnad1 id=eq.0h5v.s6.d1d1d68e6aa7 from=translated src=- shape=b4986973 vocab=24a81a79
+-/
 theorem trace_snoc (tm : NTM n) (T : ℕ)
     (choices : Fin (T + 1) → Bool) (c : Cfg n tm.Q) :
     tm.trace (T + 1) choices c =
@@ -40,7 +42,9 @@ theorem trace_snoc (tm : NTM n) (T : ℕ)
 
 /-- Prove an indexed invariant along a finite trace. The step rule receives
 the original choice at the current time, while this theorem owns all prefix
-reindexing and final-step stitching. -/
+reindexing and final-step stitching.
+@isnad1 id=var.0h8v.s6.bebb2c169aaf from=translated src=- shape=234f13d2 vocab=d3623e6a
+-/
 theorem trace_invariant (tm : NTM n) (T : ℕ)
     (choices : Fin T → Bool) (c : Cfg n tm.Q)
     (invariant : ℕ → Cfg n tm.Q → Prop)
@@ -54,7 +58,9 @@ theorem trace_invariant (tm : NTM n) (T : ℕ)
 
 /-- Transport an exact trace through a configuration map, preserving every choice bit.
 The source must be running at each proper prefix, but may halt at the endpoint.
-The target may continue after that halt: no halt reflection or injectivity is assumed. -/
+The target may continue after that halt: no halt reflection or injectivity is assumed.
+@isnad1 id=eq.2h8v.s7.8384610344df from=translated src=- shape=d795a06d vocab=38138b3d
+-/
 theorem trace_map_prefix {n' : ℕ} (source : NTM n) (target : NTM n')
     (wrap : Cfg n source.Q → Cfg n' target.Q)
     (step : ∀ (choice : Bool) (c : Cfg n source.Q), c.state ≠ source.qhalt →

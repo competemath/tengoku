@@ -41,17 +41,23 @@ def CNF.Is3CNF (φ : CNF) : Prop := ∀ c ∈ φ, c.length = 3
 
 instance (φ : CNF) : Decidable (CNF.Is3CNF φ) := List.decidableBAll _ _
 
-/-- The empty CNF is trivially in 3-CNF. -/
+/-- The empty CNF is trivially in 3-CNF.
+@isnad1 id=is3cnf.0h0v.s1.106a657a9ef2 from=translated src=- shape=87ceb31f vocab=031b7404
+-/
 @[simp] theorem CNF.is3CNF_nil : CNF.Is3CNF [] := by
   simp [CNF.Is3CNF]
 
-/-- `c :: φ` is 3-CNF iff `c` has three literals and `φ` is 3-CNF. -/
+/-- `c :: φ` is 3-CNF iff `c` has three literals and `φ` is 3-CNF.
+@isnad1 id=iff.0h2v.s4.d74f2f3f73d1 from=translated src=- shape=a9481bac vocab=d50d4acc
+-/
 @[simp] theorem CNF.is3CNF_cons {c : Clause} {φ : CNF} :
     CNF.Is3CNF (c :: φ) ↔ c.length = 3 ∧ CNF.Is3CNF φ :=
   List.forall_mem_cons
 
 /-- Variable renaming preserves the 3-CNF shape: `Clause.mapVar` maps literals
-    one-for-one, so it does not change clause lengths. -/
+    one-for-one, so it does not change clause lengths.
+@isnad1 id=is3cnf.1h2v.s3.c9b4009a8da9 from=translated src=- shape=56f0ed01 vocab=2e19111c
+-/
 theorem CNF.Is3CNF.mapVar {φ : CNF} (h : CNF.Is3CNF φ) (f : ℕ → ℕ) :
     CNF.Is3CNF (CNF.mapVar f φ) := by
   intro c hc
@@ -77,7 +83,9 @@ def Clause.padTo3 : Clause → Clause
   | c => c
 
 /-- Padding preserves the clause's value under every assignment (repeating a
-    literal in a disjunction is idempotent). -/
+    literal in a disjunction is idempotent).
+@isnad1 id=eq.0h2v.s3.e1ae4ca282b5 from=translated src=- shape=2793bf2c vocab=f303f0d1
+-/
 theorem Clause.padTo3_eval (α : Assignment) (c : Clause) :
     Clause.eval α (Clause.padTo3 c) = Clause.eval α c := by
   match c with
@@ -86,7 +94,9 @@ theorem Clause.padTo3_eval (α : Assignment) (c : Clause) :
   | [a, b] => simp [Clause.padTo3, Clause.eval]
   | a :: b :: _ :: _ => rfl
 
-/-- A clause of width `1 … 3` is padded to width exactly three. -/
+/-- A clause of width `1 … 3` is padded to width exactly three.
+@isnad1 id=eq.2h1v.s5.b49a16b5e130 from=translated src=- shape=6b1c9a91 vocab=47aa5ba4
+-/
 theorem Clause.padTo3_length {c : Clause} (h1 : 1 ≤ c.length) (h2 : c.length ≤ 3) :
     (Clause.padTo3 c).length = 3 := by
   match c with
@@ -100,7 +110,9 @@ theorem Clause.padTo3_length {c : Clause} (h1 : 1 ≤ c.length) (h2 : c.length �
 def CNF.padTo3 (φ : CNF) : CNF := φ.map Clause.padTo3
 
 /-- Padding preserves the CNF's value under every assignment — hence
-    satisfiability. -/
+    satisfiability.
+@isnad1 id=eq.0h2v.s3.63ad39d1dc3a from=translated src=- shape=2793bf2c vocab=39317579
+-/
 theorem CNF.padTo3_eval (α : Assignment) (φ : CNF) :
     CNF.eval α (CNF.padTo3 φ) = CNF.eval α φ := by
   unfold CNF.padTo3
@@ -109,13 +121,17 @@ theorem CNF.padTo3_eval (α : Assignment) (φ : CNF) :
   | cons c φ ih =>
     simp only [List.map_cons, CNF.eval_cons, Clause.padTo3_eval, ih]
 
-/-- Padding preserves satisfiability. -/
+/-- Padding preserves satisfiability.
+@isnad1 id=iff.0h1v.s3.93768c9d8c8b from=translated src=- shape=6a405104 vocab=984eafe7
+-/
 theorem CNF.padTo3_satisfiable_iff (φ : CNF) :
     CNF.Satisfiable (CNF.padTo3 φ) ↔ CNF.Satisfiable φ := by
   simp only [CNF.Satisfiable, CNF.padTo3_eval]
 
 /-- If every clause of `φ` has width `1 … 3`, then `CNF.padTo3 φ` is a genuine
-    3-CNF equivalent to `φ`. -/
+    3-CNF equivalent to `φ`.
+@isnad1 id=is3cnf.1h1v.s5.b48ceabebbd5 from=translated src=- shape=da31a70e vocab=17f0ef58
+-/
 theorem CNF.is3CNF_padTo3 {φ : CNF}
     (h : ∀ c ∈ φ, 1 ≤ c.length ∧ c.length ≤ 3) : CNF.Is3CNF (CNF.padTo3 φ) := by
   intro c hc

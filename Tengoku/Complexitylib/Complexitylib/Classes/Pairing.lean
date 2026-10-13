@@ -32,7 +32,9 @@ def pairLang (R : List Bool → List Bool → Prop) : Language :=
   {z | ∃ x y, z = pair x y ∧ R x y}
 
 /-- Membership of a canonically encoded pair reduces to the underlying
-binary relation. -/
+binary relation.
+@isnad1 id=iff.0h3v.s4.c58763537154 from=translated src=- shape=f039f4af vocab=eba8e588
+-/
 @[simp] theorem mem_pairLang_pair (R : List Bool → List Bool → Prop)
     (x y : List Bool) :
     pair x y ∈ pairLang R ↔ R x y := by

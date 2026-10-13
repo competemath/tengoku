@@ -16,11 +16,17 @@ products of submodules, etc.) used throughout the patching argument.
 
 @[expose] public section
 
+/--
+@isnad1 id=iff.0h3v.s5.0c4fafbf5dbe from=translated src=- shape=bbebe99d vocab=e19307f3
+-/
 lemma IsUnit.pi_iff {ι} {M : ι → Type*} [∀ i, Monoid (M i)] {x : Π i, M i} :
     IsUnit x ↔ ∀ i, IsUnit (x i) := by
   simp_rw [isUnit_iff_exists, funext_iff, ← forall_and]
   exact Classical.skolem (p := fun i y ↦ x i * y = 1 ∧ y * x i = 1).symm
 
+/--
+@isnad1 id=iff.0h3v.s5.8a8d2e704734 from=translated src=- shape=501bb601 vocab=b65656d3
+-/
 lemma forall_prod_iff {ι} {β : ι → Type*} (P : ∀ i, β i → Prop) [∀ i, Nonempty (β i)] :
     (∀ i : ι, ∀ (y : Π i, β i), P i (y i)) ↔ (∀ i y, P i y) :=
   letI := Classical.decEq
@@ -55,6 +61,9 @@ def Submodule.pi' : Submodule (Π i, R i) (Π i, M i) where
   smul_mem' := by aesop
 
 variable {N} in
+/--
+@isnad1 id=iff.0h5v.s8.ed59402c3eeb from=translated src=- shape=fffc9d49 vocab=db55e497
+-/
 @[simp]
 lemma Submodule.mem_pi' {x} : x ∈ Submodule.pi' N ↔ ∀ i, x i ∈ N i := Iff.rfl
 
@@ -73,6 +82,9 @@ local instance {ι : Type*} {R A : ι → Type*} [∀ i, CommSemiring (R i)]
   commutes' r a := funext fun i ↦ Algebra.commutes _ _
   smul_def' r a := funext fun i ↦ by simp [Algebra.smul_def]
 
+/--
+@isnad1 id=eq.0h2v.s8.bd6835165a2d from=translated src=- shape=b292a224 vocab=12791ea0
+-/
 lemma pi'_jacobson :
     Submodule.pi' (fun i ↦ Ideal.jacobson (R := R i) ⊥) = Ideal.jacobson ⊥ := by
   ext v
@@ -81,6 +93,9 @@ lemma pi'_jacobson :
   exact (forall_prod_iff (fun i y ↦ IsUnit (v i * y + 1))).symm
 
 open Topology in
+/--
+@isnad1 id=ex.1h2v.s6.b1320cf99422 from=translated src=- shape=27c0bbb1 vocab=2292fa46
+-/
 @[to_additive]
 theorem exists_subgroup_isOpen_and_subset {α : Type*} [TopologicalSpace α]
     [CompactSpace α] [T2Space α] [TotallyDisconnectedSpace α]
@@ -91,11 +106,17 @@ theorem exists_subgroup_isOpen_and_subset {α : Type*} [TopologicalSpace α]
   obtain ⟨⟨G, hG⟩, hG'⟩ := IsTopologicalGroup.exist_openSubgroup_sub_clopen_nhds_of_one hK hxK
   exact ⟨G, hG, (hG'.trans hKU).trans hVU⟩
 
+/--
+@isnad1 id=iff.0h3v.s5.61ff7b23a587 from=translated src=- shape=3d3cab5f vocab=fb26573c
+-/
 @[local simp]
 theorem TwoSidedIdeal.span_le' {α} [NonUnitalNonAssocRing α] {s : Set α} {I : TwoSidedIdeal α} :
     span s ≤ I ↔ s ⊆ I :=
   ⟨subset_span.trans, fun h _ hx ↦ mem_span_iff.mp hx I h⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.a6add8be1913 from=translated src=- shape=1723da4d vocab=c8f0c81c
+-/
 @[local simp]
 theorem TwoSidedIdeal.span_neg {α} [NonUnitalNonAssocRing α] (s : Set α) :
     TwoSidedIdeal.span (-s) = TwoSidedIdeal.span s := by
@@ -105,11 +126,17 @@ theorem TwoSidedIdeal.span_neg {α} [NonUnitalNonAssocRing α] (s : Set α) :
   · rintro x hx
     exact neg_neg x ▸ neg_mem _ (subset_span (Set.neg_mem_neg.mpr hx))
 
+/--
+@isnad1 id=eq.0h1v.s5.03a0dc8232c7 from=translated src=- shape=e2f73a5c vocab=19474c8d
+-/
 @[local simp]
 theorem TwoSidedIdeal.span_singleton_zero {α} [NonUnitalNonAssocRing α] :
     span {(0 : α)} = ⊥ :=
   le_bot_iff.mp (span_le'.mpr (by simp))
 
+/--
+@isnad1 id=mem.0h2v.s4.83fc4b2fd07d from=translated src=- shape=b6d9ce48 vocab=15538612
+-/
 theorem TwoSidedIdeal.mem_span_singleton {α} [NonUnitalNonAssocRing α] {x : α} :
     x ∈ span {x} :=
   subset_span rfl
@@ -137,15 +164,24 @@ def TwoSidedIdeal.leAddSubgroup {α} [NonUnitalNonAssocRing α] (G : AddSubgroup
       (TwoSidedIdeal.span_le'.mpr <| by
         simpa using TwoSidedIdeal.mul_mem_right _ x y mem_span_singleton) hy)
 
+/--
+@isnad1 id=le.0h2v.s5.dea7748e436b from=translated src=- shape=33410fb1 vocab=02ba94ad
+-/
 lemma TwoSidedIdeal.leAddSubgroup_subset {α} [NonUnitalNonAssocRing α] (G : AddSubgroup α) :
     (leAddSubgroup G : Set α) ⊆ G :=
   fun x hx ↦ hx ((sub_zero x).symm ▸ mem_span_singleton)
 
+/--
+@isnad1 id=iff.0h3v.s6.ea926f80fcd0 from=translated src=- shape=a1c4fb48 vocab=29f82b9f
+-/
 lemma TwoSidedIdeal.mem_leAddSubgroup' {α} [NonUnitalNonAssocRing α] {G : AddSubgroup α} {x : α} :
     x ∈ leAddSubgroup G ↔ (span {x} : Set α) ⊆ G := by
   conv_rhs => rw [← sub_zero x]
   rfl
 
+/--
+@isnad1 id=iff.0h3v.s6.ba1c48636272 from=translated src=- shape=9263f690 vocab=da246767
+-/
 lemma TwoSidedIdeal.mem_leAddSubgroup {α} [Ring α] {G : AddSubgroup α} {x : α} :
     x ∈ leAddSubgroup G ↔ ∀ a b, a * x * b ∈ G := by
   constructor
@@ -158,6 +194,9 @@ lemma TwoSidedIdeal.mem_leAddSubgroup {α} [Ring α] {G : AddSubgroup α} {x : �
       (fun {x y} ↦ by simp +contextual [mul_assoc])) (by simpa) 1 1
 
 open Topology Pointwise in
+/--
+@isnad1 id=ex.1h2v.s6.33f769ff636b from=translated src=- shape=27c0bbb1 vocab=44404288
+-/
 theorem exists_twoSidedIdeal_isOpen_and_subset {α} [TopologicalSpace α]
     [CompactSpace α] [T2Space α] [TotallyDisconnectedSpace α]
     [Ring α] [IsTopologicalRing α] {U : Set α} (hU : U ∈ 𝓝 0) :
@@ -202,6 +241,9 @@ theorem exists_twoSidedIdeal_isOpen_and_subset {α} [TopologicalSpace α]
     exact H (Set.mk_mem_prod ha (hT <| Set.mk_mem_prod hb hc))
 
 open Topology in
+/--
+@isnad1 id=ex.1h2v.s6.6e1cf3eddecc from=translated src=- shape=27c0bbb1 vocab=c9f37f79
+-/
 theorem exists_ideal_isOpen_and_subset {α} [TopologicalSpace α]
     [CompactSpace α] [T2Space α] [TotallyDisconnectedSpace α]
     [Ring α] [IsTopologicalRing α] {U : Set α} (hU : U ∈ 𝓝 0) :
@@ -209,17 +251,26 @@ theorem exists_ideal_isOpen_and_subset {α} [TopologicalSpace α]
   obtain ⟨I, hI, hIU⟩ := exists_twoSidedIdeal_isOpen_and_subset hU
   exact ⟨I.asIdeal, hI, hIU⟩
 
+/--
+@isnad1 id=ex.0h2v.s6.e555f2186330 from=translated src=- shape=71dd1479 vocab=0b689ce1
+-/
 lemma WellFoundedGT.exists_eq_sup {α} [CompleteLattice α] [WellFoundedGT α]
     (f : ℕ →o α) : ∃ i, f i = ⨆ i, f i := by
   obtain ⟨n, hn⟩ := wellFoundedGT_iff_monotone_chain_condition.mp ‹WellFoundedGT α› f
   exact ⟨n, le_antisymm (le_iSup _ _) (iSup_le fun i ↦
     (le_total i n).elim (f.2 ·) (fun h ↦ (hn _ h).ge))⟩
 
+/--
+@isnad1 id=ex.0h2v.s6.6027bb58e6b2 from=translated src=- shape=41f1e64f vocab=ac2f260d
+-/
 lemma WellFoundedLT.exists_eq_inf {α} [CompleteLattice α] [WellFoundedLT α]
     (f : ℕ →o αᵒᵈ) : ∃ i, f i = (⨅ i, f i : α) :=
   WellFoundedGT.exists_eq_sup (α := αᵒᵈ) f
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=le.0h3v.s8.28dd5f3a047a from=translated src=- shape=8efd9f6a vocab=149342cc
+-/
 lemma IsLocalRing.maximalIdeal_pow_card_smul_top_le {R M}
     [CommRing R] [IsLocalRing R] [IsNoetherianRing R] [AddCommGroup M] [Module R M]
     (N : Submodule R M) [Finite (M ⧸ N)] : maximalIdeal R ^ Nat.card (M ⧸ N) • ⊤ ≤ N := by
@@ -262,12 +313,18 @@ lemma IsLocalRing.maximalIdeal_pow_card_smul_top_le {R M}
     ← Submodule.map_smul'', ← le_bot_iff, Submodule.map_le_iff_le_comap, Submodule.comap_bot,
     Submodule.ker_mkQ] using this
 
+/--
+@isnad1 id=eq.1h6v.s9.926a8e93164e from=translated src=- shape=ca611a87 vocab=0fd7cebe
+-/
 theorem Submodule.comap_smul_of_le_range {R M M'} [CommRing R] [AddCommGroup M]
     [AddCommGroup M'] [Module R M] [Module R M']
     (f : M →ₗ[R] M') (S : Submodule R M') (hS : S ≤ LinearMap.range f) (I : Ideal R) :
     (I • S).comap f = (I • S.comap f) ⊔ LinearMap.ker f := by
   rw [← comap_map_eq, map_smul'', Submodule.map_comap_eq, inf_eq_right.mpr hS]
 
+/--
+@isnad1 id=eq.1h6v.s9.4f796f2a161e from=translated src=- shape=b0c23e19 vocab=2ba1fff4
+-/
 theorem Submodule.comap_smul_of_surjective {R M M'} [CommRing R] [AddCommGroup M]
     [AddCommGroup M'] [Module R M] [Module R M']
     (f : M →ₗ[R] M') (S : Submodule R M') (hS : Function.Surjective f) (I : Ideal R) :
@@ -295,6 +352,9 @@ def Pi.liftQuotientₗ {ι R M : Type*} [CommRing R] [AddCommGroup M] [Module R 
     exact sum_mem fun i hi ↦ Submodule.smul_mem_smul (hx i) Submodule.mem_top
   · exact Function.Surjective.comp_left Ideal.Quotient.mk_surjective
 
+/--
+@isnad1 id=surjecti.1h5v.s10.5d041a7f35be from=translated src=- shape=19e57635 vocab=1bfcc1ee
+-/
 lemma Pi.liftQuotientₗ_surjective {ι R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     [Finite ι] (f : (ι → R) →ₗ[R] M) (I : Ideal R) (hf : Function.Surjective f) :
     Function.Surjective (Pi.liftQuotientₗ f I) := by
@@ -302,6 +362,9 @@ lemma Pi.liftQuotientₗ_surjective {ι R M : Type*} [CommRing R] [AddCommGroup 
   rw [← LinearMap.range_eq_top, Submodule.range_liftQ, LinearMap.range_eq_top]
   exact (Submodule.mkQ_surjective _).comp hf
 
+/--
+@isnad1 id=bijectiv.2h5v.s11.6f2a6d1ee54f from=translated src=- shape=eb3e3c32 vocab=282c5c02
+-/
 lemma Pi.liftQuotientₗ_bijective {ι R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     [Finite ι] (f : (ι → R) →ₗ[R] M) (I : Ideal R) (hf : Function.Surjective f)
     (hf' : LinearMap.ker f ≤ LinearMap.ker ((Algebra.linearMap R (R ⧸ I)).compLeft ι)) :
@@ -317,6 +380,9 @@ lemma Pi.liftQuotientₗ_bijective {ι R M : Type*} [CommRing R] [AddCommGroup M
     smul_apply, Algebra.linearMap_apply, Ideal.Quotient.algebraMap_eq, zero_apply,
     Ideal.Quotient.eq_zero_iff_mem, smul_eq_mul, I.mul_mem_right _ hr, implies_true]
 
+/--
+@isnad1 id=compacts.0h2v.s6.a4621c0fd11d from=translated src=- shape=81d124ed vocab=1c76072e
+-/
 lemma IsModuleTopology.compactSpace
     (R M : Type*) [CommRing R] [TopologicalSpace R] [AddCommGroup M]
     [Module R M] [TopologicalSpace M] [IsModuleTopology R M]
@@ -324,6 +390,9 @@ lemma IsModuleTopology.compactSpace
   letI : ContinuousAdd M := toContinuousAdd R M
   ⟨Submodule.isCompact_of_fg (Module.Finite.fg_top (R := R))⟩
 
+/--
+@isnad1 id=disjoint.1h2v.s7.25f251d6c897 from=translated src=- shape=31be8eb5 vocab=23c3fa8b
+-/
 lemma disjoint_nonZeroDivisors_of_mem_minimalPrimes
     {R : Type*} [CommRing R] (p : Ideal R) (hp : p ∈ minimalPrimes R) :
     Disjoint (p : Set R) (nonZeroDivisors R) := by

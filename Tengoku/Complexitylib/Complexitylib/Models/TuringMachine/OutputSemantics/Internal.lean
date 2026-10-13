@@ -58,6 +58,9 @@ private theorem sameExceptInputCells_next {tm : TM n} {first second : Cfg n tm.Q
       (fun i => (second.work i).read) second.output.read).2.2.2.1 <;>
       simp [Tape.move, hhead]
 
+/--
+@isnad1 id=eq.0h5v.s5.2be22b7cc235 from=translated src=- shape=1cd5e42e vocab=0234df0d
+-/
 theorem runCfg_add_internal (tm : TM n) (c : Cfg n tm.Q) (first second : ℕ) :
     tm.runCfg c (first + second) = tm.runCfg (tm.runCfg c first) second := by
   induction second with
@@ -66,12 +69,18 @@ theorem runCfg_add_internal (tm : TM n) (c : Cfg n tm.Q) (first second : ℕ) :
       rw [show first + (second + 1) = (first + second) + 1 from by omega, runCfg, ih,
         runCfg]
 
+/--
+@isnad1 id=eq.1h4v.s4.a6dee0965fdf from=translated src=- shape=f3cba714 vocab=e7cf5df5
+-/
 theorem runCfg_of_halted_internal (tm : TM n) {c : Cfg n tm.Q}
     (hhalt : tm.halted c) (steps : ℕ) : tm.runCfg c steps = c := by
   induction steps with
   | zero => rfl
   | succ steps ih => rw [runCfg, ih, TM.step, ite_eq_left hhalt, Option.getD_none]
 
+/--
+@isnad1 id=eq.1h5v.s5.c15de550bf9f from=translated src=- shape=ed773fee vocab=175bb385
+-/
 theorem runCfg_of_reachesIn_internal (tm : TM n) {c c' : Cfg n tm.Q} {steps : ℕ}
     (hreach : tm.reachesIn steps c c') : tm.runCfg c steps = c' := by
   induction hreach with
@@ -81,7 +90,9 @@ theorem runCfg_of_reachesIn_internal (tm : TM n) {c c' : Cfg n tm.Q} {steps : �
         hstep, Option.getD_some, ih]
 
 /-- The bounded evaluator's endpoint is reachable in some number of actual
-transitions no greater than its clock. -/
+transitions no greater than its clock.
+@isnad1 id=ex.0h4v.s5.40cad18eeb24 from=translated src=- shape=f9372bb4 vocab=6618c70b
+-/
 theorem runCfg_reachesIn_internal (tm : TM n) (c : Cfg n tm.Q) (time : ℕ) :
     ∃ steps, steps ≤ time ∧ tm.reachesIn steps c (tm.runCfg c time) := by
   induction time with
@@ -137,6 +148,9 @@ private theorem runCfg_sameExceptInputCells_internal (tm : TM n)
       simpa only [runCfg] using
         sameExceptInputCells_next hsameRun hread
 
+/--
+@isnad1 id=and.1h5v.s7.ab707cc48597 from=translated src=- shape=5de1224d vocab=042676ba
+-/
 theorem runCfg_initCfg_congr_of_input_cells_internal (tm : TM n)
     (first second : List Bool) (time : ℕ)
     (hinput : ∀ position, position ≤ time →
@@ -156,13 +170,18 @@ theorem runCfg_initCfg_congr_of_input_cells_internal (tm : TM n)
   exact ⟨hrun.1, hrun.2.2.1, hrun.2.2.2⟩
 
 /-- A halted exact-step endpoint is the bounded evaluator's endpoint at every
-larger clock. -/
+larger clock.
+@isnad1 id=eq.3h6v.s5.3398e94870be from=translated src=- shape=3b4c6ccd vocab=3331e5d1
+-/
 theorem runCfg_eq_of_reachesIn_halted_internal (tm : TM n) {c c' : Cfg n tm.Q}
     {steps time : ℕ} (hreach : tm.reachesIn steps c c') (hhalt : tm.halted c')
     (hsteps : steps ≤ time) : tm.runCfg c time = c' := by
   rw [show time = steps + (time - steps) from by omega, runCfg_add_internal,
     runCfg_of_reachesIn_internal tm hreach, runCfg_of_halted_internal tm hhalt]
 
+/--
+@isnad1 id=iff.0h4v.s4.2878a46b2fdd from=translated src=- shape=8b338d29 vocab=d6ffb5aa
+-/
 theorem haltsInTime_iff_runCfg_internal (tm : TM n) (program : List Bool) (time : ℕ) :
     tm.HaltsInTime program time ↔ tm.halted (tm.runCfg (tm.initCfg program) time) := by
   constructor
@@ -174,17 +193,26 @@ theorem haltsInTime_iff_runCfg_internal (tm : TM n) (program : List Bool) (time 
       runCfg_reachesIn_internal tm (tm.initCfg program) time
     exact ⟨_, steps, hsteps, hreach, hhalt⟩
 
+/--
+@isnad1 id=haltsint.2h5v.s4.7175d313bdc4 from=translated src=- shape=f912f575 vocab=cac0bf9d
+-/
 theorem haltsInTime_mono_internal {tm : TM n} {program : List Bool}
     {first second : ℕ} (hbound : first ≤ second) (hhalt : tm.HaltsInTime program first) :
     tm.HaltsInTime program second := by
   obtain ⟨c, steps, hsteps, hreach, hhalted⟩ := hhalt
   exact ⟨c, steps, hsteps.trans hbound, hreach, hhalted⟩
 
+/--
+@isnad1 id=halts.1h4v.s4.06d0bea8e55e from=translated src=- shape=2110917f vocab=fd8aecd9
+-/
 theorem halts_of_haltsInTime_internal {tm : TM n} {program : List Bool} {time : ℕ}
     (hhalt : tm.HaltsInTime program time) : tm.Halts program := by
   obtain ⟨c, _steps, _hsteps, hreach, hhalted⟩ := hhalt
   exact ⟨c, reaches_of_reachesIn hreach, hhalted⟩
 
+/--
+@isnad1 id=iff.0h3v.s4.9e8f6c31f544 from=translated src=- shape=3736780a vocab=fd8aecd9
+-/
 theorem halts_iff_exists_haltsInTime_internal (tm : TM n) (program : List Bool) :
     tm.Halts program ↔ ∃ time, tm.HaltsInTime program time := by
   constructor
@@ -194,6 +222,9 @@ theorem halts_iff_exists_haltsInTime_internal (tm : TM n) (program : List Bool) 
   · rintro ⟨_time, hhalt⟩
     exact halts_of_haltsInTime_internal hhalt
 
+/--
+@isnad1 id=iff.0h5v.s5.68d8be2b771c from=translated src=- shape=e8c24e17 vocab=72cf8e86
+-/
 theorem producesInTime_iff_runCfg_internal (tm : TM n) (program output : List Bool)
     (time : ℕ) :
     tm.ProducesInTime program output time ↔
@@ -208,6 +239,9 @@ theorem producesInTime_iff_runCfg_internal (tm : TM n) (program output : List Bo
       runCfg_reachesIn_internal tm (tm.initCfg program) time
     exact ⟨_, steps, hsteps, hreach, hhalt, hout⟩
 
+/--
+@isnad1 id=eq.1h5v.s5.ab297fb92172 from=translated src=- shape=c938f3da vocab=4e5d230d
+-/
 theorem initCfg_take_input_cells_le_internal (tm : TM n)
     (program : List Bool) (time position : ℕ) (hposition : position ≤ time) :
     (tm.initCfg program).input.cells position =
@@ -224,6 +258,9 @@ theorem initCfg_take_input_cells_le_internal (tm : TM n)
     simp only [List.getElem?_map]
     rw [List.getElem?_take_of_lt hindex]
 
+/--
+@isnad1 id=produces.1h5v.s4.68c6f3a308a3 from=translated src=- shape=d51adada vocab=d9d90330
+-/
 theorem producesInTime_take_internal {tm : TM n} {program output : List Bool}
     {time : ℕ} (hproduce : tm.ProducesInTime program output time) :
     tm.ProducesInTime (program.take time) output time := by
@@ -241,6 +278,9 @@ theorem producesInTime_take_internal {tm : TM n} {program output : List Bool}
   · rw [← hcongr.2.2]
     exact hrun.2
 
+/--
+@isnad1 id=produces.2h6v.s5.75a70b79eb31 from=translated src=- shape=400c4081 vocab=2404a7fa
+-/
 theorem producesInTime_mono_internal {tm : TM n} {program output : List Bool}
     {first second : ℕ} (hbound : first ≤ second)
     (hproduce : tm.ProducesInTime program output first) :
@@ -248,23 +288,35 @@ theorem producesInTime_mono_internal {tm : TM n} {program output : List Bool}
   obtain ⟨c, steps, hsteps, hreach, hhalt, hout⟩ := hproduce
   exact ⟨c, steps, hsteps.trans hbound, hreach, hhalt, hout⟩
 
+/--
+@isnad1 id=produces.1h5v.s4.239d2dd3dd61 from=translated src=- shape=c325a0ef vocab=980537cd
+-/
 theorem produces_of_producesInTime_internal {tm : TM n} {program output : List Bool}
     {time : ℕ} (hproduce : tm.ProducesInTime program output time) :
     tm.Produces program output := by
   obtain ⟨c, _steps, _hsteps, hreach, hhalt, hout⟩ := hproduce
   exact ⟨c, reaches_of_reachesIn hreach, hhalt, hout⟩
 
+/--
+@isnad1 id=haltsint.1h5v.s4.8bfe7a0dd6ea from=translated src=- shape=72aa1f2f vocab=6612c472
+-/
 theorem haltsInTime_of_producesInTime_internal {tm : TM n}
     {program output : List Bool} {time : ℕ}
     (hproduce : tm.ProducesInTime program output time) : tm.HaltsInTime program time := by
   obtain ⟨c, steps, hsteps, hreach, hhalt, _hout⟩ := hproduce
   exact ⟨c, steps, hsteps, hreach, hhalt⟩
 
+/--
+@isnad1 id=halts.1h4v.s4.212e5738482c from=translated src=- shape=74da39c8 vocab=1f60dceb
+-/
 theorem halts_of_produces_internal {tm : TM n} {program output : List Bool}
     (hproduce : tm.Produces program output) : tm.Halts program := by
   obtain ⟨c, hreach, hhalt, _hout⟩ := hproduce
   exact ⟨c, hreach, hhalt⟩
 
+/--
+@isnad1 id=iff.0h4v.s4.c13fb25e4624 from=translated src=- shape=1b2386e5 vocab=980537cd
+-/
 theorem produces_iff_exists_producesInTime_internal (tm : TM n)
     (program output : List Bool) :
     tm.Produces program output ↔ ∃ time, tm.ProducesInTime program output time := by
@@ -279,6 +331,9 @@ private theorem ofBool_injective_internal {left right : Bool}
     (h : Γ.ofBool left = Γ.ofBool right) : left = right := by
   cases left <;> cases right <;> simp [Γ.ofBool] at h ⊢
 
+/--
+@isnad1 id=eq.2h3v.s4.cd7eb2ad084a from=translated src=- shape=04458f23 vocab=b97548b6
+-/
 theorem hasOutput_length_eq_internal {tape : Tape} {left right : List Bool}
     (hleft : tape.HasOutput left) (hright : tape.HasOutput right) :
     left.length = right.length := by
@@ -294,6 +349,9 @@ theorem hasOutput_length_eq_internal {tape : Tape} {left right : List Bool}
     rw [hleft.2] at hbit
     exact Γ.ofBool_ne_blank _ hbit.symm
 
+/--
+@isnad1 id=eq.2h3v.s4.98be25a6862d from=translated src=- shape=c6ae3d21 vocab=e09302b8
+-/
 theorem hasOutput_eq_internal {tape : Tape} {left right : List Bool}
     (hleft : tape.HasOutput left) (hright : tape.HasOutput right) : left = right := by
   have hlength := hasOutput_length_eq_internal hleft hright
@@ -302,6 +360,9 @@ theorem hasOutput_eq_internal {tape : Tape} {left right : List Bool}
   apply ofBool_injective_internal
   exact (hleft.1 index hindexLeft).symm.trans (hright.1 index hindexRight)
 
+/--
+@isnad1 id=eq.2h7v.s5.8bc7e8db72d1 from=translated src=- shape=c8fd1734 vocab=7ca6e36b
+-/
 theorem producesInTime_output_unique_internal {tm : TM n}
     {program left right : List Bool} {leftTime rightTime : ℕ}
     (hleft : tm.ProducesInTime program left leftTime)
@@ -315,6 +376,9 @@ theorem producesInTime_output_unique_internal {tm : TM n}
     (producesInTime_iff_runCfg_internal tm program right time).mp hright'
   exact hasOutput_eq_internal hleftRun.2 hrightRun.2
 
+/--
+@isnad1 id=eq.2h5v.s4.a076f5df9f68 from=translated src=- shape=9dba8bb2 vocab=3e48da16
+-/
 theorem produces_output_unique_internal {tm : TM n} {program left right : List Bool}
     (hleft : tm.Produces program left) (hright : tm.Produces program right) : left = right := by
   obtain ⟨leftTime, hleftTime⟩ :=
@@ -323,12 +387,18 @@ theorem produces_output_unique_internal {tm : TM n} {program left right : List B
     (produces_iff_exists_producesInTime_internal tm program right).mp hright
   exact producesInTime_output_unique_internal hleftTime hrightTime
 
+/--
+@isnad1 id=iff.0h4v.s5.dec4fb4a8099 from=translated src=- shape=5b740227 vocab=0b4fe5a7
+-/
 theorem computesInTime_iff_forall_producesInTime_internal (tm : TM n)
     (function : List Bool → List Bool) (time : ℕ → ℕ) :
     tm.ComputesInTime function time ↔
       ∀ input, tm.ProducesInTime input (function input) (time input.length) :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h3v.s4.5063c60b6eef from=translated src=- shape=1b6be61a vocab=784d1425
+-/
 theorem computes_iff_forall_produces_internal (tm : TM n)
     (function : List Bool → List Bool) :
     tm.Computes function ↔ ∀ input, tm.Produces input (function input) := by

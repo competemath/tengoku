@@ -66,7 +66,9 @@ def witnessLang (R : List Bool → List Bool → Prop) : Language :=
   {x | ∃ y, R x y}
 
 /-- Membership in `witnessLang R` unfolds to the existence of a witness:
-    `x ∈ witnessLang R ↔ ∃ y, R x y`. -/
+    `x ∈ witnessLang R ↔ ∃ y, R x y`.
+@isnad1 id=iff.0h2v.s5.c7a1cca054a6 from=translated src=- shape=7e1f973e vocab=92d4e5f1
+-/
 @[simp] theorem mem_witnessLang {R : List Bool → List Bool → Prop} {x : List Bool} :
     x ∈ witnessLang R ↔ ∃ y, R x y := Iff.rfl
 
@@ -108,7 +110,9 @@ def WitnessNTMConstruction : Prop :=
     `L ∈ NP`. Proof: unpack FNP to get a polynomial-time DTM verifier
     `M` for `pairLang R` and a polynomial witness-length bound, apply the
     construction to build the guess-and-verify NTM, and package the result as
-    NP membership. -/
+    NP membership.
+@isnad1 id=mem.3h2v.s6.8b280963cb26 from=translated src=- shape=f1937890 vocab=b7add839
+-/
 theorem mem_NP_of_FNP_witness
     (hwitness : WitnessNTMConstruction)
     {R : List Bool → List Bool → Prop} {L : Language}
@@ -135,7 +139,9 @@ theorem mem_NP_of_FNP_witness
 
 /-- **Restatement in terms of `witnessLang`.** If `R ∈ FNP`, then
     `witnessLang R ∈ NP`. This is the useful form for applying to
-    concrete relations like `Witness`. -/
+    concrete relations like `Witness`.
+@isnad1 id=mem.2h1v.s5.97d826334013 from=translated src=- shape=c323bd64 vocab=00b3b021
+-/
 theorem witnessLang_mem_NP_of_FNP
     (hwitness : WitnessNTMConstruction)
     {R : List Bool → List Bool → Prop} (hR : R ∈ FNP) :

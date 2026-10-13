@@ -39,12 +39,21 @@ namespace Complexity
 def delimit (x : List Bool) : List Bool :=
   (x.flatMap fun b => [b, b]) ++ [false, true]
 
+/--
+@isnad1 id=eq.0h0v.s3.1b1dfc7703ff from=translated src=- shape=bafb6ed0 vocab=6c128c16
+-/
 @[simp] theorem delimit_nil : delimit [] = [false, true] := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.d6bd9689c278 from=translated src=- shape=ede16f07 vocab=c8f01293
+-/
 @[simp] theorem delimit_cons (b : Bool) (l : List Bool) :
     delimit (b :: l) = b :: b :: delimit l := by
   simp [delimit]
 
+/--
+@isnad1 id=eq.0h1v.s5.446dc91ed52e from=translated src=- shape=3e54b442 vocab=d0e51733
+-/
 @[simp] theorem delimit_length (l : List Bool) : (delimit l).length = 2 * l.length + 2 := by
   induction l with
   | nil => rfl
@@ -63,7 +72,9 @@ def unpair? : List Bool → Option (List Bool × List Bool)
   | _ => none
 
 /-- `unpair?` reads back the framing written by `delimit`: parsing one block off the front
-    of any input recovers the payload and the remaining suffix. -/
+    of any input recovers the payload and the remaining suffix.
+@isnad1 id=eq.0h2v.s5.d71dca8cd33d from=translated src=- shape=cac74b1b vocab=39f97404
+-/
 @[simp] theorem unpair?_delimit_append (x y : List Bool) :
     unpair? (delimit x ++ y) = some (x, y) := by
   induction x with
@@ -102,17 +113,26 @@ def undelimitBlock (input : List Bool) : List Bool :=
   | some (block, _) => block
   | none => []
 
+/--
+@isnad1 id=eq.1h1v.s4.895d478a7f94 from=translated src=- shape=36e165e1 vocab=549f58c3
+-/
 @[simp]
 theorem undelimitBlock_eq_nil_of_unpair?_eq_none {input : List Bool}
     (h : unpair? input = none) :
     undelimitBlock input = [] := by
   simp [undelimitBlock, h]
 
+/--
+@isnad1 id=eq.0h2v.s4.a555a2c3bf97 from=translated src=- shape=c221328b vocab=d39ad273
+-/
 @[simp]
 theorem undelimitBlock_delimit_append (P Q : List Bool) :
     undelimitBlock (delimit P ++ Q) = P := by
   simp [undelimitBlock]
 
+/--
+@isnad1 id=eq.0h1v.s3.85a070f926f2 from=translated src=- shape=e9e6e124 vocab=36df4fc3
+-/
 @[simp]
 theorem undelimitBlock_delimit (P : List Bool) :
     undelimitBlock (delimit P) = P := by
@@ -125,12 +145,18 @@ def takeFirstBlock (input : List Bool) : List Bool :=
   | some (block, _) => delimit block
   | none => []
 
+/--
+@isnad1 id=eq.1h1v.s4.1608787f939d from=translated src=- shape=36e165e1 vocab=87c6eca6
+-/
 @[simp]
 theorem takeFirstBlock_eq_nil_of_unpair?_eq_none {input : List Bool}
     (h : unpair? input = none) :
     takeFirstBlock input = [] := by
   simp [takeFirstBlock, h]
 
+/--
+@isnad1 id=eq.0h2v.s4.f80c82c27710 from=translated src=- shape=a097cdcc vocab=db030d45
+-/
 @[simp]
 theorem takeFirstBlock_delimit_append (P Q : List Bool) :
     takeFirstBlock (delimit P ++ Q) = delimit P := by
@@ -143,6 +169,9 @@ def hasBlock : List Bool → Bool
   | true :: true :: rest => hasBlock rest
   | _ => false
 
+/--
+@isnad1 id=eq.0h1v.s3.991f9b17c30f from=translated src=- shape=c1ec4190 vocab=e792f783
+-/
 theorem hasBlock_eq_isSome_unpair? :
     ∀ l : List Bool, hasBlock l = (unpair? l).isSome
   | [] => rfl
@@ -183,6 +212,9 @@ suffices as fuel for `undelimitBlocksAux`. -/
 def undelimitBlocks (input : List Bool) : Option (List (List Bool)) :=
   undelimitBlocksAux input.length input
 
+/--
+@isnad1 id=le.0h1v.s4.864e808164c8 from=translated src=- shape=4bd26e2a vocab=fab3a3a1
+-/
 theorem length_le_length_flatten_delimit (l : List (List Bool)) :
     l.length ≤ ((l.map delimit).flatten).length := by
   induction l with
@@ -206,6 +238,9 @@ private theorem undelimitBlocksAux_flatten_delimit (l : List (List Bool)) :
     rw [← hcons, unpair?_delimit_append]
     simp [ih fuel (by omega)]
 
+/--
+@isnad1 id=eq.0h1v.s4.e2020090a242 from=translated src=- shape=6ece7f74 vocab=75060e0c
+-/
 theorem undelimitBlocks_flatten_delimit (l : List (List Bool)) :
     undelimitBlocks ((l.map delimit).flatten) = some l :=
   undelimitBlocksAux_flatten_delimit l _ (length_le_length_flatten_delimit l)

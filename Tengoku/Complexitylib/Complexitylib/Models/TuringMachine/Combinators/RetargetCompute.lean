@@ -40,12 +40,16 @@ namespace TM
 variable {k : ℕ}
 
 /-- The started wrapper and ordinary retargeted-input machine have identical
-step functions. -/
+step functions.
+@isnad1 id=eq.0h3v.s6.9a65865b9938 from=translated src=- shape=0eb9e4a4 vocab=e7ba46e2
+-/
 theorem retargetInputStarted_step_eq (M : TM k) (c : Cfg (k + 1) M.Q) :
     (retargetInputStarted M).step c = (retargetInput M).step c :=
   retargetInputStarted_step_eq_internal M c
 
-/-- A run of `retargetInput M` is also a run of its started wrapper. -/
+/-- A run of `retargetInput M` is also a run of its started wrapper.
+@isnad1 id=reachesi.1h5v.s6.61e9a5857d1c from=translated src=- shape=5b0ef5e2 vocab=77477b44
+-/
 theorem retargetInputStarted_reachesIn_of_retargetInput (M : TM k)
     {t : ℕ} {c c' : Cfg (k + 1) M.Q}
     (hreach : (retargetInput M).reachesIn t c c') :
@@ -53,7 +57,9 @@ theorem retargetInputStarted_reachesIn_of_retargetInput (M : TM k)
   retargetInputStarted_reachesIn_of_retargetInput_internal M hreach
 
 /-- For a non-halted source start state, the wrapper entry configuration is
-exactly the retargeted embedding of the source's post-sentinel configuration. -/
+exactly the retargeted embedding of the source's post-sentinel configuration.
+@isnad1 id=eq.1h4v.s6.73d6ab00a7a4 from=translated src=- shape=8be04475 vocab=c087b450
+-/
 theorem retargetInputStartedCfg_eq_retargetWrap (M : TM k)
     (y : List Bool) (realInput : Tape) (hne : M.qstart ≠ M.qhalt) :
     retargetInputStartedCfg M y realInput =
@@ -62,7 +68,9 @@ theorem retargetInputStartedCfg_eq_retargetWrap (M : TM k)
 
 /-- Virtual-input computation seam crediting the saved first transition: the
 wrapper's run time plus one is at most the source's bound `T |y|`. For an
-initially halted source the credit is zero. -/
+initially halted source the credit is zero.
+@isnad1 id=ex.1h6v.s7.41facae58596 from=translated src=- shape=593ea30d vocab=52bdeda2
+-/
 theorem retargetInputStarted_computesVirtual_exact (M : TM k)
     {f : List Bool → List Bool} {T : ℕ → ℕ}
     (hcomp : M.ComputesInTime f T) (y : List Bool) (realInput : Tape) :
@@ -75,7 +83,9 @@ theorem retargetInputStarted_computesVirtual_exact (M : TM k)
   retargetInputStarted_computesVirtual_exact_internal M hcomp y realInput
 
 /-- The started virtual-input wrapper computes within the source's advertised
-time bound. -/
+time bound.
+@isnad1 id=ex.1h6v.s7.438fe6ccc003 from=translated src=- shape=041d2c12 vocab=6feee227
+-/
 theorem retargetInputStarted_computesVirtual (M : TM k)
     {f : List Bool → List Bool} {T : ℕ → ℕ}
     (hcomp : M.ComputesInTime f T) (y : List Bool) (realInput : Tape) :
@@ -88,7 +98,9 @@ theorem retargetInputStarted_computesVirtual (M : TM k)
   retargetInputStarted_computesVirtual_internal M hcomp y realInput
 
 /-- The started virtual-input wrapper retains a source decider's two verdict
-implications within the source's advertised time bound. -/
+implications within the source's advertised time bound.
+@isnad1 id=ex.1h6v.s7.10d905082dd3 from=translated src=- shape=16a2b413 vocab=f6959a70
+-/
 theorem retargetInputStarted_decidesVirtual (M : TM k)
     {L : Language} {T : ℕ → ℕ}
     (hdec : M.DecidesInTime L T) (y : List Bool) (realInput : Tape) :
@@ -102,7 +114,9 @@ theorem retargetInputStarted_decidesVirtual (M : TM k)
   retargetInputStarted_decidesVirtual_internal M hdec y realInput
 
 /-- Hoare form of the same-time virtual-input seam. The real input is ignored;
-the work and output tapes have the canonical already-started shapes. -/
+the work and output tapes have the canonical already-started shapes.
+@isnad1 id=hoaretim.1h5v.s7.5786508cc911 from=translated src=- shape=2d9e9981 vocab=a5b4daef
+-/
 theorem retargetInputStarted_hoareTime (M : TM k)
     {f : List Bool → List Bool} {T : ℕ → ℕ}
     (hcomp : M.ComputesInTime f T) (y : List Bool) :
@@ -117,7 +131,9 @@ theorem retargetInputStarted_hoareTime (M : TM k)
 /-- Placed virtual-input computation with an exact preserved prefix/suffix
 frame. The middle block contains the source scratch tapes and virtual input.
 Every extra tape satisfying the standard start invariant at a positive head
-position is unchanged in the final `placeWorkCfg` endpoint. -/
+position is unchanged in the final `placeWorkCfg` endpoint.
+@isnad1 id=ex.3h9v.s9.7778301afed3 from=translated src=- shape=7587bf0b vocab=36067cef
+-/
 theorem placeWorkTM_retargetInputStarted_computesVirtual (M : TM k)
     (pre post : ℕ) (extras : Fin (pre + (k + 1) + post) → Tape)
     {f : List Bool → List Bool} {T : ℕ → ℕ}
@@ -139,7 +155,9 @@ theorem placeWorkTM_retargetInputStarted_computesVirtual (M : TM k)
   placeWorkTM_retargetInputStarted_computesVirtual_internal M pre post extras
     hcomp y realInput hinv hhead
 
-/-- Placed virtual-input decision with an exact preserved prefix/suffix frame. -/
+/-- Placed virtual-input decision with an exact preserved prefix/suffix frame.
+@isnad1 id=ex.3h9v.s9.8acc781be7d9 from=translated src=- shape=89c3f08a vocab=60ce97a3
+-/
 theorem placeWorkTM_retargetInputStarted_decidesVirtual (M : TM k)
     (pre post : ℕ) (extras : Fin (pre + (k + 1) + post) → Tape)
     {L : Language} {T : ℕ → ℕ}

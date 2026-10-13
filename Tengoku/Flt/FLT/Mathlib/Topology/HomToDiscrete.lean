@@ -15,6 +15,9 @@ Material destined for Mathlib.
 
 @[expose] public section
 
+/--
+@isnad1 id=ex.1h5v.s6.934c4b210f4a from=translated src=- shape=df85a6d5 vocab=5dd2aa2a
+-/
 theorem DiscretePi {X Y : Type*} [TopologicalSpace Y] (f : X → Y) (n : ℕ)
     (h : ∀ (x : X), ∃ U, IsOpen U ∧ f ⁻¹' U = {x}) (x' : Fin n → X) :
     (∃ U' : Set (Fin n → Y), IsOpen U' ∧
@@ -35,6 +38,9 @@ theorem DiscretePi {X Y : Type*} [TopologicalSpace Y] (f : X → Y) (n : ℕ)
     have H := (Classical.choose_spec (h i)).2
     refine Set.mem_preimage.mp (by simp_all only [Set.mem_singleton_iff])
 
+/--
+@isnad1 id=ex.1h6v.s6.638a2d03e2f0 from=translated src=- shape=c8d56ece vocab=ae20acec
+-/
 theorem HomeoDiscrete_of_Discrete {X Y Y' : Type*} [TopologicalSpace Y] [TopologicalSpace Y']
     (f : X → Y) (h : Y ≃ₜ Y') (H : ∀ (x : X), ∃ U, IsOpen U ∧ f ⁻¹' U = {x}) (x : X) :
     (∃ U' : Set Y', IsOpen U' ∧ (h ∘ f)⁻¹' U' = {x}) := by
@@ -50,6 +56,9 @@ theorem HomeoDiscrete_of_Discrete {X Y Y' : Type*} [TopologicalSpace Y] [Topolog
   · intro eq
     simp [eq, ← Set.mem_preimage, Ueq]
 
+/--
+@isnad1 id=ex.1h6v.s6.addaed3f7c2b from=translated src=- shape=9ab6e268 vocab=ae20acec
+-/
 theorem Discrete_of_HomeoDiscrete {X Y Y' : Type*} [TopologicalSpace Y] [TopologicalSpace Y']
     (f : X → Y) (h : Y ≃ₜ Y') (H : ∀ (x : X), ∃ U', IsOpen U' ∧ ⇑h ∘ f ⁻¹' U' = {x}) (x : X) :
     (∃ U : Set Y, IsOpen U ∧  f⁻¹' U = {x}) := by
@@ -67,18 +76,27 @@ theorem Discrete_of_HomeoDiscrete {X Y Y' : Type*} [TopologicalSpace Y] [Topolog
     use h (f x)
     exact ⟨by simp [← Set.mem_preimage, ← Set.preimage_comp, Ueq], by simp [eq]⟩
 
+/--
+@isnad1 id=iff.0h5v.s6.b4a806076ae1 from=translated src=- shape=4981d1a5 vocab=ae20acec
+-/
 theorem HomeoDiscrete_iff_Discrete {X Y Y' : Type*} [TopologicalSpace Y]
     [TopologicalSpace Y'] (f : X → Y) (h : Y ≃ₜ Y') :
     (∀ x : X, ∃ U : Set Y, IsOpen U ∧  f⁻¹' U = {x}) ↔
     (∀ x : X, ∃ U' : Set Y', IsOpen U' ∧ (h ∘ f)⁻¹' U' = {x}) :=
   ⟨HomeoDiscrete_of_Discrete f h, Discrete_of_HomeoDiscrete f h⟩
 
+/--
+@isnad1 id=ex.1h6v.s6.6513f0bf1b66 from=translated src=- shape=21e7cdd1 vocab=78ffcd0b
+-/
 theorem HomDiscrete_of_Discrete {X X' Y : Type*} [TopologicalSpace Y] (f : X → Y)
     (h : X ≃ X') (H : ∀ (x : X), ∃ U, IsOpen U ∧ f ⁻¹' U = {x}) (x : X') :
     (∃ U' : Set Y, IsOpen U' ∧ h '' (f ⁻¹' U') = {x}):= by
   obtain ⟨U, Uopen, Ueq⟩ := H (h.symm x)
   exact ⟨U, Uopen, by simp [Ueq]⟩
 
+/--
+@isnad1 id=ex.1h6v.s6.1ef0223a5b12 from=translated src=- shape=ab3b24e2 vocab=78ffcd0b
+-/
 theorem Discrete_of_HomDiscrete {X X' Y : Type*} [TopologicalSpace Y] (f : X → Y)
     (h : X ≃ X') (H : ∀ (x' : X'), ∃ U', IsOpen U' ∧ ⇑h '' (f ⁻¹' U') = {x'}) (x : X) :
     (∃ U : Set Y, IsOpen U ∧  f⁻¹' U = {x}) := by
@@ -87,6 +105,9 @@ theorem Discrete_of_HomDiscrete {X X' Y : Type*} [TopologicalSpace Y] (f : X →
   simp_rw [(Equiv.eq_preimage_iff_image_eq h (f ⁻¹' U) {h x}).mpr Ueq,
     Equiv.preimage_eq_iff_eq_image, Set.image_singleton]
 
+/--
+@isnad1 id=iff.0h5v.s6.3df8f97f4ec8 from=translated src=- shape=96aff1d9 vocab=78ffcd0b
+-/
 theorem HomDiscrete_iff_Discrete {X X' Y : Type*} [TopologicalSpace Y] (f : X → Y)
     (h : X ≃ X') : (∀ x' : X', ∃ U' : Set Y, IsOpen U' ∧ h '' (f ⁻¹' U') = {x'}) ↔
     (∀ x : X, ∃ U : Set Y, IsOpen U ∧  f⁻¹' U = {x}) :=
@@ -95,6 +116,9 @@ theorem HomDiscrete_iff_Discrete {X X' Y : Type*} [TopologicalSpace Y] (f : X �
 -- following maybe should be in the topology.order file (home of discrete topology)
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=discrete.0h3v.s5.4612790fde52 from=translated src=- shape=3fe23ece vocab=ea26d468
+-/
 lemma inter_Discrete {A : Type*} [TopologicalSpace A] (X Y : Set A)
     [DiscreteTopology X] : DiscreteTopology ↑(Y ∩ X) := by
   refine discreteTopology_iff_isOpen_singleton.mpr ?_
@@ -107,6 +131,9 @@ lemma inter_Discrete {A : Type*} [TopologicalSpace A] (X Y : Set A)
   rw [Set.eq_singleton_iff_unique_mem] at Ueq
   aesop
 
+/--
+@isnad1 id=discrete.0h3v.s5.5cacfdf5ecfc from=translated src=- shape=b5d750c3 vocab=ea26d468
+-/
 lemma Discrete_inter {A : Type*} [TopologicalSpace A] (X Y : Set A)
     [DiscreteTopology X] : DiscreteTopology ↑(X ∩ Y) := by
   rw [Set.inter_comm]

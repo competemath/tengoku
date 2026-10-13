@@ -28,7 +28,9 @@ def WorkReadOnly (tm : TM n) (idx : Fin n) : Prop :=
     (tm.δ state inputHead workHeads outputHead).2.1 idx =
       readBackWrite (workHeads idx)
 
-/-- A read-only transition preserves all cells of a valid selected tape. -/
+/-- A read-only transition preserves all cells of a valid selected tape.
+@isnad1 id=eq.3h5v.s6.3ab6aa948a35 from=translated src=- shape=f8acedc0 vocab=cfd86688
+-/
 theorem WorkReadOnly.cells_eq_of_step {tm : TM n} {idx : Fin n}
     (hreadonly : tm.WorkReadOnly idx) {c c' : Cfg n tm.Q}
     (hstep : tm.step c = some c')
@@ -52,7 +54,9 @@ theorem WorkReadOnly.cells_eq_of_step {tm : TM n} {idx : Fin n}
       omega)
 
 /-- A read-only work tape retains its complete cell function through an exact
-finite run. -/
+finite run.
+@isnad1 id=eq.3h6v.s6.9f3479ca8e1d from=translated src=- shape=a7552cf8 vocab=06678103
+-/
 theorem WorkReadOnly.cells_eq_of_reachesIn {tm : TM n} {idx : Fin n}
     (hreadonly : tm.WorkReadOnly idx) {time : ℕ} {start final : Cfg n tm.Q}
     (hreach : tm.reachesIn time start final)
@@ -67,7 +71,9 @@ theorem WorkReadOnly.cells_eq_of_reachesIn {tm : TM n} {idx : Fin n}
       rw [hcells]
       exact hnostart j hj
 
-/-- Sequential composition preserves a shared read-only work tape. -/
+/-- Sequential composition preserves a shared read-only work tape.
+@isnad1 id=workread.2h4v.s4.486874409149 from=translated src=- shape=e94e0874 vocab=877febf8
+-/
 theorem WorkReadOnly.seqTM {first second : TM n} {idx : Fin n}
     (hfirst : first.WorkReadOnly idx)
     (hsecond : second.WorkReadOnly idx) :

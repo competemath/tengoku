@@ -24,7 +24,9 @@ open Filter Complex
 namespace Zeta23
 namespace Tail
 
-/-- C₁ = ‖φ″‖₁ ≥ 0. -/
+/-- C₁ = ‖φ″‖₁ ≥ 0.
+@isnad1 id=le.0h2v.s4.21fd81e40dd8 from=translated src=- shape=787c1379 vocab=c9f1789f
+-/
 lemma C1_nonneg (P : Params) (T : ℝ) : 0 ≤ P.C1 T :=
   MeasureTheory.integral_nonneg fun _ => abs_nonneg _
 
@@ -32,7 +34,9 @@ lemma C1_nonneg (P : Params) (T : ℝ) : 0 ≤ P.C1 T :=
 paper's inputs and valid parameters P, there is θ₀ : ℝ → ℝ (namely
 θ₀(T) = 4A₀C₁²X^{1/2}log(4T)/D₀² = theta0 A₀ (e^{L/4}·C₁) T) such that eventually in T
 Assembly.TailInputs Z P T (θ₀ T) holds ("‖Ẽ‖ ≤ θ₀", "‖Ê‖₁ ≤ θ₀/(aL)"), and
-θ₀(T) ≤ C · l(T) · T^{λ/2−1} eventually ("θ₀ ≤ 32A₀‖ϱ″‖₁² l T^{λ/2−1}"). -/
+θ₀(T) ≤ C · l(T) · T^{λ/2−1} eventually ("θ₀ ≤ 32A₀‖ϱ″‖₁² l T^{λ/2−1}").
+@isnad1 id=ex.2h2v.s6.f29680818b6c from=translated src=- shape=d12647e8 vocab=fa2b2efb
+-/
 theorem eventually_tailPackage (Z : ZeroConfig) (H : PaperInputs Z) (P : Params) (hP : P.Valid) :
     ∃ θ₀ : ℝ → ℝ, (∀ᶠ T in atTop, Assembly.TailInputs Z P T (θ₀ T)) ∧
       ∃ C : ℝ, ∀ᶠ T in atTop, θ₀ T ≤ C * l T * T ^ (P.lam / 2 - 1) := by

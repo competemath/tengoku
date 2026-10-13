@@ -13,6 +13,9 @@ public import Tengoku
 
 open Polynomial IntermediateField
 
+/--
+@isnad1 id=le.0h3v.s6.96587b5bef1e from=translated src=- shape=9ca03516 vocab=256ce2e3
+-/
 lemma Polynomial.IsSplittingField.finrank_le_factorial_aux.{u}
   {F K : Type u} [Field F] [Field K] [Algebra F K]
     (p : Polynomial F) [p.IsSplittingField F K] :
@@ -62,6 +65,9 @@ lemma Polynomial.IsSplittingField.finrank_le_factorial_aux.{u}
     · grw [natDegree_le_of_dvd (minpoly.dvd F x hx) hp0, hp]
     · exact IsAlgebraic.isIntegral ⟨p, hp0, hx⟩
 
+/--
+@isnad1 id=le.0h3v.s6.da718567cbf7 from=translated src=- shape=9ca03516 vocab=256ce2e3
+-/
 lemma Polynomial.IsSplittingField.finrank_le_factorial
     {F K : Type*} [Field F] [Field K] [Algebra F K]
     (p : Polynomial F) [p.IsSplittingField F K] :

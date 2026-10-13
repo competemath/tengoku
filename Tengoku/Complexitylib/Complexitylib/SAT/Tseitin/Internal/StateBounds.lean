@@ -45,7 +45,9 @@ def State.maxValue (st : State) : ℕ :=
 
 /-- One successful token step raises the largest retained value by at most
 one. Output growth is deliberately absent: emitted bits are not work-register
-contents. -/
+contents.
+@isnad1 id=le.1h3v.s5.da27f9ed29c9 from=translated src=- shape=49a9e07b vocab=401310c5
+-/
 theorem maxValue_step_le_internal {st st' : State} {tok : EncToken}
     (hstep : step st tok = some st') :
     st'.maxValue ≤ st.maxValue + 1 := by
@@ -61,7 +63,9 @@ theorem maxValue_step_le_internal {st st' : State} {tok : EncToken}
     simp [State.maxValue, Pending.maxValue, Scan.maxValue, Lit.negVar] <;> omega
 
 /-- A successful run raises the largest retained value by at most the number
-of tokens consumed. -/
+of tokens consumed.
+@isnad1 id=le.1h3v.s5.0a54c1030a96 from=translated src=- shape=24e1f7fb vocab=0d172357
+-/
 theorem maxValue_run_le_internal {st st' : State} {toks : List EncToken}
     (hrun : run st toks = some st') :
     st'.maxValue ≤ st.maxValue + toks.length := by

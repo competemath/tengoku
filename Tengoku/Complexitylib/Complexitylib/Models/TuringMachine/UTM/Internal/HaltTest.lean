@@ -57,7 +57,9 @@ namespace Complexity
 -- takeField structural lemmas
 -- ════════════════════════════════════════════════════════════════════════
 
-/-- The first field produced by `takeField` is blank-free. -/
+/-- The first field produced by `takeField` is blank-free.
+@isnad1 id=ne.1h2v.s4.67c92e374223 from=translated src=- shape=5bd8c4d8 vocab=0fd3db3d
+-/
 theorem takeField_fst_ne_blank : ∀ (l : List Γw), ∀ s ∈ (takeField l).1, s ≠ Γw.blank
   | [] => by simp [takeField]
   | .blank :: _ => by simp [takeField]
@@ -74,7 +76,9 @@ theorem takeField_fst_ne_blank : ∀ (l : List Γw), ∀ s ∈ (takeField l).1, 
 
 /-- `takeField` decomposition: either the input splits as
     `field ++ □ :: rest`, or it contains no separator and the field is the
-    whole input. -/
+    whole input.
+@isnad1 id=or.0h1v.s5.a2f2e6d71f55 from=translated src=- shape=3d2cc07b vocab=0571d07c
+-/
 theorem takeField_structure : ∀ (l : List Γw),
     l = (takeField l).1 ++ Γw.blank :: (takeField l).2 ∨
     ((takeField l).1 = l ∧ (takeField l).2 = [])
@@ -941,7 +945,9 @@ private theorem rewindD_loop :
       dSyms).2).1`), `Γ.zero` otherwise;
     * restored work tapes 3 and 4 *exactly* (same cells, head back at 1);
     * left the input tape, the other four work tapes, all other output
-      cells, and the output head unchanged. -/
+      cells, and the output head unchanged.
+@isnad1 id=hoaretim.10h5v.s9.55d9c179e740 from=translated src=- shape=b30fada3 vocab=c1219636
+-/
 theorem haltTestTM_hoareTime (stSyms dSyms : List Γw)
     (hstnb : ∀ s ∈ stSyms, s ≠ Γw.blank)
     (inp₀ : Tape) (work₀ : Fin 6 → Tape) (out₀ : Tape)

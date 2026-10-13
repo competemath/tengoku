@@ -74,7 +74,9 @@ private theorem ifQ_else_ne_halt {QT QThen QElse : Type} {q : QElse} :
 -- Test phase: ifTM simulates tmTest (via generic simulation lifting)
 -- ════════════════════════════════════════════════════════════════════════
 
-/-- One step of `tmTest` corresponds to one step of `ifTM` during the test phase. -/
+/-- One step of `tmTest` corresponds to one step of `ifTM` during the test phase.
+@isnad1 id=eq.1h6v.s6.74482642a6a5 from=translated src=- shape=b18bfcda vocab=8c3b94a3
+-/
 theorem ifTM_test_step (tmTest tmThen tmElse : TM n) {c c' : Cfg n tmTest.Q}
     (hstep : tmTest.step c = some c') :
     (ifTM tmTest tmThen tmElse).step (ifTestWrap tmTest tmThen tmElse c) =
@@ -85,7 +87,9 @@ theorem ifTM_test_step (tmTest tmThen tmElse : TM n) {c c' : Cfg n tmTest.Q}
   unfold step
   simp only [ifTestWrap, ifTM, ite_eq_right ifQ_test_ne_halt, ite_eq_right hne]
 
-/-- Multi-step test phase simulation. -/
+/-- Multi-step test phase simulation.
+@isnad1 id=reachesi.1h7v.s5.de34360c255a from=translated src=- shape=791c06a8 vocab=202fdb6a
+-/
 theorem ifTM_reachesIn_ifTestWrap (tmTest tmThen tmElse : TM n) {t : ℕ}
     {c_start c_end : Cfg n tmTest.Q}
     (hreach : tmTest.reachesIn t c_start c_end) :
@@ -99,7 +103,9 @@ theorem ifTM_reachesIn_ifTestWrap (tmTest tmThen tmElse : TM n) {t : ℕ}
 -- Then branch: ifTM simulates tmThen (via generic simulation lifting)
 -- ════════════════════════════════════════════════════════════════════════
 
-/-- One step of `tmThen` corresponds to one step of `ifTM` during the then branch. -/
+/-- One step of `tmThen` corresponds to one step of `ifTM` during the then branch.
+@isnad1 id=eq.1h6v.s6.b3a317e2130b from=translated src=- shape=0dd55ae5 vocab=3f007755
+-/
 theorem ifTM_then_step (tmTest tmThen tmElse : TM n) {c c' : Cfg n tmThen.Q}
     (hstep : tmThen.step c = some c') :
     (ifTM tmTest tmThen tmElse).step (ifThenWrap tmTest tmThen tmElse c) =
@@ -110,7 +116,9 @@ theorem ifTM_then_step (tmTest tmThen tmElse : TM n) {c c' : Cfg n tmThen.Q}
   unfold step
   simp only [ifThenWrap, ifTM, ite_eq_right ifQ_then_ne_halt, ite_eq_right hne]
 
-/-- Multi-step then-branch simulation. -/
+/-- Multi-step then-branch simulation.
+@isnad1 id=reachesi.1h7v.s5.7e4d90292a9b from=translated src=- shape=24a6e6a1 vocab=d7a19cfa
+-/
 theorem ifTM_reachesIn_ifThenWrap (tmTest tmThen tmElse : TM n) {t : ℕ}
     {c_start c_end : Cfg n tmThen.Q}
     (hreach : tmThen.reachesIn t c_start c_end) :
@@ -124,7 +132,9 @@ theorem ifTM_reachesIn_ifThenWrap (tmTest tmThen tmElse : TM n) {t : ℕ}
 -- Else branch: ifTM simulates tmElse (via generic simulation lifting)
 -- ════════════════════════════════════════════════════════════════════════
 
-/-- One step of `tmElse` corresponds to one step of `ifTM` during the else branch. -/
+/-- One step of `tmElse` corresponds to one step of `ifTM` during the else branch.
+@isnad1 id=eq.1h6v.s6.e972ebdc9142 from=translated src=- shape=a9e1c78c vocab=b4cb4a42
+-/
 theorem ifTM_else_step (tmTest tmThen tmElse : TM n) {c c' : Cfg n tmElse.Q}
     (hstep : tmElse.step c = some c') :
     (ifTM tmTest tmThen tmElse).step (ifElseWrap tmTest tmThen tmElse c) =
@@ -135,7 +145,9 @@ theorem ifTM_else_step (tmTest tmThen tmElse : TM n) {c c' : Cfg n tmElse.Q}
   unfold step
   simp only [ifElseWrap, ifTM, ite_eq_right ifQ_else_ne_halt, ite_eq_right hne]
 
-/-- Multi-step else-branch simulation. -/
+/-- Multi-step else-branch simulation.
+@isnad1 id=reachesi.1h7v.s5.46e6a13d99b0 from=translated src=- shape=25f52347 vocab=2b366f7e
+-/
 theorem ifTM_reachesIn_ifElseWrap (tmTest tmThen tmElse : TM n) {t : ℕ}
     {c_start c_end : Cfg n tmElse.Q}
     (hreach : tmElse.reachesIn t c_start c_end) :
@@ -149,7 +161,9 @@ theorem ifTM_reachesIn_ifElseWrap (tmTest tmThen tmElse : TM n) {t : ℕ}
 -- Halt transitions: branch halt → done
 -- ════════════════════════════════════════════════════════════════════════
 
-/-- When `tmThen` halts, one step transitions to `done`. -/
+/-- When `tmThen` halts, one step transitions to `done`.
+@isnad1 id=eq.1h5v.s6.7c4c7d5fb1b9 from=translated src=- shape=303df6db vocab=77110496
+-/
 theorem ifTM_then_halt_step (tmTest tmThen tmElse : TM n) {c : Cfg n tmThen.Q}
     (hhalt : c.state = tmThen.qhalt) :
     (ifTM tmTest tmThen tmElse).step (ifThenWrap tmTest tmThen tmElse c) =
@@ -161,7 +175,9 @@ theorem ifTM_then_halt_step (tmTest tmThen tmElse : TM n) {c : Cfg n tmThen.Q}
   simp only [ifThenWrap, ifTM, ite_eq_right ifQ_then_ne_halt, hhalt, ↓reduceIte]
   congr 1
 
-/-- When `tmElse` halts, one step transitions to `done`. -/
+/-- When `tmElse` halts, one step transitions to `done`.
+@isnad1 id=eq.1h5v.s6.15d7f8f792a4 from=translated src=- shape=470786af vocab=a107bcb8
+-/
 theorem ifTM_else_halt_step (tmTest tmThen tmElse : TM n) {c : Cfg n tmElse.Q}
     (hhalt : c.state = tmElse.qhalt) :
     (ifTM tmTest tmThen tmElse).step (ifElseWrap tmTest tmThen tmElse c) =
@@ -177,7 +193,9 @@ theorem ifTM_else_halt_step (tmTest tmThen tmElse : TM n) {c : Cfg n tmElse.Q}
 -- Test phase → rewind transition
 -- ════════════════════════════════════════════════════════════════════════
 
-/-- When `tmTest` halts, one step enters the rewindOut phase. -/
+/-- When `tmTest` halts, one step enters the rewindOut phase.
+@isnad1 id=eq.1h5v.s6.54d4fa28f55e from=translated src=- shape=2139112c vocab=db116a26
+-/
 theorem ifTM_test_to_rewind (tmTest tmThen tmElse : TM n) {c : Cfg n tmTest.Q}
     (hhalt : c.state = tmTest.qhalt) :
     (ifTM tmTest tmThen tmElse).step (ifTestWrap tmTest tmThen tmElse c) =
@@ -193,10 +211,15 @@ theorem ifTM_test_to_rewind (tmTest tmThen tmElse : TM n) {c : Cfg n tmTest.Q}
 -- Halting
 -- ════════════════════════════════════════════════════════════════════════
 
+/--
+@isnad1 id=eq.0h4v.s5.89cffffcf2e3 from=translated src=- shape=c960660c vocab=19ba270a
+-/
 theorem ifTM_qhalt_eq_done (tmTest tmThen tmElse : TM n) :
     (ifTM tmTest tmThen tmElse).qhalt = Sum.inr (Sum.inl IfPhase.done) := rfl
 
-/-- The `done` state is halted in `ifTM`. -/
+/-- The `done` state is halted in `ifTM`.
+@isnad1 id=halted.1h5v.s6.1855c4eba467 from=translated src=- shape=a8dfd34a vocab=d8191d18
+-/
 theorem ifTM_halted_of_state_eq_done (tmTest tmThen tmElse : TM n)
     (c : Cfg n (IfQ tmTest.Q tmThen.Q tmElse.Q))
     (h : c.state = Sum.inr (Sum.inl IfPhase.done)) :
@@ -259,7 +282,9 @@ private theorem if_rewind_step_base_full (tmTest tmThen tmElse : TM n)
   · funext i; exact tape_writeAndMove_stable _ (h_wh i) (h_wns i)
 
 /-- Extended rewind loop: also tracks that input and work tapes are preserved
-    when they satisfy the stability condition (head ≥ 1, cells ≥ 1 ≠ start). -/
+    when they satisfy the stability condition (head ≥ 1, cells ≥ 1 ≠ start).
+@isnad1 id=ex.8h6v.s8.3a3a96c367d9 from=translated src=- shape=2c6fc22b vocab=9cb5d05d
+-/
 theorem ifTM_rewindOut_reachesIn_check (tmTest tmThen tmElse : TM n) :
     ∀ (p : ℕ) (c : Cfg n (IfQ tmTest.Q tmThen.Q tmElse.Q)),
     c.state = Sum.inr (Sum.inl IfPhase.rewindOut) →
@@ -286,7 +311,9 @@ theorem ifTM_rewindOut_reachesIn_check (tmTest tmThen tmElse : TM n) :
 -- Check step (full tape tracking)
 -- ════════════════════════════════════════════════════════════════════════
 
-/-- Check step to then-branch, tracking all tapes. -/
+/-- Check step to then-branch, tracking all tapes.
+@isnad1 id=ex.7h5v.s8.07db5a23c09d from=translated src=- shape=06c06988 vocab=3f962d50
+-/
 theorem ifTM_check_step_then_full (tmTest tmThen tmElse : TM n)
     (c : Cfg n (IfQ tmTest.Q tmThen.Q tmElse.Q))
     (hstate : c.state = Sum.inr (Sum.inl IfPhase.check))
@@ -314,7 +341,9 @@ theorem ifTM_check_step_then_full (tmTest tmThen tmElse : TM n)
   · exact tape_move_idleDir_stable _ h_ih h_ins
   · funext i; exact tape_writeAndMove_stable _ (h_wh i) (h_wns i)
 
-/-- Check step to else-branch, tracking all tapes. -/
+/-- Check step to else-branch, tracking all tapes.
+@isnad1 id=ex.8h5v.s8.0551853e0085 from=translated src=- shape=ab2663c7 vocab=3f962d50
+-/
 theorem ifTM_check_step_else_full (tmTest tmThen tmElse : TM n)
     (c : Cfg n (IfQ tmTest.Q tmThen.Q tmElse.Q))
     (hstate : c.state = Sum.inr (Sum.inl IfPhase.check))

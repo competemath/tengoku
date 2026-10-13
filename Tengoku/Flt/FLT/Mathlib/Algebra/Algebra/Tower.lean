@@ -54,6 +54,9 @@ def LinearMap.changeScalars (f : A →ₗ[S] B) [IsBiscalar S S' f] :
   __ := f
   map_smul' s x := by simpa using IsBiscalar.map_smul₂ S s x
 
+/--
+@isnad1 id=eq.0h6v.s7.b308742b6619 from=translated src=- shape=0e8916f3 vocab=a9c2570c
+-/
 theorem LinearMap.changeScalars_apply (f : A →ₗ[S] B) [IsBiscalar S S' f] (a : A) :
     LinearMap.changeScalars S' f a = f a := by
   simp [changeScalars]
@@ -88,6 +91,9 @@ def AlgEquiv.extendScalars {A C D : Type*} (B : Type*) [CommSemiring A] [CommSem
   invFun := f.symm
   commutes' := fun _ => rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.c699b1fcb996 from=translated src=- shape=3fbe3ac1 vocab=164b5208
+-/
 theorem IsBiscalar.commutes {S : Type*} (S' : Type*) {A B : Type*} [CommSemiring S']
     [CommSemiring S] [Semiring A] [Semiring B] [Algebra S' A] [Algebra S' B] [Algebra S A]
     [Algebra S B] (f : A →ₐ[S] B) [IsBiscalar S S' f] (s : S') :
@@ -107,6 +113,9 @@ def AlgHom.changeScalars (f : A →ₐ[S] B) [IsBiscalar S S' f] :
   __ := f
   commutes' (r : _) := by simp [IsBiscalar.commutes]
 
+/--
+@isnad1 id=eq.0h6v.s7.0665e5faa263 from=translated src=- shape=1f17972d vocab=104324af
+-/
 theorem AlgHom.changeScalars_apply (f : A →ₐ[S] B) [IsBiscalar S S' f] (a : A) :
     changeScalars S' f a = f a := by
   simp [changeScalars]

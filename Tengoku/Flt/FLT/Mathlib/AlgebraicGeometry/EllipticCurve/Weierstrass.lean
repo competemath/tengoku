@@ -36,7 +36,9 @@ variable {A : Type*} [CommRing A] (E : WeierstrassCurve A)
 (the quadratic controlling split multiplicative reduction) equals `-c₄ c₆`. Hence the tangent
 directions at the node are rational over the residue field exactly when `-c₄ c₆` is a square there;
 twisting by `(t, n)` multiplies `-c₄ c₆` by `(t² - 4n)⁵ = (t² - 4n)⁴ · (t² - 4n)`, i.e. by the
-twisting parameter up to a square (see `c₄_quadraticTwistOf`, `c₆_quadraticTwistOf`). -/
+twisting parameter up to a square (see `c₄_quadraticTwistOf`, `c₆_quadraticTwistOf`).
+@isnad1 id=eq.0h2v.s8.c13b2da8f1be from=translated src=- shape=9c625c8e vocab=8e2b2b79
+-/
 theorem splitPolynomial_discrim :
     (E.a₁ * E.c₄) ^ 2 + 4 * E.c₄ * (54 * E.b₆ - 3 * E.b₂ * E.b₄ + E.a₂ * E.c₄)
       = -(E.c₄ * E.c₆) := by
@@ -47,14 +49,18 @@ end
 variable {K : Type u} [Field K] (E : WeierstrassCurve K)
 
 /-- In characteristic `2`, an elliptic curve has `a₁ ≠ 0` or `a₃ ≠ 0`: otherwise `a₁ = a₃ = 0`
-makes the partial derivative `∂/∂y = 2y + a₁x + a₃` vanish identically, so `Δ = 0`. -/
+makes the partial derivative `∂/∂y = 2y + a₁x + a₃` vanish identically, so `Δ = 0`.
+@isnad1 id=or.1h2v.s6.d24d813cdaa3 from=translated src=- shape=447e6c9b vocab=5865d9b9
+-/
 lemma a₁_ne_zero_or_a₃_ne_zero_of_two_eq_zero [E.IsElliptic] (h2 : (2 : K) = 0) :
     E.a₁ ≠ 0 ∨ E.a₃ ≠ 0 := by
   by_contra! h
   exact E.isUnit_Δ.ne_zero (by rw [Δ, b₈, b₆, b₄, b₂, h.1, h.2]; grobner)
 
 /-- `c₆(E) = 0` if and only if `j(E) = 1728`, by the relation `1728·Δ = c₄³ - c₆²`. This is the
-analogue for `j = 1728` of `WeierstrassCurve.j_eq_zero_iff` (`j = 0 ↔ c₄ = 0`). -/
+analogue for `j = 1728` of `WeierstrassCurve.j_eq_zero_iff` (`j = 0 ↔ c₄ = 0`).
+@isnad1 id=iff.0h2v.s6.cabadeecaae7 from=translated src=- shape=4c432fe5 vocab=15083b28
+-/
 lemma c₆_eq_zero_iff_j_eq_1728 [E.IsElliptic] : E.c₆ = 0 ↔ E.j = 1728 := by
   have h : E.c₆ ^ 2 = E.c₄ ^ 3 - 1728 * E.Δ := by linear_combination E.c_relation
   rw [← sq_eq_zero_iff, h, sub_eq_zero, j, Units.inv_mul_eq_iff_eq_mul, coe_Δ',
@@ -65,6 +71,9 @@ section
 variable (L : Type*) [Field L] [Algebra K L]
 variable (M : Type*) [Field M] [Algebra K M] [Algebra L M] [IsScalarTower K L M]
 
+/--
+@isnad1 id=eq.0h4v.s7.c8eeec8bf1ba from=translated src=- shape=98abb387 vocab=fbbb7a81
+-/
 lemma baseChange_map_algebraMap (V : WeierstrassCurve K) :
     (V.baseChange L).map (algebraMap L M) = V.baseChange M :=
   V.map_baseChange (IsScalarTower.toAlgHom K L M)

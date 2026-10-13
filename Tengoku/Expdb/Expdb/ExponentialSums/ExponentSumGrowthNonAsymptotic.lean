@@ -58,7 +58,9 @@ def IsExponentSumBoundNonAsymptotic (α : ℝ≥0) (β : ℝ) : Prop :=
 
 /-- An approximate model phase with sufficiently small error has a uniform positive first
 derivative and uniform bounds on all derivatives through order `P + 1`, with constants depending
-only on `σ` and `P`. -/
+only on `σ` and `P`.
+@isnad1 id=ex.1h2v.s7.bef0b830cbe0 from=translated src=- shape=b71436a8 vocab=a918ca84
+-/
 theorem approximate_model_phase_deriv_bounds
     {σ : ℝ} (hσ : 0 < σ) (P : ℕ) :
     ∃ K : ℝ, 1 ≤ K ∧
@@ -109,7 +111,9 @@ theorem approximate_model_phase_deriv_bounds
         gcongr
         exact Finset.single_le_sum (fun q _ ↦ hBnonneg q) hpMem
 
-/-- The logarithm is an exact approximate model phase at every finite order. -/
+/-- The logarithm is an exact approximate model phase at every finite order.
+@isnad1 id=isapprox.0h1v.s4.ab63315e82f8 from=translated src=- shape=06632613 vocab=391513d1
+-/
 theorem isApproximateModelPhaseFunction_log (P : ℕ) :
     IsApproximateModelPhaseFunction Real.log 1 P 0 := by
   refine ⟨isModelPhaseFunction_log.1 0, ?_⟩

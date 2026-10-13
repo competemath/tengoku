@@ -45,6 +45,9 @@ def kfun (freq δ : ι → ℝ) (r s : ι) : ℝ :=
   if r = s then 0 else Real.sqrt (δ r) * Real.sqrt (δ s) / (freq r - freq s)
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.0h5v.s5.94988afa4958 from=translated src=- shape=598b0ca1 vocab=48bed57f
+-/
 lemma kfun_antisymm (freq δ : ι → ℝ) (r s : ι) : kfun freq δ s r = -kfun freq δ r s := by
   unfold kfun
   by_cases h : r = s
@@ -55,6 +58,9 @@ lemma kfun_antisymm (freq δ : ι → ℝ) (r s : ι) : kfun freq δ s r = -kfun
 def Mmat (freq δ : ι → ℝ) : Matrix ι ι ℂ := fun r s => (kfun freq δ r s : ℂ) * Complex.I
 
 omit [Fintype ι] in
+/--
+@isnad1 id=ishermit.0h3v.s5.6a7344af78f4 from=translated src=- shape=dae73fc2 vocab=ee539ada
+-/
 lemma Mmat_isHermitian (freq δ : ι → ℝ) : (Mmat freq δ).IsHermitian := by
   refine Matrix.IsHermitian.ext fun r s => ?_
   simp only [Mmat, star_mul', Complex.star_def, Complex.conj_ofReal, Complex.conj_I,
@@ -63,14 +69,18 @@ lemma Mmat_isHermitian (freq δ : ι → ℝ) : (Mmat freq δ).IsHermitian := by
   ring
 
 omit [DecidableEq ι] in
-/-- `star v ⬝ᵥ v = Σ ‖v_i‖²` (as a complex number). -/
+/-- `star v ⬝ᵥ v = Σ ‖v_i‖²` (as a complex number).
+@isnad1 id=eq.0h2v.s6.cc188a518b63 from=translated src=- shape=375ea598 vocab=15400468
+-/
 lemma star_dotProduct_self (v : ι → ℂ) : star v ⬝ᵥ v = ((∑ i, ‖v i‖ ^ 2 : ℝ) : ℂ) := by
   simp only [dotProduct, Pi.star_apply, Complex.star_def, Complex.conj_mul']
   push_cast
   rfl
 
 /-- Spectral expansion of the Hermitian form, complex-valued:
-`x* A x = Σ_i ν_i ‖(U* x)_i‖²` with `U` the eigenvector unitary. -/
+`x* A x = Σ_i ν_i ‖(U* x)_i‖²` with `U` the eigenvector unitary.
+@isnad1 id=eq.1h3v.s8.0f7aa00d26e7 from=translated src=- shape=6f392170 vocab=e5c52160
+-/
 lemma star_dotProduct_mulVec_eq {A : Matrix ι ι ℂ} (hA : A.IsHermitian) (x : ι → ℂ) :
     star x ⬝ᵥ (A *ᵥ x)
       = ((∑ i, hA.eigenvalues i *
@@ -89,7 +99,9 @@ lemma star_dotProduct_mulVec_eq {A : Matrix ι ι ℂ} (hA : A.IsHermitian) (x :
   rw [← Complex.conj_mul', mul_left_comm]
   rfl
 
-/-- `Σ ‖(U* x)_i‖² = Σ ‖x_i‖²` for the eigenvector unitary `U`. -/
+/-- `Σ ‖(U* x)_i‖² = Σ ‖x_i‖²` for the eigenvector unitary `U`.
+@isnad1 id=eq.1h3v.s8.52f2c8d600e4 from=translated src=- shape=de448f1c vocab=39096380
+-/
 lemma sum_norm_sq_unitary {A : Matrix ι ι ℂ} (hA : A.IsHermitian) (x : ι → ℂ) :
     ∑ i, ‖(star (hA.eigenvectorUnitary : Matrix ι ι ℂ) *ᵥ x) i‖ ^ 2 = ∑ i, ‖x i‖ ^ 2 := by
   set U : Matrix ι ι ℂ := ↑hA.eigenvectorUnitary
@@ -102,7 +114,9 @@ lemma sum_norm_sq_unitary {A : Matrix ι ι ℂ} (hA : A.IsHermitian) (x : ι �
   rw [star_dotProduct_self, star_dotProduct_self] at h
   exact_mod_cast h
 
-/-- Every eigenvalue of `M = iK` has absolute value `≤ C` (step 3 + Mathlib eigenbasis). -/
+/-- Every eigenvalue of `M = iK` has absolute value `≤ C` (step 3 + Mathlib eigenbasis).
+@isnad1 id=le.2h5v.s5.3a0c6f52b50a from=translated src=- shape=929b5549 vocab=f9c0e79c
+-/
 lemma abs_eigenvalue_le {C : ℝ} (hb : EigenBound C) {freq δ : ι → ℝ} (h : Adm freq δ) (j : ι) :
     |(Mmat_isHermitian freq δ).eigenvalues j| ≤ C := by
   set hM := Mmat_isHermitian freq δ
@@ -143,7 +157,9 @@ lemma abs_eigenvalue_le {C : ℝ} (hb : EigenBound C) {freq δ : ι → ℝ} (h 
   have := hb ι freq δ h v hunit (-ν) heig
   simpa using this
 
-/-- The Hermitian form of `M` is bounded by `C ‖y‖²`. -/
+/-- The Hermitian form of `M` is bounded by `C ‖y‖²`.
+@isnad1 id=le.2h5v.s7.c21ecc5cf12a from=translated src=- shape=435fb319 vocab=e1bfefdc
+-/
 lemma norm_form_le {C : ℝ} (hb : EigenBound C) {freq δ : ι → ℝ} (h : Adm freq δ) (y : ι → ℂ) :
     ‖star y ⬝ᵥ (Mmat freq δ *ᵥ y)‖ ≤ C * ∑ i, ‖y i‖ ^ 2 := by
   set hM := Mmat_isHermitian freq δ
@@ -154,7 +170,9 @@ lemma norm_form_le {C : ℝ} (hb : EigenBound C) {freq δ : ι → ℝ} (h : Adm
   exact mul_le_mul_of_nonneg_right (abs_eigenvalue_le hb h i) (sq_nonneg _)
 
 /-- **Spectral reduction**: an eigenvalue bound `EigenBound C` gives `MVDiag C` — the
-Montgomery–Vaughan weighted Hilbert inequality (diagonal / literature form, Zeta23/MV.lean). -/
+Montgomery–Vaughan weighted Hilbert inequality (diagonal / literature form, Zeta23/MV.lean).
+@isnad1 id=mvdiag.1h1v.s2.cfd61ab03964 from=translated src=- shape=6321fd23 vocab=7f387cef
+-/
 theorem mvDiag_of_eigenBound {C : ℝ} (hb : EigenBound C) : MVDiag C := by
   intro ι _ _ freq δ x hinj hpos hadm
   have h : Adm freq δ := ⟨hinj, hpos, hadm⟩
@@ -192,7 +210,9 @@ theorem mvDiag_of_eigenBound {C : ℝ} (hb : EigenBound C) : MVDiag C := by
   rw [hsum, norm_mul, Complex.norm_I, mul_one, Complex.norm_conj, ← hnorm]
   exact norm_form_le hb h y
 
-/-- … hence the bilinear H-MV of `Hypotheses.lean` with constant `2C` (polarization). -/
+/-- … hence the bilinear H-MV of `Hypotheses.lean` with constant `2C` (polarization).
+@isnad1 id=ex.2h1v.s5.3921af915500 from=translated src=- shape=9dfff46c vocab=0e95c12a
+-/
 theorem mvHilbert_of_eigenBound {C : ℝ} (hC : 0 < C) (hb : EigenBound C) :
     ∃ C' : ℝ, 0 < C' ∧ MVHilbert C' :=
   exists_MVHilbert_of_diag ⟨C, hC, mvDiag_of_eigenBound hb⟩

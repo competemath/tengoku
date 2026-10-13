@@ -26,7 +26,9 @@ open scoped ArithmeticFunction BigOperators
 namespace PrimitiveSetsAboveX
 
 /-- If a summand vanishes off the divisors of `n`, its infinite sum is the finite sum over
-`n.divisors`. -/
+`n.divisors`.
+@isnad1 id=eq.2h3v.s6.a005ca0c04d2 from=translated src=- shape=e7be5cb9 vocab=37c95d6e
+-/
 lemma tsum_eq_sum_divisors_of_nondivisors_zero {α : Type*} [AddCommMonoid α] [TopologicalSpace α]
     {n : ℕ} (hn : 0 < n) (f : ℕ → α) (hf : ∀ q, ¬ q ∣ n → f q = 0) :
     (∑' q : ℕ, f q) = n.divisors.sum f := by
@@ -35,7 +37,9 @@ lemma tsum_eq_sum_divisors_of_nondivisors_zero {α : Type*} [AddCommMonoid α] [
   exact hf q (by grind only [= Nat.mem_divisors])
 
 /-- If a divisor condition is bundled into the summand, the `tsum` reduces to the finite divisor
-sum with that condition removed. -/
+sum with that condition removed.
+@isnad1 id=eq.1h4v.s6.933047860228 from=translated src=- shape=9d8c0d31 vocab=9e3a510f
+-/
 lemma tsum_eq_sum_divisors_of_dvd_and {α : Type*} [AddCommMonoid α] [TopologicalSpace α]
     {n : ℕ} (hn : 0 < n) (P : ℕ → Prop) [DecidablePred P] (f : ℕ → α) :
     (∑' q : ℕ, if q ∣ n ∧ P q then f q else 0) =
@@ -54,6 +58,7 @@ lemma tsum_eq_sum_divisors_of_dvd_and {α : Type*} [AddCommMonoid α] [Topologic
 /--
 For a proper parent `n / q`, any last-jump term with the explicit parent value simplifies to the
 common factor `(1 / B_x) * (Λ(q) / (n log^2 n))`.
+@isnad1 id=eq.4h5v.s7.d179a9fbe847 from=translated src=- shape=673d0afe vocab=0960a295
 -/
 lemma lastJumpContribution_eq_of_formula {x Y : ℕ} (hx : 2 ≤ x) {n q : ℕ}
     (hq : q ∈ n.divisors) (hqx : Y ≤ q ∧ x ≤ n / q) {v : ℝ}
@@ -90,6 +95,7 @@ lemma lastJumpContribution_eq_of_formula {x Y : ℕ} (hx : 2 ≤ x) {n q : ℕ}
 /--
 The divisor decomposition of `log n` rewrites the explicit target formula as the normalized initial
 mass plus the filtered von Mangoldt divisor sum.
+@isnad1 id=eq.0h3v.s7.3032bf4322e3 from=translated src=- shape=b5005415 vocab=8c047201
 -/
 lemma formula_eq_initialDistribution_add_filteredVonMangoldt {x Y n : ℕ} :
     1 / (normalizationConstant x Y * (n : ℝ) * Real.log (n : ℝ)) =
@@ -126,6 +132,7 @@ lemma formula_eq_initialDistribution_add_filteredVonMangoldt {x Y n : ℕ} :
 /--
 If every last-jump parent already has the explicit value `1 / (B_x n log n)`, then the recurrence
 right-hand side collapses to the closed formula for the visit probability at `n`.
+@isnad1 id=eq.3h4v.s8.c29921770b05 from=translated src=- shape=cd3866b7 vocab=ceed01f8
 -/
 lemma explicitFormula_eq_recurrence_rhs {x Y n : ℕ} (hx : 2 ≤ x) (hn : x ≤ n) {f : ℕ → ℝ}
     (hvisit :
@@ -191,6 +198,7 @@ lemma explicitFormula_eq_recurrence_rhs {x Y n : ℕ} (hx : 2 ≤ x) (hn : x ≤
 The Markov layer visits each state `n ≥ x` with the explicit probability
 `1 / (B_x n log n)`. The lower bound `2 ≤ x` guarantees that the logarithms in this formula are
 positive.
+@isnad1 id=eq.2h4v.s6.14c43fea26a4 from=translated src=- shape=ae1ff27b vocab=8f47a0b4
 -/
 lemma visitProbabilityFormula {x Y : ℕ} (chain : MarkovLayer x Y) (hx : 2 ≤ x) {n : ℕ}
     (hn : x ≤ n) :
@@ -213,7 +221,9 @@ lemma visitProbabilityFormula {x Y : ℕ} (chain : MarkovLayer x Y) (hx : 2 ≤ 
   simpa [hcast_div] using ih (n / q) hlt hqx.2
 
 /-- Under the standing hypotheses `2 ≤ x` and `B_x > 0`, the visiting probabilities are
-nonnegative on the state space `n ≥ x`. -/
+nonnegative on the state space `n ≥ x`.
+@isnad1 id=le.3h4v.s5.9273ca302877 from=translated src=- shape=c6b4be39 vocab=ce8a02c0
+-/
 lemma visitProbability_nonneg {x Y : ℕ} (chain : MarkovLayer x Y) (hx : 2 ≤ x)
     (hB : 0 < normalizationConstant x Y) {n : ℕ} (hn : x ≤ n) :
     0 ≤ chain.visitProbability n := by

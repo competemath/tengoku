@@ -57,7 +57,9 @@ def popTarget : PCont c → List ℕ → PCont c × List ℕ
 /-- One abstract step reaches the pop target: `Turing.ToPartrec.stepRet` on
 `k` and `v` is either the `Turing.ToPartrec.Cfg.ret` of the pop target – when
 the pop dispatches a code – or, for the two silent pops, definitionally the
-`stepRet` of the pop target, whose continuation is then smaller. -/
+`stepRet` of the pop target, whose continuation is then smaller.
+@isnad1 id=or.1h3v.s6.bb6058b94478 from=translated src=- shape=d245d68b vocab=6c2050f9
+-/
 theorem stepRet_popTarget {k : PCont c} (hk : k ≠ PCont.halt) (v : List ℕ) :
     stepRet k.toCont v =
         Cfg.ret (popTarget k v).1.toCont (popTarget k v).2 ∨
@@ -95,7 +97,9 @@ def ASteps : ℕ → Cfg → Cfg → Prop
   | 0, a, b => a = b
   | n + 1, a, b => ∃ d, step a = some d ∧ ASteps n d b
 
-/-- A counted abstract run, extended by one step at its end. -/
+/-- A counted abstract run, extended by one step at its end.
+@isnad1 id=asteps.2h4v.s5.59a40ebca577 from=translated src=- shape=fdff6a53 vocab=f9ea5608
+-/
 theorem ASteps.trans_step : ∀ {n : ℕ} {a b d : Cfg},
     ASteps n a b → step b = some d → ASteps (n + 1) a d := by
   intro n
@@ -105,7 +109,9 @@ theorem ASteps.trans_step : ∀ {n : ℕ} {a b d : Cfg},
     rintro a b d ⟨e, hstep, hrest⟩ hbd
     exact ⟨e, hstep, ih hrest hbd⟩
 
-/-- An abstract reachability is a counted run of some length. -/
+/-- An abstract reachability is a counted run of some length.
+@isnad1 id=ex.1h2v.s4.ec1be3e46f3c from=translated src=- shape=03edd011 vocab=c7e2cfc7
+-/
 theorem asteps_of_reaches {a b : Cfg} (h : StateTransition.Reaches step a b) :
     ∃ n, ASteps n a b := by
   induction h with
@@ -115,7 +121,9 @@ theorem asteps_of_reaches {a b : Cfg} (h : StateTransition.Reaches step a b) :
     exact ⟨n + 1, hn.trans_step hstep⟩
 
 /-- Termination of `Turing.ToPartrec.Cont.eval` yields a counted abstract run
-from the return configuration to a halting configuration. -/
+from the return configuration to a halting configuration.
+@isnad1 id=ex.1h2v.s4.47b456a1a923 from=translated src=- shape=a7b7ddc8 vocab=5f2805a6
+-/
 theorem exists_asteps_halt_of_dom {K : Cont} {v : List ℕ} (h : (K.eval v).Dom) :
     ∃ N w, ASteps N (Cfg.ret K v) (Cfg.halt w) := by
   have hd : (StateTransition.eval step (stepRet K v)).Dom := by
@@ -133,19 +141,25 @@ theorem exists_asteps_halt_of_dom {K : Cont} {v : List ℕ} (h : (K.eval v).Dom)
 /-! ### Transfer of termination along one pop -/
 
 /-- Termination of `Turing.ToPartrec.Cont.eval` is termination of the
-sequential run from the return configuration. -/
+sequential run from the return configuration.
+@isnad1 id=iff.0h2v.s4.0a5f5a1807ab from=translated src=- shape=95147e78 vocab=6f285273
+-/
 theorem contEval_dom_iff_evalStep {K : Cont} {v : List ℕ} :
     (K.eval v).Dom ↔ (StateTransition.eval step (stepRet K v)).Dom := by
   rw [stepRet_eval]
   exact Iff.rfl
 
-/-- Peeling the one step a return configuration always makes. -/
+/-- Peeling the one step a return configuration always makes.
+@isnad1 id=eq.0h2v.s4.a155f763d6d9 from=translated src=- shape=3f8c2e76 vocab=47b28c33
+-/
 theorem evalStep_ret (K : Cont) (v : List ℕ) :
     StateTransition.eval step (Cfg.ret K v) = StateTransition.eval step (stepRet K v) :=
   StateTransition.reaches_eval (Relation.ReflTransGen.single (Option.mem_def.mpr rfl))
 
 /-- **Termination transfers along one pop**: the abstract evaluation of a
-nonempty continuation terminates exactly when that of its pop target does. -/
+nonempty continuation terminates exactly when that of its pop target does.
+@isnad1 id=iff.1h3v.s5.d55a70a2edd8 from=translated src=- shape=03b8917c vocab=29a61727
+-/
 theorem dom_popTarget {k : PCont c} (hk : k ≠ PCont.halt) (v : List ℕ) :
     ((popTarget k v).1.toCont.eval (popTarget k v).2).Dom ↔ (k.toCont.eval v).Dom := by
   rcases stepRet_popTarget hk v with h | ⟨h, -⟩
@@ -155,7 +169,9 @@ theorem dom_popTarget {k : PCont c} (hk : k ≠ PCont.halt) (v : List ℕ) :
 
 /-! ### The machine cycle -/
 
-/-- Accepting configurations are terminal. -/
+/-- Accepting configurations are terminal.
+@isnad1 id=eq.1h2v.s4.ea4f28a92690 from=translated src=- shape=61ff9f5c vocab=66479011
+-/
 theorem lstep_acc {x : LCfg c} (hx : x.q = SimQ.acc) : lstep x = none := by
   obtain ⟨q, L, s, R⟩ := x
   subst hx
@@ -165,7 +181,9 @@ theorem lstep_acc {x : LCfg c} (hx : x.q = SimQ.acc) : lstep x = none := by
 /-- **The counted machine cycle**: from the resting configuration of a
 nonempty continuation, a counted run to the resting configuration of the pop
 target. The count is zero only if the pop was silent, in which case the
-continuation shrank – the decrease both lexicographic inductions fall back on. -/
+continuation shrank – the decrease both lexicographic inductions fall back on.
+@isnad1 id=ex.2h7v.s6.3cb97b6a1852 from=translated src=- shape=a37f4628 vocab=0ccf7c47
+-/
 theorem cycle_counted {k : PCont c} (hk : k ≠ PCont.halt) {fr : List (SimSym c)}
     (hfr : FrameSeg k fr) (g : ℕ) (v : List ℕ) (j t : ℕ) :
     ∃ m g' fr' j' t', FrameSeg (popTarget k v).1 fr' ∧
@@ -235,7 +253,9 @@ theorem cycle_counted {k : PCont c} (hk : k ≠ PCont.halt) {fr : List (SimSym c
 /-- **Forward simulation**: if the abstract machine halts from the return
 configuration of `k` and `v` in `N` steps, the simulating machine accepts
 from the resting configuration of any frame region of `k`, by lexicographic
-recursion on `(N, sizeOf k)` – the two silent pops keep `N` and shrink `k`. -/
+recursion on `(N, sizeOf k)` – the two silent pops keep `N` and shrink `k`.
+@isnad1 id=ex.2h9v.s5.6c6ed75c74df from=translated src=- shape=5468dcd1 vocab=a82e4aa1
+-/
 theorem reach_acc_of_asteps (N : ℕ) (k : PCont c) (v w : List ℕ)
     (hN : ASteps N (Cfg.ret k.toCont v) (Cfg.halt w)) (g : ℕ) (fr : List (SimSym c))
     (hfr : FrameSeg k fr) (j t : ℕ) :
@@ -276,7 +296,9 @@ theorem reach_acc_of_asteps (N : ℕ) (k : PCont c) (v w : List ℕ)
 resting configuration of `k` and `v` in `N` steps, the abstract evaluation of
 `k` on `v` terminates, by lexicographic recursion on `(N, sizeOf k)` – the
 counted cycle is split off the accepting run by determinism, and a silent
-cycle shrinks `k`. -/
+cycle shrinks `k`.
+@isnad1 id=dom.3h9v.s5.7ff5c766f500 from=translated src=- shape=9d1de886 vocab=556d5950
+-/
 theorem dom_of_stepsTo_acc (N : ℕ) (k : PCont c) (v : List ℕ) (g : ℕ)
     (fr : List (SimSym c)) (j t : ℕ) (x : LCfg c) (hfr : FrameSeg k fr)
     (hN : stepsTo N (restCfg g fr v j t) x) (hx : x.q = SimQ.acc) :
@@ -302,7 +324,9 @@ theorem dom_of_stepsTo_acc (N : ℕ) (k : PCont c) (v : List ℕ) (g : ℕ)
 /-- **Correctness of the simulating machine**: from the resting configuration
 of a continuation `k` and value `v`, the machine reaches an accepting
 configuration exactly when `Turing.ToPartrec.Cont.eval` of `k` on `v`
-terminates. -/
+terminates.
+@isnad1 id=iff.1h7v.s5.532e3ea642ef from=translated src=- shape=0fc6c08f vocab=afb35b4c
+-/
 theorem reach_acc_iff_evalDom {k : PCont c} {fr : List (SimSym c)} (hfr : FrameSeg k fr)
     (g : ℕ) (v : List ℕ) (j t : ℕ) :
     (∃ x, x.q = SimQ.acc ∧ Reach (restCfg g fr v j t) x) ↔ (k.toCont.eval v).Dom := by

@@ -37,7 +37,9 @@ noncomputable def binCode (hlin : IsLinOrd Le) (b : A → Prop) : Fin (2 ^ Nat.c
       b⟩
 
 /-- **Binary decoding is a bijection** from the sets of positions onto the
-numbers below `2 ^ n`. -/
+numbers below `2 ^ n`.
+@isnad1 id=bijectiv.1h2v.s5.87430540232e from=translated src=- shape=9bff018b vocab=34a771d7
+-/
 theorem binCode_bijective (hlin : IsLinOrd Le) : Function.Bijective (binCode (A := A) hlin) := by
   classical
   let := Fintype.ofFinite (A → Prop)
@@ -50,7 +52,9 @@ theorem binCode_bijective (hlin : IsLinOrd Le) : Function.Bijective (binCode (A 
   · rw [Fintype.card_fin, ← Nat.card_eq_fintype_card, Nat.card_fun, Nat.card_eq_fintype_card,
       Fintype.card_prop]
 
-/-- **The sets of bits below a weight are as many as the weight.** -/
+/-- **The sets of bits below a weight are as many as the weight.**
+@isnad1 id=eq.1h3v.s5.1be01cd2aac1 from=translated src=- shape=096ee9ab vocab=4de3bbed
+-/
 theorem card_binNum_lt (hlin : IsLinOrd Le) (w : A → Prop) :
     Nat.card {b : A → Prop // binNum Le (fun _ => True) b < binNum Le (fun _ => True) w} =
       binNum Le (fun _ => True) w := by

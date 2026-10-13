@@ -46,6 +46,9 @@ def cyclotomicFieldTwoEquiv [IsCyclotomicExtension {2} K L] : L ≃ₐ[K] K := b
   exact ⟨by simpa using Splits.X_sub_C (-1 : K),
     by simp [eq_iff_true_of_subsingleton]⟩
 
+/--
+@isnad1 id=isprinci.0h1v.s5.b78408edb33a from=translated src=- shape=7f41e255 vocab=7ed6d57f
+-/
 instance IsPrincipalIdealRing_of_IsCyclotomicExtension_two
     (L : Type*) [Field L] [CharZero L] [IsCyclotomicExtension {2} ℚ L] :
     IsPrincipalIdealRing (𝓞 L) :=
@@ -59,12 +62,18 @@ local instance : IsCyclotomicExtension {2} ℚ (CyclotomicField 2 ℚ) :=
 local instance : IsPrincipalIdealRing (𝓞 (CyclotomicField 2 ℚ)) :=
   IsPrincipalIdealRing_of_IsCyclotomicExtension_two _
 
+/--
+@isnad1 id=isregula.0h0v.s2.1cb536cd45ce from=translated src=- shape=e590c3e1 vocab=be53b2a2
+-/
 theorem isRegularPrime_two : IsRegularPrime 2 := by
   rw [IsRegularPrime, IsRegularNumber]
   convert coprime_one_right _
   exact (card_classGroup_eq_one_iff (R := 𝓞 (CyclotomicField 2 ℚ))).2 inferInstance
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=isregula.0h0v.s2.d29d37a3e851 from=translated src=- shape=e590c3e1 vocab=be53b2a2
+-/
 theorem isRegularPrime_three :
     haveI : Fact (Nat.Prime 3) := ⟨Nat.prime_three⟩
     IsRegularPrime 3 := by

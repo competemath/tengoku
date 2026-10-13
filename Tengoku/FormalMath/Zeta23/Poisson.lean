@@ -39,7 +39,9 @@ namespace Poisson
 /-! #### A decay-to-`IsBigO` lemma -/
 
 /-- If `‖g w‖ · (1 + (c − w h)²) ≤ C` for all real `w` (`h ≠ 0`) then `g = O(|w|⁻²)` on
-`cocompact ℝ`. -/
+`cocompact ℝ`.
+@isnad1 id=isbigo.2h4v.s6.3b3c07d8bfca from=translated src=- shape=4a638e86 vocab=23a84212
+-/
 theorem isBigO_of_decay {g : ℝ → ℂ} {c h C : ℝ} (hh : h ≠ 0)
     (hg : ∀ w, ‖g w‖ * (1 + (c - w * h) ^ 2) ≤ C) :
     g =O[cocompact ℝ] fun w : ℝ => |w| ^ (-2 : ℝ) := by
@@ -92,6 +94,9 @@ noncomputable def Gaux (ξ : ℝ) : ℂ := ∫ u, gInt φ L T τ τ' ξ u
 
 variable {φ L T τ τ'}
 
+/--
+@isnad1 id=eq.3h7v.s6.cb49ccdb6088 from=translated src=- shape=13374fa5 vocab=2512b14e
+-/
 theorem gInt_eq_zero_of_not_mem (hL : 0 < L) (hsupp : ∀ u, L / 2 ≤ |u| → φ u = 0)
     {ξ u : ℝ} (h : ¬ (|ξ| < 1 ∧ |u| < L / 2)) : gInt φ L T τ τ' ξ u = 0 := by
   unfold gInt
@@ -108,11 +113,17 @@ theorem gInt_eq_zero_of_not_mem (hL : 0 < L) (hsupp : ∀ u, L / 2 ≤ |u| → �
   · rw [hsupp u (not_lt.mp hu)]
     simp
 
+/--
+@isnad1 id=continuo.1h5v.s6.62cba04f7660 from=translated src=- shape=be617c99 vocab=d6be2a89
+-/
 theorem gInt_continuous (hφc : Continuous φ) :
     Continuous (Function.uncurry (gInt φ L T τ τ')) := by
   unfold gInt Function.uncurry
   fun_prop
 
+/--
+@isnad1 id=hascompa.2h5v.s6.41ce26dbf5d4 from=translated src=- shape=a7d2c26e vocab=4c97e5c3
+-/
 theorem gInt_hasCompactSupport (hL : 0 < L) (hsupp : ∀ u, L / 2 ≤ |u| → φ u = 0) :
     HasCompactSupport (Function.uncurry (gInt φ L T τ τ')) := by
   refine HasCompactSupport.of_support_subset_isCompact
@@ -127,12 +138,17 @@ theorem gInt_hasCompactSupport (hL : 0 < L) (hsupp : ∀ u, L / 2 ≤ |u| → φ
   exact ⟨⟨by linarith [neg_abs_le ξ], by linarith [le_abs_self ξ]⟩,
     ⟨by linarith [neg_abs_le u], by linarith [le_abs_self u]⟩⟩
 
+/--
+@isnad1 id=integrab.3h5v.s7.733cfffdae01 from=translated src=- shape=a34b368a vocab=23c720b6
+-/
 theorem gInt_integrable_prod (hL : 0 < L) (hφc : Continuous φ)
     (hsupp : ∀ u, L / 2 ≤ |u| → φ u = 0) :
     Integrable (Function.uncurry (gInt φ L T τ τ')) (volume.prod volume) :=
   (gInt_continuous hφc).integrable_of_hasCompactSupport (gInt_hasCompactSupport hL hsupp)
 
-/-- `G` is continuous. -/
+/-- `G` is continuous.
+@isnad1 id=continuo.3h5v.s6.44e1a455c6e1 from=translated src=- shape=1e1be24e vocab=15090817
+-/
 theorem Gaux_continuous (hL : 0 < L) (hφc : Continuous φ)
     (hsupp : ∀ u, L / 2 ≤ |u| → φ u = 0) : Continuous (Gaux φ L T τ τ') := by
   have : Gaux φ L T τ τ' = fun ξ => ∫ u in Icc (-(L / 2)) (L / 2), gInt φ L T τ τ' ξ u := by
@@ -148,7 +164,9 @@ theorem Gaux_continuous (hL : 0 < L) (hφc : Continuous φ)
   rw [this]
   exact continuous_parametric_integral_of_continuous (gInt_continuous hφc) isCompact_Icc
 
-/-- `G(ξ) = 0` for `|ξ| ≥ 1`. -/
+/-- `G(ξ) = 0` for `|ξ| ≥ 1`.
+@isnad1 id=eq.3h6v.s6.667053496f0d from=translated src=- shape=6f905643 vocab=f9444dc8
+-/
 theorem Gaux_eq_zero (hL : 0 < L) (hsupp : ∀ u, L / 2 ≤ |u| → φ u = 0) {ξ : ℝ}
     (hξ : 1 ≤ |ξ|) : Gaux φ L T τ τ' ξ = 0 := by
   unfold Gaux
@@ -158,7 +176,9 @@ theorem Gaux_eq_zero (hL : 0 < L) (hsupp : ∀ u, L / 2 ≤ |u| → φ u = 0) {�
   rintro ⟨h1, -⟩
   linarith
 
-/-- `G(0) = L · (φ²)^(τ − τ')` (uses φ even). -/
+/-- `G(0) = L · (φ²)^(τ − τ')` (uses φ even).
+@isnad1 id=eq.1h5v.s6.8407c85fa3b3 from=translated src=- shape=6e2796be vocab=ea598c05
+-/
 theorem Gaux_zero (heven : ∀ u, φ (-u) = φ u) :
     Gaux φ L T τ τ' 0 = L * paperFT (fun u => ((φ u ^ 2 : ℝ) : ℂ)) ((τ - τ' : ℝ) : ℂ) := by
   unfold Gaux gInt
@@ -171,7 +191,9 @@ theorem Gaux_zero (heven : ∀ u, φ (-u) = φ u) :
 
 /-- The exponent bookkeeping: for `L ≠ 0`,
 `e^{i(τu + τ'(Lξ−u) − TLξ)} · e^{−2πiξw} = e^{iαu} · e^{iβ(Lξ−u)}` with
-`α = τ − (T + w·2π/L)`, `β = τ' − (T + w·2π/L)`. -/
+`α = τ − (T + w·2π/L)`, `β = τ' − (T + w·2π/L)`.
+@isnad1 id=eq.1h7v.s8.1f677b88eebf from=translated src=- shape=3126356e vocab=970db8df
+-/
 theorem cexp_bookkeeping (hL : L ≠ 0) (ξ u w : ℝ) :
     cexp (I * (τ * u + τ' * (L * ξ - u) - T * L * ξ)) * cexp (↑(-2 * π * ξ * w) * I)
       = cexp (I * ↑(τ - (T + w * (2 * π / L))) * u)
@@ -183,7 +205,9 @@ theorem cexp_bookkeeping (hL : L ≠ 0) (ξ u w : ℝ) :
   field_simp
   ring
 
-/-- Fubini computation: `𝓕G(w) = φ̂(τ − τ_w) φ̂(τ' − τ_w)`, `τ_w = T + w·2π/L`. -/
+/-- Fubini computation: `𝓕G(w) = φ̂(τ − τ_w) φ̂(τ' − τ_w)`, `τ_w = T + w·2π/L`.
+@isnad1 id=eq.3h6v.s7.1f04c3f0c40f from=translated src=- shape=ddb5cc10 vocab=78847b4a
+-/
 theorem fourier_Gaux (hL : 0 < L) (hφc : Continuous φ)
     (hsupp : ∀ u, L / 2 ≤ |u| → φ u = 0) (w : ℝ) :
     𝓕 (Gaux φ L T τ τ') w
@@ -257,7 +281,9 @@ theorem fourier_Gaux (hL : 0 < L) (hφc : Continuous φ)
 /-- Core identity [lem:poisson], complex form, for an abstract window: `φ : ℝ → ℝ` continuous,
 even, vanishing for `|u| ≥ L/2` (`L > 0`), with `|φ̂(s)|(1+s²)` bounded on ℝ.
 For all real `T, τ, τ'`:  `Σ_{k∈ℤ} φ̂(τ−τ_k) φ̂(τ'−τ_k) = L · (φ²)^(τ−τ')`, `τ_k = T + k·2π/L`,
-as a `HasSum`. -/
+as a `HasSum`.
+@isnad1 id=hassum.5h5v.s8.58d205534613 from=translated src=- shape=bb93f200 vocab=240f940d
+-/
 theorem hasSum_paperFT_mul_paperFT {φ : ℝ → ℝ} {L : ℝ} (hL : 0 < L) (hφc : Continuous φ)
     (hsupp : ∀ u, L / 2 ≤ |u| → φ u = 0) (heven : ∀ u, φ (-u) = φ u)
     (hdecay : ∃ C, ∀ s : ℝ, ‖paperFT (fun u => (φ u : ℂ)) s‖ * (1 + s ^ 2) ≤ C)
@@ -329,7 +355,9 @@ namespace Taper
 
 variable {ϱ : ℝ → ℝ} {L w : ℝ}
 
-/-- Decay input for Poisson: `|φ̂(s)|(1 + s²) ≤ L + C₁` on ℝ (from [eq:hfbound] at `y = 0`). -/
+/-- Decay input for Poisson: `|φ̂(s)|(1 + s²) ≤ L + C₁` on ℝ (from [eq:hfbound] at `y = 0`).
+@isnad1 id=ex.3h3v.s6.7a10d451b9e6 from=translated src=- shape=808c9728 vocab=bd9b799e
+-/
 theorem phiHat_decay (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) :
     ∃ C, ∀ s : ℝ, ‖paperFT (fun u => (phi ϱ L w u : ℂ)) s‖ * (1 + s ^ 2) ≤ C := by
   refine ⟨L + C1 ϱ L w, fun s => ?_⟩
@@ -341,7 +369,9 @@ theorem phiHat_decay (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) :
   linarith
 
 /-- [lem:poisson], general form, real-valued:
-`Σ_{k∈ℤ} φ̂(τ−τ_k) φ̂(τ'−τ_k) = L Φ(τ−τ')` with `τ_k = T + k·(2π/L)`. -/
+`Σ_{k∈ℤ} φ̂(τ−τ_k) φ̂(τ'−τ_k) = L Φ(τ−τ')` with `τ_k = T + k·(2π/L)`.
+@isnad1 id=hassum.3h6v.s7.3f1940317a23 from=translated src=- shape=278cb4b8 vocab=bbc50587
+-/
 theorem hasSum_phiHatR_mul (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) (T τ τ' : ℝ) :
     HasSum (fun k : ℤ => phiHatR ϱ L w (τ - (T + k * (2 * π / L)))
                           * phiHatR ϱ L w (τ' - (T + k * (2 * π / L))))
@@ -361,7 +391,9 @@ theorem hasSum_phiHatR_mul (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤
     rw [show paperFT (fun u => (((phi ϱ L w u) ^ 2 : ℝ) : ℂ)) = Phi ϱ L w from rfl, Phi_ofReal]
     norm_cast
 
-/-- [lem:poisson], "in particular": `Σ_{k∈ℤ} φ̂(γ−τ_k)² = a L²` for every real `γ`. -/
+/-- [lem:poisson], "in particular": `Σ_{k∈ℤ} φ̂(γ−τ_k)² = a L²` for every real `γ`.
+@isnad1 id=hassum.3h5v.s7.0cfdfacc2578 from=translated src=- shape=f254051a vocab=483b9449
+-/
 theorem hasSum_phiHatR_sq (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) (T γ : ℝ) :
     HasSum (fun k : ℤ => phiHatR ϱ L w (γ - (T + k * (2 * π / L))) ^ 2)
       (aConst ϱ L w * L ^ 2) := by
@@ -382,17 +414,24 @@ variable (hP : P.Valid) (hwL : 8 * P.w ≤ P.L T)
 include hP hwL
 
 /-- [lem:poisson] for the paper's data: for all real τ, τ',
-`HasSum (k ↦ φ̂(τ − τ_k) φ̂(τ' − τ_k)) (L Φ(τ − τ'))`, `τ_k = P.tau T k = T + k·(2π/L)`. -/
+`HasSum (k ↦ φ̂(τ − τ_k) φ̂(τ' − τ_k)) (L Φ(τ − τ'))`, `τ_k = P.tau T k = T + k·(2π/L)`.
+@isnad1 id=hassum.2h4v.s6.f3222f1a24c0 from=translated src=- shape=4a74e2f0 vocab=ee35674a
+-/
 theorem hasSum_phiHatR_mul (τ τ' : ℝ) :
     HasSum (fun k : ℤ => P.phiHatR T (τ - P.tau T k) * P.phiHatR T (τ' - P.tau T k))
       (P.L T * P.PhiR T (τ - τ')) :=
   Taper.hasSum_phiHatR_mul hP.taper (w_pos' hP) (by linarith [hP.one_le_w]) T τ τ'
 
-/-- [lem:poisson] "in particular": `HasSum (k ↦ φ̂(γ − τ_k)²) (a L²)` for every real γ. -/
+/-- [lem:poisson] "in particular": `HasSum (k ↦ φ̂(γ − τ_k)²) (a L²)` for every real γ.
+@isnad1 id=hassum.2h3v.s6.8315d5b34469 from=translated src=- shape=5b5a99ea vocab=de5e2eaf
+-/
 theorem hasSum_phiHatR_sq (γ : ℝ) :
     HasSum (fun k : ℤ => P.phiHatR T (γ - P.tau T k) ^ 2) (P.a T * P.L T ^ 2) :=
   Taper.hasSum_phiHatR_sq hP.taper (w_pos' hP) (by linarith [hP.one_le_w]) T γ
 
+/--
+@isnad1 id=eq.2h3v.s6.44ead80ccf20 from=translated src=- shape=5a5473cb vocab=28efeea2
+-/
 theorem tsum_phiHatR_sq (γ : ℝ) :
     ∑' k : ℤ, P.phiHatR T (γ - P.tau T k) ^ 2 = P.a T * P.L T ^ 2 :=
   (hasSum_phiHatR_sq hP hwL γ).tsum_eq

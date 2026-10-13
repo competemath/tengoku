@@ -28,7 +28,9 @@ def Uform (freq δ : ι → ℝ) (t : ι → ℝ) : ℝ :=
   ∑ m, ∑ n ∈ Finset.univ.erase m,
     δ m * Real.sqrt (δ m) * Real.sqrt (δ n) * t m * t n / (freq m - freq n) ^ 2
 
-/-- Swap the two layers of an `erase`-nested double sum. -/
+/-- Swap the two layers of an `erase`-nested double sum.
+@isnad1 id=eq.0h3v.s6.3d4b1bdb951a from=translated src=- shape=746f7bf6 vocab=3441fd34
+-/
 lemma sum_erase_comm {M : Type*} [AddCommMonoid M] (F : ι → ι → M) :
     ∑ m, ∑ n ∈ Finset.univ.erase m, F m n = ∑ n, ∑ m ∈ Finset.univ.erase n, F m n := by
   rw [Finset.sum_comm' (t' := Finset.univ) (s' := fun n => Finset.univ.erase n)]
@@ -36,7 +38,9 @@ lemma sum_erase_comm {M : Type*} [AddCommMonoid M] (F : ι → ι → M) :
   simp only [Finset.mem_univ, Finset.mem_erase, true_and, and_true]
   exact ⟨fun h => h.symm, fun h => h.symm⟩
 
-/-- Swap the inner two layers of the distinct-triple sum (outer index `m` fixed). -/
+/-- Swap the inner two layers of the distinct-triple sum (outer index `m` fixed).
+@isnad1 id=eq.0h4v.s6.37bcf5b64701 from=translated src=- shape=1fe82925 vocab=3441fd34
+-/
 lemma sum_erase_erase_comm {M : Type*} [AddCommMonoid M] (m : ι) (G : ι → ι → M) :
     ∑ n ∈ Finset.univ.erase m, ∑ l ∈ (Finset.univ.erase n).erase m, G n l
       = ∑ l ∈ Finset.univ.erase m, ∑ n ∈ (Finset.univ.erase l).erase m, G n l := by
@@ -50,7 +54,9 @@ lemma sum_erase_erase_comm {M : Type*} [AddCommMonoid M] (m : ι) (G : ι → ι
   · rintro ⟨⟨h1, h2⟩, h3⟩
     exact ⟨h1, h3, Ne.symm h2⟩
 
-/-- **Step 1**: `U ≤ 73 Σ t²` for admissible `(freq, δ)` and nonneg `t`. -/
+/-- **Step 1**: `U ≤ 73 Σ t²` for admissible `(freq, δ)` and nonneg `t`.
+@isnad1 id=le.2h4v.s6.93137a3c0d70 from=translated src=- shape=9887c3af vocab=2e325557
+-/
 theorem Uform_le (h : Adm freq δ) (t : ι → ℝ) (ht : ∀ r, 0 ≤ t r) :
     Uform freq δ t ≤ 73 * ∑ n, t n ^ 2 := by
   classical

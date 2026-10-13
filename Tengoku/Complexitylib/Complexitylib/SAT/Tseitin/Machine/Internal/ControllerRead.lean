@@ -51,7 +51,9 @@ namespace Machine
   | .litSep => true
   | .clauseSep => false
 
-/-- The named token bits are exactly the existing concrete token encoding. -/
+/-- The named token bits are exactly the existing concrete token encoding.
+@isnad1 id=eq.0h1v.s4.9c0bac86028e from=translated src=- shape=c30433b6 vocab=18b73cf6
+-/
 @[simp] theorem token_encode_eq_bits (tok : EncToken) :
     tok.encode = [tokenFirstBit tok, tokenSecondBit tok] := by
   cases tok with
@@ -59,7 +61,9 @@ namespace Machine
   | litSep => rfl
   | clauseSep => rfl
 
-/-- Decoding the two named encoding bits recovers the token. -/
+/-- Decoding the two named encoding bits recovers the token.
+@isnad1 id=eq.0h1v.s3.312e870c1408 from=translated src=- shape=4eb47a10 vocab=6e98ad39
+-/
 theorem tokenOfPair_token_bits (tok : EncToken) :
     tokenOfPair (tokenFirstBit tok) (tokenSecondBit tok) = tok := by
   cases tok with
@@ -98,20 +102,32 @@ def controllerDoneCfg {Q : Type}
   work := c.work
   output := c.output
 
+/--
+@isnad1 id=eq.0h4v.s5.9d3106b38ff5 from=translated src=- shape=da601be6 vocab=8b9a028e
+-/
 @[simp] theorem controllerScheduledCfg_input_head {Q : Type}
     (mode : StreamMode) (tok : EncToken) (c : Cfg workTapeCount Q) :
     (controllerScheduledCfg mode tok c).input.head = c.input.head + 2 := by
   simp [controllerScheduledCfg, Tape.move]
 
+/--
+@isnad1 id=eq.0h4v.s4.7d3ff8ffc875 from=translated src=- shape=69b05a07 vocab=936cd9a1
+-/
 @[simp] theorem controllerScheduledCfg_input_cells {Q : Type}
     (mode : StreamMode) (tok : EncToken) (c : Cfg workTapeCount Q) :
     (controllerScheduledCfg mode tok c).input.cells = c.input.cells := by
   simp [controllerScheduledCfg, Tape.move]
 
+/--
+@isnad1 id=eq.0h4v.s4.77a54d54ae81 from=translated src=- shape=495ed757 vocab=7059bbcc
+-/
 @[simp] theorem controllerScheduledCfg_work {Q : Type}
     (mode : StreamMode) (tok : EncToken) (c : Cfg workTapeCount Q) :
     (controllerScheduledCfg mode tok c).work = c.work := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.f00ab80316fa from=translated src=- shape=1079ce9c vocab=1365addf
+-/
 @[simp] theorem controllerScheduledCfg_output {Q : Type}
     (mode : StreamMode) (tok : EncToken) (c : Cfg workTapeCount Q) :
     (controllerScheduledCfg mode tok c).output = c.output := rfl
@@ -119,7 +135,9 @@ def controllerDoneCfg {Q : Type}
 /-! ## The two bit-reading steps -/
 
 /-- Read the first nonblank input bit, advancing right and preserving parked
-work and output tapes. -/
+work and output tapes.
+@isnad1 id=eq.3h4v.s5.6767dd5cb3d7 from=translated src=- shape=b06b5da7 vocab=094cbb64
+-/
 theorem validEmitterTM_read_first_step_internal {Q : Type}
     (mode : StreamMode) (bit : Bool) (c : Cfg workTapeCount Q)
     (hread : c.input.read = Γ.ofBool bit)
@@ -144,7 +162,9 @@ theorem validEmitterTM_read_first_step_internal {Q : Type}
     · simpa only [Γw.toΓ] using houtIdle
 
 /-- Read the second nonblank input bit, schedule its decoded token, advance
-right, and preserve parked work and output tapes. -/
+right, and preserve parked work and output tapes.
+@isnad1 id=eq.3h5v.s6.1d940b371a46 from=translated src=- shape=ec38a369 vocab=03bf16c7
+-/
 theorem validEmitterTM_read_second_step_internal {Q : Type}
     (mode : StreamMode) (first second : Bool) (c : Cfg workTapeCount Q)
     (hread : (c.input.move .right).read = Γ.ofBool second)
@@ -169,7 +189,9 @@ theorem validEmitterTM_read_second_step_internal {Q : Type}
     · simpa only [Γw.toΓ] using houtIdle
 
 /-- Reading the two concrete bits of `tok` schedules that token in exactly two
-controller steps. The endpoint records exact head/cell and tape framing. -/
+controller steps. The endpoint records exact head/cell and tape framing.
+@isnad1 id=reachesi.3h4v.s5.46c37397f467 from=translated src=- shape=81f83645 vocab=84862de2
+-/
 theorem validEmitterTM_read_token_reachesIn_internal {Q : Type}
     (mode : StreamMode) (tok : EncToken) (c : Cfg workTapeCount Q)
     (hinput : InputTokenAt c.input tok)
@@ -186,7 +208,9 @@ theorem validEmitterTM_read_token_reachesIn_internal {Q : Type}
 /-! ## Trailing blank -/
 
 /-- A blank in first-bit mode halts the controller in one step and preserves
-the input and all parked work/output tapes. -/
+the input and all parked work/output tapes.
+@isnad1 id=eq.3h3v.s5.b929bdf413c9 from=translated src=- shape=a177f5ce vocab=378387e5
+-/
 theorem validEmitterTM_read_blank_step_internal {Q : Type}
     (mode : StreamMode) (c : Cfg workTapeCount Q)
     (hread : c.input.read = Γ.blank)
@@ -212,7 +236,9 @@ theorem validEmitterTM_read_blank_step_internal {Q : Type}
     · simpa only [Γw.toΓ] using hworkIdle
     · simpa only [Γw.toΓ] using houtIdle
 
-/-- Exact one-step reachability form of the first-bit blank transition. -/
+/-- Exact one-step reachability form of the first-bit blank transition.
+@isnad1 id=reachesi.3h3v.s5.805920147807 from=translated src=- shape=c050b5ce vocab=7935b3fe
+-/
 theorem validEmitterTM_read_blank_reachesIn_internal {Q : Type}
     (mode : StreamMode) (c : Cfg workTapeCount Q)
     (hread : c.input.read = Γ.blank)

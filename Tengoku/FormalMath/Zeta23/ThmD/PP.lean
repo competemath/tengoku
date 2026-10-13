@@ -32,7 +32,9 @@ sequence 'c' with c 0 = c 1 = 0 whose partial sums satisfy the [eq:cheb2a]-shape
 |Σ_{k≤t} c k − (log t)²/2| ≤ C₀ log t (t ≥ 2), and any C¹ g with |g'| ≤ 2, g ≡ 0 on [L,∞):
   Σ_{n≤X} c n · g(log n) = ∫_0^L g(y)·y dy + O(L²),   X = e^L.
 (Instances: c n = Λ(n)²/n — 'sumA2g_close' below, ζ; and c n = Λ(n)²/n·1_{(n,q)=1} — the
-Dirichlet-character version in Zeta23/ThmDE/, from [eq:cheb2a] for n coprime to q.) -/
+Dirichlet-character version in Zeta23/ThmDE/, from [eq:cheb2a] for n coprime to q.)
+@isnad1 id=le.9h5v.s8.5d7c80e424ae from=translated src=- shape=3be2a7c6 vocab=940634f4
+-/
 theorem abel_sum_close {c : ℕ → ℝ} {C₀ : ℝ} (hc0 : c 0 = 0) (hc1 : c 1 = 0)
     (hC₀ : ∀ t : ℝ, 2 ≤ t →
       |(∑ k ∈ Finset.Ioc 0 ⌊t⌋₊, c k) - Real.log t ^ 2 / 2| ≤ C₀ * Real.log t) :
@@ -334,7 +336,9 @@ theorem abel_sum_close {c : ℕ → ℝ} {C₀ : ℝ} (hc0 : c 0 = 0) (hc1 : c 1
 /-- **[thm:D proof], the partial-summation step** (replaces [eq:gbounds]+sandwich):
 for any C¹ weight g with |g'| ≤ 2 and g ≡ 0 on [L, ∞),
   Σ_{n≤X} Λ(n)²/n · g(log n) = ∫_0^L g(y)·y dy + O(L²),   X = e^L
-(from [eq:cheb2] by Abel summation). -/
+(from [eq:cheb2] by Abel summation).
+@isnad1 id=ex.1h0v.s8.794b1af352b5 from=translated src=- shape=5ec1f6d2 vocab=040e8829
+-/
 theorem sumA2g_close (hcheb : Zeta23.ChebyshevMertens) :
     ∃ C : ℝ, 0 < C ∧ ∀ (L X : ℝ) (g : ℝ → ℝ), 8 ≤ L → X = Real.exp L →
       Differentiable ℝ g → Continuous (deriv g) → (∀ y : ℝ, |deriv g y| ≤ 2) →

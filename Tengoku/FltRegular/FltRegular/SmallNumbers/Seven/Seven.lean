@@ -22,11 +22,15 @@ variable {K : Type*} [Field K] [NumberField K]
 local notation "M " K:70 => (4 / π) ^ nrComplexPlaces K *
   ((finrank ℚ K)! / (finrank ℚ K) ^ (finrank ℚ K) * √|discr K|)
 
-/-- The primality fact for `7`. -/
+/-- The primality fact for `7`.
+@isnad1 id=fact.0h0v.s2.15e87fe6585e from=translated src=- shape=8d7dbbf6 vocab=c1c9ca6d
+-/
 instance Nat.fact_prime_seven : Fact (Nat.Prime 7) :=
   ⟨prime_seven⟩
 
-/-- The explicit floor computation used in the Minkowski bound for the seventh cyclotomic field. -/
+/-- The explicit floor computation used in the Minkowski bound for the seventh cyclotomic field.
+@isnad1 id=eq.0h0v.s6.26539f3a2817 from=translated src=- shape=86fc15d4 vocab=60e1ded4
+-/
 lemma crazy7 : ⌊(4 / π) ^ 3 * (6! / 6 ^ 6 * √16807)⌋₊ = 4 := by
   refine (floor_eq_iff (by positivity)).mpr ⟨?_, ?_⟩
   · calc
@@ -44,7 +48,9 @@ lemma crazy7 : ⌊(4 / π) ^ 3 * (6! / 6 ^ 6 * √16807)⌋₊ = 4 := by
 
 variable [IsCyclotomicExtension {7} ℚ K]
 
-/-- The Minkowski bound for a seventh-cyclotomic number field is `4`. -/
+/-- The Minkowski bound for a seventh-cyclotomic number field is `4`.
+@isnad1 id=eq.0h1v.s7.5717f05be827 from=translated src=- shape=5ba4c64f vocab=8cee5292
+-/
 theorem M7 : ⌊(M K)⌋₊ = 4 := by
   rw [discr_prime 7 K, IsCyclotomicExtension.finrank (n := 7) K
     (irreducible_rat (by norm_num)), nrComplexPlaces_eq_totient_div_two 7, totient_prime
@@ -53,14 +59,18 @@ theorem M7 : ⌊(M K)⌋₊ = 4 := by
     reduceSub, neg_mul, one_mul, Int.cast_neg, Int.cast_ofNat, abs_neg, abs_ofNat]
   exact crazy7
 
-/-- The explicit seventh cyclotomic polynomial over `ℤ`. -/
+/-- The explicit seventh cyclotomic polynomial over `ℤ`.
+@isnad1 id=eq.0h0v.s8.9037d0867441 from=translated src=- shape=ad520b15 vocab=542087c8
+-/
 theorem cyclotomic_7 : cyclotomic 7 ℤ =
     X ^ 6 + X ^ 5 + X ^ 4 + X ^ 3 + X ^ 2 + X + 1 := by
   simp [cyclotomic_prime, sum_range_succ]
   ring
 
 variable (K) in
-/-- The ring of integers of a seventh-cyclotomic number field is a principal ideal domain. -/
+/-- The ring of integers of a seventh-cyclotomic number field is a principal ideal domain.
+@isnad1 id=isprinci.0h1v.s5.da43f05319de from=translated src=- shape=7f41e255 vocab=ea413f24
+-/
 theorem Rat.seven_pid : IsPrincipalIdealRing (𝓞 K) := by
   apply IsCyclotomicExtension.Rat.pid6 7
   rw [M7, cyclotomic_7]

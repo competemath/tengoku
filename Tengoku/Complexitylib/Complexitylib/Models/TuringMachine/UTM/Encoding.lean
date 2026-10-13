@@ -63,7 +63,9 @@ noncomputable def stateEquivOfCardEq (tm : TM n) (hk : k = @Fintype.card tm.Q tm
     tm.Q ≃ Fin k :=
   hk ▸ tm.stateEquiv
 
-/-- `stateEquivOfCardEq` agrees with `stateEquiv` on values. -/
+/-- `stateEquivOfCardEq` agrees with `stateEquiv` on values.
+@isnad1 id=eq.1h4v.s7.e2f692aabefe from=translated src=- shape=dfa2d33c vocab=ef9e9bc0
+-/
 theorem stateEquivOfCardEq_val (tm : TM n) (hk : k = @Fintype.card tm.Q tm.finQ)
     (q : tm.Q) : (tm.stateEquivOfCardEq hk q).val = (tm.stateEquiv q).val := by
   subst hk; rfl
@@ -88,7 +90,9 @@ noncomputable def normalizeCfg (tm : TM n) (c : Cfg n tm.Q) : Cfg n (tm.normaliz
   work := c.work
   output := c.output
 
-/-- Stepping the normalized TM commutes with the state equivalence. -/
+/-- Stepping the normalized TM commutes with the state equivalence.
+@isnad1 id=eq.0h3v.s5.73fd0b5b6255 from=translated src=- shape=16a0d59d vocab=f00b95a8
+-/
 theorem normalize_step_comm (tm : TM n) (c : Cfg n tm.Q) :
     tm.normalize.step (tm.normalizeCfg c) =
       (tm.step c).map tm.normalizeCfg := by
@@ -100,7 +104,9 @@ theorem normalize_step_comm (tm : TM n) (c : Cfg n tm.Q) :
     simp only [h, hne, ↓reduceIte, Option.map, Equiv.symm_apply_apply, normalizeCfg]
     rfl
 
-/-- Multi-step simulation: normalized TM mirrors original TM. -/
+/-- Multi-step simulation: normalized TM mirrors original TM.
+@isnad1 id=reachesi.1h5v.s5.d4b39fe35ea6 from=translated src=- shape=c1da0f54 vocab=84647cb4
+-/
 theorem normalize_reachesIn (tm : TM n) {t : ℕ} {c c' : Cfg n tm.Q}
     (h : tm.reachesIn t c c') :
     tm.normalize.reachesIn t (tm.normalizeCfg c) (tm.normalizeCfg c') := by
@@ -109,7 +115,9 @@ theorem normalize_reachesIn (tm : TM n) {t : ℕ} {c c' : Cfg n tm.Q}
   | step hstep _ ih =>
     exact .step (by rw [normalize_step_comm, hstep]; rfl) ih
 
-/-- Halting is preserved by normalization. -/
+/-- Halting is preserved by normalization.
+@isnad1 id=iff.0h3v.s4.550d362e047d from=translated src=- shape=8abdc172 vocab=6c38c195
+-/
 theorem normalize_halted (tm : TM n) (c : Cfg n tm.Q) :
     tm.normalize.halted (tm.normalizeCfg c) ↔ tm.halted c := by
   simp only [halted, Cfg.isHalted, normalizeCfg, normalize, stateEquiv]
@@ -117,16 +125,22 @@ theorem normalize_halted (tm : TM n) (c : Cfg n tm.Q) :
   · intro h; exact tm.stateEquiv.injective h
   · intro h; rw [h]
 
-/-- Output is preserved by normalization. -/
+/-- Output is preserved by normalization.
+@isnad1 id=eq.0h3v.s4.703d116914f9 from=translated src=- shape=ab0504fd vocab=e1c5ece1
+-/
 theorem normalize_output (tm : TM n) (c : Cfg n tm.Q) :
     (tm.normalizeCfg c).output = c.output := rfl
 
-/-- The initial config normalizes correctly. -/
+/-- The initial config normalizes correctly.
+@isnad1 id=eq.0h3v.s4.9dfc1bffb215 from=translated src=- shape=25b3ae7c vocab=2875dc1b
+-/
 theorem normalize_initCfg (tm : TM n) (x : List Bool) :
     tm.normalizeCfg (tm.initCfg x) = tm.normalize.initCfg x := by
   simp [normalizeCfg, initCfg, Cfg.init, normalize]
 
-/-- Normalized TM decides the same language in the same time. -/
+/-- Normalized TM decides the same language in the same time.
+@isnad1 id=decidesi.1h4v.s4.d504cc97aee7 from=translated src=- shape=d2c3bb42 vocab=e0cbf32e
+-/
 theorem normalize_decidesInTime (tm : TM n) {L : Language} {T : ℕ → ℕ}
     (h : tm.DecidesInTime L T) :
     tm.normalize.DecidesInTime L T := by
@@ -171,15 +185,28 @@ def Dir3.encode : Dir3 → List Bool
   | .right => [false, true]
   | .stay  => [true, false]
 
+/--
+@isnad1 id=eq.0h1v.s3.2e15ad2bb373 from=translated src=- shape=8e1bdd70 vocab=45ad306d
+-/
 theorem Γ.length_encode (g : Γ) : g.encode.length = 2 := by cases g <;> rfl
+/--
+@isnad1 id=eq.0h1v.s3.f7328e6b4aff from=translated src=- shape=8e1bdd70 vocab=40ee1818
+-/
 theorem Γw.length_encode (g : Γw) : g.encode.length = 2 := by cases g <;> rfl
+/--
+@isnad1 id=eq.0h1v.s3.c6b3d3c75a97 from=translated src=- shape=8e1bdd70 vocab=560ca2e0
+-/
 theorem Dir3.length_encode (d : Dir3) : d.encode.length = 2 := by cases d <;> rfl
 
-/-- Roundtrip: decode ∘ encode = some. -/
+/-- Roundtrip: decode ∘ encode = some.
+@isnad1 id=eq.0h1v.s3.2f20c7620a64 from=translated src=- shape=edb93955 vocab=8e104e40
+-/
 theorem Γ.decode_encode (g : Γ) : Γ.decode (Γ.encode g) = some g := by
   cases g <;> rfl
 
-/-- Γ encoding is injective. -/
+/-- Γ encoding is injective.
+@isnad1 id=injectiv.0h0v.s2.068ba7d80594 from=translated src=- shape=4b736592 vocab=1bfbee0f
+-/
 theorem Γ.encode_injective : Function.Injective Γ.encode := by
   intro a b h; cases a <;> cases b <;> simp_all [Γ.encode]
 
@@ -199,40 +226,58 @@ def Dir3.decode : List Bool → Option Dir3
   | [true, false]  => some .stay
   | _              => none
 
-/-- Roundtrip for write symbols: `decode ∘ encode = some`. -/
+/-- Roundtrip for write symbols: `decode ∘ encode = some`.
+@isnad1 id=eq.0h1v.s3.98733fda3c81 from=translated src=- shape=edb93955 vocab=fd373fa9
+-/
 theorem Γw.decode_encode (g : Γw) : Γw.decode (Γw.encode g) = some g := by
   cases g <;> rfl
 
-/-- Roundtrip for directions: `decode ∘ encode = some`. -/
+/-- Roundtrip for directions: `decode ∘ encode = some`.
+@isnad1 id=eq.0h1v.s3.c0479def8a64 from=translated src=- shape=edb93955 vocab=88cfce12
+-/
 theorem Dir3.decode_encode (d : Dir3) : Dir3.decode (Dir3.encode d) = some d := by
   cases d <;> rfl
 
-/-- Γw encoding is injective. -/
+/-- Γw encoding is injective.
+@isnad1 id=injectiv.0h0v.s2.ec1fbd1a2317 from=translated src=- shape=4b736592 vocab=9be60f57
+-/
 theorem Γw.encode_injective : Function.Injective Γw.encode := by
   intro a b h; cases a <;> cases b <;> simp_all [Γw.encode]
 
-/-- Dir3 encoding is injective. -/
+/-- Dir3 encoding is injective.
+@isnad1 id=injectiv.0h0v.s2.6edaff5c3416 from=translated src=- shape=4b736592 vocab=7072c7db
+-/
 theorem Dir3.encode_injective : Function.Injective Dir3.encode := by
   intro a b h; cases a <;> cases b <;> simp_all [Dir3.encode]
 
-/-- The unused two-bit pattern is rejected as malformed (write symbols). -/
+/-- The unused two-bit pattern is rejected as malformed (write symbols).
+@isnad1 id=eq.0h0v.s3.97497ec8e498 from=translated src=- shape=6b1298eb vocab=35353d18
+-/
 theorem Γw.decode_true_true : Γw.decode [true, true] = none := rfl
 
-/-- The unused two-bit pattern is rejected as malformed (directions). -/
+/-- The unused two-bit pattern is rejected as malformed (directions).
+@isnad1 id=eq.0h0v.s3.cc02dd4f12bd from=translated src=- shape=6b1298eb vocab=3168a922
+-/
 theorem Dir3.decode_true_true : Dir3.decode [true, true] = none := rfl
 
 /-- All 4 tape symbols in canonical order. -/
 def allΓ : List Γ := [.zero, .one, .blank, .start]
 
-/-- Every tape symbol appears in `allΓ`. -/
+/-- Every tape symbol appears in `allΓ`.
+@isnad1 id=mem.0h1v.s3.09c182115c27 from=translated src=- shape=dc4ac6e8 vocab=60eab3a0
+-/
 theorem mem_allΓ (g : Γ) : g ∈ allΓ := by
   cases g <;> simp [allΓ]
 
-/-- `allΓ` contains no duplicates. -/
+/-- `allΓ` contains no duplicates.
+@isnad1 id=nodup.0h0v.s1.0348029a9981 from=translated src=- shape=25b03439 vocab=9597cf16
+-/
 theorem nodup_allΓ : allΓ.Nodup := by
   simp [allΓ, List.Nodup]
 
-/-- `allΓ` has exactly 4 elements (one per `Γ` constructor). -/
+/-- `allΓ` has exactly 4 elements (one per `Γ` constructor).
+@isnad1 id=eq.0h0v.s3.93fc9e275467 from=translated src=- shape=b3c4969c vocab=449cb429
+-/
 theorem length_allΓ : allΓ.length = 4 := rfl
 
 /-- Enumerate all functions `Fin n → Γ` in canonical (lexicographic) order. -/
@@ -243,7 +288,9 @@ def allΓFuncs : (n : ℕ) → List (Fin n → Γ)
         fun i : Fin (n + 1) =>
           if h : i.val < n then f ⟨i.val, h⟩ else g
 
-/-- Every function `Fin n → Γ` appears in `allΓFuncs n`. -/
+/-- Every function `Fin n → Γ` appears in `allΓFuncs n`.
+@isnad1 id=mem.0h2v.s4.5cb26da7badd from=translated src=- shape=be983f23 vocab=1fbd941b
+-/
 theorem mem_allΓFuncs : ∀ (n : ℕ) (f : Fin n → Γ), f ∈ allΓFuncs n
   | 0, f => by
     simp only [allΓFuncs, List.mem_singleton]

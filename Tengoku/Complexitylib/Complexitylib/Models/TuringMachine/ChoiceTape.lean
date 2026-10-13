@@ -48,7 +48,9 @@ def stepCfg (tm : TM k) (c : Cfg k tm.Q) : Cfg k tm.Q :=
     work := fun i => (c.work i).writeAndMove (workWrites i) (workDirs i)
     output := c.output.writeAndMove outWrite outDir }
 
-/-- A non-halted configuration steps to `stepCfg`. -/
+/-- A non-halted configuration steps to `stepCfg`.
+@isnad1 id=eq.1h3v.s5.771db6a0c2d2 from=translated src=- shape=5583ab75 vocab=ebfefd22
+-/
 theorem step_of_not_halted (tm : TM k) {c : Cfg k tm.Q} (h : c.state ≠ tm.qhalt) :
     tm.step c = some (tm.stepCfg c) := by
   unfold TM.step
@@ -97,7 +99,9 @@ def stepCfg (tm : NTM k) (b : Bool) (c : Cfg k tm.Q) : Cfg k tm.Q :=
     work := fun i => (c.work i).writeAndMove (workWrites i) (workDirs i)
     output := c.output.writeAndMove outWrite outDir }
 
-/-- Unfolding one non-halted step of `trace`. -/
+/-- Unfolding one non-halted step of `trace`.
+@isnad1 id=eq.1h5v.s7.ca39fb893197 from=translated src=- shape=d1227919 vocab=f7b8b409
+-/
 theorem trace_succ_of_not_halted (tm : NTM k) (T : ℕ) (choices : Fin (T + 1) → Bool)
     {c : Cfg k tm.Q} (h : c.state ≠ tm.qhalt) :
     tm.trace (T + 1) choices c =
@@ -118,7 +122,9 @@ def choiceStream {Q : Type} (c : Cfg (k + 1) Q) (j : ℕ) : Bool :=
   decide ((c.work (Fin.last k)).cells ((c.work (Fin.last k)).head + j) = Γ.one)
 
 /-- **One step of `choiceTM` is one step of the chosen path.** The choice tape
-is written back unchanged and its head advances one cell. -/
+is written back unchanged and its head advances one cell.
+@isnad1 id=ex.2h3v.s8.4ad6037f6944 from=translated src=- shape=9c8f1878 vocab=e4a8db5a
+-/
 theorem choiceTM_step (tm : NTM k) (c : Cfg (k + 1) tm.Q) (hhalt : c.state ≠ tm.qhalt)
     (hread : (c.work (Fin.last k)).read ≠ Γ.start) :
     ∃ c₁, (choiceTM tm).step c = some c₁ ∧
@@ -134,7 +140,9 @@ theorem choiceTM_step (tm : NTM k) (c : Cfg (k + 1) tm.Q) (hhalt : c.state ≠ t
 /-- **A `T`-step run of `choiceTM` is the `T`-step trace of `tm` along the
 choice bits on the tape.** The run stops early exactly when the path halts;
 the choice tape is left untouched apart from its head, which advances one cell
-per step. -/
+per step.
+@isnad1 id=ex.2h4v.s7.9a0566b5ee13 from=translated src=- shape=a2744ce6 vocab=aa1f99fe
+-/
 theorem choiceTM_simulates (tm : NTM k) (T : ℕ) (c : Cfg (k + 1) tm.Q)
     (hinv : (c.work (Fin.last k)).StartInvariant)
     (hhead : 1 ≤ (c.work (Fin.last k)).head) :

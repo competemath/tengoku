@@ -52,14 +52,18 @@ cleared and the source is rewound to cell one. -/
 def validEmitterPre (z : List Bool) : TapePred workTapeCount :=
   TM.EmitPred ⟨1, (Tape.init (z.map Γ.ofBool)).cells⟩ (frontEndWork z) []
 
-/-- The scanned source input is parked. -/
+/-- The scanned source input is parked.
+@isnad1 id=parked.0h1v.s2.f2f4444f983a from=translated src=- shape=94c7f951 vocab=ff8a8d2d
+-/
 theorem validatedInputTape_parked (z : List Bool) :
     TM.Parked (validatedInputTape z) := by
   refine ⟨by simp [validatedInputTape], ?_⟩
   intro j hj
   exact (TM.parked_init_input z).2 j hj
 
-/-- Every initialized work register retains the left-end marker at cell zero. -/
+/-- Every initialized work register retains the left-end marker at cell zero.
+@isnad1 id=eq.0h2v.s4.e77f9fbd5617 from=translated src=- shape=54e973eb vocab=90ca5930
+-/
 theorem frontEndWork_cell_zero (z : List Bool) (i : Fin workTapeCount) :
     (frontEndWork z i).cells 0 = Γ.start := by
   by_cases hi : i = freshReg
@@ -70,7 +74,9 @@ theorem frontEndWork_cell_zero (z : List Bool) (i : Fin workTapeCount) :
     exact (TM.reg_regT 0).cell0
 
 /-- The framed front-end postcondition supplies the tape well-formedness
-premise required by `ifTM`. -/
+premise required by `ifTM`.
+@isnad1 id=alltapes.0h5v.s4.c16c0a41a868 from=translated src=- shape=eea23a0d vocab=6ef53628
+-/
 theorem validationFramedPost_allTapesWF_internal (z : List Bool)
     {inp out : Tape} {work : Fin workTapeCount → Tape}
     (h : validationFramedPost z (frontEndWork z) inp work out) :
@@ -98,7 +104,9 @@ theorem validationFramedPost_allTapesWF_internal (z : List Bool)
       decide
 
 /-- The standard `ifTM` phase transition turns the framed validation result
-into the common branch frame. -/
+into the common branch frame.
+@isnad1 id=validati.0h5v.s5.884862fbe1e8 from=translated src=- shape=439d9af8 vocab=577dd64f
+-/
 theorem validationFramedPost_to_branchPre_internal (z : List Bool)
     {inp out : Tape} {work : Fin workTapeCount → Tape}
     (h : validationFramedPost z (frontEndWork z) inp work out) :

@@ -37,12 +37,16 @@ def Lit.word (ℓ : Lit) : List Bool :=
   [ℓ.sign, ℓ.sign] ++ List.replicate (2 * ℓ.var) true ++ [false, true]
 
 /-- Prepending a literal to a clause prepends its encoded word (`Lit.word`)
-    to the clause encoding. -/
+    to the clause encoding.
+@isnad1 id=eq.0h2v.s4.475f51fab876 from=translated src=- shape=fe29e7b4 vocab=132aa8f8
+-/
 theorem Clause.encode_cons_word (ℓ : Lit) (ℓs : Clause) :
     Clause.encode (ℓ :: ℓs) = ℓ.word ++ Clause.encode ℓs :=
   Clause.encode_cons' ℓ ℓs
 
-/-- A mapped clause encodes as the concatenation of its literal words. -/
+/-- A mapped clause encodes as the concatenation of its literal words.
+@isnad1 id=eq.0h3v.s4.507a09877021 from=translated src=- shape=c19a7db7 vocab=e3403bad
+-/
 theorem Clause.encode_map {α : Type _} (g : α → Lit) (l : List α) :
     Clause.encode (l.map g) = l.flatMap (fun a => (g a).word) := by
   induction l with
@@ -50,7 +54,9 @@ theorem Clause.encode_map {α : Type _} (g : α → Lit) (l : List α) :
   | cons a l ih =>
     rw [List.map_cons, Clause.encode_cons_word, ih, List.flatMap_cons]
 
-/-- A mapped CNF encodes as the concatenation of its clause words. -/
+/-- A mapped CNF encodes as the concatenation of its clause words.
+@isnad1 id=eq.0h3v.s5.8c7dc1b5070f from=translated src=- shape=bab8cd77 vocab=6683fbc3
+-/
 theorem CNF.encode_map {α : Type _} (g : α → Clause) (l : List α) :
     CNF.encode (l.map g)
       = l.flatMap (fun a => Clause.encode (g a) ++ [true, false]) := by
@@ -96,7 +102,9 @@ def LitDesc.Spec (work₀ : Fin n → Tape) (tmp tmp2 : Fin n) (M A B C D : ℕ)
     desc.tag ≤ M ∧ desc.tag * A + a ≤ M ∧ (desc.tag * A + a) * B + b ≤ M ∧
     ((desc.tag * A + a) * B + b) * C + c ≤ M ∧ ℓ.var ≤ M
 
-/-- Denoted variables are capped. -/
+/-- Denoted variables are capped.
+@isnad1 id=le.1h11v.s5.22fd483bed90 from=translated src=- shape=8204a053 vocab=e6adecf3
+-/
 theorem LitDesc.Spec.var_le {work₀ : Fin n → Tape} {tmp tmp2 : Fin n}
     {M A B C D : ℕ} {desc : LitDesc n} {ℓ : Lit}
     (h : desc.Spec work₀ tmp tmp2 M A B C D ℓ) : ℓ.var ≤ M := by
@@ -108,7 +116,9 @@ section Context
 variable (rA rB rC rD tmp tmp2 : Fin n)
 
 /-- **Per-descriptor emission.** A denoting descriptor's machine appends the
-    literal's encoded word, moving the scratches to the literal's variable. -/
+    literal's encoded word, moving the scratches to the literal's variable.
+@isnad1 id=hoaretim.21h18v.s7.63b1f5cdc14c from=translated src=- shape=33252e25 vocab=abace326
+-/
 theorem LitDesc.Spec.emit
     (hAt : rA ≠ tmp) (hAt2 : rA ≠ tmp2) (hBt : rB ≠ tmp) (hBt2 : rB ≠ tmp2)
     (hCt : rC ≠ tmp) (hCt2 : rC ≠ tmp2) (hDt : rD ≠ tmp) (hDt2 : rD ≠ tmp2)
@@ -138,7 +148,9 @@ theorem LitDesc.Spec.emit
 
 /-- **Chained literal emission.** A descriptor list denoting the clause `cl`
     appends `Clause.encode cl`, scratches ending at the last variable
-    (or staying at `z` for the empty clause). -/
+    (or staying at `z` for the empty clause).
+@isnad1 id=hoaretim.21h18v.s8.1e814959192c from=translated src=- shape=40078722 vocab=f6fbac05
+-/
 theorem emitLits_hoareTime
     (hAt : rA ≠ tmp) (hAt2 : rA ≠ tmp2) (hBt : rB ≠ tmp) (hBt2 : rB ≠ tmp2)
     (hCt : rC ≠ tmp) (hCt2 : rC ≠ tmp2) (hDt : rD ≠ tmp) (hDt2 : rD ≠ tmp2)
@@ -187,7 +199,9 @@ theorem emitLits_hoareTime
       simp only [List.length_cons] at hmul ⊢
       omega
 
-/-- Denoted clause variables are capped, hence so is the scratch fold. -/
+/-- Denoted clause variables are capped, hence so is the scratch fold.
+@isnad1 id=le.2h12v.s6.222739a2b804 from=translated src=- shape=e7217094 vocab=63c3427d
+-/
 theorem foldl_var_le {work₀ : Fin n → Tape} {tmp tmp2 : Fin n}
     {M A B C D : ℕ} :
     ∀ {descs : List (LitDesc n)} {cl : Clause},
@@ -216,7 +230,9 @@ def clauseBudget (L M : ℕ) : ℕ :=
   L * (emitVarBudget M + 1) + 2 * opBudget M + 6
 
 /-- **`emitClauseTM` Hoare specification**: appends
-    `Clause.encode cl ++ [true, false]`, scratches `0` to `0`. -/
+    `Clause.encode cl ++ [true, false]`, scratches `0` to `0`.
+@isnad1 id=hoaretim.21h18v.s8.815391d82478 from=translated src=- shape=066fb862 vocab=eacedf3e
+-/
 theorem emitClauseTM_hoareTime
     (hAt : rA ≠ tmp) (hAt2 : rA ≠ tmp2) (hBt : rB ≠ tmp) (hBt2 : rB ≠ tmp2)
     (hCt : rC ≠ tmp) (hCt2 : rC ≠ tmp2) (hDt : rD ≠ tmp) (hDt2 : rD ≠ tmp2)
@@ -275,7 +291,9 @@ def emitCNFTM (clss : List (List (LitDesc n))) : TM n :=
 def cnfBudget (K L M : ℕ) : ℕ := K * (clauseBudget L M + 1) + 1
 
 /-- **`emitCNFTM` Hoare specification**: appends `CNF.encode φ`, scratches
-    `0` to `0`. -/
+    `0` to `0`.
+@isnad1 id=hoaretim.21h18v.s8.20912ed3f94d from=translated src=- shape=ebe4d2de vocab=308d7183
+-/
 theorem emitCNFTM_hoareTime
     (hAt : rA ≠ tmp) (hAt2 : rA ≠ tmp2) (hBt : rB ≠ tmp) (hBt2 : rB ≠ tmp2)
     (hCt : rC ≠ tmp) (hCt2 : rC ≠ tmp2) (hDt : rD ≠ tmp) (hDt2 : rD ≠ tmp2)

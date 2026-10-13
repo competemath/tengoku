@@ -48,7 +48,9 @@ def HasWeakDiv (g : E → ℝ) (F : E → E) (Ω : Set E) : Prop :=
       -∫ x in Ω, g x * φ x
 
 omit [NeZero d] in
-/-- Classical `C¹` derivatives give weak derivatives on open sets. -/
+/-- Classical `C¹` derivatives give weak derivatives on open sets.
+@isnad1 id=hasweakp.2h4v.s9.56425116b79a from=translated src=- shape=2f7a6db4 vocab=21212073
+-/
 theorem HasWeakPartialDeriv.of_contDiff {Ω : Set E} (hΩ : IsOpen Ω)
     {i : Fin d} {f : E → ℝ} (hf : ContDiff ℝ 1 f) :
     HasWeakPartialDeriv i (fun x => (fderiv ℝ f x) (EuclideanSpace.single i 1)) f Ω := by
@@ -90,6 +92,9 @@ theorem HasWeakPartialDeriv.of_contDiff {Ω : Set E} (hΩ : IsOpen Ω)
     exact this (subset_tsupport _ (mem_support.mpr hf'))
 
 omit [NeZero d] in
+/--
+@isnad1 id=hasweakp.3h6v.s6.fbf0cfdeb445 from=translated src=- shape=71420563 vocab=181f9a9d
+-/
 theorem HasWeakPartialDeriv.restrict {Ω Ω' : Set E}
     (hΩ' : IsOpen Ω') (h_sub : Ω' ⊆ Ω)
     {i : Fin d} {g f : E → ℝ}

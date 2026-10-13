@@ -23,12 +23,24 @@ noncomputable section
 
 namespace Zeta23
 
+/--
+@isnad1 id=eq.0h1v.s4.dfe02a76fcab from=translated src=- shape=4241f1af vocab=87dd8a4d
+-/
 @[simp] lemma reflect_re (ρ : ℂ) : (reflect ρ).re = 1 - ρ.re := by simp [reflect]
+/--
+@isnad1 id=eq.0h1v.s3.73b60e362492 from=translated src=- shape=8d4cac31 vocab=87726b18
+-/
 @[simp] lemma reflect_im (ρ : ℂ) : (reflect ρ).im = ρ.im := by simp [reflect]
 
+/--
+@isnad1 id=eq.0h1v.s3.abe5d2c93f47 from=translated src=- shape=47dcad53 vocab=949ebd35
+-/
 @[simp] lemma reflect_reflect (ρ : ℂ) : reflect (reflect ρ) = ρ := by
   simp [reflect]
 
+/--
+@isnad1 id=injectiv.0h0v.s2.e1dc36ba5217 from=translated src=- shape=e3d48bcb vocab=7f2e246a
+-/
 lemma reflect_injective : Function.Injective reflect :=
   Function.LeftInverse.injective reflect_reflect
 
@@ -36,10 +48,15 @@ namespace ZeroConfig
 
 variable (Z : ZeroConfig) (T₁ T₂ : ℝ)
 
+/--
+@isnad1 id=mem.1h4v.s5.f3e5329b281c from=translated src=- shape=a03cb42a vocab=0746a283
+-/
 lemma reflect_mem_window {ρ : ℂ} (h : ρ ∈ Z.window T₁ T₂) : reflect ρ ∈ Z.window T₁ T₂ :=
   ⟨Z.reflect_mem ρ h.1, by simpa [reflect_im] using h.2⟩
 
-/-- **Reflection halving.** N(T₁,T₂) ≤ 2 · Σ_{ρ ∈ window, Re ρ ≥ 1/2} m_ρ (as reals). -/
+/-- **Reflection halving.** N(T₁,T₂) ≤ 2 · Σ_{ρ ∈ window, Re ρ ≥ 1/2} m_ρ (as reals).
+@isnad1 id=le.0h3v.s7.1355899e4b8c from=translated src=- shape=e525ad2a vocab=db44a289
+-/
 theorem N_le_two_mul_half :
     (Z.N T₁ T₂ : ℝ) ≤ 2 * ∑ᶠ ρ ∈ Z.window T₁ T₂ ∩ {ρ | 1 / 2 ≤ ρ.re}, (Z.mult ρ : ℝ) := by
   have hW : (Z.window T₁ T₂).Finite := Z.window_finite T₁ T₂

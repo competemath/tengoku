@@ -91,29 +91,39 @@ def retargetWrap (M : TM k) (realInput : Tape) (c : Cfg k M.Q) :
     else c.input
   output := c.output
 
-/-- The state of a wrapped configuration is the state of the wrapped `M`-configuration. -/
+/-- The state of a wrapped configuration is the state of the wrapped `M`-configuration.
+@isnad1 id=eq.0h4v.s6.de4aeae7a123 from=translated src=- shape=13ef62b8 vocab=3de778d6
+-/
 @[simp] theorem retargetWrap_state (M : TM k) (realInput : Tape) (c : Cfg k M.Q) :
     (retargetWrap M realInput c).state = c.state := rfl
 
 /-- The output tape of a wrapped configuration is the output tape of the
-    wrapped `M`-configuration. -/
+    wrapped `M`-configuration.
+@isnad1 id=eq.0h4v.s5.aa52a5e6cf3d from=translated src=- shape=cbd65dd0 vocab=09be75ea
+-/
 @[simp] theorem retargetWrap_output (M : TM k) (realInput : Tape) (c : Cfg k M.Q) :
     (retargetWrap M realInput c).output = c.output := rfl
 
 /-- The (ignored) real input tape of a wrapped configuration is exactly the
-    supplied `realInput`. -/
+    supplied `realInput`.
+@isnad1 id=eq.0h4v.s5.f60e349123e7 from=translated src=- shape=55ec9332 vocab=0cb3d92e
+-/
 @[simp] theorem retargetWrap_input (M : TM k) (realInput : Tape) (c : Cfg k M.Q) :
     (retargetWrap M realInput c).input = realInput := rfl
 
 /-- For an index `i < k`, work tape `i` of a wrapped configuration is work
-    tape `i` of the wrapped `M`-configuration. -/
+    tape `i` of the wrapped `M`-configuration.
+@isnad1 id=eq.1h5v.s6.140facaeeb1d from=translated src=- shape=a54b98cf vocab=5952e7b2
+-/
 theorem retargetWrap_work_lt (M : TM k) (realInput : Tape) (c : Cfg k M.Q)
     (i : Fin (k + 1)) (h : i.val < k) :
     (retargetWrap M realInput c).work i = c.work ⟨i.val, h⟩ := by
   simp [retargetWrap, h]
 
 /-- The last work tape (index `k`) of a wrapped configuration holds the
-    wrapped `M`-configuration's input tape — the virtual input. -/
+    wrapped `M`-configuration's input tape — the virtual input.
+@isnad1 id=eq.0h4v.s6.78c8d76ab912 from=translated src=- shape=daa67bb5 vocab=641d9c54
+-/
 theorem retargetWrap_work_last (M : TM k) (realInput : Tape) (c : Cfg k M.Q) :
     (retargetWrap M realInput c).work ⟨k, by omega⟩ = c.input := by
   simp [retargetWrap]
@@ -133,7 +143,9 @@ private theorem tape_writeBack_eq_move (t : Tape) (d : Dir3)
 
 /-- One step of `M` corresponds to one step of `retargetInput M` through
     `retargetWrap`. The real-input tape drifts by `move (idleDir · )`.
-    Requires the structural invariant on `c.input` (cells ≥ 1 ≠ start). -/
+    Requires the structural invariant on `c.input` (cells ≥ 1 ≠ start).
+@isnad1 id=eq.2h5v.s7.11f2f959eb45 from=translated src=- shape=76b620c3 vocab=3bef2ba9
+-/
 theorem retargetInput_step_commute (M : TM k) {c c' : Cfg k M.Q}
     (hstep : M.step c = some c') (realInput : Tape)
     (hinp : Tape.StartInvariant c.input) :
@@ -200,7 +212,9 @@ theorem retargetInput_step_commute (M : TM k) {c c' : Cfg k M.Q}
 
 /-- Multi-step version: if `M` reaches `c'` in `t` steps, then
     `retargetInput M` reaches *some* config (differing from `retargetWrap`
-    only in the real-input tape drift) in the same `t` steps. -/
+    only in the real-input tape drift) in the same `t` steps.
+@isnad1 id=ex.4h6v.s6.2d012debcd87 from=translated src=- shape=89ea5186 vocab=ebc147ef
+-/
 theorem retargetInput_reachesIn_of_reachesIn (M : TM k)
     {c c' : Cfg k M.Q} {t : ℕ} (hreach : M.reachesIn t c c')
     (hinp : Tape.StartInvariant c.input) (hwork : ∀ i, Tape.StartInvariant (c.work i))
@@ -236,7 +250,9 @@ def retargetInitCfg (M : TM k) (z : List Bool) (realInput : Tape) :
   output := Tape.init []
 
 /-- `retargetInitCfg M z realInput` is exactly the `retargetWrap` of `M`'s
-    ordinary initial configuration on input `z`. -/
+    ordinary initial configuration on input `z`.
+@isnad1 id=eq.0h4v.s5.eb8de861ee37 from=translated src=- shape=82d410aa vocab=7d243384
+-/
 theorem retargetInitCfg_eq_retargetWrap (M : TM k) (z : List Bool) (realInput : Tape) :
     retargetInitCfg M z realInput = retargetWrap M realInput (M.initCfg z) := by
   simp only [retargetInitCfg, retargetWrap]
@@ -249,7 +265,9 @@ theorem retargetInitCfg_eq_retargetWrap (M : TM k) (z : List Bool) (realInput : 
 /-- **User-facing simulation**: if `M` decides `L` in time `T`, then
     `retargetInput M` started with `z` on work tape `k` reaches a halted
     configuration within `T(|z|)` steps whose output cell 1 indicates
-    membership of `z` in `L`. -/
+    membership of `z` in `L`.
+@isnad1 id=ex.1h6v.s7.62ab9c776a0b from=translated src=- shape=5ffadf7f vocab=8d3b5142
+-/
 theorem retargetInput_reachesIn_halted_of_decidesInTime (M : TM k) {L : Language} {T : ℕ → ℕ}
     (hM : M.DecidesInTime L T) (z : List Bool) (realInput : Tape) :
     ∃ c' t, t ≤ T z.length ∧
@@ -279,7 +297,9 @@ theorem retargetInput_reachesIn_halted_of_decidesInTime (M : TM k) {L : Language
     exact hno hz
 
 /-- A verifier that decides a language cannot have `qstart = qhalt`, because
-    the initial output cell is blank, not an accepting or rejecting bit. -/
+    the initial output cell is blank, not an accepting or rejecting bit.
+@isnad1 id=ne.1h4v.s4.b42c5587be4c from=translated src=- shape=8e02ab8a vocab=36772c70
+-/
 theorem qstart_ne_qhalt_of_decidesInTime (M : TM k) {L : Language} {T : ℕ → ℕ}
     (hM : M.DecidesInTime L T) : M.qstart ≠ M.qhalt := by
   intro hstart
@@ -307,7 +327,9 @@ noncomputable def startedCfg (M : TM k) (z : List Bool) (hne : M.qstart ≠ M.qh
     simp [TM.step, hne])
 
 /-- `startedCfg` is the result of one deterministic verifier step from
-    `M.initCfg z`. -/
+    `M.initCfg z`.
+@isnad1 id=eq.1h3v.s5.4420701dd88e from=translated src=- shape=03be02de vocab=96a3c74c
+-/
 theorem step_initCfg_startedCfg (M : TM k) (z : List Bool)
     (hne : M.qstart ≠ M.qhalt) :
     M.step (M.initCfg z) = some (startedCfg M z hne) := by
@@ -315,14 +337,18 @@ theorem step_initCfg_startedCfg (M : TM k) (z : List Bool)
 
 /-- The verifier state immediately after the forced first move off `▷` is
     independent of the concrete input string: the first step reads only the
-    start symbols on every tape. -/
+    start symbols on every tape.
+@isnad1 id=eq.1h4v.s5.204433481bdd from=translated src=- shape=41d1f521 vocab=aa3f4314
+-/
 theorem startedCfg_state_eq (M : TM k) (z₁ z₂ : List Bool)
     (hne : M.qstart ≠ M.qhalt) :
     (startedCfg M z₁ hne).state = (startedCfg M z₂ hne).state := by
   simp [startedCfg, TM.step, hne, Tape.read, Tape.init]
 
 /-- The verifier work tapes immediately after the forced first move off `▷`
-    are independent of the concrete input string. -/
+    are independent of the concrete input string.
+@isnad1 id=eq.1h4v.s5.4bbf86e100ab from=translated src=- shape=4d58e46f vocab=946ec2d8
+-/
 theorem startedCfg_work_eq (M : TM k) (z₁ z₂ : List Bool)
     (hne : M.qstart ≠ M.qhalt) :
     (startedCfg M z₁ hne).work = (startedCfg M z₂ hne).work := by
@@ -330,14 +356,18 @@ theorem startedCfg_work_eq (M : TM k) (z₁ z₂ : List Bool)
   simp [startedCfg, TM.step, hne, Tape.read, Tape.init]
 
 /-- The verifier output tape immediately after the forced first move off `▷`
-    is independent of the concrete input string. -/
+    is independent of the concrete input string.
+@isnad1 id=eq.1h4v.s5.9bdca4eb70cf from=translated src=- shape=505b790b vocab=708c70a1
+-/
 theorem startedCfg_output_eq (M : TM k) (z₁ z₂ : List Bool)
     (hne : M.qstart ≠ M.qhalt) :
     (startedCfg M z₁ hne).output = (startedCfg M z₂ hne).output := by
   simp [startedCfg, TM.step, hne, Tape.read, Tape.init]
 
 /-- The verifier input tape immediately after the forced first move off `▷`
-    is the ordinary initialized input moved right to cell 1. -/
+    is the ordinary initialized input moved right to cell 1.
+@isnad1 id=eq.1h3v.s5.3c3e652bbf8d from=translated src=- shape=772bf4e2 vocab=090b3360
+-/
 theorem startedCfg_input_eq (M : TM k) (z : List Bool)
     (hne : M.qstart ≠ M.qhalt) :
     (startedCfg M z hne).input = (Tape.init (z.map Γ.ofBool)).move Dir3.right := by
@@ -351,7 +381,9 @@ theorem startedCfg_input_eq (M : TM k) (z : List Bool)
   rw [hinDir]
 
 /-- Each verifier work tape immediately after the forced first move off `▷`
-    is a blank initialized tape moved right to cell 1. -/
+    is a blank initialized tape moved right to cell 1.
+@isnad1 id=eq.1h4v.s5.2c699ce8ca99 from=translated src=- shape=98425478 vocab=6164d6a3
+-/
 theorem startedCfg_work_eq_init_move_right (M : TM k) (z : List Bool)
     (hne : M.qstart ≠ M.qhalt) (i : Fin k) :
     (startedCfg M z hne).work i = (Tape.init []).move Dir3.right := by
@@ -365,7 +397,9 @@ theorem startedCfg_work_eq_init_move_right (M : TM k) (z : List Bool)
   rw [hworkDir]
 
 /-- The verifier output tape immediately after the forced first move off `▷`
-    is a blank initialized tape moved right to cell 1. -/
+    is a blank initialized tape moved right to cell 1.
+@isnad1 id=eq.1h3v.s5.89c48af75b39 from=translated src=- shape=8d5389e6 vocab=9e27d1cd
+-/
 theorem startedCfg_output_eq_init_move_right (M : TM k) (z : List Bool)
     (hne : M.qstart ≠ M.qhalt) :
     (startedCfg M z hne).output = (Tape.init []).move Dir3.right := by
@@ -384,7 +418,9 @@ theorem startedCfg_output_eq_init_move_right (M : TM k) (z : List Bool)
     of the verifier state immediately after `M`'s first step on `z`, and it
     reaches the same accepting/rejecting output. This is the form needed by
     phase-composed machines whose earlier phases have already moved every
-    tape off `▷`. -/
+    tape off `▷`.
+@isnad1 id=ex.1h6v.s8.dd086a0d73cc from=translated src=- shape=0677ce50 vocab=5d9ad631
+-/
 theorem retargetInput_decidesVirtual_started (M : TM k) {L : Language} {T : ℕ → ℕ}
     (hM : M.DecidesInTime L T) (z : List Bool) (realInput : Tape) :
     ∃ c' t, t + 1 ≤ T z.length ∧
@@ -451,7 +487,9 @@ theorem retargetInput_decidesVirtual_started (M : TM k) {L : Language} {T : ℕ 
 /-- Hoare lifting for `retargetInput`: if a deterministic TM satisfies a
     Hoare triple on its ordinary input tape, then `retargetInput` satisfies
     the corresponding triple when that input is supplied on the last work
-    tape. The real input tape is ignored. -/
+    tape. The real input tape is ignored.
+@isnad1 id=hoaretim.4h5v.s7.99b90c0a7db3 from=translated src=- shape=7e0cee4e vocab=22e43bd1
+-/
 theorem retargetInput_hoareTime (M : TM k)
     {pre post : TapePred k} {b : ℕ}
     (hM : M.HoareTime pre post b)
@@ -508,7 +546,9 @@ theorem retargetInput_hoareTime (M : TM k)
 /-- Virtual-input version of `copyInputToWorkTM_started_hoareTime`: if the
 virtual input is a Boolean string at head `1` and work tape `idx` is a blank
 started tape, then `retargetInput (copyInputToWorkTM idx)` copies that virtual
-input onto work tape `idx` within `|x| + 1` steps. -/
+input onto work tape `idx` within `|x| + 1` steps.
+@isnad1 id=hoaretim.0h3v.s8.5b2709ae123f from=translated src=- shape=94334bcf vocab=58e97373
+-/
 theorem retargetInput_copyInputToWorkTM_started_hoareTime (idx : Fin k) (x : List Bool) :
     (retargetInput (copyInputToWorkTM idx)).HoareTime
       (fun _inp work out =>
@@ -572,7 +612,9 @@ theorem retargetInput_copyInputToWorkTM_started_hoareTime (idx : Fin k) (x : Lis
 /-- Virtual-input version of `inputLengthPlusOneCounterTM_started_hoareTime`:
 if the virtual input is a started Boolean string and work tape `counterIdx`
 is a started blank tape, then `retargetInput (inputLengthPlusOneCounterTM
-counterIdx)` materializes a unary counter of length `|x| + 1` on that tape. -/
+counterIdx)` materializes a unary counter of length `|x| + 1` on that tape.
+@isnad1 id=hoaretim.0h3v.s8.19cc3a4ace00 from=translated src=- shape=896e51eb vocab=d51497d6
+-/
 theorem retargetInput_inputLengthPlusOneCounterTM_started_hoareTime
     (counterIdx : Fin k) (x : List Bool) :
     (retargetInput (inputLengthPlusOneCounterTM counterIdx)).HoareTime
@@ -635,7 +677,9 @@ theorem retargetInput_inputLengthPlusOneCounterTM_started_hoareTime
 /-- Virtual-input version of
 `inputLengthPlusOneCounterTM_started_tracksInput_hoareTime`: besides building
 the unary counter on work tape `counterIdx`, the postcondition also records
-the final cells and head of the virtual-input tape itself. -/
+the final cells and head of the virtual-input tape itself.
+@isnad1 id=hoaretim.0h3v.s8.2610a01614ab from=translated src=- shape=030147a3 vocab=4c00395b
+-/
 theorem retargetInput_inputLengthPlusOneCounterTM_started_tracksInput_hoareTime
     (counterIdx : Fin k) (x : List Bool) :
     (retargetInput (inputLengthPlusOneCounterTM counterIdx)).HoareTime

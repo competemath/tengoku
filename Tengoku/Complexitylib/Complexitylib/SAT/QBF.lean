@@ -69,17 +69,37 @@ def eval (α : ℕ → Bool) : QBF → Bool
   | .ex i φ => eval (Function.update α i false) φ || eval (Function.update α i true) φ
   | .all i φ => eval (Function.update α i false) φ && eval (Function.update α i true) φ
 
+/--
+@isnad1 id=eq.0h2v.s3.a0ca57e39eef from=translated src=- shape=02ea90bc vocab=9f65b4f0
+-/
 @[simp] theorem eval_var (α : ℕ → Bool) (i : ℕ) : eval α (var i) = α i := rfl
+/--
+@isnad1 id=eq.0h1v.s3.8beddf91c4b8 from=translated src=- shape=b77d884a vocab=90ae3a7b
+-/
 @[simp] theorem eval_tru (α : ℕ → Bool) : eval α tru = true := rfl
+/--
+@isnad1 id=eq.0h1v.s3.0ea3c4fe7570 from=translated src=- shape=b77d884a vocab=92462dc2
+-/
 @[simp] theorem eval_fls (α : ℕ → Bool) : eval α fls = false := rfl
+/--
+@isnad1 id=eq.0h2v.s4.8aa6ad7e7aa3 from=translated src=- shape=06185ba2 vocab=8c3fbdb8
+-/
 @[simp] theorem eval_neg (α : ℕ → Bool) (φ : QBF) : eval α (neg φ) = !(eval α φ) := rfl
+/--
+@isnad1 id=eq.0h3v.s4.ead74693f8f6 from=translated src=- shape=70d06e07 vocab=472085de
+-/
 @[simp] theorem eval_conj (α : ℕ → Bool) (φ ψ : QBF) :
     eval α (conj φ ψ) = (eval α φ && eval α ψ) := rfl
+/--
+@isnad1 id=eq.0h3v.s4.7d3ad74c14cc from=translated src=- shape=70d06e07 vocab=c5c60898
+-/
 @[simp] theorem eval_disj (α : ℕ → Bool) (φ ψ : QBF) :
     eval α (disj φ ψ) = (eval α φ || eval α ψ) := rfl
 
 /-- **Existential substitution semantics.** `∃ x_i, φ` is true under `α` iff `φ`
-    is true for *some* Boolean value substituted for `x_i`. -/
+    is true for *some* Boolean value substituted for `x_i`.
+@isnad1 id=iff.0h3v.s5.e5c96197a234 from=translated src=- shape=8b6f53b6 vocab=1ebf8e27
+-/
 theorem eval_ex_iff (α : ℕ → Bool) (i : ℕ) (φ : QBF) :
     eval α (ex i φ) = true ↔ ∃ b, eval (Function.update α i b) φ = true := by
   simp only [eval, Bool.or_eq_true]
@@ -93,7 +113,9 @@ theorem eval_ex_iff (α : ℕ → Bool) (i : ℕ) (φ : QBF) :
     · exact Or.inr hb
 
 /-- **Universal substitution semantics.** `∀ x_i, φ` is true under `α` iff `φ` is
-    true for *every* Boolean value substituted for `x_i`. -/
+    true for *every* Boolean value substituted for `x_i`.
+@isnad1 id=iff.0h3v.s5.6c505a0ca00e from=translated src=- shape=619aea19 vocab=54f40d9b
+-/
 theorem eval_all_iff (α : ℕ → Bool) (i : ℕ) (φ : QBF) :
     eval α (all i φ) = true ↔ ∀ b, eval (Function.update α i b) φ = true := by
   simp only [eval, Bool.and_eq_true]
@@ -122,7 +144,9 @@ def quantDepth : QBF → ℕ
 /-- A QBF is **quantifier-free** when it has no quantifiers (depth `0`). -/
 def QuantifierFree (φ : QBF) : Prop := quantDepth φ = 0
 
-/-- A conjunction is quantifier-free iff both conjuncts are. -/
+/-- A conjunction is quantifier-free iff both conjuncts are.
+@isnad1 id=iff.0h2v.s3.c413e49c6bcd from=translated src=- shape=9677fe72 vocab=4a9a57c5
+-/
 theorem quantifierFree_conj {φ ψ : QBF} :
     QuantifierFree (conj φ ψ) ↔ QuantifierFree φ ∧ QuantifierFree ψ := by
   simp only [QuantifierFree, quantDepth, Nat.max_eq_zero_iff]
@@ -143,7 +167,9 @@ def freeVars : QBF → Finset ℕ
     if two assignments agree on `freeVars φ`, they give `φ` the same value. In
     particular a closed formula (empty `freeVars`) has an assignment-independent
     truth value. The quantifier cases use that updating the bound variable makes
-    the two assignments agree on the quantified subformula. -/
+    the two assignments agree on the quantified subformula.
+@isnad1 id=eq.1h3v.s5.fda51f18f483 from=translated src=- shape=5ae66b85 vocab=84f6b196
+-/
 theorem eval_eq_of_agree : ∀ (φ : QBF) (α β : ℕ → Bool),
     (∀ i ∈ freeVars φ, α i = β i) → eval α φ = eval β φ := by
   intro φ
@@ -185,7 +211,9 @@ theorem eval_eq_of_agree : ∀ (φ : QBF) (α β : ℕ → Bool),
     simp only [eval]
     rw [ih _ _ (hagree false), ih _ _ (hagree true)]
 
-/-- Updating a non-free variable does not change a formula's value. -/
+/-- Updating a non-free variable does not change a formula's value.
+@isnad1 id=eq.1h4v.s5.6b7bdaaacdb0 from=translated src=- shape=915c4aa1 vocab=ed31d41a
+-/
 theorem eval_update_not_mem (α : ℕ → Bool) (i : ℕ) (b : Bool) (φ : QBF)
     (hi : i ∉ freeVars φ) : eval (Function.update α i b) φ = eval α φ := by
   apply eval_eq_of_agree
@@ -194,7 +222,9 @@ theorem eval_update_not_mem (α : ℕ → Bool) (i : ℕ) (b : Bool) (φ : QBF)
   simp only [Function.update_apply, ite_eq_right hji]
 
 /-- **Vacuous existential quantification.** Quantifying `∃` over a variable that
-    does not occur free is a no-op: `eval α (∃ x_i, φ) = eval α φ`. -/
+    does not occur free is a no-op: `eval α (∃ x_i, φ) = eval α φ`.
+@isnad1 id=eq.1h3v.s5.a3eb09ed9dc0 from=translated src=- shape=47baaf16 vocab=b32341a6
+-/
 theorem eval_ex_not_mem (α : ℕ → Bool) (i : ℕ) (φ : QBF) (hi : i ∉ freeVars φ) :
     eval α (ex i φ) = eval α φ := by
   have h : eval α (ex i φ)
@@ -202,7 +232,9 @@ theorem eval_ex_not_mem (α : ℕ → Bool) (i : ℕ) (φ : QBF) (hi : i ∉ fre
   rw [h, eval_update_not_mem α i false φ hi, eval_update_not_mem α i true φ hi, Bool.or_self]
 
 /-- **Vacuous universal quantification.** Quantifying `∀` over a variable that does
-    not occur free is a no-op: `eval α (∀ x_i, φ) = eval α φ`. -/
+    not occur free is a no-op: `eval α (∀ x_i, φ) = eval α φ`.
+@isnad1 id=eq.1h3v.s5.468095095416 from=translated src=- shape=47baaf16 vocab=a983680b
+-/
 theorem eval_all_not_mem (α : ℕ → Bool) (i : ℕ) (φ : QBF) (hi : i ∉ freeVars φ) :
     eval α (all i φ) = eval α φ := by
   have h : eval α (all i φ)
@@ -213,7 +245,9 @@ theorem eval_all_not_mem (α : ℕ → Bool) (i : ℕ) (φ : QBF) (hi : i ∉ fr
 def Closed (φ : QBF) : Prop := freeVars φ = ∅
 
 /-- A closed QBF evaluates to the same value under any assignment: the truth
-    value of a fully-quantified formula is well defined. -/
+    value of a fully-quantified formula is well defined.
+@isnad1 id=eq.1h3v.s4.2268c0f308d5 from=translated src=- shape=eec7dd8b vocab=d5d8d665
+-/
 theorem eval_closed_eq {φ : QBF} (hφ : Closed φ) (α β : ℕ → Bool) :
     eval α φ = eval β φ := by
   apply eval_eq_of_agree
@@ -236,34 +270,46 @@ instance (φ : QBF) : Decidable (IsTrue φ) := by unfold IsTrue; infer_instance
 example : IsTrue (all 0 (disj (var 0) (neg (var 0)))) := by decide
 
 /-- Universal implies existential: over the (nonempty) Boolean domain, if
-    `∀ x_i, φ` is true then `∃ x_i, φ` is true. -/
+    `∀ x_i, φ` is true then `∃ x_i, φ` is true.
+@isnad1 id=istrue.1h2v.s3.7d50b06ed44e from=translated src=- shape=000a214b vocab=33f19dcd
+-/
 theorem isTrue_ex_of_isTrue_all {i : ℕ} {φ : QBF} (h : IsTrue (all i φ)) :
     IsTrue (ex i φ) := by
   simp only [IsTrue, eval, Bool.and_eq_true, Bool.or_eq_true] at h ⊢
   exact Or.inl h.1
 
 /-- Truth of a negation: `¬φ` is true iff `φ` is not (the TQBF membership rule for
-    negation). -/
+    negation).
+@isnad1 id=iff.0h1v.s3.1e5acc6fffb6 from=translated src=- shape=5fdfe1a3 vocab=29591489
+-/
 theorem isTrue_neg_iff (φ : QBF) : IsTrue (neg φ) ↔ ¬ IsTrue φ := by
   simp only [IsTrue, eval]
   cases eval (fun _ => false) φ <;> simp
 
-/-- Truth of a conjunction distributes: `φ ∧ ψ` is true iff both are. -/
+/-- Truth of a conjunction distributes: `φ ∧ ψ` is true iff both are.
+@isnad1 id=iff.0h2v.s3.8faf63d19158 from=translated src=- shape=9677fe72 vocab=648f61e5
+-/
 theorem isTrue_conj_iff (φ ψ : QBF) : IsTrue (conj φ ψ) ↔ IsTrue φ ∧ IsTrue ψ := by
   simp only [IsTrue, eval, Bool.and_eq_true]
 
-/-- Truth of a disjunction distributes: `φ ∨ ψ` is true iff at least one is. -/
+/-- Truth of a disjunction distributes: `φ ∨ ψ` is true iff at least one is.
+@isnad1 id=iff.0h2v.s3.9de82cf17a50 from=translated src=- shape=9677fe72 vocab=04c6974e
+-/
 theorem isTrue_disj_iff (φ ψ : QBF) : IsTrue (disj φ ψ) ↔ IsTrue φ ∨ IsTrue ψ := by
   simp only [IsTrue, eval, Bool.or_eq_true]
 
 /-- **Quantifier De Morgan** (`¬∃ = ∀¬`): `¬(∃ x_i, φ)` is equivalent to
-    `∀ x_i, ¬φ`. -/
+    `∀ x_i, ¬φ`.
+@isnad1 id=eq.0h3v.s4.16f25a1453f2 from=translated src=- shape=2b36791f vocab=ad78f853
+-/
 theorem eval_neg_ex (α : ℕ → Bool) (i : ℕ) (φ : QBF) :
     eval α (neg (ex i φ)) = eval α (all i (neg φ)) := by
   simp only [eval, Bool.not_or]
 
 /-- **Quantifier De Morgan** (`¬∀ = ∃¬`): `¬(∀ x_i, φ)` is equivalent to
-    `∃ x_i, ¬φ`. -/
+    `∃ x_i, ¬φ`.
+@isnad1 id=eq.0h3v.s4.ff443517a140 from=translated src=- shape=2b36791f vocab=ad78f853
+-/
 theorem eval_neg_all (α : ℕ → Bool) (i : ℕ) (φ : QBF) :
     eval α (neg (all i φ)) = eval α (ex i (neg φ)) := by
   simp only [eval, Bool.not_and]

@@ -43,16 +43,23 @@ when the numbers of rows and columns differ. -/
 noncomputable def bperm (M : α → β → R) : R :=
   ∑ e : α ≃ β, ∏ a, M a (e a)
 
+/--
+@isnad1 id=eq.0h4v.s5.0cbcb9e926af from=translated src=- shape=45469c48 vocab=1d4f97c4
+-/
 theorem bperm_eq_zero_of_isEmpty [IsEmpty (α ≃ β)] (M : α → β → R) : bperm M = 0 := by
   simp [bperm]
 
-/-- The permanent of a matrix without rows nor columns is `1`. -/
+/-- The permanent of a matrix without rows nor columns is `1`.
+@isnad1 id=eq.0h4v.s5.c630eca09143 from=translated src=- shape=b996fd52 vocab=e873bc85
+-/
 theorem bperm_of_isEmpty [IsEmpty α] [IsEmpty β] (M : α → β → R) : bperm M = 1 := by
   have : Unique (α ≃ β) := ⟨⟨Equiv.equivOfIsEmpty α β⟩, fun e => Equiv.ext fun a => isEmptyElim a⟩
   rw [bperm, Fintype.sum_unique]
   exact Fintype.prod_empty _
 
-/-- The permanent of a `1 × 1` matrix is its entry. -/
+/-- The permanent of a `1 × 1` matrix is its entry.
+@isnad1 id=eq.0h4v.s5.1257af009077 from=translated src=- shape=9d3a3771 vocab=3fc9e1c6
+-/
 theorem bperm_of_unique [Unique α] [Unique β] (M : α → β → R) :
     bperm M = M default default := by
   have : Unique (α ≃ β) :=
@@ -60,7 +67,9 @@ theorem bperm_of_unique [Unique α] [Unique β] (M : α → β → R) :
   rw [bperm, Fintype.sum_unique, Fintype.prod_unique]
   exact congrArg (M default) (Subsingleton.elim _ _)
 
-/-- Reindexing rows and columns. -/
+/-- Reindexing rows and columns.
+@isnad1 id=eq.0h8v.s6.31476d5b8f04 from=translated src=- shape=cb646676 vocab=c2dfc4a1
+-/
 theorem bperm_reindex {α' β' : Type} [Fintype α'] [Fintype β'] [DecidableEq α'] [DecidableEq β']
     (eα : α ≃ α') (eβ : β ≃ β')
     (M : α → β → R) : bperm (fun a' b' => M (eα.symm a') (eβ.symm b')) = bperm M := by
@@ -69,24 +78,32 @@ theorem bperm_reindex {α' β' : Type} [Fintype α'] [Fintype β'] [DecidableEq 
   refine Fintype.prod_equiv eα.symm _ _ fun a' => ?_
   simp
 
-/-- The permanent of the transpose. -/
+/-- The permanent of the transpose.
+@isnad1 id=eq.0h4v.s5.51255637ddce from=translated src=- shape=c7198d86 vocab=1ad789af
+-/
 theorem bperm_flip (M : α → β → R) : bperm (fun b a => M a b) = bperm M := by
   rw [bperm, bperm]
   refine Fintype.sum_equiv ⟨Equiv.symm, Equiv.symm, fun _ => rfl, fun _ => rfl⟩ _ _ fun e => ?_
   exact Fintype.prod_equiv e _ _ fun b => by simp
 
-/-- A matrix with a zero row has permanent `0`. -/
+/-- A matrix with a zero row has permanent `0`.
+@isnad1 id=eq.1h5v.s6.5f6eeed709ff from=translated src=- shape=2a94bc5f vocab=1ad789af
+-/
 theorem bperm_eq_zero_of_zero_row (M : α → β → R) (a : α) (h : ∀ b, M a b = 0) :
     bperm M = 0 :=
   Finset.sum_eq_zero fun e _ => Finset.prod_eq_zero (Finset.mem_univ a) (h (e a))
 
-/-- A matrix with a zero column has permanent `0`. -/
+/-- A matrix with a zero column has permanent `0`.
+@isnad1 id=eq.1h5v.s6.38f231b65487 from=translated src=- shape=93a7307d vocab=1ad789af
+-/
 theorem bperm_eq_zero_of_zero_col (M : α → β → R) (b : β) (h : ∀ a, M a b = 0) :
     bperm M = 0 := by
   rw [← bperm_flip]
   exact bperm_eq_zero_of_zero_row _ b h
 
-/-- The permanent of a 0-1 matrix counts the bijections it contains. -/
+/-- The permanent of a 0-1 matrix counts the bijections it contains.
+@isnad1 id=eq.0h4v.s7.c1e021fde111 from=translated src=- shape=5f485b65 vocab=703cbc16
+-/
 theorem bperm_boole (P : α → β → Prop) [DecidableRel P] :
     bperm (fun a b => if P a b then (1 : R) else 0) =
       Fintype.card {e : α ≃ β // ∀ a, P a (e a)} := by
@@ -109,16 +126,25 @@ def glue (I : Finset α) (S : Finset β) (e₁ : I ≃ S) (e₂ : {a // a ∉ I}
     α ≃ β :=
   (Equiv.sumCompl (· ∈ I)).symm.trans ((e₁.sumCongr e₂).trans (Equiv.sumCompl (· ∈ S)))
 
+/--
+@isnad1 id=eq.1h7v.s8.5e92e59f6f49 from=translated src=- shape=2832ae9c vocab=01a0018d
+-/
 theorem glue_apply_of_mem {I : Finset α} {S : Finset β} (e₁ : I ≃ S)
     (e₂ : {a // a ∉ I} ≃ {b // b ∉ S}) {a : α} (ha : a ∈ I) :
     glue I S e₁ e₂ a = e₁ ⟨a, ha⟩ := by
   simp [glue, Equiv.sumCompl_symm_apply_of_pos ha]
 
+/--
+@isnad1 id=eq.1h7v.s8.40abff8096dd from=translated src=- shape=b38e2c58 vocab=01a0018d
+-/
 theorem glue_apply_of_not_mem {I : Finset α} {S : Finset β} (e₁ : I ≃ S)
     (e₂ : {a // a ∉ I} ≃ {b // b ∉ S}) {a : α} (ha : a ∉ I) :
     glue I S e₁ e₂ a = e₂ ⟨a, ha⟩ := by
   simp [glue, Equiv.sumCompl_symm_apply_of_neg ha]
 
+/--
+@isnad1 id=iff.0h7v.s7.15704c732757 from=translated src=- shape=ad53da66 vocab=e84e6dbe
+-/
 theorem glue_mem_iff {I : Finset α} {S : Finset β} (e₁ : I ≃ S)
     (e₂ : {a // a ∉ I} ≃ {b // b ∉ S}) (a : α) : a ∈ I ↔ glue I S e₁ e₂ a ∈ S := by
   by_cases ha : a ∈ I
@@ -129,7 +155,9 @@ theorem glue_mem_iff {I : Finset α} {S : Finset β} (e₁ : I ≃ S)
 
 omit [DecidableEq α] in
 /-- A bijection sends the rows in `I` exactly to the columns in `S` when
-membership is preserved and reflected. -/
+membership is preserved and reflected.
+@isnad1 id=iff.0h5v.s6.ad8de81d24e8 from=translated src=- shape=9968961d vocab=56ea080f
+-/
 theorem image_eq_iff (I : Finset α) (S : Finset β) (e : α ≃ β) :
     I.image e = S ↔ ∀ a, a ∈ I ↔ e a ∈ S := by
   constructor
@@ -154,7 +182,9 @@ variable {R : Type} [CommSemiring R] {α β : Type} [Fintype α] [Fintype β] [D
 
 /-- **The Laplace expansion of the permanent along the rows in `I`**: the sum,
 over the sets `S` of as many columns, of the permanent of the rows `I` on
-the columns `S` times the permanent of the other rows on the other columns. -/
+the columns `S` times the permanent of the other rows on the other columns.
+@isnad1 id=eq.0h5v.s9.1b9007b3f4e8 from=translated src=- shape=843111fa vocab=82167163
+-/
 theorem bperm_laplace (M : α → β → R) (I : Finset α) :
     bperm M = ∑ S ∈ (univ : Finset β).powersetCard I.card,
       bperm (fun (a : I) (b : S) => M a b) *
@@ -187,7 +217,9 @@ theorem bperm_laplace (M : α → β → R) (I : Finset α) :
       exact Finset.prod_congr (congrArg (@Finset.univ _) (Subsingleton.elim _ _)) fun a _ => rfl
 
 /-- The Laplace expansion, restricted to the columns the rows in `I` are
-supported on: the other column sets contribute nothing. -/
+supported on: the other column sets contribute nothing.
+@isnad1 id=eq.1h6v.s9.861e5e1e7e98 from=translated src=- shape=c7b5d598 vocab=f5126051
+-/
 theorem bperm_laplace_of_support (M : α → β → R) (I : Finset α) (T : Finset β)
     (hT : ∀ a ∈ I, ∀ b, b ∉ T → M a b = 0) :
     bperm M = ∑ S ∈ T.powersetCard I.card,
@@ -205,7 +237,9 @@ theorem bperm_laplace_of_support (M : α → β → R) (I : Finset α) (T : Fins
 
 /-- **Block factorization**: when the rows in `I` are supported on as many
 columns `J`, the permanent is the permanent of the block `I × J` times the
-one of the complementary block. -/
+one of the complementary block.
+@isnad1 id=eq.2h6v.s9.642f6f667a8a from=translated src=- shape=5cd8f2d7 vocab=a7cf12b2
+-/
 theorem bperm_block (M : α → β → R) (I : Finset α) (J : Finset β) (hJ : J.card = I.card)
     (hT : ∀ a ∈ I, ∀ b, b ∉ J → M a b = 0) :
     bperm M = bperm (fun (a : I) (b : J) => M a b) *
@@ -220,13 +254,17 @@ section Cast
 
 variable {α β : Type} [Fintype α] [Fintype β] [DecidableEq α] [DecidableEq β]
 
-/-- The permanent of a natural-number matrix, as an integer. -/
+/-- The permanent of a natural-number matrix, as an integer.
+@isnad1 id=eq.0h3v.s5.4906dcce9baa from=translated src=- shape=ab523894 vocab=6bbbd9ad
+-/
 theorem bperm_natCast (M : α → β → ℕ) :
     ((bperm M : ℕ) : ℤ) = bperm fun a b => (M a b : ℤ) := by
   rw [bperm, bperm, Nat.cast_sum]
   exact Finset.sum_congr rfl fun e _ => Nat.cast_prod _ _
 
-/-- **Permanents of matrices congruent entrywise are congruent.** -/
+/-- **Permanents of matrices congruent entrywise are congruent.**
+@isnad1 id=modeq.1h5v.s6.99dd005887de from=translated src=- shape=1b0c7547 vocab=9f877b83
+-/
 theorem bperm_modEq (M M' : α → β → ℤ) (m : ℤ) (h : ∀ a b, M a b ≡ M' a b [ZMOD m]) :
     bperm M ≡ bperm M' [ZMOD m] := by
   exact Int.ModEq.sum fun e _ => Int.ModEq.prod fun a _ => h a (e a)

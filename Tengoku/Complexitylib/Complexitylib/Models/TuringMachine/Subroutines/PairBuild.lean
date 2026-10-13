@@ -314,7 +314,9 @@ private theorem pairBuild_init_step {k : ℕ} (yIdx pIdx : Fin k)
 
 /-- Variant of the init step for phase composition: input and witness tapes
     may already be positioned at their first data cells, while the pair tape
-    is still the fresh head-0 tape. -/
+    is still the fresh head-0 tape.
+@isnad1 id=ex.5h4v.s8.267b5f5311f3 from=translated src=- shape=ba1102f1 vocab=eb16245e
+-/
 theorem pairBuild_init_step_started {k : ℕ} (yIdx pIdx : Fin k)
     (c : Cfg k (pairBuildTM yIdx pIdx).Q)
     (hst : c.state = .init)
@@ -344,7 +346,9 @@ theorem pairBuild_init_step_started {k : ℕ} (yIdx pIdx : Fin k)
     simp [Tape.writeAndMove, Tape.move_cells, Tape.write, hpi0]
 
 /-- Variant of the init step for fully-started phase composition: input,
-    witness, and pair tapes may all already be positioned past `▷`. -/
+    witness, and pair tapes may all already be positioned past `▷`.
+@isnad1 id=ex.4h4v.s7.60ed753ce12b from=translated src=- shape=38c26cfb vocab=4d22b2f2
+-/
 theorem pairBuild_init_step_all_started {k : ℕ} (yIdx pIdx : Fin k)
     (c : Cfg k (pairBuildTM yIdx pIdx).Q)
     (hst : c.state = .init)
@@ -1573,7 +1577,9 @@ private theorem pairBuildTM_from_copyX1_initTape_move_right
     work tape `yIdx` (with `yIdx ≠ pIdx`), `pairBuildTM yIdx pIdx` halts
     leaving work tape `pIdx` carrying `pair x y` (in the cells indexed
     `1..|pair x y|`), blank thereafter, with head at cell `1`, within
-    `pairBuildTime` steps. -/
+    `pairBuildTime` steps.
+@isnad1 id=hoaretim.1h5v.s7.efec0f6a0bd2 from=translated src=- shape=282b495a vocab=58560a83
+-/
 theorem pairBuildTM_hoareTime
     {k : ℕ} (yIdx pIdx : Fin k) (hne : yIdx ≠ pIdx)
     (x y : List Bool) :
@@ -2045,7 +2051,9 @@ theorem pairBuildTM_hoareTime
     rw [ite_eq_right (by omega : i + 1 ≠ 0)]
 
 /-- A compact corollary of `pairBuildTM_hoareTime`: the pair tape satisfies
-    exact equality with the standard initialized pair tape, moved to cell 1. -/
+    exact equality with the standard initialized pair tape, moved to cell 1.
+@isnad1 id=hoaretim.1h5v.s6.a725a1a9d4af from=translated src=- shape=3621fb61 vocab=5dd35715
+-/
 theorem pairBuildTM_hoareTime_initTape_move_right
     {k : ℕ} (yIdx pIdx : Fin k) (hne : yIdx ≠ pIdx)
     (x y : List Bool) :
@@ -2065,7 +2073,9 @@ theorem pairBuildTM_hoareTime_initTape_move_right
 /-- `pairBuildTM` correctness for phase composition where input, witness,
     and pair tapes have already passed the start marker. This is the layout
     produced by earlier setup phases that idle untouched tapes once from `▷`
-    to cell `1`. -/
+    to cell `1`.
+@isnad1 id=hoaretim.1h5v.s6.6b71a7846c1f from=translated src=- shape=a2b991fe vocab=5dd35715
+-/
 theorem pairBuildTM_hoareTime_all_started_initTape_move_right
     {k : ℕ} (yIdx pIdx : Fin k) (hne : yIdx ≠ pIdx)
     (x y : List Bool) :
@@ -2124,7 +2134,9 @@ theorem pairBuildTM_hoareTime_all_started_initTape_move_right
       hpost.2.2.1 hpost.2.2.2
 
 /-- Nondeterministic lift of
-    `pairBuildTM_hoareTime_all_started_initTape_move_right`. -/
+    `pairBuildTM_hoareTime_all_started_initTape_move_right`.
+@isnad1 id=hoaretim.1h5v.s6.9abeac88b71d from=translated src=- shape=37858ed8 vocab=245d49d2
+-/
 theorem pairBuildTM_toNTM_hoareTime_all_started_initTape_move_right
     {k : ℕ} (yIdx pIdx : Fin k) (hne : yIdx ≠ pIdx)
     (x y : List Bool) :
@@ -2157,7 +2169,9 @@ private theorem pairBuild_writeAndMove_readBack_idle_of_ne_start (t : Tape)
   · simp [Tape.write, h0, Tape.read, Function.update_eq_self]
 
 /-- One pair-builder step preserves the output tape once the output head is
-    past the start marker. -/
+    past the start marker.
+@isnad1 id=eq.1h5v.s6.d6dfed7faddd from=translated src=- shape=116686f5 vocab=86e9ec53
+-/
 theorem pairBuildTM_trace_one_preserves_output
     {k : ℕ} (yIdx pIdx : Fin k) (choice : Bool)
     (c : Cfg k (pairBuildTM yIdx pIdx).Q)
@@ -2182,7 +2196,9 @@ theorem pairBuildTM_trace_one_preserves_output
     · exact (hhalt hstate).elim
 
 /-- Pair-builder traces preserve the output tape once the output head is
-    past the start marker. -/
+    past the start marker.
+@isnad1 id=eq.1h6v.s6.a5d1ea5a2c4f from=translated src=- shape=107a8d40 vocab=86e9ec53
+-/
 theorem pairBuildTM_trace_preserves_output
     {k : ℕ} (yIdx pIdx : Fin k) (T : ℕ)
     (choices : Fin T → Bool)
@@ -2200,7 +2216,9 @@ theorem pairBuildTM_trace_preserves_output
     (choices ⟨time, htime⟩) current hreadCurrent).trans hcurrent
 
 /-- One pair-builder step preserves a non-active work tape once that tape's
-    head is past the start marker. -/
+    head is past the start marker.
+@isnad1 id=eq.3h6v.s6.53aeec2a4ccb from=translated src=- shape=7771f0bc vocab=f52b19c8
+-/
 theorem pairBuildTM_trace_one_preserves_other_work
     {k : ℕ} (yIdx pIdx otherIdx : Fin k) (choice : Bool)
     (c : Cfg k (pairBuildTM yIdx pIdx).Q)
@@ -2230,7 +2248,9 @@ theorem pairBuildTM_trace_one_preserves_other_work
     · exact (hhalt hstate).elim
 
 /-- Pair-builder traces preserve a non-active work tape once that tape's head
-    is past the start marker. -/
+    is past the start marker.
+@isnad1 id=eq.3h7v.s6.1e635e9b2f8a from=translated src=- shape=ac1058ad vocab=f52b19c8
+-/
 theorem pairBuildTM_trace_preserves_other_work
     {k : ℕ} (yIdx pIdx otherIdx : Fin k) (T : ℕ)
     (choices : Fin T → Bool)
@@ -2249,7 +2269,9 @@ theorem pairBuildTM_trace_preserves_other_work
     (choices ⟨time, htime⟩) current hy hp hreadCurrent).trans hcurrent
 
 /-- A compact corollary of `pairBuildTM_hoareTime`: the pair tape satisfies
-    the standard `Tape.HasOutput` predicate for `pair x y`. -/
+    the standard `Tape.HasOutput` predicate for `pair x y`.
+@isnad1 id=hoaretim.1h5v.s6.063bea47fdd6 from=translated src=- shape=90f29535 vocab=0f96eb8a
+-/
 theorem pairBuildTM_hoareTime_hasOutput
     {k : ℕ} (yIdx pIdx : Fin k) (hne : yIdx ≠ pIdx)
     (x y : List Bool) :

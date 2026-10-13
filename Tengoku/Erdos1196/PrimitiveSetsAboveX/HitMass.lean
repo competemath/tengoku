@@ -92,7 +92,9 @@ most once.
 noncomputable def visitMass {x Y : ℕ} (chain : MarkovLayer x Y) (A : Set ℕ) : ENNReal :=
   ∑' k : ℕ, firstHitMassAtStep chain A k
 
-/-- Once `B_x > 0`, the restricted initial mass has total mass exactly `1`. -/
+/-- Once `B_x > 0`, the restricted initial mass has total mass exactly `1`.
+@isnad1 id=eq.1h2v.s5.d94cfdfbef74 from=translated src=- shape=b4a1fd3a vocab=3236e772
+-/
 lemma tsum_initialMass_eq_one {x Y : ℕ} (hB : 0 < normalizationConstant x Y) :
     (∑' n : ℕ, initialMass x Y n) = 1 := by
   let f : ℕ → ℝ := fun n => if x ≤ n then entryWeight x Y n else 0
@@ -234,7 +236,9 @@ private lemma sum_firstHitMassAtStep_add_tsum_survivingArrivalMass_le_initialMas
           chain A hx hY hkernel N)
 
 /-- If the initial mass is at most `1` and every kernel row is sub-Markov, then the total
-first-hit mass is at most `1`. -/
+first-hit mass is at most `1`.
+@isnad1 id=le.4h4v.s6.ae77148c6fb7 from=translated src=- shape=e1fcbc43 vocab=5af954ea
+-/
 lemma visitMass_le_of_bounds {x Y : ℕ} (chain : MarkovLayer x Y) (A : Set ℕ)
     (hx : 0 < x) (hY : 1 ≤ Y)
     (hinit : (∑' n : ℕ, initialMass x Y n) ≤ 1)

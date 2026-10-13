@@ -17,6 +17,9 @@ Material destined for Mathlib.
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=eq.0h3v.s10.2688b8fe3f48 from=translated src=- shape=25e87ff9 vocab=bfde89be
+-/
 @[local simp]
 lemma Subalgebra.sup_includeLeft_includeRight_eq_top
     {k A B : Type*} [CommSemiring k]
@@ -32,6 +35,9 @@ lemma Subalgebra.sup_includeLeft_includeRight_eq_top
     (Algebra.mem_sup_left <| Set.mem_range_self _)
     (Algebra.mem_sup_right <| Set.mem_range_self _)
 
+/--
+@isnad1 id=eq.0h5v.s11.5e1959b57e1e from=translated src=- shape=2bd2f08b vocab=e4fecb86
+-/
 lemma Submodule.tensorProduct_inf_eq_range_map
     {k : Type*} [Field k]
     {A B : Type*} [AddCommGroup A] [Module k A] [AddCommGroup B] [Module k B]

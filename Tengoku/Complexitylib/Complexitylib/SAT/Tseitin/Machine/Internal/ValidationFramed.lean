@@ -196,7 +196,9 @@ private theorem outAcc_nil_write_verdict {out : Tape} (hout : TM.OutAcc [] out)
 
 /-- **Exact started, framed validation.** From a started input and empty
 started output accumulator, validation reaches its framed postcondition in
-exactly `|z| + 1` steps while preserving arbitrary parked work tapes. -/
+exactly `|z| + 1` steps while preserving arbitrary parked work tapes.
+@isnad1 id=ex.2h4v.s6.6ebd163c6bd0 from=translated src=- shape=3dc428e3 vocab=7f700bb6
+-/
 theorem validationTM_started_framed_reachesIn_internal
     (z : List Bool) (work₀ : Fin n → Tape) (out₀ : Tape)
     (hwork₀ : ∀ i, TM.Parked (work₀ i)) (hout₀ : TM.OutAcc [] out₀) :
@@ -228,7 +230,9 @@ theorem validationTM_started_framed_reachesIn_internal
 /-- **Started, framed validation.**  This is the interface needed directly
 after `seedFreshTM`: the input and output are parked at cell one, every work
 register is preserved exactly, and the verdict is produced in `|z| + 1`
-steps. -/
+steps.
+@isnad1 id=hoaretim.1h3v.s5.970508bfaead from=translated src=- shape=c3f87574 vocab=2d3f5338
+-/
 theorem validationTM_started_framed_hoareTime_internal
     (z : List Bool) (work₀ : Fin n → Tape)
     (hwork₀ : ∀ i, TM.Parked (work₀ i)) :

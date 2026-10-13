@@ -49,7 +49,9 @@ def IsLinOrd (Le : A → A → Prop) : Prop :=
   (∀ a, Le a a) ∧ (∀ a b c, Le a b → Le b c → Le a c) ∧
     (∀ a b, Le a b → Le b a → a = b) ∧ ∀ a b, Le a b ∨ Le b a
 
-/-- Linearity transports along an equivalence. -/
+/-- Linearity transports along an equivalence.
+@isnad1 id=islinord.2h5v.s6.29e80bda62e3 from=translated src=- shape=5569f802 vocab=b4b6a140
+-/
 theorem IsLinOrd.of_equiv {B : Type} (u : B ≃ A) {LeB : B → B → Prop} {LeA : A → A → Prop}
     (hle : ∀ b b', LeB b b' ↔ LeA (u b) (u b')) (h : IsLinOrd LeB) : IsLinOrd LeA := by
   obtain ⟨hrefl, htrans, hanti, htot⟩ := h
@@ -80,7 +82,9 @@ variable {α β : Type} {Ra : α → α → Prop} {Rb : β → β → Prop}
 def lexRel (Ra : α → α → Prop) (Rb : β → β → Prop) : α × β → α × β → Prop := fun u v =>
   (Ra u.1 v.1 ∧ u.1 ≠ v.1) ∨ (u.1 = v.1 ∧ Rb u.2 v.2)
 
-/-- The lexicographic product of two linear orders is a linear order. -/
+/-- The lexicographic product of two linear orders is a linear order.
+@isnad1 id=islinord.2h4v.s5.f574d5d84112 from=translated src=- shape=3017064b vocab=104222fc
+-/
 theorem isLinOrd_lexRel (ha : IsLinOrd Ra) (hb : IsLinOrd Rb) : IsLinOrd (lexRel Ra Rb) := by
   obtain ⟨ha₁, ha₂, ha₃, ha₄⟩ := ha
   obtain ⟨hb₁, hb₂, hb₃, hb₄⟩ := hb
@@ -104,7 +108,9 @@ theorem isLinOrd_lexRel (ha : IsLinOrd Ra) (hb : IsLinOrd Rb) : IsLinOrd (lexRel
 end Build
 
 /-- A relation read through an injective key into a linear order is a linear
-order. -/
+order.
+@isnad1 id=islinord.3h5v.s5.2bb24a2b3a5f from=translated src=- shape=d64bf546 vocab=e7799944
+-/
 theorem isLinOrd_of_key {M K : Type} {LeK : K → K → Prop} {R : M → M → Prop}
     (hK : IsLinOrd LeK) (key : M → K) (hinj : Function.Injective key)
     (h : ∀ a b, R a b ↔ LeK (key a) (key b)) : IsLinOrd R :=
@@ -128,7 +134,9 @@ noncomputable def IsLinOrd.toLinearOrder {A : Type} {Le : A → A → Prop} (h :
   lt_iff_le_not_ge _ _ := Iff.rfl
   toDecidableLE := Classical.decRel _
 
-/-- The natural order of a linear order, as a relation. -/
+/-- The natural order of a linear order, as a relation.
+@isnad1 id=islinord.0h1v.s4.a816e0ab4eb0 from=translated src=- shape=09780759 vocab=bf8a48fd
+-/
 theorem isLinOrd_le {α : Type} [LinearOrder α] : IsLinOrd (· ≤ · : α → α → Prop) :=
   ⟨fun _ => le_rfl, fun _ _ _ => le_trans, fun _ _ => le_antisymm, le_total⟩
 
@@ -149,6 +157,9 @@ noncomputable def bitRank (Le : A → A → Prop) (Posn : A → Prop) (p : A) : 
 noncomputable def binNum (Le : A → A → Prop) (Posn b : A → Prop) : ℕ :=
   ∑ᶠ p ∈ {p | Posn p ∧ b p}, 2 ^ bitRank Le Posn p
 
+/--
+@isnad1 id=eq.1h5v.s5.c9d01cdd0854 from=translated src=- shape=e4bfa444 vocab=9040d1fd
+-/
 theorem binNum_congr {Le : A → A → Prop} {Posn b b' : A → Prop} (h : ∀ p, b p ↔ b' p) :
     binNum Le Posn b = binNum Le Posn b' := by
   have : {p | Posn p ∧ b p} = {p | Posn p ∧ b' p} := by
@@ -156,7 +167,9 @@ theorem binNum_congr {Le : A → A → Prop} {Posn b b' : A → Prop} (h : ∀ p
     simp [h p]
   rw [binNum, binNum, this]
 
-/-- Only the bits at positions matter. -/
+/-- Only the bits at positions matter.
+@isnad1 id=eq.1h5v.s5.73c16cc15713 from=translated src=- shape=6aa38850 vocab=9040d1fd
+-/
 theorem binNum_congr_on {Le : A → A → Prop} {Posn b b' : A → Prop}
     (h : ∀ p, Posn p → (b p ↔ b' p)) : binNum Le Posn b = binNum Le Posn b' := by
   have hset : {p | Posn p ∧ b p} = {p | Posn p ∧ b' p} := by
@@ -164,7 +177,9 @@ theorem binNum_congr_on {Le : A → A → Prop} {Posn b b' : A → Prop}
     exact and_congr_right fun hp => h p hp
   rw [binNum, binNum, hset]
 
-/-- The value of the empty set of positions is zero. -/
+/-- The value of the empty set of positions is zero.
+@isnad1 id=eq.0h3v.s4.28221fd478bc from=translated src=- shape=7686f3c5 vocab=9040d1fd
+-/
 @[simp]
 theorem binNum_bot (Le : A → A → Prop) (Posn : A → Prop) :
     binNum Le Posn (fun _ => False) = 0 := by
@@ -176,7 +191,9 @@ theorem binNum_bot (Le : A → A → Prop) (Posn : A → Prop) :
 variable {B : Type}
 
 /-- The rank of a position transports along an equivalence commuting with the
-two relations. -/
+two relations.
+@isnad1 id=eq.2h8v.s7.fa4a0c9b17ac from=translated src=- shape=6af6a736 vocab=c0519023
+-/
 theorem bitRank_equiv (u : B ≃ A) {LeB : B → B → Prop} {PosnB : B → Prop}
     {LeA : A → A → Prop} {PosnA : A → Prop}
     (hle : ∀ b b', LeB b b' ↔ LeA (u b) (u b')) (hp : ∀ b, PosnB b ↔ PosnA (u b)) (p : B) :
@@ -187,7 +204,9 @@ theorem bitRank_equiv (u : B ≃ A) {LeB : B → B → Prop} {PosnB : B → Prop
     ⟨fun h he => h (u.injective he), fun h he => h (congrArg u he)⟩
 
 /-- The decoded number transports along an equivalence commuting with the
-three relations. -/
+three relations.
+@isnad1 id=eq.3h9v.s7.65291f9a90dd from=translated src=- shape=00d9a4f1 vocab=42e5f43a
+-/
 theorem binNum_equiv (u : B ≃ A) {LeB : B → B → Prop} {PosnB bB : B → Prop}
     {LeA : A → A → Prop} {PosnA bA : A → Prop}
     (hle : ∀ b b', LeB b b' ↔ LeA (u b) (u b')) (hp : ∀ b, PosnB b ↔ PosnA (u b))
@@ -208,7 +227,9 @@ section Finite
 variable [Fintype A] [DecidableEq A] {Le : A → A → Prop} [DecidableRel Le]
   {Posn : A → Prop} [DecidablePred Posn]
 
-/-- The rank of a position, as the cardinality of a `Finset`. -/
+/-- The rank of a position, as the cardinality of a `Finset`.
+@isnad1 id=eq.0h4v.s6.61e72c6a5689 from=translated src=- shape=80af53ed vocab=a25ad585
+-/
 theorem bitRank_eq_card (p : A) :
     bitRank Le Posn p = (Finset.univ.filter fun q => Posn q ∧ Le q p ∧ q ≠ p).card := by
   rw [bitRank, show {q | Posn q ∧ Le q p ∧ q ≠ p}
@@ -216,7 +237,9 @@ theorem bitRank_eq_card (p : A) :
     Set.ncard_coe_finset]
 
 omit [DecidableEq A] [DecidableRel Le] in
-/-- The decoded number, as a sum over a `Finset`. -/
+/-- The decoded number, as a sum over a `Finset`.
+@isnad1 id=eq.0h4v.s6.2fc057fa925c from=translated src=- shape=6092b65c vocab=08f5455f
+-/
 theorem binNum_eq_finsetSum (b : A → Prop) [DecidablePred b] :
     binNum Le Posn b = ∑ p ∈ Finset.univ.filter (fun p => Posn p ∧ b p), 2 ^ bitRank Le Posn p := by
   rw [binNum, show {p | Posn p ∧ b p} = ↑(Finset.univ.filter fun p => Posn p ∧ b p) by
@@ -232,7 +255,9 @@ section Peel
 
 variable {A : Type} [Finite A]
 
-/-- Removing the lowest position lowers every other rank by one. -/
+/-- Removing the lowest position lowers every other rank by one.
+@isnad1 id=eq.1h8v.s6.c9a4cc147dc9 from=translated src=- shape=6f682cd9 vocab=6e1f8bb4
+-/
 theorem bitRank_erase_min {Le : A → A → Prop} {Posn : A → Prop} {p₀ : A}
     (h₀ : Posn p₀) (hmin : ∀ q, Posn q → Le p₀ q) {p : A} (hp : Posn p) (hne : p ≠ p₀) :
     bitRank Le Posn p = bitRank Le (fun q => Posn q ∧ q ≠ p₀) p + 1 := by
@@ -254,7 +279,9 @@ theorem bitRank_erase_min {Le : A → A → Prop} {Posn : A → Prop} {p₀ : A}
 
 open Classical in
 /-- **The recursion binary numbers satisfy**: the value is the lowest bit plus
-twice the value of the rest. -/
+twice the value of the rest.
+@isnad1 id=eq.1h7v.s6.b0735e88957c from=translated src=- shape=03e8263e vocab=d76b9352
+-/
 theorem binNum_peel_min {Le : A → A → Prop} {Posn b : A → Prop} {p₀ : A}
     (hlin : IsLinOrd Le) (h₀ : Posn p₀) (hmin : ∀ q, Posn q → Le p₀ q) :
     binNum Le Posn b =
@@ -319,7 +346,9 @@ def maj (x y z : Prop) : Prop := (x ∧ y) ∨ (x ∧ z) ∨ (y ∧ z)
 
 open Classical in
 /-- **The full-adder identity**: the sum bit plus twice the carry is the sum
-of the three input bits. -/
+of the three input bits.
+@isnad1 id=eq.0h3v.s7.315540c2caab from=translated src=- shape=bf1d101b vocab=ee39004f
+-/
 theorem fullAdder (x y z : Prop) :
     (if Xor x (Xor y z) then 1 else 0) + 2 * (if maj x y z then 1 else 0) =
       (if x then 1 else 0) + ((if y then 1 else 0) + (if z then 1 else 0)) := by
@@ -346,7 +375,9 @@ def MaxPos (Le : A → A → Prop) (Posn : A → Prop) (p : A) : Prop :=
 def SuccPos (Le : A → A → Prop) (Posn : A → Prop) (p q : A) : Prop :=
   Posn p ∧ Posn q ∧ Le p q ∧ p ≠ q ∧ ∀ r, Posn r → Le p r → Le r q → r = p ∨ r = q
 
-/-- A nonempty set of positions has a lowest one: minimize the rank. -/
+/-- A nonempty set of positions has a lowest one: minimize the rank.
+@isnad1 id=ex.2h3v.s5.ec8c2786fed6 from=translated src=- shape=e1022ca8 vocab=8df1ee36
+-/
 theorem exists_minPos (hlin : IsLinOrd Le) (hne : ∃ p, Posn p) :
     ∃ p, MinPos Le Posn p := by
   classical
@@ -366,7 +397,9 @@ theorem exists_minPos (hlin : IsLinOrd Le) (hne : ∃ p, Posn p) :
     Set.ncard_lt_ncard ⟨hsub, fun hcon => hnot (hcon hmem)⟩ (Set.toFinite _)
   exact absurd (hmin q hq) (by omega)
 
-/-- Rank is strictly monotone: a lower position has a smaller rank. -/
+/-- Rank is strictly monotone: a lower position has a smaller rank.
+@isnad1 id=lt.2h7v.s5.290f08e3b8de from=translated src=- shape=044862ca vocab=9227768c
+-/
 theorem bitRank_lt (hlin : IsLinOrd Le) {p q : A} (hp : Posn p) (hle : Le p q)
     (hne : p ≠ q) : bitRank Le Posn p < bitRank Le Posn q := by
   have hsub : {r : A | Posn r ∧ Le r p ∧ r ≠ p} ⊆ {r : A | Posn r ∧ Le r q ∧ r ≠ q} := by
@@ -378,7 +411,9 @@ theorem bitRank_lt (hlin : IsLinOrd Le) {p q : A} (hp : Posn p) (hle : Le p q)
   exact Set.ncard_lt_ncard ⟨hsub, fun hcon => hnot (hcon hmem)⟩ (Set.toFinite _)
 
 omit [Finite A] in
-/-- The element immediately below a given one is unique. -/
+/-- The element immediately below a given one is unique.
+@isnad1 id=eq.3h6v.s5.f58632ad6c4a from=translated src=- shape=7f1f9930 vocab=47aa5c03
+-/
 theorem succPos_left_unique (hlin : IsLinOrd Le) {p p' q : A}
     (h : SuccPos Le Posn p q) (h' : SuccPos Le Posn p' q) : p = p' := by
   rcases hlin.2.2.2 p p' with hle | hle
@@ -390,18 +425,24 @@ theorem succPos_left_unique (hlin : IsLinOrd Le) {p p' q : A}
     · exact absurd h1 h.2.2.2.1
 
 omit [Finite A] in
-/-- The reverse of a linear order is a linear order. -/
+/-- The reverse of a linear order is a linear order.
+@isnad1 id=islinord.1h2v.s4.837be4bd8b5c from=translated src=- shape=78165277 vocab=af5b1183
+-/
 theorem IsLinOrd.reverse (hlin : IsLinOrd Le) : IsLinOrd (fun a b => Le b a) :=
   ⟨hlin.1, fun a b c hab hbc => hlin.2.1 c b a hbc hab,
     fun a b hab hba => hlin.2.2.1 a b hba hab, fun a b => hlin.2.2.2 b a⟩
 
-/-- A nonempty set of positions has a highest one. -/
+/-- A nonempty set of positions has a highest one.
+@isnad1 id=ex.2h3v.s5.bc014d9017b1 from=translated src=- shape=e1022ca8 vocab=74a0d020
+-/
 theorem exists_maxPos (hlin : IsLinOrd Le) (hne : ∃ p, Posn p) :
     ∃ p, MaxPos Le Posn p := by
   obtain ⟨p, hp, hmax⟩ := exists_minPos hlin.reverse hne
   exact ⟨p, hp, hmax⟩
 
-/-- Every position that is not the lowest has one immediately below it. -/
+/-- Every position that is not the lowest has one immediately below it.
+@isnad1 id=ex.2h5v.s5.fcc9d7507370 from=translated src=- shape=cf91ca13 vocab=fdb2c80e
+-/
 theorem exists_predPos (hlin : IsLinOrd Le) {p : A} (hp : Posn p)
     (hmin : ¬MinPos Le Posn p) : ∃ q, SuccPos Le Posn q p := by
   have hne : ∃ q, Posn q ∧ Le q p ∧ q ≠ p := by
@@ -425,7 +466,9 @@ open Classical in
 and `b` with carries `c` – each bit the exclusive or of the three, each carry
 the majority of the three below – then the decoded numbers add up, the carry
 in at the bottom and the carry out at the top accounting for the
-difference. -/
+difference.
+@isnad1 id=eq.7h10v.s7.1ac62aaabc21 from=translated src=- shape=e5cccada vocab=6a8afb5d
+-/
 theorem binNum_ripple (hlin : IsLinOrd Le) {a b s : A → Prop} :
     ∀ (n : ℕ) (Posn c : A → Prop) (cin cout : Prop),
       ({p : A | Posn p} : Set A).ncard = n →
@@ -520,7 +563,9 @@ theorem binNum_ripple (hlin : IsLinOrd Le) {a b s : A → Prop} :
       rw [hzero s, hzero a, hzero b, hn0, if_congr (hemp hempty) rfl rfl]
       simp
 
-/-- A decoded number is smaller than `2` to the number of positions. -/
+/-- A decoded number is smaller than `2` to the number of positions.
+@isnad1 id=lt.2h5v.s6.26631c04caeb from=translated src=- shape=490b1e64 vocab=c52882fe
+-/
 theorem binNum_lt_two_pow (hlin : IsLinOrd Le) :
     ∀ (n : ℕ) (Posn : A → Prop), ({p : A | Posn p} : Set A).ncard = n →
       ∀ b : A → Prop, binNum Le Posn b < 2 ^ n := by
@@ -561,7 +606,9 @@ open Classical in
 /-- **A ripple-carry certificate exists.** Whenever the sum fits in the
 available positions, the bitwise sum and the carries that witness it can be
 produced – this is the certificate that the `Σ₁` definition of a
-binary-weighted problem guesses. -/
+binary-weighted problem guesses.
+@isnad1 id=ex.3h7v.s7.f4fe97cdded7 from=translated src=- shape=f7dd672f vocab=728014bf
+-/
 theorem exists_ripple (hlin : IsLinOrd Le) :
     ∀ (n : ℕ) (Posn a b : A → Prop) (cin : Prop),
       ({p : A | Posn p} : Set A).ncard = n →
@@ -687,7 +734,9 @@ theorem exists_ripple (hlin : IsLinOrd Le) :
 
 open Classical in
 /-- **Every number that fits can be written**: a value below `2` to the number
-of positions is decoded from some set of bits. -/
+of positions is decoded from some set of bits.
+@isnad1 id=ex.3h5v.s6.e3fbd8153a05 from=translated src=- shape=51dad817 vocab=c52882fe
+-/
 theorem exists_binNum (hlin : IsLinOrd Le) :
     ∀ (n : ℕ) (Posn : A → Prop), ({p : A | Posn p} : Set A).ncard = n →
       ∀ k < 2 ^ n, ∃ b : A → Prop, binNum Le Posn b = k := by
@@ -743,7 +792,9 @@ theorem exists_binNum (hlin : IsLinOrd Le) :
 
 open Classical in
 /-- **The decoding is injective on the positions**: two sets of bits with the
-same value agree wherever it matters. -/
+same value agree wherever it matters.
+@isnad1 id=iff.3h8v.s6.a0c1e7ae35ef from=translated src=- shape=1fb183a5 vocab=4185c257
+-/
 theorem binNum_inj_on (hlin : IsLinOrd Le) :
     ∀ (n : ℕ) (Posn : A → Prop), ({p : A | Posn p} : Set A).ncard = n →
       ∀ b b' : A → Prop, binNum Le Posn b = binNum Le Posn b' →
@@ -785,7 +836,9 @@ open Classical in
 smaller than another exactly when there is a position carrying `0` in the
 first and `1` in the second above which the two agree. Unlike the value
 itself, this is a *first-order* reading of `<`, which is what a kernel
-comparing two guessed numbers writes. -/
+comparing two guessed numbers writes.
+@isnad1 id=iff.2h6v.s6.5661fe946a53 from=translated src=- shape=8761877f vocab=11d851ab
+-/
 theorem binNum_lt_iff (hlin : IsLinOrd Le) :
     ∀ (n : ℕ) (Posn : A → Prop), ({p : A | Posn p} : Set A).ncard = n →
       ∀ b b' : A → Prop, (binNum Le Posn b < binNum Le Posn b' ↔

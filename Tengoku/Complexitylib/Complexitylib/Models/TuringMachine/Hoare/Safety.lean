@@ -22,7 +22,9 @@ public section
 namespace Complexity
 namespace TM
 
-/-- Strengthen the entry condition and weaken the safety conclusion. -/
+/-- Strengthen the entry condition and weaken the safety conclusion.
+@isnad1 id=hoaresaf.1h8v.s6.ac73073f13e5 from=translated src=- shape=0c7f6b4b vocab=adfa8921
+-/
 theorem HoareSafety.consequence {M : TM n} {pre pre' safe safe' : TapePred n}
     (h : M.HoareSafety pre safe)
     (hpre : ∀ inp work out, pre' inp work out → pre inp work out)
@@ -31,7 +33,9 @@ theorem HoareSafety.consequence {M : TM n} {pre pre' safe safe' : TapePred n}
   fun inp work out hp c hc => hsafe _ _ _ (h inp work out (hpre _ _ _ hp) c hc)
 
 /-- A terminating sequential pipeline preserves a common safety predicate.
-The handoff is covered by the second phase's reflexive safety obligation. -/
+The handoff is covered by the second phase's reflexive safety obligation.
+@isnad1 id=hoaresaf.4h11v.s6.f8dacaf3a4b3 from=translated src=- shape=839fecb7 vocab=d7f01cd2
+-/
 theorem seqTM_hoareSafety (tm₁ tm₂ : TM n)
     {pre mid mid' post safe : TapePred n} {b₁ b₂ : ℕ}
     (h₁ : tm₁.HoareTime pre mid b₁)

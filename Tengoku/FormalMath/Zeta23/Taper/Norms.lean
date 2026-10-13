@@ -13,6 +13,9 @@ namespace Zeta23
 
 namespace Taper
 
+/--
+@isnad1 id=taperpro.0h0v.s1.fc420a835463 from=translated src=- shape=49959d42 vocab=18d64342
+-/
 theorem taperProfile_smoothstep : TaperProfile smoothstep where
   contDiff := Real.smoothTransition.contDiff
   monotone := Real.smoothTransition.monotone
@@ -124,7 +127,9 @@ private lemma integral_abs_deriv_eq_two {F : ℝ → ℝ} {L : ℝ} (hL : 0 < L)
   rw [heqIcc, hIccIoc, hsplit, hleft, hright]
   ring
 
-/-- [eq:phinorms]: "`‖φ'‖₁ = 2`". -/
+/-- [eq:phinorms]: "`‖φ'‖₁ = 2`".
+@isnad1 id=eq.3h3v.s6.802678337110 from=translated src=- shape=22ab8562 vocab=2067a9b5
+-/
 theorem integral_abs_deriv_phi (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) :
     ∫ u, |deriv (phi ϱ L w) u| = 2 := by
   refine integral_abs_deriv_eq_two (by linarith) ((phi_contDiff hϱ hw hwL).of_le (by norm_num))
@@ -136,7 +141,9 @@ theorem integral_abs_deriv_phi (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w
   have h2 : 0 ≤ deriv ϱ ((L / 2 - u) / w) / w := div_nonneg h1 hw.le
   linarith
 
-/-- [eq:phinorms]: "`‖(φ²)'‖₁ = 2`". -/
+/-- [eq:phinorms]: "`‖(φ²)'‖₁ = 2`".
+@isnad1 id=eq.3h3v.s7.882d241d27e9 from=translated src=- shape=383bbf03 vocab=9dd17383
+-/
 theorem integral_abs_deriv_phi_sq (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) :
     ∫ u, |deriv (fun u => phi ϱ L w u ^ 2) u| = 2 := by
   have hφ1 : ContDiff ℝ 1 (phi ϱ L w) := (phi_contDiff hϱ hw hwL).of_le (by norm_num)
@@ -229,7 +236,9 @@ private lemma deriv_phi_odd (_hϱ : TaperProfile ϱ) (v : ℝ) :
   rw [h2] at h1
   linarith
 
-/-- [eq:phinorms]: "`‖φ'‖_∞ = ‖ϱ'‖_∞ / w`" (we record `≤`, which is what is used). -/
+/-- [eq:phinorms]: "`‖φ'‖_∞ = ‖ϱ'‖_∞ / w`" (we record `≤`, which is what is used).
+@isnad1 id=le.3h4v.s6.717d01483151 from=translated src=- shape=a928b524 vocab=25b68fcc
+-/
 theorem abs_deriv_phi_le (hϱ : TaperProfile ϱ) (hw : 0 < w) (_hwL : 2 * w ≤ L) (u : ℝ) :
     |deriv (phi ϱ L w) u| ≤ supDeriv ϱ / w := by
   have key : ∀ v : ℝ, 0 < v → |deriv (phi ϱ L w) v| ≤ supDeriv ϱ / w := by
@@ -336,7 +345,9 @@ private lemma deriv2_phi_zero_out (hϱ : TaperProfile ϱ) (hw : 0 < w) {u : ℝ}
   rw [hev.deriv_eq]
   simp
 
-/-- [eq:phinorms]: "`‖φ''‖₁ = 2‖ϱ''‖₁ / w`". -/
+/-- [eq:phinorms]: "`‖φ''‖₁ = 2‖ϱ''‖₁ / w`".
+@isnad1 id=eq.3h3v.s7.77256c0c3b3a from=translated src=- shape=08f7f959 vocab=2930081c
+-/
 theorem integral_abs_deriv2_phi (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) :
     ∫ u, |deriv (deriv (phi ϱ L w)) u| = 2 * l1Deriv2 ϱ / w := by
   have hL : (0 : ℝ) < L := by linarith
@@ -383,7 +394,9 @@ theorem integral_abs_deriv2_phi (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * 
   rw [hfull]
   field_simp
 
-/-- [eq:phinorms]: "`‖(φ²)''‖₁ ≤ c_ϱ / w`" (uses `w ≥ 1`). -/
+/-- [eq:phinorms]: "`‖(φ²)''‖₁ ≤ c_ϱ / w`" (uses `w ≥ 1`).
+@isnad1 id=le.3h3v.s7.0e431b14f24d from=translated src=- shape=45c8e93d vocab=5a99d287
+-/
 theorem integral_abs_deriv2_phi_sq_le (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 2 * w ≤ L) :
     ∫ u, |deriv (deriv (fun u => phi ϱ L w u ^ 2)) u| ≤ cRho ϱ / w := by
   have hw0 : (0 : ℝ) < w := by linarith
@@ -473,7 +486,9 @@ theorem integral_abs_deriv2_phi_sq_le (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hw
         field_simp
         ring
 
-/-- [eq:phinorms]: "`c_ϱ (≥ 4)`". -/
+/-- [eq:phinorms]: "`c_ϱ (≥ 4)`".
+@isnad1 id=le.1h1v.s4.6464ecc898b9 from=translated src=- shape=6195e331 vocab=035cd133
+-/
 theorem four_le_cRho (hϱ : TaperProfile ϱ) : 4 ≤ cRho ϱ := by
   have hl1 := l1Deriv2_nonneg ϱ
   have hftc : ∫ y in (0 : ℝ)..1, deriv ϱ y = 1 := by
@@ -492,16 +507,24 @@ theorem four_le_cRho (hϱ : TaperProfile ϱ) : 4 ≤ cRho ϱ := by
   rw [cRho_eq]
   linarith
 
+/--
+@isnad1 id=le.1h1v.s4.8765df5a3f13 from=translated src=- shape=ef20693d vocab=c4f050a3
+-/
 theorem two_mul_l1Deriv2_le_cRho (hϱ : TaperProfile ϱ) : 2 * l1Deriv2 ϱ ≤ cRho ϱ := by
   have hl1 := l1Deriv2_nonneg ϱ
   have hsup := supDeriv_nonneg hϱ
   rw [cRho_eq]
   linarith
 
+/--
+@isnad1 id=eq.3h3v.s6.bd0386267344 from=translated src=- shape=9dcb469e vocab=7ff45cc6
+-/
 theorem C1_eq (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) :
     C1 ϱ L w = 2 * l1Deriv2 ϱ / w := integral_abs_deriv2_phi hϱ hw hwL
 
-/-- "Finally `C₁ ≤ 2‖ϱ''‖₁` as `w ≥ 1`" [prop:tail proof, last lines]. -/
+/-- "Finally `C₁ ≤ 2‖ϱ''‖₁` as `w ≥ 1`" [prop:tail proof, last lines].
+@isnad1 id=le.3h3v.s6.63a7e69c5b8d from=translated src=- shape=03995391 vocab=6d9f15f2
+-/
 theorem C1_le (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 2 * w ≤ L) :
     C1 ϱ L w ≤ 2 * l1Deriv2 ϱ := by
   rw [C1_eq hϱ (by linarith) hwL]
@@ -523,6 +546,9 @@ private lemma integrable_phi_pow (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 *
   ((phi_continuous hϱ hw hwL).pow n).integrable_of_hasCompactSupport
     ((phi_hasCompactSupport hϱ hw).comp_left (g := (· ^ n)) (by simp [zero_pow hn.ne']))
 
+/--
+@isnad1 id=le.3h3v.s5.f00827841d72 from=translated src=- shape=7961813f vocab=debc7a30
+-/
 theorem bConst_le_aConst (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) :
     bConst ϱ L w ≤ aConst ϱ L w := by
   have hL := L_pos hw hwL
@@ -537,6 +563,9 @@ theorem bConst_le_aConst (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L
     nlinarith [mul_le_mul_of_nonneg_left hp2 hp2n]
   exact mul_le_mul_of_nonneg_left hmono (by positivity)
 
+/--
+@isnad1 id=le.3h3v.s5.9783caeb47d9 from=translated src=- shape=484a7794 vocab=893e7284
+-/
 theorem aConst_le_one (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) :
     aConst ϱ L w ≤ 1 := by
   have hL := L_pos hw hwL
@@ -574,6 +603,9 @@ theorem aConst_le_one (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) :
         exact mul_le_mul_of_nonneg_left (le_trans hle (le_of_eq hvol)) (by positivity)
     _ = 1 := inv_mul_cancel₀ hL.ne'
 
+/--
+@isnad1 id=le.3h3v.s6.7f5480013221 from=translated src=- shape=fe222176 vocab=daee7b1c
+-/
 theorem one_sub_le_bConst (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) :
     1 - 2 * w / L ≤ bConst ϱ L w := by
   have hL := L_pos hw hwL
@@ -606,6 +638,9 @@ theorem one_sub_le_bConst (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ 
   calc 1 - 2 * w / L = L⁻¹ * (L - 2 * w) := by field_simp
     _ ≤ L⁻¹ * ∫ u : ℝ, phi ϱ L w u ^ 4 := mul_le_mul_of_nonneg_left hkey (by positivity)
 
+/--
+@isnad1 id=le.3h3v.s5.8b8f8845cc98 from=translated src=- shape=d1bcbd32 vocab=3c7d1f4c
+-/
 theorem bConst_nonneg (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) :
     0 ≤ bConst ϱ L w := by
   unfold bConst

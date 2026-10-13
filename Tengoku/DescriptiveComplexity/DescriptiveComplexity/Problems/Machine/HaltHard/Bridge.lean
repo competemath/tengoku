@@ -81,13 +81,22 @@ def simTM (c : Code) : TMData (SimU c) where
 def symsOf (l : List (SimSym c)) : List (TapeLetter (SimU c)) :=
   l.map fun σ => TapeLetter.sym (sts σ)
 
+/--
+@isnad1 id=eq.0h1v.s4.34b498168d0d from=translated src=- shape=6a20072e vocab=4ffaa764
+-/
 @[simp]
 theorem symsOf_nil : symsOf (c := c) [] = [] := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.5d4bb85b0acf from=translated src=- shape=3eed66b7 vocab=6891a3b1
+-/
 @[simp]
 theorem symsOf_cons (σ : SimSym c) (l : List (SimSym c)) :
     symsOf (σ :: l) = TapeLetter.sym (sts σ) :: symsOf l := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.0088d77b5276 from=translated src=- shape=a9270fff vocab=f56aa197
+-/
 @[simp]
 theorem symsOf_append (l l' : List (SimSym c)) :
     symsOf (l ++ l') = symsOf l ++ symsOf l' := List.map_append ..
@@ -99,9 +108,15 @@ def wordOf (x : LCfg c) : List (TapeLetter (SimU c)) :=
     TapeLetter.state (stq x.q) ::
       TapeLetter.sym (sts x.s) :: (symsOf x.R ++ [TapeLetter.rgt])
 
+/--
+@isnad1 id=not.0h2v.s4.1ee0aecd16aa from=translated src=- shape=66cb9aa8 vocab=b99ba391
+-/
 theorem halt_not_mem_wordOf (x : LCfg c) : TapeLetter.halt ∉ wordOf x := by
   simp [wordOf, symsOf]
 
+/--
+@isnad1 id=not.0h2v.s4.d24aa55b2b6d from=translated src=- shape=66cb9aa8 vocab=32e198e7
+-/
 theorem boot_not_mem_wordOf (x : LCfg c) : TapeLetter.boot ∉ wordOf x := by
   simp [wordOf, symsOf]
 
@@ -139,6 +154,9 @@ theorem eq_of_unique_marked {Γ : Type} {P : Γ → Prop} :
 /-- Being a state letter. -/
 def IsStateL (a : TapeLetter (SimU c)) : Prop := ∃ u, a = TapeLetter.state u
 
+/--
+@isnad1 id=not.1h3v.s5.1d99e648b6fb from=translated src=- shape=c04cd1cc vocab=95f90414
+-/
 theorem not_isStateL_left (L : List (SimSym c)) :
     ∀ a ∈ TapeLetter.lft :: symsOf (c := c) L, ¬IsStateL a := by
   rintro a ha ⟨u, rfl⟩
@@ -147,6 +165,9 @@ theorem not_isStateL_left (L : List (SimSym c)) :
   · obtain ⟨σ, -, hh⟩ := List.mem_map.mp h
     simp at hh
 
+/--
+@isnad1 id=not.1h4v.s6.1ab2163db65d from=translated src=- shape=868478db vocab=1c9b05da
+-/
 theorem not_isStateL_right (s : SimSym c) (R : List (SimSym c)) :
     ∀ a ∈ TapeLetter.sym (sts s) :: (symsOf (c := c) R ++ [TapeLetter.rgt]), ¬IsStateL a := by
   rintro a ha ⟨u, rfl⟩
@@ -158,7 +179,9 @@ theorem not_isStateL_right (s : SimSym c) (R : List (SimSym c)) :
   · simp at h
 
 /-- Splitting the word of a configuration at a state letter: the state letter
-is the configuration's, and the two sides are its two half-tapes. -/
+is the configuration's, and the two sides are its two half-tapes.
+@isnad1 id=and.1h9v.s7.88270ade5a9a from=translated src=- shape=d76dd626 vocab=073d7142
+-/
 theorem wordOf_state_split {q : SimQ c} {L : List (SimSym c)} {s : SimSym c}
     {R : List (SimSym c)} {u v : List (TapeLetter (SimU c))} {w : SimU c}
     {m : List (TapeLetter (SimU c))}
@@ -185,7 +208,9 @@ theorem wordOf_state_split {q : SimQ c} {L : List (SimSym c)} {s : SimSym c}
 /-! ### Decoding the attributes of a transition -/
 
 /-- The attribute values of a transition of `simTM` all decode through one
-application of the table, and its direction is the `Right` predicate. -/
+application of the table, and its direction is the `Right` predicate.
+@isnad1 id=ex.4h6v.s7.cfb71efe5612 from=translated src=- shape=7e16b080 vocab=a4a749a9
+-/
 theorem decode_attrs {τ u a u' b : SimU c} (hsrc : (simTM c).Src τ u)
     (hread : (simTM c).Read τ a) (hdst : (simTM c).Dst τ u')
     (hwrite : (simTM c).Write τ b) :
@@ -213,7 +238,9 @@ theorem decode_attrs {τ u a u' b : SimU c} (hsrc : (simTM c).Src τ u)
 
 /-! ### One machine step is one rewriting step -/
 
-/-- **Forward**: one zipper step rewrites the word by one move rule. -/
+/-- **Forward**: one zipper step rewrites the word by one move rule.
+@isnad1 id=step.1h3v.s5.112106ee99cd from=translated src=- shape=a82dc704 vocab=3c07ea64
+-/
 theorem step_wordOf {x y : LCfg c} (h : lstep x = some y) :
     History.Step (MRule (simTM c)) (wordOf x) (wordOf y) := by
   obtain ⟨q, L, s, R⟩ := x
@@ -273,7 +300,9 @@ theorem step_wordOf {x y : LCfg c} (h : lstep x = some y) :
 
 /-- **Backward**: a rewriting step from a configuration word either performs
 the configuration's own machine step, or fires the halting rule – in which
-case the configuration accepts. -/
+case the configuration accepts.
+@isnad1 id=or.1h3v.s5.5f7351dc3150 from=translated src=- shape=4f749998 vocab=2182346d
+-/
 theorem step_inversion_wordOf {x : LCfg c} {w : List (TapeLetter (SimU c))}
     (h : History.Step (MRule (simTM c)) (wordOf x) w) :
     (∃ y, lstep x = some y ∧ w = wordOf y) ∨ x.q = SimQ.acc := by
@@ -426,7 +455,9 @@ theorem step_inversion_wordOf {x : LCfg c} {w : List (TapeLetter (SimU c))}
 
 /-! ### Whole runs -/
 
-/-- A run of the machine is a derivation between the two words. -/
+/-- A run of the machine is a derivation between the two words.
+@isnad1 id=derives.1h3v.s4.5c952279246c from=translated src=- shape=90845f4c vocab=46a9074f
+-/
 theorem derives_wordOf_of_reach {x y : LCfg c} (h : Reach x y) :
     History.Derives (MRule (simTM c)) (wordOf x) (wordOf y) := by
   induction h with
@@ -434,7 +465,9 @@ theorem derives_wordOf_of_reach {x y : LCfg c} (h : Reach x y) :
   | tail _ hstep ih => exact ih.tail (step_wordOf hstep)
 
 /-- From an accepting configuration the derivation closes: the state letter
-becomes the halting letter, which swallows the rest of the word. -/
+becomes the halting letter, which swallows the rest of the word.
+@isnad1 id=derives.1h2v.s5.cb3b28da576f from=translated src=- shape=31317f1d vocab=21299677
+-/
 theorem derives_halt_of_acc {x : LCfg c} (hx : x.q = SimQ.acc) :
     History.Derives (MRule (simTM c)) (wordOf x) [TapeLetter.halt] := by
   obtain ⟨q, L, s, R⟩ := x
@@ -484,7 +517,9 @@ theorem derives_halt_of_acc {x : LCfg c} (hx : x.q = SimQ.acc) :
   exact (((Relation.ReflTransGen.head h1 h2).tail h3).trans h4).tail h5
 
 /-- **Backward**: a derivation of the halting word from a configuration word
-yields an accepting run of the machine. -/
+yields an accepting run of the machine.
+@isnad1 id=ex.2h3v.s5.bf6ed1a7297c from=translated src=- shape=3b4bcc29 vocab=33d68b58
+-/
 theorem reach_acc_of_derives : ∀ {w : List (TapeLetter (SimU c))},
     History.Derives (MRule (simTM c)) w [TapeLetter.halt] →
     ∀ x : LCfg c, w = wordOf x → ∃ y, y.q = SimQ.acc ∧ Reach x y := by
@@ -505,7 +540,9 @@ theorem reach_acc_of_derives : ∀ {w : List (TapeLetter (SimU c))},
 
 /-- **Derivability from the start word is machine acceptance**, at the
 zipper: the first step of any derivation is the boot rule, and boot lands the
-machine in the resting state at the left end of the spelled tape. -/
+machine in the resting state at the left end of the spelled tape.
+@isnad1 id=iff.0h3v.s6.bb18c0a1618f from=translated src=- shape=0df28e1f vocab=62aa3e4f
+-/
 theorem derives_startWord_iff (σ₀ : SimSym c) (R₀ : List (SimSym c)) :
     History.Derives (MRule (simTM c))
       (startWord ((σ₀ :: R₀).map sts)) [TapeLetter.halt] ↔
@@ -575,7 +612,9 @@ theorem derives_startWord_iff (σ₀ : SimSym c) (R₀ : List (SimSym c)) :
 
 /-- **The abstract bridge**: the rewriting system of the simulating machine
 derives the halting word from the spelled resting configuration of `k` and
-`v` exactly when the abstract evaluation of `k` on `v` terminates. -/
+`v` exactly when the abstract evaluation of `k` on `v` terminates.
+@isnad1 id=iff.1h6v.s6.84693b56d2d7 from=translated src=- shape=d848ff09 vocab=c78b7585
+-/
 theorem derives_startWord_iff_evalDom {k : PCont c} {fr : List (SimSym c)}
     (hfr : FrameSeg k fr) (v : List ℕ) (j t : ℕ) :
     History.Derives (MRule (simTM c))
@@ -636,7 +675,9 @@ theorem _root_.DescriptiveComplexity.HaltPcp.startWord_map {A B : Type} (f : A �
     (startWord inp).map (TapeLetter.map f) = startWord (inp.map f) := by
   simp [startWord, TapeLetter.map, List.map_map, Function.comp_def]
 
-/-- **Forward transport of a rule.** -/
+/-- **Forward transport of a rule.**
+@isnad1 id=mrule.2h7v.s5.99112620ee7c from=translated src=- shape=5e54a361 vocab=e2555490
+-/
 theorem mRule_map (h : TMEmbed f M N) {l r : List (TapeLetter A)} (hrule : MRule M l r) :
     MRule N (l.map (TapeLetter.map f)) (r.map (TapeLetter.map f)) := by
   cases hrule with
@@ -673,6 +714,9 @@ theorem mRule_map (h : TMEmbed f M N) {l r : List (TapeLetter A)} (hrule : MRule
 
 /-! #### Decomposing image words -/
 
+/--
+@isnad1 id=ex.1h6v.s6.7e35e32723df from=translated src=- shape=4b584099 vocab=d7205f4f
+-/
 theorem cons_eq_map {α β : Type} {f : α → β} {x : β} {xs : List β} {l : List α}
     (h : x :: xs = l.map f) : ∃ a l₀, l = a :: l₀ ∧ x = f a ∧ xs = l₀.map f := by
   cases l with
@@ -682,12 +726,18 @@ theorem cons_eq_map {α β : Type} {f : α → β} {x : β} {xs : List β} {l : 
     injection h with h1 h2
     exact ⟨a, l₀, rfl, h1, h2⟩
 
+/--
+@isnad1 id=eq.1h4v.s4.715252c9d81c from=translated src=- shape=4a6aa414 vocab=04a98450
+-/
 theorem nil_eq_map {α β : Type} {f : α → β} {l : List α}
     (h : ([] : List β) = l.map f) : l = [] := by
   cases l with
   | nil => rfl
   | cons a l₀ => simp at h
 
+/--
+@isnad1 id=ex.1h6v.s6.332d91cc2597 from=translated src=- shape=c111cc13 vocab=ef3fa8df
+-/
 theorem append_eq_map {α β : Type} {f : α → β} : ∀ {x y : List β} {l : List α},
     x ++ y = l.map f →
     ∃ lx ly, l = lx ++ ly ∧ x = lx.map f ∧ y = ly.map f := by
@@ -742,7 +792,9 @@ theorem eq_map_halt (h : TapeLetter.halt = TapeLetter.map f a) : a = TapeLetter.
 end Letters
 
 /-- **Backward transport of a rule**: a target rule whose left side is an
-image has an image right side, and comes from a source rule. -/
+image has an image right side, and comes from a source rule.
+@isnad1 id=ex.3h8v.s6.2552c275a36e from=translated src=- shape=9aae00ad vocab=e2555490
+-/
 theorem mRule_inv (h : TMEmbed f M N) {l' r' : List (TapeLetter B)}
     (hrule : MRule N l' r') {l : List (TapeLetter A)}
     (hl : l' = l.map (TapeLetter.map f)) :
@@ -876,7 +928,9 @@ theorem mRule_inv (h : TMEmbed f M N) {l' r' : List (TapeLetter B)}
     obtain rfl := eq_map_rgt h2
     exact ⟨[.halt], by simp [TapeLetter.map], MRule.eraseRgt⟩
 
-/-- Forward transport of a rewriting step. -/
+/-- Forward transport of a rewriting step.
+@isnad1 id=step.2h7v.s6.c2f110bdffaf from=translated src=- shape=6ebbd875 vocab=c28b2139
+-/
 theorem step_map (h : TMEmbed f M N) {u v : List (TapeLetter A)}
     (hs : History.Step (MRule M) u v) :
     History.Step (MRule N) (u.map (TapeLetter.map f)) (v.map (TapeLetter.map f)) := by
@@ -885,7 +939,9 @@ theorem step_map (h : TMEmbed f M N) {u v : List (TapeLetter A)}
     y.map (TapeLetter.map f), h.mRule_map hrule, by simp, by simp⟩
 
 /-- Backward transport of a rewriting step: from an image word, every step
-lands on an image word, by the image step. -/
+lands on an image word, by the image step.
+@isnad1 id=ex.2h7v.s6.169138f3ee74 from=translated src=- shape=aac455d4 vocab=c28b2139
+-/
 theorem step_inv (h : TMEmbed f M N) {W : List (TapeLetter A)}
     {w' : List (TapeLetter B)}
     (hs : History.Step (MRule N) (W.map (TapeLetter.map f)) w') :
@@ -898,7 +954,9 @@ theorem step_inv (h : TMEmbed f M N) {W : List (TapeLetter A)}
   rw [hx, hr, hy]
   simp
 
-/-- Forward transport of a derivation. -/
+/-- Forward transport of a derivation.
+@isnad1 id=derives.2h7v.s6.e2c6b4d091b2 from=translated src=- shape=6ebbd875 vocab=920c634c
+-/
 theorem derives_map (h : TMEmbed f M N) {u v : List (TapeLetter A)}
     (hd : History.Derives (MRule M) u v) :
     History.Derives (MRule N) (u.map (TapeLetter.map f)) (v.map (TapeLetter.map f)) := by
@@ -906,7 +964,9 @@ theorem derives_map (h : TMEmbed f M N) {u v : List (TapeLetter A)}
   | refl => exact Relation.ReflTransGen.refl
   | tail _ hstep ih => exact ih.tail (h.step_map hstep)
 
-/-- Backward transport of a derivation of the halting word. -/
+/-- Backward transport of a derivation of the halting word.
+@isnad1 id=derives.3h7v.s6.948f1cbcf851 from=translated src=- shape=d9c79c18 vocab=7bbf756b
+-/
 theorem derives_halt_of_map (h : TMEmbed f M N) : ∀ {w' : List (TapeLetter B)},
     History.Derives (MRule N) w' [TapeLetter.halt] →
     ∀ {w : List (TapeLetter A)}, w' = w.map (TapeLetter.map f) →
@@ -926,7 +986,9 @@ theorem derives_halt_of_map (h : TMEmbed f M N) : ∀ {w' : List (TapeLetter B)}
     obtain ⟨V, rfl, hstepM⟩ := h.step_inv hstep
     exact Relation.ReflTransGen.head hstepM (ih rfl)
 
-/-- **Derivations of the halting word transport along an embedding.** -/
+/-- **Derivations of the halting word transport along an embedding.**
+@isnad1 id=iff.1h6v.s6.514f09fbc256 from=translated src=- shape=85a31da0 vocab=7bbf756b
+-/
 theorem derives_halt_iff (h : TMEmbed f M N) {w : List (TapeLetter A)} :
     History.Derives (MRule N) (w.map (TapeLetter.map f)) [TapeLetter.halt] ↔
       History.Derives (MRule M) w [TapeLetter.halt] := by
@@ -942,7 +1004,9 @@ end TMEmbed
 /-- **The whole bridge, for a drawn machine**: a machine whose predicates are
 the images of `simTM`'s derives the halting word from the image of the
 spelled resting configuration exactly when the abstract evaluation
-terminates. -/
+terminates.
+@isnad1 id=iff.2h9v.s6.0cc849c91c46 from=translated src=- shape=6f86f8f0 vocab=37235410
+-/
 theorem TMEmbed.derives_iff_evalDom {B : Type} {f : SimU c → B} {N : TMData B}
     (h : TMEmbed f (simTM c) N) {k : PCont c} {fr : List (SimSym c)}
     (hfr : FrameSeg k fr) (v : List ℕ) (j t : ℕ) :

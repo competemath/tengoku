@@ -32,7 +32,9 @@ open Emit
 /-- The symbol-index map, packaged for the probe. -/
 def fSym : Γ → Fin 4 := fun s => ⟨symIdx s, symIdx_lt s⟩
 
-/-- The probe's bound fits the budget. -/
+/-- The probe's bound fits the budget.
+@isnad1 id=le.2h3v.s6.620df591d023 from=translated src=- shape=6ebed35e vocab=8d619ce3
+-/
 theorem probeBudget {p d M : ℕ} (hp : p ≤ M) (hd : d ≤ M) :
     3 * p + 2 * d + 20 ≤ opBudget M :=
   le_opBudget_of_le (by nlinarith)
@@ -48,7 +50,9 @@ noncomputable def startConstD (N : NTM 1) : List (List (LitDesc nT)) :=
 noncomputable def emitStartConstTM (N : NTM 1) : TM nT :=
   emitCNFTM rA rB rC rD tmp tmp2 (startConstD N)
 
-/-- **`emitStartConstTM` Hoare specification.** -/
+/-- **`emitStartConstTM` Hoare specification.**
+@isnad1 id=hoaretim.7h7v.s8.32faaa895c9a from=translated src=- shape=5b0a4bf0 vocab=fc438972
+-/
 theorem emitStartConstTM_hoareTime (N : NTM 1) (steps P M : ℕ)
     (hM : 4 * (steps + 1) * (max (Fintype.card N.Q) 3) * (P + 2) * 4 ≤ M)
     (inp₀ : Tape) (work₀ : Fin nT → Tape) (ys : List Bool)
@@ -137,7 +141,9 @@ def startBlankBudget (M : ℕ) : ℕ :=
   cnfBudget 1 1 M + 1
     + (opBudget M + 1 + (loopBudget M (clauseBudget 1 M) + 1 + opBudget M))
 
-/-- **`startBlankPartTM` Hoare specification** (tape `tp ∈ {1,2}`). -/
+/-- **`startBlankPartTM` Hoare specification** (tape `tp ∈ {1,2}`).
+@isnad1 id=hoaretim.11h9v.s8.584096a274c5 from=translated src=- shape=7de6cec4 vocab=801268fb
+-/
 theorem startBlankPartTM_hoareTime (tp : ℕ) (htp1 : 1 ≤ tp) (htp : tp < 3)
     (x : List Bool) (Qc steps P M : ℕ)
     (hM : 4 * (steps + 1) * (max Qc 3) * (P + 2) * 4 ≤ M)
@@ -375,7 +381,9 @@ def startProbeBudget (M : ℕ) : ℕ :=
     + (opBudget M + 1
       + (loopBudget M (startProbeBodyBudget M) + 1 + opBudget M))
 
-/-- **`startProbeBodyTM` Hoare specification** (at position `1 + j`). -/
+/-- **`startProbeBodyTM` Hoare specification** (at position `1 + j`).
+@isnad1 id=hoaretim.12h9v.s8.1169d32c3090 from=translated src=- shape=680f8f3e vocab=005a29e6
+-/
 theorem startProbeBodyTM_hoareTime (x : List Bool) (Qc steps P M j : ℕ)
     (hM : 4 * (steps + 1) * (max Qc 3) * (P + 2) * 4 ≤ M)
     (hj : j < P)
@@ -534,7 +542,9 @@ theorem startProbeBodyTM_hoareTime (x : List Bool) (Qc steps P M j : ℕ)
     simp only [List.length_cons, List.length_nil]
     omega
 
-/-- **`startProbePartTM` Hoare specification**: the input-tape start cells. -/
+/-- **`startProbePartTM` Hoare specification**: the input-tape start cells.
+@isnad1 id=hoaretim.12h8v.s8.4ccd8ffca236 from=translated src=- shape=a7a0b423 vocab=284cf07f
+-/
 theorem startProbePartTM_hoareTime (x : List Bool) (Qc steps P M : ℕ)
     (hM : 4 * (steps + 1) * (max Qc 3) * (P + 2) * 4 ≤ M)
     (inp₀ : Tape) (V : Fin nT → Tape) (ys : List Bool)
@@ -744,7 +754,9 @@ def startBudget (M : ℕ) : ℕ :=
     + (startProbeBudget M + 1 + (startBlankBudget M + 1 + startBlankBudget M))
 
 /-- **`emitStartTM` Hoare specification**: appends the encoded start
-    clauses. -/
+    clauses.
+@isnad1 id=hoaretim.13h8v.s8.236e3b7743d1 from=translated src=- shape=8991a17a vocab=b30885bc
+-/
 theorem emitStartTM_hoareTime (N : NTM 1) (x : List Bool) (steps P M : ℕ)
     (hP : P = steps + x.length + 1)
     (hM : 4 * (steps + 1) * (max (Fintype.card N.Q) 3) * (P + 2) * 4 ≤ M)

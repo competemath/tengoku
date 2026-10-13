@@ -22,9 +22,15 @@ namespace Zeta23.RvM
 /-- the open right half-plane -/
 def rightHalfPlane : Set ℂ := {s : ℂ | 0 < s.re}
 
+/--
+@isnad1 id=isopen.0h0v.s4.d0ea4cd113e2 from=translated src=- shape=25b03439 vocab=4696bcd1
+-/
 lemma isOpen_rightHalfPlane : IsOpen rightHalfPlane :=
   isOpen_lt continuous_const Complex.continuous_re
 
+/--
+@isnad1 id=differen.1h1v.s6.06d47e1b4db3 from=translated src=- shape=fd8d4494 vocab=bef67e2b
+-/
 lemma Gamma_half_differentiableAt {s : ℂ} (hs : 0 < s.re) : DifferentiableAt ℂ Complex.Gamma (s / 2) := by
   apply Complex.differentiableAt_Gamma
   intro m h
@@ -33,6 +39,9 @@ lemma Gamma_half_differentiableAt {s : ℂ} (hs : 0 < s.re) : DifferentiableAt �
   have : (0:ℝ) ≤ m := Nat.cast_nonneg m
   linarith
 
+/--
+@isnad1 id=differen.0h0v.s6.ba143bfeac09 from=translated src=- shape=cf415218 vocab=da43c7ba
+-/
 lemma Gammaℝ_differentiableOn : DifferentiableOn ℂ Complex.Gammaℝ rightHalfPlane := by
   intro s hs
   apply DifferentiableAt.differentiableWithinAt
@@ -45,10 +54,15 @@ lemma Gammaℝ_differentiableOn : DifferentiableOn ℂ Complex.Gammaℝ rightHal
   rw [this]
   exact h1.mul h2
 
+/--
+@isnad1 id=analytic.0h0v.s4.0bc5ee735dbd from=translated src=- shape=cf415218 vocab=a304eaba
+-/
 lemma Gammaℝ_analyticOnNhd : AnalyticOnNhd ℂ Complex.Gammaℝ rightHalfPlane :=
   Gammaℝ_differentiableOn.analyticOnNhd isOpen_rightHalfPlane
 
-/-- logDeriv Γℝ is holomorphic on Re s > 0. -/
+/-- logDeriv Γℝ is holomorphic on Re s > 0.
+@isnad1 id=differen.0h0v.s6.bc04bb6f3b4a from=translated src=- shape=4f43be55 vocab=865ffdd6
+-/
 lemma logDeriv_Gammaℝ_differentiableOn : DifferentiableOn ℂ (logDeriv Complex.Gammaℝ) rightHalfPlane := by
   have hA := Gammaℝ_analyticOnNhd
   have hd : DifferentiableOn ℂ (deriv Complex.Gammaℝ) rightHalfPlane := hA.deriv.differentiableOn
@@ -59,11 +73,15 @@ lemma logDeriv_Gammaℝ_differentiableOn : DifferentiableOn ℂ (logDeriv Comple
 
 /-! ### helpers for the assembly -/
 
-/-- μ is continuous (given H-Γ's smoothness field). -/
+/-- μ is continuous (given H-Γ's smoothness field).
+@isnad1 id=continuo.1h0v.s4.70665fb4dd8c from=translated src=- shape=8b312914 vocab=c4cb07ab
+-/
 theorem mu_continuous (hΓ : Zeta23.GammaFacts) : Continuous mu :=
   hΓ.smooth.continuous
 
-/-- |μ(τ)| ≪ log(τ+3) for τ ≥ 1, from H-Γ's Stirling field. -/
+/-- |μ(τ)| ≪ log(τ+3) for τ ≥ 1, from H-Γ's Stirling field.
+@isnad1 id=ex.1h0v.s6.423c9d11fef3 from=translated src=- shape=5b2c9619 vocab=6e8fa0f8
+-/
 theorem mu_le_log (hΓ : Zeta23.GammaFacts) : ∃ C : ℝ, 0 < C ∧ ∀ τ : ℝ, 1 ≤ τ →
     |mu τ| ≤ C * Real.log (τ + 3) := by
   obtain ⟨C₀, hC₀⟩ := hΓ.stirling

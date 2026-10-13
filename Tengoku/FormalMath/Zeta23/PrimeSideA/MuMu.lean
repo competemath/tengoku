@@ -37,7 +37,9 @@ section Core
 variable {p : Setting} {F : LocalFun}
 
 /-- Core scalar estimate: for every x, the inner shear integral differs from `∫_I μ²` by at most
-`(1+K) l² |x| + 10 l x²`. -/
+`(1+K) l² |x| + 10 l x²`.
+@isnad1 id=le.6h5v.s8.d2aa33a9483d from=translated src=- shape=3b8c60f9 vocab=770d1b71
+-/
 theorem abs_inner_sub_le (hΓ : Zeta23.GammaFacts) (hF : LocalHypsCore cϱ p F) (hT2 : 2 ≤ p.T)
     (hμl : ∀ τ ∈ Icc p.T (2 * p.T), |Zeta23.mu τ| ≤ p.l)
     {K : ℝ} (hK0 : 0 ≤ K)
@@ -156,7 +158,9 @@ theorem abs_inner_sub_le (hΓ : Zeta23.GammaFacts) (hF : LocalHypsCore cϱ p F) 
       mul_nonneg (mul_nonneg hK0 (sq_nonneg p.l)) (abs_nonneg x),
       mul_nonneg (mul_nonneg (by norm_num : (0 : ℝ) ≤ 10) hl0) (sq_nonneg x)]
 
-/-- **Core estimate of [prop:mumu]** at fixed (p, F), error in terms of the two Φ-integrals. -/
+/-- **Core estimate of [prop:mumu]** at fixed (p, F), error in terms of the two Φ-integrals.
+@isnad1 id=le.6h4v.s8.e9fbe565f68a from=translated src=- shape=e5c36c9e vocab=65608fc8
+-/
 theorem mumu_core (hΓ : Zeta23.GammaFacts) (hF : LocalHypsCore cϱ p F) (hT2 : 2 ≤ p.T)
     (hμl : ∀ τ ∈ Icc p.T (2 * p.T), |Zeta23.mu τ| ≤ p.l)
     {K : ℝ} (hK0 : 0 ≤ K)
@@ -220,7 +224,9 @@ variable (cϱ lam : ℝ)
 set_option linter.unusedVariables false in
 /-- **[prop:mumu]** (§5.4): `𝓜[μ,μ] = 2πbL ∫_T^{2T} μ² + O(l² log L)`.
 (`hcheb`/`hlam` are unused here but kept so that the statement matches the fixed interface
-shared with the other prime-side propositions.) -/
+shared with the other prime-side propositions.)
+@isnad1 id=ex.3h2v.s7.23a8333adba1 from=translated src=- shape=6c770fd9 vocab=e0198333
+-/
 theorem prop_mumu (hΓ : Zeta23.GammaFacts) (hcheb : Zeta23.ChebyshevMertens)
     (hlam : 0 < lam ∧ lam ≤ 1) :
     ∃ C : ℝ, EventuallyAtCore cϱ lam (fun p F =>

@@ -54,7 +54,9 @@ def wideLe (Le : A → A → Prop) : A × A → A × A → Prop := fun u v =>
   (Le u.1 v.1 ∧ u.1 ≠ v.1) ∨ (u.1 = v.1 ∧ Le u.2 v.2)
 
 omit [Finite A] in
-/-- The wide order is a linear order. -/
+/-- The wide order is a linear order.
+@isnad1 id=islinord.1h2v.s4.a1cb36eb8591 from=translated src=- shape=f83650d2 vocab=39ca0cb4
+-/
 theorem isLinOrd_wideLe (hlin : IsLinOrd Le) : IsLinOrd (wideLe Le) := by
   refine ⟨fun u => Or.inr ⟨rfl, hlin.1 _⟩, fun u v w h₁ h₂ => ?_, fun u v h₁ h₂ => ?_,
     fun u v => ?_⟩
@@ -78,7 +80,9 @@ theorem isLinOrd_wideLe (hlin : IsLinOrd Le) : IsLinOrd (wideLe Le) := by
 
 omit [Finite A] in
 /-- **The instance's positions sit at the bottom of the wide ones**, with
-unchanged ranks: a weight means the same number read either way. -/
+unchanged ranks: a weight means the same number read either way.
+@isnad1 id=eq.1h6v.s5.efdf9b29e1a1 from=translated src=- shape=9f641183 vocab=2a5c2dd7
+-/
 theorem bitRank_wide (hlin : IsLinOrd Le) {a₀ : A} (h₀ : ∀ x, Le a₀ x) (p : A) :
     bitRank (wideLe Le) (WidePosn Posn) (a₀, p) = bitRank Le Posn p := by
   have hset : {u : A × A | WidePosn Posn u ∧ wideLe Le u (a₀, p) ∧ u ≠ (a₀, p)} =
@@ -104,7 +108,9 @@ theorem bitRank_wide (hlin : IsLinOrd Le) {a₀ : A} (h₀ : ∀ x, Le a₀ x) (
   rw [bitRank, hset, Set.InjOn.ncard_image (fun q _ q' _ h => congrArg Prod.snd h), bitRank]
 
 omit [Finite A] in
-/-- A weight is the same number in the wide representation. -/
+/-- A weight is the same number in the wide representation.
+@isnad1 id=eq.1h6v.s6.0fd1f6de64c7 from=translated src=- shape=58c62734 vocab=9b87c5e2
+-/
 theorem binNum_wide (hlin : IsLinOrd Le) {a₀ : A} (h₀ : ∀ x, Le a₀ x) (b : A → Prop) :
     binNum (wideLe Le) (WidePosn Posn) (fun u => u.1 = a₀ ∧ b u.2) =
       binNum Le Posn b := by
@@ -126,7 +132,9 @@ theorem binNum_wide (hlin : IsLinOrd Le) {a₀ : A} (h₀ : ∀ x, Le a₀ x) (b
 omit [Finite A] in
 /-- The same, with the bottom block named by minimality rather than by a
 constant: this is the shape a first-order kernel produces, since a formula can
-only say “this block is minimal”. -/
+only say “this block is minimal”.
+@isnad1 id=eq.1h6v.s6.380f693ae705 from=translated src=- shape=381b5926 vocab=9b87c5e2
+-/
 theorem binNum_wide_bot (hlin : IsLinOrd Le) {a₀ : A} (h₀ : ∀ x, Le a₀ x) (b : A → Prop) :
     binNum (wideLe Le) (WidePosn Posn) (fun u => (∀ y, Le u.1 y) ∧ b u.2) =
       binNum Le Posn b := by
@@ -137,7 +145,9 @@ theorem binNum_wide_bot (hlin : IsLinOrd Le) {a₀ : A} (h₀ : ∀ x, Le a₀ x
   rw [hcongr, binNum_wide hlin h₀ b]
 
 omit [Finite A] in
-/-- There are `|A|` times as many wide positions as positions. -/
+/-- There are `|A|` times as many wide positions as positions.
+@isnad1 id=eq.0h2v.s5.93c6989fec35 from=translated src=- shape=fc8fe2d4 vocab=c81a562f
+-/
 theorem ncard_widePosn :
     ({u : A × A | WidePosn Posn u} : Set (A × A)).ncard =
       Nat.card A * ({p : A | Posn p} : Set A).ncard := by
@@ -149,7 +159,9 @@ theorem ncard_widePosn :
 /-! ### Walking the wide positions -/
 
 omit [Finite A] in
-/-- The lowest wide position is the lowest position of the lowest block. -/
+/-- The lowest wide position is the lowest position of the lowest block.
+@isnad1 id=iff.1h5v.s5.3f624faec6b7 from=translated src=- shape=864978af vocab=80da42a5
+-/
 theorem minPos_wide {x p : A} (hlin : IsLinOrd Le) :
     MinPos (wideLe Le) (WidePosn Posn) (x, p) ↔ (∀ y, Le x y) ∧ MinPos Le Posn p := by
   constructor
@@ -170,7 +182,9 @@ theorem minPos_wide {x p : A} (hlin : IsLinOrd Le) :
     · exact Or.inl ⟨hx z, hne⟩
 
 omit [Finite A] in
-/-- The highest wide position is the highest position of the highest block. -/
+/-- The highest wide position is the highest position of the highest block.
+@isnad1 id=iff.1h5v.s5.065d9b301301 from=translated src=- shape=a16147e1 vocab=03707aa7
+-/
 theorem maxPos_wide {x p : A} (hlin : IsLinOrd Le) :
     MaxPos (wideLe Le) (WidePosn Posn) (x, p) ↔ (∀ y, Le y x) ∧ MaxPos Le Posn p := by
   constructor
@@ -192,7 +206,9 @@ theorem maxPos_wide {x p : A} (hlin : IsLinOrd Le) :
 
 omit [Finite A] in
 /-- Stepping along the wide positions: inside a block, or from the top of one
-block to the bottom of the next. -/
+block to the bottom of the next.
+@isnad1 id=iff.1h7v.s6.af18a9e3e6fa from=translated src=- shape=0ffe7a8e vocab=18cab3cd
+-/
 theorem succPos_wide {x p y q : A} (hlin : IsLinOrd Le) :
     SuccPos (wideLe Le) (WidePosn Posn) (x, p) (y, q) ↔
       (x = y ∧ SuccPos Le Posn p q) ∨
@@ -285,7 +301,9 @@ private theorem add_sub_le_mul {m k : ℕ} (hm : 1 ≤ m) (hk : 1 ≤ k) : m - 1
       _ = (m' + 1) * k := by ring
 
 /-- A sum of numbers below `2 ^ n`, over a universe of `m` elements, is below
-`2 ^ (m * n)`. -/
+`2 ^ (m * n)`.
+@isnad1 id=lt.1h4v.s6.3d58d231af68 from=translated src=- shape=56bc902b vocab=7099ceb4
+-/
 theorem finsum_lt_two_pow_mul {n : ℕ} (w : A → ℕ) (S : Set A) (hw : ∀ i, w i < 2 ^ n) :
     (∑ᶠ i ∈ S, w i) < 2 ^ (Nat.card A * n) := by
   classical
@@ -321,7 +339,9 @@ theorem finsum_lt_two_pow_mul {n : ℕ} (w : A → ℕ) (S : Set A) (hw : ∀ i,
   omega
 
 /-- **The wide positions are wide enough**: any sum of the instance's weights
-fits in them. -/
+fits in them.
+@isnad1 id=lt.1h5v.s6.cc5d950cc21d from=translated src=- shape=05c7cd61 vocab=835866f7
+-/
 theorem finsum_binNum_lt_wide (hlin : IsLinOrd Le) (bits : A → A → Prop) (S : Set A) :
     (∑ᶠ i ∈ S, binNum Le Posn (bits i)) <
       2 ^ ({u : A × A | WidePosn Posn u} : Set (A × A)).ncard := by

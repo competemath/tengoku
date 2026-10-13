@@ -23,7 +23,9 @@ open ContinuousMap Set Topology in
 topologies when `α` is an R₁ space, for instance a topological group, with no assumptions on
 `β` and `δ`. No local compactness of `α` is required: a compact set mapped into an open set of
 `β × δ` splits into finitely many compact pieces on each of which both components map into an
-open rectangle. -/
+open rectangle.
+@isnad1 id=continuo.0h3v.s6.70b98b5b9ca2 from=translated src=- shape=d020e980 vocab=e992f2a7
+-/
 lemma ContinuousMap.continuous_prodMk {α β δ : Type*} [TopologicalSpace α] [R1Space α]
     [TopologicalSpace β] [TopologicalSpace δ] :
     Continuous fun p : C(α, β) × C(α, δ) ↦ p.1.prodMk p.2 := by

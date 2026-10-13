@@ -53,7 +53,9 @@ def phase2Wrap (tm₁ : TM n) (tm₂ : TM n) (c₂ : Cfg n tm₂.Q) :
 -- Phase 1: seqTM simulates tm₁ (via generic simulation lifting)
 -- ════════════════════════════════════════════════════════════════════════
 
-/-- One step of `tm₁` corresponds to one step of `seqTM` during Phase 1. -/
+/-- One step of `tm₁` corresponds to one step of `seqTM` during Phase 1.
+@isnad1 id=eq.1h5v.s6.336ba4816f48 from=translated src=- shape=5a093839 vocab=13401fd6
+-/
 theorem seqTM_phase1_step (tm₁ tm₂ : TM n) {c₁ c₁' : Cfg n tm₁.Q}
     (hstep : tm₁.step c₁ = some c₁') :
     (seqTM tm₁ tm₂).step (phase1Wrap tm₁ tm₂ c₁) = some (phase1Wrap tm₁ tm₂ c₁') := by
@@ -63,7 +65,9 @@ theorem seqTM_phase1_step (tm₁ tm₂ : TM n) {c₁ c₁' : Cfg n tm₁.Q}
   unfold step
   simp only [phase1Wrap, seqTM, ite_eq_right Sum.inl_ne_inr, ite_eq_right hne]
 
-/-- Multi-step Phase 1 simulation. -/
+/-- Multi-step Phase 1 simulation.
+@isnad1 id=reachesi.1h6v.s5.403315b23c13 from=translated src=- shape=96c58033 vocab=26076856
+-/
 theorem seqTM_reachesIn_phase1Wrap (tm₁ tm₂ : TM n) {t : ℕ}
     {c₁_start c₁_end : Cfg n tm₁.Q}
     (hreach : tm₁.reachesIn t c₁_start c₁_end) :
@@ -76,7 +80,9 @@ theorem seqTM_reachesIn_phase1Wrap (tm₁ tm₂ : TM n) {t : ℕ}
 -- Transition step
 -- ════════════════════════════════════════════════════════════════════════
 
-/-- When `tm₁` halts, one step of `seqTM` transitions to Phase 2. -/
+/-- When `tm₁` halts, one step of `seqTM` transitions to Phase 2.
+@isnad1 id=eq.1h4v.s6.e96cefa0693d from=translated src=- shape=8ce2c014 vocab=bfc2df9b
+-/
 theorem seqTM_transition_step (tm₁ tm₂ : TM n) {c₁ : Cfg n tm₁.Q}
     (hhalt : c₁.state = tm₁.qhalt) :
     (seqTM tm₁ tm₂).step (phase1Wrap tm₁ tm₂ c₁) =
@@ -93,7 +99,9 @@ theorem seqTM_transition_step (tm₁ tm₂ : TM n) {c₁ : Cfg n tm₁.Q}
 -- Phase 2: seqTM simulates tm₂ (via generic simulation lifting)
 -- ════════════════════════════════════════════════════════════════════════
 
-/-- One step of `tm₂` corresponds to one step of `seqTM` during Phase 2. -/
+/-- One step of `tm₂` corresponds to one step of `seqTM` during Phase 2.
+@isnad1 id=eq.1h5v.s6.53026d75235f from=translated src=- shape=294bd959 vocab=3b9c9688
+-/
 theorem seqTM_phase2_step (tm₁ tm₂ : TM n) {c₂ c₂' : Cfg n tm₂.Q}
     (hstep : tm₂.step c₂ = some c₂') :
     (seqTM tm₁ tm₂).step (phase2Wrap tm₁ tm₂ c₂) = some (phase2Wrap tm₁ tm₂ c₂') := by
@@ -103,7 +111,9 @@ theorem seqTM_phase2_step (tm₁ tm₂ : TM n) {c₂ c₂' : Cfg n tm₂.Q}
   unfold step
   simp only [phase2Wrap, seqTM, ite_eq_right (Sum.inr_injective.ne hne), ite_eq_right hne]
 
-/-- Multi-step Phase 2 simulation. -/
+/-- Multi-step Phase 2 simulation.
+@isnad1 id=reachesi.1h6v.s5.ce660e0bec46 from=translated src=- shape=1affdf20 vocab=8aefccc0
+-/
 theorem seqTM_reachesIn_phase2Wrap (tm₁ tm₂ : TM n) {t : ℕ}
     {c₂_start c₂_end : Cfg n tm₂.Q}
     (hreach : tm₂.reachesIn t c₂_start c₂_end) :
@@ -116,7 +126,9 @@ theorem seqTM_reachesIn_phase2Wrap (tm₁ tm₂ : TM n) {t : ℕ}
 -- Full simulation
 -- ════════════════════════════════════════════════════════════════════════
 
-/-- Full `seqTM` simulation combining all three phases. -/
+/-- Full `seqTM` simulation combining all three phases.
+@isnad1 id=reachesi.3h8v.s6.9ac7defc6077 from=translated src=- shape=3a666b95 vocab=9742f11b
+-/
 theorem seqTM_reachesIn_of_reachesIn (tm₁ tm₂ : TM n)
     {t₁ : ℕ} {c₁_start c₁_end : Cfg n tm₁.Q}
     (hreach₁ : tm₁.reachesIn t₁ c₁_start c₁_end)
@@ -144,13 +156,17 @@ theorem seqTM_reachesIn_of_reachesIn (tm₁ tm₂ : TM n)
 -- ════════════════════════════════════════════════════════════════════════
 
 /-- A Phase-2 wrapped configuration is halted in `seqTM` iff the underlying `tm₂`
-    configuration is halted. -/
+    configuration is halted.
+@isnad1 id=iff.0h4v.s4.6d169ae58b7c from=translated src=- shape=be9309fe vocab=3ee9f9fe
+-/
 theorem phase2Wrap_halted_iff (tm₁ tm₂ : TM n) (c₂ : Cfg n tm₂.Q) :
     (seqTM tm₁ tm₂).halted (phase2Wrap tm₁ tm₂ c₂) ↔ tm₂.halted c₂ := by
   simp [phase2Wrap, seqTM, halted, Cfg.isHalted]
 
 /-- Wrapping a `tm₂` configuration into the `seqTM` config space leaves the output
-    tape unchanged. -/
+    tape unchanged.
+@isnad1 id=eq.0h4v.s5.b2ad54129b0c from=translated src=- shape=89023bd9 vocab=6ed869b0
+-/
 theorem phase2Wrap_output (tm₁ tm₂ : TM n) (c₂ : Cfg n tm₂.Q) :
     (phase2Wrap tm₁ tm₂ c₂).output = c₂.output := rfl
 

@@ -21,12 +21,16 @@ noncomputable section
 
 namespace Zeta23
 
-/-- GammaFacts from any Stirling bound for μ (the only analytically deep field). -/
+/-- GammaFacts from any Stirling bound for μ (the only analytically deep field).
+@isnad1 id=gammafac.1h0v.s1.27bb769af774 from=translated src=- shape=1d48f1ac vocab=301398bf
+-/
 theorem gammaFacts_of_stirling (hst : MuInts.StirlingHyp) : GammaFacts :=
   ⟨mu_even, mu_smooth, MuFields.mu_monotoneOn, MuFields.mu_zero_le, MuFields.neg_one_lt_mu_zero,
     hst, MuFields.mu_deriv_bound, MuInts.int_mu_of_stirling hst, MuInts.int_mu_sq_of_stirling hst⟩
 
-/-- **H-Γ, unconditionally.** -/
+/-- **H-Γ, unconditionally.**
+@isnad1 id=gammafac.0h0v.s0.224c29a0ac7e from=translated src=- shape=45709ebd vocab=224c29a0
+-/
 theorem gammaFacts : GammaFacts := gammaFacts_of_stirling StirlingVert.mu_stirling
 
 end Zeta23

@@ -33,15 +33,22 @@ namespace GzGp
 
 variable (P : Params) (T : ℝ)
 
+/--
+@isnad1 id=eq.0h1v.s5.1254a740641c from=translated src=- shape=1bb15d4b vocab=4d6bf44a
+-/
 lemma integral_comp_neg_real (g : ℝ → ℂ) : (∫ x : ℝ, g (-x)) = ∫ x : ℝ, g x := by
   have h := Measure.integral_comp_mul_left g (-1)
   simp only [neg_mul, one_mul, inv_neg, inv_one, abs_neg, abs_one, one_smul] at h
   exact h
 
-/-- φ is even: φ(−u) = φ(u)  ([subsec:family]: "φ ∈ C_c³(ℝ) is even"). -/
+/-- φ is even: φ(−u) = φ(u)  ([subsec:family]: "φ ∈ C_c³(ℝ) is even").
+@isnad1 id=eq.0h3v.s4.1ace30bab442 from=translated src=- shape=0153c957 vocab=ee4e3348
+-/
 lemma phi_neg (u : ℝ) : P.phi T (-u) = P.phi T u := by simp [Params.phi, abs_neg]
 
-/-- h_{f_k}(z) = φ̂(z − τ_k)  ([subsec:family] after [eq:fk]). -/
+/-- h_{f_k}(z) = φ̂(z − τ_k)  ([subsec:family] after [eq:fk]).
+@isnad1 id=eq.0h4v.s5.92d443c316d6 from=translated src=- shape=6d82f473 vocab=766709b4
+-/
 lemma paperFT_fk (k : ℤ) (z : ℂ) : paperFT (P.fk T k) z = P.phiHat T (z - P.tau T k) := by
   unfold paperFT Params.phiHat Params.fk paperFT
   congr 1
@@ -51,7 +58,9 @@ lemma paperFT_fk (k : ℤ) (z : ℂ) : paperFT (P.fk T k) z = P.phiHat T (z - P.
   ring
 
 /-- "since φ̂ is real on ℝ we have conj φ̂(conj z) = φ̂(z)", in the form φ̂(conj z) = conj φ̂(z);
-uses only that φ is real-valued and even. -/
+uses only that φ is real-valued and even.
+@isnad1 id=eq.0h3v.s6.7e29da44f99c from=translated src=- shape=ed9e1aa9 vocab=6af283da
+-/
 lemma phiHat_conj (z : ℂ) : P.phiHat T (conj z) = conj (P.phiHat T z) := by
   show (∫ u : ℝ, (P.phi T u : ℂ) * cexp (I * conj z * (u : ℂ)))
       = conj (∫ u : ℝ, (P.phi T u : ℂ) * cexp (I * z * (u : ℂ)))
@@ -67,7 +76,9 @@ lemma phiHat_conj (z : ℂ) : P.phiHat T (conj z) = conj (P.phiHat T z) := by
         integral_comp_neg_real (fun v : ℝ => conj ((P.phi T v : ℂ) * cexp (I * z * (v : ℂ))))
     _ = conj (∫ v : ℝ, (P.phi T v : ℂ) * cexp (I * z * (v : ℂ))) := integral_conj
 
-/-- φ̂ is real on the real axis: φ̂(r) = φ̂_ℝ(r). -/
+/-- φ̂ is real on the real axis: φ̂(r) = φ̂_ℝ(r).
+@isnad1 id=eq.0h3v.s4.2c3f8dfb19b5 from=translated src=- shape=638b1db3 vocab=1f889851
+-/
 lemma phiHat_ofReal (r : ℝ) : P.phiHat T r = (P.phiHatR T r : ℂ) := by
   have h := phiHat_conj P T (r : ℂ)
   rw [Complex.conj_ofReal] at h
@@ -76,7 +87,9 @@ lemma phiHat_ofReal (r : ℝ) : P.phiHat T r = (P.phiHatR T r : ℂ) := by
   · simp [Params.phiHatR]
   · simp [Params.phiHatR, him]
 
-/-- f_k ∈ C² given φ ∈ C² (as a ℂ-valued function). -/
+/-- f_k ∈ C² given φ ∈ C² (as a ℂ-valued function).
+@isnad1 id=contdiff.1h3v.s6.fb7bcbb07983 from=translated src=- shape=6f503d03 vocab=6f2f1cfd
+-/
 lemma fk_contDiff (hφC2 : ContDiff ℝ 2 (fun u => (P.phi T u : ℂ))) (k : ℤ) :
     ContDiff ℝ 2 (P.fk T k) := by
   unfold Params.fk
@@ -85,14 +98,18 @@ lemma fk_contDiff (hφC2 : ContDiff ℝ 2 (fun u => (P.phi T u : ℂ))) (k : ℤ
   apply ContDiff.neg
   apply ContDiff.mul contDiff_const Complex.ofRealCLM.contDiff
 
-/-- supp f_k ⊆ supp φ ⊆ [−L/2, L/2]. -/
+/-- supp f_k ⊆ supp φ ⊆ [−L/2, L/2].
+@isnad1 id=le.1h3v.s7.86ccd87a3fd5 from=translated src=- shape=3e5966d8 vocab=760f34fa
+-/
 lemma fk_tsupport (hφsupp : tsupport (P.phi T) ⊆ Icc (-(P.L T / 2)) (P.L T / 2)) (k : ℤ) :
     tsupport (P.fk T k) ⊆ Icc (-(P.L T / 2)) (P.L T / 2) := by
   refine (tsupport_mul_subset_left).trans (subset_trans (le_of_eq ?_) hφsupp)
   show tsupport (Complex.ofReal ∘ P.phi T) = tsupport (P.phi T)
   simp only [tsupport, Function.support_comp_eq Complex.ofReal (by simp) (P.phi T)]
 
-/-- Zero side: G_{kl} [eq:Gdef, 1st expr] is literally W(f_k, f_l) [eq:Wdef]. No hypotheses. -/
+/-- Zero side: G_{kl} [eq:Gdef, 1st expr] is literally W(f_k, f_l) [eq:Wdef]. No hypotheses.
+@isnad1 id=eq.0h5v.s5.40ce92d8d1ae from=translated src=- shape=1eccb9ca vocab=f2621ffe
+-/
 lemma Gz_eq_W (Z : ZeroConfig) (k l : Fin (P.d T)) :
     Z.Gz P T k l = Z.W (P.fk T k) (P.fk T l) := by
   unfold ZeroConfig.Gz ZeroConfig.W ZeroConfig.Gsummand ZeroConfig.Wsummand
@@ -102,7 +119,9 @@ lemma Gz_eq_W (Z : ZeroConfig) (k l : Fin (P.d T)) :
     phiHat_conj, Complex.conj_conj, Complex.conj_ofReal]
 
 /-- Prime side: the [eq:EF] right-hand side at (f_k, f_l) is literally G_{kl} [eq:Gdef, 2nd expr].
-No hypotheses. -/
+No hypotheses.
+@isnad1 id=eq.0h4v.s6.cd2b35e179d0 from=translated src=- shape=b29ccb8a vocab=035597fc
+-/
 lemma EFrhs_eq_Gp (k l : Fin (P.d T)) :
     (∫ τ : ℝ, paperFT (P.fk T k) τ * conj (paperFT (P.fk T l) τ) *
       (nuX (Real.exp (P.L T)) τ : ℂ)) = P.Gp T k l := by
@@ -118,7 +137,9 @@ lemma EFrhs_eq_Gp (k l : Fin (P.d T)) :
 end GzGp
 
 /-- **The H-EF bridge** [eq:Gdef]: the zero-side and prime-side matrices agree, given H-EF, L > 0,
-φ ∈ C² and supp φ ⊆ [−L/2, L/2] (the last two are taper facts, Zeta23/Taper.lean). -/
+φ ∈ C² and supp φ ⊆ [−L/2, L/2] (the last two are taper facts, Zeta23/Taper.lean).
+@isnad1 id=eq.4h3v.s7.1f7cb696dc05 from=translated src=- shape=6053a019 vocab=bb7d0507
+-/
 theorem ZeroConfig.Gz_eq_Gp (Z : ZeroConfig) (P : Params) (T : ℝ)
     (hEF : ExplicitFormulaPaper Z) (hL : 0 < P.L T)
     (hφC2 : ContDiff ℝ 2 (fun u => (P.phi T u : ℂ)))
@@ -130,7 +151,9 @@ theorem ZeroConfig.Gz_eq_Gp (Z : ZeroConfig) (P : Params) (T : ℝ)
   rw [GzGp.Gz_eq_W, hW, GzGp.EFrhs_eq_Gp]
 
 /-- Also: under H-EF the zero-side entries are (absolutely) summable — needed to write E = G − A as
-the sum over zeros with γ ∉ I' . -/
+the sum over zeros with γ ∉ I' .
+@isnad1 id=summable.4h5v.s7.b365d9a40f3d from=translated src=- shape=e90135a7 vocab=1cbdaf17
+-/
 theorem ZeroConfig.summable_Gsummand (Z : ZeroConfig) (P : Params) (T : ℝ)
     (hEF : ExplicitFormulaPaper Z) (hL : 0 < P.L T)
     (hφC2 : ContDiff ℝ 2 (fun u => (P.phi T u : ℂ)))

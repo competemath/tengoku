@@ -89,7 +89,9 @@ instance : Fintype Γw where
 
 instance : Coe Γw Γ where coe := Γw.toΓ
 
-/-- A writable symbol is never the left-end marker. -/
+/-- A writable symbol is never the left-end marker.
+@isnad1 id=ne.0h1v.s2.fad394670aab from=translated src=- shape=f0bb1bdd vocab=56a43412
+-/
 theorem Γw.toΓ_ne_start (s : Γw) : s.toΓ ≠ Γ.start := by
   cases s <;> decide
 
@@ -98,11 +100,15 @@ def Γ.ofBool : Bool → Γ
   | false => .zero
   | true => .one
 
-/-- A Boolean tape symbol is never the left-end marker. -/
+/-- A Boolean tape symbol is never the left-end marker.
+@isnad1 id=ne.0h1v.s2.57540265b488 from=translated src=- shape=f0bb1bdd vocab=1cd3dcc5
+-/
 theorem Γ.ofBool_ne_start (b : Bool) : Γ.ofBool b ≠ Γ.start := by
   cases b <;> decide
 
-/-- A Boolean tape symbol is never blank. -/
+/-- A Boolean tape symbol is never blank.
+@isnad1 id=ne.0h1v.s2.811cdaeb9f57 from=translated src=- shape=f0bb1bdd vocab=b9bcf0ad
+-/
 theorem Γ.ofBool_ne_blank (b : Bool) : Γ.ofBool b ≠ Γ.blank := by
   cases b <;> decide
 
@@ -111,6 +117,9 @@ def Γw.ofBool : Bool → Γw
   | false => .zero
   | true => .one
 
+/--
+@isnad1 id=eq.0h1v.s3.9efec228e4bd from=translated src=- shape=7718e021 vocab=89aeec16
+-/
 theorem Γw.ofBool_toΓ (b : Bool) : (Γw.ofBool b).toΓ = Γ.ofBool b := by
   cases b <;> rfl
 
@@ -152,7 +161,9 @@ def write (t : Tape) (s : Γ) : Tape :=
   if t.head = 0 then t
   else { t with cells := Function.update t.cells t.head s }
 
-/-- Writing changes tape contents but preserves the head position. -/
+/-- Writing changes tape contents but preserves the head position.
+@isnad1 id=eq.0h2v.s3.dbaeef751f1f from=translated src=- shape=bc45798f vocab=5a60b4de
+-/
 theorem write_head (t : Tape) (s : Γ) : (t.write s).head = t.head := by
   simp only [write]
   split <;> rfl
@@ -165,11 +176,15 @@ def move (t : Tape) (d : Dir3) : Tape :=
   | .right => { t with head := t.head + 1 }
   | .stay => t
 
-/-- Moving changes the head position but preserves tape contents. -/
+/-- Moving changes the head position but preserves tape contents.
+@isnad1 id=eq.0h2v.s3.ce8b28821f67 from=translated src=- shape=9d8661ec vocab=20d984ea
+-/
 theorem move_cells (t : Tape) (d : Dir3) : (t.move d).cells = t.cells := by
   cases d <;> rfl
 
-/-- Moving changes the head position by at most one. -/
+/-- Moving changes the head position by at most one.
+@isnad1 id=le.0h2v.s4.faaa7c7a8fc5 from=translated src=- shape=e672a46d vocab=fb268b49
+-/
 theorem head_move_le (t : Tape) (d : Dir3) : (t.move d).head ≤ t.head + 1 := by
   cases d <;> (simp only [move]; omega)
 
@@ -181,7 +196,9 @@ def HasOutput (t : Tape) (y : List Bool) : Prop :=
     t.cells (i + 1) = Γ.ofBool (y[i]'h)) ∧
   t.cells (y.length + 1) = Γ.blank
 
-/-- `HasOutput` depends only on the tape cells, not the head position. -/
+/-- `HasOutput` depends only on the tape cells, not the head position.
+@isnad1 id=iff.1h3v.s4.149121aeccb1 from=translated src=- shape=241e700a vocab=410275ba
+-/
 theorem hasOutput_congr {t₁ t₂ : Tape} (h : t₁.cells = t₂.cells) (y : List Bool) :
     t₁.HasOutput y ↔ t₂.HasOutput y := by
   simp only [HasOutput, h]
@@ -203,12 +220,16 @@ abbrev writeAndMove (t : Tape) (s : Γ) (d : Dir3) : Tape :=
 def StartInvariant (t : Tape) : Prop :=
   t.cells 0 = Γ.start ∧ ∀ j, 1 ≤ j → t.cells j ≠ Γ.start
 
-/-- Under the invariant, a head at position ≥ 1 never reads `▷`. -/
+/-- Under the invariant, a head at position ≥ 1 never reads `▷`.
+@isnad1 id=ne.2h1v.s4.d922a415d377 from=translated src=- shape=10f0194b vocab=dadb8cec
+-/
 theorem StartInvariant.read_ne_start {t : Tape} (h : t.StartInvariant)
     (hhead : 1 ≤ t.head) : t.read ≠ Γ.start := by
   simp only [read]; exact h.2 t.head hhead
 
-/-- Writing (any `Γw` symbol) preserves the invariant. -/
+/-- Writing (any `Γw` symbol) preserves the invariant.
+@isnad1 id=startinv.1h2v.s3.1bba3518e047 from=translated src=- shape=6555a182 vocab=ff41df65
+-/
 theorem StartInvariant.write {t : Tape} (h : t.StartInvariant) (s : Γw) :
     (t.write s.toΓ).StartInvariant := by
   unfold Tape.write
@@ -225,17 +246,23 @@ theorem StartInvariant.write {t : Tape} (h : t.StartInvariant) (s : Γw) :
         cases s <;> simp [Γw.toΓ]
       · rw [Function.update_of_ne hje]; exact h.2 j hj
 
-/-- Moving preserves the invariant (cells unchanged). -/
+/-- Moving preserves the invariant (cells unchanged).
+@isnad1 id=startinv.1h2v.s3.a3cb85037e27 from=translated src=- shape=1b0527e2 vocab=52ff212d
+-/
 theorem StartInvariant.move {t : Tape} (h : t.StartInvariant) (d : Dir3) :
     (t.move d).StartInvariant := by
   cases d <;> exact h
 
-/-- Writing a `Γw` symbol and moving preserves the invariant. -/
+/-- Writing a `Γw` symbol and moving preserves the invariant.
+@isnad1 id=startinv.1h3v.s3.705bfeef8705 from=translated src=- shape=9d04f38a vocab=10a4f167
+-/
 theorem StartInvariant.writeAndMove {t : Tape} (h : t.StartInvariant)
     (s : Γw) (d : Dir3) : (t.writeAndMove s.toΓ d).StartInvariant :=
   (h.write s).move d
 
-/-- One write-and-move step advances the head by at most one. -/
+/-- One write-and-move step advances the head by at most one.
+@isnad1 id=le.0h3v.s4.6bd277356b23 from=translated src=- shape=69b4856e vocab=0fbc2e85
+-/
 theorem head_writeAndMove_le (t : Tape) (s : Γ) (d : Dir3) :
     (t.writeAndMove s d).head ≤ t.head + 1 := by
   have h := head_move_le (t.write s) d
@@ -251,41 +278,55 @@ def Tape.init (contents : List Γ) : Tape where
     if i = 0 then Γ.start
     else (contents[i - 1]?).getD Γ.blank
 
-/-- An initialized tape starts with its head on the left-end marker. -/
+/-- An initialized tape starts with its head on the left-end marker.
+@isnad1 id=eq.0h1v.s3.82a03196cb8b from=translated src=- shape=e9f4ca57 vocab=4faa1386
+-/
 @[simp] theorem Tape.init_head (contents : List Γ) :
     (Tape.init contents).head = 0 := rfl
 
-/-- Cell zero of an initialized tape is the left-end marker. -/
+/-- Cell zero of an initialized tape is the left-end marker.
+@isnad1 id=eq.0h1v.s3.3849f6eb22b1 from=translated src=- shape=de762fe2 vocab=833ed712
+-/
 @[simp] theorem Tape.init_cells_zero (contents : List Γ) :
     (Tape.init contents).cells 0 = Γ.start := by
   simp [Tape.init]
 
 /-- Cell `i + 1` of an initialized tape contains item `i`, or blank when `i`
-    lies beyond the initialized contents. -/
+    lies beyond the initialized contents.
+@isnad1 id=eq.0h2v.s5.c0d53824ec4e from=translated src=- shape=75e5ace5 vocab=22eb0b92
+-/
 theorem Tape.init_cells_succ (contents : List Γ) (i : ℕ) :
     (Tape.init contents).cells (i + 1) = (contents[i]?).getD Γ.blank := by
   simp [Tape.init]
 
-/-- Cells beyond the initialized contents are blank. -/
+/-- Cells beyond the initialized contents are blank.
+@isnad1 id=eq.1h2v.s5.ecc3a0acd7dd from=translated src=- shape=7a45d050 vocab=69ce8c04
+-/
 theorem Tape.init_cells_ge (contents : List Γ) (i : ℕ)
     (h : contents.length ≤ i) :
     (Tape.init contents).cells (i + 1) = Γ.blank := by
   rw [Tape.init_cells_succ, List.getElem?_eq_none h]
   rfl
 
-/-- Every positive-indexed cell of the empty initialized tape is blank. -/
+/-- Every positive-indexed cell of the empty initialized tape is blank.
+@isnad1 id=eq.0h1v.s4.86ac6633636f from=translated src=- shape=b9d83005 vocab=2ec8dff9
+-/
 @[simp] theorem Tape.init_nil_cells_succ (i : ℕ) :
     (Tape.init []).cells (i + 1) = Γ.blank := by
   exact Tape.init_cells_ge [] i (by simp)
 
-/-- No positive-indexed cell of the empty initialized tape is a start marker. -/
+/-- No positive-indexed cell of the empty initialized tape is a start marker.
+@isnad1 id=ne.1h1v.s4.82788ae2a54f from=translated src=- shape=de9937fc vocab=3e74f571
+-/
 theorem Tape.init_nil_cells_ne_start (j : ℕ) (hj : 1 ≤ j) :
     (Tape.init []).cells j ≠ Γ.start := by
   obtain ⟨i, rfl⟩ : ∃ i, j = i + 1 := ⟨j - 1, by omega⟩
   rw [Tape.init_nil_cells_succ]
   decide
 
-/-- Within the initialized Boolean contents, cell `i + 1` stores bit `i`. -/
+/-- Within the initialized Boolean contents, cell `i + 1` stores bit `i`.
+@isnad1 id=eq.1h2v.s5.91d6bec15988 from=translated src=- shape=3ee79343 vocab=eb049bbc
+-/
 theorem Tape.init_ofBool_cells_lt (contents : List Bool) (i : ℕ)
     (h : i < contents.length) :
     (Tape.init (contents.map Γ.ofBool)).cells (i + 1) = Γ.ofBool (contents[i]'h) := by
@@ -294,14 +335,18 @@ theorem Tape.init_ofBool_cells_lt (contents : List Bool) (i : ℕ)
   rw [List.getElem?_eq_getElem hmap]
   simp
 
-/-- Beyond the initialized Boolean contents, cell `i + 1` is blank. -/
+/-- Beyond the initialized Boolean contents, cell `i + 1` is blank.
+@isnad1 id=eq.1h2v.s5.edff4a50b673 from=translated src=- shape=ffec0c39 vocab=d893b676
+-/
 theorem Tape.init_ofBool_cells_ge (contents : List Bool) (i : ℕ)
     (h : contents.length ≤ i) :
     (Tape.init (contents.map Γ.ofBool)).cells (i + 1) = Γ.blank := by
   exact Tape.init_cells_ge (contents.map Γ.ofBool) i (by simpa using h)
 
 /-- No positive-indexed cell of a Boolean-initialized tape contains the
-    left-end marker. -/
+    left-end marker.
+@isnad1 id=ne.1h2v.s4.75af668a5310 from=translated src=- shape=43e1f344 vocab=1f7b054c
+-/
 theorem Tape.init_ofBool_cells_ne_start (contents : List Bool) (j : ℕ) (hj : 1 ≤ j) :
     (Tape.init (contents.map Γ.ofBool)).cells j ≠ Γ.start := by
   obtain ⟨i, rfl⟩ : ∃ i, j = i + 1 := ⟨j - 1, by omega⟩
@@ -311,19 +356,25 @@ theorem Tape.init_ofBool_cells_ne_start (contents : List Bool) (j : ℕ) (hj : 1
   · rw [Tape.init_ofBool_cells_ge contents i (Nat.le_of_not_gt hi)]
     decide
 
-/-- Moving an empty initialized tape to cell one reads blank. -/
+/-- Moving an empty initialized tape to cell one reads blank.
+@isnad1 id=eq.0h0v.s3.969bc0692bab from=translated src=- shape=a57f4b77 vocab=6ec6036a
+-/
 @[simp] theorem Tape.init_nil_move_right_read :
     ((Tape.init []).move Dir3.right).read = Γ.blank := by
   simp [Tape.read, Tape.move]
 
 /-- A Boolean-initialized tape moved to its first data cell never reads the
-    left-end marker. -/
+    left-end marker.
+@isnad1 id=ne.0h1v.s3.361dc0fb6463 from=translated src=- shape=8ccae613 vocab=b8f4d464
+-/
 theorem Tape.init_ofBool_move_right_read_ne_start (contents : List Bool) :
     ((Tape.init (contents.map Γ.ofBool)).move Dir3.right).read ≠ Γ.start := by
   simp only [Tape.read, Tape.move]
   exact Tape.init_ofBool_cells_ne_start contents 1 (by omega)
 
-/-- An initialized tape whose contents avoid `▷` satisfies the invariant. -/
+/-- An initialized tape whose contents avoid `▷` satisfies the invariant.
+@isnad1 id=startinv.1h1v.s4.f22dc7887aa4 from=translated src=- shape=868e9ca5 vocab=ebd53c7a
+-/
 theorem Tape.StartInvariant.init (xs : List Γ) (hxs : ∀ a ∈ xs, a ≠ Γ.start) :
     (Tape.init xs).StartInvariant := by
   refine ⟨rfl, ?_⟩
@@ -335,7 +386,9 @@ theorem Tape.StartInvariant.init (xs : List Γ) (hxs : ∀ a ∈ xs, a ≠ Γ.st
     simp only [Option.getD_some]
     exact hxs a (List.mem_of_getElem? h)
 
-/-- A Boolean-initialized tape satisfies the invariant. -/
+/-- A Boolean-initialized tape satisfies the invariant.
+@isnad1 id=startinv.0h1v.s3.8cbb683857d5 from=translated src=- shape=257fac99 vocab=386690b3
+-/
 theorem Tape.StartInvariant.init_ofBool (xs : List Bool) :
     (Tape.init (xs.map Γ.ofBool)).StartInvariant := by
   refine Tape.StartInvariant.init _ ?_
@@ -344,7 +397,9 @@ theorem Tape.StartInvariant.init_ofBool (xs : List Bool) :
   obtain ⟨b, _, rfl⟩ := ha
   cases b <;> simp [Γ.ofBool]
 
-/-- The empty initialized tape satisfies the invariant. -/
+/-- The empty initialized tape satisfies the invariant.
+@isnad1 id=startinv.0h0v.s2.1d70d58ec8f5 from=translated src=- shape=ed5d6145 vocab=c8a4019c
+-/
 theorem Tape.StartInvariant.init_nil : (Tape.init []).StartInvariant := by
   refine ⟨rfl, ?_⟩
   intro j hj
@@ -352,14 +407,18 @@ theorem Tape.StartInvariant.init_nil : (Tape.init []).StartInvariant := by
   simp
 
 /-- After stepping onto cell 1 of an empty initialized tape, no positive
-    cell holds the left-end marker. -/
+    cell holds the left-end marker.
+@isnad1 id=ne.1h1v.s4.f67524390af8 from=translated src=- shape=6eeb794e vocab=d36cf5ae
+-/
 theorem Tape.init_nil_move_right_cells_ne_start (j : ℕ) (hj : j ≥ 1) :
     ((Tape.init []).move Dir3.right).cells j ≠ Γ.start := by
   rw [Tape.move_cells]
   simp [Tape.init, show j ≠ 0 by omega]
 
 /-- Moving the head does not introduce a left-end marker in the positive cells
-    of a Boolean-initialized tape. -/
+    of a Boolean-initialized tape.
+@isnad1 id=ne.1h2v.s4.f726f086c2c9 from=translated src=- shape=ede2581b vocab=df561861
+-/
 theorem Tape.init_ofBool_move_right_cells_ne_start (contents : List Bool) :
     ∀ j, 1 ≤ j →
       ((Tape.init (contents.map Γ.ofBool)).move Dir3.right).cells j ≠ Γ.start := by
@@ -384,7 +443,9 @@ structure Cfg (n : ℕ) (Q : Type) where
 
 namespace Cfg
 
-/-- Two machine configurations are equal when their named components agree. -/
+/-- Two machine configurations are equal when their named components agree.
+@isnad1 id=eq.4h4v.s6.a8b01a7d13ff from=translated src=- shape=c5e5b51d vocab=e2a4e48a
+-/
 @[ext] theorem ext {c c' : Cfg n Q}
     (hstate : c.state = c'.state) (hinput : c.input = c'.input)
     (hwork : c.work = c'.work) (houtput : c.output = c'.output) : c = c' := by
@@ -503,7 +564,9 @@ abbrev initCfg (tm : TM n) (x : List Bool) : Cfg n tm.Q :=
 abbrev halted (tm : TM n) (c : Cfg n tm.Q) : Prop :=
   Cfg.isHalted tm.qhalt c
 
-/-- If `step` returns `some`, the machine was not halted. -/
+/-- If `step` returns `some`, the machine was not halted.
+@isnad1 id=ne.1h4v.s5.8d0c46d47e03 from=translated src=- shape=909efe25 vocab=10f2679c
+-/
 theorem state_ne_qhalt_of_step {tm : TM n} {c c' : Cfg n tm.Q}
     (h : tm.step c = some c') : c.state ≠ tm.qhalt :=
   fun heq => by simp [step, heq] at h
@@ -588,7 +651,9 @@ def ComputesInSpace (tm : TM n) (f : List Bool → List Bool) (S : ℕ → ℕ) 
   ∀ x, ∃ c', tm.reaches (tm.initCfg x) c' ∧ tm.halted c' ∧ c'.output.HasOutput (f x)
 
 /-- Transitivity: if `c₁` reaches `c₂` in `t₁` steps and `c₂` reaches `c₃`
-    in `t₂` steps, then `c₁` reaches `c₃` in `t₁ + t₂` steps. -/
+    in `t₂` steps, then `c₁` reaches `c₃` in `t₁ + t₂` steps.
+@isnad1 id=reachesi.2h7v.s5.a937735d6ef7 from=translated src=- shape=195ee179 vocab=8ccbb0b9
+-/
 theorem reachesIn_trans (tm : TM n) {t₁ t₂ : ℕ} {c₁ c₂ c₃ : Cfg n tm.Q}
     (h₁ : tm.reachesIn t₁ c₁ c₂) (h₂ : tm.reachesIn t₂ c₂ c₃) :
     tm.reachesIn (t₁ + t₂) c₁ c₃ := by
@@ -599,7 +664,9 @@ theorem reachesIn_trans (tm : TM n) {t₁ t₂ : ℕ} {c₁ c₂ c₃ : Cfg n tm
     rw [Nat.add_right_comm]
     exact reachesIn.step hstep (ih h₂)
 
-/-- Bounded reachability implies unbounded reachability. -/
+/-- Bounded reachability implies unbounded reachability.
+@isnad1 id=reaches.1h5v.s4.cfa1b739acd1 from=translated src=- shape=169221cc vocab=2087c9c7
+-/
 theorem reaches_of_reachesIn {tm : TM n} {t : ℕ} {c c' : Cfg n tm.Q}
     (h : tm.reachesIn t c c') : tm.reaches c c' := by
   induction h with
@@ -608,14 +675,18 @@ theorem reaches_of_reachesIn {tm : TM n} {t : ℕ} {c c' : Cfg n tm.Q}
 
 /-- `step` returns `none` exactly when the configuration is halted. The two ways
     a DTM can "stop" — no successor configuration and being in `qhalt` —
-    coincide. -/
+    coincide.
+@isnad1 id=iff.0h3v.s5.10bd0486f7df from=translated src=- shape=409d0d93 vocab=fb222fb9
+-/
 theorem step_eq_none_iff_halted {tm : TM n} {c : Cfg n tm.Q} :
     tm.step c = none ↔ c.state = tm.qhalt := by
   by_cases h : c.state = tm.qhalt <;> simp [step, h]
 
 /-- Append a single step to the end of a run: reaching `c'` in `t` steps and then
     stepping once to `c''` gives a run of `t + 1` steps. The `snoc` counterpart to
-    the `cons`-shaped `reachesIn.step`. -/
+    the `cons`-shaped `reachesIn.step`.
+@isnad1 id=reachesi.2h6v.s6.b802b590dd3a from=translated src=- shape=182d2bbc vocab=fa2a8cbe
+-/
 theorem reachesIn_snoc {tm : TM n} {t : ℕ} {c c' c'' : Cfg n tm.Q}
     (h : tm.reachesIn t c c') (hstep : tm.step c' = some c'') :
     tm.reachesIn (t + 1) c c'' :=
@@ -623,39 +694,51 @@ theorem reachesIn_snoc {tm : TM n} {t : ℕ} {c c' c'' : Cfg n tm.Q}
 
 /-- A zero-step run goes nowhere. Inversion form of `reachesIn.zero`, usable
     when the machine is a compound expression on which `cases` cannot
-    abstract the configuration indices. -/
+    abstract the configuration indices.
+@isnad1 id=iff.0h4v.s5.c5f4470eba8a from=translated src=- shape=6d60d4fb vocab=303cafe7
+-/
 theorem reachesIn_zero_iff {tm : TM n} {c c' : Cfg n tm.Q} :
     tm.reachesIn 0 c c' ↔ c = c' :=
   ⟨fun h => by cases h; rfl, fun h => h ▸ reachesIn.zero⟩
 
 /-- A run of `t + 1` steps factors as one step followed by a run of `t`
-    steps. Inversion form of `reachesIn.step`. -/
+    steps. Inversion form of `reachesIn.step`.
+@isnad1 id=iff.0h5v.s6.a2dad6cb2eba from=translated src=- shape=cefc269b vocab=fa2a8cbe
+-/
 theorem reachesIn_succ_iff {tm : TM n} {t : ℕ} {c c' : Cfg n tm.Q} :
     tm.reachesIn (t + 1) c c' ↔
       ∃ c'', tm.step c = some c'' ∧ tm.reachesIn t c'' c' :=
   ⟨fun h => by cases h with | step hstep hrest => exact ⟨_, hstep, hrest⟩,
    fun ⟨_, hstep, hrest⟩ => reachesIn.step hstep hrest⟩
 
-/-- `AcceptsInTime` implies `Accepts` — forget the time bound. -/
+/-- `AcceptsInTime` implies `Accepts` — forget the time bound.
+@isnad1 id=accepts.1h4v.s4.9c59efd4d5d8 from=translated src=- shape=2110917f vocab=178c2c00
+-/
 theorem accepts_of_acceptsInTime {tm : TM n} {x : List Bool} {T : ℕ}
     (h : tm.AcceptsInTime x T) : tm.Accepts x := by
   obtain ⟨c', t, _, hreach, hhalt, hcell⟩ := h
   exact ⟨c', reaches_of_reachesIn hreach, hhalt, hcell⟩
 
-/-- DTM acceptance is monotone in the time bound. -/
+/-- DTM acceptance is monotone in the time bound.
+@isnad1 id=acceptsi.2h5v.s4.1fd297ee091f from=translated src=- shape=f912f575 vocab=9a1fa85b
+-/
 theorem AcceptsInTime.mono {tm : TM n} {x : List Bool} {T T' : ℕ} (hle : T ≤ T')
     (h : tm.AcceptsInTime x T) : tm.AcceptsInTime x T' := by
   obtain ⟨c', t, ht, hreach, hhalt, hout⟩ := h
   exact ⟨c', t, ht.trans hle, hreach, hhalt, hout⟩
 
-/-- DTM decision is monotone under pointwise enlargement of the time bound. -/
+/-- DTM decision is monotone under pointwise enlargement of the time bound.
+@isnad1 id=decidesi.2h5v.s5.e8eb4068223b from=translated src=- shape=1eeed624 vocab=fc3dd9bc
+-/
 theorem DecidesInTime.mono {tm : TM n} {L : Language} {T T' : ℕ → ℕ}
     (hle : ∀ m, T m ≤ T' m) (h : tm.DecidesInTime L T) : tm.DecidesInTime L T' := by
   intro x
   obtain ⟨c', t, ht, hreach, hhalt, hyes, hno⟩ := h x
   exact ⟨c', t, ht.trans (hle x.length), hreach, hhalt, hyes, hno⟩
 
-/-- DTM computation is monotone under pointwise enlargement of the time bound. -/
+/-- DTM computation is monotone under pointwise enlargement of the time bound.
+@isnad1 id=computes.2h5v.s5.8d30e65869d1 from=translated src=- shape=ff63aa18 vocab=b1a9ed49
+-/
 theorem ComputesInTime.mono {tm : TM n} {f : List Bool → List Bool}
     {T T' : ℕ → ℕ} (hle : ∀ m, T m ≤ T' m) (h : tm.ComputesInTime f T) :
     tm.ComputesInTime f T' := by
@@ -696,7 +779,9 @@ abbrev halted (tm : NTM n) (c : Cfg n tm.Q) : Prop :=
   Cfg.isHalted tm.qhalt c
 
 /-- Once halted, the NTM trace stays at the same configuration regardless of
-    the remaining choices. -/
+    the remaining choices.
+@isnad1 id=eq.1h5v.s5.98e5a8f3e926 from=translated src=- shape=b7942db8 vocab=58382755
+-/
 theorem trace_halted (tm : NTM n) {c : Cfg n tm.Q}
     (T : ℕ) (choices : Fin T → Bool) (h : tm.halted c) :
     tm.trace T choices c = c := by
@@ -705,7 +790,9 @@ theorem trace_halted (tm : NTM n) {c : Cfg n tm.Q}
   | succ T _ => simp [NTM.trace, h]
 
 /-- An NTM trace preserves the unique left-end marker on the input, work,
-    and output tapes. -/
+    and output tapes.
+@isnad1 id=and.3h5v.s6.2c6fd845e1c7 from=translated src=- shape=383d5dc5 vocab=62575a01
+-/
 theorem trace_startInvariant (tm : NTM n) (T : ℕ)
     (choices : Fin T → Bool) (c : Cfg n tm.Q)
     (hinp : c.input.StartInvariant)
@@ -726,7 +813,9 @@ theorem trace_startInvariant (tm : NTM n) (T : ℕ)
           exact (hwork i).writeAndMove _ _
         · exact hout.writeAndMove _ _
 
-/-- Every tape in a trace from `initCfg` has a unique left-end marker. -/
+/-- Every tape in a trace from `initCfg` has a unique left-end marker.
+@isnad1 id=and.0h5v.s6.a5320ffe20ba from=translated src=- shape=ca323764 vocab=7269a0c1
+-/
 theorem trace_initCfg_startInvariant (tm : NTM n) (x : List Bool) (T : ℕ)
     (choices : Fin T → Bool) :
     (tm.trace T choices (tm.initCfg x)).input.StartInvariant ∧
@@ -750,19 +839,25 @@ def AcceptsInTime (tm : NTM n) (x : List Bool) (T : ℕ) : Prop :=
     let c' := tm.trace T choices (tm.initCfg x)
     tm.halted c' ∧ c'.output.cells 1 = Γ.one
 
-/-- `AcceptsInTime` implies `Accepts` — package the time bound existentially. -/
+/-- `AcceptsInTime` implies `Accepts` — package the time bound existentially.
+@isnad1 id=accepts.1h4v.s4.496ee76918d9 from=translated src=- shape=2110917f vocab=d1c48ac2
+-/
 theorem accepts_of_acceptsInTime {tm : NTM n} {x : List Bool} {T : ℕ}
     (h : tm.AcceptsInTime x T) : tm.Accepts x :=
   ⟨T, h⟩
 
-/-- `Accepts` is exactly `∃ T, AcceptsInTime x T`. -/
+/-- `Accepts` is exactly `∃ T, AcceptsInTime x T`.
+@isnad1 id=iff.0h3v.s4.cf4fec4426ca from=translated src=- shape=3736780a vocab=d1c48ac2
+-/
 theorem accepts_iff_exists_acceptsInTime {tm : NTM n} {x : List Bool} :
     tm.Accepts x ↔ ∃ T, tm.AcceptsInTime x T := Iff.rfl
 
 /-- Running the NTM trace for more steps preserves the final configuration:
     if the machine halts within `T` steps and the extended choice sequence
     agrees with the original on the first `T` positions, the extra steps are
-    no-ops. -/
+    no-ops.
+@isnad1 id=eq.3h7v.s6.d66a3d96cefa from=translated src=- shape=62c458bc vocab=bc3495eb
+-/
 theorem trace_mono (tm : NTM n) {T T' : ℕ} (hle : T ≤ T')
     {choices : Fin T → Bool} {choices' : Fin T' → Bool} {c : Cfg n tm.Q}
     (hagree : ∀ i : Fin T, choices' ⟨i.val, by omega⟩ = choices i)
@@ -785,7 +880,9 @@ theorem trace_mono (tm : NTM n) {T T' : ℕ} (hle : T ≤ T')
       exact ih hle' (fun i => hagree ⟨i.val + 1, by omega⟩) h
 
 /-- NTM acceptance is monotone in the time bound: `AcceptsInTime x T` implies
-    `AcceptsInTime x T'` for any `T' ≥ T`. Extra steps are no-ops once halted. -/
+    `AcceptsInTime x T'` for any `T' ≥ T`. Extra steps are no-ops once halted.
+@isnad1 id=acceptsi.2h5v.s4.9af8e4236f85 from=translated src=- shape=f912f575 vocab=89defe5d
+-/
 theorem AcceptsInTime.mono {tm : NTM n} {x : List Bool} {T T' : ℕ} (hle : T ≤ T')
     (h : tm.AcceptsInTime x T) : tm.AcceptsInTime x T' := by
   obtain ⟨choices, hhalt, hout⟩ := h
@@ -810,7 +907,9 @@ def DecidesInTime (tm : NTM n) (L : Language) (T : ℕ → ℕ) : Prop :=
   (∀ x, x ∈ L ↔ tm.AcceptsInTime x (T x.length))
 
 /-- All-paths halting is monotone in the time bound: once halted, the extra
-    steps are no-ops. -/
+    steps are no-ops.
+@isnad1 id=allpaths.2h4v.s5.672c3ecb1e75 from=translated src=- shape=2ff100cf vocab=4c0b7fc8
+-/
 theorem AllPathsHaltIn.mono {tm : NTM n} {T T' : ℕ → ℕ} (hle : ∀ m, T m ≤ T' m)
     (h : tm.AllPathsHaltIn T) : tm.AllPathsHaltIn T' := by
   intro x choices'
@@ -822,7 +921,9 @@ theorem AllPathsHaltIn.mono {tm : NTM n} {T T' : ℕ → ℕ} (hle : ∀ m, T m 
   exact h x _
 
 /-- With all paths halting within `T`, timed acceptance transfers DOWN from any
-    pointwise-larger bound: by `T(|x|)` every path is already frozen. -/
+    pointwise-larger bound: by `T(|x|)` every path is already frozen.
+@isnad1 id=acceptsi.3h5v.s5.beb49032ef8d from=translated src=- shape=2e483b9a vocab=b4825e2b
+-/
 theorem acceptsInTime_of_le_of_allPathsHaltIn {tm : NTM n} {T T' : ℕ → ℕ}
     {x : List Bool} (hle : ∀ m, T m ≤ T' m) (hN : tm.AllPathsHaltIn T)
     (h : tm.AcceptsInTime x (T' x.length)) : tm.AcceptsInTime x (T x.length) := by
@@ -835,7 +936,9 @@ theorem acceptsInTime_of_le_of_allPathsHaltIn {tm : NTM n} {T T' : ℕ → ℕ}
 
 /-- Deciding within `T` transfers to any pointwise-larger bound `T'`: halting
     is monotone, and acceptance transfers both ways (up by monotonicity, down
-    by the all-paths-halt freeze). -/
+    by the all-paths-halt freeze).
+@isnad1 id=decidesi.2h5v.s5.748dd700783e from=translated src=- shape=1eeed624 vocab=1e6ffcec
+-/
 theorem DecidesInTime.mono {tm : NTM n} {L : Language} {T T' : ℕ → ℕ}
     (hle : ∀ m, T m ≤ T' m) (h : tm.DecidesInTime L T) : tm.DecidesInTime L T' :=
   ⟨h.1.mono hle, fun x => (h.2 x).trans

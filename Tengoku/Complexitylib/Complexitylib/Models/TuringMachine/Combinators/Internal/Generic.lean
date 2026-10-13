@@ -53,7 +53,9 @@ namespace TM
 -- ════════════════════════════════════════════════════════════════════════
 
 /-- A tape with head ≥ 1 and cells ≥ 1 ≠ start is stable under
-    `writeAndMove(readBackWrite(read).toΓ, idleDir(read))`. -/
+    `writeAndMove(readBackWrite(read).toΓ, idleDir(read))`.
+@isnad1 id=eq.2h1v.s5.ff95ce0735a2 from=translated src=- shape=55c1a3cc vocab=b97be303
+-/
 theorem tape_writeAndMove_stable (t : Tape)
     (hhead : t.head ≥ 1) (hns : ∀ j, j ≥ 1 → t.cells j ≠ Γ.start) :
     t.writeAndMove (readBackWrite t.read).toΓ (idleDir t.read) = t := by
@@ -65,14 +67,18 @@ theorem tape_writeAndMove_stable (t : Tape)
   simp only [Tape.write, show ¬(t.head = 0) by omega, ↓reduceIte,
              Function.update_eq_self, Tape.move]
 
-/-- A tape with head ≥ 1 and cells ≥ 1 ≠ start is stable under `move(idleDir(read))`. -/
+/-- A tape with head ≥ 1 and cells ≥ 1 ≠ start is stable under `move(idleDir(read))`.
+@isnad1 id=eq.2h1v.s5.011cfd6f92a6 from=translated src=- shape=2ccff929 vocab=64863810
+-/
 theorem tape_move_idleDir_stable (t : Tape)
     (hhead : t.head ≥ 1) (hns : ∀ j, j ≥ 1 → t.cells j ≠ Γ.start) :
     t.move (idleDir t.read) = t := by
   have hne : t.read ≠ Γ.start := by simp only [Tape.read]; exact hns t.head hhead
   simp only [idleDir, hne, ↓reduceIte, Tape.move]
 
-/-- Helper: readBackWrite preserves tape cells when head = 0 or read ≠ start. -/
+/-- Helper: readBackWrite preserves tape cells when head = 0 or read ≠ start.
+@isnad1 id=eq.1h2v.s5.b7bf5b201ff1 from=translated src=- shape=9296844c vocab=115074dc
+-/
 theorem tape_readBackWrite_preserves (t : Tape) (d : Dir3)
     (h : t.head = 0 ∨ t.read ≠ Γ.start) :
     (t.writeAndMove (readBackWrite t.read).toΓ d).cells = t.cells := by
@@ -89,7 +95,9 @@ theorem tape_readBackWrite_preserves (t : Tape) (d : Dir3)
 -- ════════════════════════════════════════════════════════════════════════
 
 /-- If `wrap` commutes with `step` (i.e., one step of `tm` corresponds to
-    one step of `tm'` through the embedding), then `reachesIn` lifts. -/
+    one step of `tm'` through the embedding), then `reachesIn` lifts.
+@isnad1 id=reachesi.2h7v.s6.48e4a18e7f8a from=translated src=- shape=0c21e793 vocab=d32afb57
+-/
 theorem reachesIn_map {tm tm' : TM n}
     (wrap : Cfg n tm.Q → Cfg n tm'.Q)
     (h_step : ∀ c c' : Cfg n tm.Q, tm.step c = some c' →
@@ -114,7 +122,9 @@ theorem reachesIn_map {tm tm' : TM n}
 
     The `tape` parameter selects which tape to track (output, work, etc.).
     This captures the common rewind pattern used in `complementTM`, `ifTM`,
-    `loopTM`, `writeTM`, and `rewindWorkTM`. -/
+    `loopTM`, `writeTM`, and `rewindWorkTM`.
+@isnad1 id=ex.6h7v.s8.38ca77109d11 from=translated src=- shape=d902ae1f vocab=afafa0a8
+-/
 theorem exists_reachesIn_of_rewindStep_tape (tm : TM n) (tape : Cfg n tm.Q → Tape)
     {rewindState targetState : tm.Q}
     (h_step_left : ∀ c : Cfg n tm.Q,
@@ -163,7 +173,9 @@ theorem exists_reachesIn_of_rewindStep_tape (tm : TM n) (tape : Cfg n tm.Q → T
       (by intro j hj; rw [hcells]; exact hnostart j hj) hh'
     exact ⟨c_target, .step hstep hreach, hst_t, hh_t, by rw [hcells_t, hcells]⟩
 
-/-- Specialization of `exists_reachesIn_of_rewindStep_tape` for the output tape. -/
+/-- Specialization of `exists_reachesIn_of_rewindStep_tape` for the output tape.
+@isnad1 id=ex.6h6v.s8.7691c2d2b1ae from=translated src=- shape=389d7bce vocab=13b9b4a7
+-/
 theorem exists_reachesIn_of_rewindStep_output (tm : TM n)
     {rewindState targetState : tm.Q}
     (h_step_left : ∀ c : Cfg n tm.Q,
@@ -201,7 +213,9 @@ theorem exists_reachesIn_of_rewindStep_output (tm : TM n)
     Same as `exists_reachesIn_of_rewindStep_output`, but the step hypotheses also guarantee
     that input and work tapes are preserved (given stability conditions:
     head ≥ 1 and cells ≥ 1 ≠ start). The conclusion additionally proves
-    `c_target.input = c.input` and `c_target.work = c.work`. -/
+    `c_target.input = c.input` and `c_target.work = c.work`.
+@isnad1 id=ex.10h6v.s9.f599e229605f from=translated src=- shape=4c0c7c71 vocab=fdabe715
+-/
 theorem exists_reachesIn_of_rewindStep_frame (tm : TM n)
     {rewindState targetState : tm.Q}
     (h_step_left : ∀ c : Cfg n tm.Q,
@@ -286,7 +300,9 @@ def transitionTape (t : Tape) : Tape :=
 def transitionInput (t : Tape) : Tape :=
   t.move (idleDir t.read)
 
-/-- `transitionTape` preserves cells when cells ≥ 1 ≠ start. -/
+/-- `transitionTape` preserves cells when cells ≥ 1 ≠ start.
+@isnad1 id=eq.1h1v.s4.3535bb4ff865 from=translated src=- shape=4a7159ba vocab=7840313b
+-/
 theorem transitionTape_cells (t : Tape)
     (hns : ∀ j, j ≥ 1 → t.cells j ≠ Γ.start) :
     (transitionTape t).cells = t.cells := by
@@ -297,12 +313,16 @@ theorem transitionTape_cells (t : Tape)
     rw [toΓ_readBackWrite_of_ne_start (by simp only [Tape.read]; exact hns t.head hge)]
     simp only [Tape.write, hh, ↓reduceIte, Tape.read, Function.update_eq_self]
 
-/-- `transitionInput` preserves cells (always, since input has no write). -/
+/-- `transitionInput` preserves cells (always, since input has no write).
+@isnad1 id=eq.0h1v.s3.7125f8396819 from=translated src=- shape=cc04bbbd vocab=4a59a611
+-/
 theorem transitionInput_cells (t : Tape) :
     (transitionInput t).cells = t.cells := by
   simp [transitionInput, Tape.move]; split <;> rfl
 
-/-- After `transitionTape`, head ≥ 1 when cell 0 = start. -/
+/-- After `transitionTape`, head ≥ 1 when cell 0 = start.
+@isnad1 id=le.1h1v.s4.b53b161b9e3f from=translated src=- shape=2455f49a vocab=0b371300
+-/
 theorem one_le_head_transitionTape (t : Tape) (h0 : t.cells 0 = Γ.start) :
     (transitionTape t).head ≥ 1 := by
   unfold transitionTape Tape.writeAndMove
@@ -313,7 +333,9 @@ theorem one_le_head_transitionTape (t : Tape) (h0 : t.cells 0 = Γ.start) :
     | right => simp only [Tape.move, Tape.write, hh, ↓reduceIte]; omega
     | left => exfalso; revert hdir; simp only [idleDir]; split <;> simp
 
-/-- After `transitionInput`, head ≥ 1 when cell 0 = start. -/
+/-- After `transitionInput`, head ≥ 1 when cell 0 = start.
+@isnad1 id=le.1h1v.s4.cc5bd2c3c28c from=translated src=- shape=2455f49a vocab=878cd3c5
+-/
 theorem transitionInput_head_ge (t : Tape) (h0 : t.cells 0 = Γ.start) :
     (transitionInput t).head ≥ 1 := by
   unfold transitionInput
@@ -324,7 +346,9 @@ theorem transitionInput_head_ge (t : Tape) (h0 : t.cells 0 = Γ.start) :
     | right => simp only [Tape.move]; omega
     | left => exfalso; revert hdir; simp only [idleDir]; split <;> simp
 
-/-- Bound on `transitionTape` output head: ≤ original head + 1. -/
+/-- Bound on `transitionTape` output head: ≤ original head + 1.
+@isnad1 id=le.2h2v.s5.2bb4ccc8985d from=translated src=- shape=999a2f3c vocab=bfbf760d
+-/
 theorem head_transitionTape_le {t : Tape} {p_bound : ℕ}
     (hcell0 : t.cells 0 = Γ.start) (hhead : t.head ≤ p_bound) :
     (transitionTape t).head ≤ p_bound + 1 := by
@@ -343,7 +367,9 @@ theorem head_transitionTape_le {t : Tape} {p_bound : ℕ}
 /-- **Frame rule**: `transitionTape` is the identity when the tape reads a
     non-▷ symbol. This is the key lemma for threading invariants through
     `seqTM` / `loopTM` / `ifTM` composition: tapes that are "stable"
-    (head not at cell 0) pass through phase transitions unchanged. -/
+    (head not at cell 0) pass through phase transitions unchanged.
+@isnad1 id=eq.1h1v.s3.d2dc7837c33e from=translated src=- shape=ca317965 vocab=a2a52372
+-/
 theorem transitionTape_eq_self {t : Tape} (hread : t.read ≠ Γ.start) :
     transitionTape t = t := by
   unfold transitionTape Tape.writeAndMove
@@ -354,7 +380,9 @@ theorem transitionTape_eq_self {t : Tape} (hread : t.read ≠ Γ.start) :
   · simp only [Tape.read, Function.update_eq_self]
 
 /-- **Frame rule**: `transitionInput` is the identity when the tape reads a
-    non-▷ symbol. -/
+    non-▷ symbol.
+@isnad1 id=eq.1h1v.s3.90b776f3d50a from=translated src=- shape=ca317965 vocab=6f8801c4
+-/
 theorem transitionInput_eq_self {t : Tape} (hread : t.read ≠ Γ.start) :
     transitionInput t = t := by
   simp only [transitionInput, idleDir, hread, ↓reduceIte, Tape.move]

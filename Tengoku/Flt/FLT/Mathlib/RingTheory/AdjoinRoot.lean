@@ -21,7 +21,9 @@ open Polynomial
 universe u
 
 /-- Reduction along `f : A →+* B` descends to `AdjoinRoot`: the square
-`A[X] → B[X] → B[X]/(q)` = `A[X] → A[X]/(p) → B[X]/(q)` commutes when `q = p.map f`. -/
+`A[X] → B[X] → B[X]/(q)` = `A[X] → A[X]/(p) → B[X]/(q)` commutes when `q = p.map f`.
+@isnad1 id=eq.1h5v.s8.f12bf7022203 from=translated src=- shape=9c0e14f2 vocab=c68cc1d9
+-/
 theorem AdjoinRoot.map_comp_mk {A B : Type*} [CommRing A] [CommRing B] (f : A →+* B) {p : A[X]}
     {q : B[X]} (h : q = p.map f) :
     (map f p q h.dvd).comp (mk p)
@@ -32,13 +34,17 @@ theorem AdjoinRoot.map_comp_mk {A B : Type*} [CommRing A] [CommRing B] (f : A �
   · rw [RingHom.comp_apply, RingHom.comp_apply, ← root, map_root,
       Polynomial.coe_mapRingHom, Polynomial.map_X, ← root]
 
-/-- The simple extension `F[X]/(q)` by a root of an irreducible `q` has degree `natDegree q`. -/
+/-- The simple extension `F[X]/(q)` by a root of an irreducible `q` has degree `natDegree q`.
+@isnad1 id=eq.0h2v.s7.1926c66c37b4 from=translated src=- shape=6818b972 vocab=8789617c
+-/
 theorem AdjoinRoot.finrank_eq_natDegree {F : Type*} [Field F] {q : F[X]}
     [Fact (Irreducible q)] : Module.finrank F (AdjoinRoot q) = q.natDegree := by
   rw [PowerBasis.finrank (powerBasis (Fact.out (p := Irreducible q)).ne_zero),
     powerBasis_dim]
 
-/-- The minimal polynomial of `root q` has the same degree as the irreducible `q`. -/
+/-- The minimal polynomial of `root q` has the same degree as the irreducible `q`.
+@isnad1 id=eq.0h2v.s6.5a690ea1f735 from=translated src=- shape=accac3a9 vocab=9c6b31fd
+-/
 theorem AdjoinRoot.natDegree_minpoly_root {F : Type*} [Field F] {q : F[X]}
     [Fact (Irreducible q)] : (minpoly F (root q)).natDegree = q.natDegree := by
   have hq0 : q ≠ 0 := (Fact.out (p := Irreducible q)).ne_zero
@@ -62,7 +68,9 @@ theorem AdjoinRoot.eq_zero_of_mul_root_add_eq_zero {F : Type*} [Field F] {q : F[
     by simpa using congrArg (fun p ↦ coeff p 0) h0⟩
 
 /-- The root of an irreducible polynomial of degree at least `2` does not lie in the base
-field. -/
+field.
+@isnad1 id=not.1h2v.s7.201781d88698 from=translated src=- shape=f1d6525d vocab=48e6a0a1
+-/
 theorem AdjoinRoot.root_notMem_range_algebraMap {F : Type*} [Field F] {q : F[X]}
     [Fact (Irreducible q)] (hdeg : 2 ≤ q.natDegree) :
     root q ∉ Set.range (algebraMap F (AdjoinRoot q)) := by

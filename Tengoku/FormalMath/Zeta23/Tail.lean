@@ -55,12 +55,17 @@ open RHLinalg
 (so K² = C₁² X^{1/2}) and D₀² = T:  theta0 A₀ K T = 4·A₀·K²·log(4T)/T. -/
 def theta0 (A₀ K T : ℝ) : ℝ := 4 * A₀ * K ^ 2 * Real.log (4 * T) / T
 
+/--
+@isnad1 id=le.2h3v.s5.9ef7071d85b8 from=translated src=- shape=662393c7 vocab=0f1747cc
+-/
 lemma theta0_nonneg {A₀ K T : ℝ} (hA₀ : 0 ≤ A₀) (hT : T₀ ≤ T) : 0 ≤ theta0 A₀ K T := by
   have hT' : (300:ℝ) ≤ T := hT
   have := one_le_log_four_mul hT
   unfold theta0; positivity
 
-/-- log(4T) ≤ 2 l = 2 log(T/2π) for T ≥ T₀ (≥ 256 ≥ 16π²; uses only π ≤ 4). -/
+/-- log(4T) ≤ 2 l = 2 log(T/2π) for T ≥ T₀ (≥ 256 ≥ 16π²; uses only π ≤ 4).
+@isnad1 id=le.1h1v.s5.02d1f1689396 from=translated src=- shape=526535b8 vocab=68568364
+-/
 lemma log_four_mul_le_two_mul_l {T : ℝ} (hT : T₀ ≤ T) : Real.log (4 * T) ≤ 2 * l T := by
   have hT' : (300:ℝ) ≤ T := hT
   have hπ : Real.pi ≤ 4 := Real.pi_le_four
@@ -77,7 +82,9 @@ lemma log_four_mul_le_two_mul_l {T : ℝ} (hT : T₀ ≤ T) : Real.log (4 * T) �
 
 /-- The "so that" clause of [prop:tail]: with K = e^{L/4} C₁, C₁ ≤ 2‖ϱ″‖₁ (as w ≥ 1),
 e^{L/2} = X^{1/2} = (T/2π)^{λ/2} ≤ T^{λ/2}, log(4T) ≤ 2l, D₀² = T:
-θ₀ ≤ 32 A₀ ‖ϱ″‖₁² l T^{λ/2−1}. Stated for the concrete L = λ·l of Defs; R stands for ‖ϱ″‖₁. -/
+θ₀ ≤ 32 A₀ ‖ϱ″‖₁² l T^{λ/2−1}. Stated for the concrete L = λ·l of Defs; R stands for ‖ϱ″‖₁.
+@isnad1 id=le.5h5v.s7.d80bc4938c54 from=translated src=- shape=6223b20e vocab=54d89f8d
+-/
 theorem theta0_le (P : Params) (hP : P.Valid) {T A₀ C₁ R : ℝ} (hT : T₀ ≤ T) (hA₀ : 0 ≤ A₀)
     (hC₁ : 0 ≤ C₁) (hC₁R : C₁ ≤ 2 * R) :
     theta0 A₀ (Real.exp (P.L T / 4) * C₁) T ≤ 32 * A₀ * R ^ 2 * l T * T ^ (P.lam / 2 - 1) := by
@@ -114,7 +121,9 @@ theorem theta0_le (P : Params) (hP : P.Valid) {T A₀ C₁ R : ℝ} (hT : T₀ �
 
 /-- From the two-sided local count on Z.N (PaperInputs.RvM.local) to the
 finite-sub-family form LocalCount used by Zeta23/Tail/Count.lean, for the family of all
-distinct zeros ρ ∈ Z.carrier with ordinate γ_ρ = Im ρ and multiplicity m_ρ = Z.mult ρ. -/
+distinct zeros ρ ∈ Z.carrier with ordinate γ_ρ = Im ρ and multiplicity m_ρ = Z.mult ρ.
+@isnad1 id=localcou.2h2v.s6.285cee84f1ff from=translated src=- shape=581d3a5f vocab=3fbafa85
+-/
 theorem LocalCount.ofWindowCount (Z : ZeroConfig) {A₀ : ℝ} (hA₀ : 1 ≤ A₀)
     (hloc : ∀ t : ℝ, (Z.N t (t + 1) : ℝ) ≤ A₀ * Real.log (|t| + 3)) :
     LocalCount (fun ρ : Z.carrier => (ρ : ℂ).im) (fun ρ : Z.carrier => Z.mult ρ) A₀ where
@@ -144,21 +153,31 @@ variable (Z : ZeroConfig) (P : Params) (T : ℝ)
 /-- u_ρ := (φ̂(γ_ρ − τ_k))_{0≤k<d} ∈ ℂ^d (proof of [prop:tail]; also prop:block's u_ρ). -/
 def uvec (ρ : ℂ) : Fin (P.d T) → ℂ := fun k => P.phiHat T (gammaOf ρ - P.tau T k)
 
+/--
+@isnad1 id=eq.0h6v.s6.330f07fead3e from=translated src=- shape=2601d6c0 vocab=13204c6d
+-/
 lemma Gsummand_eq (k l : Fin (P.d T)) (ρ : ℂ) :
     Z.Gsummand P T k l ρ = (Z.mult ρ : ℂ) * (uvec P T ρ k * uvec P T ρ l) := by
   unfold ZeroConfig.Gsummand uvec; ring
 
+/--
+@isnad1 id=eq.0h2v.s6.7bfda38b0e99 from=translated src=- shape=eec92594 vocab=203648e8
+-/
 lemma gammaOf_sub_ofReal (ρ : ℂ) (x : ℝ) :
     gammaOf ρ - x = ((ρ.im - x : ℝ) : ℂ) - I * ((ρ.re - 1 / 2 : ℝ) : ℂ) := by
   apply Complex.ext <;> simp [gammaOf]
 
 variable {P T}
 
-/-- τ_k = T + k·(2π/L) as a real number, for k : Fin d. -/
+/-- τ_k = T + k·(2π/L) as a real number, for k : Fin d.
+@isnad1 id=eq.0h3v.s6.22bcfc612f32 from=translated src=- shape=514c6548 vocab=343e104b
+-/
 lemma tau_fin (k : Fin (P.d T)) : P.tau T k = T + (k : ℕ) * (2 * Real.pi / P.L T) := by
   unfold Params.tau Params.hgrid; push_cast; ring
 
-/-- d·h ≤ T  (d = ⌊LT/2π⌋, h = 2π/L) [eq:fk]. -/
+/-- d·h ≤ T  (d = ⌊LT/2π⌋, h = 2π/L) [eq:fk].
+@isnad1 id=le.2h2v.s6.7ebea5872467 from=translated src=- shape=fc68672a vocab=2f26be76
+-/
 lemma d_mul_hgrid_le (hL : 0 < P.L T) (hT : 0 ≤ T) :
     (P.d T : ℝ) * (2 * Real.pi / P.L T) ≤ T := by
   have hπ := Real.pi_pos
@@ -168,7 +187,9 @@ lemma d_mul_hgrid_le (hL : 0 < P.L T) (hT : 0 ≤ T) :
         mul_le_mul_of_nonneg_right hfl (by positivity)
     _ = T := by field_simp
 
-/-- "τ_0,…,τ_{d−1} ∈ [T, 2T)" [eq:fk]. -/
+/-- "τ_0,…,τ_{d−1} ∈ [T, 2T)" [eq:fk].
+@isnad1 id=and.2h3v.s6.f457d2147599 from=translated src=- shape=166e2a11 vocab=c0055a7c
+-/
 lemma tau_mem (hL : 0 < P.L T) (hT : 0 ≤ T) (k : Fin (P.d T)) :
     T ≤ P.tau T k ∧ P.tau T k < 2 * T := by
   rw [tau_fin]
@@ -185,7 +206,9 @@ variable {Z}
 
 /-- [eq:hfbound] ⇒ decay of the entries of u_ρ for a tail zero ρ:
 "φ̂(γ_ρ−τ_k) = φ̂((γ−τ_k) − iy), |φ̂(r−iy)| ≤ e^{L/4}‖φ″‖₁|r−iy|⁻² ≤ X^{1/4}C₁ r⁻² for real
-r ≠ 0" (y = β − 1/2, |y| < 1/2 as 0 < β < 1 — the only use of the strip). -/
+r ≠ 0" (y = β − 1/2, |y| < 1/2 as 0 < β < 1 — the only use of the strip).
+@isnad1 id=le.6h6v.s8.337ffa8532d1 from=translated src=- shape=0a27bd3e vocab=c11485eb
+-/
 lemma norm_uvec_le (hL : 0 < P.L T) (hT : 0 < T) {C₁ : ℝ} (hC₁ : 0 ≤ C₁)
     (hdecay : ∀ (r y : ℝ), |y| ≤ 1 / 2 → (r : ℂ) - I * y ≠ 0 →
         ‖P.phiHat T (r - I * y)‖ ≤ Real.exp (P.L T / 4) * C₁ / ‖(r : ℂ) - I * y‖ ^ 2)
@@ -225,7 +248,9 @@ lemma norm_uvec_le (hL : 0 < P.L T) (hT : 0 < T) {C₁ : ℝ} (hC₁ : 0 ≤ C�
         div_le_div_of_nonneg_left (by positivity) hrsq hnormz
     _ = _ := by rw [div_eq_mul_inv]
 
-/-- ‖u_ρ‖₂² ≤ K² · L · dist(γ,I)⁻³ for a tail zero (decay + the grid estimate). -/
+/-- ‖u_ρ‖₂² ≤ K² · L · dist(γ,I)⁻³ for a tail zero (decay + the grid estimate).
+@isnad1 id=le.6h5v.s8.d2ddc28546ea from=translated src=- shape=5b326b67 vocab=f0cdafe5
+-/
 lemma norm_sq_uvec_le (hT : T₀ ≤ T) (hL : 2 ≤ P.L T) {C₁ : ℝ} (hC₁ : 0 ≤ C₁)
     (hdecay : ∀ (r y : ℝ), |y| ≤ 1 / 2 → (r : ℂ) - I * y ≠ 0 →
         ‖P.phiHat T (r - I * y)‖ ≤ Real.exp (P.L T / 4) * C₁ / ‖(r : ℂ) - I * y‖ ^ 2)
@@ -280,7 +305,9 @@ structure TailHyp (Z : ZeroConfig) (P : Params) (T A₀ C₁ : ℝ) : Prop where
     ‖P.phiHat T (r - I * y)‖ ≤ Real.exp (P.L T / 4) * C₁ / ‖(r : ℂ) - I * y‖ ^ 2
 
 /-- The set of zeros in the window I' (complement of the tail) is finite (as a subset of the
-carrier subtype). -/
+carrier subtype).
+@isnad1 id=finite.0h2v.s5.ac2875701b2a from=translated src=- shape=94e654c1 vocab=46550df9
+-/
 lemma finite_notTail (Z : ZeroConfig) (T : ℝ) :
     {ρ : Z.carrier | ¬ InTail T (ρ : ℂ).im}.Finite := by
   have hfin : (Z.ZIprime T).Finite := Z.finite_window _ _
@@ -294,23 +321,40 @@ namespace TailHyp
 variable (H : TailHyp Z P T A₀ C₁)
 include H
 
+/--
+@isnad1 id=lt.1h5v.s4.b5ee3de2d059 from=translated src=- shape=83a94876 vocab=ec823074
+-/
 lemma T_pos : 0 < T := by have h : (300:ℝ) ≤ T := H.hT; linarith
+/--
+@isnad1 id=lt.1h5v.s4.9bdf2b91e0e6 from=translated src=- shape=07e17d98 vocab=1306eb9a
+-/
 lemma L_pos : 0 < P.L T := by linarith [H.hL]
+/--
+@isnad1 id=le.1h5v.s4.974bb9addf28 from=translated src=- shape=69dadba5 vocab=2baeb18d
+-/
 lemma A₀_nonneg : 0 ≤ A₀ := by linarith [H.hA₀]
 
 /-- sA := the zeros of 𝒵(I') as a Finset of the carrier subtype. -/
 def sA (_ : TailHyp Z P T A₀ C₁) : Finset Z.carrier := (finite_notTail Z T).toFinset
 
+/--
+@isnad1 id=iff.1h6v.s6.40c1e8632922 from=translated src=- shape=918d55a2 vocab=5a992b03
+-/
 lemma not_mem_sA_iff (ρ : Z.carrier) : ρ ∉ H.sA ↔ InTail T (ρ : ℂ).im := by
   rw [sA, Set.Finite.mem_toFinset]; simp
 
 /-- K := e^{L/4} C₁. -/
 def K (_ : TailHyp Z P T A₀ C₁) : ℝ := Real.exp (P.L T / 4) * C₁
 
+/--
+@isnad1 id=le.1h5v.s5.e2e86788107c from=translated src=- shape=26c8f3a5 vocab=cf86637c
+-/
 lemma K_nonneg : 0 ≤ H.K := by unfold K; have := H.hC₁; positivity
 
 /-- Finite partial sums over tail zeros: ∑ m_ρ ‖u_ρ‖₂² ≤ L·θ₀
-("(eq:Enormsum) gives ‖E‖ ≤ 4A₀C₁²X^{1/2} L log(4T) D₀⁻² = Lθ₀"). -/
+("(eq:Enormsum) gives ‖E‖ ≤ 4A₀C₁²X^{1/2} L log(4T) D₀⁻² = Lθ₀").
+@isnad1 id=le.1h6v.s8.960edc658026 from=translated src=- shape=7bb0087f vocab=e1c2d107
+-/
 lemma partial_sum_le (u : Finset {ρ : Z.carrier // ρ ∉ H.sA}) :
     ∑ x ∈ u, (Z.mult (x : Z.carrier) : ℝ) * ∑ k, ‖uvec P T (x : Z.carrier) k‖ ^ 2
       ≤ P.L T * theta0 A₀ H.K T := by
@@ -345,13 +389,17 @@ lemma partial_sum_le (u : Finset {ρ : Z.carrier // ρ ∉ H.sA}) :
         mul_le_mul_of_nonneg_left hcount (by have := H.L_pos; positivity)
     _ = P.L T * theta0 A₀ H.K T := by unfold theta0; ring
 
-/-- ∑_{γ∉I'} m_ρ ‖u_ρ‖₂² is summable … -/
+/-- ∑_{γ∉I'} m_ρ ‖u_ρ‖₂² is summable …
+@isnad1 id=summable.1h5v.s8.0406855cf9b1 from=translated src=- shape=9f5d1e04 vocab=4b74b79b
+-/
 lemma summable_tail :
     Summable (fun x : {ρ : Z.carrier // ρ ∉ H.sA} =>
       (Z.mult (x : Z.carrier) : ℝ) * ∑ k, ‖uvec P T (x : Z.carrier) k‖ ^ 2) :=
   summable_of_sum_le (fun x => by positivity) H.partial_sum_le
 
-/-- … with sum ≤ L·θ₀. -/
+/-- … with sum ≤ L·θ₀.
+@isnad1 id=le.1h5v.s8.cfb079d33c88 from=translated src=- shape=d88c80f8 vocab=6d10a6a3
+-/
 lemma tsum_tail_le :
     ∑' x : {ρ : Z.carrier // ρ ∉ H.sA},
       (Z.mult (x : Z.carrier) : ℝ) * ∑ k, ‖uvec P T (x : Z.carrier) k‖ ^ 2
@@ -360,7 +408,9 @@ lemma tsum_tail_le :
 
 /-- Each entry series ρ ↦ m_ρ φ̂(γ_ρ−τ_k)φ̂(γ_ρ−τ_l) is summable over ALL distinct zeros
 (the absolute convergence of [eq:Gdef]'s first expression, here obtained from [eq:hfbound]
-and the local count rather than assumed). -/
+and the local count rather than assumed).
+@isnad1 id=summable.1h7v.s6.c48e8f0e9eb3 from=translated src=- shape=cd543be2 vocab=cf3a50ed
+-/
 lemma summable_Gsummand (k l : Fin (P.d T)) :
     Summable (fun ρ : Z.carrier => Z.Gsummand P T k l ρ) := by
   apply (Finset.summable_compl_iff H.sA).mp
@@ -376,7 +426,9 @@ lemma summable_Gsummand (k l : Fin (P.d T)) :
   nlinarith [sq_nonneg (‖uvec P T (x : Z.carrier) k‖ - ‖uvec P T (x : Z.carrier) l‖),
     norm_nonneg (uvec P T (x : Z.carrier) k), norm_nonneg (uvec P T (x : Z.carrier) l)]
 
-/-- A_{kl} [eq:AE] is the finite part of the series: ∑ over the zeros of 𝒵(I'). -/
+/-- A_{kl} [eq:AE] is the finite part of the series: ∑ over the zeros of 𝒵(I').
+@isnad1 id=eq.1h7v.s6.e8d9a0905eb4 from=translated src=- shape=70b2793f vocab=96364573
+-/
 lemma Az_eq_sum (k l : Fin (P.d T)) :
     Z.Az P T k l = ∑ x ∈ H.sA, Z.Gsummand P T k l (x : ℂ) := by
   classical
@@ -401,7 +453,9 @@ lemma Az_eq_sum (k l : Fin (P.d T)) :
   rfl
 
 /-- **E = ∑_{γ∉I'} m_ρ u_ρ u_ρᵀ** [eq:AE]/proof of [prop:tail]: the matrix E := G − A is the
-(convergent) sum of the rank-one pieces over the tail zeros. -/
+(convergent) sum of the rank-one pieces over the tail zeros.
+@isnad1 id=hassum.1h5v.s8.eab11fbca24e from=translated src=- shape=977f662b vocab=f1343d35
+-/
 theorem hasSum_Ez :
     HasSum (fun x : {ρ : Z.carrier // ρ ∉ H.sA} =>
       ((Z.mult (x : Z.carrier) : ℝ) : ℂ) • vecMulVec (uvec P T (x : Z.carrier)) (uvec P T (x : Z.carrier)))
@@ -418,7 +472,9 @@ theorem hasSum_Ez :
   simpa only [Matrix.smul_apply, vecMulVec_apply, smul_eq_mul, Complex.ofReal_natCast,
     Gsummand_eq] using hE
 
-/-- The scaled version: κ•E = ∑ (κ m_ρ) u_ρ u_ρᵀ, and traceNorm (κ•E) ≤ κ·L·θ₀ for κ ≥ 0. -/
+/-- The scaled version: κ•E = ∑ (κ m_ρ) u_ρ u_ρᵀ, and traceNorm (κ•E) ≤ κ·L·θ₀ for κ ≥ 0.
+@isnad1 id=le.3h6v.s7.c5aa20e17a96 from=translated src=- shape=3a70262b vocab=f9465e3c
+-/
 theorem traceNorm_smul_Ez_le {κ : ℝ} (hκ : 0 ≤ κ)
     (hM : (((κ : ℝ) : ℂ) • Z.Ez P T).IsHermitian) :
     traceNorm hM ≤ κ * (P.L T * theta0 A₀ H.K T) := by
@@ -445,7 +501,9 @@ RHLinalg.weyl_posIndexAbove_le); also ‖Ẽ‖₁ ≤ θ₀;
 (T2) ‖Ê‖₁ ≤ θ₀/(aL) for Ê = E/(aL²) ("Moreover the trace norm satisfies ‖Ê‖₁ ≤ θ₀/(aL)";
 the further "≤ 2θ₀/L" is a ≥ 1/2, Zeta23.Params.half_le_a).
 Hypotheses: T ≥ T₀ (:= 300, explicit), L ≥ 2, the local count (PaperInputs.RvM.local),
-[eq:hfbound] for φ (Taper), a > 0, and Hermitian-ness of Ẽ, Ê. -/
+[eq:hfbound] for φ (Taper), a > 0, and Hermitian-ness of Ẽ, Ê.
+@isnad1 id=and.4h5v.s8.5c31a4cd9f20 from=translated src=- shape=2670c676 vocab=9544aa95
+-/
 theorem prop_tail {Z : ZeroConfig} {P : Params} {T A₀ C₁ : ℝ} (H : TailHyp Z P T A₀ C₁)
     (ha : 0 < P.a T)
     (hEt : (P.tilde T (Z.Ez P T)).IsHermitian) (hEh : (P.hat T (Z.Ez P T)).IsHermitian) :
@@ -485,17 +543,28 @@ sets are invariant under ρ ↦ 1−ρ̄, so A and E are real symmetric" [eq:AE]
 
 section Hermitian
 
+/--
+@isnad1 id=eq.0h1v.s3.73b60e362492 from=translated src=- shape=8d4cac31 vocab=87726b18
+-/
 lemma reflect_im (ρ : ℂ) : (reflect ρ).im = ρ.im := by simp [reflect]
 
+/--
+@isnad1 id=eq.0h1v.s3.abe5d2c93f47 from=translated src=- shape=47dcad53 vocab=949ebd35
+-/
 lemma reflect_reflect (ρ : ℂ) : reflect (reflect ρ) = ρ := by simp [reflect]
 
+/--
+@isnad1 id=eq.0h1v.s5.b1eacd031fc6 from=translated src=- shape=a2e15774 vocab=0b2ebf8c
+-/
 lemma gammaOf_reflect (ρ : ℂ) : gammaOf (reflect ρ) = (starRingEnd ℂ) (gammaOf ρ) := by
   apply Complex.ext <;> simp [gammaOf, reflect]; ring
 
 variable {P : Params} {T : ℝ}
 
 /-- conj φ̂(z̄) = φ̂(z) ("since φ̂ is real on ℝ") transports u_ρ to u_{1−ρ̄}:
-u_{1−ρ̄} = conj u_ρ. -/
+u_{1−ρ̄} = conj u_ρ.
+@isnad1 id=eq.1h4v.s7.09bb36f1fd91 from=translated src=- shape=38dd84cc vocab=b076867f
+-/
 lemma uvec_reflect
     (hconj : ∀ z : ℂ, P.phiHat T ((starRingEnd ℂ) z) = (starRingEnd ℂ) (P.phiHat T z))
     (ρ : ℂ) (k : Fin (P.d T)) :
@@ -505,7 +574,9 @@ lemma uvec_reflect
 
 variable {Z : ZeroConfig} {A₀ C₁ : ℝ}
 
-/-- E := G − A is Hermitian, from E = ∑_{γ∉I'} m_ρ u_ρ u_ρᵀ, m_{1−ρ̄} = m_ρ, u_{1−ρ̄} = ū_ρ. -/
+/-- E := G − A is Hermitian, from E = ∑_{γ∉I'} m_ρ u_ρ u_ρᵀ, m_{1−ρ̄} = m_ρ, u_{1−ρ̄} = ū_ρ.
+@isnad1 id=ishermit.2h5v.s7.2746cb9f4235 from=translated src=- shape=9a1f5662 vocab=477bec44
+-/
 theorem TailHyp.Ez_isHermitian (H : TailHyp Z P T A₀ C₁)
     (hconj : ∀ z : ℂ, P.phiHat T ((starRingEnd ℂ) z) = (starRingEnd ℂ) (P.phiHat T z)) :
     (Z.Ez P T).IsHermitian := by
@@ -542,19 +613,27 @@ theorem TailHyp.Ez_isHermitian (H : TailHyp Z P T A₀ C₁)
   rw [Equiv.hasSum_iff] at h2
   exact h2.unique hf
 
-/-- Real scalings of a Hermitian matrix are Hermitian (for Ẽ = E/L, Ê = E/(aL²)). -/
+/-- Real scalings of a Hermitian matrix are Hermitian (for Ẽ = E/L, Ê = E/(aL²)).
+@isnad1 id=ishermit.1h3v.s6.99742f1a3029 from=translated src=- shape=209f7062 vocab=f42a63cd
+-/
 lemma isHermitian_real_smul {n : Type*} {M : Matrix n n ℂ} (hM : M.IsHermitian) (c : ℝ) :
     ((c : ℂ) • M).IsHermitian := by
   unfold Matrix.IsHermitian
   rw [conjTranspose_smul, hM.eq]
   simp [Complex.conj_ofReal]
 
+/--
+@isnad1 id=ishermit.2h5v.s7.3e3f1208b791 from=translated src=- shape=6d839f23 vocab=855f98de
+-/
 lemma TailHyp.tilde_Ez_isHermitian (H : TailHyp Z P T A₀ C₁)
     (hconj : ∀ z : ℂ, P.phiHat T ((starRingEnd ℂ) z) = (starRingEnd ℂ) (P.phiHat T z)) :
     (P.tilde T (Z.Ez P T)).IsHermitian := by
   have h := isHermitian_real_smul (H.Ez_isHermitian hconj) (P.L T)⁻¹
   unfold Params.tilde; rw [← Complex.ofReal_inv]; exact h
 
+/--
+@isnad1 id=ishermit.2h5v.s7.0b4ba0a01b20 from=translated src=- shape=6d839f23 vocab=2bda486e
+-/
 lemma TailHyp.hat_Ez_isHermitian (H : TailHyp Z P T A₀ C₁)
     (hconj : ∀ z : ℂ, P.phiHat T ((starRingEnd ℂ) z) = (starRingEnd ℂ) (P.phiHat T z)) :
     (P.hat T (Z.Ez P T)).IsHermitian := by
@@ -574,7 +653,9 @@ open Filter
 variable {Z : ZeroConfig} {P : Params} {T A₀ C₁ : ℝ}
 
 /-- [prop:tail] packaged as Assembly.TailInputs at height T, with
-θ₀ = theta0 A₀ (e^{L/4} C₁) T and B := ‖Ê‖₁ = traceNorm Ê. -/
+θ₀ = theta0 A₀ (e^{L/4} C₁) T and B := ‖Ê‖₁ = traceNorm Ê.
+@isnad1 id=tailinpu.3h5v.s7.e0dc3126eca7 from=translated src=- shape=1ea313c0 vocab=3a60da27
+-/
 theorem TailHyp.tailInputs (H : TailHyp Z P T A₀ C₁) (ha : 0 < P.a T)
     (hconj : ∀ z : ℂ, P.phiHat T ((starRingEnd ℂ) z) = (starRingEnd ℂ) (P.phiHat T z)) :
     Assembly.TailInputs Z P T (theta0 A₀ (Real.exp (P.L T / 4) * C₁) T) := by
@@ -588,7 +669,9 @@ theorem TailHyp.tailInputs (H : TailHyp Z P T A₀ C₁) (ha : 0 < P.a T)
         frobSq_le_traceNorm_sq _, hp.2.2⟩ }
 
 /-- N(I'∖I) = N(T−D₀,T) + N(2T,2T+D₀) ≤ 3A₀·√T·log(4T) ≤ 6A₀·D₀·l for T ≥ T₀
-("N(I'∖I) ≪ D₀ l by N(t+1)−N(t) ≤ A₀log(t+3)", [prop:zeroside]). -/
+("N(I'∖I) ≪ D₀ l by N(t+1)−N(t) ≤ A₀log(t+3)", [prop:zeroside]).
+@isnad1 id=le.3h3v.s7.4df3466d04a9 from=translated src=- shape=c60e3936 vocab=114f6bde
+-/
 theorem NII_le (Z : ZeroConfig) {A₀ T : ℝ} (hA₀ : 1 ≤ A₀)
     (hloc : ∀ t : ℝ, (Z.N t (t + 1) : ℝ) ≤ A₀ * Real.log (|t| + 3)) (hT : T₀ ≤ T) :
     (Assembly.NII Z T : ℝ) ≤ 3 * A₀ * Real.sqrt T * Real.log (4 * T) := by
@@ -636,7 +719,9 @@ theorem NII_le (Z : ZeroConfig) {A₀ T : ℝ} (hA₀ : 1 ≤ A₀)
   rw [hN1, hN2]
   exact h
 
-/-- L = λ log(T/2π) → ∞; in particular eventually L ≥ 2 (and ≥ 8w, etc.). -/
+/-- L = λ log(T/2π) → ∞; in particular eventually L ≥ 2 (and ≥ 8w, etc.).
+@isnad1 id=tendsto.1h1v.s4.a418d2c30d5d from=translated src=- shape=49735f69 vocab=0598f703
+-/
 lemma tendsto_L_atTop (P : Params) (hP : P.Valid) : Tendsto (fun T => P.L T) atTop atTop := by
   unfold Params.L l
   apply Tendsto.const_mul_atTop hP.lam_pos
@@ -646,7 +731,9 @@ lemma tendsto_L_atTop (P : Params) (hP : P.Valid) : Tendsto (fun T => P.L T) atT
 count (PaperInputs.RvM.local) and, eventually in T, [eq:hfbound] for φ with constant C₁(T)
 (= ‖φ″‖₁, T-independent in value but a T-dependent Lean term), a > 0 and conj φ̂(z̄) = φ̂(z)
 (all three from Taper.lean), TailInputs holds eventually with
-θ₀(T) = theta0 A₀ (e^{L/4} C₁(T)) T = 4A₀C₁²X^{1/2}log(4T)/T. -/
+θ₀(T) = theta0 A₀ (e^{L/4} C₁(T)) T = 4A₀C₁²X^{1/2}log(4T)/T.
+@isnad1 id=eventual.7h4v.s8.7136719fe1a0 from=translated src=- shape=8c467c11 vocab=2ea6f206
+-/
 theorem eventually_tailInputs (Z : ZeroConfig) (P : Params) (hP : P.Valid) {A₀ : ℝ}
     (hA₀ : 1 ≤ A₀) (hloc : ∀ t : ℝ, (Z.N t (t + 1) : ℝ) ≤ A₀ * Real.log (|t| + 3))
     (C₁ : ℝ → ℝ) (hC₁ : ∀ T, 0 ≤ C₁ T)
@@ -663,7 +750,9 @@ theorem eventually_tailInputs (Z : ZeroConfig) (P : Params) (hP : P.Valid) {A₀
   exact H.tailInputs ha' hc
 
 /-- **The "so that" clause, eventually**: if C₁(T) ≤ 2R (R = ‖ϱ″‖₁; Taper's C1_le with w ≥ 1),
-then θ₀(T) ≤ 32A₀R² · l(T) · T^{λ/2−1} for T ≥ T₀; hence ∃ C, eventually θ₀ ≤ C·l·T^{λ/2−1}. -/
+then θ₀(T) ≤ 32A₀R² · l(T) · T^{λ/2−1} for T ≥ T₀; hence ∃ C, eventually θ₀ ≤ C·l·T^{λ/2−1}.
+@isnad1 id=ex.4h4v.s7.b0f27a12ed7f from=translated src=- shape=0395b15e vocab=ccaae1b8
+-/
 theorem eventually_theta0_le (P : Params) (hP : P.Valid) {A₀ R : ℝ} (hA₀ : 1 ≤ A₀)
     (C₁ : ℝ → ℝ) (hC₁ : ∀ T, 0 ≤ C₁ T) (hC₁R : ∀ᶠ T in atTop, C₁ T ≤ 2 * R) :
     ∃ C : ℝ, ∀ᶠ T in atTop,
@@ -672,7 +761,9 @@ theorem eventually_theta0_le (P : Params) (hP : P.Valid) {A₀ R : ℝ} (hA₀ :
   filter_upwards [eventually_ge_atTop T₀, hC₁R] with T hT hR
   exact theta0_le P hP hT (by linarith) (hC₁ T) hR
 
-/-- **N(I'∖I) ≪ D₀ l, eventually**: ∃ C, eventually N(I'∖I) ≤ C·√T·l(T) (C = 6A₀). -/
+/-- **N(I'∖I) ≪ D₀ l, eventually**: ∃ C, eventually N(I'∖I) ≤ C·√T·l(T) (C = 6A₀).
+@isnad1 id=ex.2h2v.s6.02fcdf8f7f69 from=translated src=- shape=5feb209b vocab=31acd0a7
+-/
 theorem eventually_NII_le (Z : ZeroConfig) {A₀ : ℝ} (hA₀ : 1 ≤ A₀)
     (hloc : ∀ t : ℝ, (Z.N t (t + 1) : ℝ) ≤ A₀ * Real.log (|t| + 3)) :
     ∃ C : ℝ, ∀ᶠ T in atTop, (Assembly.NII Z T : ℝ) ≤ C * Real.sqrt T * l T := by

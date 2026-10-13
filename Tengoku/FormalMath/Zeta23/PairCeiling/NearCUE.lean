@@ -33,7 +33,9 @@ variable {S : ℕ → ℝ} {N : ℕ} {τ : ℝ}
 /-- **near-CUE rows.** -/
 def NearCUE (S : ℕ → ℝ) (N : ℕ) (τ : ℝ) : Prop := ∀ j : ℕ, 1 ≤ j → j < N → |(N : ℝ) * S j - j| ≤ τ
 
-/-- N·T_m = m(m+1)/2 up to m·τ, for m ≤ N − 1 (only rows j < N enter). -/
+/-- N·T_m = m(m+1)/2 up to m·τ, for m ≤ N − 1 (only rows j < N enter).
+@isnad1 id=le.2h4v.s6.baf8418c951d from=translated src=- shape=7b76b83f vocab=c24d0b0b
+-/
 lemma abs_T_sub_le (h : NearCUE S N τ) {m : ℕ} (hm : m + 1 ≤ N) :
     |(N : ℝ) * T S m - (m : ℝ) * (m + 1) / 2| ≤ m * τ := by
   induction m with
@@ -51,7 +53,9 @@ lemma abs_T_sub_le (h : NearCUE S N τ) {m : ℕ} (hm : m + 1 ≤ N) :
       _ ≤ m * τ + τ := add_le_add ih' hrow
       _ = ((m : ℝ) + 1) * τ := by ring
 
-/-- N·U_m = (m³ − m)/6 up to m(m−1)τ/2, for m ≤ N. -/
+/-- N·U_m = (m³ − m)/6 up to m(m−1)τ/2, for m ≤ N.
+@isnad1 id=le.2h4v.s7.53c192c936a1 from=translated src=- shape=8be07644 vocab=995cff60
+-/
 lemma abs_U_sub_le (h : NearCUE S N τ) {m : ℕ} (hm : m ≤ N) :
     |(N : ℝ) * U S m - ((m : ℝ) ^ 3 - m) / 6| ≤ (m : ℝ) * (m - 1) / 2 * τ := by
   induction m with
@@ -77,7 +81,9 @@ private lemma ii_Dfun (hN : 0 < N) {a b : ℝ} (ha : a ∈ Icc (0:ℝ) 1) (hb : 
   (intervalIntegrable_Dfun hN).mono_set (by
     rw [Set.uIcc_of_le zero_le_one]; exact Set.uIcc_subset_Icc ha hb)
 
-/-- **E on the cell [m/N, (m+1)/N]** (m < N):  E(x) = E(m/N) + (T_m/N)(x − m/N) − (x³ − (m/N)³)/6. -/
+/-- **E on the cell [m/N, (m+1)/N]** (m < N):  E(x) = E(m/N) + (T_m/N)(x − m/N) − (x³ − (m/N)³)/6.
+@isnad1 id=eq.3h4v.s7.5e14eb35c547 from=translated src=- shape=076ab6fe vocab=b8194989
+-/
 lemma Efun_cell (hN : 0 < N) {m : ℕ} (hm : m < N) {x : ℝ} (hx : x ∈ Icc ((m : ℝ) / N) ((m + 1 : ℝ) / N)) :
     Efun (massOf S N) N x = Egrid S N m + T S m / N * (x - (m : ℝ) / N) - (x ^ 3 - ((m : ℝ) / N) ^ 3) / 6 := by
   have hNr : (0 : ℝ) < N := by exact_mod_cast hN
@@ -127,7 +133,9 @@ private lemma cubic_bounds {m θ : ℝ} (hm : 0 ≤ m) (h0 : 0 ≤ θ) (h1 : θ 
   · nlinarith [mul_nonneg hm hprod]
   · nlinarith [mul_le_mul_of_nonneg_left hq hm]
 
-/-- **the integrated discrepancy of a near-CUE law**: |E| ≤ 1/(6N²) + τ/(2N) on [0,1]. -/
+/-- **the integrated discrepancy of a near-CUE law**: |E| ≤ 1/(6N²) + τ/(2N) on [0,1].
+@isnad1 id=le.4h4v.s7.6e5b3b4ba614 from=translated src=- shape=0d92d848 vocab=65b19883
+-/
 theorem abs_Efun_le_of_nearCUE (hN : 0 < N) (hτ : 0 ≤ τ) (h : NearCUE S N τ) :
     ∀ x ∈ Icc (0:ℝ) 1, |Efun (massOf S N) N x| ≤ 1 / (6 * (N : ℝ) ^ 2) + τ / (2 * N) := by
   have hNr : (0 : ℝ) < N := by exact_mod_cast hN
@@ -196,7 +204,9 @@ theorem abs_Efun_le_of_nearCUE (hN : 0 < N) (hτ : 0 ≤ τ) (h : NearCUE S N τ
     _ ≤ (N : ℝ) / 6 + (N : ℝ) ^ 2 / 2 * τ := add_le_add hmain hpert
     _ = (1 / (6 * (N : ℝ) ^ 2) + τ / (2 * N)) * (N : ℝ) ^ 3 := by field_simp
 
-/-- in particular at x = 1. -/
+/-- in particular at x = 1.
+@isnad1 id=le.3h3v.s7.7d9d700bad9e from=translated src=- shape=4e3ec425 vocab=e1af82d6
+-/
 theorem abs_Efun_one_le_of_nearCUE (hN : 0 < N) (hτ : 0 ≤ τ) (h : NearCUE S N τ) :
     |Efun (massOf S N) N 1| ≤ 1 / (6 * (N : ℝ) ^ 2) + τ / (2 * N) :=
   abs_Efun_le_of_nearCUE hN hτ h 1 ⟨zero_le_one, le_rfl⟩
@@ -206,7 +216,9 @@ theorem abs_Efun_one_le_of_nearCUE (hN : 0 < N) (hτ : 0 ≤ τ) (h : NearCUE S 
 /-- **CEILING FOR A NEAR-CUE GRID LAW.**  Let S be any grid form factor with |N·S(j) − j| ≤ τ for 0 < j < N (atom masses
 s_j = S(j)/N at j/N; the row j = N free), and |D(1)| ≤ d₁.  For every certificate (c₀, r) — r ∈ C¹[0,1] with r′ =: g differentiable
 off a countable set with integrable derivative h — that is valid against the law, c₀ + Σ_{j=1}^N s_j r(j/N) ≤ p, one has
-      c₀ + ∫₀¹ r(x)·x dx ≤ p + d₁·|r(1)| + (1/(6N²) + τ/(2N))·|r′(1)| + (1/(6N²) + τ/(2N))·∫₀¹|r″|. -/
+      c₀ + ∫₀¹ r(x)·x dx ≤ p + d₁·|r(1)| + (1/(6N²) + τ/(2N))·|r′(1)| + (1/(6N²) + τ/(2N))·∫₀¹|r″|.
+@isnad1 id=le.10h10v.s9.134586f7f574 from=translated src=- shape=9fad2af1 vocab=7bec26e7
+-/
 theorem ceiling_nearCUE (hN : 0 < N) (S : ℕ → ℝ) {τ d₁ : ℝ} (hτ : 0 ≤ τ) (hS : NearCUE S N τ)
     (hD1 : |Dfun (massOf S N) N 1| ≤ d₁)
     {r g h : ℝ → ℝ} {T : Set ℝ} (hT : T.Countable) {c₀ p : ℝ}

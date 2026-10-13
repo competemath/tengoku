@@ -23,7 +23,9 @@ open Finset Real
 namespace Zeta23
 namespace Tail
 
-/-- Telescoping replacement for ∫ x⁻⁴: for a > 0, h > 0, h·(a+h)⁻⁴ ≤ (a⁻³ − (a+h)⁻³)/3. -/
+/-- Telescoping replacement for ∫ x⁻⁴: for a > 0, h > 0, h·(a+h)⁻⁴ ≤ (a⁻³ − (a+h)⁻³)/3.
+@isnad1 id=le.2h2v.s7.00505da1c81c from=translated src=- shape=854738ef vocab=ff874145
+-/
 lemma inv_pow_four_step {a h : ℝ} (ha : 0 < a) (hh : 0 < h) :
     h * ((a + h) ^ 4)⁻¹ ≤ ((a ^ 3)⁻¹ - ((a + h) ^ 3)⁻¹) / 3 := by
   have hah : 0 < a + h := by linarith
@@ -35,7 +37,9 @@ lemma inv_pow_four_step {a h : ℝ} (ha : 0 < a) (hh : 0 < h) :
   rw [key]
   positivity
 
-/-- Telescoped form: ∑_{k ≤ d} (D + k h)⁻⁴ ≤ D⁻⁴ + (D⁻³ − (D + d h)⁻³)/(3h). -/
+/-- Telescoped form: ∑_{k ≤ d} (D + k h)⁻⁴ ≤ D⁻⁴ + (D⁻³ − (D + d h)⁻³)/(3h).
+@isnad1 id=le.2h3v.s7.02a52d83f280 from=translated src=- shape=83f9f066 vocab=30cae536
+-/
 lemma sum_inv_pow_four_le_telescope {D h : ℝ} (hD : 0 < D) (hh : 0 < h) (d : ℕ) :
     ∑ k ∈ range (d + 1), ((D + k * h) ^ 4)⁻¹
       ≤ (D ^ 4)⁻¹ + ((D ^ 3)⁻¹ - ((D + d * h) ^ 3)⁻¹) / (3 * h) := by
@@ -57,7 +61,9 @@ lemma sum_inv_pow_four_le_telescope {D h : ℝ} (hD : 0 < D) (hh : 0 < h) (d : �
           add_le_add ih hstep'
       _ = _ := by ring
 
-/-- ∑_{k<d} (D + k h)⁻⁴ ≤ D⁻⁴ + D⁻³/(3h) for D, h > 0 (any d). -/
+/-- ∑_{k<d} (D + k h)⁻⁴ ≤ D⁻⁴ + D⁻³/(3h) for D, h > 0 (any d).
+@isnad1 id=le.2h3v.s7.5c06e39e0c2b from=translated src=- shape=0b814962 vocab=de291fef
+-/
 lemma sum_inv_pow_four_le {D h : ℝ} (hD : 0 < D) (hh : 0 < h) (d : ℕ) :
     ∑ k ∈ range d, ((D + k * h) ^ 4)⁻¹ ≤ (D ^ 4)⁻¹ + (D ^ 3)⁻¹ / (3 * h) := by
   cases d with
@@ -69,7 +75,9 @@ lemma sum_inv_pow_four_le {D h : ℝ} (hD : 0 < D) (hh : 0 < h) (d : ℕ) :
         = (D ^ 4)⁻¹ + (D ^ 3)⁻¹ / (3 * h) - ((D + d * h) ^ 3)⁻¹ / (3 * h) := by ring
       _ ≤ _ := by linarith
 
-/-- From D⁻⁴ + D⁻³/(3h), h = 2π/L, to L·D⁻³ "(as D ≥ 1, L ≥ 2)". -/
+/-- From D⁻⁴ + D⁻³/(3h), h = 2π/L, to L·D⁻³ "(as D ≥ 1, L ≥ 2)".
+@isnad1 id=le.2h2v.s7.7f2600f93c6e from=translated src=- shape=2ed3180c vocab=b6d588bd
+-/
 lemma grid_const_bound {D L : ℝ} (hD : 1 ≤ D) (hL : 2 ≤ L) :
     (D ^ 4)⁻¹ + (D ^ 3)⁻¹ / (3 * (2 * π / L)) ≤ L * (D ^ 3)⁻¹ := by
   have hD0 : 0 < D := by linarith
@@ -89,7 +97,9 @@ lemma grid_const_bound {D L : ℝ} (hD : 1 ≤ D) (hL : 2 ≤ L) :
   nlinarith [mul_le_mul_of_nonneg_right h3 hD3]
 
 /-- **Grid estimate** (proof of [prop:tail]): with τ_k := T + k·h, h = 2π/L, d·h ≤ T,
-L ≥ 2 and D := dist(γ, I) ≥ 1 (I = [T,2T]):  ∑_{k<d} |γ − τ_k|⁻⁴ ≤ L · D⁻³. -/
+L ≥ 2 and D := dist(γ, I) ≥ 1 (I = [T,2T]):  ∑_{k<d} |γ − τ_k|⁻⁴ ≤ L · D⁻³.
+@isnad1 id=le.4h4v.s7.f7ea0521f07f from=translated src=- shape=016417c5 vocab=95bdaa74
+-/
 theorem grid_sum_le {T L γ : ℝ} {d : ℕ} (hL : 2 ≤ L) (hT : 0 < T)
     (hd : (d : ℝ) * (2 * π / L) ≤ T) (hD : 1 ≤ distI T γ) :
     ∑ k ∈ range d, (|γ - (T + k * (2 * π / L))| ^ 4)⁻¹ ≤ L * ((distI T γ) ^ 3)⁻¹ := by

@@ -522,7 +522,9 @@ private theorem compositionTailTM_hoareTime_of_virtualRun_internal
   · show P C₄.output
     exact hout₄
 
-/-- The post-first-computation tail correctly runs the second function. -/
+/-- The post-first-computation tail correctly runs the second function.
+@isnad1 id=hoaretim.1h7v.s7.48b5b9f92c1d from=translated src=- shape=6a2545bb vocab=dbbc2ac7
+-/
 theorem compositionTailTM_hoareTime_internal {nf ng : ℕ} (tmG : TM ng)
     {g : List Bool → List Bool} {G : ℕ → ℕ}
     (hG : tmG.ComputesInTime g G) (y : List Bool) (B : ℕ) :
@@ -536,7 +538,9 @@ theorem compositionTailTM_hoareTime_internal {nf ng : ℕ} (tmG : TM ng)
   intro realInput
   exact retargetInputStarted_computesVirtual tmG hG y realInput
 
-/-- The same tail pipeline retains a second machine's decision verdict. -/
+/-- The same tail pipeline retains a second machine's decision verdict.
+@isnad1 id=hoaretim.1h7v.s7.9260da246393 from=translated src=- shape=6aa8641f vocab=bdafb104
+-/
 theorem compositionTailTM_decides_hoareTime_internal {nf ng : ℕ} (tmG : TM ng)
     {L : Language} {G : ℕ → ℕ}
     (hG : tmG.DecidesInTime L G) (y : List Bool) (B : ℕ) :

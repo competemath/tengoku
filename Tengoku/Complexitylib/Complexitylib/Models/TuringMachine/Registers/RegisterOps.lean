@@ -44,7 +44,9 @@ def skipTM : TM n where
   δ_right_of_start := fun _ _ _ _ =>
     ⟨idleDir_right_of_start, fun _ => idleDir_right_of_start, idleDir_right_of_start⟩
 
-/-- `skipTM` changes nothing (parked tapes). -/
+/-- `skipTM` changes nothing (parked tapes).
+@isnad1 id=hoaretim.2h4v.s5.111c9a92d276 from=translated src=- shape=0727952f vocab=f0c1e8da
+-/
 theorem skipTM_hoareTime (inp₀ : Tape) (work₀ : Fin n → Tape) (ys : List Bool)
     (hinp₀ : Parked inp₀) (hwork₀ : ∀ i, Parked (work₀ i)) :
     (skipTM (n := n)).HoareTime
@@ -61,7 +63,9 @@ theorem skipTM_hoareTime (inp₀ : Tape) (work₀ : Fin n → Tape) (ys : List B
     · exact hout.parked.writeAndMove_readBack_idle
   exact ⟨_, 1, le_refl 1, .step hstep .zero, rfl, rfl, rfl, hout⟩
 
-/-- `skipTM` preserves an arbitrary fully parked tape frame exactly. -/
+/-- `skipTM` preserves an arbitrary fully parked tape frame exactly.
+@isnad1 id=hoaretim.3h4v.s6.372989150286 from=translated src=- shape=743f4a2e vocab=f9bb97ca
+-/
 theorem skipTM_hoareTime_frame (inp₀ : Tape) (work₀ : Fin n → Tape)
     (out₀ : Tape) (hinput : Parked inp₀) (hwork : ∀ i, Parked (work₀ i))
     (houtput : Parked out₀) :
@@ -421,7 +425,9 @@ private theorem incRegTM_back_run (h : ℕ) :
 
 /-- **`incRegTM` Hoare specification.** From `regTape d` in register `q`, reach
     `regTape (d + 1)` in `2d + 4` steps; the input, output, and every other work
-    tape are untouched. -/
+    tape are untouched.
+@isnad1 id=hoaretim.3h6v.s6.fd1eed75ea94 from=translated src=- shape=1d8c358c vocab=57f31eb2
+-/
 theorem incRegTM_hoareTime (q : Fin n) (d : ℕ) (inp₀ : Tape) (work₀ : Fin n → Tape)
     (ys : List Bool) (hinp₀ : Parked inp₀) (hwork₀ : ∀ i, i ≠ q → Parked (work₀ i))
     (hq : work₀ q = regTape d) :
@@ -513,7 +519,9 @@ def clearRegCells (d k : ℕ) : ℕ → Γ := fun j =>
   else if j ≤ d then Γ.one
   else Γ.blank
 
-/-- Before any blanking (`k = 0`), a mid-clear register is exactly `regCells d`. -/
+/-- Before any blanking (`k = 0`), a mid-clear register is exactly `regCells d`.
+@isnad1 id=eq.0h1v.s3.e50b1123f2a1 from=translated src=- shape=9fc490cc vocab=4feb2cec
+-/
 theorem clearCells_zero (d : ℕ) : clearRegCells d 0 = regCells d := by
   funext j
   simp only [clearRegCells, regCells]
@@ -522,7 +530,9 @@ theorem clearCells_zero (d : ℕ) : clearRegCells d 0 = regCells d := by
   · rw [ite_eq_right (show ¬ j = 0 from by omega), ite_eq_right (show ¬ j ≤ 0 from by omega),
       ite_eq_right (show ¬ j = 0 from by omega)]
 
-/-- After blanking all `d` marks (`k = d`), a mid-clear register is `regCells 0`. -/
+/-- After blanking all `d` marks (`k = d`), a mid-clear register is `regCells 0`.
+@isnad1 id=eq.0h1v.s3.671d7176b0b3 from=translated src=- shape=40da1dce vocab=4feb2cec
+-/
 theorem clearCells_last (d : ℕ) : clearRegCells d d = regCells 0 := by
   funext j
   simp only [clearRegCells, regCells]
@@ -534,7 +544,9 @@ theorem clearCells_last (d : ℕ) : clearRegCells d d = regCells 0 := by
     · rw [ite_eq_left hd]
     · rw [ite_eq_right hd, ite_eq_right hd]
 
-/-- No mid-clear cell at position `j ≥ 1` is the `▷` sentinel. -/
+/-- No mid-clear cell at position `j ≥ 1` is the `▷` sentinel.
+@isnad1 id=ne.1h3v.s4.a69d66dcfe24 from=translated src=- shape=332492d5 vocab=a4f4c9c2
+-/
 theorem clearCells_ne_start {d k j : ℕ} (hj : 1 ≤ j) :
     clearRegCells d k j ≠ Γ.start := by
   simp only [clearRegCells]
@@ -544,7 +556,9 @@ theorem clearCells_ne_start {d k j : ℕ} (hj : 1 ≤ j) :
   · split <;> decide
 
 /-- Blanking cell `k + 1` of `clearRegCells d k` advances the sweep to
-    `clearRegCells d (k + 1)`. -/
+    `clearRegCells d (k + 1)`.
+@isnad1 id=eq.0h2v.s5.6860b59efd12 from=translated src=- shape=5fc78289 vocab=95b69ce7
+-/
 theorem clearCells_update_succ (d k : ℕ) :
     Function.update (clearRegCells d k) (k + 1) Γ.blank = clearRegCells d (k + 1) := by
   funext j
@@ -886,7 +900,9 @@ private theorem clearRegTM_back_run (h : ℕ) :
     · rw [hcells', hupd]
 
 /-- **`clearRegTM` Hoare specification.** From `regTape d` in register `q`, reach
-    `regTape 0` in `2d + 4` steps; everything else untouched. -/
+    `regTape 0` in `2d + 4` steps; everything else untouched.
+@isnad1 id=hoaretim.3h6v.s6.c8aac55b0560 from=translated src=- shape=0310f9ad vocab=dfd1e752
+-/
 theorem clearRegTM_hoareTime (q : Fin n) (d : ℕ) (inp₀ : Tape) (work₀ : Fin n → Tape)
     (ys : List Bool) (hinp₀ : Parked inp₀) (hwork₀ : ∀ i, i ≠ q → Parked (work₀ i))
     (hq : work₀ q = regTape d) :

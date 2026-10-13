@@ -17,6 +17,9 @@ Material destined for Mathlib.
 
 variable {F : Type*} [Field F]
 
+/--
+@isnad1 id=iff.0h3v.s8.2b51adb3ab60 from=translated src=- shape=ec53702f vocab=1afa9b9b
+-/
 @[local simp]
 lemma Valued.isUnit_valuationSubring_iff {Γ₀ : Type*} [LinearOrderedCommGroupWithZero Γ₀]
     [Valued F Γ₀] {x : Valued.v.valuationSubring} :

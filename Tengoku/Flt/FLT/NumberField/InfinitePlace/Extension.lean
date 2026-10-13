@@ -60,12 +60,18 @@ This is the complex embedding analogue of `InfinitePlace.Extension`.
 abbrev IsExtension := g.comp (algebraMap K L) = f
 
 variable {f g} in
+/--
+@isnad1 id=not.2h4v.s6.f06712453dfc from=translated src=- shape=34c01081 vocab=a93f1338
+-/
 theorem IsExtension.not_isExtension_conjugate (h : IsExtension f g)
     (hf : ¬ComplexEmbedding.IsReal f) :
     ¬IsExtension f (conjugate g) := by
   simp_all [RingHom.ext_iff, ComplexEmbedding.isReal_iff]
 
 variable {f g} in
+/--
+@isnad1 id=ne.2h5v.s6.01d89ceba5fb from=translated src=- shape=b67d9fa2 vocab=9b1c88ce
+-/
 theorem IsExtension.ne {r : L →+* ℂ} (hg : IsExtension f g) (hr : ¬IsExtension f r) :
     g ≠ r := by
   simp_all only [← hg, RingHom.ext_iff, RingHom.coe_comp, Function.comp_apply, not_forall,
@@ -82,6 +88,9 @@ This is the complex embedding analogue of `InfinitePlace.RamifiedExtension`.
 abbrev IsMixedExtension :=
   IsExtension f g ∧ ComplexEmbedding.IsReal f ∧ ¬ComplexEmbedding.IsReal g
 
+/--
+@isnad1 id=not.2h4v.s6.5de461aee4c1 from=translated src=- shape=c6c4c56a vocab=994ccab8
+-/
 theorem not_isReal_of_not_isReal {f : K →+* ℂ} {g : L →+* ℂ} (h : IsExtension f g)
     (hf : ¬ComplexEmbedding.IsReal f) :
     ¬ComplexEmbedding.IsReal g :=
@@ -89,12 +98,21 @@ theorem not_isReal_of_not_isReal {f : K →+* ℂ} {g : L →+* ℂ} (h : IsExte
 
 namespace IsMixedExtension
 
+/--
+@isnad1 id=isextens.1h4v.s6.feaac2734053 from=translated src=- shape=ef3d55e7 vocab=de384b73
+-/
 theorem isExtension (h : IsMixedExtension f g) :
     IsExtension f g := h.1
 
+/--
+@isnad1 id=isreal.1h4v.s6.a986227f77c5 from=translated src=- shape=4c65b1e5 vocab=13d5f5ae
+-/
 theorem isReal (h : IsMixedExtension f g) :
     ComplexEmbedding.IsReal f := h.2.1
 
+/--
+@isnad1 id=not.1h4v.s6.cccac2fa2d17 from=translated src=- shape=a621c901 vocab=13d5f5ae
+-/
 theorem not_isReal (h : IsMixedExtension f g) :
     ¬ComplexEmbedding.IsReal g := h.2.2
 
@@ -110,6 +128,9 @@ This is the complex embedding analogue of `InfinitePlace.UnramifiedExtension`.
 abbrev IsUnmixedExtension := IsExtension f g ∧ ¬IsMixedExtension f g
 
 variable {f g} in
+/--
+@isnad1 id=isreal.2h4v.s6.062076d19b7d from=translated src=- shape=2e497e8d vocab=ebc7d8a8
+-/
 theorem IsUnmixedExtension.isReal_of_isReal (h : IsUnmixedExtension f g)
     (hf : ComplexEmbedding.IsReal f) :
     ComplexEmbedding.IsReal g := by
@@ -154,12 +175,18 @@ variable (K) in
 /-- Any infinite place `w` of `L` is an extension of its restriction to `K`. -/
 abbrev toExtension : (w.comap (algebraMap K L)).Extension L := ⟨w, rfl⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.65beaed19430 from=translated src=- shape=92d5e4ae vocab=1ac214c0
+-/
 theorem coe_toExtension (w : InfinitePlace L) : (toExtension K w).1 = w := rfl
 
 namespace Extension
 
 variable {v : InfinitePlace K} (w : v.Extension L)
 
+/--
+@isnad1 id=iscomple.1h4v.s6.9b845b18f5e0 from=translated src=- shape=8042b841 vocab=e43c38d5
+-/
 theorem isComplex_of_isComplex (hv : v.IsComplex) :
     w.1.IsComplex := by
   rw [isComplex_iff, ComplexEmbedding.isReal_iff, RingHom.ext_iff, not_forall] at hv ⊢
@@ -170,14 +197,23 @@ theorem isComplex_of_isComplex (hv : v.IsComplex) :
   | inl hl => simp_all
   | inr hr => aesop
 
+/--
+@isnad1 id=isreal.1h4v.s6.6d24c98f2c77 from=translated src=- shape=b83788d9 vocab=87cfea49
+-/
 theorem isReal_base (hw : w.1.IsReal) :
     v.IsReal := by
   simp_all only [← not_isComplex_iff_isReal]
   exact mt w.isComplex_of_isComplex hw
 
+/--
+@isnad1 id=eq.0h4v.s6.781eda6f3cfe from=translated src=- shape=f12fae54 vocab=acb68949
+-/
 theorem mk_embedding : mk (w.1.embedding.comp (algebraMap K L)) = v := by
   rw [← comap_mk, w.1.mk_embedding, w.2]
 
+/--
+@isnad1 id=or.0h4v.s7.7425d4886b0b from=translated src=- shape=43c4696b vocab=2b61d129
+-/
 theorem isExtension_or_isExtension_conjugate :
     IsExtension v.embedding w.1.embedding ∨ IsExtension v.embedding (conjugate w.1.embedding) := by
   cases embedding_mk_eq (w.1.embedding.comp (algebraMap K L)) with
@@ -186,6 +222,9 @@ theorem isExtension_or_isExtension_conjugate :
   | inr hr =>
     convert! Or.inr <| hr ▸ congrArg InfinitePlace.embedding w.mk_embedding
 
+/--
+@isnad1 id=isextens.1h4v.s7.dfce8c67034a from=translated src=- shape=c19e6b06 vocab=2b61d129
+-/
 theorem isExtension_conjugate_of_not_isExtension (h : ¬IsExtension v.embedding w.1.embedding) :
     IsExtension v.embedding (conjugate w.1.embedding) :=
   w.isExtension_or_isExtension_conjugate.resolve_left h
@@ -244,19 +283,34 @@ def Extension.toUnramifiedExtension {w : v.Extension L} (h : w.1.IsUnramified K)
 
 namespace RamifiedExtension
 
+/--
+@isnad1 id=eq.0h4v.s6.da6129816bd1 from=translated src=- shape=5515e961 vocab=6d307aee
+-/
 theorem comap_eq (w : v.RamifiedExtension L) : w.1.comap (algebraMap K L) = v := w.2.1
 
+/--
+@isnad1 id=isramifi.0h4v.s6.0fc1d4eb0c9a from=translated src=- shape=1fad3ffa vocab=6d307aee
+-/
 theorem isRamified (w : v.RamifiedExtension L) : w.1.IsRamified K := w.2.2
 
+/--
+@isnad1 id=isreal.0h4v.s6.b74710532058 from=translated src=- shape=4702e641 vocab=b080513a
+-/
 theorem isReal_comap (w : v.RamifiedExtension L) : (w.1.comap (algebraMap K L)).IsReal :=
   (isRamified_iff.1 w.isRamified).2
 
 instance : Coe (v.RamifiedExtension L) (v.Extension L) where
   coe w := ⟨w.1, w.2.1⟩
 
+/--
+@isnad1 id=isreal.0h4v.s5.f66f77d368d1 from=translated src=- shape=7ad88beb vocab=063293ce
+-/
 theorem isReal (w : v.RamifiedExtension L) : v.IsReal :=
   w.comap_eq ▸ w.isReal_comap
 
+/--
+@isnad1 id=iscomple.0h4v.s6.4a3afafbcffd from=translated src=- shape=d8d293e8 vocab=d8b5dfab
+-/
 theorem isComplex (w : v.RamifiedExtension L) :
     (w.1 : InfinitePlace L).IsComplex :=
   (isRamified_iff.1 w.isRamified).1
@@ -265,8 +319,14 @@ end RamifiedExtension
 
 namespace UnramifiedExtension
 
+/--
+@isnad1 id=eq.0h4v.s6.2282fbf471a2 from=translated src=- shape=5515e961 vocab=a452923c
+-/
 theorem comap_eq (w : UnramifiedExtension L v) : w.1.comap (algebraMap K L) = v := w.2.1
 
+/--
+@isnad1 id=isunrami.0h4v.s6.b4888bc6fc9a from=translated src=- shape=1fad3ffa vocab=a452923c
+-/
 theorem isUnramified (w : UnramifiedExtension L v) : w.1.IsUnramified K := w.2.2
 
 instance : Coe (v.UnramifiedExtension L) (v.Extension L) where

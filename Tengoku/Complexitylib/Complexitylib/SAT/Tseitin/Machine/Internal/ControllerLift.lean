@@ -89,7 +89,9 @@ def controllerCloseCfg (pending : PendingSigns)
   work := c.work
   output := c.output
 
-/-- A standard boundary transition is the identity on parked tapes. -/
+/-- A standard boundary transition is the identity on parked tapes.
+@isnad1 id=eq.3h3v.s5.a0f41c41ecf6 from=translated src=- shape=e922ff8e vocab=9557ce1e
+-/
 theorem controllerReadTransitionCfg_eq_readCfg_internal {Q : Type}
     (mode : StreamMode) (c : Cfg workTapeCount Q)
     (hinp : TM.Parked c.input) (hwork : ∀ i, TM.Parked (c.work i))
@@ -105,7 +107,9 @@ theorem controllerReadTransitionCfg_eq_readCfg_internal {Q : Type}
 /-! ## Increment child -/
 
 /-- One step of the unary increment child is one controller increment-call
-step with literally identical tapes. -/
+step with literally identical tapes.
+@isnad1 id=eq.1h3v.s6.093a24b3f29a from=translated src=- shape=4aadaadf vocab=b5754383
+-/
 theorem validEmitterTM_increment_step_internal (mode : StreamMode)
     {c c' : Cfg workTapeCount (TM.incRegTM currentReg).Q}
     (hstep : (TM.incRegTM currentReg).step c = some c') :
@@ -121,7 +125,9 @@ theorem validEmitterTM_increment_step_internal (mode : StreamMode)
   simp only [controllerIncrementCfg, validEmitterTM, controllerIncrement,
     controllerDone, hne, ↓reduceIte]
 
-/-- An exact unary-increment trace lifts point-for-point into the controller. -/
+/-- An exact unary-increment trace lifts point-for-point into the controller.
+@isnad1 id=reachesi.1h4v.s5.2bc41255402d from=translated src=- shape=7fc1b482 vocab=445c216a
+-/
 theorem validEmitterTM_increment_reachesIn_internal (mode : StreamMode)
     {t : ℕ} {c c' : Cfg workTapeCount (TM.incRegTM currentReg).Q}
     (hreach : (TM.incRegTM currentReg).reachesIn t c c') :
@@ -131,7 +137,9 @@ theorem validEmitterTM_increment_reachesIn_internal (mode : StreamMode)
     (fun _ _ => validEmitterTM_increment_step_internal mode) hreach
 
 /-- A halted increment child returns to the saved parser mode after one
-standard boundary transition. -/
+standard boundary transition.
+@isnad1 id=eq.1h2v.s5.6a14de47a3f0 from=translated src=- shape=8e41d1c0 vocab=9b0b6d1d
+-/
 theorem validEmitterTM_increment_return_step_internal (mode : StreamMode)
     (c : Cfg workTapeCount (TM.incRegTM currentReg).Q)
     (hhalt : c.state = (TM.incRegTM currentReg).qhalt) :
@@ -143,7 +151,9 @@ theorem validEmitterTM_increment_return_step_internal (mode : StreamMode)
     controllerIncrement, controllerDone, hhalt, ↓reduceIte]
   congr 1
 
-/-- Parked-tape specialization of the increment-child return step. -/
+/-- Parked-tape specialization of the increment-child return step.
+@isnad1 id=eq.4h2v.s6.f554300617df from=translated src=- shape=64f2434f vocab=ecfcaee0
+-/
 theorem validEmitterTM_increment_return_parked_step_internal (mode : StreamMode)
     (c : Cfg workTapeCount (TM.incRegTM currentReg).Q)
     (hhalt : c.state = (TM.incRegTM currentReg).qhalt)
@@ -157,7 +167,9 @@ theorem validEmitterTM_increment_return_parked_step_internal (mode : StreamMode)
 /-! ## Commit child -/
 
 /-- One step of a pending-dependent commit child is one controller call step
-with literally identical tapes. -/
+with literally identical tapes.
+@isnad1 id=eq.1h4v.s6.1c6f74ec68a0 from=translated src=- shape=f0be9b3f vocab=de27dd95
+-/
 theorem validEmitterTM_commit_step_internal (pending : PendingSigns) (sign : Bool)
     {c c' : Cfg workTapeCount (commitLiteralTM pending).Q}
     (hstep : (commitLiteralTM pending).step c = some c') :
@@ -173,7 +185,9 @@ theorem validEmitterTM_commit_step_internal (pending : PendingSigns) (sign : Boo
   simp only [controllerCommitCfg, validEmitterTM, controllerCommit,
     controllerDone, hne, ↓reduceIte]
 
-/-- An exact commit-child trace lifts point-for-point into the controller. -/
+/-- An exact commit-child trace lifts point-for-point into the controller.
+@isnad1 id=reachesi.1h5v.s5.5e2a0a3a062a from=translated src=- shape=c59644a1 vocab=49f8376d
+-/
 theorem validEmitterTM_commit_reachesIn_internal (pending : PendingSigns) (sign : Bool)
     {t : ℕ} {c c' : Cfg workTapeCount (commitLiteralTM pending).Q}
     (hreach : (commitLiteralTM pending).reachesIn t c c') :
@@ -183,7 +197,9 @@ theorem validEmitterTM_commit_reachesIn_internal (pending : PendingSigns) (sign 
     (fun _ _ => validEmitterTM_commit_step_internal pending sign) hreach
 
 /-- A halted commit child returns to the boundary mode containing its pushed
-sign after one standard boundary transition. -/
+sign after one standard boundary transition.
+@isnad1 id=eq.1h3v.s5.46dcd6877b02 from=translated src=- shape=457bc22b vocab=da22d08f
+-/
 theorem validEmitterTM_commit_return_step_internal (pending : PendingSigns)
     (sign : Bool) (c : Cfg workTapeCount (commitLiteralTM pending).Q)
     (hhalt : c.state = (commitLiteralTM pending).qhalt) :
@@ -195,7 +211,9 @@ theorem validEmitterTM_commit_return_step_internal (pending : PendingSigns)
     controllerCommit, controllerDone, hhalt, ↓reduceIte]
   congr 1
 
-/-- Parked-tape specialization of the commit-child return step. -/
+/-- Parked-tape specialization of the commit-child return step.
+@isnad1 id=eq.4h3v.s6.18eadf59c7c0 from=translated src=- shape=4ee2f7e0 vocab=751ab0e7
+-/
 theorem validEmitterTM_commit_return_parked_step_internal (pending : PendingSigns)
     (sign : Bool) (c : Cfg workTapeCount (commitLiteralTM pending).Q)
     (hhalt : c.state = (commitLiteralTM pending).qhalt)
@@ -210,7 +228,9 @@ theorem validEmitterTM_commit_return_parked_step_internal (pending : PendingSign
 /-! ## Close child -/
 
 /-- One step of a pending-dependent close child is one controller call step
-with literally identical tapes. -/
+with literally identical tapes.
+@isnad1 id=eq.1h3v.s5.75238bc7e50c from=translated src=- shape=6196db6e vocab=e468c480
+-/
 theorem validEmitterTM_close_step_internal (pending : PendingSigns)
     {c c' : Cfg workTapeCount (closeClauseTM pending).Q}
     (hstep : (closeClauseTM pending).step c = some c') :
@@ -226,7 +246,9 @@ theorem validEmitterTM_close_step_internal (pending : PendingSigns)
   simp only [controllerCloseCfg, validEmitterTM, controllerClose,
     controllerDone, hne, ↓reduceIte]
 
-/-- An exact close-child trace lifts point-for-point into the controller. -/
+/-- An exact close-child trace lifts point-for-point into the controller.
+@isnad1 id=reachesi.1h4v.s5.0418c27005a1 from=translated src=- shape=4de08069 vocab=91275329
+-/
 theorem validEmitterTM_close_reachesIn_internal (pending : PendingSigns)
     {t : ℕ} {c c' : Cfg workTapeCount (closeClauseTM pending).Q}
     (hreach : (closeClauseTM pending).reachesIn t c c') :
@@ -236,7 +258,9 @@ theorem validEmitterTM_close_reachesIn_internal (pending : PendingSigns)
     (fun _ _ => validEmitterTM_close_step_internal pending) hreach
 
 /-- A halted close child returns to the empty boundary mode after one
-standard boundary transition. -/
+standard boundary transition.
+@isnad1 id=eq.1h2v.s5.438270ca386d from=translated src=- shape=3efa8b24 vocab=26084fa7
+-/
 theorem validEmitterTM_close_return_step_internal (pending : PendingSigns)
     (c : Cfg workTapeCount (closeClauseTM pending).Q)
     (hhalt : c.state = (closeClauseTM pending).qhalt) :
@@ -248,7 +272,9 @@ theorem validEmitterTM_close_return_step_internal (pending : PendingSigns)
     controllerClose, controllerDone, hhalt, ↓reduceIte]
   congr 1
 
-/-- Parked-tape specialization of the close-child return step. -/
+/-- Parked-tape specialization of the close-child return step.
+@isnad1 id=eq.4h2v.s6.477cc12407a1 from=translated src=- shape=35ea82de vocab=1f7b44ad
+-/
 theorem validEmitterTM_close_return_parked_step_internal (pending : PendingSigns)
     (c : Cfg workTapeCount (closeClauseTM pending).Q)
     (hhalt : c.state = (closeClauseTM pending).qhalt)

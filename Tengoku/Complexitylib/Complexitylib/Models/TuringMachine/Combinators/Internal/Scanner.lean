@@ -177,7 +177,9 @@ private theorem scannerTM_scan
 
     Output cell 1 is set to `finalOutput (x.foldl scanStep s₀)`, and the
     machine reaches a halted configuration in exactly `|x| + 2` steps on
-    every input. -/
+    every input.
+@isnad1 id=ex.0h5v.s7.60e28cfbc12e from=translated src=- shape=321d5be4 vocab=121bc62e
+-/
 theorem scannerTM_reachesIn
     (s₀ : S) (scanStep : S → Bool → S) (finalOutput : S → Γw) (x : List Bool) :
     ∃ c', (scannerTM s₀ scanStep finalOutput).reachesIn (x.length + 2)
@@ -207,7 +209,9 @@ theorem scannerTM_reachesIn
 /-- **Bridge to `DecidesInTime`**. Whenever a language `L` is characterized
     by a decision predicate `accept : S → Bool` applied to the fold, the
     scanner with finalOutput `fun s => if accept s then .one else .zero`
-    decides `L` in time `n + 2`. -/
+    decides `L` in time `n + 2`.
+@isnad1 id=decidesi.1h5v.s6.e63ef56b3c68 from=translated src=- shape=469d5721 vocab=4ebc2e28
+-/
 theorem scannerTM_decidesInTime
     (s₀ : S) (scanStep : S → Bool → S) (accept : S → Bool)
     {L : Language}

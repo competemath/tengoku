@@ -13,6 +13,9 @@ is a principal ideal ring.
 
 @[expose] public section
 
+/--
+@isnad1 id=coprime.2h2v.s4.47005f1a9085 from=translated src=- shape=74babeef vocab=cbd0eef3
+-/
 lemma uff {n p : ℕ} [hp : Fact p.Prime] (hn : n.Prime) (hpn : p ≠ n) : p.Coprime n :=
   (Nat.coprime_primes hp.1 hn).mpr hpn
 
@@ -30,6 +33,9 @@ namespace IsCyclotomicExtension.Rat
 local notation3 "θ" => (zeta_spec n ℚ K).toInteger
 
 variable (n K) in
+/--
+@isnad1 id=eq.0h2v.s6.bc3ce71a3c67 from=translated src=- shape=e260238e vocab=d4ad259d
+-/
 lemma minpoly : minpoly ℤ θ = cyclotomic n ℤ := by
   have := cyclotomic_eq_minpoly (zeta_spec n ℚ K) (NeZero.pos n)
   rw [← (zeta_spec n ℚ K).coe_toInteger] at this
@@ -37,14 +43,23 @@ lemma minpoly : minpoly ℤ θ = cyclotomic n ℤ := by
   rfl
 
 variable (n) in
+/--
+@isnad1 id=eq.0h2v.s6.caf7a7cd219c from=translated src=- shape=79b5597d vocab=c4467389
+-/
 lemma exponent : exponent θ = 1 := by
   simp [exponent_eq_one_iff, ← ((zeta_spec n ℚ K).integralPowerBasis).adjoin_gen_eq_top]
 
+/--
+@isnad1 id=not.0h3v.s6.875f4b07a9c6 from=translated src=- shape=e4ff9605 vocab=5b79d86f
+-/
 lemma ne_dvd_exponent (p : ℕ) [hp : Fact p.Prime] : ¬ (p ∣ RingOfIntegers.exponent θ) := by
   simpa [exponent, dvd_one] using hp.1.ne_one
 
 variable (n)
 
+/--
+@isnad1 id=isprinci.1h2v.s11.816aae16f924 from=translated src=- shape=eb43da56 vocab=ceaba956
+-/
 theorem pid1 (h : ∀ p ∈ Finset.Icc 1 ⌊(M K)⌋₊, (hp : p.Prime) → p ≠ n →
     haveI : Fact (p.Prime) := ⟨hp⟩
       ∃ P, ∃ hP : P ∈ monicFactorsMod θ p, ⌊(M K)⌋₊ < p ^ P.natDegree ∨
@@ -78,6 +93,9 @@ theorem pid1 (h : ∀ p ∈ Finset.Icc 1 ⌊(M K)⌋₊, (hp : p.Prime) → p �
     exact (zeta_spec n ℚ K).toInteger_sub_one_dvd_prime'
   · exact h p hple hp hpn
 
+/--
+@isnad1 id=isprinci.1h2v.s9.58897c2b4fe8 from=translated src=- shape=de52750e vocab=89684c1d
+-/
 theorem pid2 (h : ∀ p ∈ Finset.Icc 1 ⌊(M K)⌋₊, (hp : p.Prime) → p ≠ n →
     haveI : Fact (p.Prime) := ⟨hp⟩
       ∃ P : ℤ[X], P.Monic ∧ P.map (Int.castRingHom (ZMod p)) ∈ monicFactorsMod θ p ∧
@@ -96,6 +114,9 @@ theorem pid2 (h : ∀ p ∈ Finset.Icc 1 ⌊(M K)⌋₊, (hp : p.Prime) → p �
 
 variable [hn : Fact (Nat.Prime n)]
 
+/--
+@isnad1 id=isprinci.1h2v.s9.3e32acc0d19f from=translated src=- shape=015a3e54 vocab=f7ccf0c7
+-/
 theorem pid3 (h : ∀ p ∈ Finset.Icc 1 ⌊(M K)⌋₊, (hp : p.Prime) → (hpn : p ≠ n) →
     haveI : Fact (p.Prime) := ⟨hp⟩
       ∃ P Q A : ℤ[X],
@@ -116,6 +137,9 @@ theorem pid3 (h : ∀ p ∈ Finset.Icc 1 ⌊(M K)⌋₊, (hp : p.Prime) → (hpn
     (by simp [← hP, hPmo])
   exact hp.ne_one <| ((Nat.dvd_prime hn.1).1 h).resolve_right hpn
 
+/--
+@isnad1 id=isprinci.1h2v.s9.06deef83f623 from=translated src=- shape=4a8221ff vocab=ca01af74
+-/
 theorem pid4 (h : ∀ p ∈ Finset.Icc 1 ⌊(M K)⌋₊, (hp : p.Prime) → (hpn : p ≠ n) →
     haveI : Fact (p.Prime) := ⟨hp⟩
       ∃ P Q A G Qp Rp QP RP C1 C2 : ℤ[X],
@@ -145,6 +169,9 @@ theorem pid4 (h : ∀ p ∈ Finset.Icc 1 ⌊(M K)⌋₊, (hp : p.Prime) → (hpn
       exact add_mem (mul_mem_left _ _ (subset_span (by simp)))
         (mul_mem_left _ _ (subset_span (by simp)))
 
+/--
+@isnad1 id=isprinci.1h2v.s9.fc0cc0ccb87b from=translated src=- shape=5626517c vocab=ca01af74
+-/
 theorem pid5 (h : ∀ p ∈ Finset.Icc 1 ⌊(M K)⌋₊, (hp : p.Prime) → (hpn : p ≠ n) →
     haveI : Fact (p.Prime) := ⟨hp⟩
     ⌊(M K)⌋₊ < p ^ orderOf (ZMod.unitOfCoprime _ (uff hn.1 hpn)) ∨
@@ -184,6 +211,9 @@ theorem pid5 (h : ∀ p ∈ Finset.Icc 1 ⌊(M K)⌋₊, (hp : p.Prime) → (hpn
     exact ⟨P, Q, A, G, Qp, Rp, QP, RP, C1, C2, hPmo, hP, hQA, Or.inr ⟨hG, H1, H2⟩⟩
 
 open nonZeroDivisors in
+/--
+@isnad1 id=isprinci.1h2v.s9.bf7da0e715f4 from=translated src=- shape=72f8c499 vocab=9ea302ff
+-/
 theorem pid6 (h : ∀ p ∈ Finset.Icc 1 ⌊(M K)⌋₊, (hp : p.Prime) → (hpn : p ≠ n) →
     haveI : Fact (p.Prime) := ⟨hp⟩
     Nat.log p ⌊(M K)⌋₊ < orderOf (ZMod.unitOfCoprime _ (uff hn.1 hpn)) ∨

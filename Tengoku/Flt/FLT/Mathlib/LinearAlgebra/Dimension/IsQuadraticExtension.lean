@@ -21,7 +21,9 @@ section
 variable (K L : Type*) [Field K] [Field L] [Algebra K L]
 
 /-- `1` and any element lying outside the base field are linearly independent over the base
-field. -/
+field.
+@isnad1 id=linearin.1h3v.s7.21d2b3a1df09 from=translated src=- shape=f06e0a7f vocab=a0d282d7
+-/
 theorem linearIndependent_one_of_notMem_range_algebraMap {θ : L}
     (hθ : θ ∉ Set.range (algebraMap K L)) : LinearIndependent K ![(1 : L), θ] :=
   (LinearIndependent.pair_iff' one_ne_zero).mpr fun a ha ↦
@@ -30,7 +32,9 @@ theorem linearIndependent_one_of_notMem_range_algebraMap {θ : L}
 variable [Algebra.IsQuadraticExtension K L]
 
 /-- A quadratic extension contains an element not in the base field. (Used to choose a
-generator of `L/K` in the definition of the quadratic twist below.) -/
+generator of `L/K` in the definition of the quadratic twist below.)
+@isnad1 id=ex.0h2v.s6.6b66f6195cb9 from=translated src=- shape=bab2d59c vocab=86b44033
+-/
 theorem Algebra.IsQuadraticExtension.exists_notMem_range_algebraMap :
     ∃ θ : L, θ ∉ Set.range (algebraMap K L) := by
   by_contra! h
@@ -41,7 +45,9 @@ theorem Algebra.IsQuadraticExtension.exists_notMem_range_algebraMap :
   lia
 
 /-- Any element of a quadratic extension `L/K` is a `K`-linear combination of `1` and a given
-generator `θ`, and the `θ`-coefficient is nonzero if the element also lies outside `K`. -/
+generator `θ`, and the `θ`-coefficient is nonzero if the element also lies outside `K`.
+@isnad1 id=ex.2h4v.s8.a55d84fbc176 from=translated src=- shape=7ce7b9b0 vocab=9a557fc2
+-/
 theorem Algebra.IsQuadraticExtension.exists_eq_algebraMap_add_algebraMap_mul {θ θ' : L}
     (hθ : θ ∉ Set.range (algebraMap K L)) (hθ' : θ' ∉ Set.range (algebraMap K L)) :
     ∃ a b : K, a ≠ 0 ∧ θ' = algebraMap K L b + algebraMap K L a * θ := by
@@ -62,7 +68,9 @@ section
 
 variable {K : Type*} [Field K] (L : Type*) [Field L] [Algebra K L]
 
-/-- An element whose square is (the image of) a nonsquare of `K` lies outside `K`. -/
+/-- An element whose square is (the image of) a nonsquare of `K` lies outside `K`.
+@isnad1 id=not.2h4v.s7.dfe59adb74dd from=translated src=- shape=6c1a4598 vocab=aab245a4
+-/
 lemma notMem_range_algebraMap_of_not_isSquare {d : K} (hd : ¬IsSquare d) {α : L}
     (hα : α ^ 2 = algebraMap K L d) : α ∉ Set.range (algebraMap K L) := by
   rintro ⟨c, rfl⟩

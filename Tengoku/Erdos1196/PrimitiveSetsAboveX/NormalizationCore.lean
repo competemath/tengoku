@@ -54,7 +54,9 @@ noncomputable def normalizationSmallPrimePart (x Y n : ℕ) : ℝ :=
 noncomputable def normalizationFirstEntryPart (x Y n : ℕ) : ℝ :=
   if x ≤ n then firstEntryEntryWeight x Y n else 0
 
-/-- `b_x(n)` splits into the small-prime-power and first-entry contributions. -/
+/-- `b_x(n)` splits into the small-prime-power and first-entry contributions.
+@isnad1 id=eq.0h3v.s4.e0c5b3927b5d from=translated src=- shape=2849fb11 vocab=a361a25e
+-/
 lemma entryWeight_eq_smallPrimeEntryWeight_add_firstEntryEntryWeight (x Y n : ℕ) :
     entryWeight x Y n = smallPrimeEntryWeight Y n + firstEntryEntryWeight x Y n := by
   rw [entryWeight, smallPrimeEntryWeight, firstEntryEntryWeight, entryWeightFactor,
@@ -62,6 +64,7 @@ lemma entryWeight_eq_smallPrimeEntryWeight_add_firstEntryEntryWeight (x Y n : �
 
 /--
 Adding the remaining divisor contribution to `b_x(n)` recovers the full weighted divisor sum.
+@isnad1 id=eq.0h3v.s7.96aba7680a01 from=translated src=- shape=a5a978d1 vocab=00bc94e4
 -/
 lemma entryWeight_add_filtered_vonMangoldt_eq_entryWeightFactor_sum_divisors (x Y n : ℕ) :
     entryWeight x Y n +
@@ -96,13 +99,17 @@ lemma entryWeight_add_filtered_vonMangoldt_eq_entryWeightFactor_sum_divisors (x 
                   refine Finset.sum_congr rfl ?_
                   grind only
 
-/-- The small-prime contribution to `b_x(n)` is nonnegative. -/
+/-- The small-prime contribution to `b_x(n)` is nonnegative.
+@isnad1 id=le.0h2v.s4.8a8cad941349 from=translated src=- shape=5ffe46ab vocab=324303ec
+-/
 lemma smallPrimeEntryWeight_nonneg (Y n : ℕ) : 0 ≤ smallPrimeEntryWeight Y n := by
   unfold smallPrimeEntryWeight entryWeightFactor smallPrimeDivisorSum
   exact mul_nonneg (by positivity)
     (Finset.sum_nonneg fun q _ => ArithmeticFunction.vonMangoldt_nonneg)
 
-/-- The first-entry contribution to `b_x(n)` is nonnegative. -/
+/-- The first-entry contribution to `b_x(n)` is nonnegative.
+@isnad1 id=le.0h3v.s4.2dbe9ff7c06d from=translated src=- shape=1995cd38 vocab=5358b876
+-/
 lemma firstEntryEntryWeight_nonneg (x Y n : ℕ) : 0 ≤ firstEntryEntryWeight x Y n := by
   unfold firstEntryEntryWeight entryWeightFactor firstEntryDivisorSum
   exact mul_nonneg (by positivity)
@@ -111,6 +118,7 @@ lemma firstEntryEntryWeight_nonneg (x Y n : ℕ) : 0 ≤ firstEntryEntryWeight x
 /--
 The first-entry threshold always lands in the admissible range `x ≤ m * q`, since it dominates the
 ceiling quotient `x ⌈/⌉ m`.
+@isnad1 id=le.1h3v.s5.d4f60de40183 from=translated src=- shape=6fca2ba9 vocab=d23e87e2
 -/
 lemma le_mul_entryThreshold (x Y m : ℕ) (hm : 0 < m) :
     x ≤ m * entryThreshold x Y m := by
@@ -139,13 +147,17 @@ private lemma abs_harmonic_pred_sub_log_le_one (x : ℕ) (hx : 1 ≤ x) :
     · exact_mod_cast Nat.sub_le x 1
   grind only [= abs.eq_1, = max_def]
 
-/-- Equivalently, the finite reciprocal sum `∑_{m < x} 1 / m` is within `1` of `log x`. -/
+/-- Equivalently, the finite reciprocal sum `∑_{m < x} 1 / m` is within `1` of `log x`.
+@isnad1 id=le.1h1v.s6.5f8d8dc0ead1 from=translated src=- shape=60e71210 vocab=745f4a98
+-/
 lemma abs_sum_Icc_inv_sub_log_le_one (x : ℕ) (hx : 1 ≤ x) :
     |(∑ m ∈ Finset.Icc 1 (x - 1), (1 : ℝ) / m) - Real.log (x : ℝ)| ≤ 1 := by
   simpa [one_div, harmonic_eq_sum_Icc] using abs_harmonic_pred_sub_log_le_one x hx
 
 /-- The normalization constant `B_x` is exactly the sum of its small-prime and first-entry
-contributions. -/
+contributions.
+@isnad1 id=eq.0h2v.s5.123738d95cb7 from=translated src=- shape=7b33f000 vocab=4df8d64d
+-/
 lemma normalizationConstant_eq_tsum_parts (x Y : ℕ) :
     normalizationConstant x Y =
       ∑' n : ℕ, (normalizationSmallPrimePart x Y n + normalizationFirstEntryPart x Y n) := by

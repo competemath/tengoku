@@ -28,7 +28,9 @@ namespace Complexity
 namespace TM
 
 /-- Starting at cell one, copy exactly the source's advertised output in
-`|x| + 1` steps, preserving all source cells and the destination's cell zero. -/
+`|x| + 1` steps, preserving all source cells and the destination's cell zero.
+@isnad1 id=ex.4h7v.s7.4f9658bcd964 from=translated src=- shape=c61674fe vocab=cfdef285
+-/
 theorem copyWorkToWorkTM_reachesIn_of_hasOutput {n : ℕ}
     (src dst : Fin n) (hne : src ≠ dst) (x : List Bool)
     {inp out : Tape} {work : Fin n → Tape}
@@ -49,7 +51,9 @@ theorem copyWorkToWorkTM_reachesIn_of_hasOutput {n : ℕ}
     src dst hne x hsrcHead hsrcOutput hdst
 
 /-- Copy a raw `HasOutput` source to a fresh destination in exactly the usual
-linear bound. Source cells are preserved, including arbitrary trailing junk. -/
+linear bound. Source cells are preserved, including arbitrary trailing junk.
+@isnad1 id=hoaretim.1h5v.s7.d9d45898ab75 from=translated src=- shape=7da221a3 vocab=b1fa79dd
+-/
 theorem copyWorkToWorkTM_hoareTime_of_hasOutput {n : ℕ}
     (src dst : Fin n) (hne : src ≠ dst) (x : List Bool) (source : Tape) :
     (copyWorkToWorkTM src dst).HoareTime
@@ -65,7 +69,9 @@ theorem copyWorkToWorkTM_hoareTime_of_hasOutput {n : ℕ}
   exact copyWorkToWorkTM_hoareTime_of_hasOutput_internal src dst hne x source
 
 /-- Frame-rich raw-output copy. The input, output, and unrelated work tapes
-are preserved exactly while the source is copied to the fresh destination. -/
+are preserved exactly while the source is copied to the fresh destination.
+@isnad1 id=hoaretim.1h7v.s8.16ca4b3b5944 from=translated src=- shape=2448f59b vocab=45098bca
+-/
 theorem copyWorkToWorkTM_hoareTime_frame_of_hasOutput {n : ℕ}
     (src dst : Fin n) (hne : src ≠ dst) (x : List Bool) (source : Tape)
     {P : Tape → (Fin n → Tape) → Tape → Prop}

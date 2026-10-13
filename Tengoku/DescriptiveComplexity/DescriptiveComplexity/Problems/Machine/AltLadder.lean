@@ -46,7 +46,9 @@ def bareQ (pol : Bool) {α : Type} (C P : α → Prop) : Prop :=
   | false => ∀ a, C a → P a
 
 /-- Unguarded quantification only depends on its two predicates up to pointwise
-equivalence. -/
+equivalence.
+@isnad1 id=iff.2h6v.s5.b37e716e9863 from=translated src=- shape=5c9a2190 vocab=ba7e7a80
+-/
 theorem bareQ_congr (pol : Bool) {α : Type} {C C' P P' : α → Prop}
     (hC : ∀ a, C a ↔ C' a) (hP : ∀ a, C a → (P a ↔ P' a)) :
     bareQ pol C P ↔ bareQ pol C' P' := by
@@ -57,7 +59,9 @@ theorem bareQ_congr (pol : Bool) {α : Type} {C C' P P' : α → Prop}
       fun ⟨h1, h2⟩ => ⟨(hC a).mpr h1, (hP a ((hC a).mpr h1)).mpr h2⟩⟩
 
 /-- **A satisfiable guard makes the two quantifications agree**: the existence
-clause of `DescriptiveComplexity.guardQ` is the only difference between them. -/
+clause of `DescriptiveComplexity.guardQ` is the only difference between them.
+@isnad1 id=iff.1h4v.s4.24af8cfb9c44 from=translated src=- shape=a94d0348 vocab=d4ce4726
+-/
 theorem guardQ_iff_bareQ (pol : Bool) {α : Type} {C P : α → Prop} (hne : ∃ a, C a) :
     guardQ pol C P ↔ bareQ pol C P := by
   cases pol
@@ -83,14 +87,18 @@ noncomputable def greedyFrom (M : ATMData A) (prev : A → Config A) (t : A) : A
     else prev x
 
 omit [Finite A] in
-/-- Below the entry time the continuation is the previous walk. -/
+/-- Below the entry time the continuation is the previous walk.
+@isnad1 id=eq.1h5v.s5.7ed3b0264677 from=translated src=- shape=4ab41459 vocab=bd4c8028
+-/
 theorem greedyFrom_of_le {prev : A → Config A} {t x : A} (h : ¬(M.Posn x ∧ ¬M.Le x t)) :
     M.greedyFrom prev t x = prev x := by
   classical
   rw [greedyFrom, ite_eq_right h]
 
 omit [Finite A] in
-/-- From the entry time on, the continuation is the greedy sequence. -/
+/-- From the entry time on, the continuation is the greedy sequence.
+@isnad1 id=eq.3h5v.s6.d42d7b17349b from=translated src=- shape=6e6e34f5 vocab=fb7fa433
+-/
 theorem greedyFrom_of_lt (hlin : IsLinOrd M.Le) {prev : A → Config A} {t x : A}
     (hx : M.Posn x) (hle : M.Le t x) :
     M.greedyFrom prev t x =
@@ -105,7 +113,9 @@ theorem greedyFrom_of_lt (hlin : IsLinOrd M.Le) {prev : A → Config A} {t x : A
 /-- **The greedy continuation is an admissible move for round `i`**, given the
 entry `t` into block `i`: it reproduces everything the earlier rounds committed
 – they committed exactly the times strictly below `t` – and it is legal below
-block `i + 1` because the greedy sequence is. -/
+block `i + 1` because the greedy sequence is.
+@isnad1 id=roundcon.6h6v.s6.0f532125deb6 from=translated src=- shape=72f8ae8e vocab=05bfe9d9
+-/
 theorem roundCond_greedyFrom (hbwf : M.BlocksWellFormed k) (hlin : IsLinOrd M.Le) {i : ℕ}
     {prev : A → Config A} (hprev : M.LegalBelow i prev) {t : A}
     (ht : M.Posn t) (hti : M.Blk i (prev t).state)
@@ -174,7 +184,9 @@ theorem roundCond_greedyFrom (hbwf : M.BlocksWellFormed k) (hlin : IsLinOrd M.Le
 
 /-- **Either the previous walk never reaches block `i`, or it enters it at a
 definite time.** The entry is the lowest time whose block is not below `i`, and
-it is in block `i` exactly because the step into it is legal. -/
+it is in block `i` exactly because the step into it is legal.
+@isnad1 id=or.4h5v.s6.557da2fbccee from=translated src=- shape=05f3e4d5 vocab=77c39da9
+-/
 theorem exists_entry (hbwf : M.BlocksWellFormed k) (hlin : IsLinOrd M.Le) {i : ℕ} (hi : 0 < i)
     {prev : A → Config A} (hprev : M.LegalBelow i prev) :
     (∀ x, M.Posn x → M.BlkLt i (prev x).state) ∨
@@ -204,7 +216,9 @@ theorem exists_entry (hbwf : M.BlocksWellFormed k) (hlin : IsLinOrd M.Le) {i : �
 existence clause of `DescriptiveComplexity.guardQ` redundant from round `1` on.
 If the previous walk never reaches block `i` it is itself admissible – it has
 nothing left to answer for – and otherwise the greedy continuation of its entry
-into the block is. -/
+into the block is.
+@isnad1 id=ex.4h5v.s5.0170caf22fc2 from=translated src=- shape=a821c5cf vocab=acbeb1e4
+-/
 theorem exists_roundCond (hbwf : M.BlocksWellFormed k) (hlin : IsLinOrd M.Le) {i : ℕ}
     (hi : 0 < i) {prev : A → Config A} (hprev : M.LegalBelow i prev) :
     ∃ w, M.RoundCond i prev w := by
@@ -231,7 +245,9 @@ def AltLadder (start : Bool) : ℕ → Prop
   | m + 1 =>
       bareQ (blockPol start 0) (fun w => M.LegalBelow 1 w) fun w => M.gameLadder start 1 m w
 
-/-- **The game is the ladder, from round `1` on.** -/
+/-- **The game is the ladder, from round `1` on.**
+@isnad1 id=iff.4h7v.s6.a885510bbea0 from=translated src=- shape=0401df51 vocab=3b04917a
+-/
 theorem gameFrom_iff_gameLadder (hbwf : M.BlocksWellFormed k) (hlin : IsLinOrd M.Le)
     (start : Bool) :
     ∀ (m i : ℕ), 0 < i → ∀ prev : A → Config A, M.LegalBelow i prev →
@@ -247,7 +263,9 @@ theorem gameFrom_iff_gameLadder (hbwf : M.BlocksWellFormed k) (hlin : IsLinOrd M
 
 /-- **The whole game is the whole ladder.** The hypothesis is the one existence
 clause that is not redundant: round `0` extends no previous walk, so it needs an
-initial configuration to exist. -/
+initial configuration to exist.
+@isnad1 id=iff.3h4v.s5.1b2b9b028f9b from=translated src=- shape=69e9c87a vocab=f00ad18d
+-/
 theorem altGame_iff_altLadder (hbwf : M.BlocksWellFormed k) (hlin : IsLinOrd M.Le)
     (hinit : ∃ c₀, M.IsInit c₀) (start : Bool) :
     M.AltGame start k ↔ M.AltLadder start k := by
@@ -262,7 +280,9 @@ theorem altGame_iff_altLadder (hbwf : M.BlocksWellFormed k) (hlin : IsLinOrd M.L
       fun w hw => gameFrom_iff_gameLadder hbwf hlin start m 1 (by omega) w hw
 
 /-- **Alternating acceptance is the ladder**, the statement the `Σₖ` sentence
-of the membership half expresses. -/
+of the membership half expresses.
+@isnad1 id=iff.6h6v.s6.89b5c7e6a12d from=translated src=- shape=0e964505 vocab=4d3a1476
+-/
 theorem altAccepts_iff_altLadder (hbwf : M.BlocksWellFormed k) (hlin : IsLinOrd M.Le)
     {p₀ p₁ : A} (hmin : MinPos M.Le M.Posn p₀) (hmax : MaxPos M.Le M.Posn p₁) (hk : 0 < k)
     (hinit : ∃ c₀, M.IsInit c₀) (start : Bool) :

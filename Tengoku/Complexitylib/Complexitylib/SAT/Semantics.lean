@@ -104,18 +104,26 @@ def Satisfiable (φ : CNF) : Prop := ∃ α : Assignment, eval α φ = true
 -- Basic sanity lemmas (proved here so downstream files can rely on them)
 -- ════════════════════════════════════════════════════════════════════════
 
-/-- The empty CNF evaluates to `true` (empty conjunction). -/
+/-- The empty CNF evaluates to `true` (empty conjunction).
+@isnad1 id=eq.0h1v.s3.86698473beb1 from=translated src=- shape=2fbd2722 vocab=5e031a58
+-/
 @[simp] theorem eval_nil (α : Assignment) : eval α [] = true := rfl
 
-/-- Evaluating `c :: φ` is the conjunction of evaluating `c` and evaluating `φ`. -/
+/-- Evaluating `c :: φ` is the conjunction of evaluating `c` and evaluating `φ`.
+@isnad1 id=eq.0h3v.s4.6eaa371ca814 from=translated src=- shape=2f7a25ed vocab=dd594963
+-/
 @[simp] theorem eval_cons (α : Assignment) (c : Clause) (φ : CNF) :
     eval α (c :: φ) = (Clause.eval α c && eval α φ) := by
   simp [eval, List.all_cons]
 
-/-- The empty formula is trivially satisfiable. -/
+/-- The empty formula is trivially satisfiable.
+@isnad1 id=satisfia.0h0v.s1.aea4b8ed48ee from=translated src=- shape=87ceb31f vocab=8ca238d8
+-/
 theorem satisfiable_nil : Satisfiable [] := ⟨[], rfl⟩
 
-/-- The formula `[[]]` (one empty clause) is unsatisfiable. -/
+/-- The formula `[[]]` (one empty clause) is unsatisfiable.
+@isnad1 id=not.0h0v.s3.1f95c1b07b86 from=translated src=- shape=27002316 vocab=837ddc75
+-/
 theorem not_satisfiable_empty_clause : ¬ Satisfiable [([] : Clause)] := by
   rintro ⟨α, h⟩
   simp [eval, Clause.eval] at h
@@ -134,14 +142,20 @@ def Clause.maxVar : Clause → Nat
   | [] => 0
   | ℓ :: ℓs => max ℓ.var (maxVar ℓs)
 
-/-- The empty clause has `maxVar = 0`. -/
+/-- The empty clause has `maxVar = 0`.
+@isnad1 id=eq.0h0v.s3.cd128e4e142e from=translated src=- shape=35225b15 vocab=1c16907f
+-/
 @[simp] theorem Clause.maxVar_nil : Clause.maxVar [] = 0 := rfl
 
-/-- `maxVar` of `ℓ :: ℓs` is the max of `ℓ.var` and `maxVar ℓs`. -/
+/-- `maxVar` of `ℓ :: ℓs` is the max of `ℓ.var` and `maxVar ℓs`.
+@isnad1 id=eq.0h2v.s4.6f7c3ceda184 from=translated src=- shape=1c7e4b7d vocab=25219b4e
+-/
 @[simp] theorem Clause.maxVar_cons (ℓ : Lit) (ℓs : Clause) :
     Clause.maxVar (ℓ :: ℓs) = max ℓ.var (Clause.maxVar ℓs) := rfl
 
-/-- Every literal's var in a clause is at most `c.maxVar`. -/
+/-- Every literal's var in a clause is at most `c.maxVar`.
+@isnad1 id=le.1h2v.s4.4e983ffac2da from=translated src=- shape=78622efe vocab=7ce16f63
+-/
 theorem Clause.var_le_maxVar {ℓ : Lit} {c : Clause} (hℓ : ℓ ∈ c) :
     ℓ.var ≤ c.maxVar := by
   induction c with
@@ -158,14 +172,20 @@ def CNF.maxVar : CNF → Nat
   | [] => 0
   | c :: cs => max c.maxVar (maxVar cs)
 
-/-- The empty CNF has `maxVar = 0`. -/
+/-- The empty CNF has `maxVar = 0`.
+@isnad1 id=eq.0h0v.s3.262dc87a3230 from=translated src=- shape=35225b15 vocab=94a604e5
+-/
 @[simp] theorem CNF.maxVar_nil : CNF.maxVar [] = 0 := rfl
 
-/-- `maxVar` of `c :: cs` is the max of `c.maxVar` and `maxVar cs`. -/
+/-- `maxVar` of `c :: cs` is the max of `c.maxVar` and `maxVar cs`.
+@isnad1 id=eq.0h2v.s4.8d5914d35be4 from=translated src=- shape=1c7e4b7d vocab=f5399482
+-/
 @[simp] theorem CNF.maxVar_cons (c : Clause) (cs : CNF) :
     CNF.maxVar (c :: cs) = max c.maxVar (CNF.maxVar cs) := rfl
 
-/-- Every clause's maxVar is at most `φ.maxVar`. -/
+/-- Every clause's maxVar is at most `φ.maxVar`.
+@isnad1 id=le.1h2v.s4.e28756cfa24d from=translated src=- shape=78622efe vocab=a9dcfdf3
+-/
 theorem CNF.clause_maxVar_le_maxVar {c : Clause} {φ : CNF} (hc : c ∈ φ) :
     c.maxVar ≤ φ.maxVar := by
   induction φ with
@@ -182,12 +202,16 @@ theorem CNF.clause_maxVar_le_maxVar {c : Clause} {φ : CNF} (hc : c ∈ φ) :
 -- and extending α with false never changes eval.
 -- ════════════════════════════════════════════════════════════════════════
 
-/-- `Assignment.get` on `α ++ β` agrees with `α` at in-range indices. -/
+/-- `Assignment.get` on `α ++ β` agrees with `α` at in-range indices.
+@isnad1 id=eq.1h3v.s4.47ccb65b6200 from=translated src=- shape=e98e0629 vocab=d9ddf3c7
+-/
 theorem Assignment.get_append_left (α β : Assignment) (i : Nat) (h : i < α.length) :
     Assignment.get (α ++ β) i = Assignment.get α i := by
   simp only [Assignment.get, List.getElem?_append_left h]
 
-/-- Appending to an assignment doesn't change `Lit.eval` for in-range literals. -/
+/-- Appending to an assignment doesn't change `Lit.eval` for in-range literals.
+@isnad1 id=eq.1h3v.s5.550e7a39f37c from=translated src=- shape=2829b3c8 vocab=20236f61
+-/
 theorem Lit.eval_append_of_lt (α β : Assignment) (ℓ : Lit) (h : ℓ.var < α.length) :
     ℓ.eval (α ++ β) = ℓ.eval α := by
   simp [Lit.eval, Assignment.get_append_left α β ℓ.var h]
@@ -203,7 +227,9 @@ theorem Lit.eval_append_of_lt (α β : Assignment) (ℓ : Lit) (h : ℓ.var < α
 -- This is what powers `PolyBalanced`: given *any* satisfying α, we get a
 -- short satisfying witness of length ≤ `φ.maxVar + 1 ≤ |φ.encode| + 1`.
 
-/-- `α.get i` is preserved by truncating to any length `k > i`. -/
+/-- `α.get i` is preserved by truncating to any length `k > i`.
+@isnad1 id=eq.1h3v.s4.32ef2ed06991 from=translated src=- shape=a5ea5ad6 vocab=19aa1b19
+-/
 theorem Assignment.get_take (α : Assignment) (i k : Nat) (hi : i < k) :
     Assignment.get (α.take k) i = Assignment.get α i := by
   simp only [Assignment.get]
@@ -219,13 +245,17 @@ theorem Assignment.get_take (α : Assignment) (i k : Nat) (hi : i < k) :
       simp only [List.length_take]; omega
     rw [h1, h2]
 
-/-- `Lit.eval` is invariant under truncation when the literal's var is in range. -/
+/-- `Lit.eval` is invariant under truncation when the literal's var is in range.
+@isnad1 id=eq.1h3v.s4.f9c6b201fe08 from=translated src=- shape=04d7a7f7 vocab=eff7b907
+-/
 theorem Lit.eval_take (α : Assignment) (ℓ : Lit) (k : Nat) (hk : ℓ.var < k) :
     Lit.eval (α.take k) ℓ = Lit.eval α ℓ := by
   simp only [Lit.eval]
   rw [Assignment.get_take α ℓ.var k hk]
 
-/-- `Clause.eval` is preserved by truncation of α to length above `c.maxVar`. -/
+/-- `Clause.eval` is preserved by truncation of α to length above `c.maxVar`.
+@isnad1 id=eq.1h3v.s4.887cef3dfb78 from=translated src=- shape=04d7a7f7 vocab=5eb42692
+-/
 theorem Clause.eval_take (α : Assignment) (c : Clause) (k : Nat) (hk : c.maxVar < k) :
     Clause.eval (α.take k) c = Clause.eval α c := by
   induction c with
@@ -238,7 +268,9 @@ theorem Clause.eval_take (α : Assignment) (c : Clause) (k : Nat) (hk : c.maxVar
     simp only [List.any_cons, Lit.eval_take _ _ _ hℓ]
     exact congrArg _ (ih hℓs)
 
-/-- `CNF.eval` is preserved by truncation of α to length above `φ.maxVar`. -/
+/-- `CNF.eval` is preserved by truncation of α to length above `φ.maxVar`.
+@isnad1 id=eq.1h3v.s4.7c374d009b7f from=translated src=- shape=04d7a7f7 vocab=ab111ae2
+-/
 theorem CNF.eval_take (α : Assignment) (φ : CNF) (k : Nat) (hk : φ.maxVar < k) :
     CNF.eval (α.take k) φ = CNF.eval α φ := by
   induction φ with
@@ -252,7 +284,9 @@ theorem CNF.eval_take (α : Assignment) (φ : CNF) (k : Nat) (hk : φ.maxVar < k
     exact congrArg _ (ih hcs)
 
 /-- **PolyBalanced witness lemma.** A satisfiable formula has a satisfying
-    assignment of length at most `φ.maxVar + 1`. -/
+    assignment of length at most `φ.maxVar + 1`.
+@isnad1 id=iff.0h1v.s5.72f6399cdb12 from=translated src=- shape=d390fab5 vocab=0c98fc30
+-/
 theorem CNF.satisfiable_iff_short_witness (φ : CNF) :
     φ.Satisfiable ↔ ∃ α : Assignment,
       α.length ≤ φ.maxVar + 1 ∧ CNF.eval α φ = true := by
@@ -270,13 +304,17 @@ theorem CNF.satisfiable_iff_short_witness (φ : CNF) :
 -- ════════════════════════════════════════════════════════════════════════
 
 /-- If two assignments give the same value at every index (via `Assignment.get`),
-    they produce the same literal evaluation. -/
+    they produce the same literal evaluation.
+@isnad1 id=eq.1h3v.s4.dd074ded0fab from=translated src=- shape=ea304c80 vocab=3e5a7859
+-/
 theorem Lit.eval_eq_of_agree (α β : Assignment) (ℓ : Lit)
     (h : Assignment.get α ℓ.var = Assignment.get β ℓ.var) :
     Lit.eval α ℓ = Lit.eval β ℓ := by
   simp [Lit.eval, h]
 
-/-- Pointwise agreement of `Assignment.get` implies equal `Clause.eval`. -/
+/-- Pointwise agreement of `Assignment.get` implies equal `Clause.eval`.
+@isnad1 id=eq.1h3v.s4.2edad7ed13f4 from=translated src=- shape=9311114d vocab=b7b83aaf
+-/
 theorem Clause.eval_eq_of_agree (α β : Assignment) (c : Clause)
     (h : ∀ i, Assignment.get α i = Assignment.get β i) :
     Clause.eval α c = Clause.eval β c := by
@@ -287,7 +325,9 @@ theorem Clause.eval_eq_of_agree (α β : Assignment) (c : Clause)
     simp only [List.any_cons, Lit.eval_eq_of_agree α β ℓ (h ℓ.var)]
     exact congrArg _ ih
 
-/-- Pointwise agreement of `Assignment.get` implies equal `CNF.eval`. -/
+/-- Pointwise agreement of `Assignment.get` implies equal `CNF.eval`.
+@isnad1 id=eq.1h3v.s4.521dceb02a91 from=translated src=- shape=9311114d vocab=27f6b5dd
+-/
 theorem CNF.eval_eq_of_agree (α β : Assignment) (φ : CNF)
     (h : ∀ i, Assignment.get α i = Assignment.get β i) :
     CNF.eval α φ = CNF.eval β φ := by
@@ -299,7 +339,9 @@ theorem CNF.eval_eq_of_agree (α β : Assignment) (φ : CNF)
     exact congrArg _ ih
 
 /-- Appending `false`s doesn't change `Assignment.get`: out-of-range positions
-    default to `false` anyway. -/
+    default to `false` anyway.
+@isnad1 id=eq.0h3v.s4.f9e0165bdf14 from=translated src=- shape=c6a412ec vocab=95d7d660
+-/
 theorem Assignment.get_append_replicate_false (α : Assignment) (k i : Nat) :
     Assignment.get (α ++ List.replicate k false) i = Assignment.get α i := by
   simp only [Assignment.get]
@@ -316,7 +358,9 @@ theorem Assignment.get_append_replicate_false (α : Assignment) (k i : Nat) :
     · push Not at hi'
       rw [List.getElem?_eq_none (by simp; omega)]
 
-/-- Padding an assignment with `false`s doesn't change `CNF.eval`. -/
+/-- Padding an assignment with `false`s doesn't change `CNF.eval`.
+@isnad1 id=eq.0h3v.s4.0479423bd1d3 from=translated src=- shape=cfc26794 vocab=410135d4
+-/
 theorem CNF.eval_append_replicate_false (α : Assignment) (k : Nat) (φ : CNF) :
     CNF.eval (α ++ List.replicate k false) φ = CNF.eval α φ :=
   CNF.eval_eq_of_agree _ _ _ (fun _ => Assignment.get_append_replicate_false α k _)
@@ -356,14 +400,18 @@ instance CNF.decidableSatisfiable (φ : CNF) : Decidable φ.Satisfiable := by
   · rintro ⟨f, hf⟩
     exact ⟨List.ofFn f, by simp, hf⟩
 
-/-- Evaluating a concatenation of clauses is the disjunction of the evaluations. -/
+/-- Evaluating a concatenation of clauses is the disjunction of the evaluations.
+@isnad1 id=eq.0h3v.s4.2ebb62b6bf8d from=translated src=- shape=ca695f77 vocab=dd7ab427
+-/
 @[simp] theorem Clause.eval_append (α : Assignment) (c d : Clause) :
     Clause.eval α (c ++ d) = (Clause.eval α c || Clause.eval α d) := by
   induction c with
   | nil => simp [Clause.eval]
   | cons _ _ _ => simp [Clause.eval, List.any_cons, Bool.or_assoc]
 
-/-- Evaluating a concatenation of CNFs is the conjunction of the evaluations. -/
+/-- Evaluating a concatenation of CNFs is the conjunction of the evaluations.
+@isnad1 id=eq.0h3v.s4.5da64b033562 from=translated src=- shape=ca695f77 vocab=377cc1a8
+-/
 @[simp] theorem CNF.eval_append (α : Assignment) (φ ψ : CNF) :
     CNF.eval α (φ ++ ψ) = (CNF.eval α φ && CNF.eval α ψ) := by
   induction φ with

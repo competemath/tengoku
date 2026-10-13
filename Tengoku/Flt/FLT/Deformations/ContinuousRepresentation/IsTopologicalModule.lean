@@ -30,6 +30,9 @@ class IsTopologicalModule extends ContinuousSMul R M, ContinuousAdd M
 
 variable [IsTopologicalModule R M]
 
+/--
+@isnad1 id=istopolo.1h5v.s6.d8671ad0a9e5 from=translated src=- shape=cff76a05 vocab=8a5db568
+-/
 protected theorem Topology.IsInducing.topologicalModule {F : Type*}
     (R : Type*) [Ring R] [TopologicalSpace R]
     {M : Type*} [AddCommGroup M] [Module R M] [TopologicalSpace M] [IsTopologicalModule R M]

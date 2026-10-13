@@ -62,15 +62,24 @@ namespace Gevrey2
 /-- holomorphic extension of exp(−1/x). -/
 def G (z : ℂ) : ℂ := Complex.exp (-z⁻¹)
 
+/--
+@isnad1 id=differen.0h0v.s6.3660ca588ecd from=translated src=- shape=fee87a3d vocab=54d4538d
+-/
 lemma G_differentiableOn : DifferentiableOn ℂ G {z : ℂ | z ≠ 0} := by
   intro z hz
   apply DifferentiableAt.differentiableWithinAt
   unfold G
   exact ((differentiableAt_inv_iff.mpr hz).neg).cexp
 
+/--
+@isnad1 id=analytic.0h0v.s5.301e6bdcd0df from=translated src=- shape=fee87a3d vocab=eaa6a019
+-/
 lemma G_analyticOnNhd : AnalyticOnNhd ℂ G {z : ℂ | z ≠ 0} :=
   G_differentiableOn.analyticOnNhd isOpen_ne
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.38e93977a956 from=translated src=- shape=7c2fc8dc vocab=a5fab806
+-/
 lemma Gn_hasDerivAt (n : ℕ) {z : ℂ} (hz : z ≠ 0) :
     HasDerivAt (iteratedDeriv n G) (iteratedDeriv (n + 1) G z) z := by
   have h := (G_analyticOnNhd.iterated_deriv n) z hz
@@ -80,6 +89,9 @@ lemma Gn_hasDerivAt (n : ℕ) {z : ℂ} (hz : z ≠ 0) :
 /-- real restriction. -/
 def gR (t : ℝ) : ℝ := (G t).re
 
+/--
+@isnad1 id=eq.1h2v.s5.3dc1e620f3ee from=translated src=- shape=594dbd6a vocab=6ba1e5f9
+-/
 lemma gR_iteratedDeriv (n : ℕ) : ∀ t : ℝ, 0 < t → iteratedDeriv n gR t = (iteratedDeriv n G t).re := by
   induction n with
   | zero => intro t _; simp [gR]
@@ -93,13 +105,18 @@ lemma gR_iteratedDeriv (n : ℕ) : ∀ t : ℝ, 0 < t → iteratedDeriv n gR t =
     have hz : (t : ℂ) ≠ 0 := by exact_mod_cast ht.ne'
     exact ((Gn_hasDerivAt n hz).real_of_complex).deriv
 
+/--
+@isnad1 id=eventual.1h1v.s4.92ea15ea4cbf from=translated src=- shape=3bd82424 vocab=912ba1fb
+-/
 lemma expNegInvGlue_eventuallyEq_gR {x : ℝ} (hx : 0 < x) : expNegInvGlue =ᶠ[𝓝 x] gR := by
   filter_upwards [Ioi_mem_nhds hx] with t ht
   have ht' : ¬ t ≤ 0 := not_le.mpr ht
   simp only [expNegInvGlue, ht', ite_false, gR, G]
   rw [show -(t : ℂ)⁻¹ = ((-t⁻¹ : ℝ) : ℂ) by push_cast; ring, Complex.exp_ofReal_re]
 
-/-- Cauchy's estimate for G on the circle |z − x| = x/2. -/
+/-- Cauchy's estimate for G on the circle |z − x| = x/2.
+@isnad1 id=le.1h2v.s7.b2714a692493 from=translated src=- shape=96685ac7 vocab=5775fdbd
+-/
 lemma norm_iteratedDeriv_G_le (k : ℕ) {x : ℝ} (hx : 0 < x) :
     ‖iteratedDeriv k G (x : ℂ)‖ ≤ k.factorial * Real.exp (-(2 / (9 * x))) / (x / 2) ^ k := by
   have hr : (0 : ℝ) < x / 2 := by positivity
@@ -131,7 +148,9 @@ lemma norm_iteratedDeriv_G_le (k : ℕ) {x : ℝ} (hx : 0 < x) :
     rw [neg_le_neg_iff, div_le_div_iff₀ (by positivity) hns]
     nlinarith
 
-/-- elementary: u^k e^{−u} ≤ (k/e)^k for u ≥ 0, k ≥ 1. -/
+/-- elementary: u^k e^{−u} ≤ (k/e)^k for u ≥ 0, k ≥ 1.
+@isnad1 id=le.2h2v.s6.bc8663baaf71 from=translated src=- shape=c7f23585 vocab=069e61be
+-/
 lemma pow_mul_exp_neg_le (k : ℕ) (hk : 1 ≤ k) {u : ℝ} (hu : 0 ≤ u) :
     u ^ k * Real.exp (-u) ≤ ((k : ℝ) / Real.exp 1) ^ k := by
   have hk0 : (0 : ℝ) < k := by exact_mod_cast hk
@@ -147,7 +166,9 @@ lemma pow_mul_exp_neg_le (k : ℕ) (hk : 1 ≤ k) {u : ℝ} (hu : 0 ≤ u) :
     _ = (k : ℝ) ^ k := by
         rw [← Real.exp_add, ← Real.exp_add, show u - k + -u + k = 0 by ring, Real.exp_zero, mul_one]
 
-/-- the numeric step: k!·e^{−2/(9x)}·(x/2)^{−k} ≤ (18/e)^k k^{2k}. -/
+/-- the numeric step: k!·e^{−2/(9x)}·(x/2)^{−k} ≤ (18/e)^k k^{2k}.
+@isnad1 id=le.2h2v.s7.27905dd8c910 from=translated src=- shape=ecb0529d vocab=e5051a80
+-/
 lemma cauchy_bound_le (k : ℕ) (hk : 1 ≤ k) {x : ℝ} (hx : 0 < x) :
     k.factorial * Real.exp (-(2 / (9 * x))) / (x / 2) ^ k ≤ (18 / Real.exp 1) ^ k * (k : ℝ) ^ (2 * k) := by
   set u : ℝ := 2 / (9 * x) with hu
@@ -170,7 +191,9 @@ end Gevrey2
 
 open Gevrey2 in
 /-- **(P1)** Gevrey-2 bound for exp(−1/x): |g^{(k)}(x)| ≤ (18/e)^k k^{2k} for all k ≥ 1 and all real x
-(Cauchy's estimate for G(z) = exp(−1/z) on the circle |z − x| = x/2, where ‖G‖ ≤ exp(−2/(9x))). -/
+(Cauchy's estimate for G(z) = exp(−1/z) on the circle |z − x| = x/2, where ‖G‖ ≤ exp(−2/(9x))).
+@isnad1 id=le.1h2v.s6.a4c494b74599 from=translated src=- shape=64fd1031 vocab=cf6de3d5
+-/
 theorem gevrey_expNegInvGlue (k : ℕ) (hk : 1 ≤ k) (x : ℝ) :
     |iteratedDeriv k expNegInvGlue x| ≤ (18 / Real.exp 1) ^ k * (k : ℝ) ^ (2 * (k : ℝ)) := by
   have hrpow : (k : ℝ) ^ (2 * (k : ℝ)) = (k : ℝ) ^ (2 * k) := by
@@ -208,8 +231,14 @@ theorem gevrey_expNegInvGlue (k : ℕ) (hk : 1 ≤ k) (x : ℝ) :
 
 def gb (k : ℕ) : ℝ := (18 / Real.exp 1) ^ k * (k : ℝ) ^ (2 * k)
 
+/--
+@isnad1 id=eq.0h0v.s3.86890653be89 from=translated src=- shape=1ac31801 vocab=e6ac26e1
+-/
 lemma gb_zero : gb 0 = 1 := by simp [gb]
 
+/--
+@isnad1 id=le.0h1v.s3.93128329861b from=translated src=- shape=b14ee516 vocab=d7bedc3c
+-/
 lemma expNegInvGlue_le_one (x : ℝ) : expNegInvGlue x ≤ 1 := by
   unfold expNegInvGlue
   split_ifs with h
@@ -219,6 +248,9 @@ lemma expNegInvGlue_le_one (x : ℝ) : expNegInvGlue x ≤ 1 := by
     have := inv_pos.mpr this
     linarith
 
+/--
+@isnad1 id=le.0h2v.s5.74e615f297c4 from=translated src=- shape=37e0dfee vocab=35157563
+-/
 lemma abs_iteratedDeriv_g_le (k : ℕ) (x : ℝ) : |iteratedDeriv k expNegInvGlue x| ≤ gb k := by
   rcases Nat.eq_zero_or_pos k with rfl | hk
   · rw [iteratedDeriv_zero, gb_zero, abs_of_nonneg (expNegInvGlue.nonneg x)]
@@ -227,12 +259,18 @@ lemma abs_iteratedDeriv_g_le (k : ℕ) (x : ℝ) : |iteratedDeriv k expNegInvGlu
     rw [show (2 : ℝ) * (k : ℝ) = ((2 * k : ℕ) : ℝ) by push_cast; ring, Real.rpow_natCast] at h
     exact h
 
+/--
+@isnad1 id=le.0h2v.s5.b451bd32ef51 from=translated src=- shape=b0e828e4 vocab=4c81079b
+-/
 lemma abs_iteratedDeriv_gflip_le (k : ℕ) (x : ℝ) :
     |iteratedDeriv k (fun t => expNegInvGlue (1 - t)) x| ≤ gb k := by
   rw [iteratedDeriv_comp_const_sub]
   simp only [smul_eq_mul, abs_mul, abs_pow, abs_neg, abs_one, one_pow, one_mul]
   exact abs_iteratedDeriv_g_le k (1 - x)
 
+/--
+@isnad1 id=le.1h2v.s6.0531fa52cced from=translated src=- shape=fd18068c vocab=2467659d
+-/
 lemma gb_mul_gb_le {k i : ℕ} (hi : i ≤ k) : gb i * gb (k - i) ≤ (18 / Real.exp 1) ^ k * (k : ℝ) ^ (2 * k) := by
   unfold gb
   have h18 : (0:ℝ) ≤ 18 / Real.exp 1 := by positivity
@@ -249,23 +287,43 @@ lemma gb_mul_gb_le {k i : ℕ} (hi : i ≤ k) : gb i * gb (k - i) ≤ (18 / Real
 
 /-! ### θ -/
 
+/--
+@isnad1 id=contdiff.0h1v.s5.f64009a0d56c from=translated src=- shape=c5364873 vocab=cdb279b6
+-/
 lemma theta_contDiff {n : ℕ∞} : ContDiff ℝ n theta :=
   expNegInvGlue.contDiff.mul (expNegInvGlue.contDiff.comp (contDiff_const.sub contDiff_id))
 
+/--
+@isnad1 id=continuo.0h0v.s3.d15f688b12e5 from=translated src=- shape=e3d48bcb vocab=fd90ac84
+-/
 lemma theta_continuous : Continuous theta := (theta_contDiff (n := 0)).continuous
 
+/--
+@isnad1 id=le.0h1v.s3.bd4adba6300c from=translated src=- shape=8a62b088 vocab=51f56b38
+-/
 lemma theta_nonneg (x : ℝ) : 0 ≤ theta x := mul_nonneg (expNegInvGlue.nonneg _) (expNegInvGlue.nonneg _)
 
+/--
+@isnad1 id=eq.1h1v.s4.8cf64c3e0956 from=translated src=- shape=278e0375 vocab=51f56b38
+-/
 lemma theta_eq_zero_of_nonpos {x : ℝ} (hx : x ≤ 0) : theta x = 0 := by
   simp [theta, expNegInvGlue.zero_of_nonpos hx]
 
+/--
+@isnad1 id=eq.1h1v.s4.376d45be309d from=translated src=- shape=97c35add vocab=51f56b38
+-/
 lemma theta_eq_zero_of_one_le {x : ℝ} (hx : 1 ≤ x) : theta x = 0 := by
   simp [theta, expNegInvGlue.zero_of_nonpos (show 1 - x ≤ 0 by linarith)]
 
+/--
+@isnad1 id=lt.2h1v.s5.c7da3e5bda66 from=translated src=- shape=05b24c01 vocab=d85bc868
+-/
 lemma theta_pos {x : ℝ} (h0 : 0 < x) (h1 : x < 1) : 0 < theta x :=
   mul_pos (expNegInvGlue.pos_of_pos h0) (expNegInvGlue.pos_of_pos (by linarith))
 
-/-- Leibniz ⇒ |θ^{(k)}| ≤ (36/e)^k k^{2k}. -/
+/-- Leibniz ⇒ |θ^{(k)}| ≤ (36/e)^k k^{2k}.
+@isnad1 id=le.0h2v.s6.25a28dcca2eb from=translated src=- shape=17d9ea8d vocab=ed65ee3b
+-/
 lemma abs_iteratedDeriv_theta_le (k : ℕ) (x : ℝ) :
     |iteratedDeriv k theta x| ≤ (36 / Real.exp 1) ^ k * (k : ℝ) ^ (2 * k) := by
   have hf : ContDiff ℝ k expNegInvGlue := expNegInvGlue.contDiff
@@ -296,21 +354,39 @@ lemma abs_iteratedDeriv_theta_le (k : ℕ) (x : ℝ) :
 
 /-! ### Θ = primitive of θ -/
 
+/--
+@isnad1 id=hasderiv.0h1v.s5.bc0e242866e2 from=translated src=- shape=475e04ea vocab=dc351996
+-/
 lemma Theta_hasDerivAt (x : ℝ) : HasDerivAt Theta (theta x) x :=
   integral_hasDerivAt_right (theta_continuous.intervalIntegrable _ _)
     (theta_continuous.stronglyMeasurableAtFilter _ _) theta_continuous.continuousAt
 
+/--
+@isnad1 id=eq.0h0v.s5.8b6dd76b07f3 from=translated src=- shape=1142214a vocab=9e08b5a9
+-/
 lemma Theta_deriv : deriv Theta = theta := funext fun x => (Theta_hasDerivAt x).deriv
 
+/--
+@isnad1 id=differen.0h0v.s5.11a797b6d050 from=translated src=- shape=aa9fb30a vocab=dc7d66ff
+-/
 lemma Theta_differentiable : Differentiable ℝ Theta := fun x => (Theta_hasDerivAt x).differentiableAt
 
+/--
+@isnad1 id=contdiff.0h0v.s5.60e56f7653ea from=translated src=- shape=3cea26be vocab=b399090b
+-/
 lemma Theta_contDiff : ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) Theta := by
   rw [contDiff_infty_iff_deriv, Theta_deriv]
   exact ⟨Theta_differentiable, theta_contDiff⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.48832625c898 from=translated src=- shape=adc35206 vocab=c1aca198
+-/
 lemma iteratedDeriv_succ_Theta (k : ℕ) : iteratedDeriv (k + 1) Theta = iteratedDeriv k theta := by
   rw [iteratedDeriv_succ', Theta_deriv]
 
+/--
+@isnad1 id=eq.1h1v.s4.ded45cab9010 from=translated src=- shape=278e0375 vocab=96f6c4dd
+-/
 lemma Theta_of_nonpos {x : ℝ} (hx : x ≤ 0) : Theta x = 0 := by
   unfold Theta
   rw [integral_symm, neg_eq_zero]
@@ -318,6 +394,9 @@ lemma Theta_of_nonpos {x : ℝ} (hx : x ≤ 0) : Theta x = 0 := by
     integral_congr fun t ht => theta_eq_zero_of_nonpos (by rw [uIcc_of_le hx] at ht; exact ht.2)]
   simp
 
+/--
+@isnad1 id=eq.1h1v.s4.505c22f992d0 from=translated src=- shape=5bd22f5b vocab=96f6c4dd
+-/
 lemma Theta_of_one_le {x : ℝ} (hx : 1 ≤ x) : Theta x = Theta 1 := by
   unfold Theta
   rw [← integral_add_adjacent_intervals (b := 1) (theta_continuous.intervalIntegrable _ _)
@@ -326,11 +405,16 @@ lemma Theta_of_one_le {x : ℝ} (hx : 1 ≤ x) : Theta x = Theta 1 := by
     integral_congr fun t ht => theta_eq_zero_of_one_le (by rw [uIcc_of_le hx] at ht; exact ht.1)]
   simp
 
+/--
+@isnad1 id=lt.0h0v.s4.f168f749cb63 from=translated src=- shape=cf0a9d99 vocab=a577514f
+-/
 lemma Theta_one_pos : 0 < Theta 1 :=
   intervalIntegral_pos_of_pos_on (theta_continuous.intervalIntegrable _ _) (fun x hx => theta_pos hx.1 hx.2)
     zero_lt_one
 
-/-- ∫_0^1 θ ≥ e^{−8}/2 (θ ≥ e^{−8} on [1/4, 3/4]). -/
+/-- ∫_0^1 θ ≥ e^{−8}/2 (θ ≥ e^{−8} on [1/4, 3/4]).
+@isnad1 id=le.0h0v.s5.310eea25dbe5 from=translated src=- shape=5f9468b4 vocab=e82c27f0
+-/
 lemma Theta_one_ge : Real.exp (-8) / 2 ≤ Theta 1 := by
   have hc := theta_continuous
   have hlow : ∀ x ∈ Icc (1/4 : ℝ) (3/4), Real.exp (-8) ≤ theta x := by
@@ -361,14 +445,26 @@ lemma Theta_one_ge : Real.exp (-8) / 2 ≤ Theta 1 := by
 
 /-! ### ϱ₂ -/
 
+/--
+@isnad1 id=eq.0h1v.s4.13bf1cb34d34 from=translated src=- shape=4cfa3fae vocab=2531e025
+-/
 lemma rhoTwo_eq (x : ℝ) : rhoTwo x = (Theta 1)⁻¹ * Theta x := by
   unfold rhoTwo Theta; rw [div_eq_inv_mul]
 
+/--
+@isnad1 id=eq.0h0v.s4.2848d41447c5 from=translated src=- shape=3d83fde4 vocab=2531e025
+-/
 lemma rhoTwo_eq_fun : rhoTwo = fun x => (Theta 1)⁻¹ * Theta x := funext rhoTwo_eq
 
+/--
+@isnad1 id=contdiff.0h0v.s5.da0af9c2ff31 from=translated src=- shape=3cea26be vocab=7dfaaed1
+-/
 lemma rhoTwo_contDiff : ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) rhoTwo := by
   rw [rhoTwo_eq_fun]; exact contDiff_const.mul Theta_contDiff
 
+/--
+@isnad1 id=taperpro.0h0v.s1.3a7fe4b3e490 from=translated src=- shape=49959d42 vocab=7a308416
+-/
 lemma rhoTwo_taper : TaperProfile rhoTwo where
   contDiff := by
     rw [rhoTwo_eq_fun]
@@ -380,12 +476,17 @@ lemma rhoTwo_taper : TaperProfile rhoTwo where
   eq_zero x hx := by rw [rhoTwo_eq, Theta_of_nonpos hx, mul_zero]
   eq_one x hx := by rw [rhoTwo_eq, Theta_of_one_le hx, inv_mul_cancel₀ Theta_one_pos.ne']
 
+/--
+@isnad1 id=eq.0h2v.s6.69ff680109d1 from=translated src=- shape=62ab5477 vocab=ce951f70
+-/
 lemma iteratedDeriv_rhoTwo (k : ℕ) (x : ℝ) :
     iteratedDeriv (k + 1) rhoTwo x = (Theta 1)⁻¹ * iteratedDeriv k theta x := by
   rw [rhoTwo_eq_fun, iteratedDeriv_const_mul_field, iteratedDeriv_succ_Theta]
 
 /-- **(P4)** ϱ₂ is a Gevrey-2 taper profile with explicit constants (A, B) = (36/e, 2e^8):
-the input needed by the family/q-aspect tail lemma. -/
+the input needed by the family/q-aspect tail lemma.
+@isnad1 id=gevreypr.0h0v.s5.306ecb4d5bc2 from=translated src=- shape=90f90ada vocab=0a742e1d
+-/
 theorem gevreyProfile_rhoTwo : GevreyProfile 2 (36 / Real.exp 1) (2 * Real.exp 8) rhoTwo where
   taper := rhoTwo_taper
   smooth := rhoTwo_contDiff

@@ -38,13 +38,17 @@ private theorem pair_nil_eq (y : List Bool) :
   simp [pair]
 
 /-- One step of the doubling encoder: `pair` on `b :: x` prepends the
-    doubled bit `b, b`. -/
+    doubled bit `b, b`.
+@isnad1 id=eq.0h3v.s4.f407c3129174 from=translated src=- shape=14e16f1d vocab=a4ff372d
+-/
 theorem pair_cons_eq (b : Bool) (x y : List Bool) :
     pair (b :: x) y = b :: b :: pair x y := by
   simp [pair]
 
 /-- `|pair x y| = 2·|x| + 2 + |y|`. The `2·|x|` comes from doubling every
-    bit of `x`; the `+2` is the separator `[false, true]`. -/
+    bit of `x`; the `+2` is the separator `[false, true]`.
+@isnad1 id=eq.0h2v.s5.2e056de66b23 from=translated src=- shape=be606ec6 vocab=d112a77a
+-/
 @[simp] theorem pair_length (x y : List Bool) :
     (pair x y).length = 2 * x.length + 2 + y.length := by
   induction x with
@@ -54,7 +58,9 @@ theorem pair_cons_eq (b : Bool) (x y : List Bool) :
     omega
 
 /-- `pair` is injective: if `pair x₁ y₁ = pair x₂ y₂` then `x₁ = x₂` and
-`y₁ = y₂`. -/
+`y₁ = y₂`.
+@isnad1 id=and.1h4v.s5.0892ac801d0b from=translated src=- shape=31ef58b6 vocab=f98fb0e1
+-/
 theorem pair_inj {x₁ x₂ : List Bool} {y₁ y₂ : List Bool}
     (h : pair x₁ y₁ = pair x₂ y₂) : x₁ = x₂ ∧ y₁ = y₂ := by
   induction x₁ generalizing x₂ with
@@ -86,7 +92,9 @@ theorem pair_inj {x₁ x₂ : List Bool} {y₁ y₂ : List Bool}
       exact ⟨rfl, hy⟩
 
 /-- `unpair?` is a left inverse of `pair`: decoding an encoded pair
-    recovers exactly its two components. -/
+    recovers exactly its two components.
+@isnad1 id=eq.0h2v.s4.0571eacd2f6a from=translated src=- shape=c3a10094 vocab=1feac489
+-/
 @[simp] theorem unpair?_pair (x y : List Bool) :
     unpair? (pair x y) = some (x, y) :=
   unpair?_delimit_append x y
@@ -98,7 +106,9 @@ theorem eq_pair_of_unpair?_eq_some {z x y : List Bool} (h : unpair? z = some (x,
   eq_delimit_append_of_unpair?_eq_some h
 
 /-- `unpair? z` returns `some (x, y)` if and only if `z = pair x y`,
-    characterizing exactly which strings are valid pair encodings. -/
+    characterizing exactly which strings are valid pair encodings.
+@isnad1 id=iff.0h3v.s5.86349970ca79 from=translated src=- shape=c0bbc344 vocab=1feac489
+-/
 theorem unpair?_eq_some_iff {z x y : List Bool} :
     unpair? z = some (x, y) ↔ z = pair x y := by
   constructor
@@ -107,7 +117,9 @@ theorem unpair?_eq_some_iff {z x y : List Bool} :
     subst hz
     exact unpair?_pair x y
 
-/-- In `pair x y`, the first duplicated copy of `x[i]` sits at position `2*i`. -/
+/-- In `pair x y`, the first duplicated copy of `x[i]` sits at position `2*i`.
+@isnad1 id=eq.1h3v.s6.3afc80d544d3 from=translated src=- shape=253ddb83 vocab=036c74bb
+-/
 theorem pair_getElem_left_first (x y : List Bool) (i : ℕ) (hi : i < x.length) :
     (pair x y)[2 * i]'(by rw [pair_length]; omega) = x[i]'hi := by
   induction x generalizing i with
@@ -135,7 +147,9 @@ theorem pair_getElem_left_first (x y : List Bool) (i : ℕ) (hi : i < x.length) 
           rw [hshift]
           exact ih i hi'
 
-/-- In `pair x y`, the second duplicated copy of `x[i]` sits at position `2*i+1`. -/
+/-- In `pair x y`, the second duplicated copy of `x[i]` sits at position `2*i+1`.
+@isnad1 id=eq.1h3v.s6.8682242e33d8 from=translated src=- shape=08513255 vocab=e3e542fb
+-/
 theorem pair_getElem_left_second (x y : List Bool) (i : ℕ) (hi : i < x.length) :
     (pair x y)[2 * i + 1]'(by rw [pair_length]; omega) = x[i]'hi := by
   induction x generalizing i with
@@ -163,7 +177,9 @@ theorem pair_getElem_left_second (x y : List Bool) (i : ℕ) (hi : i < x.length)
           rw [hshift]
           exact ih i hi'
 
-/-- The first separator bit in `pair x y` is `false`. -/
+/-- The first separator bit in `pair x y` is `false`.
+@isnad1 id=eq.0h2v.s5.63870110a165 from=translated src=- shape=1e440f73 vocab=4628945b
+-/
 theorem pair_getElem_sep_zero (x y : List Bool) :
     (pair x y)[2 * x.length]'(by rw [pair_length]; omega) = false := by
   induction x with
@@ -186,7 +202,9 @@ theorem pair_getElem_sep_zero (x y : List Bool) :
       rw [hshift]
       exact ih
 
-/-- The second separator bit in `pair x y` is `true`. -/
+/-- The second separator bit in `pair x y` is `true`.
+@isnad1 id=eq.0h2v.s5.0a8ba8f0820e from=translated src=- shape=3cab9def vocab=67570d23
+-/
 theorem pair_getElem_sep_one (x y : List Bool) :
     (pair x y)[2 * x.length + 1]'(by rw [pair_length]; omega) = true := by
   induction x with
@@ -226,7 +244,9 @@ private theorem pair_flatMap_doubled_length (x : List Bool) :
       simp
       omega
 
-/-- In `pair x y`, the suffix after the separator is exactly `y`. -/
+/-- In `pair x y`, the suffix after the separator is exactly `y`.
+@isnad1 id=eq.1h3v.s6.328f8ba4dc95 from=translated src=- shape=d5c7a71f vocab=b5480c6f
+-/
 theorem pair_getElem_right (x y : List Bool) (j : ℕ) (hj : j < y.length) :
     (pair x y)[2 * x.length + 2 + j]'(by rw [pair_length]; omega) = y[j]'hj := by
   have hdecomp : pair x y = (x.flatMap fun b => [b, b]) ++ [false, true] ++ y := rfl
@@ -277,25 +297,37 @@ def pairSnd (z : List Bool) : List Bool :=
   | some (_, s) => s
   | none => []
 
+/--
+@isnad1 id=eq.0h2v.s3.181b326dd179 from=translated src=- shape=fc209b50 vocab=657c5764
+-/
 @[simp] theorem pairFst_pair (x y : List Bool) : pairFst (pair x y) = x := by
   induction x with
   | nil => rfl
   | cons b x ih => cases b <;> (rw [pair_cons_eq]; simp [pairFst, ih])
 
+/--
+@isnad1 id=eq.0h2v.s3.92539f44db90 from=translated src=- shape=9df8bdbd vocab=29e8ff82
+-/
 @[simp] theorem pairSnd_pair (x y : List Bool) : pairSnd (pair x y) = y := by
   simp [pairSnd]
 
-/-- `pairSnd` agrees with the partial decoder `unpair?`, defaulting to `[]`. -/
+/-- `pairSnd` agrees with the partial decoder `unpair?`, defaulting to `[]`.
+@isnad1 id=eq.0h1v.s4.3bea82603cbc from=translated src=- shape=04865115 vocab=7ee6b603
+-/
 theorem pairSnd_eq_unpair? (z : List Bool) :
     pairSnd z = ((unpair? z).map Prod.snd).getD [] := by
   unfold pairSnd
   cases unpair? z <;> rfl
 
-/-- The first component of a pair is no longer than the pair. -/
+/-- The first component of a pair is no longer than the pair.
+@isnad1 id=le.0h1v.s3.c1f2cfeceefb from=translated src=- shape=db650953 vocab=cdfb91e8
+-/
 theorem pairFst_length_le (z : List Bool) : (pairFst z).length ≤ z.length := by
   induction z using pairFst.induct <;> simp [pairFst] <;> omega
 
-/-- The second component of a pair is no longer than the pair. -/
+/-- The second component of a pair is no longer than the pair.
+@isnad1 id=le.0h1v.s3.3a98846e7674 from=translated src=- shape=db650953 vocab=aa6cab1a
+-/
 theorem pairSnd_length_le (z : List Bool) : (pairSnd z).length ≤ z.length := by
   rcases hu : unpair? z with _ | ⟨p, q⟩
   · rw [show pairSnd z = [] from by rw [pairSnd, hu]]

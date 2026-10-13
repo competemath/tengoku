@@ -37,11 +37,17 @@ def Module.depth : ℕ∞ :=
 local instance [Subsingleton M] (N : Submodule R M) : Subsingleton (M ⧸ N) :=
   Function.Surjective.subsingleton N.mkQ_surjective
 
+/--
+@isnad1 id=le.2h3v.s6.9eb6527378c0 from=translated src=- shape=0512d215 vocab=05b40ea5
+-/
 lemma Module.length_le_depth (s : List R)
     (hs : Sequence.IsWeaklyRegular M s) (hs' : ∀ r ∈ s, r ∈ maximalIdeal R) :
     s.length ≤ Module.depth R M :=
   le_sSup ⟨s, hs, hs', rfl⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.20f1660ba8db from=translated src=- shape=ecd42950 vocab=a42e767e
+-/
 lemma Module.depth_of_subsingleton [Subsingleton M] :
     Module.depth R M = ⊤ := by
   rw [Module.depth, sSup_eq_top]
@@ -54,6 +60,9 @@ lemma Module.depth_of_subsingleton [Subsingleton M] :
   · simp
   · simp
 
+/--
+@isnad1 id=le.0h3v.s8.aa9436f56462 from=translated src=- shape=b4f2e19a vocab=59a3c582
+-/
 lemma Module.depth_of_isScalarTower :
     Module.depth R M ≤ Module.depth S M := by
   refine sSup_le_sSup ?_
@@ -62,6 +71,9 @@ lemma Module.depth_of_isScalarTower :
   exact ⟨_, hs₁, by simpa, by simp⟩
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=le.0h2v.s6.bb4d54122170 from=translated src=- shape=c62a7203 vocab=6410ef5e
+-/
 @[stacks 00LK]
 lemma Module.depth_le_krullDim_support [Nontrivial M] [Module.Finite R M] :
     .some (Module.depth R M) ≤ Order.krullDim (Module.support R M) := by
@@ -143,16 +155,25 @@ lemma Module.depth_le_krullDim_support [Nontrivial M] [Module.Finite R M] :
     · simp only [List.length_cons, ge_iff_le]
       linarith
 
+/--
+@isnad1 id=le.0h2v.s6.42cb20fdcdb4 from=translated src=- shape=495607d9 vocab=4ff31a2a
+-/
 lemma Module.depth_le_dim_annihilator
     [Nontrivial M] [Module.Finite R M] :
     .some (Module.depth R M) ≤ ringKrullDim (R ⧸ Module.annihilator R M) := by
   rw [ringKrullDim_quotient, ← Module.support_eq_zeroLocus]
   exact Module.depth_le_krullDim_support _ _
 
+/--
+@isnad1 id=le.0h2v.s6.1dd687d3e180 from=translated src=- shape=cb157f7c vocab=befa223b
+-/
 lemma Module.depth_le_dim [Nontrivial M] [Module.Finite R M] :
     .some (Module.depth R M) ≤ ringKrullDim R :=
   (depth_le_dim_annihilator R M).trans (ringKrullDim_quotient_le _)
 
+/--
+@isnad1 id=iff.0h3v.s6.18bfc208796c from=translated src=- shape=4b14abd6 vocab=c488f50c
+-/
 lemma isSMulRegular_iff_of_free {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     [Module.Free R M] [Nontrivial M] {r : R} :
     IsSMulRegular M r ↔ IsSMulRegular R r := by
@@ -170,6 +191,9 @@ lemma isSMulRegular_iff_of_free {R M : Type*} [CommRing R] [AddCommGroup M] [Mod
     simp only [map_smul] at h
     exact H h
 
+/--
+@isnad1 id=isweakly.0h3v.s5.926d85007679 from=translated src=- shape=87d11d30 vocab=69121c77
+-/
 lemma RingTheory.Sequence.isWeaklyRegular_of_subsingleton
     {R : Type*} (M : Type*) [CommRing R] [AddCommGroup M] [Module R M]
     [Subsingleton R] (s : List R) : Sequence.IsWeaklyRegular M s :=
@@ -178,6 +202,9 @@ lemma RingTheory.Sequence.isWeaklyRegular_of_subsingleton
 
 universe u v in
 open scoped Pointwise TensorProduct in
+/--
+@isnad1 id=iff.0h3v.s6.c92b79c9a4d4 from=translated src=- shape=d4d2914e vocab=e6f8b088
+-/
 lemma RingTheory.Sequence.isWeaklyRegular_of_free_aux
     {R : Type u} {M : Type max u v} [CommRing R] [AddCommGroup M] [Module R M]
     [Module.Free R M] [Nontrivial M] {s : List R} :
@@ -201,6 +228,9 @@ lemma RingTheory.Sequence.isWeaklyRegular_of_free_aux
     · simp [RingTheory.Sequence.isWeaklyRegular_of_subsingleton]
     exact IH (by simp_all)
 
+/--
+@isnad1 id=iff.0h3v.s6.cf94af1c52ca from=translated src=- shape=08213e63 vocab=e6f8b088
+-/
 lemma RingTheory.Sequence.isWeaklyRegular_of_free
     {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     [Module.Free R M] [Nontrivial M] {s : List R} :
@@ -209,6 +239,9 @@ lemma RingTheory.Sequence.isWeaklyRegular_of_free
   have : Nontrivial R := Module.nontrivial R M
   rw [b.repr.isWeaklyRegular_congr, isWeaklyRegular_of_free_aux]
 
+/--
+@isnad1 id=le.0h2v.s6.283a46ce717a from=translated src=- shape=0a3a3148 vocab=9d9de5e2
+-/
 lemma Module.depth_le_of_free [Module.Free R M] : Module.depth R R ≤ Module.depth R M := by
   cases subsingleton_or_nontrivial M
   · simp [Module.depth_of_subsingleton]
@@ -216,6 +249,9 @@ lemma Module.depth_le_of_free [Module.Free R M] : Module.depth R R ≤ Module.de
   rintro _ ⟨s, hs, hs', rfl⟩
   refine ⟨s, Sequence.isWeaklyRegular_of_free.mpr hs, hs', rfl⟩
 
+/--
+@isnad1 id=faithful.2h2v.s7.ca32cf64a540 from=translated src=- shape=88da1e55 vocab=d75f7a71
+-/
 lemma Module.faithfulSMul_of_depth_eq_ringKrullDim [IsDomain R] [Nontrivial M] [Module.Finite R M]
     (H : ringKrullDim R < ⊤) (H' : .some (Module.depth R M) = ringKrullDim R) :
     FaithfulSMul R M := by

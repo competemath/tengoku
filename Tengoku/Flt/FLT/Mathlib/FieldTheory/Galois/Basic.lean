@@ -29,7 +29,9 @@ variable [Algebra.IsQuadraticExtension K L]
 variable (M : Type*) [Field M] [Algebra K M] [Algebra L M] [IsScalarTower K L M]
 
 /-- For a normal subextension `K ⊆ L ⊆ M`, a `K`-automorphism `σ` of `M` fixes `L` pointwise
-if and only if its restriction to `L` (`AlgEquiv.restrictNormal`) is the identity. -/
+if and only if its restriction to `L` (`AlgEquiv.restrictNormal`) is the identity.
+@isnad1 id=iff.0h4v.s9.531901cbcba2 from=translated src=- shape=f236f13b vocab=a9ff17ee
+-/
 theorem forall_apply_algebraMap_iff_restrictNormal_eq_one (σ : M ≃ₐ[K] M) :
     (∀ x : L, σ (algebraMap L M x) = algebraMap L M x) ↔ σ.restrictNormal L = 1 := by
   simp only [AlgEquiv.ext_iff, AlgEquiv.one_apply, ← AlgEquiv.restrictNormal_commutes]
@@ -44,30 +46,40 @@ variable [Algebra.IsSeparable K L]
 -- (`Algebra.IsQuadraticExtension.isCyclic`) of order 2 (`IsGalois.card_aut_eq_finrank`
 -- plus `Algebra.IsQuadraticExtension.finrank_eq_two`).
 
-/-- A separable quadratic extension has exactly two automorphisms. -/
+/-- A separable quadratic extension has exactly two automorphisms.
+@isnad1 id=eq.0h2v.s6.fbbe14148be8 from=translated src=- shape=f72ddec7 vocab=740a9536
+-/
 theorem Algebra.IsQuadraticExtension.card_algEquiv : Nat.card (L ≃ₐ[K] L) = 2 := by
   rw [IsGalois.card_aut_eq_finrank]
   exact finrank_eq_two K L
 
-/-- A separable quadratic extension has a nontrivial automorphism. -/
+/-- A separable quadratic extension has a nontrivial automorphism.
+@isnad1 id=ex.0h2v.s8.4e5ecb974956 from=translated src=- shape=0feab8f6 vocab=d830a3dd
+-/
 theorem Algebra.IsQuadraticExtension.exists_algEquiv_ne_one : ∃ σ : L ≃ₐ[K] L, σ ≠ 1 :=
   ((Nat.card_eq_two_iff' 1).mp (card_algEquiv K L)).exists
 
 /-- The only automorphisms of a separable quadratic extension are the identity and any given
-nontrivial automorphism. -/
+nontrivial automorphism.
+@isnad1 id=or.1h4v.s9.f681be7e6621 from=translated src=- shape=1e7c1e00 vocab=d830a3dd
+-/
 theorem Algebra.IsQuadraticExtension.algEquiv_eq_one_or_eq {σ : L ≃ₐ[K] L} (hσ : σ ≠ 1)
     (φ : L ≃ₐ[K] L) : φ = 1 ∨ φ = σ := by
   rcases eq_or_ne φ 1 with h1 | h1
   · exact Or.inl h1
   · exact Or.inr (((Nat.card_eq_two_iff' 1).mp (card_algEquiv K L)).unique h1 hσ)
 
-/-- The nontrivial automorphism of a separable quadratic extension is an involution. -/
+/-- The nontrivial automorphism of a separable quadratic extension is an involution.
+@isnad1 id=eq.1h3v.s9.2bde29f87fa5 from=translated src=- shape=0fb0207f vocab=df25bf7f
+-/
 theorem Algebra.IsQuadraticExtension.algEquiv_mul_self {σ : L ≃ₐ[K] L} (hσ : σ ≠ 1) :
     σ * σ = 1 :=
   (algEquiv_eq_one_or_eq K L hσ (σ * σ)).resolve_right fun h ↦ absurd (mul_eq_left.mp h) hσ
 
 /-- An element fixed by a nontrivial automorphism — hence, `Gal(L/K)` having order two, by all of
-`Gal(L/K)` — lies in the base field. -/
+`Gal(L/K)` — lies in the base field.
+@isnad1 id=mem.2h4v.s8.f884c49a4e44 from=translated src=- shape=41ce35ea vocab=26e40121
+-/
 theorem Algebra.IsQuadraticExtension.mem_range_algebraMap_of_apply_eq {σ : L ≃ₐ[K] L}
     (hσ : σ ≠ 1) {x : L} (hx : σ x = x) : x ∈ Set.range (algebraMap K L) := by
   rw [IsGalois.mem_range_algebraMap_iff_fixed]
@@ -78,19 +90,25 @@ theorem Algebra.IsQuadraticExtension.mem_range_algebraMap_of_apply_eq {σ : L �
 
 open Classical in
 /-- The automorphism group of a separable quadratic extension consists of the identity and one
-nontrivial element. -/
+nontrivial element.
+@isnad1 id=eq.1h3v.s9.4cf40972b472 from=translated src=- shape=44f510f8 vocab=e0f6dc2a
+-/
 theorem Algebra.IsQuadraticExtension.univ_algEquiv {σ : L ≃ₐ[K] L} (hσ : σ ≠ 1) :
     (Finset.univ : Finset (L ≃ₐ[K] L)) = {1, σ} :=
   (Finset.eq_univ_of_forall fun φ ↦ by simpa using algEquiv_eq_one_or_eq K L hσ φ).symm
 
 /-- The nontrivial automorphism of a separable quadratic extension moves every element
-lying outside the base field. -/
+lying outside the base field.
+@isnad1 id=ne.2h4v.s8.d796a821e5d1 from=translated src=- shape=fbbd57f6 vocab=26e40121
+-/
 theorem Algebra.IsQuadraticExtension.algEquiv_apply_ne {σ : L ≃ₐ[K] L} (hσ : σ ≠ 1) {x : L}
     (hx : x ∉ Set.range (algebraMap K L)) : σ x ≠ x :=
   fun heq ↦ hx (mem_range_algebraMap_of_apply_eq K L hσ heq)
 
 /-- The nontrivial automorphism of a separable quadratic extension sends a square root
-`α ∉ K` of an element of `K` to `-α`. -/
+`α ∉ K` of an element of `K` to `-α`.
+@isnad1 id=eq.3h5v.s9.e50aa964c047 from=translated src=- shape=65dfccfb vocab=43a151d4
+-/
 theorem Algebra.IsQuadraticExtension.algEquiv_apply_eq_neg_of_sq_eq {σ : L ≃ₐ[K] L} (hσ : σ ≠ 1)
     {α : L} {d : K} (hαK : α ∉ Set.range (algebraMap K L)) (hα : α ^ 2 = algebraMap K L d) :
     σ α = -α := by
@@ -128,6 +146,9 @@ noncomputable def quadraticCharacter : (M ≃ₐ[K] M) →* ℤˣ where
       rcases hor (φ'.restrictNormal L) with h2 | h2 <;>
       rw [h1, h2] <;> simp [hsq, hσ]
 
+/--
+@isnad1 id=iff.0h4v.s9.c43d3afea16c from=translated src=- shape=b3fa4003 vocab=a3e7f20f
+-/
 theorem quadraticCharacter_eq_one_iff (σ : M ≃ₐ[K] M) :
     quadraticCharacter K L M σ = 1 ↔ ∀ x : L, σ (algebraMap L M x) = algebraMap L M x := by
   classical
@@ -139,7 +160,9 @@ theorem quadraticCharacter_eq_one_iff (σ : M ≃ₐ[K] M) :
 
 /-- If `M/K` is normal (for example `M = L`, or `M` a separable closure of `K`) then the
 nontrivial element of `Gal(L/K)` extends to an automorphism of `M`, so the quadratic character
-of `Aut(M/K)` attached to `L/K` is surjective. -/
+of `Aut(M/K)` attached to `L/K` is surjective.
+@isnad1 id=surjecti.0h3v.s9.cd7e3b285488 from=translated src=- shape=8a54422c vocab=f1f8fe42
+-/
 theorem quadraticCharacter_surjective [Normal K M] :
     Function.Surjective (quadraticCharacter K L M) := by
   intro u

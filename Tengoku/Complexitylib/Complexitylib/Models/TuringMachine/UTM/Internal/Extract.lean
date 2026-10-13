@@ -386,7 +386,9 @@ private theorem extractTM_copy_loop
     `extractTM` copies work-2 cells `2 .. m+2` onto output cells `1 .. m+1`
     (the last one the terminating `□`), preserving the input tape, all work
     tapes other than 2 exactly, and work-2's cells, within `B + m + 8` steps
-    where `B` bounds the initial work-2 head position. -/
+    where `B` bounds the initial work-2 head position.
+@isnad1 id=hoaretim.10h5v.s8.b39c087e0abf from=translated src=- shape=cfcbe861 vocab=524211b5
+-/
 theorem extractTM_hoareTime (m B : ℕ)
     (inp₀ : Tape) (work₀ : Fin 6 → Tape) (out₀ : Tape)
     (hblank : (work₀ 2).cells (m + 2) = Γ.blank)

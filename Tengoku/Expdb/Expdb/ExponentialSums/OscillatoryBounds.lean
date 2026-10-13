@@ -25,7 +25,9 @@ namespace Expdb
 
 /-! ## Fourier-character calculus -/
 
-/-- The real Fourier character `x ↦ 𝐞 x`, viewed as complex-valued, is smooth. -/
+/-- The real Fourier character `x ↦ 𝐞 x`, viewed as complex-valued, is smooth.
+@isnad1 id=contdiff.0h0v.s7.86f9f647ebf8 from=translated src=- shape=84399fc0 vocab=ffbeff82
+-/
 theorem contDiff_fourierChar : ContDiff ℝ ∞ (𝐞 · : ℝ → ℂ) := by
   rw [show (𝐞 · : ℝ → ℂ) = fun x : ℝ ↦
       Complex.exp (((2 * Real.pi * x : ℝ) : ℂ) * Complex.I) by
@@ -35,7 +37,9 @@ theorem contDiff_fourierChar : ContDiff ℝ ∞ (𝐞 · : ℝ → ℂ) := by
   exact ((Complex.ofRealCLM.contDiff.comp hreal).mul contDiff_const).cexp
 
 /-- The `n`th derivative of the real Fourier character is
-`(2πi)ⁿ 𝐞 x`. -/
+`(2πi)ⁿ 𝐞 x`.
+@isnad1 id=eq.0h2v.s8.32a7a73b9367 from=translated src=- shape=4fc6183d vocab=6c44d412
+-/
 theorem iteratedDeriv_fourierChar (n : ℕ) (x : ℝ) :
     iteratedDeriv n (𝐞 · : ℝ → ℂ) x =
       ((2 * Real.pi : ℂ) * Complex.I) ^ n * 𝐞 x := by
@@ -54,7 +58,9 @@ theorem iteratedDeriv_fourierChar (n : ℕ) (x : ℝ) :
 
 /-! ## Derivative bounds for oscillatory phases -/
 
-/-- A smooth phase remains smooth after rescaling and composition with the Fourier character. -/
+/-- A smooth phase remains smooth after rescaling and composition with the Fourier character.
+@isnad1 id=contdiff.2h5v.s6.c5295450f253 from=translated src=- shape=bdedcddc vocab=688ff454
+-/
 theorem contDiffOn_oscillatory
     {F : ℝ → ℝ} {s : Set ℝ} {T N : ℝ} {n : ℕ}
     (hF : ContDiffOn ℝ n F phaseInterval)

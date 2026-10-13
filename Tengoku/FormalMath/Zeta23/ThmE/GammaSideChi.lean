@@ -29,10 +29,16 @@ variable (q κ : ℕ) [NeZero q]
 /-- the archimedean factor carrying the conductor: arch(s) := q^{s/2}·Γℝ(s+κ). -/
 def archChi (s : ℂ) : ℂ := (q : ℂ) ^ (s / 2) * Complex.Gammaℝ (s + κ)
 
+/--
+@isnad1 id=ne.0h2v.s5.b37f18e1e8c7 from=translated src=- shape=cd5759d0 vocab=2611ec58
+-/
 lemma q_cpow_ne_zero (s : ℂ) : (q : ℂ) ^ (s / 2) ≠ 0 := by
   have hq0 : (q : ℂ) ≠ 0 := by exact_mod_cast (Nat.pos_of_ne_zero (NeZero.ne q)).ne'
   simp [Complex.cpow_eq_zero_iff, hq0]
 
+/--
+@isnad1 id=differen.0h2v.s6.8a4954cd471d from=translated src=- shape=f00db728 vocab=2356b353
+-/
 lemma archChi_differentiableOn :
     DifferentiableOn ℂ (archChi q κ) rightHalfPlane := by
   intro s hs
@@ -55,6 +61,9 @@ lemma archChi_differentiableOn :
     exact hcomp
   exact h1.mul h2
 
+/--
+@isnad1 id=ne.1h3v.s5.d07dfefe1542 from=translated src=- shape=5a695d19 vocab=04399d5c
+-/
 lemma archChi_ne_zero {s : ℂ} (hs : 0 < s.re) : archChi q κ s ≠ 0 := by
   unfold archChi
   apply mul_ne_zero (q_cpow_ne_zero q s)
@@ -63,6 +72,9 @@ lemma archChi_ne_zero {s : ℂ} (hs : 0 < s.re) : archChi q κ s ≠ 0 := by
   have : (0:ℝ) ≤ κ := Nat.cast_nonneg κ
   linarith
 
+/--
+@isnad1 id=differen.0h2v.s6.87775bbae01d from=translated src=- shape=79e0e297 vocab=9ba6d98a
+-/
 lemma logDeriv_archChi_differentiableOn :
     DifferentiableOn ℂ (logDeriv (archChi q κ)) rightHalfPlane := by
   have hA : AnalyticOnNhd ℂ (archChi q κ) rightHalfPlane :=

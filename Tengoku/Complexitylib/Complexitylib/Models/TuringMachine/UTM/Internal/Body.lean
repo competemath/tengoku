@@ -341,7 +341,9 @@ def bodyδ (q : BodyQ) (iH : Γ) (wH : Fin 6 → Γ) (oH : Γ) :
   | clDesc => rewStep clDesc bodyDone iH wH oH dsT
   | bodyDone => idle bodyDone iH wH oH
 
-/-- Every direction `mkAct` emits obeys the `▷ ⇒ right` discipline. -/
+/-- Every direction `mkAct` emits obeys the `▷ ⇒ right` discipline.
+@isnad1 id=match1.0h5v.s6.0561f290254c from=translated src=- shape=670af45c vocab=539be1f5
+-/
 theorem mkAct_right_of_start (q' : BodyQ) (iH : Γ) (wH : Fin 6 → Γ) (oH : Γ)
     (acts : TapeActs) :
     let (_, _, _, inDir, workDirs, outDir) := mkAct q' iH wH oH acts
@@ -355,7 +357,9 @@ theorem mkAct_right_of_start (q' : BodyQ) (iH : Γ) (wH : Fin 6 → Γ) (oH : Γ
   | some wd => simp [h]
 
 /-- Every arm of `bodyδ` is a `mkAct`, so the direction discipline holds
-    uniformly. -/
+    uniformly.
+@isnad1 id=ex.0h4v.s5.ddf5a9e4992e from=translated src=- shape=462a0d52 vocab=08ce82b1
+-/
 theorem bodyδ_shape (q : BodyQ) (iH : Γ) (wH : Fin 6 → Γ) (oH : Γ) :
     ∃ q' acts, bodyδ q iH wH oH = mkAct q' iH wH oH acts := by
   cases q with

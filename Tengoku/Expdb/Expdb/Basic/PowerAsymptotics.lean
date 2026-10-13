@@ -40,7 +40,9 @@ def IsPowerBounded {E : Type*} [SeminormedAddCommGroup E]
 /-! ## Power asymptotics -/
 
 /-- If `N = T ^ (α + o(1))`, then `N` eventually lies between the powers with exponents
-`α - ε` and `α + ε`. -/
+`α - ε` and `α + ε`.
+@isnad1 id=eventual.3h4v.s6.20cba9e40893 from=translated src=- shape=fd8d25dd vocab=e9c1bc5d
+-/
 theorem IsPowerAsymptotic.eventually_between
     {N T : VariableObject ℝ} {α ε : ℝ}
     (hNT : IsPowerAsymptotic N T α)
@@ -61,7 +63,9 @@ theorem IsPowerAsymptotic.eventually_between
     ⟨Real.rpow_le_rpow_of_exponent_le hiT (by linarith),
       Real.rpow_le_rpow_of_exponent_le hiT (by linarith)⟩
 
-/-- Convergence of the logarithmic exponent gives a power asymptotic. -/
+/-- Convergence of the logarithmic exponent gives a power asymptotic.
+@isnad1 id=ispowera.3h3v.s6.ec808d9d9294 from=translated src=- shape=43c834a9 vocab=7d45162f
+-/
 theorem isPowerAsymptotic_of_logb_tendsto
     {N T : VariableObject ℝ} {α : ℝ}
     (hT : ∀ᶠ i in atTop, 1 < T i) (hN : ∀ᶠ i in atTop, 0 < N i)
@@ -79,7 +83,9 @@ theorem isPowerAsymptotic_of_logb_tendsto
     exact (Real.rpow_logb (zero_lt_one.trans hiT) hiT.ne' hiN).symm
 
 /-- A variable power sandwich with an infinitesimal error determines a power asymptotic.  No
-sign condition on the error is needed. -/
+sign condition on the error is needed.
+@isnad1 id=ispowera.4h4v.s6.25cedf0ff815 from=translated src=- shape=c6760ac7 vocab=21fd6120
+-/
 theorem isPowerAsymptotic_of_between_of_infinitesimal
     {N T δ : VariableObject ℝ} {α : ℝ}
     (hT : ∀ i, 1 < T i) (hN : ∀ i, 0 < N i)
@@ -108,7 +114,9 @@ theorem isPowerAsymptotic_of_between_of_infinitesimal
 
 /-- A variable power sandwich with a nonnegative infinitesimal error determines a power
 asymptotic.  This is the compatibility form of
-`isPowerAsymptotic_of_between_of_infinitesimal`. -/
+`isPowerAsymptotic_of_between_of_infinitesimal`.
+@isnad1 id=ispowera.5h4v.s7.b0a7c3b890bf from=translated src=- shape=e906511a vocab=21fd6120
+-/
 theorem isPowerAsymptotic_of_between
     {N T δ : VariableObject ℝ} {α : ℝ}
     (hT : ∀ i, 1 < T i) (hN : ∀ i, 0 < N i)
@@ -177,7 +185,9 @@ private lemma tendsto_logb_of_between_const_rpow
   simpa using hinv'
 
 /-- Fixed positive multiplicative uncertainty in `T = N ^ α⁻¹` does not affect the
-power asymptotic `N = T ^ (α + o(1))`. -/
+power asymptotic `N = T ^ (α + o(1))`.
+@isnad1 id=ispowera.5h5v.s6.12aef444a6f4 from=translated src=- shape=c609bfc3 vocab=d7e7de53
+-/
 theorem isPowerAsymptotic_of_between_const_rpow
     {N T : VariableObject ℝ} {α A B : ℝ}
     (hα : 0 < α) (hA : 0 < A) (hB : 0 < B)
@@ -200,13 +210,17 @@ theorem isPowerAsymptotic_of_between_const_rpow
 
 /-! ## Algebra and limits -/
 
-/-- A base is power-asymptotic to itself with exponent one. -/
+/-- A base is power-asymptotic to itself with exponent one.
+@isnad1 id=ispowera.0h1v.s3.71d20a81395f from=translated src=- shape=ebc7d4ac vocab=20280bc0
+-/
 theorem isPowerAsymptotic_self (T : VariableObject ℝ) :
     IsPowerAsymptotic T T 1 :=
   ⟨VariableObject.fixed 1, IsEqUpToInfinitesimal.refl _,
     Filter.Eventually.of_forall fun i ↦ (Real.rpow_one (T i)).symm⟩
 
-/-- Products of powers add their asymptotic exponents. -/
+/-- Products of powers add their asymptotic exponents.
+@isnad1 id=ispowera.3h5v.s6.dbca06ba67ae from=translated src=- shape=66634f1c vocab=efb2ba66
+-/
 theorem IsPowerAsymptotic.mul
     {A B T : VariableObject ℝ} {α β : ℝ}
     (hA : IsPowerAsymptotic A T α) (hB : IsPowerAsymptotic B T β)
@@ -224,7 +238,9 @@ theorem IsPowerAsymptotic.mul
     simpa only [Pi.add_apply] using
       (Real.rpow_add (zero_lt_one.trans_le (hT i)) (a i) (b i)).symm
 
-/-- Quotients of powers subtract their asymptotic exponents. -/
+/-- Quotients of powers subtract their asymptotic exponents.
+@isnad1 id=ispowera.3h5v.s6.5950ec9689f4 from=translated src=- shape=66634f1c vocab=55d1af27
+-/
 theorem IsPowerAsymptotic.div
     {A B T : VariableObject ℝ} {α β : ℝ}
     (hA : IsPowerAsymptotic A T α) (hB : IsPowerAsymptotic B T β)
@@ -242,7 +258,9 @@ theorem IsPowerAsymptotic.div
     simpa only [Pi.sub_apply] using
       (Real.rpow_sub (zero_lt_one.trans_le (hT i)) (a i) (b i)).symm
 
-/-- A negative power-asymptotic exponent forces convergence to zero. -/
+/-- A negative power-asymptotic exponent forces convergence to zero.
+@isnad1 id=tendsto.4h3v.s6.7eafcd1cd10b from=translated src=- shape=fb81ea35 vocab=fd79b84a
+-/
 theorem IsPowerAsymptotic.tendsto_zero_of_neg
     {X T : VariableObject ℝ} {α : ℝ} (hX : IsPowerAsymptotic X T α)
     (hα : α < 0) (hT : ∀ i, 1 ≤ T i) (hTunbounded : T.IsUnbounded) :
@@ -262,7 +280,9 @@ theorem IsPowerAsymptotic.tendsto_zero_of_neg
   · exact hbetween.mono fun _ hi ↦ hi.2
   · exact hpowzero
 
-/-- A positive power-asymptotic exponent forces convergence to infinity. -/
+/-- A positive power-asymptotic exponent forces convergence to infinity.
+@isnad1 id=tendsto.4h3v.s5.8ad69271c447 from=translated src=- shape=6d10ed52 vocab=627fa25f
+-/
 theorem IsPowerAsymptotic.tendsto_atTop_of_pos
     {X T : VariableObject ℝ} {α : ℝ} (hX : IsPowerAsymptotic X T α)
     (hα : 0 < α) (hT : ∀ i, 1 ≤ T i) (hTunbounded : T.IsUnbounded) :
@@ -276,7 +296,9 @@ theorem IsPowerAsymptotic.tendsto_atTop_of_pos
   exact (tendsto_rpow_atTop (show 0 < α - α / 2 by linarith)).comp hTtop
 
 /-- A quantity tending to one has power-asymptotic exponent zero relative to any unbounded
-base that is at least one. -/
+base that is at least one.
+@isnad1 id=ispowera.3h2v.s6.ad368e424a4d from=translated src=- shape=f7917645 vocab=1fa39b2d
+-/
 theorem isPowerAsymptotic_zero_of_tendsto_one
     {X T : VariableObject ℝ} (hX : Tendsto X atTop (𝓝 1))
     (hT : ∀ i, 1 ≤ T i) (hTunbounded : T.IsUnbounded) :
@@ -299,11 +321,16 @@ theorem isPowerAsymptotic_zero_of_tendsto_one
 def floorRpow (T : VariableObject ℝ) (κ : ℝ) : VariableObject ℕ :=
   fun i ↦ max 1 ⌊T i ^ κ⌋₊
 
+/--
+@isnad1 id=lt.0h3v.s4.dcab581c9def from=translated src=- shape=4f246117 vocab=fa0d134d
+-/
 theorem floorRpow_pos (T : VariableObject ℝ) (κ : ℝ) (i : ℕ) :
     0 < floorRpow T κ i := by
   simp [floorRpow]
 
-/-- Flooring a divergent positive power introduces only a multiplicative `1 + o(1)` error. -/
+/-- Flooring a divergent positive power introduces only a multiplicative `1 + o(1)` error.
+@isnad1 id=tendsto.2h2v.s6.01e54e6942dd from=translated src=- shape=2f38f542 vocab=f28ccd78
+-/
 theorem tendsto_floorRpow_cast_div_rpow_one
     {T : VariableObject ℝ} {κ : ℝ} (hκ : 0 < κ)
     (hT : Tendsto T atTop atTop) :
@@ -320,7 +347,9 @@ theorem tendsto_floorRpow_cast_div_rpow_one
   simp only [Function.comp_apply]
   rw [hi]
 
-/-- The cast of `floorRpow T κ` is power-asymptotic to exponent `κ`. -/
+/-- The cast of `floorRpow T κ` is power-asymptotic to exponent `κ`.
+@isnad1 id=ispowera.3h2v.s5.40951022513e from=translated src=- shape=79a51317 vocab=553a12c0
+-/
 theorem isPowerAsymptotic_floorRpow
     {T : VariableObject ℝ} {κ : ℝ} (hκ : 0 < κ)
     (hT : ∀ i, 1 ≤ T i) (hTunbounded : T.IsUnbounded) :
@@ -356,7 +385,9 @@ theorem isPowerAsymptotic_floorRpow
 /-! ## Power bounds -/
 
 /-- Strictly increasing a fixed exponent makes a real power little-o along a base tending to
-infinity. -/
+infinity.
+@isnad1 id=islittle.2h3v.s5.c84f4790776a from=translated src=- shape=3e070899 vocab=ed6b77a6
+-/
 theorem isLittleO_rpow_comp_tendsto_of_lt
     {T : VariableObject ℝ} {β γ : ℝ}
     (hT : Tendsto T atTop atTop) (hβγ : β < γ) :
@@ -374,7 +405,9 @@ theorem isLittleO_rpow_comp_tendsto_of_lt
   ring
 
 /-- If `T` is at least one and unbounded, then `X ≪ T ^ (β + o(1))` iff
-`X = O(T ^ (β + ε))` for every fixed `ε > 0`. -/
+`X = O(T ^ (β + ε))` for every fixed `ε > 0`.
+@isnad1 id=iff.2h4v.s6.685ee3f6693d from=translated src=- shape=c8d59b99 vocab=b9d8c399
+-/
 theorem isPowerBounded_iff_forall_pos
     {E : Type*} [SeminormedAddCommGroup E]
     (X : VariableObject E) (T : VariableObject ℝ) (β : ℝ)
@@ -458,7 +491,9 @@ theorem isPowerBounded_iff_forall_pos
         simp only [exponent, hXi, ↓reduceIte]
         exact le_max_right β (Real.log ‖X i‖ / Real.log (T i))
 
-/-- Increasing the exponent preserves a power bound when the base is eventually at least one. -/
+/-- Increasing the exponent preserves a power bound when the base is eventually at least one.
+@isnad1 id=ispowerb.3h5v.s5.b085ddf58473 from=translated src=- shape=ff5a486d vocab=40e8a707
+-/
 theorem IsPowerBounded.mono
     {E : Type*} [SeminormedAddCommGroup E]
     {X : VariableObject E} {T : VariableObject ℝ} {β γ : ℝ}
@@ -486,7 +521,9 @@ theorem IsPowerBounded.mono
     linarith)
 
 /-- A power lower bound for an unbounded object forces its exponent to be no larger than any
-admissible power-bound exponent. -/
+admissible power-bound exponent.
+@isnad1 id=le.5h6v.s6.6afaf65cc81d from=translated src=- shape=32ed4675 vocab=b0313fd1
+-/
 theorem exponent_le_of_isPowerBounded_of_eventually_norm_ge_rpow
     {E : Type*} [SeminormedAddCommGroup E]
     {X : VariableObject E} {T : VariableObject ℝ} {β γ c : ℝ}

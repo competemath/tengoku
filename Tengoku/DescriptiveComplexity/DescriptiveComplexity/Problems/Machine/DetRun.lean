@@ -59,7 +59,9 @@ def UniqueFrom (c : Config A) : Prop :=
   ∀ x y z : Config A, Relation.ReflTransGen M.Step c x → M.Step x y → M.Step x z → y = z
 
 omit [Finite A] in
-/-- A deterministic machine is unique from anywhere. -/
+/-- A deterministic machine is unique from anywhere.
+@isnad1 id=uniquefr.2h3v.s4.711eafb21c24 from=translated src=- shape=7ceddde0 vocab=98cd6bc2
+-/
 theorem uniqueFrom_of_deterministic (hlin : IsLinOrd M.Le) (hdet : M.Deterministic)
     (c : Config A) : M.UniqueFrom c :=
   fun _ _ _ _ h₁ h₂ => step_functional hlin hdet h₁ h₂
@@ -73,7 +75,9 @@ This is how a program that guesses in one phase pays for the rest of its run.
 The property is “the phase is one the guess is not reachable from”; the step
 preserves it because the program's phases only go forward, and at those phases
 its rules separate. Global determinism is the case where the property is
-`True`. -/
+`True`.
+@isnad1 id=uniquefr.1h6v.s6.a791c369b0d9 from=translated src=- shape=72b8cbed vocab=f85eee8c
+-/
 theorem uniqueFrom_of_invariant {Inv : Config A → Prop}
     (hclosed : ∀ x y : Config A, Inv x → M.Step x y → Inv y)
     (hfun : ∀ x y z : Config A, Inv x → M.Step x y → M.Step x z → y = z)
@@ -86,14 +90,18 @@ theorem uniqueFrom_of_invariant {Inv : Config A → Prop}
   exact hfun x y z hx
 
 omit [Finite A] in
-/-- Uniqueness travels forward along the run. -/
+/-- Uniqueness travels forward along the run.
+@isnad1 id=uniquefr.2h4v.s4.e748d30ce2ea from=translated src=- shape=cab32a1c vocab=e203e577
+-/
 theorem UniqueFrom.mono {c d : Config A} (h : M.UniqueFrom c)
     (hcd : Relation.ReflTransGen M.Step c d) : M.UniqueFrom d :=
   fun x y z hx => h x y z (hcd.trans hx)
 
 omit [Finite A] in
 /-- **A machine unique from `c` has one run out of `c`**: two configurations
-reachable from it are reachable from one another. -/
+reachable from it are reachable from one another.
+@isnad1 id=or.3h5v.s5.5efa0b6c3a31 from=translated src=- shape=c64f497b vocab=e203e577
+-/
 theorem reach_total_of_uniqueFrom {c x y : Config A} (huniq : M.UniqueFrom c)
     (hx : Relation.ReflTransGen M.Step c x) (hy : Relation.ReflTransGen M.Step c y) :
     Relation.ReflTransGen M.Step x y ∨ Relation.ReflTransGen M.Step y x := by
@@ -108,7 +116,9 @@ theorem reach_total_of_uniqueFrom {c x y : Config A} (huniq : M.UniqueFrom c)
 
 omit [Finite A] in
 /-- **A deterministic machine has one run**: two configurations reachable from
-the same starting point are reachable from one another. -/
+the same starting point are reachable from one another.
+@isnad1 id=or.4h5v.s5.dc508579e497 from=translated src=- shape=a0c10e27 vocab=89571b63
+-/
 theorem reach_total (hlin : IsLinOrd M.Le) (hdet : M.Deterministic) {c x y : Config A}
     (hx : Relation.ReflTransGen M.Step c x) (hy : Relation.ReflTransGen M.Step c y) :
     Relation.ReflTransGen M.Step x y ∨ Relation.ReflTransGen M.Step y x :=
@@ -130,7 +140,9 @@ is the only nondeterministic one, so what has to be ruled out is an accepting ru
 
 `DescriptiveComplexity.TMData.not_acceptsSpace_of_reaches_dead` is this with the
 uniqueness supplied by global determinism and the initial configuration matched
-up. -/
+up.
+@isnad1 id=false.7h5v.s6.dddba0994beb from=translated src=- shape=ee86a215 vocab=b3628929
+-/
 theorem not_acc_of_reaches_dead_of_uniqueFrom {c₀ d : Config A} (huniq : M.UniqueFrom c₀)
     (hreach : Relation.ReflTransGen M.Step c₀ d)
     (hdead : ∀ e, ¬M.Step d e) (hnacc : ¬M.Acc d.state)
@@ -148,7 +160,9 @@ The run exhibited by `hreach` is *the* run, so an accepting configuration would
 have to lie on it – before the dead end, and then it would have to be the dead
 end itself since an accepting configuration is stuck, or after it, and then it
 would be the dead end because nothing follows a dead end. Either way the dead
-end is accepting, which it is not. -/
+end is accepting, which it is not.
+@isnad1 id=not.7h4v.s6.7050842e2c67 from=translated src=- shape=bce345e4 vocab=fc965b04
+-/
 theorem not_acceptsSpace_of_reaches_dead (hwf : M.WellFormed) (hdet : M.Deterministic)
     {c₀ d : Config A} (hinit : M.IsInit c₀) (hreach : Relation.ReflTransGen M.Step c₀ d)
     (hdead : ∀ e, ¬M.Step d e) (hnacc : ¬M.Acc d.state)
@@ -167,7 +181,9 @@ never ends. A halted configuration is reached in a fixed number of steps, so a
 chain whose `n`-th link costs at least `n` of them reaches none. -/
 
 omit [Finite A] in
-/-- Reachability is a run of some length. -/
+/-- Reachability is a run of some length.
+@isnad1 id=ex.1h4v.s4.85d4305ca6a3 from=translated src=- shape=61075c45 vocab=c50a88f2
+-/
 theorem exists_stepsIn {c d : Config A}
     (h : Relation.ReflTransGen M.Step c d) : ∃ n, M.StepsIn n c d := by
   induction h with
@@ -175,7 +191,9 @@ theorem exists_stepsIn {c d : Config A}
   | tail _ hstep ih => exact ⟨ih.choose + 1, ih.choose_spec.trans_step hstep⟩
 
 omit [Finite A] in
-/-- A *nonempty* reachability is a run of positive length. -/
+/-- A *nonempty* reachability is a run of positive length.
+@isnad1 id=ex.1h4v.s5.5a68620aa7ce from=translated src=- shape=33e37eb3 vocab=9e963d97
+-/
 theorem exists_stepsIn_pos {c d : Config A}
     (h : Relation.TransGen M.Step c d) : ∃ n, 1 ≤ n ∧ M.StepsIn n c d := by
   induction h with
@@ -186,7 +204,9 @@ theorem exists_stepsIn_pos {c d : Config A}
 
 omit [Finite A] in
 /-- **A stuck configuration is reached in one number of steps**: the shorter
-run is a prefix of the longer one, and nothing leaves a dead end. -/
+run is a prefix of the longer one, and nothing leaves a dead end.
+@isnad1 id=eq.5h6v.s5.1f1793fbb802 from=translated src=- shape=a9d80762 vocab=b93c6ccc
+-/
 theorem stepsIn_eq_of_stuck (hlin : IsLinOrd M.Le) (hdet : M.Deterministic)
     {i j : ℕ} {c d : Config A} (hi : M.StepsIn i c d) (hj : M.StepsIn j c d)
     (hdead : ∀ e, ¬M.Step d e) : i = j := by
@@ -209,7 +229,9 @@ omit [Finite A] in
 accept.** Each link of the chain costs at least one step, so the `n`-th is
 reached in at least `n`; an accepting configuration is stuck, hence reached in
 one fixed number of steps, and lies beyond every link. This is what makes a
-*diverging* computation a correct rejection with no clock anywhere. -/
+*diverging* computation a correct rejection with no clock anywhere.
+@isnad1 id=not.6h4v.s6.d3dd2652229f from=translated src=- shape=43a2e0ab vocab=0ae7ef0c
+-/
 theorem not_acceptsSpace_of_chain (hwf : M.WellFormed) (hdet : M.Deterministic)
     {c₀ : Config A} (hinit : M.IsInit c₀) {c : ℕ → Config A}
     (hc0 : Relation.ReflTransGen M.Step c₀ (c 0))
@@ -241,7 +263,9 @@ theorem not_acceptsSpace_of_chain (hwf : M.WellFormed) (hdet : M.Deterministic)
 
 omit [Finite A] in
 /-- **The positive half**, for symmetry: a run from the initial configuration
-to an accepting one is exactly what acceptance in bounded space asks for. -/
+to an accepting one is exactly what acceptance in bounded space asks for.
+@isnad1 id=acceptss.3h4v.s5.88d5fb8f56d9 from=translated src=- shape=b5bd33b2 vocab=315d7725
+-/
 theorem acceptsSpace_of_reaches_acc {c₀ d : Config A} (hinit : M.IsInit c₀)
     (hreach : Relation.ReflTransGen M.Step c₀ d) (hacc : M.Acc d.state) :
     M.AcceptsSpace :=

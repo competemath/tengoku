@@ -14,7 +14,9 @@ currently available in Mathlib in the required two-set form.
 namespace Expdb
 
 /-- Iterated derivatives of a function precomposed with an affine map.  Unlike Mathlib's
-`iteratedDerivWithin_comp_const_smul`, the domain and codomain sets may be different. -/
+`iteratedDerivWithin_comp_const_smul`, the domain and codomain sets may be different.
+@isnad1 id=eq.5h7v.s7.ad2dcfd918f7 from=translated src=- shape=703ed974 vocab=af75dc70
+-/
 theorem iteratedDerivWithin_comp_affine_of_mapsTo
     {f : ℝ → ℝ} {s t : Set ℝ} {x c d : ℝ} {n : ℕ}
     (hf : ContDiffOn ℝ n f t) (hs : UniqueDiffOn ℝ s) (ht : UniqueDiffOn ℝ t)

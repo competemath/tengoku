@@ -39,12 +39,18 @@ variable (maps_cont : (i : ι) → Continuous (maps i))
 instance : TopologicalSpace (InverseLimit G f) :=
   inferInstanceAs (TopologicalSpace {x : (i : ι) → G i // ∀ i j h, f i j h (x j) = x i})
 
+/--
+@isnad1 id=continuo.0h4v.s7.94856e963c84 from=translated src=- shape=354d5b34 vocab=5f647586
+-/
 @[fun_prop, continuity]
 lemma val_continuous : Continuous (fun (x : InverseLimit G f) ↦ x.val) := by
   continuity
 
 section ToComponent
 
+/--
+@isnad1 id=continuo.0h5v.s6.a6978204cfbc from=translated src=- shape=366729d2 vocab=81bd5f35
+-/
 @[fun_prop, continuity]
 lemma toComponent_continuous (i : ι) : Continuous (toComponent G f i) := by
   rw [toComponent_def]
@@ -56,6 +62,9 @@ end ToComponent
 
 section Maps
 
+/--
+@isnad1 id=continuo.2h7v.s7.3fbbce60e2d1 from=translated src=- shape=421818d4 vocab=7b5ca25e
+-/
 @[fun_prop, continuity]
 lemma lift_continuous (maps_cont : ∀ i, Continuous (maps i)) :
     Continuous (lift G f maps inverseSystemHom) := by

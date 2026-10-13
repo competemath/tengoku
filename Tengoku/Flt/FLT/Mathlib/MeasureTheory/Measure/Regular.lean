@@ -27,6 +27,9 @@ variable {X Y : Type*}
 
 namespace Topology.IsOpenEmbedding
 
+/--
+@isnad1 id=outerreg.1h4v.s5.64178ee850a3 from=translated src=- shape=965192b4 vocab=0bb201be
+-/
 lemma outerRegular_comap
     (hφ : IsOpenEmbedding φ) (μ : Measure Y) [OuterRegular μ] :
     OuterRegular (comap φ μ) where
@@ -39,6 +42,9 @@ lemma outerRegular_comap
     rw [MeasurableEmbedding.comap_apply hφ.measurableEmbedding]
     apply lt_of_le_of_lt (measure_mono (Set.image_preimage_subset _ _)) hμU
 
+/--
+@isnad1 id=innerreg.2h4v.s6.700532e25387 from=translated src=- shape=791b3ffe vocab=8f30a25c
+-/
 lemma innerRegularWRT_comap
     (hφ : IsOpenEmbedding φ) {μ : Measure Y} (hμ : InnerRegularWRT μ IsCompact IsOpen) :
     InnerRegularWRT (comap φ μ) IsCompact IsOpen := by
@@ -52,6 +58,9 @@ lemma innerRegularWRT_comap
   · rwa [MeasurableEmbedding.comap_apply hφ.measurableEmbedding,
       Set.image_preimage_eq_iff.mpr hK]
 
+/--
+@isnad1 id=regular.1h4v.s5.7dfea636ba57 from=translated src=- shape=965192b4 vocab=d32e9ee2
+-/
 lemma regular_comap
     (φ : X → Y) (hφ : IsOpenEmbedding φ) (μ : Measure Y) [Regular μ] :
     Regular (comap φ μ) where

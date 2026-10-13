@@ -60,13 +60,17 @@ section PiComponent
 variable {d : ℕ}
 
 /-- Each component of a Pi-valued AEStronglyMeasurable function is AEStronglyMeasurable.
-For `Fin d → ℝ` (NOT `EuclideanSpace`), `continuous_apply` works directly. -/
+For `Fin d → ℝ` (NOT `EuclideanSpace`), `continuous_apply` works directly.
+@isnad1 id=aestrong.1h5v.s6.14d1b4a4a686 from=translated src=- shape=c0c8ea90 vocab=91d7bcc8
+-/
 theorem aestronglyMeasurable_pi_component
     {F : α → (Fin d → ℝ)} (hF : AEStronglyMeasurable F μ) (i : Fin d) :
     AEStronglyMeasurable (fun x => F x i) μ :=
   Continuous.comp_aestronglyMeasurable (continuous_apply i) hF
 
-/-- AEStronglyMeasurable for a Pi-valued function from its components. -/
+/-- AEStronglyMeasurable for a Pi-valued function from its components.
+@isnad1 id=aestrong.1h4v.s6.bb26af7d18e6 from=translated src=- shape=6bb360af vocab=91d7bcc8
+-/
 theorem aestronglyMeasurable_pi_of_components
     {F : α → (Fin d → ℝ)}
     (hF_comp : ∀ i : Fin d, AEStronglyMeasurable (fun x => F x i) μ) :
@@ -74,13 +78,17 @@ theorem aestronglyMeasurable_pi_of_components
   (aemeasurable_pi_iff.mpr fun i => (hF_comp i).aemeasurable).aestronglyMeasurable
 
 /-- Component eLpNorm ≤ vector eLpNorm for Pi types.
-For `Fin d → ℝ` with the sup norm, `‖f i‖ ≤ ‖f‖` is `norm_le_pi_norm`. -/
+For `Fin d → ℝ` with the sup norm, `‖f i‖ ≤ ‖f‖` is `norm_le_pi_norm`.
+@isnad1 id=le.0h6v.s7.942039355987 from=translated src=- shape=95f5c864 vocab=29ce8f42
+-/
 theorem eLpNorm_pi_component_le
     {p : ℝ≥0∞} {F : α → (Fin d → ℝ)} (i : Fin d) :
     eLpNorm (fun x => F x i) p μ ≤ eLpNorm F p μ :=
   eLpNorm_mono fun x => norm_le_pi_norm (f := F x) i
 
-/-- For `F : α → (Fin d → ℝ)` in Lp, each component is in Lp. -/
+/-- For `F : α → (Fin d → ℝ)` in Lp, each component is in Lp.
+@isnad1 id=memlp.1h6v.s7.d7308377d469 from=translated src=- shape=50f4b0c7 vocab=c6080f40
+-/
 theorem memLp_pi_component
     {p : ℝ≥0∞} {F : α → (Fin d → ℝ)} (hF : MemLp F p μ) (i : Fin d) :
     MemLp (fun x => F x i) p μ :=

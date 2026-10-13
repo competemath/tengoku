@@ -44,19 +44,28 @@ def truncAt (n : ℕ) (x : ℤ) : ℤ :=
 
 variable {n : ℕ} {x y : ℤ}
 
+/--
+@isnad1 id=lt.0h1v.s4.0531c0af0b9d from=translated src=- shape=569d4514 vocab=e3eb8a37
+-/
 theorem two_pow_pos (n : ℕ) : (0 : ℤ) < 2 ^ n := by positivity
 
-/-- Truncation is the identity within the bounds. -/
+/-- Truncation is the identity within the bounds.
+@isnad1 id=eq.2h2v.s5.5f89f9bccea1 from=translated src=- shape=b426d128 vocab=e5bfc47d
+-/
 theorem truncAt_of_abs_le (h₁ : -(2 ^ n) ≤ x) (h₂ : x ≤ 2 ^ n) : truncAt n x = x := by
   simp only [truncAt, min_eq_right h₂, max_eq_right h₁]
 
-/-- Truncation is `2 ^ n` above the bound. -/
+/-- Truncation is `2 ^ n` above the bound.
+@isnad1 id=eq.1h2v.s5.aa8dc1840a08 from=translated src=- shape=2ca8a0d4 vocab=27a82abc
+-/
 theorem truncAt_of_le (h : 2 ^ n ≤ x) : truncAt n x = 2 ^ n := by
   have := two_pow_pos n
   simp only [truncAt, min_eq_left h]
   omega
 
-/-- Truncation is `-2 ^ n` below the bound. -/
+/-- Truncation is `-2 ^ n` below the bound.
+@isnad1 id=eq.1h2v.s5.43c491b8ed96 from=translated src=- shape=1a0e94bb vocab=e5bfc47d
+-/
 theorem truncAt_of_le_neg (h : x ≤ -(2 ^ n)) : truncAt n x = -(2 ^ n) := by
   have := two_pow_pos n
   simp only [truncAt, min_eq_right (by omega : (2 : ℤ) ^ n ≥ x)]
@@ -64,7 +73,9 @@ theorem truncAt_of_le_neg (h : x ≤ -(2 ^ n)) : truncAt n x = -(2 ^ n) := by
 
 /-- **The characterization of equal truncated distances**: equal distances, or
 both beyond the truncation on the same side. Every property of the
-duplicator's invariant is read off this. -/
+duplicator's invariant is read off this.
+@isnad1 id=iff.0h3v.s6.4a12921ac02b from=translated src=- shape=4bfb21d2 vocab=e5bfc47d
+-/
 theorem truncAt_eq_iff : truncAt n x = truncAt n y ↔
     x = y ∨ (2 ^ n ≤ x ∧ 2 ^ n ≤ y) ∨ (x ≤ -(2 ^ n) ∧ y ≤ -(2 ^ n)) := by
   have hpos := two_pow_pos n
@@ -97,18 +108,24 @@ theorem truncAt_eq_iff : truncAt n x = truncAt n y ↔
 
 /-! ### What an equation between truncated distances says -/
 
-/-- Equal truncated distances have the same sign, weakly. -/
+/-- Equal truncated distances have the same sign, weakly.
+@isnad1 id=iff.1h3v.s5.a15a98aa47d4 from=translated src=- shape=307cd255 vocab=7c7a0ebb
+-/
 theorem le_zero_congr_of_truncAt (h : truncAt n x = truncAt n y) : x ≤ 0 ↔ y ≤ 0 := by
   have hpos := two_pow_pos n
   rcases truncAt_eq_iff.mp h with rfl | ⟨hx, hy⟩ | ⟨hx, hy⟩ <;> constructor <;> intro <;> omega
 
-/-- Equal truncated distances have the same strict sign. -/
+/-- Equal truncated distances have the same strict sign.
+@isnad1 id=iff.1h3v.s5.df27e589df02 from=translated src=- shape=307cd255 vocab=2614e978
+-/
 theorem lt_zero_congr_of_truncAt (h : truncAt n x = truncAt n y) : x < 0 ↔ y < 0 := by
   have hpos := two_pow_pos n
   rcases truncAt_eq_iff.mp h with rfl | ⟨hx, hy⟩ | ⟨hx, hy⟩ <;> constructor <;> intro <;> omega
 
 /-- Truncation commutes with negation, as an equation between two
-distances. -/
+distances.
+@isnad1 id=eq.1h3v.s4.f359e8c2ab69 from=translated src=- shape=18bb560d vocab=72c79857
+-/
 theorem neg_congr_of_truncAt (h : truncAt n x = truncAt n y) :
     truncAt n (-x) = truncAt n (-y) := by
   rcases truncAt_eq_iff.mp h with rfl | ⟨hx, hy⟩ | ⟨hx, hy⟩
@@ -123,7 +140,9 @@ theorem eq_zero_congr_of_truncAt (h : truncAt n x = truncAt n y) : x = 0 ↔ y =
 
 /-- **Truncating further is coarser**: an equation between distances
 truncated at `2 ^ n` survives truncation at any smaller bound. This is how a
-round is spent – the budget halves, and the invariant still holds. -/
+round is spent – the budget halves, and the invariant still holds.
+@isnad1 id=eq.2h4v.s4.557ffc9e2347 from=translated src=- shape=aecebb70 vocab=7c7a0ebb
+-/
 theorem truncAt_eq_of_le {m : ℕ} (hmn : m ≤ n) (h : truncAt n x = truncAt n y) :
     truncAt m x = truncAt m y := by
   have hmono : (2 : ℤ) ^ m ≤ 2 ^ n := pow_le_pow_right₀ (by norm_num) hmn
@@ -137,7 +156,9 @@ equal up to truncation at `2 ^ (n + 1)` stay equal up to truncation at
 `2 ^ n` after a common shift of at most `2 ^ n`. This single lemma answers
 the spoiler in the two easy cases of
 `DescriptiveComplexity.exists_answer` – the shift being the distance from the
-new point to the neighbor the duplicator copies. -/
+new point to the neighbor the duplicator copies.
+@isnad1 id=eq.3h4v.s6.572c2e62de62 from=translated src=- shape=96ed0388 vocab=761d22ac
+-/
 theorem truncAt_sub_shift {s : ℤ} (h : truncAt (n + 1) x = truncAt (n + 1) y)
     (hs₁ : -(2 ^ n) ≤ s) (hs₂ : s ≤ 2 ^ n) : truncAt n (x - s) = truncAt n (y - s) := by
   have hpow : (2 : ℤ) ^ (n + 1) = 2 ^ n * 2 := pow_succ 2 n
@@ -159,7 +180,9 @@ copy the corresponding one; if `c` is closer than `2 ^ n` to its left or right
 neighbor, copy that distance (`DescriptiveComplexity.truncAt_sub_shift`);
 and if it is far from both, the gap it sits in is at least `2 ^ (n + 1)` wide,
 hence so is the corresponding gap, and there is room to land at exactly
-`2 ^ n` from the left neighbor. -/
+`2 ^ n` from the left neighbor.
+@isnad1 id=ex.3h7v.s7.9321b783a6a8 from=translated src=- shape=cf4eacba vocab=a94ee763
+-/
 theorem exists_answer {ι : Type} [Finite ι] {U V : ι → ℤ}
     (hinv : ∀ i i', truncAt (n + 1) (U i - U i') = truncAt (n + 1) (V i - V i'))
     {c : ℤ} {i₀ i₁ : ι} (h₀ : U i₀ ≤ c) (h₁ : c ≤ U i₁) :

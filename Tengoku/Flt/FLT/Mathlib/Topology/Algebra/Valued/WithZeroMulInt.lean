@@ -26,16 +26,25 @@ namespace Valued.WithZeroMulInt
 
 variable {K : Type*} [Field K] [hv : Valued K ℤᵐ⁰]
 
+/--
+@isnad1 id=lt.1h2v.s8.df5caabfc05e from=translated src=- shape=083f5ce4 vocab=d890800c
+-/
 theorem irreducible_valuation_lt_one {ϖ : 𝒪[K]} (h : Irreducible ϖ) : v ϖ.1 < 1 := by
   have := mt (Valuation.integer.integers _).isUnit_iff_valuation_eq_one.2 h.not_isUnit
   exact lt_of_le_of_ne (Valuation.mem_integer_iff _ _ |>.1 ϖ.2) this
 
+/--
+@isnad1 id=le.1h2v.s8.6672605fde06 from=translated src=- shape=7ed9e650 vocab=5adcca67
+-/
 theorem irreducible_valuation_le_ofAdd_neg_one {ϖ : 𝒪[K]} (h : Irreducible ϖ) :
     v ϖ.1 ≤ ofAdd (-1 : ℤ) := by
   let := (lt_ofAdd_iff (show v ϖ.1 ≠ 0 by simp [h.ne_zero])).1 (irreducible_valuation_lt_one h)
   rw [le_ofAdd_iff (show v ϖ.1 ≠ 0 by simp [h.ne_zero])]
   omega
 
+/--
+@isnad1 id=le.2h4v.s11.e09d80ce66b1 from=translated src=- shape=838b07f2 vocab=e70252fb
+-/
 theorem mem_maximalIdeal_pow_valuation [IsDiscreteValuationRing 𝒪[K]]
     {x : 𝒪[K]} {n : ℕ} (hx : x ∈ 𝓂[K] ^ n) {ϖ : 𝒪[K]} (h : Irreducible ϖ) :
     v x.val ≤ v ϖ.1 ^ n := by
@@ -49,6 +58,9 @@ theorem mem_maximalIdeal_pow_valuation [IsDiscreteValuationRing 𝒪[K]]
 /- Note: this is copied directly from the mathlib result
 `Valued.integer.finite_quotient_maximalIdeal_pow_of_finite_residueField` with a relaxation
 on some of the hypotheses on `K`. The proof is unchanged. -/
+/--
+@isnad1 id=finite.1h3v.s9.34cf52b3858b from=translated src=- shape=e38f8c49 vocab=2aba5651
+-/
 lemma finite_quotient_maximalIdeal_pow_of_finite_residueField {K Γ₀ : Type*} [Field K]
     [LinearOrderedCommGroupWithZero Γ₀] [Valued K Γ₀] [IsDiscreteValuationRing 𝒪[K]]
     (h : Finite 𝓀[K]) (n : ℕ) :
@@ -70,7 +82,9 @@ lemma finite_quotient_maximalIdeal_pow_of_finite_residueField {K Γ₀ : Type*} 
 
 /-- The ring of integers `𝒪[K]` of a `ℤᵐ⁰`-valued field `K` with finite residue
 field has a finite covering by elements of the basis of uniformity of `K`, whenever
-`𝒪[K]` is a discrete valuation ring. -/
+`𝒪[K]` is a discrete valuation ring.
+@isnad1 id=ex.1h2v.s8.9a26d9c282f7 from=translated src=- shape=70e0f20e vocab=8319d1b4
+-/
 theorem finite_cover_of_uniformity_basis [IsDiscreteValuationRing 𝒪[K]] (γ : ℤᵐ⁰ˣ)
     (h : Finite 𝓀[K]) :
     ∃ t : Set K, Set.Finite t ∧
@@ -91,7 +105,9 @@ variable (K)
 
 open Valuation.IsRankOneDiscrete in
 /-- The ring of integers `𝒪[K]` of a complete `ℤᵐ⁰`-valued field `K` with finite residue
-field is compact, whenever `𝒪[K]` is a discrete valuation ring. -/
+field is compact, whenever `𝒪[K]` is a discrete valuation ring.
+@isnad1 id=compacts.2h1v.s8.7ffe311900a7 from=translated src=- shape=536fef17 vocab=b27d36fb
+-/
 theorem integer_compactSpace [CompleteSpace K] [IsDiscreteValuationRing 𝒪[K]]
     [hv.v.IsRankOneDiscrete] (h : Finite 𝓀[K]) (hsurj : Function.Surjective hv.v) :
     CompactSpace 𝒪[K] where

@@ -42,11 +42,15 @@ open BodyQ
 -- Bridges to the description decoders
 -- ════════════════════════════════════════════════════════════════════════
 
-/-- The machine's 2-bit write-symbol decoder agrees with `decΓw`. -/
+/-- The machine's 2-bit write-symbol decoder agrees with `decΓw`.
+@isnad1 id=eq.0h2v.s4.2778744be597 from=translated src=- shape=2e79b987 vocab=fd997875
+-/
 theorem grpΓw_eq_decΓw (b₀ b₁ : Bool) : grpΓw b₀ b₁ = decΓw [b₀, b₁] := by
   cases b₀ <;> cases b₁ <;> rfl
 
-/-- The machine's 2-bit direction decoder agrees with `decDir`. -/
+/-- The machine's 2-bit direction decoder agrees with `decDir`.
+@isnad1 id=eq.0h2v.s4.f3edf9a0ebbc from=translated src=- shape=2e79b987 vocab=407f0a7c
+-/
 theorem grpDir_eq_decDir (b₀ b₁ : Bool) : grpDir b₀ b₁ = decDir [b₀, b₁] := by
   cases b₀ <;> cases b₁ <;> rfl
 
@@ -175,7 +179,9 @@ private theorem read_ne_start_all {w : Fin 6 → Tape}
     body machine captures the at-origin flags of the three virtual tapes and
     restores every tape exactly. The flags are honest: the machine proceeds
     to `seek1 (decide (sim0.head = 0), decide (sim1.head = 0),
-    decide (sim2.head = 0))`. -/
+    decide (sim2.head = 0))`.
+@isnad1 id=ex.12h4v.s9.65966bc51755 from=translated src=- shape=24196aa9 vocab=e1783b09
+-/
 theorem peek_correct {c : Cfg 6 bodyTM.Q} {sim0 sim1 sim2 : Tape}
     (h0 : VShift sim0 (c.work vIn)) (h1 : VShift sim1 (c.work vWk))
     (h2 : VShift sim2 (c.work vOut))
@@ -260,7 +266,9 @@ theorem peek_correct {c : Cfg 6 bodyTM.Q} {sim0 sim1 sim2 : Tape}
     three virtual tapes — right where the at-origin flag is set, stay
     otherwise — matching the interpreted machine's sanitized `stay`
     directions. All writes are read-backs; every other tape is preserved
-    exactly. -/
+    exactly.
+@isnad1 id=ex.15h5v.s9.b0227f0b2651 from=translated src=- shape=6af9e33d vocab=8bae7388
+-/
 theorem segCheck_default_step {c : Cfg 6 bodyTM.Q} {f : VFlags}
     {sim0 sim1 sim2 : Tape}
     (h0 : VShift sim0 (c.work vIn)) (h1 : VShift sim1 (c.work vWk))
@@ -328,7 +336,9 @@ theorem segCheck_default_step {c : Cfg 6 bodyTM.Q} {f : VFlags}
     exact h2.move _ fun hz => by rw [hf2, decide_eq_true hz, ite_eq_left rfl]
 
 /-- **The segCheck continue step** (`segCheck f` reading non-`□` → `mmScr f`):
-    a pure control-state change — every tape is preserved exactly. -/
+    a pure control-state change — every tape is preserved exactly.
+@isnad1 id=ex.5h2v.s8.44d6e34e2ce5 from=translated src=- shape=aa74ebde vocab=3b2c6992
+-/
 theorem segCheck_continue_step {c : Cfg 6 bodyTM.Q} {f : VFlags}
     (hst : c.state = segCheck f)
     (hdc : (c.work dsT).read ≠ Γ.blank)
@@ -353,7 +363,9 @@ theorem segCheck_continue_step {c : Cfg 6 bodyTM.Q} {f : VFlags}
     at `e` (cells `E`, `▷`-free), the machine copies `n` scratch symbols
     over the old state — reading the *old* state cell to know when to stop —
     then idles once on the `□` into `appAct f 0 none`. Total `n + 1` steps;
-    the scratch tape and every other tape are exactly preserved. -/
+    the scratch tape and every other tape are exactly preserved.
+@isnad1 id=ex.14h7v.s9.7f886184d33c from=translated src=- shape=da201159 vocab=b676a2ba
+-/
 theorem appQ'_loop {f : VFlags} (E : ℕ → Γ) (hEns : ∀ j, 1 ≤ j → E j ≠ Γ.start) :
     ∀ (n : ℕ) (S : ℕ → Γ), (∀ j, 1 ≤ j → S j ≠ Γ.start) →
       ∀ (a e : ℕ), 1 ≤ a → 1 ≤ e →
@@ -677,7 +689,9 @@ private theorem appAct_moveGroup {c : Cfg 6 bodyTM.Q} {f : VFlags} {g : Fin 5}
     action exactly (note `sim.write` at the origin is itself a structural
     no-op, so the stated sim-side write is unconditional). The scratch tape
     ends at head `e + 10` with cells unchanged; the state, desc, input, and
-    output tapes are preserved exactly. -/
+    output tapes are preserved exactly.
+@isnad1 id=ex.18h7v.s9.d13ca73e884a from=translated src=- shape=b5afdd65 vocab=42cbe4ce
+-/
 theorem appAct_all {c : Cfg 6 bodyTM.Q} {f : VFlags} {sim0 sim1 sim2 : Tape}
     {E : ℕ → Γ} {e : ℕ}
     (h0 : VShift sim0 (c.work vIn)) (h1 : VShift sim1 (c.work vWk))

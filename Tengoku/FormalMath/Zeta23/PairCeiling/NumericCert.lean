@@ -57,9 +57,21 @@ def Egrid (j : ℕ) : ℝ := U S j / (N : ℝ) ^ 2 - (j : ℝ) ^ 3 / (6 * (N : �
 def D1 : ℝ := Dright S N N
 def E1 : ℝ := Egrid S N N
 
+/--
+@isnad1 id=eq.0h1v.s4.0f15912d9ea0 from=translated src=- shape=777ad2f6 vocab=83e8cbb4
+-/
 lemma T_zero : T S 0 = 0 := by simp [T]
+/--
+@isnad1 id=eq.0h2v.s5.f285ba0b9fbc from=translated src=- shape=c1f4b50c vocab=74839cae
+-/
 lemma T_succ (j : ℕ) : T S (j + 1) = T S j + S (j + 1) := by simp [T, sum_range_succ]
+/--
+@isnad1 id=eq.0h1v.s4.d451cc981301 from=translated src=- shape=777ad2f6 vocab=005499ad
+-/
 lemma U_zero : U S 0 = 0 := by simp [U]
+/--
+@isnad1 id=eq.0h2v.s5.63a3b8fd5314 from=translated src=- shape=3c66398a vocab=25a15238
+-/
 lemma U_succ (j : ℕ) : U S (j + 1) = U S j + T S j := by simp [U, sum_range_succ]
 
 end Defs
@@ -136,7 +148,9 @@ section Sound
 
 variable {S : ℕ → ℝ} {N K : ℕ}
 
-/-- a ≤ x ≤ b ⇒ |x| ≤ max |a| |b|. -/
+/-- a ≤ x ≤ b ⇒ |x| ≤ max |a| |b|.
+@isnad1 id=le.2h3v.s5.ec928676267c from=translated src=- shape=036fa587 vocab=610fa78c
+-/
 lemma abs_le_max_abs {a b x : ℝ} (ha : a ≤ x) (hb : x ≤ b) : |x| ≤ max |a| |b| := by
   rcases le_or_gt 0 x with hx | hx
   · rw [abs_of_nonneg hx]; exact le_max_of_le_right (hb.trans (le_abs_self b))
@@ -152,26 +166,39 @@ structure LoopInv (S : ℕ → ℝ) (N K : ℕ) (s : St) : Prop where
   dr : ∀ i, 1 ≤ i → i ≤ s.j → |(2 * (N : ℝ) ^ 2 * K) * Dright S N i| ≤ (s.M1 : ℝ)
   eg : ∀ i, 1 ≤ i → i ≤ s.j → |(6 * (N : ℝ) ^ 3 * K) * Egrid S N i| ≤ (s.M2 : ℝ)
 
+/--
+@isnad1 id=loopinv.0h3v.s3.83f41ecccfeb from=translated src=- shape=f1f306d7 vocab=6172565f
+-/
 lemma loopInv_init : LoopInv S N K St.init :=
   ⟨by simp [St.init, T_zero], by simp [St.init, T_zero], by simp [St.init, U_zero], by simp [St.init, U_zero],
    fun i h1 h2 => by change i ≤ 0 at h2; omega, fun i h1 h2 => by change i ≤ 0 at h2; omega,
    fun i h1 h2 => by change i ≤ 0 at h2; omega⟩
 
-/-- the scaled grid quantities are integer combinations of K·T, K·U (N ≠ 0). -/
+/-- the scaled grid quantities are integer combinations of K·T, K·U (N ≠ 0).
+@isnad1 id=eq.1h4v.s7.1e8b970032f0 from=translated src=- shape=22eea814 vocab=94105dc7
+-/
 lemma scaled_Dright (hN : 0 < N) (j : ℕ) :
     (2 * (N : ℝ) ^ 2 * K) * Dright S N j = 2 * N * (K * T S j) - (j : ℝ) ^ 2 * K := by
   have hN' : (N : ℝ) ≠ 0 := by exact_mod_cast hN.ne'
   unfold Dright; field_simp; try ring
+/--
+@isnad1 id=eq.1h4v.s7.6f9e776de8d0 from=translated src=- shape=94cb64ca vocab=362f0765
+-/
 lemma scaled_Dleft (hN : 0 < N) (j : ℕ) :
     (2 * (N : ℝ) ^ 2 * K) * Dleft S N j = 2 * N * (K * T S (j - 1)) - (j : ℝ) ^ 2 * K := by
   have hN' : (N : ℝ) ≠ 0 := by exact_mod_cast hN.ne'
   unfold Dleft; field_simp; try ring
+/--
+@isnad1 id=eq.1h4v.s7.c26f5d0deb63 from=translated src=- shape=22eea814 vocab=5a902666
+-/
 lemma scaled_Egrid (hN : 0 < N) (j : ℕ) :
     (6 * (N : ℝ) ^ 3 * K) * Egrid S N j = 6 * N * (K * U S j) - (j : ℝ) ^ 3 * K := by
   have hN' : (N : ℝ) ≠ 0 := by exact_mod_cast hN.ne'
   unfold Egrid; field_simp; try ring
 
-/-- one step preserves the invariant. -/
+/-- one step preserves the invariant.
+@isnad1 id=loopinv.3h5v.s6.c4a8d256d3f1 from=translated src=- shape=a3e3c4a9 vocab=3c992d88
+-/
 lemma loopInv_step (hN : 0 < N) {s : St} (h : LoopInv S N K s) {e : ℤ × ℤ}
     (he : (e.1 : ℝ) ≤ K * S (s.j + 1) ∧ (K : ℝ) * S (s.j + 1) ≤ e.2) : LoopInv S N K (step N K s e) := by
   have hT : T S (s.j + 1) = T S s.j + S (s.j + 1) := T_succ S s.j
@@ -222,21 +249,31 @@ lemma loopInv_step (hN : 0 < N) {s : St} (h : LoopInv S N K s) {e : ℤ × ℤ}
       push_cast [Int.cast_max, Int.cast_abs]
       exact le_max_right _ _
 
-/-- the ok flag only decreases. -/
+/-- the ok flag only decreases.
+@isnad1 id=eq.1h4v.s4.94a15ed2bb57 from=translated src=- shape=e0cc5624 vocab=f16f7339
+-/
 lemma step_ok_imp {s : St} {e : ℤ × ℤ} (h : (step N K s e).ok = true) : s.ok = true := by
   simp [step, Bool.and_eq_true] at h; exact h.1
 
+/--
+@isnad1 id=eq.1h4v.s4.1ac60dd440fa from=translated src=- shape=4b382472 vocab=262a169b
+-/
 lemma run_ok_imp {l : List (ℤ × ℤ)} : ∀ {s : St}, (run N K l s).ok = true → s.ok = true := by
   induction l with
   | nil => intro s h; exact h
   | cons e l ih => intro s h; exact step_ok_imp (ih h)
 
+/--
+@isnad1 id=eq.0h4v.s5.4dea80ed2073 from=translated src=- shape=885d1860 vocab=9e898ef5
+-/
 lemma run_j {l : List (ℤ × ℤ)} : ∀ {s : St}, (run N K l s).j = s.j + l.length := by
   induction l with
   | nil => intro s; rfl
   | cons e l ih => intro s; show (run N K l (step N K s e)).j = _; rw [ih]; simp [step]; omega
 
-/-- the loop preserves the invariant along an enclosed list. -/
+/-- the loop preserves the invariant along an enclosed list.
+@isnad1 id=loopinv.4h5v.s5.f2e9cc141fff from=translated src=- shape=07132ed1 vocab=d7eb2b56
+-/
 lemma loopInv_run (hN : 0 < N) {l : List (ℤ × ℤ)} : ∀ {s : St}, LoopInv S N K s → EnclOK K S s.j l → (run N K l s).ok = true →
     LoopInv S N K (run N K l s) := by
   induction l with
@@ -247,7 +284,9 @@ lemma loopInv_run (hN : 0 < N) {l : List (ℤ × ℤ)} : ∀ {s : St}, LoopInv S
     have hj : (step N K s e).j = s.j + 1 := rfl
     exact ih hstep (hj ▸ hencl.2) hok
 
-/-- **soundness of the checker.** -/
+/-- **soundness of the checker.**
+@isnad1 id=and.2h2v.s8.0cedad1c6ef2 from=translated src=- shape=ef53ff43 vocab=8c069208
+-/
 theorem cert_of_check (d : CertData) (hc : check d = true) (S : ℕ → ℝ) (hS : EnclOK d.K S 0 d.encl) :
     |D1 S d.N| ≤ (d.bD1n : ℝ) / d.bD1d ∧ |E1 S d.N| ≤ (d.bE1n : ℝ) / d.bE1d ∧
     (∀ j, 1 ≤ j → j ≤ d.N → |Dleft S d.N j| ≤ (d.b1n : ℝ) / d.b1d ∧ |Dright S d.N j| ≤ (d.b1n : ℝ) / d.b1d) ∧

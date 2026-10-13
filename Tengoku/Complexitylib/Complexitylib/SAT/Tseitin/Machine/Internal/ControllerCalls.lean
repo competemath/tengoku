@@ -35,7 +35,9 @@ def ControllerReadPred (mode : StreamMode) (pred : TapePred workTapeCount)
   c.state = controllerRead (.first mode) ∧ pred c.input c.work c.output
 
 /-- Run a scheduled current-register increment and return to the saved literal
-mode. -/
+mode.
+@isnad1 id=ex.1h8v.s6.a71a2f58f1bc from=translated src=- shape=16b98a2d vocab=900fb928
+-/
 theorem validEmitterTM_increment_call_internal
     (mode : StreamMode) (v : BufferValues) (inp : Tape) (ys : List Bool)
     (hinp : TM.Parked inp) {actualInput out : Tape}
@@ -69,7 +71,9 @@ theorem validEmitterTM_increment_call_internal
   · exact TM.reachesIn_trans validEmitterTM hlift (.step hreturn .zero)
   · exact hpost'
 
-/-- Run a scheduled literal commit and return to the updated boundary mode. -/
+/-- Run a scheduled literal commit and return to the updated boundary mode.
+@isnad1 id=ex.1h9v.s6.2a05e8a448aa from=translated src=- shape=6f51ea45 vocab=b3f86423
+-/
 theorem validEmitterTM_commit_call_internal
     (pending : PendingSigns) (sign : Bool) (v : BufferValues)
     (inp : Tape) (ys : List Bool) (hinp : TM.Parked inp)
@@ -97,7 +101,9 @@ theorem validEmitterTM_commit_call_internal
     t + 1, by omega, ?_, rfl, hpost⟩
   exact TM.reachesIn_trans validEmitterTM hlift (.step hreturn .zero)
 
-/-- Run a scheduled clause close and return to the empty boundary mode. -/
+/-- Run a scheduled clause close and return to the empty boundary mode.
+@isnad1 id=ex.1h8v.s6.e07b75de3873 from=translated src=- shape=1d04a92f vocab=4c709aaa
+-/
 theorem validEmitterTM_close_call_internal
     (pending : PendingSigns) (v : BufferValues) (inp : Tape)
     (ys : List Bool) (hinp : TM.Parked inp)

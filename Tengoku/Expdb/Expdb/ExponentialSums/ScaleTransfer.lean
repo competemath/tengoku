@@ -41,7 +41,9 @@ private lemma stdAddChar_mul_nat_eq_fourierChar (q m : ℕ) [NeZero q] (h : ZMod
 
 /-! ## Reindexing exponential sums -/
 
-/-- Finite Fourier inversion expresses a sum at scale `N` as an average of sums dilated by `q`. -/
+/-- Finite Fourier inversion expresses a sum at scale `N` as an average of sums dilated by `q`.
+@isnad1 id=eq.3h6v.s7.8c3bcd960000 from=translated src=- shape=b085eb20 vocab=6003ed7b
+-/
 lemma exponentialSumAt_dilate (F : ℝ → ℝ) (T N : ℝ) (a b q : ℕ) [NeZero q]
     (hq : 0 < q) (hT : T ≠ 0) (hN : N ≠ 0) :
     exponentialSumAt F T N a b =
@@ -106,7 +108,9 @@ lemma exponentialSumAt_dilate (F : ℝ → ℝ) (T N : ℝ) (a b q : ℕ) [NeZer
         congr 3
         field_simp [show (q : ℝ) ≠ 0 by exact_mod_cast hq.ne']
 
-/-- Triangle-inequality form of `exponentialSumAt_dilate`. -/
+/-- Triangle-inequality form of `exponentialSumAt_dilate`.
+@isnad1 id=le.3h6v.s7.e4a4fb254995 from=translated src=- shape=a372af5b vocab=85e8a00f
+-/
 lemma norm_exponentialSumAt_dilate_le (F : ℝ → ℝ) (T N : ℝ) (a b q : ℕ)
     [NeZero q]
     (hq : 0 < q) (hT : T ≠ 0) (hN : N ≠ 0) :
@@ -138,7 +142,9 @@ def residueScale (N : ℝ) (q r : ℕ) : ℝ := (N - r) / q
 def residuePhase (F : ℝ → ℝ) (N : ℝ) (r : ℕ) : ℝ → ℝ :=
   fun u ↦ F ((1 - (r : ℝ) / N) * u + (r : ℝ) / N)
 
-/-- Evaluation of the residue-class phase at its rescaled integer arguments. -/
+/-- Evaluation of the residue-class phase at its rescaled integer arguments.
+@isnad1 id=eq.2h5v.s6.922cbd82603d from=translated src=- shape=db602d07 vocab=d11765bc
+-/
 lemma residuePhase_identity (F : ℝ → ℝ) (N : ℝ) (q r m : ℕ)
     (hN : N ≠ 0) (hrN : (r : ℝ) < N) :
     residuePhase F N r ((m : ℝ) / residueScale N q r) =
@@ -147,7 +153,9 @@ lemma residuePhase_identity (F : ℝ → ℝ) (N : ℝ) (q r m : ℕ)
   push_cast
   field_simp [sub_ne_zero.mpr (ne_of_gt hrN)]
 
-/-- Reindex one residue class as an exponential sum with `residuePhase` and `residueScale`. -/
+/-- Reindex one residue class as an exponential sum with `residuePhase` and `residueScale`.
+@isnad1 id=eq.6h7v.s7.c5554cec5d0e from=translated src=- shape=4cc73c2f vocab=0fcbed78
+-/
 lemma exponentialSumAt_residue (F : ℝ → ℝ) (T N : ℝ) (a b q r : ℕ)
     (hq : 0 < q) (hr : r < q) (hra : r ≤ a) (hab : a ≤ b)
     (hN : N ≠ 0) (hrN : (r : ℝ) < N) :

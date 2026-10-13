@@ -38,7 +38,9 @@ namespace ThreeSAT
 
 namespace Machine
 
-/-- Moving a parked input tape right preserves parkedness. -/
+/-- Moving a parked input tape right preserves parkedness.
+@isnad1 id=parked.1h1v.s3.4b84325a9764 from=translated src=- shape=7600338b vocab=43bc5490
+-/
 theorem parked_move_right_internal {input : Tape} (h : TM.Parked input) :
     TM.Parked (input.move .right) := by
   refine ⟨?_, fun j hj => ?_⟩
@@ -48,7 +50,9 @@ theorem parked_move_right_internal {input : Tape} (h : TM.Parked input) :
 
 /-- Simulate one successful pure token transition. The final
 `StreamingStatePred` fixes the input to the original input moved right twice,
-so it also records exact input-head and input-cell framing. -/
+so it also records exact input-head and input-cell framing.
+@isnad1 id=ex.4h7v.s6.602837683290 from=translated src=- shape=0fdd5cf6 vocab=84620836
+-/
 theorem validEmitterTM_streaming_step_internal {Q : Type}
     {st st' : Streaming.State} (tok : EncToken) (cap : ℕ)
     (c : Cfg workTapeCount Q)

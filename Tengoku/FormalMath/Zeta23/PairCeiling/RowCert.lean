@@ -61,7 +61,9 @@ section Sound
 
 variable {S : ℕ → ℝ}
 
-/-- the row checks give the near-CUE hypothesis on the covered range. -/
+/-- the row checks give the near-CUE hypothesis on the covered range.
+@isnad1 id=le.7h8v.s7.b38092f791c7 from=translated src=- shape=94d0a39b vocab=433490e8
+-/
 lemma rows_sound {N K tn td : ℕ} (hK : 0 < K) (htd : 0 < td) :
     ∀ (l : List (ℤ × ℤ)) (j : ℕ), rowsOK N K tn td j l = true → EnclOK K S j l →
       ∀ j' : ℕ, j < j' → j' ≤ j + l.length → j' < N → |(N : ℝ) * S j' - j'| ≤ (tn : ℝ) / td := by
@@ -109,7 +111,9 @@ lemma rows_sound {N K tn td : ℕ} (hK : 0 < K) (htd : 0 < td) :
             linarith [e0]
           linarith
 
-/-- the enclosure sums enclose K·(S(j+1) + … + S(j+|l|)). -/
+/-- the enclosure sums enclose K·(S(j+1) + … + S(j+|l|)).
+@isnad1 id=and.1h4v.s7.653eccc0dc3c from=translated src=- shape=0be053d3 vocab=aa978124
+-/
 lemma sums_sound {K : ℕ} :
     ∀ (l : List (ℤ × ℤ)) (j : ℕ), EnclOK K S j l →
       (sumLo l : ℝ) ≤ K * ∑ i ∈ Finset.range l.length, S (j + i + 1) ∧
@@ -130,7 +134,9 @@ lemma sums_sound {K : ℕ} :
     rw [mul_add]
     constructor <;> linarith
 
-/-- **soundness of the row checker.** -/
+/-- **soundness of the row checker.**
+@isnad1 id=and.2h2v.s6.c5da322802c0 from=translated src=- shape=a0805e9e vocab=040f3e67
+-/
 theorem cert_of_checkRows (d : RowCertData) (hc : checkRows d = true) (S : ℕ → ℝ) (hS : EnclOK d.K S 0 d.encl) :
     0 < d.N ∧ NearCUE S d.N ((d.tn : ℝ) / d.td) ∧ |Dfun (massOf S d.N) d.N 1| ≤ (d.dn : ℝ) / d.dd := by
   simp only [checkRows, Bool.and_eq_true, decide_eq_true_eq] at hc

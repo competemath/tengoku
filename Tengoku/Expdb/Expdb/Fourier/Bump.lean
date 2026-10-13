@@ -61,10 +61,16 @@ private lemma rawL2_pos : 0 < rawL2 := by
 
 def bump (x : ℝ) : ℝ := rawBump x / Real.sqrt rawL2
 
+/--
+@isnad1 id=contdiff.0h0v.s5.e293f922e740 from=translated src=- shape=3cea26be vocab=cf3c40ac
+-/
 lemma bump_smooth : ContDiff ℝ ∞ bump := by
   change ContDiff ℝ ∞ (fun x => rawBump x / Real.sqrt rawL2)
   exact (rawBump.contDiff (n := ⊤)).div_const (Real.sqrt rawL2)
 
+/--
+@isnad1 id=hascompa.0h0v.s3.03f2cf28a497 from=translated src=- shape=e3d48bcb vocab=e47ccf85
+-/
 lemma bump_hasCompactSupport : HasCompactSupport bump := by
   apply HasCompactSupport.of_support_subset_isCompact rawBump.hasCompactSupport.isCompact
   intro x hx
@@ -74,6 +80,9 @@ lemma bump_hasCompactSupport : HasCompactSupport bump := by
   apply hx
   simp [bump, hzero]
 
+/--
+@isnad1 id=le.1h1v.s5.2288e330e446 from=translated src=- shape=2d90f99d vocab=c1893e12
+-/
 lemma bump_supp (x : ℝ) (hx : bump x ≠ 0) : |x| ≤ 1 / 4 := by
   have hraw : (rawBump : ℝ → ℝ) x ≠ 0 := by
     intro hzero
@@ -86,9 +95,15 @@ lemma bump_supp (x : ℝ) (hx : bump x ≠ 0) : |x| ≤ 1 / 4 := by
     simpa [rawBump, Metric.mem_ball, Real.dist_eq] using hmem
   exact this.le
 
+/--
+@isnad1 id=le.0h1v.s3.783b9fa68a26 from=translated src=- shape=8a62b088 vocab=d06b4b03
+-/
 lemma bump_nonneg (x : ℝ) : 0 ≤ bump x :=
   div_nonneg (rawBump.nonneg' x) (Real.sqrt_nonneg rawL2)
 
+/--
+@isnad1 id=eq.0h0v.s5.0521c4e1c4f6 from=translated src=- shape=b3993066 vocab=b18fc0df
+-/
 lemma bump_l2norm : ∫ x : ℝ, (bump x) ^ 2 = 1 := by
   rw [show (fun x : ℝ => (bump x) ^ 2) = fun x => (rawBump x) ^ 2 / rawL2 by
         funext x
@@ -102,6 +117,9 @@ def bumpFourier (u : ℝ) : ℂ :=
   ∫ x : ℝ, (bump x : ℂ) * 𝐞 (-(x * u))
 
 -- bump is integrable
+/--
+@isnad1 id=integrab.0h0v.s4.c020c32ded08 from=translated src=- shape=e14394ff vocab=7eb599c2
+-/
 lemma bump_integrable : Integrable bump :=
   bump_smooth.continuous.integrable_of_hasCompactSupport bump_hasCompactSupport
 
@@ -151,15 +169,24 @@ private lemma bumpFourier_eq_fourier : bumpFourier = 𝓕 (bumpSchwartz : ℝ �
   filter_upwards with x
   ring
 
+/--
+@isnad1 id=continuo.0h0v.s4.845fb6854cf1 from=translated src=- shape=54c8eceb vocab=51d2a862
+-/
 lemma bumpFourier_continuous : Continuous bumpFourier := by
   rw [bumpFourier_eq_fourier]
   exact (𝓕 bumpSchwartz).continuous
 
+/--
+@isnad1 id=eq.0h0v.s5.7b31cd65f7d5 from=translated src=- shape=f7e3a221 vocab=dd8f9484
+-/
 lemma bumpFourier_l2 : ∫ u : ℝ, ‖bumpFourier u‖ ^ 2 = 1 := by
   simp_rw [bumpFourier_eq_fourier]
   rw [← SchwartzMap.fourier_coe, SchwartzMap.integral_norm_sq_fourier]
   simpa [bumpSchwartz, Real.norm_eq_abs, abs_of_nonneg (bump_nonneg _)] using bump_l2norm
 
+/--
+@isnad1 id=integrab.0h0v.s5.14343c6f331b from=translated src=- shape=28cfabe3 vocab=e0411f8a
+-/
 lemma bumpFourier_sq_integrable :
     Integrable (fun u : ℝ => ‖bumpFourier u‖ ^ 2) := by
   by_contra h
@@ -167,6 +194,9 @@ lemma bumpFourier_sq_integrable :
   rw [integral_undef h] at hzero
   norm_num at hzero
 
+/--
+@isnad1 id=ex.0h1v.s6.6b9f673f544a from=translated src=- shape=347558d4 vocab=e399f063
+-/
 lemma bumpFourier_decay (K : ℕ) :
     ∃ C : ℝ, 0 < C ∧ ∀ u : ℝ, ‖bumpFourier u‖ ≤ C * (1 + |u|) ^ (-(K : ℝ)) := by
   let g : 𝓢(ℝ, ℂ) := 𝓕 bumpSchwartz
@@ -194,6 +224,9 @@ lemma bumpFourier_decay (K : ℕ) :
     _ ≤ c := hweight
     _ ≤ |c| + 1 := by linarith [le_abs_self c]
 
+/--
+@isnad1 id=ex.0h0v.s6.048988f8fa52 from=translated src=- shape=21aa1417 vocab=e8a9e577
+-/
 lemma bumpFourier_lower_bound :
     ∃ c δ : ℝ, 0 < c ∧ 0 < δ ∧
     ∀ u : ℝ, |u| ≤ δ → c ≤ ‖bumpFourier u‖ ^ 2 := by
@@ -250,8 +283,14 @@ def bumpShift (w : ℝ) : 𝓢(ℝ, ℂ) := by
         (contDiff_id.add contDiff_const)
   exact hcomp.toSchwartzMap hsmooth
 
+/--
+@isnad1 id=eq.0h2v.s6.cd832dacb827 from=translated src=- shape=a714954c vocab=92b7b48f
+-/
 lemma bumpShift_apply (w x : ℝ) : bumpShift w x = bump (x + w) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.8449e1964f6d from=translated src=- shape=b08a5ba8 vocab=978a518a
+-/
 lemma fourier_bumpShift (w u : ℝ) :
     (𝓕 (bumpShift w : ℝ → ℂ)) u =
       𝐞 (w * u) * bumpFourier u := by
@@ -302,6 +341,9 @@ private lemma bumpShift_inner_self (w : ℝ) :
       rw [integral_add_right_eq_self (fun x : ℝ => (bump x) ^ 2) w]
     _ = 1 := by rw [bump_l2norm]; norm_num
 
+/--
+@isnad1 id=orthonor.2h3v.s9.1c18297e2bfd from=translated src=- shape=7be95259 vocab=90a17a55
+-/
 lemma bumpShift_orthonormal {ι : Type*} [Finite ι]
     (ξ : ι → ℝ) (N : ℝ) (hN : 0 < N)
     (hsep : IsSeparatedFamily (1 / N) ξ) :

@@ -178,7 +178,9 @@ section Steps
 
 variable {M}
 
-/-- A run extended by one more step at its end. -/
+/-- A run extended by one more step at its end.
+@isnad1 id=stepsin.2h6v.s5.b71d01c97c12 from=translated src=- shape=a6c21d36 vocab=92adba98
+-/
 theorem StepsIn.trans_step : ∀ {n : ℕ} {c d e : Config A},
     M.StepsIn n c d → M.Step d e → M.StepsIn (n + 1) c e := by
   intro n
@@ -191,7 +193,9 @@ theorem StepsIn.trans_step : ∀ {n : ℕ} {c d e : Config A},
 /-- **A run decomposed at its far end**: `n + 1` steps are `n` steps and then
 one. `DescriptiveComplexity.TMData.StepsIn` recurses at the near end; inductions along
 the *time order* – the fixed-point description of a deterministic run – need
-this reading. -/
+this reading.
+@isnad1 id=iff.0h5v.s5.d798c5688599 from=translated src=- shape=a9456b14 vocab=92adba98
+-/
 theorem stepsIn_succ_iff : ∀ {n : ℕ} {c e : Config A},
     M.StepsIn (n + 1) c e ↔ ∃ d, M.StepsIn n c d ∧ M.Step d e := by
   intro n
@@ -214,7 +218,9 @@ theorem stepsIn_succ_iff : ∀ {n : ℕ} {c e : Config A},
 
 /-- **A run splits anywhere**: `m + k` steps decompose into `m` and then `k`,
 through the configuration reached halfway. This is what lets two runs from the
-same configuration be compared at a common time. -/
+same configuration be compared at a common time.
+@isnad1 id=ex.1h6v.s5.8bcd04bb6f03 from=translated src=- shape=afc67b82 vocab=56e3ce2e
+-/
 theorem stepsIn_split : ∀ {m k : ℕ} {c e : Config A},
     M.StepsIn (m + k) c e → ∃ d, M.StepsIn m c d ∧ M.StepsIn k d e := by
   intro m
@@ -232,7 +238,9 @@ theorem stepsIn_split : ∀ {m k : ℕ} {c e : Config A},
 
 /-- **Runs compose.** Phases of a constructed machine are proved one at a time
 and chained with this; the step counts add, which is the form the budget
-obligation of a reduction takes. -/
+obligation of a reduction takes.
+@isnad1 id=stepsin.2h7v.s5.b781da4ad936 from=translated src=- shape=470bb070 vocab=56e3ce2e
+-/
 theorem StepsIn.trans : ∀ {n m : ℕ} {c d e : Config A},
     M.StepsIn n c d → M.StepsIn m d e → M.StepsIn (n + m) c e := by
   intro n
@@ -249,7 +257,9 @@ theorem StepsIn.trans : ∀ {n m : ℕ} {c d e : Config A},
 /-- **A budgeted run is a run**: the space-bounded reading of acceptance forgets
 the count, so every lemma stated with `DescriptiveComplexity.TMData.StepsIn` – the
 sweep primitives of `DescriptiveComplexity.Problems.Machine.Program`, in
-particular – feeds straight into it. -/
+particular – feeds straight into it.
+@isnad1 id=refltran.1h5v.s4.81593d8e351f from=translated src=- shape=0888ea36 vocab=c50a88f2
+-/
 theorem reflTransGen_of_stepsIn : ∀ {n : ℕ} {c d : Config A},
     M.StepsIn n c d → Relation.ReflTransGen M.Step c d := by
   intro n
@@ -261,7 +271,9 @@ theorem reflTransGen_of_stepsIn : ∀ {n : ℕ} {c d : Config A},
 `DescriptiveComplexity.TMData.reflTransGen_of_stepsIn`. A reachability claim
 carries no count, but a chain of steps has one, so a phase proved without a
 budget can still be handed to a caller that needs one – the count is whatever
-the chain happens to be. -/
+the chain happens to be.
+@isnad1 id=ex.1h4v.s4.85d4305ca6a3 from=translated src=- shape=61075c45 vocab=c50a88f2
+-/
 theorem exists_stepsIn_of_reflTransGen {c d : Config A}
     (h : Relation.ReflTransGen M.Step c d) : ∃ n : ℕ, M.StepsIn n c d := by
   induction h with
@@ -272,48 +284,64 @@ theorem exists_stepsIn_of_reflTransGen {c d : Config A}
 
 /-! ### The algebra of budgets -/
 
-/-- A run of exactly `n` steps is a run within `n`. -/
+/-- A run of exactly `n` steps is a run within `n`.
+@isnad1 id=reachesi.1h5v.s4.30a05a522ede from=translated src=- shape=78f8fd43 vocab=9ad4d5a5
+-/
 theorem StepsIn.reachesIn {n : ℕ} {c d : Config A} (h : M.StepsIn n c d) :
     M.ReachesIn n c d :=
   ⟨n, Nat.le_refl n, h⟩
 
 /-- **Every run has a budget**, the same fact stated for
-`DescriptiveComplexity.TMData.ReachesIn`. -/
+`DescriptiveComplexity.TMData.ReachesIn`.
+@isnad1 id=ex.1h4v.s4.3a41177e3a56 from=translated src=- shape=61075c45 vocab=c05529cf
+-/
 theorem exists_reachesIn_of_reflTransGen {c d : Config A}
     (h : Relation.ReflTransGen M.Step c d) : ∃ n : ℕ, M.ReachesIn n c d := by
   obtain ⟨n, hn⟩ := exists_stepsIn_of_reflTransGen h
   exact ⟨n, hn.reachesIn⟩
 
 /-- **A budget may be raised**, which is what makes phases of different lengths
-composable: each is charged a bound it need not meet. -/
+composable: each is charged a bound it need not meet.
+@isnad1 id=reachesi.2h6v.s5.720f09641b0f from=translated src=- shape=b7ba4bef vocab=651f068f
+-/
 theorem ReachesIn.mono {n m : ℕ} {c d : Config A} (hnm : n ≤ m) (h : M.ReachesIn n c d) :
     M.ReachesIn m c d := by
   obtain ⟨k, hk, hrun⟩ := h
   exact ⟨k, hk.trans hnm, hrun⟩
 
-/-- Standing still costs nothing. -/
+/-- Standing still costs nothing.
+@isnad1 id=reachesi.0h4v.s4.1dbeaeb17881 from=translated src=- shape=263961bb vocab=14d83b8a
+-/
 theorem reachesIn_refl {n : ℕ} {c : Config A} : M.ReachesIn n c c :=
   ⟨0, Nat.zero_le n, rfl⟩
 
-/-- One step costs one. -/
+/-- One step costs one.
+@isnad1 id=reachesi.1h4v.s4.7c29c6c4a6ec from=translated src=- shape=6259f8e4 vocab=5a39187f
+-/
 theorem reachesIn_of_step {c d : Config A} (h : M.Step c d) : M.ReachesIn 1 c d :=
   ⟨1, Nat.le_refl 1, ⟨d, h, rfl⟩⟩
 
 /-- **Budgeted runs compose, and their budgets add.** This is the whole reason
 for the notion: a program's cost is read off its phases as a sum, and compared
-with the clock once. -/
+with the clock once.
+@isnad1 id=reachesi.2h7v.s5.599c6fcd523d from=translated src=- shape=470bb070 vocab=b2f6a3f4
+-/
 theorem ReachesIn.trans {n m : ℕ} {c d e : Config A}
     (hcd : M.ReachesIn n c d) (hde : M.ReachesIn m d e) : M.ReachesIn (n + m) c e := by
   obtain ⟨k, hk, hrun⟩ := hcd
   obtain ⟨l, hl, hrun'⟩ := hde
   exact ⟨k + l, Nat.add_le_add hk hl, hrun.trans hrun'⟩
 
-/-- A budgeted run extended by one step at its end. -/
+/-- A budgeted run extended by one step at its end.
+@isnad1 id=reachesi.2h6v.s5.92fc43904f13 from=translated src=- shape=a6c21d36 vocab=df60571f
+-/
 theorem ReachesIn.tail {n : ℕ} {c d e : Config A} (h : M.ReachesIn n c d) (hstep : M.Step d e) :
     M.ReachesIn (n + 1) c e :=
   h.trans (reachesIn_of_step hstep)
 
-/-- A budgeted run extended by one step at its start. -/
+/-- A budgeted run extended by one step at its start.
+@isnad1 id=reachesi.2h6v.s5.50ff08a1e151 from=translated src=- shape=2763adf1 vocab=df60571f
+-/
 theorem ReachesIn.head {n : ℕ} {c d e : Config A} (hstep : M.Step c d) (h : M.ReachesIn n d e) :
     M.ReachesIn (n + 1) c e :=
   (Nat.add_comm 1 n) ▸ (reachesIn_of_step hstep).trans h
@@ -321,7 +349,9 @@ theorem ReachesIn.head {n : ℕ} {c d e : Config A} (hstep : M.Step c d) (h : M.
 /-- **Five legs, added up**: two runs of the same length with a step before,
 between and after them. This is the shape a program's opening has – enter, a
 sweep, turn round, a sweep, enter the next phase – and the addition is all there
-is to its cost. -/
+is to its cost.
+@isnad1 id=reachesi.5h9v.s6.fb06cf75626d from=translated src=- shape=2b9bff5d vocab=b5dfe88a
+-/
 theorem reachesIn_five {n : ℕ} {c₀ c₁ c₂ c₃ c₄ c₅ : Config A}
     (h₁ : M.Step c₀ c₁) (h₂ : M.ReachesIn n c₁ c₂) (h₃ : M.Step c₂ c₃)
     (h₄ : M.ReachesIn n c₃ c₄) (h₅ : M.Step c₄ c₅) :
@@ -332,7 +362,9 @@ theorem reachesIn_five {n : ℕ} {c₀ c₁ c₂ c₃ c₄ c₅ : Config A}
 
 /-- **A budgeted run is a run.** The erasure that turns every statement of a
 clocked program into the corresponding statement of a space-bounded one, which is
-why the two models share their phase lemmas. -/
+why the two models share their phase lemmas.
+@isnad1 id=refltran.1h5v.s4.1da86e19903c from=translated src=- shape=0888ea36 vocab=c05529cf
+-/
 theorem ReachesIn.reflTransGen {n : ℕ} {c d : Config A} (h : M.ReachesIn n c d) :
     Relation.ReflTransGen M.Step c d := by
   obtain ⟨_, -, hrun⟩ := h
@@ -340,7 +372,9 @@ theorem ReachesIn.reflTransGen {n : ℕ} {c d : Config A} (h : M.ReachesIn n c d
 
 /-- **A budgeted run that ends accepting makes the machine accept**, provided the
 budget is below the clock. The one place a program's arithmetic meets
-`DescriptiveComplexity.TMData.Accepts`. -/
+`DescriptiveComplexity.TMData.Accepts`.
+@isnad1 id=accepts.4h5v.s5.445bd0cd84b0 from=translated src=- shape=78a62085 vocab=be482c35
+-/
 theorem accepts_of_reachesIn {n : ℕ} {c₀ c : Config A} (hinit : M.IsInit c₀)
     (hrun : M.ReachesIn n c₀ c) (hlt : n < Nat.card {p : A // M.Posn p})
     (hacc : M.Acc c.state) : M.Accepts := by
@@ -379,7 +413,9 @@ variable {M}
 
 /-- **A well-formed initial tape is functional**: a cell holds either its
 unique input symbol or the unique blank, and the two cases exclude each
-other. -/
+other.
+@isnad1 id=eq.3h5v.s4.721c54ea7819 from=translated src=- shape=b857c795 vocab=3b8d5acb
+-/
 theorem initTape_functional (hwf : M.WellFormed) {p a b : A}
     (ha : M.InitTape p a) (hb : M.InitTape p b) : a = b := by
   rcases ha with ha | ⟨hna, ha⟩ <;> rcases hb with hb | ⟨hnb, hb⟩
@@ -390,7 +426,9 @@ theorem initTape_functional (hwf : M.WellFormed) {p a b : A}
 
 /-- **A machine with one start state has at most one initial configuration**:
 the start state and the lowest position are pinned, and well-formedness makes
-the initial tape functional. -/
+the initial tape functional.
+@isnad1 id=eq.4h4v.s5.64dae2c2fe11 from=translated src=- shape=860395c1 vocab=02213d44
+-/
 theorem isInit_unique (hwf : M.WellFormed)
     (hstart : ∀ q q', M.Start q → M.Start q' → q = q')
     {c c' : Config A} (h : M.IsInit c) (h' : M.IsInit c') : c = c' := by
@@ -400,7 +438,9 @@ theorem isInit_unique (hwf : M.WellFormed)
 
 /-- **A well-formed machine with a start state has an initial configuration**:
 put the head on the lowest position and read the tape off the input, filling
-the unwritten cells with the blank. -/
+the unwritten cells with the blank.
+@isnad1 id=ex.2h3v.s5.e0bad5faf969 from=translated src=- shape=aaf4d0eb vocab=58a1e7ea
+-/
 theorem exists_isInit [Finite A] (hwf : M.WellFormed) {q₀ : A} (hq : M.Start q₀) :
     ∃ c₀ : Config A, M.IsInit c₀ ∧ c₀.state = q₀ := by
   classical
@@ -491,6 +531,9 @@ theorem _root_.DescriptiveComplexity.Config.map_injective (u : B ≃ A) :
   have ht : t = t' := funext fun b => u.injective (by simpa using congrFun h3 (u b))
   simp [u.injective h1, u.injective h2, ht]
 
+/--
+@isnad1 id=iff.1h6v.s5.49762e82270b from=translated src=- shape=fbbade92 vocab=65d2aedc
+-/
 theorem Agree.minPos (h : Agree u N M) {b : B} :
     MinPos N.Le N.Posn b ↔ MinPos M.Le M.Posn (u b) := by
   refine and_congr (h.posn b) ⟨fun hm a ha => ?_, fun hm a ha => ?_⟩
@@ -498,6 +541,9 @@ theorem Agree.minPos (h : Agree u N M) {b : B} :
     rwa [(h.le _ _), Equiv.apply_symm_apply] at this
   · exact (h.le _ _).mpr (hm (u a) ((h.posn a).mp ha))
 
+/--
+@isnad1 id=iff.1h7v.s6.055f60544f51 from=translated src=- shape=33ecb227 vocab=688076aa
+-/
 theorem Agree.succPos (h : Agree u N M) {b b' : B} :
     SuccPos N.Le N.Posn b b' ↔ SuccPos M.Le M.Posn (u b) (u b') := by
   refine and_congr (h.posn b) (and_congr (h.posn b') (and_congr (h.le _ _)
@@ -510,12 +556,18 @@ theorem Agree.succPos (h : Agree u N M) {b b' : B} :
   · rcases hs (u a) ((h.posn a).mp ha) ((h.le _ _).mp h₁) ((h.le _ _).mp h₂) with h' | h' <;>
       [left; right] <;> exact u.injective h'
 
+/--
+@isnad1 id=iff.1h7v.s6.0f8612797813 from=translated src=- shape=0d4fd19a vocab=c7a8c18d
+-/
 theorem Agree.initTape (h : Agree u N M) {b b' : B} :
     N.InitTape b b' ↔ M.InitTape (u b) (u b') := by
   refine or_congr (h.inp _ _) (and_congr ⟨fun hn a ha => ?_, fun hn a ha => ?_⟩ (h.blank _))
   · exact hn (u.symm a) ((h.inp _ _).mpr (by rwa [Equiv.apply_symm_apply]))
   · exact hn (u a) ((h.inp _ _).mp ha)
 
+/--
+@isnad1 id=iff.1h6v.s5.22032779b1c6 from=translated src=- shape=7686d817 vocab=1be478fb
+-/
 theorem Agree.isInit (h : Agree u N M) {c : Config B} :
     N.IsInit c ↔ M.IsInit (c.map u) := by
   refine and_congr (h.start _) (and_congr h.minPos ⟨fun hi p => ?_, fun hi b => ?_⟩)
@@ -523,6 +575,9 @@ theorem Agree.isInit (h : Agree u N M) {c : Config B} :
     rwa [Equiv.apply_symm_apply] at this
   · exact (h.initTape (u := u)).mpr (by simpa using hi (u b))
 
+/--
+@isnad1 id=iff.1h7v.s5.8814fe57c39a from=translated src=- shape=e1b2cc41 vocab=2bdfa472
+-/
 theorem Agree.step (h : Agree u N M) {c c' : Config B} :
     N.Step c c' ↔ M.Step (c.map u) (c'.map u) := by
   constructor
@@ -554,6 +609,9 @@ theorem Agree.step (h : Agree u N M) {c c' : Config B} :
         rw [← Equiv.apply_symm_apply u τ]
         exact (h.right _).mp hcon
 
+/--
+@isnad1 id=iff.1h8v.s5.329cd8038072 from=translated src=- shape=c8d639ba vocab=988b7ace
+-/
 theorem Agree.stepsIn (h : Agree u N M) :
     ∀ (n : ℕ) (c c' : Config B), N.StepsIn n c c' ↔ M.StepsIn n (c.map u) (c'.map u) := by
   intro n
@@ -571,7 +629,9 @@ theorem Agree.stepsIn (h : Agree u N M) :
       obtain ⟨d₀, rfl⟩ := Config.map_surjective u d
       exact ⟨d₀, h.step.mpr hstep, (ih d₀ c').mpr hrest⟩
 
-/-- **Acceptance transports along an equivalence.** -/
+/-- **Acceptance transports along an equivalence.**
+@isnad1 id=iff.1h5v.s4.2a85c13a289e from=translated src=- shape=18b71591 vocab=29a6edf9
+-/
 theorem Agree.accepts (h : Agree u N M) : N.Accepts ↔ M.Accepts := by
   have hcard : Nat.card {b : B // N.Posn b} = Nat.card {a : A // M.Posn a} :=
     Nat.card_congr (u.subtypeEquiv fun b => h.posn b)
@@ -585,7 +645,9 @@ theorem Agree.accepts (h : Agree u N M) : N.Accepts ↔ M.Accepts := by
     exact ⟨d₀, d, n, h.isInit.mpr hinit, hcard ▸ hle,
       (h.stepsIn n d₀ d).mpr hrun, (h.acc _).mpr hacc⟩
 
-/-- Reachability in the configuration graph transports along an equivalence. -/
+/-- Reachability in the configuration graph transports along an equivalence.
+@isnad1 id=iff.1h7v.s5.418811be0b87 from=translated src=- shape=24efbac1 vocab=4b626f19
+-/
 theorem Agree.reach (h : Agree u N M) (c c' : Config B) :
     Relation.ReflTransGen N.Step c c' ↔ Relation.ReflTransGen M.Step (c.map u) (c'.map u) := by
   constructor
@@ -607,7 +669,9 @@ theorem Agree.reach (h : Agree u N M) (c c' : Config B) :
         exact (ih d p₀ hd rfl).tail (h.step.mpr (he ▸ hpq))
     exact key _ _ hr c c' rfl rfl
 
-/-- **Acceptance in bounded space transports along an equivalence.** -/
+/-- **Acceptance in bounded space transports along an equivalence.**
+@isnad1 id=iff.1h5v.s4.810b59f28561 from=translated src=- shape=18b71591 vocab=120d14ff
+-/
 theorem Agree.acceptsSpace (h : Agree u N M) : N.AcceptsSpace ↔ M.AcceptsSpace := by
   constructor
   · rintro ⟨c₀, c, hinit, hreach, hacc⟩
@@ -617,7 +681,9 @@ theorem Agree.acceptsSpace (h : Agree u N M) : N.AcceptsSpace ↔ M.AcceptsSpace
     obtain ⟨d, rfl⟩ := Config.map_surjective u c
     exact ⟨d₀, d, h.isInit.mpr hinit, (h.reach d₀ d).mpr hreach, (h.acc _).mpr hacc⟩
 
-/-- **Determinism transports along an equivalence.** -/
+/-- **Determinism transports along an equivalence.**
+@isnad1 id=iff.1h5v.s4.5aef8c6b2e9b from=translated src=- shape=18b71591 vocab=783171d8
+-/
 theorem Agree.deterministic (h : Agree u N M) : N.Deterministic ↔ M.Deterministic := by
   have hstart : (∀ q q', N.Start q → N.Start q' → q = q') ↔
       ∀ q q', M.Start q → M.Start q' → q = q' :=
@@ -660,7 +726,9 @@ theorem Agree.deterministic (h : Agree u N M) : N.Deterministic ↔ M.Determinis
         u.injective (hf (u τ) (u a) (u a') ((h.write _ _).mp h1) ((h.write _ _).mp h2))⟩
   exact and_congr hstart (and_congr huniq (and_congr hdst hwrite))
 
-/-- **Well-formedness transports along an equivalence.** -/
+/-- **Well-formedness transports along an equivalence.**
+@isnad1 id=iff.1h5v.s4.3def2486488c from=translated src=- shape=18b71591 vocab=109d3f27
+-/
 theorem Agree.wellFormed (h : Agree u N M) : N.WellFormed ↔ M.WellFormed := by
   have hinp : ∀ p a : A, M.Inp p a ↔ N.Inp (u.symm p) (u.symm a) := by
     intro p a; rw [h.inp, Equiv.apply_symm_apply, Equiv.apply_symm_apply]

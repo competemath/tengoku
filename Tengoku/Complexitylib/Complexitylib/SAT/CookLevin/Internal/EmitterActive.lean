@@ -34,7 +34,9 @@ open Emit
 
 /-- **Unrolled emission**: if every element's machine appends its word from
     any accumulator, the `bigSeqTM` of the mapped list appends the
-    `flatMap`. -/
+    `flatMap`.
+@isnad1 id=hoaretim.3h8v.s7.dfec59397c93 from=translated src=- shape=0113b91c vocab=e7844500
+-/
 theorem bigSeq_emit_hoareTime {α : Type _} (F : α → TM nT)
     (E : α → List Bool) (b : ℕ) (inp₀ : Tape) (W : Fin nT → Tape)
     (hinp₀ : Parked inp₀) (hWP : ∀ i, Parked (W i)) :
@@ -69,7 +71,9 @@ theorem bigSeq_emit_hoareTime {α : Type _} (F : α → TM nT)
         Nat.succ_mul ..
       omega
 
-/-- Peel the zero iteration off a range `flatMap`. -/
+/-- Peel the zero iteration off a range `flatMap`.
+@isnad1 id=eq.0h3v.s6.0971d2240392 from=translated src=- shape=4ea19b6c vocab=7dfcba1c
+-/
 theorem flatMap_range_split {γ : Type _} (n : ℕ) (G : ℕ → List γ) :
     (List.range (n + 1)).flatMap G
       = G 0 ++ (List.range n).flatMap (fun j => G (1 + j)) := by
@@ -96,7 +100,9 @@ def posMoveOpt (v : ℕ) : Option Dir3 → ℕ
   | none => v
   | some d => posMove v d
 
-/-- `posMoveOpt` moves a position bounded by `P` to one bounded by `P + 1`. -/
+/-- `posMoveOpt` moves a position bounded by `P` to one bounded by `P + 1`.
+@isnad1 id=le.1h3v.s5.33f1d3284728 from=translated src=- shape=a7c08127 vocab=e8ef0742
+-/
 theorem posMoveOpt_le (v P : ℕ) (mv : Option Dir3) (hv : v ≤ P) :
     posMoveOpt v mv ≤ P + 1 := by
   cases mv with
@@ -108,7 +114,9 @@ theorem posMoveOpt_le (v P : ℕ) (mv : Option Dir3) (hv : v ≤ P) :
     | right => show v + 1 ≤ P + 1; omega
 
 /-- **`setupPosTM` Hoare specification**: `auxReg2 := posMoveOpt` of the
-    position register's value. -/
+    position register's value.
+@isnad1 id=hoaretim.7h8v.s7.7eedc9d551a9 from=translated src=- shape=3c6fdb8e vocab=2d7f4c3b
+-/
 theorem setupPosTM_hoareTime (p : Fin nT) (hp : p ≠ auxReg2)
     (mv : Option Dir3) (M v a : ℕ)
     (hv : v + 1 ≤ M) (ha : a ≤ M)
@@ -219,7 +227,9 @@ structure ActiveBase (Qc steps P M t pi pw po : ℕ)
   /-- The third position register holds the output-head position. -/
   hp3 : base pos3Reg = regTape po
 
-/-- The base facts survive scratch-position updates. -/
+/-- The base facts survive scratch-position updates.
+@isnad1 id=activeba.1h10v.s5.ee230089fd77 from=translated src=- shape=6ff6a1cb vocab=856f7329
+-/
 theorem ActiveBase.update_aux {Qc steps P M t pi pw po : ℕ}
     {base : Fin nT → Tape}
     (hB : ActiveBase Qc steps P M t pi pw po base) (z : ℕ) :
@@ -237,7 +247,9 @@ theorem ActiveBase.update_aux {Qc steps P M t pi pw po : ℕ}
    by rw [Function.update_of_ne (by decide)]; exact hB.hp2,
    by rw [Function.update_of_ne (by decide)]; exact hB.hp3⟩
 
-/-- The reading condition denotes `activeCondF`. -/
+/-- The reading condition denotes `activeCondF`.
+@isnad1 id=forall.2h15v.s7.198fa972f002 from=translated src=- shape=5e52ac90 vocab=0da610f4
+-/
 theorem activeCondD_spec (q : N.Q) (si sw so : Γ) (b : Bool)
     {Qc steps P M t pi pw po : ℕ} {base : Fin nT → Tape}
     (hQc : Qc = Fintype.card N.Q)
@@ -331,7 +343,9 @@ noncomputable def activeLeafTM (N : NTM 1) (q : N.Q) (si sw so : Γ)
 def activeLeafBudget (M : ℕ) : ℕ :=
   7 * clauseBudget 9 M + 7 * opBudget M + 13
 
-/-- One conseq-clause emission from an `ActiveBase` state. -/
+/-- One conseq-clause emission from an `ActiveBase` state.
+@isnad1 id=hoaretim.4h19v.s7.ea15f894fd3b from=translated src=- shape=f36f5cf3 vocab=a31f7ffe
+-/
 theorem activeClauseTM_hoareTime (q : N.Q) (si sw so : Γ) (b : Bool)
     {Qc steps P M t pi pw po : ℕ} {base : Fin nT → Tape}
     (hQc : Qc = Fintype.card N.Q)
@@ -363,7 +377,9 @@ theorem activeClauseTM_hoareTime (q : N.Q) (si sw so : Γ) (b : Bool)
     inp₀ ys hinp₀ hB.parked hB.hrA hB.hrB hB.hrC hB.hrD
 
 /-- **`activeLeafTM` Hoare specification**: appends the encoded
-    `activeClausesAtF` for the tuple. -/
+    `activeClausesAtF` for the tuple.
+@isnad1 id=hoaretim.9h22v.s9.a2ea779ec83d from=translated src=- shape=168669d7 vocab=721f71a8
+-/
 theorem activeLeafTM_hoareTime (q : N.Q) (si sw so : Γ) (b : Bool)
     (wSymVal oSymVal : Γ) (mvI mvW mvO : Option Dir3)
     {Qc steps P M t pi pw po : ℕ} {base : Fin nT → Tape}
@@ -668,7 +684,9 @@ noncomputable def activeBLevelTM (q : N.Q) (si sw so : Γ)
 /-- Budget of the choice-bit unroll: two leaves. -/
 def activeBLevelBudget (M : ℕ) : ℕ := 2 * (activeLeafBudget M + 1) + 1
 
-/-- **`activeBLevelTM` Hoare specification.** -/
+/-- **`activeBLevelTM` Hoare specification.**
+@isnad1 id=hoaretim.8h18v.s7.bafa6c9e951a from=translated src=- shape=dc37f6c5 vocab=3f35394d
+-/
 theorem activeBLevelTM_hoareTime (q : N.Q) (si sw so : Γ)
     (pwZero poZero : Bool)
     {Qc steps P M t pi pw po : ℕ} {base : Fin nT → Tape}
@@ -750,7 +768,9 @@ noncomputable def activeSoLevelTM (q : N.Q) (si sw : Γ)
 /-- Budget of the output-symbol unroll: four choice-bit levels. -/
 def activeSoLevelBudget (M : ℕ) : ℕ := 4 * (activeBLevelBudget M + 1) + 1
 
-/-- **`activeSoLevelTM` Hoare specification.** -/
+/-- **`activeSoLevelTM` Hoare specification.**
+@isnad1 id=hoaretim.8h17v.s7.b8e4b7653323 from=translated src=- shape=92e0bbee vocab=c44e2f12
+-/
 theorem activeSoLevelTM_hoareTime (q : N.Q) (si sw : Γ)
     (pwZero poZero : Bool)
     {Qc steps P M t pi pw po : ℕ} {base : Fin nT → Tape}
@@ -799,7 +819,9 @@ def activePoSplitBudget (M : ℕ) : ℕ :=
       + (loopBudget M (activeSoLevelBudget M) + 1 + opBudget M))
 
 /-- **`activePoSplitTM` Hoare specification** (at `po = 0` boundary
-    state). -/
+    state).
+@isnad1 id=hoaretim.7h15v.s7.60956a21c863 from=translated src=- shape=073fb1a8 vocab=6393ca27
+-/
 theorem activePoSplitTM_hoareTime (q : N.Q) (si sw : Γ) (pwZero : Bool)
     {Qc steps P M t pi pw : ℕ} {base : Fin nT → Tape}
     (hQc : Qc = Fintype.card N.Q)
@@ -993,7 +1015,9 @@ noncomputable def activeSwLevelTM (q : N.Q) (si : Γ) (pwZero : Bool) :
 /-- Budget of the work-symbol unroll: four output-position blocks. -/
 def activeSwLevelBudget (M : ℕ) : ℕ := 4 * (activePoSplitBudget M + 1) + 1
 
-/-- **`activeSwLevelTM` Hoare specification.** -/
+/-- **`activeSwLevelTM` Hoare specification.**
+@isnad1 id=hoaretim.7h14v.s7.c597d3849daa from=translated src=- shape=74d74830 vocab=f0562545
+-/
 theorem activeSwLevelTM_hoareTime (q : N.Q) (si : Γ) (pwZero : Bool)
     {Qc steps P M t pi pw : ℕ} {base : Fin nT → Tape}
     (hQc : Qc = Fintype.card N.Q)
@@ -1039,7 +1063,9 @@ def activePwSplitBudget (M : ℕ) : ℕ :=
       + (loopBudget M (activeSwLevelBudget M) + 1 + opBudget M))
 
 /-- **`activePwSplitTM` Hoare specification** (at `pw = po = 0` boundary
-    state). -/
+    state).
+@isnad1 id=hoaretim.6h12v.s7.c2f5ae9d76f1 from=translated src=- shape=7a8be257 vocab=c34dfa48
+-/
 theorem activePwSplitTM_hoareTime (q : N.Q) (si : Γ)
     {Qc steps P M t pi : ℕ} {base : Fin nT → Tape}
     (hQc : Qc = Fintype.card N.Q)
@@ -1238,7 +1264,9 @@ noncomputable def activeSiLevelTM (q : N.Q) : TM nT :=
 /-- Budget of the input-symbol unroll: four work-position blocks. -/
 def activeSiLevelBudget (M : ℕ) : ℕ := 4 * (activePwSplitBudget M + 1) + 1
 
-/-- **`activeSiLevelTM` Hoare specification.** -/
+/-- **`activeSiLevelTM` Hoare specification.**
+@isnad1 id=hoaretim.6h11v.s7.ce5cf45ebd56 from=translated src=- shape=64ecb316 vocab=154389c2
+-/
 theorem activeSiLevelTM_hoareTime (q : N.Q)
     {Qc steps P M t pi : ℕ} {base : Fin nT → Tape}
     (hQc : Qc = Fintype.card N.Q)
@@ -1287,7 +1315,9 @@ def activePiLoopBudget (M : ℕ) : ℕ :=
   loopBudget M (activeSiLevelBudget M) + 1 + opBudget M
 
 set_option maxHeartbeats 4000000 in
-/-- **`activePiLoopTM` Hoare specification** (at the row boundary state). -/
+/-- **`activePiLoopTM` Hoare specification** (at the row boundary state).
+@isnad1 id=hoaretim.7h10v.s8.1a3b414033b1 from=translated src=- shape=eee25336 vocab=bea2e07a
+-/
 theorem activePiLoopTM_hoareTime (q : N.Q)
     {Qc steps P M t : ℕ} {base : Fin nT → Tape}
     (hQc : Qc = Fintype.card N.Q)
@@ -1461,7 +1491,9 @@ def activeQLevelBudget (N : NTM 1) (M : ℕ) : ℕ :=
   Fintype.card N.Q * (activePiLoopBudget M + 1) + 1
 
 set_option maxHeartbeats 4000000 in
-/-- **`activeQLevelTM` Hoare specification.** -/
+/-- **`activeQLevelTM` Hoare specification.**
+@isnad1 id=hoaretim.7h9v.s8.9ebde16ad19a from=translated src=- shape=d899dfac vocab=007565bd
+-/
 theorem activeQLevelTM_hoareTime
     {Qc steps P M t : ℕ} {base : Fin nT → Tape}
     (hQc : Qc = Fintype.card N.Q)
@@ -1521,7 +1553,9 @@ noncomputable def emitActiveTM : TM nT := emitLoopTM (activeRowTM N) tReg tFuel
 
 set_option maxHeartbeats 4000000 in
 /-- **`activeRowTM` Hoare specification** (at row `i < steps`; the
-    successor-row register enters at `i` and leaves at `i + 1`). -/
+    successor-row register enters at `i` and leaves at `i + 1`).
+@isnad1 id=hoaretim.18h9v.s9.149e376146c9 from=translated src=- shape=b3614a03 vocab=18396168
+-/
 theorem activeRowTM_hoareTime (Qc steps P M i : ℕ)
     (hQc : Qc = Fintype.card N.Q)
     (hM : 4 * (steps + 1) * (max Qc 3) * (P + 2) * 4 ≤ M)
@@ -1592,7 +1626,9 @@ theorem activeRowTM_hoareTime (Qc steps P M i : ℕ)
 set_option maxHeartbeats 4000000 in
 /-- **`emitActiveTM` Hoare specification**: appends the encoded active
     transition family, leaving row counter and successor-row register at
-    `steps`. -/
+    `steps`.
+@isnad1 id=hoaretim.18h8v.s8.667b49fdf261 from=translated src=- shape=c6b22657 vocab=b4dfcf57
+-/
 theorem emitActiveTM_hoareTime (Qc steps P M : ℕ)
     (hQc : Qc = Fintype.card N.Q)
     (hM : 4 * (steps + 1) * (max Qc 3) * (P + 2) * 4 ≤ M)

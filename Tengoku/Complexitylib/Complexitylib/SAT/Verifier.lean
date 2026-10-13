@@ -67,15 +67,21 @@ def tokenize? : List Bool → Option (List EncToken)
   | false :: true :: rest => Option.map (EncToken.litSep :: ·) (tokenize? rest)
   | true :: false :: rest => Option.map (EncToken.clauseSep :: ·) (tokenize? rest)
 
-/-- The empty token stream encodes to the empty bitstring. -/
+/-- The empty token stream encodes to the empty bitstring.
+@isnad1 id=eq.0h0v.s3.227e170ef889 from=translated src=- shape=1d803c6d vocab=dc1b6e2f
+-/
 @[simp] theorem encodeTokens_nil : encodeTokens [] = [] := rfl
 
-/-- `encodeTokens` unfolds on `cons`: the head token's bits precede the tail's encoding. -/
+/-- `encodeTokens` unfolds on `cons`: the head token's bits precede the tail's encoding.
+@isnad1 id=eq.0h2v.s4.8e5106a0b355 from=translated src=- shape=c0499edc vocab=5fbb7021
+-/
 @[simp] theorem encodeTokens_cons (tok : EncToken) (toks : List EncToken) :
     encodeTokens (tok :: toks) = tok.encode ++ encodeTokens toks := by
   cases tok <;> rfl
 
-/-- `encodeTokens` is a monoid homomorphism: it distributes over list append. -/
+/-- `encodeTokens` is a monoid homomorphism: it distributes over list append.
+@isnad1 id=eq.0h2v.s5.700e460ac2b8 from=translated src=- shape=72e5a4ef vocab=9c8b0316
+-/
 @[simp] theorem encodeTokens_append (xs ys : List EncToken) :
     encodeTokens (xs ++ ys) = encodeTokens xs ++ encodeTokens ys := by
   induction xs with
@@ -83,7 +89,9 @@ def tokenize? : List Bool → Option (List EncToken)
   | cons x xs ih =>
       simp [List.append_assoc, ih]
 
-/-- Round trip: tokenizing an encoded token stream recovers the original tokens. -/
+/-- Round trip: tokenizing an encoded token stream recovers the original tokens.
+@isnad1 id=eq.0h1v.s3.d14aea89cdb4 from=translated src=- shape=db627983 vocab=5c25920e
+-/
 @[simp] theorem tokenize?_encodeTokens (toks : List EncToken) :
     tokenize? (encodeTokens toks) = some toks := by
   induction toks with
@@ -108,7 +116,9 @@ def tokenize? : List Bool → Option (List EncToken)
           simp [tokenize?, ih]
 
 /-- Soundness of `tokenize?`: any successfully tokenized bitstring is the
-encoding of the resulting token stream. -/
+encoding of the resulting token stream.
+@isnad1 id=eq.1h2v.s4.acab7abf08e5 from=translated src=- shape=07781f30 vocab=60ee2910
+-/
 theorem tokenize?_sound {z : List Bool} {toks : List EncToken}
     (h : tokenize? z = some toks) : z = encodeTokens toks := by
   let rec hsound : ∀ z toks, tokenize? z = some toks → z = encodeTokens toks
@@ -140,7 +150,9 @@ theorem tokenize?_sound {z : List Bool} {toks : List EncToken}
         simp [encodeTokens, EncToken.encode, henc]
   exact hsound z toks h
 
-/-- Encoding a stream of `bit` tokens doubles each underlying bit. -/
+/-- Encoding a stream of `bit` tokens doubles each underlying bit.
+@isnad1 id=eq.0h1v.s3.6b1aeaf6f3a8 from=translated src=- shape=ec8a0490 vocab=6a6f3b80
+-/
 @[simp] theorem encodeTokens_map_bit (bs : List Bool) :
     encodeTokens (bs.map EncToken.bit) = doubleBits bs := by
   induction bs with
@@ -163,7 +175,9 @@ def decodeRaw? : List Bool → Option Lit
       else
         none
 
-/-- Round trip: decoding a literal's raw encoding recovers the literal. -/
+/-- Round trip: decoding a literal's raw encoding recovers the literal.
+@isnad1 id=eq.0h1v.s3.64651f34489e from=translated src=- shape=edb93955 vocab=0658e6ab
+-/
 @[simp] theorem decodeRaw?_encodeRaw (ℓ : Lit) :
     decodeRaw? ℓ.encodeRaw = some ℓ := by
   cases ℓ with
@@ -171,7 +185,9 @@ def decodeRaw? : List Bool → Option Lit
       simp [decodeRaw?, encodeRaw, Unary.encode]
 
 /-- Soundness of `decodeRaw?`: any successfully decoded bitstring is the raw
-encoding of the resulting literal. -/
+encoding of the resulting literal.
+@isnad1 id=eq.1h2v.s4.22a89fcf18d4 from=translated src=- shape=869f389b vocab=10fcb47b
+-/
 theorem decodeRaw?_sound {bs : List Bool} {ℓ : Lit}
     (h : decodeRaw? bs = some ℓ) : bs = ℓ.encodeRaw := by
   cases bs with
@@ -194,7 +210,9 @@ theorem decodeRaw?_sound {bs : List Bool} {ℓ : Lit}
 def rawTokens (ℓ : Lit) : List EncToken :=
   ℓ.encodeRaw.map EncToken.bit
 
-/-- A literal's token-level encoding flattens to its raw bits, doubled. -/
+/-- A literal's token-level encoding flattens to its raw bits, doubled.
+@isnad1 id=eq.0h1v.s3.a55b38d8d9e9 from=translated src=- shape=307674b3 vocab=c11c97d0
+-/
 @[simp] theorem encodeTokens_rawTokens (ℓ : Lit) :
     encodeTokens ℓ.rawTokens = doubleBits ℓ.encodeRaw := by
   simp [rawTokens]
@@ -212,7 +230,9 @@ def tokens : Clause → List EncToken
   | [] => []
   | ℓ :: ℓs => ℓ.rawTokens ++ [EncToken.litSep] ++ tokens ℓs
 
-/-- A clause's token-level encoding flattens to its concrete bit encoding. -/
+/-- A clause's token-level encoding flattens to its concrete bit encoding.
+@isnad1 id=eq.0h1v.s3.f3ab2c6f7580 from=translated src=- shape=d403cf25 vocab=bbd46c04
+-/
 @[simp] theorem encodeTokens_tokens (c : Clause) :
     encodeTokens (tokens c) = c.encode := by
   induction c with
@@ -220,7 +240,9 @@ def tokens : Clause → List EncToken
   | cons ℓ ℓs ih =>
       simp [tokens, encode_cons, ih, List.append_assoc, EncToken.encode]
 
-/-- `Clause.tokens` distributes over list append. -/
+/-- `Clause.tokens` distributes over list append.
+@isnad1 id=eq.0h2v.s5.18448a5fb4ba from=translated src=- shape=82c640f9 vocab=7dfe7a98
+-/
 @[simp] theorem tokens_append (c₁ c₂ : Clause) :
     tokens (c₁ ++ c₂) = tokens c₁ ++ tokens c₂ := by
   induction c₁ with
@@ -237,7 +259,9 @@ def tokens : CNF → List EncToken
   | [] => []
   | c :: cs => c.tokens ++ [EncToken.clauseSep] ++ tokens cs
 
-/-- A CNF's token-level encoding flattens to its concrete bit encoding. -/
+/-- A CNF's token-level encoding flattens to its concrete bit encoding.
+@isnad1 id=eq.0h1v.s3.821cd38778e0 from=translated src=- shape=d403cf25 vocab=e6d8d4ca
+-/
 @[simp] theorem encodeTokens_tokens (φ : CNF) :
     encodeTokens (tokens φ) = φ.encode := by
   induction φ with
@@ -245,7 +269,9 @@ def tokens : CNF → List EncToken
   | cons c cs ih =>
       simp [tokens, encode_cons, ih, List.append_assoc, EncToken.encode]
 
-/-- `CNF.tokens` distributes over list append. -/
+/-- `CNF.tokens` distributes over list append.
+@isnad1 id=eq.0h2v.s5.789e79cdeb8b from=translated src=- shape=82c640f9 vocab=f848b785
+-/
 @[simp] theorem tokens_append (φ ψ : CNF) :
     tokens (φ ++ ψ) = tokens φ ++ tokens ψ := by
   induction φ with
@@ -360,7 +386,9 @@ def CNF.decode? (z : List Bool) : Option CNF := do
   let toks <- tokenize? z
   parseTokensAux toks [] [] []
 
-/-- Round trip: decoding an encoded CNF recovers the formula. -/
+/-- Round trip: decoding an encoded CNF recovers the formula.
+@isnad1 id=eq.0h1v.s3.a61ca4a4c7d2 from=translated src=- shape=edb93955 vocab=9bcee94c
+-/
 @[simp] theorem CNF.decode?_encode (φ : CNF) :
     CNF.decode? φ.encode = some φ := by
   rw [CNF.decode?, ← CNF.encodeTokens_tokens φ, tokenize?_encodeTokens]
@@ -369,7 +397,9 @@ def CNF.decode? (z : List Bool) : Option CNF := do
   simpa [parseTokensAux] using hparse
 
 /-- Soundness of `CNF.decode?`: any successfully decoded bitstring is the
-encoding of the resulting CNF. -/
+encoding of the resulting CNF.
+@isnad1 id=eq.1h2v.s4.2baf67cad23f from=translated src=- shape=869f389b vocab=2a9c3d41
+-/
 theorem CNF.decode?_sound {z : List Bool} {φ : CNF}
     (h : CNF.decode? z = some φ) : z = φ.encode := by
   unfold CNF.decode? at h
@@ -400,12 +430,16 @@ def verifyPair (w : List Bool) : Bool :=
       | some φ => decide (α.length ≤ z.length + 1) && CNF.eval α φ
 
 /-- On a well-formed pair `pair(φ.encode, α)`, `verifyPair` reduces to the
-witness length check conjoined with evaluating `φ` under `α`. -/
+witness length check conjoined with evaluating `φ` under `α`.
+@isnad1 id=eq.0h2v.s5.902acba9bec8 from=translated src=- shape=e5c1f7d0 vocab=050d5d5c
+-/
 @[simp] theorem verifyPair_pair_encode (φ : CNF) (α : Assignment) :
     verifyPair (pair φ.encode α) = (decide (α.length ≤ φ.encode.length + 1) && CNF.eval α φ) := by
   simp [verifyPair, CNF.decode?_encode]
 
-/-- Completeness: `verifyPair` accepts the pairing of any witnessed instance. -/
+/-- Completeness: `verifyPair` accepts the pairing of any witnessed instance.
+@isnad1 id=eq.1h2v.s4.d93f2bb19019 from=translated src=- shape=b10876b0 vocab=2ad30b52
+-/
 theorem verifyPair_true_of_witness {z α : List Bool} (hR : Witness z α) :
     verifyPair (pair z α) = true := by
   obtain ⟨φ, hz, hlen, heval⟩ := hR
@@ -413,7 +447,9 @@ theorem verifyPair_true_of_witness {z α : List Bool} (hR : Witness z α) :
   simp [verifyPair_pair_encode, hlen, heval]
 
 /-- Correctness of the verifier: `verifyPair` accepts exactly the members of
-`pairLang Witness`. -/
+`pairLang Witness`.
+@isnad1 id=iff.0h1v.s4.37a1567a072a from=translated src=- shape=b62a3d99 vocab=5e130c45
+-/
 theorem verifyPair_eq_true_iff_mem_pairLang (w : List Bool) :
     verifyPair w = true ↔ w ∈ pairLang Witness := by
   constructor
@@ -439,12 +475,16 @@ theorem verifyPair_eq_true_iff_mem_pairLang (w : List Bool) :
   · rintro ⟨z, α, rfl, hR⟩
     exact verifyPair_true_of_witness hR
 
-/-- `verifyPair_eq_true_iff_mem_pairLang` with the biconditional flipped. -/
+/-- `verifyPair_eq_true_iff_mem_pairLang` with the biconditional flipped.
+@isnad1 id=iff.0h1v.s4.ff6aac702fe8 from=translated src=- shape=fb73aa1b vocab=5e130c45
+-/
 theorem mem_pairLang_iff_verifyPair (w : List Bool) :
     w ∈ pairLang Witness ↔ verifyPair w = true := by
   rw [verifyPair_eq_true_iff_mem_pairLang]
 
-/-- `pairLang Witness` equals the language decided by `verifyPair`, as sets. -/
+/-- `pairLang Witness` equals the language decided by `verifyPair`, as sets.
+@isnad1 id=eq.0h0v.s3.c618c22bfdb0 from=translated src=- shape=3255e942 vocab=e3d20b22
+-/
 theorem pairLang_witness_eq_verifyPairLang :
     pairLang Witness = {w | verifyPair w = true} := by
   ext w

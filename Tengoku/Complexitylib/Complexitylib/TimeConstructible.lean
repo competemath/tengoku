@@ -46,16 +46,22 @@ def TimeConstructible (T : ℕ → ℕ) : Prop :=
 
 namespace TimeConstructible
 
-/-- A time-constructible function satisfies `n ≤ T(n)`. -/
+/-- A time-constructible function satisfies `n ≤ T(n)`.
+@isnad1 id=le.1h2v.s4.e254a2294cbd from=translated src=- shape=2545be41 vocab=10a4f202
+-/
 theorem le_apply {T : ℕ → ℕ} (hT : TimeConstructible T) : ∀ n, n ≤ T n :=
   hT.1
 
-/-- A time-constructible function is positive on positive inputs. -/
+/-- A time-constructible function is positive on positive inputs.
+@isnad1 id=lt.2h2v.s4.37c5b35eb48e from=translated src=- shape=ce03371a vocab=34ed80df
+-/
 theorem pos {T : ℕ → ℕ} (hT : TimeConstructible T) {n : ℕ} (hn : 0 < n) :
     0 < T n :=
   Nat.lt_of_lt_of_le hn (hT.le_apply n)
 
-/-- A time-constructible function is computable in `O(T)` time. -/
+/-- A time-constructible function is computable in `O(T)` time.
+@isnad1 id=ex.1h1v.s5.a6fbdec127bb from=translated src=- shape=9bf05307 vocab=a892e460
+-/
 theorem computable {T : ℕ → ℕ} (hT : TimeConstructible T) :
     ∃ (k : ℕ) (tm : TM k) (f : ℕ → ℕ),
       tm.ComputesInTime (fun x => Nat.bits (T x.length)) f ∧ f =O T :=

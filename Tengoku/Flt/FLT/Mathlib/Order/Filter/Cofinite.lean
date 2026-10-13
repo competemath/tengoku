@@ -16,6 +16,9 @@ Material destined for Mathlib.
 @[expose] public section
 
 -- TODO upstream
+/--
+@isnad1 id=countabl.0h1v.s3.d7b4d685f608 from=translated src=- shape=da9a96f2 vocab=555a52af
+-/
 lemma Filter.cofinite.sets.countable (ι : Type*) [Countable ι] :
     (Filter.cofinite : Filter ι).sets.Countable :=
   Set.Countable.mono (fun _ h ↦ h) <|

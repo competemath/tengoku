@@ -99,6 +99,9 @@ def rTensor' {R : Type*} {M N : Type*} (V : Type*)
     exact (map_smul φ _ m).symm
   }
 
+/--
+@isnad1 id=eq.0h4v.s9.cf4389e673c1 from=translated src=- shape=d53df155 vocab=cea51645
+-/
 lemma rTensor'_id_apply {R : Type*} {M : Type*} (V : Type*)
     [CommRing M] [CommRing R] [Algebra R M]
     [TopologicalSpace M] [IsTopologicalRing M]
@@ -108,6 +111,9 @@ lemma rTensor'_id_apply {R : Type*} {M : Type*} (V : Type*)
     rTensor' V (.id R M) x = x := by
   simp [rTensor']
 
+/--
+@isnad1 id=eq.0h3v.s9.8ee3a3abadf0 from=translated src=- shape=2a987f30 vocab=d732468d
+-/
 lemma rTensor'_id {R : Type*} {M : Type*} (V : Type*)
     [CommRing M] [CommRing R] [Algebra R M]
     [TopologicalSpace M] [IsTopologicalRing M]
@@ -118,6 +124,9 @@ lemma rTensor'_id {R : Type*} {M : Type*} (V : Type*)
   ext x
   apply rTensor'_id_apply
 
+/--
+@isnad1 id=eq.0h8v.s11.9efc4f804db0 from=translated src=- shape=fd14216a vocab=dfa2ed35
+-/
 lemma rTensor'_comp_apply {R : Type*} {M N P : Type*} (V : Type*)
     [CommRing M] [CommRing N] [CommRing P] [CommRing R] [Algebra R M] [Algebra R N] [Algebra R P]
     [TopologicalSpace M] [IsTopologicalRing M]
@@ -132,6 +141,9 @@ lemma rTensor'_comp_apply {R : Type*} {M N P : Type*} (V : Type*)
     rTensor' V (ψ.comp φ) x = rTensor' V ψ (rTensor' V φ x) := by
   simp [rTensor', LinearMap.rTensor, TensorProduct.map_map]
 
+/--
+@isnad1 id=eq.0h7v.s10.ad9c7ca7996b from=translated src=- shape=9e1a88a3 vocab=bd4f6b23
+-/
 lemma rTensor'_comp {R : Type*} {M N P : Type*} (V : Type*)
     [CommRing M] [CommRing N] [CommRing P] [CommRing R] [Algebra R M] [Algebra R N] [Algebra R P]
     [TopologicalSpace M] [IsTopologicalRing M]

@@ -24,23 +24,33 @@ namespace Taper
 section HfPhi
 variable {ϱ : ℝ → ℝ} {L w : ℝ}
 
-/-- `u ↦ (φ u : ℂ)` is `C³`. -/
+/-- `u ↦ (φ u : ℂ)` is `C³`.
+@isnad1 id=contdiff.3h3v.s6.897c1d5fe974 from=translated src=- shape=0647aa96 vocab=318d5062
+-/
 theorem phiC_contDiff (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) :
     ContDiff ℝ 3 (fun u => (phi ϱ L w u : ℂ)) :=
   ofRealCLM.contDiff.comp (phi_contDiff hϱ hw hwL)
 
+/--
+@isnad1 id=le.3h4v.s6.f23f07ae634d from=translated src=- shape=81515f2c vocab=41f7d169
+-/
 theorem phiC_support (hϱ : TaperProfile ϱ) (hw : 0 < w) :
     ∀ u, (phi ϱ L w u : ℂ) ≠ 0 → |u| ≤ L / 2 := by
   intro u hu
   by_contra h
   exact hu (by rw [phi_eq_zero hϱ hw (le_of_lt (not_le.mp h)), ofReal_zero])
 
-/-- `deriv` commutes with the coercion `ℝ → ℂ` for differentiable functions. -/
+/-- `deriv` commutes with the coercion `ℝ → ℂ` for differentiable functions.
+@isnad1 id=eq.1h1v.s7.61638611de69 from=translated src=- shape=233e02bc vocab=21f55c6b
+-/
 theorem deriv_ofReal_comp {f : ℝ → ℝ} (hf : Differentiable ℝ f) :
     deriv (fun u => (f u : ℂ)) = fun u => ((deriv f u : ℝ) : ℂ) := by
   funext u
   exact ((hf u).hasDerivAt.ofReal_comp).deriv
 
+/--
+@isnad1 id=eq.3h3v.s7.58e7ef6c729c from=translated src=- shape=a0bee813 vocab=509ece93
+-/
 theorem deriv_deriv_phiC (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) :
     deriv (deriv (fun u => (phi ϱ L w u : ℂ)))
       = fun u => ((deriv (deriv (phi ϱ L w)) u : ℝ) : ℂ) := by
@@ -51,7 +61,9 @@ theorem deriv_deriv_phiC (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L
   rw [deriv_ofReal_comp hd1, deriv_ofReal_comp hd2]
 
 /-- [eq:hfbound] for φ: `‖φ̂(z)‖ · ‖z‖² ≤ e^{|Im z|·L/2} · C₁` for all complex `z`,
-`C₁ = ‖φ''‖₁`. -/
+`C₁ = ‖φ''‖₁`.
+@isnad1 id=le.3h4v.s6.e62c466def37 from=translated src=- shape=e0fd5daf vocab=5b6782c0
+-/
 theorem norm_phiHat_mul_sq_le (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) (z : ℂ) :
     ‖phiHat ϱ L w z‖ * ‖z‖ ^ 2 ≤ Real.exp (|z.im| * (L / 2)) * C1 ϱ L w := by
   have h := norm_paperFT_mul_sq_le ((phiC_contDiff hϱ hw hwL).of_le (by norm_num))
@@ -60,7 +72,9 @@ theorem norm_phiHat_mul_sq_le (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w 
   simp only [Complex.norm_real, Real.norm_eq_abs] at h
   exact h
 
-/-- `∫ φ ≤ L` (since `0 ≤ φ ≤ 1` and `supp φ ⊆ [−L/2, L/2]`). -/
+/-- `∫ φ ≤ L` (since `0 ≤ φ ≤ 1` and `supp φ ⊆ [−L/2, L/2]`).
+@isnad1 id=le.3h3v.s6.12c1a05a3549 from=translated src=- shape=b78de1ac vocab=80c6cb81
+-/
 theorem integral_phi_le (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) :
     ∫ u, phi ϱ L w u ≤ L := by
   have hL : 0 ≤ L := by linarith
@@ -80,7 +94,9 @@ theorem integral_phi_le (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L)
           ENNReal.toReal_ofReal (by linarith), smul_eq_mul, mul_one]
         ring
 
-/-- [eq:hfbound] for φ, 0-th order: `‖φ̂(z)‖ ≤ e^{|Im z|·L/2} · ‖φ‖₁ ≤ e^{|Im z| L/2} · L`. -/
+/-- [eq:hfbound] for φ, 0-th order: `‖φ̂(z)‖ ≤ e^{|Im z|·L/2} · ‖φ‖₁ ≤ e^{|Im z| L/2} · L`.
+@isnad1 id=le.3h4v.s6.e7a905ce1f64 from=translated src=- shape=44b1b3b2 vocab=97186842
+-/
 theorem norm_phiHat_le (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) (z : ℂ) :
     ‖phiHat ϱ L w z‖ ≤ Real.exp (|z.im| * (L / 2)) * L := by
   have hint : Integrable (fun u => (phi ϱ L w u : ℂ)) := (phi_integrable hϱ hw hwL).ofReal
@@ -93,7 +109,9 @@ theorem norm_phiHat_le (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) 
     _ ≤ L := integral_phi_le hϱ hw hwL
 
 /-- The form used in [prop:tail]: for real `r` and `|y| ≤ 1/2`, `z := r − iy ≠ 0`,
-`‖φ̂(r − iy)‖ ≤ e^{L/4} C₁ / ‖r − iy‖²`. -/
+`‖φ̂(r − iy)‖ ≤ e^{L/4} C₁ / ‖r − iy‖²`.
+@isnad1 id=le.5h5v.s7.2d4085b1e052 from=translated src=- shape=5965a37a vocab=1aa53a01
+-/
 theorem norm_phiHat_sub_I_mul_le (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L)
     (r y : ℝ) (hy : |y| ≤ 1 / 2) (hz : (r : ℂ) - I * y ≠ 0) :
     ‖phiHat ϱ L w (r - I * y)‖ ≤ Real.exp (L / 4) * C1 ϱ L w / ‖(r : ℂ) - I * y‖ ^ 2 := by

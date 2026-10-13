@@ -31,7 +31,9 @@ related. -/
 def IndepSet {T : Type} (Adj : T → T → Prop) (S : T → Prop) : Prop :=
   ∀ x y, S x → S y → x ≠ y → ¬Adj x y
 
-/-- Independence transports along an equivalence respecting adjacency. -/
+/-- Independence transports along an equivalence respecting adjacency.
+@isnad1 id=iff.1h6v.s6.7f6484f2879c from=translated src=- shape=8c0be9f8 vocab=4455433d
+-/
 theorem indepSet_equiv_iff {T T' : Type} {Adj : T → T → Prop} {Adj' : T' → T' → Prop}
     (E : T ≃ T') (hadj : ∀ x y, Adj x y ↔ Adj' (E x) (E y)) (S : T → Prop) :
     IndepSet Adj S ↔ IndepSet Adj' fun y => S (E.symm y) := by
@@ -55,7 +57,9 @@ def pendAdj (Adj : V → V → Prop) : V ⊕ V × V → V ⊕ V × V → Prop
   | .inr _, .inr _ => False
 
 /-- An independent set of the graph with leaves is an independent set of the
-graph, and leaves of vertices outside it. -/
+graph, and leaves of vertices outside it.
+@isnad1 id=iff.0h3v.s6.7b5fc631cbe4 from=translated src=- shape=fb0b9ca2 vocab=8b8e68bf
+-/
 theorem indepSet_pend_iff (Adj : V → V → Prop) (T : V ⊕ V × V → Prop) :
     IndepSet (pendAdj Adj) T ↔
       IndepSet Adj (fun a => T (.inl a)) ∧ ∀ p : V × V, T (.inr p) → ¬T (.inl p.1) := by
@@ -74,7 +78,9 @@ theorem indepSet_pend_iff (Adj : V → V → Prop) (T : V ⊕ V × V → Prop) :
       exact h2 p hx hy
     · exact hadj
 
-/-- The elements outside a set and those inside it share out the universe. -/
+/-- The elements outside a set and those inside it share out the universe.
+@isnad1 id=eq.0h2v.s5.3b696187beeb from=translated src=- shape=969797df vocab=fa293aec
+-/
 theorem card_not_add_card [Finite V] (S : V → Prop) :
     Nat.card {v // ¬S v} + Nat.card {v // S v} = Nat.card V := by
   classical
@@ -84,7 +90,9 @@ theorem card_not_add_card [Finite V] (S : V → Prop) :
 vertices with `n` leaves at every vertex, the number of independent sets,
 divided by `(2 ^ n) ^ (n - k)` and reduced modulo `2 ^ n`, is the number of
 independent sets of size `k` of the graph; here `k` is the size of a set `Kp`,
-and `n - k` the number of elements outside it. -/
+and `n - k` the number of elements outside it.
+@isnad1 id=eq.0h3v.s7.ef6b3a4c8734 from=translated src=- shape=b439a436 vocab=42e25366
+-/
 theorem card_indepSet_pend_digit [Finite V] [Nonempty V] (Adj : V → V → Prop)
     (Kp : V → Prop) :
     Nat.card {T : V ⊕ V × V → Prop // IndepSet (pendAdj Adj) T} /

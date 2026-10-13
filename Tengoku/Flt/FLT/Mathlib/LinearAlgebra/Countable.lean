@@ -16,6 +16,9 @@ Material destined for Mathlib.
 @[expose] public section
 
 -- TODO upstream
+/--
+@isnad1 id=countabl.0h2v.s4.26d3f22f5c38 from=translated src=- shape=c160d6a7 vocab=0310c8ba
+-/
 lemma Countable.of_module_finite (R M : Type*) [Semiring R] [Countable R]
     [AddCommMonoid M] [Module R M] [Module.Finite R M] : Countable M := by
   obtain ⟨n, s, h⟩ := Module.Finite.exists_fin (R := R) (M := M)

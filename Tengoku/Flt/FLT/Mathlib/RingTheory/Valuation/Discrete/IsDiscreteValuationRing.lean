@@ -25,7 +25,9 @@ variable {K : Type u} [Field K] [Algebra R K] [IsFractionRing R K]
 
 open IsDedekindDomain.HeightOneSpectrum IsDiscreteValuationRing IsLocalRing in
 /-- An element of the fraction field of a discrete valuation ring with valuation `1` is the image
-of a unit. -/
+of a unit.
+@isnad1 id=ex.1h3v.s7.314d8b197b3d from=translated src=- shape=35848380 vocab=42a72d4a
+-/
 theorem exists_algebraMap_unit_eq_of_valuation_eq_one {x : K}
     (hx : valuation K (maximalIdeal R) x = 1) : ∃ u : Rˣ, algebraMap R K ↑u = x := by
   obtain ⟨u₀, hu₀⟩ := associated_of_valuation_eq (A := R) (K := K) x 1 (by rw [map_one]; exact hx)

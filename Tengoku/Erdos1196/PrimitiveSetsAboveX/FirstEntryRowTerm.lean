@@ -42,7 +42,9 @@ noncomputable def firstEntryPairWeight (x Y : ℕ) (mq : ℕ × ℕ) : ℝ :=
     Λ mq.2 / (((mq.1 * mq.2 : ℕ) : ℝ) * (Real.log ((mq.1 * mq.2 : ℕ) : ℝ)) ^ 2)
   else 0
 
-/-- The lower-threshold condition is exactly the conjunction `q ≥ Y` and `x ≤ m * q`. -/
+/-- The lower-threshold condition is exactly the conjunction `q ≥ Y` and `x ≤ m * q`.
+@isnad1 id=iff.1h4v.s5.d0068f32907a from=translated src=- shape=eefebb00 vocab=d23e87e2
+-/
 lemma entryThreshold_le_iff (x Y m q : ℕ) (hm : 0 < m) :
     entryThreshold x Y m ≤ q ↔ Y ≤ q ∧ x ≤ m * q := by
   rw [entryThreshold, max_le_iff]

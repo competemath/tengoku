@@ -151,16 +151,28 @@ def bitSym (b : Bool) : Γw := if b then .one else .zero
 /-- A bit string as desc-tape symbols. -/
 def bitsToSyms (l : List Bool) : List Γw := l.map bitSym
 
+/--
+@isnad1 id=eq.0h1v.s3.782d1f5da8b9 from=translated src=- shape=9769ae7e vocab=7f71575e
+-/
 @[simp] theorem bitsToSyms_length (l : List Bool) : (bitsToSyms l).length = l.length :=
   List.length_map ..
 
+/--
+@isnad1 id=eq.0h2v.s5.fd14ce198d0e from=translated src=- shape=72e5a4ef vocab=9b0223e2
+-/
 @[simp] theorem bitsToSyms_append (a b : List Bool) :
     bitsToSyms (a ++ b) = bitsToSyms a ++ bitsToSyms b :=
   List.map_append ..
 
+/--
+@isnad1 id=ne.0h1v.s2.dcbf913f2377 from=translated src=- shape=f0bb1bdd vocab=8ecb002d
+-/
 theorem bitSym_ne_blank (b : Bool) : bitSym b ≠ Γw.blank := by
   cases b <;> simp [bitSym]
 
+/--
+@isnad1 id=ne.1h2v.s4.a26824fd18aa from=translated src=- shape=e9cee9e4 vocab=6f0e2786
+-/
 theorem bitsToSyms_ne_blank {l : List Bool} {s : Γw} (h : s ∈ bitsToSyms l) :
     s ≠ Γw.blank := by
   obtain ⟨b, -, rfl⟩ := List.mem_map.mp h
@@ -178,10 +190,16 @@ def syms (w : ℕ) (e : DescEntry) : List Γw :=
   bitsToSyms e.act.wo.encode ++ bitsToSyms e.act.di.encode ++
   bitsToSyms e.act.dw.encode ++ bitsToSyms e.act.dOut.encode
 
+/--
+@isnad1 id=eq.0h2v.s5.5669c618ea60 from=translated src=- shape=5e387085 vocab=3681d5d9
+-/
 theorem syms_length (w : ℕ) (e : DescEntry) : (e.syms w).length = 2 * w + 16 := by
   simp [syms, Nat.length_toBits, Γ.length_encode, Γw.length_encode, Dir3.length_encode]
   omega
 
+/--
+@isnad1 id=ne.1h3v.s4.bcd77ae881f6 from=translated src=- shape=2d11322a vocab=b2077368
+-/
 theorem syms_ne_blank {w : ℕ} {e : DescEntry} {s : Γw} (h : s ∈ e.syms w) :
     s ≠ Γw.blank := by
   simp only [syms, List.mem_append] at h
@@ -223,7 +241,9 @@ def groupPairs : List Bool → List Γw
   | b₀ :: b₁ :: rest => symOfPair b₀ b₁ :: groupPairs rest
   | _ => []
 
-/-- Decoding pairs is a left inverse of symbol-wise binary encoding. -/
+/-- Decoding pairs is a left inverse of symbol-wise binary encoding.
+@isnad1 id=eq.0h1v.s3.2a171273bbe3 from=translated src=- shape=c2d19101 vocab=db842fd8
+-/
 theorem groupPairs_flatMap_encode : ∀ l : List Γw, groupPairs (l.flatMap Γw.encode) = l
   | [] => rfl
   | s :: rest => by
@@ -231,7 +251,9 @@ theorem groupPairs_flatMap_encode : ∀ l : List Γw, groupPairs (l.flatMap Γw.
       simpa [List.flatMap_cons, Γw.encode, groupPairs, symOfPair]
         using groupPairs_flatMap_encode rest
 
-/-- `groupPairs` distributes over appending at an even boundary. -/
+/-- `groupPairs` distributes over appending at an even boundary.
+@isnad1 id=eq.1h2v.s5.bbc99001d281 from=translated src=- shape=b9e0c999 vocab=4bf3419c
+-/
 theorem groupPairs_append_of_even : ∀ {a : List Bool}, a.length % 2 = 0 →
     ∀ b : List Bool, groupPairs (a ++ b) = groupPairs a ++ groupPairs b
   | [], _, b => rfl
@@ -241,7 +263,9 @@ theorem groupPairs_append_of_even : ∀ {a : List Bool}, a.length % 2 = 0 →
       simp only [List.length_cons] at h; omega
     simp only [List.cons_append, groupPairs, groupPairs_append_of_even hr b]
 
-/-- Every symbol-wise binary encoding has even length. -/
+/-- Every symbol-wise binary encoding has even length.
+@isnad1 id=eq.0h1v.s4.4394a96d5060 from=translated src=- shape=73f2b7e6 vocab=f5babdad
+-/
 theorem flatMap_encode_length_even (l : List Γw) : (l.flatMap Γw.encode).length % 2 = 0 := by
   induction l with
   | nil => rfl
@@ -257,6 +281,9 @@ def symBit? : Γw → Option Bool
   | .one   => some true
   | .blank => none
 
+/--
+@isnad1 id=eq.0h1v.s3.32259d7dffec from=translated src=- shape=edb93955 vocab=5fc13e0c
+-/
 @[simp] theorem symBit?_bitSym (b : Bool) : symBit? (bitSym b) = some b := by
   cases b <;> rfl
 
@@ -268,6 +295,9 @@ def takeField : List Γw → List Γw × List Γw
   | .blank :: rest => ([], rest)
   | s :: rest => (s :: (takeField rest).1, (takeField rest).2)
 
+/--
+@isnad1 id=le.0h1v.s4.f6acd6be1eba from=translated src=- shape=0740eae7 vocab=5ce2cdea
+-/
 theorem takeField_rest_length : ∀ l : List Γw, (takeField l).2.length ≤ l.length
   | [] => Nat.le_refl _
   | .blank :: _ => Nat.le_succ_of_le (Nat.le_refl _)
@@ -275,7 +305,9 @@ theorem takeField_rest_length : ∀ l : List Γw, (takeField l).2.length ≤ l.l
   | .one :: rest => Nat.le_succ_of_le (takeField_rest_length rest)
 
 /-- On a nonempty input the remainder after the first field is strictly
-    shorter — the parse loop terminates. -/
+    shorter — the parse loop terminates.
+@isnad1 id=le.0h2v.s4.29f08ebba020 from=translated src=- shape=5723156e vocab=bb8612f6
+-/
 theorem takeField_cons_rest_length (s : Γw) (rest : List Γw) :
     (takeField (s :: rest)).2.length ≤ rest.length := by
   cases s with
@@ -283,7 +315,9 @@ theorem takeField_cons_rest_length (s : Γw) (rest : List Γw) :
   | zero => exact takeField_rest_length rest
   | one => exact takeField_rest_length rest
 
-/-- `takeField` recovers a blank-free field followed by a separator. -/
+/-- `takeField` recovers a blank-free field followed by a separator.
+@isnad1 id=eq.1h2v.s5.edd157087f10 from=translated src=- shape=bb385031 vocab=cc3c2998
+-/
 theorem takeField_append {f : List Γw} (hf : ∀ s ∈ f, s ≠ Γw.blank) (r : List Γw) :
     takeField (f ++ Γw.blank :: r) = (f, r) := by
   induction f with
@@ -299,12 +333,18 @@ theorem takeField_append {f : List Γw} (hf : ∀ s ∈ f, s ≠ Γw.blank) (r :
 /-- The number denoted by a field (its bit symbols, read big-endian). -/
 def fieldNat (f : List Γw) : ℕ := Nat.fromBits (f.filterMap symBit?)
 
+/--
+@isnad1 id=eq.0h1v.s3.596262c8eb22 from=translated src=- shape=9e9e53ff vocab=e31dbd95
+-/
 @[simp] theorem filterMap_symBit?_bitsToSyms (l : List Bool) :
     (bitsToSyms l).filterMap symBit? = l := by
   induction l with
   | nil => rfl
   | cons b rest ih => simp [bitsToSyms]
 
+/--
+@isnad1 id=eq.1h2v.s5.76e451e4c9ca from=translated src=- shape=c20f3022 vocab=2dc862ad
+-/
 theorem fieldNat_bitsToSyms_toBits {w v : ℕ} (hv : v < 2 ^ w) :
     fieldNat (bitsToSyms (Nat.toBits w v)) = v := by
   rw [fieldNat, filterMap_symBit?_bitsToSyms, Nat.fromBits_toBits hv]
@@ -335,8 +375,17 @@ def decDir (l : List Bool) : Dir3 :=
   | [false, true]  => .right
   | _ => .stay
 
+/--
+@isnad1 id=eq.0h1v.s3.f36e9fb22adc from=translated src=- shape=47dcad53 vocab=836c3687
+-/
 @[simp] theorem decΓ_encode (s : Γ) : decΓ s.encode = s := by cases s <;> rfl
+/--
+@isnad1 id=eq.0h1v.s3.4c0112aa0c61 from=translated src=- shape=47dcad53 vocab=6a67ccc6
+-/
 @[simp] theorem decΓw_encode (s : Γw) : decΓw s.encode = s := by cases s <;> rfl
+/--
+@isnad1 id=eq.0h1v.s3.5a9c9a25b80a from=translated src=- shape=47dcad53 vocab=b4ba765e
+-/
 @[simp] theorem decDir_encode (d : Dir3) : decDir d.encode = d := by cases d <;> rfl
 
 /-- Parse one table entry from a (blank-free) segment: reject if shorter
@@ -398,7 +447,9 @@ def decodeDesc (α : List Bool) : TMDesc := parseSyms (groupPairs α)
 -- ════════════════════════════════════════════════════════════════════════
 
 /-- Parsing one encoded entry recovers it (when its state fields fit in
-    width `w`). -/
+    width `w`).
+@isnad1 id=eq.2h2v.s6.eab962b6363c from=translated src=- shape=39bbc167 vocab=6648fdaf
+-/
 theorem parseEntry_syms {w : ℕ} {e : DescEntry}
     (hq : e.q < 2 ^ w) (hq' : e.act.q' < 2 ^ w) :
     parseEntry w (e.syms w) = some e := by
@@ -425,12 +476,16 @@ theorem parseEntry_syms {w : ℕ} {e : DescEntry}
       List.take_of_length_le (Nat.le_of_eq (Dir3.length_encode e.act.dOut))]
   simp [Nat.fromBits_toBits hq, Nat.fromBits_toBits hq']
 
-/-- A leading separator (empty segment) terminates the table parse. -/
+/-- A leading separator (empty segment) terminates the table parse.
+@isnad1 id=eq.0h2v.s4.af8f56864e34 from=translated src=- shape=9f390ad0 vocab=a7a9814d
+-/
 theorem parseEntries_blank (w : ℕ) (rest : List Γw) :
     parseEntries w (Γw.blank :: rest) = [] := by
   rw [parseEntries]
 
-/-- One-step unfolding of the table parse on a segment-headed input. -/
+/-- One-step unfolding of the table parse on a segment-headed input.
+@isnad1 id=eq.1h3v.s6.559261c983bd from=translated src=- shape=29129a74 vocab=eec2ede9
+-/
 theorem parseEntries_cons_of_ne_blank {s : Γw} (hs : s ≠ Γw.blank)
     (w : ℕ) (rest : List Γw) :
     parseEntries w (s :: rest) =
@@ -443,7 +498,9 @@ theorem parseEntries_cons_of_ne_blank {s : Γw} (hs : s ≠ Γw.blank)
   | one => rw [parseEntries]; simp
 
 /-- Parsing the encoded table recovers it, ignoring anything after the
-    terminating empty segment. -/
+    terminating empty segment.
+@isnad1 id=eq.2h3v.s6.62ea209229ea from=translated src=- shape=9388edae vocab=10bc9a53
+-/
 theorem parseEntries_syms {w : ℕ} {es : List DescEntry}
     (hq : ∀ e ∈ es, e.q < 2 ^ w) (hq' : ∀ e ∈ es, e.act.q' < 2 ^ w)
     (junk : List Γw) :
@@ -475,7 +532,9 @@ theorem parseEntries_syms {w : ℕ} {es : List DescEntry}
 /-- **Roundtrip with padding**: decoding an encoded well-formed description
     recovers it exactly, no matter what junk follows the encoding. This
     gives every description infinitely many encodings — the padding fact
-    the hierarchy-theorem diagonalization relies on. -/
+    the hierarchy-theorem diagonalization relies on.
+@isnad1 id=eq.1h2v.s4.40bc8484b5c0 from=translated src=- shape=d83c30f8 vocab=56ff416e
+-/
 theorem decodeDesc_encodeDesc_append {d : TMDesc} (hd : d.WF) (junk : List Bool) :
     decodeDesc (encodeDesc d ++ junk) = d := by
   have hgroup : groupPairs (encodeDesc d ++ junk) = d.syms ++ groupPairs junk := by
@@ -500,7 +559,9 @@ theorem decodeDesc_encodeDesc_append {d : TMDesc} (hd : d.WF) (junk : List Bool)
       fieldNat_bitsToSyms_toBits hd.qhalt_lt,
       parseEntries_syms hd.entries_q_lt hd.entries_q'_lt]
 
-/-- **Roundtrip**: decoding an encoded well-formed description recovers it. -/
+/-- **Roundtrip**: decoding an encoded well-formed description recovers it.
+@isnad1 id=eq.1h1v.s3.058a8a3a2524 from=translated src=- shape=f9d42bb4 vocab=4fc77680
+-/
 theorem decodeDesc_encodeDesc {d : TMDesc} (hd : d.WF) :
     decodeDesc (encodeDesc d) = d := by
   simpa using decodeDesc_encodeDesc_append hd []

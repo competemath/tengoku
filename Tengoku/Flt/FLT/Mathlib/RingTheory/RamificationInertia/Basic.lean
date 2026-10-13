@@ -23,7 +23,9 @@ namespace Ideal
 -- `ramificationIdx_mul_inertiaDeg_of_isLocalRing` is deprecated
 -- in Aug 2026 so we use a longer name
 /-- The **fundamental identity** `e * f = [S : R]` for a local ring `S`, finite over a Dedekind
-domain `R`, and `p` a nonzero maximal ideal of `R`. -/
+domain `R`, and `p` a nonzero maximal ideal of `R`.
+@isnad1 id=eq.1h3v.s7.dd0e87fd1809 from=translated src=- shape=9d1046ea vocab=8b752734
+-/
 theorem ramificationIdx_mul_inertiaDeg_eq_finrank_of_isLocalRing
     {R : Type*} [CommRing R] [IsDedekindDomain R]
     (S : Type*) [CommRing S] [IsDedekindDomain S] [IsLocalRing S] [Algebra R S] [FaithfulSMul R S]

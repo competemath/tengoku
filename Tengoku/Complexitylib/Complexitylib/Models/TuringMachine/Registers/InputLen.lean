@@ -390,7 +390,9 @@ private theorem inputLenRegTM_back_run (x : List Bool) (h : ℕ) :
       rfl
 
 /-- **`inputLenRegTM` Hoare specification.** From the bumped initial input and
-    `regTape 0` in `q`, reach `regTape |x|` in `q`, restoring the input exactly. -/
+    `regTape 0` in `q`, reach `regTape |x|` in `q`, restoring the input exactly.
+@isnad1 id=hoaretim.2h5v.s6.8be542bb0143 from=translated src=- shape=8a60addd vocab=22eba16c
+-/
 theorem inputLenRegTM_hoareTime (q : Fin n) (x : List Bool)
     (work₀ : Fin n → Tape) (ys : List Bool)
     (hwork₀ : ∀ i, i ≠ q → Parked (work₀ i)) (hq : work₀ q = regTape 0) :

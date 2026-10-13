@@ -38,6 +38,9 @@ def widths (M : V → V → ℤ) (a b : V) (ℓ : Λ) : ℕ :=
 
 omit [Fintype V] [DecidableEq V] in
 omit [Fintype Λ] in
+/--
+@isnad1 id=le.1h6v.s6.fe21b1f143d2 from=translated src=- shape=5b503a72 vocab=f5643c79
+-/
 theorem widths_le (M : V → V → ℤ) (hM : ∀ a b, M a b ≤ 3) (a b : V) (ℓ : Λ) :
     widths M a b ℓ ≤ 3 := by
   unfold widths
@@ -48,7 +51,9 @@ theorem widths_le (M : V → V → ℤ) (hM : ∀ a b, M a b ≤ 3) (a b : V) (�
 
 omit [Fintype V] [DecidableEq V] in
 /-- The product of the widths along a ladder: `2 ^ L` for an entry `-1`, the
-entry otherwise. -/
+entry otherwise.
+@isnad1 id=eq.0h5v.s6.84e4099023c3 from=translated src=- shape=8c3819cb vocab=6b2f8cd1
+-/
 theorem prod_widths (M : V → V → ℤ) (a b : V) :
     ∏ ℓ : Λ, widths M a b ℓ = if M a b = -1 then 2 ^ Fintype.card Λ else (M a b).toNat := by
   unfold widths
@@ -58,7 +63,9 @@ theorem prod_widths (M : V → V → ℤ) (a b : V) :
 
 omit [Fintype V] [DecidableEq V] in
 /-- The product of the widths is congruent to the entry modulo `2 ^ L + 1`,
-for an entry at least `-1`. -/
+for an entry at least `-1`.
+@isnad1 id=modeq.1h5v.s6.bdc843983663 from=translated src=- shape=15c03a4f vocab=b3f749f8
+-/
 theorem prod_widths_modEq (M : V → V → ℤ) (a b : V) (hM : -1 ≤ M a b) :
     ((∏ ℓ : Λ, widths M a b ℓ : ℕ) : ℤ) ≡ M a b [ZMOD 2 ^ Fintype.card Λ + 1] := by
   rw [prod_widths]
@@ -70,7 +77,9 @@ theorem prod_widths_modEq (M : V → V → ℤ) (a b : V) (hM : -1 ≤ M a b) :
 
 /-- **The permanent of the 0-1 ladder expansion is congruent to the permanent
 of the integer matrix** modulo `2 ^ L + 1`, for entries between `-1` and
-`3`. -/
+`3`.
+@isnad1 id=modeq.1h3v.s8.f67dcfd1c8b0 from=translated src=- shape=14b5211a vocab=4a31910e
+-/
 theorem bperm_ladder_widths_modEq (M : V → V → ℤ) (hM : ∀ a b, -1 ≤ M a b ∧ M a b ≤ 3) :
     ((bperm (ladder 3 (widths (Λ := Λ) M)) : ℕ) : ℤ) ≡ bperm M [ZMOD 2 ^ Fintype.card Λ + 1] := by
   rw [bperm_ladder (widths_le M fun a b => (hM a b).2), bperm_natCast]
@@ -79,7 +88,9 @@ theorem bperm_ladder_widths_modEq (M : V → V → ℤ) (hM : ∀ a b, -1 ≤ M 
 /-- **The count is read off the permanent of the 0-1 matrix**: when the
 permanent of the integer matrix is `4 ^ t * N` with `4 ^ t * N ≤ 2 ^ L`, the
 permanent of the ladder expansion, modulo `2 ^ L + 1` and divided by `4 ^ t`,
-is `N`. -/
+is `N`.
+@isnad1 id=eq.3h5v.s9.56c9d390ec2d from=translated src=- shape=99b968b9 vocab=ec15693c
+-/
 theorem bperm_ladder_widths_div (M : V → V → ℤ) (hM : ∀ a b, -1 ≤ M a b ∧ M a b ≤ 3) (t N : ℕ)
     (hperm : bperm M = 4 ^ t * (N : ℤ)) (hlt : 4 ^ t * N ≤ 2 ^ Fintype.card Λ) :
     bperm (ladder 3 (widths (Λ := Λ) M)) % (2 ^ Fintype.card Λ + 1) / 4 ^ t = N := by

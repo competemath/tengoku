@@ -91,7 +91,9 @@ private theorem foldl_doubled (x : List Bool) (syn : Syntax.BitState) :
       cases bit <;> simp [step, ih]
 
 /-- A canonical pair belongs to the paired syntax language exactly when its
-left component belongs to the exact-3 syntax language. -/
+left component belongs to the exact-3 syntax language.
+@isnad1 id=iff.0h2v.s4.f800e67b5f24 from=translated src=- shape=2aadd4f8 vocab=8f115925
+-/
 @[simp] theorem pair_mem_language_iff (z witness : List Bool) :
     pair z witness ∈ language ↔ z ∈ Syntax.language := by
   change accept ((pair z witness).foldl step initial) = true ↔
@@ -106,12 +108,16 @@ left component belongs to the exact-3 syntax language. -/
 def pairSyntaxTM : TM 0 :=
   TM.scannerTM initial step (fun state => if accept state then .one else .zero)
 
-/-- The paired syntax scanner decides its language in exactly `n + 2` steps. -/
+/-- The paired syntax scanner decides its language in exactly `n + 2` steps.
+@isnad1 id=decidesi.0h0v.s4.28bf3561c80e from=translated src=- shape=78aae65d vocab=92a31fab
+-/
 theorem pairSyntaxTM_decidesInTime :
     pairSyntaxTM.DecidesInTime language (fun n => n + 2) := by
   exact TM.scannerTM_decidesInTime initial step accept (fun _ => Iff.rfl)
 
-/-- Exact-3 syntax on paired inputs is decidable in linear time. -/
+/-- Exact-3 syntax on paired inputs is decidable in linear time.
+@isnad1 id=mem.0h0v.s3.e4c1c6e5d9d2 from=translated src=- shape=d1530203 vocab=f229ade1
+-/
 theorem language_mem_P : language ∈ P := by
   refine Set.mem_iUnion.mpr ⟨1, 0, pairSyntaxTM, fun n => n + 2,
     pairSyntaxTM_decidesInTime, ?_⟩

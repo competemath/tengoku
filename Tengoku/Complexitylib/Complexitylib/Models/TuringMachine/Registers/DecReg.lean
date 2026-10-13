@@ -431,7 +431,9 @@ private theorem decRegTM_back_run (h : ℕ) :
 
 /-- **`decRegTM` Hoare specification.** From `regTape d` in register `q`, reach
     `regTape (d - 1)` in `2d + 4` steps (`regTape 0` is left unchanged); the input,
-    output, and every other work tape are untouched. -/
+    output, and every other work tape are untouched.
+@isnad1 id=hoaretim.3h6v.s6.adbb5fe6200f from=translated src=- shape=1a150936 vocab=f303f097
+-/
 theorem decRegTM_hoareTime (q : Fin n) (d : ℕ) (inp₀ : Tape)
     (work₀ : Fin n → Tape) (ys : List Bool) (hinp₀ : Parked inp₀)
     (hwork₀ : ∀ i, i ≠ q → Parked (work₀ i)) (hq : work₀ q = regTape d) :

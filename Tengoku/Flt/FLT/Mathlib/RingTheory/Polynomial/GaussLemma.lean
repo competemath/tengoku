@@ -19,7 +19,9 @@ open Polynomial
 
 /-- Over an integrally closed domain `R` with fraction field `K`, a monic divisor `q ∈ K[X]` of
 the image of a monic polynomial `P ∈ R[X]` is itself the image of a monic polynomial over `R`
-(a form of Gauss's lemma, packaging `IsIntegrallyClosed.eq_map_mul_C_of_dvd`). -/
+(a form of Gauss's lemma, packaging `IsIntegrallyClosed.eq_map_mul_C_of_dvd`).
+@isnad1 id=ex.3h4v.s7.7524aab6db74 from=translated src=- shape=bde42117 vocab=8fcd899d
+-/
 theorem Polynomial.Monic.exists_monic_map_eq_of_monic_dvd_map {R : Type*} [CommRing R]
     [IsIntegrallyClosed R] {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]
     {P : R[X]} (hP : P.Monic) {q : K[X]} (hq : q.Monic) (hdvd : q ∣ P.map (algebraMap R K)) :

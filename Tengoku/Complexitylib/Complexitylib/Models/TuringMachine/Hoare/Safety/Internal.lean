@@ -22,7 +22,9 @@ namespace Complexity
 namespace TM
 
 /-- Sequential composition preserves any common tape safety predicate.
-The second contract covers the boundary configuration itself. -/
+The second contract covers the boundary configuration itself.
+@isnad1 id=hoaresaf.4h11v.s6.f8dacaf3a4b3 from=translated src=- shape=839fecb7 vocab=d7f01cd2
+-/
 theorem seqTM_hoareSafety_internal (tm₁ tm₂ : TM n)
     {pre mid mid' post safe : TapePred n} {b₁ b₂ : ℕ}
     (h₁ : tm₁.HoareTime pre mid b₁)

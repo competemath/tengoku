@@ -38,7 +38,9 @@ namespace ThreeSAT
 namespace Machine
 
 /-- The three setup phases take linear time. This bound includes both
-`seqTM` phase-boundary steps. -/
+`seqTM` phase-boundary steps.
+@isnad1 id=hoaretim.0h1v.s6.9aeac4249333 from=translated src=- shape=d91352bf vocab=65cb9d45
+-/
 theorem seedFreshTM_hoareTime_internal (z : List Bool) :
     seedFreshTM.HoareTime
       (fun inp work out =>
@@ -98,13 +100,17 @@ theorem seedFreshTM_hoareTime_internal (z : List Bool) :
     hseed.mono_bound (by omega)
 
 /-- The exact setup budget is bounded by a linear polynomial with a convenient
-single coefficient. -/
+single coefficient.
+@isnad1 id=le.0h1v.s5.28d4ff92ade6 from=translated src=- shape=035ebc79 vocab=ebd7a482
+-/
 theorem seedFreshTime_le_linear_internal (n : ℕ) :
     4 * n + 11 ≤ 11 * (n + 1) := by
   omega
 
 /-- Blanking the symbol under a parked output head takes one step. The input,
-all work tapes, and the output head are preserved exactly. -/
+all work tapes, and the output head are preserved exactly.
+@isnad1 id=hoaretim.3h3v.s6.afc3efc9a2af from=translated src=- shape=7005afbb vocab=f78b9fbf
+-/
 theorem clearValidationOutputTM_hoareTime_internal
     (inp₀ : Tape) (work₀ : Fin workTapeCount → Tape) (out₀ : Tape)
     (hinp₀ : TM.Parked inp₀) (hwork₀ : ∀ i, TM.Parked (work₀ i))
@@ -142,7 +148,9 @@ theorem clearValidationOutputTM_hoareTime_internal
 
 /-- Clear the Boolean verdict left at output cell one by `validationTM`.
 Cells beyond the verdict are assumed blank, as they are in the standard
-front-end run; the result is the canonical empty output accumulator. -/
+front-end run; the result is the canonical empty output accumulator.
+@isnad1 id=hoaretim.2h2v.s6.1be5c05e5f46 from=translated src=- shape=4a29af0d vocab=feb32ba9
+-/
 theorem clearValidationOutputTM_verdict_hoareTime_internal
     (inp₀ : Tape) (work₀ : Fin workTapeCount → Tape)
     (hinp₀ : TM.Parked inp₀) (hwork₀ : ∀ i, TM.Parked (work₀ i)) :
@@ -187,7 +195,9 @@ theorem clearValidationOutputTM_verdict_hoareTime_internal
       exact houtBlank j (by omega)
 
 /-- Rewind the source input after validation, preserving both the initialized
-register family and the cleared output accumulator. -/
+register family and the cleared output accumulator.
+@isnad1 id=hoaretim.1h2v.s6.04f383aa1e93 from=translated src=- shape=2fdd736c vocab=a928fde4
+-/
 theorem rewindInputTM_after_validation_hoareTime_internal
     (z : List Bool) (work₀ : Fin workTapeCount → Tape)
     (hwork₀ : ∀ i, TM.Parked (work₀ i)) :
@@ -225,13 +235,17 @@ theorem rewindInputTM_after_validation_hoareTime_internal
     refine ⟨?_, hwork, hout⟩
     exact Tape.ext hinpHead hinpCells
 
-/-- The framed rewind budget is itself bounded linearly. -/
+/-- The framed rewind budget is itself bounded linearly.
+@isnad1 id=le.0h1v.s5.ad4af6a212a4 from=translated src=- shape=273ee429 vocab=ebd7a482
+-/
 theorem rewindInputTime_le_linear_internal (n : ℕ) :
     n + 3 ≤ 3 * (n + 1) := by
   omega
 
 /-- Once the validator verdict has been cleared, the fixed malformed-input
-fallback is emitted in its concrete constant length. -/
+fallback is emitted in its concrete constant length.
+@isnad1 id=hoaretim.2h2v.s5.0ff6589d85a4 from=translated src=- shape=c8cb49ce vocab=127f6524
+-/
 theorem fallbackEmitter_hoareTime_internal
     (inp₀ : Tape) (work₀ : Fin workTapeCount → Tape)
     (hinp₀ : TM.Parked inp₀) (hwork₀ : ∀ i, TM.Parked (work₀ i)) :

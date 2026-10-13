@@ -67,7 +67,9 @@ structure FactsD : Prop where
 /-- The pointwise inequality behind the D-version of [eq:tr2] ([eq:ratio-general] main term):
 with the window moments b, J symbolic and the partial-summation input |S − L³J/2| ≤ Cs·L²
 in place of the flat-top sandwich, |G2 − (TL/2π)(bℓ² + L²J)| ≤ C·E·(TL/2π)(bℓ² + L²J).
-Simpler than PrimeSide.tr2_pointwise: no (b−1)-collapse is needed since b stays in the main term. -/
+Simpler than PrimeSide.tr2_pointwise: no (b−1)-collapse is needed since b stays in the main term.
+@isnad1 id=le.21h15v.s9.8e4c76b901a2 from=translated src=- shape=58a9f32e vocab=923be8a9
+-/
 theorem tr2D_pointwise (T L ℓ lT X E S I2 b J G2 w CR Cμ Cs : ℝ)
     (hT : 1 ≤ T) (hL : 1 ≤ L) (hl : 1 ≤ lT) (hlog : 1 ≤ Real.log lT) (hX : 1 ≤ X)
     (hℓl : lT ≤ ℓ) (hLl : L ≤ lT) (hw : 1 ≤ w) (hL2w : 2 * w ≤ L)
@@ -179,7 +181,9 @@ theorem tr2D_pointwise (T L ℓ lT X E S I2 b J G2 w CR Cμ Cs : ℝ)
     _ = (4 * π * CR + 2 * Cμ + 4 * Cs) * (E * M₂) := by ring
 
 /-- from `f → 0`: eventually `C * f T ≤ 1/2` (used for the `Cᵢ·𝓔_T ≤ 1/2` side conditions of
-`ratioD_pointwise`, here and in ThmDE.Traces). -/
+`ratioD_pointwise`, here and in ThmDE.Traces).
+@isnad1 id=eventual.2h2v.s6.94fdeeb27297 from=translated src=- shape=15f1f9b2 vocab=156eeb5d
+-/
 theorem eventually_const_mul_le_half {f : ℝ → ℝ} (hf : Tendsto f atTop (nhds 0)) {C : ℝ}
     (hC : 0 < C) : ∀ᶠ T in atTop, C * f T ≤ 1 / 2 := by
   filter_upwards [hf.eventually (Iio_mem_nhds (show (0:ℝ) < 1 / (2 * C) by positivity))] with T hT
@@ -189,7 +193,9 @@ theorem eventually_const_mul_le_half {f : ℝ → ℝ} (hf : Tendsto f atTop (nh
 set_option maxHeartbeats 800000 in
 /-- The pointwise inequality behind [eq:ratio-general], every quantity a real variable; the
 identity cRatio(L/ℓ; a, b, J)·N · (TL/2π)(bℓ² + L²J) = (aL)²N · Tℓ/2π is where the
-window-general constant is checked (mirrors PrimeSide.ratio_pointwise; a stays on tr G̃). -/
+window-general constant is checked (mirrors PrimeSide.ratio_pointwise; a stays on tr G̃).
+@isnad1 id=le.19h14v.s9.05fa41645fdd from=translated src=- shape=00b255c1 vocab=0235bd05
+-/
 theorem ratioD_pointwise (T L ℓ lT E N G G2 A aa b J C₁ C₂ : ℝ)
     (hT : 1 ≤ T) (hL : 0 < L) (hℓ1 : 1 ≤ ℓ) (hℓl : lT ≤ ℓ) (hN0 : 0 < N) (hE0 : 0 ≤ E)
     (hET : 1 / T ≤ E) (hA : 0 ≤ A) (hC₁ : 0 ≤ C₁) (hC₂ : 0 ≤ C₂)
@@ -511,7 +517,9 @@ private lemma ratioD : EvBound
 end assemblyD2
 
 /-- pointwise form of the hat-units Frobenius bound: the positive part of
-G2/(aL)² − (1/cRatio)N is ≤ (4πA + 2C₂)·E·((1/cRatio)N). -/
+G2/(aL)² − (1/cRatio)N is ≤ (4πA + 2C₂)·E·((1/cRatio)N).
+@isnad1 id=le.15h12v.s9.594add60de27 from=translated src=- shape=d051aba7 vocab=24ae6d39
+-/
 theorem frhatD_pointwise (T L ℓ lT E N G2 A aa b J C₂ : ℝ)
     (hT : 1 ≤ T) (hL : 0 < L) (hℓ1 : 1 ≤ ℓ) (hℓl : lT ≤ ℓ) (hN0 : 0 < N) (hE0 : 0 ≤ E)
     (hET : 1 / T ≤ E) (hA : 0 ≤ A) (hC₂ : 0 ≤ C₂)
@@ -656,7 +664,9 @@ private lemma frhatD {D : DataD P} (h : FactsD D) : EvBound
 
 /-- **[eq:ratio-general] assembly**: the D-interface traces bounds with ratio constant
 cRatio λ₁ a b J. The body mirrors Zeta23.PrimeSide.tracesBounds_of_facts with b, J
-symbolic. -/
+symbolic.
+@isnad1 id=tracesbo.1h2v.s5.4daf1e193d75 from=translated src=- shape=20ef3457 vocab=fc0a2a3b
+-/
 theorem tracesBoundsD_of_factsD (h : FactsD D) :
     TracesBoundsD P D.aT D.bT D.JT D.trG D.trG2 D.Ncnt where
   tr1 := h.prop_trace

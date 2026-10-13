@@ -69,6 +69,9 @@ def B (freq : ι → ℝ) (x z : ι → ℂ) : ℂ := ∑ r, ∑ s, x r * conj (
 /-- the weighted ℓ² quantity Σ |x_r|²/δ_r. -/
 def N2 (δ : ι → ℝ) (x : ι → ℂ) : ℝ := ∑ r, ‖x r‖ ^ 2 / δ r
 
+/--
+@isnad1 id=eq.0h4v.s7.30c1f551d85a from=translated src=- shape=bd55b4fd vocab=8f8f7db2
+-/
 lemma sum_eq_B (freq : ι → ℝ) (x z : ι → ℂ) :
     (∑ r, ∑ s, if r = s then (0 : ℂ) else x r * conj (z s) / ((freq r - freq s : ℝ) : ℂ))
       = B freq x z := by
@@ -77,7 +80,9 @@ lemma sum_eq_B (freq : ι → ℝ) (x z : ι → ℂ) :
   split_ifs <;> simp [div_eq_mul_inv]
 
 /-- Polarization, termwise (sesquilinear, two index slots):
-4 a b̄' = (a+b)(a'+b')^* − (a−b)(a'−b')^* + i(a+ib)(a'+ib')^* − i(a−ib)(a'−ib')^*. -/
+4 a b̄' = (a+b)(a'+b')^* − (a−b)(a'−b')^* + i(a+ib)(a'+ib')^* − i(a−ib)(a'−ib')^*.
+@isnad1 id=eq.0h4v.s8.6ec518b71f25 from=translated src=- shape=155f9a37 vocab=340ad941
+-/
 lemma polar_term (a b a' b' : ℂ) :
     a * conj b' = (1 / 4 : ℂ) * ((a + b) * conj (a' + b') - (a - b) * conj (a' - b')
       + I * ((a + I * b) * conj (a' + I * b')) - I * ((a - I * b) * conj (a' - I * b'))) := by
@@ -85,7 +90,9 @@ lemma polar_term (a b a' b' : ℂ) :
   have hI : I * I = -1 := Complex.I_mul_I
   linear_combination ((1/2 : ℂ) * a * conj b' - (1/2 : ℂ) * b * conj a') * hI
 
-/-- Polarization of B. -/
+/-- Polarization of B.
+@isnad1 id=eq.0h4v.s8.7dcb524b1e4d from=translated src=- shape=8de49026 vocab=ab4b027d
+-/
 lemma B_polar (freq : ι → ℝ) (x z : ι → ℂ) :
     B freq x z = (1 / 4 : ℂ) * (B freq (x + z) (x + z) - B freq (x - z) (x - z)
       + I * B freq (x + I • z) (x + I • z) - I * B freq (x - I • z) (x - I • z)) := by
@@ -98,7 +105,9 @@ lemma B_polar (freq : ι → ℝ) (x z : ι → ℂ) :
 
 omit [DecidableEq ι] in
 /-- The weighted norms of the four polarization vectors add up to 4(N2 x + N2 z)
-(parallelogram law in ℂ, termwise). -/
+(parallelogram law in ℂ, termwise).
+@isnad1 id=eq.0h4v.s7.dd3d0b986813 from=translated src=- shape=997b7b68 vocab=76dcabb5
+-/
 lemma N2_polar (δ : ι → ℝ) (x z : ι → ℂ) :
     N2 δ (x + z) + N2 δ (x - z) + N2 δ (x + I • z) + N2 δ (x - I • z)
       = 4 * (N2 δ x + N2 δ z) := by
@@ -117,6 +126,9 @@ lemma N2_polar (δ : ι → ℝ) (x z : ι → ℂ) :
   ring
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=le.1h3v.s5.b58ba662f187 from=translated src=- shape=87e378cd vocab=fa30be0a
+-/
 lemma N2_nonneg {δ : ι → ℝ} (hδ : ∀ r, 0 < δ r) (x : ι → ℂ) : 0 ≤ N2 δ x :=
   sum_nonneg fun r _ => div_nonneg (sq_nonneg _) (hδ r).le
 
@@ -132,10 +144,18 @@ lemma eq_zero_of_N2_eq_zero {δ : ι → ℝ} (hδ : ∀ r, 0 < δ r) {x : ι �
   · exact norm_eq_zero.mp (pow_eq_zero_iff two_ne_zero |>.mp hr)
   · exact absurd hr (hδ r).ne'
 
+/--
+@isnad1 id=eq.0h3v.s5.73f2585a7819 from=translated src=- shape=3ead7d67 vocab=b025fe4a
+-/
 lemma B_zero_left (freq : ι → ℝ) (z : ι → ℂ) : B freq 0 z = 0 := by simp [B]
+/--
+@isnad1 id=eq.0h3v.s5.7333e82f3591 from=translated src=- shape=07fa28d9 vocab=b025fe4a
+-/
 lemma B_zero_right (freq : ι → ℝ) (x : ι → ℂ) : B freq x 0 = 0 := by simp [B]
 
-/-- Scaling invariance: B(t x, t⁻¹ z) = B(x, z) for real t ≠ 0. -/
+/-- Scaling invariance: B(t x, t⁻¹ z) = B(x, z) for real t ≠ 0.
+@isnad1 id=eq.1h5v.s6.72eddf7802f8 from=translated src=- shape=53b0b074 vocab=7aa98afc
+-/
 lemma B_scale (freq : ι → ℝ) (x z : ι → ℂ) {t : ℝ} (ht : t ≠ 0) :
     B freq ((t : ℂ) • x) ((t⁻¹ : ℝ) • z) = B freq x z := by
   unfold B
@@ -146,6 +166,9 @@ lemma B_scale (freq : ι → ℝ) (x z : ι → ℂ) {t : ℝ} (ht : t ≠ 0) :
   linear_combination (x r * conj (z s) * coef freq r s) * this
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h4v.s6.f2254200fd01 from=translated src=- shape=a7ad79a1 vocab=e9145c8f
+-/
 lemma N2_scale (δ : ι → ℝ) (x : ι → ℂ) (t : ℝ) :
     N2 δ ((t : ℂ) • x) = t ^ 2 * N2 δ x := by
   unfold N2
@@ -156,12 +179,17 @@ lemma N2_scale (δ : ι → ℝ) (x : ι → ℂ) (t : ℝ) :
   ring
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h4v.s6.db37c2ab0d6e from=translated src=- shape=eb910b20 vocab=2bccaed5
+-/
 lemma N2_real_smul (δ : ι → ℝ) (x : ι → ℂ) (t : ℝ) :
     N2 δ (t • x) = t ^ 2 * N2 δ x := by
   have : (t • x) = ((t : ℂ) • x) := by funext r; simp [Complex.real_smul]
   rw [this, N2_scale]
 
-/-- Step 1: from the diagonal bound, |B(x,z)| ≤ C (N2 x + N2 z). -/
+/-- Step 1: from the diagonal bound, |B(x,z)| ≤ C (N2 x + N2 z).
+@isnad1 id=le.2h6v.s6.6f3b4f35f405 from=translated src=- shape=5d81d5fd vocab=33619e46
+-/
 lemma norm_B_le_add {C : ℝ} (_hC : 0 ≤ C) {freq δ : ι → ℝ}
     (hdiag : ∀ y : ι → ℂ, ‖B freq y y‖ ≤ C * N2 δ y) (x z : ι → ℂ) :
     ‖B freq x z‖ ≤ C * (N2 δ x + N2 δ z) := by
@@ -186,7 +214,9 @@ lemma norm_B_le_add {C : ℝ} (_hC : 0 ≤ C) {freq δ : ι → ℝ}
         have := N2_polar δ x z
         linear_combination (C / 4) * this
 
-/-- Step 2: scaling + AM–GM turn C(N2 x + N2 z) into 2C √(N2 x) √(N2 z). -/
+/-- Step 2: scaling + AM–GM turn C(N2 x + N2 z) into 2C √(N2 x) √(N2 z).
+@isnad1 id=le.3h6v.s7.f665494140bf from=translated src=- shape=2b06c1c7 vocab=716803e0
+-/
 lemma norm_B_le_sqrt {C : ℝ} (hC : 0 ≤ C) {freq δ : ι → ℝ} (hδ : ∀ r, 0 < δ r)
     (hdiag : ∀ y : ι → ℂ, ‖B freq y y‖ ≤ C * N2 δ y) (x z : ι → ℂ) :
     ‖B freq x z‖ ≤ 2 * C * Real.sqrt (N2 δ x) * Real.sqrt (N2 δ z) := by
@@ -220,7 +250,9 @@ end MV
 
 /-- **Bilinear Montgomery–Vaughan from the literature form**: MVDiag C ⇒ MVHilbert (2C)
 (the paper's [lem:MV] "In general …" step, here via polarization + scaling instead of the
-operator norm of ΔHΔ; constant 2C instead of C, immaterial for ∃C). -/
+operator norm of ΔHΔ; constant 2C instead of C, immaterial for ∃C).
+@isnad1 id=mvhilber.2h1v.s5.9d037205ebc4 from=translated src=- shape=7c9d5a90 vocab=fcbbc226
+-/
 theorem MVHilbert_of_diag {C : ℝ} (hC : 0 ≤ C) (h : MVDiag C) : MVHilbert (2 * C) := by
   intro ι _ _ freq δ x z hinj hδ hsep
   rw [MV.sum_eq_B]
@@ -231,7 +263,9 @@ theorem MVHilbert_of_diag {C : ℝ} (hC : 0 ≤ C) (h : MVDiag C) : MVHilbert (2
     exact this
   exact MV.norm_B_le_sqrt hC hδ hdiag x z
 
-/-- ∃-form, matching PaperInputs.MV's shape: (∃ C > 0, MVDiag C) → (∃ C > 0, MVHilbert C). -/
+/-- ∃-form, matching PaperInputs.MV's shape: (∃ C > 0, MVDiag C) → (∃ C > 0, MVHilbert C).
+@isnad1 id=ex.1h0v.s5.cea50223ae5b from=translated src=- shape=d6892510 vocab=b106acfc
+-/
 theorem exists_MVHilbert_of_diag (h : ∃ C : ℝ, 0 < C ∧ MVDiag C) :
     ∃ C : ℝ, 0 < C ∧ MVHilbert C := by
   obtain ⟨C, hC, hd⟩ := h

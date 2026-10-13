@@ -33,6 +33,9 @@ evenness (translation invariance of Lebesgue measure), the interval-overlap leng
 `|[−M,M] ∩ ([−M,M] − y)| = (2M − |y|)₊`, the two comparison bounds, vanishing for `|y| ≥ 2M`,
 and continuity in `y` (parametric integral over the compact support). -/
 
+/--
+@isnad1 id=eq.0h2v.s4.f7004ed1f12d from=translated src=- shape=b696cfcc vocab=28f00259
+-/
 theorem autocorr_even' (v : ℝ → ℝ) (y : ℝ) : Params.autocorr v (-y) = Params.autocorr v y := by
   unfold Params.autocorr
   rw [← integral_add_right_eq_self (fun u => v u * v (u + -y)) y]
@@ -40,7 +43,9 @@ theorem autocorr_even' (v : ℝ → ℝ) (y : ℝ) : Params.autocorr v (-y) = Pa
   funext u
   rw [show u + y + -y = u by ring, mul_comm]
 
-/-- `|[−M, M] ∩ ([−M, M] − y)| = max (2M − |y|) 0`. -/
+/-- `|[−M, M] ∩ ([−M, M] − y)| = max (2M − |y|) 0`.
+@isnad1 id=eq.0h2v.s6.336c73bd3e29 from=translated src=- shape=4f7d4398 vocab=619f8ae7
+-/
 theorem volume_Icc_inter_shift (M y : ℝ) :
     (volume (Icc (-M) M ∩ Icc (-M - y) (M - y))).toReal = max (2 * M - |y|) 0 := by
   rw [Icc_inter_Icc, Real.volume_Icc, ENNReal.toReal_ofReal']
@@ -49,13 +54,18 @@ theorem volume_Icc_inter_shift (M y : ℝ) :
   · rw [abs_of_nonneg h, max_eq_left (by linarith), min_eq_right (by linarith)]; ring
   · rw [abs_of_nonpos h, max_eq_right (by linarith), min_eq_left (by linarith)]; ring
 
+/--
+@isnad1 id=integrab.0h2v.s6.91b4c1f45d7d from=translated src=- shape=f4652306 vocab=caf3091a
+-/
 theorem integrable_indicator_Icc_inter (M y : ℝ) :
     Integrable ((Icc (-M) M ∩ Icc (-M - y) (M - y)).indicator (1 : ℝ → ℝ)) := by
   rw [Icc_inter_Icc]
   exact (integrable_indicator_iff measurableSet_Icc).mpr
     ((integrableOn_const_iff).mpr (Or.inr (by rw [Real.volume_Icc]; exact ENNReal.ofReal_lt_top)))
 
-/-- Upper comparison: `0 ≤ v ≤ 1` and `v = 0` off `(−M, M)` ⟹ `(v⋆v)(y) ≤ (2M − |y|)₊`. -/
+/-- Upper comparison: `0 ≤ v ≤ 1` and `v = 0` off `(−M, M)` ⟹ `(v⋆v)(y) ≤ (2M − |y|)₊`.
+@isnad1 id=le.3h3v.s6.f0b3f4626a6f from=translated src=- shape=9356ca30 vocab=ee4544d7
+-/
 theorem autocorr_le_of_support (v : ℝ → ℝ) {M : ℝ} (h0 : ∀ u, 0 ≤ v u) (h1 : ∀ u, v u ≤ 1)
     (hz : ∀ u, M ≤ |u| → v u = 0) (y : ℝ) :
     Params.autocorr v y ≤ max (2 * M - |y|) 0 := by
@@ -80,7 +90,9 @@ theorem autocorr_le_of_support (v : ℝ → ℝ) {M : ℝ} (h0 : ∀ u, 0 ≤ v 
     _ = (volume S).toReal := integral_indicator_one hSm
     _ = max (2 * M - |y|) 0 := volume_Icc_inter_shift M y
 
-/-- Lower comparison: `0 ≤ v`, `v = 1` on `[−M, M]`, integrand integrable ⟹ `(2M − |y|)₊ ≤ (v⋆v)(y)`. -/
+/-- Lower comparison: `0 ≤ v`, `v = 1` on `[−M, M]`, integrand integrable ⟹ `(2M − |y|)₊ ≤ (v⋆v)(y)`.
+@isnad1 id=le.3h3v.s7.87316b26c1db from=translated src=- shape=f0f40794 vocab=73660697
+-/
 theorem le_autocorr_of_plateau (v : ℝ → ℝ) {M : ℝ} (h0 : ∀ u, 0 ≤ v u)
     (hp : ∀ u, |u| ≤ M → v u = 1) {y : ℝ} (hint : Integrable fun u => v u * v (u + y)) :
     max (2 * M - |y|) 0 ≤ Params.autocorr v y := by
@@ -102,7 +114,9 @@ theorem le_autocorr_of_plateau (v : ℝ → ℝ) {M : ℝ} (h0 : ∀ u, 0 ≤ v 
         integral_mono_of_nonneg (ae_of_all _ fun u => Set.indicator_nonneg (fun _ _ => zero_le_one) u)
           hint (ae_of_all _ hle)
 
-/-- `v = 0` off `(−M, M)` and `|y| ≥ 2M` ⟹ `(v⋆v)(y) = 0` (the supports of `v` and `v(·+y)` are disjoint). -/
+/-- `v = 0` off `(−M, M)` and `|y| ≥ 2M` ⟹ `(v⋆v)(y) = 0` (the supports of `v` and `v(·+y)` are disjoint).
+@isnad1 id=eq.2h3v.s6.8ef4ed1dd353 from=translated src=- shape=29cf2a42 vocab=d381eaaa
+-/
 theorem autocorr_eq_zero_of_support (v : ℝ → ℝ) {M : ℝ} (hz : ∀ u, M ≤ |u| → v u = 0) {y : ℝ}
     (hy : 2 * M ≤ |y|) : Params.autocorr v y = 0 := by
   unfold Params.autocorr
@@ -117,7 +131,9 @@ theorem autocorr_eq_zero_of_support (v : ℝ → ℝ) {M : ℝ} (hz : ∀ u, M �
       linarith
   rw [this, integral_zero]
 
-/-- Continuity of `y ↦ (v⋆v)(y)` for continuous `v` vanishing off `(−M, M)`. -/
+/-- Continuity of `y ↦ (v⋆v)(y)` for continuous `v` vanishing off `(−M, M)`.
+@isnad1 id=continuo.2h2v.s5.aa349c7c270b from=translated src=- shape=1e720f73 vocab=8b62cd6a
+-/
 theorem autocorr_continuous_of_support (v : ℝ → ℝ) {M : ℝ} (hc : Continuous v)
     (hz : ∀ u, M ≤ |u| → v u = 0) : Continuous (Params.autocorr v) := by
   have : Params.autocorr v = fun y => ∫ u in Icc (-M) M, v u * v (u + y) := by
@@ -137,10 +153,16 @@ theorem autocorr_continuous_of_support (v : ℝ → ℝ) {M : ℝ} (hc : Continu
 /-! The taper instances: `A_φ = φ ⋆ φ` (support `[−L/2, L/2]`, `0 ≤ φ ≤ 1`) and `g = φ² ⋆ φ²`
 (plateau `φ² = 1` on `[−L/2+w, L/2−w]`). -/
 
+/--
+@isnad1 id=eq.3h4v.s6.66cfcf721d7e from=translated src=- shape=1992fc59 vocab=4d813da1
+-/
 theorem phi_sq_eq_zero (hϱ : TaperProfile ϱ) (hw : 0 < w) (u : ℝ) (hu : L / 2 ≤ |u|) :
     phi ϱ L w u ^ 2 = 0 := by
   rw [phi_eq_zero hϱ hw hu, zero_pow two_ne_zero]
 
+/--
+@isnad1 id=integrab.3h4v.s6.6ad569ac6718 from=translated src=- shape=ba7e3132 vocab=7c98cce8
+-/
 theorem integrable_phi_mul_shift (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) (y : ℝ) :
     Integrable fun u => phi ϱ L w u * phi ϱ L w (u + y) := by
   have hc := phi_continuous hϱ hw hwL
@@ -152,6 +174,9 @@ theorem integrable_phi_mul_shift (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 *
   · linarith [neg_le_abs u]
   · linarith [le_abs_self u]
 
+/--
+@isnad1 id=integrab.3h4v.s7.1dfd58a7d244 from=translated src=- shape=cac8662b vocab=f0fab78b
+-/
 theorem integrable_phi_sq_mul_shift (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) (y : ℝ) :
     Integrable fun u => phi ϱ L w u ^ 2 * phi ϱ L w (u + y) ^ 2 := by
   have hc := phi_continuous hϱ hw hwL
@@ -163,13 +188,21 @@ theorem integrable_phi_sq_mul_shift (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 
   · linarith [neg_le_abs u]
   · linarith [le_abs_self u]
 
-/-- "`g` and `A_φ` are even". -/
+/-- "`g` and `A_φ` are even".
+@isnad1 id=eq.0h4v.s4.0cb720b26c2d from=translated src=- shape=5d85d5f7 vocab=652f1f59
+-/
 theorem Aphi_even (y : ℝ) : Aphi ϱ L w (-y) = Aphi ϱ L w y :=
   autocorr_even' _ y
 
+/--
+@isnad1 id=eq.0h4v.s4.fe4e0475a1e0 from=translated src=- shape=5d85d5f7 vocab=3737008c
+-/
 theorem g_even (y : ℝ) : g ϱ L w (-y) = g ϱ L w y :=
   autocorr_even' _ y
 
+/--
+@isnad1 id=le.3h4v.s6.4e8394ea9037 from=translated src=- shape=379a0a82 vocab=4c0bf48e
+-/
 theorem g_ge (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) (y : ℝ) :
     max (L - 2 * w - |y|) 0 ≤ g ϱ L w y := by
   have h := le_autocorr_of_plateau (fun u => phi ϱ L w u ^ 2) (M := L / 2 - w)
@@ -178,6 +211,9 @@ theorem g_ge (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) (y : ℝ) 
   rw [show 2 * (L / 2 - w) = L - 2 * w by ring] at h
   exact h
 
+/--
+@isnad1 id=le.3h4v.s5.abdc26a74f2e from=translated src=- shape=661206be vocab=2165e8ce
+-/
 theorem g_le_Aphi (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) (y : ℝ) :
     g ϱ L w y ≤ Aphi ϱ L w y := by
   unfold g Aphi Params.autocorr
@@ -188,6 +224,9 @@ theorem g_le_Aphi (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) (y : 
   exact mul_le_mul (pow_le_of_le_one (h0 _) (h1 _) two_ne_zero)
     (pow_le_of_le_one (h0 _) (h1 _) two_ne_zero) (sq_nonneg _) (h0 _)
 
+/--
+@isnad1 id=le.3h4v.s6.869508275255 from=translated src=- shape=b42a0a68 vocab=55d8f045
+-/
 theorem Aphi_le (hϱ : TaperProfile ϱ) (hw : 0 < w) (_hwL : 2 * w ≤ L) (y : ℝ) :
     Aphi ϱ L w y ≤ max (L - |y|) 0 := by
   have h := autocorr_le_of_support (phi ϱ L w) (M := L / 2) (phi_nonneg hϱ) (phi_le_one hϱ)
@@ -195,31 +234,47 @@ theorem Aphi_le (hϱ : TaperProfile ϱ) (hw : 0 < w) (_hwL : 2 * w ≤ L) (y : �
   rw [show 2 * (L / 2) = L by ring] at h
   exact h
 
+/--
+@isnad1 id=le.3h4v.s5.719ea9d6f90a from=translated src=- shape=7a55a15e vocab=a8a5cd51
+-/
 theorem g_nonneg (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) (y : ℝ) :
     0 ≤ g ϱ L w y :=
   le_trans (le_max_right _ _) (g_ge hϱ hw hwL y)
 
+/--
+@isnad1 id=le.3h4v.s5.93d6de0a42f7 from=translated src=- shape=7a55a15e vocab=25f366d2
+-/
 theorem Aphi_nonneg (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) (y : ℝ) :
     0 ≤ Aphi ϱ L w y :=
   le_trans (g_nonneg hϱ hw hwL y) (g_le_Aphi hϱ hw hwL y)
 
-/-- `g(y) = 0` for `|y| ≥ L` (so `Σ_n a_n² g(log n)` runs over `n ≤ X = e^L` only). -/
+/-- `g(y) = 0` for `|y| ≥ L` (so `Σ_n a_n² g(log n)` runs over `n ≤ X = e^L` only).
+@isnad1 id=eq.4h4v.s6.c38b8dfeecee from=translated src=- shape=4e5040dd vocab=76cd969d
+-/
 theorem g_eq_zero (hϱ : TaperProfile ϱ) (hw : 0 < w) (_hwL : 2 * w ≤ L) {y : ℝ}
     (hy : L ≤ |y|) : g ϱ L w y = 0 :=
   autocorr_eq_zero_of_support (fun u => phi ϱ L w u ^ 2) (M := L / 2)
     (fun u hu => phi_sq_eq_zero hϱ hw u hu) (by linarith)
 
-/-- "(and `A_φ(L) = 0`)" [prop:trace, P-part]; more generally `A_φ(y) = 0` for `|y| ≥ L`. -/
+/-- "(and `A_φ(L) = 0`)" [prop:trace, P-part]; more generally `A_φ(y) = 0` for `|y| ≥ L`.
+@isnad1 id=eq.4h4v.s6.f43ecfcb15d7 from=translated src=- shape=4e5040dd vocab=89a259fe
+-/
 theorem Aphi_eq_zero (hϱ : TaperProfile ϱ) (hw : 0 < w) (_hwL : 2 * w ≤ L) {y : ℝ}
     (hy : L ≤ |y|) : Aphi ϱ L w y = 0 :=
   autocorr_eq_zero_of_support (phi ϱ L w) (M := L / 2) (fun u hu => phi_eq_zero hϱ hw hu)
     (by linarith)
 
+/--
+@isnad1 id=continuo.3h3v.s5.faa14bdd065c from=translated src=- shape=2ac8fbc3 vocab=b4201e14
+-/
 theorem g_continuous (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) :
     Continuous (g ϱ L w) :=
   autocorr_continuous_of_support (fun u => phi ϱ L w u ^ 2) (M := L / 2) ((phi_continuous hϱ hw hwL).pow 2)
     (fun u hu => phi_sq_eq_zero hϱ hw u hu)
 
+/--
+@isnad1 id=continuo.3h3v.s5.8596950b10da from=translated src=- shape=2ac8fbc3 vocab=bb087124
+-/
 theorem Aphi_continuous (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) :
     Continuous (Aphi ϱ L w) :=
   autocorr_continuous_of_support (phi ϱ L w) (M := L / 2) (phi_continuous hϱ hw hwL)
@@ -236,7 +291,9 @@ variable {ϱ : ℝ → ℝ} {L w : ℝ}
 /-! #### Helpers: first-order [eq:hfbound], and the ℂ-valued φ² -/
 
 /-- [eq:hfbound], first order (one integration by parts): supp f ⊆ [−Λ, Λ], f ∈ C_c¹ ⇒
-‖h_f(z)‖ · ‖z‖ ≤ e^{|Im z| Λ} ‖f'‖₁. (Companion of Zeta23.norm_paperFT_mul_sq_le.) -/
+‖h_f(z)‖ · ‖z‖ ≤ e^{|Im z| Λ} ‖f'‖₁. (Companion of Zeta23.norm_paperFT_mul_sq_le.)
+@isnad1 id=le.2h3v.s7.904bb679ba03 from=translated src=- shape=6bea7665 vocab=82cec198
+-/
 theorem norm_paperFT_mul_le {f : ℝ → ℂ} {Λ : ℝ} (hf : ContDiff ℝ 1 f)
     (hsupp : ∀ u, f u ≠ 0 → |u| ≤ Λ) (z : ℂ) :
     ‖paperFT f z‖ * ‖z‖ ≤ Real.exp (|z.im| * Λ) * ∫ u, ‖deriv f u‖ := by
@@ -253,13 +310,18 @@ theorem norm_paperFT_mul_le {f : ℝ → ℂ} {Λ : ℝ} (hf : ContDiff ℝ 1 f)
     mul_comm] at this
   exact this
 
-/-- The ℂ-valued φ² used in Φ := (φ²)^ is C² with support in [−L/2, L/2]. -/
+/-- The ℂ-valued φ² used in Φ := (φ²)^ is C² with support in [−L/2, L/2].
+@isnad1 id=contdiff.3h3v.s6.53cc57f06ea2 from=translated src=- shape=302239e0 vocab=322653b1
+-/
 theorem phiSqC_contDiff (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) :
     ContDiff ℝ 2 (fun u => (((phi ϱ L w u) ^ 2 : ℝ) : ℂ)) := by
   have h : ContDiff ℝ 2 (fun u => (phi ϱ L w u) ^ 2) :=
     ((phi_contDiff hϱ hw hwL).of_le (by norm_num)).pow 2
   exact ofRealCLM.contDiff.comp h
 
+/--
+@isnad1 id=le.3h4v.s6.11dbe832bb68 from=translated src=- shape=5112c147 vocab=a5035d2d
+-/
 theorem phiSqC_support (hϱ : TaperProfile ϱ) (hw : 0 < w) (u : ℝ)
     (hu : (((phi ϱ L w u) ^ 2 : ℝ) : ℂ) ≠ 0) : |u| ≤ L / 2 := by
   by_contra h
@@ -267,11 +329,17 @@ theorem phiSqC_support (hϱ : TaperProfile ϱ) (hw : 0 < w) (u : ℝ)
   rw [phi_eq_zero hϱ hw (le_of_lt (not_le.mp h))]
   simp
 
+/--
+@isnad1 id=eq.3h3v.s7.7444069e5e5d from=translated src=- shape=c01c3dbf vocab=3f5b66dc
+-/
 theorem deriv_phiSqC (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) :
     deriv (fun u => (((phi ϱ L w u) ^ 2 : ℝ) : ℂ))
       = fun u => ((deriv (fun u => phi ϱ L w u ^ 2) u : ℝ) : ℂ) :=
   deriv_ofReal_comp (((phi_contDiff hϱ hw hwL).differentiable (by norm_num)).pow 2)
 
+/--
+@isnad1 id=eq.3h3v.s8.f537c528481c from=translated src=- shape=aecaf97c vocab=3f5b66dc
+-/
 theorem deriv_deriv_phiSqC (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) :
     deriv (deriv (fun u => (((phi ϱ L w u) ^ 2 : ℝ) : ℂ)))
       = fun u => ((deriv (deriv (fun u => phi ϱ L w u ^ 2)) u : ℝ) : ℂ) := by
@@ -280,7 +348,9 @@ theorem deriv_deriv_phiSqC (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤
   rw [deriv_phiSqC hϱ hw hwL]
   exact deriv_ofReal_comp ((h2.deriv' (n := 1)).differentiable (by norm_num))
 
-/-- ∫ φ² ≤ L. -/
+/-- ∫ φ² ≤ L.
+@isnad1 id=le.3h3v.s6.4cd3a8f3bd99 from=translated src=- shape=d120a330 vocab=5540146e
+-/
 theorem integral_phi_sq_le (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) :
     ∫ u, (phi ϱ L w u) ^ 2 ≤ L := by
   refine le_trans (integral_mono_of_nonneg (Eventually.of_forall fun u => sq_nonneg _)
@@ -289,18 +359,30 @@ theorem integral_phi_sq_le (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤
   have h1 := phi_le_one hϱ (L := L) (w := w) u
   nlinarith
 
+/--
+@isnad1 id=le.0h4v.s4.8a307ea87989 from=translated src=- shape=abcc4ed7 vocab=42009e84
+-/
 theorem abs_phiHatR_le_norm (r : ℝ) : |phiHatR ϱ L w r| ≤ ‖phiHat ϱ L w r‖ :=
   Complex.abs_re_le_norm _
 
+/--
+@isnad1 id=le.0h4v.s4.67d01fbb5e11 from=translated src=- shape=abcc4ed7 vocab=eee3c17d
+-/
 theorem abs_PhiR_le_norm (r : ℝ) : |PhiR ϱ L w r| ≤ ‖Phi ϱ L w r‖ :=
   Complex.abs_re_le_norm _
 
+/--
+@isnad1 id=le.3h4v.s5.5247e2bc083d from=translated src=- shape=d704c45d vocab=4aec45cd
+-/
 theorem abs_phiHatR_le_L (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) (r : ℝ) :
     |phiHatR ϱ L w r| ≤ L := by
   refine (abs_phiHatR_le_norm r).trans ?_
   have h := norm_phiHat_le hϱ hw hwL (r : ℂ)
   simpa using h
 
+/--
+@isnad1 id=le.3h4v.s6.604dfb3c75d7 from=translated src=- shape=3420195a vocab=4aec45cd
+-/
 theorem abs_phiHatR_mul_abs_le (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) (r : ℝ) :
     |phiHatR ϱ L w r| * |r| ≤ 2 := by
   have h := norm_paperFT_mul_le ((phiC_contDiff hϱ hw hwL).of_le (by norm_num))
@@ -312,6 +394,9 @@ theorem abs_phiHatR_mul_abs_le (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w
         mul_le_mul_of_nonneg_right (abs_phiHatR_le_norm r) (abs_nonneg r)
     _ ≤ 2 := h
 
+/--
+@isnad1 id=le.3h4v.s6.08f680c67384 from=translated src=- shape=7e7828ae vocab=211e9940
+-/
 theorem abs_phiHatR_mul_sq_le (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 2 * w ≤ L) (r : ℝ) :
     |phiHatR ϱ L w r| * r ^ 2 ≤ cRho ϱ / w := by
   have hw0 : 0 < w := by linarith
@@ -324,6 +409,9 @@ theorem abs_phiHatR_mul_sq_le (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 2 * 
     _ = 2 * l1Deriv2 ϱ / w := C1_eq hϱ hw0 hwL
     _ ≤ cRho ϱ / w := div_le_div_of_nonneg_right (two_mul_l1Deriv2_le_cRho hϱ) hw0.le
 
+/--
+@isnad1 id=le.3h4v.s5.050ee1608e79 from=translated src=- shape=d704c45d vocab=31cb19e6
+-/
 theorem abs_PhiR_le_L (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) (r : ℝ) :
     |PhiR ϱ L w r| ≤ L := by
   refine (abs_PhiR_le_norm r).trans ?_
@@ -338,6 +426,9 @@ theorem abs_PhiR_le_L (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) (
         congr 1 with u; exact abs_of_nonneg (sq_nonneg _)
     _ ≤ L := integral_phi_sq_le hϱ hw hwL
 
+/--
+@isnad1 id=le.3h4v.s6.76c954aaf9ac from=translated src=- shape=3420195a vocab=31cb19e6
+-/
 theorem abs_PhiR_mul_abs_le (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) (r : ℝ) :
     |PhiR ϱ L w r| * |r| ≤ 2 := by
   have h := norm_paperFT_mul_le ((phiSqC_contDiff hϱ hw hwL).of_le (by norm_num))
@@ -349,6 +440,9 @@ theorem abs_PhiR_mul_abs_le (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w �
         mul_le_mul_of_nonneg_right (abs_PhiR_le_norm r) (abs_nonneg r)
     _ ≤ 2 := h
 
+/--
+@isnad1 id=le.3h4v.s6.0523e873d62a from=translated src=- shape=7e7828ae vocab=e018013e
+-/
 theorem abs_PhiR_mul_sq_le (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 2 * w ≤ L) (r : ℝ) :
     |PhiR ϱ L w r| * r ^ 2 ≤ cRho ϱ / w := by
   have hw0 : 0 < w := by linarith
@@ -361,7 +455,9 @@ theorem abs_PhiR_mul_sq_le (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 2 * w �
     _ ≤ ∫ u, |deriv (deriv fun u => phi ϱ L w u ^ 2) u| := h
     _ ≤ cRho ϱ / w := integral_abs_deriv2_phi_sq_le hϱ hw hwL
 
-/-- [eq:psidef] abstractly: the three bounds `|F| ≤ L`, `|F|·|r| ≤ 2`, `|F|·r² ≤ c_ϱ/w` give `|F| ≤ ψ`. -/
+/-- [eq:psidef] abstractly: the three bounds `|F| ≤ L`, `|F|·|r| ≤ 2`, `|F|·r² ≤ c_ϱ/w` give `|F| ≤ ψ`.
+@isnad1 id=le.4h5v.s7.3f5cd86e6926 from=translated src=- shape=0816cbe3 vocab=61b0e450
+-/
 theorem abs_le_psi_of_bounds (hw : 0 < w) {F : ℝ → ℝ} (h0 : ∀ r, |F r| ≤ L)
     (h1 : ∀ r, |F r| * |r| ≤ 2) (h2 : ∀ r, |F r| * r ^ 2 ≤ cRho ϱ / w) (r : ℝ) :
     |F r| ≤ psi ϱ L w r := by
@@ -375,16 +471,25 @@ theorem abs_le_psi_of_bounds (hw : 0 < w) {F : ℝ → ℝ} (h0 : ∀ r, |F r| �
         ← le_div_iff₀ hw]
       exact h2 r
 
+/--
+@isnad1 id=le.3h4v.s5.eb4affa00bda from=translated src=- shape=328ac9ed vocab=52052df7
+-/
 theorem abs_phiHatR_le_psi (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 2 * w ≤ L) (r : ℝ) :
     |phiHatR ϱ L w r| ≤ psi ϱ L w r :=
   abs_le_psi_of_bounds (by linarith) (abs_phiHatR_le_L hϱ (by linarith) hwL)
     (abs_phiHatR_mul_abs_le hϱ (by linarith) hwL) (abs_phiHatR_mul_sq_le hϱ hw hwL) r
 
+/--
+@isnad1 id=le.3h4v.s5.ad09c44bff5f from=translated src=- shape=328ac9ed vocab=6f7f70f2
+-/
 theorem abs_PhiR_le_psi (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 2 * w ≤ L) (r : ℝ) :
     |PhiR ϱ L w r| ≤ psi ϱ L w r :=
   abs_le_psi_of_bounds (by linarith) (abs_PhiR_le_L hϱ (by linarith) hwL)
     (abs_PhiR_mul_abs_le hϱ (by linarith) hwL) (abs_PhiR_mul_sq_le hϱ hw hwL) r
 
+/--
+@isnad1 id=le.3h4v.s5.1be4ff5acbdd from=translated src=- shape=281d3d81 vocab=4d941e76
+-/
 theorem psi_nonneg (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 2 * w ≤ L) (r : ℝ) :
     0 ≤ psi ϱ L w r := by
   have hL : 0 ≤ L := by linarith
@@ -394,9 +499,15 @@ theorem psi_nonneg (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 2 * w ≤ L) (r
   · exact hL
   · exact le_min hL (le_min (by positivity) (by positivity))
 
+/--
+@isnad1 id=eq.0h4v.s4.698b8bd2f88a from=translated src=- shape=5d85d5f7 vocab=69f7a54a
+-/
 theorem psi_even (r : ℝ) : psi ϱ L w (-r) = psi ϱ L w r := by
   simp [psi]
 
+/--
+@isnad1 id=le.3h4v.s5.1b0953a94476 from=translated src=- shape=35349455 vocab=4d941e76
+-/
 theorem psi_le_L (_hϱ : TaperProfile ϱ) (_hw : 1 ≤ w) (_hwL : 2 * w ≤ L) (r : ℝ) :
     psi ϱ L w r ≤ L := by
   unfold psi
@@ -404,6 +515,9 @@ theorem psi_le_L (_hϱ : TaperProfile ϱ) (_hw : 1 ≤ w) (_hwL : 2 * w ≤ L) (
   · exact le_rfl
   · exact min_le_left _ _
 
+/--
+@isnad1 id=le.3h4v.s6.761d63ac9d52 from=translated src=- shape=4fea9c26 vocab=be775d79
+-/
 theorem psi_mul_abs_le (_hϱ : TaperProfile ϱ) (_hw : 1 ≤ w) (_hwL : 2 * w ≤ L) (r : ℝ) :
     psi ϱ L w r * |r| ≤ 2 := by
   unfold psi
@@ -413,6 +527,9 @@ theorem psi_mul_abs_le (_hϱ : TaperProfile ϱ) (_hw : 1 ≤ w) (_hwL : 2 * w �
     rw [← le_div_iff₀ hra]
     exact (min_le_right _ _).trans (min_le_left _ _)
 
+/--
+@isnad1 id=le.3h4v.s6.ffe1add42b82 from=translated src=- shape=4b46c53f vocab=84783e48
+-/
 theorem psi_mul_sq_le (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (_hwL : 2 * w ≤ L) (r : ℝ) :
     psi ϱ L w r * r ^ 2 ≤ cRho ϱ / w := by
   have hw0 : 0 < w := by linarith
@@ -426,10 +543,16 @@ theorem psi_mul_sq_le (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (_hwL : 2 * w ≤ L
 
 /-! #### Measurability / integrability of ψ -/
 
+/--
+@isnad1 id=eq.0h4v.s4.8905b8de8ec1 from=translated src=- shape=5d85d5f7 vocab=321f808b
+-/
 theorem psi_abs (r : ℝ) : psi ϱ L w |r| = psi ϱ L w r := by
   unfold psi
   simp only [abs_eq_zero, abs_abs, sq_abs]
 
+/--
+@isnad1 id=measurab.0h3v.s4.2305276e208b from=translated src=- shape=4b89b9da vocab=ec188a92
+-/
 theorem psi_measurable : Measurable (psi ϱ L w) := by
   have h1 : Measurable (fun r : ℝ => min L (min (2 / |r|) (cRho ϱ / (w * r ^ 2)))) :=
     measurable_const.min ((measurable_const.div continuous_abs.measurable).min
@@ -443,7 +566,9 @@ theorem psi_measurable : Measurable (psi ϱ L w) := by
   rw [this]
   exact Measurable.piecewise (measurableSet_singleton 0) measurable_const h1
 
-/-- For r > 0: ψ(r) ≤ (c_ϱ/w) · r^{−2} (rpow form). -/
+/-- For r > 0: ψ(r) ≤ (c_ϱ/w) · r^{−2} (rpow form).
+@isnad1 id=le.4h4v.s6.35769d83cc7b from=translated src=- shape=91524a8d vocab=594042bb
+-/
 theorem psi_le_rpow_neg_two (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 2 * w ≤ L) {r : ℝ}
     (hr : 0 < r) : psi ϱ L w r ≤ cRho ϱ / w * r ^ (-2:ℝ) := by
   have h := psi_mul_sq_le hϱ hw hwL r
@@ -531,7 +656,9 @@ private theorem psi_le_psiMaj (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 2 * 
 
 /-- φ̂_ℝ is continuous (paperFT of an integrable function, at real arguments; dominated
 convergence with the bound ‖φ‖). Auxiliary version for this file; Zeta23/Taper/Fourier.lean
-(downstream) carries phiHatR_continuous. -/
+(downstream) carries phiHatR_continuous.
+@isnad1 id=continuo.1h1v.s6.916a2da24b75 from=translated src=- shape=5b5f6505 vocab=5b078b26
+-/
 theorem continuous_paperFT_ofReal {f : ℝ → ℂ} (hf : Integrable f) :
     Continuous (fun r : ℝ => paperFT f r) := by
   unfold paperFT
@@ -543,12 +670,18 @@ theorem continuous_paperFT_ofReal {f : ℝ → ℂ} (hf : Integrable f) :
     simp
   · exact Eventually.of_forall fun u => by fun_prop
 
+/--
+@isnad1 id=continuo.3h3v.s5.70c4778664e4 from=translated src=- shape=2ac8fbc3 vocab=9dc94d9c
+-/
 theorem continuous_phiHatR_aux (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) :
     Continuous (phiHatR ϱ L w) := by
   unfold phiHatR phiHat
   exact Complex.continuous_re.comp
     (continuous_paperFT_ofReal (phi_integrable hϱ hw hwL).ofReal)
 
+/--
+@isnad1 id=continuo.3h3v.s5.cec45760ac83 from=translated src=- shape=2ac8fbc3 vocab=0eb4e078
+-/
 theorem continuous_PhiR_aux (hϱ : TaperProfile ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L) :
     Continuous (PhiR ϱ L w) := by
   unfold PhiR Phi
@@ -616,7 +749,9 @@ private theorem indicator_psi_le (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 8
       indicator_of_notMem (show r ∉ Ioi (cRho ϱ / (2 * w)) from fun h => hr (lt_trans hB h)),
       add_zero, add_zero]
 
-/-- [eq:psiints]: Ψ₀ := ∫₀^∞ ψ(r) dr ≤ 4 + 2 log(c_ϱ L/(4w)) (paper: "="). -/
+/-- [eq:psiints]: Ψ₀ := ∫₀^∞ ψ(r) dr ≤ 4 + 2 log(c_ϱ L/(4w)) (paper: "=").
+@isnad1 id=le.3h3v.s7.f52c85f409ad from=translated src=- shape=802a6ac9 vocab=f949a874
+-/
 theorem integral_psi_Ioi_le (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 8 * w ≤ L) :
     ∫ r in Ioi 0, psi ϱ L w r ≤ 4 + 2 * Real.log (cRho ϱ * L / (4 * w)) := by
   obtain ⟨hA, hB, hAB, hBA⟩ := psiints_consts hϱ hw hwL
@@ -672,7 +807,9 @@ theorem integral_psi_Ioi_le (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 8 * w 
     _ = 4 + 2 * Real.log (cRho ϱ * L / (4 * w)) := by rw [hBA]; ring
 
 /-- [eq:psiints]: ∫_ℝ ψ(r)²|r| dr ≤ 8 + 8 log(c_ϱ L/(4w)) (paper: "="): split (0,2/L],
-(2/L, c/2w], (c/2w, ∞): ∫₀^∞ ψ² r ≤ L²(2/L)²/2 + 4 log(cL/4w) + (c/w)²/(2(c/2w)²) = 2 + 4 log + 2. -/
+(2/L, c/2w], (c/2w, ∞): ∫₀^∞ ψ² r ≤ L²(2/L)²/2 + 4 log(cL/4w) + (c/w)²/(2(c/2w)²) = 2 + 4 log + 2.
+@isnad1 id=le.3h3v.s7.e8411b445e47 from=translated src=- shape=0666aab6 vocab=834fe990
+-/
 theorem integral_psi_sq_mul_abs_le (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 8 * w ≤ L) :
     ∫ r, psi ϱ L w r ^ 2 * |r| ≤ 8 + 8 * Real.log (cRho ϱ * L / (4 * w)) := by
   obtain ⟨hA, hB, hAB, hBA⟩ := psiints_consts hϱ hw hwL
@@ -779,7 +916,9 @@ theorem integral_psi_sq_mul_abs_le (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL :
     _ = 8 + 8 * Real.log (cRho ϱ * L / (4 * w)) := by rw [hBA]; ring
 
 /-- [eq:psiints]: "∫_ℝ ψ² ≤ 8L". Uses only ψ ≤ min(L, 2/|r|):
-∫ = 2∫₀^∞ ≤ 2(∫₀^{2/L} L² + ∫_{2/L}^∞ 4r⁻²) = 2(2L+2L). -/
+∫ = 2∫₀^∞ ≤ 2(∫₀^{2/L} L² + ∫_{2/L}^∞ 4r⁻²) = 2(2L+2L).
+@isnad1 id=le.3h3v.s6.16933f045417 from=translated src=- shape=a4530f6a vocab=33636a41
+-/
 theorem integral_psi_sq_le (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 8 * w ≤ L) :
     ∫ r, psi ϱ L w r ^ 2 ≤ 8 * L := by
   obtain ⟨hA, -, -, -⟩ := psiints_consts hϱ hw hwL
@@ -843,6 +982,9 @@ theorem integral_psi_sq_le (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 8 * w �
     _ = 2 * (2 * L + 2 * L) := by rw [integral_add I1 I2, e1, e2]
     _ = 8 * L := by ring
 
+/--
+@isnad1 id=integrab.3h3v.s6.c0cf157a9dc3 from=translated src=- shape=cf4f744a vocab=3fee968b
+-/
 theorem psi_integrable (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 8 * w ≤ L) :
     Integrable (psi ϱ L w) := by
   have hwL' : 2 * w ≤ L := by linarith
@@ -851,6 +993,9 @@ theorem psi_integrable (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 8 * w ≤ L
   rw [Real.norm_of_nonneg (psi_nonneg hϱ hw hwL' r)]
   exact psi_le_psiMaj hϱ hw hwL' r
 
+/--
+@isnad1 id=integrab.3h3v.s6.05ee50b5b993 from=translated src=- shape=af2ad7c2 vocab=848ae8f2
+-/
 theorem psi_sq_integrable (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 8 * w ≤ L) :
     Integrable (fun r => psi ϱ L w r ^ 2) := by
   have hwL' : 2 * w ≤ L := by linarith
@@ -861,6 +1006,9 @@ theorem psi_sq_integrable (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 8 * w �
   rw [Real.norm_of_nonneg (sq_nonneg _)]
   nlinarith
 
+/--
+@isnad1 id=integrab.3h3v.s6.9a787ef6e0e2 from=translated src=- shape=b30f5344 vocab=2726d90a
+-/
 theorem psi_sq_mul_abs_integrable (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 8 * w ≤ L) :
     Integrable (fun r => psi ϱ L w r ^ 2 * |r|) := by
   have hwL' : 2 * w ≤ L := by linarith
@@ -948,18 +1096,25 @@ private theorem integral_sq_mul_sq_le_of_bounds {F : ℝ → ℝ} {C : ℝ}
   exact integral_mono_of_nonneg (Eventually.of_forall fun r => by positivity)
     (momMaj_integrable C) (Eventually.of_forall fun r => sq_mul_sq_le_momMaj hC h1 h2 r)
 
-/-- Consequence packaged for [prop:trace]/[prop:mumu]: ∫ φ̂(r)² |r| dr ≤ 8 + 8 log(c_ϱ L/4w). -/
+/-- Consequence packaged for [prop:trace]/[prop:mumu]: ∫ φ̂(r)² |r| dr ≤ 8 + 8 log(c_ϱ L/4w).
+@isnad1 id=le.3h3v.s7.96c5741e6245 from=translated src=- shape=0666aab6 vocab=1cdc717e
+-/
 theorem integral_phiHatR_sq_mul_abs_le (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 8 * w ≤ L) :
     ∫ r, phiHatR ϱ L w r ^ 2 * |r| ≤ 8 + 8 * Real.log (cRho ϱ * L / (4 * w)) :=
   integral_sq_mul_abs_le_of_le_psi hϱ hw hwL
     (fun r => abs_phiHatR_le_psi hϱ hw (by linarith) r)
 
+/--
+@isnad1 id=le.3h3v.s7.c952551bf2a8 from=translated src=- shape=0666aab6 vocab=396c2df9
+-/
 theorem integral_PhiR_sq_mul_abs_le (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 8 * w ≤ L) :
     ∫ x, PhiR ϱ L w x ^ 2 * |x| ≤ 8 + 8 * Real.log (cRho ϱ * L / (4 * w)) :=
   integral_sq_mul_abs_le_of_le_psi hϱ hw hwL
     (fun r => abs_PhiR_le_psi hϱ hw (by linarith) r)
 
-/-- Used for [prop:trace] (μ/Π tails): `φ̂(r)² r²` is integrable … -/
+/-- Used for [prop:trace] (μ/Π tails): `φ̂(r)² r²` is integrable …
+@isnad1 id=integrab.3h3v.s6.a66599090ff6 from=translated src=- shape=bd965f27 vocab=08ef4817
+-/
 theorem integrable_phiHatR_sq_mul_sq (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 8 * w ≤ L) :
     Integrable (fun r => phiHatR ϱ L w r ^ 2 * r ^ 2) := by
   have hw0 : 0 < w := by linarith
@@ -969,7 +1124,9 @@ theorem integrable_phiHatR_sq_mul_sq (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL
     (abs_phiHatR_mul_abs_le hϱ hw0 hwL') (abs_phiHatR_mul_sq_le hϱ hw hwL')
 
 /-- … and `∫ φ̂(r)² r² dr ≤ 8 + 2 (c_ϱ/w)²` (from [eq:psidef]: `φ̂² r² ≤ 4` on `|r| ≤ 1`,
-`≤ (c_ϱ/w)² r⁻²` on `|r| > 1`). -/
+`≤ (c_ϱ/w)² r⁻²` on `|r| > 1`).
+@isnad1 id=le.3h3v.s7.3587b33a6c22 from=translated src=- shape=7bc258fd vocab=4a6419f2
+-/
 theorem integral_phiHatR_sq_mul_sq_le (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 8 * w ≤ L) :
     ∫ r, phiHatR ϱ L w r ^ 2 * r ^ 2 ≤ 8 + 2 * (cRho ϱ / w) ^ 2 := by
   have hw0 : 0 < w := by linarith
@@ -978,7 +1135,9 @@ theorem integral_phiHatR_sq_mul_sq_le (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hw
     (div_nonneg (le_trans (by norm_num) (four_le_cRho hϱ)) hw0.le)
     (abs_phiHatR_mul_abs_le hϱ hw0 hwL') (abs_phiHatR_mul_sq_le hϱ hw hwL')
 
-/-- Φ analogue (used for [prop:mumu]): `Φ(x)² x²` integrable … -/
+/-- Φ analogue (used for [prop:mumu]): `Φ(x)² x²` integrable …
+@isnad1 id=integrab.3h3v.s6.9f8cbfea24d5 from=translated src=- shape=bd965f27 vocab=f573547a
+-/
 theorem integrable_PhiR_sq_mul_sq (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 8 * w ≤ L) :
     Integrable (fun x => PhiR ϱ L w x ^ 2 * x ^ 2) := by
   have hw0 : 0 < w := by linarith
@@ -987,7 +1146,9 @@ theorem integrable_PhiR_sq_mul_sq (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 
     (div_nonneg (le_trans (by norm_num) (four_le_cRho hϱ)) hw0.le)
     (abs_PhiR_mul_abs_le hϱ hw0 hwL') (abs_PhiR_mul_sq_le hϱ hw hwL')
 
-/-- … and `∫ Φ(x)² x² dx ≤ 8 + 2 (c_ϱ/w)²` (same ψ route as for φ̂). -/
+/-- … and `∫ Φ(x)² x² dx ≤ 8 + 2 (c_ϱ/w)²` (same ψ route as for φ̂).
+@isnad1 id=le.3h3v.s7.ec7e53ecfd03 from=translated src=- shape=7bc258fd vocab=44570ee3
+-/
 theorem integral_PhiR_sq_mul_sq_le (hϱ : TaperProfile ϱ) (hw : 1 ≤ w) (hwL : 8 * w ≤ L) :
     ∫ x, PhiR ϱ L w x ^ 2 * x ^ 2 ≤ 8 + 2 * (cRho ϱ / w) ^ 2 := by
   have hw0 : 0 < w := by linarith

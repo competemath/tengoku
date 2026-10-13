@@ -47,7 +47,9 @@ variable [IsTopologicalGroup C] [LocallyCompactSpace B]
 variable [MeasurableSpace C] [BorelSpace C] (μC : Measure C) [hμC : IsHaarMeasure μC]
 variable [T2Space B] [MeasurableSpace B] [BorelSpace B]
 
-/-- A sufficiently large open subset of `B` cannot be a fundamental domain. -/
+/-- A sufficiently large open subset of `B` cannot be a fundamental domain.
+@isnad1 id=not.3h8v.s8.3514fbc406a2 from=translated src=- shape=3536e148 vocab=f19d2a62
+-/
 @[to_additive]
 theorem not_injOn_of_inducedMeasure_gt (U : Set B) (hU : IsOpen U) [DiscreteTopology A]
     (h : μC Set.univ * μA {1} < inducedMeasure H μA μC U) :
@@ -55,6 +57,9 @@ theorem not_injOn_of_inducedMeasure_gt (U : Set B) (hU : IsOpen U) [DiscreteTopo
   contrapose! h
   exact H.inducedMeasure_lt_of_injOn μA μC hU h
 
+/--
+@isnad1 id=ex.0h2v.s8.86daaf9f1fe3 from=translated src=- shape=8b77c8cb vocab=eed0daa7
+-/
 @[to_additive]
 theorem not_injOn_of_measure_gt
     {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [PolishSpace G]

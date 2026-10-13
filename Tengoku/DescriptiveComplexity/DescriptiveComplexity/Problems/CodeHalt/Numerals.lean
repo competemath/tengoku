@@ -49,9 +49,15 @@ def IsS (Le : D → D → Prop) (d d' : D) : Prop :=
 variable [Finite D] (hlin : IsLinOrd Le)
 include hlin
 
+/--
+@isnad1 id=lt.2h5v.s5.a1b98ef57932 from=translated src=- shape=30e246e6 vocab=7964b227
+-/
 theorem numOf_lt {x y : D} (hle : Le x y) (hne : x ≠ y) : numOf Le x < numOf Le y :=
   bitRank_lt hlin trivial hle hne
 
+/--
+@isnad1 id=and.2h4v.s5.baf8d0228bd4 from=translated src=- shape=0d8bd7a1 vocab=7964b227
+-/
 theorem le_of_numOf_lt {x y : D} (h : numOf Le x < numOf Le y) : Le x y ∧ x ≠ y := by
   have hne : x ≠ y := fun hxy => absurd h (by rw [hxy]; omega)
   refine ⟨?_, hne⟩
@@ -59,12 +65,18 @@ theorem le_of_numOf_lt {x y : D} (h : numOf Le x < numOf Le y) : Le x y ∧ x �
   · exact hxy
   · exact absurd (numOf_lt hlin hyx fun h' => hne h'.symm) (by omega)
 
+/--
+@isnad1 id=eq.2h4v.s5.5f5297f2503f from=translated src=- shape=4de86de7 vocab=d126d2c8
+-/
 theorem numOf_injective {x y : D} (h : numOf Le x = numOf Le y) : x = y := by
   by_contra hne
   rcases hlin.2.2.2 x y with hxy | hyx
   · exact absurd (numOf_lt hlin hxy hne) (by omega)
   · exact absurd (numOf_lt hlin hyx fun h' => hne h'.symm) (by omega)
 
+/--
+@isnad1 id=iff.1h4v.s5.260198979933 from=translated src=- shape=96912dac vocab=b1680393
+-/
 theorem le_iff_numOf_le {x y : D} : Le x y ↔ numOf Le x ≤ numOf Le y := by
   constructor
   · intro hxy
@@ -76,6 +88,9 @@ theorem le_iff_numOf_le {x y : D} : Le x y ↔ numOf Le x ≤ numOf Le y := by
     · exact (numOf_injective hlin heq) ▸ hlin.1 x
     · exact (le_of_numOf_lt hlin hlt).1
 
+/--
+@isnad1 id=iff.1h3v.s5.108c4f82c6e3 from=translated src=- shape=e9a307b4 vocab=c1d37a9c
+-/
 theorem isZ_iff {d : D} : IsZ Le d ↔ numOf Le d = 0 := by
   constructor
   · intro h
@@ -90,6 +105,9 @@ theorem isZ_iff {d : D} : IsZ Le d ↔ numOf Le d = 0 := by
     have hne : e ≠ d := fun hh => hde (hh ▸ hlin.1 e)
     exact absurd (numOf_lt hlin hed hne) (by omega)
 
+/--
+@isnad1 id=iff.1h4v.s5.2c002b029e91 from=translated src=- shape=7404c96f vocab=76fc223a
+-/
 theorem isS_iff {d d' : D} : IsS Le d d' ↔ numOf Le d' = numOf Le d + 1 := by
   constructor
   · rintro ⟨hle, hne, hbtw⟩
@@ -121,17 +139,25 @@ theorem isS_iff {d d' : D} : IsS Le d d' ↔ numOf Le d' = numOf Le d + 1 := by
     · exact Or.inr (numOf_injective hlin he)
 
 omit [Finite D] hlin in
+/--
+@isnad1 id=iff.0h3v.s4.8ddcfe52e01d from=translated src=- shape=27a62e63 vocab=8b77f059
+-/
 theorem isZ_iff_minPos {d : D} : IsZ Le d ↔ MinPos Le (fun _ => True) d :=
   ⟨fun h => ⟨trivial, fun q _ => h q⟩, fun h q => h.2 q trivial⟩
 
 omit [Finite D] hlin in
+/--
+@isnad1 id=iff.0h4v.s4.78b5837415a1 from=translated src=- shape=6a7140ed vocab=a01bbba5
+-/
 theorem isS_iff_succPos {d d' : D} : IsS Le d d' ↔ SuccPos Le (fun _ => True) d d' :=
   ⟨fun h => ⟨trivial, trivial, h.1, h.2.1, fun r _ => h.2.2 r⟩,
     fun h => ⟨h.2.2.1, h.2.2.2.1, fun r => h.2.2.2.2 r trivial⟩⟩
 
 /-- **Every number below a reached one is reached**: the values of the segment
 are an initial segment of `ℕ`. This is what lets a bounded universal over the
-segment be read as a bounded universal over `ℕ`. -/
+segment be read as a bounded universal over `ℕ`.
+@isnad1 id=ex.3h5v.s5.b66588fd5a52 from=translated src=- shape=2c38ac43 vocab=b1680393
+-/
 theorem exists_numOf :
     ∀ (Y : ℕ) (y : D), numOf Le y = Y → ∀ w, w ≤ Y → ∃ x : D, numOf Le x = w := by
   intro Y
@@ -155,6 +181,9 @@ section Fin
 
 variable {N : ℕ}
 
+/--
+@isnad1 id=iff.0h2v.s6.e5f5bb611e9c from=translated src=- shape=b7032277 vocab=d296264a
+-/
 theorem isZ_fin {i : Fin (N + 1)} : IsZ (· ≤ ·) i ↔ (i : ℕ) = 0 := by
   constructor
   · intro h
@@ -164,6 +193,9 @@ theorem isZ_fin {i : Fin (N + 1)} : IsZ (· ≤ ·) i ↔ (i : ℕ) = 0 := by
     rw [Fin.le_def]
     omega
 
+/--
+@isnad1 id=iff.0h3v.s7.d56e9d59a75a from=translated src=- shape=971c44c8 vocab=7e02f574
+-/
 theorem isS_fin {i j : Fin (N + 1)} : IsS (· ≤ ·) i j ↔ (j : ℕ) = (i : ℕ) + 1 := by
   constructor
   · rintro ⟨hle, hne, hbtw⟩

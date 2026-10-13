@@ -33,13 +33,17 @@ def HasUnaryPrefix (t : Tape) (used : ℕ) : Prop :=
   (∀ i, used ≤ i → t.cells (i + 1) = Γ.blank)
 
 /-- An empty tape moved one cell right has the empty unary prefix: the head is
-    at cell 1 and every cell after `▷` is blank. -/
+    at cell 1 and every cell after `▷` is blank.
+@isnad1 id=hasunary.0h0v.s3.139c6de4b712 from=translated src=- shape=c74f0ba7 vocab=df43269e
+-/
 theorem init_nil_move_right_hasUnaryPrefix_zero :
     ((Tape.init []).move Dir3.right).HasUnaryPrefix 0 := by
   simp [HasUnaryPrefix, Tape.init, Tape.move]
 
 /-- Writing one mark at the current head and moving right extends a unary
-    prefix by one cell. -/
+    prefix by one cell.
+@isnad1 id=hasunary.1h2v.s4.5bac732b5a96 from=translated src=- shape=30341344 vocab=42efd800
+-/
 theorem hasUnaryPrefix_write_one {t : Tape} {used : ℕ}
     (h : t.HasUnaryPrefix used) :
     (t.writeAndMove Γ.one Dir3.right).HasUnaryPrefix (used + 1) := by
@@ -69,7 +73,9 @@ theorem hasUnaryPrefix_write_one {t : Tape} {used : ℕ}
     rw [Function.update_of_ne (Ne.symm hne)]
     exact h.2.2 i (by omega)
 
-/-- Writing the next unary mark preserves the left-end marker cell. -/
+/-- Writing the next unary mark preserves the left-end marker cell.
+@isnad1 id=eq.2h2v.s5.bf2c24a98dfd from=translated src=- shape=44908d2b vocab=b77be8a2
+-/
 theorem hasUnaryPrefix_write_one_cell0 {t : Tape} {used : ℕ}
     (h : t.HasUnaryPrefix used) (h0 : t.cells 0 = Γ.start) :
     (t.writeAndMove Γ.one Dir3.right).cells 0 = Γ.start := by
@@ -82,7 +88,9 @@ theorem hasUnaryPrefix_write_one_cell0 {t : Tape} {used : ℕ}
   rw [Function.update_of_ne (Ne.symm hne)]
   exact h0
 
-/-- A unary prefix never contains `▷` after the left-end marker. -/
+/-- A unary prefix never contains `▷` after the left-end marker.
+@isnad1 id=ne.2h3v.s4.463c74e408dd from=translated src=- shape=85a9aa18 vocab=b68f0e28
+-/
 theorem hasUnaryPrefix_cells_ne_start {t : Tape} {used : ℕ}
     (h : t.HasUnaryPrefix used) :
     ∀ j, j ≥ 1 → t.cells j ≠ Γ.start := by
@@ -105,7 +113,9 @@ def HasUnaryCounter (t : Tape) (B : ℕ) : Prop :=
   (∀ i, i < B → t.cells (i + 1) = Γ.one) ∧
   t.cells (B + 1) = Γ.blank
 
-/-- Rewinding a built unary prefix to cell 1 yields the public counter shape. -/
+/-- Rewinding a built unary prefix to cell 1 yields the public counter shape.
+@isnad1 id=hasunary.3h3v.s5.e4f3c896974f from=translated src=- shape=ebb9cd12 vocab=90677f32
+-/
 theorem hasUnaryCounter_of_hasUnaryPrefix {t t' : Tape} {B : ℕ}
     (hprefix : t.HasUnaryPrefix B)
     (hhead : t'.head = 1)
@@ -118,12 +128,16 @@ theorem hasUnaryCounter_of_hasUnaryPrefix {t t' : Tape} {B : ℕ}
   · rw [hcells]
     exact hprefix.2.2 B le_rfl
 
-/-- A tape holding a zero-length unary counter reads blank at its head. -/
+/-- A tape holding a zero-length unary counter reads blank at its head.
+@isnad1 id=eq.1h1v.s3.384e54a6f3a0 from=translated src=- shape=c8d653c0 vocab=a1f543b5
+-/
 theorem hasUnaryCounter_read_zero {t : Tape}
     (h : t.HasUnaryCounter 0) : t.read = Γ.blank := by
   simp [Tape.read, h.1, h.2.2]
 
-/-- A tape holding a positive-length unary counter reads `1` at its head. -/
+/-- A tape holding a positive-length unary counter reads `1` at its head.
+@isnad1 id=eq.2h2v.s4.cedfc591a634 from=translated src=- shape=33333a4d vocab=3a050a07
+-/
 theorem hasUnaryCounter_read_pos {t : Tape} {B : ℕ}
     (h : t.HasUnaryCounter B) (hB : 0 < B) : t.read = Γ.one := by
   have hcell := h.2.1 0 hB
@@ -140,7 +154,9 @@ def HasCounterRemainder (t : Tape) (used total : ℕ) : Prop :=
   t.cells (total + 1) = Γ.blank
 
 /-- A fresh unary counter is exactly a counter remainder with zero marks
-    consumed. -/
+    consumed.
+@isnad1 id=iff.0h2v.s4.c54830a2cd43 from=translated src=- shape=67d47d98 vocab=ddf08721
+-/
 theorem hasUnaryCounter_iff_remainder_zero {t : Tape} {B : ℕ} :
     t.HasUnaryCounter B ↔ t.HasCounterRemainder 0 B := by
   constructor
@@ -153,19 +169,25 @@ theorem hasUnaryCounter_iff_remainder_zero {t : Tape} {B : ℕ} :
   · intro h
     exact ⟨h.2.1, fun i hi => h.2.2.2.1 i (by omega) hi, h.2.2.2.2⟩
 
-/-- Once all counter marks are consumed, the head reads blank. -/
+/-- Once all counter marks are consumed, the head reads blank.
+@isnad1 id=eq.1h2v.s3.857537e6d6ac from=translated src=- shape=c03ee24d vocab=1770de08
+-/
 theorem hasCounterRemainder_read_blank_of_done {t : Tape} {B : ℕ}
     (h : t.HasCounterRemainder B B) : t.read = Γ.blank := by
   simp [Tape.read, h.2.1, h.2.2.2.2]
 
-/-- While counter marks remain unconsumed, the head reads `1`. -/
+/-- While counter marks remain unconsumed, the head reads `1`.
+@isnad1 id=eq.2h3v.s4.0784c83deab7 from=translated src=- shape=27519acd vocab=42daaf7c
+-/
 theorem hasCounterRemainder_read_one_of_remaining {t : Tape} {used total : ℕ}
     (h : t.HasCounterRemainder used total) (hlt : used < total) :
     t.read = Γ.one := by
   have hcell := h.2.2.2.1 used (le_rfl) hlt
   simp [Tape.read, h.2.1, hcell]
 
-/-- A well-shaped counter remainder never reads the left-end marker. -/
+/-- A well-shaped counter remainder never reads the left-end marker.
+@isnad1 id=ne.1h3v.s4.e7a8e02faeb1 from=translated src=- shape=660fe4bb vocab=fdccdd46
+-/
 theorem hasCounterRemainder_read_ne_start {t : Tape} {used total : ℕ}
     (h : t.HasCounterRemainder used total) : t.read ≠ Γ.start := by
   by_cases hremaining : used < total
@@ -178,7 +200,9 @@ theorem hasCounterRemainder_read_ne_start {t : Tape} {used total : ℕ}
     decide
 
 /-- Blanking the current counter mark and moving right advances the unary
-    counter remainder by one. -/
+    counter remainder by one.
+@isnad1 id=hascount.2h3v.s5.9fbe7dcc9fb6 from=translated src=- shape=e2e95eed vocab=b4c8408b
+-/
 theorem hasCounterRemainder_consume {t : Tape} {used total : ℕ}
     (h : t.HasCounterRemainder used total) (hlt : used < total) :
     (t.writeAndMove Γ.blank Dir3.right).HasCounterRemainder (used + 1) total := by
@@ -219,7 +243,9 @@ theorem hasCounterRemainder_consume {t : Tape} {used total : ℕ}
 
 /-- Writing back the currently read non-start symbol and idling preserves a
     tape. This is the basic preservation fact for non-active tapes in the
-    counter and guessing machines. -/
+    counter and guessing machines.
+@isnad1 id=eq.1h1v.s4.9d65899c15de from=translated src=- shape=3850961c vocab=155aac5a
+-/
 theorem writeAndMove_readBack_idle_of_ne_start (t : Tape)
     (hread : t.read ≠ Γ.start) :
     t.writeAndMove (TM.readBackWrite t.read) (TM.idleDir t.read) = t := by
@@ -408,7 +434,9 @@ def inputLengthPlusOneCounterTM (counterIdx : Fin n) : TM n where
 -- ════════════════════════════════════════════════════════════════════════
 
 /-- In the `scan` phase, reading `▷` on the input keeps the machine in
-    `scan`. -/
+    `scan`.
+@isnad1 id=eq.1h5v.s5.83b8325c6042 from=translated src=- shape=2737921d vocab=c11c8681
+-/
 theorem inputLengthPlusOneCounterTM_scan_start_state
     (counterIdx : Fin n) (inp : Tape) (work : Fin n → Tape) (out : Tape)
     (hinp : inp.read = Γ.start) :
@@ -419,7 +447,9 @@ theorem inputLengthPlusOneCounterTM_scan_start_state
   simp [TM.step, inputLengthPlusOneCounterTM, hinp]
 
 /-- The start-skip step positions an initially empty counter tape at cell 1,
-    giving the zero-length unary-prefix invariant. -/
+    giving the zero-length unary-prefix invariant.
+@isnad1 id=hasunary.2h5v.s6.0b2306ef42b6 from=translated src=- shape=3ea74d89 vocab=1df68784
+-/
 theorem inputLengthPlusOneCounterTM_scan_start_initializes_counter
     (counterIdx : Fin n) (inp : Tape) (work : Fin n → Tape) (out : Tape)
     (hinp : inp.read = Γ.start)
@@ -433,7 +463,9 @@ theorem inputLengthPlusOneCounterTM_scan_start_initializes_counter
     Tape.init_nil_move_right_hasUnaryPrefix_zero
 
 /-- In the `scan` phase, reading blank on the input moves the machine to the
-    `rewind` phase. -/
+    `rewind` phase.
+@isnad1 id=eq.1h5v.s5.72eae1f6c77c from=translated src=- shape=2737921d vocab=18858b25
+-/
 theorem inputLengthPlusOneCounterTM_scan_blank_state
     (counterIdx : Fin n) (inp : Tape) (work : Fin n → Tape) (out : Tape)
     (hinp : inp.read = Γ.blank) :
@@ -444,7 +476,9 @@ theorem inputLengthPlusOneCounterTM_scan_blank_state
   simp [TM.step, inputLengthPlusOneCounterTM, hinp]
 
 /-- Scanning an input bit writes one unary mark and advances the counter
-    prefix by one. -/
+    prefix by one.
+@isnad1 id=hasunary.3h6v.s6.d21042920183 from=translated src=- shape=4ab9f7c8 vocab=abfeee9e
+-/
 theorem inputLengthPlusOneCounterTM_scan_bit_extends_counter
     (counterIdx : Fin n) (inp : Tape) (work : Fin n → Tape) (out : Tape)
     {used : ℕ}
@@ -458,7 +492,9 @@ theorem inputLengthPlusOneCounterTM_scan_bit_extends_counter
     counterWriteOneWork, counterAdvanceDirs, Tape.hasUnaryPrefix_write_one hprefix]
 
 /-- Scanning the input blank writes the final extra unary mark and enters the
-    rewind phase. -/
+    rewind phase.
+@isnad1 id=hasunary.2h6v.s6.8372f6a2fec6 from=translated src=- shape=4a25f80a vocab=9b69c16d
+-/
 theorem inputLengthPlusOneCounterTM_scan_blank_extends_counter
     (counterIdx : Fin n) (inp : Tape) (work : Fin n → Tape) (out : Tape)
     {used : ℕ}
@@ -473,7 +509,9 @@ theorem inputLengthPlusOneCounterTM_scan_blank_extends_counter
     counterWriteOneWork, counterAdvanceDirs, Tape.hasUnaryPrefix_write_one hprefix]
 
 /-- In the `rewind` phase, reading `▷` on the counter tape moves the machine
-    to `done`. -/
+    to `done`.
+@isnad1 id=eq.1h5v.s5.b325d9eb9a7f from=translated src=- shape=0091e6d3 vocab=388a69a2
+-/
 theorem inputLengthPlusOneCounterTM_rewind_start_state
     (counterIdx : Fin n) (inp : Tape) (work : Fin n → Tape) (out : Tape)
     (hcounter : (work counterIdx).read = Γ.start) :
@@ -484,7 +522,9 @@ theorem inputLengthPlusOneCounterTM_rewind_start_state
   simp [TM.step, inputLengthPlusOneCounterTM, hcounter]
 
 /-- In the `rewind` phase, a counter-tape read other than `▷` keeps the
-    machine in `rewind`. -/
+    machine in `rewind`.
+@isnad1 id=eq.1h5v.s5.85b3fc0a4d25 from=translated src=- shape=e1ee002a vocab=324ada73
+-/
 theorem inputLengthPlusOneCounterTM_rewind_left_state
     (counterIdx : Fin n) (inp : Tape) (work : Fin n → Tape) (out : Tape)
     (hcounter : (work counterIdx).read ≠ Γ.start) :
@@ -495,7 +535,9 @@ theorem inputLengthPlusOneCounterTM_rewind_left_state
   simp [TM.step, inputLengthPlusOneCounterTM, hcounter]
 
 /-- One NTM trace step of the lifted counter machine leaves a non-counter work
-    tape unchanged when that tape is the started blank tape. -/
+    tape unchanged when that tape is the started blank tape.
+@isnad1 id=eq.2h5v.s6.79cfd049674b from=translated src=- shape=ba16c682 vocab=0e84fcef
+-/
 theorem inputLengthPlusOneCounterTM_toNTM_trace_one_preserves_started_blank_other_work
     (counterIdx : Fin n) (choice : Bool)
     (c : Cfg n (inputLengthPlusOneCounterTM counterIdx).Q)
@@ -531,7 +573,9 @@ theorem inputLengthPlusOneCounterTM_toNTM_trace_one_preserves_started_blank_othe
 
 /-- One NTM trace step of the lifted counter machine (in a non-halted state)
     moves a fresh blank non-counter work tape past its `▷` marker, turning it
-    into the started blank tape. -/
+    into the started blank tape.
+@isnad1 id=eq.3h5v.s6.d08f255ffb9c from=translated src=- shape=2b5bd839 vocab=d50401ed
+-/
 theorem inputLengthPlusOneCounterTM_toNTM_trace_one_initializes_blank_other_work
     (counterIdx : Fin n) (choice : Bool)
     (c : Cfg n (inputLengthPlusOneCounterTM counterIdx).Q)
@@ -567,7 +611,9 @@ theorem inputLengthPlusOneCounterTM_toNTM_trace_one_initializes_blank_other_work
       · exact (hstate rfl).elim
 
 /-- One NTM trace step of the lifted counter machine leaves a started blank
-    output tape unchanged. -/
+    output tape unchanged.
+@isnad1 id=eq.1h4v.s6.89534f468149 from=translated src=- shape=aeafc89d vocab=5c1bd5d5
+-/
 theorem inputLengthPlusOneCounterTM_toNTM_trace_one_preserves_started_blank_output
     (counterIdx : Fin n) (choice : Bool)
     (c : Cfg n (inputLengthPlusOneCounterTM counterIdx).Q)
@@ -600,7 +646,9 @@ theorem inputLengthPlusOneCounterTM_toNTM_trace_one_preserves_started_blank_outp
 
 /-- One NTM trace step of the lifted counter machine (in a non-halted state)
     moves a fresh blank output tape past its `▷` marker, turning it into the
-    started blank tape. -/
+    started blank tape.
+@isnad1 id=eq.2h4v.s6.f9bf5b7ad227 from=translated src=- shape=7c58702e vocab=8b64d877
+-/
 theorem inputLengthPlusOneCounterTM_toNTM_trace_one_initializes_blank_output
     (counterIdx : Fin n) (choice : Bool)
     (c : Cfg n (inputLengthPlusOneCounterTM counterIdx).Q)
@@ -866,7 +914,9 @@ def inputLengthPlusOneCounterTime (xLen : ℕ) : ℕ :=
   3 * xLen + 10
 
 /-- `inputLengthPlusOneCounterTM` materializes a unary counter of length
-    `|x| + 1` on the designated work tape and rewinds it to cell 1. -/
+    `|x| + 1` on the designated work tape and rewinds it to cell 1.
+@isnad1 id=hoaretim.0h3v.s6.a445f5adf336 from=translated src=- shape=426ae7ea vocab=f755315b
+-/
 theorem inputLengthPlusOneCounterTM_hoareTime
     (counterIdx : Fin n) (x : List Bool) :
     (inputLengthPlusOneCounterTM counterIdx).HoareTime
@@ -933,7 +983,9 @@ theorem inputLengthPlusOneCounterTM_hoareTime
 input is already positioned at cell `1` and the counter tape is the started
 blank tape, the machine still builds a unary counter of length `|x| + 1`.
 The postcondition also exposes the structural fact that the resulting counter
-tape has no `▷` markers beyond cell `0`. -/
+tape has no `▷` markers beyond cell `0`.
+@isnad1 id=hoaretim.0h3v.s6.f7aecc4a25ea from=translated src=- shape=9f1676b2 vocab=a196d4cd
+-/
 theorem inputLengthPlusOneCounterTM_started_hoareTime
     (counterIdx : Fin n) (x : List Bool) :
     (inputLengthPlusOneCounterTM counterIdx).HoareTime
@@ -1012,7 +1064,9 @@ theorem inputLengthPlusOneCounterTM_started_hoareTime
 
 /-- Started-tape variant of the unary counter builder that also records the
 final input position. The input cells are unchanged, and the input head ends at
-the first blank after the scanned Boolean string. -/
+the first blank after the scanned Boolean string.
+@isnad1 id=hoaretim.0h3v.s7.8813b2ac0068 from=translated src=- shape=7a13c59a vocab=e9464800
+-/
 theorem inputLengthPlusOneCounterTM_started_tracksInput_hoareTime
     (counterIdx : Fin n) (x : List Bool) :
     (inputLengthPlusOneCounterTM counterIdx).HoareTime
@@ -1239,7 +1293,9 @@ private theorem inputLengthPlusOneCounterTM_reachesIn_preserves_started_blank_ou
 
 /-- Started-tape variant of the unary counter builder that also records the
 final input position and preserves one passive started Boolean work tape
-exactly. -/
+exactly.
+@isnad1 id=hoaretim.1h5v.s7.8b82d1797307 from=translated src=- shape=9ce85818 vocab=e9464800
+-/
 theorem inputLengthPlusOneCounterTM_started_tracksInput_preserves_work_hoareTime
     (counterIdx passiveIdx : Fin n) (hne : passiveIdx ≠ counterIdx)
     (x y : List Bool) :
@@ -1275,7 +1331,9 @@ theorem inputLengthPlusOneCounterTM_started_tracksInput_preserves_work_hoareTime
     hpost.2.2.2.1, hpost.2.2.2.2, hout'⟩⟩
 
 /-- Nondeterministic form of `inputLengthPlusOneCounterTM_hoareTime`, for use
-    inside NTM constructions after lifting the deterministic setup machine. -/
+    inside NTM constructions after lifting the deterministic setup machine.
+@isnad1 id=hoaretim.0h3v.s6.a1c4399d61c2 from=translated src=- shape=c9442415 vocab=714e26dd
+-/
 theorem inputLengthPlusOneCounterTM_toNTM_hoareTime
     (counterIdx : Fin n) (x : List Bool) :
     ((inputLengthPlusOneCounterTM counterIdx).toNTM).HoareTime

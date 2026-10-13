@@ -29,7 +29,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι] {freq δ : ι → ℝ}
 
 /-- **Step 2, Preissmann–Lévêque identity.**  Only injectivity of `freq` and
 positivity of `c` are needed.  `heig` is the eigen-relation `(H u)_m = iμ u_m` for the
-skew-Hermitian `H_{mn} = c_m c_n/(freq m − freq n)`. -/
+skew-Hermitian `H_{mn} = c_m c_n/(freq m − freq n)`.
+@isnad1 id=eq.3h6v.s8.5c89dfc56a88 from=translated src=- shape=66bb1170 vocab=b4278508
+-/
 theorem eigen_identity (hinj : Function.Injective freq) (c : ι → ℝ) (hc : ∀ r, 0 < c r)
     (u : ι → ℂ) (μ : ℝ)
     (heig : ∀ m, ∑ n ∈ Finset.univ.erase m,
@@ -42,7 +44,9 @@ theorem eigen_identity (hinj : Function.Injective freq) (c : ι → ℝ) (hc : �
   eigen_identity' hinj c hc u μ heig m
 
 /-- **Step 3, eigenvalue bound**: every eigenvalue of the normalized matrix
-(`c = √δ`) with a unit eigenvector has `|μ| ≤ 13`. -/
+(`c = √δ`) with a unit eigenvector has `|μ| ≤ 13`.
+@isnad1 id=le.3h5v.s7.ad024e0fba79 from=translated src=- shape=e9356ed4 vocab=a61238a4
+-/
 theorem eigen_bound (h : Adm freq δ) (u : ι → ℂ) (hu : ∑ n, ‖u n‖ ^ 2 = 1) (μ : ℝ)
     (heig : ∀ m, ∑ n ∈ Finset.univ.erase m,
         ((Real.sqrt (δ m) * Real.sqrt (δ n) / (freq m - freq n) : ℝ) : ℂ) * u n

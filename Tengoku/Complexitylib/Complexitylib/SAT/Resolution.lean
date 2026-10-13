@@ -40,7 +40,9 @@ def Clause.resolvent (c₁ c₂ : Clause) (v : ℕ) : Clause :=
 
 /-- **Soundness of one resolution step.** Any assignment satisfying both parent
     clauses satisfies their resolvent: whichever way the assignment sets `x_v`,
-    the pivot literal it kills off in one parent forces a surviving literal there. -/
+    the pivot literal it kills off in one parent forces a surviving literal there.
+@isnad1 id=eq.2h4v.s4.287320e75ab7 from=translated src=- shape=d73bec99 vocab=a3cdd9c7
+-/
 theorem Clause.resolvent_sound (α : Assignment) (c₁ c₂ : Clause) (v : ℕ)
     (h₁ : Clause.eval α c₁ = true) (h₂ : Clause.eval α c₂ = true) :
     Clause.eval α (Clause.resolvent c₁ c₂ v) = true := by
@@ -81,14 +83,18 @@ clause proves `φ` unsatisfiable. -/
 def CNF.Entails (φ : CNF) (c : Clause) : Prop :=
   ∀ α : Assignment, CNF.eval α φ = true → Clause.eval α c = true
 
-/-- Every clause of `φ` is entailed by `φ` (resolution axioms are sound). -/
+/-- Every clause of `φ` is entailed by `φ` (resolution axioms are sound).
+@isnad1 id=entails.1h2v.s3.96ae50e8fbca from=translated src=- shape=3c75a7c1 vocab=a44f4f55
+-/
 theorem CNF.entails_of_mem {φ : CNF} {c : Clause} (hc : c ∈ φ) : CNF.Entails φ c := by
   intro α hα
   rw [CNF.eval, List.all_eq_true] at hα
   exact hα c hc
 
 /-- Resolution preserves entailment: if `φ` entails both parents, it entails the
-    resolvent. -/
+    resolvent.
+@isnad1 id=entails.2h4v.s4.90594d9f5aad from=translated src=- shape=eb42588b vocab=ba9c3c6e
+-/
 theorem CNF.entails_resolvent {φ : CNF} {c₁ c₂ : Clause} {v : ℕ}
     (h₁ : CNF.Entails φ c₁) (h₂ : CNF.Entails φ c₂) :
     CNF.Entails φ (Clause.resolvent c₁ c₂ v) :=
@@ -96,7 +102,9 @@ theorem CNF.entails_resolvent {φ : CNF} {c₁ c₂ : Clause} {v : ℕ}
 
 /-- **Refutation soundness.** If `φ` entails the empty clause — as it does when
     the empty clause is derivable from `φ` by resolution — then `φ` is
-    unsatisfiable (the empty clause is false under every assignment). -/
+    unsatisfiable (the empty clause is false under every assignment).
+@isnad1 id=not.1h1v.s3.b4e95181d13e from=translated src=- shape=ee3b3367 vocab=4b26f7dc
+-/
 theorem CNF.not_satisfiable_of_entails_nil {φ : CNF} (h : CNF.Entails φ []) :
     ¬ CNF.Satisfiable φ := by
   rintro ⟨α, hα⟩
@@ -105,7 +113,9 @@ theorem CNF.not_satisfiable_of_entails_nil {φ : CNF} (h : CNF.Entails φ []) :
 
 /-- **Width bound for one resolution step.** The resolvent has at most as many
     literals as its two parents combined (dropping the pivot only shrinks each
-    parent) — the basic width fact behind width-based resolution lower bounds. -/
+    parent) — the basic width fact behind width-based resolution lower bounds.
+@isnad1 id=le.0h3v.s4.b34cda7c0f93 from=translated src=- shape=b98e8ca6 vocab=8657f59f
+-/
 theorem Clause.resolvent_length_le (c₁ c₂ : Clause) (v : ℕ) :
     (Clause.resolvent c₁ c₂ v).length ≤ c₁.length + c₂.length := by
   unfold Clause.resolvent
@@ -114,7 +124,9 @@ theorem Clause.resolvent_length_le (c₁ c₂ : Clause) (v : ℕ) :
 
 /-- Entailment is monotone under adding clauses: a stronger formula still entails
     everything the weaker one did. Lets a resolution derivation carry its axioms
-    along as the clause set grows. -/
+    along as the clause set grows.
+@isnad1 id=entails.1h3v.s4.511e21100309 from=translated src=- shape=54544d31 vocab=444ed668
+-/
 theorem CNF.entails_cons {φ : CNF} {c c' : Clause} (h : CNF.Entails φ c) :
     CNF.Entails (c' :: φ) c := by
   intro α hα
@@ -141,7 +153,9 @@ inductive CNF.Derives (φ : CNF) : Clause → Prop
 
 /-- **Soundness of resolution derivations.** Everything derivable from `φ` by
     resolution is entailed by `φ` — proved by induction on the derivation, using
-    axiom soundness at the leaves and resolvent soundness at each step. -/
+    axiom soundness at the leaves and resolvent soundness at each step.
+@isnad1 id=entails.1h2v.s3.0688f456a20c from=translated src=- shape=6ef4b4a0 vocab=f8bcf11c
+-/
 theorem CNF.entails_of_derives {φ : CNF} {c : Clause} (h : CNF.Derives φ c) :
     CNF.Entails φ c := by
   induction h with
@@ -150,13 +164,17 @@ theorem CNF.entails_of_derives {φ : CNF} {c : Clause} (h : CNF.Derives φ c) :
 
 /-- **Resolution refutation soundness.** A resolution derivation of the empty
     clause from `φ` proves that `φ` is unsatisfiable. This is the correctness of
-    resolution as a refutation system. -/
+    resolution as a refutation system.
+@isnad1 id=not.1h1v.s3.e62da24f360e from=translated src=- shape=ee3b3367 vocab=b674212a
+-/
 theorem CNF.refutation_sound {φ : CNF} (h : CNF.Derives φ []) : ¬ CNF.Satisfiable φ :=
   CNF.not_satisfiable_of_entails_nil (CNF.entails_of_derives h)
 
 /-- Derivations survive the addition of clauses: anything derivable from `φ` is
     derivable from any extension `c' :: φ`. (Weakening / monotonicity of the proof
-    system.) -/
+    system.)
+@isnad1 id=derives.1h3v.s4.506216f6f384 from=translated src=- shape=54544d31 vocab=d6678342
+-/
 theorem CNF.derives_cons {φ : CNF} {c c' : Clause} (h : CNF.Derives φ c) :
     CNF.Derives (c' :: φ) c := by
   induction h with
@@ -170,13 +188,17 @@ The smallest resolution refutation: resolving the complementary unit clauses
 containing both is therefore refutable, hence unsatisfiable. -/
 
 /-- Resolving the complementary unit clauses `[x_v]` and `[¬x_v]` on `v` yields the
-    empty clause. -/
+    empty clause.
+@isnad1 id=eq.0h1v.s4.c0fef3b6f778 from=translated src=- shape=2669e681 vocab=5aff6f9f
+-/
 theorem Clause.resolvent_units_nil (v : ℕ) :
     Clause.resolvent [⟨true, v⟩] [⟨false, v⟩] v = [] := by
   simp [Clause.resolvent]
 
 /-- A formula containing both unit clauses `[x_v]` and `[¬x_v]` refutes to the
-    empty clause in one resolution step. -/
+    empty clause in one resolution step.
+@isnad1 id=derives.2h2v.s5.c2599bc4058d from=translated src=- shape=e548dfa2 vocab=a75c4db7
+-/
 theorem CNF.derives_nil_of_units {φ : CNF} (v : ℕ)
     (h₁ : [⟨true, v⟩] ∈ φ) (h₂ : [⟨false, v⟩] ∈ φ) : CNF.Derives φ [] := by
   have h := CNF.Derives.res (CNF.Derives.axm h₁) (CNF.Derives.axm h₂) (v := v)
@@ -184,7 +206,9 @@ theorem CNF.derives_nil_of_units {φ : CNF} (v : ℕ)
 
 /-- **Complementary unit clauses are unsatisfiable.** Any formula containing both
     `[x_v]` and `[¬x_v]` is unsatisfiable, certified by the one-step resolution
-    refutation. -/
+    refutation.
+@isnad1 id=not.2h2v.s5.22295f0b05b2 from=translated src=- shape=525b1e68 vocab=386ee802
+-/
 theorem CNF.not_satisfiable_of_units {φ : CNF} (v : ℕ)
     (h₁ : [⟨true, v⟩] ∈ φ) (h₂ : [⟨false, v⟩] ∈ φ) : ¬ CNF.Satisfiable φ :=
   CNF.refutation_sound (CNF.derives_nil_of_units v h₁ h₂)

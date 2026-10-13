@@ -26,7 +26,9 @@ namespace Taper
 
 variable {s A B : ℝ} {ϱ : ℝ → ℝ}
 
-/-- for `i ≥ 1`, the `i`-th derivative of a profile vanishes off the open unit interval. -/
+/-- for `i ≥ 1`, the `i`-th derivative of a profile vanishes off the open unit interval.
+@isnad1 id=eq.3h6v.s6.97b01e5180ba from=translated src=- shape=b1a5da56 vocab=f0709c9a
+-/
 lemma GevreyProfile.iteratedDeriv_eq_zero (hϱ : GevreyProfile s A B ϱ) {i : ℕ} (hi : 1 ≤ i)
     {x : ℝ} (hx : x ∉ Set.Ioo (0:ℝ) 1) : iteratedDeriv i ϱ x = 0 := by
   have hi0 : i ≠ 0 := by omega
@@ -55,7 +57,9 @@ lemma GevreyProfile.iteratedDeriv_eq_zero (hϱ : GevreyProfile s A B ϱ) {i : �
   · exact h1' hx
   · exact h2' hx
 
-/-- pointwise majorant: `|ϱ^{(k)}(x)| ≤ B A^k k^{sk} · 1_{(0,1)}(x)` for `k ≥ 1`. -/
+/-- pointwise majorant: `|ϱ^{(k)}(x)| ≤ B A^k k^{sk} · 1_{(0,1)}(x)` for `k ≥ 1`.
+@isnad1 id=le.2h6v.s7.1d6025b791b2 from=translated src=- shape=a37d5b85 vocab=933ec92b
+-/
 lemma GevreyProfile.abs_iteratedDeriv_le_indicator (hϱ : GevreyProfile s A B ϱ) {k : ℕ}
     (hk : 1 ≤ k) (x : ℝ) :
     |iteratedDeriv k ϱ x| ≤ (Set.Ioo (0:ℝ) 1).indicator (fun _ => B * A ^ k * (k : ℝ) ^ (s * k)) x := by
@@ -63,7 +67,9 @@ lemma GevreyProfile.abs_iteratedDeriv_le_indicator (hϱ : GevreyProfile s A B ϱ
   · rw [Set.indicator_of_mem hx]; exact hϱ.bound k hk x
   · rw [Set.indicator_of_notMem hx, hϱ.iteratedDeriv_eq_zero hk hx, abs_zero]
 
-/-- `iteratedDeriv` commutes with the coercion ℝ → ℂ for smooth functions. -/
+/-- `iteratedDeriv` commutes with the coercion ℝ → ℂ for smooth functions.
+@isnad1 id=eq.1h2v.s6.d5f70e358940 from=translated src=- shape=b43b70e2 vocab=0d711b8c
+-/
 lemma iteratedDeriv_ofReal_comp {f : ℝ → ℝ} (hf : ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) f) (k : ℕ) :
     iteratedDeriv k (fun u => (f u : ℂ)) = fun u => ((iteratedDeriv k f u : ℝ) : ℂ) := by
   induction k with
@@ -79,22 +85,37 @@ variable {L w : ℝ}
 def fP (ϱ : ℝ → ℝ) (L w : ℝ) (u : ℝ) : ℝ := ϱ ((L / 2 - u) / w)
 def fM (ϱ : ℝ → ℝ) (L w : ℝ) (u : ℝ) : ℝ := ϱ ((L / 2 + u) / w)
 
+/--
+@isnad1 id=eq.0h3v.s5.2665ad3f15f9 from=translated src=- shape=3ef1da28 vocab=8828c362
+-/
 lemma fP_eq (ϱ : ℝ → ℝ) (L w : ℝ) :
     fP ϱ L w = fun u => (fun x => ϱ (w⁻¹ * x)) (L / 2 - u) := by
   funext u; simp only [fP, div_eq_inv_mul]
 
+/--
+@isnad1 id=eq.0h3v.s5.9857bebdc049 from=translated src=- shape=1a62aae2 vocab=ff4edab4
+-/
 lemma fM_eq (ϱ : ℝ → ℝ) (L w : ℝ) :
     fM ϱ L w = fun u => (fun x => ϱ (w⁻¹ * x)) (u + L / 2) := by
   funext u; simp only [fM, div_eq_inv_mul, add_comm u]
 
+/--
+@isnad1 id=contdiff.1h6v.s5.e3085147c080 from=translated src=- shape=a6aa195b vocab=371f57aa
+-/
 lemma fP_contDiff (hϱ : GevreyProfile s A B ϱ) :
     ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) (fP ϱ L w) :=
   hϱ.smooth.comp (by fun_prop)
 
+/--
+@isnad1 id=contdiff.1h6v.s5.e3ea3aeb063d from=translated src=- shape=a6aa195b vocab=20f8f34a
+-/
 lemma fM_contDiff (hϱ : GevreyProfile s A B ϱ) :
     ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) (fM ϱ L w) :=
   hϱ.smooth.comp (by fun_prop)
 
+/--
+@isnad1 id=eq.1h8v.s7.47030ba7342f from=translated src=- shape=d92de59b vocab=0ab43194
+-/
 lemma iteratedDeriv_fP (hϱ : GevreyProfile s A B ϱ) (i : ℕ) (u : ℝ) :
     iteratedDeriv i (fP ϱ L w) u = (-1 : ℝ) ^ i * ((w⁻¹) ^ i * iteratedDeriv i ϱ ((L / 2 - u) / w)) := by
   have hg := iteratedDeriv_comp_const_mul (n := i) (hϱ.smooth.of_le (WithTop.coe_le_coe.mpr le_top)) w⁻¹
@@ -102,6 +123,9 @@ lemma iteratedDeriv_fP (hϱ : GevreyProfile s A B ϱ) (i : ℕ) (u : ℝ) :
   refine (congrFun (iteratedDeriv_comp_const_sub i (fun x => ϱ (w⁻¹ * x)) (L / 2)) u).trans ?_
   simp only [smul_eq_mul, hg, div_eq_inv_mul]
 
+/--
+@isnad1 id=eq.1h8v.s7.bce7857837ec from=translated src=- shape=c9f0fe83 vocab=3de10640
+-/
 lemma iteratedDeriv_fM (hϱ : GevreyProfile s A B ϱ) (i : ℕ) (u : ℝ) :
     iteratedDeriv i (fM ϱ L w) u = (w⁻¹) ^ i * iteratedDeriv i ϱ ((L / 2 + u) / w) := by
   have hg := iteratedDeriv_comp_const_mul (n := i) (hϱ.smooth.of_le (WithTop.coe_le_coe.mpr le_top)) w⁻¹
@@ -109,7 +133,9 @@ lemma iteratedDeriv_fM (hϱ : GevreyProfile s A B ϱ) (i : ℕ) (u : ℝ) :
   refine (congrFun (iteratedDeriv_comp_add_const i (fun x => ϱ (w⁻¹ * x)) (L / 2)) u).trans ?_
   simp only [hg, div_eq_inv_mul, add_comm u]
 
-/-- ramp majorants: `|f₊^{(k)}(u)| ≤ w^{−k}BA^k k^{sk}·1_{(L/2−w, L/2)}(u)` and symmetrically. -/
+/-- ramp majorants: `|f₊^{(k)}(u)| ≤ w^{−k}BA^k k^{sk}·1_{(L/2−w, L/2)}(u)` and symmetrically.
+@isnad1 id=le.3h8v.s7.9fa5190e648e from=translated src=- shape=2a3a8d33 vocab=f085527e
+-/
 lemma abs_iteratedDeriv_fP_le (hϱ : GevreyProfile s A B ϱ) (hw : 0 < w) {k : ℕ} (hk : 1 ≤ k)
     (u : ℝ) : |iteratedDeriv k (fP ϱ L w) u|
       ≤ (Set.Ioo (L / 2 - w) (L / 2)).indicator (fun _ => (w⁻¹) ^ k * (B * A ^ k * (k : ℝ) ^ (s * k))) u := by
@@ -128,6 +154,9 @@ lemma abs_iteratedDeriv_fP_le (hϱ : GevreyProfile s A B ϱ) (hw : 0 < w) {k : �
     have : |iteratedDeriv k ϱ ((L / 2 - u) / w)| = 0 := le_antisymm h (abs_nonneg _)
     rw [this, mul_zero]
 
+/--
+@isnad1 id=le.3h8v.s7.70669f21a3ce from=translated src=- shape=7681fc7a vocab=833b74e8
+-/
 lemma abs_iteratedDeriv_fM_le (hϱ : GevreyProfile s A B ϱ) (hw : 0 < w) {k : ℕ} (hk : 1 ≤ k)
     (u : ℝ) : |iteratedDeriv k (fM ϱ L w) u|
       ≤ (Set.Ioo (-(L / 2)) (w - L / 2)).indicator (fun _ => (w⁻¹) ^ k * (B * A ^ k * (k : ℝ) ^ (s * k))) u := by
@@ -146,7 +175,9 @@ lemma abs_iteratedDeriv_fM_le (hϱ : GevreyProfile s A B ϱ) (hw : 0 < w) {k : �
     rw [this, mul_zero]
 
 /-- mixed Leibniz terms vanish: for `1 ≤ i`, `1 ≤ j` and `2w ≤ L`,
-`f₊^{(i)}(u)·f₋^{(j)}(u) = 0` (the open ramps are disjoint). -/
+`f₊^{(i)}(u)·f₋^{(j)}(u) = 0` (the open ramps are disjoint).
+@isnad1 id=eq.5h9v.s7.667ab55a621b from=translated src=- shape=68ddf75b vocab=d536ac26
+-/
 lemma iteratedDeriv_fP_mul_fM_eq_zero (hϱ : GevreyProfile s A B ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L)
     {i j : ℕ} (hi : 1 ≤ i) (hj : 1 ≤ j) (u : ℝ) :
     iteratedDeriv i (fP ϱ L w) u * iteratedDeriv j (fM ϱ L w) u = 0 := by
@@ -164,7 +195,9 @@ lemma iteratedDeriv_fP_mul_fM_eq_zero (hϱ : GevreyProfile s A B ϱ) (hw : 0 < w
       constructor <;> linarith [h.1, h.2]
     rw [iteratedDeriv_fP hϱ, hϱ.iteratedDeriv_eq_zero hi hu']; ring
 
-/-- **|φ^{(k)}| ≤ |f₊^{(k)}| + |f₋^{(k)}|** for `k ≥ 1`. -/
+/-- **|φ^{(k)}| ≤ |f₊^{(k)}| + |f₋^{(k)}|** for `k ≥ 1`.
+@isnad1 id=le.4h8v.s7.7e1df3857a8d from=translated src=- shape=04a66ae7 vocab=400765c2
+-/
 lemma abs_iteratedDeriv_phi_le (hϱ : GevreyProfile s A B ϱ) (hw : 0 < w) (hwL : 2 * w ≤ L)
     {k : ℕ} (hk : 1 ≤ k) (u : ℝ) :
     |iteratedDeriv k (phi ϱ L w) u|
@@ -199,7 +232,9 @@ lemma abs_iteratedDeriv_phi_le (hϱ : GevreyProfile s A B ϱ) (hw : 0 < w) (hwL 
   · intro h; exact absurd (Finset.mem_range.mpr (by omega)) h
   · intro h; exact absurd (Finset.mem_range.mpr (by omega)) h
 
-/-- **Gevrey ramp lemma**: `‖φ^{(k)}‖_{L¹} ≤ 2B·w·(A/w)^k·k^{sk}` (`k ≥ 1`, `2w ≤ L`). -/
+/-- **Gevrey ramp lemma**: `‖φ^{(k)}‖_{L¹} ≤ 2B·w·(A/w)^k·k^{sk}` (`k ≥ 1`, `2w ≤ L`).
+@isnad1 id=le.4h7v.s7.9bf8d60246a2 from=translated src=- shape=8d81d3b0 vocab=9a6be2ed
+-/
 theorem integral_abs_iteratedDeriv_phi_le (hϱ : GevreyProfile s A B ϱ) (hw : 0 < w)
     (hwL : 2 * w ≤ L) {k : ℕ} (hk : 1 ≤ k) :
     ∫ u, |iteratedDeriv k (phi ϱ L w) u| ≤ 2 * B * w * (A / w) ^ k * (k : ℝ) ^ (s * k) := by
@@ -233,7 +268,9 @@ end Ramps
 end Taper
 
 /-- **Gevrey ramp lemma, in the `Params.GevreyPhiBound` interface**: a Gevrey-s profile makes
-`P.phi T` a C^∞ window with ‖φ^{(k)}‖₁ ≤ 2B·w·(A/w)^k·k^{sk}. -/
+`P.phi T` a C^∞ window with ‖φ^{(k)}‖₁ ≤ 2B·w·(A/w)^k·k^{sk}.
+@isnad1 id=gevreyph.3h5v.s5.613b2ed27430 from=translated src=- shape=19b1b815 vocab=67db5a37
+-/
 theorem Params.gevreyPhiBound_of_profile (P : Params) (T : ℝ) {s A B : ℝ}
     (hϱ : Taper.GevreyProfile s A B P.ϱ) (hw : 0 < P.w) (h2w : 2 * P.w ≤ P.L T) :
     P.GevreyPhiBound T s A B where

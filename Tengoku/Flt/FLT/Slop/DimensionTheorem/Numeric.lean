@@ -52,17 +52,26 @@ def GrowthLE (f : ℕ → ℕ) (d : ℕ) : Prop :=
 
 namespace GrowthLE
 
+/--
+@isnad1 id=growthle.2h3v.s4.aa89f3c3bcbf from=translated src=- shape=65d89e18 vocab=8c24817c
+-/
 lemma of_le {f g : ℕ → ℕ} {d : ℕ} (hg : GrowthLE g d) (h : ∀ n, f n ≤ g n) :
     GrowthLE f d := by
   obtain ⟨C, hC⟩ := hg
   exact ⟨C, fun n => (h n).trans (hC n)⟩
 
+/--
+@isnad1 id=growthle.2h3v.s4.48df35150a83 from=translated src=- shape=3fa10456 vocab=8c24817c
+-/
 lemma mono {f : ℕ → ℕ} {d d' : ℕ} (hf : GrowthLE f d) (hd : d ≤ d') :
     GrowthLE f d' := by
   obtain ⟨C, hC⟩ := hf
   refine ⟨C, fun n => (hC n).trans ?_⟩
   exact Nat.mul_le_mul_left C (Nat.pow_le_pow_right (Nat.succ_le_succ n.zero_le) hd)
 
+/--
+@isnad1 id=growthle.1h2v.s4.06dfa43159f7 from=translated src=- shape=401b6e85 vocab=8c24817c
+-/
 lemma of_bounded {f : ℕ → ℕ} {C : ℕ} (h : ∀ n, f n ≤ C) : GrowthLE f 0 :=
   ⟨C, fun n => by simpa using h n⟩
 
@@ -94,6 +103,9 @@ private lemma telescope_aux {f g : ℕ → ℕ} {c : ℕ}
 -- `hc` is kept for interface stability but is not actually needed:
 -- each application of `h` is at a point `n + (j + 1) * c ≥ c` regardless.
 set_option linter.unusedVariables false in
+/--
+@isnad1 id=growthle.4h4v.s6.eb6562302137 from=translated src=- shape=8a7157e8 vocab=2cf25113
+-/
 @[nolint unusedArguments]
 lemma of_le_sub {f g : ℕ → ℕ} {c d : ℕ} (hc : 0 < c) (hf : GrowthLE f (d + 1))
     (hg : Monotone g) (h : ∀ n, c ≤ n → g n + f (n - c) ≤ f n) :
@@ -160,6 +172,9 @@ private lemma multichoose_le_pow (k : ℕ) :
         _ ≤ (n + 2) ^ k + (n + 1) * (n + 2) ^ k := Nat.add_le_add_left h2 _
         _ = (n + 2) ^ (k + 1) := by ring
 
+/--
+@isnad1 id=le.1h2v.s6.f6504f3459b1 from=translated src=- shape=3e3fde4a vocab=9b84c8ef
+-/
 lemma card_sym_le (k n : ℕ) (hk : 1 ≤ k) :
     Fintype.card (Sym (Fin k) n) ≤ (n + 1) ^ (k - 1) := by
   obtain ⟨m, rfl⟩ : ∃ m, k = m + 1 := ⟨k - 1, by omega⟩

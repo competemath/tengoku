@@ -30,6 +30,9 @@ instance (priority := 100) [IsTopologicalRing S] [Algebra.FiniteType R S] :
 
 variable {M} [AddCommGroup M] [Module R M] [TopologicalSpace M] [T2Space M]
 
+/--
+@isnad1 id=eq.6h6v.s9.19c4ece1be5f from=translated src=- shape=f6f12fb0 vocab=b0db9c3e
+-/
 lemma Algebra.TopologicallyFG.module_ext (s : Set S)
     (hs' : Dense (Algebra.adjoin R (s : Set S) : Set S)) {m₁ m₂ : Module S M}
     (hm₁ : letI := m₁; IsScalarTower R S M) (hm₂ : letI := m₂; IsScalarTower R S M)

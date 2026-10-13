@@ -48,7 +48,9 @@ section Splice
 variable (hlin : IsLinOrd M.Le) {prev : A → Config A} {t : A} {ℓ : ℕ} {f : ℕ → Config A}
 
 omit [Finite A] in
-/-- Below the entry time the spliced walk is the previous one. -/
+/-- Below the entry time the spliced walk is the previous one.
+@isnad1 id=eq.1h7v.s5.1eaa61f63fd6 from=translated src=- shape=f9aeea7b vocab=dee8aee8
+-/
 theorem splice_of_le {x : A} (h : ¬(M.Posn x ∧ ¬M.Le x t)) :
     M.splice prev t ℓ f x = prev x := by
   classical
@@ -56,7 +58,9 @@ theorem splice_of_le {x : A} (h : ¬(M.Posn x ∧ ¬M.Le x t)) :
 
 omit [Finite A] in
 include hlin in
-/-- Above the entry time the spliced walk replays the play. -/
+/-- Above the entry time the spliced walk replays the play.
+@isnad1 id=eq.5h7v.s6.ea05917ee884 from=translated src=- shape=8810defd vocab=9f483bd5
+-/
 theorem splice_of_lt {x : A} (hx : M.Posn x) (ht : M.Posn t) (hle : M.Le t x)
     (h0 : prev t = f 0) :
     M.splice prev t ℓ f x =
@@ -69,7 +73,9 @@ theorem splice_of_lt {x : A} (hx : M.Posn x) (ht : M.Posn t) (hle : M.Le t x)
     rw [splice, ite_eq_left ⟨hx, hnle⟩]
 
 include hlin in
-/-- The spliced walk at the `j`-th position after `t`. -/
+/-- The spliced walk at the `j`-th position after `t`.
+@isnad1 id=eq.5h8v.s7.1862695a595b from=translated src=- shape=274d4ed3 vocab=dd190824
+-/
 theorem splice_posSeq {p₁ : A} (ht : M.Posn t) (hmax : MaxPos M.Le M.Posn p₁)
     (h0 : prev t = f 0) {j : ℕ}
     (hj : j ≤ bitRank M.Le M.Posn p₁ - bitRank M.Le M.Posn t) :
@@ -87,7 +93,9 @@ move for round `i`.** The hypotheses say that `t` is the entry into block `i`
 (everything strictly below it is in a lower block, and `prev` is legal there),
 that `f` is a play of block `i` from the entry configuration, and that if the
 play stopped early inside its own block it stopped by accepting or by getting
-stuck. -/
+stuck.
+@isnad1 id=roundcon.10h9v.s7.8b0cdd6e52af from=translated src=- shape=aabf0e97 vocab=de0f04ec
+-/
 theorem roundCond_splice (hbwf : M.BlocksWellFormed k) (hlin : IsLinOrd M.Le) {i : ℕ}
     {prev : A → Config A} (hprev : M.LegalBelow i prev) {t p₁ : A}
     (ht : M.Posn t) (hmax : MaxPos M.Le M.Posn p₁) (hti : M.Blk i (prev t).state)
@@ -191,7 +199,9 @@ noncomputable def greedy (M : ATMData A) (c₀ : Config A) : ℕ → Config A
       else if h : ∃ d, M.Step (M.greedy c₀ j) d then h.choose else M.greedy c₀ j
 
 omit [Finite A] in
-/-- One greedy move is a step, or standing still in a stuck configuration. -/
+/-- One greedy move is a step, or standing still in a stuck configuration.
+@isnad1 id=or.0h4v.s6.7f812e5eb3fd from=translated src=- shape=5334b2f0 vocab=4f68d6a5
+-/
 theorem greedy_step (M : ATMData A) (c₀ : Config A) (j : ℕ) :
     (M.Step (M.greedy c₀ j) (M.greedy c₀ (j + 1)) ∧ ¬M.Acc (M.greedy c₀ j).state) ∨
       (M.greedy c₀ (j + 1) = M.greedy c₀ j ∧
@@ -210,7 +220,9 @@ theorem greedy_step (M : ATMData A) (c₀ : Config A) (j : ℕ) :
 noncomputable def greedyWalk (M : ATMData A) (c₀ : Config A) : A → Config A :=
   fun x => M.greedy c₀ (bitRank M.Le M.Posn x)
 
-/-- **Every initial configuration extends to a walk legal below any block.** -/
+/-- **Every initial configuration extends to a walk legal below any block.**
+@isnad1 id=and.3h5v.s6.d0c3b5fe003b from=translated src=- shape=088d75ae vocab=205105ee
+-/
 theorem legalBelow_greedyWalk (hbwf : M.BlocksWellFormed k) (hlin : IsLinOrd M.Le)
     {c₀ : Config A} (hinit : M.IsInit c₀) (i : ℕ) :
     M.LegalBelow i (M.greedyWalk c₀) ∧

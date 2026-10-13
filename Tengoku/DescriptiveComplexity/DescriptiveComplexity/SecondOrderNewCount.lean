@@ -35,6 +35,9 @@ variable {α ι : Type}
 def flipAt [DecidableEq α] (T : Finset α) (a : α) : Finset α :=
   if a ∈ T then T.erase a else insert a T
 
+/--
+@isnad1 id=eq.1h3v.s5.a62022826e7d from=translated src=- shape=64e8f41b vocab=f95d83e0
+-/
 theorem flipAt_of_notMem [DecidableEq α] {T : Finset α} {a : α} (ha : a ∉ T) :
     flipAt T a = insert a T := by
   rw [flipAt, ite_eq_right ha]
@@ -50,7 +53,9 @@ theorem eq_of_flipClosed [DecidableEq α] {S : Finset α → Prop} (h0 : S ∅)
   | insert a T ha ih => exact flipAt_of_notMem ha ▸ hflip T a ih
 
 /-- **An injective guess into a flip-closed family is a bijection**: the family
-is everything, so an injection into it is onto. -/
+is everything, so an injection into it is onto.
+@isnad1 id=bijectiv.3h3v.s5.03aefda56517 from=translated src=- shape=ab8d9652 vocab=dbb3680c
+-/
 theorem bijective_of_flipClosed [DecidableEq α] (f : ι → Finset α)
     (hinj : Function.Injective f) (h0 : ∃ i, f i = ∅)
     (hflip : ∀ (i : ι) (a : α), ∃ j, f j = flipAt (f i) a) : Function.Bijective f := by
@@ -67,13 +72,18 @@ noncomputable def toFinsetOf [Fintype α] (f : ι → α → Prop) (i : ι) : Fi
   Finset.univ.filter (f i)
 
 open Classical in
+/--
+@isnad1 id=iff.0h5v.s5.7311c5999a5f from=translated src=- shape=63e04ae7 vocab=33612e7b
+-/
 theorem mem_toFinsetOf [Fintype α] (f : ι → α → Prop) (i : ι) (x : α) :
     x ∈ toFinsetOf f i ↔ f i x := by
   simp [toFinsetOf]
 
 open Classical in
 /-- **An injective set-valued guess, flip-closed, is a bijection.** This is the
-form a guessed meaning relation takes: one set of `α` per invented value. -/
+form a guessed meaning relation takes: one set of `α` per invented value.
+@isnad1 id=bijectiv.3h3v.s5.58ddb69db05d from=translated src=- shape=5cf1d6e4 vocab=9550409f
+-/
 theorem bijective_of_flipClosedP [Finite α] (f : ι → α → Prop)
     (hinj : Function.Injective f) (h0 : ∃ i, ∀ x, ¬f i x)
     (hflip : ∀ (i : ι) (a : α), ∃ j, ∀ x, f j x ↔ Xor (f i x) (x = a)) :

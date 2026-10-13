@@ -37,7 +37,9 @@ def StretchIndep (Adj : V → V → Prop) (T : V ⊕ EdgePair Adj × W → Prop)
   ∀ (q : EdgePair Adj × W) (a : V), T (.inr q) → T (.inl a) → ¬(a = q.1.1.1 ∨ a = q.1.1.2)
 
 /-- An independent set of the stretched graph is a set of vertices, and middle
-vertices of edges with no endpoint in it. -/
+vertices of edges with no endpoint in it.
+@isnad1 id=iff.0h4v.s7.f8d215efaaf9 from=translated src=- shape=276586d5 vocab=a3508f67
+-/
 theorem stretchIndep_iff (Adj : V → V → Prop) (T : V ⊕ EdgePair Adj × W → Prop) :
     StretchIndep Adj T ↔
       ∀ q : EdgePair Adj × W, T (.inr q) → ¬T (.inl q.1.1.1) ∧ ¬T (.inl q.1.1.2) := by
@@ -55,7 +57,9 @@ def stretchEdge (Adj : V → V → Prop) :
   | _, _ => False
 
 /-- Independence in a bipartite graph presented as the stretched graph, the
-middle vertices being its left side. -/
+middle vertices being its left side.
+@isnad1 id=iff.2h8v.s8.ad5aa1885097 from=translated src=- shape=f875b686 vocab=0260aa19
+-/
 theorem stretchIndep_equiv_iff {T : Type} {Adj : V → V → Prop}
     (E : T ≃ V ⊕ EdgePair Adj × W) {Left : T → Prop} {Edge : T → T → Prop}
     (hleft : ∀ x, Left x ↔ (E x).isRight = true)
@@ -85,7 +89,9 @@ theorem stretchIndep_equiv_iff {T : Type} {Adj : V → V → Prop}
 /-- **The independent sets of a graph, as a remainder.** In the graph whose
 edges are stretched through `|W|` middle vertices each, `W` having more
 elements than the graph has vertices, the number of independent sets modulo
-`2 ^ |W|` is the number of independent sets of the graph. -/
+`2 ^ |W|` is the number of independent sets of the graph.
+@isnad1 id=eq.1h3v.s6.d2e1d9e84cd9 from=translated src=- shape=d52a0d92 vocab=7ae08e19
+-/
 theorem card_stretchIndep_mod [Finite V] [Finite W] (Adj : V → V → Prop)
     (hW : Nat.card V < Nat.card W) :
     Nat.card {T : V ⊕ EdgePair Adj × W → Prop // StretchIndep Adj T} % 2 ^ Nat.card W =

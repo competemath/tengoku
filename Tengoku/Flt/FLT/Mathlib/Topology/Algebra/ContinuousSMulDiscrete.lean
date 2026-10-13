@@ -31,6 +31,9 @@ discrete topology on it.
 class ContinuousSMulDiscrete (G M : Type*) [TopologicalSpace G] [SMul G M] : Prop where
   isOpen_smul_eq (G) (x y : M) : IsOpen { g : G | g • x = y }
 
+/--
+@isnad1 id=iff.0h2v.s4.038812687410 from=translated src=- shape=a847105d vocab=ac791371
+-/
 lemma continuousSMulDiscrete_iff [TopologicalSpace M] [DiscreteTopology M] :
     ContinuousSMulDiscrete G M ↔ ContinuousSMul G M := by
   refine ⟨fun H ↦ ⟨continuous_discrete_rng.mpr fun y ↦ ?_⟩, fun H ↦ ⟨fun x y ↦ ?_⟩⟩
@@ -44,10 +47,16 @@ instance (priority := low) [TopologicalSpace M] [DiscreteTopology M]
   [ContinuousSMulDiscrete G M] : ContinuousSMul G M := by
   rwa [← continuousSMulDiscrete_iff]
 
+/--
+@isnad1 id=continuo.0h2v.s4.7dfd1f2d2138 from=translated src=- shape=2e4fa8a7 vocab=ac791371
+-/
 lemma ContinuousSMulDiscrete.of_continuousSMul [TopologicalSpace M]
     [DiscreteTopology M] [ContinuousSMul G M] : ContinuousSMulDiscrete G M := by
   rwa [continuousSMulDiscrete_iff]
 
+/--
+@isnad1 id=iff.0h2v.s6.c44bcbd3ede6 from=translated src=- shape=eb738357 vocab=06487091
+-/
 lemma continuousSMulDiscrete_iff_isOpen_stabilizer {G M : Type*} [TopologicalSpace G]
     [Group G] [ContinuousMul G] [MulAction G M] :
     ContinuousSMulDiscrete G M ↔ ∀ x : M, IsOpen (MulAction.stabilizer G x : Set G) := by
@@ -58,6 +67,9 @@ lemma continuousSMulDiscrete_iff_isOpen_stabilizer {G M : Type*} [TopologicalSpa
     ext g'
     simp [mul_smul, inv_smul_eq_iff]
 
+/--
+@isnad1 id=isopen.0h3v.s5.74c3a66f0b76 from=translated src=- shape=1a5d7708 vocab=3e554310
+-/
 lemma ContinuousSMulDiscrete.isOpen_stabilizer (G : Type*) {M : Type*} [TopologicalSpace G]
     [Group G] [MulAction G M] [ContinuousSMulDiscrete G M] (x : M) :
       IsOpen (MulAction.stabilizer G x : Set G) := ContinuousSMulDiscrete.isOpen_smul_eq _ _ _

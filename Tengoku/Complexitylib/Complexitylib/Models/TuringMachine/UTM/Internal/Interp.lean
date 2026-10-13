@@ -99,6 +99,9 @@ noncomputable def descOfTM : TMDesc :=
           allΓ.flatMap fun sw =>
             allΓ.map fun so => M.descEntry q si sw so }
 
+/--
+@isnad1 id=wf.0h1v.s3.4a993d7978e0 from=translated src=- shape=b770544b vocab=71bbb4bf
+-/
 theorem descOfTM_wf : (M.descOfTM).WF := by
   constructor
   · exact lt_of_lt_of_le (M.stateEquiv M.qstart).isLt (Nat.le_of_lt Nat.lt_two_pow_self)
@@ -136,7 +139,9 @@ private theorem descOfTM_mem_entries {e : DescEntry}
   exact ⟨q, si, sw, so, rfl⟩
 
 /-- Looking up an in-range key in the extracted table returns the extracted
-    action. -/
+    action.
+@isnad1 id=eq.0h5v.s5.8fb30101b59a from=translated src=- shape=317ff60b vocab=cf1bc144
+-/
 theorem descOfTM_lookup (q : Fin (Fintype.card M.Q)) (si sw so : Γ) :
     (M.descOfTM).lookup q.val si sw so = M.descAct q si sw so := by
   have hmem : M.descEntry q si sw so ∈ (M.descOfTM).entries := by
@@ -173,7 +178,9 @@ noncomputable def descCfg (c : Cfg 1 M.Q) : Cfg 1 (M.descOfTM.toTM.Q) where
   work := c.work
   output := c.output
 
-/-- Halting is preserved by the embedding. -/
+/-- Halting is preserved by the embedding.
+@isnad1 id=iff.0h2v.s5.9afaf7a96e76 from=translated src=- shape=f27269f1 vocab=55421f3c
+-/
 theorem descOfTM_halted (c : Cfg 1 M.Q) :
     M.descOfTM.toTM.halted (M.descCfg c) ↔ M.halted c := by
   have hlt : (M.stateEquiv M.qhalt).val ≤ 2 ^ Fintype.card M.Q :=
@@ -185,7 +192,9 @@ theorem descOfTM_halted (c : Cfg 1 M.Q) :
   · intro h; exact M.stateEquiv.injective (Fin.val_injective (Fin.mk.injEq .. ▸ h))
   · intro h; simp [h]
 
-/-- The initial configuration embeds correctly. -/
+/-- The initial configuration embeds correctly.
+@isnad1 id=eq.0h2v.s5.86f30f3c1854 from=translated src=- shape=fc6ddf88 vocab=bc984855
+-/
 theorem descOfTM_initCfg (x : List Bool) :
     M.descCfg (M.initCfg x) = M.descOfTM.toTM.initCfg x := by
   have hlt : (M.stateEquiv M.qstart).val < 2 ^ Fintype.card M.Q :=
@@ -194,7 +203,9 @@ theorem descOfTM_initCfg (x : List Bool) :
     Nat.mod_eq_of_lt hlt]
 
 /-- Stepping the interpreted description commutes with the configuration
-    embedding. -/
+    embedding.
+@isnad1 id=eq.0h2v.s6.2709c838345c from=translated src=- shape=f920e2d5 vocab=b196918c
+-/
 theorem descOfTM_step_comm (c : Cfg 1 M.Q) :
     M.descOfTM.toTM.step (M.descCfg c) = (M.step c).map M.descCfg := by
   by_cases h : c.state = M.qhalt
@@ -229,7 +240,9 @@ theorem descOfTM_step_comm (c : Cfg 1 M.Q) :
       · rw [ite_eq_left ho, hro.2.2 ho]
       · rw [ite_eq_right ho]
 
-/-- Multi-step correspondence. -/
+/-- Multi-step correspondence.
+@isnad1 id=reachesi.1h4v.s6.e82227e0c76c from=translated src=- shape=5b779e02 vocab=1cfe82e9
+-/
 theorem descOfTM_reachesIn {t : ℕ} {c c' : Cfg 1 M.Q}
     (h : M.reachesIn t c c') :
     M.descOfTM.toTM.reachesIn t (M.descCfg c) (M.descCfg c') := by
@@ -239,7 +252,9 @@ theorem descOfTM_reachesIn {t : ℕ} {c c' : Cfg 1 M.Q}
     exact .step (by rw [descOfTM_step_comm, hstep]; rfl) ih
 
 /-- **Extraction fidelity**: the interpreted description of a machine
-    decides the same language in exactly the same time. -/
+    decides the same language in exactly the same time.
+@isnad1 id=decidesi.1h3v.s5.11f250567a62 from=translated src=- shape=7ca77181 vocab=9af9d6db
+-/
 theorem descOfTM_decidesInTime {L : Language} {T : ℕ → ℕ}
     (h : M.DecidesInTime L T) :
     M.descOfTM.toTM.DecidesInTime L T := by
@@ -252,7 +267,9 @@ theorem descOfTM_decidesInTime {L : Language} {T : ℕ → ℕ}
   · exact hnmem
 
 /-- Every language decidable by a single-work-tape machine is decidable by
-    an interpreted *well-formed description* in the same time bound. -/
+    an interpreted *well-formed description* in the same time bound.
+@isnad1 id=ex.1h3v.s5.30a1b7aa60bc from=translated src=- shape=99bdac46 vocab=d70b7d50
+-/
 theorem exists_wf_desc_decidesInTime {L : Language} {T : ℕ → ℕ} (M : TM 1)
     (h : M.DecidesInTime L T) :
     ∃ d : TMDesc, d.WF ∧ d.toTM.DecidesInTime L T :=

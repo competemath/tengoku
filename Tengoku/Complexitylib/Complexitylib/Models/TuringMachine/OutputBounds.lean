@@ -29,7 +29,9 @@ namespace TM
 
 variable {n : ℕ}
 
-/-- Cells beyond the output head's maximum reach are never changed. -/
+/-- Cells beyond the output head's maximum reach are never changed.
+@isnad1 id=eq.2h6v.s6.6e9e8297a31d from=translated src=- shape=a17956be vocab=c3103a13
+-/
 theorem reachesIn_output_cells_far {tm : TM n} {t : ℕ}
     {c c' : Cfg n tm.Q} (hreach : tm.reachesIn t c c')
     (j : ℕ) (hj : c.output.head + t < j) :
@@ -37,7 +39,9 @@ theorem reachesIn_output_cells_far {tm : TM n} {t : ℕ}
   exact reachesIn_output_cells_far_internal hreach j hj
 
 /-- A run from an initial configuration needs at least one transition for
-each bit present in its final output string. -/
+each bit present in its final output string.
+@isnad1 id=le.2h6v.s5.c7285904447d from=translated src=- shape=24431acd vocab=1ab40a1e
+-/
 theorem output_length_le_of_reachesIn {tm : TM n} {x y : List Bool}
     {c' : Cfg n tm.Q} {t : ℕ}
     (hreach : tm.reachesIn t (tm.initCfg x) c')
@@ -45,7 +49,9 @@ theorem output_length_le_of_reachesIn {tm : TM n} {x y : List Bool}
   exact output_length_le_of_reachesIn_internal hreach hout
 
 /-- The output of a time-bounded function computation is no longer than the
-advertised running-time bound. -/
+advertised running-time bound.
+@isnad1 id=le.1h5v.s5.45957d24567d from=translated src=- shape=22d320df vocab=58cc99c1
+-/
 theorem ComputesInTime.output_length_le {tm : TM n}
     {f : List Bool → List Bool} {T : ℕ → ℕ}
     (h : tm.ComputesInTime f T) (x : List Bool) :

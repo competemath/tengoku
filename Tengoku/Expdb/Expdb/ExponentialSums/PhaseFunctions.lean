@@ -46,17 +46,24 @@ def modelPhaseError
     VariableFunction (VariableObject.fixed phaseInterval) ℝ :=
   fun i u ↦ modelPhaseErrorAt (F i) σ p u
 
+/--
+@isnad1 id=eq.0h5v.s5.31c08bad86f5 from=translated src=- shape=1ac79c40 vocab=e29bd202
+-/
 @[simp] theorem modelPhaseError_apply
     (F : VariableFunction (VariableObject.fixed ℝ) ℝ) (σ : ℝ) (p i : ℕ)
     (u : phaseInterval) :
     modelPhaseError F σ p i u = modelPhaseErrorAt (F i) σ p u :=
   rfl
 
-/-- The phase interval has unique derivatives. -/
+/-- The phase interval has unique derivatives.
+@isnad1 id=uniquedi.0h0v.s3.f8060fa40c50 from=translated src=- shape=e3d48bcb vocab=badcb14d
+-/
 theorem uniqueDiffOn_phaseInterval : UniqueDiffOn ℝ phaseInterval :=
   uniqueDiffOn_Icc (by norm_num [phaseInterval])
 
-/-- Every reference model phase is smooth on the phase interval. -/
+/-- Every reference model phase is smooth on the phase interval.
+@isnad1 id=contdiff.0h1v.s5.d2527ee65da5 from=translated src=- shape=33675059 vocab=164fb214
+-/
 theorem contDiffOn_modelPhase (σ : ℝ) :
     ContDiffOn ℝ ∞ (modelPhase σ) phaseInterval := by
   intro u hu
@@ -64,7 +71,9 @@ theorem contDiffOn_modelPhase (σ : ℝ) :
     (ne_of_gt (zero_lt_one.trans_le hu.1))).contDiffWithinAt
 
 /-- The derivatives of the reference model phase have the expected falling-factorial
-formula on the phase interval. -/
+formula on the phase interval.
+@isnad1 id=eq.1h3v.s6.5042ebe0d4b2 from=translated src=- shape=d29a9e5b vocab=841c7105
+-/
 theorem iteratedDerivWithin_modelPhase (σ : ℝ) (p : ℕ) {u : ℝ}
     (hu : u ∈ phaseInterval) :
     iteratedDerivWithin p (modelPhase σ) phaseInterval u =
@@ -78,7 +87,9 @@ theorem iteratedDerivWithin_modelPhase (σ : ℝ) (p : ℕ) {u : ℝ}
   exact Real.iter_deriv_rpow_const (-σ) u p
 
 /-- On `[1, 2]`, the falling-factorial coefficient bounds the corresponding derivative
-of a model phase with nonnegative exponent. -/
+of a model phase with nonnegative exponent.
+@isnad1 id=le.2h3v.s6.4c283d9ce8b6 from=translated src=- shape=232c701d vocab=e406ca43
+-/
 theorem norm_iteratedDerivWithin_modelPhase_le {σ : ℝ} (hσ : 0 ≤ σ) (p : ℕ)
     {u : ℝ} (hu : u ∈ phaseInterval) :
     ‖iteratedDerivWithin p (modelPhase σ) phaseInterval u‖ ≤
@@ -92,7 +103,9 @@ theorem norm_iteratedDerivWithin_modelPhase_le {σ : ℝ} (hσ : 0 ≤ σ) (p : 
     (norm_nonneg ((descPochhammer ℝ p).eval (-σ)))
 
 /-- The iterated derivatives of a reference model phase vary continuously on the phase
-interval. -/
+interval.
+@isnad1 id=continuo.0h2v.s5.556b95f12a7d from=translated src=- shape=92e591f0 vocab=b6e33487
+-/
 theorem continuousOn_iteratedDerivWithin_modelPhase (σ : ℝ) (p : ℕ) :
     ContinuousOn (iteratedDerivWithin p (modelPhase σ) phaseInterval) phaseInterval :=
   (contDiffOn_modelPhase σ).continuousOn_iteratedDerivWithin
@@ -114,7 +127,9 @@ def HasPhaseDerivBound (F : ℝ → ℝ) (n : ℕ) (K : ℝ) : Prop :=
 def HasPhaseFirstDerivLowerBound (F : ℝ → ℝ) (c : ℝ) : Prop :=
   ∀ u ∈ phaseInterval, c ≤ iteratedDerivWithin 1 F phaseInterval u
 
-/-- A derivative bound may be restricted to a smaller order. -/
+/-- A derivative bound may be restricted to a smaller order.
+@isnad1 id=hasphase.2h4v.s4.6068dee93d09 from=translated src=- shape=ad8d9cfc vocab=1a14ec63
+-/
 theorem HasPhaseDerivBound.of_le {F : ℝ → ℝ} {m n : ℕ} {K : ℝ}
     (hF : HasPhaseDerivBound F n K) (hmn : m ≤ n) :
     HasPhaseDerivBound F m K :=
@@ -137,14 +152,18 @@ def IsModelPhaseFunction (F : VariableFunction (VariableObject.fixed ℝ) ℝ) :
     ∃ σ : ℝ, 0 < σ ∧
       ∀ p : ℕ, (modelPhaseError F σ p).IsChoicewiseInfinitesimal
 
-/-- Fixed model-phase data with a positive reference exponent gives a model phase function. -/
+/-- Fixed model-phase data with a positive reference exponent gives a model phase function.
+@isnad1 id=ismodelp.2h2v.s4.6c44fc730bcf from=translated src=- shape=ad97e826 vocab=e4a89d19
+-/
 theorem IsModelPhaseFunctionWith.isModelPhaseFunction
     {F : VariableFunction (VariableObject.fixed ℝ) ℝ} {σ : ℝ}
     (hF : IsModelPhaseFunctionWith F σ) (hσ : 0 < σ) :
     IsModelPhaseFunction F :=
   ⟨hF.isPhaseFunction, σ, hσ, hF.error_isChoicewiseInfinitesimal⟩
 
-/-- A model phase function admits fixed-exponent model-phase data. -/
+/-- A model phase function admits fixed-exponent model-phase data.
+@isnad1 id=ex.1h1v.s4.9204827e1594 from=translated src=- shape=539b0542 vocab=e4a89d19
+-/
 theorem IsModelPhaseFunction.exists_with
     {F : VariableFunction (VariableObject.fixed ℝ) ℝ}
     (hF : IsModelPhaseFunction F) :
@@ -152,7 +171,9 @@ theorem IsModelPhaseFunction.exists_with
   rcases hF with ⟨hphase, σ, hσ, herror⟩
   exact ⟨σ, hσ, ⟨hphase, herror⟩⟩
 
-/-- Adding a linear function changes only the zeroth model-phase error. -/
+/-- Adding a linear function changes only the zeroth model-phase error.
+@isnad1 id=eq.2h5v.s6.0b04943615c0 from=translated src=- shape=f89039f4 vocab=3d6f88b1
+-/
 theorem modelPhaseErrorAt_add_linear
     {F : ℝ → ℝ} {σ c u : ℝ} {p : ℕ}
     (hF : ContDiffOn ℝ ∞ F phaseInterval) (hu : u ∈ phaseInterval) :
@@ -177,7 +198,9 @@ theorem modelPhaseErrorAt_add_linear
     simp
 
 /-- Adding a controlled linear term increases the model-phase error by at most the norm of its
-coefficient. -/
+coefficient.
+@isnad1 id=isapprox.2h6v.s5.5137afc763ca from=translated src=- shape=24d73dc9 vocab=577ee856
+-/
 theorem IsApproximateModelPhaseFunction.add_linear
     {F : ℝ → ℝ} {σ δ η c : ℝ} {P : ℕ}
     (hF : IsApproximateModelPhaseFunction F σ P δ) (hc : ‖c‖ ≤ η) :
@@ -195,7 +218,9 @@ theorem IsApproximateModelPhaseFunction.add_linear
       · simpa [h] using hc
       · simp [h, hη])
 
-/-- Model-phase data is stable under addition of an infinitesimal linear term. -/
+/-- Model-phase data is stable under addition of an infinitesimal linear term.
+@isnad1 id=ismodelp.2h3v.s5.35d8c6e75b5e from=translated src=- shape=ae5e1399 vocab=5666d7cf
+-/
 theorem IsModelPhaseFunctionWith.add_infinitesimal_linear
     {F : VariableFunction (VariableObject.fixed ℝ) ℝ} {σ : ℝ}
     (hF : IsModelPhaseFunctionWith F σ)
@@ -219,7 +244,9 @@ theorem IsModelPhaseFunctionWith.add_infinitesimal_linear
   · simpa [modelPhaseError] using herr.add hc'
 
 /-- Model-phase data is stable under affine reparametrizations that tend to the identity and map
-the phase interval to itself. -/
+the phase interval to itself.
+@isnad1 id=ismodelp.4h4v.s6.8497e9bf1d15 from=translated src=- shape=9a6f535f vocab=ac9aa78c
+-/
 theorem IsModelPhaseFunctionWith.comp_affine_tendsto_id
     {F : VariableFunction (VariableObject.fixed ℝ) ℝ} {σ : ℝ}
     (hF : IsModelPhaseFunctionWith F σ) {c d : VariableObject ℝ}
@@ -331,7 +358,9 @@ theorem IsModelPhaseFunctionWith.comp_affine_tendsto_id
   · exact hmajor
 
 /-- At every fixed finite order, fixed-exponent model-phase data is eventually a uniformly
-approximate model phase. -/
+approximate model phase.
+@isnad1 id=eventual.2h4v.s5.e184bec5c265 from=translated src=- shape=9a6f36bd vocab=aee70529
+-/
 theorem IsModelPhaseFunctionWith.eventually_isApproximate
     {F : VariableFunction (VariableObject.fixed ℝ) ℝ} {σ : ℝ}
     (hF : IsModelPhaseFunctionWith F σ) (P : ℕ) {δ : ℝ} (hδ : 0 < δ) :
@@ -371,7 +400,9 @@ private lemma modelPhaseError_sum_isChoicewiseInfinitesimal
 
 /-- For any fixed derivative cutoff, the errors of a model phase function have a common
 infinitesimal bound, uniform over the phase interval and all derivative orders up to the cutoff,
-after passing to a subsequence. -/
+after passing to a subsequence.
+@isnad1 id=ex.1h2v.s6.af8564e28302 from=translated src=- shape=832be03c vocab=0fbbe979
+-/
 theorem IsModelPhaseFunction.exists_subsequence_uniform_error
     {F : VariableFunction (VariableObject.fixed ℝ) ℝ}
     (hF : IsModelPhaseFunction F) (P : ℕ) :

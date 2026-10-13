@@ -26,7 +26,9 @@ universe u
 
 /-- A ring homomorphism from a discrete valuation ring to a domain is injective as soon as its
 kernel does not contain the maximal ideal: the kernel is a prime ideal, so it is either `⊥` or
-the maximal ideal. -/
+the maximal ideal.
+@isnad1 id=injectiv.1h3v.s7.7d69a7b1bc45 from=translated src=- shape=98b54cd6 vocab=2c68bc86
+-/
 theorem IsDiscreteValuationRing.injective_of_not_maximalIdeal_le_ker {S L : Type*} [CommRing S]
     [IsDomain S] [IsDiscreteValuationRing S] [CommRing L] [IsDomain L] (φ : S →+* L)
     (h : ¬maximalIdeal S ≤ RingHom.ker φ) : Function.Injective φ := by
@@ -35,7 +37,9 @@ theorem IsDiscreteValuationRing.injective_of_not_maximalIdeal_le_ker {S L : Type
   exact h (IsLocalRing.eq_maximalIdeal ((RingHom.ker_isPrime φ).isMaximal hne)).ge
 
 /-- A finite separable field extension `k'/k` is `k[X]/(p)` for a monic separable irreducible
-polynomial `p` of degree `[k' : k]` (the primitive element theorem, packaged via `AdjoinRoot`). -/
+polynomial `p` of degree `[k' : k]` (the primitive element theorem, packaged via `AdjoinRoot`).
+@isnad1 id=ex.0h2v.s7.139b8b374a4a from=translated src=- shape=361e379e vocab=5e0ade50
+-/
 theorem Field.exists_monic_irreducible_adjoinRoot_algEquiv (k k' : Type*) [Field k] [Field k']
     [Algebra k k'] [FiniteDimensional k k'] [Algebra.IsSeparable k k'] :
     ∃ p : k[X], p.Monic ∧ p.Separable ∧ Irreducible p ∧ p.natDegree = Module.finrank k k' ∧
@@ -47,7 +51,9 @@ theorem Field.exists_monic_irreducible_adjoinRoot_algEquiv (k k' : Type*) [Field
     ⟨AdjoinRoot.equiv' _ pb (by rw [AdjoinRoot.aeval_eq, AdjoinRoot.mk_self]) (minpoly.aeval _ _)⟩⟩
 
 /-- A monic polynomial over the residue field of a local ring lifts to a monic polynomial of the
-same degree over the ring. -/
+same degree over the ring.
+@isnad1 id=ex.1h2v.s7.6f7b1b8a3579 from=translated src=- shape=f0358814 vocab=68ddf7ab
+-/
 theorem IsLocalRing.exists_monic_map_residue_eq {A : Type u} [CommRing A] [IsLocalRing A]
     {pbar : (ResidueField A)[X]} (h : pbar.Monic) :
     ∃ P : A[X], P.Monic ∧ P.map (residue A) = pbar ∧ P.natDegree = pbar.natDegree := by
@@ -58,7 +64,9 @@ theorem IsLocalRing.exists_monic_map_residue_eq {A : Type u} [CommRing A] [IsLoc
 
 /-- An integral algebra `S` over a local ring `R` such that `𝔪_R · S` is a maximal ideal is
 itself local, with maximal ideal `𝔪_R · S`: any maximal ideal of `S` contracts to `𝔪_R` by
-integrality, hence contains `𝔪_R · S`, hence equals it. -/
+integrality, hence contains `𝔪_R · S`, hence equals it.
+@isnad1 id=islocalr.1h2v.s6.a9807f343657 from=translated src=- shape=d47cba9a vocab=5e6b98da
+-/
 theorem IsLocalRing.of_isMaximal_map_maximalIdeal {R S : Type*} [CommRing R] [IsLocalRing R]
     [CommRing S] [Algebra R S] [Algebra.IsIntegral R S]
     (hmax : ((maximalIdeal R).map (algebraMap R S)).IsMaximal) : IsLocalRing S :=
@@ -78,7 +86,9 @@ noncomputable def AdjoinRoot.residueFieldEquiv {A : Type*} [CommRing A] [IsLocal
   (Ideal.quotientEquivAlgOfEq A hmax).trans (quotEquivQuotMap P (maximalIdeal A))
 
 /-- The root of an irreducible separable polynomial `q` is a separable element of `F[X]/(q)`:
-its minimal polynomial is `q` up to a unit. -/
+its minimal polynomial is `q` up to a unit.
+@isnad1 id=issepara.1h2v.s6.ba3f77693d9e from=translated src=- shape=c003dd8c vocab=78dd78f1
+-/
 theorem AdjoinRoot.isSeparable_root {F : Type*} [Field F] {q : F[X]} [Fact (Irreducible q)]
     (hq : q.Separable) : IsSeparable F (root q) := by
   have hq0 : q ≠ 0 := (Fact.out (p := Irreducible q)).ne_zero
@@ -87,14 +97,18 @@ theorem AdjoinRoot.isSeparable_root {F : Type*} [Field F] {q : F[X]} [Fact (Irre
     (inv_ne_zero (leadingCoeff_ne_zero.mpr hq0))))
 
 /-- The simple extension `F[X]/(q)` by a root of an irreducible separable polynomial is
-separable. -/
+separable.
+@isnad1 id=issepara.1h2v.s6.e5150cc2a075 from=translated src=- shape=6a12f852 vocab=e9ab6117
+-/
 theorem AdjoinRoot.isSeparable_of_separable {F : Type*} [Field F] {q : F[X]} [Fact (Irreducible q)]
     (hq : q.Separable) : Algebra.IsSeparable F (AdjoinRoot q) :=
   .of_isSeparable_of_adjoin_eq_top (isSeparable_root hq)
     (IntermediateField.adjoin_eq_top_of_algebra (hS := adjoinRoot_eq_top))
 
 /-- If the reduction of `P` modulo the maximal ideal of a local ring `A` is irreducible, then
-`𝔪_A · A[X]/(P)` is a maximal ideal: the quotient by it is the field `(A/𝔪_A)[X]/(P̄)`. -/
+`𝔪_A · A[X]/(P)` is a maximal ideal: the quotient by it is the field `(A/𝔪_A)[X]/(P̄)`.
+@isnad1 id=ismaxima.1h2v.s8.87f4affeb4c2 from=translated src=- shape=afe5a50e vocab=27998a84
+-/
 theorem AdjoinRoot.isMaximal_map_maximalIdeal {A : Type*} [CommRing A] [IsLocalRing A] {P : A[X]}
     (hirr : Irreducible (P.map (residue A))) :
     ((maximalIdeal A).map (algebraMap A (AdjoinRoot P))).IsMaximal := by
@@ -110,7 +124,9 @@ variable {K : Type u} [Field K] [Algebra R K] [IsFractionRing R K]
 /-- For a monic `P` over a discrete valuation ring `R` whose reduction is irreducible over the
 residue field, `S = R[X]/(P)` is again a discrete valuation ring, *unramified* over `R`: its maximal
 ideal is `𝔪_R · S` (residue field `(ResidueField R)[X]/(P̄)`), so `R → S` is a local
-homomorphism. -/
+homomorphism.
+@isnad1 id=and.3h2v.s8.a6ae223070b1 from=translated src=- shape=99b3028c vocab=f9ff5419
+-/
 theorem AdjoinRoot.isDiscreteValuationRing_of_irreducible_map_residue
     {P : R[X]} [IsDomain (AdjoinRoot P)] (hPm : P.Monic) (hP0 : P.degree ≠ 0)
     (hirr : Irreducible (P.map (residue R))) :
@@ -137,7 +153,9 @@ theorem AdjoinRoot.isDiscreteValuationRing_of_irreducible_map_residue
 /-- Clearing denominators in `L = K[X]/(P·K)` over `S = R[X]/(P)`: any element of `L`, multiplied
 by (the image of) a suitable nonzero element of `R`, lies in the image of `S`
 (`IsLocalization.integerNormalization` for the polynomial `g` representing the element). The
-hypothesis `hmap` records that `algebraMap S L` reduces `mk P` to `mk (P·K) ∘ map`. -/
+hypothesis `hmap` records that `algebraMap S L` reduces `mk P` to `mk (P·K) ∘ map`.
+@isnad1 id=ex.1h4v.s11.34cb214ab73e from=translated src=- shape=bb2acae7 vocab=7b21784d
+-/
 theorem AdjoinRoot.exists_nonZeroDivisor_mul_eq_algebraMap {R : Type*} [CommRing R] {K : Type*}
     [Field K] [Algebra R K] [IsFractionRing R K] {P : R[X]}
     [Algebra (AdjoinRoot P) (AdjoinRoot (P.map (algebraMap R K)))]
@@ -166,7 +184,9 @@ theorem AdjoinRoot.exists_nonZeroDivisor_mul_eq_algebraMap {R : Type*} [CommRing
 injective (its kernel is a prime of the DVR `S`, and it does not kill a uniformizer), and every
 element of `L` clears its `K`-denominators (`exists_nonZeroDivisor_mul_eq_algebraMap`) to a
 multiple in the image of `S`. The hypothesis `hmap` records that `algebraMap S L` reduces `mk P`
-to `mk (P·K) ∘ map`. -/
+to `mk (P·K) ∘ map`.
+@isnad1 id=isfracti.3h3v.s10.45e4b97b7a19 from=translated src=- shape=0bc77bfe vocab=e8969255
+-/
 theorem AdjoinRoot.isFractionRing_map {P : R[X]} (hP0 : P.degree ≠ 0)
     [IsDomain (AdjoinRoot P)] [IsDiscreteValuationRing (AdjoinRoot P)]
     [Fact (Irreducible (P.map (algebraMap R K)))]

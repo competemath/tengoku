@@ -48,7 +48,9 @@ def frontEndWork (z : List Bool) : Fin workTapeCount → Tape :=
   Function.update (fun _ => TM.regTape 0) freshReg
     (TM.regTape (z.length + 1))
 
-/-- Every initialized front-end register is parked. -/
+/-- Every initialized front-end register is parked.
+@isnad1 id=parked.0h2v.s3.4def050a75d4 from=translated src=- shape=392a1ce7 vocab=cf640feb
+-/
 theorem frontEndWork_parked (z : List Bool) :
     ∀ i, TM.Parked (frontEndWork z i) := by
   intro i
@@ -60,7 +62,9 @@ theorem frontEndWork_parked (z : List Bool) :
     exact TM.parked_regTape 0
 
 /-- The structural front-end budget is bounded by a convenient linear
-polynomial with one coefficient. -/
+polynomial with one coefficient.
+@isnad1 id=le.0h1v.s5.17c47dc086df from=translated src=- shape=035ebc79 vocab=ebd7a482
+-/
 theorem reductionFrontEndTime_le_linear_internal (n : ℕ) :
     5 * n + 13 ≤ 13 * (n + 1) := by
   omega
@@ -68,7 +72,9 @@ theorem reductionFrontEndTime_le_linear_internal (n : ℕ) :
 /-- **Framed front-end execution.**  Starting from the ordinary initial tape
 layout, initialize all six registers and validate `z`.  Validation preserves
 the initialized register family exactly and leaves its Boolean verdict at
-output cell one. -/
+output cell one.
+@isnad1 id=hoaretim.0h1v.s6.8b32153307fb from=translated src=- shape=0559da56 vocab=3b4d8820
+-/
 theorem reductionFrontEndTM_hoareTime_internal (z : List Bool) :
     reductionFrontEndTM.HoareTime
       (fun inp work out =>
@@ -98,7 +104,9 @@ theorem reductionFrontEndTM_hoareTime_internal (z : List Bool) :
   simpa only [reductionFrontEndTM] using hbound
 
 /-- Rounded linear-time form of the front-end contract, ready for later
-polynomial assembly. -/
+polynomial assembly.
+@isnad1 id=hoaretim.0h1v.s6.170e81725a2a from=translated src=- shape=7fd3129d vocab=3b4d8820
+-/
 theorem reductionFrontEndTM_linear_hoareTime_internal (z : List Bool) :
     reductionFrontEndTM.HoareTime
       (fun inp work out =>

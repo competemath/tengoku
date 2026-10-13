@@ -20,9 +20,15 @@ variable {c L w : ℝ}
 def psiC (c L w : ℝ) (r : ℝ) : ℝ :=
   if r = 0 then L else min L (min (2 / |r|) (c / (w * r ^ 2)))
 
+/--
+@isnad1 id=eq.0h2v.s4.8837ea78befd from=translated src=- shape=1a5b355a vocab=dfcd872c
+-/
 lemma psiC_eq_psiA (c : ℝ) (p : PrimeSide.Setting) : psiC c p.L p.w = PrimeSide.psiA c p := by
   funext r; rfl
 
+/--
+@isnad1 id=le.3h4v.s6.a032e155097d from=translated src=- shape=f25b845f vocab=af8ef3e5
+-/
 theorem psi_nonneg (hc : 4 ≤ c) (hw : 1 ≤ w) (hwL : 2 * w ≤ L) (r : ℝ) :
     0 ≤ psiC c L w r := by
   have hL : 0 ≤ L := by linarith
@@ -32,9 +38,15 @@ theorem psi_nonneg (hc : 4 ≤ c) (hw : 1 ≤ w) (hwL : 2 * w ≤ L) (r : ℝ) :
   · exact hL
   · exact le_min hL (le_min (by positivity) (by positivity))
 
+/--
+@isnad1 id=eq.0h4v.s4.0df367f68bc6 from=translated src=- shape=2e963943 vocab=5eabf00b
+-/
 theorem psi_even (r : ℝ) : psiC c L w (-r) = psiC c L w r := by
   simp [psiC]
 
+/--
+@isnad1 id=le.3h4v.s5.fa475f47db93 from=translated src=- shape=93626d45 vocab=af8ef3e5
+-/
 theorem psi_le_L (_hc : 4 ≤ c) (_hw : 1 ≤ w) (_hwL : 2 * w ≤ L) (r : ℝ) :
     psiC c L w r ≤ L := by
   unfold psiC
@@ -42,6 +54,9 @@ theorem psi_le_L (_hc : 4 ≤ c) (_hw : 1 ≤ w) (_hwL : 2 * w ≤ L) (r : ℝ) 
   · exact le_rfl
   · exact min_le_left _ _
 
+/--
+@isnad1 id=le.3h4v.s6.ad3a63d6f8d4 from=translated src=- shape=4132ec73 vocab=fc307d9f
+-/
 theorem psi_mul_abs_le (_hc : 4 ≤ c) (_hw : 1 ≤ w) (_hwL : 2 * w ≤ L) (r : ℝ) :
     psiC c L w r * |r| ≤ 2 := by
   unfold psiC
@@ -51,6 +66,9 @@ theorem psi_mul_abs_le (_hc : 4 ≤ c) (_hw : 1 ≤ w) (_hwL : 2 * w ≤ L) (r :
     rw [← le_div_iff₀ hra]
     exact (min_le_right _ _).trans (min_le_left _ _)
 
+/--
+@isnad1 id=le.3h4v.s6.3f2f2a4eb421 from=translated src=- shape=d08cc105 vocab=38bf92f6
+-/
 theorem psi_mul_sq_le (hc : 4 ≤ c) (hw : 1 ≤ w) (_hwL : 2 * w ≤ L) (r : ℝ) :
     psiC c L w r * r ^ 2 ≤ c / w := by
   have hw0 : 0 < w := by linarith
@@ -64,10 +82,16 @@ theorem psi_mul_sq_le (hc : 4 ≤ c) (hw : 1 ≤ w) (_hwL : 2 * w ≤ L) (r : �
 
 /-! #### Measurability / integrability of ψ -/
 
+/--
+@isnad1 id=eq.0h4v.s4.eb7ec9a8ee30 from=translated src=- shape=2e963943 vocab=a82168db
+-/
 theorem psi_abs (r : ℝ) : psiC c L w |r| = psiC c L w r := by
   unfold psiC
   simp only [abs_eq_zero, abs_abs, sq_abs]
 
+/--
+@isnad1 id=measurab.0h3v.s3.086d127b31ab from=translated src=- shape=53906041 vocab=332e0088
+-/
 theorem psi_measurable : Measurable (psiC c L w) := by
   have h1 : Measurable (fun r : ℝ => min L (min (2 / |r|) (c / (w * r ^ 2)))) :=
     measurable_const.min ((measurable_const.div continuous_abs.measurable).min
@@ -81,7 +105,9 @@ theorem psi_measurable : Measurable (psiC c L w) := by
   rw [this]
   exact Measurable.piecewise (measurableSet_singleton 0) measurable_const h1
 
-/-- For r > 0: ψ(r) ≤ (c_ϱ/w) · r^{−2} (rpow form). -/
+/-- For r > 0: ψ(r) ≤ (c_ϱ/w) · r^{−2} (rpow form).
+@isnad1 id=le.4h4v.s6.8c1653454892 from=translated src=- shape=5064a3c5 vocab=582e476b
+-/
 theorem psi_le_rpow_neg_two (hc : 4 ≤ c) (hw : 1 ≤ w) (hwL : 2 * w ≤ L) {r : ℝ}
     (hr : 0 < r) : psiC c L w r ≤ c / w * r ^ (-2:ℝ) := by
   have h := psi_mul_sq_le hc hw hwL r
@@ -95,6 +121,9 @@ noncomputable def psiMaj (c L w : ℝ) (r : ℝ) : ℝ :=
     + c / w * ((Ioi (1:ℝ)).indicator (fun x => x ^ (-2:ℝ)) r
       + (Ioi (1:ℝ)).indicator (fun x => x ^ (-2:ℝ)) (-r))
 
+/--
+@isnad1 id=integrab.0h3v.s5.458506f1b41f from=translated src=- shape=04f43067 vocab=289ebb7a
+-/
 theorem psiMaj_integrable : Integrable (psiMaj c L w) := by
   have h1 : Integrable ((Icc (-1:ℝ) 1).indicator (fun _ => L)) :=
     (integrable_indicator_iff measurableSet_Icc).mpr (integrableOn_const (by simp))
@@ -104,6 +133,9 @@ theorem psiMaj_integrable : Integrable (psiMaj c L w) := by
     h2.comp_neg
   exact h1.add ((h2.add h3).const_mul _)
 
+/--
+@isnad1 id=le.3h4v.s6.dfd1d10f317d from=translated src=- shape=00143492 vocab=255c11a5
+-/
 theorem psi_le_psiMaj (hc : 4 ≤ c) (hw : 1 ≤ w) (hwL : 2 * w ≤ L) (r : ℝ) :
     psiC c L w r ≤ psiMaj c L w r := by
   have hw0 : 0 < w := by linarith
@@ -137,7 +169,9 @@ c_ϱ L/4w ≥ 1 by [eq:wrange]) gives Ψ₀ = 4 + 2 log(c_ϱ L/4w), ∫ψ²|r| =
 ∫ψ² ≤ 8L".) -/
 
 /-- Constants for [eq:psiints]: A := 2/L ≤ B := c_ϱ/(2w) ("note c_ϱ L/4w ≥ 1 by
-[eq:wrange]"), B/A = c_ϱ L/(4w). -/
+[eq:wrange]"), B/A = c_ϱ L/(4w).
+@isnad1 id=and.3h3v.s7.c91df8f5f79c from=translated src=- shape=0a06d568 vocab=c96aef97
+-/
 theorem psiints_consts (hc : 4 ≤ c) (hw : 1 ≤ w) (hwL : 8 * w ≤ L) :
     0 < 2 / L ∧ 0 < c / (2 * w) ∧ 2 / L ≤ c / (2 * w) ∧
     (c / (2 * w)) / (2 / L) = c * L / (4 * w) := by
@@ -149,7 +183,9 @@ theorem psiints_consts (hc : 4 ≤ c) (hw : 1 ≤ w) (hwL : 8 * w ≤ L) :
   · field_simp; ring
 
 /-- On (0, ∞), ψ is dominated by the three-piece majorant L·1_{(0,A]} + (2/r)·1_{(A,B]} +
-(c_ϱ/w) r⁻²·1_{(B,∞)} (in fact with equality; ≤ is all we use). -/
+(c_ϱ/w) r⁻²·1_{(B,∞)} (in fact with equality; ≤ is all we use).
+@isnad1 id=le.3h4v.s8.7959d4908547 from=translated src=- shape=fd60fbf1 vocab=79b37818
+-/
 theorem indicator_psi_le (hc : 4 ≤ c) (hw : 1 ≤ w) (hwL : 8 * w ≤ L) (r : ℝ) :
     (Ioi (0:ℝ)).indicator (psiC c L w) r
       ≤ (Ioc 0 (2 / L)).indicator (fun _ => L) r
@@ -191,7 +227,9 @@ theorem indicator_psi_le (hc : 4 ≤ c) (hw : 1 ≤ w) (hwL : 8 * w ≤ L) (r : 
       indicator_of_notMem (show r ∉ Ioi (c / (2 * w)) from fun h => hr (lt_trans hB h)),
       add_zero, add_zero]
 
-/-- [eq:psiints]: Ψ₀ := ∫₀^∞ ψ(r) dr ≤ 4 + 2 log(c_ϱ L/(4w)) (paper: "="). -/
+/-- [eq:psiints]: Ψ₀ := ∫₀^∞ ψ(r) dr ≤ 4 + 2 log(c_ϱ L/(4w)) (paper: "=").
+@isnad1 id=le.3h3v.s7.934eb756922b from=translated src=- shape=d3be0829 vocab=3e73d452
+-/
 theorem integral_psi_Ioi_le (hc : 4 ≤ c) (hw : 1 ≤ w) (hwL : 8 * w ≤ L) :
     ∫ r in Ioi 0, psiC c L w r ≤ 4 + 2 * Real.log (c * L / (4 * w)) := by
   obtain ⟨hA, hB, hAB, hBA⟩ := psiints_consts hc hw hwL
@@ -247,7 +285,9 @@ theorem integral_psi_Ioi_le (hc : 4 ≤ c) (hw : 1 ≤ w) (hwL : 8 * w ≤ L) :
     _ = 4 + 2 * Real.log (c * L / (4 * w)) := by rw [hBA]; ring
 
 /-- [eq:psiints]: ∫_ℝ ψ(r)²|r| dr ≤ 8 + 8 log(c_ϱ L/(4w)) (paper: "="): split (0,2/L],
-(2/L, c/2w], (c/2w, ∞): ∫₀^∞ ψ² r ≤ L²(2/L)²/2 + 4 log(cL/4w) + (c/w)²/(2(c/2w)²) = 2 + 4 log + 2. -/
+(2/L, c/2w], (c/2w, ∞): ∫₀^∞ ψ² r ≤ L²(2/L)²/2 + 4 log(cL/4w) + (c/w)²/(2(c/2w)²) = 2 + 4 log + 2.
+@isnad1 id=le.3h3v.s7.9f75759e8da8 from=translated src=- shape=539ea2c4 vocab=3d3e9b60
+-/
 theorem integral_psi_sq_mul_abs_le (hc : 4 ≤ c) (hw : 1 ≤ w) (hwL : 8 * w ≤ L) :
     ∫ r, psiC c L w r ^ 2 * |r| ≤ 8 + 8 * Real.log (c * L / (4 * w)) := by
   obtain ⟨hA, hB, hAB, hBA⟩ := psiints_consts hc hw hwL
@@ -354,7 +394,9 @@ theorem integral_psi_sq_mul_abs_le (hc : 4 ≤ c) (hw : 1 ≤ w) (hwL : 8 * w �
     _ = 8 + 8 * Real.log (c * L / (4 * w)) := by rw [hBA]; ring
 
 /-- [eq:psiints]: "∫_ℝ ψ² ≤ 8L". Uses only ψ ≤ min(L, 2/|r|):
-∫ = 2∫₀^∞ ≤ 2(∫₀^{2/L} L² + ∫_{2/L}^∞ 4r⁻²) = 2(2L+2L). -/
+∫ = 2∫₀^∞ ≤ 2(∫₀^{2/L} L² + ∫_{2/L}^∞ 4r⁻²) = 2(2L+2L).
+@isnad1 id=le.3h3v.s6.5e814b1be22f from=translated src=- shape=5843ba22 vocab=0d9e3775
+-/
 theorem integral_psi_sq_le (hc : 4 ≤ c) (hw : 1 ≤ w) (hwL : 8 * w ≤ L) :
     ∫ r, psiC c L w r ^ 2 ≤ 8 * L := by
   obtain ⟨hA, -, -, -⟩ := psiints_consts hc hw hwL
@@ -418,6 +460,9 @@ theorem integral_psi_sq_le (hc : 4 ≤ c) (hw : 1 ≤ w) (hwL : 8 * w ≤ L) :
     _ = 2 * (2 * L + 2 * L) := by rw [integral_add I1 I2, e1, e2]
     _ = 8 * L := by ring
 
+/--
+@isnad1 id=integrab.3h3v.s6.8efab27a78b2 from=translated src=- shape=be45f6e9 vocab=4de7a7b1
+-/
 theorem psi_integrable (hc : 4 ≤ c) (hw : 1 ≤ w) (hwL : 8 * w ≤ L) :
     Integrable (psiC c L w) := by
   have hwL' : 2 * w ≤ L := by linarith
@@ -426,6 +471,9 @@ theorem psi_integrable (hc : 4 ≤ c) (hw : 1 ≤ w) (hwL : 8 * w ≤ L) :
   rw [Real.norm_of_nonneg (psi_nonneg hc hw hwL' r)]
   exact psi_le_psiMaj hc hw hwL' r
 
+/--
+@isnad1 id=integrab.3h3v.s6.a8e0830e9b6f from=translated src=- shape=079c0c90 vocab=bb47b0e9
+-/
 theorem psi_sq_integrable (hc : 4 ≤ c) (hw : 1 ≤ w) (hwL : 8 * w ≤ L) :
     Integrable (fun r => psiC c L w r ^ 2) := by
   have hwL' : 2 * w ≤ L := by linarith
@@ -436,6 +484,9 @@ theorem psi_sq_integrable (hc : 4 ≤ c) (hw : 1 ≤ w) (hwL : 8 * w ≤ L) :
   rw [Real.norm_of_nonneg (sq_nonneg _)]
   nlinarith
 
+/--
+@isnad1 id=integrab.3h3v.s6.a67bc7d0b5f6 from=translated src=- shape=ecf2568e vocab=7055f2e9
+-/
 theorem psi_sq_mul_abs_integrable (hc : 4 ≤ c) (hw : 1 ≤ w) (hwL : 8 * w ≤ L) :
     Integrable (fun r => psiC c L w r ^ 2 * |r|) := by
   have hwL' : 2 * w ≤ L := by linarith
@@ -449,7 +500,9 @@ theorem psi_sq_mul_abs_integrable (hc : 4 ≤ c) (hw : 1 ≤ w) (hwL : 8 * w ≤
 
 /-! #### Generic moment bounds from |F| ≤ ψ-type information -/
 
-/-- If |F| ≤ ψ pointwise then ∫ F²|r| ≤ ∫ ψ²|r| ≤ 8 + 8 log(c_ϱ L/4w). -/
+/-- If |F| ≤ ψ pointwise then ∫ F²|r| ≤ ∫ ψ²|r| ≤ 8 + 8 log(c_ϱ L/4w).
+@isnad1 id=le.4h4v.s7.fa7e2f4a1416 from=translated src=- shape=c20398dc vocab=3d3e9b60
+-/
 theorem integral_sq_mul_abs_le_of_le_psi (hc : 4 ≤ c) (hw : 1 ≤ w)
     (hwL : 8 * w ≤ L) {F : ℝ → ℝ} (hF : ∀ r, |F r| ≤ psiC c L w r) :
     ∫ r, F r ^ 2 * |r| ≤ 8 + 8 * Real.log (c * L / (4 * w)) := by
@@ -467,6 +520,9 @@ noncomputable def momMaj (C : ℝ) (r : ℝ) : ℝ :=
     + C ^ 2 * ((Ioi (1:ℝ)).indicator (fun x => x ^ (-2:ℝ)) r
       + (Ioi (1:ℝ)).indicator (fun x => x ^ (-2:ℝ)) (-r))
 
+/--
+@isnad1 id=integrab.0h1v.s4.577b255e7edb from=translated src=- shape=b231e927 vocab=6959ea92
+-/
 theorem momMaj_integrable (C : ℝ) : Integrable (momMaj C) := by
   have h1 : Integrable ((Icc (-1:ℝ) 1).indicator (fun _ => (4:ℝ))) :=
     (integrable_indicator_iff measurableSet_Icc).mpr (integrableOn_const (by simp))
@@ -476,6 +532,9 @@ theorem momMaj_integrable (C : ℝ) : Integrable (momMaj C) := by
     h2.comp_neg
   exact h1.add ((h2.add h3).const_mul _)
 
+/--
+@isnad1 id=eq.0h1v.s6.774a77b94207 from=translated src=- shape=eee43e76 vocab=fcf43a2f
+-/
 theorem integral_momMaj (C : ℝ) : ∫ r, momMaj C r = 8 + 2 * C ^ 2 := by
   have h1 : Integrable ((Icc (-1:ℝ) 1).indicator (fun _ => (4:ℝ))) :=
     (integrable_indicator_iff measurableSet_Icc).mpr (integrableOn_const (by simp))
@@ -512,7 +571,9 @@ theorem integral_momMaj (C : ℝ) : ∫ r, momMaj C r = 8 + 2 * C ^ 2 := by
         exact integral_add h2 h3
     _ = 8 + 2 * C ^ 2 := by rw [e2, e3]; ring
 
-/-- Pointwise: |F(r)|·|r| ≤ 2 and |F(r)|·r² ≤ C give F(r)² r² ≤ momMaj C r. -/
+/-- Pointwise: |F(r)|·|r| ≤ 2 and |F(r)|·r² ≤ C give F(r)² r² ≤ momMaj C r.
+@isnad1 id=le.3h3v.s7.854ae191e6f8 from=translated src=- shape=42255313 vocab=7a6523cd
+-/
 theorem sq_mul_sq_le_momMaj {F : ℝ → ℝ} {C : ℝ} (_hC : 0 ≤ C)
     (h1 : ∀ r, |F r| * |r| ≤ 2) (h2 : ∀ r, |F r| * r ^ 2 ≤ C) (r : ℝ) :
     F r ^ 2 * r ^ 2 ≤ momMaj C r := by
@@ -552,6 +613,9 @@ theorem sq_mul_sq_le_momMaj {F : ℝ → ℝ} {C : ℝ} (_hC : 0 ≤ C)
         Set.indicator_of_notMem (show -r ∉ Ioi (1:ℝ) by simp; linarith), add_zero]
       exact hsq r h hFsq
 
+/--
+@isnad1 id=integrab.4h2v.s7.447bdabc5b98 from=translated src=- shape=ca29f3f9 vocab=036a2a0d
+-/
 theorem integrable_sq_mul_sq_of_bounds {F : ℝ → ℝ} {C : ℝ} (hFc : Continuous F)
     (hC : 0 ≤ C) (h1 : ∀ r, |F r| * |r| ≤ 2) (h2 : ∀ r, |F r| * r ^ 2 ≤ C) :
     Integrable (fun r => F r ^ 2 * r ^ 2) := by
@@ -559,6 +623,9 @@ theorem integrable_sq_mul_sq_of_bounds {F : ℝ → ℝ} {C : ℝ} (hFc : Contin
   rw [Real.norm_of_nonneg (by positivity)]
   exact sq_mul_sq_le_momMaj hC h1 h2 r
 
+/--
+@isnad1 id=le.3h2v.s7.79d86b13a82a from=translated src=- shape=5a0c437a vocab=39deb655
+-/
 theorem integral_sq_mul_sq_le_of_bounds {F : ℝ → ℝ} {C : ℝ}
     (hC : 0 ≤ C) (h1 : ∀ r, |F r| * |r| ≤ 2) (h2 : ∀ r, |F r| * r ^ 2 ≤ C) :
     ∫ r, F r ^ 2 * r ^ 2 ≤ 8 + 2 * C ^ 2 := by

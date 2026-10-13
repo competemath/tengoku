@@ -94,13 +94,25 @@ structure FreyPackage where
 
 namespace FreyPackage
 
+/--
+@isnad1 id=lt.0h1v.s3.e2637505f9b6 from=translated src=- shape=b9369acb vocab=8a1366db
+-/
 lemma hppos (P : FreyPackage) : 0 < P.p := lt_of_lt_of_le (by omega) P.hp5
 
+/--
+@isnad1 id=ne.0h1v.s3.b2d973d1db5a from=translated src=- shape=a311c14d vocab=c1e0584d
+-/
 lemma hp0 (P : FreyPackage) : P.p ≠ 0 := P.hppos.ne'
 
+/--
+@isnad1 id=odd.0h1v.s2.ea198c174fee from=translated src=- shape=1a6c1393 vocab=3e42ab94
+-/
 lemma hp_odd (P : FreyPackage) : Odd P.p := Nat.Prime.odd_of_ne_two P.pp <|
   have := P.hp5; by linarith
 
+/--
+@isnad1 id=eq.2h4v.s6.d2e66bed10f2 from=translated src=- shape=bf2e354d vocab=fd5cc21d
+-/
 lemma gcdab_eq_gcdac {a b c : ℤ} {p : ℕ} (hp : 0 < p) (h : a ^ p + b ^ p = c ^ p) :
     gcd a b = gcd a c := by
   have foo : gcd a b ∣ gcd a c := by
@@ -123,16 +135,24 @@ lemma gcdab_eq_gcdac {a b c : ℤ} {p : ℕ} (hp : 0 < p) (h : a ^ p + b ^ p = c
   apply Int.ofNat_dvd.1 at foo
   exact congr_arg ((↑) : ℕ → ℤ) <| Nat.dvd_antisymm foo bar
 
+/--
+@isnad1 id=eq.0h1v.s4.dd4c91b4ebe3 from=translated src=- shape=ce40f469 vocab=ca17dc30
+-/
 lemma hgcdac (P : FreyPackage) : gcd P.a P.c = 1 := by
   rw [← gcdab_eq_gcdac P.hppos P.hFLT, P.hgcdab]
 
+/--
+@isnad1 id=eq.0h1v.s4.7da9f18aef4e from=translated src=- shape=ce40f469 vocab=598dca26
+-/
 lemma hgcdbc (P : FreyPackage) : gcd P.b P.c = 1 :=  by
   rw [← gcdab_eq_gcdac P.hppos, gcd_comm, P.hgcdab]
   rw [add_comm]
   exact P.hFLT
 
 /-- Given a counterexample a^p+b^p=c^p to Fermat's Last Theorem with p>=5
-    and prime, there exists a Frey package. -/
+    and prime, there exists a Frey package.
+@isnad1 id=nonempty.3h1v.s4.76efe4a3f8be from=translated src=- shape=98fe0294 vocab=f9ab3484
+-/
 lemma of_not_FermatLastTheoremFor_p_ge_5
     {p : ℕ} (pp : p.Prime) (hp5 : 5 ≤ p) (H : ¬ FermatLastTheoremFor p) :
     Nonempty FreyPackage := by
@@ -204,6 +224,7 @@ lemma of_not_FermatLastTheoremFor_p_ge_5
 
 /-- If there is no Frey package, then Fermat's Last Theorem
 is true for all primes p≥5.
+@isnad1 id=fermatla.3h1v.s4.570b670613bd from=translated src=- shape=a3260e68 vocab=adbdfebe
 -/
 lemma fermatLastTheoremFor_p_ge_5 (h : IsEmpty FreyPackage) :
     ∀ p ≥ 5, p.Prime → FermatLastTheoremFor p := by

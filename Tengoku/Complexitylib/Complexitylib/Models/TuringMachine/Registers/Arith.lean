@@ -32,7 +32,9 @@ variable {n : ℕ}
 def addIntoTM (src dst : Fin n) : TM n := forRegTM (incRegTM dst) src
 
 /-- **`addIntoTM` Hoare specification.** From `regTape a` in `src` and `regTape b` in
-    `dst`, reach `regTape (b + a)` in `dst`; `src` and everything else untouched. -/
+    `dst`, reach `regTape (b + a)` in `dst`; `src` and everything else untouched.
+@isnad1 id=hoaretim.5h8v.s7.002dd93c30c3 from=translated src=- shape=96f97169 vocab=232b0192
+-/
 theorem addIntoTM_hoareTime (src dst : Fin n) (hne : src ≠ dst) (a b : ℕ)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (ys : List Bool)
     (hinp₀ : Parked inp₀) (hwork₀ : ∀ i, i ≠ src → Parked (work₀ i))
@@ -105,7 +107,9 @@ theorem addIntoTM_hoareTime (src dst : Fin n) (hne : src ≠ dst) (a b : ℕ)
 /-- `dst := src` (clear then add). -/
 def copyIntoTM (src dst : Fin n) : TM n := seqTM (clearRegTM dst) (addIntoTM src dst)
 
-/-- **`copyIntoTM` Hoare specification.** -/
+/-- **`copyIntoTM` Hoare specification.**
+@isnad1 id=hoaretim.5h8v.s7.965216b108eb from=translated src=- shape=298038d0 vocab=f977ef52
+-/
 theorem copyIntoTM_hoareTime (src dst : Fin n) (hne : src ≠ dst) (a b : ℕ)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (ys : List Bool)
     (hinp₀ : Parked inp₀) (hwork₀ : ∀ i, i ≠ src → Parked (work₀ i))
@@ -150,7 +154,9 @@ def mulAddIntoTM (src₁ src₂ dst : Fin n) : TM n :=
 def mulAddBound (a b d : ℕ) : ℕ := b * ((2 * (d + a * b + b) + 4) + 2) + (b + 2)
 
 /-- **`mulAddIntoTM` Hoare specification.** From `regTape a`, `regTape b`, `regTape d`
-    in `src₁`, `src₂`, `dst`, reach `regTape (d + a·b)` in `dst`. -/
+    in `src₁`, `src₂`, `dst`, reach `regTape (d + a·b)` in `dst`.
+@isnad1 id=hoaretim.8h10v.s7.6128d02575e4 from=translated src=- shape=a6066157 vocab=6955e218
+-/
 theorem mulAddIntoTM_hoareTime (src₁ src₂ dst : Fin n)
     (h12 : src₁ ≠ src₂) (h1d : src₁ ≠ dst) (h2d : src₂ ≠ dst) (a b d : ℕ)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (ys : List Bool)
@@ -242,7 +248,9 @@ def iterTM (m : TM n) : ℕ → TM n
   | 0 => skipTM
   | c + 1 => seqTM m (iterTM m c)
 
-/-- **Iterated increment**: add the constant `c` to register `q`. -/
+/-- **Iterated increment**: add the constant `c` to register `q`.
+@isnad1 id=hoaretim.3h7v.s7.7c50f1dd6858 from=translated src=- shape=9af09734 vocab=b194d0ef
+-/
 theorem iterTM_incRegTM_hoareTime (q : Fin n) (c : ℕ) :
     ∀ (d : ℕ) (inp₀ : Tape) (work₀ : Fin n → Tape) (ys : List Bool),
     Parked inp₀ → (∀ i, Parked (work₀ i)) → work₀ q = regTape d →

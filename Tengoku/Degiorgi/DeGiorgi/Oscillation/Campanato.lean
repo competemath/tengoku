@@ -56,6 +56,9 @@ noncomputable def dyadicBallAverage (u : E → ℝ) (x : E) (ρ : ℝ) (n : ℕ)
 noncomputable def C_campanato_holder (d : ℕ) (α : ℝ) : ℝ :=
   (2 : ℝ) ^ (d + 3) / (1 - (2 : ℝ) ^ (-α))
 
+/--
+@isnad1 id=le.2h4v.s6.0f5406b2529c from=translated src=- shape=6c85a274 vocab=a735b974
+-/
 lemma le_mul_rpow_of_inv_rpow_mul_le
     {a C r α : ℝ} (hr : 0 < r)
     (h : r⁻¹ ^ α * a ≤ C) :

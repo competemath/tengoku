@@ -25,7 +25,9 @@ The development mirrors the binary one: a peeling lemma for the lowest block
 
 namespace DescriptiveComplexity
 
-/-- A sum of `0`s and `1`s counts. -/
+/-- A sum of `0`s and `1`s counts.
+@isnad1 id=eq.0h3v.s6.cfbfc9f1dee7 from=translated src=- shape=281e5aef vocab=d4100069
+-/
 theorem finsum_mem_ite_one {ι : Type} [Finite ι] (S : Set ι) (p : ι → Prop)
     [DecidablePred p] :
     (∑ᶠ i ∈ S, if p i then 1 else 0) = ({i | i ∈ S ∧ p i} : Set ι).ncard := by
@@ -47,6 +49,9 @@ noncomputable def digitNum (Le : A → A → Prop) (Blk : A → Prop) (B : ℕ) 
   ∑ᶠ e ∈ {e : A | Blk e}, c e * B ^ bitRank Le Blk e
 
 omit [Finite A] in
+/--
+@isnad1 id=eq.1h6v.s5.4ad096ccd1f4 from=translated src=- shape=72c8a2bd vocab=9c2ef49c
+-/
 theorem digitNum_congr_on {Le : A → A → Prop} {Blk : A → Prop} {B : ℕ} {c c' : A → ℕ}
     (h : ∀ e, Blk e → c e = c' e) : digitNum Le Blk B c = digitNum Le Blk B c' := by
   refine finsum_mem_congr rfl fun e he => ?_
@@ -54,14 +59,18 @@ theorem digitNum_congr_on {Le : A → A → Prop} {Blk : A → Prop} {B : ℕ} {
 
 /-- Scaling every digit scales the value. A gadget whose block totals are all
 even therefore weighs twice the number obtained by halving each digit, which
-is how a reduction can *write* half of a total it cannot compute. -/
+is how a reduction can *write* half of a total it cannot compute.
+@isnad1 id=eq.0h6v.s5.5de3df352f9d from=translated src=- shape=d0e955d5 vocab=ca2d32ae
+-/
 theorem digitNum_mul_left {Le : A → A → Prop} {Blk : A → Prop} {B : ℕ} (k : ℕ)
     (c : A → ℕ) : digitNum Le Blk B (fun e => k * c e) = k * digitNum Le Blk B c := by
   rw [digitNum, digitNum, mul_finsum_mem' _ k (Set.toFinite _)]
   exact finsum_mem_congr rfl fun e _ => by ring
 
 /-- **Peeling the lowest block**: the value is the lowest digit plus `B` times
-the value of the rest. -/
+the value of the rest.
+@isnad1 id=eq.1h8v.s6.94136b4c03c0 from=translated src=- shape=1f018d8b vocab=b837aeb1
+-/
 theorem digitNum_peel_min {Le : A → A → Prop} {Blk : A → Prop} {B : ℕ} {c : A → ℕ}
     {e₀ : A} (hlin : IsLinOrd Le) (h₀ : Blk e₀) (hmin : ∀ q, Blk q → Le e₀ q) :
     digitNum Le Blk B c =
@@ -105,7 +114,9 @@ theorem digitNum_peel_min {Le : A → A → Prop} {Blk : A → Prop} {B : ℕ} {
   rw [hlow, hhigh, Nat.add_comm]
 
 /-- **Uniqueness of base-`B` expansions**: digits below the base are
-determined by the number they write. -/
+determined by the number they write.
+@isnad1 id=eq.6h9v.s6.1434167fcd18 from=translated src=- shape=4bff27b1 vocab=f980862b
+-/
 theorem digitNum_inj {Le : A → A → Prop} {B : ℕ} (hlin : IsLinOrd Le)
     (hB : 0 < B) :
     ∀ (n : ℕ) (Blk : A → Prop), ({e : A | Blk e} : Set A).ncard = n →
@@ -146,7 +157,9 @@ open Classical in
 /-- **Weighing blocks**: a sum of place values of the blocks satisfying `sub`,
 each taken `k` times, is the number whose digits are `k` there and `0`
 elsewhere. A number written by *one bit per block*, at a height inside the
-block that may vary from block to block, is of this shape. -/
+block that may vary from block to block, is of this shape.
+@isnad1 id=eq.0h7v.s6.9f71dddf7f56 from=translated src=- shape=417b63f0 vocab=cea16d49
+-/
 theorem finsum_coeff_eq_digitNum {Le : A → A → Prop} {Blk sub : A → Prop} {B : ℕ} (k : A → ℕ)
     (h : ∀ e, sub e → Blk e) :
     (∑ᶠ e ∈ {e : A | sub e}, k e * B ^ bitRank Le Blk e) =
@@ -167,7 +180,9 @@ theorem finsum_coeff_eq_digitNum {Le : A → A → Prop} {Blk sub : A → Prop} 
 
 open Classical in
 /-- **Selecting blocks**: the sum of the place values of the blocks satisfying
-`sub` is the number whose digits are `1` there and `0` elsewhere. -/
+`sub` is the number whose digits are `1` there and `0` elsewhere.
+@isnad1 id=eq.0h6v.s6.5036c5ecde25 from=translated src=- shape=e0a3e89e vocab=3e2510f8
+-/
 theorem finsum_pow_eq_digitNum {Le : A → A → Prop} {Blk sub : A → Prop} {B : ℕ}
     (h : ∀ e, sub e → Blk e) :
     (∑ᶠ e ∈ {e : A | sub e}, B ^ bitRank Le Blk e) =
@@ -179,7 +194,9 @@ theorem finsum_pow_eq_digitNum {Le : A → A → Prop} {Blk sub : A → Prop} {B
   rw [h1, finsum_coeff_eq_digitNum (fun _ => 1) h]
 
 open Classical in
-/-- Base two with digits `0` and `1` is the binary reading. -/
+/-- Base two with digits `0` and `1` is the binary reading.
+@isnad1 id=eq.0h4v.s5.1ce7352e8541 from=translated src=- shape=46f1d2ab vocab=d810ab73
+-/
 theorem binNum_eq_digitNum {Le : A → A → Prop} {Posn b : A → Prop} :
     binNum Le Posn b = digitNum Le Posn 2 (fun p => if b p then 1 else 0) := by
   rw [binNum]
@@ -189,7 +206,9 @@ theorem binNum_eq_digitNum {Le : A → A → Prop} {Posn b : A → Prop} :
 open Classical in
 /-- **Digit-wise addition**: a sum of numbers written on the same blocks is
 written by the sums of the digits – before any carrying, which is what the
-bound on the digits then rules out. -/
+bound on the digits then rules out.
+@isnad1 id=eq.0h7v.s6.1e49668040ff from=translated src=- shape=1b5a7021 vocab=b5b32ad8
+-/
 theorem digitNum_finsum {ι : Type} [Finite ι] {Le : A → A → Prop} {Blk : A → Prop} {B : ℕ}
     (S : Set ι) (c : ι → A → ℕ) :
     (∑ᶠ i ∈ S, digitNum Le Blk B (c i)) = digitNum Le Blk B fun e => ∑ᶠ i ∈ S, c i e := by

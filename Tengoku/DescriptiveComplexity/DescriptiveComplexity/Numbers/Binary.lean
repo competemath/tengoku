@@ -112,19 +112,30 @@ the positions. -/
 noncomputable def posRank (p : P) : ℕ :=
   ((monoEquivOfFin P rfl).symm p : ℕ)
 
+/--
+@isnad1 id=lt.0h2v.s4.67a36539ab30 from=translated src=- shape=1adf269d vocab=82b4c510
+-/
 theorem posRank_lt (p : P) : posRank P p < Fintype.card P :=
   ((monoEquivOfFin P rfl).symm p).2
 
+/--
+@isnad1 id=iff.0h3v.s5.d86830c54daf from=translated src=- shape=509b9518 vocab=ea72275e
+-/
 theorem posRank_lt_posRank_iff {p q : P} : posRank P p < posRank P q ↔ p < q := by
   rw [posRank, posRank, ← Fin.lt_def, OrderIso.lt_iff_lt]
 
+/--
+@isnad1 id=injectiv.0h1v.s3.336faf61537c from=translated src=- shape=755450c6 vocab=4e044874
+-/
 theorem posRank_injective : Function.Injective (posRank P) := by
   intro p q h
   exact (monoEquivOfFin P rfl).symm.injective (Fin.val_injective h)
 
 /-- On `Fin m`, which is already the increasing enumeration of itself, the
 rank of a position is its index. This is what lets a concrete encoder lay its
-bit positions out as `Fin m` and read the place values off directly. -/
+bit positions out as `Fin m` and read the place values off directly.
+@isnad1 id=eq.0h2v.s4.935e8e02702c from=translated src=- shape=828f0b8a vocab=fa7f18e1
+-/
 @[simp]
 theorem posRank_fin {m : ℕ} (p : Fin m) : posRank (Fin m) p = (p : ℕ) := by
   simp [posRank]
@@ -147,11 +158,17 @@ noncomputable def posBits (b : P → Prop) : ℕ → Bool :=
 
 variable {P}
 
+/--
+@isnad1 id=iff.0h3v.s4.e3634dbe86ec from=translated src=- shape=8afc15ff vocab=ec1c8a57
+-/
 theorem posBits_posRank (b : P → Prop) (p : P) : posBits P b (posRank P p) = true ↔ b p := by
   simp only [posBits, decide_eq_true_eq]
   exact ⟨fun ⟨q, hq, hb⟩ => posRank_injective P hq ▸ hb, fun hb => ⟨p, rfl, hb⟩⟩
 
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s6.de1b86891bd2 from=translated src=- shape=eb27b699 vocab=d16c9823
+-/
 theorem binValue_eq_sum_range (b : P → Prop) :
     binValue P b = ∑ i ∈ range (Fintype.card P), if posBits P b i then 2 ^ i else 0 := by
   rw [← Fin.sum_univ_eq_sum_range, binValue,
@@ -168,12 +185,16 @@ theorem binValue_eq_sum_range (b : P → Prop) :
     rw [ite_eq_right fun hh => absurd (hbit.mpr hh) (by simp [hb]), ite_eq_right (by simp)]
   | true => rw [ite_eq_left (hbit.mp hb), ite_eq_left rfl]
 
-/-- The decoded number is smaller than `2 ^ #positions`. -/
+/-- The decoded number is smaller than `2 ^ #positions`.
+@isnad1 id=lt.0h2v.s5.cc1c756e3bc7 from=translated src=- shape=64dfd4de vocab=b31ffb15
+-/
 theorem binValue_lt_two_pow (b : P → Prop) : binValue P b < 2 ^ Fintype.card P := by
   rw [binValue_eq_sum_range]
   exact sum_bits_lt _ _
 
-/-- Decoding after encoding is the identity, for numbers within range. -/
+/-- Decoding after encoding is the identity, for numbers within range.
+@isnad1 id=eq.1h2v.s5.bd09611f2a56 from=translated src=- shape=3aae48c9 vocab=f1a8a2d2
+-/
 theorem binValue_binEncode {k : ℕ} (h : k < 2 ^ Fintype.card P) :
     binValue P (binEncode P k) = k := by
   conv_rhs => rw [← sum_bits_value (Fintype.card P) k h]
@@ -194,7 +215,9 @@ theorem binValue_binEncode {k : ℕ} (h : k < 2 ^ Fintype.card P) :
       exact hb
   rw [hbits]
 
-/-- The bits of the decoded number are the original set of positions. -/
+/-- The bits of the decoded number are the original set of positions.
+@isnad1 id=iff.0h3v.s5.420bec5af70a from=translated src=- shape=f3263581 vocab=a061b0aa
+-/
 theorem testBit_binValue (b : P → Prop) (p : P) :
     Nat.testBit (binValue P b) (posRank P p) = true ↔ b p := by
   rw [binValue_eq_sum_range, sum_bits_testBit]
@@ -203,7 +226,9 @@ theorem testBit_binValue (b : P → Prop) (p : P) :
   exact ⟨fun h => h.2, fun h => ⟨posRank_lt P p, h⟩⟩
 
 /-- The decoded number is invariant under order-isomorphisms of the
-positions. -/
+positions.
+@isnad1 id=eq.0h4v.s7.3601f55634e4 from=translated src=- shape=db49e599 vocab=f1a9c23c
+-/
 theorem binValue_orderIso {Q : Type} [Fintype Q] [LinearOrder Q] (e : P ≃o Q)
     (b : Q → Prop) : binValue P (fun p => b (e p)) = binValue Q b := by
   classical
@@ -224,7 +249,9 @@ theorem binValue_orderIso {Q : Type} [Fintype Q] [LinearOrder Q] (e : P ≃o Q)
   rw [show posRank Q (e.toEquiv p) = posRank P p from hrank p]
   rfl
 
-/-- `binValue` only depends on the extension of the bit predicate. -/
+/-- `binValue` only depends on the extension of the bit predicate.
+@isnad1 id=eq.1h3v.s5.bafa6cdee4c9 from=translated src=- shape=b9b6fa1d vocab=20840811
+-/
 theorem binValue_congr {b b' : P → Prop} (h : ∀ p, b p ↔ b' p) :
     binValue P b = binValue P b' := by
   classical
@@ -234,7 +261,9 @@ theorem binValue_congr {b b' : P → Prop} (h : ∀ p, b p ↔ b' p) :
 /-- **Most-significant-bit comparison**: one binary number is smaller than
 another iff at some position the first has bit `0` and the second bit `1`,
 all higher positions agreeing. This is the Lean counterpart of the FO(≤)
-formula comparing binary numbers. -/
+formula comparing binary numbers.
+@isnad1 id=iff.0h3v.s6.bc18af7eac10 from=translated src=- shape=c3c4811e vocab=871f64f1
+-/
 theorem binValue_lt_binValue_iff (b b' : P → Prop) :
     binValue P b < binValue P b' ↔
       ∃ p, ¬b p ∧ b' p ∧ ∀ q, p < q → (b q ↔ b' q) := by

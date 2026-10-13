@@ -64,7 +64,9 @@ def Witness (z α : List Bool) : Prop :=
     to bound its length by `|z| + 1`.
 
     The reverse direction is immediate: any `α` satisfying `φ` proves
-    `φ.Satisfiable`. -/
+    `φ.Satisfiable`.
+@isnad1 id=iff.0h1v.s4.b472c8140b70 from=translated src=- shape=c9e13595 vocab=6758b9e5
+-/
 theorem mem_language_iff_witness (z : List Bool) :
     z ∈ language ↔ ∃ α, Witness z α := by
   constructor
@@ -89,7 +91,9 @@ theorem mem_language_iff_witness (z : List Bool) :
     `|z| + 1`, which is bounded by the degree-1 polynomial `X + 1`.
 
     This is the key structural fact that makes `SAT` a candidate for NP:
-    we never need to guess more than linearly many bits. -/
+    we never need to guess more than linearly many bits.
+@isnad1 id=polybala.0h0v.s1.6861cd1f3bdc from=translated src=- shape=49959d42 vocab=78a70ed0
+-/
 theorem polyBalanced_witness : PolyBalanced Witness := by
   refine ⟨Polynomial.X + Polynomial.C 1, ?_⟩
   intro z α hR
@@ -116,7 +120,9 @@ theorem polyBalanced_witness : PolyBalanced Witness := by
 /-- **SAT is in FNP modulo the verifier.** If the verifier's pair language
     is in P, then `Witness` is an FNP relation — and hence a candidate NP
     witness relation for `language`. The only nontrivial content is
-    `polyBalanced_witness`. -/
+    `polyBalanced_witness`.
+@isnad1 id=mem.1h0v.s5.133394691f1c from=translated src=- shape=ebe4fd58 vocab=68aa59e2
+-/
 theorem witness_mem_FNP_of_verifier (h : pairLang Witness ∈ P) : Witness ∈ FNP :=
   ⟨polyBalanced_witness, h⟩
 
@@ -127,7 +133,9 @@ theorem witness_mem_FNP_of_verifier (h : pairLang Witness ∈ P) : Witness ∈ F
     Combines `witness_mem_FNP_of_verifier` (SAT's FNP witness relation) with
     the generic NP witness theorem `mem_NP_of_FNP_witness`. This theorem
     deliberately retains the generic construction as an explicit hypothesis;
-    the SAT-specific unconditional route is provided by `SAT/Headline.lean`. -/
+    the SAT-specific unconditional route is provided by `SAT/Headline.lean`.
+@isnad1 id=mem.2h0v.s4.2b97a6ae95ee from=translated src=- shape=7e79f17c vocab=ed27bbef
+-/
 theorem language_mem_NP_of_verifier
     (hwitness : NP.WitnessNTMConstruction) (h : pairLang Witness ∈ P) :
     language ∈ NP :=

@@ -80,7 +80,9 @@ def pebbleRefine (E₀ E : PebbleRel A k) : PebbleRel A k :=
   fun a b => E₀ a b ∧ PebbleBackForth E a b
 
 /-- The back-and-forth condition is monotone in the relation it is relative
-to. -/
+to.
+@isnad1 id=le.1h4v.s4.4e448818d613 from=translated src=- shape=429c67e2 vocab=c0d86103
+-/
 theorem pebbleBackForth_mono {E E' : PebbleRel A k} (h : E.Le E') :
     (PebbleBackForth E).Le (PebbleBackForth E') := by
   intro a b hab i
@@ -90,7 +92,9 @@ theorem pebbleBackForth_mono {E E' : PebbleRel A k} (h : E.Le E') :
   · obtain ⟨c, hc⟩ := (hab i).2 d
     exact ⟨c, h _ _ hc⟩
 
-/-- One round of refinement is monotone in the refined relation. -/
+/-- One round of refinement is monotone in the refined relation.
+@isnad1 id=le.1h5v.s5.63260d0446ab from=translated src=- shape=63b6e777 vocab=abe77727
+-/
 theorem pebbleRefine_mono (E₀ : PebbleRel A k) {E E' : PebbleRel A k} (h : E.Le E') :
     (pebbleRefine E₀ E).Le (pebbleRefine E₀ E') :=
   fun a b hab => ⟨hab.1, pebbleBackForth_mono h a b hab.2⟩
@@ -112,14 +116,18 @@ def EquivK (E₀ : PebbleRel A k) : PebbleRel A k :=
 
 variable {E₀ : PebbleRel A k}
 
-/-- The refinement chain descends. -/
+/-- The refinement chain descends.
+@isnad1 id=le.0h4v.s5.e744193d7d33 from=translated src=- shape=43b1ba10 vocab=b9cee36f
+-/
 theorem pebbleStage_succ_le (E₀ : PebbleRel A k) (n : ℕ) :
     (pebbleStage E₀ (n + 1)).Le (pebbleStage E₀ n) := by
   induction n with
   | zero => exact fun a b _ => trivial
   | succ n ih => exact pebbleRefine_mono E₀ ih
 
-/-- The refinement chain descends, monotonically. -/
+/-- The refinement chain descends, monotonically.
+@isnad1 id=le.1h5v.s4.a42c9f18429c from=translated src=- shape=8a921605 vocab=bf6fbf9a
+-/
 theorem pebbleStage_le_of_le (E₀ : PebbleRel A k) {m n : ℕ} (hmn : m ≤ n) :
     (pebbleStage E₀ n).Le (pebbleStage E₀ m) := by
   induction n with
@@ -129,12 +137,16 @@ theorem pebbleStage_le_of_le (E₀ : PebbleRel A k) {m n : ℕ} (hmn : m ≤ n) 
     · exact fun a b h => ih (Nat.lt_succ_iff.mp hlt) a b (pebbleStage_succ_le E₀ n a b h)
     · rw [heq]; exact fun _ _ h => h
 
-/-- The limit is below every stage. -/
+/-- The limit is below every stage.
+@isnad1 id=pebblest.0h7v.s5.ff3dab4432d7 from=translated src=- shape=f515693a vocab=91c68e1d
+-/
 theorem EquivK.stage {a b : Fin k → A} (h : EquivK E₀ a b) (n : ℕ) :
     pebbleStage E₀ n a b :=
   h n
 
-/-- The limit is below the initial relation. -/
+/-- The limit is below the initial relation.
+@isnad1 id=var.0h6v.s4.906cc75051ac from=translated src=- shape=33ef6c56 vocab=0937392c
+-/
 theorem EquivK.initial {a b : Fin k → A} (h : EquivK E₀ a b) : E₀ a b :=
   (h 1).1
 
@@ -142,7 +154,9 @@ theorem EquivK.initial {a b : Fin k → A} (h : EquivK E₀ a b) : E₀ a b :=
 
 /-- **The coinduction principle**: a relation below its own refinement is
 below the limit. This is how tuples are ever proved `≡ᵏ`-equivalent – exhibit
-a back-and-forth system containing the pair. -/
+a back-and-forth system containing the pair.
+@isnad1 id=le.1h4v.s4.7eff3f91b402 from=translated src=- shape=446be053 vocab=4e8cabd1
+-/
 theorem le_equivK {E : PebbleRel A k} (h : E.Le (pebbleRefine E₀ E)) :
     E.Le (EquivK E₀) := by
   intro a b hab n
@@ -157,7 +171,9 @@ section Finite
 variable [Finite A]
 
 /-- The refinement chain plateaus within the number of pairs of `k`-tuples:
-consecutive stages agree from there on. -/
+consecutive stages agree from there on.
+@isnad1 id=ex.0h3v.s5.7131e8d5d18a from=translated src=- shape=0f5d5628 vocab=17943946
+-/
 theorem exists_pebbleStage_succ_eq (E₀ : PebbleRel A k) :
     ∃ N ≤ Nat.card ((Fin k → A) × (Fin k → A)),
       pebbleStage E₀ (N + 1) = pebbleStage E₀ N := by
@@ -184,7 +200,9 @@ private theorem pebbleStage_eq_of_succ_eq {N : ℕ}
     · rw [le_antisymm hn h]
 
 /-- **On a finite type the limit is a fixed point of the refinement** – the
-greatest one, by `DescriptiveComplexity.le_equivK`. -/
+greatest one, by `DescriptiveComplexity.le_equivK`.
+@isnad1 id=eq.0h3v.s4.6a2029be01ab from=translated src=- shape=1b446d68 vocab=717f1019
+-/
 theorem pebbleRefine_equivK (E₀ : PebbleRel A k) :
     pebbleRefine E₀ (EquivK E₀) = EquivK E₀ := by
   obtain ⟨N, hle, hN⟩ := exists_pebbleStage_succ_eq E₀
@@ -199,19 +217,25 @@ theorem pebbleRefine_equivK (E₀ : PebbleRel A k) :
 
 /-- **The interface characterization of `≡ᵏ` on a finite type**: initial
 agreement together with the back-and-forth condition relative to `≡ᵏ`
-itself. Consumers should use this, never the stages. -/
+itself. Consumers should use this, never the stages.
+@isnad1 id=iff.0h5v.s5.9733545bd3f2 from=translated src=- shape=7831f9af vocab=604306a0
+-/
 theorem equivK_iff (E₀ : PebbleRel A k) (a b : Fin k → A) :
     EquivK E₀ a b ↔ E₀ a b ∧ PebbleBackForth (EquivK E₀) a b := by
   conv_lhs => rw [← pebbleRefine_equivK E₀]
   exact Iff.rfl
 
 /-- **The game move**: from an equivalent pair, moving a pebble on the left
-can be answered on the right. -/
+can be answered on the right.
+@isnad1 id=ex.0h8v.s6.a1624e850f4c from=translated src=- shape=223be5e0 vocab=6873d3de
+-/
 theorem EquivK.update {a b : Fin k → A} (h : EquivK E₀ a b) (i : Fin k) (c : A) :
     ∃ d : A, EquivK E₀ (Function.update a i c) (Function.update b i d) :=
   (((equivK_iff E₀ a b).mp h).2 i).1 c
 
-/-- The game move, from the right. -/
+/-- The game move, from the right.
+@isnad1 id=ex.0h8v.s6.15ac4f0bbabe from=translated src=- shape=b7922e06 vocab=6873d3de
+-/
 theorem EquivK.update_right {a b : Fin k → A} (h : EquivK E₀ a b) (i : Fin k) (d : A) :
     ∃ c : A, EquivK E₀ (Function.update a i c) (Function.update b i d) :=
   (((equivK_iff E₀ a b).mp h).2 i).2 d
@@ -228,7 +252,9 @@ rearrangement relations of the invariant structure. -/
 pair of `(x, y)` is a coordinate pair of `(u, v)`, and the initial relation is
 closed under this passage, then `u ≡ᵏ v` forces `x ≡ᵏ y`. Coinduction: the
 spoiler's move on `(x, y)` frees a pebble of `(u, v)` (at most `k - 1` pairs
-are still needed), where the duplicator answers via the game move. -/
+are still needed), where the duplicator answers via the game move.
+@isnad1 id=equivk.1h9v.s7.e4756051ab6a from=translated src=- shape=eb6202dd vocab=67758663
+-/
 theorem equivK_of_pairSub
     (hE₀ : ∀ {x y u v : Fin k → A}, (∀ j, ∃ i, x j = u i ∧ y j = v i) →
       E₀ u v → E₀ x y)
@@ -278,12 +304,16 @@ end Finite
 
 section Equivalence
 
-/-- The back-and-forth condition preserves reflexivity. -/
+/-- The back-and-forth condition preserves reflexivity.
+@isnad1 id=pebbleba.0h5v.s4.7d10a00b911a from=translated src=- shape=2057a597 vocab=5f0d1eb6
+-/
 theorem pebbleBackForth_refl {E : PebbleRel A k} (h : ∀ a, E a a) (a : Fin k → A) :
     PebbleBackForth E a a :=
   fun _ => ⟨fun c => ⟨c, h _⟩, fun d => ⟨d, h _⟩⟩
 
-/-- The back-and-forth condition preserves symmetry. -/
+/-- The back-and-forth condition preserves symmetry.
+@isnad1 id=pebbleba.0h7v.s5.4544fdd10e3b from=translated src=- shape=c28160f4 vocab=5f0d1eb6
+-/
 theorem pebbleBackForth_symm {E : PebbleRel A k} (h : ∀ a b, E a b → E b a)
     {a b : Fin k → A} (hab : PebbleBackForth E a b) : PebbleBackForth E b a := by
   intro i
@@ -293,7 +323,9 @@ theorem pebbleBackForth_symm {E : PebbleRel A k} (h : ∀ a b, E a b → E b a)
   · obtain ⟨c, hc⟩ := (hab i).1 d
     exact ⟨c, h _ _ hc⟩
 
-/-- The back-and-forth condition preserves transitivity. -/
+/-- The back-and-forth condition preserves transitivity.
+@isnad1 id=pebbleba.0h9v.s6.0c2607b1a78b from=translated src=- shape=65da3ce8 vocab=5f0d1eb6
+-/
 theorem pebbleBackForth_trans {E : PebbleRel A k} (h : ∀ a b c, E a b → E b c → E a c)
     {a b c : Fin k → A} (hab : PebbleBackForth E a b) (hbc : PebbleBackForth E b c) :
     PebbleBackForth E a c := by
@@ -307,7 +339,9 @@ theorem pebbleBackForth_trans {E : PebbleRel A k} (h : ∀ a b c, E a b → E b 
     exact ⟨x, h _ _ _ hx hy⟩
 
 /-- Every stage of the refinement chain of an equivalence is an
-equivalence. -/
+equivalence.
+@isnad1 id=equivale.1h4v.s4.33ea44b170ca from=translated src=- shape=b4dff5ff vocab=dacab45a
+-/
 theorem pebbleStage_equivalence (hE₀ : Equivalence E₀) (n : ℕ) :
     Equivalence (pebbleStage E₀ n) := by
   induction n with
@@ -319,7 +353,9 @@ theorem pebbleStage_equivalence (hE₀ : Equivalence E₀) (n : ℕ) :
         pebbleBackForth_trans (E := pebbleStage E₀ n)
           (fun _ _ _ h h' => ih.trans h h') hab.2 hbc.2⟩⟩
 
-/-- **`≡ᵏ` is an equivalence** whenever the initial relation is one. -/
+/-- **`≡ᵏ` is an equivalence** whenever the initial relation is one.
+@isnad1 id=equivale.1h3v.s4.7b2baf2bc9d3 from=translated src=- shape=0c3f6fb1 vocab=359bf7e0
+-/
 theorem equivK_equivalence (hE₀ : Equivalence E₀) : Equivalence (EquivK E₀) :=
   ⟨fun a n => (pebbleStage_equivalence hE₀ n).refl a,
     fun h n => (pebbleStage_equivalence hE₀ n).symm (h n),
@@ -329,7 +365,9 @@ end Equivalence
 
 /-! ### Monotonicity and the expansion lemma -/
 
-/-- The stages are monotone in the initial relation. -/
+/-- The stages are monotone in the initial relation.
+@isnad1 id=le.1h5v.s5.4b78da50a909 from=translated src=- shape=6fcc5b0b vocab=06eff8ce
+-/
 theorem pebbleStage_mono {E₀ E₀' : PebbleRel A k} (h : E₀'.Le E₀) (n : ℕ) :
     (pebbleStage E₀' n).Le (pebbleStage E₀ n) := by
   induction n with
@@ -337,7 +375,9 @@ theorem pebbleStage_mono {E₀ E₀' : PebbleRel A k} (h : E₀'.Le E₀) (n : �
   | succ n ih =>
     exact fun a b hab => ⟨h a b hab.1, pebbleBackForth_mono ih a b hab.2⟩
 
-/-- `≡ᵏ` is monotone in the initial relation. -/
+/-- `≡ᵏ` is monotone in the initial relation.
+@isnad1 id=le.1h4v.s4.96854ae61fa2 from=translated src=- shape=a9a643b7 vocab=1b69e920
+-/
 theorem equivK_mono {E₀ E₀' : PebbleRel A k} (h : E₀'.Le E₀) :
     (EquivK E₀').Le (EquivK E₀) :=
   fun a b hab n => pebbleStage_mono h n a b (hab n)
@@ -346,7 +386,9 @@ theorem equivK_mono {E₀ E₀' : PebbleRel A k} (h : E₀'.Le E₀) :
 already refines does not change `≡ᵏ`. Read with `E₀'` the conjunction of `E₀`
 and agreement on an `≡ᵏ`-invariant relation, this says `≡ᵏ` is unchanged when
 the structure is expanded by an `≡ᵏ`-invariant relation – the lemma that
-carries the `≡ᵏ`-invariance of the fixed-point logics, stage by stage. -/
+carries the `≡ᵏ`-invariance of the fixed-point logics, stage by stage.
+@isnad1 id=eq.2h4v.s5.5a727c155cb4 from=translated src=- shape=d1665532 vocab=9fd57948
+-/
 theorem equivK_inf_eq [Finite A] {E₀ E₀' : PebbleRel A k} (hle : E₀'.Le E₀)
     (hinv : (EquivK E₀).Le E₀') : EquivK E₀' = EquivK E₀ := by
   funext a b

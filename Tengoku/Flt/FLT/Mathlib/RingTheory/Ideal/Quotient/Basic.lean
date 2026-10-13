@@ -17,5 +17,8 @@ Material destined for Mathlib.
 
 variable {R : Type*} [Ring R] (I : Ideal R) [I.IsTwoSided]
 
+/--
+@isnad1 id=mem.0h3v.s7.80b9fb416a37 from=translated src=- shape=8f3f406c vocab=f98f386e
+-/
 theorem Ideal.Quotient.out_sub (x : R) : (Ideal.Quotient.mk I x).out - x ∈ I := by
   rw [← Ideal.Quotient.eq, Ideal.Quotient.mk_out]

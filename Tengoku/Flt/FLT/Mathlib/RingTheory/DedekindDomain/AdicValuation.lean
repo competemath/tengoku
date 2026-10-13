@@ -20,6 +20,9 @@ namespace IsDedekindDomain.HeightOneSpectrum
 -- TODO upstream
 open IsDedekindDomain
 
+/--
+@isnad1 id=eq.1h3v.s7.ba83cace5a92 from=translated src=- shape=43c02a9d vocab=def2f71e
+-/
 lemma intValuation_eq_coe_neg_multiplicity {A : Type*} [CommRing A] [IsDedekindDomain A]
     (v : HeightOneSpectrum A) {a : A} (hnz : a ≠ 0) :
     v.intValuation a = WithZero.exp (-(multiplicity v.asIdeal (Ideal.span {a}) : ℤ)) := by
@@ -33,7 +36,9 @@ lemma intValuation_eq_coe_neg_multiplicity {A : Type*} [CommRing A] [IsDedekindD
   apply multiplicity_eq_of_emultiplicity_eq_some
   rw [← UniqueFactorizationMonoid.emultiplicity_eq_count_normalizedFactors v.irreducible hnb]
 
-/-- A height one prime of `B` lies over its pullback to `A`. -/
+/-- A height one prime of `B` lies over its pullback to `A`.
+@isnad1 id=liesover.0h3v.s6.55530f4be5bb from=translated src=- shape=c45588c9 vocab=41c3e6b3
+-/
 local instance liesOver_under {A : Type*} [CommRing A] [IsDedekindDomain A] {B : Type*} [CommRing B]
     [IsDomain B] [Algebra A B] [Algebra.IsIntegral A B] (w : HeightOneSpectrum B) :
     w.asIdeal.LiesOver (under A w).asIdeal :=

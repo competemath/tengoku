@@ -16,6 +16,9 @@ Material destined for Mathlib.
 @[expose] public section
 
 -- find home and upstream
+/--
+@isnad1 id=secondco.2h4v.s6.cd109047a39c from=translated src=- shape=40b2a184 vocab=c28fefd8
+-/
 lemma TopologicalSpace.secondCountableTopology_of_countable_cover' {α : Type*}
     [TopologicalSpace α] {ι : Sort*} [Countable ι] {U : ι → Type*} [∀ i, TopologicalSpace (U i)]
     [∀ (i : ι), SecondCountableTopology (U i)]

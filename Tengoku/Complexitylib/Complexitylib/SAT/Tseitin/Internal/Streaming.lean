@@ -306,7 +306,9 @@ private theorem run_cnf_internal (phi : CNF) (next : ℕ) (emitted : List EncTok
       simp [CNF.to3Aux, CNF.tokens_append, List.append_assoc]
 
 /-- On a valid encoded CNF token stream, the streaming transducer agrees
-exactly with `CNF.to3Aux`, including its final fresh-variable counter. -/
+exactly with `CNF.to3Aux`, including its final fresh-variable counter.
+@isnad1 id=eq.0h2v.s5.361fd9e18d95 from=translated src=- shape=9c190d48 vocab=457c862c
+-/
 theorem transformFrom?_tokens_internal (phi : CNF) (next : ℕ) :
     transformFrom? next phi.tokens =
       some ((phi.to3Aux next).1.tokens, (phi.to3Aux next).2) := by
@@ -314,7 +316,9 @@ theorem transformFrom?_tokens_internal (phi : CNF) (next : ℕ) :
   simp [finish]
 
 /-- `transformTokens?` uses source bit length plus one as its fresh start and
-emits exactly the corresponding typed Tseitin transformation. -/
+emits exactly the corresponding typed Tseitin transformation.
+@isnad1 id=eq.0h1v.s5.099541e77eb3 from=translated src=- shape=44153a34 vocab=e02e7461
+-/
 theorem transformTokens?_tokens_internal (phi : CNF) :
     transformTokens? phi.tokens =
       some ((phi.to3Aux (phi.encode.length + 1)).1.tokens,
@@ -323,7 +327,9 @@ theorem transformTokens?_tokens_internal (phi : CNF) :
   simp
 
 /-- Bit-level correctness of the streaming transducer on every valid CNF
-token stream. -/
+token stream.
+@isnad1 id=eq.0h1v.s5.784173031c5f from=translated src=- shape=6efae36f vocab=fe424adb
+-/
 theorem transformBits?_tokens_internal (phi : CNF) :
     transformBits? phi.tokens =
       some ((phi.to3Aux (phi.encode.length + 1)).1.encode,
@@ -331,7 +337,9 @@ theorem transformBits?_tokens_internal (phi : CNF) :
   rw [transformBits?, transformTokens?_tokens_internal]
   simp
 
-/-- The bit-length-derived start is strictly above every source variable. -/
+/-- The bit-length-derived start is strictly above every source variable.
+@isnad1 id=lt.0h1v.s4.067e2b0f38cb from=translated src=- shape=25ccc111 vocab=605c4671
+-/
 theorem maxVar_lt_streamStart_internal (phi : CNF) :
     phi.maxVar < phi.encode.length + 1 := by
   simpa using Nat.lt_succ_of_le phi.maxVar_le_encode_length
