@@ -48,12 +48,16 @@ def compositionNTM (tmF : TM nf) (N : NTM ng) :
   δ_right_of_start := fun b => (TM.compositionTM tmF (N.det b)).δ_right_of_start
 
 /-- The `det` projections of the composite are exactly the deterministic
-    compositions with the corresponding branch of `N`. -/
+    compositions with the corresponding branch of `N`.
+@isnad1 id=eq.0h5v.s5.0b3245616a8c from=translated src=- shape=609abd5f vocab=0060cc44
+-/
 theorem compositionNTM_det (tmF : TM nf) (N : NTM ng) (b : Bool) :
     (compositionNTM tmF N).det b = TM.compositionTM tmF (N.det b) := rfl
 
 /-- The composite and its branch compositions share initial
-    configurations. -/
+    configurations.
+@isnad1 id=eq.0h5v.s5.9753ad80600e from=translated src=- shape=623452ec vocab=f6152bfd
+-/
 theorem compositionNTM_initCfg (tmF : TM nf) (N : NTM ng) (x : List Bool) :
     (compositionNTM tmF N).initCfg x =
       (TM.compositionTM tmF (N.det false)).initCfg x := rfl
@@ -85,20 +89,26 @@ private theorem branchesAgreeAt_of_state_eq
   rw [hq]
   exact h
 
-/-- Branch agreement at first-computation states. -/
+/-- Branch agreement at first-computation states.
+@isnad1 id=branches.1h6v.s6.b19117f7b83c from=translated src=- shape=7c2d6109 vocab=3f42ef82
+-/
 theorem compositionNTM_branchesAgreeAt_first
     (q : (TM.compositionFirstTM tmF ng).Q) (hq : c.state = Sum.inl q) :
     (compositionNTM tmF N).BranchesAgreeAt c :=
   branchesAgreeAt_of_state_eq tmF N hq rfl
 
-/-- Branch agreement at raw-output-rewind states. -/
+/-- Branch agreement at raw-output-rewind states.
+@isnad1 id=branches.1h6v.s7.031a0a6d2245 from=translated src=- shape=29f1eca5 vocab=2be547ea
+-/
 theorem compositionNTM_branchesAgreeAt_rewindRaw
     (q : (TM.rewindWorkTM (TM.compositionRawOutputIdx nf ng)).Q)
     (hq : c.state = Sum.inr (Sum.inl q)) :
     (compositionNTM tmF N).BranchesAgreeAt c :=
   branchesAgreeAt_of_state_eq tmF N hq rfl
 
-/-- Branch agreement at copy states. -/
+/-- Branch agreement at copy states.
+@isnad1 id=branches.1h6v.s7.df03c06e104d from=translated src=- shape=e3081791 vocab=2be547ea
+-/
 theorem compositionNTM_branchesAgreeAt_copy
     (q : (TM.copyWorkToWorkTM (TM.compositionRawOutputIdx nf ng)
       (TM.compositionVirtualInputIdx nf ng)).Q)
@@ -109,7 +119,9 @@ theorem compositionNTM_branchesAgreeAt_copy
 /-- Branch agreement at live virtual-input-rewind states. The rewind
     phase's halt state is excluded: the seam out of it enters the placed
     retargeted phase at `N`'s post-first-transition state, which is the
-    composite's first branch-dependent transition. -/
+    composite's first branch-dependent transition.
+@isnad1 id=branches.2h6v.s8.0e8de1a19611 from=translated src=- shape=63c949b7 vocab=37b9b9b7
+-/
 theorem compositionNTM_branchesAgreeAt_rewindVirtual
     (q : (TM.rewindWorkTM (TM.compositionVirtualInputIdx nf ng)).Q)
     (hne : q ≠ (TM.rewindWorkTM (TM.compositionVirtualInputIdx nf ng)).qhalt)

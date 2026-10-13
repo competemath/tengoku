@@ -17,16 +17,25 @@ namespace Complexity
 
 namespace BitGenerator
 
+/--
+@isnad1 id=eq.0h2v.s4.6f4eaa07fd37 from=translated src=- shape=e682e438 vocab=5a2b3b89
+-/
 theorem orientTest_false_internal {outputLength : ℕ}
     (test : Finset (Fin outputLength → Bool)) :
     orientTest test false = test := by
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.635877b12067 from=translated src=- shape=687d2d15 vocab=1cee39ff
+-/
 theorem orientTest_true_internal {outputLength : ℕ}
     (test : Finset (Fin outputLength → Bool)) :
     orientTest test true = testᶜ := by
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.0d7218f2ce5d from=translated src=- shape=565bc8de vocab=79869fec
+-/
 theorem acceptedSeeds_compl_internal {seedLength outputLength : ℕ}
     (generator : BitGenerator seedLength outputLength)
     (test : Finset (Fin outputLength → Bool)) :
@@ -34,12 +43,18 @@ theorem acceptedSeeds_compl_internal {seedLength outputLength : ℕ}
   ext seed
   simp [acceptedSeeds]
 
+/--
+@isnad1 id=eq.0h2v.s6.f823617b59a9 from=translated src=- shape=e00dfac1 vocab=d0e43a2c
+-/
 theorem uniformAcceptanceProbability_compl_internal {outputLength : ℕ}
     (test : Finset (Fin outputLength → Bool)) :
     uniformAcceptanceProbability testᶜ =
       1 - uniformAcceptanceProbability test := by
   exact eventProb_compl test
 
+/--
+@isnad1 id=eq.0h4v.s6.9ce11aa0b844 from=translated src=- shape=4afbbe7e vocab=3149b7db
+-/
 theorem generatedAcceptanceProbability_compl_internal
     {seedLength outputLength : ℕ}
     (generator : BitGenerator seedLength outputLength)
@@ -50,6 +65,9 @@ theorem generatedAcceptanceProbability_compl_internal
     1 - eventProb (generator.acceptedSeeds test)
   rw [acceptedSeeds_compl_internal, eventProb_compl]
 
+/--
+@isnad1 id=ex.1h5v.s5.641f3c20b631 from=translated src=- shape=a72f049d vocab=80b37369
+-/
 theorem exists_orientation_of_distinguishingAdvantage_internal
     {seedLength outputLength : ℕ}
     (generator : BitGenerator seedLength outputLength)
@@ -79,6 +97,9 @@ theorem exists_orientation_of_distinguishingAdvantage_internal
     rw [distinguishingAdvantage, abs_of_neg hnegative] at hadvantage
     linarith
 
+/--
+@isnad1 id=eq.0h4v.s5.1815e3cd7dd4 from=translated src=- shape=523a3e2f vocab=1298c0ee
+-/
 theorem hybridOutput_zero_internal {seedLength outputLength : ℕ}
     (generator : BitGenerator seedLength outputLength)
     (randomness : Fin (seedLength + outputLength) → Bool) :
@@ -87,6 +108,9 @@ theorem hybridOutput_zero_internal {seedLength outputLength : ℕ}
   funext coordinate
   simp [hybridOutput]
 
+/--
+@isnad1 id=eq.0h4v.s5.5e0d9fe3e22e from=translated src=- shape=3fc8061d vocab=9da552bb
+-/
 theorem hybridOutput_outputLength_internal {seedLength outputLength : ℕ}
     (generator : BitGenerator seedLength outputLength)
     (randomness : Fin (seedLength + outputLength) → Bool) :
@@ -95,6 +119,9 @@ theorem hybridOutput_outputLength_internal {seedLength outputLength : ℕ}
   funext coordinate
   simp [hybridOutput, coordinate.isLt]
 
+/--
+@isnad1 id=eq.0h4v.s4.e4fa71d5fc9e from=translated src=- shape=a219118b vocab=12ee9a1b
+-/
 theorem hybridAcceptanceProbability_zero_internal
     {seedLength outputLength : ℕ}
     (generator : BitGenerator seedLength outputLength)
@@ -125,6 +152,9 @@ theorem hybridAcceptanceProbability_zero_internal
     _ = uniformAcceptanceProbability test := by
       simp [uniformAcceptanceProbability]
 
+/--
+@isnad1 id=eq.0h4v.s4.db4dc1c9ece7 from=translated src=- shape=52491adb vocab=57120b11
+-/
 theorem hybridAcceptanceProbability_outputLength_internal
     {seedLength outputLength : ℕ}
     (generator : BitGenerator seedLength outputLength)
@@ -159,6 +189,9 @@ theorem hybridAcceptanceProbability_outputLength_internal
     _ = generator.generatedAcceptanceProbability test := by
       simp [generatedAcceptanceProbability, acceptedSeeds]
 
+/--
+@isnad1 id=eq.0h4v.s5.f5bab34cf7bb from=translated src=- shape=cf36495f vocab=5b6c63c6
+-/
 theorem sum_hybridGap_internal {seedLength outputLength : ℕ}
     (generator : BitGenerator seedLength outputLength)
     (test : Finset (Fin outputLength → Bool)) :
@@ -173,6 +206,9 @@ theorem sum_hybridGap_internal {seedLength outputLength : ℕ}
     hybridAcceptanceProbability_outputLength_internal,
     hybridAcceptanceProbability_zero_internal]
 
+/--
+@isnad1 id=ex.2h5v.s6.1967661ca87b from=translated src=- shape=86a9f65e vocab=ec70a742
+-/
 theorem exists_hybridGap_ge_average_internal
     {seedLength outputLength : ℕ}
     (generator : BitGenerator seedLength outputLength)
@@ -209,6 +245,9 @@ theorem exists_hybridGap_ge_average_internal
         (Finset.range outputLength).Nonempty) hle
   exact ⟨step, Finset.mem_range.mp hstep, hgap⟩
 
+/--
+@isnad1 id=ex.2h5v.s6.40c16a3b64bc from=translated src=- shape=386b23fa vocab=2874c891
+-/
 theorem exists_oriented_hybridGap_ge_average_internal
     {seedLength outputLength : ℕ}
     (generator : BitGenerator seedLength outputLength)

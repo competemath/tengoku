@@ -30,9 +30,15 @@ private theorem execList_append (first second : List Structured.Basic)
   | nil => rfl
   | cons op rest ih => simp [Structured.Basic.execList, ih]
 
+/--
+@isnad1 id=lt.0h1v.s3.f7efcd489f27 from=translated src=- shape=a311c14d vocab=585c00b2
+-/
 theorem symbolCode_lt_internal (symbol : Γ) : symbolCode symbol < 4 := by
   cases symbol <;> decide
 
+/--
+@isnad1 id=represen.1h5v.s5.70d4e5a3b9aa from=translated src=- shape=ac7a6ad7 vocab=ef7307e2
+-/
 theorem addressOps_represents_internal {tm : TM n}
     {cfg : Complexity.Cfg n tm.Q} {store : Structured.Store}
     (hrepresents : Represents tm cfg store) (tape : Fin (n + 2)) :
@@ -48,6 +54,9 @@ theorem addressOps_represents_internal {tm : TM n}
   · exact hrange.2.2.2.2.1.1
   · exact hrange.2.2.2.2.1.2
 
+/--
+@isnad1 id=represen.1h5v.s5.fc148accd006 from=translated src=- shape=ac7a6ad7 vocab=b4878c3d
+-/
 theorem loadTapeOps_represents_internal {tm : TM n}
     {cfg : Complexity.Cfg n tm.Q} {store : Structured.Store}
     (hrepresents : Represents tm cfg store) (tape : Fin (n + 2)) :
@@ -58,6 +67,9 @@ theorem loadTapeOps_represents_internal {tm : TM n}
   exact (addressOps_represents_internal hrepresents tape).update_control_internal
     (hrange.2.2.2.2.2.2 tape).1 (hrange.2.2.2.2.2.2 tape).2
 
+/--
+@isnad1 id=eq.2h5v.s6.2993bb744c6b from=translated src=- shape=165baac9 vocab=7a7598d0
+-/
 theorem addressOps_address_internal {tm : TM n}
     {cfg : Complexity.Cfg n tm.Q} {store : Structured.Store}
     (hrepresents : Represents tm cfg store) (tape : Fin (n + 2))
@@ -98,6 +110,9 @@ theorem addressOps_address_internal {tm : TM n}
   simp [cellReg]
   omega
 
+/--
+@isnad1 id=eq.2h5v.s6.7edf409cc104 from=translated src=- shape=fdcb0239 vocab=dce0aa5d
+-/
 theorem loadTapeOps_symbol_internal {tm : TM n}
     {cfg : Complexity.Cfg n tm.Q} {store : Structured.Store}
     (hrepresents : Represents tm cfg store) (tape : Fin (n + 2))

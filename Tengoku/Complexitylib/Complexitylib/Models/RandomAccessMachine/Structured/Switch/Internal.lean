@@ -40,6 +40,9 @@ private theorem cleared_sub_eq (store : Store) (test one : ℕ) :
     simp [cleared]
   · simp [cleared, Basic.exec, Function.update_of_ne hindex]
 
+/--
+@isnad1 id=ex.5h8v.s6.898821292047 from=translated src=- shape=96f867d1 vocab=7b42f693
+-/
 theorem select_exec_internal {count test one : ℕ}
     (branch : Fin count → Cmd) (initial final : Store)
     {code branchSteps : ℕ}
@@ -102,6 +105,9 @@ theorem select_exec_internal {count test one : ℕ}
         all_goals simp [select, stepCount]
         all_goals omega
 
+/--
+@isnad1 id=measured.7h11v.s6.4d8cfeed7a23 from=translated src=- shape=e266ea72 vocab=551958d0
+-/
 theorem select_measured_internal {count test one indexBound valueBound : ℕ}
     (branch : Fin count → Cmd) (initial final : Store)
     {code branchSteps branchCost : ℕ}

@@ -32,7 +32,9 @@ namespace Complexity
 namespace TM.UTMBody
 
 /-- The first description field *is* the fixed-width encoding of the
-    decoded start state — for arbitrary `α`. -/
+    decoded start state — for arbitrary `α`.
+@isnad1 id=eq.0h1v.s5.ea3d94cc9844 from=translated src=- shape=7977b94b vocab=659130f2
+-/
 theorem qstartField_eq_encoding (α : List Bool) :
     (takeField (groupPairs α)).1
       = bitsToSyms (Nat.toBits (decodeDesc α).w
@@ -62,7 +64,9 @@ theorem qstartField_eq_encoding (α : List Bool) :
           (Nat.fromBits ((takeField (groupPairs α)).1.filterMap symBit?))
   rw [← hlen, Nat.toBits_fromBits]
 
-/-- A cleared, started tape shadows the empty simulated tape. -/
+/-- A cleared, started tape shadows the empty simulated tape.
+@isnad1 id=vshift.2h1v.s4.12c7110b8184 from=translated src=- shape=710ca8d5 vocab=6c53dc97
+-/
 theorem vshift_initTape_nil {t : Tape} (h : t.HoldsExact []) (hh : t.head = 1) :
     VShift (Tape.init []) t := by
   refine ⟨?_, by rw [hh]; rfl⟩
@@ -82,7 +86,9 @@ theorem vshift_initTape_nil {t : Tape} (h : t.HoldsExact []) (hh : t.head = 1) :
       simp [Tape.init, show k - 1 ≠ 0 by omega]
 
 /-- The shifted copy of `x` (cells `▷ □ x ⋯`, head 1) shadows the
-    interpreted machine's initial input tape. -/
+    interpreted machine's initial input tape.
+@isnad1 id=vshift.2h2v.s6.d08ffc70b486 from=translated src=- shape=174404e5 vocab=e5c0f890
+-/
 theorem vshift_initTape_x {t : Tape} (x : List Bool)
     (hc : t.cells = fun k => if k = 0 then Γ.start else if k = 1 then Γ.blank
       else (((x.map Γ.ofBool))[k - 2]?).getD Γ.blank)
@@ -102,7 +108,9 @@ theorem vshift_initTape_x {t : Tape} (x : List Bool)
 
 /-- **Initialization realizes the invariant**: the tape shape guaranteed by
     `initTM`'s postcondition is `SimInv` at the interpreted machine's
-    initial configuration. -/
+    initial configuration.
+@isnad1 id=siminv.2h5v.s8.d30ef47db8d6 from=translated src=- shape=25b91232 vocab=b2b1bce2
+-/
 theorem initPost_simInv (α x : List Bool)
     (inp : Tape) (work : Fin 6 → Tape) (out : Tape)
     (hpost :
@@ -148,7 +156,9 @@ theorem initPost_simInv (α x : List Bool)
     simp [Tape.init]
 
 /-- The halt test's comparison decides exactly the interpreted machine's
-    halt condition, under the invariant. -/
+    halt condition, under the invariant.
+@isnad1 id=ex.1h5v.s6.d6d7c790cfc3 from=translated src=- shape=51571894 vocab=862c2fea
+-/
 theorem simInv_verdict (α : List Bool) (mc : Cfg 1 (decodeDesc α).toTM.Q)
     {inp : Tape} {work : Fin 6 → Tape} {out : Tape}
     (hinv : SimInv α mc inp work out) :
@@ -174,13 +184,17 @@ theorem simInv_verdict (α : List Bool) (mc : Cfg 1 (decodeDesc α).toTM.Q)
 -- Tape support is bounded by time
 -- ════════════════════════════════════════════════════════════════════════
 
-/-- One tape action moves the head at most one cell. -/
+/-- One tape action moves the head at most one cell.
+@isnad1 id=le.0h3v.s4.6bd277356b23 from=translated src=- shape=69b4856e vocab=0fbc2e85
+-/
 theorem writeAndMove_head_le (t : Tape) (s : Γ) (d : Dir3) :
     (t.writeAndMove s d).head ≤ t.head + 1 := by
   show ((t.write s).move d).head ≤ t.head + 1
   cases d <;> (simp [Tape.move, Tape.write_head]; try omega)
 
-/-- One tape action leaves cells other than the head untouched. -/
+/-- One tape action leaves cells other than the head untouched.
+@isnad1 id=eq.1h4v.s4.5fd2cbf84685 from=translated src=- shape=01c2fe96 vocab=e2e0e387
+-/
 theorem writeAndMove_cells_ne (t : Tape) (s : Γ) (d : Dir3) {j : ℕ}
     (hj : j ≠ t.head) : (t.writeAndMove s d).cells j = t.cells j := by
   show ((t.write s).move d).cells j = t.cells j
@@ -191,7 +205,9 @@ theorem writeAndMove_cells_ne (t : Tape) (s : Γ) (d : Dir3) {j : ℕ}
     · exact Function.update_of_ne hj ..
   cases d <;> simpa [Tape.move] using hw
 
-/-- After `t` steps the output head has advanced at most `t` cells. -/
+/-- After `t` steps the output head has advanced at most `t` cells.
+@isnad1 id=le.1h5v.s5.1a3e3c673244 from=translated src=- shape=899ea214 vocab=c36d5fd0
+-/
 theorem reachesIn_output_head_le {n : ℕ} {tm : TM n} :
     ∀ {t : ℕ} {c c' : Cfg n tm.Q}, tm.reachesIn t c c' →
       c'.output.head ≤ c.output.head + t := by
@@ -216,7 +232,9 @@ theorem reachesIn_output_head_le {n : ℕ} {tm : TM n} :
       have := ih hrest
       omega
 
-/-- Cells beyond the output head's reach are never written. -/
+/-- Cells beyond the output head's reach are never written.
+@isnad1 id=eq.2h6v.s6.6e9e8297a31d from=translated src=- shape=a17956be vocab=c3103a13
+-/
 theorem reachesIn_output_cells_far {n : ℕ} {tm : TM n} :
     ∀ {t : ℕ} {c c' : Cfg n tm.Q}, tm.reachesIn t c c' →
       ∀ j, c.output.head + t < j → c'.output.cells j = c.output.cells j := by
@@ -248,7 +266,9 @@ theorem reachesIn_output_cells_far {n : ℕ} {tm : TM n} :
       rw [ih hrest j (by omega), hcell]
 
 /-- From the initial configuration, the output tape has a first blank within
-    `t + 1` cells after `t` steps. -/
+    `t + 1` cells after `t` steps.
+@isnad1 id=ex.1h5v.s6.a8f684454f79 from=translated src=- shape=73214f01 vocab=6e039422
+-/
 theorem reachesIn_output_first_blank {n : ℕ} {tm : TM n} {t : ℕ}
     {x : List Bool} {c' : Cfg n tm.Q}
     (h : tm.reachesIn t (tm.initCfg x) c') :

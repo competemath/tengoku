@@ -70,7 +70,9 @@ structure TowerStep where
   /-- Its spectral bound. -/
   spec : graph.SpectralBound (2 / 5)
 
-/-- Squaring a member makes its degree match the base's vertex count. -/
+/-- Squaring a member makes its degree match the base's vertex count.
+@isnad1 id=eq.0h2v.s5.c24d88a97b06 from=translated src=- shape=bb3a1c06 vocab=8a59d185
+-/
 theorem card_sq_eq (T : B.TowerStep) :
     Fintype.card B.base.V = Fintype.card (T.graph.power 2).D := by
   have h1 : Fintype.card (T.graph.power 2).D = (T.graph.power 2).deg := rfl
@@ -105,6 +107,9 @@ noncomputable def towerSuccOf (T : B.TowerStep) (e : B.base.V ≃ (T.graph.power
 noncomputable def towerSucc (T : B.TowerStep) : B.TowerStep :=
   B.towerSuccOf T (B.stepEquiv T)
 
+/--
+@isnad1 id=eq.0h2v.s4.9190492da468 from=translated src=- shape=3ef96ad6 vocab=cfe263f1
+-/
 @[simp] theorem graph_towerSucc (T : B.TowerStep) :
     (B.towerSucc T).graph = RegGraph.zigzag (T.graph.power 2) B.base (B.stepEquiv T) := rfl
 
@@ -126,14 +131,22 @@ noncomputable def tower : ℕ → B.TowerStep
   | 0 => towerZero B
   | k + 1 => towerSucc B (tower k)
 
+/--
+@isnad1 id=eq.0h2v.s5.f1d547650ee8 from=translated src=- shape=02395259 vocab=e3aa344f
+-/
 theorem deg_tower (k : ℕ) : (tower B k).graph.deg = B.base.deg ^ 2 :=
   (tower B k).deg_eq
 
+/--
+@isnad1 id=spectral.0h2v.s5.756c9c8dd2b0 from=translated src=- shape=f9307ec8 vocab=49cfe4ce
+-/
 theorem spectral_tower (k : ℕ) : (tower B k).graph.SpectralBound (2 / 5) :=
   (tower B k).spec
 
 /-- **The sizes of the tower.** Each round multiplies the vertex count by the
-base's vertex count, so the `k`-th member has `(deg ^ 4) ^ (k + 1)` vertices. -/
+base's vertex count, so the `k`-th member has `(deg ^ 4) ^ (k + 1)` vertices.
+@isnad1 id=eq.0h2v.s5.4ea2cbd0125a from=translated src=- shape=1d1011a4 vocab=f37fd76d
+-/
 theorem order_tower (k : ℕ) :
     (tower B k).graph.order = (B.base.deg ^ 4) ^ (k + 1) := by
   induction k with
@@ -150,7 +163,9 @@ theorem order_tower (k : ℕ) :
         deg_tower, ih]
       ring
 
-/-- The sizes grow, so every vertex count is eventually passed. -/
+/-- The sizes grow, so every vertex count is eventually passed.
+@isnad1 id=ex.1h2v.s4.b97165fa30ae from=translated src=- shape=c2dacbcb vocab=9c6c3436
+-/
 theorem exists_order_ge (hd : 1 < B.base.deg) (n : ℕ) :
     ∃ k : ℕ, n ≤ (tower B k).graph.order := by
   refine ⟨n, ?_⟩

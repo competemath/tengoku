@@ -180,6 +180,9 @@ private theorem binaryAddConstSucc_reachesIn
     Cfg.ext hhalt hinput hworkEq houtput
   simpa [hc'] using hreach
 
+/--
+@isnad1 id=reachesi.4h7v.s6.f7a22298930b from=translated src=- shape=185587a3 vocab=eea40613
+-/
 theorem binaryAddConstTM_reachesIn_frame_internal
     (idx : Fin n) (constant dstValue : ℕ)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
@@ -234,6 +237,9 @@ theorem binaryAddConstTM_reachesIn_frame_internal
       simp only [binaryAddConstTM, binaryAddConstTime, binaryAddConstNatTape]
       exact hseq
 
+/--
+@isnad1 id=hoaretim.4h7v.s6.3289f4587230 from=translated src=- shape=4c6d1b6e vocab=744ae9f6
+-/
 theorem binaryAddConstTM_hoareTime_frame_internal
     (idx : Fin n) (constant dstValue : ℕ)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
@@ -300,6 +306,9 @@ private theorem binaryAddConstFrame_transition
   funext i
   exact (hwork i).transitionTape_eq_self
 
+/--
+@isnad1 id=hoaretim.6h9v.s7.6a05052d6379 from=translated src=- shape=539fd9fa vocab=19d542c8
+-/
 theorem binaryAddConstTM_hoareTimeSpace_frame_internal
     (idx : Fin n) (constant dstValue inputLength initialSpace : ℕ)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
@@ -382,6 +391,9 @@ theorem binaryAddConstTM_hoareTimeSpace_frame_internal
       simp [binaryAddConstSpace] at ⊢
       omega
 
+/--
+@isnad1 id=istransd.0h3v.s3.a9fb4cfcaa2b from=translated src=- shape=1e848c5f vocab=9b869187
+-/
 theorem binaryAddConstTM_isTransducer_internal
     (idx : Fin n) (constant : ℕ) :
     (binaryAddConstTM idx constant).IsTransducer := by

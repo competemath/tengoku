@@ -49,7 +49,9 @@ variable {V : Vocabulary}
 
 /-- **FO-definable queries are order-independent** (Immerman Proposition 1.16,
     packaged): a query defined by an FO sentence cannot distinguish isomorphic
-    structures. -/
+    structures.
+@isnad1 id=isorderi.1h2v.s3.71062822212e from=translated src=- shape=b28a8773 vocab=235f00e3
+-/
 theorem FODefinable.orderIndependent {Q : BooleanQuery V} (hQ : FODefinable Q) :
     Q.IsOrderIndependent := by
   obtain ⟨φ, hφ⟩ := hQ
@@ -57,14 +59,18 @@ theorem FODefinable.orderIndependent {Q : BooleanQuery V} (hQ : FODefinable Q) :
   rw [hφ A, hφ B]
   exact Sentence.orderIndependent φ hiso
 
-/-- FO-definable queries are closed under complement (via `¬`). -/
+/-- FO-definable queries are closed under complement (via `¬`).
+@isnad1 id=fodefina.1h2v.s3.5a9bfd1883d6 from=translated src=- shape=525138f7 vocab=0beb30d8
+-/
 theorem FODefinable.complement {Q : BooleanQuery V} (hQ : FODefinable Q) :
     FODefinable Q.complement := by
   obtain ⟨φ, hφ⟩ := hQ
   exact ⟨φ.neg, fun A => by
     simp only [BooleanQuery.complement, hφ A, Sentence.Models, Formula.Sat]⟩
 
-/-- FO-definable queries are closed under intersection (via `∧`). -/
+/-- FO-definable queries are closed under intersection (via `∧`).
+@isnad1 id=fodefina.2h3v.s4.eef2ac017475 from=translated src=- shape=85b2e57a vocab=91301dfd
+-/
 theorem FODefinable.inter {Q₁ Q₂ : BooleanQuery V}
     (h₁ : FODefinable Q₁) (h₂ : FODefinable Q₂) : FODefinable (Q₁.inter Q₂) := by
   obtain ⟨φ, hφ⟩ := h₁
@@ -72,7 +78,9 @@ theorem FODefinable.inter {Q₁ Q₂ : BooleanQuery V}
   exact ⟨φ.conj ψ, fun A => by
     simp only [BooleanQuery.inter, hφ A, hψ A, Sentence.Models, Formula.Sat]⟩
 
-/-- FO-definable queries are closed under union (via `∨`). -/
+/-- FO-definable queries are closed under union (via `∨`).
+@isnad1 id=fodefina.2h3v.s4.febaa6366482 from=translated src=- shape=85b2e57a vocab=a6893a57
+-/
 theorem FODefinable.union {Q₁ Q₂ : BooleanQuery V}
     (h₁ : FODefinable Q₁) (h₂ : FODefinable Q₂) : FODefinable (Q₁.union Q₂) := by
   obtain ⟨φ, hφ⟩ := h₁
@@ -82,7 +90,9 @@ theorem FODefinable.union {Q₁ Q₂ : BooleanQuery V}
 
 /-- **FO-definability is closed under first-order reductions.** If `Q₁` reduces to
     an FO-definable query `Q₂`, translating a sentence for `Q₂` along the reduction
-    interpretation gives a sentence for `Q₁`. -/
+    interpretation gives a sentence for `Q₁`.
+@isnad1 id=fodefina.2h4v.s4.f49f596f2e5e from=translated src=- shape=bd0a1ff2 vocab=6329b88d
+-/
 theorem FODefinable.of_reduces {W : Vocabulary} {Q₁ : BooleanQuery V}
     {Q₂ : BooleanQuery W} (hQ₂ : FODefinable Q₂) (hred : FOReduces Q₁ Q₂) :
     FODefinable Q₁ := by
@@ -92,14 +102,18 @@ theorem FODefinable.of_reduces {W : Vocabulary} {Q₁ : BooleanQuery V}
   rw [hI A, hφ (I.apply A)]
   exact I.translate_sat A (emptyEnv A.card) φ
 
-/-- FO-definability is closed under first-order projections. -/
+/-- FO-definability is closed under first-order projections.
+@isnad1 id=fodefina.2h4v.s4.c7fd15eeaf7e from=translated src=- shape=bd0a1ff2 vocab=b957c061
+-/
 theorem FODefinable.of_projReduces {W : Vocabulary} {Q₁ : BooleanQuery V}
     {Q₂ : BooleanQuery W} (hQ₂ : FODefinable Q₂) (hred : FOProjReduces Q₁ Q₂) :
     FODefinable Q₁ :=
   hQ₂.of_reduces hred.toFOReduces
 
 /-- **`FO ⊆ SO` at the query level:** every first-order definable query is
-    second-order definable, via the truth-preserving FO embedding into SO. -/
+    second-order definable, via the truth-preserving FO embedding into SO.
+@isnad1 id=sodefina.1h2v.s3.39b28f0d990f from=translated src=- shape=b28a8773 vocab=e03ae64a
+-/
 theorem FODefinable.toSODefinable {Q : BooleanQuery V} (hQ : FODefinable Q) :
     SODefinable Q := by
   obtain ⟨φ, hφ⟩ := hQ

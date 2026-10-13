@@ -263,7 +263,9 @@ private theorem negOutTM_write_step
     `negOutTM` halts within `B + 3` steps having replaced output cell 1 with
     the binary negation of "cell 1 = `1`" (`1 ↦ 0`; `0`/`□ ↦ 1`), all other
     output cells unchanged, output head parked at cell 1, and the input and
-    work tapes exactly unchanged. -/
+    work tapes exactly unchanged.
+@isnad1 id=hoaretim.5h5v.s7.120e269a0c02 from=translated src=- shape=2380db50 vocab=59d7077d
+-/
 theorem negOutTM_hoareTime (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
     (B : ℕ)
     (h0 : out₀.cells 0 = Γ.start) (hns : ∀ j, 1 ≤ j → out₀.cells j ≠ Γ.start)

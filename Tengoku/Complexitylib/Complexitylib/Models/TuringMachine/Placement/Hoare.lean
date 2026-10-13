@@ -36,7 +36,9 @@ variable {n : ℕ}
 /-- **A placed stage keeps its contract, and its neighbours.** The precondition asks that the
 tapes outside the block are the given frame and that the block satisfies the stage's own
 precondition; the postcondition returns the frame unchanged and the stage's postcondition on the
-block. -/
+block.
+@isnad1 id=hoaretim.3h8v.s8.250a09e6a9c3 from=translated src=- shape=987a2e90 vocab=2d548231
+-/
 theorem placeWorkTM_hoareTime (tm : TM n) {pre post : TapePred n} {b : ℕ}
     (h : tm.HoareTime pre post b) (pre₀ post₀ : ℕ)
     (extras : Fin (pre₀ + n + post₀) → Tape)

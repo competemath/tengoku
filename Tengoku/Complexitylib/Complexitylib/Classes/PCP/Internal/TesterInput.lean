@@ -63,7 +63,9 @@ returns a subset-sum of the input coordinates alone. -/
 def embedInput (r : Cube k) : Cube (k + t) := Fin.append r 0
 
 /-- **Reading only the input coordinates.** A subset-sum of an assignment taken
-at an embedded input string sees exactly the assignment's input part. -/
+at an embedded input string sees exactly the assignment's input part.
+@isnad1 id=eq.0h4v.s5.c55069da11be from=translated src=- shape=9475b998 vocab=7053fd7c
+-/
 theorem hadamard_embedInput (a : Cube (k + t)) (r : Cube k) :
     hadamard a (embedInput r) = hadamard (leftBlock a) r := by
   show ∑ i : Fin (k + t), a i * (Fin.append r (0 : Cube t)) i
@@ -126,7 +128,9 @@ def InputAccepts (f : BooleanFunction (k + t)) (w : Cube k)
 
 /-- Every read of the input check is right except with probability `2ε`. The
 subset is chosen by the first block and the correction by the second, so
-`prob_blocks_ge` fixes the read point before the correction is drawn. -/
+`prob_blocks_ge` fixes the read point before the correction is drawn.
+@isnad1 id=le.2h5v.s8.2452f11f03c0 from=translated src=- shape=070d995a vocab=553f508b
+-/
 theorem prob_input_reads (a : Cube (k + t)) (f : BooleanFunction (k + t))
     (hf : IsBooleanValued f) {ε : ℝ} (hfc : IsClose f (signOf (hadamard a)) ε) :
     1 - 2 * ε ≤ Pr[fun z : Cube (k + (k + t)) =>
@@ -177,14 +181,18 @@ theorem eq_input_of_prob_inputAccepts (a : Cube (k + t)) (w : Cube k)
   exact eq_of_prob_hadamard_eq (leftBlock a) w (by linarith)
 
 /-- **Completeness of the input check.** The honest proof for an assignment
-extending the input passes on every random string. -/
+extending the input passes on every random string.
+@isnad1 id=inputacc.0h4v.s5.f1e5b9479c27 from=translated src=- shape=f7a8227c vocab=a71f126c
+-/
 theorem inputAccepts_of_honest (a : Cube (k + t)) (z : Cube (k + (k + t))) :
     InputAccepts (signOf (hadamard a)) (leftBlock a) z := by
   show signBit (signOf (hadamard a) (rightBlock z)
     * signOf (hadamard a) (embedInput (leftBlock z) + rightBlock z)) = _
   rw [corrected_read_honest, signBit_chi, hadamard_embedInput]
 
-/-- The honest proof passes the input check with probability one. -/
+/-- The honest proof passes the input check with probability one.
+@isnad1 id=eq.0h3v.s6.cc39e6d368b5 from=translated src=- shape=814eb9c0 vocab=7acdb813
+-/
 theorem prob_inputAccepts_of_honest (a : Cube (k + t)) :
     Pr[InputAccepts (signOf (hadamard a)) (leftBlock a)] = 1 :=
   prob_of_forall (inputAccepts_of_honest a)

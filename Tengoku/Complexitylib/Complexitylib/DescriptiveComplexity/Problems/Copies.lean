@@ -38,7 +38,9 @@ def disjointCopies (copies : Nat) (hcopies : 0 < copies) :
   constTag := Fin.elim0
   constCoord := Fin.elim0
 
-/-- Edges stay within one copy and agree there with the source graph. -/
+/-- Edges stay within one copy and agree there with the source graph.
+@isnad1 id=iff.1h4v.s10.aa4e5d6f1cb1 from=translated src=- shape=5a75e75f vocab=c1ac91a6
+-/
 theorem disjointCopies_edge (copies : Nat) (hcopies : 0 < copies)
     (A : FinStruct Vocabulary.graph) (x y : Fin (copies * A.card ^ 1)) :
     Edge ((disjointCopies copies hcopies).apply A) x y ↔
@@ -49,7 +51,9 @@ theorem disjointCopies_edge (copies : Nat) (hcopies : 0 < copies)
   split <;> simp_all [Formula.Sat, Term.eval, relationEnv, Formula.falsum_sat,
     apply_ite, ite_apply]
 
-/-- A positive disjoint union of copies is bipartite exactly when the source is. -/
+/-- A positive disjoint union of copies is bipartite exactly when the source is.
+@isnad1 id=iff.1h2v.s5.4c68614528ec from=translated src=- shape=efc8abb4 vocab=38204d69
+-/
 theorem disjointCopies_bipartite (copies : Nat) (hcopies : 0 < copies)
     (A : FinStruct Vocabulary.graph) :
     Bipartite ((disjointCopies copies hcopies).apply A) ↔ Bipartite A := by

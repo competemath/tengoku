@@ -29,7 +29,9 @@ private theorem add_four_le_two_pow_add_two (n : ℕ) :
       have hp : 1 ≤ 2 ^ (n + 2) := Nat.one_le_two_pow
       omega
 
-/-- Shared union-bound arithmetic for weak and relative approximate counters. -/
+/-- Shared union-bound arithmetic for weak and relative approximate counters.
+@isnad1 id=le.0h2v.s6.eb553bde91fd from=translated src=- shape=922b03af vocab=690ce602
+-/
 theorem add_four_div_two_pow_errorBits_le_internal
     (n failureBits : ℕ) :
     (n + 4 : ℚ) / (2 : ℚ) ^ (n + 2 + failureBits) ≤

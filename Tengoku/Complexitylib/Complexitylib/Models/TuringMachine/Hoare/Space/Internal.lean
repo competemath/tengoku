@@ -23,7 +23,9 @@ namespace Complexity
 
 namespace Cfg
 
-/-- Internal monotonicity of the honest auxiliary-space predicate. -/
+/-- Internal monotonicity of the honest auxiliary-space predicate.
+@isnad1 id=withinau.3h7v.s5.1c5164caf9aa from=translated src=- shape=dc480df7 vocab=268166dc
+-/
 theorem WithinAuxSpace.mono_internal {c : Cfg n Q}
     {inputLength inputLength' space space' : ℕ}
     (h : c.WithinAuxSpace inputLength space)
@@ -37,7 +39,9 @@ theorem WithinAuxSpace.mono_internal {c : Cfg n Q}
       _ ≤ inputLength' + space' + 1 := by omega
 
 /-- Internal phase-boundary bound: the standard input/work tape transition
-moves every head by at most one. -/
+moves every head by at most one.
+@isnad1 id=withinau.1h5v.s5.98a0c7da9dcc from=translated src=- shape=6a550e38 vocab=e81c7248
+-/
 theorem WithinAuxSpace.transition_internal {c : Cfg n Q}
     {inputLength space : ℕ} (h : c.WithinAuxSpace inputLength space) :
     ({ state := c.state,
@@ -58,7 +62,9 @@ theorem WithinAuxSpace.transition_internal {c : Cfg n Q}
       _ = inputLength + (space + 1) + 1 := by omega
 
 /-- Internal reachability rule: after `time` concrete transitions, one extra
-auxiliary-space cell per transition covers every input and work head. -/
+auxiliary-space cell per transition covers every input and work head.
+@isnad1 id=withinau.2h7v.s5.486c8e4e1fb7 from=translated src=- shape=f8e046a1 vocab=d9a15b7f
+-/
 theorem WithinAuxSpace.reachesIn_internal {tm : TM n}
     {c c' : Cfg n tm.Q} {time inputLength space : ℕ}
     (h : c.WithinAuxSpace inputLength space)
@@ -83,7 +89,9 @@ namespace TM
 
 variable {n : ℕ}
 
-/-- Internal: an inductive configuration predicate discharges a space contract. -/
+/-- Internal: an inductive configuration predicate discharges a space contract.
+@isnad1 id=hoarespa.1h8v.s6.200946129fcc from=translated src=- shape=cbae0b4c vocab=317f690c
+-/
 theorem hoareSpace_of_invariant_internal {tm : TM n} {pre : TapePred n}
     {inputLength space : ℕ} (P : Cfg n tm.Q → Prop)
     (hinit : ∀ inp work out, pre inp work out →
@@ -97,7 +105,9 @@ theorem hoareSpace_of_invariant_internal {tm : TM n} {pre : TapePred n}
   | refl => exact hinit inp work out hpre
   | tail _ hs ih => exact hstep _ _ ih hs
 
-/-- Internal precondition weakening for all-reachable space contracts. -/
+/-- Internal precondition weakening for all-reachable space contracts.
+@isnad1 id=hoarespa.1h7v.s5.9bc32143cdda from=translated src=- shape=c4d92ee2 vocab=02951dd1
+-/
 theorem HoareSpace.weaken_pre_internal {tm : TM n}
     {pre pre' : TapePred n} {inputLength space : ℕ}
     (h : tm.HoareSpace pre inputLength space)
@@ -106,7 +116,9 @@ theorem HoareSpace.weaken_pre_internal {tm : TM n}
   intro inp work out hpre' c' hreach
   exact h inp work out (hpre inp work out hpre') c' hreach
 
-/-- Internal numerical monotonicity for all-reachable space contracts. -/
+/-- Internal numerical monotonicity for all-reachable space contracts.
+@isnad1 id=hoarespa.3h7v.s5.bedd32f4c348 from=translated src=- shape=8deea61d vocab=cbaf4e76
+-/
 theorem HoareSpace.mono_internal {tm : TM n}
     {pre : TapePred n} {inputLength inputLength' space space' : ℕ}
     (h : tm.HoareSpace pre inputLength space)
@@ -117,7 +129,9 @@ theorem HoareSpace.mono_internal {tm : TM n}
 
 /-- Internal time-to-space bridge. Determinism bounds every reachable prefix
 by the terminating run supplied by the Hoare triple, and tape heads grow by at
-most one cell per step. -/
+most one cell per step.
+@isnad1 id=hoaretim.2h7v.s6.1a7ff624abf5 from=translated src=- shape=c4630c0e vocab=8e66ad76
+-/
 theorem HoareTime.toHoareTimeSpace_internal {tm : TM n}
     {pre post : TapePred n} {time inputLength initialSpace : ℕ}
     (htime : tm.HoareTime pre post time)
@@ -134,7 +148,9 @@ theorem HoareTime.toHoareTimeSpace_internal {tm : TM n}
   have hstart := hinitial inp work out hpre
   exact (hstart.reachesIn_internal hreachIn).mono_internal le_rfl (by omega)
 
-/-- Internal consequence rule for time-and-space Hoare contracts. -/
+/-- Internal consequence rule for time-and-space Hoare contracts.
+@isnad1 id=hoaretim.4h14v.s6.b3ca03d059a8 from=translated src=- shape=7ab00e1c vocab=bab587fb
+-/
 theorem HoareTimeSpace.consequence_internal {tm : TM n}
     {pre pre' post post' : TapePred n}
     {time time' inputLength inputLength' space space' : ℕ}
@@ -150,7 +166,9 @@ theorem HoareTimeSpace.consequence_internal {tm : TM n}
     exact (h.2 inp work out (hpre inp work out hpre') c' hreach).mono_internal
       hinput hspace
 
-/-- Internal transducer closure under sequential composition. -/
+/-- Internal transducer closure under sequential composition.
+@isnad1 id=istransd.2h3v.s4.9f96d800827e from=translated src=- shape=85b2e57a vocab=952dc3a9
+-/
 theorem IsTransducer.seqTM_internal {tm₁ tm₂ : TM n}
     (h₁ : tm₁.IsTransducer) (h₂ : tm₂.IsTransducer) :
     (seqTM tm₁ tm₂).IsTransducer := by
@@ -172,7 +190,9 @@ theorem IsTransducer.seqTM_internal {tm₁ tm₂ : TM n}
 /-- Internal sequential composition rule.  Both phases use one shared logical
 input length and auxiliary-space budget; the phase boundary is covered by the
 second contract at its reflexive initial configuration. The all-reachable
-component specializes the generic tape-safety composition rule. -/
+component specializes the generic tape-safety composition rule.
+@isnad1 id=hoaretim.2h13v.s6.7f5c7308cf98 from=translated src=- shape=014f2b93 vocab=c5dfbc49
+-/
 theorem seqTM_hoareTimeSpace_internal (tm₁ tm₂ : TM n)
     {pre mid mid' post : TapePred n} {b₁ b₂ inputLength space₁ space₂ : ℕ}
     (h₁ : tm₁.HoareTimeSpace pre mid b₁ inputLength space₁)
@@ -192,7 +212,9 @@ theorem seqTM_hoareTimeSpace_internal (tm₁ tm₂ : TM n)
       (h₂.2.mono_internal le_rfl (le_max_right _ _))
 
 /-- Internal bridge from fresh-start time-and-space contracts to function
-computation in space. -/
+computation in space.
+@isnad1 id=computes.2h5v.s6.5917256bf1ac from=translated src=- shape=76a2a501 vocab=5184d181
+-/
 theorem computesInSpace_of_hoareTimeSpace_internal
     {tm : TM n} {f : List Bool → List Bool} {T S : ℕ → ℕ}
     (htrans : tm.IsTransducer)

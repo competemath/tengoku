@@ -149,6 +149,9 @@ private theorem binaryRippleAddRewindTail_hoareTime_internal {n : ℕ}
   · intro i hil hir hires
     exact (hfinalOther i hil hir hires).trans (hframe i hil hir hires)
 
+/--
+@isnad1 id=hoaretim.7h9v.s7.3928b5a20bfc from=translated src=- shape=44ba5d5e vocab=661bf188
+-/
 theorem binaryRippleAddTM_hoareTime_frame_internal {n : ℕ}
     (lhsIdx rhsIdx resultIdx : Fin n)
     (hdistinct : BinaryRippleAddDistinct lhsIdx rhsIdx resultIdx)
@@ -214,6 +217,9 @@ theorem binaryRippleAddTM_hoareTime_frame_internal {n : ℕ}
   simp only [binaryRippleAddTime]
   omega
 
+/--
+@isnad1 id=hoaretim.8h11v.s7.65acf4f5dd6b from=translated src=- shape=d6d682be vocab=b3cdee6d
+-/
 theorem binaryRippleAddTM_hoareTimeSpace_frame_internal {n : ℕ}
     (lhsIdx rhsIdx resultIdx : Fin n)
     (hdistinct : BinaryRippleAddDistinct lhsIdx rhsIdx resultIdx)

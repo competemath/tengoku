@@ -34,16 +34,24 @@ def listOfSeed (s : Fin m → Bool) : List Bool := (List.finRange m).map s
 /-- Decode a bitstring as a seed, reading out-of-range positions as `false`. -/
 def seedOfList (m : ℕ) (r : List Bool) : Fin m → Bool := fun j => r.getD j.val false
 
+/--
+@isnad1 id=eq.0h2v.s3.b4c384d57789 from=translated src=- shape=04b78385 vocab=ea9ca565
+-/
 @[simp] theorem length_listOfSeed (s : Fin m → Bool) : (listOfSeed s).length = m := by
   simp [listOfSeed]
 
-/-- Reading an encoded seed at an in-range position returns that bit. -/
+/-- Reading an encoded seed at an in-range position returns that bit.
+@isnad1 id=eq.1h3v.s4.b6f0ff363b80 from=translated src=- shape=606cee8c vocab=8e3dd369
+-/
 theorem getD_listOfSeed (s : Fin m → Bool) (idx : ℕ) (h : idx < m) :
     (listOfSeed s).getD idx false = s ⟨idx, h⟩ := by
   have hlen : idx < (listOfSeed s).length := by simpa using h
   rw [List.getD, List.getElem?_eq_getElem hlen, Option.getD_some]
   simp [listOfSeed]
 
+/--
+@isnad1 id=eq.0h2v.s4.a587732f0381 from=translated src=- shape=fdec4105 vocab=12486b07
+-/
 @[simp] theorem seedOfList_listOfSeed (s : Fin m → Bool) :
     seedOfList m (listOfSeed s) = s := by
   funext j
@@ -64,10 +72,16 @@ def listOfShifts (u : Fin t → Fin m → Bool) : List Bool := listOfSeed (flatt
 def shiftsOfList (t m : ℕ) (w : List Bool) : Fin t → Fin m → Bool :=
   fun i j => w.getD (i.val * m + j.val) false
 
+/--
+@isnad1 id=eq.0h3v.s4.8cf23b31911a from=translated src=- shape=8c7d11d2 vocab=cdbeadc0
+-/
 @[simp] theorem length_listOfShifts (u : Fin t → Fin m → Bool) :
     (listOfShifts u).length = t * m := by
   simp [listOfShifts]
 
+/--
+@isnad1 id=eq.0h3v.s4.8e37ad9f028c from=translated src=- shape=2a75607c vocab=0bfd00bb
+-/
 @[simp] theorem shiftsOfList_listOfShifts (u : Fin t → Fin m → Bool) :
     shiftsOfList t m (listOfShifts u) = u := by
   funext i j

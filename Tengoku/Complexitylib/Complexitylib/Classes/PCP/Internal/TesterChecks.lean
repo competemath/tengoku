@@ -53,7 +53,9 @@ variable {n : ℕ}
 /-- **The random-combination constraint check.** Reading the combined constraint
 off the raw tables passes often enough only if every constraint of the system
 holds on the decoded tables. The coefficient vector is the first block, the
-correction strings the second. -/
+correction strings the second.
+@isnad1 id=eq.5h10v.s8.e329da4ec8ce from=translated src=- shape=10afa5a6 vocab=957002b7
+-/
 theorem forall_checkValue_of_prob_combined {J : ℕ} (a : Cube n) (b : Cube (n * n))
     (C : Fin J → QuadConstraint n)
     (f : BooleanFunction n) (hf : IsBooleanValued f) {ε : ℝ}
@@ -117,7 +119,9 @@ def CoordAccepts {m : ℕ} (f : BooleanFunction n) (w : Cube m → ZMod 2) (idx 
   signBit (f (rightBlock z) * f (basisVec (idx (leftBlock z)) + rightBlock z))
     = w (leftBlock z)
 
-/-- **Passing the coordinate check means agreeing on most coordinates.** -/
+/-- **Passing the coordinate check means agreeing on most coordinates.**
+@isnad1 id=le.2h7v.s6.3bc8d420a7bb from=translated src=- shape=bd60e9b3 vocab=0f65e10a
+-/
 theorem prob_coord_eq_ge {m : ℕ} (a : Cube n) (f : BooleanFunction n) (hf : IsBooleanValued f)
     {ε : ℝ} (hfc : IsClose f (signOf (hadamard a)) ε)
     (w : Cube m → ZMod 2) (idx : Cube m → Fin n) :
@@ -147,7 +151,9 @@ theorem prob_coord_eq_ge {m : ℕ} (a : Cube n) (f : BooleanFunction n) (hf : Is
   linarith
 
 /-- The honest table passes the coordinate check everywhere, when the input
-table is the decoded assignment's input part. -/
+table is the decoded assignment's input part.
+@isnad1 id=coordacc.0h5v.s5.202c0493c09e from=translated src=- shape=79557e07 vocab=1baf4675
+-/
 theorem coordAccepts_of_honest {m : ℕ} (a : Cube n) (idx : Cube m → Fin n) (z : Cube (m + n)) :
     CoordAccepts (signOf (hadamard a)) (fun r => a (idx r)) idx z := by
   show signBit (signOf (hadamard a) (rightBlock z)
@@ -160,13 +166,18 @@ theorem coordAccepts_of_honest {m : ℕ} (a : Cube n) (idx : Cube m → Fin n) (
 differ. -/
 noncomputable def bitDist {m : ℕ} (s t : Cube m → ZMod 2) : ℝ := Pr[fun r => s r ≠ t r]
 
+/--
+@isnad1 id=eq.0h3v.s5.21291fd92e56 from=translated src=- shape=54f6cb3a vocab=a854874b
+-/
 theorem bitDist_eq_one_sub {m : ℕ} (s t : Cube m → ZMod 2) :
     bitDist s t = 1 - Pr[fun r => s r = t r] := by
   have := BooleanAnalysis.Internal.prob_compl (fun r : Cube m => s r = t r)
   unfold bitDist
   linarith
 
-/-- **Distinct codewords are far apart**: at distance exactly one half. -/
+/-- **Distinct codewords are far apart**: at distance exactly one half.
+@isnad1 id=eq.1h3v.s5.c359b4164799 from=translated src=- shape=07dab1ab vocab=b6036453
+-/
 theorem bitDist_hadamard {m : ℕ} (u v : Cube m) (h : u ≠ v) :
     bitDist (hadamard u) (hadamard v) = 1 / 2 := by
   have hne : u + v ≠ 0 := by

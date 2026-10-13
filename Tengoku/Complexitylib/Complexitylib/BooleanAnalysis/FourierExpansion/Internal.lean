@@ -27,27 +27,37 @@ open Finset BigOperators BooleanAnalysis
 
 variable {n : ℕ}
 
-/-- `χ(0) = 1`. -/
+/-- `χ(0) = 1`.
+@isnad1 id=eq.0h0v.s6.127d22345a9c from=translated src=- shape=012516b9 vocab=b7982015
+-/
 @[simp]
 theorem chi_zero : chi (0 : ZMod 2) = 1 := by
   unfold chi; norm_num
 
-/-- `χ(1) = -1`. -/
+/-- `χ(1) = -1`.
+@isnad1 id=eq.0h0v.s6.742d87abf657 from=translated src=- shape=f05c4898 vocab=eafecfc9
+-/
 @[simp]
 theorem chi_one : chi (1 : ZMod 2) = -1 := by
   unfold chi; norm_num
 
-/-- `χ(b)² = 1` for all `b : ZMod 2`. -/
+/-- `χ(b)² = 1` for all `b : ZMod 2`.
+@isnad1 id=eq.0h1v.s5.676da07989ce from=translated src=- shape=1bb5949c vocab=76679a79
+-/
 @[simp]
 theorem chi_sq (b : ZMod 2) : chi b ^ 2 = 1 := by
   fin_cases b <;> (unfold chi; split_ifs <;> norm_num)
 
-/-- `χ(b) · χ(b) = 1` (non-`pow` form, useful when `simp` doesn't see `sq`). -/
+/-- `χ(b) · χ(b) = 1` (non-`pow` form, useful when `simp` doesn't see `sq`).
+@isnad1 id=eq.0h1v.s4.c98ff68a0e6d from=translated src=- shape=4975ee10 vocab=e2213fb8
+-/
 @[simp]
 theorem chi_mul_self (b : ZMod 2) : chi b * chi b = 1 := by
   have := chi_sq b; linarith [sq (chi b)]
 
-/-- `χ(b) = 1` or `χ(b) = -1`. -/
+/-- `χ(b) = 1` or `χ(b) = -1`.
+@isnad1 id=or.0h1v.s4.9bbfacb2afc8 from=translated src=- shape=eab6b134 vocab=eafecfc9
+-/
 theorem chi_eq_one_or_neg_one (b : ZMod 2) : chi b = 1 ∨ chi b = -1 := by
   fin_cases b
   · left; exact chi_zero
@@ -61,23 +71,31 @@ private theorem zmod2_cases (a : ZMod 2) : a = 0 ∨ a = 1 := by
   · left; rwa [ZMod.val_eq_zero] at h
   · right; exact Fin.ext h
 
-/-- `χ` is multiplicative: `χ(a + b) = χ(a) · χ(b)`. -/
+/-- `χ` is multiplicative: `χ(a + b) = χ(a) · χ(b)`.
+@isnad1 id=eq.0h2v.s6.f36e0bee9f7b from=translated src=- shape=b67944bb vocab=07b2f9af
+-/
 @[simp]
 theorem chi_add (a b : ZMod 2) : chi (a + b) = chi a * chi b := by
   rcases zmod2_cases a with rfl | rfl <;> rcases zmod2_cases b with rfl | rfl <;>
     simp [chi, show (1 : ZMod 2) + 1 = 0 from Fin.ext (by decide)]
 
-/-- `χ(b) ≠ 0` for all `b : ZMod 2`. -/
+/-- `χ(b) ≠ 0` for all `b : ZMod 2`.
+@isnad1 id=ne.0h1v.s4.0cca041eb385 from=translated src=- shape=9a4b31c0 vocab=b7982015
+-/
 theorem chi_ne_zero (b : ZMod 2) : chi b ≠ 0 := by
   rcases chi_eq_one_or_neg_one b with h | h <;> simp [h]
 
-/-- The parity function on the empty set is the constant function 1. -/
+/-- The parity function on the empty set is the constant function 1.
+@isnad1 id=eq.0h1v.s4.fc6e9d543f0c from=translated src=- shape=22ecbf6e vocab=d38b9dbc
+-/
 @[simp]
 theorem parityFun_empty : (χ (∅ : Finset (Fin n))) = fun _ => 1 := by
   ext x; simp [parityFun]
 
 /-- Parity functions are multiplicative: `χ S (x + y) = χ S x · χ S y`.
-    (Equation 1.5 in the book) -/
+    (Equation 1.5 in the book)
+@isnad1 id=eq.0h4v.s6.6429b78a14a7 from=translated src=- shape=a603de9d vocab=b85e5e96
+-/
 @[simp]
 theorem parityFun_add (S : Finset (Fin n)) (x y : Cube n) :
     (χ S) (x + y) = (χ S) x * (χ S) y := by
@@ -85,19 +103,25 @@ theorem parityFun_add (S : Finset (Fin n)) (x y : Cube n) :
   rw [← Finset.prod_mul_distrib]
   congr 1; ext i; exact chi_add (x i) (y i)
 
-/-- `(χ S x)² = 1` for all `S` and `x`. -/
+/-- `(χ S x)² = 1` for all `S` and `x`.
+@isnad1 id=eq.0h3v.s5.dc240253b5ed from=translated src=- shape=ef6c408e vocab=4527822e
+-/
 @[simp]
 theorem parityFun_sq (S : Finset (Fin n)) (x : Cube n) :
     (χ S) x ^ 2 = 1 := by
   simp only [parityFun, ← Finset.prod_pow]
   simp [chi_sq]
 
-/-- `χ S 0 = 1`. -/
+/-- `χ S 0 = 1`.
+@isnad1 id=eq.0h2v.s6.6207c9b38876 from=translated src=- shape=14ac9ec0 vocab=02a280e4
+-/
 @[simp]
 theorem parityFun_zero (S : Finset (Fin n)) : (χ S) 0 = 1 := by
   simp [parityFun, chi_zero]
 
-/-- **Fact 1.7**: `𝔼[χ S] = 1` if `S = ∅` and `𝔼[χ S] = 0` if `S ≠ ∅`. -/
+/-- **Fact 1.7**: `𝔼[χ S] = 1` if `S = ∅` and `𝔼[χ S] = 0` if `S ≠ ∅`.
+@isnad1 id=eq.0h2v.s5.36f0f2fede04 from=translated src=- shape=33ceba88 vocab=3ea120a5
+-/
 theorem expect_parityFun_proof (S : Finset (Fin n)) :
     𝔼[χ S] = if S = ∅ then 1 else 0 := by
   split_ifs with h
@@ -122,7 +146,9 @@ theorem expect_parityFun_proof (S : Finset (Fin n)) :
     linarith
 
 /-- **Definition 1.11** (explicit form): For Boolean-valued `f`,
-    `𝔼[f] = Pr[f = 1] - Pr[f = -1]`. -/
+    `𝔼[f] = Pr[f = 1] - Pr[f = -1]`.
+@isnad1 id=eq.1h2v.s5.c7ceea2b13d9 from=translated src=- shape=2f6a6ce2 vocab=d8bec267
+-/
 theorem expect_boolean_eq_prob_diff (f : BooleanFunction n) (hf : IsBooleanValued f) :
     𝔼[f] = Pr[fun x => f x = 1] - Pr[fun x => f x = -1] := by
   simp only [prob, expect_unfold, indicator]
@@ -134,7 +160,9 @@ theorem expect_boolean_eq_prob_diff (f : BooleanFunction n) (hf : IsBooleanValue
     simp [h, show (1 : ℝ) ≠ -1 by norm_num, show (-1 : ℝ) ≠ 1 by norm_num]
 
 /-- For Boolean-valued `f`, `Pr[f = 1] + Pr[f = -1] = 1`.
-    (Implicit in Definition 1.11: every input maps to exactly one of `1` or `-1`.) -/
+    (Implicit in Definition 1.11: every input maps to exactly one of `1` or `-1`.)
+@isnad1 id=eq.1h2v.s5.55422b429903 from=translated src=- shape=aa019806 vocab=09e69442
+-/
 theorem prob_boolean_sum_one (f : BooleanFunction n) (hf : IsBooleanValued f) :
     Pr[fun x => f x = 1] + Pr[fun x => f x = -1] = 1 := by
   simp only [prob, expect_unfold, indicator]
@@ -146,7 +174,9 @@ theorem prob_boolean_sum_one (f : BooleanFunction n) (hf : IsBooleanValued f) :
   rw [Finset.sum_congr rfl (fun x _ => this x)]
   simp [Fintype.card_fin, ZMod.card]
 
-/-- Helper: `⟪f, g⟫ + 2 · dist(f, g) = 1` for Boolean-valued `f, g`. -/
+/-- Helper: `⟪f, g⟫ + 2 · dist(f, g) = 1` for Boolean-valued `f, g`.
+@isnad1 id=eq.2h3v.s5.886766d443e2 from=translated src=- shape=3bb0022a vocab=2f3a9428
+-/
 theorem inner_add_two_hammingDist (f g : BooleanFunction n)
     (hf : IsBooleanValued f) (hg : IsBooleanValued g) :
     ⟪f, g⟫ + 2 * hammingDist f g = 1 := by
@@ -170,7 +200,9 @@ theorem inner_add_two_hammingDist (f g : BooleanFunction n)
     _ = 1 / (2 : ℝ) ^ n * (2 : ℝ) ^ n := by congr 1
     _ = 1 := h1
 
-/-- `χ_S · χ_T = χ_{S △ T}` (pointwise). -/
+/-- `χ_S · χ_T = χ_{S △ T}` (pointwise).
+@isnad1 id=eq.0h4v.s5.6c44566d94da from=translated src=- shape=b9f1bf5c vocab=0b50fd3a
+-/
 theorem parityFun_mul (S T : Finset (Fin n)) (x : Cube n) :
     (χ S) x * (χ T) x = (χ (symmDiff S T)) x := by
   simp only [parityFun]
@@ -185,7 +217,9 @@ theorem parityFun_mul (S T : Finset (Fin n)) (x : Cube n) :
   rw [← hunion, ← hsdiff, mul_assoc, ← sq, hchi_sq, mul_one]
 
 /-- **Theorem 1.5**: The parity functions are orthonormal:
-    `⟪χ S, χ T⟫ = 1` if `S = T` and `0` otherwise. -/
+    `⟪χ S, χ T⟫ = 1` if `S = T` and `0` otherwise.
+@isnad1 id=eq.0h3v.s5.ec92fd1c0df7 from=translated src=- shape=b80294f3 vocab=09b38ff5
+-/
 theorem parityFun_orthonormal_proof (S T : Finset (Fin n)) :
     ⟪χ S, χ T⟫ = if S = T then 1 else 0 := by
   rw [inner_eq_expect]
@@ -195,7 +229,9 @@ theorem parityFun_orthonormal_proof (S T : Finset (Fin n)) :
   have : symmDiff S T = ∅ ↔ S = T := symmDiff_eq_bot
   simp [this]
 
-/-- Sum of all parity functions at a point: `∑_S χ_S(z) = 2^n` if `z = 0`, else `0`. -/
+/-- Sum of all parity functions at a point: `∑_S χ_S(z) = 2^n` if `z = 0`, else `0`.
+@isnad1 id=eq.0h2v.s7.8be0934e25a5 from=translated src=- shape=5a9eb6de vocab=9da85287
+-/
 theorem sum_parityFun (z : Cube n) :
     ∑ S : Finset (Fin n), (χ S) z = if z = 0 then (2 : ℝ) ^ n else 0 := by
   split_ifs with hz
@@ -220,7 +256,9 @@ theorem sum_parityFun (z : Cube n) :
       rw [Finset.sum_neg_distrib]
     linarith
 
-/-- The Fourier expansion: `f(x) = ∑_S 𝓕 f S · χ_S(x)`. -/
+/-- The Fourier expansion: `f(x) = ∑_S 𝓕 f S · χ_S(x)`.
+@isnad1 id=eq.0h3v.s5.7aecf95ecedf from=translated src=- shape=e6cbc4b8 vocab=dbddc1e2
+-/
 theorem fourier_expansion_proof (f : BooleanFunction n) (x : Cube n) :
     f x = ∑ S : Finset (Fin n), 𝓕 f S * (χ S) x := by
   simp only [fourierCoeff, inner_def]
@@ -250,7 +288,9 @@ theorem fourier_expansion_proof (f : BooleanFunction n) (x : Cube n) :
     then `c_S = 𝓕 f S` for all `S`.
 
     Proof: take `⟪–, χ T⟫` of both sides. On the right, orthonormality
-    kills every term except `S = T`, leaving `c T`. On the left we get `𝓕 f T`. -/
+    kills every term except `S = T`, leaving `c T`. On the left we get `𝓕 f T`.
+@isnad1 id=eq.1h4v.s6.f02dabf7f6e0 from=translated src=- shape=a1b1e0e0 vocab=dbddc1e2
+-/
 theorem fourier_uniqueness_proof (f : BooleanFunction n) (c : Finset (Fin n) → ℝ)
     (h : ∀ x, f x = ∑ S : Finset (Fin n), c S * (χ S) x)
     (T : Finset (Fin n)) : c T = 𝓕 f T := by
@@ -285,13 +325,17 @@ The parity functions `χ S` form an orthonormal basis for `BooleanFunction n`
 under the uniform-measure inner product. Plancherel and Parseval follow
 directly from Mathlib's `OrthonormalBasis` API. -/
 
-/-- The parity functions are orthonormal under the uniform-measure inner product. -/
+/-- The parity functions are orthonormal under the uniform-measure inner product.
+@isnad1 id=orthonor.0h1v.s4.7259a1cfc3a7 from=translated src=- shape=0b62bb8d vocab=1cdb834c
+-/
 theorem parityFun_orthonormal : Orthonormal ℝ (parityFun (n := n)) := by
   rw [orthonormal_iff_ite]
   intro i j
   exact parityFun_orthonormal_proof i j
 
-/-- The parity functions span `BooleanFunction n`. -/
+/-- The parity functions span `BooleanFunction n`.
+@isnad1 id=le.0h1v.s7.c29e26f73f35 from=translated src=- shape=2859cc94 vocab=b0a4a04f
+-/
 theorem parityFun_span : ⊤ ≤ Submodule.span ℝ (Set.range (parityFun (n := n))) := by
   intro f _
   have hexp := fourier_expansion_proof f
@@ -310,13 +354,18 @@ noncomputable def parityOrthonormalBasis :
     OrthonormalBasis (Finset (Fin n)) ℝ (BooleanFunction n) :=
   OrthonormalBasis.mk parityFun_orthonormal parityFun_span
 
+/--
+@isnad1 id=eq.0h2v.s5.9498ccf42b61 from=translated src=- shape=14eff106 vocab=a0e5b415
+-/
 @[simp] theorem parityOrthonormalBasis_apply (S : Finset (Fin n)) :
     parityOrthonormalBasis S = parityFun S := by
   show (OrthonormalBasis.mk parityFun_orthonormal parityFun_span) S = _
   simp [OrthonormalBasis.coe_mk]
 
 /-- **Plancherel's theorem**: `⟪f, g⟫ = ∑_S 𝓕 f S · 𝓕 g S`.
-    Derived from the `OrthonormalBasis` of parity functions. -/
+    Derived from the `OrthonormalBasis` of parity functions.
+@isnad1 id=eq.0h3v.s5.5c2f4536372b from=translated src=- shape=4506ef16 vocab=1b5a3813
+-/
 theorem plancherel_proof (f g : BooleanFunction n) :
     ⟪f, g⟫ = ∑ S : Finset (Fin n), 𝓕 f S * 𝓕 g S := by
   have h := parityOrthonormalBasis.sum_inner_mul_inner f g
@@ -326,21 +375,27 @@ theorem plancherel_proof (f g : BooleanFunction n) :
 
 /-! ### Helpers for §1.4 Proposition 1.15 (variance–distance bounds) -/
 
-/-- `dist(f, 1) = Pr[f = -1]` for Boolean-valued `f`. -/
+/-- `dist(f, 1) = Pr[f = -1]` for Boolean-valued `f`.
+@isnad1 id=eq.1h2v.s5.71060c01df0e from=translated src=- shape=8e40e0ee vocab=2a8805fb
+-/
 theorem hammingDist_const_one (f : BooleanFunction n) (hf : IsBooleanValued f) :
     hammingDist f (fun _ => 1) = Pr[fun x => f x = -1] := by
   unfold hammingDist prob indicator; congr 1; ext x
   rcases hf x with h | h <;>
     simp [h, show (1 : ℝ) ≠ -1 by norm_num, show (-1 : ℝ) ≠ 1 by norm_num]
 
-/-- `dist(f, -1) = Pr[f = 1]` for Boolean-valued `f`. -/
+/-- `dist(f, -1) = Pr[f = 1]` for Boolean-valued `f`.
+@isnad1 id=eq.1h2v.s5.9e82170a9ede from=translated src=- shape=be67a762 vocab=2a8805fb
+-/
 theorem hammingDist_const_neg_one (f : BooleanFunction n) (hf : IsBooleanValued f) :
     hammingDist f (fun _ => -1) = Pr[fun x => f x = 1] := by
   unfold hammingDist prob indicator; congr 1; ext x
   rcases hf x with h | h <;>
     simp [h, show (1 : ℝ) ≠ -1 by norm_num, show (-1 : ℝ) ≠ 1 by norm_num]
 
-/-- For `p, q ≥ 0` with `p + q = 1`: `2 · min(q, p) ≤ 4pq ≤ 4 · min(q, p)`. -/
+/-- For `p, q ≥ 0` with `p + q = 1`: `2 · min(q, p) ≤ 4pq ≤ 4 · min(q, p)`.
+@isnad1 id=and.3h2v.s7.35331500cf3c from=translated src=- shape=f27bf01f vocab=c3faeed2
+-/
 theorem variance_dist_bounds_arith (p q : ℝ) (hp : 0 ≤ p) (hq : 0 ≤ q) (hpq : p + q = 1) :
     2 * min q p ≤ 4 * p * q ∧ 4 * p * q ≤ 4 * min q p := by
   rcases le_total q p with hle | hle
@@ -353,11 +408,15 @@ theorem variance_dist_bounds_arith (p q : ℝ) (hp : 0 ≤ p) (hq : 0 ≤ q) (hp
 
 /-! ### Helpers for §1.5 (densities and convolution) -/
 
-/-- `z + y + y = z` in `𝔽₂ⁿ` (characteristic 2 cancellation). -/
+/-- `z + y + y = z` in `𝔽₂ⁿ` (characteristic 2 cancellation).
+@isnad1 id=eq.0h3v.s7.1825d706c95a from=translated src=- shape=affc447f vocab=56776133
+-/
 theorem cube_add_right_cancel (z y : Cube n) : z + y + y = z := by
   ext i; simp [Pi.add_apply, add_assoc, CharTwo.add_self_eq_zero]
 
-/-- `setDensity {0}` evaluates to `2^n` at `0` and `0` elsewhere. -/
+/-- `setDensity {0}` evaluates to `2^n` at `0` and `0` elsewhere.
+@isnad1 id=eq.0h2v.s8.3215679123a1 from=translated src=- shape=20b84a47 vocab=8227917f
+-/
 theorem setDensity_singleton_zero_ite (y : Cube n) :
     setDensity ({0} : Finset (Cube n)) y = if y = 0 then (2 : ℝ) ^ n else 0 := by
   unfold setDensity indicator
@@ -366,7 +425,9 @@ theorem setDensity_singleton_zero_ite (y : Cube n) :
   · subst hy; simp [expect, Finset.expect_eq_sum_div_card, Finset.card_univ, ZMod.card]
   · ring
 
-/-- `setDensity {0}` equals the sum of all parity functions. -/
+/-- `setDensity {0}` equals the sum of all parity functions.
+@isnad1 id=eq.0h2v.s6.0f719659fdbe from=translated src=- shape=5a74dd9c vocab=44fc7150
+-/
 theorem setDensity_singleton_zero_proof :
     ∀ y : Cube n, setDensity ({0} : Finset (Cube n)) y =
       ∑ S : Finset (Fin n), (χ S) y := by
@@ -378,7 +439,9 @@ theorem setDensity_singleton_zero_proof :
   · subst hy; simp [expect, Finset.expect_eq_sum_div_card, Finset.card_univ, ZMod.card]
   · ring
 
-/-- Every Fourier coefficient of `setDensity {0}` is `1`. -/
+/-- Every Fourier coefficient of `setDensity {0}` is `1`.
+@isnad1 id=eq.0h2v.s6.f16d0fb98fe9 from=translated src=- shape=fefa9f61 vocab=6d9d544c
+-/
 theorem fourierCoeff_setDensity_singleton_zero_proof (S : Finset (Fin n)) :
     𝓕 (setDensity ({0} : Finset (Cube n))) S = 1 := by
   simp only [fourierCoeff, inner_def]
@@ -387,7 +450,9 @@ theorem fourierCoeff_setDensity_singleton_zero_proof (S : Finset (Fin n)) :
   rw [Finset.sum_ite_eq', ite_eq_left (Finset.mem_univ _)]
   simp [parityFun_zero]
 
-/-- The convolution of two densities is again a density. -/
+/-- The convolution of two densities is again a density.
+@isnad1 id=isdensit.2h3v.s4.8c7df83a5c22 from=translated src=- shape=85b2e57a vocab=721c15b3
+-/
 theorem convolution_density_isDensity_proof (φ ψ : BooleanFunction n)
     (hφ : IsDensity φ) (hψ : IsDensity ψ) :
     IsDensity (φ ⊛ ψ) := by
@@ -420,7 +485,9 @@ theorem convolution_density_isDensity_proof (φ ψ : BooleanFunction n)
     rw [expect_unfold (f := ψ)] at hψ1
     nlinarith
 
-/-- The convolution theorem: `𝓕 (f ⊛ g) S = (𝓕 f S) · (𝓕 g S)`. -/
+/-- The convolution theorem: `𝓕 (f ⊛ g) S = (𝓕 f S) · (𝓕 g S)`.
+@isnad1 id=eq.0h4v.s5.c3c9e67aaa40 from=translated src=- shape=25bf2e95 vocab=5ea62818
+-/
 theorem fourierCoeff_convolution_proof (f g : BooleanFunction n) (S : Finset (Fin n)) :
     𝓕 (f ⊛ g) S = (𝓕 f S) * (𝓕 g S) := by
   simp only [fourierCoeff, inner_def, convolution]
@@ -458,7 +525,9 @@ theorem fourierCoeff_convolution_proof (f g : BooleanFunction n) (S : Finset (Fi
 
 /-! ### Helpers for §1.6 (BLR test and local correctability) -/
 
-/-- `Pr[P] + Pr[¬P] = 1`. -/
+/-- `Pr[P] + Pr[¬P] = 1`.
+@isnad1 id=eq.0h2v.s5.71a8108846b3 from=translated src=- shape=878832ab vocab=1c80aec6
+-/
 theorem prob_compl (P : Cube n → Prop) : Pr[P] + Pr[fun x => ¬ P x] = 1 := by
   simp only [prob, expect_unfold, indicator]
   rw [← mul_add, ← Finset.sum_add_distrib]
@@ -469,12 +538,16 @@ theorem prob_compl (P : Cube n → Prop) : Pr[P] + Pr[fun x => ¬ P x] = 1 := by
   rw [Finset.sum_congr rfl (fun x _ => this x)]
   simp [Fintype.card_fin, ZMod.card]
 
-/-- `0 ≤ Pr[P]`. -/
+/-- `0 ≤ Pr[P]`.
+@isnad1 id=le.0h2v.s4.74c598c71204 from=translated src=- shape=845eeb91 vocab=59bb0d39
+-/
 theorem prob_nonneg (P : Cube n → Prop) : 0 ≤ Pr[P] := by
   simp only [prob, indicator, expect_unfold]
   apply mul_nonneg (by positivity) (Finset.sum_nonneg (fun x _ => by split_ifs <;> norm_num))
 
-/-- Union bound: if `¬P ⊆ Q ∪ R` then `Pr[¬P] ≤ Pr[Q] + Pr[R]`. -/
+/-- Union bound: if `¬P ⊆ Q ∪ R` then `Pr[¬P] ≤ Pr[Q] + Pr[R]`.
+@isnad1 id=le.1h4v.s5.54943bc40ce5 from=translated src=- shape=34f49aec vocab=c71efe64
+-/
 theorem prob_union_bound {P Q R : Cube n → Prop}
     (h : ∀ x, ¬ P x → Q x ∨ R x) :
     Pr[fun x => ¬ P x] ≤ Pr[Q] + Pr[R] := by
@@ -488,21 +561,27 @@ theorem prob_union_bound {P Q R : Cube n → Prop}
     · simp [hp, hq]; split_ifs <;> linarith
     · simp [hp, hr]; split_ifs <;> linarith
 
-/-- Shift invariance of probability: `Pr_y[P(x + y)] = Pr_z[P(z)]`. -/
+/-- Shift invariance of probability: `Pr_y[P(x + y)] = Pr_z[P(z)]`.
+@isnad1 id=eq.0h3v.s6.77701c406fca from=translated src=- shape=2a04b3f9 vocab=920ed7e6
+-/
 theorem prob_shift (P : Cube n → Prop) (x : Cube n) :
     Pr[fun y => P (x + y)] = Pr[P] := by
   simp only [prob, expect_unfold, indicator]; congr 1
   exact Equiv.sum_comp (Equiv.addLeft x)
     (fun z => @ite ℝ (P z) (Classical.propDecidable _) 1 0)
 
-/-- `χ S y · χ S (x + y) = χ S x` (key identity for local correctability). -/
+/-- `χ S y · χ S (x + y) = χ S x` (key identity for local correctability).
+@isnad1 id=eq.0h4v.s6.7a8154416f48 from=translated src=- shape=14de0ff7 vocab=b85e5e96
+-/
 theorem parityFun_mul_cancel (S : Finset (Fin n)) (x y : Cube n) :
     (χ S) y * (χ S) (x + y) = (χ S) x := by
   rw [parityFun_add]; have h := parityFun_sq S y
   have : (χ S) y * ((χ S) x * (χ S) y) = (χ S) x * ((χ S) y * (χ S) y) := by ring
   rw [this, show (χ S) y * (χ S) y = (χ S) y ^ 2 from by ring, h, mul_one]
 
-/-- Local correctability of the Fourier decoding algorithm. -/
+/-- Local correctability of the Fourier decoding algorithm.
+@isnad1 id=le.1h5v.s7.9cd7443d29d7 from=translated src=- shape=ffbe2b71 vocab=65fd8c6c
+-/
 theorem local_correctability_proof (f : BooleanFunction n)
     (S : Finset (Fin n)) (ε : ℝ) (hclose : IsClose f (χ S) ε) (x : Cube n) :
     Pr[fun y => f y * f (x + y) = (χ S) x] ≥ 1 - 2 * ε := by
@@ -520,12 +599,16 @@ theorem local_correctability_proof (f : BooleanFunction n)
 
 /-! ### Helpers for §1.6 (BLR acceptance probability and soundness) -/
 
-/-- **Parseval's theorem**: `⟪f, f⟫ = ∑_S (𝓕 f S)²`. -/
+/-- **Parseval's theorem**: `⟪f, f⟫ = ∑_S (𝓕 f S)²`.
+@isnad1 id=eq.0h2v.s5.75e5c422cad6 from=translated src=- shape=e07c4690 vocab=bb699b52
+-/
 theorem parseval_proof (f : BooleanFunction n) :
     ⟪f, f⟫ = ∑ S : Finset (Fin n), (𝓕 f S) ^ 2 := by
   rw [plancherel_proof]; congr 1; ext S; rw [sq]
 
-/-- Parseval's theorem for Boolean-valued functions. -/
+/-- Parseval's theorem for Boolean-valued functions.
+@isnad1 id=eq.1h2v.s5.05a52ff344a2 from=translated src=- shape=1e0273e3 vocab=9a5a49db
+-/
 theorem parseval_boolean_proof (f : BooleanFunction n) (hf : IsBooleanValued f) :
     ∑ S : Finset (Fin n), (𝓕 f S) ^ 2 = 1 := by
   rw [← parseval_proof]; simp only [inner_def]
@@ -533,7 +616,9 @@ theorem parseval_boolean_proof (f : BooleanFunction n) (hf : IsBooleanValued f) 
     fun x => by rcases hf x with h | h <;> simp [h],
     Finset.sum_const, nsmul_eq_mul, mul_one, Finset.card_univ]; simp [ZMod.card]
 
-/-- For Boolean `f`, `(𝓕 f S)² ≤ 1`. -/
+/-- For Boolean `f`, `(𝓕 f S)² ≤ 1`.
+@isnad1 id=le.1h3v.s5.9f85586367ff from=translated src=- shape=fa9b4af4 vocab=0166a220
+-/
 theorem fourierCoeff_sq_le_one (f : BooleanFunction n) (hf : IsBooleanValued f)
     (S : Finset (Fin n)) : (𝓕 f S) ^ 2 ≤ 1 := by
   linarith [parseval_boolean_proof f hf,
@@ -541,14 +626,18 @@ theorem fourierCoeff_sq_le_one (f : BooleanFunction n) (hf : IsBooleanValued f)
       (Finset.mem_univ S)]
 
 /-- For Boolean `f`, `(𝓕 f S)³ ≤ c · (𝓕 f S)²` when `c` dominates all Fourier
-    coefficients. -/
+    coefficients.
+@isnad1 id=le.2h5v.s6.ec61f4a1572f from=translated src=- shape=31ed9a34 vocab=2715b409
+-/
 theorem cube_le_max_sq (_f : BooleanFunction n) (_hf : IsBooleanValued f)
     (c : ℝ) (hmax : ∀ T, 𝓕 f T ≤ c) (S : Finset (Fin n)) :
     (𝓕 f S) ^ 3 ≤ c * (𝓕 f S) ^ 2 := by
   rw [show (𝓕 f S) ^ 3 = 𝓕 f S * (𝓕 f S) ^ 2 from by ring]
   exact mul_le_mul_of_nonneg_right (hmax S) (sq_nonneg _)
 
-/-- Parity functions are Boolean-valued. -/
+/-- Parity functions are Boolean-valued.
+@isnad1 id=isboolea.0h2v.s3.92e2d95420d0 from=translated src=- shape=52838ee4 vocab=58287921
+-/
 theorem parityFun_isBoolean (S : Finset (Fin n)) : IsBooleanValued (χ S) := by
   intro x; have h := parityFun_sq S x
   have : ((χ S) x - 1) * ((χ S) x + 1) = 0 := by nlinarith
@@ -556,20 +645,26 @@ theorem parityFun_isBoolean (S : Finset (Fin n)) : IsBooleanValued (χ S) := by
   · left; linarith
   · right; linarith
 
-/-- `dist(f, χ S) = (1 - 𝓕 f S) / 2` for Boolean-valued `f`. -/
+/-- `dist(f, χ S) = (1 - 𝓕 f S) / 2` for Boolean-valued `f`.
+@isnad1 id=eq.1h3v.s5.efec05161aa4 from=translated src=- shape=ef215d4b vocab=b55f7626
+-/
 theorem hammingDist_eq_fourier (f : BooleanFunction n) (hf : IsBooleanValued f)
     (S : Finset (Fin n)) : hammingDist f (χ S) = (1 - 𝓕 f S) / 2 := by
   have h := inner_add_two_hammingDist f (χ S) hf (parityFun_isBoolean S)
   show hammingDist f (χ S) = (1 - ⟪f, χ S⟫) / 2; linarith
 
-/-- For Boolean `f`, the BLR indicator equals `(1 + f(x)·f(y)·f(x+y))/2`. -/
+/-- For Boolean `f`, the BLR indicator equals `(1 + f(x)·f(y)·f(x+y))/2`.
+@isnad1 id=eq.1h4v.s7.c8b88af7eeff from=translated src=- shape=712cb033 vocab=03e810ff
+-/
 theorem blr_indicator_eq (f : BooleanFunction n) (hf : IsBooleanValued f) (x y : Cube n) :
     (𝟙 (fun y => f x * f y = f (x + y))) y = (1 + f x * f y * f (x + y)) / 2 := by
   unfold indicator
   rcases hf x with h1 | h1 <;> rcases hf y with h2 | h2 <;> rcases hf (x + y) with h3 | h3 <;>
     simp [h1, h2, h3, show (1 : ℝ) ≠ -1 by norm_num, show (-1 : ℝ) ≠ 1 by norm_num]
 
-/-- `𝔼_x[𝔼_y[f(x)·f(y)·f(x+y)]] = ⟪f, f ⊛ f⟫`. -/
+/-- `𝔼_x[𝔼_y[f(x)·f(y)·f(x+y)]] = ⟪f, f ⊛ f⟫`.
+@isnad1 id=eq.0h2v.s6.ffae0934e888 from=translated src=- shape=42c96c3d vocab=13a9ee2c
+-/
 theorem triple_expect_eq (f : BooleanFunction n) :
     𝔼[fun x => 𝔼[fun y => f x * f y * f (x + y)]] = ⟪f, f ⊛ f⟫ := by
   simp only [inner_def, convolution]
@@ -586,13 +681,17 @@ theorem triple_expect_eq (f : BooleanFunction n) :
     f x * f y * f (x + y) = f x * (f y * f (x + y)) from fun y => by ring,
     ← Finset.mul_sum]; ring
 
-/-- `⟪f, f ⊛ f⟫ = ∑_S (𝓕 f S)³`. -/
+/-- `⟪f, f ⊛ f⟫ = ∑_S (𝓕 f S)³`.
+@isnad1 id=eq.0h2v.s5.f5e264f4da6c from=translated src=- shape=fb4cd1a9 vocab=59f1be3b
+-/
 theorem inner_conv_eq_sum_cube (f : BooleanFunction n) :
     ⟪f, f ⊛ f⟫ = ∑ S : Finset (Fin n), (𝓕 f S) ^ 3 := by
   rw [plancherel_proof]; apply Finset.sum_congr rfl; intro S _
   rw [fourierCoeff_convolution_proof]; ring
 
-/-- Linearity of expectation: `𝔼[c + g] = c + 𝔼[g]`. -/
+/-- Linearity of expectation: `𝔼[c + g] = c + 𝔼[g]`.
+@isnad1 id=eq.0h3v.s5.9be5fef2d9a0 from=translated src=- shape=29eb9dfb vocab=9a2dc3bf
+-/
 theorem expect_add_const (c : ℝ) (g : BooleanFunction n) :
     𝔼[fun x => c + g x] = c + 𝔼[g] := by
   rw [expect_unfold (f := fun x : Cube n => c + g x), expect_unfold (f := g),
@@ -600,12 +699,16 @@ theorem expect_add_const (c : ℝ) (g : BooleanFunction n) :
   simp [Finset.card_univ, ZMod.card]
   field_simp
 
-/-- Linearity of expectation: `𝔼[c · g] = c · 𝔼[g]`. -/
+/-- Linearity of expectation: `𝔼[c · g] = c · 𝔼[g]`.
+@isnad1 id=eq.0h3v.s5.2635e107b73a from=translated src=- shape=29eb9dfb vocab=32e3c615
+-/
 theorem expect_scale (c : ℝ) (g : BooleanFunction n) :
     𝔼[fun x => c * g x] = c * 𝔼[g] := by
   unfold expect; exact (Finset.mul_expect ..).symm
 
-/-- The BLR acceptance probability formula. -/
+/-- The BLR acceptance probability formula.
+@isnad1 id=eq.1h2v.s6.a2961f37f6b6 from=translated src=- shape=104663e4 vocab=af0eaaa2
+-/
 theorem blrAcceptProb_eq_proof (f : BooleanFunction n) (hf : IsBooleanValued f) :
     blrAcceptProb f = 1 / 2 + 1 / 2 * ∑ S : Finset (Fin n), (𝓕 f S) ^ 3 := by
   rw [← inner_conv_eq_sum_cube, ← triple_expect_eq]
@@ -632,7 +735,9 @@ theorem blrAcceptProb_eq_proof (f : BooleanFunction n) (hf : IsBooleanValued f) 
     expect_scale (c := 1 / 2) (g := fun y : Cube n => f x * f y * f (x + y))]
 
 /-- **BLR completeness**: If `f` is linear (i.e., `f = χ_S` for some `S`),
-    then the BLR test accepts with probability 1. -/
+    then the BLR test accepts with probability 1.
+@isnad1 id=eq.1h2v.s4.c58d639963f3 from=translated src=- shape=8a997a78 vocab=be8c3dac
+-/
 theorem blr_completeness_proof (f : BooleanFunction n) (hf : IsLinear f) :
     blrAcceptProb f = 1 := by
   obtain ⟨S, hS⟩ := hf
@@ -647,7 +752,9 @@ theorem blr_completeness_proof (f : BooleanFunction n) (hf : IsLinear f) :
   simp_rw [hind]; simp [expect, Finset.expect_const]
 
 /-- BLR soundness: if the BLR test accepts with probability `≥ 1 - ε`,
-    then `f` is `ε`-close to a linear function. -/
+    then `f` is `ε`-close to a linear function.
+@isnad1 id=iscloset.2h3v.s5.6acd1881f7bf from=translated src=- shape=8ce6d94f vocab=b72d3492
+-/
 theorem blr_soundness_proof (f : BooleanFunction n) (hf : IsBooleanValued f) (ε : ℝ)
     (hε : blrAcceptProb f ≥ 1 - ε) :
     IsCloseToProperty f IsLinear ε := by
@@ -669,7 +776,9 @@ theorem blr_soundness_proof (f : BooleanFunction n) (hf : IsBooleanValued f) (ε
 
 /-! ### Equivalence of linearity characterizations (§1.6) -/
 
-/-- For Boolean-valued multiplicative `f`, `f(0) = 1`. -/
+/-- For Boolean-valued multiplicative `f`, `f(0) = 1`.
+@isnad1 id=eq.2h2v.s6.cba028c5fb10 from=translated src=- shape=8c8c02e3 vocab=632e423e
+-/
 theorem multiplicative_zero (f : BooleanFunction n) (hf : IsBooleanValued f)
     (hmul : IsMultiplicative f) : f 0 = 1 := by
   have h := hmul 0 0
@@ -678,14 +787,18 @@ theorem multiplicative_zero (f : BooleanFunction n) (hf : IsBooleanValued f)
   · exact h0
   · exfalso; rw [h0] at h; linarith
 
-/-- Linear implies multiplicative. -/
+/-- Linear implies multiplicative.
+@isnad1 id=ismultip.1h2v.s3.f3edeeca5095 from=translated src=- shape=b28a8773 vocab=8461512b
+-/
 theorem isLinear_isMultiplicative (f : BooleanFunction n) (hlin : IsLinear f) :
     IsMultiplicative f := by
   obtain ⟨S, hS⟩ := hlin
   intro x y; rw [hS, hS, hS, parityFun_add]
 
 /-- A multiplicative function distributes over finite sums:
-    `f(∑_{i ∈ s} gᵢ) = ∏_{i ∈ s} f(gᵢ)`. -/
+    `f(∑_{i ∈ s} gᵢ) = ∏_{i ∈ s} f(gᵢ)`.
+@isnad1 id=eq.2h5v.s6.ba4045a0d27d from=translated src=- shape=40a98a22 vocab=b0a3e37c
+-/
 theorem multiplicative_finset_sum {ι : Type*} (f : BooleanFunction n) (hf : IsBooleanValued f)
     (hmul : IsMultiplicative f) (s : Finset ι) (g : ι → Cube n) :
     f (∑ i ∈ s, g i) = ∏ i ∈ s, f (g i) := by
@@ -694,7 +807,9 @@ theorem multiplicative_finset_sum {ι : Type*} (f : BooleanFunction n) (hf : IsB
   | cons a s has ih => rw [Finset.sum_cons, Finset.prod_cons, hmul, ih]
 
 /-- In `𝔽₂ⁿ`, every element is the sum of its support basis vectors:
-    `x = ∑_{i : x i = 1} eᵢ`. -/
+    `x = ∑_{i : x i = 1} eᵢ`.
+@isnad1 id=eq.0h2v.s8.2c172c65c870 from=translated src=- shape=d304c61b vocab=36a79ffc
+-/
 theorem cube_eq_sum_support (x : Cube n) :
     x = ∑ i ∈ Finset.univ.filter (fun i => x i = 1), Pi.single i 1 := by
   ext j
@@ -703,7 +818,9 @@ theorem cube_eq_sum_support (x : Cube n) :
 
 /-- Multiplicative + Boolean-valued implies linear.
     Key idea: define `S = {i | f(eᵢ) = -1}` and show `f = χ S` by
-    decomposing `x` into a sum of basis vectors and using multiplicativity. -/
+    decomposing `x` into a sum of basis vectors and using multiplicativity.
+@isnad1 id=islinear.2h2v.s4.1a5fa77f627c from=translated src=- shape=f21b6ac0 vocab=20b42009
+-/
 theorem isMultiplicative_isLinear (f : BooleanFunction n) (hf : IsBooleanValued f)
     (hmul : IsMultiplicative f) : IsLinear f := by
   let S := Finset.univ.filter (fun i : Fin n => f (Pi.single i 1) = -1)
@@ -751,7 +868,9 @@ theorem isMultiplicative_isLinear (f : BooleanFunction n) (hf : IsBooleanValued 
   congr 1
   ext i; simp [Finset.mem_filter, and_comm]
 
-/-- **Definition 1.28** (equivalence): Linear ↔ multiplicative for Boolean-valued functions. -/
+/-- **Definition 1.28** (equivalence): Linear ↔ multiplicative for Boolean-valued functions.
+@isnad1 id=iff.1h2v.s4.197e1ce2f081 from=translated src=- shape=5ba06184 vocab=20b42009
+-/
 theorem isLinear_iff_isMultiplicative (f : BooleanFunction n) (hf : IsBooleanValued f) :
     IsLinear f ↔ IsMultiplicative f :=
   ⟨isLinear_isMultiplicative f, isMultiplicative_isLinear f hf⟩
@@ -763,13 +882,17 @@ private theorem indicator_sum_eq_card (A : Finset (Cube n)) :
     ∑ x : Cube n, (𝟙 (· ∈ A)) x = ↑A.card := by
   simp only [indicator]; norm_cast; simp
 
-/-- The expectation of an indicator is positive when the set is nonempty. -/
+/-- The expectation of an indicator is positive when the set is nonempty.
+@isnad1 id=lt.1h2v.s5.cc306608a314 from=translated src=- shape=df0db57b vocab=c90e0010
+-/
 theorem expect_indicator_pos (A : Finset (Cube n)) (hA : A.Nonempty) :
     0 < 𝔼[𝟙 (· ∈ A)] := by
   simp only [expect_unfold]; rw [indicator_sum_eq_card]
   exact mul_pos (by positivity) (Nat.cast_pos.mpr hA.card_pos)
 
-/-- For nonempty `A`, `setDensity A` is a valid probability density. -/
+/-- For nonempty `A`, `setDensity A` is a valid probability density.
+@isnad1 id=isdensit.1h2v.s4.e1677e88a8a5 from=translated src=- shape=371d3533 vocab=b880fdbb
+-/
 theorem setDensity_isDensity_proof (A : Finset (Cube n)) (hA : A.Nonempty) :
     IsDensity (setDensity A) := by
   have hpos := expect_indicator_pos A hA
@@ -784,7 +907,9 @@ theorem setDensity_isDensity_proof (A : Finset (Cube n)) (hA : A.Nonempty) :
     rw [expect_scale]
     exact one_div_mul_cancel (ne_of_gt hpos)
 
-/-- **Fact 1.23** (general): `𝓕 φ_A S = (1/|A|) · ∑_{x ∈ A} χ_S(x)`. -/
+/-- **Fact 1.23** (general): `𝓕 φ_A S = (1/|A|) · ∑_{x ∈ A} χ_S(x)`.
+@isnad1 id=eq.1h3v.s6.2e3b0fba5f77 from=translated src=- shape=9178dc90 vocab=85012a37
+-/
 theorem fourierCoeff_setDensity_proof (A : Finset (Cube n)) (hA : A.Nonempty)
     (S : Finset (Fin n)) :
     𝓕 (setDensity A) S = (1 / A.card) * ∑ x ∈ A, (χ S) x := by

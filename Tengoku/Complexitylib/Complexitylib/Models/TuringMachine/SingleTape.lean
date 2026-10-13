@@ -60,7 +60,9 @@ namespace NTM
 def singleTapeSimTime (k : ℕ) (T : ℕ → ℕ) : ℕ → ℕ :=
   fun n => 16 * (k + 1) * (T n + n + 1) ^ 2
 
-/-- The simulation's time overhead stays polynomial. -/
+/-- The simulation's time overhead stays polynomial.
+@isnad1 id=bigo.1h3v.s6.7914c029d710 from=translated src=- shape=9b792ea2 vocab=cde0054c
+-/
 theorem singleTapeSimTime_bigO {k : ℕ} {T : ℕ → ℕ} {c : ℕ} (hTO : T =O (· ^ c)) :
     singleTapeSimTime k T =O (· ^ (2 * c + 2)) := by
   -- `T n + n + 1` is `O(n^(c+1))`: each summand is.
@@ -84,7 +86,9 @@ theorem singleTapeSimTime_bigO {k : ℕ} {T : ℕ → ℕ} {c : ℕ} (hTO : T =O
     whenever `N` does: an arbitrary simulator choice stream induces an `N`-run
     (read off at the closed-form decision positions), `N` halts on it within
     `T`, and the simulator then halts right after its corresponding macro-step
-    (`SingleTape.halted_singleTapeSim_of_trace_qhalt`). -/
+    (`SingleTape.halted_singleTapeSim_of_trace_qhalt`).
+@isnad1 id=allpaths.2h3v.s5.f33e94e6164c from=translated src=- shape=d3c83489 vocab=968c79b5
+-/
 theorem singleTapeSim_allPathsHaltIn {k : ℕ} (N : NTM k) (hk : 1 ≤ k) {T : ℕ → ℕ}
     (hN : N.AllPathsHaltIn T) :
     (singleTapeSim N).AllPathsHaltIn (singleTapeSimTime k T) := by
@@ -112,7 +116,9 @@ theorem singleTapeSim_allPathsHaltIn {k : ℕ} (N : NTM k) (hk : 1 ≤ k) {T : �
     The all-paths-halt hypothesis `hN` is necessary for the forward direction:
     the simulator's quadratic budget `16(k+1)(T+n+1)²` leaves room to complete
     `N`-runs *longer* than `T n`, so without `hN` the simulator could accept
-    along a path whose induced `N`-run accepts only after the bound. -/
+    along a path whose induced `N`-run accepts only after the bound.
+@isnad1 id=iff.2h4v.s5.785e6267b259 from=translated src=- shape=5cd35e46 vocab=f1796551
+-/
 theorem singleTapeSim_acceptsInTime_iff {k : ℕ} (N : NTM k) (hk : 1 ≤ k) (T : ℕ → ℕ)
     (hN : N.AllPathsHaltIn T) (x : List Bool) :
     (singleTapeSim N).AcceptsInTime x (singleTapeSimTime k T x.length)
@@ -142,7 +148,9 @@ theorem singleTapeSim_acceptsInTime_iff {k : ℕ} (N : NTM k) (hk : 1 ≤ k) (T 
       (SingleTape.acceptsInTime_singleTapeSim_of_acceptsInTime N hk x (T x.length) h)
 
 /-- The single-tape simulator decides the same language within the overhead time
-    bound. -/
+    bound.
+@isnad1 id=decidesi.2h4v.s5.6ab7a958f13c from=translated src=- shape=8611cc72 vocab=a7cb72b3
+-/
 theorem singleTapeSim_decidesInTime {k : ℕ} {L : Language} (N : NTM k) (hk : 1 ≤ k) {T : ℕ → ℕ}
     (hdec : N.DecidesInTime L T) :
     (singleTapeSim N).DecidesInTime L (singleTapeSimTime k T) :=
@@ -153,7 +161,9 @@ theorem singleTapeSim_decidesInTime {k : ℕ} {L : Language} (N : NTM k) (hk : 1
     polynomial time bound, then some single-work-tape machine `N'` decides the
     same `L` within a polynomial time bound. For `k = 0` the machine is padded
     with a dummy work tape (`pad0`); for `k ≥ 1` it is simulated
-    (`singleTapeSim`). -/
+    (`singleTapeSim`).
+@isnad1 id=ex.2h5v.s6.b24b42dae51b from=translated src=- shape=3a0dcd35 vocab=9e110e59
+-/
 theorem exists_singleTape_decidesInTime {k : ℕ} {L : Language} (N : NTM k)
     {T : ℕ → ℕ} {c : ℕ} (hdec : N.DecidesInTime L T) (hTO : T =O (· ^ c)) :
     ∃ (N' : NTM 1) (T' : ℕ → ℕ) (c' : ℕ), N'.DecidesInTime L T' ∧ T' =O (· ^ c') := by

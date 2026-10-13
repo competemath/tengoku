@@ -63,17 +63,26 @@ def segGlue {ℓ i : ℕ} (p : Fin i → G.D) (d : G.D) (s : Fin (ℓ - (i + 1))
     else if hk2 : k.val = i then d
     else s ⟨k.val - (i + 1), by have := k.isLt; omega⟩
 
+/--
+@isnad1 id=eq.1h6v.s6.93b326900d24 from=translated src=- shape=c0d35a0f vocab=262efb14
+-/
 @[simp] theorem segPre_segGlue {ℓ i : ℕ} (hi : i ≤ ℓ) (p : Fin i → G.D) (d : G.D)
     (s : Fin (ℓ - (i + 1)) → G.D) :
     G.segPre (G.segGlue p d s) hi = p := by
   funext k
   simp [segPre, preWalk, segGlue, k.isLt]
 
+/--
+@isnad1 id=eq.1h6v.s5.ddd4f907a457 from=translated src=- shape=5ac1d3aa vocab=e8b29a70
+-/
 @[simp] theorem segMid_segGlue {ℓ i : ℕ} (hi : i < ℓ) (p : Fin i → G.D) (d : G.D)
     (s : Fin (ℓ - (i + 1)) → G.D) :
     G.segGlue p d s ⟨i, hi⟩ = d := by
   simp [segGlue]
 
+/--
+@isnad1 id=eq.0h6v.s6.c60ab54c203c from=translated src=- shape=83d35678 vocab=4fbda818
+-/
 @[simp] theorem segSuf_segGlue {ℓ i : ℕ} (p : Fin i → G.D) (d : G.D)
     (s : Fin (ℓ - (i + 1)) → G.D) :
     G.segSuf (G.segGlue p d s) i = s := by
@@ -86,7 +95,9 @@ def segGlue {ℓ i : ℕ} (p : Fin i → G.D) (d : G.D) (s : Fin (ℓ - (i + 1))
   have : i + 1 + k.val - (i + 1) = k.val := by omega
   exact Fin.ext this
 
-/-- Splitting a walk and gluing it back returns the walk. -/
+/-- Splitting a walk and gluing it back returns the walk.
+@isnad1 id=eq.1h4v.s5.14ef965a6e65 from=translated src=- shape=b985620b vocab=b057bb9b
+-/
 theorem segGlue_split {ℓ i : ℕ} (hi : i < ℓ) (W : Fin ℓ → G.D) :
     G.segGlue (G.segPre W (le_of_lt hi)) (W ⟨i, hi⟩) (G.segSuf W i) = W := by
   funext k
@@ -103,7 +114,9 @@ theorem segGlue_split {ℓ i : ℕ} (hi : i < ℓ) (W : Fin ℓ → G.D) :
     exact Fin.ext this
 
 /-- The suffix walk, started at the vertex the original walk reaches at step
-`i + 1`, tracks the original walk. -/
+`i + 1`, tracks the original walk.
+@isnad1 id=eq.1h6v.s6.f9d2745ed9b5 from=translated src=- shape=a91434a4 vocab=c9508e81
+-/
 theorem walkAt_segSuf {ℓ : ℕ} (v : G.V) (W : Fin ℓ → G.D) (i : ℕ) :
     ∀ m : ℕ, m ≤ ℓ - (i + 1) →
       G.walkAt (ℓ - (i + 1)) (G.walkAt ℓ v W (i + 1)) (G.segSuf W i) m
@@ -123,7 +136,9 @@ theorem walkAt_segSuf {ℓ : ℕ} (v : G.V) (W : Fin ℓ → G.D) (i : ℕ) :
 /-- **Reversal commutes with splitting.** Reversing the suffix of a walk gives
 the prefix of the reversed walk: both are the walk that runs from the far end
 back to the crossing point. This is what makes the suffix condition in the
-powered constraint the same as a condition on walks out of the dart's head. -/
+powered constraint the same as a condition on walks out of the dart's head.
+@isnad1 id=eq.1h5v.s7.2f9ed05178f3 from=translated src=- shape=b35f0e2f vocab=52b5e701
+-/
 theorem revWalk_segSuf {ℓ : ℕ} (v : G.V) (W : Fin ℓ → G.D) {i : ℕ} (hi : i < ℓ) :
     G.revWalk (G.walkAt ℓ v W (i + 1)) (G.segSuf W i)
       = G.segPre (G.revWalk v W) (show ℓ - (i + 1) ≤ ℓ by omega) := by
@@ -167,7 +182,9 @@ theorem revWalk_segSuf {ℓ : ℕ} (v : G.V) (W : Fin ℓ → G.D) {i : ℕ} (hi
 dart `(a, d)` at step `i` are in bijection with pairs of a walk *out of* `a` of
 length `i` — the reversed prefix — and a walk of length `ℓ - (i+1)` — the
 suffix. Any conditions imposed on the two pieces therefore contribute
-independent factors, which is what makes the first moment factorise. -/
+independent factors, which is what makes the first moment factorise.
+@isnad1 id=eq.1h7v.s9.289a8dfc499a from=translated src=- shape=2d3d7fec vocab=d7c78eab
+-/
 theorem card_crossing_eq {ℓ i : ℕ} (hi : i < ℓ) (a : G.V) (d : G.D)
     (Pre : (Fin i → G.D) → Prop) [DecidablePred Pre]
     (Suf : (Fin (ℓ - (i + 1)) → G.D) → Prop) [DecidablePred Suf] :
@@ -232,7 +249,9 @@ theorem card_crossing_eq {ℓ i : ℕ} (hi : i < ℓ) (a : G.V) (d : G.D)
 vertex and the effective walk is counted by counting *walks*, each weighted by
 the number of labels carrying it. This is the step that turns a statement about
 killed-walk labels into one about walks, where the crossing decomposition
-applies. -/
+applies.
+@isnad1 id=eq.2h5v.s9.ce0091b2f568 from=translated src=- shape=b1631a5e vocab=f0e35724
+-/
 theorem card_label_fibre {T q ℓ : ℕ} (hq : 0 < q) (hℓ : ℓ < T)
     (P : G.V × (Fin ℓ → G.D) → Prop) [DecidablePred P] :
     (Finset.univ.filter fun z : G.V × ((Fin T → G.D) × (Fin T → Fin q)) =>
@@ -283,7 +302,9 @@ on the suffix, number
 `(prefix count) * (suffix count) * (fibre weight)`.
 
 The two conditions never interact — that is the independence the killed law
-buys, and the reason the first moment factorises into two plurality bounds. -/
+buys, and the reason the first moment factorises into two plurality bounds.
+@isnad1 id=eq.3h9v.s10.08f880fde985 from=translated src=- shape=62b85aa7 vocab=bd7824be
+-/
 theorem card_label_crossing {T q ℓ i : ℕ} (hq : 0 < q) (hℓ : ℓ < T) (hi : i < ℓ)
     (a : G.V) (d : G.D)
     (Pre : (Fin i → G.D) → Prop) [DecidablePred Pre]
@@ -306,7 +327,9 @@ theorem card_label_crossing {T q ℓ i : ℕ} (hq : 0 < q) (hℓ : ℓ < T) (hi 
 /-- A walk following a prefix of a label sequence agrees with the full walk for
 as long as the prefix lasts. This identifies the crossings of a *killed* walk
 with those of the underlying fixed-length walk, which is what lets the
-correlation bound — stated for fixed length — apply to them. -/
+correlation bound — stated for fixed length — apply to them.
+@isnad1 id=eq.2h6v.s5.62ed7e680409 from=translated src=- shape=0d953e32 vocab=b2b5b9fa
+-/
 theorem walkAt_preWalk {T ℓ : ℕ} (h : ℓ ≤ T) (x : G.V) (s : Fin T → G.D) :
     ∀ k : ℕ, k ≤ ℓ → G.walkAt ℓ x (G.preWalk s h) k = G.walkAt T x s k := by
   intro k

@@ -28,7 +28,9 @@ namespace Complexity
 namespace TM
 
 /-- The input-to-output copy machine computes the identity function within
-the linear time bound `m + 2`. -/
+the linear time bound `m + 2`.
+@isnad1 id=computes.0h1v.s4.ebb6e260c162 from=translated src=- shape=0c99423d vocab=e4eb12a9
+-/
 theorem copyInputToOutputTM_computesInTime (n : ℕ) :
     (copyInputToOutputTM (n := n)).ComputesInTime id (fun m => m + 2) := by
   exact copyInputToOutputTM_computesInTime_internal n

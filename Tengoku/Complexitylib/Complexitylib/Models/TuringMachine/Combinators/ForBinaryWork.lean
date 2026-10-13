@@ -33,7 +33,9 @@ namespace TM
 
 variable {n : ℕ}
 
-/-- Exact remaining execution of a certified binary work-tape loop. -/
+/-- Exact remaining execution of a certified binary work-tape loop.
+@isnad1 id=reachesi.1h8v.s5.95279841b79b from=translated src=- shape=f2bc5e27 vocab=ce66cf7e
+-/
 theorem ForBinaryWorkLoopSpec.reachesIn
     {driverIdx : Fin n} {body : TM n} {bodyTime : ℕ → ℕ}
     {total count value : ℕ}
@@ -45,7 +47,9 @@ theorem ForBinaryWorkLoopSpec.reachesIn
   spec.reachesIn_internal count value htotal
 
 /-- Every prefix up to the exact remaining runtime of a certified binary-work
-loop respects its all-reachable auxiliary-space budget. -/
+loop respects its all-reachable auxiliary-space budget.
+@isnad1 id=withinau.4h12v.s6.fadc89509064 from=translated src=- shape=406671dc vocab=e7631f6c
+-/
 theorem ForBinaryWorkLoopSpaceSpec.prefix_withinAuxSpace
     {driverIdx : Fin n} {body : TM n} {bodyTime : ℕ → ℕ}
     {total inputLength spaceBound count value t : ℕ}
@@ -61,7 +65,9 @@ theorem ForBinaryWorkLoopSpaceSpec.prefix_withinAuxSpace
     htime
 
 /-- Iterating a one-way-output body over a binary work tape remains a
-transducer. -/
+transducer.
+@isnad1 id=istransd.1h3v.s4.8641e24694bd from=translated src=- shape=88a9cf5b vocab=df1aab56
+-/
 theorem IsTransducer.forBinaryWorkTM
     {driverIdx : Fin n} {body : TM n} (hbody : body.IsTransducer) :
     (forBinaryWorkTM driverIdx body).IsTransducer :=

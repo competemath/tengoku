@@ -19,6 +19,9 @@ namespace Complexity
 
 namespace BooleanDependency
 
+/--
+@isnad1 id=eq.0h3v.s8.5b9e01c94616 from=translated src=- shape=8f8ac515 vocab=37372250
+-/
 theorem uniformProbability_restrict_internal {coordinate : Type*}
     [Fintype coordinate] [DecidableEq coordinate]
     (coordinates : Finset coordinate)
@@ -42,6 +45,9 @@ theorem uniformProbability_restrict_internal {coordinate : Type*}
     simpa [uniformProbability_univ_internal] using hproduct
   exact htransport.trans hproduct'
 
+/--
+@isnad1 id=eq.1h4v.s5.14175800cbf4 from=translated src=- shape=31105d75 vocab=e2f5e782
+-/
 theorem extendByFalse_restrict_apply_internal {coordinate : Type*}
     [DecidableEq coordinate] (coordinates : Finset coordinate)
     (input : coordinate → Bool) (index : coordinate)
@@ -49,6 +55,9 @@ theorem extendByFalse_restrict_apply_internal {coordinate : Type*}
     extendByFalse coordinates (restrict coordinates input) index = input index := by
   simp [extendByFalse, restrict, hindex]
 
+/--
+@isnad1 id=eq.1h5v.s5.457eb0c6d7bb from=translated src=- shape=8912f752 vocab=63e89a9d
+-/
 theorem table_restrict_internal {coordinate result : Type*}
     [DecidableEq coordinate] (coordinates : Finset coordinate)
     (function : (coordinate → Bool) → result)
@@ -59,12 +68,18 @@ theorem table_restrict_internal {coordinate result : Type*}
   intro index hindex
   exact extendByFalse_restrict_apply_internal coordinates input index hindex
 
+/--
+@isnad1 id=eq.0h2v.s5.43aaa00e77d4 from=translated src=- shape=ffca3f88 vocab=1a0e7056
+-/
 theorem card_assignments_internal {coordinate : Type*}
     (coordinates : Finset coordinate) :
     Nat.card (coordinates → Bool) = 2 ^ coordinates.card := by
   rw [Nat.card_fun]
   simp
 
+/--
+@isnad1 id=finite.1h4v.s5.5401690bd20f from=translated src=- shape=216cf702 vocab=064699e4
+-/
 theorem finite_range_of_dependsOn_internal {coordinate result : Type*}
     [DecidableEq coordinate] (coordinates : Finset coordinate)
     (function : (coordinate → Bool) → result)
@@ -75,6 +90,9 @@ theorem finite_range_of_dependsOn_internal {coordinate result : Type*}
   exact ⟨restrict coordinates input,
     table_restrict_internal coordinates function hdepends input⟩
 
+/--
+@isnad1 id=le.1h4v.s5.b057b9e41bbd from=translated src=- shape=99f96c70 vocab=1bc1e716
+-/
 theorem card_range_le_pow_card_of_dependsOn_internal
     {coordinate result : Type*} [DecidableEq coordinate]
     (coordinates : Finset coordinate)

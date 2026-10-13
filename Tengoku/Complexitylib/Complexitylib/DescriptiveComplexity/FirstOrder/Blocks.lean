@@ -28,7 +28,9 @@ def envBlock {card n : Nat} (σ : Env card n) : {k : Nat} → Env card k → Env
   | 0, _ => σ
   | _ + 1, v => envCons (v 0) (envBlock σ (Fin.tail v))
 
-/-- The new variables evaluate to the corresponding tuple coordinates. -/
+/-- The new variables evaluate to the corresponding tuple coordinates.
+@isnad1 id=eq.0h6v.s5.24154ddd10a2 from=translated src=- shape=0fa72c17 vocab=be7d5ae0
+-/
 theorem envBlock_new {card n k : Nat} (σ : Env card n) (v : Env card k) (i : Fin k) :
     envBlock σ v ⟨i.val, by omega⟩ = v i := by
   induction k with
@@ -46,7 +48,9 @@ def Term.shiftBy {n : Nat} (t : Term V n) : (k : Nat) → Term V (n + k)
   | 0 => t
   | k + 1 => (t.shiftBy k).shift
 
-/-- Old terms retain their value when moved across a block of quantifiers. -/
+/-- Old terms retain their value when moved across a block of quantifiers.
+@isnad1 id=eq.0h7v.s5.c35a25040cf5 from=translated src=- shape=525e3572 vocab=a1f5909b
+-/
 theorem Term.shiftBy_eval {n k : Nat} (A : FinStruct V) (σ : Env A.card n)
     (v : Env A.card k) (t : Term V n) :
     (t.shiftBy k).eval A (envBlock σ v) = t.eval A σ := by
@@ -66,7 +70,9 @@ def Formula.allBlock {n : Nat} : (k : Nat) → Formula V (n + k) → Formula V n
   | 0, φ => φ
   | k + 1, φ => Formula.allBlock k (.all φ)
 
-/-- Existential block quantification is quantification over all coordinate tuples. -/
+/-- Existential block quantification is quantification over all coordinate tuples.
+@isnad1 id=iff.0h6v.s6.e98df49430be from=translated src=- shape=394c089f vocab=8b44eeda
+-/
 theorem Formula.existBlock_sat {n k : Nat} (A : FinStruct V) (σ : Env A.card n)
     (φ : Formula V (n + k)) :
     (φ.existBlock k).Sat A σ ↔ ∃ v : Env A.card k, φ.Sat A (envBlock σ v) := by
@@ -79,7 +85,9 @@ theorem Formula.existBlock_sat {n k : Nat} (A : FinStruct V) (σ : Env A.card n)
     · rintro ⟨v, a, h⟩; exact ⟨Fin.cons a v, by simpa [envBlock] using h⟩
     · rintro ⟨v, h⟩; exact ⟨Fin.tail v, v 0, h⟩
 
-/-- Universal block quantification is quantification over all coordinate tuples. -/
+/-- Universal block quantification is quantification over all coordinate tuples.
+@isnad1 id=iff.0h6v.s6.b0958d4db431 from=translated src=- shape=a2c753f7 vocab=23562667
+-/
 theorem Formula.allBlock_sat {n k : Nat} (A : FinStruct V) (σ : Env A.card n)
     (φ : Formula V (n + k)) :
     (φ.allBlock k).Sat A σ ↔ ∀ v : Env A.card k, φ.Sat A (envBlock σ v) := by
@@ -100,7 +108,9 @@ def Formula.conjList {n : Nat} (xs : List (Formula V n)) : Formula V n :=
 def Formula.disjList {n : Nat} (xs : List (Formula V n)) : Formula V n :=
   xs.foldr .disj .falsum
 
-/-- A finite conjunction holds exactly when every member holds. -/
+/-- A finite conjunction holds exactly when every member holds.
+@isnad1 id=iff.0h5v.s5.8fc3c8038505 from=translated src=- shape=56ebdb41 vocab=bab50cfd
+-/
 theorem Formula.conjList_sat {n : Nat} (A : FinStruct V) (σ : Env A.card n)
     (xs : List (Formula V n)) :
     (Formula.conjList xs).Sat A σ ↔ ∀ φ ∈ xs, φ.Sat A σ := by
@@ -108,7 +118,9 @@ theorem Formula.conjList_sat {n : Nat} (A : FinStruct V) (σ : Env A.card n)
   | nil => simp [Formula.conjList, Formula.verum_sat]
   | cons φ xs ih => simp [Formula.conjList, Formula.Sat, ← ih]
 
-/-- A finite disjunction holds exactly when some member holds. -/
+/-- A finite disjunction holds exactly when some member holds.
+@isnad1 id=iff.0h5v.s5.76cd5e5e1cc8 from=translated src=- shape=4860dc7c vocab=5d78617f
+-/
 theorem Formula.disjList_sat {n : Nat} (A : FinStruct V) (σ : Env A.card n)
     (xs : List (Formula V n)) :
     (Formula.disjList xs).Sat A σ ↔ ∃ φ ∈ xs, φ.Sat A σ := by
@@ -124,13 +136,17 @@ def Formula.conjFin {n k : Nat} (φ : Fin k → Formula V n) : Formula V n :=
 def Formula.disjFin {n k : Nat} (φ : Fin k → Formula V n) : Formula V n :=
   Formula.disjList ((List.finRange k).map φ)
 
-/-- Finite conjunction is universal quantification over its indices. -/
+/-- Finite conjunction is universal quantification over its indices.
+@isnad1 id=iff.0h6v.s5.fadc3145839d from=translated src=- shape=7592f7fe vocab=395a8cb7
+-/
 theorem Formula.conjFin_sat {n k : Nat} (A : FinStruct V) (σ : Env A.card n)
     (φ : Fin k → Formula V n) :
     (Formula.conjFin φ).Sat A σ ↔ ∀ i, (φ i).Sat A σ := by
   simp [Formula.conjFin, Formula.conjList_sat]
 
-/-- Finite disjunction is existential quantification over its indices. -/
+/-- Finite disjunction is existential quantification over its indices.
+@isnad1 id=iff.0h6v.s5.32d6e590fd57 from=translated src=- shape=ded26f22 vocab=4bdaca84
+-/
 theorem Formula.disjFin_sat {n k : Nat} (A : FinStruct V) (σ : Env A.card n)
     (φ : Fin k → Formula V n) :
     (Formula.disjFin φ).Sat A σ ↔ ∃ i, (φ i).Sat A σ := by

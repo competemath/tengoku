@@ -29,7 +29,9 @@ namespace TaggedFOInterpretation
 
 variable {V W : Vocabulary} {tags dim : Nat}
 
-/-- The interpreted universe has exactly `tags * card ^ dim` elements. -/
+/-- The interpreted universe has exactly `tags * card ^ dim` elements.
+@isnad1 id=eq.0h6v.s5.cc817905e202 from=translated src=- shape=5263e522 vocab=083ba8d4
+-/
 @[simp] theorem apply_card (I : TaggedFOInterpretation V W tags dim) (A : FinStruct V) :
     (I.apply A).card = tags * A.card ^ dim := rfl
 
@@ -39,14 +41,18 @@ def mapElement {card₁ card₂ : Nat} (f : Fin card₁ → Fin card₂)
   (elementEquiv card₂ tags dim).symm
     ((elementEquiv card₁ tags dim x).1, f ∘ (elementEquiv card₁ tags dim x).2)
 
-/-- Decoding a mapped element exposes its unchanged tag and mapped coordinates. -/
+/-- Decoding a mapped element exposes its unchanged tag and mapped coordinates.
+@isnad1 id=eq.0h6v.s9.4489d08a7d45 from=translated src=- shape=29aa3ecd vocab=0b271892
+-/
 @[simp] theorem elementEquiv_mapElement {card₁ card₂ : Nat}
     (f : Fin card₁ → Fin card₂) (x : Fin (tags * card₁ ^ dim)) :
     elementEquiv card₂ tags dim (mapElement f x) =
       ((elementEquiv card₁ tags dim x).1, f ∘ (elementEquiv card₁ tags dim x).2) := by
   simp [mapElement]
 
-/-- Coordinate mapping commutes with flattening relation arguments. -/
+/-- Coordinate mapping commutes with flattening relation arguments.
+@isnad1 id=eq.0h7v.s7.031bf8b2ba1d from=translated src=- shape=b46db7e2 vocab=75725812
+-/
 theorem relationEnv_mapElement {card₁ card₂ arity : Nat} (f : Fin card₁ → Fin card₂)
     (args : Fin arity → Fin (tags * card₁ ^ dim)) :
     relationEnv (mapElement f ∘ args) = f ∘ relationEnv args := by
@@ -83,7 +89,9 @@ def mapIso (I : TaggedFOInterpretation V W tags dim) {A B : FinStruct V}
 def pullQuery (I : TaggedFOInterpretation V W tags dim) (Q : BooleanQuery W) :
     BooleanQuery V := fun A => Q (I.apply A)
 
-/-- Isomorphism-invariant queries remain invariant under tagged interpretation. -/
+/-- Isomorphism-invariant queries remain invariant under tagged interpretation.
+@isnad1 id=isorderi.1h6v.s4.80f09c542875 from=translated src=- shape=60a1afc1 vocab=3f9322c1
+-/
 theorem pullQuery_orderIndependent (I : TaggedFOInterpretation V W tags dim)
     {Q : BooleanQuery W} (hQ : Q.IsOrderIndependent) : (I.pullQuery Q).IsOrderIndependent := by
   rintro A B ⟨f⟩
@@ -123,7 +131,9 @@ def FOInterpretation.toTaggedIso {V W : Vocabulary} (I : FOInterpretation V W)
   const_map c := by
     simp [FOInterpretation.toTagged, FOInterpretation.apply]
 
-/-- An invariant query sees the same result through either dimension-one presentation. -/
+/-- An invariant query sees the same result through either dimension-one presentation.
+@isnad1 id=iff.1h5v.s5.1fa94fe1cde5 from=translated src=- shape=25285f0a vocab=e3046b92
+-/
 theorem FOInterpretation.toTagged_query {V W : Vocabulary} (I : FOInterpretation V W)
     (A : FinStruct V) {Q : BooleanQuery W} (hQ : Q.IsOrderIndependent) :
     Q (I.toTagged.apply A) ↔ Q (I.apply A) := hQ ⟨I.toTaggedIso A⟩

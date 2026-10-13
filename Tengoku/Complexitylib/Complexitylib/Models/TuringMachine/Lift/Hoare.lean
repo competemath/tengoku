@@ -26,7 +26,9 @@ namespace TM
     extra tapes — holding *arbitrary* parked content `extras` (head ≥ 1,
     reading a non-`▷` symbol) — are preserved **exactly**, with the same
     time bound. This is what lets lifted 6-tape UTM phases run while tape
-    6 holds the clock. -/
+    6 holds the clock.
+@isnad1 id=hoaretim.2h7v.s7.84b0aaaa8953 from=translated src=- shape=b450eed8 vocab=24106655
+-/
 theorem liftTM_hoareTime_frame {n m : ℕ} (tm : TM n) {pre post : TapePred n}
     {b : ℕ} (extras : Fin m → Tape)
     (hex : ∀ j : Fin m, 1 ≤ (extras j).head ∧ (extras j).read ≠ Γ.start)
@@ -75,7 +77,9 @@ theorem liftTM_hoareTime_frame {n m : ℕ} (tm : TM n) {pre post : TapePred n}
 
 /-- **`liftTM` preserves Hoare specs** (blank extras). Special case of
     `liftTM_hoareTime_frame`: the extra tapes start and end as the
-    canonical parked blank tape `(Tape.init []).move Dir3.right`. -/
+    canonical parked blank tape `(Tape.init []).move Dir3.right`.
+@isnad1 id=hoaretim.1h6v.s7.566e6aeab592 from=translated src=- shape=905103a4 vocab=e60a792a
+-/
 theorem liftTM_hoareTime {n m : ℕ} (tm : TM n) {pre post : TapePred n} {b : ℕ}
     (h : tm.HoareTime pre post b) :
     (tm.liftTM m).HoareTime

@@ -56,7 +56,9 @@ inductive ReachesInVia (tm : TM n) (A : Cfg n tm.Q → Prop) :
 
 /-- A zero-step annotated run goes nowhere. Inversion form of
     `ReachesInVia.zero`, usable when the machine is a compound expression on
-    which `cases` cannot abstract the configuration indices. -/
+    which `cases` cannot abstract the configuration indices.
+@isnad1 id=iff.0h5v.s5.e160a71014f5 from=translated src=- shape=591c9cba vocab=2d2c6ba0
+-/
 theorem reachesInVia_zero_iff {tm : TM n} {A : Cfg n tm.Q → Prop}
     {c c' : Cfg n tm.Q} :
     tm.ReachesInVia A 0 c c' ↔ c = c' :=
@@ -64,7 +66,9 @@ theorem reachesInVia_zero_iff {tm : TM n} {A : Cfg n tm.Q → Prop}
 
 /-- An annotated run of `t + 1` steps factors as one step from an `A`-source
     followed by an annotated run of `t` steps. Inversion form of
-    `ReachesInVia.step`. -/
+    `ReachesInVia.step`.
+@isnad1 id=iff.0h6v.s6.956cddd11e93 from=translated src=- shape=bc36530c vocab=54273766
+-/
 theorem reachesInVia_succ_iff {tm : TM n} {A : Cfg n tm.Q → Prop} {t : ℕ}
     {c c' : Cfg n tm.Q} :
     tm.ReachesInVia A (t + 1) c c' ↔
@@ -72,7 +76,9 @@ theorem reachesInVia_succ_iff {tm : TM n} {A : Cfg n tm.Q → Prop} {t : ℕ}
   ⟨fun h => by cases h with | step hA hstep hrest => exact ⟨hA, _, hstep, hrest⟩,
    fun ⟨hA, _, hstep, hrest⟩ => ReachesInVia.step hA hstep hrest⟩
 
-/-- Forget the source annotations of an annotated run. -/
+/-- Forget the source annotations of an annotated run.
+@isnad1 id=reachesi.1h6v.s5.a8c9ac96eb67 from=translated src=- shape=a79217bf vocab=0908fd66
+-/
 theorem ReachesInVia.toReachesIn {tm : TM n} {A : Cfg n tm.Q → Prop} {t : ℕ}
     {c c' : Cfg n tm.Q} (h : tm.ReachesInVia A t c c') :
     tm.reachesIn t c c' := by
@@ -80,7 +86,9 @@ theorem ReachesInVia.toReachesIn {tm : TM n} {A : Cfg n tm.Q → Prop} {t : ℕ}
   | zero => exact .zero
   | step _ hstep _ ih => exact .step hstep ih
 
-/-- Weaken the source annotation of an annotated run. -/
+/-- Weaken the source annotation of an annotated run.
+@isnad1 id=reachesi.1h8v.s6.c342bb7ed56d from=translated src=- shape=40a6c427 vocab=2d2c6ba0
+-/
 theorem ReachesInVia.mono {tm : TM n} {A B : Cfg n tm.Q → Prop} {t : ℕ}
     {c c' : Cfg n tm.Q} (hAB : ∀ c, A c → B c)
     (h : tm.ReachesInVia A t c c') :
@@ -89,7 +97,9 @@ theorem ReachesInVia.mono {tm : TM n} {A B : Cfg n tm.Q → Prop} {t : ℕ}
   | zero => exact .zero
   | step hA hstep _ ih => exact .step (hAB _ hA) hstep ih
 
-/-- Concatenate annotated runs. -/
+/-- Concatenate annotated runs.
+@isnad1 id=reachesi.2h8v.s6.4370ec2a09a0 from=translated src=- shape=353f3f9b vocab=cd10cb34
+-/
 theorem ReachesInVia.trans {tm : TM n} {A : Cfg n tm.Q → Prop} {t u : ℕ}
     {c c' c'' : Cfg n tm.Q} (h₁ : tm.ReachesInVia A t c c')
     (h₂ : tm.ReachesInVia A u c' c'') :
@@ -103,7 +113,9 @@ theorem ReachesInVia.trans {tm : TM n} {A : Cfg n tm.Q → Prop} {t u : ℕ}
     simpa [Nat.succ_add] using ReachesInVia.step hA hstep (ih hrest)
 
 /-- Annotate a run with a step-closed invariant that implies the
-    annotation. -/
+    annotation.
+@isnad1 id=reachesi.1h10v.s6.4a7d80da4547 from=translated src=- shape=bb0af891 vocab=03e70253
+-/
 theorem reachesInVia_of_invariant {tm : TM n} {P A : Cfg n tm.Q → Prop}
     (hPA : ∀ c, P c → A c)
     (hpres : ∀ {c c'}, P c → tm.step c = some c' → P c')
@@ -120,7 +132,9 @@ theorem reachesInVia_of_invariant {tm : TM n} {P A : Cfg n tm.Q → Prop}
 /-- Transport a run through a step-commuting wrap `w`, annotating every
     source with membership in the image region described by `A`. This is how
     phase embeddings (whose sources all live inside one phase of a composed
-    machine) produce annotated runs. -/
+    machine) produce annotated runs.
+@isnad1 id=reachesi.2h10v.s7.e2a275c2f464 from=translated src=- shape=79af8e26 vocab=03e70253
+-/
 theorem reachesInVia_of_stepCommute {tm₁ : TM n} {tm₂ : TM m}
     {A : Cfg m tm₂.Q → Prop} (w : Cfg n tm₁.Q → Cfg m tm₂.Q)
     (hA : ∀ {c c'}, tm₁.step c = some c' → A (w c))
@@ -159,7 +173,9 @@ def BranchesAgreeAt (N : NTM n) (c : Cfg n N.Q) : Prop :=
     N.δ false c.state c.input.read (fun i => (c.work i).read) c.output.read
 
 /-- On a configuration where the branches agree, every `det`-projection takes
-    the same step as `det false`. -/
+    the same step as `det false`.
+@isnad1 id=eq.1h4v.s5.d2387d77cca5 from=translated src=- shape=683d56b1 vocab=1816479a
+-/
 theorem det_step_congr {N : NTM n} {c : Cfg n N.Q}
     (h : N.BranchesAgreeAt c) (b : Bool) :
     (N.det b).step c = (N.det false).step c := by
@@ -171,7 +187,9 @@ theorem det_step_congr {N : NTM n} {c : Cfg n N.Q}
     rfl
 
 /-- One non-halted trace step applies the `det`-projection selected by the
-    current choice bit. -/
+    current choice bit.
+@isnad1 id=eq.1h5v.s7.b4dcf5896791 from=translated src=- shape=0f28da7e vocab=c8c04916
+-/
 theorem trace_succ_det {N : NTM n} {c : Cfg n N.Q} {T : ℕ}
     (choices : Fin (T + 1) → Bool) (hne : c.state ≠ N.qhalt) :
     N.trace (T + 1) choices c =
@@ -184,7 +202,9 @@ theorem trace_succ_det {N : NTM n} {c : Cfg n N.Q} {T : ℕ}
     sources all satisfy `BranchesAgreeAt` is followed identically by the
     trace along *any* choice sequence: a length-`(s + t)` trace equals the
     trace of the remaining `s` steps from the run's endpoint with the first
-    `t` choices discarded. -/
+    `t` choices discarded.
+@isnad1 id=eq.1h7v.s6.b86f013df76b from=translated src=- shape=533e03c4 vocab=c4cf6261
+-/
 theorem trace_of_det_prefix {N : NTM n} {t : ℕ} {c c' : Cfg n N.Q}
     (hreach : (N.det false).ReachesInVia N.BranchesAgreeAt t c c')
     (s : ℕ) (choices : Fin (s + t) → Bool) :

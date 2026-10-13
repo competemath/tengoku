@@ -23,7 +23,9 @@ namespace Complexity
 
 namespace BitGenerator
 
-/-- Uniform candidate acceptance is exactly acceptance on the current hybrid. -/
+/-- Uniform candidate acceptance is exactly acceptance on the current hybrid.
+@isnad1 id=eq.0h5v.s6.fe33f35ce264 from=translated src=- shape=9dcce456 vocab=e950d3f0
+-/
 theorem candidateAcceptanceProbability_eq_hybrid
     {seedLength outputLength : ℕ}
     (generator : BitGenerator seedLength outputLength)
@@ -35,7 +37,9 @@ theorem candidateAcceptanceProbability_eq_hybrid
   candidateAcceptanceProbability_eq_hybrid_internal generator test step
 
 /-- Substituting the target generator bit is exactly acceptance on the next
-hybrid. -/
+hybrid.
+@isnad1 id=eq.0h5v.s7.18d1469b47dd from=translated src=- shape=b4515998 vocab=16897c49
+-/
 theorem targetAcceptanceProbability_eq_nextHybrid
     {seedLength outputLength : ℕ}
     (generator : BitGenerator seedLength outputLength)
@@ -47,7 +51,9 @@ theorem targetAcceptanceProbability_eq_nextHybrid
   targetAcceptanceProbability_eq_nextHybrid_internal generator test step
 
 /-- Exact next-bit theorem for the generator hybrid: the canonical predictor's
-success probability is one half plus the adjacent hybrid gap. -/
+success probability is one half plus the adjacent hybrid gap.
+@isnad1 id=eq.0h5v.s7.da289a4eb43b from=translated src=- shape=109991bb vocab=17efabbe
+-/
 theorem predictionSuccessProbability_eq_half_add_hybridGap
     {seedLength outputLength : ℕ}
     (generator : BitGenerator seedLength outputLength)

@@ -99,6 +99,9 @@ private theorem hybridOutput_targetCandidate_eq_next
       simp [hybridOutput, hbefore, hnotNext, assembleCandidate, hequal,
         blockAppend_natAdd]
 
+/--
+@isnad1 id=eq.0h5v.s6.fe33f35ce264 from=translated src=- shape=9dcce456 vocab=e950d3f0
+-/
 theorem candidateAcceptanceProbability_eq_hybrid_internal
     {seedLength outputLength : ℕ}
     (generator : BitGenerator seedLength outputLength)
@@ -115,6 +118,9 @@ theorem candidateAcceptanceProbability_eq_hybrid_internal
     hybridAcceptanceProbability, hybridAcceptedRandomness]
   exact htransport
 
+/--
+@isnad1 id=eq.0h5v.s7.18d1469b47dd from=translated src=- shape=b4515998 vocab=16897c49
+-/
 theorem targetAcceptanceProbability_eq_nextHybrid_internal
     {seedLength outputLength : ℕ}
     (generator : BitGenerator seedLength outputLength)
@@ -171,6 +177,9 @@ theorem targetAcceptanceProbability_eq_nextHybrid_internal
     _ = generator.hybridAcceptanceProbability test (step.val + 1) := by
       rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.da289a4eb43b from=translated src=- shape=109991bb vocab=17efabbe
+-/
 theorem predictionSuccessProbability_eq_half_add_hybridGap_internal
     {seedLength outputLength : ℕ}
     (generator : BitGenerator seedLength outputLength)

@@ -40,7 +40,9 @@ pinned state `k + 1`; the fold carries state `0` to state `ms.length`. Every pin
 required `Parked`, which makes the phase transition between consecutive stages a no-op.
 
 The input tape is indexed too. A stage may move the input head — a rewind does — and then the
-next stage's precondition names a different input tape, so a single fixed one will not do. -/
+next stage's precondition names a different input tape, so a single fixed one will not do.
+@isnad1 id=hoaretim.4h6v.s8.02e72ed16304 from=translated src=- shape=1abca7b7 vocab=4ad6b0a5
+-/
 theorem bigSeqTM_hoareTime_pinned_gen :
     ∀ (ms : List (TM n)) (I : ℕ → Tape) (W : ℕ → Fin n → Tape) (O : ℕ → Tape) (b : ℕ),
       (∀ k, Parked (I k)) → (∀ k i, Parked (W k i)) → (∀ k, Parked (O k)) →
@@ -81,7 +83,9 @@ theorem bigSeqTM_hoareTime_pinned_gen :
         have hmul : (ms.length + 1) * (b + 1) = ms.length * (b + 1) + (b + 1) := Nat.succ_mul ..
         omega
 
-/-- **The chain rule with a fixed input tape**, the common case: no stage moves the input head. -/
+/-- **The chain rule with a fixed input tape**, the common case: no stage moves the input head.
+@isnad1 id=hoaretim.4h6v.s8.5d99884f8d82 from=translated src=- shape=f45fc83c vocab=4ad6b0a5
+-/
 theorem bigSeqTM_hoareTime_pinned (ms : List (TM n)) (I : Tape) (W : ℕ → Fin n → Tape)
     (O : ℕ → Tape) (b : ℕ)
     (hI : Parked I) (hW : ∀ k i, Parked (W k i)) (hO : ∀ k, Parked (O k))

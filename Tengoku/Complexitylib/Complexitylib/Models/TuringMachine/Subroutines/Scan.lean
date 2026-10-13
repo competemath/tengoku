@@ -137,6 +137,9 @@ def ofRight {j : ℕ} (τ : Type) [DecidableEq τ] [Fintype τ] (start : τ)
   stepL s _ := s
   emit := emit
 
+/--
+@isnad1 id=eq.0h8v.s6.ec9a0c55e1a3 from=translated src=- shape=a4f19954 vocab=5e792ec0
+-/
 @[simp] theorem ofRight_runL {j : ℕ} (τ : Type) [DecidableEq τ] [Fintype τ] (start : τ)
     (step : τ → (Fin (j + 1) → Γ) → τ) (emit : τ → Bool) (cols : ℕ → Fin (j + 1) → Γ)
     (p : ℕ) (s : τ) : (ofRight τ start step emit).runL cols p s = s := by
@@ -144,6 +147,9 @@ def ofRight {j : ℕ} (τ : Type) [DecidableEq τ] [Fintype τ] (start : τ)
   | zero => rfl
   | succ p ih => simp only [runL]; exact ih _
 
+/--
+@isnad1 id=eq.0h7v.s6.c1cd14cf1205 from=translated src=- shape=add1f1b8 vocab=222414e6
+-/
 theorem ofRight_run {j : ℕ} (τ : Type) [DecidableEq τ] [Fintype τ] (start : τ)
     (step : τ → (Fin (j + 1) → Γ) → τ) (emit : τ → Bool) (cols : ℕ → Fin (j + 1) → Γ)
     (len : ℕ) :
@@ -166,9 +172,15 @@ def comap {j jj : ℕ} (S : Scanner j) (f : Fin (j + 1) → Fin (jj + 1)) : Scan
   stepL s cols := S.stepL s (fun i => cols (f i))
   emit := S.emit
 
+/--
+@isnad1 id=eq.0h4v.s5.460a8c816772 from=translated src=- shape=84884fcd vocab=ce5624b7
+-/
 @[simp] theorem comap_emit {j jj : ℕ} (S : Scanner j) (f : Fin (j + 1) → Fin (jj + 1)) :
     (S.comap f).emit = S.emit := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.2f91c1b2cad3 from=translated src=- shape=0d983792 vocab=e6f073f7
+-/
 theorem comap_runR {j jj : ℕ} (S : Scanner j) (f : Fin (j + 1) → Fin (jj + 1))
     (cols : ℕ → Fin (jj + 1) → Γ) (p : ℕ) :
     (S.comap f).runR cols p = S.runR (fun q i => cols q (f i)) p := by
@@ -176,6 +188,9 @@ theorem comap_runR {j jj : ℕ} (S : Scanner j) (f : Fin (j + 1) → Fin (jj + 1
   | zero => rfl
   | succ p ih => rw [runR, runR, ih]; rfl
 
+/--
+@isnad1 id=eq.0h7v.s6.34dc9e7ed202 from=translated src=- shape=eb9acc4c vocab=5c783de9
+-/
 theorem comap_runL {j jj : ℕ} (S : Scanner j) (f : Fin (j + 1) → Fin (jj + 1))
     (cols : ℕ → Fin (jj + 1) → Γ) (p : ℕ) (s : S.σ) :
     (S.comap f).runL cols p s = S.runL (fun q i => cols q (f i)) p s := by
@@ -183,7 +198,9 @@ theorem comap_runL {j jj : ℕ} (S : Scanner j) (f : Fin (j + 1) → Fin (jj + 1
   | zero => rfl
   | succ p ih => simp only [runL]; exact ih _
 
-/-- **A scanner run through a map reads exactly the columns the map names.** -/
+/-- **A scanner run through a map reads exactly the columns the map names.**
+@isnad1 id=eq.0h6v.s6.9d150b638294 from=translated src=- shape=0d983792 vocab=4ffd2da7
+-/
 theorem comap_run {j jj : ℕ} (S : Scanner j) (f : Fin (j + 1) → Fin (jj + 1))
     (cols : ℕ → Fin (jj + 1) → Γ) (len : ℕ) :
     (S.comap f).run cols len = S.run (fun q i => cols q (f i)) len := by
@@ -199,14 +216,22 @@ read and discarded, so a short check and a long one can share a scan. -/
 `Complexity.Scanner.ofRight` or `Complexity.Scanner.prefixed`. -/
 def RightOnly {j : ℕ} (S : Scanner j) : Prop := ∀ s cols, S.stepL s cols = s
 
+/--
+@isnad1 id=rightonl.0h5v.s5.6e68b095c296 from=translated src=- shape=2c7c6863 vocab=b7cd526e
+-/
 theorem rightOnly_ofRight {j : ℕ} (τ : Type) [DecidableEq τ] [Fintype τ] (start : τ)
     (step : τ → (Fin (j + 1) → Γ) → τ) (emit : τ → Bool) :
     RightOnly (ofRight (j := j) τ start step emit) := fun _ _ => rfl
 
+/--
+@isnad1 id=rightonl.1h4v.s5.ddd8c595541d from=translated src=- shape=7cf1f111 vocab=1818534e
+-/
 theorem rightOnly_comap {j jj : ℕ} {S : Scanner j} (h : RightOnly S)
     (f : Fin (j + 1) → Fin (jj + 1)) : RightOnly (S.comap f) := fun s _ => h s _
 
-/-- A right-only scanner's leftward pass leaves the state alone. -/
+/-- A right-only scanner's leftward pass leaves the state alone.
+@isnad1 id=eq.1h5v.s5.c2ab165790ab from=translated src=- shape=26b75e48 vocab=412f6f8d
+-/
 theorem runL_of_rightOnly {j : ℕ} {S : Scanner j} (hS : RightOnly S)
     (cols : ℕ → Fin (j + 1) → Γ) : ∀ (p : ℕ) (s : S.σ), S.runL cols p s = s := by
   intro p
@@ -228,6 +253,9 @@ def upTo {j : ℕ} (S : Scanner j) (w : ℕ) : Scanner j where
   stepL s cols := (S.stepL s.1 cols, s.2)
   emit s := S.emit s.1
 
+/--
+@isnad1 id=eq.0h5v.s6.223472e1ae10 from=translated src=- shape=dcb1ac5b vocab=60ba913e
+-/
 theorem upTo_runR {j : ℕ} (S : Scanner j) (w : ℕ) (cols : ℕ → Fin (j + 1) → Γ) (p : ℕ) :
     (S.upTo w).runR cols p = (S.runR cols (min p w), upToIdx w p) := by
   induction p with
@@ -268,13 +296,18 @@ theorem upTo_runR {j : ℕ} (S : Scanner j) (w : ℕ) (cols : ℕ → Fin (j + 1
         · show min p w = min (p + 1) w
           omega
 
+/--
+@isnad1 id=eq.0h6v.s6.fc4943639b7f from=translated src=- shape=6dd7eca9 vocab=3ba2bcb1
+-/
 theorem upTo_runL {j : ℕ} (S : Scanner j) (w : ℕ) (cols : ℕ → Fin (j + 1) → Γ) (p : ℕ)
     (s : (S.upTo w).σ) : (S.upTo w).runL cols p s = (S.runL cols p s.1, s.2) := by
   induction p generalizing s with
   | zero => rfl
   | succ p ih => simp only [runL, ih]; rfl
 
-/-- **A frozen check gives the verdict it would have given on its own cells.** -/
+/-- **A frozen check gives the verdict it would have given on its own cells.**
+@isnad1 id=eq.2h5v.s5.b153823a7731 from=translated src=- shape=6eb063c0 vocab=401ba8e8
+-/
 theorem upTo_emit_run {j : ℕ} (S : Scanner j) (hS : RightOnly S) (w len : ℕ) (hw : w ≤ len)
     (cols : ℕ → Fin (j + 1) → Γ) :
     (S.upTo w).emit ((S.upTo w).run cols len) = S.emit (S.run cols w) := by
@@ -295,9 +328,15 @@ def after {j : ℕ} (S : Scanner j) (w : ℕ) : Scanner j where
   stepL s cols := (S.stepL s.1 cols, s.2)
   emit s := S.emit s.1
 
+/--
+@isnad1 id=rightonl.1h3v.s4.044d33386a30 from=translated src=- shape=c65f2139 vocab=fbec2e16
+-/
 theorem rightOnly_after {j : ℕ} {S : Scanner j} (h : RightOnly S) (w : ℕ) :
     RightOnly (S.after w) := fun s cols => Prod.ext (h s.1 cols) rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.0db6b3e0ffc1 from=translated src=- shape=a2eb6103 vocab=3fb5988d
+-/
 theorem after_runR {j : ℕ} (S : Scanner j) (w : ℕ) (cols : ℕ → Fin (j + 1) → Γ) (p : ℕ) :
     (S.after w).runR cols p = (S.runR (fun q => cols (w + q)) (p - w), upToIdx w p) := by
   induction p with
@@ -341,13 +380,18 @@ theorem after_runR {j : ℕ} (S : Scanner j) (w : ℕ) (cols : ℕ → Fin (j + 
         · show min p w = min (p + 1) w
           omega
 
+/--
+@isnad1 id=eq.0h6v.s6.e0bb0280aedc from=translated src=- shape=6dd7eca9 vocab=df5197ab
+-/
 theorem after_runL {j : ℕ} (S : Scanner j) (w : ℕ) (cols : ℕ → Fin (j + 1) → Γ) (p : ℕ)
     (s : (S.after w).σ) : (S.after w).runL cols p s = (S.runL cols p s.1, s.2) := by
   induction p generalizing s with
   | zero => rfl
   | succ p ih => simp only [runL, ih]; rfl
 
-/-- **A check that skips a prefix reads the cells after it.** -/
+/-- **A check that skips a prefix reads the cells after it.**
+@isnad1 id=eq.1h5v.s6.0289e0b7e101 from=translated src=- shape=2275c382 vocab=26b0e657
+-/
 theorem after_emit_run {j : ℕ} (S : Scanner j) (hS : RightOnly S) (w len : ℕ)
     (cols : ℕ → Fin (j + 1) → Γ) :
     (S.after w).emit ((S.after w).run cols len)
@@ -355,7 +399,9 @@ theorem after_emit_run {j : ℕ} (S : Scanner j) (hS : RightOnly S) (w len : ℕ
   rw [run, after_runL, after_runR, run, runL_of_rightOnly hS, runL_of_rightOnly hS]
   rfl
 
-/-- **A check restricted to a range of cells.** -/
+/-- **A check restricted to a range of cells.**
+@isnad1 id=eq.2h6v.s6.e5cec0c9b870 from=translated src=- shape=29add58b vocab=58f20984
+-/
 theorem range_emit_run {j : ℕ} (S : Scanner j) (hS : RightOnly S) (w₁ w₂ len : ℕ)
     (hw : w₂ ≤ len) (cols : ℕ → Fin (j + 1) → Γ) :
     ((S.after w₁).upTo w₂).emit (((S.after w₁).upTo w₂).run cols len)
@@ -380,12 +426,18 @@ noncomputable def all {jj : ℕ} (n : ℕ) (S : Fin n → Scanner jj) : Scanner 
   stepL s cols := fun i => (S i).stepL (s i) cols
   emit s := decide (∀ i, (S i).emit (s i) = true)
 
+/--
+@isnad1 id=eq.0h6v.s5.0a2d786eadf5 from=translated src=- shape=0c31a918 vocab=4051a544
+-/
 theorem all_runR {jj : ℕ} (n : ℕ) (S : Fin n → Scanner jj) (cols : ℕ → Fin (jj + 1) → Γ)
     (p : ℕ) (i : Fin n) : (all n S).runR cols p i = (S i).runR cols p := by
   induction p with
   | zero => rfl
   | succ p ih => rw [runR, runR, ← ih]; rfl
 
+/--
+@isnad1 id=eq.0h7v.s6.adf4962f0969 from=translated src=- shape=6615333f vocab=bd17475a
+-/
 theorem all_runL {jj : ℕ} (n : ℕ) (S : Fin n → Scanner jj) (cols : ℕ → Fin (jj + 1) → Γ)
     (p : ℕ) (s : (all n S).σ) (i : Fin n) :
     (all n S).runL cols p s i = (S i).runL cols p (s i) := by
@@ -393,12 +445,16 @@ theorem all_runL {jj : ℕ} (n : ℕ) (S : Fin n → Scanner jj) (cols : ℕ →
   | zero => rfl
   | succ p ih => simp only [runL, runL, ih]; rfl
 
-/-- **Each component of a joint scan runs its own scan.** -/
+/-- **Each component of a joint scan runs its own scan.**
+@isnad1 id=eq.0h6v.s5.c098b0847636 from=translated src=- shape=0c31a918 vocab=0a2be68a
+-/
 theorem all_run {jj : ℕ} (n : ℕ) (S : Fin n → Scanner jj) (cols : ℕ → Fin (jj + 1) → Γ)
     (len : ℕ) (i : Fin n) : (all n S).run cols len i = (S i).run cols len := by
   rw [run, run, all_runL, all_runR]
 
-/-- **A joint scan accepts exactly when every component does.** -/
+/-- **A joint scan accepts exactly when every component does.**
+@isnad1 id=iff.0h5v.s6.184420aa357e from=translated src=- shape=e519b932 vocab=4fc9b848
+-/
 theorem all_emit_run {jj : ℕ} (n : ℕ) (S : Fin n → Scanner jj) (cols : ℕ → Fin (jj + 1) → Γ)
     (len : ℕ) : (all n S).emit ((all n S).run cols len) = true ↔
       ∀ i, (S i).emit ((S i).run cols len) = true := by
@@ -417,19 +473,27 @@ def or {jj : ℕ} (S T : Scanner jj) : Scanner jj where
   stepL s cols := (S.stepL s.1 cols, T.stepL s.2 cols)
   emit s := S.emit s.1 || T.emit s.2
 
+/--
+@isnad1 id=eq.0h5v.s5.7968fce7ba27 from=translated src=- shape=b74c3686 vocab=88bf28d2
+-/
 theorem or_runR {jj : ℕ} (S T : Scanner jj) (cols : ℕ → Fin (jj + 1) → Γ) (p : ℕ) :
     (S.or T).runR cols p = (S.runR cols p, T.runR cols p) := by
   induction p with
   | zero => rfl
   | succ p ih => rw [runR, ih]; rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.b63ebd737b5f from=translated src=- shape=92d4993d vocab=d7ee5279
+-/
 theorem or_runL {jj : ℕ} (S T : Scanner jj) (cols : ℕ → Fin (jj + 1) → Γ) (p : ℕ)
     (s : S.σ × T.σ) : (S.or T).runL cols p s = (S.runL cols p s.1, T.runL cols p s.2) := by
   induction p generalizing s with
   | zero => rfl
   | succ p ih => simp only [runL]; exact ih _
 
-/-- **A disjunctive scan accepts exactly when one of its halves does.** -/
+/-- **A disjunctive scan accepts exactly when one of its halves does.**
+@isnad1 id=iff.0h5v.s6.4dcedae49f23 from=translated src=- shape=3094b65c vocab=d5dad71e
+-/
 theorem or_emit_run {jj : ℕ} (S T : Scanner jj) (cols : ℕ → Fin (jj + 1) → Γ) (len : ℕ) :
     (S.or T).emit ((S.or T).run cols len) = true ↔
       S.emit (S.run cols len) = true ∨ T.emit (T.run cols len) = true := by
@@ -470,10 +534,16 @@ def prefixed {j : ℕ} (c : ℕ) (α τ : Type) [DecidableEq α] [Fintype α] [D
 
 variable {j : ℕ} {α τ : Type} [DecidableEq α] [Fintype α] [DecidableEq τ] [Fintype τ]
 
+/--
+@isnad1 id=rightonl.0h9v.s6.32640dd5aed6 from=translated src=- shape=475131fa vocab=ac6e3b78
+-/
 theorem rightOnly_prefixed (c : ℕ) (a₀ : α) (readStep : α → (Fin (j + 1) → Γ) → α) (t₀ : α → τ)
     (mainStep : α → τ → (Fin (j + 1) → Γ) → τ) (emit : α → τ → Bool) :
     RightOnly (prefixed c α τ a₀ readStep t₀ mainStep emit) := fun _ _ => rfl
 
+/--
+@isnad1 id=eq.0h11v.s9.0899c31812b2 from=translated src=- shape=be0a51e4 vocab=659790e3
+-/
 theorem prefixed_stepR (c : ℕ) (a₀ : α) (readStep : α → (Fin (j + 1) → Γ) → α) (t₀ : α → τ)
     (mainStep : α → τ → (Fin (j + 1) → Γ) → τ) (emit : α → τ → Bool)
     (s : Fin (c + 1) × α × τ) (col : Fin (j + 1) → Γ) :
@@ -483,7 +553,9 @@ theorem prefixed_stepR (c : ℕ) (a₀ : α) (readStep : α → (Fin (j + 1) →
             if s.1.val + 1 = c then t₀ (readStep s.2.1 col) else s.2.2)
         else (s.1, s.2.1, mainStep s.2.1 s.2.2 col) := rfl
 
-/-- Through the parameter block, the scan is just accumulating parameters. -/
+/-- Through the parameter block, the scan is just accumulating parameters.
+@isnad1 id=and.1h11v.s7.c48cff95c21d from=translated src=- shape=08e346a0 vocab=cc52c77f
+-/
 theorem prefixed_runR_le (c : ℕ) (a₀ : α) (readStep : α → (Fin (j + 1) → Γ) → α) (t₀ : α → τ)
     (mainStep : α → τ → (Fin (j + 1) → Γ) → τ) (emit : α → τ → Bool)
     (cols : ℕ → Fin (j + 1) → Γ) :
@@ -509,7 +581,9 @@ namespace Scanner
 
 variable {j : ℕ} {α τ : Type} [DecidableEq α] [Fintype α] [DecidableEq τ] [Fintype τ]
 
-/-- Past the parameter block, the scan runs the check the parameters chose. -/
+/-- Past the parameter block, the scan runs the check the parameters chose.
+@isnad1 id=eq.1h11v.s7.2d33bd025eca from=translated src=- shape=6f8283ea vocab=fbe726fb
+-/
 theorem prefixed_runR (c : ℕ) (a₀ : α) (readStep : α → (Fin (j + 1) → Γ) → α) (t₀ : α → τ)
     (mainStep : α → τ → (Fin (j + 1) → Γ) → τ) (emit : α → τ → Bool)
     (cols : ℕ → Fin (j + 1) → Γ) (hc : 0 < c) :
@@ -539,7 +613,9 @@ theorem prefixed_runR (c : ℕ) (a₀ : α) (readStep : α → (Fin (j + 1) → 
       erw [prefixed_stepR, dite_eq_right hnot, ih]; rfl
 
 /-- **What a parameterized scan reports**: the check the parameters chose, run on the data after
-them. -/
+them.
+@isnad1 id=eq.1h11v.s7.5de4e9da5dc6 from=translated src=- shape=e344dec1 vocab=04f51764
+-/
 theorem prefixed_run (c : ℕ) (a₀ : α) (readStep : α → (Fin (j + 1) → Γ) → α) (t₀ : α → τ)
     (mainStep : α → τ → (Fin (j + 1) → Γ) → τ) (emit : α → τ → Bool)
     (cols : ℕ → Fin (j + 1) → Γ) (hc : 0 < c) (q : ℕ) :
@@ -575,7 +651,9 @@ def bitsStep {j : ℕ} (s w : ℕ) (regs : Fin s → Fin (j + 1))
 
 /-- **A field reader sees only the registers it names.** Two scans whose named registers agree
 read the same table — which is what makes several checks reading the same parameter register
-agree on the parameters. -/
+agree on the parameters.
+@isnad1 id=eq.1h8v.s8.512b0579cd56 from=translated src=- shape=98fede90 vocab=d0a574c5
+-/
 theorem auxRun_bitsStep_congr {j s w : ℕ} (regs : Fin s → Fin (j + 1))
     (cols cols' : ℕ → Fin (j + 1) → Γ) (h : ∀ q t, cols q (regs t) = cols' q (regs t))
     (x₀ : Fin s → Fin w → Bool) : ∀ p : ℕ,
@@ -589,7 +667,9 @@ theorem auxRun_bitsStep_congr {j s w : ℕ} (regs : Fin s → Fin (j + 1))
       simp only [bitsStep, h (p + 1)]
 
 /-- **What the field reader has read.** After `p ≤ w` columns the table holds the first `p` bits
-of every register. -/
+of every register.
+@isnad1 id=and.1h7v.s8.e6c8989bbf72 from=translated src=- shape=c7a2d564 vocab=593e290f
+-/
 theorem bitsStep_run {j : ℕ} (s w : ℕ) (regs : Fin s → Fin (j + 1))
     (cols : ℕ → Fin (j + 1) → Γ) (x₀ : Fin s → Fin w → Bool) :
     ∀ p ≤ w,
@@ -634,6 +714,9 @@ def cellFold {j : ℕ} {σ : Type} (g : σ → (Fin (j + 1) → Γ) → σ) (col
   | 0 => s₀
   | q + 1 => g (cellFold g cols off s₀ q) (cols (off + q + 1))
 
+/--
+@isnad1 id=eq.0h9v.s6.d63c698f975c from=translated src=- shape=b5b9ad09 vocab=3be92b1e
+-/
 theorem mainRun_eq_cellFold {j : ℕ} {α τ : Type} (c : ℕ) (a : α)
     (mainStep : α → τ → (Fin (j + 1) → Γ) → τ) (cols : ℕ → Fin (j + 1) → Γ) (t₀ : τ) :
     ∀ q : ℕ, mainRun c a mainStep cols t₀ q = cellFold (mainStep a) cols c t₀ q := by
@@ -643,7 +726,9 @@ theorem mainRun_eq_cellFold {j : ℕ} {α τ : Type} (c : ℕ) (a : α)
   | succ q ih => rw [mainRun, cellFold, ih]
 
 /-- A fold started later is the same fold on shifted columns, so a check proved at the start of a
-scan applies wherever the scan puts it. -/
+scan applies wherever the scan puts it.
+@isnad1 id=eq.0h7v.s6.ed29f8e224b0 from=translated src=- shape=afbc447b vocab=2c769b97
+-/
 theorem cellFold_shift {j : ℕ} {σ : Type} (g : σ → (Fin (j + 1) → Γ) → σ)
     (cols : ℕ → Fin (j + 1) → Γ) (off : ℕ) (s₀ : σ) :
     ∀ p : ℕ, cellFold g cols off s₀ p = cellFold g (fun t => cols (off + t)) 0 s₀ p := by
@@ -654,7 +739,9 @@ theorem cellFold_shift {j : ℕ} {σ : Type} (g : σ → (Fin (j + 1) → Γ) �
       rw [cellFold, cellFold, ih]
       simp only [Nat.zero_add, Nat.add_assoc]
 
-/-- A scanner's rightward pass is a plain fold. -/
+/-- A scanner's rightward pass is a plain fold.
+@isnad1 id=eq.0h4v.s5.dac04b40d9f7 from=translated src=- shape=0a925114 vocab=e461aeb8
+-/
 theorem runR_eq_cellFold {j : ℕ} (S : Scanner j) (cols : ℕ → Fin (j + 1) → Γ) :
     ∀ p : ℕ, S.runR cols p = cellFold S.stepR cols 0 S.start p := by
   intro p
@@ -682,7 +769,9 @@ def chunkStepCell {j : ℕ} {χ : Type}
   else if s.1 = 1 then (2, s.2.1, col, s.2.2.2)
   else (0, s.2.1, s.2.2.1, f s.2.2.2 s.2.1 s.2.2.1 col)
 
-/-- **Three cells make a chunk.** -/
+/-- **Three cells make a chunk.**
+@isnad1 id=and.0h9v.s9.230c397ea1d4 from=translated src=- shape=061b2cff vocab=a45f1405
+-/
 theorem cellFold_chunk {j : ℕ} {χ : Type}
     (f : χ → (Fin (j + 1) → Γ) → (Fin (j + 1) → Γ) → (Fin (j + 1) → Γ) → χ)
     (cols : ℕ → Fin (j + 1) → Γ) (off : ℕ) (x₀ : χ) (u v : Fin (j + 1) → Γ) :
@@ -729,6 +818,9 @@ def eq (j : ℕ) (a b : Fin (j + 1)) : Scanner j where
   stepL s _ := s
   emit := id
 
+/--
+@isnad1 id=rightonl.0h3v.s5.7808db87c986 from=translated src=- shape=52340a77 vocab=62f4569f
+-/
 theorem rightOnly_eq (j : ℕ) (a b : Fin (j + 1)) : RightOnly (eq j a b) := fun _ _ => rfl
 
 @[simp] theorem eq_runL (j : ℕ) (a b : Fin (j + 1)) (cols : ℕ → Fin (j + 1) → Γ) (p : ℕ)
@@ -782,6 +874,9 @@ direction, say — is checked against a constant. -/
 def isConst (j : ℕ) (a : Fin (j + 1)) (g : Γ) : Scanner j :=
   ofRight Bool true (fun s cols => s && decide (cols a = g)) id
 
+/--
+@isnad1 id=iff.0h5v.s6.26dc3fb859dc from=translated src=- shape=2bea2fa0 vocab=941e1988
+-/
 theorem isConst_runR (j : ℕ) (a : Fin (j + 1)) (g : Γ) (cols : ℕ → Fin (j + 1) → Γ) :
     ∀ p : ℕ, (isConst j a g).runR cols p = true ↔ ∀ q, 1 ≤ q → q ≤ p → cols q a = g := by
   intro p
@@ -800,20 +895,31 @@ theorem isConst_runR (j : ℕ) (a : Fin (j + 1)) (g : Γ) (cols : ℕ → Fin (j
       · intro h
         exact ⟨ih.mpr fun q h1 h2 => h q h1 (by omega), h (p + 1) (by omega) le_rfl⟩
 
+/--
+@isnad1 id=eq.0h6v.s5.034dafe7eb2e from=translated src=- shape=6eb5f094 vocab=d990330d
+-/
 theorem isConst_runL (j : ℕ) (a : Fin (j + 1)) (g : Γ) (cols : ℕ → Fin (j + 1) → Γ) (p : ℕ)
     (s : Bool) : (isConst j a g).runL cols p s = s := by
   induction p generalizing s with
   | zero => rfl
   | succ p ih => simp only [runL]; exact ih _
 
+/--
+@isnad1 id=iff.0h5v.s6.d072fe83bace from=translated src=- shape=2bea2fa0 vocab=46377a70
+-/
 theorem isConst_run (j : ℕ) (a : Fin (j + 1)) (g : Γ) (cols : ℕ → Fin (j + 1) → Γ) (len : ℕ) :
     (isConst j a g).run cols len = true ↔ ∀ q, 1 ≤ q → q ≤ len → cols q a = g := by
   rw [run]; erw [isConst_runL, isConst_runR]
 
+/--
+@isnad1 id=rightonl.0h3v.s4.e7f8ecce35d6 from=translated src=- shape=1a6dc1c3 vocab=28bbe1c3
+-/
 theorem rightOnly_isConst (j : ℕ) (a : Fin (j + 1)) (g : Γ) : RightOnly (isConst j a g) :=
   fun _ _ => rfl
 
-/-- **A check over a prefix of cells.** -/
+/-- **A check over a prefix of cells.**
+@isnad1 id=iff.1h6v.s6.0e9cc2219e28 from=translated src=- shape=465c9335 vocab=14b88864
+-/
 theorem isConst_upTo_run (j : ℕ) (a : Fin (j + 1)) (g : Γ) (cols : ℕ → Fin (j + 1) → Γ)
     (w len : ℕ) (hlen : w ≤ len) :
     ((isConst j a g).upTo w).emit (((isConst j a g).upTo w).run cols len) = true ↔
@@ -822,7 +928,9 @@ theorem isConst_upTo_run (j : ℕ) (a : Fin (j + 1)) (g : Γ) (cols : ℕ → Fi
   show (isConst j a g).run cols w = true ↔ _
   rw [isConst_run]
 
-/-- **A one-cell check.** -/
+/-- **A one-cell check.**
+@isnad1 id=iff.1h5v.s6.0b35cab76c12 from=translated src=- shape=a35ee204 vocab=14b88864
+-/
 theorem isConst_cell (j : ℕ) (a : Fin (j + 1)) (g : Γ) (cols : ℕ → Fin (j + 1) → Γ) (len : ℕ)
     (hlen : 1 ≤ len) :
     ((isConst j a g).upTo 1).emit (((isConst j a g).upTo 1).run cols len) = true ↔
@@ -836,6 +944,9 @@ should stop it. -/
 def isNotConst (j : ℕ) (a : Fin (j + 1)) (g : Γ) : Scanner j :=
   ofRight Bool false (fun s cols => s || decide (cols a ≠ g)) id
 
+/--
+@isnad1 id=iff.0h5v.s6.0225a3f70a5b from=translated src=- shape=4f3e860c vocab=9023b781
+-/
 theorem isNotConst_runR (j : ℕ) (a : Fin (j + 1)) (g : Γ) (cols : ℕ → Fin (j + 1) → Γ) :
     ∀ p : ℕ, (isNotConst j a g).runR cols p = true ↔ ∃ q, 1 ≤ q ∧ q ≤ p ∧ cols q a ≠ g := by
   intro p
@@ -855,16 +966,24 @@ theorem isNotConst_runR (j : ℕ) (a : Fin (j + 1)) (g : Γ) (cols : ℕ → Fin
         · exact Or.inl (ih.mpr ⟨q, h1, by omega, h3⟩)
         · exact Or.inr (by rw [show p + 1 = q by omega]; exact h3)
 
+/--
+@isnad1 id=eq.0h6v.s5.6c2194426bc0 from=translated src=- shape=6eb5f094 vocab=c03debd2
+-/
 theorem isNotConst_runL (j : ℕ) (a : Fin (j + 1)) (g : Γ) (cols : ℕ → Fin (j + 1) → Γ) (p : ℕ)
     (s : Bool) : (isNotConst j a g).runL cols p s = s := by
   induction p generalizing s with
   | zero => rfl
   | succ p ih => simp only [runL]; exact ih _
 
+/--
+@isnad1 id=rightonl.0h3v.s4.c2402f85dcc3 from=translated src=- shape=1a6dc1c3 vocab=93e0a689
+-/
 theorem rightOnly_isNotConst (j : ℕ) (a : Fin (j + 1)) (g : Γ) :
     RightOnly (isNotConst j a g) := fun _ _ => rfl
 
-/-- **A one-cell inequality check.** -/
+/-- **A one-cell inequality check.**
+@isnad1 id=iff.1h5v.s6.3cac2bc28b40 from=translated src=- shape=902fd866 vocab=2f83ece6
+-/
 theorem isNotConst_cell (j : ℕ) (a : Fin (j + 1)) (g : Γ) (cols : ℕ → Fin (j + 1) → Γ)
     (len : ℕ) (hlen : 1 ≤ len) :
     ((isNotConst j a g).upTo 1).emit (((isNotConst j a g).upTo 1).run cols len) = true ↔
@@ -875,7 +994,9 @@ theorem isNotConst_cell (j : ℕ) (a : Fin (j + 1)) (g : Γ) (cols : ℕ → Fin
   exact ⟨fun ⟨q, h1, h2, h3⟩ => by rwa [show q = 1 by omega] at h3,
     fun h => ⟨1, le_rfl, le_rfl, h⟩⟩
 
-/-- **A constant check restricted to a range of cells.** -/
+/-- **A constant check restricted to a range of cells.**
+@isnad1 id=iff.1h7v.s6.f10e2c4b3461 from=translated src=- shape=618695d8 vocab=9d378670
+-/
 theorem isConst_range_run (j : ℕ) (a : Fin (j + 1)) (g : Γ) (cols : ℕ → Fin (j + 1) → Γ)
     (w₁ w₂ len : ℕ) (hw : w₂ ≤ len) :
     (((isConst j a g).after w₁).upTo w₂).emit
@@ -891,7 +1012,9 @@ theorem isConst_range_run (j : ℕ) (a : Fin (j + 1)) (g : Γ) (cols : ℕ → F
   · intro h q h1 h2
     exact h (w₁ + q) (by omega) (by omega)
 
-/-- **A difference check restricted to a range of cells.** -/
+/-- **A difference check restricted to a range of cells.**
+@isnad1 id=iff.1h7v.s6.2d46d36eb454 from=translated src=- shape=9780bea4 vocab=c97a15a0
+-/
 theorem isNotConst_range_run (j : ℕ) (a : Fin (j + 1)) (g : Γ) (cols : ℕ → Fin (j + 1) → Γ)
     (w₁ w₂ len : ℕ) (hw : w₂ ≤ len) :
     (((isNotConst j a g).after w₁).upTo w₂).emit
@@ -916,9 +1039,15 @@ whether they all said yes. -/
 def andAll (j : ℕ) : Scanner j :=
   ofRight Bool true (fun s cols => s && decide (∀ i, cols i = Γ.one)) id
 
+/--
+@isnad1 id=eq.0h3v.s6.3fc7c22082c7 from=translated src=- shape=aab4db42 vocab=c28ec350
+-/
 @[simp] theorem andAll_stepR (j : ℕ) (s : Bool) (cols : Fin (j + 1) → Γ) :
     (andAll j).stepR s cols = (s && decide (∀ i, cols i = Γ.one)) := rfl
 
+/--
+@isnad1 id=iff.0h3v.s6.230a863d0808 from=translated src=- shape=4eee0947 vocab=0cbd019e
+-/
 theorem andAll_runR (j : ℕ) (cols : ℕ → Fin (j + 1) → Γ) :
     ∀ p : ℕ, (andAll j).runR cols p = true ↔
       ∀ q, 1 ≤ q → q ≤ p → ∀ i, cols q i = Γ.one := by
@@ -939,7 +1068,9 @@ theorem andAll_runR (j : ℕ) (cols : ℕ → Fin (j + 1) → Γ) :
       · intro hall
         exact ⟨ih.mpr fun q h1 h2 => hall q h1 (by omega), hall (p + 1) (by omega) le_rfl⟩
 
-/-- **What the conjunction scanner reports.** -/
+/-- **What the conjunction scanner reports.**
+@isnad1 id=iff.0h3v.s6.c07198bb5462 from=translated src=- shape=4eee0947 vocab=0027b1d4
+-/
 theorem andAll_run (j : ℕ) (cols : ℕ → Fin (j + 1) → Γ) (p : ℕ) :
     (andAll j).run cols p = true ↔ ∀ q, 1 ≤ q → q ≤ p → ∀ i, cols q i = Γ.one := by
   have hrunL : ∀ s : Bool, (andAll j).runL cols p s = s := fun s =>
@@ -953,10 +1084,16 @@ to. -/
 def andSome (j : ℕ) (P : Fin (j + 1) → Bool) : Scanner j :=
   ofRight Bool true (fun s cols => s && decide (∀ i, P i = true → cols i = Γ.one)) id
 
+/--
+@isnad1 id=eq.0h4v.s7.6554e256bb44 from=translated src=- shape=003dfe07 vocab=923550ff
+-/
 @[simp] theorem andSome_stepR (j : ℕ) (P : Fin (j + 1) → Bool) (s : Bool)
     (cols : Fin (j + 1) → Γ) :
     (andSome j P).stepR s cols = (s && decide (∀ i, P i = true → cols i = Γ.one)) := rfl
 
+/--
+@isnad1 id=iff.0h4v.s6.f048f462297e from=translated src=- shape=955b767c vocab=7065df1c
+-/
 theorem andSome_runR (j : ℕ) (P : Fin (j + 1) → Bool) (cols : ℕ → Fin (j + 1) → Γ) :
     ∀ p : ℕ, (andSome j P).runR cols p = true ↔
       ∀ q, 1 ≤ q → q ≤ p → ∀ i, P i = true → cols q i = Γ.one := by
@@ -978,7 +1115,9 @@ theorem andSome_runR (j : ℕ) (P : Fin (j + 1) → Bool) (cols : ℕ → Fin (j
       · intro hall
         exact ⟨ih.mpr fun q h1 h2 => hall q h1 (by omega), hall (p + 1) (by omega) le_rfl⟩
 
-/-- **What the selective conjunction scanner reports.** -/
+/-- **What the selective conjunction scanner reports.**
+@isnad1 id=iff.0h4v.s6.f703105ba619 from=translated src=- shape=955b767c vocab=d54d5929
+-/
 theorem andSome_run (j : ℕ) (P : Fin (j + 1) → Bool) (cols : ℕ → Fin (j + 1) → Γ) (p : ℕ) :
     (andSome j P).run cols p = true ↔
       ∀ q, 1 ≤ q → q ≤ p → ∀ i, P i = true → cols q i = Γ.one := by
@@ -995,6 +1134,9 @@ def andFirst (j : ℕ) (P : Fin (j + 1) → Bool) : Scanner j :=
       (if s.2 then s.1 else s.1 && decide (∀ i, P i = true → cols i = Γ.one), true))
     (fun s => s.1)
 
+/--
+@isnad1 id=eq.0h4v.s7.5762cffaa62e from=translated src=- shape=75385870 vocab=bc42b4e9
+-/
 theorem andFirst_runR (j : ℕ) (P : Fin (j + 1) → Bool) (cols : ℕ → Fin (j + 1) → Γ) :
     ∀ p : ℕ, (andFirst j P).runR cols p
       = (if p = 0 then true else decide (∀ i, P i = true → cols 1 i = Γ.one),
@@ -1011,7 +1153,9 @@ theorem andFirst_runR (j : ℕ) (P : Fin (j + 1) → Bool) (cols : ℕ → Fin (
       · rw [ite_eq_left (by simpa using hp)]
         simp [Nat.ne_of_gt hp]
 
-/-- **What the first-cell conjunction scanner reports.** -/
+/-- **What the first-cell conjunction scanner reports.**
+@isnad1 id=iff.1h4v.s6.386a1defd8fa from=translated src=- shape=4905362e vocab=f0d0fe45
+-/
 theorem andFirst_run (j : ℕ) (P : Fin (j + 1) → Bool) (cols : ℕ → Fin (j + 1) → Γ) (p : ℕ)
     (hp : 0 < p) :
     (andFirst j P).emit ((andFirst j P).run cols p) = true ↔
@@ -1029,6 +1173,9 @@ def firstCol (j : ℕ) (f : (Fin (j + 1) → Γ) → Bool) : Scanner j :=
   ofRight (Bool × Bool) (true, false)
     (fun s cols => (if s.2 then s.1 else f cols, true)) (fun s => s.1)
 
+/--
+@isnad1 id=eq.0h4v.s6.c0841d1ceb4f from=translated src=- shape=75aadbe9 vocab=47e6e7c6
+-/
 theorem firstCol_runR (j : ℕ) (f : (Fin (j + 1) → Γ) → Bool) (cols : ℕ → Fin (j + 1) → Γ) :
     ∀ p : ℕ, (firstCol j f).runR cols p
       = (if p = 0 then true else f (cols 1), decide (0 < p)) := by
@@ -1044,7 +1191,9 @@ theorem firstCol_runR (j : ℕ) (f : (Fin (j + 1) → Γ) → Bool) (cols : ℕ 
       · rw [ite_eq_left (by simpa using hp)]
         simp [Nat.ne_of_gt hp]
 
-/-- **What the first-column scanner reports.** -/
+/-- **What the first-column scanner reports.**
+@isnad1 id=eq.1h4v.s6.b0255dcc7f16 from=translated src=- shape=131c918e vocab=d1290494
+-/
 theorem firstCol_run (j : ℕ) (f : (Fin (j + 1) → Γ) → Bool) (cols : ℕ → Fin (j + 1) → Γ)
     (p : ℕ) (hp : 0 < p) :
     (firstCol j f).emit ((firstCol j f).run cols p) = f (cols 1) := by
@@ -1073,7 +1222,9 @@ def plusOne (j : ℕ) (a b : Fin (j + 1)) : Scanner j :=
       (ba && s.1, s.2 && decide (bb = (xor ba s.1))))
     (fun s => !s.1 && s.2)
 
-/-- The value of `p` bits fits in `p` bits. -/
+/-- The value of `p` bits fits in `p` bits.
+@isnad1 id=lt.0h2v.s4.426e9157dc57 from=translated src=- shape=f10be33f vocab=609e1af3
+-/
 theorem valUpTo_lt (f : ℕ → Bool) : ∀ p : ℕ, valUpTo f p < 2 ^ p := by
   intro p
   induction p with
@@ -1084,7 +1235,9 @@ theorem valUpTo_lt (f : ℕ → Bool) : ∀ p : ℕ, valUpTo f p < 2 ^ p := by
       split <;> omega
 
 /-- **The invariant of the increment check.** The carry is exactly "every bit of `a` so far was
-one", and the running verdict says exactly that the bits of `b` so far are those of `a + 1`. -/
+one", and the running verdict says exactly that the bits of `b` so far are those of `a + 1`.
+@isnad1 id=ex.0h5v.s7.3320c11c7812 from=translated src=- shape=c25a62fc vocab=e743493c
+-/
 theorem plusOne_runR (j : ℕ) (a b : Fin (j + 1)) (cols : ℕ → Fin (j + 1) → Γ) :
     ∀ p : ℕ, ∃ c v : Bool, (plusOne j a b).runR cols p = (c, v) ∧
       (c = true ↔ valUpTo (bitAt cols a) p + 1 = 2 ^ p) ∧
@@ -1113,7 +1266,9 @@ theorem plusOne_runR (j : ℕ) (a b : Fin (j + 1)) (cols : ℕ → Fin (j + 1) �
           simp_all <;>
           omega
 
-/-- **What the increment scanner reports.** -/
+/-- **What the increment scanner reports.**
+@isnad1 id=iff.0h5v.s6.1343dd531e62 from=translated src=- shape=b58bd8c3 vocab=9b9d5bb5
+-/
 theorem plusOne_run (j : ℕ) (a b : Fin (j + 1)) (cols : ℕ → Fin (j + 1) → Γ) (len : ℕ) :
     (plusOne j a b).emit ((plusOne j a b).run cols len) = true ↔
       valUpTo (bitAt cols b) len = valUpTo (bitAt cols a) len + 1 := by
@@ -1287,7 +1442,9 @@ private theorem work_read_last (cells : Fin (j + 1) → ℕ → Γ) (h : ℕ) (r
       (Fin.last (j + 1))).read = res.read := by
   rw [Fin.snoc_last]
 
-/-- The rightward pass, while tape `0` has not run out. -/
+/-- The rightward pass, while tape `0` has not run out.
+@isnad1 id=eq.3h8v.s7.aed645b23222 from=translated src=- shape=ba1f65c7 vocab=b71a7fc1
+-/
 theorem twoPassCfg_step_right (S : Scanner j) (s : S.σ) (inp : Tape)
     (cells : Fin (j + 1) → ℕ → Γ) (h : ℕ) (res out : Tape)
     (hok : ScanOk inp res out) (hc : ∀ i, cells i h ≠ Γ.start) (hne : cells 0 h ≠ Γ.blank) :
@@ -1318,7 +1475,9 @@ private theorem tape_start_right {t : Tape} (hh : t.head = 0) (g : Γ) :
   show (⟨t.head + 1, t.cells⟩ : Tape) = _
   rw [hh]
 
-/-- The turn: tape `0` has run out, so the scan starts back. -/
+/-- The turn: tape `0` has run out, so the scan starts back.
+@isnad1 id=eq.3h8v.s7.d2beba734f49 from=translated src=- shape=4d776fad vocab=3a4e7fe9
+-/
 theorem twoPassCfg_step_turn (S : Scanner j) (s : S.σ) (inp : Tape)
     (cells : Fin (j + 1) → ℕ → Γ) (h : ℕ) (res out : Tape)
     (hok : ScanOk inp res out) (hc : ∀ i, cells i h ≠ Γ.start) (hb : cells 0 h = Γ.blank) :
@@ -1340,7 +1499,9 @@ theorem twoPassCfg_step_turn (S : Scanner j) (s : S.σ) (inp : Tape)
   · simp only [TM.stepCfg, twoPassCfg, twoPassTM, work_read, hb, ite_true]
     exact tape_keep hok.out
 
-/-- The leftward pass, while the left marker is not yet in sight. -/
+/-- The leftward pass, while the left marker is not yet in sight.
+@isnad1 id=eq.2h8v.s7.06618e7459c1 from=translated src=- shape=ac1aa43b vocab=687d6eb5
+-/
 theorem twoPassCfg_step_left (S : Scanner j) (s : S.σ) (inp : Tape)
     (cells : Fin (j + 1) → ℕ → Γ) (h : ℕ) (res out : Tape)
     (hok : ScanOk inp res out) (hc : ∀ i, cells i h ≠ Γ.start) :
@@ -1365,7 +1526,9 @@ theorem twoPassCfg_step_left (S : Scanner j) (s : S.σ) (inp : Tape)
   · simp only [TM.stepCfg, twoPassCfg, twoPassTM, work_read, hns, ite_false]
     exact tape_keep hok.out
 
-/-- The leftward pass reaches the marker and the scan turns to publishing. -/
+/-- The leftward pass reaches the marker and the scan turns to publishing.
+@isnad1 id=eq.2h7v.s7.66cba701c250 from=translated src=- shape=dd0d32f9 vocab=96c3f144
+-/
 theorem twoPassCfg_step_stop (S : Scanner j) (s : S.σ) (inp : Tape)
     (cells : Fin (j + 1) → ℕ → Γ) (res out : Tape)
     (hok : ScanOk inp res out) (hs : ∀ i, cells i 0 = Γ.start) :
@@ -1388,7 +1551,9 @@ theorem twoPassCfg_step_stop (S : Scanner j) (s : S.σ) (inp : Tape)
   · simp only [TM.stepCfg, twoPassCfg, twoPassTM, work_read, hst, ite_true]
     exact tape_keep hok.out
 
-/-- Publishing the verdict: one bit onto the result tape, then halt. -/
+/-- Publishing the verdict: one bit onto the result tape, then halt.
+@isnad1 id=eq.2h8v.s7.e030548426a0 from=translated src=- shape=b1746755 vocab=5c9342d3
+-/
 theorem twoPassCfg_step_emit (S : Scanner j) (s : S.σ) (inp : Tape)
     (cells : Fin (j + 1) → ℕ → Γ) (h : ℕ) (res out : Tape)
     (hok : ScanOk inp res out) (hc : ∀ i, cells i h ≠ Γ.start) :
@@ -1445,7 +1610,9 @@ private theorem not_halted_emit (S : Scanner j) (s : S.σ) (inp : Tape)
   intro hq
   exact TwoPassPhase.noConfusion (congrArg Prod.fst hq)
 
-/-- **The rightward pass.** -/
+/-- **The rightward pass.**
+@isnad1 id=reachesi.3h9v.s7.4f7656a4034e from=translated src=- shape=1bc1d84a vocab=6009f4ff
+-/
 theorem twoPassCfg_run_right (S : Scanner j) (inp res out : Tape)
     (cells : Fin (j + 1) → ℕ → Γ) (len : ℕ)
     (hok : ScanOk inp res out) (ht : ScanTape cells len) :
@@ -1469,7 +1636,9 @@ theorem twoPassCfg_run_right (S : Scanner j) (inp res out : Tape)
         twoPassCfg_step_right S _ inp cells (p + 1) res out hok hc hne]
       rfl
 
-/-- **The leftward pass.** -/
+/-- **The leftward pass.**
+@isnad1 id=reachesi.2h9v.s6.830dd63f974e from=translated src=- shape=66304f91 vocab=a4fa59d5
+-/
 theorem twoPassCfg_run_left (S : Scanner j) (inp res out : Tape)
     (cells : Fin (j + 1) → ℕ → Γ) (len : ℕ)
     (hok : ScanOk inp res out) (ht : ScanTape cells len) :
@@ -1490,7 +1659,9 @@ theorem twoPassCfg_run_left (S : Scanner j) (inp res out : Tape)
 
 /-- **A whole scan.** Started with every scanned head on cell one, the machine walks tape `0` to
 its first blank and back, and halts with the automaton's verdict written on the result tape.
-Nothing else on any tape moves. -/
+Nothing else on any tape moves.
+@isnad1 id=reachesi.2h7v.s7.28701ebf5c76 from=translated src=- shape=05129920 vocab=dc003db7
+-/
 theorem twoPassCfg_run (S : Scanner j) (inp res out : Tape)
     (cells : Fin (j + 1) → ℕ → Γ) (len : ℕ)
     (hok : ScanOk inp res out) (ht : ScanTape cells len) :
@@ -1532,12 +1703,16 @@ theorem twoPassCfg_run (S : Scanner j) (inp res out : Tape)
     ?_
   exact (twoPassTM S).reachesIn_trans hstop hemit
 
-/-- A scan ends halted. -/
+/-- A scan ends halted.
+@isnad1 id=halted.0h7v.s6.e2dda127d6b2 from=translated src=- shape=c84e3fe9 vocab=e9a50056
+-/
 theorem twoPassCfg_halted (S : Scanner j) (inp : Tape) (cells : Fin (j + 1) → ℕ → Γ) (h : ℕ)
     (res out : Tape) :
     (twoPassTM S).halted (twoPassCfg S (TwoPassPhase.done, S.start) inp cells h res out) := rfl
 
-/-- **The scan as a Hoare triple**, which is the form `TM.seqTM` and `TM.loopTM` compose. -/
+/-- **The scan as a Hoare triple**, which is the form `TM.seqTM` and `TM.loopTM` compose.
+@isnad1 id=hoaretim.2h7v.s8.6e0411231a9d from=translated src=- shape=a11e2c59 vocab=187250a5
+-/
 theorem twoPassTM_hoareTime (S : Scanner j) (cells : Fin (j + 1) → ℕ → Γ) (len : ℕ)
     (inp₀ out₀ res₀ : Tape) (hok : ScanOk inp₀ res₀ out₀) (ht : ScanTape cells len) :
     (twoPassTM S).HoareTime
@@ -1556,7 +1731,9 @@ needs neither its registers moved next to one another nor a private copy of them
 def checkTM {jd jj : ℕ} (S : Scanner jd) (f : Fin (jd + 1) → Fin (jj + 1)) : TM (jj + 2) :=
   twoPassTM (S.comap f)
 
-/-- **Its contract**: the verdict of the scanner, read off the named columns. -/
+/-- **Its contract**: the verdict of the scanner, read off the named columns.
+@isnad1 id=hoaretim.2h9v.s8.f5d87d859b72 from=translated src=- shape=a1c0a06e vocab=84b13f82
+-/
 theorem checkTM_hoareTime {jd jj : ℕ} (S : Scanner jd) (f : Fin (jd + 1) → Fin (jj + 1))
     (cells : Fin (jj + 1) → ℕ → Γ) (len : ℕ) (inp₀ out₀ res₀ : Tape)
     (hok : ScanOk inp₀ res₀ out₀) (ht : ScanTape cells len) :

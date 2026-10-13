@@ -57,11 +57,16 @@ variable (G : RegGraph)
 /-- The reversal of darts, as a permutation. -/
 def rotPerm : Equiv.Perm (G.V × G.D) := G.rot_involutive.toPerm
 
+/--
+@isnad1 id=eq.0h2v.s5.346173d3c12f from=translated src=- shape=c16bb9d7 vocab=0c84f6ab
+-/
 theorem nbr_rot (p : G.V × G.D) : G.nbr (G.rot p).1 (G.rot p).2 = p.1 := by
   show (G.rot (G.rot p)).1 = p.1
   rw [G.rot_involutive p]
 
-/-- **Reversing every dart** swaps the two ends in a sum. -/
+/-- **Reversing every dart** swaps the two ends in a sum.
+@isnad1 id=eq.0h2v.s6.f04537de3983 from=translated src=- shape=aff82e39 vocab=19001d47
+-/
 theorem sum_darts_swap (g : G.V → G.V → ℝ) :
     ∑ p : G.V × G.D, g p.1 (G.nbr p.1 p.2) = ∑ p : G.V × G.D, g (G.nbr p.1 p.2) p.1 := by
   refine Fintype.sum_equiv G.rotPerm _ _ fun p => ?_
@@ -69,17 +74,26 @@ theorem sum_darts_swap (g : G.V → G.V → ℝ) :
   rw [nbr_rot]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.d3c18b8cea81 from=translated src=- shape=036e2f00 vocab=b58aee1c
+-/
 theorem sum_darts_fst (g : G.V → ℝ) :
     ∑ p : G.V × G.D, g p.1 = (G.deg : ℝ) * ∑ v : G.V, g v := by
   rw [Fintype.sum_prod_type]
   simp only [Finset.sum_const, Finset.card_univ, card_eq_deg, nsmul_eq_mul]
   rw [← Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h2v.s6.72abf8eb4dcc from=translated src=- shape=db439745 vocab=7fa94266
+-/
 theorem sum_darts_snd (g : G.V → ℝ) :
     ∑ p : G.V × G.D, g (G.nbr p.1 p.2) = (G.deg : ℝ) * ∑ v : G.V, g v := by
   rw [G.sum_darts_swap (fun _ w => g w)]
   exact G.sum_darts_fst g
 
+/--
+@isnad1 id=eq.0h3v.s6.b253708cc981 from=translated src=- shape=435d06a2 vocab=8fe249ad
+-/
 theorem sum_mul_step (f g : G.V → ℝ) :
     ∑ v : G.V, f v * G.step g v = (∑ p : G.V × G.D, f p.1 * g (G.nbr p.1 p.2)) / (G.deg : ℝ) := by
   simp only [step, Fintype.sum_prod_type]
@@ -99,10 +113,15 @@ def EdgeExpansion (h : ℝ) : Prop :=
 noncomputable def dirichlet (f : G.V → ℝ) : ℝ :=
   ∑ p : G.V × G.D, (f p.1 - f (G.nbr p.1 p.2)) ^ 2
 
+/--
+@isnad1 id=le.0h2v.s4.8566b1ba8e24 from=translated src=- shape=42a2b5ba vocab=4407beba
+-/
 theorem dirichlet_nonneg (f : G.V → ℝ) : 0 ≤ G.dirichlet f :=
   Finset.sum_nonneg fun _ _ => sq_nonneg _
 
-/-- **The Dirichlet form and the step operator.** -/
+/-- **The Dirichlet form and the step operator.**
+@isnad1 id=eq.0h2v.s6.02e9e9d6aa57 from=translated src=- shape=98868664 vocab=076ebeff
+-/
 theorem dirichlet_eq (f : G.V → ℝ) :
     G.dirichlet f = 2 * (G.deg : ℝ) * ((∑ v : G.V, (f v) ^ 2) - ∑ v : G.V, f v * G.step f v) := by
   have hd : (G.deg : ℝ) ≠ 0 := G.deg_ne_zero
@@ -115,7 +134,9 @@ theorem dirichlet_eq (f : G.V → ℝ) :
   field_simp
   ring
 
-/-- The Dirichlet form is invariant under adding a constant. -/
+/-- The Dirichlet form is invariant under adding a constant.
+@isnad1 id=eq.0h3v.s4.9e94ffe58c23 from=translated src=- shape=105ad946 vocab=f79d2daa
+-/
 theorem dirichlet_sub_const (f : G.V → ℝ) (c : ℝ) :
     G.dirichlet (fun v => f v - c) = G.dirichlet f := by
   simp only [dirichlet]
@@ -125,7 +146,9 @@ theorem dirichlet_sub_const (f : G.V → ℝ) (c : ℝ) :
 /-! ### Co-area -/
 
 /-- The darts crossing out of or into `S`, counted with the boundary in both
-directions. -/
+directions.
+@isnad1 id=eq.0h2v.s8.81d8d3e8705f from=translated src=- shape=c7be8e20 vocab=1a6d5744
+-/
 theorem sum_darts_boundary (S : Finset G.V) :
     ∑ p : G.V × G.D, (if p.1 ∈ S ∧ G.nbr p.1 p.2 ∉ S then (1 : ℝ) else 0)
       + ∑ p : G.V × G.D, (if p.1 ∉ S ∧ G.nbr p.1 p.2 ∈ S then (1 : ℝ) else 0)
@@ -148,6 +171,9 @@ theorem sum_darts_boundary (S : Finset G.V) :
 /-- The support of a function. -/
 noncomputable def support (ψ : G.V → ℝ) : Finset G.V := Finset.univ.filter fun v => ψ v ≠ 0
 
+/--
+@isnad1 id=iff.0h3v.s5.012e2962f92a from=translated src=- shape=327b94ae vocab=41eb5fde
+-/
 theorem mem_support_iff (ψ : G.V → ℝ) (v : G.V) : v ∈ G.support ψ ↔ ψ v ≠ 0 := by
   simp [support]
 
@@ -156,7 +182,9 @@ theorem eq_zero_of_notMem_support (ψ : G.V → ℝ) {v : G.V} (hv : v ∉ G.sup
   exact hv ((G.mem_support_iff ψ v).2 h)
 
 /-- **Co-area.** For `ψ ≥ 0` supported on at most half the vertices,
-`∑ |ψ u - ψ w| ≥ 2 h d ∑ ψ`. -/
+`∑ |ψ u - ψ w| ≥ 2 h d ∑ ψ`.
+@isnad1 id=le.4h4v.s7.77a42167eae0 from=translated src=- shape=02949caa vocab=1da923d2
+-/
 theorem coarea {h : ℝ} (hexp : G.EdgeExpansion h) :
     ∀ (n : ℕ) (ψ : G.V → ℝ), (G.support ψ).card = n → (∀ v, 0 ≤ ψ v)
       → 2 * (G.support ψ).card ≤ G.order
@@ -255,12 +283,17 @@ theorem coarea {h : ℝ} (hexp : G.EdgeExpansion h) :
 
 /-! ### The core bound for small support -/
 
+/--
+@isnad1 id=eq.0h2v.s5.7b2bd12edd39 from=translated src=- shape=c48ccb3f vocab=01f72835
+-/
 theorem support_sq (φ : G.V → ℝ) : G.support (fun v => (φ v) ^ 2) = G.support φ := by
   ext v
   simp [support, pow_eq_zero_iff]
 
 /-- **Small support.** For `φ ≥ 0` supported on at most half the vertices,
-`h² d ‖φ‖² ≤ Dirichlet φ`. -/
+`h² d ‖φ‖² ≤ Dirichlet φ`.
+@isnad1 id=le.4h3v.s7.61dccfb2a0c9 from=translated src=- shape=b7949a1c vocab=9af0a474
+-/
 theorem dirichlet_ge_of_support {h : ℝ} (hexp : G.EdgeExpansion h) (hh : 0 ≤ h)
     (φ : G.V → ℝ) (hpos : ∀ v, 0 ≤ φ v) (hhalf : 2 * (G.support φ).card ≤ G.order) :
     h ^ 2 * (G.deg : ℝ) * ∑ v : G.V, (φ v) ^ 2 ≤ G.dirichlet φ := by
@@ -318,7 +351,9 @@ theorem dirichlet_ge_of_support {h : ℝ} (hexp : G.EdgeExpansion h) (hh : 0 ≤
 /-! ### The median split -/
 
 /-- **A median.** Some value has at most half the vertices strictly above it and at
-most half strictly below. -/
+most half strictly below.
+@isnad1 id=ex.0h2v.s6.9a480825ac49 from=translated src=- shape=5cc34907 vocab=4d5ee970
+-/
 theorem exists_median (f : G.V → ℝ) :
     ∃ c : ℝ, 2 * (Finset.univ.filter fun v => c < f v).card ≤ G.order
       ∧ 2 * (Finset.univ.filter fun v => f v < c).card ≤ G.order := by
@@ -390,6 +425,9 @@ theorem exists_median (f : G.V → ℝ) :
   rw [← hc] at this
   linarith
 
+/--
+@isnad1 id=le.0h2v.s6.282be591c912 from=translated src=- shape=a6935280 vocab=30e190aa
+-/
 theorem support_max_subset (g : G.V → ℝ) :
     G.support (fun v => max (g v) 0) ⊆ Finset.univ.filter fun v => 0 < g v := by
   intro v hv
@@ -400,7 +438,9 @@ theorem support_max_subset (g : G.V → ℝ) :
   exact hv (max_eq_right hle)
 
 /-- **Cheeger's inequality, Dirichlet form.** For mean-zero `f`,
-`h² d ‖f‖² ≤ Dirichlet f`. -/
+`h² d ‖f‖² ≤ Dirichlet f`.
+@isnad1 id=le.3h3v.s6.b6942061fb2c from=translated src=- shape=e4309f78 vocab=449eb2db
+-/
 theorem dirichlet_ge_of_edgeExpansion {h : ℝ} (hexp : G.EdgeExpansion h) (hh : 0 ≤ h)
     (f : G.V → ℝ) (hf : ∑ v : G.V, f v = 0) :
     h ^ 2 * (G.deg : ℝ) * ∑ v : G.V, (f v) ^ 2 ≤ G.dirichlet f := by
@@ -475,6 +515,9 @@ theorem dirichlet_ge_of_edgeExpansion {h : ℝ} (hexp : G.EdgeExpansion h) (hh :
 noncomputable def lazyQ (f g : G.V → ℝ) : ℝ :=
   ∑ p : G.V × G.D, (f p.1 + f (G.nbr p.1 p.2)) * (g p.1 + g (G.nbr p.1 p.2))
 
+/--
+@isnad1 id=eq.0h3v.s5.15b1a631d131 from=translated src=- shape=488f2fd9 vocab=33925278
+-/
 theorem step_lazy (f : G.V → ℝ) (v : G.V) :
     (G.padLoops G.deg).step f v = (G.step f v + f v) / 2 := by
   rw [step_padLoops]
@@ -482,7 +525,9 @@ theorem step_lazy (f : G.V → ℝ) (v : G.V) :
   field_simp
   ring
 
-/-- **The lazy step against a function is the lazy form.** -/
+/-- **The lazy step against a function is the lazy form.**
+@isnad1 id=eq.0h3v.s6.06e4e2c161b3 from=translated src=- shape=54317d7a vocab=b1f6a90c
+-/
 theorem sum_lazy_mul (f g : G.V → ℝ) :
     ∑ v : G.V, (G.padLoops G.deg).step f v * g v = G.lazyQ f g / (4 * (G.deg : ℝ)) := by
   have hd : (G.deg : ℝ) ≠ 0 := G.deg_ne_zero
@@ -505,6 +550,9 @@ theorem sum_lazy_mul (f g : G.V → ℝ) :
   field_simp
   ring
 
+/--
+@isnad1 id=eq.0h2v.s6.f6ae26f3ff20 from=translated src=- shape=2c8ae093 vocab=c053fc09
+-/
 theorem lazyQ_self (f : G.V → ℝ) :
     G.lazyQ f f = 4 * (G.deg : ℝ) * ∑ v : G.V, (f v) ^ 2 - G.dirichlet f := by
   simp only [lazyQ, dirichlet]
@@ -516,15 +564,24 @@ theorem lazyQ_self (f : G.V → ℝ) :
     G.sum_darts_snd (fun v => (f v) ^ 2)]
   ring
 
+/--
+@isnad1 id=le.0h2v.s4.3ed46062170c from=translated src=- shape=9ff44887 vocab=7c547e5a
+-/
 theorem lazyQ_nonneg (f : G.V → ℝ) : 0 ≤ G.lazyQ f f :=
   Finset.sum_nonneg fun _ _ => mul_self_nonneg _
 
+/--
+@isnad1 id=le.0h3v.s5.35b522776881 from=translated src=- shape=6c579a22 vocab=446f903f
+-/
 theorem lazyQ_sq_le (f g : G.V → ℝ) : (G.lazyQ f g) ^ 2 ≤ G.lazyQ f f * G.lazyQ g g := by
   have := Finset.sum_mul_sq_le_sq_mul_sq (Finset.univ : Finset (G.V × G.D))
     (fun p => f p.1 + f (G.nbr p.1 p.2)) (fun p => g p.1 + g (G.nbr p.1 p.2))
   simp only [lazyQ, sq] at this ⊢
   exact this
 
+/--
+@isnad1 id=eq.0h2v.s5.c1e20af73c2e from=translated src=- shape=f1e02466 vocab=ae4f6098
+-/
 theorem sum_lazy_step (f : G.V → ℝ) :
     ∑ v : G.V, (G.padLoops G.deg).step f v = ∑ v : G.V, f v := by
   simp only [step_lazy]
@@ -532,7 +589,9 @@ theorem sum_lazy_step (f : G.V → ℝ) :
   ring
 
 /-- **Cheeger's inequality, spectral form.** Edge expansion `h` gives the lazy
-graph — `d` self-loops added — the spectral bound `1 - h² / 4`. -/
+graph — `d` self-loops added — the spectral bound `1 - h² / 4`.
+@isnad1 id=spectral.2h2v.s6.da4cead7f4c4 from=translated src=- shape=3a5bad24 vocab=aa16790a
+-/
 theorem spectralBound_padLoops_of_edgeExpansion {h : ℝ} (hexp : G.EdgeExpansion h) (hh : 0 ≤ h) :
     (G.padLoops G.deg).SpectralBound (1 - h ^ 2 / 4) := by
   intro f hf

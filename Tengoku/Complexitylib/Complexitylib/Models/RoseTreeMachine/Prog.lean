@@ -122,6 +122,9 @@ end
 -- elaboration), so the docBlame lint is suppressed here instead.
 attribute [nolint docBlame] closureSize.go
 
+/--
+@isnad1 id=eq.1h2v.s4.559632d3d6f7 from=translated src=- shape=968e29b1 vocab=292dda77
+-/
 @[simp, scoped grind =]
 lemma closureSize_of_noVar {body : Prog} {env : List Value} (h : ∀ i, ¬body.hasVar i) :
     closureSize body env = 0 := by
@@ -131,6 +134,9 @@ lemma closureSize_of_noVar {body : Prog} {env : List Value} (h : ∀ i, ¬body.h
     | cons hd tl ih => simp [closureSize.go, h depth, ih]
   simp [closureSize, this]
 
+/--
+@isnad1 id=eq.0h2v.s5.f8d94d2447cb from=translated src=- shape=612b6676 vocab=86e4e236
+-/
 @[simp, scoped grind =]
 lemma closureSize_of_var {env : List Value} :
     closureSize (.var i) env = (env[i]?.map fun v => v.size).getD 0 := by
@@ -143,10 +149,15 @@ lemma closureSize_of_var {env : List Value} :
       grind [closureSize.go, List.length_cons, Prog.hasVar]
   grind
 
+/--
+@isnad1 id=eq.0h1v.s3.7d352b4d8ccc from=translated src=- shape=7718e021 vocab=e603bf7d
+-/
 @[scoped grind =]
 lemma Value.size_data {d : Data} : (Value.data d).size = d.size := by simp [Value.size]
 
-/-- Splitting the environment of a closure size computation across an append. -/
+/-- Splitting the environment of a closure size computation across an append.
+@isnad1 id=eq.0h4v.s5.210dcdec6978 from=translated src=- shape=dddff440 vocab=e31cd105
+-/
 lemma closureSize.go_append (body : Prog) (depth : ℕ) (l1 l2 : List Value) :
     closureSize.go body depth (l1 ++ l2)
       = closureSize.go body depth l1 + closureSize.go body (depth + l1.length) l2 := by
@@ -158,13 +169,17 @@ lemma closureSize.go_append (body : Prog) (depth : ℕ) (l1 l2 : List Value) :
       omega
 
 /-- The closure size over an appended environment splits into the size over the prefix plus the
-contribution of the suffix (counted starting at depth `l1.length`). -/
+contribution of the suffix (counted starting at depth `l1.length`).
+@isnad1 id=eq.0h3v.s5.5e9855e842ad from=translated src=- shape=4b0d3318 vocab=1ce494de
+-/
 lemma closureSize_append (body : Prog) (l1 l2 : List Value) :
     closureSize body (l1 ++ l2)
       = closureSize body l1 + closureSize.go body l1.length l2 := by
   simp only [closureSize, closureSize.go_append, Nat.zero_add]
 
-/-- `closureSize.go` is monotone in the set of accessed variables. -/
+/-- `closureSize.go` is monotone in the set of accessed variables.
+@isnad1 id=le.1h4v.s5.c8de50aede7e from=translated src=- shape=7bcc6504 vocab=5d018dac
+-/
 lemma closureSize.go_mono {body1 body2 : Prog} (env : List Value)
     (h : ∀ i, body1.hasVar i → body2.hasVar i) (depth : ℕ) :
     closureSize.go body1 depth env ≤ closureSize.go body2 depth env := by
@@ -181,14 +196,18 @@ lemma closureSize.go_mono {body1 body2 : Prog} (env : List Value)
       omega
 
 /-- If every variable accessed by `body1` is also accessed by `body2`, then `body1` has a smaller
-closure size over any environment. -/
+closure size over any environment.
+@isnad1 id=le.1h3v.s5.88ffa52d9dcf from=translated src=- shape=b58438a4 vocab=c96d2e75
+-/
 lemma closureSize_mono {body1 body2 : Prog} (env : List Value)
     (h : ∀ i, body1.hasVar i → body2.hasVar i) :
     closureSize body1 env ≤ closureSize body2 env := by
   have := closureSize.go_mono env h 0
   simpa only [closureSize] using this
 
-/-- The closure size is bounded by the total size of the environment. -/
+/-- The closure size is bounded by the total size of the environment.
+@isnad1 id=le.0h3v.s4.e266445d7fbc from=translated src=- shape=ee54968b vocab=8af985b3
+-/
 lemma closureSize.go_le_sum (body : Prog) (depth : ℕ) (env : List Value) :
     closureSize.go body depth env ≤ (env.map Value.size).sum := by
   induction env generalizing depth with
@@ -284,7 +303,9 @@ inductive WhileSem : Value → Data → Data → ℕ → ℕ → Prop
       WhileSem bodyVal acc r (t_b + t_r) (max s_b s_r)
 end
 
-/-- Every closure application costs at least one time unit, so beta reduction is never free. -/
+/-- Every closure application costs at least one time unit, so beta reduction is never free.
+@isnad1 id=le.1h5v.s4.1cfc3704b80b from=translated src=- shape=54ff8710 vocab=d0ddd693
+-/
 lemma AppSem.one_le_time {f v r : Value} {t s : ℕ} (h : AppSem f v r t s) : 1 ≤ t := by
   cases h
   omega
@@ -292,7 +313,9 @@ lemma AppSem.one_le_time {f v r : Value} {t s : ℕ} (h : AppSem f v r t s) : 1 
 /-- Producing a value costs at least its size, in both time and space. This holds because every
 `ProgSem` derivation either reads/builds the value directly (charging its size) or returns a
 value produced by a sub-derivation whose cost it includes. Provable by mutual induction over
-`ProgSem`/`AppSem`/`WhileSem`. -/
+`ProgSem`/`AppSem`/`WhileSem`.
+@isnad1 id=and.1h5v.s4.545891628551 from=translated src=- shape=fced2f61 vocab=558d2abb
+-/
 lemma ProgSem.size_le {σ : List Value} {p : Prog} {v : Value} {t s : ℕ}
     (h : ProgSem σ p v t s) : v.size ≤ t ∧ v.size ≤ s := by
   induction h using ProgSem.rec
@@ -306,7 +329,9 @@ lemma ProgSem.size_le {σ : List Value} {p : Prog} {v : Value} {t s : ℕ}
 /-- Value-determinism of the relational semantics: a program evaluates to at most one value in a
 given environment. The mutually-defined `AppSem`/`WhileSem` relations are value-deterministic too.
 The potential branch overlaps (`elim_nil`/`elim_cons`, `ifEq_then`/`ifEq_else`) are ruled out by
-value-determinism of the scrutinee / compared values, supplied by the induction hypotheses. -/
+value-determinism of the scrutinee / compared values, supplied by the induction hypotheses.
+@isnad1 id=eq.2h8v.s5.78cb856fd799 from=translated src=- shape=b286faf9 vocab=977537cc
+-/
 theorem ProgSem.value_det {σ : List Value} {p : Prog} {v₁ : Value} {t₁ s₁ : ℕ}
     (h₁ : ProgSem σ p v₁ t₁ s₁) :
     ∀ (v₂ : Value) (t₂ s₂ : ℕ), ProgSem σ p v₂ t₂ s₂ → v₁ = v₂ := by

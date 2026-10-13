@@ -29,7 +29,9 @@ open Internal
 
 /-- A valid numeric code selects its corresponding branch, without requiring a
 resource envelope. This semantic form supports composition before a larger
-program chooses a shared cost and space bound. -/
+program chooses a shared cost and space bound.
+@isnad1 id=ex.5h8v.s6.898821292047 from=translated src=- shape=96f867d1 vocab=7b42f693
+-/
 theorem select_exec {count test one : ℕ}
     (branch : Fin count → Cmd) (initial final : Store)
     {code branchSteps : ℕ}
@@ -45,7 +47,9 @@ theorem select_exec {count test one : ℕ}
 
 /-- A valid numeric code selects its corresponding branch. The selected branch
 starts with the test register cleared, matching the decrementing implementation.
-The result carries an exact transition count and envelope-based resource bounds. -/
+The result carries an exact transition count and envelope-based resource bounds.
+@isnad1 id=measured.7h11v.s6.4d8cfeed7a23 from=translated src=- shape=e266ea72 vocab=551958d0
+-/
 theorem select_measured {count test one indexBound valueBound : ℕ}
     (branch : Fin count → Cmd) (initial final : Store)
     {code branchSteps branchCost : ℕ}

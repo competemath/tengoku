@@ -68,12 +68,16 @@ def repeatOutputIdx (j : Fin k) : Fin (k * (n + 1)) :=
 def repeatTapeCoord (i : Fin (k * (n + 1))) : Fin k × Fin (n + 1) :=
   finProdFinEquiv.symm i
 
-/-- Decoding a freshly constructed bank index recovers its two coordinates. -/
+/-- Decoding a freshly constructed bank index recovers its two coordinates.
+@isnad1 id=eq.0h4v.s6.368a81531ec1 from=translated src=- shape=ca381c3c vocab=1b3c05ba
+-/
 @[simp] theorem repeatTapeCoord_repeatTapeIdx (j : Fin k) (i : Fin (n + 1)) :
     repeatTapeCoord (repeatTapeIdx j i) = (j, i) := by
   simp [repeatTapeCoord, repeatTapeIdx]
 
-/-- Fresh-bank indexing is injective in the pair of coordinates. -/
+/-- Fresh-bank indexing is injective in the pair of coordinates.
+@isnad1 id=injectiv.0h2v.s6.212927825d3c from=translated src=- shape=c41817b8 vocab=a12f78f6
+-/
 theorem repeatTapeIdx_injective :
     Function.Injective (fun p : Fin k × Fin (n + 1) => repeatTapeIdx p.1 p.2) := by
   intro a b h
@@ -180,7 +184,9 @@ def repeatGuardTransition {Q : Type} {m : ℕ}
     fun i => repeatSafeDir (wHeads i) (workDirs i), repeatSafeDir oHead outputDir)
 
 /-- Guarded transitions satisfy the left-end direction condition independently
-of the unguarded transition. -/
+of the unguarded transition.
+@isnad1 id=match1.0h6v.s6.e1be49d3ca71 from=translated src=- shape=bfa584a7 vocab=03cecd07
+-/
 theorem repeatGuardTransition_right_of_start {Q : Type} {m : ℕ}
     (iHead : Γ) (wHeads : Fin m → Γ) (oHead : Γ)
     (r : Q × (Fin m → Γw) × Γw × Dir3 × (Fin m → Dir3) × Dir3) :
@@ -221,25 +227,33 @@ def repeatBankDirs (wHeads : Fin (k * (n + 1)) → Γ) (j : Fin k)
       if h : c.2.val < n then workDirs ⟨c.2.val, h⟩ else outputDir
     else TM.idleDir (wHeads i)
 
-/-- Bank writes reproduce the simulated action on an active work tape. -/
+/-- Bank writes reproduce the simulated action on an active work tape.
+@isnad1 id=eq.0h7v.s5.9cf30acc5aca from=translated src=- shape=890ee661 vocab=1accb3a9
+-/
 @[simp] theorem repeatBankWrites_work (wHeads : Fin (k * (n + 1)) → Γ) (j : Fin k)
     (workWrites : Fin n → Γw) (outputWrite : Γw) (i : Fin n) :
     repeatBankWrites wHeads j workWrites outputWrite (repeatWorkIdx j i) = workWrites i := by
   simp [repeatBankWrites, repeatWorkIdx, repeatTapeIdx, repeatTapeCoord]
 
-/-- Bank writes reproduce the simulated action on the redirected output tape. -/
+/-- Bank writes reproduce the simulated action on the redirected output tape.
+@isnad1 id=eq.0h6v.s5.ab9e82b0199b from=translated src=- shape=f7bdca7e vocab=37384862
+-/
 @[simp] theorem repeatBankWrites_output (wHeads : Fin (k * (n + 1)) → Γ) (j : Fin k)
     (workWrites : Fin n → Γw) (outputWrite : Γw) :
     repeatBankWrites wHeads j workWrites outputWrite (repeatOutputIdx j) = outputWrite := by
   simp [repeatBankWrites, repeatOutputIdx, repeatTapeIdx, repeatTapeCoord]
 
-/-- Bank directions reproduce the simulated action on an active work tape. -/
+/-- Bank directions reproduce the simulated action on an active work tape.
+@isnad1 id=eq.0h7v.s5.f7484fb8c82f from=translated src=- shape=890ee661 vocab=d282e6b0
+-/
 @[simp] theorem repeatBankDirs_work (wHeads : Fin (k * (n + 1)) → Γ) (j : Fin k)
     (workDirs : Fin n → Dir3) (outputDir : Dir3) (i : Fin n) :
     repeatBankDirs wHeads j workDirs outputDir (repeatWorkIdx j i) = workDirs i := by
   simp [repeatBankDirs, repeatWorkIdx, repeatTapeIdx, repeatTapeCoord]
 
-/-- Bank directions reproduce the simulated action on the redirected output tape. -/
+/-- Bank directions reproduce the simulated action on the redirected output tape.
+@isnad1 id=eq.0h6v.s5.bb6700cb85d3 from=translated src=- shape=f7bdca7e vocab=82881bbc
+-/
 @[simp] theorem repeatBankDirs_output (wHeads : Fin (k * (n + 1)) → Γ) (j : Fin k)
     (workDirs : Fin n → Dir3) (outputDir : Dir3) :
     repeatBankDirs wHeads j workDirs outputDir (repeatOutputIdx j) = outputDir := by

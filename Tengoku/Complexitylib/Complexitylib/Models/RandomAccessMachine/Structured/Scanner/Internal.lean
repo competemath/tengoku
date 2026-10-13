@@ -758,6 +758,9 @@ private theorem finalize_measured {spec : Spec} {inputLength state : ℕ}
   · change ((Basic.load lengthReg addressReg).exec indexed) lengthReg = _
     simp [Basic.exec, haddress, htable]
 
+/--
+@isnad1 id=ex.0h2v.s6.7327543d23b9 from=translated src=- shape=3e9ada8a vocab=629f5605
+-/
 theorem program_measured_internal (spec : Spec) (bits : List Bool) :
     ∃ final cost space,
       Exec (program spec) (inputStore spec bits) final
@@ -829,6 +832,9 @@ private theorem TypedSpec.foldl_numeric_step {State : Type} [FinEnum State]
       simp only [List.foldl_cons]
       rw [typed.numeric_step_code, ih]
 
+/--
+@isnad1 id=ex.0h3v.s6.c65e1f8faf10 from=translated src=- shape=56e1fb6f vocab=9c3ceed9
+-/
 theorem typed_program_measured_internal {State : Type} [FinEnum State]
     (typed : TypedSpec State) (bits : List Bool) :
     ∃ final cost space,

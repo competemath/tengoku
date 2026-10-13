@@ -102,7 +102,9 @@ end SimQ
 set_option synthInstance.maxSize 4000 in
 /-- `Finite` composes freely (a `Prop`), so this synthesizes despite the
     function-typed phase data — the seven wide summands just need a raised
-    instance-search size. -/
+    instance-search size.
+@isnad1 id=finite.0h2v.s3.7351c84d5e25 from=translated src=- shape=43e4e0ad vocab=e2b7ced1
+-/
 instance instFiniteSimQ (k : ℕ) (Q : Type) [Fintype Q] : Finite (SimQ k Q) := by
   infer_instance
 

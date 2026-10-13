@@ -21,6 +21,9 @@ namespace GapMINCKT
 
 namespace Multiplicative
 
+/--
+@isnad1 id=iff.0h5v.s5.ba7bdd030759 from=translated src=- shape=f941acdf vocab=16a39e61
+-/
 theorem isNo_iff_no_relaxedWitness_internal
     {conditionalTapes : ℕ} (inst : GapMINCKT.Instance)
     (conditionalMachine : OracleTM conditionalTapes)
@@ -45,6 +48,9 @@ theorem isNo_iff_no_relaxedWitness_internal
             inst.logSlack parameters)).mp hcomplexity
     exact hnone ⟨program, hlength, hproduce⟩
 
+/--
+@isnad1 id=isno.2h5v.s5.f159decc2fd7 from=translated src=- shape=43a660d0 vocab=affa106b
+-/
 theorem isNo_implies_additive_internal
     {conditionalTapes : ℕ} {inst : GapMINCKT.Instance}
     {conditionalMachine : OracleTM conditionalTapes}
@@ -59,6 +65,9 @@ theorem isNo_implies_additive_internal
     (WithTop.coe_le_coe.mpr
       (Nat.add_le_add_right hthreshold (inst.logSlack parameters))) hno
 
+/--
+@isnad1 id=isno.2h6v.s5.1257d24556ad from=translated src=- shape=0781b534 vocab=c9a91ba2
+-/
 theorem isNo_factor_anti_internal
     {conditionalTapes : ℕ} {inst : GapMINCKT.Instance}
     {conditionalMachine : OracleTM conditionalTapes}
@@ -72,6 +81,9 @@ theorem isNo_factor_anti_internal
         (Nat.mul_le_mul_right inst.threshold hfactor)
         (inst.logSlack parameters)) hno
 
+/--
+@isnad1 id=not.3h7v.s5.f70c505a154e from=translated src=- shape=34540a7a vocab=93c6601c
+-/
 theorem not_isNo_of_isYes_internal
     {ordinaryTapes conditionalTapes : ℕ}
     (inst : GapMINCKT.Instance)
@@ -87,6 +99,9 @@ theorem not_isNo_of_isYes_internal
     conditionalMachine parameters hwidening hyes
       (isNo_implies_additive_internal hfactor hno)
 
+/--
+@isnad1 id=iff.0h5v.s5.99a148f71087 from=translated src=- shape=5b5f738d vocab=846b055f
+-/
 theorem noLanguage_mem_encode_iff_internal
     {conditionalTapes : ℕ}
     (conditionalMachine : OracleTM conditionalTapes)
@@ -96,6 +111,9 @@ theorem noLanguage_mem_encode_iff_internal
       IsNo inst conditionalMachine parameters factor := by
   simp [noLanguage, GapMINCKT.Instance.decode?_encode_internal]
 
+/--
+@isnad1 id=le.1h4v.s5.b6f1292ec7a9 from=translated src=- shape=581bb11c vocab=64ed7087
+-/
 theorem noLanguage_subset_additive_internal
     {conditionalTapes : ℕ}
     (conditionalMachine : OracleTM conditionalTapes)
@@ -113,6 +131,9 @@ theorem noLanguage_subset_additive_internal
         (hfactor inst.output.length) hno'
       simpa [GapMINCKT.noLanguage, hdecode] using hadditive
 
+/--
+@isnad1 id=le.1h5v.s5.d89bd5f67b72 from=translated src=- shape=6b43909a vocab=5a987bf5
+-/
 theorem noLanguage_factor_anti_internal
     {conditionalTapes : ℕ}
     (conditionalMachine : OracleTM conditionalTapes)
@@ -130,6 +151,9 @@ theorem noLanguage_factor_anti_internal
         (hfactor inst.output.length) hno'
       simpa [noLanguage, hdecode] using hfirst
 
+/--
+@isnad1 id=eq.0h3v.s4.f2f24453ba96 from=translated src=- shape=dc05fe07 vocab=a38bc9cd
+-/
 theorem noLanguage_one_internal
     {conditionalTapes : ℕ}
     (conditionalMachine : OracleTM conditionalTapes)
@@ -143,6 +167,9 @@ theorem noLanguage_one_internal
       simp [noLanguage, GapMINCKT.noLanguage, IsNo, GapMINCKT.Instance.IsNo,
         hdecode]
 
+/--
+@isnad1 id=disjoint.2h6v.s6.6c41b031eb6b from=translated src=- shape=9911d478 vocab=a9a132c6
+-/
 theorem disjoint_yesLanguage_noLanguage_internal
     {ordinaryTapes conditionalTapes : ℕ}
     (ordinaryMachine : TM ordinaryTapes)

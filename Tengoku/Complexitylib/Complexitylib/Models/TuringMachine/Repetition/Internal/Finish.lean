@@ -24,7 +24,9 @@ variable {n k T : ℕ}
 
 /-- For `T = 0`, the second setup transition enters rewind immediately. Trial
 zero is the exact source initial configuration, inactive banks and the real
-output remain parked, and all tape start invariants hold. -/
+output remain parked, and all tape start invariants hold.
+@isnad1 id=other.1h5v.s9.6e93a012deae from=translated src=- shape=4e50f080 vocab=6dec560c
+-/
 theorem repeatAtTime_begin_zero_simulates (tm : NTM n) (x : List Bool)
     (hk : 0 < k) (choice : Fin 1 → Bool) :
     let j : Fin k := ⟨0, hk⟩
@@ -73,7 +75,9 @@ theorem repeatAtTime_begin_zero_simulates (tm : NTM n) (x : List Bool)
 
 /-- On the last repetition, one `.finish` transition records the current
 trial's source verdict, halts the wrapper, and writes the strict majority to
-real output cell one. -/
+real output cell one.
+@isnad1 id=other.6h10v.s9.fa9cfa4f1041 from=translated src=- shape=f2d6ddeb vocab=d00096b9
+-/
 theorem repeatAtTime_trace_finish_last (tm : NTM n)
     (j : Fin k) (q : tm.Q) (votes : Fin k → Bool) (c : Cfg n tm.Q)
     (C : Cfg (k * (n + 1)) (RepeatQ tm k T)) (choice : Fin 1 → Bool)

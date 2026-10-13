@@ -32,7 +32,9 @@ namespace TM
 
 variable {n : ℕ}
 
-/-- Exact remaining execution of a certified input-driven loop. -/
+/-- Exact remaining execution of a certified input-driven loop.
+@isnad1 id=reachesi.1h7v.s5.cc50c770371b from=translated src=- shape=d05d7dec vocab=f5168474
+-/
 theorem ForInputLoopSpec.reachesIn {body : TM n} {bodyTime : ℕ → ℕ}
     {total count value : ℕ} (spec : ForInputLoopSpec body bodyTime total)
     (htotal : value + count = total) :
@@ -41,7 +43,9 @@ theorem ForInputLoopSpec.reachesIn {body : TM n} {bodyTime : ℕ → ℕ}
   spec.reachesIn_internal count value htotal
 
 /-- Every prefix up to the exact remaining runtime of a certified input-driven
-loop respects its all-reachable auxiliary-space budget. -/
+loop respects its all-reachable auxiliary-space budget.
+@isnad1 id=withinau.4h11v.s6.1f7f9861bb38 from=translated src=- shape=b780a172 vocab=6c620512
+-/
 theorem ForInputLoopSpaceSpec.prefix_withinAuxSpace
     {body : TM n} {bodyTime : ℕ → ℕ}
     {total inputLength spaceBound count value t : ℕ}
@@ -55,7 +59,9 @@ theorem ForInputLoopSpaceSpec.prefix_withinAuxSpace
   spaceSpec.prefix_withinAuxSpace_internal count value t c htotal hreach htime
 
 /-- Iterating a one-way-output body over the read-only input remains a
-one-way-output transducer. -/
+one-way-output transducer.
+@isnad1 id=istransd.1h2v.s3.bc1387846203 from=translated src=- shape=525138f7 vocab=501efa89
+-/
 theorem IsTransducer.forInputTM {n : ℕ} {body : TM n}
     (hbody : body.IsTransducer) : (forInputTM body).IsTransducer :=
   hbody.forInputTM_internal

@@ -506,7 +506,9 @@ private theorem decClock_back_run (h : ℕ) :
     non-`▷` symbol, `decClockTM` halts within `2v + 6` steps having
     decremented the clock to `v - 1` marks (head back at cell 1); the
     input tape, the output tape, and every other work tape are preserved
-    **exactly**. The zero clock is left unchanged (`0 - 1 = 0`). -/
+    **exactly**. The zero clock is left unchanged (`0 - 1 = 0`).
+@isnad1 id=hoaretim.5h4v.s7.3a91cc51fdcd from=translated src=- shape=5f3ee08e vocab=da203ddb
+-/
 theorem decClockTM_hoareTime (v : ℕ) (inp₀ : Tape) (work₀ : Fin 7 → Tape)
     (out₀ : Tape)
     (hclk : (work₀ clkT).HoldsExact (List.replicate v Γw.one))
@@ -736,7 +738,9 @@ private theorem zeroTest_step (c : Cfg 7 zeroTestTM.Q)
 
     * written the verdict at output cell 1: `Γ.one` iff `v = 0`, else
       `Γ.zero` (all other output cells unchanged, head back at cell 1);
-    * left the input tape and **every** work tape exactly unchanged. -/
+    * left the input tape and **every** work tape exactly unchanged.
+@isnad1 id=hoaretim.6h4v.s7.c2505a455f84 from=translated src=- shape=0ba74cbb vocab=028a78f0
+-/
 theorem zeroTestTM_hoareTime (v : ℕ) (inp₀ : Tape) (work₀ : Fin 7 → Tape)
     (out₀ : Tape)
     (hclk : (work₀ clkT).HoldsExact (List.replicate v Γw.one))

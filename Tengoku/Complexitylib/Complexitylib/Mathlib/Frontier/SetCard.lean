@@ -25,7 +25,9 @@ namespace Set
 variable {α β : Type*}
 
 /-- A finite set whose fibers under `f` have at most `n` elements has at most `n` times as many
-elements as its image. -/
+elements as its image.
+@isnad1 id=le.2h5v.s6.290615fd3bc8 from=translated src=- shape=23c6f7e9 vocab=7881900b
+-/
 theorem ncard_le_mul_ncard_image {s : Set α} (hs : s.Finite) (f : α → β) (n : ℕ)
     (h : ∀ b, (s ∩ f ⁻¹' {b}).ncard ≤ n) : s.ncard ≤ n * (f '' s).ncard := by
   classical
@@ -39,7 +41,9 @@ theorem ncard_le_mul_ncard_image {s : Set α} (hs : s.Finite) (f : α → β) (n
   simp
 
 /-- A finite set on which `f` takes values below `T` is no larger than the sum of its fibers
-over `0, ..., T - 1`. -/
+over `0, ..., T - 1`.
+@isnad1 id=le.2h4v.s6.733d5ffb900d from=translated src=- shape=1b4f4b58 vocab=9bc076bb
+-/
 theorem ncard_le_sum_ncard_fiber {s : Set α} (hs : s.Finite) (f : α → ℕ) (T : ℕ)
     (hf : ∀ a ∈ s, f a < T) :
     s.ncard ≤ ∑ t ∈ Finset.range T, (s ∩ f ⁻¹' {t}).ncard := by
@@ -54,7 +58,9 @@ theorem ncard_le_sum_ncard_fiber {s : Set α} (hs : s.Finite) (f : α → ℕ) (
   ext a
   simp
 
-/-- If `f` is determined by `g` on `s`, then `f` takes at most as many values on `s` as `g`. -/
+/-- If `f` is determined by `g` on `s`, then `f` takes at most as many values on `s` as `g`.
+@isnad1 id=le.2h6v.s6.c5449c9298e9 from=translated src=- shape=279922e8 vocab=bda8c867
+-/
 theorem ncard_image_le_ncard_image_of_determines {γ : Type*} {s : Set α} (hs : s.Finite)
     (f : α → β) (g : α → γ) (h : ∀ a ∈ s, ∀ b ∈ s, g a = g b → f a = f b) :
     (f '' s).ncard ≤ (g '' s).ncard := by

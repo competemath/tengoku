@@ -163,6 +163,9 @@ private theorem loadTapes_loadedPrefix {tm : TM n} {bound : ℕ}
       simpa [List.flatMap_cons, Structured.Basic.execList, execList_append,
         List.reverse_cons, List.append_assoc] using hfinal
 
+/--
+@isnad1 id=other.2h5v.s6.277ddd4013db from=translated src=- shape=8bfe64c7 vocab=82c270fe
+-/
 theorem loadOps_loaded_internal {tm : TM n} {bound : ℕ}
     {cfg : Complexity.Cfg n tm.Q} {store : Structured.Store}
     (hrepresents : Represents tm bound cfg store)
@@ -328,6 +331,9 @@ private theorem loadTapes_envelopeChain {tm : TM n} {bound : ℕ}
       have hrest := ih hfirstRepresents hfirstEnvelope
       simpa [List.flatMap_cons] using hfirst.append hrest
 
+/--
+@isnad1 id=other.3h5v.s6.5970da05d368 from=translated src=- shape=0c09d635 vocab=d1c104f4
+-/
 theorem loadOps_measured_internal {tm : TM n} {bound : ℕ}
     {cfg : Complexity.Cfg n tm.Q} {store : Structured.Store}
     (hrepresents : Represents tm bound cfg store)

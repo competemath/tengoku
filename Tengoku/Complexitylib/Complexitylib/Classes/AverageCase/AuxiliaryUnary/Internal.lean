@@ -21,40 +21,64 @@ namespace Complexity
 
 namespace AuxiliaryUnarySeed
 
+/--
+@isnad1 id=lt.1h2v.s4.a4d12d4fdd6f from=translated src=- shape=d85d56cc vocab=7684ac70
+-/
 theorem split_lt_internal {m : ℕ} (hm : 0 < m)
     (seed : AuxiliaryUnarySeed m) : seed.split < m := by
   have hsplit := seed.1.isLt
   simpa [split, Nat.max_eq_right (Nat.succ_le_iff.mpr hm)] using hsplit
 
+/--
+@isnad1 id=eq.0h2v.s3.b01adcd5ed54 from=translated src=- shape=9a3a44a2 vocab=510f99e1
+-/
 theorem binary_length_internal {m : ℕ}
     (seed : AuxiliaryUnarySeed m) : seed.binary.length = seed.split := by
   simp [binary]
 
+/--
+@isnad1 id=eq.0h2v.s4.672c6ee089f0 from=translated src=- shape=ee30882d vocab=51d9fdb4
+-/
 theorem unary_length_internal {m : ℕ}
     (seed : AuxiliaryUnarySeed m) : seed.unary.length = m - seed.split := by
   simp [unary]
 
+/--
+@isnad1 id=lt.1h2v.s4.169be716717a from=translated src=- shape=2765c2f9 vocab=71fa4708
+-/
 theorem unary_length_pos_internal {m : ℕ} (hm : 0 < m)
     (seed : AuxiliaryUnarySeed m) : 0 < seed.unary.length := by
   rw [unary_length_internal]
   have hsplit := split_lt_internal hm seed
   omega
 
+/--
+@isnad1 id=eq.0h2v.s4.b75889568b57 from=translated src=- shape=c6a00294 vocab=b96105fa
+-/
 theorem component_length_sum_internal {m : ℕ}
     (seed : AuxiliaryUnarySeed m) :
     seed.binary.length + seed.unary.length = m := by
   rw [binary_length_internal, unary_length_internal,
     Nat.add_sub_of_le seed.splitLe]
 
+/--
+@isnad1 id=eq.0h2v.s5.c26fa8b5ff5e from=translated src=- shape=73c5ced9 vocab=faca6a31
+-/
 theorem unpair?_sample_internal {m : ℕ}
     (seed : AuxiliaryUnarySeed m) :
     unpair? seed.sample = some (seed.binary, seed.unary) := by
   simp [sample]
 
+/--
+@isnad1 id=eq.0h1v.s6.0a4c6ae5aba4 from=translated src=- shape=979535f0 vocab=29b1ec1b
+-/
 theorem card_internal (m : ℕ) :
     Fintype.card (AuxiliaryUnarySeed m) = Nat.max 1 m * 2 ^ m := by
   simp [AuxiliaryUnarySeed]
 
+/--
+@isnad1 id=eq.1h3v.s8.918899ad9f23 from=translated src=- shape=75b4a15a vocab=7fdbd648
+-/
 theorem prefix_probability_internal {m n : ℕ} (hn : n ≤ m)
     (x : Fin n → Bool) :
     uniformProbability
@@ -86,6 +110,9 @@ theorem prefix_probability_internal {m n : ℕ} (hn : n ≤ m)
         uniformProbability_univ_internal, mul_one, card_finArrowBool]
       norm_cast
 
+/--
+@isnad1 id=eq.1h3v.s8.0624751151d5 from=translated src=- shape=babaef2f vocab=23549e0a
+-/
 theorem prefix_event_probability_internal {m n : ℕ} (hn : n ≤ m)
     (event : Finset (Fin n → Bool)) :
     uniformProbability
@@ -121,6 +148,9 @@ theorem prefix_event_probability_internal {m n : ℕ} (hn : n ≤ m)
       simp only [uniformProbability, eventProb, card_finArrowBool]
       norm_cast
 
+/--
+@isnad1 id=eq.0h2v.s9.c8c3f0cf1365 from=translated src=- shape=8719f3f9 vocab=fcd1df9a
+-/
 theorem split_prefix_event_probability_internal {m : ℕ}
     (event : ∀ n, Finset (Fin n → Bool)) :
     uniformProbability
@@ -167,6 +197,9 @@ theorem split_prefix_event_probability_internal {m : ℕ}
   simp_rw [hfiber]
   rw [← Finset.mul_sum]
 
+/--
+@isnad1 id=eq.1h3v.s9.979df45daeb9 from=translated src=- shape=ffb1640d vocab=dd08409b
+-/
 theorem split_prefix_probability_internal {m n : ℕ} (hn : n < m)
     (x : Fin n → Bool) :
     uniformProbability
@@ -207,6 +240,9 @@ theorem split_prefix_probability_internal {m n : ℕ} (hn : n < m)
     _ = 1 / ((m : ℚ) * (2 : ℚ) ^ n) := by
       field_simp
 
+/--
+@isnad1 id=iff.1h4v.s7.5af6dd634518 from=translated src=- shape=adf4525f vocab=b65a4e51
+-/
 theorem sample_eq_pair_iff_internal {m n : ℕ} (hn : n < m)
     (x : Fin n → Bool) (seed : AuxiliaryUnarySeed m) :
     seed.sample = pair (List.ofFn x) (List.replicate (m - n) true) ↔
@@ -241,6 +277,9 @@ end AuxiliaryUnarySeed
 
 namespace FiniteEnsemble
 
+/--
+@isnad1 id=eq.1h3v.s6.9d367870d518 from=translated src=- shape=02bc9ef7 vocab=a3ff3ba4
+-/
 theorem mass_auxiliaryUnary_pair_internal {m n : ℕ} (hn : n < m)
     (x : Fin n → Bool) :
     auxiliaryUnary.mass m

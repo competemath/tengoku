@@ -22,6 +22,9 @@ namespace OracleTM
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=le.1h5v.s5.550bb8a0f626 from=translated src=- shape=8e049bf4 vocab=acca86f0
+-/
 theorem plainKolmogorovComplexity_le_internal
     {machine : OracleTM n} {oracle : BooleanOracle}
     {program output : List Bool}
@@ -30,6 +33,9 @@ theorem plainKolmogorovComplexity_le_internal
   apply sInf_le
   exact ⟨program.length, ⟨program, rfl, hproduce⟩, rfl⟩
 
+/--
+@isnad1 id=le.1h6v.s5.9d7956fdf32b from=translated src=- shape=70b2f3c2 vocab=caddc801
+-/
 theorem timeBoundedKolmogorovComplexity_le_internal
     {machine : OracleTM n} {oracle : BooleanOracle}
     {program output : List Bool} {time : ℕ}
@@ -39,6 +45,9 @@ theorem timeBoundedKolmogorovComplexity_le_internal
   apply sInf_le
   exact ⟨program.length, ⟨program, rfl, hproduce⟩, rfl⟩
 
+/--
+@isnad1 id=iff.0h5v.s5.460a7b6ca54f from=translated src=- shape=fc41924e vocab=c2eaff9b
+-/
 theorem timeBoundedKolmogorovComplexity_eq_top_iff_internal
     (machine : OracleTM n) (oracle : BooleanOracle)
     (output : List Bool) (time : ℕ) :
@@ -54,6 +63,9 @@ theorem timeBoundedKolmogorovComplexity_eq_top_iff_internal
     obtain ⟨_size, ⟨program, _hlength, hproduce⟩, _hvalue⟩ := hvalue
     exact (hnone ⟨program, hproduce⟩).elim
 
+/--
+@isnad1 id=ex.1h5v.s5.48264b443b6e from=translated src=- shape=6fb58d3f vocab=2fafe3c6
+-/
 theorem timeBoundedKolmogorovComplexity_witness_internal
     (machine : OracleTM n) (oracle : BooleanOracle)
     (output : List Bool) (time : ℕ)
@@ -75,6 +87,9 @@ theorem timeBoundedKolmogorovComplexity_witness_internal
   obtain ⟨size, ⟨program, hlength, hproduce⟩, hcoe⟩ := csInf_mem hset
   exact ⟨program, hlength ▸ hcoe, hproduce⟩
 
+/--
+@isnad1 id=iff.0h6v.s5.4e9368bfeca5 from=translated src=- shape=5106003b vocab=caddc801
+-/
 theorem timeBoundedKolmogorovComplexity_le_coe_iff_internal
     (machine : OracleTM n) (oracle : BooleanOracle)
     (output : List Bool) (time bound : ℕ) :
@@ -98,6 +113,9 @@ theorem timeBoundedKolmogorovComplexity_le_coe_iff_internal
     exact (timeBoundedKolmogorovComplexity_le_internal hproduce).trans
       (WithTop.coe_le_coe.mpr hlength)
 
+/--
+@isnad1 id=le.1h6v.s5.fe2479245da8 from=translated src=- shape=8f216787 vocab=c6628b93
+-/
 theorem timeBoundedKolmogorovComplexity_mono_internal
     (machine : OracleTM n) (oracle : BooleanOracle)
     (output : List Bool) {first second : ℕ} (hclock : first ≤ second) :
@@ -109,6 +127,9 @@ theorem timeBoundedKolmogorovComplexity_mono_internal
   exact timeBoundedKolmogorovComplexity_le_internal
     (hproduce.mono hclock)
 
+/--
+@isnad1 id=ex.3h7v.s7.c5fb80e3bf91 from=translated src=- shape=8075144d vocab=314075cb
+-/
 theorem polynomialTimeOverhead_kolmogorov_transfer_internal
     {simulatorTapes sourceTapes : ℕ}
     {simulator : OracleTM simulatorTapes} {source : OracleTM sourceTapes}
@@ -146,6 +167,9 @@ end OracleTM
 
 namespace TM
 
+/--
+@isnad1 id=eq.0h5v.s4.7ad2213bf6c0 from=translated src=- shape=84e4921b vocab=bcb469ad
+-/
 theorem toOracleTM_timeBoundedKolmogorovComplexity_eq_internal
     (machine : TM n) (oracle : BooleanOracle)
     (output : List Bool) (time : ℕ) :

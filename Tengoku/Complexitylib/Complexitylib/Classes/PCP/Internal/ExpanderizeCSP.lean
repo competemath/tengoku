@@ -54,9 +54,14 @@ def addTrivial : RegCSP α where
     | Sum.inl i => R.rel v i a b
     | Sum.inr _ => true
 
+/--
+@isnad1 id=eq.0h4v.s4.80766678b730 from=translated src=- shape=11a30952 vocab=a26f210d
+-/
 @[simp] theorem graph_addTrivial : (R.addTrivial H e).graph = RegGraph.union R.graph H e := rfl
 
-/-- Only the original constraints can fail. -/
+/-- Only the original constraints can fail.
+@isnad1 id=eq.0h5v.s5.f85844c31dab from=translated src=- shape=42c93e47 vocab=115b912d
+-/
 theorem card_unsatDarts_addTrivial (a : R.Assignment) :
     ((R.addTrivial H e).unsatDarts a).card = (R.unsatDarts a).card := by
   classical
@@ -73,7 +78,9 @@ theorem card_unsatDarts_addTrivial (a : R.Assignment) :
       exact (mem_unsatDarts (R := R)).mpr ((mem_unsatDarts (R := R.addTrivial H e)).mp hq)
     · exact absurd rfl ((mem_unsatDarts (R := R.addTrivial H e)).mp hq)
 
-/-- Superposing trivial constraints scales the value by `deg / (deg + deg')`. -/
+/-- Superposing trivial constraints scales the value by `deg / (deg + deg')`.
+@isnad1 id=eq.0h5v.s6.145d8607bcc6 from=translated src=- shape=c9545a28 vocab=c2e1dfb6
+-/
 theorem unsatFrac_addTrivial (a : R.Assignment) :
     (R.addTrivial H e).unsatFrac a
       = R.unsatFrac a * (R.graph.deg : ℚ) / ((R.graph.deg : ℚ) + (H.deg : ℚ)) := by
@@ -104,7 +111,9 @@ theorem unsatFrac_addTrivial (a : R.Assignment) :
     ring
 
 /-- The scaling passes to the value, since it is the same factor for every
-assignment and the assignments are the same. -/
+assignment and the assignments are the same.
+@isnad1 id=eq.0h4v.s6.9e97d592b86c from=translated src=- shape=5e29c46b vocab=510ce0d0
+-/
 theorem unsatVal_addTrivial [Fintype α] [Nonempty α] :
     (R.addTrivial H e).unsatVal
       = R.unsatVal * (R.graph.deg : ℚ) / ((R.graph.deg : ℚ) + (H.deg : ℚ)) := by
@@ -120,6 +129,9 @@ theorem unsatVal_addTrivial [Fintype α] [Nonempty α] :
   · rw [← hb, R.unsatFrac_addTrivial H e b, mul_div_assoc, mul_div_assoc]
     exact mul_le_mul_of_nonneg_right (R.unsatVal_le b) hk
 
+/--
+@isnad1 id=iff.0h4v.s4.fc851c098495 from=translated src=- shape=36339696 vocab=eefa3cda
+-/
 theorem satisfiable_addTrivial_iff : (R.addTrivial H e).Satisfiable ↔ R.Satisfiable := by
   constructor
   · rintro ⟨a, ha⟩
@@ -138,16 +150,24 @@ noncomputable def expanderize (R : RegCSP α) [NumEnc R.graph.V] (E : ExpanderFa
     RegCSP α :=
   R.addTrivial (E.graph R.graph.order) (E.vertexEquiv R.graph)
 
+/--
+@isnad1 id=eq.0h3v.s4.6164120b01a6 from=translated src=- shape=7c6aa400 vocab=fe15ee11
+-/
 @[simp] theorem graph_expanderize [NumEnc R.graph.V] (E : ExpanderFamily) :
     (R.expanderize E).graph = E.expanderize R.graph := rfl
 
-/-- **The expanderized system is an expander.** -/
+/-- **The expanderized system is an expander.**
+@isnad1 id=spectral.0h3v.s6.632398c81b35 from=translated src=- shape=54d83626 vocab=a5466cac
+-/
 theorem spectralBound_expanderize [NumEnc R.graph.V] (E : ExpanderFamily) :
     (R.expanderize E).graph.SpectralBound
       (((R.graph.deg : ℝ) + (E.degree : ℝ) * E.lam)
         / ((R.graph.deg : ℝ) + (E.degree : ℝ))) :=
   E.spectralBound_expanderize R.graph
 
+/--
+@isnad1 id=eq.0h4v.s6.9274b3b9dcd6 from=translated src=- shape=74a6406b vocab=71bc166e
+-/
 theorem unsatFrac_expanderize [NumEnc R.graph.V] (E : ExpanderFamily) (a : R.Assignment) :
     (R.expanderize E).unsatFrac a
       = R.unsatFrac a * (R.graph.deg : ℚ) / ((R.graph.deg : ℚ) + (E.degree : ℚ)) := by
@@ -155,6 +175,9 @@ theorem unsatFrac_expanderize [NumEnc R.graph.V] (E : ExpanderFamily) (a : R.Ass
   rw [E.deg_graph] at h
   exact h
 
+/--
+@isnad1 id=eq.0h3v.s6.69064b7eb45d from=translated src=- shape=ef1e60c9 vocab=c7957e16
+-/
 theorem unsatVal_expanderize [Fintype α] [Nonempty α] [NumEnc R.graph.V] (E : ExpanderFamily) :
     (R.expanderize E).unsatVal
       = R.unsatVal * (R.graph.deg : ℚ) / ((R.graph.deg : ℚ) + (E.degree : ℚ)) := by
@@ -162,6 +185,9 @@ theorem unsatVal_expanderize [Fintype α] [Nonempty α] [NumEnc R.graph.V] (E : 
   rw [E.deg_graph] at h
   exact h
 
+/--
+@isnad1 id=iff.0h3v.s4.282ead720788 from=translated src=- shape=fb3287de vocab=6e84bd6d
+-/
 theorem satisfiable_expanderize_iff [NumEnc R.graph.V] (E : ExpanderFamily) :
     (R.expanderize E).Satisfiable ↔ R.Satisfiable :=
   R.satisfiable_addTrivial_iff _ _

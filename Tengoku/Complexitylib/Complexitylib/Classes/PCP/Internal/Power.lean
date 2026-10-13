@@ -73,7 +73,9 @@ def backLabel {t : ℕ} (v : G.V) (s : Fin t → G.D) (k : Fin t) : G.D :=
   (G.rot (G.walkAt t v s k.val, s k)).2
 
 /-- **The computational core.** Reversing the `k`-th dart of the walk `(v, s)`
-gives the next vertex on the walk, together with the label pointing back. -/
+gives the next vertex on the walk, together with the label pointing back.
+@isnad1 id=eq.0h5v.s6.1c31fdd4c0ac from=translated src=- shape=525cad3c vocab=b883d807
+-/
 theorem rot_dart {t : ℕ} (v : G.V) (s : Fin t → G.D) (k : Fin t) :
     G.rot (G.walkAt t v s k.val, s k)
       = (G.walkAt t v s (k.val + 1), G.backLabel v s k) := by
@@ -85,7 +87,9 @@ back-labels of the original darts in reverse order. -/
 def revWalk {t : ℕ} (v : G.V) (s : Fin t → G.D) : Fin t → G.D :=
   fun j => G.backLabel v s (Fin.rev j)
 
-/-- The reversed walk retraces the original trajectory backwards. -/
+/-- The reversed walk retraces the original trajectory backwards.
+@isnad1 id=eq.1h5v.s5.cfffd9698405 from=translated src=- shape=8a90e8ae vocab=07c3c5da
+-/
 theorem walkAt_revWalk {t : ℕ} (v : G.V) (s : Fin t → G.D) :
     ∀ k : ℕ, k ≤ t →
       G.walkAt t (G.walkEnd t v s) (G.revWalk v s) k = G.walkAt t v s (t - k) := by
@@ -107,14 +111,18 @@ theorem walkAt_revWalk {t : ℕ} (v : G.V) (s : Fin t → G.D) :
       have hstep : G.revWalk v s ⟨k, hkt⟩ = G.backLabel v s (Fin.rev (⟨k, hkt⟩ : Fin t)) := rfl
       rw [hstep, harith, nbr, ← hrev, hinv, hrev]
 
-/-- Reversing a walk lands back at its start. -/
+/-- Reversing a walk lands back at its start.
+@isnad1 id=eq.0h4v.s4.0a96a8663b7f from=translated src=- shape=5ad8891d vocab=c0935d37
+-/
 theorem walkEnd_revWalk {t : ℕ} (v : G.V) (s : Fin t → G.D) :
     G.walkEnd t (G.walkEnd t v s) (G.revWalk v s) = v := by
   have h := G.walkAt_revWalk v s t le_rfl
   rw [G.walkAt_self_eq_walkEnd] at h
   simpa using h
 
-/-- Reversal is an involution on walks. -/
+/-- Reversal is an involution on walks.
+@isnad1 id=eq.0h4v.s5.b04dfe22eddc from=translated src=- shape=e1d0441b vocab=c0935d37
+-/
 theorem revWalk_revWalk {t : ℕ} (v : G.V) (s : Fin t → G.D) :
     G.revWalk (G.walkEnd t v s) (G.revWalk v s) = s := by
   funext j
@@ -152,21 +160,38 @@ def power (G : RegGraph) (t : ℕ) : RegGraph where
     · exact G.walkEnd_revWalk p.1 p.2
     · exact G.revWalk_revWalk p.1 p.2
 
+/--
+@isnad1 id=eq.0h2v.s3.2614844126ce from=translated src=- shape=65f7a740 vocab=b57e362a
+-/
 @[simp] theorem V_power (t : ℕ) : (G.power t).V = G.V := rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.3dd2ae8ae5be from=translated src=- shape=90383939 vocab=7cd01465
+-/
 @[simp] theorem D_power (t : ℕ) : (G.power t).D = (Fin t → G.D) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.42d56d9c670f from=translated src=- shape=393de0b8 vocab=85bda5bc
+-/
 @[simp] theorem order_power (t : ℕ) : (G.power t).order = G.order := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.f0254d161ba9 from=translated src=- shape=42db545a vocab=87dac293
+-/
 @[simp] theorem deg_power (t : ℕ) : (G.power t).deg = G.deg ^ t := by
   show Fintype.card (Fin t → G.D) = G.deg ^ t
   rw [Fintype.card_fun, Fintype.card_fin]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.afb027654414 from=translated src=- shape=8e7b3b54 vocab=98172fe4
+-/
 theorem nbr_power (t : ℕ) (v : G.V) (s : Fin t → G.D) :
     (G.power t).nbr v s = G.walkEnd t v s := rfl
 
-/-- The power's walk operator is the `t`-fold walk operator of `G`. -/
+/-- The power's walk operator is the `t`-fold walk operator of `G`.
+@isnad1 id=eq.0h4v.s4.4df2dee75a03 from=translated src=- shape=13d6fad7 vocab=b4d0c052
+-/
 theorem step_power (t : ℕ) (f : G.V → ℝ) (v : G.V) :
     (G.power t).step f v = G.stepIter t f v := by
   have hd : ((G.deg : ℝ)) ^ t ≠ 0 := pow_ne_zero _ G.deg_ne_zero
@@ -181,7 +206,9 @@ theorem step_power (t : ℕ) (f : G.V → ℝ) (v : G.V) :
     _ = G.stepIter t f v := by
         field_simp
 
-/-- **Powering amplifies the spectral gap.** -/
+/-- **Powering amplifies the spectral gap.**
+@isnad1 id=spectral.1h3v.s4.17c4f50875dd from=translated src=- shape=b4b3d35f vocab=12e50c45
+-/
 theorem spectralBound_power {lam : ℝ} (h : G.SpectralBound lam) (t : ℕ) :
     (G.power t).SpectralBound (lam ^ t) := by
   intro f hf

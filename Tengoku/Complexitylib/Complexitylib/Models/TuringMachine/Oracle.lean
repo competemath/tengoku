@@ -27,7 +27,9 @@ namespace Complexity
 namespace Tape
 
 /-- A query contains exactly the cells strictly between the left marker and
-the query-tape head. -/
+the query-tape head.
+@isnad1 id=eq.0h1v.s4.7f818dc03e6e from=translated src=- shape=802c6af4 vocab=713df92b
+-/
 @[simp] theorem length_oracleQuery (tape : Tape) :
     tape.oracleQuery.length = tape.head - 1 :=
   length_oracleQuery_internal tape
@@ -37,7 +39,9 @@ end Tape
 namespace OracleCfg
 
 /-- Erasing the query tape from an initial oracle configuration gives the
-ordinary initial configuration. -/
+ordinary initial configuration.
+@isnad1 id=eq.0h4v.s4.0ba147f731a4 from=translated src=- shape=cea54d22 vocab=a0d9b9e9
+-/
 @[simp] theorem erase_init (qstart : Q) (input : List Bool) :
     (OracleCfg.init (n := n) qstart input).erase = Cfg.init qstart input :=
   erase_init_internal qstart input
@@ -48,14 +52,18 @@ namespace OracleTM
 
 variable {n : ℕ}
 
-/-- An oracle step is absent exactly at the halt state. -/
+/-- An oracle step is absent exactly at the halt state.
+@isnad1 id=iff.0h4v.s5.d5758ef82439 from=translated src=- shape=5311c3cf vocab=017bde04
+-/
 theorem step_eq_none_iff_halted
     {machine : OracleTM n} {oracle : BooleanOracle}
     {cfg : OracleCfg n machine.Q} :
     machine.step oracle cfg = none ↔ machine.halted cfg :=
   step_eq_none_iff_halted_internal
 
-/-- Deterministic one-step oracle execution has at most one successor. -/
+/-- Deterministic one-step oracle execution has at most one successor.
+@isnad1 id=eq.2h6v.s5.012107fbdade from=translated src=- shape=2135934f vocab=9de1fded
+-/
 theorem stepRel_functional
     {machine : OracleTM n} {oracle : BooleanOracle}
     {cfg first second : OracleCfg n machine.Q}
@@ -63,7 +71,9 @@ theorem stepRel_functional
     (hsecond : machine.stepRel oracle cfg second) : first = second :=
   stepRel_functional_internal hfirst hsecond
 
-/-- An exact-time deterministic oracle run has a unique final configuration. -/
+/-- An exact-time deterministic oracle run has a unique final configuration.
+@isnad1 id=eq.2h7v.s5.95b68242f967 from=translated src=- shape=68c8aaec vocab=861c67d9
+-/
 theorem reachesIn_functional
     {machine : OracleTM n} {oracle : BooleanOracle}
     {time : ℕ} {start first second : OracleCfg n machine.Q}
@@ -72,7 +82,9 @@ theorem reachesIn_functional
   reachesIn_functional_internal hfirst hsecond
 
 /-- A step-preserving configuration map sends an exact-time oracle run to an
-exact-time run of an ordinary target machine. -/
+exact-time run of an ordinary target machine.
+@isnad1 id=reachesi.2h9v.s6.2ac4e744f201 from=translated src=- shape=077f6888 vocab=95ec1fcc
+-/
 theorem reachesIn_map
     {machine : OracleTM n} {oracle : BooleanOracle} {workTapes : ℕ}
     {target : TM workTapes}
@@ -85,7 +97,9 @@ theorem reachesIn_map
   reachesIn_map_internal mapCfg hstep hreach
 
 /-- A true oracle answer enters the declared true-successor state and leaves
-all tapes unchanged. -/
+all tapes unchanged.
+@isnad1 id=eq.3h6v.s7.b511ba89a2d5 from=translated src=- shape=5dc74483 vocab=57d85e8b
+-/
 theorem step_query_true
     {machine : OracleTM n} {oracle : BooleanOracle}
     {cfg : OracleCfg n machine.Q} {yesState noState : machine.Q}
@@ -96,7 +110,9 @@ theorem step_query_true
   step_query_true_internal hhalt hquery hanswer
 
 /-- A false oracle answer enters the declared false-successor state and leaves
-all tapes unchanged. -/
+all tapes unchanged.
+@isnad1 id=eq.3h6v.s7.4c74968b9d86 from=translated src=- shape=52278313 vocab=47022741
+-/
 theorem step_query_false
     {machine : OracleTM n} {oracle : BooleanOracle}
     {cfg : OracleCfg n machine.Q} {yesState noState : machine.Q}
@@ -106,7 +122,9 @@ theorem step_query_false
     machine.step oracle cfg = some { cfg with state := noState } :=
   step_query_false_internal hhalt hquery hanswer
 
-/-- A true oracle lookup is one exact execution step. -/
+/-- A true oracle lookup is one exact execution step.
+@isnad1 id=reachesi.3h6v.s6.698e86eeee77 from=translated src=- shape=67c23513 vocab=c16801dd
+-/
 theorem reachesIn_one_query_true
     {machine : OracleTM n} {oracle : BooleanOracle}
     {cfg : OracleCfg n machine.Q} {yesState noState : machine.Q}
@@ -116,7 +134,9 @@ theorem reachesIn_one_query_true
     machine.reachesIn oracle 1 cfg { cfg with state := yesState } :=
   reachesIn_one_query_true_internal hhalt hquery hanswer
 
-/-- A false oracle lookup is one exact execution step. -/
+/-- A false oracle lookup is one exact execution step.
+@isnad1 id=reachesi.3h6v.s6.d1553c827e1e from=translated src=- shape=d4e33ca6 vocab=71625355
+-/
 theorem reachesIn_one_query_false
     {machine : OracleTM n} {oracle : BooleanOracle}
     {cfg : OracleCfg n machine.Q} {yesState noState : machine.Q}
@@ -130,12 +150,16 @@ end OracleTM
 
 namespace TM
 
-/-- The ordinary-machine embedding has no query states. -/
+/-- The ordinary-machine embedding has no query states.
+@isnad1 id=eq.0h3v.s5.e2a542e3bfee from=translated src=- shape=f467465f vocab=ccf9e9b6
+-/
 @[simp] theorem toOracleTM_queryTransition (machine : TM n) (state : machine.Q) :
     machine.toOracleTM.queryTransition state = none :=
   toOracleTM_queryTransition_internal machine state
 
-/-- Every step of an embedded ordinary machine is independent of the oracle. -/
+/-- Every step of an embedded ordinary machine is independent of the oracle.
+@isnad1 id=eq.0h5v.s5.3cef8f80c696 from=translated src=- shape=948e6692 vocab=9535c6cd
+-/
 theorem toOracleTM_step_oracle_independent
     (machine : TM n) (first second : BooleanOracle)
     (cfg : OracleCfg n machine.Q) :
@@ -143,7 +167,9 @@ theorem toOracleTM_step_oracle_independent
   toOracleTM_step_oracle_independent_internal machine first second cfg
 
 /-- Erasing the query tape after one embedded-machine step agrees exactly with
-one step of the source ordinary TM. -/
+one step of the source ordinary TM.
+@isnad1 id=eq.0h4v.s5.88801fb4c3a8 from=translated src=- shape=8cc5f020 vocab=4b6e8918
+-/
 theorem erase_toOracleTM_step
     (machine : TM n) (oracle : BooleanOracle)
     (cfg : OracleCfg n machine.Q) :
@@ -152,7 +178,9 @@ theorem erase_toOracleTM_step
   erase_toOracleTM_step_internal machine oracle cfg
 
 /-- Erasing the query tape sends every exact-time embedded-machine run to the
-source ordinary-machine run with the same number of steps. -/
+source ordinary-machine run with the same number of steps.
+@isnad1 id=reachesi.1h6v.s5.72c9fb7a1e23 from=translated src=- shape=6ec82b75 vocab=a03b15b2
+-/
 theorem erase_toOracleTM_reachesIn
     (machine : TM n) (oracle : BooleanOracle)
     {time : ℕ} {start result : OracleCfg n machine.Q}
@@ -161,7 +189,9 @@ theorem erase_toOracleTM_reachesIn
   erase_toOracleTM_reachesIn_internal machine oracle hreach
 
 /-- Every source-machine step lifts to an embedded oracle-machine step from
-any configuration with the required erased ordinary state. -/
+any configuration with the required erased ordinary state.
+@isnad1 id=ex.1h5v.s6.c54ea03d9924 from=translated src=- shape=0a0b3a4e vocab=41e82151
+-/
 theorem exists_toOracleTM_step_of_step_erase
     (machine : TM n) (oracle : BooleanOracle)
     {cfg : OracleCfg n machine.Q} {next : Cfg n machine.Q}
@@ -171,7 +201,9 @@ theorem exists_toOracleTM_step_of_step_erase
   exists_toOracleTM_step_of_step_erase_internal machine oracle hstep
 
 /-- Every exact-time source run lifts to an exact-time embedded oracle run;
-the final configuration erases to the source result. -/
+the final configuration erases to the source result.
+@isnad1 id=ex.1h6v.s6.3076ce2766e9 from=translated src=- shape=5ff49aa3 vocab=2ebb9e24
+-/
 theorem exists_toOracleTM_reachesIn_of_reachesIn_erase
     (machine : TM n) (oracle : BooleanOracle)
     {time : ℕ} (start : OracleCfg n machine.Q) {result : Cfg n machine.Q}
@@ -183,7 +215,9 @@ theorem exists_toOracleTM_reachesIn_of_reachesIn_erase
     machine oracle start hreach
 
 /-- The ordinary-machine embedding decides exactly the same timed languages,
-for every supplied oracle. -/
+for every supplied oracle.
+@isnad1 id=iff.0h5v.s4.a525aee7fb50 from=translated src=- shape=11cf5ca5 vocab=3b4a6724
+-/
 theorem toOracleTM_decidesInTime_iff
     (machine : TM n) (oracle : BooleanOracle)
     (language : Language) (timeBound : ℕ → ℕ) :

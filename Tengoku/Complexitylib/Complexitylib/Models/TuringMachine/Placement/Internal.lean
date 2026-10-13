@@ -51,7 +51,9 @@ private theorem placeWorkFrameStep_blank (t : Tape)
     rfl
 
 /-- Exact one-step commutation with an arbitrary extra-tape frame. The source
-machine takes one step while every physical extra tape takes its idle action. -/
+machine takes one step while every physical extra tape takes its idle action.
+@isnad1 id=eq.0h6v.s7.c05900e74c26 from=translated src=- shape=ca121214 vocab=badc8316
+-/
 theorem placeWorkTM_step_placeWorkCfg_internal (tm : TM n) (pre post : ℕ)
     (extras : Fin (pre + n + post) → Tape) (c : Cfg n tm.Q) :
     (placeWorkTM pre post tm).step (placeWorkCfg tm pre post extras c) =
@@ -86,7 +88,9 @@ theorem placeWorkTM_step_placeWorkCfg_internal (tm : TM n) (pre post : ℕ)
         · simp only [hmid, ↓reduceDIte, placeWorkCfg, placeWorkFrameStep]
 
 /-- If every observable extra tape is off the left-end marker, the extra frame
-is fixed and one placed step commutes through the same embedding. -/
+is fixed and one placed step commutes through the same embedding.
+@isnad1 id=eq.1h6v.s7.8d7c70e2161c from=translated src=- shape=08b152b8 vocab=79e49410
+-/
 theorem placeWorkTM_step_placeWorkCfg_stable_internal (tm : TM n) (pre post : ℕ)
     (extras : Fin (pre + n + post) → Tape) (c : Cfg n tm.Q)
     (hextra : ∀ i, ¬placeWorkInMiddle pre n i → (extras i).read ≠ Γ.start) :
@@ -106,7 +110,9 @@ theorem placeWorkTM_step_placeWorkCfg_stable_internal (tm : TM n) (pre post : �
         exact placeWorkFrameStep_eq_self_of_read_ne_start _ (hextra i hmid)
 
 /-- Bounded reachability commutes exactly while a stable arbitrary frame is
-preserved around the source work tapes. -/
+preserved around the source work tapes.
+@isnad1 id=reachesi.2h8v.s6.88de28808f65 from=translated src=- shape=a502b986 vocab=76c2b30a
+-/
 theorem placeWorkTM_reachesIn_placeWorkCfg_stable_internal (tm : TM n)
     (pre post : ℕ) (extras : Fin (pre + n + post) → Tape)
     {t : ℕ} {c c' : Cfg n tm.Q} (hreach : tm.reachesIn t c c')
@@ -119,7 +125,9 @@ theorem placeWorkTM_reachesIn_placeWorkCfg_stable_internal (tm : TM n)
       rw [placeWorkTM_step_placeWorkCfg_stable_internal tm pre post extras a hextra, ha]
       rfl) hreach
 
-/-- The canonical parked frame is fixed by a placed source step. -/
+/-- The canonical parked frame is fixed by a placed source step.
+@isnad1 id=eq.0h5v.s7.e2d2626641c3 from=translated src=- shape=bf738994 vocab=80e96606
+-/
 theorem placeWorkTM_step_placeWorkParkedCfg_internal (tm : TM n) (pre post : ℕ)
     (c : Cfg n tm.Q) :
     (placeWorkTM pre post tm).step (placeWorkParkedCfg tm pre post c) =
@@ -128,7 +136,9 @@ theorem placeWorkTM_step_placeWorkParkedCfg_internal (tm : TM n) (pre post : ℕ
   intro i _
   decide
 
-/-- Bounded reachability commutes through the canonical parked embedding. -/
+/-- Bounded reachability commutes through the canonical parked embedding.
+@isnad1 id=reachesi.1h7v.s6.855aac027f1e from=translated src=- shape=9bea784c vocab=6346b6d6
+-/
 theorem placeWorkTM_reachesIn_placeWorkParkedCfg_internal (tm : TM n)
     (pre post : ℕ) {t : ℕ} {c c' : Cfg n tm.Q}
     (hreach : tm.reachesIn t c c') :
@@ -140,7 +150,9 @@ theorem placeWorkTM_reachesIn_placeWorkParkedCfg_internal (tm : TM n)
   decide
 
 /-- The first placed step from the ordinary initial configuration performs the
-source machine's first step and parks every surrounding blank tape. -/
+source machine's first step and parks every surrounding blank tape.
+@isnad1 id=eq.0h5v.s7.e1eee81ce57f from=translated src=- shape=c097c250 vocab=60901c55
+-/
 theorem placeWorkTM_step_initCfg_internal (tm : TM n) (pre post : ℕ)
     (x : List Bool) :
     (placeWorkTM pre post tm).step ((placeWorkTM pre post tm).initCfg x) =
@@ -168,7 +180,9 @@ theorem placeWorkTM_step_initCfg_internal (tm : TM n) (pre post : ℕ)
 
 /-- Simulation from an ordinary initial configuration. At time zero the placed
 configuration is its ordinary initial configuration; every positive run ends
-in the canonical parked embedding of the source configuration. -/
+in the canonical parked embedding of the source configuration.
+@isnad1 id=ex.1h7v.s8.26b5e8247e05 from=translated src=- shape=beffe658 vocab=5cee15dd
+-/
 theorem placeWorkTM_reachesIn_init_internal (tm : TM n) (pre post : ℕ)
     (x : List Bool) {t : ℕ} {c' : Cfg n tm.Q}
     (hreach : tm.reachesIn t (tm.initCfg x) c') :
@@ -187,7 +201,9 @@ theorem placeWorkTM_reachesIn_init_internal (tm : TM n) (pre post : ℕ)
       · exact placeWorkTM_reachesIn_placeWorkParkedCfg_internal tm pre post hrest
 
 /-- Work-tape placement preserves deterministic function computation with the
-same time bound. -/
+same time bound.
+@isnad1 id=computes.1h6v.s5.b8f3179c01f1 from=translated src=- shape=af79c55c vocab=96280590
+-/
 theorem placeWorkTM_computesInTime_internal (tm : TM n) (pre post : ℕ)
     {f : List Bool → List Bool} {T : ℕ → ℕ}
     (hcomp : tm.ComputesInTime f T) :

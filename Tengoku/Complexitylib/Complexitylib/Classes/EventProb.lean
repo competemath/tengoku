@@ -55,20 +55,30 @@ namespace Complexity
     of the `2^T` random bit strings that lie in `E`. -/
 def eventProb {T : ℕ} (E : Finset (Fin T → Bool)) : ℚ := (E.card : ℚ) / 2 ^ T
 
+/--
+@isnad1 id=le.0h2v.s4.9cc9d7ff6d31 from=translated src=- shape=5578d5d4 vocab=286f6e61
+-/
 theorem eventProb_nonneg {T : ℕ} (E : Finset (Fin T → Bool)) : 0 ≤ eventProb E := by
   unfold eventProb; positivity
 
-/-- Probability is monotone under event inclusion. -/
+/-- Probability is monotone under event inclusion.
+@isnad1 id=le.1h3v.s5.8effcd60ecca from=translated src=- shape=43d6e9b9 vocab=286f6e61
+-/
 theorem eventProb_mono {T : ℕ} {E F : Finset (Fin T → Bool)} (h : E ⊆ F) :
     eventProb E ≤ eventProb F := by
   unfold eventProb
   gcongr
 
-/-- Every finite event has cardinality at most the size of the sample space. -/
+/-- Every finite event has cardinality at most the size of the sample space.
+@isnad1 id=le.0h2v.s5.16da8685abfd from=translated src=- shape=c61e9257 vocab=5f77bba5
+-/
 theorem card_le_pow {T : ℕ} (E : Finset (Fin T → Bool)) : E.card ≤ 2 ^ T := by
   have h := Finset.card_le_univ E
   rwa [card_finArrowBool] at h
 
+/--
+@isnad1 id=le.0h2v.s4.9c6c86907bd1 from=translated src=- shape=ad14d6c3 vocab=286f6e61
+-/
 theorem eventProb_le_one {T : ℕ} (E : Finset (Fin T → Bool)) : eventProb E ≤ 1 := by
   have hpos : ((2 : ℚ) ^ T) ≠ 0 := by positivity
   have h : (E.card : ℚ) ≤ 2 ^ T := by exact_mod_cast card_le_pow E
@@ -78,7 +88,9 @@ theorem eventProb_le_one {T : ℕ} (E : Finset (Fin T → Bool)) : eventProb E �
 
 /-- **Markov's inequality for the finite uniform sample space.** If every point
 in `E` has nonnegative weight at least `threshold`, then the probability of
-`E` is at most the uniform average weight divided by `threshold`. -/
+`E` is at most the uniform average weight divided by `threshold`.
+@isnad1 id=le.3h4v.s7.bd427aa76658 from=translated src=- shape=cac6bdfc vocab=22fcf0d9
+-/
 theorem eventProb_le_uniformAverage_div {T : ℕ}
     (E : Finset (Fin T → Bool)) (weight : (Fin T → Bool) → ℚ)
     (threshold : ℚ) (hthreshold : 0 < threshold)
@@ -102,7 +114,9 @@ theorem eventProb_le_uniformAverage_div {T : ℕ}
 
 /-- **The probabilistic method in probability form.** If the sum, over a
     finite input set, of the probabilities of the corresponding bad-seed
-    events is strictly below one, then one seed avoids every bad event. -/
+    events is strictly below one, then one seed avoids every bad event.
+@isnad1 id=ex.1h4v.s6.c71d3bfe484a from=translated src=- shape=2fcc23a9 vocab=ec3a121f
+-/
 theorem exists_good_seed_of_sum_eventProb_lt_one {S : ℕ} {ι : Type*}
     (inputs : Finset ι) (bad : ι → Finset (Fin S → Bool))
     (h : ∑ i ∈ inputs, eventProb (bad i) < 1) :
@@ -116,7 +130,9 @@ theorem exists_good_seed_of_sum_eventProb_lt_one {S : ℕ} {ι : Type*}
 
 /-- A `2^-(n+1)` bad-seed bound for each `n`-bit input leaves a single seed
     that is good for all inputs simultaneously. The strict slack of one bit
-    makes the argument uniform even when `n = 0` or `S = 0`. -/
+    makes the argument uniform even when `n = 0` or `S = 0`.
+@isnad1 id=ex.1h3v.s6.477b3384a89b from=translated src=- shape=86276c49 vocab=6f7fa3bd
+-/
 theorem exists_good_seed_of_eventProb_le_two_pow_succ (n S : ℕ)
     (bad : (Fin n → Bool) → Finset (Fin S → Bool))
     (hbad : ∀ x, eventProb (bad x) ≤ 1 / (2 : ℚ) ^ (n + 1)) :
@@ -138,9 +154,15 @@ theorem exists_good_seed_of_eventProb_le_two_pow_succ (n S : ℕ)
     exists_good_seed_of_sum_eventProb_lt_one Finset.univ bad hsum
   exact ⟨seed, fun x => hseed x (Finset.mem_univ x)⟩
 
+/--
+@isnad1 id=eq.0h1v.s4.c28d8b3b543f from=translated src=- shape=fa122db2 vocab=60583c1a
+-/
 @[simp] theorem eventProb_empty {T : ℕ} : eventProb (∅ : Finset (Fin T → Bool)) = 0 := by
   simp [eventProb]
 
+/--
+@isnad1 id=eq.0h1v.s4.943ca9ffaba1 from=translated src=- shape=8ce5d5dc vocab=de0c3626
+-/
 @[simp] theorem eventProb_univ {T : ℕ} :
     eventProb (Finset.univ : Finset (Fin T → Bool)) = 1 := by
   have hpos : ((2 : ℚ) ^ T) ≠ 0 := by positivity
@@ -148,7 +170,9 @@ theorem exists_good_seed_of_eventProb_le_two_pow_succ (n S : ℕ)
   rw [show ((2 ^ T : ℕ) : ℚ) = (2 : ℚ) ^ T by norm_cast]
   exact div_self hpos
 
-/-- The probability of the complement of an event is one minus its probability. -/
+/-- The probability of the complement of an event is one minus its probability.
+@isnad1 id=eq.0h2v.s6.7a068614cb18 from=translated src=- shape=e00dfac1 vocab=c8bde447
+-/
 theorem eventProb_compl {T : ℕ} (E : Finset (Fin T → Bool)) :
     eventProb Eᶜ = 1 - eventProb E := by
   have hpos : ((2 : ℚ) ^ T) ≠ 0 := by positivity
@@ -161,7 +185,9 @@ theorem eventProb_compl {T : ℕ} (E : Finset (Fin T → Bool)) :
   rw [hcard, sub_div, div_self hpos]
 
 /-- For a Boolean-valued experiment, success probability is one minus failure
-probability. -/
+probability.
+@isnad1 id=eq.0h2v.s6.9ab1ba5a3a10 from=translated src=- shape=86e016f5 vocab=c56fbca4
+-/
 theorem eventProb_filter_bool_true (T : ℕ)
     (f : (Fin T → Bool) → Bool) :
     eventProb (Finset.univ.filter (fun w => f w = true)) =
@@ -172,7 +198,9 @@ theorem eventProb_filter_bool_true (T : ℕ)
   cases f w <;> simp
 
 /-- The **union bound** in probability form: the probability of `E ∪ F` is at
-    most the sum of their probabilities. -/
+    most the sum of their probabilities.
+@isnad1 id=le.0h3v.s6.e9644d625329 from=translated src=- shape=065a0776 vocab=cc626897
+-/
 theorem eventProb_union_le {T : ℕ} (E F : Finset (Fin T → Bool)) :
     eventProb (E ∪ F) ≤ eventProb E + eventProb F := by
   unfold eventProb
@@ -183,7 +211,9 @@ theorem eventProb_union_le {T : ℕ} (E F : Finset (Fin T → Bool)) :
 /-- **The union bound** over a finite family of events: the probability of the
     union `⋃ᵢ Eᵢ` is at most the sum of the individual probabilities. The
     amplification workhorse — bounding the failure probability across many bad
-    events. -/
+    events.
+@isnad1 id=le.0h4v.s6.2b7dff50b973 from=translated src=- shape=f3b106a9 vocab=94dc39f2
+-/
 theorem eventProb_biUnion_le {T : ℕ} {ι : Type*} [DecidableEq ι] (s : Finset ι)
     (E : ι → Finset (Fin T → Bool)) :
     eventProb (s.biUnion E) ≤ ∑ i ∈ s, eventProb (E i) := by
@@ -195,7 +225,9 @@ theorem eventProb_biUnion_le {T : ℕ} {ι : Type*} [DecidableEq ι] (s : Finset
     gcongr
 
 /-- Finite additivity: the probability of a disjoint finite union is the sum of
-    the probabilities of its events. -/
+    the probabilities of its events.
+@isnad1 id=eq.1h4v.s6.b1ad022404f2 from=translated src=- shape=e62d4988 vocab=41e51675
+-/
 theorem eventProb_biUnion {T : ℕ} {ι : Type*}
     (s : Finset ι) (E : ι → Finset (Fin T → Bool))
     (h : (s : Set ι).PairwiseDisjoint E) :
@@ -207,7 +239,9 @@ theorem eventProb_biUnion {T : ℕ} {ι : Type*}
 
 /-- **Conditioning by a finite partition.** If the statistic `f` maps every point
     of `E` into the finite index set `s`, then `E` is the disjoint union of its
-    fibers and its probability is the sum of their probabilities. -/
+    fibers and its probability is the sum of their probabilities.
+@isnad1 id=eq.1h5v.s6.e86126a2360c from=translated src=- shape=07630aad vocab=c9638136
+-/
 theorem eventProb_eq_sum_fiberwise {T : ℕ} {ι : Type*} [DecidableEq ι]
     (E : Finset (Fin T → Bool)) (s : Finset ι) (f : (Fin T → Bool) → ι)
     (h : (E : Set (Fin T → Bool)).MapsTo f s) :
@@ -220,7 +254,9 @@ theorem eventProb_eq_sum_fiberwise {T : ℕ} {ι : Type*} [DecidableEq ι]
 /-- **Uniformly ignored random bits cancel from event probability.** If an event
     on `total = compact + ignored` bits factors through a compact-seed projection
     whose fibers all have size `2 ^ ignored`, its probability is exactly the
-    probability of the corresponding compact event. -/
+    probability of the corresponding compact event.
+@isnad1 id=eq.3h6v.s7.06514066666c from=translated src=- shape=f0b58f3e vocab=db62a854
+-/
 theorem eventProb_filter_of_constant_fibers
     {total compact ignored : ℕ} (htotal : total = compact + ignored)
     (randomSeed : (Fin total → Bool) → (Fin compact → Bool))
@@ -239,7 +275,9 @@ theorem eventProb_filter_of_constant_fibers
   field_simp
 
 /-- The fixed-time repetition schedule's administrative choices do not change
-    the probability of an event depending only on its `k * T` simulation bits. -/
+    the probability of an event depending only on its `k * T` simulation bits.
+@isnad1 id=eq.0h3v.s9.05aede42cbbd from=translated src=- shape=6b44e451 vocab=10deea4d
+-/
 theorem eventProb_repeatRandomSeed (k T : ℕ)
     (P : (Fin (k * T) → Bool) → Prop) [DecidablePred P] :
     eventProb (Finset.univ.filter (fun w : Fin (2 + k * (2 * T + 2)) → Bool =>
@@ -258,7 +296,9 @@ theorem eventProb_repeatRandomSeed (k T : ℕ)
     probability is the product of the two block probabilities. This is the
     probability-level counterpart of `card_filter_block` and the quantitative engine
     behind error amplification: `k` independent runs multiply their success
-    probabilities. -/
+    probabilities.
+@isnad1 id=eq.0h4v.s7.919aaff4169d from=translated src=- shape=174d4a5b vocab=2f3656c3
+-/
 theorem eventProb_block {a b : ℕ}
     (P : (Fin a → Bool) → Prop) (Q : (Fin b → Bool) → Prop)
     [DecidablePred P] [DecidablePred Q] :
@@ -295,7 +335,9 @@ private theorem weighted_term_normalize (T n j : ℕ)
 /-- **Exact majority-failure probability across independent blocks.** Splitting a
     uniform long seed into `2r + 1` blocks makes block-event membership independent,
     so the failure probability is the lower tail of the binomial distribution with
-    success probability `eventProb E`. -/
+    success probability `eventProb E`.
+@isnad1 id=eq.0h3v.s9.9b5f3a1850dc from=translated src=- shape=58894eff vocab=21f13ba1
+-/
 theorem eventProb_blockMajority_eq_false
     (T r : ℕ) (E : Finset (Fin T → Bool)) :
     eventProb (Finset.univ.filter (fun w : Fin ((2 * r + 1) * T) → Bool =>
@@ -316,7 +358,9 @@ theorem eventProb_blockMajority_eq_false
     least `2/3` is at most `(1/3) * (8/9)^r`. This deliberately uses a coarse
     elementary bound rather than a Chernoff inequality: each failure term is
     bounded by `(1/3) * (2/9)^r`, and the lower-half binomial coefficients sum to
-    `4^r`. -/
+    `4^r`.
+@isnad1 id=le.2h2v.s7.6d25fc02e20a from=translated src=- shape=8842ef91 vocab=8cdb31d6
+-/
 theorem binomial_lower_tail_le (r : ℕ) (p : ℚ)
     (hp_lower : 2 / 3 ≤ p) (hp_upper : p ≤ 1) :
     (∑ j ∈ Finset.range (r + 1),
@@ -402,7 +446,9 @@ private theorem eventProb_blockMajority_false_le_two_pow_aux
 /-- **Concrete error amplification.** If one `T`-bit trial succeeds with
     probability at least `2/3`, then the strict majority of `12k + 1` independent
     trials fails with probability at most `1 / 2^k`. The explicit odd repetition
-    count avoids ties and is sufficient for later BPP and protocol amplification. -/
+    count avoids ties and is sufficient for later BPP and protocol amplification.
+@isnad1 id=le.1h3v.s8.4a2580da55a3 from=translated src=- shape=3f77ed73 vocab=ba8ce919
+-/
 theorem eventProb_blockMajority_false_le_two_pow
     (T k : ℕ) (E : Finset (Fin T → Bool)) (hE : 2 / 3 ≤ eventProb E) :
     eventProb (Finset.univ.filter (fun w : Fin ((12 * k + 1) * T) → Bool =>
@@ -412,7 +458,9 @@ theorem eventProb_blockMajority_false_le_two_pow
   exact eventProb_blockMajority_false_le_two_pow_aux T k E hE
 
 /-- Majority amplification on yes-instances: a source success probability at
-least `2/3` becomes at least `1 - 2^-k` after `12k + 1` trials. -/
+least `2/3` becomes at least `1 - 2^-k` after `12k + 1` trials.
+@isnad1 id=le.1h3v.s8.dfeabe2d3411 from=translated src=- shape=b286c52c vocab=307d1049
+-/
 theorem eventProb_blockMajority_true_ge_one_sub_two_pow
     (T k : ℕ) (E : Finset (Fin T → Bool)) (hE : 2 / 3 ≤ eventProb E) :
     1 - 1 / (2 : ℚ) ^ k ≤
@@ -423,7 +471,9 @@ theorem eventProb_blockMajority_true_ge_one_sub_two_pow
   linarith
 
 /-- Majority amplification on no-instances: a source success probability at
-most `1/3` becomes at most `2^-k` after `12k + 1` trials. -/
+most `1/3` becomes at most `2^-k` after `12k + 1` trials.
+@isnad1 id=le.1h3v.s8.453b4acdb763 from=translated src=- shape=908c16af vocab=79438553
+-/
 theorem eventProb_blockMajority_true_le_two_pow
     (T k : ℕ) (E : Finset (Fin T → Bool)) (hE : eventProb E ≤ 1 / 3) :
     eventProb (Finset.univ.filter
@@ -447,7 +497,9 @@ theorem eventProb_blockMajority_true_le_two_pow
 
 /-- Event probability is invariant under any relabeling of the sample space — in
     particular under permuting the bit positions (`Equiv.arrowCongr σ`) — since a
-    bijection preserves cardinality. -/
+    bijection preserves cardinality.
+@isnad1 id=eq.0h3v.s5.68e187afd595 from=translated src=- shape=ebb9320c vocab=fda422c5
+-/
 theorem eventProb_map {T : ℕ} (e : (Fin T → Bool) ≃ (Fin T → Bool))
     (E : Finset (Fin T → Bool)) :
     eventProb (E.map e.toEmbedding) = eventProb E := by
@@ -456,7 +508,9 @@ theorem eventProb_map {T : ℕ} (e : (Fin T → Bool) ≃ (Fin T → Bool))
 
 /-- The PTM acceptance probability is exactly the event probability of the set of
     accepting choice sequences: this ties `NTM.acceptProb` to the abstract
-    `eventProb` / `Finset.card` layer. -/
+    `eventProb` / `Finset.card` layer.
+@isnad1 id=eq.0h4v.s7.b602222cca87 from=translated src=- shape=08056908 vocab=9f9ff932
+-/
 theorem NTM.acceptProb_eq_eventProb {n : ℕ} (tm : NTM n) (x : List Bool) (T : ℕ) :
     tm.acceptProb x T =
       eventProb (Finset.univ.filter fun choices : Fin T → Bool =>
@@ -467,7 +521,9 @@ theorem NTM.acceptProb_eq_eventProb {n : ℕ} (tm : NTM n) (x : List Bool) (T : 
 /-- Once every path from `c` has halted by time `T`, extending the observation
 clock to any `T' ≥ T` preserves the probability of every decidable event on the
 final configuration. Halted traces are fixed, and every length-`T` choice
-sequence has the same number of extensions, so the extra random bits cancel. -/
+sequence has the same number of extensions, so the extra random bits cancel.
+@isnad1 id=eq.2h6v.s7.80b620c21c59 from=translated src=- shape=f8839ce7 vocab=8f0644ab
+-/
 theorem NTM.traceEventProb_eq_of_le_of_allChoicesHalt {n T T' : ℕ}
     (tm : NTM n) (c : Cfg n tm.Q)
     (event : Cfg n tm.Q → Prop) [DecidablePred event] (hle : T ≤ T')
@@ -501,7 +557,9 @@ theorem NTM.traceEventProb_eq_of_le_of_allChoicesHalt {n T T' : ℕ}
   simpa using hblock
 
 /-- Once every path has halted by time `T`, extending the observation clock to
-any `T' ≥ T` leaves acceptance probability unchanged. -/
+any `T' ≥ T` leaves acceptance probability unchanged.
+@isnad1 id=eq.2h5v.s5.44ab6e7273e3 from=translated src=- shape=9956569e vocab=16c66a7e
+-/
 theorem NTM.acceptProb_eq_of_le_of_allChoicesHalt {n T T' : ℕ}
     (tm : NTM n) (x : List Bool) (hle : T ≤ T')
     (hhalt : ∀ choices : Fin T → Bool,
@@ -512,7 +570,9 @@ theorem NTM.acceptProb_eq_of_le_of_allChoicesHalt {n T T' : ℕ}
     (fun c => c.state = tm.qhalt ∧ c.output.cells 1 = Γ.one) hle hhalt
 
 /-- A pointwise-larger clock gives the same acceptance probability once the
-machine satisfies `AllPathsHaltIn` for the smaller clock. -/
+machine satisfies `AllPathsHaltIn` for the smaller clock.
+@isnad1 id=eq.2h5v.s5.e2cf21d482df from=translated src=- shape=9bf4b871 vocab=7d85fa26
+-/
 theorem NTM.acceptProb_eq_of_le_of_allPathsHaltIn {n : ℕ} {T T' : ℕ → ℕ}
     (tm : NTM n) (hle : ∀ m, T m ≤ T' m) (hhalt : tm.AllPathsHaltIn T)
     (x : List Bool) :
@@ -520,7 +580,9 @@ theorem NTM.acceptProb_eq_of_le_of_allPathsHaltIn {n : ℕ} {T T' : ℕ → ℕ}
   tm.acceptProb_eq_of_le_of_allChoicesHalt x (hle x.length) (hhalt x)
 
 /-- The PTM probability of output `y` is exactly the event probability of the
-choice sequences that halt with that output. -/
+choice sequences that halt with that output.
+@isnad1 id=eq.0h5v.s7.c9c1db86a1ae from=translated src=- shape=dd051bd4 vocab=d3c08f2e
+-/
 theorem NTM.outputProb_eq_eventProb {n : ℕ} (tm : NTM n) (x : List Bool)
     (T : ℕ) (y : List Bool) :
     tm.outputProb x T y =
@@ -530,7 +592,9 @@ theorem NTM.outputProb_eq_eventProb {n : ℕ} (tm : NTM n) (x : List Bool)
   rfl
 
 /-- Once every path has halted by time `T`, extending the observation clock to
-any `T' ≥ T` leaves every output probability unchanged. -/
+any `T' ≥ T` leaves every output probability unchanged.
+@isnad1 id=eq.2h6v.s5.f6749c74156f from=translated src=- shape=f9287dd7 vocab=4fd64e32
+-/
 theorem NTM.outputProb_eq_of_le_of_allChoicesHalt {n T T' : ℕ}
     (tm : NTM n) (x : List Bool) (y : List Bool) (hle : T ≤ T')
     (hhalt : ∀ choices : Fin T → Bool,
@@ -541,7 +605,9 @@ theorem NTM.outputProb_eq_of_le_of_allChoicesHalt {n T T' : ℕ}
     (fun c => c.state = tm.qhalt ∧ c.output.HasOutput y) hle hhalt
 
 /-- A pointwise-larger clock gives the same output probabilities once the
-machine satisfies `AllPathsHaltIn` for the smaller clock. -/
+machine satisfies `AllPathsHaltIn` for the smaller clock.
+@isnad1 id=eq.2h6v.s5.9fc3f0d6d240 from=translated src=- shape=6fc546fa vocab=e9426e03
+-/
 theorem NTM.outputProb_eq_of_le_of_allPathsHaltIn {n : ℕ} {T T' : ℕ → ℕ}
     (tm : NTM n) (hle : ∀ m, T m ≤ T' m) (hhalt : tm.AllPathsHaltIn T)
     (x y : List Bool) :
@@ -551,7 +617,9 @@ theorem NTM.outputProb_eq_of_le_of_allPathsHaltIn {n : ℕ} {T T' : ℕ → ℕ}
 /-- A repeated machine's administrative random choices cancel from its acceptance
     probability whenever its accepting-path predicate factors through
     `repeatRandomSeed`. The result is the event probability on only the `k * T`
-    simulation choices. -/
+    simulation choices.
+@isnad1 id=eq.1h6v.s8.5659ce1d7d50 from=translated src=- shape=b9d312e2 vocab=78558241
+-/
 theorem NTM.acceptProb_eq_eventProb_repeatRandomSeed
     {n : ℕ} (tm : NTM n) (x : List Bool) (k T : ℕ)
     (P : (Fin (k * T) → Bool) → Prop) [DecidablePred P]

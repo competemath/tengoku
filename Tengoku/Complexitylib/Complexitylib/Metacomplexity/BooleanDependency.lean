@@ -27,7 +27,9 @@ namespace Complexity
 
 namespace BooleanDependency
 
-/-- Splitting and then merging a total assignment recovers it exactly. -/
+/-- Splitting and then merging a total assignment recovers it exactly.
+@isnad1 id=eq.0h3v.s6.3449527bfd92 from=translated src=- shape=5d99967b vocab=49b039f2
+-/
 @[simp] theorem mergeAssignments_split {coordinate : Type*}
     [Fintype coordinate] [DecidableEq coordinate]
     (coordinates : Finset coordinate) (input : coordinate → Bool) :
@@ -36,7 +38,9 @@ namespace BooleanDependency
   (assignmentSplitEquiv coordinates).left_inv input
 
 /-- Restricting a merged assignment to its selected coordinates recovers the
-selected component. -/
+selected component.
+@isnad1 id=eq.0h4v.s7.7a56ac4ff470 from=translated src=- shape=0eac7fb7 vocab=49b039f2
+-/
 @[simp] theorem restrict_mergeAssignments_left {coordinate : Type*}
     [Fintype coordinate] [DecidableEq coordinate]
     (coordinates : Finset coordinate)
@@ -48,7 +52,9 @@ selected component. -/
     (selected, outside))
 
 /-- Restricting a merged assignment to the complement recovers the complement
-component. -/
+component.
+@isnad1 id=eq.0h4v.s7.b5303bd05df3 from=translated src=- shape=063a9109 vocab=49b039f2
+-/
 @[simp] theorem restrict_mergeAssignments_right {coordinate : Type*}
     [Fintype coordinate] [DecidableEq coordinate]
     (coordinates : Finset coordinate)
@@ -61,7 +67,9 @@ component. -/
 
 /-- Restricting a uniformly random total Boolean assignment to any finite
 coordinate subset produces the exact uniform distribution on subset
-assignments. -/
+assignments.
+@isnad1 id=eq.0h3v.s8.5b9e01c94616 from=translated src=- shape=8f8ac515 vocab=37372250
+-/
 theorem uniformProbability_restrict {coordinate : Type*}
     [Fintype coordinate] [DecidableEq coordinate]
     (coordinates : Finset coordinate)
@@ -71,7 +79,9 @@ theorem uniformProbability_restrict {coordinate : Type*}
       uniformProbability (Finset.univ.filter event) :=
   uniformProbability_restrict_internal coordinates event
 
-/-- Extending a restricted assignment recovers every selected coordinate. -/
+/-- Extending a restricted assignment recovers every selected coordinate.
+@isnad1 id=eq.1h4v.s5.14175800cbf4 from=translated src=- shape=31105d75 vocab=e2f5e782
+-/
 @[simp] theorem extendByFalse_restrict_apply {coordinate : Type*}
     [DecidableEq coordinate] (coordinates : Finset coordinate)
     (input : coordinate → Bool) (index : coordinate)
@@ -80,7 +90,9 @@ theorem uniformProbability_restrict {coordinate : Type*}
   extendByFalse_restrict_apply_internal coordinates input index hindex
 
 /-- If a function depends only on the selected coordinates, its canonical
-table reconstructs its value on every total input. -/
+table reconstructs its value on every total input.
+@isnad1 id=eq.1h5v.s5.457eb0c6d7bb from=translated src=- shape=8912f752 vocab=63e89a9d
+-/
 @[simp] theorem table_restrict {coordinate result : Type*}
     [DecidableEq coordinate] (coordinates : Finset coordinate)
     (function : (coordinate → Bool) → result)
@@ -89,12 +101,16 @@ table reconstructs its value on every total input. -/
     table coordinates function (restrict coordinates input) = function input :=
   table_restrict_internal coordinates function hdepends input
 
-/-- A table on `|S|` Boolean coordinates has exactly `2^|S|` entries. -/
+/-- A table on `|S|` Boolean coordinates has exactly `2^|S|` entries.
+@isnad1 id=eq.0h2v.s5.43aaa00e77d4 from=translated src=- shape=ffca3f88 vocab=1a0e7056
+-/
 theorem card_assignments {coordinate : Type*} (coordinates : Finset coordinate) :
     Nat.card (coordinates → Bool) = 2 ^ coordinates.card :=
   card_assignments_internal coordinates
 
-/-- A function depending on finitely many Boolean coordinates has finite range. -/
+/-- A function depending on finitely many Boolean coordinates has finite range.
+@isnad1 id=finite.1h4v.s5.5401690bd20f from=translated src=- shape=216cf702 vocab=064699e4
+-/
 theorem finite_range_of_dependsOn {coordinate result : Type*}
     [DecidableEq coordinate] (coordinates : Finset coordinate)
     (function : (coordinate → Bool) → result)
@@ -102,7 +118,9 @@ theorem finite_range_of_dependsOn {coordinate result : Type*}
     (Set.range function).Finite :=
   finite_range_of_dependsOn_internal coordinates function hdepends
 
-/-- A function depending on `S` has at most `2^|S|` distinct values. -/
+/-- A function depending on `S` has at most `2^|S|` distinct values.
+@isnad1 id=le.1h4v.s5.b057b9e41bbd from=translated src=- shape=99f96c70 vocab=1bc1e716
+-/
 theorem card_range_le_pow_card_of_dependsOn
     {coordinate result : Type*} [DecidableEq coordinate]
     (coordinates : Finset coordinate)

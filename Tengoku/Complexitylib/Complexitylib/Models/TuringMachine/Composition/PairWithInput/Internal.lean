@@ -69,7 +69,9 @@ private def PairWithInputEmitterPre (nf : ℕ) (first second : List Bool)
   out = (Tape.init []).move Dir3.right
 
 /-- The normalization-and-emission tail turns a raw delimited source output
-and the original input into their canonical pair. -/
+and the original input into their canonical pair.
+@isnad1 id=hoaretim.0h4v.s6.88492300090b from=translated src=- shape=dc0abb27 vocab=095ae9f7
+-/
 theorem pairWithInputTailTM_hoareTime_internal (nf : ℕ)
     (first second : List Bool) (B : ℕ) :
     (pairWithInputTailTM nf).HoareTime

@@ -174,6 +174,9 @@ private theorem branchWorkSymbolTM_dispatch_different
     exact transitionTape_eq_self (hwork i)
   · exact transitionTape_eq_self hout
 
+/--
+@isnad1 id=ex.6h10v.s7.d417ac667750 from=translated src=- shape=593bf385 vocab=f8be7be4
+-/
 theorem branchWorkSymbolTM_reachesIn_equal_frame_internal
     (idx : Fin n) (symbol : Γ) (onEqual onDifferent : TM n)
     (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -201,6 +204,9 @@ theorem branchWorkSymbolTM_reachesIn_equal_frame_internal
   exact (workSymbolEqualWrap_halted_iff idx symbol onEqual onDifferent c').2
     hhalt
 
+/--
+@isnad1 id=ex.6h10v.s7.c40c2638c1de from=translated src=- shape=09bbf71e vocab=f8be7be4
+-/
 theorem branchWorkSymbolTM_reachesIn_different_frame_internal
     (idx : Fin n) (symbol : Γ) (onEqual onDifferent : TM n)
     (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -229,6 +235,9 @@ theorem branchWorkSymbolTM_reachesIn_different_frame_internal
   exact (workSymbolDifferentWrap_halted_iff idx symbol onEqual onDifferent
     c').2 hhalt
 
+/--
+@isnad1 id=istransd.2h5v.s4.7103491b8889 from=translated src=- shape=b6b35ffa vocab=64214532
+-/
 theorem IsTransducer.branchWorkSymbolTM_internal
     {idx : Fin n} {symbol : Γ} {onEqual onDifferent : TM n}
     (hequal : onEqual.IsTransducer) (hdifferent : onDifferent.IsTransducer) :

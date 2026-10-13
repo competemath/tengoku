@@ -24,7 +24,9 @@ namespace Complexity
 namespace BinarySucc
 
 /-- Internal proof that ripple carry computes successor on canonical
-little-endian natural-number bits. -/
+little-endian natural-number bits.
+@isnad1 id=eq.0h1v.s4.85f163ba4b58 from=translated src=- shape=57d1d22b vocab=0f822e16
+-/
 theorem ripple_natBits_internal (value : ℕ) :
     ripple value.bits = (value + 1).bits := by
   induction value using Nat.binaryRec' with
@@ -39,7 +41,9 @@ theorem ripple_natBits_internal (value : ℕ) :
         rw [Nat.bit0_bits (value + 1) (Nat.succ_ne_zero value)]
         rw [ih]
 
-/-- Internal worst-case bound for the exact successor step count. -/
+/-- Internal worst-case bound for the exact successor step count.
+@isnad1 id=le.0h1v.s5.7f7a294c37c1 from=translated src=- shape=29b2873e vocab=755dff90
+-/
 theorem steps_le_internal (bits : List Bool) :
     steps bits ≤ 2 * bits.length + 2 := by
   induction bits with
@@ -499,11 +503,17 @@ private theorem binarySuccTM_carry_run
 
 /-! ## Public-theorem internals -/
 
+/--
+@isnad1 id=le.0h1v.s5.9921f7456f13 from=translated src=- shape=f3d59ef8 vocab=14976991
+-/
 theorem binarySuccTime_le_internal (value : ℕ) :
     binarySuccTime value ≤ 2 * value.size + 2 := by
   simpa [binarySuccTime, Nat.size_eq_bits_len] using
     BinarySucc.steps_le_internal value.bits
 
+/--
+@isnad1 id=ex.4h6v.s7.6eb511548d18 from=translated src=- shape=a32812cc vocab=d81b8581
+-/
 theorem binarySuccTM_reachesIn_frame_internal
     (idx : Fin n) (value : ℕ)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
@@ -537,6 +547,9 @@ theorem binarySuccTM_reachesIn_frame_internal
   · exact ⟨hcell0, by
       simpa [BinarySucc.ripple_natBits_internal] using hstring⟩
 
+/--
+@isnad1 id=hoaretim.4h6v.s7.177cfa6eafd4 from=translated src=- shape=aa16ddc5 vocab=d7d965a7
+-/
 theorem binarySuccTM_hoareTime_frame_internal
     (idx : Fin n) (value : ℕ)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
@@ -560,6 +573,9 @@ theorem binarySuccTM_hoareTime_frame_internal
     hinput, hwork, hvalue', houtput⟩
   simpa [hinput₀, hwork₀, houtput₀] using hreach
 
+/--
+@isnad1 id=hoaretim.5h8v.s7.25d34dc61a11 from=translated src=- shape=fe14600c vocab=1d515e79
+-/
 theorem binarySuccTM_hoareTimeSpace_frame_internal
     (idx : Fin n) (value inputLength initialSpace : ℕ)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
@@ -587,6 +603,9 @@ theorem binarySuccTM_hoareTimeSpace_frame_internal
   rintro inp work out ⟨hinput₀, hwork₀, houtput₀⟩
   simpa [hinput₀, hwork₀, houtput₀] using hinitial
 
+/--
+@isnad1 id=istransd.0h2v.s3.225bacc7c235 from=translated src=- shape=20553ef8 vocab=16ce9c88
+-/
 theorem binarySuccTM_isTransducer_internal (idx : Fin n) :
     (binarySuccTM idx).IsTransducer := by
   intro phase iHead wHeads oHead

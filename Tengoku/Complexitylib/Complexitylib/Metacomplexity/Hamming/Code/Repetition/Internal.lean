@@ -19,6 +19,9 @@ namespace Complexity
 
 namespace BooleanCode
 
+/--
+@isnad1 id=eq.0h4v.s7.b9620fc3660e from=translated src=- shape=68baf0bf vocab=47d005f7
+-/
 theorem repetitionEncode_apply_internal {messageLength copies : ℕ}
     (message : BooleanHamming.Word messageLength)
     (coordinate : Fin (messageLength * copies)) :
@@ -26,6 +29,9 @@ theorem repetitionEncode_apply_internal {messageLength copies : ℕ}
       message (finProdFinEquiv.symm coordinate).1 := by
   simp [repetitionEncode, blocksEquiv_symm_apply]
 
+/--
+@isnad1 id=injectiv.1h2v.s4.eac5c207dcea from=translated src=- shape=6c8b7ae2 vocab=3fa2a8e6
+-/
 theorem repetitionEncode_injective_internal {messageLength copies : ℕ}
     (hcopies : 0 < copies) :
     Function.Injective (repetitionEncode messageLength copies) := by
@@ -35,6 +41,9 @@ theorem repetitionEncode_injective_internal {messageLength copies : ℕ}
   have hcoordinate := congrFun hencode (finProdFinEquiv (input, copy))
   simpa [repetitionEncode_apply_internal] using hcoordinate
 
+/--
+@isnad1 id=eq.0h4v.s5.6383a5cfbf76 from=translated src=- shape=390d8e0c vocab=c6bde152
+-/
 theorem distance_repetitionEncode_internal {messageLength copies : ℕ}
     (left right : BooleanHamming.Word messageLength) :
     BooleanHamming.distance
@@ -75,6 +84,9 @@ theorem distance_repetitionEncode_internal {messageLength copies : ℕ}
     _ = (BooleanHamming.disagreement left right).card * copies := by
       simp
 
+/--
+@isnad1 id=and.0h2v.s6.34fed7a4ff03 from=translated src=- shape=2b70dc0b vocab=f518381c
+-/
 theorem repetitionEncode_isLinear_internal {messageLength copies : ℕ} :
     repetitionEncode messageLength copies (zeroWord messageLength) =
         zeroWord (messageLength * copies) ∧

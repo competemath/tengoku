@@ -21,6 +21,9 @@ namespace Complexity.DescriptiveComplexity.TaggedFOInterpretation
 
 variable {V W : Vocabulary} {tags dim n m : Nat}
 
+/--
+@isnad1 id=eq.0h12v.s8.b76e76019187 from=translated src=- shape=09e3a942 vocab=8b3d77fc
+-/
 theorem termCoords_eval (I : TaggedFOInterpretation V W tags dim) (A : FinStruct V)
     (τ : Fin n → Fin tags) (κ : Fin n → Fin dim → Term V m) (σ : Env A.card m)
     (t : Term W n) :
@@ -28,6 +31,9 @@ theorem termCoords_eval (I : TaggedFOInterpretation V W tags dim) (A : FinStruct
       (I.termTag τ t, fun j => (I.termCoords κ t j).eval A σ) := by
   cases t <;> simp [Term.eval, coordEnv, termTag, termCoords]
 
+/--
+@isnad1 id=eq.0h11v.s8.c32a85b711d7 from=translated src=- shape=4a4f149d vocab=78dac299
+-/
 theorem coordEnv_lift (A : FinStruct V) (τ : Fin n → Fin tags)
     (κ : Fin n → Fin dim → Term V m) (σ : Env A.card m)
     (tag : Fin tags) (v : Env A.card dim) :
@@ -38,6 +44,9 @@ theorem coordEnv_lift (A : FinStruct V) (τ : Fin n → Fin tags)
   | zero => simp [coordEnv, liftCoords, Term.eval, envBlock_new, envCons]
   | succ i => simp [coordEnv, liftCoords, Term.shiftBy_eval, envCons]
 
+/--
+@isnad1 id=eq.0h13v.s8.cc74d79ac25d from=translated src=- shape=822671de vocab=992859f2
+-/
 theorem relationEnv_evalTerms (I : TaggedFOInterpretation V W tags dim) (A : FinStruct V)
     (τ : Fin n → Fin tags) (κ : Fin n → Fin dim → Term V m) (σ : Env A.card m)
     {arity : Nat} (ts : Fin arity → Term W n) :
@@ -48,6 +57,9 @@ theorem relationEnv_evalTerms (I : TaggedFOInterpretation V W tags dim) (A : Fin
   exact congrArg (fun p => p.2 (finProdFinEquiv.symm k).2)
     (I.termCoords_eval A τ κ σ (ts (finProdFinEquiv.symm k).1))
 
+/--
+@isnad1 id=iff.0h12v.s6.daa32203fcc6 from=translated src=- shape=184b9e66 vocab=563ba3cc
+-/
 theorem pullbackWith_sat (I : TaggedFOInterpretation V W tags dim) (A : FinStruct V)
     (φ : Formula W n) (τ : Fin n → Fin tags) (κ : Fin n → Fin dim → Term V m)
     (σ : Env A.card m) :

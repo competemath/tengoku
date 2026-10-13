@@ -70,6 +70,9 @@ private theorem withTopNat_le_of_add_le_add_right_internal
             exact_mod_cast hbound
           exact Nat.le_of_add_le_add_right hvalueBound
 
+/--
+@isnad1 id=isadmiss.0h0v.s1.41e3d7b690ca from=translated src=- shape=87ceb31f vocab=e2877495
+-/
 theorem isAdmissibleKolmogorovClock_id_internal :
     IsAdmissibleKolmogorovClock id := by
   constructor
@@ -79,6 +82,9 @@ theorem isAdmissibleKolmogorovClock_id_internal :
     intro time
     simp
 
+/--
+@isnad1 id=ne.3h9v.s6.ad898fad3159 from=translated src=- shape=140fafe0 vocab=35dc8158
+-/
 theorem TimeBoundedSymmetryOfInformation.conditional_ne_top_internal
     {ordinaryTapes conditionalTapes : ℕ}
     {ordinaryMachine : TM ordinaryTapes}
@@ -99,6 +105,9 @@ theorem TimeBoundedSymmetryOfInformation.conditional_ne_top_internal
   change (⊤ : WithTop ℕ) ≤ ((pairValue + loss time : ℕ) : WithTop ℕ) at hchain
   exact WithTop.not_top_le_coe _ hchain
 
+/--
+@isnad1 id=ne.3h9v.s6.ddb5d2372b88 from=translated src=- shape=82c1597e vocab=98a58814
+-/
 theorem TimeBoundedSymmetryOfInformation.condition_ne_top_internal
     {ordinaryTapes conditionalTapes : ℕ}
     {ordinaryMachine : TM ordinaryTapes}
@@ -119,6 +128,9 @@ theorem TimeBoundedSymmetryOfInformation.condition_ne_top_internal
   change (⊤ : WithTop ℕ) ≤ ((pairValue + loss time : ℕ) : WithTop ℕ) at hchain
   exact WithTop.not_top_le_coe _ hchain
 
+/--
+@isnad1 id=timeboun.2h7v.s5.9de421367b0c from=translated src=- shape=350d6434 vocab=f19502c4
+-/
 theorem TimeBoundedSymmetryOfInformation.weaken_loss_internal
     {ordinaryTapes conditionalTapes : ℕ}
     {ordinaryMachine : TM ordinaryTapes}
@@ -135,6 +147,9 @@ theorem TimeBoundedSymmetryOfInformation.weaken_loss_internal
     withTopNat_add_le_add_internal le_rfl
       (WithTop.coe_le_coe.mpr (hloss time))
 
+/--
+@isnad1 id=timeboun.2h7v.s5.fd37adea9bc6 from=translated src=- shape=ffafb62c vocab=f19502c4
+-/
 theorem TimeBoundedSymmetryOfInformation.weaken_clock_internal
     {ordinaryTapes conditionalTapes : ℕ}
     {ordinaryMachine : TM ordinaryTapes}
@@ -166,6 +181,9 @@ theorem TimeBoundedSymmetryOfInformation.weaken_clock_internal
             (pair first condition) time + (loss time : WithTop ℕ) :=
       hsoi.chain_le first condition time hsize
 
+/--
+@isnad1 id=le.4h14v.s7.3cad0921d1ab from=translated src=- shape=c2b6df6a vocab=79d48ea5
+-/
 theorem TimeBoundedSymmetryOfInformation.conditional_le_of_pair_upper_internal
     {ordinaryTapes conditionalTapes alternativeTapes : ℕ}
     {ordinaryMachine : TM ordinaryTapes}
@@ -242,6 +260,9 @@ theorem TimeBoundedSymmetryOfInformation.conditional_le_of_pair_upper_internal
           ac_rfl
   exact withTopNat_le_of_add_le_add_right_internal hcondition htotal
 
+/--
+@isnad1 id=le.9h17v.s8.c9efdbaaf1a0 from=translated src=- shape=a4db8c1f vocab=44482349
+-/
 theorem TimeBoundedSymmetryOfInformation.conditional_le_of_composition_internal
     {ordinaryTapes conditionalTapes alternativeTapes : ℕ}
     {ordinaryMachine : TM ordinaryTapes}
@@ -286,6 +307,9 @@ theorem TimeBoundedSymmetryOfInformation.conditional_le_of_composition_internal
     hcompose hlength hconditionFinite halternativeFinite hconditionBound
       halternativeBound
 
+/--
+@isnad1 id=and.3h5v.s6.c8844ae8e4da from=translated src=- shape=4992ad93 vocab=c2c1e42b
+-/
 theorem PolynomialTimeBoundedSymmetryOfInformation.enlarge_clock_internal
     {ordinaryTapes conditionalTapes : ℕ}
     {ordinaryMachine : TM ordinaryTapes}

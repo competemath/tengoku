@@ -81,68 +81,115 @@ def BinaryShiftMulABI.tmp {n : ℕ} (abi : BinaryShiftMulABI n) : Fin n :=
 def BinaryShiftMulABI.dbl {n : ℕ} (abi : BinaryShiftMulABI n) : Fin n :=
   abi.tape 5
 
-/-- Distinct ABI slots map to distinct work tapes. -/
+/-- Distinct ABI slots map to distinct work tapes.
+@isnad1 id=ne.1h4v.s6.a2b6b063701f from=translated src=- shape=35ea58b6 vocab=fbf067be
+-/
 theorem BinaryShiftMulABI.tape_ne {n : ℕ} (abi : BinaryShiftMulABI n)
     {first second : Fin 6} (hne : first ≠ second) :
     abi.tape first ≠ abi.tape second := by
   exact fun heq => hne (abi.tape.injective heq)
 
+/--
+@isnad1 id=ne.0h2v.s3.f5ec41da6e53 from=translated src=- shape=8927bd27 vocab=6e16ac37
+-/
 @[simp] theorem BinaryShiftMulABI.lhs_ne_rhs {n : ℕ}
     (abi : BinaryShiftMulABI n) : abi.lhs ≠ abi.rhs :=
   abi.tape_ne (by decide)
 
+/--
+@isnad1 id=ne.0h2v.s3.12cb5d33bf14 from=translated src=- shape=8927bd27 vocab=b18acba8
+-/
 @[simp] theorem BinaryShiftMulABI.lhs_ne_acc {n : ℕ}
     (abi : BinaryShiftMulABI n) : abi.lhs ≠ abi.acc :=
   abi.tape_ne (by decide)
 
+/--
+@isnad1 id=ne.0h2v.s3.1e8aa7c43ac2 from=translated src=- shape=8927bd27 vocab=883356a6
+-/
 @[simp] theorem BinaryShiftMulABI.lhs_ne_shift {n : ℕ}
     (abi : BinaryShiftMulABI n) : abi.lhs ≠ abi.shift :=
   abi.tape_ne (by decide)
 
+/--
+@isnad1 id=ne.0h2v.s3.9fd38ae4a50d from=translated src=- shape=8927bd27 vocab=e4cf4473
+-/
 @[simp] theorem BinaryShiftMulABI.lhs_ne_tmp {n : ℕ}
     (abi : BinaryShiftMulABI n) : abi.lhs ≠ abi.tmp :=
   abi.tape_ne (by decide)
 
+/--
+@isnad1 id=ne.0h2v.s3.4da14badd739 from=translated src=- shape=8927bd27 vocab=e8cc1023
+-/
 @[simp] theorem BinaryShiftMulABI.lhs_ne_dbl {n : ℕ}
     (abi : BinaryShiftMulABI n) : abi.lhs ≠ abi.dbl :=
   abi.tape_ne (by decide)
 
+/--
+@isnad1 id=ne.0h2v.s3.164536196319 from=translated src=- shape=8927bd27 vocab=8d33a73f
+-/
 @[simp] theorem BinaryShiftMulABI.rhs_ne_acc {n : ℕ}
     (abi : BinaryShiftMulABI n) : abi.rhs ≠ abi.acc :=
   abi.tape_ne (by decide)
 
+/--
+@isnad1 id=ne.0h2v.s3.2062afdb1e5f from=translated src=- shape=8927bd27 vocab=7b1645d1
+-/
 @[simp] theorem BinaryShiftMulABI.rhs_ne_shift {n : ℕ}
     (abi : BinaryShiftMulABI n) : abi.rhs ≠ abi.shift :=
   abi.tape_ne (by decide)
 
+/--
+@isnad1 id=ne.0h2v.s3.3724bae333d0 from=translated src=- shape=8927bd27 vocab=d21c5442
+-/
 @[simp] theorem BinaryShiftMulABI.rhs_ne_tmp {n : ℕ}
     (abi : BinaryShiftMulABI n) : abi.rhs ≠ abi.tmp :=
   abi.tape_ne (by decide)
 
+/--
+@isnad1 id=ne.0h2v.s3.53400528e7d1 from=translated src=- shape=8927bd27 vocab=efebf8e7
+-/
 @[simp] theorem BinaryShiftMulABI.rhs_ne_dbl {n : ℕ}
     (abi : BinaryShiftMulABI n) : abi.rhs ≠ abi.dbl :=
   abi.tape_ne (by decide)
 
+/--
+@isnad1 id=ne.0h2v.s3.3ddf0c882868 from=translated src=- shape=8927bd27 vocab=e118f62f
+-/
 @[simp] theorem BinaryShiftMulABI.acc_ne_shift {n : ℕ}
     (abi : BinaryShiftMulABI n) : abi.acc ≠ abi.shift :=
   abi.tape_ne (by decide)
 
+/--
+@isnad1 id=ne.0h2v.s3.0eabac124c1b from=translated src=- shape=8927bd27 vocab=0a95e5c2
+-/
 @[simp] theorem BinaryShiftMulABI.acc_ne_tmp {n : ℕ}
     (abi : BinaryShiftMulABI n) : abi.acc ≠ abi.tmp :=
   abi.tape_ne (by decide)
 
+/--
+@isnad1 id=ne.0h2v.s3.a7c6d3233242 from=translated src=- shape=8927bd27 vocab=27080910
+-/
 @[simp] theorem BinaryShiftMulABI.acc_ne_dbl {n : ℕ}
     (abi : BinaryShiftMulABI n) : abi.acc ≠ abi.dbl :=
   abi.tape_ne (by decide)
 
+/--
+@isnad1 id=ne.0h2v.s3.644e39ddb91f from=translated src=- shape=8927bd27 vocab=ce09d795
+-/
 @[simp] theorem BinaryShiftMulABI.shift_ne_tmp {n : ℕ}
     (abi : BinaryShiftMulABI n) : abi.shift ≠ abi.tmp :=
   abi.tape_ne (by decide)
 
+/--
+@isnad1 id=ne.0h2v.s3.a03b3a2ed9b4 from=translated src=- shape=8927bd27 vocab=28291b25
+-/
 @[simp] theorem BinaryShiftMulABI.shift_ne_dbl {n : ℕ}
     (abi : BinaryShiftMulABI n) : abi.shift ≠ abi.dbl :=
   abi.tape_ne (by decide)
 
+/--
+@isnad1 id=ne.0h2v.s3.bd8bbbb12309 from=translated src=- shape=8927bd27 vocab=c1be2be1
+-/
 @[simp] theorem BinaryShiftMulABI.tmp_ne_dbl {n : ℕ}
     (abi : BinaryShiftMulABI n) : abi.tmp ≠ abi.dbl :=
   abi.tape_ne (by decide)

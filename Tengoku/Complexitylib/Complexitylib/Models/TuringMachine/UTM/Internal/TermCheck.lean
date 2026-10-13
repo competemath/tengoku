@@ -51,7 +51,9 @@ def terminatedRegionB (α : List Bool) : Bool :=
   | Γw.blank :: s :: _ => decide (s = Γw.blank)
   | _ => true
 
-/-- `terminatedRegionB` decides `TerminatedRegion`. -/
+/-- `terminatedRegionB` decides `TerminatedRegion`.
+@isnad1 id=iff.0h1v.s3.a84e12db2862 from=translated src=- shape=10db23f1 vocab=b4614977
+-/
 theorem terminatedRegionB_iff (α : List Bool) :
     terminatedRegionB α = true ↔ TerminatedRegion α := by
   unfold terminatedRegionB TerminatedRegion
@@ -169,7 +171,9 @@ private theorem foldl_scanStep_look1 : ∀ l : List Γw,
 
 /-- **The scan computes the region check**: folding the automaton over the
     decoded symbol stream of `α` and taking the end-of-stream verdict is
-    exactly `terminatedRegionB α`. -/
+    exactly `terminatedRegionB α`.
+@isnad1 id=eq.0h1v.s3.004a49d81bae from=translated src=- shape=d5d744e4 vocab=f2554493
+-/
 theorem scanVerdict_eq (α : List Bool) :
     ctrlVerdict ((groupPairs α).foldl scanStep .seek1) = terminatedRegionB α := by
   rw [foldl_scanStep_seek1, foldl_scanStep_seek2, foldl_scanStep_look1]
@@ -584,7 +588,9 @@ private theorem termCheck_rewind_run :
     cell 1, the machine halts within `2·|x| + 8` steps having written the
     `terminatedRegionB x` verdict (`1` = holds, `0` = fails) at output
     cell 1. The input head returns to cell 1, every work tape is preserved
-    exactly, and the output head is parked back at cell 1. -/
+    exactly, and the output head is parked back at cell 1.
+@isnad1 id=hoaretim.4h3v.s8.f89a6c0d93f3 from=translated src=- shape=fd51d702 vocab=6d9f263b
+-/
 theorem termCheckTM_hoareTime (x : List Bool) (work₀ : Fin 8 → Tape) (out₀ : Tape)
     (hw : ∀ i, 1 ≤ (work₀ i).head ∧ (work₀ i).read ≠ Γ.start)
     (hout0 : out₀.cells 0 = Γ.start) (houtns : ∀ j, 1 ≤ j → out₀.cells j ≠ Γ.start)

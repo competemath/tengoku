@@ -60,6 +60,9 @@ private theorem stateScratchReg_ne_symbolReg' (n bound : ℕ)
   simp [symbolReg, stateScratchReg]
   omega
 
+/--
+@isnad1 id=ex.12h10v.s8.d7972874af87 from=translated src=- shape=f07b623e vocab=a9d63e76
+-/
 theorem dispatchSymbols_measured_internal {tm : TM n} {bound : ℕ}
     {cfg next : Complexity.Cfg n tm.Q} {store : Structured.Store}
     (state : tm.Q) (actual symbols : Fin (n + 2) → Γ)
@@ -159,6 +162,9 @@ theorem dispatchSymbols_measured_internal {tm : TM n} {bound : ℕ}
         Structured.Internal.valueWidth, spaceBound,
         Structured.Internal.envelopeSpace] using hrun
 
+/--
+@isnad1 id=ex.9h6v.s8.1bc42ff962d6 from=translated src=- shape=2cfbc92f vocab=953ffb0d
+-/
 theorem dispatchState_measured_internal {tm : TM n} {bound : ℕ}
     {cfg next : Complexity.Cfg n tm.Q} {store : Structured.Store}
     (hstep : tm.step cfg = some next)
@@ -228,6 +234,9 @@ theorem dispatchState_measured_internal {tm : TM n} {bound : ℕ}
   simpa [dispatchState, wordWidth, Structured.Internal.valueWidth, spaceBound,
     Structured.Internal.envelopeSpace] using hrun
 
+/--
+@isnad1 id=ex.6h6v.s7.d7a5c1be061b from=translated src=- shape=67104c96 vocab=099b1e1b
+-/
 theorem program_measured_internal {tm : TM n} {bound : ℕ}
     {cfg next : Complexity.Cfg n tm.Q} {store : Structured.Store}
     (hstep : tm.step cfg = some next)

@@ -53,6 +53,9 @@ variable (G : RegGraph)
 
 /-! ### Extending a walk at its end -/
 
+/--
+@isnad1 id=eq.0h5v.s6.df02a64d3235 from=translated src=- shape=e9b1fb43 vocab=b0100c74
+-/
 theorem walkEnd_snoc : ∀ (t : ℕ) (v : G.V) (s : Fin t → G.D) (i : G.D),
     G.walkEnd (t + 1) v (Fin.snoc s i) = G.nbr (G.walkEnd t v s) i := by
   intro t
@@ -79,20 +82,31 @@ def walkAt (G : RegGraph) (t : ℕ) (v : G.V) (s : Fin t → G.D) : ℕ → G.V
   | 0 => v
   | k + 1 => if h : k < t then G.nbr (walkAt G t v s k) (s ⟨k, h⟩) else walkAt G t v s k
 
+/--
+@isnad1 id=eq.0h4v.s4.7ee346df4131 from=translated src=- shape=1a0ff43f vocab=13fd684a
+-/
 @[simp] theorem walkAt_zero (t : ℕ) (v : G.V) (s : Fin t → G.D) :
     G.walkAt t v s 0 = v := rfl
 
+/--
+@isnad1 id=eq.1h5v.s5.9ade3601ac4d from=translated src=- shape=a264b285 vocab=4b29f9d6
+-/
 theorem walkAt_succ_of_lt {t : ℕ} (v : G.V) (s : Fin t → G.D) {k : ℕ} (h : k < t) :
     G.walkAt t v s (k + 1) = G.nbr (G.walkAt t v s k) (s ⟨k, h⟩) := by
   rw [walkAt]
   simp [h]
 
+/--
+@isnad1 id=eq.1h5v.s5.372bfe50cf58 from=translated src=- shape=3610b24a vocab=7be8da2f
+-/
 theorem walkAt_succ_of_ge {t : ℕ} (v : G.V) (s : Fin t → G.D) {k : ℕ} (h : t ≤ k) :
     G.walkAt t v s (k + 1) = G.walkAt t v s k := by
   rw [walkAt]
   simp [Nat.not_lt.mpr h]
 
-/-- Past its length the trajectory is constant. -/
+/-- Past its length the trajectory is constant.
+@isnad1 id=eq.1h5v.s5.52d3aa22dd50 from=translated src=- shape=904c64a3 vocab=53bbc35a
+-/
 theorem walkAt_of_le {t : ℕ} (v : G.V) (s : Fin t → G.D) :
     ∀ {k : ℕ}, t ≤ k → G.walkAt t v s k = G.walkAt t v s t := by
   intro k
@@ -112,7 +126,9 @@ theorem walkAt_of_le {t : ℕ} (v : G.V) (s : Fin t → G.D) :
         rfl
 
 /-- The trajectory after `k ≤ t` steps is the endpoint of the length-`k` prefix
-of the walk. -/
+of the walk.
+@isnad1 id=eq.1h5v.s5.6b4aaad04c06 from=translated src=- shape=455aafdb vocab=815ead65
+-/
 theorem walkAt_eq_walkEnd_prefix {t : ℕ} (v : G.V) (s : Fin t → G.D) :
     ∀ (k : ℕ) (hk : k ≤ t),
       G.walkAt t v s k = G.walkEnd k v (fun j : Fin k => s (Fin.castLE hk j)) := by
@@ -135,7 +151,9 @@ theorem walkAt_eq_walkEnd_prefix {t : ℕ} (v : G.V) (s : Fin t → G.D) :
           congr 1
       rw [G.walkAt_succ_of_lt v s hkt, ih hk', hsnoc, G.walkEnd_snoc]
 
-/-- The trajectory ends where `walkEnd` says it does. -/
+/-- The trajectory ends where `walkEnd` says it does.
+@isnad1 id=eq.0h4v.s4.0c8762ac171a from=translated src=- shape=28e5f1e6 vocab=ce8487d9
+-/
 theorem walkAt_self_eq_walkEnd {t : ℕ} (v : G.V) (s : Fin t → G.D) :
     G.walkAt t v s t = G.walkEnd t v s := by
   rw [G.walkAt_eq_walkEnd_prefix v s t le_rfl]
@@ -156,7 +174,9 @@ namespace Loops
 
 variable {G} (L : G.Loops)
 
-/-- Following a loop label does not move. -/
+/-- Following a loop label does not move.
+@isnad1 id=eq.0h3v.s4.a578aca9903b from=translated src=- shape=0dcae4b4 vocab=15b0cf9b
+-/
 @[simp] theorem nbr_loop (v : G.V) : G.nbr v (L.loop v) = v := by
   rw [nbr, L.rot_loop v]
 
@@ -167,17 +187,25 @@ def padWalk {t : ℕ} (v : G.V) (s : Fin t → G.D) (k h : ℕ) : Fin h → G.D 
   fun j => if hj : j.val < min k t then s ⟨j.val, lt_of_lt_of_le hj (min_le_right k t)⟩
     else L.loop (G.walkAt t v s k)
 
+/--
+@isnad1 id=eq.1h8v.s5.b49bf84baa0e from=translated src=- shape=1aa62e62 vocab=9f166341
+-/
 theorem padWalk_of_lt {t : ℕ} (v : G.V) (s : Fin t → G.D) {k h : ℕ} (j : Fin h)
     (hj : j.val < min k t) :
     L.padWalk v s k h j = s ⟨j.val, lt_of_lt_of_le hj (min_le_right k t)⟩ :=
   dite_eq_left hj
 
+/--
+@isnad1 id=eq.1h8v.s5.8ecdc3c83a87 from=translated src=- shape=aefa56fa vocab=2f88d23b
+-/
 theorem padWalk_of_ge {t : ℕ} (v : G.V) (s : Fin t → G.D) {k h : ℕ} (j : Fin h)
     (hj : ¬ j.val < min k t) :
     L.padWalk v s k h j = L.loop (G.walkAt t v s k) :=
   dite_eq_right hj
 
-/-- Below `k` the padded walk follows the original. -/
+/-- Below `k` the padded walk follows the original.
+@isnad1 id=eq.3h8v.s5.70f86df3d1bf from=translated src=- shape=9311c81b vocab=feaee933
+-/
 theorem walkAt_padWalk_of_le {t : ℕ} (v : G.V) (s : Fin t → G.D) {k h : ℕ}
     (hkh : k ≤ h) (hkt : k ≤ t) :
     ∀ m : ℕ, m ≤ k → G.walkAt h v (L.padWalk v s k h) m = G.walkAt t v s m := by
@@ -193,7 +221,9 @@ theorem walkAt_padWalk_of_le {t : ℕ} (v : G.V) (s : Fin t → G.D) {k h : ℕ}
       congr 1
       exact L.padWalk_of_lt v s ⟨m, hmh⟩ hmin
 
-/-- At and past `k` the padded walk stays at the `k`-th vertex. -/
+/-- At and past `k` the padded walk stays at the `k`-th vertex.
+@isnad1 id=eq.4h8v.s6.130f09c24efb from=translated src=- shape=64f8c42e vocab=feaee933
+-/
 theorem walkAt_padWalk_of_ge {t : ℕ} (v : G.V) (s : Fin t → G.D) {k h : ℕ}
     (hkh : k ≤ h) (hkt : k ≤ t) :
     ∀ m : ℕ, k ≤ m → m ≤ h → G.walkAt h v (L.padWalk v s k h) m = G.walkAt t v s k := by
@@ -216,7 +246,9 @@ theorem walkAt_padWalk_of_ge {t : ℕ} (v : G.V) (s : Fin t → G.D) {k h : ℕ}
         rw [L.padWalk_of_ge v s ⟨m, hmh'⟩ hmin, L.nbr_loop]
 
 /-- **The naming property.** A padded walk of length `h` ends exactly at the
-`k`-th vertex of the original walk. -/
+`k`-th vertex of the original walk.
+@isnad1 id=eq.2h7v.s5.6c9821a9862c from=translated src=- shape=1236bbc8 vocab=6c07a482
+-/
 theorem walkEnd_padWalk {t : ℕ} (v : G.V) (s : Fin t → G.D) {k h : ℕ}
     (hkh : k ≤ h) (hkt : k ≤ t) :
     G.walkEnd h v (L.padWalk v s k h) = G.walkAt t v s k := by

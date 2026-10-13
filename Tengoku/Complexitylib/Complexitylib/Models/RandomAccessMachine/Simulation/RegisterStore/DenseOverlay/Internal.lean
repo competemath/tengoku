@@ -19,10 +19,16 @@ namespace RAM
 namespace RegisterStore
 namespace DenseOverlay
 
+/--
+@isnad1 id=eq.0h2v.s3.644cea1356f3 from=translated src=- shape=96c6ad11 vocab=a1f0b59c
+-/
 theorem read_empty_internal (input : List Bool) (address : ℕ) :
     read input [] address = RAM.initRegs input address := by
   simp [read, RegisterStore.read]
 
+/--
+@isnad1 id=eq.1h4v.s5.5c7edb1f4be3 from=translated src=- shape=e00b9dda vocab=a116ce93
+-/
 theorem read_write_internal (input : List Bool) (overlay : Store)
     (hcanonical : Canonical overlay) (address value : ℕ) :
     read input (write overlay address value) =
@@ -37,12 +43,18 @@ theorem read_write_internal (input : List Bool) (overlay : Store)
     simp
   · simp [Function.update, htarget]
 
+/--
+@isnad1 id=canonica.1h3v.s3.118ad14daeaf from=translated src=- shape=a5572226 vocab=2bdab751
+-/
 theorem write_canonical_internal (overlay : Store)
     (hcanonical : Canonical overlay) (address value : ℕ) :
     Canonical (write overlay address value) := by
   exact RegisterStore.write_canonical_internal overlay hcanonical address
     (value + 1)
 
+/--
+@isnad1 id=coversze.2h3v.s4.5c3720cf9a1f from=translated src=- shape=6e375d79 vocab=fb485c5e
+-/
 theorem write_coversZero_internal (overlay : Store)
     (hcanonical : Canonical overlay) (hcovers : CoversZero overlay)
     (address value : ℕ) : CoversZero (write overlay address value) := by
@@ -55,6 +67,9 @@ theorem write_coversZero_internal (overlay : Store)
     simp
   · simpa [CoversZero, Function.update, haddress, Ne.symm haddress] using hcovers
 
+/--
+@isnad1 id=eq.0h1v.s3.1f5ecb99e9b0 from=translated src=- shape=5300ea1d vocab=139b5132
+-/
 theorem Snapshot.initial_decode_internal (input : List Bool) :
     (Snapshot.initial input).decode input = RAM.initCfg input := by
   apply RAM.Cfg.ext
@@ -70,22 +85,34 @@ theorem Snapshot.initial_decode_internal (input : List Bool) :
       simp [Function.update, RAM.initRegs]
     · simp [Function.update, haddress, read_empty_internal, RAM.initRegs]
 
+/--
+@isnad1 id=canonica.0h1v.s2.30bf6af369f5 from=translated src=- shape=9d2a2ac4 vocab=ffe992cb
+-/
 theorem Snapshot.initial_canonical_internal (input : List Bool) :
     Canonical (Snapshot.initial input).overlay := by
   exact write_canonical_internal []
     (by simp [RegisterStore.Canonical, RegisterStore.AddressesNodup,
       RegisterStore.ValuesNonzero]) 0 input.length
 
+/--
+@isnad1 id=coversze.0h1v.s2.bd338c9a4669 from=translated src=- shape=9d2a2ac4 vocab=0ac3a3f6
+-/
 theorem Snapshot.initial_coversZero_internal (input : List Bool) :
     CoversZero (Snapshot.initial input).overlay := by
   unfold Snapshot.initial CoversZero DenseOverlay.write
   simp [RegisterStore.write, RegisterStore.read]
 
+/--
+@isnad1 id=valid.0h1v.s2.dd383da1c0d9 from=translated src=- shape=9d2a2ac4 vocab=8fec6adc
+-/
 theorem Snapshot.initial_valid_internal (input : List Bool) :
     Valid (Snapshot.initial input).overlay :=
   ⟨Snapshot.initial_canonical_internal input,
     Snapshot.initial_coversZero_internal input⟩
 
+/--
+@isnad1 id=eq.1h3v.s4.bf802981e3c8 from=translated src=- shape=a48a0252 vocab=330b8218
+-/
 theorem Snapshot.decode_stepInstr_internal (input : List Bool)
     (instruction : Instr) (snapshot : Snapshot)
     (hcanonical : Canonical snapshot.overlay) :
@@ -123,6 +150,9 @@ theorem Snapshot.decode_stepInstr_internal (input : List Bool)
   | jmp target => rfl
   | halt => rfl
 
+/--
+@isnad1 id=canonica.1h3v.s4.b326651d20b7 from=translated src=- shape=64b73470 vocab=a5242979
+-/
 theorem Snapshot.stepInstr_canonical_internal (input : List Bool)
     (instruction : Instr) (snapshot : Snapshot)
     (hcanonical : Canonical snapshot.overlay) :
@@ -133,6 +163,9 @@ theorem Snapshot.stepInstr_canonical_internal (input : List Bool)
     | split <;> exact hcanonical
     | exact hcanonical
 
+/--
+@isnad1 id=coversze.1h3v.s4.502d4a3d9185 from=translated src=- shape=8468dcf1 vocab=b9a7c178
+-/
 theorem Snapshot.stepInstr_coversZero_internal (input : List Bool)
     (instruction : Instr) (snapshot : Snapshot)
     (hvalid : Valid snapshot.overlay) :
@@ -143,6 +176,9 @@ theorem Snapshot.stepInstr_coversZero_internal (input : List Bool)
     | split <;> exact hvalid.2
     | exact hvalid.2
 
+/--
+@isnad1 id=valid.1h3v.s4.b13d961be7b4 from=translated src=- shape=64b73470 vocab=0f6ae7e0
+-/
 theorem Snapshot.stepInstr_valid_internal (input : List Bool)
     (instruction : Instr) (snapshot : Snapshot)
     (hvalid : Valid snapshot.overlay) :
@@ -150,6 +186,9 @@ theorem Snapshot.stepInstr_valid_internal (input : List Bool)
   ⟨Snapshot.stepInstr_canonical_internal input instruction snapshot hvalid.1,
     Snapshot.stepInstr_coversZero_internal input instruction snapshot hvalid⟩
 
+/--
+@isnad1 id=eq.1h3v.s4.deb9594cafd0 from=translated src=- shape=250d085b vocab=2af54719
+-/
 theorem Snapshot.decode_step_internal (program : Program) (input : List Bool)
     (snapshot : Snapshot) (hcanonical : Canonical snapshot.overlay) :
     (snapshot.step program input).decode input =
@@ -158,18 +197,27 @@ theorem Snapshot.decode_step_internal (program : Program) (input : List Bool)
   rw [Snapshot.decode_stepInstr_internal input _ snapshot hcanonical]
   rfl
 
+/--
+@isnad1 id=canonica.1h3v.s4.1e4a29048c73 from=translated src=- shape=706266ad vocab=1580efa2
+-/
 theorem Snapshot.step_canonical_internal (program : Program)
     (input : List Bool) (snapshot : Snapshot)
     (hcanonical : Canonical snapshot.overlay) :
     Canonical (snapshot.step program input).overlay := by
   exact Snapshot.stepInstr_canonical_internal input _ snapshot hcanonical
 
+/--
+@isnad1 id=valid.1h3v.s4.54fe26abba23 from=translated src=- shape=706266ad vocab=cc78481b
+-/
 theorem Snapshot.step_valid_internal (program : Program)
     (input : List Bool) (snapshot : Snapshot)
     (hvalid : Valid snapshot.overlay) :
     Valid (snapshot.step program input).overlay := by
   exact Snapshot.stepInstr_valid_internal input _ snapshot hvalid
 
+/--
+@isnad1 id=eq.1h4v.s4.28d1856a2394 from=translated src=- shape=6d39b1f8 vocab=3c76828d
+-/
 theorem Snapshot.decode_run_internal (program : Program) (input : List Bool)
     (fuel : ℕ) (snapshot : Snapshot)
     (hcanonical : Canonical snapshot.overlay) :
@@ -190,6 +238,9 @@ theorem Snapshot.decode_run_internal (program : Program) (input : List Bool)
           (Snapshot.step_canonical_internal program input snapshot hcanonical)]
         rw [Snapshot.decode_step_internal program input snapshot hcanonical]
 
+/--
+@isnad1 id=canonica.1h4v.s4.3df245233219 from=translated src=- shape=5def03bd vocab=84312ba3
+-/
 theorem Snapshot.run_canonical_internal (program : Program)
     (input : List Bool) (fuel : ℕ) (snapshot : Snapshot)
     (hcanonical : Canonical snapshot.overlay) :
@@ -203,6 +254,9 @@ theorem Snapshot.run_canonical_internal (program : Program)
       · exact ih (snapshot.step program input)
           (Snapshot.step_canonical_internal program input snapshot hcanonical)
 
+/--
+@isnad1 id=valid.1h4v.s4.a7d9c3226589 from=translated src=- shape=5def03bd vocab=03e68bea
+-/
 theorem Snapshot.run_valid_internal (program : Program)
     (input : List Bool) (fuel : ℕ) (snapshot : Snapshot)
     (hvalid : Valid snapshot.overlay) :
@@ -224,6 +278,9 @@ private theorem bitlen_succ_le (value : ℕ) :
   rw [pow_succ]
   omega
 
+/--
+@isnad1 id=le.0h3v.s4.b0ebedbfc019 from=translated src=- shape=0a4bb4f2 vocab=c1640f9d
+-/
 theorem write_length_le_internal (overlay : Store) (address value : ℕ) :
     (write overlay address value).length ≤ overlay.length + 1 := by
   induction overlay with
@@ -240,6 +297,9 @@ theorem write_length_le_internal (overlay : Store) (address value : ℕ) :
           List.length_cons]
         omega
 
+/--
+@isnad1 id=le.0h3v.s5.e435141bf14c from=translated src=- shape=3d761a31 vocab=0a5f3c5f
+-/
 theorem Snapshot.length_stepInstr_le_internal (input : List Bool)
     (instruction : Instr) (snapshot : Snapshot) :
     (snapshot.stepInstr input instruction).overlay.length ≤
@@ -263,6 +323,9 @@ theorem Snapshot.length_stepInstr_le_internal (input : List Bool)
   | jmp target => simp [Snapshot.stepInstr]
   | halt => simp [Snapshot.stepInstr]
 
+/--
+@isnad1 id=le.1h4v.s5.064d1985076f from=translated src=- shape=08c3f2bc vocab=3cafb24d
+-/
 theorem Snapshot.length_run_le_internal (program : Program)
     (input : List Bool) (fuel : ℕ) (snapshot : Snapshot)
     (hcanonical : Canonical snapshot.overlay) :
@@ -290,6 +353,9 @@ theorem Snapshot.length_run_le_internal (program : Program)
         rw [Snapshot.decode_step_internal program input snapshot hcanonical] at hrun
         omega
 
+/--
+@isnad1 id=le.0h3v.s5.c7fdde908dd7 from=translated src=- shape=a2746931 vocab=8401e4aa
+-/
 theorem encodedStoreLength_write_le_internal (overlay : Store)
     (address value : ℕ) :
     encodedStoreLength (write overlay address value) ≤
@@ -297,6 +363,9 @@ theorem encodedStoreLength_write_le_internal (overlay : Store)
   exact RegisterStore.encodedStoreLength_write_le_internal overlay address
     (value + 1)
 
+/--
+@isnad1 id=le.0h3v.s6.a7f3a677a697 from=translated src=- shape=b5157176 vocab=04d2cc5e
+-/
 theorem Snapshot.encodedStoreLength_stepInstr_le_internal
     (input : List Bool) (instruction : Instr) (snapshot : Snapshot) :
     encodedStoreLength (snapshot.stepInstr input instruction).overlay ≤
@@ -388,6 +457,9 @@ private theorem staticWidth_curInstr_le (program : Program) (pc : ℕ) :
           simp only [List.getElem?_cons_succ]
           exact le_trans (ih pc) (le_max_right _ _)
 
+/--
+@isnad1 id=le.0h3v.s6.9cab8824370c from=translated src=- shape=eab974b4 vocab=6d0bcb19
+-/
 theorem Snapshot.encodedStoreLength_step_le_internal (program : Program)
     (input : List Bool) (snapshot : Snapshot) :
     encodedStoreLength (snapshot.step program input).overlay ≤
@@ -405,6 +477,9 @@ theorem Snapshot.encodedStoreLength_step_le_internal (program : Program)
   exact Nat.mul_le_mul_left 2
     (Nat.add_le_add_right (Nat.add_le_add_right hstatic _) 1)
 
+/--
+@isnad1 id=le.1h4v.s6.2bef4f22b9c1 from=translated src=- shape=bfee6031 vocab=eaed662c
+-/
 theorem Snapshot.encodedStoreLength_run_le_internal (program : Program)
     (input : List Bool) (fuel : ℕ) (snapshot : Snapshot)
     (hcanonical : Canonical snapshot.overlay) :
@@ -464,6 +539,9 @@ theorem Snapshot.encodedStoreLength_run_le_internal (program : Program)
                     RAM.logTimeUpto program fuel
                       (RAM.step program (snapshot.decode input)))) := by ring
 
+/--
+@isnad1 id=le.0h3v.s5.e7cf55e53fec from=translated src=- shape=bad6aabe vocab=03484da2
+-/
 theorem Snapshot.initial_length_run_le_internal (program : Program)
     (input : List Bool) (fuel : ℕ) :
     ((Snapshot.initial input).run program input fuel).overlay.length ≤
@@ -473,6 +551,9 @@ theorem Snapshot.initial_length_run_le_internal (program : Program)
   rw [Snapshot.initial_decode_internal input] at hrun
   simpa [Snapshot.initial, write, RegisterStore.write] using hrun
 
+/--
+@isnad1 id=le.0h3v.s6.d63d75101980 from=translated src=- shape=d3685c63 vocab=87ccc87d
+-/
 theorem Snapshot.initial_encodedStoreLength_run_le_internal
     (program : Program) (input : List Bool) (fuel : ℕ) :
     encodedStoreLength
@@ -492,6 +573,9 @@ theorem Snapshot.initial_encodedStoreLength_run_le_internal
   simpa [Snapshot.initial, write, RegisterStore.write, encodedStoreLength,
     hentry] using hrun
 
+/--
+@isnad1 id=eq.0h1v.s5.a3406af38126 from=translated src=- shape=c6140276 vocab=47d289aa
+-/
 theorem Snapshot.initial_encode_length_internal (input : List Bool) :
     (Snapshot.initial input).encode.length =
       2 * bitlen (input.length + 1) + 6 := by

@@ -48,10 +48,16 @@ noncomputable def escLE (S : Finset (Fin n)) (t : ℕ) : Finset (Equiv.Perm (Fin
 /-- The escape a set of size `s` is allowed before it counts as expanding. -/
 def tOf (S : Finset (Fin n)) : ℕ := (S.card - 1) / 10
 
+/--
+@isnad1 id=le.0h2v.s4.bef77b0c555c from=translated src=- shape=be86a27a vocab=547ea897
+-/
 theorem ten_mul_tOf_le (S : Finset (Fin n)) : 10 * tOf S ≤ S.card := by
   rw [tOf]
   omega
 
+/--
+@isnad1 id=iff.1h3v.s6.9c8aed8d8e73 from=translated src=- shape=0785cd7e vocab=03667d59
+-/
 theorem mem_escLE_iff {S : Finset (Fin n)} {σ : Equiv.Perm (Fin n)} (hS : 1 ≤ S.card) :
     σ ∈ escLE S (tOf S) ↔ ¬ S.card ≤ 10 * escape σ S := by
   simp only [escLE, Finset.mem_filter, Finset.mem_univ, true_and]
@@ -63,6 +69,9 @@ def escB (n s : ℕ) : ℕ :=
   s.choose ((s - 1) / 10) * s.descFactorial (s - (s - 1) / 10)
     * Nat.factorial (n - (s - (s - 1) / 10))
 
+/--
+@isnad1 id=le.0h2v.s4.43f29ad3dca1 from=translated src=- shape=145c8985 vocab=e2c98f0f
+-/
 theorem card_escLE_le (S : Finset (Fin n)) : (escLE S (tOf S)).card ≤ escB n S.card := by
   have hts : tOf S ≤ S.card := by have := ten_mul_tOf_le S; omega
   have h := card_perm_escape_le S (tOf S)

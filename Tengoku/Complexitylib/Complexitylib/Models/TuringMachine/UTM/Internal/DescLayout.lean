@@ -30,7 +30,9 @@ namespace Complexity
 
 namespace TM.UTMBody
 
-/-- `getElem?`-with-blank-default is insensitive to a trailing blank. -/
+/-- `getElem?`-with-blank-default is insensitive to a trailing blank.
+@isnad1 id=eq.0h2v.s6.bf359acdac92 from=translated src=- shape=ce3850fd vocab=a68a656f
+-/
 theorem getD_append_blank (l : List Γw) (i : ℕ) :
     (((l ++ [Γw.blank])[i]?).getD Γw.blank) = ((l[i]?).getD Γw.blank) := by
   rcases Nat.lt_trichotomy i l.length with hi | hi | hi
@@ -48,7 +50,9 @@ def canonical (l : List Γw) : List Γw :=
     ((takeField (takeField l).2).1 ++ Γw.blank :: (takeField (takeField l).2).2)
 
 /-- Blank-default cell access agrees with the canonical layout, whether or
-    not the trailing separators are present in `l`. -/
+    not the trailing separators are present in `l`.
+@isnad1 id=eq.0h2v.s5.0fb166c3d1e1 from=translated src=- shape=017be6f4 vocab=72ae4b81
+-/
 theorem getD_canonical (l : List Γw) (i : ℕ) :
     ((l[i]?).getD Γw.blank) = ((canonical l)[i]?).getD Γw.blank := by
   rcases takeField_structure l with h1 | ⟨h1, h1'⟩
@@ -69,7 +73,9 @@ theorem getD_canonical (l : List Γw) (i : ℕ) :
       simp [takeField]
     rw [hcan, getD_append_blank, getD_append_blank]
 
-/-- Cell contents of a `HoldsExact` tape, in blank-default form. -/
+/-- Cell contents of a `HoldsExact` tape, in blank-default form.
+@isnad1 id=eq.1h3v.s5.3fd925efd0fc from=translated src=- shape=48f3b14f vocab=17418c23
+-/
 theorem holdsExact_cells_getD {t : Tape} {l : List Γw} (h : t.HoldsExact l)
     (i : ℕ) : t.cells (i + 1) = ((l[i]?).getD Γw.blank).toΓ := by
   rw [h.2 i]
@@ -81,7 +87,9 @@ theorem holdsExact_cells_getD {t : Tape} {l : List Γw} (h : t.HoldsExact l)
 -- The four seek facts and the entry region
 -- ════════════════════════════════════════════════════════════════════════
 
-/-- Field-1 cells are non-blank. -/
+/-- Field-1 cells are non-blank.
+@isnad1 id=ne.2h3v.s5.88983a7c67bd from=translated src=- shape=55519669 vocab=748b6c58
+-/
 theorem descLayout_field1 {t : Tape} {l : List Γw} (h : t.HoldsExact l) :
     ∀ j, j < (takeField l).1.length → t.cells (1 + j) ≠ Γ.blank := by
   intro j hj
@@ -92,7 +100,9 @@ theorem descLayout_field1 {t : Tape} {l : List Γw} (h : t.HoldsExact l) :
   have := takeField_fst_ne_blank l _ (List.getElem_mem hj)
   cases hne : (takeField l).1[j] <;> simp_all [Γw.toΓ]
 
-/-- The separator after field 1. -/
+/-- The separator after field 1.
+@isnad1 id=eq.1h2v.s5.8883fb7c1d9e from=translated src=- shape=03af164d vocab=b7777e2b
+-/
 theorem descLayout_sep1 {t : Tape} {l : List Γw} (h : t.HoldsExact l) :
     t.cells (1 + (takeField l).1.length) = Γ.blank := by
   rw [show 1 + (takeField l).1.length = (takeField l).1.length + 1 by omega,
@@ -101,7 +111,9 @@ theorem descLayout_sep1 {t : Tape} {l : List Γw} (h : t.HoldsExact l) :
   rw [List.getElem?_append_right (Nat.le_refl _)]
   simp
 
-/-- Field-2 cells are non-blank. -/
+/-- Field-2 cells are non-blank.
+@isnad1 id=ne.2h3v.s6.15cc2032333c from=translated src=- shape=5e245bd8 vocab=a72ed69b
+-/
 theorem descLayout_field2 {t : Tape} {l : List Γw} (h : t.HoldsExact l) :
     ∀ j, j < (takeField (takeField l).2).1.length →
       t.cells ((takeField l).1.length + 2 + j) ≠ Γ.blank := by
@@ -120,7 +132,9 @@ theorem descLayout_field2 {t : Tape} {l : List Γw} (h : t.HoldsExact l) :
   have := takeField_fst_ne_blank (takeField l).2 _ (List.getElem_mem hj)
   cases hne : (takeField (takeField l).2).1[j] <;> simp_all [Γw.toΓ]
 
-/-- The separator after field 2. -/
+/-- The separator after field 2.
+@isnad1 id=eq.1h2v.s5.26f349f98d18 from=translated src=- shape=ec5d436f vocab=a6a97ece
+-/
 theorem descLayout_sep2 {t : Tape} {l : List Γw} (h : t.HoldsExact l) :
     t.cells ((takeField l).1.length + 2 + (takeField (takeField l).2).1.length)
       = Γ.blank := by
@@ -141,7 +155,9 @@ theorem descLayout_sep2 {t : Tape} {l : List Γw} (h : t.HoldsExact l) :
   simp
 
 /-- Entry-region cells: cell `|F1| + |F2| + 3 + j` holds the `j`-th symbol
-    of the entry region `R := (takeField (takeField l).2).2` (blank beyond). -/
+    of the entry region `R := (takeField (takeField l).2).2` (blank beyond).
+@isnad1 id=eq.1h3v.s6.410188373bfa from=translated src=- shape=81a28b67 vocab=0965b3c3
+-/
 theorem descLayout_entries {t : Tape} {l : List Γw} (h : t.HoldsExact l)
     (j : ℕ) :
     t.cells ((takeField l).1.length + (takeField (takeField l).2).1.length + 3 + j)
@@ -165,7 +181,9 @@ theorem descLayout_entries {t : Tape} {l : List Γw} (h : t.HoldsExact l)
       - (takeField (takeField l).2).1.length = j + 1 by omega]
   rfl
 
-/-- Field-1 cell values. -/
+/-- Field-1 cell values.
+@isnad1 id=eq.2h3v.s6.b04a738bee1d from=translated src=- shape=e4f955d4 vocab=cb97bc7c
+-/
 theorem descLayout_field1_val {t : Tape} {l : List Γw} (h : t.HoldsExact l) :
     ∀ j, (hj : j < (takeField l).1.length) →
       t.cells (1 + j) = ((takeField l).1[j]).toΓ := by
@@ -175,7 +193,9 @@ theorem descLayout_field1_val {t : Tape} {l : List Γw} (h : t.HoldsExact l) :
   rw [List.getElem?_append_left (by omega), List.getElem?_eq_getElem hj,
     Option.getD_some]
 
-/-- Field-2 cell values. -/
+/-- Field-2 cell values.
+@isnad1 id=eq.2h3v.s6.2d29049612ee from=translated src=- shape=4a4b5a10 vocab=e5ebf331
+-/
 theorem descLayout_field2_val {t : Tape} {l : List Γw} (h : t.HoldsExact l) :
     ∀ j, (hj : j < (takeField (takeField l).2).1.length) →
       t.cells ((takeField l).1.length + 2 + j)
@@ -194,7 +214,9 @@ theorem descLayout_field2_val {t : Tape} {l : List Γw} (h : t.HoldsExact l) :
   rw [List.getElem?_append_left hj, List.getElem?_eq_getElem hj, Option.getD_some]
 
 /-- Field-2 cell values, blank-default form (covers positions beyond the
-    field: the separator/beyond reads `□`). -/
+    field: the separator/beyond reads `□`).
+@isnad1 id=eq.2h3v.s6.28dc80349338 from=translated src=- shape=57c700a4 vocab=91ee437c
+-/
 theorem descLayout_field2_getD {t : Tape} {l : List Γw} (h : t.HoldsExact l)
     (j : ℕ) (hj : j ≤ (takeField (takeField l).2).1.length) :
     t.cells ((takeField l).1.length + 2 + j)
@@ -210,7 +232,9 @@ theorem descLayout_field2_getD {t : Tape} {l : List Γw} (h : t.HoldsExact l)
 /-- **First mismatch extraction**: two different blank-free lists, viewed as
     blank-padded infinite sequences, have a least disagreement index; below
     it they agree on non-blank symbols, and at it the `hc1`-style mismatch
-    conditions hold. -/
+    conditions hold.
+@isnad1 id=ex.3h2v.s7.c569c16501eb from=translated src=- shape=7daad595 vocab=c9f92750
+-/
 theorem exists_first_mismatch {A B : List Γw}
     (hA : ∀ s ∈ A, s ≠ Γw.blank) (hB : ∀ s ∈ B, s ≠ Γw.blank)
     (hne : A ≠ B) :

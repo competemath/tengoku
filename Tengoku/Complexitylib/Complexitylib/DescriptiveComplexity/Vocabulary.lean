@@ -55,8 +55,14 @@ abbrev graphST : Vocabulary := ⟨1, fun _ => 2, 2⟩
     `Numerical` module adds a strict order. -/
 abbrev stringBuiltinOrder : Vocabulary := ofRel 1
 
+/--
+@isnad1 id=isrelati.0h0v.s1.3112dd5fb918 from=translated src=- shape=49959d42 vocab=b3b24a4d
+-/
 theorem graph_isRelational : graph.IsRelational := rfl
 
+/--
+@isnad1 id=isrelati.0h0v.s1.e0d08adce111 from=translated src=- shape=49959d42 vocab=a8990cf3
+-/
 theorem stringBuiltinOrder_isRelational : stringBuiltinOrder.IsRelational := rfl
 
 end Vocabulary

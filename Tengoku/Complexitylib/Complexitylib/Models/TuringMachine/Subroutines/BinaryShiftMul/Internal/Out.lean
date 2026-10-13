@@ -49,7 +49,9 @@ private theorem binaryShiftMulBitBodyTM_isTransducer {n : ℕ}
     (binaryShiftMulDoubleTM_isTransducer abi) |>.branchWorkSymbolTM
       (binaryShiftMulDoubleTM_isTransducer abi)
 
-/-- Shift-and-add multiplication never moves the public output head left. -/
+/-- Shift-and-add multiplication never moves the public output head left.
+@isnad1 id=istransd.0h2v.s3.7eacd25e1eb0 from=translated src=- shape=20553ef8 vocab=831c8706
+-/
 theorem binaryShiftMulTM_isTransducer_internal {n : ℕ}
     (abi : BinaryShiftMulABI n) :
     (binaryShiftMulTM abi).IsTransducer := by

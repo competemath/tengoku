@@ -85,12 +85,18 @@ def trans (f : A ≅ B) (g : B ≅ C) : A ≅ C where
     · intro h; exact (f.rel_map i args).mpr ((g.rel_map i _).mpr h)
   const_map j := by simp [Function.comp, f.const_map, g.const_map]
 
+/--
+@isnad1 id=injectiv.0h4v.s4.fa0afd4c07ab from=translated src=- shape=be9afa3a vocab=01bf7984
+-/
 theorem toFun_injective (f : A ≅ B) : Function.Injective f.toFun := by
   intro x y h
   have := congrArg f.invFun h
   simp [f.left_inv] at this
   exact this
 
+/--
+@isnad1 id=surjecti.0h4v.s4.2f2cfb91f672 from=translated src=- shape=be9afa3a vocab=fa8d63d2
+-/
 theorem toFun_surjective (f : A ≅ B) : Function.Surjective f.toFun :=
   fun y => ⟨f.invFun y, f.right_inv y⟩
 
@@ -139,7 +145,9 @@ private theorem fin_injective_le : ∀ (n m : Nat),
             have := hf (Fin.ext this); simp [Fin.ext_iff] at this; omega)
       exact ih m' f' hf'
 
-/-- Isomorphic structures have the same cardinality. -/
+/-- Isomorphic structures have the same cardinality.
+@isnad1 id=eq.0h4v.s4.7a8befc83918 from=translated src=- shape=530304ba vocab=9875a45a
+-/
 theorem card_eq (f : A ≅ B) : A.card = B.card :=
   Nat.le_antisymm
     (fin_injective_le _ _ f.toFun f.toFun_injective)

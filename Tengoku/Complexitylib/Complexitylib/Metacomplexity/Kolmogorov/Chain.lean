@@ -27,7 +27,9 @@ public section
 namespace Complexity
 
 /-- A composition contract remains valid after restricting either description
-budget. -/
+budget.
+@isnad1 id=timeboun.3h16v.s6.87eec6de101b from=translated src=- shape=6c439e08 vocab=efa07f66
+-/
 theorem TimeBoundedProgramCompositionAt.restrict_bounds
     {jointTapes firstTapes secondTapes : ℕ}
     {jointMachine : TM jointTapes} {firstMachine : TM firstTapes}
@@ -46,7 +48,9 @@ theorem TimeBoundedProgramCompositionAt.restrict_bounds
       smallerFirstBound smallerSecondBound :=
   hcompose.restrict_bounds_internal hfirst hsecond
 
-/-- A composition contract remains valid after enlarging its target clock. -/
+/-- A composition contract remains valid after enlarging its target clock.
+@isnad1 id=timeboun.2h15v.s6.e96bc7db6d87 from=translated src=- shape=98a67870 vocab=efa07f66
+-/
 theorem TimeBoundedProgramCompositionAt.mono_jointTime
     {jointTapes firstTapes secondTapes : ℕ}
     {jointMachine : TM jointTapes} {firstMachine : TM firstTapes}
@@ -64,7 +68,9 @@ theorem TimeBoundedProgramCompositionAt.mono_jointTime
   hcompose.mono_jointTime_internal hjoint
 
 /-- Generic finite upper-chain rule: if bounded descriptions can be compiled
-within `combinedBound`, their joint bounded complexity obeys that bound. -/
+within `combinedBound`, their joint bounded complexity obeys that bound.
+@isnad1 id=le.4h15v.s7.bf49a44108ff from=translated src=- shape=bc13fa57 vocab=139517aa
+-/
 theorem timeBoundedKolmogorovComplexity_pair_le_of_composition
     {jointTapes firstTapes secondTapes : ℕ}
     {jointMachine : TM jointTapes} {firstMachine : TM firstTapes}
@@ -90,7 +96,9 @@ theorem timeBoundedKolmogorovComplexity_pair_le_of_composition
     hcompose hlength hfirst hsecond
 
 /-- Using canonical `pair` on programs yields the exact codec cost
-`2 * firstBound + 2 + secondBound`. -/
+`2 * firstBound + 2 + secondBound`.
+@isnad1 id=le.3h13v.s7.2519f383d923 from=translated src=- shape=b8a642e9 vocab=c6d25d72
+-/
 theorem timeBoundedKolmogorovComplexity_pair_le_of_pair_composition
     {jointTapes firstTapes secondTapes : ℕ}
     {jointMachine : TM jointTapes} {firstMachine : TM firstTapes}
@@ -111,7 +119,9 @@ theorem timeBoundedKolmogorovComplexity_pair_le_of_pair_composition
     hcompose hfirst hsecond
 
 /-- Reversing the program-pair orientation doubles the second description
-instead, giving `2 * secondBound + 2 + firstBound`. -/
+instead, giving `2 * secondBound + 2 + firstBound`.
+@isnad1 id=le.3h13v.s7.cb9ecf771454 from=translated src=- shape=77c0a54e vocab=c6d25d72
+-/
 theorem timeBoundedKolmogorovComplexity_pair_le_of_reverse_pair_composition
     {jointTapes firstTapes secondTapes : ℕ}
     {jointMachine : TM jointTapes} {firstMachine : TM firstTapes}
@@ -133,7 +143,9 @@ theorem timeBoundedKolmogorovComplexity_pair_le_of_reverse_pair_composition
     hcompose hfirst hsecond
 
 /-- A condition-first composition contract remains valid after restricting its
-two description budgets. -/
+two description budgets.
+@isnad1 id=timeboun.3h16v.s6.66ddb361fd50 from=translated src=- shape=6c439e08 vocab=cc5f0d23
+-/
 theorem TimeBoundedConditionalPairCompositionAt.restrict_bounds
     {jointTapes conditionTapes resultTapes : ℕ}
     {jointMachine : TM jointTapes} {conditionMachine : TM conditionTapes}
@@ -153,7 +165,9 @@ theorem TimeBoundedConditionalPairCompositionAt.restrict_bounds
   hcompose.restrict_bounds_internal hcondition hresult
 
 /-- Enlarging the target clock preserves a condition-first composition
-contract. -/
+contract.
+@isnad1 id=timeboun.2h15v.s6.a990d2c67c2f from=translated src=- shape=98a67870 vocab=cc5f0d23
+-/
 theorem TimeBoundedConditionalPairCompositionAt.mono_jointTime
     {jointTapes conditionTapes resultTapes : ℕ}
     {jointMachine : TM jointTapes} {conditionMachine : TM conditionTapes}
@@ -175,7 +189,9 @@ theorem TimeBoundedConditionalPairCompositionAt.mono_jointTime
 upper chain rule
 `C(pair result condition) ≤ C(result | condition) + C(condition) + constant`.
 Finiteness and budget hypotheses are explicit because the machines are not yet
-fixed universal evaluators. -/
+fixed universal evaluators.
+@isnad1 id=le.6h15v.s7.7636ccf8bbdc from=translated src=- shape=7902819a vocab=6bb342db
+-/
 theorem timeBoundedKolmogorovComplexity_pair_le_add_of_conditional_composition
     {jointTapes conditionTapes resultTapes : ℕ}
     {jointMachine : TM jointTapes} {conditionMachine : TM conditionTapes}

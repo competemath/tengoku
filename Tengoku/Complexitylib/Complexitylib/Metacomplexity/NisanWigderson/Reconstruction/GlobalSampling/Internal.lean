@@ -66,6 +66,9 @@ private theorem rawReconstructionAdviceEquiv_fst
       design.reconstructionAdviceOfRaw current raw := by
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s7.0a9bca2a41f7 from=translated src=- shape=7cdabb5d vocab=a2c735f9
+-/
 theorem goodRawAdviceProbability_eq_internal
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -99,6 +102,9 @@ theorem goodRawAdviceProbability_eq_internal
   simpa [good, goodReconstructionAdviceProbability,
     rawReconstructionAdviceEquiv_fst] using htransport.trans hproduct'
 
+/--
+@isnad1 id=eq.1h7v.s6.59ee73915913 from=translated src=- shape=b65c8f91 vocab=e085c12f
+-/
 theorem goodReconstructionTrialProbability_eq_average_internal
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -129,6 +135,9 @@ theorem goodReconstructionTrialProbability_eq_average_internal
     event, hconditional, Fintype.card_fin] at haverage ⊢
   exact haverage
 
+/--
+@isnad1 id=ex.1h7v.s6.f7d439af6090 from=translated src=- shape=ae49589e vocab=e252d51d
+-/
 theorem exists_orientation_sum_averageReconstructionAgreement_ge_internal
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -165,6 +174,9 @@ theorem exists_orientation_sum_averageReconstructionAgreement_ge_internal
     nsmul_eq_mul]
   nlinarith
 
+/--
+@isnad1 id=ex.4h7v.s7.bd8722cef367 from=translated src=- shape=8477c44e vocab=58dd8a3e
+-/
 theorem exists_orientation_goodReconstructionTrialProbability_ge_internal
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -285,6 +297,9 @@ theorem exists_orientation_goodReconstructionTrialProbability_ge_internal
   field_simp [houtputLengthRat.ne']
   nlinarith
 
+/--
+@isnad1 id=eq.1h8v.s6.25e20b2e7dcf from=translated src=- shape=09087699 vocab=6943599b
+-/
 theorem repeatedGoodReconstructionTrialProbability_eq_one_sub_pow_internal
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -302,6 +317,9 @@ theorem repeatedGoodReconstructionTrialProbability_eq_one_sub_pow_internal
     (design.goodReconstructionTrialEvent hardFunction test agreementThreshold)
     trials
 
+/--
+@isnad1 id=ex.6h12v.s7.97a526b7e13a from=translated src=- shape=c2a6ae55 vocab=aac8e147
+-/
 theorem exists_goodReconstructionTrialProbability_ge_of_randomTest_internal
     {outputLength inputLength seedLength tapes time threshold budget : ℕ}
     {design : NWDesign outputLength inputLength seedLength}
@@ -336,6 +354,9 @@ theorem exists_goodReconstructionTrialProbability_ge_of_randomTest_internal
     reconstructionDataBitsAt_le_of_hasOverlapBudget_internal
       hbudget trial.1⟩
 
+/--
+@isnad1 id=ex.6h12v.s7.6cf9580444ec from=translated src=- shape=b62db4f2 vocab=5e5833b4
+-/
 theorem exists_half_le_canonicalRepeatedGoodTrial_of_randomTest_internal
     {outputLength inputLength seedLength tapes time threshold budget : ℕ}
     {design : NWDesign outputLength inputLength seedLength}
@@ -374,6 +395,9 @@ theorem exists_half_le_canonicalRepeatedGoodTrial_of_randomTest_internal
         outputLength density houtputLength hdensity),
     hdata⟩
 
+/--
+@isnad1 id=ex.7h12v.s7.b232c3f121ed from=translated src=- shape=81d20527 vocab=985ae4ee
+-/
 theorem exists_half_le_canonicalRepeatedGoodTrial_of_seedDescriptions_internal
     {outputLength inputLength seedLength tapes time threshold budget : ℕ}
     {design : NWDesign outputLength inputLength seedLength}

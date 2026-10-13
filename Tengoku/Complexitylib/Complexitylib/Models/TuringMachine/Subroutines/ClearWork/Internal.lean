@@ -26,6 +26,9 @@ namespace TM
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=hoaretim.4h6v.s6.8f68c5d3f0c5 from=translated src=- shape=8060e234 vocab=9ce5d81e
+-/
 theorem clearWorkTM_hoareTime_frame_internal
     (idx : Fin n) (bits : List Bool)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
@@ -67,6 +70,9 @@ theorem clearWorkTM_hoareTime_frame_internal
     · rw [Function.update_of_ne hi]
       exact hother' i hi
 
+/--
+@isnad1 id=hoaretim.5h8v.s7.b3e910713e41 from=translated src=- shape=9816ff0b vocab=cc0e9304
+-/
 theorem clearWorkTM_hoareTimeSpace_frame_internal
     (idx : Fin n) (bits : List Bool) (inputLength initialSpace : ℕ)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
@@ -95,6 +101,9 @@ theorem clearWorkTM_hoareTimeSpace_frame_internal
   rintro inp work out ⟨rfl, rfl, rfl⟩
   exact hinitial
 
+/--
+@isnad1 id=istransd.0h2v.s3.773a03bb7b18 from=translated src=- shape=20553ef8 vocab=4fd028a0
+-/
 theorem blankWorkTM_isTransducer_internal (idx : Fin n) :
     (blankWorkTM idx).IsTransducer := by
   intro phase iHead wHeads oHead
@@ -106,6 +115,9 @@ theorem blankWorkTM_isTransducer_internal (idx : Fin n) :
       simp [blankWorkTM, allIdle, idleDir]
       split <;> decide
 
+/--
+@isnad1 id=istransd.0h2v.s3.543b03ac19c7 from=translated src=- shape=20553ef8 vocab=6b991369
+-/
 theorem rewindWorkTM_isTransducer_internal (idx : Fin n) :
     (rewindWorkTM idx).IsTransducer := by
   intro phase iHead wHeads oHead
@@ -120,6 +132,9 @@ theorem rewindWorkTM_isTransducer_internal (idx : Fin n) :
       simp [rewindWorkTM, allIdle, idleDir]
       split <;> decide
 
+/--
+@isnad1 id=istransd.0h2v.s3.037b4cb3b25a from=translated src=- shape=20553ef8 vocab=a64f6a87
+-/
 theorem clearWorkTM_isTransducer_internal (idx : Fin n) :
     (clearWorkTM idx).IsTransducer :=
   (blankWorkTM_isTransducer_internal idx).seqTM

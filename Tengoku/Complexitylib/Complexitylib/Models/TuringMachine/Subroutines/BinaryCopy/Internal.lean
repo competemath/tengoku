@@ -130,6 +130,9 @@ private theorem binaryCopyRipplePost_eq
   simpa [binaryCopyMidWork, hdstIdx] using
     hother i hsrcIdx hcounterIdx hdstIdx
 
+/--
+@isnad1 id=le.0h2v.s5.2beae7bca1bf from=translated src=- shape=90ca7041 vocab=1a188f64
+-/
 theorem binaryCopyTime_le_internal (srcValue dstValue : ℕ) :
     binaryCopyTime srcValue dstValue ≤
       3 * srcValue.size + 2 * dstValue.size + 20 := by
@@ -140,6 +143,9 @@ theorem binaryCopyTime_le_internal (srcValue dstValue : ℕ) :
   simp only [binaryCopyTime, clearWorkTimeBound]
   omega
 
+/--
+@isnad1 id=hoaretim.9h9v.s7.b10bfca9b0c1 from=translated src=- shape=cbc2e2ca vocab=0a8bfcff
+-/
 theorem binaryCopyIntoTM_hoareTime_frame_internal
     (srcIdx dstIdx counterIdx : Fin n)
     (hsrcDst : srcIdx ≠ dstIdx) (hsrcCounter : srcIdx ≠ counterIdx)
@@ -203,6 +209,9 @@ theorem binaryCopyIntoTM_hoareTime_frame_internal
         exact hfinalOther i hiSrc hiCounter hiDst), houtput⟩
   · simp [binaryCopyTime]
 
+/--
+@isnad1 id=hoaretim.11h11v.s7.aadd3677a53c from=translated src=- shape=ee648178 vocab=83ab2ba4
+-/
 theorem binaryCopyIntoTM_hoareTimeSpace_frame_internal
     (srcIdx dstIdx counterIdx : Fin n)
     (hsrcDst : srcIdx ≠ dstIdx) (hsrcCounter : srcIdx ≠ counterIdx)
@@ -302,6 +311,9 @@ theorem binaryCopyIntoTM_hoareTimeSpace_frame_internal
   · exact le_rfl
   · simp [binaryCopySpace]
 
+/--
+@isnad1 id=istransd.0h4v.s4.8f39dfcc75a8 from=translated src=- shape=0b195b8b vocab=3f749696
+-/
 theorem binaryCopyIntoTM_isTransducer_internal
     (srcIdx dstIdx counterIdx : Fin n) :
     (binaryCopyIntoTM srcIdx dstIdx counterIdx).IsTransducer := by

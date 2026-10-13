@@ -80,6 +80,9 @@ private theorem binaryRippleSubExactFrame_transition {n : ℕ}
     funext fun i => (hwork i).transitionTape_eq_self,
     houtput.transitionTape_eq_self⟩
 
+/--
+@isnad1 id=hoaretim.11h11v.s8.9d0e3a0e2628 from=translated src=- shape=4fe8de5a vocab=70a9a838
+-/
 theorem binaryRippleSubRewindTM_hoareTime_frame_internal {n : ℕ}
     (lhsIdx rhsIdx resultIdx : Fin n)
     (hdistinct : BinaryRippleSubDistinct lhsIdx rhsIdx resultIdx)

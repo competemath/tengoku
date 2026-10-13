@@ -139,7 +139,9 @@ private theorem copyInputToOutputTM_loop {n : ℕ} (x : List Bool) :
 /-! ## Initial-configuration correctness -/
 
 /-- Internal implementation theorem: the copy machine computes identity within
-the linear bound `m + 2`. -/
+the linear bound `m + 2`.
+@isnad1 id=computes.0h1v.s4.ebb6e260c162 from=translated src=- shape=0c99423d vocab=e4eb12a9
+-/
 theorem copyInputToOutputTM_computesInTime_internal (n : ℕ) :
     (copyInputToOutputTM (n := n)).ComputesInTime id (fun m => m + 2) := by
   intro x

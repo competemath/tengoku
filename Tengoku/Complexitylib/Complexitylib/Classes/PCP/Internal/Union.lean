@@ -61,6 +61,9 @@ def unionRot : G.V × (G.D ⊕ H.D) → G.V × (G.D ⊕ H.D)
   | (v, Sum.inl i) => ((G.rot (v, i)).1, Sum.inl (G.rot (v, i)).2)
   | (v, Sum.inr j) => (e (H.rot (e.symm v, j)).1, Sum.inr (H.rot (e.symm v, j)).2)
 
+/--
+@isnad1 id=involuti.0h3v.s4.5f198ddd2c88 from=translated src=- shape=e6866b7d vocab=3344c1e8
+-/
 theorem unionRot_involutive : Function.Involutive (unionRot G H e) := by
   rintro ⟨v, i | j⟩
   · show ((G.rot ((G.rot (v, i)).1, (G.rot (v, i)).2)).1,
@@ -85,22 +88,39 @@ def union : RegGraph where
   rot := unionRot G H e
   rot_involutive := unionRot_involutive G H e
 
+/--
+@isnad1 id=eq.0h3v.s4.93b56251042c from=translated src=- shape=3754945f vocab=b24cf168
+-/
 @[simp] theorem V_union : (union G H e).V = G.V := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.7aa052881bf7 from=translated src=- shape=24ef06a6 vocab=96a89d0f
+-/
 @[simp] theorem order_union : (union G H e).order = G.order := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.4bca95c49bbb from=translated src=- shape=a790dd11 vocab=50d00e4e
+-/
 @[simp] theorem deg_union : (union G H e).deg = G.deg + H.deg := by
   show Fintype.card (G.D ⊕ H.D) = G.deg + H.deg
   rw [Fintype.card_sum]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.22f768332120 from=translated src=- shape=8f8da2c7 vocab=50993e97
+-/
 theorem nbr_union_inl (v : G.V) (i : G.D) : (union G H e).nbr v (Sum.inl i) = G.nbr v i := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.24240da5059e from=translated src=- shape=f54f6c32 vocab=a17e258c
+-/
 theorem nbr_union_inr (v : G.V) (j : H.D) :
     (union G H e).nbr v (Sum.inr j) = e (H.nbr (e.symm v) j) := rfl
 
 /-- The union's walk operator is the degree-weighted average of the two walk
-operators, the second read through the identification `e`. -/
+operators, the second read through the identification `e`.
+@isnad1 id=eq.0h5v.s7.4c02cf650901 from=translated src=- shape=d3136118 vocab=63c11170
+-/
 theorem step_union (f : G.V → ℝ) (v : G.V) :
     (union G H e).step f v
       = ((G.deg : ℝ) * G.step f v + (H.deg : ℝ) * H.step (fun u => f (e u)) (e.symm v))
@@ -138,7 +158,9 @@ private theorem sum_mul_le_of_sq_le {X Y : G.V → ℝ} {A lam : ℝ} (hlam : 0 
 
 /-- **Expanderization, quantitatively.** If `H` contracts mean-zero functions by
 `lam`, then the union contracts them by the degree-weighted average of `1` and
-`lam`. -/
+`lam`.
+@isnad1 id=le.3h5v.s7.2e4065c98f0e from=translated src=- shape=46fa5f3d vocab=089a5121
+-/
 theorem sum_sq_step_union_le {lam : ℝ} (hlam : 0 ≤ lam) (hH : H.SpectralBound lam)
     (f : G.V → ℝ) (hf : (∑ v : G.V, f v) = 0) :
     (∑ v : G.V, ((union G H e).step f v) ^ 2)
@@ -206,7 +228,9 @@ theorem sum_sq_step_union_le {lam : ℝ} (hlam : 0 ≤ lam) (hH : H.SpectralBoun
         field_simp
         ring
 
-/-- **Expanderization.** -/
+/-- **Expanderization.**
+@isnad1 id=spectral.2h4v.s6.3bcb97cfa6ea from=translated src=- shape=c58ba4ef vocab=bf4c5f5b
+-/
 theorem spectralBound_union {lam : ℝ} (hlam : 0 ≤ lam) (hH : H.SpectralBound lam) :
     (union G H e).SpectralBound
       (((G.deg : ℝ) + (H.deg : ℝ) * lam) / ((G.deg : ℝ) + (H.deg : ℝ))) :=

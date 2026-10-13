@@ -55,6 +55,9 @@ namespace GapMINCKT
 
 namespace Parameters
 
+/--
+@isnad1 id=isadmiss.0h0v.s1.1b175af4ad6b from=translated src=- shape=49959d42 vocab=2e3f71fe
+-/
 theorem identity_isAdmissible_internal : identity.IsAdmissible := by
   constructor
   · intro outputLength conditionLength time
@@ -70,10 +73,16 @@ namespace Instance
 
 variable {ordinaryTapes conditionalTapes : ℕ}
 
+/--
+@isnad1 id=eq.0h1v.s3.2ef10d703e70 from=translated src=- shape=981f0160 vocab=91876396
+-/
 theorem length_unaryThreshold_internal (inst : Instance) :
     inst.unaryThreshold.length = inst.threshold := by
   simp [unaryThreshold]
 
+/--
+@isnad1 id=eq.0h1v.s3.b49e6dcca4b5 from=translated src=- shape=edb93955 vocab=e2ce2480
+-/
 theorem decode?_encode_internal (inst : Instance) :
     decode? inst.encode = some inst := by
   rcases inst with ⟨output, condition, time, threshold⟩
@@ -95,6 +104,9 @@ theorem decode?_encode_internal (inst : Instance) :
   rw [MINCKT.Instance.decode?_encode_internal]
   simp
 
+/--
+@isnad1 id=iff.0h2v.s4.71c5f740c7da from=translated src=- shape=94e3551a vocab=4b165dc4
+-/
 theorem decode?_eq_some_iff_internal (bits : List Bool) (inst : Instance) :
     decode? bits = some inst ↔ bits = inst.encode := by
   constructor
@@ -166,6 +178,9 @@ theorem decode?_eq_some_iff_internal (bits : List Bool) (inst : Instance) :
   · rintro rfl
     exact decode?_encode_internal inst
 
+/--
+@isnad1 id=iff.0h1v.s4.cb850aaff4b4 from=translated src=- shape=65444e03 vocab=aff63183
+-/
 theorem decode?_eq_none_iff_internal (bits : List Bool) :
     decode? bits = none ↔ ¬ ∃ inst : Instance, bits = inst.encode := by
   constructor
@@ -179,12 +194,18 @@ theorem decode?_eq_none_iff_internal (bits : List Bool) :
         exact (hnoncanonical
           ⟨inst, (decode?_eq_some_iff_internal bits inst).mp hdecode⟩).elim
 
+/--
+@isnad1 id=injectiv.0h0v.s2.08abf9f65d59 from=translated src=- shape=4b736592 vocab=22b722f4
+-/
 theorem encode_injective_internal : Function.Injective encode := by
   intro first second hencode
   have hfirst := decode?_encode_internal first
   rw [hencode, decode?_encode_internal second] at hfirst
   exact Option.some.inj hfirst.symm
 
+/--
+@isnad1 id=eq.0h1v.s6.15279e2d42cf from=translated src=- shape=f89ddee8 vocab=a18160ff
+-/
 theorem length_encode_internal (inst : Instance) :
     inst.encode.length =
       4 * inst.output.length + 4 * inst.condition.length +
@@ -194,11 +215,17 @@ theorem length_encode_internal (inst : Instance) :
   simp only [base]
   omega
 
+/--
+@isnad1 id=le.1h2v.s3.29b0bb82bad9 from=translated src=- shape=39a6aa4a vocab=dfd90baa
+-/
 theorem laterTime_ge_internal (parameters : Parameters)
     (hwidening : parameters.IsWidening) (inst : Instance) :
     inst.time ≤ inst.laterTime parameters :=
   hwidening inst.output.length inst.condition.length inst.time
 
+/--
+@isnad1 id=eq.1h4v.s5.c87001c296aa from=translated src=- shape=9f526d5a vocab=bb11c54e
+-/
 theorem conditionDepth_add_later_internal (ordinaryMachine : TM ordinaryTapes)
     (parameters : Parameters) (hwidening : parameters.IsWidening)
     (inst : Instance) :
@@ -209,6 +236,9 @@ theorem conditionDepth_add_later_internal (ordinaryMachine : TM ordinaryTapes)
   TM.computationalDepthBetween_add_later_internal ordinaryMachine inst.condition
     (laterTime_ge_internal parameters hwidening inst)
 
+/--
+@isnad1 id=iff.0h6v.s5.cfd5c3239637 from=translated src=- shape=d33dd347 vocab=f8cb8274
+-/
 theorem isYes_iff_exists_adjustedWitness_internal (inst : Instance)
     (ordinaryMachine : TM ordinaryTapes)
     (conditionalMachine : OracleTM conditionalTapes)
@@ -235,6 +265,9 @@ theorem isYes_iff_exists_adjustedWitness_internal (inst : Instance)
         hproduce
     exact (withTopNat_add_le_add_internal hcomplexity le_rfl).trans hbudget
 
+/--
+@isnad1 id=isatmost.1h6v.s4.7b8728e77af6 from=translated src=- shape=024c94f3 vocab=5c44e253
+-/
 theorem isYes_implies_base_isAtMost_internal (inst : Instance)
     (ordinaryMachine : TM ordinaryTapes)
     (conditionalMachine : OracleTM conditionalTapes)
@@ -245,6 +278,9 @@ theorem isYes_implies_base_isAtMost_internal (inst : Instance)
     (inst.base.complexity conditionalMachine)
     (inst.conditionDepth ordinaryMachine parameters)).trans hyes
 
+/--
+@isnad1 id=iff.0h4v.s4.b7c1013638cd from=translated src=- shape=aa472f79 vocab=f351961f
+-/
 theorem isNo_iff_no_relaxedWitness_internal (inst : Instance)
     (conditionalMachine : OracleTM conditionalTapes)
     (parameters : Parameters) :
@@ -266,6 +302,9 @@ theorem isNo_iff_no_relaxedWitness_internal (inst : Instance)
           (inst.threshold + inst.logSlack parameters)).mp hcomplexity
     exact hnone ⟨program, hlength, hproduce⟩
 
+/--
+@isnad1 id=isyes.2h8v.s5.4f735a6c1705 from=translated src=- shape=da2df3b2 vocab=d06c7a4a
+-/
 theorem IsYes.withThreshold_mono_internal (inst : Instance)
     (ordinaryMachine : TM ordinaryTapes)
     (conditionalMachine : OracleTM conditionalTapes)
@@ -277,6 +316,9 @@ theorem IsYes.withThreshold_mono_internal (inst : Instance)
       parameters := by
   exact hyes.trans (WithTop.coe_le_coe.mpr hthreshold)
 
+/--
+@isnad1 id=isno.2h6v.s5.cca899d4fac3 from=translated src=- shape=bdd676b9 vocab=5271bc02
+-/
 theorem IsNo.withThreshold_anti_internal (inst : Instance)
     (conditionalMachine : OracleTM conditionalTapes)
     (parameters : Parameters) {first second : ℕ}
@@ -287,6 +329,9 @@ theorem IsNo.withThreshold_anti_internal (inst : Instance)
     (WithTop.coe_le_coe.mpr
       (Nat.add_le_add_right hthreshold (inst.logSlack parameters))) hno
 
+/--
+@isnad1 id=not.2h6v.s4.632e07b2d81a from=translated src=- shape=e3eb40b2 vocab=5538c59a
+-/
 theorem not_isNo_of_isYes_internal (inst : Instance)
     (ordinaryMachine : TM ordinaryTapes)
     (conditionalMachine : OracleTM conditionalTapes)
@@ -307,6 +352,9 @@ theorem not_isNo_of_isYes_internal (inst : Instance)
 
 end Instance
 
+/--
+@isnad1 id=le.2h7v.s5.7da71c359f94 from=translated src=- shape=a5928eae vocab=467dbe04
+-/
 theorem estimator_le_threshold_of_isYes_internal
     {ordinaryTapes conditionalTapes : ℕ}
     {ordinaryMachine : TM ordinaryTapes}
@@ -327,6 +375,9 @@ theorem estimator_le_threshold_of_isYes_internal
       hyes
   exact WithTop.coe_le_coe.mp (hupper.trans hyes')
 
+/--
+@isnad1 id=lt.2h7v.s5.4c3900eee022 from=translated src=- shape=e1ad7b8b vocab=16fe30c2
+-/
 theorem threshold_lt_estimator_of_isNo_internal
     {ordinaryTapes conditionalTapes : ℕ}
     {ordinaryMachine : TM ordinaryTapes}
@@ -355,6 +406,9 @@ theorem threshold_lt_estimator_of_isNo_internal
     simpa [Instance.IsNo, Instance.laterTime, Instance.logSlack] using hno
   exact (not_lt_of_ge hlater) hno'
 
+/--
+@isnad1 id=iff.0h6v.s5.7ae08b81986e from=translated src=- shape=72d4b66b vocab=0abb2a65
+-/
 theorem yesLanguage_mem_encode_iff_internal
     {ordinaryTapes conditionalTapes : ℕ}
     (ordinaryMachine : TM ordinaryTapes)
@@ -364,6 +418,9 @@ theorem yesLanguage_mem_encode_iff_internal
       inst.IsYes ordinaryMachine conditionalMachine parameters := by
   simp [yesLanguage, Instance.decode?_encode_internal]
 
+/--
+@isnad1 id=iff.0h4v.s4.9ce1488e91dc from=translated src=- shape=c66ee9b8 vocab=8de6cb9f
+-/
 theorem noLanguage_mem_encode_iff_internal {conditionalTapes : ℕ}
     (conditionalMachine : OracleTM conditionalTapes)
     (parameters : Parameters) (inst : Instance) :
@@ -371,6 +428,9 @@ theorem noLanguage_mem_encode_iff_internal {conditionalTapes : ℕ}
       inst.IsNo conditionalMachine parameters := by
   simp [noLanguage, Instance.decode?_encode_internal]
 
+/--
+@isnad1 id=disjoint.1h5v.s5.ca405b6a6998 from=translated src=- shape=0be29178 vocab=b9a709dc
+-/
 theorem disjoint_yesLanguage_noLanguage_internal
     {ordinaryTapes conditionalTapes : ℕ}
     (ordinaryMachine : TM ordinaryTapes)
@@ -391,12 +451,18 @@ theorem disjoint_yesLanguage_noLanguage_internal
       exact Instance.not_isNo_of_isYes_internal inst ordinaryMachine
         conditionalMachine parameters hwidening hisYes hisNo
 
+/--
+@isnad1 id=iff.0h2v.s4.f35bde14789c from=translated src=- shape=e31b9f63 vocab=196f2eec
+-/
 theorem estimatorLanguage_mem_encode_iff_internal (estimate : Estimator)
     (inst : Instance) :
     inst.encode ∈ estimatorLanguage estimate ↔
       estimate inst.base ≤ inst.threshold := by
   simp [estimatorLanguage, Instance.decode?_encode_internal]
 
+/--
+@isnad1 id=iff.0h2v.s4.f00559f1c3a8 from=translated src=- shape=f2f3bfeb vocab=49d2fc34
+-/
 theorem decisionOfEstimator_eq_true_iff_internal (estimate : Estimator)
     (bits : List Bool) :
     decisionOfEstimator estimate bits = true ↔
@@ -405,6 +471,9 @@ theorem decisionOfEstimator_eq_true_iff_internal (estimate : Estimator)
   | none => simp [decisionOfEstimator, estimatorLanguage, hdecode]
   | some inst => simp [decisionOfEstimator, estimatorLanguage, hdecode]
 
+/--
+@isnad1 id=le.1h6v.s5.b59c7ba47c79 from=translated src=- shape=d747c9c7 vocab=a8333aee
+-/
 theorem yesLanguage_subset_estimatorLanguage_internal
     {ordinaryTapes conditionalTapes : ℕ}
     {ordinaryMachine : TM ordinaryTapes}
@@ -425,6 +494,9 @@ theorem yesLanguage_subset_estimatorLanguage_internal
         hestimate inst hisYes
       simpa [estimatorLanguage, hdecode] using hbound
 
+/--
+@isnad1 id=disjoint.1h6v.s5.cebee76c1dc0 from=translated src=- shape=ed9c0c91 vocab=b7c8d472
+-/
 theorem disjoint_estimatorLanguage_noLanguage_internal
     {ordinaryTapes conditionalTapes : ℕ}
     {ordinaryMachine : TM ordinaryTapes}
@@ -447,6 +519,9 @@ theorem disjoint_estimatorLanguage_noLanguage_internal
         hestimate inst hisNo
       omega
 
+/--
+@isnad1 id=eq.2h7v.s5.0454d41d138b from=translated src=- shape=c7426dfc vocab=d8b62c67
+-/
 theorem decisionOfEstimator_eq_true_of_mem_yesLanguage_internal
     {ordinaryTapes conditionalTapes : ℕ}
     {ordinaryMachine : TM ordinaryTapes}
@@ -459,6 +534,9 @@ theorem decisionOfEstimator_eq_true_of_mem_yesLanguage_internal
   (decisionOfEstimator_eq_true_iff_internal estimate bits).mpr
     (yesLanguage_subset_estimatorLanguage_internal hestimate hyes)
 
+/--
+@isnad1 id=eq.2h7v.s5.79b8f3931245 from=translated src=- shape=6f12bc4a vocab=d4130c3d
+-/
 theorem decisionOfEstimator_eq_false_of_mem_noLanguage_internal
     {ordinaryTapes conditionalTapes : ℕ}
     {ordinaryMachine : TM ordinaryTapes}

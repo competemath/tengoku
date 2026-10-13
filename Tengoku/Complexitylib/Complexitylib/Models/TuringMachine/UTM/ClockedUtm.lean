@@ -81,7 +81,9 @@ private theorem reachesIn_output_wfCells {n : ℕ} {tm : TM n} :
     the final output tape — writes are `Γw` and cell 0 is immutable, so the
     shape survives any run. This is what lets branch postconditions survive
     the combinators' final `transitionTape` (which preserves cells only on
-    `▷`-clean tapes). -/
+    `▷`-clean tapes).
+@isnad1 id=hoaretim.2h5v.s6.3b918f169202 from=translated src=- shape=ea447884 vocab=a2026538
+-/
 theorem HoareTime.with_output_wf {n : ℕ} {tm : TM n}
     {pre post : TapePred n} {b : ℕ}
     (h : tm.HoareTime pre post b)
@@ -807,7 +809,9 @@ private theorem extractPhase (α x : List Bool) (V T m v : ℕ)
     halts on `x` at `mcF` within `T ≤ V` steps, then `clockedUtmTM` halts
     within `clockedUtmTime α x V` steps with its real output tape agreeing
     with `mcF`'s output tape through the latter's first blank — i.e. the
-    clocked UTM computes exactly the simulated machine's output. -/
+    clocked UTM computes exactly the simulated machine's output.
+@isnad1 id=hoaretim.4h5v.s7.48428849d64c from=translated src=- shape=360b601c vocab=d6b8de67
+-/
 theorem clockedUtmTM_hoareTime_halt (α x : List Bool)
     (hterm : TerminatedRegion α)
     (V T : ℕ) (mcF : Cfg 1 (decodeDesc α).toTM.Q) (hTV : T ≤ V)
@@ -878,7 +882,9 @@ theorem clockedUtmTM_hoareTime_halt (α x : List Bool)
     `clockedUtmPre α x V`, if the interpreted machine `(decodeDesc α).toTM`
     is still running after `V ≥ 1` steps on `x`, then `clockedUtmTM` halts
     within `clockedUtmTime α x V` steps with the timeout sentinel `Γ.one`
-    at output cell 1. -/
+    at output cell 1.
+@isnad1 id=hoaretim.4h4v.s6.350acdd0d9e6 from=translated src=- shape=e8974ff7 vocab=f1d08105
+-/
 theorem clockedUtmTM_hoareTime_timeout (α x : List Bool)
     (hterm : TerminatedRegion α)
     (V : ℕ) (hV : 1 ≤ V) (mcV : Cfg 1 (decodeDesc α).toTM.Q)

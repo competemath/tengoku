@@ -26,13 +26,17 @@ public section
 
 namespace Complexity
 
-/-- Decoder-facing characterization of membership in `validPairEncoding`. -/
+/-- Decoder-facing characterization of membership in `validPairEncoding`.
+@isnad1 id=iff.0h1v.s4.3f67463ce52b from=translated src=- shape=67f93f3a vocab=eb2513c7
+-/
 theorem mem_validPairEncoding_iff (bits : List Bool) :
     bits ∈ validPairEncoding ↔ (unpair? bits).isSome = true :=
   Iff.rfl
 
 /-- Extensional characterization: valid encodings are exactly canonical
-encodings of some pair of Boolean strings. -/
+encodings of some pair of Boolean strings.
+@isnad1 id=iff.0h1v.s5.4bdb25c65c1c from=translated src=- shape=84317355 vocab=334c7d44
+-/
 theorem mem_validPairEncoding_iff_exists_pair (bits : List Bool) :
     bits ∈ validPairEncoding ↔ ∃ x y, bits = pair x y := by
   constructor
@@ -47,31 +51,41 @@ theorem mem_validPairEncoding_iff_exists_pair (bits : List Bool) :
     simp [validPairEncoding]
 
 /-- Failure of the partial decoder is exactly nonmembership in the valid-pair
-language. -/
+language.
+@isnad1 id=iff.0h1v.s4.4b327caf5f02 from=translated src=- shape=a5868021 vocab=fb3fb9eb
+-/
 theorem not_mem_validPairEncoding_iff (bits : List Bool) :
     bits ∉ validPairEncoding ↔ unpair? bits = none := by
   cases hdecode : unpair? bits <;> simp [validPairEncoding, hdecode]
 
-/-- Every canonical `pair` is a valid pair encoding. -/
+/-- Every canonical `pair` is a valid pair encoding.
+@isnad1 id=mem.0h2v.s4.353a4e2e24ef from=translated src=- shape=792f27ef vocab=334c7d44
+-/
 @[simp] theorem pair_mem_validPairEncoding (x y : List Bool) :
     pair x y ∈ validPairEncoding := by
   simp [validPairEncoding]
 
 namespace TM
 
-/-- The pair-validator fold accepts exactly when the canonical decoder succeeds. -/
+/-- The pair-validator fold accepts exactly when the canonical decoder succeeds.
+@isnad1 id=iff.0h1v.s4.6b46164eb3ae from=translated src=- shape=fbbbcc81 vocab=3b751f71
+-/
 theorem pairValidateAccept_fold_eq_true_iff (bits : List Bool) :
     pairValidateAccept (bits.foldl pairValidateStep .next) = true ↔
       (unpair? bits).isSome = true :=
   pairValidateAccept_fold_eq_true_iff_internal bits
 
-/-- The finite-state pair validator decides `validPairEncoding` in linear time. -/
+/-- The finite-state pair validator decides `validPairEncoding` in linear time.
+@isnad1 id=decidesi.0h0v.s4.fd235f5c4197 from=translated src=- shape=78aae65d vocab=1bc1dfc5
+-/
 theorem pairValidateTM_decidesInTime :
     pairValidateTM.DecidesInTime validPairEncoding (fun n => n + 2) :=
   pairValidateTM_decidesInTime_internal
 
 /-- Adding arbitrary unused work tapes preserves the validator's language and
-linear time bound `n + 2`. This is the form used by larger machine pipelines. -/
+linear time bound `n + 2`. This is the form used by larger machine pipelines.
+@isnad1 id=decidesi.0h1v.s5.a2a00fe9c65e from=translated src=- shape=33692a8a vocab=e890e0e2
+-/
 theorem pairValidateTM_lift_decidesInTime (workTapes : ℕ) :
     (pairValidateTM.liftTM workTapes).DecidesInTime
       validPairEncoding (fun n => n + 2) :=
@@ -80,7 +94,9 @@ theorem pairValidateTM_lift_decidesInTime (workTapes : ℕ) :
 /-- Frame-rich initialized specification for the lifted validator. Besides the
 verdict, it exposes the read-only input cells, head bounds, well-formedness of
 all tapes, and the fact that every added work tape is parked and blank. These
-are the seams needed by `ifTM` and a subsequent input rewind. -/
+are the seams needed by `ifTM` and a subsequent input rewind.
+@isnad1 id=hoaretim.0h2v.s8.f0f41f02ab53 from=translated src=- shape=e14141ce vocab=cf1c07d0
+-/
 theorem pairValidateTM_lift_hoareTime (workTapes : ℕ) (bits : List Bool) :
     (pairValidateTM.liftTM workTapes).HoareTime
       (fun inp work out =>

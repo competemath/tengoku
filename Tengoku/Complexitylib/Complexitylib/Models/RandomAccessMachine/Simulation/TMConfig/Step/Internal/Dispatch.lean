@@ -57,6 +57,9 @@ private theorem stateScratchReg_ne_symbolReg (n bound : ℕ)
   simp [symbolReg, stateScratchReg]
   omega
 
+/--
+@isnad1 id=ex.11h10v.s8.8cf6dcbcd918 from=translated src=- shape=ce8c50d7 vocab=060af9e2
+-/
 theorem dispatchSymbols_exec_internal {tm : TM n} {bound : ℕ}
     {cfg next : Complexity.Cfg n tm.Q} {store : Structured.Store}
     (state : tm.Q) (actual symbols : Fin (n + 2) → Γ)
@@ -150,6 +153,9 @@ theorem dispatchSymbols_exec_internal {tm : TM n} {bound : ℕ}
       refine ⟨final, cost, space, ?_, hfinalRepresents⟩
       simpa [dispatchSymbols, dispatchSteps] using hexec
 
+/--
+@isnad1 id=ex.8h6v.s7.cf982b9fa68c from=translated src=- shape=95c2d537 vocab=0bfe95e0
+-/
 theorem dispatchState_exec_internal {tm : TM n} {bound : ℕ}
     {cfg next : Complexity.Cfg n tm.Q} {store : Structured.Store}
     (hstep : tm.step cfg = some next)
@@ -211,6 +217,9 @@ theorem dispatchState_exec_internal {tm : TM n} {bound : ℕ}
   refine ⟨final, cost, space, ?_, hfinalRepresents⟩
   simpa [dispatchState] using hexec
 
+/--
+@isnad1 id=ex.5h6v.s6.0569e70d2d30 from=translated src=- shape=50e41902 vocab=d3743144
+-/
 theorem program_exec_internal {tm : TM n} {bound : ℕ}
     {cfg next : Complexity.Cfg n tm.Q} {store : Structured.Store}
     (hstep : tm.step cfg = some next)

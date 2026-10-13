@@ -101,7 +101,9 @@ def ClockWitness (tm : TM 8) (C : ℕ) (g : ℕ → ℕ) : Prop :=
       (C * (g x.length + x.length + 1))
 
 /-- `ClockConstructible` is exactly the existential closure of
-    `ClockWitness`. -/
+    `ClockWitness`.
+@isnad1 id=iff.0h1v.s4.110e8229d5d5 from=translated src=- shape=7342be67 vocab=07b8ba84
+-/
 theorem clockConstructible_iff {g : ℕ → ℕ} :
     ClockConstructible g ↔ ∃ (tm : TM 8) (C : ℕ), ClockWitness tm C g :=
   Iff.rfl
@@ -292,7 +294,9 @@ private theorem blankOutTM_write_step
     is `▷`, no `▷` at cells ≥ 1, head ≤ `B`) and no tape head resting on `▷`,
     `blankOutTM` halts within `B + 3` steps having blanked output cell 1,
     all other output cells unchanged, output head parked at cell 1, and the
-    input and work tapes exactly unchanged. -/
+    input and work tapes exactly unchanged.
+@isnad1 id=hoaretim.5h5v.s7.7455be27fcd3 from=translated src=- shape=ec7916b9 vocab=910ce7f8
+-/
 theorem blankOutTM_hoareTime (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
     (B : ℕ)
     (h0 : out₀.cells 0 = Γ.start) (hns : ∀ j, 1 ≤ j → out₀.cells j ≠ Γ.start)
@@ -2156,7 +2160,9 @@ end CaseTriples
 
 /-- **The diagonalizer decides its language in time `diagTime C g`.** For
     any clock-constructibility witness `(clk, C)` for `g ≥ 1`, the machine
-    `diagTM clk` decides `diagLang clk` within `diagTime C g` steps. -/
+    `diagTM clk` decides `diagLang clk` within `diagTime C g` steps.
+@isnad1 id=decidesi.2h3v.s5.67e72c75f3a8 from=translated src=- shape=5d4d3042 vocab=db62fad2
+-/
 theorem diagTM_decidesInTime (clk : TM 8) (C : ℕ) (g : ℕ → ℕ)
     (hclk : ClockWitness clk C g) (hg1 : ∀ n, 1 ≤ g n) :
     (diagTM clk).DecidesInTime (diagLang clk) (diagTime C g) := by
@@ -2197,7 +2203,9 @@ theorem diagTM_decidesInTime (clk : TM 8) (C : ℕ) (g : ℕ → ℕ)
 
 /-- **The diagonal flip.** On a well-formed input `x` whose interpreted
     machine halts within the clock budget at `mcF`, the diagonalizer
-    accepts `x` exactly when the interpreted machine does **not**. -/
+    accepts `x` exactly when the interpreted machine does **not**.
+@isnad1 id=iff.5h6v.s6.a1c2afc1ab6b from=translated src=- shape=2e3c0980 vocab=ab43b16a
+-/
 theorem diagTM_flips (clk : TM 8) (C : ℕ) (g : ℕ → ℕ)
     (hclk : ClockWitness clk C g)
     (x : List Bool) (hterm : TerminatedRegion x)
@@ -2218,7 +2226,9 @@ theorem diagTM_flips (clk : TM 8) (C : ℕ) (g : ℕ → ℕ)
     simp [hm]
 
 /-- **Polynomial envelope for the diagonalizer's time bound**:
-    `diagTime C g n ≤ (C + 786) * ((n + 1)² * (g n + 1))`. -/
+    `diagTime C g n ≤ (C + 786) * ((n + 1)² * (g n + 1))`.
+@isnad1 id=le.0h3v.s6.c53be4e2c7d0 from=translated src=- shape=5bd33aef vocab=cdf959d7
+-/
 theorem diagTime_le_poly (C : ℕ) (g : ℕ → ℕ) :
     ∀ n, diagTime C g n ≤ (C + 786) * ((n + 1) ^ 2 * (g n + 1)) := by
   intro n

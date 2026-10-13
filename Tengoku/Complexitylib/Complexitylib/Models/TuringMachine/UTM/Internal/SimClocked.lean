@@ -952,7 +952,9 @@ private theorem clocked_aux_timeout (α x : List Bool) (hterm : TerminatedRegion
     the exit configuration makes a subsequent (lifted) halt test
     conclusive via `simInv_verdict`. Note that no-halt-before-`V` in case
     B is automatic: the prefix configurations of the `V`-step run all
-    step, and halted configurations cannot step. -/
+    step, and halted configurations cannot step.
+@isnad1 id=and.7h6v.s9.ffc34af519dc from=translated src=- shape=b1ab2c98 vocab=687d6be9
+-/
 theorem clocked_loop_simulates (α x : List Bool) (hterm : TerminatedRegion α)
     (V : ℕ) (inp : Tape) (work : Fin 7 → Tape) (out : Tape)
     (hinv : SimInv α ((decodeDesc α).toTM.initCfg x) inp

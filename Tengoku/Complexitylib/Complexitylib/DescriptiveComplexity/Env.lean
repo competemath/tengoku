@@ -29,14 +29,23 @@ def envCons (a : Fin card) (σ : Env card n) : Env card (n + 1) :=
 /-- The empty environment (no free variables). -/
 def emptyEnv (card : Nat) : Env card 0 := Fin.elim0
 
+/--
+@isnad1 id=eq.0h4v.s5.179dbf883acf from=translated src=- shape=933b5b1f vocab=4e1ef55c
+-/
 theorem envCons_zero (a : Fin card) (σ : Env card n) :
     envCons a σ ⟨0, by omega⟩ = a := by
   simp [envCons]
 
+/--
+@isnad1 id=eq.0h5v.s5.98f1465e6eef from=translated src=- shape=fe8c1ceb vocab=8fcea366
+-/
 theorem envCons_succ (a : Fin card) (σ : Env card n) (i : Fin n) :
     envCons a σ ⟨i.val + 1, by omega⟩ = σ i := by
   simp [envCons]
 
+/--
+@isnad1 id=eq.0h6v.s6.a4beaca8e68d from=translated src=- shape=173c675a vocab=2be5e4e2
+-/
 theorem envCons_comp (f : Fin m → Fin k) (a : Fin m) (σ : Env m n) :
     f ∘ envCons a σ = envCons (f a) (f ∘ σ) := by
   funext i
@@ -45,6 +54,9 @@ theorem envCons_comp (f : Fin m → Fin k) (a : Fin m) (σ : Env m n) :
   · rfl
   · rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.2cb826266403 from=translated src=- shape=9c62f863 vocab=e6bdf30b
+-/
 theorem emptyEnv_comp (f : Fin m → Fin k) :
     f ∘ emptyEnv m = emptyEnv k := by
   funext i

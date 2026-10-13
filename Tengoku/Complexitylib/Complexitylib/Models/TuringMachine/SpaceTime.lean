@@ -34,7 +34,9 @@ variable {k : ℕ} {tm : TM k}
 
 /-- A halting transducer run staying within auxiliary space `space` has one
 more time index than steps, and all those indices inject into the explicit
-type of reduced transducer snapshots. -/
+type of reduced transducer snapshots.
+@isnad1 id=le.4h6v.s6.c2d24a7bfeba from=translated src=- shape=08720457 vocab=ee60831c
+-/
 theorem IsTransducer.reachesIn_succ_le_transducerConfigBound
     (htrans : tm.IsTransducer) {x : List Bool} {space t : ℕ}
     {c : Cfg k tm.Q}
@@ -47,7 +49,9 @@ theorem IsTransducer.reachesIn_succ_le_transducerConfigBound
     hreach hhalt hspace
 
 /-- A halting transducer run staying within auxiliary space `space` takes no
-more steps than the explicit number of reduced transducer snapshots. -/
+more steps than the explicit number of reduced transducer snapshots.
+@isnad1 id=le.4h6v.s6.6d8f9e48eb10 from=translated src=- shape=7f0e4e9d vocab=7782c234
+-/
 theorem IsTransducer.reachesIn_le_transducerConfigBound
     (htrans : tm.IsTransducer) {x : List Bool} {space t : ℕ}
     {c : Cfg k tm.Q}
@@ -61,7 +65,9 @@ theorem IsTransducer.reachesIn_le_transducerConfigBound
   omega
 
 /-- A total deterministic function transducer using space `S` computes within
-the corresponding finite reduced-configuration bound. -/
+the corresponding finite reduced-configuration bound.
+@isnad1 id=computes.1h4v.s5.470c0cc093fb from=translated src=- shape=79e150a8 vocab=9dd71b9a
+-/
 theorem ComputesInSpace.computesInTime_configBound
     {f : List Bool → List Bool} {S : ℕ → ℕ}
     (hcomp : tm.ComputesInSpace f S) :
@@ -70,7 +76,9 @@ theorem ComputesInSpace.computesInTime_configBound
   hcomp.computesInTime_configBound_internal
 
 /-- A deterministic language decider with one-way output and auxiliary-space
-bound `S` decides within the corresponding finite reduced-configuration bound. -/
+bound `S` decides within the corresponding finite reduced-configuration bound.
+@isnad1 id=decidesi.2h4v.s5.c3a212310ff1 from=translated src=- shape=b0ce8566 vocab=04bbcb93
+-/
 theorem DecidesInSpace.decidesInTime_configBound
     {L : Language} {S : ℕ → ℕ}
     (hdec : tm.DecidesInSpace L S) (htrans : tm.IsTransducer) :

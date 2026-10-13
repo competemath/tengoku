@@ -35,7 +35,9 @@ open BodyQ
 -- ════════════════════════════════════════════════════════════════════════
 
 /-- One step whose arm is `idle q'` changes only the control state, provided
-    every head reads a non-`▷` symbol. -/
+    every head reads a non-`▷` symbol.
+@isnad1 id=eq.5h2v.s8.bf9e6c474e55 from=translated src=- shape=5f51cb76 vocab=bc918d50
+-/
 theorem step_idle {c : Cfg 6 bodyTM.Q} (hne : c.state ≠ bodyDone) {q' : BodyQ}
     (h : bodyδ c.state c.input.read (fun i => (c.work i).read) c.output.read
       = idle q' c.input.read (fun i => (c.work i).read) c.output.read)
@@ -51,7 +53,9 @@ theorem step_idle {c : Cfg 6 bodyTM.Q} (hne : c.state ≠ bodyDone) {q' : BodyQ}
   · exact idle_tape_id hout
 
 /-- Writing back a non-`▷` read leaves the cells unchanged (write-only form
-    of `tape_readBackWrite_preserves`). -/
+    of `tape_readBackWrite_preserves`).
+@isnad1 id=eq.1h1v.s4.bdaa309ac922 from=translated src=- shape=18f6d1c8 vocab=26502f83
+-/
 theorem write_readBack_cells {t : Tape} (h : t.read ≠ Γ.start) :
     (t.write (readBackWrite t.read).toΓ).cells = t.cells := by
   have hp := tape_readBackWrite_preserves t Dir3.stay (Or.inr h)
@@ -67,7 +71,9 @@ theorem write_readBack_cells {t : Tape} (h : t.read ≠ Γ.start) :
     while the state tape (ghost cells `S`, head from `a`) and the desc tape
     (ghost cells `W`, head from `b`) agree on `n` non-`□` symbols, the
     machine advances both heads `n` cells in `n` steps. All cells and every
-    other tape are exactly preserved. -/
+    other tape are exactly preserved.
+@isnad1 id=ex.15h7v.s9.b15f11261888 from=translated src=- shape=e1110156 vocab=f1478583
+-/
 theorem lockstep_agree_loop {cur : BodyQ} (hcur : cur ≠ bodyDone)
     (hδ : ∀ iH wH oH, wH stT ≠ Γ.blank → wH dsT ≠ Γ.blank → wH stT = wH dsT →
       bodyδ cur iH wH oH
@@ -180,7 +186,9 @@ theorem lockstep_agree_loop {cur : BodyQ} (hcur : cur ≠ bodyDone)
     (ghost `S`, head `a`) and desc tape (ghost `W`, head `b`) agreeing on
     `n` non-`□` symbols and then both hitting `□` simultaneously, reach
     `haltRewS` in `n + 1` steps with heads at `a + n` and `b + n`. All
-    cells and every other tape are exactly preserved. -/
+    cells and every other tape are exactly preserved.
+@isnad1 id=ex.15h6v.s9.3e52f332ee89 from=translated src=- shape=d5260fe8 vocab=822c6d0e
+-/
 theorem hc1_match_loop (S W : ℕ → Γ)
     (hSns : ∀ j, 1 ≤ j → S j ≠ Γ.start) (hWns : ∀ j, 1 ≤ j → W j ≠ Γ.start)
     (n a b : ℕ) (ha : 1 ≤ a) (hb : 1 ≤ b)
@@ -227,7 +235,9 @@ theorem hc1_match_loop (S W : ℕ → Γ)
     `hc1_match_loop`, but at offset `n` the two tapes disagree for the first
     time (not both `□`, and not both-non-`□`-and-equal): reach `preRewS` in
     `n + 1` steps with heads at `a + n` and `b + n`. All cells and every
-    other tape are exactly preserved. -/
+    other tape are exactly preserved.
+@isnad1 id=ex.15h6v.s9.fdc168e1afce from=translated src=- shape=4f62d5eb vocab=0c12451e
+-/
 theorem hc1_mismatch_loop (S W : ℕ → Γ)
     (hSns : ∀ j, 1 ≤ j → S j ≠ Γ.start) (hWns : ∀ j, 1 ≤ j → W j ≠ Γ.start)
     (n a b : ℕ) (ha : 1 ≤ a) (hb : 1 ≤ b)
@@ -284,7 +294,9 @@ theorem hc1_mismatch_loop (S W : ℕ → Γ)
     state's key part is consumed — the exit fires regardless of the desc
     symbol), reach `cmpS f 0` in `n + 1` steps with heads at `a + n` and
     `b + n` (the exit step moves neither head). All cells and every other
-    tape are exactly preserved. -/
+    tape are exactly preserved.
+@isnad1 id=ex.14h7v.s9.e5b5d0c100e0 from=translated src=- shape=a93c4a5f vocab=9de41c07
+-/
 theorem cmpQ_match_loop (f : VFlags) (S W : ℕ → Γ)
     (hSns : ∀ j, 1 ≤ j → S j ≠ Γ.start) (hWns : ∀ j, 1 ≤ j → W j ≠ Γ.start)
     (n a b : ℕ) (ha : 1 ≤ a) (hb : 1 ≤ b)
@@ -329,7 +341,9 @@ theorem cmpQ_match_loop (f : VFlags) (S W : ℕ → Γ)
     fails to match the desc symbol (desc `□` or different): reach
     `skipSeg f` in `n + 1` steps with heads at `a + n` and `b + n` (the
     exit step moves neither head). All cells and every other tape are
-    exactly preserved. -/
+    exactly preserved.
+@isnad1 id=ex.15h7v.s9.d37da75769b7 from=translated src=- shape=f2828609 vocab=53753c98
+-/
 theorem cmpQ_mismatch_loop (f : VFlags) (S W : ℕ → Γ)
     (hSns : ∀ j, 1 ≤ j → S j ≠ Γ.start) (hWns : ∀ j, 1 ≤ j → W j ≠ Γ.start)
     (n a b : ℕ) (ha : 1 ≤ a) (hb : 1 ≤ b)
@@ -385,7 +399,9 @@ theorem cmpQ_mismatch_loop (f : VFlags) (S W : ℕ → Γ)
     tapes are stationary, so their live reads `v0`/`v1`/`v2` stay valid
     throughout. On the final step the state head (ghost `V`, head `a`)
     takes trick 1's pre-step one cell left. All cells and every other tape
-    are exactly preserved. -/
+    are exactly preserved.
+@isnad1 id=ex.17h11v.s9.77e38b4df871 from=translated src=- shape=cefd7148 vocab=df3644d6
+-/
 theorem cmpS_match_loop (f : VFlags) (v0 v1 v2 : Γ) (W V : ℕ → Γ)
     (hWns : ∀ j, 1 ≤ j → W j ≠ Γ.start) (hVns : ∀ j, 1 ≤ j → V j ≠ Γ.start) :
     ∀ (k : ℕ) (idx : Fin 6), idx.val + k = 5 →
@@ -514,7 +530,9 @@ theorem cmpS_match_loop (f : VFlags) (v0 v1 v2 : Γ) (W V : ℕ → Γ)
     offsets `< n` but failing at offset `n` (`idx.val + n ≤ 5`; the cell
     differs from the expected symbol or is `□`), reach `skipSeg f` in
     `n + 1` steps with the desc head at `b + n`. The state head does not
-    move. All cells and every other tape are exactly preserved. -/
+    move. All cells and every other tape are exactly preserved.
+@isnad1 id=ex.14h9v.s9.aa14975544ed from=translated src=- shape=bb742219 vocab=dde205c2
+-/
 theorem cmpS_mismatch_loop (f : VFlags) (v0 v1 v2 : Γ) (W : ℕ → Γ)
     (hWns : ∀ j, 1 ≤ j → W j ≠ Γ.start) :
     ∀ (n : ℕ) (idx : Fin 6), idx.val + n ≤ 5 →
@@ -643,7 +661,9 @@ theorem cmpS_mismatch_loop (f : VFlags) (v0 v1 v2 : Γ) (W : ℕ → Γ)
     scratch cells `e..e+s-1` while the state head walks left; when it hits
     `▷` the forced bounce lands it at cell 1 and the machine enters
     `copyAct f 0` — `s + 1` steps in total. State and desc cells and every
-    other tape are exactly preserved. -/
+    other tape are exactly preserved.
+@isnad1 id=ex.17h8v.s9.34859ba9f1e6 from=translated src=- shape=c3cb8c71 vocab=da8b4abd
+-/
 theorem copyQ'_copy_loop (f : VFlags) (S W : ℕ → Γ)
     (hS0 : S 0 = Γ.start) (hSns : ∀ j, 1 ≤ j → S j ≠ Γ.start)
     (hWns : ∀ j, 1 ≤ j → W j ≠ Γ.start) :
@@ -816,7 +836,9 @@ theorem copyQ'_copy_loop (f : VFlags) (S W : ℕ → Γ)
     the machine exits to `skipSeg f` in `n + 1` steps (the `□`-exit step is
     an idle transition) with the state head at `s - n`, the desc head at
     `b + n` (on the `□`), and scratch extended by the `n` copied cells.
-    State and desc cells and every other tape are exactly preserved. -/
+    State and desc cells and every other tape are exactly preserved.
+@isnad1 id=ex.18h9v.s9.8937599d5d2c from=translated src=- shape=8bafe2d4 vocab=2402c6c5
+-/
 theorem copyQ'_blank_loop (f : VFlags) (S W : ℕ → Γ)
     (hSns : ∀ j, 1 ≤ j → S j ≠ Γ.start)
     (hWns : ∀ j, 1 ≤ j → W j ≠ Γ.start) :
@@ -994,7 +1016,9 @@ theorem copyQ'_blank_loop (f : VFlags) (S W : ℕ → Γ)
     `E`, frontier `e`), copy the remaining action cells to scratch cells
     `e..e+k` and enter `appRewScr f` in `k + 1` steps, with the desc head
     at `b + k + 1` and the scratch frontier at `e + k + 1`. Desc cells and
-    every other tape are exactly preserved. -/
+    every other tape are exactly preserved.
+@isnad1 id=ex.14h8v.s9.2793c5142286 from=translated src=- shape=666d72af vocab=56de76aa
+-/
 theorem copyAct_copy_loop (f : VFlags) (W : ℕ → Γ)
     (hWns : ∀ j, 1 ≤ j → W j ≠ Γ.start) :
     ∀ (k : ℕ) (j : Fin 10), j.val + k = 9 →
@@ -1159,7 +1183,9 @@ theorem copyAct_copy_loop (f : VFlags) (W : ℕ → Γ)
     machine exits to `skipSeg f` in `n + 1` steps (the `□`-exit step is an
     idle transition) with the desc head at `b + n` (on the `□`) and scratch
     extended by the `n` copied cells. Desc cells and every other tape are
-    exactly preserved. -/
+    exactly preserved.
+@isnad1 id=ex.15h8v.s9.51219a8c56dd from=translated src=- shape=fe46da0f vocab=fbaa14e4
+-/
 theorem copyAct_blank_loop (f : VFlags) (W : ℕ → Γ)
     (hWns : ∀ j, 1 ≤ j → W j ≠ Γ.start) :
     ∀ (n : ℕ) (j : Fin 10), j.val + n ≤ 9 →

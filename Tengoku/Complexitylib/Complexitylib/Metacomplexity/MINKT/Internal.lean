@@ -27,15 +27,24 @@ namespace Instance
 
 variable {tapes : ℕ}
 
+/--
+@isnad1 id=eq.0h1v.s3.fe9f35fb0546 from=translated src=- shape=981f0160 vocab=7942dcaf
+-/
 theorem length_unaryClock_internal (inst : Instance) :
     inst.unaryClock.length = inst.time := by
   simp [unaryClock]
 
+/--
+@isnad1 id=eq.0h1v.s3.3065d5f66db7 from=translated src=- shape=edb93955 vocab=096a948a
+-/
 theorem decode?_encode_internal (inst : Instance) :
     decode? inst.encode = some inst := by
   rcases inst with ⟨output, time⟩
   simp [decode?, encode, unaryClock]
 
+/--
+@isnad1 id=iff.0h2v.s4.69f854f0ff52 from=translated src=- shape=94e3551a vocab=a5681545
+-/
 theorem decode?_eq_some_iff_internal (bits : List Bool) (inst : Instance) :
     decode? bits = some inst ↔ bits = inst.encode := by
   constructor
@@ -66,6 +75,9 @@ theorem decode?_eq_some_iff_internal (bits : List Bool) (inst : Instance) :
   · rintro rfl
     exact decode?_encode_internal inst
 
+/--
+@isnad1 id=iff.0h1v.s4.2c1a028d79cc from=translated src=- shape=65444e03 vocab=9ad33a30
+-/
 theorem decode?_eq_none_iff_internal (bits : List Bool) :
     decode? bits = none ↔ ¬ ∃ inst : Instance, bits = inst.encode := by
   constructor
@@ -79,16 +91,25 @@ theorem decode?_eq_none_iff_internal (bits : List Bool) :
         exact (hnoncanonical
           ⟨inst, (decode?_eq_some_iff_internal bits inst).mp hdecode⟩).elim
 
+/--
+@isnad1 id=injectiv.0h0v.s2.3b639a255484 from=translated src=- shape=4b736592 vocab=7e18db67
+-/
 theorem encode_injective_internal : Function.Injective encode := by
   intro first second hencode
   have hfirst := decode?_encode_internal first
   rw [hencode, decode?_encode_internal second] at hfirst
   exact Option.some.inj hfirst.symm
 
+/--
+@isnad1 id=eq.0h1v.s5.6a0b39ac473d from=translated src=- shape=1163f848 vocab=969d85b1
+-/
 theorem length_encode_internal (inst : Instance) :
     inst.encode.length = 2 * inst.output.length + 2 + inst.time := by
   simp [encode, length_unaryClock_internal]
 
+/--
+@isnad1 id=iff.0h4v.s4.36d5af9f52ce from=translated src=- shape=22e7e485 vocab=f8123b63
+-/
 theorem isBelow_iff_hasProgramShorterThan_internal (inst : Instance)
     (machine : TM tapes) (threshold : ℕ → ℕ) :
     inst.IsBelow machine threshold ↔
@@ -96,6 +117,9 @@ theorem isBelow_iff_hasProgramShorterThan_internal (inst : Instance)
   exact TM.timeBoundedKolmogorovComplexity_lt_coe_iff_internal
     machine inst.output inst.time (threshold inst.output.length)
 
+/--
+@isnad1 id=isbelow.2h6v.s5.21fe974452cf from=translated src=- shape=73700a4e vocab=a6c4c939
+-/
 theorem isBelow_withTime_mono_internal (inst : Instance)
     (machine : TM tapes) (threshold : ℕ → ℕ) {first second : ℕ}
     (hclock : first ≤ second)
@@ -104,6 +128,9 @@ theorem isBelow_withTime_mono_internal (inst : Instance)
   exact (TM.timeBoundedKolmogorovComplexity_mono_internal
     machine inst.output hclock).trans_lt hsmall
 
+/--
+@isnad1 id=isbelow.2h5v.s5.18060988fbb4 from=translated src=- shape=0a445f46 vocab=1110755e
+-/
 theorem isBelow_threshold_mono_internal (inst : Instance)
     (machine : TM tapes) {first second : ℕ → ℕ}
     (hthreshold : ∀ length, first length ≤ second length)
@@ -113,6 +140,9 @@ theorem isBelow_threshold_mono_internal (inst : Instance)
 
 end Instance
 
+/--
+@isnad1 id=le.2h6v.s5.83d5008f7a75 from=translated src=- shape=0d8e8749 vocab=d2bbd678
+-/
 theorem programWitnessRelation_length_le_polynomial_internal
     {tapes : ℕ} (machine : TM tapes) (threshold : ℕ → ℕ)
     (polynomial : Polynomial ℕ)
@@ -130,6 +160,9 @@ theorem programWitnessRelation_length_le_polynomial_internal
     ((hthreshold inst.output.length).trans
       (polynomial_eval_mono_nat polynomial houtputLength))
 
+/--
+@isnad1 id=polybala.1h3v.s4.22c8a6738f2d from=translated src=- shape=3ddb185e vocab=abdb0582
+-/
 theorem programWitnessRelation_polyBalanced_internal
     {tapes : ℕ} (machine : TM tapes) (threshold : ℕ → ℕ)
     (hthreshold : PolyBound threshold) :
@@ -139,6 +172,9 @@ theorem programWitnessRelation_polyBalanced_internal
     programWitnessRelation_length_le_polynomial_internal
       machine threshold polynomial hpolynomial hrelation⟩
 
+/--
+@isnad1 id=mem.2h3v.s5.ba46126dd0cb from=translated src=- shape=8c5d3d6c vocab=6395a964
+-/
 theorem programWitnessRelation_mem_FNP_of_pairLang_mem_P_internal
     {tapes : ℕ} (machine : TM tapes) (threshold : ℕ → ℕ)
     (hthreshold : PolyBound threshold)

@@ -53,21 +53,33 @@ def placeWorkCoord (pre n : ℕ) {post : ℕ} (i : Fin (pre + n + post))
     unfold placeWorkInMiddle at h
     omega⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.668082fd7d0c from=translated src=- shape=90fd79b6 vocab=9b3588f2
+-/
 @[simp] theorem placeWorkIdx_val (pre post : ℕ) (i : Fin n) :
     (placeWorkIdx pre post i).val = pre + i.val := rfl
 
+/--
+@isnad1 id=placewor.0h4v.s4.dadd5ad29a53 from=translated src=- shape=f7e34bb9 vocab=6d0af628
+-/
 @[simp] theorem placeWorkInMiddle_placeWorkIdx (pre post : ℕ) (i : Fin n) :
     placeWorkInMiddle pre n (placeWorkIdx pre post i) := by
   unfold placeWorkInMiddle
   simp only [placeWorkIdx_val]
   exact ⟨by omega, by omega⟩
 
+/--
+@isnad1 id=eq.0h4v.s4.d2b310088e20 from=translated src=- shape=698941ea vocab=c4ead1d5
+-/
 @[simp] theorem placeWorkCoord_placeWorkIdx (pre post : ℕ) (i : Fin n) :
     placeWorkCoord pre n (placeWorkIdx pre post i)
       (placeWorkInMiddle_placeWorkIdx pre post i) = i := by
   apply Fin.ext
   simp [placeWorkCoord]
 
+/--
+@isnad1 id=eq.1h4v.s5.e46ff05e98d7 from=translated src=- shape=38f67914 vocab=eb8d6161
+-/
 theorem placeWorkIdx_placeWorkCoord (i : Fin (pre + n + post))
     (h : placeWorkInMiddle pre n i) :
     placeWorkIdx pre post (placeWorkCoord pre n i h) = i := by
@@ -76,6 +88,9 @@ theorem placeWorkIdx_placeWorkCoord (i : Fin (pre + n + post))
   simp [placeWorkIdx, placeWorkCoord]
   omega
 
+/--
+@isnad1 id=injectiv.0h3v.s4.2070a0940448 from=translated src=- shape=6d074585 vocab=8c96e30c
+-/
 theorem placeWorkIdx_injective (pre post : ℕ) :
     Function.Injective (placeWorkIdx (n := n) pre post) := by
   intro i j h
@@ -140,30 +155,48 @@ def placeWorkParkedCfg (tm : TM n) (pre post : ℕ) (c : Cfg n tm.Q) :
     Cfg (pre + n + post) (placeWorkTM pre post tm).Q :=
   placeWorkCfg tm pre post (fun _ => (Tape.init []).move Dir3.right) c
 
+/--
+@isnad1 id=eq.0h6v.s6.92e95cf348e3 from=translated src=- shape=fb3ab464 vocab=ef2c028e
+-/
 @[simp] theorem placeWorkCfg_state (tm : TM n) (pre post : ℕ)
     (extras : Fin (pre + n + post) → Tape) (c : Cfg n tm.Q) :
     (placeWorkCfg tm pre post extras c).state = c.state := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.09bd6c454126 from=translated src=- shape=539eeac2 vocab=6cae6afa
+-/
 @[simp] theorem placeWorkCfg_input (tm : TM n) (pre post : ℕ)
     (extras : Fin (pre + n + post) → Tape) (c : Cfg n tm.Q) :
     (placeWorkCfg tm pre post extras c).input = c.input := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.f48b035735f5 from=translated src=- shape=539eeac2 vocab=8b6414fd
+-/
 @[simp] theorem placeWorkCfg_output (tm : TM n) (pre post : ℕ)
     (extras : Fin (pre + n + post) → Tape) (c : Cfg n tm.Q) :
     (placeWorkCfg tm pre post extras c).output = c.output := rfl
 
+/--
+@isnad1 id=eq.0h7v.s6.f19c6d33e027 from=translated src=- shape=735751bf vocab=0ca648eb
+-/
 @[simp] theorem placeWorkCfg_work_middle (tm : TM n) (pre post : ℕ)
     (extras : Fin (pre + n + post) → Tape) (c : Cfg n tm.Q) (i : Fin n) :
     (placeWorkCfg tm pre post extras c).work (placeWorkIdx pre post i) = c.work i := by
   simp only [placeWorkCfg, placeWorkInMiddle_placeWorkIdx, dite_true]
   rw [placeWorkCoord_placeWorkIdx]
 
+/--
+@isnad1 id=eq.1h7v.s6.6bae064d45de from=translated src=- shape=79ca7637 vocab=26a8d15a
+-/
 theorem placeWorkCfg_work_extra (tm : TM n) (pre post : ℕ)
     (extras : Fin (pre + n + post) → Tape) (c : Cfg n tm.Q)
     (i : Fin (pre + n + post)) (h : ¬placeWorkInMiddle pre n i) :
     (placeWorkCfg tm pre post extras c).work i = extras i := by
   simp [placeWorkCfg, h]
 
+/--
+@isnad1 id=eq.0h7v.s7.a349ea7a708a from=translated src=- shape=9697a93c vocab=110b18c2
+-/
 theorem placeWorkCfg_work_prefix (tm : TM n) (pre post : ℕ)
     (extras : Fin (pre + n + post) → Tape) (c : Cfg n tm.Q) (i : Fin pre) :
     (placeWorkCfg tm pre post extras c).work ⟨i.val, by omega⟩ =
@@ -171,6 +204,9 @@ theorem placeWorkCfg_work_prefix (tm : TM n) (pre post : ℕ)
   apply placeWorkCfg_work_extra
   simp [placeWorkInMiddle]
 
+/--
+@isnad1 id=eq.0h7v.s7.e5d5d94edd76 from=translated src=- shape=3c66c52d vocab=2e55b0b7
+-/
 theorem placeWorkCfg_work_suffix (tm : TM n) (pre post : ℕ)
     (extras : Fin (pre + n + post) → Tape) (c : Cfg n tm.Q) (i : Fin post) :
     (placeWorkCfg tm pre post extras c).work ⟨pre + n + i.val, by omega⟩ =

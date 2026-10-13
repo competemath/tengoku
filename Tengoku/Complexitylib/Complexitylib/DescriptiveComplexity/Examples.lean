@@ -105,7 +105,9 @@ def string101 : FinStruct stringBuiltinOrder where
 /-- The two example 3-cycles satisfy exactly the same first-order sentences: they
     are isomorphic (`cycle3Iso`), and first-order logic cannot distinguish
     isomorphic structures. An end-to-end check of the isomorphism-invariance
-    chain. -/
+    chain.
+@isnad1 id=iff.0h1v.s3.a031b7686fa8 from=translated src=- shape=c6157df5 vocab=30b2837d
+-/
 theorem cycle3_fo_indistinguishable (φ : Sentence Vocabulary.graph) :
     (cycle3 ⊨ φ) ↔ (cycle3' ⊨ φ) :=
   Sentence.orderIndependent φ ⟨cycle3Iso⟩

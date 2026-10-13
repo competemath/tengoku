@@ -65,12 +65,21 @@ abbrev Data.empty := Data.l []
 def Data.asList
   | Data.l xs => xs
 
+/--
+@isnad1 id=eq.0h0v.s2.05ee44fdd7bf from=translated src=- shape=0a817633 vocab=f91fe831
+-/
 @[scoped grind =]
 lemma Data.asList_empty : Data.empty.asList = [] := by rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.28af5c363263 from=translated src=- shape=47dcad53 vocab=afa9fd20
+-/
 @[simp, scoped grind =]
 lemma Data.asList_l (d : Data) : Data.l d.asList = d := by simp [Data.asList]; grind
 
+/--
+@isnad1 id=eq.0h1v.s3.9c1e911ff8ab from=translated src=- shape=e9e6e124 vocab=f4b846c1
+-/
 @[simp, scoped grind =]
 lemma Data.l_asList (xs : List Data) : (Data.l xs).asList = xs := by simp [Data.asList]
 
@@ -80,24 +89,38 @@ def Data.size : Data → ℕ
   | Data.l xs => 2 + (xs.map Data.size |>.sum)
 
 /-- Every `Data` value has positive size (at least the two enclosing
-parentheses). -/
+parentheses).
+@isnad1 id=lt.0h1v.s3.a9d094e447d4 from=translated src=- shape=b9369acb vocab=2d3574ad
+-/
 @[simp]
 lemma Data.size_pos {d : Data} : 0 < d.size := by
   obtain ⟨xs⟩ := d
   grind [Data.size]
 
+/--
+@isnad1 id=lt.0h1v.s3.a9d094e447d4 from=translated src=- shape=b9369acb vocab=2d3574ad
+-/
 @[deprecated Data.size_pos (since := "2026-09-25")]
 lemma Data.size_le {d : Data} : 0 < d.size := Data.size_pos
 
+/--
+@isnad1 id=eq.0h0v.s3.019d6ce6a8b6 from=translated src=- shape=b0ae1d2b vocab=40e06a68
+-/
 @[simp, scoped grind =]
 lemma Data.size_empty : Data.empty.size = 2 := by simp [Data.empty, Data.size]
 
+/--
+@isnad1 id=eq.0h2v.s4.39e82eae85f9 from=translated src=- shape=2c020a10 vocab=0a5141f0
+-/
 @[simp, scoped grind =]
 lemma Data.cons_size {h : Data} {t : List Data} :
     (Data.l (h :: t)).size = h.size + (Data.l t).size := by
   simp [Data.size]
   grind
 
+/--
+@isnad1 id=lt.1h2v.s4.1fc77348d250 from=translated src=- shape=db182236 vocab=9cb75ae7
+-/
 lemma Data.size_lt_of_mem {c : Data} {xs : List Data} (hc : c ∈ xs) :
     c.size < (Data.l xs).size := by
   induction xs with
@@ -119,7 +142,9 @@ def Data.recL {motive : Data → Sort*}
   | .l (x :: xs) =>
       cons x xs (Data.recL nil cons x) (Data.recL nil cons (.l xs))
 
-/-- Induction principle for `Data`, the `Prop`-valued companion to `Data.recL`. -/
+/-- Induction principle for `Data`, the `Prop`-valued companion to `Data.recL`.
+@isnad1 id=var.0h4v.s5.d2bc6313f634 from=translated src=- shape=749b6ca8 vocab=edd6c451
+-/
 @[elab_as_elim]
 theorem Data.inductionL {motive : Data → Prop}
     (nil : motive (Data.l []))
@@ -141,10 +166,16 @@ opens a node, the children are serialized in order, and `true` closes the node. 
 def Data.toBits : Data → List Bool
   | Data.l xs => false :: ((xs.map Data.toBits).flatten ++ [true])
 
+/--
+@isnad1 id=eq.0h1v.s5.3b8e654fd4aa from=translated src=- shape=fe621b83 vocab=53d9702d
+-/
 lemma Data.toBits_l (xs : List Data) :
     (Data.l xs).toBits = false :: ((xs.map Data.toBits).flatten ++ [true]) := by
   rw [Data.toBits]
 
+/--
+@isnad1 id=eq.0h1v.s3.451dda5efe7e from=translated src=- shape=981f0160 vocab=c205283c
+-/
 @[simp]
 lemma Data.length_toBits (d : Data) : d.toBits.length = d.size := by
   induction d using Data.inductionL with
@@ -175,7 +206,9 @@ def Data.fromBits (bits : List Bool) : Option Data :=
 
 /-- Running `Data.fromBitsStep` over `d.toBits` appends the decoded `d` to the top frame of the
 stack, leaving the rest of the stack untouched. This is the key lemma behind
-`Data.fromBits_toBits`. -/
+`Data.fromBits_toBits`.
+@isnad1 id=eq.0h3v.s5.362b6109b1e4 from=translated src=- shape=4935531d vocab=5f63321d
+-/
 theorem Data.foldl_fromBitsStep_toBits :
     ∀ (d : Data) (top : List Data) (rest : List (List Data)),
       d.toBits.foldl Data.fromBitsStep (some (top :: rest)) = some ((top ++ [d]) :: rest) := by
@@ -210,13 +243,17 @@ theorem Data.foldl_fromBitsStep_toBits :
   intro d top rest
   exact key d.size d top rest (Nat.le_refl _)
 
-/-- `Data.fromBits` recovers any value serialized by `Data.toBits`. -/
+/-- `Data.fromBits` recovers any value serialized by `Data.toBits`.
+@isnad1 id=eq.0h1v.s3.4c857635058d from=translated src=- shape=edb93955 vocab=2d6b9d83
+-/
 @[simp]
 theorem Data.fromBits_toBits (d : Data) : Data.fromBits d.toBits = some d := by
   simp only [Data.fromBits, Data.foldl_fromBitsStep_toBits, List.nil_append]
 
 /-- `Data.toBits` is injective: the parenthesized serialization determines the value. This follows
-from `Data.fromBits` being a left inverse. -/
+from `Data.fromBits` being a left inverse.
+@isnad1 id=injectiv.0h0v.s2.39f964735189 from=translated src=- shape=4b736592 vocab=1d72ce0c
+-/
 theorem Data.toBits_injective : Function.Injective Data.toBits := by
   intro a b h
   have := Data.fromBits_toBits a

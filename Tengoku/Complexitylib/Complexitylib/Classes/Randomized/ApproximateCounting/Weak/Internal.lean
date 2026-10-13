@@ -20,6 +20,9 @@ namespace ApproximateCounting
 
 namespace Weak
 
+/--
+@isnad1 id=lt.0h2v.s5.7ac9045bfa53 from=translated src=- shape=7eade5ef vocab=15a04ed5
+-/
 theorem estimate_lt_two_pow_add_four_internal {domainWidth : ℕ}
     (responses : Level domainWidth → Bool) :
     estimate responses < 2 ^ (domainWidth + 4) := by
@@ -29,11 +32,17 @@ theorem estimate_lt_two_pow_add_four_internal {domainWidth : ℕ}
     exact (selectedLevel responses).isLt
   · exact Nat.two_pow_pos _
 
+/--
+@isnad1 id=iff.0h3v.s6.baf3f33a1954 from=translated src=- shape=756558af vocab=ae853382
+-/
 theorem mem_trueLevels_iff_internal {domainWidth : ℕ}
     {responses : Level domainWidth → Bool} {level : Level domainWidth} :
     level ∈ trueLevels responses ↔ responses level = true := by
   simp [trueLevels]
 
+/--
+@isnad1 id=mem.1h2v.s6.deff9b15f242 from=translated src=- shape=27a7a2fa vocab=79ad591d
+-/
 theorem selectedLevel_mem_trueLevels_internal {domainWidth : ℕ}
     {responses : Level domainWidth → Bool}
     (hnonempty : (trueLevels responses).Nonempty) :
@@ -41,6 +50,9 @@ theorem selectedLevel_mem_trueLevels_internal {domainWidth : ℕ}
   simp only [selectedLevel, dite_eq_left hnonempty]
   exact Finset.max'_mem _ _
 
+/--
+@isnad1 id=le.1h3v.s6.dc66a3692596 from=translated src=- shape=d079c200 vocab=283e5c6d
+-/
 theorem le_selectedLevel_of_mem_internal {domainWidth : ℕ}
     {responses : Level domainWidth → Bool} {level : Level domainWidth}
     (hlevel : level ∈ trueLevels responses) :
@@ -49,6 +61,9 @@ theorem le_selectedLevel_of_mem_internal {domainWidth : ℕ}
   simp only [selectedLevel, dite_eq_left hnonempty]
   exact Finset.le_max' _ _ hlevel
 
+/--
+@isnad1 id=eq.1h2v.s5.9d0a4235e7af from=translated src=- shape=8129b995 vocab=9f70f210
+-/
 theorem response_selectedLevel_eq_true_of_nonempty_internal {domainWidth : ℕ}
     {responses : Level domainWidth → Bool}
     (hnonempty : (trueLevels responses).Nonempty) :
@@ -56,6 +71,9 @@ theorem response_selectedLevel_eq_true_of_nonempty_internal {domainWidth : ℕ}
   mem_trueLevels_iff_internal.mp
     (selectedLevel_mem_trueLevels_internal hnonempty)
 
+/--
+@isnad1 id=eq.2h3v.s5.459b8397d92a from=translated src=- shape=41baedca vocab=90c5ae23
+-/
 theorem estimate_eq_zero_of_cardinality_eq_zero_internal
     {domainWidth cardinality : ℕ} {responses : Level domainWidth → Bool}
     (haccurate : ResponsesAccurate (cardinality := cardinality) responses)
@@ -66,6 +84,9 @@ theorem estimate_eq_zero_of_cardinality_eq_zero_internal
     simpa using haccurate.1
   simp [estimate, hresponse]
 
+/--
+@isnad1 id=eq.2h3v.s5.c4cd03e6ad8c from=translated src=- shape=79ca4e7a vocab=2b06802f
+-/
 theorem estimate_eq_pow_of_cardinality_pos_internal
     {domainWidth cardinality : ℕ} {responses : Level domainWidth → Bool}
     (haccurate : ResponsesAccurate (cardinality := cardinality) responses)
@@ -75,6 +96,9 @@ theorem estimate_eq_pow_of_cardinality_pos_internal
     simpa [hpositive] using haccurate.1
   simp [estimate, hresponse]
 
+/--
+@isnad1 id=eq.2h3v.s5.48447f070cd7 from=translated src=- shape=39313a08 vocab=2870f653
+-/
 theorem selectedLevel_response_eq_true_of_cardinality_pos_internal
     {domainWidth cardinality : ℕ} {responses : Level domainWidth → Bool}
     (haccurate : ResponsesAccurate (cardinality := cardinality) responses)
@@ -86,6 +110,9 @@ theorem selectedLevel_response_eq_true_of_cardinality_pos_internal
     mem_trueLevels_iff_internal.mpr hzeroResponse
   exact response_selectedLevel_eq_true_of_nonempty_internal ⟨_, hzeroMem⟩
 
+/--
+@isnad1 id=le.1h3v.s5.a6cbff08ab9d from=translated src=- shape=a3a4d845 vocab=90e37a27
+-/
 theorem estimate_le_sixteen_mul_internal
     {domainWidth cardinality : ℕ} {responses : Level domainWidth → Bool}
     (haccurate : ResponsesAccurate (cardinality := cardinality) responses) :
@@ -104,6 +131,9 @@ theorem estimate_le_sixteen_mul_internal
     rw [estimate_eq_pow_of_cardinality_pos_internal haccurate hpositive]
     omega
 
+/--
+@isnad1 id=le.2h3v.s5.d49ae379d34e from=translated src=- shape=b3feb359 vocab=19efccfa
+-/
 theorem cardinality_le_sixteen_mul_estimate_internal
     {domainWidth cardinality : ℕ} {responses : Level domainWidth → Bool}
     (hcardinality : cardinality ≤ 2 ^ domainWidth)
@@ -154,6 +184,9 @@ theorem cardinality_le_sixteen_mul_estimate_internal
       rw [Nat.pow_succ] at hcardinalityLt
       omega
 
+/--
+@isnad1 id=isfactor.2h3v.s5.15ed2bb5752b from=translated src=- shape=acc50611 vocab=ef2d3715
+-/
 theorem estimate_isFactorApproximation_internal
     {domainWidth cardinality : ℕ} {responses : Level domainWidth → Bool}
     (hcardinality : cardinality ≤ 2 ^ domainWidth)

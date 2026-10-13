@@ -55,12 +55,18 @@ open NumEnc (card enc dec)
 
 variable {α β : Type}
 
+/--
+@isnad1 id=injectiv.0h1v.s3.ca9f73e71557 from=translated src=- shape=ea7efaed vocab=0d6c82b2
+-/
 theorem enc_injective [NumEnc α] : Function.Injective (enc : α → ℕ) := by
   intro a b h
   have ha := dec_enc a
   rw [h, dec_enc b] at ha
   exact (Option.some_injective _ ha).symm
 
+/--
+@isnad1 id=eq.1h2v.s4.a6a684a4039e from=translated src=- shape=79fa0619 vocab=aa690c8e
+-/
 theorem dec_eq_none_of_le [NumEnc α] {i : ℕ} (h : card α ≤ i) : dec i = (none : Option α) := by
   cases hd : (dec i : Option α) with
   | none => rfl
@@ -72,18 +78,29 @@ theorem dec_eq_none_of_le [NumEnc α] {i : ℕ} (h : card α ≤ i) : dec i = (n
 /-- The value a number in range names. -/
 def get [NumEnc α] {i : ℕ} (h : i < card α) : α := (dec i).get (dec_isSome i h)
 
+/--
+@isnad1 id=eq.1h2v.s4.79daab29b793 from=translated src=- shape=f97eaab1 vocab=ca79b879
+-/
 @[simp] theorem dec_get [NumEnc α] {i : ℕ} (h : i < card α) : dec (α := α) i = some (get h) :=
   (Option.some_get _).symm
 
+/--
+@isnad1 id=eq.1h2v.s4.ef5839c9b228 from=translated src=- shape=d7f1c559 vocab=3b30cd17
+-/
 @[simp] theorem enc_get [NumEnc α] {i : ℕ} (h : i < card α) : enc (get h) = i :=
   enc_dec i _ (dec_get h)
 
+/--
+@isnad1 id=eq.0h2v.s4.649dfe6b7b09 from=translated src=- shape=07f84590 vocab=39ccf5c1
+-/
 @[simp] theorem get_enc [NumEnc α] (a : α) : get (enc_lt a) = a := by
   have h := dec_get (enc_lt a)
   rw [dec_enc a] at h
   exact (Option.some_injective _ h).symm
 
-/-- **The count is the number of values.** -/
+/-- **The count is the number of values.**
+@isnad1 id=eq.0h1v.s4.9565b10f47e8 from=translated src=- shape=a60138b4 vocab=0a254edc
+-/
 theorem card_eq_fintype_card (α : Type) [Fintype α] [NumEnc α] :
     card α = Fintype.card α := by
   have hbij : Function.Bijective (fun i : Fin (card α) => get i.isLt) := by
@@ -112,6 +129,9 @@ a drop-in replacement for `Fintype.equivFin` that an algorithm can follow. -/
 noncomputable def equivFinCard (α : Type) [Fintype α] [NumEnc α] : α ≃ Fin (Fintype.card α) :=
   (equivFin α).trans (finCongr (card_eq_fintype_card α))
 
+/--
+@isnad1 id=eq.0h2v.s5.bc6804507f69 from=translated src=- shape=ce2b7266 vocab=23c3e4f3
+-/
 @[simp] theorem val_equivFinCard (α : Type) [Fintype α] [NumEnc α] (a : α) :
     (equivFinCard α a).val = enc a := rfl
 
@@ -172,6 +192,9 @@ instance instUnit : NumEnc Unit where
     subst h0
     rfl
 
+/--
+@isnad1 id=lt.0h4v.s5.e211efa3d278 from=translated src=- shape=b7fd9417 vocab=e3c1d35b
+-/
 theorem prod_lt [NumEnc α] [NumEnc β] (a : α) (b : β) :
     enc a * card β + enc b < card α * card β := by
   have h1 := enc_lt a
@@ -180,6 +203,9 @@ theorem prod_lt [NumEnc α] [NumEnc β] (a : α) (b : β) :
     _ = (enc a + 1) * card β := by ring
     _ ≤ card α * card β := Nat.mul_le_mul_right _ h1
 
+/--
+@isnad1 id=eq.0h4v.s5.73561a247ebc from=translated src=- shape=054958a3 vocab=a2e89a1a
+-/
 theorem prod_div [NumEnc α] [NumEnc β] (a : α) (b : β) :
     (enc a * card β + enc b) / card β = enc a := by
   have h2 := enc_lt b
@@ -187,6 +213,9 @@ theorem prod_div [NumEnc α] [NumEnc β] (a : α) (b : β) :
   rw [show enc a * card β + enc b = enc b + card β * enc a by ring,
     Nat.add_mul_div_left _ _ hb, Nat.div_eq_of_lt h2, Nat.zero_add]
 
+/--
+@isnad1 id=eq.0h4v.s5.0c8e2b5302c8 from=translated src=- shape=759a12e7 vocab=fca4342b
+-/
 theorem prod_mod [NumEnc α] [NumEnc β] (a : α) (b : β) :
     (enc a * card β + enc b) % card β = enc b := by
   have h2 := enc_lt b

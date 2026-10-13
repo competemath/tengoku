@@ -59,9 +59,15 @@ def loopGraph (V : Type) [DecidableEq V] [Fintype V] : RegGraph where
   rot p := p
   rot_involutive _ := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.702b675c91ff from=translated src=- shape=4a5663ef vocab=8ca92ce6
+-/
 @[simp] theorem V_loopGraph (V : Type) [DecidableEq V] [Fintype V] :
     (loopGraph V).V = V := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.29ff084794ec from=translated src=- shape=77d2273b vocab=b0a6f870
+-/
 @[simp] theorem deg_loopGraph (V : Type) [DecidableEq V] [Fintype V] :
     (loopGraph V).deg = 1 := Fintype.card_unit
 
@@ -70,10 +76,19 @@ variable (G : RegGraph)
 /-- `G` with a self-loop added at every vertex. -/
 def addLoops : RegGraph := union (loopGraph G.V) G (Equiv.refl G.V)
 
+/--
+@isnad1 id=eq.0h1v.s3.c64fac72bd50 from=translated src=- shape=6a035246 vocab=85b29569
+-/
 @[simp] theorem V_addLoops : G.addLoops.V = G.V := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.a7ab5b31aed9 from=translated src=- shape=8d4cac31 vocab=35a08e80
+-/
 @[simp] theorem order_addLoops : G.addLoops.order = G.order := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.72efc1106c6c from=translated src=- shape=4241f1af vocab=7faa1e6b
+-/
 @[simp] theorem deg_addLoops : G.addLoops.deg = 1 + G.deg := by
   rw [addLoops, deg_union (G := loopGraph G.V) (H := G) (e := Equiv.refl G.V),
     deg_loopGraph]
@@ -83,13 +98,18 @@ def addLoopsLoops : G.addLoops.Loops where
   loop _ := Sum.inl ()
   rot_loop _ := rfl
 
-/-- Adding loops keeps a spectral bound below one. -/
+/-- Adding loops keeps a spectral bound below one.
+@isnad1 id=spectral.2h2v.s6.f649341de973 from=translated src=- shape=39fec4af vocab=43263dca
+-/
 theorem spectralBound_addLoops {lam : ℝ} (hlam : 0 ≤ lam) (h : G.SpectralBound lam) :
     G.addLoops.SpectralBound ((1 + (G.deg : ℝ) * lam) / (1 + (G.deg : ℝ))) := by
   have hu := spectralBound_union (loopGraph G.V) G (Equiv.refl G.V) hlam h
   rw [deg_loopGraph] at hu
   exact_mod_cast hu
 
+/--
+@isnad1 id=lt.1h2v.s6.2f5c54c18ab0 from=translated src=- shape=38cb0f11 vocab=33064e1c
+-/
 theorem addLoops_bound_lt_one {lam : ℝ} (hlam1 : lam < 1) :
     (1 + (G.deg : ℝ) * lam) / (1 + (G.deg : ℝ)) < 1 := by
   have hd : (0 : ℝ) < (G.deg : ℝ) := by have := G.deg_pos; positivity
@@ -110,9 +130,14 @@ def addLoops : RegCSP α where
     | Sum.inl _ => true
     | Sum.inr i => R.rel v i a b
 
+/--
+@isnad1 id=eq.0h2v.s4.b995e008d44b from=translated src=- shape=beff4bbb vocab=ee62c8c6
+-/
 @[simp] theorem graph_addLoops : R.addLoops.graph = R.graph.addLoops := rfl
 
-/-- The broken darts are unchanged: only the original constraints can fail. -/
+/-- The broken darts are unchanged: only the original constraints can fail.
+@isnad1 id=eq.0h3v.s4.d536af7559bf from=translated src=- shape=9300ef49 vocab=1721ee21
+-/
 theorem card_unsatDarts_addLoops (a : R.Assignment) :
     (R.addLoops.unsatDarts a).card = (R.unsatDarts a).card := by
   classical
@@ -129,7 +154,9 @@ theorem card_unsatDarts_addLoops (a : R.Assignment) :
     · refine ⟨(v, i), ?_, rfl⟩
       exact (mem_unsatDarts (R := R)).mpr ((mem_unsatDarts (R := R.addLoops)).mp hq)
 
-/-- Adding loops scales the value by `deg / (deg + 1)`. -/
+/-- Adding loops scales the value by `deg / (deg + 1)`.
+@isnad1 id=eq.0h3v.s5.fe2a623a6fa3 from=translated src=- shape=2dad9cd6 vocab=8baafe42
+-/
 theorem unsatFrac_addLoops (a : R.Assignment) :
     R.addLoops.unsatFrac a
       = R.unsatFrac a * (R.graph.deg : ℚ) / ((R.graph.deg : ℚ) + 1) := by
@@ -161,7 +188,9 @@ theorem unsatFrac_addLoops (a : R.Assignment) :
     push_cast
     ring
 
-/-- The scaling passes to the value. -/
+/-- The scaling passes to the value.
+@isnad1 id=eq.0h2v.s6.d89c39c0ee60 from=translated src=- shape=f88d90e3 vocab=11cb5dae
+-/
 theorem unsatVal_addLoops [Fintype α] [Nonempty α] :
     R.addLoops.unsatVal = R.unsatVal * (R.graph.deg : ℚ) / ((R.graph.deg : ℚ) + 1) := by
   have hk : (0 : ℚ) ≤ (R.graph.deg : ℚ) / ((R.graph.deg : ℚ) + 1) := by positivity
@@ -174,6 +203,9 @@ theorem unsatVal_addLoops [Fintype α] [Nonempty α] :
   · rw [← hb, R.unsatFrac_addLoops b, mul_div_assoc, mul_div_assoc]
     exact mul_le_mul_of_nonneg_right (R.unsatVal_le b) hk
 
+/--
+@isnad1 id=iff.0h2v.s3.957849e6ac6f from=translated src=- shape=5351fd92 vocab=a7b4d17b
+-/
 theorem satisfiable_addLoops_iff : R.addLoops.Satisfiable ↔ R.Satisfiable := by
   constructor
   · rintro ⟨a, ha⟩

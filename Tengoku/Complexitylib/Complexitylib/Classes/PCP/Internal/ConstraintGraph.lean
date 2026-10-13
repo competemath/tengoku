@@ -90,6 +90,9 @@ instance (G : ConstraintGraph α) (a : G.Assignment) (e : Fin G.numEdges) :
     Decidable (G.Satisfies a e) :=
   inferInstanceAs (Decidable (G.satisfies a e = true))
 
+/--
+@isnad1 id=iff.0h4v.s5.fb3ad7ef97ad from=translated src=- shape=9d4b827d vocab=db1a3117
+-/
 theorem satisfies_iff {a : G.Assignment} {e : Fin G.numEdges} :
     G.Satisfies a e ↔ G.rel e (a (G.tail e)) (a (G.head e)) = true := Iff.rfl
 
@@ -97,6 +100,9 @@ theorem satisfies_iff {a : G.Assignment} {e : Fin G.numEdges} :
 def unsatEdges (G : ConstraintGraph α) (a : G.Assignment) : Finset (Fin G.numEdges) :=
   Finset.univ.filter fun e => ¬ G.Satisfies a e
 
+/--
+@isnad1 id=iff.0h4v.s5.bf58b717489c from=translated src=- shape=f78b0dc4 vocab=bbb000a5
+-/
 @[simp] theorem mem_unsatEdges {a : G.Assignment} {e : Fin G.numEdges} :
     e ∈ G.unsatEdges a ↔ ¬ G.Satisfies a e := by
   simp [unsatEdges]
@@ -106,12 +112,21 @@ value `0`. -/
 def unsatFrac (G : ConstraintGraph α) (a : G.Assignment) : ℚ :=
   ((G.unsatEdges a).card : ℚ) / (G.numEdges : ℚ)
 
+/--
+@isnad1 id=le.0h3v.s4.bb5ae6145b69 from=translated src=- shape=96b23e71 vocab=fdcc385c
+-/
 theorem unsatFrac_nonneg (a : G.Assignment) : 0 ≤ G.unsatFrac a := by
   unfold unsatFrac; positivity
 
+/--
+@isnad1 id=le.0h3v.s4.d9d8bdd48342 from=translated src=- shape=41b830b3 vocab=d138a1d4
+-/
 theorem card_unsatEdges_le (a : G.Assignment) : (G.unsatEdges a).card ≤ G.numEdges := by
   simpa using Finset.card_le_univ (G.unsatEdges a)
 
+/--
+@isnad1 id=le.0h3v.s4.4f9a6c324559 from=translated src=- shape=a04f7314 vocab=fdcc385c
+-/
 theorem unsatFrac_le_one (a : G.Assignment) : G.unsatFrac a ≤ 1 := by
   rcases Nat.eq_zero_or_pos G.numEdges with h | h
   · simp [unsatFrac, h]
@@ -120,7 +135,9 @@ theorem unsatFrac_le_one (a : G.Assignment) : G.unsatFrac a ≤ 1 := by
     exact_mod_cast card_unsatEdges_le a
 
 /-- An assignment wastes no edges exactly when it satisfies every edge. This
-holds for the edgeless graph too, where both sides are trivially true. -/
+holds for the edgeless graph too, where both sides are trivially true.
+@isnad1 id=iff.0h3v.s4.6b92e47b473d from=translated src=- shape=9519a453 vocab=1872281c
+-/
 theorem unsatFrac_eq_zero_iff {a : G.Assignment} :
     G.unsatFrac a = 0 ↔ ∀ e, G.Satisfies a e := by
   constructor
@@ -153,26 +170,42 @@ leaves unsatisfied. -/
 noncomputable def unsatVal (G : ConstraintGraph α) : ℚ :=
   (Finset.univ : Finset G.Assignment).inf' Finset.univ_nonempty G.unsatFrac
 
+/--
+@isnad1 id=le.0h3v.s4.6b318298eac2 from=translated src=- shape=b4fc5aef vocab=d3dec308
+-/
 theorem unsatVal_le (a : G.Assignment) : G.unsatVal ≤ G.unsatFrac a :=
   Finset.inf'_le _ (Finset.mem_univ a)
 
+/--
+@isnad1 id=le.1h3v.s5.be0608b9c6ac from=translated src=- shape=3e45031a vocab=d3dec308
+-/
 theorem le_unsatVal {c : ℚ} (h : ∀ a : G.Assignment, c ≤ G.unsatFrac a) : c ≤ G.unsatVal :=
   Finset.le_inf' _ _ fun a _ => h a
 
-/-- The minimum defining `unsatVal` is attained. -/
+/-- The minimum defining `unsatVal` is attained.
+@isnad1 id=ex.0h2v.s4.e4e79d579d57 from=translated src=- shape=775c122a vocab=0e445de1
+-/
 theorem exists_assignment_unsatFrac_eq_unsatVal (G : ConstraintGraph α) :
     ∃ a : G.Assignment, G.unsatFrac a = G.unsatVal := by
   obtain ⟨a, -, ha⟩ := Finset.exists_mem_eq_inf' (Finset.univ_nonempty) G.unsatFrac
   exact ⟨a, ha.symm⟩
 
+/--
+@isnad1 id=le.0h2v.s4.faf7eb55efbf from=translated src=- shape=c6df0ad6 vocab=8ba52b4a
+-/
 theorem unsatVal_nonneg (G : ConstraintGraph α) : 0 ≤ G.unsatVal :=
   le_unsatVal fun a => unsatFrac_nonneg a
 
+/--
+@isnad1 id=le.0h2v.s4.8a00fa00b7ae from=translated src=- shape=5cb50a6d vocab=8ba52b4a
+-/
 theorem unsatVal_le_one (G : ConstraintGraph α) : G.unsatVal ≤ 1 := by
   obtain ⟨a, ha⟩ := G.exists_assignment_unsatFrac_eq_unsatVal
   exact ha ▸ unsatFrac_le_one a
 
-/-- The zero-gap case is exactly satisfiability. -/
+/-- The zero-gap case is exactly satisfiability.
+@isnad1 id=iff.0h2v.s4.56a42464ecb1 from=translated src=- shape=be0b1585 vocab=9e22e627
+-/
 theorem unsatVal_eq_zero_iff_satisfiable (G : ConstraintGraph α) :
     G.unsatVal = 0 ↔ G.Satisfiable := by
   constructor
@@ -184,7 +217,9 @@ theorem unsatVal_eq_zero_iff_satisfiable (G : ConstraintGraph α) :
     exact le_antisymm (h0 ▸ unsatVal_le a) G.unsatVal_nonneg
 
 omit [Fintype α] in
-/-- An unsatisfiable graph has an edge, since otherwise any labelling works. -/
+/-- An unsatisfiable graph has an edge, since otherwise any labelling works.
+@isnad1 id=lt.1h2v.s4.1bc9598b745d from=translated src=- shape=335d611d vocab=6dff746f
+-/
 theorem numEdges_pos_of_not_satisfiable (h : ¬ G.Satisfiable) : 0 < G.numEdges := by
   rcases Nat.eq_zero_or_pos G.numEdges with h0 | h0
   · exact absurd ⟨(fun _ => Classical.arbitrary α : G.Assignment), fun e => absurd e.isLt
@@ -193,7 +228,9 @@ theorem numEdges_pos_of_not_satisfiable (h : ¬ G.Satisfiable) : 0 < G.numEdges 
 
 omit [Fintype α] in
 /-- On an unsatisfiable graph every assignment fails at least one edge, so its
-value is at least one edge's worth. -/
+value is at least one edge's worth.
+@isnad1 id=le.1h3v.s5.7cfe14bb9c0c from=translated src=- shape=28e3c18d vocab=cf55ff43
+-/
 theorem inv_numEdges_le_unsatFrac (h : ¬ G.Satisfiable) (a : G.Assignment) :
     1 / (G.numEdges : ℚ) ≤ G.unsatFrac a := by
   have hpos : 0 < G.numEdges := numEdges_pos_of_not_satisfiable h
@@ -208,17 +245,25 @@ theorem inv_numEdges_le_unsatFrac (h : ¬ G.Satisfiable) (a : G.Assignment) :
   rw [unsatFrac]
   gcongr
 
+/--
+@isnad1 id=le.1h2v.s5.8ee5493c87b1 from=translated src=- shape=fdb7a5d5 vocab=00532876
+-/
 theorem inv_numEdges_le_unsatVal (h : ¬ G.Satisfiable) :
     1 / (G.numEdges : ℚ) ≤ G.unsatVal :=
   le_unsatVal fun a => inv_numEdges_le_unsatFrac h a
 
+/--
+@isnad1 id=lt.1h2v.s4.308242007377 from=translated src=- shape=36823079 vocab=e01b7ecc
+-/
 theorem unsatVal_pos_of_not_satisfiable (h : ¬ G.Satisfiable) : 0 < G.unsatVal := by
   refine lt_of_lt_of_le ?_ (inv_numEdges_le_unsatVal h)
   have : (0 : ℚ) < (G.numEdges : ℚ) := by
     exact_mod_cast numEdges_pos_of_not_satisfiable h
   positivity
 
-/-- A positive value certifies unsatisfiability. -/
+/-- A positive value certifies unsatisfiability.
+@isnad1 id=not.1h2v.s4.a51a20bc3885 from=translated src=- shape=8cdfed68 vocab=e01b7ecc
+-/
 theorem not_satisfiable_of_unsatVal_pos {G : ConstraintGraph α} (h : 0 < G.unsatVal) :
     ¬ G.Satisfiable := fun hs => absurd ((unsatVal_eq_zero_iff_satisfiable G).mpr hs) (ne_of_gt h)
 

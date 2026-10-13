@@ -31,7 +31,9 @@ abbrev CandidateBackground (seedLength outputLength : ℕ)
     {tail : Fin outputLength → Bool // tail step = false}
 
 /-- The all-false seed and tail witness that every candidate-background space
-is nonempty. -/
+is nonempty.
+@isnad1 id=nonempty.0h3v.s3.f10e73a3cb1e from=translated src=- shape=060482dd vocab=8008c6f0
+-/
 instance candidateBackgroundNonempty (seedLength outputLength : ℕ)
     (step : Fin outputLength) :
     Nonempty (CandidateBackground seedLength outputLength step) :=

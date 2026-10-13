@@ -48,7 +48,9 @@ def FOInterpretation.translateSO (I : FOInterpretation V W) :
   | _, _, .soExist k φ => .soExist k (I.translateSO φ)
   | _, _, .soAll k φ => .soAll k (I.translateSO φ)
 
-/-- SO transport, including open element and relation environments. -/
+/-- SO transport, including open element and relation environments.
+@isnad1 id=iff.0h9v.s5.21cff78135fb from=translated src=- shape=4e483b79 vocab=5617b1ac
+-/
 theorem FOInterpretation.translateSO_sat (I : FOInterpretation V W) (A : FinStruct V)
     {rctx : List Nat} {n : Nat} (φ : SOFormula W rctx n)
     (σ : Env A.card n) (ρ : REnv A.card rctx) :
@@ -70,14 +72,18 @@ theorem FOInterpretation.translateSO_sat (I : FOInterpretation V W) (A : FinStru
   | soExist k φ ih => exact exists_congr fun S => ih σ (rCons S ρ)
   | soAll k φ ih => exact forall_congr' fun S => ih σ (rCons S ρ)
 
-/-- Pullback preserves and reflects the absence of second-order quantifiers. -/
+/-- Pullback preserves and reflects the absence of second-order quantifiers.
+@isnad1 id=iff.0h6v.s5.288312373da1 from=translated src=- shape=271f7a29 vocab=b3d5f222
+-/
 theorem FOInterpretation.isFOMatrix_translateSO (I : FOInterpretation V W)
     {rctx : List Nat} {n : Nat} (φ : SOFormula W rctx n) :
     (I.translateSO φ).IsFOMatrix ↔ φ.IsFOMatrix := by
   induction φ <;> simp [FOInterpretation.translateSO, SOFormula.IsFOMatrix,
     SOFormula.ofFormula_isFOMatrix, *]
 
-/-- Pullback preserves existential second-order prefix form. -/
+/-- Pullback preserves existential second-order prefix form.
+@isnad1 id=iff.0h6v.s5.69979fdf089a from=translated src=- shape=271f7a29 vocab=e7ac99da
+-/
 theorem FOInterpretation.isExistSO_translateSO (I : FOInterpretation V W)
     {rctx : List Nat} {n : Nat} (φ : SOFormula W rctx n) :
     (I.translateSO φ).IsExistSO ↔ φ.IsExistSO := by
@@ -85,7 +91,9 @@ theorem FOInterpretation.isExistSO_translateSO (I : FOInterpretation V W)
     SOFormula.IsFOMatrix, SOFormula.ofFormula_isExistSO,
     FOInterpretation.isFOMatrix_translateSO, *]
 
-/-- Second-order definability is closed under the existing FO reductions. -/
+/-- Second-order definability is closed under the existing FO reductions.
+@isnad1 id=sodefina.2h4v.s4.f6b832e0ecde from=translated src=- shape=bd0a1ff2 vocab=ebf8c86a
+-/
 theorem SODefinable.of_reduces {Q₁ : BooleanQuery V} {Q₂ : BooleanQuery W}
     (hQ₂ : SODefinable Q₂) (hred : FOReduces Q₁ Q₂) : SODefinable Q₁ := by
   obtain ⟨I, hI⟩ := hred

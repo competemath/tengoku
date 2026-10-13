@@ -25,7 +25,9 @@ namespace Complexity
 
 namespace BinaryRippleSub
 
-/-- Canonical ripple-borrow subtraction agrees with natural-number monus. -/
+/-- Canonical ripple-borrow subtraction agrees with natural-number monus.
+@isnad1 id=eq.0h2v.s4.772a026966f3 from=translated src=- shape=cd8271d2 vocab=eaee75c9
+-/
 theorem subtract_natBits (lhs rhs : ℕ) :
     subtract lhs.bits rhs.bits = (lhs - rhs).bits :=
   subtract_natBits_internal lhs rhs
@@ -34,14 +36,18 @@ end BinaryRippleSub
 
 namespace TM
 
-/-- The complete subtractor has a linear bit-width envelope. -/
+/-- The complete subtractor has a linear bit-width envelope.
+@isnad1 id=le.0h2v.s5.f0b5536318eb from=translated src=- shape=6f1d15fb vocab=aa4274c1
+-/
 theorem binaryRippleSubTime_le (lhs rhs : ℕ) :
     binaryRippleSubTime lhs rhs ≤ 3 * (lhs.size + rhs.size) + 10 :=
   binaryRippleSubTime_le_internal lhs rhs
 
 /-- Framed time contract for truncated subtraction. Both operands are restored,
 the initially-zero result becomes their natural-number difference, and every
-unrelated tape is preserved exactly. -/
+unrelated tape is preserved exactly.
+@isnad1 id=hoaretim.7h9v.s7.7e29604f8895 from=translated src=- shape=85c77d4f vocab=1840a119
+-/
 theorem binaryRippleSubTM_hoareTime_frame {n : ℕ}
     (lhsIdx rhsIdx resultIdx : Fin n)
     (hdistinct : BinaryRippleSubDistinct lhsIdx rhsIdx resultIdx)
@@ -69,7 +75,9 @@ theorem binaryRippleSubTM_hoareTime_frame {n : ℕ}
     hdistinct lhs rhs inp₀ work₀ out₀ hlhs hrhs hresult hinput hother
     houtput
 
-/-- Reachability form of the framed subtraction theorem. -/
+/-- Reachability form of the framed subtraction theorem.
+@isnad1 id=ex.7h9v.s8.2ce041c84c3f from=translated src=- shape=5b69d73d vocab=56dfddf1
+-/
 theorem binaryRippleSubTM_reachesIn_frame {n : ℕ}
     (lhsIdx rhsIdx resultIdx : Fin n)
     (hdistinct : BinaryRippleSubDistinct lhsIdx rhsIdx resultIdx)
@@ -102,7 +110,9 @@ theorem binaryRippleSubTM_reachesIn_frame {n : ℕ}
     inp₀ work₀ out₀ ⟨rfl, rfl, rfl⟩
 
 /-- All-prefix auxiliary-space contract obtained from the concrete linear
-time bound. -/
+time bound.
+@isnad1 id=hoaretim.8h11v.s7.2a010382696c from=translated src=- shape=c8d00981 vocab=b6da8ee3
+-/
 theorem binaryRippleSubTM_hoareTimeSpace_frame {n : ℕ}
     (lhsIdx rhsIdx resultIdx : Fin n)
     (hdistinct : BinaryRippleSubDistinct lhsIdx rhsIdx resultIdx)
@@ -138,7 +148,9 @@ theorem binaryRippleSubTM_hoareTimeSpace_frame {n : ℕ}
     hdistinct lhs rhs inputLength initialSpace inp₀ work₀ out₀ hlhs hrhs
     hresult hinput hother houtput hinitial
 
-/-- Canonical subtraction never moves the public output head left. -/
+/-- Canonical subtraction never moves the public output head left.
+@isnad1 id=istransd.0h4v.s4.51f61becfbaf from=translated src=- shape=0b195b8b vocab=3c7422f2
+-/
 theorem binaryRippleSubTM_isTransducer {n : ℕ}
     (lhsIdx rhsIdx resultIdx : Fin n) :
     (binaryRippleSubTM lhsIdx rhsIdx resultIdx).IsTransducer :=

@@ -61,7 +61,9 @@ def relationEnv {card arity : Nat} (args : Fin arity → Fin (tags * card ^ dim)
   (elementEquiv card tags dim (args (finProdFinEquiv.symm k).1)).2
     (finProdFinEquiv.symm k).2
 
-/-- The full interpreted universe still has at least two elements. -/
+/-- The full interpreted universe still has at least two elements.
+@isnad1 id=le.0h6v.s5.0ab27ec6f975 from=translated src=- shape=38549426 vocab=b9ee577e
+-/
 theorem two_le_card (I : TaggedFOInterpretation V W tags dim) (A : FinStruct V) :
     2 ≤ tags * A.card ^ dim := by
   exact A.hcard.trans ((Nat.le_pow I.dim_pos).trans

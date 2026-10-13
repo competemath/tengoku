@@ -19,6 +19,9 @@ namespace Complexity
 
 namespace TM
 
+/--
+@isnad1 id=hoaretim.6h7v.s7.62290eb39129 from=translated src=- shape=c9c5d645 vocab=2c7152bd
+-/
 theorem rewindBinaryWorkTM_hoareTime_frame_internal {n : ℕ}
     (idx : Fin n) (bits : List Bool) (headBound : ℕ)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
@@ -70,6 +73,9 @@ theorem rewindBinaryWorkTM_hoareTime_frame_internal {n : ℕ}
       (hcontent.hasBinaryString hhead) hstart
   · exact le_rfl
 
+/--
+@isnad1 id=hoaretim.6h7v.s7.5acdde5875d3 from=translated src=- shape=be39eff5 vocab=1f07d8fc
+-/
 theorem resetBinaryWorkTM_hoareTime_frame_internal {n : ℕ}
     (idx : Fin n) (bits : List Bool) (headBound : ℕ)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)

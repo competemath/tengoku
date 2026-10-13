@@ -23,6 +23,9 @@ namespace Complexity.DescriptiveComplexity.TaggedFOInterpretation
 
 variable {U V W : Vocabulary} {t₁ d₁ t₂ d₂ : Nat}
 
+/--
+@isnad1 id=eq.0h6v.s7.7d8496fa416d from=translated src=- shape=71d709f7 vocab=e21feec3
+-/
 theorem flatten_unflatten (card t₁ d₁ t₂ d₂ : Nat)
     (x : Fin ((t₂ * t₁ ^ d₂) * card ^ (d₂ * d₁))) :
     flattenElement card t₁ d₁ t₂ d₂ (unflattenElement card t₁ d₁ t₂ d₂ x) = x := by
@@ -30,6 +33,9 @@ theorem flatten_unflatten (card t₁ d₁ t₂ d₂ : Nat)
   simp only [flattenElement, unflattenElement, Equiv.apply_symm_apply, Equiv.symm_apply_apply,
     Prod.mk.eta]
 
+/--
+@isnad1 id=eq.0h6v.s6.a15d472aba78 from=translated src=- shape=92070166 vocab=e21feec3
+-/
 theorem unflatten_flatten (card t₁ d₁ t₂ d₂ : Nat)
     (x : Fin (t₂ * (t₁ * card ^ d₁) ^ d₂)) :
     unflattenElement card t₁ d₁ t₂ d₂ (flattenElement card t₁ d₁ t₂ d₂ x) = x := by
@@ -37,6 +43,9 @@ theorem unflatten_flatten (card t₁ d₁ t₂ d₂ : Nat)
   simp only [flattenElement, unflattenElement, Equiv.apply_symm_apply, Equiv.symm_apply_apply,
     Prod.mk.eta]
 
+/--
+@isnad1 id=eq.0h8v.s9.21f898efd47c from=translated src=- shape=04c57cfb vocab=b53e9213
+-/
 theorem comp_coordEnv (A : FinStruct U) {arity : Nat}
     (args : Fin arity → Fin ((t₂ * t₁ ^ d₂) * A.card ^ (d₂ * d₁))) :
     coordEnv A (compTags (fun j => (elementEquiv A.card _ _ (args j)).1))

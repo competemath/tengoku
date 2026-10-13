@@ -308,7 +308,9 @@ private theorem seekFrontier_walk_loop (V : ℕ) :
     `seekFrontierTM` halts within `V + 3` steps having walked the clock
     head to the frontier (`max V 1`) with the cells untouched; the input
     tape, the output tape, and every other work tape are preserved
-    **exactly**. -/
+    **exactly**.
+@isnad1 id=hoaretim.4h4v.s7.39ec0402ee4c from=translated src=- shape=7a5bc1fd vocab=46b1926b
+-/
 theorem seekFrontierTM_hoareTime (V : ℕ) (inp₀ : Tape) (work₀ : Fin 7 → Tape)
     (out₀ : Tape)
     (hclk : work₀ clkT = regTape V)

@@ -76,7 +76,9 @@ private theorem pad0_dummy_step (w : Tape) (hc : w.cells = (Tape.init []).cells)
 
 /-- **Trace correspondence.** The padded machine's run tracks the original's
     component-wise; the dummy work tape keeps its initial cells with the head
-    parked at cell 0 or 1. -/
+    parked at cell 0 or 1.
+@isnad1 id=and.5h5v.s8.debd346ed9d3 from=translated src=- shape=7f7e85d5 vocab=9b85c2fd
+-/
 theorem pad0_trace (N : NTM 0) :
     ∀ (T : ℕ) (choices : Fin T → Bool) (c : Cfg 0 N.Q) (c1 : Cfg 1 N.Q),
       c1.state = c.state → c1.input = c.input → c1.output = c.output →
@@ -110,7 +112,9 @@ theorem pad0_trace (N : NTM 0) :
         · exact (pad0_dummy_step (c1.work 0) hwc hwh).1
         · exact (pad0_dummy_step (c1.work 0) hwc hwh).2
 
-/-- The trace correspondence at the initial configurations. -/
+/-- The trace correspondence at the initial configurations.
+@isnad1 id=and.0h4v.s7.6592d74b72e1 from=translated src=- shape=4b47c534 vocab=61364a9f
+-/
 theorem pad0_trace_init (N : NTM 0) (x : List Bool) (T : ℕ) (choices : Fin T → Bool) :
     ((pad0 N).trace T choices ((pad0 N).initCfg x)).state
         = (N.trace T choices (N.initCfg x)).state
@@ -120,14 +124,18 @@ theorem pad0_trace_init (N : NTM 0) (x : List Bool) (T : ℕ) (choices : Fin T �
         = (N.trace T choices (N.initCfg x)).output :=
   pad0_trace N T choices (N.initCfg x) ((pad0 N).initCfg x) rfl rfl rfl rfl (Nat.zero_le 1)
 
-/-- Padding preserves the all-paths halting bound. -/
+/-- Padding preserves the all-paths halting bound.
+@isnad1 id=allpaths.1h2v.s4.f562ae8ba826 from=translated src=- shape=555a46b8 vocab=4c3cce44
+-/
 theorem pad0_allPathsHaltIn {N : NTM 0} {T : ℕ → ℕ} (h : N.AllPathsHaltIn T) :
     (pad0 N).AllPathsHaltIn T := fun x choices => by
   show ((pad0 N).trace (T x.length) choices ((pad0 N).initCfg x)).state = N.qhalt
   rw [(pad0_trace_init N x (T x.length) choices).1]
   exact h x choices
 
-/-- Padding preserves timed acceptance, in both directions. -/
+/-- Padding preserves timed acceptance, in both directions.
+@isnad1 id=iff.0h3v.s5.1a2bf60c581c from=translated src=- shape=bef8406b vocab=4801f78f
+-/
 theorem pad0_acceptsInTime_iff (N : NTM 0) (x : List Bool) (Tn : ℕ) :
     (pad0 N).AcceptsInTime x Tn ↔ N.AcceptsInTime x Tn := by
   constructor
@@ -145,7 +153,9 @@ theorem pad0_acceptsInTime_iff (N : NTM 0) (x : List Bool) (Tn : ℕ) :
     · rw [ho]; exact hout
 
 /-- **Padding preserves deciding.** A 0-work-tape decider yields a 1-work-tape
-    decider for the same language in the same time bound. -/
+    decider for the same language in the same time bound.
+@isnad1 id=decidesi.1h3v.s5.5fa2c4da74fb from=translated src=- shape=06644e8c vocab=42909f61
+-/
 theorem pad0_decidesInTime {L : Language} {N : NTM 0} {T : ℕ → ℕ}
     (hdec : N.DecidesInTime L T) : (pad0 N).DecidesInTime L T :=
   ⟨pad0_allPathsHaltIn hdec.1,

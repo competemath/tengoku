@@ -35,13 +35,17 @@ def idIso (A : FinStruct V) : Iso ((idInterp V).apply A) A := by
   simpa only [idInterp, FOInterpretation.apply_idInterp] using
     (FOInterpretation.idInterp V).toTaggedIso A
 
-/-- Invariant queries cannot distinguish composition from successive application. -/
+/-- Invariant queries cannot distinguish composition from successive application.
+@isnad1 id=iff.1h11v.s6.e1f752c6951b from=translated src=- shape=aff9d26d vocab=19b7472f
+-/
 theorem comp_query (I₂ : TaggedFOInterpretation V W t₂ d₂)
     (I₁ : TaggedFOInterpretation U V t₁ d₁) (A : FinStruct U)
     {Q : BooleanQuery W} (hQ : Q.IsOrderIndependent) :
     Q ((I₂.comp I₁).apply A) ↔ Q (I₂.apply (I₁.apply A)) := hQ ⟨I₂.compIso I₁ A⟩
 
-/-- Translating along a composite agrees semantically with successive translations. -/
+/-- Translating along a composite agrees semantically with successive translations.
+@isnad1 id=iff.0h11v.s6.c28ba6f78b1e from=translated src=- shape=8401524a vocab=7b67e2a3
+-/
 theorem translateSentence_comp_models (I₂ : TaggedFOInterpretation V W t₂ d₂)
     (I₁ : TaggedFOInterpretation U V t₁ d₁) (A : FinStruct U) (φ : Sentence W) :
     Sentence.Models A ((I₂.comp I₁).translateSentence φ) ↔

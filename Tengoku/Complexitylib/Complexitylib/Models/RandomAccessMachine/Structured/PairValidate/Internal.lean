@@ -25,6 +25,9 @@ namespace Structured
 
 namespace PairValidate
 
+/--
+@isnad1 id=ex.0h1v.s5.311c00387fb9 from=translated src=- shape=823e7ee7 vocab=d4277d05
+-/
 theorem program_measured_internal (bits : List Bool) :
     ∃ final cost space,
       Exec program (inputStore bits) final (stepCount bits.length) cost space ∧

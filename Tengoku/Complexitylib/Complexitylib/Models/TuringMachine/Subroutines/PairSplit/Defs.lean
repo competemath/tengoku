@@ -53,7 +53,9 @@ def pairSplitIdle {k : ℕ} (newState : PairSplitPhase)
     idleDir iHead, fun i => idleDir (wHeads i), idleDir oHead)
 
 /-- `pairSplitIdle` satisfies the mandatory right move at every left-end
-marker. -/
+marker.
+@isnad1 id=and.0h4v.s5.e5b859145b2e from=translated src=- shape=2409bd00 vocab=4ca6c063
+-/
 theorem rightOfStart_pairSplitIdle (iHead : Γ) (wHeads : Fin k → Γ) (oHead : Γ) :
     (iHead = Γ.start → idleDir iHead = Dir3.right) ∧
     (∀ i, wHeads i = Γ.start → idleDir (wHeads i) = Dir3.right) ∧

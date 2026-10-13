@@ -112,7 +112,9 @@ def IsExistSO {V : Vocabulary} : {rctx : List Nat} → {n : Nat} → SOFormula V
   | _, _, .soExist _ ψ => IsExistSO ψ
   | _, _, φ => φ.IsFOMatrix
 
-/-- The first-order embedding of any formula is an FO matrix. -/
+/-- The first-order embedding of any formula is an FO matrix.
+@isnad1 id=isfomatr.0h4v.s4.63c13ea7502b from=translated src=- shape=dba5260f vocab=84bb27c6
+-/
 theorem ofFormula_isFOMatrix {V : Vocabulary} :
     ∀ {n : Nat} (φ : Formula V n) (rctx : List Nat), (SOFormula.ofFormula φ rctx).IsFOMatrix := by
   intro n φ
@@ -126,7 +128,9 @@ theorem ofFormula_isFOMatrix {V : Vocabulary} :
   | all φ ih => intro rctx; exact ih rctx
 
 /-- The first-order fragment sits inside `∃SO`: an embedded FO formula is a
-    (quantifier-free-in-second-order) `∃SO` formula. -/
+    (quantifier-free-in-second-order) `∃SO` formula.
+@isnad1 id=isexists.0h4v.s4.599747a52acd from=translated src=- shape=dba5260f vocab=5edbe427
+-/
 theorem ofFormula_isExistSO {V : Vocabulary} {n : Nat} (φ : Formula V n) (rctx : List Nat) :
     (SOFormula.ofFormula φ rctx).IsExistSO := by
   cases φ <;> exact ofFormula_isFOMatrix _ _

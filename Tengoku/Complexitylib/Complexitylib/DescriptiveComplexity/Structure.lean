@@ -67,7 +67,9 @@ instance : DecidableRel A.leRel := fun a b => Nat.decLe a.val b.val
 
 instance : DecidableRel A.sucRel := fun a b => Nat.decEq b.val (a.val + 1)
 
-/-- The canonical elements 0 and 1 are distinct (follows from Proviso 1.15). -/
+/-- The canonical elements 0 and 1 are distinct (follows from Proviso 1.15).
+@isnad1 id=ne.0h2v.s4.086ed5b8c96e from=translated src=- shape=f446de50 vocab=de27d473
+-/
 theorem minElem_ne_oneElem : A.minElem ≠ A.oneElem := by
   simp [minElem, oneElem, Fin.ext_iff]
 

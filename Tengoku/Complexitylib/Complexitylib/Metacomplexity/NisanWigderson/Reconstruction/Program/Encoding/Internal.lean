@@ -20,6 +20,9 @@ namespace Complexity
 
 namespace NWDesign
 
+/--
+@isnad1 id=eq.0h5v.s9.c393d08aac4b from=translated src=- shape=73bd1bfe vocab=3b2cd2d1
+-/
 theorem card_reconstructionPayloadIndex_internal
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -36,6 +39,9 @@ theorem card_reconstructionPayloadIndex_internal
   rw [hsum]
   omega
 
+/--
+@isnad1 id=eq.0h5v.s5.778229caa02a from=translated src=- shape=f7fa98fc vocab=1be914ea
+-/
 theorem length_encodeBooleanPayload_internal
     {outputLength inputLength seedLength : ℕ}
     {design : NWDesign outputLength inputLength seedLength}
@@ -46,6 +52,9 @@ theorem length_encodeBooleanPayload_internal
   rw [BooleanDependency.length_encodeOrderedFunction_internal,
     card_reconstructionPayloadIndex_internal]
 
+/--
+@isnad1 id=eq.0h5v.s5.24f526392339 from=translated src=- shape=981cb501 vocab=61a1db69
+-/
 theorem length_encodeBooleanPayload_eq_booleanPayloadSize_internal
     {outputLength inputLength seedLength : ℕ}
     {design : NWDesign outputLength inputLength seedLength}
@@ -54,6 +63,9 @@ theorem length_encodeBooleanPayload_eq_booleanPayloadSize_internal
   rw [length_encodeBooleanPayload_internal,
     ReconstructionProgram.booleanPayloadSize_eq_internal]
 
+/--
+@isnad1 id=eq.0h5v.s5.095eb1a22e87 from=translated src=- shape=a6be608f vocab=f2cc2624
+-/
 theorem ReconstructionProgram.length_encode_internal
     {outputLength inputLength seedLength : ℕ}
     {design : NWDesign outputLength inputLength seedLength}
@@ -65,6 +77,9 @@ theorem ReconstructionProgram.length_encode_internal
     Complexity.NWDesign.length_encodeBooleanPayload_internal]
   omega
 
+/--
+@isnad1 id=eq.0h5v.s5.373a18948619 from=translated src=- shape=102a4b17 vocab=bd784d18
+-/
 theorem decodeReconstructionBooleanPayload?_encode_internal
     {outputLength inputLength seedLength : ℕ}
     {design : NWDesign outputLength inputLength seedLength}
@@ -79,6 +94,9 @@ theorem decodeReconstructionBooleanPayload?_encode_internal
         ReconstructionProgram.booleanPayload, predecessorPayloadIndex,
         outsidePayloadIndex, laterPayloadIndex, candidatePayloadIndex]
 
+/--
+@isnad1 id=eq.0h5v.s5.357c05b17565 from=translated src=- shape=f2b83de1 vocab=a3145f7f
+-/
 theorem decodeReconstructionProgram?_encode_internal
     {outputLength inputLength seedLength : ℕ}
     {design : NWDesign outputLength inputLength seedLength}
@@ -87,6 +105,9 @@ theorem decodeReconstructionProgram?_encode_internal
   simp [decodeReconstructionProgram?, ReconstructionProgram.encode,
     decodeReconstructionBooleanPayload?_encode_internal]
 
+/--
+@isnad1 id=iff.0h7v.s5.e195f4a5d885 from=translated src=- shape=6b92876a vocab=7c0e6264
+-/
 theorem decodeReconstructionBooleanPayload?_eq_none_iff_internal
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -122,6 +143,9 @@ theorem decodeReconstructionBooleanPayload?_eq_none_iff_internal
       · intro hne
         exact (hne hlength).elim
 
+/--
+@isnad1 id=and.2h11v.s7.20b55feba707 from=translated src=- shape=3194d4bb vocab=5ea5a23f
+-/
 theorem findGoodReconstructionCertificate_encodedProgram_sound_internal
     {outputLength inputLength seedLength trials budget : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -145,6 +169,9 @@ theorem findGoodReconstructionCertificate_encodedProgram_sound_internal
     rw [length_encodeBooleanPayload_eq_booleanPayloadSize_internal]
     exact hsize⟩
 
+/--
+@isnad1 id=and.2h11v.s7.2a7349465568 from=translated src=- shape=b616bb91 vocab=cd10194e
+-/
 theorem findGoodReconstructionCertificate_fullyEncodedProgram_sound_internal
     {outputLength inputLength seedLength trials budget : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -170,6 +197,9 @@ theorem findGoodReconstructionCertificate_fullyEncodedProgram_sound_internal
     List.length_append, Fin.length_toBits]
   omega
 
+/--
+@isnad1 id=and.6h12v.s8.4577b9005a9b from=translated src=- shape=b020fbbd vocab=2e887945
+-/
 theorem half_le_encodedReconstructionProgram_of_randomTest_internal
     {outputLength inputLength seedLength tapes time threshold budget : ℕ}
     {design : NWDesign outputLength inputLength seedLength}
@@ -207,6 +237,9 @@ theorem half_le_encodedReconstructionProgram_of_randomTest_internal
       (1 / 2 + (density / (outputLength : ℚ)) / 2) hbudget batch
       certificate hfind
 
+/--
+@isnad1 id=and.6h12v.s8.a3cbba1b316a from=translated src=- shape=1e078cb7 vocab=28816432
+-/
 theorem half_le_fullyEncodedReconstructionProgram_of_randomTest_internal
     {outputLength inputLength seedLength tapes time threshold budget : ℕ}
     {design : NWDesign outputLength inputLength seedLength}
@@ -245,6 +278,9 @@ theorem half_le_fullyEncodedReconstructionProgram_of_randomTest_internal
       (1 / 2 + (density / (outputLength : ℚ)) / 2) hbudget batch
       certificate hfind
 
+/--
+@isnad1 id=and.7h12v.s8.d368a81fa4cc from=translated src=- shape=184c85e8 vocab=856c8656
+-/
 theorem half_le_encodedReconstructionProgram_of_seedDescriptions_internal
     {outputLength inputLength seedLength tapes time threshold budget : ℕ}
     {design : NWDesign outputLength inputLength seedLength}
@@ -283,6 +319,9 @@ theorem half_le_encodedReconstructionProgram_of_seedDescriptions_internal
       (1 / 2 + (density / (outputLength : ℚ)) / 2) hbudget batch
       certificate hfind
 
+/--
+@isnad1 id=and.7h12v.s8.fdd7c76a323c from=translated src=- shape=f019b27b vocab=365de149
+-/
 theorem half_le_fullyEncodedReconstructionProgram_of_seedDescriptions_internal
     {outputLength inputLength seedLength tapes time threshold budget : ℕ}
     {design : NWDesign outputLength inputLength seedLength}

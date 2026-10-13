@@ -802,7 +802,9 @@ private theorem pairSplit_copyY_from_input_segment {k : ℕ}
 `pair x y` on the input tape and empty started work tapes, `pairSplitCoreTM`
 halts after decoding the doubled `x` prefix onto `xIdx` and copying the
 suffix `y` onto `yIdx`. The two work heads finish just past the strings they
-wrote. -/
+wrote.
+@isnad1 id=ex.5h6v.s9.eee2861dcb6b from=translated src=- shape=74ab6f5c vocab=597dc686
+-/
 theorem pairSplitCoreTM_from_scanX_initTape_move_right_internal
     {k : ℕ} (xIdx yIdx : Fin k) (hne : xIdx ≠ yIdx)
     (x y : List Bool)
@@ -1007,7 +1009,9 @@ theorem pairSplitCoreTM_from_scanX_initTape_move_right_internal
 
 /-- Variant of the init step for phase composition: if the input tape and the
 two tracked work tapes are already positioned past `▷`, the `.init` state
-advances to `.scanX` without changing those tapes. -/
+advances to `.scanX` without changing those tapes.
+@isnad1 id=ex.4h4v.s7.9204f505fabf from=translated src=- shape=38c26cfb vocab=3a2b8cdf
+-/
 theorem pairSplit_init_step_all_started_internal {k : ℕ} (xIdx yIdx : Fin k)
     (c : Cfg k (pairSplitCoreTM xIdx yIdx).Q)
     (hst : c.state = .init)
@@ -1032,7 +1036,9 @@ theorem pairSplit_init_step_all_started_internal {k : ℕ} (xIdx yIdx : Fin k)
 /-- Starting from `.init` with `pair x y` already on a started input tape and
 empty started work tapes, `pairSplitCoreTM` halts within `pairSplitCoreTime`,
 leaving `xIdx` holding `x` and `yIdx` holding `y`, with both heads just past
-the written strings. -/
+the written strings.
+@isnad1 id=ex.5h6v.s8.48272174806f from=translated src=- shape=81d3160d vocab=52b3a348
+-/
 theorem pairSplitCoreTM_from_init_initTape_move_right_internal
     {k : ℕ} (xIdx yIdx : Fin k) (hne : xIdx ≠ yIdx)
     (x y : List Bool)
@@ -1173,7 +1179,9 @@ private theorem pairSplitCoreTM_toNTM_trace_one_preserves_other_work
           transitionTape, hstate, hblank, hx, hy] using hpres
     · exact (hhalt hstate).elim
 
-/-- Every lifted pair-split trace preserves an off-start output tape. -/
+/-- Every lifted pair-split trace preserves an off-start output tape.
+@isnad1 id=eq.1h6v.s6.ec13757b1bf9 from=translated src=- shape=107a8d40 vocab=75f72296
+-/
 theorem pairSplitCoreTM_toNTM_trace_preserves_output_internal
     {k : ℕ} (xIdx yIdx : Fin k) (T : ℕ) (choices : Fin T → Bool)
     (c : Cfg k (pairSplitCoreTM xIdx yIdx).Q)
@@ -1189,7 +1197,9 @@ theorem pairSplitCoreTM_toNTM_trace_preserves_output_internal
     (choices ⟨time, htime⟩) current hreadCurrent).trans hcurrent
 
 /-- Every lifted pair-split trace preserves an off-start work tape other than
-the two destination tapes. -/
+the two destination tapes.
+@isnad1 id=eq.3h7v.s6.8a466624bf6c from=translated src=- shape=ac1058ad vocab=48750960
+-/
 theorem pairSplitCoreTM_toNTM_trace_preserves_other_work_internal
     {k : ℕ} (xIdx yIdx otherIdx : Fin k) (T : ℕ) (choices : Fin T → Bool)
     (c : Cfg k (pairSplitCoreTM xIdx yIdx).Q)
@@ -1213,7 +1223,9 @@ theorem pairSplitCoreTM_toNTM_trace_preserves_other_work_internal
 
 /-- Exact pair-split correctness from the machine's genuine initial
 configuration. In addition to decoding the target tapes, the theorem frames
-the output and every unrelated work tape as started and blank. -/
+the output and every unrelated work tape as started and blank.
+@isnad1 id=ex.1h5v.s8.23d9bdb8d788 from=translated src=- shape=0fe877b8 vocab=fc9954b5
+-/
 theorem pairSplitCoreTM_from_initCfg_internal
     {k : ℕ} (xIdx yIdx : Fin k) (hne : xIdx ≠ yIdx) (x y : List Bool) :
     ∃ c',

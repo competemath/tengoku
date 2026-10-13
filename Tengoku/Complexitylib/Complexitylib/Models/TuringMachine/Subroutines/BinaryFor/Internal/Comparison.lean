@@ -577,7 +577,9 @@ private theorem binaryForCompareCfg_reachesIn_rewind_zero
   omega
 
 /-- At equality, the full-width comparison preserves every tape exactly and
-reaches the loop's `done` state in the advertised exact time. -/
+reaches the loop's `done` state in the advertised exact time.
+@isnad1 id=reachesi.6h8v.s6.8cfd3af67384 from=translated src=- shape=50f0c29c vocab=003346f7
+-/
 theorem binaryForTM_compare_reachesIn_frame_of_eq_internal
     (body : TM n) (counterIdx limitIdx : Fin n)
     (hne : counterIdx ≠ limitIdx) (value : ℕ)
@@ -614,7 +616,9 @@ theorem binaryForTM_compare_reachesIn_frame_of_eq_internal
   simpa [binaryForCompareTime] using hrun
 
 /-- Strictly below the limit, the full-width comparison preserves every tape
-exactly and reaches the composite iteration start in the advertised time. -/
+exactly and reaches the composite iteration start in the advertised time.
+@isnad1 id=reachesi.7h9v.s7.e3549808961c from=translated src=- shape=d8e18d6c vocab=c40cfc7c
+-/
 theorem binaryForTM_compare_reachesIn_frame_of_lt_internal
     (body : TM n) (counterIdx limitIdx : Fin n)
     (hne : counterIdx ≠ limitIdx) (value limitValue : ℕ)
@@ -667,7 +671,9 @@ theorem binaryForTM_compare_reachesIn_frame_of_lt_internal
 
 /-- A complete canonical comparison has one exact, fully framed endpoint.
 The endpoint enters the composite iteration exactly below the limit and is
-the final `done` configuration exactly at equality. -/
+the final `done` configuration exactly at equality.
+@isnad1 id=ex.7h9v.s7.ab6102753b93 from=translated src=- shape=9d527916 vocab=033ebed6
+-/
 theorem binaryForTM_compare_reachesIn_frame_internal
     (body : TM n) (counterIdx limitIdx : Fin n)
     (hne : counterIdx ≠ limitIdx) (value limitValue : ℕ)

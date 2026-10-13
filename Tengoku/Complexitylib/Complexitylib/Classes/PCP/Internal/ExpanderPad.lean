@@ -68,14 +68,23 @@ def relabel {D' : Type} [DecidableEq D'] [Fintype D'] (e : G.D ≃ D') : RegGrap
     rw [h]
     simp
 
+/--
+@isnad1 id=eq.0h3v.s4.ab24b86edf9c from=translated src=- shape=d0bb49f5 vocab=c8e0f00b
+-/
 @[simp] theorem order_relabel {D' : Type} [DecidableEq D'] [Fintype D'] (e : G.D ≃ D') :
     (G.relabel e).order = G.order := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.46ac10580908 from=translated src=- shape=d0bb49f5 vocab=f4aaaaf1
+-/
 theorem deg_relabel {D' : Type} [DecidableEq D'] [Fintype D'] (e : G.D ≃ D') :
     (G.relabel e).deg = G.deg := by
   show Fintype.card D' = Fintype.card G.D
   exact (Fintype.card_congr e).symm
 
+/--
+@isnad1 id=eq.0h5v.s5.cb2cc3ad6cca from=translated src=- shape=e9ca197b vocab=6da83b82
+-/
 theorem step_relabel {D' : Type} [DecidableEq D'] [Fintype D'] (e : G.D ≃ D') (f : G.V → ℝ)
     (v : G.V) : (G.relabel e).step f v = G.step f v := by
   simp only [step, deg_relabel]
@@ -83,6 +92,9 @@ theorem step_relabel {D' : Type} [DecidableEq D'] [Fintype D'] (e : G.D ≃ D') 
   show ∑ i : D', f (G.rot (v, e.symm i)).1 = ∑ i : G.D, f (G.rot (v, i)).1
   exact Fintype.sum_equiv e.symm _ _ fun i => rfl
 
+/--
+@isnad1 id=spectral.1h4v.s4.476b824136d8 from=translated src=- shape=4cae424d vocab=c72dc29f
+-/
 theorem spectralBound_relabel {D' : Type} [DecidableEq D'] [Fintype D'] (e : G.D ≃ D')
     {lam : ℝ} (h : G.SpectralBound lam) : (G.relabel e).SpectralBound lam := by
   intro f hf
@@ -115,13 +127,22 @@ def padLoops (k : ℕ) : RegGraph where
       rw [h]
     · rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.4a7847e60bc5 from=translated src=- shape=393de0b8 vocab=42c6e8e9
+-/
 @[simp] theorem order_padLoops (k : ℕ) : (G.padLoops k).order = G.order := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.35e400df49b5 from=translated src=- shape=42db545a vocab=7af09e18
+-/
 theorem deg_padLoops (k : ℕ) : (G.padLoops k).deg = G.deg + k := by
   show Fintype.card (G.D ⊕ Fin k) = _
   rw [Fintype.card_sum, Fintype.card_fin]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.da75ffb62efd from=translated src=- shape=d64a1fb0 vocab=e62460c4
+-/
 theorem step_padLoops (k : ℕ) (f : G.V → ℝ) (v : G.V) :
     (G.padLoops k).step f v
       = ((G.deg : ℝ) * G.step f v + (k : ℝ) * f v) / ((G.deg : ℝ) + k) := by
@@ -137,7 +158,9 @@ theorem step_padLoops (k : ℕ) (f : G.V → ℝ) (v : G.V) :
   rw [mul_div_cancel₀ _ hd]
 
 /-- **Padding keeps the bound**, with `μ² = α λ² + (1 - α)` for `α` the fraction of
-real darts. -/
+real darts.
+@isnad1 id=spectral.1h3v.s6.3b6446d608fe from=translated src=- shape=64a3611b vocab=9003b911
+-/
 theorem spectralBound_padLoops (k : ℕ) {lam : ℝ} (h : G.SpectralBound lam) :
     (G.padLoops k).SpectralBound
       (Real.sqrt (((G.deg : ℝ) * lam ^ 2 + k) / ((G.deg : ℝ) + k))) := by
@@ -193,18 +216,30 @@ def relabelV {V' : Type} [DecidableEq V'] [Fintype V'] (e : G.V ≃ V') : RegGra
     rw [h]
     simp
 
+/--
+@isnad1 id=eq.0h3v.s4.3c67bb0d3f97 from=translated src=- shape=d0bb49f5 vocab=e61131f2
+-/
 @[simp] theorem deg_relabelV {V' : Type} [DecidableEq V'] [Fintype V'] (e : G.V ≃ V') :
     (G.relabelV e).deg = G.deg := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.be89a6a3c799 from=translated src=- shape=d0bb49f5 vocab=02d83513
+-/
 theorem order_relabelV {V' : Type} [DecidableEq V'] [Fintype V'] (e : G.V ≃ V') :
     (G.relabelV e).order = G.order := (Fintype.card_congr e).symm
 
+/--
+@isnad1 id=eq.0h5v.s6.de1ebe6225a8 from=translated src=- shape=472d76e6 vocab=f10e167b
+-/
 theorem step_relabelV {V' : Type} [DecidableEq V'] [Fintype V'] (e : G.V ≃ V')
     (f : V' → ℝ) (v : V') :
     (G.relabelV e).step f v = G.step (fun w => f (e w)) (e.symm v) := by
   simp only [step, deg_relabelV]
   congr 1
 
+/--
+@isnad1 id=spectral.1h4v.s4.705ca235d1c2 from=translated src=- shape=4cae424d vocab=2bd28efd
+-/
 theorem spectralBound_relabelV {V' : Type} [DecidableEq V'] [Fintype V'] (e : G.V ≃ V')
     {lam : ℝ} (h : G.SpectralBound lam) : (G.relabelV e).SpectralBound lam := by
   intro f hf
@@ -231,12 +266,21 @@ families want numbered ones. -/
 noncomputable def toFinForm : RegGraph :=
   (G.relabelV (Fintype.equivFin G.V)).relabel (Fintype.equivFin G.D)
 
+/--
+@isnad1 id=eq.0h1v.s3.b1583bb91b6c from=translated src=- shape=8d4cac31 vocab=6ba9b534
+-/
 @[simp] theorem order_toFinForm : G.toFinForm.order = G.order := by
   unfold toFinForm; erw [ order_relabel, order_relabelV]
 
+/--
+@isnad1 id=eq.0h1v.s3.88b44a397eaa from=translated src=- shape=8d4cac31 vocab=536676c7
+-/
 @[simp] theorem deg_toFinForm : G.toFinForm.deg = G.deg := by
   unfold toFinForm; erw [ deg_relabel, deg_relabelV]
 
+/--
+@isnad1 id=spectral.1h2v.s3.4b1c14c1934a from=translated src=- shape=e8c79755 vocab=3f4e8839
+-/
 theorem spectralBound_toFinForm {lam : ℝ} (h : G.SpectralBound lam) :
     G.toFinForm.SpectralBound lam :=
   spectralBound_relabel _ _ (spectralBound_relabelV G (Fintype.equivFin G.V) h)
@@ -249,27 +293,46 @@ noncomputable def toFinFormOf (N d : ℕ) (hN : Fintype.card G.V = N)
   (G.relabelV ((Fintype.equivFin G.V).trans (finCongr hN))).relabel
     ((Fintype.equivFin G.D).trans (finCongr hd))
 
+/--
+@isnad1 id=eq.2h3v.s5.163cc51164b6 from=translated src=- shape=16cbe92b vocab=e7aef5fd
+-/
 theorem toFinFormOf_V (N d : ℕ) (hN : Fintype.card G.V = N) (hd : Fintype.card G.D = d) :
     (G.toFinFormOf N d hN hd).V = Fin N := rfl
 
+/--
+@isnad1 id=eq.2h3v.s5.ee2a90ca9271 from=translated src=- shape=eab93065 vocab=e7aef5fd
+-/
 theorem toFinFormOf_D (N d : ℕ) (hN : Fintype.card G.V = N) (hd : Fintype.card G.D = d) :
     (G.toFinFormOf N d hN hd).D = Fin d := rfl
 
+/--
+@isnad1 id=eq.2h3v.s5.15c62fee6d30 from=translated src=- shape=b212cba4 vocab=ea58e4ac
+-/
 @[simp] theorem order_toFinFormOf (N d : ℕ) (hN : Fintype.card G.V = N)
     (hd : Fintype.card G.D = d) : (G.toFinFormOf N d hN hd).order = N := Fintype.card_fin N
 
+/--
+@isnad1 id=eq.2h3v.s5.a5f3177352d5 from=translated src=- shape=e5ec1237 vocab=e32be055
+-/
 @[simp] theorem deg_toFinFormOf (N d : ℕ) (hN : Fintype.card G.V = N)
     (hd : Fintype.card G.D = d) : (G.toFinFormOf N d hN hd).deg = d := Fintype.card_fin d
 
+/--
+@isnad1 id=spectral.3h4v.s5.8a4b5a95e6bb from=translated src=- shape=8114481d vocab=689322e5
+-/
 theorem spectralBound_toFinFormOf (N d : ℕ) (hN : Fintype.card G.V = N)
     (hd : Fintype.card G.D = d) {lam : ℝ} (h : G.SpectralBound lam) :
     (G.toFinFormOf N d hN hd).SpectralBound lam :=
   spectralBound_relabel _ _ (spectralBound_relabelV G _ h)
 
-/-- Its vertices are literally numbered. -/
+/-- Its vertices are literally numbered.
+@isnad1 id=eq.0h1v.s3.38b787868ed9 from=translated src=- shape=4726c159 vocab=266b2891
+-/
 theorem toFinForm_V : G.toFinForm.V = Fin (Fintype.card G.V) := rfl
 
-/-- And so are its darts. -/
+/-- And so are its darts.
+@isnad1 id=eq.0h1v.s3.782382bc30e2 from=translated src=- shape=4726c159 vocab=eb977e28
+-/
 theorem toFinForm_D : G.toFinForm.D = Fin (Fintype.card G.D) := rfl
 
 end RegGraph

@@ -34,7 +34,9 @@ open Asymptotics Filter
 -- ════════════════════════════════════════════════════════════════════════
 
 /-- `groupPairs` consumes two bits per emitted symbol (a trailing odd bit
-    is dropped), so its output is at most half as long as its input. -/
+    is dropped), so its output is at most half as long as its input.
+@isnad1 id=le.0h1v.s4.f9aa29f8cec8 from=translated src=- shape=19f1c0bf vocab=15b57005
+-/
 theorem groupPairs_length_le : ∀ α : List Bool, 2 * (groupPairs α).length ≤ α.length
   | [] => Nat.le_refl 0
   | [_] => by simp [groupPairs]
@@ -50,7 +52,9 @@ theorem groupPairs_length_le : ∀ α : List Bool, 2 * (groupPairs α).length �
 namespace TM.UTMBody
 
 /-- The per-iteration cost of the UTM's simulate/halt-test loop is
-    quadratic in the description length, with explicit constant `240`. -/
+    quadratic in the description length, with explicit constant `240`.
+@isnad1 id=le.0h1v.s5.608b4d4191bc from=translated src=- shape=c98cec22 vocab=0489b08a
+-/
 theorem utmStepTime_le_sq (α : List Bool) :
     utmStepTime α ≤ 240 * (α.length + 1) ^ 2 := by
   have hL : (groupPairs α).length ≤ α.length := by
@@ -68,7 +72,9 @@ end TM.UTMBody
 
 /-- A little-o hypothesis beats every constant multiple eventually: from
     `f = o(g)` extract, for any scale `C : ℕ`, a threshold `N` past which
-    `C * f n ≤ g n` pointwise over `ℕ`. -/
+    `C * f n ≤ g n` pointwise over `ℕ`.
+@isnad1 id=ex.1h3v.s5.f2c7db80b1f9 from=translated src=- shape=0a8cc779 vocab=7f2f9729
+-/
 theorem LittleO.nat_mul_le {f g : ℕ → ℕ} (h : LittleO f g) (C : ℕ) :
     ∃ N, ∀ n, N ≤ n → C * f n ≤ g n := by
   have h' := LittleO.const_mul_left C h
@@ -86,7 +92,9 @@ theorem LittleO.nat_mul_le {f g : ℕ → ℕ} (h : LittleO f g) (C : ℕ) :
 
 /-- **Run dichotomy**: from any configuration, a deterministic machine
     either halts within `V` steps or reaches a non-halted configuration in
-    exactly `V` steps. -/
+    exactly `V` steps.
+@isnad1 id=or.0h4v.s6.bbdf03267a26 from=translated src=- shape=70270b39 vocab=3f7239c9
+-/
 theorem TM.halt_or_run_dichotomy {k : ℕ} (tm : TM k) (c₀ : Cfg k tm.Q) (V : ℕ) :
     (∃ (T : ℕ) (c : Cfg k tm.Q), T ≤ V ∧ tm.reachesIn T c₀ c ∧ tm.halted c) ∨
     (∃ c : Cfg k tm.Q, tm.reachesIn V c₀ c ∧ ¬tm.halted c) := by

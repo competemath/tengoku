@@ -528,6 +528,9 @@ private theorem binaryRippleAddScanTM_suffix_reachesIn {n : ℕ}
             rw [hfinalOther i hil hir hires]
             simp [work₁, binaryRippleAddScanAdvanceWork, hil, hir, hires]
 
+/--
+@isnad1 id=ex.8h9v.s8.31ca26fc0603 from=translated src=- shape=9a91c804 vocab=9e3936e2
+-/
 theorem binaryRippleAddScanTM_reachesIn_frame_internal {n : ℕ}
     (lhsIdx rhsIdx resultIdx : Fin n)
     (hdistinct : BinaryRippleAddDistinct lhsIdx rhsIdx resultIdx)

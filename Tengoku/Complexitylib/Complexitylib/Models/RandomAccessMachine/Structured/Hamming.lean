@@ -32,7 +32,9 @@ namespace Structured
 namespace Hamming
 
 /-- Source-level correctness with an exact transition count and explicit
-logarithmic-cost time and peak-space bounds. -/
+logarithmic-cost time and peak-space bounds.
+@isnad1 id=ex.0h1v.s5.6b3ee3c1d2dd from=translated src=- shape=750cd0f4 vocab=a74d169a
+-/
 theorem program_performance (bits : List Bool) :
     ∃ final cost space,
       Exec program (inputStore bits) final (stepCount bits) cost space ∧
@@ -42,7 +44,9 @@ theorem program_performance (bits : List Bool) :
 
 /-- End-to-end compiled performance theorem. The concrete RAM reaches its halt
 instruction after exactly `stepCount bits` transitions, within the explicit
-logarithmic-cost time and peak-space budgets, and returns the Hamming weight. -/
+logarithmic-cost time and peak-space budgets, and returns the Hamming weight.
+@isnad1 id=ex.0h1v.s6.47464bcb2ab6 from=translated src=- shape=ba857f45 vocab=81451f11
+-/
 theorem compiled_performance (bits : List Bool) :
     ∃ final cost space,
       Exec program (inputStore bits) final (stepCount bits) cost space ∧
@@ -74,7 +78,9 @@ theorem compiled_performance (bits : List Bool) :
     rw [hcompiled.1]
     exact hresult
 
-/-- The explicit logarithmic-cost time budget is quasilinear. -/
+/-- The explicit logarithmic-cost time budget is quasilinear.
+@isnad1 id=bigo.0h0v.s1.63aba716f9d8 from=translated src=- shape=25b03439 vocab=82c55035
+-/
 theorem timeBound_bigO_quasilinear : timeBound =O quasilinearBound := by
   have hpoint : ∀ n, timeBound n ≤ 64 * quasilinearBound n := by
     intro n
@@ -90,7 +96,9 @@ theorem timeBound_bigO_quasilinear : timeBound =O quasilinearBound := by
     (BigO.const_mul_left 64 (BigO.refl quasilinearBound))
 
 /-- The explicit peak-space budget is quasilinear under the reserved-register
-input representation. -/
+input representation.
+@isnad1 id=bigo.0h0v.s1.3e4c528ce507 from=translated src=- shape=25b03439 vocab=b718cd2e
+-/
 theorem spaceBound_bigO_quasilinear : spaceBound =O quasilinearBound := by
   have hpoint : ∀ n, spaceBound n ≤ 2 * quasilinearBound n := by
     intro n

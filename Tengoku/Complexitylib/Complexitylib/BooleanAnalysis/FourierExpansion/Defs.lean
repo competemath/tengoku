@@ -79,20 +79,46 @@ instance : FunLike (BooleanFunction n) (Cube n) ℝ where
   coe f := f
   coe_injective f g h := show (f : Cube n → ℝ) = g from h
 
+/--
+@isnad1 id=eq.1h3v.s4.9dbc9cb2911c from=translated src=- shape=96557b98 vocab=90bb16b5
+-/
 @[ext]
 theorem ext {f g : BooleanFunction n} (h : ∀ x, f x = g x) : f = g :=
   DFunLike.ext f g h
 
+/--
+@isnad1 id=eq.0h2v.s5.1ab7074c067d from=translated src=- shape=06057f13 vocab=90bb16b5
+-/
 @[simp] theorem zero_apply (x : Cube n) : (0 : BooleanFunction n) x = 0 := rfl
+/--
+@isnad1 id=eq.0h4v.s5.d513ddb2a728 from=translated src=- shape=be8eec5f vocab=7fee4bfe
+-/
 @[simp] theorem add_apply (f g : BooleanFunction n) (x : Cube n) : (f + g) x = f x + g x := rfl
+/--
+@isnad1 id=eq.0h3v.s5.8e34bd62b4a9 from=translated src=- shape=fbef95a5 vocab=f4153ed5
+-/
 @[simp] theorem neg_apply (f : BooleanFunction n) (x : Cube n) : (-f) x = -(f x) := rfl
+/--
+@isnad1 id=eq.0h4v.s5.12450eabaaa1 from=translated src=- shape=be8eec5f vocab=f85d8839
+-/
 @[simp] theorem sub_apply (f g : BooleanFunction n) (x : Cube n) : (f - g) x = f x - g x := rfl
+/--
+@isnad1 id=eq.0h4v.s5.fd28b7f0ecb1 from=translated src=- shape=1384f9a5 vocab=f5ad8c96
+-/
 @[simp] theorem smul_apply (r : ℝ) (f : BooleanFunction n) (x : Cube n) :
     (r • f) x = r * f x := rfl
+/--
+@isnad1 id=eq.0h4v.s5.b86c45e0b975 from=translated src=- shape=be8eec5f vocab=0f01a846
+-/
 @[simp] theorem mul_apply (f g : BooleanFunction n) (x : Cube n) : (f * g) x = f x * g x := rfl
+/--
+@isnad1 id=eq.0h2v.s5.51d6489a78fc from=translated src=- shape=06057f13 vocab=90bb16b5
+-/
 @[simp] theorem one_apply (x : Cube n) : (1 : BooleanFunction n) x = 1 := rfl
 
-/-- Evaluate a `Finset` sum of `BooleanFunction`s pointwise. -/
+/-- Evaluate a `Finset` sum of `BooleanFunction`s pointwise.
+@isnad1 id=eq.0h5v.s5.7e345198a711 from=translated src=- shape=d5b2aaa8 vocab=5973d6a1
+-/
 @[simp] theorem sum_apply {ι : Type*} (s : Finset ι) (g : ι → BooleanFunction n)
     (x : Cube n) : (∑ i ∈ s, g i) x = ∑ i ∈ s, (g i) x :=
   Finset.sum_apply x s g
@@ -103,7 +129,13 @@ def ofFun (f : Cube n → ℝ) : BooleanFunction n := f
 /-- Extract the underlying function from a `BooleanFunction`. -/
 def toFun (f : BooleanFunction n) : Cube n → ℝ := f
 
+/--
+@isnad1 id=eq.0h2v.s4.c35305047e3a from=translated src=- shape=fdec4105 vocab=b82ce70f
+-/
 @[simp] theorem toFun_ofFun (f : Cube n → ℝ) : toFun (ofFun f) = f := rfl
+/--
+@isnad1 id=eq.0h2v.s3.6c0a6808b4e8 from=translated src=- shape=6ddf6d3e vocab=64f66072
+-/
 @[simp] theorem ofFun_toFun (f : BooleanFunction n) : ofFun (toFun f) = f := rfl
 
 /-! ### Inner product space structure
@@ -116,6 +148,9 @@ This is the expectation `𝔼[f·g]` under the uniform distribution on `𝔽₂�
 noncomputable instance instInner : Inner ℝ (BooleanFunction n) where
   inner f g := (1 / (2 : ℝ) ^ n) * ∑ x : Cube n, f x * g x
 
+/--
+@isnad1 id=eq.0h3v.s6.399482c000d1 from=translated src=- shape=be12ad47 vocab=397ffc36
+-/
 theorem inner_def (f g : BooleanFunction n) :
     @inner ℝ _ instInner f g = (1 / (2 : ℝ) ^ n) * ∑ x : Cube n, f x * g x := rfl
 
@@ -193,7 +228,9 @@ scoped notation "⟪" f ", " g "⟫" => @inner ℝ _ _ f g
 scoped notation "‖" f "‖₂" => @norm _ _ f
 
 /-- `⟪f, g⟫ = (1/2ⁿ) · ∑_x f(x)·g(x)` — unfold the inner product to the
-    explicit sum form. -/
+    explicit sum form.
+@isnad1 id=eq.0h3v.s6.399482c000d1 from=translated src=- shape=be12ad47 vocab=397ffc36
+-/
 theorem inner_def (f g : BooleanFunction n) :
     ⟪f, g⟫ = (1 / (2 : ℝ) ^ n) * ∑ x : Cube n, f x * g x :=
   BooleanFunction.inner_def f g
@@ -237,14 +274,18 @@ scoped notation "𝓕" => fourierCoeff
 
 /-! ### Bridge lemmas -/
 
-/-- Unfold `𝔼[f]` to the explicit sum form `1/2^n · ∑_x f(x)`. -/
+/-- Unfold `𝔼[f]` to the explicit sum form `1/2^n · ∑_x f(x)`.
+@isnad1 id=eq.0h2v.s6.ec9d0a5e5153 from=translated src=- shape=a22372bb vocab=d003243b
+-/
 theorem expect_unfold (f : BooleanFunction n) :
     𝔼[f] = 1 / 2 ^ n * ∑ x : Cube n, f x := by
   rw [expect, Finset.expect_eq_sum_div_card (f := (f : Cube n → ℝ))]
   simp [Finset.card_univ, ZMod.card]; ring
 
 /-- The inner product equals the expectation of the product.
-    This is the book's Definition 1.3: `⟪f, g⟫ = 𝔼[f·g]`. -/
+    This is the book's Definition 1.3: `⟪f, g⟫ = 𝔼[f·g]`.
+@isnad1 id=eq.0h3v.s5.8a1771f48273 from=translated src=- shape=796325e6 vocab=1c6dcf36
+-/
 theorem inner_eq_expect (f g : BooleanFunction n) :
     ⟪f, g⟫ = 𝔼[fun x => f x * g x] := by
   simp [inner_def, expect, Finset.expect_eq_sum_div_card, div_eq_inv_mul]

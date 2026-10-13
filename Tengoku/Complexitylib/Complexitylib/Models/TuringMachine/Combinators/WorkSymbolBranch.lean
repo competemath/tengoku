@@ -25,7 +25,9 @@ namespace TM
 
 variable {n : ℕ}
 
-/-- Exact framed execution through the symbol-equal branch. -/
+/-- Exact framed execution through the symbol-equal branch.
+@isnad1 id=ex.6h10v.s7.d417ac667750 from=translated src=- shape=593bf385 vocab=f8be7be4
+-/
 theorem branchWorkSymbolTM_reachesIn_equal_frame
     (idx : Fin n) (symbol : Γ) (onEqual onDifferent : TM n)
     (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -47,7 +49,9 @@ theorem branchWorkSymbolTM_reachesIn_equal_frame
   branchWorkSymbolTM_reachesIn_equal_frame_internal idx symbol onEqual
     onDifferent inp work out hequal hinp hwork hout hreach hhalt
 
-/-- Exact framed execution through the symbol-different branch. -/
+/-- Exact framed execution through the symbol-different branch.
+@isnad1 id=ex.6h10v.s7.c40c2638c1de from=translated src=- shape=09bbf71e vocab=f8be7be4
+-/
 theorem branchWorkSymbolTM_reachesIn_different_frame
     (idx : Fin n) (symbol : Γ) (onEqual onDifferent : TM n)
     (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -71,7 +75,9 @@ theorem branchWorkSymbolTM_reachesIn_different_frame
     onDifferent inp work out hdifferent hinp hwork hout hreach hhalt
 
 /-- A direct work-symbol branch is a transducer when both selected branches
-are transducers. -/
+are transducers.
+@isnad1 id=istransd.2h5v.s4.7103491b8889 from=translated src=- shape=b6b35ffa vocab=64214532
+-/
 theorem IsTransducer.branchWorkSymbolTM
     {idx : Fin n} {symbol : Γ} {onEqual onDifferent : TM n}
     (hequal : onEqual.IsTransducer) (hdifferent : onDifferent.IsTransducer) :
@@ -79,7 +85,9 @@ theorem IsTransducer.branchWorkSymbolTM
   hequal.branchWorkSymbolTM_internal hdifferent
 
 /-- Coarse all-prefix auxiliary-space envelope for a direct work-symbol
-branch. -/
+branch.
+@isnad1 id=withinau.3h11v.s6.bb5ce417858c from=translated src=- shape=987bb16d vocab=ad5b14c1
+-/
 theorem branchWorkSymbolTM_prefix_withinAuxSpace
     (idx : Fin n) (symbol : Γ) (onEqual onDifferent : TM n)
     (branchTime inputLength initialSpace time : ℕ)

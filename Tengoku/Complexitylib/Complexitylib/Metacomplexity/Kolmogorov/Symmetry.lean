@@ -29,13 +29,17 @@ public section
 
 namespace Complexity
 
-/-- The identity transform is an admissible Kolmogorov clock. -/
+/-- The identity transform is an admissible Kolmogorov clock.
+@isnad1 id=isadmiss.0h0v.s1.41e3d7b690ca from=translated src=- shape=87ceb31f vocab=e2877495
+-/
 theorem isAdmissibleKolmogorovClock_id :
     IsAdmissibleKolmogorovClock id :=
   isAdmissibleKolmogorovClock_id_internal
 
 /-- On an admissible pair whose joint description is finite, SoI forces the
-transformed conditional description to exist. -/
+transformed conditional description to exist.
+@isnad1 id=ne.3h9v.s6.ad898fad3159 from=translated src=- shape=140fafe0 vocab=35dc8158
+-/
 theorem TimeBoundedSymmetryOfInformation.conditional_ne_top
     {ordinaryTapes conditionalTapes : ℕ}
     {ordinaryMachine : TM ordinaryTapes}
@@ -52,7 +56,9 @@ theorem TimeBoundedSymmetryOfInformation.conditional_ne_top
   hsoi.conditional_ne_top_internal hsize hpair
 
 /-- On an admissible pair whose joint description is finite, SoI also forces
-the transformed ordinary description of the condition to exist. -/
+the transformed ordinary description of the condition to exist.
+@isnad1 id=ne.3h9v.s6.ddb5d2372b88 from=translated src=- shape=82c1597e vocab=98a58814
+-/
 theorem TimeBoundedSymmetryOfInformation.condition_ne_top
     {ordinaryTapes conditionalTapes : ℕ}
     {ordinaryMachine : TM ordinaryTapes}
@@ -68,7 +74,9 @@ theorem TimeBoundedSymmetryOfInformation.condition_ne_top
       condition (clock time) ≠ ⊤ :=
   hsoi.condition_ne_top_internal hsize hpair
 
-/-- Increasing the permitted loss preserves a fixed-clock SoI theorem. -/
+/-- Increasing the permitted loss preserves a fixed-clock SoI theorem.
+@isnad1 id=timeboun.2h7v.s5.9de421367b0c from=translated src=- shape=350d6434 vocab=f19502c4
+-/
 theorem TimeBoundedSymmetryOfInformation.weaken_loss
     {ordinaryTapes conditionalTapes : ℕ}
     {ordinaryMachine : TM ordinaryTapes}
@@ -81,7 +89,9 @@ theorem TimeBoundedSymmetryOfInformation.weaken_loss
       clock secondLoss :=
   hsoi.weaken_loss_internal hloss
 
-/-- Giving both left-hand descriptions more time preserves SoI. -/
+/-- Giving both left-hand descriptions more time preserves SoI.
+@isnad1 id=timeboun.2h7v.s5.fd37adea9bc6 from=translated src=- shape=ffafb62c vocab=f19502c4
+-/
 theorem TimeBoundedSymmetryOfInformation.weaken_clock
     {ordinaryTapes conditionalTapes : ℕ}
     {ordinaryMachine : TM ordinaryTapes}
@@ -101,7 +111,9 @@ SoI cancels the later-clock condition term. The exact remainder is the
 condition's two-clock depth plus the operational and SoI losses.
 
 The paired-description upper bound remains an explicit premise; constructing
-it is an evaluator theorem, not an algebraic consequence of SoI. -/
+it is an evaluator theorem, not an algebraic consequence of SoI.
+@isnad1 id=le.4h14v.s7.3cad0921d1ab from=translated src=- shape=c2b6df6a vocab=79d48ea5
+-/
 theorem TimeBoundedSymmetryOfInformation.conditional_le_of_pair_upper
     {ordinaryTapes conditionalTapes alternativeTapes : ℕ}
     {ordinaryMachine : TM ordinaryTapes}
@@ -136,7 +148,9 @@ compiler with additive program length supplies the paired upper bound required
 by SoI, yielding the target conditional-complexity inequality without any
 additional algebraic premise. All finiteness, clock, and description-budget
 requirements remain visible until a concrete universal evaluator discharges
-them. -/
+them.
+@isnad1 id=le.9h17v.s8.c9efdbaaf1a0 from=translated src=- shape=a4db8c1f vocab=44482349
+-/
 theorem TimeBoundedSymmetryOfInformation.conditional_le_of_composition
     {ordinaryTapes conditionalTapes alternativeTapes : ℕ}
     {ordinaryMachine : TM ordinaryTapes}
@@ -181,7 +195,9 @@ theorem TimeBoundedSymmetryOfInformation.conditional_le_of_composition
 
 /-- Any polynomial SoI witness remains valid at an admissible larger clock,
 with the logarithmic loss recalculated at that clock. The premise quantifies
-over witnesses because the existential clock is intentionally opaque. -/
+over witnesses because the existential clock is intentionally opaque.
+@isnad1 id=and.3h5v.s6.c8844ae8e4da from=translated src=- shape=4992ad93 vocab=c2c1e42b
+-/
 theorem PolynomialTimeBoundedSymmetryOfInformation.enlarge_clock
     {ordinaryTapes conditionalTapes : ℕ}
     {ordinaryMachine : TM ordinaryTapes}

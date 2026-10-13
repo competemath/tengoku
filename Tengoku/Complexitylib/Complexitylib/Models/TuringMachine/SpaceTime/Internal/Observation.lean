@@ -24,7 +24,9 @@ namespace Complexity
 
 namespace Tape
 
-/-- Equal bounded observations have equal underlying head positions. -/
+/-- Equal bounded observations have equal underlying head positions.
+@isnad1 id=eq.3h3v.s5.d1edf13e3a6f from=translated src=- shape=02d11a9d vocab=79f5d14d
+-/
 theorem head_eq_of_boundedObs_eq {t u : Tape} {space : ℕ}
     (ht : t.head ≤ space) (hu : u.head ≤ space)
     (hobs : t.boundedObs space ht = u.boundedObs space hu) :
@@ -32,7 +34,9 @@ theorem head_eq_of_boundedObs_eq {t u : Tape} {space : ℕ}
   have h := congrArg (fun obs : BoundedObs space => obs.1.val) hobs
   simpa [boundedObs] using h
 
-/-- Equal bounded observations agree on every cell in the observed window. -/
+/-- Equal bounded observations agree on every cell in the observed window.
+@isnad1 id=eq.3h4v.s6.65972f3b7126 from=translated src=- shape=272c317b vocab=d0bcb580
+-/
 theorem cells_eq_of_boundedObs_eq {t u : Tape} {space : ℕ}
     (ht : t.head ≤ space) (hu : u.head ≤ space)
     (hobs : t.boundedObs space ht = u.boundedObs space hu)
@@ -41,7 +45,9 @@ theorem cells_eq_of_boundedObs_eq {t u : Tape} {space : ℕ}
   have h := congrArg (fun obs : BoundedObs space => obs.2 i) hobs
   simpa [boundedObs] using h
 
-/-- Equal bounded observations read the same symbol. -/
+/-- Equal bounded observations read the same symbol.
+@isnad1 id=eq.3h3v.s5.2413586b16cc from=translated src=- shape=cac1dd62 vocab=a11468be
+-/
 theorem read_eq_of_boundedObs_eq {t u : Tape} {space : ℕ}
     (ht : t.head ≤ space) (hu : u.head ≤ space)
     (hobs : t.boundedObs space ht = u.boundedObs space hu) :
@@ -53,7 +59,9 @@ theorem read_eq_of_boundedObs_eq {t u : Tape} {space : ℕ}
 
 /-- Applying the same write and move to equal bounded observations produces
 equal successor observations, as long as both successor heads remain inside
-the same observed window. -/
+the same observed window.
+@isnad1 id=eq.5h5v.s6.7ca74c6d4230 from=translated src=- shape=bbfb61a4 vocab=f1af25f1
+-/
 theorem boundedObs_writeAndMove_congr {t u : Tape} {space : ℕ}
     (ht : t.head ≤ space) (hu : u.head ≤ space)
     (hobs : t.boundedObs space ht = u.boundedObs space hu)
@@ -89,7 +97,9 @@ namespace TM
 
 variable {k : ℕ} {tm : TM k} {inputLength space : ℕ}
 
-/-- Equal transducer snapshots record the same machine state. -/
+/-- Equal transducer snapshots record the same machine state.
+@isnad1 id=eq.3h6v.s6.49da6768fd7c from=translated src=- shape=d70cadbf vocab=5f1824d0
+-/
 theorem state_eq_of_transducerSnapshot_eq {c d : Cfg k tm.Q}
     (hc : c.WithinAuxSpace inputLength space)
     (hd : d.WithinAuxSpace inputLength space)
@@ -99,7 +109,9 @@ theorem state_eq_of_transducerSnapshot_eq {c d : Cfg k tm.Q}
   have h := congrArg (fun snap : tm.TransducerSnapshot inputLength space => snap.1) hsnap
   simpa [transducerSnapshot] using h
 
-/-- Equal transducer snapshots record the same input-head position. -/
+/-- Equal transducer snapshots record the same input-head position.
+@isnad1 id=eq.3h6v.s6.1af833c3bbf3 from=translated src=- shape=d35fe01c vocab=ff9d45eb
+-/
 theorem input_head_eq_of_transducerSnapshot_eq {c d : Cfg k tm.Q}
     (hc : c.WithinAuxSpace inputLength space)
     (hd : d.WithinAuxSpace inputLength space)
@@ -111,7 +123,9 @@ theorem input_head_eq_of_transducerSnapshot_eq {c d : Cfg k tm.Q}
   simpa [transducerSnapshot] using h
 
 /-- When two snapshotted configurations share their read-only input contents,
-equal snapshots make their input heads read the same symbol. -/
+equal snapshots make their input heads read the same symbol.
+@isnad1 id=eq.4h6v.s6.0487cf860a2a from=translated src=- shape=352431b8 vocab=050b1126
+-/
 theorem input_read_eq_of_transducerSnapshot_eq {c d : Cfg k tm.Q}
     (hc : c.WithinAuxSpace inputLength space)
     (hd : d.WithinAuxSpace inputLength space)
@@ -123,7 +137,9 @@ theorem input_read_eq_of_transducerSnapshot_eq {c d : Cfg k tm.Q}
     input_head_eq_of_transducerSnapshot_eq hc hd hsnap]
 
 /-- Equal transducer snapshots contain equal bounded observations of each work
-tape. -/
+tape.
+@isnad1 id=eq.3h7v.s6.eab5706d851a from=translated src=- shape=e7cc7181 vocab=3a487dea
+-/
 theorem work_boundedObs_eq_of_transducerSnapshot_eq {c d : Cfg k tm.Q}
     (hc : c.WithinAuxSpace inputLength space)
     (hd : d.WithinAuxSpace inputLength space)
@@ -136,7 +152,9 @@ theorem work_boundedObs_eq_of_transducerSnapshot_eq {c d : Cfg k tm.Q}
   simpa [transducerSnapshot] using h
 
 /-- Equal transducer snapshots record the same head position on each work
-tape. -/
+tape.
+@isnad1 id=eq.3h7v.s6.56a2de651170 from=translated src=- shape=d1d3674b vocab=e914ca68
+-/
 theorem work_head_eq_of_transducerSnapshot_eq {c d : Cfg k tm.Q}
     (hc : c.WithinAuxSpace inputLength space)
     (hd : d.WithinAuxSpace inputLength space)
@@ -146,7 +164,9 @@ theorem work_head_eq_of_transducerSnapshot_eq {c d : Cfg k tm.Q}
   Tape.head_eq_of_boundedObs_eq (hc.1 i) (hd.1 i)
     (work_boundedObs_eq_of_transducerSnapshot_eq hc hd hsnap i)
 
-/-- Equal transducer snapshots read the same symbol on each work tape. -/
+/-- Equal transducer snapshots read the same symbol on each work tape.
+@isnad1 id=eq.3h7v.s6.216afd8efee4 from=translated src=- shape=e3ce4947 vocab=c603eb7d
+-/
 theorem work_read_eq_of_transducerSnapshot_eq {c d : Cfg k tm.Q}
     (hc : c.WithinAuxSpace inputLength space)
     (hd : d.WithinAuxSpace inputLength space)
@@ -156,7 +176,9 @@ theorem work_read_eq_of_transducerSnapshot_eq {c d : Cfg k tm.Q}
   Tape.read_eq_of_boundedObs_eq (hc.1 i) (hd.1 i)
     (work_boundedObs_eq_of_transducerSnapshot_eq hc hd hsnap i)
 
-/-- Equal transducer snapshots have equal output-head zero flags. -/
+/-- Equal transducer snapshots have equal output-head zero flags.
+@isnad1 id=eq.3h6v.s6.cc57b6f28162 from=translated src=- shape=cff20f78 vocab=dd55e8a8
+-/
 theorem output_head_zero_eq_of_transducerSnapshot_eq {c d : Cfg k tm.Q}
     (hc : c.WithinAuxSpace inputLength space)
     (hd : d.WithinAuxSpace inputLength space)
@@ -168,7 +190,9 @@ theorem output_head_zero_eq_of_transducerSnapshot_eq {c d : Cfg k tm.Q}
   simpa [transducerSnapshot] using h
 
 /-- Equal transducer snapshots agree on whether the output head is at the
-exceptional immutable left-marker cell. -/
+exceptional immutable left-marker cell.
+@isnad1 id=iff.3h6v.s6.9a3e5aef1731 from=translated src=- shape=dd8331e7 vocab=1276aa1b
+-/
 theorem output_head_eq_zero_iff_of_transducerSnapshot_eq {c d : Cfg k tm.Q}
     (hc : c.WithinAuxSpace inputLength space)
     (hd : d.WithinAuxSpace inputLength space)
@@ -184,7 +208,9 @@ theorem output_head_eq_zero_iff_of_transducerSnapshot_eq {c d : Cfg k tm.Q}
     by_contra hc0
     simp [hc0, hd0] at hflag
 
-/-- Equal transducer snapshots read the same output symbol. -/
+/-- Equal transducer snapshots read the same output symbol.
+@isnad1 id=eq.3h6v.s6.fe30ca746939 from=translated src=- shape=2297409c vocab=108bd653
+-/
 theorem output_read_eq_of_transducerSnapshot_eq {c d : Cfg k tm.Q}
     (hc : c.WithinAuxSpace inputLength space)
     (hd : d.WithinAuxSpace inputLength space)

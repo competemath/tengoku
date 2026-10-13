@@ -47,25 +47,38 @@ def walkEnd (G : RegGraph) : ∀ (t : ℕ), G.V → (Fin t → G.D) → G.V
   | 0, v, _ => v
   | t + 1, v, s => walkEnd G t (G.nbr v (s 0)) (fun j => s j.succ)
 
+/--
+@isnad1 id=eq.0h3v.s4.8876bc549643 from=translated src=- shape=6356afc0 vocab=9e05f3d9
+-/
 @[simp] theorem walkEnd_zero (v : G.V) (s : Fin 0 → G.D) : G.walkEnd 0 v s = v := by
   simp [walkEnd]
 
+/--
+@isnad1 id=eq.0h4v.s6.59b68d660258 from=translated src=- shape=d01c14c8 vocab=d1cd5363
+-/
 theorem walkEnd_succ (t : ℕ) (v : G.V) (s : Fin (t + 1) → G.D) :
     G.walkEnd (t + 1) v s = G.walkEnd t (G.nbr v (s 0)) (fun j => s j.succ) := by
   simp [walkEnd]
 
+/--
+@isnad1 id=eq.0h5v.s6.7cd1b2d76eab from=translated src=- shape=e1c0dc4a vocab=bb5b4952
+-/
 theorem walkEnd_cons (t : ℕ) (v : G.V) (i : G.D) (s : Fin t → G.D) :
     G.walkEnd (t + 1) v (Fin.cons i s) = G.walkEnd t (G.nbr v i) s := by
   rw [walkEnd_succ]
   simp
 
-/-- There are `deg ^ t` walks of length `t` out of a vertex. -/
+/-- There are `deg ^ t` walks of length `t` out of a vertex.
+@isnad1 id=eq.0h2v.s5.64b50635bd2d from=translated src=- shape=bb4377bd vocab=d30b22d3
+-/
 theorem card_walks (t : ℕ) : Fintype.card (Fin t → G.D) = G.deg ^ t := by
   simp
 
 /-- **The bridge between walks and the walk operator.** Averaging a function of
 the endpoint over all walks of length `t` out of `v` is exactly the `t`-step
-operator applied at `v`. -/
+operator applied at `v`.
+@isnad1 id=eq.0h4v.s6.ebe975966440 from=translated src=- shape=79ada2b9 vocab=c0b5e00d
+-/
 theorem sum_walkEnd (f : G.V → ℝ) (t : ℕ) (v : G.V) :
     ∑ s : Fin t → G.D, f (G.walkEnd t v s) = (G.deg : ℝ) ^ t * G.stepIter t f v := by
   induction t generalizing v with
@@ -94,7 +107,9 @@ theorem sum_walkEnd (f : G.V → ℝ) (t : ℕ) (v : G.V) :
 
 /-- The walk-form of the correlation between the start and the end of a random
 walk: it is `deg ^ t` times the operator inner product, which `mixing_sq`
-estimates. -/
+estimates.
+@isnad1 id=eq.0h4v.s7.b980fae19e22 from=translated src=- shape=c978e593 vocab=c0b5e00d
+-/
 theorem sum_mul_walkEnd (f g : G.V → ℝ) (t : ℕ) :
     ∑ v : G.V, ∑ s : Fin t → G.D, f v * g (G.walkEnd t v s)
       = (G.deg : ℝ) ^ t * ∑ v : G.V, f v * G.stepIter t g v := by

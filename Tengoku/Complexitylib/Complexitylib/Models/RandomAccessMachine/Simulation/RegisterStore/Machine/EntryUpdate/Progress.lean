@@ -51,14 +51,18 @@ structure EntryUpdateProgress
   resultCount_eq : resultCount = emitted.length + remaining.length
 
 /-- Before scanning any entries, the empty emitted prefix satisfies the
-progress invariant. -/
+progress invariant.
+@isnad1 id=entryupd.0h3v.s4.7772ebb1440f from=translated src=- shape=d9a30012 vocab=ab11f7c7
+-/
 theorem entryUpdateProgress_initial_internal
     (store : Store) (address newValue : ℕ) :
     EntryUpdateProgress store address newValue [] store [] false store.length := by
   constructor <;> simp
 
 /-- Copying a nonmatching entry advances all three list frontiers without
-changing either the found flag or the result count. -/
+changing either the found flag or the result count.
+@isnad1 id=entryupd.2h9v.s6.a5fe104edd68 from=translated src=- shape=da9029e3 vocab=ff501fb7
+-/
 theorem EntryUpdateProgress.miss_internal
     {store : Store} {address newValue : ℕ}
     {processed remaining emitted : Store} {entry : Entry}
@@ -81,7 +85,9 @@ theorem EntryUpdateProgress.miss_internal
     omega
 
 /-- Replacing the first matching entry emits the new nonzero pair and records
-that the target address has been found. -/
+that the target address has been found.
+@isnad1 id=entryupd.3h8v.s6.ff1391da8c69 from=translated src=- shape=3e48f280 vocab=6d825b65
+-/
 theorem EntryUpdateProgress.replace_internal
     {store : Store} {address newValue : ℕ}
     {processed remaining emitted : Store} {entry : Entry}
@@ -102,7 +108,9 @@ theorem EntryUpdateProgress.replace_internal
     omega
 
 /-- Deleting the first matching entry emits nothing for it, records the hit,
-and decrements the result count. -/
+and decrements the result count.
+@isnad1 id=entryupd.2h7v.s6.54727f8eaaf8 from=translated src=- shape=4f2549fb vocab=0492cfb4
+-/
 theorem EntryUpdateProgress.delete_internal
     {store : Store} {address : ℕ}
     {processed remaining emitted : Store} {entry : Entry}
@@ -121,7 +129,9 @@ theorem EntryUpdateProgress.delete_internal
     omega
 
 /-- Once the scan is exhausted after a hit, the emitted store and result count
-are already the abstract write result. -/
+are already the abstract write result.
+@isnad1 id=and.1h6v.s5.9fff5be548c3 from=translated src=- shape=dd4e72ec vocab=f5f32b65
+-/
 theorem EntryUpdateProgress.terminal_found_internal
     {store : Store} {address newValue : ℕ}
     {processed emitted : Store} {resultCount : ℕ}
@@ -134,7 +144,9 @@ theorem EntryUpdateProgress.terminal_found_internal
   exact ⟨houtput, by simpa [houtput] using h.resultCount_eq⟩
 
 /-- An absent address written with zero requires no append; exhaustion already
-produces the abstract empty write contribution. -/
+produces the abstract empty write contribution.
+@isnad1 id=and.1h5v.s5.3e77320f2af5 from=translated src=- shape=e2b11ea6 vocab=4902589e
+-/
 theorem EntryUpdateProgress.terminal_zero_internal
     {store : Store} {address : ℕ}
     {processed emitted : Store} {resultCount : ℕ}
@@ -147,7 +159,9 @@ theorem EntryUpdateProgress.terminal_zero_internal
   exact ⟨houtput, by simpa [houtput] using h.resultCount_eq⟩
 
 /-- In a store with unique addresses, finding the target in the processed
-prefix excludes it from the unprocessed suffix. -/
+prefix excludes it from the unprocessed suffix.
+@isnad1 id=not.3h8v.s5.177ab36be2eb from=translated src=- shape=45089aa0 vocab=93409762
+-/
 theorem EntryUpdateProgress.not_mem_remaining_of_found_internal
     {store : Store} {address newValue : ℕ}
     {processed remaining emitted : Store} {found : Bool}

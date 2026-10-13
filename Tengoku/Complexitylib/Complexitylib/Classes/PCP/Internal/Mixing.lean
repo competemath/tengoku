@@ -51,21 +51,33 @@ variable (G : RegGraph)
 
 /-! ### Linearity of the walk operator -/
 
+/--
+@isnad1 id=eq.0h3v.s4.f921891ea08e from=translated src=- shape=3df243a0 vocab=7cecc8fa
+-/
 @[simp] theorem step_const (c : ℝ) (v : G.V) : G.step (fun _ => c) v = c := by
   have hd : (G.deg : ℝ) ≠ 0 := G.deg_ne_zero
   simp only [step, Finset.sum_const, Finset.card_univ, nsmul_eq_mul, card_eq_deg]
   field_simp
 
+/--
+@isnad1 id=eq.0h4v.s5.0feecc9872b0 from=translated src=- shape=758e375d vocab=01a2d9a5
+-/
 theorem step_add (f g : G.V → ℝ) (v : G.V) :
     G.step (fun w => f w + g w) v = G.step f v + G.step g v := by
   simp only [step]
   rw [← add_div, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h3v.s4.20ed7fbdfabd from=translated src=- shape=63eee521 vocab=5dfac67f
+-/
 theorem stepIter_const (t : ℕ) (c : ℝ) : G.stepIter t (fun _ => c) = fun _ => c := by
   induction t with
   | zero => rfl
   | succ t ih => rw [stepIter_succ, ih]; funext v; exact G.step_const c v
 
+/--
+@isnad1 id=eq.0h4v.s5.60d8fba30a9f from=translated src=- shape=e6dd87f7 vocab=875cdcc9
+-/
 theorem stepIter_add (t : ℕ) (f g : G.V → ℝ) :
     G.stepIter t (fun w => f w + g w) = fun v => G.stepIter t f v + G.stepIter t g v := by
   induction t with
@@ -86,12 +98,18 @@ noncomputable def center (f : G.V → ℝ) : G.V → ℝ := fun v => f v - G.mea
 theorem eq_mean_add_center (f : G.V → ℝ) : f = fun v => G.mean f + G.center f v := by
   funext v; simp [center]
 
+/--
+@isnad1 id=eq.1h2v.s5.7465eabe87b9 from=translated src=- shape=5c3f24e4 vocab=67305a66
+-/
 theorem sum_center (hn : 0 < G.order) (f : G.V → ℝ) : ∑ v : G.V, G.center f v = 0 := by
   simp only [center, Finset.sum_sub_distrib, Finset.sum_const, Finset.card_univ,
     nsmul_eq_mul, mean, card_eq_order]
   field_simp
   ring
 
+/--
+@isnad1 id=eq.1h2v.s7.142562b2ce38 from=translated src=- shape=8970eac4 vocab=4edf4dd9
+-/
 theorem sum_sq_center (hn : 0 < G.order) (f : G.V → ℝ) :
     ∑ v : G.V, (G.center f v) ^ 2
       = (∑ v : G.V, (f v) ^ 2) - (∑ v : G.V, f v) ^ 2 / (G.order : ℝ) := by
@@ -110,6 +128,9 @@ theorem sum_sq_center (hn : 0 < G.order) (f : G.V → ℝ) :
         field_simp
         ring
 
+/--
+@isnad1 id=le.0h2v.s5.7845757a92ed from=translated src=- shape=2053c474 vocab=13056957
+-/
 theorem sum_sq_center_nonneg (f : G.V → ℝ) : 0 ≤ ∑ v : G.V, (G.center f v) ^ 2 :=
   Finset.sum_nonneg fun _ _ => sq_nonneg _
 
@@ -117,7 +138,9 @@ theorem sum_sq_center_nonneg (f : G.V → ℝ) : 0 ≤ ∑ v : G.V, (G.center f 
 
 /-- The correlation between `f` at the start of a `t`-step walk and `g` at its
 end splits into the product of averages plus the correlation of the mean-zero
-parts. -/
+parts.
+@isnad1 id=eq.1h4v.s7.05cddb55c038 from=translated src=- shape=6231efec vocab=8d7d2e43
+-/
 theorem inner_stepIter_eq (hn : 0 < G.order) (t : ℕ) (f g : G.V → ℝ) :
     ∑ v : G.V, f v * G.stepIter t g v
       = (∑ v : G.V, f v) * (∑ v : G.V, g v) / (G.order : ℝ)
@@ -155,7 +178,9 @@ theorem inner_stepIter_eq (hn : 0 < G.order) (t : ℕ) (f g : G.V → ℝ) :
         simp only [mean]
         field_simp
 
-/-- **The expander mixing lemma for `t`-step walks.** -/
+/-- **The expander mixing lemma for `t`-step walks.**
+@isnad1 id=le.2h5v.s8.fcbfa29f6238 from=translated src=- shape=7481a559 vocab=fda3fbe6
+-/
 theorem mixing_sq {lam : ℝ} (h : G.SpectralBound lam) (hn : 0 < G.order) (t : ℕ)
     (f g : G.V → ℝ) :
     (∑ v : G.V, f v * G.stepIter t g v

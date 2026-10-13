@@ -53,10 +53,16 @@ def dartsBetween (S T : Finset G.V) : Finset (G.V × G.D) :=
 def indicator (S : Finset G.V) : G.V → ℝ :=
   fun v => if v ∈ S then 1 else 0
 
+/--
+@isnad1 id=eq.0h2v.s5.dc294d3385da from=translated src=- shape=7275af8f vocab=ae352f7d
+-/
 @[simp] theorem sum_indicator (S : Finset G.V) :
     ∑ v : G.V, G.indicator S v = (S.card : ℝ) := by
   simp [indicator, Finset.sum_ite_mem]
 
+/--
+@isnad1 id=eq.0h2v.s5.380288ca7cb6 from=translated src=- shape=7e28831f vocab=43743b94
+-/
 @[simp] theorem sum_sq_indicator (S : Finset G.V) :
     ∑ v : G.V, (G.indicator S v) ^ 2 = (S.card : ℝ) := by
   have h : ∀ v : G.V, (G.indicator S v) ^ 2 = G.indicator S v := by
@@ -64,7 +70,9 @@ def indicator (S : Finset G.V) : G.V → ℝ :=
   rw [Finset.sum_congr rfl fun v _ => h v, sum_indicator]
 
 /-- The dart count between two sets, as an inner product against the walk
-operator. -/
+operator.
+@isnad1 id=eq.0h3v.s6.674dba252e3d from=translated src=- shape=0388c02d vocab=5b0953e4
+-/
 theorem sum_indicator_mul_step (S T : Finset G.V) :
     ∑ v : G.V, G.indicator S v * G.step (G.indicator T) v
       = ((G.dartsBetween S T).card : ℝ) / (G.deg : ℝ) := by
@@ -85,7 +93,9 @@ theorem sum_indicator_mul_step (S T : Finset G.V) :
   · by_cases h2 : G.nbr p.1 p.2 ∈ T <;> simp [indicator, h1, h2]
   · simp [indicator, h1]
 
-/-- **The mixing lemma for vertex sets.** -/
+/-- **The mixing lemma for vertex sets.**
+@isnad1 id=le.2h4v.s7.4ec6fe673a6f from=translated src=- shape=964137cc vocab=d3e38242
+-/
 theorem mixing_sq_indicator {lam : ℝ} (h : G.SpectralBound lam) (hn : 0 < G.order)
     (S T : Finset G.V) :
     (((G.dartsBetween S T).card : ℝ) / (G.deg : ℝ)
@@ -98,7 +108,9 @@ theorem mixing_sq_indicator {lam : ℝ} (h : G.SpectralBound lam) (hn : 0 < G.or
     sum_sq_indicator] at hmix
 
 /-- **Edge expansion.** A vertex set sends out at least
-`(1 - lam) · deg · |S| · |Sᶜ| / n` darts. -/
+`(1 - lam) · deg · |S| · |Sᶜ| / n` darts.
+@isnad1 id=le.3h3v.s7.55cbeb9da689 from=translated src=- shape=74d1a4eb vocab=99216b1d
+-/
 theorem card_dartsBetween_compl_ge {lam : ℝ} (hlam : 0 ≤ lam) (h : G.SpectralBound lam)
     (hn : 0 < G.order) (S : Finset G.V) :
     (1 - lam) * (G.deg : ℝ) * ((S.card : ℝ) * (Sᶜ.card : ℝ) / (G.order : ℝ))

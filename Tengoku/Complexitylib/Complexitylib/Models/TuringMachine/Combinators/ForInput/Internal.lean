@@ -33,7 +33,9 @@ def forInputBodyWrap (body : TM n) (c : Cfg n body.Q) :
     work := c.work
     output := c.output }
 
-/-- Every nonhalting body step is simulated exactly by one `forInputTM` step. -/
+/-- Every nonhalting body step is simulated exactly by one `forInputTM` step.
+@isnad1 id=eq.1h4v.s6.a030e64c2395 from=translated src=- shape=82a2de5a vocab=ecbd87b3
+-/
 theorem forInputTM_body_step_internal (body : TM n)
     {c c' : Cfg n body.Q} (hstep : body.step c = some c') :
     (forInputTM body).step (forInputBodyWrap body c) =
@@ -49,7 +51,9 @@ theorem forInputTM_body_step_internal (body : TM n)
   cases Option.some.inj hstep
   rfl
 
-/-- Exact body runs lift through the body phase of `forInputTM`. -/
+/-- Exact body runs lift through the body phase of `forInputTM`.
+@isnad1 id=reachesi.1h5v.s5.4ea9ddd9cf02 from=translated src=- shape=c1da0f54 vocab=be33b4f0
+-/
 theorem forInputTM_body_reachesIn_internal (body : TM n)
     {t : ℕ} {c c' : Cfg n body.Q} (hreach : body.reachesIn t c c') :
     (forInputTM body).reachesIn t
@@ -58,7 +62,9 @@ theorem forInputTM_body_reachesIn_internal (body : TM n)
     (fun _ _ => forInputTM_body_step_internal body) hreach
 
 /-- On a Boolean input symbol, the driver advances the read-only input and
-enters the body while preserving every off-start work and output tape. -/
+enters the body while preserving every off-start work and output tape.
+@isnad1 id=eq.5h3v.s7.88c2995a3181 from=translated src=- shape=e7963e93 vocab=81261a70
+-/
 theorem forInputTM_step_scan_bit_internal (body : TM n)
     (c : Cfg n (forInputTM body).Q)
     (hstate : c.state = .inl .scan)
@@ -80,7 +86,9 @@ theorem forInputTM_step_scan_bit_internal (body : TM n)
     rfl
 
 /-- At the first input blank, the driver halts while preserving all off-start
-tapes exactly. -/
+tapes exactly.
+@isnad1 id=eq.4h3v.s7.8c20c33c8605 from=translated src=- shape=ead0460e vocab=9061182b
+-/
 theorem forInputTM_step_scan_blank_internal (body : TM n)
     (c : Cfg n (forInputTM body).Q)
     (hstate : c.state = .inl .scan) (hblank : c.input.read = Γ.blank)
@@ -102,7 +110,9 @@ theorem forInputTM_step_scan_blank_internal (body : TM n)
   · rw [writeAndMove_readBack _ houtput, idleDir, ite_eq_right houtput]
     rfl
 
-/-- A halted body takes one preserving seam step back to the input scanner. -/
+/-- A halted body takes one preserving seam step back to the input scanner.
+@isnad1 id=eq.4h3v.s6.e7ef8b945296 from=translated src=- shape=48300eb1 vocab=dd355381
+-/
 theorem forInputTM_step_body_halt_internal (body : TM n)
     (c : Cfg n body.Q) (hhalt : body.halted c)
     (hinput : c.input.read ≠ Γ.start)
@@ -123,7 +133,9 @@ theorem forInputTM_step_body_halt_internal (body : TM n)
   · rw [writeAndMove_readBack _ houtput, idleDir, ite_eq_right houtput]
     rfl
 
-/-- A certified input-driven loop has the advertised exact remaining run. -/
+/-- A certified input-driven loop has the advertised exact remaining run.
+@isnad1 id=reachesi.1h7v.s5.4036390753cd from=translated src=- shape=13329beb vocab=f5168474
+-/
 theorem ForInputLoopSpec.reachesIn_internal {body : TM n}
     {bodyTime : ℕ → ℕ} {total : ℕ}
     (spec : ForInputLoopSpec body bodyTime total) :
@@ -156,7 +168,9 @@ theorem ForInputLoopSpec.reachesIn_internal {body : TM n}
       omega
 
 /-- Every configuration reached no later than a certified loop's exact
-remaining runtime satisfies its auxiliary-space budget. -/
+remaining runtime satisfies its auxiliary-space budget.
+@isnad1 id=withinau.4h11v.s6.b360b9d60c49 from=translated src=- shape=0a4a78e5 vocab=6c620512
+-/
 theorem ForInputLoopSpaceSpec.prefix_withinAuxSpace_internal
     {body : TM n} {bodyTime : ℕ → ℕ} {total inputLength spaceBound : ℕ}
     {spec : ForInputLoopSpec body bodyTime total}
@@ -242,7 +256,9 @@ theorem ForInputLoopSpaceSpec.prefix_withinAuxSpace_internal
           rw [hc]
           exact ih (value + 1) tailTime d (by omega) htail htailBound
 
-/-- A read-only-input loop preserves the body's one-way-output discipline. -/
+/-- A read-only-input loop preserves the body's one-way-output discipline.
+@isnad1 id=istransd.1h2v.s3.bc1387846203 from=translated src=- shape=525138f7 vocab=501efa89
+-/
 theorem IsTransducer.forInputTM_internal {body : TM n}
     (hbody : body.IsTransducer) : (forInputTM body).IsTransducer := by
   intro state iHead wHeads oHead

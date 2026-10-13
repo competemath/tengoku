@@ -75,6 +75,9 @@ def zigzagRot : (G.V × G.D) × (H.D × H.D) → (G.V × G.D) × (H.D × H.D) :=
     let r := H.rot (e.symm q.2, x.2.2)
     ((q.1, e r.1), (r.2, p.2))
 
+/--
+@isnad1 id=involuti.0h3v.s4.725bcd158f10 from=translated src=- shape=b4b1ddec vocab=43943e0b
+-/
 theorem zigzagRot_involutive : Function.Involutive (zigzagRot G H e) := by
   intro x
   obtain ⟨⟨v, i⟩, ⟨a, b⟩⟩ := x
@@ -123,9 +126,15 @@ def zigzag : RegGraph where
   rot := zigzagRot G H e
   rot_involutive := zigzagRot_involutive G H e
 
+/--
+@isnad1 id=eq.0h3v.s4.2289ce0b4b40 from=translated src=- shape=c8859809 vocab=693fc2db
+-/
 @[simp] theorem order_zigzag : (zigzag G H e).order = G.order * G.deg :=
   @Fintype.card_prod G.V G.D G.fintypeV G.fintypeD
 
+/--
+@isnad1 id=eq.0h3v.s4.92ac83e9f10f from=translated src=- shape=fb032d3f vocab=7df67f81
+-/
 @[simp] theorem deg_zigzag : (zigzag G H e).deg = H.deg * H.deg :=
   @Fintype.card_prod H.D H.D H.fintypeD H.fintypeD
 
@@ -141,7 +150,9 @@ with `G.rot`, an involution of darts, so it merely permutes the vertices of the
 product. -/
 def crossStep (f : G.V × G.D → ℝ) : G.V × G.D → ℝ := fun x => f (G.rot x)
 
-/-- **The zig-zag walk is cloud, then cross, then cloud.** -/
+/-- **The zig-zag walk is cloud, then cross, then cloud.**
+@isnad1 id=eq.0h5v.s5.284059dae9ef from=translated src=- shape=854553e7 vocab=98b87b9b
+-/
 theorem step_zigzag (f : (zigzag G H e).V → ℝ) (x : (zigzag G H e).V) :
     (zigzag G H e).step f x
       = cloudStep G H e (crossStep G (cloudStep G H e f)) x := by
@@ -167,20 +178,26 @@ theorem step_zigzag (f : (zigzag G H e).V → ℝ) (x : (zigzag G H e).V) :
       / (H.deg : ℝ)
   field_simp
 
-/-- **The crossing move is an isometry**: it permutes the darts of `G`. -/
+/-- **The crossing move is an isometry**: it permutes the darts of `G`.
+@isnad1 id=eq.0h2v.s6.b1b364d662a7 from=translated src=- shape=72874b6c vocab=e928d0b5
+-/
 theorem sum_sq_crossStep (f : G.V × G.D → ℝ) :
     ∑ x : G.V × G.D, (crossStep G f x) ^ 2 = ∑ x : G.V × G.D, (f x) ^ 2 :=
   Fintype.sum_equiv (G.rot_involutive.toPerm)
     (fun x => (crossStep G f x) ^ 2) (fun x => (f x) ^ 2) fun _ => rfl
 
-/-- The crossing move preserves the inner product with itself. -/
+/-- The crossing move preserves the inner product with itself.
+@isnad1 id=eq.0h2v.s6.5c56fa38dd1a from=translated src=- shape=d837b538 vocab=76bfa6b2
+-/
 theorem sum_sq_crossStep_aux (f : G.V × G.D → ℝ) :
     ∑ x : G.V × G.D, crossStep G f x * crossStep G f x
       = ∑ x : G.V × G.D, f x * f x :=
   Fintype.sum_equiv (G.rot_involutive.toPerm)
     (fun x => crossStep G f x * crossStep G f x) (fun x => f x * f x) fun _ => rfl
 
-/-- The crossing move preserves sums too. -/
+/-- The crossing move preserves sums too.
+@isnad1 id=eq.0h2v.s6.271173f93ecf from=translated src=- shape=755e0cfc vocab=23b19819
+-/
 theorem sum_crossStep (f : G.V × G.D → ℝ) :
     ∑ x : G.V × G.D, crossStep G f x = ∑ x : G.V × G.D, f x :=
   Fintype.sum_equiv (G.rot_involutive.toPerm)
@@ -192,20 +209,30 @@ theorem sum_crossStep (f : G.V × G.D → ℝ) :
 def cloudFun (f : G.V × G.D → ℝ) (v : G.V) : H.V → ℝ := fun u => f (v, e u)
 
 /-- **The cloud move is `H`'s walk**, transported along `e`. Every property of
-`H`'s step operator therefore holds cloud by cloud. -/
+`H`'s step operator therefore holds cloud by cloud.
+@isnad1 id=eq.0h6v.s6.1928bad13c12 from=translated src=- shape=7323d85d vocab=1d61c2e9
+-/
 theorem cloudStep_apply (f : G.V × G.D → ℝ) (v : G.V) (i : G.D) :
     cloudStep G H e f (v, i) = H.step (cloudFun G H e f v) (e.symm i) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.2fcfcaf1b924 from=translated src=- shape=25ca8027 vocab=e8412f67
+-/
 theorem sum_cloudFun (f : G.V × G.D → ℝ) (v : G.V) :
     ∑ u : H.V, cloudFun G H e f v u = ∑ i : G.D, f (v, i) :=
   Fintype.sum_equiv e (fun u => cloudFun G H e f v u) (fun i => f (v, i)) fun _ => rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.fc83caf39d03 from=translated src=- shape=263b9d50 vocab=4befb291
+-/
 theorem sum_sq_cloudFun (f : G.V × G.D → ℝ) (v : G.V) :
     ∑ u : H.V, (cloudFun G H e f v u) ^ 2 = ∑ i : G.D, (f (v, i)) ^ 2 :=
   Fintype.sum_equiv e (fun u => (cloudFun G H e f v u) ^ 2) (fun i => (f (v, i)) ^ 2)
     fun _ => rfl
 
-/-- The cloud move, summed over one cloud, is what `H`'s walk does there. -/
+/-- The cloud move, summed over one cloud, is what `H`'s walk does there.
+@isnad1 id=eq.0h5v.s6.d5fb9d7a4c45 from=translated src=- shape=3e930cf8 vocab=c64433e2
+-/
 theorem sum_cloudStep (f : G.V × G.D → ℝ) (v : G.V) :
     ∑ i : G.D, cloudStep G H e f (v, i) = ∑ i : G.D, f (v, i) := by
   have h : ∑ i : G.D, cloudStep G H e f (v, i)
@@ -216,7 +243,9 @@ theorem sum_cloudStep (f : G.V × G.D → ℝ) (v : G.V) :
   rw [h, H.sum_step, sum_cloudFun]
 
 /-- **The cloud move contracts what `H` contracts.** On a cloud whose values sum
-to zero, one cloud move shrinks the sum of squares by `lam ^ 2`. -/
+to zero, one cloud move shrinks the sum of squares by `lam ^ 2`.
+@isnad1 id=le.2h6v.s7.d2916d7dff37 from=translated src=- shape=9ea03a76 vocab=e9e10ba5
+-/
 theorem sum_sq_cloudStep_le {lam : ℝ} (hH : H.SpectralBound lam)
     (f : G.V × G.D → ℝ) (v : G.V) (hv : ∑ i : G.D, f (v, i) = 0) :
     ∑ i : G.D, (cloudStep G H e f (v, i)) ^ 2 ≤ lam ^ 2 * ∑ i : G.D, (f (v, i)) ^ 2 := by
@@ -246,12 +275,17 @@ noncomputable def cloudPar (f : G.V × G.D → ℝ) : G.V × G.D → ℝ :=
 noncomputable def cloudPerp (f : G.V × G.D → ℝ) : G.V × G.D → ℝ :=
   fun x => f x - cloudPar G f x
 
+/--
+@isnad1 id=eq.0h3v.s5.3969ee84ea09 from=translated src=- shape=e885bf90 vocab=e4505e06
+-/
 theorem cloudPar_add_cloudPerp (f : G.V × G.D → ℝ) (x : G.V × G.D) :
     cloudPar G f x + cloudPerp G f x = f x := by
   erw [cloudPerp]
   ring
 
-/-- **The cloud move fixes the constant part.** -/
+/-- **The cloud move fixes the constant part.**
+@isnad1 id=eq.0h5v.s5.3a8713779d44 from=translated src=- shape=d8ef8720 vocab=1454d883
+-/
 theorem cloudStep_cloudPar (f : G.V × G.D → ℝ) (x : G.V × G.D) :
     cloudStep G H e (cloudPar G f) x = cloudPar G f x := by
   obtain ⟨v, i⟩ := x
@@ -260,7 +294,9 @@ theorem cloudStep_cloudPar (f : G.V × G.D → ℝ) (x : G.V × G.D) :
   rw [hconst, RegGraph.step_const]
   rfl
 
-/-- **The leftover part sums to zero on every cloud.** -/
+/-- **The leftover part sums to zero on every cloud.**
+@isnad1 id=eq.0h3v.s5.6438a569098a from=translated src=- shape=86c7b5a6 vocab=7c359c69
+-/
 theorem sum_cloudPerp (f : G.V × G.D → ℝ) (v : G.V) :
     ∑ i : G.D, cloudPerp G f (v, i) = 0 := by
   have hdeg : (G.deg : ℝ) ≠ 0 := G.deg_ne_zero
@@ -271,7 +307,9 @@ theorem sum_cloudPerp (f : G.V × G.D → ℝ) (v : G.V) :
   field_simp
   ring
 
-/-- The cloud move contracts the leftover part. -/
+/-- The cloud move contracts the leftover part.
+@isnad1 id=le.1h6v.s7.69b175701938 from=translated src=- shape=b13927c2 vocab=6180e106
+-/
 theorem sum_sq_cloudStep_cloudPerp_le {lam : ℝ} (hH : H.SpectralBound lam)
     (f : G.V × G.D → ℝ) (v : G.V) :
     ∑ i : G.D, (cloudStep G H e (cloudPerp G f) (v, i)) ^ 2
@@ -280,7 +318,9 @@ theorem sum_sq_cloudStep_cloudPerp_le {lam : ℝ} (hH : H.SpectralBound lam)
 
 /-! ### Both moves are self-adjoint -/
 
-/-- One step of a graph is self-adjoint: reversing darts is a bijection. -/
+/-- One step of a graph is self-adjoint: reversing darts is a bijection.
+@isnad1 id=eq.0h3v.s6.c047837f3688 from=translated src=- shape=7bee4977 vocab=6b564292
+-/
 theorem sum_mul_step_comm (K : RegGraph) (f g : K.V → ℝ) :
     ∑ v : K.V, f v * K.step g v = ∑ v : K.V, K.step f v * g v := by
   have hr : ∑ v : K.V, K.step f v * g v = ∑ v : K.V, g v * K.step f v :=
@@ -293,16 +333,23 @@ theorem sum_mul_step_comm (K : RegGraph) (f g : K.V → ℝ) :
 /-- The inner product of two functions on the darts of `G`. -/
 noncomputable def ip (f g : G.V × G.D → ℝ) : ℝ := ∑ x : G.V × G.D, f x * g x
 
+/--
+@isnad1 id=eq.0h3v.s4.800e9f2fdba6 from=translated src=- shape=b93e54d6 vocab=44e46a55
+-/
 theorem ip_comm (f g : G.V × G.D → ℝ) : ip G f g = ip G g f := by
   erw [ip, ip]
   exact Finset.sum_congr rfl fun x _ => mul_comm _ _
 
-/-- Summing over the product is summing cloud by cloud. -/
+/-- Summing over the product is summing cloud by cloud.
+@isnad1 id=eq.0h3v.s6.bcfdf29cdecf from=translated src=- shape=ad677a97 vocab=143ed5bd
+-/
 theorem ip_eq_sum_clouds (f g : G.V × G.D → ℝ) :
     ip G f g = ∑ v : G.V, ∑ i : G.D, f (v, i) * g (v, i) := by
   erw [ip, Fintype.sum_prod_type]
 
-/-- **The cloud move is self-adjoint**, because `H`'s walk is. -/
+/-- **The cloud move is self-adjoint**, because `H`'s walk is.
+@isnad1 id=eq.0h5v.s5.2b0aafa87e3a from=translated src=- shape=44910e64 vocab=b31dacc8
+-/
 theorem ip_cloudStep (f g : G.V × G.D → ℝ) :
     ip G (cloudStep G H e f) g = ip G f (cloudStep G H e g) := by
   rw [ip_eq_sum_clouds, ip_eq_sum_clouds]
@@ -323,7 +370,9 @@ theorem ip_cloudStep (f g : G.V × G.D → ℝ) :
         rfl).symm
   rw [hl, hr, ← sum_mul_step_comm]
 
-/-- **The crossing move is self-adjoint**, because `G.rot` is an involution. -/
+/-- **The crossing move is self-adjoint**, because `G.rot` is an involution.
+@isnad1 id=eq.0h3v.s5.136a5245e93f from=translated src=- shape=54de6d4c vocab=cd9e77ba
+-/
 theorem ip_crossStep (f g : G.V × G.D → ℝ) :
     ip G (crossStep G f) g = ip G f (crossStep G g) := by
   erw [ip, ip]
@@ -332,7 +381,9 @@ theorem ip_crossStep (f g : G.V × G.D → ℝ) :
   show f (G.rot x) * g x = f (G.rot x) * g (G.rot (G.rot x))
   rw [G.rot_involutive x]
 
-/-- Cauchy–Schwarz for this inner product. -/
+/-- Cauchy–Schwarz for this inner product.
+@isnad1 id=le.0h3v.s5.973a9aaeb47c from=translated src=- shape=56d2bd0a vocab=9ddc5d78
+-/
 theorem ip_sq_le (f g : G.V × G.D → ℝ) : (ip G f g) ^ 2 ≤ ip G f f * ip G g g := by
   have h := Finset.sum_mul_sq_le_sq_mul_sq (Finset.univ : Finset (G.V × G.D)) f g
   erw [ip, ip, ip]
@@ -345,14 +396,18 @@ theorem ip_sq_le (f g : G.V × G.D → ℝ) : (ip G f g) ^ 2 ≤ ip G f f * ip G
 /-! ### The constant part is a function on `G` -/
 
 /-- **Crossing acts on cloud-constant functions as `G`'s walk.** This is the
-bridge that lets `G.SpectralBound` be applied to the product. -/
+bridge that lets `G.SpectralBound` be applied to the product.
+@isnad1 id=eq.0h3v.s4.c74309097d42 from=translated src=- shape=8a398413 vocab=843c070c
+-/
 theorem cloudMean_crossStep_cloudPar (f : G.V × G.D → ℝ) (v : G.V) :
     cloudMean G (crossStep G (cloudPar G f)) v = G.step (cloudMean G f) v := by
   rw [cloudMean, RegGraph.step]
   congr 1
 
 /-- The inner product of two cloud-constant functions is `G.deg` times the inner
-product of the functions they come from. -/
+product of the functions they come from.
+@isnad1 id=eq.0h3v.s6.1bc2771417f3 from=translated src=- shape=d7c67697 vocab=88ffab72
+-/
 theorem ip_cloudPar (f g : G.V × G.D → ℝ) :
     ip G (cloudPar G f) (cloudPar G g)
       = (G.deg : ℝ) * ∑ v : G.V, cloudMean G f v * cloudMean G g v := by
@@ -364,17 +419,24 @@ theorem ip_cloudPar (f g : G.V × G.D → ℝ) :
     nsmul_eq_mul]
   rfl
 
-/-- A mean-zero function on the product has mean-zero cloud averages. -/
+/-- A mean-zero function on the product has mean-zero cloud averages.
+@isnad1 id=eq.0h2v.s6.e2cbd396b592 from=translated src=- shape=2d8abfe2 vocab=25e40c15
+-/
 theorem sum_cloudMean (f : G.V × G.D → ℝ) :
     ∑ v : G.V, cloudMean G f v = (∑ x : G.V × G.D, f x) / (G.deg : ℝ) := by
   rw [Fintype.sum_prod_type, Finset.sum_div]
   exact Finset.sum_congr rfl fun v _ => rfl
 
+/--
+@isnad1 id=eq.1h2v.s6.0a12abd6b862 from=translated src=- shape=3b50c775 vocab=f7062bb3
+-/
 theorem sum_cloudMean_eq_zero {f : G.V × G.D → ℝ} (hf : ∑ x : G.V × G.D, f x = 0) :
     ∑ v : G.V, cloudMean G f v = 0 := by
   rw [sum_cloudMean, hf, zero_div]
 
-/-- The sum of squares of the constant part, in terms of `G`. -/
+/-- The sum of squares of the constant part, in terms of `G`.
+@isnad1 id=eq.0h2v.s6.1b1643503d73 from=translated src=- shape=077b06fe vocab=ba26cb5b
+-/
 theorem ip_cloudPar_self (f : G.V × G.D → ℝ) :
     ip G (cloudPar G f) (cloudPar G f)
       = (G.deg : ℝ) * ∑ v : G.V, (cloudMean G f v) ^ 2 := by
@@ -383,7 +445,9 @@ theorem ip_cloudPar_self (f : G.V × G.D → ℝ) :
   exact Finset.sum_congr rfl fun v _ => (sq _).symm
 
 /-- **The parallel–parallel term is `G`'s own quadratic form.** This is where
-`G.SpectralBound` will enter the estimate. -/
+`G.SpectralBound` will enter the estimate.
+@isnad1 id=eq.0h2v.s6.447d58bc33ce from=translated src=- shape=18d23116 vocab=82f6a10b
+-/
 theorem ip_cloudPar_crossStep (f : G.V × G.D → ℝ) :
     ip G (cloudPar G f) (crossStep G (cloudPar G f))
       = (G.deg : ℝ) * ∑ v : G.V, cloudMean G f v * G.step (cloudMean G f) v := by
@@ -397,27 +461,41 @@ theorem ip_cloudPar_crossStep (f : G.V × G.D → ℝ) :
 
 /-! ### Linearity -/
 
+/--
+@isnad1 id=eq.0h6v.s6.9cb3dedb8d8d from=translated src=- shape=bc75e67e vocab=4dac9293
+-/
 theorem cloudStep_add (f g : G.V × G.D → ℝ) (x : G.V × G.D) :
     cloudStep G H e (fun y => f y + g y) x = cloudStep G H e f x + cloudStep G H e g x := by
   erw [cloudStep, cloudStep, cloudStep, ← add_div]
   congr 1
   exact Finset.sum_add_distrib
 
+/--
+@isnad1 id=eq.0h4v.s5.db41b63aa637 from=translated src=- shape=b70dc9a5 vocab=07f5e98d
+-/
 theorem crossStep_add (f g : G.V × G.D → ℝ) (x : G.V × G.D) :
     crossStep G (fun y => f y + g y) x = crossStep G f x + crossStep G g x := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.8ddb7be07432 from=translated src=- shape=04725c1f vocab=dc8c444d
+-/
 theorem ip_add_left (f g h : G.V × G.D → ℝ) :
     ip G (fun x => f x + g x) h = ip G f h + ip G g h := by
   erw [ip, ip, ip, ← Finset.sum_add_distrib]
   exact Finset.sum_congr rfl fun x _ => by ring
 
+/--
+@isnad1 id=eq.0h4v.s6.2463e11e412a from=translated src=- shape=396346b4 vocab=dc8c444d
+-/
 theorem ip_add_right (f g h : G.V × G.D → ℝ) :
     ip G f (fun x => g x + h x) = ip G f g + ip G f h := by
   erw [ip, ip, ip, ← Finset.sum_add_distrib]
   exact Finset.sum_congr rfl fun x _ => by ring
 
 /-- **One cloud move splits into the constant part and a contracted
-remainder.** -/
+remainder.**
+@isnad1 id=eq.0h5v.s5.61806d70a609 from=translated src=- shape=abef3c4e vocab=c8520e06
+-/
 theorem cloudStep_decomp (f : G.V × G.D → ℝ) (x : G.V × G.D) :
     cloudStep G H e f x = cloudPar G f x + cloudStep G H e (cloudPerp G f) x := by
   have hsplit : f = fun y => cloudPar G f y + cloudPerp G f y := by
@@ -426,7 +504,9 @@ theorem cloudStep_decomp (f : G.V × G.D → ℝ) (x : G.V × G.D) :
   conv_lhs => rw [hsplit]
   rw [cloudStep_add, cloudStep_cloudPar]
 
-/-- The zig-zag walk, with the cloud move split on both sides. -/
+/-- The zig-zag walk, with the cloud move split on both sides.
+@isnad1 id=eq.0h4v.s6.6d995f7c55e2 from=translated src=- shape=254e2964 vocab=86cc5b52
+-/
 theorem step_zigzag_decomp (f : (zigzag G H e).V → ℝ) :
     ip G f ((zigzag G H e).step f)
       = ip G (fun x => cloudPar G f x + cloudStep G H e (cloudPerp G f) x)
@@ -443,7 +523,9 @@ theorem step_zigzag_decomp (f : (zigzag G H e).V → ℝ) :
     exact cloudStep_decomp G H e f x
   rw [hdec]
 
-/-- **The four terms of the estimate.** -/
+/-- **The four terms of the estimate.**
+@isnad1 id=eq.0h3v.s6.ceb7cbe4dbef from=translated src=- shape=601be262 vocab=3c7ba05c
+-/
 theorem ip_crossStep_expand (p q : G.V × G.D → ℝ) :
     ip G (fun x => p x + q x) (crossStep G (fun x => p x + q x))
       = ip G p (crossStep G p) + ip G p (crossStep G q)
@@ -456,7 +538,9 @@ theorem ip_crossStep_expand (p q : G.V × G.D → ℝ) :
   ring
 
 /-- **The zig-zag quadratic form, expanded.** The first summand is `G`'s own
-form on the cloud averages; the other three involve the contracted remainder. -/
+form on the cloud averages; the other three involve the contracted remainder.
+@isnad1 id=eq.0h4v.s6.4d9f98d7ce49 from=translated src=- shape=32bfd6bf vocab=03404934
+-/
 theorem ip_step_zigzag_expand (f : (zigzag G H e).V → ℝ) :
     ip G f ((zigzag G H e).step f)
       = ip G (cloudPar G f) (crossStep G (cloudPar G f))
@@ -470,7 +554,9 @@ theorem ip_step_zigzag_expand (f : (zigzag G H e).V → ℝ) :
 
 /-- **A spectral bound controls the quadratic form.** Cauchy–Schwarz turns the
 bound on `‖step g‖` into one on `⟨g, step g⟩`, which is the form the zig-zag
-estimate consumes. -/
+estimate consumes.
+@isnad1 id=le.3h3v.s6.004e0a10d998 from=translated src=- shape=b9c97c64 vocab=81696710
+-/
 theorem sum_mul_step_le_of_spectralBound (K : RegGraph) {lam : ℝ} (hK : K.SpectralBound lam)
     (hlam : 0 ≤ lam) (g : K.V → ℝ) (hg : ∑ v : K.V, g v = 0) :
     ∑ v : K.V, g v * K.step g v ≤ lam * ∑ v : K.V, (g v) ^ 2 := by
@@ -483,7 +569,9 @@ theorem sum_mul_step_le_of_spectralBound (K : RegGraph) {lam : ℝ} (hK : K.Spec
     le_trans hcs (mul_le_mul_of_nonneg_left hspec hS0)
   nlinarith [hT2, mul_nonneg hlam hS0, sq_nonneg (T + lam * S)]
 
-/-- The norm of the contracted remainder, over the whole product. -/
+/-- The norm of the contracted remainder, over the whole product.
+@isnad1 id=le.1h5v.s6.aec9aca4f2c8 from=translated src=- shape=810e1270 vocab=547c4fb1
+-/
 theorem ip_cloudStep_cloudPerp_le {lam : ℝ} (hH : H.SpectralBound lam)
     (f : G.V × G.D → ℝ) :
     ip G (cloudStep G H e (cloudPerp G f)) (cloudStep G H e (cloudPerp G f))
@@ -502,7 +590,9 @@ theorem ip_cloudStep_cloudPerp_le {lam : ℝ} (hH : H.SpectralBound lam)
   exact hb
 
 /-- **Term one of the estimate**: the constant part is bounded by `G`'s own
-spectral bound. -/
+spectral bound.
+@isnad1 id=le.3h3v.s6.dba8f8ab0c8d from=translated src=- shape=3ad2d31f vocab=0c6663a7
+-/
 theorem ip_cloudPar_crossStep_le {lam : ℝ} (hG : G.SpectralBound lam) (hlam : 0 ≤ lam)
     {f : G.V × G.D → ℝ} (hf : ∑ x : G.V × G.D, f x = 0) :
     ip G (cloudPar G f) (crossStep G (cloudPar G f))
@@ -518,11 +608,16 @@ theorem ip_cloudPar_crossStep_le {lam : ℝ} (hG : G.SpectralBound lam) (hlam : 
 
 /-! ### Orthogonality and a weighted bound -/
 
+/--
+@isnad1 id=le.0h2v.s4.7a8afbad2dae from=translated src=- shape=9a191969 vocab=2a67fde3
+-/
 theorem ip_nonneg (g : G.V × G.D → ℝ) : 0 ≤ ip G g g :=
   Finset.sum_nonneg fun _ _ => mul_self_nonneg _
 
 /-- **The two parts are orthogonal.** The constant part is fixed along a cloud
-while the remainder sums to zero there. -/
+while the remainder sums to zero there.
+@isnad1 id=eq.0h2v.s4.58d7b2198ab0 from=translated src=- shape=4c58ba8b vocab=b14ef831
+-/
 theorem ip_cloudPar_cloudPerp (f : G.V × G.D → ℝ) :
     ip G (cloudPar G f) (cloudPerp G f) = 0 := by
   rw [ip_eq_sum_clouds]
@@ -531,7 +626,9 @@ theorem ip_cloudPar_cloudPerp (f : G.V × G.D → ℝ) :
       = cloudMean G f v * cloudPerp G f (v, i) := fun _ => rfl
   erw [Finset.sum_congr rfl fun i _ => h i, ← Finset.mul_sum, sum_cloudPerp, mul_zero]
 
-/-- **Pythagoras** for the splitting. -/
+/-- **Pythagoras** for the splitting.
+@isnad1 id=eq.0h2v.s5.578822599a2a from=translated src=- shape=e9a7778e vocab=ca140503
+-/
 theorem ip_self_split (f : G.V × G.D → ℝ) :
     ip G f f = ip G (cloudPar G f) (cloudPar G f) + ip G (cloudPerp G f) (cloudPerp G f) := by
   have hsplit : f = fun y => cloudPar G f y + cloudPerp G f y := by
@@ -543,7 +640,9 @@ theorem ip_self_split (f : G.V × G.D → ℝ) :
   ring
 
 /-- **The weighted arithmetic-geometric bound.** Expanding `0 ≤ ‖t u - w‖²`
-avoids any square root, which keeps the estimate inside the ordered field. -/
+avoids any square root, which keeps the estimate inside the ordered field.
+@isnad1 id=le.1h4v.s6.d25abc462c62 from=translated src=- shape=31e18f7e vocab=5cbac6b3
+-/
 theorem ip_two_mul_le (u w : G.V × G.D → ℝ) {t : ℝ} (ht : 0 < t) :
     2 * ip G u w ≤ t * ip G u u + ip G w w / t := by
   have hnn : 0 ≤ ∑ x : G.V × G.D, (t * u x - w x) ^ 2 :=
@@ -560,7 +659,9 @@ theorem ip_two_mul_le (u w : G.V × G.D → ℝ) {t : ℝ} (ht : 0 < t) :
     nlinarith [hnn]
   exact le_of_mul_le_mul_right hmul ht
 
-/-- The crossing move preserves the inner product with itself, in `ip` form. -/
+/-- The crossing move preserves the inner product with itself, in `ip` form.
+@isnad1 id=eq.0h2v.s4.c4f7afb5d082 from=translated src=- shape=7ef65493 vocab=cd9e77ba
+-/
 theorem ip_crossStep_self (g : G.V × G.D → ℝ) :
     ip G (crossStep G g) (crossStep G g) = ip G g g := by
   erw [ip, ip]
@@ -579,7 +680,9 @@ theorem eq_zero_of_ip_self_eq_zero {g : G.V × G.D → ℝ} (h : ip G g g = 0)
   exact mul_self_eq_zero.1 hmem
 
 /-- **The zig-zag product's quadratic form is bounded by
-`lamG + lamH + lamH ^ 2`.** -/
+`lamG + lamH + lamH ^ 2`.**
+@isnad1 id=le.5h6v.s7.b3455142af6b from=translated src=- shape=9493a38f vocab=351f1694
+-/
 theorem ip_step_zigzag_le {lamG lamH : ℝ} (hG : G.SpectralBound lamG)
     (hH : H.SpectralBound lamH) (hlamG : 0 ≤ lamG) (hlamH : 0 ≤ lamH)
     (f : (zigzag G H e).V → ℝ) (hf : ∑ x : G.V × G.D, f x = 0) :
@@ -626,7 +729,9 @@ theorem ip_step_zigzag_le {lamG lamH : ℝ} (hG : G.SpectralBound lamG)
 
 /-! ### A walk is a contraction -/
 
-/-- In inner-product form: the cloud move is a contraction. -/
+/-- In inner-product form: the cloud move is a contraction.
+@isnad1 id=le.0h4v.s5.aea8ecf5a83a from=translated src=- shape=033d128e vocab=558f8822
+-/
 theorem ip_cloudStep_le (g : G.V × G.D → ℝ) :
     ip G (cloudStep G H e g) (cloudStep G H e g) ≤ ip G g g := by
   rw [ip_eq_sum_clouds, ip_eq_sum_clouds]
@@ -646,17 +751,25 @@ theorem ip_cloudStep_le (g : G.V × G.D → ℝ) :
 
 /-! ### Two-sided forms -/
 
+/--
+@isnad1 id=eq.0h3v.s5.f24c13cd192b from=translated src=- shape=b5848cc1 vocab=55c141f2
+-/
 theorem ip_neg_left (u w : G.V × G.D → ℝ) :
     ip G (fun x => -u x) w = -ip G u w := by
   erw [ip, ip, ← Finset.sum_neg_distrib]
   exact Finset.sum_congr rfl fun x _ => by ring
 
+/--
+@isnad1 id=eq.0h2v.s5.eebff273b83e from=translated src=- shape=0c9dbcd9 vocab=55c141f2
+-/
 theorem ip_neg_self (u : G.V × G.D → ℝ) :
     ip G (fun x => -u x) (fun x => -u x) = ip G u u := by
   erw [ip, ip]
   exact Finset.sum_congr rfl fun x _ => by ring
 
-/-- The weighted bound, two-sided. -/
+/-- The weighted bound, two-sided.
+@isnad1 id=le.1h4v.s6.263b258f36ea from=translated src=- shape=ab51bada vocab=48cc4ba1
+-/
 theorem abs_ip_two_mul_le (u w : G.V × G.D → ℝ) {t : ℝ} (ht : 0 < t) :
     2 * |ip G u w| ≤ t * ip G u u + ip G w w / t := by
   have hpos := ip_two_mul_le G u w ht
@@ -664,7 +777,9 @@ theorem abs_ip_two_mul_le (u w : G.V × G.D → ℝ) {t : ℝ} (ht : 0 < t) :
   rw [ip_neg_left, ip_neg_self] at hneg
   rcases abs_cases (ip G u w) with ⟨he, -⟩ | ⟨he, -⟩ <;> rw [he] <;> linarith
 
-/-- **The Rayleigh quotient, two-sided.** -/
+/-- **The Rayleigh quotient, two-sided.**
+@isnad1 id=le.3h3v.s6.d12f310975be from=translated src=- shape=15675db9 vocab=ba1cc2e8
+-/
 theorem abs_sum_mul_step_le (K : RegGraph) {lam : ℝ} (hK : K.SpectralBound lam)
     (hlam : 0 ≤ lam) (g : K.V → ℝ) (hg : ∑ v : K.V, g v = 0) :
     |∑ v : K.V, g v * K.step g v| ≤ lam * ∑ v : K.V, (g v) ^ 2 := by
@@ -680,7 +795,9 @@ theorem abs_sum_mul_step_le (K : RegGraph) {lam : ℝ} (hK : K.SpectralBound lam
   · nlinarith [hT2, mul_nonneg hlam hS0, sq_nonneg (T - lam * S)]
   · nlinarith [hT2, mul_nonneg hlam hS0, sq_nonneg (T + lam * S)]
 
-/-- **Term one, two-sided.** -/
+/-- **Term one, two-sided.**
+@isnad1 id=le.3h3v.s6.595590644f0c from=translated src=- shape=27b4ad00 vocab=90ee7c08
+-/
 theorem abs_ip_cloudPar_crossStep_le {lam : ℝ} (hG : G.SpectralBound lam) (hlam : 0 ≤ lam)
     {f : G.V × G.D → ℝ} (hf : ∑ x : G.V × G.D, f x = 0) :
     |ip G (cloudPar G f) (crossStep G (cloudPar G f))|
@@ -696,7 +813,9 @@ theorem abs_ip_cloudPar_crossStep_le {lam : ℝ} (hG : G.SpectralBound lam) (hla
     _ = lam * ((G.deg : ℝ) * ∑ v : G.V, (cloudMean G f v) ^ 2) := by ring
 
 /-- **The zig-zag estimate, two-sided.** This is the form the conversion to
-`SpectralBound` needs, since polarisation uses the bound on both signs. -/
+`SpectralBound` needs, since polarisation uses the bound on both signs.
+@isnad1 id=le.5h6v.s7.49a34fb03e33 from=translated src=- shape=0b72ade7 vocab=0e843f64
+-/
 theorem abs_ip_step_zigzag_le {lamG lamH : ℝ} (hG : G.SpectralBound lamG)
     (hH : H.SpectralBound lamH) (hlamG : 0 ≤ lamG) (hlamH : 0 ≤ lamH)
     (f : (zigzag G H e).V → ℝ) (hf : ∑ x : G.V × G.D, f x = 0) :
@@ -749,6 +868,9 @@ theorem abs_ip_step_zigzag_le {lamG lamH : ℝ} (hG : G.SpectralBound lamG)
 
 /-! ### From the quadratic form to the spectral bound -/
 
+/--
+@isnad1 id=eq.0h4v.s5.79011cba1a8d from=translated src=- shape=758e375d vocab=dbc4d74d
+-/
 theorem step_sub (K : RegGraph) (f g : K.V → ℝ) (v : K.V) :
     K.step (fun w => f w - g w) v = K.step f v - K.step g v := by
   rw [RegGraph.step, RegGraph.step, RegGraph.step, ← sub_div]
@@ -756,29 +878,41 @@ theorem step_sub (K : RegGraph) (f g : K.V → ℝ) (v : K.V) :
   exact Finset.sum_sub_distrib (s := (Finset.univ : Finset K.D))
     (f := fun i => f (K.nbr v i)) (g := fun i => g (K.nbr v i))
 
+/--
+@isnad1 id=eq.0h4v.s6.ece681a24a03 from=translated src=- shape=04725c1f vocab=51922645
+-/
 theorem ip_sub_left (f g h : G.V × G.D → ℝ) :
     ip G (fun x => f x - g x) h = ip G f h - ip G g h := by
   erw [ip, ip, ip, ← Finset.sum_sub_distrib]
   exact Finset.sum_congr rfl fun x _ => by ring
 
+/--
+@isnad1 id=eq.0h4v.s6.9bac9c909e90 from=translated src=- shape=396346b4 vocab=51922645
+-/
 theorem ip_sub_right (f g h : G.V × G.D → ℝ) :
     ip G f (fun x => g x - h x) = ip G f g - ip G f h := by
   erw [ip, ip, ip, ← Finset.sum_sub_distrib]
   exact Finset.sum_congr rfl fun x _ => by ring
 
-/-- The walk of the product is self-adjoint — it is a walk, like any other. -/
+/-- The walk of the product is self-adjoint — it is a walk, like any other.
+@isnad1 id=eq.0h5v.s5.46d1eb991839 from=translated src=- shape=0e84d8d8 vocab=e6515dbc
+-/
 theorem ip_step_zigzag_comm (f g : G.V × G.D → ℝ) :
     ip G ((zigzag G H e).step f) g = ip G f ((zigzag G H e).step g) := by
   erw [ip, ip]
   exact (sum_mul_step_comm (zigzag G H e) f g).symm
 
-/-- The sum of squares over the product's vertices, as an inner product. -/
+/-- The sum of squares over the product's vertices, as an inner product.
+@isnad1 id=eq.0h4v.s6.e06563409b58 from=translated src=- shape=475b0e8b vocab=b8cc886c
+-/
 theorem sum_sq_eq_ip (g : (zigzag G H e).V → ℝ) :
     ∑ v : (zigzag G H e).V, (g v) ^ 2 = ip G g g := by
   erw [ip]
   exact Finset.sum_congr rfl fun x _ => sq _
 
-/-- **Polarisation.** -/
+/-- **Polarisation.**
+@isnad1 id=eq.0h5v.s7.b6de8cc50fe9 from=translated src=- shape=187836f0 vocab=325ee2a0
+-/
 theorem ip_polarise (f g : G.V × G.D → ℝ) :
     4 * ip G ((zigzag G H e).step f) g
       = ip G ((zigzag G H e).step (fun x => f x + g x)) (fun x => f x + g x)
@@ -803,7 +937,9 @@ theorem ip_polarise (f g : G.V × G.D → ℝ) :
   ring
 
 /-- **A spectral bound for the zig-zag product**: `λ_G + λ_H + λ_H²`, the simple
-estimate (not the tight Reingold–Vadhan–Wigderson bound). -/
+estimate (not the tight Reingold–Vadhan–Wigderson bound).
+@isnad1 id=spectral.4h5v.s6.64a601aa1e4d from=translated src=- shape=f71e4c8a vocab=9ed4525d
+-/
 theorem spectralBound_zigzag {lamG lamH : ℝ} (hG : G.SpectralBound lamG)
     (hH : H.SpectralBound lamH) (hlamG : 0 ≤ lamG) (hlamH : 0 ≤ lamH) :
     (zigzag G H e).SpectralBound (lamG + lamH + lamH ^ 2) := by

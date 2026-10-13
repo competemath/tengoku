@@ -23,7 +23,9 @@ namespace TMConfig
 namespace Sparse
 
 /-- The backward-copy body always decrements its cursor and restores all four
-loop constants, even when the cursor itself visits one of their registers. -/
+loop constants, even when the cursor itself visits one of their registers.
+@isnad1 id=other.2h2v.s6.bf7b7a6bfb24 from=translated src=- shape=770fd73e vocab=61e8555b
+-/
 theorem marshalLoopOps_control_internal (n : ℕ) (store : Structured.Store)
     (hcursor : 0 < store stateReg)
     (hzero : store (zeroReg n) = 0) :
@@ -251,7 +253,9 @@ theorem marshalLoopOps_control_internal (n : ℕ) (store : Structured.Store)
       (And.intro hfinalOne
         (And.intro hfinalCount (And.intro hfinalBase hfinalDestination))))
 
-/-- One backward-copy body has an exact structured execution. -/
+/-- One backward-copy body has an exact structured execution.
+@isnad1 id=ex.0h2v.s4.db43ce3cf67b from=translated src=- shape=56824121 vocab=efb2c129
+-/
 theorem marshalLoopOps_exec_internal (n : ℕ) (store : Structured.Store) :
     ∃ cost space,
       Structured.Exec (.basics (marshalLoopOps n)) store
@@ -261,7 +265,9 @@ theorem marshalLoopOps_exec_internal (n : ℕ) (store : Structured.Store) :
 
 /-- Away from the six captured scratch positions, one loop body clears the raw
 source cell and writes its Boolean value, shifted to the sparse symbol code, to
-the corresponding input cell. This is the relocation induction step. -/
+the corresponding input cell. This is the relocation induction step.
+@isnad1 id=eq.4h3v.s6.fcf7f5a9d989 from=translated src=- shape=e5db86fd vocab=6f786ce9
+-/
 theorem marshalLoopOps_data_internal (n : ℕ) (store : Structured.Store)
     (reg : ℕ) (hcursor : 0 < store stateReg)
     (hzero : store (zeroReg n) = 0)
@@ -480,7 +486,9 @@ theorem marshalLoopOps_data_internal (n : ℕ) (store : Structured.Store)
 /-- Apart from the raw source, sparse destination, state, and six scratch
 registers, a loop body preserves every register. This form does not assume that
 the cursor avoids scratch, so it carries both future raw sources and previously
-relocated cells across captured iterations. -/
+relocated cells across captured iterations.
+@isnad1 id=eq.6h3v.s6.19d011a482a0 from=translated src=- shape=4421f1eb vocab=8f21dfb1
+-/
 theorem marshalLoopOps_of_ne_internal (n : ℕ)
     (store : Structured.Store) (reg : ℕ)
     (hcursor : 0 < store stateReg)
@@ -632,7 +640,9 @@ theorem marshalLoopOps_of_ne_internal (n : ℕ)
   exact haddressedData
 
 /-- The backward-copy loop executes exactly once per raw input cell and exits
-with cursor zero and all constants restored. -/
+with cursor zero and all constants restored.
+@isnad1 id=ex.5h3v.s7.4681c95f55dc from=translated src=- shape=8c01d512 vocab=91bdff02
+-/
 theorem marshalLoop_exec_internal (n cursor : ℕ)
     (store : Structured.Store)
     (hcursor : store stateReg = cursor)
