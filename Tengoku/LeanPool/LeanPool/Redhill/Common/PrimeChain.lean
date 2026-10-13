@@ -1,0 +1,113 @@
+/-
+Copyright (c) 2026 Jeremy Tan. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Jeremy Tan
+-/
+module
+
+public import Tengoku
+public import Tengoku.LeanPool.LeanPool.Redhill.Common.SubsumCondition
+
+/-!
+# Prime chains
+
+These are sequences of primes where the next prime is at least twice the last.
+-/
+
+@[expose] public section
+
+open Nat
+
+/-- `primeChain s` is the lexicographically earliest sequence of primes
+with `primeChain s 0 > s` and each succeeding element more than twice the last. -/
+def primeChain (s : ℕ) : ℕ → ℕ
+  | 0 => Nat.find (exists_infinite_primes (s + 1))
+  | n + 1 => Nat.find (exists_infinite_primes (2 * primeChain s n + 1))
+
+lemma prime_primeChain {s n : ℕ} : (primeChain s n).Prime := by
+  induction n <;> exact (Nat.find_spec (exists_infinite_primes _)).2
+
+lemma primeChain_zero_gt {s : ℕ} : s < primeChain s 0 :=
+  (Nat.find_spec (exists_infinite_primes _)).1
+
+lemma primeChain_succ_gt {s n : ℕ} : 2 * primeChain s n < primeChain s (n + 1) :=
+  (Nat.find_spec (exists_infinite_primes _)).1
+
+lemma strictMono_primeChain {s : ℕ} : StrictMono (primeChain s) :=
+  strictMono_nat_of_lt_succ (by grind [primeChain_succ_gt])
+
+lemma primeChain_gt {s n : ℕ} : s < primeChain s n :=
+  primeChain_zero_gt.trans_le (strictMono_primeChain.monotone (Nat.zero_le _))
+
+open Fin Finset
+
+/-- An `(n + 2)`-tuple that satisfies the strong subsum condition if `0 < m ≤ s`. -/
+def chainTup (n m s : ℕ) (i : Fin (n + 2)) : ℤ :=
+  i.addCases (primeChain s ·.1) fun | 0 => m | 1 => -(m + ∑ i ∈ range n, primeChain s i)
+
+variable {n m s : ℕ}
+
+lemma chainTup_zero : chainTup 0 m s = fun | 0 => m | 1 => -m := by
+  ext i
+  cases i using addCases with
+  | left i => exact i.elim0
+  | right i =>
+    simp_rw [chainTup, sum_range_zero, addCases_right, natAdd_zero]
+    rfl
+
+lemma chainTup_induction_compl :
+    {natAdd n 0, natAdd n 2}ᶜ = insert (natAdd n 1) (univ.map (castAddEmb 3)) := by
+  ext i
+  simp_rw [mem_compl, mem_insert, mem_singleton, mem_map, mem_univ, true_and, coe_castAddEmb]
+  cases i using addCases <;> grind
+
+lemma add_sum_lt_primeChain (h : m ≤ s) : m + ∑ i ∈ range n, primeChain s i < primeChain s n := by
+  induction n with
+  | zero =>
+    rw [sum_range_zero, primeChain]
+    exact h.trans_lt primeChain_zero_gt
+  | succ n ih =>
+    rw [sum_range_succ, ← add_assoc]
+    apply (primeChain_succ_gt).trans'
+    rw [two_mul]
+    exact add_lt_add_left ih _
+
+lemma tupReduce_chainTup {c : n + 1 = n + 1 + 2 - #{natAdd n (0 : Fin 3), natAdd n 2}} :
+    tupReduce (chainTup (n + 1) m s) {natAdd n (0 : Fin 3), natAdd n (2 : Fin 3)} c =
+    chainTup n m s := by
+  ext i
+  unfold tupReduce
+  cases i using lastCases with
+  | last =>
+    rw [lastCases_last, sum_pair (by simp)]
+    have sh₁ : natAdd n (0 : Fin 3) = (last n).castAdd 2 := rfl
+    have sh₂ : natAdd n (2 : Fin 3) = natAdd (n + 1) (1 : Fin 2) := rfl
+    have sh₃ : last (n + 1) = natAdd n (1 : Fin 2) := rfl
+    simp_rw [chainTup, sh₁, addCases_left, sh₂, addCases_right, sh₃, addCases_right,
+      sum_range_succ, Nat.cast_add, val_last]
+    lia
+  | cast i =>
+    have prel : #{natAdd n (0 : Fin 3), natAdd n 2}ᶜ = n + 1 := by simp [card_compl]
+    have : complRank {natAdd n 0, natAdd n 2} c = lastCases (natAdd n 1) (castAdd 3) := by
+      refine (orderEmbOfFin_unique prel (fun i ↦ ?_) (fun i j h ↦ ?_)).symm
+      · rw [chainTup_induction_compl]
+        cases i using lastCases <;> simp
+      · cases i using lastCases with
+        | last => exact absurd (le_last _) (not_le.mpr h)
+        | cast i =>
+          rw [lastCases_castSucc]
+          cases j using lastCases with
+          | last => grind
+          | cast j =>
+            rw [lastCases_castSucc]
+            exact (castAddOrderEmb _).strictMono h
+    simp_rw [lastCases_castSucc, this, chainTup]
+    cases i using lastCases with
+    | last =>
+      have sh₁ : natAdd n (1 : Fin 3) = (0 : Fin 2).natAdd (n + 1) := rfl
+      have sh₂ : (last n).castSucc = natAdd n (0 : Fin 2) := rfl
+      rw [lastCases_last, sh₁, addCases_right, sh₂, addCases_right]
+    | cast i =>
+      have sh₁ : i.castAdd 3 = (i.castAdd 1).castAdd 2 := rfl
+      have sh₂ : i.castSucc.castSucc = castAdd 2 i := rfl
+      rw [lastCases_castSucc, sh₁, addCases_left, sh₂, addCases_left, val_castAdd]

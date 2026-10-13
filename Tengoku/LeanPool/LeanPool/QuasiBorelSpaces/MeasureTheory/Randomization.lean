@@ -1,0 +1,132 @@
+/-
+Copyright (c) 2026 Anthony Vandikas, Kiarash Sotoudeh. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Anthony Vandikas, Kiarash Sotoudeh
+-/
+module
+
+public import Tengoku.LeanPool.LeanPool.QuasiBorelSpaces.MeasureTheory.Pack
+public import Tengoku.LeanPool.LeanPool.QuasiBorelSpaces.MeasureTheory.Quantile
+public import Tengoku
+
+/-!
+# LeanPool.QuasiBorelSpaces.MeasureTheory.Randomization
+
+Imported Lean Pool material for `LeanPool.QuasiBorelSpaces.MeasureTheory.Randomization`.
+-/
+
+@[expose] public section
+
+open scoped unitInterval
+
+namespace MeasureTheory.Measure
+
+variable {A B} [MeasurableSpace A] [MeasurableSpace B]
+
+/-- `normalize` is the canonical injection from `[0, r)` to `[0, 1]`. -/
+noncomputable def normalize {r : ℝ} (x : Set.Ico 0 r) : I where
+  val := x / r
+  property := by rw [Set.mem_Icc, le_div_iff₀, div_le_iff₀] <;> grind
+
+@[simp, fun_prop]
+lemma measurable_normalize (r) : Measurable (normalize (r := r)) := by
+  unfold normalize
+  fun_prop
+
+lemma injective_normalize (r) : Function.Injective (normalize (r := r)) := by
+  intro i₁ i₂ hi
+  simp only [normalize, Subtype.mk.injEq] at hi
+  rw [div_left_inj'] at hi
+  · ext
+    exact hi
+  · grind
+
+noncomputable instance instMeasureSpaceElemRealIcoOfNatLeanPool (r : ℝ) :
+    MeasureSpace (Set.Ico 0 r) where
+  volume := ENNReal.ofReal r • volume.comap normalize
+
+@[simp]
+lemma volume_zero : (volume : Measure (Set.Ico 0 (0 : ℝ))) = 0 := by
+  ext s
+  have hs : s = ∅ := by
+    ext a
+    simpa using a.property
+  simp only [hs, measure_empty]
+
+@[simp]
+lemma measurableEmbedding_normalize (r) : MeasurableEmbedding (normalize (r := r)) where
+  injective := injective_normalize r
+  measurable := measurable_normalize r
+  measurableSet_image' := by
+    intro s hs
+    apply MeasurableSet.of_subtype_image
+    simp only [normalize, ← Set.image_comp, Function.comp_apply]
+    replace hs := MeasurableSet.subtype_image (by simp) hs
+    have : ((fun a ↦ ↑a / r) '' s) = (· / r) '' (Subtype.val '' s) := by
+      simp only [← Set.image_comp]
+      rfl
+    change MeasurableSet ((fun a : Set.Ico 0 r ↦ (a : ℝ) / r) '' s)
+    rw [this]
+    generalize ht : Subtype.val '' s = t
+    rw [ht] at hs
+    clear ht this s
+    wlog! hr : r ≠ 0
+    · subst hr
+      simp only [Set.image, div_zero, exists_and_right, measurableSet_setOfPred]
+      fun_prop
+    have : (fun x ↦ x / r) '' t = (· * r) ⁻¹' t := by grind
+    rw [this]
+    apply MeasurableMul.measurable_mul_const
+    exact hs
+
+@[simp]
+lemma range_normalize {r} (hr : 0 < r) : Set.range (normalize (r := r)) = Set.Ico 0 1 := by
+  ext x
+  simp only [Set.mem_range, normalize, Subtype.exists, Set.mem_Ico, zero_le, true_and]
+  refine ⟨?_, ?_⟩
+  · rintro ⟨y, ⟨hy₁, hy₂⟩, rfl⟩
+    rw [Subtype.mk_lt_mk, Set.Icc.coe_one, div_lt_one] <;> grind
+  · intro h
+    use x * r
+    have : 0 ≤ x * r := by apply mul_nonneg <;> grind
+    have : x * r < r := by rw [mul_lt_iff_lt_one_left] <;> grind
+    simp only [and_self, exists_true_left, *]
+    rw [Subtype.mk_eq_mk, MulDivCancelClass.mul_div_cancel]
+    grind
+
+@[simp]
+lemma volume_restrict_normalize : volume.restrict (Set.Ico 0 (1 : I)) = volume := by
+  ext s hs
+  simp only [hs, restrict_apply]
+  apply MeasureTheory.measure_inter_conull
+  simp_all
+
+/-- Encode a standard Borel space into the unit interval. -/
+noncomputable def packI [StandardBorelSpace A] : A → I := unpack ∘ pack
+/-- Decode the unit-interval representation of a nonempty standard Borel space. -/
+noncomputable def unpackI [StandardBorelSpace A] [Nonempty A] : I → A := unpack ∘ pack
+
+/-- The function `det μ` is a function such that `volume.map (det μ) = μ`. -/
+noncomputable def det [StandardBorelSpace A] (μ : Measure A) [IsProbabilityMeasure μ] : I → A :=
+  have := MeasureTheory.nonempty_of_isProbabilityMeasure μ
+  unpackI ∘ quantile (μ.map packI)
+
+/-- The function `detf μ` is a function such that `volume.map (detf μ) = μ`. -/
+noncomputable def detf [StandardBorelSpace A]
+    (μ : Measure A) [IsFiniteMeasure μ]
+    (r : Set.Ico 0 (μ Set.univ).toReal) : A :=
+  have : NeZero μ := by
+    constructor
+    rintro rfl
+    simpa using r.property
+  det ((μ Set.univ)⁻¹ • μ) (normalize r)
+
+end MeasureTheory.Measure
+
+namespace MeasureTheory
+
+/-- Splits `I` into two independent copies of `I` via the determinizing map of the
+product Lebesgue measure on `I × I`. -/
+noncomputable def splitI : I → I × I := Measure.det volume
+
+end MeasureTheory
