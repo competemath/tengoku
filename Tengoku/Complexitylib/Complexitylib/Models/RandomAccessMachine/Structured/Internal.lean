@@ -26,6 +26,9 @@ namespace Structured
 
 namespace Cmd
 
+/--
+@isnad1 id=eq.0h2v.s3.9283b4868b24 from=translated src=- shape=ed5fda4e vocab=6a45bb10
+-/
 theorem length_compileAt (cmd : Cmd) (start : ℕ) :
     (cmd.compileAt start).length = cmd.codeSize := by
   induction cmd generalizing start with
@@ -128,6 +131,9 @@ private theorem run_space_le_spaceUpto (P : Program) (fuel : ℕ) (cfg : Cfg) :
         max (spaceUpto P fuel cfg) (run P fuel cfg).space := le_max_right _ _
     _ = spaceUpto P fuel cfg := hsplit.symm
 
+/--
+@isnad1 id=other.1h8v.s6.940368bab0b9 from=translated src=- shape=b71ae300 vocab=f3a8afa3
+-/
 theorem compileAt_correct_internal
     {cmd : Cmd} {initial final : Store} {steps cost space : ℕ}
     (hexec : Exec cmd initial final steps cost space)

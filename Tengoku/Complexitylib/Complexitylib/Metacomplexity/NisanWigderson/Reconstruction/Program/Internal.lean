@@ -19,6 +19,9 @@ namespace Complexity
 
 namespace NWDesign
 
+/--
+@isnad1 id=eq.0h9v.s8.935ded1f5b5a from=translated src=- shape=c67b16e2 vocab=18b889a6
+-/
 theorem materializeReconstructionProgram_query_internal
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -41,6 +44,9 @@ theorem materializeReconstructionProgram_query_internal
     simp [ReconstructionProgram.query, materializeReconstructionProgram,
       reconstructionQuery, hmem, houtput]
 
+/--
+@isnad1 id=eq.0h9v.s8.d4ae00178321 from=translated src=- shape=aa61ed50 vocab=af57449e
+-/
 theorem materializeReconstructionProgram_predictor_internal
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -64,6 +70,9 @@ theorem materializeReconstructionProgram_predictor_internal
           BitGenerator.orientTest test complement)) advice.2.2
   rw [materializeReconstructionProgram_query_internal]
 
+/--
+@isnad1 id=eq.0h9v.s6.f3e5ec60099d from=translated src=- shape=719d2f60 vocab=e85e18db
+-/
 theorem materializeReconstructionProgram_agreementProbability_internal
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -79,6 +88,9 @@ theorem materializeReconstructionProgram_agreementProbability_internal
   unfold reconstructionAgreementProbability
   rw [materializeReconstructionProgram_predictor_internal]
 
+/--
+@isnad1 id=eq.0h7v.s5.344c33b45915 from=translated src=- shape=036ff367 vocab=3d2ac09d
+-/
 theorem reconstructionCertificate_toProgram_agreementProbability_internal
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -96,6 +108,9 @@ theorem reconstructionCertificate_toProgram_agreementProbability_internal
     design hardFunction test certificate.complement certificate.trial.1
       (design.reconstructionAdviceOfTrial certificate.trial)
 
+/--
+@isnad1 id=eq.0h5v.s5.e8fd7d4fd37e from=translated src=- shape=e8bf21bd vocab=eb3acd1e
+-/
 theorem ReconstructionProgram.booleanPayloadSize_eq_internal
     {outputLength inputLength seedLength : ℕ}
     {design : NWDesign outputLength inputLength seedLength}
@@ -110,6 +125,9 @@ theorem ReconstructionProgram.booleanPayloadSize_eq_internal
   rw [hsum]
   omega
 
+/--
+@isnad1 id=and.2h11v.s7.f101cbf83dd2 from=translated src=- shape=9bca3781 vocab=a27f478e
+-/
 theorem findGoodReconstructionCertificate_program_sound_internal
     {outputLength inputLength seedLength trials budget : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -136,6 +154,9 @@ theorem findGoodReconstructionCertificate_program_sound_internal
     exact reconstructionDataBitsAt_le_of_hasOverlapBudget_internal
       hbudget certificate.trial.1
 
+/--
+@isnad1 id=and.6h12v.s8.faf09882f851 from=translated src=- shape=f2907ba7 vocab=99e95228
+-/
 theorem half_le_materializedReconstructionProgram_of_randomTest_internal
     {outputLength inputLength seedLength tapes time threshold budget : ℕ}
     {design : NWDesign outputLength inputLength seedLength}
@@ -173,6 +194,9 @@ theorem half_le_materializedReconstructionProgram_of_randomTest_internal
       (1 / 2 + (density / (outputLength : ℚ)) / 2) hbudget batch
       certificate hfind
 
+/--
+@isnad1 id=and.7h12v.s8.e0d4be695aea from=translated src=- shape=48991dc5 vocab=2b0fc04c
+-/
 theorem half_le_materializedReconstructionProgram_of_seedDescriptions_internal
     {outputLength inputLength seedLength tapes time threshold budget : ℕ}
     {design : NWDesign outputLength inputLength seedLength}

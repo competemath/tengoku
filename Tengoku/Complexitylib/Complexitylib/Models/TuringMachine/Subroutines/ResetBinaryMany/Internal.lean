@@ -20,6 +20,9 @@ namespace TM
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=le.2h6v.s7.4b67996f7d45 from=translated src=- shape=0ee75d15 vocab=d983337d
+-/
 theorem resetBinaryWorkManyTime_le_internal
     (targets : List (Fin n)) (bits : Fin n → List Bool)
     (headBound : Fin n → ℕ) (maxHead maxWidth : ℕ)
@@ -56,6 +59,9 @@ private theorem resetBinaryBlank_parked : Parked resetBinaryBlank := by
     simpa [resetBinaryBlank, Tape.init, Tape.move] using
       (show j ≠ 0 by omega)
 
+/--
+@isnad1 id=parked.1h4v.s4.e3f0e076a0ac from=translated src=- shape=cb117d45 vocab=6bbea2d3
+-/
 theorem resetBinaryWorkManyResult_parked_internal
     (work₀ : Fin n → Tape) (targets : List (Fin n))
     (hwork : ∀ i, Parked (work₀ i)) :
@@ -71,6 +77,9 @@ theorem resetBinaryWorkManyResult_parked_internal
         exact resetBinaryBlank_parked
       · simpa [Function.update_of_ne hi] using hwork i
 
+/--
+@isnad1 id=eq.1h4v.s5.1db0824f55df from=translated src=- shape=aec3a5ca vocab=20e4aaed
+-/
 theorem resetBinaryWorkManyResult_eq_of_not_mem_internal
     (work₀ : Fin n → Tape) (targets : List (Fin n)) (idx : Fin n)
     (hidx : idx ∉ targets) :
@@ -87,6 +96,9 @@ theorem resetBinaryWorkManyResult_eq_of_not_mem_internal
       simpa [resetBinaryWorkManyResult, Function.update_of_ne hne] using
         ih (Function.update work₀ target resetBinaryBlank) hrest
 
+/--
+@isnad1 id=eq.1h4v.s5.dedacf7e856e from=translated src=- shape=a78e9545 vocab=2bf62ae2
+-/
 theorem resetBinaryWorkManyResult_eq_blank_of_mem_internal
     (work₀ : Fin n → Tape) (targets : List (Fin n)) (idx : Fin n)
     (hidx : idx ∈ targets) :
@@ -105,6 +117,9 @@ theorem resetBinaryWorkManyResult_eq_blank_of_mem_internal
           simpa [heq] using hidx
         exact ih (Function.update work₀ target resetBinaryBlank) hrest
 
+/--
+@isnad1 id=eq.1h5v.s5.87952033a284 from=translated src=- shape=7db00fe4 vocab=acf52adf
+-/
 theorem resetBinaryWorkManyTime_congr_headBound_internal
     (targets : List (Fin n)) (bits : Fin n → List Bool)
     (left right : Fin n → ℕ)
@@ -120,6 +135,9 @@ theorem resetBinaryWorkManyTime_congr_headBound_internal
         (fun time => resetBinaryWorkTime (right idx) (bits idx).length + 1 + time)
         (ih fun i hi => heq i (by simp [hi]))
 
+/--
+@isnad1 id=hoaretim.7h7v.s7.1fde132874d2 from=translated src=- shape=fd4e45b6 vocab=3ea304c7
+-/
 theorem resetBinaryWorkManyTM_hoareTime_frame_internal
     (targets : List (Fin n)) (bits : Fin n → List Bool)
     (headBound : Fin n → ℕ)
@@ -197,6 +215,9 @@ theorem resetBinaryWorkManyTM_hoareTime_frame_internal
       simpa [resetBinaryWorkManyTM, resetBinaryWorkManyResult,
         resetBinaryWorkManyTime, work₁] using hseq
 
+/--
+@isnad1 id=istransd.0h2v.s3.e3eb339e974b from=translated src=- shape=52838ee4 vocab=dd21065e
+-/
 theorem resetBinaryWorkManyTM_isTransducer_internal
     (targets : List (Fin n)) :
     (resetBinaryWorkManyTM targets).IsTransducer := by

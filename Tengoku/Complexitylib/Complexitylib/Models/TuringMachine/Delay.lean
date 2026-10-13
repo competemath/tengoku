@@ -74,8 +74,14 @@ def delayNTM (tm : NTM n) : NTM n :=
       | Sum.inr q' =>
         exact tm.δ_right_of_start b q' iHead wHeads oHead }
 
+/--
+@isnad1 id=eq.0h2v.s4.efb02a2a615d from=translated src=- shape=eeabdc3c vocab=ff3e9533
+-/
 @[simp] theorem delayNTM_qhalt (tm : NTM n) : (delayNTM tm).qhalt = Sum.inr tm.qhalt := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.9dfb2163ec5f from=translated src=- shape=df172b24 vocab=0eed133f
+-/
 @[simp] theorem delayNTM_qstart (tm : NTM n) : (delayNTM tm).qstart = Sum.inl () := rfl
 
 /-- A source configuration, viewed as one of the delayed machine's. -/
@@ -85,12 +91,17 @@ def delayEmbed (tm : NTM n) (c : Cfg n tm.Q) : Cfg n (delayNTM tm).Q where
   work := c.work
   output := c.output
 
+/--
+@isnad1 id=iff.0h3v.s5.67ff4a466bb9 from=translated src=- shape=1f810942 vocab=8fb86061
+-/
 theorem delayEmbed_halted_iff (tm : NTM n) (c : Cfg n tm.Q) :
     (delayEmbed tm c).state = (delayNTM tm).qhalt ↔ c.state = tm.qhalt := by
   exact ⟨fun h => by injection h, fun h => by rw [delayEmbed, delayNTM_qhalt, h]⟩
 
 /-- **One step, transported.** On an embedded configuration the delayed machine's transition is
-literally the source's, wrapped. -/
+literally the source's, wrapped.
+@isnad1 id=eq.0h4v.s5.60a4164fa189 from=translated src=- shape=78dbc40f vocab=693ab4ac
+-/
 theorem delayNTM_trace_one_embed (tm : NTM n) (b : Bool) (c : Cfg n tm.Q) :
     (delayNTM tm).trace 1 (fun _ => b) (delayEmbed tm c)
       = delayEmbed tm (tm.trace 1 (fun _ => b) c) := by
@@ -114,7 +125,9 @@ theorem delayNTM_trace_one_embed (tm : NTM n) (b : Bool) (c : Cfg n tm.Q) :
     rfl
 
 /-- **After the delay, the two machines run in lockstep.** Every trace from an embedded
-configuration transports to the source machine's. -/
+configuration transports to the source machine's.
+@isnad1 id=eq.0h5v.s5.012a9a658356 from=translated src=- shape=8a41a3d9 vocab=693ab4ac
+-/
 theorem delayNTM_trace_embed (tm : NTM n) :
     ∀ (T : ℕ) (choices : Fin T → Bool) (c : Cfg n tm.Q),
       (delayNTM tm).trace T choices (delayEmbed tm c)
@@ -129,7 +142,9 @@ theorem delayNTM_trace_embed (tm : NTM n) :
 
 /-- **The sentinel step of a nondeterministic machine.** From any configuration whose heads are
 at cell zero the reads are all `▷`, so the writes are no-ops and every head moves right; only the
-state depends on the choice bit. -/
+state depends on the choice bit.
+@isnad1 id=eq.7h4v.s7.e0d51a81daee from=translated src=- shape=45243e20 vocab=9714fd7b
+-/
 theorem trace_one_of_heads_zero (tm : NTM n) (b : Bool) (c : Cfg n tm.Q)
     (hne : c.state ≠ tm.qhalt)
     (hin : c.input.head = 0) (hwork : ∀ i, (c.work i).head = 0) (hout : c.output.head = 0)
@@ -159,7 +174,9 @@ theorem trace_one_of_heads_zero (tm : NTM n) (b : Bool) (c : Cfg n tm.Q)
 
 /-- **The delayed machine's second step.** Sitting in the extra state with every head off the
 marker, it consults the choice bit, jumps to the state the source machine's first transition would
-have produced, and leaves every tape exactly as it is. -/
+have produced, and leaves every tape exactly as it is.
+@isnad1 id=eq.4h4v.s7.27ddbe5b6bb1 from=translated src=- shape=fd73c890 vocab=d61979ac
+-/
 theorem delayNTM_trace_one_pending (tm : NTM n) (b : Bool) (c : Cfg n (delayNTM tm).Q)
     (hstate : c.state = Sum.inl ())
     (hin : c.input.read ≠ Γ.start) (hwork : ∀ i, (c.work i).read ≠ Γ.start)
@@ -187,7 +204,9 @@ theorem delayNTM_trace_one_pending (tm : NTM n) (b : Bool) (c : Cfg n (delayNTM 
 
 /-- **Two steps of the delayed machine reproduce one step of the source.** The first step is the
 compulsory move off the marker and ignores its choice bit; the second consumes the choice the
-source machine would have made first. -/
+source machine would have made first.
+@isnad1 id=eq.1h4v.s6.10cc3db5168f from=translated src=- shape=8faced34 vocab=80a29de7
+-/
 theorem delayNTM_trace_two_initCfg (tm : NTM n) (x : List Bool)
     (hne : tm.qstart ≠ tm.qhalt) (choices : Fin 2 → Bool) :
     (delayNTM tm).trace 2 choices ((delayNTM tm).initCfg x)
@@ -215,7 +234,9 @@ theorem delayNTM_trace_two_initCfg (tm : NTM n) (x : List Bool)
 
 /-- **A whole run of the delayed machine, from its initial configuration.** The delayed machine's
 first two steps buy one step of the source machine, and thereafter the two run in lockstep, so
-the delayed run lags the source's by exactly one step. -/
+the delayed run lags the source's by exactly one step.
+@isnad1 id=eq.1h5v.s7.eb8bdbe561e7 from=translated src=- shape=d580db1a vocab=37da2f15
+-/
 theorem delayNTM_trace_initCfg (tm : NTM n) (x : List Bool)
     (hne : tm.qstart ≠ tm.qhalt) (T : ℕ) (ch : Fin (T + 2) → Bool) :
     (delayNTM tm).trace (T + 2) ch ((delayNTM tm).initCfg x)
@@ -226,7 +247,9 @@ theorem delayNTM_trace_initCfg (tm : NTM n) (x : List Bool)
 
 /-- **The delay costs at most two steps.** Every path of the source machine that halts within
 `f |x|` steps has its delayed counterpart halted within `f |x| + 2`. The bound is not tight: by
-`delayNTM_trace_initCfg` the delayed run lags the source's by one step. -/
+`delayNTM_trace_initCfg` the delayed run lags the source's by one step.
+@isnad1 id=allpaths.2h3v.s5.fa64e0bce467 from=translated src=- shape=c537cbc8 vocab=a7258a22
+-/
 theorem delayNTM_allPathsHaltIn (tm : NTM n) {f : ℕ → ℕ}
     (hall : tm.AllPathsHaltIn f) (hne : tm.qstart ≠ tm.qhalt) :
     (delayNTM tm).AllPathsHaltIn (fun m => f m + 2) := by
@@ -242,7 +265,9 @@ theorem delayNTM_allPathsHaltIn (tm : NTM n) {f : ℕ → ℕ}
   exact hall x _
 
 /-- **The delayed machine's accepting paths, counted.** Its first choice bit does nothing, so each
-accepting path of the source machine lifts to exactly two of the delayed machine's. -/
+accepting path of the source machine lifts to exactly two of the delayed machine's.
+@isnad1 id=eq.1h4v.s6.39e06cfc8149 from=translated src=- shape=1a5ad800 vocab=bec693e2
+-/
 theorem delayNTM_acceptCount (tm : NTM n) (x : List Bool)
     (hne : tm.qstart ≠ tm.qhalt) (T : ℕ) :
     (delayNTM tm).acceptCount x (T + 2) = 2 * tm.acceptCount x (T + 1) := by

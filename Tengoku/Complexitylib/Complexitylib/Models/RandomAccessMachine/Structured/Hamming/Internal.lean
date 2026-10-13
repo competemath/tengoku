@@ -424,6 +424,9 @@ private theorem finalize_measured {inputLength : ℕ} {store : Store}
   convert hrun using 1
   all_goals ring
 
+/--
+@isnad1 id=ex.0h1v.s5.6b3ee3c1d2dd from=translated src=- shape=750cd0f4 vocab=a74d169a
+-/
 theorem program_measured_internal (bits : List Bool) :
     ∃ final cost space,
       Exec program (inputStore bits) final (stepCount bits) cost space ∧

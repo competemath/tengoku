@@ -31,15 +31,23 @@ namespace Complexity
 def density {n : ℕ} (P : Finset ((Fin n → Bool) → Bool)) : ℚ :=
   (P.card : ℚ) / 2 ^ (2 ^ n)
 
+/--
+@isnad1 id=le.0h2v.s4.52086d585852 from=translated src=- shape=93bd6dc0 vocab=bbb223fe
+-/
 theorem density_nonneg {n : ℕ} (P : Finset ((Fin n → Bool) → Bool)) : 0 ≤ density P := by
   unfold density; positivity
 
-/-- A property has at most as many members as there are Boolean functions. -/
+/-- A property has at most as many members as there are Boolean functions.
+@isnad1 id=le.0h2v.s5.4dc20dd07156 from=translated src=- shape=1dd31049 vocab=5f77bba5
+-/
 theorem card_le_card_boolFunc {n : ℕ} (P : Finset ((Fin n → Bool) → Bool)) :
     P.card ≤ 2 ^ (2 ^ n) := by
   have h := Finset.card_le_univ P
   rwa [card_boolFunc] at h
 
+/--
+@isnad1 id=le.0h2v.s4.ac73c2504856 from=translated src=- shape=4217d3dd vocab=bbb223fe
+-/
 theorem density_le_one {n : ℕ} (P : Finset ((Fin n → Bool) → Bool)) : density P ≤ 1 := by
   have hpos : ((2 : ℚ) ^ 2 ^ n) ≠ 0 := by positivity
   have h : (P.card : ℚ) ≤ 2 ^ 2 ^ n := by exact_mod_cast card_le_card_boolFunc P
@@ -47,7 +55,9 @@ theorem density_le_one {n : ℕ} (P : Finset ((Fin n → Bool) → Bool)) : dens
     _ ≤ (2 ^ 2 ^ n) / 2 ^ 2 ^ n := by gcongr
     _ = 1 := div_self hpos
 
-/-- The density of the complement of a property is one minus its density. -/
+/-- The density of the complement of a property is one minus its density.
+@isnad1 id=eq.0h2v.s7.057f78a6f7e8 from=translated src=- shape=83ce511d vocab=8f32aaf6
+-/
 theorem density_compl {n : ℕ} (P : Finset ((Fin n → Bool) → Bool)) :
     density Pᶜ = 1 - density P := by
   have hpos : ((2 : ℚ) ^ 2 ^ n) ≠ 0 := by positivity
@@ -58,7 +68,9 @@ theorem density_compl {n : ℕ} (P : Finset ((Fin n → Bool) → Bool)) :
   unfold density
   rw [hcard, sub_div, div_self hpos]
 
-/-- The **union bound** for property density. -/
+/-- The **union bound** for property density.
+@isnad1 id=le.0h3v.s6.3b250fa3f2f1 from=translated src=- shape=18b5b2e4 vocab=c358987b
+-/
 theorem density_union_le {n : ℕ} (P Q : Finset ((Fin n → Bool) → Bool)) :
     density (P ∪ Q) ≤ density P + density Q := by
   unfold density

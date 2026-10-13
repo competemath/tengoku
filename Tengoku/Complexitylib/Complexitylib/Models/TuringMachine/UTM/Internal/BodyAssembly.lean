@@ -30,11 +30,15 @@ namespace TM.UTMBody
 
 open BodyQ
 
-/-- `Γw.toΓ` is injective. -/
+/-- `Γw.toΓ` is injective.
+@isnad1 id=eq.1h2v.s3.5bc8196476f3 from=translated src=- shape=296f4854 vocab=ee683b97
+-/
 theorem Γw.toΓ_inj {x y : Γw} (h : x.toΓ = y.toΓ) : x = y := by
   cases x <;> cases y <;> simp_all [Γw.toΓ]
 
-/-- `Γw.toΓ` hits `Γ.blank` only at `□`. -/
+/-- `Γw.toΓ` hits `Γ.blank` only at `□`.
+@isnad1 id=iff.0h1v.s3.92fcd4a08429 from=translated src=- shape=0289b14f vocab=71a5bbed
+-/
 theorem Γw.toΓ_eq_blank {x : Γw} : x.toΓ = Γ.blank ↔ x = Γw.blank := by
   cases x <;> simp [Γw.toΓ]
 
@@ -66,7 +70,9 @@ structure SimInv (α : List Bool) (mc : Cfg 1 (decodeDesc α).toTM.Q)
 
 namespace SimInv
 
-/-- The state tape's contents (either disjunct) are blank-free. -/
+/-- The state tape's contents (either disjunct) are blank-free.
+@isnad1 id=ex.1h5v.s7.6684e853e7da from=translated src=- shape=ebfd2956 vocab=bffbf83d
+-/
 theorem state_syms_ne_blank {α mc inp work out}
     (h : SimInv α mc inp work out) :
     ∃ S : List Γw, (work stT).HoldsExact S ∧ (∀ s ∈ S, s ≠ Γw.blank) ∧
@@ -78,7 +84,9 @@ theorem state_syms_ne_blank {α mc inp work out}
   · exact ⟨_, hh, fun s hs => bitsToSyms_ne_blank hs, Or.inl ⟨hlt, rfl⟩⟩
   · exact ⟨_, hh, fun s hs => takeField_fst_ne_blank _ s hs, Or.inr ⟨hq, rfl⟩⟩
 
-/-- Standard parked-reads package for the non-state, non-desc work tapes. -/
+/-- Standard parked-reads package for the non-state, non-desc work tapes.
+@isnad1 id=ne.3h6v.s6.68b0254fe078 from=translated src=- shape=9e390759 vocab=f68a2175
+-/
 theorem others_read {α mc inp work out} (h : SimInv α mc inp work out) :
     ∀ i : Fin 6, i ≠ stT → i ≠ dsT → (work i).read ≠ Γ.start := by
   intro i hiS hiD
@@ -95,7 +103,9 @@ theorem others_read {α mc inp work out} (h : SimInv α mc inp work out) :
     simp
   · exact absurd hv (by omega)
 
-/-- Any `HoldsExact` tape with head off `▷` reads a non-`▷` symbol. -/
+/-- Any `HoldsExact` tape with head off `▷` reads a non-`▷` symbol.
+@isnad1 id=ne.2h2v.s4.cdfe444aa5f0 from=translated src=- shape=b5072f09 vocab=99fb8dd5
+-/
 theorem read_ne_start_of_holdsExact {t : Tape} {l : List Γw}
     (h : t.HoldsExact l) (hh : 1 ≤ t.head) : t.read ≠ Γ.start :=
   (Tape.HoldsExact.startInvariant h).2 _ hh
@@ -141,7 +151,9 @@ private theorem qhaltField_length_le (l : List Γw) :
 /-- **Halt-check phase, halted case**: when the interpreted machine sits at
     its halt state, the body runs from its start state to `bodyDone` as a
     pure no-op — every tape is exactly restored — within
-    `5·|groupPairs α| + 7` steps. -/
+    `5·|groupPairs α| + 7` steps.
+@isnad1 id=ex.3h3v.s8.cd606c09d908 from=translated src=- shape=bedbc457 vocab=0d081b51
+-/
 theorem hcPhase_halted (c : Cfg 6 bodyTM.Q)
     (hst : c.state = hc0)
     (hinv : SimInv α mc c.input c.work c.output)
@@ -265,7 +277,9 @@ theorem hcPhase_halted (c : Cfg 6 bodyTM.Q)
 /-- **Halt-check phase, running case**: when the interpreted machine is not
     at its halt state, the body's halt check falls through to the peek
     phase with every tape exactly restored, within
-    `5·|groupPairs α| + 7` steps. -/
+    `5·|groupPairs α| + 7` steps.
+@isnad1 id=ex.3h3v.s8.27ce20b3f485 from=translated src=- shape=248de78e vocab=722b384d
+-/
 theorem hcPhase_running (c : Cfg 6 bodyTM.Q)
     (hst : c.state = hc0)
     (hinv : SimInv α mc c.input c.work c.output)
@@ -403,7 +417,9 @@ theorem hcPhase_running (c : Cfg 6 bodyTM.Q)
 /-- **Peek and seek phases**: from `peek1`, capture the (honest) at-origin
     flags and walk the desc head to the start of the entry region
     (`|F1| + |F2| + 3`), all other tapes exactly restored, within
-    `2·|groupPairs α| + 4` steps. -/
+    `2·|groupPairs α| + 4` steps.
+@isnad1 id=ex.2h3v.s9.d3ba3c5b815f from=translated src=- shape=20baa2e1 vocab=4bb5731c
+-/
 theorem peekSeekPhase (c : Cfg 6 bodyTM.Q)
     (hst : c.state = peek1)
     (hinv : SimInv α mc c.input c.work c.output) :
@@ -482,7 +498,9 @@ theorem peekSeekPhase (c : Cfg 6 bodyTM.Q)
 
 /-- **Cleanup phase** (after a successful apply): blank-rewind the scratch
     tape, then rewind the state and desc heads; ends at `bodyDone` with the
-    scratch cleared and every other tape's cells intact. -/
+    scratch cleared and every other tape's cells intact.
+@isnad1 id=ex.19h7v.s9.6ebc7401fd01 from=translated src=- shape=705ac5d8 vocab=6d15dd14
+-/
 theorem cleanupPhase (c : Cfg 6 bodyTM.Q) (E S W : ℕ → Γ) (p sp dp : ℕ)
     (hsp : 1 ≤ sp) (hdp : 1 ≤ dp)
     (hst : c.state = clScr)
@@ -590,7 +608,9 @@ theorem cleanupPhase (c : Cfg 6 bodyTM.Q) (E S W : ℕ → Γ) (p sp dp : ℕ)
     were applied on the `segCheck` step): clear the scratch, blank the state
     tape, copy the qhalt field onto it, rewind everything; ends at
     `bodyDone` with the state tape holding the qhalt field — the shape of
-    the invariant's post-default disjunct. -/
+    the invariant's post-default disjunct.
+@isnad1 id=ex.16h7v.s9.e7f804b66471 from=translated src=- shape=b7137d4c vocab=e8a21154
+-/
 theorem defaultTail (c : Cfg 6 bodyTM.Q) (E : ℕ → Γ) (SL : List Γw)
     (p sp dp : ℕ) (hsp : 1 ≤ sp) (hdp : 1 ≤ dp)
     (hst : c.state = dfScr)
@@ -906,7 +926,9 @@ theorem defaultTail (c : Cfg 6 bodyTM.Q) (E : ℕ → Γ) (SL : List Γw)
     the ten action cells): rewind scratch, overwrite the state tape, decode
     and act on the virtual tapes, clean up. Ends at `bodyDone` with the
     state tape holding the value's first `|SL|` cells and the virtual tapes
-    transformed by the sanitized action. -/
+    transformed by the sanitized action.
+@isnad1 id=ex.22h9v.s10.c92a2717397d from=translated src=- shape=d57e14be vocab=aa038a72
+-/
 theorem applyPhase (c : Cfg 6 bodyTM.Q) {f : VFlags} {sim0 sim1 sim2 : Tape}
     (EL SL : List Γw) (sc_p dp : ℕ)
     (_hscp : 1 ≤ sc_p) (hdp : 1 ≤ dp)

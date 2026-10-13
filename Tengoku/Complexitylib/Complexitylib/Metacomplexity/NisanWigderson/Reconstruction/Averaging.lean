@@ -27,7 +27,9 @@ namespace Complexity
 namespace NWDesign
 
 /-- The canonical next-bit success probability is exactly average agreement of
-the reconstructed fixed-advice predictors with the hard function. -/
+the reconstructed fixed-advice predictors with the hard function.
+@isnad1 id=eq.0h7v.s7.6aa241f5b44a from=translated src=- shape=890c8cf1 vocab=aa96241f
+-/
 theorem predictionSuccessProbability_eq_averageReconstructionAgreement
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -42,7 +44,9 @@ theorem predictionSuccessProbability_eq_averageReconstructionAgreement
     design hardFunction test current
 
 /-- Some fixed outside seed, later tail, and candidate preserve at least the
-global next-bit success probability over uniform challenges. -/
+global next-bit success probability over uniform challenges.
+@isnad1 id=ex.0h7v.s7.86ce9b427995 from=translated src=- shape=c03d2f13 vocab=70ca183c
+-/
 theorem exists_reconstructionAdvice_agreement_ge
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -59,7 +63,9 @@ theorem exists_reconstructionAdvice_agreement_ge
     design hardFunction test current
 
 /-- Joint reconstruction agreement is the uniform mean of the fixed-advice
-agreement probabilities. -/
+agreement probabilities.
+@isnad1 id=eq.0h7v.s8.3afb1b492ea9 from=translated src=- shape=c49ce832 vocab=a0ab35ad
+-/
 theorem averageReconstructionAgreement_eq_uniformMean
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -74,7 +80,9 @@ theorem averageReconstructionAgreement_eq_uniformMean
     design hardFunction test current
 
 /-- Exact reverse-averaging bound for sampling a fixed advice choice above a
-given agreement threshold. -/
+given agreement threshold.
+@isnad1 id=le.1h8v.s6.e69c6a14099c from=translated src=- shape=2b170a3a vocab=18615653
+-/
 theorem average_sub_div_le_goodReconstructionAdviceProbability
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -90,7 +98,9 @@ theorem average_sub_div_le_goodReconstructionAdviceProbability
     design hardFunction test current agreementThreshold hthreshold
 
 /-- If mean agreement is `1/2 + ε`, at least an `ε/2` fraction of advice
-choices have agreement `1/2 + ε/2`. -/
+choices have agreement `1/2 + ε/2`.
+@isnad1 id=le.2h8v.s7.41d4085f3226 from=translated src=- shape=dea9e175 vocab=d70e60ea
+-/
 theorem half_advantage_le_goodReconstructionAdviceProbability
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -108,7 +118,9 @@ theorem half_advantage_le_goodReconstructionAdviceProbability
 
 /-- End-to-end finite NW reconstruction: a dense random test and weak-design
 budget yield one fixed predictor with the hybrid agreement advantage and an
-exact non-codec payload bound. -/
+exact non-codec payload bound.
+@isnad1 id=ex.5h12v.s7.2ade9f388a3f from=translated src=- shape=d750e4aa vocab=5639b9f5
+-/
 theorem exists_fixed_reconstruction_of_randomTest
     {outputLength inputLength seedLength tapes time threshold budget : ℕ}
     {design : NWDesign outputLength inputLength seedLength}
@@ -132,7 +144,9 @@ theorem exists_fixed_reconstruction_of_randomTest
     houtputLength hlow hrandom hdense hbudget
 
 /-- The same fixed-predictor theorem with generator low complexity discharged
-by direct descriptions shorter than the randomness threshold. -/
+by direct descriptions shorter than the randomness threshold.
+@isnad1 id=ex.6h12v.s7.23f5cc843ed3 from=translated src=- shape=0d12a99e vocab=871ca937
+-/
 theorem exists_fixed_reconstruction_of_seedDescriptions
     {outputLength inputLength seedLength tapes time threshold budget : ℕ}
     {design : NWDesign outputLength inputLength seedLength}
@@ -159,7 +173,9 @@ theorem exists_fixed_reconstruction_of_seedDescriptions
 
 /-- Hirahara's randomized-certificate sampling bound: for the selected hybrid
 coordinate, a uniform advice draw achieves half the agreement advantage with
-probability at least half that advantage. -/
+probability at least half that advantage.
+@isnad1 id=ex.6h12v.s7.18cabd285eb6 from=translated src=- shape=a2fd876e vocab=46b0a2c8
+-/
 theorem exists_goodAdviceProbability_ge_of_randomTest
     {outputLength inputLength seedLength tapes time threshold budget : ℕ}
     {design : NWDesign outputLength inputLength seedLength}
@@ -184,7 +200,9 @@ theorem exists_goodAdviceProbability_ge_of_randomTest
     houtputLength hdensity hlow hrandom hdense hbudget
 
 /-- The randomized advice-sampling bound with low complexity discharged by
-direct short-seed descriptions. -/
+direct short-seed descriptions.
+@isnad1 id=ex.7h12v.s7.56edd6096990 from=translated src=- shape=c14d7467 vocab=accddd47
+-/
 theorem exists_goodAdviceProbability_ge_of_seedDescriptions
     {outputLength inputLength seedLength tapes time threshold budget : ℕ}
     {design : NWDesign outputLength inputLength seedLength}

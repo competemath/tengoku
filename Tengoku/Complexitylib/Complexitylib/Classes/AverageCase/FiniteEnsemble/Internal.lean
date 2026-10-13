@@ -23,12 +23,18 @@ universe u v w
 
 namespace Complexity
 
+/--
+@isnad1 id=le.0h2v.s4.7b0e44b3e903 from=translated src=- shape=38fc717e vocab=dc1eab13
+-/
 theorem uniformProbability_nonneg_internal {Ω : Type u} [Fintype Ω]
     (event : Finset Ω) :
     0 ≤ uniformProbability event := by
   unfold uniformProbability
   positivity
 
+/--
+@isnad1 id=le.0h2v.s4.8bfa38b67f45 from=translated src=- shape=f686e912 vocab=14877a98
+-/
 theorem uniformProbability_le_one_internal {Ω : Type u}
     [Fintype Ω] [Nonempty Ω] (event : Finset Ω) :
     uniformProbability event ≤ 1 := by
@@ -41,11 +47,17 @@ theorem uniformProbability_le_one_internal {Ω : Type u}
     _ ≤ (Fintype.card Ω : ℚ) / Fintype.card Ω := by gcongr
     _ = 1 := div_self hden
 
+/--
+@isnad1 id=eq.0h1v.s4.17694a60e324 from=translated src=- shape=bba61b78 vocab=21b4fdae
+-/
 theorem uniformProbability_empty_internal {Ω : Type u}
     [Fintype Ω] :
     uniformProbability (∅ : Finset Ω) = 0 := by
   simp [uniformProbability]
 
+/--
+@isnad1 id=eq.0h1v.s4.2e142737d99c from=translated src=- shape=1e8b59d0 vocab=dc166ca9
+-/
 theorem uniformProbability_univ_internal {Ω : Type u}
     [Fintype Ω] [Nonempty Ω] :
     uniformProbability (Finset.univ : Finset Ω) = 1 := by
@@ -53,6 +65,9 @@ theorem uniformProbability_univ_internal {Ω : Type u}
     exact_mod_cast (Fintype.card_pos_iff.mpr inferInstance).ne'
   simp [uniformProbability, hden]
 
+/--
+@isnad1 id=eq.0h2v.s5.3e462f9ca35b from=translated src=- shape=672dec26 vocab=44a7b6dc
+-/
 theorem uniformProbability_compl_internal {Ω : Type u}
     [Fintype Ω] [DecidableEq Ω] [Nonempty Ω] (event : Finset Ω) :
     uniformProbability eventᶜ = 1 - uniformProbability event := by
@@ -62,6 +77,9 @@ theorem uniformProbability_compl_internal {Ω : Type u}
   unfold uniformProbability
   rw [Finset.card_compl, Nat.cast_sub hcard, sub_div, div_self hden]
 
+/--
+@isnad1 id=le.0h3v.s5.08f72f12fdcc from=translated src=- shape=eb60f9bb vocab=b6c9266c
+-/
 theorem uniformProbability_union_le_internal {Ω : Type u}
     [Fintype Ω] [DecidableEq Ω] (event₁ event₂ : Finset Ω) :
     uniformProbability (event₁ ∪ event₂) ≤
@@ -71,6 +89,9 @@ theorem uniformProbability_union_le_internal {Ω : Type u}
   gcongr
   exact_mod_cast Finset.card_union_le event₁ event₂
 
+/--
+@isnad1 id=eq.1h5v.s6.52f1c1ef3df1 from=translated src=- shape=c775d109 vocab=c53f4567
+-/
 theorem uniformProbability_eq_sum_fiberwise_internal
     {Ω : Type u} {ι : Type v} [Fintype Ω]
     [DecidableEq ι] (event : Finset Ω) (indices : Finset ι) (f : Ω → ι)
@@ -83,6 +104,9 @@ theorem uniformProbability_eq_sum_fiberwise_internal
   push_cast
   rw [Finset.sum_div]
 
+/--
+@isnad1 id=eq.0h4v.s6.e0dbf5048bb9 from=translated src=- shape=0df4a00d vocab=c1838c89
+-/
 theorem uniformProbability_product_internal
     {Ω : Type u} {Ξ : Type v} [Fintype Ω]
     [Fintype Ξ] (P : Ω → Prop) (Q : Ξ → Prop)
@@ -108,6 +132,9 @@ theorem uniformProbability_product_internal
     ((Finset.univ.filter P).card : ℚ) (Fintype.card Ω : ℚ)
     ((Finset.univ.filter Q).card : ℚ) (Fintype.card Ξ : ℚ)).symm
 
+/--
+@isnad1 id=eq.0h3v.s6.ff6b36ec0c1c from=translated src=- shape=7a74fb98 vocab=520d8c4f
+-/
 theorem uniformProbability_product_eq_average_fibers_internal
     {advice : Type u} {challenge : Type v}
     [Fintype advice] [Nonempty advice]
@@ -151,6 +178,9 @@ theorem uniformProbability_product_eq_average_fibers_internal
   intro fixed _hfixed
   field_simp [hadvice, hchallenge]
 
+/--
+@isnad1 id=ex.0h3v.s6.5a57133b0857 from=translated src=- shape=7b3f2064 vocab=7acb8728
+-/
 theorem exists_fiber_uniformProbability_ge_internal
     {advice : Type u} {challenge : Type v}
     [Fintype advice] [Nonempty advice]
@@ -180,6 +210,9 @@ theorem exists_fiber_uniformProbability_ge_internal
     (Finset.univ_nonempty : (Finset.univ : Finset advice).Nonempty) hsum
   exact ⟨fixed, hle⟩
 
+/--
+@isnad1 id=le.1h3v.s6.db95fe52d448 from=translated src=- shape=54e194b2 vocab=ba4b40bd
+-/
 theorem uniformMean_le_threshold_add_probability_internal
     {sample : Type u} [Fintype sample]
     [Nonempty sample] (value : sample → ℚ) (threshold : ℚ)
@@ -231,6 +264,9 @@ theorem uniformMean_le_threshold_add_probability_internal
       rw [← hcard]
       ring
 
+/--
+@isnad1 id=le.3h4v.s6.15e6c73641a4 from=translated src=- shape=815ca6f3 vocab=f56f27b4
+-/
 theorem uniformMean_sub_div_le_probability_ge_internal
     {sample : Type u} [Fintype sample]
     [Nonempty sample] (value : sample → ℚ) (lower threshold : ℚ)
@@ -246,6 +282,9 @@ theorem uniformMean_sub_div_le_probability_ge_internal
   apply (div_le_iff₀ (sub_pos.mpr hthreshold)).2
   linarith
 
+/--
+@isnad1 id=le.3h3v.s7.3478f9e2d911 from=translated src=- shape=50fd510e vocab=fff08c84
+-/
 theorem half_epsilon_le_probability_ge_of_le_uniformMean_internal
     {sample : Type u} [Fintype sample]
     [Nonempty sample] (value : sample → ℚ) (epsilon : ℚ)
@@ -267,6 +306,9 @@ theorem half_epsilon_le_probability_ge_of_le_uniformMean_internal
     nlinarith
   nlinarith
 
+/--
+@isnad1 id=eq.0h3v.s5.c14a7c8c220f from=translated src=- shape=fa72149b vocab=98383c49
+-/
 theorem uniformAtLeastOneProbability_eq_one_sub_pow_internal
     {Ω : Type u} [Fintype Ω] [DecidableEq Ω] [Nonempty Ω]
     (event : Finset Ω) (trials : ℕ) :
@@ -302,6 +344,9 @@ theorem uniformAtLeastOneProbability_eq_one_sub_pow_internal
   rw [hsuccessFailure, hfailureProbability,
     uniformProbability_compl_internal event]
 
+/--
+@isnad1 id=le.1h4v.s6.e646ce4139c4 from=translated src=- shape=0c32713d vocab=575aec9a
+-/
 theorem one_sub_pow_le_uniformAtLeastOneProbability_internal
     {Ω : Type u} [Fintype Ω] [DecidableEq Ω] [Nonempty Ω]
     (event : Finset Ω) (trials : ℕ) (singleDrawLower : ℚ)
@@ -343,6 +388,9 @@ private theorem pow_one_sub_le_one_div_one_add_nat_mul
             positivity
           nlinarith
 
+/--
+@isnad1 id=le.0h3v.s6.1c083f65fe5f from=translated src=- shape=a4652416 vocab=9374914d
+-/
 theorem trials_mul_div_one_add_le_uniformAtLeastOneProbability_internal
     {Ω : Type u} [Fintype Ω] [DecidableEq Ω] [Nonempty Ω]
     (event : Finset Ω) (trials : ℕ) :
@@ -366,6 +414,9 @@ theorem trials_mul_div_one_add_le_uniformAtLeastOneProbability_internal
       ring
     _ ≤ 1 - (1 - probability) ^ trials := sub_le_sub_left hpow 1
 
+/--
+@isnad1 id=le.2h4v.s6.0ae13db8abf1 from=translated src=- shape=5fa5b8a3 vocab=2d41d381
+-/
 theorem half_le_uniformAtLeastOneProbability_of_singleDrawLower_internal
     {Ω : Type u} [Fintype Ω] [DecidableEq Ω] [Nonempty Ω]
     (event : Finset Ω) (trials : ℕ) (singleDrawLower : ℚ)
@@ -386,6 +437,9 @@ theorem half_le_uniformAtLeastOneProbability_of_singleDrawLower_internal
     htrials.trans <| mul_le_mul_of_nonneg_left hlower (by positivity)
   nlinarith
 
+/--
+@isnad1 id=eq.0h4v.s6.496d3eb50814 from=translated src=- shape=ae9ae9ae vocab=a0c34961
+-/
 theorem uniformProbability_equiv_internal
     {Ω : Type u} {Ξ : Type v} [Fintype Ω]
     [Fintype Ξ] (e : Ω ≃ Ξ) (P : Ξ → Prop)
@@ -408,6 +462,9 @@ theorem uniformProbability_equiv_internal
   unfold uniformProbability
   rw [hcard, Fintype.card_congr e]
 
+/--
+@isnad1 id=eq.0h2v.s5.a499e7f91fe0 from=translated src=- shape=72acdad6 vocab=45891444
+-/
 theorem uniformProbability_eq_internal {Ω : Type u}
     [Fintype Ω] [DecidableEq Ω] (x : Ω) :
     uniformProbability (Finset.univ.filter fun y : Ω => y = x) =
@@ -422,12 +479,18 @@ namespace FiniteEnsemble
 
 variable {α : Type u} {β : Type w}
 
+/--
+@isnad1 id=le.0h4v.s4.7035d9462816 from=translated src=- shape=f2bf0f33 vocab=ce3f43bc
+-/
 theorem probability_nonneg_internal (D : FiniteEnsemble α) (n : ℕ)
     (P : α → Prop) [DecidablePred P] :
     0 ≤ D.probability n P := by
   let := D.seedFintype n
   exact uniformProbability_nonneg_internal _
 
+/--
+@isnad1 id=le.0h4v.s4.4d048de19c02 from=translated src=- shape=ebb9692a vocab=ce3f43bc
+-/
 theorem probability_le_one_internal (D : FiniteEnsemble α) (n : ℕ)
     (P : α → Prop) [DecidablePred P] :
     D.probability n P ≤ 1 := by
@@ -435,12 +498,18 @@ theorem probability_le_one_internal (D : FiniteEnsemble α) (n : ℕ)
   let := D.seedNonempty n
   exact uniformProbability_le_one_internal _
 
+/--
+@isnad1 id=eq.0h3v.s4.4486082b069e from=translated src=- shape=ae09135e vocab=0c875944
+-/
 theorem probability_false_internal (D : FiniteEnsemble α) (n : ℕ) :
     D.probability n (fun _ => False) = 0 := by
   let := D.seedFintype n
   let := D.seedDecidableEq n
   simp [probability, event, uniformProbability_empty_internal]
 
+/--
+@isnad1 id=eq.0h3v.s4.c50e59c758af from=translated src=- shape=ae09135e vocab=0c875944
+-/
 theorem probability_true_internal (D : FiniteEnsemble α) (n : ℕ) :
     D.probability n (fun _ => True) = 1 := by
   let := D.seedFintype n
@@ -448,6 +517,9 @@ theorem probability_true_internal (D : FiniteEnsemble α) (n : ℕ) :
   let := D.seedNonempty n
   simp [probability, event, uniformProbability_univ_internal]
 
+/--
+@isnad1 id=eq.0h4v.s5.89604d5a24f1 from=translated src=- shape=f3f60ada vocab=801fbba7
+-/
 theorem probability_not_internal (D : FiniteEnsemble α) (n : ℕ)
     (P : α → Prop) [DecidablePred P] :
     D.probability n (fun x => ¬ P x) = 1 - D.probability n P := by
@@ -460,6 +532,9 @@ theorem probability_not_internal (D : FiniteEnsemble α) (n : ℕ)
   rw [probability, hevent, uniformProbability_compl_internal]
   rfl
 
+/--
+@isnad1 id=le.0h5v.s6.5348b5765b48 from=translated src=- shape=f893ad17 vocab=e1175c25
+-/
 theorem probability_or_le_internal (D : FiniteEnsemble α) (n : ℕ)
     (P Q : α → Prop) [DecidablePred P] [DecidablePred Q] :
     D.probability n (fun x => P x ∨ Q x) ≤
@@ -472,6 +547,9 @@ theorem probability_or_le_internal (D : FiniteEnsemble α) (n : ℕ)
   rw [probability, hevent]
   exact uniformProbability_union_le_internal _ _
 
+/--
+@isnad1 id=le.0h6v.s5.c18897b17e8a from=translated src=- shape=047e6ddb vocab=ce3f43bc
+-/
 theorem probability_mono_internal (D : FiniteEnsemble α) (n : ℕ)
     (P Q : α → Prop) [DecidablePred P] [DecidablePred Q]
     (hPQ : ∀ x, P x → Q x) :
@@ -488,6 +566,9 @@ theorem probability_mono_internal (D : FiniteEnsemble α) (n : ℕ)
   simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hseed ⊢
   exact hPQ _ hseed
 
+/--
+@isnad1 id=eq.1h5v.s5.384ec6362b9d from=translated src=- shape=4afcf808 vocab=30c38946
+-/
 theorem probability_congr_internal (D : FiniteEnsemble α) (n : ℕ)
     (P Q : α → Prop) [DecidablePred P] [DecidablePred Q]
     (hPQ : ∀ x, P x ↔ Q x) :
@@ -504,11 +585,17 @@ theorem probability_congr_internal (D : FiniteEnsemble α) (n : ℕ)
   simp only [Finset.mem_filter, Finset.mem_univ, true_and]
   exact hPQ _
 
+/--
+@isnad1 id=eq.0h6v.s5.ef01f2f2fda3 from=translated src=- shape=1d8e707b vocab=39eeef9e
+-/
 theorem probability_map_internal (D : FiniteEnsemble α) (f : α → β)
     (n : ℕ) (P : β → Prop) [DecidablePred P] :
     (D.map f).probability n P = D.probability n (fun x => P (f x)) := by
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.a7823b705417 from=translated src=- shape=991c0722 vocab=d9bdb7e7
+-/
 theorem sum_mass_eq_one_internal [DecidableEq α]
     (D : FiniteEnsemble α) (n : ℕ) :
     ∑ x ∈ D.support n, D.mass n x = 1 := by
@@ -525,6 +612,9 @@ theorem sum_mass_eq_one_internal [DecidableEq α]
   rw [uniformProbability_univ_internal] at hpartition
   simpa [mass, probability, event] using hpartition.symm
 
+/--
+@isnad1 id=eq.0h7v.s6.d55a08c103b7 from=translated src=- shape=f13ff71b vocab=d167e962
+-/
 theorem probability_product_internal (D : FiniteEnsemble α)
     (E : FiniteEnsemble β) (n : ℕ) (P : α → Prop) (Q : β → Prop)
     [DecidablePred P] [DecidablePred Q] :
@@ -539,6 +629,9 @@ theorem probability_product_internal (D : FiniteEnsemble α)
     (fun seed : D.Seed n => P (D.sample n seed))
     (fun seed : E.Seed n => Q (E.sample n seed))
 
+/--
+@isnad1 id=eq.0h4v.s5.1ab830559c6b from=translated src=- shape=06d34295 vocab=35d237f4
+-/
 theorem probability_dirac_internal (x : ℕ → α) (n : ℕ)
     (P : α → Prop) [DecidablePred P] :
     (dirac x).probability n P = if P (x n) then 1 else 0 := by
@@ -566,6 +659,9 @@ namespace DyadicEnsemble
 
 variable {α : Type u}
 
+/--
+@isnad1 id=eq.0h4v.s4.c365f831a7d7 from=translated src=- shape=8ad1fe96 vocab=2e9d1631
+-/
 theorem probability_toFinite_internal (D : DyadicEnsemble α) (n : ℕ)
     (P : α → Prop) [DecidablePred P] :
     D.toFinite.probability n P = D.probability n P := by

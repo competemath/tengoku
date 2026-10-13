@@ -28,9 +28,15 @@ def bitstringFoldPrefix (update : List Bool → List Bool → List Bool)
   | count + 1 => update (Nat.toBitsLE width count)
       (bitstringFoldPrefix update seed width count)
 
+/--
+@isnad1 id=eq.0h3v.s4.9972cee12c9a from=translated src=- shape=754dc655 vocab=5797d492
+-/
 @[simp] theorem bitstringFoldPrefix_zero (update : List Bool → List Bool → List Bool)
     (seed : List Bool) (width : ℕ) : bitstringFoldPrefix update seed width 0 = seed := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.01508c25ff2a from=translated src=- shape=fc8c729a vocab=89ee6542
+-/
 @[simp] theorem bitstringFoldPrefix_succ (update : List Bool → List Bool → List Bool)
     (seed : List Bool) (width count : ℕ) :
     bitstringFoldPrefix update seed width (count + 1) =
@@ -41,7 +47,9 @@ def bitstringFold (update : List Bool → List Bool → List Bool)
     (seed : List Bool) (width : ℕ) : List Bool :=
   bitstringFoldPrefix update seed width (2 ^ width)
 
-/-- A zero-width fold still performs one update, with the empty candidate. -/
+/-- A zero-width fold still performs one update, with the empty candidate.
+@isnad1 id=eq.0h2v.s4.a0d8dda02664 from=translated src=- shape=5ad2f797 vocab=f6fa5c7c
+-/
 @[simp] theorem bitstringFold_zero (update : List Bool → List Bool → List Bool)
     (seed : List Bool) : bitstringFold update seed 0 = update [] seed := rfl
 

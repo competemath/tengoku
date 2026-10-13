@@ -27,7 +27,9 @@ namespace Complexity
 namespace BinaryPred
 
 /-- Internal proof that ripple borrow on a positive canonical value computes
-its predecessor. -/
+its predecessor.
+@isnad1 id=eq.0h1v.s4.e21521b4631e from=translated src=- shape=789b0ff5 vocab=27a0a98d
+-/
 theorem ripple_succ_natBits_internal (value : ℕ) :
     ripple (value + 1).bits = value.bits := by
   induction value using Nat.binaryRec' with
@@ -59,7 +61,9 @@ theorem ripple_succ_natBits_internal (value : ℕ) :
           simp only [ripple]
           rw [ih]
 
-/-- Internal worst-case bound for predecessor's exact transition count. -/
+/-- Internal worst-case bound for predecessor's exact transition count.
+@isnad1 id=le.0h1v.s5.388c9ecde971 from=translated src=- shape=29b2873e vocab=9396a399
+-/
 theorem steps_le_internal (bits : List Bool) :
     steps bits ≤ 2 * bits.length + 2 := by
   induction bits with
@@ -771,11 +775,17 @@ private theorem binaryPredTM_borrow_run
 
 /-! ## Public-theorem internals -/
 
+/--
+@isnad1 id=le.0h1v.s5.bc9e123d152f from=translated src=- shape=3c29b3bb vocab=b6be22f6
+-/
 theorem binaryPredTime_le_internal (value : ℕ) :
     binaryPredTime value ≤ 2 * (value + 1).size + 2 := by
   simpa [binaryPredTime, Nat.size_eq_bits_len] using
     BinaryPred.steps_le_internal (value + 1).bits
 
+/--
+@isnad1 id=ex.4h6v.s7.4adab9d17824 from=translated src=- shape=14329ed5 vocab=5fa6164b
+-/
 theorem binaryPredTM_reachesIn_frame_internal
     (idx : Fin n) (value : ℕ)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
@@ -809,6 +819,9 @@ theorem binaryPredTM_reachesIn_frame_internal
   · exact ⟨hcell0, by
       simpa [BinaryPred.ripple_succ_natBits_internal] using hstring⟩
 
+/--
+@isnad1 id=hoaretim.4h6v.s7.8d1e86e27dba from=translated src=- shape=ce589c70 vocab=ae1937b1
+-/
 theorem binaryPredTM_hoareTime_frame_internal
     (idx : Fin n) (value : ℕ)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
@@ -832,6 +845,9 @@ theorem binaryPredTM_hoareTime_frame_internal
     hinput, hwork, hvalue', houtput⟩
   simpa [hinput₀, hwork₀, houtput₀] using hreach
 
+/--
+@isnad1 id=hoaretim.5h8v.s7.63b5ac3f2d0f from=translated src=- shape=ff86f3d1 vocab=c67dd493
+-/
 theorem binaryPredTM_hoareTimeSpace_frame_internal
     (idx : Fin n) (value inputLength initialSpace : ℕ)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
@@ -865,6 +881,9 @@ theorem binaryPredTM_hoareTimeSpace_frame_internal
   simp only [binaryPredSpace]
   omega
 
+/--
+@isnad1 id=istransd.0h2v.s3.ec2677b5e090 from=translated src=- shape=20553ef8 vocab=3a414bb5
+-/
 theorem binaryPredTM_isTransducer_internal (idx : Fin n) :
     (binaryPredTM idx).IsTransducer := by
   intro phase iHead wHeads oHead

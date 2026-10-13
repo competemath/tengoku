@@ -29,6 +29,9 @@ private theorem forgetNumerical_rel {V : Vocabulary} (A : FinStruct V)
     FinStruct.withNumerical, Vocabulary.withNumerical]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.51d09e7579c6 from=translated src=- shape=f79caca0 vocab=06e7b5bd
+-/
 theorem forgetNumerical_apply_internal {V : Vocabulary} (A : FinStruct V)
     (predicates : List NumericalPredicate) :
     (FOInterpretation.forgetNumerical V predicates).apply (A.withNumerical predicates) = A := by
@@ -37,6 +40,9 @@ theorem forgetNumerical_apply_internal {V : Vocabulary} (A : FinStruct V)
       ((FOInterpretation.forgetNumerical V predicates).apply (A.withNumerical predicates)).rel }
     from rfl, forgetNumerical_rel A predicates]
 
+/--
+@isnad1 id=iff.0h6v.s5.0dd97407695b from=translated src=- shape=adcc99d2 vocab=5ba6c96e
+-/
 theorem withNumerical_sat_internal {V : Vocabulary} {n : Nat} (A : FinStruct V)
     (φ : Formula V n) (predicates : List NumericalPredicate) (σ : Env A.card n) :
     (φ.withNumerical predicates).Sat (A.withNumerical predicates) σ ↔ φ.Sat A σ := by
@@ -48,6 +54,9 @@ theorem withNumerical_sat_internal {V : Vocabulary} {n : Nat} (A : FinStruct V)
   rw [forgetNumerical_rel] at h
   exact h.symm
 
+/--
+@isnad1 id=iff.0h7v.s6.d48b399ef3ca from=translated src=- shape=8c3d7bc5 vocab=25783a7e
+-/
 theorem numerical_sat_internal {V : Vocabulary} {n : Nat} (A : FinStruct V)
     (predicates : List NumericalPredicate) (r : Fin predicates.length)
     (args : Fin (predicates.get r).arity → Term (V.withNumerical predicates) n)
@@ -58,6 +67,9 @@ theorem numerical_sat_internal {V : Vocabulary} {n : Nat} (A : FinStruct V)
   simp [Formula.numerical, Formula.Sat, FinStruct.withNumerical, Vocabulary.withNumerical]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.a81255be3506 from=translated src=- shape=57a4bae6 vocab=e1e2ce8d
+-/
 theorem withNumerical_toFinStruct_internal {V : Vocabulary} (A : DecFinStruct V)
     (predicates : List NumericalPredicate) :
     (A.withNumerical predicates).toFinStruct = A.toFinStruct.withNumerical predicates := by

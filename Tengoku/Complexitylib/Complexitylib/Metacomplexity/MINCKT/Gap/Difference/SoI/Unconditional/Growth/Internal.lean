@@ -23,6 +23,9 @@ namespace Unconditional
 
 namespace Iterated
 
+/--
+@isnad1 id=ex.1h2v.s6.2c72bd62f663 from=translated src=- shape=0ab906e9 vocab=60a7bf44
+-/
 theorem clockIterate_polynomiallyBounded_internal
     {clock : ℕ → ℕ}
     (hclock : ∃ coefficient exponent, ∀ time,
@@ -71,6 +74,9 @@ theorem clockIterate_polynomiallyBounded_internal
           rw [Nat.mul_pow, Nat.pow_mul]
           ac_rfl
 
+/--
+@isnad1 id=isadmiss.1h1v.s3.7303a7630b4a from=translated src=- shape=aef97f5f vocab=5e2c10c2
+-/
 theorem IsAdmissibleClock.ordinaryParameters_admissible_internal
     {clock : ℕ → ℕ} (hclock : IsAdmissibleClock clock) :
     (ordinaryParameters clock).IsAdmissible := by
@@ -83,6 +89,9 @@ theorem IsAdmissibleClock.ordinaryParameters_admissible_internal
       Nat.mul_le_mul_left coefficient <|
         Nat.pow_le_pow_left (by omega) exponent
 
+/--
+@isnad1 id=isadmiss.1h1v.s3.2e484aaf42c7 from=translated src=- shape=aef97f5f vocab=ea52f3b0
+-/
 theorem IsAdmissibleClock.conditionalParameters_admissible_internal
     {clock : ℕ → ℕ} (hclock : IsAdmissibleClock clock) :
     (conditionalParameters clock).IsAdmissible := by

@@ -26,7 +26,9 @@ namespace TM
 variable {k : ℕ} {tm : TM k}
 
 /-- The time indices of a halting transducer run staying within auxiliary
-space `space` inject into the reduced transducer snapshots. -/
+space `space` inject into the reduced transducer snapshots.
+@isnad1 id=le.4h6v.s6.c2d24a7bfeba from=translated src=- shape=08720457 vocab=ee60831c
+-/
 theorem IsTransducer.reachesIn_succ_le_transducerConfigBound_internal
     (htrans : tm.IsTransducer) {x : List Bool} {space t : ℕ}
     {c : Cfg k tm.Q}
@@ -105,7 +107,9 @@ theorem IsTransducer.reachesIn_succ_le_transducerConfigBound_internal
   simpa only [Fintype.card_fin, card_transducerSnapshot] using hcard
 
 /-- A total space-bounded transducer computes within its finite reduced-
-configuration bound. -/
+configuration bound.
+@isnad1 id=computes.1h4v.s5.470c0cc093fb from=translated src=- shape=79e150a8 vocab=9dd71b9a
+-/
 theorem ComputesInSpace.computesInTime_configBound_internal
     {f : List Bool → List Bool} {S : ℕ → ℕ}
     (hcomp : tm.ComputesInSpace f S) :
@@ -120,7 +124,9 @@ theorem ComputesInSpace.computesInTime_configBound_internal
   exact (Nat.le_succ t).trans this
 
 /-- A total space-bounded language decider that also has one-way output decides
-within its finite reduced-configuration bound. -/
+within its finite reduced-configuration bound.
+@isnad1 id=decidesi.2h4v.s5.c3a212310ff1 from=translated src=- shape=b0ce8566 vocab=04bbcb93
+-/
 theorem DecidesInSpace.decidesInTime_configBound_internal
     {L : Language} {S : ℕ → ℕ}
     (hdec : tm.DecidesInSpace L S) (htrans : tm.IsTransducer) :

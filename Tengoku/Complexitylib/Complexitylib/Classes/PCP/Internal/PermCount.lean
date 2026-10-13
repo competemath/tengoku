@@ -49,13 +49,18 @@ noncomputable def permsInto (S K : Finset (Fin n)) : Finset (Equiv.Perm (Fin n))
 noncomputable def restrs (S K : Finset (Fin n)) : Finset ({x // x ∈ K} → Fin n) :=
   Finset.univ.filter fun f => Function.Injective f ∧ ∀ v, f v ∈ S
 
+/--
+@isnad1 id=and.1h4v.s7.13aed024782b from=translated src=- shape=b9861ce0 vocab=709fb22b
+-/
 theorem mem_restrs {S K : Finset (Fin n)} {f : {x // x ∈ K} → Fin n} (hf : f ∈ restrs S K) :
     Function.Injective f ∧ ∀ v, f v ∈ S := by
   have := hf
   rw [restrs, Finset.mem_filter] at this
   exact this.2
 
-/-- **There are few restrictions.** -/
+/-- **There are few restrictions.**
+@isnad1 id=le.0h3v.s5.f81376da1ca7 from=translated src=- shape=0c5a0922 vocab=a7d038ae
+-/
 theorem card_restrs_le (S K : Finset (Fin n)) :
     (restrs S K).card ≤ S.card.descFactorial K.card := by
   classical
@@ -76,12 +81,17 @@ theorem card_restrs_le (S K : Finset (Fin n)) :
 noncomputable def restrImage {K : Finset (Fin n)} (f : {x // x ∈ K} → Fin n) : Finset (Fin n) :=
   Finset.univ.image f
 
+/--
+@isnad1 id=eq.1h4v.s7.b44f84d86362 from=translated src=- shape=688a7584 vocab=f9853d49
+-/
 theorem card_restrImage {S K : Finset (Fin n)} {f : {x // x ∈ K} → Fin n}
     (hf : f ∈ restrs S K) : (restrImage f).card = K.card := by
   rw [restrImage, Finset.card_image_of_injective _ (mem_restrs hf).1, Finset.card_univ,
     Fintype.card_coe]
 
-/-- **Each restriction is shared by few permutations.** -/
+/-- **Each restriction is shared by few permutations.**
+@isnad1 id=le.1h4v.s8.879066c97928 from=translated src=- shape=52626329 vocab=949fb4f3
+-/
 theorem card_fiber_le (S K : Finset (Fin n)) (f : {x // x ∈ K} → Fin n)
     (hf : f ∈ restrs S K) :
     ((permsInto S K).filter fun σ => (fun v : {x // x ∈ K} => σ v) = f).card
@@ -136,7 +146,9 @@ theorem card_fiber_le (S K : Finset (Fin n)) (f : {x // x ∈ K} → Fin n)
   rw [hRcard, hcompl, Nat.descFactorial_self] at hle
   exact hle
 
-/-- **The estimate.** -/
+/-- **The estimate.**
+@isnad1 id=le.0h3v.s5.4b1d1fb7c01b from=translated src=- shape=c340a3c7 vocab=0ea3901c
+-/
 theorem card_perm_mapsTo_le (S K : Finset (Fin n)) :
     (permsInto S K).card ≤ S.card.descFactorial K.card * Nat.factorial (n - K.card) := by
   classical
@@ -160,7 +172,9 @@ theorem card_perm_mapsTo_le (S K : Finset (Fin n)) :
 
 /-- **Few permutations move only a little of `S` out of `S`.** Such a
 permutation keeps a `(s - t)`-element subset of `S` inside `S`, and there are
-few subsets and, by `card_perm_mapsTo_le`, few permutations for each. -/
+few subsets and, by `card_perm_mapsTo_le`, few permutations for each.
+@isnad1 id=le.0h3v.s6.a7b52dbf9238 from=translated src=- shape=2a1cc568 vocab=e556f461
+-/
 theorem card_perm_escape_le (S : Finset (Fin n)) (t : ℕ) :
     (Finset.univ.filter fun σ : Equiv.Perm (Fin n) => escape σ S ≤ t).card
       ≤ S.card.choose (S.card - t)

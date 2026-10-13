@@ -57,18 +57,24 @@ namespace Complexity
 /-! ### Cardinality of the random-bit sample space -/
 
 /-- The finite sample space of `T` random bits has `2 ^ T` points. This is the
-    denominator in `NTM.acceptProb`. -/
+    denominator in `NTM.acceptProb`.
+@isnad1 id=eq.0h1v.s5.dd86853de612 from=translated src=- shape=f9c99b06 vocab=80feae36
+-/
 theorem card_finArrowBool (T : ℕ) : Fintype.card (Fin T → Bool) = 2 ^ T := by
   simp
 
-/-- Splitting `T = a + b` random bits multiplies the point counts. -/
+/-- Splitting `T = a + b` random bits multiplies the point counts.
+@isnad1 id=eq.0h2v.s6.1e90d05f867f from=translated src=- shape=2f8e7a2e vocab=a2718fc5
+-/
 theorem card_finArrowBool_add (a b : ℕ) :
     Fintype.card (Fin (a + b) → Bool) = 2 ^ a * 2 ^ b := by
   rw [card_finArrowBool, pow_add]
 
 /-- There are exactly `2 ^ (2 ^ n)` Boolean functions on `n` bits — the number of
     distinct `2 ^ n`-entry truth tables. The base fact for property density in
-    natural-proofs arguments. -/
+    natural-proofs arguments.
+@isnad1 id=eq.0h1v.s6.4fae18963ac9 from=translated src=- shape=4f1bc849 vocab=80feae36
+-/
 theorem card_boolFunc (n : ℕ) :
     Fintype.card ((Fin n → Bool) → Bool) = 2 ^ (2 ^ n) := by
   rw [Fintype.card_fun, Fintype.card_bool, card_finArrowBool]
@@ -76,7 +82,9 @@ theorem card_boolFunc (n : ℕ) :
 /-- There are exactly `2 ^ (n * n)` directed graphs (adjacency matrices) on `n`
     vertices — the number of `n × n` Boolean matrices. A standalone counting
     fact for adjacency-matrix encodings; no graph language in the library is
-    currently encoded through it. -/
+    currently encoded through it.
+@isnad1 id=eq.0h1v.s6.d4b27bf38b9a from=translated src=- shape=7c7db6e7 vocab=f34f7a31
+-/
 theorem card_adjMatrix (n : ℕ) :
     Fintype.card (Fin n → Fin n → Bool) = 2 ^ (n * n) := by
   rw [Fintype.card_fun, card_finArrowBool, Fintype.card_fin, ← pow_mul]
@@ -109,7 +117,9 @@ def blockFst (a b : ℕ) (w : Fin (a + b) → Bool) : Fin a → Bool := (blockEq
 /-- The suffix projection of a length-`a + b` random string. -/
 def blockSnd (a b : ℕ) (w : Fin (a + b) → Bool) : Fin b → Bool := (blockEquiv a b w).2
 
-/-- Suffix projection is restriction along the canonical shifted inclusion. -/
+/-- Suffix projection is restriction along the canonical shifted inclusion.
+@isnad1 id=eq.0h4v.s5.54ebb5e341fe from=translated src=- shape=f9d5dc22 vocab=31002918
+-/
 @[simp] theorem blockSnd_apply (a b : ℕ) (w : Fin (a + b) → Bool) (i : Fin b) :
     blockSnd a b w i = w (Fin.natAdd a i) := by
   rfl
@@ -118,14 +128,23 @@ def blockSnd (a b : ℕ) (w : Fin (a + b) → Bool) : Fin b → Bool := (blockEq
 def blockAppend (a b : ℕ) (u : Fin a → Bool) (v : Fin b → Bool) : Fin (a + b) → Bool :=
   (blockEquiv a b).symm (u, v)
 
+/--
+@isnad1 id=eq.0h4v.s4.1af0d9963a5b from=translated src=- shape=9df1654c vocab=8d2743ae
+-/
 @[simp] theorem blockFst_append (a b : ℕ) (u : Fin a → Bool) (v : Fin b → Bool) :
     blockFst a b (blockAppend a b u v) = u := by
   simp [blockFst, blockAppend]
 
+/--
+@isnad1 id=eq.0h4v.s4.177c03685950 from=translated src=- shape=08ddba19 vocab=2acea748
+-/
 @[simp] theorem blockSnd_append (a b : ℕ) (u : Fin a → Bool) (v : Fin b → Bool) :
     blockSnd a b (blockAppend a b u v) = v := by
   simp [blockSnd, blockAppend]
 
+/--
+@isnad1 id=eq.0h3v.s5.dc047a4637db from=translated src=- shape=3c9598ae vocab=4e1a61c2
+-/
 @[simp] theorem blockAppend_fst_snd (a b : ℕ) (w : Fin (a + b) → Bool) :
     blockAppend a b (blockFst a b w) (blockSnd a b w) = w := by
   simp [blockAppend, blockFst, blockSnd]
@@ -135,7 +154,9 @@ def blockAppend (a b : ℕ) (u : Fin a → Bool) (v : Fin b → Bool) : Fin (a +
     individual counts. Because `blockEquiv` is a bijection onto the product sample
     space, the joint event factors — the exact-count statement of independence across
     blocks, and the combinatorial heart of relating a repeated machine's acceptance to
-    its single-run acceptance (amplification). -/
+    its single-run acceptance (amplification).
+@isnad1 id=eq.0h4v.s8.60d139c74f4a from=translated src=- shape=3f061bf7 vocab=6c47d1e3
+-/
 theorem card_filter_block {a b : ℕ}
     (P : (Fin a → Bool) → Prop) (Q : (Fin b → Bool) → Prop)
     [DecidablePred P] [DecidablePred Q] :
@@ -162,7 +183,9 @@ theorem card_filter_block {a b : ℕ}
 /-- The finite union bound: the number of sample points satisfying *some*
     predicate `p i` for `i` in a finite index set `s` is at most the sum over `s`
     of the per-predicate counts. The workhorse behind failure-probability bounds
-    over many bad events. -/
+    over many bad events.
+@isnad1 id=le.0h4v.s6.2906768b951e from=translated src=- shape=02fa2a92 vocab=abea5a78
+-/
 theorem card_filter_exists_le {ι α : Type*} [Fintype α] [DecidableEq α]
     (s : Finset ι) (p : ι → α → Prop) [∀ i, DecidablePred (p i)] :
     (Finset.univ.filter (fun x => ∃ i ∈ s, p i x)).card
@@ -178,7 +201,9 @@ theorem card_filter_exists_le {ι α : Type*} [Fintype α] [DecidableEq α]
     "bad" seeds summed over all inputs is strictly less than the number of seeds,
     then some single seed is good for *every* input simultaneously. This is the
     machine-independent counting core of `BPP ⊆ P/poly` (hardwiring one random
-    string that works for all `2ⁿ` inputs of a given length). -/
+    string that works for all `2ⁿ` inputs of a given length).
+@isnad1 id=ex.1h4v.s6.822dae6f8b31 from=translated src=- shape=0123795c vocab=bd1e9a34
+-/
 theorem exists_good_seed {S ι : Type*} [Fintype S] [DecidableEq S]
     (inputs : Finset ι) (bad : ι → Finset S)
     (h : ∑ i ∈ inputs, (bad i).card < Fintype.card S) :
@@ -206,7 +231,9 @@ private theorem popCount_succ {k : ℕ} (f : Fin (k + 1) → Bool) :
   rw [Fin.card_filter_univ_succ']
 
 /-- Batteries' fold-based Boolean count agrees with the finite-set support
-count used by the randomized-counting layer. -/
+count used by the randomized-counting layer.
+@isnad1 id=eq.0h2v.s3.da63af274785 from=translated src=- shape=c31f4daf vocab=112059a5
+-/
 theorem finCountP_eq_popCount {k : ℕ} (f : Fin k → Bool) :
     Fin.countP f = popCount f := by
   induction k with
@@ -228,14 +255,22 @@ def boolFunEquivFinset (α : Type*) [Fintype α] [DecidableEq α] :
     ext i
     simp
 
+/--
+@isnad1 id=iff.0h3v.s6.8b08a5ff0987 from=translated src=- shape=77aaa36d vocab=55136412
+-/
 @[simp] theorem mem_boolFunEquivFinset {α : Type*} [Fintype α] [DecidableEq α]
     (f : α → Bool) (i : α) : i ∈ boolFunEquivFinset α f ↔ f i = true := by
   simp [boolFunEquivFinset]
 
+/--
+@isnad1 id=eq.0h2v.s6.ce3dd9514421 from=translated src=- shape=19f4fa62 vocab=6d43f85b
+-/
 @[simp] theorem boolFunEquivFinset_card {k : ℕ} (f : Fin k → Bool) :
     (boolFunEquivFinset (Fin k) f).card = popCount f := rfl
 
-/-- Exactly `k.choose r` Boolean vectors of length `k` have `r` true entries. -/
+/-- Exactly `k.choose r` Boolean vectors of length `k` have `r` true entries.
+@isnad1 id=eq.0h2v.s5.2c38debc8165 from=translated src=- shape=b676e87e vocab=c14847b0
+-/
 theorem card_filter_popCount_eq (k r : ℕ) :
     (Finset.univ.filter (fun f : Fin k → Bool => popCount f = r)).card =
       k.choose r := by
@@ -259,7 +294,9 @@ theorem card_filter_popCount_eq (k r : ℕ) :
     _ = k.choose r := by simp
 
 /-- The number of vectors whose `popCount` lies in a finite set is the
-    corresponding sum of binomial coefficients. -/
+    corresponding sum of binomial coefficients.
+@isnad1 id=eq.0h2v.s6.0849f1aa14d1 from=translated src=- shape=1799dda0 vocab=e469a163
+-/
 theorem card_filter_popCount_mem (k : ℕ) (s : Finset ℕ) :
     (Finset.univ.filter (fun f : Fin k → Bool => popCount f ∈ s)).card =
       ∑ r ∈ s, k.choose r := by
@@ -278,11 +315,17 @@ def blocksEquiv (k T : ℕ) :
   (Equiv.arrowCongr finProdFinEquiv (Equiv.refl Bool)).symm.trans
     (Equiv.curry (Fin k) (Fin T) Bool)
 
+/--
+@isnad1 id=eq.0h5v.s7.c16c85aa469e from=translated src=- shape=80180abe vocab=fd282d82
+-/
 @[simp] theorem blocksEquiv_apply (k T : ℕ) (w : Fin (k * T) → Bool)
     (i : Fin k) (t : Fin T) :
     blocksEquiv k T w i t = w (finProdFinEquiv (i, t)) := by
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.3bcee2c90b63 from=translated src=- shape=938fc51b vocab=eba4c815
+-/
 @[simp] theorem blocksEquiv_symm_apply (k T : ℕ) (f : Fin k → Fin T → Bool)
     (p : Fin (k * T)) :
     (blocksEquiv k T).symm f p =
@@ -366,7 +409,9 @@ def repeatRandomSeed (k T : ℕ)
   repeatStrideRandomSeed k T (blockSnd 2 (k * (2 * T + 2)) w)
 
 /-- The compact seed's `(i,t)` entry is the choice at simulation offset `t` in
-    repetition stride `i`, after the two initial setup choices. -/
+    repetition stride `i`, after the two initial setup choices.
+@isnad1 id=eq.0h5v.s9.4fae4099dcc1 from=translated src=- shape=3aabb442 vocab=203b5b81
+-/
 theorem repeatRandomSeed_apply (k T : ℕ)
     (w : Fin (2 + k * (2 * T + 2)) → Bool) (i : Fin k) (t : Fin T) :
     repeatRandomSeed k T w (finProdFinEquiv (i, t)) =
@@ -391,7 +436,9 @@ private theorem card_repeatStrideRandomSeed_fiber (k T : ℕ)
       simp
 
 /-- Every compact repetition seed has exactly one freely chosen assignment to
-    each administrative slot in its full-seed fiber. -/
+    each administrative slot in its full-seed fiber.
+@isnad1 id=eq.0h3v.s9.a59a5463c9aa from=translated src=- shape=b01e9383 vocab=dd6fee4e
+-/
 theorem card_repeatRandomSeed_fiber (k T : ℕ) (seed : Fin (k * T) → Bool) :
     (Finset.univ.filter (fun w : Fin (2 + k * (2 * T + 2)) → Bool =>
       repeatRandomSeed k T w = seed)).card = 2 ^ (2 + k * (T + 2)) := by
@@ -404,7 +451,9 @@ theorem card_repeatRandomSeed_fiber (k T : ℕ) (seed : Fin (k * T) → Bool) :
   rfl
 
 /-- If a finite Boolean-seed projection has constant fibers, then every event
-    that factors through the projection gains exactly that common fiber factor. -/
+    that factors through the projection gains exactly that common fiber factor.
+@isnad1 id=eq.2h6v.s7.80450f737513 from=translated src=- shape=209786cf vocab=1d6ebca2
+-/
 theorem card_filter_of_constant_fibers
     {total compact ignored : ℕ}
     (randomSeed : (Fin total → Bool) → (Fin compact → Bool))
@@ -445,7 +494,9 @@ theorem card_filter_of_constant_fibers
     _ = compactEvent.card * 2 ^ ignored := by simp
 
 /-- An event depending only on the compact repetition seed has its count
-    multiplied by the number of ignored administrative choice assignments. -/
+    multiplied by the number of ignored administrative choice assignments.
+@isnad1 id=eq.0h3v.s9.1f917e9c0d60 from=translated src=- shape=15502352 vocab=a1937a2b
+-/
 theorem card_filter_repeatRandomSeed (k T : ℕ)
     (P : (Fin (k * T) → Bool) → Prop) [DecidablePred P] :
     (Finset.univ.filter (fun w : Fin (2 + k * (2 * T + 2)) → Bool =>
@@ -459,7 +510,9 @@ def blockEventCount {k T : ℕ} (E : Finset (Fin T → Bool))
     (w : Fin (k * T) → Bool) : ℕ :=
   (Finset.univ.filter (fun i : Fin k => blocksEquiv k T w i ∈ E)).card
 
-/-- Every block lies in exactly one of an event and its complement. -/
+/-- Every block lies in exactly one of an event and its complement.
+@isnad1 id=eq.0h4v.s6.aeb0b43d4709 from=translated src=- shape=dda25540 vocab=4b8fbc45
+-/
 theorem blockEventCount_add_compl {k T : ℕ} (E : Finset (Fin T → Bool))
     (w : Fin (k * T) → Bool) :
     blockEventCount E w + blockEventCount Eᶜ w = k := by
@@ -573,7 +626,9 @@ def tupleEventCount {k : ℕ} {α : Type*} [DecidableEq α]
   (Finset.univ.filter (fun i : Fin k => f i ∈ E)).card
 
 /-- **Generic weighted binomial count.** Exactly the stated number of
-`k`-tuples over `α` have `j` positions in `E`. -/
+`k`-tuples over `α` have `j` positions in `E`.
+@isnad1 id=eq.0h4v.s7.5c01ec3980ea from=translated src=- shape=00dc3d02 vocab=d39a408c
+-/
 theorem card_tupleEventCount_eq {k : ℕ} {α : Type*}
     [Fintype α] [DecidableEq α] (E : Finset α) (j : ℕ) :
     (Finset.univ.filter
@@ -583,7 +638,9 @@ theorem card_tupleEventCount_eq {k : ℕ} {α : Type*}
   exact card_eventCount_eq (k := k) E j
 
 /-- The number of tuples whose event count lies in a finite set is the
-corresponding weighted binomial sum. -/
+corresponding weighted binomial sum.
+@isnad1 id=eq.0h4v.s7.2167196804ab from=translated src=- shape=d3146bc2 vocab=9a097dee
+-/
 theorem card_tupleEventCount_mem {k : ℕ} {α : Type*}
     [Fintype α] [DecidableEq α] (E : Finset α) (counts : Finset ℕ) :
     (Finset.univ.filter
@@ -598,7 +655,9 @@ theorem card_tupleEventCount_mem {k : ℕ} {α : Type*}
 
 /-- **Weighted binomial count in the machine seed space.** Exactly the stated
     binomial number of long seeds have `j` blocks in `E`; the two weights are the
-    counts of successful and unsuccessful `T`-bit blocks. -/
+    counts of successful and unsuccessful `T`-bit blocks.
+@isnad1 id=eq.0h4v.s7.6952661a86e0 from=translated src=- shape=6d249a50 vocab=ab8f732b
+-/
 theorem card_blockEventCount_eq {T : ℕ} (E : Finset (Fin T → Bool)) (k j : ℕ) :
     (Finset.univ.filter (fun w : Fin (k * T) → Bool => blockEventCount E w = j)).card =
       k.choose j * E.card ^ j * (2 ^ T - E.card) ^ (k - j) := by
@@ -612,7 +671,9 @@ def blockMajority {k T : ℕ} (E : Finset (Fin T → Bool))
   decide (2 * blockEventCount E w > k)
 
 /-- At an odd number of blocks, complementing the event flips the strict
-majority verdict. -/
+majority verdict.
+@isnad1 id=eq.1h4v.s6.62b2db53b4f3 from=translated src=- shape=859fcabc vocab=d9b4555d
+-/
 theorem blockMajority_compl_of_odd {k T : ℕ} (hk : Odd k)
     (E : Finset (Fin T → Bool)) (w : Fin (k * T) → Bool) :
     blockMajority Eᶜ w = !(blockMajority E w) := by
@@ -625,12 +686,18 @@ theorem blockMajority_compl_of_odd {k T : ℕ} (hk : Odd k)
   · have hc : 2 * blockEventCount Eᶜ w > 2 * r + 1 := by omega
     rw [decide_eq_true hc, decide_eq_false h, Bool.not_false]
 
+/--
+@isnad1 id=iff.0h4v.s5.9d6d3ead9000 from=translated src=- shape=d7b6e4eb vocab=95074c63
+-/
 theorem blockMajority_eq_false_iff {k T : ℕ} (E : Finset (Fin T → Bool))
     (w : Fin (k * T) → Bool) :
     blockMajority E w = false ↔ blockEventCount E w ≤ k / 2 := by
   simp only [blockMajority, decide_eq_false_iff_not]
   omega
 
+/--
+@isnad1 id=iff.0h4v.s7.1035dfd1a5d4 from=translated src=- shape=66bb113b vocab=edd502c1
+-/
 theorem blockMajority_eq_false_iff_mem_range {T r : ℕ}
     (E : Finset (Fin T → Bool)) (w : Fin ((2 * r + 1) * T) → Bool) :
     blockMajority E w = false ↔ blockEventCount E w ∈ Finset.range (r + 1) := by
@@ -640,7 +707,9 @@ theorem blockMajority_eq_false_iff_mem_range {T r : ℕ}
 
 /-- **Exact odd-majority failure count.** For `2r + 1` independent `T`-bit
     blocks, failure means at most `r` blocks lie in `E`; each summand is the
-    corresponding weighted binomial fiber. -/
+    corresponding weighted binomial fiber.
+@isnad1 id=eq.0h3v.s9.56d2423b26f5 from=translated src=- shape=2812a4a3 vocab=d8562106
+-/
 theorem card_blockMajority_eq_false (T r : ℕ) (E : Finset (Fin T → Bool)) :
     (Finset.univ.filter (fun w : Fin ((2 * r + 1) * T) → Bool =>
       blockMajority E w = false)).card =
@@ -657,34 +726,50 @@ theorem card_blockMajority_eq_false (T r : ℕ) (E : Finset (Fin T → Bool)) :
     positions are `true`. -/
 def majority {k : ℕ} (f : Fin k → Bool) : Bool := decide (2 * popCount f > k)
 
-/-- `popCount` is bounded by the length. -/
+/-- `popCount` is bounded by the length.
+@isnad1 id=le.0h2v.s3.d1687e407377 from=translated src=- shape=950277f0 vocab=643df9d6
+-/
 theorem popCount_le {k : ℕ} (f : Fin k → Bool) : popCount f ≤ k := by
   refine le_trans (Finset.card_filter_le _ _) ?_
   simp
 
+/--
+@isnad1 id=iff.0h2v.s5.b99e7c46633d from=translated src=- shape=4f6bf8d8 vocab=a6f00b9e
+-/
 theorem majority_eq_true_iff {k : ℕ} (f : Fin k → Bool) :
     majority f = true ↔ k / 2 < popCount f := by
   simp only [majority, decide_eq_true_eq]
   omega
 
+/--
+@isnad1 id=iff.0h2v.s5.5cd47fa92c61 from=translated src=- shape=41da8a79 vocab=6816857a
+-/
 theorem majority_eq_false_iff {k : ℕ} (f : Fin k → Bool) :
     majority f = false ↔ popCount f ≤ k / 2 := by
   simp only [majority, decide_eq_false_iff_not]
   omega
 
+/--
+@isnad1 id=iff.0h2v.s5.9eaa8ea15874 from=translated src=- shape=b00f3089 vocab=b22398bd
+-/
 theorem majority_eq_true_iff_mem_Icc {k : ℕ} (f : Fin k → Bool) :
     majority f = true ↔ popCount f ∈ Finset.Icc (k / 2 + 1) k := by
   rw [majority_eq_true_iff]
   simp only [Finset.mem_Icc]
   exact ⟨fun h => ⟨by omega, popCount_le f⟩, fun h => by omega⟩
 
+/--
+@isnad1 id=iff.0h2v.s5.727081811fad from=translated src=- shape=1f996578 vocab=71708ba6
+-/
 theorem majority_eq_false_iff_mem_range {k : ℕ} (f : Fin k → Bool) :
     majority f = false ↔ popCount f ∈ Finset.range (k / 2 + 1) := by
   rw [majority_eq_false_iff]
   simp only [Finset.mem_range]
   omega
 
-/-- The exact binomial upper-tail count for strict-majority success. -/
+/-- The exact binomial upper-tail count for strict-majority success.
+@isnad1 id=eq.0h1v.s6.cc0b3894816e from=translated src=- shape=5e31146c vocab=6299d1eb
+-/
 theorem card_majority_eq_true (k : ℕ) :
     (Finset.univ.filter (fun f : Fin k → Bool => majority f = true)).card =
       ∑ r ∈ Finset.Icc (k / 2 + 1) k, k.choose r := by
@@ -692,14 +777,18 @@ theorem card_majority_eq_true (k : ℕ) :
     card_filter_popCount_mem k (Finset.Icc (k / 2 + 1) k)
 
 /-- The exact binomial lower-tail count for strict-majority failure, including
-    ties when the vector length is even. -/
+    ties when the vector length is even.
+@isnad1 id=eq.0h1v.s6.0d91b7246a4e from=translated src=- shape=dc898f22 vocab=f0b14bcf
+-/
 theorem card_majority_eq_false (k : ℕ) :
     (Finset.univ.filter (fun f : Fin k → Bool => majority f = false)).card =
       ∑ r ∈ Finset.range (k / 2 + 1), k.choose r := by
   simpa only [majority_eq_false_iff_mem_range] using
     card_filter_popCount_mem k (Finset.range (k / 2 + 1))
 
-/-- Failure phrased as not returning `true` has the same exact lower-tail count. -/
+/-- Failure phrased as not returning `true` has the same exact lower-tail count.
+@isnad1 id=eq.0h1v.s6.371838b23f65 from=translated src=- shape=40ec6da1 vocab=37c4cec5
+-/
 theorem card_majority_ne_true (k : ℕ) :
     (Finset.univ.filter (fun f : Fin k → Bool => majority f ≠ true)).card =
       ∑ r ∈ Finset.range (k / 2 + 1), k.choose r := by
@@ -711,7 +800,9 @@ theorem card_majority_ne_true (k : ℕ) :
   exact card_majority_eq_false k
 
 /-- A position is either `true` or `true`-after-negation, never both: the two
-    `popCount`s sum to the length. -/
+    `popCount`s sum to the length.
+@isnad1 id=eq.0h2v.s4.90f6a8b12656 from=translated src=- shape=e8249ee1 vocab=6abe14ea
+-/
 theorem popCount_add_popCount_not {k : ℕ} (f : Fin k → Bool) :
     popCount f + popCount (fun i => !f i) = k := by
   have hcongr : Finset.univ.filter (fun i : Fin k => (!f i) = true)
@@ -723,14 +814,18 @@ theorem popCount_add_popCount_not {k : ℕ} (f : Fin k → Bool) :
   rw [hcongr, Finset.card_filter_add_card_filter_not]
   simp
 
-/-- `popCount` of the pointwise negation is the complementary count. -/
+/-- `popCount` of the pointwise negation is the complementary count.
+@isnad1 id=eq.0h2v.s4.5429633059f6 from=translated src=- shape=1bdc9ca3 vocab=0a4766ed
+-/
 theorem popCount_not {k : ℕ} (f : Fin k → Bool) :
     popCount (fun i => !f i) = k - popCount f := by
   have h := popCount_add_popCount_not f
   omega
 
 /-- **Antisymmetry of majority under negation at odd length.** When the length
-    `k` is odd there are no ties, so negating every bit flips the majority vote. -/
+    `k` is odd there are no ties, so negating every bit flips the majority vote.
+@isnad1 id=eq.1h2v.s4.1090d081ebd3 from=translated src=- shape=aa76a2e7 vocab=cf87e2e6
+-/
 theorem majority_not_of_odd {k : ℕ} (hk : Odd k) (f : Fin k → Bool) :
     majority (fun i => !f i) = !(majority f) := by
   obtain ⟨m, hm⟩ := hk

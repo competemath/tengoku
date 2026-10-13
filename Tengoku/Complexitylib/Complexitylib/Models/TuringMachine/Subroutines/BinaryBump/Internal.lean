@@ -26,7 +26,9 @@ namespace Complexity
 
 namespace BinaryBump
 
-/-- Internal worst-case bound for the exact step count. -/
+/-- Internal worst-case bound for the exact step count.
+@isnad1 id=le.0h1v.s5.1bd78aeb40a9 from=translated src=- shape=29b2873e vocab=8ecec62e
+-/
 theorem steps_le_internal (bits : List Bool) :
     steps bits ≤ 2 * bits.length + 2 := by
   induction bits with
@@ -487,10 +489,16 @@ private theorem binaryBumpTM_carry_run
 
 /-! ## Public-theorem internals -/
 
+/--
+@isnad1 id=le.0h1v.s5.049abd44fdc8 from=translated src=- shape=29b2873e vocab=04098142
+-/
 theorem binaryBumpTime_le_internal (bits : List Bool) :
     binaryBumpTime bits ≤ 2 * bits.length + 2 :=
   BinaryBump.steps_le_internal bits
 
+/--
+@isnad1 id=ex.5h6v.s7.4e64ec7e44d3 from=translated src=- shape=53c28a70 vocab=0a4ef079
+-/
 theorem binaryBumpTM_reachesIn_frame_internal
     (idx : Fin n) (bits : List Bool)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
@@ -525,6 +533,9 @@ theorem binaryBumpTM_reachesIn_frame_internal
   · simpa [c₀, binaryBumpTime] using hreach
   · simpa using hstring
 
+/--
+@isnad1 id=hoaretim.5h6v.s7.e6621dc99230 from=translated src=- shape=22cf622d vocab=937fcbfa
+-/
 theorem binaryBumpTM_hoareTime_frame_internal
     (idx : Fin n) (bits : List Bool)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
@@ -550,6 +561,9 @@ theorem binaryBumpTM_hoareTime_frame_internal
     hinput, hwork, hbits', hcell0', houtput⟩
   simpa [hinput₀, hwork₀, houtput₀] using hreach
 
+/--
+@isnad1 id=istransd.0h2v.s3.8eefedec9ef2 from=translated src=- shape=20553ef8 vocab=483415dd
+-/
 theorem binaryBumpTM_isTransducer_internal (idx : Fin n) :
     (binaryBumpTM idx).IsTransducer := by
   intro phase iHead wHeads oHead

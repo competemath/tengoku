@@ -31,7 +31,9 @@ namespace TM
 variable {n : ℕ}
 
 /-- Fixed-constant addition has the advertised exact runtime and changes only
-the destination tape. -/
+the destination tape.
+@isnad1 id=reachesi.4h7v.s6.c3333f41cf21 from=translated src=- shape=0a340e48 vocab=c1cb1de4
+-/
 theorem binaryAddConstTM_reachesIn_frame
     (idx : Fin n) (constant dstValue : ℕ)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
@@ -54,7 +56,9 @@ theorem binaryAddConstTM_reachesIn_frame
   binaryAddConstTM_reachesIn_frame_internal idx constant dstValue inp₀ work₀
     out₀ hdst hinp hother hout
 
-/-- Time-bounded literal-frame contract for fixed-constant addition. -/
+/-- Time-bounded literal-frame contract for fixed-constant addition.
+@isnad1 id=hoaretim.4h7v.s7.ba48aa734094 from=translated src=- shape=7853f819 vocab=dc00f7dc
+-/
 theorem binaryAddConstTM_hoareTime_frame
     (idx : Fin n) (constant dstValue : ℕ)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
@@ -75,7 +79,9 @@ theorem binaryAddConstTM_hoareTime_frame
     out₀ hdst hinp hother hout
 
 /-- Every prefix of fixed-constant addition respects a bound controlled by
-the final destination width. -/
+the final destination width.
+@isnad1 id=hoaretim.6h9v.s7.fe373bbf97af from=translated src=- shape=78cef197 vocab=a9101d62
+-/
 theorem binaryAddConstTM_hoareTimeSpace_frame
     (idx : Fin n) (constant dstValue inputLength initialSpace : ℕ)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
@@ -99,7 +105,9 @@ theorem binaryAddConstTM_hoareTimeSpace_frame
     inputLength initialSpace inp₀ work₀ out₀ hdst hinp hother hout
     hworkSpace hinputSpace
 
-/-- Fixed-constant addition never moves its output head left. -/
+/-- Fixed-constant addition never moves its output head left.
+@isnad1 id=istransd.0h3v.s3.a9fb4cfcaa2b from=translated src=- shape=1e848c5f vocab=9b869187
+-/
 theorem binaryAddConstTM_isTransducer (idx : Fin n) (constant : ℕ) :
     (binaryAddConstTM idx constant).IsTransducer :=
   binaryAddConstTM_isTransducer_internal idx constant

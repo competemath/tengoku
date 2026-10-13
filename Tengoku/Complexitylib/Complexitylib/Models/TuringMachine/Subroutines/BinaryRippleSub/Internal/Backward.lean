@@ -27,7 +27,9 @@ namespace Complexity
 namespace Tape
 
 /-- Blanking the final represented cell shortens canonical binary contents by
-one bit. The erased bit may have either value. -/
+one bit. The erased bit may have either value.
+@isnad1 id=hasbinar.2h3v.s5.cdc2d19ac244 from=translated src=- shape=367f9a8b vocab=604571be
+-/
 theorem HasBinaryContent.write_blank_last_internal {t : Tape}
     {bitsPrefix : List Bool} {bit : Bool}
     (h : t.HasBinaryContent (bitsPrefix ++ [bit]))
@@ -578,7 +580,9 @@ private theorem binaryRippleSubCoreTM_trim_false_run
 
 /-- Exact framed backward cleanup after the forward scan has turned the result
 head left. A final borrow erases the entire raw result; otherwise all and only
-its redundant high zeros are erased. -/
+its redundant high zeros are erased.
+@isnad1 id=ex.6h9v.s8.bfe73b4a84b1 from=translated src=- shape=d8f98bec vocab=f4816bff
+-/
 theorem binaryRippleSubCoreTM_cleanup_run_internal
     (lhsIdx rhsIdx resultIdx : Fin n)
     (raw : List Bool) (borrow : Bool)

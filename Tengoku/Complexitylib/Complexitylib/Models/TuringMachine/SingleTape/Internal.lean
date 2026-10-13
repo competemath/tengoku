@@ -50,24 +50,32 @@ def decSym : Γ → Γ → Γw
   | Γ.one,  Γ.zero => .one
   | _,      _      => .blank
 
-/-- The writable codec agrees with the `Γ`-valued one under `Γw.toΓ`. -/
+/-- The writable codec agrees with the `Γ`-valued one under `Γw.toΓ`.
+@isnad1 id=eq.0h1v.s4.761322992e20 from=translated src=- shape=0a9fcb00 vocab=d456a115
+-/
 theorem encSymW_toΓ (s : Γw) :
     ((encSymW s).1.toΓ, (encSymW s).2.toΓ) = encSym s := by
   cases s <;> rfl
 
-/-- The codec round-trips. -/
+/-- The codec round-trips.
+@isnad1 id=eq.0h1v.s4.fb9ae5cad369 from=translated src=- shape=4f67078d vocab=83c1a84c
+-/
 @[simp] theorem decSym_encSym (s : Γw) :
     decSym (encSym s).1 (encSym s).2 = s := by
   cases s <;> rfl
 
 /-- No active code cell is `□`: encoded symbols use only `{0,1}`. This is what
-    lets a literal `□` mark the end of the used region. -/
+    lets a literal `□` mark the end of the used region.
+@isnad1 id=and.0h1v.s4.32edf090b287 from=translated src=- shape=809c7982 vocab=e6f81f30
+-/
 theorem encSym_ne_blank (s : Γw) :
     (encSym s).1 ≠ Γ.blank ∧ (encSym s).2 ≠ Γ.blank := by
   cases s <;> exact ⟨by decide, by decide⟩
 
 /-- An encoded code cell is never `▷` either, so the global `▷` at cell 0 stays
-    unique within the work tape. -/
+    unique within the work tape.
+@isnad1 id=and.0h1v.s4.b099b6342b9e from=translated src=- shape=809c7982 vocab=a76b1974
+-/
 theorem encSym_ne_start (s : Γw) :
     (encSym s).1 ≠ Γ.start ∧ (encSym s).2 ≠ Γ.start := by
   cases s <;> exact ⟨by decide, by decide⟩
@@ -87,24 +95,32 @@ def decSymΓ : Γ → Γ → Γ
   | Γ.one,  Γ.zero => Γ.one
   | _,      _      => Γ.blank
 
-/-- The full-alphabet codec round-trips on every non-`▷` symbol. -/
+/-- The full-alphabet codec round-trips on every non-`▷` symbol.
+@isnad1 id=eq.1h1v.s4.cc7bb872a3e3 from=translated src=- shape=30bcfdd1 vocab=217ca267
+-/
 theorem decSymΓ_encSymΓ {s : Γ} (hs : s ≠ Γ.start) :
     decSymΓ (encSymΓ s).1 (encSymΓ s).2 = s := by
   cases s <;> first | rfl | exact absurd rfl hs
 
 /-- Bridge: encoding a writable symbol agrees with the full-alphabet codec on
-    its image. Lets `δ'` write via `encSym` while the invariant reads `encSymΓ`. -/
+    its image. Lets `δ'` write via `encSym` while the invariant reads `encSymΓ`.
+@isnad1 id=eq.0h1v.s3.9aeb4d8c457d from=translated src=- shape=f914abf4 vocab=8c0899cf
+-/
 theorem encSymΓ_toΓ (s : Γw) : encSymΓ (Γw.toΓ s) = encSym s := by
   cases s <;> rfl
 
 /-- Both code cells are writable (`≠ ▷`), so encoding never introduces a second
-    `▷` (holds even for the junk `▷ ↦ 00` case). -/
+    `▷` (holds even for the junk `▷ ↦ 00` case).
+@isnad1 id=and.0h1v.s4.93d37b2b3727 from=translated src=- shape=c75454d6 vocab=cb524c8a
+-/
 theorem encSymΓ_ne_start (s : Γ) :
     (encSymΓ s).1 ≠ Γ.start ∧ (encSymΓ s).2 ≠ Γ.start := by
   cases s <;> exact ⟨by decide, by decide⟩
 
 /-- Neither code cell is `□`: codes use only `{0,1}`, so a literal `□` can mark
-    the end of the used region. -/
+    the end of the used region.
+@isnad1 id=and.0h1v.s4.9d2ee259ef5b from=translated src=- shape=c75454d6 vocab=010199b3
+-/
 theorem encSymΓ_ne_blank (s : Γ) :
     (encSymΓ s).1 ≠ Γ.blank ∧ (encSymΓ s).2 ≠ Γ.blank := by
   cases s <;> exact ⟨by decide, by decide⟩
@@ -122,11 +138,15 @@ def blockWidth (k : ℕ) : ℕ := 3 * k
 /-- First cell of the block for super-position `p ≥ 1`. -/
 def blockStart (k p : ℕ) : ℕ := 1 + (p - 1) * blockWidth k
 
-/-- The first super-position's block starts at cell 1, directly after the `▷`. -/
+/-- The first super-position's block starts at cell 1, directly after the `▷`.
+@isnad1 id=eq.0h1v.s4.d33de8253383 from=translated src=- shape=1d838610 vocab=22775829
+-/
 @[simp] theorem blockStart_one (k : ℕ) : blockStart k 1 = 1 := by
   simp [blockStart]
 
-/-- Consecutive blocks are exactly `blockWidth k` apart. -/
+/-- Consecutive blocks are exactly `blockWidth k` apart.
+@isnad1 id=eq.1h2v.s5.f8be955e30ad from=translated src=- shape=e9e5796a vocab=40befcc8
+-/
 theorem blockStart_succ (k p : ℕ) (hp : 1 ≤ p) :
     blockStart k (p + 1) = blockStart k p + blockWidth k := by
   obtain ⟨q, rfl⟩ := Nat.exists_eq_add_of_le hp
@@ -137,11 +157,15 @@ theorem blockStart_succ (k p : ℕ) (hp : 1 ≤ p) :
   rw [e1, e2, Nat.add_mul, one_mul]
   omega
 
-/-- Blocks start at or after cell 1 (never the `▷` cell 0). -/
+/-- Blocks start at or after cell 1 (never the `▷` cell 0).
+@isnad1 id=le.0h2v.s3.b97ff463c3bb from=translated src=- shape=a120b2a8 vocab=fab6b982
+-/
 theorem one_le_blockStart (k p : ℕ) : 1 ≤ blockStart k p := by
   simp only [blockStart]; omega
 
-/-- For positive width, block starts are strictly increasing in the position. -/
+/-- For positive width, block starts are strictly increasing in the position.
+@isnad1 id=lt.3h3v.s5.bc3f7cc9dbb7 from=translated src=- shape=97cd3369 vocab=276356d5
+-/
 theorem blockStart_lt_blockStart {k : ℕ} (hk : 1 ≤ k) {p q : ℕ}
     (hp : 1 ≤ p) (hpq : p < q) : blockStart k p < blockStart k q := by
   simp only [blockStart]
@@ -161,7 +185,9 @@ def headBitCell (k p : ℕ) (j : Fin k) : ℕ := blockStart k p + 3 * j.val
     symbol cell is `symCell + 1` at offset 2). -/
 def symCell (k p : ℕ) (j : Fin k) : ℕ := blockStart k p + 3 * j.val + 1
 
-/-- Within a block, tape `j`'s three cells stay inside `[blockStart, blockStart+3k)`. -/
+/-- Within a block, tape `j`'s three cells stay inside `[blockStart, blockStart+3k)`.
+@isnad1 id=lt.1h3v.s5.549600b5f445 from=translated src=- shape=b94f81f4 vocab=6927bdce
+-/
 theorem headBitCell_lt_blockStart_succ (k p : ℕ) (j : Fin k) (hp : 1 ≤ p) :
     headBitCell k p j < blockStart k (p + 1) := by
   rw [blockStart_succ k p hp]
@@ -169,14 +195,18 @@ theorem headBitCell_lt_blockStart_succ (k p : ℕ) (j : Fin k) (hp : 1 ≤ p) :
   simp only [headBitCell, blockWidth]
   omega
 
-/-- Block starts are monotone (non-strict) in the position. -/
+/-- Block starts are monotone (non-strict) in the position.
+@isnad1 id=le.1h3v.s4.4b9c009176c2 from=translated src=- shape=32f89d1d vocab=fab6b982
+-/
 theorem blockStart_le (k : ℕ) {p q : ℕ} (hpq : p ≤ q) :
     blockStart k p ≤ blockStart k q := by
   simp only [blockStart]
   exact Nat.add_le_add_left (Nat.mul_le_mul (by omega) (le_refl _)) 1
 
 /-- Tape `j`'s whole triple fits strictly before the next block:
-    `headBitCell + 3 ≤ blockStart (p+1)` (the `+2` cell is the last of the triple). -/
+    `headBitCell + 3 ≤ blockStart (p+1)` (the `+2` cell is the last of the triple).
+@isnad1 id=le.1h3v.s5.43e319125d70 from=translated src=- shape=87137ba7 vocab=7611e26f
+-/
 theorem headBitCell_add_three_le_blockStart_succ (k p : ℕ) (j : Fin k) (hp : 1 ≤ p) :
     headBitCell k p j + 3 ≤ blockStart k (p + 1) := by
   rw [blockStart_succ k p hp]
@@ -214,7 +244,9 @@ structure SimInvAt (k : ℕ) (t : Tape) (w : Fin k → Tape) (M : ℕ) : Prop wh
 
 /-- **Base case.** The initial single tape `Tape.init []` encodes the initial
     `k`-tape configuration (all heads at 0, all blank), materialized to `M = 0`
-    (empty used region — the sentinel `□` starts right at cell 1). -/
+    (empty used region — the sentinel `□` starts right at cell 1).
+@isnad1 id=siminvat.0h1v.s4.baad00f81d8c from=translated src=- shape=8fa78cb5 vocab=5e8630f9
+-/
 theorem simInvAt_init (k : ℕ) :
     SimInvAt k (Tape.init []) (fun _ => Tape.init []) 0 where
   cell0 := by simp [Tape.init]
@@ -233,7 +265,9 @@ theorem simInvAt_init (k : ℕ) :
     simp
 
 /-- `SimInvAt` depends on the encoding tape only through its cells (never its
-    head), so it transfers along any cell-preserving change (e.g. a head move). -/
+    head), so it transfers along any cell-preserving change (e.g. a head move).
+@isnad1 id=siminvat.2h5v.s5.88499a5c7622 from=translated src=- shape=c6943025 vocab=dda30662
+-/
 theorem SimInvAt.cells_congr {k : ℕ} {t t' : Tape} {w : Fin k → Tape} {M : ℕ}
     (h : SimInvAt k t w M) (hc : t'.cells = t.cells) : SimInvAt k t' w M where
   cell0 := by rw [hc]; exact h.cell0
@@ -246,7 +280,9 @@ theorem SimInvAt.cells_congr {k : ℕ} {t t' : Tape} {w : Fin k → Tape} {M : �
 
 /-- **GATHER decode kernel (head off cell 0).** When tape `j`'s head is in the
     materialized region, decoding its two symbol cells recovers exactly the
-    symbol under that head — what the sweep accumulates. -/
+    symbol under that head — what the sweep accumulates.
+@isnad1 id=eq.3h5v.s6.33b354bbfd5d from=translated src=- shape=079389b1 vocab=5f7b0cde
+-/
 theorem SimInvAt.decSymΓ_symCell_head {k : ℕ} {t : Tape} {w : Fin k → Tape} {M : ℕ}
     (h : SimInvAt k t w M) (j : Fin k)
     (hp1 : 1 ≤ (w j).head) (hpM : (w j).head ≤ M) :
@@ -257,7 +293,9 @@ theorem SimInvAt.decSymΓ_symCell_head {k : ℕ} {t : Tape} {w : Fin k → Tape}
   rfl
 
 /-- **GATHER decode kernel (head on cell 0).** A head at position 0 reads `▷`;
-    the sweep finds no marker for it and records `▷`. -/
+    the sweep finds no marker for it and records `▷`.
+@isnad1 id=eq.2h5v.s5.96d9cee46c86 from=translated src=- shape=55760283 vocab=e590e3ae
+-/
 theorem SimInvAt.read_eq_start_of_head_eq_zero {k : ℕ} {t : Tape} {w : Fin k → Tape} {M : ℕ}
     (h : SimInvAt k t w M) (j : Fin k) (h0 : (w j).head = 0) :
     (w j).read = Γ.start := by
@@ -266,7 +304,9 @@ theorem SimInvAt.read_eq_start_of_head_eq_zero {k : ℕ} {t : Tape} {w : Fin k �
 /-- **No `□` inside the materialized region.** Every cell strictly between the
     `▷` (cell 0) and the sentinel block is a code or head-bit cell, hence in
     `{0,1}` — so the first `□` a rightward sweep meets is exactly the sentinel
-    at `blockStart k (M+1)`. (Holds vacuously for `k = 0`.) -/
+    at `blockStart k (M+1)`. (Holds vacuously for `k = 0`.)
+@isnad1 id=ne.3h5v.s5.524797a00777 from=translated src=- shape=70c4de67 vocab=99b941cb
+-/
 theorem SimInvAt.materialized_ne_blank {k : ℕ} {t : Tape} {w : Fin k → Tape}
     {M : ℕ} (h : SimInvAt k t w M) {c : ℕ}
     (hc1 : 1 ≤ c) (hc2 : c < blockStart k (M + 1)) : t.cells c ≠ Γ.blank := by
@@ -310,7 +350,9 @@ theorem SimInvAt.materialized_ne_blank {k : ℕ} {t : Tape} {w : Fin k → Tape}
 
 /-- **No `▷` inside the materialized region.** Every cell strictly between the
     `▷` (cell 0) and the sentinel block is a code or head-bit cell (in `{0,1}`),
-    hence never `▷` — so `▷` uniquely marks cell `0`. The REWIND sweep's precondition. -/
+    hence never `▷` — so `▷` uniquely marks cell `0`. The REWIND sweep's precondition.
+@isnad1 id=ne.3h5v.s5.bdf5e2a34915 from=translated src=- shape=70c4de67 vocab=94eccd5b
+-/
 theorem SimInvAt.materialized_ne_start {k : ℕ} {t : Tape} {w : Fin k → Tape}
     {M : ℕ} (h : SimInvAt k t w M) {c : ℕ}
     (hc1 : 1 ≤ c) (hc2 : c < blockStart k (M + 1)) : t.cells c ≠ Γ.start := by

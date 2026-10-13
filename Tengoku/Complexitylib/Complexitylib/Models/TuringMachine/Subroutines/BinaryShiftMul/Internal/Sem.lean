@@ -1690,7 +1690,9 @@ private theorem binaryShiftMulCleanupTime_le {n : ℕ}
 
 /-- The concrete shift-and-add multiplier preserves both operands, writes
 their product to the accumulator, clears all three scratch tapes, and
-preserves the complete external frame. -/
+preserves the complete external frame.
+@isnad1 id=hoaretim.9h7v.s7.104c45364ff7 from=translated src=- shape=da3deac1 vocab=af4030d8
+-/
 theorem binaryShiftMulTM_hoareTime_frame_internal {n : ℕ}
     (abi : BinaryShiftMulABI n) (lhs rhs : ℕ)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
@@ -1748,7 +1750,9 @@ theorem binaryShiftMulTM_hoareTime_frame_internal {n : ℕ}
   omega
 
 /-- Coarse all-prefix auxiliary-space contract inherited from the concrete
-quadratic time envelope. -/
+quadratic time envelope.
+@isnad1 id=hoaretim.10h9v.s7.4e6acd1fdbb0 from=translated src=- shape=b2a13bc1 vocab=32b11e80
+-/
 theorem binaryShiftMulTM_hoareTimeSpace_frame_internal {n : ℕ}
     (abi : BinaryShiftMulABI n) (lhs rhs inputLength initialSpace : ℕ)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)

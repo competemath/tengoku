@@ -35,6 +35,9 @@ private theorem read_eq_zero_of_not_mem (store : Store) (address : ℕ)
     simp only [read, haddress.1, ↓reduceIte]
     exact ih haddress.2
 
+/--
+@isnad1 id=eq.1h4v.s4.dfb033289b2a from=translated src=- shape=01a10f29 vocab=af548151
+-/
 theorem read_write_internal (store : Store) (hstore : AddressesNodup store)
     (address value target : ℕ) :
     read (write store address value) target =
@@ -96,6 +99,9 @@ private theorem mem_addresses_write (store : Store) (address value target : ℕ)
         · exact Or.inl htarget
         · exact Or.inr (Or.inr htarget)
 
+/--
+@isnad1 id=addresse.1h3v.s3.9e456524d225 from=translated src=- shape=a5572226 vocab=7b641b0b
+-/
 theorem write_addressesNodup_internal (store : Store)
     (hstore : AddressesNodup store) (address value : ℕ) :
     AddressesNodup (write store address value) := by
@@ -120,6 +126,9 @@ theorem write_addressesNodup_internal (store : Store)
       · exact haddress heq.symm
       · exact hstore.1 hmem
 
+/--
+@isnad1 id=valuesno.1h3v.s3.b50b3d5286a7 from=translated src=- shape=a5572226 vocab=fe91cc71
+-/
 theorem write_valuesNonzero_internal (store : Store)
     (hstore : ValuesNonzero store) (address value : ℕ) :
     ValuesNonzero (write store address value) := by
@@ -150,12 +159,18 @@ theorem write_valuesNonzero_internal (store : Store)
         exact hstored
       · exact ih hrest current hmem
 
+/--
+@isnad1 id=canonica.1h3v.s3.0e14022d0b66 from=translated src=- shape=a5572226 vocab=957062aa
+-/
 theorem write_canonical_internal (store : Store) (hstore : Canonical store)
     (address value : ℕ) :
     Canonical (write store address value) := by
   exact ⟨write_addressesNodup_internal store hstore.1 address value,
     write_valuesNonzero_internal store hstore.2 address value⟩
 
+/--
+@isnad1 id=eq.1h3v.s4.dcd0a52d6188 from=translated src=- shape=f974db60 vocab=50217085
+-/
 theorem decode_write_internal (store : Store) (hstore : AddressesNodup store)
     (address value : ℕ) :
     decode (write store address value) = Function.update (decode store) address value := by
@@ -177,6 +192,9 @@ private theorem read_map_entries_of_mem (addresses : List ℕ) (regs : ℕ → �
         simp [read]
       · simp [read, heq, ih haddress]
 
+/--
+@isnad1 id=canonica.1h1v.s4.6aac2d7e91ea from=translated src=- shape=37fc9c44 vocab=221c25f6
+-/
 theorem ofRegs_canonical_internal (regs : ℕ → ℕ)
     (hfinite : (Function.support regs).Finite) :
     Canonical (ofRegs regs hfinite) := by
@@ -193,6 +211,9 @@ theorem ofRegs_canonical_internal (regs : ℕ → ℕ)
     exact Function.mem_support.mp
       (hfinite.mem_toFinset.mp (Finset.mem_toList.mp hstored))
 
+/--
+@isnad1 id=eq.1h1v.s4.9abda8153743 from=translated src=- shape=e14c5b70 vocab=5db33b5b
+-/
 theorem decode_ofRegs_internal (regs : ℕ → ℕ)
     (hfinite : (Function.support regs).Finite) :
     decode (ofRegs regs hfinite) = regs := by
@@ -211,6 +232,9 @@ theorem decode_ofRegs_internal (regs : ℕ → ℕ)
     by_contra hne
     exact hzero (Ne.symm hne)
 
+/--
+@isnad1 id=represen.1h1v.s4.e2b62782af45 from=translated src=- shape=d890d4fd vocab=c990fac9
+-/
 theorem ofRegs_represents_internal (regs : ℕ → ℕ)
     (hfinite : (Function.support regs).Finite) :
     Represents (ofRegs regs hfinite) regs :=
@@ -235,6 +259,9 @@ private theorem initRegs_le_length_add_one (input : List Bool) (address : ℕ) :
     · split <;> omega
     · omega
 
+/--
+@isnad1 id=canonica.0h1v.s2.1133d8f7d047 from=translated src=- shape=94c7f951 vocab=d53b2c01
+-/
 theorem initialStore_canonical_internal (input : List Bool) :
     Canonical (initialStore input) := by
   constructor
@@ -249,6 +276,9 @@ theorem initialStore_canonical_internal (input : List Bool) :
     exact (Finset.mem_filter.mp
       ((Finset.mem_sort (r := (· ≤ ·))).mp hstored)).2
 
+/--
+@isnad1 id=eq.0h1v.s3.1afa8a14cbdb from=translated src=- shape=b0c140de vocab=2766b344
+-/
 theorem decode_initialStore_internal (input : List Bool) :
     decode (initialStore input) = initRegs input := by
   funext address
@@ -262,6 +292,9 @@ theorem decode_initialStore_internal (input : List Bool) :
       Finset.mem_filter, Finset.mem_range]
     exact ⟨initRegs_ne_zero_address_lt input address hvalue, hvalue⟩
 
+/--
+@isnad1 id=represen.0h1v.s3.965720c21ce5 from=translated src=- shape=410a86eb vocab=43415d57
+-/
 theorem Snapshot.initial_represents_internal (input : List Bool) :
     (Snapshot.initial input).Represents (RAM.initCfg input) := by
   constructor
@@ -270,6 +303,9 @@ theorem Snapshot.initial_represents_internal (input : List Bool) :
     · rfl
     · exact decode_initialStore_internal input
 
+/--
+@isnad1 id=le.0h1v.s4.bba9eaa0203c from=translated src=- shape=8b217881 vocab=e344f6ec
+-/
 theorem initialStore_length_le_internal (input : List Bool) :
     (initialStore input).length ≤ input.length + 1 := by
   unfold initialStore initialAddresses
@@ -292,6 +328,9 @@ private theorem maxWidth_le (store : Store) (width : ℕ)
     simp only [maxWidth]
     exact max_le hentry.1 (max_le hentry.2 (ih hrest))
 
+/--
+@isnad1 id=le.0h1v.s4.2ded6f01bd81 from=translated src=- shape=42862892 vocab=95d76a08
+-/
 theorem Snapshot.initial_width_le_internal (input : List Bool) :
     (Snapshot.initial input).width ≤ bitlen (input.length + 1) := by
   have hlength := initialStore_length_le_internal input
@@ -311,6 +350,9 @@ theorem Snapshot.initial_width_le_internal (input : List Bool) :
       Nat.size_le_size (initRegs_le_length_add_one input storedAddress)⟩
   exact max_le (by simp [Snapshot.initial, bitlen]) (max_le hcount hstore)
 
+/--
+@isnad1 id=represen.1h1v.s4.185df68694d1 from=translated src=- shape=589763ee vocab=5704827a
+-/
 theorem Snapshot.ofCfg_represents_internal (cfg : Cfg)
     (hfinite : (Function.support cfg.regs).Finite) :
     (Snapshot.ofCfg cfg hfinite).Represents cfg := by
@@ -320,6 +362,9 @@ theorem Snapshot.ofCfg_represents_internal (cfg : Cfg)
     · rfl
     · exact decode_ofRegs_internal cfg.regs hfinite
 
+/--
+@isnad1 id=canonica.1h2v.s3.87e63f5292c7 from=translated src=- shape=f9eba881 vocab=5e684a3b
+-/
 theorem Snapshot.stepInstr_canonical_internal (instruction : Instr)
     (snapshot : Snapshot) (hcanonical : Canonical snapshot.store) :
     Canonical (Snapshot.stepInstr instruction snapshot).store := by
@@ -342,6 +387,9 @@ theorem Snapshot.stepInstr_canonical_internal (instruction : Instr)
   | jmp target => exact hcanonical
   | halt => exact hcanonical
 
+/--
+@isnad1 id=eq.1h2v.s4.9495d1ec564b from=translated src=- shape=2c7bf08c vocab=b4ca6d82
+-/
 theorem Snapshot.decode_stepInstr_internal (instruction : Instr)
     (snapshot : Snapshot) (hcanonical : Canonical snapshot.store) :
     (Snapshot.stepInstr instruction snapshot).decode =
@@ -378,24 +426,39 @@ theorem Snapshot.decode_stepInstr_internal (instruction : Instr)
   | jmp target => rfl
   | halt => rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.634c3e4551d0 from=translated src=- shape=0f023ca4 vocab=7a59424a
+-/
 theorem Snapshot.curInstr_decode_internal (program : Program) (snapshot : Snapshot) :
     RAM.curInstr program snapshot.decode = snapshot.curInstr program :=
   rfl
 
+/--
+@isnad1 id=iff.0h2v.s3.4bc1baac2c53 from=translated src=- shape=1ad6fc30 vocab=5d90d409
+-/
 theorem Snapshot.halted_decode_iff_internal (program : Program) (snapshot : Snapshot) :
     RAM.Halted program snapshot.decode ↔ snapshot.Halted program :=
   Iff.rfl
 
+/--
+@isnad1 id=canonica.1h2v.s3.32bdc15dff5b from=translated src=- shape=f9eba881 vocab=05ba82d1
+-/
 theorem Snapshot.step_canonical_internal (program : Program) (snapshot : Snapshot)
     (hcanonical : Canonical snapshot.store) :
     Canonical (snapshot.step program).store :=
   Snapshot.stepInstr_canonical_internal _ snapshot hcanonical
 
+/--
+@isnad1 id=eq.1h2v.s4.97f3c9a707bf from=translated src=- shape=2c7bf08c vocab=515009b5
+-/
 theorem Snapshot.decode_step_internal (program : Program) (snapshot : Snapshot)
     (hcanonical : Canonical snapshot.store) :
     (snapshot.step program).decode = RAM.step program snapshot.decode := by
   exact Snapshot.decode_stepInstr_internal _ snapshot hcanonical
 
+/--
+@isnad1 id=canonica.1h3v.s4.31472a8300d5 from=translated src=- shape=06e38695 vocab=7a7b8d6e
+-/
 theorem Snapshot.run_canonical_internal (program : Program) (fuel : ℕ)
     (snapshot : Snapshot) (hcanonical : Canonical snapshot.store) :
     Canonical (snapshot.run program fuel).store := by
@@ -410,6 +473,9 @@ theorem Snapshot.run_canonical_internal (program : Program) (fuel : ℕ)
         exact ih (snapshot.step program)
           (Snapshot.step_canonical_internal program snapshot hcanonical)
 
+/--
+@isnad1 id=eq.1h3v.s4.67cb06e48cd0 from=translated src=- shape=47c119bc vocab=c3195a6d
+-/
 theorem Snapshot.decode_run_internal (program : Program) (fuel : ℕ)
     (snapshot : Snapshot) (hcanonical : Canonical snapshot.store) :
     (snapshot.run program fuel).decode = RAM.run program fuel snapshot.decode := by
@@ -498,6 +564,9 @@ private theorem Snapshot.width_pc_le (snapshot : Snapshot) (newPC bound : ℕ)
       snapshot.width := le_max_right _ _
   exact max_le hpc (le_trans hrest (by omega))
 
+/--
+@isnad1 id=le.0h2v.s3.54aed0cc0e07 from=translated src=- shape=33e5716c vocab=f5e3b750
+-/
 theorem Snapshot.width_stepInstr_le_internal (instruction : Instr)
     (snapshot : Snapshot) :
     (Snapshot.stepInstr instruction snapshot).width ≤
@@ -583,6 +652,9 @@ private theorem staticWidth_curInstr_le (program : Program) (pc : ℕ) :
           simp only [List.getElem?_cons_succ]
           exact le_trans (ih pc) (le_max_right _ _)
 
+/--
+@isnad1 id=le.0h2v.s5.350edeac6e23 from=translated src=- shape=9deae861 vocab=7a714622
+-/
 theorem Snapshot.width_step_le_internal (program : Program) (snapshot : Snapshot) :
     (snapshot.step program).width ≤
       max (snapshot.width + 1)
@@ -597,6 +669,9 @@ theorem Snapshot.width_step_le_internal (program : Program) (snapshot : Snapshot
     · exact le_trans hstatic (le_trans (le_max_left _ _) (le_max_right _ _))
     · exact le_trans (le_max_right _ _) (le_max_right _ _)
 
+/--
+@isnad1 id=le.0h2v.s4.84f7d72068f6 from=translated src=- shape=68ce9d72 vocab=d1ad19ff
+-/
 theorem Snapshot.length_stepInstr_le_internal (instruction : Instr)
     (snapshot : Snapshot) :
     (Snapshot.stepInstr instruction snapshot).store.length ≤
@@ -614,6 +689,9 @@ theorem Snapshot.length_stepInstr_le_internal (instruction : Instr)
   | jmp target => simp [Snapshot.stepInstr]
   | halt => simp [Snapshot.stepInstr]
 
+/--
+@isnad1 id=le.1h3v.s5.fa93e188b4b7 from=translated src=- shape=6993ba58 vocab=3fa0f057
+-/
 theorem Snapshot.length_run_le_internal (program : Program) (fuel : ℕ)
     (snapshot : Snapshot) (hcanonical : Canonical snapshot.store) :
     (snapshot.run program fuel).store.length ≤
@@ -639,6 +717,9 @@ theorem Snapshot.length_run_le_internal (program : Program) (fuel : ℕ)
         rw [Snapshot.decode_step_internal program snapshot hcanonical] at hrun
         omega
 
+/--
+@isnad1 id=le.1h3v.s6.49b8ccce62ca from=translated src=- shape=e5a0ddfd vocab=67679855
+-/
 theorem Snapshot.width_run_le_internal (program : Program) (fuel : ℕ)
     (snapshot : Snapshot) (hcanonical : Canonical snapshot.store) :
     (snapshot.run program fuel).width ≤
@@ -681,6 +762,9 @@ private theorem WordCode.decodeAux?_replicate_true
     apply ih (consumed + 1)
     omega
 
+/--
+@isnad1 id=eq.0h2v.s5.8aa19bb81ee8 from=translated src=- shape=8e107f55 vocab=a37c6498
+-/
 theorem WordCode.decodePrefix?_encode_append_internal (value : ℕ)
     (suffix : List Bool) :
     WordCode.decodePrefix? (WordCode.encode value ++ suffix) =
@@ -694,15 +778,24 @@ theorem WordCode.decodePrefix?_encode_append_internal (value : ℕ)
   rw [hround] at hdecode
   simpa [WordCode.decodePrefix?, WordCode.encode, List.append_assoc] using hdecode
 
+/--
+@isnad1 id=eq.0h1v.s4.f26edf8c0875 from=translated src=- shape=16c399ad vocab=fd116cca
+-/
 theorem WordCode.decodePrefix?_encode_internal (value : ℕ) :
     WordCode.decodePrefix? (WordCode.encode value) = some (value, []) := by
   simpa using WordCode.decodePrefix?_encode_append_internal value []
 
+/--
+@isnad1 id=eq.0h1v.s5.b7004e2397ed from=translated src=- shape=b25ace09 vocab=9eed61f5
+-/
 theorem WordCode.encode_length_internal (value : ℕ) :
     (WordCode.encode value).length = 2 * bitlen value + 1 := by
   simp [WordCode.encode, Nat.length_toBitsLE]
   omega
 
+/--
+@isnad1 id=eq.0h2v.s5.9f83d9c043bd from=translated src=- shape=8e107f55 vocab=13f33d5a
+-/
 theorem Entry.decodePrefix?_encode_append_internal (entry : Entry)
     (suffix : List Bool) :
     Entry.decodePrefix? (Entry.encode entry ++ suffix) = some (entry, suffix) := by
@@ -710,6 +803,9 @@ theorem Entry.decodePrefix?_encode_append_internal (entry : Entry)
   simp [Entry.encode, Entry.decodePrefix?, List.append_assoc,
     WordCode.decodePrefix?_encode_append_internal]
 
+/--
+@isnad1 id=eq.0h1v.s5.1a705793cc67 from=translated src=- shape=e5aebdc2 vocab=598c03ac
+-/
 theorem Entry.encode_length_internal (entry : Entry) :
     (Entry.encode entry).length =
       2 * bitlen entry.1 + 2 * bitlen entry.2 + 2 := by
@@ -717,6 +813,9 @@ theorem Entry.encode_length_internal (entry : Entry) :
     WordCode.encode_length_internal, WordCode.encode_length_internal]
   omega
 
+/--
+@isnad1 id=le.0h3v.s4.deb6b90b68a7 from=translated src=- shape=8ee337d3 vocab=d5247206
+-/
 theorem encodedStoreLength_write_le_internal (store : Store)
     (address value : ℕ) :
     encodedStoreLength (write store address value) ≤
@@ -841,6 +940,9 @@ private theorem encodedStoreLength_step_le (program : Program)
     (Nat.add_le_add_right
       (Nat.add_le_add_right hstatic _) 1)
 
+/--
+@isnad1 id=le.1h3v.s6.21a8492ac6d4 from=translated src=- shape=4eccc986 vocab=647294b1
+-/
 theorem Snapshot.encodedStoreLength_run_le_internal (program : Program)
     (fuel : ℕ) (snapshot : Snapshot)
     (hcanonical : Canonical snapshot.store) :
@@ -916,6 +1018,9 @@ private theorem entries_encode_length_le (store : Store) (width : ℕ)
     rw [Nat.succ_mul]
     omega
 
+/--
+@isnad1 id=eq.0h2v.s5.81ae115147c9 from=translated src=- shape=a5310388 vocab=3984f59f
+-/
 theorem decodeEntries?_encode_append_internal (store : Store) (suffix : List Bool) :
     decodeEntries? store.length (store.flatMap Entry.encode ++ suffix) =
       some (store, suffix) := by
@@ -925,6 +1030,9 @@ theorem decodeEntries?_encode_append_internal (store : Store) (suffix : List Boo
     simp [List.flatMap_cons, decodeEntries?, List.append_assoc,
       Entry.decodePrefix?_encode_append_internal, ih]
 
+/--
+@isnad1 id=eq.0h2v.s5.2b9b4f8b3bb0 from=translated src=- shape=8e107f55 vocab=31a3c39f
+-/
 theorem Snapshot.decodePrefix?_encode_append_internal (snapshot : Snapshot)
     (suffix : List Bool) :
     Snapshot.decodePrefix? (snapshot.encode ++ suffix) = some (snapshot, suffix) := by
@@ -933,15 +1041,24 @@ theorem Snapshot.decodePrefix?_encode_append_internal (snapshot : Snapshot)
     WordCode.decodePrefix?_encode_append_internal,
     decodeEntries?_encode_append_internal]
 
+/--
+@isnad1 id=eq.0h1v.s4.42a090f9e7b5 from=translated src=- shape=16c399ad vocab=3284ebe7
+-/
 theorem Snapshot.decodePrefix?_encode_internal (snapshot : Snapshot) :
     Snapshot.decodePrefix? snapshot.encode = some (snapshot, []) := by
   simpa using Snapshot.decodePrefix?_encode_append_internal snapshot []
 
+/--
+@isnad1 id=eq.0h1v.s3.ea8e73c96fbb from=translated src=- shape=edb93955 vocab=369efae8
+-/
 theorem Snapshot.decode?_encode_internal (snapshot : Snapshot) :
     Snapshot.decode? snapshot.encode = some snapshot := by
   rw [Snapshot.decode?, Snapshot.decodePrefix?_encode_internal]
   rfl
 
+/--
+@isnad1 id=le.3h2v.s6.1badbcc71ea8 from=translated src=- shape=506687e1 vocab=81ded2d3
+-/
 theorem Snapshot.encode_length_le_internal (snapshot : Snapshot) (width : ℕ)
     (hpc : bitlen snapshot.pc ≤ width)
     (hcount : bitlen snapshot.store.length ≤ width)
@@ -975,6 +1092,9 @@ private theorem bitlen_le_maxWidth (store : Store) (entry : Entry)
         le_trans (le_max_right _ _) (le_max_right _ _)
       exact ⟨le_trans hrest.1 htail, le_trans hrest.2 htail⟩
 
+/--
+@isnad1 id=le.0h1v.s6.b1e37aa9c623 from=translated src=- shape=3d31c738 vocab=c816d5f3
+-/
 theorem encodedStoreLength_initial_le_internal (input : List Bool) :
     encodedStoreLength (initialStore input) ≤
       (input.length + 1) * (4 * bitlen (input.length + 1) + 2) := by
@@ -996,6 +1116,9 @@ theorem encodedStoreLength_initial_le_internal (input : List Bool) :
   exact le_trans hentries
     (Nat.mul_le_mul_right (4 * bitlen (input.length + 1) + 2) hlength)
 
+/--
+@isnad1 id=le.0h1v.s3.7baf48facefe from=translated src=- shape=981f0160 vocab=1f770193
+-/
 theorem Snapshot.encode_length_le_sizeBound_internal (snapshot : Snapshot) :
     snapshot.encode.length ≤ snapshot.sizeBound := by
   apply Snapshot.encode_length_le_internal snapshot snapshot.width
@@ -1006,6 +1129,9 @@ theorem Snapshot.encode_length_le_sizeBound_internal (snapshot : Snapshot) :
     exact ⟨le_trans hwidth.1 (le_trans (le_max_right _ _) (le_max_right _ _)),
       le_trans hwidth.2 (le_trans (le_max_right _ _) (le_max_right _ _))⟩
 
+/--
+@isnad1 id=le.0h1v.s5.fbf063c1d851 from=translated src=- shape=6acbf135 vocab=dd4f12a9
+-/
 theorem Snapshot.encode_length_le_encodedStore_internal (snapshot : Snapshot) :
     snapshot.encode.length ≤
       encodedStoreLength snapshot.store + 4 * snapshot.width + 2 := by
@@ -1016,6 +1142,9 @@ theorem Snapshot.encode_length_le_encodedStore_internal (snapshot : Snapshot) :
   rw [WordCode.encode_length_internal, WordCode.encode_length_internal]
   omega
 
+/--
+@isnad1 id=le.1h3v.s6.c8ea43c14def from=translated src=- shape=d7028e00 vocab=1c707ece
+-/
 theorem Snapshot.encode_run_length_le_amortized_internal
     (program : Program) (fuel : ℕ) (snapshot : Snapshot)
     (hcanonical : Canonical snapshot.store) :
@@ -1044,6 +1173,9 @@ theorem Snapshot.encode_run_length_le_amortized_internal
     _ = encodedStoreLength snapshot.store + 4 * snapshot.width +
           8 * growth + 2 := by ring
 
+/--
+@isnad1 id=le.0h3v.s7.48af76d3e867 from=translated src=- shape=95db6b6f vocab=769b5627
+-/
 theorem Snapshot.encode_initial_run_length_le_amortized_internal
     (program : Program) (fuel : ℕ) (input : List Bool) :
     ((Snapshot.initial input).run program fuel).encode.length ≤
@@ -1085,6 +1217,9 @@ theorem Snapshot.encode_initial_run_length_le_amortized_internal
   exact le_trans hrun
     (Nat.add_le_add_right (Nat.add_le_add hentriesWidth hgrowth') 2)
 
+/--
+@isnad1 id=le.1h3v.s6.f2a878792526 from=translated src=- shape=786f8ce3 vocab=6bb57251
+-/
 theorem Snapshot.encode_run_length_le_internal (program : Program) (fuel : ℕ)
     (snapshot : Snapshot) (hcanonical : Canonical snapshot.store) :
     (snapshot.run program fuel).encode.length ≤
@@ -1102,6 +1237,9 @@ theorem Snapshot.encode_run_length_le_internal (program : Program) (fuel : ℕ)
   · omega
   · omega
 
+/--
+@isnad1 id=le.1h3v.s6.375a01db82a0 from=translated src=- shape=1173be79 vocab=b745104f
+-/
 theorem Snapshot.encode_run_length_le_logTime_internal
     (program : Program) (fuel : ℕ) (snapshot : Snapshot)
     (hcanonical : Canonical snapshot.store) :
@@ -1119,6 +1257,9 @@ theorem Snapshot.encode_run_length_le_logTime_internal
   · have hmul := Nat.mul_le_mul_right (programStaticWidth program + 1) hunit
     omega
 
+/--
+@isnad1 id=le.0h3v.s7.238d93bb12a9 from=translated src=- shape=0a4ec66f vocab=769b5627
+-/
 theorem Snapshot.encode_initial_run_length_le_logTime_internal
     (program : Program) (fuel : ℕ) (input : List Bool) :
     ((Snapshot.initial input).run program fuel).encode.length ≤

@@ -143,7 +143,9 @@ private theorem sqRun_not_halted {k : ℕ} {j : ℕ} (hj : j ≤ k) :
     Hence any complexity measure based on unit cost differs super-polynomially
     from logarithmic cost, and only the logarithmic measure is polynomially
     related to Turing-machine time. This is the formal justification for the
-    library's cost convention. -/
+    library's cost convention.
+@isnad1 id=and.0h1v.s7.37bf441c27e5 from=translated src=- shape=d759f74c vocab=27fafc91
+-/
 theorem logGap_squaring (k : ℕ) :
     Halted (sqProg k) (run (sqProg k) (k + 1) sqStart) ∧
       (run (sqProg k) (k + 1) sqStart).regs 1 = 2 ^ 2 ^ k ∧

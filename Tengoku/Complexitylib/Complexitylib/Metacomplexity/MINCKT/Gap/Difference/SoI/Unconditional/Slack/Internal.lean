@@ -28,11 +28,17 @@ namespace Iterated
 
 namespace Slack
 
+/--
+@isnad1 id=le.0h1v.s4.aef6402dc459 from=translated src=- shape=c9c13a30 vocab=f984f1a1
+-/
 theorem paddedTime_le_totalTime_internal (inst : MINCKT.Instance) :
     paddedTime inst ≤
       totalTime inst.output.length inst.condition.length inst.time := by
   exact paddedTime_le_total_internal inst
 
+/--
+@isnad1 id=le.0h6v.s4.9bb6a1eca1b7 from=translated src=- shape=8d56605a vocab=605a5317
+-/
 theorem finalClock_source_le_internal
     (clock : ℕ → ℕ) (additive compilerLoss : ℕ)
     (outputLength conditionLength time : ℕ) :
@@ -51,6 +57,9 @@ theorem finalClock_source_le_internal
   exact htime.trans <| hright.trans <|
     Nat.le_mul_of_pos_left _ hpow
 
+/--
+@isnad1 id=le.0h6v.s5.74c3e4f56634 from=translated src=- shape=0038da2a vocab=24f8e787
+-/
 theorem finalClock_iterateFour_le_internal
     (clock : ℕ → ℕ) (additive compilerLoss : ℕ)
     (outputLength conditionLength time : ℕ) :
@@ -67,6 +76,9 @@ theorem finalClock_iterateFour_le_internal
   have hpow : 0 < 2 ^ exponent := Nat.pow_pos (by omega)
   exact hright.trans (Nat.le_mul_of_pos_left _ hpow)
 
+/--
+@isnad1 id=le.0h6v.s5.59282a72cd04 from=translated src=- shape=5e68eb9f vocab=7d863e95
+-/
 theorem slackExponent_le_log_finalClock_internal
     (clock : ℕ → ℕ) (additive compilerLoss : ℕ)
     (outputLength conditionLength time : ℕ) :
@@ -78,6 +90,9 @@ theorem slackExponent_le_log_finalClock_internal
   apply Nat.le_mul_of_pos_right
   exact Nat.mul_pos (by omega) (by omega)
 
+/--
+@isnad1 id=le.1h4v.s6.9dc230986553 from=translated src=- shape=d155b221 vocab=01548c9d
+-/
 theorem losses_le_slackExponent_internal
     {clock : ℕ → ℕ} (hclock : Monotone clock)
     (additive compilerLoss : ℕ) (inst : MINCKT.Instance) :
@@ -115,6 +130,9 @@ theorem losses_le_slackExponent_internal
   simp only [logarithmicSoILoss, correction, slackExponent, clockIterate]
   omega
 
+/--
+@isnad1 id=le.0h3v.s5.181164ff812e from=translated src=- shape=24353062 vocab=b4e037b9
+-/
 theorem upperLoss_budget_internal
     (clock : ℕ → ℕ) (compilerLoss : ℕ)
     (inst : MINCKT.Instance) :
@@ -126,6 +144,9 @@ theorem upperLoss_budget_internal
     ordinaryParameters, GapMINKT.Logarithmic.Parameters.logarithmicSlack,
     GapMINKT.Logarithmic.Parameters.transformedTime, clockIterate]
 
+/--
+@isnad1 id=le.1h4v.s5.a1f0305c469b from=translated src=- shape=916946c8 vocab=30dd76f5
+-/
 theorem lowerLoss_budget_internal
     {clock : ℕ → ℕ} (hclock : Monotone clock)
     (additive compilerLoss : ℕ) (inst : MINCKT.Instance) :
@@ -144,6 +165,9 @@ theorem lowerLoss_budget_internal
     GapMINKT.Logarithmic.Parameters.transformedTime] at h ⊢
   exact h
 
+/--
+@isnad1 id=compatib.2h7v.s6.13ff1a20fc2a from=translated src=- shape=ceca3132 vocab=5a01b467
+-/
 theorem IsRegularClock.compatible_internal
     {ordinaryTapes conditionalTapes : ℕ}
     {clock : ℕ → ℕ} {additive compilerLoss : ℕ}
@@ -186,6 +210,9 @@ theorem IsRegularClock.compatible_internal
   · exact upperLoss_budget_internal clock compilerLoss
   · exact lowerLoss_budget_internal hclock.monotone additive compilerLoss
 
+/--
+@isnad1 id=compatib.2h8v.s5.de48ba7d1bd2 from=translated src=- shape=2ff4cd59 vocab=4cd15a36
+-/
 theorem IsRegularClock.compatible_of_pairComposition_internal
     {ordinaryTapes conditionalTapes : ℕ}
     {clock : ℕ → ℕ} {additive compilerLoss : ℕ}
@@ -201,6 +228,9 @@ theorem IsRegularClock.compatible_of_pairComposition_internal
   Slack.IsRegularClock.compatible_internal hclock
     hsupports.pair_upper_internal
 
+/--
+@isnad1 id=le.1h4v.s4.fa983c66347e from=translated src=- shape=e670c9a8 vocab=0c0a53e1
+-/
 theorem length_le_of_timeBoundedKolmogorovComplexity_ne_top_internal
     {tapes : ℕ} {machine : TM tapes} {output : List Bool} {time : ℕ}
     (hfinite : machine.timeBoundedKolmogorovComplexity output time ≠ ⊤) :
@@ -212,12 +242,18 @@ theorem length_le_of_timeBoundedKolmogorovComplexity_ne_top_internal
   have hlength := TM.output_length_le_of_reachesIn hrun hout
   omega
 
+/--
+@isnad1 id=eq.0h3v.s5.b73dd196882b from=translated src=- shape=b176c487 vocab=4783952a
+-/
 theorem pairInput_replicate_internal (clock : ℕ → ℕ)
     (compilerLoss length : ℕ) :
     (plan clock compilerLoss).pairInput ⟨List.replicate length true, [], 0⟩ =
       ⟨pair (List.replicate length true) [], clock length⟩ := by
   simp [Plan.pairInput, plan, Iterated.plan, clockIterate, paddedTime]
 
+/--
+@isnad1 id=isestima.0h3v.s4.145aae25a920 from=translated src=- shape=63d6140d vocab=c9827f66
+-/
 theorem pairInput_replicate_isEstimatorQuery_internal (clock : ℕ → ℕ)
     (compilerLoss length : ℕ) :
     (plan clock compilerLoss).IsEstimatorQuery
@@ -225,6 +261,9 @@ theorem pairInput_replicate_isEstimatorQuery_internal (clock : ℕ → ℕ)
   ⟨⟨List.replicate length true, [], 0⟩,
     Or.inl (pairInput_replicate_internal clock compilerLoss length).symm⟩
 
+/--
+@isnad1 id=le.1h6v.s5.97ae1c41f5f1 from=translated src=- shape=0dceae39 vocab=c3cf12fd
+-/
 theorem two_mul_add_two_le_clock_clock_of_satisfiesBoundsOn_internal
     {tapes : ℕ} {machine : TM tapes} {clock : ℕ → ℕ} {compilerLoss : ℕ}
     {estimate : GapMINKT.Logarithmic.Estimator}
@@ -243,6 +282,9 @@ theorem two_mul_add_two_le_clock_clock_of_satisfiesBoundsOn_internal
   simpa [pair_length] using
     length_le_of_timeBoundedKolmogorovComplexity_ne_top_internal hfinite
 
+/--
+@isnad1 id=le.1h5v.s6.59e18339f9c1 from=translated src=- shape=50867371 vocab=b7545614
+-/
 theorem two_mul_add_two_le_clock_of_forall_ne_top_internal
     {tapes : ℕ} {machine : TM tapes} {clock : ℕ → ℕ} {compilerLoss : ℕ}
     (hfinite : ∀ query : MINKT.Instance,
@@ -254,6 +296,9 @@ theorem two_mul_add_two_le_clock_of_forall_ne_top_internal
     length_le_of_timeBoundedKolmogorovComplexity_ne_top_internal (hfinite _
       (pairInput_replicate_isEstimatorQuery_internal clock compilerLoss length))
 
+/--
+@isnad1 id=not.0h4v.s4.1fc44c7262b4 from=translated src=- shape=dcc8bf56 vocab=3700439f
+-/
 theorem not_satisfiesBoundsOn_plan_id_internal {tapes : ℕ}
     (machine : TM tapes) (compilerLoss : ℕ)
     (estimate : GapMINKT.Logarithmic.Estimator) :

@@ -68,7 +68,9 @@ def numVerts (φ : CNF) : ℕ := (φ.maxVar + 1) + φ.length
 def numEdges (φ : CNF) : ℕ := 3 * φ.length
 
 /-- The constraint graph of `φ` always has at least one vertex, namely the
-variable vertex `0`. -/
+variable vertex `0`.
+@isnad1 id=lt.0h1v.s3.039325c4cf25 from=translated src=- shape=b9369acb vocab=e0704a2f
+-/
 theorem numVerts_pos (φ : CNF) : 0 < numVerts φ := by
   unfold numVerts; omega
 
@@ -94,7 +96,9 @@ some position's claimed value matches that literal's sign. -/
 def clauseSat (φ : CNF) (j : ℕ) (cl : Fin 3 → Bool) : Bool :=
   decide (∃ q : Fin 3, cl q = (litOf φ j q).sign)
 
-/-- `clauseSat` reflects the existential it decides. -/
+/-- `clauseSat` reflects the existential it decides.
+@isnad1 id=iff.0h3v.s5.f90ea70aaa8b from=translated src=- shape=739723d8 vocab=12d97aff
+-/
 theorem clauseSat_eq_true_iff {φ : CNF} {j : ℕ} {cl : Fin 3 → Bool} :
     clauseSat φ j cl = true ↔ ∃ q : Fin 3, cl q = (litOf φ j q).sign := by
   simp [clauseSat]
@@ -113,35 +117,47 @@ def toGraph (φ : CNF) : ConstraintGraph (Fin 3 → Bool) where
   head e := varVertex φ (litOf φ (edgeClause e.val) (edgePos e.val)).var
   rel e cl va := clauseSat φ (edgeClause e.val) cl && (cl (edgePos e.val) == va 0)
 
-/-- The reduction produces `3 * φ.length` edges. -/
+/-- The reduction produces `3 * φ.length` edges.
+@isnad1 id=eq.0h1v.s4.7b89930cfd39 from=translated src=- shape=c6c39b71 vocab=40c23245
+-/
 theorem numEdges_toGraph (φ : CNF) : (toGraph φ).numEdges = 3 * φ.length := rfl
 
-/-- The reduction produces `(φ.maxVar + 1) + φ.length` vertices. -/
+/-- The reduction produces `(φ.maxVar + 1) + φ.length` vertices.
+@isnad1 id=eq.0h1v.s5.39dd084dcfc8 from=translated src=- shape=fd6ea004 vocab=599e079a
+-/
 theorem numVerts_toGraph (φ : CNF) :
     (toGraph φ).numVerts = (φ.maxVar + 1) + φ.length := rfl
 
 /-! ### Basic facts about the indexing helpers -/
 
-/-- A variable vertex within range keeps its index. -/
+/-- A variable vertex within range keeps its index.
+@isnad1 id=eq.1h2v.s4.5a2e7dc38f14 from=translated src=- shape=9f0ec96f vocab=dfb7d41e
+-/
 theorem varVertex_val {φ : CNF} {v : ℕ} (hv : v ≤ φ.maxVar) :
     (varVertex φ v).val = v := by
   have h : v < numVerts φ := by unfold numVerts; omega
   simp [varVertex, h]
 
-/-- A clause vertex of an existing clause sits at index `(φ.maxVar + 1) + j`. -/
+/-- A clause vertex of an existing clause sits at index `(φ.maxVar + 1) + j`.
+@isnad1 id=eq.1h2v.s5.d77059faa161 from=translated src=- shape=f98d6dc9 vocab=4acce46b
+-/
 theorem clauseVertex_val {φ : CNF} {j : ℕ} (hj : j < φ.length) :
     (clauseVertex φ j).val = (φ.maxVar + 1) + j := by
   have h : (φ.maxVar + 1) + j < numVerts φ := by unfold numVerts; omega
   simp [clauseVertex, h]
 
-/-- Every edge belongs to a clause that exists. -/
+/-- Every edge belongs to a clause that exists.
+@isnad1 id=lt.0h2v.s5.0329a7e0960e from=translated src=- shape=09b7aa7a vocab=99823932
+-/
 theorem edgeClause_lt {φ : CNF} (e : Fin (toGraph φ).numEdges) :
     edgeClause e.val < φ.length := by
   have h : e.val < 3 * φ.length := e.isLt
   unfold edgeClause
   omega
 
-/-- Every (clause, position) pair is realized by an edge. -/
+/-- Every (clause, position) pair is realized by an edge.
+@isnad1 id=ex.1h3v.s6.3eae5b78d43a from=translated src=- shape=7ba1c9f3 vocab=e8c7eb2c
+-/
 theorem exists_edge {φ : CNF} {j : ℕ} (hj : j < φ.length) (q : Fin 3) :
     ∃ e : Fin (toGraph φ).numEdges, edgeClause e.val = j ∧ edgePos e.val = q := by
   refine ⟨⟨3 * j + q.val, ?_⟩, ?_, ?_⟩
@@ -149,7 +165,9 @@ theorem exists_edge {φ : CNF} {j : ℕ} (hj : j < φ.length) (q : Fin 3) :
   · show (3 * j + q.val) / 3 = j; omega
   · apply Fin.ext; show (3 * j + q.val) % 3 = q.val; omega
 
-/-- The edge constraint of `toGraph`, spelled out. -/
+/-- The edge constraint of `toGraph`, spelled out.
+@isnad1 id=iff.0h3v.s7.5827f1561966 from=translated src=- shape=473322b1 vocab=e6e102a0
+-/
 theorem satisfies_iff {φ : CNF} {a : (toGraph φ).Assignment}
     (e : Fin (toGraph φ).numEdges) :
     (toGraph φ).Satisfies a e ↔
@@ -167,13 +185,17 @@ def vertexLabel (φ : CNF) (α : SAT.Assignment) (w : ℕ) : Fin 3 → Bool :=
   if w < φ.maxVar + 1 then (fun _ => Assignment.get α w)
   else (fun q => Assignment.get α (litOf φ (w - (φ.maxVar + 1)) q).var)
 
-/-- The label of a variable vertex. -/
+/-- The label of a variable vertex.
+@isnad1 id=eq.1h3v.s5.80404b716a05 from=translated src=- shape=efc403ba vocab=a98693f4
+-/
 theorem vertexLabel_var {φ : CNF} {α : SAT.Assignment} {v : ℕ} (hv : v ≤ φ.maxVar) :
     vertexLabel φ α v = fun _ => Assignment.get α v := by
   have h : v < φ.maxVar + 1 := by omega
   simp [vertexLabel, h]
 
-/-- The label of a clause vertex. -/
+/-- The label of a clause vertex.
+@isnad1 id=eq.0h3v.s5.7f8be2a5d78e from=translated src=- shape=23221e37 vocab=1f0067c3
+-/
 theorem vertexLabel_clause {φ : CNF} {α : SAT.Assignment} {j : ℕ} :
     vertexLabel φ α ((φ.maxVar + 1) + j)
       = fun q => Assignment.get α (litOf φ j q).var := by
@@ -185,7 +207,9 @@ value of bit `0` of the label of its variable vertex. -/
 def mkAssign (φ : CNF) (a : (toGraph φ).Assignment) : SAT.Assignment :=
   (List.range (φ.maxVar + 1)).map (fun v => a (varVertex φ v) 0)
 
-/-- `mkAssign` reads back the label bit it was built from. -/
+/-- `mkAssign` reads back the label bit it was built from.
+@isnad1 id=eq.1h3v.s5.c64f8a654139 from=translated src=- shape=56fc72d6 vocab=7ca96c0c
+-/
 theorem get_mkAssign {φ : CNF} {a : (toGraph φ).Assignment} {v : ℕ}
     (hv : v ≤ φ.maxVar) : Assignment.get (mkAssign φ a) v = a (varVertex φ v) 0 := by
   have hr : v < (List.range (φ.maxVar + 1)).length := by simp; omega

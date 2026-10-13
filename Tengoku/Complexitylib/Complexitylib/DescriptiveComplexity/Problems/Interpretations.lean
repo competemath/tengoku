@@ -34,12 +34,16 @@ def doubleCover : TaggedFOInterpretation Vocabulary.graph Vocabulary.graph 2 1 w
   constTag := Fin.elim0
   constCoord := Fin.elim0
 
-/-- The double cover has exactly twice as many vertices as its source. -/
+/-- The double cover has exactly twice as many vertices as its source.
+@isnad1 id=eq.0h1v.s5.c6b2004c4e75 from=translated src=- shape=2f690021 vocab=f89edfae
+-/
 theorem doubleCover_card (A : FinStruct Vocabulary.graph) :
     (doubleCover.apply A).card = 2 * A.card := by
   simp
 
-/-- Double-cover edges are precisely source edges with left-to-right tags. -/
+/-- Double-cover edges are precisely source edges with left-to-right tags.
+@isnad1 id=iff.0h2v.s10.238339c00f36 from=translated src=- shape=c381cbb4 vocab=62ecd0bd
+-/
 theorem doubleCover_rel (A : FinStruct Vocabulary.graph)
     (args : Fin 2 → Fin (2 * A.card ^ 1)) :
     (doubleCover.apply A).rel 0 args ↔
@@ -50,7 +54,9 @@ theorem doubleCover_rel (A : FinStruct Vocabulary.graph)
   split <;> simp_all [Formula.Sat, Term.eval, TaggedFOInterpretation.relationEnv,
     Formula.falsum_sat]
 
-/-- The tag supplies a bipartition of the double cover, regardless of the source graph. -/
+/-- The tag supplies a bipartition of the double cover, regardless of the source graph.
+@isnad1 id=bipartit.0h1v.s4.e011d5726bb3 from=translated src=- shape=db8cd38e vocab=451008dd
+-/
 theorem doubleCover_bipartite (A : FinStruct Vocabulary.graph) :
     Bipartite (doubleCover.apply A) := by
   refine ⟨fun x => decide ((TaggedFOInterpretation.elementEquiv A.card 2 1 x).1 = 0), ?_⟩

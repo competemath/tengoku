@@ -77,6 +77,9 @@ def owner (p : G.HalfEdge) : Fin G.numVerts := if p.2 then G.head p.1 else G.tai
 /-- The other half of the same edge. -/
 def flipHalf (p : G.HalfEdge) : G.HalfEdge := (p.1, !p.2)
 
+/--
+@isnad1 id=involuti.0h2v.s3.e0b80e39b5f7 from=translated src=- shape=7b4a6ed7 vocab=4aa63b37
+-/
 theorem flipHalf_involutive : Function.Involutive G.flipHalf := by
   intro p
   simp [flipHalf]
@@ -85,6 +88,9 @@ theorem flipHalf_involutive : Function.Involutive G.flipHalf := by
 def cloud (v : Fin G.numVerts) : Finset G.HalfEdge :=
   Finset.univ.filter fun p => G.owner p = v
 
+/--
+@isnad1 id=iff.0h4v.s5.31ea8f93cda0 from=translated src=- shape=ae1342da vocab=af6fe9fb
+-/
 @[simp] theorem mem_cloud {v : Fin G.numVerts} {p : G.HalfEdge} :
     p ∈ G.cloud v ↔ G.owner p = v := by
   simp [cloud]
@@ -93,6 +99,9 @@ def cloud (v : Fin G.numVerts) : Finset G.HalfEdge :=
 tail, which is the order `Fintype` enumerates `Bool` in. -/
 def halfCode (p : G.HalfEdge) : ℕ := 2 * p.1.val + (if p.2 then 0 else 1)
 
+/--
+@isnad1 id=injectiv.0h2v.s3.4f589bcede7e from=translated src=- shape=223e7f2f vocab=8705de4b
+-/
 theorem halfCode_injective : Function.Injective G.halfCode := by
   rintro ⟨e, b⟩ ⟨e', b'⟩ h
   simp only [halfCode] at h
@@ -100,13 +109,22 @@ theorem halfCode_injective : Function.Injective G.halfCode := by
   have hb : b = b' := by cases b <;> cases b' <;> simp at h ⊢ <;> omega
   rw [Fin.ext he, hb]
 
+/--
+@isnad1 id=istrans.0h2v.s4.c4905727bde0 from=translated src=- shape=e2710229 vocab=217dfdc6
+-/
 instance halfLE_trans :
     IsTrans G.HalfEdge (fun p q => G.halfCode p ≤ G.halfCode q) := ⟨fun _ _ _ => le_trans⟩
 
+/--
+@isnad1 id=antisymm.0h2v.s4.65ad8c1370e5 from=translated src=- shape=e2710229 vocab=d95cec53
+-/
 instance halfLE_antisymm :
     Std.Antisymm (fun p q : G.HalfEdge => G.halfCode p ≤ G.halfCode q) :=
   ⟨fun _ _ h1 h2 => G.halfCode_injective (le_antisymm h1 h2)⟩
 
+/--
+@isnad1 id=total.0h2v.s4.f4784dd319c7 from=translated src=- shape=e2710229 vocab=d73813f1
+-/
 instance halfLE_total :
     Std.Total (fun p q : G.HalfEdge => G.halfCode p ≤ G.halfCode q) :=
   ⟨fun _ _ => le_total _ _⟩
@@ -116,16 +134,28 @@ numbers — the order an algorithm can find them in. -/
 noncomputable def cloudList (v : Fin G.numVerts) : List G.HalfEdge :=
   (G.cloud v).sort (fun p q => G.halfCode p ≤ G.halfCode q)
 
+/--
+@isnad1 id=nodup.0h3v.s4.ed68de0314be from=translated src=- shape=5c5df283 vocab=4eb6afa5
+-/
 theorem nodup_cloudList (v : Fin G.numVerts) : (G.cloudList v).Nodup :=
   Finset.sort_nodup _ _
 
+/--
+@isnad1 id=pairwise.0h3v.s5.d65b8c8b1496 from=translated src=- shape=dcec1990 vocab=7768db29
+-/
 theorem pairwise_cloudList (v : Fin G.numVerts) :
     List.Pairwise (fun p q => G.halfCode p ≤ G.halfCode q) (G.cloudList v) :=
   Finset.pairwise_sort _ _
 
+/--
+@isnad1 id=iff.0h4v.s5.528d39baae03 from=translated src=- shape=138af04f vocab=0a19dfb3
+-/
 @[simp] theorem mem_cloudList {v : Fin G.numVerts} {p : G.HalfEdge} :
     p ∈ G.cloudList v ↔ p ∈ G.cloud v := Finset.mem_sort _
 
+/--
+@isnad1 id=mem.0h3v.s4.e979061dcf0a from=translated src=- shape=76ba1c30 vocab=aa086204
+-/
 theorem mem_cloudList_self (p : G.HalfEdge) : p ∈ G.cloudList (G.owner p) := by simp
 
 /-! ### The cloud rotation -/
@@ -142,7 +172,9 @@ noncomputable def cloudRotAux (l : List G.HalfEdge) (p : G.HalfEdge) (j : Fin E.
   else (p, j)
 
 /-- Inside one cloud, the rotation is an involution: this is the family's own
-involutivity, transported through the enumeration. -/
+involutivity, transported through the enumeration.
+@isnad1 id=eq.2h6v.s6.9b9b78a0bd1c from=translated src=- shape=d0bb32b2 vocab=6f160ca5
+-/
 theorem cloudRotAux_involutive {l : List G.HalfEdge} (hnd : l.Nodup) {p : G.HalfEdge}
     (hp : p ∈ l) (j : Fin E.degree) :
     G.cloudRotAux E l (G.cloudRotAux E l p j).1 (G.cloudRotAux E l p j).2 = (p, j) := by
@@ -171,7 +203,9 @@ theorem cloudRotAux_involutive {l : List G.HalfEdge} (hnd : l.Nodup) {p : G.Half
 noncomputable def cloudRot (p : G.HalfEdge) (j : Fin E.degree) : G.HalfEdge × Fin E.degree :=
   G.cloudRotAux E (G.cloudList (G.owner p)) p j
 
-/-- A cloud-link lands inside the enumeration it started from. -/
+/-- A cloud-link lands inside the enumeration it started from.
+@isnad1 id=mem.1h6v.s5.d47b916f745d from=translated src=- shape=31759572 vocab=dba904ec
+-/
 theorem cloudRotAux_mem {l : List G.HalfEdge} {p : G.HalfEdge} (hp : p ∈ l)
     (j : Fin E.degree) : (G.cloudRotAux E l p j).1 ∈ l := by
   have hlt : l.idxOf p < l.length := List.idxOf_lt_length_iff.mpr hp
@@ -182,7 +216,9 @@ theorem cloudRotAux_mem {l : List G.HalfEdge} {p : G.HalfEdge} (hp : p ∈ l)
   rw [← List.getElem_eq_getD (h := hq1)]
   exact List.getElem_mem hq1
 
-/-- A cloud-link stays inside the cloud. -/
+/-- A cloud-link stays inside the cloud.
+@isnad1 id=eq.0h5v.s5.a0ce1109de52 from=translated src=- shape=4eb39cb4 vocab=1cdc3e87
+-/
 theorem owner_cloudRot (p : G.HalfEdge) (j : Fin E.degree) :
     G.owner (G.cloudRot E p j).1 = G.owner p := by
   have h := G.cloudRotAux_mem E (G.mem_cloudList_self p) j
@@ -191,7 +227,9 @@ theorem owner_cloudRot (p : G.HalfEdge) (j : Fin E.degree) :
 
 /-- **The cloud is a copy of the expander.** Reading the cloud through its
 enumeration, a cloud-link is exactly the family's rotation map. This is what
-lets the expander estimates of `Disagreement` be applied to a cloud. -/
+lets the expander estimates of `Disagreement` be applied to a cloud.
+@isnad1 id=eq.0h6v.s7.69e732bfa9f2 from=translated src=- shape=8e423301 vocab=e7de04e5
+-/
 theorem cloudRot_getElem (v : Fin G.numVerts) (i : Fin (G.cloudList v).length)
     (j : Fin E.degree) :
     (G.cloudRot E ((G.cloudList v)[i.val]) j).1
@@ -210,6 +248,9 @@ theorem cloudRot_getElem (v : Fin G.numVerts) (i : Fin (G.cloudList v).length)
   dsimp only
   exact (List.getElem_eq_getD _).symm
 
+/--
+@isnad1 id=eq.0h5v.s5.ea78af8d7d83 from=translated src=- shape=c199b6de vocab=ebba29a3
+-/
 theorem cloudRot_involutive (p : G.HalfEdge) (j : Fin E.degree) :
     G.cloudRot E (G.cloudRot E p j).1 (G.cloudRot E p j).2 = (p, j) := by
   have howner : G.owner (G.cloudRot E p j).1 = G.owner p := G.owner_cloudRot E p j
@@ -240,20 +281,34 @@ noncomputable def reduceGraph (G : ConstraintGraph α) (E : ExpanderFamily) : Re
         some (G.cloudRot E (G.cloudRot E p j).1 (G.cloudRot E p j).2).2) = (p, some j)
       rw [G.cloudRot_involutive E p j]
 
+/--
+@isnad1 id=eq.0h3v.s4.82d9dca77016 from=translated src=- shape=b912de79 vocab=ee4ad4e8
+-/
 @[simp] theorem V_reduceGraph : (G.reduceGraph E).V = G.HalfEdge := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.b0cbab3ddafa from=translated src=- shape=3b84d36e vocab=e5e862e1
+-/
 @[simp] theorem order_reduceGraph : (G.reduceGraph E).order = 2 * G.numEdges := by
   show Fintype.card (Fin G.numEdges × Bool) = 2 * G.numEdges
   simp [Nat.mul_comm]
 
-/-- The reduced graph is `(1 + E.degree)`-regular. -/
+/-- The reduced graph is `(1 + E.degree)`-regular.
+@isnad1 id=eq.0h3v.s4.03b7972d83a2 from=translated src=- shape=b671f27c vocab=83980fc5
+-/
 @[simp] theorem deg_reduceGraph : (G.reduceGraph E).deg = 1 + E.degree := by
   show Fintype.card (Option (Fin E.degree)) = 1 + E.degree
   simp [Nat.add_comm]
 
+/--
+@isnad1 id=eq.0h4v.s4.80cf3d723f45 from=translated src=- shape=710621e2 vocab=3f810856
+-/
 theorem nbr_reduceGraph_none (p : G.HalfEdge) :
     (G.reduceGraph E).nbr p none = G.flipHalf p := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.d51a59471e41 from=translated src=- shape=f721ec85 vocab=6591f6a7
+-/
 theorem nbr_reduceGraph_some (p : G.HalfEdge) (j : Fin E.degree) :
     (G.reduceGraph E).nbr p (some j) = (G.cloudRot E p j).1 := rfl
 
@@ -271,6 +326,9 @@ noncomputable def reduce (G : ConstraintGraph α) (E : ExpanderFamily) : RegCSP 
     | none => if p.2 then G.rel p.1 b a else G.rel p.1 a b
     | some _ => a == b
 
+/--
+@isnad1 id=eq.0h3v.s4.fb0c004adf8b from=translated src=- shape=d4d0878d vocab=ab433138
+-/
 @[simp] theorem graph_reduce : (G.reduce E).graph = G.reduceGraph E := rfl
 
 /-- The reduced system's vertices are the half-edges, numbered by their edge and
@@ -279,7 +337,9 @@ noncomputable instance : NumEnc (G.reduce E).graph.V :=
   inferInstanceAs (NumEnc (Fin G.numEdges × Bool))
 
 /-- Completeness: labelling every half-edge by its endpoint's label carries a
-satisfying assignment of `G` to one of the reduced system. -/
+satisfying assignment of `G` to one of the reduced system.
+@isnad1 id=satisfia.1h3v.s4.ccd389da2bca from=translated src=- shape=1caf1ed9 vocab=1d4f389c
+-/
 theorem satisfiable_reduce_of_satisfiable (h : G.Satisfiable) : (G.reduce E).Satisfiable := by
   obtain ⟨σ, hσ⟩ := h
   refine ⟨fun p => σ (G.owner p), ?_⟩

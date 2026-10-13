@@ -51,17 +51,28 @@ def stepSpec (i : ℕ) (st : ℕ × ℕ × List Bool) (b : Bool) : ℕ × ℕ ×
 def runSpec (i : ℕ) (st : ℕ × ℕ × List Bool) (s : List Bool) : ℕ × ℕ × List Bool :=
   s.foldl (stepSpec i) st
 
+/--
+@isnad1 id=eq.0h2v.s4.0c8ec9d82434 from=translated src=- shape=68595157 vocab=7a94c8fb
+-/
 @[simp] theorem runSpec_nil (i : ℕ) (st : ℕ × ℕ × List Bool) : runSpec i st [] = st := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.10a673c8ef5d from=translated src=- shape=57a040fc vocab=fa4e1807
+-/
 theorem runSpec_append (i : ℕ) (st : ℕ × ℕ × List Bool) (s t : List Bool) :
     runSpec i st (s ++ t) = runSpec i (runSpec i st s) t := by
   rw [runSpec, runSpec, runSpec, List.foldl_append]
 
+/--
+@isnad1 id=eq.0h4v.s5.2c0f1d099f1d from=translated src=- shape=4fab732c vocab=2a473a7c
+-/
 theorem runSpec_cons (i : ℕ) (st : ℕ × ℕ × List Bool) (b : Bool) (s : List Bool) :
     runSpec i st (b :: s) = runSpec i (stepSpec i st b) s := rfl
 
 /-- **The collected bits only grow at the end.** A prefix already present in the
-output is carried through untouched, and the depth and count do not see it. -/
+output is carried through untouched, and the depth and count do not see it.
+@isnad1 id=eq.0h6v.s7.b15cc4d11629 from=translated src=- shape=21a79ae6 vocab=342776cb
+-/
 theorem runSpec_append_acc (i : ℕ) (s : List Bool) :
     ∀ (d c : ℕ) (pre acc : List Bool),
       runSpec i (d, c, pre ++ acc) s
@@ -83,7 +94,9 @@ theorem runSpec_append_acc (i : ℕ) (s : List Bool) :
 /-- **Reading one serialized value.** Starting at depth `d` with `c` children
 already passed, the pass over `y.toBits` returns to depth `d`; it counts one
 more child exactly when it was at the top level, and it contributes `y.toBits`
-to the output exactly when `y` is the child sought. -/
+to the output exactly when `y` is the child sought.
+@isnad1 id=eq.0h5v.s6.c9349106d1c0 from=translated src=- shape=d6a95192 vocab=aa194fbe
+-/
 theorem runSpec_toBits (i : ℕ) (y : Data) :
     ∀ (d c : ℕ) (acc : List Bool),
       runSpec i (d, c, acc) y.toBits
@@ -156,12 +169,17 @@ passed `c` children. -/
 def selFrom (xs : List Data) (i c : ℕ) : List Bool :=
   if c ≤ i then ((xs[i - c]?).map Data.toBits).getD [] else []
 
+/--
+@isnad1 id=eq.0h2v.s3.1a0b1001e794 from=translated src=- shape=2f53a34b vocab=f5e9a38c
+-/
 @[simp] theorem selFrom_nil (i c : ℕ) : selFrom [] i c = [] := by
   rw [selFrom]
   split <;> simp
 
 /-- **Reading a run of children.** At the top level the pass counts every child
-and contributes exactly the one it was asked for. -/
+and contributes exactly the one it was asked for.
+@isnad1 id=eq.0h4v.s6.c7748e525533 from=translated src=- shape=05427329 vocab=d83c59fa
+-/
 theorem runSpec_flatten (i : ℕ) :
     ∀ (xs : List Data) (c : ℕ) (acc : List Bool),
       runSpec i (0, c, acc) ((xs.map Data.toBits).flatten)
@@ -196,7 +214,9 @@ theorem runSpec_flatten (i : ℕ) :
         rw [ite_eq_right (by omega), h1, h2]
 
 /-- **The pass over a serialized list.** Reading the bits strictly between the
-outer brackets returns the requested child's own serialization. -/
+outer brackets returns the requested child's own serialization.
+@isnad1 id=eq.0h2v.s6.f53de3284c32 from=translated src=- shape=3b1c9221 vocab=c33a2ec1
+-/
 theorem runSpec_inner (i : ℕ) (xs : List Data) :
     runSpec i (0, 0, []) ((xs.map Data.toBits).flatten)
       = (0, xs.length, ((xs[i]?).map Data.toBits).getD []) := by

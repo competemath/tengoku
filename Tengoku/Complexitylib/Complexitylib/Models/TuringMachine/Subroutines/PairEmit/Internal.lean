@@ -245,7 +245,9 @@ private theorem pairInputWorkTM_second_loop {n : ℕ} (firstIdx : Fin n) :
       · simpa [List.append_assoc] using houtput'
 
 /-- Exact execution from the concrete tape boundary used by the generic
-fanout combinator. -/
+fanout combinator.
+@isnad1 id=ex.5h7v.s7.827d9cbe5b1d from=translated src=- shape=d0d7aa2a vocab=64c4229c
+-/
 theorem pairInputWorkTM_reachesIn_internal {n : ℕ}
     (firstIdx : Fin n) (first second : List Bool)
     {inp out : Tape} {work : Fin n → Tape}
@@ -322,7 +324,9 @@ theorem pairInputWorkTM_reachesIn_internal {n : ℕ}
     exact hother₁ i hi
   · simpa [pair, delimit, doubled, List.append_assoc] using houtput₂
 
-/-- Internal compact Hoare contract for pair emission. -/
+/-- Internal compact Hoare contract for pair emission.
+@isnad1 id=hoaretim.0h4v.s6.11c16d3b36aa from=translated src=- shape=4b3c2b42 vocab=43f3314a
+-/
 theorem pairInputWorkTM_hoareTime_internal {n : ℕ}
     (firstIdx : Fin n) (first second : List Bool) :
     (pairInputWorkTM firstIdx).HoareTime

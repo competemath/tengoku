@@ -24,7 +24,9 @@ namespace OracleTM
 
 variable {n : ℕ}
 
-/-- Increasing the clock preserves bounded oracle-machine halting. -/
+/-- Increasing the clock preserves bounded oracle-machine halting.
+@isnad1 id=haltsint.2h6v.s5.794081864103 from=translated src=- shape=953f8b02 vocab=2547a38f
+-/
 theorem HaltsInTime.mono
     {machine : OracleTM n} {oracle : BooleanOracle} {program : List Bool}
     {first second : ℕ} (hbound : first ≤ second)
@@ -33,14 +35,18 @@ theorem HaltsInTime.mono
   hhalt.mono_internal hbound
 
 /-- Forgetting a clock turns bounded oracle-machine halting into eventual
-halting. -/
+halting.
+@isnad1 id=halts.1h5v.s4.8175e7d695bf from=translated src=- shape=f2a57a93 vocab=b2681ba8
+-/
 theorem halts_of_haltsInTime
     {machine : OracleTM n} {oracle : BooleanOracle} {program : List Bool}
     {time : ℕ} (hhalt : machine.HaltsInTime oracle program time) :
     machine.Halts oracle program :=
   halts_of_haltsInTime_internal hhalt
 
-/-- Increasing the clock preserves bounded oracle-machine production. -/
+/-- Increasing the clock preserves bounded oracle-machine production.
+@isnad1 id=produces.2h7v.s5.b2194883029d from=translated src=- shape=a15cf462 vocab=7728a2d2
+-/
 theorem ProducesInTime.mono
     {machine : OracleTM n} {oracle : BooleanOracle}
     {program output : List Bool} {first second : ℕ}
@@ -50,7 +56,9 @@ theorem ProducesInTime.mono
   hproduce.mono_internal hbound
 
 /-- Forgetting a clock turns bounded oracle production into eventual
-production. -/
+production.
+@isnad1 id=produces.1h6v.s4.52ba5f3064d1 from=translated src=- shape=75d8b799 vocab=b854ff84
+-/
 theorem produces_of_producesInTime
     {machine : OracleTM n} {oracle : BooleanOracle}
     {program output : List Bool} {time : ℕ}
@@ -63,7 +71,9 @@ end OracleTM
 namespace TM
 
 /-- The ordinary-machine embedding preserves exact bounded production for
-every oracle. -/
+every oracle.
+@isnad1 id=iff.0h6v.s4.a374f99aa7db from=translated src=- shape=1e6c2a9f vocab=f2052d77
+-/
 theorem toOracleTM_producesInTime_iff
     (machine : TM n) (oracle : BooleanOracle)
     (program output : List Bool) (time : ℕ) :

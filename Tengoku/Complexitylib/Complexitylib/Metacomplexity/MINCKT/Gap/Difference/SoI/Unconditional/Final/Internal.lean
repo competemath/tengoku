@@ -26,6 +26,9 @@ namespace Iterated
 
 namespace Slack
 
+/--
+@isnad1 id=ex.1h2v.s6.cf94a5b57475 from=translated src=- shape=96437d25 vocab=60a7bf44
+-/
 theorem clockIterate_add_one_polynomiallyBounded_internal
     {clock : ℕ → ℕ}
     (hclock : ∃ coefficient exponent, ∀ time,
@@ -50,6 +53,9 @@ theorem clockIterate_add_one_polynomiallyBounded_internal
     _ = (coefficient + 1) * (time + 1) ^ exponent := by
       rw [Nat.add_mul, one_mul]
 
+/--
+@isnad1 id=le.0h6v.s7.7e1d44e5c860 from=translated src=- shape=7a1df709 vocab=3dcc699b
+-/
 theorem pow_slackExponent_le_product_internal
     (clock : ℕ → ℕ) (additive compilerLoss : ℕ)
     (outputLength conditionLength time : ℕ) :
@@ -82,6 +88,9 @@ theorem pow_slackExponent_le_product_internal
     (le_refl (2 ^ compilerLoss))
   simpa only [slackExponent, Nat.pow_add] using hproduct
 
+/--
+@isnad1 id=ex.1h3v.s7.d7ba95134309 from=translated src=- shape=85dbcc49 vocab=44dd0835
+-/
 theorem finalClock_polynomiallyBounded_internal
     {clock : ℕ → ℕ} (additive compilerLoss : ℕ)
     (hclock : ∃ coefficient exponent, ∀ time,
@@ -138,6 +147,9 @@ theorem finalClock_polynomiallyBounded_internal
       dsimp [base, total, totalTime]
       omega
 
+/--
+@isnad1 id=isadmiss.1h3v.s4.a4adb8bc5f02 from=translated src=- shape=6e256645 vocab=ae84d765
+-/
 theorem IsAdmissibleClock.parameters_admissible_internal
     {clock : ℕ → ℕ} (hclock : IsAdmissibleClock clock)
     (additive compilerLoss : ℕ) :

@@ -22,13 +22,17 @@ namespace Complexity
 
 namespace BooleanListCodeFamily
 
-/-- A Boolean-cube truth table has exactly `2^coordinateLength` bits. -/
+/-- A Boolean-cube truth table has exactly `2^coordinateLength` bits.
+@isnad1 id=eq.0h2v.s5.eedd1d0f842e from=translated src=- shape=6c03b897 vocab=434fc2c2
+-/
 @[simp] theorem length_truthTableBits {coordinateLength : ℕ}
     (word : (Fin coordinateLength → Bool) → Bool) :
     (truthTableBits word).length = 2 ^ coordinateLength :=
   length_truthTableBits_internal word
 
-/-- A family encoder emits the complete truth table of its codeword. -/
+/-- A family encoder emits the complete truth table of its codeword.
+@isnad1 id=eq.0h4v.s5.ec4482d4c52f from=translated src=- shape=c34d70cb vocab=17713980
+-/
 @[simp] theorem length_encoderOutput (family : BooleanListCodeFamily)
     (messageLength inverseAccuracy : ℕ)
     (message : Fin messageLength → Bool) :
@@ -37,7 +41,9 @@ namespace BooleanListCodeFamily
   length_encoderOutput_internal family messageLength inverseAccuracy message
 
 /-- The full decoder output concatenates exactly `listSize` messages of the
-original message length. -/
+original message length.
+@isnad1 id=eq.0h4v.s5.2343085cae3f from=translated src=- shape=ee44b25c vocab=f987f2c1
+-/
 @[simp] theorem length_decoderOutput (family : BooleanListCodeFamily)
     (messageLength inverseAccuracy : ℕ)
     (received :
@@ -48,7 +54,9 @@ original message length. -/
   length_decoderOutput_internal family messageLength inverseAccuracy received
 
 /-- Inverse-accuracy list decoding turns `1/2 + 1/q` agreement into a real
-fixed-width string selecting the original message. -/
+fixed-width string selecting the original message.
+@isnad1 id=ex.3h5v.s7.8afd4c84f66d from=translated src=- shape=bdebb222 vocab=f4c14de1
+-/
 theorem exists_indexBits_of_half_add_inverseAccuracy
     (family : BooleanListCodeFamily)
     (hfamily : family.IsListDecodableAtInverseAccuracy)
@@ -69,7 +77,9 @@ theorem exists_indexBits_of_half_add_inverseAccuracy
     family hfamily haccuracy message received hagreement
 
 /-- Polynomial list size gives a concrete ceiling-logarithmic upper bound on
-the selecting decoder-index width. -/
+the selecting decoder-index width.
+@isnad1 id=le.0h4v.s5.0d4efd502fe7 from=translated src=- shape=10111f5f vocab=9252183f
+-/
 theorem decoderIndexBitWidth_le_polynomialBound
     {family : BooleanListCodeFamily}
     (bounds : family.PolynomialParameterBounds)
@@ -81,7 +91,9 @@ theorem decoderIndexBitWidth_le_polynomialBound
   decoderIndexBitWidth_le_polynomialBound_internal
     bounds messageLength inverseAccuracy
 
-/-- Polynomial parameter bounds control the actual encoder output string. -/
+/-- Polynomial parameter bounds control the actual encoder output string.
+@isnad1 id=le.0h5v.s6.501904e3b2f2 from=translated src=- shape=6eed98c8 vocab=4c1de594
+-/
 theorem length_encoderOutput_le
     {family : BooleanListCodeFamily}
     (bounds : family.PolynomialParameterBounds)
@@ -94,7 +106,9 @@ theorem length_encoderOutput_le
     bounds messageLength inverseAccuracy message
 
 /-- Polynomial list-size bounds control the actual concatenated decoder
-output. -/
+output.
+@isnad1 id=le.0h5v.s6.b00fdb0c68bb from=translated src=- shape=0bc4ad38 vocab=f4c8237b
+-/
 theorem length_decoderOutput_le
     {family : BooleanListCodeFamily}
     (bounds : family.PolynomialParameterBounds)
@@ -109,7 +123,9 @@ theorem length_decoderOutput_le
     bounds messageLength inverseAccuracy received
 
 /-- The uniform encoder machine produces the exact family codeword within its
-advertised common polynomial bound. -/
+advertised common polynomial bound.
+@isnad1 id=and.0h5v.s6.064f4d155301 from=translated src=- shape=c2eb6afa vocab=8e97f561
+-/
 theorem UniformPolynomialTimeRealization.encoder_spec
     {family : BooleanListCodeFamily}
     (realization : family.UniformPolynomialTimeRealization)
@@ -125,7 +141,9 @@ theorem UniformPolynomialTimeRealization.encoder_spec
   realization.encoder_spec_internal messageLength inverseAccuracy message
 
 /-- The single uniform decoder machine emits the exact concatenated candidate
-list within the same kind of polynomial bound. -/
+list within the same kind of polynomial bound.
+@isnad1 id=and.0h5v.s6.066c2021114c from=translated src=- shape=fc1fb70b vocab=b473c5bc
+-/
 theorem UniformPolynomialTimeRealization.decoder_spec
     {family : BooleanListCodeFamily}
     (realization : family.UniformPolynomialTimeRealization)

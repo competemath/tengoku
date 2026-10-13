@@ -61,7 +61,9 @@ variable {n : ℕ}
 /-- The bit a `±1` answer stands for. -/
 noncomputable def signBit (r : ℝ) : ZMod 2 := if r = 1 then 0 else 1
 
-/-- Signs and bits correspond: `signBit` inverts `chi`. -/
+/-- Signs and bits correspond: `signBit` inverts `chi`.
+@isnad1 id=eq.0h1v.s4.9f6a7cb00b76 from=translated src=- shape=848cd2ae vocab=a8a07de4
+-/
 theorem signBit_chi (u : ZMod 2) : signBit (chi u) = u := by
   rcases (by decide : ∀ u : ZMod 2, u = 0 ∨ u = 1) u with h | h <;> subst h
   · norm_num [signBit, BooleanAnalysis.chi]
@@ -69,7 +71,9 @@ theorem signBit_chi (u : ZMod 2) : signBit (chi u) = u := by
 
 /-- **A self-corrected read is right.** The decoded-level restatement of
 `local_correctability`: the value returned is the codeword's bit, read as a
-sign. -/
+sign.
+@isnad1 id=le.2h5v.s7.17956c7ec8e0 from=translated src=- shape=e6119d7b vocab=89732ff8
+-/
 theorem prob_read_ge {m : ℕ} (f : BooleanFunction m) (_hf : IsBooleanValued f)
     (a : Cube m) {ε : ℝ} (hc : IsClose f (signOf (hadamard a)) ε) (x : Cube m) :
     1 - 2 * ε ≤ Pr[fun r : Cube m => f r * f (x + r) = chi (hadamard a x)] := by
@@ -121,7 +125,9 @@ def ReadsCorrect (a : Cube n) (b : Cube (n * n)) (f : BooleanFunction n)
 /-- **Every read is right, at once.** The query points are chosen by the first
 block and the corrections by the rest, so `prob_blocks_ge` fixes the points
 before the corrections are drawn and the three failure probabilities simply
-add. -/
+add.
+@isnad1 id=le.4h7v.s7.4c6d4e1da813 from=translated src=- shape=386337cf vocab=75e7446f
+-/
 theorem prob_reads_correct (a : Cube n) (b : Cube (n * n))
     (f : BooleanFunction n) (hf : IsBooleanValued f) {ε : ℝ}
     (hfc : IsClose f (signOf (hadamard a)) ε)
@@ -208,7 +214,9 @@ the decoded tables together force the decoded assignment to satisfy the
 constraint.
 
 The gap `4ε + 2ε'` is the price of self-correction: three reads, each wrong
-with probability at most twice the table's distance from its codeword. -/
+with probability at most twice the table's distance from its codeword.
+@isnad1 id=sat.6h8v.s8.7df3b048c9d3 from=translated src=- shape=b29b79c7 vocab=0c500277
+-/
 theorem sat_of_prob_tester (a : Cube n) (b : Cube (n * n)) (C : QuadConstraint n)
     (f : BooleanFunction n) (hf : IsBooleanValued f) {ε : ℝ}
     (hfc : IsClose f (signOf (hadamard a)) ε)
@@ -223,7 +231,9 @@ theorem sat_of_prob_tester (a : Cube n) (b : Cube (n * n)) (C : QuadConstraint n
 
 /-! ### Completeness -/
 
-/-- A Hadamard codeword is linear in the query point. -/
+/-- A Hadamard codeword is linear in the query point.
+@isnad1 id=eq.0h4v.s7.f666a55a53c2 from=translated src=- shape=6ac010cf vocab=46140595
+-/
 theorem hadamard_add_right {m : ℕ} (a x r : Cube m) :
     hadamard a (x + r) = hadamard a x + hadamard a r := by
   show ∑ i, a i * (x i + r i) = (∑ i, a i * x i) + (∑ i, a i * r i)
@@ -232,7 +242,9 @@ theorem hadamard_add_right {m : ℕ} (a x r : Cube m) :
 
 /-- **Self-correction is exact on an honest table.** The two reads are
 `chi ⟨a, r⟩` and `chi (⟨a, x⟩ + ⟨a, r⟩)`, and their product telescopes because
-`chi` turns the `𝔽₂` sum into a product of signs and `2⟨a, r⟩ = 0`. -/
+`chi` turns the `𝔽₂` sum into a product of signs and `2⟨a, r⟩ = 0`.
+@isnad1 id=eq.0h4v.s6.1b5ee053f57b from=translated src=- shape=15dd1461 vocab=a732f80c
+-/
 theorem corrected_read_honest {m : ℕ} (a x r : Cube m) :
     signOf (hadamard a) r * signOf (hadamard a) (x + r) = chi (hadamard a x) := by
   show chi (hadamard a r) * chi (hadamard a (x + r)) = chi (hadamard a x)
@@ -245,7 +257,9 @@ theorem corrected_read_honest {m : ℕ} (a x r : Cube m) :
       = hadamard a x + (hadamard a r + hadamard a r) := by ring
     _ = hadamard a x := by rw [h2, add_zero]
 
-/-- **The honest proof passes every read.** -/
+/-- **The honest proof passes every read.**
+@isnad1 id=readscor.0h3v.s6.1e13a3d3888e from=translated src=- shape=7df45cbc vocab=f5b1544e
+-/
 theorem readsCorrect_of_honest (a : Cube n) (z : Cube ((n + n) + (n + (n + n * n)))) :
     ReadsCorrect a (tensorAssign a) (signOf (hadamard a))
       (signOf (hadamard (tensorAssign a))) z :=
@@ -254,7 +268,9 @@ theorem readsCorrect_of_honest (a : Cube n) (z : Cube ((n + n) + (n + (n + n * n
 
 /-- **Completeness of the tester as it runs.** The honest proof — the Hadamard
 encoding of an assignment together with the encoding of its tensor square — is
-accepted on every random string, so with probability one. -/
+accepted on every random string, so with probability one.
+@isnad1 id=testerac.0h3v.s6.1fd8ea5fafe3 from=translated src=- shape=e4683219 vocab=6430b746
+-/
 theorem testerAccepts_of_honest (a : Cube n) (z : Cube ((n + n) + (n + (n + n * n)))) :
     TesterAccepts (signOf (hadamard a)) (signOf (hadamard (tensorAssign a))) z := by
   have hr := readsCorrect_of_honest a z
@@ -263,7 +279,9 @@ theorem testerAccepts_of_honest (a : Cube n) (z : Cube ((n + n) + (n + (n + n * 
   rw [hr.1, hr.2.1, hr.2.2, signBit_chi, signBit_chi, signBit_chi]
   exact hadamard_tensor a (qX z) (qY z)
 
-/-- The honest proof is accepted with probability one. -/
+/-- The honest proof is accepted with probability one.
+@isnad1 id=eq.0h2v.s6.7b17d4eb1f10 from=translated src=- shape=8c2363d9 vocab=510ab705
+-/
 theorem prob_testerAccepts_of_honest (a : Cube n) :
     Pr[TesterAccepts (signOf (hadamard a)) (signOf (hadamard (tensorAssign a)))] = 1 :=
   prob_of_forall (testerAccepts_of_honest a)
@@ -279,7 +297,9 @@ def ConstraintAccepts (f : BooleanFunction n) (g : BooleanFunction (n * n))
       + signBit (f (leftBlock z) * f (C.lin + leftBlock z)) + C.const = 0
 
 /-- Both reads of the constraint check are right except with probability
-`2ε + 2ε'`. -/
+`2ε + 2ε'`.
+@isnad1 id=le.4h8v.s8.fae1b8e7af34 from=translated src=- shape=28ee1b0a vocab=369eb714
+-/
 theorem prob_constraint_reads (a : Cube n) (b : Cube (n * n)) (C : QuadConstraint n)
     (f : BooleanFunction n) (hf : IsBooleanValued f) {ε : ℝ}
     (hfc : IsClose f (signOf (hadamard a)) ε)
@@ -307,7 +327,9 @@ theorem prob_constraint_reads (a : Cube n) (b : Cube (n * n)) (C : QuadConstrain
 /-- **The constraint check is decisive.** Its conclusion — that the decoded
 tables satisfy the constraint — does not depend on the randomness, so it is
 enough that *some* random string both passes the check and has correct reads.
-That happens as soon as the check passes more often than the reads fail. -/
+That happens as soon as the check passes more often than the reads fail.
+@isnad1 id=eq.5h8v.s7.e13c7bf0f162 from=translated src=- shape=2ce7f116 vocab=a190ba7c
+-/
 theorem checkValue_eq_zero_of_prob (a : Cube n) (b : Cube (n * n)) (C : QuadConstraint n)
     (f : BooleanFunction n) (hf : IsBooleanValued f) {ε : ℝ}
     (hfc : IsClose f (signOf (hadamard a)) ε)

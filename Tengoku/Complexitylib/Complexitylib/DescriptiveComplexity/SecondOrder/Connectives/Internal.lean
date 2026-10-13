@@ -18,6 +18,9 @@ public section
 
 namespace Complexity.DescriptiveComplexity
 
+/--
+@isnad1 id=eq.0h6v.s5.a83948fe9a8d from=translated src=- shape=432fdb98 vocab=e77f0aab
+-/
 theorem size_mergeExist_internal {V : Vocabulary} (isConjunction : Bool)
     {rctx : List Nat} {n : Nat} (φ ψ : SOFormula V rctx n) :
     (φ.mergeExist isConjunction ψ).size = φ.size + ψ.size + 1 := by
@@ -29,6 +32,9 @@ private theorem matrix_of_existSO {V : Vocabulary} {rctx : List Nat} {n : Nat}
   cases φ <;> try exact h
   exact hn _ _ rfl
 
+/--
+@isnad1 id=isexists.2h6v.s5.03f7d4480887 from=translated src=- shape=e637e83b vocab=a81b2a76
+-/
 theorem isExistSO_mergeExist_internal {V : Vocabulary} (isConjunction : Bool)
     {rctx : List Nat} {n : Nat} (φ ψ : SOFormula V rctx n) :
     φ.IsExistSO → ψ.IsExistSO → (φ.mergeExist isConjunction ψ).IsExistSO := by
@@ -46,6 +52,9 @@ theorem isExistSO_mergeExist_internal {V : Vocabulary} (isConjunction : Bool)
     intro hφ hψ
     exact ⟨matrix_of_existSO φ hφ hnφ, matrix_of_existSO ψ hψ hnψ⟩
 
+/--
+@isnad1 id=iff.0h9v.s6.d4bd0c416267 from=translated src=- shape=4d347741 vocab=9e964a61
+-/
 theorem mergeExist_sat_internal {V : Vocabulary} (isConjunction : Bool)
     {rctx : List Nat} {n : Nat} (φ ψ : SOFormula V rctx n) (A : FinStruct V) :
     ∀ (σ : Env A.card n) (ρ : REnv A.card rctx),

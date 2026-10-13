@@ -20,6 +20,9 @@ public section
 
 namespace Complexity.DescriptiveComplexity
 
+/--
+@isnad1 id=eq.0h3v.s5.0fefcf49a797 from=translated src=- shape=e6a2d7d5 vocab=d89bd532
+-/
 theorem tupleIndex_eq_sum_internal (card : Nat) {k : Nat} (args : Fin k → Nat) :
     tupleIndex card args = ∑ i : Fin k, args i * card ^ i.val := by
   induction k with
@@ -32,6 +35,9 @@ theorem tupleIndex_eq_sum_internal (card : Nat) {k : Nat} (args : Fin k → Nat)
     intro i _
     ac_rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.d9be9fea06e4 from=translated src=- shape=0e88fbe5 vocab=04872815
+-/
 theorem tupleDigits_eq_div_pow_internal (card k index : Nat) (i : Fin k) :
     tupleDigits card k index i = index / card ^ i.val % card := by
   induction k generalizing index with
@@ -42,6 +48,9 @@ theorem tupleDigits_eq_div_pow_internal (card k index : Nat) (i : Fin k) :
     · simp only [tupleDigits, Fin.cons_succ, ih, Fin.val_succ, pow_succ',
         Nat.div_div_eq_div_mul]
 
+/--
+@isnad1 id=eq.1h6v.s7.637ee4207c22 from=translated src=- shape=44e46c56 vocab=be45dfde
+-/
 theorem getElem?_flatMap_offset_internal {α β : Type} (xs : List α) (f : α → List β)
     (i : Fin xs.length) (j : Nat) (hj : j < (f xs[i.val]).length) :
     (xs.flatMap f)[((xs.take i.val).map fun x => (f x).length).sum + j]? =
@@ -59,6 +68,9 @@ theorem getElem?_flatMap_offset_internal {α β : Type} (xs : List α) (f : α �
       simp only [Nat.add_assoc, Nat.add_sub_cancel_left]
       exact ih ⟨i, by simpa using hi⟩ hj
 
+/--
+@isnad1 id=lt.0h3v.s5.4131f8ff9dd9 from=translated src=- shape=778d9573 vocab=a419774c
+-/
 theorem tupleIndex_lt_internal {card k : Nat} (args : Fin k → Fin card) :
     tupleIndex card (fun i => (args i).val) < card ^ k := by
   induction k with
@@ -71,6 +83,9 @@ theorem tupleIndex_lt_internal {card k : Nat} (args : Fin k → Fin card) :
     simp only [tupleIndex, Nat.pow_succ, Nat.mul_comm (card ^ k) card]
     omega
 
+/--
+@isnad1 id=eq.0h3v.s6.eb23d2c87e5e from=translated src=- shape=3b96873d vocab=fdd369cb
+-/
 theorem getElem?_allTuples_index_internal {card k : Nat} (args : Fin k → Fin card) :
     (allTuples card k)[tupleIndex card (fun i => (args i).val)]? = some args := by
   induction k with
@@ -103,6 +118,9 @@ theorem getElem?_allTuples_index_internal {card k : Nat} (args : Fin k → Fin c
     simpa only [allTuples, tupleIndex, pos, tail, nsmul_eq_mul, Nat.cast_id,
       Nat.mul_comm, Nat.add_comm] using h
 
+/--
+@isnad1 id=lt.1h4v.s4.26e5cbacdf38 from=translated src=- shape=95719d25 vocab=4eed8b19
+-/
 theorem tupleDigits_lt_internal {card : Nat} (hcard : 0 < card) (k index : Nat)
     (i : Fin k) : tupleDigits card k index i < card := by
   induction k generalizing index with
@@ -112,6 +130,9 @@ theorem tupleDigits_lt_internal {card : Nat} (hcard : 0 < card) (k index : Nat)
     · exact Nat.mod_lt _ hcard
     · exact ih (index / card) j
 
+/--
+@isnad1 id=eq.2h3v.s5.f3aea9582d0a from=translated src=- shape=be560dc8 vocab=1f1f8cd7
+-/
 theorem tupleIndex_tupleDigits_internal {card : Nat} (hcard : 0 < card) (k index : Nat)
     (hi : index < card ^ k) : tupleIndex card (tupleDigits card k index) = index := by
   induction k generalizing index with
@@ -126,6 +147,9 @@ theorem tupleIndex_tupleDigits_internal {card : Nat} (hcard : 0 < card) (k index
     simp only [tupleDigits, tupleIndex, Fin.cons_zero, Fin.cons_succ, ih _ hdiv]
     exact Nat.mod_add_div index card
 
+/--
+@isnad1 id=eq.1h4v.s6.a53e1c1d6e62 from=translated src=- shape=597c7270 vocab=5d5c0960
+-/
 theorem map_allTuples_eq_range_internal {α : Type} {card : Nat} (hcard : 0 < card)
     (k : Nat) (f : (Fin k → Nat) → α) :
     (allTuples card k).map (fun args => f (fun i => (args i).val)) =

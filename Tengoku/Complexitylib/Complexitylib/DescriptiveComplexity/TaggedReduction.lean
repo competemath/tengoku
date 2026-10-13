@@ -71,17 +71,23 @@ end TaggedFOReduction
 def TaggedFOReduces (P : DecisionProblem V) (Q : DecisionProblem W) : Prop :=
   Nonempty (TaggedFOReduction P Q)
 
-/-- Tagged first-order reducibility is reflexive. -/
+/-- Tagged first-order reducibility is reflexive.
+@isnad1 id=taggedfo.0h2v.s3.de2b4bb3448e from=translated src=- shape=afaf5e02 vocab=5ec3bc2c
+-/
 theorem TaggedFOReduces.refl (P : DecisionProblem V) : TaggedFOReduces P P :=
   ⟨TaggedFOReduction.refl P⟩
 
-/-- Tagged first-order reducibility is transitive, even across vocabularies. -/
+/-- Tagged first-order reducibility is transitive, even across vocabularies.
+@isnad1 id=taggedfo.2h6v.s5.611c5ce97b95 from=translated src=- shape=f1fce897 vocab=5ec3bc2c
+-/
 theorem TaggedFOReduces.trans {P : DecisionProblem U} {Q : DecisionProblem V}
     {R : DecisionProblem W} (h₁ : TaggedFOReduces P Q) (h₂ : TaggedFOReduces Q R) :
     TaggedFOReduces P R := by
   exact h₁.elim fun f => h₂.elim fun g => ⟨f.trans g⟩
 
-/-- Tagged first-order reducibility respects complementation. -/
+/-- Tagged first-order reducibility respects complementation.
+@isnad1 id=taggedfo.1h4v.s4.4adf47a8e81d from=translated src=- shape=a5680617 vocab=6112cfea
+-/
 theorem TaggedFOReduces.complement {P : DecisionProblem V} {Q : DecisionProblem W}
     (h : TaggedFOReduces P Q) : TaggedFOReduces P.complement Q.complement := by
   exact h.map TaggedFOReduction.complement
@@ -92,13 +98,17 @@ def TaggedFOReduces.preorder (V : Vocabulary) : Preorder (DecisionProblem V) whe
   le_refl := TaggedFOReduces.refl
   le_trans _ _ _ := TaggedFOReduces.trans
 
-/-- Every universe-preserving reduction between invariant problems gives a tagged reduction. -/
+/-- Every universe-preserving reduction between invariant problems gives a tagged reduction.
+@isnad1 id=taggedfo.1h4v.s4.1b078b0918e5 from=translated src=- shape=e062b7e0 vocab=0daf546b
+-/
 theorem FOReduces.toTaggedFOReduces {P : DecisionProblem V} {Q : DecisionProblem W}
     (h : FOReduces P.toQuery Q.toQuery) : TaggedFOReduces P Q := by
   rcases h with ⟨I, hI⟩
   exact ⟨⟨1, 1, I.toTagged, fun A => (hI A).trans (I.toTagged_query A Q.invariant).symm⟩⟩
 
-/-- FO definability is closed downwards under tagged first-order reductions. -/
+/-- FO definability is closed downwards under tagged first-order reductions.
+@isnad1 id=fodefina.2h4v.s4.af59f0c672f6 from=translated src=- shape=fd6020cc vocab=f43fca3b
+-/
 theorem FODefinable.of_taggedReduces {P : DecisionProblem V} {Q : DecisionProblem W}
     (hQ : FODefinable Q.toQuery) (h : TaggedFOReduces P Q) : FODefinable P.toQuery := by
   rcases h with ⟨f⟩

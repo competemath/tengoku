@@ -78,7 +78,9 @@ def basisVec (i : Fin n) : Cube n := fun j => if j = i then 1 else 0
 
 /-- **Reading the assignment.** The decoded parity function, evaluated at the
 `i`-th basis vector, is `-1` exactly when `i` belongs to the coordinate set: the
-assignment is read off the proof one coordinate at a time. -/
+assignment is read off the proof one coordinate at a time.
+@isnad1 id=eq.0h3v.s5.fb1d650b1ab4 from=translated src=- shape=868bd87b vocab=ec7febd9
+-/
 theorem parityFun_basis (S : Finset (Fin n)) (i : Fin n) :
     (χ S) (basisVec i) = if i ∈ S then -1 else 1 := by
   classical
@@ -116,6 +118,9 @@ abbrev BitFun (n : ℕ) : Type := Cube n → ZMod 2
 /-- The `±1` encoding of an `𝔽₂`-valued function. -/
 noncomputable def signOf (F : BitFun n) : BooleanFunction n := fun x => chi (F x)
 
+/--
+@isnad1 id=eq.0h3v.s6.925e3a648c79 from=translated src=- shape=78b872e8 vocab=18f993c7
+-/
 theorem chi_sum {ι : Type*} (s : Finset ι) (f : ι → ZMod 2) :
     chi (∑ i ∈ s, f i) = ∏ i ∈ s, chi (f i) := by
   classical
@@ -131,7 +136,9 @@ def hadamard (a : Cube n) : BitFun n := fun x => ∑ i, a i * x i
 /-- **The Hadamard code is a parity function.** Its `±1` encoding is `χ` of the
 support of the assignment — so the Fourier layer's linearity results apply to
 Hadamard proofs verbatim, and the decoded coordinate set is the assignment's
-support. -/
+support.
+@isnad1 id=eq.0h2v.s7.9aebc35f0cd5 from=translated src=- shape=4ca14b0e vocab=c692589c
+-/
 theorem signOf_hadamard (a : Cube n) :
     signOf (hadamard a) = χ (Finset.univ.filter fun i => a i = 1) := by
   classical
@@ -170,7 +177,9 @@ def tensorAssign (a : Cube n) : Cube (n * n) := tensor a a
 is the product of the two linear readings. This is the check that ties the
 quadratic table to the linear one, and it is a statement about *bits*: over
 `𝔽₂` the right-hand side is a product, which is why the tester's checks cannot
-be phrased in the `±1` encoding. -/
+be phrased in the `±1` encoding.
+@isnad1 id=eq.0h4v.s6.b08e8945bc6d from=translated src=- shape=0e1a607f vocab=5ddd7384
+-/
 theorem hadamard_tensor (a x y : Cube n) :
     hadamard (tensorAssign a) (tensor x y) = hadamard a x * hadamard a y := by
   classical
@@ -195,7 +204,9 @@ def indicatorAssign (S : Finset (Fin n)) : Cube n := fun i => if i ∈ S then 1 
 
 /-- **Every parity function is a Hadamard codeword.** With `signOf_hadamard`
 this makes the correspondence between assignments and parity functions a
-bijection, so BLR's coordinate set can be handed back as an assignment. -/
+bijection, so BLR's coordinate set can be handed back as an assignment.
+@isnad1 id=eq.0h2v.s4.9c4cf7d96dad from=translated src=- shape=a29caa50 vocab=a9338fcb
+-/
 theorem parity_eq_signOf_hadamard (S : Finset (Fin n)) :
     (χ S) = signOf (hadamard (indicatorAssign S)) := by
   classical
@@ -209,7 +220,9 @@ theorem parity_eq_signOf_hadamard (S : Finset (Fin n)) :
 
 /-! ### Consistency forces the tensor -/
 
-/-- Reading a Hadamard table at a basis vector returns that coordinate. -/
+/-- Reading a Hadamard table at a basis vector returns that coordinate.
+@isnad1 id=eq.0h3v.s4.12d287fe2ae4 from=translated src=- shape=a48fc6a6 vocab=849c8fbb
+-/
 theorem hadamard_basisVec (a : Cube n) (i : Fin n) : hadamard a (basisVec i) = a i := by
   classical
   show ∑ j, a j * (basisVec i) j = a i
@@ -223,7 +236,9 @@ theorem hadamard_basisVec (a : Cube n) (i : Fin n) : hadamard a (basisVec i) = a
     exact absurd (Finset.mem_univ i) hni
 
 /-- The outer product of two basis vectors is the basis vector at the
-corresponding pair index. -/
+corresponding pair index.
+@isnad1 id=eq.0h3v.s7.72a422687fc2 from=translated src=- shape=e7f61d02 vocab=4bcbe0c7
+-/
 theorem tensor_basisVec (i j : Fin n) :
     tensor (basisVec i) (basisVec j) = basisVec (finProdFinEquiv (i, j)) := by
   classical
@@ -293,7 +308,9 @@ def QuadConstraint.Sat (C : QuadConstraint n) (a : Cube n) : Prop := C.eval a = 
 def checkValue (F : BitFun (n * n)) (f : BitFun n) (C : QuadConstraint n) : ZMod 2 :=
   F C.quad + f C.lin + C.const
 
-/-- On honest tables the check *is* the constraint — this is completeness. -/
+/-- On honest tables the check *is* the constraint — this is completeness.
+@isnad1 id=eq.0h3v.s5.02608653246d from=translated src=- shape=6b58ba7e vocab=df3bc915
+-/
 theorem checkValue_hadamard (a : Cube n) (C : QuadConstraint n) :
     checkValue (hadamard (tensorAssign a)) (hadamard a) C = C.eval a := rfl
 
@@ -301,7 +318,9 @@ theorem checkValue_hadamard (a : Cube n) (C : QuadConstraint n) :
 the consistency check holds everywhere, and the constraint check passes, then
 the decoded assignment satisfies the constraint. The prover's only freedom is
 the assignment itself: consistency pins the quadratic table to the tensor of the
-linear one, and then the check computes the constraint honestly. -/
+linear one, and then the check computes the constraint honestly.
+@isnad1 id=sat.2h4v.s7.0df990639341 from=translated src=- shape=2d97ec68 vocab=445e6d39
+-/
 theorem sat_of_checks (a : Cube n) (b : Cube (n * n)) (C : QuadConstraint n)
     (hcons : ∀ x y : Cube n, hadamard b (tensor x y) = hadamard a x * hadamard a y)
     (hcheck : checkValue (hadamard b) (hadamard a) C = 0) :
@@ -310,7 +329,9 @@ theorem sat_of_checks (a : Cube n) (b : Cube (n * n)) (C : QuadConstraint n)
   exact hcheck
 
 /-- The Hadamard encoding of an assignment is linear, so it passes the
-linearity test with certainty. -/
+linearity test with certainty.
+@isnad1 id=islinear.0h2v.s3.848100f11aac from=translated src=- shape=27ce0272 vocab=fd2b1904
+-/
 theorem isLinear_signOf_hadamard (a : Cube n) : IsLinear (signOf (hadamard a)) := by
   classical
   refine ⟨Finset.univ.filter fun i => a i = 1, fun x => ?_⟩
@@ -318,7 +339,9 @@ theorem isLinear_signOf_hadamard (a : Cube n) : IsLinear (signOf (hadamard a)) :
 
 /-- **Tester completeness, exact form.** The honest tables of a satisfying
 assignment pass the linearity test with certainty, satisfy the consistency check
-everywhere, and pass the constraint check. -/
+everywhere, and pass the constraint check.
+@isnad1 id=and.1h3v.s7.a13a416077f0 from=translated src=- shape=61d1b2e0 vocab=f03d2083
+-/
 theorem checks_of_sat (a : Cube n) (C : QuadConstraint n) (h : C.Sat a) :
     blrAcceptProb (signOf (hadamard a)) = 1
       ∧ (∀ x y : Cube n,
@@ -332,7 +355,9 @@ theorem checks_of_sat (a : Cube n) (C : QuadConstraint n) (h : C.Sat a) :
 
 /-! ### A nonzero linear form is balanced -/
 
-/-- The `±1` encoding turns a bit into `1 - 2·bit`. -/
+/-- The `±1` encoding turns a bit into `1 - 2·bit`.
+@isnad1 id=eq.0h1v.s7.5bb4bc4a58d7 from=translated src=- shape=ea8c187b vocab=10c124eb
+-/
 theorem chi_eq_one_sub_two (v : ZMod 2) :
     chi v = 1 - 2 * (if v ≠ 0 then (1 : ℝ) else 0) := by
   by_cases h : v = 0
@@ -343,11 +368,16 @@ theorem chi_eq_one_sub_two (v : ZMod 2) :
     rw [hchi]
     norm_num
 
+/--
+@isnad1 id=eq.0h1v.s5.36ad3a2c5495 from=translated src=- shape=5b09d1d5 vocab=b54fb66f
+-/
 theorem card_cube (n : ℕ) : Fintype.card (Cube n) = 2 ^ n := by
   show Fintype.card (Fin n → ZMod 2) = 2 ^ n
   rw [Fintype.card_fun, ZMod.card, Fintype.card_fin]
 
-/-- The expectation of a bit function's sign encoding. -/
+/-- The expectation of a bit function's sign encoding.
+@isnad1 id=eq.0h2v.s6.369ace9400a6 from=translated src=- shape=ac6353e4 vocab=0566badf
+-/
 theorem expect_signOf (F : BitFun n) :
     𝔼[signOf F] = 1 - 2 * Pr[fun x => F x ≠ 0] := by
   classical
@@ -365,7 +395,9 @@ theorem expect_signOf (F : BitFun n) :
 
 /-- **A nonzero linear form is balanced.** Over `𝔽₂` a nonzero linear form takes
 each value on exactly half the cube — the counting fact behind every "the check
-cannot pass too often unless it always passes" step. -/
+cannot pass too often unless it always passes" step.
+@isnad1 id=eq.1h2v.s7.e7d291bec50d from=translated src=- shape=b5872154 vocab=cb6a6648
+-/
 theorem prob_hadamard_ne_zero (a : Cube n) (ha : a ≠ 0) :
     Pr[fun x => hadamard a x ≠ 0] = 1 / 2 := by
   classical
@@ -395,7 +427,9 @@ def tensorRow (c : Cube (n * n)) (y : Cube n) : Cube n :=
 /-- **Row decomposition.** Reading the quadratic table at an outer product is a
 *linear* reading in the first argument, with coefficients contracted against the
 second. This is what lets the one-variable balance lemma be applied inside a
-two-variable check. -/
+two-variable check.
+@isnad1 id=eq.0h4v.s5.484af7765971 from=translated src=- shape=ab837a4d vocab=3f9f605a
+-/
 theorem hadamard_tensor_row (c : Cube (n * n)) (x y : Cube n) :
     hadamard c (tensor x y) = hadamard (tensorRow c y) x := by
   classical
@@ -426,7 +460,9 @@ theorem hadamard_tensor_row (c : Cube (n * n)) (x y : Cube n) :
   ring
 
 /-- Probability is monotone. The Fourier layer has the union bound and
-complements but not this. -/
+complements but not this.
+@isnad1 id=le.0h4v.s5.f4f7ccc17665 from=translated src=- shape=f55c9675 vocab=59bb0d39
+-/
 theorem prob_mono {P Q : Cube n → Prop} (h : ∀ x, P x → Q x) : Pr[P] ≤ Pr[Q] := by
   classical
   simp only [BooleanAnalysis.prob, expect_unfold, BooleanAnalysis.indicator]
@@ -438,7 +474,9 @@ theorem prob_mono {P Q : Cube n → Prop} (h : ∀ x, P x → Q x) : Pr[P] ≤ P
 
 /-- **The bilinear form is nonzero on many rows.** If the quadratic table's
 error `c` is nonzero, then for at least half the `y` the contracted linear form
-is nonzero — the first half of the `1/4` bound. -/
+is nonzero — the first half of the `1/4` bound.
+@isnad1 id=le.1h2v.s7.2ef875ef3b6d from=translated src=- shape=1e505aef vocab=9f01a833
+-/
 theorem prob_tensorRow_ne_zero (c : Cube (n * n)) (hc : c ≠ 0) :
     1 / 2 ≤ Pr[fun y => tensorRow c y ≠ 0] := by
   classical
@@ -467,10 +505,16 @@ theorem prob_tensorRow_ne_zero (c : Cube (n * n)) (hc : c ≠ 0) :
   calc (1 : ℝ) / 2 = Pr[fun y => hadamard d y ≠ 0] := (prob_hadamard_ne_zero d hdne).symm
     _ ≤ Pr[fun y => tensorRow c y ≠ 0] := prob_mono hsub
 
+/--
+@isnad1 id=le.1h3v.s4.deb85f57e895 from=translated src=- shape=fb3f879c vocab=23e3cbe2
+-/
 theorem expect_mono {f g : BooleanFunction n} (h : ∀ x, f x ≤ g x) : 𝔼[f] ≤ 𝔼[g] := by
   rw [expect_unfold, expect_unfold]
   exact mul_le_mul_of_nonneg_left (Finset.sum_le_sum fun x _ => h x) (by positivity)
 
+/--
+@isnad1 id=eq.0h3v.s5.2635e107b73a from=translated src=- shape=29eb9dfb vocab=32e3c615
+-/
 theorem expect_const_mul (c : ℝ) (f : BooleanFunction n) :
     𝔼[fun x => c * f x] = c * 𝔼[f] := by
   rw [expect_unfold (f := fun x : Cube n => c * f x), expect_unfold (f := f),
@@ -484,7 +528,9 @@ form is nonzero on exactly half the first arguments.
 This is the quantitative heart of the consistency check: a prover whose
 quadratic table differs from the tensor square fails the check on at least a
 quarter of the pairs, so passing it more often than that forces the tables to
-agree exactly. -/
+agree exactly.
+@isnad1 id=le.1h2v.s7.f6823c3aaf85 from=translated src=- shape=150f9bfd vocab=4d1955fa
+-/
 theorem prob₂_tensor_ne_zero (c : Cube (n * n)) (hc : c ≠ 0) :
     1 / 4 ≤ Pr₂[fun y x => hadamard c (tensor x y) ≠ 0] := by
   classical
@@ -516,24 +562,36 @@ theorem prob₂_tensor_ne_zero (c : Cube (n * n)) (hc : c ≠ 0) :
 
 /-! ### Approximate consistency -/
 
+/--
+@isnad1 id=eq.0h4v.s7.f08376fe5613 from=translated src=- shape=ff9f7413 vocab=46140595
+-/
 theorem hadamard_add {m : ℕ} (b c z : Cube m) :
     hadamard (b + c) z = hadamard b z + hadamard c z := by
   show ∑ i, (b i + c i) * z i = (∑ i, b i * z i) + (∑ i, c i * z i)
   rw [← Finset.sum_add_distrib]
   exact Finset.sum_congr rfl fun i _ => by ring
 
+/--
+@isnad1 id=eq.0h3v.s5.eebd3f8c4e68 from=translated src=- shape=fb3a14cc vocab=9a2dc3bf
+-/
 theorem expect_add (f g : BooleanFunction n) :
     𝔼[fun x => f x + g x] = 𝔼[f] + 𝔼[g] := by
   rw [expect_unfold (f := fun x : Cube n => f x + g x), expect_unfold (f := f),
     expect_unfold (f := g), ← mul_add,
     ← Finset.sum_add_distrib (f := fun x : Cube n => f x) (g := fun x : Cube n => g x)]
 
+/--
+@isnad1 id=eq.0h1v.s4.6d0bcd26a34d from=translated src=- shape=7646c661 vocab=e4975603
+-/
 theorem expect_one : 𝔼[fun _ : Cube n => (1 : ℝ)] = 1 := by
   rw [expect_unfold (f := fun _ : Cube n => (1 : ℝ)), Finset.sum_const, Finset.card_univ,
     card_cube, nsmul_eq_mul, mul_one]
   push_cast
   field_simp
 
+/--
+@isnad1 id=eq.0h2v.s5.3234e76987c5 from=translated src=- shape=1b304146 vocab=1909e38f
+-/
 theorem prob₂_compl (P : Cube n → Cube n → Prop) :
     Pr₂[P] + Pr₂[fun x y => ¬ P x y] = 1 := by
   classical
@@ -581,7 +639,9 @@ theorem eq_tensorAssign_of_prob_consistent (a : Cube n) (b : Cube (n * n))
 
 /-- **A corrected read is right.** Reading a close-to-linear table by
 self-correction, with the randomness taken from the first block of a bundled
-random string, returns the codeword's value except with probability `2ε`. -/
+random string, returns the codeword's value except with probability `2ε`.
+@isnad1 id=le.2h5v.s7.8703977a0508 from=translated src=- shape=5ac34fa5 vocab=f22b52cc
+-/
 theorem prob_corrected_read_left (f : BooleanFunction n) (_hf : IsBooleanValued f)
     (S : Finset (Fin n)) {ε : ℝ} (hclose : IsClose f (χ S) ε) (x : Cube n) :
     1 - 2 * ε ≤ Pr[fun z : Cube (n + n) =>
@@ -592,7 +652,9 @@ theorem prob_corrected_read_left (f : BooleanFunction n) (_hf : IsBooleanValued 
   rw [h]
   exact local_correctability f S hclose x
 
-/-- The same for the second block. -/
+/-- The same for the second block.
+@isnad1 id=le.2h5v.s7.feb647e6c46f from=translated src=- shape=5ac34fa5 vocab=2f233f3d
+-/
 theorem prob_corrected_read_right (f : BooleanFunction n) (_hf : IsBooleanValued f)
     (S : Finset (Fin n)) {ε : ℝ} (hclose : IsClose f (χ S) ε) (x : Cube n) :
     1 - 2 * ε ≤ Pr[fun z : Cube (n + n) =>
@@ -605,7 +667,9 @@ theorem prob_corrected_read_right (f : BooleanFunction n) (_hf : IsBooleanValued
 
 /-- **Two corrected reads are both right.** The union bound over the two blocks:
 bundling the randomness is what makes this an ordinary one-variable union bound
-rather than a product-measure argument. -/
+rather than a product-measure argument.
+@isnad1 id=le.2h6v.s8.9e3b305080e9 from=translated src=- shape=84f29ee4 vocab=5863c879
+-/
 theorem prob_two_corrected_reads (f : BooleanFunction n) (hf : IsBooleanValued f)
     (S : Finset (Fin n)) {ε : ℝ} (hclose : IsClose f (χ S) ε) (x x' : Cube n) :
     1 - 4 * ε ≤ Pr[fun z : Cube (n + n) =>
@@ -646,7 +710,9 @@ down exactly, and then the constraint check computes the constraint honestly.
 
 Together with `checks_of_sat` this is the assignment tester's guarantee at the
 level of decoded tables: the prover's only freedom is which assignment to encode,
-and if the checks pass, that assignment satisfies the constraint. -/
+and if the checks pass, that assignment satisfies the constraint.
+@isnad1 id=sat.2h4v.s7.8ed484703cdf from=translated src=- shape=5011f4f7 vocab=ec84fc75
+-/
 theorem sat_of_prob_checks (a : Cube n) (b : Cube (n * n)) (C : QuadConstraint n)
     (hcons : 3 / 4 < Pr₂[fun y x =>
       hadamard b (tensor x y) = hadamard a x * hadamard a y])
@@ -656,6 +722,9 @@ theorem sat_of_prob_checks (a : Cube n) (b : Cube (n * n)) (C : QuadConstraint n
   rw [eq_tensorAssign_of_prob_consistent a b hcons]
   exact hadamard_tensor a x y
 
+/--
+@isnad1 id=eq.0h3v.s5.bb881af7232e from=translated src=- shape=02ddc5a1 vocab=0b1f5235
+-/
 theorem prob₂_of_forall {P : Cube n → Cube n → Prop} (h : ∀ x y, P x y) : Pr₂[P] = 1 := by
   classical
   rw [BooleanAnalysis.prob₂]
@@ -668,7 +737,9 @@ theorem prob₂_of_forall {P : Cube n → Cube n → Prop} (h : ∀ x y, P x y) 
     _ = 1 := expect_one
 
 /-- **Completeness of the consistency check.** The honest tables pass it on every
-pair, so the tester accepts a correct proof with certainty. -/
+pair, so the tester accepts a correct proof with certainty.
+@isnad1 id=eq.0h2v.s6.264a105fa6e8 from=translated src=- shape=45ecde04 vocab=02131508
+-/
 theorem prob_consistency_of_honest (a : Cube n) :
     Pr₂[fun y x =>
       hadamard (tensorAssign a) (tensor x y) = hadamard a x * hadamard a y] = 1 :=
@@ -680,7 +751,9 @@ which is what `hblk` asks and what `CubeBlocks` supplies — every self-correcte
 read returns the codeword's value, except with probability `2kε`.
 
 Parameterising by the block maps keeps this independent of how many reads the
-tester makes and how the string is carved up. -/
+tester makes and how the string is carved up.
+@isnad1 id=le.3h8v.s7.2543533b5914 from=translated src=- shape=050d7eec vocab=e2d06aa5
+-/
 theorem prob_all_reads {m k : ℕ} (f : BooleanFunction n) (_hf : IsBooleanValued f)
     (S : Finset (Fin n)) {ε : ℝ} (hclose : IsClose f (χ S) ε)
     (blk : Fin k → Cube m → Cube n)

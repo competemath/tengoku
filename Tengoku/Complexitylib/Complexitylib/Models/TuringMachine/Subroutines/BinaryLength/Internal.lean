@@ -360,6 +360,9 @@ private theorem binaryLengthTM_loop_withinAuxSpace (x : List Bool)
 
 /-! ## Public-theorem internals -/
 
+/--
+@isnad1 id=le.0h1v.s5.004556ed1633 from=translated src=- shape=5896f657 vocab=a0fbaef7
+-/
 theorem binaryLengthTime_le_internal (length : ℕ) :
     binaryLengthTime length ≤ 2 + length * (2 * length.size + 4) := by
   have loopBound : ∀ count value, value + count ≤ length →
@@ -392,6 +395,9 @@ theorem binaryLengthTime_le_internal (length : ℕ) :
   rw [binaryLengthTime]
   omega
 
+/--
+@isnad1 id=bigo.0h0v.s3.2ed5009cc51b from=translated src=- shape=0da81500 vocab=899de62f
+-/
 theorem binaryLengthSpace_bigO_log_internal :
     binaryLengthSpace =O (fun length => Nat.log 2 length) := by
   rw [BigO]
@@ -406,6 +412,9 @@ theorem binaryLengthSpace_bigO_log_internal :
     omega
   exact_mod_cast hbound
 
+/--
+@isnad1 id=reachesi.0h3v.s4.9a62a08bf485 from=translated src=- shape=bb857339 vocab=2bd7ce2d
+-/
 theorem binaryLengthTM_reachesIn_internal (counterIdx : Fin n)
     (x : List Bool) :
     (binaryLengthTM counterIdx).reachesIn (binaryLengthTime x.length)
@@ -419,6 +428,9 @@ theorem binaryLengthTM_reachesIn_internal (counterIdx : Fin n)
   have hreach := reachesIn_trans (binaryLengthTM counterIdx) hstart hloop
   simpa [binaryLengthTime] using hreach
 
+/--
+@isnad1 id=ex.0h3v.s7.d84b88afd64b from=translated src=- shape=15915259 vocab=92f0b6f2
+-/
 theorem binaryLengthTM_reachesIn_frame_internal (counterIdx : Fin n)
     (x : List Bool) :
     ∃ c',
@@ -441,6 +453,9 @@ theorem binaryLengthTM_reachesIn_frame_internal (counterIdx : Fin n)
       Cfg.WithinAuxSpace, binaryLengthDoneCfg, binaryLengthStartedBlank] using
       binaryLengthWork_other counterIdx x.length i hi
 
+/--
+@isnad1 id=hoaretim.0h3v.s7.7f05b4b72b78 from=translated src=- shape=53748d54 vocab=4b925e6d
+-/
 theorem binaryLengthTM_hoareTime_internal (counterIdx : Fin n)
     (x : List Bool) :
     (binaryLengthTM counterIdx).HoareTime
@@ -468,6 +483,9 @@ theorem binaryLengthTM_hoareTime_internal (counterIdx : Fin n)
       Cfg.WithinAuxSpace, binaryLengthDoneCfg, binaryLengthStartedBlank] using
       binaryLengthWork_other counterIdx x.length i hi
 
+/--
+@isnad1 id=hoaretim.0h3v.s7.69eae9fe5084 from=translated src=- shape=a744298a vocab=6ec6cd69
+-/
 theorem binaryLengthTM_hoareTimeSpace_internal (counterIdx : Fin n)
     (x : List Bool) :
     (binaryLengthTM counterIdx).HoareTimeSpace
@@ -520,11 +538,17 @@ theorem binaryLengthTM_hoareTimeSpace_internal (counterIdx : Fin n)
     exact binaryLengthTM_loop_withinAuxSpace x counterIdx x.length 0
       tailTime d (by omega) htail htailBound
 
+/--
+@isnad1 id=transduc.0h2v.s3.bb1b577841a2 from=translated src=- shape=20553ef8 vocab=417ce2f5
+-/
 theorem Experimental.binaryLengthRoutine_transducerSafe_internal
     (counterIdx : Fin n) :
     (Experimental.binaryLengthRoutine counterIdx).TransducerSafe := by
   exact .forInput (.call (binarySuccTM_isTransducer counterIdx))
 
+/--
+@isnad1 id=istransd.0h2v.s3.4da618ab8f9d from=translated src=- shape=20553ef8 vocab=67e625a3
+-/
 theorem binaryLengthTM_isTransducer_internal (counterIdx : Fin n) :
     (binaryLengthTM counterIdx).IsTransducer := by
   simpa [binaryLengthTM] using

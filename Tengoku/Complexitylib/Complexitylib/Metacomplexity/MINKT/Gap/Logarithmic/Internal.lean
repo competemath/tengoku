@@ -23,6 +23,9 @@ namespace Logarithmic
 
 namespace Parameters
 
+/--
+@isnad1 id=isadmiss.0h0v.s1.bef831b48ffa from=translated src=- shape=49959d42 vocab=e1784703
+-/
 theorem identity_isAdmissible_internal : identity.IsAdmissible := by
   constructor
   · intro outputLength time
@@ -34,11 +37,17 @@ theorem identity_isAdmissible_internal : identity.IsAdmissible := by
 
 end Parameters
 
+/--
+@isnad1 id=le.1h2v.s3.a07d72168145 from=translated src=- shape=52d6ecca vocab=ec202342
+-/
 theorem transformedTime_ge_internal (parameters : Parameters)
     (hwidening : parameters.IsWidening) (inst : MINKT.Instance) :
     inst.time ≤ parameters.transformedTime inst :=
   hwidening inst.output.length inst.time
 
+/--
+@isnad1 id=iff.0h4v.s4.22048859e2f8 from=translated src=- shape=aa472f79 vocab=cb73c922
+-/
 theorem isNo_iff_no_relaxedWitness_internal {tapes : ℕ}
     (inst : GapMINKT.Instance) (machine : TM tapes)
     (parameters : Parameters) :
@@ -60,6 +69,9 @@ theorem isNo_iff_no_relaxedWitness_internal {tapes : ℕ}
         hcomplexity
     exact hnone ⟨program, hlength, hproduce⟩
 
+/--
+@isnad1 id=not.2h4v.s4.0ee83b6d853b from=translated src=- shape=9bbc9066 vocab=a35b0dbb
+-/
 theorem not_isNo_of_isYes_internal {tapes : ℕ}
     (inst : GapMINKT.Instance) (machine : TM tapes)
     (parameters : Parameters) (hwidening : parameters.IsWidening)
@@ -73,11 +85,17 @@ theorem not_isNo_of_isYes_internal {tapes : ℕ}
     WithTop.coe_le_coe.mpr (Nat.le_add_right _ _)
   exact (not_lt_of_ge (hclock.trans (hyes.trans hslack))) hno
 
+/--
+@isnad1 id=iff.0h3v.s4.d94270e019bf from=translated src=- shape=a584a54e vocab=08a19a05
+-/
 theorem yesLanguage_mem_encode_iff_internal {tapes : ℕ}
     (machine : TM tapes) (inst : GapMINKT.Instance) :
     inst.encode ∈ yesLanguage machine ↔ inst.IsYes machine := by
   exact GapMINKT.yesLanguage_mem_encode_iff_internal machine inst
 
+/--
+@isnad1 id=iff.0h4v.s4.10500d5e42b6 from=translated src=- shape=c66ee9b8 vocab=f62e7edb
+-/
 theorem noLanguage_mem_encode_iff_internal {tapes : ℕ}
     (machine : TM tapes) (parameters : Parameters)
     (inst : GapMINKT.Instance) :
@@ -85,6 +103,9 @@ theorem noLanguage_mem_encode_iff_internal {tapes : ℕ}
       IsNo inst machine parameters := by
   simp [noLanguage, GapMINKT.Instance.decode?_encode_internal]
 
+/--
+@isnad1 id=disjoint.1h3v.s5.a906f5eec6d7 from=translated src=- shape=7c376f8b vocab=746612ea
+-/
 theorem disjoint_yesLanguage_noLanguage_internal {tapes : ℕ}
     (machine : TM tapes) (parameters : Parameters)
     (hwidening : parameters.IsWidening) :
@@ -101,6 +122,9 @@ theorem disjoint_yesLanguage_noLanguage_internal {tapes : ℕ}
       exact not_isNo_of_isYes_internal inst machine parameters hwidening
         hisYes hisNo
 
+/--
+@isnad1 id=le.2h5v.s4.1b822d21dcd3 from=translated src=- shape=11fa6d04 vocab=e1087be1
+-/
 theorem estimator_le_threshold_of_isYes_internal {tapes : ℕ}
     {machine : TM tapes} {parameters : Parameters} {estimate : Estimator}
     (hestimate : estimate.SatisfiesBounds machine parameters)
@@ -108,6 +132,9 @@ theorem estimator_le_threshold_of_isYes_internal {tapes : ℕ}
     estimate inst.base ≤ inst.threshold :=
   WithTop.coe_le_coe.mp ((hestimate inst.base).1.trans hyes)
 
+/--
+@isnad1 id=lt.2h5v.s5.9195385fc67d from=translated src=- shape=98f8a8d1 vocab=ba809e9d
+-/
 theorem threshold_lt_estimator_of_isNo_internal {tapes : ℕ}
     {machine : TM tapes} {parameters : Parameters} {estimate : Estimator}
     (hestimate : estimate.SatisfiesBounds machine parameters)
@@ -123,12 +150,18 @@ theorem threshold_lt_estimator_of_isNo_internal {tapes : ℕ}
   have hlater := hlower.trans (WithTop.coe_le_coe.mpr hsum)
   exact (not_lt_of_ge hlater) hno
 
+/--
+@isnad1 id=iff.0h2v.s4.36ca954608c1 from=translated src=- shape=e31b9f63 vocab=856d2b4b
+-/
 theorem estimatorLanguage_mem_encode_iff_internal (estimate : Estimator)
     (inst : GapMINKT.Instance) :
     inst.encode ∈ estimatorLanguage estimate ↔
       estimate inst.base ≤ inst.threshold := by
   simp [estimatorLanguage, GapMINKT.Instance.decode?_encode_internal]
 
+/--
+@isnad1 id=iff.0h2v.s4.68d419decb7c from=translated src=- shape=f2f3bfeb vocab=cd976b2d
+-/
 theorem decisionOfEstimator_eq_true_iff_internal (estimate : Estimator)
     (bits : List Bool) :
     decisionOfEstimator estimate bits = true ↔
@@ -137,6 +170,9 @@ theorem decisionOfEstimator_eq_true_iff_internal (estimate : Estimator)
   | none => simp [decisionOfEstimator, estimatorLanguage, hdecode]
   | some inst => simp [decisionOfEstimator, estimatorLanguage, hdecode]
 
+/--
+@isnad1 id=le.1h4v.s4.b32ffaaa88d4 from=translated src=- shape=838451a1 vocab=dcca4fb8
+-/
 theorem yesLanguage_subset_estimatorLanguage_internal {tapes : ℕ}
     {machine : TM tapes} {parameters : Parameters} {estimate : Estimator}
     (hestimate : estimate.SatisfiesBounds machine parameters) :
@@ -151,6 +187,9 @@ theorem yesLanguage_subset_estimatorLanguage_internal {tapes : ℕ}
         hestimate inst hisYes
       simpa [estimatorLanguage, hdecode] using hbound
 
+/--
+@isnad1 id=disjoint.1h4v.s5.bdabdae68b24 from=translated src=- shape=480c6742 vocab=0fb441be
+-/
 theorem disjoint_estimatorLanguage_noLanguage_internal {tapes : ℕ}
     {machine : TM tapes} {parameters : Parameters} {estimate : Estimator}
     (hestimate : estimate.SatisfiesBounds machine parameters) :
@@ -168,6 +207,9 @@ theorem disjoint_estimatorLanguage_noLanguage_internal {tapes : ℕ}
         hestimate inst hisNo
       omega
 
+/--
+@isnad1 id=eq.2h5v.s5.924d449ca9d9 from=translated src=- shape=f1a19acc vocab=40e29e52
+-/
 theorem decisionOfEstimator_eq_true_of_mem_yesLanguage_internal {tapes : ℕ}
     {machine : TM tapes} {parameters : Parameters} {estimate : Estimator}
     (hestimate : estimate.SatisfiesBounds machine parameters)
@@ -176,6 +218,9 @@ theorem decisionOfEstimator_eq_true_of_mem_yesLanguage_internal {tapes : ℕ}
   (decisionOfEstimator_eq_true_iff_internal estimate bits).mpr
     (yesLanguage_subset_estimatorLanguage_internal hestimate hyes)
 
+/--
+@isnad1 id=eq.2h5v.s5.b0db24f4fe30 from=translated src=- shape=6293f58f vocab=a6eadee9
+-/
 theorem decisionOfEstimator_eq_false_of_mem_noLanguage_internal {tapes : ℕ}
     {machine : TM tapes} {parameters : Parameters} {estimate : Estimator}
     (hestimate : estimate.SatisfiesBounds machine parameters)
@@ -190,11 +235,17 @@ theorem decisionOfEstimator_eq_false_of_mem_noLanguage_internal {tapes : ℕ}
         (disjoint_estimatorLanguage_noLanguage_internal hestimate)
           hmem hno).elim
 
+/--
+@isnad1 id=eq.0h2v.s3.353563931458 from=translated src=- shape=22f25778 vocab=2d75ee8b
+-/
 theorem thresholdInstance_base_internal (inst : MINKT.Instance)
     (threshold : ℕ) :
     (thresholdInstance inst threshold).base = inst := by
   rfl
 
+/--
+@isnad1 id=and.2h4v.s5.a0da85582941 from=translated src=- shape=00b732b3 vocab=fa3f5c4b
+-/
 theorem firstAcceptedThreshold_spec_of_accepted_internal
     (decide : List Bool → Bool) (inst : MINKT.Instance) {cap threshold : ℕ}
     (hthreshold : threshold ≤ cap)
@@ -222,6 +273,9 @@ theorem firstAcceptedThreshold_spec_of_accepted_internal
   rw [hfind]
   exact ⟨hspec, hleast⟩
 
+/--
+@isnad1 id=and.3h5v.s7.502c7e88170e from=translated src=- shape=06fb6496 vocab=7d0f41e4
+-/
 theorem timeSearchEstimator_satisfiesBoundsAt_internal {tapes : ℕ}
     {machine : TM tapes} {parameters : Parameters}
     {decide : List Bool → Bool}
@@ -278,6 +332,9 @@ theorem timeSearchEstimator_satisfiesBoundsAt_internal {tapes : ℕ}
       simpa [chosen] using hsearchAccept
     exact Bool.false_ne_true (hchosenReject.symm.trans hchosenAccept)
 
+/--
+@isnad1 id=satisfie.3h5v.s6.f0b4f85ff98d from=translated src=- shape=e0e9a458 vocab=2ef5e0a8
+-/
 theorem timeSearchEstimator_satisfiesBoundsOn_internal {tapes : ℕ}
     {machine : TM tapes} {parameters : Parameters}
     {decide : List Bool → Bool} {eligible : MINKT.Instance → Prop}
@@ -292,6 +349,9 @@ theorem timeSearchEstimator_satisfiesBoundsOn_internal {tapes : ℕ}
   exact timeSearchEstimator_satisfiesBoundsAt_internal
     haccept hreject inst (hfinite inst heligible)
 
+/--
+@isnad1 id=satisfie.3h4v.s6.1a81f12434c4 from=translated src=- shape=4b34575d vocab=4c9865c6
+-/
 theorem timeSearchEstimator_satisfiesBounds_internal {tapes : ℕ}
     {machine : TM tapes} {parameters : Parameters}
     {decide : List Bool → Bool}

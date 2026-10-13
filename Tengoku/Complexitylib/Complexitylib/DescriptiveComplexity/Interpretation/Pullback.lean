@@ -31,7 +31,9 @@ namespace TaggedFOInterpretation
 
 variable {V W : Vocabulary} {tags dim n : Nat}
 
-/-- Tagged formula transport under an arbitrary assignment of target variables. -/
+/-- Tagged formula transport under an arbitrary assignment of target variables.
+@isnad1 id=iff.0h9v.s8.53be27dc55eb from=translated src=- shape=e5f2dabf vocab=0532da6e
+-/
 theorem translate_sat (I : TaggedFOInterpretation V W tags dim) (A : FinStruct V)
     (φ : Formula W n) (σ : Env (I.apply A).card n) :
     (I.translate φ (fun i => (elementEquiv A.card tags dim (σ i)).1)).Sat A (relationEnv σ) ↔
@@ -44,7 +46,9 @@ theorem translate_sat (I : TaggedFOInterpretation V W tags dim) (A : FinStruct V
     simp [coordEnv, Term.eval, relationEnv]
   rw [henv]
 
-/-- A source structure models the translated sentence exactly when its image models it. -/
+/-- A source structure models the translated sentence exactly when its image models it.
+@isnad1 id=iff.0h7v.s5.0465637b50d1 from=translated src=- shape=0bd2380e vocab=02a90154
+-/
 theorem translateSentence_models (I : TaggedFOInterpretation V W tags dim) (A : FinStruct V)
     (φ : Sentence W) :
     Sentence.Models A (I.translateSentence φ) ↔ Sentence.Models (I.apply A) φ := by
@@ -56,7 +60,9 @@ theorem translateSentence_models (I : TaggedFOInterpretation V W tags dim) (A : 
 
 end TaggedFOInterpretation
 
-/-- FO-definable queries remain FO-definable under tagged tuple interpretations. -/
+/-- FO-definable queries remain FO-definable under tagged tuple interpretations.
+@isnad1 id=fodefina.1h6v.s4.f31dba7f0b22 from=translated src=- shape=0cb62635 vocab=df7dfce1
+-/
 theorem FODefinable.pullQuery {V W : Vocabulary} {tags dim : Nat}
     {Q : BooleanQuery W} (hQ : FODefinable Q) (I : TaggedFOInterpretation V W tags dim) :
     FODefinable (I.pullQuery Q) := by

@@ -35,7 +35,9 @@ namespace Complexity
 
 open Finset
 
-/-- **One term of a binomial sum.** -/
+/-- **One term of a binomial sum.**
+@isnad1 id=le.1h2v.s6.0ff0d348aa61 from=translated src=- shape=5fe2cd01 vocab=29ce789a
+-/
 theorem choose_mul_two_pow_le (s t : ℕ) (ht : t ≤ s) :
     s.choose t * 2 ^ (s - t) ≤ 3 ^ s := by
   have hexp : (3 : ℕ) ^ s = ∑ k ∈ range (s + 1), 1 ^ k * 2 ^ (s - k) * s.choose k := by
@@ -48,7 +50,9 @@ theorem choose_mul_two_pow_le (s t : ℕ) (ht : t ≤ s) :
     _ ≤ _ := Finset.single_le_sum
         (f := fun k => 1 ^ k * 2 ^ (s - k) * s.choose k) (fun k _ => Nat.zero_le _) hmem
 
-/-- **The descending factorial is a fraction of the factorial.** -/
+/-- **The descending factorial is a fraction of the factorial.**
+@isnad1 id=eq.1h2v.s5.2eff4dd0aaf5 from=translated src=- shape=99500231 vocab=9a226079
+-/
 theorem descFactorial_mul_factorial_sub {n k : ℕ} (hk : k ≤ n) :
     n.descFactorial k * Nat.factorial (n - k) = Nat.factorial n := by
   rw [Nat.descFactorial_eq_factorial_mul_choose]
@@ -83,7 +87,9 @@ private theorem succ_pow_le_three_mul (m : ℕ) : ((m : ℝ) + 1) ^ m ≤ 3 * (m
   have hmm : (0 : ℝ) ≤ (m : ℝ) ^ m := by positivity
   nlinarith [h2, h3, hmm]
 
-/-- **`s^s ≤ 3^s s!`**, the integer form of `s! ≥ (s/e)^s`. -/
+/-- **`s^s ≤ 3^s s!`**, the integer form of `s! ≥ (s/e)^s`.
+@isnad1 id=le.0h1v.s5.bbb54dfd5ba6 from=translated src=- shape=e479d15c vocab=bf88f0e0
+-/
 theorem pow_self_le_three_pow_mul_factorial (s : ℕ) :
     s ^ s ≤ 3 ^ s * Nat.factorial s := by
   induction s with
@@ -100,7 +106,9 @@ theorem pow_self_le_three_pow_mul_factorial (s : ℕ) :
             rw [Nat.factorial_succ, pow_succ]
             ring
 
-/-- **The `(3 n / s)^s` bound on a binomial coefficient.** -/
+/-- **The `(3 n / s)^s` bound on a binomial coefficient.**
+@isnad1 id=le.0h2v.s6.1a0f87c4480a from=translated src=- shape=fb2192c4 vocab=fe4bc797
+-/
 theorem choose_mul_pow_self_le (n s : ℕ) : n.choose s * s ^ s ≤ 3 ^ s * n ^ s := by
   calc n.choose s * s ^ s ≤ n.choose s * (3 ^ s * Nat.factorial s) :=
         Nat.mul_le_mul_left _ (pow_self_le_three_pow_mul_factorial s)
@@ -110,7 +118,9 @@ theorem choose_mul_pow_self_le (n s : ℕ) : n.choose s * s ^ s ≤ 3 ^ s * n ^ 
 
 /-! ### The per-set estimate -/
 
-/-- The numeric heart: `2^{2s} 3^{31s} ≤ 2^{60k}` whenever `9 s ≤ 10 k`. -/
+/-- The numeric heart: `2^{2s} 3^{31s} ≤ 2^{60k}` whenever `9 s ≤ 10 k`.
+@isnad1 id=le.1h2v.s7.0c00fd785b54 from=translated src=- shape=fff0dde3 vocab=45880164
+-/
 theorem two_pow_three_pow_le {s k : ℕ} (h9 : 9 * s ≤ 10 * k) :
     2 ^ (2 * s) * 3 ^ (31 * s) ≤ 2 ^ (60 * k) := by
   have hbase : (2 : ℕ) ^ 20 * 3 ^ 310 ≤ 2 ^ 540 := by
@@ -141,7 +151,9 @@ theorem two_pow_three_pow_le {s k : ℕ} (h9 : 9 * s ≤ 10 * k) :
 /-- **The estimate for one vertex set**, with the permutation count abstracted.
 The hypothesis is what `PermCount` supplies, in the form `descFactorial` and
 `choose` bounds put it; the conclusion leaves a factor `2^s` of room for the
-union bound over all sets of size `s`. -/
+union bound over all sets of size `s`.
+@isnad1 id=le.4h4v.s7.a1b63db0aedd from=translated src=- shape=4306141a vocab=c2070068
+-/
 theorem key_estimate {n s k B : ℕ} (hs : 1 ≤ s) (hsn : 2 * s ≤ n) (h9 : 9 * s ≤ 10 * k)
     (hB : B * 2 ^ k * n ^ k ≤ 3 ^ s * s ^ k * Nat.factorial n) :
     2 ^ s * (n.choose s * B ^ 30) ≤ Nat.factorial n ^ 30 := by

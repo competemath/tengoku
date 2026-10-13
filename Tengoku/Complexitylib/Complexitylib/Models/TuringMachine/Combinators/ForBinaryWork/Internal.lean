@@ -33,7 +33,9 @@ def forBinaryWorkBodyWrap (driverIdx : Fin n) (body : TM n)
     work := cfg.work
     output := cfg.output }
 
-/-- Every nonhalting body step is simulated exactly. -/
+/-- Every nonhalting body step is simulated exactly.
+@isnad1 id=eq.1h5v.s6.31ec9cc92740 from=translated src=- shape=eb0f0287 vocab=f068e15e
+-/
 theorem forBinaryWorkTM_body_step_internal (driverIdx : Fin n) (body : TM n)
     {cfg next : Cfg n body.Q} (hstep : body.step cfg = some next) :
     (forBinaryWorkTM driverIdx body).step
@@ -52,7 +54,9 @@ theorem forBinaryWorkTM_body_step_internal (driverIdx : Fin n) (body : TM n)
   cases Option.some.inj hstep
   rfl
 
-/-- Exact body runs lift through the combined machine's body phase. -/
+/-- Exact body runs lift through the combined machine's body phase.
+@isnad1 id=reachesi.1h6v.s5.4efcdd0e3adf from=translated src=- shape=e4b807d0 vocab=dc7ca197
+-/
 theorem forBinaryWorkTM_body_reachesIn_internal
     (driverIdx : Fin n) (body : TM n)
     {time : ℕ} {cfg next : Cfg n body.Q}
@@ -64,7 +68,9 @@ theorem forBinaryWorkTM_body_reachesIn_internal
     (fun _ _ => forBinaryWorkTM_body_step_internal driverIdx body) hreach
 
 /-- On either Boolean symbol, the scanner enters the body without moving or
-changing any tape. -/
+changing any tape.
+@isnad1 id=eq.5h5v.s7.06636cb6a083 from=translated src=- shape=5ed85191 vocab=e243a5b7
+-/
 theorem forBinaryWorkTM_step_scan_bit_internal
     (driverIdx : Fin n) (body : TM n) (bit : Bool)
     (cfg : Cfg n (forBinaryWorkTM driverIdx body).Q)
@@ -93,7 +99,9 @@ theorem forBinaryWorkTM_step_scan_bit_internal
     exact transitionTape_eq_self (hwork i)
   · exact transitionTape_eq_self houtput
 
-/-- On the first blank, the scanner halts without consuming it. -/
+/-- On the first blank, the scanner halts without consuming it.
+@isnad1 id=eq.5h4v.s7.fbad5e91a45e from=translated src=- shape=1403567d vocab=37890ec0
+-/
 theorem forBinaryWorkTM_step_scan_blank_internal
     (driverIdx : Fin n) (body : TM n)
     (cfg : Cfg n (forBinaryWorkTM driverIdx body).Q)
@@ -117,7 +125,9 @@ theorem forBinaryWorkTM_step_scan_blank_internal
   · exact transitionTape_eq_self houtput
 
 /-- A halted body takes one preserving seam step that advances only the
-selected driver head. -/
+selected driver head.
+@isnad1 id=eq.4h4v.s7.7ca9f2a4026a from=translated src=- shape=2cc80e0f vocab=f149a5d5
+-/
 theorem forBinaryWorkTM_step_body_halt_internal
     (driverIdx : Fin n) (body : TM n)
     (cfg : Cfg n body.Q) (hhalt : body.halted cfg)
@@ -145,7 +155,9 @@ theorem forBinaryWorkTM_step_body_halt_internal
   · rw [writeAndMove_readBack _ houtput, idleDir, ite_eq_right houtput]
     rfl
 
-/-- A certified bit-driven loop has its advertised exact remaining run. -/
+/-- A certified bit-driven loop has its advertised exact remaining run.
+@isnad1 id=reachesi.1h8v.s5.359f1f3dc5cd from=translated src=- shape=bbbe301d vocab=ce66cf7e
+-/
 theorem ForBinaryWorkLoopSpec.reachesIn_internal
     {driverIdx : Fin n} {body : TM n} {bodyTime : ℕ → ℕ} {total : ℕ}
     (spec : ForBinaryWorkLoopSpec driverIdx body bodyTime total) :
@@ -179,7 +191,9 @@ theorem ForBinaryWorkLoopSpec.reachesIn_internal
       omega
 
 /-- Every prefix no longer than a certified loop's exact remaining runtime
-respects its auxiliary-space budget. -/
+respects its auxiliary-space budget.
+@isnad1 id=withinau.4h12v.s6.14ca4562f8fb from=translated src=- shape=f8d807a7 vocab=e7631f6c
+-/
 theorem ForBinaryWorkLoopSpaceSpec.prefix_withinAuxSpace_internal
     {driverIdx : Fin n} {body : TM n} {bodyTime : ℕ → ℕ}
     {total inputLength spaceBound : ℕ}
@@ -279,7 +293,9 @@ theorem ForBinaryWorkLoopSpaceSpec.prefix_withinAuxSpace_internal
           rw [hc]
           exact ih (value + 1) tailTime d (by omega) htail htailBound
 
-/-- Bit-driven work iteration preserves one-way output when the body does. -/
+/-- Bit-driven work iteration preserves one-way output when the body does.
+@isnad1 id=istransd.1h3v.s4.8641e24694bd from=translated src=- shape=88a9cf5b vocab=df1aab56
+-/
 theorem IsTransducer.forBinaryWorkTM_internal
     {driverIdx : Fin n} {body : TM n} (hbody : body.IsTransducer) :
     (forBinaryWorkTM driverIdx body).IsTransducer := by

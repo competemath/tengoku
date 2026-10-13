@@ -47,7 +47,9 @@ namespace TM
 -- ════════════════════════════════════════════════════════════════════════
 
 /-- The canonical parked blank tape (`liftTM`'s pinned extra tape) is the
-    zero register. -/
+    zero register.
+@isnad1 id=eq.0h0v.s3.bb84462a8250 from=translated src=- shape=f7573a69 vocab=1119db35
+-/
 theorem Tape.init_move_right_eq_regT_zero :
     (Tape.init []).move Dir3.right = regTape 0 := by
   refine Tape.ext rfl ?_
@@ -132,7 +134,9 @@ def ClockConstructible (g : ℕ → ℕ) : Prop :=
           (∀ j, 1 ≤ j → out.cells j ≠ Γ.start))
         (C * (g x.length + x.length + 1))
 
-/-- `ClockConstructible` respects pointwise-equal clock bounds. -/
+/-- `ClockConstructible` respects pointwise-equal clock bounds.
+@isnad1 id=clockcon.2h2v.s4.9e3a1d391d29 from=translated src=- shape=e08693f5 vocab=44d4ab91
+-/
 theorem ClockConstructible.congr {g g' : ℕ → ℕ} (h : ClockConstructible g)
     (hgg' : ∀ n, g n = g' n) : ClockConstructible g' :=
   funext hgg' ▸ h
@@ -611,7 +615,9 @@ end ClockLen
 
 /-- **The successor function is clock-constructible**: `clockLenTM` writes
     `|x| + 1` clock marks in a single input sweep, well within the
-    `2 * (g n + n + 1)` budget. -/
+    `2 * (g n + n + 1)` budget.
+@isnad1 id=clockcon.0h0v.s4.7e92ac5a6443 from=translated src=- shape=585bfb7d vocab=a4516527
+-/
 theorem clockConstructible_succ : ClockConstructible (fun n => n + 1) := by
   refine ⟨clockLenTM, 2, ?_⟩
   intro x work₀ hpark _ h6
@@ -2159,7 +2165,9 @@ end ClockMul
     its register to the scratch tape (`moveClockTM`), then append it to the
     clock tape's frontier once per input position (`clockMulTM`), producing
     `regTape (g n * (n + 1))` in time `O(g n * (n + 1) + n)`. This is where
-    the designated scratch tape 5 earns its keep. -/
+    the designated scratch tape 5 earns its keep.
+@isnad1 id=clockcon.1h1v.s5.bd234c4046f0 from=translated src=- shape=66a2b25d vocab=03c6a481
+-/
 theorem ClockConstructible.mul_succ {g : ℕ → ℕ} (h : ClockConstructible g) :
     ClockConstructible (fun n => g n * (n + 1)) := by
   obtain ⟨tm, C, hspec⟩ := h
@@ -2299,7 +2307,9 @@ theorem ClockConstructible.mul_succ {g : ℕ → ℕ} (h : ClockConstructible g)
 
 /-- **Polynomial clocks**: every positive power of `n + 1` is
     clock-constructible — the clock family the time hierarchy theorem uses
-    against polynomial time bounds. -/
+    against polynomial time bounds.
+@isnad1 id=clockcon.1h1v.s5.8c053dc1f2b4 from=translated src=- shape=dcf111bc vocab=d0958e2a
+-/
 theorem clockConstructible_pow : ∀ k, 1 ≤ k →
     ClockConstructible (fun n => (n + 1) ^ k) := by
   intro k

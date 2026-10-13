@@ -40,6 +40,9 @@ namespace ExpanderFamily
 
 variable (E : ExpanderFamily)
 
+/--
+@isnad1 id=ex.0h1v.s5.0bac3835d91e from=translated src=- shape=0dd6963c vocab=2fe8a950
+-/
 theorem exists_pow_le_fifth : ∃ m : ℕ, E.lam ^ m ≤ 1 / 5 := by
   obtain ⟨m, hm⟩ := exists_pow_lt_of_lt_one (show (0 : ℝ) < 1 / 5 by norm_num) E.lam_lt_one
   exact ⟨m, hm.le⟩
@@ -47,6 +50,9 @@ theorem exists_pow_le_fifth : ∃ m : ℕ, E.lam ^ m ≤ 1 / 5 := by
 /-- A power taking the family's bound to at most a fifth. -/
 noncomputable def fifthExp : ℕ := Classical.choose E.exists_pow_le_fifth
 
+/--
+@isnad1 id=le.0h1v.s5.348e420e9891 from=translated src=- shape=019d67e6 vocab=c62b1cd0
+-/
 theorem pow_fifthExp_le : E.lam ^ E.fifthExp ≤ 1 / 5 :=
   Classical.choose_spec E.exists_pow_le_fifth
 
@@ -66,6 +72,9 @@ noncomputable def toZigZagBase : ZigZagBase where
   lam_le := E.pow_fifthExp_le
   spectral := RegGraph.spectralBound_power _ (E.spectral_graph _) _
 
+/--
+@isnad1 id=le.0h1v.s3.5d6980d39027 from=translated src=- shape=b9369acb vocab=8bb90116
+-/
 theorem one_le_fifthExp : 1 ≤ E.fifthExp := by
   by_contra h
   have h0 : E.fifthExp = 0 := by omega
@@ -73,10 +82,16 @@ theorem one_le_fifthExp : 1 ≤ E.fifthExp := by
   rw [h0, pow_zero] at this
   norm_num at this
 
+/--
+@isnad1 id=eq.0h1v.s4.5ac981503f95 from=translated src=- shape=48e0ab71 vocab=c4e524ce
+-/
 @[simp] theorem deg_toZigZagBase : E.toZigZagBase.base.deg = E.degree ^ E.fifthExp := by
   show ((E.graph E.baseOrder).power E.fifthExp).deg = _
   rw [RegGraph.deg_power, deg_graph]
 
+/--
+@isnad1 id=lt.1h1v.s4.1a9404021619 from=translated src=- shape=0e6baaed vocab=f74344cc
+-/
 theorem one_lt_deg_toZigZagBase (h : 1 < E.degree) : 1 < E.toZigZagBase.base.deg := by
   rw [deg_toZigZagBase]
   exact Nat.one_lt_pow (by have := E.one_le_fifthExp; omega) h

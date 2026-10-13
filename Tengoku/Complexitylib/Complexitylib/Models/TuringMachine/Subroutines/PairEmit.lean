@@ -29,7 +29,9 @@ namespace TM
 
 /-- Exact pair emission preserves the source cells and every unrelated work
 tape, consumes both sources through their delimiters, and leaves the output as
-an appendable prefix containing the canonical pair. -/
+an appendable prefix containing the canonical pair.
+@isnad1 id=ex.5h7v.s7.827d9cbe5b1d from=translated src=- shape=d0d7aa2a vocab=64c4229c
+-/
 theorem pairInputWorkTM_reachesIn {n : ℕ}
     (firstIdx : Fin n) (first second : List Bool)
     {inp out : Tape} {work : Fin n → Tape}
@@ -54,7 +56,9 @@ theorem pairInputWorkTM_reachesIn {n : ℕ}
     hsourceHead hsourceOutput hwork houtput
 
 /-- Emit `pair first second` within
-`2 * first.length + second.length + 3` steps. -/
+`2 * first.length + second.length + 3` steps.
+@isnad1 id=hoaretim.0h4v.s6.11c16d3b36aa from=translated src=- shape=4b3c2b42 vocab=43f3314a
+-/
 theorem pairInputWorkTM_hoareTime {n : ℕ}
     (firstIdx : Fin n) (first second : List Bool) :
     (pairInputWorkTM firstIdx).HoareTime

@@ -237,6 +237,9 @@ private theorem reconstructionSample_success_iff
       design current advice.1 challenge input
   rw [htarget]
 
+/--
+@isnad1 id=eq.0h7v.s7.6aa241f5b44a from=translated src=- shape=890c8cf1 vocab=aa96241f
+-/
 theorem predictionSuccessProbability_eq_averageReconstructionAgreement_internal
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -286,6 +289,9 @@ theorem predictionSuccessProbability_eq_averageReconstructionAgreement_internal
   simpa [averageReconstructionAgreement,
     uniformProbability_univ_internal] using hproduct
 
+/--
+@isnad1 id=ex.0h7v.s7.86ce9b427995 from=translated src=- shape=c03d2f13 vocab=70ca183c
+-/
 theorem exists_reconstructionAdvice_agreement_ge_internal
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -308,6 +314,9 @@ theorem exists_reconstructionAdvice_agreement_ge_internal
   simpa [averageReconstructionAgreement,
     reconstructionAgreementProbability] using haverage
 
+/--
+@isnad1 id=eq.0h7v.s8.3afb1b492ea9 from=translated src=- shape=c49ce832 vocab=a0ab35ad
+-/
 theorem averageReconstructionAgreement_eq_uniformMean_internal
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -326,6 +335,9 @@ theorem averageReconstructionAgreement_eq_uniformMean_internal
   simpa [averageReconstructionAgreement, reconstructionAgreementProbability,
     uniformMean] using haverage
 
+/--
+@isnad1 id=le.1h8v.s6.e69c6a14099c from=translated src=- shape=2b170a3a vocab=18615653
+-/
 theorem average_sub_div_le_goodReconstructionAdviceProbability_internal
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -345,6 +357,9 @@ theorem average_sub_div_le_goodReconstructionAdviceProbability_internal
     (fun _advice => uniformProbability_le_one_internal _)
     le_rfl hthreshold
 
+/--
+@isnad1 id=le.2h8v.s7.41d4085f3226 from=translated src=- shape=dea9e175 vocab=d70e60ea
+-/
 theorem half_advantage_le_goodReconstructionAdviceProbability_internal
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -364,6 +379,9 @@ theorem half_advantage_le_goodReconstructionAdviceProbability_internal
     advantage hadvantage
     (fun _advice => uniformProbability_le_one_internal _) haverage
 
+/--
+@isnad1 id=ex.5h12v.s7.2ade9f388a3f from=translated src=- shape=d750e4aa vocab=5639b9f5
+-/
 theorem exists_fixed_reconstruction_of_randomTest_internal
     {outputLength inputLength seedLength tapes time threshold budget : ℕ}
     {design : NWDesign outputLength inputLength seedLength}
@@ -392,6 +410,9 @@ theorem exists_fixed_reconstruction_of_randomTest_internal
   exact ⟨complement, current, advice, hsuccess.trans hadvice,
     reconstructionDataBitsAt_le_of_hasOverlapBudget_internal hbudget current⟩
 
+/--
+@isnad1 id=ex.6h12v.s7.23f5cc843ed3 from=translated src=- shape=0d12a99e vocab=871ca937
+-/
 theorem exists_fixed_reconstruction_of_seedDescriptions_internal
     {outputLength inputLength seedLength tapes time threshold budget : ℕ}
     {design : NWDesign outputLength inputLength seedLength}
@@ -419,6 +440,9 @@ theorem exists_fixed_reconstruction_of_seedDescriptions_internal
   exact BitGenerator.hasLowTimeBoundedComplexity_of_seedDescriptions_internal
     hseedLength hproduces
 
+/--
+@isnad1 id=ex.6h12v.s7.18cabd285eb6 from=translated src=- shape=a2fd876e vocab=46b0a2c8
+-/
 theorem exists_goodAdviceProbability_ge_of_randomTest_internal
     {outputLength inputLength seedLength tapes time threshold budget : ℕ}
     {design : NWDesign outputLength inputLength seedLength}
@@ -451,6 +475,9 @@ theorem exists_goodAdviceProbability_ge_of_randomTest_internal
       (density / (outputLength : ℚ)) hadvantage hsuccess,
     reconstructionDataBitsAt_le_of_hasOverlapBudget_internal hbudget current⟩
 
+/--
+@isnad1 id=ex.7h12v.s7.56edd6096990 from=translated src=- shape=c14d7467 vocab=accddd47
+-/
 theorem exists_goodAdviceProbability_ge_of_seedDescriptions_internal
     {outputLength inputLength seedLength tapes time threshold budget : ℕ}
     {design : NWDesign outputLength inputLength seedLength}

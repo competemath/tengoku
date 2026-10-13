@@ -52,21 +52,27 @@ variable {n : ℕ}
 
 /-! ### Linearity of the Hadamard table -/
 
-/-- Reading a Hadamard table at a sum of vectors. -/
+/-- Reading a Hadamard table at a sum of vectors.
+@isnad1 id=eq.0h4v.s7.f666a55a53c2 from=translated src=- shape=6ac010cf vocab=46140595
+-/
 theorem hadamard_add_arg (a x y : Cube n) :
     hadamard a (x + y) = hadamard a x + hadamard a y := by
   show ∑ i, a i * (x i + y i) = (∑ i, a i * x i) + (∑ i, a i * y i)
   rw [← Finset.sum_add_distrib]
   exact Finset.sum_congr rfl fun i _ => by ring
 
-/-- Reading a Hadamard table at a scalar multiple. -/
+/-- Reading a Hadamard table at a scalar multiple.
+@isnad1 id=eq.0h4v.s7.59f8df23def8 from=translated src=- shape=ffd6f2c0 vocab=4e7ba4da
+-/
 theorem hadamard_smul_arg (a : Cube n) (c : ZMod 2) (x : Cube n) :
     hadamard a (fun i => c * x i) = c * hadamard a x := by
   show ∑ i, a i * (c * x i) = c * ∑ i, a i * x i
   rw [Finset.mul_sum]
   exact Finset.sum_congr rfl fun i _ => by ring
 
-/-- Reading a Hadamard table at a finite sum of scaled vectors. -/
+/-- Reading a Hadamard table at a finite sum of scaled vectors.
+@isnad1 id=eq.0h5v.s8.3df23a03f70f from=translated src=- shape=979526e1 vocab=291da925
+-/
 theorem hadamard_sum_smul {J : ℕ} (a : Cube n) (c : Cube J) (v : Fin J → Cube n) :
     hadamard a (fun i => ∑ j, c j * v j i) = ∑ j, c j * hadamard a (v j) := by
   show ∑ i, a i * ∑ j, c j * v j i = ∑ j, c j * ∑ i, a i * v j i
@@ -85,7 +91,9 @@ def QuadConstraint.combine {J : ℕ} (C : Fin J → QuadConstraint n) (c : Cube 
   const := ∑ j, c j * (C j).const
 
 /-- **The check of a combination is the combination of the checks**, when the
-tables are Hadamard codewords (so linear). -/
+tables are Hadamard codewords (so linear).
+@isnad1 id=eq.0h6v.s6.320ed785fd44 from=translated src=- shape=930fb1b9 vocab=fee54f99
+-/
 theorem checkValue_combine {J : ℕ} (a : Cube n) (b : Cube (n * n))
     (C : Fin J → QuadConstraint n) (c : Cube J) :
     checkValue (hadamard b) (hadamard a) (QuadConstraint.combine C c)
@@ -98,7 +106,9 @@ theorem checkValue_combine {J : ℕ} (a : Cube n) (b : Cube (n * n))
   ring
 
 /-- **Rigidity of the combination.** If the combined check passes on more than
-half of the coefficient vectors, every constraint's check passes. -/
+half of the coefficient vectors, every constraint's check passes.
+@isnad1 id=eq.1h6v.s7.40d9da3237f2 from=translated src=- shape=c8dbb8cd vocab=85899d12
+-/
 theorem forall_checkValue_of_prob {J : ℕ} (a : Cube n) (b : Cube (n * n))
     (C : Fin J → QuadConstraint n)
     (h : 1 / 2 < Pr[fun c : Cube J =>
@@ -124,7 +134,9 @@ theorem forall_checkValue_of_prob {J : ℕ} (a : Cube n) (b : Cube (n * n))
     (fun c : Cube J => hadamard (fun j => checkValue (hadamard b) (hadamard a) (C j)) c ≠ 0)
   linarith
 
-/-- The combination of constraints satisfied by `a` is satisfied by `a`. -/
+/-- The combination of constraints satisfied by `a` is satisfied by `a`.
+@isnad1 id=sat.1h5v.s5.f5524b2f4d79 from=translated src=- shape=7139f72a vocab=63ce056b
+-/
 theorem QuadConstraint.sat_combine {J : ℕ} (C : Fin J → QuadConstraint n) (a : Cube n)
     (h : ∀ j, (C j).Sat a) (c : Cube J) : (QuadConstraint.combine C c).Sat a := by
   show hadamard (tensorAssign a) (fun p => ∑ j, c j * (C j).quad p)
@@ -141,7 +153,9 @@ theorem QuadConstraint.sat_combine {J : ℕ} (C : Fin J → QuadConstraint n) (a
 
 /-! ### Reading a table at an appended vector -/
 
-/-- Reading at an appended vector reads the two blocks separately. -/
+/-- Reading at an appended vector reads the two blocks separately.
+@isnad1 id=eq.0h5v.s7.a4348eca9594 from=translated src=- shape=daaaf284 vocab=27c2cedf
+-/
 theorem hadamard_append {k t : ℕ} (a : Cube (k + t)) (u : Cube k) (v : Cube t) :
     hadamard a (Fin.append u v) = hadamard (leftBlock a) u + hadamard (rightBlock a) v := by
   show ∑ i : Fin (k + t), a i * (Fin.append u v) i
@@ -151,10 +165,16 @@ theorem hadamard_append {k t : ℕ} (a : Cube (k + t)) (u : Cube k) (v : Cube t)
   · exact Finset.sum_congr rfl fun i _ => by rw [Fin.append_left]
   · exact Finset.sum_congr rfl fun j _ => by rw [Fin.append_right]
 
+/--
+@isnad1 id=eq.0h2v.s7.a094d9c1941a from=translated src=- shape=a6d837cf vocab=83d2d0d7
+-/
 theorem hadamard_zero_arg (a : Cube n) : hadamard a 0 = 0 := by
   show ∑ i, a i * (0 : ZMod 2) = 0
   simp
 
+/--
+@isnad1 id=eq.0h4v.s7.ce1cf14eaa55 from=translated src=- shape=9a9d9d68 vocab=41bf2295
+-/
 theorem hadamard_tensorAssign_basisVec (a : Cube n) (u v : Fin n) :
     hadamard (tensorAssign a) (basisVec (finProdFinEquiv (u, v))) = a u * a v := by
   rw [hadamard_basisVec]
@@ -174,6 +194,9 @@ def auxVar (k : ℕ) (m : Fin (2 ^ k)) : Fin (k + 2 ^ k) := Fin.natAdd k m
 /-- The trivial constraint `0 = 0`. -/
 def QuadConstraint.trivial (n : ℕ) : QuadConstraint n := ⟨0, 0, 0⟩
 
+/--
+@isnad1 id=sat.0h2v.s3.b40586b9594d from=translated src=- shape=8fcafd65 vocab=10b66a58
+-/
 theorem QuadConstraint.sat_trivial (a : Cube n) : (QuadConstraint.trivial n).Sat a := by
   show hadamard (tensorAssign a) 0 + hadamard a 0 + 0 = 0
   rw [hadamard_zero_arg, hadamard_zero_arg]
@@ -202,6 +225,9 @@ noncomputable def oneHotSystem {k : ℕ} (S : Finset (Cube k)) :
     Fin (Fintype.card (OneHotIdx k)) → QuadConstraint (k + 2 ^ k) :=
   fun j => oneHotOf S ((Fintype.equivFin (OneHotIdx k)).symm j)
 
+/--
+@isnad1 id=iff.0h3v.s8.597d0762cd4b from=translated src=- shape=6309dae0 vocab=97e6d50a
+-/
 theorem forall_oneHotSystem_iff {k : ℕ} (S : Finset (Cube k)) (a : Cube (k + 2 ^ k)) :
     (∀ j, (oneHotSystem S j).Sat a) ↔ ∀ x, (oneHotOf S x).Sat a := by
   constructor
@@ -213,6 +239,9 @@ theorem forall_oneHotSystem_iff {k : ℕ} (S : Finset (Cube k)) (a : Cube (k + 2
 
 /-! #### Evaluating the constraints -/
 
+/--
+@isnad1 id=iff.0h3v.s8.7d9b02aecea3 from=translated src=- shape=e05a939e vocab=0365d2ae
+-/
 theorem sat_oneHot_sum_iff {k : ℕ} (S : Finset (Cube k)) (a : Cube (k + 2 ^ k)) :
     (oneHotOf S (Sum.inl ())).Sat a ↔ ∑ m, rightBlock a m = 1 := by
   show hadamard (tensorAssign a) 0 + hadamard a (Fin.append 0 (fun _ => 1)) + 1 = 0 ↔ _
@@ -225,6 +254,9 @@ theorem sat_oneHot_sum_iff {k : ℕ} (S : Finset (Cube k)) (a : Cube (k + 2 ^ k)
     with h'
   exact h'
 
+/--
+@isnad1 id=iff.1h5v.s8.71ce6305408c from=translated src=- shape=188b227d vocab=ff5b4f44
+-/
 theorem sat_oneHot_pair_iff {k : ℕ} (S : Finset (Cube k)) (a : Cube (k + 2 ^ k))
     (m m' : Fin (2 ^ k)) (hne : m ≠ m') :
     (oneHotOf S (Sum.inr (Sum.inl (m, m')))).Sat a ↔ rightBlock a m * rightBlock a m' = 0 := by
@@ -233,6 +265,9 @@ theorem sat_oneHot_pair_iff {k : ℕ} (S : Finset (Cube k)) (a : Cube (k + 2 ^ k
   rw [hadamard_tensorAssign_basisVec, hadamard_zero_arg, add_zero, add_zero]
   rfl
 
+/--
+@isnad1 id=iff.1h4v.s8.1f4f1e1c6271 from=translated src=- shape=17c5591a vocab=89bbdf5b
+-/
 theorem sat_oneHot_allowed_iff {k : ℕ} (S : Finset (Cube k)) (a : Cube (k + 2 ^ k))
     (m : Fin (2 ^ k)) (hm : (candIdx k).symm m ∉ S) :
     (oneHotOf S (Sum.inr (Sum.inr (Sum.inl m)))).Sat a ↔ rightBlock a m = 0 := by
@@ -241,6 +276,9 @@ theorem sat_oneHot_allowed_iff {k : ℕ} (S : Finset (Cube k)) (a : Cube (k + 2 
   rw [hadamard_zero_arg, hadamard_basisVec, zero_add, add_zero]
   rfl
 
+/--
+@isnad1 id=iff.0h4v.s9.75b7c1e42ed2 from=translated src=- shape=0cdb1b87 vocab=f66e70b8
+-/
 theorem sat_oneHot_coord_iff {k : ℕ} (S : Finset (Cube k)) (a : Cube (k + 2 ^ k)) (i : Fin k) :
     (oneHotOf S (Sum.inr (Sum.inr (Sum.inr i)))).Sat a
       ↔ leftBlock a i + ∑ m, rightBlock a m * ((candIdx k).symm m) i = 0 := by
@@ -273,7 +311,9 @@ theorem eq_basis_of_sum_one {T : ℕ} (y : Fin T → ZMod 2) (hsum : ∑ m, y m 
 
 /-! #### The characterization -/
 
-/-- **Satisfying the one-hot system puts the input in the set.** -/
+/-- **Satisfying the one-hot system puts the input in the set.**
+@isnad1 id=mem.1h3v.s8.f6441438857e from=translated src=- shape=9c419d9f vocab=fc1561c2
+-/
 theorem mem_of_sat_oneHotSystem {k : ℕ} (S : Finset (Cube k)) (a : Cube (k + 2 ^ k))
     (h : ∀ j, (oneHotSystem S j).Sat a) : leftBlock a ∈ S := by
   classical
@@ -300,18 +340,26 @@ theorem mem_of_sat_oneHotSystem {k : ℕ} (S : Finset (Cube k)) (a : Cube (k + 2
 noncomputable def oneHotExtend {k : ℕ} (w : Cube k) : Cube (k + 2 ^ k) :=
   Fin.append w (fun m => if m = candIdx k w then 1 else 0)
 
+/--
+@isnad1 id=eq.0h2v.s5.0a07e95137ff from=translated src=- shape=1a31e7ac vocab=8f6f28a2
+-/
 theorem leftBlock_oneHotExtend {k : ℕ} (w : Cube k) : leftBlock (oneHotExtend w) = w := by
   funext i
   unfold leftBlock oneHotExtend
   rw [Fin.append_left]
 
+/--
+@isnad1 id=eq.0h3v.s8.5a2b3a773edd from=translated src=- shape=ca1350af vocab=3276e777
+-/
 theorem rightBlock_oneHotExtend {k : ℕ} (w : Cube k) (m : Fin (2 ^ k)) :
     rightBlock (oneHotExtend w) m = if m = candIdx k w then 1 else 0 := by
   unfold rightBlock oneHotExtend
   rw [Fin.append_right]
 
 /-- **An input in the set satisfies the one-hot system**, once extended by its
-own selector. -/
+own selector.
+@isnad1 id=sat.1h4v.s8.0ff7c6872d20 from=translated src=- shape=d9ae535f vocab=a5979993
+-/
 theorem sat_oneHotSystem_extend {k : ℕ} (S : Finset (Cube k)) (w : Cube k) (hw : w ∈ S) :
     ∀ j, (oneHotSystem S j).Sat (oneHotExtend w) := by
   classical
@@ -346,7 +394,9 @@ theorem sat_oneHotSystem_extend {k : ℕ} (S : Finset (Cube k)) (w : Cube k) (hw
     rcases (by decide : ∀ u : ZMod 2, u + u = 0) (w i) with h'
     exact h'
 
-/-- **The one-hot system is satisfiable exactly on the set.** -/
+/-- **The one-hot system is satisfiable exactly on the set.**
+@isnad1 id=iff.0h3v.s8.9ca6e186b450 from=translated src=- shape=e7a0add3 vocab=fc1561c2
+-/
 theorem exists_sat_oneHotSystem_iff {k : ℕ} (S : Finset (Cube k)) (w : Cube k) :
     (∃ a : Cube (k + 2 ^ k), leftBlock a = w ∧ ∀ j, (oneHotSystem S j).Sat a) ↔ w ∈ S := by
   constructor

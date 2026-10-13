@@ -46,7 +46,9 @@ def writeOutputBitTM (vIdx : Fin n) : TM n where
     ⟨idleDir_right_of_start, fun _ => idleDir_right_of_start, idleDir_right_of_start⟩
 
 /-- **Publishing a bit.** One transition writes the symbol under work head `vIdx` at the output
-head, leaving the input and every work tape exactly as they were and moving no head. -/
+head, leaving the input and every work tape exactly as they were and moving no head.
+@isnad1 id=hoaretim.3h5v.s6.1b7823920ca4 from=translated src=- shape=41f92793 vocab=e3f979d6
+-/
 theorem writeOutputBitTM_hoareTime_frame (vIdx : Fin n)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
     (hinp : Parked inp₀) (hwork : ∀ i, Parked (work₀ i)) (hout : Parked out₀) :
@@ -71,7 +73,9 @@ theorem writeOutputBitTM_hoareTime_frame (vIdx : Fin n)
 
 /-- **Clearing the output needs no new machine.** Pointing the publisher at a work tape whose head
 reads blank writes a blank to the output; if the output was only ever written at its verdict cell,
-that restores it to the parked blank tape the wipe subroutine demands. -/
+that restores it to the parked blank tape the wipe subroutine demands.
+@isnad1 id=hoaretim.6h5v.s7.37eb069d2f01 from=translated src=- shape=0c5d5394 vocab=1460885a
+-/
 theorem writeOutputBitTM_clears (vIdx : Fin n)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
     (hinp : Parked inp₀) (hwork : ∀ i, Parked (work₀ i)) (hout : Parked out₀)

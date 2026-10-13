@@ -21,6 +21,9 @@ namespace Complexity
 
 namespace TM
 
+/--
+@isnad1 id=le.0h2v.s5.3e8ec7acb64a from=translated src=- shape=67d5ad27 vocab=fc226128
+-/
 theorem size_add_le_max_add_one_internal (lhs rhs : ℕ) :
     (lhs + rhs).size ≤ max lhs.size rhs.size + 1 := by
   rw [Nat.size_le]
@@ -35,6 +38,9 @@ theorem size_add_le_max_add_one_internal (lhs rhs : ℕ) :
     Nat.add_lt_add hlhs hrhs
   simpa [width, pow_succ, Nat.mul_comm, Nat.two_mul] using hsum
 
+/--
+@isnad1 id=le.0h2v.s5.c9fc0290a194 from=translated src=- shape=6f1d15fb vocab=01b8c483
+-/
 theorem binaryRippleAddTime_le_internal (lhs rhs : ℕ) :
     binaryRippleAddTime lhs rhs ≤ 3 * (lhs.size + rhs.size) + 14 := by
   have hsum := size_add_le_max_add_one_internal lhs rhs

@@ -68,18 +68,26 @@ noncomputable def devIdx (A : G.HalfEdge → α) (v : Fin G.numVerts) :
     Finset (Fin (G.cloudList v).length) :=
   Finset.univ.filter fun i => A (G.cloudList v)[i.val] ≠ G.decode A v
 
+/--
+@isnad1 id=iff.0h5v.s7.cab4b2bfb884 from=translated src=- shape=90a3bc26 vocab=ae83d084
+-/
 theorem mem_devIdx {A : G.HalfEdge → α} {v : Fin G.numVerts}
     {i : Fin (G.cloudList v).length} :
     i ∈ G.devIdx A v ↔ A (G.cloudList v)[i.val] ≠ G.decode A v := by
   simp [devIdx]
 
+/--
+@isnad1 id=iff.0h5v.s7.25f52c5bd9b7 from=translated src=- shape=4ea52545 vocab=4dc02ef1
+-/
 theorem mem_compl_devIdx {A : G.HalfEdge → α} {v : Fin G.numVerts}
     {i : Fin (G.cloudList v).length} :
     i ∈ (G.devIdx A v)ᶜ ↔ A (G.cloudList v)[i.val] = G.decode A v := by
   simp [devIdx]
 
 /-- **Plurality.** The part of a cloud agreeing with its decoded label is at
-least a `1 / card α` fraction of the cloud. -/
+least a `1 / card α` fraction of the cloud.
+@isnad1 id=le.0h4v.s6.fecaeee316f2 from=translated src=- shape=378d64e7 vocab=4fa78656
+-/
 theorem length_le_card_agree (A : G.HalfEdge → α) (v : Fin G.numVerts) :
     (G.cloudList v).length ≤ Fintype.card α * ((G.devIdx A v)ᶜ).card := by
   have h := Classical.choose_spec
@@ -90,7 +98,9 @@ theorem length_le_card_agree (A : G.HalfEdge → α) (v : Fin G.numVerts) :
 /-! ### From cloud indices to half-edges -/
 
 omit [Fintype α] [DecidableEq α] [Nonempty α] in
-/-- A cloud's filtered subset is the image of the corresponding index set. -/
+/-- A cloud's filtered subset is the image of the corresponding index set.
+@isnad1 id=eq.0h4v.s8.15691751916f from=translated src=- shape=b55fa859 vocab=ecf8af24
+-/
 theorem cloud_filter_eq_image (v : Fin G.numVerts) (P : G.HalfEdge → Prop) [DecidablePred P] :
     (G.cloud v).filter P
       = (Finset.univ.filter fun i : Fin (G.cloudList v).length =>
@@ -108,7 +118,9 @@ theorem cloud_filter_eq_image (v : Fin G.numVerts) (P : G.HalfEdge → Prop) [De
     exact ⟨(G.mem_cloudList).mp (List.getElem_mem i.isLt), hP⟩
 
 omit [Fintype α] [DecidableEq α] [Nonempty α] in
-/-- Counting inside a cloud is the same through its enumeration. -/
+/-- Counting inside a cloud is the same through its enumeration.
+@isnad1 id=eq.0h4v.s7.2d56fb944193 from=translated src=- shape=ab9f576d vocab=287a6912
+-/
 theorem card_filter_cloud (v : Fin G.numVerts) (P : G.HalfEdge → Prop) [DecidablePred P] :
     (Finset.univ.filter fun i : Fin (G.cloudList v).length =>
         P (G.cloudList v)[i.val]).card = ((G.cloud v).filter P).card := by
@@ -120,12 +132,17 @@ theorem card_filter_cloud (v : Fin G.numVerts) (P : G.HalfEdge → Prop) [Decida
 noncomputable def devSet (A : G.HalfEdge → α) : Finset G.HalfEdge :=
   Finset.univ.filter fun p => A p ≠ G.decode A (G.owner p)
 
+/--
+@isnad1 id=iff.0h4v.s6.ec579c960662 from=translated src=- shape=1109d6bf vocab=0b3239be
+-/
 theorem mem_devSet {A : G.HalfEdge → α} {p : G.HalfEdge} :
     p ∈ G.devSet A ↔ A p ≠ G.decode A (G.owner p) := by
   simp [devSet]
 
 /-- A cloud's disagreeing indices count the same as its disagreeing
-half-edges. -/
+half-edges.
+@isnad1 id=eq.0h4v.s6.1f0d842d3ed0 from=translated src=- shape=1a62dafe vocab=b8420ff4
+-/
 theorem card_devIdx_eq (A : G.HalfEdge → α) (v : Fin G.numVerts) :
     (G.devIdx A v).card = ((G.devSet A).filter fun p => G.owner p = v).card := by
   have hset : (G.cloud v).filter (fun p => A p ≠ G.decode A v)
@@ -140,7 +157,9 @@ theorem card_devIdx_eq (A : G.HalfEdge → α) (v : Fin G.numVerts) :
   rw [devIdx, G.card_filter_cloud v fun p => A p ≠ G.decode A v, hset]
 
 /-- Summed over the vertices, the cloud charges account for every disagreeing
-half-edge exactly once. -/
+half-edge exactly once.
+@isnad1 id=eq.0h3v.s6.29bf849a739f from=translated src=- shape=7a42df4b vocab=8627bf4e
+-/
 theorem sum_card_devIdx (A : G.HalfEdge → α) :
     ∑ v : Fin G.numVerts, (G.devIdx A v).card = (G.devSet A).card := by
   have h : (G.devSet A).card
@@ -157,13 +176,18 @@ noncomputable def cloudUnsat (A : (G.reduce E).Assignment) (v : Fin G.numVerts) 
   ((G.reduce E).unsatDarts A).filter fun x => G.owner x.1 = v ∧ x.2 ≠ none
 
 omit [Fintype α] [Nonempty α] in
+/--
+@isnad1 id=le.0h5v.s6.387067c3d568 from=translated src=- shape=cf1beffb vocab=56b3f967
+-/
 theorem cloudUnsat_subset (A : (G.reduce E).Assignment) (v : Fin G.numVerts) :
     G.cloudUnsat E A v ⊆ (G.reduce E).unsatDarts A :=
   Finset.filter_subset _ _
 
 omit [Fintype α] [Nonempty α] in
 /-- The clouds' unsatisfied links are disjoint: a dart's tail determines the
-vertex it sits at. -/
+vertex it sits at.
+@isnad1 id=disjoint.1h6v.s6.b0f78ad434fd from=translated src=- shape=c045454e vocab=fa4d1a3b
+-/
 theorem cloudUnsat_disjoint (A : (G.reduce E).Assignment) {u v : Fin G.numVerts} (huv : u ≠ v) :
     Disjoint (G.cloudUnsat E A u) (G.cloudUnsat E A v) := by
   refine Finset.disjoint_left.mpr fun x hx hx' => ?_
@@ -171,7 +195,9 @@ theorem cloudUnsat_disjoint (A : (G.reduce E).Assignment) {u v : Fin G.numVerts}
   exact huv (hx.2.1.symm.trans hx'.2.1)
 
 /-- Every boundary dart of the disagreeing set is an unsatisfied cloud-link:
-its two ends carry different labels, one being the plurality and one not. -/
+its two ends carry different labels, one being the plurality and one not.
+@isnad1 id=le.0h5v.s7.774314d2772d from=translated src=- shape=f4ba0d97 vocab=06bce6b4
+-/
 theorem card_dartsBetween_le_card_cloudUnsat (A : (G.reduce E).Assignment)
     (v : Fin G.numVerts) :
     ((E.graph (G.cloudList v).length).dartsBetween (G.devIdx A v) (G.devIdx A v)ᶜ).card
@@ -214,7 +240,9 @@ theorem card_dartsBetween_le_card_cloudUnsat (A : (G.reduce E).Assignment)
 
 /-- **The cloud charge.** The disagreeing part of `v`'s cloud is billed
 `(1 - lam) · degree / card α` unsatisfied cloud-links per disagreeing
-half-edge. -/
+half-edge.
+@isnad1 id=le.0h5v.s6.069e249d7d9d from=translated src=- shape=77e133ad vocab=38d71f53
+-/
 theorem cloud_disagreement_bound (A : (G.reduce E).Assignment) (v : Fin G.numVerts) :
     (1 - E.lam) * (E.degree : ℝ) * ((G.devIdx A v).card : ℝ) / (Fintype.card α : ℝ)
       ≤ ((G.cloudUnsat E A v).card : ℝ) := by
@@ -272,7 +300,9 @@ theorem cloud_disagreement_bound (A : (G.reduce E).Assignment) (v : Fin G.numVer
 
 omit [Fintype α] [Nonempty α] in
 /-- The clouds' unsatisfied links are disjoint subsets of all the unsatisfied
-darts, so their counts add up to at most the whole. -/
+darts, so their counts add up to at most the whole.
+@isnad1 id=le.0h4v.s6.4ba1662c1293 from=translated src=- shape=f1666e75 vocab=b8a78961
+-/
 theorem sum_card_cloudUnsat_le (A : (G.reduce E).Assignment) :
     ∑ v : Fin G.numVerts, (G.cloudUnsat E A v).card ≤ (((G.reduce E).unsatDarts A)).card := by
   have hdisj : ∀ u ∈ (Finset.univ : Finset (Fin G.numVerts)),
@@ -288,7 +318,9 @@ theorem sum_card_cloudUnsat_le (A : (G.reduce E).Assignment) :
 
 /-- **The total cloud charge.** Every disagreeing half-edge is billed
 `(1 - lam) · degree / card α` unsatisfied cloud-links, and the bills for
-different vertices never overlap. -/
+different vertices never overlap.
+@isnad1 id=le.0h4v.s6.0c2aec31f118 from=translated src=- shape=fe60af97 vocab=c0519f96
+-/
 theorem total_cloud_charge (A : (G.reduce E).Assignment) :
     (1 - E.lam) * (E.degree : ℝ) * ((G.devSet A).card : ℝ) / (Fintype.card α : ℝ)
       ≤ (((G.reduce E).unsatDarts A).card : ℝ) := by

@@ -39,7 +39,9 @@ def binaryForIterationWrap (body : TM n) (counterIdx limitIdx : Fin n)
     output := c.output }
 
 /-- Every nonhalting composite-iteration step is simulated exactly by one
-`binaryForTM` step. -/
+`binaryForTM` step.
+@isnad1 id=eq.1h6v.s6.7c8bfb22f992 from=translated src=- shape=d4a00967 vocab=a8d42bd3
+-/
 theorem binaryForTM_iteration_step_internal (body : TM n)
     (counterIdx limitIdx : Fin n)
     {c c' : Cfg n (binaryForIterationTM body counterIdx).Q}
@@ -57,7 +59,9 @@ theorem binaryForTM_iteration_step_internal (body : TM n)
   rfl
 
 /-- Exact runs of the composite iteration lift through the iteration phase of
-`binaryForTM`. -/
+`binaryForTM`.
+@isnad1 id=reachesi.1h7v.s5.16c002f6e582 from=translated src=- shape=22e127c2 vocab=a42773fa
+-/
 theorem binaryForTM_iteration_reachesIn_internal (body : TM n)
     (counterIdx limitIdx : Fin n)
     {t : ℕ} {c c' : Cfg n (binaryForIterationTM body counterIdx).Q}
@@ -70,7 +74,9 @@ theorem binaryForTM_iteration_reachesIn_internal (body : TM n)
 
 /-- Away from the common terminating blank, one scanner step compares the
 current symbols and advances both designated tapes, preserving the full
-off-start frame. -/
+off-start frame.
+@isnad1 id=eq.6h6v.s8.e05da2fed370 from=translated src=- shape=105b864b vocab=bda93806
+-/
 theorem binaryForTM_step_scan_internal (body : TM n)
     (counterIdx limitIdx : Fin n) (hne : counterIdx ≠ limitIdx)
     (equalSoFar : Bool) (c : Cfg n (binaryForTM body counterIdx limitIdx).Q)
@@ -109,7 +115,9 @@ theorem binaryForTM_step_scan_internal (body : TM n)
   · exact transitionTape_eq_self houtput
 
 /-- At the common terminating blank, one scanner step enters rewind and moves
-both designated tapes left, preserving the full off-start frame. -/
+both designated tapes left, preserving the full off-start frame.
+@isnad1 id=eq.7h6v.s8.4e19feb51065 from=translated src=- shape=f075bafe vocab=1b56b79e
+-/
 theorem binaryForTM_step_scan_blank_internal (body : TM n)
     (counterIdx limitIdx : Fin n) (hne : counterIdx ≠ limitIdx)
     (equalSoFar : Bool) (c : Cfg n (binaryForTM body counterIdx limitIdx).Q)
@@ -147,7 +155,9 @@ theorem binaryForTM_step_scan_blank_internal (body : TM n)
   · exact transitionTape_eq_self houtput
 
 /-- One ordinary rewind step moves both designated tapes left, preserving the
-full off-start frame. -/
+full off-start frame.
+@isnad1 id=eq.5h6v.s7.fc3507d07fa1 from=translated src=- shape=31e477e8 vocab=fa5ee357
+-/
 theorem binaryForTM_step_rewind_internal (body : TM n)
     (counterIdx limitIdx : Fin n) (hne : counterIdx ≠ limitIdx)
     (equalSoFar : Bool) (c : Cfg n (binaryForTM body counterIdx limitIdx).Q)
@@ -189,7 +199,9 @@ theorem binaryForTM_step_rewind_internal (body : TM n)
   · exact transitionTape_eq_self houtput
 
 /-- When an equal comparison rewinds to both left markers, one preserving
-step returns both designated heads to cell one and halts the loop. -/
+step returns both designated heads to cell one and halts the loop.
+@isnad1 id=eq.9h5v.s8.649bd656f32a from=translated src=- shape=bd322c23 vocab=da5fba58
+-/
 theorem binaryForTM_step_rewind_equal_internal (body : TM n)
     (counterIdx limitIdx : Fin n) (hne : counterIdx ≠ limitIdx)
     (c : Cfg n (binaryForTM body counterIdx limitIdx).Q)
@@ -235,7 +247,9 @@ theorem binaryForTM_step_rewind_equal_internal (body : TM n)
 
 /-- When an unequal comparison rewinds to both left markers, one preserving
 step returns both designated heads to cell one and enters the composite
-iteration. -/
+iteration.
+@isnad1 id=eq.9h5v.s8.9b929c3e1bd0 from=translated src=- shape=41e1acd7 vocab=bac584d2
+-/
 theorem binaryForTM_step_rewind_unequal_internal (body : TM n)
     (counterIdx limitIdx : Fin n) (hne : counterIdx ≠ limitIdx)
     (c : Cfg n (binaryForTM body counterIdx limitIdx).Q)
@@ -280,7 +294,9 @@ theorem binaryForTM_step_rewind_unequal_internal (body : TM n)
   · exact transitionTape_eq_self houtput
 
 /-- A halted composite iteration takes one preserving outer seam step back to
-a fresh equality scan. -/
+a fresh equality scan.
+@isnad1 id=eq.4h5v.s7.027377576d5a from=translated src=- shape=9e222ef8 vocab=3f5d01c4
+-/
 theorem binaryForTM_step_iteration_halt_internal (body : TM n)
     (counterIdx limitIdx : Fin n)
     (c : Cfg n (binaryForIterationTM body counterIdx).Q)

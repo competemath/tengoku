@@ -62,10 +62,16 @@ def ofRot (d : ℕ) (hd : 0 < d) (n : ℕ) (rot : Fin n × Fin d → Fin n × Fi
   rot := rot
   rot_involutive := hrot
 
+/--
+@isnad1 id=eq.2h3v.s5.8d6145de5d6d from=translated src=- shape=e48d7e89 vocab=77bf5d64
+-/
 @[simp] theorem order_ofRot (d : ℕ) (hd : 0 < d) (n : ℕ)
     (rot : Fin n × Fin d → Fin n × Fin d) (hrot : Function.Involutive rot) :
     (ofRot d hd n rot hrot).order = n := Fintype.card_fin n
 
+/--
+@isnad1 id=eq.2h3v.s5.234d31e6eaf6 from=translated src=- shape=da992434 vocab=a30f68a8
+-/
 @[simp] theorem deg_ofRot (d : ℕ) (hd : 0 < d) (n : ℕ)
     (rot : Fin n × Fin d → Fin n × Fin d) (hrot : Function.Involutive rot) :
     (ofRot d hd n rot hrot).deg = d := Fintype.card_fin d
@@ -102,14 +108,29 @@ variable (E : ExpanderFamily) (G : RegGraph) [NumEnc G.V]
 def graph (n : ℕ) : RegGraph :=
   RegGraph.ofRot E.degree E.degree_pos n (E.rot n) (E.rot_involutive n)
 
+/--
+@isnad1 id=eq.0h2v.s3.93b416417f9e from=translated src=- shape=bfcdc385 vocab=e4584d3c
+-/
 @[simp] theorem V_graph (n : ℕ) : (E.graph n).V = Fin n := rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.3c7e5f7c656a from=translated src=- shape=1643ea54 vocab=b2484ab3
+-/
 @[simp] theorem D_graph (n : ℕ) : (E.graph n).D = Fin E.degree := rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.7f8b54cb2297 from=translated src=- shape=6021be03 vocab=03ca232f
+-/
 @[simp] theorem order_graph (n : ℕ) : (E.graph n).order = n := Fintype.card_fin n
 
+/--
+@isnad1 id=eq.0h2v.s3.c8ceac9c521c from=translated src=- shape=130d24bb vocab=c0214563
+-/
 @[simp] theorem deg_graph (n : ℕ) : (E.graph n).deg = E.degree := Fintype.card_fin E.degree
 
+/--
+@isnad1 id=spectral.0h2v.s3.b9b7889f7d9c from=translated src=- shape=e972a313 vocab=9d6e13ce
+-/
 theorem spectral_graph (n : ℕ) : (E.graph n).SpectralBound E.lam := E.spectral n
 
 /-- The identification of the family member's vertices with `G`'s: the
@@ -121,13 +142,21 @@ noncomputable def vertexEquiv : (E.graph G.order).V ≃ G.V :=
 noncomputable def expanderize : RegGraph :=
   RegGraph.union G (E.graph G.order) (E.vertexEquiv G)
 
+/--
+@isnad1 id=eq.0h2v.s4.6a2193ed7f7f from=translated src=- shape=39dde451 vocab=70e17f16
+-/
 @[simp] theorem order_expanderize : (E.expanderize G).order = G.order := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.0e35cbbaa58d from=translated src=- shape=42fa77d9 vocab=aa11f16b
+-/
 @[simp] theorem deg_expanderize : (E.expanderize G).deg = G.deg + E.degree := by
   rw [expanderize, RegGraph.deg_union, deg_graph]
 
 /-- **Expanderization.** Superposing a family expander gives a graph with a
-spectral bound. -/
+spectral bound.
+@isnad1 id=spectral.0h2v.s6.3bf924bbbc93 from=translated src=- shape=d8425bda vocab=e5a3081c
+-/
 theorem spectralBound_expanderize :
     (E.expanderize G).SpectralBound
       (((G.deg : ℝ) + (E.degree : ℝ) * E.lam) / ((G.deg : ℝ) + (E.degree : ℝ))) := by
@@ -138,7 +167,9 @@ theorem spectralBound_expanderize :
 
 omit [NumEnc G.V] in
 /-- The resulting bound is strictly below one, which is what makes powering gain
-a factor. -/
+a factor.
+@isnad1 id=lt.0h2v.s6.9ba004a04d20 from=translated src=- shape=79cae470 vocab=6aff4fc5
+-/
 theorem expanderize_bound_lt_one :
     ((G.deg : ℝ) + (E.degree : ℝ) * E.lam) / ((G.deg : ℝ) + (E.degree : ℝ)) < 1 := by
   have hdE : (0 : ℝ) < (E.degree : ℝ) := by exact_mod_cast E.degree_pos

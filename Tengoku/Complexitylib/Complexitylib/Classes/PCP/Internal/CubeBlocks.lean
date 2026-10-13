@@ -54,12 +54,18 @@ def leftBlock (z : Cube (a + b)) : Cube a := fun i => z (Fin.castAdd b i)
 /-- The second block of a point of the combined cube. -/
 def rightBlock (z : Cube (a + b)) : Cube b := fun j => z (Fin.natAdd a j)
 
+/--
+@isnad1 id=eq.0h4v.s4.7d06bf83d7ac from=translated src=- shape=8a6d7314 vocab=4ad261b2
+-/
 theorem leftBlock_append (x : Cube a) (y : Cube b) :
     leftBlock (Fin.append x y) = x := by
   funext i
   show Fin.append x y (Fin.castAdd b i) = x i
   rw [Fin.append_left]
 
+/--
+@isnad1 id=eq.0h4v.s4.a5d8e268acf6 from=translated src=- shape=03055925 vocab=7723c101
+-/
 theorem rightBlock_append (x : Cube a) (y : Cube b) :
     rightBlock (Fin.append x y) = y := by
   funext j
@@ -70,14 +76,22 @@ theorem rightBlock_append (x : Cube a) (y : Cube b) :
 noncomputable def cubeBlockEquiv (a b : ℕ) : Cube a × Cube b ≃ Cube (a + b) :=
   Fin.appendEquiv a b
 
+/--
+@isnad1 id=eq.0h3v.s6.d596c66ef9d8 from=translated src=- shape=0dd3ace5 vocab=061f0fdf
+-/
 theorem leftBlock_blockEquiv (p : Cube a × Cube b) :
     leftBlock (cubeBlockEquiv a b p) = p.1 := leftBlock_append p.1 p.2
 
+/--
+@isnad1 id=eq.0h3v.s6.be1ea0dbb5e3 from=translated src=- shape=b10a647b vocab=9828e458
+-/
 theorem rightBlock_blockEquiv (p : Cube a × Cube b) :
     rightBlock (cubeBlockEquiv a b p) = p.2 := rightBlock_append p.1 p.2
 
 /-- **The first block is uniform.** A predicate depending only on the first
-block has the same probability over the combined cube as over its own. -/
+block has the same probability over the combined cube as over its own.
+@isnad1 id=eq.0h3v.s5.4856ae908794 from=translated src=- shape=532fb760 vocab=f5ce0af6
+-/
 theorem prob_leftBlock (P : Cube a → Prop) :
     Pr[fun z : Cube (a + b) => P (leftBlock z)] = Pr[P] := by
   classical
@@ -105,7 +119,9 @@ theorem prob_leftBlock (P : Cube a → Prop) :
   rw [pow_add]
   field_simp
 
-/-- **The second block is uniform** too. -/
+/-- **The second block is uniform** too.
+@isnad1 id=eq.0h3v.s5.9404f76f9822 from=translated src=- shape=bb8a88dd vocab=c9b6ac90
+-/
 theorem prob_rightBlock (P : Cube b → Prop) :
     Pr[fun z : Cube (a + b) => P (rightBlock z)] = Pr[P] := by
   classical
@@ -135,6 +151,9 @@ theorem prob_rightBlock (P : Cube b → Prop) :
 
 /-! ### A union bound over many reads -/
 
+/--
+@isnad1 id=eq.0h3v.s4.b05e417d68d1 from=translated src=- shape=6752f695 vocab=e3f9e72b
+-/
 theorem prob_of_forall {m : ℕ} {P : Cube m → Prop} (h : ∀ x, P x) : Pr[P] = 1 := by
   classical
   have hc := BooleanAnalysis.Internal.prob_compl P
@@ -150,7 +169,9 @@ theorem prob_of_forall {m : ℕ} {P : Cube m → Prop} (h : ∀ x, P x) : Pr[P] 
 /-- **Union bound over `k` events.** If each of `k` events holds except with
 probability `ε`, all hold except with probability `k · ε`. With the tester's
 randomness bundled into one point, each read's correctness is an event on that
-point, so this is the bound that combines them. -/
+point, so this is the bound that combines them.
+@isnad1 id=le.1h4v.s6.57cf2c60b42e from=translated src=- shape=cef151ca vocab=3097455d
+-/
 theorem prob_forall_ge {m : ℕ} : ∀ (k : ℕ) (P : Fin k → Cube m → Prop) (ε : ℝ),
     (∀ i, 1 - ε ≤ Pr[P i]) → 1 - k * ε ≤ Pr[fun z => ∀ i, P i z] := by
   intro k
@@ -188,7 +209,9 @@ theorem prob_forall_ge {m : ℕ} : ∀ (k : ℕ) (P : Fin k → Cube m → Prop)
 
 /-- Marginals compose: a block of a block is still uniform. Iterating this gives
 a bundled random string with any fixed number of independent blocks, which is all
-a tester with constantly many reads needs. -/
+a tester with constantly many reads needs.
+@isnad1 id=eq.0h4v.s6.40b0baac8aac from=translated src=- shape=ec25c04f vocab=49a531ad
+-/
 theorem prob_leftBlock_rightBlock {a b c : ℕ} (P : Cube b → Prop) :
     Pr[fun z : Cube (a + (b + c)) => P (leftBlock (rightBlock z))] = Pr[P] := by
   have h1 : Pr[fun z : Cube (a + (b + c)) => P (leftBlock (rightBlock z))]
@@ -197,6 +220,9 @@ theorem prob_leftBlock_rightBlock {a b c : ℕ} (P : Cube b → Prop) :
   rw [h1]
   exact prob_leftBlock P
 
+/--
+@isnad1 id=eq.0h4v.s6.ba5ca9da9f04 from=translated src=- shape=37208a93 vocab=c9b6ac90
+-/
 theorem prob_rightBlock_rightBlock {a b c : ℕ} (P : Cube c → Prop) :
     Pr[fun z : Cube (a + (b + c)) => P (rightBlock (rightBlock z))] = Pr[P] := by
   have h1 : Pr[fun z : Cube (a + (b + c)) => P (rightBlock (rightBlock z))]
@@ -213,7 +239,9 @@ read as two blocks.
 
 This is the bridge that lets the pair-based statements (the consistency check)
 and the block-based statements (the self-corrected reads) be combined: after
-rewriting, both are probabilities over one cube, so a union bound applies. -/
+rewriting, both are probabilities over one cube, so a union bound applies.
+@isnad1 id=eq.0h2v.s5.57fa41c90114 from=translated src=- shape=02a925e3 vocab=8bf82833
+-/
 theorem prob₂_eq_prob_blocks {n : ℕ} (P : Cube n → Cube n → Prop) :
     Pr₂[P] = Pr[fun z : Cube (n + n) => P (leftBlock z) (rightBlock z)] := by
   classical
@@ -238,7 +266,9 @@ theorem prob₂_eq_prob_blocks {n : ℕ} (P : Cube n → Cube n → Prop) :
 
 /-- A pair drawn from the first block of a bundled string is a uniform pair,
 so a `Pr₂` statement can be read as a statement about the bundled randomness
-that the tester's other reads also draw from. -/
+that the tester's other reads also draw from.
+@isnad1 id=eq.0h3v.s6.f8b21b9dfca0 from=translated src=- shape=a075dcb0 vocab=8bf82833
+-/
 theorem prob_pair_block {n c : ℕ} (P : Cube n → Cube n → Prop) :
     Pr[fun z : Cube ((n + n) + c) =>
       P (leftBlock (leftBlock z)) (rightBlock (leftBlock z))] = Pr₂[P] := by
@@ -251,7 +281,9 @@ holds, then `E` is no likelier than `F` plus the chance that `A` fails.
 This is how a tester's observed acceptance is converted into a statement about
 the decoded tables: `E` is "the tester accepts", `A` is "every self-corrected
 read returned the true value", and `F` is the check as made on the decoded
-codewords. -/
+codewords.
+@isnad1 id=le.0h5v.s6.d1bc4f8f54ee from=translated src=- shape=a02dbc04 vocab=a00187c4
+-/
 theorem prob_le_of_imp_of_good {m : ℕ} {E F A : Cube m → Prop}
     (h : ∀ z, E z → A z → F z) : Pr[E] ≤ Pr[F] + (1 - Pr[A]) := by
   classical
@@ -274,7 +306,9 @@ second.
 
 This is what lets a tester choose *where* to read using early randomness and
 still get a uniform correction string: the read point is fixed by `u`, and the
-inner probability is the ordinary one-variable statement. -/
+inner probability is the ordinary one-variable statement.
+@isnad1 id=eq.0h3v.s5.ab202713ffa5 from=translated src=- shape=78df137f vocab=3f44f0c9
+-/
 theorem prob_blocks {a b : ℕ} (Q : Cube a → Cube b → Prop) :
     Pr[fun z : Cube (a + b) => Q (leftBlock z) (rightBlock z)]
       = 𝔼[fun u : Cube a => Pr[Q u]] := by
@@ -297,7 +331,9 @@ theorem prob_blocks {a b : ℕ} (Q : Cube a → Cube b → Prop) :
   rw [hL, hR, Fintype.sum_prod_type, ← Finset.mul_sum, pow_add]
   field_simp
 
-/-- **A bound that holds for every earlier outcome holds overall.** -/
+/-- **A bound that holds for every earlier outcome holds overall.**
+@isnad1 id=le.1h4v.s5.582f1ec16346 from=translated src=- shape=06378fb8 vocab=d446a50d
+-/
 theorem prob_blocks_ge {a b : ℕ} (Q : Cube a → Cube b → Prop) (c : ℝ)
     (h : ∀ u, c ≤ Pr[Q u]) :
     c ≤ Pr[fun z : Cube (a + b) => Q (leftBlock z) (rightBlock z)] := by
@@ -316,7 +352,9 @@ theorem prob_blocks_ge {a b : ℕ} (Q : Cube a → Cube b → Prop) (c : ℝ)
   exact hsum
 
 /-- **Two likely events are jointly likely.** The union bound in the form the
-tester uses: each read fails with its own probability, and the failures add. -/
+tester uses: each read fails with its own probability, and the failures add.
+@isnad1 id=le.2h5v.s6.074b64b82600 from=translated src=- shape=990428b8 vocab=a00187c4
+-/
 theorem prob_and_ge {m : ℕ} {P Q : Cube m → Prop} {p q : ℝ}
     (hP : 1 - p ≤ Pr[P]) (hQ : 1 - q ≤ Pr[Q]) :
     1 - (p + q) ≤ Pr[fun z => P z ∧ Q z] := by
@@ -334,7 +372,9 @@ theorem prob_and_ge {m : ℕ} {P Q : Cube m → Prop} {p q : ℝ}
 
 /-- **A likely event happens.** Used to turn a probabilistic guarantee about a
 tester's reads into a single random string on which every read is right — the
-argument for a check whose conclusion is deterministic. -/
+argument for a check whose conclusion is deterministic.
+@isnad1 id=ex.1h2v.s4.487b82417bea from=translated src=- shape=7d79e77e vocab=6908f286
+-/
 theorem exists_of_prob_pos {m : ℕ} {P : Cube m → Prop} (h : 0 < Pr[P]) : ∃ z, P z := by
   classical
   by_contra hcon
@@ -347,7 +387,9 @@ theorem exists_of_prob_pos {m : ℕ} {P : Cube m → Prop} (h : 0 < Pr[P]) : ∃
     simp
   linarith
 
-/-- A probability is a count over the cube. -/
+/-- A probability is a count over the cube.
+@isnad1 id=eq.0h2v.s6.b7c4da229333 from=translated src=- shape=6dd59b85 vocab=6777d979
+-/
 theorem prob_eq_card_div {m : ℕ} (P : Cube m → Prop) [DecidablePred P] :
     Pr[P] = ((Finset.univ.filter P).card : ℝ) / 2 ^ m := by
   classical

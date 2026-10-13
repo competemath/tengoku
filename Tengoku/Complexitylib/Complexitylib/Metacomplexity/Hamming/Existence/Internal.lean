@@ -37,6 +37,9 @@ private theorem isSeparated_insert
     (a := word) (s := (code : Set (Word length)))
     (by simpa using hword)).2 ⟨hcode, hfar⟩
 
+/--
+@isnad1 id=ex.0h2v.s6.5b1a304f2039 from=translated src=- shape=a6fce777 vocab=06576770
+-/
 theorem exists_isSeparated_and_covering_internal
     (length minimumDistance : ℕ) :
     ∃ code : Finset (Word length),
@@ -74,6 +77,9 @@ theorem exists_isSeparated_and_covering_internal
     rw [Finset.card_insert_of_notMem hword] at hcard
     omega
 
+/--
+@isnad1 id=ex.0h2v.s6.fe5ef0f8ba27 from=translated src=- shape=19f333e6 vocab=db02898a
+-/
 theorem gilbertVarshamov_bound_internal (length minimumDistance : ℕ) :
     ∃ code : Finset (Word length),
       IsSeparated code minimumDistance ∧

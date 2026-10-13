@@ -80,7 +80,9 @@ def FOInterpretation.idInterp (V : Vocabulary) : FOInterpretation V V where
   relFormula := fun i => Formula.relApp i (fun j => Term.var j)
   constMap := fun c => c
 
-/-- The identity interpretation acts as the identity on structures. -/
+/-- The identity interpretation acts as the identity on structures.
+@isnad1 id=eq.0h2v.s3.55931ac55962 from=translated src=- shape=4f334db7 vocab=db81580c
+-/
 theorem FOInterpretation.apply_idInterp (A : FinStruct V) :
     (FOInterpretation.idInterp V).apply A = A := by
   cases A with
@@ -95,7 +97,9 @@ def FOInterpretation.translateTerm (I : FOInterpretation V W) : Term W n → Ter
 
 /-- **Term-level transport.** Evaluating a translated term in the source structure
     agrees with evaluating the original term in the interpreted structure. This is the
-    base case of the full (formula-level) transport theorem. -/
+    base case of the full (formula-level) transport theorem.
+@isnad1 id=eq.0h7v.s5.f472e29145b7 from=translated src=- shape=e6bf8b40 vocab=ce6e5906
+-/
 theorem FOInterpretation.translateTerm_eval (I : FOInterpretation V W) (A : FinStruct V)
     (σ : Env A.card n) (t : Term W n) :
     Term.eval A σ (I.translateTerm t) = Term.eval (I.apply A) σ t := by
@@ -104,7 +108,9 @@ theorem FOInterpretation.translateTerm_eval (I : FOInterpretation V W) (A : FinS
   | const c => rfl
 
 /-- The interpreted structure's relation is (definitionally) satisfaction of the
-    defining formula. -/
+    defining formula.
+@isnad1 id=eq.0h6v.s5.35f6088ed1c6 from=translated src=- shape=316415af vocab=24d40325
+-/
 theorem FOInterpretation.apply_rel (I : FOInterpretation V W) (A : FinStruct V)
     (i : Fin W.numRels) (args : Fin (W.relArity i) → Fin A.card) :
     (I.apply A).rel i args = Formula.Sat A args (I.relFormula i) := rfl
@@ -125,6 +131,7 @@ def FOInterpretation.translate (I : FOInterpretation V W) :
 /-- **The transport theorem (fundamental theorem of interpretations).** Satisfaction of
     a formula in the interpreted structure `I.apply A` equals satisfaction of its
     translation in the source structure `A`. This is what makes FO-reductions compose.
+    @isnad1 id=iff.0h7v.s5.8d34c40b3292 from=translated src=- shape=3d4e3b60 vocab=fb8ea2d1
     -/
 theorem FOInterpretation.translate_sat (I : FOInterpretation V W) (A : FinStruct V) :
     ∀ {n : Nat} (σ : Env A.card n) (φ : Formula W n),
@@ -157,7 +164,9 @@ def FOInterpretation.comp (I₂ : FOInterpretation V W) (I₁ : FOInterpretation
   constMap := fun c => I₁.constMap (I₂.constMap c)
 
 /-- **Composition applies as composition of structure maps**: `(I₂ ∘ I₁).apply A =
-    I₂.apply (I₁.apply A)`. The relation fields agree by the transport theorem. -/
+    I₂.apply (I₁.apply A)`. The relation fields agree by the transport theorem.
+@isnad1 id=eq.0h6v.s5.3bbe8e9de991 from=translated src=- shape=30c61af5 vocab=3101f8e9
+-/
 theorem FOInterpretation.apply_comp (I₂ : FOInterpretation V W) (I₁ : FOInterpretation U V)
     (A : FinStruct U) : (I₂.comp I₁).apply A = I₂.apply (I₁.apply A) := by
   have hrel : ((I₂.comp I₁).apply A).rel = (I₂.apply (I₁.apply A)).rel := by
@@ -171,12 +180,16 @@ theorem FOInterpretation.apply_comp (I₂ : FOInterpretation V W) (I₁ : FOInte
 def FOReduces (Q₁ : BooleanQuery V) (Q₂ : BooleanQuery W) : Prop :=
   ∃ I : FOInterpretation V W, ∀ A : FinStruct V, Q₁ A ↔ Q₂ (I.apply A)
 
-/-- FO-reducibility is reflexive, via the identity interpretation. -/
+/-- FO-reducibility is reflexive, via the identity interpretation.
+@isnad1 id=foreduce.0h2v.s3.5a5f1b96ff3c from=translated src=- shape=afaf5e02 vocab=fa0ebae6
+-/
 theorem FOReduces.refl (Q : BooleanQuery V) : FOReduces Q Q :=
   ⟨FOInterpretation.idInterp V, fun A => by rw [FOInterpretation.apply_idInterp]⟩
 
 /-- **First-order reductions respect complementation**: the same interpretation
-    witnesses `Q₁ᶜ ≤ Q₂ᶜ`, since the carrying biconditional negates. -/
+    witnesses `Q₁ᶜ ≤ Q₂ᶜ`, since the carrying biconditional negates.
+@isnad1 id=foreduce.1h4v.s4.3fa5be260f0a from=translated src=- shape=a5680617 vocab=36db6e6e
+-/
 theorem FOReduces.complement {Q₁ : BooleanQuery V} {Q₂ : BooleanQuery W}
     (h : FOReduces Q₁ Q₂) : FOReduces Q₁.complement Q₂.complement := by
   obtain ⟨I, hI⟩ := h
@@ -184,7 +197,9 @@ theorem FOReduces.complement {Q₁ : BooleanQuery V} {Q₂ : BooleanQuery W}
 
 /-- **FO-reducibility is transitive**, via composition of interpretations (the
     transport theorem is exactly what makes the composite carry membership). Together
-    with `FOReduces.refl`, FO-reducibility is a preorder on Boolean queries. -/
+    with `FOReduces.refl`, FO-reducibility is a preorder on Boolean queries.
+@isnad1 id=foreduce.2h6v.s5.28a8f6f724dc from=translated src=- shape=94af7616 vocab=fa0ebae6
+-/
 theorem FOReduces.trans {U : Vocabulary} {Q₁ : BooleanQuery U} {Q₂ : BooleanQuery V}
     {Q₃ : BooleanQuery W} (h₁ : FOReduces Q₁ Q₂) (h₂ : FOReduces Q₂ Q₃) :
     FOReduces Q₁ Q₃ := by
@@ -200,7 +215,9 @@ def FOInterpretation.IsQuantifierFree (I : FOInterpretation V W) : Prop :=
 
 /-- Translating through a quantifier-free interpretation preserves quantifier rank.
     Relation atoms are replaced by quantifier-free defining formulas, while all
-    logical connectives and quantifiers retain their original structure. -/
+    logical connectives and quantifiers retain their original structure.
+@isnad1 id=eq.1h5v.s5.33db106c52a0 from=translated src=- shape=8f019c80 vocab=73e18837
+-/
 theorem FOInterpretation.IsQuantifierFree.quantifierRank_translate
     {I : FOInterpretation V W} (hI : I.IsQuantifierFree) {n : Nat}
     (φ : Formula W n) :
@@ -221,12 +238,16 @@ theorem FOInterpretation.IsQuantifierFree.quantifierRank_translate
   | all φ ih =>
     simp only [FOInterpretation.translate, Formula.quantifierRank, ih]
 
-/-- The identity interpretation is quantifier-free (each relation is a bare atom). -/
+/-- The identity interpretation is quantifier-free (each relation is a bare atom).
+@isnad1 id=isquanti.0h1v.s2.09e71a69ee4b from=translated src=- shape=cf394b4c vocab=d6e6044b
+-/
 theorem FOInterpretation.idInterp_isQuantifierFree :
     (FOInterpretation.idInterp V).IsQuantifierFree :=
   fun _ => rfl
 
-/-- Composing quantifier-free interpretations remains quantifier-free. -/
+/-- Composing quantifier-free interpretations remains quantifier-free.
+@isnad1 id=isquanti.2h5v.s5.98df2d38a81a from=translated src=- shape=c60bc490 vocab=eed8408b
+-/
 theorem FOInterpretation.IsQuantifierFree.comp {U : Vocabulary}
     {I₂ : FOInterpretation V W} {I₁ : FOInterpretation U V}
     (hI₂ : I₂.IsQuantifierFree) (hI₁ : I₁.IsQuantifierFree) :
@@ -242,18 +263,24 @@ theorem FOInterpretation.IsQuantifierFree.comp {U : Vocabulary}
 def FOProjReduces (Q₁ : BooleanQuery V) (Q₂ : BooleanQuery W) : Prop :=
   ∃ I : FOInterpretation V W, I.IsQuantifierFree ∧ ∀ A : FinStruct V, Q₁ A ↔ Q₂ (I.apply A)
 
-/-- Every first-order projection is in particular a first-order reduction. -/
+/-- Every first-order projection is in particular a first-order reduction.
+@isnad1 id=foreduce.1h4v.s4.8a54145ad9f2 from=translated src=- shape=9b3950b6 vocab=36fb5b28
+-/
 theorem FOProjReduces.toFOReduces {Q₁ : BooleanQuery V} {Q₂ : BooleanQuery W}
     (h : FOProjReduces Q₁ Q₂) : FOReduces Q₁ Q₂ :=
   let ⟨I, _, hI⟩ := h; ⟨I, hI⟩
 
-/-- FO-projection reducibility is reflexive, via the (quantifier-free) identity. -/
+/-- FO-projection reducibility is reflexive, via the (quantifier-free) identity.
+@isnad1 id=foprojre.0h2v.s3.0cc2854c5aa4 from=translated src=- shape=afaf5e02 vocab=ab4ebea9
+-/
 theorem FOProjReduces.refl (Q : BooleanQuery V) : FOProjReduces Q Q :=
   ⟨FOInterpretation.idInterp V, FOInterpretation.idInterp_isQuantifierFree,
     fun A => by rw [FOInterpretation.apply_idInterp]⟩
 
 /-- **FO-projection reducibility is transitive.** Composition preserves both the
-    query-membership equivalence and quantifier-freeness of the interpretation. -/
+    query-membership equivalence and quantifier-freeness of the interpretation.
+@isnad1 id=foprojre.2h6v.s5.b32922c2bce6 from=translated src=- shape=94af7616 vocab=ab4ebea9
+-/
 theorem FOProjReduces.trans {U : Vocabulary} {Q₁ : BooleanQuery U}
     {Q₂ : BooleanQuery V} {Q₃ : BooleanQuery W} (h₁ : FOProjReduces Q₁ Q₂)
     (h₂ : FOProjReduces Q₂ Q₃) : FOProjReduces Q₁ Q₃ := by

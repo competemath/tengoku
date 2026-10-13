@@ -34,7 +34,9 @@ variable {n : ℕ}
 /-- **A loop that runs to a known iteration count.** `E j` describes the tapes after `j`
 iterations and `idx` reads the index back off them. Given that one iteration carries `E j` to
 `E (j + 1)` for every `j` below `N`, and that the loop halts from `E N` with `post`, the loop
-carries `E 0` to `post`. -/
+carries `E 0` to `post`.
+@isnad1 id=hoaretim.3h8v.s8.5460f6a9e37b from=translated src=- shape=4bf72715 vocab=da0768af
+-/
 theorem loopTM_hoareTime_indexed (tmBody tmTest : TM n)
     {E : ℕ → TapePred n} {post : TapePred n} {N b : ℕ}
     {idx : Tape → (Fin n → Tape) → Tape → ℕ}

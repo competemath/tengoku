@@ -35,7 +35,9 @@ namespace Complexity
 
 open Classical in
 /-- **Second-moment support bound.** The square of a sum is at most the size of
-the summand's support times the sum of squares. -/
+the summand's support times the sum of squares.
+@isnad1 id=le.0h2v.s6.623ad3737181 from=translated src=- shape=c0e91b16 vocab=06e52ce0
+-/
 theorem sq_sum_le_card_support_mul_sum_sq {ι : Type*} [Fintype ι] (N : ι → ℝ) :
     (∑ i, N i) ^ 2 ≤ ((Finset.univ.filter fun i => N i ≠ 0).card : ℝ) * ∑ i, (N i) ^ 2 := by
   classical
@@ -53,7 +55,9 @@ theorem sq_sum_le_card_support_mul_sum_sq {ι : Type*} [Fintype ι] (N : ι → 
   rwa [hcross, hfsq] at hcs
 
 open Classical in
-/-- The ratio form: the support is at least the mean-square ratio. -/
+/-- The ratio form: the support is at least the mean-square ratio.
+@isnad1 id=le.1h2v.s7.97779a338ff9 from=translated src=- shape=10719c66 vocab=2f57cd4f
+-/
 theorem sq_sum_div_sum_sq_le_card_support {ι : Type*} [Fintype ι] (N : ι → ℝ)
     (h : 0 < ∑ i, (N i) ^ 2) :
     (∑ i, N i) ^ 2 / (∑ i, (N i) ^ 2)
@@ -66,7 +70,9 @@ open Classical in
 at least `A` and second moment at most `B`, then at least `A ^ 2 / B` of the
 indices carry a nonzero count. Any `S` containing the support inherits the
 bound — in the powering argument `S` is the set of unsatisfied constraints and
-the count is the number of crossings that break one. -/
+the count is the number of crossings that break one.
+@isnad1 id=le.5h5v.s7.8cd374119920 from=translated src=- shape=25bcd687 vocab=1b702c13
+-/
 theorem card_ge_of_moments {ι : Type*} [Fintype ι] (N : ι → ℝ) (S : Finset ι)
     (hsupp : ∀ i, N i ≠ 0 → i ∈ S) {A B : ℝ} (hA0 : 0 ≤ A) (hA : A ≤ ∑ i, N i)
     (hB : ∑ i, (N i) ^ 2 ≤ B) (hB0 : 0 < B) :

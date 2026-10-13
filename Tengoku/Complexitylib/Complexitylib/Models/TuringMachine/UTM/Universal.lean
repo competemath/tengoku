@@ -46,7 +46,9 @@ def utmTime (α : List Bool) (T n : ℕ) : ℕ :=
 
 /-- **Universal simulation of deciders** (AB Theorem 1.9). If the machine
     described by `α` decides `L` within `T`, the universal machine reads
-    `pair α x` and reports `x ∈ L` within `utmTime α (T |x|) |x|` steps. -/
+    `pair α x` and reports `x ∈ L` within `utmTime α (T |x|) |x|` steps.
+@isnad1 id=ex.2h4v.s7.424634027805 from=translated src=- shape=07803a7c vocab=e66c39a0
+-/
 theorem utmTM_simulates_decider {α : List Bool} (hterm : TerminatedRegion α)
     {L : Language} {T : ℕ → ℕ}
     (hdec : (decodeDesc α).toTM.DecidesInTime L T) (x : List Bool) :
@@ -77,7 +79,9 @@ theorem utmTM_simulates_decider {α : List Bool} (hterm : TerminatedRegion α)
 /-- **One machine simulates them all**: for every multi-tape decider there
     is a description under which the fixed universal machine decides the
     same language from paired inputs, at single-tape-reduction (quadratic)
-    cost. -/
+    cost.
+@isnad1 id=ex.1h4v.s7.b7c7e68c1f7e from=translated src=- shape=6d93e4d4 vocab=30ae2d5c
+-/
 theorem utmTM_universal {k : ℕ} (M : TM k) {L : Language} {T : ℕ → ℕ}
     (hdec : M.DecidesInTime L T) :
     ∃ α : List Bool, ∀ x : List Bool,
@@ -100,7 +104,9 @@ theorem utmTM_universal {k : ℕ} (M : TM k) {L : Language} {T : ℕ → ℕ}
 /-- **Padded universality**: the description of a decider works under
     arbitrary padding — every machine has descriptions of every sufficiently
     large length, all correctly simulated. This is the form the
-    hierarchy-theorem diagonalization consumes. -/
+    hierarchy-theorem diagonalization consumes.
+@isnad1 id=ex.1h4v.s7.49edbc3dee10 from=translated src=- shape=ac63683b vocab=63c410a0
+-/
 theorem utmTM_universal_padded {k : ℕ} (M : TM k) {L : Language} {T : ℕ → ℕ}
     (hdec : M.DecidesInTime L T) :
     ∃ α₀ : List Bool, ∀ junk x : List Bool,

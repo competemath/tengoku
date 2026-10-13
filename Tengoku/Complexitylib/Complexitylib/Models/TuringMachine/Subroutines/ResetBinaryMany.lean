@@ -24,7 +24,9 @@ namespace TM
 variable {n : ℕ}
 
 /-- A reset list has a uniform linear bound when every target head and
-represented bit string is bounded uniformly. -/
+represented bit string is bounded uniformly.
+@isnad1 id=le.2h6v.s7.4b67996f7d45 from=translated src=- shape=0ee75d15 vocab=d983337d
+-/
 theorem resetBinaryWorkManyTime_le
     (targets : List (Fin n)) (bits : Fin n → List Bool)
     (headBound : Fin n → ℕ) (maxHead maxWidth : ℕ)
@@ -36,14 +38,18 @@ theorem resetBinaryWorkManyTime_le
     hhead hwidth
 
 /-- Every targeted work tape is the standard parked blank after the reset
-sequence. -/
+sequence.
+@isnad1 id=eq.1h4v.s5.dedacf7e856e from=translated src=- shape=a78e9545 vocab=2bf62ae2
+-/
 theorem resetBinaryWorkManyResult_eq_blank_of_mem
     (work₀ : Fin n → Tape) (targets : List (Fin n)) (idx : Fin n)
     (hidx : idx ∈ targets) :
     resetBinaryWorkManyResult work₀ targets idx = resetBinaryBlank :=
   resetBinaryWorkManyResult_eq_blank_of_mem_internal work₀ targets idx hidx
 
-/-- Work tapes outside the target list are preserved literally. -/
+/-- Work tapes outside the target list are preserved literally.
+@isnad1 id=eq.1h4v.s5.1db0824f55df from=translated src=- shape=aec3a5ca vocab=20e4aaed
+-/
 theorem resetBinaryWorkManyResult_eq_of_not_mem
     (work₀ : Fin n → Tape) (targets : List (Fin n)) (idx : Fin n)
     (hidx : idx ∉ targets) :
@@ -51,14 +57,18 @@ theorem resetBinaryWorkManyResult_eq_of_not_mem
   resetBinaryWorkManyResult_eq_of_not_mem_internal work₀ targets idx hidx
 
 /-- Resetting a list of work tapes preserves parkedness of the whole work
-family. -/
+family.
+@isnad1 id=parked.1h4v.s4.e3f0e076a0ac from=translated src=- shape=cb117d45 vocab=6bbea2d3
+-/
 theorem resetBinaryWorkManyResult_parked
     (work₀ : Fin n → Tape) (targets : List (Fin n))
     (hwork : ∀ i, Parked (work₀ i)) :
     ∀ i, Parked (resetBinaryWorkManyResult work₀ targets i) :=
   resetBinaryWorkManyResult_parked_internal work₀ targets hwork
 
-/-- The reset-sequence time depends on head bounds only at named targets. -/
+/-- The reset-sequence time depends on head bounds only at named targets.
+@isnad1 id=eq.1h5v.s5.87952033a284 from=translated src=- shape=7db00fe4 vocab=acf52adf
+-/
 theorem resetBinaryWorkManyTime_congr_headBound
     (targets : List (Fin n)) (bits : Fin n → List Bool)
     (left right : Fin n → ℕ)
@@ -68,7 +78,9 @@ theorem resetBinaryWorkManyTime_congr_headBound
   resetBinaryWorkManyTime_congr_headBound_internal targets bits left right heq
 
 /-- Sequentially reset a distinct list of canonical binary work tapes while
-preserving the complete external frame. -/
+preserving the complete external frame.
+@isnad1 id=hoaretim.7h7v.s7.1fde132874d2 from=translated src=- shape=fd4e45b6 vocab=3ea304c7
+-/
 theorem resetBinaryWorkManyTM_hoareTime_frame
     (targets : List (Fin n)) (bits : Fin n → List Bool)
     (headBound : Fin n → ℕ)
@@ -89,12 +101,16 @@ theorem resetBinaryWorkManyTM_hoareTime_frame
   resetBinaryWorkManyTM_hoareTime_frame_internal targets bits headBound inp₀
     work₀ out₀ hnodup htarget htargetStart htargetHead hinput hwork houtput
 
-/-- Resetting several binary work tapes preserves one-way output safety. -/
+/-- Resetting several binary work tapes preserves one-way output safety.
+@isnad1 id=istransd.0h2v.s3.e3eb339e974b from=translated src=- shape=52838ee4 vocab=dd21065e
+-/
 theorem resetBinaryWorkManyTM_isTransducer (targets : List (Fin n)) :
     (resetBinaryWorkManyTM targets).IsTransducer :=
   resetBinaryWorkManyTM_isTransducer_internal targets
 
-/-- Coarse all-prefix auxiliary-space envelope for a reset sequence. -/
+/-- Coarse all-prefix auxiliary-space envelope for a reset sequence.
+@isnad1 id=withinau.3h9v.s6.651814aa43c1 from=translated src=- shape=2ac2fe82 vocab=1919b632
+-/
 theorem resetBinaryWorkManyTM_prefix_withinAuxSpace
     (targets : List (Fin n)) (bits : Fin n → List Bool)
     (headBound : Fin n → ℕ) (inputLength initialSpace time : ℕ)

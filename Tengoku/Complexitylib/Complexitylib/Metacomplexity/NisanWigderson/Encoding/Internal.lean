@@ -17,6 +17,9 @@ namespace Complexity
 
 namespace NWDesign
 
+/--
+@isnad1 id=eq.0h4v.s5.105c8027e465 from=translated src=- shape=7b47dab5 vocab=5598aea9
+-/
 theorem length_encode_internal
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength) :
@@ -24,6 +27,9 @@ theorem length_encode_internal
       outputLength * inputLength * Fin.bitWidth seedLength := by
   simp [encode]
 
+/--
+@isnad1 id=eq.0h6v.s5.6e9301c06105 from=translated src=- shape=4d74bdaf vocab=ed4b6dc7
+-/
 theorem decodeCoordinate?_encode_internal
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -39,6 +45,9 @@ theorem decodeCoordinate?_encode_internal
   · intro bit hfirst hsecond
     simp
 
+/--
+@isnad1 id=eq.1h6v.s6.075aa9baf75c from=translated src=- shape=3022ff55 vocab=a106f60f
+-/
 theorem decodedCoordinates_encode_internal
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -51,6 +60,9 @@ theorem decodedCoordinates_encode_internal
       design.coordinates output input := by
   simp [decodedCoordinates, decodeCoordinate?_encode_internal]
 
+/--
+@isnad1 id=eq.0h4v.s5.27a9233fc4c8 from=translated src=- shape=0b709110 vocab=1769042c
+-/
 theorem decode?_encode_internal
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength) :
@@ -82,6 +94,9 @@ theorem decode?_encode_internal
       intro input
       apply decodedCoordinates_encode_internal
 
+/--
+@isnad1 id=eq.1h4v.s5.374e0ecac6b6 from=translated src=- shape=1dd04554 vocab=80588980
+-/
 theorem decode?_eq_none_of_length_ne_internal
     (outputLength inputLength seedLength : ℕ) (bits : List Bool)
     (hlength : bits.length ≠
@@ -89,6 +104,9 @@ theorem decode?_eq_none_of_length_ne_internal
     decode? outputLength inputLength seedLength bits = none := by
   simp [decode?, hlength]
 
+/--
+@isnad1 id=eq.1h5v.s5.76f189ebd12d from=translated src=- shape=f7bf7353 vocab=ab23c28e
+-/
 theorem encode_eq_of_decode?_eq_some_internal
     {outputLength inputLength seedLength : ℕ} (bits : List Bool)
     (design : NWDesign outputLength inputLength seedLength)
@@ -131,6 +149,9 @@ theorem encode_eq_of_decode?_eq_some_internal
     · simp at hdecode
   · simp at hdecode
 
+/--
+@isnad1 id=iff.0h5v.s5.ccda5ebfdc94 from=translated src=- shape=82fb6e9a vocab=ab23c28e
+-/
 theorem decode?_eq_some_iff_internal
     {outputLength inputLength seedLength : ℕ} (bits : List Bool)
     (design : NWDesign outputLength inputLength seedLength) :
@@ -142,6 +163,9 @@ theorem decode?_eq_some_iff_internal
   · rintro rfl
     exact decode?_encode_internal design
 
+/--
+@isnad1 id=injectiv.0h3v.s4.a569e2baf84a from=translated src=- shape=0d8832f4 vocab=8d4cca1d
+-/
 theorem encode_injective_internal
     {outputLength inputLength seedLength : ℕ} :
     Function.Injective
@@ -151,6 +175,9 @@ theorem encode_injective_internal
     (decode? outputLength inputLength seedLength) hencode
   simpa only [decode?_encode_internal, Option.some.injEq] using hdecode
 
+/--
+@isnad1 id=eq.0h1v.s6.e2d10ffe7409 from=translated src=- shape=c3181122 vocab=793b1580
+-/
 theorem DecoderInstance.length_encode_internal (data : DecoderInstance) :
     data.encode.length =
       2 * (data.messageLength.size + data.inverseAccuracy.size +
@@ -162,6 +189,9 @@ theorem DecoderInstance.length_encode_internal (data : DecoderInstance) :
   rw [NWDesign.length_encode_internal]
   omega
 
+/--
+@isnad1 id=eq.0h1v.s3.167055278785 from=translated src=- shape=edb93955 vocab=c7c8e3f2
+-/
 theorem DecoderInstance.decode?_encode_internal (data : DecoderInstance) :
     DecoderInstance.decode? data.encode = some data := by
   cases data
@@ -169,6 +199,9 @@ theorem DecoderInstance.decode?_encode_internal (data : DecoderInstance) :
   rw [NWDesign.decode?_encode_internal]
   rfl
 
+/--
+@isnad1 id=iff.0h2v.s4.9e7d8fc57604 from=translated src=- shape=94e3551a vocab=be1a770c
+-/
 theorem DecoderInstance.decode?_eq_some_iff_internal
     (bits : List Bool) (data : DecoderInstance) :
     DecoderInstance.decode? bits = some data ↔ bits = data.encode := by
@@ -187,6 +220,9 @@ theorem DecoderInstance.decode?_eq_some_iff_internal
         exact ⟨outputLength, inputLength, seedLength, design, hbits, rfl, rfl,
           rfl, HEq.rfl⟩
 
+/--
+@isnad1 id=injectiv.0h0v.s2.e0064592dc86 from=translated src=- shape=4b736592 vocab=bff914ce
+-/
 theorem DecoderInstance.encode_injective_internal :
     Function.Injective DecoderInstance.encode := by
   intro first second hencode

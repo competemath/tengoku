@@ -45,10 +45,16 @@ def Sentence.Models (A : FinStruct V) (φ : Sentence V) : Prop :=
 /-- Notation: `A ⊨ φ` for `Sentence.Models A φ`. -/
 scoped notation:50 A " ⊨ " φ => Sentence.Models A φ
 
+/--
+@isnad1 id=iff.0h4v.s4.e2b305145042 from=translated src=- shape=f042d855 vocab=b2551ca4
+-/
 theorem Formula.verum_sat (A : FinStruct V) (σ : Env A.card n) :
     Formula.verum.Sat A σ ↔ True := by
   simp [Formula.verum, Formula.Sat]
 
+/--
+@isnad1 id=iff.0h4v.s4.e95545516ae2 from=translated src=- shape=f042d855 vocab=ac7c71bd
+-/
 theorem Formula.falsum_sat (A : FinStruct V) (σ : Env A.card n) :
     Formula.falsum.Sat A σ ↔ False := by
   simp [Formula.falsum, Formula.Sat, Formula.verum_sat]

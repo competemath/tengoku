@@ -35,7 +35,9 @@ namespace Complexity
 /-- How many elements of `S` lie below `p`. -/
 def countBelow (S : Finset ℕ) (p : ℕ) : ℕ := (S.filter (· < p)).card
 
-/-- **Counting below the `i`-th smallest element gives `i`.** -/
+/-- **Counting below the `i`-th smallest element gives `i`.**
+@isnad1 id=eq.1h3v.s6.fe52130cfea6 from=translated src=- shape=d7d98d09 vocab=3285bd31
+-/
 theorem countBelow_orderEmbOfFin (S : Finset ℕ) {k : ℕ} (h : S.card = k) (i : Fin k) :
     countBelow S (S.orderEmbOfFin h i) = i.val := by
   classical
@@ -55,7 +57,9 @@ theorem countBelow_orderEmbOfFin (S : Finset ℕ) {k : ℕ} (h : S.card = k) (i 
   rw [countBelow, hfilter, Finset.card_image_of_injective _ (S.orderEmbOfFin h).injective,
     Fin.card_Iio]
 
-/-- **The count names the element.** -/
+/-- **The count names the element.**
+@isnad1 id=eq.3h4v.s6.a8474f31a3f2 from=translated src=- shape=b62e89de vocab=11bf031c
+-/
 theorem orderEmbOfFin_eq_of_countBelow {S : Finset ℕ} {k : ℕ} (h : S.card = k) (i : Fin k)
     {p : ℕ} (hp : p ∈ S) (hcount : countBelow S p = i.val) : S.orderEmbOfFin h i = p := by
   classical
@@ -69,7 +73,9 @@ theorem orderEmbOfFin_eq_of_countBelow {S : Finset ℕ} {k : ℕ} (h : S.card = 
   rw [← hj]
   exact congrArg _ (Fin.ext hjcount)
 
-/-- **Counting below is strictly monotone along the set.** -/
+/-- **Counting below is strictly monotone along the set.**
+@isnad1 id=lt.2h3v.s5.6d9537332ad6 from=translated src=- shape=64344f2e vocab=bc192d8f
+-/
 theorem countBelow_lt_countBelow {S : Finset ℕ} {j c : ℕ} (hj : j ∈ S) (hlt : j < c) :
     countBelow S j < countBelow S c := by
   classical
@@ -83,7 +89,9 @@ theorem countBelow_lt_countBelow {S : Finset ℕ} {j c : ℕ} (hj : j ∈ S) (hl
     rw [Finset.mem_filter] at this
     omega
 
-/-- **An element's position is below the size.** -/
+/-- **An element's position is below the size.**
+@isnad1 id=lt.1h2v.s4.bebb3ccd9c7f from=translated src=- shape=cc0c180b vocab=70b9425b
+-/
 theorem countBelow_lt_card {S : Finset ℕ} {c : ℕ} (hc : c ∈ S) : countBelow S c < S.card := by
   classical
   refine Finset.card_lt_card ⟨Finset.filter_subset _ _, ?_⟩
@@ -95,7 +103,9 @@ theorem countBelow_lt_card {S : Finset ℕ} {c : ℕ} (hc : c ∈ S) : countBelo
 /-! ### Positions in a sorted list -/
 
 /-- **In a list sorted by a key, an entry's position is the number of entries
-with a smaller key.** -/
+with a smaller key.**
+@isnad1 id=eq.3h4v.s6.6caca2e0e2b7 from=translated src=- shape=a2ade970 vocab=df0aa643
+-/
 theorem idxOf_eq_countP {β : Type} [BEq β] [LawfulBEq β] {key : β → ℕ} :
     ∀ {l : List β}, List.Pairwise (fun p q => key p ≤ key q) l →
       (∀ p ∈ l, ∀ q ∈ l, key p = key q → p = q) →

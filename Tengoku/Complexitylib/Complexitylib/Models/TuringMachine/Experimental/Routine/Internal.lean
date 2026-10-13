@@ -27,7 +27,9 @@ namespace Experimental
 namespace Routine.TransducerSafe
 
 /-- Lowering a transducer-safe routine produces a concrete one-way-output
-transducer. -/
+transducer.
+@isnad1 id=istransd.1h2v.s3.6339f2507c86 from=translated src=- shape=08ded1e7 vocab=e32cbb4e
+-/
 theorem lower_isTransducer_internal {routine : Routine n}
     (h : routine.TransducerSafe) : routine.lower.IsTransducer := by
   induction h with

@@ -45,7 +45,9 @@ def Term.shift {n : Nat} : Term V n → Term V (n + 1)
   | .const c => Term.const c
 
 /-- Shifting a term and evaluating under an extended environment recovers the original
-    evaluation: the fresh variable `0` is never referenced by a shifted term. -/
+    evaluation: the fresh variable `0` is never referenced by a shifted term.
+@isnad1 id=eq.0h6v.s5.a25542f4cfb6 from=translated src=- shape=14d45fea vocab=b68cfdbf
+-/
 theorem Term.shift_eval {n : Nat} (A : FinStruct V) (a : Fin A.card) (σ : Env A.card n)
     (t : Term V n) : Term.eval A (envCons a σ) t.shift = Term.eval A σ t := by
   cases t with
@@ -58,7 +60,9 @@ def Term.substTerm {m n : Nat} (ρ : Fin m → Term V n) : Term V m → Term V n
   | .const c => Term.const c
 
 /-- Evaluating a substituted term is evaluating the original under the substituted
-    environment. -/
+    environment.
+@isnad1 id=eq.0h7v.s5.c04f791e7347 from=translated src=- shape=8cdb968b vocab=c0929d10
+-/
 theorem Term.substTerm_eval {m n : Nat} (A : FinStruct V) (σ : Env A.card n)
     (ρ : Fin m → Term V n) (t : Term V m) :
     Term.eval A σ (t.substTerm ρ) = Term.eval A (fun k => Term.eval A σ (ρ k)) t := by
@@ -73,7 +77,9 @@ def liftSubst {m n : Nat} (ρ : Fin m → Term V n) : Fin (m + 1) → Term V (n 
 
 /-- The environment induced by a lifted substitution is the extension (by the new
     element) of the environment induced by the original — the compatibility fact that
-    drives the quantifier case of the substitution theorem. -/
+    drives the quantifier case of the substitution theorem.
+@isnad1 id=eq.0h7v.s6.00048da647fa from=translated src=- shape=1778549d vocab=51b51f04
+-/
 theorem liftSubst_eval {m n : Nat} (A : FinStruct V) (a : Fin A.card) (σ : Env A.card n)
     (ρ : Fin m → Term V n) :
     (fun k => Term.eval A (envCons a σ) (liftSubst ρ k))
@@ -97,7 +103,9 @@ def Formula.subst : {m n : Nat} → Formula V m → (Fin m → Term V n) → For
   | _, _, .exist φ, ρ => .exist (φ.subst (liftSubst ρ))
   | _, _, .all φ, ρ => .all (φ.subst (liftSubst ρ))
 
-/-- Substituting terms for free variables preserves quantifier rank exactly. -/
+/-- Substituting terms for free variables preserves quantifier rank exactly.
+@isnad1 id=eq.0h5v.s5.c5102370261a from=translated src=- shape=1b23c713 vocab=8f99585b
+-/
 theorem Formula.quantifierRank_subst {m n : Nat} (φ : Formula V m)
     (ρ : Fin m → Term V n) :
     (φ.subst ρ).quantifierRank = φ.quantifierRank := by
@@ -106,7 +114,9 @@ theorem Formula.quantifierRank_subst {m n : Nat} (φ : Formula V m)
 
 /-- **The substitution theorem.** Satisfaction of a substituted formula under `σ`
     equals satisfaction of the original formula under the environment that evaluates
-    each substituted term. -/
+    each substituted term.
+@isnad1 id=iff.0h7v.s5.347211d67044 from=translated src=- shape=e76fc75a vocab=4459809a
+-/
 theorem Formula.subst_sat (A : FinStruct V) :
     ∀ {m n : Nat} (σ : Env A.card n) (ρ : Fin m → Term V n) (φ : Formula V m),
       Formula.Sat A σ (φ.subst ρ) ↔ Formula.Sat A (fun k => Term.eval A σ (ρ k)) φ := by

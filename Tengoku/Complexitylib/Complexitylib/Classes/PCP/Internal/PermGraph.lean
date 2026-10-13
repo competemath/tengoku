@@ -47,6 +47,9 @@ def permsRot (σ : Fin D → Equiv.Perm (Fin n)) :
   fun p => if p.2.2 then ((σ p.2.1).symm p.1, (p.2.1, false))
     else (σ p.2.1 p.1, (p.2.1, true))
 
+/--
+@isnad1 id=involuti.0h3v.s4.6744af82c609 from=translated src=- shape=fbf15883 vocab=c01e0ee3
+-/
 theorem permsRot_involutive (σ : Fin D → Equiv.Perm (Fin n)) :
     Function.Involutive (permsRot σ) := by
   intro p
@@ -67,20 +70,31 @@ def permsGraph (hD : 0 < D) (σ : Fin D → Equiv.Perm (Fin n)) : RegGraph where
   rot := permsRot σ
   rot_involutive := permsRot_involutive σ
 
+/--
+@isnad1 id=eq.1h3v.s4.28adff90394d from=translated src=- shape=dd255c6d vocab=61c64e7b
+-/
 @[simp] theorem order_permsGraph (hD : 0 < D) (σ : Fin D → Equiv.Perm (Fin n)) :
     (permsGraph hD σ).order = n := Fintype.card_fin n
 
+/--
+@isnad1 id=eq.1h3v.s5.f93d43d1dc9f from=translated src=- shape=e8304818 vocab=8d6de1a8
+-/
 theorem deg_permsGraph (hD : 0 < D) (σ : Fin D → Equiv.Perm (Fin n)) :
     (permsGraph hD σ).deg = 2 * D := by
   show Fintype.card (Fin D × Bool) = 2 * D
   rw [Fintype.card_prod, Fintype.card_fin, Fintype.card_bool]
   ring
 
+/--
+@isnad1 id=eq.1h5v.s6.3684401e228f from=translated src=- shape=c04bd608 vocab=15e24ab6
+-/
 theorem nbr_permsGraph_false (hD : 0 < D) (σ : Fin D → Equiv.Perm (Fin n))
     (v : Fin n) (i : Fin D) : (permsGraph hD σ).nbr v (i, false) = σ i v := rfl
 
 /-- **Forward darts leave.** The darts of the graph that leave `S` include, for
-every permutation, one for each point of `S` that permutation moves out. -/
+every permutation, one for each point of `S` that permutation moves out.
+@isnad1 id=le.1h4v.s6.49345d466a12 from=translated src=- shape=56335ff3 vocab=52624e42
+-/
 theorem sum_escape_le_dartsBetween (hD : 0 < D) (σ : Fin D → Equiv.Perm (Fin n))
     (S : Finset (Fin n)) :
     ∑ i : Fin D, escape (σ i) S
@@ -113,7 +127,9 @@ theorem sum_escape_le_dartsBetween (hD : 0 < D) (σ : Fin D → Equiv.Perm (Fin 
 
 /-- **From escape to expansion.** If every nonempty set of at most half the
 vertices is moved out of itself by some permutation, in at least a `1 / c`
-fraction, the graph has edge expansion `1 / (2 c D)`. -/
+fraction, the graph has edge expansion `1 / (2 c D)`.
+@isnad1 id=edgeexpa.3h4v.s7.451c810033dc from=translated src=- shape=cb4384a8 vocab=b7d8e7dd
+-/
 theorem edgeExpansion_permsGraph (hD : 0 < D) (σ : Fin D → Equiv.Perm (Fin n)) (c : ℕ)
     (hc : 0 < c)
     (hesc : ∀ S : Finset (Fin n), 2 * S.card ≤ n → ∃ i : Fin D, S.card ≤ c * escape (σ i) S) :

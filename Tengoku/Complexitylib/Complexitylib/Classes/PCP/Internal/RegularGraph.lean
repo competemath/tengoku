@@ -99,25 +99,41 @@ def deg : ℕ := Fintype.card G.D
 /-- The number of vertices. -/
 def order : ℕ := Fintype.card G.V
 
+/--
+@isnad1 id=lt.0h1v.s3.66f8feb09e1b from=translated src=- shape=b9369acb vocab=295112cd
+-/
 theorem deg_pos : 0 < G.deg := Fintype.card_pos
 
+/--
+@isnad1 id=eq.0h1v.s3.73a26de172b2 from=translated src=- shape=7718e021 vocab=ebec3be0
+-/
 @[simp] theorem card_eq_order : Fintype.card G.V = G.order := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.207f8964bd5b from=translated src=- shape=7718e021 vocab=c2970e01
+-/
 @[simp] theorem card_eq_deg : Fintype.card G.D = G.deg := rfl
 
+/--
+@isnad1 id=ne.0h1v.s3.aa55b10ca8ad from=translated src=- shape=562e4a6d vocab=e18c07a7
+-/
 theorem deg_ne_zero : (G.deg : ℝ) ≠ 0 := Nat.cast_ne_zero.mpr G.deg_pos.ne'
 
 /-- The `i`-th neighbour of `v`. -/
 def nbr (v : G.V) (i : G.D) : G.V := (G.rot (v, i)).1
 
-/-- The rotation map is a bijection of darts. -/
+/-- The rotation map is a bijection of darts.
+@isnad1 id=bijectiv.0h1v.s3.3902b2d0c94d from=translated src=- shape=cd944cf4 vocab=15000d45
+-/
 theorem rot_bijective : Function.Bijective G.rot := G.rot_involutive.bijective
 
 /-- Summing a function of the neighbour over all darts is summing it over all
 vertices, each counted `deg` times. This is the rotation-map form of
 regularity, and it is the source of every counting identity below. Stated for an
 arbitrary `AddCommMonoid`, since the walk analysis needs it both for real
-averages and for counting in `ℕ`. -/
+averages and for counting in `ℕ`.
+@isnad1 id=eq.0h3v.s6.181ae27da358 from=translated src=- shape=ff60d4e4 vocab=0a914b04
+-/
 theorem sum_nbr_nsmul {M : Type*} [AddCommMonoid M] (f : G.V → M) :
     ∑ v : G.V, ∑ i : G.D, f (G.nbr v i) = G.deg • ∑ v : G.V, f v := by
   have hprod : ∑ p : G.V × G.D, f (G.rot p).1 = ∑ p : G.V × G.D, f p.1 :=
@@ -130,6 +146,9 @@ theorem sum_nbr_nsmul {M : Type*} [AddCommMonoid M] (f : G.V → M) :
     _ = ∑ v : G.V, G.deg • f v := by simp
     _ = G.deg • ∑ v : G.V, f v := Finset.sum_nsmul _ _ _
 
+/--
+@isnad1 id=eq.0h2v.s6.2c76d6ffc9c4 from=translated src=- shape=36fbcfd1 vocab=abae9384
+-/
 theorem sum_nbr (f : G.V → ℝ) :
     ∑ v : G.V, ∑ i : G.D, f (G.nbr v i) = (G.deg : ℝ) * ∑ v : G.V, f v := by
   rw [G.sum_nbr_nsmul f, nsmul_eq_mul]
@@ -139,7 +158,9 @@ functions on the vertices. -/
 noncomputable def step (f : G.V → ℝ) (v : G.V) : ℝ :=
   (∑ i : G.D, f (G.nbr v i)) / (G.deg : ℝ)
 
-/-- The walk operator preserves sums: it is doubly stochastic. -/
+/-- The walk operator preserves sums: it is doubly stochastic.
+@isnad1 id=eq.0h2v.s5.e015944301d2 from=translated src=- shape=a8472cb3 vocab=0887e653
+-/
 theorem sum_step (f : G.V → ℝ) : ∑ v : G.V, G.step f v = ∑ v : G.V, f v := by
   have hd : (G.deg : ℝ) ≠ 0 := G.deg_ne_zero
   calc ∑ v : G.V, G.step f v
@@ -148,7 +169,9 @@ theorem sum_step (f : G.V → ℝ) : ∑ v : G.V, G.step f v = ∑ v : G.V, f v 
     _ = ((G.deg : ℝ) * ∑ v : G.V, f v) / (G.deg : ℝ) := by rw [G.sum_nbr f]
     _ = ∑ v : G.V, f v := by field_simp
 
-/-- The walk operator is self-adjoint for the standard inner product. -/
+/-- The walk operator is self-adjoint for the standard inner product.
+@isnad1 id=eq.0h3v.s6.ef42a83a6ebe from=translated src=- shape=d29601c8 vocab=6b564292
+-/
 theorem step_symm (f g : G.V → ℝ) :
     ∑ v : G.V, G.step f v * g v = ∑ v : G.V, f v * G.step g v := by
   have key : ∑ p : G.V × G.D, f (G.rot p).1 * g p.1
@@ -172,16 +195,28 @@ theorem step_symm (f g : G.V → ℝ) :
 /-- The `t`-step walk operator. -/
 noncomputable def stepIter (t : ℕ) (f : G.V → ℝ) : G.V → ℝ := G.step^[t] f
 
+/--
+@isnad1 id=eq.0h2v.s4.c5f55aa8e969 from=translated src=- shape=aae7c8e9 vocab=5dfac67f
+-/
 @[simp] theorem stepIter_zero (f : G.V → ℝ) : G.stepIter 0 f = f := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.d3af2737ef19 from=translated src=- shape=ccffeb70 vocab=80a1e784
+-/
 theorem stepIter_succ (t : ℕ) (f : G.V → ℝ) :
     G.stepIter (t + 1) f = G.step (G.stepIter t f) :=
   Function.iterate_succ_apply' _ _ _
 
+/--
+@isnad1 id=eq.0h3v.s5.3f83b25fa211 from=translated src=- shape=b9b0098e vocab=80a1e784
+-/
 theorem stepIter_succ' (t : ℕ) (f : G.V → ℝ) :
     G.stepIter (t + 1) f = G.stepIter t (G.step f) :=
   Function.iterate_succ_apply _ _ _
 
+/--
+@isnad1 id=eq.0h3v.s5.dd24e9d8cb2b from=translated src=- shape=26b5e002 vocab=c1d7ef45
+-/
 theorem sum_stepIter (t : ℕ) (f : G.V → ℝ) :
     ∑ v : G.V, G.stepIter t f v = ∑ v : G.V, f v := by
   induction t with
@@ -192,7 +227,9 @@ theorem sum_stepIter (t : ℕ) (f : G.V → ℝ) :
 Euclidean norm — this is Cauchy–Schwarz on each vertex's average, summed with
 `sum_nbr`. It holds for *every* regular graph, with no spectral assumption, and
 is what lets a graph be combined with an expander: the graph's own part of the
-combined walk contributes at most its full weight. -/
+combined walk contributes at most its full weight.
+@isnad1 id=le.0h2v.s6.16ad60e3ccc2 from=translated src=- shape=6b633b23 vocab=2637b14e
+-/
 theorem sum_sq_step_le (f : G.V → ℝ) :
     (∑ v : G.V, (G.step f v) ^ 2) ≤ ∑ v : G.V, (f v) ^ 2 := by
   have hd : (0 : ℝ) < (G.deg : ℝ) := by
@@ -226,7 +263,9 @@ def SpectralBound (G : RegGraph) (lam : ℝ) : Prop :=
   ∀ f : G.V → ℝ, (∑ v : G.V, f v) = 0 →
     (∑ v : G.V, (G.step f v) ^ 2) ≤ lam ^ 2 * ∑ v : G.V, (f v) ^ 2
 
-/-- A weaker contraction factor is still a contraction factor. -/
+/-- A weaker contraction factor is still a contraction factor.
+@isnad1 id=spectral.3h3v.s4.caaa3016a60f from=translated src=- shape=f5e22a94 vocab=4215d3ec
+-/
 theorem SpectralBound.mono {G : RegGraph} {lam lam' : ℝ} (h : G.SpectralBound lam)
     (h0 : 0 ≤ lam) (hle : lam ≤ lam') : G.SpectralBound lam' := by
   intro f hf
@@ -234,7 +273,9 @@ theorem SpectralBound.mono {G : RegGraph} {lam lam' : ℝ} (h : G.SpectralBound 
   exact pow_le_pow_left₀ h0 hle 2
 
 /-- Every graph contracts the empty family of mean-zero functions: a graph with
-no vertices has any contraction factor. -/
+no vertices has any contraction factor.
+@isnad1 id=spectral.1h2v.s3.b7dfce950331 from=translated src=- shape=60e3f683 vocab=10f2b4eb
+-/
 theorem spectralBound_of_isEmpty {G : RegGraph} (h : IsEmpty G.V) (lam : ℝ) :
     G.SpectralBound lam := by
   intro f _
@@ -242,7 +283,9 @@ theorem spectralBound_of_isEmpty {G : RegGraph} (h : IsEmpty G.V) (lam : ℝ) :
   rw [he, Finset.sum_empty, Finset.sum_empty, mul_zero]
 
 /-- The contraction self-composes: `t` steps contract a mean-zero function by
-`lam ^ t`, i.e. `lam ^ (2 * t)` in squared norm. -/
+`lam ^ t`, i.e. `lam ^ (2 * t)` in squared norm.
+@isnad1 id=le.2h4v.s7.c65318d9b3cf from=translated src=- shape=8bfc36c4 vocab=4ed6694a
+-/
 theorem sum_sq_stepIter_le {lam : ℝ} (h : G.SpectralBound lam) (t : ℕ) (f : G.V → ℝ)
     (hf : (∑ v : G.V, f v) = 0) :
     (∑ v : G.V, (G.stepIter t f v) ^ 2) ≤ lam ^ (2 * t) * ∑ v : G.V, (f v) ^ 2 := by

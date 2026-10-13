@@ -33,7 +33,9 @@ namespace TM.UTMBody
 /-- **Encoded descriptions have terminated entry regions**: the entry
     region of `encodeDesc d ++ junk` starts with the first table entry's
     symbols — nonempty and blank-free — so the `TerminatedRegion` premise
-    (a region starting with `□`) never fires. -/
+    (a region starting with `□`) never fires.
+@isnad1 id=terminat.2h2v.s5.710302ac7d5b from=translated src=- shape=b8b251d3 vocab=6d2c60bc
+-/
 theorem terminatedRegion_encodeDesc {d : TMDesc} (_hd : d.WF)
     (hne : d.entries ≠ []) (junk : List Bool) :
     TerminatedRegion (encodeDesc d ++ junk) := by
@@ -72,13 +74,17 @@ theorem terminatedRegion_encodeDesc {d : TMDesc} (_hd : d.WF)
   injection hR with h₁ _
   exact absurd h₁ hs₀
 
-/-- `terminatedRegion_encodeDesc` for the bare encoding (no junk). -/
+/-- `terminatedRegion_encodeDesc` for the bare encoding (no junk).
+@isnad1 id=terminat.2h1v.s4.8e99475d6df7 from=translated src=- shape=51f705e1 vocab=84afe404
+-/
 theorem terminatedRegion_encodeDesc_plain {d : TMDesc} (hd : d.WF)
     (hne : d.entries ≠ []) : TerminatedRegion (encodeDesc d) := by
   simpa using terminatedRegion_encodeDesc hd hne []
 
 /-- Extracted tables are nonempty: every machine has at least its start
-    state, and the dense table lists a row for each state/symbols key. -/
+    state, and the dense table lists a row for each state/symbols key.
+@isnad1 id=ne.0h1v.s3.749144131e54 from=translated src=- shape=f44f575e vocab=a7f40667
+-/
 theorem descOfTM_entries_ne_nil (M : TM 1) : (TM.descOfTM M).entries ≠ [] := by
   have hpos : 0 < Fintype.card M.Q := Fintype.card_pos_iff.mpr ⟨M.qstart⟩
   have hmem : M.descEntry ⟨0, hpos⟩ Γ.zero Γ.zero Γ.zero ∈ (M.descOfTM).entries := by

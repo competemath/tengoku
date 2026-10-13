@@ -26,7 +26,9 @@ namespace TM
 variable {n : ℕ}
 
 /-- A certified canonical binary count-up loop has its advertised exact
-remaining run. -/
+remaining run.
+@isnad1 id=reachesi.1h9v.s6.4e5af3028de6 from=translated src=- shape=5981d9a2 vocab=be5dc50e
+-/
 theorem BinaryForLoopSpec.reachesIn_internal {body : TM n}
     {counterIdx limitIdx : Fin n} {bodyTime : ℕ → ℕ} {limitValue : ℕ}
     (spec : BinaryForLoopSpec body counterIdx limitIdx bodyTime limitValue) :
@@ -57,7 +59,9 @@ theorem BinaryForLoopSpec.reachesIn_internal {body : TM n}
       simp only [binaryForLoopTime]
       omega
 
-/-- Scanner bounds are the reflexive prefixes of the comparison obligation. -/
+/-- Scanner bounds are the reflexive prefixes of the comparison obligation.
+@isnad1 id=withinau.2h10v.s6.19962a840233 from=translated src=- shape=006864e1 vocab=1f57a729
+-/
 theorem BinaryForLoopSpaceSpec.scanWithin_internal
     {body : TM n} {counterIdx limitIdx : Fin n} {bodyTime : ℕ → ℕ}
     {limitValue inputLength spaceBound value : ℕ}
@@ -68,7 +72,9 @@ theorem BinaryForLoopSpaceSpec.scanWithin_internal
   spaceSpec.testPrefixWithin value 0 (spec.scanCfg value) hvalue
     (Nat.zero_le _) .zero
 
-/-- The final-state bound is the complete final comparison prefix. -/
+/-- The final-state bound is the complete final comparison prefix.
+@isnad1 id=withinau.1h9v.s5.d9fa1e1251a2 from=translated src=- shape=7563026d vocab=6248ccca
+-/
 theorem BinaryForLoopSpaceSpec.doneWithin_internal
     {body : TM n} {counterIdx limitIdx : Fin n} {bodyTime : ℕ → ℕ}
     {limitValue inputLength spaceBound : ℕ}
@@ -79,7 +85,9 @@ theorem BinaryForLoopSpaceSpec.doneWithin_internal
     spec.doneCfg le_rfl le_rfl spec.doneRun
 
 /-- Every configuration reached no later than a certified binary loop's exact
-remaining runtime satisfies its auxiliary-space budget. -/
+remaining runtime satisfies its auxiliary-space budget.
+@isnad1 id=withinau.4h13v.s6.19fdef85333f from=translated src=- shape=ef4cf482 vocab=aa6fcbce
+-/
 theorem BinaryForLoopSpaceSpec.prefix_withinAuxSpace_internal
     {body : TM n} {counterIdx limitIdx : Fin n} {bodyTime : ℕ → ℕ}
     {limitValue inputLength spaceBound : ℕ}
@@ -162,7 +170,9 @@ theorem BinaryForLoopSpaceSpec.prefix_withinAuxSpace_internal
           exact ih (value + 1) tailTime d (by omega) htail htailBound
 
 /-- A canonical binary count-up loop preserves the body's one-way-output
-discipline. -/
+discipline.
+@isnad1 id=istransd.1h4v.s4.687a0da06a07 from=translated src=- shape=03a7a906 vocab=bd088f1e
+-/
 theorem IsTransducer.binaryForTM_internal {body : TM n}
     (hbody : body.IsTransducer) (counterIdx limitIdx : Fin n) :
     (binaryForTM body counterIdx limitIdx).IsTransducer := by

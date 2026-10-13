@@ -23,7 +23,9 @@ namespace Complexity
 namespace TM
 
 /-- Lift a framed time contract while redirecting the source machine's output
-to the fresh last work tape. -/
+to the fresh last work tape.
+@isnad1 id=hoaretim.1h5v.s7.bd9c1024e6af from=translated src=- shape=4332caca vocab=464df4f8
+-/
 theorem retargetOutput_hoareTime {n : ℕ} {pre post : TapePred n}
     {bound : ℕ} (tm : TM n) (h : tm.HoareTime pre post bound) :
     tm.retargetOutput.HoareTime

@@ -43,7 +43,9 @@ namespace RegGraph
 
 variable (G : RegGraph)
 
-/-- Dropping the first label of a walk shifts its trajectory by one step. -/
+/-- Dropping the first label of a walk shifts its trajectory by one step.
+@isnad1 id=eq.0h6v.s6.ae1f33a4f857 from=translated src=- shape=72c04230 vocab=3deb3b0f
+-/
 theorem walkAt_cons {t : ℕ} (v : G.V) (i : G.D) (s : Fin t → G.D) :
     ∀ m : ℕ, G.walkAt (t + 1) v (Fin.cons i s) (m + 1) = G.walkAt t (G.nbr v i) s m := by
   intro m
@@ -59,7 +61,9 @@ theorem walkAt_cons {t : ℕ} (v : G.V) (i : G.D) (s : Fin t → G.D) :
       · rw [G.walkAt_succ_of_ge _ _ (by omega : t + 1 ≤ m + 1), ih,
           G.walkAt_succ_of_ge _ _ hge]
 
-/-- **The `k`-th dart of a uniform walk is a uniform dart.** -/
+/-- **The `k`-th dart of a uniform walk is a uniform dart.**
+@isnad1 id=eq.1h5v.s7.8227f82fc130 from=translated src=- shape=4144f192 vocab=c3990cf1
+-/
 theorem sum_stepDart {M : Type*} [AddCommMonoid M] :
     ∀ (k t : ℕ) (hk : k < t) (f : G.V × G.D → M),
       (∑ v : G.V, ∑ s : Fin t → G.D, f (G.walkAt t v s k, s ⟨k, hk⟩))
@@ -126,7 +130,9 @@ theorem sum_stepDart {M : Type*} [AddCommMonoid M] :
             congr 1
             omega
 
-/-- Summing over label tuples splits into the first label and the rest. -/
+/-- Summing over label tuples splits into the first label and the rest.
+@isnad1 id=eq.0h4v.s7.0eb3b27b87de from=translated src=- shape=2eadc2d5 vocab=fc9c3320
+-/
 theorem sum_cons_split {M : Type*} [AddCommMonoid M] (m : ℕ) (F : (Fin (m + 1) → G.D) → M) :
     (∑ r : Fin (m + 1) → G.D, F r)
       = ∑ i : G.D, ∑ r : Fin m → G.D, F (Fin.cons i r) := by
@@ -137,7 +143,9 @@ theorem sum_cons_split {M : Type*} [AddCommMonoid M] (m : ℕ) (F : (Fin (m + 1)
 where the start is also averaged and the dart comes out uniform, here the dart's
 vertex is distributed as the `k`-step walk from `x`, which the walk operator
 describes exactly. This is what turns a correlation between two steps of a walk
-into an operator inner product, where `Mixing` can bound it. -/
+into an operator inner product, where `Mixing` can bound it.
+@isnad1 id=eq.1h5v.s7.da49214513d0 from=translated src=- shape=44ae224c vocab=e8129289
+-/
 theorem sum_stepDart_fixed (h : G.V → G.D → ℝ) :
     ∀ (k m : ℕ) (hk : k < m) (x : G.V),
       (∑ r : Fin m → G.D, h (G.walkAt m x r k) (r ⟨k, hk⟩))
@@ -202,7 +210,9 @@ theorem sum_stepDart_fixed (h : G.V → G.D → ℝ) :
 happens at step `k` and at step `l > k` is an operator expression: the walk
 reaches step `k`, the constraint there is weighted, and the remaining `l-k-1`
 steps are another application of the walk operator. Feeding this to `Mixing` is
-how the second moment of the number of faulty steps gets bounded. -/
+how the second moment of the number of faulty steps gets bounded.
+@isnad1 id=eq.2h7v.s7.db1b53cfdbaa from=translated src=- shape=fedc6843 vocab=c1086384
+-/
 theorem sum_two_darts_fixed (h₁ h₂ : G.V → G.D → ℝ) :
     ∀ (k l m : ℕ) (hkl : k < l) (hl : l < m) (x : G.V),
       (∑ r : Fin m → G.D, h₁ (G.walkAt m x r k) (r ⟨k, by omega⟩)
@@ -308,7 +318,9 @@ theorem sum_two_darts_fixed (h₁ h₂ : G.V → G.D → ℝ) :
       simp only [← Finset.mul_sum]
       ring
 
-/-- The number of walks of length `t` whose `k`-th dart lies in `S`. -/
+/-- The number of walks of length `t` whose `k`-th dart lies in `S`.
+@isnad1 id=eq.1h4v.s7.bafd4619cea0 from=translated src=- shape=ec93e847 vocab=16c0958e
+-/
 theorem card_walks_stepDart_mem {t : ℕ} {k : ℕ} (hk : k < t) (S : Finset (G.V × G.D)) :
     ∑ v : G.V, (Finset.univ.filter fun s : Fin t → G.D =>
         (G.walkAt t v s k, s ⟨k, hk⟩) ∈ S).card

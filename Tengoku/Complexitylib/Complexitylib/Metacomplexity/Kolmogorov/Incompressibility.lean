@@ -26,18 +26,24 @@ namespace Complexity
 namespace StrictShortProgram
 
 /-- Packaging a strictly bounded list and forgetting the certificate recovers
-the original list. -/
+the original list.
+@isnad1 id=eq.1h2v.s4.6a60e2526ef8 from=translated src=- shape=5c553dc8 vocab=cc531a20
+-/
 @[simp] theorem toList_ofList (bound : ℕ) (program : List Bool)
     (hlength : program.length < bound) :
     (ofList bound program hlength).toList = program :=
   toList_ofList_internal bound program hlength
 
-/-- The variable-length contents uniquely determine a strictly short program. -/
+/-- The variable-length contents uniquely determine a strictly short program.
+@isnad1 id=injectiv.0h1v.s3.b65a08460014 from=translated src=- shape=995c1cb5 vocab=8fac121e
+-/
 theorem toList_injective {bound : ℕ} :
     Function.Injective (toList : StrictShortProgram bound → List Bool) :=
   toList_injective_internal
 
-/-- There are exactly `2^r - 1` binary programs of length strictly below `r`. -/
+/-- There are exactly `2^r - 1` binary programs of length strictly below `r`.
+@isnad1 id=eq.0h1v.s6.e5ca555535e5 from=translated src=- shape=de3fa9a7 vocab=f0b69334
+-/
 theorem card (bound : ℕ) :
     Fintype.card (StrictShortProgram bound) = 2 ^ bound - 1 :=
   card_internal bound
@@ -47,18 +53,24 @@ end StrictShortProgram
 namespace ShortProgram
 
 /-- Packaging a bounded list as a short program and forgetting the certificate
-recovers the original list. -/
+recovers the original list.
+@isnad1 id=eq.1h2v.s4.71f558a61e21 from=translated src=- shape=5c553dc8 vocab=212066a3
+-/
 @[simp] theorem toList_ofList (bound : ℕ) (program : List Bool)
     (hlength : program.length ≤ bound) :
     (ofList bound program hlength).toList = program :=
   toList_ofList_internal bound program hlength
 
-/-- The variable-length contents uniquely determine a short program. -/
+/-- The variable-length contents uniquely determine a short program.
+@isnad1 id=injectiv.0h1v.s3.a7a64ff9ee2d from=translated src=- shape=995c1cb5 vocab=83555d74
+-/
 theorem toList_injective {bound : ℕ} :
     Function.Injective (toList : ShortProgram bound → List Bool) :=
   toList_injective_internal
 
-/-- There are exactly `2^(k+1)-1` binary programs of length at most `k`. -/
+/-- There are exactly `2^(k+1)-1` binary programs of length at most `k`.
+@isnad1 id=eq.0h1v.s7.5a2447c1e01d from=translated src=- shape=3a0cd517 vocab=d6121aaf
+-/
 theorem card (bound : ℕ) :
     Fintype.card (ShortProgram bound) = 2 ^ (bound + 1) - 1 :=
   card_internal bound
@@ -70,7 +82,9 @@ namespace TM
 variable {tapes : ℕ}
 
 /-- Membership in the strict compressible-string set is exactly the MINKT
-inequality `C_U^t(x) < r`. -/
+inequality `C_U^t(x) < r`.
+@isnad1 id=iff.0h6v.s6.3b9960752b06 from=translated src=- shape=7953f5cc vocab=459d3086
+-/
 theorem mem_timeBoundedStrictlyCompressibleStrings_iff (machine : TM tapes)
     (outputLength time threshold : ℕ) (output : Fin outputLength → Bool) :
     output ∈ machine.timeBoundedStrictlyCompressibleStrings
@@ -81,7 +95,9 @@ theorem mem_timeBoundedStrictlyCompressibleStrings_iff (machine : TM tapes)
     machine outputLength time threshold output
 
 /-- Membership in the complementary random-string set means complexity at
-least the strict MINKT threshold. -/
+least the strict MINKT threshold.
+@isnad1 id=iff.0h6v.s6.1113091fc4a2 from=translated src=- shape=9daad943 vocab=d416aeda
+-/
 theorem mem_timeBoundedRandomStrings_iff (machine : TM tapes)
     (outputLength time threshold : ℕ) (output : Fin outputLength → Bool) :
     output ∈ machine.timeBoundedRandomStrings outputLength time threshold ↔
@@ -91,7 +107,9 @@ theorem mem_timeBoundedRandomStrings_iff (machine : TM tapes)
     machine outputLength time threshold output
 
 /-- Fewer than `2^r` fixed-length strings have time-bounded complexity below
-the strict threshold `r`. -/
+the strict threshold `r`.
+@isnad1 id=le.0h5v.s5.d58d06ed67a1 from=translated src=- shape=a1d0e44c vocab=2eb7c841
+-/
 theorem card_timeBoundedStrictlyCompressibleStrings_le (machine : TM tapes)
     (outputLength time threshold : ℕ) :
     (machine.timeBoundedStrictlyCompressibleStrings
@@ -100,7 +118,9 @@ theorem card_timeBoundedStrictlyCompressibleStrings_le (machine : TM tapes)
     machine outputLength time threshold
 
 /-- At least `2^n - (2^r - 1)` length-`n` strings are `r`-random within the
-given clock. -/
+given clock.
+@isnad1 id=le.0h5v.s6.29f3f44f7c80 from=translated src=- shape=71ea7a7f vocab=c4e14991
+-/
 theorem card_timeBoundedRandomStrings_ge (machine : TM tapes)
     (outputLength time threshold : ℕ) :
     2 ^ outputLength - (2 ^ threshold - 1) ≤
@@ -109,7 +129,9 @@ theorem card_timeBoundedRandomStrings_ge (machine : TM tapes)
     machine outputLength time threshold
 
 /-- Under uniform length-`n` strings, strict-MINKT probability is at most
-`(2^r - 1) / 2^n`. -/
+`(2^r - 1) / 2^n`.
+@isnad1 id=le.0h5v.s6.91623b6341d0 from=translated src=- shape=01f3f98e vocab=8e1f0665
+-/
 theorem eventProb_timeBoundedStrictlyCompressibleStrings_le
     (machine : TM tapes) (outputLength time threshold : ℕ) :
     eventProb (machine.timeBoundedStrictlyCompressibleStrings
@@ -119,7 +141,9 @@ theorem eventProb_timeBoundedStrictlyCompressibleStrings_le
     machine outputLength time threshold
 
 /-- Uniform fixed-length strings have the complementary quantitative density
-of `r`-random strings. -/
+of `r`-random strings.
+@isnad1 id=le.0h5v.s6.ec02d4077801 from=translated src=- shape=207eff55 vocab=46551305
+-/
 theorem eventProb_timeBoundedRandomStrings_ge (machine : TM tapes)
     (outputLength time threshold : ℕ) :
     1 - ((2 ^ threshold - 1 : ℕ) : ℚ) / (2 : ℚ) ^ outputLength ≤
@@ -129,7 +153,9 @@ theorem eventProb_timeBoundedRandomStrings_ge (machine : TM tapes)
     machine outputLength time threshold
 
 /-- Whenever `r ≤ n`, some `n`-bit string is `r`-random within every fixed
-clock. -/
+clock.
+@isnad1 id=ex.1h5v.s5.454b12030eb6 from=translated src=- shape=c4b3fda8 vocab=995ac661
+-/
 theorem exists_timeBoundedKolmogorovComplexity_ge
     (machine : TM tapes) (outputLength time threshold : ℕ)
     (hthreshold : threshold ≤ outputLength) :
@@ -140,7 +166,9 @@ theorem exists_timeBoundedKolmogorovComplexity_ge
     machine outputLength time threshold hthreshold
 
 /-- Membership in the compressible-string set is exactly the bounded
-Kolmogorov-complexity inequality. -/
+Kolmogorov-complexity inequality.
+@isnad1 id=iff.0h6v.s6.492794c388c4 from=translated src=- shape=7953f5cc vocab=80a1d88a
+-/
 theorem mem_timeBoundedCompressibleStrings_iff (machine : TM tapes)
     (outputLength time bound : ℕ) (output : Fin outputLength → Bool) :
     output ∈ machine.timeBoundedCompressibleStrings outputLength time bound ↔
@@ -150,7 +178,9 @@ theorem mem_timeBoundedCompressibleStrings_iff (machine : TM tapes)
     machine outputLength time bound output
 
 /-- Membership in the incompressible-string set is exactly strict complexity
-above the bound. -/
+above the bound.
+@isnad1 id=iff.0h6v.s6.f72a2aede2bd from=translated src=- shape=9daad943 vocab=5ff9fdd4
+-/
 theorem mem_timeBoundedIncompressibleStrings_iff (machine : TM tapes)
     (outputLength time bound : ℕ) (output : Fin outputLength → Bool) :
     output ∈ machine.timeBoundedIncompressibleStrings outputLength time bound ↔
@@ -160,7 +190,9 @@ theorem mem_timeBoundedIncompressibleStrings_iff (machine : TM tapes)
     machine outputLength time bound output
 
 /-- No deterministic machine has more low-complexity outputs than short
-programs. The bound is independent of the output length and clock. -/
+programs. The bound is independent of the output length and clock.
+@isnad1 id=le.0h5v.s6.e01a3c690a0b from=translated src=- shape=4f2d8e23 vocab=efc05c43
+-/
 theorem card_timeBoundedCompressibleStrings_le (machine : TM tapes)
     (outputLength time bound : ℕ) :
     (machine.timeBoundedCompressibleStrings outputLength time bound).card ≤
@@ -169,7 +201,9 @@ theorem card_timeBoundedCompressibleStrings_le (machine : TM tapes)
     machine outputLength time bound
 
 /-- Quantitative finite incompressibility: all but at most `2^(k+1)-1` of the
-`n`-bit strings have time-bounded complexity greater than `k`. -/
+`n`-bit strings have time-bounded complexity greater than `k`.
+@isnad1 id=le.0h5v.s6.4df9d1289ef1 from=translated src=- shape=47c2af87 vocab=5084459a
+-/
 theorem card_timeBoundedIncompressibleStrings_ge (machine : TM tapes)
     (outputLength time bound : ℕ) :
     2 ^ outputLength - (2 ^ (bound + 1) - 1) ≤
@@ -178,7 +212,9 @@ theorem card_timeBoundedIncompressibleStrings_ge (machine : TM tapes)
     machine outputLength time bound
 
 /-- Under the uniform distribution on `n`-bit strings, the probability of
-time-`t` complexity at most `k` is at most `(2^(k+1)-1) / 2^n`. -/
+time-`t` complexity at most `k` is at most `(2^(k+1)-1) / 2^n`.
+@isnad1 id=le.0h5v.s6.6c63a2dd87b6 from=translated src=- shape=04115af9 vocab=0f2e3541
+-/
 theorem eventProb_timeBoundedCompressibleStrings_le (machine : TM tapes)
     (outputLength time bound : ℕ) :
     eventProb (machine.timeBoundedCompressibleStrings outputLength time bound) ≤
@@ -187,7 +223,9 @@ theorem eventProb_timeBoundedCompressibleStrings_le (machine : TM tapes)
     machine outputLength time bound
 
 /-- Uniform fixed-length strings are quantitatively dense above every
-time-bounded complexity threshold. -/
+time-bounded complexity threshold.
+@isnad1 id=le.0h5v.s6.c157ede50f50 from=translated src=- shape=bb2fbfbf vocab=95b040af
+-/
 theorem eventProb_timeBoundedIncompressibleStrings_ge (machine : TM tapes)
     (outputLength time bound : ℕ) :
     1 - ((2 ^ (bound + 1) - 1 : ℕ) : ℚ) / (2 : ℚ) ^ outputLength ≤
@@ -197,7 +235,9 @@ theorem eventProb_timeBoundedIncompressibleStrings_ge (machine : TM tapes)
     machine outputLength time bound
 
 /-- For every clock and every `k < n`, some `n`-bit string has time-bounded
-complexity strictly greater than `k`. -/
+complexity strictly greater than `k`.
+@isnad1 id=ex.1h5v.s5.7d7881f88001 from=translated src=- shape=c4b3fda8 vocab=a8fecd74
+-/
 theorem exists_timeBoundedKolmogorovComplexity_gt
     (machine : TM tapes) (outputLength time bound : ℕ)
     (hbound : bound < outputLength) :

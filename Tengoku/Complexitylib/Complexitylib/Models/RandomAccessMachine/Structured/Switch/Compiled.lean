@@ -23,7 +23,9 @@ namespace Switch
 
 open Internal
 
-/-- End-to-end compilation of a measured finite switch. -/
+/-- End-to-end compilation of a measured finite switch.
+@isnad1 id=ex.7h11v.s7.8f5a342c59fc from=translated src=- shape=cd35f74b vocab=7558f173
+-/
 theorem select_compiled {count test one indexBound valueBound : ℕ}
     (branch : Fin count → Cmd) (initial final : Store)
     {code branchSteps branchCost : ℕ}

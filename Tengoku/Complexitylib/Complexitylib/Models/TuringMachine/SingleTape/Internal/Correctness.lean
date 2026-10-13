@@ -59,7 +59,9 @@ structure Corr {k : ℕ} (N : NTM k) (M : ℕ)
   outputWf : ∀ p : ℕ, 1 ≤ p → c.output.cells p ≠ Γ.start
 
 /-- **Base case.** The initial `singleTapeSim N` configuration corresponds to
-    `N`'s initial configuration, materialized to `M = 0` (empty used region). -/
+    `N`'s initial configuration, materialized to `M = 0` (empty used region).
+@isnad1 id=corr.0h3v.s4.f9d14a6f770b from=translated src=- shape=cf7d9e86 vocab=f003999d
+-/
 theorem corr_init {k : ℕ} (N : NTM k) (x : List Bool) :
     Corr N 0 ((singleTapeSim N).initCfg x) (N.initCfg x) where
   state := rfl
@@ -88,13 +90,17 @@ theorem corr_init {k : ℕ} (N : NTM k) (x : List Bool) :
 
 /-- Writing back the read symbol preserves whether a cell holds the accept bit
     `1` (`readBackWrite` fixes `0/1/□` and maps `▷ ↦ □`, never producing a
-    spurious `1`). -/
+    spurious `1`).
+@isnad1 id=iff.0h1v.s3.761546194415 from=translated src=- shape=4eab74d7 vocab=36f13e9b
+-/
 theorem readBackWrite_one_iff (g : Γ) :
     ((TM.readBackWrite g : Γw) : Γ) = Γ.one ↔ g = Γ.one := by
   cases g <;> decide
 
 /-- The halt step's output action — `writeAndMove` writing back the read
-    symbol — preserves the accept bit at cell 1. -/
+    symbol — preserves the accept bit at cell 1.
+@isnad1 id=iff.0h2v.s4.d33494726e19 from=translated src=- shape=378c3fb7 vocab=57617530
+-/
 theorem accept_bit_preserved (t : Tape) (d : Dir3) :
     (t.writeAndMove ((TM.readBackWrite t.read : Γw) : Γ) d).cells 1 = Γ.one
       ↔ t.cells 1 = Γ.one := by
@@ -111,7 +117,9 @@ theorem accept_bit_preserved (t : Tape) (d : Dir3) :
     · rw [ite_eq_right h1]
 
 /-- **Halt correspondence.** When `N` has halted, the simulator (parked at
-    `run N.qhalt`) takes one step to `SimQ.halt`, preserving the accept bit. -/
+    `run N.qhalt`) takes one step to `SimQ.halt`, preserving the accept bit.
+@isnad1 id=and.2h5v.s7.ffd924786793 from=translated src=- shape=44038113 vocab=533a89b8
+-/
 theorem halted_of_corr {k : ℕ} (N : NTM k) {M : ℕ}
     {c1 : Cfg 1 (SimQ k N.Q)} {c : Cfg k N.Q}
     (hcorr : Corr N M c1 c) (hh : c.state = N.qhalt) :
@@ -135,7 +143,9 @@ theorem halted_of_corr {k : ℕ} (N : NTM k) {M : ℕ}
     steps. The `16·(k+1)` constant matches `singleTapeSimTime`. -/
 def macroBound (k M : ℕ) : ℕ := 16 * (k + 1) * (M + 1)
 
-/-- `macroBound k` is monotone in the materialization level `M`. -/
+/-- `macroBound k` is monotone in the materialization level `M`.
+@isnad1 id=le.1h3v.s4.8f5893175eca from=translated src=- shape=32f89d1d vocab=ef88756d
+-/
 theorem macroBound_mono {k M M' : ℕ} (h : M ≤ M') : macroBound k M ≤ macroBound k M' := by
   unfold macroBound
   exact Nat.mul_le_mul_left _ (by omega)
@@ -149,7 +159,9 @@ full macro-step composes them via `trace_add_fun`. -/
     simulator initialises GATHER (`acc = ▷`, reads `iSym`/`oSym`, sweep at the
     start) and repositions the work head to cell 1. Input/output are advanced by
     `idleDir` (the `▷`-dodge); the work tape's cells are preserved
-    (`readBackWrite`). -/
+    (`readBackWrite`).
+@isnad1 id=eq.2h5v.s8.f0e63f7cd84f from=translated src=- shape=83fab26e vocab=f59d7fb4
+-/
 theorem run_step {k : ℕ} (N : NTM k) (q : N.Q) (hq : q ≠ N.qhalt) (b : Bool)
     (c1 : Cfg 1 (SimQ k N.Q)) (hst : c1.state = SimQ.run q) :
     (singleTapeSim N).trace 1 (fun _ => b) c1 =
@@ -166,7 +178,9 @@ theorem run_step {k : ℕ} (N : NTM k) (q : N.Q) (hq : q ≠ N.qhalt) (b : Bool)
 /-- The **commit** step (1 sim step): from a `commit (q', oW, oD, iD, iSym, oSym)`
     config, the simulator applies the deferred output write/move and input move
     (accounting for the `▷`-dodge via the `iSym`/`oSym` guards) and returns to
-    `run q'`. The work tape is preserved. -/
+    `run q'`. The work tape is preserved.
+@isnad1 id=eq.1h10v.s8.c2262d171c66 from=translated src=- shape=fa28c360 vocab=bb00c7dd
+-/
 theorem commit_step {k : ℕ} (N : NTM k) (q' : N.Q) (oW : Γw) (oD iD : Dir3)
     (iSym oSym : Γ) (b : Bool) (c1 : Cfg 1 (SimQ k N.Q))
     (hst : c1.state = SimQ.commit (q', oW, oD, iD, iSym, oSym)) :
@@ -184,7 +198,9 @@ theorem commit_step {k : ℕ} (N : NTM k) (q' : N.Q) (oW : Γw) (oD iD : Dir3)
 
 /-- One **gather** step (`trace 1`): from a `gather d` config, the result is the
     configuration built from `gatherStep`'s output (the trace step applied to the
-    `gather` branch of `simDelta`). The basis of the gather-sweep induction. -/
+    `gather` branch of `simDelta`). The basis of the gather-sweep induction.
+@isnad1 id=eq.1h5v.s9.00be9409acc5 from=translated src=- shape=9e962109 vocab=f47277ee
+-/
 theorem gather_trace1 {k : ℕ} (N : NTM k) (d : GatherData k N.Q) (b : Bool)
     (c1 : Cfg 1 (SimQ k N.Q)) (hst : c1.state = SimQ.gather d) :
     (singleTapeSim N).trace 1 (fun _ => b) c1 =
@@ -457,7 +473,9 @@ private theorem trace_const_add' {k : ℕ} (N : NTM k) (a a' : ℕ) (bb : Bool)
     tape's decoded symbol into `acc`. Input/output stay put (off `▷`, so `idleDir`
     is `stay`). The block/sweep inductions iterate this over the `k` tapes and `M`
     blocks. Code-cell hypotheses (`≠ □`, `≠ ▷`) keep all three steps in the slot
-    branch (no sentinel) and make `readBackWrite` cell-preserving. -/
+    branch (no sentinel) and make `readBackWrite` cell-preserving.
+@isnad1 id=eq.10h11v.s10.63b76be5d5ce from=translated src=- shape=b78fc19c vocab=b9b09106
+-/
 theorem gather_triple {k : ℕ} (N : NTM k) (bb : Bool)
     (q : N.Q) (acc : Fin k → Γ) (iSym oSym : Γ) (rf₀ : Bool) (pending₀ : Γ)
     (j : ℕ) (hj : j < k) (c1 : Cfg 1 (SimQ k N.Q))
@@ -681,7 +699,9 @@ private theorem gather_sweep_aux {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.
 
 /-- One **GATHER sentinel** step (`trace 1`): reading the `□` that ends the used
     region fires `N.δ` (the one meaningful use of the choice `bb`) and hands the
-    write/move actions to REWIND, turning the work head leftward. -/
+    write/move actions to REWIND, turning the work head leftward.
+@isnad1 id=eq.2h11v.s9.9cfc92adb0a8 from=translated src=- shape=dc69da66 vocab=e6d08523
+-/
 theorem gather_sentinel {k : ℕ} (N : NTM k) (bb : Bool) (q : N.Q) (acc : Fin k → Γ)
     (iSym oSym : Γ) (pos : SweepPos k) (rf : Bool) (pending : Γ) (c1 : Cfg 1 (SimQ k N.Q))
     (hst : c1.state = SimQ.gather (q, acc, iSym, oSym, pos, rf, pending))
@@ -701,7 +721,9 @@ theorem gather_sentinel {k : ℕ} (N : NTM k) (bb : Bool) (q : N.Q) (acc : Fin k
 /-- **One non-sentinel GATHER step.** Reading a non-`□`, non-`▷` work cell, one
     GATHER step stays in GATHER (some evolved data `d'`), advances the work head
     by one with contents intact, and leaves input/output put (idle off `▷`). The
-    inductive step of the per-step sweep characterization. -/
+    inductive step of the per-step sweep characterization.
+@isnad1 id=ex.5h5v.s8.f3ba4740d4d8 from=translated src=- shape=a2015c6d vocab=14ecf822
+-/
 theorem gather_sweep_step1 {k : ℕ} (N : NTM k) (bb : Bool) (d : GatherData k N.Q)
     (c : Cfg 1 (SimQ k N.Q)) (hst : c.state = SimQ.gather d)
     (hb : (c.work 0).read ≠ Γ.blank) (hs : (c.work 0).read ≠ Γ.start)
@@ -729,7 +751,9 @@ theorem gather_sweep_step1 {k : ℕ} (N : NTM k) (bb : Bool) (d : GatherData k N
     of the first `3*k*M` sweep steps keeps the simulator in a GATHER state reading
     a non-`□` cell — the `□` sentinel is reached only at step `3*k*M`. This is the
     crux of the backward correspondence: within a macro-step, a GATHER-on-`□`
-    configuration (the one choice-consuming step) occurs at exactly one position. -/
+    configuration (the one choice-consuming step) occurs at exactly one position.
+@isnad1 id=and.6h7v.s8.a06a47148d18 from=translated src=- shape=032c0d44 vocab=eb9cd7ba
+-/
 theorem gather_sweep_no_sentinel {k : ℕ} (N : NTM k) (bb : Bool) {M : ℕ} {w : Fin k → Tape}
     (c_g : Cfg 1 (SimQ k N.Q))
     (hg0 : ∃ d, c_g.state = SimQ.gather d)
@@ -787,7 +811,9 @@ theorem gather_sweep_no_sentinel {k : ℕ} (N : NTM k) (bb : Bool) {M : ℕ} {w 
 /-- The sweep accumulator at `B = M` is exactly the per-tape reads: a head in
     `[1, M]` had its symbol recorded; a head at `0` reads `▷`, which is also the
     `▷` default the sweep leaves. Uses `heads_le` (every head `≤ M`) and
-    `read_eq_start_of_head_eq_zero` (a head at `0` reads `▷`). -/
+    `read_eq_start_of_head_eq_zero` (a head at `0` reads `▷`).
+@isnad1 id=eq.1h4v.s6.19c902323fbb from=translated src=- shape=9e2fd6bd vocab=24498faf
+-/
 theorem gather_acc_eq {k : ℕ} {t : Tape} {w : Fin k → Tape} {M : ℕ}
     (hinv : SimInvAt k t w M) :
     (fun j => if 1 ≤ (w j).head ∧ (w j).head ≤ M then (w j).read else Γ.start)
@@ -798,7 +824,9 @@ theorem gather_acc_eq {k : ℕ} {t : Tape} {w : Fin k → Tape} {M : ℕ}
   · rw [ite_eq_right (fun h => h1 h.1), hinv.read_eq_start_of_head_eq_zero j (by omega)]
 
 /-- One **rewind** step (`trace 1`): from a `rewind d` config, the result is the
-    configuration built from `rewindStep`'s output. Basis of the rewind sweep. -/
+    configuration built from `rewindStep`'s output. Basis of the rewind sweep.
+@isnad1 id=eq.1h5v.s9.32eba18e2a21 from=translated src=- shape=b9c7a7f6 vocab=c28fcfc8
+-/
 theorem rewind_trace1 {k : ℕ} (N : NTM k) (d : RewindData k N.Q) (b : Bool)
     (c1 : Cfg 1 (SimQ k N.Q)) (hst : c1.state = SimQ.rewind d) :
     (singleTapeSim N).trace 1 (fun _ => b) c1 =
@@ -813,7 +841,9 @@ theorem rewind_trace1 {k : ℕ} (N : NTM k) (d : RewindData k N.Q) (b : Bool)
     head at cell `p` (every cell in `[1,p]` a non-`▷` code cell, cell `0` the `▷`),
     the leftward sweep carries the `δ` results untouched back to cell `0`, then
     turns around into SCATTER sweep-1 at cell `1` (empty stay/left carries). Proved
-    by induction on `p` (one `rewindStep` per cell), contents preserved throughout. -/
+    by induction on `p` (one `rewindStep` per cell), contents preserved throughout.
+@isnad1 id=eq.6h12v.s9.c09b524a0dde from=translated src=- shape=856274a2 vocab=ea690680
+-/
 theorem rewind_sweep {k : ℕ} (N : NTM k) (bb : Bool)
     (q' : N.Q) (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
     (initRC : Fin k → Bool) (c1 : Cfg 1 (SimQ k N.Q)) (p : ℕ)
@@ -859,7 +889,9 @@ theorem rewind_sweep {k : ℕ} (N : NTM k) (bb : Bool)
 /-- **REWIND stays in REWIND (per step).** Throughout the leftward sweep (head at
     `p - i ≥ 0`, every cell in `[1,p]` non-`▷`), each intermediate config keeps the
     `rewind` state (data unchanged — only the head moves). Since `rewind ≠ gather`,
-    this supplies the back-phase `¬gather` needed by the backward correspondence. -/
+    this supplies the back-phase `¬gather` needed by the backward correspondence.
+@isnad1 id=eq.6h13v.s8.89f7a03588f8 from=translated src=- shape=7c328380 vocab=e88be2a8
+-/
 theorem rewind_sweep_states {k : ℕ} (N : NTM k) (bb : Bool)
     (q' : N.Q) (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
     (initRC : Fin k → Bool) (c1 : Cfg 1 (SimQ k N.Q)) (p : ℕ)
@@ -918,7 +950,9 @@ def scatterInterWork (ct : Tape) (wd : Γw × Dir3) : Tape where
   cells := (ct.write wd.1.toΓ).cells
 
 /-- `scatterInterWork` only rewrites the old head cell: every other cell is
-    unchanged. (The new symbol is written at the old head position.) -/
+    unchanged. (The new symbol is written at the old head position.)
+@isnad1 id=eq.1h3v.s4.55b1e5f44644 from=translated src=- shape=1bb23336 vocab=fb605bd3
+-/
 theorem scatterInterWork_cells_of_ne (ct : Tape) (wd : Γw × Dir3) {c : ℕ}
     (h : c ≠ ct.head) : (scatterInterWork ct wd).cells c = ct.cells c := by
   show (ct.write wd.1.toΓ).cells c = ct.cells c
@@ -928,7 +962,9 @@ theorem scatterInterWork_cells_of_ne (ct : Tape) (wd : Γw × Dir3) {c : ℕ}
   · exact Function.update_of_ne h _ _
 
 /-- `scatterInterWork` preserves cell `0` (the `▷` marker): writing at the head
-    never touches cell `0` (it's either a no-op there, or the head is `≥ 1`). -/
+    never touches cell `0` (it's either a no-op there, or the head is `≥ 1`).
+@isnad1 id=eq.0h2v.s4.df2f470a2d0e from=translated src=- shape=06ea02cd vocab=3e2f2f94
+-/
 theorem scatterInterWork_cells_zero (ct : Tape) (wd : Γw × Dir3) :
     (scatterInterWork ct wd).cells 0 = ct.cells 0 := by
   show (ct.write wd.1.toΓ).cells 0 = ct.cells 0
@@ -939,7 +975,9 @@ theorem scatterInterWork_cells_zero (ct : Tape) (wd : Γw × Dir3) :
 
 /-- `scatterInterWork` keeps every cell `≥ 1` non-`▷`: untouched cells inherit it
     from `ct`, and the rewritten head cell holds a writable symbol (`Γw`, which
-    excludes `▷`). The `noStart` precondition for the post-sweep `SimInvAt (M+1)`. -/
+    excludes `▷`). The `noStart` precondition for the post-sweep `SimInvAt (M+1)`.
+@isnad1 id=ne.2h3v.s5.cbe0b3b3daee from=translated src=- shape=d7c5e26d vocab=81bfc114
+-/
 theorem scatterInterWork_cells_ne_start (ct : Tape) (wd : Γw × Dir3) {p : ℕ}
     (hp : 1 ≤ p) (hns : ct.cells p ≠ Γ.start) :
     (scatterInterWork ct wd).cells p ≠ Γ.start := by
@@ -955,7 +993,9 @@ theorem scatterInterWork_cells_ne_start (ct : Tape) (wd : Γw × Dir3) {p : ℕ}
 
 /-- `scatterInterWork`'s head stays within the materialized region after growth:
     a right-mover advances by one (to `≤ M+1`), others stay. The `heads_le`
-    precondition for the post-sweep `SimInvAt (M+1)`. -/
+    precondition for the post-sweep `SimInvAt (M+1)`.
+@isnad1 id=le.1h3v.s5.a556d8499c9e from=translated src=- shape=48cd3b52 vocab=9dd9576f
+-/
 theorem scatterInterWork_head_le (ct : Tape) (wd : Γw × Dir3) {M : ℕ}
     (h : ct.head ≤ M) : (scatterInterWork ct wd).head ≤ M + 1 := by
   show (if wd.2 = Dir3.right then ct.head + 1 else ct.head) ≤ M + 1
@@ -963,14 +1003,18 @@ theorem scatterInterWork_head_le (ct : Tape) (wd : Γw × Dir3) {M : ℕ}
 
 /-- `scatterInterWork`'s head value: a right-mover advances by one, every other
     move keeps the old head position. (The `head` half of the intermediate
-    encoding's head-bit.) -/
+    encoding's head-bit.)
+@isnad1 id=eq.0h2v.s5.0ba053b17c54 from=translated src=- shape=e5fd67fe vocab=768f4605
+-/
 theorem scatterInterWork_head (ct : Tape) (wd : Γw × Dir3) :
     (scatterInterWork ct wd).head = if wd.2 = Dir3.right then ct.head + 1 else ct.head :=
   rfl
 
 /-- `scatterInterWork` writes the new symbol at the old head position (when the
     head is `≥ 1`, where `write` is not a no-op). The `sym` half of the
-    intermediate encoding at the head's block. -/
+    intermediate encoding at the head's block.
+@isnad1 id=eq.1h2v.s4.10f32cf66d4c from=translated src=- shape=8119d17f vocab=ebb6c464
+-/
 theorem scatterInterWork_cells_at_head (ct : Tape) (wd : Γw × Dir3)
     (hh : 1 ≤ ct.head) : (scatterInterWork ct wd).cells ct.head = wd.1.toΓ := by
   show (ct.write wd.1.toΓ).cells ct.head = wd.1.toΓ
@@ -987,29 +1031,39 @@ def scatterFinalWork (ct : Tape) (wd : Γw × Dir3) : Tape :=
   { scatterInterWork ct wd with
     head := if wd.2 = Dir3.left then ct.head - 1 else (scatterInterWork ct wd).head }
 
-/-- `scatterFinalWork` has the same cells as `scatterInterWork` (only the head moves). -/
+/-- `scatterFinalWork` has the same cells as `scatterInterWork` (only the head moves).
+@isnad1 id=eq.0h2v.s4.74613a8b7a0e from=translated src=- shape=775f02c4 vocab=a02043e5
+-/
 theorem scatterFinalWork_cells (ct : Tape) (wd : Γw × Dir3) :
     (scatterFinalWork ct wd).cells = (scatterInterWork ct wd).cells := rfl
 
 /-- `scatterFinalWork`'s head: a left-mover retreats one cell, everything else is as in
-    `scatterInterWork`. -/
+    `scatterInterWork`.
+@isnad1 id=eq.0h2v.s5.a98e707f60cf from=translated src=- shape=06549f4b vocab=c314381c
+-/
 theorem scatterFinalWork_head (ct : Tape) (wd : Γw × Dir3) :
     (scatterFinalWork ct wd).head
       = if wd.2 = Dir3.left then ct.head - 1 else (scatterInterWork ct wd).head := rfl
 
-/-- `scatterFinalWork`'s head stays within the grown region `[0, M+1]`. -/
+/-- `scatterFinalWork`'s head stays within the grown region `[0, M+1]`.
+@isnad1 id=le.1h3v.s5.183e648f0b58 from=translated src=- shape=48cd3b52 vocab=6a4ed737
+-/
 theorem scatterFinalWork_head_le (ct : Tape) (wd : Γw × Dir3) {M : ℕ} (h : ct.head ≤ M) :
     (scatterFinalWork ct wd).head ≤ M + 1 := by
   rw [scatterFinalWork_head]; split
   · omega
   · exact scatterInterWork_head_le ct wd h
 
-/-- `scatterFinalWork` preserves cell `0` (the `▷` marker). -/
+/-- `scatterFinalWork` preserves cell `0` (the `▷` marker).
+@isnad1 id=eq.0h2v.s4.a9c165909d9a from=translated src=- shape=06ea02cd vocab=233b6cf5
+-/
 theorem scatterFinalWork_cells_zero (ct : Tape) (wd : Γw × Dir3) :
     (scatterFinalWork ct wd).cells 0 = ct.cells 0 := by
   rw [scatterFinalWork_cells]; exact scatterInterWork_cells_zero ct wd
 
-/-- `scatterFinalWork` keeps every cell `≥ 1` non-`▷`. -/
+/-- `scatterFinalWork` keeps every cell `≥ 1` non-`▷`.
+@isnad1 id=ne.2h3v.s5.c02d17430b18 from=translated src=- shape=d7c5e26d vocab=aa10d224
+-/
 theorem scatterFinalWork_cells_ne_start (ct : Tape) (wd : Γw × Dir3) {p : ℕ}
     (hp : 1 ≤ p) (hns : ct.cells p ≠ Γ.start) :
     (scatterFinalWork ct wd).cells p ≠ Γ.start := by
@@ -1044,7 +1098,9 @@ structure Scatter2MidInv {k : ℕ} (t : Tape) (w : Fin k → Tape)
 /-- **`▷` uniquely marks cell 0 during SCATTER sweep-2.** Every cell `≥ 1` is a head-bit
     (`{0,1}`), a code cell (`encSymΓ`, `≠ ▷`), or a sentinel blank — so none is `▷`. The
     same shape as `SimInvAt.materialized_ne_start`, dispatched on `donePart`/`oldPart`/
-    `sentinel`. The per-step `read ≠ ▷` precondition for the `scatter2` sweep lemmas. -/
+    `sentinel`. The per-step `read ≠ ▷` precondition for the `scatter2` sweep lemmas.
+@isnad1 id=ne.2h7v.s5.6adb1f229486 from=translated src=- shape=6420feca vocab=81f345a4
+-/
 theorem Scatter2MidInv.cells_ne_start {k : ℕ} {t : Tape} {w : Fin k → Tape}
     {wact : Fin k → Γw × Dir3} {M b : ℕ} (h : Scatter2MidInv t w wact M b)
     {c : ℕ} (hc1 : 1 ≤ c) : t.cells c ≠ Γ.start := by
@@ -1096,7 +1152,9 @@ theorem Scatter2MidInv.cells_ne_start {k : ℕ} {t : Tape} {w : Fin k → Tape}
     rw [hcs]; exact hcell.2.2
 
 /-- Entering SCATTER sweep-2: the sweep-1 output `SimInvAt (M+1)` for `scatterInterWork`
-    is `Scatter2MidInv` at `b = M+2` (no blocks swept yet — `donePart` vacuous). -/
+    is `Scatter2MidInv` at `b = M+2` (no blocks swept yet — `donePart` vacuous).
+@isnad1 id=scatter2.1h5v.s6.366010843cd5 from=translated src=- shape=9fc4ae7e vocab=def4fc95
+-/
 theorem Scatter2MidInv.ofSimInv {k : ℕ} {t : Tape} {w : Fin k → Tape}
     {wact : Fin k → Γw × Dir3} {M : ℕ}
     (h : SimInvAt k t (fun j => scatterInterWork (w j) (wact j)) (M + 1)) :
@@ -1109,7 +1167,9 @@ theorem Scatter2MidInv.ofSimInv {k : ℕ} {t : Tape} {w : Fin k → Tape}
 
 /-- Leaving SCATTER sweep-2 (all blocks swept, `b = 1`): `Scatter2MidInv` is `SimInvAt
     (M+1)` for the **final** config `scatterFinalWork`. The structural fields use the
-    original work tapes' `wfStart`/`noStart`/`heads_le`. -/
+    original work tapes' `wfStart`/`noStart`/`heads_le`.
+@isnad1 id=siminvat.4h5v.s6.e39ad1ddb2bb from=translated src=- shape=97acf8d4 vocab=127192a9
+-/
 theorem Scatter2MidInv.toSimInv {k : ℕ} {t : Tape} {w : Fin k → Tape}
     {wact : Fin k → Γw × Dir3} {M : ℕ}
     (hwf : ∀ j : Fin k, (w j).cells 0 = Γ.start)
@@ -1164,7 +1224,9 @@ structure Scatter2BlockInv {k : ℕ} (t : Tape) (w : Fin k → Tape)
 /-- **`▷` uniquely marks cell 0 during a SCATTER sweep-2 block step.** Every cell `≥ 1` is a
     head-bit (`{0,1}`), a code cell (`encSymΓ`, `≠ ▷`), or a sentinel blank. Same shape as
     `Scatter2MidInv.cells_ne_start`, dispatching block `p` on `doneTape`/`oldTape` and the
-    rest on `donePart`/`oldPart`/`sentinel`. -/
+    rest on `donePart`/`oldPart`/`sentinel`.
+@isnad1 id=ne.4h8v.s6.0201428bfe9b from=translated src=- shape=3913a96b vocab=65238467
+-/
 theorem Scatter2BlockInv.cells_ne_start {k : ℕ} {t : Tape} {w : Fin k → Tape}
     {wact : Fin k → Γw × Dir3} {M p m : ℕ} (h : Scatter2BlockInv t w wact M p m)
     (hp1 : 1 ≤ p) (hpM : p ≤ M + 1) {c : ℕ} (hc1 : 1 ≤ c) : t.cells c ≠ Γ.start := by
@@ -1226,7 +1288,9 @@ theorem Scatter2BlockInv.cells_ne_start {k : ℕ} {t : Tape} {w : Fin k → Tape
     rw [hcs]; exact hcell.2.2
 
 /-- Entering block `p` (no tapes swept): `Scatter2MidInv … (p+1)` is `Scatter2BlockInv …
-    p 0` (block `p` still all intermediate). -/
+    p 0` (block `p` still all intermediate).
+@isnad1 id=scatter2.2h6v.s5.f3a1b376d041 from=translated src=- shape=be777321 vocab=7c942c31
+-/
 theorem Scatter2BlockInv.ofMid {k : ℕ} {t : Tape} {w : Fin k → Tape}
     {wact : Fin k → Γw × Dir3} {M p : ℕ} (hp1 : 1 ≤ p)
     (h : Scatter2MidInv t w wact M (p + 1)) : Scatter2BlockInv t w wact M p 0 where
@@ -1238,7 +1302,9 @@ theorem Scatter2BlockInv.ofMid {k : ℕ} {t : Tape} {w : Fin k → Tape}
   sentinel := h.sentinel
 
 /-- Leaving block `p` (all `k` tapes swept): `Scatter2BlockInv … p k` is `Scatter2MidInv
-    … p` (block `p` now all final). -/
+    … p` (block `p` now all final).
+@isnad1 id=scatter2.1h6v.s5.1d89f63b6556 from=translated src=- shape=574fadfa vocab=81dd1c32
+-/
 theorem Scatter2BlockInv.toMidPred {k : ℕ} {t : Tape} {w : Fin k → Tape}
     {wact : Fin k → Γw × Dir3} {M p : ℕ}
     (h : Scatter2BlockInv t w wact M p k) : Scatter2MidInv t w wact M p where
@@ -1256,7 +1322,9 @@ theorem Scatter2BlockInv.toMidPred {k : ℕ} {t : Tape} {w : Fin k → Tape}
     with `t` everywhere except block `p` tape `k-1-m`'s head-bit (now the final value), and
     `t` satisfies `Scatter2BlockInv … p m`, then `t'` satisfies `Scatter2BlockInv … p (m+1)`.
     The changed cell `headBitCell p (k-1-m)` is disjoint from every other queried cell
-    (same-block sym cells differ mod 3; other tapes by index; other blocks by layout). -/
+    (same-block sym cells differ mod 3; other tapes by index; other blocks by layout).
+@isnad1 id=scatter2.6h8v.s8.0dc77538e11b from=translated src=- shape=d8f8b226 vocab=d1ad2ec3
+-/
 theorem scatter2_blockinv_step {k : ℕ} {t t' : Tape} {w : Fin k → Tape}
     {wact : Fin k → Γw × Dir3} {M p m : ℕ} (hp1 : 1 ≤ p) (hpM : p ≤ M + 1) (hmk : m < k)
     (hbm : Scatter2BlockInv t w wact M p m)
@@ -1319,7 +1387,9 @@ theorem scatter2_blockinv_step {k : ℕ} {t t' : Tape} {w : Fin k → Tape}
     (`encSymW s`), but the `scatterInterWork` target reads it via the
     full-alphabet codec applied to the written cell (`encSymΓ s.toΓ`). They
     agree (both route through `encSym`): this matches a head triple's two symbol
-    writes to the intermediate encoding at the head's block. -/
+    writes to the intermediate encoding at the head's block.
+@isnad1 id=and.0h1v.s4.de3dd05262f0 from=translated src=- shape=a36b3830 vocab=f5be1b5d
+-/
 theorem encSymW_toΓ_eq_encSymΓ (s : Γw) :
     (encSymW s).1.toΓ = (encSymΓ s.toΓ).1 ∧ (encSymW s).2.toΓ = (encSymΓ s.toΓ).2 := by
   cases s <;> exact ⟨rfl, rfl⟩
@@ -1351,7 +1421,9 @@ structure Scatter1MidInv {k : ℕ} (t : Tape) (w : Fin k → Tape)
 
 /-- **Base case** of the mid-sweep invariant: the REWIND output (whole region
     still old-encoded, `SimInvAt M`) is `Scatter1MidInv` at `b = 1` (no swept
-    blocks yet). -/
+    blocks yet).
+@isnad1 id=scatter1.1h5v.s5.57aadf17e525 from=translated src=- shape=4d6da8fa vocab=5b34e05e
+-/
 theorem scatter1MidInv_init {k : ℕ} {t : Tape} {w : Fin k → Tape}
     (wact : Fin k → Γw × Dir3) {M : ℕ} (h : SimInvAt k t w M) :
     Scatter1MidInv t w wact M 1 where
@@ -1363,7 +1435,9 @@ theorem scatter1MidInv_init {k : ℕ} {t : Tape} {w : Fin k → Tape}
 
 /-- **Final case** of the mid-sweep invariant: once all `M` blocks are swept
     (`b = M+1`), the whole materialized region is intermediate-encoded — exactly
-    the `SimInvAt M`-style facts for `scatterInterWork (w j) (wact j)` on `[1, M]`. -/
+    the `SimInvAt M`-style facts for `scatterInterWork (w j) (wact j)` on `[1, M]`.
+@isnad1 id=and.3h7v.s7.52bfc4cb0d47 from=translated src=- shape=d1e6c78c vocab=5c842a02
+-/
 theorem Scatter1MidInv.done {k : ℕ} {t : Tape} {w : Fin k → Tape}
     {wact : Fin k → Γw × Dir3} {M : ℕ} (h : Scatter1MidInv t w wact M (M + 1))
     (p : ℕ) (hp1 : 1 ≤ p) (hpM : p ≤ M) (j : Fin k) :
@@ -1408,7 +1482,9 @@ structure Scatter1BlockInv {k : ℕ} (t : Tape) (w : Fin k → Tape)
   sentinel : ∀ c : ℕ, blockStart k (M + 1) ≤ c → t.cells c = Γ.blank
 
 /-- Entering block `b` (no tapes processed yet): `Scatter1MidInv … b` is the block
-    invariant at `m = 0`. The block-`b` old facts come from `oldPart` at `p = b`. -/
+    invariant at `m = 0`. The block-`b` old facts come from `oldPart` at `p = b`.
+@isnad1 id=scatter1.2h6v.s5.94019b9339aa from=translated src=- shape=8e864282 vocab=ef6543f3
+-/
 theorem Scatter1BlockInv.ofMid {k : ℕ} {t : Tape} {w : Fin k → Tape}
     {wact : Fin k → Γw × Dir3} {M b : ℕ} (hbM : b ≤ M)
     (h : Scatter1MidInv t w wact M b) : Scatter1BlockInv t w wact M b 0 where
@@ -1421,7 +1497,9 @@ theorem Scatter1BlockInv.ofMid {k : ℕ} {t : Tape} {w : Fin k → Tape}
 
 /-- Leaving block `b` (all `k` tapes processed): `Scatter1BlockInv … b k` is
     `Scatter1MidInv … (b+1)`. The new `donePart` at `p = b` is the just-finished
-    `doneTape` (every `j : Fin k` satisfies `j < k`). -/
+    `doneTape` (every `j : Fin k` satisfies `j < k`).
+@isnad1 id=scatter1.1h6v.s5.a30b09051443 from=translated src=- shape=516e41f0 vocab=ccab2c14
+-/
 theorem Scatter1BlockInv.toMidSucc {k : ℕ} {t : Tape} {w : Fin k → Tape}
     {wact : Fin k → Γw × Dir3} {M b : ℕ}
     (h : Scatter1BlockInv t w wact M b k) : Scatter1MidInv t w wact M (b + 1) where
@@ -1441,7 +1519,9 @@ theorem Scatter1BlockInv.toMidSucc {k : ℕ} {t : Tape} {w : Fin k → Tape}
     `Scatter1BlockInv … b (m+1)`. All other queried cells are untouched (block `b`
     tape `m`'s triple sits at `[blockStart b + 3m, +2]`, disjoint from every other
     `(p,j)` triple, cell 0 and the sentinel region). The five SCATTER triples each
-    discharge the three value hypotheses; this lemma does the disjointness once. -/
+    discharge the three value hypotheses; this lemma does the disjointness once.
+@isnad1 id=scatter1.8h8v.s7.a6ea44e01667 from=translated src=- shape=a6aeff89 vocab=1e639e5f
+-/
 theorem scatter1_blockinv_step {k : ℕ} {t t' : Tape} {w : Fin k → Tape}
     {wact : Fin k → Γw × Dir3} {M b m : ℕ} (hb1 : 1 ≤ b) (hbM : b ≤ M) (hmk : m < k)
     (hbm : Scatter1BlockInv t w wact M b m)
@@ -1523,7 +1603,9 @@ theorem scatter1_blockinv_step {k : ℕ} {t t' : Tape} {w : Fin k → Tape}
 /-- One **scatter sweep-1** step (`trace 1`): from a `scatter1 d` config, the
     result is the configuration built from `scatter1Step`'s output. Basis of the
     SCATTER sweep-1 correctness (the phase that writes `N`'s new configuration and
-    materializes a fresh block). -/
+    materializes a fresh block).
+@isnad1 id=eq.1h5v.s9.8d79feed5fbb from=translated src=- shape=b9c7a7f6 vocab=56b7b65d
+-/
 theorem scatter1_trace1 {k : ℕ} (N : NTM k) (d : Scatter1Data k N.Q) (b : Bool)
     (c1 : Cfg 1 (SimQ k N.Q)) (hst : c1.state = SimQ.scatter1 d) :
     (singleTapeSim N).trace 1 (fun _ => b) c1 =
@@ -1538,7 +1620,9 @@ theorem scatter1_trace1 {k : ℕ} (N : NTM k) (d : Scatter1Data k N.Q) (b : Bool
     `□` sentinel, the work head writes `scatter1Step`'s computed symbol and moves
     right (input/output idle), landing in `scatter1Step`'s next state. The case
     logic (head-bit handling, symbol writes, marker carries) stays packaged inside
-    `scatter1Step` for the sweep induction to unfold per cell. -/
+    `scatter1Step` for the sweep induction to unfold per cell.
+@isnad1 id=eq.4h5v.s8.32c8e6cad7f8 from=translated src=- shape=fa667aa2 vocab=0436c4dc
+-/
 theorem scatter1_step_right {k : ℕ} (N : NTM k) (d : Scatter1Data k N.Q) (b : Bool)
     (c1 : Cfg 1 (SimQ k N.Q)) (hst : c1.state = SimQ.scatter1 d)
     (hwb : (c1.work 0).read ≠ Γ.blank)
@@ -1568,7 +1652,9 @@ theorem scatter1_step_right {k : ℕ} (N : NTM k) (d : Scatter1Data k N.Q) (b : 
     cell's value (`scatter1Step`'s symbol — a head-bit per `rightCarry` at slot 0,
     `□` otherwise) and moves right, growing the region by one cell. Same shape as
     `scatter1_step_right`; the work direction is right because the turn-around
-    guard is false. -/
+    guard is false.
+@isnad1 id=eq.4h15v.s9.fdfc965c8241 from=translated src=- shape=c52fe7e9 vocab=1b094af0
+-/
 theorem scatter1_materialize {k : ℕ} (N : NTM k) (b : Bool) (q' : N.Q)
     (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
     (pos : SweepPos k) (rightCarry isLeftMover : Fin k → Bool) (writeFlag mat : Bool)
@@ -1611,7 +1697,9 @@ theorem scatter1_materialize {k : ℕ} (N : NTM k) (b : Bool) (q' : N.Q)
 /-- SCATTER sweep-1 **materialize slot-0** step: at the `□` sentinel, slot `0` of
     a fresh block-tape, deposit the head-bit (`one` if `rightCarry t`, else `zero`),
     clear that carry, set `mat`, and advance to slot 1. The right-movers carried out
-    of the last old block land here. -/
+    of the last old block land here.
+@isnad1 id=eq.7h14v.s10.c5e9bd625246 from=translated src=- shape=1cc0b83f vocab=1af54912
+-/
 theorem scatter1_mat_slot0 {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
     (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
     (t : ℕ) (ht : t < k) (rc ilm : Fin k → Bool) (mat : Bool) (c1 : Cfg 1 (SimQ k N.Q))
@@ -1639,7 +1727,9 @@ theorem scatter1_mat_slot0 {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
 
 /-- SCATTER sweep-1 **materialize symbol** step: at the `□` sentinel, slot `1` or `2`
     of a fresh block-tape, write the blank-symbol code cell (`Γw.zero`) and advance.
-    `rightCarry`/`isLeftMover` untouched; the new block's symbols are all `□`. -/
+    `rightCarry`/`isLeftMover` untouched; the new block's symbols are all `□`.
+@isnad1 id=eq.7h15v.s9.2c7b73f4c4aa from=translated src=- shape=b5449e69 vocab=99a148de
+-/
 theorem scatter1_mat_sym {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
     (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
     (t : ℕ) (ht : t < k) (s : Fin 3) (hs : s ≠ 0) (rc ilm : Fin k → Bool) (wf : Bool)
@@ -1670,7 +1760,9 @@ theorem scatter1_mat_sym {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
 /-- SCATTER sweep-1 **materialize triple** (`trace 3`): materialize one fresh
     block-tape (3 blank cells) — deposit the head-bit (`one` iff `rightCarry t`),
     then two blank-symbol cells (`□`), clearing `rightCarry t` and setting `mat`. The
-    work head advances by 3 to the next tape's slot 0. -/
+    work head advances by 3 to the next tape's slot 0.
+@isnad1 id=eq.9h14v.s10.52f5d62ba6fe from=translated src=- shape=0a5c1312 vocab=6de4e389
+-/
 theorem scatter1_mat_triple {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
     (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
     (t : ℕ) (ht : t < k) (rc ilm : Fin k → Bool) (mat : Bool) (c1 : Cfg 1 (SimQ k N.Q))
@@ -1874,7 +1966,9 @@ private theorem scatter1_mat_aux {k : ℕ} (N : NTM k) (bb : Bool) (M : ℕ) (q'
 /-- SCATTER sweep-1 **no-head slot-0** step: at a head-bit cell with no head
     (`wH = zero`) and no incoming carry (`rc t = false`), write `zero` (preserving
     the cell) and advance to slot 1. The common case for tapes without a head in
-    this block. -/
+    this block.
+@isnad1 id=eq.6h14v.s9.939ea2b40395 from=translated src=- shape=0dbe479a vocab=16d45ccb
+-/
 theorem scatter1_nohead_slot0 {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
     (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
     (j : ℕ) (hj : j < k) (rc ilm : Fin k → Bool) (mat : Bool) (c1 : Cfg 1 (SimQ k N.Q))
@@ -1899,7 +1993,9 @@ theorem scatter1_nohead_slot0 {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
   exact work_write_eq (c1.work 0) Γw.zero.toΓ hz
 
 /-- SCATTER sweep-1 **no-head symbol** step (slot 1 or 2 with `writeFlag = false`):
-    the symbol cell is preserved (`readBackWrite`) and the sweep advances. -/
+    the symbol cell is preserved (`readBackWrite`) and the sweep advances.
+@isnad1 id=eq.6h15v.s9.7f889c412ca0 from=translated src=- shape=8b5d7ad3 vocab=dceb8e15
+-/
 theorem scatter1_nohead_sym {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
     (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
     (pt : Fin (k + 1)) (s : Fin 3) (hs : s ≠ 0) (rc ilm : Fin k → Bool) (mat : Bool)
@@ -1925,7 +2021,9 @@ theorem scatter1_nohead_sym {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
 /-- SCATTER sweep-1 **no-head triple** (`trace 3`): a tape with no head in this
     block (head-bit `zero`) and no incoming carry (`rc = false`) is passed through
     untouched — its three cells are preserved and the sweep advances to the next
-    tape, carries/markers unchanged. The common per-tape case in a block. -/
+    tape, carries/markers unchanged. The common per-tape case in a block.
+@isnad1 id=eq.10h14v.s10.110d53ecfae5 from=translated src=- shape=8287cbd2 vocab=a1312ba8
+-/
 theorem scatter1_nohead_triple {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
     (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
     (j : ℕ) (hj : j < k) (rc ilm : Fin k → Bool) (mat : Bool) (c1 : Cfg 1 (SimQ k N.Q))
@@ -1961,7 +2059,9 @@ theorem scatter1_nohead_triple {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
 
 /-- SCATTER sweep-1 **head slot-0, stay** step: at a head-bit cell with a head
     (`wH = one`) whose `δ` action is `stay`, keep the bit (`one`, preserving the
-    cell), set `writeFlag` (so the symbol cells get the new symbol), advance. -/
+    cell), set `writeFlag` (so the symbol cells get the new symbol), advance.
+@isnad1 id=eq.6h15v.s9.808b75c0d609 from=translated src=- shape=7016631c vocab=ce4efa4d
+-/
 theorem scatter1_head_slot0_stay {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
     (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
     (j : ℕ) (hj : j < k) (rc ilm : Fin k → Bool) (wf mat : Bool) (c1 : Cfg 1 (SimQ k N.Q))
@@ -1987,7 +2087,9 @@ theorem scatter1_head_slot0_stay {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
 
 /-- SCATTER sweep-1 **head slot-0, left** step: a head whose `δ` action is `left`
     keeps its bit here for now (`one`, cell preserved) and is recorded in
-    `isLeftMover` (sweep-2 moves it one block left); `writeFlag` is set, advance. -/
+    `isLeftMover` (sweep-2 moves it one block left); `writeFlag` is set, advance.
+@isnad1 id=eq.6h15v.s9.ce5ef80c4f06 from=translated src=- shape=201e8106 vocab=2aa84a18
+-/
 theorem scatter1_head_slot0_left {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
     (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
     (j : ℕ) (hj : j < k) (rc ilm : Fin k → Bool) (wf mat : Bool) (c1 : Cfg 1 (SimQ k N.Q))
@@ -2013,7 +2115,9 @@ theorem scatter1_head_slot0_left {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
 
 /-- SCATTER sweep-1 **head slot-0, right** step: a head whose `δ` action is `right`
     leaves this cell (`zero` — the bit is cleared, changing the cell), carries the
-    head one block right via `rightCarry`, sets `writeFlag`, and advances. -/
+    head one block right via `rightCarry`, sets `writeFlag`, and advances.
+@isnad1 id=eq.7h15v.s9.37c201092c4e from=translated src=- shape=148264e8 vocab=b5151fea
+-/
 theorem scatter1_head_slot0_right {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
     (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
     (j : ℕ) (hj : j < k) (rc ilm : Fin k → Bool) (wf mat : Bool) (c1 : Cfg 1 (SimQ k N.Q))
@@ -2040,7 +2144,9 @@ theorem scatter1_head_slot0_right {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
   exact work_write_right (c1.work 0) Γw.zero.toΓ hh
 
 /-- SCATTER sweep-1 **head sym-hi** step (slot 1, `writeFlag = true`): overwrite the
-    high symbol cell with the new symbol's high bit; `writeFlag` stays set. -/
+    high symbol cell with the new symbol's high bit; `writeFlag` stays set.
+@isnad1 id=eq.6h14v.s9.ee526c9a43f9 from=translated src=- shape=e0807028 vocab=c77bcf79
+-/
 theorem scatter1_head_sym1 {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
     (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
     (j : ℕ) (hj : j < k) (rc ilm : Fin k → Bool) (mat : Bool) (c1 : Cfg 1 (SimQ k N.Q))
@@ -2066,7 +2172,9 @@ theorem scatter1_head_sym1 {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
 
 /-- SCATTER sweep-1 **head sym-lo** step (slot 2, `writeFlag = true`): overwrite the
     low symbol cell with the new symbol's low bit; `writeFlag` is reset, advancing
-    to the next tape. -/
+    to the next tape.
+@isnad1 id=eq.6h14v.s9.4744c9aa76ec from=translated src=- shape=d03b8ed7 vocab=221e322b
+-/
 theorem scatter1_head_sym2 {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
     (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
     (j : ℕ) (hj : j < k) (rc ilm : Fin k → Bool) (mat : Bool) (c1 : Cfg 1 (SimQ k N.Q))
@@ -2092,7 +2200,9 @@ theorem scatter1_head_sym2 {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
 
 /-- SCATTER sweep-1 **head stay triple** (`trace 3`): a tape whose head is in this
     block (head-bit `one`) and stays put writes its new symbol into the two symbol
-    cells, keeps its head-bit, and advances; carries/markers unchanged. -/
+    cells, keeps its head-bit, and advances; carries/markers unchanged.
+@isnad1 id=eq.9h14v.s10.29c8fc20cf78 from=translated src=- shape=ac07c29f vocab=07c68eb6
+-/
 theorem scatter1_head_stay_triple {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
     (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
     (j : ℕ) (hj : j < k) (rc ilm : Fin k → Bool) (mat : Bool) (c1 : Cfg 1 (SimQ k N.Q))
@@ -2128,7 +2238,9 @@ theorem scatter1_head_stay_triple {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
 
 /-- SCATTER sweep-1 **head left triple** (`trace 3`): like the stay triple (writes
     the new symbol, keeps the head-bit here), but records the tape in `isLeftMover`
-    so sweep-2 will move its bit one block left. -/
+    so sweep-2 will move its bit one block left.
+@isnad1 id=eq.9h14v.s10.a719d235ba97 from=translated src=- shape=f0caa54c vocab=2185ae8f
+-/
 theorem scatter1_head_left_triple {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
     (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
     (j : ℕ) (hj : j < k) (rc ilm : Fin k → Bool) (mat : Bool) (c1 : Cfg 1 (SimQ k N.Q))
@@ -2166,7 +2278,9 @@ theorem scatter1_head_left_triple {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
 
 /-- SCATTER sweep-1 **head right triple** (`trace 3`): a head moving right clears its
     head-bit here (`zero`), writes its new symbol into the two symbol cells, and
-    carries the head one block right via `rightCarry`; three cell writes total. -/
+    carries the head one block right via `rightCarry`; three cell writes total.
+@isnad1 id=eq.9h14v.s10.ae06dea2aa77 from=translated src=- shape=f0f220cf vocab=a5fc5f08
+-/
 theorem scatter1_head_right_triple {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
     (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
     (j : ℕ) (hj : j < k) (rc ilm : Fin k → Bool) (mat : Bool) (c1 : Cfg 1 (SimQ k N.Q))
@@ -2209,7 +2323,9 @@ theorem scatter1_head_right_triple {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
 /-- SCATTER sweep-1 **deposit slot-0** step: at a head-bit cell with no head
     (`wH = zero`) but an incoming carry (`rc t = true` — a head moved right into
     this block), deposit the head-bit (write `one`, clearing the carry); the symbol
-    cells are not overwritten (`writeFlag` stays false). -/
+    cells are not overwritten (`writeFlag` stays false).
+@isnad1 id=eq.7h14v.s9.40edeebbd7e2 from=translated src=- shape=41a3d9ca vocab=2153d0b6
+-/
 theorem scatter1_deposit_slot0 {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
     (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
     (j : ℕ) (hj : j < k) (rc ilm : Fin k → Bool) (mat : Bool) (c1 : Cfg 1 (SimQ k N.Q))
@@ -2236,7 +2352,9 @@ theorem scatter1_deposit_slot0 {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
 
 /-- SCATTER sweep-1 **deposit triple** (`trace 3`): a no-head tape with an incoming
     carry gets its head-bit deposited (write `one`), symbols preserved, carry
-    cleared, advance. The right-mover landing case. -/
+    cleared, advance. The right-mover landing case.
+@isnad1 id=eq.11h14v.s10.01df4db91e63 from=translated src=- shape=b08c7bf1 vocab=2285dc6c
+-/
 theorem scatter1_deposit_triple {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
     (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
     (j : ℕ) (hj : j < k) (rc ilm : Fin k → Bool) (mat : Bool) (c1 : Cfg 1 (SimQ k N.Q))
@@ -2278,7 +2396,9 @@ theorem scatter1_deposit_triple {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
 /-- The **SCATTER sweep-1 → sweep-2 turn-around** (`trace 1`): once the freshly
     materialized block is complete (`mat`, back at tape `0` slot `0`, reading the
     `□` past it), the sweep turns leftward into sweep-2 at the last block's last
-    cell. -/
+    cell.
+@isnad1 id=eq.2h13v.s9.e1117c4163c5 from=translated src=- shape=81f71694 vocab=003be0e6
+-/
 theorem scatter1_turnaround {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
     (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
     (rightCarry isLeftMover : Fin k → Bool) (writeFlag : Bool) (c1 : Cfg 1 (SimQ k N.Q))
@@ -2300,7 +2420,9 @@ theorem scatter1_turnaround {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q)
     (`(c.work m).head ≠ b`) and no incoming carry (`¬((c.work m).head = b-1 ∧ right)`,
     so `rc m = false`): its three cells are unchanged — which already IS the
     intermediate encoding, since the head neither sits at nor moves into `b`.
-    Advances the within-block invariant `b m → b (m+1)` with `rc`/`ilm` unchanged. -/
+    Advances the within-block invariant `b m → b (m+1)` with `rc`/`ilm` unchanged.
+@isnad1 id=ex.11h16v.s10.25392a2c4c8b from=translated src=- shape=a94738bf vocab=b1fd1c46
+-/
 theorem scatter1_tape_nohead {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q) (b M : ℕ)
     (hb1 : 1 ≤ b) (hbM : b ≤ M) (m : ℕ) (hmk : m < k)
     (q' : N.Q) (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
@@ -2360,7 +2482,9 @@ theorem scatter1_tape_nohead {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q) (
     the head-bit `one` at `(b,m)` (clearing the carry); symbols stay (the new
     symbol was written back at `b-1`). The intermediate head IS at `b`
     (`scatterInterWork.head = (b-1)+1 = b`). Advances `b m → b (m+1)`, clearing
-    `rc m`. -/
+    `rc m`.
+@isnad1 id=ex.10h16v.s9.a893c0fa342c from=translated src=- shape=83c50ab8 vocab=88460745
+-/
 theorem scatter1_tape_deposit {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q) (b M : ℕ)
     (hb1 : 1 ≤ b) (hbM : b ≤ M) (m : ℕ) (hmk : m < k)
     (q' : N.Q) (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
@@ -2428,7 +2552,9 @@ theorem scatter1_tape_deposit {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q) 
     (`scatterInterWork.head = b`, since `stay ≠ right`) and the intermediate symbol
     at `b` is the new write (`scatterInterWork.cells b = (wact m).1`, via
     `cells_at_head`), matched to the triple's `encSymW` writes by the codec bridge.
-    Advances `b m → b (m+1)`, `rc`/`ilm` unchanged. -/
+    Advances `b m → b (m+1)`, `rc`/`ilm` unchanged.
+@isnad1 id=ex.10h16v.s9.c2d3f334ba83 from=translated src=- shape=2113b2cb vocab=e1dddef6
+-/
 theorem scatter1_tape_head_stay {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q) (b M : ℕ)
     (hb1 : 1 ≤ b) (hbM : b ≤ M) (m : ℕ) (hmk : m < k)
     (q' : N.Q) (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
@@ -2496,7 +2622,9 @@ theorem scatter1_tape_head_stay {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q
     new symbol written) but the `δ`-action is `left`: the tape is recorded in
     `isLeftMover` (sweep-2 moves its bit one block left later). The intermediate
     head still sits at `b` (`scatterInterWork.head = b`, since `left ≠ right`), so
-    the SCATTER-1 target is unchanged from stay; only `ilm` advances. -/
+    the SCATTER-1 target is unchanged from stay; only `ilm` advances.
+@isnad1 id=ex.10h16v.s9.b8bed8b657da from=translated src=- shape=fd2d4e2d vocab=a8ab37f4
+-/
 theorem scatter1_tape_head_left {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q) (b M : ℕ)
     (hb1 : 1 ≤ b) (hbM : b ≤ M) (m : ℕ) (hmk : m < k)
     (q' : N.Q) (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
@@ -2566,7 +2694,9 @@ theorem scatter1_tape_head_left {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q
     block right via `rc`. The intermediate head moves to `b+1`
     (`scatterInterWork.head = b+1 ≠ b`), so the cleared `zero` matches; the new
     symbol at `b` (the old head's cell) matches via the codec bridge. Advances
-    `b m → b (m+1)`, setting `rc m`. -/
+    `b m → b (m+1)`, setting `rc m`.
+@isnad1 id=ex.10h16v.s9.eb4ca5144f33 from=translated src=- shape=e5bfc192 vocab=ac2a8099
+-/
 theorem scatter1_tape_head_right {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q) (b M : ℕ)
     (hb1 : 1 ≤ b) (hbM : b ≤ M) (m : ℕ) (hmk : m < k)
     (q' : N.Q) (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
@@ -2848,7 +2978,9 @@ private theorem scatter1_block_aux {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k 
     to `blockStart k (b+1)`, the carry `rc` updates from the incoming
     `decide(head = b-1 ∧ right)` to the outgoing `decide(head = b ∧ right)` (= the
     incoming carry of block `b+1`), and `ilm` records block `b`'s left-movers.
-    Wraps `scatter1_block_aux` at `m = k` between `ofMid` and `toMidSucc`. -/
+    Wraps `scatter1_block_aux` at `m = k` between `ofMid` and `toMidSucc`.
+@isnad1 id=ex.8h15v.s10.61c90fc47d7f from=translated src=- shape=40d6781a vocab=7951cb79
+-/
 theorem scatter1_block_step {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q) (b M : ℕ)
     (hb1 : 1 ≤ b) (hbM : b ≤ M)
     (q' : N.Q) (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
@@ -2964,7 +3096,9 @@ private theorem scatter1_sweep_aux {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k 
     sweep is not at the turnaround trigger (`mat = true ∧ pos = (0,0)`), one step from
     a `scatter1` config lands in `scatter1` again — `scatter1Step` only escapes to
     `scatter2` in that one branch. The condition is on the **state data alone** (no
-    head/read needed), so it threads cleanly through a per-step induction. -/
+    head/read needed), so it threads cleanly through a per-step induction.
+@isnad1 id=ex.2h5v.s9.c0565894706a from=translated src=- shape=c8ad7f35 vocab=e53cf849
+-/
 theorem scatter1_step_stays {k : ℕ} (N : NTM k) (b : Bool) (d : Scatter1Data k N.Q)
     (c1 : Cfg 1 (SimQ k N.Q)) (hst : c1.state = SimQ.scatter1 d)
     (hnt : ¬ (d.2.2.2.2.2.2.2.2.2.2 = true ∧ d.2.2.2.2.2.2.1 = (0, 0))) :
@@ -2988,7 +3122,9 @@ theorem scatter1_step_stays {k : ℕ} (N : NTM k) (b : Bool) (d : Scatter1Data k
     boundary with `scatter1_block_aux` (whose output is a `scatter1`, slot-0,
     `mat = false` config — so `¬turnaround`) and stepping the remaining `s % 3 ≤ 2`
     micro-steps with `scatter1_step_stays` (the carried `pos`/`mat` never hit the
-    turnaround trigger). -/
+    turnaround trigger).
+@isnad1 id=ex.10h16v.s9.bf7b0f1217c2 from=translated src=- shape=4a029b40 vocab=a6eec7cf
+-/
 theorem scatter1_block_states {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q) (b M : ℕ)
     (hb1 : 1 ≤ b) (hbM : b ≤ M)
     (q' : N.Q) (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
@@ -3054,7 +3190,9 @@ theorem scatter1_block_states {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q) 
     simulator in `scatter1`. Mirrors `scatter1_block_states`: reach the 3-step boundary
     with `scatter1_mat_aux` (slot-0, `mat = (m ≠ 0)`, so the turnaround trigger
     `mat ∧ pos = (0,0)` needs `m = 0` — but then `mat = false`), then step the residual
-    `< 3` micro-steps (`pos ≠ (0,0)`). The trigger is only at the very end `s = 3*k`. -/
+    `< 3` micro-steps (`pos ≠ (0,0)`). The trigger is only at the very end `s = 3*k`.
+@isnad1 id=ex.7h14v.s9.da001ffa285a from=translated src=- shape=a099a387 vocab=1adedf1a
+-/
 theorem scatter1_mat_states {k : ℕ} (N : NTM k) (bb : Bool) (M : ℕ) (q' : N.Q)
     (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
     (rc ilm : Fin k → Bool) (c1 : Cfg 1 (SimQ k N.Q))
@@ -3107,7 +3245,9 @@ theorem scatter1_mat_states {k : ℕ} (N : NTM k) (bb : Bool) (M : ℕ) (q' : N.
 
 /-- **SCATTER sweep-1 state discipline.** Throughout the entire sweep-1 phase
     (all `i < 3*k*(M+1) + 1` steps from its start), the simulator's state is never
-    a `gather` state. Used to rule out spurious decision points inside the sweep. -/
+    a `gather` state. Used to rule out spurious decision points inside the sweep.
+@isnad1 id=not.9h13v.s9.9c4a250a87dd from=translated src=- shape=2c17bb66 vocab=dd551125
+-/
 theorem scatter1_sweep_states {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q) (M : ℕ)
     (q' : N.Q) (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
     (c1 : Cfg 1 (SimQ k N.Q))
@@ -3214,7 +3354,9 @@ theorem scatter1_sweep_states {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q) 
     spot) materialized to `M+1`, recording the left-movers in `isLeftMover`. The
     work tape is existential (its exact head position is incidental — sweep-2
     consumes it). This is the research-grade core; the proof will decompose as
-    `triple → block (rightCarry in→out) → M-block sweep → materialize → turnaround`. -/
+    `triple → block (rightCarry in→out) → M-block sweep → materialize → turnaround`.
+@isnad1 id=ex.8h12v.s10.5c27411589af from=translated src=- shape=d4fd64ac vocab=72c2be41
+-/
 theorem scatter1_sweep {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q) (M : ℕ)
     (q' : N.Q) (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
     (c1 : Cfg 1 (SimQ k N.Q))
@@ -3387,7 +3529,9 @@ theorem scatter1_sweep {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q) (M : �
 
 /-- One **scatter sweep-2** step (`trace 1`): from a `scatter2 d` config, the result is
     the configuration built from `scatter2Step`'s output. Basis of the SCATTER sweep-2
-    correctness (the leftward phase that deposits the recorded left-movers). -/
+    correctness (the leftward phase that deposits the recorded left-movers).
+@isnad1 id=eq.1h5v.s9.9227a595dcc2 from=translated src=- shape=b9c7a7f6 vocab=101a1638
+-/
 theorem scatter2_trace1 {k : ℕ} (N : NTM k) (d : Scatter2Data k N.Q) (b : Bool)
     (c1 : Cfg 1 (SimQ k N.Q)) (hst : c1.state = SimQ.scatter2 d) :
     (singleTapeSim N).trace 1 (fun _ => b) c1 =
@@ -3400,7 +3544,9 @@ theorem scatter2_trace1 {k : ℕ} (N : NTM k) (d : Scatter2Data k N.Q) (b : Bool
 
 /-- **SCATTER sweep-2 → COMMIT turn-around** (`trace 1`): reading `▷` at cell 0 ends the
     leftward sweep, hands the deferred output write/move to COMMIT, and steps the work
-    head right to cell 1. -/
+    head right to cell 1.
+@isnad1 id=eq.4h12v.s8.182099ea635c from=translated src=- shape=98ada335 vocab=d1465b07
+-/
 theorem scatter2_start {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q) (oWoD : Γw × Dir3)
     (iD : Dir3) (iSym oSym : Γ) (pos : SweepPos k) (isLeftMover leftCarry : Fin k → Bool)
     (c1 : Cfg 1 (SimQ k N.Q))
@@ -3418,7 +3564,9 @@ theorem scatter2_start {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q) (oWoD : Γw 
 
 /-- A SCATTER sweep-2 **symbol** step (slot `1` or `2`, non-`▷`): the leftward sweep
     only touches head-bit cells, so a symbol cell is read back unchanged and the head
-    retreats one cell. -/
+    retreats one cell.
+@isnad1 id=eq.6h13v.s9.d18c4ae4d449 from=translated src=- shape=7b5ba6c4 vocab=4a70f527
+-/
 theorem scatter2_sym {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q) (oWoD : Γw × Dir3)
     (iD : Dir3) (iSym oSym : Γ) (t : ℕ) (ht : t < k) (s : Fin 3) (hs : s ≠ 0)
     (isLeftMover leftCarry : Fin k → Bool) (c1 : Cfg 1 (SimQ k N.Q))
@@ -3443,7 +3591,9 @@ theorem scatter2_sym {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q) (oWoD : Γw ×
 
 /-- A SCATTER sweep-2 **clear** step (slot `0`, head-bit `one`, this tape is a recorded
     left-mover): clear the bit here (`zero`) and set `leftCarry` so the bit is re-deposited
-    one block to the left; the head retreats. -/
+    one block to the left; the head retreats.
+@isnad1 id=eq.7h12v.s9.e4a392734284 from=translated src=- shape=e3f4106e vocab=a0986ee7
+-/
 theorem scatter2_clear_slot0 {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q) (oWoD : Γw × Dir3)
     (iD : Dir3) (iSym oSym : Γ) (t : ℕ) (ht : t < k) (isLeftMover leftCarry : Fin k → Bool)
     (c1 : Cfg 1 (SimQ k N.Q))
@@ -3469,7 +3619,9 @@ theorem scatter2_clear_slot0 {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q) (oWoD 
 
 /-- A SCATTER sweep-2 **deposit** step (slot `0`, incoming `leftCarry`, not itself a
     left-mover to clear): deposit the head-bit here (`one`), clearing both this tape's
-    `isLeftMover` mark and the carry; the head retreats. The left-mover lands one block left. -/
+    `isLeftMover` mark and the carry; the head retreats. The left-mover lands one block left.
+@isnad1 id=eq.8h12v.s9.8729780b1c33 from=translated src=- shape=73a80a01 vocab=d6b49e31
+-/
 theorem scatter2_deposit_slot0 {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q) (oWoD : Γw × Dir3)
     (iD : Dir3) (iSym oSym : Γ) (t : ℕ) (ht : t < k) (isLeftMover leftCarry : Fin k → Bool)
     (c1 : Cfg 1 (SimQ k N.Q))
@@ -3496,7 +3648,9 @@ theorem scatter2_deposit_slot0 {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q) (oWo
   exact work_write_left (c1.work 0) Γw.one.toΓ hh
 
 /-- A SCATTER sweep-2 **keep** step (slot `0`, neither a left-mover to clear nor an
-    incoming carry): the head-bit is read back unchanged and the head retreats. -/
+    incoming carry): the head-bit is read back unchanged and the head retreats.
+@isnad1 id=eq.7h12v.s9.7e26a419208b from=translated src=- shape=96657184 vocab=6f95caa9
+-/
 theorem scatter2_keep_slot0 {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q) (oWoD : Γw × Dir3)
     (iD : Dir3) (iSym oSym : Γ) (t : ℕ) (ht : t < k) (isLeftMover leftCarry : Fin k → Bool)
     (c1 : Cfg 1 (SimQ k N.Q))
@@ -3523,7 +3677,9 @@ theorem scatter2_keep_slot0 {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q) (oWoD :
 
 /-- **SCATTER sweep-2 clear triple** (`trace 3`): three leftward steps over a tape whose
     head-bit (slot 0) is `one` and which is a recorded left-mover — two symbol cells read
-    back unchanged, then the head-bit cleared (`zero`) with `leftCarry` set. Head retreats 3. -/
+    back unchanged, then the head-bit cleared (`zero`) with `leftCarry` set. Head retreats 3.
+@isnad1 id=eq.9h12v.s9.8e84dd96a668 from=translated src=- shape=6cea5166 vocab=a0986ee7
+-/
 theorem scatter2_clear_triple {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q) (oWoD : Γw × Dir3)
     (iD : Dir3) (iSym oSym : Γ) (t : ℕ) (ht : t < k) (isLeftMover leftCarry : Fin k → Bool)
     (c1 : Cfg 1 (SimQ k N.Q))
@@ -3561,7 +3717,9 @@ theorem scatter2_clear_triple {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q) (oWoD
 
 /-- **SCATTER sweep-2 deposit triple** (`trace 3`): three leftward steps over a tape with
     an incoming `leftCarry` (and not itself a clear) — two symbol cells unchanged, then the
-    head-bit deposited (`one`), clearing `isLeftMover` and the carry. Head retreats 3. -/
+    head-bit deposited (`one`), clearing `isLeftMover` and the carry. Head retreats 3.
+@isnad1 id=eq.10h12v.s10.0787bc9c470e from=translated src=- shape=51b6dc74 vocab=d6b49e31
+-/
 theorem scatter2_deposit_triple {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q) (oWoD : Γw × Dir3)
     (iD : Dir3) (iSym oSym : Γ) (t : ℕ) (ht : t < k) (isLeftMover leftCarry : Fin k → Bool)
     (c1 : Cfg 1 (SimQ k N.Q))
@@ -3603,7 +3761,9 @@ theorem scatter2_deposit_triple {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q) (oW
 
 /-- **SCATTER sweep-2 keep triple** (`trace 3`): three leftward steps over a tape that is
     neither a left-mover to clear nor a carry to deposit — all three cells read back
-    unchanged, head retreats 3. -/
+    unchanged, head retreats 3.
+@isnad1 id=eq.10h12v.s9.7537cec13a65 from=translated src=- shape=e00ac192 vocab=2e3d487f
+-/
 theorem scatter2_keep_triple {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q) (oWoD : Γw × Dir3)
     (iD : Dir3) (iSym oSym : Γ) (t : ℕ) (ht : t < k) (isLeftMover leftCarry : Fin k → Bool)
     (c1 : Cfg 1 (SimQ k N.Q))
@@ -3645,7 +3805,9 @@ theorem scatter2_keep_triple {k : ℕ} (N : NTM k) (bb : Bool) (q' : N.Q) (oWoD 
     left-mover to clear at `p` (`¬(scatterInterWork.head = p ∧ isLeftMover)`) nor a
     deposit target (`leftCarry ≠ true`): its head-bit is read back unchanged. The
     intermediate and final head-bits at `p` agree (`hfin`), so this already IS the
-    final encoding. Advances `Scatter2BlockInv … p m → … p (m+1)`. -/
+    final encoding. Advances `Scatter2BlockInv … p m → … p (m+1)`.
+@isnad1 id=ex.11h16v.s10.fac8517ec093 from=translated src=- shape=3ea1657b vocab=c44b06ca
+-/
 theorem scatter2_tape_keep {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q) (p M : ℕ)
     (hp1 : 1 ≤ p) (hpM : p ≤ M + 1) (m : ℕ) (hmk : m < k)
     (q' : N.Q) (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
@@ -3703,7 +3865,9 @@ theorem scatter2_tape_keep {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q) (p 
     left-mover whose intermediate head-bit sits at `p` (`hheadp`, `hlm`): clear the
     bit here (→ `zero`, since the left-mover's final head is `p-1 ≠ p`, `hfinne`) and
     set `leftCarry` so the bit re-deposits one block left. Advances
-    `Scatter2BlockInv … p m → … p (m+1)`. -/
+    `Scatter2BlockInv … p m → … p (m+1)`.
+@isnad1 id=ex.11h16v.s9.2eac7abe0eff from=translated src=- shape=23c0b5da vocab=cfdb9cd7
+-/
 theorem scatter2_tape_clear {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q) (p M : ℕ)
     (hp1 : 1 ≤ p) (hpM : p ≤ M + 1) (m : ℕ) (hmk : m < k)
     (q' : N.Q) (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
@@ -3757,7 +3921,9 @@ theorem scatter2_tape_clear {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q) (p
     incoming `leftCarry` (`hlc`, set when its left-mover bit was cleared at block
     `p+1`): its intermediate head-bit at `p` is `zero` (`hninter`), but its final head
     lands at `p` (`hfineq`), so deposit the bit here (→ `one`), clearing both this
-    tape's `isLeftMover` mark and the carry. Advances `Scatter2BlockInv … p m → … p (m+1)`. -/
+    tape's `isLeftMover` mark and the carry. Advances `Scatter2BlockInv … p m → … p (m+1)`.
+@isnad1 id=ex.11h16v.s10.31afb424c923 from=translated src=- shape=58921c25 vocab=90047763
+-/
 theorem scatter2_tape_deposit {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q) (p M : ℕ)
     (hp1 : 1 ≤ p) (hpM : p ≤ M + 1) (m : ℕ) (hmk : m < k)
     (q' : N.Q) (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
@@ -4053,7 +4219,9 @@ private theorem scatter2_block_aux {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k 
 /-- **SCATTER sweep-2 single block (`trace (3*k)`).** Processing one full block `p`
     (leftward) from the block-`(p+1)` boundary: after `3*k` steps the head sits at
     `blockStart k p - 1`, the `isLeftMover`/`leftCarry` flags are updated to their
-    boundary-`p` forms, and the tape satisfies `Scatter2MidInv … p`. -/
+    boundary-`p` forms, and the tape satisfies `Scatter2MidInv … p`.
+@isnad1 id=ex.10h15v.s10.821f5de2a612 from=translated src=- shape=9a3b7578 vocab=1bf12c69
+-/
 theorem scatter2_block_step {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q) (p M : ℕ)
     (hp1 : 1 ≤ p) (hpM : p ≤ M + 1) (hk : 1 ≤ k)
     (q' : N.Q) (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
@@ -4191,7 +4359,9 @@ private theorem scatter2_sweep_aux {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k 
     sweep-2 step from a `scatter2` config whose work head is `≥ 1` (so it does NOT read
     `▷`, given the cells below the head are non-`▷`) stays in `scatter2`. The new work
     head is `head - 1` and only the old head cell is overwritten — every other cell is
-    preserved. This is the per-step lever for the `scatter2` sweep `¬gather` lemma. -/
+    preserved. This is the per-step lever for the `scatter2` sweep `¬gather` lemma.
+@isnad1 id=ex.3h5v.s8.12df1ce6b1e1 from=translated src=- shape=44d85c28 vocab=9450f2b8
+-/
 theorem scatter2_step_stays {k : ℕ} (N : NTM k) (b : Bool) (d : Scatter2Data k N.Q)
     (c1 : Cfg 1 (SimQ k N.Q)) (hst : c1.state = SimQ.scatter2 d)
     (hh : 1 ≤ (c1.work 0).head)
@@ -4232,7 +4402,9 @@ theorem scatter2_step_stays {k : ℕ} (N : NTM k) (b : Bool) (d : Scatter2Data k
     3-step (per-tape) boundary with `scatter2_block_aux` (whose output is `scatter2` with a
     known head `≥ blockStart k p + 2 ≥ 3` and a `Scatter2BlockInv` tape, so the read is
     `≠ ▷`) and stepping the remaining `s % 3 ≤ 2` micro-steps with `scatter2_step_stays`
-    (each read is at a cell `≥ 1`, hence non-`▷` by `Scatter2BlockInv.cells_ne_start`). -/
+    (each read is at a cell `≥ 1`, hence non-`▷` by `Scatter2BlockInv.cells_ne_start`).
+@isnad1 id=ex.11h16v.s9.3d5aa36cefb5 from=translated src=- shape=b9a0a626 vocab=17a55ad3
+-/
 theorem scatter2_block_states {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q) (p M : ℕ)
     (hp1 : 1 ≤ p) (hpM : p ≤ M + 1) (hk : 1 ≤ k)
     (q' : N.Q) (wact : Fin k → Γw × Dir3) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
@@ -4299,7 +4471,9 @@ theorem scatter2_block_states {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q) 
     has no choice-consuming (`gather`-on-`□`) step in this phase, the input to
     `trace_congr_choices` for `macroStepCorr_rev`. The hypotheses are identical to
     `scatter2_sweep` for call-site uniformity. Decomposes as a `scatter2_sweep_aux` block
-    sweep (every `3*k`-boundary is `scatter2`) plus a `scatter2_block_states` residual. -/
+    sweep (every `3*k`-boundary is `scatter2`) plus a `scatter2_block_states` residual.
+@isnad1 id=not.8h13v.s9.fd582a460295 from=translated src=- shape=c149c73c vocab=250396c4
+-/
 theorem scatter2_sweep_states {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q) (M : ℕ)
     (hk : 1 ≤ k) (q' : N.Q) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ)
     (wact : Fin k → Γw × Dir3) (c1 : Cfg 1 (SimQ k N.Q))
@@ -4383,7 +4557,9 @@ theorem scatter2_sweep_states {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q) 
     sweep all `M+1` blocks leftward (turning each left-mover's head-bit) and then read
     `▷` to hand off to COMMIT. The work tape now `SimInvAt (M+1)`-encodes the **final**
     config `scatterFinalWork` — exactly `N`'s one-step images. Wraps `scatter2_sweep_aux`
-    (at `B = M+1`) between `ofSimInv` and `toSimInv`, then `scatter2_start`. -/
+    (at `B = M+1`) between `ofSimInv` and `toSimInv`, then `scatter2_start`.
+@isnad1 id=ex.9h12v.s9.43a5d49f5473 from=translated src=- shape=17e58230 vocab=615ef88f
+-/
 theorem scatter2_sweep {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q) (M : ℕ) (hk : 1 ≤ k)
     (q' : N.Q) (oWoD : Γw × Dir3) (iD : Dir3) (iSym oSym : Γ) (wact : Fin k → Γw × Dir3)
     (c1 : Cfg 1 (SimQ k N.Q))
@@ -4445,7 +4621,9 @@ theorem scatter2_sweep {k : ℕ} (N : NTM k) (bb : Bool) (c : Cfg k N.Q) (M : �
 /-- `N`'s one-step work-tape image (`writeAndMove w d`) is exactly the SCATTER
     **final** tape `scatterFinalWork ct (w, d)`: both write `w` at the old head and
     then move per `d` (left ↦ `head-1`, right ↦ `head+1`, stay ↦ `head`). This is the
-    bridge between `N.trace 1` and the SCATTER phases' encoding target. -/
+    bridge between `N.trace 1` and the SCATTER phases' encoding target.
+@isnad1 id=eq.0h2v.s4.fedb14d2ca6a from=translated src=- shape=1a265731 vocab=5b28c88e
+-/
 theorem writeAndMove_eq_scatterFinal (ct : Tape) (wd : Γw × Dir3) :
     ct.writeAndMove (wd.1 : Γ) wd.2 = scatterFinalWork ct wd := by
   obtain ⟨w, d⟩ := wd
@@ -4457,7 +4635,9 @@ theorem writeAndMove_eq_scatterFinal (ct : Tape) (wd : Γw × Dir3) :
 /-- **`N.trace 1` in SCATTER-final form.** From a non-halted `c`, one `N`-step
     (choice `bitf 0`) yields the state/input/output of `N.δ` and work tapes that are
     exactly `scatterFinalWork` of the old tapes under the `δ`-action `wact` (work
-    write/dir). The encoding-side description that the SCATTER phases produce. -/
+    write/dir). The encoding-side description that the SCATTER phases produce.
+@isnad1 id=eq.1h4v.s9.a25cb02c860f from=translated src=- shape=525e7764 vocab=f36b1ffe
+-/
 theorem trace_one_scatterFinal {k : ℕ} (N : NTM k) (bitf : Fin 1 → Bool) (c : Cfg k N.Q)
     (hne : c.state ≠ N.qhalt) :
     N.trace 1 bitf c =
@@ -4495,7 +4675,9 @@ theorem trace_one_scatterFinal {k : ℕ} (N : NTM k) (bitf : Fin 1 → Bool) (c 
     the SCATTER sweep-1 entry in `3 + 6*k*M` steps: the work tape still encodes
     `c.work` at `M` (head parked at cell `1`), the SCATTER actions `wact`/`oWoD`/`iD`
     are read off `N.δ bit …` (the one COMPUTE use of `bit`), and the input/output
-    heads have dodged off `▷`. -/
+    heads have dodged off `▷`.
+@isnad1 id=and.2h6v.s10.5ad4c929eae1 from=translated src=- shape=c2a9b0e9 vocab=e61face7
+-/
 theorem run_to_scatter1 {k : ℕ} (N : NTM k) {M : ℕ}
     {c1 : Cfg 1 (SimQ k N.Q)} {c : Cfg k N.Q}
     (hcorr : Corr N M c1 c) (hne : c.state ≠ N.qhalt) (bit : Bool) :
@@ -4615,7 +4797,9 @@ theorem run_to_scatter1 {k : ℕ} (N : NTM k) {M : ℕ}
     `[1, p0)` reads non-`□` (`gather_sweep_no_sentinel`); `i = p0` is the unique
     `gather`-on-`□`; the rewind sweep keeps `rewind` (`rewind_sweep_states`); the
     two scatter sweeps keep `scatter1`/`scatter2` (`scatter{1,2}_sweep_states`); the
-    final `commit` step is not gather. -/
+    final `commit` step is not gather.
+@isnad1 id=iff.4h7v.s8.ebd6782bab22 from=translated src=- shape=462ee3de vocab=e8b2ad4e
+-/
 theorem macroStep_decision_point_iff {k : ℕ} (N : NTM k) (hk : 1 ≤ k) {M : ℕ}
     {c1 : Cfg 1 (SimQ k N.Q)} {c : Cfg k N.Q}
     (hcorr : Corr N M c1 c) (hne : c.state ≠ N.qhalt) (b : Bool) :
@@ -4862,7 +5046,9 @@ theorem macroStep_decision_point_iff {k : ℕ} (N : NTM k) (hk : 1 ≤ k) {M : �
     macro-step length) and the choice sequence fixed to the constant `fun _ => b`.
     `corr_macroStep` is a thin existential wrapper around this; `macroStepCorr_rev`
     needs the explicit `m` so it can invoke `macroStep_decision_point_iff` (which
-    is stated over exactly this length) to discharge `trace_congr_choices`. -/
+    is stated over exactly this length) to discharge `trace_congr_choices`.
+@isnad1 id=corr.3h6v.s8.f2766eb33258 from=translated src=- shape=0b5beb23 vocab=c1054575
+-/
 theorem corr_macroStep_explicit {k : ℕ} (N : NTM k) (hk : 1 ≤ k) {M : ℕ}
     {c1 : Cfg 1 (SimQ k N.Q)} {c : Cfg k N.Q}
     (hcorr : Corr N M c1 c) (hne : c.state ≠ N.qhalt) (b : Bool) :
@@ -4988,7 +5174,9 @@ theorem corr_macroStep_explicit {k : ℕ} (N : NTM k) (hk : 1 ≤ k) {M : ℕ}
 
     This is the heart of the behavioural correctness proof: it is established by
     tracing the phase machine `run → gather → rewind → scatter1 → scatter2 →
-    commit` and showing each phase preserves/advances `SimInvAt`. -/
+    commit` and showing each phase preserves/advances `SimInvAt`.
+@isnad1 id=ex.3h6v.s6.a8f66bfa45be from=translated src=- shape=3d5cf2e7 vocab=0103f366
+-/
 theorem corr_macroStep {k : ℕ} (N : NTM k) (hk : 1 ≤ k) {M : ℕ}
     {c1 : Cfg 1 (SimQ k N.Q)} {c : Cfg k N.Q}
     (hcorr : Corr N M c1 c) (hne : c.state ≠ N.qhalt) (bitf : Fin 1 → Bool) :
@@ -5022,7 +5210,9 @@ theorem corr_macroStep {k : ℕ} (N : NTM k) (hk : 1 ≤ k) {M : ℕ}
     the simulator to the same configuration. Proved by induction on the step
     count, using `simDelta_eq_of_forall_ne_blank` at each step: where the configuration is
     not a `□`-reading GATHER step the choice is irrelevant, and where it is the
-    hypothesis forces the two sequences to agree. -/
+    hypothesis forces the two sequences to agree.
+@isnad1 id=eq.1h6v.s7.5dbd54c91195 from=translated src=- shape=5c995ac3 vocab=ca3cb25f
+-/
 theorem trace_congr_choices {k : ℕ} (N : NTM k) :
     ∀ (m : ℕ) (choices choices' : ℕ → Bool) (c1 : Cfg 1 (SimQ k N.Q)),
     (∀ i, i < m →
@@ -5068,7 +5258,9 @@ theorem trace_congr_choices {k : ℕ} (N : NTM k) :
     simulator reaches, in some number `m` of steps (choices from a single
     `ℕ`-indexed `F`), a configuration corresponding to `N.trace t g c` (at some
     materialization level `M'`). Proved by induction on `t`, composing
-    macro-steps with `trace_add_fun`; the halted case reuses the previous one. -/
+    macro-steps with `trace_add_fun`; the halted case reuses the previous one.
+@isnad1 id=ex.2h7v.s7.5901020b3995 from=translated src=- shape=31f8b9c5 vocab=4767b2b0
+-/
 theorem corr_iterate {k : ℕ} (N : NTM k) (hk : 1 ≤ k) {M : ℕ}
     {c1 : Cfg 1 (SimQ k N.Q)} {c : Cfg k N.Q}
     (hcorr : Corr N M c1 c) (g : ℕ → Bool) (t : ℕ) :
@@ -5125,7 +5317,9 @@ theorem corr_iterate {k : ℕ} (N : NTM k) (hk : 1 ≤ k) {M : ℕ}
 /-- **Forward acceptance.** If `N` accepts `x` within `Tn` steps, then
     `singleTapeSim N` accepts `x` within `Tn · macroBound k Tn + 1` steps:
     simulate `N`'s accepting run (`corr_iterate`), then one `halted_of_corr` step lands in
-    a halted accepting simulator config; pad via `AcceptsInTime.mono`. -/
+    a halted accepting simulator config; pad via `AcceptsInTime.mono`.
+@isnad1 id=acceptsi.2h4v.s5.86263b4b673b from=translated src=- shape=4f542b81 vocab=1908bce8
+-/
 theorem acceptsInTime_singleTapeSim_of_acceptsInTime {k : ℕ} (N : NTM k) (hk : 1 ≤ k)
     (x : List Bool) (Tn : ℕ)
     (h : N.AcceptsInTime x Tn) :
@@ -5190,7 +5384,9 @@ def decisionPos (k t : ℕ) : ℕ := macroPos k t + (1 + 3 * k * t)
     simulator consults at the (closed-form) decision positions. -/
 def inducedChoices (k : ℕ) (ch : ℕ → Bool) : ℕ → Bool := fun t => ch (decisionPos k t)
 
-/-- Each macro-step's length fits in the per-macro-step budget `macroBound`. -/
+/-- Each macro-step's length fits in the per-macro-step budget `macroBound`.
+@isnad1 id=le.0h2v.s3.5d1e95438391 from=translated src=- shape=6c8684e5 vocab=b4ec3312
+-/
 theorem macroLen_le_macroBound (k M : ℕ) : macroLen k M ≤ macroBound k M := by
   have hbs : blockStart k (M + 1) = 1 + 3 * k * M := by
     simp only [blockStart, blockWidth, Nat.add_sub_cancel]
@@ -5208,14 +5404,18 @@ theorem macroLen_le_macroBound (k M : ℕ) : macroLen k M ≤ macroBound k M := 
   rw [hbs, h3, hmb]
   omega
 
-/-- Macro-step boundaries are monotone in the step index. -/
+/-- Macro-step boundaries are monotone in the step index.
+@isnad1 id=le.1h3v.s4.da4019237431 from=translated src=- shape=32f89d1d vocab=d3ae3483
+-/
 theorem macroPos_mono (k : ℕ) {t t' : ℕ} (h : t ≤ t') : macroPos k t ≤ macroPos k t' := by
   induction h with
   | refl => exact le_refl _
   | step _ ih => exact le_trans ih (Nat.le_add_right _ _)
 
 /-- The macro-step boundary position is bounded by the cumulative budget:
-    `macroPos k t ≤ t * macroBound k t`. -/
+    `macroPos k t ≤ t * macroBound k t`.
+@isnad1 id=le.0h2v.s4.ed82f27c51c9 from=translated src=- shape=057f97ac vocab=f94f8e3c
+-/
 theorem macroPos_le_mul_macroBound (k t : ℕ) : macroPos k t ≤ t * macroBound k t := by
   induction t with
   | zero => simp [macroPos]
@@ -5229,7 +5429,9 @@ theorem macroPos_le_mul_macroBound (k t : ℕ) : macroPos k t ≤ t * macroBound
       _ = (t + 1) * macroBound k (t + 1) := (Nat.succ_mul t _).symm
 
 /-- The full reverse-simulation budget (`Tn` macro-steps plus the halt step)
-    fits under the surface bound `16(k+1)(Tn + n + 1)²` (= `singleTapeSimTime`). -/
+    fits under the surface bound `16(k+1)(Tn + n + 1)²` (= `singleTapeSimTime`).
+@isnad1 id=le.0h3v.s6.e06815065771 from=translated src=- shape=66d0af5f vocab=06a43139
+-/
 theorem mul_macroBound_succ_le (k Tn n : ℕ) :
     Tn * macroBound k Tn + 1 ≤ 16 * (k + 1) * (Tn + n + 1) ^ 2 := by
   have h1 : Tn * macroBound k Tn = 16 * (k + 1) * (Tn * (Tn + 1)) := by
@@ -5248,7 +5450,9 @@ theorem mul_macroBound_succ_le (k Tn n : ℕ) :
 /-- **Segment choice replacement.** Along one macro-step from a corresponding,
     non-halted configuration, an arbitrary choice stream drives the simulator to
     the same configuration as the constant stream feeding the arbitrary stream's
-    bit at the macro-step's single decision point (offset `1 + 3kM`). -/
+    bit at the macro-step's single decision point (offset `1 + 3kM`).
+@isnad1 id=eq.3h6v.s7.766734651d78 from=translated src=- shape=a36963f2 vocab=651a7783
+-/
 theorem macroStep_choice_replace {k : ℕ} (N : NTM k) (hk : 1 ≤ k) {M : ℕ}
     {c1 : Cfg 1 (SimQ k N.Q)} {c : Cfg k N.Q}
     (hcorr : Corr N M c1 c) (hne : c.state ≠ N.qhalt) (ch : ℕ → Bool) :
@@ -5263,7 +5467,9 @@ theorem macroStep_choice_replace {k : ℕ} (N : NTM k) (hk : 1 ≤ k) {M : ℕ}
 /-- **Reverse iterated correspondence.** For an ARBITRARY simulator choice
     stream `ch`: as long as `N`'s induced run (`inducedChoices`) has not halted,
     the simulator's configuration at the macro-step boundary `macroPos k t`
-    corresponds to `N`'s `t`-step configuration. -/
+    corresponds to `N`'s `t`-step configuration.
+@isnad1 id=corr.2h5v.s6.5a09c9ea22e8 from=translated src=- shape=ed0787f2 vocab=af1499ad
+-/
 theorem corr_trace_macroPos {k : ℕ} (N : NTM k) (hk : 1 ≤ k) (ch : ℕ → Bool) (x : List Bool) :
     ∀ t : ℕ,
       (∀ s, s < t →
@@ -5305,7 +5511,9 @@ theorem corr_trace_macroPos {k : ℕ} (N : NTM k) (hk : 1 ≤ k) (ch : ℕ → B
     `ch` halts within `Tn` steps, the simulator (driven by `ch`) halts within
     `Tn * macroBound k Tn + 1` micro-steps, with its accept bit agreeing with
     `N`'s output bit. This is the engine behind both surface lemmas: it bounds
-    EVERY simulator path by the simulated machine's halting bound. -/
+    EVERY simulator path by the simulated machine's halting bound.
+@isnad1 id=ex.2h5v.s7.6e9f23c535b5 from=translated src=- shape=066ba861 vocab=6041dc87
+-/
 theorem halted_singleTapeSim_of_trace_qhalt {k : ℕ} (N : NTM k) (hk : 1 ≤ k) (ch : ℕ → Bool)
     (x : List Bool) (Tn : ℕ)
     (hhalt : (N.trace Tn (fun i => inducedChoices k ch i.val) (N.initCfg x)).state

@@ -18,11 +18,17 @@ namespace Complexity
 
 namespace BooleanListCodeFamily
 
+/--
+@isnad1 id=eq.0h2v.s5.eedd1d0f842e from=translated src=- shape=6c03b897 vocab=434fc2c2
+-/
 theorem length_truthTableBits_internal {coordinateLength : ℕ}
     (word : (Fin coordinateLength → Bool) → Bool) :
     (truthTableBits word).length = 2 ^ coordinateLength := by
   simp [truthTableBits]
 
+/--
+@isnad1 id=eq.0h4v.s5.ec4482d4c52f from=translated src=- shape=c34d70cb vocab=17713980
+-/
 theorem length_encoderOutput_internal (family : BooleanListCodeFamily)
     (messageLength inverseAccuracy : ℕ)
     (message : Fin messageLength → Bool) :
@@ -30,6 +36,9 @@ theorem length_encoderOutput_internal (family : BooleanListCodeFamily)
       2 ^ family.coordinateLength messageLength inverseAccuracy := by
   exact length_truthTableBits_internal _
 
+/--
+@isnad1 id=eq.0h4v.s5.2343085cae3f from=translated src=- shape=ee44b25c vocab=f987f2c1
+-/
 theorem length_decoderOutput_internal (family : BooleanListCodeFamily)
     (messageLength inverseAccuracy : ℕ)
     (received :
@@ -39,6 +48,9 @@ theorem length_decoderOutput_internal (family : BooleanListCodeFamily)
       family.listSize messageLength inverseAccuracy * messageLength := by
   simp [decoderOutput, List.length_flatten, Function.comp_def]
 
+/--
+@isnad1 id=ex.3h5v.s7.8afd4c84f66d from=translated src=- shape=bdebb222 vocab=f4c14de1
+-/
 theorem exists_indexBits_of_half_add_inverseAccuracy_internal
     (family : BooleanListCodeFamily)
     (hfamily : family.IsListDecodableAtInverseAccuracy)
@@ -58,6 +70,9 @@ theorem exists_indexBits_of_half_add_inverseAccuracy_internal
   exact BooleanListCode.exists_indexBits_of_half_add_margin_internal
     (hfamily messageLength inverseAccuracy haccuracy) message received hagreement
 
+/--
+@isnad1 id=le.0h4v.s5.0d4efd502fe7 from=translated src=- shape=10111f5f vocab=9252183f
+-/
 theorem decoderIndexBitWidth_le_polynomialBound_internal
     {family : BooleanListCodeFamily}
     (bounds : family.PolynomialParameterBounds)
@@ -69,6 +84,9 @@ theorem decoderIndexBitWidth_le_polynomialBound_internal
   exact Nat.clog_mono_right 2
     (bounds.listSize_le messageLength inverseAccuracy)
 
+/--
+@isnad1 id=le.0h5v.s6.501904e3b2f2 from=translated src=- shape=6eed98c8 vocab=4c1de594
+-/
 theorem length_encoderOutput_le_internal
     {family : BooleanListCodeFamily}
     (bounds : family.PolynomialParameterBounds)
@@ -80,6 +98,9 @@ theorem length_encoderOutput_le_internal
   rw [length_encoderOutput_internal]
   exact bounds.codewordLength_le messageLength inverseAccuracy
 
+/--
+@isnad1 id=le.0h5v.s6.b00fdb0c68bb from=translated src=- shape=0bc4ad38 vocab=f4c8237b
+-/
 theorem length_decoderOutput_le_internal
     {family : BooleanListCodeFamily}
     (bounds : family.PolynomialParameterBounds)
@@ -94,6 +115,9 @@ theorem length_decoderOutput_le_internal
   exact Nat.mul_le_mul_right messageLength
     (bounds.listSize_le messageLength inverseAccuracy)
 
+/--
+@isnad1 id=and.0h5v.s6.064f4d155301 from=translated src=- shape=c2eb6afa vocab=8e97f561
+-/
 theorem UniformPolynomialTimeRealization.encoder_spec_internal
     {family : BooleanListCodeFamily}
     (realization : family.UniformPolynomialTimeRealization)
@@ -109,6 +133,9 @@ theorem UniformPolynomialTimeRealization.encoder_spec_internal
   exact ⟨realization.encoder_correct messageLength inverseAccuracy message,
     realization.encoderTime_le messageLength inverseAccuracy⟩
 
+/--
+@isnad1 id=and.0h5v.s6.066c2021114c from=translated src=- shape=fc1fb70b vocab=b473c5bc
+-/
 theorem UniformPolynomialTimeRealization.decoder_spec_internal
     {family : BooleanListCodeFamily}
     (realization : family.UniformPolynomialTimeRealization)

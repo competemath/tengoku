@@ -31,7 +31,9 @@ namespace TM
 
 variable {n : ℕ}
 
-/-- Exact remaining execution of a certified consecutive-one work loop. -/
+/-- Exact remaining execution of a certified consecutive-one work loop.
+@isnad1 id=reachesi.1h8v.s5.586bb314e922 from=translated src=- shape=f2bc5e27 vocab=2ecd1a46
+-/
 theorem ForWorkOnesLoopSpec.reachesIn
     {driverIdx : Fin n} {body : TM n} {bodyTime : ℕ → ℕ}
     {total count value : ℕ}
@@ -42,7 +44,9 @@ theorem ForWorkOnesLoopSpec.reachesIn
       (spec.scanCfg value) spec.doneCfg :=
   spec.reachesIn_internal count value htotal
 
-/-- Iterating a one-way-output body over a one-prefix remains a transducer. -/
+/-- Iterating a one-way-output body over a one-prefix remains a transducer.
+@isnad1 id=istransd.1h3v.s4.3c5c14440a10 from=translated src=- shape=88a9cf5b vocab=3ceb04c5
+-/
 theorem IsTransducer.forWorkOnesTM
     {driverIdx : Fin n} {body : TM n} (hbody : body.IsTransducer) :
     (forWorkOnesTM driverIdx body).IsTransducer :=

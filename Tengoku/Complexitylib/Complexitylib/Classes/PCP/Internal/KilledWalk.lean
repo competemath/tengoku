@@ -67,12 +67,17 @@ namespace Complexity
 def stopAt {T q : ℕ} (c : Fin T → Fin q) : ℕ :=
   (List.finRange T).findIdx fun i => (c i).val == 0
 
+/--
+@isnad1 id=le.0h3v.s4.3501895d5e7b from=translated src=- shape=e48b4364 vocab=74d11302
+-/
 theorem stopAt_le {T q : ℕ} (c : Fin T → Fin q) : stopAt c ≤ T := by
   have h := List.findIdx_le_length (p := fun i : Fin T => (c i).val == 0)
     (xs := List.finRange T)
   simpa [stopAt] using h
 
-/-- Before the stopping index every signal is nonzero. -/
+/-- Before the stopping index every signal is nonzero.
+@isnad1 id=ne.1h4v.s5.87abb4739ef7 from=translated src=- shape=d3e511d6 vocab=d5577ca0
+-/
 theorem signal_ne_zero_of_lt {T q : ℕ} (c : Fin T → Fin q) {j : ℕ} (hj : j < stopAt c) :
     (c ⟨j, lt_of_lt_of_le hj (stopAt_le c)⟩).val ≠ 0 := by
   have h := List.not_of_lt_findIdx (p := fun i : Fin T => (c i).val == 0)
@@ -80,7 +85,9 @@ theorem signal_ne_zero_of_lt {T q : ℕ} (c : Fin T → Fin q) {j : ℕ} (hj : j
   rw [List.getElem_finRange] at h
   simpa using h
 
-/-- At the stopping index, if it is reached, the signal is zero. -/
+/-- At the stopping index, if it is reached, the signal is zero.
+@isnad1 id=eq.1h3v.s5.3279b87129ab from=translated src=- shape=1c787925 vocab=d7cfeeeb
+-/
 theorem signal_eq_zero_of_stopAt_lt {T q : ℕ} (c : Fin T → Fin q) (h : stopAt c < T) :
     (c ⟨stopAt c, h⟩).val = 0 := by
   have hlen : stopAt c < (List.finRange T).length := by simpa using h
@@ -89,7 +96,9 @@ theorem signal_eq_zero_of_stopAt_lt {T q : ℕ} (c : Fin T → Fin q) (h : stopA
   erw [List.getElem_finRange] at hg
   simpa [stopAt, Fin.cast] using hg
 
-/-- The stopping index is pinned down by the two properties above. -/
+/-- The stopping index is pinned down by the two properties above.
+@isnad1 id=eq.3h4v.s6.9f185c2c888c from=translated src=- shape=9259aa14 vocab=286702da
+-/
 theorem stopAt_eq_of {T q : ℕ} (c : Fin T → Fin q) {m : ℕ} (hm : m ≤ T)
     (hlt : ∀ (j : ℕ) (hj : j < m), (c ⟨j, lt_of_lt_of_le hj hm⟩).val ≠ 0)
     (hat : ∀ h : m < T, (c ⟨m, h⟩).val = 0) : stopAt c = m := by
@@ -103,7 +112,9 @@ theorem stopAt_eq_of {T q : ℕ} (c : Fin T → Fin q) {m : ℕ} (hm : m ≤ T)
 /-- The walk is still running at step `i` exactly when the first `i + 1`
 signals are all nonzero. This is the form the crossing decomposition needs: the
 event "the walk reaches step `i`" depends only on the first `i + 1` signal
-coordinates, so it splits off as a factor. -/
+coordinates, so it splits off as a factor.
+@isnad1 id=iff.1h4v.s5.26d10de13a2b from=translated src=- shape=479fc620 vocab=d341e189
+-/
 theorem lt_stopAt_iff {T q : ℕ} (c : Fin T → Fin q) {i : ℕ} (hi : i < T) :
     i < stopAt c ↔ ∀ (j : ℕ) (hj : j ≤ i), (c ⟨j, lt_of_le_of_lt hj hi⟩).val ≠ 0 := by
   constructor
@@ -118,7 +129,9 @@ theorem lt_stopAt_iff {T q : ℕ} (c : Fin T → Fin q) {i : ℕ} (hi : i < T) :
 /-- **The signal count.** The walks still running at step `i` are exactly those
 whose first `i + 1` signals are all nonzero, and those coordinates are free of
 one another, so they number `(q-1) ^ (i+1) * q ^ (T-i-1)`. This is the factor
-that the crossing decomposition peels off. -/
+that the crossing decomposition peels off.
+@isnad1 id=eq.1h3v.s7.8c49f86f2972 from=translated src=- shape=c9d369de vocab=e090318e
+-/
 theorem card_lt_stopAt {T q : ℕ} {i : ℕ} (hi : i < T) :
     (Finset.univ.filter fun c : Fin T → Fin q => i < stopAt c).card
       = (q - 1) ^ (i + 1) * q ^ (T - i - 1) := by
@@ -182,7 +195,9 @@ theorem card_lt_stopAt {T q : ℕ} {i : ℕ} (hi : i < T) :
   rw [Finset.prod_ite, Finset.prod_const, Finset.prod_const, hle, hgt]
 
 /-- The walks that are still running *at* step `m`, i.e. run for at least `m`
-steps. -/
+steps.
+@isnad1 id=eq.1h3v.s7.c1111c8d3dcf from=translated src=- shape=eb3286dc vocab=6c96222a
+-/
 theorem card_le_stopAt {T q : ℕ} {m : ℕ} (hm : m ≤ T) :
     (Finset.univ.filter fun c : Fin T → Fin q => m ≤ stopAt c).card
       = (q - 1) ^ m * q ^ (T - m) := by
@@ -205,7 +220,9 @@ theorem card_le_stopAt {T q : ℕ} {m : ℕ} (hm : m ≤ T) :
 
 /-- **The exact-length signal count.** The walks of effective length exactly `m`
 number `(q-1) ^ m * q ^ (T-m-1)`: the first `m` signals are nonzero, the `m`-th
-is zero, and the rest are free. -/
+is zero, and the rest are free.
+@isnad1 id=eq.2h3v.s7.441341b2412f from=translated src=- shape=669ede09 vocab=21ce65d2
+-/
 theorem card_stopAt_eq {T q : ℕ} (hq : 0 < q) {m : ℕ} (hm : m < T) :
     (Finset.univ.filter fun c : Fin T → Fin q => stopAt c = m).card
       = (q - 1) ^ m * q ^ (T - m - 1) := by
@@ -250,23 +267,34 @@ def preWalk {T : ℕ} (s : Fin T → G.D) {ℓ : ℕ} (h : ℓ ≤ T) : Fin ℓ 
 def extWalk {T ℓ : ℕ} (r : Fin ℓ → G.D) (s : Fin T → G.D) : Fin T → G.D :=
   fun i => if h : i.val < ℓ then r ⟨i.val, h⟩ else s i
 
+/--
+@isnad1 id=eq.1h5v.s5.fa6606d5aa3a from=translated src=- shape=73674cd0 vocab=67b4fcd9
+-/
 theorem preWalk_extWalk {T ℓ : ℕ} (h : ℓ ≤ T) (r : Fin ℓ → G.D) (s : Fin T → G.D) :
     G.preWalk (G.extWalk r s) h = r := by
   funext j
   simp [preWalk, extWalk, j.isLt]
 
+/--
+@isnad1 id=eq.0h6v.s5.ffbf5fd7d6d2 from=translated src=- shape=314fdabd vocab=ac0a0929
+-/
 theorem extWalk_extWalk {T ℓ : ℕ} (r r' : Fin ℓ → G.D) (s : Fin T → G.D) :
     G.extWalk r' (G.extWalk r s) = G.extWalk r' s := by
   funext i
   by_cases hi : i.val < ℓ <;> simp [extWalk, hi]
 
+/--
+@isnad1 id=eq.1h4v.s5.c0973790cb30 from=translated src=- shape=66267fc1 vocab=67b4fcd9
+-/
 theorem extWalk_preWalk {T ℓ : ℕ} (h : ℓ ≤ T) (s : Fin T → G.D) :
     G.extWalk (G.preWalk s h) s = s := by
   funext i
   by_cases hi : i.val < ℓ <;> simp [extWalk, preWalk, hi]
 
 /-- How many label sequences begin with a prescribed length-`m` walk: the first
-`m` coordinates are pinned and the rest are free. -/
+`m` coordinates are pinned and the rest are free.
+@isnad1 id=eq.1h4v.s6.f3d75ef544cb from=translated src=- shape=050b566e vocab=69dab785
+-/
 theorem card_preWalk_eq {T m : ℕ} (hm : m ≤ T) (w : Fin m → G.D) :
     (Finset.univ.filter fun s : Fin T → G.D => G.preWalk s hm = w).card
       = G.deg ^ (T - m) := by
@@ -318,7 +346,9 @@ a prescribed length-`m` walk number `deg ^ (T-m) * (q-1) ^ m * q ^ (T-m-1)`: the
 two conditions constrain the edge labels and the signals separately, so the
 counts multiply. This is the weight each effective walk carries, and it is
 geometric in `m` — the law both the plurality and the conditional prefix and
-suffix follow. -/
+suffix follow.
+@isnad1 id=eq.2h5v.s8.9f5c2d7e4432 from=translated src=- shape=4248254e vocab=d29dec7d
+-/
 theorem card_killed_fibre {T q m : ℕ} (hq : 0 < q) (hm : m < T) (w : Fin m → G.D) :
     (Finset.univ.filter fun x : (Fin T → G.D) × (Fin T → Fin q) =>
         G.preWalk x.1 (le_of_lt hm) = w ∧ stopAt x.2 = m).card
@@ -344,11 +374,17 @@ stop signals are left alone. -/
 def killedRev {T q : ℕ} (v : G.V) (s : Fin T → G.D) (c : Fin T → Fin q) : Fin T → G.D :=
   G.extWalk (G.revWalk v (G.preWalk s (stopAt_le c))) s
 
+/--
+@isnad1 id=eq.0h6v.s5.183373d04d4e from=translated src=- shape=8d6ac567 vocab=f5516c46
+-/
 theorem killedEnd_killedRev {T q : ℕ} (v : G.V) (s : Fin T → G.D) (c : Fin T → Fin q) :
     G.killedEnd (G.killedEnd v s c) (G.killedRev v s c) c = v := by
   rw [killedEnd, killedRev, killedEnd, G.preWalk_extWalk (stopAt_le c)]
   exact G.walkEnd_revWalk v (G.preWalk s (stopAt_le c))
 
+/--
+@isnad1 id=eq.0h6v.s5.cf272ab0e034 from=translated src=- shape=b4ebbd40 vocab=f5516c46
+-/
 theorem killedRev_killedRev {T q : ℕ} (v : G.V) (s : Fin T → G.D) (c : Fin T → Fin q) :
     G.killedRev (G.killedEnd v s c) (G.killedRev v s c) c = s := by
   rw [killedRev, killedRev, G.preWalk_extWalk (stopAt_le c), killedEnd,
@@ -380,16 +416,27 @@ def killedPower (G : RegGraph) (q T : ℕ) (hq : 0 < q) : RegGraph where
     dsimp only
     rw [G.killedEnd_killedRev, G.killedRev_killedRev]
 
+/--
+@isnad1 id=eq.1h3v.s4.878be91a84b4 from=translated src=- shape=498259f1 vocab=44ca98b0
+-/
 @[simp] theorem V_killedPower (q T : ℕ) (hq : 0 < q) : (G.killedPower q T hq).V = G.V := rfl
 
+/--
+@isnad1 id=eq.1h3v.s4.dc4dba4191b3 from=translated src=- shape=dfecafd9 vocab=0a157636
+-/
 @[simp] theorem order_killedPower (q T : ℕ) (hq : 0 < q) :
     (G.killedPower q T hq).order = G.order := rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.108f75ee6c6e from=translated src=- shape=188d38b3 vocab=e975d621
+-/
 theorem nbr_killedPower (q T : ℕ) (hq : 0 < q) (v : G.V)
     (x : (Fin T → G.D) × (Fin T → Fin q)) :
     (G.killedPower q T hq).nbr v x = G.killedEnd v x.1 x.2 := rfl
 
-/-- The killed power is regular of degree `deg ^ T * q ^ T`. -/
+/-- The killed power is regular of degree `deg ^ T * q ^ T`.
+@isnad1 id=eq.1h3v.s5.355a08ffaaa4 from=translated src=- shape=65a0f654 vocab=dc9e0be7
+-/
 theorem deg_killedPower (q T : ℕ) (hq : 0 < q) :
     (G.killedPower q T hq).deg = G.deg ^ T * q ^ T := by
   have h : Fintype.card ((Fin T → G.D) × (Fin T → Fin q)) = G.deg ^ T * q ^ T := by

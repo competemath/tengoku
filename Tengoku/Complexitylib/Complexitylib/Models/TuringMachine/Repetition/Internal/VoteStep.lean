@@ -34,7 +34,9 @@ namespace NTM
 variable {n k T : ℕ}
 
 /-- A compact-seed trial vote is exactly the halted-with-one predicate of the
-corresponding `T`-step source trace. -/
+corresponding `T`-step source trace.
+@isnad1 id=eq.0h7v.s9.166cb4d6d65a from=translated src=- shape=0b6971da vocab=71dd7d1e
+-/
 theorem repeatTrialVote_eq_decide_trace (tm : NTM n) (x : List Bool)
     (seed : Fin (k * T) → Bool) (j : Fin k) :
     repeatTrialVote tm x k T seed j =
@@ -43,7 +45,9 @@ theorem repeatTrialVote_eq_decide_trace (tm : NTM n) (x : List Bool)
   simp [repeatTrialVote, repeatAcceptEvent]
 
 /-- The accepting bit computed by `.finish` agrees with the corresponding
-entry of the source-machine vote vector. -/
+entry of the source-machine vote vector.
+@isnad1 id=eq.2h9v.s8.7d786970b9b0 from=translated src=- shape=e26178be vocab=b22e838a
+-/
 theorem repeatFinishAccepted_eq_repeatVotes (tm : NTM n) (x : List Bool)
     (seed : Fin (k * T) → Bool) (j : Fin k) (q : tm.Q)
     (C : Cfg (k * (n + 1)) (RepeatQ tm k T))
@@ -61,7 +65,9 @@ theorem repeatFinishAccepted_eq_repeatVotes (tm : NTM n) (x : List Bool)
   rw [hsim.1, hread]
 
 /-- A nonfinal finish transition records the exact source trial vote and enters
-the next trial's run state, or its rewind state when `T = 0`. -/
+the next trial's run state, or its rewind state when `T = 0`.
+@isnad1 id=other.4h11v.s9.9ef2b4ddb301 from=translated src=- shape=c889eaf9 vocab=0e0fb3e7
+-/
 theorem repeatAtTime_trace_finish_next_vote (tm : NTM n) (x : List Bool)
     (seed : Fin (k * T) → Bool) (j : Fin k) (q : tm.Q)
     (votes : Fin k → Bool) (C : Cfg (k * (n + 1)) (RepeatQ tm k T))
@@ -90,7 +96,9 @@ theorem repeatAtTime_trace_finish_next_vote (tm : NTM n) (x : List Bool)
   simp [trace, repeatAtTime, hstate, hj, hvote', repeatGuardTransition]
 
 /-- A nonfinal finish simultaneously records the source vote, initializes the
-next source projection, and advances the fresh-bank frame. -/
+next source projection, and advances the fresh-bank frame.
+@isnad1 id=other.6h11v.s9.4744e394e8b4 from=translated src=- shape=ca21d0af vocab=555a45e5
+-/
 theorem repeatAtTime_trace_finish_next (tm : NTM n) (x : List Bool)
     (seed : Fin (k * T) → Bool) (j : Fin k) (q : tm.Q)
     (votes : Fin k → Bool) (C : Cfg (k * (n + 1)) (RepeatQ tm k T))
@@ -115,7 +123,9 @@ theorem repeatAtTime_trace_finish_next (tm : NTM n) (x : List Bool)
   · exact RepeatFrame.finish tm hframe hstate hj choice
 
 /-- On the last trial, the wrapper writes the strict majority of the source
-trial-vote vector with the current trial updated at `j`. -/
+trial-vote vector with the current trial updated at `j`.
+@isnad1 id=other.5h11v.s9.661385fea71d from=translated src=- shape=7c5e22cc vocab=30a414e7
+-/
 theorem repeatAtTime_trace_finish_last_votes (tm : NTM n) (x : List Bool)
     (seed : Fin (k * T) → Bool) (j : Fin k) (q : tm.Q)
     (votes : Fin k → Bool) (C : Cfg (k * (n + 1)) (RepeatQ tm k T))

@@ -50,6 +50,9 @@ def inter (Q₁ Q₂ : BooleanQuery V) : BooleanQuery V :=
 def union (Q₁ Q₂ : BooleanQuery V) : BooleanQuery V :=
   fun A => Q₁ A ∨ Q₂ A
 
+/--
+@isnad1 id=isorderi.1h2v.s3.9835841e6e09 from=translated src=- shape=525138f7 vocab=fe9dfa62
+-/
 theorem complement_orderIndependent {Q : BooleanQuery V}
     (hQ : Q.IsOrderIndependent) : Q.complement.IsOrderIndependent := by
   intro A B hiso
@@ -58,6 +61,9 @@ theorem complement_orderIndependent {Q : BooleanQuery V}
   · intro hna hb; exact hna ((hQ hiso).mpr hb)
   · intro hnb ha; exact hnb ((hQ hiso).mp ha)
 
+/--
+@isnad1 id=isorderi.2h3v.s4.858dd689b651 from=translated src=- shape=85b2e57a vocab=88448484
+-/
 theorem inter_orderIndependent {Q₁ Q₂ : BooleanQuery V}
     (h₁ : Q₁.IsOrderIndependent) (h₂ : Q₂.IsOrderIndependent) :
     (Q₁.inter Q₂).IsOrderIndependent := by
@@ -66,6 +72,9 @@ theorem inter_orderIndependent {Q₁ Q₂ : BooleanQuery V}
   exact ⟨fun ⟨ha, hb⟩ => ⟨(h₁ hiso).mp ha, (h₂ hiso).mp hb⟩,
          fun ⟨ha, hb⟩ => ⟨(h₁ hiso).mpr ha, (h₂ hiso).mpr hb⟩⟩
 
+/--
+@isnad1 id=isorderi.2h3v.s4.a7110a69eb00 from=translated src=- shape=85b2e57a vocab=4ee96765
+-/
 theorem union_orderIndependent {Q₁ Q₂ : BooleanQuery V}
     (h₁ : Q₁.IsOrderIndependent) (h₂ : Q₂.IsOrderIndependent) :
     (Q₁.union Q₂).IsOrderIndependent := by

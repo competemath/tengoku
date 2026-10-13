@@ -304,6 +304,9 @@ private theorem headReg_ne_headReg_of_slot_ne {first second : Fin (n + 2)}
   simp [headReg] at heq
   omega
 
+/--
+@isnad1 id=eq.1h6v.s5.a7f65a988ca2 from=translated src=- shape=e16bccbd vocab=a0a0e72d
+-/
 theorem writeMoveOps_one_internal (n bound : ℕ) (slot : Fin (n + 2))
     (write : Γw) (direction : Dir3) (store : Structured.Store)
     (hhead : store (headReg slot) ≤ bound) :
@@ -731,6 +734,9 @@ private theorem workPrefix_list {tm : TM n} {bound : ℕ}
       simpa [List.flatMap_cons, execList_append, List.reverse_cons,
         List.append_assoc] using hfinal
 
+/--
+@isnad1 id=represen.6h6v.s6.5f904a693372 from=translated src=- shape=f3a0fedf vocab=f36b9541
+-/
 theorem actionOps_represents_internal {tm : TM n} {bound : ℕ}
     {cfg next : Complexity.Cfg n tm.Q} {store : Structured.Store}
     (hstep : tm.step cfg = some next)
@@ -1142,6 +1148,9 @@ private theorem actionOps_envelopeChain_internal {tm : TM n} {bound : ℕ}
   simpa [actionOps, hreadInput, hreadWork, hreadOutput, hdelta, initialized,
     afterInput, workOps, afterWork, List.append_assoc] using hcombined
 
+/--
+@isnad1 id=other.7h6v.s7.77aed9c2e1df from=translated src=- shape=01ffc879 vocab=1b7f7faa
+-/
 theorem actionOps_measured_internal {tm : TM n} {bound : ℕ}
     {cfg next : Complexity.Cfg n tm.Q} {store : Structured.Store}
     (hstep : tm.step cfg = some next)

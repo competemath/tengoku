@@ -40,7 +40,9 @@ private theorem scan_value_step
   cases borrow <;> cases lhsBit <;> cases rhsBit <;> cases tailBorrow <;>
     simp [boolValue, borrowBit, diffBit, pow_succ] at htail ⊢ <;> omega
 
-/-- The raw borrow scan writes exactly the larger input width. -/
+/-- The raw borrow scan writes exactly the larger input width.
+@isnad1 id=eq.0h3v.s4.771291160952 from=translated src=- shape=9b894986 vocab=bd62b849
+-/
 theorem scan_bits_length_internal (borrow : Bool) (lhs rhs : List Bool) :
     (scan borrow lhs rhs).bits.length = max lhs.length rhs.length := by
   induction lhs generalizing rhs borrow with
@@ -54,7 +56,9 @@ theorem scan_bits_length_internal (borrow : Bool) (lhs rhs : List Bool) :
       | cons rhsBit rhsTail => simp [scan, ih]
 
 /-- Arithmetic invariant for the fixed-width borrow scan. The final borrow is
-the coefficient of the width-sized wraparound term. -/
+the coefficient of the width-sized wraparound term.
+@isnad1 id=eq.0h3v.s6.3eff330ed949 from=translated src=- shape=9f5c2b8c vocab=a6caea11
+-/
 theorem scan_value_internal (borrow : Bool) (lhs rhs : List Bool) :
     Nat.fromBitsLE lhs +
         (if (scan borrow lhs rhs).borrow then
@@ -109,7 +113,9 @@ theorem scan_value_internal (borrow : Bool) (lhs rhs : List Bool) :
           simpa [boolValue, show Nat.fromBitsLE ([] : List Bool) = 0 from rfl, scan, tail,
             nextBorrow, Nat.fromBitsLE_cons] using hstep
 
-/-- Appending a redundant high zero does not change canonical trimming. -/
+/-- Appending a redundant high zero does not change canonical trimming.
+@isnad1 id=eq.0h1v.s4.f54562af0f9a from=translated src=- shape=cd763f66 vocab=48ccbaa8
+-/
 theorem trimHighZeros_append_false_internal (bits : List Bool) :
     trimHighZeros (bits ++ [false]) = trimHighZeros bits := by
   induction bits with
@@ -118,7 +124,9 @@ theorem trimHighZeros_append_false_internal (bits : List Bool) :
       rw [List.cons_append, trimHighZeros, ih]
       cases rest <;> rfl
 
-/-- A high one makes the entire lower prefix significant. -/
+/-- A high one makes the entire lower prefix significant.
+@isnad1 id=eq.0h1v.s5.27ad3bd4f8e2 from=translated src=- shape=4fd1732e vocab=99bbd741
+-/
 theorem trimHighZeros_append_true_internal (bits : List Bool) :
     trimHighZeros (bits ++ [true]) = bits ++ [true] := by
   induction bits with
@@ -128,7 +136,9 @@ theorem trimHighZeros_append_true_internal (bits : List Bool) :
       cases rest <;> rfl
 
 /-- Trimming arbitrary little-endian bits produces the canonical bits of their
-decoded natural value. -/
+decoded natural value.
+@isnad1 id=eq.0h1v.s3.e3d5abeee4c7 from=translated src=- shape=6f2b8e16 vocab=3eb7bab9
+-/
 theorem trimHighZeros_eq_natBits_internal (bits : List Bool) :
     trimHighZeros bits = (Nat.fromBitsLE bits).bits := by
   induction bits with
@@ -155,7 +165,9 @@ theorem trimHighZeros_eq_natBits_internal (bits : List Bool) :
         | nil => exact (hbits htail).elim
         | cons high tail => rfl
 
-/-- The canonical pure subtraction result agrees with natural-number monus. -/
+/-- The canonical pure subtraction result agrees with natural-number monus.
+@isnad1 id=eq.0h2v.s4.772a026966f3 from=translated src=- shape=cd8271d2 vocab=eaee75c9
+-/
 theorem subtract_natBits_internal (lhs rhs : ℕ) :
     subtract lhs.bits rhs.bits = (lhs - rhs).bits := by
   let raw := scan false lhs.bits rhs.bits
@@ -187,7 +199,9 @@ theorem subtract_natBits_internal (lhs rhs : ℕ) :
         omega
       rw [Nat.sub_eq_zero_of_le (Nat.le_of_lt hlt), Nat.zero_bits]
 
-/-- Canonical subtraction has exactly the width of natural-number monus. -/
+/-- Canonical subtraction has exactly the width of natural-number monus.
+@isnad1 id=eq.0h2v.s4.bbdfa190efeb from=translated src=- shape=cfa2d1da vocab=3407f435
+-/
 theorem length_subtract_natBits_internal (lhs rhs : ℕ) :
     (subtract lhs.bits rhs.bits).length = (lhs - rhs).size := by
   rw [subtract_natBits_internal, Nat.size_eq_bits_len]
@@ -196,23 +210,31 @@ end BinaryRippleSub
 
 namespace TM
 
-/-- The scan bound on canonical operands is the larger natural-number width. -/
+/-- The scan bound on canonical operands is the larger natural-number width.
+@isnad1 id=eq.0h2v.s4.62df778dc4f0 from=translated src=- shape=5175d73b vocab=469a9922
+-/
 theorem binaryRippleSubScanTime_natBits_internal (lhs rhs : ℕ) :
     binaryRippleSubScanTime lhs.bits rhs.bits = max lhs.size rhs.size + 1 := by
   simp [binaryRippleSubScanTime, Nat.size_eq_bits_len]
 
-/-- The cleanup bound equals the scan bound on canonical operands. -/
+/-- The cleanup bound equals the scan bound on canonical operands.
+@isnad1 id=eq.0h2v.s4.6383a0cb8121 from=translated src=- shape=5175d73b vocab=7b06f616
+-/
 theorem binaryRippleSubCleanupTime_natBits_internal (lhs rhs : ℕ) :
     binaryRippleSubCleanupTime lhs.bits rhs.bits = max lhs.size rhs.size + 1 := by
   simp [binaryRippleSubCleanupTime, Nat.size_eq_bits_len]
 
-/-- The core bound is twice the larger width plus its two turning steps. -/
+/-- The core bound is twice the larger width plus its two turning steps.
+@isnad1 id=eq.0h2v.s5.8cfdd16deaaa from=translated src=- shape=78620a62 vocab=996b396e
+-/
 theorem binaryRippleSubCoreTime_natBits_internal (lhs rhs : ℕ) :
     binaryRippleSubCoreTime lhs.bits rhs.bits =
       2 * max lhs.size rhs.size + 2 := by
   simp [binaryRippleSubCoreTime, Nat.size_eq_bits_len]
 
-/-- The complete subtractor is linear in the sum of the operand widths. -/
+/-- The complete subtractor is linear in the sum of the operand widths.
+@isnad1 id=le.0h2v.s5.f0b5536318eb from=translated src=- shape=6f1d15fb vocab=aa4274c1
+-/
 theorem binaryRippleSubTime_le_internal (lhs rhs : ℕ) :
     binaryRippleSubTime lhs rhs ≤ 3 * (lhs.size + rhs.size) + 10 := by
   simp only [binaryRippleSubTime]

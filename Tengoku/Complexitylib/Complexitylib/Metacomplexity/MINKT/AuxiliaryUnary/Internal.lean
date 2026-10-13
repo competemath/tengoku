@@ -27,30 +27,51 @@ namespace AuxiliaryUnarySeed
 
 variable {tapes : ℕ}
 
+/--
+@isnad1 id=eq.0h2v.s3.0f07ee74cc65 from=translated src=- shape=74e016e8 vocab=e07194c7
+-/
 theorem minktInstance_output_internal {m : ℕ} (seed : AuxiliaryUnarySeed m) :
     seed.minktInstance.output = seed.binary := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.f909aabdaf52 from=translated src=- shape=8671fcf8 vocab=d92550cf
+-/
 theorem minktInstance_time_internal {m : ℕ} (seed : AuxiliaryUnarySeed m) :
     seed.minktInstance.time = m - seed.split := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.cf662b0bf212 from=translated src=- shape=bc52d39d vocab=0b938067
+-/
 theorem minktInstance_output_length_internal {m : ℕ}
     (seed : AuxiliaryUnarySeed m) :
     seed.minktInstance.output.length = seed.split := by
   exact binary_length_internal seed
 
+/--
+@isnad1 id=lt.1h2v.s4.356a9b22a489 from=translated src=- shape=fe4d9e1a vocab=0d33f81c
+-/
 theorem minktInstance_time_pos_internal {m : ℕ} (hm : 0 < m)
     (seed : AuxiliaryUnarySeed m) : 0 < seed.minktInstance.time := by
   exact Nat.sub_pos_of_lt (split_lt_internal hm seed)
 
+/--
+@isnad1 id=eq.0h2v.s3.a9b105ce2277 from=translated src=- shape=74e016e8 vocab=5a77ec97
+-/
 theorem encode_minktInstance_internal {m : ℕ} (seed : AuxiliaryUnarySeed m) :
     seed.minktInstance.encode = seed.sample := by
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.4af084a12c77 from=translated src=- shape=20e2c586 vocab=d3e93eaa
+-/
 theorem decode?_sample_internal {m : ℕ} (seed : AuxiliaryUnarySeed m) :
     MINKT.Instance.decode? seed.sample = some seed.minktInstance := by
   rw [← encode_minktInstance_internal]
   exact MINKT.Instance.decode?_encode_internal seed.minktInstance
 
+/--
+@isnad1 id=iff.0h5v.s5.efc141a9afe9 from=translated src=- shape=c90911ec vocab=e941055e
+-/
 theorem sample_mem_minkt_iff_internal {m : ℕ} (seed : AuxiliaryUnarySeed m)
     (machine : TM tapes) (threshold : ℕ → ℕ) :
     seed.sample ∈ MINKT machine threshold ↔
@@ -58,6 +79,9 @@ theorem sample_mem_minkt_iff_internal {m : ℕ} (seed : AuxiliaryUnarySeed m)
   rw [← encode_minktInstance_internal]
   simp [MINKT, MINKT.Instance.decode?_encode_internal]
 
+/--
+@isnad1 id=iff.0h5v.s6.2c2c61e62568 from=translated src=- shape=6977fcd1 vocab=6a921456
+-/
 theorem sample_mem_minkt_iff_complexity_internal {m : ℕ}
     (seed : AuxiliaryUnarySeed m) (machine : TM tapes)
     (threshold : ℕ → ℕ) :
@@ -69,6 +93,9 @@ theorem sample_mem_minkt_iff_complexity_internal {m : ℕ}
   simp only [MINKT.Instance.IsBelow, minktInstance_output_internal,
     minktInstance_time_internal, binary_length_internal]
 
+/--
+@isnad1 id=iff.0h5v.s6.19b70b02ca31 from=translated src=- shape=54149471 vocab=3d78d35c
+-/
 theorem sample_mem_minkt_iff_mem_strictlyCompressible_internal {m : ℕ}
     (seed : AuxiliaryUnarySeed m) (machine : TM tapes)
     (threshold : ℕ → ℕ) :
@@ -83,12 +110,18 @@ end AuxiliaryUnarySeed
 
 namespace FiniteEnsemble
 
+/--
+@isnad1 id=eq.0h4v.s4.2fb8bf6b25d8 from=translated src=- shape=bd4ad2bb vocab=ee8ed9bf
+-/
 theorem languageProbability_auxiliaryUnary_minkt_internal
     {tapes : ℕ} (machine : TM tapes) (threshold : ℕ → ℕ) (m : ℕ) :
     auxiliaryUnary.languageProbability (MINKT machine threshold) m =
       auxiliaryUnaryMINKTProbability machine threshold m := by
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.50443c453825 from=translated src=- shape=b910feff vocab=e5bbb5f1
+-/
 theorem probability_auxiliaryUnary_minkt_eq_average_internal
     {tapes m : ℕ} (hm : 0 < m) (machine : TM tapes)
     (threshold : ℕ → ℕ) :
@@ -147,6 +180,9 @@ theorem probability_auxiliaryUnary_minkt_eq_average_internal
         eventProb (machine.timeBoundedStrictlyCompressibleStrings
           n.val (m - n.val) (threshold n.val)) := haverage
 
+/--
+@isnad1 id=le.1h4v.s6.6b057b0872a1 from=translated src=- shape=f207eae0 vocab=cd456327
+-/
 theorem probability_auxiliaryUnary_minkt_le_average_incompressibility_internal
     {tapes m : ℕ} (hm : 0 < m) (machine : TM tapes)
     (threshold : ℕ → ℕ) :
@@ -160,6 +196,9 @@ theorem probability_auxiliaryUnary_minkt_le_average_incompressibility_internal
         machine n.val (m - n.val) (threshold n.val)
   · positivity
 
+/--
+@isnad1 id=le.2h5v.s6.df733e3d57a5 from=translated src=- shape=da666df4 vocab=162bcd08
+-/
 theorem probability_auxiliaryUnary_minkt_le_of_pointwise_internal
     {tapes m : ℕ} (hm : 0 < m) (machine : TM tapes)
     (threshold : ℕ → ℕ) (bound : ℚ)
@@ -182,6 +221,9 @@ theorem probability_auxiliaryUnary_minkt_le_of_pointwise_internal
       have hm' : (m : ℚ) ≠ 0 := by exact_mod_cast (ne_of_gt hm)
       field_simp
 
+/--
+@isnad1 id=eq.1h3v.s6.5901c3f2cb48 from=translated src=- shape=854754f3 vocab=b8608203
+-/
 theorem mass_auxiliaryUnary_minktInstance_internal {m n : ℕ} (hn : n < m)
     (output : Fin n → Bool) :
     auxiliaryUnary.mass m
@@ -195,6 +237,9 @@ end FiniteEnsemble
 
 namespace MINKT
 
+/--
+@isnad1 id=le.1h5v.s5.ac68922baebd from=translated src=- shape=3e9a4b9b vocab=325c26fb
+-/
 theorem one_sub_auxiliaryUnaryProbability_sub_failure_le_reject_internal
     {tapes m : ℕ} {machine : TM tapes} {threshold : ℕ → ℕ}
     {A : HeuristicAlgorithm}
@@ -208,6 +253,9 @@ theorem one_sub_auxiliaryUnaryProbability_sub_failure_le_reject_internal
   rw [FiniteEnsemble.languageProbability_auxiliaryUnary_minkt_internal] at hreject
   exact hreject
 
+/--
+@isnad1 id=le.2h5v.s7.6c33a5df6e8d from=translated src=- shape=381956db vocab=b3d58039
+-/
 theorem auxiliaryUnary_rejectProbability_ge_average_internal
     {tapes m : ℕ} (hm : 0 < m) {machine : TM tapes}
     {threshold : ℕ → ℕ} {A : HeuristicAlgorithm}
@@ -224,6 +272,9 @@ theorem auxiliaryUnary_rejectProbability_ge_average_internal
       hm machine threshold
   linarith
 
+/--
+@isnad1 id=le.4h7v.s7.9d9e69e8bab8 from=translated src=- shape=a1d940bf vocab=4ecdac59
+-/
 theorem auxiliaryUnary_rejectProbability_ge_of_pointwise_internal
     {tapes m : ℕ} (hm : 0 < m) {machine : TM tapes}
     {threshold : ℕ → ℕ} {A : HeuristicAlgorithm} (low failure : ℚ)

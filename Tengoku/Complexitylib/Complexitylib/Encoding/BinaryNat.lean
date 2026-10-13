@@ -37,17 +37,23 @@ def decode? (bits : List Bool) : Option ℕ :=
   let value := Nat.fromBitsLE bits
   if value.bits = bits then some value else none
 
-/-- Canonical binary codes have exactly the standard binary digit width. -/
+/-- Canonical binary codes have exactly the standard binary digit width.
+@isnad1 id=eq.0h1v.s3.38b0c9a8156a from=translated src=- shape=1e92cebf vocab=2fa2b692
+-/
 @[simp] theorem length_encode (value : ℕ) :
     (encode value).length = value.size := by
   exact Nat.size_eq_bits_len value
 
-/-- Decoding a canonical binary code recovers its value. -/
+/-- Decoding a canonical binary code recovers its value.
+@isnad1 id=eq.0h1v.s3.f91426d28312 from=translated src=- shape=edb93955 vocab=99bdb839
+-/
 @[simp] theorem decode?_encode (value : ℕ) :
     decode? (encode value) = some value := by
   simp [decode?, encode, Nat.fromBitsLE_bits]
 
-/-- Exact decoding succeeds precisely on the canonical code of the result. -/
+/-- Exact decoding succeeds precisely on the canonical code of the result.
+@isnad1 id=iff.0h2v.s4.c426cd2a99d0 from=translated src=- shape=94e3551a vocab=9cfbcebc
+-/
 theorem decode?_eq_some_iff (bits : List Bool) (value : ℕ) :
     decode? bits = some value ↔ bits = encode value := by
   constructor
@@ -61,7 +67,9 @@ theorem decode?_eq_some_iff (bits : List Bool) (value : ℕ) :
   · rintro rfl
     exact decode?_encode value
 
-/-- The canonical binary natural-number encoding is injective. -/
+/-- The canonical binary natural-number encoding is injective.
+@isnad1 id=injectiv.0h0v.s2.edb303e75d19 from=translated src=- shape=4b736592 vocab=c7b31c08
+-/
 theorem encode_injective : Function.Injective encode := by
   intro first second h
   have hfirst := decode?_encode first

@@ -21,7 +21,9 @@ public section
 
 namespace Complexity.DescriptiveComplexity
 
-/-- The empty input is not a structure encoding. -/
+/-- The empty input is not a structure encoding.
+@isnad1 id=eq.0h1v.s3.b93222e7ccde from=translated src=- shape=c79eb50c vocab=43daf7fb
+-/
 @[simp] theorem decodeStruct_nil (V : Vocabulary) : decodeStruct V [] = none := by
   simp [decodeStruct]
 

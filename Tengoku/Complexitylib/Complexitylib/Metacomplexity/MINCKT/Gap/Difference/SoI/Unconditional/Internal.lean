@@ -25,6 +25,9 @@ namespace DifferenceEstimator
 
 namespace Unconditional
 
+/--
+@isnad1 id=le.1h7v.s6.615425f702cd from=translated src=- shape=b9d2aed7 vocab=43514efd
+-/
 theorem SupportsPairUpper.pair_upper_internal
     {ordinaryTapes conditionalTapes : ℕ}
     {plan : Plan} {composition : PairCompositionPlan}
@@ -49,6 +52,9 @@ theorem SupportsPairUpper.pair_upper_internal
       (hsupports.condition_le_bound inst hcondition)
       (hsupports.result_le_bound inst hresult)
 
+/--
+@isnad1 id=satisfie.2h10v.s5.f5e58b2052dd from=translated src=- shape=90253f97 vocab=d6ef9cb0
+-/
 theorem Compatible.satisfiesSoIInputsOnQueries_internal
     {ordinaryTapes conditionalTapes : ℕ}
     {plan : Plan} {ordinaryMachine : TM ordinaryTapes}
@@ -101,6 +107,9 @@ theorem Compatible.satisfiesSoIInputsOnQueries_internal
   · exact hcompatible.upperLoss_budget
   · exact hcompatible.lowerLoss_budget
 
+/--
+@isnad1 id=satisfie.2h10v.s5.806259c92a57 from=translated src=- shape=891889da vocab=7779831c
+-/
 theorem Compatible.satisfiesSoIInputs_internal
     {ordinaryTapes conditionalTapes : ℕ}
     {plan : Plan} {ordinaryMachine : TM ordinaryTapes}

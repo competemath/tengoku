@@ -48,6 +48,9 @@ namespace GapMINCKT
 
 namespace DifferenceEstimator
 
+/--
+@isnad1 id=satisfie.3h9v.s5.15485bc7834d from=translated src=- shape=687c518f vocab=f5e87f52
+-/
 theorem SatisfiesSoIInputs.satisfiesAccounting_internal
     {ordinaryTapes conditionalTapes : ℕ}
     {components : DifferenceEstimator} {schedule : SoIAccountingSchedule}

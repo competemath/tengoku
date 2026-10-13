@@ -26,18 +26,24 @@ namespace Complexity
 
 namespace BinaryShiftMul
 
-/-- The generalized shift-and-add fold has its closed arithmetic form. -/
+/-- The generalized shift-and-add fold has its closed arithmetic form.
+@isnad1 id=eq.0h3v.s6.7c7a0811be86 from=translated src=- shape=35ee16ab vocab=4bea034e
+-/
 theorem fold_eq (bits : List Bool) (acc shift : ℕ) :
     fold bits acc shift =
       (acc + shift * Nat.fromBitsLE bits, shift * 2 ^ bits.length) :=
   fold_eq_internal bits acc shift
 
-/-- Folding all canonical multiplier bits computes multiplication. -/
+/-- Folding all canonical multiplier bits computes multiplication.
+@isnad1 id=eq.0h2v.s5.1a62d17ac36f from=translated src=- shape=762b4620 vocab=586e6bb0
+-/
 theorem fold_natBits (lhs rhs : ℕ) :
     fold rhs.bits 0 lhs = (lhs * rhs, lhs * 2 ^ rhs.size) :=
   fold_natBits_internal lhs rhs
 
-/-- Binary multiplication produces at most the sum of the operand widths. -/
+/-- Binary multiplication produces at most the sum of the operand widths.
+@isnad1 id=le.0h2v.s4.370d17ee82fd from=translated src=- shape=a13ca989 vocab=9227dc1d
+-/
 theorem size_mul_le_add (lhs rhs : ℕ) :
     (lhs * rhs).size ≤ lhs.size + rhs.size :=
   size_mul_le_add_internal lhs rhs
@@ -46,7 +52,9 @@ end BinaryShiftMul
 
 namespace TM
 
-/-- The audited multiplier budget is quadratic in combined input width. -/
+/-- The audited multiplier budget is quadratic in combined input width.
+@isnad1 id=eq.0h2v.s6.1d1c02a0a3f3 from=translated src=- shape=7c84d55a vocab=91fa9511
+-/
 theorem binaryShiftMulTime_eq (lhs rhs : ℕ) :
     binaryShiftMulTime lhs rhs =
       33 * binaryShiftMulWidth lhs rhs ^ 2 +
@@ -55,7 +63,9 @@ theorem binaryShiftMulTime_eq (lhs rhs : ℕ) :
 
 /-- Framed time contract for canonical binary multiplication. Both operands
 are restored, the accumulator becomes their product, every scratch tape is
-reset to zero, and all unrelated tapes are preserved exactly. -/
+reset to zero, and all unrelated tapes are preserved exactly.
+@isnad1 id=hoaretim.9h7v.s8.f1fcce58cb5e from=translated src=- shape=fec57a0c vocab=ce84ecdc
+-/
 theorem binaryShiftMulTM_hoareTime_frame {n : ℕ}
     (abi : BinaryShiftMulABI n) (lhs rhs : ℕ)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
@@ -85,7 +95,9 @@ theorem binaryShiftMulTM_hoareTime_frame {n : ℕ}
   binaryShiftMulTM_hoareTime_frame_internal abi lhs rhs inp₀ work₀ out₀
     hlhs hrhs hacc hshift htmp hdbl hinput hwork houtput
 
-/-- Reachability form of the framed multiplication theorem. -/
+/-- Reachability form of the framed multiplication theorem.
+@isnad1 id=ex.9h7v.s8.76c742abe8e3 from=translated src=- shape=4707d22e vocab=46f35a7a
+-/
 theorem binaryShiftMulTM_reachesIn_frame {n : ℕ}
     (abi : BinaryShiftMulABI n) (lhs rhs : ℕ)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
@@ -121,7 +133,9 @@ theorem binaryShiftMulTM_reachesIn_frame {n : ℕ}
     inp₀ work₀ out₀ ⟨rfl, rfl, rfl⟩
 
 /-- All-prefix auxiliary-space contract obtained from the concrete quadratic
-time envelope. -/
+time envelope.
+@isnad1 id=hoaretim.10h9v.s8.756463e2cc7f from=translated src=- shape=e6605b0d vocab=1a861844
+-/
 theorem binaryShiftMulTM_hoareTimeSpace_frame {n : ℕ}
     (abi : BinaryShiftMulABI n) (lhs rhs inputLength initialSpace : ℕ)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
@@ -161,7 +175,9 @@ theorem binaryShiftMulTM_hoareTimeSpace_frame {n : ℕ}
     hwork houtput hinitial
 
 /-- Canonical shift-and-add multiplication never moves the public output head
-left. -/
+left.
+@isnad1 id=istransd.0h2v.s3.7eacd25e1eb0 from=translated src=- shape=20553ef8 vocab=831c8706
+-/
 theorem binaryShiftMulTM_isTransducer {n : ℕ}
     (abi : BinaryShiftMulABI n) :
     (binaryShiftMulTM abi).IsTransducer :=

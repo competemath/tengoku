@@ -26,6 +26,9 @@ private theorem matrix_accepts {V : Vocabulary} (A : DecFinStruct V)
       bits = [] ∧ φ.Sat A.toFinStruct σ ρ.toREnv := by
   simp only [Bool.and_eq_true, List.isEmpty_iff, evalMatrixB_eq_sat]
 
+/--
+@isnad1 id=and.2h8v.s6.eba5f363a8e3 from=translated src=- shape=877356e3 vocab=d38d5755
+-/
 theorem checkCertificate_sound_internal {V : Vocabulary} (A : DecFinStruct V)
     {rctx : List Nat} {n : Nat} (φ : SOFormula V rctx n) :
     ∀ (h : φ.IsExistSO) (σ : Env A.card n) (ρ : DecREnv A.card rctx) (bits : List Bool),
@@ -56,6 +59,9 @@ theorem checkCertificate_sound_internal {V : Vocabulary} (A : DecFinStruct V)
     obtain ⟨rfl, hsat⟩ := (matrix_accepts A _ h σ ρ bits).mp haccept
     exact ⟨rfl, hsat⟩
 
+/--
+@isnad1 id=ex.2h7v.s6.1962f637d2a1 from=translated src=- shape=478c5c37 vocab=b248f544
+-/
 theorem checkCertificate_complete_internal {V : Vocabulary} (A : DecFinStruct V)
     {rctx : List Nat} {n : Nat} (φ : SOFormula V rctx n) :
     ∀ (h : φ.IsExistSO) (σ : Env A.card n) (ρ : DecREnv A.card rctx),

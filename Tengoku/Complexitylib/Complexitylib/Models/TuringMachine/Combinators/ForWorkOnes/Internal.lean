@@ -31,7 +31,9 @@ def forWorkOnesBodyWrap (driverIdx : Fin n) (body : TM n)
     work := cfg.work
     output := cfg.output }
 
-/-- Every nonhalting body step is simulated exactly. -/
+/-- Every nonhalting body step is simulated exactly.
+@isnad1 id=eq.1h5v.s6.81f9a805e12a from=translated src=- shape=eb0f0287 vocab=bbca9168
+-/
 theorem forWorkOnesTM_body_step_internal (driverIdx : Fin n) (body : TM n)
     {cfg next : Cfg n body.Q} (hstep : body.step cfg = some next) :
     (forWorkOnesTM driverIdx body).step
@@ -49,7 +51,9 @@ theorem forWorkOnesTM_body_step_internal (driverIdx : Fin n) (body : TM n)
   cases Option.some.inj hstep
   rfl
 
-/-- Exact body runs lift through the combined machine's body phase. -/
+/-- Exact body runs lift through the combined machine's body phase.
+@isnad1 id=reachesi.1h6v.s5.017041a3e43c from=translated src=- shape=e4b807d0 vocab=8c6b95f9
+-/
 theorem forWorkOnesTM_body_reachesIn_internal (driverIdx : Fin n) (body : TM n)
     {time : ℕ} {cfg next : Cfg n body.Q}
     (hreach : body.reachesIn time cfg next) :
@@ -59,7 +63,9 @@ theorem forWorkOnesTM_body_reachesIn_internal (driverIdx : Fin n) (body : TM n)
   reachesIn_map (forWorkOnesBodyWrap driverIdx body)
     (fun _ _ => forWorkOnesTM_body_step_internal driverIdx body) hreach
 
-/-- On a `1`, the driver advances its selected work head and enters the body. -/
+/-- On a `1`, the driver advances its selected work head and enters the body.
+@isnad1 id=eq.5h4v.s7.bc3f1832ec18 from=translated src=- shape=f7b09d3c vocab=e5096e7c
+-/
 theorem forWorkOnesTM_step_scan_one_internal (driverIdx : Fin n) (body : TM n)
     (cfg : Cfg n (forWorkOnesTM driverIdx body).Q)
     (hstate : cfg.state = .inl .scan)
@@ -87,7 +93,9 @@ theorem forWorkOnesTM_step_scan_one_internal (driverIdx : Fin n) (body : TM n)
   · rw [writeAndMove_readBack _ houtput, idleDir, ite_eq_right houtput]
     rfl
 
-/-- On the zero separator, the driver halts without consuming it. -/
+/-- On the zero separator, the driver halts without consuming it.
+@isnad1 id=eq.5h4v.s7.7bbec8031b2c from=translated src=- shape=1403567d vocab=a5e7ac56
+-/
 theorem forWorkOnesTM_step_scan_zero_internal (driverIdx : Fin n) (body : TM n)
     (cfg : Cfg n (forWorkOnesTM driverIdx body).Q)
     (hstate : cfg.state = .inl .scan)
@@ -113,7 +121,9 @@ theorem forWorkOnesTM_step_scan_zero_internal (driverIdx : Fin n) (body : TM n)
   · rw [writeAndMove_readBack _ houtput, idleDir, ite_eq_right houtput]
     rfl
 
-/-- A halted body takes one preserving seam step back to the scanner. -/
+/-- A halted body takes one preserving seam step back to the scanner.
+@isnad1 id=eq.4h4v.s6.5cd9862f0afa from=translated src=- shape=83831c8b vocab=bc6121aa
+-/
 theorem forWorkOnesTM_step_body_halt_internal (driverIdx : Fin n) (body : TM n)
     (cfg : Cfg n body.Q) (hhalt : body.halted cfg)
     (hinput : cfg.input.read ≠ Γ.start)
@@ -135,7 +145,9 @@ theorem forWorkOnesTM_step_body_halt_internal (driverIdx : Fin n) (body : TM n)
   · rw [writeAndMove_readBack _ houtput, idleDir, ite_eq_right houtput]
     rfl
 
-/-- A certified consecutive-one loop has its advertised exact remaining run. -/
+/-- A certified consecutive-one loop has its advertised exact remaining run.
+@isnad1 id=reachesi.1h8v.s5.9d7f96ea0729 from=translated src=- shape=bbbe301d vocab=2ecd1a46
+-/
 theorem ForWorkOnesLoopSpec.reachesIn_internal
     {driverIdx : Fin n} {body : TM n} {bodyTime : ℕ → ℕ} {total : ℕ}
     (spec : ForWorkOnesLoopSpec driverIdx body bodyTime total) :
@@ -168,7 +180,9 @@ theorem ForWorkOnesLoopSpec.reachesIn_internal
       simp only [forWorkOnesLoopTime]
       omega
 
-/-- Consecutive-one iteration preserves one-way output when the body does. -/
+/-- Consecutive-one iteration preserves one-way output when the body does.
+@isnad1 id=istransd.1h3v.s4.3c5c14440a10 from=translated src=- shape=88a9cf5b vocab=3ceb04c5
+-/
 theorem IsTransducer.forWorkOnesTM_internal {driverIdx : Fin n} {body : TM n}
     (hbody : body.IsTransducer) :
     (forWorkOnesTM driverIdx body).IsTransducer := by

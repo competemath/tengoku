@@ -22,7 +22,9 @@ namespace Complexity
 
 namespace TM
 
-/-- The ripple-add scan never moves the public output head left. -/
+/-- The ripple-add scan never moves the public output head left.
+@isnad1 id=istransd.0h4v.s4.98564d0dff51 from=translated src=- shape=0b195b8b vocab=feef2c2e
+-/
 theorem binaryRippleAddScanTM_isTransducer_internal {n : ℕ}
     (lhsIdx rhsIdx resultIdx : Fin n) :
     (binaryRippleAddScanTM lhsIdx rhsIdx resultIdx).IsTransducer := by
@@ -44,7 +46,9 @@ theorem binaryRippleAddScanTM_isTransducer_internal {n : ℕ}
       simp [binaryRippleAddScanTM, allIdle, idleDir]
       split <;> decide
 
-/-- The scan followed by all three rewinds remains a transducer. -/
+/-- The scan followed by all three rewinds remains a transducer.
+@isnad1 id=istransd.0h4v.s4.051116410af2 from=translated src=- shape=0b195b8b vocab=17a8832c
+-/
 theorem binaryRippleAddTM_isTransducer_internal {n : ℕ}
     (lhsIdx rhsIdx resultIdx : Fin n) :
     (binaryRippleAddTM lhsIdx rhsIdx resultIdx).IsTransducer := by

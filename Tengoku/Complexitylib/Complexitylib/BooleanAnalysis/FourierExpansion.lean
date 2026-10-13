@@ -32,14 +32,18 @@ variable {n : ℕ}
 /-! ### §1.2 The Fourier expansion theorem -/
 
 /-- **Theorem 1.1** (Fourier expansion existence): Every function `f : 𝔽₂ⁿ → ℝ` can be
-    expressed as `f(x) = ∑_S 𝓕 f S · (χ S) x`. -/
+    expressed as `f(x) = ∑_S 𝓕 f S · (χ S) x`.
+@isnad1 id=eq.0h3v.s5.7aecf95ecedf from=translated src=- shape=e6cbc4b8 vocab=dbddc1e2
+-/
 theorem fourier_expansion (f : BooleanFunction n) (x : Cube n) :
     f x = ∑ S : Finset (Fin n), 𝓕 f S * (χ S) x :=
   Internal.fourier_expansion_proof f x
 
 /-- **Theorem 1.1** (Fourier uniqueness): If `f(x) = ∑_S c_S · χ_S(x)` for all `x`,
     then `c_S = 𝓕 f S` for all `S`. Together with `fourier_expansion`, this establishes
-    the parity functions as an orthonormal basis for the space of functions `𝔽₂ⁿ → ℝ`. -/
+    the parity functions as an orthonormal basis for the space of functions `𝔽₂ⁿ → ℝ`.
+@isnad1 id=eq.1h4v.s6.f02dabf7f6e0 from=translated src=- shape=a1b1e0e0 vocab=dbddc1e2
+-/
 theorem fourier_uniqueness (f : BooleanFunction n) (c : Finset (Fin n) → ℝ)
     (h : ∀ x, f x = ∑ S : Finset (Fin n), c S * (χ S) x) :
     ∀ S, c S = 𝓕 f S :=
@@ -47,23 +51,31 @@ theorem fourier_uniqueness (f : BooleanFunction n) (c : Finset (Fin n) → ℝ)
 
 /-! ### §1.3 Orthonormality of parity functions -/
 
-/-- **Equation 1.5**: `(χ S)(x + y) = (χ S) x · (χ S) y`. -/
+/-- **Equation 1.5**: `(χ S)(x + y) = (χ S) x · (χ S) y`.
+@isnad1 id=eq.0h4v.s6.6429b78a14a7 from=translated src=- shape=a603de9d vocab=b85e5e96
+-/
 theorem parityFun_add (S : Finset (Fin n)) (x y : Cube n) :
     (χ S) (x + y) = (χ S) x * (χ S) y :=
   Internal.parityFun_add S x y
 
-/-- **Fact 1.6**: `(χ S) x · (χ T) x = (χ (S △ T)) x`. -/
+/-- **Fact 1.6**: `(χ S) x · (χ T) x = (χ (S △ T)) x`.
+@isnad1 id=eq.0h4v.s5.6c44566d94da from=translated src=- shape=b9f1bf5c vocab=0b50fd3a
+-/
 theorem parityFun_mul (S T : Finset (Fin n)) (x : Cube n) :
     (χ S) x * (χ T) x = (χ (symmDiff S T)) x :=
   Internal.parityFun_mul S T x
 
-/-- **Fact 1.7**: `𝔼[χ S] = 1` if `S = ∅` and `𝔼[χ S] = 0` if `S ≠ ∅`. -/
+/-- **Fact 1.7**: `𝔼[χ S] = 1` if `S = ∅` and `𝔼[χ S] = 0` if `S ≠ ∅`.
+@isnad1 id=eq.0h2v.s5.36f0f2fede04 from=translated src=- shape=33ceba88 vocab=3ea120a5
+-/
 theorem expect_parityFun (S : Finset (Fin n)) :
     𝔼[χ S] = if S = ∅ then 1 else 0 :=
   Internal.expect_parityFun_proof S
 
 /-- **Theorem 1.5** (orthonormality): The parity functions are orthonormal:
-    `⟪χ S, χ T⟫ = 1` if `S = T` and `0` otherwise. -/
+    `⟪χ S, χ T⟫ = 1` if `S = T` and `0` otherwise.
+@isnad1 id=eq.0h3v.s5.ec92fd1c0df7 from=translated src=- shape=b80294f3 vocab=09b38ff5
+-/
 theorem parityFun_orthonormal (S T : Finset (Fin n)) :
     ⟪χ S, χ T⟫ = if S = T then 1 else 0 :=
   Internal.parityFun_orthonormal_proof S T
@@ -71,37 +83,51 @@ theorem parityFun_orthonormal (S T : Finset (Fin n)) :
 /-- **Theorem 1.5** (spanning): Every function `f : 𝔽₂ⁿ → ℝ` is a linear combination
     of parity functions. Together with `parityFun_orthonormal`, this establishes
     that the parity functions form an orthonormal basis for the space of functions
-    `𝔽₂ⁿ → ℝ`. -/
+    `𝔽₂ⁿ → ℝ`.
+@isnad1 id=ex.0h2v.s5.87ee4af0fcf9 from=translated src=- shape=85a466fc vocab=32c73bd0
+-/
 theorem parityFun_span (f : BooleanFunction n) :
     ∃ c : Finset (Fin n) → ℝ, ∀ x, f x = ∑ S : Finset (Fin n), c S * (χ S) x :=
   ⟨𝓕 f, fourier_expansion f⟩
 
 /-! ### §1.4 Basic Fourier formulas -/
 
-/-- **Proposition 1.8**: `𝓕 f S = ⟪f, χ S⟫`. This is true by definition. -/
+/-- **Proposition 1.8**: `𝓕 f S = ⟪f, χ S⟫`. This is true by definition.
+@isnad1 id=eq.0h3v.s4.e7cad7d00cfc from=translated src=- shape=511d4b5d vocab=c153201c
+-/
 theorem fourierCoeff_eq_inner (f : BooleanFunction n) (S : Finset (Fin n)) :
     𝓕 f S = ⟪f, χ S⟫ := rfl
 
-/-- **Parseval's Theorem**: `⟪f, f⟫ = ∑ S, (𝓕 f S) ^ 2`. -/
+/-- **Parseval's Theorem**: `⟪f, f⟫ = ∑ S, (𝓕 f S) ^ 2`.
+@isnad1 id=eq.0h2v.s5.75e5c422cad6 from=translated src=- shape=e07c4690 vocab=bb699b52
+-/
 theorem parseval (f : BooleanFunction n) :
     ⟪f, f⟫ = ∑ S : Finset (Fin n), (𝓕 f S) ^ 2 :=
   Internal.parseval_proof f
 
 /-- **Parseval's Theorem** (Boolean case): For Boolean-valued `f`,
-    `∑ S, (𝓕 f S) ^ 2 = 1`. -/
+    `∑ S, (𝓕 f S) ^ 2 = 1`.
+@isnad1 id=eq.1h2v.s5.05a52ff344a2 from=translated src=- shape=1e0273e3 vocab=9a5a49db
+-/
 theorem parseval_boolean (f : BooleanFunction n) (hf : IsBooleanValued f) :
     ∑ S : Finset (Fin n), (𝓕 f S) ^ 2 = 1 :=
   Internal.parseval_boolean_proof f hf
 
-/-- The inner product `⟪f, f⟫` is nonneg. -/
+/-- The inner product `⟪f, f⟫` is nonneg.
+@isnad1 id=le.0h2v.s4.b1d3241473af from=translated src=- shape=18ed7409 vocab=aa02ccdb
+-/
 theorem inner_self_nonneg' (f : BooleanFunction n) : 0 ≤ ⟪f, f⟫ := by
   rw [real_inner_self_eq_norm_sq]; positivity
 
-/-- `‖f‖₂² = ⟪f, f⟫`. -/
+/-- `‖f‖₂² = ⟪f, f⟫`.
+@isnad1 id=eq.0h2v.s5.8ecc1efdf2b1 from=translated src=- shape=a4d50db4 vocab=705171ca
+-/
 theorem norm_sq_eq_inner (f : BooleanFunction n) : ‖f‖₂ ^ 2 = ⟪f, f⟫ :=
   (real_inner_self_eq_norm_sq f).symm
 
-/-- `‖f‖₂² = ∑_S (𝓕 f S)²` (Parseval via L² norm). -/
+/-- `‖f‖₂² = ∑_S (𝓕 f S)²` (Parseval via L² norm).
+@isnad1 id=eq.0h2v.s6.cddd13a070e4 from=translated src=- shape=027887db vocab=2aec0a73
+-/
 theorem norm_sq_eq_sum_fourierCoeff_sq (f : BooleanFunction n) :
     ‖f‖₂ ^ 2 = ∑ S : Finset (Fin n), (𝓕 f S) ^ 2 := by
   rw [norm_sq_eq_inner, parseval]
@@ -109,7 +135,9 @@ theorem norm_sq_eq_sum_fourierCoeff_sq (f : BooleanFunction n) :
 /-- **Parseval, partitioned by degree**: summing the Fourier weight at each degree
     `k = 0, …, n` recovers `⟪f, f⟫`. Every coordinate set `S ⊆ [n]` has
     `|S| ≤ n`, so grouping the Fourier weights by `|S|` reassembles Parseval's
-    total. This is the identity behind the degree/weight distribution `𝐖`. -/
+    total. This is the identity behind the degree/weight distribution `𝐖`.
+@isnad1 id=eq.0h2v.s5.3800740b2787 from=translated src=- shape=ef4bfa30 vocab=8cff2346
+-/
 theorem sum_fourierWeightAtDegree (f : BooleanFunction n) :
     ∑ k ∈ Finset.range (n + 1), 𝐖 f k = ⟪f, f⟫ := by
   have hle : ∀ S : Finset (Fin n), S.card ≤ n := fun S => by
@@ -123,7 +151,9 @@ theorem sum_fourierWeightAtDegree (f : BooleanFunction n) :
     over `k = 0, …, n` reconstructs `f` pointwise. This regroups the Fourier
     expansion `f = ∑_S 𝓕 f S · χ_S` by `|S|`, and is the starting point for the
     low-degree / degree-concentration results used in small-depth-circuit lower
-    bounds. -/
+    bounds.
+@isnad1 id=eq.0h3v.s5.4dc1032044da from=translated src=- shape=ce095354 vocab=a80afe3b
+-/
 theorem sum_degreePart (f : BooleanFunction n) (x : Cube n) :
     ∑ k ∈ Finset.range (n + 1), degreePart f k x = f x := by
   have hle : ∀ S : Finset (Fin n), S.card ≤ n := fun S => by
@@ -133,7 +163,9 @@ theorem sum_degreePart (f : BooleanFunction n) (x : Cube n) :
     (fun S _ => Finset.mem_range.mpr (Nat.lt_succ_of_le (hle S)))]
   exact (fourier_expansion f x).symm
 
-/-- The Fourier weight at any degree is nonnegative (it is a sum of squares). -/
+/-- The Fourier weight at any degree is nonnegative (it is a sum of squares).
+@isnad1 id=le.0h3v.s4.4e7a209d150c from=translated src=- shape=65452a3d vocab=9e17a797
+-/
 theorem fourierWeightAtDegree_nonneg (f : BooleanFunction n) (k : ℕ) : 0 ≤ 𝐖 f k := by
   simp only [fourierWeightAtDegree]
   apply Finset.sum_nonneg
@@ -145,14 +177,18 @@ theorem fourierWeightAtDegree_nonneg (f : BooleanFunction n) (k : ℕ) : 0 ≤ �
     degree-`k` weights of a `±1`-valued function over all degrees gives `1`, since
     `⟪f, f⟫ = 𝔼[f²] = 𝔼[1] = 1`. This is what makes `k ↦ 𝐖 f k` a probability
     distribution on degrees: the distribution of `|S|` for `S` drawn from the
-    spectral sample of `f` (`spectralSample`, a distribution on sets). -/
+    spectral sample of `f` (`spectralSample`, a distribution on sets).
+@isnad1 id=eq.1h2v.s5.73ed1c22d8f4 from=translated src=- shape=fe6efe1e vocab=72c3e980
+-/
 theorem sum_fourierWeightAtDegree_boolean (f : BooleanFunction n)
     (hf : IsBooleanValued f) : ∑ k ∈ Finset.range (n + 1), 𝐖 f k = 1 := by
   rw [sum_fourierWeightAtDegree, parseval]
   exact parseval_boolean f hf
 
 /-- **The degree-`≤ n` part is all of `f`.** Every coordinate set has size at most
-    `n`, so truncating at degree `n` keeps every Fourier term: `f^{≤n} = f`. -/
+    `n`, so truncating at degree `n` keeps every Fourier term: `f^{≤n} = f`.
+@isnad1 id=eq.0h3v.s4.143e3b9f727d from=translated src=- shape=146bd91f vocab=88af4202
+-/
 theorem lowDegreePart_card (f : BooleanFunction n) (x : Cube n) :
     lowDegreePart f n x = f x := by
   have hfilter : (Finset.univ.filter (fun S : Finset (Fin n) => S.card ≤ n)) = Finset.univ := by
@@ -163,7 +199,9 @@ theorem lowDegreePart_card (f : BooleanFunction n) (x : Cube n) :
   exact (fourier_expansion f x).symm
 
 /-- **No mass above degree `n`.** There are no coordinate sets of size greater
-    than `n`, so every degree part `f^{=k}` with `k > n` is identically zero. -/
+    than `n`, so every degree part `f^{=k}` with `k > n` is identically zero.
+@isnad1 id=eq.1h4v.s4.22295d123cca from=translated src=- shape=420a1872 vocab=1c8a5be9
+-/
 theorem degreePart_eq_zero_of_lt (f : BooleanFunction n) (x : Cube n) {k : ℕ}
     (hk : n < k) : degreePart f k x = 0 := by
   have hfilter : (Finset.univ.filter (fun S : Finset (Fin n) => S.card = k)) = ∅ := by
@@ -175,7 +213,9 @@ theorem degreePart_eq_zero_of_lt (f : BooleanFunction n) (x : Cube n) {k : ℕ}
 
 /-- **No Fourier weight above degree `n`.** For `k > n` the degree-`k` weight
     vanishes, so the degree-weight sum `∑_{k=0}^n 𝐖 f k` already captures all of
-    `f`'s spectral energy. -/
+    `f`'s spectral energy.
+@isnad1 id=eq.1h3v.s4.49dcbe6b2576 from=translated src=- shape=a51e757b vocab=72fafeb7
+-/
 theorem fourierWeightAtDegree_eq_zero_of_lt (f : BooleanFunction n) {k : ℕ}
     (hk : n < k) : 𝐖 f k = 0 := by
   have hfilter : (Finset.univ.filter (fun S : Finset (Fin n) => S.card = k)) = ∅ := by
@@ -187,7 +227,9 @@ theorem fourierWeightAtDegree_eq_zero_of_lt (f : BooleanFunction n) {k : ℕ}
 
 /-- **The low-degree part is the sum of exact-degree parts.** `f^{≤k} = ∑_{j≤k}
     f^{=j}`, obtained by grouping the coordinate sets of size `≤ k` by their exact
-    size — the identity linking the two degree-truncation operators. -/
+    size — the identity linking the two degree-truncation operators.
+@isnad1 id=eq.0h4v.s5.c6908fb070a1 from=translated src=- shape=884624f9 vocab=529b0b4d
+-/
 theorem lowDegreePart_eq_sum_degreePart (f : BooleanFunction n) (x : Cube n) (k : ℕ) :
     lowDegreePart f k x = ∑ j ∈ Finset.range (k + 1), degreePart f j x := by
   simp only [lowDegreePart, degreePart]
@@ -204,34 +246,44 @@ theorem lowDegreePart_eq_sum_degreePart (f : BooleanFunction n) (x : Cube n) (k 
   · rintro ⟨_, h⟩; exact h
   · intro h; exact ⟨by omega, h⟩
 
-/-- **Plancherel's Theorem**: `⟪f, g⟫ = ∑ S, (𝓕 f S) · (𝓕 g S)`. -/
+/-- **Plancherel's Theorem**: `⟪f, g⟫ = ∑ S, (𝓕 f S) · (𝓕 g S)`.
+@isnad1 id=eq.0h3v.s5.5c2f4536372b from=translated src=- shape=4506ef16 vocab=1b5a3813
+-/
 theorem plancherel (f g : BooleanFunction n) :
     ⟪f, g⟫ = ∑ S : Finset (Fin n), (𝓕 f S) * (𝓕 g S) :=
   Internal.plancherel_proof f g
 
 /-- **Proposition 1.9a**: For Boolean-valued `f, g`,
-    `⟪f, g⟫ = Pr[f(x) = g(x)] - Pr[f(x) ≠ g(x)]`. -/
+    `⟪f, g⟫ = Pr[f(x) = g(x)] - Pr[f(x) ≠ g(x)]`.
+@isnad1 id=eq.2h3v.s5.be7de95deb22 from=translated src=- shape=19c75988 vocab=43f533f9
+-/
 theorem inner_eq_agree_sub_disagree (f g : BooleanFunction n)
     (hf : IsBooleanValued f) (hg : IsBooleanValued g) :
     ⟪f, g⟫ = (1 - hammingDist f g) - hammingDist f g := by
   have := Internal.inner_add_two_hammingDist f g hf hg; linarith
 
 /-- **Proposition 1.9b**: For Boolean-valued `f, g`,
-    `⟪f, g⟫ = 1 - 2·dist(f, g)`. -/
+    `⟪f, g⟫ = 1 - 2·dist(f, g)`.
+@isnad1 id=eq.2h3v.s5.ab7e08cb3202 from=translated src=- shape=d909157d vocab=d66612e0
+-/
 theorem inner_eq_one_sub_two_dist (f g : BooleanFunction n)
     (hf : IsBooleanValued f) (hg : IsBooleanValued g) :
     ⟪f, g⟫ = 1 - 2 * hammingDist f g := by
   rw [inner_eq_agree_sub_disagree f g hf hg]; ring
 
 /-- **Fact 1.12**: The mean of `f` equals its empty-set Fourier coefficient:
-    `𝔼[f] = 𝓕 f ∅`. -/
+    `𝔼[f] = 𝓕 f ∅`.
+@isnad1 id=eq.0h2v.s4.88c7d254cf57 from=translated src=- shape=75babe3c vocab=c18c5b6a
+-/
 theorem expect_eq_fourierCoeff_empty (f : BooleanFunction n) :
     𝔼[f] = 𝓕 f ∅ := by
   rw [fourierCoeff_eq_inner (f := f) (S := ∅), inner_eq_expect (f := f) (g := χ ∅)]
   simp [Internal.parityFun_empty]
 
 /-- **Proposition 1.13**: The variance of `f` in terms of Fourier coefficients:
-    `Var[f] = ∑_{S ≠ ∅} (𝓕 f S)²`. -/
+    `Var[f] = ∑_{S ≠ ∅} (𝓕 f S)²`.
+@isnad1 id=eq.0h2v.s6.b23808ed32e0 from=translated src=- shape=571ffbf1 vocab=e07ee1fa
+-/
 theorem variance_eq_sum_fourierCoeff_sq (f : BooleanFunction n) :
     Var[f] = ∑ S ∈ Finset.univ.filter (fun S : Finset (Fin n) => S ≠ ∅),
       (𝓕 f S) ^ 2 := by
@@ -248,7 +300,9 @@ theorem variance_eq_sum_fourierCoeff_sq (f : BooleanFunction n) :
 /-- **Fact 1.14** (first part): For Boolean-valued `f`, `Var[f] = 1 - 𝔼[f]²`.
     The rest of the fact, `Var[f] = 4·Pr[f=1]·Pr[f=-1] ∈ [0, 1]`, is
     `variance_boolean_prob`, `variance_boolean_nonneg` and
-    `variance_boolean_le_one`. -/
+    `variance_boolean_le_one`.
+@isnad1 id=eq.1h2v.s5.567434bdb8df from=translated src=- shape=876b43d1 vocab=f98033be
+-/
 theorem variance_boolean (f : BooleanFunction n) (hf : IsBooleanValued f) :
     Var[f] = 1 - (𝔼[f]) ^ 2 := by
   unfold variance
@@ -261,14 +315,18 @@ theorem variance_boolean (f : BooleanFunction n) (hf : IsBooleanValued f) :
   linarith
 
 /-- **Fact 1.14** (probability form): For Boolean-valued `f`,
-    `Var[f] = 4 · Pr[f = 1] · Pr[f = -1]`. -/
+    `Var[f] = 4 · Pr[f = 1] · Pr[f = -1]`.
+@isnad1 id=eq.1h2v.s6.bfb3436d10df from=translated src=- shape=ab966df3 vocab=359d17f3
+-/
 theorem variance_boolean_prob (f : BooleanFunction n) (hf : IsBooleanValued f) :
     Var[f] = 4 * Pr[fun x => f x = 1] * Pr[fun x => f x = -1] := by
   rw [variance_boolean f hf, Internal.expect_boolean_eq_prob_diff f hf]
   have := Internal.prob_boolean_sum_one f hf
   nlinarith [sq_nonneg (Pr[fun x => f x = 1] - Pr[fun x => f x = -1])]
 
-/-- **Fact 1.14** (lower bound): For Boolean-valued `f`, `0 ≤ Var[f]`. -/
+/-- **Fact 1.14** (lower bound): For Boolean-valued `f`, `0 ≤ Var[f]`.
+@isnad1 id=le.1h2v.s4.5d42290eb297 from=translated src=- shape=a178c38b vocab=08f93b13
+-/
 theorem variance_boolean_nonneg (f : BooleanFunction n) (hf : IsBooleanValued f) :
     0 ≤ Var[f] := by
   rw [variance_boolean f hf]
@@ -278,7 +336,9 @@ theorem variance_boolean_nonneg (f : BooleanFunction n) (hf : IsBooleanValued f)
   have hp2 : 0 ≤ Pr[fun x => f x = -1] := Internal.prob_nonneg _
   nlinarith [sq_nonneg (𝔼[f])]
 
-/-- **Fact 1.14** (upper bound): For Boolean-valued `f`, `Var[f] ≤ 1`. -/
+/-- **Fact 1.14** (upper bound): For Boolean-valued `f`, `Var[f] ≤ 1`.
+@isnad1 id=le.1h2v.s4.d39c10c20582 from=translated src=- shape=8a997a78 vocab=08f93b13
+-/
 theorem variance_boolean_le_one (f : BooleanFunction n) (hf : IsBooleanValued f) :
     Var[f] ≤ 1 := by
   rw [variance_boolean f hf]; nlinarith [sq_abs (𝔼[f])]
@@ -286,7 +346,9 @@ theorem variance_boolean_le_one (f : BooleanFunction n) (hf : IsBooleanValued f)
 /-- **Proposition 1.15**: For Boolean-valued `f`, `2ε ≤ Var[f] ≤ 4ε`
     where `ε = min(dist(f, 1), dist(f, -1))`.
 
-    Here `1` and `-1` denote the constant functions. -/
+    Here `1` and `-1` denote the constant functions.
+@isnad1 id=other.1h2v.s6.561648201729 from=translated src=- shape=19f426ff vocab=d2dd2693
+-/
 theorem variance_dist_bounds (f : BooleanFunction n) (hf : IsBooleanValued f) :
     let ε := min (hammingDist f (fun _ => 1)) (hammingDist f (fun _ => -1))
     2 * ε ≤ Var[f] ∧ Var[f] ≤ 4 * ε := by
@@ -298,7 +360,9 @@ theorem variance_dist_bounds (f : BooleanFunction n) (hf : IsBooleanValued f) :
     (Internal.prob_boolean_sum_one f hf)
 
 /-- **Proposition 1.16**: The covariance in terms of Fourier coefficients:
-    `Cov[f, g] = ∑_{S ≠ ∅} (𝓕 f S) · (𝓕 g S)`. -/
+    `Cov[f, g] = ∑_{S ≠ ∅} (𝓕 f S) · (𝓕 g S)`.
+@isnad1 id=eq.0h3v.s6.f2014b4a1e64 from=translated src=- shape=7aa7d7e7 vocab=95112088
+-/
 theorem covariance_eq_sum_fourierCoeff (f g : BooleanFunction n) :
     Cov[f, g] = ∑ S ∈ Finset.univ.filter (fun S : Finset (Fin n) => S ≠ ∅),
       (𝓕 f S) * (𝓕 g S) := by
@@ -328,13 +392,17 @@ noncomputable def spectralSample (f : BooleanFunction n) (hf : IsBooleanValued f
 
     The book states this for densities `φ`, interpreting `𝔼_{y ~ φ}[g(y)] = ⟪φ, g⟫`,
     but the identity holds for all functions since our inner product is defined as
-    `⟪f, g⟫ = 𝔼[f·g]`. -/
+    `⟪f, g⟫ = 𝔼[f·g]`.
+@isnad1 id=eq.0h3v.s5.51918723105d from=translated src=- shape=4c443d79 vocab=1c6dcf36
+-/
 theorem expect_mul_eq_inner (f g : BooleanFunction n) :
     𝔼[fun x => f x * g x] = ⟪f, g⟫ :=
   (inner_eq_expect f g).symm
 
 /-- **Definition 1.22** (Set density is a density): For nonempty `A ⊆ 𝔽₂ⁿ`,
-    the set density `φ_A` is a valid probability density. -/
+    the set density `φ_A` is a valid probability density.
+@isnad1 id=isdensit.1h2v.s4.e1677e88a8a5 from=translated src=- shape=371d3533 vocab=b880fdbb
+-/
 theorem setDensity_isDensity (A : Finset (Cube n)) (hA : A.Nonempty) :
     IsDensity (setDensity A) :=
   Internal.setDensity_isDensity_proof A hA
@@ -360,21 +428,27 @@ noncomputable def IsDensity.toPMF {φ : BooleanFunction n} (hφ : IsDensity φ) 
     simp)
 
 /-- **Fact 1.23**: Every Fourier coefficient of `φ_{0}` is 1; i.e.,
-    `φ_{0}(y) = ∑_S (χ S) y`. -/
+    `φ_{0}(y) = ∑_S (χ S) y`.
+@isnad1 id=eq.0h2v.s6.0f719659fdbe from=translated src=- shape=5a74dd9c vocab=44fc7150
+-/
 theorem setDensity_singleton_zero :
     ∀ y : Cube n, setDensity ({0} : Finset (Cube n)) y =
       ∑ S : Finset (Fin n), (χ S) y :=
   Internal.setDensity_singleton_zero_proof
 
 /-- **Fact 1.23** (Fourier coefficient form): Every Fourier coefficient of
-    `φ_{0}` is `1`, i.e., `𝓕 φ_{0} S = 1` for all `S`. -/
+    `φ_{0}` is `1`, i.e., `𝓕 φ_{0} S = 1` for all `S`.
+@isnad1 id=eq.0h2v.s6.f16d0fb98fe9 from=translated src=- shape=fefa9f61 vocab=6d9d544c
+-/
 theorem fourierCoeff_setDensity_singleton_zero (S : Finset (Fin n)) :
     𝓕 (setDensity ({0} : Finset (Cube n))) S = 1 :=
   Internal.fourierCoeff_setDensity_singleton_zero_proof S
 
 /-- **Fact 1.23** (general form): The Fourier coefficients of the set density `φ_A`
     are `𝓕 φ_A S = (1/|A|) · ∑_{x ∈ A} χ_S(x)`, i.e., the uniform average of `χ_S`
-    over `A`. -/
+    over `A`.
+@isnad1 id=eq.1h3v.s6.2e3b0fba5f77 from=translated src=- shape=9178dc90 vocab=85012a37
+-/
 theorem fourierCoeff_setDensity (A : Finset (Cube n)) (hA : A.Nonempty)
     (S : Finset (Fin n)) :
     𝓕 (setDensity A) S = (1 / A.card) * ∑ x ∈ A, (χ S) x :=
@@ -383,19 +457,25 @@ theorem fourierCoeff_setDensity (A : Finset (Cube n)) (hA : A.Nonempty)
 /-- **Proposition 1.25**: `(f ⊛ g)(x) = 𝔼_y[f(y)·g(x + y)]`.
 
     The book states this for densities, but our definition of convolution makes
-    this hold definitionally for all functions. -/
+    this hold definitionally for all functions.
+@isnad1 id=eq.0h4v.s6.5147c1f2b9bf from=translated src=- shape=c5ade2fd vocab=836c4a79
+-/
 theorem convolution_eq (f g : BooleanFunction n) (x : Cube n) :
     (f ⊛ g) x = 𝔼[fun y => f y * g (x + y)] := rfl
 
 /-- **Proposition 1.26**: If `φ` and `ψ` are both densities, then `φ ⊛ ψ`
-    is also a density. -/
+    is also a density.
+@isnad1 id=isdensit.2h3v.s4.8c7df83a5c22 from=translated src=- shape=85b2e57a vocab=721c15b3
+-/
 theorem convolution_density_isDensity (φ ψ : BooleanFunction n)
     (hφ : IsDensity φ) (hψ : IsDensity ψ) :
     IsDensity (φ ⊛ ψ) :=
   Internal.convolution_density_isDensity_proof φ ψ hφ hψ
 
 /-- **Theorem 1.27** (Convolution theorem):
-    `𝓕 (f ⊛ g) S = (𝓕 f S) · (𝓕 g S)`. -/
+    `𝓕 (f ⊛ g) S = (𝓕 f S) · (𝓕 g S)`.
+@isnad1 id=eq.0h4v.s5.c3c9e67aaa40 from=translated src=- shape=25bf2e95 vocab=5ea62818
+-/
 theorem fourierCoeff_convolution (f g : BooleanFunction n) (S : Finset (Fin n)) :
     𝓕 (f ⊛ g) S = (𝓕 f S) * (𝓕 g S) :=
   Internal.fourierCoeff_convolution_proof f g S
@@ -404,7 +484,9 @@ theorem fourierCoeff_convolution (f g : BooleanFunction n) (S : Finset (Fin n)) 
 
 /-- **Definition 1.28** (equivalence): For Boolean-valued `f`, linearity is
     equivalent to multiplicativity:
-    `f = χ S` for some `S` iff `f(x+y) = f(x)·f(y)` for all `x, y`. -/
+    `f = χ S` for some `S` iff `f(x+y) = f(x)·f(y)` for all `x, y`.
+@isnad1 id=iff.1h2v.s4.197e1ce2f081 from=translated src=- shape=5ba06184 vocab=20b42009
+-/
 theorem isLinear_iff_isMultiplicative (f : BooleanFunction n) (hf : IsBooleanValued f) :
     IsLinear f ↔ IsMultiplicative f :=
   Internal.isLinear_iff_isMultiplicative f hf
@@ -412,19 +494,25 @@ theorem isLinear_iff_isMultiplicative (f : BooleanFunction n) (hf : IsBooleanVal
 /-! ### §1.6 The BLR test -/
 
 /-- **Equation 1.10**: The BLR acceptance probability in terms of Fourier coefficients:
-    `Pr_{x,y}[f(x)·f(y) = f(x+y)] = 1/2 + 1/2 · ∑_S (𝓕 f S)³`. -/
+    `Pr_{x,y}[f(x)·f(y) = f(x+y)] = 1/2 + 1/2 · ∑_S (𝓕 f S)³`.
+@isnad1 id=eq.1h2v.s6.a2961f37f6b6 from=translated src=- shape=104663e4 vocab=af0eaaa2
+-/
 theorem blrAcceptProb_eq (f : BooleanFunction n) (hf : IsBooleanValued f) :
     blrAcceptProb f = 1 / 2 + 1 / 2 * ∑ S : Finset (Fin n), (𝓕 f S) ^ 3 :=
   Internal.blrAcceptProb_eq_proof f hf
 
 /-- **BLR completeness**: If `f` is linear (i.e., `f = χ_S` for some `S`),
-    then the BLR test accepts with probability 1. -/
+    then the BLR test accepts with probability 1.
+@isnad1 id=eq.1h2v.s4.c58d639963f3 from=translated src=- shape=8a997a78 vocab=be8c3dac
+-/
 theorem blr_completeness (f : BooleanFunction n) (hf : IsLinear f) :
     blrAcceptProb f = 1 :=
   Internal.blr_completeness_proof f hf
 
 /-- **Theorem 1.30** (BLR soundness): If the BLR test accepts `f` with
-    probability `1 - ε`, then `f` is `ε`-close to being linear. -/
+    probability `1 - ε`, then `f` is `ε`-close to being linear.
+@isnad1 id=iscloset.2h3v.s5.6acd1881f7bf from=translated src=- shape=8ce6d94f vocab=b72d3492
+-/
 theorem blr_soundness (f : BooleanFunction n) (hf : IsBooleanValued f) (ε : ℝ)
     (hε : blrAcceptProb f ≥ 1 - ε) :
     IsCloseToProperty f IsLinear ε :=
@@ -434,14 +522,18 @@ theorem blr_soundness (f : BooleanFunction n) (hf : IsBooleanValued f) (ε : ℝ
     linear function `χ S`, then for every `x`, the algorithm
     "choose `y` uniformly, output `f(y) · f(x + y)`" outputs `(χ S) x`
     with probability at least `1 - 2ε`. No Boolean-valuedness is needed: the
-    union bound over the two reads uses only closeness. -/
+    union bound over the two reads uses only closeness.
+@isnad1 id=le.1h5v.s7.f633368e10d2 from=translated src=- shape=26274c31 vocab=65fd8c6c
+-/
 theorem local_correctability (f : BooleanFunction n)
     (S : Finset (Fin n)) (hclose : IsClose f (χ S) ε) (x : Cube n) :
     Pr[fun y => f y * f (x + y) = (χ S) x] ≥ 1 - 2 * ε :=
   Internal.local_correctability_proof f S ε hclose x
 
 /-- **The degree-0 part is the mean.** The only coordinate set of size `0` is `∅`,
-    and `χ_∅ ≡ 1`, so `f^{=0}` is the constant function `𝔼[f]`. -/
+    and `χ_∅ ≡ 1`, so `f^{=0}` is the constant function `𝔼[f]`.
+@isnad1 id=eq.0h3v.s4.63c5dadfdd51 from=translated src=- shape=b5e0952b vocab=39b43f07
+-/
 theorem degreePart_zero (f : BooleanFunction n) (x : Cube n) :
     degreePart f 0 x = 𝔼[f] := by
   have hfilter : (Finset.univ.filter (fun S : Finset (Fin n) => S.card = 0)) = {∅} := by
@@ -455,19 +547,25 @@ theorem degreePart_zero (f : BooleanFunction n) (x : Cube n) :
 The Fourier coefficient `𝓕 · S = ⟪·, χ S⟫` is linear in its function argument,
 inherited directly from linearity of the inner product. -/
 
-/-- The zero function has all Fourier coefficients zero. -/
+/-- The zero function has all Fourier coefficients zero.
+@isnad1 id=eq.0h2v.s5.ad7cbe91e78d from=translated src=- shape=c5192f46 vocab=12a1c861
+-/
 @[simp] theorem fourierCoeff_zero (S : Finset (Fin n)) :
     𝓕 (0 : BooleanFunction n) S = 0 := by
   simp only [fourierCoeff, inner_zero_left]
 
-/-- Fourier coefficients respect subtraction: `𝓕 (f - g) S = 𝓕 f S - 𝓕 g S`. -/
+/-- Fourier coefficients respect subtraction: `𝓕 (f - g) S = 𝓕 f S - 𝓕 g S`.
+@isnad1 id=eq.0h4v.s5.d159f3713683 from=translated src=- shape=cff39853 vocab=f961d998
+-/
 theorem fourierCoeff_sub (f g : BooleanFunction n) (S : Finset (Fin n)) :
     𝓕 (f - g) S = 𝓕 f S - 𝓕 g S := by
   simp only [fourierCoeff, inner_sub_left]
 
 /-- **Fourier uniqueness.** Two functions with identical Fourier coefficients are
     equal: the difference has zero norm by Parseval. The convenient way to prove a
-    functional identity `f = g` by checking spectra. -/
+    functional identity `f = g` by checking spectra.
+@isnad1 id=eq.1h3v.s4.788e4dda94c1 from=translated src=- shape=d0c30263 vocab=12a1c861
+-/
 theorem fourierCoeff_ext {f g : BooleanFunction n} (h : ∀ S, 𝓕 f S = 𝓕 g S) : f = g := by
   have hzero : ‖f - g‖₂ ^ 2 = 0 := by
     rw [norm_sq_eq_sum_fourierCoeff_sq]
@@ -479,14 +577,18 @@ theorem fourierCoeff_ext {f g : BooleanFunction n} (h : ∀ S, 𝓕 f S = 𝓕 g
 
 /-- **A parity function is its own indicator in Fourier space.** By
     orthonormality, `𝓕 χ_S T = 1` if `T = S` and `0` otherwise — the parities are
-    exactly the Fourier basis vectors. -/
+    exactly the Fourier basis vectors.
+@isnad1 id=eq.0h3v.s5.842a8e48194b from=translated src=- shape=92fd2552 vocab=d604a747
+-/
 theorem fourierCoeff_parityFun (S T : Finset (Fin n)) :
     𝓕 (χ S) T = if S = T then 1 else 0 := by
   rw [fourierCoeff_eq_inner, parityFun_orthonormal]
 
 /-- **Multiplying by a parity shifts the frequency by symmetric difference**:
     `𝓕(χ_S · g, T) = 𝓕(g, S △ T)`. Since `χ_S · χ_T = χ_{S△T}`, multiplication by a
-    character permutes the Fourier basis, so it relabels every coefficient of `g`. -/
+    character permutes the Fourier basis, so it relabels every coefficient of `g`.
+@isnad1 id=eq.0h4v.s5.a2f68049871b from=translated src=- shape=4e7dc29f vocab=fd8218e6
+-/
 theorem fourierCoeff_parityFun_mul (S : Finset (Fin n)) (g : BooleanFunction n)
     (T : Finset (Fin n)) :
     𝓕 (fun x => (χ S) x * g x) T = 𝓕 g (symmDiff S T) := by
@@ -500,7 +602,9 @@ theorem fourierCoeff_parityFun_mul (S : Finset (Fin n)) (g : BooleanFunction n)
 /-- **Fourier coefficients of the degree-`k` projection.** The projection `f^{=k}`
     keeps exactly the level-`k` Fourier coefficients and zeroes the rest:
     `𝓕 f^{=k} T = 𝓕 f T` if `|T| = k`, and `0` otherwise. This is `f^{=k}`'s
-    defining property as an orthogonal projection onto the degree-`k` subspace. -/
+    defining property as an orthogonal projection onto the degree-`k` subspace.
+@isnad1 id=eq.0h4v.s5.47016583566c from=translated src=- shape=fafd84cf vocab=1a480654
+-/
 theorem fourierCoeff_degreePart (f : BooleanFunction n) (k : ℕ) (T : Finset (Fin n)) :
     𝓕 (degreePart f k) T = if T.card = k then 𝓕 f T else 0 := by
   have hdp : (degreePart f k) =
@@ -515,7 +619,9 @@ theorem fourierCoeff_degreePart (f : BooleanFunction n) (k : ℕ) (T : Finset (F
 /-- **Distinct degree parts are orthogonal.** For `j ≠ k` the projections `f^{=j}`
     and `g^{=k}` live in orthogonal Fourier subspaces, so `⟪f^{=j}, g^{=k}⟫ = 0`.
     This is what makes the degree decomposition `f = ∑ₖ f^{=k}` an *orthogonal*
-    decomposition — the basis for Parseval-by-degree and degree concentration. -/
+    decomposition — the basis for Parseval-by-degree and degree concentration.
+@isnad1 id=eq.1h5v.s5.8975deec7549 from=translated src=- shape=73b93719 vocab=23b8544c
+-/
 theorem degreePart_inner_eq_zero (f g : BooleanFunction n) {j k : ℕ} (hjk : j ≠ k) :
     ⟪degreePart f j, degreePart g k⟫ = 0 := by
   rw [plancherel]
@@ -528,7 +634,9 @@ theorem degreePart_inner_eq_zero (f g : BooleanFunction n) {j k : ℕ} (hjk : j 
 
 /-- **The degree-`k` weight is the squared length of the degree-`k` part.**
     `⟪f^{=k}, f^{=k}⟫ = 𝐖 f k = ∑_{|S|=k} (𝓕 f S)²` — Parseval restricted to level
-    `k`. -/
+    `k`.
+@isnad1 id=eq.0h3v.s4.237d4b27f6e2 from=translated src=- shape=bd0d9d27 vocab=a178b32c
+-/
 theorem degreePart_self_inner (f : BooleanFunction n) (k : ℕ) :
     ⟪degreePart f k, degreePart f k⟫ = 𝐖 f k := by
   rw [plancherel, fourierWeightAtDegree, Finset.sum_filter]
@@ -537,14 +645,18 @@ theorem degreePart_self_inner (f : BooleanFunction n) (k : ℕ) :
   simp only [fourierCoeff_degreePart, fourierWeight]
   by_cases hS : S.card = k <;> simp [hS, pow_two]
 
-/-- The L² norm form of `degreePart_self_inner`: `‖f^{=k}‖₂² = 𝐖 f k`. -/
+/-- The L² norm form of `degreePart_self_inner`: `‖f^{=k}‖₂² = 𝐖 f k`.
+@isnad1 id=eq.0h3v.s5.89c8a1509e47 from=translated src=- shape=aeb2b16f vocab=fac4a390
+-/
 theorem norm_sq_degreePart (f : BooleanFunction n) (k : ℕ) :
     ‖degreePart f k‖₂ ^ 2 = 𝐖 f k := by
   rw [norm_sq_eq_inner, degreePart_self_inner]
 
 /-- **Parities are homogeneous.** The degree-`k` part of the parity `χ_S` is `χ_S`
     itself when `|S| = k`, and `0` otherwise — `χ_S` lives entirely in the
-    degree-`|S|` subspace. -/
+    degree-`|S|` subspace.
+@isnad1 id=eq.0h4v.s5.4d66e10caf24 from=translated src=- shape=15a6853a vocab=b08e5ec4
+-/
 theorem degreePart_parityFun (S : Finset (Fin n)) (k : ℕ) (x : Cube n) :
     degreePart (χ S) k x = if S.card = k then (χ S) x else 0 := by
   simp only [degreePart, fourierCoeff_parityFun, ite_mul, one_mul, zero_mul]
@@ -553,7 +665,9 @@ theorem degreePart_parityFun (S : Finset (Fin n)) (k : ℕ) (x : Cube n) :
 
 /-- The function-level degree decomposition of the low-degree part:
     `f^{≤k} = ∑_{j≤k} f^{=j}` as `BooleanFunction`s (the pointwise
-    `lowDegreePart_eq_sum_degreePart` promoted to a function equality). -/
+    `lowDegreePart_eq_sum_degreePart` promoted to a function equality).
+@isnad1 id=eq.0h3v.s5.6cf0be31b5b5 from=translated src=- shape=6e4f1de9 vocab=7a670a94
+-/
 theorem lowDegreePart_eq_sum (f : BooleanFunction n) (k : ℕ) :
     (lowDegreePart f k : BooleanFunction n)
       = ∑ j ∈ Finset.range (k + 1), degreePart f j := by
@@ -563,7 +677,9 @@ theorem lowDegreePart_eq_sum (f : BooleanFunction n) (k : ℕ) :
 
 /-- **Energy of the low-degree part.** By orthogonality of the degree parts, the
     squared length of `f^{≤k}` is the sum of the low-degree weights:
-    `⟪f^{≤k}, f^{≤k}⟫ = ∑_{j≤k} 𝐖 f j`. -/
+    `⟪f^{≤k}, f^{≤k}⟫ = ∑_{j≤k} 𝐖 f j`.
+@isnad1 id=eq.0h3v.s5.7cf1503288c4 from=translated src=- shape=2cea542e vocab=853b6661
+-/
 theorem lowDegreePart_self_inner (f : BooleanFunction n) (k : ℕ) :
     ⟪lowDegreePart f k, lowDegreePart f k⟫ = ∑ j ∈ Finset.range (k + 1), 𝐖 f j := by
   rw [lowDegreePart_eq_sum, sum_inner]
@@ -574,7 +690,9 @@ theorem lowDegreePart_self_inner (f : BooleanFunction n) (k : ℕ) :
   exact degreePart_self_inner f j
 
 /-- **The degree of an `n`-bit function is at most `n`.** Every coordinate set
-    has size `≤ n`, so the supremum defining `deg(f)` is bounded by `n`. -/
+    has size `≤ n`, so the supremum defining `deg(f)` is bounded by `n`.
+@isnad1 id=le.0h2v.s4.6b63cc0da592 from=translated src=- shape=e727dd96 vocab=9209aac6
+-/
 theorem degree_le (f : BooleanFunction n) : degree f ≤ (n : WithBot ℕ) := by
   unfold degree
   apply Finset.sup_le
@@ -582,7 +700,9 @@ theorem degree_le (f : BooleanFunction n) : degree f ≤ (n : WithBot ℕ) := by
   exact WithBot.coe_le_coe.mpr (by simpa using Finset.card_le_univ S)
 
 /-- The degree-0 Fourier weight is the squared mean coefficient:
-    `𝐖 f 0 = (𝓕 f ∅)²` (the only size-`0` coordinate set is `∅`). -/
+    `𝐖 f 0 = (𝓕 f ∅)²` (the only size-`0` coordinate set is `∅`).
+@isnad1 id=eq.0h2v.s5.4d841c8d7410 from=translated src=- shape=e9f237e4 vocab=fa7a6852
+-/
 theorem fourierWeightAtDegree_zero (f : BooleanFunction n) : 𝐖 f 0 = (𝓕 f ∅) ^ 2 := by
   have hfilter : (Finset.univ.filter (fun S : Finset (Fin n) => S.card = 0)) = {∅} := by
     ext S
@@ -591,7 +711,9 @@ theorem fourierWeightAtDegree_zero (f : BooleanFunction n) : 𝐖 f 0 = (𝓕 f 
 
 /-- Each degree weight is at most the total energy: `𝐖 f k ≤ ⟪f, f⟫`. A trivial
     but useful spectral concentration bound (one level can hold no more mass than
-    the whole). -/
+    the whole).
+@isnad1 id=le.0h3v.s4.d2c8689dd364 from=translated src=- shape=9286f074 vocab=aa3818e6
+-/
 theorem fourierWeightAtDegree_le_self_inner (f : BooleanFunction n) (k : ℕ) :
     𝐖 f k ≤ ⟪f, f⟫ := by
   by_cases hk : k ≤ n
@@ -619,7 +741,9 @@ theorem eq_iff_fourierCoeff (f g : BooleanFunction n) :
   simp only [fourierCoeff_sub, sub_eq_zero]
 
 /-- **Distinct coordinate sets give distinct parities.** The map `S ↦ χ_S` is
-    injective, so the parity functions are genuinely `2ⁿ` distinct basis vectors. -/
+    injective, so the parity functions are genuinely `2ⁿ` distinct basis vectors.
+@isnad1 id=injectiv.0h1v.s3.fc79a112b300 from=translated src=- shape=afb09f19 vocab=ba868e43
+-/
 theorem parityFun_injective :
     Function.Injective (fun S : Finset (Fin n) => (χ S : BooleanFunction n)) := by
   intro S T h
@@ -628,7 +752,9 @@ theorem parityFun_injective :
   split_ifs at hS with hSS hTS <;> simp_all
 
 /-- **Parity functions are Boolean-valued.** Each `χ_S(x)` is a product of `±1`
-    values, hence itself `±1`. -/
+    values, hence itself `±1`.
+@isnad1 id=isboolea.0h2v.s3.92e2d95420d0 from=translated src=- shape=52838ee4 vocab=58287921
+-/
 theorem isBooleanValued_parityFun (S : Finset (Fin n)) : IsBooleanValued (χ S) := by
   intro x
   simp only [parityFun]
@@ -643,7 +769,9 @@ theorem isBooleanValued_parityFun (S : Finset (Fin n)) : IsBooleanValued (χ S) 
 
 /-- **Variance is the non-constant energy.** `Var[f] = ⟪f, f⟫ - 𝐖 f 0`: total
     spectral energy minus the degree-0 (mean) weight. Splits the Parseval sum by
-    removing the `∅` term. -/
+    removing the `∅` term.
+@isnad1 id=eq.0h2v.s5.4e3e5777f1fd from=translated src=- shape=f1794125 vocab=8b161baa
+-/
 theorem variance_eq_self_inner_sub_fourierWeightAtDegree_zero (f : BooleanFunction n) :
     Var[f] = ⟪f, f⟫ - 𝐖 f 0 := by
   have hsingle : (Finset.univ.filter (fun S : Finset (Fin n) => S = ∅)) = {∅} := by
@@ -656,7 +784,9 @@ theorem variance_eq_self_inner_sub_fourierWeightAtDegree_zero (f : BooleanFuncti
   exact hsplit
 
 /-- **Variance is the weight above degree 0.** `Var[f] = ∑_{k≥1} 𝐖 f k` — the
-    total Fourier weight at all positive degrees. -/
+    total Fourier weight at all positive degrees.
+@isnad1 id=eq.0h2v.s5.0a35c1aa2e3a from=translated src=- shape=cb9dde8a vocab=082ae72f
+-/
 theorem variance_eq_sum_fourierWeightAtDegree_pos (f : BooleanFunction n) :
     Var[f] = ∑ k ∈ Finset.range n, 𝐖 f (k + 1) := by
   rw [variance_eq_self_inner_sub_fourierWeightAtDegree_zero, ← sum_fourierWeightAtDegree,
@@ -664,13 +794,17 @@ theorem variance_eq_sum_fourierWeightAtDegree_pos (f : BooleanFunction n) :
   ring
 
 /-- **Variance is nonnegative** for every real-valued function on the cube (not
-    only Boolean ones): it is a sum of nonnegative Fourier weights. -/
+    only Boolean ones): it is a sum of nonnegative Fourier weights.
+@isnad1 id=le.0h2v.s4.e4ce4ca11b90 from=translated src=- shape=9363a417 vocab=63bdea11
+-/
 theorem variance_nonneg (f : BooleanFunction n) : 0 ≤ Var[f] := by
   rw [variance_eq_sum_fourierWeightAtDegree_pos]
   exact Finset.sum_nonneg (fun k _ => fourierWeightAtDegree_nonneg f (k + 1))
 
 /-- For a Boolean-valued function, each degree weight is at most `1`, since the
-    total weight `∑_k 𝐖 f k = ⟪f, f⟫ = 1`. -/
+    total weight `∑_k 𝐖 f k = ⟪f, f⟫ = 1`.
+@isnad1 id=le.1h3v.s4.4c90d022ee31 from=translated src=- shape=8de66bc7 vocab=8e3c2fab
+-/
 theorem fourierWeightAtDegree_le_one (f : BooleanFunction n) (hf : IsBooleanValued f)
     (k : ℕ) : 𝐖 f k ≤ 1 := by
   have h := fourierWeightAtDegree_le_self_inner f k
@@ -678,13 +812,17 @@ theorem fourierWeightAtDegree_le_one (f : BooleanFunction n) (hf : IsBooleanValu
   exact h
 
 /-- Every Fourier coefficient of a Boolean-valued function is bounded:
-    `(𝓕 f S)² ≤ 1`, since it is one term of the Parseval sum `∑_T (𝓕 f T)² = 1`. -/
+    `(𝓕 f S)² ≤ 1`, since it is one term of the Parseval sum `∑_T (𝓕 f T)² = 1`.
+@isnad1 id=le.1h3v.s5.9f85586367ff from=translated src=- shape=fa9b4af4 vocab=0166a220
+-/
 theorem fourierCoeff_sq_le_one (f : BooleanFunction n) (hf : IsBooleanValued f)
     (S : Finset (Fin n)) : (𝓕 f S) ^ 2 ≤ 1 := by
   rw [← parseval_boolean f hf]
   exact Finset.single_le_sum (fun T _ => sq_nonneg _) (Finset.mem_univ S)
 
-/-- Every Fourier coefficient of a Boolean-valued function lies in `[-1, 1]`. -/
+/-- Every Fourier coefficient of a Boolean-valued function lies in `[-1, 1]`.
+@isnad1 id=le.1h3v.s4.4913174619fd from=translated src=- shape=ce8e2d28 vocab=5969e8a4
+-/
 theorem abs_fourierCoeff_le_one (f : BooleanFunction n) (hf : IsBooleanValued f)
     (S : Finset (Fin n)) : |𝓕 f S| ≤ 1 := by
   have h := fourierCoeff_sq_le_one f hf S
@@ -708,18 +846,24 @@ them, bounded by `⟪f, f⟫` (which is `1` for Boolean `f`). -/
 noncomputable def noiseStability (ρ : ℝ) (f : BooleanFunction n) : ℝ :=
   ∑ S : Finset (Fin n), ρ ^ S.card * (𝓕 f S) ^ 2
 
-/-- At `ρ = 1`, noise stability is the total Fourier power `⟪f, f⟫` (Parseval). -/
+/-- At `ρ = 1`, noise stability is the total Fourier power `⟪f, f⟫` (Parseval).
+@isnad1 id=eq.0h2v.s4.1eb1707215de from=translated src=- shape=09b1cc45 vocab=6217f35f
+-/
 theorem noiseStability_one (f : BooleanFunction n) : noiseStability 1 f = ⟪f, f⟫ := by
   simp only [noiseStability, one_pow, one_mul]
   rw [parseval]
 
-/-- Noise stability is nonnegative for `0 ≤ ρ`. -/
+/-- Noise stability is nonnegative for `0 ≤ ρ`.
+@isnad1 id=le.1h3v.s4.c69e5f1def5e from=translated src=- shape=07de1eae vocab=7fa660df
+-/
 theorem noiseStability_nonneg {ρ : ℝ} (hρ : 0 ≤ ρ) (f : BooleanFunction n) :
     0 ≤ noiseStability ρ f :=
   Finset.sum_nonneg fun _ _ => mul_nonneg (pow_nonneg hρ _) (sq_nonneg _)
 
 /-- For `ρ ∈ [0, 1]`, noise stability is bounded above by the total power `⟪f, f⟫`
-    (each spectral weight is damped by `ρ^{|S|} ≤ 1`). -/
+    (each spectral weight is damped by `ρ^{|S|} ≤ 1`).
+@isnad1 id=le.2h3v.s5.e1ee7d08f462 from=translated src=- shape=a641d831 vocab=af1e47da
+-/
 theorem noiseStability_le_self_inner {ρ : ℝ} (hρ0 : 0 ≤ ρ) (hρ1 : ρ ≤ 1)
     (f : BooleanFunction n) : noiseStability ρ f ≤ ⟪f, f⟫ := by
   rw [parseval, noiseStability]
@@ -728,7 +872,9 @@ theorem noiseStability_le_self_inner {ρ : ℝ} (hρ0 : 0 ≤ ρ) (hρ1 : ρ ≤
         mul_le_mul_of_nonneg_right (pow_le_one₀ hρ0 hρ1) (sq_nonneg _)
     _ = (𝓕 f S) ^ 2 := one_mul _
 
-/-- At `ρ = 0`, only the empty-set term survives: `Stab₀[f] = 𝓕(f, ∅)²`. -/
+/-- At `ρ = 0`, only the empty-set term survives: `Stab₀[f] = 𝓕(f, ∅)²`.
+@isnad1 id=eq.0h2v.s5.58271cc0f0fd from=translated src=- shape=b0df66ed vocab=3d1a4d2c
+-/
 theorem noiseStability_zero (f : BooleanFunction n) :
     noiseStability 0 f = (𝓕 f ∅) ^ 2 := by
   rw [noiseStability, Finset.sum_eq_single ∅]
@@ -738,20 +884,26 @@ theorem noiseStability_zero (f : BooleanFunction n) :
     rw [zero_pow hc, zero_mul]
   · intro h; simp at h
 
-/-- At `ρ = 0`, noise stability is the squared mean `𝔼[f]²` (since `𝔼[f] = 𝓕(f, ∅)`). -/
+/-- At `ρ = 0`, noise stability is the squared mean `𝔼[f]²` (since `𝔼[f] = 𝓕(f, ∅)`).
+@isnad1 id=eq.0h2v.s5.82a878c032ea from=translated src=- shape=bf787410 vocab=ae4cd4fb
+-/
 theorem noiseStability_zero_eq_expect_sq (f : BooleanFunction n) :
     noiseStability 0 f = 𝔼[f] ^ 2 := by
   rw [noiseStability_zero, expect_eq_fourierCoeff_empty]
 
 /-- For a Boolean-valued function and `ρ ∈ [0, 1]`, noise stability is at most `1`
-    (its total power is `1`). -/
+    (its total power is `1`).
+@isnad1 id=le.3h3v.s5.b50763d4b340 from=translated src=- shape=36b08157 vocab=ebce8bac
+-/
 theorem noiseStability_boolean_le_one {ρ : ℝ} (hρ0 : 0 ≤ ρ) (hρ1 : ρ ≤ 1)
     (f : BooleanFunction n) (hf : IsBooleanValued f) : noiseStability ρ f ≤ 1 := by
   have h := noiseStability_le_self_inner hρ0 hρ1 f
   rwa [parseval, parseval_boolean f hf] at h
 
 /-- For `ρ ≥ 0`, noise stability is bounded below by the squared mean `𝔼[f]²` — the
-    `S = ∅` term of the spectral sum, which survives with weight `ρ⁰ = 1`. -/
+    `S = ∅` term of the spectral sum, which survives with weight `ρ⁰ = 1`.
+@isnad1 id=le.1h3v.s5.46b3eb4f4625 from=translated src=- shape=41a36a00 vocab=e7551d29
+-/
 theorem sq_expect_le_noiseStability {ρ : ℝ} (hρ : 0 ≤ ρ) (f : BooleanFunction n) :
     𝔼[f] ^ 2 ≤ noiseStability ρ f := by
   rw [expect_eq_fourierCoeff_empty, noiseStability]
@@ -762,7 +914,9 @@ theorem sq_expect_le_noiseStability {ρ : ℝ} (hρ : 0 ≤ ρ) (f : BooleanFunc
 /-- **Noise stability grouped by degree**: `Stabᵨ[f] = ∑_k ρ^k · 𝐖(f, k)`. Grouping
     the spectral sum by `|S| = k` factors out the common damping `ρ^k` on each
     degree, exhibiting `Stabᵨ` as the `ρ`-weighted generating function of the
-    Fourier weight distribution. -/
+    Fourier weight distribution.
+@isnad1 id=eq.0h3v.s5.952aa6306aca from=translated src=- shape=5c5fc98e vocab=1b79eca5
+-/
 theorem noiseStability_eq_sum_weight (ρ : ℝ) (f : BooleanFunction n) :
     noiseStability ρ f = ∑ k ∈ Finset.range (n + 1), ρ ^ k * 𝐖 f k := by
   have hle : ∀ S : Finset (Fin n), S.card ≤ n := fun S => by simpa using Finset.card_le_univ S
@@ -780,7 +934,9 @@ theorem noiseStability_eq_sum_weight (ρ : ℝ) (f : BooleanFunction n) :
 noncomputable def noiseOp (ρ : ℝ) (f : BooleanFunction n) : BooleanFunction n :=
   ∑ S : Finset (Fin n), (ρ ^ S.card * 𝓕 f S) • (χ S)
 
-/-- **Fourier formula for the noise operator**: `𝓕(T_ρ f, T) = ρ^{|T|} · 𝓕(f, T)`. -/
+/-- **Fourier formula for the noise operator**: `𝓕(T_ρ f, T) = ρ^{|T|} · 𝓕(f, T)`.
+@isnad1 id=eq.0h4v.s5.b8982570b6cf from=translated src=- shape=cf3fac31 vocab=0486082f
+-/
 theorem fourierCoeff_noiseOp (ρ : ℝ) (f : BooleanFunction n) (T : Finset (Fin n)) :
     𝓕 (noiseOp ρ f) T = ρ ^ T.card * 𝓕 f T := by
   rw [noiseOp, fourierCoeff_eq_inner, sum_inner]
@@ -792,7 +948,9 @@ theorem fourierCoeff_noiseOp (ρ : ℝ) (f : BooleanFunction n) (T : Finset (Fin
 
 /-- **Noise stability is the correlation of `f` with its noised copy**:
     `Stabᵨ[f] = ⟪f, T_ρ f⟫` (Plancherel). This is the operator form of the spectral
-    definition. -/
+    definition.
+@isnad1 id=eq.0h3v.s4.db23158aa296 from=translated src=- shape=3390c36a vocab=a49b3ec0
+-/
 theorem noiseStability_eq_inner (ρ : ℝ) (f : BooleanFunction n) :
     noiseStability ρ f = ⟪f, noiseOp ρ f⟫ := by
   rw [plancherel]
@@ -800,12 +958,16 @@ theorem noiseStability_eq_inner (ρ : ℝ) (f : BooleanFunction n) :
   exact Finset.sum_congr rfl fun S _ => by ring
 
 /-- At `ρ = 1` the noise operator is the identity: `T_1 f = f` (no frequency is
-    damped). -/
+    damped).
+@isnad1 id=eq.0h2v.s4.6cc933d3979e from=translated src=- shape=403a53c5 vocab=8ae10825
+-/
 theorem noiseOp_one (f : BooleanFunction n) : noiseOp 1 f = f :=
   fourierCoeff_ext fun S => by rw [fourierCoeff_noiseOp, one_pow, one_mul]
 
 /-- Noise stability is monotone in the correlation `ρ` on `ρ ≥ 0`: more
-    correlation can only increase agreement. -/
+    correlation can only increase agreement.
+@isnad1 id=le.2h4v.s5.608394607a91 from=translated src=- shape=19468a56 vocab=7fa660df
+-/
 theorem noiseStability_mono {ρ₁ ρ₂ : ℝ} (h0 : 0 ≤ ρ₁) (h12 : ρ₁ ≤ ρ₂)
     (f : BooleanFunction n) : noiseStability ρ₁ f ≤ noiseStability ρ₂ f :=
   Finset.sum_le_sum fun _ _ =>
@@ -817,21 +979,27 @@ theorem noiseStability_mono {ρ₁ ρ₂ : ℝ} (h0 : 0 ≤ ρ₁) (h12 : ρ₁ 
 noncomputable def noiseStabilityBilin (ρ : ℝ) (f g : BooleanFunction n) : ℝ :=
   ∑ S : Finset (Fin n), ρ ^ S.card * (𝓕 f S * 𝓕 g S)
 
-/-- On the diagonal, bilinear noise stability is ordinary noise stability. -/
+/-- On the diagonal, bilinear noise stability is ordinary noise stability.
+@isnad1 id=eq.0h3v.s4.a59f909e0783 from=translated src=- shape=2756003a vocab=d53dd151
+-/
 theorem noiseStabilityBilin_self (ρ : ℝ) (f : BooleanFunction n) :
     noiseStabilityBilin ρ f f = noiseStability ρ f := by
   simp only [noiseStabilityBilin, noiseStability]
   refine Finset.sum_congr rfl fun S _ => ?_
   ring
 
-/-- Bilinear noise stability is symmetric in its two arguments. -/
+/-- Bilinear noise stability is symmetric in its two arguments.
+@isnad1 id=eq.0h4v.s4.1bbdc213f26f from=translated src=- shape=2298ef39 vocab=b468ab87
+-/
 theorem noiseStabilityBilin_symm (ρ : ℝ) (f g : BooleanFunction n) :
     noiseStabilityBilin ρ f g = noiseStabilityBilin ρ g f := by
   simp only [noiseStabilityBilin]
   refine Finset.sum_congr rfl fun S _ => ?_
   ring
 
-/-- At `ρ = 1`, bilinear noise stability is the inner product (Plancherel). -/
+/-- At `ρ = 1`, bilinear noise stability is the inner product (Plancherel).
+@isnad1 id=eq.0h3v.s4.8bbc4c966018 from=translated src=- shape=03f4bd85 vocab=049d1802
+-/
 theorem noiseStabilityBilin_one (f g : BooleanFunction n) :
     noiseStabilityBilin 1 f g = ⟪f, g⟫ := by
   simp only [noiseStabilityBilin, one_pow, one_mul]
@@ -839,7 +1007,9 @@ theorem noiseStabilityBilin_one (f g : BooleanFunction n) :
 
 /-- **Bilinear noise stability is the correlation across the noise operator**:
     `Stabᵨ[f, g] = ⟪f, T_ρ g⟫`. Since `Stabᵨ` is symmetric, this also exhibits `T_ρ`
-    as self-adjoint: `⟪f, T_ρ g⟫ = ⟪T_ρ f, g⟫`. -/
+    as self-adjoint: `⟪f, T_ρ g⟫ = ⟪T_ρ f, g⟫`.
+@isnad1 id=eq.0h4v.s4.4ff5b9b50808 from=translated src=- shape=9084d9c3 vocab=722cce7d
+-/
 theorem noiseStabilityBilin_eq_inner (ρ : ℝ) (f g : BooleanFunction n) :
     noiseStabilityBilin ρ f g = ⟪f, noiseOp ρ g⟫ := by
   rw [plancherel]
@@ -858,7 +1028,9 @@ inequality below; the tensorization step remains. -/
 /-- **The two-point `(2, 4)`-hypercontractive inequality** (Bonami's base case). For a
     single-bit function `f(x) = a + b·x` on `x ∈ {−1, +1}`, the noised function
     `T_{1/√3} f = a + (b/√3)·x` satisfies `𝔼[(T_{1/√3} f)⁴] ≤ (𝔼[f²])² = (a² + b²)²`.
-    The left side is `((a + b/√3)⁴ + (a − b/√3)⁴)/2`; the slack is `8b⁴/9 ≥ 0`. -/
+    The left side is `((a + b/√3)⁴ + (a − b/√3)⁴)/2`; the slack is `8b⁴/9 ≥ 0`.
+@isnad1 id=le.0h2v.s7.6a707e0b6c7e from=translated src=- shape=07203f61 vocab=c0e0604a
+-/
 theorem two_point_hypercontractive (a b : ℝ) :
     ((a + b / Real.sqrt 3) ^ 4 + (a - b / Real.sqrt 3) ^ 4) / 2 ≤ (a ^ 2 + b ^ 2) ^ 2 := by
   have h3 : (Real.sqrt 3) ^ 2 = 3 := Real.sq_sqrt (by norm_num)
@@ -884,11 +1056,15 @@ Boolean `f`) — the fact that a function on `n` bits has average sensitivity at
 noncomputable def totalInfluence (f : BooleanFunction n) : ℝ :=
   ∑ S : Finset (Fin n), (S.card : ℝ) * (𝓕 f S) ^ 2
 
-/-- Total influence is nonnegative. -/
+/-- Total influence is nonnegative.
+@isnad1 id=le.0h2v.s4.b7f941545bf2 from=translated src=- shape=9363a417 vocab=404d934f
+-/
 theorem totalInfluence_nonneg (f : BooleanFunction n) : 0 ≤ totalInfluence f :=
   Finset.sum_nonneg fun _ _ => mul_nonneg (by positivity) (sq_nonneg _)
 
-/-- **Total influence grouped by degree**: `I[f] = ∑_k k · 𝐖(f, k)`. -/
+/-- **Total influence grouped by degree**: `I[f] = ∑_k k · 𝐖(f, k)`.
+@isnad1 id=eq.0h2v.s5.8889e31b430e from=translated src=- shape=b07483ee vocab=6c2cc073
+-/
 theorem totalInfluence_eq_sum_weight (f : BooleanFunction n) :
     totalInfluence f = ∑ k ∈ Finset.range (n + 1), (k : ℝ) * 𝐖 f k := by
   have hle : ∀ S : Finset (Fin n), S.card ≤ n := fun S => by simpa using Finset.card_le_univ S
@@ -900,7 +1076,9 @@ theorem totalInfluence_eq_sum_weight (f : BooleanFunction n) :
   rw [Finset.mem_filter] at hS
   rw [fourierWeight, hS.2]
 
-/-- Total influence is bounded by `n · ⟪f, f⟫` (each degree is at most `n`). -/
+/-- Total influence is bounded by `n · ⟪f, f⟫` (each degree is at most `n`).
+@isnad1 id=le.0h2v.s4.eee3f999f4c5 from=translated src=- shape=fb56472c vocab=c3400873
+-/
 theorem totalInfluence_le (f : BooleanFunction n) : totalInfluence f ≤ (n : ℝ) * ⟪f, f⟫ := by
   rw [parseval, Finset.mul_sum, totalInfluence]
   refine Finset.sum_le_sum fun S _ => ?_
@@ -909,7 +1087,9 @@ theorem totalInfluence_le (f : BooleanFunction n) : totalInfluence f ≤ (n : �
   exact_mod_cast hS
 
 /-- For a Boolean-valued function, total influence is at most `n` (its total power
-    is `1`). -/
+    is `1`).
+@isnad1 id=le.1h2v.s4.16a03010d590 from=translated src=- shape=716cc066 vocab=849815ac
+-/
 theorem totalInfluence_boolean_le (f : BooleanFunction n) (hf : IsBooleanValued f) :
     totalInfluence f ≤ (n : ℝ) := by
   have h := totalInfluence_le f
@@ -918,7 +1098,9 @@ theorem totalInfluence_boolean_le (f : BooleanFunction n) (hf : IsBooleanValued 
 
 /-- **Low-degree functions have small total influence.** If `f` has degree at most
     `d` (all Fourier coefficients on sets larger than `d` vanish), then
-    `I[f] ≤ d · ⟪f, f⟫`. -/
+    `I[f] ≤ d · ⟪f, f⟫`.
+@isnad1 id=le.1h3v.s5.581582155626 from=translated src=- shape=48a12ec3 vocab=22631baf
+-/
 theorem totalInfluence_le_of_degree (f : BooleanFunction n) (d : ℕ)
     (hd : ∀ S : Finset (Fin n), d < S.card → 𝓕 f S = 0) :
     totalInfluence f ≤ (d : ℝ) * ⟪f, f⟫ := by
@@ -930,7 +1112,9 @@ theorem totalInfluence_le_of_degree (f : BooleanFunction n) (d : ℕ)
     rw [hd S h]; simp
 
 /-- For a Boolean-valued function of degree at most `d`, total influence is at most
-    `d`. -/
+    `d`.
+@isnad1 id=le.2h3v.s5.6b6cb805dc1e from=translated src=- shape=42b15803 vocab=41ef92a6
+-/
 theorem totalInfluence_boolean_le_of_degree (f : BooleanFunction n) (hf : IsBooleanValued f)
     (d : ℕ) (hd : ∀ S : Finset (Fin n), d < S.card → 𝓕 f S = 0) :
     totalInfluence f ≤ (d : ℝ) := by
@@ -943,14 +1127,18 @@ theorem totalInfluence_boolean_le_of_degree (f : BooleanFunction n) (hf : IsBool
 noncomputable def influence (i : Fin n) (f : BooleanFunction n) : ℝ :=
   ∑ S ∈ Finset.univ.filter (fun S : Finset (Fin n) => i ∈ S), (𝓕 f S) ^ 2
 
-/-- Coordinate influence is nonnegative. -/
+/-- Coordinate influence is nonnegative.
+@isnad1 id=le.0h3v.s4.38e3239ee0ad from=translated src=- shape=d78b0cc0 vocab=08b13034
+-/
 theorem influence_nonneg (i : Fin n) (f : BooleanFunction n) : 0 ≤ influence i f :=
   Finset.sum_nonneg fun _ _ => sq_nonneg _
 
 /-- **Total influence is the sum of the coordinate influences**:
     `I[f] = ∑_i Infᵢ[f]`. Each set `S` contributes its weight `𝓕(f,S)²` once for
     every coordinate it contains, i.e. `|S|` times — swapping the order of
-    summation turns the degree weighting into a sum over coordinates. -/
+    summation turns the degree weighting into a sum over coordinates.
+@isnad1 id=eq.0h2v.s4.d67253dfb95d from=translated src=- shape=b7472add vocab=915ae47c
+-/
 theorem totalInfluence_eq_sum_influence (f : BooleanFunction n) :
     totalInfluence f = ∑ i : Fin n, influence i f := by
   simp only [totalInfluence, influence, Finset.sum_filter]
@@ -958,19 +1146,25 @@ theorem totalInfluence_eq_sum_influence (f : BooleanFunction n) :
   refine Finset.sum_congr rfl fun S _ => ?_
   rw [Finset.sum_ite_mem, Finset.univ_inter, Finset.sum_const, nsmul_eq_mul]
 
-/-- Each coordinate influence is at most the total influence. -/
+/-- Each coordinate influence is at most the total influence.
+@isnad1 id=le.0h3v.s4.4b2e6d9492a6 from=translated src=- shape=b34815f5 vocab=4ee48d7e
+-/
 theorem influence_le_totalInfluence (i : Fin n) (f : BooleanFunction n) :
     influence i f ≤ totalInfluence f := by
   rw [totalInfluence_eq_sum_influence]
   exact Finset.single_le_sum (fun j _ => influence_nonneg j f) (Finset.mem_univ i)
 
-/-- A coordinate's influence is at most the total power `⟪f, f⟫`. -/
+/-- A coordinate's influence is at most the total power `⟪f, f⟫`.
+@isnad1 id=le.0h3v.s4.246531fdf99d from=translated src=- shape=204a69ea vocab=391d17b2
+-/
 theorem influence_le_self_inner (i : Fin n) (f : BooleanFunction n) :
     influence i f ≤ ⟪f, f⟫ := by
   rw [parseval, influence]
   exact Finset.sum_le_sum_of_subset_of_nonneg (Finset.filter_subset _ _) (fun S _ _ => sq_nonneg _)
 
-/-- For a Boolean-valued function, every coordinate influence is at most `1`. -/
+/-- For a Boolean-valued function, every coordinate influence is at most `1`.
+@isnad1 id=le.1h3v.s4.b6ed482d5fc6 from=translated src=- shape=2120cf66 vocab=dc1e7da4
+-/
 theorem influence_boolean_le_one (i : Fin n) (f : BooleanFunction n) (hf : IsBooleanValued f) :
     influence i f ≤ 1 := by
   have h := influence_le_self_inner i f
@@ -978,7 +1172,9 @@ theorem influence_boolean_le_one (i : Fin n) (f : BooleanFunction n) (hf : IsBoo
 
 /-- **Average sensitivity of a parity.** The parity `χ_S` has total influence
     exactly `|S|`: each of its `|S|` relevant coordinates is fully influential
-    (a concrete check of the average-sensitivity theory on the Fourier basis). -/
+    (a concrete check of the average-sensitivity theory on the Fourier basis).
+@isnad1 id=eq.0h2v.s4.100743701ffe from=translated src=- shape=2ce5cdf4 vocab=27349bef
+-/
 theorem totalInfluence_parityFun (S : Finset (Fin n)) :
     totalInfluence (χ S) = (S.card : ℝ) := by
   simp only [totalInfluence, fourierCoeff_parityFun]
@@ -988,7 +1184,9 @@ theorem totalInfluence_parityFun (S : Finset (Fin n)) :
   · intro h; exact absurd (Finset.mem_univ S) h
 
 /-- **Coordinate influence of a parity.** Coordinate `i` influences `χ_S` fully
-    when `i ∈ S`, and not at all otherwise. -/
+    when `i ∈ S`, and not at all otherwise.
+@isnad1 id=eq.0h3v.s5.99e7952b1a1d from=translated src=- shape=96e5f016 vocab=26f2b6b3
+-/
 theorem influence_parityFun (i : Fin n) (S : Finset (Fin n)) :
     influence i (χ S) = if i ∈ S then 1 else 0 := by
   have hsq : ∀ T : Finset (Fin n),
@@ -1000,7 +1198,9 @@ theorem influence_parityFun (i : Fin n) (S : Finset (Fin n)) :
 
 /-- The squared degree-1 coefficient at `i` is a lower bound for the influence of `i`:
     `𝓕(f, {i})² ≤ Infᵢ[f]`. It is the `S = {i}` term of the spectral sum defining the
-    influence, and all other terms are nonnegative. -/
+    influence, and all other terms are nonnegative.
+@isnad1 id=le.0h3v.s5.61b4a4b309c4 from=translated src=- shape=9698f7e2 vocab=4e78773a
+-/
 theorem fourierCoeff_singleton_sq_le_influence (i : Fin n) (f : BooleanFunction n) :
     (𝓕 f {i}) ^ 2 ≤ influence i f := by
   rw [influence]
@@ -1009,7 +1209,9 @@ theorem fourierCoeff_singleton_sq_le_influence (i : Fin n) (f : BooleanFunction 
 
 /-- **Degree-1 weight is bounded by total influence**: `W¹[f] ≤ I[f]`. Each degree-1
     frequency contributes its weight once to `W¹` but `|S| = 1` times (i.e. also once)
-    to `I`, and higher-degree frequencies only add to `I`. -/
+    to `I`, and higher-degree frequencies only add to `I`.
+@isnad1 id=le.0h2v.s4.81dc8df4cc29 from=translated src=- shape=4d8d52f1 vocab=9c4af813
+-/
 theorem fourierWeightAtDegree_one_le_totalInfluence (f : BooleanFunction n) :
     𝐖 f 1 ≤ totalInfluence f := by
   rw [fourierWeightAtDegree, totalInfluence]
@@ -1025,7 +1227,9 @@ theorem fourierWeightAtDegree_one_le_totalInfluence (f : BooleanFunction n) :
     coefficients is at most the total influence: `∑_i 𝓕(f, {i})² ≤ I[f]`. Immediate by
     summing `fourierCoeff_singleton_sq_le_influence` over the coordinates. This is the
     elementary bound, not O'Donnell's hypercontractive Level-1 inequality
-    `W¹[f] ≤ O(α² log(1/α))`, which is not formalized. -/
+    `W¹[f] ≤ O(α² log(1/α))`, which is not formalized.
+@isnad1 id=le.0h2v.s5.32072a0f85fa from=translated src=- shape=eb9265f0 vocab=1aa99a80
+-/
 theorem sum_fourierCoeff_singleton_sq_le_totalInfluence (f : BooleanFunction n) :
     ∑ i : Fin n, (𝓕 f {i}) ^ 2 ≤ totalInfluence f := by
   rw [totalInfluence_eq_sum_influence]
@@ -1033,7 +1237,9 @@ theorem sum_fourierCoeff_singleton_sq_le_totalInfluence (f : BooleanFunction n) 
 
 /-- The coordinate sum of squared degree-1 coefficients **is** the degree-1 weight:
     `∑_i 𝓕(f, {i})² = W¹[f]`. The singletons `{i}` are exactly the cardinality-1
-    frequencies, so the coordinate sum and the degree-1 weight coincide. -/
+    frequencies, so the coordinate sum and the degree-1 weight coincide.
+@isnad1 id=eq.0h2v.s5.e20cdc86c787 from=translated src=- shape=7c01d4ba vocab=abd26e38
+-/
 theorem sum_fourierCoeff_singleton_sq_eq_fourierWeightAtDegree_one (f : BooleanFunction n) :
     ∑ i : Fin n, (𝓕 f {i}) ^ 2 = 𝐖 f 1 := by
   rw [fourierWeightAtDegree]
@@ -1051,7 +1257,9 @@ theorem sum_fourierCoeff_singleton_sq_eq_fourierWeightAtDegree_one (f : BooleanF
 /-- Flip coordinate `i` of a point of the Hamming cube. -/
 def flipCoord (i : Fin n) (x : Cube n) : Cube n := Function.update x i (x i + 1)
 
-/-- The character `χ` negates under a bit flip: `χ(b + 1) = -χ(b)`. -/
+/-- The character `χ` negates under a bit flip: `χ(b + 1) = -χ(b)`.
+@isnad1 id=eq.0h1v.s7.cbf24443b759 from=translated src=- shape=094bdb0f vocab=434abf14
+-/
 theorem chi_add_one (b : ZMod 2) : chi (b + 1) = - chi b := by
   fin_cases b
   · show chi 1 = - chi 0; simp [chi]
@@ -1060,7 +1268,9 @@ theorem chi_add_one (b : ZMod 2) : chi (b + 1) = - chi b := by
 /-- **A parity under a coordinate flip.** `χ_S` flips sign exactly when the flipped
     coordinate is one of its inputs: `χ_S(x with coordinate i flipped) = (−1)^{[i∈S]}
     · χ_S(x)`. This is the key step toward reading coordinate influence as the
-    probability that `f` is sensitive at `i`. -/
+    probability that `f` is sensitive at `i`.
+@isnad1 id=eq.0h4v.s6.5119144a64a1 from=translated src=- shape=8a884fce vocab=cf14c1de
+-/
 theorem parityFun_flipCoord (i : Fin n) (S : Finset (Fin n)) (x : Cube n) :
     (χ S) (flipCoord i x) = (if i ∈ S then -1 else 1) * (χ S) x := by
   simp only [parityFun, flipCoord]
@@ -1074,7 +1284,9 @@ theorem parityFun_flipCoord (i : Fin n) (S : Finset (Fin n)) (x : Cube n) :
     apply Finset.prod_congr rfl
     intro j hj; rw [Function.update_of_ne (ne_of_mem_of_not_mem hj hi)]
 
-/-- Flipping coordinate `i` twice is the identity (`ZMod 2` has characteristic two). -/
+/-- Flipping coordinate `i` twice is the identity (`ZMod 2` has characteristic two).
+@isnad1 id=eq.0h3v.s4.9489b55c3c90 from=translated src=- shape=c2334928 vocab=cae58ce7
+-/
 theorem flipCoord_flipCoord (i : Fin n) (x : Cube n) : flipCoord i (flipCoord i x) = x := by
   simp only [flipCoord, Function.update_self, Function.update_idem]
   rw [add_assoc, show (1 : ZMod 2) + 1 = 0 from by decide, add_zero, Function.update_eq_self]
@@ -1084,7 +1296,9 @@ def flipEquiv (i : Fin n) : Cube n ≃ Cube n :=
   ⟨flipCoord i, flipCoord i, flipCoord_flipCoord i, flipCoord_flipCoord i⟩
 
 /-- The uniform expectation is invariant under a coordinate flip: `flipCoord i` is a
-    measure-preserving bijection of the cube. -/
+    measure-preserving bijection of the cube.
+@isnad1 id=eq.0h3v.s4.5542ebdb6b31 from=translated src=- shape=9e4ec670 vocab=9ebcfbf3
+-/
 theorem expect_flipCoord (i : Fin n) (g : Cube n → ℝ) :
     (𝔼[fun x => g (flipCoord i x)]) = 𝔼[g] := by
   simp only [expect]
@@ -1092,7 +1306,9 @@ theorem expect_flipCoord (i : Fin n) (g : Cube n → ℝ) :
 
 /-- **Fourier coefficient of `f` precomposed with a coordinate flip.** Flipping
     coordinate `i` negates exactly the frequencies containing `i`:
-    `𝓕(f ∘ flipᵢ, T) = (−1)^[i∈T] · 𝓕(f, T)`. -/
+    `𝓕(f ∘ flipᵢ, T) = (−1)^[i∈T] · 𝓕(f, T)`.
+@isnad1 id=eq.0h4v.s6.aba5069c6678 from=translated src=- shape=695168e7 vocab=5b12f006
+-/
 theorem fourierCoeff_comp_flipCoord (i : Fin n) (f : BooleanFunction n) (T : Finset (Fin n)) :
     𝓕 (fun x => f (flipCoord i x)) T = (if i ∈ T then -1 else 1) * 𝓕 f T := by
   rw [fourierCoeff_eq_inner (f := fun x : Cube n => f (flipCoord i x)) (S := T),
@@ -1111,7 +1327,9 @@ noncomputable def derivative (i : Fin n) (f : BooleanFunction n) : BooleanFuncti
   ∑ S ∈ Finset.univ.filter (fun S => i ∈ S), (𝓕 f S) • (χ (S.erase i))
 
 /-- **Fourier formula for the derivative**: `𝓕(D_i f, T) = 𝓕(f, T ∪ {i})` when
-    `i ∉ T`, and `0` when `i ∈ T`. -/
+    `i ∉ T`, and `0` when `i ∈ T`.
+@isnad1 id=eq.0h4v.s6.f34a4845aafa from=translated src=- shape=1663aabd vocab=c5eda90a
+-/
 theorem fourierCoeff_derivative (i : Fin n) (f : BooleanFunction n) (T : Finset (Fin n)) :
     𝓕 (derivative i f) T = if i ∈ T then 0 else 𝓕 f (insert i T) := by
   rw [derivative, fourierCoeff_eq_inner, sum_inner]
@@ -1135,7 +1353,9 @@ theorem fourierCoeff_derivative (i : Fin n) (f : BooleanFunction n) (T : Finset 
 
 /-- **Influence is the squared norm of the derivative**: `Infᵢ[f] = ‖D_i f‖²`. This
     is the analytic form of coordinate influence — the standard bridge to the
-    combinatorial "probability `f` is sensitive at `i`" (O'Donnell §2.2). -/
+    combinatorial "probability `f` is sensitive at `i`" (O'Donnell §2.2).
+@isnad1 id=eq.0h3v.s5.06bd7df8014d from=translated src=- shape=93fe0f33 vocab=7cce1095
+-/
 theorem influence_eq_norm_sq_derivative (i : Fin n) (f : BooleanFunction n) :
     influence i f = ‖derivative i f‖₂ ^ 2 := by
   rw [norm_sq_eq_sum_fourierCoeff_sq, influence,
@@ -1164,7 +1384,9 @@ noncomputable def sensitivityOp (i : Fin n) (f : BooleanFunction n) : BooleanFun
 
 /-- **Fourier formula for the sensitivity operator**: `Lᵢ` keeps the frequencies
     containing `i` and kills the rest — `𝓕(Lᵢ f, T) = 𝓕(f, T)` if `i ∈ T`, else `0`.
-    (Contrast the derivative `Dᵢ`, which additionally strips `i` from each frequency.) -/
+    (Contrast the derivative `Dᵢ`, which additionally strips `i` from each frequency.)
+@isnad1 id=eq.0h4v.s5.305b93fd4ad4 from=translated src=- shape=f65768de vocab=775cc74c
+-/
 theorem fourierCoeff_sensitivityOp (i : Fin n) (f : BooleanFunction n) (T : Finset (Fin n)) :
     𝓕 (sensitivityOp i f) T = if i ∈ T then 𝓕 f T else 0 := by
   have key : 𝓕 (sensitivityOp i f) T
@@ -1184,7 +1406,9 @@ theorem fourierCoeff_sensitivityOp (i : Fin n) (f : BooleanFunction n) (T : Fins
 
 /-- **Influence is the squared norm of the sensitivity operator**: `Infᵢ[f] = ‖Lᵢ f‖²`.
     A second analytic form of coordinate influence, complementing
-    `influence_eq_norm_sq_derivative`. -/
+    `influence_eq_norm_sq_derivative`.
+@isnad1 id=eq.0h3v.s5.99c64ee6d11d from=translated src=- shape=93fe0f33 vocab=3faf29f2
+-/
 theorem influence_eq_norm_sq_sensitivityOp (i : Fin n) (f : BooleanFunction n) :
     influence i f = ‖sensitivityOp i f‖₂ ^ 2 := by
   rw [norm_sq_eq_sum_fourierCoeff_sq, influence, Finset.sum_filter]
@@ -1197,7 +1421,9 @@ theorem influence_eq_norm_sq_sensitivityOp (i : Fin n) (f : BooleanFunction n) :
 /-- **The sensitivity operator is the parity-twisted derivative**: `Lᵢ f = χ_{i} · Dᵢ f`.
     Both strip coordinate `i` from the surviving frequencies, but `Lᵢ` twists each back
     by `χ_{i}`; since `|χ_{i}| = 1` this is why `‖Lᵢ f‖ = ‖Dᵢ f‖` and the two influence
-    formulas agree. -/
+    formulas agree.
+@isnad1 id=eq.0h3v.s5.2ab5816c525d from=translated src=- shape=c6a1bc82 vocab=92bf5834
+-/
 theorem sensitivityOp_eq_parityFun_mul_derivative (i : Fin n) (f : BooleanFunction n) :
     sensitivityOp i f = fun x => (χ ({i} : Finset (Fin n))) x * (derivative i f) x := by
   have hins : ∀ T : Finset (Fin n), i ∈ T →
@@ -1227,7 +1453,9 @@ theorem sensitivityOp_eq_parityFun_mul_derivative (i : Fin n) (f : BooleanFuncti
     coordinate `i` is the probability that flipping `i` flips the output:
     `Infᵢ[f] = Pr_x[f(x) ≠ f(x ⊕ eᵢ)]` (O'Donnell §2.2). Summed over `i`, this reads
     total influence as the expected number of pivotal coordinates — the combinatorial
-    meaning of "average sensitivity". -/
+    meaning of "average sensitivity".
+@isnad1 id=eq.1h3v.s6.bf939da78a36 from=translated src=- shape=3d82b26e vocab=b3884e06
+-/
 theorem influence_boolean_eq_expect_sensitive (i : Fin n) (f : BooleanFunction n)
     (hf : IsBooleanValued f) :
     influence i f = 𝔼[fun x => if f x ≠ f (flipCoord i x) then 1 else 0] := by
@@ -1241,7 +1469,9 @@ theorem influence_boolean_eq_expect_sensitive (i : Fin n) (f : BooleanFunction n
     Boolean-valued `f`, summing the per-coordinate sensitivity probabilities over all
     coordinates gives `I[f] = 𝔼ₓ[#{i : f(x) ≠ f(x ⊕ eᵢ)}]` — the literal meaning of
     "average sensitivity" (average, over a uniform input, of the number of coordinates
-    whose flip changes the output). -/
+    whose flip changes the output).
+@isnad1 id=eq.1h2v.s6.d365f8c398b7 from=translated src=- shape=8fab8de0 vocab=e6fb1978
+-/
 theorem totalInfluence_boolean_eq_expect_sensitive (f : BooleanFunction n)
     (hf : IsBooleanValued f) :
     totalInfluence f
@@ -1268,7 +1498,9 @@ private theorem one_sub_pow_le_mul {ρ : ℝ} (h0 : 0 ≤ ρ) (h1 : ρ ≤ 1) (k
     loss of noise stability relative to the full power `⟪f, f⟫` is at most
     `(1 - ρ)` times the total influence: `⟪f, f⟫ - Stabᵨ[f] ≤ (1 - ρ) · I[f]`. This
     is the spectral form of the standard bound `NS_δ[f] ≤ δ · I[f]` on noise
-    sensitivity. -/
+    sensitivity.
+@isnad1 id=le.2h3v.s6.18246c0c4d89 from=translated src=- shape=35ce74c8 vocab=f4dee8d1
+-/
 theorem noiseStability_one_sub_le {ρ : ℝ} (h0 : 0 ≤ ρ) (h1 : ρ ≤ 1) (f : BooleanFunction n) :
     ⟪f, f⟫ - noiseStability ρ f ≤ (1 - ρ) * totalInfluence f := by
   rw [parseval, noiseStability, totalInfluence, Finset.mul_sum, ← Finset.sum_sub_distrib]
@@ -1280,7 +1512,9 @@ theorem noiseStability_one_sub_le {ρ : ℝ} (h0 : 0 ≤ ρ) (h1 : ρ ≤ 1) (f 
 /-- **The Poincaré inequality**: the variance of `f` is at most its total
     influence, `Var[f] ≤ I[f]`. Spectrally, `Var[f] = ∑_{S ≠ ∅} 𝓕(f,S)²` while
     `I[f] = ∑_S |S| 𝓕(f,S)²`, and each nonempty `S` has `|S| ≥ 1`, so influence
-    dominates variance term by term. -/
+    dominates variance term by term.
+@isnad1 id=le.0h2v.s3.ced63ef0d494 from=translated src=- shape=e65aa338 vocab=2dfc25e4
+-/
 theorem variance_le_totalInfluence (f : BooleanFunction n) : Var[f] ≤ totalInfluence f := by
   rw [variance_eq_sum_fourierCoeff_sq, totalInfluence]
   calc ∑ S ∈ Finset.univ.filter (fun S : Finset (Fin n) => S ≠ ∅), (𝓕 f S) ^ 2
@@ -1301,19 +1535,25 @@ theorem variance_le_totalInfluence (f : BooleanFunction n) : Var[f] ≤ totalInf
 noncomputable def noiseSensitivity (ρ : ℝ) (f : BooleanFunction n) : ℝ :=
   (⟪f, f⟫ - noiseStability ρ f) / 2
 
-/-- Noise sensitivity is nonnegative for `ρ ∈ [0, 1]`. -/
+/-- Noise sensitivity is nonnegative for `ρ ∈ [0, 1]`.
+@isnad1 id=le.2h3v.s5.694c2f02ba9c from=translated src=- shape=85de5d36 vocab=93a054fc
+-/
 theorem noiseSensitivity_nonneg {ρ : ℝ} (hρ0 : 0 ≤ ρ) (hρ1 : ρ ≤ 1) (f : BooleanFunction n) :
     0 ≤ noiseSensitivity ρ f := by
   rw [noiseSensitivity]
   have := noiseStability_le_self_inner hρ0 hρ1 f
   linarith
 
-/-- At full correlation `ρ = 1`, noise sensitivity vanishes. -/
+/-- At full correlation `ρ = 1`, noise sensitivity vanishes.
+@isnad1 id=eq.0h2v.s4.be6b0dfb19c9 from=translated src=- shape=a055248f vocab=4e493781
+-/
 theorem noiseSensitivity_one (f : BooleanFunction n) : noiseSensitivity 1 f = 0 := by
   rw [noiseSensitivity, noiseStability_one]; ring
 
 /-- **Noise sensitivity is controlled by total influence**: `NSᵨ[f] ≤ (1-ρ)/2 · I[f]`
-    (the spectral form of `NS_δ[f] ≤ δ · I[f]`). -/
+    (the spectral form of `NS_δ[f] ≤ δ · I[f]`).
+@isnad1 id=le.2h3v.s6.277f21a6f371 from=translated src=- shape=60574fa7 vocab=ba3bfc13
+-/
 theorem noiseSensitivity_le_influence {ρ : ℝ} (hρ0 : 0 ≤ ρ) (hρ1 : ρ ≤ 1)
     (f : BooleanFunction n) : noiseSensitivity ρ f ≤ (1 - ρ) / 2 * totalInfluence f := by
   rw [noiseSensitivity,
@@ -1323,13 +1563,17 @@ theorem noiseSensitivity_le_influence {ρ : ℝ} (hρ0 : 0 ≤ ρ) (hρ1 : ρ �
 
 /-- **Stability–sensitivity decomposition**: `Stabᵨ[f] + 2·NSᵨ[f] = ⟪f, f⟫`. The
     total Fourier power splits into the retained (stability) and lost (twice
-    sensitivity) parts. -/
+    sensitivity) parts.
+@isnad1 id=eq.0h3v.s5.39779f49a288 from=translated src=- shape=285fa141 vocab=ab1f56f2
+-/
 theorem noiseStability_add_two_noiseSensitivity (ρ : ℝ) (f : BooleanFunction n) :
     noiseStability ρ f + 2 * noiseSensitivity ρ f = ⟪f, f⟫ := by
   rw [noiseSensitivity]; ring
 
 /-- Noise sensitivity is antitone in the correlation `ρ` (more correlation, less
-    disagreement) — dual to the monotonicity of noise stability. -/
+    disagreement) — dual to the monotonicity of noise stability.
+@isnad1 id=le.2h4v.s5.5b012ede5864 from=translated src=- shape=a2e5bee6 vocab=93a054fc
+-/
 theorem noiseSensitivity_antitone {ρ₁ ρ₂ : ℝ} (h0 : 0 ≤ ρ₁) (h12 : ρ₁ ≤ ρ₂)
     (f : BooleanFunction n) : noiseSensitivity ρ₂ f ≤ noiseSensitivity ρ₁ f := by
   simp only [noiseSensitivity]

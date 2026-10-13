@@ -33,6 +33,9 @@ private theorem card_filter_cast_eq_sum_indicator {sample : Type*}
   rw [Finset.card_filter]
   norm_cast
 
+/--
+@isnad1 id=eq.0h3v.s6.0f1d2c860d90 from=translated src=- shape=3e0364f5 vocab=f12e8257
+-/
 theorem successProbability_eq_half_add_gap_internal
     {background : Type*} [Fintype background] [Nonempty background]
     (target : background → Bool) (testAt : background → Bool → Bool) :

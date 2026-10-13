@@ -30,7 +30,9 @@ namespace TM
 variable {n : ℕ}
 
 /-- **Every configuration a placed run reaches is a placed configuration.** The frame never
-changes, so the run is the source's run under the embedding. -/
+changes, so the run is the source's run under the embedding.
+@isnad1 id=ex.3h7v.s7.e0a114079b67 from=translated src=- shape=a7dc9abc vocab=f1b48f47
+-/
 theorem placeWorkTM_reaches_reflect (tm : TM n) (pre post : ℕ)
     (extras : Fin (pre + n + post) → Tape) (c₀ : Cfg n tm.Q)
     (hinv : ∀ i, ¬ placeWorkInMiddle pre n i → Tape.StartInvariant (extras i))
@@ -42,7 +44,9 @@ theorem placeWorkTM_reaches_reflect (tm : TM n) (pre post : ℕ)
     c₀
 
 /-- **A placed machine keeps its source's window**, given that the tapes on either side sit
-inside it. -/
+inside it.
+@isnad1 id=withinde.5h9v.s8.932ee0bf1e7e from=translated src=- shape=18842e85 vocab=77c7c71e
+-/
 theorem placeWorkTM_keepsWindow_of_reaches (tm : TM n) (pre post : ℕ)
     (extras : Fin (pre + n + post) → Tape) (c₀ : Cfg n tm.Q)
     (hinv : ∀ i, ¬ placeWorkInMiddle pre n i → Tape.StartInvariant (extras i))

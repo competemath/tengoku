@@ -43,7 +43,9 @@ namespace Complexity
 namespace RegGraph
 
 /-- The rotation map of the square: walk two darts, and hand back the two
-return labels in the opposite order. -/
+return labels in the opposite order.
+@isnad1 id=eq.0h3v.s7.ae7bc2aad118 from=translated src=- shape=7000dd57 vocab=2d9de547
+-/
 theorem rot_power_two (G : RegGraph) (v : G.V) (s : Fin 2 → G.D) :
     (G.power 2).rot (v, s) =
       ((G.rot ((G.rot (v, s 0)).1, s 1)).1,
@@ -107,17 +109,32 @@ variable (F : FinBase)
 /-- The base graph. -/
 def graph : RegGraph := RegGraph.ofRot F.deg F.deg_pos (F.deg ^ 4) F.rot F.rot_involutive
 
+/--
+@isnad1 id=eq.0h1v.s4.4f7ce593d2a6 from=translated src=- shape=0d48e728 vocab=e8c965fb
+-/
 @[simp] theorem V_graph : F.graph.V = Fin (F.deg ^ 4) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.a6232380e0c6 from=translated src=- shape=23cd532b vocab=ab7462c3
+-/
 @[simp] theorem D_graph : F.graph.D = Fin F.deg := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.d2917618ad60 from=translated src=- shape=7718e021 vocab=e6a1059a
+-/
 @[simp] theorem deg_graph : F.graph.deg = F.deg := Fintype.card_fin _
 
+/--
+@isnad1 id=lt.0h1v.s4.6c495c5e5c8d from=translated src=- shape=dea6f6fc vocab=18ab5c61
+-/
 theorem sq_pos : 0 < F.deg ^ 2 := pow_pos F.deg_pos 2
 
 /-- The number of vertices at level `k`. -/
 def size (k : ℕ) : ℕ := (F.deg ^ 4) ^ (k + 1)
 
+/--
+@isnad1 id=eq.0h2v.s5.68e47f654e12 from=translated src=- shape=3b2f7bfb vocab=e4119166
+-/
 theorem size_succ (k : ℕ) : F.size (k + 1) = F.size k * F.deg ^ 4 := by
   rw [size, size, pow_succ]
 
@@ -159,53 +176,101 @@ def zeroVertName : Fin (F.deg ^ 4) ≃ Fin (F.size 0) :=
 
 /-! ### The namings, in numbers -/
 
+/--
+@isnad1 id=eq.0h3v.s7.dd3ed1fa59c7 from=translated src=- shape=29fc838e vocab=31573c23
+-/
 @[simp] theorem val_dartName (a b : Fin F.deg) :
     (F.dartName (a, b)).val = b.val + F.deg * a.val := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.20a7ee12ed45 from=translated src=- shape=5da15e96 vocab=06b339e5
+-/
 @[simp] theorem val_dartName_symm_fst (i : Fin (F.deg ^ 2)) :
     (F.dartName.symm i).1.val = i.val / F.deg := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.b9dd9948430c from=translated src=- shape=5da15e96 vocab=1d184d49
+-/
 @[simp] theorem val_dartName_symm_snd (i : Fin (F.deg ^ 2)) :
     (F.dartName.symm i).2.val = i.val % F.deg := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.cbec079126e1 from=translated src=- shape=3833dff1 vocab=07565ef7
+-/
 @[simp] theorem val_baseName_zero (x : Fin (F.deg ^ 4)) :
     (F.baseName x 0).val = x.val / F.deg ^ 2 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.5361d312ab31 from=translated src=- shape=3833dff1 vocab=d22a1b03
+-/
 @[simp] theorem val_baseName_one (x : Fin (F.deg ^ 4)) :
     (F.baseName x 1).val = x.val % F.deg ^ 2 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.7d1d6222c9a1 from=translated src=- shape=4e2c5cd3 vocab=211bd88f
+-/
 @[simp] theorem val_baseName_symm (s : Fin 2 → Fin (F.deg ^ 2)) :
     (F.baseName.symm s).val = (s 1).val + F.deg ^ 2 * (s 0).val := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.e92a947db2c7 from=translated src=- shape=bed75e6d vocab=027cbeaa
+-/
 @[simp] theorem val_vertName (k : ℕ) (u : Fin (F.size k)) (s : Fin 2 → Fin (F.deg ^ 2)) :
     (F.vertName k (u, s)).val = (F.baseName.symm s).val + F.deg ^ 4 * u.val := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.849f7ceba45b from=translated src=- shape=4001d926 vocab=d14b3c5a
+-/
 @[simp] theorem val_vertName_symm_fst (k : ℕ) (v : Fin (F.size (k + 1))) :
     ((F.vertName k).symm v).1.val = v.val / F.deg ^ 4 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.bdc26f29b293 from=translated src=- shape=ec34b299 vocab=acd53568
+-/
 @[simp] theorem val_vertName_symm_snd_zero (k : ℕ) (v : Fin (F.size (k + 1))) :
     (((F.vertName k).symm v).2 0).val = v.val % F.deg ^ 4 / F.deg ^ 2 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.bad46c4ac1ca from=translated src=- shape=ec34b299 vocab=f8faad6f
+-/
 @[simp] theorem val_vertName_symm_snd_one (k : ℕ) (v : Fin (F.size (k + 1))) :
     (((F.vertName k).symm v).2 1).val = v.val % F.deg ^ 4 % F.deg ^ 2 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.2c28841639b0 from=translated src=- shape=aeea6160 vocab=9fb61718
+-/
 theorem val_baseName_symm_vertName_symm (k : ℕ) (v : Fin (F.size (k + 1))) :
     (F.baseName.symm ((F.vertName k).symm v).2).val = v.val % F.deg ^ 4 := by
   have hlt : v.val % F.deg ^ 4 < F.deg ^ 4 := Nat.mod_lt _ (pow_pos F.deg_pos 4)
   have hy : ((F.vertName k).symm v).2 = F.baseName ⟨v.val % F.deg ^ 4, hlt⟩ := rfl
   rw [hy, Equiv.symm_apply_apply]
 
+/--
+@isnad1 id=eq.0h2v.s7.2796cad42799 from=translated src=- shape=bc0590bd vocab=94faf44a
+-/
 @[simp] theorem val_zeroVertName (x : Fin (F.deg ^ 4)) : (F.zeroVertName x).val = x.val := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.179a23ea13fb from=translated src=- shape=9597f34d vocab=317e1ddd
+-/
 @[simp] theorem val_zeroVertName_symm (v : Fin (F.size 0)) :
     (F.zeroVertName.symm v).val = v.val := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.cac86c542bcd from=translated src=- shape=448c2824 vocab=a1480f5c
+-/
 @[simp] theorem val_zeroDartName (s : Fin 2 → Fin F.deg) :
     (F.zeroDartName s).val = (s 1).val + F.deg * (s 0).val := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.d859dc52b122 from=translated src=- shape=3c573b30 vocab=1df9da56
+-/
 @[simp] theorem val_zeroDartName_symm_zero (i : Fin (F.deg ^ 2)) :
     (F.zeroDartName.symm i 0).val = i.val / F.deg := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.8802fc353d05 from=translated src=- shape=3c573b30 vocab=dec9b89c
+-/
 @[simp] theorem val_zeroDartName_symm_one (i : Fin (F.deg ^ 2)) :
     (F.zeroDartName.symm i 1).val = i.val % F.deg := rfl
 
@@ -229,16 +294,27 @@ noncomputable def data (F : FinBase) : (k : ℕ) →
 noncomputable def graphAt (k : ℕ) : RegGraph :=
   RegGraph.ofRot (F.deg ^ 2) F.sq_pos (F.size k) (F.data k).1 (F.data k).2
 
+/--
+@isnad1 id=eq.0h2v.s3.f0486f2252b1 from=translated src=- shape=913a1e7f vocab=446bfbc6
+-/
 @[simp] theorem order_graphAt (k : ℕ) : (F.graphAt k).order = F.size k := Fintype.card_fin _
 
+/--
+@isnad1 id=eq.0h2v.s4.7d5d1c00c8ea from=translated src=- shape=fb4dee90 vocab=66f45667
+-/
 @[simp] theorem deg_graphAt (k : ℕ) : (F.graphAt k).deg = F.deg ^ 2 := Fintype.card_fin _
 
+/--
+@isnad1 id=eq.0h1v.s6.aa3bb977304a from=translated src=- shape=64e21713 vocab=2956c637
+-/
 theorem graphAt_zero :
     F.graphAt 0 = ((F.graph.power 2).relabelV F.zeroVertName).relabel F.zeroDartName := by
   simp only [graphAt, data]
   rfl
 
-/-- **One level is the zig-zag of the previous with the base**, renumbered. -/
+/-- **One level is the zig-zag of the previous with the base**, renumbered.
+@isnad1 id=eq.0h2v.s7.94668bbfde3f from=translated src=- shape=8130292f vocab=e63f3640
+-/
 theorem graphAt_succ (k : ℕ) :
     F.graphAt (k + 1) =
       ((RegGraph.zigzag ((F.graphAt k).power 2) F.graph F.baseName).relabelV
@@ -246,7 +322,9 @@ theorem graphAt_succ (k : ℕ) :
   simp only [graphAt, data]
   rfl
 
-/-- **Every level has spectral bound `2 / 5`.** -/
+/-- **Every level has spectral bound `2 / 5`.**
+@isnad1 id=spectral.0h2v.s5.b3c2330752ae from=translated src=- shape=605f7f44 vocab=e3c6ac8f
+-/
 theorem spectral_graphAt (F : FinBase) : ∀ k : ℕ, (F.graphAt k).SpectralBound (2 / 5)
   | 0 => by
       rw [graphAt_zero]
@@ -262,7 +340,9 @@ theorem spectral_graphAt (F : FinBase) : ∀ k : ℕ, (F.graphAt k).SpectralBoun
 /-- **One level of the recursion, in coordinates.** A level-`(k+1)` vertex is a
 level-`k` vertex together with a base vertex, and a level-`(k+1)` dart is a pair
 of base darts; in those coordinates a step is: turn in the base, walk two darts
-of the level below, turn in the base again. -/
+of the level below, turn in the base again.
+@isnad1 id=eq.5h9v.s11.93e729349c95 from=translated src=- shape=536c0acf vocab=58b6d0c8
+-/
 theorem data_succ_apply (k : ℕ) (v : Fin (F.size (k + 1))) (i : Fin (F.deg ^ 2))
     {us : Fin (F.size k) × (Fin 2 → Fin (F.deg ^ 2))} (hus : us = (F.vertName k).symm v)
     {ab : Fin F.deg × Fin F.deg} (hab : ab = F.dartName.symm i)
@@ -277,10 +357,15 @@ theorem data_succ_apply (k : ℕ) (v : Fin (F.size (k + 1))) (i : Fin (F.deg ^ 2
     graphAt, graph, RegGraph.ofRot]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.9bc02d18dfff from=translated src=- shape=3017088e vocab=e0d17579
+-/
 @[simp] theorem rot_graphAt (k : ℕ) : (F.graphAt k).rot = (F.data k).1 := rfl
 
 /-- **The bottom of the recursion, in coordinates.** Level zero is the base
-squared: walk two base darts, and return the labels in the opposite order. -/
+squared: walk two base darts, and return the labels in the opposite order.
+@isnad1 id=eq.3h6v.s10.623b1f389e2d from=translated src=- shape=709df895 vocab=ac42d2dd
+-/
 theorem data_zero_apply (v : Fin (F.size 0)) (i : Fin (F.deg ^ 2))
     {s : Fin 2 → Fin F.deg} (hs : s = F.zeroDartName.symm i)
     {p₀ : Fin (F.deg ^ 4) × Fin F.deg} (h0 : p₀ = F.rot (F.zeroVertName.symm v, s 0))
@@ -290,7 +375,9 @@ theorem data_zero_apply (v : Fin (F.size 0)) (i : Fin (F.deg ^ 2))
   simp only [data, RegGraph.relabel, RegGraph.relabelV, graph, RegGraph.ofRot]
   rfl
 
-/-- **The step in full**, with the two walks of the level below spelled out. -/
+/-- **The step in full**, with the two walks of the level below spelled out.
+@isnad1 id=eq.6h10v.s11.acff6ffd3889 from=translated src=- shape=d2e754d9 vocab=dd58e8fb
+-/
 theorem data_succ_apply' (k : ℕ) (v : Fin (F.size (k + 1))) (i : Fin (F.deg ^ 2))
     {us : Fin (F.size k) × (Fin 2 → Fin (F.deg ^ 2))} (hus : us = (F.vertName k).symm v)
     {ab : Fin F.deg × Fin F.deg} (hab : ab = F.dartName.symm i)
@@ -315,6 +402,9 @@ noncomputable def baseVal (x a : ℕ) : ℕ × ℕ :=
     ((F.rot (⟨x, h.1⟩, ⟨a, h.2⟩)).1.val, (F.rot (⟨x, h.1⟩, ⟨a, h.2⟩)).2.val)
   else (0, 0)
 
+/--
+@isnad1 id=eq.0h3v.s7.0b4db0f1187e from=translated src=- shape=35c116ff vocab=ffe7bd67
+-/
 @[simp] theorem baseVal_apply (x : Fin (F.deg ^ 4)) (a : Fin F.deg) :
     F.baseVal x.val a.val = ((F.rot (x, a)).1.val, (F.rot (x, a)).2.val) := by
   rw [baseVal, dite_eq_left ⟨x.isLt, a.isLt⟩]
@@ -335,7 +425,9 @@ noncomputable def rotVal (F : FinBase) : ℕ → ℕ × ℕ → ℕ × ℕ
       let r := F.baseVal (q₀.2 + F.deg ^ 2 * q₁.2) (i % F.deg)
       (r.1 + F.deg ^ 4 * q₁.1, p.2 + F.deg * r.2)
 
-/-- **The numbers compute the tower.** -/
+/-- **The numbers compute the tower.**
+@isnad1 id=eq.0h4v.s8.634404079371 from=translated src=- shape=77a69d31 vocab=5ec3e52e
+-/
 theorem rotVal_eq (k : ℕ) (v : Fin (F.size k)) (i : Fin (F.deg ^ 2)) :
     F.rotVal k (v.val, i.val)
       = (((F.data k).1 (v, i)).1.val, ((F.data k).1 (v, i)).2.val) := by
@@ -393,11 +485,17 @@ theorem rotVal_eq (k : ℕ) (v : Fin (F.size k)) (i : Fin (F.deg ^ 2)) :
       rw [hr]
       simp
 
+/--
+@isnad1 id=and.2h3v.s6.26f8d80e8a1f from=translated src=- shape=48c1ca1d vocab=fe4326d7
+-/
 theorem baseVal_lt {x a : ℕ} (hx : x < F.deg ^ 4) (ha : a < F.deg) :
     (F.baseVal x a).1 < F.deg ^ 4 ∧ (F.baseVal x a).2 < F.deg := by
   rw [baseVal, dite_eq_left ⟨hx, ha⟩]
   exact ⟨Fin.isLt _, Fin.isLt _⟩
 
+/--
+@isnad1 id=and.2h4v.s6.3dbe77fae556 from=translated src=- shape=4c5186ba vocab=7f129c70
+-/
 theorem rotVal_lt (k : ℕ) {v i : ℕ} (hv : v < F.size k) (hi : i < F.deg ^ 2) :
     (F.rotVal k (v, i)).1 < F.size k ∧ (F.rotVal k (v, i)).2 < F.deg ^ 2 := by
   rw [show v = (⟨v, hv⟩ : Fin (F.size k)).val from rfl,
@@ -406,14 +504,23 @@ theorem rotVal_lt (k : ℕ) {v i : ℕ} (hv : v < F.size k) (hi : i < F.deg ^ 2)
 
 /-! ### Choosing a level -/
 
+/--
+@isnad1 id=lt.1h1v.s5.4b4989a6da70 from=translated src=- shape=fc24db4d vocab=18ab5c61
+-/
 theorem one_lt_pow_four (hd : 1 < F.deg) : 1 < F.deg ^ 4 := Nat.one_lt_pow (by norm_num) hd
 
+/--
+@isnad1 id=ex.1h2v.s4.513630312020 from=translated src=- shape=9ce69228 vocab=1f9fa9cc
+-/
 theorem exists_size_ge (hd : 1 < F.deg) (n : ℕ) : ∃ k, n ≤ F.size k := by
   refine ⟨n, ?_⟩
   calc n ≤ (F.deg ^ 4) ^ n := (Nat.lt_pow_self (F.one_lt_pow_four hd)).le
     _ ≤ (F.deg ^ 4) ^ (n + 1) :=
         Nat.pow_le_pow_right (Nat.zero_lt_of_lt (F.one_lt_pow_four hd)) (by omega)
 
+/--
+@isnad1 id=le.1h2v.s4.66e808274e1d from=translated src=- shape=b7fa59d2 vocab=1f9fa9cc
+-/
 theorem le_size_self (hd : 1 < F.deg) (n : ℕ) : n ≤ F.size n := by
   calc n ≤ (F.deg ^ 4) ^ n := (Nat.lt_pow_self (F.one_lt_pow_four hd)).le
     _ ≤ (F.deg ^ 4) ^ (n + 1) :=
@@ -423,13 +530,21 @@ theorem le_size_self (hd : 1 < F.deg) (n : ℕ) : n ≤ F.size n := by
 noncomputable def level (F : FinBase) (hd : 1 < F.deg) (n : ℕ) : ℕ :=
   Nat.find (F.exists_size_ge hd n)
 
+/--
+@isnad1 id=le.1h2v.s4.8e6bca0f8a93 from=translated src=- shape=b6f00e57 vocab=91202451
+-/
 theorem le_size_level (hd : 1 < F.deg) (n : ℕ) : n ≤ F.size (F.level hd n) :=
   Nat.find_spec (F.exists_size_ge hd n)
 
-/-- **The level a size needs is at most that size.** -/
+/-- **The level a size needs is at most that size.**
+@isnad1 id=le.1h2v.s4.eecab7946536 from=translated src=- shape=59b1ccba vocab=a39f5d44
+-/
 theorem level_le (hd : 1 < F.deg) (n : ℕ) : F.level hd n ≤ n :=
   Nat.find_le (F.le_size_self hd n)
 
+/--
+@isnad1 id=le.2h2v.s5.87a9410bef9f from=translated src=- shape=aa72cd75 vocab=559bfe30
+-/
 theorem size_level_le (hd : 1 < F.deg) (n : ℕ) (hn : 1 ≤ n) :
     F.size (F.level hd n) ≤ F.deg ^ 4 * n := by
   classical
@@ -456,6 +571,9 @@ namespace ZigZagBase
 
 variable (B : ZigZagBase)
 
+/--
+@isnad1 id=eq.0h1v.s3.a676d54d580b from=translated src=- shape=1a06bf3a vocab=d572b8b1
+-/
 theorem card_base_darts : Fintype.card B.base.D = B.base.deg := rfl
 
 /-- **A zig-zag base, numbered.** -/

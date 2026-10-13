@@ -40,7 +40,9 @@ namespace Tape
 
 /-- A canonical little-endian natural reads blank exactly when its value is
 zero. Consequently the direct blank/nonblank work branch is a canonical
-zero/nonzero branch on `HasBinaryNat` tapes. -/
+zero/nonzero branch on `HasBinaryNat` tapes.
+@isnad1 id=iff.1h2v.s4.b7b683e6239c from=translated src=- shape=c092d464 vocab=2cca61fd
+-/
 theorem HasBinaryNat.read_eq_blank_iff {t : Tape} {value : ℕ}
     (h : t.HasBinaryNat value) :
     t.read = Γ.blank ↔ value = 0 :=
@@ -53,7 +55,9 @@ namespace TM
 variable {n : ℕ}
 
 /-- Blank dispatch takes one step, selects the blank branch, and preserves
-all tapes exactly. -/
+all tapes exactly.
+@isnad1 id=eq.4h7v.s6.513bc7456097 from=translated src=- shape=8737e1e3 vocab=c2f1e735
+-/
 theorem branchWorkBlankTM_dispatch_blank
     (idx : Fin n) (onBlank onNonblank : TM n)
     (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -75,7 +79,9 @@ theorem branchWorkBlankTM_dispatch_blank
       inp work out hblank hinp hwork hout
 
 /-- Nonblank dispatch takes one step, selects the nonblank branch, and
-preserves all tapes exactly. -/
+preserves all tapes exactly.
+@isnad1 id=eq.4h7v.s6.edad0ecf48ab from=translated src=- shape=c81a8878 vocab=504450b3
+-/
 theorem branchWorkBlankTM_dispatch_nonblank
     (idx : Fin n) (onBlank onNonblank : TM n)
     (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -98,7 +104,9 @@ theorem branchWorkBlankTM_dispatch_nonblank
       inp work out hnonblank hinp hwork hout
 
 /-- Exact framed execution through the blank branch. The combined controller
-uses one dispatch transition followed by the branch's exact `t` transitions. -/
+uses one dispatch transition followed by the branch's exact `t` transitions.
+@isnad1 id=ex.6h9v.s7.cc629daf1ee4 from=translated src=- shape=f58d77b2 vocab=5c4774a5
+-/
 theorem branchWorkBlankTM_reachesIn_blank_frame
     (idx : Fin n) (onBlank onNonblank : TM n)
     (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -120,7 +128,9 @@ theorem branchWorkBlankTM_reachesIn_blank_frame
   branchWorkBlankTM_reachesIn_blank_frame_internal idx onBlank onNonblank
     inp work out hblank hinp hwork hout hreach hhalt
 
-/-- Exact framed execution through the nonblank branch. -/
+/-- Exact framed execution through the nonblank branch.
+@isnad1 id=ex.6h9v.s7.96087a3644df from=translated src=- shape=f4aa0ded vocab=5c4774a5
+-/
 theorem branchWorkBlankTM_reachesIn_nonblank_frame
     (idx : Fin n) (onBlank onNonblank : TM n)
     (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -144,7 +154,9 @@ theorem branchWorkBlankTM_reachesIn_nonblank_frame
 
 /-- Compose two time-bounded branch contracts. The precondition supplies the
 off-marker frame and translates the initial read into the selected branch's
-precondition. The postcondition records which branch contract completed. -/
+precondition. The postcondition records which branch contract completed.
+@isnad1 id=hoaretim.3h13v.s7.aa72630839af from=translated src=- shape=47571316 vocab=5d1be6b4
+-/
 theorem branchWorkBlankTM_hoareTime
     (idx : Fin n) (onBlank onNonblank : TM n)
     {pre blankPre nonblankPre blankPost nonblankPost : TapePred n}
@@ -167,7 +179,9 @@ theorem branchWorkBlankTM_hoareTime
 
 /-- Compose two time-and-space branch contracts. Dispatch preserves the
 starting tapes, so the all-reachable space bound is exactly the maximum of the
-two branch budgets rather than an additional seam allowance. -/
+two branch budgets rather than an additional seam allowance.
+@isnad1 id=hoaretim.3h16v.s7.8ec4b93dcd4b from=translated src=- shape=17b7c467 vocab=8bb7c8d5
+-/
 theorem branchWorkBlankTM_hoareTimeSpace
     (idx : Fin n) (onBlank onNonblank : TM n)
     {pre blankPre nonblankPre blankPost nonblankPost : TapePred n}
@@ -192,7 +206,9 @@ theorem branchWorkBlankTM_hoareTimeSpace
     hblankPre hnonblankPre hblank hnonblank
 
 /-- Direct work branching preserves one-way output when both selected
-branches do. The dispatch step itself never moves the output head left. -/
+branches do. The dispatch step itself never moves the output head left.
+@isnad1 id=istransd.2h4v.s4.69850b73f6f3 from=translated src=- shape=3ff4501a vocab=007125d6
+-/
 theorem IsTransducer.branchWorkBlankTM
     {idx : Fin n} {onBlank onNonblank : TM n}
     (hblank : onBlank.IsTransducer)

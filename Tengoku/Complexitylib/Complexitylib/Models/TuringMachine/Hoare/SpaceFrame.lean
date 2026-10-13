@@ -35,7 +35,9 @@ variable {n : ℕ}
 
 /-- **A run that stays inside a window writes nothing outside it.** Each step writes only under
 its head, and every head along the run is inside the window, so a cell beyond it still holds what
-it did at the start. -/
+it did at the start.
+@isnad1 id=eq.4h8v.s6.1e01e3c0a50b from=translated src=- shape=5426d56a vocab=4d98455b
+-/
 theorem work_cells_far_of_reachesIn {tm : TM n} (S : ℕ) :
     ∀ {t : ℕ} {c c' : Cfg n tm.Q}, tm.reachesIn t c c' →
       (∀ d, tm.reaches c d → ∀ i, (d.work i).head ≤ S) →

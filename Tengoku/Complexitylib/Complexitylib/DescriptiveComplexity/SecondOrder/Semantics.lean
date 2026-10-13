@@ -76,7 +76,9 @@ def SOSentence.Models (A : FinStruct V) (φ : SOSentence V) : Prop :=
 /-- **The first-order embedding preserves satisfaction.** An FO formula embedded
     into second-order logic is satisfied under `(σ, ρ)` exactly when the original
     is satisfied under `σ` — the relation environment `ρ` is irrelevant, since the
-    embedded formula never mentions relation variables. -/
+    embedded formula never mentions relation variables.
+@isnad1 id=iff.0h7v.s5.63c21da89022 from=translated src=- shape=7d28af7e vocab=10d216d7
+-/
 theorem SOFormula.ofFormula_sat (A : FinStruct V) {rctx : List Nat} (ρ : REnv A.card rctx) :
     ∀ {n : Nat} (φ : Formula V n) (σ : Env A.card n),
       (SOFormula.ofFormula φ rctx).Sat A σ ρ ↔ φ.Sat A σ := by
@@ -91,7 +93,9 @@ theorem SOFormula.ofFormula_sat (A : FinStruct V) {rctx : List Nat} (ρ : REnv A
   | all φ ih => intro σ; exact forall_congr' (fun a => ih (envCons a σ))
 
 /-- **First-order truth is a special case of second-order truth.** A structure
-    models an FO sentence iff it models its second-order embedding. -/
+    models an FO sentence iff it models its second-order embedding.
+@isnad1 id=iff.0h3v.s4.4b44c933bb34 from=translated src=- shape=7e8b5e17 vocab=5c588e0d
+-/
 theorem SOSentence.models_ofFormula (A : FinStruct V) (φ : Sentence V) :
     SOSentence.Models A (SOFormula.ofFormula φ []) ↔ Sentence.Models A φ :=
   SOFormula.ofFormula_sat A (emptyREnv A.card) φ (emptyEnv A.card)

@@ -60,21 +60,27 @@ def placedCfg (tmF : TM nf) (N : NTM ng)
             (0 + (nf + 1)) 0 extras
             (TM.retargetWrap (N.det false) realInput c)))))
 
-/-- The state of a placed embedding. -/
+/-- The state of a placed embedding.
+@isnad1 id=eq.0h7v.s7.4741bd8c2fc1 from=translated src=- shape=a4be9933 vocab=9680da4c
+-/
 theorem placedCfg_state (tmF : TM nf) (N : NTM ng)
     (extras : Fin (TM.compositionTapeCount nf ng) → Tape)
     (realInput : Tape) (c : Cfg ng N.Q) :
     (placedCfg tmF N extras realInput c).state =
       Sum.inr (Sum.inr (Sum.inr (Sum.inr c.state))) := rfl
 
-/-- The output tape of a placed embedding is `c`'s output tape. -/
+/-- The output tape of a placed embedding is `c`'s output tape.
+@isnad1 id=eq.0h7v.s5.144e5b78b9d9 from=translated src=- shape=20afcca6 vocab=fe6d935e
+-/
 theorem placedCfg_output (tmF : TM nf) (N : NTM ng)
     (extras : Fin (TM.compositionTapeCount nf ng) → Tape)
     (realInput : Tape) (c : Cfg ng N.Q) :
     (placedCfg tmF N extras realInput c).output = c.output := rfl
 
 /-- The composite is halted at a placed embedding iff `N` is halted at the
-    underlying configuration. -/
+    underlying configuration.
+@isnad1 id=iff.0h7v.s6.fcd5360a3414 from=translated src=- shape=3a86d67a vocab=e1f03ad2
+-/
 theorem placedCfg_halted_iff (tmF : TM nf) (N : NTM ng)
     (extras : Fin (TM.compositionTapeCount nf ng) → Tape)
     (realInput : Tape) (c : Cfg ng N.Q) :
@@ -92,7 +98,9 @@ theorem placedCfg_halted_iff (tmF : TM nf) (N : NTM ng)
 /-- **Placed-phase step commute.** Branch `b` of the composite steps a
     placed embedding exactly as `N.det b` steps the underlying
     configuration, provided the virtual input is start-invariant, the
-    ignored real input reads off `▷`, and the frame tapes are stable. -/
+    ignored real input reads off `▷`, and the frame tapes are stable.
+@isnad1 id=eq.4h9v.s7.6752907e1726 from=translated src=- shape=8ab76027 vocab=54a1ffda
+-/
 theorem placedCfg_step (tmF : TM nf) (N : NTM ng) (b : Bool)
     {extras : Fin (TM.compositionTapeCount nf ng) → Tape} {realInput : Tape}
     {c c' : Cfg ng N.Q}
@@ -126,7 +134,9 @@ theorem placedCfg_step (tmF : TM nf) (N : NTM ng) (b : Bool)
 
 /-- **Placed-phase trace correspondence.** Along any choice sequence, the
     composite's trace from a placed embedding is the placed embedding of
-    `N`'s trace. -/
+    `N`'s trace.
+@isnad1 id=eq.3h9v.s7.b922e6457d76 from=translated src=- shape=ae0706ad vocab=7a6d8a69
+-/
 theorem placedCfg_trace (tmF : TM nf) (N : NTM ng)
     {extras : Fin (TM.compositionTapeCount nf ng) → Tape} {realInput : Tape}
     (hri : realInput.read ≠ Γ.start)
@@ -184,7 +194,9 @@ theorem placedCfg_trace (tmF : TM nf) (N : NTM ng)
 /-- **The seam into the placed phase.** From a `DetPrefixBoundary`
     configuration, one branch-`b` composite step enters the placed phase at
     `N`'s post-first-step configuration on the virtual input `y`, with the
-    boundary's own tapes as frame and real input. -/
+    boundary's own tapes as frame and real input.
+@isnad1 id=eq.2h7v.s7.8341be47afed from=translated src=- shape=73eb0d20 vocab=1dd77c5e
+-/
 theorem compositionNTM_seam_step (tmF : TM nf) (N : NTM ng) (b : Bool)
     {y : List Bool}
     {E : Cfg (TM.compositionTapeCount nf ng) (compositionNTM tmF N).Q}

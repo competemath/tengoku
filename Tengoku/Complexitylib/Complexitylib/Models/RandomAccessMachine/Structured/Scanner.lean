@@ -29,7 +29,9 @@ namespace Structured
 
 namespace Scanner
 
-/-- Source-level correctness and explicit resource bounds. -/
+/-- Source-level correctness and explicit resource bounds.
+@isnad1 id=ex.0h2v.s6.7327543d23b9 from=translated src=- shape=3e9ada8a vocab=629f5605
+-/
 theorem program_performance (spec : Spec) (bits : List Bool) :
     ∃ final cost space,
       Exec (program spec) (inputStore spec bits) final
@@ -40,7 +42,9 @@ theorem program_performance (spec : Spec) (bits : List Bool) :
         (spec.accept (bits.foldl spec.step spec.initial)) :=
   program_measured_internal spec bits
 
-/-- End-to-end performance and correctness of the compiled concrete RAM. -/
+/-- End-to-end performance and correctness of the compiled concrete RAM.
+@isnad1 id=ex.0h2v.s7.70a8378940c1 from=translated src=- shape=db2c997d vocab=7d7cd669
+-/
 theorem compiled_performance (spec : Spec) (bits : List Bool) :
     ∃ final cost space,
       Exec (program spec) (inputStore spec bits) final
@@ -76,7 +80,9 @@ theorem compiled_performance (spec : Spec) (bits : List Bool) :
     rw [hcompiled.1]
     exact hresult
 
-/-- Source-level correctness and resource bounds for a typed scanner. -/
+/-- Source-level correctness and resource bounds for a typed scanner.
+@isnad1 id=ex.0h3v.s6.ec1768f431af from=translated src=- shape=c7d80589 vocab=a4b7fed6
+-/
 theorem typed_program_performance {State : Type} [FinEnum State]
     (typed : TypedSpec State) (bits : List Bool) :
     ∃ final cost space,
@@ -88,7 +94,9 @@ theorem typed_program_performance {State : Type} [FinEnum State]
         (typed.accept (bits.foldl typed.step typed.initial)) :=
   typed_program_measured_internal typed bits
 
-/-- End-to-end concrete RAM correctness for a typed scanner. -/
+/-- End-to-end concrete RAM correctness for a typed scanner.
+@isnad1 id=ex.0h3v.s7.b73929854286 from=translated src=- shape=21672354 vocab=b4a2ff2a
+-/
 theorem typed_compiled_performance {State : Type} [FinEnum State]
     (typed : TypedSpec State) (bits : List Bool) :
     ∃ final cost space,
@@ -125,7 +133,9 @@ theorem typed_compiled_performance {State : Type} [FinEnum State]
     rw [hcompiled.1]
     exact hresult
 
-/-- For each fixed scanner, its explicit time budget is quasilinear. -/
+/-- For each fixed scanner, its explicit time budget is quasilinear.
+@isnad1 id=bigo.0h1v.s2.656415bcad52 from=translated src=- shape=fc2c1e2b vocab=4df2d706
+-/
 theorem timeBound_bigO_quasilinear (spec : Spec) :
     timeBound spec =O quasilinearBound spec := by
   have hpoint : ∀ n, timeBound spec n ≤ 64 * quasilinearBound spec n := by
@@ -146,7 +156,9 @@ theorem timeBound_bigO_quasilinear (spec : Spec) :
   exact (BigO.of_le hpoint).trans
     (BigO.const_mul_left 64 (BigO.refl (quasilinearBound spec)))
 
-/-- For each fixed scanner, its explicit peak-space budget is quasilinear. -/
+/-- For each fixed scanner, its explicit peak-space budget is quasilinear.
+@isnad1 id=bigo.0h1v.s2.70b648221b1c from=translated src=- shape=fc2c1e2b vocab=2b1cbd5f
+-/
 theorem spaceBound_bigO_quasilinear (spec : Spec) :
     spaceBound spec =O quasilinearBound spec := by
   have hpoint : ∀ n, spaceBound spec n ≤ 2 * quasilinearBound spec n := by
@@ -162,12 +174,16 @@ theorem spaceBound_bigO_quasilinear (spec : Spec) :
   exact (BigO.of_le hpoint).trans
     (BigO.const_mul_left 2 (BigO.refl (quasilinearBound spec)))
 
-/-- The typed scanner's explicit time budget is quasilinear. -/
+/-- The typed scanner's explicit time budget is quasilinear.
+@isnad1 id=bigo.0h2v.s4.b3350a49a2df from=translated src=- shape=69798991 vocab=014f32b3
+-/
 theorem typed_timeBound_bigO_quasilinear {State : Type} [FinEnum State]
     (typed : TypedSpec State) : typed.timeBound =O typed.quasilinearBound :=
   timeBound_bigO_quasilinear typed.numeric
 
-/-- The typed scanner's explicit peak-space budget is quasilinear. -/
+/-- The typed scanner's explicit peak-space budget is quasilinear.
+@isnad1 id=bigo.0h2v.s4.7d9280d98f50 from=translated src=- shape=69798991 vocab=abeaea65
+-/
 theorem typed_spaceBound_bigO_quasilinear {State : Type} [FinEnum State]
     (typed : TypedSpec State) : typed.spaceBound =O typed.quasilinearBound :=
   spaceBound_bigO_quasilinear typed.numeric

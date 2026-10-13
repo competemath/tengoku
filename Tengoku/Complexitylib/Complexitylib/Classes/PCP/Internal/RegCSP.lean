@@ -86,6 +86,9 @@ instance (a : R.Assignment) (p : R.Dart) : Decidable (R.Satisfies a p) :=
 def unsatDarts (a : R.Assignment) : Finset R.Dart :=
   Finset.univ.filter fun p => ¬ R.Satisfies a p
 
+/--
+@isnad1 id=iff.0h4v.s5.09dc65ab9699 from=translated src=- shape=40e484e2 vocab=d66ffd74
+-/
 @[simp] theorem mem_unsatDarts {a : R.Assignment} {p : R.Dart} :
     p ∈ R.unsatDarts a ↔ ¬ R.Satisfies a p := by
   simp [unsatDarts]
@@ -93,10 +96,15 @@ def unsatDarts (a : R.Assignment) : Finset R.Dart :=
 /-- Some assignment satisfies every dart. -/
 def Satisfiable : Prop := ∃ a : R.Assignment, ∀ p, R.Satisfies a p
 
-/-- The number of darts. -/
+/-- The number of darts.
+@isnad1 id=eq.0h2v.s5.1001e1088fff from=translated src=- shape=d7213125 vocab=e2b2359c
+-/
 theorem card_dart : Fintype.card R.Dart = R.graph.order * R.graph.deg := by
   simp
 
+/--
+@isnad1 id=le.0h3v.s5.7685d108f373 from=translated src=- shape=45b50863 vocab=551bea48
+-/
 theorem card_unsatDarts_le (a : R.Assignment) :
     (R.unsatDarts a).card ≤ R.graph.order * R.graph.deg := by
   have h := Finset.card_le_univ (R.unsatDarts a)
@@ -106,9 +114,15 @@ theorem card_unsatDarts_le (a : R.Assignment) :
 def unsatFrac (a : R.Assignment) : ℚ :=
   ((R.unsatDarts a).card : ℚ) / ((R.graph.order * R.graph.deg : ℕ) : ℚ)
 
+/--
+@isnad1 id=le.0h3v.s4.29b06e073962 from=translated src=- shape=96b23e71 vocab=01ae92b7
+-/
 theorem unsatFrac_nonneg (a : R.Assignment) : 0 ≤ R.unsatFrac a := by
   unfold unsatFrac; positivity
 
+/--
+@isnad1 id=le.0h3v.s4.07553b65bcd5 from=translated src=- shape=a04f7314 vocab=01ae92b7
+-/
 theorem unsatFrac_le_one (a : R.Assignment) : R.unsatFrac a ≤ 1 := by
   rcases Nat.eq_zero_or_pos (R.graph.order * R.graph.deg) with h | h
   · simp [unsatFrac, h]
@@ -116,7 +130,9 @@ theorem unsatFrac_le_one (a : R.Assignment) : R.unsatFrac a ≤ 1 := by
     rw [unsatFrac, div_le_one hpos]
     exact_mod_cast R.card_unsatDarts_le a
 
-/-- An assignment wastes no darts exactly when it satisfies them all. -/
+/-- An assignment wastes no darts exactly when it satisfies them all.
+@isnad1 id=iff.0h3v.s4.53eb30aee2e3 from=translated src=- shape=3e49bd65 vocab=931d6f23
+-/
 theorem unsatFrac_eq_zero_iff {a : R.Assignment} :
     R.unsatFrac a = 0 ↔ ∀ p, R.Satisfies a p := by
   constructor
@@ -136,7 +152,9 @@ theorem unsatFrac_eq_zero_iff {a : R.Assignment} :
       ext p; simpa using h p
     simp [unsatFrac, hempty]
 
-/-- An unsatisfiable regular constraint graph has a dart. -/
+/-- An unsatisfiable regular constraint graph has a dart.
+@isnad1 id=lt.1h2v.s5.0368f9a6475e from=translated src=- shape=9a22cae3 vocab=3c6800a4
+-/
 theorem card_dart_pos_of_not_satisfiable (h : ¬ R.Satisfiable) [Nonempty α] :
     0 < R.graph.order * R.graph.deg := by
   rcases Nat.eq_zero_or_pos (R.graph.order * R.graph.deg) with h0 | h0
@@ -154,23 +172,41 @@ variable [Fintype α] [Nonempty α]
 noncomputable def unsatVal : ℚ :=
   (Finset.univ : Finset R.Assignment).inf' Finset.univ_nonempty R.unsatFrac
 
+/--
+@isnad1 id=le.0h3v.s4.4a6b5e2f454f from=translated src=- shape=b4fc5aef vocab=ee032cd4
+-/
 theorem unsatVal_le (a : R.Assignment) : R.unsatVal ≤ R.unsatFrac a :=
   Finset.inf'_le _ (Finset.mem_univ a)
 
+/--
+@isnad1 id=le.1h3v.s5.514ddcdd9efb from=translated src=- shape=3e45031a vocab=ee032cd4
+-/
 theorem le_unsatVal {c : ℚ} (h : ∀ a : R.Assignment, c ≤ R.unsatFrac a) : c ≤ R.unsatVal :=
   Finset.le_inf' _ _ fun a _ => h a
 
+/--
+@isnad1 id=ex.0h2v.s4.16621e606b3e from=translated src=- shape=ec7960d8 vocab=b9fe9b0c
+-/
 theorem exists_assignment_unsatFrac_eq_unsatVal :
     ∃ a : R.Assignment, R.unsatFrac a = R.unsatVal := by
   obtain ⟨a, -, ha⟩ := Finset.exists_mem_eq_inf' (Finset.univ_nonempty) R.unsatFrac
   exact ⟨a, ha.symm⟩
 
+/--
+@isnad1 id=le.0h2v.s4.1268cd538bbb from=translated src=- shape=14e40c03 vocab=2392c12c
+-/
 theorem unsatVal_nonneg : 0 ≤ R.unsatVal := R.le_unsatVal fun a => R.unsatFrac_nonneg a
 
+/--
+@isnad1 id=le.0h2v.s4.26b43c02a251 from=translated src=- shape=291add1c vocab=2392c12c
+-/
 theorem unsatVal_le_one : R.unsatVal ≤ 1 := by
   obtain ⟨a, ha⟩ := R.exists_assignment_unsatFrac_eq_unsatVal
   exact ha ▸ R.unsatFrac_le_one a
 
+/--
+@isnad1 id=iff.0h2v.s4.23f1b632deee from=translated src=- shape=e9b5a54e vocab=92872338
+-/
 theorem unsatVal_eq_zero_iff_satisfiable : R.unsatVal = 0 ↔ R.Satisfiable := by
   constructor
   · intro h
@@ -181,7 +217,9 @@ theorem unsatVal_eq_zero_iff_satisfiable : R.unsatVal = 0 ↔ R.Satisfiable := b
     exact le_antisymm (h0 ▸ R.unsatVal_le a) R.unsatVal_nonneg
 
 /-- On an unsatisfiable graph every assignment fails a dart, so the value is at
-least one dart's worth. -/
+least one dart's worth.
+@isnad1 id=le.1h2v.s5.688ffe62e622 from=translated src=- shape=c4ef4c9d vocab=380f4fe2
+-/
 theorem inv_card_dart_le_unsatVal (h : ¬ R.Satisfiable) :
     1 / ((R.graph.order * R.graph.deg : ℕ) : ℚ) ≤ R.unsatVal := by
   refine R.le_unsatVal fun a => ?_

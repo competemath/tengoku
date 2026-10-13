@@ -40,6 +40,9 @@ def workBranchNonblankWrap (idx : Fin n) (onBlank onNonblank : TM n)
   work := c.work
   output := c.output
 
+/--
+@isnad1 id=iff.0h5v.s5.7a15ef1d6b86 from=translated src=- shape=43e4c1b9 vocab=b77b4111
+-/
 theorem workBranchBlankWrap_halted_iff_internal
     (idx : Fin n) (onBlank onNonblank : TM n) (c : Cfg n onBlank.Q) :
     (branchWorkBlankTM idx onBlank onNonblank).halted
@@ -54,6 +57,9 @@ theorem workBranchBlankWrap_halted_iff_internal
   · simp [workBranchBlankWrap, workBranchBlankState, branchWorkBlankTM,
       hhalt]
 
+/--
+@isnad1 id=iff.0h5v.s5.86f1ea3bdc8a from=translated src=- shape=79c0cc33 vocab=f1645c3c
+-/
 theorem workBranchNonblankWrap_halted_iff_internal
     (idx : Fin n) (onBlank onNonblank : TM n) (c : Cfg n onNonblank.Q) :
     (branchWorkBlankTM idx onBlank onNonblank).halted
@@ -68,6 +74,9 @@ theorem workBranchNonblankWrap_halted_iff_internal
   · simp [workBranchNonblankWrap, workBranchNonblankState,
       branchWorkBlankTM, hhalt]
 
+/--
+@isnad1 id=eq.1h6v.s6.db4f3d3770ed from=translated src=- shape=b2ba4293 vocab=9bf1a1dd
+-/
 theorem branchWorkBlankTM_blank_step_internal
     (idx : Fin n) (onBlank onNonblank : TM n)
     {c c' : Cfg n onBlank.Q} (hstep : onBlank.step c = some c') :
@@ -90,6 +99,9 @@ theorem branchWorkBlankTM_blank_step_internal
   cases Option.some.inj hstep
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s6.91a96da31e96 from=translated src=- shape=f858d9d9 vocab=3b50ec85
+-/
 theorem branchWorkBlankTM_nonblank_step_internal
     (idx : Fin n) (onBlank onNonblank : TM n)
     {c c' : Cfg n onNonblank.Q} (hstep : onNonblank.step c = some c') :
@@ -112,6 +124,9 @@ theorem branchWorkBlankTM_nonblank_step_internal
   cases Option.some.inj hstep
   rfl
 
+/--
+@isnad1 id=reachesi.1h7v.s5.650d8e78828d from=translated src=- shape=f1bf23a9 vocab=6aaae97c
+-/
 theorem branchWorkBlankTM_blank_reachesIn_internal
     (idx : Fin n) (onBlank onNonblank : TM n)
     {t : ℕ} {c c' : Cfg n onBlank.Q}
@@ -123,6 +138,9 @@ theorem branchWorkBlankTM_blank_reachesIn_internal
     (fun _ _ => branchWorkBlankTM_blank_step_internal idx onBlank onNonblank)
     hreach
 
+/--
+@isnad1 id=reachesi.1h7v.s5.6dbd9727e722 from=translated src=- shape=1a0b7a34 vocab=98762b2c
+-/
 theorem branchWorkBlankTM_nonblank_reachesIn_internal
     (idx : Fin n) (onBlank onNonblank : TM n)
     {t : ℕ} {c c' : Cfg n onNonblank.Q}
@@ -134,6 +152,9 @@ theorem branchWorkBlankTM_nonblank_reachesIn_internal
     (fun _ _ => branchWorkBlankTM_nonblank_step_internal idx onBlank onNonblank)
     hreach
 
+/--
+@isnad1 id=eq.4h7v.s6.cfb7f9e6912a from=translated src=- shape=5e6b01a2 vocab=13e0df38
+-/
 theorem branchWorkBlankTM_dispatch_blank_internal
     (idx : Fin n) (onBlank onNonblank : TM n)
     (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -159,6 +180,9 @@ theorem branchWorkBlankTM_dispatch_blank_internal
     exact transitionTape_eq_self (hwork i)
   · exact transitionTape_eq_self hout
 
+/--
+@isnad1 id=eq.4h7v.s6.37026f61ef03 from=translated src=- shape=bd95b7ba vocab=59f72c5d
+-/
 theorem branchWorkBlankTM_dispatch_nonblank_internal
     (idx : Fin n) (onBlank onNonblank : TM n)
     (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -184,6 +208,9 @@ theorem branchWorkBlankTM_dispatch_nonblank_internal
     exact transitionTape_eq_self (hwork i)
   · exact transitionTape_eq_self hout
 
+/--
+@isnad1 id=ex.6h9v.s7.cc629daf1ee4 from=translated src=- shape=f58d77b2 vocab=5c4774a5
+-/
 theorem branchWorkBlankTM_reachesIn_blank_frame_internal
     (idx : Fin n) (onBlank onNonblank : TM n)
     (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -211,6 +238,9 @@ theorem branchWorkBlankTM_reachesIn_blank_frame_internal
   exact (workBranchBlankWrap_halted_iff_internal idx onBlank onNonblank c').2
     hhalt
 
+/--
+@isnad1 id=ex.6h9v.s7.96087a3644df from=translated src=- shape=f4aa0ded vocab=5c4774a5
+-/
 theorem branchWorkBlankTM_reachesIn_nonblank_frame_internal
     (idx : Fin n) (onBlank onNonblank : TM n)
     (inp : Tape) (work : Fin n → Tape) (out : Tape)
@@ -238,6 +268,9 @@ theorem branchWorkBlankTM_reachesIn_nonblank_frame_internal
   exact (workBranchNonblankWrap_halted_iff_internal idx onBlank onNonblank c').2
     hhalt
 
+/--
+@isnad1 id=hoaretim.3h13v.s7.aa72630839af from=translated src=- shape=47571316 vocab=5d1be6b4
+-/
 theorem branchWorkBlankTM_hoareTime_internal
     (idx : Fin n) (onBlank onNonblank : TM n)
     {pre blankPre nonblankPre blankPost nonblankPost : TapePred n}
@@ -279,6 +312,9 @@ theorem branchWorkBlankTM_hoareTime_internal
     · right
       simpa [hinput, hworkC, houtput] using hpost
 
+/--
+@isnad1 id=hoaretim.3h16v.s7.8ec4b93dcd4b from=translated src=- shape=17b7c467 vocab=8bb7c8d5
+-/
 theorem branchWorkBlankTM_hoareTimeSpace_internal
     (idx : Fin n) (onBlank onNonblank : TM n)
     {pre blankPre nonblankPre blankPost nonblankPost : TapePred n}
@@ -410,6 +446,9 @@ theorem branchWorkBlankTM_hoareTimeSpace_internal
             (reaches_of_reachesIn hprefix)
           exact (hspace.mono le_rfl (le_max_right _ _))
 
+/--
+@isnad1 id=istransd.2h4v.s4.69850b73f6f3 from=translated src=- shape=3ff4501a vocab=007125d6
+-/
 theorem IsTransducer.branchWorkBlankTM_internal
     {idx : Fin n} {onBlank onNonblank : TM n}
     (hblank : onBlank.IsTransducer)
@@ -440,7 +479,9 @@ end TM
 
 namespace Tape
 
-/-- A canonical little-endian natural reads blank exactly at zero. -/
+/-- A canonical little-endian natural reads blank exactly at zero.
+@isnad1 id=iff.1h2v.s4.b7b683e6239c from=translated src=- shape=c092d464 vocab=2cca61fd
+-/
 theorem HasBinaryNat.read_eq_blank_iff_internal {t : Tape} {value : ℕ}
     (h : t.HasBinaryNat value) :
     t.read = Γ.blank ↔ value = 0 := by

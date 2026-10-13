@@ -22,6 +22,9 @@ namespace TMConfig
 
 namespace Sparse
 
+/--
+@isnad1 id=or.1h2v.s5.ec8e04fe7976 from=translated src=- shape=56ad878a vocab=10e85961
+-/
 theorem initRegs_bool_of_pos_internal (x : List Bool) {reg : ℕ}
     (hpos : 0 < reg) : initRegs x reg = 0 ∨ initRegs x reg = 1 := by
   rw [initRegs, ite_eq_right (by omega)]
@@ -30,6 +33,9 @@ theorem initRegs_bool_of_pos_internal (x : List Bool) {reg : ℕ}
   | some bit =>
       cases bit <;> simp
 
+/--
+@isnad1 id=lt.1h2v.s4.251e94700807 from=translated src=- shape=e8bdf649 vocab=3e55af25
+-/
 theorem captureRegs_positive_internal (n : ℕ) {reg : ℕ}
     (hmem : reg ∈ captureRegs n) : 0 < reg := by
   simp [captureRegs, zeroReg, oneReg, tapeCountReg, stateScratchReg,
@@ -38,7 +44,9 @@ theorem captureRegs_positive_internal (n : ℕ) {reg : ℕ}
 
 /-- If the selected leaf executes, the generated capture tree executes that
 same leaf without changing the store. Branch costs are left existential here;
-the later resource layer assigns their common envelope. -/
+the later resource layer assigns their common envelope.
+@isnad1 id=ex.2h6v.s6.5afd17ba28a9 from=translated src=- shape=e3661acb vocab=6c8e21ee
+-/
 theorem captureInput_exec_of_leaf_internal (tm : TM n)
     (store : Structured.Store) (regs : List ℕ)
     (captured : List (ℕ × ℕ)) {final : Structured.Store}
@@ -74,7 +82,9 @@ theorem captureInput_exec_of_leaf_internal (tm : TM n)
           (Structured.Exec.ifNonzero (onZero :=
             captureInput tm rest ((reg, 0) :: captured)) hnonzero hbranch)
 
-/-- Specialization of finite capture to the public RAM input store. -/
+/-- Specialization of finite capture to the public RAM input store.
+@isnad1 id=ex.1h4v.s6.8d8bc9fb12e2 from=translated src=- shape=e18bc35a vocab=8a35bf8b
+-/
 theorem marshalInput_exec_of_leaf_internal (tm : TM n) (x : List Bool)
     {final : Structured.Store}
     (hleaf : ∃ steps cost space,

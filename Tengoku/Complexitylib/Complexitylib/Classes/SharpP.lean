@@ -59,7 +59,9 @@ def acceptLeafCount (tm : NTM n) (x : List Bool) (T : ℕ) : ℕ :=
   tm.acceptLeafCountFrom T (tm.initCfg x)
 
 /-- An accepting computation tree of height at most `T` has at most `2 ^ T`
-leaves. -/
+leaves.
+@isnad1 id=le.0h4v.s5.b2f299cedd10 from=translated src=- shape=7a1111be vocab=5ddd7519
+-/
 theorem acceptLeafCountFrom_le (tm : NTM n) (c : Cfg n tm.Q) (T : ℕ) :
     tm.acceptLeafCountFrom T c ≤ 2 ^ T := by
   induction T generalizing c with
@@ -78,7 +80,9 @@ theorem acceptLeafCountFrom_le (tm : NTM n) (c : Cfg n tm.Q) (T : ℕ) :
         have htrue := ih (tm.trace 1 (fun _ => true) c)
         omega
 
-/-- A machine has at most `2 ^ T` accepting leaves within `T` transitions. -/
+/-- A machine has at most `2 ^ T` accepting leaves within `T` transitions.
+@isnad1 id=le.0h4v.s5.49c34e9ea175 from=translated src=- shape=a4a53d00 vocab=8a31e143
+-/
 theorem acceptLeafCount_le (tm : NTM n) (x : List Bool) (T : ℕ) :
     tm.acceptLeafCount x T ≤ 2 ^ T :=
   tm.acceptLeafCountFrom_le (tm.initCfg x) T
@@ -114,7 +118,9 @@ private theorem acceptLeafCountFrom_add_eq (tm : NTM n) (c : Cfg n tm.Q)
         rw [ih _ (hbranch false), ih _ (hbranch true)]
 
 /-- Once every path has halted by `T`, extending the observation clock to any
-`T' ≥ T` leaves the accepting-leaf count unchanged. -/
+`T' ≥ T` leaves the accepting-leaf count unchanged.
+@isnad1 id=eq.2h5v.s5.fd5ea08fe447 from=translated src=- shape=2d5b7ab0 vocab=3d03fb54
+-/
 theorem acceptLeafCount_eq_of_le_of_allChoicesHalt (tm : NTM n) (x : List Bool)
     {T T' : ℕ} (hle : T ≤ T')
     (hhalt : ∀ choices : Fin T → Bool,
@@ -123,7 +129,9 @@ theorem acceptLeafCount_eq_of_le_of_allChoicesHalt (tm : NTM n) (x : List Bool)
   obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_le hle
   exact tm.acceptLeafCountFrom_add_eq (tm.initCfg x) T d hhalt
 
-/-- A pointwise-larger sufficient clock gives the same accepting-leaf count. -/
+/-- A pointwise-larger sufficient clock gives the same accepting-leaf count.
+@isnad1 id=eq.2h5v.s5.bf16d2c5ff70 from=translated src=- shape=4cc0be10 vocab=eb874397
+-/
 theorem acceptLeafCount_eq_of_le_of_allPathsHaltIn {T T' : ℕ → ℕ}
     (tm : NTM n) (hle : ∀ m, T m ≤ T' m) (hhalt : tm.AllPathsHaltIn T)
     (x : List Bool) :
@@ -134,7 +142,9 @@ end NTM
 
 /-- The number of accepting choice sequences is at most the total number of
     choice sequences, `2 ^ T`: it is the cardinality of a subset of the `2 ^ T`
-    length-`T` random strings. -/
+    length-`T` random strings.
+@isnad1 id=le.0h4v.s5.dc3e326089a4 from=translated src=- shape=a4a53d00 vocab=ade06dcb
+-/
 theorem NTM.acceptCount_le {n : ℕ} (N : NTM n) (x : List Bool) (T : ℕ) :
     N.acceptCount x T ≤ 2 ^ T := by
   unfold NTM.acceptCount
@@ -153,7 +163,9 @@ def SharpP : Set (List Bool → ℕ) :=
     ∀ x, f x = N.acceptLeafCount x (T x.length)}
 
 /-- Every `#P` function is bounded by `2 ^ T(|x|)` for its polynomial clock `T`:
-    a witness that `#P` functions have at-most-exponential values. -/
+    a witness that `#P` functions have at-most-exponential values.
+@isnad1 id=ex.1h1v.s6.6e52efd8f4fe from=translated src=- shape=86d93cda vocab=836bdda4
+-/
 theorem SharpP.le_two_pow {f : List Bool → ℕ} (hf : f ∈ SharpP) :
     ∃ T : ℕ → ℕ, (∃ k, T =O (· ^ k)) ∧ ∀ x, f x ≤ 2 ^ T x.length := by
   obtain ⟨m, N, T, k, _, hpoly, hval⟩ := hf
@@ -167,7 +179,9 @@ theorem SharpP.le_two_pow {f : List Bool → ℕ} (hf : f ∈ SharpP) :
 def GapP : Set (List Bool → ℤ) :=
   {h | ∃ f g : List Bool → ℕ, f ∈ SharpP ∧ g ∈ SharpP ∧ ∀ x, h x = (f x : ℤ) - (g x : ℤ)}
 
-/-- `GapP` is closed under negation: swap the two `#P` functions. -/
+/-- `GapP` is closed under negation: swap the two `#P` functions.
+@isnad1 id=mem.1h1v.s5.66b8406117ec from=translated src=- shape=30d9d031 vocab=d13f33db
+-/
 theorem GapP.neg_mem {h : List Bool → ℤ} (hh : h ∈ GapP) :
     (fun x => -h x) ∈ GapP := by
   obtain ⟨f, g, hf, hg, hval⟩ := hh

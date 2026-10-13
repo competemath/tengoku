@@ -43,7 +43,9 @@ def split {m : ℕ} (seed : AuxiliaryUnarySeed m) : ℕ :=
   seed.1.val
 
 /-- Every selected binary length is at most the slice parameter, including the
-totalized zero slice. -/
+totalized zero slice.
+@isnad1 id=le.0h2v.s3.50d8005ffeb0 from=translated src=- shape=26d77ceb vocab=23273000
+-/
 theorem splitLe {m : ℕ} (seed : AuxiliaryUnarySeed m) : seed.split ≤ m := by
   cases m with
   | zero =>

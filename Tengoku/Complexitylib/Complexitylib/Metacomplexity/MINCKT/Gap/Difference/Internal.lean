@@ -57,12 +57,18 @@ namespace GapMINCKT
 
 namespace DifferenceEstimator
 
+/--
+@isnad1 id=eq.0h2v.s5.33847ec4ac62 from=translated src=- shape=63eba76d vocab=20aadca7
+-/
 theorem estimate_apply_internal (components : DifferenceEstimator)
     (inst : MINCKT.Instance) :
     components.estimate inst =
       components.minuend inst - components.subtrahend inst -
         components.correction inst := rfl
 
+/--
+@isnad1 id=satisfie.1h6v.s4.c005356c2b79 from=translated src=- shape=916c79bd vocab=0575add4
+-/
 theorem SatisfiesAccounting.satisfiesBounds_internal
     {ordinaryTapes conditionalTapes : ℕ}
     {components : DifferenceEstimator}

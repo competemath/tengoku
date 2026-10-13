@@ -61,7 +61,9 @@ private theorem fullAdder_valid (carry lhsBit rhsBit : Bool) (lhs rhs : ℕ)
   exact hvalue
 
 /-- Ripple addition with an incoming carry computes the corresponding natural
-sum. This is the induction-strengthened form of `ripple_natBits_internal`. -/
+sum. This is the induction-strengthened form of `ripple_natBits_internal`.
+@isnad1 id=eq.0h3v.s5.cd9a5db8b4a9 from=translated src=- shape=6f5794ab vocab=a8ddf734
+-/
 theorem ripple_natBits_carry_internal (carry : Bool) (lhs rhs : ℕ) :
     ripple carry lhs.bits rhs.bits =
       (lhs + rhs + (if carry then 1 else 0)).bits := by
@@ -159,12 +161,16 @@ theorem ripple_natBits_carry_internal (carry : Bool) (lhs rhs : ℕ) :
                 (if carry then 1 else 0)).bits := by
               rw [hadd]
 
-/-- Ripple addition without an incoming carry computes canonical addition. -/
+/-- Ripple addition without an incoming carry computes canonical addition.
+@isnad1 id=eq.0h2v.s4.d82aeeea3dff from=translated src=- shape=2a6c52fd vocab=1a265611
+-/
 theorem ripple_natBits_internal (lhs rhs : ℕ) :
     ripple false lhs.bits rhs.bits = (lhs + rhs).bits := by
   simpa using ripple_natBits_carry_internal false lhs rhs
 
-/-- The pure result has exactly the canonical width of the sum. -/
+/-- The pure result has exactly the canonical width of the sum.
+@isnad1 id=eq.0h2v.s4.494fb20dab4f from=translated src=- shape=100f696a vocab=538fe517
+-/
 theorem length_ripple_natBits_internal (lhs rhs : ℕ) :
     (ripple false lhs.bits rhs.bits).length = (lhs + rhs).size := by
   rw [ripple_natBits_internal, Nat.size_eq_bits_len]
@@ -173,7 +179,9 @@ end BinaryRippleAdd
 
 namespace TM
 
-/-- Rewrite the list-level scan bound as a bound in natural-number widths. -/
+/-- Rewrite the list-level scan bound as a bound in natural-number widths.
+@isnad1 id=eq.0h2v.s4.6072d611da7c from=translated src=- shape=5175d73b vocab=a6a28ab8
+-/
 theorem binaryRippleAddScanTime_natBits_internal (lhs rhs : ℕ) :
     binaryRippleAddScanTime lhs.bits rhs.bits = max lhs.size rhs.size + 1 := by
   simp [binaryRippleAddScanTime, Nat.size_eq_bits_len]

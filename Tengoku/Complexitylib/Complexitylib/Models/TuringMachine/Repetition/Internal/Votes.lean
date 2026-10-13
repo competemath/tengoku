@@ -33,6 +33,9 @@ def repeatVotes (tm : NTM n) (x : List Bool) (k T : ℕ)
     (seed : Fin (k * T) → Bool) : Fin k → Bool :=
   fun j => repeatTrialVote tm x k T seed j
 
+/--
+@isnad1 id=iff.0h7v.s7.9901c973bbac from=translated src=- shape=d38b19cb vocab=5cf4eac2
+-/
 @[simp] theorem repeatTrialVote_eq_true_iff (tm : NTM n) (x : List Bool)
     (seed : Fin (k * T) → Bool) (j : Fin k) :
     repeatTrialVote tm x k T seed j = true ↔
@@ -44,12 +47,17 @@ not-yet-completed trial slot. -/
 def RepeatVotesThrough (expected votes : Fin k → Bool) (m : ℕ) : Prop :=
   ∀ i, votes i = if i.val < m then expected i else false
 
+/--
+@isnad1 id=repeatvo.0h2v.s4.52d322d1a0d7 from=translated src=- shape=892f3ff2 vocab=5ca5d4a1
+-/
 theorem RepeatVotesThrough.zero (expected : Fin k → Bool) :
     RepeatVotesThrough expected (fun _ => false) 0 := by
   intro i
   simp
 
-/-- Recording trial `m` advances the vote invariant by one slot. -/
+/-- Recording trial `m` advances the vote invariant by one slot.
+@isnad1 id=repeatvo.2h4v.s5.870b8760919c from=translated src=- shape=dd9a414b vocab=62a77979
+-/
 theorem RepeatVotesThrough.update {expected votes : Fin k → Bool} {m : ℕ}
     (hm : m < k) (h : RepeatVotesThrough expected votes m) :
     RepeatVotesThrough expected

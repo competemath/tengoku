@@ -20,6 +20,9 @@ namespace Complexity
 
 namespace NWDesign
 
+/--
+@isnad1 id=iff.0h8v.s5.4eb7baf8388a from=translated src=- shape=8548860e vocab=2489a445
+-/
 theorem reconstructionCertificatePasses_eq_true_iff_internal
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -33,6 +36,9 @@ theorem reconstructionCertificatePasses_eq_true_iff_internal
         agreementThreshold certificate := by
   simp [reconstructionCertificatePasses, IsGoodReconstructionCertificate]
 
+/--
+@isnad1 id=iff.0h8v.s6.438ec92b6f90 from=translated src=- shape=b91a5bfc vocab=976c5e9b
+-/
 theorem checkReconstructionTrial_isSome_iff_internal
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -58,6 +64,9 @@ theorem checkReconstructionTrial_isSome_iff_internal
     · simp [checkReconstructionTrial?, reconstructionCertificatePasses,
         IsGoodReconstructionCertificate, hdirect, hcomplemented]
 
+/--
+@isnad1 id=iff.0h9v.s6.653170dfd598 from=translated src=- shape=1e44bfea vocab=63923028
+-/
 theorem findGoodReconstructionCertificate_isSome_iff_internal
     {outputLength inputLength seedLength trials : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -73,6 +82,9 @@ theorem findGoodReconstructionCertificate_isSome_iff_internal
   simp only [findGoodReconstructionCertificate?, Fin.isSome_findSome?_iff,
     checkReconstructionTrial_isSome_iff_internal]
 
+/--
+@isnad1 id=and.1h9v.s6.778fea33d392 from=translated src=- shape=c30e267c vocab=3ab9a9e0
+-/
 theorem checkReconstructionTrial_sound_internal
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -106,6 +118,9 @@ theorem checkReconstructionTrial_sound_internal
     next hnotComplemented =>
       simp at hcheck
 
+/--
+@isnad1 id=and.1h10v.s6.4eb6d0efe8ce from=translated src=- shape=1cffcf48 vocab=04664dfa
+-/
 theorem findGoodReconstructionCertificate_sound_internal
     {outputLength inputLength seedLength trials : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -125,6 +140,9 @@ theorem findGoodReconstructionCertificate_sound_internal
     design hardFunction test agreementThreshold (batch index) certificate hcheck
   exact ⟨hgood, index, htrial⟩
 
+/--
+@isnad1 id=le.0h9v.s5.f77107f4fca4 from=translated src=- shape=c868c0c1 vocab=f61d3ddc
+-/
 theorem repeatedGoodReconstructionTrialProbability_le_checked_internal
     {outputLength inputLength seedLength : ℕ}
     (design : NWDesign outputLength inputLength seedLength)
@@ -152,6 +170,9 @@ theorem repeatedGoodReconstructionTrialProbability_le_checked_internal
   simpa [goodReconstructionTrialEvent,
     IsGoodReconstructionCertificate] using hgood
 
+/--
+@isnad1 id=and.6h12v.s8.7b94049cd7fc from=translated src=- shape=6658ca46 vocab=d319a574
+-/
 theorem half_le_checkedReconstructionBatch_of_randomTest_internal
     {outputLength inputLength seedLength tapes time threshold budget : ℕ}
     {design : NWDesign outputLength inputLength seedLength}
@@ -192,6 +213,9 @@ theorem half_le_checkedReconstructionBatch_of_randomTest_internal
         certificate hfind
     simpa [htrial] using hdata (batch index)
 
+/--
+@isnad1 id=and.7h12v.s8.bad5a5953c80 from=translated src=- shape=e2adb515 vocab=258aeb09
+-/
 theorem half_le_checkedReconstructionBatch_of_seedDescriptions_internal
     {outputLength inputLength seedLength tapes time threshold budget : ℕ}
     {design : NWDesign outputLength inputLength seedLength}

@@ -32,14 +32,18 @@ namespace TM
 variable {n : ℕ}
 
 /-- Canonical binary copying is linear in the source and old-destination
-widths. -/
+widths.
+@isnad1 id=le.0h2v.s5.2beae7bca1bf from=translated src=- shape=90ca7041 vocab=1a188f64
+-/
 theorem binaryCopyTime_le (srcValue dstValue : ℕ) :
     binaryCopyTime srcValue dstValue ≤
       3 * srcValue.size + 2 * dstValue.size + 20 :=
   binaryCopyTime_le_internal srcValue dstValue
 
 /-- Binary copying changes only the destination tape. The source, zero
-counter, input, output, and every unrelated work tape are preserved literally. -/
+counter, input, output, and every unrelated work tape are preserved literally.
+@isnad1 id=hoaretim.9h9v.s7.e09a5f5bd45a from=translated src=- shape=8f5ca888 vocab=8b8d3549
+-/
 theorem binaryCopyIntoTM_hoareTime_frame
     (srcIdx dstIdx counterIdx : Fin n)
     (hsrcDst : srcIdx ≠ dstIdx) (hsrcCounter : srcIdx ≠ counterIdx)
@@ -67,7 +71,9 @@ theorem binaryCopyIntoTM_hoareTime_frame
 
 /-- Time-and-space form of canonical binary copying. Every reachable
 configuration stays within the maximum of the clearing and ripple-addition
-bounds. -/
+bounds.
+@isnad1 id=hoaretim.11h11v.s7.56504110fd3f from=translated src=- shape=f0dff3a5 vocab=102a452a
+-/
 theorem binaryCopyIntoTM_hoareTimeSpace_frame
     (srcIdx dstIdx counterIdx : Fin n)
     (hsrcDst : srcIdx ≠ dstIdx) (hsrcCounter : srcIdx ≠ counterIdx)
@@ -97,7 +103,9 @@ theorem binaryCopyIntoTM_hoareTimeSpace_frame
     initialSpace inp₀ work₀ out₀ hsrc hdst hcounter hinp hother hout
     hworkSpace hinputSpace
 
-/-- Canonical binary copying never moves the output head left. -/
+/-- Canonical binary copying never moves the output head left.
+@isnad1 id=istransd.0h4v.s4.8f39dfcc75a8 from=translated src=- shape=0b195b8b vocab=3f749696
+-/
 theorem binaryCopyIntoTM_isTransducer
     (srcIdx dstIdx counterIdx : Fin n) :
     (binaryCopyIntoTM srcIdx dstIdx counterIdx).IsTransducer :=

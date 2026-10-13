@@ -45,7 +45,9 @@ variable {V : Vocabulary} {A B : FinStruct V}
 def REnv.map (f : Iso A B) {rctx : List Nat} (ρ : REnv A.card rctx) : REnv B.card rctx :=
   fun r args => ρ r (f.invFun ∘ args)
 
-/-- Transport commutes with extending the environment by a fresh relation. -/
+/-- Transport commutes with extending the environment by a fresh relation.
+@isnad1 id=eq.0h8v.s6.ba65372ce78a from=translated src=- shape=abd0d326 vocab=d993a5de
+-/
 theorem rCons_map (f : Iso A B) {k : Nat} {rctx : List Nat}
     (S : (Fin k → Fin A.card) → Prop) (ρ : REnv A.card rctx) :
     REnv.map f (rCons S ρ) = rCons (fun args => S (f.invFun ∘ args)) (REnv.map f ρ) := by
@@ -62,7 +64,9 @@ private theorem push_pull (f : Iso A B) {k : Nat} (S : (Fin k → Fin B.card) �
 
 /-- **Second-order satisfaction is isomorphism-invariant.** Along an isomorphism
     `f : A ≅ B`, a formula holds at `(σ, ρ)` iff it holds at the transported
-    environments `(f ∘ σ, f₊ρ)`. -/
+    environments `(f ∘ σ, f₊ρ)`.
+@isnad1 id=iff.0h9v.s6.eb7d97030c2e from=translated src=- shape=2e26f3fb vocab=dcdad9d6
+-/
 theorem SOFormula.sat_iso (f : Iso A B) :
     ∀ {rctx : List Nat} {n : Nat} (φ : SOFormula V rctx n)
       (σ : Env A.card n) (ρ : REnv A.card rctx),
@@ -114,7 +118,9 @@ theorem SOFormula.sat_iso (f : Iso A B) :
       exact this
     · intro hb S; rw [ih σ (rCons S ρ), rCons_map]; exact hb _
 
-/-- **Second-order sentences are isomorphism-invariant.** -/
+/-- **Second-order sentences are isomorphism-invariant.**
+@isnad1 id=iff.0h5v.s4.ee9036cf2e56 from=translated src=- shape=82c83751 vocab=dc81085c
+-/
 theorem SOSentence.models_iso (f : Iso A B) (φ : SOSentence V) :
     SOSentence.Models A φ ↔ SOSentence.Models B φ := by
   unfold SOSentence.Models
@@ -129,7 +135,9 @@ def SODefinable (Q : BooleanQuery V) : Prop :=
   ∃ φ : SOSentence V, ∀ A : FinStruct V, Q A ↔ SOSentence.Models A φ
 
 /-- **Second-order definable queries are order-independent** — in particular every
-    `∃SO` query is legitimate, as Fagin's theorem requires. -/
+    `∃SO` query is legitimate, as Fagin's theorem requires.
+@isnad1 id=isorderi.1h2v.s3.35c995c354bc from=translated src=- shape=b28a8773 vocab=8f45d5be
+-/
 theorem SODefinable.orderIndependent {Q : BooleanQuery V} (hQ : SODefinable Q) :
     Q.IsOrderIndependent := by
   obtain ⟨φ, hφ⟩ := hQ
@@ -137,14 +145,18 @@ theorem SODefinable.orderIndependent {Q : BooleanQuery V} (hQ : SODefinable Q) :
   rw [hφ A, hφ B]
   exact SOSentence.models_iso f φ
 
-/-- Second-order definable queries are closed under complement (via `¬`). -/
+/-- Second-order definable queries are closed under complement (via `¬`).
+@isnad1 id=sodefina.1h2v.s3.33f2d24805bb from=translated src=- shape=525138f7 vocab=c1ab36a6
+-/
 theorem SODefinable.complement {Q : BooleanQuery V} (hQ : SODefinable Q) :
     SODefinable Q.complement := by
   obtain ⟨φ, hφ⟩ := hQ
   exact ⟨SOFormula.neg φ, fun A => by
     simp only [BooleanQuery.complement, hφ A, SOSentence.Models, SOFormula.Sat]⟩
 
-/-- Second-order definable queries are closed under intersection (via `∧`). -/
+/-- Second-order definable queries are closed under intersection (via `∧`).
+@isnad1 id=sodefina.2h3v.s4.74cda4b4ce9b from=translated src=- shape=85b2e57a vocab=00abf8cd
+-/
 theorem SODefinable.inter {Q₁ Q₂ : BooleanQuery V}
     (h₁ : SODefinable Q₁) (h₂ : SODefinable Q₂) : SODefinable (Q₁.inter Q₂) := by
   obtain ⟨φ, hφ⟩ := h₁
@@ -152,7 +164,9 @@ theorem SODefinable.inter {Q₁ Q₂ : BooleanQuery V}
   exact ⟨SOFormula.conj φ ψ, fun A => by
     simp only [BooleanQuery.inter, hφ A, hψ A, SOSentence.Models, SOFormula.Sat]⟩
 
-/-- Second-order definable queries are closed under union (via `∨`). -/
+/-- Second-order definable queries are closed under union (via `∨`).
+@isnad1 id=sodefina.2h3v.s4.ccebe9cedf47 from=translated src=- shape=85b2e57a vocab=8df18171
+-/
 theorem SODefinable.union {Q₁ Q₂ : BooleanQuery V}
     (h₁ : SODefinable Q₁) (h₂ : SODefinable Q₂) : SODefinable (Q₁.union Q₂) := by
   obtain ⟨φ, hφ⟩ := h₁

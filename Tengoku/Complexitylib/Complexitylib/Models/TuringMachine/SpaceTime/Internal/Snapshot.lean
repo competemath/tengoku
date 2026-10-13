@@ -68,7 +68,9 @@ variable {k : ℕ} {tm : TM k} {inputLength space : ℕ}
 
 /-- One transducer step preserves equality of finite snapshots when both
 source configurations share the same read-only input contents and all source
-and target work heads stay within the advertised space bound. -/
+and target work heads stay within the advertised space bound.
+@isnad1 id=eq.11h8v.s7.f2ff92a66003 from=translated src=- shape=dc8f1c6a vocab=3452d29f
+-/
 theorem transducerSnapshot_step_congr
     {c₁ c₂ d₁ d₂ : Cfg k tm.Q}
     (htrans : tm.IsTransducer)
@@ -141,7 +143,9 @@ theorem transducerSnapshot_step_congr
   · exact houtObs.2
 
 /-- Equal snapshots stay equal along equal-length transducer runs whose work
-and input heads remain within the same auxiliary-space window. -/
+and input heads remain within the same auxiliary-space window.
+@isnad1 id=eq.9h9v.s7.1d3d1a7c3f20 from=translated src=- shape=400c2283 vocab=46a15864
+-/
 theorem transducerSnapshot_reachesIn_congr
     {t : ℕ} {c₁ c₂ d₁ d₂ : Cfg k tm.Q}
     (htrans : tm.IsTransducer)

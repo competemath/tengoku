@@ -45,7 +45,9 @@ variable {n : ℕ}
     choice bit. -/
 def Deterministic (N : NTM n) : Prop := ∀ b, N.δ b = N.δ false
 
-/-- Unfolded form of `Deterministic`, usable as a rewrite rule. -/
+/-- Unfolded form of `Deterministic`, usable as a rewrite rule.
+@isnad1 id=eq.1h3v.s5.02207bf0a192 from=translated src=- shape=d5dd78c8 vocab=c9f315ba
+-/
 theorem Deterministic.δ_eq {N : NTM n} (hdet : N.Deterministic) :
     ∀ b, N.δ b = N.δ false := hdet
 
@@ -70,7 +72,9 @@ private theorem Deterministic.trace_step {N : NTM n} (hdet : N.Deterministic)
   simp [NTM.trace, hne, toTM, TM.step, hdet.δ_eq]
 
 /-- For a deterministic NTM, the trace is independent of the choice sequence
-    (mirror of `TM.toNTM_trace_choice_irrel`). -/
+    (mirror of `TM.toNTM_trace_choice_irrel`).
+@isnad1 id=eq.1h6v.s5.178323f23295 from=translated src=- shape=f3c68c70 vocab=22b5e9ad
+-/
 theorem Deterministic.trace_congr_choices {N : NTM n} (hdet : N.Deterministic)
     (T : ℕ) (c : Cfg n N.Q) (ch₁ ch₂ : Fin T → Bool) :
     N.trace T ch₁ c = N.trace T ch₂ c := by
@@ -83,7 +87,9 @@ theorem Deterministic.trace_congr_choices {N : NTM n} (hdet : N.Deterministic)
     · exact ih _ _ _
 
 /-- **Step-exact correspondence.** The `toTM` run reaches the deterministic
-    NTM's trace configuration within the trace length. -/
+    NTM's trace configuration within the trace length.
+@isnad1 id=ex.1h5v.s5.0d9eee15df1e from=translated src=- shape=10e6d57f vocab=65589d50
+-/
 theorem Deterministic.toTM_reachesIn_trace {N : NTM n} (hdet : N.Deterministic)
     (T : ℕ) (choices : Fin T → Bool) (c : Cfg n N.Q) :
     ∃ t ≤ T, N.toTM.reachesIn t c (N.trace T choices c) := by
@@ -108,7 +114,9 @@ def RejectsWithZero (N : NTM n) (L : Language) (T : ℕ → ℕ) : Prop :=
 
 /-- **Deterministic NTM decider → DTM decider, same time bound.** The `toTM`
     run is step-exact with the (choice-irrelevant) trace; acceptance transfers
-    from the deciding hypothesis and rejection output from `RejectsWithZero`. -/
+    from the deciding hypothesis and rejection output from `RejectsWithZero`.
+@isnad1 id=decidesi.3h4v.s5.441ea1c6dc4c from=translated src=- shape=dc644610 vocab=480682e8
+-/
 theorem toTM_decidesInTime {N : NTM n} (hdet : N.Deterministic) {L : Language}
     {T : ℕ → ℕ} (h : N.DecidesInTime L T) (hrej : N.RejectsWithZero L T) :
     N.toTM.DecidesInTime L T := by
@@ -123,12 +131,16 @@ theorem toTM_decidesInTime {N : NTM n} (hdet : N.Deterministic) {L : Language}
 end NTM
 
 /-- A DTM's NTM embedding is deterministic: both transition functions are
-    `tm.δ`. -/
+    `tm.δ`.
+@isnad1 id=determin.0h2v.s3.747c7f5538cf from=translated src=- shape=20553ef8 vocab=a9062172
+-/
 theorem TM.toNTM_deterministic {n : ℕ} (M : TM n) : M.toNTM.Deterministic :=
   fun _ => rfl
 
 /-- A DTM decider's NTM embedding rejects with output `0`: its trace freezes at
-    the DTM's halting configuration, whose rejection cell is `0`. -/
+    the DTM's halting configuration, whose rejection cell is `0`.
+@isnad1 id=rejectsw.1h4v.s4.f5a4d0bd0929 from=translated src=- shape=0e599073 vocab=14173e9f
+-/
 theorem TM.toNTM_rejectsWithZero {n : ℕ} {M : TM n} {L : Language} {T : ℕ → ℕ}
     (h : M.DecidesInTime L T) : M.toNTM.RejectsWithZero L T := by
   intro x hx choices
@@ -140,7 +152,9 @@ theorem TM.toNTM_rejectsWithZero {n : ℕ} {M : TM n} {L : Language} {T : ℕ �
 namespace NTM
 
 /-- Padding a 0-work-tape machine with a dummy work tape preserves determinism:
-    `pad0`'s transition threads the choice bit only into `N.δ`. -/
+    `pad0`'s transition threads the choice bit only into `N.δ`.
+@isnad1 id=determin.1h1v.s4.2339c0825530 from=translated src=- shape=81d3c6ee vocab=cc6593e2
+-/
 theorem pad0_deterministic {N : NTM 0} (hdet : N.Deterministic) :
     (pad0 N).Deterministic := by
   intro b
@@ -149,7 +163,9 @@ theorem pad0_deterministic {N : NTM 0} (hdet : N.Deterministic) :
   simp only [pad0, hdet.δ_eq]
 
 /-- Padding preserves the zero-on-rejection output discipline (the padded
-    machine's output tape tracks the original's verbatim). -/
+    machine's output tape tracks the original's verbatim).
+@isnad1 id=rejectsw.1h3v.s5.dd01c1d64267 from=translated src=- shape=46159e35 vocab=8328218c
+-/
 theorem pad0_rejectsWithZero {N : NTM 0} {L : Language} {T : ℕ → ℕ}
     (hrej : N.RejectsWithZero L T) : (pad0 N).RejectsWithZero L T := by
   intro x hx choices
@@ -158,7 +174,9 @@ theorem pad0_rejectsWithZero {N : NTM 0} {L : Language} {T : ℕ → ℕ}
 
 /-- The single-tape simulator of a deterministic machine is deterministic: the
     simulator's transition consults the choice bit only at the GATHER sentinel
-    step, where it feeds it to `N.δ`. -/
+    step, where it feeds it to `N.δ`.
+@isnad1 id=determin.1h2v.s4.79515389bdcb from=translated src=- shape=f0d985c4 vocab=b8779947
+-/
 theorem singleTapeSim_deterministic {k : ℕ} {N : NTM k} (hdet : N.Deterministic) :
     (singleTapeSim N).Deterministic := by
   intro b
@@ -183,7 +201,9 @@ namespace NTM.SingleTape
 
 /-- Halt-step correspondence, cells version: when `N` has halted, the
     simulator's one halt step lands with exactly `N`'s output cells
-    (via `Corr.outputEq`; strengthens `halted_of_corr`'s accept-bit `↔`). -/
+    (via `Corr.outputEq`; strengthens `halted_of_corr`'s accept-bit `↔`).
+@isnad1 id=eq.2h5v.s6.c3f0ed364ab9 from=translated src=- shape=8f0bf090 vocab=dc0913a4
+-/
 theorem haltCorr_output_cells {k : ℕ} (N : NTM k) {M : ℕ}
     {c1 : Cfg 1 (SimQ k N.Q)} {c : Cfg k N.Q}
     (hcorr : Corr N M c1 c) (hh : c.state = N.qhalt) :
@@ -206,7 +226,9 @@ theorem haltCorr_output_cells {k : ℕ} (N : NTM k) {M : ℕ}
 /-- Reverse halting, cells version (mirrors `halted_singleTapeSim_of_trace_qhalt`, strengthening the
     accept-bit `↔` to equality of the output cells via `Corr.outputEq`): if the
     `N`-run induced by an arbitrary simulator stream halts within `Tn` steps,
-    the simulator halts within the budget with the same output cells. -/
+    the simulator halts within the budget with the same output cells.
+@isnad1 id=ex.2h5v.s7.b3d08f1d363c from=translated src=- shape=4b235712 vocab=7aba9426
+-/
 theorem halts_rev_output_cells {k : ℕ} (N : NTM k) (hk : 1 ≤ k) (ch : ℕ → Bool)
     (x : List Bool) (Tn : ℕ)
     (hhalt : (N.trace Tn (fun i => inducedChoices k ch i.val) (N.initCfg x)).state
@@ -270,7 +292,9 @@ end NTM.SingleTape
 namespace NTM
 
 /-- The single-tape simulator inherits the zero-on-rejection output discipline:
-    the simulator's output tape tracks `N`'s exactly (`Corr.outputEq`). -/
+    the simulator's output tape tracks `N`'s exactly (`Corr.outputEq`).
+@isnad1 id=rejectsw.3h4v.s5.1f0bb5f12c55 from=translated src=- shape=7356ce3d vocab=7df21637
+-/
 theorem singleTapeSim_rejectsWithZero {k : ℕ} {N : NTM k} (hk : 1 ≤ k)
     {L : Language} {T : ℕ → ℕ} (hN : N.AllPathsHaltIn T)
     (hrej : N.RejectsWithZero L T) :
@@ -309,7 +333,9 @@ private theorem le_singleTapeSimTime (k : ℕ) (T : ℕ → ℕ) (m : ℕ) :
     the quadratic overhead bound
     `singleTapeSimTime k T = fun n => 16 * (k + 1) * (T n + n + 1) ^ 2`.
     Chain: embed (`toNTM`), simulate (`singleTapeSim`, or `pad0` for `k = 0`),
-    convert back (`toTM`) via determinism. -/
+    convert back (`toTM`) via determinism.
+@isnad1 id=ex.1h4v.s5.cf5d86a716c6 from=translated src=- shape=1711a517 vocab=1548fa56
+-/
 theorem TM.exists_singleTape_decidesInTime {k : ℕ} (M : TM k) {L : Language} {T : ℕ → ℕ}
     (h : M.DecidesInTime L T) :
     ∃ M₁ : TM 1, M₁.DecidesInTime L (NTM.singleTapeSimTime k T) := by

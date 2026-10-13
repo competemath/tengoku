@@ -48,7 +48,9 @@ def runStep {k : ℕ} {Q : Type} (q : Q) (iHead wH oHead : Γ) :
     (fun _ => TM.readBackWrite wH), TM.readBackWrite oHead,
     TM.idleDir iHead, (fun _ => TM.idleDir wH), TM.idleDir oHead )
 
-/-- `run`'s directions are `▷`-safe (everything is `idleDir`). -/
+/-- `run`'s directions are `▷`-safe (everything is `idleDir`).
+@isnad1 id=and.0h6v.s8.f0568d7cd8c1 from=translated src=- shape=fd8d64be vocab=8cbdf72e
+-/
 theorem runStep_right_of_start {k : ℕ} {Q : Type} (q : Q) (iHead wH oHead : Γ) :
     (iHead = Γ.start → (runStep (k := k) q iHead wH oHead).2.2.2.1 = Dir3.right) ∧
     (∀ i, wH = Γ.start → (runStep (k := k) q iHead wH oHead).2.2.2.2.1 i = Dir3.right) ∧
@@ -73,7 +75,9 @@ def rewindStep {k : ℕ} {Q : Type} (d : RewindData k Q) (iHead wH oHead : Γ) :
       TM.idleDir iHead, (fun _ => Dir3.left), TM.idleDir oHead )
 
 /-- `rewind`'s directions are `▷`-safe: the work head moves left only off `▷`
-    (it moves right on `▷`); input/output use `idleDir`. -/
+    (it moves right on `▷`); input/output use `idleDir`.
+@isnad1 id=and.0h6v.s8.aca30e29f4e7 from=translated src=- shape=d60b2744 vocab=719485a7
+-/
 theorem rewindStep_right_of_start {k : ℕ} {Q : Type} (d : RewindData k Q)
     (iHead wH oHead : Γ) :
     (iHead = Γ.start → (rewindStep d iHead wH oHead).2.2.2.1 = Dir3.right) ∧
@@ -90,11 +94,15 @@ theorem rewindStep_right_of_start {k : ℕ} {Q : Type} (d : RewindData k Q)
     identity, so it never changes the simulated behaviour. -/
 def safeDir (head : Γ) (d : Dir3) : Dir3 := if head = Γ.start then Dir3.right else d
 
-/-- `safeDir` on a head reading `▷` is `right`, whatever the requested direction. -/
+/-- `safeDir` on a head reading `▷` is `right`, whatever the requested direction.
+@isnad1 id=eq.0h1v.s3.7d14593afd21 from=translated src=- shape=47364765 vocab=e32d12ed
+-/
 @[simp] theorem safeDir_start (d : Dir3) : safeDir Γ.start d = Dir3.right := rfl
 
 /-- Hypothesis-form of `safeDir_start`: if the head symbol equals `▷` then
-    `safeDir` clamps the direction to `right`. -/
+    `safeDir` clamps the direction to `right`.
+@isnad1 id=eq.1h2v.s3.776e9a072b68 from=translated src=- shape=4335eefe vocab=0db615d1
+-/
 theorem safeDir_right_of_start {head : Γ} {d : Dir3} (h : head = Γ.start) :
     safeDir head d = Dir3.right := by subst h; rfl
 
@@ -112,7 +120,9 @@ def commitStep {k : ℕ} {Q : Type} (d : CommitData Q) (iHead wH oHead : Γ) :
   ( SimQ.run q', (fun _ => TM.readBackWrite wH), oWrite,
     iDir, (fun _ => TM.idleDir wH), oDir )
 
-/-- COMMIT's directions are `▷`-safe (`δ_right_of_start`). -/
+/-- COMMIT's directions are `▷`-safe (`δ_right_of_start`).
+@isnad1 id=and.0h6v.s8.eaa56e102c9c from=translated src=- shape=38e96b9a vocab=67f051d1
+-/
 theorem commitStep_right_of_start {k : ℕ} {Q : Type} (d : CommitData Q)
     (iHead wH oHead : Γ) :
     (iHead = Γ.start → (commitStep (k := k) d iHead wH oHead).2.2.2.1 = Dir3.right) ∧
@@ -188,7 +198,9 @@ def gatherStep {k : ℕ} (N : NTM k) (b : Bool) (d : GatherData k N.Q)
 
 /-- The GATHER step's directions are `▷`-safe (`δ_right_of_start`): input and
     output use `idleDir`, and the work head moves left only on the `□` sentinel
-    (never on `▷`), moving right in every `▷`-reachable branch. -/
+    (never on `▷`), moving right in every `▷`-reachable branch.
+@isnad1 id=and.0h7v.s8.920372cfc569 from=translated src=- shape=f8ff4d7b vocab=3bd5e42e
+-/
 theorem gatherStep_right_of_start {k : ℕ} (N : NTM k) (b : Bool)
     (d : GatherData k N.Q) (iHead wH oHead : Γ) :
     (iHead = Γ.start → (gatherStep N b d iHead wH oHead).2.2.2.1 = Dir3.right) ∧
@@ -312,7 +324,9 @@ def scatter2Step {k : ℕ} {Q : Type} (d : Scatter2Data k Q) (iHead wH oHead : �
     (fun _ => if wH = Γ.start then Dir3.right else Dir3.left),
     TM.idleDir oHead )
 
-/-- `scatter1`'s directions are `▷`-safe. -/
+/-- `scatter1`'s directions are `▷`-safe.
+@isnad1 id=and.0h6v.s8.b843fe7870ae from=translated src=- shape=d60b2744 vocab=cf33d516
+-/
 theorem scatter1Step_right_of_start {k : ℕ} {Q : Type} (d : Scatter1Data k Q)
     (iHead wH oHead : Γ) :
     (iHead = Γ.start → (scatter1Step d iHead wH oHead).2.2.2.1 = Dir3.right) ∧
@@ -327,7 +341,9 @@ theorem scatter1Step_right_of_start {k : ℕ} {Q : Type} (d : Scatter1Data k Q)
     · rfl
   · exact TM.idleDir_right_of_start h
 
-/-- `scatter2`'s directions are `▷`-safe (work moves left only off `▷`). -/
+/-- `scatter2`'s directions are `▷`-safe (work moves left only off `▷`).
+@isnad1 id=and.0h6v.s8.8ef0cdb320a4 from=translated src=- shape=d60b2744 vocab=2401bc4d
+-/
 theorem scatter2Step_right_of_start {k : ℕ} {Q : Type} (d : Scatter2Data k Q)
     (iHead wH oHead : Γ) :
     (iHead = Γ.start → (scatter2Step d iHead wH oHead).2.2.2.1 = Dir3.right) ∧
@@ -363,7 +379,9 @@ def simDelta {k : ℕ} (N : NTM k) (b : Bool) (state : SimQ k N.Q)
 /-- The assembled transition satisfies `δ_right_of_start`: every phase moves a
     head reading `▷` to the right. Each case is the corresponding phase's
     `*_right_of_start`; the work-head condition uses `wHeads i = wHeads 0`
-    (`Fin 1` is a subsingleton). -/
+    (`Fin 1` is a subsingleton).
+@isnad1 id=and.0h7v.s8.7fbd3884138e from=translated src=- shape=ed11ccb6 vocab=c6eebf1d
+-/
 theorem simDelta_right_of_start {k : ℕ} (N : NTM k) (b : Bool) (q : SimQ k N.Q)
     (iHead : Γ) (wHeads : Fin 1 → Γ) (oHead : Γ) :
     (iHead = Γ.start → (simDelta N b q iHead wHeads oHead).2.2.2.1 = Dir3.right) ∧
@@ -397,7 +415,9 @@ theorem simDelta_right_of_start {k : ℕ} (N : NTM k) (b : Bool) (q : SimQ k N.Q
 
 /-- **Choice irrelevance — GATHER step.** Off the `□` sentinel, the GATHER step
     does not consult the nondeterministic bit `b` (only the sentinel step fires
-    `N.δ b`), so it produces the same output under any choice. -/
+    `N.δ b`), so it produces the same output under any choice.
+@isnad1 id=eq.1h8v.s6.09b9bfe15d04 from=translated src=- shape=66e58914 vocab=bd8b3873
+-/
 theorem gatherStep_eq_of_ne_blank {k : ℕ} (N : NTM k) (b b' : Bool) (d : GatherData k N.Q)
     (iHead wH oHead : Γ) (h : wH ≠ Γ.blank) :
     gatherStep N b d iHead wH oHead = gatherStep N b' d iHead wH oHead := by
@@ -406,7 +426,9 @@ theorem gatherStep_eq_of_ne_blank {k : ℕ} (N : NTM k) (b b' : Bool) (d : Gathe
 /-- **GATHER stays in GATHER off the sentinel.** As long as the work head is not
     on the `□` sentinel, the GATHER step's next state is again a GATHER state (the
     sweep only leaves GATHER to enter REWIND when it reads `□`). The inductive
-    building block for characterizing the sweep's per-step states. -/
+    building block for characterizing the sweep's per-step states.
+@isnad1 id=ex.1h7v.s6.07b303e18b8e from=translated src=- shape=0b46113b vocab=006aa220
+-/
 theorem gatherStep_fst_eq_gather_of_ne_blank {k : ℕ} (N : NTM k) (b : Bool) (d : GatherData k N.Q)
     (iHead wH oHead : Γ) (h : wH ≠ Γ.blank) :
     ∃ d', (gatherStep N b d iHead wH oHead).1 = SimQ.gather d' := by
@@ -418,7 +440,9 @@ theorem gatherStep_fst_eq_gather_of_ne_blank {k : ℕ} (N : NTM k) (b : Bool) (d
 /-- **GATHER non-state components off the sentinel.** For `wH ≠ □` all three
     sweep sub-branches (head-bit / sym-hi / sym-lo) agree on everything but the
     next state: the work head reads-back-writes `wH` and moves right, input/output
-    stay idle. Lets the per-step sweep lemma treat one gather step uniformly. -/
+    stay idle. Lets the per-step sweep lemma treat one gather step uniformly.
+@isnad1 id=and.1h7v.s8.35b5f7404a45 from=translated src=- shape=4042f132 vocab=886e7ff6
+-/
 theorem gatherStep_snd_eq_of_ne_blank {k : ℕ} (N : NTM k) (b : Bool) (d : GatherData k N.Q)
     (iHead wH oHead : Γ) (h : wH ≠ Γ.blank) :
     (gatherStep N b d iHead wH oHead).2.1 = (fun _ => TM.readBackWrite wH) ∧
@@ -484,7 +508,9 @@ theorem eq_commit_of_simDelta_eq_run {k : ℕ} (N : NTM k) (b : Bool) (state : S
 
 /-- **SCATTER-1 lands in `scatter1` or `scatter2`.** One sweep-1 step either
     continues the rightward materialization (`scatter1`) or, on completing the new
-    block, turns around into sweep-2 (`scatter2`) — never any other phase. -/
+    block, turns around into sweep-2 (`scatter2`) — never any other phase.
+@isnad1 id=or.0h6v.s6.2da0450e168c from=translated src=- shape=aa1930ed vocab=e612df11
+-/
 theorem scatter1Step_fst_eq_scatter1_or_scatter2 {k : ℕ} {Q : Type} (d : Scatter1Data k Q)
     (iHead wH oHead : Γ) :
     (∃ d', (scatter1Step d iHead wH oHead).1 = SimQ.scatter1 d') ∨
@@ -494,7 +520,9 @@ theorem scatter1Step_fst_eq_scatter1_or_scatter2 {k : ℕ} {Q : Type} (d : Scatt
 
 /-- **SCATTER-2 lands in `scatter2` or `commit`.** One sweep-2 step either
     continues the leftward deposit (`scatter2`) or, on reaching `▷`, enters
-    `commit` — never any other phase. -/
+    `commit` — never any other phase.
+@isnad1 id=or.0h6v.s6.e1c8eeccc0c2 from=translated src=- shape=ed56267e vocab=b598a866
+-/
 theorem scatter2Step_fst_eq_scatter2_or_commit {k : ℕ} {Q : Type} (d : Scatter2Data k Q)
     (iHead wH oHead : Γ) :
     (∃ d', (scatter2Step d iHead wH oHead).1 = SimQ.scatter2 d') ∨
@@ -505,7 +533,9 @@ theorem scatter2Step_fst_eq_scatter2_or_commit {k : ℕ} {Q : Type} (d : Scatter
 /-- **Choice irrelevance — one simulator step.** The single-tape simulator's
     transition consults the nondeterministic bit only at a GATHER step reading the
     `□` sentinel (the COMPUTE sub-step firing `N.δ b`); every other configuration
-    steps identically under any choice. -/
+    steps identically under any choice.
+@isnad1 id=eq.1h8v.s6.753974e6efd9 from=translated src=- shape=534963b1 vocab=f0945d1c
+-/
 theorem simDelta_eq_of_forall_ne_blank {k : ℕ} (N : NTM k) (b b' : Bool) (state : SimQ k N.Q)
     (iHead : Γ) (wHead : Fin 1 → Γ) (oHead : Γ)
     (h : ∀ d, state = SimQ.gather d → wHead 0 ≠ Γ.blank) :

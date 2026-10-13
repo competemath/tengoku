@@ -19,12 +19,18 @@ public section
 
 namespace Complexity.DescriptiveComplexity
 
+/--
+@isnad1 id=eq.0h5v.s5.260455741786 from=translated src=- shape=565c2a33 vocab=1c96c9d3
+-/
 theorem toREnv_cons_internal {card k : Nat} {rctx : List Nat}
     (S : (Fin k → Fin card) → Bool) (ρ : DecREnv card rctx) :
     (ρ.cons S).toREnv = rCons (fun args => S args = true) ρ.toREnv := by
   funext r args
   cases r using Fin.cases <;> rfl
 
+/--
+@isnad1 id=injectiv.0h2v.s3.a98e01b4b0d8 from=translated src=- shape=c03a4ce9 vocab=3ab5fc0a
+-/
 theorem toREnv_injective_internal (card : Nat) (rctx : List Nat) :
     Function.Injective (DecREnv.toREnv (card := card) (rctx := rctx)) := by
   intro ρ τ h
@@ -32,6 +38,9 @@ theorem toREnv_injective_internal (card : Nat) (rctx : List Nat) :
   apply Bool.eq_iff_iff.mpr
   exact Iff.of_eq (congrArg (fun env => env r args) h)
 
+/--
+@isnad1 id=surjecti.0h2v.s3.f05a39a545f0 from=translated src=- shape=c03a4ce9 vocab=c12803e6
+-/
 theorem toREnv_surjective_internal (card : Nat) (rctx : List Nat) :
     Function.Surjective (DecREnv.toREnv (card := card) (rctx := rctx)) := by
   classical
@@ -40,6 +49,9 @@ theorem toREnv_surjective_internal (card : Nat) (rctx : List Nat) :
   funext r args
   simp [DecREnv.toREnv]
 
+/--
+@isnad1 id=iff.1h7v.s5.7abb396d8c9b from=translated src=- shape=3c92c083 vocab=3abb32e7
+-/
 theorem evalMatrixB_eq_sat_internal {V : Vocabulary} (A : DecFinStruct V)
     {rctx : List Nat} {n : Nat} (φ : SOFormula V rctx n) :
     ∀ (h : φ.IsFOMatrix) (σ : Env A.card n) (ρ : DecREnv A.card rctx),

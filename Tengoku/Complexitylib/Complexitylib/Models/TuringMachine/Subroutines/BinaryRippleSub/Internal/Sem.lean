@@ -57,7 +57,9 @@ def binaryRippleSubPost {n : ℕ}
     out = out₀
 
 /-- The direct core executes its forward and backward passes in exactly twice
-the larger operand width plus the two turn/bounce transitions. -/
+the larger operand width plus the two turn/bounce transitions.
+@isnad1 id=ex.7h9v.s7.a5acf7e87eb3 from=translated src=- shape=e76f8ab1 vocab=7193e575
+-/
 theorem binaryRippleSubCoreTM_reachesIn_frame_internal {n : ℕ}
     (lhsIdx rhsIdx resultIdx : Fin n)
     (hdistinct : BinaryRippleSubDistinct lhsIdx rhsIdx resultIdx)
@@ -160,7 +162,9 @@ theorem binaryRippleSubCoreTM_reachesIn_frame_internal {n : ℕ}
     · intro i hil hir hires
       exact (hcleanupOtherEq i hires).trans (hscanOther i hil hir hires)
 
-/-- Hoare-time form of the exact direct-core execution. -/
+/-- Hoare-time form of the exact direct-core execution.
+@isnad1 id=hoaretim.7h9v.s7.365612e7354c from=translated src=- shape=a8d0f263 vocab=0e004721
+-/
 theorem binaryRippleSubCoreTM_hoareTime_frame_internal {n : ℕ}
     (lhsIdx rhsIdx resultIdx : Fin n)
     (hdistinct : BinaryRippleSubDistinct lhsIdx rhsIdx resultIdx)
@@ -231,7 +235,9 @@ private theorem binaryRippleSubRewindTail_hoareTime_internal {n : ℕ}
     exact (hfinalOther i hil hir hires).trans (hframe i hil hir hires)
 
 /-- The complete direct subtraction machine restores both operands and returns
-canonical natural-number monus within the advertised width-linear bound. -/
+canonical natural-number monus within the advertised width-linear bound.
+@isnad1 id=hoaretim.7h9v.s7.4327cd36bea2 from=translated src=- shape=44ba5d5e vocab=c8dd00ef
+-/
 theorem binaryRippleSubTM_hoareTime_frame_internal {n : ℕ}
     (lhsIdx rhsIdx resultIdx : Fin n)
     (hdistinct : BinaryRippleSubDistinct lhsIdx rhsIdx resultIdx)
@@ -297,7 +303,9 @@ theorem binaryRippleSubTM_hoareTime_frame_internal {n : ℕ}
   omega
 
 /-- Time-and-space contract for complete direct subtraction. The generic
-all-prefix envelope charges at most one additional cell per possible step. -/
+all-prefix envelope charges at most one additional cell per possible step.
+@isnad1 id=hoaretim.8h11v.s7.d60cdf8a7b0d from=translated src=- shape=d6d682be vocab=46f63291
+-/
 theorem binaryRippleSubTM_hoareTimeSpace_frame_internal {n : ℕ}
     (lhsIdx rhsIdx resultIdx : Fin n)
     (hdistinct : BinaryRippleSubDistinct lhsIdx rhsIdx resultIdx)

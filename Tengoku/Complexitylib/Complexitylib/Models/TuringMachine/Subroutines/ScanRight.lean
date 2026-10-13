@@ -31,7 +31,9 @@ namespace TM
 
 /-- Starting at cell one of a completed binary string, `scanRightTM` reaches
 the append blank in exactly `|bits| + 1` transitions. The input, output, and
-unrelated work tapes are preserved exactly. -/
+unrelated work tapes are preserved exactly.
+@isnad1 id=ex.4h6v.s7.86c9cd26650e from=translated src=- shape=a4e2c805 vocab=03fc60e2
+-/
 theorem scanRightTM_reachesIn_frame {n : ℕ}
     (idx : Fin n) (bits : List Bool)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
@@ -56,7 +58,9 @@ theorem scanRightTM_reachesIn_frame {n : ℕ}
 
 /-- Bounded compositional form of `scanRightTM_reachesIn_frame`. The
 off-start frame hypotheses are the minimal conditions needed to keep the
-structurally mandatory idle moves from changing unrelated head positions. -/
+structurally mandatory idle moves from changing unrelated head positions.
+@isnad1 id=hoaretim.4h6v.s7.a739b9f5dd8a from=translated src=- shape=e4874e47 vocab=9ee43513
+-/
 theorem scanRightTM_hoareTime_frame {n : ℕ}
     (idx : Fin n) (bits : List Bool)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)

@@ -17,6 +17,9 @@ public section
 
 namespace Complexity
 
+/--
+@isnad1 id=timeboun.3h16v.s6.87eec6de101b from=translated src=- shape=6c439e08 vocab=efa07f66
+-/
 theorem TimeBoundedProgramCompositionAt.restrict_bounds_internal
     {jointTapes firstTapes secondTapes : ℕ}
     {jointMachine : TM jointTapes} {firstMachine : TM firstTapes}
@@ -39,6 +42,9 @@ theorem TimeBoundedProgramCompositionAt.restrict_bounds_internal
     (hfirstLength.trans hfirst) (hsecondLength.trans hsecond)
     hfirstProduce hsecondProduce
 
+/--
+@isnad1 id=timeboun.2h15v.s6.e96bc7db6d87 from=translated src=- shape=98a67870 vocab=efa07f66
+-/
 theorem TimeBoundedProgramCompositionAt.mono_jointTime_internal
     {jointTapes firstTapes secondTapes : ℕ}
     {jointMachine : TM jointTapes} {firstMachine : TM firstTapes}
@@ -58,6 +64,9 @@ theorem TimeBoundedProgramCompositionAt.mono_jointTime_internal
   exact (hcompose firstProgram secondProgram hfirstLength hsecondLength
     hfirstProduce hsecondProduce).mono hjoint
 
+/--
+@isnad1 id=le.4h15v.s7.bf49a44108ff from=translated src=- shape=bc13fa57 vocab=139517aa
+-/
 theorem timeBoundedKolmogorovComplexity_pair_le_of_composition_internal
     {jointTapes firstTapes secondTapes : ℕ}
     {jointMachine : TM jointTapes} {firstMachine : TM firstTapes}
@@ -92,6 +101,9 @@ theorem timeBoundedKolmogorovComplexity_pair_le_of_composition_internal
     (WithTop.coe_le_coe.mpr
       (hlength firstProgram secondProgram hfirstLength hsecondLength))
 
+/--
+@isnad1 id=le.3h13v.s7.2519f383d923 from=translated src=- shape=b8a642e9 vocab=c6d25d72
+-/
 theorem timeBoundedKolmogorovComplexity_pair_le_of_pair_composition_internal
     {jointTapes firstTapes secondTapes : ℕ}
     {jointMachine : TM jointTapes} {firstMachine : TM firstTapes}
@@ -114,6 +126,9 @@ theorem timeBoundedKolmogorovComplexity_pair_le_of_pair_composition_internal
   rw [pair_length]
   omega
 
+/--
+@isnad1 id=le.3h13v.s7.cb9ecf771454 from=translated src=- shape=77c0a54e vocab=c6d25d72
+-/
 theorem timeBoundedKolmogorovComplexity_pair_le_of_reverse_pair_composition_internal
     {jointTapes firstTapes secondTapes : ℕ}
     {jointMachine : TM jointTapes} {firstMachine : TM firstTapes}
@@ -137,6 +152,9 @@ theorem timeBoundedKolmogorovComplexity_pair_le_of_reverse_pair_composition_inte
   rw [pair_length]
   omega
 
+/--
+@isnad1 id=timeboun.3h16v.s6.66ddb361fd50 from=translated src=- shape=6c439e08 vocab=cc5f0d23
+-/
 theorem TimeBoundedConditionalPairCompositionAt.restrict_bounds_internal
     {jointTapes conditionTapes resultTapes : ℕ}
     {jointMachine : TM jointTapes} {conditionMachine : TM conditionTapes}
@@ -159,6 +177,9 @@ theorem TimeBoundedConditionalPairCompositionAt.restrict_bounds_internal
     (hconditionLength.trans hcondition) (hresultLength.trans hresult)
     hconditionProduce hresultProduce
 
+/--
+@isnad1 id=timeboun.2h15v.s6.a990d2c67c2f from=translated src=- shape=98a67870 vocab=cc5f0d23
+-/
 theorem TimeBoundedConditionalPairCompositionAt.mono_jointTime_internal
     {jointTapes conditionTapes resultTapes : ℕ}
     {jointMachine : TM jointTapes} {conditionMachine : TM conditionTapes}
@@ -179,6 +200,9 @@ theorem TimeBoundedConditionalPairCompositionAt.mono_jointTime_internal
   exact (hcompose conditionProgram resultProgram hconditionLength hresultLength
     hconditionProduce hresultProduce).mono hjoint
 
+/--
+@isnad1 id=le.6h15v.s7.7636ccf8bbdc from=translated src=- shape=7902819a vocab=6bb342db
+-/
 theorem timeBoundedKolmogorovComplexity_pair_le_add_of_conditional_composition_internal
     {jointTapes conditionTapes resultTapes : ℕ}
     {jointMachine : TM jointTapes} {conditionMachine : TM conditionTapes}

@@ -33,7 +33,9 @@ namespace Complexity
 
 namespace Γ
 
-/-- The fixed tape alphabet has four symbols. -/
+/-- The fixed tape alphabet has four symbols.
+@isnad1 id=eq.0h0v.s3.e6b259cdbd1c from=translated src=- shape=b0ae1d2b vocab=62347309
+-/
 @[simp] theorem card : Fintype.card Γ = 4 := by decide
 
 end Γ
@@ -49,7 +51,9 @@ abbrev BoundedObs (space : ℕ) :=
 def boundedObs (t : Tape) (space : ℕ) (h : t.head ≤ space) : BoundedObs space :=
   (⟨t.head, Nat.lt_succ_iff.mpr h⟩, fun i => t.cells i)
 
-/-- The exact number of bounded observations of one work tape. -/
+/-- The exact number of bounded observations of one work tape.
+@isnad1 id=eq.0h1v.s7.d4ec6cc76970 from=translated src=- shape=cc1f473f vocab=61f08ead
+-/
 theorem card_boundedObs (space : ℕ) :
     Fintype.card (BoundedObs space) = (space + 1) * 4 ^ (space + 1) := by
   simp [BoundedObs]
@@ -87,7 +91,9 @@ def transducerConfigBound (tm : TM k) (inputLength space : ℕ) : ℕ :=
   8 * Fintype.card tm.Q * (inputLength + space + 2) *
     (((space + 1) * 4 ^ (space + 1)) ^ k)
 
-/-- `transducerConfigBound` is the exact cardinality of the snapshot type. -/
+/-- `transducerConfigBound` is the exact cardinality of the snapshot type.
+@isnad1 id=eq.0h4v.s8.0c7c9feb2664 from=translated src=- shape=b7591f7b vocab=66870d03
+-/
 theorem card_transducerSnapshot (tm : TM k) (inputLength space : ℕ) :
     Fintype.card (tm.TransducerSnapshot inputLength space) =
       tm.transducerConfigBound inputLength space := by

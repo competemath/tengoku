@@ -44,7 +44,9 @@ def repeatSourceStep (tm : NTM n) (b : Bool) (c : Cfg n tm.Q) : Cfg n tm.Q :=
     work := fun i => (c.work i).writeAndMove (workWrites i) (workDirs i)
     output := c.output.writeAndMove outputWrite outputDir }
 
-/-- On a non-halted configuration, a one-slot trace is the raw source step. -/
+/-- On a non-halted configuration, a one-slot trace is the raw source step.
+@isnad1 id=eq.1h4v.s5.5b4bdba836a5 from=translated src=- shape=2cab92ed vocab=eea99a55
+-/
 theorem trace_one_eq_repeatSourceStep (tm : NTM n) (b : Bool) (c : Cfg n tm.Q)
     (h : c.state ≠ tm.qhalt) :
     tm.trace 1 (fun _ => b) c = repeatSourceStep tm b c := by
@@ -61,7 +63,9 @@ def RepeatSimulates (tm : NTM n) (j : Fin k) (q : tm.Q)
     (C.work (repeatOutputIdx j)).cells = c.output.cells ∧
     (c.state ≠ tm.qhalt → repeatProjectCfg tm j q C = c)
 
-/-- Exact projection implies the simulation relation. -/
+/-- Exact projection implies the simulation relation.
+@isnad1 id=repeatsi.1h8v.s6.3baae439979c from=translated src=- shape=00b61972 vocab=7d733289
+-/
 theorem RepeatSimulates.of_project_eq (tm : NTM n) (j : Fin k) (q : tm.Q)
     (c : Cfg n tm.Q) (C : Cfg (k * (n + 1)) (RepeatQ tm k T))
     (h : repeatProjectCfg tm j q C = c) : RepeatSimulates tm j q c C := by
@@ -69,7 +73,9 @@ theorem RepeatSimulates.of_project_eq (tm : NTM n) (j : Fin k) (q : tm.Q)
   exact ⟨rfl, rfl, fun _ => rfl, rfl, fun _ => rfl⟩
 
 /-- On a transition direction already satisfying the model's left-end rule,
-the repetition machine's defensive direction guard is inert. -/
+the repetition machine's defensive direction guard is inert.
+@isnad1 id=eq.1h2v.s4.c77ebe1af4e4 from=translated src=- shape=804ec1b8 vocab=00e3b33d
+-/
 theorem repeatSafeDir_eq (head : Γ) (dir : Dir3)
     (h : head = Γ.start → dir = Dir3.right) : repeatSafeDir head dir = dir := by
   by_cases hs : head = Γ.start
@@ -77,7 +83,9 @@ theorem repeatSafeDir_eq (head : Γ) (dir : Dir3)
   · simp [repeatSafeDir, hs]
 
 /-- Positioning an off-start tape writes its current symbol back and moves its
-head one cell left. -/
+head one cell left.
+@isnad1 id=eq.1h1v.s4.fc2eb03c4c77 from=translated src=- shape=53e443ee vocab=fc9f2c09
+-/
 theorem repeatPositionTape_eq (t : Tape) (hread : t.read ≠ Γ.start) :
     t.writeAndMove (TM.readBackWrite t.read).toΓ
         (repeatSafeDir t.read (TM.moveLeftDir t.read)) = t.move Dir3.left := by
@@ -94,7 +102,9 @@ theorem repeatPositionTape_eq (t : Tape) (hread : t.read ≠ Γ.start) :
   rw [hwrite]
 
 /-- A parked initialized input returns to its initial head position under the
-positioning action. -/
+positioning action.
+@isnad1 id=other.0h1v.s5.ed7e5ebfc184 from=translated src=- shape=604cf1cf vocab=b30c00f3
+-/
 theorem repeatPositionInput_init (x : List Bool) :
     let t := (Tape.init (x.map Γ.ofBool)).move Dir3.right
     t.writeAndMove (TM.readBackWrite t.read).toΓ
@@ -104,7 +114,9 @@ theorem repeatPositionInput_init (x : List Bool) :
   rfl
 
 /-- A parked blank work tape returns to its initial head position under the
-positioning action. -/
+positioning action.
+@isnad1 id=other.0h0v.s4.2720b2f19c25 from=translated src=- shape=3a030b4f vocab=e6542125
+-/
 theorem repeatPositionBlank_init :
     let t := (Tape.init []).move Dir3.right
     t.writeAndMove (TM.readBackWrite t.read).toΓ
@@ -127,7 +139,9 @@ def repeatFixedRewindTapeIter : ℕ → Tape × Bool → Tape × Bool
   | 0, s => s
   | m + 1, s => repeatFixedRewindTapeIter m (repeatFixedRewindTapeStep s)
 
-/-- Under the unique-left-marker invariant, a tape reads `▷` exactly at cell zero. -/
+/-- Under the unique-left-marker invariant, a tape reads `▷` exactly at cell zero.
+@isnad1 id=iff.1h1v.s4.855048c8dddd from=translated src=- shape=ce2733a2 vocab=d5ff8a42
+-/
 theorem repeatStartInvariant_read_eq_start_iff (t : Tape) (h : t.StartInvariant) :
     t.read = Γ.start ↔ t.head = 0 := by
   constructor
@@ -175,7 +189,9 @@ private theorem repeatFixedRewindTapeIter_true_head_one (m : ℕ) (t : Tape)
       repeatFixedRewindTapeStep_true_head_one t h hh, ih]
 
 /-- `T + 1` fixed rewind steps park any invariant tape whose head is at most
-`T` at cell one, set its completion flag, and preserve all cells. -/
+`T` at cell one, set its completion flag, and preserve all cells.
+@isnad1 id=other.2h2v.s6.e1699caec4e6 from=translated src=- shape=0ec4aaa7 vocab=38f74e74
+-/
 theorem repeatFixedRewindTapeIter_bound (T : ℕ) (t : Tape)
     (h : t.StartInvariant) (hh : t.head ≤ T) :
     let s := repeatFixedRewindTapeIter (T + 1) (t, false)
@@ -210,7 +226,9 @@ def repeatParkedCfg (tm : NTM n) (k T : ℕ) (x : List Bool) :
   work := fun _ => (Tape.init []).move .right
   output := (Tape.init []).move .right
 
-/-- The first setup transition parks every tape at cell one. -/
+/-- The first setup transition parks every tape at cell one.
+@isnad1 id=eq.0h6v.s7.7ad11ca74dbe from=translated src=- shape=343f6ce3 vocab=874569c6
+-/
 theorem repeatAtTime_trace_setup (tm : NTM n) (k T : ℕ) (x : List Bool)
     (choice : Fin 1 → Bool) :
     (repeatAtTime tm k T).trace 1 choice ((repeatAtTime tm k T).initCfg x) =
@@ -218,7 +236,9 @@ theorem repeatAtTime_trace_setup (tm : NTM n) (k T : ℕ) (x : List Bool)
   rfl
 
 /-- With at least one repetition and one simulated step, the second setup
-transition positions trial zero exactly at the source initial configuration. -/
+transition positions trial zero exactly at the source initial configuration.
+@isnad1 id=other.2h6v.s8.79dde415a678 from=translated src=- shape=481962ad vocab=5cb89438
+-/
 theorem repeatAtTime_begin_simulates (tm : NTM n) (x : List Bool)
     (hk : 0 < k) (hT : 0 < T) (choice : Fin 1 → Bool) :
     let j : Fin k := ⟨0, hk⟩
@@ -252,7 +272,9 @@ theorem repeatAtTime_begin_simulates (tm : NTM n) (x : List Bool)
 
 /-- With positive repetition count and simulation time, the second setup
 transition gives trial zero the exact source initial configuration. This
-stronger projection fact also covers `tm.qstart = tm.qhalt`. -/
+stronger projection fact also covers `tm.qstart = tm.qhalt`.
+@isnad1 id=other.2h6v.s7.972f6febcb65 from=translated src=- shape=332a0a5b vocab=47b8e1b4
+-/
 theorem repeatAtTime_begin_project (tm : NTM n) (x : List Bool)
     (hk : 0 < k) (hT : 0 < T) (choice : Fin 1 → Bool) :
     let j : Fin k := ⟨0, hk⟩
@@ -279,7 +301,9 @@ theorem repeatAtTime_begin_project (tm : NTM n) (x : List Bool)
       repeatPositionBlank_init
 
 /-- The complete two-transition setup establishes the source initial
-configuration in trial zero. -/
+configuration in trial zero.
+@isnad1 id=other.2h6v.s8.f6c35329f304 from=translated src=- shape=c2ebdbbc vocab=3f798662
+-/
 theorem repeatAtTime_trace_setup_simulates (tm : NTM n) (x : List Bool)
     (hk : 0 < k) (hT : 0 < T) (choices : Fin 2 → Bool) :
     let j : Fin k := ⟨0, hk⟩
@@ -294,7 +318,9 @@ theorem repeatAtTime_trace_setup_simulates (tm : NTM n) (x : List Bool)
     (fun _ => choices ⟨1, by omega⟩)
 
 /-- The complete positive-time setup gives trial zero the exact source initial
-configuration. -/
+configuration.
+@isnad1 id=other.2h6v.s7.f730cfe66d20 from=translated src=- shape=eaf1a42f vocab=23a7c70b
+-/
 theorem repeatAtTime_trace_setup_project (tm : NTM n) (x : List Bool)
     (hk : 0 < k) (hT : 0 < T) (choices : Fin 2 → Bool) :
     let j : Fin k := ⟨0, hk⟩
@@ -306,7 +332,9 @@ theorem repeatAtTime_trace_setup_project (tm : NTM n) (x : List Bool)
     (fun _ => choices ⟨1, by omega⟩)
 
 /-- One non-halted repetition `.run` transition commutes exactly with one raw
-source transition through the active-bank projection. -/
+source transition through the active-bank projection.
+@isnad1 id=other.2h10v.s8.3b7005c1a64a from=translated src=- shape=812b7750 vocab=eae7fd37
+-/
 theorem repeatAtTime_run_project (tm : NTM n)
     (j : Fin k) (t : Fin T) (q : tm.Q) (votes : Fin k → Bool)
     (C : Cfg (k * (n + 1)) (RepeatQ tm k T)) (b : Bool)
@@ -350,7 +378,9 @@ theorem repeatAtTime_run_project (tm : NTM n)
         repeatProjectCfg, repeatSafeDir_eq _ _ hright'.2.2]
 
 /-- One non-halted repetition `.run` transition projects to the source
-machine's one-step trace, including the source's own halting semantics. -/
+machine's one-step trace, including the source's own halting semantics.
+@isnad1 id=other.2h10v.s8.26162b354d64 from=translated src=- shape=c1f66d56 vocab=cce2a5b2
+-/
 theorem repeatAtTime_run_project_trace (tm : NTM n)
     (j : Fin k) (t : Fin T) (q : tm.Q) (votes : Fin k → Bool)
     (C : Cfg (k * (n + 1)) (RepeatQ tm k T)) (b : Bool)
@@ -365,7 +395,9 @@ theorem repeatAtTime_run_project_trace (tm : NTM n)
 
 /-- A `.run` slot after the source has halted advances the fixed counter while
 preserving the source state and every projected tape cell. Thus the
-halt-aware simulation relation survives padding slots. -/
+halt-aware simulation relation survives padding slots.
+@isnad1 id=other.4h11v.s8.5441e398484b from=translated src=- shape=cd209dc8 vocab=f7a18713
+-/
 theorem repeatAtTime_run_padding_simulates (tm : NTM n)
     (j : Fin k) (t : Fin T) (q : tm.Q) (votes : Fin k → Bool)
     (c : Cfg n tm.Q) (C : Cfg (k * (n + 1)) (RepeatQ tm k T)) (b : Bool)
@@ -411,7 +443,9 @@ theorem repeatAtTime_run_padding_simulates (tm : NTM n)
 /-! ### A complete fixed-width simulation run -/
 
 /-- Every proper prefix of a fixed-width simulation run remains in `.run`,
-tracks the corresponding source prefix, and preserves all start invariants. -/
+tracks the corresponding source prefix, and preserves all start invariants.
+@isnad1 id=other.7h10v.s9.a6860e41f058 from=translated src=- shape=0a1b5670 vocab=459d6d45
+-/
 theorem repeatAtTime_trace_run_prefix (tm : NTM n) (hT : 0 < T)
     (j : Fin k) (votes : Fin k → Bool) (g : ℕ → Bool)
     (c₀ : Cfg n tm.Q) (C₀ : Cfg (k * (n + 1)) (RepeatQ tm k T))
@@ -476,7 +510,9 @@ theorem repeatAtTime_trace_run_prefix (tm : NTM n) (hT : 0 < T)
 
 /-- Exactly `T` simulation slots advance trial `j` from its initial `.run`
 state to rewind counter zero. The active bank agrees with the source `T`-step
-trace even when the source halts early, and all tape start invariants persist. -/
+trace even when the source halts early, and all tape start invariants persist.
+@isnad1 id=other.6h9v.s9.58ab53b2ab33 from=translated src=- shape=09a0acf6 vocab=648ec239
+-/
 theorem repeatAtTime_trace_run (tm : NTM n) (hT : 0 < T)
     (j : Fin k) (votes : Fin k → Bool) (choices : Fin T → Bool)
     (c₀ : Cfg n tm.Q) (C₀ : Cfg (k * (n + 1)) (RepeatQ tm k T))

@@ -37,7 +37,9 @@ namespace Structured
 namespace Cmd
 
 /-- A closed compiled command consists of its generated code followed by one
-halt instruction. -/
+halt instruction.
+@isnad1 id=eq.0h1v.s4.272763ada713 from=translated src=- shape=802c6af4 vocab=5749c8da
+-/
 theorem length_compile (cmd : Cmd) : cmd.compile.length = cmd.codeSize + 1 := by
   simp [compile, length_compileAt]
 
@@ -45,7 +47,9 @@ end Cmd
 
 namespace Exec
 
-/-- Exact semantic and resource preservation for closed compilation. -/
+/-- Exact semantic and resource preservation for closed compilation.
+@isnad1 id=and.1h6v.s6.c1afd587daad from=translated src=- shape=045a001c vocab=65bf4892
+-/
 theorem compile_correct {cmd : Cmd} {initial final : Store} {steps cost space : ℕ}
     (hexec : Exec cmd initial final steps cost space) :
     run cmd.compile steps { pc := 0, regs := initial } =
@@ -55,7 +59,9 @@ theorem compile_correct {cmd : Cmd} {initial final : Store} {steps cost space : 
   simpa [Cmd.compile] using
     compileAt_correct_internal hexec ([] : Program) [Instr.halt]
 
-/-- A source execution reaches the halt instruction appended by `Cmd.compile`. -/
+/-- A source execution reaches the halt instruction appended by `Cmd.compile`.
+@isnad1 id=halted.1h6v.s5.1dd4299be0e3 from=translated src=- shape=1083a237 vocab=352f4061
+-/
 theorem compile_halted {cmd : Cmd} {initial final : Store} {steps cost space : ℕ}
     (hexec : Exec cmd initial final steps cost space) :
     Halted cmd.compile (run cmd.compile steps { pc := 0, regs := initial }) := by

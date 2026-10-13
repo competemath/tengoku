@@ -109,7 +109,9 @@ private theorem unaryLengthTM_loop {n : ℕ} (x : List Bool) :
       exact ⟨c'', .step hstep hreach, hhalt, hcells'', hhead'', hprefix''⟩
 
 /-- Internal implementation theorem: `unaryLengthTM` emits the unary input
-length within the linear bound `m + 2`. -/
+length within the linear bound `m + 2`.
+@isnad1 id=computes.0h1v.s4.e87949450e82 from=translated src=- shape=f88c0b89 vocab=868c3d89
+-/
 theorem unaryLengthTM_computesInTime_internal (n : ℕ) :
     (unaryLengthTM (n := n)).ComputesInTime
       (fun x => List.replicate x.length true) (fun m => m + 2) := by

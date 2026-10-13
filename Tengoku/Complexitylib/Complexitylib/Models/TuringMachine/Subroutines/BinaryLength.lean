@@ -37,12 +37,16 @@ namespace Complexity
 namespace TM
 
 /-- The exact binary-length-counter runtime has a concrete `O(n log n)`-shaped
-upper bound. -/
+upper bound.
+@isnad1 id=le.0h1v.s5.004556ed1633 from=translated src=- shape=5896f657 vocab=a0fbaef7
+-/
 theorem binaryLengthTime_le (length : ℕ) :
     binaryLengthTime length ≤ 2 + length * (2 * length.size + 4) :=
   binaryLengthTime_le_internal length
 
-/-- The explicit all-reachable auxiliary-space budget is logarithmic. -/
+/-- The explicit all-reachable auxiliary-space budget is logarithmic.
+@isnad1 id=bigo.0h0v.s3.2ed5009cc51b from=translated src=- shape=0da81500 vocab=899de62f
+-/
 theorem binaryLengthSpace_bigO_log :
     binaryLengthSpace =O (fun length => Nat.log 2 length) :=
   binaryLengthSpace_bigO_log_internal
@@ -50,7 +54,9 @@ theorem binaryLengthSpace_bigO_log :
 /-- From fresh tapes, the machine halts after exactly `binaryLengthTime`
 transitions with the canonical binary input length on `counterIdx`. Input
 cells are preserved exactly; output and unrelated work tapes remain blank and
-finish with their heads at cell one. -/
+finish with their heads at cell one.
+@isnad1 id=ex.0h3v.s7.d84b88afd64b from=translated src=- shape=15915259 vocab=92f0b6f2
+-/
 theorem binaryLengthTM_reachesIn_frame {n : ℕ} (counterIdx : Fin n)
     (x : List Bool) :
     ∃ c',
@@ -65,7 +71,9 @@ theorem binaryLengthTM_reachesIn_frame {n : ℕ} (counterIdx : Fin n)
       c'.output = (Tape.init []).move Dir3.right :=
   binaryLengthTM_reachesIn_frame_internal counterIdx x
 
-/-- Fresh-start time-bounded Hoare contract for binary length counting. -/
+/-- Fresh-start time-bounded Hoare contract for binary length counting.
+@isnad1 id=hoaretim.0h3v.s7.7f05b4b72b78 from=translated src=- shape=53748d54 vocab=4b925e6d
+-/
 theorem binaryLengthTM_hoareTime {n : ℕ} (counterIdx : Fin n)
     (x : List Bool) :
     (binaryLengthTM counterIdx).HoareTime
@@ -84,7 +92,9 @@ theorem binaryLengthTM_hoareTime {n : ℕ} (counterIdx : Fin n)
   binaryLengthTM_hoareTime_internal counterIdx x
 
 /-- Time-bounded and honest all-reachable auxiliary-space contract. In
-particular, this does not derive space from the total runtime. -/
+particular, this does not derive space from the total runtime.
+@isnad1 id=hoaretim.0h3v.s7.69eae9fe5084 from=translated src=- shape=a744298a vocab=6ec6cd69
+-/
 theorem binaryLengthTM_hoareTimeSpace {n : ℕ} (counterIdx : Fin n)
     (x : List Bool) :
     (binaryLengthTM counterIdx).HoareTimeSpace
@@ -103,13 +113,17 @@ theorem binaryLengthTM_hoareTimeSpace {n : ℕ} (counterIdx : Fin n)
   binaryLengthTM_hoareTimeSpace_internal counterIdx x
 
 /-- Binary length counting is assembled only from transducer-safe routine
-constructors and calls. -/
+constructors and calls.
+@isnad1 id=transduc.0h2v.s3.bb1b577841a2 from=translated src=- shape=20553ef8 vocab=417ce2f5
+-/
 theorem Experimental.binaryLengthRoutine_transducerSafe {n : ℕ}
     (counterIdx : Fin n) :
     (Experimental.binaryLengthRoutine counterIdx).TransducerSafe :=
   Experimental.binaryLengthRoutine_transducerSafe_internal counterIdx
 
-/-- `binaryLengthTM` is safe for append-only-output composition. -/
+/-- `binaryLengthTM` is safe for append-only-output composition.
+@isnad1 id=istransd.0h2v.s3.4da618ab8f9d from=translated src=- shape=20553ef8 vocab=67e625a3
+-/
 theorem binaryLengthTM_isTransducer {n : ℕ} (counterIdx : Fin n) :
     (binaryLengthTM counterIdx).IsTransducer :=
   binaryLengthTM_isTransducer_internal counterIdx

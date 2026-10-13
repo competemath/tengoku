@@ -465,7 +465,9 @@ private theorem pairBuild_rich_hoareTime (x : List Bool) :
     initial configuration on input `x`, `pairSelfTM` halts within
     `pairSelfTime |x|` steps with `pair x x` started on work tape `7`, all
     other work tapes as started blank tapes, and the input and output heads
-    parked at cell `1` with unchanged cells. -/
+    parked at cell `1` with unchanged cells.
+@isnad1 id=hoaretim.0h1v.s7.06bfa8d3a257 from=translated src=- shape=ba9271b4 vocab=9d2f03ab
+-/
 theorem pairSelfTM_hoareTime (x : List Bool) :
     pairSelfTM.HoareTime
       (fun inp work out =>
@@ -798,7 +800,9 @@ theorem pairSelfTM_hoareTime (x : List Bool) :
   · unfold pairSelfTime
     omega
 
-/-- Clean closed quadratic bound for `pairSelfTime`. -/
+/-- Clean closed quadratic bound for `pairSelfTime`.
+@isnad1 id=le.0h1v.s5.faa72012afd8 from=translated src=- shape=11bad5fb vocab=3e78bc8a
+-/
 theorem pairSelfTime_le (n : ℕ) : pairSelfTime n ≤ 58 * (n + 1) ^ 2 := by
   unfold pairSelfTime
   calc 23 * n + 58 ≤ 58 * (n + 1) := by omega

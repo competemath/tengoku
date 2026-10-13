@@ -42,7 +42,9 @@ variable {V : Vocabulary}
 def queryLanguage (Q : BooleanQuery V) : Language :=
   { x | ∃ A : DecFinStruct V, encodeStruct A = x ∧ Q A.toFinStruct }
 
-/-- Encoding a `Q`-satisfying structure lands in `Q`'s induced language. -/
+/-- Encoding a `Q`-satisfying structure lands in `Q`'s induced language.
+@isnad1 id=mem.0h4v.s4.9dbbf54a45ac from=translated src=- shape=133c73e2 vocab=7ca4d6e2
+-/
 theorem mem_queryLanguage (Q : BooleanQuery V) (A : DecFinStruct V)
     (hQ : Q A.toFinStruct) : encodeStruct A ∈ queryLanguage Q :=
   ⟨A, rfl, hQ⟩

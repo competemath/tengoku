@@ -167,7 +167,9 @@ private theorem scanRightTM_run {n : ℕ} (idx : Fin n) (bits : List Bool)
       exact ⟨c', .step hstep hreach, hhalt, hinput', hwork', hcells', hprefix', houtput'⟩
 
 /-- Internal proof of the public exact frame-preserving scanner endpoint. The
-run uses one transition per bit and one transition on the append blank. -/
+run uses one transition per bit and one transition on the append blank.
+@isnad1 id=ex.4h6v.s7.86c9cd26650e from=translated src=- shape=a4e2c805 vocab=03fc60e2
+-/
 theorem scanRightTM_reachesIn_frame_internal {n : ℕ}
     (idx : Fin n) (bits : List Bool)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
@@ -197,7 +199,9 @@ theorem scanRightTM_reachesIn_frame_internal {n : ℕ}
       (by omega) rfl rfl (fun _ _ => rfl) rfl hstring.1 rfl
   exact ⟨c', hreach, hhalt, hinput, hwork, hcells, hprefix, houtput⟩
 
-/-- Internal proof of the public frame-preserving bounded scanner contract. -/
+/-- Internal proof of the public frame-preserving bounded scanner contract.
+@isnad1 id=hoaretim.4h6v.s7.a739b9f5dd8a from=translated src=- shape=e4874e47 vocab=9ee43513
+-/
 theorem scanRightTM_hoareTime_frame_internal {n : ℕ}
     (idx : Fin n) (bits : List Bool)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)

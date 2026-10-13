@@ -27,7 +27,9 @@ def Sentence.evalEncoded {V : Vocabulary} (φ : Sentence V) (bits : List Bool) :
   | none => false
   | some A => Sentence.evalB A φ
 
-/-- The encoded evaluator rejects the unique length-zero input. -/
+/-- The encoded evaluator rejects the unique length-zero input.
+@isnad1 id=eq.0h2v.s3.b4a8bb1639d5 from=translated src=- shape=c3c3c437 vocab=a0339dd7
+-/
 @[simp] theorem Sentence.evalEncoded_nil {V : Vocabulary} (φ : Sentence V) :
     φ.evalEncoded [] = false := by
   simp only [evalEncoded, decodeStruct_nil]

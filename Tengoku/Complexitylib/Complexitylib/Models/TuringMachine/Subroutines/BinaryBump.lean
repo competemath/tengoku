@@ -36,7 +36,9 @@ namespace Complexity
 
 namespace BinaryBump
 
-/-- The exact transition count is at most twice the string's length, plus two. -/
+/-- The exact transition count is at most twice the string's length, plus two.
+@isnad1 id=le.0h1v.s5.1bd78aeb40a9 from=translated src=- shape=29b2873e vocab=8ecec62e
+-/
 theorem steps_le (bits : List Bool) : steps bits ≤ 2 * bits.length + 2 :=
   steps_le_internal bits
 
@@ -46,14 +48,18 @@ namespace TM
 
 variable {n : ℕ}
 
-/-- The exact running time is at most twice the string's length, plus two. -/
+/-- The exact running time is at most twice the string's length, plus two.
+@isnad1 id=le.0h1v.s5.049abd44fdc8 from=translated src=- shape=29b2873e vocab=04098142
+-/
 theorem binaryBumpTime_le (bits : List Bool) :
     binaryBumpTime bits ≤ 2 * bits.length + 2 :=
   binaryBumpTime_le_internal bits
 
 /-- **The zero-extending increment, executed exactly.** Starting on a rewound bit string,
 `binaryBumpTM` halts after exactly `binaryBumpTime bits` transitions with the next string in the
-enumeration. Input, output, and every unrelated work tape are preserved exactly. -/
+enumeration. Input, output, and every unrelated work tape are preserved exactly.
+@isnad1 id=ex.5h6v.s7.4e64ec7e44d3 from=translated src=- shape=53c28a70 vocab=0a4ef079
+-/
 theorem binaryBumpTM_reachesIn_frame (idx : Fin n) (bits : List Bool)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
     (hbits : (work₀ idx).HasBinaryString bits)
@@ -75,7 +81,9 @@ theorem binaryBumpTM_reachesIn_frame (idx : Fin n) (bits : List Bool)
       c'.output = out₀ :=
   binaryBumpTM_reachesIn_frame_internal idx bits inp₀ work₀ out₀ hbits hcell0 hinp hother hout
 
-/-- Time-bounded compositional form of `TM.binaryBumpTM_reachesIn_frame`. -/
+/-- Time-bounded compositional form of `TM.binaryBumpTM_reachesIn_frame`.
+@isnad1 id=hoaretim.5h6v.s7.e6621dc99230 from=translated src=- shape=22cf622d vocab=937fcbfa
+-/
 theorem binaryBumpTM_hoareTime_frame (idx : Fin n) (bits : List Bool)
     (inp₀ : Tape) (work₀ : Fin n → Tape) (out₀ : Tape)
     (hbits : (work₀ idx).HasBinaryString bits)
@@ -95,7 +103,9 @@ theorem binaryBumpTM_hoareTime_frame (idx : Fin n) (bits : List Bool)
   binaryBumpTM_hoareTime_frame_internal idx bits inp₀ work₀ out₀ hbits hcell0 hinp hother hout
 
 /-- `binaryBumpTM` never moves the output head left, so it is safe in one-way-output,
-space-bounded compositions. -/
+space-bounded compositions.
+@isnad1 id=istransd.0h2v.s3.8eefedec9ef2 from=translated src=- shape=20553ef8 vocab=483415dd
+-/
 theorem binaryBumpTM_isTransducer (idx : Fin n) : (binaryBumpTM idx).IsTransducer :=
   binaryBumpTM_isTransducer_internal idx
 

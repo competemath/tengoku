@@ -40,12 +40,16 @@ def Edge (A : FinStruct Vocabulary.graph) (x y : Fin A.card) : Prop :=
 def Bipartite : BooleanQuery Vocabulary.graph := fun A =>
   ∃ color : Fin A.card → Bool, ∀ x y, Edge A x y → color x ≠ color y
 
-/-- A graph without edges has a constant Boolean coloring. -/
+/-- A graph without edges has a constant Boolean coloring.
+@isnad1 id=bipartit.1h1v.s4.9e6c409faa8e from=translated src=- shape=135a79ba vocab=1759856a
+-/
 theorem bipartite_of_no_edges {A : FinStruct Vocabulary.graph}
     (h : ∀ x y, ¬ Edge A x y) : Bipartite A :=
   ⟨fun _ => false, fun x y hxy => (h x y hxy).elim⟩
 
-/-- A self-loop rules out a Boolean bipartition. -/
+/-- A self-loop rules out a Boolean bipartition.
+@isnad1 id=not.1h2v.s4.4c39785b65c4 from=translated src=- shape=a1cf8990 vocab=1759856a
+-/
 theorem not_bipartite_of_loop {A : FinStruct Vocabulary.graph} {x : Fin A.card}
     (h : Edge A x x) : ¬ Bipartite A := by
   rintro ⟨color, hcolor⟩
@@ -63,11 +67,15 @@ def bipartiteMatrix : SOFormula Vocabulary.graph [1] 2 :=
 def bipartiteSentence : SOSentence Vocabulary.graph :=
   .soExist 1 (.all (.all bipartiteMatrix))
 
-/-- This witness has one existential SO quantifier and an FO matrix. -/
+/-- This witness has one existential SO quantifier and an FO matrix.
+@isnad1 id=isexists.0h0v.s3.3cf3dbe92633 from=translated src=- shape=17d417c5 vocab=6b2f99fd
+-/
 theorem bipartiteSentence_isExistSO : bipartiteSentence.IsExistSO := by
   simp [bipartiteSentence, bipartiteMatrix, SOFormula.IsExistSO, SOFormula.IsFOMatrix]
 
-/-- Semantics of the open matrix, independent of the choice of variable environment. -/
+/-- Semantics of the open matrix, independent of the choice of variable environment.
+@isnad1 id=iff.0h3v.s7.04a38341a78a from=translated src=- shape=5baeaeba vocab=ee496314
+-/
 theorem bipartiteMatrix_sat (A : FinStruct Vocabulary.graph) (σ : Env A.card 2)
     (S : (Fin 1 → Fin A.card) → Prop) :
     bipartiteMatrix.Sat A σ (rCons S (emptyREnv A.card)) ↔
@@ -83,7 +91,9 @@ theorem bipartiteMatrix_sat (A : FinStruct Vocabulary.graph) (σ : Env A.card 2)
     (S (fun _ => σ 0) ∨ S (fun _ => σ 1))) ↔ _
   by_cases h0 : S (fun _ => σ 0) <;> by_cases h1 : S (fun _ => σ 1) <;> simp [h0, h1]
 
-/-- The logical witness defines exactly the Boolean-coloring query. -/
+/-- The logical witness defines exactly the Boolean-coloring query.
+@isnad1 id=iff.0h1v.s3.e5688d4ca44b from=translated src=- shape=6790a61c vocab=23046e14
+-/
 theorem bipartiteSentence_models (A : FinStruct Vocabulary.graph) :
     SOSentence.Models A bipartiteSentence ↔ Bipartite A := by
   classical
@@ -103,7 +113,9 @@ theorem bipartiteSentence_models (A : FinStruct Vocabulary.graph) :
     have h := hcolor x y hxy
     cases hx : color x <;> cases hy : color y <;> simp_all
 
-/-- Bipartiteness is existential second-order definable. -/
+/-- Bipartiteness is existential second-order definable.
+@isnad1 id=existsod.0h0v.s1.bb0df2b668a6 from=translated src=- shape=25b03439 vocab=cfa3b5c0
+-/
 theorem bipartite_existSODefinable : ExistSODefinable Bipartite :=
   ⟨bipartiteSentence, bipartiteSentence_isExistSO, fun A => (bipartiteSentence_models A).symm⟩
 
@@ -112,7 +124,9 @@ def checkBipartition (A : DecFinStruct Vocabulary.graph) (color : Fin A.card →
   (SOFormula.all (.all bipartiteMatrix)).evalMatrixB A bipartiteSentence_isExistSO
     (emptyEnv A.card) ((DecREnv.empty A.card).cons (fun args => color (args 0)))
 
-/-- The executable witness checker accepts exactly the proper Boolean colorings. -/
+/-- The executable witness checker accepts exactly the proper Boolean colorings.
+@isnad1 id=iff.0h2v.s5.1d15e332bb5d from=translated src=- shape=57be8f8b vocab=dc6214fd
+-/
 theorem checkBipartition_eq_true (A : DecFinStruct Vocabulary.graph)
     (color : Fin A.card → Bool) :
     checkBipartition A color = true ↔
@@ -129,16 +143,22 @@ theorem checkBipartition_eq_true (A : DecFinStruct Vocabulary.graph)
   simp only [hb]
   exact forall_comm
 
-/-- A graph is bipartite exactly when the executable checker accepts some coloring. -/
+/-- A graph is bipartite exactly when the executable checker accepts some coloring.
+@isnad1 id=iff.0h1v.s4.bb488002e979 from=translated src=- shape=c3e06b2c vocab=a3be0fa4
+-/
 theorem exists_checkBipartition_iff (A : DecFinStruct Vocabulary.graph) :
     (∃ color, checkBipartition A color = true) ↔ Bipartite A.toFinStruct :=
   exists_congr fun color => checkBipartition_eq_true A color
 
-/-- Relabeling vertices preserves bipartiteness. -/
+/-- Relabeling vertices preserves bipartiteness.
+@isnad1 id=isorderi.0h0v.s1.8a7c31b1e5af from=translated src=- shape=25b03439 vocab=d2ba9af7
+-/
 theorem bipartite_orderIndependent : Bipartite.IsOrderIndependent :=
   bipartite_existSODefinable.orderIndependent
 
-/-- Every query FO-reducible to bipartiteness has an existential SO witness. -/
+/-- Every query FO-reducible to bipartiteness has an existential SO witness.
+@isnad1 id=existsod.1h2v.s3.7d16d55d13d2 from=translated src=- shape=01809d14 vocab=d467ba6f
+-/
 theorem existSODefinable_of_reduces_bipartite {V : Vocabulary} {Q : BooleanQuery V}
     (h : FOReduces Q Bipartite) : ExistSODefinable Q :=
   bipartite_existSODefinable.of_reduces h

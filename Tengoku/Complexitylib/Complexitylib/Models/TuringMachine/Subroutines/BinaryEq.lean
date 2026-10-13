@@ -23,7 +23,9 @@ namespace TM
 
 /-- Two canonical binary strings are compared in linear time. The Boolean
 answer is appended to `resultIdx`; input, output, unrelated tapes, and all
-binary contents are preserved. -/
+binary contents are preserved.
+@isnad1 id=ex.7h9v.s8.b7c031875bfa from=translated src=- shape=60ec81fb vocab=9739469d
+-/
 theorem binaryEqTM_reachesIn_frame {n : ℕ}
     (lhsIdx rhsIdx resultIdx : Fin n)
     (hdistinct : BinaryEqDistinct lhsIdx rhsIdx resultIdx)
@@ -56,7 +58,9 @@ theorem binaryEqTM_reachesIn_frame {n : ℕ}
   binaryEqTM_reachesIn_frame_internal lhsIdx rhsIdx resultIdx hdistinct
     lhs rhs inp₀ work₀ out₀ hlhs hrhs hresult hinput hother houtput
 
-/-- Binary equality preserves one-way output safety. -/
+/-- Binary equality preserves one-way output safety.
+@isnad1 id=istransd.0h4v.s4.5d6f424184fc from=translated src=- shape=0b195b8b vocab=7fcb87f3
+-/
 theorem binaryEqTM_isTransducer {n : ℕ}
     (lhsIdx rhsIdx resultIdx : Fin n) :
     (binaryEqTM lhsIdx rhsIdx resultIdx).IsTransducer :=

@@ -229,7 +229,9 @@ private theorem decFrontier_step_settle_start (c : Cfg 7 decFrontierTM.Q)
     steps having decremented the clock to `regCells (v - 1)` with the head
     parked at the new frontier (`max (v - 1) 1`); the input tape, the output
     tape, and every other work tape are preserved **exactly**. The zero
-    clock is left unchanged (`0 - 1 = 0`). -/
+    clock is left unchanged (`0 - 1 = 0`).
+@isnad1 id=hoaretim.5h4v.s7.60277ce93d96 from=translated src=- shape=6dd9131c vocab=f8d64b47
+-/
 theorem decFrontierTM_hoareTime (v : ℕ) (inp₀ : Tape) (work₀ : Fin 7 → Tape)
     (out₀ : Tape)
     (hclk : (work₀ clkT).cells = regCells v) (hclkh : (work₀ clkT).head = max v 1)
@@ -410,7 +412,9 @@ private theorem orZero_step (c : Cfg 7 orZeroTM.Q)
     * written the combined loop-exit verdict at output cell 1: `Γ.one` iff
       `verdict = Γ.one ∨ v = 0`, else `Γ.zero` (all other output cells
       unchanged, head still at cell 1);
-    * left the input tape and **every** work tape exactly unchanged. -/
+    * left the input tape and **every** work tape exactly unchanged.
+@isnad1 id=hoaretim.8h5v.s8.d41fa825cc5f from=translated src=- shape=84b019fa vocab=7db859c4
+-/
 theorem orZeroTM_hoareTime (v : ℕ) (verdict : Γ) (inp₀ : Tape)
     (work₀ : Fin 7 → Tape) (out₀ : Tape)
     (hclk : (work₀ clkT).cells = regCells v) (hclkh : (work₀ clkT).head = max v 1)

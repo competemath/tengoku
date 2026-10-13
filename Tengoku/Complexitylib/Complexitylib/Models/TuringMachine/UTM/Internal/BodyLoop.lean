@@ -1511,7 +1511,9 @@ private theorem matchLoop_go (f : VFlags) (v0 v1 v2 : Γ) (stSyms : List Γw)
       (`▷`-free, blank at and beyond its head, head ≤ `w + 11`) — the shape
       `defaultTail` consumes;
 
-    in either case within `(|R| + 2)·(4·|stSyms| + 60)` steps. -/
+    in either case within `(|R| + 2)·(4·|stSyms| + 60)` steps.
+@isnad1 id=and.19h8v.s10.8552bdd29030 from=translated src=- shape=6f5798a5 vocab=6d859188
+-/
 theorem matchLoop (f : VFlags) (v0 v1 v2 : Γ) (stSyms : List Γw)
     (hst_nb : ∀ s ∈ stSyms, s ≠ Γw.blank) :
     ∀ (R : List Γw) (pos : ℕ) (c : Cfg 6 bodyTM.Q),

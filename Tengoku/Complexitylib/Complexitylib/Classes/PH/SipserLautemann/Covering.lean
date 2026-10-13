@@ -24,11 +24,16 @@ variable {m t k : ℕ}
 /-- XOR shift of a seed by a vector. -/
 def shift (r u : Fin m → Bool) : Fin m → Bool := fun i => xor (r i) (u i)
 
+/--
+@isnad1 id=eq.0h3v.s4.5796ceda3b63 from=translated src=- shape=81070c6c vocab=a89bbe84
+-/
 @[simp] theorem shift_shift (r u : Fin m → Bool) : shift (shift r u) u = r := by
   funext i
   simp [shift]
 
-/-- The shift action is symmetric in its two arguments. -/
+/-- The shift action is symmetric in its two arguments.
+@isnad1 id=eq.0h3v.s4.cbfd05a807ab from=translated src=- shape=9922580f vocab=a89bbe84
+-/
 theorem shift_comm (r u : Fin m → Bool) : shift r u = shift u r := by
   funext i
   simp [shift, Bool.xor_comm]
@@ -46,7 +51,9 @@ def Covers (E : Finset (Fin m → Bool)) (u : Fin t → Fin m → Bool) : Prop :
   ∀ r, ∃ i, shift r (u i) ∈ E
 
 /-- Shifting is measure preserving: the seeds carried into `E` by a fixed
-shift are as many as the elements of `E`. -/
+shift are as many as the elements of `E`.
+@isnad1 id=eq.0h3v.s6.c28d9f384cfb from=translated src=- shape=b24c7930 vocab=79970d9d
+-/
 theorem card_filter_shift_mem (E : Finset (Fin m → Bool)) (u : Fin m → Bool) :
     (Finset.univ.filter fun r => shift r u ∈ E).card = E.card := by
   have hset : (Finset.univ.filter fun r => shift r u ∈ E) = E.image (fun v => shift v u) := by
@@ -63,11 +70,15 @@ theorem card_filter_shift_mem (E : Finset (Fin m → Bool)) (u : Fin m → Bool)
     simpa using this
   rw [hset, Finset.card_image_of_injective _ hinj]
 
-/-- The number of seeds is `2 ^ m`. -/
+/-- The number of seeds is `2 ^ m`.
+@isnad1 id=eq.0h1v.s5.abada882a03e from=translated src=- shape=cf8ba86f vocab=c3a26708
+-/
 theorem card_univ_seed : (Finset.univ : Finset (Fin m → Bool)).card = 2 ^ m := by
   rw [Finset.card_univ, card_finArrowBool]
 
-/-- The number of `t`-tuples of shift vectors is `(2 ^ m) ^ t`. -/
+/-- The number of `t`-tuples of shift vectors is `(2 ^ m) ^ t`.
+@isnad1 id=eq.0h2v.s6.71bc8e64a118 from=translated src=- shape=7fae08b8 vocab=c3a26708
+-/
 theorem card_univ_shifts :
     (Finset.univ : Finset (Fin t → Fin m → Bool)).card = (2 ^ m) ^ t := by
   rw [Finset.card_univ, Fintype.card_fun, card_finArrowBool, Fintype.card_fin]
@@ -77,7 +88,9 @@ that `2 ^ m` translates of its `m`-fold product miss the whole shift space,
 some `m`-tuple of shifts covers every seed. This is the counting form of the
 probabilistic argument: a uniformly random tuple fails to cover a fixed seed
 with probability `(1 - eventProb E) ^ m`, and a union bound over the `2 ^ m`
-seeds leaves a covering tuple. -/
+seeds leaves a covering tuple.
+@isnad1 id=ex.1h3v.s7.0b88c4565ea9 from=translated src=- shape=08fca80a vocab=3cfc35f9
+-/
 theorem exists_covers_of_card (E : Finset (Fin m → Bool))
     (h : 2 ^ m * (2 ^ m - E.card) ^ t < (2 ^ m) ^ t) :
     ∃ u : Fin t → Fin m → Bool, Covers E u := by
@@ -129,7 +142,9 @@ theorem exists_covers_of_card (E : Finset (Fin m → Bool))
   simpa [hbad] using hu
 
 /-- **No covering when the event is small.** If `t` copies of `E` cannot fill
-the seed space by cardinality alone, no tuple of `t` shifts covers it. -/
+the seed space by cardinality alone, no tuple of `t` shifts covers it.
+@isnad1 id=not.1h4v.s5.cd9d39701584 from=translated src=- shape=cbbdef92 vocab=66fdeb0a
+-/
 theorem not_covers_of_card (E : Finset (Fin m → Bool)) (h : t * E.card < 2 ^ m)
     (u : Fin t → Fin m → Bool) : ¬ Covers E u := by
   classical
@@ -156,7 +171,9 @@ theorem not_covers_of_card (E : Finset (Fin m → Bool)) (h : t * E.card < 2 ^ m
 /-! ## Probability form -/
 
 /-- An event of probability at most `2 ^ (-k)` has at most `2 ^ (m - k)`
-elements, in the multiplication-only form used below. -/
+elements, in the multiplication-only form used below.
+@isnad1 id=le.1h3v.s6.45d1a9a7ef0f from=translated src=- shape=86a9ee3e vocab=a973e674
+-/
 theorem card_mul_two_pow_le (E : Finset (Fin m → Bool)) (h : eventProb E ≤ 1 / 2 ^ k) :
     E.card * 2 ^ k ≤ 2 ^ m := by
   have h2m : (0 : ℚ) < 2 ^ m := by positivity
@@ -170,7 +187,9 @@ theorem card_mul_two_pow_le (E : Finset (Fin m → Bool)) (h : eventProb E ≤ 1
 fails with probability at most `2 ^ (-k)`, and the seed length `m` is below
 `k * t`, then some `t` shifts of `E` cover the whole seed space. Since the
 failure probability enters as its `t`-th power against a union bound over the
-`2 ^ m` seeds, any `k ≥ 2` suffices at `t ≥ m`. -/
+`2 ^ m` seeds, any `k ≥ 2` suffices at `t ≥ m`.
+@isnad1 id=ex.2h4v.s7.5c9813165a7b from=translated src=- shape=3412d14c vocab=ed1346df
+-/
 theorem exists_covers_of_eventProb_compl_le (E : Finset (Fin m → Bool))
     (hmt : m < k * t) (h : eventProb Eᶜ ≤ 1 / 2 ^ k) :
     ∃ u : Fin t → Fin m → Bool, Covers E u := by
@@ -195,7 +214,9 @@ theorem exists_covers_of_eventProb_compl_le (E : Finset (Fin m → Bool))
 
 /-- **Lautemann's covering lemma, soundness direction.** If the event `E` holds
 with probability at most `2 ^ (-k)` and the number of shifts `t` is below
-`2 ^ k`, then no `t` shifts of `E` cover the seed space. -/
+`2 ^ k`, then no `t` shifts of `E` cover the seed space.
+@isnad1 id=not.2h5v.s6.8892a4024513 from=translated src=- shape=6c0b9166 vocab=551980f4
+-/
 theorem not_covers_of_eventProb_le (E : Finset (Fin m → Bool)) (hk : t < 2 ^ k)
     (h : eventProb E ≤ 1 / 2 ^ k) (u : Fin t → Fin m → Bool) : ¬ Covers E u := by
   refine not_covers_of_card E ?_ u

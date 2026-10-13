@@ -19,11 +19,17 @@ namespace OracleTM
 
 variable {firstTapes secondTapes thirdTapes : ℕ}
 
+/--
+@isnad1 id=simulate.0h2v.s3.bef0cfc62f25 from=translated src=- shape=5fca6213 vocab=216ba9d2
+-/
 theorem simulates_refl_internal (machine : OracleTM firstTapes) :
     machine.Simulates machine id where
   halts_iff := by simp
   produces_iff := by simp
 
+/--
+@isnad1 id=simulate.2h8v.s5.dd67b371188d from=translated src=- shape=014dd85b vocab=78acd7ac
+-/
 theorem simulates_comp_internal
     {first : OracleTM firstTapes} {second : OracleTM secondTapes}
     {third : OracleTM thirdTapes}
@@ -38,10 +44,16 @@ theorem simulates_comp_internal
     exact (hfirst.produces_iff oracle (compileSecond program) output).trans
       (hsecond.produces_iff oracle program output)
 
+/--
+@isnad1 id=simulate.0h2v.s4.c5913bebf9f2 from=translated src=- shape=ed6f81a7 vocab=51f45a67
+-/
 theorem simulatesInTime_refl_internal (machine : OracleTM firstTapes) :
     machine.SimulatesInTime machine id (fun _ sourceTime => sourceTime) where
   produces _oracle _program _output _sourceTime hproduce := hproduce
 
+/--
+@isnad1 id=simulate.2h10v.s6.8fd4ff1c7953 from=translated src=- shape=045a4427 vocab=909c6fb7
+-/
 theorem simulatesInTime_comp_internal
     {first : OracleTM firstTapes} {second : OracleTM secondTapes}
     {third : OracleTM thirdTapes}
@@ -57,6 +69,9 @@ theorem simulatesInTime_comp_internal
       (clockSecond program sourceTime)
       (hsecond.produces oracle program output sourceTime hproduce)
 
+/--
+@isnad1 id=isuniver.1h3v.s4.8095a3d665b3 from=translated src=- shape=3c964571 vocab=dd8d7752
+-/
 theorem efficientlyUniversalFor_isUniversal_internal
     {simulator : OracleTM firstTapes}
     {admissible : TM.TimeOverhead → Prop}
@@ -67,6 +82,9 @@ theorem efficientlyUniversalFor_isUniversal_internal
     h sourceTapes source
   exact ⟨compile, hcompile, hsim⟩
 
+/--
+@isnad1 id=iseffici.1h5v.s5.dce89f5721db from=translated src=- shape=96bf3fe0 vocab=cb02b7d7
+-/
 theorem efficientlyUniversalFor_mono_internal
     {simulator : OracleTM firstTapes}
     {firstPolicy secondPolicy : TM.TimeOverhead → Prop}

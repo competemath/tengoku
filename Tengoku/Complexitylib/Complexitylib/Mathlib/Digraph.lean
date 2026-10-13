@@ -49,7 +49,9 @@ def IsPath (G : Digraph V) {m : Nat} (p : Fin m → V) : Prop :=
   G.IsDirectedWalk p ∧ Function.Injective p
 
 /-- The lengths of simple paths in a finite graph are bounded by its vertex
-cardinality. -/
+cardinality.
+@isnad1 id=bddabove.0h2v.s4.9c748815d802 from=translated src=- shape=7abe7440 vocab=8b340167
+-/
 lemma pathLength_bddAbove [Fintype V] (G : Digraph V) :
     BddAbove {m | ∃ p : Fin m → V, G.IsPath p} := by
   refine ⟨Fintype.card V, ?_⟩
@@ -66,7 +68,9 @@ whose proofs require a DAG state `IsAcyclic` explicitly. -/
 noncomputable def depth [Fintype V] (G : Digraph V) : Nat :=
   sSup {m | ∃ p : Fin m → V, G.IsPath p}
 
-/-- A finite digraph's simple-path depth is at most its number of vertices. -/
+/-- A finite digraph's simple-path depth is at most its number of vertices.
+@isnad1 id=le.0h2v.s4.0c3d826fb65f from=translated src=- shape=702d4805 vocab=6ef504aa
+-/
 theorem depth_le_card [Fintype V] (G : Digraph V) : G.depth ≤ Fintype.card V := by
   unfold depth
   apply csSup_le
@@ -74,7 +78,9 @@ theorem depth_le_card [Fintype V] (G : Digraph V) : G.depth ≤ Fintype.card V :
   · rintro m ⟨p, _, hp⟩
     simpa only [Fintype.card_fin] using Fintype.card_le_of_injective p hp
 
-/-- A finite nonempty digraph has a one-vertex path, hence positive depth. -/
+/-- A finite nonempty digraph has a one-vertex path, hence positive depth.
+@isnad1 id=le.0h2v.s4.1f210cf92985 from=translated src=- shape=abec20dc vocab=e6d96e7b
+-/
 theorem one_le_depth [Fintype V] [Nonempty V] (G : Digraph V) : 1 ≤ G.depth := by
   unfold depth
   apply le_csSup (pathLength_bddAbove G)
@@ -87,6 +93,9 @@ def edgeFinset [Fintype V]
     (G : Digraph V) [DecidableRel G.Adj] : Finset (V × V) :=
   Finset.univ.filter (fun p => G.Adj p.1 p.2)
 
+/--
+@isnad1 id=iff.0h3v.s5.36416ba90012 from=translated src=- shape=a29767a7 vocab=8a5f957b
+-/
 lemma mem_edgeFinset [Fintype V] {G : Digraph V}
     [DecidableRel G.Adj] {e : V × V} : e ∈ G.edgeFinset ↔ G.Adj e.1 e.2 := by
   simp [edgeFinset]
@@ -107,7 +116,9 @@ def IsAcyclic (G : Digraph V) : Prop :=
   BddAbove { m | ∃ p : Fin m → V, G.IsDirectedWalk p }
 
 /-- The simple-path set of `G.deleteEdges ∅` agrees with that of `G`,
-so the two graphs have the same depth. -/
+so the two graphs have the same depth.
+@isnad1 id=eq.0h2v.s4.b6bd6d6637ff from=translated src=- shape=31ddc2e1 vocab=52dbe3ba
+-/
 lemma depth_deleteEdges_empty [Fintype V] (G : Digraph V) :
     (G.deleteEdges ∅).depth = G.depth := by
   unfold Digraph.depth

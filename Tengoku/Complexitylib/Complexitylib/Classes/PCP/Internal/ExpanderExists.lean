@@ -37,10 +37,16 @@ namespace Complexity
 /-- The spectral bound the construction achieves. -/
 noncomputable def randLam : ℝ := 1 - (1 / (2 * (10 : ℝ) * 30)) ^ 2 / 4
 
+/--
+@isnad1 id=le.0h0v.s3.fb11d9c235ca from=translated src=- shape=ff3a10fc vocab=ed46b1b5
+-/
 theorem randLam_nonneg : 0 ≤ randLam := by
   rw [randLam]
   norm_num
 
+/--
+@isnad1 id=lt.0h0v.s3.328ccbfaf118 from=translated src=- shape=ffdda526 vocab=5b0cd43b
+-/
 theorem randLam_lt_one : randLam < 1 := by
   rw [randLam]
   norm_num

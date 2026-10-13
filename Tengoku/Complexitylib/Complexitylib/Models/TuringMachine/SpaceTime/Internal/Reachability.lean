@@ -23,7 +23,9 @@ namespace TM
 
 variable {n : ℕ}
 
-/-- Split an exact run at a prescribed prefix length. -/
+/-- Split an exact run at a prescribed prefix length.
+@isnad1 id=ex.1h6v.s5.79f1df52474e from=translated src=- shape=9446ec7c vocab=8ccbb0b9
+-/
 theorem reachesIn_split_internal {tm : TM n} {a b : ℕ} {c c' : Cfg n tm.Q}
     (hreach : tm.reachesIn (a + b) c c') :
     ∃ d, tm.reachesIn a c d ∧ tm.reachesIn b d c' := by
@@ -38,7 +40,9 @@ theorem reachesIn_split_internal {tm : TM n} {a b : ℕ} {c c' : Cfg n tm.Q}
           obtain ⟨d, hprefix, hsuffix⟩ := ih hrest
           exact ⟨d, .step hstep hprefix, hsuffix⟩
 
-/-- Expose the configuration at time `i` of an exact `t`-step run. -/
+/-- Expose the configuration at time `i` of an exact `t`-step run.
+@isnad1 id=ex.2h6v.s6.09da397e5e8f from=translated src=- shape=4dd6eb42 vocab=3acda64e
+-/
 theorem reachesIn_prefix_internal {tm : TM n} {t i : ℕ} {c c' : Cfg n tm.Q}
     (hreach : tm.reachesIn t c c') (hi : i ≤ t) :
     ∃ d, tm.reachesIn i c d ∧ tm.reachesIn (t - i) d c' := by

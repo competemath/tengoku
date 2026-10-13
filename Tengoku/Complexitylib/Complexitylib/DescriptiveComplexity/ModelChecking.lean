@@ -52,7 +52,9 @@ def Formula.evalB (A : DecFinStruct V) : {n : Nat} → Env A.card n → Formula 
   | _, σ, .all φ => (List.finRange A.card).all (fun a => Formula.evalB A (envCons a σ) φ)
 
 /-- **FO model checking is correct**: the `Bool` evaluator agrees with
-    satisfaction. -/
+    satisfaction.
+@isnad1 id=iff.0h5v.s5.eb4ea1aa37de from=translated src=- shape=e060eea5 vocab=8ee5c06b
+-/
 theorem Formula.evalB_eq_sat (A : DecFinStruct V) :
     ∀ {n : Nat} (φ : Formula V n) (σ : Env A.card n),
       (Formula.evalB A σ φ = true) ↔ φ.Sat A.toFinStruct σ := by
@@ -82,7 +84,9 @@ theorem Formula.evalB_eq_sat (A : DecFinStruct V) :
 def Sentence.evalB (A : DecFinStruct V) (φ : Sentence V) : Bool :=
   Formula.evalB A (emptyEnv A.card) φ
 
-/-- Sentence model checking is correct. -/
+/-- Sentence model checking is correct.
+@isnad1 id=iff.0h3v.s4.a92a9a08a89c from=translated src=- shape=6cd5170e vocab=b3da48d0
+-/
 theorem Sentence.evalB_eq_models (A : DecFinStruct V) (φ : Sentence V) :
     (Sentence.evalB A φ = true) ↔ Sentence.Models A.toFinStruct φ :=
   Formula.evalB_eq_sat A φ (emptyEnv A.card)

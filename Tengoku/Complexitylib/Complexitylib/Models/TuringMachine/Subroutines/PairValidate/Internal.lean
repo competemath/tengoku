@@ -46,7 +46,9 @@ private theorem pairValidate_fold_correct (state : PairValidateState) (bits : Li
       cases state <;> cases bit <;>
         simp [pairValidateStep, pairValidateSuffix, unpair?]
 
-/-- The pair-validator fold accepts exactly when `unpair?` succeeds. -/
+/-- The pair-validator fold accepts exactly when `unpair?` succeeds.
+@isnad1 id=iff.0h1v.s4.6b46164eb3ae from=translated src=- shape=fbbbcc81 vocab=3b751f71
+-/
 theorem pairValidateAccept_fold_eq_true_iff_internal (bits : List Bool) :
     pairValidateAccept (bits.foldl pairValidateStep .next) = true ↔
       (unpair? bits).isSome = true := by
@@ -54,7 +56,9 @@ theorem pairValidateAccept_fold_eq_true_iff_internal (bits : List Bool) :
   rfl
 
 /-- The finite-state pair validator decides all well-formed pair encodings
-within the generic scanner's `n + 2` time bound. -/
+within the generic scanner's `n + 2` time bound.
+@isnad1 id=decidesi.0h0v.s4.fd235f5c4197 from=translated src=- shape=78aae65d vocab=1bc1dfc5
+-/
 theorem pairValidateTM_decidesInTime_internal :
     pairValidateTM.DecidesInTime validPairEncoding (fun n => n + 2) := by
   apply scannerTM_decidesInTime .next pairValidateStep pairValidateAccept
@@ -63,7 +67,9 @@ theorem pairValidateTM_decidesInTime_internal :
     pairValidateAccept (bits.foldl pairValidateStep .next) = true
   exact (pairValidateAccept_fold_eq_true_iff_internal bits).symm
 
-/-- Frame-rich initialized specification for the lifted validator. -/
+/-- Frame-rich initialized specification for the lifted validator.
+@isnad1 id=hoaretim.0h2v.s8.f0f41f02ab53 from=translated src=- shape=e14141ce vocab=cf1c07d0
+-/
 theorem pairValidateTM_lift_hoareTime_internal (workTapes : ℕ) (bits : List Bool) :
     (pairValidateTM.liftTM workTapes).HoareTime
       (fun inp work out =>

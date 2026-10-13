@@ -119,15 +119,24 @@ def blk6 (z : Cube (ROf B)) : Cube (R5 B) :=
 
 /-! ### Each block is uniform -/
 
+/--
+@isnad1 id=eq.0h2v.s4.15f262058a78 from=translated src=- shape=52157faa vocab=176b1956
+-/
 theorem prob_blk1 (P : Cube (R1 B) → Prop) : Pr[fun z : Cube (ROf B) => P (blk1 z)] = Pr[P] :=
   prob_leftBlock P
 
+/--
+@isnad1 id=eq.0h2v.s4.b0d77c640484 from=translated src=- shape=52157faa vocab=9e844bf1
+-/
 theorem prob_blk2 (P : Cube (R2 B) → Prop) : Pr[fun z : Cube (ROf B) => P (blk2 z)] = Pr[P] := by
   have h1 := prob_rightBlock (a := R1 B) (fun w : Cube (Rest2 B) => P (leftBlock w))
   rw [show (fun z : Cube (ROf B) => P (blk2 z)) = fun z => P (leftBlock (rightBlock z)) from rfl,
     h1]
   exact prob_leftBlock P
 
+/--
+@isnad1 id=eq.0h2v.s4.b87245356497 from=translated src=- shape=52157faa vocab=4abfe0a0
+-/
 theorem prob_blk3 (P : Cube (R3 B) → Prop) : Pr[fun z : Cube (ROf B) => P (blk3 z)] = Pr[P] := by
   have h1 := prob_rightBlock (a := R1 B)
     (fun w : Cube (Rest2 B) => P (leftBlock (rightBlock w)))
@@ -136,6 +145,9 @@ theorem prob_blk3 (P : Cube (R3 B) → Prop) : Pr[fun z : Cube (ROf B) => P (blk
     = fun z => P (leftBlock (rightBlock (rightBlock z))) from rfl, h1, h2]
   exact prob_leftBlock P
 
+/--
+@isnad1 id=eq.0h2v.s4.1b9ad3876185 from=translated src=- shape=52157faa vocab=233b66f0
+-/
 theorem prob_blk4 (P : Cube (R4 B) → Prop) : Pr[fun z : Cube (ROf B) => P (blk4 z)] = Pr[P] := by
   have h1 := prob_rightBlock (a := R1 B)
     (fun w : Cube (Rest2 B) => P (leftBlock (rightBlock (rightBlock w))))
@@ -146,6 +158,9 @@ theorem prob_blk4 (P : Cube (R4 B) → Prop) : Pr[fun z : Cube (ROf B) => P (blk
     = fun z => P (leftBlock (rightBlock (rightBlock (rightBlock z)))) from rfl, h1, h2, h3]
   exact prob_leftBlock P
 
+/--
+@isnad1 id=eq.0h2v.s4.5a03f377f74f from=translated src=- shape=52157faa vocab=ddf000f5
+-/
 theorem prob_blk5 (P : Cube (R5 B) → Prop) : Pr[fun z : Cube (ROf B) => P (blk5 z)] = Pr[P] := by
   have h1 := prob_rightBlock (a := R1 B)
     (fun w : Cube (Rest2 B) => P (leftBlock (rightBlock (rightBlock (rightBlock w)))))
@@ -159,6 +174,9 @@ theorem prob_blk5 (P : Cube (R5 B) → Prop) : Pr[fun z : Cube (ROf B) => P (blk
     h1, h2, h3, h4]
   exact prob_leftBlock P
 
+/--
+@isnad1 id=eq.0h2v.s4.0b6ece799e8d from=translated src=- shape=52157faa vocab=eb2d5a3a
+-/
 theorem prob_blk6 (P : Cube (R5 B) → Prop) : Pr[fun z : Cube (ROf B) => P (blk6 z)] = Pr[P] := by
   have h1 := prob_rightBlock (a := R1 B)
     (fun w : Cube (Rest2 B) => P (rightBlock (rightBlock (rightBlock (rightBlock w)))))
@@ -179,6 +197,9 @@ their sum. -/
 def LinCheck {m : ℕ} (f : BooleanFunction m) (x : Cube (m + m)) : Prop :=
   f (leftBlock x) * f (rightBlock x) = f (leftBlock x + rightBlock x)
 
+/--
+@isnad1 id=eq.0h2v.s4.edb61c134355 from=translated src=- shape=397f0b2a vocab=cdc1c266
+-/
 theorem prob_linCheck {m : ℕ} (f : BooleanFunction m) :
     Pr[LinCheck f] = blrAcceptProb f := by
   unfold blrAcceptProb
@@ -196,6 +217,9 @@ def AllChecks (S : Finset (Cube (kOf B))) (Tt Th : Cube B → ZMod 2)
     ∧ CoordAccepts (signOf F) Tt (inTail B) (blk5 z)
     ∧ CoordAccepts (signOf F) Th (inHead B) (blk6 z)
 
+/--
+@isnad1 id=isboolea.0h2v.s4.23ec8f0da714 from=translated src=- shape=178e9946 vocab=0116b758
+-/
 theorem isBooleanValued_signOf {m : ℕ} (F : Cube m → ZMod 2) : IsBooleanValued (signOf F) := by
   intro x
   show chi (F x) = 1 ∨ chi (F x) = -1
@@ -205,13 +229,18 @@ theorem isBooleanValued_signOf {m : ℕ} (F : Cube m → ZMod 2) : IsBooleanValu
 
 /-! ### Completeness -/
 
+/--
+@isnad1 id=lincheck.0h3v.s4.d59c7f51c46c from=translated src=- shape=33212da1 vocab=bebcf258
+-/
 theorem linCheck_hadamard {m : ℕ} (a : Cube m) (x : Cube (m + m)) :
     LinCheck (signOf (hadamard a)) x := by
   show chi (hadamard a (leftBlock x)) * chi (hadamard a (rightBlock x))
     = chi (hadamard a (leftBlock x + rightBlock x))
   rw [hadamard_add_arg, BooleanAnalysis.Internal.chi_add]
 
-/-- The honest tables pass the constraint check on every random string. -/
+/-- The honest tables pass the constraint check on every random string.
+@isnad1 id=constrai.1h4v.s6.1965bffbeff9 from=translated src=- shape=0a55057a vocab=ce6980f8
+-/
 theorem constraintAccepts_of_honest {m : ℕ} (a : Cube m) (C : QuadConstraint m) (hC : C.Sat a)
     (z : Cube (m + m * m)) :
     ConstraintAccepts (signOf (hadamard a)) (signOf (hadamard (tensorAssign a))) C z := by
@@ -225,7 +254,9 @@ theorem constraintAccepts_of_honest {m : ℕ} (a : Cube m) (C : QuadConstraint m
 /-- **Completeness of the assembled tester.** The honest proof of an assignment
 satisfying the system — its Hadamard encoding and that of its tensor square,
 with the input tables read off the assignment — passes every check on every
-random string. -/
+random string.
+@isnad1 id=allcheck.1h4v.s8.33e91826e17d from=translated src=- shape=ec71328f vocab=553bfd38
+-/
 theorem complete (S : Finset (Cube (kOf B))) (a : Cube (nOf B))
     (ha : ∀ j, (oneHotSystem S j).Sat a) (z : Cube (ROf B)) :
     AllChecks S (tailPart a) (headPart a) (hadamard a) (hadamard (tensorAssign a)) z :=

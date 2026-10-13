@@ -44,14 +44,18 @@ namespace TM
 
 variable {k : ℕ}
 
-/-- A write at cell zero is a no-op, so writing and moving there is just moving. -/
+/-- A write at cell zero is a no-op, so writing and moving there is just moving.
+@isnad1 id=eq.1h3v.s4.887a7d18d99b from=translated src=- shape=188bcdaa vocab=ca8aed32
+-/
 theorem writeAndMove_of_head_zero (t : Tape) (s : Γ) (d : Dir3) (h : t.head = 0) :
     t.writeAndMove s d = t.move d := by
   simp only [Tape.writeAndMove, Tape.write, h, ↓reduceIte]
 
 /-- **The sentinel step, from any configuration whose heads are at cell zero.** Only the heads
 move; every tape keeps its contents, and the state reached is the machine's own
-`TM.retargetInputStartState`. -/
+`TM.retargetInputStartState`.
+@isnad1 id=eq.8h3v.s7.f6f696d9dcef from=translated src=- shape=f092187a vocab=8eb4a01e
+-/
 theorem step_of_heads_zero (M : TM k) (c : Cfg k M.Q)
     (hstate : c.state = M.qstart) (hne : M.qstart ≠ M.qhalt)
     (hin : c.input.head = 0) (hwork : ∀ i, (c.work i).head = 0) (hout : c.output.head = 0)
@@ -87,20 +91,29 @@ def startedTM (M : TM k) : TM k :=
     qstart := if M.qstart = M.qhalt then M.qhalt
       else (M.δ M.qstart Γ.start (fun _ => Γ.start) Γ.start).1 }
 
+/--
+@isnad1 id=eq.0h2v.s4.d223d6b866c1 from=translated src=- shape=461097b9 vocab=ecb868c8
+-/
 @[simp] theorem startedTM_qhalt (M : TM k) : (startedTM M).qhalt = M.qhalt := rfl
 
-/-- Resuming changes no transition, so the two machines step identically. -/
+/-- Resuming changes no transition, so the two machines step identically.
+@isnad1 id=eq.0h3v.s4.b530b60c56b4 from=translated src=- shape=b2b10992 vocab=69ad13f9
+-/
 @[simp] theorem startedTM_step (M : TM k) (c : Cfg k M.Q) :
     (startedTM M).step c = M.step c := rfl
 
-/-- …and therefore reach exactly the same configurations. -/
+/-- …and therefore reach exactly the same configurations.
+@isnad1 id=reachesi.1h5v.s5.2d099fd210d4 from=translated src=- shape=17af5df2 vocab=46997434
+-/
 theorem reachesIn_of_startedTM (M : TM k) {t : ℕ} {c c' : Cfg k (startedTM M).Q}
     (h : (startedTM M).reachesIn t c c') : M.reachesIn t c c' := by
   induction h with
   | zero => exact .zero
   | step hs _ ih => exact .step hs ih
 
-/-- …and conversely. -/
+/-- …and conversely.
+@isnad1 id=reachesi.1h5v.s5.a0bb7e80c504 from=translated src=- shape=6ee475b7 vocab=46997434
+-/
 theorem reachesIn_startedTM (M : TM k) {t : ℕ} {c c' : Cfg k M.Q}
     (h : M.reachesIn t c c') : (startedTM M).reachesIn t c c' := by
   induction h with
@@ -110,7 +123,9 @@ theorem reachesIn_startedTM (M : TM k) {t : ℕ} {c c' : Cfg k M.Q}
 /-- **What the resumed machine's start state is worth.** A configuration with every head at cell
 zero steps, in one move, to the resumed machine's own start configuration on the same tapes with
 every head at cell one. So a run of the resumed machine from there is a run of the original, one
-step in — with whatever the tapes were carrying still on them. -/
+step in — with whatever the tapes were carrying still on them.
+@isnad1 id=reachesi.9h5v.s7.91b0ea825bf6 from=translated src=- shape=a43e587b vocab=a389e7fb
+-/
 theorem reachesIn_succ_of_startedTM (M : TM k) (c : Cfg k M.Q)
     (hstate : c.state = M.qstart) (hne : M.qstart ≠ M.qhalt)
     (hin : c.input.head = 0) (hwork : ∀ i, (c.work i).head = 0) (hout : c.output.head = 0)
@@ -132,7 +147,9 @@ theorem reachesIn_succ_of_startedTM (M : TM k) (c : Cfg k M.Q)
 
 /-- **The input tape is read-only.** A transition moves its head and nothing else, so its
 contents survive any run — which is what lets a stage rewind the real input and hand the next
-stage the tape it started with. -/
+stage the tape it started with.
+@isnad1 id=eq.1h4v.s5.3ad5cd541679 from=translated src=- shape=6ac49ebf vocab=4abdcd25
+-/
 theorem step_input_cells (M : TM k) {c c' : Cfg k M.Q} (h : M.step c = some c') :
     c'.input.cells = c.input.cells := by
   simp only [TM.step] at h
@@ -142,7 +159,9 @@ theorem step_input_cells (M : TM k) {c c' : Cfg k M.Q} (h : M.step c = some c') 
     show (c.input.move _).cells = _
     rw [Tape.move_cells]
 
-/-- …and therefore across a whole run. -/
+/-- …and therefore across a whole run.
+@isnad1 id=eq.1h5v.s5.519a112b1f42 from=translated src=- shape=96cd9589 vocab=6a7f0ea1
+-/
 theorem reachesIn_input_cells (M : TM k) {t : ℕ} {c c' : Cfg k M.Q}
     (h : M.reachesIn t c c') : c'.input.cells = c.input.cells := by
   induction h with
@@ -151,7 +170,9 @@ theorem reachesIn_input_cells (M : TM k) {t : ℕ} {c c' : Cfg k M.Q}
 
 /-- **The left-marker invariant survives a whole run**, not just one step. Every transition
 writes symbols drawn from `Γw`, and cell zero is immutable, so a machine can neither erase a
-marker nor create one. -/
+marker nor create one.
+@isnad1 id=and.4h5v.s6.a185d3bbea2e from=translated src=- shape=332cf488 vocab=86e6294a
+-/
 theorem startInvariant_reachesIn (tm : TM n) {t : ℕ} {c c' : Cfg n tm.Q}
     (h : tm.reachesIn t c c') :
     c.input.StartInvariant → (∀ i, (c.work i).StartInvariant) → c.output.StartInvariant →
@@ -164,7 +185,9 @@ theorem startInvariant_reachesIn (tm : TM n) {t : ℕ} {c c' : Cfg n tm.Q}
       obtain ⟨h1, h2, h3⟩ := Tape.StartInvariant.step _ hstep hi hw ho
       exact ih h1 h2 h3
 
-/-- **A step writes only under the head.** Every other cell of a work tape is left alone. -/
+/-- **A step writes only under the head.** Every other cell of a work tape is left alone.
+@isnad1 id=eq.2h6v.s6.d7eacd6bfe0d from=translated src=- shape=44c0220f vocab=90e1c4bf
+-/
 theorem step_work_cells_ne (M : TM k) {c c' : Cfg k M.Q} (h : M.step c = some c')
     (j : Fin k) (i : ℕ) (hi : i ≠ (c.work j).head) :
     (c'.work j).cells i = (c.work j).cells i := by
@@ -180,7 +203,9 @@ theorem step_work_cells_ne (M : TM k) {c c' : Cfg k M.Q} (h : M.step c = some c'
 
 /-- **A phase transition never pushes a head outward.** On a tape carrying its marker only at
 cell zero it moves a head sitting on the marker to cell one and leaves every other head alone, so
-the head ends at `max head 1`. The library's bound of `head + 1` is too weak to survive a loop. -/
+the head ends at `max head 1`. The library's bound of `head + 1` is too weak to survive a loop.
+@isnad1 id=le.1h1v.s4.acacf89c4ae1 from=translated src=- shape=1d9ece8e vocab=d363d7c7
+-/
 theorem head_transitionTape_le_max {t : Tape} (h : Tape.StartInvariant t) :
     (transitionTape t).head ≤ max t.head 1 := by
   by_cases hh : t.head = 0
@@ -194,7 +219,9 @@ theorem head_transitionTape_le_max {t : Tape} (h : Tape.StartInvariant t) :
     rw [transitionTape_eq_self hread]
     omega
 
-/-- The same for the input tape, which a transition only moves. -/
+/-- The same for the input tape, which a transition only moves.
+@isnad1 id=le.1h1v.s4.70c5351b3df6 from=translated src=- shape=1d9ece8e vocab=1e539149
+-/
 theorem head_transitionInput_le_max {t : Tape} (h : Tape.StartInvariant t) :
     (transitionInput t).head ≤ max t.head 1 := by
   by_cases hh : t.head = 0
@@ -208,14 +235,18 @@ theorem head_transitionInput_le_max {t : Tape} (h : Tape.StartInvariant t) :
     rw [transitionInput_eq_self hread]
     omega
 
-/-- A phase transition preserves the left-marker invariant. -/
+/-- A phase transition preserves the left-marker invariant.
+@isnad1 id=startinv.1h1v.s3.2840cf7fb019 from=translated src=- shape=2c86d966 vocab=9b427b22
+-/
 theorem startInvariant_transitionTape {t : Tape} (h : Tape.StartInvariant t) :
     Tape.StartInvariant (transitionTape t) := by
   refine ⟨?_, fun j hj => ?_⟩
   · rw [transitionTape_cells t (fun i hi => h.2 i hi)]; exact h.1
   · rw [transitionTape_cells t (fun i hi => h.2 i hi)]; exact h.2 j hj
 
-/-- …and so does the input tape's. -/
+/-- …and so does the input tape's.
+@isnad1 id=startinv.1h1v.s3.bec488892209 from=translated src=- shape=2c86d966 vocab=b8518b05
+-/
 theorem startInvariant_transitionInput {t : Tape} (h : Tape.StartInvariant t) :
     Tape.StartInvariant (transitionInput t) := by
   refine ⟨?_, fun j hj => ?_⟩
@@ -225,7 +256,9 @@ theorem startInvariant_transitionInput {t : Tape} (h : Tape.StartInvariant t) :
 /-- **Runs from the same configuration are prefixes of one another.** A deterministic machine has
 only one future, so a shorter run is an initial segment of a longer one. This is what lets a loop's
 space argument work one iteration at a time: any configuration a run passes through either lies
-inside the current iteration or is reached *through* the next iteration's start. -/
+inside the current iteration or is reached *through* the next iteration's start.
+@isnad1 id=reachesi.3h7v.s5.0c32b457aef7 from=translated src=- shape=8321d7b9 vocab=3acda64e
+-/
 theorem reachesIn_prefix (M : TM k) : ∀ {t t' : ℕ} {c d d' : Cfg k M.Q},
     M.reachesIn t c d → M.reachesIn t' c d' → t ≤ t' → M.reachesIn (t' - t) d d' := by
   intro t

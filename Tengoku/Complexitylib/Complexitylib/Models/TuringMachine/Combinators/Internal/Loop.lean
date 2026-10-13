@@ -63,7 +63,9 @@ private theorem loopQ_test_ne_halt {QBody QTest : Type} {q : QTest} :
 -- ════════════════════════════════════════════════════════════════════════
 
 /-- A non-halting `tmBody` step is simulated by one `loopTM` step on
-body-wrapped configurations. -/
+body-wrapped configurations.
+@isnad1 id=eq.1h5v.s6.813390bf1567 from=translated src=- shape=5a093839 vocab=12ac96b2
+-/
 theorem loopTM_body_step (tmBody tmTest : TM n) {c c' : Cfg n tmBody.Q}
     (hstep : tmBody.step c = some c') :
     (loopTM tmBody tmTest).step (loopBodyWrap tmBody tmTest c) =
@@ -75,7 +77,9 @@ theorem loopTM_body_step (tmBody tmTest : TM n) {c c' : Cfg n tmBody.Q}
   simp only [loopBodyWrap, loopTM, ite_eq_right loopQ_body_ne_halt, ite_eq_right hne]
 
 /-- A `t`-step run of `tmBody` lifts to a `t`-step run of `loopTM` between the
-body-wrapped configurations. -/
+body-wrapped configurations.
+@isnad1 id=reachesi.1h6v.s5.5c66dc73d112 from=translated src=- shape=96c58033 vocab=20618f00
+-/
 theorem loopTM_body_simulation (tmBody tmTest : TM n) {t : ℕ}
     {c_start c_end : Cfg n tmBody.Q}
     (hreach : tmBody.reachesIn t c_start c_end) :
@@ -90,7 +94,9 @@ theorem loopTM_body_simulation (tmBody tmTest : TM n) {t : ℕ}
 
 /-- When `tmBody` has halted, one `loopTM` step moves from the body-wrapped
 configuration to `tmTest`'s start state, applying the shared tape transition to
-every tape. -/
+every tape.
+@isnad1 id=eq.1h4v.s6.25ad7edbcbb2 from=translated src=- shape=8ce2c014 vocab=36612c70
+-/
 theorem loopTM_body_to_test (tmBody tmTest : TM n) {c : Cfg n tmBody.Q}
     (hhalt : c.state = tmBody.qhalt) :
     (loopTM tmBody tmTest).step (loopBodyWrap tmBody tmTest c) =
@@ -108,7 +114,9 @@ theorem loopTM_body_to_test (tmBody tmTest : TM n) {c : Cfg n tmBody.Q}
 -- ════════════════════════════════════════════════════════════════════════
 
 /-- A non-halting `tmTest` step is simulated by one `loopTM` step on
-test-wrapped configurations. -/
+test-wrapped configurations.
+@isnad1 id=eq.1h5v.s6.106df67b2be1 from=translated src=- shape=294bd959 vocab=996fac60
+-/
 theorem loopTM_test_step (tmBody tmTest : TM n) {c c' : Cfg n tmTest.Q}
     (hstep : tmTest.step c = some c') :
     (loopTM tmBody tmTest).step (loopTestWrap tmBody tmTest c) =
@@ -120,7 +128,9 @@ theorem loopTM_test_step (tmBody tmTest : TM n) {c c' : Cfg n tmTest.Q}
   simp only [loopTestWrap, loopTM, ite_eq_right loopQ_test_ne_halt, ite_eq_right hne]
 
 /-- A `t`-step run of `tmTest` lifts to a `t`-step run of `loopTM` between the
-test-wrapped configurations. -/
+test-wrapped configurations.
+@isnad1 id=reachesi.1h6v.s5.3ba2408681d7 from=translated src=- shape=1affdf20 vocab=13cd4bfa
+-/
 theorem loopTM_test_simulation (tmBody tmTest : TM n) {t : ℕ}
     {c_start c_end : Cfg n tmTest.Q}
     (hreach : tmTest.reachesIn t c_start c_end) :
@@ -135,7 +145,9 @@ theorem loopTM_test_simulation (tmBody tmTest : TM n) {t : ℕ}
 
 /-- When `tmTest` has halted, one `loopTM` step moves from the test-wrapped
 configuration to the `rewindOut` phase, applying the shared tape transition to
-every tape. -/
+every tape.
+@isnad1 id=eq.1h4v.s6.581d3a29ea76 from=translated src=- shape=9a08ddd7 vocab=f7720b12
+-/
 theorem loopTM_test_to_rewind (tmBody tmTest : TM n) {c : Cfg n tmTest.Q}
     (hhalt : c.state = tmTest.qhalt) :
     (loopTM tmBody tmTest).step (loopTestWrap tmBody tmTest c) =
@@ -198,7 +210,9 @@ private theorem loop_rewind_step_base (tmBody tmTest : TM n)
 
 /-- From the `rewindOut` phase with the output head at position `p`, `loopTM`
 reaches the `check` phase in `p + 1` steps with the output head at cell 1 and
-the output cells unchanged. -/
+the output cells unchanged.
+@isnad1 id=ex.4h5v.s7.cba6ed06415a from=translated src=- shape=a314e7f6 vocab=42d380a0
+-/
 theorem loopTM_rewind_loop (tmBody tmTest : TM n) :
     ∀ (p : ℕ) (c : Cfg n (LoopQ tmBody.Q tmTest.Q)),
     c.state = Sum.inr (Sum.inl LoopPhase.rewindOut) →
@@ -219,7 +233,9 @@ theorem loopTM_rewind_loop (tmBody tmTest : TM n) :
 -- ════════════════════════════════════════════════════════════════════════
 
 /-- In the `check` phase, if output cell 1 holds `1` then one `loopTM` step
-enters the `done` phase, leaving the output cells unchanged. -/
+enters the `done` phase, leaving the output cells unchanged.
+@isnad1 id=ex.3h4v.s7.e643f078588f from=translated src=- shape=b07aa953 vocab=3fcbdf8e
+-/
 theorem loopTM_check_halt (tmBody tmTest : TM n)
     (c : Cfg n (LoopQ tmBody.Q tmTest.Q))
     (hstate : c.state = Sum.inr (Sum.inl LoopPhase.check))
@@ -241,7 +257,9 @@ theorem loopTM_check_halt (tmBody tmTest : TM n)
 
 /-- In the `check` phase, if output cell 1 does not hold `1` then one `loopTM`
 step restarts `tmBody` (state `Sum.inl tmBody.qstart`), leaving the output
-cells unchanged. -/
+cells unchanged.
+@isnad1 id=ex.4h4v.s7.4c156bbc2d1f from=translated src=- shape=5d3e568a vocab=90c6ce29
+-/
 theorem loopTM_check_continue (tmBody tmTest : TM n)
     (c : Cfg n (LoopQ tmBody.Q tmTest.Q))
     (hstate : c.state = Sum.inr (Sum.inl LoopPhase.check))
@@ -269,7 +287,9 @@ theorem loopTM_check_continue (tmBody tmTest : TM n)
 -- Halting
 -- ════════════════════════════════════════════════════════════════════════
 
-/-- A `loopTM` configuration in the `done` phase is halted. -/
+/-- A `loopTM` configuration in the `done` phase is halted.
+@isnad1 id=halted.1h4v.s5.4313a4f04aaa from=translated src=- shape=5bc4d165 vocab=c47178ce
+-/
 theorem loopTM_halted_done (tmBody tmTest : TM n)
     (c : Cfg n (LoopQ tmBody.Q tmTest.Q))
     (h : c.state = Sum.inr (Sum.inl LoopPhase.done)) :
@@ -283,7 +303,9 @@ theorem loopTM_halted_done (tmBody tmTest : TM n)
 steps, `tmTest` then halts in `t_test` steps, and the resulting output tape
 (head at `p`, cell 1 = `1`, `▷` only at cell 0) passes the check, then `loopTM`
 halts from the body-wrapped start in `t_body + 1 + t_test + 1 + (p + 1) + 1`
-steps with output cell 1 equal to `1`. -/
+steps with output cell 1 equal to `1`.
+@isnad1 id=ex.8h9v.s8.311f73c414a4 from=translated src=- shape=98aa996f vocab=f5e831e5
+-/
 theorem loopTM_iteration_halt (tmBody tmTest : TM n)
     {t_body : ℕ} {c_body_start c_body_end : Cfg n tmBody.Q}
     (hreach_body : tmBody.reachesIn t_body c_body_start c_body_end)

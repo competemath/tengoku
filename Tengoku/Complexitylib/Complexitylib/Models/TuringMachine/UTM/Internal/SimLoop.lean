@@ -261,7 +261,9 @@ def utmStepTime (α : List Bool) : ℕ :=
 
     where `mc₂` is `(decodeDesc α).toTM.step mc` when defined and `mc`
     itself otherwise. The input tape is untouched throughout, and every
-    iteration takes at least one step. -/
+    iteration takes at least one step.
+@isnad1 id=ex.5h5v.s9.15aa76577f94 from=translated src=- shape=6f2d5b10 vocab=1a1bff20
+-/
 theorem loop_iteration (α : List Bool) (hterm : TerminatedRegion α)
     (mc : Cfg 1 (decodeDesc α).toTM.Q)
     (inp : Tape) (work : Fin 6 → Tape) (out : Tape)
@@ -534,7 +536,9 @@ private theorem loop_sim_aux (α x : List Bool) (hterm : TerminatedRegion α)
     the loop `loopTM bodyTM haltTestTM` halts within
     `(T + 1) * utmStepTime α` steps, with `SimInv` re-established at `mcF`
     (so the virtual output tape shadows the simulated output) and the halt
-    verdict `Γ.one` at output cell 1. -/
+    verdict `Γ.one` at output cell 1.
+@isnad1 id=ex.7h7v.s8.eade9af3e81a from=translated src=- shape=13c9856f vocab=14f3446a
+-/
 theorem utm_loop_simulates (α x : List Bool) (hterm : TerminatedRegion α)
     (T : ℕ) (mcF : Cfg 1 (decodeDesc α).toTM.Q)
     (hrun : (decodeDesc α).toTM.reachesIn T ((decodeDesc α).toTM.initCfg x) mcF)
@@ -558,7 +562,9 @@ theorem utm_loop_simulates (α x : List Bool) (hterm : TerminatedRegion α)
     hinv hout0 houtns houth
 
 /-- Hoare-style packaging of `utm_loop_simulates`, ready for `seqTM`
-    composition with the init and extract phases. -/
+    composition with the init and extract phases.
+@isnad1 id=hoaretim.3h4v.s7.33f986fb3a73 from=translated src=- shape=e8e4ba8f vocab=5ddfc6e0
+-/
 theorem utm_loop_hoareTime (α x : List Bool) (hterm : TerminatedRegion α)
     (T : ℕ) (mcF : Cfg 1 (decodeDesc α).toTM.Q)
     (hrun : (decodeDesc α).toTM.reachesIn T ((decodeDesc α).toTM.initCfg x) mcF)
@@ -607,7 +613,9 @@ private theorem output_first_blank_shift {n : ℕ} {tm : TM n} {T : ℕ}
     copies the virtual output tape onto the real output tape. The combined
     machine turns the loop's precondition into the final output guarantee:
     the real output tape agrees with the simulated machine's final output
-    tape (cells `1, …, m + 1`) through the latter's first blank. -/
+    tape (cells `1, …, m + 1`) through the latter's first blank.
+@isnad1 id=hoaretim.3h4v.s8.e6057cd20bfa from=translated src=- shape=0d5e5db3 vocab=2af5ab0f
+-/
 theorem utm_loop_extract_hoareTime (α x : List Bool) (hterm : TerminatedRegion α)
     (T : ℕ) (mcF : Cfg 1 (decodeDesc α).toTM.Q)
     (hrun : (decodeDesc α).toTM.reachesIn T ((decodeDesc α).toTM.initCfg x) mcF)
@@ -673,7 +681,9 @@ theorem utm_loop_extract_hoareTime (α x : List Bool) (hterm : TerminatedRegion 
 /-- **The init/loop seam.** Every tape configuration satisfying the init
     phase's postcondition passes through the `seqTM` phase transition to the
     loop's standing invariant at the interpreted machine's initial
-    configuration, with the output tape parked at cell 1. -/
+    configuration, with the output tape parked at cell 1.
+@isnad1 id=and.1h5v.s8.8d1d91c0e730 from=translated src=- shape=de448df0 vocab=9dddef84
+-/
 theorem utm_init_trans (α x : List Bool) (inp : Tape) (work : Fin 6 → Tape)
     (out : Tape)
     (hpost : inp.cells = (Tape.init ((pair α x).map Γ.ofBool)).cells ∧
@@ -744,7 +754,9 @@ theorem utm_init_trans (α x : List Bool) (inp : Tape) (work : Fin 6 → Tape)
     `4·|pair α x| + 4·|groupPairs α| + 26 + (T + 1)·utmStepTime α + 2T + 9`
     steps with its real output tape agreeing with the simulated machine's
     final output tape through the latter's first blank — i.e. the UTM
-    computes exactly the simulated machine's output. -/
+    computes exactly the simulated machine's output.
+@isnad1 id=hoaretim.3h4v.s8.0fc3b0548289 from=translated src=- shape=ee402a83 vocab=ce99fcb8
+-/
 theorem utmTM_hoareTime (α x : List Bool) (hterm : TerminatedRegion α)
     (T : ℕ) (mcF : Cfg 1 (decodeDesc α).toTM.Q)
     (hrun : (decodeDesc α).toTM.reachesIn T ((decodeDesc α).toTM.initCfg x) mcF)

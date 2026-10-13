@@ -33,7 +33,9 @@ structure StoreEnvelope (indexBound valueBound : ℕ) (store : Store) : Prop whe
   index_lt : ∀ index, store index ≠ 0 → index < indexBound
   value_le : ∀ index, store index ≤ valueBound
 
-/-- Enlarging either side of a store envelope preserves the bound. -/
+/-- Enlarging either side of a store envelope preserves the bound.
+@isnad1 id=storeenv.3h5v.s4.fea150ad69d9 from=translated src=- shape=7533c8b1 vocab=5227c82a
+-/
 theorem StoreEnvelope.mono {indexBound valueBound largerIndex largerValue : ℕ}
     {store : Store} (hstore : StoreEnvelope indexBound valueBound store)
     (hindex : indexBound ≤ largerIndex) (hvalue : valueBound ≤ largerValue) :
@@ -42,7 +44,9 @@ theorem StoreEnvelope.mono {indexBound valueBound largerIndex largerValue : ℕ}
   value_le index := le_trans (hstore.value_le index) hvalue
 
 /-- A reserved-prefix bit input fits any envelope containing its length register,
-input interval, list length, and Boolean values. -/
+input interval, list length, and Boolean values.
+@isnad1 id=storeenv.4h5v.s5.81b5e9acf71e from=translated src=- shape=928ec2fc vocab=570165c3
+-/
 theorem Input.bitStoreEnvelope {lengthReg inputBase indexBound valueBound : ℕ}
     (bits : List Bool) (hlengthReg : lengthReg < indexBound)
     (hinputEnd : inputBase + bits.length ≤ indexBound)
@@ -84,7 +88,9 @@ theorem Input.bitStoreEnvelope {lengthReg inputBase indexBound valueBound : ℕ}
 def envelopeSpace (indexBound valueBound : ℕ) : ℕ :=
   indexBound * (bitlen indexBound + bitlen valueBound)
 
-/-- A store envelope bounds the real finite-sum source-space measure. -/
+/-- A store envelope bounds the real finite-sum source-space measure.
+@isnad1 id=le.1h3v.s4.1769b3bc32c7 from=translated src=- shape=a98bf590 vocab=2b3a20db
+-/
 theorem StoreEnvelope.space_le {indexBound valueBound : ℕ} {store : Store}
     (hstore : StoreEnvelope indexBound valueBound store) :
     store.space ≤ envelopeSpace indexBound valueBound := by
@@ -113,7 +119,9 @@ theorem StoreEnvelope.space_le {indexBound valueBound : ℕ} {store : Store}
     simp [hstoreZero] at hsupport
 
 /-- Updating an in-envelope register with an in-envelope value preserves the
-store envelope. -/
+store envelope.
+@isnad1 id=storeenv.3h5v.s5.fd4d8cbe8193 from=translated src=- shape=b1590f70 vocab=7cdc28b3
+-/
 theorem StoreEnvelope.update {indexBound valueBound index value : ℕ}
     {store : Store} (hstore : StoreEnvelope indexBound valueBound store)
     (hindex : index < indexBound) (hvalue : value ≤ valueBound) :
@@ -151,7 +159,9 @@ def writeValue : Structured.Basic → Store → ℕ
   | .store _ src, store => store src
 
 /-- Basic execution is a single functional update, uniformly across direct and
-indirect instructions. -/
+indirect instructions.
+@isnad1 id=eq.0h2v.s4.7cb2d575755e from=translated src=- shape=f75e448f vocab=0c462edd
+-/
 theorem exec_eq_update (op : Structured.Basic) (store : Store) :
     op.exec store = Function.update store (writeIndex op store) (writeValue op store) := by
   cases op <;> rfl
@@ -166,6 +176,9 @@ def EnvelopeChain (indexBound valueBound : ℕ) : List Structured.Basic → Stor
       StoreEnvelope indexBound valueBound store ∧
         EnvelopeChain indexBound valueBound rest (op.exec store)
 
+/--
+@isnad1 id=envelope.2h5v.s5.6e3d2dc24161 from=translated src=- shape=32a5204a vocab=61936695
+-/
 theorem EnvelopeChain.append {indexBound valueBound : ℕ}
     {first second : List Structured.Basic} {store : Store}
     (hfirst : EnvelopeChain indexBound valueBound first store)
@@ -177,6 +190,9 @@ theorem EnvelopeChain.append {indexBound valueBound : ℕ}
   | cons op rest ih =>
       exact ⟨hfirst.1, ih hfirst.2 hsecond⟩
 
+/--
+@isnad1 id=storeenv.1h4v.s4.38063e5bba0a from=translated src=- shape=fa9190f7 vocab=cd8ac71b
+-/
 theorem EnvelopeChain.final {indexBound valueBound : ℕ}
     {ops : List Structured.Basic} {store : Store}
     (hchain : EnvelopeChain indexBound valueBound ops store) :
@@ -188,7 +204,9 @@ theorem EnvelopeChain.final {indexBound valueBound : ℕ}
 end Basic
 
 /-- A basic instruction preserves an envelope when its destination and written
-value fit that envelope. -/
+value fit that envelope.
+@isnad1 id=storeenv.3h4v.s5.6a4b9cf48ff0 from=translated src=- shape=937f3e46 vocab=bdc32039
+-/
 theorem StoreEnvelope.execBasic {indexBound valueBound : ℕ}
     {store : Store} (hstore : StoreEnvelope indexBound valueBound store)
     (op : Structured.Basic) (hindex : Basic.writeIndex op store < indexBound)
@@ -198,7 +216,9 @@ theorem StoreEnvelope.execBasic {indexBound valueBound : ℕ}
   exact hstore.update hindex hvalue
 
 /-- A straight-line list of immediate writes preserves a register whose index
-does not occur among the destinations. -/
+does not occur among the destinations.
+@isnad1 id=eq.1h3v.s5.56d2bfafca9b from=translated src=- shape=0c792443 vocab=5f2fae3b
+-/
 theorem Basic.execList_imm_apply_of_not_mem (writes : List (ℕ × ℕ))
     (store : Store) (index : ℕ) (hnot : index ∉ writes.map Prod.fst) :
     Basic.execList (writes.map fun write => Basic.imm write.1 write.2) store index =
@@ -215,7 +235,9 @@ theorem Basic.execList_imm_apply_of_not_mem (writes : List (ℕ × ℕ))
       simp [Basic.exec, Function.update_of_ne hne]
 
 /-- With distinct destinations, a listed immediate write determines the final
-value at its destination. -/
+value at its destination.
+@isnad1 id=eq.2h4v.s6.0283261a0031 from=translated src=- shape=5b11ab5d vocab=c0c45a36
+-/
 theorem Basic.execList_imm_apply_of_mem (writes : List (ℕ × ℕ))
     (store : Store) (hnodup : (writes.map Prod.fst).Nodup)
     {index value : ℕ} (hmem : (index, value) ∈ writes) :
@@ -236,16 +258,24 @@ theorem Basic.execList_imm_apply_of_mem (writes : List (ℕ × ℕ))
 /-- A one-bit cushion over the width of the envelope's largest value. -/
 def valueWidth (valueBound : ℕ) : ℕ := bitlen valueBound + 1
 
+/--
+@isnad1 id=le.1h2v.s4.fc11f4e8d4dd from=translated src=- shape=6b9a563b vocab=cad43eb6
+-/
 theorem bitlen_le_valueWidth {valueBound value : ℕ} (hvalue : value ≤ valueBound) :
     bitlen value ≤ valueWidth valueBound := by
   have hsize := Nat.size_le_size hvalue
   simpa [bitlen, valueWidth] using le_trans hsize (Nat.le_add_right _ _)
 
+/--
+@isnad1 id=le.0h1v.s3.428d76c86939 from=translated src=- shape=8a62b088 vocab=20386f60
+-/
 theorem one_le_valueWidth (valueBound : ℕ) : 1 ≤ valueWidth valueBound := by
   simp [valueWidth]
 
 /-- Any basic instruction whose pre- and post-stores fit the same envelope has
-logarithmic cost at most four times the envelope value width. -/
+logarithmic cost at most four times the envelope value width.
+@isnad1 id=le.2h4v.s5.761d1692f8ce from=translated src=- shape=d7722b6e vocab=18d96156
+-/
 theorem Basic.logCost_le_four_valueWidth {indexBound valueBound : ℕ}
     (op : Basic) (store : Store)
     (hstore : StoreEnvelope indexBound valueBound store)
@@ -300,7 +330,9 @@ def MeasuredRuns (cmd : Cmd) (initial final : Store)
 
 /-- A straight-line basic block always has an exact source execution. This
 certificate deliberately leaves cost and space existential, allowing semantic
-proofs to proceed before a client chooses a resource envelope. -/
+proofs to proceed before a client chooses a resource envelope.
+@isnad1 id=ex.0h2v.s4.0bcfd39ab47b from=translated src=- shape=a7924d1e vocab=70c6e5d1
+-/
 theorem exec_basics_exists (ops : List Basic) (initial : Store) :
     ∃ cost space,
       Exec (Cmd.basics ops) initial (Basic.execList ops initial)
@@ -328,11 +360,17 @@ theorem exec_basics_exists (ops : List Basic) (initial : Store) :
 
 namespace MeasuredRuns
 
+/--
+@isnad1 id=measured.1h3v.s4.75a3f12b67a2 from=translated src=- shape=1c5287e6 vocab=d92235d6
+-/
 theorem skipEnvelope {indexBound valueBound : ℕ} {store : Store}
     (hstore : StoreEnvelope indexBound valueBound store) :
     MeasuredRuns Cmd.skip store store 0 0 (envelopeSpace indexBound valueBound) := by
   exact ⟨0, store.space, Exec.skip store, le_rfl, hstore.space_le⟩
 
+/--
+@isnad1 id=measured.2h4v.s5.f7c501ab523b from=translated src=- shape=233ea5e6 vocab=abe5286c
+-/
 theorem basicEnvelope {indexBound valueBound : ℕ} (op : Basic) (store : Store)
     (hstore : StoreEnvelope indexBound valueBound store)
     (hnext : StoreEnvelope indexBound valueBound (op.exec store)) :
@@ -342,6 +380,9 @@ theorem basicEnvelope {indexBound valueBound : ℕ} (op : Basic) (store : Store)
     Exec.basic op store, Basic.logCost_le_four_valueWidth op store hstore hnext,
     max_le hstore.space_le hnext.space_le⟩
 
+/--
+@isnad1 id=measured.2h10v.s5.b488781125b2 from=translated src=- shape=93f35ae3 vocab=1bf91283
+-/
 theorem seq {first second : Cmd} {initial middle final : Store}
     {firstSteps secondSteps firstCost secondCost spaceLimit : ℕ}
     (hfirst : MeasuredRuns first initial middle firstSteps firstCost spaceLimit)
@@ -354,7 +395,9 @@ theorem seq {first second : Cmd} {initial middle final : Store}
     Nat.add_le_add hcost₁ hcost₂, max_le hspace₁ hspace₂⟩
 
 /-- A straight-line list of basic instructions inherits uniform resource bounds
-when every listed instruction preserves the chosen store envelope. -/
+when every listed instruction preserves the chosen store envelope.
+@isnad1 id=and.2h4v.s6.9c7759b32a59 from=translated src=- shape=0fd421b4 vocab=c347e7c9
+-/
 theorem basicsEnvelope {indexBound valueBound : ℕ} (ops : List Basic)
     (initial : Store) (hinitial : StoreEnvelope indexBound valueBound initial)
     (hpreserve : ∀ op, op ∈ ops → ∀ store,
@@ -389,7 +432,9 @@ theorem basicsEnvelope {indexBound valueBound : ℕ} (ops : List Basic)
             all_goals ring
 
 /-- A concrete per-program-point envelope chain yields the same exact-step,
-uniform-cost certificate as a globally uniform preservation proof. -/
+uniform-cost certificate as a globally uniform preservation proof.
+@isnad1 id=and.1h4v.s5.fa1180bf9677 from=translated src=- shape=c84372c9 vocab=e488a6a1
+-/
 theorem basicsEnvelopeChain {indexBound valueBound : ℕ} (ops : List Basic)
     (initial : Store) (hchain : Basic.EnvelopeChain indexBound valueBound ops initial) :
     MeasuredRuns (Cmd.basics ops) initial (Basic.execList ops initial)
@@ -424,6 +469,9 @@ theorem basicsEnvelopeChain {indexBound valueBound : ℕ} (ops : List Basic)
           all_goals simp
           all_goals ring
 
+/--
+@isnad1 id=measured.2h7v.s5.330d19bcc3db from=translated src=- shape=8289ee18 vocab=1892c66a
+-/
 theorem weakenCost {cmd : Cmd} {initial final : Store}
     {steps costBound largerBound spaceLimit : ℕ}
     (hrun : MeasuredRuns cmd initial final steps costBound spaceLimit)
@@ -432,6 +480,9 @@ theorem weakenCost {cmd : Cmd} {initial final : Store}
   obtain ⟨cost, space, hexec, hcost, hspace⟩ := hrun
   exact ⟨cost, space, hexec, le_trans hcost hle, hspace⟩
 
+/--
+@isnad1 id=measured.2h7v.s5.aac60d01cdb9 from=translated src=- shape=84e29a4b vocab=1892c66a
+-/
 theorem weakenSpace {cmd : Cmd} {initial final : Store}
     {steps costBound spaceLimit largerLimit : ℕ}
     (hrun : MeasuredRuns cmd initial final steps costBound spaceLimit)
@@ -440,6 +491,9 @@ theorem weakenSpace {cmd : Cmd} {initial final : Store}
   obtain ⟨cost, space, hexec, hcost, hspace⟩ := hrun
   exact ⟨cost, space, hexec, hcost, le_trans hspace hle⟩
 
+/--
+@isnad1 id=measured.3h8v.s5.d0ec6c2baf10 from=translated src=- shape=16d979ed vocab=1892c66a
+-/
 theorem weaken {cmd : Cmd} {initial final : Store}
     {steps costBound largerCost spaceLimit largerSpace : ℕ}
     (hrun : MeasuredRuns cmd initial final steps costBound spaceLimit)
@@ -447,6 +501,9 @@ theorem weaken {cmd : Cmd} {initial final : Store}
     MeasuredRuns cmd initial final steps largerCost largerSpace :=
   (hrun.weakenCost hcost).weakenSpace hspace
 
+/--
+@isnad1 id=measured.3h9v.s6.e820b20ea41e from=translated src=- shape=6f8dbe9c vocab=3f674a43
+-/
 theorem ifZeroEnvelope {indexBound valueBound test : ℕ} {onZero onNonzero : Cmd}
     {initial final : Store} {steps costBound : ℕ}
     (htest : initial test = 0)
@@ -463,6 +520,9 @@ theorem ifZeroEnvelope {indexBound valueBound test : ℕ} {onZero onNonzero : Cm
   simp only [bitlen, Nat.size_zero, zero_add]
   omega
 
+/--
+@isnad1 id=measured.3h9v.s6.1f877526e587 from=translated src=- shape=e70234e2 vocab=470d0afa
+-/
 theorem ifNonzeroEnvelope {indexBound valueBound test : ℕ} {onZero onNonzero : Cmd}
     {initial final : Store} {steps costBound : ℕ}
     (htest : initial test ≠ 0)
@@ -479,6 +539,9 @@ theorem ifNonzeroEnvelope {indexBound valueBound test : ℕ} {onZero onNonzero :
   have hone := one_le_valueWidth valueBound
   omega
 
+/--
+@isnad1 id=measured.2h5v.s5.36619bcb7c6b from=translated src=- shape=e601b9c9 vocab=5e7e740b
+-/
 theorem whileZeroEnvelope {indexBound valueBound test : ℕ} {body : Cmd}
     {store : Store} (htest : store test = 0)
     (hstore : StoreEnvelope indexBound valueBound store) :
@@ -489,6 +552,9 @@ theorem whileZeroEnvelope {indexBound valueBound test : ℕ} {body : Cmd}
   rw [htest]
   simpa [bitlen] using one_le_valueWidth valueBound
 
+/--
+@isnad1 id=measured.4h11v.s6.6ad005206869 from=translated src=- shape=d43df9fd vocab=82da89e6
+-/
 theorem whileNonzeroEnvelope {indexBound valueBound test : ℕ} {body : Cmd}
     {initial middle final : Store}
     {bodySteps loopSteps bodyCost loopCost : ℕ}
@@ -528,7 +594,9 @@ def whileFoldCost {α : Type*} (width : ℕ) (bodyCost : α → ℕ) : List α �
 /-- Verify a structured loop by folding an abstract state over a logical input
 list. The client supplies only its invariant, one body certificate, and the
 zero/nonzero interpretations of the test register; run stitching and resource
-accounting are generic. -/
+accounting are generic.
+@isnad1 id=ex.4h14v.s7.c097ea80bfff from=translated src=- shape=ecf90422 vocab=798e2a9d
+-/
 theorem whileFoldEnvelope {α σ : Type*} {indexBound valueBound test : ℕ}
     {body : Cmd} (Inv : List α → σ → Store → Prop)
     (advance : σ → α → σ) (bodySteps bodyCost : α → ℕ)

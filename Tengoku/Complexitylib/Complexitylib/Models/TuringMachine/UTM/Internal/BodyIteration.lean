@@ -132,7 +132,9 @@ def bodyIterTime (α : List Bool) : ℕ :=
     `SimInv`, the body reaches `bodyDone` within `bodyIterTime α` steps,
     leaving the real input/output tapes untouched; if the interpreted
     machine is halted the pass is an exact no-op on every work tape, and
-    otherwise `SimInv` is re-established at the stepped configuration. -/
+    otherwise `SimInv` is re-established at the stepped configuration.
+@isnad1 id=ex.3h3v.s8.262ded4dc70c from=translated src=- shape=fe51f2b1 vocab=8b133c54
+-/
 theorem bodyIteration (α : List Bool) (mc : Cfg 1 (decodeDesc α).toTM.Q)
     (hterm : TerminatedRegion α)
     (c : Cfg 6 bodyTM.Q)

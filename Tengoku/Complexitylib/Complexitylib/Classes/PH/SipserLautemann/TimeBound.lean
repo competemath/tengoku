@@ -33,7 +33,9 @@ computable — see
 namespace Complexity
 
 /-- Every prefix fiber of the seed space has exactly `2 ^ b` points: fixing the
-first `a` bits leaves the last `b` free. -/
+first `a` bits leaves the last `b` free.
+@isnad1 id=eq.0h3v.s7.f2c72a6db13c from=translated src=- shape=a2eca630 vocab=1e0b36ab
+-/
 theorem card_filter_blockFst_eq (a b : ℕ) (seed : Fin a → Bool) :
     (Finset.univ.filter fun w : Fin (a + b) → Bool => blockFst a b w = seed).card
       = 2 ^ b := by
@@ -63,13 +65,17 @@ leaves the acceptance probability unchanged: the surplus choice bits partition
 the enlarged sample space into equal fibers over the original one. This is the
 `AllPathsHaltIn` form of `NTM.acceptProb_eq_of_le_of_allChoicesHalt`, with a
 scalar larger clock (`NTM.acceptProb_eq_of_le_of_allPathsHaltIn` is the version
-for a pointwise-larger clock function). -/
+for a pointwise-larger clock function).
+@isnad1 id=eq.2h5v.s5.f394634285ce from=translated src=- shape=577e7b73 vocab=7d85fa26
+-/
 theorem acceptProb_eq_of_allPathsHaltIn {tm : NTM n} {T : ℕ → ℕ}
     (hN : tm.AllPathsHaltIn T) (x : List Bool) {T' : ℕ} (hle : T x.length ≤ T') :
     tm.acceptProb x T' = tm.acceptProb x (T x.length) :=
   tm.acceptProb_eq_of_le_of_allChoicesHalt x hle (hN x)
 
-/-- The completeness condition transfers to any pointwise-larger time bound. -/
+/-- The completeness condition transfers to any pointwise-larger time bound.
+@isnad1 id=acceptsw.3h6v.s5.d25cae9022d4 from=translated src=- shape=87dd8ec0 vocab=ed073059
+-/
 theorem acceptsWithProb_of_le {tm : NTM n} {L : Language} {T T' : ℕ → ℕ} {c : ℚ}
     (hN : tm.AllPathsHaltIn T) (hle : ∀ m, T m ≤ T' m)
     (h : tm.AcceptsWithProb L T c) : tm.AcceptsWithProb L T' c := by
@@ -77,7 +83,9 @@ theorem acceptsWithProb_of_le {tm : NTM n} {L : Language} {T T' : ℕ → ℕ} {
   rw [acceptProb_eq_of_allPathsHaltIn hN x (hle x.length)]
   exact h x hx
 
-/-- The soundness condition transfers to any pointwise-larger time bound. -/
+/-- The soundness condition transfers to any pointwise-larger time bound.
+@isnad1 id=rejectsw.3h6v.s5.99b04d5f3b0a from=translated src=- shape=87dd8ec0 vocab=541e0765
+-/
 theorem rejectsWithProb_of_le {tm : NTM n} {L : Language} {T T' : ℕ → ℕ} {s : ℚ}
     (hN : tm.AllPathsHaltIn T) (hle : ∀ m, T m ≤ T' m)
     (h : tm.RejectsWithProb L T s) : tm.RejectsWithProb L T' s := by

@@ -20,16 +20,25 @@ namespace Complexity
 
 namespace BooleanListCode
 
+/--
+@isnad1 id=eq.0h2v.s3.fb622da58dec from=translated src=- shape=97f23171 vocab=1d63b9f9
+-/
 theorem length_encodeDecoderIndex_internal
     {listSize : ℕ} (index : Fin listSize) :
     (encodeDecoderIndex index).length = decoderIndexBitWidth listSize := by
   simp [encodeDecoderIndex, decoderIndexBitWidth]
 
+/--
+@isnad1 id=eq.0h2v.s4.f1d35f43c714 from=translated src=- shape=e515e695 vocab=e2817dab
+-/
 theorem decodeDecoderIndex?_encodeDecoderIndex_internal
     {listSize : ℕ} (index : Fin listSize) :
     decodeDecoderIndex? listSize (encodeDecoderIndex index) = some index := by
   simp [decodeDecoderIndex?, encodeDecoderIndex]
 
+/--
+@isnad1 id=eq.0h6v.s5.c86235c5220e from=translated src=- shape=f5950c9a vocab=85293def
+-/
 theorem decodeAtIndexBits?_encodeDecoderIndex_internal
     {messageLength listSize : ℕ} {coordinate : Type u}
     (code : BooleanListCode messageLength listSize coordinate)
@@ -38,6 +47,9 @@ theorem decodeAtIndexBits?_encodeDecoderIndex_internal
       some (code.decode received index) := by
   simp [decodeAtIndexBits?, decodeDecoderIndex?_encodeDecoderIndex_internal]
 
+/--
+@isnad1 id=eq.0h3v.s5.fa6e2c2731b8 from=translated src=- shape=e1412eb0 vocab=890c7541
+-/
 theorem relativeDistance_eq_one_sub_agreementProbability_internal
     {coordinate : Type u} [Fintype coordinate] [DecidableEq coordinate]
     [Nonempty coordinate] (left right : coordinate → Bool) :
@@ -50,6 +62,9 @@ theorem relativeDistance_eq_one_sub_agreementProbability_internal
   rw [relativeDistance, agreementProbability, hevent,
     uniformProbability_compl_internal]
 
+/--
+@isnad1 id=eq.0h3v.s5.c0e1f0889ea3 from=translated src=- shape=1f967c7d vocab=157582dd
+-/
 theorem agreementProbability_add_relativeDistance_internal
     {coordinate : Type u} [Fintype coordinate] [DecidableEq coordinate]
     [Nonempty coordinate] (left right : coordinate → Bool) :
@@ -57,6 +72,9 @@ theorem agreementProbability_add_relativeDistance_internal
   rw [relativeDistance_eq_one_sub_agreementProbability_internal]
   ring
 
+/--
+@isnad1 id=le.1h4v.s5.f2a32a633464 from=translated src=- shape=cf743c47 vocab=fb056d84
+-/
 theorem relativeDistance_le_of_agreementProbability_ge_internal
     {coordinate : Type u} [Fintype coordinate] [DecidableEq coordinate]
     [Nonempty coordinate] {left right : coordinate → Bool} {radius : ℚ}
@@ -65,6 +83,9 @@ theorem relativeDistance_le_of_agreementProbability_ge_internal
   rw [relativeDistance_eq_one_sub_agreementProbability_internal]
   linarith
 
+/--
+@isnad1 id=ex.2h7v.s6.76e43b898611 from=translated src=- shape=b78d4f78 vocab=2dca3422
+-/
 theorem exists_decoder_index_of_agreementProbability_ge_internal
     {messageLength listSize : ℕ} {coordinate : Type u}
     [Fintype coordinate] [DecidableEq coordinate] [Nonempty coordinate]
@@ -77,6 +98,9 @@ theorem exists_decoder_index_of_agreementProbability_ge_internal
   exact hcode message received
     (relativeDistance_le_of_agreementProbability_ge_internal hagreement)
 
+/--
+@isnad1 id=ex.2h7v.s6.f138a164d1a1 from=translated src=- shape=4049eaf1 vocab=5e740219
+-/
 theorem exists_indexBits_of_agreementProbability_ge_internal
     {messageLength listSize : ℕ} {coordinate : Type u}
     [Fintype coordinate] [DecidableEq coordinate] [Nonempty coordinate]
@@ -95,6 +119,9 @@ theorem exists_indexBits_of_agreementProbability_ge_internal
     length_encodeDecoderIndex_internal index, ?_⟩
   rw [decodeAtIndexBits?_encodeDecoderIndex_internal, hdecode]
 
+/--
+@isnad1 id=mem.2h7v.s6.5ec2b2a72e11 from=translated src=- shape=58ccbfbc vocab=05c5e177
+-/
 theorem mem_candidates_of_agreementProbability_ge_internal
     {messageLength listSize : ℕ} {coordinate : Type u}
     [Fintype coordinate] [DecidableEq coordinate] [Nonempty coordinate]
@@ -109,6 +136,9 @@ theorem mem_candidates_of_agreementProbability_ge_internal
       hcode message received hagreement
   exact Finset.mem_image.mpr ⟨index, Finset.mem_univ index, hdecode⟩
 
+/--
+@isnad1 id=le.0h5v.s4.8de8abf843e7 from=translated src=- shape=ac4adcaf vocab=b4f6b322
+-/
 theorem card_candidates_le_internal
     {messageLength listSize : ℕ} {coordinate : Type u}
     (code : BooleanListCode messageLength listSize coordinate)
@@ -121,6 +151,9 @@ theorem card_candidates_le_internal
       Finset.card_image_le
     _ = listSize := by simp
 
+/--
+@isnad1 id=mem.2h7v.s7.7f2da9724b00 from=translated src=- shape=6fcbfd65 vocab=8362c18a
+-/
 theorem mem_candidates_of_half_add_margin_internal
     {messageLength listSize : ℕ} {coordinate : Type u}
     [Fintype coordinate] [DecidableEq coordinate] [Nonempty coordinate]
@@ -135,6 +168,9 @@ theorem mem_candidates_of_half_add_margin_internal
   convert hagreement using 1
   all_goals ring
 
+/--
+@isnad1 id=ex.2h7v.s7.65a8bb647f35 from=translated src=- shape=9455cecf vocab=8013d86c
+-/
 theorem exists_indexBits_of_half_add_margin_internal
     {messageLength listSize : ℕ} {coordinate : Type u}
     [Fintype coordinate] [DecidableEq coordinate] [Nonempty coordinate]
@@ -151,6 +187,9 @@ theorem exists_indexBits_of_half_add_margin_internal
   convert hagreement using 1
   all_goals ring
 
+/--
+@isnad1 id=and.2h7v.s7.21de885de7cb from=translated src=- shape=1dfebcab vocab=bc47439b
+-/
 theorem mem_candidates_and_card_le_of_half_add_margin_internal
     {messageLength listSize : ℕ} {coordinate : Type u}
     [Fintype coordinate] [DecidableEq coordinate] [Nonempty coordinate]

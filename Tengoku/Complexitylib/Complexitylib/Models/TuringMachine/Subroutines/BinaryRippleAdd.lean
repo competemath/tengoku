@@ -27,7 +27,9 @@ namespace Complexity
 
 namespace BinaryRippleAdd
 
-/-- Ripple carry over canonical little-endian encodings computes addition. -/
+/-- Ripple carry over canonical little-endian encodings computes addition.
+@isnad1 id=eq.0h2v.s4.d82aeeea3dff from=translated src=- shape=2a6c52fd vocab=1a265611
+-/
 theorem ripple_natBits (lhs rhs : ℕ) :
     ripple false lhs.bits rhs.bits = (lhs + rhs).bits :=
   ripple_natBits_internal lhs rhs
@@ -36,18 +38,24 @@ end BinaryRippleAdd
 
 namespace TM
 
-/-- The scan bound is one more than the larger operand width. -/
+/-- The scan bound is one more than the larger operand width.
+@isnad1 id=eq.0h2v.s4.6072d611da7c from=translated src=- shape=5175d73b vocab=a6a28ab8
+-/
 theorem binaryRippleAddScanTime_natBits (lhs rhs : ℕ) :
     binaryRippleAddScanTime lhs.bits rhs.bits =
       max lhs.size rhs.size + 1 :=
   binaryRippleAddScanTime_natBits_internal lhs rhs
 
-/-- Addition increases binary width by at most one over the larger operand. -/
+/-- Addition increases binary width by at most one over the larger operand.
+@isnad1 id=le.0h2v.s5.3e8ec7acb64a from=translated src=- shape=67d5ad27 vocab=fc226128
+-/
 theorem binaryRippleAdd_sum_size_le (lhs rhs : ℕ) :
     (lhs + rhs).size ≤ max lhs.size rhs.size + 1 :=
   size_add_le_max_add_one_internal lhs rhs
 
-/-- The complete scan-and-rewind machine has a linear bit-width envelope. -/
+/-- The complete scan-and-rewind machine has a linear bit-width envelope.
+@isnad1 id=le.0h2v.s5.c9fc0290a194 from=translated src=- shape=6f1d15fb vocab=01b8c483
+-/
 theorem binaryRippleAddTime_le (lhs rhs : ℕ) :
     binaryRippleAddTime lhs rhs ≤
       3 * (lhs.size + rhs.size) + 14 :=
@@ -55,7 +63,9 @@ theorem binaryRippleAddTime_le (lhs rhs : ℕ) :
 
 /-- Framed time contract for canonical addition. Both operands are restored,
 the initially-zero result becomes their sum, and every unrelated tape is
-preserved exactly. -/
+preserved exactly.
+@isnad1 id=hoaretim.7h9v.s7.1db4b89118ef from=translated src=- shape=85c77d4f vocab=dc34fafc
+-/
 theorem binaryRippleAddTM_hoareTime_frame {n : ℕ}
     (lhsIdx rhsIdx resultIdx : Fin n)
     (hdistinct : BinaryRippleAddDistinct lhsIdx rhsIdx resultIdx)
@@ -83,7 +93,9 @@ theorem binaryRippleAddTM_hoareTime_frame {n : ℕ}
     hdistinct lhs rhs inp₀ work₀ out₀ hlhs hrhs hresult hinput hother
     houtput
 
-/-- Reachability form of the framed addition theorem. -/
+/-- Reachability form of the framed addition theorem.
+@isnad1 id=ex.7h9v.s8.8f7694f78cf0 from=translated src=- shape=5b69d73d vocab=166d1721
+-/
 theorem binaryRippleAddTM_reachesIn_frame {n : ℕ}
     (lhsIdx rhsIdx resultIdx : Fin n)
     (hdistinct : BinaryRippleAddDistinct lhsIdx rhsIdx resultIdx)
@@ -116,7 +128,9 @@ theorem binaryRippleAddTM_reachesIn_frame {n : ℕ}
     inp₀ work₀ out₀ ⟨rfl, rfl, rfl⟩
 
 /-- All-prefix auxiliary-space contract obtained from the concrete linear
-time bound. -/
+time bound.
+@isnad1 id=hoaretim.8h11v.s7.1e13428375cf from=translated src=- shape=e98a7881 vocab=d8484ad4
+-/
 theorem binaryRippleAddTM_hoareTimeSpace_frame {n : ℕ}
     (lhsIdx rhsIdx resultIdx : Fin n)
     (hdistinct : BinaryRippleAddDistinct lhsIdx rhsIdx resultIdx)
@@ -152,7 +166,9 @@ theorem binaryRippleAddTM_hoareTimeSpace_frame {n : ℕ}
     hdistinct lhs rhs inputLength initialSpace inp₀ work₀ out₀ hlhs hrhs
     hresult hinput hother houtput hinitial
 
-/-- Canonical addition never moves the public output head left. -/
+/-- Canonical addition never moves the public output head left.
+@isnad1 id=istransd.0h4v.s4.051116410af2 from=translated src=- shape=0b195b8b vocab=17a8832c
+-/
 theorem binaryRippleAddTM_isTransducer {n : ℕ}
     (lhsIdx rhsIdx resultIdx : Fin n) :
     (binaryRippleAddTM lhsIdx rhsIdx resultIdx).IsTransducer :=

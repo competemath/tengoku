@@ -331,6 +331,9 @@ private theorem binaryEq_suffix_reachesIn {n : ℕ}
             · exact hother
             · exact houtput
 
+/--
+@isnad1 id=ex.7h9v.s8.b7c031875bfa from=translated src=- shape=60ec81fb vocab=9739469d
+-/
 theorem binaryEqTM_reachesIn_frame_internal {n : ℕ}
     (lhsIdx rhsIdx resultIdx : Fin n)
     (hdistinct : BinaryEqDistinct lhsIdx rhsIdx resultIdx)
@@ -371,6 +374,9 @@ theorem binaryEqTM_reachesIn_frame_internal {n : ℕ}
   · simpa only [Tape.HasBinaryContent, hfinalLhs] using hlhs.hasBinaryContent
   · simpa only [Tape.HasBinaryContent, hfinalRhs] using hrhs.hasBinaryContent
 
+/--
+@isnad1 id=istransd.0h4v.s4.5d6f424184fc from=translated src=- shape=0b195b8b vocab=7fcb87f3
+-/
 theorem binaryEqTM_isTransducer_internal {n : ℕ}
     (lhsIdx rhsIdx resultIdx : Fin n) :
     (binaryEqTM lhsIdx rhsIdx resultIdx).IsTransducer := by

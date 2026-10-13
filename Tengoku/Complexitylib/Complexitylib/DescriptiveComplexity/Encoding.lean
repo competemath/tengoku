@@ -53,7 +53,9 @@ def allTuples (card : ℕ) : (k : ℕ) → List (Fin k → Fin card)
   | 0 => [Fin.elim0]
   | k + 1 => (allTuples card k).flatMap (fun t => (List.finRange card).map (fun v => Fin.cons v t))
 
-/-- The enumeration has length `card ^ k`. -/
+/-- The enumeration has length `card ^ k`.
+@isnad1 id=eq.0h2v.s4.f4fefe104d37 from=translated src=- shape=80d21984 vocab=3fc12279
+-/
 theorem allTuples_length (card k : ℕ) : (allTuples card k).length = card ^ k := by
   induction k with
   | zero => rfl
@@ -67,7 +69,9 @@ theorem allTuples_length (card k : ℕ) : (allTuples card k).length = card ^ k :
       simp only [List.map_cons, List.sum_cons, List.length_cons]
       rw [ihl, Nat.succ_mul]; omega
 
-/-- Every tuple appears in the enumeration. -/
+/-- Every tuple appears in the enumeration.
+@isnad1 id=mem.0h3v.s5.de921cc6c713 from=translated src=- shape=59f43a60 vocab=bb263609
+-/
 theorem mem_allTuples (card k : ℕ) (t : Fin k → Fin card) : t ∈ allTuples card k := by
   induction k with
   | zero => simp only [allTuples, List.mem_singleton]; funext i; exact i.elim0
@@ -81,7 +85,9 @@ theorem mem_allTuples (card k : ℕ) (t : Fin k → Fin card) : t ∈ allTuples 
 def encodeRelC {card k : Nat} (r : (Fin k → Fin card) → Bool) : List Bool :=
   (allTuples card k).map r
 
-/-- The computable encoding also has length `card ^ k`. -/
+/-- The computable encoding also has length `card ^ k`.
+@isnad1 id=eq.0h3v.s5.5b5601e6cde7 from=translated src=- shape=64dd17b7 vocab=1b067378
+-/
 theorem encodeRelC_length {card k : Nat} (r : (Fin k → Fin card) → Bool) :
     (encodeRelC r).length = card ^ k := by
   rw [encodeRelC, List.length_map, allTuples_length]
@@ -91,7 +97,9 @@ theorem encodeRelC_length {card k : Nat} (r : (Fin k → Fin card) → Bool) :
 def encodeRelsC {V : Vocabulary} (A : DecFinStruct V) : List Bool :=
   (List.finRange V.numRels).flatMap (fun i => encodeRelC (A.rel i))
 
-/-- The computable relational encoding has the expected total length. -/
+/-- The computable relational encoding has the expected total length.
+@isnad1 id=eq.0h2v.s5.8e0e89f6e704 from=translated src=- shape=f5962b86 vocab=be56728f
+-/
 theorem encodeRelsC_length {V : Vocabulary} (A : DecFinStruct V) :
     (encodeRelsC A).length
       = ((List.finRange V.numRels).map (fun i => A.card ^ V.relArity i)).sum := by
@@ -106,6 +114,9 @@ theorem encodeRelsC_length {V : Vocabulary} (A : DecFinStruct V) :
 def encodeConstC {card : Nat} (c : Fin card) : List Bool :=
   (List.finRange card).map fun i => i == c
 
+/--
+@isnad1 id=eq.0h2v.s3.299a9c0356a4 from=translated src=- shape=37d26c04 vocab=887eaa50
+-/
 @[simp] theorem encodeConstC_length {card : Nat} (c : Fin card) :
     (encodeConstC c).length = card := by
   simp [encodeConstC]
@@ -114,6 +125,9 @@ def encodeConstC {card : Nat} (c : Fin card) : List Bool :=
 def encodeConstsC {V : Vocabulary} (A : DecFinStruct V) : List Bool :=
   (List.finRange V.numConsts).flatMap fun i => encodeConstC (A.const i)
 
+/--
+@isnad1 id=eq.0h2v.s4.14605444fdce from=translated src=- shape=8c34dc12 vocab=b7281b01
+-/
 @[simp] theorem encodeConstsC_length {V : Vocabulary} (A : DecFinStruct V) :
     (encodeConstsC A).length = V.numConsts * A.card := by
   simp [encodeConstsC]
@@ -126,13 +140,17 @@ def encodeStruct {V : Vocabulary} (A : DecFinStruct V) : List Bool :=
   List.replicate A.card true ++ false :: (encodeRelsC A ++ encodeConstsC A)
 
 /-- The cardinality is recoverable from the encoding as the length of the leading
-    run of `true`s. -/
+    run of `true`s.
+@isnad1 id=eq.0h2v.s4.5f7cf1e0c466 from=translated src=- shape=d7392b13 vocab=f29213ea
+-/
 theorem encodeStruct_card {V : Vocabulary} (A : DecFinStruct V) :
     ((encodeStruct A).takeWhile id).length = A.card := by
   rw [encodeStruct]; simp
 
 /-- Constant-free vocabularies retain the prior cardinality-plus-relations wire
-    format. -/
+    format.
+@isnad1 id=eq.1h2v.s5.c994e1fe9e3d from=translated src=- shape=28ed5f10 vocab=64fbfc20
+-/
 theorem encodeStruct_of_isRelational {V : Vocabulary} (A : DecFinStruct V)
     (hV : V.IsRelational) :
     encodeStruct A = List.replicate A.card true ++ false :: encodeRelsC A := by
@@ -144,7 +162,9 @@ theorem encodeStruct_of_isRelational {V : Vocabulary} (A : DecFinStruct V)
   simp [encodeStruct, hempty]
 
 /-- The full encoding has one unary cardinality block, all relation tables, and
-    one `card`-bit block for each constant symbol. -/
+    one `card`-bit block for each constant symbol.
+@isnad1 id=eq.0h2v.s6.20e666b3a414 from=translated src=- shape=8c9f67c3 vocab=29bb6c33
+-/
 theorem encodeStruct_length {V : Vocabulary} (A : DecFinStruct V) :
     (encodeStruct A).length =
       A.card + 1 +
@@ -159,7 +179,9 @@ theorem encodeStruct_length {V : Vocabulary} (A : DecFinStruct V) :
 noncomputable def encodeRel {card k : Nat} (r : (Fin k → Fin card) → Bool) : List Bool :=
   (Finset.univ : Finset (Fin k → Fin card)).toList.map r
 
-/-- The truth-table encoding of an arity-`k` relation has length `card ^ k`. -/
+/-- The truth-table encoding of an arity-`k` relation has length `card ^ k`.
+@isnad1 id=eq.0h3v.s5.2bcdb3b077c6 from=translated src=- shape=64dd17b7 vocab=f8583c33
+-/
 theorem encodeRel_length {card k : Nat} (r : (Fin k → Fin card) → Bool) :
     (encodeRel r).length = card ^ k := by
   simp only [encodeRel, List.length_map, Finset.length_toList, Finset.card_univ]
@@ -171,7 +193,9 @@ noncomputable def encodeRels {V : Vocabulary} (A : DecFinStruct V) : List Bool :
   (List.finRange V.numRels).flatMap (fun i => encodeRel (A.rel i))
 
 /-- The relational encoding's length is the sum of the per-relation truth-table
-    sizes `card ^ (arity)`. -/
+    sizes `card ^ (arity)`.
+@isnad1 id=eq.0h2v.s5.efb38dd53afe from=translated src=- shape=f5962b86 vocab=7cb90253
+-/
 theorem encodeRels_length {V : Vocabulary} (A : DecFinStruct V) :
     (encodeRels A).length
       = ((List.finRange V.numRels).map (fun i => A.card ^ V.relArity i)).sum := by

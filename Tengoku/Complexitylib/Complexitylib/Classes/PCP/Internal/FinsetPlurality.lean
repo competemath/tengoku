@@ -29,7 +29,9 @@ the cloud expander to charge it.
 namespace Complexity
 
 /-- **Plurality.** Some label is taken by at least a `1 / Fintype.card α`
-fraction of `S`. -/
+fraction of `S`.
+@isnad1 id=ex.0h4v.s5.36bd4b630ca7 from=translated src=- shape=23a29934 vocab=f169218d
+-/
 theorem exists_plurality {β α : Type} [DecidableEq α] [Fintype α] [Nonempty α]
     (S : Finset β) (A : β → α) :
     ∃ a : α, S.card ≤ Fintype.card α * (S.filter fun p => A p = a).card := by

@@ -17,6 +17,9 @@ namespace Complexity
 
 namespace Tape
 
+/--
+@isnad1 id=eq.0h1v.s4.7f818dc03e6e from=translated src=- shape=802c6af4 vocab=713df92b
+-/
 theorem length_oracleQuery_internal (tape : Tape) :
     tape.oracleQuery.length = tape.head - 1 := by
   simp [oracleQuery]
@@ -25,6 +28,9 @@ end Tape
 
 namespace OracleCfg
 
+/--
+@isnad1 id=eq.0h4v.s4.0ba147f731a4 from=translated src=- shape=cea54d22 vocab=a0d9b9e9
+-/
 theorem erase_init_internal (qstart : Q) (input : List Bool) :
     (OracleCfg.init (n := n) qstart input).erase = Cfg.init qstart input :=
   rfl
@@ -35,6 +41,9 @@ namespace OracleTM
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=iff.0h4v.s5.d5758ef82439 from=translated src=- shape=5311c3cf vocab=017bde04
+-/
 theorem step_eq_none_iff_halted_internal
     {machine : OracleTM n} {oracle : BooleanOracle}
     {cfg : OracleCfg n machine.Q} :
@@ -47,6 +56,9 @@ theorem step_eq_none_iff_halted_internal
         obtain ⟨yesState, noState⟩ := states
         simp [step, halted, hhalt, hquery]
 
+/--
+@isnad1 id=eq.2h6v.s5.012107fbdade from=translated src=- shape=2135934f vocab=9de1fded
+-/
 theorem stepRel_functional_internal
     {machine : OracleTM n} {oracle : BooleanOracle}
     {cfg first second : OracleCfg n machine.Q}
@@ -54,6 +66,9 @@ theorem stepRel_functional_internal
     (hsecond : machine.stepRel oracle cfg second) : first = second := by
   exact Option.some.inj (hfirst.symm.trans hsecond)
 
+/--
+@isnad1 id=eq.2h7v.s5.95b68242f967 from=translated src=- shape=68c8aaec vocab=861c67d9
+-/
 theorem reachesIn_functional_internal
     {machine : OracleTM n} {oracle : BooleanOracle}
     {time : ℕ} {start first second : OracleCfg n machine.Q}
@@ -70,6 +85,9 @@ theorem reachesIn_functional_internal
           subst hmiddle
           exact ih hrest'
 
+/--
+@isnad1 id=reachesi.2h9v.s6.2ac4e744f201 from=translated src=- shape=077f6888 vocab=95ec1fcc
+-/
 theorem reachesIn_map_internal
     {machine : OracleTM n} {oracle : BooleanOracle} {workTapes : ℕ}
     {target : TM workTapes}
@@ -83,6 +101,9 @@ theorem reachesIn_map_internal
   | zero => exact TM.reachesIn.zero
   | step hone _ ih => exact TM.reachesIn.step (hstep hone) ih
 
+/--
+@isnad1 id=eq.3h6v.s7.b511ba89a2d5 from=translated src=- shape=5dc74483 vocab=57d85e8b
+-/
 theorem step_query_true_internal
     {machine : OracleTM n} {oracle : BooleanOracle}
     {cfg : OracleCfg n machine.Q} {yesState noState : machine.Q}
@@ -92,6 +113,9 @@ theorem step_query_true_internal
     machine.step oracle cfg = some { cfg with state := yesState } := by
   simp [step, hhalt, hquery, hanswer]
 
+/--
+@isnad1 id=eq.3h6v.s7.4c74968b9d86 from=translated src=- shape=52278313 vocab=47022741
+-/
 theorem step_query_false_internal
     {machine : OracleTM n} {oracle : BooleanOracle}
     {cfg : OracleCfg n machine.Q} {yesState noState : machine.Q}
@@ -101,6 +125,9 @@ theorem step_query_false_internal
     machine.step oracle cfg = some { cfg with state := noState } := by
   simp [step, hhalt, hquery, hanswer]
 
+/--
+@isnad1 id=reachesi.3h6v.s6.698e86eeee77 from=translated src=- shape=67c23513 vocab=c16801dd
+-/
 theorem reachesIn_one_query_true_internal
     {machine : OracleTM n} {oracle : BooleanOracle}
     {cfg : OracleCfg n machine.Q} {yesState noState : machine.Q}
@@ -111,6 +138,9 @@ theorem reachesIn_one_query_true_internal
   exact reachesIn.step
     (step_query_true_internal hhalt hquery hanswer) reachesIn.zero
 
+/--
+@isnad1 id=reachesi.3h6v.s6.d1553c827e1e from=translated src=- shape=d4e33ca6 vocab=71625355
+-/
 theorem reachesIn_one_query_false_internal
     {machine : OracleTM n} {oracle : BooleanOracle}
     {cfg : OracleCfg n machine.Q} {yesState noState : machine.Q}
@@ -125,16 +155,25 @@ end OracleTM
 
 namespace TM
 
+/--
+@isnad1 id=eq.0h3v.s5.e2a542e3bfee from=translated src=- shape=f467465f vocab=ccf9e9b6
+-/
 theorem toOracleTM_queryTransition_internal (machine : TM n) (state : machine.Q) :
     machine.toOracleTM.queryTransition state = none :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.3cef8f80c696 from=translated src=- shape=948e6692 vocab=9535c6cd
+-/
 theorem toOracleTM_step_oracle_independent_internal
     (machine : TM n) (first second : BooleanOracle)
     (cfg : OracleCfg n machine.Q) :
     machine.toOracleTM.step first cfg = machine.toOracleTM.step second cfg := by
   simp [OracleTM.step, TM.toOracleTM]
 
+/--
+@isnad1 id=eq.0h4v.s5.88801fb4c3a8 from=translated src=- shape=8cc5f020 vocab=4b6e8918
+-/
 theorem erase_toOracleTM_step_internal
     (machine : TM n) (oracle : BooleanOracle)
     (cfg : OracleCfg n machine.Q) :
@@ -144,6 +183,9 @@ theorem erase_toOracleTM_step_internal
   · simp [OracleTM.step, TM.step, TM.toOracleTM, OracleCfg.erase, hhalt]
   · simp [OracleTM.step, TM.step, TM.toOracleTM, OracleCfg.erase, hhalt]
 
+/--
+@isnad1 id=eq.1h5v.s6.ef3d815c3457 from=translated src=- shape=d490647b vocab=41e82151
+-/
 theorem erase_toOracleTM_step_some_internal
     (machine : TM n) (oracle : BooleanOracle)
     {cfg next : OracleCfg n machine.Q}
@@ -153,6 +195,9 @@ theorem erase_toOracleTM_step_some_internal
   rw [hstep] at herase
   exact herase.symm
 
+/--
+@isnad1 id=reachesi.1h6v.s5.72c9fb7a1e23 from=translated src=- shape=6ec82b75 vocab=a03b15b2
+-/
 theorem erase_toOracleTM_reachesIn_internal
     (machine : TM n) (oracle : BooleanOracle)
     {time : ℕ} {start result : OracleCfg n machine.Q}
@@ -161,6 +206,9 @@ theorem erase_toOracleTM_reachesIn_internal
   exact OracleTM.reachesIn_map_internal OracleCfg.erase
     (erase_toOracleTM_step_some_internal machine oracle) hreach
 
+/--
+@isnad1 id=ex.1h5v.s6.c54ea03d9924 from=translated src=- shape=0a0b3a4e vocab=41e82151
+-/
 theorem exists_toOracleTM_step_of_step_erase_internal
     (machine : TM n) (oracle : BooleanOracle)
     {cfg : OracleCfg n machine.Q} {next : Cfg n machine.Q}
@@ -177,6 +225,9 @@ theorem exists_toOracleTM_step_of_step_erase_internal
         simpa [horacle] using herase
       exact Option.some.inj heq
 
+/--
+@isnad1 id=ex.1h6v.s6.3076ce2766e9 from=translated src=- shape=5ff49aa3 vocab=2ebb9e24
+-/
 theorem exists_toOracleTM_reachesIn_of_reachesIn_erase_internal
     (machine : TM n) (oracle : BooleanOracle)
     {time : ℕ} (start : OracleCfg n machine.Q) {result : Cfg n machine.Q}
@@ -201,6 +252,9 @@ theorem exists_toOracleTM_reachesIn_of_reachesIn_erase_internal
       exact ⟨oracleResult,
         OracleTM.reachesIn.step horacleStep horacleRest, heraseResult⟩
 
+/--
+@isnad1 id=iff.0h5v.s4.a525aee7fb50 from=translated src=- shape=11cf5ca5 vocab=3b4a6724
+-/
 theorem toOracleTM_decidesInTime_iff_internal
     (machine : TM n) (oracle : BooleanOracle)
     (language : Language) (timeBound : ℕ → ℕ) :

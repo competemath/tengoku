@@ -25,14 +25,18 @@ namespace DescriptiveComplexity
 
 variable {V : Vocabulary} {A B : FinStruct V}
 
-/-- Term evaluation commutes with isomorphisms. -/
+/-- Term evaluation commutes with isomorphisms.
+@isnad1 id=eq.0h7v.s5.2f0846c39fe6 from=translated src=- shape=07de569e vocab=d77429b2
+-/
 theorem Term.eval_iso (f : Iso A B) (σ : Env A.card n) (t : Term V n) :
     t.eval B (f.toFun ∘ σ) = f.toFun (t.eval A σ) := by
   cases t with
   | var i => rfl
   | const j => exact (f.const_map j).symm
 
-/-- Satisfaction is preserved by isomorphisms. -/
+/-- Satisfaction is preserved by isomorphisms.
+@isnad1 id=iff.0h7v.s5.44d37d7a1e0b from=translated src=- shape=d9696488 vocab=fca665b3
+-/
 theorem Formula.sat_iso (f : Iso A B) (σ : Env A.card n) (φ : Formula V n) :
     φ.Sat A σ ↔ φ.Sat B (f.toFun ∘ σ) := by
   induction φ with
@@ -80,7 +84,9 @@ theorem Formula.sat_iso (f : Iso A B) (σ : Env A.card n) (φ : Formula V n) :
       rw [ih (envCons a σ), envCons_comp]
       exact hb (f.toFun a)
 
-/-- FO sentences are order-independent (Immerman Proposition 1.16). -/
+/-- FO sentences are order-independent (Immerman Proposition 1.16).
+@isnad1 id=isorderi.0h2v.s3.b72637eae009 from=translated src=- shape=1e982e59 vocab=5e98b6e3
+-/
 theorem Sentence.orderIndependent (φ : Sentence V) :
     BooleanQuery.IsOrderIndependent (fun A => A ⊨ φ) := by
   intro A B ⟨f⟩

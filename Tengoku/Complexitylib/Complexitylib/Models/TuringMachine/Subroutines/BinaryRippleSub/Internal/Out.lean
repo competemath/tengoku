@@ -21,7 +21,9 @@ namespace Complexity
 
 namespace TM
 
-/-- The direct subtraction core never moves the public output head left. -/
+/-- The direct subtraction core never moves the public output head left.
+@isnad1 id=istransd.0h4v.s4.24793d83f111 from=translated src=- shape=0b195b8b vocab=3c68755f
+-/
 theorem binaryRippleSubCoreTM_isTransducer_internal {n : ℕ}
     (lhsIdx rhsIdx resultIdx : Fin n) :
     (binaryRippleSubCoreTM lhsIdx rhsIdx resultIdx).IsTransducer := by
@@ -48,7 +50,9 @@ theorem binaryRippleSubCoreTM_isTransducer_internal {n : ℕ}
       split <;> decide
 
 /-- Backward canonicalization followed by both operand rewinds remains a
-transducer. -/
+transducer.
+@isnad1 id=istransd.0h4v.s4.51f61becfbaf from=translated src=- shape=0b195b8b vocab=3c7422f2
+-/
 theorem binaryRippleSubTM_isTransducer_internal {n : ℕ}
     (lhsIdx rhsIdx resultIdx : Fin n) :
     (binaryRippleSubTM lhsIdx rhsIdx resultIdx).IsTransducer := by

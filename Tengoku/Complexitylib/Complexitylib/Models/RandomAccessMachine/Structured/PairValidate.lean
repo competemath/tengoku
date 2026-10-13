@@ -29,12 +29,16 @@ namespace Structured
 
 namespace PairValidate
 
-/-- The five-state pair validator takes exactly `24 + 9n` transitions. -/
+/-- The five-state pair validator takes exactly `24 + 9n` transitions.
+@isnad1 id=eq.0h1v.s4.784c6750a2e8 from=translated src=- shape=59b18a03 vocab=c1c7b468
+-/
 @[simp] theorem stepCount_eq (inputLength : ℕ) :
     stepCount inputLength = 24 + 9 * inputLength := by
   rfl
 
-/-- Source-level correctness and explicit resource bounds. -/
+/-- Source-level correctness and explicit resource bounds.
+@isnad1 id=ex.0h1v.s5.311c00387fb9 from=translated src=- shape=823e7ee7 vocab=d4277d05
+-/
 theorem program_performance (bits : List Bool) :
     ∃ final cost space,
       Exec program (inputStore bits) final (stepCount bits.length) cost space ∧
@@ -43,7 +47,9 @@ theorem program_performance (bits : List Bool) :
         (TM.pairValidateAccept (bits.foldl TM.pairValidateStep .next)) :=
   program_measured_internal bits
 
-/-- End-to-end compiled performance and language correctness. -/
+/-- End-to-end compiled performance and language correctness.
+@isnad1 id=ex.0h1v.s7.101f1c850d62 from=translated src=- shape=7aa8f61c vocab=a14a7f00
+-/
 theorem compiled_performance (bits : List Bool) :
     ∃ final cost space,
       Exec program (inputStore bits) final (stepCount bits.length) cost space ∧
@@ -93,11 +99,15 @@ theorem compiled_performance (bits : List Bool) :
         TM.pairValidateAccept_fold_eq_true_iff bits
       _ ↔ bits ∈ validPairEncoding := Iff.rfl
 
-/-- The explicit logarithmic-cost time budget is quasilinear. -/
+/-- The explicit logarithmic-cost time budget is quasilinear.
+@isnad1 id=bigo.0h0v.s1.b19652042f4e from=translated src=- shape=25b03439 vocab=61d34eab
+-/
 theorem timeBound_bigO_quasilinear : timeBound =O quasilinearBound := by
   exact Scanner.timeBound_bigO_quasilinear spec
 
-/-- The explicit peak-space budget is quasilinear. -/
+/-- The explicit peak-space budget is quasilinear.
+@isnad1 id=bigo.0h0v.s1.2c7113993ac8 from=translated src=- shape=25b03439 vocab=fbc315dd
+-/
 theorem spaceBound_bigO_quasilinear : spaceBound =O quasilinearBound := by
   exact Scanner.spaceBound_bigO_quasilinear spec
 
