@@ -39,13 +39,22 @@ namespace NTM
 
 variable {k : ℕ} {tm : NTM k}
 
+/--
+@isnad1 id=eq.0h4v.s6.b058733c118a from=translated src=- shape=eb285308 vocab=12fb5f3a
+-/
 theorem reachSet_succ (tm : NTM k) (c₀ : Cfg k tm.Q) (t : ℕ) :
     reachSet tm c₀ (t + 1) = reachSet tm c₀ t ∪ {c' | ∃ c ∈ reachSet tm c₀ t, tm.Succ c c'} :=
   rfl
 
+/--
+@isnad1 id=le.0h4v.s5.fff0d6043904 from=translated src=- shape=9a8e09f3 vocab=48854b1f
+-/
 theorem reachSet_subset_succ (tm : NTM k) (c₀ : Cfg k tm.Q) (t : ℕ) :
     reachSet tm c₀ t ⊆ reachSet tm c₀ (t + 1) := fun _ h => Or.inl h
 
+/--
+@isnad1 id=le.1h5v.s5.09566a774ca1 from=translated src=- shape=028932d7 vocab=dac41432
+-/
 theorem reachSet_mono (tm : NTM k) (c₀ : Cfg k tm.Q) {s t : ℕ} (h : s ≤ t) :
     reachSet tm c₀ s ⊆ reachSet tm c₀ t := by
   induction t with
@@ -55,7 +64,9 @@ theorem reachSet_mono (tm : NTM k) (c₀ : Cfg k tm.Q) {s t : ℕ} (h : s ≤ t)
       · exact (ih (by omega)).trans (reachSet_subset_succ tm c₀ t)
       · rw [show s = t + 1 from by omega]
 
-/-- Every element of a round is reachable. -/
+/-- Every element of a round is reachable.
+@isnad1 id=reachesc.1h5v.s5.97c4330540c8 from=translated src=- shape=e264b287 vocab=638da4c9
+-/
 theorem reachesCfg_of_mem_reachSet (tm : NTM k) (c₀ : Cfg k tm.Q) :
     ∀ (t : ℕ) {c}, c ∈ reachSet tm c₀ t → tm.ReachesCfg c₀ c
   | 0, c, hc => by rw [Set.mem_singleton_iff.mp hc]; exact reachesCfg_refl tm c₀
@@ -64,7 +75,9 @@ theorem reachesCfg_of_mem_reachSet (tm : NTM k) (c₀ : Cfg k tm.Q) :
       · exact reachesCfg_of_mem_reachSet tm c₀ t hc
       · exact Relation.ReflTransGen.tail (reachesCfg_of_mem_reachSet tm c₀ t hc') hstep
 
-/-- Reachability in `t` steps lands in round `t`. -/
+/-- Reachability in `t` steps lands in round `t`.
+@isnad1 id=ex.1h4v.s5.94a8d7c6dd01 from=translated src=- shape=9710bcee vocab=638da4c9
+-/
 theorem mem_reachSet_of_reachesCfg {c₀ c : Cfg k tm.Q} (h : tm.ReachesCfg c₀ c) :
     ∃ t, c ∈ reachSet tm c₀ t := by
   induction h with
@@ -73,7 +86,9 @@ theorem mem_reachSet_of_reachesCfg {c₀ c : Cfg k tm.Q} (h : tm.ReachesCfg c₀
       obtain ⟨t, ht⟩ := ih
       exact ⟨t + 1, Or.inr ⟨_, ht, hstep⟩⟩
 
-/-- Once a round adds nothing, no later round does either. -/
+/-- Once a round adds nothing, no later round does either.
+@isnad1 id=eq.1h5v.s6.08feaed2fea8 from=translated src=- shape=6b8a18d7 vocab=48854b1f
+-/
 theorem reachSet_stabilizes (tm : NTM k) (c₀ : Cfg k tm.Q) {s : ℕ}
     (h : reachSet tm c₀ (s + 1) ⊆ reachSet tm c₀ s) :
     ∀ m, reachSet tm c₀ (s + m) = reachSet tm c₀ s := by
@@ -91,7 +106,9 @@ theorem reachSet_stabilizes (tm : NTM k) (c₀ : Cfg k tm.Q) {s : ℕ}
         exact h (Or.inr ⟨c', hc', hst⟩)
 
 /-- Each round is a finite set: it starts as a singleton and each round adds at most two
-successors per member. -/
+successors per member.
+@isnad1 id=finite.0h4v.s4.8199e939a567 from=translated src=- shape=aafa59c7 vocab=5c53be5d
+-/
 theorem reachSet_finite (tm : NTM k) (c₀ : Cfg k tm.Q) : ∀ t, (reachSet tm c₀ t).Finite
   | 0 => Set.finite_singleton c₀
   | t + 1 => by
@@ -133,7 +150,9 @@ private theorem reachImage_ssubset (tm : NTM k) (c₀ : Cfg k tm.Q) (g : Cfg k t
   rwa [this]
 
 /-- **The rounds stabilize by the number of codes.** As long as the rounds keep growing they
-consume a fresh code each time, and there are only `Fintype.card α` of those. -/
+consume a fresh code each time, and there are only `Fintype.card α` of those.
+@isnad1 id=ex.1h5v.s6.8c8ff1b3e45d from=translated src=- shape=a6fb0fed vocab=d8b334df
+-/
 theorem exists_stabilizing_round (tm : NTM k) (c₀ : Cfg k tm.Q) (g : Cfg k tm.Q → α)
     (hinj : ∀ {c c' : Cfg k tm.Q}, tm.ReachesCfg c₀ c → tm.ReachesCfg c₀ c' → g c = g c' → c = c') :
     ∃ s ≤ Fintype.card α, reachSet tm c₀ (s + 1) ⊆ reachSet tm c₀ s := by
@@ -162,7 +181,9 @@ theorem exists_stabilizing_round (tm : NTM k) (c₀ : Cfg k tm.Q) (g : Cfg k tm.
   omega
 
 /-- **With enough rounds the fixpoint is exactly reachability.** The number of rounds needed is
-the number of codes, so a polynomial code count makes this a polynomial-round search. -/
+the number of codes, so a polynomial code count makes this a polynomial-round search.
+@isnad1 id=iff.1h6v.s6.77fbd8b0f382 from=translated src=- shape=7fdd5967 vocab=af8a217e
+-/
 theorem reachesCfg_iff_mem_reachSet' (tm : NTM k) (c₀ : Cfg k tm.Q) (g : Cfg k tm.Q → α)
     (hinj : ∀ {c c' : Cfg k tm.Q}, tm.ReachesCfg c₀ c → tm.ReachesCfg c₀ c' → g c = g c' → c = c')
     (c : Cfg k tm.Q) :
@@ -179,7 +200,9 @@ theorem reachesCfg_iff_mem_reachSet' (tm : NTM k) (c₀ : Cfg k tm.Q) (g : Cfg k
     exact reachSet_mono tm c₀ hsN ht
 
 /-- **Running extra rounds is harmless.** An implementation computes a round count it can
-evaluate rather than the exact number of codes; any count that reaches the bound is correct. -/
+evaluate rather than the exact number of codes; any count that reaches the bound is correct.
+@isnad1 id=iff.2h7v.s6.2745fcdc4b15 from=translated src=- shape=501b2bcc vocab=b72351fb
+-/
 theorem reachesCfg_iff_mem_reachSet (tm : NTM k) (c₀ : Cfg k tm.Q) (g : Cfg k tm.Q → α)
     (hinj : ∀ {c c' : Cfg k tm.Q}, tm.ReachesCfg c₀ c → tm.ReachesCfg c₀ c' → g c = g c' → c = c')
     {N : ℕ} (hN : Fintype.card α ≤ N) (c : Cfg k tm.Q) :

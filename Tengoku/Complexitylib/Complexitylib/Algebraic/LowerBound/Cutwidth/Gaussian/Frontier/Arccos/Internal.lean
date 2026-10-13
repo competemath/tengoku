@@ -26,7 +26,9 @@ Vectors are functions `ι → ℝ` with the dot product `∑ i, y i * x i`.
 
 namespace Algebraic.Cutwidth.Gaussian.Internal
 
-/-- `arccos` is concave on `[0, 1]`. -/
+/-- `arccos` is concave on `[0, 1]`.
+@isnad1 id=concaveo.0h0v.s4.69abe037cd9b from=translated src=- shape=2b2e5daa vocab=0f0637a5
+-/
 theorem concaveOn_arccos : ConcaveOn ℝ (Set.Icc 0 1) Real.arccos := by
   refine AntitoneOn.concaveOn_of_deriv (convex_Icc 0 1) Real.continuous_arccos.continuousOn
     ?_ ?_ <;> rw [interior_Icc]
@@ -40,7 +42,9 @@ theorem concaveOn_arccos : ConcaveOn ℝ (Set.Icc 0 1) Real.arccos := by
       (Real.sqrt_le_sqrt (by nlinarith [ha.1])))
 
 /-- A finite family of arguments in `[0, 1]` with average at least `x₀` has `arccos`-sum at
-most the family size times `arccos x₀`. -/
+most the family size times `arccos x₀`.
+@isnad1 id=le.2h4v.s6.267214c954da from=translated src=- shape=30be5a96 vocab=8757535d
+-/
 theorem sum_arccos_le {J : Type} (s : Finset J) (x : J → ℝ) {x₀ : ℝ}
     (hx : ∀ j ∈ s, 0 ≤ x j ∧ x j ≤ 1) (hsum : s.card * x₀ ≤ ∑ j ∈ s, x j) :
     ∑ j ∈ s, Real.arccos (x j) ≤ s.card * Real.arccos x₀ := by
@@ -57,7 +61,9 @@ theorem sum_arccos_le {J : Type} (s : Finset J) (x : J → ℝ) {x₀ : ℝ}
 
 /-- **Angles in a star of three.** Three unit vectors with inner product at least `κ ≥ 7/8`
 with a unit vector have `arccos`-sum over the six ordered pairs at most
-`6 arccos ((3 κ² - 1) / 2)`. -/
+`6 arccos ((3 κ² - 1) / 2)`.
+@isnad1 id=le.5h6v.s8.142b9f9adf7e from=translated src=- shape=b3870062 vocab=61b026ea
+-/
 theorem sum_arccos_star_le {ι J : Type} [Fintype ι] [DecidableEq J] {x : ι → ℝ}
     (hx : ∑ i, x i ^ 2 = 1) (s : Finset J) (hs : s.card = 3) (y : J → ι → ℝ)
     (hy : ∀ j ∈ s, ∑ i, y j i ^ 2 = 1) {κ : ℝ} (hκ : 7 / 8 ≤ κ)

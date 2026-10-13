@@ -20,6 +20,9 @@ public section
 
 namespace Algebraic.Cutwidth.Extractor.Internal
 
+/--
+@isnad1 id=weighted.1h4v.s5.77e7052b3e9a from=translated src=- shape=65f4c46c vocab=2520b9ee
+-/
 theorem weightedStrongSeededCondenser_id {X Seed : Type*}
     [Fintype X] [Fintype Seed] {K : Nat} {ε : ℝ} (nonnegative : 0 ≤ ε) :
     WeightedStrongSeededCondenser (fun x (_ : Seed) => x : X → Seed → X) K K ε := by

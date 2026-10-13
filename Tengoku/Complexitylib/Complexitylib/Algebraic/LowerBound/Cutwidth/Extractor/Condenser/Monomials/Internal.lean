@@ -21,6 +21,9 @@ distinct powers indexed by the original `Fin K`, with degree strictly below
 
 namespace Algebraic.Cutwidth.Extractor.Internal
 
+/--
+@isnad1 id=lt.1h4v.s4.a4d31e8499c0 from=translated src=- shape=4703a92d vocab=1567a184
+-/
 theorem monomialDigit_lt {h j m : Nat} (positive : 0 < h) (i : Fin m) :
     monomialDigit h j i < h := Nat.mod_lt _ positive
 
@@ -39,11 +42,17 @@ private theorem digit_sum_carry (h j m : Nat) :
             j / h ^ m * h ^ m := by rw [Nat.mod_add_div]
         _ = j := ih
 
+/--
+@isnad1 id=eq.1h3v.s6.1e370773f205 from=translated src=- shape=5c4431b0 vocab=646e28e9
+-/
 theorem sum_monomialDigit_mul_pow {h j m : Nat} (bound : j < h ^ m) :
     (∑ i : Fin m, monomialDigit h j i * h ^ i.val) = j := by
   simpa only [Finset.sum_range, Nat.div_eq_of_lt bound, Nat.zero_mul, Nat.add_zero,
     monomialDigit] using digit_sum_carry h j m
 
+/--
+@isnad1 id=le.1h3v.s5.db2ebf9fbc12 from=translated src=- shape=dc07cfa4 vocab=2c5ae9a4
+-/
 theorem sum_monomialDigit_le {h j m : Nat} (positive : 0 < h) :
     (∑ i : Fin m, monomialDigit h j i) ≤ m * (h - 1) := by
   calc
@@ -54,12 +63,18 @@ theorem sum_monomialDigit_le {h j m : Nat} (positive : 0 < h) :
       lia
     _ = m * (h - 1) := by simp
 
+/--
+@isnad1 id=eq.1h5v.s6.6cf89fdfa97c from=translated src=- shape=be8083b9 vocab=35bbab04
+-/
 theorem digitMonomial_pow {R : Type*} [CommMonoid R] {h j m : Nat}
     (bound : j < h ^ m) (u : R) :
     digitMonomial h j (fun i : Fin m => u ^ (h ^ i.val)) = u ^ j := by
   simp only [digitMonomial, ← pow_mul, Nat.mul_comm (h ^ _) (monomialDigit h j _),
     Finset.prod_pow_eq_pow_sum, sum_monomialDigit_mul_pow bound]
 
+/--
+@isnad1 id=eq.1h5v.s8.1662ec451a86 from=translated src=- shape=1cd56f43 vocab=d00abc11
+-/
 theorem digitMonomial_substitution {R : Type*} [CommSemiring R] {h K m : Nat}
     (bound : K ≤ h ^ m) (a : Fin K → R) :
     (∑ j : Fin K, Polynomial.C (a j) *
@@ -69,11 +84,17 @@ theorem digitMonomial_substitution {R : Type*} [CommSemiring R] {h K m : Nat}
   intro j _
   rw [digitMonomial_pow (j.isLt.trans_le bound), Polynomial.C_mul_X_pow_eq_monomial]
 
+/--
+@isnad1 id=eq.0h3v.s8.4748cb3f14a6 from=translated src=- shape=497bd5f6 vocab=f1b9367b
+-/
 theorem fin_monomial_sum_eq_ofFn {R : Type*} [Semiring R] [DecidableEq R]
     {K : Nat} (a : Fin K → R) :
     (∑ j : Fin K, Polynomial.monomial j.val (a j)) = Polynomial.ofFn K a :=
   (Polynomial.ofFn_eq_sum_monomial a).symm
 
+/--
+@isnad1 id=eq.0h4v.s7.063e2adf25dd from=translated src=- shape=09825ade vocab=1ce7e8f0
+-/
 theorem fin_monomial_sum_coeff {R : Type*} [Semiring R] {K : Nat}
     (a : Fin K → R) (j : Fin K) :
     (∑ i : Fin K, Polynomial.monomial i.val (a i)).coeff j.val = a j := by
@@ -81,6 +102,9 @@ theorem fin_monomial_sum_coeff {R : Type*} [Semiring R] {K : Nat}
   rw [fin_monomial_sum_eq_ofFn]
   exact Polynomial.ofFn_coeff_eq_val_of_lt a j.isLt
 
+/--
+@isnad1 id=lt.0h3v.s7.58a7b5492179 from=translated src=- shape=3a52ea05 vocab=b07db5d6
+-/
 theorem fin_monomial_sum_degree_lt {R : Type*} [Semiring R] {K : Nat}
     (a : Fin K → R) :
     (∑ j : Fin K, Polynomial.monomial j.val (a j)).degree < K := by
@@ -88,6 +112,9 @@ theorem fin_monomial_sum_degree_lt {R : Type*} [Semiring R] {K : Nat}
   rw [fin_monomial_sum_eq_ofFn]
   exact Polynomial.ofFn_degree_lt a
 
+/--
+@isnad1 id=iff.0h3v.s7.671ca1436eb8 from=translated src=- shape=9dd53efc vocab=ef2ee63e
+-/
 theorem fin_monomial_sum_ne_zero_iff {R : Type*} [Semiring R] {K : Nat}
     (a : Fin K → R) :
     (∑ j : Fin K, Polynomial.monomial j.val (a j)) ≠ 0 ↔ ∃ j, a j ≠ 0 := by

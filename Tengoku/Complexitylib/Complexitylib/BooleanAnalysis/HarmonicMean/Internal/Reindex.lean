@@ -18,6 +18,9 @@ public section
 
 namespace Complexity.BooleanAnalysis
 
+/--
+@isnad1 id=eq.0h6v.s7.58022908018b from=translated src=- shape=210d255b vocab=bfe483df
+-/
 theorem projectionAverage_reindex_internal {ι κ : Type*} [Fintype ι] [Fintype κ]
     [DecidableEq ι] [DecidableEq κ] (e : ι ≃ κ) (f : (κ → Bool) → ℝ)
     (s x : ι → Bool) :
@@ -26,6 +29,9 @@ theorem projectionAverage_reindex_internal {ι κ : Type*} [Fintype ι] [Fintype
   unfold projectionAverage
   exact Fintype.expect_equiv (Equiv.arrowCongr e (Equiv.refl Bool)) _ _ (fun _ => rfl)
 
+/--
+@isnad1 id=eq.0h5v.s6.73eac46e2c28 from=translated src=- shape=b2434392 vocab=660a4805
+-/
 theorem harmonicTransform_reindex_internal {ι κ : Type*} [Fintype ι] [Fintype κ]
     [DecidableEq ι] [DecidableEq κ] (e : ι ≃ κ) (f : (κ → Bool) → ℝ)
     (s : ι → Bool) :

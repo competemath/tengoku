@@ -35,14 +35,18 @@ namespace MultiTest
 variable {Pos E Q : Type} (M : MultiTest Pos E Q) [Fintype Pos] [Fintype E] [Fintype Q]
   [NumEnc Pos] [NumEnc E] [NumEnc Q]
 
-/-- **The vertices**: one per position, and one per (test, random string). -/
+/-- **The vertices**: one per position, and one per (test, random string).
+@isnad1 id=eq.0h4v.s6.11e337fcbbe6 from=translated src=- shape=fe82425f vocab=b40849e1
+-/
 theorem numVerts_toGraph :
     M.toGraph.numVerts = Fintype.card Pos + Fintype.card E * 2 ^ M.R := by
   show Fintype.card (Pos ⊕ (E × Cube M.R)) = _
   rw [Fintype.card_sum, Fintype.card_prod, card_cube]
 
 /-- Splitting a number into a quotient and a remainder, with the remainder
-itself split. -/
+itself split.
+@isnad1 id=and.2h5v.s7.01688c33184f from=translated src=- shape=95ecedca vocab=1ec7a304
+-/
 theorem split_mixed {a b c C Q : ℕ} (hb : b < C) (hc : c < Q) :
     (a * (C * Q) + (b * Q + c)) / (C * Q) = a
       ∧ (a * (C * Q) + (b * Q + c)) % (C * Q) / Q = b
@@ -64,7 +68,9 @@ theorem split_mixed {a b c C Q : ℕ} (hb : b < C) (hc : c < Q) :
     rw [hre, Nat.add_mul_mod_self_right, Nat.mod_eq_of_lt hc]
 
 omit [Fintype Pos] [NumEnc Pos] in
-/-- **How an edge number splits**: the test, the random string, the read. -/
+/-- **How an edge number splits**: the test, the random string, the read.
+@isnad1 id=and.0h5v.s9.10681000bd9f from=translated src=- shape=13148a86 vocab=9f2cf0dc
+-/
 theorem enc_edgeOf_split (k : Fin (Fintype.card M.Edge)) :
     NumEnc.enc (M.edgeOf k).1 = k.val / (2 ^ M.R * Fintype.card Q)
       ∧ NumEnc.enc (M.edgeOf k).2.1 = k.val % (2 ^ M.R * Fintype.card Q) / Fintype.card Q
@@ -90,6 +96,9 @@ noncomputable def tailNum (k : ℕ) : ℕ :=
     + (k / (2 ^ M.R * Fintype.card Q) * 2 ^ M.R
       + k % (2 ^ M.R * Fintype.card Q) / Fintype.card Q)
 
+/--
+@isnad1 id=eq.0h5v.s7.20d43a4e30a9 from=translated src=- shape=d5af1ecb vocab=46d62d4d
+-/
 theorem tailNum_eq (k : Fin (Fintype.card M.Edge)) :
     M.tailNum k.val = (M.toGraph.tail k).val := by
   obtain ⟨h1, h2, _⟩ := M.enc_edgeOf_split k
@@ -102,7 +111,9 @@ def relOfCheck (chk : (Q → ZMod 2) → Bool) (i : Q) :
     Alpha Q → Alpha Q → Bool :=
   fun l₁ l₂ => decide (chk l₁.2 = true ∧ l₁.2 i = l₂.1)
 
-/-- **The constraint depends only on the verdict and the read.** -/
+/-- **The constraint depends only on the verdict and the read.**
+@isnad1 id=eq.0h5v.s7.9ed7d3edead7 from=translated src=- shape=e3a86381 vocab=386990f0
+-/
 theorem rel_toGraph_eq (k : Fin (Fintype.card M.Edge)) :
     M.toGraph.rel k
       = relOfCheck (M.check (M.edgeOf k).1 (M.edgeOf k).2.1) (M.edgeOf k).2.2 := rfl
@@ -116,7 +127,9 @@ variable {β : Type} [Fintype β] [DecidableEq β] [Nonempty β] (R : RegCSP β)
 
 omit [Fintype β] [DecidableEq β] [Nonempty β] [NumEnc R.graph.V] [NumEnc R.graph.D] in
 /-- **The positions of a composed proof**: an encoding block per vertex, and a
-linear and a quadratic table per dart. -/
+linear and a quadratic table per dart.
+@isnad1 id=eq.0h3v.s8.f535b8461ad5 from=translated src=- shape=52cfd3ed vocab=81faf6d1
+-/
 theorem card_pos_compose :
     Fintype.card (R.Pos (B := B))
       = R.graph.order * 2 ^ B
@@ -135,11 +148,15 @@ theorem card_pos_compose :
       rw [Fintype.card_prod, card_cube, R.card_dart]]
 
 omit [DecidableEq β] [Nonempty β] [NumEnc R.graph.V] [NumEnc R.graph.D] in
-/-- The composed test's randomness. -/
+/-- The composed test's randomness.
+@isnad1 id=eq.0h4v.s5.1b43e55bd903 from=translated src=- shape=ad539c5f vocab=e2c589ce
+-/
 theorem R_compose (enc : β → Cube B) : (R.compose enc).R = Tester.ROf B := rfl
 
 omit [DecidableEq β] [Nonempty β] in
-/-- **An edge number splits into a vertex, a dart, a string and a read.** -/
+/-- **An edge number splits into a vertex, a dart, a string and a read.**
+@isnad1 id=eq.0h5v.s9.0b18e5e28c3c from=translated src=- shape=57af935e vocab=c903475c
+-/
 theorem edge_split (enc : β → Cube B) (k : Fin (Fintype.card (R.compose enc).Edge)) :
     k.val = ((NumEnc.enc ((R.compose enc).edgeOf k).1.1 * NumEnc.card R.graph.D
           + NumEnc.enc ((R.compose enc).edgeOf k).1.2)
@@ -157,7 +174,9 @@ theorem edge_split (enc : β → Cube B) (k : Fin (Fintype.card (R.compose enc).
   ring
 
 omit [DecidableEq β] [Nonempty β] [NumEnc R.graph.V] [NumEnc R.graph.D] in
-/-- **The first endpoint, from an edge's split.** -/
+/-- **The first endpoint, from an edge's split.**
+@isnad1 id=eq.2h7v.s9.7b240f6ffaee from=translated src=- shape=24590833 vocab=ee58083e
+-/
 theorem tailNum_split (enc : β → Cube B) (a c d : ℕ) (hc : c < 2 ^ Tester.ROf B)
     (hd : d < 22) :
     (R.compose enc).tailNum ((a * 2 ^ Tester.ROf B + c) * 22 + d)
@@ -170,7 +189,9 @@ theorem tailNum_split (enc : β → Cube B) (a c d : ℕ) (hc : c < 2 ^ Tester.R
   rw [MultiTest.tailNum, hQ, hR, hre, h1, h2]
 
 omit [DecidableEq β] [Nonempty β] [NumEnc R.graph.V] [NumEnc R.graph.D] in
-/-- **The first endpoint**, with the string count given by name. -/
+/-- **The first endpoint**, with the string count given by name.
+@isnad1 id=eq.3h8v.s9.dc9cb1d4770c from=translated src=- shape=389e69d6 vocab=ee58083e
+-/
 theorem tailNum_split' (enc : β → Cube B) (cZ a c d : ℕ) (hcZ : cZ = 2 ^ Tester.ROf B)
     (hc : c < cZ) (hd : d < 22) :
     (R.compose enc).tailNum ((a * cZ + c) * 22 + d)
@@ -181,7 +202,9 @@ theorem tailNum_split' (enc : β → Cube B) (cZ a c d : ℕ) (hcZ : cZ = 2 ^ Te
 omit [DecidableEq β] [Nonempty β] in
 /-- **An edge's data**, packaged so that a caller never has to spell the
 composed system out: the test, the string and the read it names, together with
-how its number splits. -/
+how its number splits.
+@isnad1 id=ex.1h5v.s10.328fccec2078 from=translated src=- shape=1209ff16 vocab=cf200906
+-/
 theorem edge_data (enc : β → Cube B) (e : ℕ)
     (he : e < (R.compose enc).toGraph.numEdges) :
     ∃ (p : R.Dart) (z : Cube (Tester.ROf B)) (i : ReadIdx),
@@ -215,7 +238,9 @@ noncomputable def posFactor (q : ℕ) : ℕ :=
       * (2 ^ Tester.nOf (bits E (powT K q))
         + 2 ^ (Tester.nOf (bits E (powT K q)) * Tester.nOf (bits E (powT K q)))))
 
-/-- **The positions of a round's proof, counted.** -/
+/-- **The positions of a round's proof, counted.**
+@isnad1 id=eq.1h3v.s11.731563fc6a6e from=translated src=- shape=6af09af8 vocab=b3d10dc1
+-/
 theorem card_pos_step (q : ℕ) (hq : 0 < q) (G : ConstraintGraph DinurAlpha) :
     Fintype.card (((G.preprocess E).killedPow q (powT K q) hq).Pos
         (B := bits E (powT K q)))
@@ -228,14 +253,18 @@ theorem card_pos_step (q : ℕ) (hq : 0 < q) (G : ConstraintGraph DinurAlpha) :
   rw [RegCSP.card_pos_compose, horder, hdeg, posFactor]
   ring
 
-/-- A round's output, named. -/
+/-- A round's output, named.
+@isnad1 id=eq.1h3v.s13.65f1f42cbebf from=translated src=- shape=7fdee181 vocab=f522ed9f
+-/
 theorem step_eq (q : ℕ) (hq : 0 < q) (G : ConstraintGraph DinurAlpha) :
     step E q hq G
       = (((G.preprocess E).killedPow q (powT K q) hq).compose
           (enc E G (powT K q))).toGraph := rfl
 
 /-- **The first endpoint of a round's edge**: the test vertex it belongs to,
-after all the positions. -/
+after all the positions.
+@isnad1 id=eq.1h4v.s16.6981831fd980 from=translated src=- shape=dc91c3ff vocab=9f307a0e
+-/
 theorem tail_step (q : ℕ) (hq : 0 < q) (G : ConstraintGraph DinurAlpha)
     (k : Fin (Fintype.card (((G.preprocess E).killedPow q (powT K q) hq).compose
       (enc E G (powT K q))).Edge)) :
@@ -252,7 +281,9 @@ theorem tail_step (q : ℕ) (hq : 0 < q) (G : ConstraintGraph DinurAlpha)
     (M := ((G.preprocess E).killedPow q (powT K q) hq).compose (enc E G (powT K q))) k
   rw [← h, MultiTest.tailNum, card_pos_step, card_readIdx]
 
-/-- **A round multiplies the vertex count by a constant.** -/
+/-- **A round multiplies the vertex count by a constant.**
+@isnad1 id=eq.1h3v.s5.d1bda7dba17f from=translated src=- shape=4eb30526 vocab=fff24859
+-/
 theorem numVerts_step (q : ℕ) (hq : 0 < q) (G : ConstraintGraph DinurAlpha) :
     (step E q hq G).numVerts = vertFactor E q * G.numEdges := by
   have horder : ((G.preprocess E).killedPow q (powT K q) hq).graph.order = 2 * G.numEdges := by

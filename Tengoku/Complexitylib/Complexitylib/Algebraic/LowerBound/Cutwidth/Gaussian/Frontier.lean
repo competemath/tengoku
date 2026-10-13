@@ -35,17 +35,23 @@ sample, as for the cutwidth layout.
 
 namespace Algebraic.Cutwidth.Gaussian
 
-/-- The frontier coefficient is positive. -/
+/-- The frontier coefficient is positive.
+@isnad1 id=lt.0h0v.s3.a9688b209ba2 from=translated src=- shape=ff3a10fc vocab=b89c9399
+-/
 theorem frontierCoefficient_pos : 0 < frontierCoefficient :=
   Internal.frontierCoefficient_pos
 
 /-- The doubled frontier coefficient, the graph-ordering coefficient of this decomposition,
-is at most `9/32`. -/
+is at most `9/32`.
+@isnad1 id=le.0h0v.s5.b51a3356c44a from=translated src=- shape=b9c36195 vocab=10d7bde7
+-/
 theorem two_mul_frontierCoefficient_le : 2 * frontierCoefficient ≤ 9 / 32 :=
   Internal.two_mul_frontierCoefficient_le
 
 /-- The circuit coefficient `1 + 1/(2p)` of the frontier coefficient `p` equals
-`1 + π/(3 arccos((1 + 2√2)/4)) ≈ 4.5625`. -/
+`1 + π/(3 arccos((1 + 2√2)/4)) ≈ 4.5625`.
+@isnad1 id=eq.0h0v.s7.4d78dd1cc94b from=translated src=- shape=d2de5460 vocab=c0764b64
+-/
 theorem one_add_inv_two_mul_frontierCoefficient :
     1 + 1 / (2 * frontierCoefficient) =
       1 + Real.pi / (3 * Real.arccos ((1 + 2 * Real.sqrt 2) / 4)) :=

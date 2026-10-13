@@ -30,7 +30,9 @@ open Multigraph
 variable {V E : Type} {G : Multigraph V E}
 
 /-- A directed walk is a nonempty chain of directed adjacencies from its first to its last
-vertex. -/
+vertex.
+@isnad1 id=ex.1h6v.s5.d2aec64c5913 from=translated src=- shape=37327927 vocab=53baacec
+-/
 theorem exists_eq_cons_of_isDirWalk {p : List V} {u v : V} (h : G.IsDirWalk p u v) :
     ∃ l, p = u :: l ∧ (u :: l).IsChain G.DirAdj ∧
       (u :: l).getLast (List.cons_ne_nil u l) = v := by
@@ -43,13 +45,17 @@ theorem exists_eq_cons_of_isDirWalk {p : List V} {u v : V} (h : G.IsDirWalk p u 
     rw [List.getLast?_eq_some_getLast (List.cons_ne_nil a l)] at hlast
     exact Option.some.inj hlast
 
-/-- A chain of vertices is a directed walk from its first to its last vertex. -/
+/-- A chain of vertices is a directed walk from its first to its last vertex.
+@isnad1 id=isdirwal.1h5v.s5.8414506230f8 from=translated src=- shape=d4fc2005 vocab=53baacec
+-/
 theorem isDirWalk_of_isChain {u : V} {l : List V} (h : (u :: l).IsChain G.DirAdj) :
     G.IsDirWalk (u :: l) u ((u :: l).getLast (List.cons_ne_nil u l)) :=
   ⟨rfl, List.getLast?_eq_some_getLast _, h⟩
 
 /-- A chain of directed adjacencies that starts in `L` and ends outside `L` leaves `L` along
-some step. -/
+some step.
+@isnad1 id=ex.3h6v.s6.d03efde3fc42 from=translated src=- shape=080f747a vocab=d70e5be5
+-/
 theorem exists_cross_of_isChain {L : Set V} :
     ∀ (u : V) (l : List V), (u :: l).IsChain G.DirAdj → u ∈ L →
       (u :: l).getLast (List.cons_ne_nil u l) ∉ L →
@@ -64,7 +70,9 @@ theorem exists_cross_of_isChain {L : Set V} :
     · exact ⟨u, List.mem_cons_self, w, hu, hw, hc.1⟩
 
 /-- A directed walk from inside `L` to outside `L` uses an edge directed out of `L` whose
-first endpoint lies on the walk. -/
+first endpoint lies on the walk.
+@isnad1 id=ex.3h7v.s6.aeed2969ce5d from=translated src=- shape=7da35fbd vocab=9355c2c4
+-/
 theorem exists_cross_of_isDirWalk {p : List V} {u v : V} (h : G.IsDirWalk p u v) {L : Set V}
     (hu : u ∈ L) (hv : v ∉ L) : ∃ e, G.fst e ∈ p ∧ G.fst e ∈ L ∧ G.snd e ∉ L := by
   obtain ⟨l, rfl, hchain, hlast⟩ := exists_eq_cons_of_isDirWalk h
@@ -76,7 +84,9 @@ theorem exists_cross_of_isDirWalk {p : List V} {u v : V} (h : G.IsDirWalk p u v)
 noncomputable def outCut [Fintype E] (G : Multigraph V E) (L : Set V) : Finset E :=
   Finset.univ.filter fun e => G.fst e ∈ L ∧ G.snd e ∉ L
 
-/-- The edges directed out of `L` and those directed into `L` together lie in its cut. -/
+/-- The edges directed out of `L` and those directed into `L` together lie in its cut.
+@isnad1 id=le.0h4v.s6.26460b8393c9 from=translated src=- shape=c25ee209 vocab=52071a96
+-/
 theorem card_outCut_add_card_outCut_compl_le [Fintype E] (L : Finset V) :
     (outCut G L).card + (outCut G (L : Set V)ᶜ).card ≤ (G.cut L).card := by
   have hsub : outCut G L ∪ outCut G (L : Set V)ᶜ ⊆ G.cut L := by
@@ -96,16 +106,22 @@ theorem card_outCut_add_card_outCut_compl_le [Fintype E] (L : Finset V) :
 
 /-! ### Families of vertex-disjoint walks -/
 
-/-- The first vertex of a directed walk lies on it. -/
+/-- The first vertex of a directed walk lies on it.
+@isnad1 id=mem.1h6v.s4.73d8f96bfe01 from=translated src=- shape=5d886b6f vocab=a0a88a54
+-/
 theorem mem_of_isDirWalk_left {p : List V} {u v : V} (h : G.IsDirWalk p u v) : u ∈ p :=
   List.mem_of_mem_head? h.1
 
-/-- The last vertex of a directed walk lies on it. -/
+/-- The last vertex of a directed walk lies on it.
+@isnad1 id=mem.1h6v.s4.78ff4463665a from=translated src=- shape=dab14f8c vocab=a0a88a54
+-/
 theorem mem_of_isDirWalk_right {p : List V} {u v : V} (h : G.IsDirWalk p u v) : v ∈ p :=
   List.mem_of_mem_getLast? h.2.1
 
 /-- **Disjoint walks end apart.** Vertex-disjoint directed walks ending at the outputs
-`output (target i)` of an injective labelling have distinct targets. -/
+`output (target i)` of an injective labelling have distinct targets.
+@isnad1 id=injon.2h10v.s6.2606a9ecc7a6 from=translated src=- shape=b8174c90 vocab=29179668
+-/
 theorem injOn_target_of_walks {ι κ : Type*} {X : Finset ι} {walk : ι → List V} {src : ι → V}
     {output : κ → V} {target : ι → κ}
     (hwalk : ∀ i ∈ X, G.IsDirWalk (walk i) (src i) (output (target i)))
@@ -117,7 +133,9 @@ theorem injOn_target_of_walks {ι κ : Type*} {X : Finset ι} {walk : ι → Lis
     (by rw [hij]; exact mem_of_isDirWalk_right (hwalk j hj))
 
 /-- **Disjoint walks leave along distinct edges.** If vertex-disjoint directed walks indexed by
-`X` start in `L` and end outside `L`, then at least `|X|` edges are directed out of `L`. -/
+`X` start in `L` and end outside `L`, then at least `|X|` edges are directed out of `L`.
+@isnad1 id=le.4h9v.s7.3fb3d3d12ba9 from=translated src=- shape=0e4db668 vocab=88d3a595
+-/
 theorem card_le_card_outCut_of_walks [Fintype E] {ι : Type*} (L : Set V) {X : Finset ι}
     {walk : ι → List V} {src dst : ι → V} (hwalk : ∀ i ∈ X, G.IsDirWalk (walk i) (src i) (dst i))
     (hdisj : ∀ i ∈ X, ∀ j ∈ X, i ≠ j → (walk i).Disjoint (walk j))
@@ -136,7 +154,9 @@ theorem card_le_card_outCut_of_walks [Fintype E] {ι : Type*} (L : Set V) {X : F
 
 /-- **Disjoint walks onto a set of outputs.** If vertex-disjoint walks indexed by `X` end at
 outputs with labels in `Y`, and `Y` has at most `|X|` labels, then every label in `Y` is the
-target of one of the walks. -/
+target of one of the walks.
+@isnad1 id=ex.5h12v.s7.82c102012a7b from=translated src=- shape=c8e0fac1 vocab=b419131a
+-/
 theorem exists_target_eq_of_walks {ι κ : Type*} {X : Finset ι} {Y : Finset κ}
     {walk : ι → List V} {src : ι → V} {output : κ → V} {target : ι → κ}
     (hwalk : ∀ i ∈ X, G.IsDirWalk (walk i) (src i) (output (target i)))
@@ -152,7 +172,9 @@ theorem exists_target_eq_of_walks {ι κ : Type*} {X : Finset ι} {Y : Finset κ
 
 /-- **Walks leaving `L`.** If vertex-disjoint walks indexed by `X` start in `L` and end at
 outputs with labels in `Y`, then `|X|` is at most the number of edges directed out of `L` plus
-the number of labels in `Y` whose outputs lie in `L`. -/
+the number of labels in `Y` whose outputs lie in `L`.
+@isnad1 id=le.4h12v.s7.f3380d95c2dc from=translated src=- shape=6d030c80 vocab=7ef5bcb0
+-/
 theorem card_le_card_outCut_add_card_filter [Fintype E] {ι κ : Type*} (L : Set V)
     {X : Finset ι} {Y : Finset κ} {walk : ι → List V} {src : ι → V} {output : κ → V}
     {target : ι → κ} (hwalk : ∀ i ∈ X, G.IsDirWalk (walk i) (src i) (output (target i)))
@@ -174,7 +196,9 @@ theorem card_le_card_outCut_add_card_filter [Fintype E] {ι κ : Type*} (L : Set
 
 /-- **Walks entering `L`.** If vertex-disjoint walks indexed by `X` start outside `L` and end at
 outputs with labels in `Y`, and `Y` has at most `|X|` labels, then at least as many edges are
-directed into `L` as there are labels in `Y` whose outputs lie in `L`. -/
+directed into `L` as there are labels in `Y` whose outputs lie in `L`.
+@isnad1 id=le.5h12v.s7.637d0d24d933 from=translated src=- shape=977b18ca vocab=1e5ad85b
+-/
 theorem card_filter_le_card_outCut_compl [Fintype E] {ι κ : Type*} (L : Set V)
     {X : Finset ι} {Y : Finset κ} {walk : ι → List V} {src : ι → V} {output : κ → V}
     {target : ι → κ} (hwalk : ∀ i ∈ X, G.IsDirWalk (walk i) (src i) (output (target i)))
@@ -194,7 +218,9 @@ theorem card_filter_le_card_outCut_compl [Fintype E] {ι κ : Type*} (L : Set V)
     fun i hi => by simpa using (Finset.mem_filter.1 hi).2
 
 /-- **One walk family.** If `X` and `Y` are equally large, the inputs in `X` lie in `L`, and
-the outputs in `Y` lie outside `L`, then at least `|X|` edges are directed out of `L`. -/
+the outputs in `Y` lie outside `L`, then at least `|X|` edges are directed out of `L`.
+@isnad1 id=le.4h9v.s7.b086b3e7355d from=translated src=- shape=e7a54c0a vocab=51b0496d
+-/
 theorem card_le_card_cross [Fintype E] {N : ℕ} {input output : Fin N → V}
     (h : G.Superconcentrator input output) (L : Set V) {X Y : Finset (Fin N)}
     (hXY : X.card = Y.card) (hX : ∀ i ∈ X, input i ∈ L) (hY : ∀ j ∈ Y, output j ∉ L) :
@@ -206,7 +232,9 @@ theorem card_le_card_cross [Fintype E] {N : ℕ} {input output : Fin N → V}
 /-! ### Lower sets with a prescribed number of chosen vertices -/
 
 /-- **Prefixes of a chosen set.** In a linear order, for every `k` at most the size of a set
-`T`, some lower set contains exactly `k` elements of `T`. -/
+`T`, some lower set contains exactly `k` elements of `T`.
+@isnad1 id=ex.1h3v.s6.dbbb20604732 from=translated src=- shape=10308d7e vocab=768c146f
+-/
 theorem exists_isLowerSet_card_filter [Fintype V] [LinearOrder V] (T : Finset V) {k : ℕ}
     (hk : k ≤ T.card) :
     ∃ L : Finset V, IsLowerSet (L : Set V) ∧ (T.filter (· ∈ L)).card = k := by
@@ -235,7 +263,9 @@ theorem exists_isLowerSet_card_filter [Fintype V] [LinearOrder V] (T : Finset V)
   · exact ⟨Finset.univ, by simpa using isLowerSet_univ, by simp⟩
 
 /-- **The cut lemma.** Every linear order of the vertices of an `N`-superconcentrator has a
-lower set whose cut has at least `N` edges. -/
+lower set whose cut has at least `N` edges.
+@isnad1 id=ex.1h6v.s6.bb264bad0557 from=translated src=- shape=16ec16a7 vocab=c15cc27b
+-/
 theorem exists_le_card_cut [Fintype V] [Fintype E] [LinearOrder V] {N : ℕ}
     {input output : Fin N → V} (h : G.Superconcentrator input output) :
     ∃ L : Finset V, IsLowerSet (L : Set V) ∧ N ≤ (G.cut L).card := by

@@ -118,7 +118,9 @@ noncomputable def toGraph : ConstraintGraph (Alpha Q) where
 noncomputable def tableOf (A : M.toGraph.Assignment) : Table Pos :=
   fun p => (A (M.vertIdx (Sum.inl p))).1
 
-/-- The constraint of edge `(e, z, i)`, spelled out. -/
+/-- The constraint of edge `(e, z, i)`, spelled out.
+@isnad1 id=iff.0h6v.s8.0f5603522824 from=translated src=- shape=8c760d8b vocab=c257f7c2
+-/
 theorem satisfies_toGraph_iff (A : M.toGraph.Assignment) (k : Fin (Fintype.card M.Edge)) :
     M.toGraph.Satisfies A k ↔
       (M.check (M.edgeOf k).1 (M.edgeOf k).2.1
@@ -134,13 +136,18 @@ noncomputable def edgeIdx (x : M.Edge) : Fin (Fintype.card M.Edge) :=
   NumEnc.equivFinCard M.Edge x
 
 omit [Fintype Pos] [NumEnc Pos] in
+/--
+@isnad1 id=eq.0h5v.s5.57fee7d1e5cc from=translated src=- shape=8e83cc44 vocab=48c69063
+-/
 @[simp] theorem edgeOf_edgeIdx (x : M.Edge) : M.edgeOf (M.edgeIdx x) = x :=
   Equiv.symm_apply_apply _ _
 
 /-- **A rejecting random string has a violated edge.** Either the claimed
 answers fail the test, so every edge of the string is violated, or they pass and
 therefore differ from the proof at some read. (With no reads there would be no
-edges, so the test must read at least once.) -/
+edges, so the test must read at least once.)
+@isnad1 id=ex.1h7v.s7.39e121d382db from=translated src=- shape=65abad44 vocab=95ff310c
+-/
 theorem exists_unsat_of_rejects [Nonempty Q] (A : M.toGraph.Assignment) (e : E)
     (z : Cube M.R) (hz : z ∈ M.rejects (M.tableOf A) e) :
     ∃ i : Q, ¬ M.toGraph.Satisfies A (M.edgeIdx (e, z, i)) := by
@@ -169,6 +176,9 @@ noncomputable def witnessEdge [Nonempty Q] (A : M.toGraph.Assignment)
     M.edgeIdx (x.1, x.2, Classical.choose (M.exists_unsat_of_rejects A x.1 x.2 h))
   else M.edgeIdx (x.1, x.2, Classical.arbitrary Q)
 
+/--
+@isnad1 id=mem.1h6v.s8.ee048c238b59 from=translated src=- shape=a1b6eb41 vocab=1aaead98
+-/
 theorem witnessEdge_mem [Nonempty Q] (A : M.toGraph.Assignment) (x : E × Cube M.R)
     (hx : x.2 ∈ M.rejects (M.tableOf A) x.1) :
     M.witnessEdge A x ∈ M.toGraph.unsatEdges A := by
@@ -177,6 +187,9 @@ theorem witnessEdge_mem [Nonempty Q] (A : M.toGraph.Assignment) (x : E × Cube M
   erw [ConstraintGraph.mem_unsatEdges]
   exact Classical.choose_spec (M.exists_unsat_of_rejects A x.1 x.2 hx)
 
+/--
+@isnad1 id=injectiv.0h5v.s7.5f3833d8e18e from=translated src=- shape=dbeb6170 vocab=8d28a1da
+-/
 theorem witnessEdge_injective [Nonempty Q] (A : M.toGraph.Assignment) :
     Function.Injective (M.witnessEdge A) := by
   intro x y hxy
@@ -190,6 +203,9 @@ def rejectPairs (T : Table Pos) : Finset (E × Cube M.R) :=
   Finset.univ.filter fun x => x.2 ∈ M.rejects T x.1
 
 omit [Fintype Pos] [Fintype Q] [NumEnc Pos] [NumEnc E] [NumEnc Q] in
+/--
+@isnad1 id=eq.0h5v.s5.5d6582f832f1 from=translated src=- shape=c47be700 vocab=624d49a4
+-/
 theorem card_rejectPairs (T : Table Pos) :
     (M.rejectPairs T).card = ∑ e : E, (M.rejects T e).card := by
   classical
@@ -200,7 +216,9 @@ theorem card_rejectPairs (T : Table Pos) :
   ext z
   simp
 
-/-- **Rejections are counted by violated edges.** -/
+/-- **Rejections are counted by violated edges.**
+@isnad1 id=le.0h5v.s6.937cc6912676 from=translated src=- shape=68560447 vocab=6ece8b6f
+-/
 theorem card_rejects_le_card_unsatEdges [Nonempty Q] (A : M.toGraph.Assignment) :
     ∑ e : E, (M.rejects (M.tableOf A) e).card ≤ (M.toGraph.unsatEdges A).card := by
   classical
@@ -213,6 +231,9 @@ theorem card_rejects_le_card_unsatEdges [Nonempty Q] (A : M.toGraph.Assignment) 
     simpa [rejectPairs] using this
   exact M.witnessEdge_mem A x hx'
 
+/--
+@isnad1 id=eq.0h4v.s6.0cb9a7bb9503 from=translated src=- shape=44d9a4f9 vocab=c8892756
+-/
 theorem numEdges_toGraph : M.toGraph.numEdges = Fintype.card E * 2 ^ M.R * Fintype.card Q := by
   show Fintype.card (E × Cube M.R × Q) = _
   rw [Fintype.card_prod, Fintype.card_prod]
@@ -223,7 +244,9 @@ theorem numEdges_toGraph : M.toGraph.numEdges = Fintype.card E * 2 ^ M.R * Finty
 
 /-- **Soundness of the transformation.** The violated fraction of the binary
 graph is at least the average rejection probability of the tests, divided by
-the number of reads. -/
+the number of reads.
+@isnad1 id=le.0h5v.s7.5d84a9c3f54c from=translated src=- shape=cc86ff13 vocab=467b1b1d
+-/
 theorem unsatFrac_toGraph_ge [Nonempty Q] (A : M.toGraph.Assignment) :
     (∑ e : E, ((M.rejects (M.tableOf A) e).card : ℚ))
         / ((Fintype.card E : ℚ) * 2 ^ M.R * Fintype.card Q)
@@ -246,16 +269,24 @@ noncomputable def honest (T : Table Pos) : M.toGraph.Assignment := fun v =>
   | Sum.inl p => (T p, fun _ => 0)
   | Sum.inr (e, z) => (0, fun i => T (M.pos e z i))
 
+/--
+@isnad1 id=eq.0h6v.s7.267b3e754533 from=translated src=- shape=929e802d vocab=61d1e941
+-/
 theorem honest_inl (T : Table Pos) (p : Pos) :
     M.honest T (M.vertIdx (Sum.inl p)) = (T p, fun _ => 0) := by
   simp [honest, vertIdx]
 
+/--
+@isnad1 id=eq.0h6v.s7.cf5f05d29d3f from=translated src=- shape=bbb05967 vocab=36d17484
+-/
 theorem honest_inr (T : Table Pos) (x : E × Cube M.R) :
     M.honest T (M.vertIdx (Sum.inr x)) = (0, fun i => T (M.pos x.1 x.2 i)) := by
   simp [honest, vertIdx]
 
 /-- **Completeness.** A proof accepted by every test on every random string
-gives a satisfying assignment of the binary graph. -/
+gives a satisfying assignment of the binary graph.
+@isnad1 id=satisfia.1h5v.s6.effb93508bf7 from=translated src=- shape=40c18624 vocab=d1c452ce
+-/
 theorem satisfiable_toGraph (T : Table Pos) (h : ∀ e z, M.accepts T e z = true) :
     M.toGraph.Satisfiable := by
   classical

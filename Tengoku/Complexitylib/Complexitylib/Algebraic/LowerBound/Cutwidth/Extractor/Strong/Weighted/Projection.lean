@@ -21,7 +21,9 @@ public section
 
 namespace Algebraic.Cutwidth.Extractor
 
-/-- A stronger source cap preserves the weighted strong-extractor guarantee. -/
+/-- A stronger source cap preserves the weighted strong-extractor guarantee.
+@isnad1 id=weighted.2h7v.s5.67c7a2922379 from=translated src=- shape=fb921452 vocab=448f24b6
+-/
 theorem WeightedStrongSeededExtractor.mono_threshold {α Seed Ω : Type*}
     [Fintype α] [Fintype Seed] [Fintype Ω]
     {E : α → Seed → Ω} {K L : Nat} {ε : ℝ}
@@ -29,7 +31,9 @@ theorem WeightedStrongSeededExtractor.mono_threshold {α Seed Ω : Type*}
     WeightedStrongSeededExtractor E L ε :=
   Internal.weightedStrongSeededExtractor_mono_threshold extract threshold
 
-/-- Dropping a nonempty finite output factor preserves strong extraction with the same error. -/
+/-- Dropping a nonempty finite output factor preserves strong extraction with the same error.
+@isnad1 id=weighted.1h7v.s6.b65628ffd34a from=translated src=- shape=0e35a795 vocab=ba8256f1
+-/
 theorem WeightedStrongSeededExtractor.fst {α Seed Ω Tail : Type*}
     [Fintype α] [Fintype Seed] [Fintype Ω] [Fintype Tail] [Nonempty Tail]
     {E : α → Seed → Ω × Tail} {K : Nat} {ε : ℝ}
@@ -37,7 +41,9 @@ theorem WeightedStrongSeededExtractor.fst {α Seed Ω Tail : Type*}
     WeightedStrongSeededExtractor (fun a y => (E a y).1) K ε :=
   Internal.weightedStrongSeededExtractor_fst extract
 
-/-- Keeping the first `b` of `M` output bits preserves the source threshold and strong error. -/
+/-- Keeping the first `b` of `M` output bits preserves the source threshold and strong error.
+@isnad1 id=weighted.2h7v.s6.5f815137fd99 from=translated src=- shape=38d7e20e vocab=71b9644c
+-/
 theorem WeightedStrongSeededExtractor.truncate {α Seed : Type*}
     [Fintype α] [Fintype Seed]
     {b M K : Nat} {ε : ℝ} {E : α → Seed → Fin M → Bool}

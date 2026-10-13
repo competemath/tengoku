@@ -29,12 +29,17 @@ variable {ι κ ι' κ' : Type*}
 abbrev blockRows (M : Matrix ι κ (ZMod 2)) (S : Set ι) (T : Set κ) : S → T → ZMod 2 :=
   fun i j => M i j
 
+/--
+@isnad1 id=eq.0h5v.s11.72f83448f6ed from=translated src=- shape=7f7de15f vocab=c295511f
+-/
 theorem blockRank_eq (M : Matrix ι κ (ZMod 2)) (S : Set ι) (T : Set κ) :
     blockRank M S T =
       Module.finrank (ZMod 2) (Submodule.span (ZMod 2) (range (blockRows M S T))) :=
   rfl
 
-/-- Restricting the columns of a block maps its row space onto the smaller row space. -/
+/-- Restricting the columns of a block maps its row space onto the smaller row space.
+@isnad1 id=eq.1h6v.s10.566659e03c25 from=translated src=- shape=f5feaf80 vocab=979b49c6
+-/
 theorem span_blockRows_eq_map {M : Matrix ι κ (ZMod 2)} (S : Set ι) {T T' : Set κ}
     (h : T' ⊆ T) :
     Submodule.span (ZMod 2) (range (blockRows M S T')) =
@@ -43,13 +48,17 @@ theorem span_blockRows_eq_map {M : Matrix ι κ (ZMod 2)} (S : Set ι) {T T' : S
   rw [Submodule.map_span, ← range_comp]
   rfl
 
-/-- Deleting columns does not increase the rank of a block. -/
+/-- Deleting columns does not increase the rank of a block.
+@isnad1 id=le.1h6v.s5.192dea756d5e from=translated src=- shape=32d20831 vocab=7c862664
+-/
 theorem blockRank_mono_right [Finite κ] (M : Matrix ι κ (ZMod 2)) (S : Set ι) {T T' : Set κ}
     (h : T' ⊆ T) : blockRank M S T' ≤ blockRank M S T := by
   rw [blockRank_eq, blockRank_eq, span_blockRows_eq_map S h]
   exact Submodule.finrank_map_le _ _
 
-/-- Deleting rows does not increase the rank of a block. -/
+/-- Deleting rows does not increase the rank of a block.
+@isnad1 id=le.1h6v.s5.1ddfc58aa9cc from=translated src=- shape=0889c5be vocab=7c862664
+-/
 theorem blockRank_mono_left [Finite κ] (M : Matrix ι κ (ZMod 2)) {S S' : Set ι} (T : Set κ)
     (h : S' ⊆ S) : blockRank M S' T ≤ blockRank M S T := by
   apply Submodule.finrank_mono
@@ -57,12 +66,16 @@ theorem blockRank_mono_left [Finite κ] (M : Matrix ι κ (ZMod 2)) {S S' : Set 
   rintro _ ⟨i, rfl⟩
   exact ⟨⟨i, h i.2⟩, rfl⟩
 
-/-- A sub-block has at most the rank of the block. -/
+/-- A sub-block has at most the rank of the block.
+@isnad1 id=le.2h7v.s5.50fcb3e95da8 from=translated src=- shape=ac9d8f0f vocab=7c862664
+-/
 theorem blockRank_mono [Finite κ] (M : Matrix ι κ (ZMod 2)) {S S' : Set ι} {T T' : Set κ}
     (hS : S' ⊆ S) (hT : T' ⊆ T) : blockRank M S' T' ≤ blockRank M S T :=
   (blockRank_mono_right M S' hT).trans (blockRank_mono_left M T hS)
 
-/-- The rank of a block is at most the number of its rows. -/
+/-- The rank of a block is at most the number of its rows.
+@isnad1 id=le.0h5v.s5.963cfca05e2d from=translated src=- shape=ed55063e vocab=b63fede3
+-/
 theorem blockRank_le_ncard [Finite ι] (M : Matrix ι κ (ZMod 2)) (S : Set ι) (T : Set κ) :
     blockRank M S T ≤ S.ncard := by
   classical
@@ -70,7 +83,9 @@ theorem blockRank_le_ncard [Finite ι] (M : Matrix ι κ (ZMod 2)) (S : Set ι) 
   calc blockRank M S T ≤ Fintype.card S := finrank_range_le_card _
     _ = S.ncard := by rw [← Nat.card_eq_fintype_card, Nat.card_coe_set_eq]
 
-/-- Deleting the rows outside `S'` lowers the rank of a block by at most their number. -/
+/-- Deleting the rows outside `S'` lowers the rank of a block by at most their number.
+@isnad1 id=le.1h6v.s6.9f9eb819c495 from=translated src=- shape=4ca3088b vocab=d6befb66
+-/
 theorem blockRank_le_add [Finite ι] [Finite κ] (M : Matrix ι κ (ZMod 2)) {S S' : Set ι} (T : Set κ)
     (h : S' ⊆ S) : blockRank M S T ≤ blockRank M S' T + (S \ S').ncard := by
   have hrange : range (blockRows M S T) =
@@ -92,13 +107,17 @@ theorem blockRank_le_add [Finite ι] [Finite κ] (M : Matrix ι κ (ZMod 2)) {S 
   rw [blockRank_eq, hrange, Submodule.span_union]
   omega
 
-/-- Blocks that agree entrywise have the same rank. -/
+/-- Blocks that agree entrywise have the same rank.
+@isnad1 id=eq.1h6v.s6.135936b77308 from=translated src=- shape=35931aac vocab=183289c0
+-/
 theorem blockRank_congr {M M' : Matrix ι κ (ZMod 2)} {S : Set ι} {T : Set κ}
     (h : ∀ i ∈ S, ∀ j ∈ T, M i j = M' i j) : blockRank M S T = blockRank M' S T := by
   have : blockRows M S T = blockRows M' S T := funext fun i => funext fun j => h i i.2 j j.2
   rw [blockRank_eq, blockRank_eq, this]
 
-/-- Row rank equals column rank. -/
+/-- Row rank equals column rank.
+@isnad1 id=eq.0h5v.s5.6653f9e0e8f6 from=translated src=- shape=eabea878 vocab=397c4d4c
+-/
 theorem blockRank_transpose [Finite ι] [Finite κ] (M : Matrix ι κ (ZMod 2)) (S : Set ι)
     (T : Set κ) :
     blockRank M.transpose T S = blockRank M S T := by
@@ -111,7 +130,9 @@ theorem blockRank_transpose [Finite ι] [Finite κ] (M : Matrix ι κ (ZMod 2)) 
     (Matrix.rank_eq_finrank_span_row N.transpose).symm
   rw [h₁, h₂, Matrix.rank_transpose]
 
-/-- Relabelling the rows and columns injectively does not change the rank of a block. -/
+/-- Relabelling the rows and columns injectively does not change the rank of a block.
+@isnad1 id=eq.2h9v.s6.60402b86460c from=translated src=- shape=747ecd5b vocab=210edca1
+-/
 theorem blockRank_comp (M : Matrix ι κ (ZMod 2)) {f : ι' → ι} {g : κ' → κ}
     (hf : Function.Injective f) (hg : Function.Injective g) (S : Set ι') (T : Set κ') :
     blockRank (M.submatrix f g) S T = blockRank M (f '' S) (g '' T) := by
@@ -137,7 +158,9 @@ theorem blockRank_comp (M : Matrix ι κ (ZMod 2)) {f : ι' → ι} {g : κ' →
 
 /-- **Blocks on disjoint columns.** If, among the columns `T`, the rows of `S₁` vanish outside
 `T₁` and the rows of `S₂` vanish outside `T₂`, with `T₁` and `T₂` disjoint, then the rank of the
-block `S × T` is at least the sum of the ranks of `S₁ × T` and `S₂ × T`. -/
+block `S × T` is at least the sum of the ranks of `S₁ × T` and `S₂ × T`.
+@isnad1 id=le.5h9v.s8.f0d257775ffe from=translated src=- shape=f11e2753 vocab=28b5ea18
+-/
 theorem add_blockRank_le_of_disjoint [Finite κ] (M : Matrix ι κ (ZMod 2)) {S S₁ S₂ : Set ι}
     {T T₁ T₂ : Set κ} (h₁ : S₁ ⊆ S) (h₂ : S₂ ⊆ S) (hT : Disjoint T₁ T₂)
     (hM₁ : ∀ i ∈ S₁, ∀ j ∈ T, j ∉ T₁ → M i j = 0)
@@ -174,14 +197,18 @@ theorem add_blockRank_le_of_disjoint [Finite κ] (M : Matrix ι κ (ZMod 2)) {S 
   · rintro _ ⟨i, rfl⟩
     exact ⟨⟨i, h₂ i.2⟩, rfl⟩
 
-/-- The cut rank at `U` lowers by at most `|U \ D|` when passing to a subset `D ⊆ U`. -/
+/-- The cut rank at `U` lowers by at most `|U \ D|` when passing to a subset `D ⊆ U`.
+@isnad1 id=le.1h4v.s5.5d9793eb14ed from=translated src=- shape=96679ebe vocab=8c2df7bb
+-/
 theorem cutRank_le_add [Finite ι] {Q : Matrix ι ι (ZMod 2)} {D U : Set ι} (h : D ⊆ U) :
     cutRank Q U ≤ cutRank Q D + (U \ D).ncard := by
   unfold cutRank
   refine (blockRank_le_add _ _ h).trans (Nat.add_le_add_right ?_ _)
   exact blockRank_mono_right _ _ (compl_subset_compl.mpr h)
 
-/-- Cut ranks are symmetric: the block for `Uᶜ` is the transpose of the block for `U`. -/
+/-- Cut ranks are symmetric: the block for `Uᶜ` is the transpose of the block for `U`.
+@isnad1 id=eq.0h3v.s5.1db4593ed263 from=translated src=- shape=3f57416f vocab=12bfed58
+-/
 theorem cutRank_compl [Finite ι] (Q : Matrix ι ι (ZMod 2)) (U : Set ι) :
     cutRank Q Uᶜ = cutRank Q U := by
   unfold cutRank

@@ -53,12 +53,17 @@ of the unsatisfiability value reaches the threshold, which is the bit length of
 the edge count. -/
 def gapRounds (φ : CNF) : ℕ := Nat.log 2 (3 * φ.length) + 1
 
+/--
+@isnad1 id=le.0h1v.s4.7cb5ef75e723 from=translated src=- shape=5e412272 vocab=ecdf5d3e
+-/
 theorem numEdges_baseCSP_le_pow_rounds (φ : CNF) :
     (baseCSP φ).numEdges ≤ 2 ^ gapRounds φ := by
   rw [numEdges_baseCSP, gapRounds]
   exact Nat.le_of_lt (Nat.lt_pow_succ_log_self (by omega) _)
 
-/-- A bit length costs at most a doubling. -/
+/-- A bit length costs at most a doubling.
+@isnad1 id=le.0h1v.s6.e7f8c9a8cc1a from=translated src=- shape=cdff0a8d vocab=bcb8e666
+-/
 theorem two_pow_log_succ_le (n : ℕ) : 2 ^ (Nat.log 2 n + 1) ≤ 2 * n + 2 := by
   rcases Nat.eq_zero_or_pos n with h | h
   · subst h

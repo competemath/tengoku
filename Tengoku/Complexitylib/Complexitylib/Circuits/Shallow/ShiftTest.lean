@@ -40,7 +40,9 @@ def residueSum (G : Type*) [Fintype G] [AddCommGroup G] : G := ∑ a : G, a
 def ShiftTest (t : G) (w s : G → G) : Prop :=
   (∑ i, s i) = residueSum G - t ∧ Function.Injective (fun i => w i + s i)
 
-/-- Passing a shifted distinctness test certifies the sum of the weights. -/
+/-- Passing a shifted distinctness test certifies the sum of the weights.
+@isnad1 id=eq.1h4v.s5.fb60e20dc12e from=translated src=- shape=84be1cc0 vocab=97aa6b06
+-/
 theorem ShiftTest.sound {t : G} {w s : G → G} (h : ShiftTest t w s) :
     ∑ i, w i = t := by
   have hb := Finite.injective_iff_bijective.mp h.2
@@ -49,7 +51,9 @@ theorem ShiftTest.sound {t : G} {w s : G → G} (h : ShiftTest t w s) :
   rw [sum_add_distrib, h.1] at hs
   exact add_right_cancel (b := residueSum G - t) (by simpa using hs)
 
-/-- For a valid weight vector, choosing a permutation determines the shifts. -/
+/-- For a valid weight vector, choosing a permutation determines the shifts.
+@isnad1 id=shifttes.1h4v.s6.c576b926ab1e from=translated src=- shape=3075f8c6 vocab=3c90b70f
+-/
 theorem shiftTest_perm {t : G} (w : G → G) (hw : ∑ i, w i = t)
     (e : Equiv.Perm G) : ShiftTest t w (fun i => e i - w i) := by
   constructor
@@ -73,14 +77,18 @@ noncomputable def acceptingShiftsEquiv {t : G} (w : G → G) (hw : ∑ i, w i = 
     intro i
     simp
 
-/-- Exactly `|G|!` shifts accept each weight vector with the target sum. -/
+/-- Exactly `|G|!` shifts accept each weight vector with the target sum.
+@isnad1 id=eq.1h3v.s5.81199d2f9995 from=translated src=- shape=79933ead vocab=6dfcc035
+-/
 theorem card_acceptingShifts {t : G} (w : G → G) (hw : ∑ i, w i = t) :
     Nat.card {s : G → G // ShiftTest t w s} = (Fintype.card G).factorial := by
   classical
   rw [Nat.card_congr (acceptingShiftsEquiv w hw), Nat.card_eq_fintype_card,
     Fintype.card_perm]
 
-/-- Some test accepts a weight vector exactly when its sum is the target. -/
+/-- Some test accepts a weight vector exactly when its sum is the target.
+@isnad1 id=iff.0h3v.s5.5a5d05f41329 from=translated src=- shape=f56b64cb vocab=97aa6b06
+-/
 theorem exists_shiftTest_iff (t : G) (w : G → G) :
     (∃ s, ShiftTest t w s) ↔ ∑ i, w i = t := by
   constructor
@@ -89,7 +97,9 @@ theorem exists_shiftTest_iff (t : G) (w : G → G) :
   · intro hw
     exact ⟨_, shiftTest_perm w hw (Equiv.refl G)⟩
 
-/-- Distinctness is a conjunction of constraints involving only two weights. -/
+/-- Distinctness is a conjunction of constraints involving only two weights.
+@isnad1 id=iff.0h4v.s6.73031ff92573 from=translated src=- shape=2615e110 vocab=6a41dfc4
+-/
 theorem shiftTest_iff_pairwise (t : G) (w s : G → G) :
     ShiftTest t w s ↔ (∑ i, s i) = residueSum G - t ∧
       ∀ i j, i ≠ j → w i + s i ≠ w j + s j := by

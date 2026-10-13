@@ -44,7 +44,9 @@ variable {V E : Type} {G : Multigraph V E}
 
 /-! ### Connected multigraphs -/
 
-/-- A connected multigraph has at least its number of vertices minus one edges. -/
+/-- A connected multigraph has at least its number of vertices minus one edges.
+@isnad1 id=le.1h3v.s5.207df5ddc980 from=translated src=- shape=5bb115ad vocab=4c261d7a
+-/
 theorem card_le_card_add_one_of_connected [Fintype V] [Fintype E] (hG : G.Connected) :
     Fintype.card V ≤ Fintype.card E + 1 := by
   rcases isEmpty_or_nonempty V with hV | hV
@@ -84,6 +86,9 @@ theorem card_le_card_add_one_of_connected [Fintype V] [Fintype E] (hG : G.Connec
 
 /-! ### Slots at the ends of walks -/
 
+/--
+@isnad1 id=le.0h5v.s5.9242d2d0b841 from=translated src=- shape=3ed37894 vocab=abea1bbf
+-/
 theorem slots_le_two_mul_card (K : Finset E) (w : V) : slots G K w ≤ 2 * K.card := by
   unfold slots inEdges outEdges
   have := Finset.card_filter_le K fun e => G.snd e = w
@@ -93,7 +98,9 @@ theorem slots_le_two_mul_card (K : Finset E) (w : V) : slots G K w ≤ 2 * K.car
 variable [Fintype E]
 
 /-- The first vertex of a directed walk with distinct ends, in the component of `r`, has a kept
-edge leaving it. -/
+edge leaving it.
+@isnad1 id=lt.3h7v.s5.5ae2f28efef1 from=translated src=- shape=65785ce5 vocab=9ade9ac5
+-/
 theorem slots_pos_of_isDirWalk_left {r : V} {p : List V} {u v : V} (hp : G.IsDirWalk p u v)
     (huv : u ≠ v) (hu : ReflTransGen G.Adj u r) : 0 < slots G (compEdges G r) u := by
   obtain ⟨e, -, he₁, -⟩ := exists_cross_of_isDirWalk hp (L := {z | z = u}) rfl huv.symm
@@ -107,7 +114,9 @@ theorem slots_pos_of_isDirWalk_left {r : V} {p : List V} {u v : V} (hp : G.IsDir
   omega
 
 /-- The last vertex of a directed walk with distinct ends, in the component of `r`, has a kept
-edge entering it. -/
+edge entering it.
+@isnad1 id=lt.3h7v.s5.fcb8f734add9 from=translated src=- shape=ca360bb2 vocab=9ade9ac5
+-/
 theorem slots_pos_of_isDirWalk_right {r : V} {p : List V} {u v : V} (hp : G.IsDirWalk p u v)
     (huv : u ≠ v) (hu : ReflTransGen G.Adj u r) : 0 < slots G (compEdges G r) v := by
   obtain ⟨e, hep, -, he₂⟩ := exists_cross_of_isDirWalk hp (L := {z | z ≠ v}) huv (by simp)
@@ -121,7 +130,9 @@ theorem slots_pos_of_isDirWalk_right {r : V} {p : List V} {u v : V} (hp : G.IsDi
   unfold slots
   omega
 
-/-- A component in which `r` has a slot has a kept edge. -/
+/-- A component in which `r` has a slot has a kept edge.
+@isnad1 id=lt.1h4v.s5.c822ab890f83 from=translated src=- shape=42ac2d63 vocab=ed92ecdd
+-/
 theorem card_compEdges_pos_of_slots {r : V} (hr : 0 < slots G (compEdges G r) r) :
     0 < (compEdges G r).card := by
   have := slots_le_two_mul_card (G := G) (compEdges G r) r
@@ -132,7 +143,9 @@ theorem card_compEdges_pos_of_slots {r : V} (hr : 0 < slots G (compEdges G r) r)
 variable [Fintype V]
 
 /-- The vertices with a slot number at most one more than the kept edges: the split graph is
-connected. -/
+connected.
+@isnad1 id=le.1h4v.s6.456c0ebdcd21 from=translated src=- shape=9dd009eb vocab=36e2dc8b
+-/
 theorem card_slotted_le_card_compEdges_add_one {r : V} (hr : 0 < slots G (compEdges G r) r) :
     (Finset.univ.filter fun w => slots G (compEdges G r) w ≠ 0).card ≤
       (compEdges G r).card + 1 := by
@@ -142,7 +155,9 @@ theorem card_slotted_le_card_compEdges_add_one {r : V} (hr : 0 < slots G (compEd
   omega
 
 /-- **The edge baseline.** If at least `T` vertices have a slot, the multigraph has at least
-`T - 1` edges. -/
+`T - 1` edges.
+@isnad1 id=le.2h5v.s6.1ac3810f92c6 from=translated src=- shape=1a9857ca vocab=a783e205
+-/
 theorem le_card_add_one_of_le_slotted {r : V} (hr : 0 < slots G (compEdges G r) r) {T : ℕ}
     (hT : T ≤ (Finset.univ.filter fun w => slots G (compEdges G r) w ≠ 0).card) :
     T ≤ Fintype.card E + 1 := by
@@ -156,7 +171,9 @@ omit [Fintype E] [Fintype V]
 
 variable {N : ℕ} {input output : Fin N → V}
 
-/-- The `2 N` terminals are distinct. -/
+/-- The `2 N` terminals are distinct.
+@isnad1 id=eq.1h6v.s6.a2020e492f82 from=translated src=- shape=1db62502 vocab=b2a0f262
+-/
 theorem card_terminals (h : G.Superconcentrator input output) :
     (Finset.univ.image input ∪ Finset.univ.image output).card = 2 * N := by
   have hdisj : Disjoint (Finset.univ.image input) (Finset.univ.image output) := by
@@ -168,7 +185,9 @@ theorem card_terminals (h : G.Superconcentrator input output) :
     Finset.card_image_of_injective _ h.output_injective, Finset.card_univ, Fintype.card_fin]
   ring
 
-/-- Every input is joined to the first input by an undirected walk. -/
+/-- Every input is joined to the first input by an undirected walk.
+@isnad1 id=refltran.2h7v.s5.40e6a589c47e from=translated src=- shape=c9272c95 vocab=c4532861
+-/
 theorem reflTransGen_input_root (h : G.Superconcentrator input output) (hN : 0 < N)
     (i : Fin N) : ReflTransGen G.Adj (input i) (input ⟨0, hN⟩) := by
   obtain ⟨p, hp⟩ := exists_isDirWalk h i ⟨0, hN⟩
@@ -178,26 +197,34 @@ theorem reflTransGen_input_root (h : G.Superconcentrator input output) (hN : 0 <
 
 variable [Fintype E]
 
-/-- Every input has a kept edge leaving it. -/
+/-- Every input has a kept edge leaving it.
+@isnad1 id=lt.2h7v.s6.7d36b5c51e63 from=translated src=- shape=9c754fe4 vocab=6006667e
+-/
 theorem slots_input_pos (h : G.Superconcentrator input output) (hN : 0 < N) (i : Fin N) :
     0 < slots G (compEdges G (input ⟨0, hN⟩)) (input i) := by
   obtain ⟨p, hp⟩ := exists_isDirWalk h i ⟨0, hN⟩
   exact slots_pos_of_isDirWalk_left hp (h.input_ne_output _ _) (reflTransGen_input_root h hN i)
 
-/-- Every output has a kept edge entering it. -/
+/-- Every output has a kept edge entering it.
+@isnad1 id=lt.2h7v.s6.571dc53d4f07 from=translated src=- shape=db09b0c0 vocab=6006667e
+-/
 theorem slots_output_pos (h : G.Superconcentrator input output) (hN : 0 < N) (j : Fin N) :
     0 < slots G (compEdges G (input ⟨0, hN⟩)) (output j) := by
   obtain ⟨p, hp⟩ := exists_isDirWalk h ⟨0, hN⟩ j
   exact slots_pos_of_isDirWalk_right hp (h.input_ne_output _ _) .refl
 
-/-- The component of the first input has a kept edge. -/
+/-- The component of the first input has a kept edge.
+@isnad1 id=lt.2h6v.s6.6c43c251f922 from=translated src=- shape=8ea768db vocab=2423d427
+-/
 theorem card_compEdges_pos (h : G.Superconcentrator input output) (hN : 0 < N) :
     0 < (compEdges G (input ⟨0, hN⟩)).card :=
   card_compEdges_pos_of_slots (slots_input_pos h hN _)
 
 variable [Fintype V]
 
-/-- The `2 N` terminals have a slot. -/
+/-- The `2 N` terminals have a slot.
+@isnad1 id=le.2h6v.s7.274688007e16 from=translated src=- shape=7328c709 vocab=122f5a83
+-/
 theorem two_mul_le_card_slotted (h : G.Superconcentrator input output) (hN : 0 < N) :
     2 * N ≤ (Finset.univ.filter fun w => slots G (compEdges G (input ⟨0, hN⟩)) w ≠ 0).card := by
   rw [← card_terminals h]
@@ -211,7 +238,9 @@ theorem two_mul_le_card_slotted (h : G.Superconcentrator input output) (hN : 0 <
 /-! ### Asymptotics -/
 
 /-- **Numeric core.** If `N ≤ (A + A² ε/2) (Q - D N)⁺ + 3 log₂ (B Q) + C`, then
-`(D + 1/A - ε) N ≤ Q` for all large `N`. -/
+`(D + 1/A - ε) N ≤ Q` for all large `N`.
+@isnad1 id=eventual.5h5v.s8.7bc51889cc1e from=translated src=- shape=6a4fbbb5 vocab=b9317ae3
+-/
 theorem eventually_le_of_bound {A ε D B : ℝ} (hA : 0 < A) (hε : 0 < ε) (hεA : ε * A ≤ 1)
     (hD : 1 ≤ D) (hB : 1 ≤ B) (C : ℝ) :
     ∀ᶠ N : ℕ in atTop, ∀ Q : ℝ, 0 ≤ Q →
@@ -253,7 +282,9 @@ theorem eventually_le_of_bound {A ε D B : ℝ} (hA : 0 < A) (hε : 0 < ε) (hε
 
 /-- **Numeric core with a baseline.** Let `0 ≤ h ≤ n`, `base ≤ D n`, `base - 1 ≤ Q` and
 `0 ≤ Q`. If `h ≤ (A + A² ε/2) (Q - base)⁺ + 3 log₂ (B Q) + C`, then `base + h/A - ε n ≤ Q` for
-all large `n`. The baseline covers small `h`, where the log term need not be absorbed. -/
+all large `n`. The baseline covers small `h`, where the log term need not be absorbed.
+@isnad1 id=eventual.4h5v.s8.94888a953c3f from=translated src=- shape=31ef5824 vocab=b9317ae3
+-/
 theorem eventually_le_of_bound_of_baseline {A ε D B : ℝ} (hA : 0 < A) (hε : 0 < ε)
     (hD : 0 ≤ D) (hB : 1 ≤ B) (C : ℝ) :
     ∀ᶠ n : ℕ in atTop, ∀ h base Q : ℝ, 0 ≤ h → h ≤ n → base ≤ D * n → base - 1 ≤ Q →

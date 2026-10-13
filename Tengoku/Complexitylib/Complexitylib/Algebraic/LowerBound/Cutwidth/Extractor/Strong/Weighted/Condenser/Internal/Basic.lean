@@ -24,6 +24,9 @@ namespace Algebraic.Cutwidth.Extractor.Internal
 
 open scoped Classical
 
+/--
+@isnad1 id=eq.0h5v.s6.ecdd5e03e85e from=translated src=- shape=4805df38 vocab=ef46c379
+-/
 theorem weightedSeededOutput_eq_mapWeight {α Seed Ω : Type*}
     [Fintype α] [Fintype Seed] (p : α → ℝ) (C : α → Seed → Ω) :
     weightedSeededOutput p C = mapWeight (fun xy : α × Seed => (xy.2, C xy.1 xy.2))
@@ -33,6 +36,9 @@ theorem weightedSeededOutput_eq_mapWeight {α Seed Ω : Type*}
   simp only [weightedSeededOutput, mapWeight, Fintype.sum_prod_type, Prod.mk.injEq,
     ite_and, Finset.sum_ite_eq', Finset.mem_univ, ↓reduceIte, Finset.sum_div, ite_div, zero_div]
 
+/--
+@isnad1 id=isprobab.1h3v.s5.4c1c0fdb2d18 from=translated src=- shape=cbd250a6 vocab=3e7f3a5e
+-/
 theorem probabilityWeight_seedFamilyWeight {Seed Ω : Type*}
     [Fintype Seed] [Fintype Ω] [Nonempty Seed]
     (q : Seed → Ω → ℝ) (probability : ∀ y, IsProbabilityWeight (q y)) :
@@ -44,6 +50,9 @@ theorem probabilityWeight_seedFamilyWeight {Seed Ω : Type*}
   simp only [seedFamilyWeight, Fintype.sum_prod_type, ← Finset.sum_div, mass]
   simp [nonzero]
 
+/--
+@isnad1 id=isprobab.1h5v.s5.0cdeae426f57 from=translated src=- shape=c45f3f10 vocab=75a53368
+-/
 theorem probabilityWeight_weightedSeededOutput {α Seed Ω : Type*}
     [Fintype α] [Fintype Seed] [Fintype Ω] [Nonempty Seed]
     {p : α → ℝ} (probability : IsProbabilityWeight p) (C : α → Seed → Ω) :
@@ -51,6 +60,9 @@ theorem probabilityWeight_weightedSeededOutput {α Seed Ω : Type*}
   probabilityWeight_seedFamilyWeight (fun y => mapWeight (fun x => C x y) p)
     (fun y => probability.map (fun x => C x y))
 
+/--
+@isnad1 id=eq.0h6v.s5.962417f1ae43 from=translated src=- shape=d7d20028 vocab=1d157a36
+-/
 theorem weightTestProb_weightedSeededOutput {α Seed Ω : Type*}
     [Fintype α] [Fintype Seed] (p : α → ℝ) (C : α → Seed → Ω)
     (T : Finset (Seed × Ω)) :
@@ -65,12 +77,18 @@ theorem weightTestProb_weightedSeededOutput {α Seed Ω : Type*}
   simp_rw [inner]
   exact (Finset.sum_div _ _ _).symm
 
+/--
+@isnad1 id=eq.0h4v.s6.4e475ec67a56 from=translated src=- shape=9faad81a vocab=cee4fae9
+-/
 theorem weightTestProb_seedFamilyWeight {Seed Ω : Type*} [Fintype Seed]
     (q : Seed → Ω → ℝ) (T : Finset (Seed × Ω)) :
     weightTestProb (seedFamilyWeight q) T =
       (∑ yz ∈ T, q yz.1 yz.2) / (Fintype.card Seed : ℝ) := by
   simp only [weightTestProb, seedFamilyWeight, Finset.sum_div]
 
+/--
+@isnad1 id=eq.0h3v.s5.5b49fe440062 from=translated src=- shape=92334a3b vocab=6152aa2b
+-/
 theorem weightTestProb_seedFamilyWeight_uniform {Seed Ω : Type*}
     [Fintype Seed] [Fintype Ω] (T : Finset (Seed × Ω)) :
     weightTestProb (seedFamilyWeight (fun _ : Seed => uniformWeight Ω)) T =
@@ -80,6 +98,9 @@ theorem weightTestProb_seedFamilyWeight_uniform {Seed Ω : Type*}
     div_eq_mul_inv, mul_inv_rev]
   ring
 
+/--
+@isnad1 id=eq.0h6v.s6.bffecd2d1e6f from=translated src=- shape=d43094e9 vocab=eec7d109
+-/
 theorem weightTestProb_seedFamilyWeight_mixture {ι Seed Ω : Type*}
     [Fintype ι] [Fintype Seed] (w : ι → ℝ) (q : ι → Seed → Ω → ℝ)
     (T : Finset (Seed × Ω)) :
@@ -91,6 +112,9 @@ theorem weightTestProb_seedFamilyWeight_mixture {ι Seed Ω : Type*}
   intro i _
   rw [← Finset.mul_sum, mul_div_assoc]
 
+/--
+@isnad1 id=cappedwe.2h5v.s5.8935396c0879 from=translated src=- shape=0f5cb558 vocab=56fd417b
+-/
 theorem cappedWeight_map_injective {α β : Type*} [Fintype α]
     {p : α → ℝ} {K : Nat} (cap : CappedWeight p K)
     (f : α → β) (injective : Function.Injective f) : CappedWeight (mapWeight f p) K := by

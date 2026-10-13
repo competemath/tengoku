@@ -61,6 +61,9 @@ def slotN (n m : ℕ) (hN : N ≤ m * n) (u : Fin N) : Fin m :=
       rw [Nat.div_lt_iff_lt_mul h0]
       omega⟩
 
+/--
+@isnad1 id=eq.2h4v.s5.53adf0ba28b6 from=translated src=- shape=eb7c11f6 vocab=ae24f710
+-/
 theorem liftN_projN_slotN (hn : 0 < n) (hN : N ≤ m * n) (u : Fin N) :
     liftN N n (projN n hn u) (slotN n m hN u).val = some u := by
   rw [liftN, projN, slotN]
@@ -71,6 +74,9 @@ theorem liftN_projN_slotN (hn : 0 < n) (hN : N ≤ m * n) (u : Fin N) :
   congr 1
   exact Fin.ext h
 
+/--
+@isnad1 id=eq.2h5v.s5.fed423049b9c from=translated src=- shape=2d602316 vocab=867750ed
+-/
 theorem projN_liftN (hn : 0 < n) (v : Fin n) (i : ℕ) (u : Fin N)
     (h : liftN N n v i = some u) : projN n hn u = v := by
   rw [liftN] at h
@@ -81,6 +87,9 @@ theorem projN_liftN (hn : 0 < n) (v : Fin n) (i : ℕ) (u : Fin N)
     show (v.val + i * n) % n = v.val
     rw [Nat.add_mul_mod_self_right, Nat.mod_eq_of_lt v.isLt]
 
+/--
+@isnad1 id=eq.3h6v.s5.068b06c5df81 from=translated src=- shape=1197a2ad vocab=6e265f52
+-/
 theorem slotN_liftN (hn : 0 < n) (hN : N ≤ m * n) (v : Fin n) (i : ℕ) (u : Fin N)
     (h : liftN N n v i = some u) : (slotN n m hN u).val = i := by
   rw [liftN] at h
@@ -99,6 +108,9 @@ def mergeRotN (hn : 0 < n) (hN : N ≤ m * n) (rot : Fin N × Fin d → Fin N ×
       (projN n hn y.1, (slotN n m hN y.1, y.2))
   | none => x
 
+/--
+@isnad1 id=involuti.3h5v.s6.fe3ca9558284 from=translated src=- shape=74a453f4 vocab=8bca02b5
+-/
 theorem mergeRotN_involutive (hn : 0 < n) (hN : N ≤ m * n)
     (rot : Fin N × Fin d → Fin N × Fin d) (hrot : Function.Involutive rot) :
     Function.Involutive (mergeRotN hn hN rot) := by
@@ -133,10 +145,16 @@ def mergedN (hn : 0 < n) (hd : 0 < d) (hm : 0 < m) (hN : N ≤ m * n)
   rot := mergeRotN hn hN rot
   rot_involutive := mergeRotN_involutive hn hN rot hrot
 
+/--
+@isnad1 id=eq.5h5v.s6.34fc666aa882 from=translated src=- shape=0c582604 vocab=38f6fac4
+-/
 @[simp] theorem order_mergedN (hn : 0 < n) (hd : 0 < d) (hm : 0 < m) (hN : N ≤ m * n)
     (rot : Fin N × Fin d → Fin N × Fin d) (hrot : Function.Involutive rot) :
     (mergedN hn hd hm hN rot hrot).order = n := Fintype.card_fin n
 
+/--
+@isnad1 id=eq.5h5v.s6.bc47ca19db59 from=translated src=- shape=bf8aa381 vocab=fff56487
+-/
 @[simp] theorem deg_mergedN (hn : 0 < n) (hd : 0 < d) (hm : 0 < m) (hN : N ≤ m * n)
     (rot : Fin N × Fin d → Fin N × Fin d) (hrot : Function.Involutive rot) :
     (mergedN hn hd hm hN rot hrot).deg = m * d := by
@@ -154,7 +172,9 @@ noncomputable def termN (hn : 0 < n) (hd : 0 < d)
   | some u => (base hd rot hrot).step (fun w => f (projN n hn w)) u
   | none => f v
 
-/-- **The merged walk is the average over the slots.** -/
+/-- **The merged walk is the average over the slots.**
+@isnad1 id=eq.5h7v.s7.bb830bfcb381 from=translated src=- shape=e830f839 vocab=ffab0d41
+-/
 theorem step_mergedN (hn : 0 < n) (hd : 0 < d) (hm : 0 < m) (hN : N ≤ m * n)
     (rot : Fin N × Fin d → Fin N × Fin d) (hrot : Function.Involutive rot)
     (f : Fin n → ℝ) (v : Fin n) :
@@ -194,7 +214,9 @@ theorem step_mergedN (hn : 0 < n) (hd : 0 < d) (hm : 0 < m) (hN : N ≤ m * n)
   field_simp
 
 /-- **Jensen**: the square of the average is at most the average of the
-squares. -/
+squares.
+@isnad1 id=le.5h7v.s7.835ac12d14f3 from=translated src=- shape=e3ceb378 vocab=e48b5b3b
+-/
 theorem sq_step_mergedN_le (hn : 0 < n) (hd : 0 < d) (hm : 0 < m) (hN : N ≤ m * n)
     (rot : Fin N × Fin d → Fin N × Fin d) (hrot : Function.Involutive rot)
     (f : Fin n → ℝ) (v : Fin n) :
@@ -210,7 +232,9 @@ theorem sq_step_mergedN_le (hn : 0 < n) (hd : 0 < d) (hm : 0 < m) (hN : N ≤ m 
 
 /-! ### Summing over the slots -/
 
-/-- **The filled slots are exactly the old vertices.** -/
+/-- **The filled slots are exactly the old vertices.**
+@isnad1 id=eq.2h4v.s6.74237e33c456 from=translated src=- shape=7f0655a8 vocab=68236f93
+-/
 theorem sum_over_liftN (hn : 0 < n) (hN : N ≤ m * n) (g : Fin N → ℝ) :
     ∑ p : Fin n × Fin m,
         (match liftN N n p.1 p.2.val with | some u => g u | none => 0)
@@ -247,7 +271,9 @@ theorem sum_over_liftN (hn : 0 < n) (hN : N ≤ m * n) (g : Fin N → ℝ) :
             exact Prod.ext h1 (Fin.ext h2)
 
 /-- **Splitting the slot terms**: the old steps, plus at most one padding per
-vertex — this is where balance of the fibres is used. -/
+vertex — this is where balance of the fibres is used.
+@isnad1 id=le.5h6v.s7.2422eea14e8c from=translated src=- shape=ede46020 vocab=715ba7d0
+-/
 theorem sum_sq_termN_le (hn : 0 < n) (hd : 0 < d) (hN : N ≤ m * n)
     (hm1 : (m - 1) * n ≤ N) (rot : Fin N × Fin d → Fin N × Fin d)
     (hrot : Function.Involutive rot) (f : Fin n → ℝ) :
@@ -291,9 +317,14 @@ theorem sum_sq_termN_le (hn : 0 < n) (hd : 0 < d) (hN : N ≤ m * n)
 
 /-! ### The spectral bound at any width -/
 
-/-- The wide projection is the one `ExpanderMerge` already used. -/
+/-- The wide projection is the one `ExpanderMerge` already used.
+@isnad1 id=eq.1h2v.s4.e55304a2c9da from=translated src=- shape=cf719fa7 vocab=a3bbd0c0
+-/
 theorem projN_eq_proj (hn : 0 < n) : projN (N := N) n hn = proj n hn := rfl
 
+/--
+@isnad1 id=le.2h4v.s6.a2a69e85bfae from=translated src=- shape=7ffa9648 vocab=250770ed
+-/
 theorem sum_sq_liftN_le (hn : 0 < n) (hN : N ≤ m * n) (f : Fin n → ℝ) :
     ∑ u : Fin N, (f (projN n hn u)) ^ 2 ≤ (m : ℝ) * ∑ v : Fin n, (f v) ^ 2 := by
   classical
@@ -315,7 +346,9 @@ theorem sum_sq_liftN_le (hn : 0 < n) (hN : N ≤ m * n) (f : Fin n → ℝ) :
     _ = (m : ℝ) * (f v) ^ 2 := by
         rw [Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul]
 
-/-- **The lift's total**, for a mean-zero `f`: only the last slot survives. -/
+/-- **The lift's total**, for a mean-zero `f`: only the last slot survives.
+@isnad1 id=eq.5h4v.s7.c7c4358b0abf from=translated src=- shape=985c417e vocab=62919e13
+-/
 theorem sum_liftN_eq (hn : 0 < n) (hN : N ≤ m * n) (hm1 : (m - 1) * n ≤ N) (hm : 0 < m)
     (f : Fin n → ℝ) (hf : ∑ v : Fin n, f v = 0) :
     ∑ u : Fin N, f (projN n hn u)
@@ -368,7 +401,9 @@ theorem sum_liftN_eq (hn : 0 < n) (hN : N ≤ m * n) (hm1 : (m - 1) * n ≤ N) (
   rw [Finset.sum_congr rfl fun v _ => hv v, Finset.sum_add_distrib, ← Finset.mul_sum, hf,
     mul_zero, zero_add]
 
-/-- **The mean of the lift is small.** -/
+/-- **The mean of the lift is small.**
+@isnad1 id=le.5h4v.s7.ffec4480c762 from=translated src=- shape=65f4f42b vocab=781fb2e0
+-/
 theorem sq_sum_liftN_le (hn : 0 < n) (hN : N ≤ m * n) (hm1 : (m - 1) * n ≤ N) (hm : 0 < m)
     (f : Fin n → ℝ) (hf : ∑ v : Fin n, f v = 0) :
     (∑ u : Fin N, f (projN n hn u)) ^ 2 ≤ (n : ℝ) * ∑ v : Fin n, (f v) ^ 2 := by
@@ -395,7 +430,9 @@ theorem sq_sum_liftN_le (hn : 0 < n) (hN : N ≤ m * n) (hm1 : (m - 1) * n ≤ N
         exact mul_le_mul hcard hsub h0 (by positivity)
 
 /-- **The spectral bound of the wide merge.** The width enters only through the
-`1 / m` terms, so the bound stays below one however far apart the sizes are. -/
+`1 / m` terms, so the bound stays below one however far apart the sizes are.
+@isnad1 id=spectral.9h6v.s8.63c08dd2f543 from=translated src=- shape=4d6df4f7 vocab=14af5f1d
+-/
 theorem spectralBound_mergedN (hn : 0 < n) (hd : 0 < d) (hm : 0 < m) (hN : N ≤ m * n)
     (hm1 : (m - 1) * n ≤ N) (h2 : 2 * n ≤ N)
     (rot : Fin N × Fin d → Fin N × Fin d) (hrot : Function.Involutive rot)
@@ -454,6 +491,9 @@ theorem spectralBound_mergedN (hn : 0 < n) (hd : 0 < d) (hm : 0 < m) (hN : N ≤
 /-- A width that always works for folding `N ≥ 2 n` vertices onto `n`. -/
 def mergeWidth (N n : ℕ) : ℕ := N / n + 1
 
+/--
+@isnad1 id=le.1h2v.s4.0654002948e1 from=translated src=- shape=196bb83e vocab=a5da35d4
+-/
 theorem le_mergeWidth_mul (N : ℕ) {n : ℕ} (hn : 0 < n) : N ≤ mergeWidth N n * n := by
   rw [mergeWidth]
   have h := Nat.div_add_mod N n
@@ -462,17 +502,25 @@ theorem le_mergeWidth_mul (N : ℕ) {n : ℕ} (hn : 0 < n) : N ≤ mergeWidth N 
     _ ≤ n * (N / n) + n := by omega
     _ = (N / n + 1) * n := by ring
 
+/--
+@isnad1 id=le.0h2v.s4.378517529665 from=translated src=- shape=54574b5d vocab=230b7514
+-/
 theorem mergeWidth_sub_one_mul_le (N n : ℕ) : (mergeWidth N n - 1) * n ≤ N := by
   rw [mergeWidth, Nat.add_sub_cancel]
   exact Nat.div_mul_le_self N n
 
+/--
+@isnad1 id=le.2h2v.s5.b31fc5d414c3 from=translated src=- shape=e93a3e40 vocab=a5da35d4
+-/
 theorem three_le_mergeWidth {N n : ℕ} (hn : 0 < n) (h2 : 2 * n ≤ N) :
     3 ≤ mergeWidth N n := by
   rw [mergeWidth]
   have h : 2 ≤ N / n := (Nat.le_div_iff_mul_le hn).2 (by omega)
   omega
 
-/-- The width is bounded whenever the overshoot is. -/
+/-- The width is bounded whenever the overshoot is.
+@isnad1 id=le.2h3v.s5.e51e9e9f1989 from=translated src=- shape=01f27e56 vocab=a68fff62
+-/
 theorem mergeWidth_le {N n C : ℕ} (hn : 0 < n) (h : N ≤ C * n) :
     mergeWidth N n ≤ C + 1 := by
   rw [mergeWidth]

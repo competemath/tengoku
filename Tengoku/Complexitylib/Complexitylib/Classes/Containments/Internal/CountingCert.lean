@@ -54,7 +54,9 @@ variable {k : ℕ} {tm : NTM k} {x : List Bool} {S : ℕ}
 
 /-- **Membership in a round is a walk.** A code lies in round `i` exactly when some sequence of
 `i` steps from the start reaches it, each step either staying put or moving to a successor. This
-is the form a machine verifies: it holds only the current code and the step index. -/
+is the form a machine verifies: it holds only the current code and the step index.
+@isnad1 id=iff.0h7v.s8.9b41f24c2f9b from=translated src=- shape=aacce47b vocab=b2767280
+-/
 theorem mem_reachCodes_iff_walk (tm : NTM k) (x : List Bool) (S : ℕ)
     (a₀ : Code tm.Q k x.length S) :
     ∀ (i : ℕ) (a : Code tm.Q k x.length S),
@@ -107,7 +109,9 @@ def RoundList (tm : NTM k) (x : List Bool) (S : ℕ) (a₀ : Code tm.Q k x.lengt
   l.Nodup ∧ (∀ a ∈ l, a ∈ reachCodes tm x S a₀ i) ∧
     (reachCodes tm x S a₀ i).card ≤ l.length
 
-/-- **A round can always be listed**, so an honest prover can supply the certificate. -/
+/-- **A round can always be listed**, so an honest prover can supply the certificate.
+@isnad1 id=ex.0h6v.s5.4f5ec3cdf4fc from=translated src=- shape=bb11d5a5 vocab=4c9a3d14
+-/
 theorem roundList_exists (tm : NTM k) (x : List Bool) (S : ℕ)
     (a₀ : Code tm.Q k x.length S) (i : ℕ) :
     ∃ l, RoundList tm x S a₀ i l :=
@@ -115,6 +119,9 @@ theorem roundList_exists (tm : NTM k) (x : List Bool) (S : ℕ)
     fun _ ha => Finset.mem_toList.mp ha, le_of_eq (Finset.length_toList _).symm⟩
 
 open Classical in
+/--
+@isnad1 id=eq.1h7v.s6.538a7d746e07 from=translated src=- shape=c46174c2 vocab=f6ff3761
+-/
 theorem roundList_toFinset {a₀ : Code tm.Q k x.length S} {i : ℕ}
     {l : List (Code tm.Q k x.length S)} (h : RoundList tm x S a₀ i l) :
     l.toFinset = reachCodes tm x S a₀ i := by
@@ -125,7 +132,9 @@ theorem roundList_toFinset {a₀ : Code tm.Q k x.length S} {i : ℕ}
 
 open Classical in
 /-- **What a round list decides, negatively.** A code absent from a list that exhausts the round
-is not in the round — a negative fact, certified by a count. -/
+is not in the round — a negative fact, certified by a count.
+@isnad1 id=not.2h8v.s7.c9673470406e from=translated src=- shape=553b1049 vocab=2bc193ec
+-/
 theorem not_mem_of_roundList {a₀ : Code tm.Q k x.length S} {i : ℕ}
     {l : List (Code tm.Q k x.length S)} (h : RoundList tm x S a₀ i l)
     {a : Code tm.Q k x.length S} (ha : a ∉ l) : a ∉ reachCodes tm x S a₀ i := by
@@ -134,7 +143,9 @@ theorem not_mem_of_roundList {a₀ : Code tm.Q k x.length S} {i : ℕ}
   exact ha
 
 open Classical in
-/-- And positively: every member of the round appears. -/
+/-- And positively: every member of the round appears.
+@isnad1 id=mem.2h8v.s7.e1fc9844c4b7 from=translated src=- shape=88e92bd1 vocab=2bc193ec
+-/
 theorem mem_of_roundList {a₀ : Code tm.Q k x.length S} {i : ℕ}
     {l : List (Code tm.Q k x.length S)} (h : RoundList tm x S a₀ i l)
     {a : Code tm.Q k x.length S} (ha : a ∈ reachCodes tm x S a₀ i) : a ∈ l := by
@@ -143,7 +154,9 @@ theorem mem_of_roundList {a₀ : Code tm.Q k x.length S} {i : ℕ}
   exact ha
 
 /-- The list is exactly as long as the round, so the count a machine accumulates is the round's
-size. -/
+size.
+@isnad1 id=eq.1h7v.s6.572ee9550334 from=translated src=- shape=565a7a0f vocab=e612f34f
+-/
 theorem roundList_length {a₀ : Code tm.Q k x.length S} {i : ℕ}
     {l : List (Code tm.Q k x.length S)} (h : RoundList tm x S a₀ i l) :
     l.length = (reachCodes tm x S a₀ i).card := by
@@ -152,6 +165,9 @@ theorem roundList_length {a₀ : Code tm.Q k x.length S} {i : ℕ}
 
 /-! ## The count the machine starts from -/
 
+/--
+@isnad1 id=eq.0h5v.s5.e929f8a5a076 from=translated src=- shape=96b8ef46 vocab=01e1dcd8
+-/
 @[simp] theorem card_reachCodes_zero (tm : NTM k) (x : List Bool) (S : ℕ)
     (a₀ : Code tm.Q k x.length S) : (reachCodes tm x S a₀ 0).card = 1 := by
   rw [reachCodes, Finset.card_singleton]
@@ -166,7 +182,9 @@ members accepting. Every quantity here is an explicit arithmetic function of the
 and the list is only ever consumed one entry at a time: the machine guesses an entry, verifies it
 by a walk (`Complexity.NTM.mem_reachCodes_iff_walk`), checks it is not accepting, counts it, and
 at the end compares the count against the round's size. That comparison is what makes the
-absence of an accepting code a *positive* certificate. -/
+absence of an accepting code a *positive* certificate.
+@isnad1 id=ex.1h1v.s8.bc47b9ea27a8 from=translated src=- shape=cf818a6f vocab=86b2c1c7
+-/
 theorem NL_complement_certificate_internal {L : Language} (hL : L ∈ NL) :
     ∃ (k : ℕ) (tm : NTM k) (C D A B : ℕ),
       ∀ x : List Bool, x ∉ L ↔

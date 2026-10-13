@@ -47,12 +47,16 @@ set_option maxRecDepth 100000
 
 namespace Complexity
 
-/-- Inverting a branching program preserves its length. -/
+/-- Inverting a branching program preserves its length.
+@isnad1 id=eq.0h2v.s4.17cb5498ad57 from=translated src=- shape=5e107047 vocab=a1af3285
+-/
 theorem BP.length_inverse {w : ℕ} (p : BP w) : (BP.inverse p).length = p.length := by
   simp [BP.inverse]
 
 /-- Compatibility retargeting bound. Pointwise conjugation actually preserves
-length exactly, which is stronger than the historical two-instruction bound. -/
+length exactly, which is stronger than the historical two-instruction bound.
+@isnad1 id=ex.5h4v.s7.233e465a93f0 from=translated src=- shape=d229a358 vocab=716f9de1
+-/
 theorem BP.Computes_retarget_len {p : BP 5} {f : (ℕ → Bool) → Bool} {σ : Perm (Fin 5)}
     (hp : BP.Computes σ p f) (hσc : σ.IsCycle) (hσo : orderOf σ = 5)
     {a : Perm (Fin 5)} (hac : a.IsCycle) (hao : orderOf a = 5) :
@@ -62,7 +66,9 @@ theorem BP.Computes_retarget_len {p : BP 5} {f : (ℕ → Bool) → Bool} {σ : 
   exact ⟨r, hr, by omega⟩
 
 /-- Length-tracked `AND` gate: the commutator construction at most doubles the two
-    subprograms and adds a constant from the two retargetings. -/
+    subprograms and adds a constant from the two retargetings.
+@isnad1 id=ex.8h7v.s8.56fde020d866 from=translated src=- shape=ac93f2b5 vocab=44e67850
+-/
 theorem BP.Computes_and5_len {p q : BP 5} {f g : (ℕ → Bool) → Bool} {σ τ : Perm (Fin 5)}
     (hp : BP.Computes σ p f) (hσc : σ.IsCycle) (hσo : orderOf σ = 5)
     (hq : BP.Computes τ q g) (hτc : τ.IsCycle) (hτo : orderOf τ = 5)
@@ -78,7 +84,9 @@ theorem BP.Computes_and5_len {p q : BP 5} {f g : (ℕ → Bool) → Bool} {σ τ
   simp only [List.length_append, BP.length_inverse]; omega
 
 /-- **Tight Barrington `AND` gate.** Pointwise retargeting has zero overhead, so
-the commutator program has exactly twice the sum of the two input lengths. -/
+the commutator program has exactly twice the sum of the two input lengths.
+@isnad1 id=ex.8h7v.s8.4bab5ccf5458 from=translated src=- shape=41752a32 vocab=5ba77ee2
+-/
 theorem BP.Computes_and5_tight {p q : BP 5}
     {f g : (ℕ → Bool) → Bool} {σ τ : Perm (Fin 5)}
     (hp : BP.Computes σ p f) (hσc : σ.IsCycle) (hσo : orderOf σ = 5)
@@ -109,7 +117,9 @@ def barringtonBound : BoolFormula → ℕ
   | .conj φ ψ => 2 * barringtonBound φ + 2 * barringtonBound ψ + 8
   | .disj φ ψ => 2 * barringtonBound φ + 2 * barringtonBound ψ + 13
 
-/-- The construction bound is dominated by `13 ^ (size φ)`. -/
+/-- The construction bound is dominated by `13 ^ (size φ)`.
+@isnad1 id=le.0h1v.s4.963dd338f052 from=translated src=- shape=9fc36aa0 vocab=1cd5b593
+-/
 theorem barringtonBound_le (φ : BoolFormula) : barringtonBound φ ≤ 13 ^ φ.size := by
   induction φ with
   | var i => simp [barringtonBound, BoolFormula.size]
@@ -137,7 +147,9 @@ theorem barringtonBound_le (φ : BoolFormula) : barringtonBound φ ≤ 13 ^ φ.s
     the `NC¹` measure, this is the load-bearing bound: a formula of depth
     `d = O(log n)` compiles to a width-`5` program of length `17^d = poly(n)` — the
     log-depth formulas ⊆ polynomial-size width-`5` branching programs direction of
-    Barrington. -/
+    Barrington.
+@isnad1 id=le.0h1v.s4.ff61eee19000 from=translated src=- shape=9fc36aa0 vocab=25e5455c
+-/
 theorem barringtonBound_le_pow_depth (φ : BoolFormula) : barringtonBound φ ≤ 17 ^ φ.depth := by
   induction φ with
   | var i => simp [barringtonBound, BoolFormula.depth]
@@ -164,7 +176,9 @@ theorem barringtonBound_le_pow_depth (φ : BoolFormula) : barringtonBound φ ≤
 /-- **Length-tracked formula representability.** Every Boolean formula `φ` is
     computed through any target `5`-cycle by a program of length at most
     `barringtonBound φ`. Same recursion as `Computes_formula`, carrying the length
-    bound through the length-tracked moves. -/
+    bound through the length-tracked moves.
+@isnad1 id=ex.2h2v.s6.865d74dca893 from=translated src=- shape=55c4cd09 vocab=89872608
+-/
 theorem Computes_formula_len (φ : BoolFormula) :
     ∀ (c : Perm (Fin 5)), c.IsCycle → orderOf c = 5 →
       ∃ r : BP 5, BP.Computes c r (fun α => BoolFormula.eval α φ) ∧
@@ -211,7 +225,9 @@ theorem Computes_formula_len (φ : BoolFormula) :
 `φ` is represented through any target `5`-cycle by a program of length at most
 `4 ^ depth φ`. Pointwise retargeting contributes no instructions, compact
 negation contributes no length beyond `max 1`, and each binary gate uses the
-four copies in the commutator construction. -/
+four copies in the commutator construction.
+@isnad1 id=ex.2h2v.s6.6680a6f45fb7 from=translated src=- shape=0bd5668c vocab=30da7892
+-/
 theorem Computes_formula_depth_four (φ : BoolFormula) :
     ∀ (c : Perm (Fin 5)), c.IsCycle → orderOf c = 5 →
       ∃ r : BP 5, BP.Computes c r (fun α => BoolFormula.eval α φ) ∧
@@ -296,7 +312,9 @@ theorem Computes_formula_depth_four (φ : BoolFormula) :
 
 /-- **Barrington's theorem with a length bound.** Every Boolean formula `φ` is
     computed by a width-`5` permutation branching program (a nonidentity `σ ∈ S₅`
-    with program-value `= σ ↔ φ` true) whose length is at most `13 ^ (size φ)`. -/
+    with program-value `= σ ↔ φ` true) whose length is at most `13 ^ (size φ)`.
+@isnad1 id=ex.0h1v.s7.732d70559f64 from=translated src=- shape=a3cbf511 vocab=d751aadb
+-/
 theorem barrington_representation_len (φ : BoolFormula) :
     ∃ (r : BP 5) (σ : Perm (Fin 5)), σ ≠ 1 ∧
       (∀ α, BP.eval α r = if BoolFormula.eval α φ then σ else 1) ∧
@@ -308,7 +326,9 @@ theorem barrington_representation_len (φ : BoolFormula) :
 
 /-- **Barrington's theorem, textbook finite form.** Every Boolean formula `φ`
 of depth `d` is computed by a width-`5` permutation branching program of length
-at most `4 ^ d`. -/
+at most `4 ^ d`.
+@isnad1 id=ex.0h1v.s7.75a254d0933d from=translated src=- shape=a3cbf511 vocab=cacafd45
+-/
 theorem barrington_representation_depth_four (φ : BoolFormula) :
     ∃ (r : BP 5) (σ : Perm (Fin 5)), σ ≠ 1 ∧
       (∀ α, BP.eval α r = if BoolFormula.eval α φ then σ else 1) ∧
@@ -323,7 +343,9 @@ theorem barrington_representation_depth_four (φ : BoolFormula) :
 
 /-- Compatibility form of the earlier depth bound. The textbook theorem
 `barrington_representation_depth_four` now gives the stronger base `4`; this
-corollary retains the former base-`17` API. -/
+corollary retains the former base-`17` API.
+@isnad1 id=ex.0h1v.s7.2fc2c3434e6f from=translated src=- shape=a3cbf511 vocab=cacafd45
+-/
 theorem barrington_representation_depth (φ : BoolFormula) :
     ∃ (r : BP 5) (σ : Perm (Fin 5)), σ ≠ 1 ∧
       (∀ α, BP.eval α r = if BoolFormula.eval α φ then σ else 1) ∧
@@ -334,7 +356,9 @@ theorem barrington_representation_depth (φ : BoolFormula) :
     le_trans hlr (Nat.pow_le_pow_left (by omega) φ.depth)⟩
 
 /-- `4 ^ (log₂ n) ≤ n ^ 2`: the arithmetic specialization of the textbook
-Barrington bound to logarithmic depth. -/
+Barrington bound to logarithmic depth.
+@isnad1 id=le.1h1v.s5.36a6c1f39b99 from=translated src=- shape=633fb4e3 vocab=3584abb6
+-/
 theorem pow_four_log_le (n : ℕ) (hn : n ≠ 0) :
     4 ^ Nat.log 2 n ≤ n ^ 2 := by
   calc
@@ -344,7 +368,9 @@ theorem pow_four_log_le (n : ℕ) (hn : n ≠ 0) :
     _ ≤ n ^ 2 := Nat.pow_le_pow_left (Nat.pow_log_le_self 2 hn) 2
 
 /-- **Log-depth formulas have quadratic-length width-`5` programs.** A formula
-of depth at most `log₂ n` compiles to a program of length at most `n²`. -/
+of depth at most `log₂ n` compiles to a program of length at most `n²`.
+@isnad1 id=ex.2h2v.s7.f9c545cec04d from=translated src=- shape=f1a03651 vocab=3405ece5
+-/
 theorem barrington_quadratic_of_log_depth (φ : BoolFormula) (n : ℕ)
     (hn : n ≠ 0) (hd : φ.depth ≤ Nat.log 2 n) :
     ∃ (r : BP 5) (σ : Perm (Fin 5)), σ ≠ 1 ∧
@@ -359,7 +385,9 @@ theorem barrington_quadratic_of_log_depth (φ : BoolFormula) (n : ℕ)
     _ ≤ n ^ 2 := pow_four_log_le n hn
 
 /-- `17 ^ (log₂ n) ≤ n ^ 5`: since `17 ≤ 2⁵`, `17^{log₂ n} ≤ (2^{log₂ n})⁵ ≤ n⁵`.
-    This is the arithmetic behind "logarithmic depth gives polynomial size". -/
+    This is the arithmetic behind "logarithmic depth gives polynomial size".
+@isnad1 id=le.1h1v.s5.b5ef35f7a367 from=translated src=- shape=633fb4e3 vocab=3584abb6
+-/
 theorem pow_seventeen_log_le (n : ℕ) (hn : n ≠ 0) : 17 ^ Nat.log 2 n ≤ n ^ 5 := by
   calc 17 ^ Nat.log 2 n ≤ 32 ^ Nat.log 2 n := Nat.pow_le_pow_left (by omega) _
     _ = (2 ^ Nat.log 2 n) ^ 5 := by
@@ -369,7 +397,9 @@ theorem pow_seventeen_log_le (n : ℕ) (hn : n ≠ 0) : 17 ^ Nat.log 2 n ≤ n ^
 /-- **`NC¹ ⟹` polynomial size (concrete form).** A formula of depth at most `log₂ n`
     is computed by a width-`5` permutation branching program of length at most
     `n ^ 5` — the polynomial-size direction of Barrington made explicit: the program
-    is polynomial-size in `n` whenever the formula's depth is logarithmic. -/
+    is polynomial-size in `n` whenever the formula's depth is logarithmic.
+@isnad1 id=ex.2h2v.s7.aecf8ebc306a from=translated src=- shape=f1a03651 vocab=3405ece5
+-/
 theorem barrington_poly_of_log_depth (φ : BoolFormula) (n : ℕ) (hn : n ≠ 0)
     (hd : φ.depth ≤ Nat.log 2 n) :
     ∃ (r : BP 5) (σ : Perm (Fin 5)), σ ≠ 1 ∧

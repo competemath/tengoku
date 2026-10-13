@@ -27,6 +27,9 @@ open scoped Classical
 
 variable {W : Type} [Fintype W]
 
+/--
+@isnad1 id=eq.5h8v.s8.73267de20137 from=translated src=- shape=e62a3798 vocab=ee78c5c6
+-/
 theorem boundaryNeighbors_switch (G : SimpleGraph W) {C : Finset W} {a b c d : W}
     (valid : Switchable G a b c d) (ha : a ∉ C) (hb : b ∈ C)
     (hc : c ∉ C) (hd : d ∉ C) (v : W) :
@@ -68,6 +71,9 @@ structure State (M : SimpleGraph W) (C S A : Finset W) (G : SimpleGraph W)
   original : ∀ a ∈ A, G.neighborFinset a ∩ C ⊆ M.neighborFinset a ∩ C
   small : ∀ v ∈ S \ C, v ∉ A → (G.neighborFinset v ∩ C).card ≤ 2
 
+/--
+@isnad1 id=state.9h11v.s8.097ece868dcb from=translated src=- shape=13b4a3cf vocab=8249b5ef
+-/
 theorem State.switch {M G : SimpleGraph W} {C S A P : Finset W} {a b c d : W}
     (state : State M C S A G P) (inside : A ⊆ S \ C)
     (valid : Switchable G a b c d) (ha : a ∈ A) (fresh : a ∉ P)

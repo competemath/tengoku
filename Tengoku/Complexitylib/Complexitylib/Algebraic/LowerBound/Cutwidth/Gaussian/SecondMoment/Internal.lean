@@ -27,7 +27,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι] {Ω : ι → Type*} [∀ i, 
 
 omit [Fintype ι] in
 /-- The indicator of a measurable set depending only on the coordinates in `S` is a
-measurable function of those coordinates. -/
+measurable function of those coordinates.
+@isnad1 id=ex.2h5v.s8.63eb4cb8fd2c from=translated src=- shape=a6f22443 vocab=35e83637
+-/
 theorem exists_indicator_eq_comp {S : Finset ι} {A : Set (Π i, Ω i)} (hA : MeasurableSet A)
     (hdep : ∀ ω ω' : Π i, Ω i, (∀ i ∈ S, ω i = ω' i) → (ω ∈ A ↔ ω' ∈ A))
     (ω₀ : Π i, Ω i) :
@@ -42,7 +44,9 @@ theorem exists_indicator_eq_comp {S : Finset ι} {A : Set (Π i, Ω i)} (hA : Me
     hmem.symm rfl
 
 /-- Events depending on disjoint coordinate sets have independent indicators under a
-product of probability measures. -/
+product of probability measures.
+@isnad1 id=indepfun.5h7v.s8.d4d9364019b4 from=translated src=- shape=bddd1313 vocab=71d6ac25
+-/
 theorem indepFun_indicator_of_disjoint {S T : Finset ι} {A B : Set (Π i, Ω i)}
     (hA : MeasurableSet A) (hB : MeasurableSet B)
     (hdepA : ∀ ω ω' : Π i, Ω i, (∀ i ∈ S, ω i = ω' i) → (ω ∈ A ↔ ω' ∈ A))

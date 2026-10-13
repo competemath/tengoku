@@ -87,7 +87,9 @@ This identity is why the first moment splits: summing a product
 `truthCount a i * truthCount b j` against the crossing weight is the same as
 multiplying two sums each weighted exactly as the plurality bound weights them.
 Geometric weights are what make this work, and geometric weights are what the
-killed walk law produces. -/
+killed walk law produces.
+@isnad1 id=eq.1h5v.s8.19dc20c58320 from=translated src=- shape=17616932 vocab=beb4dd34
+-/
 theorem weight_factor (deg q : ℕ) {T i j : ℕ} (h : i + j + 1 < T) :
     (deg ^ (T - (i + j + 1)) * ((q - 1) ^ (i + j + 1) * q ^ (T - (i + j + 1) - 1)))
         * (deg ^ (T + 1) * q ^ T)
@@ -119,7 +121,9 @@ plurality bound controls.
 
 Restricting to a square rather than the full triangle `i + j + 1 < T` is what
 makes this an identity: the triangle is not a product region. The tail thrown
-away is geometrically small. -/
+away is geometrically small.
+@isnad1 id=eq.1h6v.s9.9859d98a6f87 from=translated src=- shape=b2810b1b vocab=b0151540
+-/
 theorem sum_crossing_factor (deg q T H : ℕ) (hH : 2 * H + 1 < T) (f g : ℕ → ℕ) :
     (∑ i ∈ Finset.range (H + 1), ∑ j ∈ Finset.range (H + 1),
         f i * g j * (deg ^ (T - (i + j + 1))
@@ -172,7 +176,9 @@ theorem sum_crossing_factor (deg q T H : ℕ) (hH : 2 * H + 1 < T) (f g : ℕ �
 /-- **The geometric tail.** The weights decay geometrically, so the positions
 beyond `k` carry at most `(q-1)^k * q^(T-k)` — a `((q-1)/q)^k` fraction of the
 total. This is what makes both the truncation term and the restriction to a
-square of positions harmless. -/
+square of positions harmless.
+@isnad1 id=le.3h4v.s7.a65156d1076a from=translated src=- shape=30880668 vocab=d1fd7221
+-/
 theorem geom_tail_le {q : ℕ} (hq : 0 < q) (T : ℕ) : ∀ (n k : ℕ), T - k = n → k ≤ T →
     ∑ m ∈ Finset.Ico k T, (q - 1) ^ m * q ^ (T - 1 - m) ≤ (q - 1) ^ k * q ^ (T - k) := by
   intro n
@@ -205,7 +211,9 @@ theorem geom_tail_le {q : ℕ} (hq : 0 < q) (T : ℕ) : ∀ (n k : ℕ), T - k =
 /-- `sum_crossing_factor` in the form callers can use: the counts are supplied
 as an abstract function `C`, since the concrete count at position `(i, j)` is a
 `Finset.card` whose very statement needs `i + j + 1 < T`, a fact only available
-pointwise inside the sum. -/
+pointwise inside the sum.
+@isnad1 id=eq.2h7v.s9.6ad2d6b0e642 from=translated src=- shape=ea86e2b7 vocab=326c9196
+-/
 theorem sum_goodCount_factor (deg q T H : ℕ) (hH : 2 * H + 1 < T) (f g : ℕ → ℕ)
     (C : ℕ → ℕ → ℕ)
     (hC : ∀ i ∈ Finset.range (H + 1), ∀ j ∈ Finset.range (H + 1),
@@ -227,7 +235,9 @@ variable (R : RegCSP α) (q T : ℕ) (hq : 0 < q)
 
 omit [Fintype α] [DecidableEq α] [Nonempty α] in
 /-- The prefix condition counted above is exactly the constraint's own
-`startIdx` term: the opinion `v` holds about the walk's `i`-th vertex. -/
+`startIdx` term: the opinion `v` holds about the walk's `i`-th vertex.
+@isnad1 id=eq.3h9v.s6.0ab7d17e3728 from=translated src=- shape=687f1b52 vocab=c6561847
+-/
 theorem opinionOf_eq_startIdx (A : (R.killedPow q T hq).Assignment) {ℓ : ℕ}
     (hℓ : ℓ ≤ T) (v : R.graph.V) (W : Fin ℓ → R.graph.D) (i : Fin ℓ)
     (hiT : i.val ≤ T) :
@@ -242,7 +252,9 @@ theorem opinionOf_eq_startIdx (A : (R.killedPow q T hq).Assignment) {ℓ : ℕ}
 
 omit [Fintype α] [DecidableEq α] [Nonempty α] in
 /-- The suffix condition counted above is exactly the constraint's own `endIdx`
-term: the opinion the walk's far end holds about the `(i+1)`-st vertex. -/
+term: the opinion the walk's far end holds about the `(i+1)`-st vertex.
+@isnad1 id=eq.3h9v.s7.d86e6616d46f from=translated src=- shape=f732f305 vocab=8fae73c2
+-/
 theorem opinionOf_eq_endIdx (A : (R.killedPow q T hq).Assignment) {ℓ : ℕ}
     (hℓ : ℓ ≤ T) (v : R.graph.V) (W : Fin ℓ → R.graph.D) (i : Fin ℓ)
     (hjT : ℓ - (i.val + 1) ≤ T) :
@@ -265,7 +277,9 @@ theorem opinionOf_eq_endIdx (A : (R.killedPow q T hq).Assignment) {ℓ : ℕ}
 `(a, d)` of `R` and a crossing position `i` inside an effective length `ℓ`, the
 killed-power constraints crossing `(a, d)` at `i` with truthful opinions at both
 ends number `truthCount a i * truthCount (nbr a d) (ℓ - (i+1))` times the fibre
-weight. -/
+weight.
+@isnad1 id=eq.5h9v.s11.5611665b0bb2 from=translated src=- shape=17c74356 vocab=42d704e7
+-/
 theorem card_good_crossing (A : (R.killedPow q T hq).Assignment) (a : R.graph.V)
     (d : R.graph.D) {ℓ i : ℕ} (hℓ : ℓ < T) (hi : i < ℓ) (hiT : i ≤ T)
     (hjT : ℓ - (i + 1) ≤ T) :
@@ -295,7 +309,9 @@ theorem card_good_crossing (A : (R.killedPow q T hq).Assignment) (a : R.graph.V)
 that the decoded assignment fails, with both ends holding the decoded opinion
 about that dart's two vertices, breaks its own constraint. The two hypotheses
 are exactly the conditions `card_good_crossing` counts, turned into the
-constraint's `startIdx` / `endIdx` terms by the two identification lemmas. -/
+constraint's `startIdx` / `endIdx` terms by the two identification lemmas.
+@isnad1 id=not.6h7v.s9.2eb57ff2705e from=translated src=- shape=404e1067 vocab=3faf96e9
+-/
 theorem not_satisfies_of_good_crossing (A : (R.killedPow q T hq).Assignment)
     (z : R.graph.V × R.KLabels q T) (i : Fin (R.graph.kLen z.2))
     (hiT : i.val ≤ T) (hjT : R.graph.kLen z.2 - (i.val + 1) ≤ T)
@@ -322,7 +338,9 @@ theorem not_satisfies_of_good_crossing (A : (R.killedPow q T hq).Assignment)
     rw [← R.opinionOf_eq_endIdx q T hq A (R.graph.kLen_le y) v (R.graph.kWalk y) i hjT]
     exact hsuf
 
-/-- A walk count never exceeds the number of walks. -/
+/-- A walk count never exceeds the number of walks.
+@isnad1 id=le.1h7v.s6.ed7ecfc472c1 from=translated src=- shape=7a779df9 vocab=57fe5a18
+-/
 theorem truthCount_le (A : (R.killedPow q T hq).Assignment) (v : R.graph.V) (m : ℕ) :
     R.truthCount q T hq A v m ≤ R.graph.deg ^ m := by
   rw [truthCount]
@@ -337,7 +355,9 @@ theorem truthCount_le (A : (R.killedPow q T hq).Assignment) (v : R.graph.V) (m :
 
 /-- **Plurality on half the range.** Restricting the weighted sum to positions
 at most `H` costs only the geometric tail, so the plurality bound survives the
-restriction to a square of positions that `sum_crossing_factor` needs. -/
+restriction to a square of positions that `sum_crossing_factor` needs.
+@isnad1 id=le.2h7v.s8.ae03b816b63c from=translated src=- shape=7d2c731a vocab=955ddd12
+-/
 theorem card_le_mul_sum_truthCount_half (A : (R.killedPow q T hq).Assignment)
     (v : R.graph.V) {H : ℕ} (hH : H + 1 ≤ T) :
     R.graph.deg ^ T * q ^ T
@@ -391,7 +411,9 @@ theorem card_le_mul_sum_truthCount_half (A : (R.killedPow q T hq).Assignment)
   omega
 
 /-- The crossing count indexed by the two *lengths* rather than by length and
-position — the form `sum_goodCount_factor` consumes. -/
+position — the form `sum_goodCount_factor` consumes.
+@isnad1 id=eq.4h9v.s11.990c597623cf from=translated src=- shape=38db926c vocab=026e55a4
+-/
 theorem card_good_crossing_sq (A : (R.killedPow q T hq).Assignment) (a : R.graph.V)
     (d : R.graph.D) {i j : ℕ} (hij : i + j + 1 < T) (hiT : i ≤ T)
     (hjT : (i + j + 1) - (i + 1) ≤ T) :
@@ -426,6 +448,9 @@ that stop after position `H`. Both are geometrically small next to
 def pluralityLoss (deg q T H : ℕ) : ℕ :=
   deg ^ T * (q - 1) ^ T + deg ^ T * ((q - 1) ^ (H + 1) * q ^ (T - (H + 1)))
 
+/--
+@isnad1 id=le.2h7v.s7.42db062cf0c4 from=translated src=- shape=40559223 vocab=ddb23e50
+-/
 theorem card_le_mul_halfSum_add_loss (A : (R.killedPow q T hq).Assignment)
     (v : R.graph.V) {H : ℕ} (hH : H + 1 ≤ T) :
     R.graph.deg ^ T * q ^ T
@@ -448,7 +473,9 @@ constraints crossing it with truthful opinions at both ends number at least
 `(q-1) · (X - |α|·loss)²  /  (|α|² · normaliser)`,
 
 with `X = deg^T · q^T`. The two plurality bounds multiply because the crossing
-sum factorises — the payoff of the killed walk law. -/
+sum factorises — the payoff of the killed walk law.
+@isnad1 id=le.4h9v.s9.e99c859ae80b from=translated src=- shape=cab4db66 vocab=76303f6d
+-/
 theorem per_dart_lower (A : (R.killedPow q T hq).Assignment) (a : R.graph.V)
     (d : R.graph.D) {H : ℕ} (hH : 2 * H + 1 < T) (hHT : H + 1 ≤ T)
     (C : ℕ → ℕ → ℕ)
@@ -491,7 +518,9 @@ theorem per_dart_lower (A : (R.killedPow q T hq).Assignment) (a : R.graph.V)
 /-- **The first moment, summed over the failed darts.** Every dart of `R` that
 the decoded assignment fails contributes its own crossings, and for a given
 killed walk and position the dart crossed there is determined, so the
-contributions never overlap. -/
+contributions never overlap.
+@isnad1 id=le.4h8v.s9.26457f5647d5 from=translated src=- shape=f8dd2e40 vocab=1f7bd295
+-/
 theorem sum_dart_lower (A : (R.killedPow q T hq).Assignment) (F : Finset R.Dart)
     {H : ℕ} (hH : 2 * H + 1 < T) (hHT : H + 1 ≤ T)
     (Cd : R.Dart → ℕ → ℕ → ℕ)
@@ -558,7 +587,9 @@ noncomputable def goodCrossings (A : (R.killedPow q T hq).Assignment)
 
 /-- **The support condition.** A constraint with any good crossing is
 unsatisfied, so the second-moment method's support sits inside the unsatisfied
-darts. -/
+darts.
+@isnad1 id=mem.2h6v.s7.b8638ca212c8 from=translated src=- shape=bc144f6e vocab=8a7c31b0
+-/
 theorem mem_unsatDarts_of_goodCrossings_nonempty (A : (R.killedPow q T hq).Assignment)
     (z : R.graph.V × R.KLabels q T) (h : (R.goodCrossings q T hq A z).Nonempty) :
     z ∈ (R.killedPow q T hq).unsatDarts A := by
@@ -569,7 +600,9 @@ theorem mem_unsatDarts_of_goodCrossings_nonempty (A : (R.killedPow q T hq).Assig
 
 /-- **The second moment, in terms of pairs of crossings.** Squaring the count
 of good crossings and summing turns into the count itself plus twice the ordered
-pairs — and pairs of crossings are what the correlation bound estimates. -/
+pairs — and pairs of crossings are what the correlation bound estimates.
+@isnad1 id=eq.1h5v.s9.a353fd8e5ad5 from=translated src=- shape=8ba100d9 vocab=412f5fdc
+-/
 theorem sum_sq_goodCrossings (A : (R.killedPow q T hq).Assignment) :
     ∑ z : R.graph.V × R.KLabels q T, ((R.goodCrossings q T hq A z).card : ℝ) ^ 2
       = (∑ z : R.graph.V × R.KLabels q T, ((R.goodCrossings q T hq A z).card : ℝ))
@@ -596,11 +629,17 @@ noncomputable def goodPos (A : (R.killedPow q T hq).Assignment)
     (z : R.graph.V × R.KLabels q T) : Finset ℕ :=
   (R.goodCrossings q T hq A z).image Fin.val
 
+/--
+@isnad1 id=eq.1h6v.s6.09270b4cf6a0 from=translated src=- shape=b7ffa8b5 vocab=bbe60998
+-/
 theorem card_goodPos (A : (R.killedPow q T hq).Assignment)
     (z : R.graph.V × R.KLabels q T) :
     (R.goodPos q T hq A z).card = (R.goodCrossings q T hq A z).card :=
   Finset.card_image_of_injective _ Fin.val_injective
 
+/--
+@isnad1 id=iff.1h7v.s7.7039253f32e7 from=translated src=- shape=c4f06802 vocab=7d178946
+-/
 theorem mem_goodPos {A : (R.killedPow q T hq).Assignment}
     {z : R.graph.V × R.KLabels q T} {k : ℕ} :
     k ∈ R.goodPos q T hq A z
@@ -614,7 +653,9 @@ theorem mem_goodPos {A : (R.killedPow q T hq).Assignment}
   · rintro ⟨h, hmem⟩
     exact ⟨⟨k, h⟩, hmem, rfl⟩
 
-/-- Counting ordered pairs of positions is the same in either indexing. -/
+/-- Counting ordered pairs of positions is the same in either indexing.
+@isnad1 id=eq.1h6v.s9.09f2cd1aa7a0 from=translated src=- shape=8c7a4132 vocab=30b54ba8
+-/
 theorem card_pairs_goodPos (A : (R.killedPow q T hq).Assignment)
     (z : R.graph.V × R.KLabels q T) :
     (((R.goodPos q T hq A z) ×ˢ (R.goodPos q T hq A z)).filter fun p => p.1 < p.2).card
@@ -640,6 +681,9 @@ theorem card_pairs_goodPos (A : (R.killedPow q T hq).Assignment)
     simp only [Finset.mem_filter, Finset.mem_product]
     exact ⟨⟨hm1, hm2⟩, hlt⟩
 
+/--
+@isnad1 id=lt.2h7v.s6.a9a6f4bc7477 from=translated src=- shape=2bbece3a vocab=7728ab4e
+-/
 theorem lt_T_of_mem_goodPos {A : (R.killedPow q T hq).Assignment}
     {z : R.graph.V × R.KLabels q T} {k : ℕ} (h : k ∈ R.goodPos q T hq A z) : k < T := by
   obtain ⟨hb, -⟩ := (R.mem_goodPos q T hq).mp h
@@ -648,7 +692,9 @@ theorem lt_T_of_mem_goodPos {A : (R.killedPow q T hq).Assignment}
 /-- **Exchanging the order of counting.** The pairs of good crossings, summed
 over the constraints, are the same as the constraints with two good crossings,
 summed over the pairs of positions. The right-hand side is the form the
-correlation bound estimates. -/
+correlation bound estimates.
+@isnad1 id=eq.1h5v.s9.c12fabb57ec8 from=translated src=- shape=b14d83bc vocab=47eb9668
+-/
 theorem sum_card_pairs_eq (A : (R.killedPow q T hq).Assignment) :
     ∑ z : R.graph.V × R.KLabels q T,
         (((R.goodPos q T hq A z) ×ˢ (R.goodPos q T hq A z)).filter fun p => p.1 < p.2).card
@@ -676,7 +722,9 @@ theorem sum_card_pairs_eq (A : (R.killedPow q T hq).Assignment) :
 /-- **Dropping to the underlying walk.** Constraints with good crossings at two
 positions are, after forgetting the truthfulness conditions and the stopping
 signals, walks that cross a failed dart at both positions. Forgetting the
-signals costs the factor `q ^ T`; both omissions only weaken an upper bound. -/
+signals costs the factor `q ^ T`; both omissions only weaken an upper bound.
+@isnad1 id=le.3h7v.s9.cfc3a1913a8e from=translated src=- shape=dfa26f9f vocab=b35bd23f
+-/
 theorem card_both_good_le (A : (R.killedPow q T hq).Assignment) {k l : ℕ}
     (hk : k < T) (hl : l < T) :
     (Finset.univ.filter fun z : R.graph.V × R.KLabels q T =>
@@ -723,7 +771,9 @@ theorem card_both_good_le (A : (R.killedPow q T hq).Assignment) {k l : ℕ}
     · rw [Finset.card_univ, Fintype.card_fun, Fintype.card_fin, Fintype.card_fin]
 
 /-- **The second moment's pair term, bounded.** Chaining the drop to underlying
-walks, the two-crossing identity and the correlation bound. -/
+walks, the two-crossing identity and the correlation bound.
+@isnad1 id=le.5h6v.s9.dd3a4caf9748 from=translated src=- shape=7b1925fa vocab=76e36e09
+-/
 theorem sum_pairs_bound (A : (R.killedPow q T hq).Assignment) {lam : ℝ}
     (hlam0 : 0 ≤ lam) (hlam1 : lam < 1) (hspec : R.graph.SpectralBound lam)
     (hn : 0 < R.graph.order) :
@@ -785,7 +835,9 @@ theorem sum_pairs_bound (A : (R.killedPow q T hq).Assignment) {lam : ℝ}
 
 /-- **The second moment of the crossing count.** Everything above, assembled:
 the sum of squares is the sum plus twice a pair term, and the pair term is
-controlled by the spectral gap. -/
+controlled by the spectral gap.
+@isnad1 id=le.5h6v.s9.7df74da36147 from=translated src=- shape=b02b386a vocab=e259865d
+-/
 theorem sum_sq_goodCrossings_le (A : (R.killedPow q T hq).Assignment) {lam : ℝ}
     (hlam0 : 0 ≤ lam) (hlam1 : lam < 1) (hspec : R.graph.SpectralBound lam)
     (hn : 0 < R.graph.order) :
@@ -814,7 +866,9 @@ theorem sum_sq_goodCrossings_le (A : (R.killedPow q T hq).Assignment) {lam : ℝ
 
 /-- The first moment, with the order of counting exchanged: summing the good
 crossings over the constraints is the same as counting, for each position, the
-constraints good there. -/
+constraints good there.
+@isnad1 id=eq.1h5v.s8.4946b42d8144 from=translated src=- shape=8dd1820d vocab=5f6ac68c
+-/
 theorem sum_card_goodPos_eq (A : (R.killedPow q T hq).Assignment) :
     ∑ z : R.graph.V × R.KLabels q T, (R.goodPos q T hq A z).card
       = ∑ k ∈ Finset.range T,
@@ -835,7 +889,9 @@ theorem sum_card_goodPos_eq (A : (R.killedPow q T hq).Assignment) :
 
 /-- Constraints of different effective lengths are different constraints, so
 summing over the suffix length `j` at a fixed crossing position stays within the
-constraints good at that position. -/
+constraints good at that position.
+@isnad1 id=le.1h7v.s9.e6e6022c58c2 from=translated src=- shape=6c1afd5e vocab=c97d8762
+-/
 theorem sum_over_len_le (A : (R.killedPow q T hq).Assignment) (i H : ℕ) :
     ∑ j ∈ Finset.range (H + 1),
         (Finset.univ.filter fun z : R.graph.V × R.KLabels q T =>
@@ -866,7 +922,9 @@ theorem sum_over_len_le (A : (R.killedPow q T hq).Assignment) (i H : ℕ) :
 `card_good_crossing_sq`, whose crossed dart the decoded assignment fails, is good
 at that position. The two descriptions differ only in how the walk's length is
 named — `i + j + 1` on one side, `kLen` on the other — which `walkAt_preWalk`
-and `opinionOf_congr` reconcile without any transport. -/
+and `opinionOf_congr` reconcile without any transport.
+@isnad1 id=mem.10h10v.s9.316b5e4b4c8d from=translated src=- shape=32316dcb vocab=a9382cd2
+-/
 theorem mem_goodPos_of_crossing (A : (R.killedPow q T hq).Assignment) (a : R.graph.V)
     (d : R.graph.D) {i j : ℕ} (hij : i + j + 1 < T) (hiT : i ≤ T)
     (hjT : (i + j + 1) - (i + 1) ≤ T)
@@ -932,6 +990,9 @@ noncomputable def crossingSet (A : (R.killedPow q T hq).Assignment) (a : R.graph
             (R.graph.segSuf (R.graph.preWalk z.2.1 (le_of_lt hij)) i)
           = R.kPlurality q T hq A (R.graph.nbr a d))
 
+/--
+@isnad1 id=eq.4h9v.s8.5b10829a1a38 from=translated src=- shape=e628b1f2 vocab=0a7a3fc7
+-/
 theorem card_crossingSet (A : (R.killedPow q T hq).Assignment) (a : R.graph.V)
     (d : R.graph.D) {i j : ℕ} (hij : i + j + 1 < T) (hiT : i ≤ T)
     (hjT : (i + j + 1) - (i + 1) ≤ T) :
@@ -943,7 +1004,9 @@ theorem card_crossingSet (A : (R.killedPow q T hq).Assignment) (a : R.graph.V)
 
 /-- **The crossings of different darts do not overlap.** At a fixed position the
 dart a walk crosses is determined, so summing over the failed darts stays within
-the constraints good at that position. -/
+the constraints good at that position.
+@isnad1 id=le.4h7v.s9.dc30d472ca73 from=translated src=- shape=eaf4e558 vocab=5f18f3ac
+-/
 theorem sum_crossingSet_le (A : (R.killedPow q T hq).Assignment) {i j : ℕ}
     (hij : i + j + 1 < T) (hiT : i ≤ T) (hjT : (i + j + 1) - (i + 1) ≤ T) :
     ∑ p ∈ R.unsatDarts (R.kDecode q T hq A),
@@ -975,7 +1038,9 @@ theorem sum_crossingSet_le (A : (R.killedPow q T hq).Assignment) {i j : ℕ}
     hlab hpre hsuf⟩
 
 /-- Summed over both lengths, the constraints good at a position never exceed
-the total crossing count. -/
+the total crossing count.
+@isnad1 id=le.2h6v.s9.aa06a836170d from=translated src=- shape=ad94eaf5 vocab=41ab9952
+-/
 theorem sum_len_pos_le (A : (R.killedPow q T hq).Assignment) {H : ℕ} (hHT : H + 1 ≤ T) :
     ∑ i ∈ Finset.range (H + 1), ∑ j ∈ Finset.range (H + 1),
         (Finset.univ.filter fun z : R.graph.V × R.KLabels q T =>
@@ -1002,7 +1067,9 @@ theorem sum_len_pos_le (A : (R.killedPow q T hq).Assignment) {H : ℕ} (hHT : H 
         Finset.sum_congr rfl fun z _ => R.card_goodPos q T hq A z
 
 /-- **The first moment, bounded by the crossing count.** The counts summed by
-`sum_dart_lower` never exceed the total number of good crossings. -/
+`sum_dart_lower` never exceed the total number of good crossings.
+@isnad1 id=le.4h7v.s9.6bde191e1a01 from=translated src=- shape=ecac9af6 vocab=674f59ca
+-/
 theorem sum_Cd_le_sum_goodCrossings (A : (R.killedPow q T hq).Assignment) {H : ℕ}
     (hHT : H + 1 ≤ T) (Cd : R.Dart → ℕ → ℕ → ℕ)
     (hCd : ∀ p ∈ R.unsatDarts (R.kDecode q T hq A), ∀ i ∈ Finset.range (H + 1),
@@ -1040,7 +1107,9 @@ theorem sum_Cd_le_sum_goodCrossings (A : (R.killedPow q T hq).Assignment) {H : �
 
 /-- **The second-moment bound on unsatisfied constraints.** Given a lower bound
 on the first moment of the crossing count and an upper bound on its second
-moment, at least `Alb ^ 2 / Bub` of the powered constraints are unsatisfied. -/
+moment, at least `Alb ^ 2 / Bub` of the powered constraints are unsatisfied.
+@isnad1 id=le.5h7v.s8.dd080eebfd16 from=translated src=- shape=c85844d8 vocab=7494b56f
+-/
 theorem card_unsatDarts_ge (A : (R.killedPow q T hq).Assignment) {Alb Bub : ℝ}
     (hA0 : 0 ≤ Alb)
     (hA : Alb ≤ ∑ z : R.graph.V × R.KLabels q T, ((R.goodCrossings q T hq A z).card : ℝ))
@@ -1068,11 +1137,17 @@ noncomputable def crossCount (A : (R.killedPow q T hq).Assignment) (p : R.Dart)
     (R.crossingSet q T hq A p.1 p.2 h (by omega) (by omega)).card
   else 0
 
+/--
+@isnad1 id=eq.4h8v.s7.29bcd890d890 from=translated src=- shape=24b8a5da vocab=b2514399
+-/
 theorem crossCount_eq_card (A : (R.killedPow q T hq).Assignment) (p : R.Dart)
     {i j : ℕ} (hij : i + j + 1 < T) (hiT : i ≤ T) (hjT : (i + j + 1) - (i + 1) ≤ T) :
     R.crossCount q T hq A p i j = (R.crossingSet q T hq A p.1 p.2 hij hiT hjT).card := by
   rw [crossCount, dite_eq_left hij]
 
+/--
+@isnad1 id=eq.2h8v.s8.33b1fbeaf4c5 from=translated src=- shape=2d92ce1e vocab=fa60e402
+-/
 theorem crossCount_eq_prod (A : (R.killedPow q T hq).Assignment) (p : R.Dart)
     {i j : ℕ} (hij : i + j + 1 < T) :
     R.crossCount q T hq A p i j
@@ -1083,7 +1158,9 @@ theorem crossCount_eq_prod (A : (R.killedPow q T hq).Assignment) (p : R.Dart)
     R.card_crossingSet q T hq A p.1 p.2 hij (by omega) (by omega)]
 
 /-- **The first moment, in closed form.** Combining the per-dart bound with the
-fact that the counted crossings are good crossings. -/
+fact that the counted crossings are good crossings.
+@isnad1 id=le.4h6v.s9.a9765668304f from=translated src=- shape=00bec09a vocab=d6a3c45c
+-/
 theorem sum_goodCrossings_ge (A : (R.killedPow q T hq).Assignment) {H : ℕ}
     (hH : 2 * H + 1 < T) (hHT : H + 1 ≤ T)
     (hsq : ∀ i ∈ Finset.range (H + 1), ∀ j ∈ Finset.range (H + 1), i + j + 1 < T) :
@@ -1142,7 +1219,9 @@ being the ratio of the squared first moment to the second.
 
 The first moment is proportional to the number of darts the decoded assignment
 fails, so this is the amplification: the powered system's value is bounded below
-in terms of the original's. -/
+in terms of the original's.
+@isnad1 id=le.9h7v.s10.e70795e49ba3 from=translated src=- shape=fd40e90a vocab=13ec2d10
+-/
 theorem powering_soundness (A : (R.killedPow q T hq).Assignment) {H : ℕ}
     (hH : 2 * H + 1 < T) (hHT : H + 1 ≤ T)
     (hsq : ∀ i ∈ Finset.range (H + 1), ∀ j ∈ Finset.range (H + 1), i + j + 1 < T)
@@ -1192,7 +1271,9 @@ theorem powering_soundness (A : (R.killedPow q T hq).Assignment) {H : ℕ}
     (R.sum_sq_goodCrossings_le q T hq A hlam0 hlam1 hspec hn) hBub
 
 omit [Fintype α] [DecidableEq α] [Nonempty α] in
-/-- The powered system's constraint count. -/
+/-- The powered system's constraint count.
+@isnad1 id=eq.1h4v.s6.c826632876ef from=translated src=- shape=48475fb5 vocab=819a83c8
+-/
 theorem card_dart_killedPow :
     ((R.killedPow q T hq).graph.order * (R.killedPow q T hq).graph.deg : ℕ)
       = R.graph.order * (R.graph.deg ^ T * q ^ T) := by
@@ -1201,7 +1282,9 @@ theorem card_dart_killedPow :
 
 omit [Fintype α] [DecidableEq α] [Nonempty α] in
 /-- A lower bound on the unsatisfied constraints becomes one on the unsatisfied
-*fraction*, which is what `unsatVal` and the amplification bookkeeping use. -/
+*fraction*, which is what `unsatVal` and the amplification bookkeeping use.
+@isnad1 id=le.3h6v.s7.5cfd9421b6fa from=translated src=- shape=a7248a97 vocab=1b730549
+-/
 theorem unsatFrac_killedPow_ge (A : (R.killedPow q T hq).Assignment) {LB : ℝ}
     (hLB : LB ≤ (((R.killedPow q T hq).unsatDarts A).card : ℝ)) (hn : 0 < R.graph.order) :
     LB / ((R.graph.order * (R.graph.deg ^ T * q ^ T) : ℕ) : ℝ)
@@ -1220,7 +1303,9 @@ theorem unsatFrac_killedPow_ge (A : (R.killedPow q T hq).Assignment) {LB : ℝ}
   gcongr
 
 omit [DecidableEq α] in
-/-- A bound holding for every assignment holds for the value. -/
+/-- A bound holding for every assignment holds for the value.
+@isnad1 id=le.2h5v.s8.f9a5322ab4f0 from=translated src=- shape=241a739b vocab=3e10ad86
+-/
 theorem le_unsatVal_killedPow {LB : ℝ}
     (h : ∀ A : (R.killedPow q T hq).Assignment,
       LB ≤ (((R.killedPow q T hq).unsatFrac A : ℚ) : ℝ)) :

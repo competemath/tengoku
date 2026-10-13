@@ -22,6 +22,9 @@ public section
 
 namespace Algebraic.Cutwidth.Extractor.Internal
 
+/--
+@isnad1 id=le.3h6v.s6.ab1cae0a9423 from=translated src=- shape=27bd66f3 vocab=a6d824a5
+-/
 theorem weightDist_uniformSecond_le_of_dist_of_same_first {Tag Out : Type*}
     [Fintype Tag] [Fintype Out] {p q : Tag × Out → ℝ} {ρ ε : ℝ}
     (near : weightDist p q ≤ ρ)

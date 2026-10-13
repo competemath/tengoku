@@ -26,6 +26,9 @@ open scoped Classical
 
 variable {V : Type} [Fintype V] (B : SimpleGraph V)
 
+/--
+@isnad1 id=le.1h3v.s6.41b151a0ec5d from=translated src=- shape=19031c45 vocab=60d50a93
+-/
 theorem card_vertices_add_cyclic_le (cyclic : Finset B.ConnectedComponent)
     (cycles : ∀ C ∈ cyclic, ¬ C.toSimpleGraph.IsAcyclic) :
     Fintype.card V + cyclic.card ≤ B.edgeFinset.card + Nat.card B.ConnectedComponent := by
@@ -67,6 +70,9 @@ theorem card_vertices_add_cyclic_le (cyclic : Finset B.ConnectedComponent)
   rw [Nat.card_eq_fintype_card]
   lia
 
+/--
+@isnad1 id=le.4h4v.s8.411288142a8b from=translated src=- shape=15bb4f61 vocab=f8d3e3d2
+-/
 theorem card_removed_add_untouched_cyclic_le (removed : Finset (Sym2 V))
     (edges : removed ⊆ B.edgeFinset)
     (reachable : (B.deleteEdges (removed : Set (Sym2 V))).Reachable = B.Reachable)

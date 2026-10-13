@@ -37,7 +37,9 @@ the circuit bound `23/5`.
 
 namespace Algebraic.Cutwidth.Gaussian
 
-/-- At `c = 4/25` the doubled band-jump coefficient `2 exp (-c²/2) p` is at most `5/18`. -/
+/-- At `c = 4/25` the doubled band-jump coefficient `2 exp (-c²/2) p` is at most `5/18`.
+@isnad1 id=le.0h0v.s6.b3139cc3a5c1 from=translated src=- shape=d4460699 vocab=3070534b
+-/
 theorem two_mul_exp_mul_frontierCoefficient_le :
     2 * (Real.exp (-((4 / 25 : ℝ) ^ 2) / 2) * frontierCoefficient) ≤ 5 / 18 :=
   Internal.two_mul_exp_mul_frontierCoefficient_le

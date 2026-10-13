@@ -328,7 +328,9 @@ private theorem fstBlockTM_scan_loop :
           rw [hfb, List.append_assoc, List.cons_append, List.nil_append] at *
           exact hcout
 
-/-- `pairFst` is polynomial-time, via the `fstBlockTM` scanner. -/
+/-- `pairFst` is polynomial-time, via the `fstBlockTM` scanner.
+@isnad1 id=mem.0h0v.s4.78e8be8be752 from=translated src=- shape=08f40544 vocab=5d7cf86f
+-/
 theorem fstBlock_mem_FP : pairFst ∈ FP := by
   refine ⟨1, 0, fstBlockTM, (fun m => 2 * m + 3), ?_, ?_⟩
   · intro z

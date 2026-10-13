@@ -24,6 +24,9 @@ open scoped BigOperators Classical
 
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
+/--
+@isnad1 id=eq.0h3v.s5.52e130c06b74 from=translated src=- shape=17dec5d7 vocab=46c48ec1
+-/
 theorem bernoulliAverage_coordinate_internal (p : ℝ) (i : ι) :
     bernoulliAverage p (fun s : ι → Bool => if s i then (1 : ℝ) else 0) = p := by
   let e := Equiv.piSplitAt i (fun _ : ι => Bool)
@@ -47,6 +50,9 @@ theorem bernoulliAverage_coordinate_internal (p : ℝ) (i : ι) :
     simpa [bernoulliAverage] using bernoulliAverage_const (ι := {j // j ≠ i}) p 1
   rw [hs, mul_one]
 
+/--
+@isnad1 id=eq.0h2v.s6.304477a942ab from=translated src=- shape=c34f2a65 vocab=76e23f69
+-/
 theorem bernoulliAverage_nonempty_internal (p : ℝ) :
     bernoulliAverage p (fun P : ι → Bool => if ∃ i, P i = true then (1 : ℝ) else 0) =
       1 - (1 - p) ^ Fintype.card ι := by
@@ -67,6 +73,9 @@ theorem bernoulliAverage_nonempty_internal (p : ℝ) :
   congr 1
   simp [bernoulliAverage, bernoulliWeight]
 
+/--
+@isnad1 id=le.1h2v.s6.20bd6462b7ab from=translated src=- shape=486579d6 vocab=1c88009b
+-/
 theorem one_sub_pow_bound_internal {p : ℝ} (hp' : p ≤ 1) (n : ℕ) :
     (1 - p) ^ n * (1 + (n : ℝ) * p) ≤ 1 := by
   induction n with

@@ -27,7 +27,9 @@ public section
 namespace Algebraic.Cutwidth.Extractor
 
 /-- Sufficiently small parity bias forces a positive sign-sum tail of mass
-at least `1/36`, beyond one eighth of `sqrt m`. -/
+at least `1/36`, beyond one eighth of `sqrt m`.
+@isnad1 id=le.7h6v.s8.53aa0c9f52c3 from=translated src=- shape=ee7dddb4 vocab=71b458a1
+-/
 theorem signSum_positive_tail_of_parityBias {α : Type*} {m : Nat} {s : Finset α}
     {w : α → ℝ} {σ : α → Fin m → ℝ} {δ : ℝ}
     (hw : ∀ a ∈ s, 0 ≤ w a) (hmass : ∑ a ∈ s, w a = 1) (hm : 0 < m)
@@ -39,7 +41,9 @@ theorem signSum_positive_tail_of_parityBias {α : Type*} {m : Nat} {s : Finset �
   (Internal.signSum_tails_of_parityBias hw hmass hm hσ hδ hbudget h).1
 
 /-- The same parity-bias budget forces the corresponding negative sign-sum
-tail, with the same mass and threshold. -/
+tail, with the same mass and threshold.
+@isnad1 id=le.7h6v.s8.41307c8262f8 from=translated src=- shape=de056bce vocab=71b458a1
+-/
 theorem signSum_negative_tail_of_parityBias {α : Type*} {m : Nat} {s : Finset α}
     {w : α → ℝ} {σ : α → Fin m → ℝ} {δ : ℝ}
     (hw : ∀ a ∈ s, 0 ≤ w a) (hmass : ∑ a ∈ s, w a = 1) (hm : 0 < m)

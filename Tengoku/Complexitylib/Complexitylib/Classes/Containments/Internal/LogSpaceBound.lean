@@ -29,7 +29,9 @@ polynomial factor. This is what turns the graph reachability of
 namespace Complexity
 
 /-- An asymptotic logarithmic bound becomes an everywhere bound after adding a constant: the
-finitely many exceptional inputs are absorbed into it. -/
+finitely many exceptional inputs are absorbed into it.
+@isnad1 id=ex.1h1v.s5.dbcd0a77ca8a from=translated src=- shape=119c3f9a vocab=a75e9c57
+-/
 theorem exists_log_bound {f : ℕ → ℕ} (hf : f =O (fun n => Nat.log 2 n)) :
     ∃ C D : ℕ, ∀ n, f n ≤ C * Nat.log 2 n + D := by
   rw [BigO, Asymptotics.isBigO_iff] at hf
@@ -49,7 +51,9 @@ theorem exists_log_bound {f : ℕ → ℕ} (hf : f =O (fun n => Nat.log 2 n)) :
     have hnat : f n ≤ ⌈c⌉₊ * Nat.log 2 n := by exact_mod_cast this
     omega
 
-/-- Four to a logarithmic power is polynomial. -/
+/-- Four to a logarithmic power is polynomial.
+@isnad1 id=le.0h3v.s6.032368b31a36 from=translated src=- shape=ab9ab80c vocab=bcb8e666
+-/
 theorem four_pow_log_le (C D n : ℕ) :
     4 ^ (C * Nat.log 2 n + D) ≤ 4 ^ D * (n + 1) ^ (2 * C) := by
   rw [pow_add, Nat.mul_comm (4 ^ (C * Nat.log 2 n)) (4 ^ D)]
@@ -66,14 +70,22 @@ theorem four_pow_log_le (C D n : ℕ) :
 /-- Bounded by a constant times a power of `n + 1`. -/
 def PolyBounded (g : ℕ → ℕ) : Prop := ∃ A B : ℕ, ∀ n, g n ≤ A * (n + 1) ^ B
 
+/--
+@isnad1 id=polyboun.0h1v.s2.26c47fb5c7d1 from=translated src=- shape=2c1a380c vocab=ed14fcba
+-/
 theorem PolyBounded.const (c : ℕ) : PolyBounded fun _ => c := ⟨c, 0, fun _ => by simp⟩
 
-/-- Transfer along a pointwise bound. -/
+/-- Transfer along a pointwise bound.
+@isnad1 id=polyboun.2h2v.s4.277a761db71c from=translated src=- shape=7a7c63b6 vocab=6771cf00
+-/
 theorem PolyBounded.mono {g h : ℕ → ℕ} (hg : PolyBounded g) (hle : ∀ n, h n ≤ g n) :
     PolyBounded h := by
   obtain ⟨A, B, hA⟩ := hg
   exact ⟨A, B, fun n => le_trans (hle n) (hA n)⟩
 
+/--
+@isnad1 id=polyboun.2h2v.s4.157eed96f4b3 from=translated src=- shape=b27ebcba vocab=566b9f1c
+-/
 theorem PolyBounded.mul {g h : ℕ → ℕ} (hg : PolyBounded g)
     (hh : PolyBounded h) : PolyBounded fun n => g n * h n := by
   obtain ⟨A₁, B₁, h₁⟩ := hg
@@ -83,6 +95,9 @@ theorem PolyBounded.mul {g h : ℕ → ℕ} (hg : PolyBounded g)
         Nat.mul_le_mul (h₁ n) (h₂ n)
     _ = A₁ * A₂ * (n + 1) ^ (B₁ + B₂) := by rw [pow_add]; ring
 
+/--
+@isnad1 id=polyboun.2h2v.s4.40534d94ea03 from=translated src=- shape=b27ebcba vocab=f928cb8d
+-/
 theorem PolyBounded.add {g h : ℕ → ℕ} (hg : PolyBounded g)
     (hh : PolyBounded h) : PolyBounded fun n => g n + h n := by
   obtain ⟨A₁, B₁, h₁⟩ := hg
@@ -97,15 +112,23 @@ theorem PolyBounded.add {g h : ℕ → ℕ} (hg : PolyBounded g)
         Nat.add_le_add (Nat.mul_le_mul_left _ e₁) (Nat.mul_le_mul_left _ e₂)
     _ = (A₁ + A₂) * (n + 1) ^ max B₁ B₂ := by ring
 
+/--
+@isnad1 id=polyboun.1h2v.s4.23dd2ecdc3d2 from=translated src=- shape=c82ddb5d vocab=2b12bc6d
+-/
 theorem PolyBounded.pow {g : ℕ → ℕ} (hg : PolyBounded g) (m : ℕ) :
     PolyBounded fun n => g n ^ m := by
   induction m with
   | zero => exact (PolyBounded.const 1).mono fun n => by simp
   | succ m ih => exact (ih.mul hg).mono fun n => by rw [pow_succ]
 
+/--
+@isnad1 id=polyboun.0h0v.s2.08f64d5edeb9 from=translated src=- shape=8895caae vocab=ed14fcba
+-/
 theorem PolyBounded.id : PolyBounded fun n => n := ⟨1, 1, fun n => by simp⟩
 
-/-- A log-space bound is polynomially bounded, as is four to its power. -/
+/-- A log-space bound is polynomially bounded, as is four to its power.
+@isnad1 id=polyboun.1h1v.s4.963626a12c0f from=translated src=- shape=e09fe88b vocab=0f30670f
+-/
 theorem PolyBounded.of_log {f : ℕ → ℕ} (hf : f =O (fun n => Nat.log 2 n)) : PolyBounded f := by
   obtain ⟨C, D, hCD⟩ := exists_log_bound hf
   refine ⟨C + D, 1, fun n => ?_⟩
@@ -113,6 +136,9 @@ theorem PolyBounded.of_log {f : ℕ → ℕ} (hf : f =O (fun n => Nat.log 2 n)) 
   have := hCD n
   nlinarith [Nat.zero_le C, Nat.zero_le D]
 
+/--
+@isnad1 id=polyboun.1h2v.s5.b40409c0e944 from=translated src=- shape=4ee3af3d vocab=42678da5
+-/
 theorem PolyBounded.four_pow {f : ℕ → ℕ} (hf : f =O (fun n => Nat.log 2 n)) (m : ℕ) :
     PolyBounded fun n => 4 ^ (f n + m) := by
   obtain ⟨C, D, hCD⟩ := exists_log_bound hf
@@ -123,7 +149,9 @@ theorem PolyBounded.four_pow {f : ℕ → ℕ} (hf : f =O (fun n => Nat.log 2 n)
         omega
     _ ≤ 4 ^ (D + m) * (n + 1) ^ (2 * C) := four_pow_log_le C (D + m) n
 
-/-- **The configuration count of a log-space machine is polynomial.** -/
+/-- **The configuration count of a log-space machine is polynomial.**
+@isnad1 id=polyboun.1h3v.s9.7e94be355d0b from=translated src=- shape=83af4ac7 vocab=a5a4bb03
+-/
 theorem exists_config_bound {k : ℕ} (Q : Type) [Fintype Q] {f : ℕ → ℕ}
     (hf : f =O (fun n => Nat.log 2 n)) :
     PolyBounded fun n => Fintype.card (Code Q k n (f n)) := by

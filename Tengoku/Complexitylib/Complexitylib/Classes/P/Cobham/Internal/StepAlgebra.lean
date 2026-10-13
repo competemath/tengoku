@@ -41,7 +41,9 @@ private def twoRuler : List Bool := [false, false]
 
 /-- **The left half-block after a step is in the algebra.** For a fixed direction
 and written symbol it is one of: the old left block unchanged (stay), the symbol
-prepended (right), or two bits dropped (left). -/
+prepended (right), or two bits dropped (left).
+@isnad1 id=cobham.3h6v.s6.c08cccfeae61 from=translated src=- shape=f4454b85 vocab=8f442c28
+-/
 theorem tapeStepBlocksFst {n : ℕ} (s : Γ) (d : Dir3)
     {gR gL gRt : (Fin n → List Bool) → List Bool}
     (hR : Cobham gR) (hL : Cobham gL) (_hRt : Cobham gRt) :
@@ -55,7 +57,9 @@ theorem tapeStepBlocksFst {n : ℕ} (s : Γ) (d : Dir3)
 /-- **The right half-block after a step is in the algebra.** For a fixed
 direction and written symbol it is the old right block with its leading symbol
 replaced (stay), consumed (right), or pushed back together with the nearest left
-symbol (left). -/
+symbol (left).
+@isnad1 id=cobham.3h6v.s6.cbb0c3e8a7d5 from=translated src=- shape=f4454b85 vocab=dc189218
+-/
 theorem tapeStepBlocksSnd {n : ℕ} (s : Γ) (d : Dir3)
     {gR gL gRt : (Fin n → List Bool) → List Bool}
     (hR : Cobham gR) (hL : Cobham gL) (hRt : Cobham gRt) :
@@ -71,7 +75,9 @@ theorem tapeStepBlocksSnd {n : ℕ} (s : Γ) (d : Dir3)
 
 /-- **Tape `j`'s two half-blocks, read out of an encoded configuration.** Block
 `0` is the state, so tape `j` occupies blocks `2j+1` and `2j+2` — exactly the
-indices `tapesStepFn` addresses with `Cobham.blockFn`. -/
+indices `tapesStepFn` addresses with `Cobham.blockFn`.
+@isnad1 id=and.1h5v.s7.e63f8e8bef93 from=translated src=- shape=1552a5dc vocab=4bd0c745
+-/
 theorem blockAt_cfgCode_tape {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq Q]
     (W : ℕ) (c : Cfg k Q) (j : ℕ) (hj : j < (cfgTapes c).length) :
     blockAt (blockRuler W) (cfgCode W c) (2 * j + 1)
@@ -116,7 +122,9 @@ def readsFn (R : List Bool) (m j : ℕ) (z : List Bool) : List Bool :=
 def keyFn (R : List Bool) (q m : ℕ) (z : List Bool) : List Bool :=
   (blockAt R z 0).take q ++ readsFn R m 0 z
 
-/-- **Reading the head symbols is in the algebra.** -/
+/-- **Reading the head symbols is in the algebra.**
+@isnad1 id=cobham.2h5v.s5.a79795fff0be from=translated src=- shape=d6632c73 vocab=4345d189
+-/
 theorem readsFn_mem {n : ℕ} (m j : ℕ)
     {gR gz : (Fin n → List Bool) → List Bool} (hR : Cobham gR) (hz : Cobham gz) :
     Cobham fun v : Fin n → List Bool => readsFn (gR v) m j (gz v) := by
@@ -126,14 +134,18 @@ theorem readsFn_mem {n : ℕ} (m j : ℕ)
       exact (appendFn (takeFn (Cobham.const twoRuler) (blockFn hR hz (2 * j + 2)))
         (ih (j + 1))).of_eq fun _ => rfl
 
-/-- **Reading the transition key is in the algebra.** -/
+/-- **Reading the transition key is in the algebra.**
+@isnad1 id=cobham.2h5v.s5.cbbb5805cdc9 from=translated src=- shape=d6632c73 vocab=199f3cda
+-/
 theorem keyFn_mem {n : ℕ} (q m : ℕ)
     {gR gz : (Fin n → List Bool) → List Bool} (hR : Cobham gR) (hz : Cobham gz) :
     Cobham fun v : Fin n → List Bool => keyFn (gR v) q m (gz v) :=
   (appendFn (takeFn (Cobham.const (List.replicate q false)) (blockFn hR hz 0))
     (readsFn_mem m 0 hR hz)).of_eq fun _ => by rw [keyFn, List.length_replicate]
 
-/-- **The extracted key is the transition key.** -/
+/-- **The extracted key is the transition key.**
+@isnad1 id=eq.2h6v.s6.9f3d070587ab from=translated src=- shape=3712cb17 vocab=058d464b
+-/
 theorem readsFn_eq {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq Q]
     (W : ℕ) (c : Cfg k Q) (hW : ∀ t ∈ cfgTapes c, t.head ≤ W) :
     ∀ (m j : ℕ), j + m = (cfgTapes c).length →
@@ -157,7 +169,9 @@ theorem readsFn_eq {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq Q]
               have := hW _ hmem; omega),
         take_rightCode _ (hW _ hmem), ih (j + 1) (by omega)]
 
-/-- The whole key, read out of an encoded configuration. -/
+/-- The whole key, read out of an encoded configuration.
+@isnad1 id=eq.2h4v.s6.0e1dd0135820 from=translated src=- shape=90e1ea0e vocab=23937170
+-/
 theorem keyFn_eq {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq Q]
     (W : ℕ) (c : Cfg k Q) (hq : Fintype.card Q ≤ blockWidth W)
     (hW : ∀ t ∈ cfgTapes c, t.head ≤ W) :
@@ -185,7 +199,9 @@ def tapesStepFn (R : List Bool) (acts : List (Γ × Dir3)) (j : ℕ) (z : List B
       ((tapeStepBlocks R a.1 a.2 (blockAt R z (2 * j + 1))
         (blockAt R z (2 * j + 2))).2 ++ tapesStepFn R rest (j + 1) z)
 
-/-- **Stepping every tape is in the algebra.** -/
+/-- **Stepping every tape is in the algebra.**
+@isnad1 id=cobham.2h5v.s5.dbd67519c280 from=translated src=- shape=666c2742 vocab=f5e28407
+-/
 theorem tapesStepFn_mem {n : ℕ} (acts : List (Γ × Dir3)) (j : ℕ)
     {gR gz : (Fin n → List Bool) → List Bool} (hR : Cobham gR) (hz : Cobham gz) :
     Cobham fun v : Fin n → List Bool => tapesStepFn (gR v) acts j (gz v) := by
@@ -203,7 +219,9 @@ theorem tapesStepFn_mem {n : ℕ} (acts : List (Γ × Dir3)) (j : ℕ)
 /-- **The algebra-side tape step computes the machine-side one.** Reading the
 half-blocks out of the encoding (`blockAt`) gives exactly the tapes' own
 half-blocks, so `tapesStepFn` reproduces the blockwise map of
-`tapesBlocks_tapesStep`. -/
+`tapesBlocks_tapesStep`.
+@isnad1 id=eq.1h6v.s7.153004ca1e1e from=translated src=- shape=25c730de vocab=5dcefb5d
+-/
 theorem tapesStepFn_eq {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq Q]
     (W : ℕ) (c : Cfg k Q) :
     ∀ (acts : List (Γ × Dir3)) (j : ℕ), j + acts.length ≤ (cfgTapes c).length →
@@ -235,7 +253,9 @@ def branchFn (R q' : List Bool) (acts : List (Γ × Dir3)) (z : List Bool) :
 
 /-- **A transition-table branch is in the algebra.** With the branch fixed, the
 new state code and every tape's write and direction are constants, so the whole
-successor configuration is a finite composition of toolkit members. -/
+successor configuration is a finite composition of toolkit members.
+@isnad1 id=cobham.2h5v.s5.7848946dcdc4 from=translated src=- shape=f5fd2fbc vocab=259e1644
+-/
 theorem branchFn_mem {n : ℕ} (q' : List Bool) (acts : List (Γ × Dir3))
     {gR gz : (Fin n → List Bool) → List Bool} (hR : Cobham gR) (hz : Cobham gz) :
     Cobham fun v : Fin n → List Bool => branchFn (gR v) q' acts (gz v) :=
@@ -248,7 +268,9 @@ the encoding of the machine's successor configuration.
 
 This is the point where the two halves of the development meet: the machine side
 (`cfgBlocks_step`, from the six write-and-move lemmas) and the algebra side
-(`tapesStepFn`, in the class by `branchFn_mem`). -/
+(`tapesStepFn`, in the class by `branchFn_mem`).
+@isnad1 id=eq.4h5v.s7.f4a4162ba626 from=translated src=- shape=c500f6ac vocab=54fddc88
+-/
 theorem branchFn_eq {k : ℕ} (tm : TM k) {c c' : Cfg k tm.Q} {W : ℕ}
     (h : tm.step c = some c') (hout : c.output.StartInvariant)
     (hwork : ∀ i, (c.work i).StartInvariant)
@@ -272,7 +294,9 @@ noncomputable def stepEntries {k : ℕ} (tm : TM k) :
     List (tm.Q × (Fin (k + 2) → Γ)) :=
   (Finset.univ : Finset (tm.Q × (Fin (k + 2) → Γ))).toList
 
-/-- Every key is in the table. -/
+/-- Every key is in the table.
+@isnad1 id=mem.0h3v.s6.dc7fea19fdd9 from=translated src=- shape=8a962350 vocab=e7b39871
+-/
 theorem mem_stepEntries {k : ℕ} (tm : TM k) (p : tm.Q × (Fin (k + 2) → Γ)) :
     p ∈ stepEntries tm := Finset.mem_toList.mpr (Finset.mem_univ p)
 
@@ -284,10 +308,16 @@ noncomputable def stepBranch {k : ℕ} (tm : TM k) (R : List Bool)
   if p.1 = tm.qhalt then z
   else branchFn R (stateCode (stepStateOf tm p.1 p.2)) (stepActsOf tm p.1 p.2) z
 
+/--
+@isnad1 id=eq.1h5v.s6.b0eb947a709e from=translated src=- shape=eb652f49 vocab=3c34a324
+-/
 theorem stepBranch_halt {k : ℕ} (tm : TM k) (R : List Bool)
     {p : tm.Q × (Fin (k + 2) → Γ)} (h : p.1 = tm.qhalt) (z : List Bool) :
     stepBranch tm R p z = z := ite_eq_left h
 
+/--
+@isnad1 id=eq.1h5v.s7.3fe5e788c31c from=translated src=- shape=a65ae8f4 vocab=a8169f8f
+-/
 theorem stepBranch_step {k : ℕ} (tm : TM k) (R : List Bool)
     {p : tm.Q × (Fin (k + 2) → Γ)} (h : p.1 ≠ tm.qhalt) (z : List Bool) :
     stepBranch tm R p z
@@ -303,7 +333,9 @@ noncomputable def stepFn {k : ℕ} (tm : TM k) (R z : List Bool) : List Bool :=
         (stepBranch tm R p z) acc)
     []
 
-/-- **The encoded step is in the algebra.** -/
+/-- **The encoded step is in the algebra.**
+@isnad1 id=cobham.2h5v.s5.73753785a430 from=translated src=- shape=e6fe5e27 vocab=c0208a05
+-/
 theorem stepFn_mem {n k : ℕ} (tm : TM k)
     {gR gz : (Fin n → List Bool) → List Bool} (hR : Cobham gR) (hz : Cobham gz) :
     Cobham fun v : Fin n → List Bool => stepFn tm (gR v) (gz v) := by
@@ -321,7 +353,9 @@ theorem stepFn_mem {n k : ℕ} (tm : TM k)
 
 /-- **The table selects the configuration's own branch.** The key read out of the
 encoding is the configuration's key, and by `keyPattern_injective` no other
-entry's pattern matches it. -/
+entry's pattern matches it.
+@isnad1 id=eq.2h4v.s6.f96a4fd50540 from=translated src=- shape=762fbb4f vocab=836be11b
+-/
 theorem stepFn_apply {k : ℕ} (tm : TM k) (c : Cfg k tm.Q) {W : ℕ}
     (hq : Fintype.card tm.Q ≤ blockWidth W) (hW : ∀ t ∈ cfgTapes c, t.head ≤ W) :
     stepFn tm (blockRuler W) (cfgCode W c)
@@ -344,7 +378,9 @@ theorem stepFn_apply {k : ℕ} (tm : TM k) (c : Cfg k tm.Q) {W : ℕ}
       keyPattern_injective (by rw [hpre.eq_of_length hlen, keyCode_eq])
     rw [hp]
 
-/-- **The encoded step computes the machine step.** -/
+/-- **The encoded step computes the machine step.**
+@isnad1 id=eq.6h5v.s7.723dcecc9acd from=translated src=- shape=3626dded vocab=d97a005d
+-/
 theorem stepFn_eq {k : ℕ} (tm : TM k) {c c' : Cfg k tm.Q} {W : ℕ}
     (h : tm.step c = some c') (hq : Fintype.card tm.Q ≤ blockWidth W)
     (hW : ∀ t ∈ cfgTapes c, t.head ≤ W)
@@ -358,7 +394,9 @@ theorem stepFn_eq {k : ℕ} (tm : TM k) {c c' : Cfg k tm.Q} {W : ℕ}
     ← stepActs_eq_stepActsOf]
   exact branchFn_eq tm h hout hwork hgood
 
-/-- **A halted encoding is a fixed point.** -/
+/-- **A halted encoding is a fixed point.**
+@isnad1 id=eq.3h4v.s6.56cb28a8cd40 from=translated src=- shape=57ba307e vocab=259e6a29
+-/
 theorem stepFn_halted {k : ℕ} (tm : TM k) {c : Cfg k tm.Q} {W : ℕ}
     (h : c.state = tm.qhalt) (hq : Fintype.card tm.Q ≤ blockWidth W)
     (hW : ∀ t ∈ cfgTapes c, t.head ≤ W) :
@@ -385,6 +423,9 @@ private theorem tapeStepBlocks_length_le (R : List Bool) (s : Γ) (d : Dir3)
       (tapeStepBlocks R s d L Rt).2.length ≤ R.length := by
   cases d <;> exact ⟨by simp [tapeStepBlocks, hL], by simp [tapeStepBlocks]⟩
 
+/--
+@isnad1 id=le.0h4v.s5.1e495f300616 from=translated src=- shape=287083d8 vocab=b3f2a5fd
+-/
 theorem tapesStepFn_length_le (R : List Bool) :
     ∀ (acts : List (Γ × Dir3)) (j : ℕ) (z : List Bool),
       (tapesStepFn R acts j z).length ≤ 2 * acts.length * R.length := by
@@ -402,6 +443,9 @@ theorem tapesStepFn_length_le (R : List Bool) :
       rw [tapesStepFn, List.length_append, List.length_append, List.length_cons, hexp]
       omega
 
+/--
+@isnad1 id=le.0h4v.s5.7d35c3f72f5e from=translated src=- shape=b156ff63 vocab=79fffed0
+-/
 theorem branchFn_length_le (R q' : List Bool) (acts : List (Γ × Dir3)) (z : List Bool) :
     (branchFn R q' acts z).length ≤ (2 * acts.length + 1) * R.length := by
   have := tapesStepFn_length_le R acts 0 z
@@ -410,12 +454,17 @@ theorem branchFn_length_le (R q' : List Bool) (acts : List (Γ × Dir3)) (z : Li
   rw [branchFn, List.length_append, padTo_length, hexp]
   omega
 
+/--
+@isnad1 id=eq.0h4v.s5.766d95ffb651 from=translated src=- shape=4ec11e85 vocab=109b3987
+-/
 @[simp] theorem stepActsOf_length {k : ℕ} (tm : TM k) (q : tm.Q)
     (syms : Fin (k + 2) → Γ) : (stepActsOf tm q syms).length = k + 2 := by
   rw [stepActsOf]
   simp
 
-/-- **An encoded configuration stays within its blocks.** -/
+/-- **An encoded configuration stays within its blocks.**
+@isnad1 id=le.1h4v.s6.60686c952cc8 from=translated src=- shape=fcb2d1e7 vocab=dd842688
+-/
 theorem stepFn_length_le {k : ℕ} (tm : TM k) (R z : List Bool)
     (hz : z.length ≤ (2 * (k + 2) + 1) * R.length) :
     (stepFn tm R z).length ≤ (2 * (k + 2) + 1) * R.length := by
@@ -451,10 +500,16 @@ blocks splits with one `takeFn`/`dropFn`. -/
 def pairCode (W : ℕ) (t : Tape) : List Bool :=
   padTo (blockRuler W) (leftCode t) ++ padTo (blockRuler W) (rightCode t W)
 
+/--
+@isnad1 id=eq.0h2v.s4.7a838f962ea9 from=translated src=- shape=5f62d93a vocab=ef1732a2
+-/
 theorem take_pairCode (W : ℕ) (t : Tape) :
     (pairCode W t).take (blockRuler W).length = padTo (blockRuler W) (leftCode t) :=
   List.take_left' (by simp)
 
+/--
+@isnad1 id=eq.0h2v.s4.e5339a0fefb0 from=translated src=- shape=dffa6183 vocab=0af79697
+-/
 theorem drop_pairCode (W : ℕ) (t : Tape) :
     (pairCode W t).drop (blockRuler W).length = padTo (blockRuler W) (rightCode t W) :=
   List.drop_left' (by simp)
@@ -473,7 +528,9 @@ def rewindFn (R z : List Bool) : List Bool :=
       (caseBit₀ (matchPrefix (symCode Γ.zero) (z.drop R.length)) (rewindStep R Γ.zero z)
         (rewindStep R Γ.one z)))
 
-/-- **The rewind step is in the algebra.** -/
+/-- **The rewind step is in the algebra.**
+@isnad1 id=cobham.2h3v.s5.f9352eca90cd from=translated src=- shape=100e055a vocab=001b3eba
+-/
 theorem rewindFn_mem {n : ℕ} {gR gz : (Fin n → List Bool) → List Bool}
     (hR : Cobham gR) (hz : Cobham gz) :
     Cobham fun v : Fin n → List Bool => rewindFn (gR v) (gz v) := by
@@ -488,7 +545,9 @@ theorem rewindFn_mem {n : ℕ} {gR gz : (Fin n → List Bool) → List Bool}
     (iteFn (matchPrefixFn hkey _) (hstep _)
       (iteFn (matchPrefixFn hkey _) (hstep _) (hstep _)))).of_eq fun _ => rfl
 
-/-- The first two bits of a tape's padded right half-block code its read symbol. -/
+/-- The first two bits of a tape's padded right half-block code its read symbol.
+@isnad1 id=eq.1h2v.s5.941c022b3bf5 from=translated src=- shape=e0f1691f vocab=97d841dd
+-/
 theorem take_two_drop_pairCode {W : ℕ} (t : Tape) (hW : t.head ≤ W) :
     ((pairCode W t).drop (blockRuler W).length).take 2 = symCode t.read := by
   rw [drop_pairCode,
@@ -530,7 +589,9 @@ private theorem move_left_of_head_zero {t : Tape} (h : t.head = 0) :
 /-- **The rewind step computes a left move.** Away from cell `0` the symbol
 written back is the one read, so `tapeStepBlocks_eq` applies with
 `Tape.write_read_self`; at cell `0` the head reads `▷` and both sides stand
-still. -/
+still.
+@isnad1 id=eq.2h2v.s4.64bafacd0111 from=translated src=- shape=7917d119 vocab=5710dce7
+-/
 theorem rewindFn_eq {W : ℕ} (t : Tape) (hinv : t.StartInvariant) (hW : t.head ≤ W) :
     rewindFn (blockRuler W) (pairCode W t) = pairCode W (t.move Dir3.left) := by
   by_cases h0 : t.head = 0
@@ -553,7 +614,9 @@ theorem rewindFn_eq {W : ℕ} (t : Tape) (hinv : t.StartInvariant) (hW : t.head 
         simp +decide only [caseBit₀]
         exact hstep _ hr.symm
 
-/-- **A rewound pair stays within its two blocks.** -/
+/-- **A rewound pair stays within its two blocks.**
+@isnad1 id=le.1h2v.s5.5710a82c6193 from=translated src=- shape=a383a230 vocab=aabb4c46
+-/
 theorem rewindFn_length_le (R z : List Bool) (hz : z.length ≤ 2 * R.length) :
     (rewindFn R z).length ≤ 2 * R.length := by
   have hstep : ∀ s : Γ, (rewindStep R s z).length = 2 * R.length := fun s => by
@@ -582,11 +645,20 @@ is why `symCode Γ.blank = [0,0]`. -/
 /-- A bitstring as tape cells, two bits each. -/
 def encodeBits (x : List Bool) : List Bool := x.flatMap fun b => symCode (Γ.ofBool b)
 
+/--
+@isnad1 id=eq.0h0v.s3.95f7660ce242 from=translated src=- shape=9b1c3ca8 vocab=76116a40
+-/
 @[simp] theorem encodeBits_nil : encodeBits [] = [] := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.75445de0b7be from=translated src=- shape=a7e218e3 vocab=37a82ea7
+-/
 @[simp] theorem encodeBits_cons (b : Bool) (x : List Bool) :
     encodeBits (b :: x) = symCode (Γ.ofBool b) ++ encodeBits x := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.7a054b91856c from=translated src=- shape=b89013fa vocab=39108700
+-/
 @[simp] theorem encodeBits_length (x : List Bool) :
     (encodeBits x).length = 2 * x.length := by
   induction x with
@@ -602,7 +674,9 @@ private def encStep (b : Bool) (w : Fin 2 → List Bool) : List Bool :=
 private theorem encStep_cons (b : Bool) (x p : List Bool) (v : Fin 0 → List Bool) :
     encStep b (Fin.cons x (Fin.cons p v)) = symCode (Γ.ofBool b) ++ p := rfl
 
-/-- **Coding a string as tape cells is in the algebra.** -/
+/-- **Coding a string as tape cells is in the algebra.**
+@isnad1 id=cobham.1h2v.s4.7688944d5a90 from=translated src=- shape=4eba9814 vocab=6eea8a88
+-/
 theorem encodeBitsFn {n : ℕ} {g : (Fin n → List Bool) → List Bool} (h : Cobham g) :
     Cobham fun v : Fin n → List Bool => encodeBits (g v) := by
   have hrec : ∀ (x : List Bool) (v : Fin 0 → List Bool),
@@ -634,7 +708,9 @@ noncomputable def initFn {k : ℕ} (tm : TM k) (R x : List Bool) : List Bool :=
     (padTo R [] ++ (padTo R (symCode Γ.start ++ encodeBits x) ++
       (List.replicate (k + 1) (padTo R [] ++ padTo R (symCode Γ.start))).flatten))
 
-/-- **The initial encoding is in the algebra.** -/
+/-- **The initial encoding is in the algebra.**
+@isnad1 id=cobham.2h5v.s5.efe4f1c3111f from=translated src=- shape=e6fe5e27 vocab=85ba0ef8
+-/
 theorem initFn_mem {n k : ℕ} (tm : TM k)
     {gR gx : (Fin n → List Bool) → List Bool} (hR : Cobham gR) (hx : Cobham gx) :
     Cobham fun v : Fin n → List Bool => initFn tm (gR v) (gx v) :=
@@ -658,7 +734,9 @@ private theorem flatten_tapesBlocks (W : ℕ) : ∀ ts : List Tape,
         List.map_cons, List.flatten_cons, tapeBlocks]
       simp
 
-/-- Windows concatenate. -/
+/-- Windows concatenate.
+@isnad1 id=eq.0h4v.s5.5bf898791b82 from=translated src=- shape=9e98d3dc vocab=4aa67082
+-/
 theorem cellsCode_add (t : Tape) (i a b : ℕ) :
     cellsCode t i (a + b) = cellsCode t i a ++ cellsCode t (i + a) b := by
   induction a generalizing i with
@@ -695,7 +773,9 @@ private theorem cellsCode_of_blank (t : Tape) (i w : ℕ)
         show 2 * (w + 1) = 2 + 2 * w from by omega, List.replicate_add]
       rfl
 
-/-- **The initial encoding is the initial configuration's.** -/
+/-- **The initial encoding is the initial configuration's.**
+@isnad1 id=eq.1h4v.s5.ea2144952c74 from=translated src=- shape=cbee477c vocab=b7773e83
+-/
 theorem initFn_eq {k : ℕ} (tm : TM k) (W : ℕ) (x : List Bool) (hx : x.length ≤ W) :
     initFn tm (blockRuler W) x = cfgCode W (tm.initCfg x) := by
   set R := blockRuler W with hR

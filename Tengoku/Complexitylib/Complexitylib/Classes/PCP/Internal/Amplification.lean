@@ -80,14 +80,23 @@ variable {α : Type} [Fintype α] [Nonempty α] (A : Amplifier α)
 def iter (A : Amplifier α) (k : ℕ) (G : ConstraintGraph α) : ConstraintGraph α :=
   A.transform^[k] G
 
+/--
+@isnad1 id=eq.0h3v.s4.a898e2f6a43c from=translated src=- shape=58fc7574 vocab=20995975
+-/
 @[simp] theorem iter_zero (G : ConstraintGraph α) : A.iter 0 G = G := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.0475b53bc5ab from=translated src=- shape=d382ecaf vocab=d0f5b49f
+-/
 theorem iter_succ (k : ℕ) (G : ConstraintGraph α) :
     A.iter (k + 1) G = A.transform (A.iter k G) :=
   Function.iterate_succ_apply' _ _ _
 
 /-! ### Size -/
 
+/--
+@isnad1 id=le.0h4v.s5.eab68ebfee8f from=translated src=- shape=f4ae1186 vocab=04f3de0d
+-/
 theorem numEdges_iter_le (k : ℕ) (G : ConstraintGraph α) :
     (A.iter k G).numEdges ≤ A.edgeFactor ^ k * G.numEdges := by
   induction k with
@@ -102,12 +111,18 @@ theorem numEdges_iter_le (k : ℕ) (G : ConstraintGraph α) :
 
 /-! ### Completeness -/
 
+/--
+@isnad1 id=satisfia.1h4v.s4.66fe45cba8d6 from=translated src=- shape=d11a78a2 vocab=933b2cb7
+-/
 theorem satisfiable_iter {G : ConstraintGraph α} (h : G.Satisfiable) (k : ℕ) :
     (A.iter k G).Satisfiable := by
   induction k with
   | zero => simpa using h
   | succ k ih => rw [iter_succ]; exact A.satisfiable_transform _ ih
 
+/--
+@isnad1 id=eq.1h4v.s5.9d880cbdf3df from=translated src=- shape=0f2c4a82 vocab=0572ecf0
+-/
 theorem unsatVal_iter_eq_zero_of_satisfiable {G : ConstraintGraph α}
     (h : G.Satisfiable) (k : ℕ) : (A.iter k G).unsatVal = 0 :=
   (unsatVal_eq_zero_iff_satisfiable _).mpr (A.satisfiable_iter h k)
@@ -121,6 +136,9 @@ private theorem min_le_min_two_mul {g X : ℚ} (hg : 0 ≤ g) (hX : 0 ≤ X) :
   have h1 : (0 : ℚ) ≤ min g X := le_min hg hX
   linarith
 
+/--
+@isnad1 id=le.0h4v.s6.bd124fea07be from=translated src=- shape=50b21c12 vocab=09162702
+-/
 theorem unsatVal_iter_ge (k : ℕ) (G : ConstraintGraph α) :
     min A.gap (2 ^ k * G.unsatVal) ≤ (A.iter k G).unsatVal := by
   induction k with
@@ -155,7 +173,9 @@ theorem unsatVal_iter_ge (k : ℕ) (G : ConstraintGraph α) :
 
 /-- After enough rounds an unsatisfiable graph has value at least `gap`. The
 hypothesis `numEdges ≤ 2 ^ k` is what makes `k = O(log (size))` rounds
-suffice. -/
+suffice.
+@isnad1 id=le.2h4v.s6.ebb493125729 from=translated src=- shape=f4b6cbd2 vocab=58f8da94
+-/
 theorem gap_le_unsatVal_iter {G : ConstraintGraph α} (h : ¬ G.Satisfiable) {k : ℕ}
     (hk : G.numEdges ≤ 2 ^ k) : A.gap ≤ (A.iter k G).unsatVal := by
   refine le_trans ?_ (A.unsatVal_iter_ge k G)
@@ -174,7 +194,9 @@ theorem gap_le_unsatVal_iter {G : ConstraintGraph α} (h : ¬ G.Satisfiable) {k 
 
 /-- The constant-gap dichotomy delivered by logarithmically many rounds: a
 satisfiable graph maps to a satisfiable graph, and an unsatisfiable one to a
-graph of value at least `gap`. -/
+graph of value at least `gap`.
+@isnad1 id=and.1h4v.s6.cb2e54309fbc from=translated src=- shape=5ea7714b vocab=58f8da94
+-/
 theorem dichotomy (G : ConstraintGraph α) {k : ℕ} (hk : G.numEdges ≤ 2 ^ k) :
     (G.Satisfiable → (A.iter k G).Satisfiable) ∧
       (¬ G.Satisfiable → A.gap ≤ (A.iter k G).unsatVal) :=

@@ -29,7 +29,9 @@ intended value.
 namespace Complexity
 
 /-- If a test holds at exactly the indices below `m ≤ n`, then `m` of the indices
-below `n` pass it. -/
+below `n` pass it.
+@isnad1 id=eq.2h3v.s5.b41b6b612e6c from=translated src=- shape=af20d6eb vocab=d35aa4a6
+-/
 theorem card_filter_range_of_iff {n m : ℕ} (hm : m ≤ n) (p : ℕ → Prop) [DecidablePred p]
     (h : ∀ i < n, p i ↔ i < m) : ((Finset.range n).filter p).card = m := by
   have : (Finset.range n).filter p = Finset.range m := by
@@ -43,7 +45,9 @@ theorem card_filter_range_of_iff {n m : ℕ} (hm : m ≤ n) (p : ℕ → Prop) [
   rw [this, Finset.card_range]
 
 /-- **Division as a count**: `a / b` is the number of `i < a` with
-`(i + 1) * b ≤ a`, or `0` when `b = 0`. -/
+`(i + 1) * b ≤ a`, or `0` when `b = 0`.
+@isnad1 id=eq.0h2v.s6.000fb6ab03a9 from=translated src=- shape=0189a45d vocab=10d9e90d
+-/
 theorem div_eq_card_filter_range (a b : ℕ) :
     a / b = ((Finset.range a).filter fun i => 0 < b ∧ (i + 1) * b ≤ a).card := by
   rcases Nat.eq_zero_or_pos b with rfl | hb
@@ -54,7 +58,9 @@ theorem div_eq_card_filter_range (a b : ℕ) :
     exact ⟨fun h => h.2, fun h => ⟨hb, h⟩⟩
 
 /-- Multiplying by `b` and capping at `c`, `j` times from `min 1 c`, gives the
-capped power `min (b ^ j) c`. -/
+capped power `min (b ^ j) c`.
+@isnad1 id=eq.0h3v.s5.cb7f6e009390 from=translated src=- shape=5808c078 vocab=fdcb1ddb
+-/
 theorem min_mul_iterate (b c : ℕ) :
     ∀ j, (fun x => min (b * x) c)^[j] (min 1 c) = min (b ^ j) c
   | 0 => by rw [Function.iterate_zero_apply, pow_zero]
@@ -70,7 +76,9 @@ theorem min_mul_iterate (b c : ℕ) :
             min_eq_right (hc.trans (Nat.mul_le_mul_left b h))]
 
 /-- **Binary length as a count**: `Nat.size n` is the number of `i < n` with
-`2 ^ i ≤ n`, the power capped at `n + 1`. -/
+`2 ^ i ≤ n`, the power capped at `n + 1`.
+@isnad1 id=eq.0h1v.s6.6abb38f33fd0 from=translated src=- shape=a72e8265 vocab=5faba829
+-/
 theorem size_eq_card_filter_range (n : ℕ) :
     Nat.size n = ((Finset.range n).filter fun i => min (2 ^ i) (n + 1) ≤ n).card := by
   refine (card_filter_range_of_iff (Nat.size_le.mpr Nat.lt_two_pow_self) _
@@ -80,7 +88,9 @@ theorem size_eq_card_filter_range (n : ℕ) :
 
 /-- **The ceiling logarithm as a count**: for `1 < b`, `Nat.clog b n` is the
 number of `i < n` with `b ^ i < n`, the power capped at `n`; and it is `0`
-otherwise. -/
+otherwise.
+@isnad1 id=eq.0h2v.s6.58f31fca77b3 from=translated src=- shape=a22fdccf vocab=5661bdc0
+-/
 theorem clog_eq_card_filter_range (b n : ℕ) :
     Nat.clog b n = ((Finset.range n).filter fun i => 1 < b ∧ min (b ^ i) n < n).card := by
   by_cases hb : 1 < b
@@ -94,7 +104,9 @@ theorem clog_eq_card_filter_range (b n : ℕ) :
 
 /-- **The floor logarithm as a count**: for `1 < b`, `Nat.log b n` is the number
 of `i < n` with `b ^ (i + 1) ≤ n`, the power capped at `n + 1`; and it is `0`
-otherwise. -/
+otherwise.
+@isnad1 id=eq.0h2v.s7.d234582397d4 from=translated src=- shape=f44b10ca vocab=f4e5221c
+-/
 theorem log_eq_card_filter_range (b n : ℕ) :
     Nat.log b n
       = ((Finset.range n).filter fun i => 1 < b ∧ min (b ^ (i + 1)) (n + 1) ≤ n).card := by
@@ -109,7 +121,9 @@ theorem log_eq_card_filter_range (b n : ℕ) :
     simp [hb]
 
 /-- Rounding up to a power stays below a bilinear bound, including bases zero
-and one and target zero. This bounds the unary output of power rounding. -/
+and one and target zero. This bounds the unary output of power rounding.
+@isnad1 id=le.0h2v.s5.039755d238e7 from=translated src=- shape=b23188bb vocab=b1eaed18
+-/
 theorem pow_clog_le_mul_add_one (b n : ℕ) : b ^ Nat.clog b n ≤ b * n + 1 := by
   by_cases hb : 1 < b
   · by_cases hn : 1 < n

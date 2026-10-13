@@ -52,7 +52,9 @@ namespace Complexity
 
 /-- A nonidentity permutation of `Fin 5` whose fifth power is the identity is a
     `5`-cycle of order `5`. (Order divides the prime `5` and is not `1`, so it is
-    `5`; a prime-order permutation is a single cycle.) -/
+    `5`; a prime-order permutation is a single cycle.)
+@isnad1 id=and.2h1v.s7.2c62c527b706 from=translated src=- shape=502afb12 vocab=ad29ca3a
+-/
 theorem isCycle_orderOf_five_of_pow {g : Perm (Fin 5)} (h5 : g ^ 5 = 1) (hne : g ≠ 1) :
     g.IsCycle ∧ orderOf g = 5 := by
   have hp : Nat.Prime 5 := by norm_num
@@ -68,7 +70,9 @@ theorem isCycle_orderOf_five_of_pow {g : Perm (Fin 5)} (h5 : g ^ 5 = 1) (hne : g
 
 /-- A conjugate of a `5`-cycle is again a `5`-cycle. (Conjugation preserves both
     `g⁵ = 1` — via the homomorphism `MulAut.conj` — and nonidentity, so
-    `isCycle_orderOf_five_of_pow` applies to the conjugate.) -/
+    `isCycle_orderOf_five_of_pow` applies to the conjugate.)
+@isnad1 id=and.1h2v.s8.c277372fcf9a from=translated src=- shape=9bcf9478 vocab=d939293d
+-/
 theorem conj_isCycle_orderOf_five {a : Perm (Fin 5)} (h : a.IsCycle ∧ orderOf a = 5)
     (g : Perm (Fin 5)) : (g * a * g⁻¹).IsCycle ∧ orderOf (g * a * g⁻¹) = 5 := by
   obtain ⟨_, ho⟩ := h
@@ -88,7 +92,9 @@ theorem conj_isCycle_orderOf_five {a : Perm (Fin 5)} (h : a.IsCycle ∧ orderOf 
 /-- **Barrington's `S₅` input.** There exist two `5`-cycles of `S₅` whose
     commutator is again a `5`-cycle. The explicit witnesses are `finRotate 5` and
     the `5`-cycle `(0 2 4 3 1)`; the order-`5` facts are checked by kernel
-    computation. -/
+    computation.
+@isnad1 id=ex.0h0v.s7.a4ddd1ccdae8 from=translated src=- shape=8d8b263c vocab=22ba81ec
+-/
 theorem exists_fiveCycle_commutator :
     ∃ a b : Perm (Fin 5),
       a.IsCycle ∧ orderOf a = 5 ∧ b.IsCycle ∧ orderOf b = 5 ∧
@@ -106,7 +112,9 @@ theorem exists_fiveCycle_commutator :
     single conjugacy class of `S₅` (equal cycle type ⟹ conjugate) and that
     conjugation distributes over the commutator, any `5`-cycle `c` of `S₅` can be
     written as `⁅a, b⁆` for `5`-cycles `a, b`. This is the target-cycle freedom
-    Barrington's `AND` gate needs. -/
+    Barrington's `AND` gate needs.
+@isnad1 id=ex.2h1v.s7.cc8fc9a986db from=translated src=- shape=ac1a5bab vocab=22ba81ec
+-/
 theorem every_fiveCycle_is_commutator (c : Perm (Fin 5)) (hc : c.IsCycle)
     (hco : orderOf c = 5) :
     ∃ a b : Perm (Fin 5),

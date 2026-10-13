@@ -200,6 +200,9 @@ private theorem normalize_of_card (n : Nat) (M : SimpleGraph W) (C S : Finset W)
       exact ⟨K, regularK, cutK.trans (switchEdges_cut G haS hbS hcS hdS), boundaryK,
         terminal, Transfer.trans transferK step⟩
 
+/--
+@isnad1 id=or.1h3v.s8.de80ef46abf7 from=translated src=- shape=f62d7492 vocab=683f11f8
+-/
 theorem exists_independent_boundary_or_small_helpful (H : SimpleGraph W) (S : Finset W)
     (regular : H.IsRegularOfDegree 3) :
     (∃ X ⊆ S, X.card ≤ 33 ∧ 1 ≤ helpfulness H S X) ∨

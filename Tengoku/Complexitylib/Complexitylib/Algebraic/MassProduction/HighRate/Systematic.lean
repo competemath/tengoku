@@ -24,7 +24,9 @@ open scoped BigOperators
 
 /-- Independent evaluation functions admit a full-size information set.
 The encoder is a linear functional applied to the evaluation row, so every
-linear relation among rows is preserved. -/
+linear relation among rows is preserved.
+@isnad1 id=ex.1h4v.s9.6020d4a01b68 from=translated src=- shape=d270cccf vocab=6057d21b
+-/
 theorem existsSystematicEncoder
     {K Index Point : Type*} [Field K] [Fintype Index] [Fintype Point]
     (functions : Index → Point → K) (independent : LinearIndependent K functions) :

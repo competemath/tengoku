@@ -58,6 +58,9 @@ def mapIndex (φ : Fin n → Fin N) : Formula n → Formula N
   | and l r => and (l.mapIndex φ) (r.mapIndex φ)
   | or l r => or (l.mapIndex φ) (r.mapIndex φ)
 
+/--
+@isnad1 id=eq.0h5v.s5.bce4dafff47f from=translated src=- shape=02b80948 vocab=f7c56ffb
+-/
 @[simp] theorem eval_mapIndex (φ : Fin n → Fin N) :
     ∀ (F : Formula n) (x : Fin N → Bool), (F.mapIndex φ).eval x = F.eval (x ∘ φ)
   | lit _ _, _ => rfl
@@ -65,6 +68,9 @@ def mapIndex (φ : Fin n → Fin N) : Formula n → Formula N
   | and l r, x => by simp [mapIndex, eval_mapIndex φ l, eval_mapIndex φ r]
   | or l r, x => by simp [mapIndex, eval_mapIndex φ l, eval_mapIndex φ r]
 
+/--
+@isnad1 id=eq.0h4v.s4.381ad0c4002a from=translated src=- shape=f89aa1b5 vocab=d4baef68
+-/
 @[simp] theorem depth_mapIndex (φ : Fin n → Fin N) :
     ∀ F : Formula n, (F.mapIndex φ).depth = F.depth
   | lit _ _ => rfl
@@ -72,6 +78,9 @@ def mapIndex (φ : Fin n → Fin N) : Formula n → Formula N
   | and l r => by simp [mapIndex, depth, depth_mapIndex φ l, depth_mapIndex φ r]
   | or l r => by simp [mapIndex, depth, depth_mapIndex φ l, depth_mapIndex φ r]
 
+/--
+@isnad1 id=eq.0h4v.s4.dad61eb0420d from=translated src=- shape=f89aa1b5 vocab=8d07b15e
+-/
 @[simp] theorem leaves_mapIndex (φ : Fin n → Fin N) :
     ∀ F : Formula n, (F.mapIndex φ).leaves = F.leaves
   | lit _ _ => rfl
@@ -86,6 +95,9 @@ def subst (σ : Fin N → Formula n) : Formula N → Formula n
   | and l r => and (l.subst σ) (r.subst σ)
   | or l r => or (l.subst σ) (r.subst σ)
 
+/--
+@isnad1 id=eq.0h5v.s5.eae46f809b28 from=translated src=- shape=b8562115 vocab=7dd6586a
+-/
 @[simp] theorem eval_subst (σ : Fin N → Formula n) :
     ∀ (F : Formula N) (x : Fin n → Bool), (F.subst σ).eval x = F.eval fun i => (σ i).eval x
   | lit i b, x => by
@@ -98,6 +110,9 @@ def subst (σ : Fin N → Formula n) : Formula N → Formula n
   | and l r, x => by simp [subst, eval_subst σ l, eval_subst σ r]
   | or l r, x => by simp [subst, eval_subst σ l, eval_subst σ r]
 
+/--
+@isnad1 id=le.1h5v.s5.81483b3c7666 from=translated src=- shape=835e3710 vocab=48e44d79
+-/
 theorem depth_subst_le (σ : Fin N → Formula n) {d : Nat} (hσ : ∀ i, (σ i).depth ≤ d) :
     ∀ F : Formula N, (F.subst σ).depth ≤ F.depth + d
   | lit i b => by
@@ -114,6 +129,9 @@ theorem depth_subst_le (σ : Fin N → Formula n) {d : Nat} (hσ : ∀ i, (σ i)
     have := depth_subst_le σ hσ r
     omega
 
+/--
+@isnad1 id=le.2h5v.s5.61d5dcf9a836 from=translated src=- shape=262cca06 vocab=2a21b0de
+-/
 theorem leaves_subst_le (σ : Fin N → Formula n) {L : Nat} (hL : 1 ≤ L)
     (hσ : ∀ i, (σ i).leaves ≤ L) :
     ∀ F : Formula N, (F.subst σ).leaves ≤ F.leaves * L
@@ -133,7 +151,9 @@ theorem leaves_subst_le (σ : Fin N → Formula n) {L : Nat} (hL : 1 ≤ L)
 
 end Formula
 
-/-- An infimum of natural numbers in `ℕ∞` over a nonempty index type is attained. -/
+/-- An infimum of natural numbers in `ℕ∞` over a nonempty index type is attained.
+@isnad1 id=ex.0h2v.s5.e45e8448ac5a from=translated src=- shape=74c66f2c vocab=40caa81c
+-/
 theorem exists_iInf_natCast_eq {ι : Type*} [Nonempty ι] (u : ι → Nat) :
     ∃ i, (⨅ j, (u j : ℕ∞)) = u i := by
   obtain ⟨i, hi⟩ := Nat.sInf_mem (Set.range_nonempty u)
@@ -147,6 +167,9 @@ theorem exists_iInf_natCast_eq {ι : Type*} [Nonempty ι] (u : ι → Nat) :
 def blockIndex (j : Fin m) (i : Fin n) : Fin (m * n) :=
   finProdFinEquiv (j, i)
 
+/--
+@isnad1 id=eq.0h4v.s7.f026ce3889da from=translated src=- shape=e91f7880 vocab=8106ac80
+-/
 theorem finProdFinEquiv_symm_blockIndex (j : Fin m) (i : Fin n) :
     finProdFinEquiv.symm (blockIndex j i) = (j, i) :=
   Equiv.symm_apply_apply _ _
@@ -157,14 +180,23 @@ namespace Formula
 def compose (F : Formula m) (G : Formula n) : Formula (m * n) :=
   F.subst fun j => G.mapIndex (blockIndex j)
 
+/--
+@isnad1 id=eq.0h5v.s5.bad6db5006b5 from=translated src=- shape=32932d06 vocab=8ebb6e68
+-/
 theorem eval_compose (F : Formula m) (G : Formula n) (z : Fin (m * n) → Bool) :
     (F.compose G).eval z = F.eval fun j => G.eval fun i => z (blockIndex j i) := by
   simp [Formula.compose, Function.comp_def]
 
+/--
+@isnad1 id=le.0h4v.s5.0ca7a32b5eed from=translated src=- shape=f8ec7bc8 vocab=a1c3a137
+-/
 theorem depth_compose_le (F : Formula m) (G : Formula n) :
     (F.compose G).depth ≤ F.depth + G.depth :=
   depth_subst_le _ (fun j => by rw [depth_mapIndex]) F
 
+/--
+@isnad1 id=le.0h4v.s5.ec5813df57c8 from=translated src=- shape=00c3c02e vocab=4314817f
+-/
 theorem leaves_compose_le (F : Formula m) (G : Formula n) :
     (F.compose G).leaves ≤ F.leaves * G.leaves :=
   leaves_subst_le _ (one_le_leaves G) (fun j => by rw [leaves_mapIndex]) F
@@ -195,6 +227,9 @@ def vars : Formula n → Finset (Fin n)
   | and l r => l.vars ∪ r.vars
   | or l r => l.vars ∪ r.vars
 
+/--
+@isnad1 id=le.0h2v.s4.0197d5718327 from=translated src=- shape=a2a04e1a vocab=0765f5f6
+-/
 theorem card_vars_le_leaves : ∀ F : Formula n, F.vars.card ≤ F.leaves
   | lit _ _ => by simp [vars, leaves]
   | const _ => by simp [vars, leaves]
@@ -207,7 +242,9 @@ theorem card_vars_le_leaves : ∀ F : Formula n, F.vars.card ≤ F.leaves
     exact (Finset.card_union_le _ _).trans
       (Nat.add_le_add (card_vars_le_leaves l) (card_vars_le_leaves r))
 
-/-- Changing a coordinate that a formula does not read leaves its value unchanged. -/
+/-- Changing a coordinate that a formula does not read leaves its value unchanged.
+@isnad1 id=eq.1h5v.s5.86fb44bad391 from=translated src=- shape=6fe757c1 vocab=44952644
+-/
 theorem eval_update_of_notMem_vars {i : Fin n} (b : Bool) (x : Fin n → Bool) :
     ∀ F : Formula n, i ∉ F.vars → F.eval (Function.update x i b) = F.eval x
   | lit j _, h => by
@@ -221,6 +258,9 @@ theorem eval_update_of_notMem_vars {i : Fin n} (b : Bool) (x : Fin n → Bool) :
     simp only [vars, Finset.mem_union, not_or] at h
     simp [eval_update_of_notMem_vars b x l h.1, eval_update_of_notMem_vars b x r h.2]
 
+/--
+@isnad1 id=le.0h2v.s4.3fed3d41d942 from=translated src=- shape=48f5c218 vocab=0d264358
+-/
 theorem leaves_le_two_pow_depth : ∀ F : Formula n, F.leaves ≤ 2 ^ F.depth
   | lit _ _ => by simp [leaves, depth]
   | const _ => by simp [leaves, depth]

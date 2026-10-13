@@ -29,7 +29,9 @@ Three probability bounds for linear forms in independent standard Gaussians.
 
 namespace Algebraic.Cutwidth.Gaussian
 
-/-- A Gaussian form is a measurable function of the sample. -/
+/-- A Gaussian form is a measurable function of the sample.
+@isnad1 id=measurab.0h2v.s4.f950c660e1d6 from=translated src=- shape=039d0b8d vocab=53417729
+-/
 theorem measurable_form {ι : Type} [Fintype ι] (α : ι → ℝ) : Measurable (form α) :=
   Internal.measurable_form α
 
@@ -37,7 +39,9 @@ open MeasureTheory ProbabilityTheory
 
 /-- **Threshold crossing.** For coefficient vectors of equal norm whose sum is
 nonzero, the probability that a threshold separates the two Gaussian forms is at most
-`(2/π) ‖β - α‖ / ‖α + β‖`. -/
+`(2/π) ‖β - α‖ / ‖α + β‖`.
+@isnad1 id=le.2h4v.s8.70d5dfc59ff0 from=translated src=- shape=c9bfad2a vocab=83ff180f
+-/
 theorem gaussPi_between_le {ι : Type} [Fintype ι] (α β : ι → ℝ)
     (hnorm : ∑ i, α i ^ 2 = ∑ i, β i ^ 2) (hsum : 0 < ∑ i, (α i + β i) ^ 2) (t : ℝ) :
     (gaussPi ι).real {ω | Between t (form α ω) (form β ω)} ≤
@@ -45,13 +49,17 @@ theorem gaussPi_between_le {ι : Type} [Fintype ι] (α β : ι → ℝ)
   Internal.gaussPi_between_le α β hnorm hsum t
 
 /-- A unit Gaussian form lands in a window of width `δ` with probability at most
-`δ / √(2π)`. -/
+`δ / √(2π)`.
+@isnad1 id=le.2h4v.s7.9a6d48bfaf5d from=translated src=- shape=da969b15 vocab=7435cc1f
+-/
 theorem gaussPi_window_le {ι : Type} [Fintype ι] (α : ι → ℝ) (hα : ∑ i, α i ^ 2 = 1)
     (s : ℝ) {δ : ℝ} (hδ : 0 ≤ δ) :
     (gaussPi ι).real {ω | s ≤ form α ω ∧ form α ω < s + δ} ≤ δ / Real.sqrt (2 * Real.pi) :=
   Internal.gaussPi_window_le α hα s hδ
 
-/-- Chebyshev's tail bound for a unit Gaussian form. -/
+/-- Chebyshev's tail bound for a unit Gaussian form.
+@isnad1 id=le.2h3v.s7.572f68f2b95b from=translated src=- shape=a1690ec4 vocab=f4d07612
+-/
 theorem gaussPi_tail_le {ι : Type} [Fintype ι] (α : ι → ℝ) (hα : ∑ i, α i ^ 2 = 1)
     {T : ℝ} (hT : 0 < T) :
     (gaussPi ι).real {ω | T ≤ |form α ω|} ≤ 1 / T ^ 2 :=

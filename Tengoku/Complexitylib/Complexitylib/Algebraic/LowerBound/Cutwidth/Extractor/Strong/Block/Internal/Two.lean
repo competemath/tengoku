@@ -23,6 +23,9 @@ namespace Algebraic.Cutwidth.Extractor.Internal
 
 open scoped Classical
 
+/--
+@isnad1 id=iff.0h2v.s6.7e36688abb76 from=translated src=- shape=bce73d68 vocab=b02d2474
+-/
 theorem blockSource_two_probability_iff {α : Type*} [Fintype α] (p : α × α → ℝ) :
     IsProbabilityWeight (fun x : Fin 2 → α => p (x 0, x 1)) ↔
       IsProbabilityWeight p := by
@@ -35,6 +38,9 @@ theorem blockSource_two_probability_iff {α : Type*} [Fintype α] (p : α × α 
   · rintro ⟨nonnegative, normalized⟩
     exact ⟨fun x => nonnegative (x 0, x 1), mass.trans normalized⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.6c6be430d29e from=translated src=- shape=4a3722f0 vocab=e04876ba
+-/
 theorem blockPrefixWeight_two_one {α : Type*} [Fintype α]
     (p : α × α → ℝ) (u : Fin 1 → α) :
     blockPrefixWeight (fun x : Fin 2 → α => p (x 0, x 1)) (by decide : 1 ≤ 2) u =
@@ -63,6 +69,9 @@ theorem blockPrefixWeight_two_one {α : Type*} [Fintype α]
       rw [Fintype.sum_prod_type, Finset.sum_comm]
       simp [firstWeight]
 
+/--
+@isnad1 id=iff.0h3v.s6.6a929b2bfac0 from=translated src=- shape=6a83e367 vocab=7a43b3f7
+-/
 theorem blockSource_two_iff {α : Type*} [Fintype α] (p : α × α → ℝ) (K : Nat) :
     IsBlockSource (fun x : Fin 2 → α => p (x 0, x 1)) K ↔
       IsProbabilityWeight p ∧ CappedWeight (firstWeight p) K ∧

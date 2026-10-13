@@ -21,6 +21,9 @@ construction; see Chashkin (2024), Section 2.2.
 
 namespace Complexity.CircuitSparseSynthesis.Internal
 
+/--
+@isnad1 id=le.1h4v.s8.eb0deb38879c from=translated src=- shape=eeb8b824 vocab=6182f80c
+-/
 theorem card_extensions (length specified : ℕ) (domain : Finset (Fin length))
     (small : domain.card ≤ specified) (values : Fin length → Bool) :
     2 ^ length ≤ 2 ^ specified *
@@ -54,6 +57,9 @@ theorem card_extensions (length specified : ℕ) (domain : Finset (Fin length))
       rw [← pow_add, split]
     _ ≤ _ := Nat.mul_le_mul (Nat.pow_le_pow_right (by decide) small) count
 
+/--
+@isnad1 id=ex.0h2v.s7.1ff19f466716 from=translated src=- shape=3c357e70 vocab=ab753c25
+-/
 theorem exists_extension_bank (length specified : ℕ) :
     ∃ bank : Finset (Fin length → Bool), bank.card ≤ (4 * length + 1) * 2 ^ specified ∧
       ∀ (domain : Finset (Fin length)), domain.card ≤ specified →

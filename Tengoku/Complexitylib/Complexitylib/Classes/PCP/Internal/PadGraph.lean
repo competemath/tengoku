@@ -46,48 +46,76 @@ def padGraph (G : ConstraintGraph α) (hv : 0 < G.numVerts) (n : ℕ) : Constrai
 
 variable {G : ConstraintGraph α} {hv : 0 < G.numVerts} {n : ℕ}
 
+/--
+@isnad1 id=eq.1h3v.s4.3709240848c2 from=translated src=- shape=5a7be411 vocab=4a4580d9
+-/
 @[simp] theorem numVerts_padGraph : (G.padGraph hv n).numVerts = G.numVerts := rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.148b3085951a from=translated src=- shape=cac834be vocab=b66cf6ff
+-/
 @[simp] theorem numEdges_padGraph : (G.padGraph hv n).numEdges = max n G.numEdges := rfl
 
+/--
+@isnad1 id=eq.3h4v.s6.901ba87e6f0b from=translated src=- shape=76dbea8e vocab=f298404f
+-/
 theorem tail_padGraph_of_lt {e : ℕ} (he : e < (G.padGraph hv n).numEdges)
     (h : e < G.numEdges) :
     ((G.padGraph hv n).tail ⟨e, he⟩).val = (G.tail ⟨e, h⟩).val := by
   show (dite _ _ _ : Fin G.numVerts).val = _
   rw [dite_eq_left h]
 
+/--
+@isnad1 id=eq.3h4v.s6.31d41ddd7f66 from=translated src=- shape=76dbea8e vocab=f8ad756c
+-/
 theorem head_padGraph_of_lt {e : ℕ} (he : e < (G.padGraph hv n).numEdges)
     (h : e < G.numEdges) :
     ((G.padGraph hv n).head ⟨e, he⟩).val = (G.head ⟨e, h⟩).val := by
   show (dite _ _ _ : Fin G.numVerts).val = _
   rw [dite_eq_left h]
 
+/--
+@isnad1 id=eq.3h4v.s6.1405f6dc87aa from=translated src=- shape=c97b1693 vocab=26896144
+-/
 theorem rel_padGraph_of_lt {e : ℕ} (he : e < (G.padGraph hv n).numEdges)
     (h : e < G.numEdges) :
     (G.padGraph hv n).rel ⟨e, he⟩ = G.rel ⟨e, h⟩ := by
   show (dite _ _ _ : α → α → Bool) = _
   rw [dite_eq_left h]
 
+/--
+@isnad1 id=eq.3h4v.s6.8964fc981634 from=translated src=- shape=da4567c6 vocab=f298404f
+-/
 theorem tail_padGraph_of_ge {e : ℕ} (he : e < (G.padGraph hv n).numEdges)
     (h : ¬ e < G.numEdges) : ((G.padGraph hv n).tail ⟨e, he⟩).val = 0 := by
   show (dite _ _ _ : Fin G.numVerts).val = _
   rw [dite_eq_right h]
 
+/--
+@isnad1 id=eq.3h4v.s6.61f24590dadd from=translated src=- shape=da4567c6 vocab=f8ad756c
+-/
 theorem head_padGraph_of_ge {e : ℕ} (he : e < (G.padGraph hv n).numEdges)
     (h : ¬ e < G.numEdges) : ((G.padGraph hv n).head ⟨e, he⟩).val = 0 := by
   show (dite _ _ _ : Fin G.numVerts).val = _
   rw [dite_eq_right h]
 
+/--
+@isnad1 id=eq.3h4v.s6.ad2103894e88 from=translated src=- shape=442ac68d vocab=14ce481e
+-/
 theorem rel_padGraph_of_ge {e : ℕ} (he : e < (G.padGraph hv n).numEdges)
     (h : ¬ e < G.numEdges) :
     (G.padGraph hv n).rel ⟨e, he⟩ = fun _ _ => true := by
   show (dite _ _ _ : α → α → Bool) = _
   rw [dite_eq_right h]
 
-/-- The padded graph has the same assignments. -/
+/-- The padded graph has the same assignments.
+@isnad1 id=eq.1h3v.s4.44db2e56ffbd from=translated src=- shape=8f38bc51 vocab=4c812d25
+-/
 theorem assignment_padGraph : (G.padGraph hv n).Assignment = G.Assignment := rfl
 
-/-- **Padding preserves satisfiability.** -/
+/-- **Padding preserves satisfiability.**
+@isnad1 id=iff.1h3v.s4.504fa1994dee from=translated src=- shape=2fdf3604 vocab=fd78aa1d
+-/
 theorem satisfiable_padGraph_iff : (G.padGraph hv n).Satisfiable ↔ G.Satisfiable := by
   constructor
   · rintro ⟨a, ha⟩

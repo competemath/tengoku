@@ -20,6 +20,9 @@ public section
 
 namespace Algebraic.Cutwidth.Extractor.Internal
 
+/--
+@isnad1 id=weighted.1h10v.s6.8259ab4b1a40 from=translated src=- shape=f94eec1b vocab=6ee08d04
+-/
 theorem weightedStrongSeededExtractor_equiv {α Seed Seed' Ω Ω' : Type*}
     [Fintype α] [Fintype Seed] [Fintype Seed'] [Fintype Ω] [Fintype Ω']
     {E : α → Seed → Ω} {K : Nat} {ε : ℝ}

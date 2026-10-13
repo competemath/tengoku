@@ -22,6 +22,9 @@ namespace Complexity.BooleanAnalysis
 
 open Filter Asymptotics
 
+/--
+@isnad1 id=ex.2h2v.s6.b0f8f3e43e4d from=translated src=- shape=35c64dff vocab=1f366e40
+-/
 theorem majorityDeficitBound_eventually_le_internal {r c : ℝ} (hr : 0 < r) (hc : 0 < c) :
     ∃ N : ℕ, ∀ n : ℕ, N ≤ n → majorityDeficitBound n ≤ c * (n : ℝ) ^ r := by
   have hlog := isLittleO_log_rpow_atTop hr
@@ -56,6 +59,9 @@ end Complexity.BooleanAnalysis
 
 namespace Complexity.KarchmerWigderson
 
+/--
+@isnad1 id=le.5h4v.s8.a6f61dc546b9 from=translated src=- shape=3b2470d0 vocab=d78568b7
+-/
 theorem finite_budget_with_deficit_of_cost_internal {n d : ℕ} (hd : 0 < d) {m k : ℝ}
     (hm : 0 ≤ m) (hk : 0 ≤ k)
     (hcost : m ≤ (n : ℝ) ^ ((d : ℝ)⁻¹) / (128 * (32768 * (194 : ℝ) ^ d)))

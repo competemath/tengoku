@@ -43,7 +43,9 @@ open Equiv
 namespace Complexity
 
 /-- `4^{c·log₂ n + c} ≤ 4^c · (n+1)^{2c}`: the construction length for a
-    depth-`(c·log₂ n + c)` formula is polynomial in `n`. -/
+    depth-`(c·log₂ n + c)` formula is polynomial in `n`.
+@isnad1 id=le.0h2v.s6.ddaab981fff7 from=translated src=- shape=5a996a32 vocab=bcb8e666
+-/
 theorem four_pow_logDepth_le_poly (c n : ℕ) :
     4 ^ (c * Nat.log 2 n + c) ≤ 4 ^ c * (n + 1) ^ (2 * c) := by
   have hlog : 4 ^ Nat.log 2 n ≤ (n + 1) ^ 2 := by
@@ -74,7 +76,9 @@ def FormulaFamily.LogDepth (F : FormulaFamily) : Prop :=
     with each program evaluating to a nonidentity `5`-cycle exactly when its
     formula is true, on every total assignment `ℕ → Bool`. The hypothesis is
     `FormulaFamily.LogDepth`, not membership in the `NC1` class; for that, see
-    `NC1_subset_Width5BP` and `barrington_equivalence`. -/
+    `NC1_subset_Width5BP` and `barrington_equivalence`.
+@isnad1 id=ex.1h1v.s7.a9a8ed437e00 from=translated src=- shape=ff37781e vocab=411106cd
+-/
 theorem FormulaFamily.logDepth_polyLength_bp (F : FormulaFamily) (hF : F.LogDepth) :
     ∃ (R : ℕ → BP 5) (S : ℕ → Perm (Fin 5)) (C p : ℕ),
       (∀ n, S n ≠ 1) ∧
@@ -93,7 +97,9 @@ theorem FormulaFamily.logDepth_polyLength_bp (F : FormulaFamily) (hF : F.LogDept
 /-- **Family-level Barrington, Boolean-decision form.** A logarithmic-depth formula
     family is *decided* by a family of polynomial-length width-`5` branching
     programs together with a family of query points: reading whether program `R n`
-    moves point `x n` computes formula `F n`. -/
+    moves point `x n` computes formula `F n`.
+@isnad1 id=ex.1h1v.s7.a59d032e69b9 from=translated src=- shape=cf3bf72e vocab=110700e7
+-/
 theorem FormulaFamily.logDepth_polyLength_decides (F : FormulaFamily) (hF : F.LogDepth) :
     ∃ (R : ℕ → BP 5) (x : ℕ → Fin 5) (C p : ℕ),
       (∀ n, (R n).length ≤ C * (n + 1) ^ p) ∧

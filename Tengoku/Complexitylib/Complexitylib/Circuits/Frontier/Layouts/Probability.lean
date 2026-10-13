@@ -104,7 +104,9 @@ private theorem form_eq_inner (a ω : ι → ℝ) :
     form a ω = innerSL ℝ (WithLp.toLp 2 a : EuclideanSpace ℝ ι) (WithLp.toLp 2 ω) := by
   simp [form, PiLp.inner_apply, mul_comm]
 
-/-- A Gaussian form is a measurable function of the sample. -/
+/-- A Gaussian form is a measurable function of the sample.
+@isnad1 id=measurab.0h2v.s4.4677d04bc45a from=translated src=- shape=039d0b8d vocab=07b22c0d
+-/
 theorem measurable_form (α : ι → ℝ) : Measurable (form α) := by
   unfold form; fun_prop
 
@@ -132,7 +134,9 @@ private theorem map_pair_stdGaussian (u v : EuclideanSpace ℝ ι) (huv : inner 
       (hlaw.indepFun_of_covariance_eq_zero hcov),
     map_innerSL_stdGaussian, map_innerSL_stdGaussian]
 
-/-- **The law of a Gaussian form**: `form a` is a centered Gaussian of variance `‖a‖ ^ 2`. -/
+/-- **The law of a Gaussian form**: `form a` is a centered Gaussian of variance `‖a‖ ^ 2`.
+@isnad1 id=eq.0h2v.s6.10f660c390f3 from=translated src=- shape=8b4ac6d2 vocab=cb8fc91b
+-/
 theorem gaussPi_map_form (a : ι → ℝ) :
     (gaussPi ι).map (form a) = gaussianReal 0 (∑ i, a i ^ 2).toNNReal := by
   have h : form a = innerSL ℝ (WithLp.toLp 2 a : EuclideanSpace ℝ ι) ∘ WithLp.toLp 2 := by
@@ -141,7 +145,9 @@ theorem gaussPi_map_form (a : ι → ℝ) :
     map_innerSL_stdGaussian, EuclideanSpace.real_norm_sq_eq]
 
 /-- **Orthogonal forms are independent**: two Gaussian forms with orthogonal coefficients have
-joint law the product of their marginal laws. -/
+joint law the product of their marginal laws.
+@isnad1 id=eq.1h3v.s7.faa7003f818a from=translated src=- shape=7be87c21 vocab=7b9e963d
+-/
 theorem gaussPi_map_form_pair (a b : ι → ℝ) (hab : ∑ i, a i * b i = 0) :
     (gaussPi ι).map (fun ω => (form a ω, form b ω)) =
       (gaussianReal 0 (∑ i, a i ^ 2).toNNReal).prod
@@ -157,7 +163,9 @@ theorem gaussPi_map_form_pair (a b : ι → ℝ) (hab : ∑ i, a i * b i = 0) :
 /-! ### Windows and tails -/
 
 /-- **Window bound.** A unit Gaussian form lands in a window of width `δ` with probability at
-most `δ / √(2π)`. -/
+most `δ / √(2π)`.
+@isnad1 id=le.2h4v.s7.89107cd610b2 from=translated src=- shape=da969b15 vocab=35168640
+-/
 theorem gaussPi_window_le (α : ι → ℝ) (hα : ∑ i, α i ^ 2 = 1)
     (s : ℝ) {δ : ℝ} (hδ : 0 ≤ δ) :
     (gaussPi ι).real {ω | s ≤ form α ω ∧ form α ω < s + δ} ≤ δ / Real.sqrt (2 * Real.pi) := by
@@ -170,7 +178,9 @@ theorem gaussPi_window_le (α : ι → ℝ) (hα : ∑ i, α i ^ 2 = 1)
   simp [div_eq_inv_mul]
 
 /-- **Tail bound.** By Chebyshev's inequality, a unit Gaussian form has absolute value at least
-`T` with probability at most `1 / T ^ 2`. -/
+`T` with probability at most `1 / T ^ 2`.
+@isnad1 id=le.2h3v.s7.34d40b3836e6 from=translated src=- shape=a1690ec4 vocab=7f9a895c
+-/
 theorem gaussPi_tail_le (α : ι → ℝ) (hα : ∑ i, α i ^ 2 = 1)
     {T : ℝ} (hT : 0 < T) :
     (gaussPi ι).real {ω | T ≤ |form α ω|} ≤ 1 / T ^ 2 := by
@@ -308,7 +318,9 @@ private theorem prod_gaussianReal_abs_le (k : ℝ) (hk : 0 ≤ k) :
   ring
 
 /-- **Planar angle law.** For independent standard Gaussians `Z_1` and `Z_2`, the event
-`|Z_1| ≤ k |Z_2|` has probability `(2/π) arctan k`. -/
+`|Z_1| ≤ k |Z_2|` has probability `(2/π) arctan k`.
+@isnad1 id=eq.1h1v.s7.aef3cd758089 from=translated src=- shape=13bbb7c3 vocab=23641501
+-/
 theorem gaussPi_abs_le_mul_abs (k : ℝ) (hk : 0 ≤ k) :
     (gaussPi (Fin 2)).real {ω | |ω 0| ≤ k * |ω 1|} = 2 / Real.pi * Real.arctan k := by
   have hA : MeasurableSet {p : ℝ × ℝ | |p.1| ≤ k * |p.2|} :=
@@ -376,7 +388,9 @@ private theorem gaussianPDFReal_add_two_mul_le (v : ℝ≥0) {w x : ℝ} (hw : 0
   exact div_le_div_of_nonneg_right (by nlinarith) (by positivity)
 
 /-- **Anderson's inequality on the line.** A centered Gaussian gives an interval of radius `w`
-the most mass when it is centered at the mean. -/
+the most mass when it is centered at the mean.
+@isnad1 id=le.0h3v.s6.907285db691f from=translated src=- shape=de69e57b vocab=6efae089
+-/
 theorem gaussianReal_Icc_le (v : ℝ≥0) (c w : ℝ) :
     gaussianReal 0 v (Icc (c - w) (c + w)) ≤ gaussianReal 0 v (Icc (-w) w) := by
   rcases lt_or_ge w 0 with hw | hw
@@ -439,7 +453,9 @@ private theorem abs_add_sub_two_mul_le_of_between {t x y : ℝ} (h : Between t x
 
 /-- **Sheppard's bound for equal norms.** For coefficient vectors of equal norm with nonzero
 sum, a threshold separates the two Gaussian forms with probability at most
-`(2/π) arctan (‖β - α‖ / ‖α + β‖)`. -/
+`(2/π) arctan (‖β - α‖ / ‖α + β‖)`.
+@isnad1 id=le.2h4v.s8.ebc2712d29c2 from=translated src=- shape=e21c71d4 vocab=baacf798
+-/
 theorem gaussPi_between_le_arctan {ι : Type} [Fintype ι] (α β : ι → ℝ)
     (hnorm : ∑ i, α i ^ 2 = ∑ i, β i ^ 2) (hsum : 0 < ∑ i, (α i + β i) ^ 2) (t : ℝ) :
     (gaussPi ι).real {ω | Between t (form α ω) (form β ω)} ≤
@@ -480,7 +496,9 @@ theorem gaussPi_between_le_arctan {ι : Type} [Fintype ι] (α β : ι → ℝ)
           Real.coe_toNNReal _ (hnn a), Real.coe_toNNReal _ (hnn b)]
 
 /-- **Half-angle identity.** `2 arctan (tan (θ/2)) = θ`, in the form
-`2 arctan (tanHalf x) = arccos x`. -/
+`2 arctan (tanHalf x) = arccos x`.
+@isnad1 id=eq.2h1v.s5.f26143ffb8c8 from=translated src=- shape=88103bfc vocab=eed43920
+-/
 theorem two_mul_arctan_tanHalf {x : ℝ} (hx : -1 < x) (hx1 : x ≤ 1) :
     2 * Real.arctan (tanHalf x) = Real.arccos x := by
   set y := tanHalf x with hy
@@ -496,7 +514,9 @@ theorem two_mul_arctan_tanHalf {x : ℝ} (hx : -1 < x) (hx1 : x ≤ 1) :
     (by linarith [Real.arctan_lt_pi_div_two y])]
 
 /-- **Sheppard's bound.** A threshold separates two unit Gaussian forms with probability at
-most `arccos ρ / π`, where `ρ = ∑ i, α i * β i` is their correlation. -/
+most `arccos ρ / π`, where `ρ = ∑ i, α i * β i` is their correlation.
+@isnad1 id=le.3h4v.s7.21f41c48aa8e from=translated src=- shape=6d6f2f74 vocab=ccaf5198
+-/
 theorem gaussPi_between_le_arccos {ι : Type} [Fintype ι] {α β : ι → ℝ}
     (hα : ∑ i, α i ^ 2 = 1) (hβ : ∑ i, β i ^ 2 = 1) (hx : -1 < ∑ i, α i * β i) (t : ℝ) :
     (gaussPi ι).real {ω | Between t (form α ω) (form β ω)} ≤

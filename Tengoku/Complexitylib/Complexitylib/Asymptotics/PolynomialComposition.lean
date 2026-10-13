@@ -25,7 +25,9 @@ public section
 namespace Complexity
 
 /-- Composing evaluations of natural-coefficient polynomials gives a function
-bounded by a power whose exponent is the degree of the composed polynomial. -/
+bounded by a power whose exponent is the degree of the composed polynomial.
+@isnad1 id=bigo.0h2v.s5.024119d91408 from=translated src=- shape=6615b9ad vocab=dca68ea7
+-/
 theorem BigO.polynomial_eval_comp (p q : Polynomial ℕ) :
     (fun n => q.eval (p.eval n)) =O (· ^ (q.comp p).natDegree) := by
   apply BigO.of_polynomial_bound (q.comp p)
@@ -33,7 +35,9 @@ theorem BigO.polynomial_eval_comp (p q : Polynomial ℕ) :
   simp [Polynomial.eval_comp]
 
 /-- The coarse runtime for sequentially composing computations with polynomial
-bounds `p` and `q` is itself bounded by a power. -/
+bounds `p` and `q` is itself bounded by a power.
+@isnad1 id=bigo.0h2v.s7.542c0d3caad5 from=translated src=- shape=2f48b287 vocab=4328f25f
+-/
 theorem BigO.polynomial_composition_time (p q : Polynomial ℕ) :
     (fun n => 4 * p.eval n + 11 + q.eval (p.eval n)) =O
       (· ^ (Polynomial.C 4 * p + Polynomial.C 11 + q.comp p).natDegree) := by

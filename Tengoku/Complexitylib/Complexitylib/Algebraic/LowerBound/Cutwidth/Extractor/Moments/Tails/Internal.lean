@@ -28,6 +28,9 @@ private theorem mean_div_pow {α : Type*} (s : Finset α) (w X : α → ℝ)
   simp only [div_pow]
   simp only [div_eq_mul_inv, weightedMean, Finset.sum_mul, mul_assoc]
 
+/--
+@isnad1 id=and.7h6v.s8.b9905c06f113 from=translated src=- shape=dcdeb99e vocab=71b458a1
+-/
 theorem signSum_tails_of_parityBias {α : Type*} {m : Nat} {s : Finset α}
     {w : α → ℝ} {σ : α → Fin m → ℝ} {δ : ℝ}
     (hw : ∀ a ∈ s, 0 ≤ w a) (hmass : ∑ a ∈ s, w a = 1) (hm : 0 < m)

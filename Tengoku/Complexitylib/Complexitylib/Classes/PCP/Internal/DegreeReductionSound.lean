@@ -69,6 +69,9 @@ noncomputable def edgeDarts (A : (G.reduce E).Assignment) : Finset (G.reduce E).
   ((G.reduce E).unsatDarts A).filter fun x => x.2 = none
 
 omit [Fintype α] [Nonempty α] in
+/--
+@isnad1 id=eq.0h4v.s6.4b34064033b3 from=translated src=- shape=d8bd02c2 vocab=31ec35d0
+-/
 theorem card_cloudDarts_add_card_edgeDarts (A : (G.reduce E).Assignment) :
     (G.cloudDarts E A).card + (G.edgeDarts E A).card = ((G.reduce E).unsatDarts A).card := by
   rw [cloudDarts, edgeDarts, Nat.add_comm]
@@ -76,6 +79,9 @@ theorem card_cloudDarts_add_card_edgeDarts (A : (G.reduce E).Assignment) :
     (p := fun x : (G.reduce E).Dart => x.2 = none)
 
 omit [Fintype α] [Nonempty α] in
+/--
+@isnad1 id=le.0h5v.s6.a7e45efdc414 from=translated src=- shape=926468e6 vocab=0f46383f
+-/
 theorem cloudUnsat_subset_cloudDarts (A : (G.reduce E).Assignment) (v : Fin G.numVerts) :
     G.cloudUnsat E A v ⊆ G.cloudDarts E A := by
   intro x hx
@@ -83,7 +89,9 @@ theorem cloudUnsat_subset_cloudDarts (A : (G.reduce E).Assignment) (v : Fin G.nu
   rw [cloudDarts, Finset.mem_filter]
   exact ⟨hx.1, hx.2.2⟩
 
-/-- The cloud charge lands entirely among the unsatisfied cloud-links. -/
+/-- The cloud charge lands entirely among the unsatisfied cloud-links.
+@isnad1 id=le.0h4v.s6.c4656a2bae3a from=translated src=- shape=fa72fadb vocab=25b2613a
+-/
 theorem cloud_charge_le_card_cloudDarts (A : (G.reduce E).Assignment) :
     (1 - E.lam) * (E.degree : ℝ) * ((G.devSet A).card : ℝ) / (Fintype.card α : ℝ)
       ≤ ((G.cloudDarts E A).card : ℝ) := by
@@ -124,7 +132,9 @@ noncomputable def goodEdges (A : (G.reduce E).Assignment) : Finset (Fin G.numEdg
     (e, false) ∉ G.devSet A ∧ (e, true) ∉ G.devSet A
 
 /-- Each such edge contributes an unsatisfied edge-link: the link carries
-exactly the original constraint, evaluated at the decoded labels. -/
+exactly the original constraint, evaluated at the decoded labels.
+@isnad1 id=le.0h4v.s5.2e30f05dd90c from=translated src=- shape=b0281dbb vocab=4d39e86b
+-/
 theorem card_goodEdges_le (A : (G.reduce E).Assignment) :
     (G.goodEdges E A).card ≤ (G.edgeDarts E A).card := by
   refine Finset.card_le_card_of_injOn (fun e => ((e, false), none)) ?_ ?_
@@ -162,7 +172,9 @@ theorem card_goodEdges_le (A : (G.reduce E).Assignment) :
     simpa using this
 
 /-- An edge that decoding fails is either billed to an edge-link or has a
-disagreeing half-edge. -/
+disagreeing half-edge.
+@isnad1 id=le.0h4v.s6.319e2fbf3dc1 from=translated src=- shape=f2ca678c vocab=4215342a
+-/
 theorem card_unsatEdges_le_charge (A : (G.reduce E).Assignment) :
     (G.unsatEdges (G.decode A)).card ≤ (G.goodEdges E A).card + (G.devSet A).card := by
   have hsub : G.unsatEdges (G.decode A)
@@ -186,7 +198,9 @@ theorem card_unsatEdges_le_charge (A : (G.reduce E).Assignment) :
 
 /-- **The combined charge.** With `c = (1 - lam) · degree / card α`, the
 unsatisfied darts number at least `min 1 c` times the edges that decoding
-fails. -/
+fails.
+@isnad1 id=le.0h4v.s6.c09f872ff4bf from=translated src=- shape=bd9968cb vocab=bcf98806
+-/
 theorem card_unsatDarts_ge (A : (G.reduce E).Assignment) :
     min 1 ((1 - E.lam) * (E.degree : ℝ) / (Fintype.card α : ℝ))
         * ((G.unsatEdges (G.decode A)).card : ℝ)
@@ -226,7 +240,9 @@ theorem card_unsatDarts_ge (A : (G.reduce E).Assignment) :
 
 /-- **Soundness of degree reduction.** The reduced system's unsatisfied
 fraction is at least a constant times the original's unsatisfiability value,
-the constant depending only on the alphabet size and the cloud expander. -/
+the constant depending only on the alphabet size and the cloud expander.
+@isnad1 id=le.0h4v.s7.593311a3bc7b from=translated src=- shape=84996ec5 vocab=9c3993b6
+-/
 theorem unsatFrac_reduce_ge (A : (G.reduce E).Assignment) :
     min 1 ((1 - E.lam) * (E.degree : ℝ) / (Fintype.card α : ℝ)) / (2 * (1 + (E.degree : ℝ)))
         * ((G.unsatVal : ℚ) : ℝ)
@@ -284,7 +300,9 @@ theorem unsatFrac_reduce_ge (A : (G.reduce E).Assignment) :
           field_simp
       _ ≤ (((G.reduce E).unsatDarts A).card : ℝ) := hkey
 
-/-- **Soundness of degree reduction, on values.** -/
+/-- **Soundness of degree reduction, on values.**
+@isnad1 id=le.0h3v.s5.c2576ae0abad from=translated src=- shape=6c8dd8bd vocab=3b20c814
+-/
 theorem le_unsatVal_reduce :
     reduceConst E α * ((G.unsatVal : ℚ) : ℝ) ≤ (((G.reduce E).unsatVal : ℚ) : ℝ) := by
   obtain ⟨A, hA⟩ := (G.reduce E).exists_assignment_unsatFrac_eq_unsatVal

@@ -72,7 +72,9 @@ noncomputable def preprocess : RegCSP α where
       rot_involutive := (((G.reduce E).expanderize E).addLoops).graph.rot_involutive }
   rel := (((G.reduce E).expanderize E).addLoops).rel
 
-/-- **It is the composite it is built from.** -/
+/-- **It is the composite it is built from.**
+@isnad1 id=eq.0h3v.s5.fd06987f3810 from=translated src=- shape=6f1d5663 vocab=fe1d3109
+-/
 theorem preprocess_eq : G.preprocess E = ((G.reduce E).expanderize E).addLoops := rfl
 
 /-- The preprocessed system's vertices are the half-edges, which are numbered
@@ -89,16 +91,24 @@ noncomputable instance : NumEnc (G.preprocess E).graph.D :=
 noncomputable def preprocessLoops : (G.preprocess E).graph.Loops :=
   ((G.reduce E).expanderize E).graph.addLoopsLoops
 
+/--
+@isnad1 id=eq.0h3v.s5.1b52cd9581be from=translated src=- shape=f0c5ecbc vocab=9cc663ff
+-/
 @[simp] theorem order_preprocess : (G.preprocess E).graph.order = 2 * G.numEdges := by
   show Fintype.card (Fin G.numEdges × Bool) = _
   simp [Nat.mul_comm]
 
+/--
+@isnad1 id=eq.0h3v.s5.25479859908a from=translated src=- shape=673f2ea1 vocab=f42dd582
+-/
 @[simp] theorem deg_preprocess : (G.preprocess E).graph.deg = 2 + 2 * E.degree := by
   show Fintype.card (PreDart E) = _
   simp
   omega
 
-/-- **Completeness.** -/
+/-- **Completeness.**
+@isnad1 id=satisfia.1h3v.s4.269aa8f9e811 from=translated src=- shape=c65b8189 vocab=a9230a6f
+-/
 theorem satisfiable_preprocess_of_satisfiable (h : G.Satisfiable) :
     (G.preprocess E).Satisfiable := by
   rw [preprocess_eq, RegCSP.satisfiable_addLoops_iff, RegCSP.satisfiable_expanderize_iff]
@@ -115,7 +125,9 @@ section Value
 variable [Fintype α] [Nonempty α]
 
 /-- The value after the two trivial-constraint steps, as a multiple of the value
-after degree reduction. -/
+after degree reduction.
+@isnad1 id=eq.0h3v.s7.1ac8e347199d from=translated src=- shape=cb5c114c vocab=757eb2bd
+-/
 theorem unsatVal_preprocess_eq :
     ((G.preprocess E).unsatVal : ℚ)
       = (G.reduce E).unsatVal
@@ -128,7 +140,9 @@ theorem unsatVal_preprocess_eq :
     ring
   rw [preprocess_eq, RegCSP.unsatVal_addLoops, hdegX, RegCSP.unsatVal_expanderize, hdegR]
 
-/-- **Soundness of preprocessing.** -/
+/-- **Soundness of preprocessing.**
+@isnad1 id=le.0h3v.s5.ec46d26fe5a3 from=translated src=- shape=3df7331c vocab=7eaffb0c
+-/
 theorem le_unsatVal_preprocess :
     preprocessConst E α * ((G.unsatVal : ℚ) : ℝ)
       ≤ (((G.preprocess E).unsatVal : ℚ) : ℝ) := by
@@ -159,7 +173,9 @@ noncomputable def preprocessLam (E : ExpanderFamily) : ℝ :=
       * (((1 + (E.degree : ℝ)) + (E.degree : ℝ) * E.lam) / ((1 + (E.degree : ℝ)) + E.degree)))
     / (1 + (1 + 2 * (E.degree : ℝ)))
 
-/-- **The preprocessed system is an expander.** -/
+/-- **The preprocessed system is an expander.**
+@isnad1 id=spectral.0h3v.s4.18a0007a8209 from=translated src=- shape=ad3ecd5b vocab=0fb3c711
+-/
 theorem spectralBound_preprocess :
     (G.preprocess E).graph.SpectralBound (preprocessLam E) := by
   have hdegR : (G.reduce E).graph.deg = 1 + E.degree := by
@@ -186,6 +202,9 @@ theorem spectralBound_preprocess :
   rw [hgoal]
   exact hL
 
+/--
+@isnad1 id=lt.0h1v.s3.9dc4129e729f from=translated src=- shape=a311c14d vocab=fc6e323c
+-/
 theorem preprocessLam_lt_one : preprocessLam E < 1 := by
   have hlam := E.lam_lt_one
   have hmu : ((1 + (E.degree : ℝ)) + (E.degree : ℝ) * E.lam)

@@ -24,7 +24,9 @@ open Set
 
 variable {ι U M : Type*} [Finite ι] [Finite U] {S : Set (ι → U)} (P : Sweep S M)
 
-/-- Count used transitions by any finite code that determines them on accepted inputs. -/
+/-- Count used transitions by any finite code that determines them on accepted inputs.
+@isnad1 id=le.3h8v.s7.efe0b241e13c from=translated src=- shape=f0d728cb vocab=761515a9
+-/
 theorem transitionCount_le_codes {D : ℕ → Type*}
     (code : ∀ t, (ι → U) → D t) (C : ∀ t, Set (D t))
     (hC : ∀ t < P.length, (C t).Finite)
@@ -37,7 +39,9 @@ theorem transitionCount_le_codes {D : ℕ → Type*}
   exact (ncard_image_le_ncard_image_of_determines (toFinite _) _ _ (hdet t ht)).trans
     (ncard_le_ncard (by rintro _ ⟨x, hx, rfl⟩; exact hmem t ht x hx) (hC t ht))
 
-/-- Weighted peeling with code capacity in place of the number of boundary wires. -/
+/-- Weighted peeling with code capacity in place of the number of boundary wires.
+@isnad1 id=le.11h13v.s8.1a20962032cc from=translated src=- shape=8fd1fcf1 vocab=c99add59
+-/
 theorem abs_sumOn_le_codes (hP : P.Coherent) (hL : 0 < P.length)
     {D : ℕ → Type*} (code : ∀ t, (ι → U) → D t) (C : ∀ t, Set (D t))
     (hC : ∀ t < P.length, (C t).Finite)
@@ -64,7 +68,9 @@ variable {ι F M W : Type*} [Finite ι] [Field F] [Finite F]
   {S : Set (ι → F)} (P : Sweep S M)
 
 /-- Affine dependence can be charged by rank: equality of the linear parts is enough to
-determine the entire transition, and a fixed translation does not affect this test. -/
+determine the entire transition, and a fixed translation does not affect this test.
+@isnad1 id=le.1h7v.s9.17e27801eb8d from=translated src=- shape=530771f4 vocab=99f8097b
+-/
 theorem transitionCount_le_linear_codes (L : ℕ → (ι → F) →ₗ[F] W)
     (hdet : ∀ t < P.length, ∀ x ∈ S, ∀ y ∈ S,
       L t x = L t y → P.transition t x = P.transition t y) :

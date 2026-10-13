@@ -20,17 +20,23 @@ public section
 
 namespace Algebraic.Cutwidth.Extractor
 
-/-- Enumerated Boolean words serialize to the actual fixed-width binary encoder. -/
+/-- Enumerated Boolean words serialize to the actual fixed-width binary encoder.
+@isnad1 id=eq.0h2v.s5.9881ac234547 from=translated src=- shape=75d92f8e vocab=3168008b
+-/
 theorem sourceReductionIndexWord_ofFn (width : Nat) (index : Fin (2 ^ width)) :
     List.ofFn (sourceReductionIndexWord width index) = Nat.toBitsLE width index.val :=
   Internal.sourceReductionIndexWord_ofFn width index
 
-/-- Decoding an enumerated word recovers its index. -/
+/-- Decoding an enumerated word recovers its index.
+@isnad1 id=eq.0h2v.s5.834fbd8e1f4f from=translated src=- shape=7cdfc94a vocab=866ffdcc
+-/
 theorem sourceReductionWordIndex_indexWord (width : Nat) (index : Fin (2 ^ width)) :
     sourceReductionWordIndex width (sourceReductionIndexWord width index) = index :=
   Internal.sourceReductionWordIndex_indexWord width index
 
-/-- Re-encoding a decoded word recovers every coordinate. -/
+/-- Re-encoding a decoded word recovers every coordinate.
+@isnad1 id=eq.0h2v.s4.bb054619f7b9 from=translated src=- shape=fdec4105 vocab=93d82b23
+-/
 theorem sourceReductionIndexWord_wordIndex (width : Nat) (word : Fin width → Bool) :
     sourceReductionIndexWord width (sourceReductionWordIndex width word) = word :=
   Internal.sourceReductionIndexWord_wordIndex width word
@@ -42,13 +48,17 @@ theorem sourceReductionIndexWord_wordIndex (width : Nat) (word : Fin width → B
   left_inv := sourceReductionWordIndex_indexWord width
   right_inv := sourceReductionIndexWord_wordIndex width
 
-/-- Every actual position receives advice of the same total width. -/
+/-- Every actual position receives advice of the same total width.
+@isnad1 id=eq.0h3v.s5.a49cab84d4a8 from=translated src=- shape=ea7e4ecb vocab=eefde8ec
+-/
 theorem sourceReductionAdvice_length (outerBits candidateBits : Nat)
     (position : Fin (2 ^ outerBits) × Fin (2 ^ candidateBits)) :
     (sourceReductionAdvice outerBits candidateBits position).length = outerBits + candidateBits :=
   Internal.sourceReductionAdvice_length outerBits candidateBits position
 
-/-- Distinct outer/candidate positions receive distinct advice words. -/
+/-- Distinct outer/candidate positions receive distinct advice words.
+@isnad1 id=injectiv.0h2v.s5.d224160e3d05 from=translated src=- shape=4f9557f5 vocab=25e69a3f
+-/
 theorem sourceReductionAdvice_injective (outerBits candidateBits : Nat) :
     Function.Injective (sourceReductionAdvice outerBits candidateBits) :=
   Internal.sourceReductionAdvice_injective outerBits candidateBits

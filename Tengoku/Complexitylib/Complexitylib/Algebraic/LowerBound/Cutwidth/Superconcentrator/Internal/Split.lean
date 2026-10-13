@@ -39,7 +39,9 @@ open Multigraph Relation
 
 variable {V E : Type} (G : Multigraph V E) (K : Finset E)
 
-/-- Two elements of a sigma type of `Fin` fibres are equal when their components are. -/
+/-- Two elements of a sigma type of `Fin` fibres are equal when their components are.
+@isnad1 id=iff.0h4v.s6.f39cc00327bd from=translated src=- shape=a9d8fbc3 vocab=2ebb3a51
+-/
 theorem sigma_fin_eq_iff {f : V → ℕ} {a b : Σ w : V, Fin (f w)} :
     a = b ↔ a.1 = b.1 ∧ (a.2 : ℕ) = b.2 := by
   constructor
@@ -58,6 +60,9 @@ theorem sigma_fin_eq_iff {f : V → ℕ} {a b : Σ w : V, Fin (f w)} :
 noncomputable def pos (s : Finset E) (e : E) (h : e ∈ s) : ℕ :=
   (s.equivFin ⟨e, h⟩ : ℕ)
 
+/--
+@isnad1 id=lt.1h3v.s4.252879398649 from=translated src=- shape=a3fcf301 vocab=8f10f4f0
+-/
 theorem pos_lt {s : Finset E} {e : E} (h : e ∈ s) : pos s e h < s.card :=
   (s.equivFin ⟨e, h⟩).isLt
 
@@ -90,9 +95,15 @@ slots. -/
 abbrev SplitEdge : Type :=
   {e // e ∈ K} ⊕ Σ w : V, Fin (slots G K w - 1)
 
+/--
+@isnad1 id=mem.0h5v.s6.656bc3915723 from=translated src=- shape=285868d1 vocab=059a62bb
+-/
 theorem mem_inEdges_snd (e : {e // e ∈ K}) : e.1 ∈ inEdges G K (G.snd e.1) := by
   simp [inEdges, e.2]
 
+/--
+@isnad1 id=mem.0h5v.s6.a292c3f36354 from=translated src=- shape=285868d1 vocab=50c057e4
+-/
 theorem mem_outEdges_fst (e : {e // e ∈ K}) : e.1 ∈ outEdges G K (G.fst e.1) := by
   simp [outEdges, e.2]
 
@@ -123,6 +134,9 @@ noncomputable def split : Multigraph (SplitVertex G K) (SplitEdge G K) where
 
 variable {G K}
 
+/--
+@isnad1 id=ne.0h6v.s5.513a6db9f90b from=translated src=- shape=912efa46 vocab=b467e220
+-/
 theorem tail_ne_head (a b : {e // e ∈ K}) : tail G K a ≠ head G K b := by
   intro h
   rw [sigma_fin_eq_iff] at h
@@ -132,6 +146,9 @@ theorem tail_ne_head (a b : {e // e ∈ K}) : tail G K a ≠ head G K b := by
   have hc : (inEdges G K (G.fst a.1)).card = (inEdges G K (G.snd b.1)).card := by rw [h₁]
   omega
 
+/--
+@isnad1 id=injectiv.0h4v.s5.6d30de807656 from=translated src=- shape=887a1c2a vocab=ae61a1a5
+-/
 theorem tail_injective : Function.Injective (tail G K) := by
   intro a b h
   rw [sigma_fin_eq_iff] at h
@@ -141,6 +158,9 @@ theorem tail_injective : Function.Injective (tail G K) := by
   exact Subtype.ext (eq_of_pos_eq (by rw [h₁]) (by omega : pos (outEdges G K (G.fst a.1)) a.1
     (mem_outEdges_fst G K a) = pos (outEdges G K (G.fst b.1)) b.1 (mem_outEdges_fst G K b)))
 
+/--
+@isnad1 id=injectiv.0h4v.s5.a77cbdcc6d6f from=translated src=- shape=887a1c2a vocab=3b6d6989
+-/
 theorem head_injective : Function.Injective (head G K) := by
   intro a b h
   rw [sigma_fin_eq_iff] at h
@@ -148,14 +168,18 @@ theorem head_injective : Function.Injective (head G K) := by
   simp only [head] at h₁ h₂
   exact Subtype.ext (eq_of_pos_eq (by rw [h₁]) h₂)
 
-/-- The split graph has no loops. -/
+/-- The split graph has no loops.
+@isnad1 id=loopless.0h4v.s4.65752ba0310a from=translated src=- shape=ecac7bf8 vocab=6f467319
+-/
 theorem split_loopless : (split G K).Loopless := by
   rintro (e | x) h
   · exact tail_ne_head e e h
   · rw [sigma_fin_eq_iff] at h
     simp [split] at h
 
-/-- Every slot meets at most three edges: the kept edge of the slot and two path edges. -/
+/-- Every slot meets at most three edges: the kept edge of the slot and two path edges.
+@isnad1 id=maxdegre.0h4v.s6.57ea7e5cf23a from=translated src=- shape=6babe0bb vocab=6c258710
+-/
 theorem split_maxDegreeLE [Fintype V] : (split G K).MaxDegreeLE 3 := by
   rintro ⟨w, k⟩
   let φ : SplitEdge G K → Fin 3 := fun
@@ -190,15 +214,23 @@ theorem split_maxDegreeLE [Fintype V] : (split G K).MaxDegreeLE 3 := by
 
 /-! ### Counting -/
 
+/--
+@isnad1 id=eq.0h4v.s5.cea97bc1e9e0 from=translated src=- shape=acce7397 vocab=7db8f27c
+-/
 theorem sum_card_inEdges [Fintype V] : ∑ w, (inEdges G K w).card = K.card :=
   (Finset.card_eq_sum_card_fiberwise (f := G.snd) (t := Finset.univ)
     (fun _ _ => Finset.mem_coe.2 (Finset.mem_univ _))).symm
 
+/--
+@isnad1 id=eq.0h4v.s5.6b02b1d5d513 from=translated src=- shape=acce7397 vocab=4e54ba4d
+-/
 theorem sum_card_outEdges [Fintype V] : ∑ w, (outEdges G K w).card = K.card :=
   (Finset.card_eq_sum_card_fiberwise (f := G.fst) (t := Finset.univ)
     (fun _ _ => Finset.mem_coe.2 (Finset.mem_univ _))).symm
 
-/-- The split graph has two slots for every kept edge. -/
+/-- The split graph has two slots for every kept edge.
+@isnad1 id=eq.0h4v.s5.387f67d4e8ab from=translated src=- shape=6a7aa728 vocab=041ce914
+-/
 theorem card_splitVertex [Fintype V] : Fintype.card (SplitVertex G K) = 2 * K.card := by
   rw [Fintype.card_sigma]
   simp only [Fintype.card_fin]
@@ -206,7 +238,9 @@ theorem card_splitVertex [Fintype V] : Fintype.card (SplitVertex G K) = 2 * K.ca
     simp only [slots, Finset.sum_add_distrib, sum_card_inEdges, sum_card_outEdges]]
   ring
 
-/-- Edges minus vertices of the split graph: kept edges minus vertices with a slot. -/
+/-- Edges minus vertices of the split graph: kept edges minus vertices with a slot.
+@isnad1 id=eq.0h4v.s7.149795e13269 from=translated src=- shape=fd85428f vocab=098e05a3
+-/
 theorem card_splitEdge_add [Fintype V] :
     Fintype.card (SplitEdge G K) + (Finset.univ.filter fun w => slots G K w ≠ 0).card =
       K.card + Fintype.card (SplitVertex G K) := by
@@ -224,6 +258,9 @@ theorem card_splitEdge_add [Fintype V] :
 def stepIn (P : Set V) (a b : SplitVertex G K) : Prop :=
   (split G K).DirAdj a b ∧ a.1 ∈ P ∧ b.1 ∈ P
 
+/--
+@isnad1 id=refltran.2h9v.s6.b059831d6454 from=translated src=- shape=1ddddb9c vocab=d1b9a109
+-/
 theorem reflTransGen_forward_aux (P : Set V) :
     ∀ (d : ℕ) (w : V) (i j : Fin (slots G K w)), w ∈ P → (j : ℕ) = i + d →
       ReflTransGen (stepIn (G := G) (K := K) P) ⟨w, i⟩ ⟨w, j⟩
@@ -240,7 +277,9 @@ theorem reflTransGen_forward_aux (P : Set V) :
     show (j : ℕ) - 1 + 1 = j
     omega
 
-/-- Inside the path of a vertex of `P`, each slot reaches every later slot. -/
+/-- Inside the path of a vertex of `P`, each slot reaches every later slot.
+@isnad1 id=refltran.3h7v.s7.c5f8c864f5a2 from=translated src=- shape=ae8ec95f vocab=51798e99
+-/
 theorem reflTransGen_forward (P : Set V) {x y : SplitVertex G K} (hxy : x.1 = y.1)
     (hx : x.1 ∈ P) (hle : (x.2 : ℕ) ≤ y.2) : ReflTransGen (stepIn P) x y := by
   obtain ⟨w, i⟩ := x
@@ -249,7 +288,9 @@ theorem reflTransGen_forward (P : Set V) {x y : SplitVertex G K} (hxy : x.1 = y.
   subst hxy
   exact reflTransGen_forward_aux P (j - i) w i j hx (by omega)
 
-/-- Any two slots of one vertex are joined in the split graph. -/
+/-- Any two slots of one vertex are joined in the split graph.
+@isnad1 id=refltran.1h6v.s6.8d78e09c4220 from=translated src=- shape=6efeae87 vocab=3d9b94aa
+-/
 theorem reflTransGen_adj_of_fst_eq {x y : SplitVertex G K} (hxy : x.1 = y.1) :
     ReflTransGen (split G K).Adj x y := by
   have h0 : 0 < slots G K x.1 := by have := x.2.isLt; omega

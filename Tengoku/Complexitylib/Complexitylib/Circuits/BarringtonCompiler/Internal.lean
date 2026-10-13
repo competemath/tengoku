@@ -22,6 +22,9 @@ set_option maxRecDepth 100000
 
 namespace Complexity
 
+/--
+@isnad1 id=mem.0h2v.s4.71b9c596211e from=translated src=- shape=b27609e9 vocab=0c1b5fde
+-/
 theorem mem_allPermutationsFin_internal {n : ℕ} (permutation : Perm (Fin n)) :
     permutation ∈ allPermutationsFin n := by
   induction n with
@@ -34,6 +37,9 @@ theorem mem_allPermutationsFin_internal {n : ℕ} (permutation : Perm (Fin n)) :
         (Equiv.Perm.decomposeFin permutation).2, ih _, ?_⟩
       simp
 
+/--
+@isnad1 id=eq.1h2v.s7.fe12c9b8fda4 from=translated src=- shape=2623e28a vocab=d03560c2
+-/
 theorem firstConjugator5_spec_internal
     (source target : Perm (Fin 5))
     (hexists : ∃ g, g * source * g⁻¹ = target) :
@@ -57,18 +63,27 @@ theorem firstConjugator5_spec_internal
       have hg := List.find?_some hfind
       simpa only [isConjugator5, decide_eq_true_eq] using hg
 
+/--
+@isnad1 id=and.0h0v.s5.c3f258801483 from=translated src=- shape=50ab1c8d vocab=9a813ba0
+-/
 theorem barringtonLeftBase_spec_internal :
     barringtonLeftBase.IsCycle ∧ orderOf barringtonLeftBase = 5 := by
   apply isCycle_orderOf_five_of_pow
   · decide
   · decide
 
+/--
+@isnad1 id=and.0h0v.s5.a68e13a27a97 from=translated src=- shape=50ab1c8d vocab=2e6c6683
+-/
 theorem barringtonRightBase_spec_internal :
     barringtonRightBase.IsCycle ∧ orderOf barringtonRightBase = 5 := by
   apply isCycle_orderOf_five_of_pow
   · decide
   · decide
 
+/--
+@isnad1 id=and.0h0v.s5.6374950ee708 from=translated src=- shape=50ab1c8d vocab=a18394a4
+-/
 theorem barringtonTargetBase_spec_internal :
     barringtonTargetBase.IsCycle ∧ orderOf barringtonTargetBase = 5 := by
   apply isCycle_orderOf_five_of_pow
@@ -83,6 +98,9 @@ private theorem cycleType_five {cycle : Perm (Fin 5)}
     exact horder
   rw [hcycle.cycleType, hsupport]
 
+/--
+@isnad1 id=eq.2h1v.s7.95d5b4fbc144 from=translated src=- shape=6617bc6d vocab=e68e0db9
+-/
 theorem barringtonConjugator_spec_internal
     (target : Perm (Fin 5)) (hcycle : target.IsCycle)
     (horder : orderOf target = 5) :
@@ -96,6 +114,9 @@ theorem barringtonConjugator_spec_internal
   obtain ⟨g, hg⟩ := isConj_iff.mp hconj
   exact firstConjugator5_spec_internal barringtonTargetBase target ⟨g, hg⟩
 
+/--
+@isnad1 id=and.0h1v.s5.331086591f87 from=translated src=- shape=a2cd76f2 vocab=ab6e54f6
+-/
 theorem barringtonLeft_spec_internal
     (target : Perm (Fin 5)) :
     (barringtonLeft target).IsCycle ∧
@@ -104,6 +125,9 @@ theorem barringtonLeft_spec_internal
     conj_isCycle_orderOf_five barringtonLeftBase_spec_internal
       (barringtonConjugator target)
 
+/--
+@isnad1 id=and.0h1v.s5.30e15a885aa7 from=translated src=- shape=a2cd76f2 vocab=fc0f87cb
+-/
 theorem barringtonRight_spec_internal
     (target : Perm (Fin 5)) :
     (barringtonRight target).IsCycle ∧
@@ -112,6 +136,9 @@ theorem barringtonRight_spec_internal
     conj_isCycle_orderOf_five barringtonRightBase_spec_internal
       (barringtonConjugator target)
 
+/--
+@isnad1 id=eq.2h1v.s6.c896ccf6162e from=translated src=- shape=2857600d vocab=0f091dc4
+-/
 theorem barrington_commutator_internal
     (target : Perm (Fin 5)) (hcycle : target.IsCycle)
     (horder : orderOf target = 5) :
@@ -125,6 +152,9 @@ theorem barrington_commutator_internal
       group
     _ = target := barringtonConjugator_spec_internal target hcycle horder
 
+/--
+@isnad1 id=eq.0h3v.s5.dc9e98f9905e from=translated src=- shape=03b14e31 vocab=609d7d9f
+-/
 theorem BP.length_commutatorProgram_internal {w : ℕ} (p q : BP w) :
     (BP.commutatorProgram p q).length =
       2 * p.length + 2 * q.length := by
@@ -179,6 +209,9 @@ private theorem BP.forall_var_commutatorProgram_internal
     · exact hleftInverse instruction hinstruction
   · exact hrightInverse instruction hinstruction
 
+/--
+@isnad1 id=computes.2h2v.s6.5087278df96c from=translated src=- shape=ccab4570 vocab=f7841f36
+-/
 theorem barringtonCompile_computes_internal (formula : BoolFormula) :
     ∀ (target : Perm (Fin 5)), target.IsCycle → orderOf target = 5 →
       BP.Computes target (barringtonCompile formula target)
@@ -269,6 +302,9 @@ theorem barringtonCompile_computes_internal (formula : BoolFormula) :
       simpa only [BP.commutatorProgram, barringtonCompile, innerTarget, leftTarget, rightTarget,
         leftProgram, rightProgram, inv_inv] using hfinal
 
+/--
+@isnad1 id=le.0h2v.s5.1fd22b7adfc3 from=translated src=- shape=e611e218 vocab=78d541bc
+-/
 theorem barringtonCompile_length_le_internal
     (formula : BoolFormula) (target : Perm (Fin 5)) :
     (barringtonCompile formula target).length ≤ 4 ^ formula.depth := by
@@ -334,7 +370,9 @@ theorem barringtonCompile_length_le_internal
       rw [BP.length_postMul]
       exact max_le (Nat.one_le_pow _ _ (by omega)) hcommutator
 
-/-- Internal variable-locality theorem for the executable compiler. -/
+/-- Internal variable-locality theorem for the executable compiler.
+@isnad1 id=le.2h4v.s6.a818936b0107 from=translated src=- shape=3860d8d2 vocab=d12f0562
+-/
 theorem barringtonCompile_var_bound_internal
     (formula : BoolFormula) (target : Equiv.Perm (Fin 5)) (bound : ℕ)
     (hvars : ∀ index ∈ formula.vars, index ≤ bound) :

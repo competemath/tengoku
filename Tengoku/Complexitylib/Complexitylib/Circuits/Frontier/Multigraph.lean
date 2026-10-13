@@ -96,16 +96,27 @@ of the component cycle ranks. -/
 noncomputable def cycleRank (_G : Multigraph V E) : ℕ :=
   Nat.card E + 1 - Nat.card V
 
+/--
+@isnad1 id=iff.0h5v.s5.7282a74df751 from=translated src=- shape=9f29ef8d vocab=3564d3a8
+-/
 theorem mem_cut {L : Set V} {e : E} : e ∈ G.cut L ↔ ¬(G.src e ∈ L ↔ G.tgt e ∈ L) :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.68d9ef5e94e2 from=translated src=- shape=80347531 vocab=9e366e7b
+-/
 @[simp] theorem cut_empty : G.cut ∅ = ∅ := by
   ext e; simp [mem_cut]
 
+/--
+@isnad1 id=eq.0h3v.s4.eda2656fa3c0 from=translated src=- shape=c4f5589d vocab=e9a688fd
+-/
 @[simp] theorem cut_univ : G.cut univ = ∅ := by
   ext e; simp [mem_cut]
 
-/-- Adding one vertex changes a cut only at the edges incident to it. -/
+/-- Adding one vertex changes a cut only at the edges incident to it.
+@isnad1 id=le.0h5v.s5.53a6e12e2280 from=translated src=- shape=23a8a532 vocab=8b078972
+-/
 theorem cut_insert_subset (v : V) (L : Set V) : G.cut (insert v L) ⊆ G.cut L ∪ G.edgesAt v := by
   intro e he
   by_cases hv : G.src e = v ∨ G.tgt e = v
@@ -114,13 +125,17 @@ theorem cut_insert_subset (v : V) (L : Set V) : G.cut (insert v L) ⊆ G.cut L �
     left
     simpa [mem_cut, hv.1, hv.2] using he
 
-/-- Adjacency is symmetric. -/
+/-- Adjacency is symmetric.
+@isnad1 id=adj.1h5v.s4.1342b19f969e from=translated src=- shape=d7804e90 vocab=f323aecc
+-/
 theorem Adj.symm {G : Multigraph V E} {u v : V} (h : G.Adj u v) : G.Adj v u := by
   obtain ⟨e, h | h⟩ := h
   · exact ⟨e, Or.inr h⟩
   · exact ⟨e, Or.inl h⟩
 
-/-- Walks can be reversed. -/
+/-- Walks can be reversed.
+@isnad1 id=refltran.1h5v.s4.f73f9af52da8 from=translated src=- shape=4950cd82 vocab=1fb12a66
+-/
 theorem reflTransGen_adj_symm {G : Multigraph V E} {u v : V}
     (h : Relation.ReflTransGen G.Adj u v) : Relation.ReflTransGen G.Adj v u := by
   induction h with
@@ -128,7 +143,9 @@ theorem reflTransGen_adj_symm {G : Multigraph V E} {u v : V}
   | tail _ hab ih => exact .head hab.symm ih
 
 /-- **A connected graph has at least `|V| - 1` edges**: its cycle rank `|E| + 1 - |V|` involves
-no truncation. -/
+no truncation.
+@isnad1 id=le.1h3v.s5.b2634b0e6985 from=translated src=- shape=1a08a28e vocab=50383b3f
+-/
 theorem Connected.card_vertex_le {G : Multigraph V E} [Finite E] (h : G.Connected) :
     Nat.card V ≤ Nat.card E + 1 := by
   rcases isEmpty_or_nonempty V with hV | hV
@@ -161,7 +178,9 @@ theorem Connected.card_vertex_le {G : Multigraph V E} [Finite E] (h : G.Connecte
   have := hconn.card_vert_le_card_edgeSet_add_one
   omega
 
-/-- A graph in which every vertex reaches one fixed vertex is connected. -/
+/-- A graph in which every vertex reaches one fixed vertex is connected.
+@isnad1 id=connecte.1h4v.s4.29ce9f35352d from=translated src=- shape=8700bc77 vocab=57405189
+-/
 theorem connected_of_forall_reflTransGen {G : Multigraph V E} (root : V)
     (h : ∀ v, Relation.ReflTransGen G.Adj v root) : G.Connected := fun u v =>
   (h u).trans (reflTransGen_adj_symm (h v))
@@ -180,16 +199,27 @@ variable {V : Type*} (π : Layout V)
 def initial (t : ℕ) : Set V :=
   {v | (π v : ℕ) < t}
 
+/--
+@isnad1 id=iff.0h4v.s5.17bb9e15b637 from=translated src=- shape=b9925026 vocab=89936172
+-/
 theorem mem_initial {t : ℕ} {v : V} : v ∈ π.initial t ↔ (π v : ℕ) < t :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.f45f995bd218 from=translated src=- shape=c2ffa522 vocab=3b359bdb
+-/
 @[simp] theorem initial_zero : π.initial 0 = ∅ := by
   ext v; simp [mem_initial]
 
+/--
+@isnad1 id=eq.1h3v.s4.84c8145dc9fb from=translated src=- shape=fa4f2dfa vocab=568b1575
+-/
 theorem initial_of_card_le {t : ℕ} (ht : Nat.card V ≤ t) : π.initial t = univ := by
   ext v; simpa [mem_initial] using (π v).isLt.trans_le ht
 
-/-- The first `t + 1` vertices are the first `t` and the vertex numbered `t`. -/
+/-- The first `t + 1` vertices are the first `t` and the vertex numbered `t`.
+@isnad1 id=eq.1h3v.s6.0a2b427c04d1 from=translated src=- shape=3016459e vocab=9f91b547
+-/
 theorem initial_succ {t : ℕ} (ht : t < Nat.card V) :
     π.initial (t + 1) = insert (π.symm ⟨t, ht⟩) (π.initial t) := by
   ext v

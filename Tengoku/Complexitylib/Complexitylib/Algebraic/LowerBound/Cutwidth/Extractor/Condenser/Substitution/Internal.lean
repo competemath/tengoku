@@ -39,6 +39,9 @@ private theorem natDegree_digitMonomial_le {F : Type*} [CommSemiring F]
         (Nat.mul_le_mul (Nat.le_sub_one_of_lt (Nat.mod_lt _ positive)) (bound i))
     _ = d * (h - 1) * m := by simp; ring
 
+/--
+@isnad1 id=eq.0h8v.s7.75c1c107b167 from=translated src=- shape=fb1c4168 vocab=d43133eb
+-/
 theorem substitutedSum_eval {F : Type*} [CommRing F] {K : Nat}
     (E : Polynomial F) (h m : Nat) (p : Fin K → Polynomial F) (f : Polynomial F) (y : F) :
     (substitutedSum E h m p f).eval y =
@@ -47,6 +50,9 @@ theorem substitutedSum_eval {F : Type*} [CommRing F] {K : Nat}
   simp only [substitutedSum, Polynomial.eval_finsetSum, Polynomial.eval_mul,
     digitMonomial, Polynomial.eval_prod, Polynomial.eval_pow]
 
+/--
+@isnad1 id=le.3h8v.s7.b66cdc316756 from=translated src=- shape=5eed5d11 vocab=c225957a
+-/
 theorem substitutedSum_natDegree_le {F : Type*} [CommRing F]
     {K A h m : Nat} (E : Polynomial F) (p : Fin K → Polynomial F) (f : Polynomial F)
     (monic : E.Monic) (base : 0 < h)
@@ -66,6 +72,9 @@ theorem substitutedSum_natDegree_le {F : Type*} [CommRing F]
     · exact Nat.le_sub_one_of_lt ((Polynomial.natDegree_lt_iff_degree_lt hj).mpr (coeff j))
   · exact natDegree_digitMonomial_le _ coordinate base j.val
 
+/--
+@isnad1 id=lt.4h8v.s7.0dc34106a180 from=translated src=- shape=cc13de1c vocab=e3159cba
+-/
 theorem substitutedSum_degree_lt {F : Type*} [CommRing F]
     {K A h m : Nat} (E : Polynomial F) (p : Fin K → Polynomial F) (f : Polynomial F)
     (monic : E.Monic) (positive : 0 < A) (base : 0 < h)

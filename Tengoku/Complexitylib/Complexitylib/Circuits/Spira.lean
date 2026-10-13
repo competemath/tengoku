@@ -34,7 +34,9 @@ namespace BoolFormula
 /-- **Spira's balancing theorem.** Every Boolean formula has an equivalent
 formula with logarithmic depth and polynomial tree size. The constants and
 degree are explicit so downstream family-level theorems need no hidden
-asymptotic reasoning. -/
+asymptotic reasoning.
+@isnad1 id=ex.0h1v.s6.66c861017415 from=translated src=- shape=81926fd9 vocab=8af314b0
+-/
 theorem exists_spira_balanced (formula : BoolFormula) :
     ∃ balanced : BoolFormula,
       (∀ assignment, eval assignment balanced = eval assignment formula) ∧

@@ -21,26 +21,44 @@ public section
 
 namespace Algebraic.Cutwidth.Extractor.Internal
 
+/--
+@isnad1 id=lt.0h3v.s4.2140af23428c from=translated src=- shape=ac9c39a3 vocab=8de89fd5
+-/
 theorem explicitCondenserBudget_pos (n k e : Nat) : 0 < explicitCondenserBudget n k e :=
   Nat.succ_pos _
 
+/--
+@isnad1 id=lt.0h4v.s4.be62e36b44d2 from=translated src=- shape=235fb233 vocab=bf27d668
+-/
 theorem explicitCondenserFieldBits_pos (n k e u : Nat) :
     0 < sparseFieldBits u (explicitCondenserBudget n k e) := by
   unfold sparseFieldBits
   positivity
 
+/--
+@isnad1 id=lt.1h4v.s5.d19770a9ddb1 from=translated src=- shape=35d458f2 vocab=34ab6fca
+-/
 theorem explicitCondenserPowerBits_pos (n k e : Nat) {u : Nat} (rate : 0 < u) :
     0 < sparsePowerBits u (explicitCondenserBudget n k e) :=
   sparsePowerBits_pos rate (explicitCondenserBudget_pos n k e)
 
+/--
+@isnad1 id=lt.0h4v.s4.4ae64a891fd1 from=translated src=- shape=a76df7ca vocab=21e2064b
+-/
 theorem explicitCondenserExtensionExponent_pos (n k e u : Nat) :
     0 < explicitCondenserExtensionExponent n k e u :=
   Nat.clog_pos (by decide) ((by decide : 1 < 3).trans_le (le_max_left _ _))
 
+/--
+@isnad1 id=le.0h4v.s4.a8da244ab4c4 from=translated src=- shape=a76df7ca vocab=86426711
+-/
 theorem explicitCondenser_degree_lower (n k e u : Nat) :
     3 ≤ explicitCondenserExtensionDegree n k e u :=
   (le_max_left _ _).trans (Nat.le_pow_clog (by decide : 1 < 3) _)
 
+/--
+@isnad1 id=le.0h4v.s4.e3410fcf28e5 from=translated src=- shape=1c8249d9 vocab=c4122cba
+-/
 theorem explicitCondenser_source_capacity (n k e u : Nat) :
     n ≤ sparseFieldBits u (explicitCondenserBudget n k e) *
       explicitCondenserExtensionDegree n k e u := by
@@ -49,6 +67,9 @@ theorem explicitCondenser_source_capacity (n k e u : Nat) :
     (max 3 (condenserCoordinates n (sparseFieldBits u (explicitCondenserBudget n k e))))
   exact cover.trans (Nat.mul_le_mul_left _ ((le_max_right _ _).trans rounded))
 
+/--
+@isnad1 id=le.0h4v.s5.89e9c8775377 from=translated src=- shape=8429db96 vocab=8bb32eca
+-/
 theorem explicitCondenser_degree_le (n k e u : Nat) :
     explicitCondenserExtensionDegree n k e u ≤ 9 * (n + 1) := by
   let target := max 3 (condenserCoordinates n (sparseFieldBits u (explicitCondenserBudget n k e)))
@@ -65,23 +86,35 @@ theorem explicitCondenser_degree_le (n k e u : Nat) :
   have bound : target ≤ 3 * (n + 1) := max_le (by lia) (by lia)
   exact rounded.trans (by lia)
 
+/--
+@isnad1 id=le.1h4v.s5.75dda2d421df from=translated src=- shape=ba63daaa vocab=236b982b
+-/
 theorem explicitCondenser_entropy_capacity (n k e : Nat) {u : Nat} (rate : 0 < u) :
     k ≤ sparsePowerBits u (explicitCondenserBudget n k e) *
       condenserCoordinates k (sparsePowerBits u (explicitCondenserBudget n k e)) :=
   condenserCoordinates_capacity (explicitCondenserPowerBits_pos n k e rate)
 
+/--
+@isnad1 id=le.0h4v.s5.e9b372231e1e from=translated src=- shape=fceebe46 vocab=30d4286a
+-/
 theorem explicitCondenser_fieldBits_le (n k e u : Nat) :
     sparseFieldBits u (explicitCondenserBudget n k e) ≤
       6 * (u + 1) * explicitCondenserBudget n k e := by
   simpa only [Nat.mul_assoc] using
     sparseFieldBits_upper (u := u) (explicitCondenserBudget_pos n k e)
 
+/--
+@isnad1 id=le.0h4v.s6.ba212d46bf33 from=translated src=- shape=84af3b4c vocab=a3ab1902
+-/
 theorem explicitCondenser_output_rate (n k e u : Nat) :
     u * (condenserCoordinates k (sparsePowerBits u (explicitCondenserBudget n k e)) *
       sparseFieldBits u (explicitCondenserBudget n k e)) ≤
         (u + 1) * k + u * sparseFieldBits u (explicitCondenserBudget n k e) :=
   sparseCondenser_output
 
+/--
+@isnad1 id=le.0h4v.s6.26ee6607b6c9 from=translated src=- shape=ff6969d0 vocab=a0670aa3
+-/
 theorem explicitCondenser_error_budget (n k e u : Nat) :
     explicitCondenserExtensionDegree n k e u * k * 2 ^ e ≤
       2 ^ explicitCondenserBudget n k e := by

@@ -43,7 +43,9 @@ namespace NTM
 
 variable {k : ℕ} {tm : NTM k}
 
-/-- Deciding in space `S` is deciding in any larger space bound. -/
+/-- Deciding in space `S` is deciding in any larger space bound.
+@isnad1 id=decidesi.2h5v.s5.68f699e823e7 from=translated src=- shape=1eeed624 vocab=7d702216
+-/
 theorem DecidesInSpace.mono {L : Language} {S S' : ℕ → ℕ} (hle : ∀ n, S n ≤ S' n)
     (h : tm.DecidesInSpace L S) : tm.DecidesInSpace L S' := by
   obtain ⟨T, hdt, hsp⟩ := h
@@ -51,7 +53,9 @@ theorem DecidesInSpace.mono {L : Language} {S S' : ℕ → ℕ} (hle : ∀ n, S 
 
 /-- **The space bound holds at every configuration of the graph.** `DecidesInSpace` states the
 bound along traces no longer than the halting time; past that time a trace is frozen, so the
-bound propagates to every reachable configuration. -/
+bound propagates to every reachable configuration.
+@isnad1 id=withinde.2h6v.s5.ad69c483d5f0 from=translated src=- shape=f4742a89 vocab=9b89b3bf
+-/
 theorem withinDecisionSpace_of_reachesCfg {L : Language} {S : ℕ → ℕ}
     (hdec : tm.DecidesInSpace L S) (x : List Bool) {c : Cfg k tm.Q}
     (h : tm.ReachesCfg (tm.initCfg x) c) :
@@ -74,7 +78,9 @@ theorem withinDecisionSpace_of_reachesCfg {L : Language} {S : ℕ → ℕ}
     rw [heq] at hpad
     exact hpad
 
-/-- The initial configuration and everything reachable from it stays inside the window. -/
+/-- The initial configuration and everything reachable from it stays inside the window.
+@isnad1 id=windowed.2h6v.s5.8a4396d9b219 from=translated src=- shape=04421077 vocab=dd1a9ca2
+-/
 theorem windowed_of_reachesCfg_init {L : Language} {S : ℕ → ℕ}
     (hdec : tm.DecidesInSpace L S) (x : List Bool) {c : Cfg k tm.Q}
     (h : tm.ReachesCfg (tm.initCfg x) c) :
@@ -83,7 +89,9 @@ theorem windowed_of_reachesCfg_init {L : Language} {S : ℕ → ℕ}
     (windowed_init tm.qstart x _) h
 
 /-- **Codes separate the reachable configurations.** This is what bounds the search: distinct
-reachable configurations have distinct codes, of which there are only finitely many. -/
+reachable configurations have distinct codes, of which there are only finitely many.
+@isnad1 id=eq.4h7v.s6.3518eabb8790 from=translated src=- shape=d1e88261 vocab=f36238f5
+-/
 theorem cfgCode_inj_of_reachesCfg {L : Language} {S : ℕ → ℕ}
     (hdec : tm.DecidesInSpace L S) (x : List Bool) {c c' : Cfg k tm.Q}
     (hc : tm.ReachesCfg (tm.initCfg x) c) (hc' : tm.ReachesCfg (tm.initCfg x) c')
@@ -97,7 +105,9 @@ theorem cfgCode_inj_of_reachesCfg {L : Language} {S : ℕ → ℕ}
 /-- **Membership is a bounded breadth-first search.** An input is in the language exactly when
 an accepting configuration shows up within any number of rounds of successor-closure from the
 initial configuration that reaches the number of codes. Nothing here mentions traces, choices,
-or time. -/
+or time.
+@isnad1 id=iff.2h6v.s9.1bcbc67c49f9 from=translated src=- shape=e6cd9cdb vocab=463755b5
+-/
 theorem mem_iff_exists_mem_reachSet {L : Language} {S : ℕ → ℕ}
     (hdec : tm.DecidesInSpace L S) (x : List Bool) {N : ℕ}
     (hN : Fintype.card (Code tm.Q k x.length (S x.length)) ≤ N) :
@@ -115,7 +125,9 @@ end NTM
 
 /-- **A language in `NL` is a polynomially bounded reachability search.** This is the
 specification a polynomial-time decision procedure has to implement: run the successor-closure
-for `A · (|x| + 1) ^ B` rounds and look for an accepting configuration. -/
+for `A · (|x| + 1) ^ B` rounds and look for an accepting configuration.
+@isnad1 id=ex.1h1v.s7.9b9fe3bcbf3f from=translated src=- shape=4a500110 vocab=aa91e746
+-/
 theorem NL_bounded_reachability_internal {L : Language} (hL : L ∈ NL) :
     ∃ (k : ℕ) (tm : NTM k) (A B : ℕ),
       ∀ x : List Bool, x ∈ L ↔
@@ -127,7 +139,9 @@ theorem NL_bounded_reachability_internal {L : Language} (hL : L ∈ NL) :
 
 /-- **`NL ⊆ P`, reduced to the existence of one machine.** The hypothesis carries the log-space
 witness for `tm`: without it the search language is not decidable at all, let alone in polynomial
-time, since the configuration graph would be unbounded. -/
+time, since the configuration graph would be unbounded.
+@isnad1 id=le.1h0v.s7.b4e382598d9e from=translated src=- shape=482484ad vocab=c6e4cc02
+-/
 theorem NL_subset_P_of_search_internal
     (h : ∀ (k : ℕ) (tm : NTM k) (S : ℕ → ℕ) (L₀ : Language) (A B : ℕ),
       tm.DecidesInSpace L₀ S → S =O (fun n => Nat.log 2 n) →

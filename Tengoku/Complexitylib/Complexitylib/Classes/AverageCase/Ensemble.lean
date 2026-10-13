@@ -30,49 +30,65 @@ namespace DyadicEnsemble
 
 variable {α : Type u} {β : Type v}
 
-/-- Ensemble event probabilities are nonnegative. -/
+/-- Ensemble event probabilities are nonnegative.
+@isnad1 id=le.0h4v.s4.33eeba99ee4d from=translated src=- shape=f2bf0f33 vocab=0cee7fc8
+-/
 theorem probability_nonneg (D : DyadicEnsemble α) (n : ℕ)
     (P : α → Prop) [DecidablePred P] :
     0 ≤ D.probability n P :=
   probability_nonneg_internal D n P
 
-/-- Ensemble event probabilities are at most one. -/
+/-- Ensemble event probabilities are at most one.
+@isnad1 id=le.0h4v.s4.e10254061d3d from=translated src=- shape=ebb9692a vocab=0cee7fc8
+-/
 theorem probability_le_one (D : DyadicEnsemble α) (n : ℕ)
     (P : α → Prop) [DecidablePred P] :
     D.probability n P ≤ 1 :=
   probability_le_one_internal D n P
 
-/-- The impossible event has probability zero. -/
+/-- The impossible event has probability zero.
+@isnad1 id=eq.0h3v.s4.60c1ac1e84b7 from=translated src=- shape=ae09135e vocab=700d2359
+-/
 @[simp] theorem probability_false (D : DyadicEnsemble α) (n : ℕ) :
     D.probability n (fun _ => False) = 0 :=
   probability_false_internal D n
 
-/-- The certain event has probability one. -/
+/-- The certain event has probability one.
+@isnad1 id=eq.0h3v.s4.99ecea89928f from=translated src=- shape=ae09135e vocab=700d2359
+-/
 @[simp] theorem probability_true (D : DyadicEnsemble α) (n : ℕ) :
     D.probability n (fun _ => True) = 1 :=
   probability_true_internal D n
 
-/-- Complementary events have complementary probabilities. -/
+/-- Complementary events have complementary probabilities.
+@isnad1 id=eq.0h4v.s5.19d0344a56ff from=translated src=- shape=f3f60ada vocab=20071156
+-/
 theorem probability_not (D : DyadicEnsemble α) (n : ℕ)
     (P : α → Prop) [DecidablePred P] :
     D.probability n (fun x => ¬ P x) = 1 - D.probability n P :=
   probability_not_internal D n P
 
-/-- Union bound for two predicates on one ensemble slice. -/
+/-- Union bound for two predicates on one ensemble slice.
+@isnad1 id=le.0h5v.s6.4c867f8a69e0 from=translated src=- shape=f893ad17 vocab=c0de559d
+-/
 theorem probability_or_le (D : DyadicEnsemble α) (n : ℕ)
     (P Q : α → Prop) [DecidablePred P] [DecidablePred Q] :
     D.probability n (fun x => P x ∨ Q x) ≤
       D.probability n P + D.probability n Q :=
   probability_or_le_internal D n P Q
 
-/-- Event probability is monotone under predicate implication. -/
+/-- Event probability is monotone under predicate implication.
+@isnad1 id=le.0h6v.s5.f8e0389dce8a from=translated src=- shape=047e6ddb vocab=0cee7fc8
+-/
 theorem probability_mono (D : DyadicEnsemble α) (n : ℕ)
     (P Q : α → Prop) [DecidablePred P] [DecidablePred Q]
     (hPQ : ∀ x, P x → Q x) :
     D.probability n P ≤ D.probability n Q :=
   probability_mono_internal D n P Q hPQ
 
-/-- Extensionally equal events have equal probability. -/
+/-- Extensionally equal events have equal probability.
+@isnad1 id=eq.1h5v.s5.286e5fa1565e from=translated src=- shape=4afcf808 vocab=37160507
+-/
 theorem probability_congr (D : DyadicEnsemble α) (n : ℕ)
     (P Q : α → Prop) [DecidablePred P] [DecidablePred Q]
     (hPQ : ∀ x, P x ↔ Q x) :
@@ -80,18 +96,24 @@ theorem probability_congr (D : DyadicEnsemble α) (n : ℕ)
   probability_congr_internal D n P Q hPQ
 
 /-- Exact pushforward law: measuring `P` after mapping samples by `f` is the
-same as measuring the preimage of `P` in the source ensemble. -/
+same as measuring the preimage of `P` in the source ensemble.
+@isnad1 id=eq.0h6v.s5.3abfe9903796 from=translated src=- shape=1d8e707b vocab=7dcf22ef
+-/
 @[simp] theorem probability_map (D : DyadicEnsemble α) (f : α → β)
     (n : ℕ) (P : β → Prop) [DecidablePred P] :
     (D.map f).probability n P = D.probability n (fun x => P (f x)) :=
   probability_map_internal D f n P
 
-/-- The masses of all outputs in a slice's finite support sum exactly to one. -/
+/-- The masses of all outputs in a slice's finite support sum exactly to one.
+@isnad1 id=eq.0h3v.s5.8d94b32aa44f from=translated src=- shape=991c0722 vocab=c21ace68
+-/
 theorem sum_mass_eq_one [DecidableEq α] (D : DyadicEnsemble α) (n : ℕ) :
     ∑ x ∈ D.support n, D.mass n x = 1 :=
   sum_mass_eq_one_internal D n
 
-/-- Events on independently sampled components have product probability. -/
+/-- Events on independently sampled components have product probability.
+@isnad1 id=eq.0h7v.s6.6e17cf194c65 from=translated src=- shape=f13ff71b vocab=44572471
+-/
 theorem probability_product (D : DyadicEnsemble α) (E : DyadicEnsemble β)
     (n : ℕ) (P : α → Prop) (Q : β → Prop)
     [DecidablePred P] [DecidablePred Q] :
@@ -100,14 +122,18 @@ theorem probability_product (D : DyadicEnsemble α) (E : DyadicEnsemble β)
   probability_product_internal D E n P Q
 
 /-- A point mass assigns probability one exactly to events containing its
-selected point. -/
+selected point.
+@isnad1 id=eq.0h4v.s5.788f290be532 from=translated src=- shape=06d34295 vocab=7cb0a93a
+-/
 theorem probability_dirac (x : ℕ → α) (n : ℕ)
     (P : α → Prop) [DecidablePred P] :
     (dirac x).probability n P = if P (x n) then 1 else 0 :=
   probability_dirac_internal x n P
 
 /-- Event probability under uniform `n`-bit lists is ordinary finite uniform
-probability over `Fin n → Bool`. -/
+probability over `Fin n → Bool`.
+@isnad1 id=eq.0h2v.s6.f218d1218587 from=translated src=- shape=ff85a5f5 vocab=388eb346
+-/
 theorem probability_uniformBits (n : ℕ)
     (P : List Bool → Prop) [DecidablePred P] :
     uniformBits.probability n P =

@@ -57,23 +57,37 @@ section Evaluation
 
 variable {α : Type*} [LinearOrder α]
 
+/--
+@isnad1 id=eq.0h6v.s6.9095b39b19bf from=translated src=- shape=2fdceb92 vocab=4e2b4c78
+-/
 theorem state_succ (x : Fin n → α) (c : Fin s) :
     N.state x (c + 1) = N.apply c (N.state x c) := by
   simp [ComparatorNetwork.state, c.isLt]
 
+/--
+@isnad1 id=eq.0h6v.s5.f6a39e7988ef from=translated src=- shape=07a59b3e vocab=11dd001c
+-/
 theorem apply_minWire (c : Fin s) (x : Fin n → α) :
     N.apply c x (N.minWire c) = min (x (N.minWire c)) (x (N.maxWire c)) := by
   simp [ComparatorNetwork.apply]
 
+/--
+@isnad1 id=eq.0h6v.s5.732f066b3272 from=translated src=- shape=f6936fb0 vocab=8a2df012
+-/
 theorem apply_maxWire (c : Fin s) (x : Fin n → α) :
     N.apply c x (N.maxWire c) = max (x (N.minWire c)) (x (N.maxWire c)) := by
   simp [ComparatorNetwork.apply, Ne.symm (N.minWire_ne_maxWire c)]
 
+/--
+@isnad1 id=eq.2h7v.s5.bea0fd24f075 from=translated src=- shape=a0096fea vocab=f5efb937
+-/
 theorem apply_of_ne (c : Fin s) (x : Fin n → α) {w : Fin n} (h₁ : N.minWire c ≠ w)
     (h₂ : N.maxWire c ≠ w) : N.apply c x w = x w := by
   simp [ComparatorNetwork.apply, Ne.symm h₁, Ne.symm h₂]
 
-/-- A comparator whose two wires carry the same value changes nothing. -/
+/-- A comparator whose two wires carry the same value changes nothing.
+@isnad1 id=eq.1h6v.s5.b3ccba7244a3 from=translated src=- shape=c033f438 vocab=f5efb937
+-/
 theorem apply_eq_self (c : Fin s) (x : Fin n → α) (h : x (N.minWire c) = x (N.maxWire c)) :
     N.apply c x = x := by
   funext w
@@ -85,7 +99,9 @@ theorem apply_eq_self (c : Fin s) (x : Fin n → α) (h : x (N.minWire c) = x (N
       rw [apply_maxWire, h, max_self]
     · exact apply_of_ne N c x (Ne.symm h₁) (Ne.symm h₂)
 
-/-- An input on which every comparator sees two equal values is fixed by the network. -/
+/-- An input on which every comparator sees two equal values is fixed by the network.
+@isnad1 id=eq.1h5v.s5.5e468609c470 from=translated src=- shape=e713a7df vocab=cdc47551
+-/
 theorem eval_eq_self (x : Fin n → α) (h : ∀ c, x (N.minWire c) = x (N.maxWire c)) :
     N.eval x = x := by
   have : ∀ t, N.state x t = x := by
@@ -100,7 +116,9 @@ theorem eval_eq_self (x : Fin n → α) (h : ∀ c, x (N.minWire c) = x (N.maxWi
       · simp [ComparatorNetwork.state, ht, ih]
   exact this s
 
-/-- Comparators commute with monotone maps. -/
+/-- Comparators commute with monotone maps.
+@isnad1 id=eq.1h8v.s6.185d8f97165b from=translated src=- shape=8d386136 vocab=73c8671c
+-/
 theorem apply_comp {β : Type*} [LinearOrder β] {f : α → β} (hf : Monotone f) (c : Fin s)
     (x : Fin n → α) : N.apply c (f ∘ x) = f ∘ N.apply c x := by
   funext w
@@ -110,7 +128,9 @@ theorem apply_comp {β : Type*} [LinearOrder β] {f : α → β} (hf : Monotone 
   · exact (hf.map_max).symm
   · rfl
 
-/-- **The network commutes with monotone maps.** -/
+/-- **The network commutes with monotone maps.**
+@isnad1 id=eq.1h7v.s6.45582e7084a1 from=translated src=- shape=2a8372a4 vocab=37dcdd47
+-/
 theorem eval_comp {β : Type*} [LinearOrder β] {f : α → β} (hf : Monotone f) (x : Fin n → α) :
     N.eval (f ∘ x) = f ∘ N.eval x := by
   have : ∀ t, N.state (f ∘ x) t = f ∘ N.state x t := by
@@ -134,10 +154,16 @@ end Evaluation
 def touchSet (w : Fin n) (t : ℕ) : Finset (Fin s) :=
   Finset.univ.filter fun c : Fin s => (c : ℕ) < t ∧ (N.minWire c = w ∨ N.maxWire c = w)
 
+/--
+@isnad1 id=iff.0h6v.s6.8bc1da52a17f from=translated src=- shape=9ea7f4b8 vocab=6ecb86ff
+-/
 theorem mem_touchSet {w : Fin n} {t : ℕ} {c : Fin s} :
     c ∈ touchSet N w t ↔ (c : ℕ) < t ∧ (N.minWire c = w ∨ N.maxWire c = w) := by
   simp [touchSet]
 
+/--
+@isnad1 id=eq.0h5v.s6.ba93b58cb595 from=translated src=- shape=47bd6882 vocab=707836a3
+-/
 theorem lastStop_eq (w : Fin n) (t : ℕ) :
     N.lastStop w t = if h : (touchSet N w t).Nonempty then
       .gate ((touchSet N w t).max' h) (decide (N.maxWire ((touchSet N w t).max' h) = w))
@@ -158,11 +184,19 @@ def wire : WireVertex n s → Fin n
   | .output w => w
   | .gate c b => N.sideWire c b
 
+/--
+@isnad1 id=eq.0h4v.s4.da2622361a2f from=translated src=- shape=d1d72406 vocab=8c09abb6
+-/
 theorem sideWire_false (c : Fin s) : N.sideWire c false = N.minWire c := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.eb193069ff7c from=translated src=- shape=d1d72406 vocab=f362c020
+-/
 theorem sideWire_true (c : Fin s) : N.sideWire c true = N.maxWire c := rfl
 
-/-- The wire on side `decide (maxWire c = w)` of a comparator acting on `w` is `w`. -/
+/-- The wire on side `decide (maxWire c = w)` of a comparator acting on `w` is `w`.
+@isnad1 id=eq.1h5v.s5.9aba2be2bfdd from=translated src=- shape=e90b6888 vocab=20e3996e
+-/
 theorem sideWire_decide {c : Fin s} {w : Fin n} (h : N.minWire c = w ∨ N.maxWire c = w) :
     N.sideWire c (decide (N.maxWire c = w)) = w := by
   by_cases hw : N.maxWire c = w
@@ -170,7 +204,9 @@ theorem sideWire_decide {c : Fin s} {w : Fin n} (h : N.minWire c = w ∨ N.maxWi
   · simp only [hw, decide_false, sideWire_false]
     exact h.resolve_right hw
 
-/-- The two sides of a comparator lie on distinct wires. -/
+/-- The two sides of a comparator lie on distinct wires.
+@isnad1 id=injectiv.0h4v.s4.e1aa3f4b6892 from=translated src=- shape=4841b61b vocab=89e4ec4c
+-/
 theorem sideWire_injective (c : Fin s) : Function.Injective (N.sideWire c) := by
   intro b b' h
   cases b <;> cases b'
@@ -179,6 +215,9 @@ theorem sideWire_injective (c : Fin s) : Function.Injective (N.sideWire c) := by
   · exact absurd h.symm (N.minWire_ne_maxWire c)
   · rfl
 
+/--
+@isnad1 id=le.0h5v.s4.cc120a7fb137 from=translated src=- shape=32f70854 vocab=384b1278
+-/
 theorem rank_lastStop_le (w : Fin n) (t : ℕ) : rank (N.lastStop w t) ≤ t := by
   rw [lastStop_eq]
   split_ifs with h
@@ -187,6 +226,9 @@ theorem rank_lastStop_le (w : Fin n) (t : ℕ) : rank (N.lastStop w t) ≤ t := 
     omega
   · simp [rank]
 
+/--
+@isnad1 id=le.2h6v.s6.e39a423ec10b from=translated src=- shape=e6a5c0d5 vocab=3d487452
+-/
 theorem le_rank_lastStop {w : Fin n} {t : ℕ} {c : Fin s} (hc : (c : ℕ) < t)
     (hw : N.minWire c = w ∨ N.maxWire c = w) : (c : ℕ) + 1 ≤ rank (N.lastStop w t) := by
   have hmem : c ∈ touchSet N w t := (mem_touchSet N).2 ⟨hc, hw⟩
@@ -195,17 +237,26 @@ theorem le_rank_lastStop {w : Fin n} {t : ℕ} {c : Fin s} (hc : (c : ℕ) < t)
   simp only [rank]
   exact Nat.succ_le_succ (Fin.le_def.1 this)
 
+/--
+@isnad1 id=eq.0h5v.s4.9025e5dd1700 from=translated src=- shape=a25f5842 vocab=0d650a75
+-/
 theorem wire_lastStop (w : Fin n) (t : ℕ) : wire N (N.lastStop w t) = w := by
   rw [lastStop_eq]
   split_ifs with h
   · exact sideWire_decide N ((mem_touchSet N).1 ((touchSet N w t).max'_mem h)).2
   · rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.6f4f6eef4471 from=translated src=- shape=a2d69443 vocab=fb9ed1f6
+-/
 theorem lastStop_zero (w : Fin n) : N.lastStop w 0 = .input w := by
   rw [lastStop_eq, dite_eq_right]
   rintro ⟨c, hc⟩
   exact absurd ((mem_touchSet N).1 hc).1 (Nat.not_lt_zero _)
 
+/--
+@isnad1 id=eq.1h5v.s6.9a8dcf22ab9a from=translated src=- shape=961c0989 vocab=a5136664
+-/
 theorem lastStop_succ_of_touch {w : Fin n} (c : Fin s) (hw : N.minWire c = w ∨ N.maxWire c = w) :
     N.lastStop w (c + 1) = .gate c (decide (N.maxWire c = w)) := by
   have hmem : c ∈ touchSet N w (c + 1) := (mem_touchSet N).2 ⟨Nat.lt_succ_self _, hw⟩
@@ -216,6 +267,9 @@ theorem lastStop_succ_of_touch {w : Fin n} (c : Fin s) (hw : N.minWire c = w ∨
     exact Fin.le_def.2 (by omega)
   rw [lastStop_eq, dite_eq_left ⟨c, hmem⟩, hmax]
 
+/--
+@isnad1 id=eq.2h5v.s6.04f3c3d04ea5 from=translated src=- shape=2f116cfc vocab=cb9ac22e
+-/
 theorem lastStop_succ_of_not_touch {w : Fin n} (c : Fin s) (h₁ : N.minWire c ≠ w)
     (h₂ : N.maxWire c ≠ w) : N.lastStop w (c + 1) = N.lastStop w c := by
   have : touchSet N w (c + 1) = touchSet N w c := by
@@ -233,21 +287,41 @@ theorem lastStop_succ_of_not_touch {w : Fin n} (c : Fin s) (h₁ : N.minWire c �
 
 /-! ### The wire graph -/
 
+/--
+@isnad1 id=eq.0h4v.s5.73cb01739319 from=translated src=- shape=5fbc573e vocab=abf22021
+-/
 theorem wireGraph_fst_last (w : Fin n) : N.wireGraph.fst (.last w) = N.lastStop w s := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.18b99ee4a2f0 from=translated src=- shape=eb84c2b1 vocab=d27252e6
+-/
 theorem wireGraph_fst_into (c : Fin s) (b : Bool) :
     N.wireGraph.fst (.into c b) = N.lastStop (N.sideWire c b) c := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.6c0db7298d50 from=translated src=- shape=539463e1 vocab=dc2ff9f3
+-/
 theorem wireGraph_fst_link (c : Fin s) : N.wireGraph.fst (.link c) = .gate c false := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.5cf8bcdaf657 from=translated src=- shape=cf3e894f vocab=f1295b46
+-/
 theorem wireGraph_snd_last (w : Fin n) : N.wireGraph.snd (.last w) = .output w := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.a9afe11bbfa8 from=translated src=- shape=69547e15 vocab=b82b8229
+-/
 theorem wireGraph_snd_into (c : Fin s) (b : Bool) :
     N.wireGraph.snd (.into c b) = .gate c b := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.fb6419f0db9a from=translated src=- shape=539463e1 vocab=a5ec64ae
+-/
 theorem wireGraph_snd_link (c : Fin s) : N.wireGraph.snd (.link c) = .gate c true := rfl
 
-/-- The wire graph has no loops. -/
+/-- The wire graph has no loops.
+@isnad1 id=loopless.0h3v.s4.b33bbbe0b231 from=translated src=- shape=8164859e vocab=fb73e8c5
+-/
 theorem wireGraph_loopless : N.wireGraph.Loopless := by
   intro e
   cases e with
@@ -284,6 +358,9 @@ def IsSegment : WireEdge n s → Prop
   | .link _ => False
   | _ => True
 
+/--
+@isnad1 id=eq.1h4v.s5.19289a03be73 from=translated src=- shape=47047d86 vocab=083fc062
+-/
 theorem fst_eq_lastStop {e : WireEdge n s} (he : IsSegment e) :
     N.wireGraph.fst e = N.lastStop (segWire N e) (segTime e) := by
   cases e with
@@ -291,7 +368,9 @@ theorem fst_eq_lastStop {e : WireEdge n s} (he : IsSegment e) :
   | into c b => rfl
   | link c => exact he.elim
 
-/-- A wire segment ending at time `t < s` enters a comparator acting on its wire. -/
+/-- A wire segment ending at time `t < s` enters a comparator acting on its wire.
+@isnad1 id=ex.2h4v.s6.ee03cc55ffb1 from=translated src=- shape=fed0bc33 vocab=7a9b0d58
+-/
 theorem exists_touch_of_segTime_lt {e : WireEdge n s} (he : IsSegment e) (ht : segTime e < s) :
     ∃ c : Fin s, (c : ℕ) = segTime e ∧
       (N.minWire c = segWire N e ∨ N.maxWire c = segWire N e) := by
@@ -371,7 +450,9 @@ theorem eq_of_snd_eq {e e' : WireEdge n s} (he : IsSegment e) (he' : IsSegment e
     | link c' => exact he'.elim
   | link c => exact he.elim
 
-/-- **The wire graph has maximum degree three.** -/
+/-- **The wire graph has maximum degree three.**
+@isnad1 id=maxdegre.0h3v.s4.1e9c60849d9f from=translated src=- shape=a53751f2 vocab=300eb00f
+-/
 theorem wireGraph_maxDegreeLE : N.wireGraph.MaxDegreeLE 3 := by
   intro v
   set A := Finset.univ.filter fun e => IsSegment e ∧ N.wireGraph.fst e = v
@@ -441,11 +522,17 @@ def edgeEquiv : WireEdge n s ≃ Fin n ⊕ (Fin s × Bool) ⊕ Fin s where
   left_inv e := by cases e <;> rfl
   right_inv e := by rcases e with w | ⟨c, b⟩ | c <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.a75ba8f37d86 from=translated src=- shape=32a687df vocab=54d3ab99
+-/
 theorem card_wireVertex : Fintype.card (WireVertex n s) = 2 * n + 2 * s := by
   rw [Fintype.card_congr vertexEquiv]
   simp only [Fintype.card_sum, Fintype.card_prod, Fintype.card_fin, Fintype.card_bool]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s5.9bfb6daf6600 from=translated src=- shape=ec571f25 vocab=35f60ffe
+-/
 theorem card_wireEdge : Fintype.card (WireEdge n s) = n + 3 * s := by
   rw [Fintype.card_congr edgeEquiv]
   simp only [Fintype.card_sum, Fintype.card_prod, Fintype.card_fin, Fintype.card_bool]
@@ -465,9 +552,15 @@ def flow (x : Fin n → Bool) : WireEdge n s → ℤ
   | .into c b => (N.state x c (N.sideWire c b)).toNat
   | .link c => (N.state x c (N.minWire c) && !N.state x c (N.maxWire c)).toNat
 
+/--
+@isnad1 id=le.0h5v.s4.b50fd6a0bdd2 from=translated src=- shape=31a75217 vocab=c93ab910
+-/
 theorem flow_nonneg (x : Fin n → Bool) (e : WireEdge n s) : 0 ≤ flow N x e := by
   cases e <;> simp [flow]
 
+/--
+@isnad1 id=le.0h5v.s4.bdb510646470 from=translated src=- shape=271bc77c vocab=c93ab910
+-/
 theorem flow_le_one (x : Fin n → Bool) (e : WireEdge n s) : flow N x e ≤ 1 := by
   cases e <;> simp only [flow] <;> exact_mod_cast Bool.toNat_le _
 
@@ -480,7 +573,9 @@ def potential (x : Fin n → Bool) (L : Finset (WireVertex n s)) (t : ℕ) : ℤ
   ∑ w, ind L (N.lastStop w t) * (N.state x t w).toNat
 
 /-- **Conservation at a comparator.** Comparator `c` lowers the potential by the net flow out of
-`L` along its two incoming segments and its link. -/
+`L` along its two incoming segments and its link.
+@isnad1 id=eq.0h6v.s6.cfca397d6962 from=translated src=- shape=b9321f05 vocab=de84153a
+-/
 theorem potential_sub_potential_succ (x : Fin n → Bool) (L : Finset (WireVertex n s))
     (c : Fin s) :
     potential N x L c - potential N x L (c + 1) =
@@ -509,7 +604,9 @@ theorem potential_sub_potential_succ (x : Fin n → Bool) (L : Finset (WireVerte
       lastStop_succ_of_not_touch N c (Ne.symm h₁) (Ne.symm h₂), sub_self]
 
 /-- **Token conservation.** The net flow out of `L` is the number of ones at input terminals in
-`L` minus the number at output terminals in `L`. -/
+`L` minus the number at output terminals in `L`.
+@isnad1 id=eq.0h5v.s6.dfaec1390937 from=translated src=- shape=9a01f19d vocab=76366ebe
+-/
 theorem sum_crossing (x : Fin n → Bool) (L : Finset (WireVertex n s)) :
     ∑ e, crossing N x L e =
       ∑ w, ind L (.input w) * (x w).toNat - ∑ w, ind L (.output w) * (N.eval x w).toNat := by
@@ -540,7 +637,9 @@ theorem sum_crossing (x : Fin n → Bool) (L : Finset (WireVertex n s)) :
     rfl
   linarith
 
-/-- Counting the wires with a one whose terminal lies in `L`. -/
+/-- Counting the wires with a one whose terminal lies in `L`.
+@isnad1 id=eq.0h5v.s7.14ce08da2699 from=translated src=- shape=bcaf07af vocab=f16f45f4
+-/
 theorem sum_ind_mul_toNat (L : Finset (WireVertex n s)) (P : Fin n → WireVertex n s)
     (y : Fin n → Bool) :
     ∑ w, ind L (P w) * (y w).toNat =
@@ -551,7 +650,9 @@ theorem sum_ind_mul_toNat (L : Finset (WireVertex n s)) (P : Fin n → WireVerte
   unfold ind
   by_cases h : P w ∈ L <;> cases y w <;> simp [h]
 
-/-- One edge carries a net flow of at most one token across `L`, in either direction. -/
+/-- One edge carries a net flow of at most one token across `L`, in either direction.
+@isnad1 id=le.0h7v.s7.3f7d4aa1f78f from=translated src=- shape=70d645d0 vocab=5d13355d
+-/
 theorem crossing_sub_crossing_le (x x' : Fin n → Bool) (L : Finset (WireVertex n s))
     (e : WireEdge n s) :
     crossing N x L e - crossing N x' L e ≤
@@ -567,7 +668,9 @@ theorem crossing_sub_crossing_le (x x' : Fin n → Bool) (L : Finset (WireVertex
 /-- **The cut bound of token conservation.** For any two inputs `x` and `x'` and any vertex set
 `L`, the cut of `L` has at least `net x - net x'` edges, where `net y` is the number of ones of
 `y` at input terminals in `L` minus the number of ones of `N.eval y` at output terminals in
-`L`. -/
+`L`.
+@isnad1 id=le.0h6v.s8.c831bbb17084 from=translated src=- shape=a51270e5 vocab=e131db8a
+-/
 theorem sub_le_card_cut (x x' : Fin n → Bool) (L : Finset (WireVertex n s)) :
     (((Finset.univ.filter fun w => .input w ∈ L ∧ x w = true).card : ℤ) -
         (Finset.univ.filter fun w => .output w ∈ L ∧ N.eval x w = true).card) -
@@ -591,7 +694,9 @@ theorem sub_le_card_cut (x x' : Fin n → Bool) (L : Finset (WireVertex n s)) :
 
 /-! ### Connectivity -/
 
-/-- Every vertex is joined to the input terminal of its wire. -/
+/-- Every vertex is joined to the input terminal of its wire.
+@isnad1 id=refltran.0h4v.s5.7153076d833e from=translated src=- shape=9591abf7 vocab=922d59ce
+-/
 theorem reflTransGen_input_wire (v : WireVertex n s) :
     ReflTransGen N.wireGraph.Adj v (.input (wire N v)) := by
   suffices ∀ k, ∀ v : WireVertex n s, rank v = k →
@@ -617,7 +722,9 @@ theorem reflTransGen_input_wire (v : WireVertex n s) :
       rw [wire_lastStop] at this
       exact .head hadj this
 
-/-- The link of a comparator joins its two wires. -/
+/-- The link of a comparator joins its two wires.
+@isnad1 id=refltran.0h4v.s5.8032405cae90 from=translated src=- shape=b92d1135 vocab=fb0c0b8c
+-/
 theorem reflTransGen_minWire_maxWire (c : Fin s) :
     ReflTransGen N.wireGraph.Adj (.input (N.minWire c)) (.input (N.maxWire c)) := by
   have h₁ : ReflTransGen N.wireGraph.Adj (.input (N.minWire c)) (.gate c false) :=
@@ -680,7 +787,9 @@ theorem eq_empty_or_eq_univ_of_closed {ε : ℝ} (hN : N.IsHalver ε) (hε : ε 
       exact not_congr (hS c)) hc
     exact Finset.compl_eq_empty_iff _ |>.1 this
 
-/-- **The wire graph of an `ε`-halver with `ε < 1/2` is connected.** -/
+/-- **The wire graph of an `ε`-halver with `ε < 1/2` is connected.**
+@isnad1 id=connecte.2h4v.s5.eecde5fa2929 from=translated src=- shape=eb4ab02b vocab=b5a81041
+-/
 theorem wireGraph_connected {ε : ℝ} (hN : N.IsHalver ε) (hε : ε < 1 / 2) :
     N.wireGraph.Connected := by
   intro u v
@@ -702,7 +811,9 @@ theorem wireGraph_connected {ε : ℝ} (hN : N.IsHalver ε) (hε : ε < 1 / 2) :
   exact (reflTransGen_input_wire N u).trans (reflTransGen_adj_symm hv)
 
 /-- **The edge baseline.** An `ε`-halver with `ε < 1/2` on `n` wires has at least `n - 1`
-comparators: its wire graph is connected. -/
+comparators: its wire graph is connected.
+@isnad1 id=le.2h4v.s5.52cf0c53ac48 from=translated src=- shape=7695a0dc vocab=701554de
+-/
 theorem le_add_one {ε : ℝ} (hN : N.IsHalver ε) (hε : ε < 1 / 2) : n ≤ s + 1 := by
   have := Superconcentrator.Internal.card_le_card_add_one_of_connected
     (wireGraph_connected N hN hε)
@@ -712,7 +823,9 @@ theorem le_add_one {ε : ℝ} (hN : N.IsHalver ε) (hε : ε < 1 / 2) : n ≤ s 
 /-! ### The cut lemma and the bounds -/
 
 /-- **The cut lemma for halvers.** Every linear order of the vertices of the wire graph of an
-`ε`-halver has a lower set whose cut has at least `(1 - 2 ε) ⌊n/2⌋` edges. -/
+`ε`-halver has a lower set whose cut has at least `(1 - 2 ε) ⌊n/2⌋` edges.
+@isnad1 id=ex.1h4v.s7.205f3a453073 from=translated src=- shape=aa59ae15 vocab=e46f74e6
+-/
 theorem exists_le_card_cut {ε : ℝ} (hN : N.IsHalver ε) [LinearOrder (WireVertex n s)] :
     ∃ L : Finset (WireVertex n s), IsLowerSet (L : Set (WireVertex n s)) ∧
       (1 - 2 * ε) * ((n / 2 : ℕ) : ℝ) ≤ (N.wireGraph.cut L).card := by
@@ -791,7 +904,9 @@ theorem exists_le_card_cut {ε : ℝ} (hN : N.IsHalver ε) [LinearOrder (WireVer
 
 /-- **The finite bound.** Under the graph-ordering hypothesis `OrderingBound A η C`, an
 `ε`-halver with `ε < 1/2` on `n` wires with `s` comparators satisfies
-`(1 - 2 ε) ⌊n/2⌋ ≤ (A + η) (s - n)⁺ + 3 log₂ (2 n + 2 s) + C`. -/
+`(1 - 2 ε) ⌊n/2⌋ ≤ (A + η) (s - n)⁺ + 3 log₂ (2 n + 2 s) + C`.
+@isnad1 id=le.3h7v.s7.22566e5d6edd from=translated src=- shape=d49c48cf vocab=929a66df
+-/
 theorem le_of_orderingBound {A η C ε : ℝ} (hord : OrderingBound A η C) (hN : N.IsHalver ε)
     (hε : ε < 1 / 2) :
     (1 - 2 * ε) * ((n / 2 : ℕ) : ℝ) ≤
@@ -805,7 +920,9 @@ theorem le_of_orderingBound {A η C ε : ℝ} (hord : OrderingBound A η C) (hN 
   rw [show (n : ℝ) + 3 * s - (2 * n + 2 * s) = s - n by ring] at hb
   linarith
 
-/-- **The asymptotic bound for a general ordering coefficient.** -/
+/-- **The asymptotic bound for a general ordering coefficient.**
+@isnad1 id=eventual.5h3v.s7.19a45750a1a6 from=translated src=- shape=03f07f46 vocab=069255d4
+-/
 theorem eventually_le_size_of_orderingBound {A : ℝ} (hA : 0 < A)
     (hord : ∀ η : ℝ, 0 < η → ∃ C : ℝ, OrderingBound A η C) {ε δ : ℝ} (hε₀ : 0 ≤ ε)
     (hε : ε < 1 / 2) (hδ : 0 < δ) :

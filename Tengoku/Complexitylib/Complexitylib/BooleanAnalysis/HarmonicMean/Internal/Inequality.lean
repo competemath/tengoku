@@ -23,6 +23,9 @@ namespace Complexity.BooleanAnalysis
 open Finset
 open scoped BigOperators
 
+/--
+@isnad1 id=le.2h2v.s7.44a64cfd4456 from=translated src=- shape=3bca6964 vocab=23d532ce
+-/
 theorem harmonicMean_sqrt_pair_internal {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) :
     (Real.sqrt a + Real.sqrt b) / 2 ≤
       3 / 4 * Real.sqrt ((a + b) / 2) + 1 / 4 * Real.sqrt (2 * a * b / (a + b)) := by
@@ -45,6 +48,9 @@ theorem harmonicMean_sqrt_pair_internal {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b
   nlinarith [sq_nonneg (c - (Real.sqrt a + Real.sqrt b) / 2),
     Real.sq_sqrt ha, Real.sq_sqrt hb]
 
+/--
+@isnad1 id=le.1h2v.s6.e29a8c22543d from=translated src=- shape=0f95181a vocab=2c9d13be
+-/
 theorem expect_sqrt_le_bernoulliAverage_sqrt_harmonicTransform_internal {n : ℕ}
     {f : (Fin n → Bool) → ℝ} (hf : ∀ x, 0 ≤ f x) :
     (𝔼 x, Real.sqrt (f x)) ≤

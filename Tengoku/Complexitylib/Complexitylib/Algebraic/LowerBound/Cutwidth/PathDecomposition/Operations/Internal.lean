@@ -55,6 +55,9 @@ private noncomputable def appendSubset (D : PathDecomposition H) (last : Fin D.l
         exact D.consecutive w ⟨i.val, hi⟩ ⟨j.val, hj⟩ last hij (hlast _) hwi (hX hwk)
       · simpa only [appendBag, dite_eq_right hj] using hwk
 
+/--
+@isnad1 id=ex.3h6v.s6.79fe5dba9b33 from=translated src=- shape=5fa10983 vocab=1d999f2c
+-/
 theorem exists_endsAt_subset (D : PathDecomposition H) {X Y : Finset W}
     (hend : D.EndsAt Y) (hXY : X ⊆ Y) {b : Nat}
     (bound : ∀ i, (D.bag i).card ≤ b) :
@@ -147,6 +150,9 @@ private noncomputable def restoreVertex (v : W)
           D.consecutive ⟨w, hw⟩ ⟨i.val, hi⟩ ⟨j.val, hj⟩ last hij (hlast _) hwi hwlast⟩
       · simpa only [restoreBag, dite_eq_right hj] using hwk
 
+/--
+@isnad1 id=ex.4h6v.s8.f6d9f12f8087 from=translated src=- shape=3de579cf vocab=6d58f668
+-/
 theorem exists_restoreVertex (v : W)
     (D : PathDecomposition (H.induce {w | w ≠ v}))
     {Y : Finset {w : W // w ≠ v}} (hend : D.EndsAt Y)
@@ -171,6 +177,9 @@ theorem exists_restoreVertex (v : W)
     · simpa only [liftBag, Finset.card_map] using bound _
     · exact (Finset.card_insert_le _ _).trans (by simpa only [liftBag, Finset.card_map] using hY)
 
+/--
+@isnad1 id=ex.6h7v.s7.f551f9a189e3 from=translated src=- shape=02dacb94 vocab=cbfca63c
+-/
 theorem exists_endsAt_of_delete (v : W) {X Y : Finset W} (hv : v ∈ Y)
     (D : PathDecomposition (H.induce {w | w ≠ v}))
     (hend : D.EndsAt (Y.subtype (· ≠ v)))
@@ -236,6 +245,9 @@ private noncomputable def addVertex (v : W)
       exact mem_addVertexBag.mpr (Or.inr ⟨hj, hw,
         D.consecutive ⟨w, hw⟩ ⟨i.val, hi⟩ ⟨j.val, hj⟩ ⟨k.val, hk⟩ hij hjk hwi hwk⟩)
 
+/--
+@isnad1 id=ex.1h5v.s7.85987a39bc00 from=translated src=- shape=8290732e vocab=b7a18761
+-/
 theorem exists_addVertex (v : W) (D : PathDecomposition (H.induce {w | w ≠ v}))
     {b : Nat} (bound : ∀ i, (D.bag i).card ≤ b) :
     ∃ D' : PathDecomposition H, D'.EndsAt {v} ∧ ∀ i, (D'.bag i).card ≤ b + 1 := by

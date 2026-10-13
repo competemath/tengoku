@@ -38,25 +38,33 @@ namespace Complexity
 
 namespace Cobham
 
-/-- Conjunction of two flags is `[true]` exactly when both are. -/
+/-- Conjunction of two flags is `[true]` exactly when both are.
+@isnad1 id=iff.2h2v.s6.5d127e5a38aa from=translated src=- shape=67d6746d vocab=ad0b07cc
+-/
 theorem andBit_eq_true_iff {x y : List Bool}
     (hx : x = [true] ∨ x = [false]) (hy : y = [true] ∨ y = [false]) :
     andBit x y = [true] ↔ x = [true] ∧ y = [true] := by
   rcases hx with rfl | rfl <;> rcases hy with rfl | rfl <;> simp [andBit]
 
-/-- Disjunction of two flags is `[true]` exactly when one is. -/
+/-- Disjunction of two flags is `[true]` exactly when one is.
+@isnad1 id=iff.2h2v.s6.54b9d479966a from=translated src=- shape=cd18a9af vocab=33f9757a
+-/
 theorem orBit_eq_true_iff {x y : List Bool}
     (hx : x = [true] ∨ x = [false]) (hy : y = [true] ∨ y = [false]) :
     orBit x y = [true] ↔ x = [true] ∨ y = [true] := by
   rcases hx with rfl | rfl <;> rcases hy with rfl | rfl <;> simp [orBit]
 
-/-- Disjunction of flags is a flag. -/
+/-- Disjunction of flags is a flag.
+@isnad1 id=or.2h2v.s6.8f3c28d31aee from=translated src=- shape=1f6ceede vocab=33f9757a
+-/
 theorem orBit_flag {x y : List Bool}
     (hx : x = [true] ∨ x = [false]) (hy : y = [true] ∨ y = [false]) :
     orBit x y = [true] ∨ orBit x y = [false] := by
   rcases hx with rfl | rfl <;> rcases hy with rfl | rfl <;> simp [orBit]
 
-/-- A disjunction is always exactly one bit long. -/
+/-- A disjunction is always exactly one bit long.
+@isnad1 id=eq.0h2v.s4.3068245db9bb from=translated src=- shape=21e12edf vocab=9967977d
+-/
 theorem orBit_length (x y : List Bool) : (orBit x y).length = 1 := by
   rw [orBit]
   rcases x with _ | ⟨a, x⟩
@@ -69,7 +77,9 @@ theorem orBit_length (x y : List Bool) : (orBit x y).length = 1 := by
       · cases c <;> rfl
     · rfl
 
-/-- Negation of a flag. -/
+/-- Negation of a flag.
+@isnad1 id=iff.1h1v.s5.88b527ce79f1 from=translated src=- shape=b3421483 vocab=88875ba4
+-/
 theorem notBit_eq_true_iff {x : List Bool} (hx : x = [true] ∨ x = [false]) :
     notBit x = [true] ↔ x = [false] := by
   rcases hx with rfl | rfl <;> simp [notBit]
@@ -80,6 +90,9 @@ def lenLeFlag (a b : List Bool) : List Bool := notBit (nonemptyFlag (b.drop a.le
 /-- The flag `|a| = |b|`. -/
 def lenEqFlag (a b : List Bool) : List Bool := andBit (lenLeFlag a b) (lenLeFlag b a)
 
+/--
+@isnad1 id=or.0h2v.s4.5a3842081108 from=translated src=- shape=a94b7c07 vocab=565db822
+-/
 theorem lenLeFlag_flag (a b : List Bool) :
     lenLeFlag a b = [true] ∨ lenLeFlag a b = [false] := by
   rw [lenLeFlag, nonemptyFlag]
@@ -87,6 +100,9 @@ theorem lenLeFlag_flag (a b : List Bool) :
   · exact Or.inl rfl
   · cases c <;> exact Or.inr rfl
 
+/--
+@isnad1 id=iff.0h2v.s4.17c7d2810f54 from=translated src=- shape=327c123c vocab=81e6c713
+-/
 @[simp] theorem lenLeFlag_eq_true_iff (a b : List Bool) :
     lenLeFlag a b = [true] ↔ b.length ≤ a.length := by
   rw [lenLeFlag, nonemptyFlag]
@@ -104,24 +120,35 @@ theorem lenLeFlag_flag (a b : List Bool) :
       omega
     cases c <;> simp [notBit, Nat.not_le.mpr hlt]
 
+/--
+@isnad1 id=or.0h2v.s4.3d5778f75842 from=translated src=- shape=a94b7c07 vocab=dc1532fa
+-/
 theorem lenEqFlag_flag (a b : List Bool) :
     lenEqFlag a b = [true] ∨ lenEqFlag a b = [false] := by
   rw [lenEqFlag]
   rcases lenLeFlag_flag a b with h | h <;> rcases lenLeFlag_flag b a with h' | h' <;>
     rw [h, h'] <;> simp [andBit]
 
+/--
+@isnad1 id=iff.0h2v.s4.22e177179f59 from=translated src=- shape=e11c1d82 vocab=a7243118
+-/
 @[simp] theorem lenEqFlag_eq_true_iff (a b : List Bool) :
     lenEqFlag a b = [true] ↔ a.length = b.length := by
   rw [lenEqFlag, andBit_eq_true_iff (lenLeFlag_flag a b) (lenLeFlag_flag b a),
     lenLeFlag_eq_true_iff, lenLeFlag_eq_true_iff]
   omega
 
-/-- **The length tests are in the algebra.** -/
+/-- **The length tests are in the algebra.**
+@isnad1 id=cobham.2h3v.s5.f683987ee0e9 from=translated src=- shape=100e055a vocab=9b8fe7ad
+-/
 theorem lenLeFlag_mem {n : ℕ} {ga gb : (Fin n → List Bool) → List Bool}
     (ha : Cobham ga) (hb : Cobham gb) :
     Cobham fun v : Fin n → List Bool => lenLeFlag (ga v) (gb v) :=
   (notFn (nonemptyFn (dropFn ha hb))).of_eq fun _ => rfl
 
+/--
+@isnad1 id=cobham.2h3v.s5.ad80f3a71bd4 from=translated src=- shape=100e055a vocab=52034693
+-/
 theorem lenEqFlag_mem {n : ℕ} {ga gb : (Fin n → List Bool) → List Bool}
     (ha : Cobham ga) (hb : Cobham gb) :
     Cobham fun v : Fin n → List Bool => lenEqFlag (ga v) (gb v) :=
@@ -142,8 +169,14 @@ def xorSuffix : List Bool → List Bool → List Bool
       caseBit₀ (bitAt (b.drop (false :: x).length) b)
         (true :: xorSuffix x b) (false :: xorSuffix x b)
 
+/--
+@isnad1 id=eq.0h1v.s3.3b3ce66c2310 from=translated src=- shape=65ecf36e vocab=953353a8
+-/
 @[simp] theorem xorSuffix_nil (b : List Bool) : xorSuffix [] b = [] := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.27198f6e542d from=translated src=- shape=597339de vocab=b30eca69
+-/
 @[simp] theorem xorSuffix_length (a b : List Bool) :
     (xorSuffix a b).length = a.length := by
   induction a with
@@ -171,7 +204,9 @@ private theorem bitAt_drop_eq (x b : List Bool) (h : x.length < b.length) :
   rw [hd]
   cases b[b.length - x.length - 1]'(by omega) <;> rfl
 
-/-- **The exclusive-or is the pointwise one against the matching suffix.** -/
+/-- **The exclusive-or is the pointwise one against the matching suffix.**
+@isnad1 id=eq.1h2v.s5.fce8f6e972a7 from=translated src=- shape=4adf4096 vocab=33c19b7c
+-/
 theorem xorSuffix_eq_zipWith (a b : List Bool) (h : a.length ≤ b.length) :
     xorSuffix a b = List.zipWith xor a (b.drop (b.length - a.length)) := by
   induction a with
@@ -193,7 +228,9 @@ theorem xorSuffix_eq_zipWith (a b : List Bool) (h : a.length ≤ b.length) :
         · rw [xorSuffix, bitAt_drop_eq x b hx]
           cases b[b.length - x.length - 1]'(by omega) <;> simp [notBit]
 
-/-- Two strings of equal length are combined bit by bit. -/
+/-- Two strings of equal length are combined bit by bit.
+@isnad1 id=eq.1h2v.s4.325b815be048 from=translated src=- shape=e7a8973a vocab=4a9559ca
+-/
 theorem xorSuffix_eq_zipWith_of_length (a b : List Bool) (h : a.length = b.length) :
     xorSuffix a b = List.zipWith xor a b := by
   rw [xorSuffix_eq_zipWith a b h.le, h]
@@ -236,7 +273,9 @@ private theorem recNotation_xor_length (a b : List Bool) :
       (xorStep true) a (fun _ => b)).length ≤ a.length := by
   rw [recNotation_xor, xorSuffix_length]
 
-/-- **The exclusive-or is in the algebra.** -/
+/-- **The exclusive-or is in the algebra.**
+@isnad1 id=cobham.2h3v.s5.ac9d1adfcfbf from=translated src=- shape=100e055a vocab=f71e9ff0
+-/
 theorem xorSuffix_mem {n : ℕ} {ga gb : (Fin n → List Bool) → List Bool}
     (ha : Cobham ga) (hb : Cobham gb) :
     Cobham fun v : Fin n → List Bool => xorSuffix (ga v) (gb v) := by
@@ -273,8 +312,14 @@ def allZeroFlag : List Bool → List Bool
   | true :: _ => [false]
   | false :: x => allZeroFlag x
 
+/--
+@isnad1 id=eq.0h0v.s3.512b3bb2a82e from=translated src=- shape=7b3bb0d7 vocab=0d5f9f48
+-/
 @[simp] theorem allZeroFlag_nil : allZeroFlag [] = [true] := rfl
 
+/--
+@isnad1 id=or.0h1v.s4.908c2802c874 from=translated src=- shape=61f43271 vocab=551b0534
+-/
 theorem allZeroFlag_flag (x : List Bool) : allZeroFlag x = [true] ∨ allZeroFlag x = [false] := by
   induction x with
   | nil => exact Or.inl rfl
@@ -283,6 +328,9 @@ theorem allZeroFlag_flag (x : List Bool) : allZeroFlag x = [true] ∨ allZeroFla
       · exact ih
       · exact Or.inr rfl
 
+/--
+@isnad1 id=iff.0h1v.s4.f16ee1c49f87 from=translated src=- shape=bed290da vocab=2f1acbf5
+-/
 @[simp] theorem allZeroFlag_eq_true_iff (x : List Bool) :
     allZeroFlag x = [true] ↔ ∀ b ∈ x, b = false := by
   induction x with
@@ -303,7 +351,9 @@ private theorem recNotation_allZero (x : List Bool) (v : Fin 0 → List Bool) :
       · simpa [allZeroFlag] using ih
       · rfl
 
-/-- **The all-zero test is in the algebra.** -/
+/-- **The all-zero test is in the algebra.**
+@isnad1 id=cobham.0h0v.s5.858878240428 from=translated src=- shape=ab32d373 vocab=1545108c
+-/
 theorem allZeroFlag_mem_one : Cobham fun v : Fin 1 → List Bool => allZeroFlag (v 0) := by
   have hrec := Cobham.boundedRec (g := fun _ : Fin 0 → List Bool => ([true] : List Bool))
     (h₀ := fun w : Fin 2 → List Bool => w 1)
@@ -316,6 +366,9 @@ theorem allZeroFlag_mem_one : Cobham fun v : Fin 1 → List Bool => allZeroFlag 
       rcases allZeroFlag_flag x with h | h <;> simp [h])
   exact hrec.of_eq fun v => recNotation_allZero (v 0) _
 
+/--
+@isnad1 id=cobham.1h2v.s4.4c52230d686b from=translated src=- shape=4eba9814 vocab=1545108c
+-/
 theorem allZeroFlag_mem {n : ℕ} {g : (Fin n → List Bool) → List Bool} (hg : Cobham g) :
     Cobham fun v : Fin n → List Bool => allZeroFlag (g v) :=
   (Cobham.comp allZeroFlag_mem_one fun _ : Fin 1 => hg).of_eq fun _ => rfl
@@ -323,9 +376,15 @@ theorem allZeroFlag_mem {n : ℕ} {g : (Fin n → List Bool) → List Bool} (hg 
 /-- Flag: the two strings are equal. -/
 def eqFlag (a b : List Bool) : List Bool := andBit (lenEqFlag a b) (allZeroFlag (xorSuffix a b))
 
+/--
+@isnad1 id=or.0h2v.s4.98bc4d142477 from=translated src=- shape=a94b7c07 vocab=64903bd5
+-/
 theorem eqFlag_flag (a b : List Bool) : eqFlag a b = [true] ∨ eqFlag a b = [false] :=
   andBit_flag _ _
 
+/--
+@isnad1 id=iff.0h2v.s4.1c5974fce46d from=translated src=- shape=beab63c8 vocab=85fdb8ff
+-/
 @[simp] theorem eqFlag_eq_true_iff (a b : List Bool) : eqFlag a b = [true] ↔ a = b := by
   rw [eqFlag, andBit_eq_true_iff (lenEqFlag_flag a b) (allZeroFlag_flag _),
     lenEqFlag_eq_true_iff, allZeroFlag_eq_true_iff]
@@ -347,7 +406,9 @@ theorem eqFlag_flag (a b : List Bool) : eqFlag a b = [true] ∨ eqFlag a b = [fa
     rw [List.getElem_zipWith]
     simp
 
-/-- **String equality is in the algebra.** -/
+/-- **String equality is in the algebra.**
+@isnad1 id=cobham.2h3v.s5.d9b006bb42c6 from=translated src=- shape=100e055a vocab=67aeee5e
+-/
 theorem eqFlag_mem {n : ℕ} {ga gb : (Fin n → List Bool) → List Bool}
     (ha : Cobham ga) (hb : Cobham gb) :
     Cobham fun v : Fin n → List Bool => eqFlag (ga v) (gb v) :=

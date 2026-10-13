@@ -19,6 +19,9 @@ public section
 
 namespace Algebraic.Cutwidth.Extractor.Internal
 
+/--
+@isnad1 id=eq.0h11v.s6.6fa338994ac9 from=translated src=- shape=ca2389a7 vocab=0079cf3a
+-/
 theorem allHitSeeds_reindex_card {α Outer Outer' Candidate Candidate' Ω : Type*}
     [Fintype Outer] [Fintype Outer']
     (S : α → Outer → Candidate → Ω) (outer : Outer' ≃ Outer)
@@ -39,6 +42,9 @@ theorem allHitSeeds_reindex_card {α Outer Outer' Candidate Candidate' Ω : Type
     intro z
     simpa only [outer.apply_symm_apply] using hy (candidate z)
 
+/--
+@isnad1 id=somewher.1h12v.s6.bae8c31fcef6 from=translated src=- shape=7e9b964a vocab=1e584564
+-/
 theorem somewhereSampler_reindex {α Outer Outer' Candidate Candidate' Ω : Type*}
     [Fintype α] [Fintype Outer] [Fintype Outer'] [Fintype Ω]
     {S : α → Outer → Candidate → Ω} {L ε δ : ℝ}

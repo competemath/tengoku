@@ -53,7 +53,9 @@ namespace Complexity
 
 /-! ### Geometric sums -/
 
-/-- A truncated geometric series is bounded by its limit. -/
+/-- A truncated geometric series is bounded by its limit.
+@isnad1 id=le.2h2v.s6.3af8a87d1c95 from=translated src=- shape=e5f27e19 vocab=5604d48c
+-/
 theorem geom_sum_le_inv {lam : ℝ} (h0 : 0 ≤ lam) (h1 : lam < 1) (n : ℕ) :
     ∑ i ∈ Finset.range n, lam ^ i ≤ 1 / (1 - lam) := by
   have hpos : (0 : ℝ) < 1 - lam := by linarith
@@ -65,7 +67,9 @@ theorem geom_sum_le_inv {lam : ℝ} (h0 : 0 ≤ lam) (h1 : lam < 1) (n : ℕ) :
   linarith [hmul']
 
 /-- Summed over all pairs of positions, the separation weights `lam ^ (l-k-1)`
-contribute at most `m / (1 - lam)`. -/
+contribute at most `m / (1 - lam)`.
+@isnad1 id=le.2h2v.s7.b7e33b755207 from=translated src=- shape=1f22bf6c vocab=324a07e0
+-/
 theorem sum_pairs_geom_le {lam : ℝ} (h0 : 0 ≤ lam) (h1 : lam < 1) (m : ℕ) :
     ∑ k ∈ Finset.range m, ∑ l ∈ Finset.Ico (k + 1) m, lam ^ (l - k - 1)
       ≤ (m : ℝ) * (1 / (1 - lam)) := by
@@ -89,7 +93,9 @@ theorem sum_pairs_geom_le {lam : ℝ} (h0 : 0 ≤ lam) (h1 : lam < 1) (m : ℕ) 
 
 /-- The square of a count is the count plus twice the ordered pairs. This is how
 `∑ N ^ 2` in the second-moment method becomes a sum over *pairs* of crossings,
-which is what the correlation bound estimates. -/
+which is what the correlation bound estimates.
+@isnad1 id=eq.0h2v.s6.28481cd89a99 from=translated src=- shape=a186e5a0 vocab=a2d7d240
+-/
 theorem card_sq_eq_add_two_mul_pairs {ι : Type*} [LinearOrder ι] [DecidableEq ι]
     (S : Finset ι) :
     S.card ^ 2 = S.card + 2 * ((S ×ˢ S).filter fun p => p.1 < p.2).card := by
@@ -150,7 +156,9 @@ theorem card_sq_eq_add_two_mul_pairs {ι : Type*} [LinearOrder ι] [DecidableEq 
   rw [sq]
   omega
 
-/-- A count of a conjunction is a sum of products of indicators. -/
+/-- A count of a conjunction is a sum of products of indicators.
+@isnad1 id=eq.0h3v.s6.69a38ce1b6f5 from=translated src=- shape=8c93f18a vocab=8b111670
+-/
 theorem card_filter_eq_sum_prod {ι : Type*} [Fintype ι] (P Q : ι → Prop)
     [DecidablePred P] [DecidablePred Q] :
     (((Finset.univ.filter fun i => P i ∧ Q i).card : ℕ) : ℝ)
@@ -161,7 +169,9 @@ theorem card_filter_eq_sum_prod {ι : Type*} [Fintype ι] (P Q : ι → Prop)
   refine Finset.sum_congr rfl fun i _ => ?_
   by_cases hp : P i <;> by_cases hq : Q i <;> simp [hp, hq]
 
-/-- A sum over ordered pairs below `T`, as an iterated sum. -/
+/-- A sum over ordered pairs below `T`, as an iterated sum.
+@isnad1 id=eq.0h3v.s6.5ae2ff37dd30 from=translated src=- shape=14e03baa vocab=8849ff9b
+-/
 theorem sum_pairs_eq_sum_Ico {M : Type*} [AddCommMonoid M] (T : ℕ) (f : ℕ × ℕ → M) :
     ∑ p ∈ ((Finset.range T) ×ˢ (Finset.range T)).filter fun p => p.1 < p.2, f p
       = ∑ k ∈ Finset.range T, ∑ l ∈ Finset.Ico (k + 1) T, f (k, l) := by
@@ -180,6 +190,9 @@ variable (G : RegGraph)
 
 /-! ### Linearity of the walk operator -/
 
+/--
+@isnad1 id=eq.0h5v.s5.6e630a24d89b from=translated src=- shape=4118d639 vocab=24e816b7
+-/
 theorem step_sum {ι : Type*} (s : Finset ι) (f : ι → G.V → ℝ) (v : G.V) :
     G.step (fun w => ∑ i ∈ s, f i w) v = ∑ i ∈ s, G.step (f i) v := by
   simp only [step]
@@ -187,6 +200,9 @@ theorem step_sum {ι : Type*} (s : Finset ι) (f : ι → G.V → ℝ) (v : G.V)
   congr 1
   exact Finset.sum_comm
 
+/--
+@isnad1 id=eq.0h6v.s5.788398ab14ff from=translated src=- shape=5092554f vocab=853e521a
+-/
 theorem stepIter_sum {ι : Type*} (s : Finset ι) (f : ι → G.V → ℝ) (t : ℕ) (v : G.V) :
     G.stepIter t (fun w => ∑ i ∈ s, f i w) v = ∑ i ∈ s, G.stepIter t (f i) v := by
   induction t generalizing v with
@@ -208,14 +224,23 @@ def dartCount (F : Finset (G.V × G.D)) (v : G.V) : ℕ :=
 def headCount (F : Finset (G.V × G.D)) (z : G.V) : ℕ :=
   (F.filter fun p => G.nbr p.1 p.2 = z).card
 
+/--
+@isnad1 id=eq.0h2v.s5.75d1c057d162 from=translated src=- shape=9cc0496b vocab=1caf2fe5
+-/
 theorem sum_dartCount (F : Finset (G.V × G.D)) :
     ∑ v : G.V, G.dartCount F v = F.card :=
   (Finset.card_eq_sum_card_fiberwise fun p _ => Finset.mem_univ p.1).symm
 
+/--
+@isnad1 id=eq.0h2v.s5.fb8f854c32c0 from=translated src=- shape=9cc0496b vocab=eb70418e
+-/
 theorem sum_headCount (F : Finset (G.V × G.D)) :
     ∑ z : G.V, G.headCount F z = F.card :=
   (Finset.card_eq_sum_card_fiberwise fun p _ => Finset.mem_univ (G.nbr p.1 p.2)).symm
 
+/--
+@isnad1 id=le.0h3v.s4.d39bed2ace49 from=translated src=- shape=d4e27c63 vocab=7288a6f9
+-/
 theorem dartCount_le (F : Finset (G.V × G.D)) (v : G.V) : G.dartCount F v ≤ G.deg := by
   classical
   have hsub : (F.filter fun p => p.1 = v) ⊆ ({v} : Finset G.V) ×ˢ (Finset.univ : Finset G.D) := by
@@ -230,7 +255,9 @@ theorem dartCount_le (F : Finset (G.V × G.D)) (v : G.V) : G.dartCount F v ≤ G
         rfl
 
 /-- The darts arriving at `z` correspond, under reversal, to the darts leaving
-`z`, so there are at most `deg` of them. -/
+`z`, so there are at most `deg` of them.
+@isnad1 id=le.0h3v.s4.f05270e3488b from=translated src=- shape=d4e27c63 vocab=1bb75482
+-/
 theorem headCount_le (F : Finset (G.V × G.D)) (z : G.V) : G.headCount F z ≤ G.deg := by
   classical
   have hinj : Set.InjOn (fun p : G.V × G.D => (G.rot p).2)
@@ -249,7 +276,9 @@ theorem headCount_le (F : Finset (G.V × G.D)) (z : G.V) : G.headCount F z ≤ G
     _ = G.deg := by rw [Finset.card_univ]; rfl
 
 /-- Summing a function of a dart's head over `F` is summing over vertices with
-the multiplicity `headCount`. -/
+the multiplicity `headCount`.
+@isnad1 id=eq.0h3v.s6.59bb584075ec from=translated src=- shape=356735c9 vocab=2749016f
+-/
 theorem sum_indicator_nbr (F : Finset (G.V × G.D)) (h : G.V → ℝ) :
     ∑ p ∈ F, h (G.nbr p.1 p.2) = ∑ z : G.V, (G.headCount F z : ℝ) * h z := by
   classical
@@ -266,7 +295,9 @@ theorem sum_indicator_nbr (F : Finset (G.V × G.D)) (h : G.V → ℝ) :
 /-! ### Indicator sums -/
 
 /-- Summing the `F`-indicator over the labels at a fixed vertex counts the
-`F`-darts there. -/
+`F`-darts there.
+@isnad1 id=eq.0h3v.s6.e408599ea00c from=translated src=- shape=b6566b91 vocab=fb369a11
+-/
 theorem sum_indicator_dartCount (F : Finset (G.V × G.D)) (z : G.V) :
     ∑ b : G.D, (if (z, b) ∈ F then (1 : ℝ) else 0) = (G.dartCount F z : ℝ) := by
   classical
@@ -286,7 +317,9 @@ theorem sum_indicator_dartCount (F : Finset (G.V × G.D)) (z : G.V) :
     exact ⟨b, by simpa using hmem, rfl⟩
 
 /-- Summing an `F`-weighted function of a dart's head over all darts is summing
-it over `F`. -/
+it over `F`.
+@isnad1 id=eq.0h3v.s7.366d77d94bfa from=translated src=- shape=65523f1a vocab=7aa6798d
+-/
 theorem sum_indicator_mul (F : Finset (G.V × G.D)) (φ : G.V → ℝ) :
     ∑ a : G.D, ∑ y : G.V, (if (y, a) ∈ F then (1 : ℝ) else 0) * φ (G.nbr y a)
       = ∑ p ∈ F, φ (G.nbr p.1 p.2) := by
@@ -310,7 +343,9 @@ theorem sum_indicator_mul (F : Finset (G.V × G.D)) (φ : G.V → ℝ) :
 sequences, the walks that cross `F` at step `k` and again at step `l` are counted
 by the walk operator applied to the dart counts: the first crossing leaves the
 measure `headCount`, and the second is seen through `l - k - 1` steps of the
-walk. `Mixing.mixing_sq` estimates exactly this expression. -/
+walk. `Mixing.mixing_sq` estimates exactly this expression.
+@isnad1 id=eq.2h5v.s8.baf073214ed6 from=translated src=- shape=82ad78b8 vocab=11152b5e
+-/
 theorem sum_two_crossings (F : Finset (G.V × G.D)) {k l m : ℕ} (hkl : k < l) (hl : l < m) :
     (∑ x : G.V, ∑ r : Fin m → G.D,
         (if (G.walkAt m x r k, r ⟨k, by omega⟩) ∈ F then (1 : ℝ) else 0)
@@ -365,7 +400,9 @@ theorem sum_two_crossings (F : Finset (G.V × G.D)) {k l m : ℕ} (hkl : k < l) 
 /-! ### Bounding the correlation -/
 
 /-- The variance of a dart count is at most `deg * |F|`, since no vertex carries
-more than `deg` darts of `F`. -/
+more than `deg` darts of `F`.
+@isnad1 id=le.0h2v.s6.990391f1b3f8 from=translated src=- shape=0195e412 vocab=e43c355c
+-/
 theorem sum_sq_headCount_le (F : Finset (G.V × G.D)) :
     ∑ z : G.V, ((G.headCount F z : ℝ)) ^ 2 ≤ (G.deg : ℝ) * (F.card : ℝ) := by
   have hterm : ∀ z : G.V, ((G.headCount F z : ℝ)) ^ 2
@@ -381,6 +418,9 @@ theorem sum_sq_headCount_le (F : Finset (G.V × G.D)) :
         congr 1
         rw [← Nat.cast_sum, G.sum_headCount F]
 
+/--
+@isnad1 id=le.0h2v.s6.ca0dfd6eb43e from=translated src=- shape=0195e412 vocab=912650a3
+-/
 theorem sum_sq_dartCount_le (F : Finset (G.V × G.D)) :
     ∑ v : G.V, ((G.dartCount F v : ℝ)) ^ 2 ≤ (G.deg : ℝ) * (F.card : ℝ) := by
   have hterm : ∀ v : G.V, ((G.dartCount F v : ℝ)) ^ 2
@@ -399,7 +439,9 @@ theorem sum_sq_dartCount_le (F : Finset (G.V × G.D)) :
 /-- **The correlation bound.** On a graph with spectral bound `lam`, two
 crossings of `F` separated by `t` steps are almost independent: the operator
 expression exceeds the independent value `|F|² / n` by at most
-`lam ^ t * deg * |F|`. -/
+`lam ^ t * deg * |F|`.
+@isnad1 id=le.3h4v.s7.1714ea1a9c04 from=translated src=- shape=4c692a84 vocab=cc9735e3
+-/
 theorem sum_headCount_stepIter_le (F : Finset (G.V × G.D)) {lam : ℝ}
     (hlam : 0 ≤ lam) (hspec : G.SpectralBound lam) (hn : 0 < G.order) (t : ℕ) :
     ∑ z : G.V, (G.headCount F z : ℝ)
@@ -468,7 +510,9 @@ theorem sum_headCount_stepIter_le (F : Finset (G.V × G.D)) {lam : ℝ}
 /-- **The second moment.** Summed over every pair of positions, the two-crossing
 correlations exceed the independent value by at most `m / (1 - lam)` times
 `deg * |F|`. The counts are supplied abstractly as `C`, since writing the
-concrete one inside a sum would need the position bounds pointwise. -/
+concrete one inside a sum would need the position bounds pointwise.
+@isnad1 id=le.5h5v.s8.81ead5348d1a from=translated src=- shape=380eb6e5 vocab=40370b31
+-/
 theorem sum_pairs_le (F : Finset (G.V × G.D)) {lam : ℝ} (hlam0 : 0 ≤ lam)
     (hlam1 : lam < 1) (hspec : G.SpectralBound lam) (hn : 0 < G.order) (m : ℕ)
     (C : ℕ → ℕ → ℝ)

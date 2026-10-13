@@ -18,10 +18,16 @@ open Set
 
 variable {α ι U : Type*}
 
+/--
+@isnad1 id=eq.1h4v.s5.2462e3b6b674 from=translated src=- shape=a8fe7db8 vocab=aaa3ea9a
+-/
 theorem sumOn_congr [Finite α] {w w' : α → ℝ} {S : Set α}
     (h : ∀ x ∈ S, w x = w' x) : sumOn w S = sumOn w' S :=
   Finset.sum_congr rfl fun x hx => h x ((toFinite S).mem_toFinset.mp hx)
 
+/--
+@isnad1 id=eq.0h3v.s5.5155ce658e75 from=translated src=- shape=033961b3 vocab=e0e7236f
+-/
 @[simp] theorem sumOn_const [Finite α] (a : ℝ) (S : Set α) :
     sumOn (fun _ => a) S = a * S.ncard := by
   simp [sumOn, ← ncard_eq_toFinset_card, mul_comm]
@@ -29,6 +35,9 @@ theorem sumOn_congr [Finite α] {w w' : α → ℝ} {S : Set α}
 /-- A Boolean value as a sign, positive at `true`. -/
 def boolSign (b : Bool) : ℝ := if b then 1 else -1
 
+/--
+@isnad1 id=eq.0h1v.s4.620a83139441 from=translated src=- shape=562e4a6d vocab=e766d89a
+-/
 @[simp] theorem abs_boolSign (b : Bool) : |boolSign b| = 1 := by cases b <;> norm_num [boolSign]
 
 /-- Uniform prediction agreement, normalized by the full input domain. -/
@@ -39,7 +48,9 @@ noncomputable def agreement (f g : α → Bool) : ℝ :=
 def RectangleBias [Finite ι] [Finite U] (f : (ι → U) → Bool) (K : ℕ) (β : ℝ) : Prop :=
   RectangleBudget (fun x => boolSign (f x)) (fun _ => β) K K
 
-/-- Signed correlation is twice agreement minus one, before normalization. -/
+/-- Signed correlation is twice agreement minus one, before normalization.
+@isnad1 id=eq.0h3v.s6.27cf81854a25 from=translated src=- shape=60f07bec vocab=5527eced
+-/
 theorem sign_sum_eq [Finite α] (f g : α → Bool) :
     sumOn (fun x => boolSign (f x) * boolSign (g x)) univ =
       2 * ({x | f x = g x}.ncard : ℝ) - Nat.card α := by
@@ -60,7 +71,9 @@ theorem sign_sum_eq [Finite α] (f g : α → Bool) :
   dsimp [S] at *
   linarith
 
-/-- Splitting by the predicted bit gives the two signed output-class sums. -/
+/-- Splitting by the predicted bit gives the two signed output-class sums.
+@isnad1 id=eq.0h3v.s6.a4702fb9fac1 from=translated src=- shape=d0f79579 vocab=e7ffbec7
+-/
 theorem sign_sum_split [Finite α] (f g : α → Bool) :
     sumOn (fun x => boolSign (f x) * boolSign (g x)) univ =
       sumOn (fun x => boolSign (f x)) {x | g x = true} -
@@ -83,7 +96,9 @@ theorem sign_sum_split [Finite α] (f g : α → Bool) :
   rw [h1, h0]
   rfl
 
-/-- Two output-class bias bounds give the agreement bound with the correct factor of two. -/
+/-- Two output-class bias bounds give the agreement bound with the correct factor of two.
+@isnad1 id=le.1h5v.s7.b79c04223ad0 from=translated src=- shape=7a289b1c vocab=1efacaba
+-/
 theorem agreement_le_of_output_bias [Finite α] [Nonempty α] (f g : α → Bool) {β R : ℝ}
     (h : ∀ b : Bool, |sumOn (fun x => boolSign (f x)) {x | g x = b}| ≤
       β * ({x | g x = b}.ncard : ℝ) + R) :
@@ -108,7 +123,9 @@ theorem agreement_le_of_output_bias [Finite α] [Nonempty α] (f g : α → Bool
   nlinarith
 
 /-- If many inputs are unused, an output class is either a thick rectangle or has only
-`q K²` inputs. This is the weighted replacement for the support lemma. -/
+`q K²` inputs. This is the weighted replacement for the support lemma.
+@isnad1 id=le.5h7v.s7.765ae08101b1 from=translated src=- shape=d648bf67 vocab=cb810815
+-/
 theorem RectangleBias.abs_sumOn_le_of_dependsOn [Finite ι] [Finite U]
     {f : (ι → U) → Bool} {K : ℕ} {β : ℝ} (hf : RectangleBias f K β)
     (hK : 1 < K) (hβ : 0 ≤ β) {S : Set (ι → U)} {R : Set ι}
@@ -159,16 +176,23 @@ theorem RectangleBias.abs_sumOn_le_of_dependsOn [Finite ι] [Finite U]
     have hc : (S.ncard : ℝ) ≤ (Nat.card U * K ^ 2 : ℕ) := by exact_mod_cast hcard'
     nlinarith [mul_nonneg hβ (Nat.cast_nonneg (α := ℝ) S.ncard)]
 
+/--
+@isnad1 id=eq.0h1v.s3.5bae8f822318 from=translated src=- shape=d2189a58 vocab=48904cd0
+-/
 @[simp] theorem boolSign_not (b : Bool) : boolSign (!b) = -boolSign b := by
   cases b <;> norm_num [boolSign]
 
-/-- Complementing the target preserves its rectangle-bias guarantee. -/
+/-- Complementing the target preserves its rectangle-bias guarantee.
+@isnad1 id=rectangl.1h5v.s5.697c34170a35 from=translated src=- shape=64aecab8 vocab=ddeacb3e
+-/
 theorem RectangleBias.not [Finite ι] [Finite U] {f : (ι → U) → Bool} {K : ℕ} {β : ℝ}
     (hf : RectangleBias f K β) : RectangleBias (fun x => !(f x)) K β := by
   intro X A B hA hB
   simpa only [boolSign_not, sumOn, Finset.sum_neg_distrib, abs_neg] using hf X A B hA hB
 
-/-- Exactly one of a target and its complement agrees with a Boolean prediction. -/
+/-- Exactly one of a target and its complement agrees with a Boolean prediction.
+@isnad1 id=eq.0h3v.s5.f15752d77edc from=translated src=- shape=cd0de519 vocab=69f697f9
+-/
 theorem agreement_not [Finite α] [Nonempty α] (f g : α → Bool) :
     agreement (fun x => !(f x)) g = 1 - agreement f g := by
   have he : {x | Bool.not (f x) = g x} = {x | f x = g x}ᶜ := by

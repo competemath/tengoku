@@ -71,6 +71,9 @@ instance : Fintype ReadIdx where
       k4qG, k4tG, k4cF, k4lF, i5r, i5c, i5b, i6r, i6c, i6b] : List ReadIdx), by decide⟩
   complete := fun x => by cases x <;> decide
 
+/--
+@isnad1 id=eq.0h0v.s3.15a7f38af197 from=translated src=- shape=b0ae1d2b vocab=f0b909c9
+-/
 theorem card_readIdx : Fintype.card ReadIdx = 22 := rfl
 
 /-- The reads are numbered by their own enumeration: there are twenty-two of
@@ -79,6 +82,9 @@ noncomputable instance : NumEnc ReadIdx := NumEnc.ofFintype _
 
 /-! ### Signs and bits -/
 
+/--
+@isnad1 id=iff.0h2v.s4.1d7c49ee6cb9 from=translated src=- shape=db8105e5 vocab=b7982015
+-/
 theorem chi_eq_chi_iff (u v : ZMod 2) : chi u = chi v ↔ u = v := by
   constructor
   · intro h
@@ -88,11 +94,17 @@ theorem chi_eq_chi_iff (u v : ZMod 2) : chi u = chi v ↔ u = v := by
   · intro h
     rw [h]
 
+/--
+@isnad1 id=eq.0h4v.s6.018d81cb9768 from=translated src=- shape=f672acc4 vocab=49143d2a
+-/
 theorem signBit_signOf_mul {m : ℕ} (F : Cube m → ZMod 2) (u v : Cube m) :
     signBit (signOf F u * signOf F v) = F u + F v := by
   show signBit (chi (F u) * chi (F v)) = _
   rw [← BooleanAnalysis.Internal.chi_add, signBit_chi]
 
+/--
+@isnad1 id=iff.0h5v.s6.5258dd714d30 from=translated src=- shape=2359fe42 vocab=649c4922
+-/
 theorem signOf_mul_eq_iff {m : ℕ} (F : Cube m → ZMod 2) (u v w : Cube m) :
     signOf F u * signOf F v = signOf F w ↔ F u + F v = F w := by
   show chi (F u) * chi (F v) = chi (F w) ↔ _
@@ -149,7 +161,9 @@ noncomputable def readsOf (Tt Th : Cube B → ZMod 2) (F : Cube (nOf B) → ZMod
   | .i6c => F (rightBlock (blk6 z))
   | .i6b => F (basisVec (inHead B (leftBlock (blk6 z))) + rightBlock (blk6 z))
 
-/-- **The verdict is the formula on the reads.** -/
+/-- **The verdict is the formula on the reads.**
+@isnad1 id=iff.0h7v.s6.165d6f069ead from=translated src=- shape=87a980c4 vocab=965aaace
+-/
 theorem allChecks_iff (S : Finset (Cube (kOf B))) (Tt Th : Cube B → ZMod 2)
     (F : Cube (nOf B) → ZMod 2) (G : Cube (nOf B * nOf B) → ZMod 2) (z : Cube (ROf B)) :
     AllChecks S Tt Th F G z ↔ bitFormula S z (readsOf Tt Th F G S z) := by
@@ -173,6 +187,9 @@ noncomputable def vecOf (t : Cube B → ZMod 2) : Cube (2 ^ B) := fun m => t ((c
 noncomputable def inputVec (σ τ : β) : Cube (kOf B) :=
   Fin.append (vecOf (hadamard (enc σ))) (vecOf (hadamard (enc τ)))
 
+/--
+@isnad1 id=eq.1h6v.s6.441f57890ae9 from=translated src=- shape=727a0b50 vocab=d8283b8a
+-/
 theorem tailPart_of_leftBlock (σ τ : β) (a : Cube (nOf B))
     (h : leftBlock a = inputVec enc σ τ) : tailPart a = hadamard (enc σ) := by
   funext r
@@ -184,6 +201,9 @@ theorem tailPart_of_leftBlock (σ τ : β) (a : Cube (nOf B))
   show hadamard (enc σ) ((candIdx B).symm (candIdx B r)) = _
   rw [Equiv.symm_apply_apply]
 
+/--
+@isnad1 id=eq.1h6v.s6.d9963bd4f91f from=translated src=- shape=04ef418b vocab=6d66db12
+-/
 theorem headPart_of_leftBlock (σ τ : β) (a : Cube (nOf B))
     (h : leftBlock a = inputVec enc σ τ) : headPart a = hadamard (enc τ) := by
   funext r
@@ -204,6 +224,9 @@ noncomputable def satSet (p : R.Dart) : Finset (Cube (kOf B)) :=
     fun st => inputVec enc st.1 st.2
 
 omit [DecidableEq β] [Nonempty β] [NumEnc R.graph.V] [NumEnc R.graph.D] in
+/--
+@isnad1 id=iff.0h6v.s6.15d440bbc58c from=translated src=- shape=706d8067 vocab=32ce02f6
+-/
 theorem mem_satSet_iff (p : R.Dart) (w : Cube (kOf B)) :
     w ∈ R.satSet enc p ↔ ∃ σ τ, R.rel p.1 p.2 σ τ = true ∧ inputVec enc σ τ = w := by
   simp only [satSet, Finset.mem_image, Finset.mem_filter, Finset.mem_univ, true_and,
@@ -262,7 +285,9 @@ noncomputable def quadTable (T : MultiTest.Table (R.Pos (B := B))) (p : R.Dart) 
     Cube (nOf B * nOf B) → ZMod 2 := fun y => T (Sum.inr (Sum.inr (p, y)))
 
 omit [DecidableEq β] [Nonempty β] [NumEnc R.graph.V] [NumEnc R.graph.D] in
-/-- **The composed test runs the tester.** -/
+/-- **The composed test runs the tester.**
+@isnad1 id=iff.0h7v.s6.75db906e1151 from=translated src=- shape=2424813c vocab=3641402d
+-/
 theorem accepts_compose_iff (T : MultiTest.Table (R.Pos (B := B))) (p : R.Dart)
     (z : Cube (ROf B)) :
     (R.compose enc).accepts T p z = true
@@ -298,7 +323,9 @@ noncomputable def honestTable (σ : R.Assignment) : MultiTest.Table (R.Pos (B :=
       hadamard (tensorAssign (oneHotExtend (inputVec enc (σ p.1) (σ (R.graph.nbr p.1 p.2))))) y
 
 omit [DecidableEq β] [Nonempty β] in
-/-- **Completeness of composition.** -/
+/-- **Completeness of composition.**
+@isnad1 id=satisfia.1h4v.s8.f31ab329642c from=translated src=- shape=a0a2c1ac vocab=32ca284e
+-/
 theorem satisfiable_compose (h : R.Satisfiable) : (R.compose enc).toGraph.Satisfiable := by
   obtain ⟨σ, hσ⟩ := h
   refine (R.compose enc).satisfiable_toGraph (R.honestTable enc σ) fun p z => ?_

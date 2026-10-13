@@ -38,7 +38,9 @@ namespace Algebraic.Cutwidth.Gaussian.Internal
 /-! ### Exchanging a prefix -/
 
 /-- **Prefix exchange.** If every imbalance `b i - a i` on `F ⊆ L` is at most every imbalance
-on `L \ F`, then counting `b` on `F` and `a` on `L \ F` gives at most the larger total. -/
+on `L \ F`, then counting `b` on `F` and `a` on `L \ F` gives at most the larger total.
+@isnad1 id=le.2h5v.s7.fdd23e6c7398 from=translated src=- shape=f9094879 vocab=71cb0452
+-/
 theorem sum_add_sum_sdiff_le_max {ι : Type*} [DecidableEq ι] {L F : Finset ι} (hF : F ⊆ L)
     (a b : ι → ℕ) (hab : ∀ i ∈ F, ∀ j ∈ L \ F, (b i : ℤ) - a i ≤ b j - a j) :
     ∑ i ∈ F, b i + ∑ j ∈ L \ F, a j ≤ max (∑ i ∈ L, a i) (∑ i ∈ L, b i) := by
@@ -67,14 +69,23 @@ section keyRank
 
 variable {ι α : Type*} [LinearOrder α] (L : Finset ι) (κ : ι → α)
 
+/--
+@isnad1 id=le.0h5v.s4.28363cb29038 from=translated src=- shape=e45389d7 vocab=ee4ee5a5
+-/
 theorem keyRank_le_card (j : ι) : keyRank L κ j ≤ L.card :=
   Finset.card_filter_le _ _
 
+/--
+@isnad1 id=le.1h6v.s5.e2c3bd5b9c2f from=translated src=- shape=0fa7e3e6 vocab=5be50fc8
+-/
 theorem keyRank_le_keyRank {i j : ι} (h : κ i ≤ κ j) : keyRank L κ i ≤ keyRank L κ j := by
   refine Finset.card_le_card fun k hk => ?_
   rw [Finset.mem_filter] at hk ⊢
   exact ⟨hk.1, hk.2.trans_le h⟩
 
+/--
+@isnad1 id=lt.2h6v.s6.f85b8ed4410f from=translated src=- shape=9e2c0a75 vocab=98dd2e6f
+-/
 theorem keyRank_lt_keyRank {i j : ι} (hi : i ∈ L) (h : κ i < κ j) :
     keyRank L κ i < keyRank L κ j := by
   have hsub : (L.filter fun k => κ k < κ i) ⊆ L.filter fun k => κ k < κ j := fun k hk => by
@@ -83,6 +94,9 @@ theorem keyRank_lt_keyRank {i j : ι} (hi : i ∈ L) (h : κ i < κ j) :
   refine Finset.card_lt_card ((Finset.ssubset_iff_of_subset hsub).mpr
     ⟨i, Finset.mem_filter.mpr ⟨hi, h⟩, fun hk => lt_irrefl _ (Finset.mem_filter.mp hk).2⟩)
 
+/--
+@isnad1 id=lt.1h6v.s5.91e452ffecc9 from=translated src=- shape=823fb268 vocab=ff1fe834
+-/
 theorem lt_of_keyRank_lt {i j : ι} (h : keyRank L κ i < keyRank L κ j) : κ i < κ j :=
   lt_of_not_ge fun hle => (keyRank_le_keyRank L κ hle).not_gt h
 
@@ -168,11 +182,17 @@ noncomputable def bandScore (val : ℕ → ℝ) (e : Sym2 W) : ℝ :=
 variable {score c block}
 
 omit [Fintype W] [DecidableEq W] in
+/--
+@isnad1 id=eq.1h6v.s5.6a11594ae83e from=translated src=- shape=9f2b6eea vocab=b66e914d
+-/
 theorem bandScore_of_mem {val : ℕ → ℝ} {e : Sym2 W} (h : -c ≤ score e ∧ score e < c) :
     bandScore score c block val e = val (block e) :=
   ite_eq_left h
 
 omit [Fintype W] [DecidableEq W] in
+/--
+@isnad1 id=eq.1h6v.s5.4b2cd6d0782b from=translated src=- shape=9ec6ec6f vocab=b66e914d
+-/
 theorem bandScore_of_not_mem {val : ℕ → ℝ} {e : Sym2 W} (h : ¬(-c ≤ score e ∧ score e < c)) :
     bandScore score c block val e = score e :=
   ite_eq_right h
@@ -180,7 +200,9 @@ theorem bandScore_of_not_mem {val : ℕ → ℝ} {e : Sym2 W} (h : ¬(-c ≤ sco
 /-! ### Counting the straddling vertices -/
 
 omit [Fintype W] [DecidableEq W] [DecidableRel H.Adj] in
-/-- Disjoint pieces of `T` have total size at most `|T|`. -/
+/-- Disjoint pieces of `T` have total size at most `|T|`.
+@isnad1 id=le.4h5v.s7.d34a532e7c43 from=translated src=- shape=f09e58e9 vocab=7165f919
+-/
 theorem card_add_sum_le [DecidableEq W] {X T : Finset W} {L : Finset ℕ} {f : ℕ → Finset W}
     (hX : X ⊆ T) (hf : ∀ j ∈ L, f j ⊆ T) (hXf : ∀ j ∈ L, Disjoint X (f j))
     (hff : ∀ i ∈ L, ∀ j ∈ L, i ≠ j → Disjoint (f i) (f j)) :
@@ -191,7 +213,9 @@ theorem card_add_sum_le [DecidableEq W] {X T : Finset W} {L : Finset ℕ} {f : �
 
 /-! ### The band-jump score -/
 
-/-- Outside the band, the band-jump score only removes vertices. -/
+/-- Outside the band, the band-jump score only removes vertices.
+@isnad1 id=le.2h7v.s6.fb71d3956041 from=translated src=- shape=64746d9a vocab=c6f97da0
+-/
 theorem scoreSpan_bandScore_subset {val : ℕ → ℝ} (hval : ∀ j, -c < val j ∧ val j < c)
     {t : ℝ} (ht : t < -c ∨ c ≤ t) :
     scoreSpan H (bandScore score c block val) t ⊆ scoreSpan H score t := by
@@ -213,6 +237,9 @@ theorem scoreSpan_bandScore_subset {val : ℕ → ℝ} (hval : ∀ j, -c < val j
 
 variable (score c block)
 
+/--
+@isnad1 id=lt.2h7v.s6.45e2cf6e189d from=translated src=- shape=d88451d2 vocab=6dae67f2
+-/
 theorem blockValue_lt_blockValue (hc : 0 < c) {i j : ℕ}
     (h : blockRank H score c block i < blockRank H score c block j) :
     blockValue H score c block i < blockValue H score c block j := by
@@ -223,6 +250,9 @@ theorem blockValue_lt_blockValue (hc : 0 < c) {i j : ℕ}
   unfold blockValue
   nlinarith
 
+/--
+@isnad1 id=and.1h6v.s6.47e17cf9afe6 from=translated src=- shape=2ad10275 vocab=2ac42db2
+-/
 theorem blockValue_mem (hc : 0 < c) (j : ℕ) :
     -c < blockValue H score c block j ∧ blockValue H score c block j < c := by
   have hn : (0 : ℝ) < (bandLabels H score c block).card + 2 := by positivity
@@ -237,6 +267,9 @@ theorem blockValue_mem (hc : 0 < c) (j : ℕ) :
   unfold blockValue
   constructor <;> nlinarith
 
+/--
+@isnad1 id=lt.2h7v.s6.c5a9f0cd6cbd from=translated src=- shape=2dc94aeb vocab=6dae67f2
+-/
 theorem blockRank_lt_of_blockValue_lt (hc : 0 < c) {i j : ℕ}
     (h : blockValue H score c block i < blockValue H score c block j) :
     blockRank H score c block i < blockRank H score c block j := by
@@ -245,6 +278,9 @@ theorem blockRank_lt_of_blockValue_lt (hc : 0 < c) {i j : ℕ}
   · exact (blockValue_lt_blockValue H score c block hc hlt).not_gt h
   · exact h.ne (by rw [blockValue, blockValue, heq])
 
+/--
+@isnad1 id=le.2h7v.s6.fa7bc265db7d from=translated src=- shape=d425c437 vocab=48b946bd
+-/
 theorem blockImbalance_le_of_blockValue_lt (hc : 0 < c) {i j : ℕ}
     (h : blockValue H score c block i < blockValue H score c block j) :
     blockImbalance H score c block i ≤ blockImbalance H score c block j := by

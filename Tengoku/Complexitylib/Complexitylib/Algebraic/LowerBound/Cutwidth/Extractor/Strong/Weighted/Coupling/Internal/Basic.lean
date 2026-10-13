@@ -20,11 +20,17 @@ public section
 
 namespace Algebraic.Cutwidth.Extractor.Internal
 
+/--
+@isnad1 id=eq.2h3v.s5.dab1e5e02d3c from=translated src=- shape=b40475a5 vocab=83e76693
+-/
 theorem nonnegWeight_eq_zero_of_mass_zero {α : Type*} [Fintype α]
     {p : α → ℝ} (nonnegative : ∀ x, 0 ≤ p x) (mass : ∑ x, p x = 0) (x : α) :
     p x = 0 :=
   (Finset.sum_eq_zero_iff_of_nonneg (fun x _ => nonnegative x)).mp mass x (Finset.mem_univ x)
 
+/--
+@isnad1 id=eq.1h3v.s6.89a7341afb13 from=translated src=- shape=f24df269 vocab=b723c181
+-/
 theorem nonnegWeight_mul_mass_div {α : Type*} [Fintype α] (p : α → ℝ)
     (nonnegative : ∀ x, 0 ≤ p x) (x : α) :
     p x * (∑ y, p y) / (∑ y, p y) = p x := by
@@ -33,6 +39,9 @@ theorem nonnegWeight_mul_mass_div {α : Type*} [Fintype α] (p : α → ℝ)
     simp
   · exact mul_div_cancel_right₀ _ zero
 
+/--
+@isnad1 id=eq.2h3v.s5.4ee6fd081e68 from=translated src=- shape=e12f0d60 vocab=78d72856
+-/
 theorem sum_common_residual_eq_weightDist {α : Type*} [Fintype α]
     {p q : α → ℝ} (hp : IsProbabilityWeight p) (hq : IsProbabilityWeight q) :
     ∑ x, (p x - min (p x) (q x)) = weightDist p q := by
@@ -51,6 +60,9 @@ theorem sum_common_residual_eq_weightDist {α : Type*} [Fintype α]
   rw [Finset.sum_add_distrib, equal]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s5.fbf565f850a0 from=translated src=- shape=6168bdf2 vocab=1bfb9893
+-/
 theorem common_residual_mul_self_eq_zero (a b : ℝ) :
     (a - min a b) * (b - min a b) = 0 := by
   rcases le_total a b with h | h

@@ -36,7 +36,9 @@ namespace NTM
 variable {k : ℕ} {tm : NTM k}
 
 /-- **The configuration graph is the union of the two deterministic steps.** Its edges are the
-steps of `NTM.branchTM`, so the deterministic machinery for a single step applies to them. -/
+steps of `NTM.branchTM`, so the deterministic machinery for a single step applies to them.
+@isnad1 id=iff.0h4v.s5.346be5632ec6 from=translated src=- shape=c049d933 vocab=f1a424e8
+-/
 theorem succ_iff (tm : NTM k) (c c' : Cfg k tm.Q) :
     tm.Succ c c' ↔ ∃ b, (tm.branchTM b).step c = some c' := by
   constructor
@@ -51,14 +53,22 @@ theorem succ_iff (tm : NTM k) (c c' : Cfg k tm.Q) :
     rw [branchTM_step tm b hne] at hb
     exact (Option.some_injective _ hb).symm
 
+/--
+@isnad1 id=reachesc.0h3v.s4.ab2490dc22e0 from=translated src=- shape=30104bb6 vocab=d2b5d866
+-/
 theorem reachesCfg_refl (tm : NTM k) (c : Cfg k tm.Q) : tm.ReachesCfg c c :=
   Relation.ReflTransGen.refl
 
+/--
+@isnad1 id=reachesc.2h5v.s5.5a2a56eafe04 from=translated src=- shape=9b5c5101 vocab=08ec8e5c
+-/
 theorem reachesCfg_head {c c' c'' : Cfg k tm.Q} (h : tm.Succ c c'') (h' : tm.ReachesCfg c'' c') :
     tm.ReachesCfg c c' :=
   Relation.ReflTransGen.head h h'
 
-/-- **A trace stays inside the configuration graph.** -/
+/-- **A trace stays inside the configuration graph.**
+@isnad1 id=reachesc.0h5v.s4.ebe5f8073f9b from=translated src=- shape=920996e1 vocab=bf6f1a8a
+-/
 theorem reachesCfg_trace (tm : NTM k) :
     ∀ (T : ℕ) (choices : Fin T → Bool) (c : Cfg k tm.Q),
       tm.ReachesCfg c (tm.trace T choices c)
@@ -72,7 +82,9 @@ theorem reachesCfg_trace (tm : NTM k) :
         refine reachesCfg_head ⟨h, choices ⟨0, Nat.zero_lt_succ T⟩, rfl⟩ ?_
         exact reachesCfg_trace tm T _ _
 
-/-- **Every reachable configuration ends some trace.** -/
+/-- **Every reachable configuration ends some trace.**
+@isnad1 id=ex.1h4v.s5.5351807edba3 from=translated src=- shape=58abdade vocab=bf6f1a8a
+-/
 theorem exists_trace_of_reachesCfg {c c' : Cfg k tm.Q} (h : tm.ReachesCfg c c') :
     ∃ (t : ℕ) (choices : Fin t → Bool), tm.trace t choices c = c' := by
   induction h using Relation.ReflTransGen.head_induction_on with
@@ -95,7 +107,9 @@ variable {k : ℕ} {tm : NTM k}
 /-! ## The window invariant along the graph -/
 
 /-- A nondeterministic step of a machine whose heads stay inside the window preserves the
-window invariant. -/
+window invariant.
+@isnad1 id=windowed.2h6v.s5.9a9a3afc4622 from=translated src=- shape=fb5863f5 vocab=b5d13872
+-/
 theorem Windowed.stepCfg {x : List Bool} {S : ℕ} {c : Cfg k tm.Q} (b : Bool)
     (hw : Windowed x S c) (hspace : c.WithinDecisionSpace x.length S) :
     Windowed x S (tm.stepCfg b c) := by
@@ -115,7 +129,9 @@ theorem Windowed.stepCfg {x : List Bool} {S : ℕ} {c : Cfg k tm.Q} (b : Bool)
     exact hw.output p hp
 
 /-- Along the configuration graph, the window invariant is inherited as long as every
-configuration met respects the space bound. -/
+configuration met respects the space bound.
+@isnad1 id=windowed.3h6v.s6.798559fdfd5d from=translated src=- shape=ac845506 vocab=5327a11d
+-/
 theorem windowed_of_reachesCfg {x : List Bool} {S : ℕ} {c₀ c : Cfg k tm.Q}
     (hspace : ∀ c', tm.ReachesCfg c₀ c' → c'.WithinDecisionSpace x.length S)
     (hw : Windowed x S c₀) (h : tm.ReachesCfg c₀ c) : Windowed x S c := by
@@ -129,7 +145,9 @@ theorem windowed_of_reachesCfg {x : List Bool} {S : ℕ} {c₀ c : Cfg k tm.Q}
 
 /-- **A space-bounded machine accepts exactly when an accepting configuration is reachable.**
 This is the bridge every log-space graph argument starts from: membership in the language is a
-property of the configuration graph alone, with no reference to time or choice sequences. -/
+property of the configuration graph alone, with no reference to time or choice sequences.
+@isnad1 id=iff.1h5v.s6.824837fc2555 from=translated src=- shape=3868424e vocab=4b39f340
+-/
 theorem mem_iff_exists_accepting_reachable {k : ℕ} {tm : NTM k} {L : Language} {f : ℕ → ℕ}
     (hdec : tm.DecidesInSpace L f) (x : List Bool) :
     x ∈ L ↔ ∃ c, tm.ReachesCfg (tm.initCfg x) c ∧ tm.halted c ∧ c.output.cells 1 = Γ.one := by

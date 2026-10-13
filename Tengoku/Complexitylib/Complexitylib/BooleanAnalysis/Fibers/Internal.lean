@@ -24,6 +24,9 @@ namespace Complexity.BooleanAnalysis
 open Finset
 open scoped BigOperators Classical
 
+/--
+@isnad1 id=le.2h2v.s6.1605ae87d760 from=translated src=- shape=7febde7f vocab=18e879e3
+-/
 theorem mul_log_tangent_internal {a c : ℝ} (ha : 0 ≤ a) (hc : 0 < c) :
     a * Real.log c + a - c ≤ a * Real.log a := by
   rcases ha.eq_or_lt with rfl | ha
@@ -35,6 +38,9 @@ theorem mul_log_tangent_internal {a c : ℝ} (ha : 0 ≤ a) (hc : 0 < c) :
   have he : a * (c / a) = c := by field_simp
   nlinarith
 
+/--
+@isnad1 id=le.2h2v.s6.e1cb31657e77 from=translated src=- shape=52066ef2 vocab=7934ea43
+-/
 theorem sum_mul_log_ge_internal {β : Type*} [Fintype β] [Nonempty β]
     {m : β → ℝ} (hm : ∀ b, 0 ≤ m b) (hpos : 0 < ∑ b, m b) :
     (∑ b, m b) * Real.log ((∑ b, m b) / Fintype.card β) ≤
@@ -49,6 +55,9 @@ theorem sum_mul_log_ge_internal {β : Type*} [Fintype β] [Nonempty β]
   rw [he] at h
   simpa only [add_sub_cancel_right] using h
 
+/--
+@isnad1 id=le.1h4v.s6.e8c6601ce315 from=translated src=- shape=1c1abf48 vocab=cafaba5f
+-/
 theorem expect_log_card_fiber_internal {α β : Type*} [Fintype β] [Nonempty β]
     (X : Finset α) (hX : X.Nonempty) (g : α → β) :
     Real.log X.card - Real.log (Fintype.card β) ≤
@@ -70,6 +79,9 @@ theorem expect_log_card_fiber_internal {α β : Type*} [Fintype β] [Nonempty β
   rw [expect_eq_sum_div_card, he]
   exact (le_div_iff₀ hN).mpr (by nlinarith)
 
+/--
+@isnad1 id=eq.0h4v.s7.65757af87d7d from=translated src=- shape=939c9ba5 vocab=f5a6122b
+-/
 theorem card_coordinateFiber_internal {ι : Type*} [Fintype ι] [DecidableEq ι]
     (X : Finset (ι → Bool)) (s x : ι → Bool) :
     (coordinateFiber X s x).card =
@@ -94,6 +106,9 @@ theorem card_coordinateFiber_internal {ι : Type*} [Fintype ι] [DecidableEq ι]
     refine ⟨fun i => y i, ?_, he⟩
     exact mem_filter.mpr ⟨mem_univ _, by rw [he]; exact (mem_filter.mp hy).1⟩
 
+/--
+@isnad1 id=nonempty.1h4v.s6.e9214fa9b7db from=translated src=- shape=10e464da vocab=13f462a7
+-/
 theorem coordinateFiber_nonempty_internal {ι : Type*} [Fintype ι] [DecidableEq ι]
     {X : Finset (ι → Bool)} (s : ι → Bool) {x : ι → Bool} (hx : x ∈ X) :
     (coordinateFiber X s x).Nonempty := by
@@ -103,6 +118,9 @@ theorem coordinateFiber_nonempty_internal {ι : Type*} [Fintype ι] [DecidableEq
     simp [completePattern]
   rwa [he]
 
+/--
+@isnad1 id=le.0h2v.s4.5eb4f64a28a0 from=translated src=- shape=46c08b62 vocab=c835d37d
+-/
 theorem uniformDeficit_nonneg_internal {ι : Type*} [Fintype ι] [DecidableEq ι]
     (X : Finset (ι → Bool)) : 0 ≤ uniformDeficit X := by
   by_cases hx : X.Nonempty
@@ -115,6 +133,9 @@ theorem uniformDeficit_nonneg_internal {ι : Type*} [Fintype ι] [DecidableEq ι
   · rw [not_nonempty_iff_eq_empty.mp hx]
     simp [uniformDeficit]
 
+/--
+@isnad1 id=le.1h3v.s6.c752e3893405 from=translated src=- shape=3b474471 vocab=b5271b9f
+-/
 theorem expect_uniformDeficit_coordinateFiber_internal {ι : Type*} [Fintype ι] [DecidableEq ι]
     (X : Finset (ι → Bool)) (hX : X.Nonempty) (s : ι → Bool) :
     (𝔼 x ∈ X, uniformDeficit (coordinateFiber X s x)) ≤ uniformDeficit X := by
@@ -145,6 +166,9 @@ theorem expect_uniformDeficit_coordinateFiber_internal {ι : Type*} [Fintype ι]
   simp only [sub_div, mul_div_cancel_right₀ _ hl.ne', ne_eq] at hd
   linarith only [hc, hd]
 
+/--
+@isnad1 id=le.3h4v.s7.7fc1816cf242 from=translated src=- shape=a7d5bca5 vocab=ec8e07f4
+-/
 theorem coordinateFiber_good_probability_internal {ι : Type*} [Fintype ι] [DecidableEq ι]
     (X : Finset (ι → Bool)) (hX : X.Nonempty) (s : ι → Bool)
     {k : ℝ} (hk : 0 < k) (hdef : uniformDeficit X ≤ k) :
@@ -168,11 +192,17 @@ theorem coordinateFiber_good_probability_internal {ι : Type*} [Fintype ι] [Dec
   rw [he] at hd
   linarith
 
+/--
+@isnad1 id=eq.1h2v.s5.932c7030fddd from=translated src=- shape=0eb190b2 vocab=dac72080
+-/
 theorem sum_uniformMass_internal {α : Type*} [Fintype α] [DecidableEq α]
     {X : Finset α} (hX : X.Nonempty) : (∑ x, uniformMass X x) = 1 := by
   have hp : (X.card : ℝ) ≠ 0 := by exact_mod_cast (card_pos.mpr hX).ne'
   simp [uniformMass, hp]
 
+/--
+@isnad1 id=eq.0h3v.s6.24de65365994 from=translated src=- shape=41530b18 vocab=b4d3394a
+-/
 theorem sum_uniformMass_mul_internal {α : Type*} [Fintype α] [DecidableEq α]
     (X : Finset α) (f : α → ℝ) : (∑ x, uniformMass X x * f x) = 𝔼 x ∈ X, f x := by
   simp only [uniformMass, ite_mul, zero_mul]
@@ -180,12 +210,18 @@ theorem sum_uniformMass_mul_internal {α : Type*} [Fintype α] [DecidableEq α]
   simp only [filter_mem_eq_inter, univ_inter, ← mul_sum, expect_eq_sum_div_card]
   ring
 
+/--
+@isnad1 id=eq.1h2v.s5.c27b9ba54076 from=translated src=- shape=bd84fd76 vocab=e67b262d
+-/
 theorem card_eq_rpow_sub_uniformDeficit_internal {ι : Type*} [Fintype ι] {X : Finset (ι → Bool)}
     (hX : X.Nonempty) : (X.card : ℝ) = (2 : ℝ) ^ ((Fintype.card ι : ℝ) - uniformDeficit X) := by
   have hp : (0 : ℝ) < X.card := by exact_mod_cast card_pos.mpr hX
   dsimp [uniformDeficit]
   rw [sub_sub_cancel, Real.rpow_logb (by norm_num) (by norm_num) hp]
 
+/--
+@isnad1 id=iff.1h3v.s6.dc01f6450e1f from=translated src=- shape=ca655914 vocab=2eb3501b
+-/
 theorem uniformDeficit_le_iff_internal {ι : Type*} [Fintype ι] {X : Finset (ι → Bool)}
     (hX : X.Nonempty) {k : ℝ} : uniformDeficit X ≤ k ↔
       (2 : ℝ) ^ ((Fintype.card ι : ℝ) - k) ≤ X.card := by
@@ -195,6 +231,9 @@ theorem uniformDeficit_le_iff_internal {ι : Type*} [Fintype ι] {X : Finset (ι
   rw [← card_eq_rpow_sub_uniformDeficit_internal hX] at he
   exact he.trans (by constructor <;> intro h <;> linarith) |>.symm
 
+/--
+@isnad1 id=le.2h4v.s6.5613f267dd78 from=translated src=- shape=d51de2e1 vocab=dcf4f090
+-/
 theorem uniformMass_le_rpow_internal {ι : Type*} [Fintype ι]
     {X : Finset (ι → Bool)} (hX : X.Nonempty) {k : ℝ} (hdef : uniformDeficit X ≤ k)
     (x : ι → Bool) : uniformMass X x ≤ (2 : ℝ) ^ (k - Fintype.card ι) := by

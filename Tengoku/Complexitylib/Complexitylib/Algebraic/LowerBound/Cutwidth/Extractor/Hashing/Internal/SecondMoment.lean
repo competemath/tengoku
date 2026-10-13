@@ -28,6 +28,9 @@ open scoped Classical
     (E : α → Seed → Ω) (z : Seed × Ω) : ℝ :=
   Fintype.card Ω * hashFiberCount E z - Fintype.card α
 
+/--
+@isnad1 id=le.1h4v.s7.10fa4e6e922e from=translated src=- shape=cdfd8053 vocab=1e9b7e13
+-/
 theorem universalHash_collision_sum_le {α Seed Ω : Type*} [Fintype α]
     [Fintype Seed] [Fintype Ω] {E : α → Seed → Ω} (universal : UniversalHashFamily E) :
     (Fintype.card Ω : ℝ) * ∑ z, hashFiberCount E z ^ 2 ≤
@@ -52,6 +55,9 @@ theorem universalHash_collision_sum_le {α Seed Ω : Type*} [Fintype α]
       Finset.sum_le_sum fun x _ => Finset.sum_le_sum fun x' _ => pair x x'
     _ = _ := by simp [Finset.sum_add_distrib]; ring
 
+/--
+@isnad1 id=eq.0h4v.s5.b0a67feeda78 from=translated src=- shape=2cd5b63f vocab=2eda4dae
+-/
 theorem hashCenteredCount_sum {α Seed Ω : Type*} [Fintype α] [Fintype Seed]
     [Fintype Ω] (E : α → Seed → Ω) : ∑ z, hashCenteredCount E z = 0 := by
   simp only [hashCenteredCount, Finset.sum_sub_distrib, ← Finset.mul_sum,
@@ -59,6 +65,9 @@ theorem hashCenteredCount_sum {α Seed Ω : Type*} [Fintype α] [Fintype Seed]
     nsmul_eq_mul, Nat.cast_mul]
   ring
 
+/--
+@isnad1 id=le.1h4v.s6.b665fe5305f6 from=translated src=- shape=9974dcc8 vocab=6cce145a
+-/
 theorem hashCenteredCount_sq_sum_le {α Seed Ω : Type*} [Fintype α]
     [Fintype Seed] [Fintype Ω] {E : α → Seed → Ω} (universal : UniversalHashFamily E) :
     ∑ z, hashCenteredCount E z ^ 2 ≤
@@ -77,6 +86,9 @@ theorem hashCenteredCount_sq_sum_le {α Seed Ω : Type*} [Fintype α]
     (show (0 : ℝ) ≤ Fintype.card Ω by positivity)
   nlinarith
 
+/--
+@isnad1 id=le.1h3v.s6.6663c1a26e87 from=translated src=- shape=6c0b4db1 vocab=ce9a4487
+-/
 theorem zero_sum_test_sq_le {ι : Type*} [Fintype ι] (a : ι → ℝ)
     (mass : ∑ i, a i = 0) (T : Finset ι) :
     4 * (∑ i ∈ T, a i) ^ 2 ≤ (Fintype.card ι : ℝ) * ∑ i, a i ^ 2 := by

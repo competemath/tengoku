@@ -20,7 +20,9 @@ namespace Algebraic.MassProduction.Nonuniform
 
 open scoped LinearAlgebra.Projectivization
 
-/-- An occupied point belongs to one of the present line descriptions. -/
+/-- An occupied point belongs to one of the present line descriptions.
+@isnad1 id=iff.0h6v.s7.43b6f9fb73bc from=translated src=- shape=7ec817fa vocab=f654085e
+-/
 theorem mem_phaseOccupied_iff
     {K V : Type*} [Field K] [Finite K] [AddCommGroup V] [Module K V]
     (state : PhaseState V (ℙ K V) capacity active) (point : V) :

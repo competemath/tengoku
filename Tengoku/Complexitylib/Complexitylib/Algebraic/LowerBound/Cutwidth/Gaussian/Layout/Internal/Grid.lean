@@ -43,12 +43,18 @@ noncomputable def scoreKey (X : W → ℝ) (v : W) : ℕ :=
 
 end Score
 
+/--
+@isnad1 id=injectiv.0h2v.s4.72cb16bd4bdd from=translated src=- shape=36f01800 vocab=7a330335
+-/
 theorem scoreRank_injective (X : W → ℝ) : Function.Injective (scoreRank X) := by
   intro u v h
   have h' := congrArg (fun p => (ofLex p).2) h
   simp only [scoreRank, ofLex_toLex] at h'
   exact (Fintype.equivFin W).injective (Fin.ext h')
 
+/--
+@isnad1 id=lt.1h4v.s5.e92a8b292780 from=translated src=- shape=a9c0ff41 vocab=21cfdbb4
+-/
 theorem scoreKey_lt_of_scoreRank_lt {X : W → ℝ} {u v : W}
     (h : scoreRank X u < scoreRank X v) : scoreKey X u < scoreKey X v := by
   apply Finset.card_lt_card
@@ -59,6 +65,9 @@ theorem scoreKey_lt_of_scoreRank_lt {X : W → ℝ} {u v : W}
   · simpa using h
   · simp
 
+/--
+@isnad1 id=injectiv.0h2v.s4.6561e6d87da8 from=translated src=- shape=a158e3a3 vocab=ea1c8e2c
+-/
 theorem scoreKey_injective (X : W → ℝ) : Function.Injective (scoreKey X) := by
   intro u v h
   rcases lt_trichotomy (scoreRank X u) (scoreRank X v) with hlt | heq | hgt
@@ -66,13 +75,18 @@ theorem scoreKey_injective (X : W → ℝ) : Function.Injective (scoreKey X) := 
   · exact scoreRank_injective X heq
   · exact absurd h (scoreKey_lt_of_scoreRank_lt hgt).ne'
 
+/--
+@isnad1 id=lt.1h4v.s5.7623b385d9c4 from=translated src=- shape=b86e0ccb vocab=592fd6ee
+-/
 theorem scoreKey_lt_of_lt {X : W → ℝ} {u v : W} (h : X u < X v) :
     scoreKey X u < scoreKey X v :=
   scoreKey_lt_of_scoreRank_lt (Prod.Lex.lt_iff.mpr (Or.inl h))
 
 variable [DecidableEq W] (H : SimpleGraph W) [DecidableRel H.Adj]
 
-/-- A cut has at most three edges per vertex of the side. -/
+/-- A cut has at most three edges per vertex of the side.
+@isnad1 id=le.1h3v.s6.8816cb8740ae from=translated src=- shape=a7af8204 vocab=1ff357ca
+-/
 theorem card_cutFinset_le_three_mul (degree : ∀ v, H.degree v ≤ 3) (S : Finset W) :
     (H.cutFinset S).card ≤ 3 * S.card := by
   have hsub : H.cutFinset S ⊆ S.biUnion fun v => H.incidenceFinset v := by
@@ -89,7 +103,9 @@ theorem card_cutFinset_le_three_mul (degree : ∀ v, H.degree v ≤ 3) (S : Fins
     _ ≤ ∑ _v ∈ S, 3 := Finset.sum_le_sum fun v _ => degree v
     _ = 3 * S.card := by rw [Finset.sum_const, smul_eq_mul, mul_comm]
 
-/-- Enlarging a side changes its cut by at most three edges per added vertex. -/
+/-- Enlarging a side changes its cut by at most three edges per added vertex.
+@isnad1 id=le.2h4v.s6.3986daef577d from=translated src=- shape=d990a33d vocab=a933e66f
+-/
 theorem card_cutFinset_le_of_subset (degree : ∀ v, H.degree v ≤ 3) {S T : Finset W}
     (hST : S ⊆ T) : (H.cutFinset T).card ≤ (H.cutFinset S).card + 3 * (T \ S).card := by
   have hsub : H.cutFinset T ⊆ H.cutFinset S ∪ H.cutFinset (T \ S) := by
@@ -109,7 +125,9 @@ theorem card_cutFinset_le_of_subset (degree : ∀ v, H.degree v ≤ 3) {S T : Fi
 
 /-- **Grid bound for score prefixes.** Fix thresholds `a + i δ` for `i ≤ M`. If both
 tails are small and each threshold cut plus three times its window is at most `B`, then
-every prefix of the score order has at most `B` crossing edges. -/
+every prefix of the score order has at most `B` crossing edges.
+@isnad1 id=le.5h8v.s9.caac8cd1b035 from=translated src=- shape=d81b4eda vocab=8444da16
+-/
 theorem card_cutFinset_scoreKey_le (degree : ∀ v, H.degree v ≤ 3) (X : W → ℝ)
     {a δ : ℝ} (hδ : 0 < δ) (M : ℕ) {B : ℝ}
     (low : 3 * ((Finset.univ.filter fun v => X v < a).card : ℝ) ≤ B)

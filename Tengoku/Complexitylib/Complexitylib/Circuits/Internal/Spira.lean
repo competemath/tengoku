@@ -496,6 +496,9 @@ private theorem spiraBalance_size_polynomial (formula : BoolFormula) :
       Nat.mul_le_mul_left 20 hpower
     _ = 80 * formula.size ^ 8 := by ring
 
+/--
+@isnad1 id=ex.0h1v.s6.66c861017415 from=translated src=- shape=81926fd9 vocab=8af314b0
+-/
 theorem exists_spira_balanced_internal (formula : BoolFormula) :
     ∃ balanced : BoolFormula,
       (∀ assignment, eval assignment balanced = eval assignment formula) ∧

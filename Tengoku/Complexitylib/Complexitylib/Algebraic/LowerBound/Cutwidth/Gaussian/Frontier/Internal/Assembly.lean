@@ -31,6 +31,9 @@ noncomputable def frontierLayoutBound (ρ₀ T ε : ℝ) (M : ℕ) : ℝ :=
   max (3 / T ^ 2 + 2 * ε)
     (frontierBound ρ₀ + 3 * (2 * T / M) / Real.sqrt (2 * Real.pi) + 3 * ε)
 
+/--
+@isnad1 id=eq.0h5v.s6.f74c0ff027ef from=translated src=- shape=37767027 vocab=6ab1a3f9
+-/
 theorem card_filter_eq_sum_indicator' {Ω κ : Type} (F : Finset κ) (A : κ → Set Ω) (ω : Ω) :
     ((F.filter fun k => ω ∈ A k).card : ℝ) = ∑ k ∈ F, (A k).indicator (fun _ => (1 : ℝ)) ω := by
   rw [Finset.card_filter]
@@ -45,11 +48,17 @@ def edgeScoreEvent (q : ℝ) (R : ℕ) (p : ℝ → Prop) (e : Sym2 W) : Set (W 
   {ω | p (edgeScore H q R ω e)}
 
 omit [DecidableEq W] [DecidableRel H.Adj] in
+/--
+@isnad1 id=measurab.1h6v.s5.aee1649ab1ba from=translated src=- shape=f1cf7b9b vocab=02134225
+-/
 theorem measurableSet_edgeScoreEvent (q : ℝ) (R : ℕ) {p : ℝ → Prop}
     (hp : MeasurableSet {x | p x}) (e : Sym2 W) : MeasurableSet (edgeScoreEvent H q R p e) :=
   measurable_edgeScore H q R e hp
 
 omit [DecidableRel H.Adj] in
+/--
+@isnad1 id=dependso.0h6v.s6.0ace6e96eccf from=translated src=- shape=ef5f4c90 vocab=fb391071
+-/
 theorem dependsOn_edgeScoreEvent (q : ℝ) (R : ℕ) (p : ℝ → Prop) (e : Sym2 W) :
     DependsOn (· ∈ edgeScoreEvent H q R p e) (edgeSupport H R e : Set W) := by
   intro ω ω' h
@@ -57,7 +66,9 @@ theorem dependsOn_edgeScoreEvent (q : ℝ) (R : ℕ) (p : ℝ → Prop) (e : Sym
   rw [edgeScore_congr H le_rfl fun i hi => h i hi]
 
 omit [DecidableEq W] in
-/-- Edge vectors of a graph with large kernel correlations are unit vectors. -/
+/-- Edge vectors of a graph with large kernel correlations are unit vectors.
+@isnad1 id=eq.5h6v.s8.e801ccff2963 from=translated src=- shape=706d104f vocab=b6532d32
+-/
 theorem sum_edgeVector_sq_of_mem (degree : ∀ v, H.degree v ≤ 3) {q : ℝ} (hq0 : 0 ≤ q)
     {R : ℕ} {ρ₀ : ℝ} (hρ₀ : -1 < ρ₀) (hρ : ρ₀ ≤ 2 * q / (1 + q ^ 2) - 3 * (2 * q ^ 2) ^ R)
     {e : Sym2 W} (he : e ∈ H.edgeFinset) : ∑ z, edgeVector H q R e z ^ 2 = 1 := by

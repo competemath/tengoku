@@ -28,6 +28,9 @@ open scoped Classical
 
 variable {W : Type} [Fintype W] (H : SimpleGraph W)
 
+/--
+@isnad1 id=eq.1h4v.s7.99ff6643a679 from=translated src=- shape=8d8dff50 vocab=7068c677
+-/
 theorem helpfulness_eq_sum_neighbors {S X : Finset W} (hX : X ⊆ S) :
     helpfulness H S X = ∑ v ∈ X,
       (2 * ((H.neighborFinset v \ S).card : ℤ) - (H.neighborFinset v \ X).card) := by
@@ -36,6 +39,9 @@ theorem helpfulness_eq_sum_neighbors {S X : Finset W} (hX : X ⊆ S) :
   push_cast
   rw [Finset.sum_sub_distrib, Finset.mul_sum]
 
+/--
+@isnad1 id=eq.1h4v.s7.f1f69e355c61 from=translated src=- shape=8e5d4e63 vocab=d94b2878
+-/
 theorem card_cut_sdiff_cut_eq_sum {X C : Finset W} (disjoint : Disjoint X C) :
     (H.cutFinset X \ H.cutFinset C).card =
       ∑ v ∈ X, (H.neighborFinset v \ (X ∪ C)).card := by
@@ -65,6 +71,9 @@ theorem card_cut_sdiff_cut_eq_sum {X C : Finset W} (disjoint : Disjoint X C) :
   lia
 
 omit [Fintype W] in
+/--
+@isnad1 id=le.1h4v.s5.4c37c9053551 from=translated src=- shape=e241d836 vocab=27228212
+-/
 theorem boundaryLift_subset {S X : Finset W} (hX : X ⊆ S) : boundaryLift H S X ⊆ S :=
   Finset.union_subset hX ((Finset.filter_subset _ _).trans (cutBoundary_subset H S))
 
@@ -74,6 +83,9 @@ private theorem neighbors_subset_of_not_boundary {S : Finset W} {v : W}
   by_contra hwS
   exact hn ((mem_cutBoundary H).mpr ⟨hv, w, hwS, (H.mem_neighborFinset v w).mp hw⟩)
 
+/--
+@isnad1 id=le.1h4v.s6.0bb2a88602d2 from=translated src=- shape=193a651f vocab=cd463bbe
+-/
 theorem card_boundaryLift_le {S X : Finset W} (degree : ∀ v ∈ X, H.degree v ≤ 3) :
     (boundaryLift H S X).card ≤ 4 * X.card := by
   have adjacent : (cutBoundary H S).filter (fun c => ∃ x ∈ X, H.Adj c x) ⊆
@@ -90,6 +102,9 @@ theorem card_boundaryLift_le {S X : Finset W} (degree : ∀ v ∈ X, H.degree v 
   change (X ∪ _).card ≤ 4 * X.card
   lia
 
+/--
+@isnad1 id=eq.4h4v.s8.58ad1a843a99 from=translated src=- shape=bb35588d vocab=6fb4efa7
+-/
 theorem helpfulness_boundaryLift {S X : Finset W} (regular : H.IsRegularOfDegree 3)
     (outside : ∀ c ∈ cutBoundary H S, (H.neighborFinset c \ S).card = 1)
     (independent : ∀ c ∈ cutBoundary H S, ∀ d ∈ cutBoundary H S, ¬ H.Adj c d)
@@ -176,6 +191,9 @@ theorem helpfulness_boundaryLift {S X : Finset W} (regular : H.IsRegularOfDegree
   rw [Finset.sum_union disjointXA, sumX, sumA] at h
   exact h.trans (by ring)
 
+/--
+@isnad1 id=eq.1h3v.s6.939d086a4fc6 from=translated src=- shape=bacb0324 vocab=e96a400c
+-/
 theorem card_cutBoundary_eq_cut {S : Finset W}
     (outside : ∀ c ∈ cutBoundary H S, (H.neighborFinset c \ S).card = 1) :
     (cutBoundary H S).card = (H.cutFinset S).card := by
@@ -196,6 +214,9 @@ theorem card_cutBoundary_eq_cut {S : Finset W}
   rw [same, ← card_cutFinset_eq_sum_neighbors] at count
   exact count.symm
 
+/--
+@isnad1 id=eq.4h4v.s8.a63195f93abd from=translated src=- shape=1eb87ff5 vocab=3b5ca14c
+-/
 theorem card_boundary_interior_neighbors {S : Finset W} (regular : H.IsRegularOfDegree 3)
     (outside : ∀ c ∈ cutBoundary H S, (H.neighborFinset c \ S).card = 1)
     (independent : ∀ c ∈ cutBoundary H S, ∀ d ∈ cutBoundary H S, ¬ H.Adj c d)
@@ -211,6 +232,9 @@ theorem card_boundary_interior_neighbors {S : Finset W} (regular : H.IsRegularOf
   rw [same]
   lia
 
+/--
+@isnad1 id=eq.2h4v.s7.f5201d1aa243 from=translated src=- shape=113c0c52 vocab=ae105d0f
+-/
 theorem card_interior_neighbors {S : Finset W} (regular : H.IsRegularOfDegree 3)
     {v : W} (hv : v ∈ S \ cutBoundary H S) :
     (H.neighborFinset v ∩ cutBoundary H S).card +
@@ -225,6 +249,9 @@ theorem card_interior_neighbors {S : Finset W} (regular : H.IsRegularOfDegree 3)
   have count := Finset.card_sdiff_add_card_inter (H.neighborFinset v) (S \ cutBoundary H S)
   rwa [same, H.card_neighborFinset_eq_degree, regular.degree_eq] at count
 
+/--
+@isnad1 id=lt.3h4v.s8.9b9fc0957b02 from=translated src=- shape=2992dabb vocab=c168f6dd
+-/
 theorem boundary_red_density {S : Finset W} {ξ : ℝ} (hξ : 0 < ξ)
     (outside : ∀ c ∈ cutBoundary H S, (H.neighborFinset c \ S).card = 1)
     (dense : (1 / 3 + ξ) * S.card < (H.cutFinset S).card) :
@@ -242,6 +269,9 @@ theorem boundary_red_density {S : Finset W} {ξ : ℝ} (hξ : 0 < ξ)
     _ < (1 / 3 + ξ) * S.card := mul_lt_mul_of_pos_left scale (by linarith)
     _ < (cutBoundary H S).card := dense
 
+/--
+@isnad1 id=eq.3h3v.s9.ab5a08426ff4 from=translated src=- shape=79526eff vocab=3abdc6c3
+-/
 theorem card_interior_edges {S : Finset W} (regular : H.IsRegularOfDegree 3)
     (outside : ∀ c ∈ cutBoundary H S, (H.neighborFinset c \ S).card = 1)
     (independent : ∀ c ∈ cutBoundary H S, ∀ d ∈ cutBoundary H S, ¬ H.Adj c d) :
@@ -270,6 +300,9 @@ theorem card_interior_edges {S : Finset W} (regular : H.IsRegularOfDegree 3)
     3 * (S \ C).card
   lia
 
+/--
+@isnad1 id=ex.6h5v.s10.adbe2e0f90d6 from=translated src=- shape=21280834 vocab=0bcc48e5
+-/
 theorem exists_small_interior_tree_component {S : Finset W} (regular : H.IsRegularOfDegree 3)
     (outside : ∀ c ∈ cutBoundary H S, (H.neighborFinset c \ S).card = 1)
     (independent : ∀ c ∈ cutBoundary H S, ∀ d ∈ cutBoundary H S, ¬ H.Adj c d)
@@ -296,6 +329,9 @@ theorem exists_small_interior_tree_component {S : Finset W} (regular : H.IsRegul
   rw [cardD]
   exact_mod_cast small
 
+/--
+@isnad1 id=ex.5h4v.s8.ca78c473e29e from=translated src=- shape=40efba23 vocab=c711e0bd
+-/
 theorem exists_helpful_set_of_red_surplus {S X : Finset W}
     (regular : H.IsRegularOfDegree 3)
     (outside : ∀ c ∈ cutBoundary H S, (H.neighborFinset c \ S).card = 1)

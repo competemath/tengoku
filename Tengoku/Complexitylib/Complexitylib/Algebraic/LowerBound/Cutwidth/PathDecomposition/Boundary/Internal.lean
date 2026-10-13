@@ -163,6 +163,9 @@ private theorem card_transitionBag_le (i : Nat)
   change (leftBag S i ∪ rightBag H S i).card ≤ _
   lia
 
+/--
+@isnad1 id=ex.2h3v.s7.38b29bd8bbb3 from=translated src=- shape=8e10e975 vocab=3d4714b0
+-/
 theorem exists_boundaryTransition
     (left : ∀ u ∈ S, ∃ v ∉ S, H.Adj u v)
     (right : ∀ v ∉ S, ∃ u ∈ S, H.Adj u v) :

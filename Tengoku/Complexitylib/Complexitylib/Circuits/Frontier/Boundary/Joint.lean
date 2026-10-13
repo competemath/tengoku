@@ -31,7 +31,9 @@ open Module
 variable {F W : Type*} [Field F] [AddCommGroup W] [Module F W]
   (U V P Q : Submodule F W)
 
-/-- Shared information and exposed observations form one subspace, not independent codes. -/
+/-- Shared information and exposed observations form one subspace, not independent codes.
+@isnad1 id=eq.2h6v.s9.7cfc6f32508d from=translated src=- shape=063c1edd vocab=8ecc38db
+-/
 theorem joint_eq (hP : P ≤ U) (hQ : Q ≤ V) :
     (U ⊓ V) ⊔ (P ⊔ Q) = (U ⊔ Q) ⊓ (V ⊔ P) := by
   symm
@@ -41,7 +43,9 @@ theorem joint_eq (hP : P ≤ U) (hQ : Q ≤ V) :
       rw [sup_comm U Q, sup_inf_assoc_of_le U hQ]
     _ = _ := by ac_rfl
 
-/-- The joint code can be smaller than the sum of the separate boundary and syndrome ranks. -/
+/-- The joint code can be smaller than the sum of the separate boundary and syndrome ranks.
+@isnad1 id=eq.2h6v.s10.db3de0c6ab81 from=translated src=- shape=80838b72 vocab=9742641f
+-/
 theorem finrank_joint [FiniteDimensional F W] (hP : P ≤ U) (hQ : Q ≤ V) :
     finrank F ((U ⊓ V) ⊔ (P ⊔ Q) : Submodule F W) =
       finrank F (U ⊔ Q : Submodule F W) + finrank F (V ⊔ P : Submodule F W) -

@@ -80,7 +80,9 @@ variable {V E : Type*}
 /-! ### Preliminaries -/
 
 /-- Listing the vertices in increasing order of an injective key gives a layout that is
-monotone in the key. -/
+monotone in the key.
+@isnad1 id=ex.1h3v.s6.9a9d29286483 from=translated src=- shape=23edb7c0 vocab=6dbdb97d
+-/
 theorem Layout.exists_monotone [Finite V] {α : Type*} [LinearOrder α] {f : V → α}
     (hf : f.Injective) : ∃ π : Layout V, ∀ v w, f v ≤ f w → π v ≤ π w := by
   let := LinearOrder.lift' f hf
@@ -88,7 +90,9 @@ theorem Layout.exists_monotone [Finite V] {α : Type*} [LinearOrder α] {f : V �
   let e := (Fintype.orderIsoFinOfCardEq V Nat.card_eq_fintype_card.symm).symm
   exact ⟨e.toEquiv, fun v w h => e.monotone h⟩
 
-/-- `log₂ N` is at most `ε N` plus a constant. -/
+/-- `log₂ N` is at most `ε N` plus a constant.
+@isnad1 id=ex.1h1v.s5.071a533d637c from=translated src=- shape=35e74f67 vocab=8a73f383
+-/
 theorem exists_log_le_mul_add {ε : ℝ} (hε : 0 < ε) :
     ∃ K : ℝ, ∀ N : ℕ, (Nat.log 2 N : ℝ) ≤ ε * N + K := by
   obtain ⟨k, hk⟩ := pow_unbounded_of_one_lt (1 / ε) one_lt_two
@@ -110,7 +114,9 @@ namespace Multigraph
 
 variable {G : Multigraph V E}
 
-/-- Cuts are subadditive. -/
+/-- Cuts are subadditive.
+@isnad1 id=le.0h5v.s5.230c0d748272 from=translated src=- shape=12f57f19 vocab=20ee2891
+-/
 theorem cut_union_subset (G : Multigraph V E) (S T : Set V) :
     G.cut (S ∪ T) ⊆ G.cut S ∪ G.cut T := by
   intro e
@@ -118,7 +124,9 @@ theorem cut_union_subset (G : Multigraph V E) (S T : Set V) :
   tauto
 
 /-- The cut of a disjoint union: the edges leaving both parts are counted twice on the right
-and not at all on the left. -/
+and not at all on the left.
+@isnad1 id=eq.1h5v.s6.9f9872289bf6 from=translated src=- shape=e2e81ff0 vocab=fbe4971f
+-/
 theorem ncard_cut_union_add [Finite E] (G : Multigraph V E) {S T : Set V} (h : Disjoint S T) :
     (G.cut (S ∪ T)).ncard + 2 * (G.cut S ∩ G.cut T).ncard =
       (G.cut S).ncard + (G.cut T).ncard := by
@@ -140,7 +148,9 @@ theorem ncard_cut_union_add [Finite E] (G : Multigraph V E) {S T : Set V} (h : D
   omega
 
 /-- In a connected multigraph, some edge leaves every set of vertices other than the empty set
-and the whole vertex set. -/
+and the whole vertex set.
+@isnad1 id=nonempty.3h6v.s5.ce28fc21e011 from=translated src=- shape=ce532fc0 vocab=8f6bdb6c
+-/
 theorem Connected.cut_nonempty (hG : G.Connected) {S : Set V} {u v : V} (hu : u ∈ S)
     (hv : v ∉ S) : (G.cut S).Nonempty := by
   by_contra h
@@ -187,7 +197,9 @@ section General
 variable {d : ℕ} (c : Compression G d)
 
 /-- **Merging.** Two distinct blocks joined by an edge, whose union has at most `d` edges
-leaving it, may be replaced by their union, listing the longer block first. -/
+leaving it, may be replaced by their union, listing the longer block first.
+@isnad1 id=ex.5h7v.s7.d34719c3f53e from=translated src=- shape=efe84084 vocab=888189cf
+-/
 theorem exists_merge [Finite E] {B B' : List V} (hB : B ∈ c.blocks) (hB' : B' ∈ c.blocks)
     (hne : B ≠ B') (hjoin : (G.cut {v | v ∈ B} ∩ G.cut {v | v ∈ B'}).Nonempty)
     (hcut : (G.cut ({v | v ∈ B} ∪ {v | v ∈ B'})).ncard ≤ d) :
@@ -344,7 +356,9 @@ def Final : Prop :=
         3 ≤ (G.cut {v | v ∈ B}).ncard
 
 /-- **Merging terminates.** Every multigraph of maximum degree three has a final
-compression: one with fewest blocks. -/
+compression: one with fewest blocks.
+@isnad1 id=ex.1h3v.s5.680b46dfb4f6 from=translated src=- shape=d4461225 vocab=bb35b85e
+-/
 theorem exists_final [Finite V] [Finite E] (hG : G.MaxDegreeLE 3) :
     ∃ c : Compression G, c.Final := by
   classical
@@ -368,6 +382,9 @@ theorem exists_final [Finite V] [Finite E] (hG : G.MaxDegreeLE 3) :
 noncomputable def blockOf (v : V) : c.blocks :=
   ⟨(c.cover v).choose, (c.cover v).choose_spec.1⟩
 
+/--
+@isnad1 id=iff.0h7v.s6.10c22e8e26fa from=translated src=- shape=8c81079c vocab=753a8ba8
+-/
 theorem mem_iff_blockOf_eq {v : V} {B : c.blocks} : v ∈ B.1 ↔ c.blockOf v = B :=
   ⟨fun h => Subtype.ext (c.eq_of_mem _ (c.blockOf v).2 _ B.2 v (c.cover v).choose_spec.2 h),
     fun h => h ▸ (c.cover v).choose_spec.2⟩
@@ -383,11 +400,16 @@ def quotient : SimpleGraph c.blocks where
   symm := ⟨fun _ _ ⟨h, e, he⟩ => ⟨h.symm, e, he.trans Sym2.eq_swap⟩⟩
   loopless := ⟨fun _ h => h.1 rfl⟩
 
+/--
+@isnad1 id=iff.0h6v.s7.0e18906bd9ac from=translated src=- shape=e4feca71 vocab=efe6ea1b
+-/
 theorem ends_mem_edgeSet {e : E} :
     c.ends e ∈ c.quotient.edgeSet ↔ c.blockOf (G.src e) ≠ c.blockOf (G.tgt e) :=
   ⟨fun h => h.1, fun h => ⟨h, e, rfl⟩⟩
 
-/-- The edges of the quotient are the ends of the edges of `G` between distinct blocks. -/
+/-- The edges of the quotient are the ends of the edges of `G` between distinct blocks.
+@isnad1 id=eq.0h5v.s7.26273b0712eb from=translated src=- shape=01c5a573 vocab=a5559df9
+-/
 theorem edgeSet_quotient :
     c.quotient.edgeSet = c.ends '' {e | c.blockOf (G.src e) ≠ c.blockOf (G.tgt e)} := by
   ext s
@@ -399,7 +421,9 @@ theorem edgeSet_quotient :
   · rintro ⟨e, he, rfl⟩
     exact c.ends_mem_edgeSet.2 he
 
-/-- In a final compression, an edge between two distinct blocks is determined by its ends. -/
+/-- In a final compression, an edge between two distinct blocks is determined by its ends.
+@isnad1 id=injon.1h5v.s6.7754af9877dd from=translated src=- shape=ef3c6bad vocab=57e60a43
+-/
 theorem injOn_ends [Finite E] (hc : c.Final) :
     InjOn c.ends {e | c.blockOf (G.src e) ≠ c.blockOf (G.tgt e)} := by
   intro e₁ (h₁ : c.blockOf (G.src e₁) ≠ c.blockOf (G.tgt e₁)) e₂ _ h
@@ -412,7 +436,9 @@ theorem injOn_ends [Finite E] (hc : c.Final) :
   exact (ncard_le_one (toFinite _)).1 this _ (hS e₁ rfl) _ (hS e₂ h.symm)
 
 /-- In a final compression of a connected multigraph with at least two blocks, exactly three
-edges leave every block. -/
+edges leave every block.
+@isnad1 id=eq.3h5v.s7.b16c89899b2f from=translated src=- shape=e17d326a vocab=7e241895
+-/
 theorem ncard_cut_eq_three (c : Compression G) (hc : c.Final) (hG : G.Connected)
     (two : 2 ≤ c.blocks.card) (B : c.blocks) : (G.cut {v | v ∈ B.1}).ncard = 3 := by
   obtain ⟨B', hB', hne⟩ := Finset.exists_mem_ne two B.1
@@ -431,7 +457,9 @@ theorem ncard_cut_eq_three (c : Compression G) (hc : c.Final) (hG : G.Connected)
   exact le_antisymm (c.cut_le _ B.2)
     (hc _ B.2 _ B''.2 (fun h => hB'' (Subtype.ext h).symm) ⟨e, he, he''⟩).2
 
-/-- The cut of a union of whole blocks embeds in the quotient's cut. -/
+/-- The cut of a union of whole blocks embeds in the quotient's cut.
+@isnad1 id=le.1h6v.s8.b9920e9589b1 from=translated src=- shape=fed983bc vocab=b6fd33dc
+-/
 theorem ncard_cut_le [Finite E] (hc : c.Final) [Fintype c.quotient.edgeSet]
     (T : Finset c.blocks) :
     (G.cut {v | c.blockOf v ∈ T}).ncard ≤ (c.quotient.crossingFinset T).card := by
@@ -451,7 +479,9 @@ theorem ncard_cut_le [Finite E] (hc : c.Final) [Fintype c.quotient.edgeSet]
 noncomputable def idx [DecidableEq V] (v : V) : ℕ :=
   (c.blockOf v).1.idxOf v
 
-/-- At most `d log₂ N + d` edges leave the first `r` vertices of a block. -/
+/-- At most `d log₂ N + d` edges leave the first `r` vertices of a block.
+@isnad1 id=le.0h7v.s7.c475a6ec4594 from=translated src=- shape=2e0bd340 vocab=161c47c9
+-/
 theorem ncard_cut_take_le [Finite V] [DecidableEq V] (B : c.blocks) (r : ℕ) :
     (G.cut {v | c.blockOf v = B ∧ c.idx v < r}).ncard ≤ d * Nat.log 2 (Nat.card V) + d := by
   have := Fintype.ofFinite V
@@ -477,7 +507,9 @@ theorem ncard_cut_take_le [Finite V] [DecidableEq V] (B : c.blocks) (r : ℕ) :
 
 /-- **Expansion.** Lay out the vertices block by block, ordering the blocks by an injective
 key and each block by its list. If at most `X` edges of the quotient cross each prefix of the
-key, at most `X + d log₂ N + d` edges cross each frontier of the layout. -/
+key, at most `X + d log₂ N + d` edges cross each frontier of the layout.
+@isnad1 id=ex.3h7v.s8.dbf6e41062af from=translated src=- shape=e7a8c640 vocab=7302a115
+-/
 theorem exists_layout [Finite V] [Finite E] (hc : c.Final) [Fintype c.quotient.edgeSet]
     {key : c.blocks → ℕ} (hkey : key.Injective) {X : ℝ}
     (hX : ∀ q,

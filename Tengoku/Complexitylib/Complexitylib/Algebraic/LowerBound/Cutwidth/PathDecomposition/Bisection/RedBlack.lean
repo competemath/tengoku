@@ -42,19 +42,25 @@ open scoped Classical
 variable {V E : Type} [Fintype V] [Fintype E] (B : SimpleGraph V) (R : Multigraph V E)
 
 omit [Fintype V] in
-/-- Both endpoints characterize membership among the internal red edges. -/
+/-- Both endpoints characterize membership among the internal red edges.
+@isnad1 id=iff.0h5v.s6.acd73d76b488 from=translated src=- shape=243bf277 vocab=bbcbc0ec
+-/
 theorem mem_internalEdges {X : Finset V} {e : E} :
     e ∈ internalEdges R X ↔ R.fst e ∈ X ∧ R.snd e ∈ X :=
   Internal.mem_internalEdges R
 
 omit [Fintype V] in
-/-- Adding vertices preserves every existing internal red edge. -/
+/-- Adding vertices preserves every existing internal red edge.
+@isnad1 id=le.1h5v.s5.b5f8e246ab46 from=translated src=- shape=b3f552c0 vocab=52ed3428
+-/
 theorem internalEdges_mono {X Y : Finset V} (h : X ⊆ Y) :
     internalEdges R X ⊆ internalEdges R Y :=
   Internal.internalEdges_mono R h
 
 /-- Attach sets with empty black cuts to a connecting set. More distinct
-red attachments than black crossing edges suffice for positivity. -/
+red attachments than black crossing edges suffice for positivity.
+@isnad1 id=ex.4h8v.s7.88e207695383 from=translated src=- shape=bc384f37 vocab=2cb7574e
+-/
 theorem exists_positive_of_attachments (P : Finset V) (edges : Finset E)
     (A : E → Finset V) (M : Nat)
     (cut : (B.cutFinset P).card < edges.card)
@@ -66,7 +72,9 @@ theorem exists_positive_of_attachments (P : Finset V) (edges : Finset E)
   Internal.exists_positive_of_attachments B R P edges A M cut closed small attached
 
 /-- A nonempty connected set whose vertices have black degree at most two
-has at most two external black edges. -/
+has at most two external black edges.
+@isnad1 id=le.2h3v.s6.8a57a84614d3 from=translated src=- shape=1e37bf35 vocab=2b3f18b0
+-/
 theorem card_cut_le_two_of_connected {P : Finset V}
     (connected : (B.induce {v | v ∈ P}).Connected)
     (degree : ∀ v ∈ P, B.degree v ≤ 2) : (B.cutFinset P).card ≤ 2 :=
@@ -74,13 +82,17 @@ theorem card_cut_le_two_of_connected {P : Finset V}
 
 /-- Among at least two nonnegative integer weights, two adjacent weights
 have sum at most three times the average. This is the gap estimate in
-Monien and Preis's thin-path construction, stated without division. -/
+Monien and Preis's thin-path construction, stated without division.
+@isnad1 id=ex.0h2v.s7.e755e862fa4b from=translated src=- shape=ef24cb74 vocab=094902b8
+-/
 theorem exists_adjacent_pair_le_three_average {n : Nat} (w : Fin (n + 2) → Nat) :
     ∃ i : Fin (n + 1), (n + 2) * (w i.castSucc + w i.succ) ≤ 3 * ∑ j, w j :=
   Internal.exists_adjacent_pair_le_three_average w
 
 /-- Three consecutive marked positions have span at most three times the
-average gap between all marked positions. -/
+average gap between all marked positions.
+@isnad1 id=ex.1h2v.s8.3bd01d3da3ac from=translated src=- shape=04d3f73f vocab=0da55542
+-/
 theorem exists_three_close_positions {n : Nat} (pos : Fin (n + 3) → Nat)
     (ordered : Monotone pos) :
     ∃ i : Fin (n + 1), (n + 2) * (pos i.succ.succ - pos i.castSucc.castSucc) ≤
@@ -90,7 +102,9 @@ theorem exists_three_close_positions {n : Nat} (pos : Fin (n + 3) → Nat)
 /-- A walk of black degree at most two with `n + 3` distinct red attachments
 and length at most `M * (n + 3)` gives a positive set of at most `8 M + 1`
 vertices, provided each attached set has at most `M` vertices and an empty
-black cut. The proof uses three nearby attachments and their connecting subwalk. -/
+black cut. The proof uses three nearby attachments and their connecting subwalk.
+@isnad1 id=ex.7h12v.s9.db660d290226 from=translated src=- shape=838c1f8e vocab=9b2d2f97
+-/
 theorem exists_positive_of_thin_walk {u v : V} (p : B.Walk u v) {n : Nat}
     (edge : Fin (n + 3) ↪ E) (pos : Fin (n + 3) → Nat) (A : E → Finset V) (M : Nat)
     (ordered : Monotone pos) (within : ∀ i, pos i ≤ p.length)

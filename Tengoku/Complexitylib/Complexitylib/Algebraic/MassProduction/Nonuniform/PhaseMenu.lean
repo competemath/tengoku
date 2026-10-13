@@ -35,7 +35,9 @@ abbrev PhaseState (Point Direction : Type*) (capacity active : Nat) :=
   (Fin capacity → Option (Point × Direction)) × (Fin active → Point)
 
 /-- A phase state has at most `capacity * (1 + 3 * addressBits)` bits of
-information when points and directions each fit in `addressBits` bits. -/
+information when points and directions each fit in `addressBits` bits.
+@isnad1 id=le.3h5v.s7.da4a7b6f9255 from=translated src=- shape=0388a3ff vocab=497ef4fa
+-/
 theorem cardPhaseState_le
     {Point Direction : Type*} [Fintype Point] [Fintype Direction]
     (capacity active addressBits : Nat) (activeLe : active ≤ capacity)
@@ -78,7 +80,9 @@ noncomputable def phaseOccupied
     (state.1 slot).elim ∅ fun line => puncturedLine line.1 line.2
 
 /-- A description with `capacity` slots occupies at most
-`capacity * (|K| - 1)` points. Overlaps only reduce this number. -/
+`capacity * (|K| - 1)` points. Overlaps only reduce this number.
+@isnad1 id=le.0h5v.s6.671d0418df61 from=translated src=- shape=aa6b6e3a vocab=590a0740
+-/
 theorem cardPhaseOccupied_le
     (state : PhaseState V (ℙ K V) capacity active) :
     (phaseOccupied state).card ≤ capacity * (Nat.card K - 1) := by
@@ -105,7 +109,9 @@ def HalfClean
       (phaseOccupied state) candidate index}
 
 /-- Evaluating every menu entry examines a number of candidate lines
-linear in `capacity`, apart from the address-width factor. -/
+linear in `capacity`, apart from the address-width factor.
+@isnad1 id=le.1h3v.s6.02caf1587b5d from=translated src=- shape=a17bf812 vocab=196b2b5a
+-/
 theorem phaseMenuCandidateCount_le
     (capacity active addressBits : Nat) (activeLe : active ≤ capacity) :
     (capacity * (1 + 3 * addressBits) / active + 1) * active ≤

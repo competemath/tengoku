@@ -26,7 +26,9 @@ namespace TM
 variable {k : ℕ}
 
 /-- Internal polynomial bound for the reduced configurations of a
-logarithmic-space transducer. -/
+logarithmic-space transducer.
+@isnad1 id=ex.1h3v.s6.7d5ba4d990df from=translated src=- shape=30817e66 vocab=44b6d273
+-/
 theorem transducerConfigBound_bigO_polynomial_internal
     (tm : TM k) {S : ℕ → ℕ}
     (hS : S =O (fun n => Nat.log 2 n)) :
@@ -114,7 +116,9 @@ theorem transducerConfigBound_bigO_polynomial_internal
 end TM
 
 /-- Internal containment of deterministic logarithmic-space transducer
-languages in polynomial time. -/
+languages in polynomial time.
+@isnad1 id=le.0h0v.s2.e6cad42370b8 from=translated src=- shape=836e6cbb vocab=3e6bc7e2
+-/
 theorem L_subset_P_internal : L ⊆ P := by
   rintro Lang ⟨k, tm, S, htrans, hdec, hspace⟩
   obtain ⟨c, htime⟩ :=
@@ -125,7 +129,9 @@ theorem L_subset_P_internal : L ⊆ P := by
     hdec.decidesInTime_configBound htrans, htime⟩
 
 /-- Internal containment of deterministic logarithmic-space transducer
-functions in polynomial-time transducer functions. -/
+functions in polynomial-time transducer functions.
+@isnad1 id=le.0h0v.s3.6e6d95fb1aeb from=translated src=- shape=1bd9911c vocab=0c3f4bc4
+-/
 theorem FL_subset_FP_internal : FL ⊆ FP := by
   rintro f ⟨k, tm, S, hcomp, hspace⟩
   obtain ⟨c, htime⟩ :=

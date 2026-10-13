@@ -26,13 +26,17 @@ public section
 namespace Algebraic.Cutwidth.Extractor
 
 /-- The nonempty subsets of at most `t` coordinates are covered by the
-ranges of all `t`-tuples. This also covers zero order and an empty type. -/
+ranges of all `t`-tuples. This also covers zero order and an empty type.
+@isnad1 id=le.0h2v.s5.9d61a5d26039 from=translated src=- shape=973d5182 vocab=d0fdb24f
+-/
 theorem card_parityTests_le_pow (ι : Type*) [Fintype ι] (t : Nat) :
     (parityTests ι t).card ≤ Fintype.card ι ^ t :=
   Internal.card_parityTests_le_pow ι t
 
 /-- Union the excluded seeds over every low-order parity and every
-candidate position, preserving the full number of candidate choices. -/
+candidate position, preserving the full number of candidate choices.
+@isnad1 id=le.2h6v.s7.fd65d5f5339b from=translated src=- shape=edfa1c16 vocab=b4ca85eb
+-/
 theorem card_parityBadSeeds_le {ι Choice Seed : Type*} [Fintype ι] [Fintype Choice]
     [Fintype Seed] (bad : Finset ι → Choice → Finset Seed) (t : Nat)
     {η : ℝ} (hη : 0 ≤ η)

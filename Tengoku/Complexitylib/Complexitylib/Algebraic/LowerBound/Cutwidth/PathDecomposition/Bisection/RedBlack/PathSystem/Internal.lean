@@ -28,6 +28,9 @@ open scoped Classical
 
 variable {V : Type} (B : SimpleGraph V) (U : Finset V)
 
+/--
+@isnad1 id=iff.0h5v.s7.59ca21e2be6b from=translated src=- shape=5b66f200 vocab=3f99a67b
+-/
 theorem mem_region (C : (B.induce {v | v ∈ U}).ConnectedComponent) {v : V} :
     v ∈ region B U C ↔ ∃ h : v ∈ U, (⟨v, h⟩ : {v // v ∈ U}) ∈ C.supp := by
   constructor
@@ -37,9 +40,15 @@ theorem mem_region (C : (B.induce {v | v ∈ U}).ConnectedComponent) {v : V} :
   · rintro ⟨h, member⟩
     exact Finset.mem_image.mpr ⟨⟨v, h⟩, Set.mem_toFinset.mpr member, rfl⟩
 
+/--
+@isnad1 id=le.0h4v.s6.1557bc97c309 from=translated src=- shape=253cc4a3 vocab=42afa54f
+-/
 theorem region_subset (C : (B.induce {v | v ∈ U}).ConnectedComponent) : region B U C ⊆ U :=
   fun _ hv => ((mem_region B U C).mp hv).choose
 
+/--
+@isnad1 id=connecte.0h4v.s6.ac31adb3b5ae from=translated src=- shape=900044d5 vocab=7a7efbac
+-/
 theorem region_connected (C : (B.induce {v | v ∈ U}).ConnectedComponent) :
     (B.induce {v | v ∈ region B U C}).Connected := by
   let hom : C.toSimpleGraph →g B.induce {v | v ∈ region B U C} :=
@@ -49,6 +58,9 @@ theorem region_connected (C : (B.induce {v | v ∈ U}).ConnectedComponent) :
   obtain ⟨hv, member⟩ := (mem_region B U C).mp v.property
   exact ⟨⟨⟨v.val, hv⟩, member⟩, rfl⟩
 
+/--
+@isnad1 id=iff.0h4v.s6.a453e9f1a4a3 from=translated src=- shape=630bf8b9 vocab=66e119c0
+-/
 theorem exists_mem_region {v : V} :
     (∃ C : (B.induce {v | v ∈ U}).ConnectedComponent, v ∈ region B U C) ↔ v ∈ U := by
   constructor
@@ -59,6 +71,9 @@ theorem exists_mem_region {v : V} :
       (mem_region B U _).mpr ⟨hv, ?_⟩⟩
     exact (SimpleGraph.ConnectedComponent.mem_supp_iff _ _).mpr rfl
 
+/--
+@isnad1 id=pairwise.0h3v.s7.137bea61e464 from=translated src=- shape=083ab69b vocab=a7d099e2
+-/
 theorem region_disjoint : Pairwise
     (fun C D : (B.induce {v | v ∈ U}).ConnectedComponent =>
       Disjoint (region B U C) (region B U D)) := by

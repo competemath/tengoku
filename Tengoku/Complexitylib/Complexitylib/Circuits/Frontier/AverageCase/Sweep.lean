@@ -28,12 +28,21 @@ variable {α ι U M : Type*}
 noncomputable def sumOn [Finite α] (w : α → ℝ) (S : Set α) : ℝ :=
   ∑ x ∈ (Set.toFinite S).toFinset, w x
 
+/--
+@isnad1 id=eq.0h2v.s4.9244bf296ca4 from=translated src=- shape=3289cd7d vocab=9b68d62f
+-/
 @[simp] theorem sumOn_empty [Finite α] (w : α → ℝ) : sumOn w ∅ = 0 := by
   simp [sumOn]
 
+/--
+@isnad1 id=le.1h3v.s5.fd5daa385b0b from=translated src=- shape=a3687cc2 vocab=d57a16bd
+-/
 theorem sumOn_nonneg [Finite α] {w : α → ℝ} (hw : ∀ x, 0 ≤ w x) (S : Set α) :
     0 ≤ sumOn w S := Finset.sum_nonneg fun x _ => hw x
 
+/--
+@isnad1 id=eq.1h4v.s5.42f91a13dde8 from=translated src=- shape=382c48bd vocab=90ae4839
+-/
 theorem sumOn_sdiff [Finite α] (w : α → ℝ) {S T : Set α} (h : T ⊆ S) :
     sumOn w S = sumOn w T + sumOn w (S \ T) := by
   classical
@@ -41,6 +50,9 @@ theorem sumOn_sdiff [Finite α] (w : α → ℝ) {S T : Set α} (h : T ⊆ S) :
   rw [Set.Finite.toFinset_sdiff (toFinite S) (toFinite T)]
   exact (Finset.sum_sdiff (Set.Finite.toFinset_mono h)).symm.trans (add_comm _ _)
 
+/--
+@isnad1 id=le.1h4v.s5.49f508d40851 from=translated src=- shape=fba63769 vocab=799df7a2
+-/
 theorem abs_sumOn_le [Finite α] {w : α → ℝ} {a : ℝ} (hw : ∀ x, |w x| ≤ a) (S : Set α) :
     |sumOn w S| ≤ a * S.ncard := by
   calc |sumOn w S| ≤ ∑ x ∈ (toFinite S).toFinset, |w x| := Finset.abs_sum_le_sum_abs _ _
@@ -63,7 +75,9 @@ def Coherent : Prop :=
       (∀ u, u ≤ t → P.message u z = P.message u x) ∧
       (∀ u, t ≤ u → P.message u z = P.message u y)
 
-/-- A message class in a coherent sweep is exactly its rectangular hull. -/
+/-- A message class in a coherent sweep is exactly its rectangular hull.
+@isnad1 id=eq.1h7v.s6.31b5d13fb1ba from=translated src=- shape=0ead4e08 vocab=550370af
+-/
 theorem Coherent.peers_eq_rectangle (hP : P.Coherent) (t : ℕ) (x : ι → U) :
     P.peers t x = rectangle (P.revealed t) (P.pastSide t x) (P.futureSide t x) := by
   apply subset_antisymm
@@ -93,11 +107,17 @@ noncomputable def erase (hP : P.Coherent) (t : ℕ) (x : ι → U) :
     · exact ha.2 ⟨ha.1, (H.1 t h).symm.trans hz.2⟩
     · exact hb.2 ⟨hb.1, (H.2 t h).symm.trans hz.2⟩
 
+/--
+@isnad1 id=coherent.1h7v.s5.34a1e667bf45 from=translated src=- shape=e6696aa4 vocab=69a59c47
+-/
 theorem Coherent.erase (hP : P.Coherent) (t : ℕ) (x : ι → U) :
     (P.erase hP t x).Coherent := by
   intro u a ha b hb hab z hza hzb
   exact hP u a ha.1 b hb.1 hab z hza hzb
 
+/--
+@isnad1 id=le.1h7v.s6.cac839068e16 from=translated src=- shape=8472c756 vocab=40294156
+-/
 theorem transitionCount_erase_le [Finite ι] [Finite U]
     (hP : P.Coherent) (t : ℕ) (x : ι → U) :
     (P.erase hP t x).transitionCount ≤ P.transitionCount := by
@@ -105,6 +125,9 @@ theorem transitionCount_erase_le [Finite ι] [Finite U]
   change (P.transition u '' (S \ P.peers t x)).ncard ≤ (P.transition u '' S).ncard
   exact ncard_le_ncard (image_mono sdiff_subset) ((toFinite S).image _)
 
+/--
+@isnad1 id=lt.2h5v.s5.3b7330004d6c from=translated src=- shape=42076ac3 vocab=e5cf0b8f
+-/
 theorem transitionCount_pos [Finite ι] [Finite U] (hL : 0 < P.length)
     (hS : S.Nonempty) : 0 < P.transitionCount := by
   have hi : 0 < (P.transition 0 '' S).ncard :=
@@ -114,7 +137,9 @@ theorem transitionCount_pos [Finite ι] [Finite U] (hL : 0 < P.length)
     (fun _ _ => Nat.zero_le _) (Finset.mem_range.mpr hL))
 
 /-- **Weighted peeling.** A shared nonnegative budget on thick rectangles is paid once;
-only the residual thin sweep pays its maximum atom times the transition count. -/
+only the residual thin sweep pays its maximum atom times the transition count.
+@isnad1 id=le.8h10v.s7.a7ce2f79f209 from=translated src=- shape=6fbbc4a0 vocab=66226b30
+-/
 theorem abs_sumOn_le_of_budget [Finite ι] [Finite U] (hP : P.Coherent) (hL : 0 < P.length)
     {KL KR : ℕ} (hKL : 1 < KL) (hKR : 1 < KR)
     {w cost : (ι → U) → ℝ} {a : ℝ} (ha : 0 ≤ a) (hw : ∀ x, |w x| ≤ a)

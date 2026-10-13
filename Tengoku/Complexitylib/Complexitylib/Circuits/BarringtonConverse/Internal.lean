@@ -89,6 +89,9 @@ end BPInstr
 
 namespace BP
 
+/--
+@isnad1 id=iff.1h6v.s6.801ffccb8ecc from=translated src=- shape=7f2287b7 vocab=a44654a6
+-/
 theorem eval_reachesFormula_internal {w : ℕ} (α : ℕ → Bool) :
     ∀ (d : ℕ) (p : BP w) (x y : Fin w), p.length ≤ 2 ^ d →
       (BoolFormula.eval α (reachesFormula d p x y) = true ↔ BP.eval α p x = y) := by
@@ -133,6 +136,9 @@ theorem eval_reachesFormula_internal {w : ℕ} (α : ℕ → Bool) :
         exact h
       · exact (ih _ _ _ hdrop).mpr rfl
 
+/--
+@isnad1 id=le.0h5v.s5.f73b8fd3e294 from=translated src=- shape=cf1ff78b vocab=bda9b828
+-/
 theorem depth_reachesFormula_le_internal {w : ℕ} :
     ∀ (d : ℕ) (p : BP w) (x y : Fin w),
       (reachesFormula d p x y).depth ≤ (w + 1) * d + 1 := by
@@ -196,6 +202,9 @@ private theorem vars_reachesFormula_lt_internal {w n : ℕ} {p : BP w}
             x z index' hright
       · simpa only [reachesFormula] using hindex
 
+/--
+@isnad1 id=iff.0h4v.s5.baefba7db7a9 from=translated src=- shape=b966bbd4 vocab=cb1b3a64
+-/
 theorem eval_decisionFormula_eq_true_internal {w : ℕ} (α : ℕ → Bool)
     (p : BP w) (x : Fin w) :
     BoolFormula.eval α (decisionFormula p x) = true ↔ BP.eval α p x ≠ x := by
@@ -208,12 +217,18 @@ theorem eval_decisionFormula_eq_true_internal {w : ℕ} (α : ℕ → Bool)
       (reachesFormula (Nat.clog 2 p.length) p x x) <;>
     simp_all
 
+/--
+@isnad1 id=le.0h3v.s5.7197fac98d63 from=translated src=- shape=08335116 vocab=51f28efd
+-/
 theorem depth_decisionFormula_le_internal {w : ℕ} (p : BP w) (x : Fin w) :
     (decisionFormula p x).depth ≤ (w + 1) * Nat.clog 2 p.length + 2 := by
   have h := depth_reachesFormula_le_internal
     (Nat.clog 2 p.length) p x x
   simpa [decisionFormula, BoolFormula.depth] using Nat.succ_le_succ h
 
+/--
+@isnad1 id=lt.2h5v.s5.3101b2b6caa4 from=translated src=- shape=3c6d4cb2 vocab=d9054274
+-/
 theorem vars_decisionFormula_lt_internal {w n : ℕ}
     (p : BP w) (x : Fin w)
     (hvars : ∀ instruction ∈ p, instruction.var < n) :
@@ -225,6 +240,9 @@ theorem vars_decisionFormula_lt_internal {w n : ℕ}
 
 end BP
 
+/--
+@isnad1 id=le.1h4v.s6.7e109b1d8c1e from=translated src=- shape=f1e9344d vocab=aa5a54b4
+-/
 theorem clog_le_of_polynomial_bound_internal
     (C p n m : ℕ) (h : m ≤ C * (n + 1) ^ p) :
     Nat.clog 2 m ≤ Nat.clog 2 C + p * (Nat.log 2 n + 1) := by
@@ -241,6 +259,9 @@ theorem clog_le_of_polynomial_bound_internal
 
 namespace BPFamily
 
+/--
+@isnad1 id=computes.1h4v.s4.d62ea557c60e from=translated src=- shape=577b166b vocab=67b0c9d0
+-/
 theorem toFormulaFamily_computes_internal {w : ℕ} {R : BPFamily w}
     {x : ℕ → Fin w} {f : ℕ → (ℕ → Bool) → Bool}
     (h : R.DecidesOnTotalAssignments x f) :
@@ -250,6 +271,9 @@ theorem toFormulaFamily_computes_internal {w : ℕ} {R : BPFamily w}
   exact (BP.eval_decisionFormula_eq_true_internal α (R n) (x n)).trans
     (h n α)
 
+/--
+@isnad1 id=logdepth.1h2v.s5.419bba841077 from=translated src=- shape=1c8c7a56 vocab=69933211
+-/
 theorem toFormulaFamily_logDepth_internal {R : BPFamily 5}
     {x : ℕ → Fin 5} (h : R.PolynomialLength) :
     (R.toFormulaFamily x).LogDepth := by
@@ -279,6 +303,9 @@ theorem toFormulaFamily_logDepth_internal {R : BPFamily 5}
 
 end BPFamily
 
+/--
+@isnad1 id=le.0h0v.s4.53bae9992f1d from=translated src=- shape=d8d79b04 vocab=f48e34ac
+-/
 theorem formulaNC1OnTotalAssignments_subset_width5BPOnTotalAssignments_internal :
     FormulaNC1OnTotalAssignments ⊆ Width5BPOnTotalAssignments := by
   rintro f ⟨F, hdepth, hcomputes⟩
@@ -287,6 +314,9 @@ theorem formulaNC1OnTotalAssignments_subset_width5BPOnTotalAssignments_internal 
   refine ⟨R, x, ⟨C, p, hlength⟩, fun n α => ?_⟩
   simpa only [hcomputes n α] using hdecides n α
 
+/--
+@isnad1 id=le.0h0v.s4.814c0a65e1e1 from=translated src=- shape=d8d79b04 vocab=f48e34ac
+-/
 theorem width5BPOnTotalAssignments_subset_formulaNC1OnTotalAssignments_internal :
     Width5BPOnTotalAssignments ⊆ FormulaNC1OnTotalAssignments := by
   rintro f ⟨R, x, hlength, hdecides⟩

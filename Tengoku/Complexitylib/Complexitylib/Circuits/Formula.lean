@@ -99,11 +99,15 @@ def vars : BoolFormula → Finset ℕ
   | conj φ ψ => vars φ ∪ vars ψ
   | disj φ ψ => vars φ ∪ vars ψ
 
-/-- Every formula has at least one node. -/
+/-- Every formula has at least one node.
+@isnad1 id=le.0h1v.s3.1a92baf78b4e from=translated src=- shape=b9369acb vocab=e9ca5cf2
+-/
 theorem one_le_size (φ : BoolFormula) : 1 ≤ size φ := by
   cases φ <;> simp only [size] <;> omega
 
-/-- The leaf count never exceeds the tree size (leaves are among the nodes). -/
+/-- The leaf count never exceeds the tree size (leaves are among the nodes).
+@isnad1 id=le.0h1v.s3.904eb8951712 from=translated src=- shape=b70c6bb1 vocab=52471500
+-/
 theorem leaves_le_size (φ : BoolFormula) : leaves φ ≤ size φ := by
   induction φ with
   | var i => simp [leaves, size]
@@ -114,7 +118,9 @@ theorem leaves_le_size (φ : BoolFormula) : leaves φ ≤ size φ := by
   | disj φ ψ ihφ ihψ => simp only [leaves, size]; omega
 
 /-- A formula of depth `d` has at most `2 ^ d` leaves (a depth-`d` binary tree has
-    at most `2 ^ d` leaves). -/
+    at most `2 ^ d` leaves).
+@isnad1 id=le.0h1v.s4.efa5e09afbb6 from=translated src=- shape=9fc36aa0 vocab=b38d8756
+-/
 theorem leaves_le_two_pow_depth (φ : BoolFormula) : leaves φ ≤ 2 ^ depth φ := by
   induction φ with
   | var i => simp [leaves, depth]
@@ -135,7 +141,9 @@ theorem leaves_le_two_pow_depth (φ : BoolFormula) : leaves φ ≤ 2 ^ depth φ 
     simp only [leaves, depth, Nat.pow_succ, Nat.mul_two]; omega
 
 /-- A formula of depth `d` has fewer than `2 ^ (d + 1)` total nodes. This is
-the tree-size counterpart of `leaves_le_two_pow_depth`. -/
+the tree-size counterpart of `leaves_le_two_pow_depth`.
+@isnad1 id=lt.0h1v.s5.ab5626a1ce1f from=translated src=- shape=ece7ca37 vocab=b72e1df5
+-/
 theorem size_lt_two_pow_depth_succ (φ : BoolFormula) :
     size φ < 2 ^ (depth φ + 1) := by
   induction φ with
@@ -187,7 +195,9 @@ theorem size_lt_two_pow_depth_succ (φ : BoolFormula) :
       Nat.pow_succ, Nat.mul_two]
     omega
 
-/-- Depth never exceeds size: a longest path uses at most every node. -/
+/-- Depth never exceeds size: a longest path uses at most every node.
+@isnad1 id=le.0h1v.s3.6f74ef554d0c from=translated src=- shape=b70c6bb1 vocab=1dcae2ac
+-/
 theorem depth_le_size (φ : BoolFormula) : depth φ ≤ size φ := by
   induction φ with
   | var i => simp [depth, size]
@@ -198,7 +208,9 @@ theorem depth_le_size (φ : BoolFormula) : depth φ ≤ size φ := by
   | disj φ ψ ihφ ihψ => simp only [depth, size]; omega
 
 /-- **Locality.** A formula's value depends only on the variables that occur in
-    it: if two assignments agree on `vars φ`, they give `φ` the same value. -/
+    it: if two assignments agree on `vars φ`, they give `φ` the same value.
+@isnad1 id=eq.1h3v.s5.172dde21ff9a from=translated src=- shape=5ae66b85 vocab=6f273162
+-/
 theorem eval_eq_of_agree : ∀ (φ : BoolFormula) {α β : ℕ → Bool},
     (∀ i ∈ vars φ, α i = β i) → eval α φ = eval β φ := by
   intro φ
@@ -219,7 +231,9 @@ theorem eval_eq_of_agree : ∀ (φ : BoolFormula) {α β : ℕ → Bool},
     simp only [eval, ihφ hφ, ihψ hψ]
 
 /-- A formula with no variables evaluates to a constant: its value is
-    assignment-independent (a corollary of locality). -/
+    assignment-independent (a corollary of locality).
+@isnad1 id=eq.1h3v.s4.3d4384bd6e60 from=translated src=- shape=b3e8bb63 vocab=962728bc
+-/
 theorem eval_const_of_vars_empty {φ : BoolFormula} (hv : vars φ = ∅) (α β : ℕ → Bool) :
     eval α φ = eval β φ := by
   apply eval_eq_of_agree

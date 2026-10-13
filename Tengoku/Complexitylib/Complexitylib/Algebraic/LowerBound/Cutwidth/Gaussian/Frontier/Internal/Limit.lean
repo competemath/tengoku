@@ -23,6 +23,9 @@ small deviations brings every bag within any positive slack of that coefficient.
 
 namespace Algebraic.Cutwidth.Gaussian.Internal
 
+/--
+@isnad1 id=eq.0h0v.s7.3e01c27e9401 from=translated src=- shape=e082d0ab vocab=c0764b64
+-/
 theorem frontierCoefficient_eq :
     frontierCoefficient =
       3 / (2 * Real.pi) * Real.arccos ((1 + 3 * (2 * Real.sqrt 2 / 3)) / 4) := by
@@ -30,6 +33,9 @@ theorem frontierCoefficient_eq :
   congr 2
   ring
 
+/--
+@isnad1 id=le.0h0v.s4.9506075daf3e from=translated src=- shape=5ccaf027 vocab=97ee51cc
+-/
 theorem frontierCoefficient_ge : 1 / 20 ≤ frontierCoefficient := by
   have hsqrt : Real.sqrt 2 < 71 / 50 := (Real.sqrt_lt' (by norm_num)).mpr (by norm_num)
   have hpi4 := Real.pi_le_four
@@ -45,14 +51,22 @@ theorem frontierCoefficient_ge : 1 / 20 ≤ frontierCoefficient := by
   rw [div_mul_eq_mul_div, le_div_iff₀ (by positivity)]
   nlinarith [Real.pi_pos]
 
+/--
+@isnad1 id=lt.0h0v.s3.a9688b209ba2 from=translated src=- shape=ff3a10fc vocab=b89c9399
+-/
 theorem frontierCoefficient_pos : 0 < frontierCoefficient :=
   lt_of_lt_of_le (by norm_num) frontierCoefficient_ge
 
+/--
+@isnad1 id=lt.0h0v.s6.a360d4ba9927 from=translated src=- shape=77ea9ae6 vocab=5756a8c8
+-/
 theorem arccos_frontier_pos : 0 < Real.arccos ((1 + 2 * Real.sqrt 2) / 4) := by
   have hsqrt : Real.sqrt 2 < 3 / 2 := (Real.sqrt_lt' (by norm_num)).mpr (by norm_num)
   exact Real.arccos_pos.mpr (by linarith)
 
-/-- The circuit coefficient `1 + 1/(2p)` of the frontier coefficient `p`. -/
+/-- The circuit coefficient `1 + 1/(2p)` of the frontier coefficient `p`.
+@isnad1 id=eq.0h0v.s7.4d78dd1cc94b from=translated src=- shape=d2de5460 vocab=c0764b64
+-/
 theorem one_add_inv_two_mul_frontierCoefficient :
     1 + 1 / (2 * frontierCoefficient) =
       1 + Real.pi / (3 * Real.arccos ((1 + 2 * Real.sqrt 2) / 4)) := by
@@ -61,7 +75,9 @@ theorem one_add_inv_two_mul_frontierCoefficient :
   congr 1
   field_simp
 
-/-- The frontier ordering coefficient `2p` is at most `9/32`. -/
+/-- The frontier ordering coefficient `2p` is at most `9/32`.
+@isnad1 id=le.0h0v.s5.b51a3356c44a from=translated src=- shape=b9c36195 vocab=10d7bde7
+-/
 theorem two_mul_frontierCoefficient_le : 2 * frontierCoefficient ≤ 9 / 32 := by
   have hlo : (141421 : ℝ) / 100000 < Real.sqrt 2 :=
     (Real.lt_sqrt (by norm_num)).mpr (by norm_num)
@@ -90,7 +106,9 @@ theorem two_mul_frontierCoefficient_le : 2 * frontierCoefficient ≤ 9 / 32 := b
   linarith
 
 /-- **Parameters.** For every positive slack some admissible parameters bring the
-edge-score bound within that slack of the frontier coefficient. -/
+edge-score bound within that slack of the frontier coefficient.
+@isnad1 id=ex.1h1v.s8.c1707771aa28 from=translated src=- shape=f5e1fe19 vocab=86363566
+-/
 theorem exists_frontier_parameters {ξ : ℝ} (hξ : 0 < ξ) :
     ∃ (q : ℝ) (R : ℕ) (ρ₀ T ε : ℝ) (M : ℕ), 0 ≤ q ∧ 17 / 32 ≤ ρ₀ ∧
       ρ₀ ≤ 2 * q / (1 + q ^ 2) - 3 * (2 * q ^ 2) ^ R ∧ 0 < T ∧ 0 < ε ∧ 0 < M ∧

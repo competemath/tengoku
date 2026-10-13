@@ -52,7 +52,9 @@ noncomputable def outsidePoints
 
 omit [Fintype Choice] in
 /-- Occupancy and the complementary recovery sets use at most the sum of
-their individual point budgets. -/
+their individual point budgets.
+@isnad1 id=le.1h8v.s6.f1386228660a from=translated src=- shape=cdb33739 vocab=94b42201
+-/
 theorem cardOutsidePoints_le
     (sets : Index → Choice → Finset Point) (occupied : Finset Point)
     (selected : Finset Index) (outside : {index // index ∉ selected} → Choice)

@@ -25,7 +25,9 @@ namespace Algebraic.MassProduction.HighRate
 def packingCopies (sourceBits messageSymbols symbolBits : Nat) : Nat :=
   sourceBits / (messageSymbols * symbolBits) + 1
 
-/-- All source bits fit in the chosen copies' information positions. -/
+/-- All source bits fit in the chosen copies' information positions.
+@isnad1 id=le.2h3v.s5.dddf3dbbb412 from=translated src=- shape=378629aa vocab=aea51786
+-/
 theorem packingCopies_capacity
     (sourceBits messageSymbols symbolBits : Nat)
     (messagePositive : 0 < messageSymbols) (symbolPositive : 0 < symbolBits) :
@@ -38,7 +40,9 @@ theorem packingCopies_capacity
   omega
 
 /-- The storage expansion is the code-rate expansion plus at most one
-codeword's worth of rounding. -/
+codeword's worth of rounding.
+@isnad1 id=le.1h5v.s6.7eed8d1e7c4b from=translated src=- shape=e6c1cbde vocab=a4229a6b
+-/
 theorem packingCopies_storage
     (sourceBits messageSymbols codeSymbols symbolBits precision : Nat)
     (rate : precision * codeSymbols ≤ (precision + 1) * messageSymbols) :
@@ -62,7 +66,9 @@ theorem packingCopies_storage
     _ ≤ _ := Nat.add_le_add_right fullStorage _
 
 /-- An offline injection assigns every source bit to a distinct code,
-information symbol, and binary coordinate. -/
+information symbol, and binary coordinate.
+@isnad1 id=nonempty.2h3v.s5.718676e5f858 from=translated src=- shape=fe687fca vocab=08fa7a58
+-/
 theorem existsPackingPlacement
     {Information : Type*} [Fintype Information]
     (sourceBits symbolBits : Nat)

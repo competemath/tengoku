@@ -40,6 +40,9 @@ private theorem red_degree_endpoints (loopless : R.Loopless) (v : V) :
       Finset.mem_filter, Finset.mem_univ, true_and]
   rw [Multigraph.degree, split, Finset.card_union_of_disjoint disjoint]
 
+/--
+@isnad1 id=eq.1h4v.s6.f1cfc7df6322 from=translated src=- shape=84600a2d vocab=d218be79
+-/
 theorem red_degree_sum_cut (loopless : R.Loopless) (X : Finset V) :
     (R.cut X).card + 2 * (internalEdges R X).card = ∑ v ∈ X, R.degree v := by
   let first := Finset.univ.filter (fun e => R.fst e ∈ X)
@@ -65,6 +68,9 @@ theorem red_degree_sum_cut (loopless : R.Loopless) (X : Finset V) :
   rw [Finset.inter_comm second first] at secondCount
   lia
 
+/--
+@isnad1 id=eq.1h3v.s5.fbdfffba35a4 from=translated src=- shape=7b972ade vocab=83c27232
+-/
 theorem red_sum_degrees [Fintype V] (loopless : R.Loopless) :
     ∑ v, R.degree v = 2 * Fintype.card E := by
   have internal : internalEdges R (Finset.univ : Finset V) = Finset.univ := by
@@ -73,6 +79,9 @@ theorem red_sum_degrees [Fintype V] (loopless : R.Loopless) :
   simpa only [R.cut_univ, Finset.card_empty, zero_add, internal, Finset.card_univ]
     using (red_degree_sum_cut R loopless Finset.univ).symm
 
+/--
+@isnad1 id=eq.2h5v.s7.fddf15c7b5e0 from=translated src=- shape=d05f934e vocab=fe563395
+-/
 theorem sum_card_cut_inter_partition [Fintype V] (U : Finset V)
     (parts : Finset (Finset V)) (disjoint : (parts : Set (Finset V)).Pairwise Disjoint)
     (cover : parts.biUnion id = Finset.univ \ U) :

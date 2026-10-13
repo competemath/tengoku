@@ -20,11 +20,15 @@ public section
 
 namespace Complexity.KarchmerWigderson.RoundProtocol
 
-/-- Swapping all speakers swaps the input arguments to the protocol's run. -/
+/-- Swapping all speakers swaps the input arguments to the protocol's run.
+@isnad1 id=eq.0h6v.s5.727e62d60ce0 from=translated src=- shape=dd6976c6 vocab=4f32aa2b
+-/
 theorem run_swapPlayers {ι M : Type*} {d : ℕ} (P : RoundProtocol ι M d) (x y : ι → Bool) :
     P.swapPlayers.run x y = P.run y x := run_swapPlayers_internal P x y
 
-/-- Player swapping gives a protocol for the complemented function. -/
+/-- Player swapping gives a protocol for the complemented function.
+@isnad1 id=solveskw.1h5v.s5.2fdb6bbba090 from=translated src=- shape=7fff655f vocab=1adde6fa
+-/
 theorem SolvesKW.swapPlayers {ι M : Type*} {d : ℕ} {P : RoundProtocol ι M d}
     {f : (ι → Bool) → Bool} (h : P.SolvesKW f) : P.swapPlayers.SolvesKW (fun x => !f x) :=
   SolvesKW.swapPlayers_internal h

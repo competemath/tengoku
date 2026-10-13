@@ -31,6 +31,9 @@ variable {W : Type} [Fintype W] [DecidableEq W] (H : SimpleGraph W) [DecidableRe
 noncomputable def score (q : ℝ) (R : ℕ) (ω : W → ℝ) (v : W) : ℝ :=
   form (unitKernel H q R v) ω
 
+/--
+@isnad1 id=eq.2h5v.s6.4efdf2157b64 from=translated src=- shape=4b5ac540 vocab=4bab198e
+-/
 theorem form_congr {ι : Type} [Fintype ι] {α : ι → ℝ} {S : Finset ι}
     (hα : ∀ i ∉ S, α i = 0) {ω ω' : ι → ℝ} (h : ∀ i ∈ S, ω i = ω' i) :
     form α ω = form α ω' := by
@@ -41,14 +44,23 @@ theorem form_congr {ι : Type} [Fintype ι] {α : ι → ℝ} {S : Finset ι}
   · simp [hα i hi]
 
 omit [DecidableEq W] [DecidableRel H.Adj] in
+/--
+@isnad1 id=eq.2h8v.s6.cd6f9f69d931 from=translated src=- shape=c33faf56 vocab=9beaa073
+-/
 theorem score_congr {q : ℝ} {R : ℕ} {v : W} {S : Finset W} (hS : ball H v R ⊆ S)
     {ω ω' : W → ℝ} (h : ∀ i ∈ S, ω i = ω' i) : score H q R ω v = score H q R ω' v :=
   form_congr (S := S) (fun _ hi => unitKernel_eq_zero_of_notMem_ball H fun hb => hi (hS hb)) h
 
+/--
+@isnad1 id=iff.0h3v.s3.9e39ace7d1af from=translated src=- shape=bc6f63a1 vocab=df7d824d
+-/
 theorem between_comm {t x y : ℝ} : Between t x y ↔ Between t y x := by
   unfold Between
   tauto
 
+/--
+@isnad1 id=measurab.2h4v.s5.2aa3cdc38ae5 from=translated src=- shape=e81364b1 vocab=b6f22d65
+-/
 theorem measurableSet_between {Ω : Type} [MeasurableSpace Ω] {f g : Ω → ℝ}
     (hf : Measurable f) (hg : Measurable g) (t : ℝ) :
     MeasurableSet {ω | Between t (f ω) (g ω)} := by
@@ -61,11 +73,16 @@ def Crosses (t : ℝ) (X : W → ℝ) : Sym2 W → Prop :=
   Sym2.lift ⟨fun u v => Between t (X u) (X v), fun _ _ => propext between_comm⟩
 
 omit [Fintype W] [DecidableEq W] in
+/--
+@isnad1 id=iff.0h5v.s4.267cbd338d39 from=translated src=- shape=695f1f41 vocab=4078ff51
+-/
 @[simp] theorem crosses_mk {t : ℝ} {X : W → ℝ} {u v : W} :
     Crosses t X s(u, v) ↔ Between t (X u) (X v) := Iff.rfl
 
 omit [DecidableRel H.Adj] [DecidableEq W] in
-/-- The cut of a threshold set consists of the edges the threshold separates. -/
+/-- The cut of a threshold set consists of the edges the threshold separates.
+@isnad1 id=iff.0h5v.s6.339bbb4ce122 from=translated src=- shape=7d10c632 vocab=4249815b
+-/
 theorem mem_cutFinset_filter_lt_iff (X : W → ℝ) (t : ℝ) (e : Sym2 W) :
     e ∈ H.cutFinset (Finset.univ.filter fun v => X v < t) ↔
       e ∈ H.edgeSet ∧ Crosses t X e := by
@@ -79,6 +96,9 @@ noncomputable def edgeSupport (R : ℕ) : Sym2 W → Finset W :=
   Sym2.lift ⟨fun u v => ball H u R ∪ ball H v R, fun _ _ => Finset.union_comm _ _⟩
 
 omit [DecidableRel H.Adj] in
+/--
+@isnad1 id=eq.0h5v.s5.131d74a97576 from=translated src=- shape=a1ed773c vocab=15b53a2c
+-/
 @[simp] theorem edgeSupport_mk (R : ℕ) (u v : W) :
     edgeSupport H R s(u, v) = ball H u R ∪ ball H v R := rfl
 
@@ -87,6 +107,9 @@ def crossEvent (q : ℝ) (R : ℕ) (t : ℝ) (e : Sym2 W) : Set (W → ℝ) :=
   {ω | Crosses t (score H q R ω) e}
 
 omit [DecidableEq W] [DecidableRel H.Adj] in
+/--
+@isnad1 id=measurab.0h6v.s5.3fc2174294db from=translated src=- shape=658a8e09 vocab=e1180808
+-/
 theorem measurableSet_crossEvent (q : ℝ) (R : ℕ) (t : ℝ) (e : Sym2 W) :
     MeasurableSet (crossEvent H q R t e) := by
   induction e using Sym2.ind with
@@ -94,6 +117,9 @@ theorem measurableSet_crossEvent (q : ℝ) (R : ℕ) (t : ℝ) (e : Sym2 W) :
     exact measurableSet_between (Gaussian.measurable_form _) (Gaussian.measurable_form _) t
 
 omit [DecidableRel H.Adj] in
+/--
+@isnad1 id=dependso.0h6v.s6.315806c37c09 from=translated src=- shape=52e7f926 vocab=7ca025ec
+-/
 theorem dependsOn_crossEvent (q : ℝ) (R : ℕ) (t : ℝ) (e : Sym2 W) :
     DependsOn (· ∈ crossEvent H q R t e) (edgeSupport H R e : Set W) := by
   induction e using Sym2.ind with
@@ -107,6 +133,9 @@ def scoreEvent (q : ℝ) (R : ℕ) (p : ℝ → Prop) (v : W) : Set (W → ℝ) 
   {ω | p (score H q R ω v)}
 
 omit [DecidableEq W] [DecidableRel H.Adj] in
+/--
+@isnad1 id=dependso.0h6v.s5.9f2251287a57 from=translated src=- shape=e77d45e7 vocab=fe9f12f3
+-/
 theorem dependsOn_scoreEvent (q : ℝ) (R : ℕ) (p : ℝ → Prop) (v : W) :
     DependsOn (· ∈ scoreEvent H q R p v) (ball H v R : Set W) := by
   intro ω ω' h
@@ -116,7 +145,9 @@ theorem dependsOn_scoreEvent (q : ℝ) (R : ℕ) (p : ℝ → Prop) (v : W) :
 /-- The overlap constant for supports of radius `R`. -/
 def overlapBound (R : ℕ) : ℕ := 9 * 2 ^ (2 * R + 2)
 
-/-- The crossing-event supports of boundedly many edges meet that of a given edge. -/
+/-- The crossing-event supports of boundedly many edges meet that of a given edge.
+@isnad1 id=le.2h4v.s7.0927da7b33cd from=translated src=- shape=65bbe1d4 vocab=738ddd77
+-/
 theorem card_filter_not_disjoint_edgeSupport_le (degree : ∀ v, H.degree v ≤ 3) (R : ℕ)
     {e : Sym2 W} (he : e ∈ H.edgeFinset) :
     (H.edgeFinset.filter fun l => ¬ Disjoint (edgeSupport H R e) (edgeSupport H R l)).card ≤
@@ -163,7 +194,9 @@ theorem card_filter_not_disjoint_edgeSupport_le (degree : ∀ v, H.degree v ≤ 
         gcongr; exact card_ball_le H degree u (2 * R + 1)
     _ = overlapBound R := by unfold overlapBound; ring
 
-/-- The score-event supports of boundedly many vertices meet that of a given vertex. -/
+/-- The score-event supports of boundedly many vertices meet that of a given vertex.
+@isnad1 id=le.1h4v.s7.bd9e3d6dc522 from=translated src=- shape=c96b5154 vocab=dd294e02
+-/
 theorem card_filter_not_disjoint_ball_le (degree : ∀ v, H.degree v ≤ 3) (R : ℕ) (v : W) :
     (Finset.univ.filter fun w => ¬ Disjoint (ball H v R) (ball H w R)).card ≤
       overlapBound R := by

@@ -66,7 +66,9 @@ def ValidSchedule
   directions.length = targets.length ∧
     (recoverySets targets directions).Pairwise Disjoint
 
-/-- Exact geometric-sum cardinality of projective direction space. -/
+/-- Exact geometric-sum cardinality of projective direction space.
+@isnad1 id=eq.0h2v.s6.ea2be5072299 from=translated src=- shape=a6ffcc84 vocab=53bca0c3
+-/
 theorem card_projectiveDirections
     (K : Type*)
     [Field K] [Finite K]
@@ -76,7 +78,9 @@ theorem card_projectiveDirections
   apply Projectivization.card_of_finrank K (Fin dimension -> K)
   simp
 
-/-- Quotient form of the projective direction count. -/
+/-- Quotient form of the projective direction count.
+@isnad1 id=eq.0h2v.s6.ee19a5f50bf0 from=translated src=- shape=616e672f vocab=77ef8cb0
+-/
 theorem card_projectiveDirections_div
     (K : Type*)
     [Field K] [Finite K]
@@ -90,7 +94,9 @@ section Lines
 
 variable {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
 
-/-- Membership in a punctured line is witnessed by a nonzero scalar. -/
+/-- Membership in a punctured line is witnessed by a nonzero scalar.
+@isnad1 id=iff.0h5v.s7.838efaf1bc9a from=translated src=- shape=f9dc7e83 vocab=46e2224b
+-/
 theorem memPuncturedLine_iff
     [Finite K] (target : V) (direction : ℙ K V) (point : V) :
     point ∈ puncturedLine target direction ↔
@@ -108,7 +114,9 @@ private theorem pointMap_injective
     add_left_cancel equalPoints
   exact smul_left_injective K direction.rep_nonzero equalMultiples
 
-/-- A punctured affine line has one point per nonzero field scalar. -/
+/-- A punctured affine line has one point per nonzero field scalar.
+@isnad1 id=eq.0h4v.s6.bb859e08efce from=translated src=- shape=c2929eb8 vocab=b189b9af
+-/
 theorem card_puncturedLine
     [Finite K]
     (target : V)
@@ -119,7 +127,9 @@ theorem card_puncturedLine
   · simp [← Nat.card_eq_fintype_card]
   · exact (pointMap_injective target direction).injOn
 
-/-- The center is not in its punctured affine line. -/
+/-- The center is not in its punctured affine line.
+@isnad1 id=not.0h4v.s5.05c426861b4c from=translated src=- shape=cdb7b2ae vocab=3f3ddf81
+-/
 theorem target_not_mem_puncturedLine
     [Finite K]
     (target : V)
@@ -134,7 +144,9 @@ theorem target_not_mem_puncturedLine
   exact (smul_ne_zero nonzero direction.rep_nonzero) multipleZero
 
 /-- Summing over a punctured line is the same as summing over its nonzero
-parameters. -/
+parameters.
+@isnad1 id=eq.0h6v.s7.8106a847e587 from=translated src=- shape=abbe3322 vocab=96832987
+-/
 theorem sum_puncturedLine
     [Fintype K] [DecidableEq K]
     {A : Type*} [AddCommMonoid A]
@@ -156,7 +168,9 @@ theorem sum_puncturedLine
 
 /-- A punctured projective line can be enumerated using any chosen nonzero
 representative of its direction.  This removes any dependence on the
-arbitrary representative selected by `Projectivization.rep`. -/
+arbitrary representative selected by `Projectivization.rep`.
+@isnad1 id=eq.1h4v.s7.874b0a6b2234 from=translated src=- shape=c9e20ddb vocab=c8a889f1
+-/
 theorem puncturedLine_mk_eq_image
     [Fintype K] [DecidableEq K] [DecidableEq V]
     (target vector : V)
@@ -266,7 +280,9 @@ private theorem direction_eq_of_mem_puncturedLine
 /-- A direction whose projective class differs from every nonzero
 `point - target` direction yields a punctured line disjoint from the used
 points.  This is the pointwise form consumed by the constructive scheduler
-circuit. -/
+circuit.
+@isnad1 id=disjoint.1h5v.s6.a88dd0083175 from=translated src=- shape=97ab6307 vocab=fa251cea
+-/
 theorem puncturedLine_disjoint_of_avoids_differences
     [Finite K]
     (target : V)
@@ -289,7 +305,9 @@ theorem puncturedLine_disjoint_of_avoids_differences
   exact (avoids point pointUsed pointDifferent) equalDirection.symm
 
 /-- Each occupied point blocks at most one projective direction. This is
-the counting form used when a direction is sampled uniformly. -/
+the counting form used when a direction is sampled uniformly.
+@isnad1 id=le.0h4v.s6.cda2b474b0bb from=translated src=- shape=e4c30547 vocab=deb79c61
+-/
 theorem cardIntersectingDirections_le
     [Finite K] [Finite V]
     (target : V)
@@ -314,7 +332,9 @@ theorem cardIntersectingDirections_le
     at forbidden
 
 /-- If fewer points are used than there are projective directions, some
-punctured line through a new target avoids the used set. -/
+punctured line through a new target avoids the used set.
+@isnad1 id=ex.1h4v.s6.50702cb03100 from=translated src=- shape=cbdc399f vocab=230cbbf2
+-/
 theorem exists_puncturedLine_disjoint
     [Finite K] [Finite V]
     (target : V)
@@ -414,7 +434,9 @@ private theorem sum_card_recoverySets
           omega
 
 /-- Every request list has pairwise-disjoint punctured-line recovery sets
-when its exact point budget is smaller than projective direction space. -/
+when its exact point budget is smaller than projective direction space.
+@isnad1 id=ex.1h3v.s6.56bf9fc7b685 from=translated src=- shape=500bc6af vocab=88215af5
+-/
 theorem exists_validSchedule
     [Finite V]
     (targets : List V)
@@ -451,7 +473,9 @@ theorem exists_validSchedule
           (subset_recoveryUnion_of_mem sets set setMember)
 
 /-- The paper's simpler `requests * |K|` condition implies the exact
-recovery-set budget condition. -/
+recovery-set budget condition.
+@isnad1 id=ex.1h3v.s6.58d76e1ecb37 from=translated src=- shape=9f0ad3e4 vocab=6f4fd5c0
+-/
 theorem exists_validSchedule_of_mul_card_lt
     [Finite V]
     (targets : List V)

@@ -17,7 +17,9 @@ namespace Complexity.Frontier
 open Filter Asymptotics
 
 /-- Below `(1 + 1/A - ε)n`, frontier counts have an exponential margin. The independent
-condition `γ < 1` also absorbs the small output classes when many inputs are unused. -/
+condition `γ < 1` also absorbs the small output classes when many inputs are unused.
+@isnad1 id=ex.5h4v.s8.7ae8b7ad66ee from=translated src=- shape=8e8f62d3 vocab=dad3a66c
+-/
 theorem eventually_frontier_log_error {A ε γ : ℝ} (hA : 0 < A) (hε : 0 < ε)
     (hγ1 : γ < 1) (hγε : γ < A * ε) (K : ℕ → ℕ)
     (hK : (fun n => Real.log (K n)) =o[atTop] fun n => (n : ℝ)) :
@@ -79,7 +81,9 @@ theorem eventually_frontier_log_error {A ε γ : ℝ} (hA : 0 < A) (hε : 0 < ε
   dsimp [e, δ] at he' hηBn'
   nlinarith
 
-/-- A logarithmic count bound becomes an exponentially small fraction of all Boolean inputs. -/
+/-- A logarithmic count bound becomes an exponentially small fraction of all Boolean inputs.
+@isnad1 id=le.2h3v.s6.3f3f408f7842 from=translated src=- shape=5fb9f3ab vocab=5e1473ac
+-/
 theorem div_two_pow_le_of_logb {x γ : ℝ} {n : ℕ} (hx : 0 < x)
     (h : Real.logb 2 x ≤ (1 - γ) * n) :
     x / (2 : ℝ) ^ n ≤ (2 : ℝ) ^ (-γ * n) := by

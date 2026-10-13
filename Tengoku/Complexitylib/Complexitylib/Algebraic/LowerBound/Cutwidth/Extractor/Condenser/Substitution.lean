@@ -29,7 +29,9 @@ public section
 namespace Algebraic.Cutwidth.Extractor
 
 /-- Polynomial substitution followed by evaluation equals evaluation of the
-weighted monomial features used by the interpolation constraints. -/
+weighted monomial features used by the interpolation constraints.
+@isnad1 id=eq.0h8v.s7.75c1c107b167 from=translated src=- shape=fb1c4168 vocab=d43133eb
+-/
 theorem substitutedSum_eval {F : Type*} [CommRing F] {K : Nat}
     (E : Polynomial F) (h m : Nat) (p : Fin K → Polynomial F) (f : Polynomial F) (y : F) :
     (substitutedSum E h m p f).eval y =
@@ -38,7 +40,9 @@ theorem substitutedSum_eval {F : Type*} [CommRing F] {K : Nat}
   Internal.substitutedSum_eval E h m p f y
 
 /-- Each reduced coordinate has degree at most `E.natDegree - 1`, so the
-digit sum gives this uniform bound on the substituted polynomial. -/
+digit sum gives this uniform bound on the substituted polynomial.
+@isnad1 id=le.3h8v.s7.b66cdc316756 from=translated src=- shape=5eed5d11 vocab=c225957a
+-/
 theorem substitutedSum_natDegree_le {F : Type*} [CommRing F]
     {K A h m : Nat} (E : Polynomial F) (p : Fin K → Polynomial F) (f : Polynomial F)
     (monic : E.Monic) (base : 0 < h)
@@ -47,7 +51,9 @@ theorem substitutedSum_natDegree_le {F : Type*} [CommRing F]
       (A - 1) + (E.natDegree - 1) * (h - 1) * m :=
   Internal.substitutedSum_natDegree_le E p f monic base coeff
 
-/-- The strict-degree form used to deduce a zero polynomial from many roots. -/
+/-- The strict-degree form used to deduce a zero polynomial from many roots.
+@isnad1 id=lt.4h8v.s7.0dc34106a180 from=translated src=- shape=cc13de1c vocab=e3159cba
+-/
 theorem substitutedSum_degree_lt {F : Type*} [CommRing F]
     {K A h m : Nat} (E : Polynomial F) (p : Fin K → Polynomial F) (f : Polynomial F)
     (monic : E.Monic) (positive : 0 < A) (base : 0 < h)

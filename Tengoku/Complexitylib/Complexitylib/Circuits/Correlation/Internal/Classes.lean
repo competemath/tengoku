@@ -26,7 +26,9 @@ open Finset Complexity.Frontier
 
 variable {α : Type*}
 
-/-- Twice the agreement minus one is the normalized signed correlation. -/
+/-- Twice the agreement minus one is the normalized signed correlation.
+@isnad1 id=eq.0h3v.s6.923840faa045 from=translated src=- shape=edb3ea2e vocab=3ed99f0b
+-/
 theorem two_mul_agreement_sub_one [Fintype α] [Nonempty α] (f g : α → Bool) :
     2 * agreement f g - 1 = (∑ x, boolSign (f x) * boolSign (g x)) / Fintype.card α := by
   have h := sign_sum_eq f g
@@ -43,7 +45,9 @@ theorem two_mul_agreement_sub_one [Fintype α] [Nonempty α] (f g : α → Bool)
   field_simp
 
 /-- **Cauchy–Schwarz over classes.** If the squared sum over every class is at most its size
-times `Λ`, the squared total is at most the number of classes times `|α| Λ`. -/
+times `Λ`, the squared total is at most the number of classes times `|α| Λ`.
+@isnad1 id=le.1h5v.s7.f844875bdc34 from=translated src=- shape=442c71a5 vocab=6ffdf452
+-/
 theorem sq_sum_le_of_classes [Fintype α] {M : Type*} [Fintype M] [DecidableEq M]
     (w : α → ℝ) (msg : α → M) (Λ : ℝ)
     (h : ∀ x₀, (∑ x ∈ univ.filter (fun x => msg x = msg x₀), w x) ^ 2 ≤
@@ -78,7 +82,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-- **Correlation through rectangle classes.** Let every class of `msg` be a rectangle for the
 cut `X`, and let `g` be constant on the classes. Then the correlation of `g` with the quadratic
-form of `Q` satisfies `(2 · agreement - 1)² · 2^{cutRank Q X} ≤ |M|`. -/
+form of `Q` satisfies `(2 · agreement - 1)² · 2^{cutRank Q X} ≤ |M|`.
+@isnad1 id=le.2h6v.s7.59551aad8316 from=translated src=- shape=0b8940d0 vocab=830944a1
+-/
 theorem sq_two_mul_agreement_sub_one_mul_le (Q : Matrix ι ι (ZMod 2)) (g : (ι → Bool) → Bool)
     {M : Type*} [Fintype M] [DecidableEq M] (msg : (ι → Bool) → M) (X : Set ι)
     (hg : ∀ x y, msg x = msg y → g x = g y)

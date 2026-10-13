@@ -32,18 +32,30 @@ namespace Hypergraph
 def cut (H : Hypergraph V Λ) (X : Set V) : Set Λ :=
   {e | (H e ∩ X).Nonempty ∧ (H e \ X).Nonempty}
 
+/--
+@isnad1 id=eq.0h4v.s4.a16bc40d6ec6 from=translated src=- shape=4f1b9eb6 vocab=3725b741
+-/
 @[simp] theorem cut_compl (H : Hypergraph V Λ) (X : Set V) : H.cut Xᶜ = H.cut X := by
   ext e
   simp only [cut, mem_ofPred_eq, sdiff_eq, compl_compl]
   exact and_comm
 
+/--
+@isnad1 id=eq.0h3v.s4.12c6a6d24b67 from=translated src=- shape=80347531 vocab=ab102508
+-/
 @[simp] theorem cut_empty (H : Hypergraph V Λ) : H.cut ∅ = ∅ := by
   ext e
   simp [cut]
 
+/--
+@isnad1 id=eq.0h3v.s4.49b89a398a86 from=translated src=- shape=c4f5589d vocab=4e4de56d
+-/
 @[simp] theorem cut_univ (H : Hypergraph V Λ) : H.cut univ = ∅ := by
   rw [← compl_empty, cut_compl, cut_empty]
 
+/--
+@isnad1 id=le.0h5v.s5.c539af44d30c from=translated src=- shape=7e16fe38 vocab=b9018e90
+-/
 theorem cut_union_inter_subset (H : Hypergraph V Λ) (X Y : Set V) :
     H.cut (X ∩ Y) ∪ H.cut (X ∪ Y) ⊆ H.cut X ∪ H.cut Y := by
   rintro e (⟨⟨u, hu, huX, huY⟩, v, hv, hvXY⟩ | ⟨⟨u, hu, huXY⟩, v, hv, hvXY⟩)
@@ -54,13 +66,18 @@ theorem cut_union_inter_subset (H : Hypergraph V Λ) (X Y : Set V) :
     · exact Or.inl ⟨⟨u, hu, huX⟩, v, hv, fun hvX => hvXY (Or.inl hvX)⟩
     · exact Or.inr ⟨⟨u, hu, huY⟩, v, hv, fun hvY => hvXY (Or.inr hvY)⟩
 
+/--
+@isnad1 id=le.0h5v.s5.edc31f056f9d from=translated src=- shape=4a514be2 vocab=b9018e90
+-/
 theorem cut_inter_union_subset (H : Hypergraph V Λ) (X Y : Set V) :
     H.cut (X ∩ Y) ∩ H.cut (X ∪ Y) ⊆ H.cut X ∩ H.cut Y := by
   rintro e ⟨⟨⟨u, hu, huX, huY⟩, _⟩, ⟨_, v, hv, hvXY⟩⟩
   exact ⟨⟨⟨u, hu, huX⟩, v, hv, fun hvX => hvXY (Or.inl hvX)⟩,
     ⟨⟨u, hu, huY⟩, v, hv, fun hvY => hvXY (Or.inr hvY)⟩⟩
 
-/-- Hypergraph boundary size is submodular. -/
+/-- Hypergraph boundary size is submodular.
+@isnad1 id=le.0h5v.s6.c4e2b0c5cc71 from=translated src=- shape=0509a513 vocab=aa3a7e45
+-/
 theorem ncard_cut_submodular [Finite Λ] (H : Hypergraph V Λ) (X Y : Set V) :
     (H.cut (X ∩ Y)).ncard + (H.cut (X ∪ Y)).ncard ≤
       (H.cut X).ncard + (H.cut Y).ncard := by
@@ -78,7 +95,9 @@ def signalHypergraph (G : Multigraph V E) (label : E → Λ) : Hypergraph V Λ :
   fun s => {v | ∃ e, label e = s ∧ G.Incident v e}
 
 /-- Every crossing labelled edge gives a crossing signal hyperedge. The converse requires
-the occurrences of a label to be connected; it is false for arbitrary labellings. -/
+the occurrences of a label to be connected; it is false for arbitrary labellings.
+@isnad1 id=le.0h6v.s5.a665d643f1bb from=translated src=- shape=32744643 vocab=a00f0d9b
+-/
 theorem image_cut_subset_hypergraph_cut (G : Multigraph V E) (label : E → Λ) (X : Set V) :
     label '' G.cut X ⊆ (G.signalHypergraph label).cut X := by
   rintro _ ⟨e, he, rfl⟩
@@ -95,7 +114,9 @@ def labelGraph (G : Multigraph V E) (label : E → Λ) (s : Λ) :
   src e := G.src e.1
   tgt e := G.tgt e.1
 
-/-- A connected occurrence graph makes the native hypergraph boundary exact. -/
+/-- A connected occurrence graph makes the native hypergraph boundary exact.
+@isnad1 id=eq.1h6v.s6.043a6a14079b from=translated src=- shape=9409a55b vocab=cd6cd81c
+-/
 theorem image_cut_eq_hypergraph_cut (G : Multigraph V E) (label : E → Λ)
     (hconn : ∀ s, ∀ u ∈ G.signalHypergraph label s, ∀ v ∈ G.signalHypergraph label s,
       Relation.ReflTransGen (G.labelGraph label s).Adj u v) (X : Set V) :

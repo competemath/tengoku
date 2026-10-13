@@ -24,7 +24,9 @@ namespace Algebraic.MassProduction.HighRate
 
 open scoped BigOperators
 
-/-- Number of words containing a specified letter at least once. -/
+/-- Number of words containing a specified letter at least once.
+@isnad1 id=eq.0h3v.s6.a49af2f98e1e from=translated src=- shape=29266ef3 vocab=01cfcc2b
+-/
 theorem cardWordsContaining
     {Alphabet : Type*} [Fintype Alphabet] (letter : Alphabet) (length : Nat) :
     Nat.card {word : Fin length → Alphabet // ∃ index, word index = letter} =
@@ -60,14 +62,18 @@ def digitDegrees (digits : DigitMatrix Coordinate blockWidth blocks) : Coordinat
   fun coordinate => (digitExponentEquiv Coordinate blockWidth blocks digits coordinate).val
 
 /-- Every digit matrix encodes reduced exponents for a field of width
-`blockWidth * blocks`. -/
+`blockWidth * blocks`.
+@isnad1 id=lt.0h5v.s5.60ba5a4595ff from=translated src=- shape=3c287da8 vocab=132bd757
+-/
 theorem digitDegrees_lt (digits : DigitMatrix Coordinate blockWidth blocks)
     (coordinate : Coordinate) :
     digitDegrees digits coordinate < 2 ^ (blockWidth * blocks) := by
   simpa only [digitDegrees, ← pow_mul] using
     (digitExponentEquiv Coordinate blockWidth blocks digits coordinate).isLt
 
-/-- Extracting one encoded digit returns the original digit. -/
+/-- Extracting one encoded digit returns the original digit.
+@isnad1 id=eq.0h6v.s6.57b33fff6704 from=translated src=- shape=a8529c82 vocab=974286e0
+-/
 theorem digitDegreesDigit (digits : DigitMatrix Coordinate blockWidth blocks)
     (block : Fin blocks) (coordinate : Coordinate) :
     digitDegrees digits coordinate / 2 ^ (blockWidth * block.val) % 2 ^ blockWidth =
@@ -80,7 +86,9 @@ theorem digitDegreesDigit (digits : DigitMatrix Coordinate blockWidth blocks)
   exact congrArg Fin.val roundTrip
 
 /-- Every retained matrix supplies a common zero block in its exponent
-vector. The block starts at `blockWidth * block`. -/
+vector. The block starts at `blockWidth * block`.
+@isnad1 id=ex.0h4v.s8.f061a5cd82a1 from=translated src=- shape=03737502 vocab=f5dc4cd6
+-/
 theorem retainedDigitsCommonZeroBlock
     (digits : RetainedDigits Coordinate blockWidth blocks) :
     ∃ block : Fin blocks, CommonZeroBlock (digitDegrees digits.val)
@@ -91,7 +99,9 @@ theorem retainedDigitsCommonZeroBlock
   rw [digitDegreesDigit, congrFun blockZero coordinate]
   rfl
 
-/-- Exact dimension of the chosen monomial family before evaluation. -/
+/-- Exact dimension of the chosen monomial family before evaluation.
+@isnad1 id=eq.0h3v.s6.d1f896abb39e from=translated src=- shape=8b67fbf5 vocab=d2280aa2
+-/
 theorem cardRetainedDigits (Coordinate : Type*) [Fintype Coordinate]
     (blockWidth blocks : Nat) :
     Nat.card (RetainedDigits Coordinate blockWidth blocks) =

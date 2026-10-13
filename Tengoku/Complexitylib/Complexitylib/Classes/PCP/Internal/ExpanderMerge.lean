@@ -60,7 +60,9 @@ section Spectral
 abbrev base (hd : 0 < d) (rot : Fin N × Fin d → Fin N × Fin d)
     (hrot : Function.Involutive rot) : RegGraph := ofRot d hd N rot hrot
 
-/-- **The old steps of the lift**, with the mean corrected. -/
+/-- **The old steps of the lift**, with the mean corrected.
+@isnad1 id=le.5h6v.s8.27173554d93a from=translated src=- shape=a086954e vocab=8c16c432
+-/
 theorem sum_sq_step_lift_le (hn : 0 < n) (hd : 0 < d) (rot : Fin N × Fin d → Fin N × Fin d)
     (hrot : Function.Involutive rot) {lam : ℝ} (hspec : (base hd rot hrot).SpectralBound lam)
     (hN0 : 0 < N) (f : Fin n → ℝ) :
@@ -121,7 +123,9 @@ natural-number slot index, which is the form the general construction needs. -/
 def liftN (N n : ℕ) (v : Fin n) (i : ℕ) : Option (Fin N) :=
   if h : v.val + i * n < N then some ⟨v.val + i * n, h⟩ else none
 
-/-- **Every slot but the last is filled**, when `(m - 1) n ≤ N`. -/
+/-- **Every slot but the last is filled**, when `(m - 1) n ≤ N`.
+@isnad1 id=eq.2h5v.s6.8d718c4faef5 from=translated src=- shape=36685800 vocab=f7e07575
+-/
 theorem liftN_isSome {N n m : ℕ} (hm : (m - 1) * n ≤ N) (v : Fin n) {i : ℕ}
     (hi : i + 1 < m) : (liftN N n v i).isSome := by
   rw [liftN]
@@ -133,7 +137,9 @@ theorem liftN_isSome {N n m : ℕ} (hm : (m - 1) * n ≤ N) (v : Fin n) {i : ℕ
   rw [dite_eq_left (lt_of_lt_of_le hle hm)]
   rfl
 
-/-- **So at most one slot is empty.** -/
+/-- **So at most one slot is empty.**
+@isnad1 id=le.1h4v.s6.8f5e91fab1fb from=translated src=- shape=5ecee681 vocab=b032751e
+-/
 theorem card_liftN_none_le_one {N n m : ℕ} (hm : (m - 1) * n ≤ N) (v : Fin n) :
     ((Finset.range m).filter fun i => liftN N n v i = none).card ≤ 1 := by
   classical

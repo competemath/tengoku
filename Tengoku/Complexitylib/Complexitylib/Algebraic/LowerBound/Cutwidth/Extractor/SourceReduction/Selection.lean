@@ -32,7 +32,9 @@ public section
 namespace Algebraic.Cutwidth.Extractor
 
 /-- A somewhere sampler leaves many good fixings in each sufficiently large
-uniform source, with the same failure bound as for arbitrary source weights. -/
+uniform source, with the same failure bound as for arbitrary source weights.
+@isnad1 id=ex.4h10v.s7.d0bd9c657ea8 from=translated src=- shape=14500624 vocab=d43ae3eb
+-/
 theorem SomewhereSampler.exists_good_fibers {α Outer Candidate Ω : Type*}
     [Fintype α] [Fintype Outer] [Fintype Ω]
     {S : α → Outer → Candidate → Ω} {L ε δ : ℝ}
@@ -47,7 +49,9 @@ theorem SomewhereSampler.exists_good_fibers {α Outer Candidate Ω : Type*}
 coordinates with an escaping candidate. The distinguished coordinate for
 each parity may be any member of that parity. The weights and coordinate
 values are arbitrary here; the majority consumer additionally needs a
-probability distribution, signs, and its quantitative budgets. -/
+probability distribution, signs, and its quantitative budgets.
+@isnad1 id=ex.7h16v.s9.51b720d6a339 from=translated src=- shape=65ecc3b5 vocab=89b1853c
+-/
 theorem SomewhereSampler.parity_fibers {α Source Choice Seed : Type*}
     [Fintype Source] [Fintype Choice] [Fintype Seed] {N : Nat}
     {s : Finset α} {w : α → ℝ} (σ : α → Source → Fin N → ℝ)

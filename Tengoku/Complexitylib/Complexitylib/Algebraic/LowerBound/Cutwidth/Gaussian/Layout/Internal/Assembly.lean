@@ -33,11 +33,17 @@ noncomputable def layoutBound (ρ₀ T ε : ℝ) (M : ℕ) : ℝ :=
 variable {W : Type} [Fintype W] [DecidableEq W] (H : SimpleGraph W) [DecidableRel H.Adj]
 
 omit [DecidableEq W] [DecidableRel H.Adj] in
+/--
+@isnad1 id=measurab.1h6v.s5.830c15edc52c from=translated src=- shape=096c80d2 vocab=7b89233b
+-/
 theorem measurableSet_scoreEvent (q : ℝ) (R : ℕ) {p : ℝ → Prop}
     (hp : MeasurableSet {x | p x}) (v : W) : MeasurableSet (scoreEvent H q R p v) :=
   Gaussian.measurable_form (unitKernel H q R v) hp
 
 omit [DecidableEq W] in
+/--
+@isnad1 id=eq.1h2v.s6.34d80f71909c from=translated src=- shape=738794d2 vocab=38ce3745
+-/
 theorem card_edgeFinset_of_regular (regular : H.IsRegularOfDegree 3) :
     (H.edgeFinset.card : ℝ) = 3 / 2 * Fintype.card W := by
   have hsum := H.sum_degrees_eq_twice_card_edges
@@ -53,6 +59,9 @@ def deviation {κ : Type} (F : Finset κ) (A : κ → Set (W → ℝ)) (c : ℝ)
     ∑ k ∈ F, (gaussPi W).real (A k)|}
 
 omit [DecidableEq W] in
+/--
+@isnad1 id=lt.1h6v.s6.f5f2ac21af2d from=translated src=- shape=c7641c23 vocab=64027801
+-/
 theorem lt_of_notMem_deviation {κ : Type} {F : Finset κ} {A : κ → Set (W → ℝ)} {c : ℝ}
     {ω : W → ℝ} (h : ω ∉ deviation F A c) :
     ∑ k ∈ F, (A k).indicator (fun _ => (1 : ℝ)) ω < ∑ k ∈ F, (gaussPi W).real (A k) + c := by

@@ -70,6 +70,9 @@ private theorem bias_two_centered {α : Type*} {m : Nat} {s : Finset α} {w : α
     simpa [mean_sign_square hmass hσ] using hδ
   · simpa [hij] using bias_two h hij
 
+/--
+@isnad1 id=le.1h6v.s5.3faa53fb9ce1 from=translated src=- shape=8a9ce779 vocab=0fb498ae
+-/
 theorem signSum_first_moment {α : Type*} {m : Nat} {s : Finset α} {w : α → ℝ}
     {σ : α → Fin m → ℝ} {δ : ℝ} (h : ParityBiasBound s w σ δ) :
     |weightedMean s w (signSum σ)| ≤ m * δ := by
@@ -77,6 +80,9 @@ theorem signSum_first_moment {α : Type*} {m : Nat} {s : Finset α} {w : α → 
   rw [mean_sum]
   exact abs_sum_le_mul (bias_one h)
 
+/--
+@isnad1 id=le.4h6v.s7.59ca247a0bc8 from=translated src=- shape=7a05d0d0 vocab=c267b687
+-/
 theorem signSum_second_moment {α : Type*} {m : Nat} {s : Finset α} {w : α → ℝ}
     {σ : α → Fin m → ℝ} {δ : ℝ} (hδ : 0 ≤ δ) (hmass : ∑ a ∈ s, w a = 1)
     (hσ : ∀ a ∈ s, ∀ i, σ a i = 1 ∨ σ a i = -1)
@@ -189,6 +195,9 @@ private theorem mean_four_le {α : Type*} {m : Nat} {s : Finset α} {w : α → 
   simpa [hij, hik, hil, hjk, hjl, hkl, mul_assoc] using
     h {i, j, k, l} (by simp) (by simp [hij, hik, hil, hjk, hjl, hkl])
 
+/--
+@isnad1 id=le.2h6v.s7.d4d039bfa8ec from=translated src=- shape=5eb9e873 vocab=c6bcdc5b
+-/
 theorem signSum_third_moment {α : Type*} {m : Nat} {s : Finset α} {w : α → ℝ}
     {σ : α → Fin m → ℝ} {δ : ℝ}
     (hσ : ∀ a ∈ s, ∀ i, σ a i = 1 ∨ σ a i = -1)
@@ -204,6 +213,9 @@ theorem signSum_third_moment {α : Type*} {m : Nat} {s : Finset α} {w : α → 
       abs_sum_le_mul fun i => abs_sum_le_mul fun j => abs_sum_le_mul (bias_three hσ h i j)
     _ = (m : ℝ) ^ 3 * δ := by ring
 
+/--
+@isnad1 id=le.4h6v.s7.e32ae7b794d4 from=translated src=- shape=64e975b0 vocab=f30b9c93
+-/
 theorem signSum_fourth_moment {α : Type*} {m : Nat} {s : Finset α} {w : α → ℝ}
     {σ : α → Fin m → ℝ} {δ : ℝ} (hδ : 0 ≤ δ) (hmass : ∑ a ∈ s, w a = 1)
     (hσ : ∀ a ∈ s, ∀ i, σ a i = 1 ∨ σ a i = -1)

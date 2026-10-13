@@ -38,6 +38,9 @@ open ThreeSATCSP SAT
 /-- The alphabet Dinur's round runs over. -/
 abbrev GapAlpha : Type := MultiTest.Alpha ReadIdx
 
+/--
+@isnad1 id=le.0h0v.s6.0d92ed26d726 from=translated src=- shape=17ea198e vocab=4c3d97d6
+-/
 theorem card_le_gapAlpha : Fintype.card (Fin 3 → Bool) ≤ Fintype.card GapAlpha := by
   classical
   have hl : Fintype.card (Fin 3 → Bool) = 8 := by
@@ -57,9 +60,14 @@ noncomputable def alphaEmb : (Fin 3 → Bool) ↪ GapAlpha :=
 noncomputable def baseCSP (φ : CNF) : ConstraintGraph GapAlpha :=
   (toGraph φ).lift alphaEmb
 
+/--
+@isnad1 id=eq.0h1v.s4.2c8d1aa2bc74 from=translated src=- shape=38a7c031 vocab=3093badc
+-/
 @[simp] theorem numEdges_baseCSP (φ : CNF) : (baseCSP φ).numEdges = 3 * φ.length := rfl
 
-/-- The starting graph is small enough for logarithmically many rounds. -/
+/-- The starting graph is small enough for logarithmically many rounds.
+@isnad1 id=le.0h1v.s5.201b6cbd3718 from=translated src=- shape=305d6a09 vocab=335abb50
+-/
 theorem numEdges_baseCSP_le_pow (φ : CNF) : (baseCSP φ).numEdges ≤ 2 ^ (3 * φ.length) := by
   rw [numEdges_baseCSP]
   exact Nat.le_of_lt (Nat.lt_two_pow_self)

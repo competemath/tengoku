@@ -24,15 +24,24 @@ namespace Algebraic.Cutwidth.Extractor.Internal
 
 open scoped Classical
 
+/--
+@isnad1 id=eq.0h2v.s5.b9bda70681c4 from=translated src=- shape=8d29e8f7 vocab=15fbba8b
+-/
 theorem uniformSeededTestProb_empty {Seed Ω : Type*} [Fintype Seed] [Fintype Ω] :
     uniformSeededTestProb (∅ : Finset (Seed × Ω)) = 0 := by
   simp [uniformSeededTestProb]
 
+/--
+@isnad1 id=le.0h3v.s4.9ed4a68fc699 from=translated src=- shape=df5ad661 vocab=fd339ea3
+-/
 theorem uniformSeededTestProb_nonneg {Seed Ω : Type*} [Fintype Seed] [Fintype Ω]
     (T : Finset (Seed × Ω)) : 0 ≤ uniformSeededTestProb T := by
   unfold uniformSeededTestProb
   positivity
 
+/--
+@isnad1 id=le.0h3v.s4.dc5a5c4ed71f from=translated src=- shape=0adc14f2 vocab=fd339ea3
+-/
 theorem uniformSeededTestProb_le_one {Seed Ω : Type*} [Fintype Seed] [Fintype Ω]
     (T : Finset (Seed × Ω)) : uniformSeededTestProb T ≤ 1 := by
   by_cases zero : (Fintype.card Seed : ℝ) * Fintype.card Ω = 0
@@ -42,6 +51,9 @@ theorem uniformSeededTestProb_le_one {Seed Ω : Type*} [Fintype Seed] [Fintype �
     apply (div_le_one positive).mpr
     exact_mod_cast (by simpa only [Fintype.card_prod] using Finset.card_le_univ T)
 
+/--
+@isnad1 id=eq.0h4v.s6.d46ee36063c2 from=translated src=- shape=37c79992 vocab=3b463144
+-/
 theorem uniformSeededTestProb_product {Seed Ω : Type*} [Fintype Seed] [Fintype Ω]
     (S : Finset Seed) (T : Finset Ω) :
     uniformSeededTestProb (S.product T) =
@@ -49,6 +61,9 @@ theorem uniformSeededTestProb_product {Seed Ω : Type*} [Fintype Seed] [Fintype 
   rw [uniformSeededTestProb, Finset.product_eq_sprod, Finset.card_product, Nat.cast_mul,
     div_mul_div_comm]
 
+/--
+@isnad1 id=eq.0h3v.s5.33c5505147e2 from=translated src=- shape=4ea146ca vocab=b34524f2
+-/
 theorem uniformSeededTestProb_univ_product {Seed Ω : Type*}
     [Fintype Seed] [Fintype Ω] [Nonempty Seed] (T : Finset Ω) :
     uniformSeededTestProb ((Finset.univ : Finset Seed).product T) =
@@ -56,6 +71,9 @@ theorem uniformSeededTestProb_univ_product {Seed Ω : Type*}
   rw [uniformSeededTestProb_product, Finset.card_univ, div_self, one_mul]
   exact_mod_cast Fintype.card_ne_zero
 
+/--
+@isnad1 id=eq.0h2v.s5.5c7f75a0e258 from=translated src=- shape=4c510f69 vocab=31410c1a
+-/
 theorem uniformSeededTestProb_univ {Seed Ω : Type*}
     [Fintype Seed] [Fintype Ω] [Nonempty Seed] [Nonempty Ω] :
     uniformSeededTestProb (Finset.univ : Finset (Seed × Ω)) = 1 := by
@@ -63,6 +81,9 @@ theorem uniformSeededTestProb_univ {Seed Ω : Type*}
   exact mul_ne_zero (by exact_mod_cast (Fintype.card_ne_zero : Fintype.card Seed ≠ 0))
     (by exact_mod_cast (Fintype.card_ne_zero : Fintype.card Ω ≠ 0))
 
+/--
+@isnad1 id=eq.0h6v.s7.c4f57ad3bbf7 from=translated src=- shape=95a63d49 vocab=8f163870
+-/
 theorem seededTestProb_univ_product {α Seed Ω : Type*} [Fintype Seed]
     (E : α → Seed → Ω) (P : Finset α) (T : Finset Ω) :
     seededTestProb (fun x : P => E x.val) ((Finset.univ : Finset Seed).product T) =
@@ -81,24 +102,36 @@ theorem seededTestProb_univ_product {α Seed Ω : Type*} [Fintype Seed]
       rw [Finset.univ_eq_attach]
       exact Finset.sum_attach P (fun x => (seedHits E T x : ℝ))
 
+/--
+@isnad1 id=flatstro.2h7v.s5.972f94ff6675 from=translated src=- shape=5122fde2 vocab=8b661dff
+-/
 theorem strong_mono_threshold {α Seed Ω : Type*} [Fintype Seed] [Fintype Ω]
     {E : α → Seed → Ω} {K L : Nat} {ε : ℝ}
     (extract : FlatStrongSeededExtractor E K ε) (threshold : K ≤ L) :
     FlatStrongSeededExtractor E L ε :=
   fun P nonempty size => extract P nonempty (threshold.trans size)
 
+/--
+@isnad1 id=flatstro.2h7v.s5.feda7558e829 from=translated src=- shape=543e1e89 vocab=8b661dff
+-/
 theorem strong_mono_error {α Seed Ω : Type*} [Fintype Seed] [Fintype Ω]
     {E : α → Seed → Ω} {K : Nat} {ε δ : ℝ}
     (extract : FlatStrongSeededExtractor E K ε) (error : ε ≤ δ) :
     FlatStrongSeededExtractor E K δ :=
   fun P nonempty size T => (extract P nonempty size T).trans error
 
+/--
+@isnad1 id=flatstro.3h8v.s5.c7b3652185ab from=translated src=- shape=613e1823 vocab=8b661dff
+-/
 theorem strong_mono {α Seed Ω : Type*} [Fintype Seed] [Fintype Ω]
     {E : α → Seed → Ω} {K L : Nat} {ε δ : ℝ}
     (extract : FlatStrongSeededExtractor E K ε) (threshold : K ≤ L) (error : ε ≤ δ) :
     FlatStrongSeededExtractor E L δ :=
   strong_mono_error (strong_mono_threshold extract threshold) error
 
+/--
+@isnad1 id=flatseed.1h6v.s5.23872c8beaee from=translated src=- shape=aecf02f7 vocab=63e6cc7e
+-/
 theorem flatSeededExtractor_of_strong {α Seed Ω : Type*}
     [Fintype Seed] [Fintype Ω] [Nonempty Seed] [Nonempty Ω]
     {E : α → Seed → Ω} {K : Nat} {ε : ℝ}

@@ -19,6 +19,9 @@ public section
 
 namespace Algebraic.Cutwidth.Extractor.Internal
 
+/--
+@isnad1 id=ex.1h3v.s6.70878606e8d4 from=translated src=- shape=c063fabc vocab=77266168
+-/
 theorem exists_union_of_card_le_two_mul {ι : Type*} [DecidableEq ι] (U : Finset ι) {k : Nat}
     (size : U.card ≤ 2 * k) :
     ∃ S T : Finset ι, S ⊆ U ∧ T ⊆ U ∧ Disjoint S T ∧ S ∪ T = U ∧

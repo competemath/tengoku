@@ -23,7 +23,9 @@ namespace Algebraic.MassProduction.HighRate
 open scoped BigOperators
 
 /-- A small residue excludes every positive multiple of `q - 1` below
-`dimension * (q - 1)`. -/
+`dimension * (q - 1)`.
+@isnad1 id=not.4h4v.s6.ca840a9679eb from=translated src=- shape=6c2e0da0 vocab=1518356b
+-/
 theorem notDvdOfResidueGap
     (q dimension modulus exponent : Nat)
     (modulusDivides : modulus ∣ q)
@@ -69,7 +71,9 @@ def CommonZeroBlock {Coordinate : Type*}
   ∀ coordinate, degrees coordinate % 2 ^ (start + blockWidth) < 2 ^ start
 
 /-- The residue definition is equivalent to the usual quotient-and-mask
-test that the indicated block of binary digits is zero. -/
+test that the indicated block of binary digits is zero.
+@isnad1 id=iff.0h4v.s6.dc2590319307 from=translated src=- shape=2f4aed1b vocab=c54dfc48
+-/
 theorem commonZeroBlock_iff
     {Coordinate : Type*} (degrees : Coordinate → Nat) (start blockWidth : Nat) :
     CommonZeroBlock degrees start blockWidth ↔
@@ -82,7 +86,9 @@ theorem commonZeroBlock_iff
   simp
 
 /-- The predecessor of a positive multiple of a modulus has the last
-possible residue. -/
+possible residue.
+@isnad1 id=eq.3h2v.s6.7833d2f6d691 from=translated src=- shape=2e9865ce vocab=830de2ad
+-/
 theorem predResidueOfDvd (q modulus : Nat)
     (qPositive : 0 < q) (modulusPositive : 0 < modulus) (divides : modulus ∣ q) :
     (q - 1) % modulus = modulus - 1 := by
@@ -96,7 +102,9 @@ theorem predResidueOfDvd (q modulus : Nat)
   omega
 
 /-- A reduced exponent containing a nonempty zero block is strictly below
-`q - 1`, when `q` is a power of two covering that block. -/
+`q - 1`, when `q` is a power of two covering that block.
+@isnad1 id=lt.4h4v.s7.494aae83b013 from=translated src=- shape=f9b08d32 vocab=1539f498
+-/
 theorem exponentLtCardPredOfZeroBlock
     (width start blockWidth exponent : Nat)
     (blockPositive : 0 < blockWidth) (blockFits : start + blockWidth ≤ width)
@@ -117,7 +125,9 @@ theorem exponentLtCardPredOfZeroBlock
   omega
 
 /-- Summing the low residues of all coordinates leaves a gap of at least
-the dimension, provided the block has enough distinct bit patterns. -/
+the dimension, provided the block has enough distinct bit patterns.
+@isnad1 id=le.2h4v.s7.0a8be7c53ff0 from=translated src=- shape=d7480ce1 vocab=a144e018
+-/
 theorem commonZeroBlockSumResidueGap
     {Coordinate : Type*} [Fintype Coordinate]
     (degrees : Coordinate → Nat) (start blockWidth : Nat)

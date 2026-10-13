@@ -22,7 +22,9 @@ namespace Complexity.Shallow
 open Finset
 
 /-- Any fixed number of pairwise coprime moduli can be chosen at a common
-scale, with constants independent of that scale. -/
+scale, with constants independent of that scale.
+@isnad1 id=ex.0h1v.s6.ecf74b0d1ec9 from=translated src=- shape=7df8c13d vocab=2d667bbb
+-/
 theorem exists_moduli (r : ℕ) : ∃ C : ℕ, 1 ≤ C ∧ ∀ k : ℕ, 1 ≤ k →
     ∃ m : Fin r → ℕ,
       Pairwise (fun i j => (m i).Coprime (m j)) ∧

@@ -32,33 +32,55 @@ variable {α β : Type*}
 /-- The sign `(-1)^z` of an element `z` of `ZMod 2`, as a real number. -/
 def zsign (z : ZMod 2) : ℝ := if z = 0 then 1 else -1
 
+/--
+@isnad1 id=or.0h1v.s7.bc72bed5d0ad from=translated src=- shape=a99d14a3 vocab=c87b9854
+-/
 theorem zmod_two_eq_zero_or_one : ∀ z : ZMod 2, z = 0 ∨ z = 1 := by
   decide
 
+/--
+@isnad1 id=iff.0h2v.s7.88ce2ba08f1c from=translated src=- shape=42eeeaae vocab=014cf724
+-/
 theorem zmod_two_add_eq_zero_iff : ∀ a b : ZMod 2, a + b = 0 ↔ b = a := by
   decide
 
-/-- Over `ZMod 2`, two vectors sum to zero exactly when they are equal. -/
+/-- Over `ZMod 2`, two vectors sum to zero exactly when they are equal.
+@isnad1 id=iff.0h3v.s7.9403180d76ec from=translated src=- shape=4075b054 vocab=014cf724
+-/
 theorem add_eq_zero_iff_eq_zmod_two {γ : Type*} (u v : γ → ZMod 2) : u + v = 0 ↔ v = u := by
   simp only [funext_iff, Pi.add_apply, Pi.zero_apply]
   exact forall_congr' fun i => zmod_two_add_eq_zero_iff (u i) (v i)
 
+/--
+@isnad1 id=eq.0h2v.s6.c69d887c02c4 from=translated src=- shape=b67944bb vocab=7e7ffb40
+-/
 theorem zsign_add (a b : ZMod 2) : zsign (a + b) = zsign a * zsign b := by
   rcases zmod_two_eq_zero_or_one a with rfl | rfl <;>
     rcases zmod_two_eq_zero_or_one b with rfl | rfl <;> norm_num [zsign]
   decide
 
+/--
+@isnad1 id=eq.0h1v.s7.fb90282b56f2 from=translated src=- shape=094bdb0f vocab=b6a072fb
+-/
 theorem zsign_add_one (a : ZMod 2) : zsign (a + 1) = -zsign a := by
   rw [zsign_add]
   norm_num [zsign]
 
+/--
+@isnad1 id=eq.0h1v.s4.53ffe0f464bd from=translated src=- shape=4b389b45 vocab=0ff4b1a2
+-/
 @[simp] theorem abs_zsign (z : ZMod 2) : |zsign z| = 1 := by
   unfold zsign; split_ifs <;> norm_num
 
+/--
+@isnad1 id=eq.0h1v.s5.ea730ddfb02a from=translated src=- shape=1bb5949c vocab=eb6d1335
+-/
 @[simp] theorem zsign_sq (z : ZMod 2) : zsign z ^ 2 = 1 := by
   unfold zsign; split_ifs <;> norm_num
 
-/-- **Character orthogonality.** The signs `(-1)^{p · v}` cancel over all `p` unless `v = 0`. -/
+/-- **Character orthogonality.** The signs `(-1)^{p · v}` cancel over all `p` unless `v = 0`.
+@isnad1 id=eq.0h2v.s8.16b5dda0e383 from=translated src=- shape=ea69721a vocab=f12a2c35
+-/
 theorem sum_zsign_dotProduct [Fintype α] [DecidableEq α] (v : α → ZMod 2) :
     ∑ p : α → ZMod 2, zsign (p ⬝ᵥ v) = if v = 0 then (2 : ℝ) ^ Fintype.card α else 0 := by
   split_ifs with hv
@@ -78,7 +100,9 @@ theorem sum_zsign_dotProduct [Fintype α] [DecidableEq α] (v : α → ZMod 2) :
         _ = -S := by rw [Finset.sum_neg_distrib]
     linarith
 
-/-- All fibres of a linear map have the size of its kernel. -/
+/-- All fibres of a linear map have the size of its kernel.
+@isnad1 id=eq.0h4v.s9.311f2486dd7a from=translated src=- shape=a5a750f0 vocab=d5fd26d8
+-/
 theorem card_filter_mulVec_eq [Fintype α] [Fintype β] [DecidableEq β]
     (B : Matrix α β (ZMod 2)) (q : β → ZMod 2) :
     (univ.filter fun z : β → ZMod 2 => B.mulVec z = B.mulVec q).card =
@@ -95,7 +119,9 @@ theorem card_filter_mulVec_eq [Fintype α] [Fintype β] [DecidableEq β]
   · intro z _
     simp
 
-/-- The kernel of `B` has `2^{|β| - rank B}` elements. -/
+/-- The kernel of `B` has `2^{|β| - rank B}` elements.
+@isnad1 id=eq.0h3v.s8.ec645b3811a6 from=translated src=- shape=08e9bee2 vocab=b1af3a1b
+-/
 theorem card_ker_mul_two_pow_rank [Fintype α] [Fintype β] [DecidableEq β]
     (B : Matrix α β (ZMod 2)) :
     (univ.filter fun z : β → ZMod 2 => B.mulVec z = 0).card * 2 ^ B.rank =
@@ -110,7 +136,9 @@ theorem card_ker_mul_two_pow_rank [Fintype α] [Fintype β] [DecidableEq β]
   rw [Module.finrank_fintype_fun_eq_card] at hrn
   rw [hker, hcard, ZMod.card, Matrix.rank, ← pow_add, ← hrn, add_comm]
 
-/-- **Lindsey's lemma over `GF(2)`.** -/
+/-- **Lindsey's lemma over `GF(2)`.**
+@isnad1 id=le.2h7v.s8.92cdeb0a206c from=translated src=- shape=34e55494 vocab=f25f7240
+-/
 theorem sq_sum_bilinear_mul_two_pow_rank_le [Fintype α] [Fintype β] [DecidableEq α]
     [DecidableEq β] (B : Matrix α β (ZMod 2)) (P : Finset (α → ZMod 2))
     (Q : Finset (β → ZMod 2)) (g : (α → ZMod 2) → ℝ) (h : (β → ZMod 2) → ℝ)

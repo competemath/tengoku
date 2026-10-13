@@ -21,6 +21,9 @@ public section
 
 namespace Algebraic.Cutwidth.Extractor.Internal
 
+/--
+@isnad1 id=eq.0h3v.s8.b83cca324ad6 from=translated src=- shape=e6583f9e vocab=a6ade270
+-/
 theorem norm_root_binomialModulus {F : Type*} [Field F] (a : F) (s : Nat) :
     Algebra.norm F (AdjoinRoot.root (binomialModulus a s)) = a := by
   have odd : Odd (3 ^ s) := (by decide : Odd 3).pow
@@ -31,6 +34,9 @@ theorem norm_root_binomialModulus {F : Type*} [Field F] (a : F) (s : Nat) :
   simp [binomialModulus, Polynomial.coeff_X_pow]
   positivity
 
+/--
+@isnad1 id=ne.1h4v.s7.3775c9fdf4b8 from=translated src=- shape=609dbe5a vocab=8ab312ed
+-/
 theorem root_binomialModulus_noncube {F : Type*} [Field F] (a : F) (s : Nat)
     (noncube : ∀ b : F, b ^ 3 ≠ a) :
     ∀ b : AdjoinRoot (binomialModulus a s),

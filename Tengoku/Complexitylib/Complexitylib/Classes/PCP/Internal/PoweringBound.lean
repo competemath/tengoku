@@ -46,7 +46,9 @@ namespace Complexity
 
 /-! ### Monotonicity of the Paley–Zygmund ratio -/
 
-/-- `m ↦ m² / (m + P)` is increasing on `m ≥ 0` for `P > 0`. -/
+/-- `m ↦ m² / (m + P)` is increasing on `m ≥ 0` for `P > 0`.
+@isnad1 id=le.3h3v.s6.86a2c03d71e8 from=translated src=- shape=4004b8e9 vocab=8b19d7e0
+-/
 theorem sq_div_add_mono {m M P : ℝ} (hm : 0 ≤ m) (hmM : m ≤ M) (hP : 0 < P) :
     m ^ 2 / (m + P) ≤ M ^ 2 / (M + P) := by
   rw [div_le_div_iff₀ (by linarith) (by linarith)]
@@ -60,7 +62,9 @@ theorem sq_div_add_mono {m M P : ℝ} (hm : 0 ≤ m) (hmM : m ≤ M) (hP : 0 < P
 
 /-- The powering bound's algebra, over opaque real quantities: `U` violated
 darts among `N · d`, first moment at least `U (q - 1) (d^T q^T / 2)² / (K² d^(T+1) q^T)`,
-second moment as in `sum_sq_goodCrossings_le`. -/
+second moment as in `sum_sq_goodCrossings_le`.
+@isnad1 id=le.7h8v.s10.fc7a1c390a1a from=translated src=- shape=ebac789b vocab=630537c9
+-/
 theorem powering_algebra {U N d K q lam C : ℝ} (T' : ℕ) (hN : 0 < N) (hd : 0 < d)
     (hK : 0 < K) (hq : 1 ≤ q) (hlam : lam < 1) (hU : 0 < U)
     (hcount : (U * ((q - 1) * (d ^ (T' + 2) * q ^ (T' + 2) / 2
@@ -112,7 +116,9 @@ variable {α : Type} [Fintype α] [DecidableEq α] [Nonempty α]
 variable (R : RegCSP α) (q T : ℕ) (hq : 0 < q)
 
 /-- **The second-moment count, with the first-moment lower bound on both
-sides.** -/
+sides.**
+@isnad1 id=le.5h7v.s9.9caaebefc34b from=translated src=- shape=8089978e vocab=3de107d3
+-/
 theorem card_unsatDarts_ge' (A : (R.killedPow q T hq).Assignment) {Alb P : ℝ}
     (hA0 : 0 ≤ Alb)
     (hA : Alb ≤ ∑ z : R.graph.V × R.KLabels q T, ((R.goodCrossings q T hq A z).card : ℝ))
@@ -134,7 +140,9 @@ noncomputable def powConst (q : ℕ) (α : Type) [Fintype α] : ℝ :=
 `powering_soundness` and with the plurality loss at most half the total, the
 powered system's violated fraction is at least
 `c² u / (c + 2 T² u + 2 T / (1 - λ))`, `u` the decoded assignment's violated
-fraction. -/
+fraction.
+@isnad1 id=le.10h7v.s8.4e4c075d6b2a from=translated src=- shape=c0ae8b3d vocab=3c643a9b
+-/
 theorem unsatFrac_killedPow_clean (A : (R.killedPow q T hq).Assignment) {H : ℕ}
     (hH : 2 * H + 1 < T) (hHT : H + 1 ≤ T)
     (hsq : ∀ i ∈ Finset.range (H + 1), ∀ j ∈ Finset.range (H + 1), i + j + 1 < T)
@@ -233,7 +241,9 @@ noncomputable def powFloor (c T lam : ℝ) : ℝ :=
   (c ^ 2 / T ^ 2) / (c + 2 * T ^ 2 + 2 * T / (1 - lam))
 
 /-- **The rational bound dominates a `min`.** For values up to `1 / T²` the
-bound is linear with slope `powSlope`; beyond that it is at least `powFloor`. -/
+bound is linear with slope `powSlope`; beyond that it is at least `powFloor`.
+@isnad1 id=le.5h4v.s7.6eb331c7db10 from=translated src=- shape=cb688667 vocab=4d426c7d
+-/
 theorem min_le_powBound {c T lam u : ℝ} (hc : 0 ≤ c) (hT : 1 ≤ T) (hlam : lam < 1)
     (hu0 : 0 ≤ u) (hu1 : u ≤ 1) :
     min (powSlope c T lam * u) (powFloor c T lam)
@@ -266,7 +276,9 @@ theorem min_le_powBound {c T lam u : ℝ} (hc : 0 ≤ c) (hT : 1 ≤ T) (hlam : 
       _ ≤ c ^ 2 * u / (c + 2 * T ^ 2 * u + 2 * T / (1 - lam)) :=
           div_le_div_of_nonneg_left (by positivity) hD hden
 
-/-- **The powered value, in `min` form.** -/
+/-- **The powered value, in `min` form.**
+@isnad1 id=le.10h6v.s9.ed2ff40c5d89 from=translated src=- shape=b8afdd4b vocab=93c4a3d0
+-/
 theorem le_unsatVal_killedPow_min {H : ℕ}
     (hH : 2 * H + 1 < T) (hHT : H + 1 ≤ T)
     (hsq : ∀ i ∈ Finset.range (H + 1), ∀ j ∈ Finset.range (H + 1), i + j + 1 < T)
@@ -302,7 +314,9 @@ end RegCSP
 /-! ### Choosing the parameters -/
 
 /-- **Bernoulli, for the plurality loss.** With `m = 4 K (q - 1)`,
-`4 K (q - 1)^m ≤ q^m`. -/
+`4 K (q - 1)^m ≤ q^m`.
+@isnad1 id=le.2h2v.s7.8a265ac4aa9b from=translated src=- shape=4011e393 vocab=3e115a59
+-/
 theorem four_mul_pow_le {K q : ℕ} (hK : 1 ≤ K) (hq : 2 ≤ q) :
     4 * K * (q - 1) ^ (4 * K * (q - 1)) ≤ q ^ (4 * K * (q - 1)) := by
   have hq1 : 1 ≤ q - 1 := by omega
@@ -337,7 +351,9 @@ def powH (K q : ℕ) : ℕ := 4 * K * (q - 1) - 1
 
 /-- **Parameters for powering.** For `q ≥ 2` and alphabet size `K ≥ 1`, the
 choices `powT` and `powH` meet every side condition of the powering bound, for
-any degree. -/
+any degree.
+@isnad1 id=and.2h3v.s7.de35bbf7a0a0 from=translated src=- shape=496f99b7 vocab=1fb959da
+-/
 theorem powering_params_spec {K q : ℕ} (hK : 1 ≤ K) (hq : 2 ≤ q) (d : ℕ) :
     2 * powH K q + 1 < powT K q ∧ powH K q + 1 ≤ powT K q
       ∧ (∀ i ∈ Finset.range (powH K q + 1), ∀ j ∈ Finset.range (powH K q + 1),
@@ -388,7 +404,9 @@ coefficient. -/
 noncomputable def slopeUnit (K lam : ℝ) : ℝ :=
   1 / (16 * K ^ 4 * (1 / (4 * K ^ 2) + 2 + 16 * K / (1 - lam)))
 
-/-- **The slope grows linearly in `q`.** -/
+/-- **The slope grows linearly in `q`.**
+@isnad1 id=le.3h3v.s7.3002a16a8d04 from=translated src=- shape=ee8ce238 vocab=33e65990
+-/
 theorem slopeUnit_mul_le_powSlope {K : ℕ} {q : ℕ} (hK : 1 ≤ K) (hq : 2 ≤ q) {lam : ℝ}
     (hlam1 : lam < 1) :
     slopeUnit (K : ℝ) lam * ((q : ℝ) - 1)

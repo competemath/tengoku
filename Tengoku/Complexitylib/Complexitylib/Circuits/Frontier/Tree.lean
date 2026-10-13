@@ -87,6 +87,9 @@ def Coherent : Prop :=
       P.message v z = P.message v x ∧
       ∀ u, P.message u z = P.message u x ∨ P.message u z = P.message u y
 
+/--
+@isnad1 id=eq.1h8v.s6.a7c4e0064482 from=translated src=- shape=d275782f vocab=5e6ead56
+-/
 theorem Coherent.peers_eq_rectangle (hP : P.Coherent) (v : N) (x : ι → U) :
     P.peers v x = rectangle (P.region v) (P.inside v x) (P.outside v x) := by
   apply subset_antisymm
@@ -111,23 +114,35 @@ def erase (hP : P.Coherent) (v : N) (x : ι → U) :
     · exact ha.2 ⟨ha.1, h.symm.trans hz.2⟩
     · exact hb.2 ⟨hb.1, h.symm.trans hz.2⟩
 
+/--
+@isnad1 id=coherent.1h8v.s6.36c70d0a06f9 from=translated src=- shape=24d18890 vocab=b6e74d5a
+-/
 theorem Coherent.erase (hP : P.Coherent) (v : N) (x : ι → U) :
     (P.erase hP v x).Coherent := by
   intro u a ha b hb hab z hza hzb
   exact hP u a ha.1 b hb.1 hab z hza hzb
 
+/--
+@isnad1 id=le.1h8v.s6.54240d16c11a from=translated src=- shape=b3458ea8 vocab=851479b8
+-/
 theorem transitionCount_erase_le [Finite ι] [Finite U] [Fintype N]
     (hP : P.Coherent) (v : N) (x : ι → U) :
     (P.erase hP v x).transitionCount ≤ P.transitionCount := by
   refine Finset.sum_le_sum fun u _ => ?_
   exact ncard_le_ncard (image_mono sdiff_subset) ((toFinite S).image _)
 
+/--
+@isnad1 id=le.1h8v.s6.bd3d925517f8 from=translated src=- shape=b37933b8 vocab=2b2aa690
+-/
 theorem ncard_inside_empty_le {v : N} (hv : P.region v = ∅) (x : ι → U) :
     (P.inside v x).ncard ≤ 1 := by
   have : Subsingleton (P.region v → U) :=
     ⟨fun a b => funext fun i => absurd i.2 (by simp [hv])⟩
   exact (ncard_le_one (toFinite _)).mpr fun a _ b _ => Subsingleton.elim a b
 
+/--
+@isnad1 id=eq.1h7v.s6.a45a0c66db28 from=translated src=- shape=e3012572 vocab=36a6a046
+-/
 theorem ncard_inside_root {x : ι → U} (hx : x ∈ S) :
     (P.inside P.root x).ncard = S.ncard := by
   have he : P.peers P.root x = S :=
@@ -136,7 +151,9 @@ theorem ncard_inside_root {x : ι → U} (hx : x ∈ S) :
   refine ncard_image_of_injective _ fun a b h => funext fun i => ?_
   exact domRestrict_eq_domRestrict_iff.mp h (by simp [P.region_root])
 
-/-- A minimal-rank region with a large interior has two small child interiors. -/
+/-- A minimal-rank region with a large interior has two small child interiors.
+@isnad1 id=ex.3h8v.s7.8f7508971a38 from=translated src=- shape=2709f68f vocab=6ec5ae20
+-/
 theorem exists_critical {K : ℕ} (hK : 1 < K) (hS : K ≤ S.ncard)
     {x : ι → U} (hx : x ∈ S) :
     ∃ v, K ≤ (P.inside v x).ncard ∧ (P.inside (P.left v) x).ncard < K ∧
@@ -153,7 +170,9 @@ theorem exists_critical {K : ℕ} (hK : 1 < K) (hS : K ≤ S.ncard)
       exact Nat.find_min hex (hv ▸ h) ⟨u, rfl, hu⟩
   exact ⟨v, hlarge, hsmall _ (P.left_lt v), hsmall _ (P.right_lt v)⟩
 
-/-- **Tree threshold charging.** Only the actual number of joint merge states is charged. -/
+/-- **Tree threshold charging.** Only the actual number of joint merge states is charged.
+@isnad1 id=le.3h7v.s7.33e317507798 from=translated src=- shape=bb915e56 vocab=0ecc0f9c
+-/
 theorem ncard_le_of_small_sides [Finite ι] [Finite U] [Fintype N] {K : ℕ}
     (hK : 1 < K) (hS : K ≤ S.ncard)
     (hsmall : ∀ v, ∀ x ∈ S, (P.inside v x).ncard < K ∨ (P.outside v x).ncard < K) :
@@ -218,6 +237,9 @@ theorem ncard_le_of_small_sides [Finite ι] [Finite U] [Fintype N] {K : ℕ}
       Nat.mul_le_mul (by lia) (Nat.mul_le_mul (by lia) hout)
     _ = (K - 1) ^ 3 := by ring
 
+/--
+@isnad1 id=lt.1h6v.s5.5834e789e159 from=translated src=- shape=5495194b vocab=be723217
+-/
 theorem transitionCount_pos [Finite ι] [Finite U] [Fintype N] (hS : S.Nonempty) :
     0 < P.transitionCount := by
   exact ((ncard_pos (toFinite _)).mpr (hS.image (P.transition P.root))).trans_le
@@ -225,7 +247,9 @@ theorem transitionCount_pos [Finite ι] [Finite U] [Fintype N] (hS : S.Nonempty)
       (fun _ _ => Nat.zero_le _) (Finset.mem_univ _))
 
 /-- **Weighted tree peeling.** A rectangle budget is paid once; the thin remainder pays
-at most `(K - 1)^3` maximum atoms per joint merge state. -/
+at most `(K - 1)^3` maximum atoms per joint merge state.
+@isnad1 id=le.6h10v.s7.30df67f33987 from=translated src=- shape=872b5489 vocab=00f79f5e
+-/
 theorem abs_sumOn_le_of_budget [Finite ι] [Finite U] [Fintype N]
     (hP : P.Coherent) {K : ℕ} (hK : 1 < K)
     {w cost : (ι → U) → ℝ} {a : ℝ} (ha : 0 ≤ a) (hw : ∀ x, |w x| ≤ a)

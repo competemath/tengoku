@@ -42,28 +42,38 @@ namespace Complexity
 /-- The bit of `z` at position `p`, `false` past the end. -/
 def bitOf (z : List Bool) (p : ℕ) : Bool := (z.drop p).headD false
 
-/-- Within range, `bitOf` is the indexed bit. -/
+/-- Within range, `bitOf` is the indexed bit.
+@isnad1 id=eq.1h2v.s5.81df28bc5b6c from=translated src=- shape=20f4bc3f vocab=5c9b083b
+-/
 theorem bitOf_eq_getElem {z : List Bool} {p : ℕ} (h : p < z.length) :
     bitOf z p = z[p] := by
   rw [bitOf, List.drop_eq_getElem_cons h, List.headD_cons]
 
-/-- Past the end there is no bit. -/
+/-- Past the end there is no bit.
+@isnad1 id=eq.1h2v.s4.a730c5615df6 from=translated src=- shape=6d3dd76d vocab=a079d488
+-/
 theorem bitOf_of_le {z : List Bool} {p : ℕ} (h : z.length ≤ p) :
     bitOf z p = false := by
   rw [bitOf, List.drop_eq_nil_of_le h, List.headD_nil]
 
-/-- Reading inside the first part of a concatenation. -/
+/-- Reading inside the first part of a concatenation.
+@isnad1 id=eq.1h3v.s5.598442d777cb from=translated src=- shape=0567b49b vocab=86ab40a7
+-/
 theorem bitOf_append_left {a : List Bool} {p : ℕ} (h : p < a.length) (b : List Bool) :
     bitOf (a ++ b) p = bitOf a p := by
   rw [bitOf, bitOf, List.drop_append_of_le_length h.le, List.drop_eq_getElem_cons h]
   rw [List.cons_append, List.headD_cons, List.headD_cons]
 
-/-- Reading past the first part of a concatenation. -/
+/-- Reading past the first part of a concatenation.
+@isnad1 id=eq.1h3v.s5.0d39d3865ffb from=translated src=- shape=5a95ec4d vocab=98c492e5
+-/
 theorem bitOf_append_right {a : List Bool} {p : ℕ} (h : a.length ≤ p) (b : List Bool) :
     bitOf (a ++ b) p = bitOf b (p - a.length) := by
   rw [bitOf, bitOf, List.drop_append, List.drop_eq_nil_of_le h, List.nil_append]
 
-/-- `Cobham.bitAt` reads exactly one bit, and it is `bitOf`. -/
+/-- `Cobham.bitAt` reads exactly one bit, and it is `bitOf`.
+@isnad1 id=eq.0h2v.s4.51489f6742cd from=translated src=- shape=255a82da vocab=327353c4
+-/
 theorem bitAt_eq (r z : List Bool) : bitAt r z = [bitOf z r.length] := by
   rw [bitAt, bitOf]
   cases h : z.drop r.length with
@@ -81,12 +91,18 @@ def cellBits (o : ℕ) (z : List Bool) : ℕ → List Bool
   | 0 => []
   | m + 1 => cellBits o z m ++ [bitOf z (2 * m + o)]
 
+/--
+@isnad1 id=eq.0h3v.s4.7154aceff774 from=translated src=- shape=051e8374 vocab=9b616216
+-/
 @[simp] theorem cellBits_length (o : ℕ) (z : List Bool) (m : ℕ) :
     (cellBits o z m).length = m := by
   induction m with
   | zero => rfl
   | succ m ih => rw [cellBits, List.length_append, ih]; rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.8c58450627f7 from=translated src=- shape=67467237 vocab=2b68551a
+-/
 theorem cellBits_getElem? (o : ℕ) (z : List Bool) :
     ∀ (m i : ℕ), i < m → (cellBits o z m)[i]? = some (bitOf z (2 * i + o)) := by
   intro m
@@ -117,6 +133,9 @@ def runTrue (z : List Bool) : ℕ → List Bool
   | m + 1 =>
       runTrue z m ++ (if m ≤ (runTrue z m).length ∧ bitOf z m = true then [true] else [])
 
+/--
+@isnad1 id=le.0h2v.s3.fe8d290f2e8f from=translated src=- shape=85503962 vocab=b37456a7
+-/
 theorem runTrue_length_le (z : List Bool) (m : ℕ) : (runTrue z m).length ≤ m := by
   induction m with
   | zero => rfl
@@ -126,7 +145,9 @@ theorem runTrue_length_le (z : List Bool) (m : ℕ) : (runTrue z m).length ≤ m
 
 /-- **The run's length is where the first `false` is.** The guard in `runTrue`
 stops the run at the first `false` rather than restarting after it, so the run's
-length is the position of the first `false`, clamped by the width. -/
+length is the position of the first `false`, clamped by the width.
+@isnad1 id=eq.2h3v.s5.fc89f66fa8b5 from=translated src=- shape=cda18b98 vocab=8d67cdde
+-/
 theorem runTrue_length {z : List Bool} {n : ℕ} (htrue : ∀ i < n, bitOf z i = true)
     (hfalse : bitOf z n = false) (m : ℕ) :
     (runTrue z m).length = min m n := by
@@ -174,7 +195,9 @@ private theorem runStep_cons (x p : List Bool) (v : Fin 1 → List Bool) :
 
 /-- **Every second bit is in the algebra.** One limited recursion on notation:
 each peeled bit of the ruler appends one more bit of `z`, read at twice the
-remaining ruler's length plus the offset. -/
+remaining ruler's length plus the offset.
+@isnad1 id=cobham.2h4v.s5.5b17136eb6ce from=translated src=- shape=8f7ca2d3 vocab=ff8ff7b6
+-/
 theorem cellBitsFn {n : ℕ} (o : ℕ) {gr gz : (Fin n → List Bool) → List Bool}
     (hr : Cobham gr) (hz : Cobham gz) :
     Cobham fun v : Fin n → List Bool => cellBits o (gz v) (gr v).length := by
@@ -206,7 +229,9 @@ theorem cellBitsFn {n : ℕ} (o : ℕ) {gr gz : (Fin n → List Bool) → List B
 
 /-- **The leading run of `true`s is in the algebra.** One limited recursion on
 notation: the run grows by one only while it has kept pace with the ruler, which
-is the length comparison `nonemptyFn`/`notFn` performs. -/
+is the length comparison `nonemptyFn`/`notFn` performs.
+@isnad1 id=cobham.2h3v.s5.f0736725e3cb from=translated src=- shape=141c5fbd vocab=41db99cf
+-/
 theorem runTrueFn {n : ℕ} {gr gz : (Fin n → List Bool) → List Bool}
     (hr : Cobham gr) (hz : Cobham gz) :
     Cobham fun v : Fin n → List Bool => runTrue (gz v) (gr v).length := by

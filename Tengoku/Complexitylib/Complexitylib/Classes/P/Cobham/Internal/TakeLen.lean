@@ -50,17 +50,27 @@ def takeLenAux (k : ℕ) (w : List Bool) : List Bool :=
 /-- Truncate the verbatim suffix of a pair to the length of its leading block. -/
 def takeLen (p : List Bool) : List Bool := takeLenAux 0 p
 
+/--
+@isnad1 id=eq.0h1v.s3.72deccc68b4e from=translated src=- shape=7db742f1 vocab=314b4840
+-/
 @[simp] theorem takeLenAux_nil (k : ℕ) : takeLenAux k [] = [] := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.48ae0cf354b6 from=translated src=- shape=e16313ea vocab=e8e51859
+-/
 @[simp] theorem takeLenAux_singleton (k : ℕ) (b : Bool) : takeLenAux k [b] = [] := by
   cases b <;> rfl
 
-/-- Reaching the separator ends the ruler: the suffix is truncated to `k`. -/
+/-- Reaching the separator ends the ruler: the suffix is truncated to `k`.
+@isnad1 id=eq.0h2v.s4.76c90851528e from=translated src=- shape=3712e7b1 vocab=0b52ea4c
+-/
 @[simp] theorem takeLenAux_sep (k : ℕ) (z : List Bool) :
     takeLenAux k (false :: true :: z) = z.take k := by
   simp [takeLenAux, unpair?]
 
-/-- A doubled payload bit lengthens the ruler by one. -/
+/-- A doubled payload bit lengthens the ruler by one.
+@isnad1 id=eq.0h3v.s5.b6ffce7ec062 from=translated src=- shape=06d1b82c vocab=ebeff9da
+-/
 theorem takeLenAux_double (k : ℕ) (b : Bool) (z : List Bool) :
     takeLenAux k (b :: b :: z) = takeLenAux (k + 1) z := by
   cases b <;>
@@ -72,11 +82,15 @@ theorem takeLenAux_double (k : ℕ) (b : Bool) (z : List Bool) :
           simp only [Option.map_some, List.length_cons]
           rw [show k + (x.length + 1) = k + 1 + x.length from by omega]
 
-/-- A broken doubling halts the scan with no output. -/
+/-- A broken doubling halts the scan with no output.
+@isnad1 id=eq.0h2v.s4.57f0968f174b from=translated src=- shape=6e112483 vocab=d9f409a8
+-/
 @[simp] theorem takeLenAux_broken (k : ℕ) (z : List Bool) :
     takeLenAux k (true :: false :: z) = [] := rfl
 
-/-- On a genuine pair the leading block is the ruler. -/
+/-- On a genuine pair the leading block is the ruler.
+@isnad1 id=eq.0h2v.s4.01e129fc39cb from=translated src=- shape=3f6366f7 vocab=0cc10818
+-/
 theorem takeLen_pair (c y : List Bool) : takeLen (pair c y) = y.take c.length := by
   simp [takeLen, takeLenAux]
 
@@ -581,7 +595,9 @@ private theorem take_init_nil_cells :
   · obtain ⟨i, rfl⟩ : ∃ i, j = i + 1 := ⟨j - 1, by omega⟩
     rw [Tape.init_cells_ge _ _ (by simp), regCells_blank (by omega)]
 
-/-- `takeLenTM` computes `takeLen` in `3 · |p| + 6` steps. -/
+/-- `takeLenTM` computes `takeLen` in `3 · |p| + 6` steps.
+@isnad1 id=computes.0h0v.s5.cd087492bcb0 from=translated src=- shape=6686dc05 vocab=08d1ebc3
+-/
 theorem takeLenTM_computesInTime :
     takeLenTM.ComputesInTime takeLen (fun n => 3 * n + 6) := by
   intro p
@@ -605,7 +621,9 @@ theorem takeLenTM_computesInTime :
 
 end TakeLenMachine
 
-/-- Internal proof that ruler-truncation is in `FP`. -/
+/-- Internal proof that ruler-truncation is in `FP`.
+@isnad1 id=mem.0h0v.s4.1e7a174b63ba from=translated src=- shape=08f40544 vocab=4a0a06ba
+-/
 theorem takeLen_mem_FP : takeLen ∈ FP := by
   refine ⟨1, 1, takeLenTM, (fun n => 3 * n + 6), takeLenTM_computesInTime, ?_⟩
   have hn : (fun n : ℕ => 3 * n) =O ((· ^ 1) : ℕ → ℕ) := by

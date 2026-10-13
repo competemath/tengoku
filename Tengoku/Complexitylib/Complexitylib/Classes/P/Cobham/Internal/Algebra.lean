@@ -34,13 +34,17 @@ namespace Complexity
 namespace Cobham
 
 /-- The class respects pointwise equality of functions. Useful because the constructors
-of `Cobham` produce syntactically specific lambda terms. -/
+of `Cobham` produce syntactically specific lambda terms.
+@isnad1 id=cobham.2h3v.s5.16ff6b1608d8 from=translated src=- shape=b4fc6715 vocab=cdcc4db3
+-/
 theorem of_eq {n : ℕ} {f g : (Fin n → List Bool) → List Bool} (hf : Cobham f)
     (h : ∀ v, f v = g v) : Cobham g :=
   (funext h : f = g) ▸ hf
 
 /-- Every constant function is in the class: build the constant string bit by bit from
-`empty` and the successors. -/
+`empty` and the successors.
+@isnad1 id=cobham.0h2v.s3.4d6db344cbdc from=translated src=- shape=aeea9229 vocab=cdcc4db3
+-/
 theorem const {n : ℕ} (s : List Bool) : Cobham fun _ : Fin n → List Bool => s := by
   induction s with
   | nil => exact .empty
@@ -48,7 +52,9 @@ theorem const {n : ℕ} (s : List Bool) : Cobham fun _ : Fin n → List Bool => 
 
 /-- Composition with two inner functions, packaged for readability: the
 constructor's `Fin`-indexed family is awkward to supply when the two components
-differ. -/
+differ.
+@isnad1 id=cobham.3h4v.s6.4084199dc525 from=translated src=- shape=8a5585dc vocab=bdb9cd54
+-/
 theorem comp₂ {n : ℕ} {f : (Fin 2 → List Bool) → List Bool}
     {g₀ g₁ : (Fin n → List Bool) → List Bool}
     (hf : Cobham f) (h₀ : Cobham g₀) (h₁ : Cobham g₁) :
@@ -59,7 +65,9 @@ theorem comp₂ {n : ℕ} {f : (Fin 2 → List Bool) → List Bool}
     funext i
     fin_cases i <;> rfl
 
-/-- Composition with three inner functions. -/
+/-- Composition with three inner functions.
+@isnad1 id=cobham.4h5v.s6.9449a8df7192 from=translated src=- shape=5ede5c21 vocab=bdb9cd54
+-/
 theorem comp₃ {n : ℕ} {f : (Fin 3 → List Bool) → List Bool}
     {g₀ g₁ g₂ : (Fin n → List Bool) → List Bool}
     (hf : Cobham f) (h₀ : Cobham g₀) (h₁ : Cobham g₁) (h₂ : Cobham g₂) :
@@ -71,7 +79,9 @@ theorem comp₃ {n : ℕ} {f : (Fin 3 → List Bool) → List Bool}
     fin_cases i <;> rfl
 
 /-- Concatenation is in the class, by limited recursion on notation on the first
-argument with bound `smash (true :: x) (true :: y)`. -/
+argument with bound `smash (true :: x) (true :: y)`.
+@isnad1 id=cobham.0h0v.s6.7b5a4436a0a9 from=translated src=- shape=b44f7abc vocab=254331bd
+-/
 theorem append : Cobham fun v : Fin 2 → List Bool => v 0 ++ v 1 := by
   -- Recursion on notation computing `x ++ y`: base `y`, step `b :: ·` on the
   -- recursive value.
@@ -103,7 +113,9 @@ theorem append : Cobham fun v : Fin 2 → List Bool => v 0 ++ v 1 := by
   · rw [hrec]
     rfl
 
-/-- Concatenation of two members of the class is a member of the class. -/
+/-- Concatenation of two members of the class is a member of the class.
+@isnad1 id=cobham.2h3v.s5.5b183ce3187d from=translated src=- shape=e0f95393 vocab=254331bd
+-/
 theorem appendFn {n : ℕ} {g₀ g₁ : (Fin n → List Bool) → List Bool}
     (h₀ : Cobham g₀) (h₁ : Cobham g₁) :
     Cobham fun v : Fin n → List Bool => g₀ v ++ g₁ v :=
@@ -112,7 +124,9 @@ theorem appendFn {n : ℕ} {g₀ g₁ : (Fin n → List Bool) → List Bool}
 /-- The self-delimiting pairing `pair x y = delimit x ++ y` is in the class, by
 limited recursion on notation on `x`: each peeled bit is doubled onto the
 recursive value, and the base case emits the separator `01` followed by `y`. The
-bound is exact — `|pair x y| = |x ++ x| + |y ++ [0,1]|`. -/
+bound is exact — `|pair x y| = |x ++ x| + |y ++ [0,1]|`.
+@isnad1 id=cobham.0h0v.s5.62c6ccced62f from=translated src=- shape=9b0fbc04 vocab=280e14bd
+-/
 theorem pairing : Cobham fun v : Fin 2 → List Bool => pair (v 0) (v 1) := by
   have hrec : ∀ (x : List Bool) (v : Fin 1 → List Bool),
       recNotation (fun u : Fin 1 → List Bool => false :: true :: u 0)
@@ -148,7 +162,9 @@ theorem pairing : Cobham fun v : Fin 2 → List Bool => pair (v 0) (v 1) := by
 
 /-- Dropping the leading bit is in the class, by limited recursion on notation:
 on `b :: x` both step functions return the peeled tail `x`, and the argument
-itself bounds the result. -/
+itself bounds the result.
+@isnad1 id=cobham.0h0v.s5.9636e3795ae2 from=translated src=- shape=59c18a17 vocab=ab1ab4be
+-/
 theorem tail : Cobham fun v : Fin 1 → List Bool => (v 0).tail := by
   have hrec : ∀ (x : List Bool) (v : Fin 0 → List Bool),
       recNotation (fun _ : Fin 0 → List Bool => ([] : List Bool))
@@ -167,7 +183,9 @@ theorem tail : Cobham fun v : Fin 1 → List Bool => (v 0).tail := by
 /-- **Bit dispatch is in the class.** `caseBit (v 0) (v 1) (v 2)` is a single
 limited recursion on notation over `v 0`: the recursion's own bit-selected step
 functions do the branching, projecting out `v 1` or `v 2`, and the concatenation
-of the two branches bounds the result. -/
+of the two branches bounds the result.
+@isnad1 id=cobham.0h0v.s6.da81a21afbc9 from=translated src=- shape=6f59b94e vocab=4ee203b0
+-/
 theorem dispatch : Cobham fun v : Fin 3 → List Bool =>
     caseBit (v 0) (v 1) (v 2) := by
   -- On `b :: x` the step argument is `⟨x, rec, v 1, v 2⟩`, so the branches are
@@ -193,7 +211,9 @@ theorem dispatch : Cobham fun v : Fin 3 → List Bool =>
 /-- **Dropping a prefix of a given length is in the class.** `v 1` is advanced by
 one `tail` per bit of the ruler `v 0`: the recursion applies `tail` to its own
 recursive value, so the changing argument lives in the recursion's value rather
-than in its parameters — which is what makes it expressible at all. -/
+than in its parameters — which is what makes it expressible at all.
+@isnad1 id=cobham.0h0v.s5.4f9bd3b4ca18 from=translated src=- shape=77d28a9c vocab=e5c1bc7e
+-/
 theorem dropPrefix :
     Cobham fun v : Fin 2 → List Bool => (v 1).drop (v 0).length := by
   have hrec : ∀ (r : List Bool) (u : Fin 1 → List Bool),
@@ -226,7 +246,9 @@ private theorem take_succ_eq (x : List Bool) (n : ℕ) :
 
 /-- **Taking a prefix of a given length is in the class.** Each bit of the ruler
 `v 0` appends one more bit of `v 1`, read off by dispatching on the head of what
-is still undropped — so `dropPrefix` and `dispatch` together give `take`. -/
+is still undropped — so `dropPrefix` and `dispatch` together give `take`.
+@isnad1 id=cobham.0h0v.s5.1ba4d653d1cd from=translated src=- shape=77d28a9c vocab=7b08c97a
+-/
 theorem takePrefix :
     Cobham fun v : Fin 2 → List Bool => (v 1).take (v 0).length := by
   have hbit : ∀ z : List Bool, caseBit z [true] [false] = z.take 1 := by
@@ -267,7 +289,9 @@ theorem takePrefix :
 
 /-- **Total bit dispatch is in the class.** Same recursion as `dispatch`, except
 the base case returns the `false` branch instead of the empty string — so the
-empty string reads as `false` and every flag is genuinely one bit. -/
+empty string reads as `false` and every flag is genuinely one bit.
+@isnad1 id=cobham.0h0v.s6.6039e5d90699 from=translated src=- shape=6f59b94e vocab=3cadfc26
+-/
 theorem dispatch₀ : Cobham fun v : Fin 3 → List Bool =>
     caseBit₀ (v 0) (v 1) (v 2) := by
   have hrec : ∀ (x : List Bool) (v : Fin 2 → List Bool),
@@ -287,50 +311,66 @@ theorem dispatch₀ : Cobham fun v : Fin 3 → List Bool =>
   · rw [hrec]
     rfl
 
-/-- Applying `tail` to a member of the class. -/
+/-- Applying `tail` to a member of the class.
+@isnad1 id=cobham.1h2v.s4.b2d00ba1ef29 from=translated src=- shape=105d9904 vocab=ab1ab4be
+-/
 theorem tailFn {n : ℕ} {g : (Fin n → List Bool) → List Bool} (h : Cobham g) :
     Cobham fun v : Fin n → List Bool => (g v).tail :=
   (Cobham.comp Cobham.tail fun _ : Fin 1 => h).of_eq fun _ => rfl
 
-/-- Total if-then-else on a flag is in the class. -/
+/-- Total if-then-else on a flag is in the class.
+@isnad1 id=cobham.3h4v.s5.43c1a0177ad5 from=translated src=- shape=c2ca06cd vocab=3cadfc26
+-/
 theorem iteFn {n : ℕ} {gc gx gy : (Fin n → List Bool) → List Bool}
     (hc : Cobham gc) (hx : Cobham gx) (hy : Cobham gy) :
     Cobham fun v : Fin n → List Bool => caseBit₀ (gc v) (gx v) (gy v) :=
   (comp₃ dispatch₀ hc hx hy).of_eq fun v => by simp
 
-/-- The flag connectives are in the class: each is one `dispatch₀`. -/
+/-- The flag connectives are in the class: each is one `dispatch₀`.
+@isnad1 id=cobham.2h3v.s5.30049d945410 from=translated src=- shape=100e055a vocab=6450d9ae
+-/
 theorem andFn {n : ℕ} {g₀ g₁ : (Fin n → List Bool) → List Bool}
     (h₀ : Cobham g₀) (h₁ : Cobham g₁) :
     Cobham fun v : Fin n → List Bool => andBit (g₀ v) (g₁ v) :=
   iteFn h₀ (iteFn h₁ (Cobham.const [true]) (Cobham.const [false]))
     (Cobham.const [false])
 
-/-- Disjunction of flags is in the class. -/
+/-- Disjunction of flags is in the class.
+@isnad1 id=cobham.2h3v.s5.d9a880f50ed9 from=translated src=- shape=100e055a vocab=140e4800
+-/
 theorem orFn {n : ℕ} {g₀ g₁ : (Fin n → List Bool) → List Bool}
     (h₀ : Cobham g₀) (h₁ : Cobham g₁) :
     Cobham fun v : Fin n → List Bool => orBit (g₀ v) (g₁ v) :=
   iteFn h₀ (Cobham.const [true])
     (iteFn h₁ (Cobham.const [true]) (Cobham.const [false]))
 
-/-- Negation of a flag is in the class. -/
+/-- Negation of a flag is in the class.
+@isnad1 id=cobham.1h2v.s4.f4e72845a2aa from=translated src=- shape=4eba9814 vocab=b71fd967
+-/
 theorem notFn {n : ℕ} {g : (Fin n → List Bool) → List Bool} (h : Cobham g) :
     Cobham fun v : Fin n → List Bool => notBit (g v) :=
   iteFn h (Cobham.const [false]) (Cobham.const [true])
 
 /-- **Bit extraction is in the class**: drop to the marked position and dispatch
-on what is left. -/
+on what is left.
+@isnad1 id=cobham.0h0v.s5.12c13c2d4ccf from=translated src=- shape=9b0fbc04 vocab=a3db1543
+-/
 theorem bitAtFn : Cobham fun v : Fin 2 → List Bool => bitAt (v 0) (v 1) :=
   (comp₃ dispatch₀ dropPrefix (Cobham.const [true]) (Cobham.const [false])).of_eq
     fun v => by simp [bitAt]
 
-/-- Extracting the leading bit of a member of the class, as a flag. -/
+/-- Extracting the leading bit of a member of the class, as a flag.
+@isnad1 id=cobham.1h2v.s4.e2ebe9a527d7 from=translated src=- shape=ab82e867 vocab=563d872e
+-/
 theorem headFlagFn {n : ℕ} {g : (Fin n → List Bool) → List Bool} (h : Cobham g) :
     Cobham fun v : Fin n → List Bool => bitAt [] (g v) :=
   (comp₂ bitAtFn (Cobham.const []) h).of_eq fun v => by simp
 
 /-- **The nonemptiness flag is in the class.** This is the one consumer of the
 *partial* dispatcher: both branches are `[true]`, so the flag is `[true]` exactly
-when there is a bit to read and `[]` otherwise. -/
+when there is a bit to read and `[]` otherwise.
+@isnad1 id=cobham.1h2v.s4.87e7a52398c6 from=translated src=- shape=4eba9814 vocab=ccbd1ac3
+-/
 theorem nonemptyFn {n : ℕ} {g : (Fin n → List Bool) → List Bool} (h : Cobham g) :
     Cobham fun v : Fin n → List Bool => nonemptyFlag (g v) :=
   (comp₃ dispatch h (Cobham.const [true]) (Cobham.const [true])).of_eq
@@ -339,7 +379,9 @@ theorem nonemptyFn {n : ℕ} {g : (Fin n → List Bool) → List Bool} (h : Cobh
 /-- **Matching against a fixed constant is in the class.** For each constant the
 test unfolds into finitely many bit comparisons joined by `andFn`, so this is a
 finite composition — the meta-level induction is on the constant, not a
-recursion inside the algebra. -/
+recursion inside the algebra.
+@isnad1 id=cobham.1h3v.s4.8f5b2cb7a455 from=translated src=- shape=695e83b7 vocab=647f43c2
+-/
 theorem matchPrefixFn {n : ℕ} {g : (Fin n → List Bool) → List Bool} (h : Cobham g)
     (c : List Bool) :
     Cobham fun v : Fin n → List Bool => matchPrefix c (g v) := by
@@ -354,13 +396,17 @@ theorem matchPrefixFn {n : ℕ} {g : (Fin n → List Bool) → List Bool} (h : C
         · exact (headFlagFn h).of_eq fun v => rfl
       exact (andFn (nonemptyFn h) (andFn hhead htail)).of_eq fun v => rfl
 
-/-- Taking a prefix of one member of the class at the width of another. -/
+/-- Taking a prefix of one member of the class at the width of another.
+@isnad1 id=cobham.2h3v.s5.c1b1aca4a95b from=translated src=- shape=e3322745 vocab=7b08c97a
+-/
 theorem takeFn {n : ℕ} {gr gx : (Fin n → List Bool) → List Bool}
     (hr : Cobham gr) (hx : Cobham gx) :
     Cobham fun v : Fin n → List Bool => (gx v).take (gr v).length :=
   (comp₂ takePrefix hr hx).of_eq fun v => by simp
 
-/-- Dropping a prefix of one member of the class at the width of another. -/
+/-- Dropping a prefix of one member of the class at the width of another.
+@isnad1 id=cobham.2h3v.s5.cfc124f146b7 from=translated src=- shape=e3322745 vocab=e5c1bc7e
+-/
 theorem dropFn {n : ℕ} {gr gx : (Fin n → List Bool) → List Bool}
     (hr : Cobham gr) (hx : Cobham gx) :
     Cobham fun v : Fin n → List Bool => (gx v).drop (gr v).length :=
@@ -368,7 +414,9 @@ theorem dropFn {n : ℕ} {gr gx : (Fin n → List Bool) → List Bool}
 
 /-- A block of `|x|` zeros is in the class, by limited recursion on notation:
 each peeled bit prepends one `0` to the recursive value, and the argument bounds
-the result. -/
+the result.
+@isnad1 id=cobham.0h0v.s5.820c70fa8fe3 from=translated src=- shape=6b76c427 vocab=f71c2a30
+-/
 theorem lengthPad :
     Cobham fun v : Fin 1 → List Bool => List.replicate (v 0).length false := by
   have hrec : ∀ (x : List Bool) (v : Fin 0 → List Bool),
@@ -388,13 +436,17 @@ theorem lengthPad :
     simp
   · rw [hrec]
 
-/-- A block of zeros as wide as a member of the class. -/
+/-- A block of zeros as wide as a member of the class.
+@isnad1 id=cobham.1h2v.s4.9a345ca973c3 from=translated src=- shape=8dce577d vocab=f71c2a30
+-/
 theorem zeroBlockFn {n : ℕ} {g : (Fin n → List Bool) → List Bool} (h : Cobham g) :
     Cobham fun v : Fin n → List Bool => List.replicate (g v).length false :=
   (Cobham.comp lengthPad fun _ : Fin 1 => h).of_eq fun _ => rfl
 
 /-- Concatenating `i` copies of a member of the class — a finite composition, so
-the induction is at the meta level. -/
+the induction is at the meta level.
+@isnad1 id=cobham.1h3v.s5.60e848ebc37b from=translated src=- shape=7f08300d vocab=83096989
+-/
 theorem repeatFn {n : ℕ} {g : (Fin n → List Bool) → List Bool} (h : Cobham g) :
     ∀ i : ℕ, Cobham fun v : Fin n → List Bool => (List.replicate i (g v)).flatten
   | 0 => Cobham.empty.of_eq fun _ => rfl
@@ -403,7 +455,9 @@ theorem repeatFn {n : ℕ} {g : (Fin n → List Bool) → List Bool} (h : Cobham
 
 /-- **Block addressing is in the class.** With every field of a configuration
 padded to the ruler's width, field `i` is `takeFn` after dropping `i` rulers —
-and `i` is a fixed natural number, so the drop is a finite concatenation. -/
+and `i` is a fixed natural number, so the drop is a finite concatenation.
+@isnad1 id=cobham.2h4v.s5.a7823c8a97e2 from=translated src=- shape=32c2e13b vocab=a89e7c96
+-/
 theorem blockFn {n : ℕ} {gr gx : (Fin n → List Bool) → List Bool}
     (hr : Cobham gr) (hx : Cobham gx) (i : ℕ) :
     Cobham fun v : Fin n → List Bool => blockAt (gr v) (gx v) i :=
@@ -415,7 +469,9 @@ theorem blockFn {n : ℕ} {gr gx : (Fin n → List Bool) → List Bool}
 /-- **Fixed-width padding is in the class.** With every field of a simulated
 configuration padded to one ruler's width, field `i` is recovered by dropping `i`
 rulers and taking one — so no self-delimiting decoder is ever needed inside the
-algebra. -/
+algebra.
+@isnad1 id=cobham.2h3v.s5.fde543ccf40d from=translated src=- shape=100e055a vocab=5ddf9c18
+-/
 theorem padFn {n : ℕ} {gr gx : (Fin n → List Bool) → List Bool}
     (hr : Cobham gr) (hx : Cobham gx) :
     Cobham fun v : Fin n → List Bool => padTo (gr v) (gx v) :=
@@ -427,7 +483,9 @@ branch that fires and a default otherwise, is a finite chain of `iteFn`s.
 
 This is exactly the shape of a Turing machine's transition function: the patterns
 are the (state, symbols-read) combinations, of which there are finitely many for
-a fixed machine, and the branches assemble the successor configuration. -/
+a fixed machine, and the branches assemble the successor configuration.
+@isnad1 id=cobham.3h4v.s7.5788f989dc49 from=translated src=- shape=d858a905 vocab=cf09451c
+-/
 theorem tableFn {n : ℕ} {g d : (Fin n → List Bool) → List Bool}
     (hg : Cobham g) (hd : Cobham d)
     (table : List (List Bool × ((Fin n → List Bool) → List Bool)))
@@ -449,7 +507,9 @@ appear in.
 Phrasing it as "all matching entries agree" rather than "exactly one matches"
 avoids having to prove the patterns pairwise distinct: for a transition table the
 patterns *are* distinct, but agreement is the weaker and more convenient
-obligation. -/
+obligation.
+@isnad1 id=eq.2h4v.s7.21406611d4a0 from=translated src=- shape=1807b74d vocab=dd0ac803
+-/
 theorem foldr_table_eq (g d val : List Bool) :
     ∀ table : List (List Bool × List Bool),
       (∃ p ∈ table, p.1 <+: g) →
@@ -485,7 +545,9 @@ of a clock string is a single limited recursion on notation: the recursion
 ignores *which* bit it peels and simply applies the step to its own recursive
 value, so `h₀ = h₁ = f ∘ Fin.tail`. The clock's length is the iteration count,
 which is why polynomial clocks (`exists_pow_clock`) give polynomially many
-steps. -/
+steps.
+@isnad1 id=cobham.4h4v.s8.a64fd57d0e05 from=translated src=- shape=7bd7368b vocab=9736c56d
+-/
 theorem iterFn {n : ℕ} {e : (Fin n → List Bool) → List Bool}
     {f j : (Fin (n + 1) → List Bool) → List Bool}
     (he : Cobham e) (hf : Cobham f) (hj : Cobham j)
@@ -514,7 +576,9 @@ theorem iterFn {n : ℕ} {e : (Fin n → List Bool) → List Bool}
 
 /-- **Clocks.** For every constant `c` and exponent `d` there is a member of the
 class whose value on `v` is at least `c · (|v 0| + 1) ^ d` bits long — built from
-constants and `smash`, which is exactly what `smash` is for. -/
+constants and `smash`, which is exactly what `smash` is for.
+@isnad1 id=ex.0h2v.s6.e77da3e05a2d from=translated src=- shape=9be15ab5 vocab=de1516e6
+-/
 theorem exists_pow_clock (c d : ℕ) :
     ∃ f : (Fin 1 → List Bool) → List Bool, Cobham f ∧
       ∀ v : Fin 1 → List Bool, c * ((v 0).length + 1) ^ d ≤ (f v).length := by

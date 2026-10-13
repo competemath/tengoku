@@ -162,7 +162,9 @@ private theorem consBitTM_copy_loop (b : Bool) (x : List Bool) :
         ih (k + 1) c1 (by omega) rfl hcells1 hhead1 hprefix1 (by omega)
       exact ⟨c', .step hstep hreach, hhalt, hprefix'⟩
 
-/-- `consBitTM b` computes `x ↦ b :: x` within the linear bound `|x| + 3`. -/
+/-- `consBitTM b` computes `x ↦ b :: x` within the linear bound `|x| + 3`.
+@isnad1 id=computes.0h1v.s5.4f15d89775b5 from=translated src=- shape=8fcef6ba vocab=e6236ab8
+-/
 theorem consBitTM_computesInTime (b : Bool) :
     (consBitTM b).ComputesInTime (fun x => b :: x) (fun m => m + 3) := by
   intro x
@@ -212,7 +214,9 @@ theorem consBitTM_computesInTime (b : Bool) :
   simpa [Nat.add_assoc] using this
 
 /-- Prepending a fixed bit is polynomial-time — the string-successor underlying
-the `bit` constructor. Witnessed by `consBitTM`. -/
+the `bit` constructor. Witnessed by `consBitTM`.
+@isnad1 id=mem.0h1v.s4.ca7bab19457b from=translated src=- shape=d0487526 vocab=dc2e61f9
+-/
 theorem cons_mem_FP (b : Bool) : (fun x : List Bool => b :: x) ∈ FP := by
   refine ⟨1, 0, consBitTM b, (fun m => m + 3), consBitTM_computesInTime b, ?_⟩
   have hn : (fun m : ℕ => m) =O ((· ^ 1) : ℕ → ℕ) := by

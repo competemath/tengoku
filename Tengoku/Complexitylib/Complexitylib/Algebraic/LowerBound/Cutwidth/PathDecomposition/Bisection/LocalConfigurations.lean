@@ -35,7 +35,9 @@ open scoped Classical
 variable {W : Type} [Fintype W] (H : SimpleGraph W)
 
 /-- Adding a vertex contributes its singleton helpfulness and twice the
-number of its neighbors already in the moved set. -/
+number of its neighbors already in the moved set.
+@isnad1 id=eq.3h5v.s8.88f8dcca2e71 from=translated src=- shape=ee68fa1f vocab=5db162c3
+-/
 theorem helpfulness_insert {S X : Finset W} (hX : X ⊆ S) {v : W}
     (hv : v ∈ S) (fresh : v ∉ X) :
     helpfulness H S (insert v X) = helpfulness H S X +
@@ -46,7 +48,9 @@ theorem helpfulness_insert {S X : Finset W} (hX : X ⊆ S) {v : W}
 namespace Bisection
 
 /-- Each new boundary vertex attached to the old set increases helpfulness
-by at least one. -/
+by at least one.
+@isnad1 id=le.4h5v.s7.fc0679ed7825 from=translated src=- shape=ffefc37b vocab=8401f370
+-/
 theorem helpfulness_union_boundary {S X A : Finset W}
     (hX : X ⊆ S) (hA : A ⊆ cutBoundary H S)
     (degree : ∀ c ∈ A, H.degree c ≤ 3)
@@ -55,7 +59,9 @@ theorem helpfulness_union_boundary {S X A : Finset W}
   Internal.helpfulness_union_boundary H hX hA degree adjacent
 
 /-- Adjoining an interior set and its boundary neighbors improves helpfulness
-if the interior set has no other neighbors and has an edge to the old set. -/
+if the interior set has no other neighbors and has an edge to the old set.
+@isnad1 id=le.5h5v.s8.3b0c8d75a136 from=translated src=- shape=97319388 vocab=0589ba01
+-/
 theorem helpfulness_union_boundaryLift_of_closed {S X Z : Finset W}
     (hX : X ⊆ S) (hZ : Z ⊆ S \ cutBoundary H S)
     (degree : ∀ v ∈ S, H.degree v ≤ 3)
@@ -64,7 +70,9 @@ theorem helpfulness_union_boundaryLift_of_closed {S X Z : Finset W}
     helpfulness H S X + 1 ≤ helpfulness H S (X ∪ boundaryLift H S Z) :=
   Internal.helpfulness_union_boundaryLift_of_closed H hX hZ degree closed touch
 
-/-- Adjacent boundary vertices form a set of nonnegative helpfulness. -/
+/-- Adjacent boundary vertices form a set of nonnegative helpfulness.
+@isnad1 id=le.4h5v.s7.58048411fc81 from=translated src=- shape=797355f5 vocab=729d7eb7
+-/
 theorem nonneg_helpfulness_boundary_pair {S : Finset W} {c d : W}
     (hc : c ∈ cutBoundary H S) (hd : d ∈ cutBoundary H S)
     (degree : ∀ v ∈ S, H.degree v ≤ 3) (adjacent : H.Adj c d) :
@@ -72,7 +80,9 @@ theorem nonneg_helpfulness_boundary_pair {S : Finset W} {c d : W}
   Internal.nonneg_helpfulness_boundary_pair H hc hd degree adjacent
 
 /-- A vertex with three boundary neighbors and those neighbors form a set
-of nonnegative helpfulness. -/
+of nonnegative helpfulness.
+@isnad1 id=le.3h4v.s7.400da1ff374c from=translated src=- shape=6d125e4c vocab=ee6a94f6
+-/
 theorem nonneg_helpfulness_boundary_star {S : Finset W}
     (degree : ∀ v ∈ S, H.degree v ≤ 3) {v : W} (hv : v ∈ S)
     (three : (H.neighborFinset v ∩ cutBoundary H S).card = 3) :
@@ -80,7 +90,9 @@ theorem nonneg_helpfulness_boundary_star {S : Finset W}
   Internal.nonneg_helpfulness_boundary_star H degree hv three
 
 /-- Monien--Preis configuration (iii): a boundary edge incident to the
-neighborhood of an interior vertex with three boundary neighbors. -/
+neighborhood of an interior vertex with three boundary neighbors.
+@isnad1 id=ex.7h6v.s8.ba7b8901fbf3 from=translated src=- shape=d96cd7ad vocab=f7ba0f74
+-/
 theorem exists_helpful_of_boundary_pair_three_neighbors {S : Finset W}
     (degree : ∀ v ∈ S, H.degree v ≤ 3) {c d v : W}
     (hc : c ∈ cutBoundary H S) (hd : d ∈ cutBoundary H S) (pair : H.Adj c d)
@@ -90,7 +102,9 @@ theorem exists_helpful_of_boundary_pair_three_neighbors {S : Finset W}
   Internal.exists_helpful_of_boundary_pair_three_neighbors H degree hc hd pair hv adjacent three
 
 /-- Monien--Preis configuration (iv): two interior vertices with three
-boundary neighbors share one of those neighbors. -/
+boundary neighbors share one of those neighbors.
+@isnad1 id=ex.9h6v.s8.711c88f0473c from=translated src=- shape=71b0bd05 vocab=f7ba0f74
+-/
 theorem exists_helpful_of_shared_boundary_neighbor {S : Finset W}
     (degree : ∀ v ∈ S, H.degree v ≤ 3) {u v c : W}
     (hu : u ∈ S \ cutBoundary H S) (hv : v ∈ S \ cutBoundary H S) (distinct : u ≠ v)
@@ -103,7 +117,9 @@ theorem exists_helpful_of_shared_boundary_neighbor {S : Finset W}
 
 /-- A nonnegative-helpfulness set grows into a helpful set using at most
 seven new vertices if each remaining neighbor of an adjacent interior vertex
-is a boundary vertex or has at least two boundary neighbors. -/
+is a boundary vertex or has at least two boundary neighbors.
+@isnad1 id=ex.7h5v.s8.f91891c17377 from=translated src=- shape=53b812bf vocab=254c9d90
+-/
 theorem exists_helpful_extension_of_neighbor_types {S X : Finset W}
     (hX : X ⊆ S) (neutral : 0 ≤ helpfulness H S X)
     (degree : ∀ v ∈ S, H.degree v ≤ 3) {v : W}
@@ -115,7 +131,9 @@ theorem exists_helpful_extension_of_neighbor_types {S X : Finset W}
   Internal.exists_helpful_extension_of_neighbor_types H hX neutral degree hv fresh touch neighbors
 
 /-- Monien--Preis configuration (v), covering either a boundary edge or a
-vertex with three boundary neighbors at the other end of the boundary attachment. -/
+vertex with three boundary neighbors at the other end of the boundary attachment.
+@isnad1 id=ex.6h5v.s8.b7d664d80cb9 from=translated src=- shape=ba40e740 vocab=f7ba0f74
+-/
 theorem exists_helpful_of_boundary_neighbor_configuration {S : Finset W}
     (degree : ∀ v ∈ S, H.degree v ≤ 3) {v c : W}
     (hv : v ∈ S \ cutBoundary H S) (hc : c ∈ cutBoundary H S) (adjacent : H.Adj v c)
@@ -128,7 +146,9 @@ theorem exists_helpful_of_boundary_neighbor_configuration {S : Finset W}
   Internal.exists_helpful_of_boundary_neighbor_configuration H degree hv hc adjacent anchor neighbors
 
 /-- If no helpful set of at most eleven vertices exists, the edge-switch
-configuration has another interior neighbor with at most one boundary neighbor. -/
+configuration has another interior neighbor with at most one boundary neighbor.
+@isnad1 id=ex.6h5v.s8.775a804ecc76 from=translated src=- shape=8953240d vocab=f7ba0f74
+-/
 theorem exists_switch_neighbor {S : Finset W}
     (degree : ∀ v ∈ S, H.degree v ≤ 3)
     (noHelpful : ∀ X ⊆ S, X.card ≤ 11 → helpfulness H S X ≤ 0) {v c : W}
@@ -141,7 +161,9 @@ theorem exists_switch_neighbor {S : Finset W}
   Internal.exists_switch_neighbor H degree noHelpful hv hc adjacent anchor
 
 /-- Excluding the singleton helpful case leaves one outside edge at every
-boundary vertex. -/
+boundary vertex.
+@isnad1 id=eq.3h4v.s7.955efcaa1f54 from=translated src=- shape=6406d94a vocab=d762a72b
+-/
 theorem outside_eq_one_of_no_small_helpful {S : Finset W}
     (degree : ∀ v ∈ S, H.degree v ≤ 3)
     (noHelpful : ∀ X ⊆ S, X.card ≤ 11 → helpfulness H S X ≤ 0)
@@ -149,7 +171,9 @@ theorem outside_eq_one_of_no_small_helpful {S : Finset W}
   Internal.outside_eq_one_of_no_small_helpful H degree noHelpful hc
 
 /-- Excluding three connected boundary vertices leaves maximum degree one
-in the boundary-induced graph. -/
+in the boundary-induced graph.
+@isnad1 id=le.3h4v.s7.5f7d2be0df46 from=translated src=- shape=56e565f9 vocab=c8dc5dbc
+-/
 theorem boundary_degree_le_one_of_no_small_helpful {S : Finset W}
     (degree : ∀ v ∈ S, H.degree v ≤ 3)
     (noHelpful : ∀ X ⊆ S, X.card ≤ 11 → helpfulness H S X ≤ 0)

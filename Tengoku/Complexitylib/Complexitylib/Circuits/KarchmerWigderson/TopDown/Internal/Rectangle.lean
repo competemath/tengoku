@@ -27,6 +27,9 @@ open scoped BigOperators Classical
 
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
+/--
+@isnad1 id=ex.3h6v.s6.ada86ce9fc46 from=translated src=- shape=6feb933d vocab=c3ff2eca
+-/
 theorem IsDensityLimit.agrees_internal {Y : Finset (ι → Bool)} {p k : ℝ} {x : ι → Bool}
     (hlim : IsDensityLimit Y p k x) (hp : 0 ≤ p) (hp' : p < 3 / 4) (i : ι) :
     ∃ y ∈ Y, y i = x i := by
@@ -54,6 +57,9 @@ theorem IsDensityLimit.agrees_internal {Y : Finset (ι → Bool)} {p k : ℝ} {x
   unfold IsDensityLimit at hlim
   linarith
 
+/--
+@isnad1 id=isdensit.4h6v.s6.32ff76fdbda3 from=translated src=- shape=d565c9c8 vocab=1d36adec
+-/
 theorem IsDensityLimit.mono_deficit_internal {Y : Finset (ι → Bool)} {p k k' : ℝ} {x : ι → Bool}
     (hlim : IsDensityLimit Y p k x) (hp : 0 ≤ p) (hp' : p ≤ 1) (hkk' : k ≤ k') :
     IsDensityLimit Y p k' x := by
@@ -74,12 +80,18 @@ open scoped Classical
 
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
+/--
+@isnad1 id=densityr.1h5v.s5.f43f5f8b798b from=translated src=- shape=6f74eed9 vocab=07eec2ce
+-/
 theorem DensityRectangle.swap_internal {X Y : Finset (ι → Bool)} {p k : ℝ}
     (h : DensityRectangle X Y p k) : DensityRectangle Y X p k := by
   rcases h with ⟨hX, hY, hdX, hdY, r, hr, hrp, hl | hl⟩
   · exact ⟨hY, hX, hdY, hdX, r, hr, hrp, Or.inr hl⟩
   · exact ⟨hY, hX, hdY, hdX, r, hr, hrp, Or.inl hl⟩
 
+/--
+@isnad1 id=not.2h6v.s6.d8d251ac4929 from=translated src=- shape=b121bc6f vocab=62b924fe
+-/
 theorem DensityRectangle.not_separated_internal {X Y : Finset (ι → Bool)} {p k : ℝ}
     (h : DensityRectangle X Y p k) (hp : p < 3 / 4) (i : ι) :
     ¬ ∀ x ∈ X, ∀ y ∈ Y, x i ≠ y i := by

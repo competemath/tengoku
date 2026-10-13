@@ -29,16 +29,22 @@ public section
 
 namespace Algebraic.Cutwidth.Extractor
 
-/-- Substitution by a power of three stays within the explicit binary family. -/
+/-- Substitution by a power of three stays within the explicit binary family.
+@isnad1 id=eq.0h2v.s8.aba2bbb21400 from=translated src=- shape=4f5d09a3 vocab=0d20e63d
+-/
 theorem binaryModulus_comp_pow_three (s v : Nat) :
     (binaryModulus s).comp (Polynomial.X ^ (3 ^ v)) = binaryModulus (s + v) :=
   Internal.binaryModulus_comp_pow_three s v
 
-/-- The extension modulus is monic, including its linear case at `v = 0`. -/
+/-- The extension modulus is monic, including its linear case at `v = 0`.
+@isnad1 id=monic.0h2v.s6.309d90085264 from=translated src=- shape=32548949 vocab=daf45752
+-/
 theorem extensionModulus_monic (s v : Nat) : (extensionModulus s v).Monic :=
   Internal.extensionModulus_monic s v
 
-/-- The defining extension relation identifies its generator power with the base root. -/
+/-- The defining extension relation identifies its generator power with the base root.
+@isnad1 id=eq.0h2v.s10.501013bff30e from=translated src=- shape=0c30768f vocab=8f63d180
+-/
 theorem root_extensionModulus_pow (s v : Nat) :
     AdjoinRoot.root (extensionModulus s v) ^ (3 ^ v) =
       AdjoinRoot.of (extensionModulus s v) (AdjoinRoot.root (binaryModulus s)) :=

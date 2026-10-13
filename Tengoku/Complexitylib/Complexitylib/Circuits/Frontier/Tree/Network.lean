@@ -31,6 +31,9 @@ noncomputable def boundaryValues (X : Set V) (α : E → U) : E → Option U := 
   classical
   exact fun e => if e ∈ G.cut X then some (α e) else none
 
+/--
+@isnad1 id=iff.0h8v.s5.22c430b5a4a2 from=translated src=- shape=932b4233 vocab=a22c237f
+-/
 theorem boundaryValues_eq_iff (X : Set V) (α β : E → U) :
     G.boundaryValues X α = G.boundaryValues X β ↔ EqOn α β (G.cut X) := by
   classical
@@ -78,7 +81,9 @@ noncomputable def treeFrontier : TreeFrontier G.accepted (E → Option U) B wher
     obtain ⟨γ, hz, _, _⟩ := (G.satisfies_witness hx).splice (G.satisfies_witness hy) hcut hzx hzy
     exact ⟨γ, hz⟩
 
-/-- Laminarity is what makes arbitrary region-state deletion preserve the network trace. -/
+/-- Laminarity is what makes arbitrary region-state deletion preserve the network trace.
+@isnad1 id=coherent.3h7v.s7.c60a8780c56a from=translated src=- shape=ace6fe5b vocab=6baea2aa
+-/
 theorem treeFrontier_coherent
     (hlam : ∀ u v, T.region u ⊆ T.region v ∨ T.region v ⊆ T.region u ∨
       Disjoint (T.region u) (T.region v))
@@ -124,7 +129,9 @@ theorem treeFrontier_coherent
         tauto
     · exact hfar hn
 
-/-- The number of joint merge states, with each edge in the boundary union paid once. -/
+/-- The number of joint merge states, with each edge in the boundary union paid once.
+@isnad1 id=le.1h8v.s8.ef40c6575510 from=translated src=- shape=72575f6f vocab=7acfdd6d
+-/
 theorem ncard_tree_transition_le [Finite ι] [Finite U] [Finite E] (v : B) :
     ((G.treeFrontier T hread).transition v '' G.accepted).ncard ≤
       Nat.card U ^ ((G.cut (T.region v) ∪ G.cut (T.region (T.left v)) ∪
@@ -145,7 +152,9 @@ theorem ncard_tree_transition_le [Finite ι] [Finite U] [Finite E] (v : B) :
                   Nat.card_coe_set_eq, Nat.card_coe_set_eq, ← pow_add]
 
 /-- **Weighted tree bound for networks.** The exponent is the joint merge boundary, not
-the maximum of the three separate separator sizes. -/
+the maximum of the three separate separator sizes.
+@isnad1 id=le.8h11v.s8.47a91d9b6331 from=translated src=- shape=77742c95 vocab=9df5d18f
+-/
 theorem abs_sumOn_accepted_le_tree [Finite ι] [Finite U] [Finite E] [Fintype B]
     (hlam : ∀ u v, T.region u ⊆ T.region v ∨ T.region v ⊆ T.region u ∨
       Disjoint (T.region u) (T.region v))

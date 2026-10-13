@@ -25,6 +25,9 @@ open scoped Classical symmDiff
 
 variable {W : Type} [Fintype W] (H : SimpleGraph W)
 
+/--
+@isnad1 id=eq.3h5v.s8.88f8dcca2e71 from=translated src=- shape=ee68fa1f vocab=5db162c3
+-/
 theorem helpfulness_insert {S X : Finset W} (hX : X ⊆ S) {v : W}
     (hv : v ∈ S) (fresh : v ∉ X) :
     helpfulness H S (insert v X) = helpfulness H S X +
@@ -53,6 +56,9 @@ private theorem outside_pos_of_boundary {S : Finset W} {c : W}
   exact Finset.card_pos.mpr ⟨w,
     Finset.mem_sdiff.mpr ⟨(H.mem_neighborFinset c w).mpr adj, hw⟩⟩
 
+/--
+@isnad1 id=le.5h5v.s7.123b1911f24d from=translated src=- shape=31a1b0dd vocab=afed978d
+-/
 theorem helpfulness_insert_boundary {S X : Finset W} (hX : X ⊆ S) {c : W}
     (hc : c ∈ cutBoundary H S) (fresh : c ∉ X) (degree : H.degree c ≤ 3)
     (adjacent : ∃ x ∈ X, H.Adj c x) :
@@ -89,6 +95,9 @@ private theorem helpfulness_union_boundary_disjoint {S X A : Finset W}
       push_cast
       lia
 
+/--
+@isnad1 id=le.4h5v.s7.fc0679ed7825 from=translated src=- shape=ffefc37b vocab=8401f370
+-/
 theorem helpfulness_union_boundary {S X A : Finset W}
     (hX : X ⊆ S) (hA : A ⊆ cutBoundary H S)
     (degree : ∀ c ∈ A, H.degree c ≤ 3)
@@ -103,6 +112,9 @@ theorem helpfulness_union_boundary {S X A : Finset W}
   have same : X ∪ (A \ X) = X ∪ A := by ext c; simp
   simpa only [same] using result
 
+/--
+@isnad1 id=le.4h5v.s8.090b6fbfff53 from=translated src=- shape=7da7e1cf vocab=2002986e
+-/
 theorem helpfulness_insert_boundary_neighbors {S X : Finset W} (hX : X ⊆ S)
     (degree : ∀ v ∈ S, H.degree v ≤ 3) {v : W} (hv : v ∈ S) (fresh : v ∉ X) :
     helpfulness H S X + 2 * ((H.neighborFinset v ∩ X).card : ℤ) - 3 +
@@ -131,6 +143,9 @@ theorem helpfulness_insert_boundary_neighbors {S X : Finset W} (hX : X ⊆ S)
   have bound := degree v hv
   lia
 
+/--
+@isnad1 id=and.6h5v.s8.64937b728096 from=translated src=- shape=400c0304 vocab=000aabad
+-/
 theorem three_boundary_neighbors_extension {S X : Finset W} (hX : X ⊆ S)
     (degree : ∀ v ∈ S, H.degree v ≤ 3) {v : W} (hv : v ∈ S) (fresh : v ∉ X)
     (three : (H.neighborFinset v ∩ cutBoundary H S).card = 3)
@@ -159,6 +174,9 @@ private theorem boundary_singleton_lower {S : Finset W} {c : W}
   have outside := outside_pos_of_boundary H hc
   lia
 
+/--
+@isnad1 id=le.4h5v.s7.58048411fc81 from=translated src=- shape=797355f5 vocab=729d7eb7
+-/
 theorem nonneg_helpfulness_boundary_pair {S : Finset W} {c d : W}
     (hc : c ∈ cutBoundary H S) (hd : d ∈ cutBoundary H S)
     (degree : ∀ v ∈ S, H.degree v ≤ 3) (adjacent : H.Adj c d) :
@@ -170,6 +188,9 @@ theorem nonneg_helpfulness_boundary_pair {S : Finset W} {c d : W}
     (degree c (cutBoundary_subset H S hc)) ⟨d, Finset.mem_singleton_self _, adjacent⟩
   lia
 
+/--
+@isnad1 id=ex.7h6v.s8.ba7b8901fbf3 from=translated src=- shape=d96cd7ad vocab=f7ba0f74
+-/
 theorem exists_helpful_of_boundary_pair_three_neighbors {S : Finset W}
     (degree : ∀ v ∈ S, H.degree v ≤ 3) {c d v : W}
     (hc : c ∈ cutBoundary H S) (hd : d ∈ cutBoundary H S) (pair : H.Adj c d)
@@ -191,6 +212,9 @@ theorem exists_helpful_of_boundary_pair_three_neighbors {S : Finset W}
     (Finset.union_subset (seed.trans (cutBoundary_subset H S))
       (Finset.inter_subset_right.trans (cutBoundary_subset H S)))
 
+/--
+@isnad1 id=ex.9h6v.s8.711c88f0473c from=translated src=- shape=71b0bd05 vocab=f7ba0f74
+-/
 theorem exists_helpful_of_shared_boundary_neighbor {S : Finset W}
     (degree : ∀ v ∈ S, H.degree v ≤ 3) {u v c : W}
     (hu : u ∈ S \ cutBoundary H S) (hv : v ∈ S \ cutBoundary H S) (distinct : u ≠ v)
@@ -266,6 +290,9 @@ private theorem helpfulness_strict_mono_of_new_nonneg {S X Y : Finset W}
   change (∑ v ∈ X, f X v) + 1 ≤ ∑ v ∈ Y, f Y v
   lia
 
+/--
+@isnad1 id=le.5h5v.s8.3b0c8d75a136 from=translated src=- shape=97319388 vocab=0589ba01
+-/
 theorem helpfulness_union_boundaryLift_of_closed {S X Z : Finset W}
     (hX : X ⊆ S) (hZ : Z ⊆ S \ cutBoundary H S)
     (degree : ∀ v ∈ S, H.degree v ≤ 3)
@@ -326,6 +353,9 @@ private theorem boundary_neighbors_of_adj_nonboundary {S : Finset W} {p v : W}
   rw [← same]
   exact Finset.insert_subset_insert v Finset.inter_subset_right
 
+/--
+@isnad1 id=ex.7h5v.s8.f91891c17377 from=translated src=- shape=53b812bf vocab=254c9d90
+-/
 theorem exists_helpful_extension_of_neighbor_types {S X : Finset W}
     (hX : X ⊆ S) (neutral : 0 ≤ helpfulness H S X)
     (degree : ∀ v ∈ S, H.degree v ≤ 3) {v : W}
@@ -420,6 +450,9 @@ theorem exists_helpful_extension_of_neighbor_types {S X : Finset W}
   simp only [Finset.sum_const, nsmul_eq_mul] at sumCount
   exact ⟨Y, hY, by lia, by lia⟩
 
+/--
+@isnad1 id=le.3h4v.s7.400da1ff374c from=translated src=- shape=6d125e4c vocab=ee6a94f6
+-/
 theorem nonneg_helpfulness_boundary_star {S : Finset W}
     (degree : ∀ v ∈ S, H.degree v ≤ 3) {v : W} (hv : v ∈ S)
     (three : (H.neighborFinset v ∩ cutBoundary H S).card = 3) :
@@ -429,6 +462,9 @@ theorem nonneg_helpfulness_boundary_star {S : Finset W}
   have empty : helpfulness H S ∅ = 0 := by simp [helpfulness, SimpleGraph.cutFinset]
   simpa [empty, three] using gain
 
+/--
+@isnad1 id=ex.6h5v.s8.b7d664d80cb9 from=translated src=- shape=ba40e740 vocab=f7ba0f74
+-/
 theorem exists_helpful_of_boundary_neighbor_configuration {S : Finset W}
     (degree : ∀ v ∈ S, H.degree v ≤ 3) {v c : W}
     (hv : v ∈ S \ cutBoundary H S) (hc : c ∈ cutBoundary H S) (adjacent : H.Adj v c)
@@ -472,6 +508,9 @@ theorem exists_helpful_of_boundary_neighbor_configuration {S : Finset W}
     dsimp [X] at size
     exact ⟨Y, hY, by lia, gain⟩
 
+/--
+@isnad1 id=ex.6h5v.s8.775a804ecc76 from=translated src=- shape=8953240d vocab=f7ba0f74
+-/
 theorem exists_switch_neighbor {S : Finset W}
     (degree : ∀ v ∈ S, H.degree v ≤ 3)
     (noHelpful : ∀ X ⊆ S, X.card ≤ 11 → helpfulness H S X ≤ 0) {v c : W}
@@ -500,6 +539,9 @@ theorem exists_switch_neighbor {S : Finset W}
   have bound := noHelpful Y hY size
   lia
 
+/--
+@isnad1 id=eq.3h4v.s7.955efcaa1f54 from=translated src=- shape=6406d94a vocab=d762a72b
+-/
 theorem outside_eq_one_of_no_small_helpful {S : Finset W}
     (degree : ∀ v ∈ S, H.degree v ≤ 3)
     (noHelpful : ∀ X ⊆ S, X.card ≤ 11 → helpfulness H S X ≤ 0)
@@ -512,6 +554,9 @@ theorem outside_eq_one_of_no_small_helpful {S : Finset W}
   have bound := noHelpful {c} (Finset.singleton_subset_iff.mpr hcS) (by simp)
   lia
 
+/--
+@isnad1 id=le.3h4v.s7.5f7d2be0df46 from=translated src=- shape=56e565f9 vocab=c8dc5dbc
+-/
 theorem boundary_degree_le_one_of_no_small_helpful {S : Finset W}
     (degree : ∀ v ∈ S, H.degree v ≤ 3)
     (noHelpful : ∀ X ⊆ S, X.card ≤ 11 → helpfulness H S X ≤ 0)

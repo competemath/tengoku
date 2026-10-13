@@ -26,11 +26,15 @@ open scoped Classical
 
 variable {V : Type} [Fintype V] (B : SimpleGraph V) (P : Finset V)
 
-/-- Every boundary edge gives exactly one outside mark. -/
+/-- Every boundary edge gives exactly one outside mark.
+@isnad1 id=eq.0h3v.s7.fe4bf19c5fb7 from=translated src=- shape=21cd58e5 vocab=22a9d6e8
+-/
 theorem degree_boundaryMarks : (boundaryMarks B P).degree = (B.cutFinset P).card :=
   RestorationFamily.Internal.degree_boundaryMarks B P
 
-/-- On a set disjoint from a region, its marks count exactly the shared cut edges. -/
+/-- On a set disjoint from a region, its marks count exactly the shared cut edges.
+@isnad1 id=eq.1h4v.s6.86f1e91e419c from=translated src=- shape=aeeebc21 vocab=287342e2
+-/
 theorem sum_boundaryMarks {X : Finset V} (fresh : Disjoint X P) :
     (∑ v ∈ X, boundaryMarks B P v) = (B.cutFinset P ∩ B.cutFinset X).card :=
   RestorationFamily.Internal.sum_boundaryMarks B P fresh
@@ -40,11 +44,15 @@ namespace RestorationFamily
 variable {E ι : Type} [Fintype ι] {B : SimpleGraph V} {R : Multigraph V E}
   (F : RestorationFamily B R ι)
 
-/-- Total endpoint marks equal the sum of the region boundary sizes. -/
+/-- Total endpoint marks equal the sum of the region boundary sizes.
+@isnad1 id=eq.0h6v.s7.a5422f34cd02 from=translated src=- shape=df3ae7f0 vocab=cb73990d
+-/
 theorem degree_endpointMarks : F.endpointMarks.degree = ∑ i, (B.cutFinset (F.region i)).card :=
   Internal.degree_endpointMarks F
 
-/-- Marks on an outside set count all region boundaries meeting its cut. -/
+/-- Marks on an outside set count all region boundaries meeting its cut.
+@isnad1 id=eq.1h7v.s7.50f92d0e96e8 from=translated src=- shape=c4cabba4 vocab=00a9434b
+-/
 theorem sum_endpointMarks {X : Finset V} (fresh : ∀ i, Disjoint X (F.region i)) :
     (∑ v ∈ X, F.endpointMarks v) = ∑ i, (B.cutFinset (F.region i) ∩ B.cutFinset X).card :=
   Internal.sum_endpointMarks F fresh

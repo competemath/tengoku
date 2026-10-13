@@ -58,17 +58,27 @@ def mulAux (k : ℕ) (w : List Bool) : List Bool :=
 on input that is not a valid pair encoding. -/
 def mulUnpair (p : List Bool) : List Bool := mulAux 0 p
 
+/--
+@isnad1 id=eq.0h1v.s3.c0456fcd8eae from=translated src=- shape=7db742f1 vocab=a1ee39f1
+-/
 @[simp] theorem mulAux_nil (k : ℕ) : mulAux k [] = [] := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.49b881b079f8 from=translated src=- shape=e16313ea vocab=a5d34609
+-/
 @[simp] theorem mulAux_singleton (k : ℕ) (b : Bool) : mulAux k [b] = [] := by
   cases b <;> rfl
 
-/-- Reaching the separator ends the block: only the suffix remains. -/
+/-- Reaching the separator ends the block: only the suffix remains.
+@isnad1 id=eq.0h2v.s4.1d55abfd35d8 from=translated src=- shape=e3a50a77 vocab=de46040a
+-/
 @[simp] theorem mulAux_sep (k : ℕ) (z : List Bool) :
     mulAux k (false :: true :: z) = List.replicate (k * z.length) false := by
   simp [mulAux, unpair?]
 
-/-- A doubled payload bit increments the counted length. -/
+/-- A doubled payload bit increments the counted length.
+@isnad1 id=eq.0h3v.s5.270f8305419e from=translated src=- shape=06d1b82c vocab=3b578e7d
+-/
 theorem mulAux_double (k : ℕ) (b : Bool) (z : List Bool) :
     mulAux k (b :: b :: z) = mulAux (k + 1) z := by
   cases b <;>
@@ -81,11 +91,15 @@ theorem mulAux_double (k : ℕ) (b : Bool) (z : List Bool) :
           congr 2
           omega
 
-/-- A broken doubling halts the scan with no output. -/
+/-- A broken doubling halts the scan with no output.
+@isnad1 id=eq.0h2v.s4.1d5af162aa36 from=translated src=- shape=6e112483 vocab=1cdc0b73
+-/
 @[simp] theorem mulAux_broken (k : ℕ) (z : List Bool) :
     mulAux k (true :: false :: z) = [] := rfl
 
-/-- On a genuine pair the scanner emits `|A| · |B|` copies of `false`. -/
+/-- On a genuine pair the scanner emits `|A| · |B|` copies of `false`.
+@isnad1 id=eq.0h2v.s4.a2e789d11d23 from=translated src=- shape=0dd02b75 vocab=eac18d29
+-/
 theorem mulUnpair_pair (A B : List Bool) :
     mulUnpair (pair A B) = List.replicate (A.length * B.length) false := by
   simp [mulUnpair, mulAux]
@@ -679,7 +693,9 @@ private theorem init_nil_cells_eq_regCells_zero :
   · obtain ⟨i, rfl⟩ : ∃ i, j = i + 1 := ⟨j - 1, by omega⟩
     rw [Tape.init_cells_ge _ _ (by simp), regCells_blank (by omega)]
 
-/-- `mulUnpair` is polynomial-time, via the `mulLenTM` scanner. -/
+/-- `mulUnpair` is polynomial-time, via the `mulLenTM` scanner.
+@isnad1 id=mem.0h0v.s4.6d6fa201895e from=translated src=- shape=08f40544 vocab=6e00fa2c
+-/
 theorem mulUnpair_mem_FP : mulUnpair ∈ FP := by
   refine ⟨2, 1, mulLenTM, (fun m => 2 * m ^ 2 + 5 * m + 6), ?_, ?_⟩
   · intro z

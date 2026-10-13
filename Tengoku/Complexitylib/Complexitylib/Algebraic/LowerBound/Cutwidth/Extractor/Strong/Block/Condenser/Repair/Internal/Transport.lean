@@ -24,6 +24,9 @@ namespace Algebraic.Cutwidth.Extractor.Internal
 
 open scoped Classical
 
+/--
+@isnad1 id=isprobab.2h5v.s6.250013a42179 from=translated src=- shape=8cfe6473 vocab=ed272a6d
+-/
 theorem attachTail_probability {α Ω β : Type*} [Fintype α] [Fintype Ω] [Fintype β]
     (c : Ω × α → ℝ) (tail : α → β → ℝ) (hc : IsProbabilityWeight c)
     (htail : ∀ a, IsProbabilityWeight (tail a)) :
@@ -32,6 +35,9 @@ theorem attachTail_probability {α Ω β : Type*} [Fintype α] [Fintype Ω] [Fin
   rw [Fintype.sum_prod_type]
   simp only [← Finset.mul_sum, fun a => (htail a).2, mul_one, hc.2]
 
+/--
+@isnad1 id=eq.1h6v.s7.487e413850fc from=translated src=- shape=4c3f59ce vocab=071e82e0
+-/
 theorem attachTail_dist {α Ω β : Type*} [Fintype α] [Fintype Ω] [Fintype β]
     (c d : Ω × α → ℝ) (tail : α → β → ℝ)
     (htail : ∀ a, IsProbabilityWeight (tail a)) :
@@ -41,6 +47,9 @@ theorem attachTail_dist {α Ω β : Type*} [Fintype α] [Fintype Ω] [Fintype β
     fun a z => abs_of_nonneg ((htail a).1 z), ← Finset.mul_sum,
     fun a => (htail a).2, mul_one]
 
+/--
+@isnad1 id=eq.1h5v.s6.9b1228c18f6f from=translated src=- shape=e5c1760d vocab=3973fc1d
+-/
 theorem attachTail_fst {α Ω β : Type*} [Fintype α] [Fintype Ω] [Fintype β]
     (c : Ω × α → ℝ) (tail : α → β → ℝ)
     (htail : ∀ a, IsProbabilityWeight (tail a)) :
@@ -49,6 +58,9 @@ theorem attachTail_fst {α Ω β : Type*} [Fintype α] [Fintype Ω] [Fintype β]
   rw [mapWeight_fst]
   simp only [firstWeight, ← Finset.mul_sum, (htail z.2).2, mul_one]
 
+/--
+@isnad1 id=eq.0h7v.s7.4d77f5559d3a from=translated src=- shape=0cebdb8a vocab=46840d04
+-/
 theorem prependWeight_apply {α Ω : Type*} [Fintype α] [Fintype Ω] {t : Nat}
     (c : Ω × α → ℝ) (tail : α → (Fin t → Ω) → ℝ)
     (h : Ω) (z : Fin t → Ω) :
@@ -58,6 +70,9 @@ theorem prependWeight_apply {α Ω : Type*} [Fintype α] [Fintype Ω] {t : Nat}
         ∑ a, c (h, a) * tail a z := by
   simp [mapWeight, Fintype.sum_prod_type, Fin.cons_inj, ite_and]
 
+/--
+@isnad1 id=eq.1h5v.s8.58e4e445239d from=translated src=- shape=028f0edf vocab=cabb8bb9
+-/
 theorem prependWeight_head {α Ω : Type*} [Fintype α] [Fintype Ω] {t : Nat}
     (c : Ω × α → ℝ) (tail : α → (Fin t → Ω) → ℝ)
     (htail : ∀ a, IsProbabilityWeight (tail a)) :
@@ -73,6 +88,9 @@ theorem prependWeight_head {α Ω : Type*} [Fintype α] [Fintype Ω] {t : Nat}
       rfl
     _ = _ := by rw [attachTail_fst c tail htail, mapWeight_fst]
 
+/--
+@isnad1 id=eq.0h6v.s8.2d5aa2bb845e from=translated src=- shape=4b54b4c5 vocab=e9a1a0b8
+-/
 theorem prependWeight_deterministic {α Ω : Type*} [Fintype α] [Fintype Ω] {t : Nat}
     (w : α → ℝ) (tail : α → (Fin t → Ω) → ℝ) (f : α → Ω) :
     mapWeight (fun az : (Ω × α) × (Fin t → Ω) =>

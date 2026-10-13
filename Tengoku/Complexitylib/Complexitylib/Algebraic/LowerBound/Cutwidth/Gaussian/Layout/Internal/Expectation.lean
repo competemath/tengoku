@@ -26,17 +26,25 @@ open MeasureTheory ProbabilityTheory
 noncomputable def crossBound (ρ₀ : ℝ) : ℝ :=
   2 / Real.pi * (Real.sqrt (1 - ρ₀) / Real.sqrt (1 + ρ₀))
 
+/--
+@isnad1 id=eq.0h3v.s7.733d6b961edb from=translated src=- shape=e2c87bb4 vocab=e27ceb7c
+-/
 theorem sum_add_sq {ι : Type} [Fintype ι] (α β : ι → ℝ) :
     ∑ i, (α i + β i) ^ 2 = ∑ i, α i ^ 2 + 2 * ∑ i, α i * β i + ∑ i, β i ^ 2 := by
   simp only [add_sq, Finset.sum_add_distrib, Finset.mul_sum, mul_assoc]
 
+/--
+@isnad1 id=eq.0h3v.s7.ddcb2f09cf23 from=translated src=- shape=0d4d62ab vocab=0f15ecb8
+-/
 theorem sum_sub_sq {ι : Type} [Fintype ι] (α β : ι → ℝ) :
     ∑ i, (β i - α i) ^ 2 = ∑ i, α i ^ 2 - 2 * ∑ i, α i * β i + ∑ i, β i ^ 2 := by
   have : ∀ i, (β i - α i) ^ 2 = α i ^ 2 - 2 * (α i * β i) + β i ^ 2 := fun i => by ring
   simp only [this, Finset.sum_add_distrib, Finset.sum_sub_distrib, Finset.mul_sum]
 
 /-- Two unit coefficient vectors with correlation at least `ρ₀ > -1` cross a threshold
-with probability at most `crossBound ρ₀`. -/
+with probability at most `crossBound ρ₀`.
+@isnad1 id=le.4h5v.s7.7a3186709e06 from=translated src=- shape=03c41686 vocab=1f63aab4
+-/
 theorem gaussPi_between_le_crossBound {ι : Type} [Fintype ι] {α β : ι → ℝ}
     (hα : ∑ i, α i ^ 2 = 1) (hβ : ∑ i, β i ^ 2 = 1) {ρ₀ : ℝ} (hρ₀ : -1 < ρ₀)
     (hρ : ρ₀ ≤ ∑ i, α i * β i) (t : ℝ) :
@@ -55,6 +63,9 @@ theorem gaussPi_between_le_crossBound {ι : Type} [Fintype ι] {α β : ι → �
 variable {W : Type} [Fintype W] [DecidableEq W] (H : SimpleGraph W) [DecidableRel H.Adj]
 
 omit [DecidableEq W] in
+/--
+@isnad1 id=le.5h7v.s8.a050c0038408 from=translated src=- shape=7717e07b vocab=30ece1ae
+-/
 theorem measureReal_crossEvent_le (degree : ∀ v, H.degree v ≤ 3) {q : ℝ} (hq0 : 0 ≤ q)
     {R : ℕ} {ρ₀ : ℝ} (hρ₀ : -1 < ρ₀)
     (hρ : ρ₀ ≤ 2 * q / (1 + q ^ 2) - 3 * (2 * q ^ 2) ^ R) (t : ℝ) {e : Sym2 W}
@@ -70,11 +81,17 @@ def windowEvent (q : ℝ) (R : ℕ) (s δ : ℝ) (v : W) : Set (W → ℝ) :=
   scoreEvent H q R (fun x => s ≤ x ∧ x < s + δ) v
 
 omit [DecidableEq W] [DecidableRel H.Adj] in
+/--
+@isnad1 id=le.1h7v.s6.cb093b065705 from=translated src=- shape=86dc649d vocab=1dfe887f
+-/
 theorem measureReal_windowEvent_le (q : ℝ) (R : ℕ) (s : ℝ) {δ : ℝ} (hδ : 0 ≤ δ) (v : W) :
     (gaussPi W).real (windowEvent H q R s δ v) ≤ δ / Real.sqrt (2 * Real.pi) :=
   gaussPi_window_le _ (sum_unitKernel_sq H q R v) s hδ
 
 omit [DecidableEq W] [DecidableRel H.Adj] in
+/--
+@isnad1 id=le.1h6v.s6.9d385a0e0c72 from=translated src=- shape=75295fad vocab=c8933e55
+-/
 theorem measureReal_lowEvent_le (q : ℝ) (R : ℕ) {T : ℝ} (hT : 0 < T) (v : W) :
     (gaussPi W).real (scoreEvent H q R (fun x => x < -T) v) ≤ 1 / T ^ 2 := by
   refine (measureReal_mono ?_).trans (gaussPi_tail_le _ (sum_unitKernel_sq H q R v) hT)
@@ -84,6 +101,9 @@ theorem measureReal_lowEvent_le (q : ℝ) (R : ℕ) {T : ℝ} (hT : 0 < T) (v : 
   linarith
 
 omit [DecidableEq W] [DecidableRel H.Adj] in
+/--
+@isnad1 id=le.1h6v.s6.336fde99cdd8 from=translated src=- shape=52949545 vocab=16ebb3ad
+-/
 theorem measureReal_highEvent_le (q : ℝ) (R : ℕ) {T : ℝ} (hT : 0 < T) (v : W) :
     (gaussPi W).real (scoreEvent H q R (fun x => T ≤ x) v) ≤ 1 / T ^ 2 := by
   refine (measureReal_mono ?_).trans (gaussPi_tail_le _ (sum_unitKernel_sq H q R v) hT)
@@ -92,7 +112,9 @@ theorem measureReal_highEvent_le (q : ℝ) (R : ℕ) {T : ℝ} (hT : 0 < T) (v :
   exact hω.trans (le_abs_self _)
 
 omit [DecidableRel H.Adj] [DecidableEq W] in
-/-- The cut of a threshold set counts the crossing events of the edges. -/
+/-- The cut of a threshold set counts the crossing events of the edges.
+@isnad1 id=eq.0h6v.s6.898b9a27a876 from=translated src=- shape=50a77ac9 vocab=494afd44
+-/
 theorem card_cutFinset_eq_sum_indicator (q : ℝ) (R : ℕ) (t : ℝ) (ω : W → ℝ)
     [Fintype H.edgeSet] :
     ((H.cutFinset (Finset.univ.filter fun v => score H q R ω v < t)).card : ℝ) =
@@ -109,7 +131,9 @@ theorem card_cutFinset_eq_sum_indicator (q : ℝ) (R : ℕ) (t : ℝ) (ω : W �
   by_cases h : ω ∈ crossEvent H q R t e <;> simp [h]
 
 omit [DecidableEq W] [DecidableRel H.Adj] in
-/-- A count of score events is the sum of their indicators. -/
+/-- A count of score events is the sum of their indicators.
+@isnad1 id=eq.0h6v.s6.bba52a25e6d8 from=translated src=- shape=01a80603 vocab=7cfa5e0e
+-/
 theorem card_filter_eq_sum_indicator (q : ℝ) (R : ℕ) (p : ℝ → Prop) [DecidablePred p]
     (ω : W → ℝ) :
     ((Finset.univ.filter fun v => p (score H q R ω v)).card : ℝ) =

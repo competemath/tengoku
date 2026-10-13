@@ -34,7 +34,9 @@ public section
 
 namespace Algebraic.Cutwidth.Extractor
 
-/-- Restricting the input domain along an injection preserves universality. -/
+/-- Restricting the input domain along an injection preserves universality.
+@isnad1 id=universa.2h6v.s5.888278941118 from=translated src=- shape=ce26ee69 vocab=6e686e8b
+-/
 theorem UniversalHashFamily.comp_injective {α β Seed Ω : Type*} [Fintype Seed]
     [Fintype Ω] {E : α → Seed → Ω} (universal : UniversalHashFamily E)
     (f : β → α) (injective : Function.Injective f) :
@@ -42,7 +44,9 @@ theorem UniversalHashFamily.comp_injective {α β Seed Ω : Type*} [Fintype Seed
   Internal.universalHashFamily_comp_injective universal f injective
 
 /-- The sharp squared leftover-hash bound for a uniform finite input type,
-against every joint test of the retained seed and output. -/
+against every joint test of the retained seed and output.
+@isnad1 id=le.1h5v.s6.1d84573d4150 from=translated src=- shape=0603bf26 vocab=3b8dee38
+-/
 theorem UniversalHashFamily.seededTestProb_sub_uniform_sq_le {α Seed Ω : Type*}
     [Fintype α] [Fintype Seed] [Fintype Ω] [Nonempty α] [Nonempty Seed] [Nonempty Ω]
     {E : α → Seed → Ω} (universal : UniversalHashFamily E) (T : Finset (Seed × Ω)) :
@@ -50,7 +54,9 @@ theorem UniversalHashFamily.seededTestProb_sub_uniform_sq_le {α Seed Ω : Type*
       (Fintype.card Ω : ℝ) / (4 * Fintype.card α) :=
   Internal.universalHashFamily_seededTestProb_sub_uniform_sq_le universal T
 
-/-- The sharp squared leftover-hash bound for any nonempty finite flat support. -/
+/-- The sharp squared leftover-hash bound for any nonempty finite flat support.
+@isnad1 id=le.2h6v.s7.97aae96ab970 from=translated src=- shape=48a16f2c vocab=c18e57fd
+-/
 theorem UniversalHashFamily.flat_test_sq_le {α Seed Ω : Type*} [Fintype Seed]
     [Fintype Ω] [Nonempty Seed] [Nonempty Ω] {E : α → Seed → Ω}
     (universal : UniversalHashFamily E) (P : Finset α) (nonempty : P.Nonempty)
@@ -60,7 +66,9 @@ theorem UniversalHashFamily.flat_test_sq_le {α Seed Ω : Type*} [Fintype Seed]
   Internal.universalHashFamily_flat_test_sq_le universal P nonempty T
 
 /-- A universal family is a strong extractor whenever the output size fits
-the sharp leftover-hash error budget. -/
+the sharp leftover-hash error budget.
+@isnad1 id=flatstro.4h6v.s6.bf3526983609 from=translated src=- shape=c05faab1 vocab=cad14050
+-/
 theorem UniversalHashFamily.flatStrongSeededExtractor {α Seed Ω : Type*}
     [Fintype Seed] [Fintype Ω] [Nonempty Seed] [Nonempty Ω] {E : α → Seed → Ω}
     (universal : UniversalHashFamily E) {K : Nat} {ε : ℝ} (positive : 0 < K)

@@ -274,7 +274,9 @@ private theorem reverseTM_emit_loop :
       rw [heq]
       exact hfin
 
-/-- `reverseTM` computes `List.reverse` in `2 · |x| + 3` steps. -/
+/-- `reverseTM` computes `List.reverse` in `2 · |x| + 3` steps.
+@isnad1 id=computes.0h0v.s5.c65af0599c17 from=translated src=- shape=14490f6c vocab=56165d4b
+-/
 theorem reverseTM_computesInTime :
     reverseTM.ComputesInTime (fun x : List Bool => x.reverse) (fun n => 2 * n + 3) := by
   intro x
@@ -301,7 +303,9 @@ theorem reverseTM_computesInTime :
   rw [List.nil_append, List.take_length] at hfin
   exact hfin.hasOutput
 
-/-- Internal proof that string reversal is in `FP`. -/
+/-- Internal proof that string reversal is in `FP`.
+@isnad1 id=mem.0h0v.s4.7a1090eb4dc2 from=translated src=- shape=2f394306 vocab=7c844884
+-/
 theorem reverse_mem_FP :
     (fun x : List Bool => x.reverse) ∈ FP := by
   refine ⟨1, 1, reverseTM, (fun n => 2 * n + 3), reverseTM_computesInTime, ?_⟩

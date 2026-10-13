@@ -83,13 +83,17 @@ def endIdx {T ℓ : ℕ} (hℓ : ℓ ≤ T) (v : G.V) (w : Fin ℓ → G.D) (i :
   ⟨⟨ℓ - (i.val + 1), by have := i.isLt; omega⟩,
     fun j : Fin (ℓ - (i.val + 1)) => G.revWalk v w ⟨j.val, by have := j.isLt; omega⟩⟩
 
-/-- The start's index names the `i`-th vertex of the walk. -/
+/-- The start's index names the `i`-th vertex of the walk.
+@isnad1 id=eq.1h6v.s7.24ccecef200a from=translated src=- shape=86625b04 vocab=bde58502
+-/
 theorem walkEnd_startIdx {T ℓ : ℕ} (hℓ : ℓ ≤ T) (v : G.V) (w : Fin ℓ → G.D) (i : Fin ℓ) :
     G.walkEnd (G.startIdx hℓ w i).1.val v (G.startIdx hℓ w i).2 = G.walkAt ℓ v w i.val := by
   rw [G.walkAt_eq_walkEnd_prefix v w i.val (le_of_lt i.isLt)]
   rfl
 
-/-- The end's index names the `(i+1)`-st vertex of the walk. -/
+/-- The end's index names the `(i+1)`-st vertex of the walk.
+@isnad1 id=eq.1h6v.s7.582a84b67324 from=translated src=- shape=824a63e5 vocab=9cdeed63
+-/
 theorem walkEnd_endIdx {T ℓ : ℕ} (hℓ : ℓ ≤ T) (v : G.V) (w : Fin ℓ → G.D) (i : Fin ℓ) :
     G.walkEnd (G.endIdx hℓ v w i).1.val (G.walkEnd ℓ v w) (G.endIdx hℓ v w i).2
       = G.walkAt ℓ v w (i.val + 1) := by
@@ -108,6 +112,9 @@ theorem walkEnd_endIdx {T ℓ : ℕ} (hℓ : ℓ ≤ T) (v : G.V) (w : Fin ℓ �
 /-- The effective length of a killed dart. -/
 def kLen {T q : ℕ} (x : (Fin T → G.D) × (Fin T → Fin q)) : ℕ := stopAt x.2
 
+/--
+@isnad1 id=le.0h4v.s4.454820b4cefe from=translated src=- shape=28b4cbea vocab=1f2be667
+-/
 theorem kLen_le {T q : ℕ} (x : (Fin T → G.D) × (Fin T → Fin q)) : G.kLen x ≤ T :=
   stopAt_le x.2
 
@@ -115,6 +122,9 @@ theorem kLen_le {T q : ℕ} (x : (Fin T → G.D) × (Fin T → Fin q)) : G.kLen 
 def kWalk {T q : ℕ} (x : (Fin T → G.D) × (Fin T → Fin q)) : Fin (G.kLen x) → G.D :=
   G.preWalk x.1 (stopAt_le x.2)
 
+/--
+@isnad1 id=eq.0h5v.s6.09206effe6e9 from=translated src=- shape=17b489ef vocab=00644680
+-/
 theorem killedEnd_eq {T q : ℕ} (v : G.V) (x : (Fin T → G.D) × (Fin T → Fin q)) :
     G.killedEnd v x.1 x.2 = G.walkEnd (G.kLen x) v (G.kWalk x) := rfl
 
@@ -135,6 +145,9 @@ def killedPow (R : RegCSP α) (q T : ℕ) (hq : 0 < q) : RegCSP (KOpinion R.grap
         (a (R.graph.startIdx (R.graph.kLen_le x) (R.graph.kWalk x) i))
         (b (R.graph.endIdx (R.graph.kLen_le x) v (R.graph.kWalk x) i)) = true)
 
+/--
+@isnad1 id=eq.1h4v.s5.08601fe40ea2 from=translated src=- shape=141bcf91 vocab=68bde25a
+-/
 @[simp] theorem graph_killedPow :
     (R.killedPow q T hq).graph = R.graph.killedPower q T hq := rfl
 
@@ -147,6 +160,9 @@ digit by digit, so an algorithm can read the walk off. -/
 noncomputable instance [NumEnc R.graph.D] : NumEnc (R.killedPow q T hq).graph.D :=
   inferInstanceAs (NumEnc ((Fin T → R.graph.D) × (Fin T → Fin q)))
 
+/--
+@isnad1 id=iff.1h8v.s7.07a6b373c8a5 from=translated src=- shape=004f0b19 vocab=c5fb25c2
+-/
 theorem rel_killedPow_iff (v : R.graph.V) (x : (Fin T → R.graph.D) × (Fin T → Fin q))
     (a b : KOpinion R.graph T α) :
     (R.killedPow q T hq).rel v x a b = true
@@ -163,7 +179,9 @@ truth. -/
 def kTruthful (σ : R.Assignment) : (R.killedPow q T hq).Assignment :=
   fun v w => σ (R.graph.walkEnd w.1.val v w.2)
 
-/-- A satisfying assignment of `R` makes every killed-walk constraint hold. -/
+/-- A satisfying assignment of `R` makes every killed-walk constraint hold.
+@isnad1 id=satisfie.2h6v.s6.02a39197a978 from=translated src=- shape=1524c28c vocab=803a8746
+-/
 theorem satisfies_killedPow_truthful {σ : R.Assignment} (hσ : ∀ p, R.Satisfies σ p)
     (x : (R.killedPow q T hq).Dart) :
     (R.killedPow q T hq).Satisfies (R.kTruthful q T hq σ) x := by
@@ -192,7 +210,9 @@ theorem satisfies_killedPow_truthful {σ : R.Assignment} (hσ : ∀ p, R.Satisfi
   rw [← R.graph.walkAt_succ_of_lt v (R.graph.kWalk y) i.isLt] at hdart
   exact hdart
 
-/-- **Perfect completeness.** -/
+/-- **Perfect completeness.**
+@isnad1 id=satisfia.2h4v.s5.de586394cc3c from=translated src=- shape=89a43af8 vocab=5e1b11f3
+-/
 theorem satisfiable_killedPow_of_satisfiable (hR : R.Satisfiable) :
     (R.killedPow q T hq).Satisfiable := by
   obtain ⟨σ, hσ⟩ := hR
@@ -201,7 +221,9 @@ theorem satisfiable_killedPow_of_satisfiable (hR : R.Satisfiable) :
 /-! ### The soundness witness -/
 
 /-- A step of the effective walk that `σ` fails, whose two vertices both ends
-shape every soundness count is built from. -/
+shape every soundness count is built from.
+@isnad1 id=not.4h9v.s8.c2ae0a797575 from=translated src=- shape=29b7a53c vocab=84600cc5
+-/
 theorem not_satisfies_killedPow_of_faulty {σ : R.Assignment}
     (A : (R.killedPow q T hq).Assignment) (v : R.graph.V)
     (y : (Fin T → R.graph.D) × (Fin T → Fin q)) (i : Fin (R.graph.kLen y))

@@ -29,6 +29,9 @@ def restrictEdges (F : Set E) : Multigraph V F where
   src e := G.src e.1
   tgt e := G.tgt e.1
 
+/--
+@isnad1 id=refltran.2h7v.s5.f25863f69f80 from=translated src=- shape=51cfab00 vocab=dd8d823d
+-/
 theorem restrictEdges_walk_mono {F F' : Set E} (h : F ⊆ F') {u v : V}
     (hp : Relation.ReflTransGen (G.restrictEdges F).Adj u v) :
     Relation.ReflTransGen (G.restrictEdges F').Adj u v := by
@@ -37,7 +40,9 @@ theorem restrictEdges_walk_mono {F F' : Set E} (h : F ⊆ F') {u v : V}
   exact ⟨⟨e.1, h e.2⟩, he⟩
 
 /-- A connected multigraph has a spanning tree with exactly one fewer edge than vertices.
-The construction grows a connected set by one new vertex and one edge at a time. -/
+The construction grows a connected set by one new vertex and one edge at a time.
+@isnad1 id=ex.1h3v.s5.43769447f3a0 from=translated src=- shape=3a96806c vocab=d19fb17e
+-/
 theorem exists_spanning_tree [Finite V] [Finite E] [Nonempty V] (hG : G.Connected) :
     ∃ F : Set E, (G.restrictEdges F).Connected ∧ F.ncard + 1 = Nat.card V := by
   classical
@@ -104,7 +109,9 @@ namespace Compression
 variable {G} {d : ℕ} (c : Compression G d)
 
 /-- The cuts of disjoint blocks count each edge between blocks twice. Only the upper
-bound is needed for tree compression. -/
+bound is needed for tree compression.
+@isnad1 id=le.0h5v.s6.b2236f5ec64f from=translated src=- shape=c6e58ddc vocab=5f2d0044
+-/
 theorem sum_cut_le [Finite E] :
     (∑ B ∈ c.blocks, (G.cut {v | v ∈ B}).ncard) ≤
       2 * {e | ¬ ∃ B ∈ c.blocks, G.src e ∈ B ∧ G.tgt e ∈ B}.ncard := by
@@ -146,7 +153,9 @@ theorem sum_cut_le [Finite E] :
     exact (Finset.card_le_card hsub).trans
       ((Finset.card_insert_le _ _).trans (by simp))
 
-/-- In a compression of a tree some block has at most two boundary edges. -/
+/-- In a compression of a tree some block has at most two boundary edges.
+@isnad1 id=ex.1h5v.s6.2b7b79e01e34 from=translated src=- shape=dc908997 vocab=0d9284b8
+-/
 theorem exists_small_cut [Finite E] (hcard : Nat.card E + 1 = Nat.card V) :
     ∃ B ∈ c.blocks, (G.cut {v | v ∈ B}).ncard ≤ 2 := by
   classical
@@ -163,7 +172,9 @@ theorem exists_small_cut [Finite E] (hcard : Nat.card E + 1 = Nat.card V) :
 
 end Compression
 
-/-- A bounded-degree tree compresses to one ordered block. -/
+/-- A bounded-degree tree compresses to one ordered block.
+@isnad1 id=ex.3h4v.s6.3baf38c87d8e from=translated src=- shape=d4a9ce97 vocab=101dc325
+-/
 theorem exists_tree_list [Finite V] [Finite E] (hG : G.Connected)
     (hcard : Nat.card E + 1 = Nat.card V) {d : ℕ} (hdeg : G.MaxDegreeLE d) :
     ∃ B : List V, B.Nodup ∧ (∀ v, v ∈ B) ∧
@@ -202,7 +213,9 @@ theorem exists_tree_list [Finite V] [Finite E] (hG : G.Connected)
     exact hmin c' trivial hc'
   exact ⟨B, c.nodup B hB, hall, c.cut_take_le B hB⟩
 
-/-- A tree of maximum degree `d` has cutwidth at most `d log₂ |V|`. -/
+/-- A tree of maximum degree `d` has cutwidth at most `d log₂ |V|`.
+@isnad1 id=ex.3h4v.s6.14782ec24663 from=translated src=- shape=d62a2e53 vocab=d186f988
+-/
 theorem exists_layout_tree [Finite V] [Finite E] (hG : G.Connected)
     (hcard : Nat.card E + 1 = Nat.card V) {d : ℕ} (hdeg : G.MaxDegreeLE d) :
     ∃ π : Layout V, ∀ t, (G.cut (π.initial t)).ncard ≤ d * Nat.log 2 (Nat.card V) := by
@@ -230,7 +243,9 @@ theorem exists_layout_tree [Finite V] [Finite E] (hG : G.Connected)
   · have hu : {v | v ∈ B} = (univ : Set V) := eq_univ_of_forall hall
     simp [List.take_of_length_le (by lia : B.length ≤ B.idxOf v₀ + 1), hu]
 
-/-- Restricting edges cannot increase degree. -/
+/-- Restricting edges cannot increase degree.
+@isnad1 id=maxdegre.1h5v.s5.83f5f4dc5de5 from=translated src=- shape=10a1e9d2 vocab=61449000
+-/
 theorem maxDegreeLE_restrictEdges [Finite E] {d : ℕ} (hd : G.MaxDegreeLE d) (F : Set E) :
     (G.restrictEdges F).MaxDegreeLE d := by
   intro v
@@ -240,7 +255,9 @@ theorem maxDegreeLE_restrictEdges [Finite E] {d : ℕ} (hd : G.MaxDegreeLE d) (F
     _ ≤ (G.edgesAt v).ncard := ncard_le_ncard (by rintro _ ⟨e, he, rfl⟩; exact he)
     _ ≤ d := hd v
 
-/-- Putting back the edges outside a spanning tree costs exactly the cycle rank. -/
+/-- Putting back the edges outside a spanning tree costs exactly the cycle rank.
+@isnad1 id=ex.2h4v.s6.735f2c41fe12 from=translated src=- shape=a2cc5cc6 vocab=49e6c843
+-/
 theorem exists_layout_cycleRank [Finite V] [Finite E] (hG : G.Connected)
     {d : ℕ} (hd : G.MaxDegreeLE d) :
     ∃ π : Layout V, ∀ t,
@@ -275,7 +292,9 @@ end Complexity.Frontier.Multigraph
 namespace Complexity.Frontier
 
 /-- **Every fixed degree has layout coefficient one.** This bound is weaker than the
-Gaussian coefficient at degree three, but supplies every higher-fan-in instantiation. -/
+Gaussian coefficient at degree three, but supplies every higher-fan-in instantiation.
+@isnad1 id=layoutbo.0h1v.s3.58ee6a828642 from=translated src=- shape=8ba9e24c vocab=04132c36
+-/
 theorem layoutBound_one (d : ℕ) : LayoutBound d 1 := by
   intro η hη
   obtain ⟨K, hK⟩ := exists_log_le_mul_add (ε := η / ((d : ℝ) + 1)) (by positivity)

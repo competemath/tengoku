@@ -41,7 +41,9 @@ noncomputable def codeExpBound (cardQ k : ℕ) (p : Polynomial ℕ) : Polynomial
   Polynomial.C cardQ + (Polynomial.X + p + Polynomial.C 2)
     + Polynomial.C (3 * k) * (p + 1) + Polynomial.C 3 * (p + Polynomial.C 2)
 
-/-- **The configuration count is `2` to a polynomial.** -/
+/-- **The configuration count is `2` to a polynomial.**
+@isnad1 id=le.1h5v.s9.1c7d3c76edfe from=translated src=- shape=51eedc58 vocab=41f6a3ba
+-/
 theorem card_Code_le_two_pow_poly (Q : Type) [Fintype Q] (k : ℕ) (S : ℕ → ℕ)
     (p : Polynomial ℕ) (hS : ∀ n, S n ≤ p.eval n) (n : ℕ) :
     Fintype.card (Code Q k n (S n)) ≤ 2 ^ (codeExpBound (Fintype.card Q) k p).eval n := by
@@ -54,7 +56,9 @@ theorem card_Code_le_two_pow_poly (Q : Type) [Fintype Q] (k : ℕ) (S : ℕ → 
 
 /-- **A language in `NPSPACE` is reachability within `2 ^ poly` steps.** This is the input to
 Savitch's recursion: halving the bound `2 ^ q(|x|)` bottoms out after `q(|x|)` levels, so the
-recursion depth is polynomial. -/
+recursion depth is polynomial.
+@isnad1 id=ex.1h1v.s6.434d790e968f from=translated src=- shape=6eb37b08 vocab=cdc336dc
+-/
 theorem NPSPACE_bounded_reachability_internal {L : Language} (hL : L ∈ NPSPACE) :
     ∃ (k : ℕ) (tm : NTM k) (q : Polynomial ℕ),
       ∀ x : List Bool, x ∈ L ↔
@@ -79,7 +83,9 @@ theorem NPSPACE_bounded_reachability_internal {L : Language} (hL : L ∈ NPSPACE
 
 /-- **`NPSPACE ⊆ PSPACE`, reduced to the existence of one machine.** The hypothesis carries the
 space witness for `tm`: without it the configuration graph is unbounded and the step bound
-`2 ^ q(|x|)` is not enough to make the search decidable in polynomial space. -/
+`2 ^ q(|x|)` is not enough to make the search decidable in polynomial space.
+@isnad1 id=le.1h0v.s8.4ace7762b815 from=translated src=- shape=58d374cf vocab=ecfedbb6
+-/
 theorem NPSPACE_subset_PSPACE_of_recursion_internal
     (h : ∀ (k : ℕ) (tm : NTM k) (S : ℕ → ℕ) (L₀ : Language) (m : ℕ) (q : Polynomial ℕ),
       tm.DecidesInSpace L₀ S → S =O (· ^ m) →

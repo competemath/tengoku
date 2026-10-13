@@ -26,7 +26,9 @@ namespace MassProduction
 open scoped BigOperators LinearAlgebra.Projectivization
 
 /-- Every sufficiently low-degree evaluation-code symbol is the sum over any
-projective punctured line through it. -/
+projective punctured line through it.
+@isnad1 id=eq.1h7v.s7.a0daff1f9ef7 from=translated src=- shape=fc049c93 vocab=7a6784bd
+-/
 theorem evaluationCode_sum_puncturedLine
     {K Index Coordinate : Type*}
     [Fintype K] [Field K] [DecidableEq K] [CharP K 2]
@@ -51,7 +53,9 @@ theorem evaluationCode_sum_puncturedLine
   simp [Pi.smul_apply, mul_comm]
 
 /-- At the paper's canonical grid width, punctured-line recovery holds in
-every positive dimension. -/
+every positive dimension.
+@isnad1 id=eq.1h5v.s7.bfed48a72bdb from=translated src=- shape=eb3ec8d4 vocab=031a8cf6
+-/
 theorem paperEvaluationCode_sum_puncturedLine
     (K : Type*)
     [Fintype K] [Field K] [DecidableEq K] [CharP K 2]
@@ -71,7 +75,9 @@ theorem paperEvaluationCode_sum_puncturedLine
     resourceGridWidth_degree_lt (Fintype.card K) dimension
       Fintype.one_lt_card dimensionPositive
 
-/-- Aligned target and direction lists recover every target code symbol. -/
+/-- Aligned target and direction lists recover every target code symbol.
+@isnad1 id=eq.2h5v.s8.aab16e1b09b5 from=translated src=- shape=47f83d49 vocab=cb05a43c
+-/
 theorem paperEvaluationCode_recoverySets
     (K : Type*)
     [Fintype K] [Field K] [DecidableEq K] [CharP K 2]
@@ -104,7 +110,9 @@ theorem paperEvaluationCode_recoverySets
             inductionHypothesis directions equalLength⟩
 
 /-- Under the exact direction-counting condition, every request list has a
-pairwise-disjoint schedule whose code-symbol sums recover the whole list. -/
+pairwise-disjoint schedule whose code-symbol sums recover the whole list.
+@isnad1 id=ex.2h4v.s8.26d66fe18cfc from=translated src=- shape=458a2fc0 vocab=67e0878c
+-/
 theorem exists_disjoint_paperEvaluationCode_recovery
     (K : Type*)
     [Fintype K] [Field K] [DecidableEq K] [CharP K 2]
@@ -128,7 +136,9 @@ theorem exists_disjoint_paperEvaluationCode_recovery
     message targets directions schedule.1
 
 /-- Paper-facing form under the simpler condition
-`requests * |K| < |projective directions|`. -/
+`requests * |K| < |projective directions|`.
+@isnad1 id=ex.2h4v.s8.46e1c5104a72 from=translated src=- shape=e7e39ed5 vocab=515c6dcc
+-/
 theorem exists_disjoint_paperEvaluationCode_recovery_of_mul_card_lt
     (K : Type*)
     [Fintype K] [Field K] [DecidableEq K] [CharP K 2]

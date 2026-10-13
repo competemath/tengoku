@@ -69,16 +69,30 @@ def vars : DecisionTree → Finset ℕ
   | leaf _ => ∅
   | node i t₀ t₁ => insert i (vars t₀ ∪ vars t₁)
 
+/--
+@isnad1 id=eq.0h2v.s3.eaf4c63751ec from=translated src=- shape=77ec2d61 vocab=52ebcc75
+-/
 @[simp] theorem eval_leaf (α : ℕ → Bool) (b : Bool) : eval α (leaf b) = b := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.fc6e88d81433 from=translated src=- shape=eba242f4 vocab=8753a116
+-/
 @[simp] theorem eval_node (α : ℕ → Bool) (i : ℕ) (t₀ t₁ : DecisionTree) :
     eval α (node i t₀ t₁) = if α i then eval α t₁ else eval α t₀ := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.fc8271e50961 from=translated src=- shape=f6b6ad72 vocab=2554fa0b
+-/
 @[simp] theorem depth_leaf (b : Bool) : depth (leaf b) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.b614069fdf46 from=translated src=- shape=f6b6ad72 vocab=0247521a
+-/
 @[simp] theorem numLeaves_leaf (b : Bool) : numLeaves (leaf b) = 1 := rfl
 
-/-- Every decision tree has at least one leaf. -/
+/-- Every decision tree has at least one leaf.
+@isnad1 id=le.0h1v.s3.4ce3500e8fb2 from=translated src=- shape=b9369acb vocab=8759ec60
+-/
 theorem one_le_numLeaves (t : DecisionTree) : 1 ≤ numLeaves t := by
   induction t with
   | leaf b => simp [numLeaves]
@@ -86,7 +100,9 @@ theorem one_le_numLeaves (t : DecisionTree) : 1 ≤ numLeaves t := by
 
 /-- **Locality (junta property).** A decision tree's output depends only on the
     variables it queries: if two assignments agree on `vars t`, they yield the same
-    value. -/
+    value.
+@isnad1 id=eq.1h3v.s5.ade46e0b6f4d from=translated src=- shape=5ae66b85 vocab=278cad00
+-/
 theorem eval_eq_of_agree : ∀ (t : DecisionTree) {α β : ℕ → Bool},
     (∀ i ∈ vars t, α i = β i) → eval α t = eval β t := by
   intro t
@@ -103,7 +119,9 @@ theorem eval_eq_of_agree : ∀ (t : DecisionTree) {α β : ℕ → Bool},
 
 /-- A depth-`d` decision tree queries fewer than `2 ^ d` distinct variables
     (`|vars t| < 2 ^ depth t`), the branching-count bound behind decision-tree
-    complexity. -/
+    complexity.
+@isnad1 id=lt.0h1v.s4.eb7ce17ffa07 from=translated src=- shape=5d8fa2f0 vocab=c3b01f61
+-/
 theorem card_vars_lt_two_pow_depth (t : DecisionTree) : (vars t).card < 2 ^ depth t := by
   induction t with
   | leaf b => simp [vars, depth]
@@ -118,7 +136,9 @@ theorem card_vars_lt_two_pow_depth (t : DecisionTree) : (vars t).card < 2 ^ dept
     rw [Nat.pow_succ, Nat.mul_two]
     omega
 
-/-- A decision tree of depth `d` has at most `2 ^ d` leaves. -/
+/-- A decision tree of depth `d` has at most `2 ^ d` leaves.
+@isnad1 id=le.0h1v.s4.64fa1c29d9c5 from=translated src=- shape=9fc36aa0 vocab=ad126139
+-/
 theorem numLeaves_le_two_pow_depth (t : DecisionTree) : numLeaves t ≤ 2 ^ depth t := by
   induction t with
   | leaf b => simp
@@ -139,7 +159,9 @@ def toFormula : DecisionTree → BoolFormula
       BoolFormula.disj (BoolFormula.conj (BoolFormula.var i) (toFormula t₁))
         (BoolFormula.conj (BoolFormula.neg (BoolFormula.var i)) (toFormula t₀))
 
-/-- **The compiled formula computes the same function as the tree.** -/
+/-- **The compiled formula computes the same function as the tree.**
+@isnad1 id=eq.0h2v.s3.fdbe35a6aca5 from=translated src=- shape=214be1fd vocab=72899ea5
+-/
 theorem toFormula_eval (α : ℕ → Bool) (t : DecisionTree) :
     BoolFormula.eval α (toFormula t) = eval α t := by
   induction t with
@@ -150,7 +172,9 @@ theorem toFormula_eval (α : ℕ → Bool) (t : DecisionTree) :
 
 /-- The compiled formula has depth at most `2 · depth t + 1`: each query node
     expands to a two-level `∨`-of-`∧` gadget, and the negated literal adds one
-    further level. -/
+    further level.
+@isnad1 id=le.0h1v.s5.3cb9edf24ef9 from=translated src=- shape=fd09ca4a vocab=4dc8c295
+-/
 theorem toFormula_depth_le (t : DecisionTree) : (toFormula t).depth ≤ 2 * t.depth + 1 := by
   induction t with
   | leaf b => cases b <;> simp [toFormula, BoolFormula.depth, depth]

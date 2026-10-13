@@ -23,7 +23,9 @@ namespace Algebraic.Cutwidth.Bisection
 
 /-- If every remaining side of density above `a` has a helpful set of size
 at most `M`, a margin of `k` yields a union of at most `k M` vertices whose
-helpfulness is at least `k`. The last move may exceed the target reduction. -/
+helpfulness is at least `k`. The last move may exceed the target reduction.
+@isnad1 id=ex.3h6v.s7.c40156c13815 from=translated src=- shape=d1c122d8 vocab=5ae5d672
+-/
 theorem exists_helpful_set_of_margin {W : Type} [Fintype W] (H : SimpleGraph W)
     (S : Finset W) {a : ℝ} (ha : 0 ≤ a) (M k : Nat)
     (margin : a * S.card + k < (H.cutFinset S).card)

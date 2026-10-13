@@ -33,20 +33,28 @@ public section
 
 namespace Algebraic.Cutwidth.Extractor
 
-/-- Every binary trinomial in the family is monic. -/
+/-- Every binary trinomial in the family is monic.
+@isnad1 id=monic.0h1v.s5.92361365754b from=translated src=- shape=f5b4d083 vocab=68304833
+-/
 theorem binaryModulus_monic (s : Nat) : (binaryModulus s).Monic :=
   Internal.binaryModulus_monic s
 
-/-- The leading exponent gives the exact degree. -/
+/-- The leading exponent gives the exact degree.
+@isnad1 id=eq.0h1v.s6.8ac26347500c from=translated src=- shape=ede5f45b vocab=33debace
+-/
 theorem binaryModulus_natDegree (s : Nat) : (binaryModulus s).natDegree = 2 * 3 ^ s :=
   Internal.binaryModulus_natDegree s
 
-/-- The quotient has exactly as many elements as a binary vector of the modulus degree. -/
+/-- The quotient has exactly as many elements as a binary vector of the modulus degree.
+@isnad1 id=eq.0h1v.s6.aa5115362342 from=translated src=- shape=2ac57060 vocab=f53f7d95
+-/
 theorem card_adjoinRoot_binaryModulus (s : Nat) :
     Nat.card (AdjoinRoot (binaryModulus s)) = 2 ^ (2 * 3 ^ s) :=
   Internal.card_adjoinRoot_binaryModulus s
 
-/-- Substituting a cube passes to the next member of the same explicit family. -/
+/-- Substituting a cube passes to the next member of the same explicit family.
+@isnad1 id=eq.0h1v.s8.42baa4b19c6a from=translated src=- shape=73291732 vocab=0d20e63d
+-/
 theorem binaryModulus_comp_cube (s : Nat) :
     (binaryModulus s).comp (Polynomial.X ^ 3) = binaryModulus (s + 1) :=
   Internal.binaryModulus_comp_cube s

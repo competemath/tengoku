@@ -30,7 +30,9 @@ namespace Algebraic.Cutwidth.Extractor
 open scoped Classical in
 /-- A normalized source capped at `1 / K` is an exact convex mixture of
 uniform supports of cardinality `K`. The positive threshold excludes division
-by zero; empty ambient types cannot satisfy normalization. -/
+by zero; empty ambient types cannot satisfy normalization.
+@isnad1 id=ex.4h3v.s8.86ed16fa5a28 from=translated src=- shape=fe6b3d5c vocab=7bf58d55
+-/
 theorem exists_flat_mixture_of_capped_weights {α : Type*} [Fintype α]
     (p : α → ℝ) {K : Nat} (positive : 0 < K) (nonnegative : ∀ x, 0 ≤ p x)
     (mass : ∑ x, p x = 1) (cap : ∀ x, (K : ℝ) * p x ≤ 1) :

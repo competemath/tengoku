@@ -22,7 +22,9 @@ namespace Algebraic.Cutwidth.PathDecomposition
 open scoped Classical
 
 /-- Extend an induced copy's decomposition by adding `X` to all bags and as
-both endpoints. Every vertex outside the copy must lie in `X`. -/
+both endpoints. Every vertex outside the copy must lie in `X`.
+@isnad1 id=ex.2h8v.s7.4aaaa61efe02 from=translated src=- shape=2f2fc192 vocab=1c90c41c
+-/
 theorem exists_pad {V W : Type} {G : SimpleGraph V} {H : SimpleGraph W}
     (D : PathDecomposition G) (f : G ↪g H) (X : Finset W)
     (cover : ∀ w, w ∈ Set.range f ∨ w ∈ X) {b : Nat}

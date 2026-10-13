@@ -35,26 +35,34 @@ namespace Complexity.BooleanAnalysis
 open Finset
 open scoped BigOperators
 
-/-- Marginalization preserves total probability mass. -/
+/-- Marginalization preserves total probability mass.
+@isnad1 id=eq.0h3v.s7.9e2acd8c0e5b from=translated src=- shape=ac009517 vocab=00505050
+-/
 theorem sum_coordinateMass {ι : Type*} [Fintype ι] [DecidableEq ι]
     (mass : (ι → Bool) → ℝ) (s : ι → Bool) :
     (∑ z, coordinateMass mass s z) = ∑ x, mass x :=
   sum_coordinateMass_internal mass s
 
-/-- Marginal masses of a nonnegative mass function are nonnegative. -/
+/-- Marginal masses of a nonnegative mass function are nonnegative.
+@isnad1 id=le.1h4v.s6.81a1e22dc918 from=translated src=- shape=656acdad vocab=689caa1e
+-/
 theorem coordinateMass_nonneg {ι : Type*} [Fintype ι] [DecidableEq ι]
     {mass : (ι → Bool) → ℝ} (hm : ∀ x, 0 ≤ mass x) (s : ι → Bool)
     (z : {i // s i = true} → Bool) : 0 ≤ coordinateMass mass s z :=
   sum_nonneg fun _ _ => hm _
 
-/-- Normalizing the input mass by `2^n` normalizes each marginal by `2^|R|`. -/
+/-- Normalizing the input mass by `2^n` normalizes each marginal by `2^|R|`.
+@isnad1 id=eq.0h4v.s7.0e1318270e15 from=translated src=- shape=ba38748f vocab=97729f6b
+-/
 theorem coordinateMarginal_normalize {ι : Type*} [Fintype ι] [DecidableEq ι]
     (mass : (ι → Bool) → ℝ) (s : ι → Bool) (z : {i // s i = true} → Bool) :
     coordinateMarginal (fun x => (2 : ℝ) ^ Fintype.card ι * mass x) s z =
       (2 : ℝ) ^ Fintype.card {i // s i = true} * coordinateMass mass s z :=
   coordinateMarginal_normalize_internal mass s z
 
-/-- Sparse-sampling estimate for the harmonic transform in the proof of Lemma 10. -/
+/-- Sparse-sampling estimate for the harmonic transform in the proof of Lemma 10.
+@isnad1 id=le.6h4v.s8.cfb352d13d5a from=translated src=- shape=d56ac1c2 vocab=a0d69829
+-/
 theorem harmonicTransform_sparse_good_probability {ι : Type*} [Fintype ι] [DecidableEq ι]
     {f : (ι → Bool) → ℝ}
     (hf : ∀ x, 0 ≤ f x) (hmean : (𝔼 x, f x) = 1) {k r : ℝ} (hk : 1 ≤ k)
@@ -64,7 +72,9 @@ theorem harmonicTransform_sparse_good_probability {ι : Type*} [Fintype ι] [Dec
   harmonicTransform_sparse_good_probability_internal hf hmean hk hbound hr hr'
 
 /-- Lemma 10 for normalized densities: with probability at least `63/64`, the
-fraction of patterns with marginal density at most `2^(-2*k-2)` is at most `2^-k`. -/
+fraction of patterns with marginal density at most `2^(-2*k-2)` is at most `2^-k`.
+@isnad1 id=le.6h4v.s9.129f0e4ba639 from=translated src=- shape=f8729546 vocab=12727f0b
+-/
 theorem improved_light_patterns_density {ι : Type*} [Fintype ι] [DecidableEq ι]
     {f : (ι → Bool) → ℝ}
     (hf : ∀ x, 0 ≤ f x) (hmean : (𝔼 x, f x) = 1) {k r : ℝ} (hk : 1 ≤ k)
@@ -76,7 +86,9 @@ theorem improved_light_patterns_density {ι : Type*} [Fintype ι] [DecidableEq �
 
 /-- Korten's improved light-patterns lemma (Lemma 10), with its exact constants
 and pattern count. Nonnegative masses summing to one represent a distribution;
-the pointwise bound is min-entropy deficit at most the real parameter `k`. -/
+the pointwise bound is min-entropy deficit at most the real parameter `k`.
+@isnad1 id=le.6h4v.s10.46757ad8f7e8 from=translated src=- shape=2096a2c6 vocab=5fbd4d9a
+-/
 theorem improved_light_patterns {ι : Type*} [Fintype ι] [DecidableEq ι]
     {mass : (ι → Bool) → ℝ}
     (hm : ∀ x, 0 ≤ mass x) (hmean : (∑ x, mass x) = 1) {k r : ℝ} (hk : 1 ≤ k)

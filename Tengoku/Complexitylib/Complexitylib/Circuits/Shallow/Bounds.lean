@@ -21,12 +21,18 @@ namespace Complexity.Shallow
 
 open Finset
 
+/--
+@isnad1 id=le.2h5v.s6.1f8b9e84f178 from=translated src=- shape=403f7406 vocab=f96c6fce
+-/
 theorem exp_mul_bound {k a b x y : ℕ} (hx : x ≤ 2 ^ (a * k))
     (hy : y ≤ 2 ^ (b * k)) : x * y ≤ 2 ^ ((a + b) * k) := by
   calc
     x * y ≤ 2 ^ (a * k) * 2 ^ (b * k) := Nat.mul_le_mul hx hy
     _ = _ := by rw [← pow_add]; congr 1; ring
 
+/--
+@isnad1 id=le.3h5v.s7.20f762a1b819 from=translated src=- shape=e86e296d vocab=f96c6fce
+-/
 theorem exp_add_bound {k a b x y : ℕ} (hk : 1 ≤ k) (hx : x ≤ 2 ^ (a * k))
     (hy : y ≤ 2 ^ (b * k)) : x + y ≤ 2 ^ ((a + b + 1) * k) := by
   have hx' : x ≤ 2 ^ ((a + b) * k) := hx.trans
@@ -38,12 +44,17 @@ theorem exp_add_bound {k a b x y : ℕ} (hk : 1 ≤ k) (hx : x ≤ 2 ^ (a * k))
     _ = 2 ^ ((a + b) * k + 1) := (pow_succ ..).symm
     _ ≤ _ := Nat.pow_le_pow_right (by omega) (by nlinarith)
 
+/--
+@isnad1 id=le.1h2v.s5.685d5a4e1116 from=translated src=- shape=23f30f4d vocab=45880164
+-/
 theorem exp_const_bound (c k : ℕ) (hk : 1 ≤ k) : c ≤ 2 ^ (c * k) :=
   Nat.lt_two_pow_self.le.trans
     (Nat.pow_le_pow_right (by omega) (by nlinarith))
 
 /-- A bound for the entire finite construction, with only its three summary
-parameters: input count, sum of moduli, and sum of squared moduli. -/
+parameters: input count, sum of moduli, and sum of squared moduli.
+@isnad1 id=le.5h9v.s8.62c7c02696ce from=translated src=- shape=6ff2eb9c vocab=f96c6fce
+-/
 theorem construction_size_bound {k n U V B N A D E : ℕ} (hk : 1 ≤ k)
     (hn : n ≤ 2 ^ (N * k)) (hu : U ≤ A * k)
     (hv : V ≤ 2 ^ (D * k)) (hb : B ≤ 2 ^ (E * k)) :
@@ -66,7 +77,9 @@ theorem construction_size_bound {k n U V B N A D E : ℕ} (hk : 1 ≤ k)
   congr 1
   ring
 
-/-- Polynomial factors in the moduli fit into the exponential envelope. -/
+/-- Polynomial factors in the moduli fit into the exponential envelope.
+@isnad1 id=le.2h4v.s7.f31800b09a37 from=translated src=- shape=cfac7612 vocab=ed64ca13
+-/
 theorem sum_sq_moduli_bound {r C k : ℕ} (hk : 1 ≤ k)
     (m : Fin r → ℕ) (hm : ∀ i, m i ≤ C * k) :
     ∑ i, (m i) ^ 2 ≤ 2 ^ ((r + 2 * C + 2) * k) := by
@@ -84,7 +97,9 @@ theorem sum_sq_moduli_bound {r C k : ℕ} (hk : 1 ≤ k)
       congr 1
       ring
 
-/-- Two blocks fit into the smaller instance used by the depth induction. -/
+/-- Two blocks fit into the smaller instance used by the depth induction.
+@isnad1 id=le.3h4v.s7.21738031f9bc from=translated src=- shape=e31eaa5c vocab=6111968e
+-/
 theorem pair_size_bound {n d k m : ℕ} (hk : 1 ≤ k) (hn : n ≤ k ^ (d + 2))
     (hm : k ≤ m) : 2 * (n / m + 1) ≤ (4 * k) ^ (d + 1) := by
   have hdiv : n / m ≤ k ^ (d + 1) := by

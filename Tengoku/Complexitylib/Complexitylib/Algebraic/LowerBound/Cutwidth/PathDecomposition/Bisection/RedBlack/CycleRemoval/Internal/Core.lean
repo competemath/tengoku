@@ -28,6 +28,9 @@ open scoped Classical
 
 variable {V : Type} [Fintype V] (B : SimpleGraph V)
 
+/--
+@isnad1 id=mem.3h5v.s5.df8237fecfce from=translated src=- shape=4570118e vocab=d34a3e6a
+-/
 theorem mem_of_reachable_of_cut_empty {P : Finset V} (closed : B.cutFinset P = ∅)
     {u v : V} (reachable : B.Reachable u v) (member : u ∈ P) : v ∈ P := by
   obtain ⟨p⟩ := reachable
@@ -40,6 +43,9 @@ theorem mem_of_reachable_of_cut_empty {P : Finset V} (closed : B.cutFinset P = �
     rw [closed] at crossing
     exact Finset.notMem_empty _ crossing
 
+/--
+@isnad1 id=le.3h7v.s7.3487d2b4a71f from=translated src=- shape=64223916 vocab=2c6c41c1
+-/
 theorem cut_card_le_one_after_chosen_deletion {ι : Type} (P : ι → Finset V)
     (chosen : ι → Sym2 V) (indices : Finset ι)
     (two : ∀ i ∈ indices, (B.cutFinset (P i)).card ≤ 2)

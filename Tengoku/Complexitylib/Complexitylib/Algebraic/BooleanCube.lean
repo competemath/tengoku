@@ -22,7 +22,9 @@ namespace Algebraic.BooleanCube
 
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
-/-- Every Boolean vector is reachable from any other by coordinate updates. -/
+/-- Every Boolean vector is reachable from any other by coordinate updates.
+@isnad1 id=var.0h6v.s5.bc0c5b2f9185 from=translated src=- shape=083093a7 vocab=42ebbc39
+-/
 theorem update_induction (start finish : ι → Bool) (P : (ι → Bool) → Prop)
     (initial : P start)
     (step : ∀ vector index value, P vector → P (Function.update vector index value)) :
@@ -53,7 +55,9 @@ private theorem update_distance (start finish : ι → Bool) (index : ι)
   rw [changed]
   exact Finset.card_erase_add_one (by simp [different])
 
-/-- A one-coordinate upper bound extends to Hamming distance. -/
+/-- A one-coordinate upper bound extends to Hamming distance.
+@isnad1 id=le.1h5v.s6.ffd538cf5ee6 from=translated src=- shape=5652f199 vocab=7db8b6f1
+-/
 theorem le_add_mul_hammingDist (measure : (ι → Bool) → Nat) (bound : Nat)
     (step : ∀ vector index value,
       measure (Function.update vector index value) ≤ measure vector + bound)
@@ -81,7 +85,9 @@ theorem le_add_mul_hammingDist (measure : (ι → Bool) → Nat) (bound : Nat)
         measure finish ≤ measure start + bound * hammingDist start previous + bound := by omega
         _ = measure start + bound * d := by rw [← decrease, Nat.mul_add]; omega
 
-/-- The symmetric form of the Hamming Lipschitz bound, using natural distance. -/
+/-- The symmetric form of the Hamming Lipschitz bound, using natural distance.
+@isnad1 id=le.1h5v.s6.6271d83858b5 from=translated src=- shape=29f05385 vocab=b9aff4d9
+-/
 theorem dist_le_mul_hammingDist (measure : (ι → Bool) → Nat) (bound : Nat)
     (step : ∀ vector index value,
       measure (Function.update vector index value) ≤ measure vector + bound)
@@ -94,7 +100,9 @@ theorem dist_le_mul_hammingDist (measure : (ι → Bool) → Nat) (bound : Nat)
   omega
 
 /-- Discrete intermediate values on a Boolean cube. The first threshold
-crossing overshoots by at most the one-coordinate bound. -/
+crossing overshoots by at most the one-coordinate bound.
+@isnad1 id=ex.3h6v.s6.89a403dd8b79 from=translated src=- shape=51a39a8e vocab=cb2d626a
+-/
 theorem exists_between (measure : (ι → Bool) → Nat) (bound threshold : Nat)
     (step : ∀ vector index value,
       measure (Function.update vector index value) ≤ measure vector + bound)

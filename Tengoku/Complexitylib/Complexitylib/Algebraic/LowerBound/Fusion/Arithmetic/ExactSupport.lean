@@ -56,7 +56,9 @@ instance : ZeroSumFree ℚ≥0 where
       simp
 
 /-- A finite sum in a zero-sum-free commutative monoid vanishes exactly when
-every summand vanishes. -/
+every summand vanishes.
+@isnad1 id=iff.0h4v.s6.f997f2ab54c1 from=translated src=- shape=b7b02183 vocab=4dcb5438
+-/
 theorem finset_sum_eq_zero_iff
     [AddCommMonoid R]
     [ZeroSumFree R]
@@ -79,7 +81,9 @@ variable [CommSemiring R] [Nontrivial R]
 variable [NoZeroDivisors R] [ZeroSumFree R]
 
 omit [Nontrivial R] [NoZeroDivisors R] in
-/-- Exact support of addition over a zero-sum-free coefficient semiring. -/
+/-- Exact support of addition over a zero-sum-free coefficient semiring.
+@isnad1 id=eq.0h4v.s7.8e60fee93b17 from=translated src=- shape=8c74cf7b vocab=f078017e
+-/
 theorem polynomial_support_add
     [DecidableEq Variable]
     (left right : MvPolynomial Variable R) :
@@ -103,7 +107,9 @@ theorem polynomial_support_add
       (fun rightNonzero => rightNonzero bothZero.2)
 
 omit [Nontrivial R] [NoZeroDivisors R] in
-/-- Exact support of a finite polynomial sum. -/
+/-- Exact support of a finite polynomial sum.
+@isnad1 id=eq.0h5v.s6.09c6e343bfd2 from=translated src=- shape=d8c6fff9 vocab=ddf7cca3
+-/
 theorem support_finset_sum
     [DecidableEq Variable]
     (indices : Finset Index)

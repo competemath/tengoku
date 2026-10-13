@@ -25,6 +25,9 @@ open scoped BigOperators Classical
 
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
+/--
+@isnad1 id=eq.0h3v.s7.96f16b2fa946 from=translated src=- shape=50e46de2 vocab=1a6e0bdf
+-/
 theorem expect_restrict_coordinates_internal (s : ι → Bool) (f : ({i // s i = true} → Bool) → ℝ) :
     (𝔼 x : ι → Bool, f (fun i => x i)) = 𝔼 x, f x := by
   let e := Equiv.piEquivPiSubtypeProd (fun i => s i = true) (fun _ => Bool)
@@ -38,11 +41,17 @@ theorem expect_restrict_coordinates_internal (s : ι → Bool) (f : ({i // s i =
   simp_rw [he, Fintype.expect_const]
 
 omit [Fintype ι] [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h4v.s5.9f4852dd1448 from=translated src=- shape=b977dcd5 vocab=5ab4a6ff
+-/
 theorem resample_eq_completePattern_internal (s x y : ι → Bool) :
     resample s x y = completePattern s x (fun i => y i) := by
   funext i
   by_cases hi : s i = true <;> simp [resample, completePattern, hi]
 
+/--
+@isnad1 id=eq.0h4v.s7.5faa11d07592 from=translated src=- shape=4c803172 vocab=1265f998
+-/
 theorem coordinateDensity_eq_expect_internal (X : Finset (ι → Bool)) (s x : ι → Bool) :
     coordinateDensity X s x = 𝔼 y, if resample s x y ∈ X then (1 : ℝ) else 0 := by
   simp_rw [resample_eq_completePattern_internal]
@@ -50,6 +59,9 @@ theorem coordinateDensity_eq_expect_internal (X : Finset (ι → Bool)) (s x : �
     (fun z => if completePattern s x z ∈ X then (1 : ℝ) else 0)]
   simp [coordinateDensity, coordinateFiber, Fintype.expect_eq_sum_div_card]
 
+/--
+@isnad1 id=eq.1h2v.s6.05a61fd6583c from=translated src=- shape=600c64b6 vocab=cf92f447
+-/
 theorem expect_uniformDensity_internal {X : Finset (ι → Bool)} (hX : X.Nonempty) :
     (𝔼 x, uniformDensity X x) = 1 := by
   unfold uniformDensity
@@ -57,6 +69,9 @@ theorem expect_uniformDensity_internal {X : Finset (ι → Bool)} (hX : X.Nonemp
   simp
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=le.2h4v.s5.79210b917058 from=translated src=- shape=e19711db vocab=e11c6113
+-/
 theorem uniformDensity_le_rpow_internal {X : Finset (ι → Bool)} (hX : X.Nonempty)
     {k : ℝ} (hk : uniformDeficit X ≤ k) (x : ι → Bool) :
     uniformDensity X x ≤ (2 : ℝ) ^ k := by
@@ -69,6 +84,9 @@ theorem uniformDensity_le_rpow_internal {X : Finset (ι → Bool)} (hX : X.Nonem
     hproduct
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.1h3v.s6.ce8b4259159f from=translated src=- shape=37e14dfc vocab=38eba970
+-/
 theorem uniformDensity_eq_deficit_internal {X : Finset (ι → Bool)} (hX : X.Nonempty)
     (z : ι → Bool) :
     uniformDensity X z = (2 : ℝ) ^ uniformDeficit X * (if z ∈ X then 1 else 0) := by

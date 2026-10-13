@@ -37,6 +37,9 @@ namespace Complexity
 
 open NumEnc
 
+/--
+@isnad1 id=eq.1h4v.s5.9fac917a6c30 from=translated src=- shape=792bcb7d vocab=a52364d0
+-/
 theorem findIdx_congr {β : Type} {l : List β} {p q : β → Bool} (h : ∀ x ∈ l, p x = q x) :
     l.findIdx p = l.findIdx q := by
   induction l with
@@ -50,7 +53,9 @@ is zero, or the whole length if there is none. -/
 def stopAtNum (T q c : ℕ) : ℕ :=
   (List.finRange T).findIdx fun j => (c / q ^ j.val) % q == 0
 
-/-- **The digits give the stopping index.** -/
+/-- **The digits give the stopping index.**
+@isnad1 id=eq.1h3v.s5.760053129f65 from=translated src=- shape=75ca68af vocab=5b24d8c1
+-/
 theorem stopAtNum_eq {T q : ℕ} (hq : 0 < q) (c : Fin T → Fin q) :
     stopAtNum T q (enc c) = stopAt c := by
   rw [stopAtNum, stopAt]
@@ -79,7 +84,9 @@ noncomputable def walkNum (G : ConstraintGraph α) (E : ExpanderFamily) (s : ℕ
   | k + 1, v =>
       (G.preRotNum E (walkNum G E s k v) ((s / G.preDeg E ^ k) % G.preDeg E)).1
 
-/-- The digits of a tuple's number are its entries' numbers. -/
+/-- The digits of a tuple's number are its entries' numbers.
+@isnad1 id=eq.2h6v.s7.42d5342512a1 from=translated src=- shape=51cd6b7b vocab=26ca84fd
+-/
 theorem digit_enc {T : ℕ} (s : Fin T → (G.preprocess E).graph.D) (hpos : 0 < G.preDeg E)
     (k : ℕ) (hk : k < T) : (enc s / G.preDeg E ^ k) % G.preDeg E = enc (s ⟨k, hk⟩) := by
   have h := digit_sum (c := card (G.preprocess E).graph.D) hpos (encAt s) hk
@@ -90,7 +97,9 @@ theorem digit_enc {T : ℕ} (s : Fin T → (G.preprocess E).graph.D) (hpos : 0 <
 
 /-- **Following the digits walks the graph.** The steps are read from any number
 whose digits are the tuple's entries, so a prefix of a longer walk may be run
-from that walk's own number. -/
+from that walk's own number.
+@isnad1 id=eq.2h8v.s7.de2aa21da44f from=translated src=- shape=8ff152ad vocab=5e74ac10
+-/
 theorem walkNum_eq {T : ℕ} (v : G.HalfEdge) (s : Fin T → (G.preprocess E).graph.D) (n : ℕ)
     (hdig : ∀ (k : ℕ) (hk : k < T), (n / G.preDeg E ^ k) % G.preDeg E = enc (s ⟨k, hk⟩)) :
     ∀ {k : ℕ}, k ≤ T →
@@ -117,7 +126,9 @@ noncomputable def killedRevNum (T q v s c : ℕ) : ℕ :=
             ((s / G.preDeg E ^ (stopAtNum T q c - 1 - j)) % G.preDeg E)).2
       else (s / G.preDeg E ^ j) % G.preDeg E) * G.preDeg E ^ j
 
-/-- **The digits give the dart the walk comes back by.** -/
+/-- **The digits give the dart the walk comes back by.**
+@isnad1 id=eq.2h8v.s7.f162c600da73 from=translated src=- shape=cdbded00 vocab=b7e3eaf3
+-/
 theorem killedRevNum_eq {T q : ℕ} (hq : 0 < q) (hpos : 0 < G.preDeg E) (v : G.HalfEdge)
     (s : Fin T → (G.preprocess E).graph.D) (c : Fin T → Fin q) :
     G.killedRevNum E T q (enc v) (enc s) (enc c)
@@ -180,7 +191,9 @@ the reversed labels, and keep the coins. -/
 noncomputable def killedRotNum (T q v s c : ℕ) : ℕ × ℕ :=
   (G.walkNum E s (stopAtNum T q c) v, G.killedRevNum E T q v s c * q ^ T + c)
 
-/-- **The numbers run the powered graph's rotation map.** -/
+/-- **The numbers run the powered graph's rotation map.**
+@isnad1 id=eq.3h9v.s8.9d690177f80f from=translated src=- shape=09b6301f vocab=84f74f56
+-/
 theorem killedRotNum_eq {T q : ℕ} (hq : 0 < q) (hpos : 0 < G.preDeg E) (v : G.HalfEdge)
     (x : (Fin T → (G.preprocess E).graph.D) × (Fin T → Fin q))
     {w : G.HalfEdge} {y : (Fin T → (G.preprocess E).graph.D) × (Fin T → Fin q)}

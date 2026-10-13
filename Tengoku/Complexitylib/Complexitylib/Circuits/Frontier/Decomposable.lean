@@ -76,6 +76,9 @@ def accepts (v : N) : Set (ι → U) := {x | (P.scope v).domRestrict x ∈ P.val
 /-- The set represented by the root. -/
 def accepted : Set (ι → U) := P.accepts P.root
 
+/--
+@isnad1 id=iff.1h7v.s6.3823d1b8040e from=translated src=- shape=a1140873 vocab=56170ae3
+-/
 theorem accepts_congr {v : N} {x y : ι → U} (h : EqOn x y (P.scope v)) :
     x ∈ P.accepts v ↔ y ∈ P.accepts v := by
   change _ ∈ P.values v ↔ _ ∈ P.values v
@@ -90,6 +93,9 @@ inductive Occurs (x : ι → U) : N → Prop
   | left {v l r : N} : Occurs x v → P.gate v = .product l r → Occurs x l
   | right {v l r : N} : Occurs x v → P.gate v = .product l r → Occurs x r
 
+/--
+@isnad1 id=mem.1h6v.s5.392c18ca4695 from=translated src=- shape=4036a20b vocab=09522a42
+-/
 theorem Occurs.accepts {x : ι → U} {v : N} (h : P.Occurs x v) : x ∈ P.accepts v := by
   induction h with
   | root h => exact h
@@ -97,7 +103,9 @@ theorem Occurs.accepts {x : ι → U} {v : N} (h : P.Occurs x v) : x ∈ P.accep
   | left _ hg ih => exact ((P.product_values _ _ _ hg x).mp ih).1
   | right _ hg ih => exact ((P.product_values _ _ _ hg x).mp ih).2
 
-/-- The substitution property follows from the syntax and decomposability. -/
+/-- The substitution property follows from the syntax and decomposability.
+@isnad1 id=mem.3h7v.s6.9a154153ffb0 from=translated src=- shape=24f1d214 vocab=7175310a
+-/
 theorem Occurs.substitute {x : ι → U} {v : N} (h : P.Occurs x v)
     {y : ι → U} (hy : y ∈ P.accepts v) (hout : EqOn y x (P.scope v)ᶜ) :
     y ∈ P.accepted := by
@@ -126,6 +134,9 @@ theorem Occurs.substitute {x : ι → U} {v : N} (h : P.Occurs x v)
 def contexts (v : N) : Set (↥(P.scope v)ᶜ → U) :=
   (P.scope v)ᶜ.domRestrict '' {x | P.Occurs x v}
 
+/--
+@isnad1 id=le.0h5v.s5.d37b5e159bf6 from=translated src=- shape=3ea5471f vocab=1b918795
+-/
 theorem rectangle_subset (v : N) :
     rectangle (P.scope v) (P.values v) (P.contexts v) ⊆ P.accepted := by
   rintro y ⟨hy, x, hx, hxy⟩
@@ -136,6 +147,9 @@ section Finite
 variable [Finite ι] [Finite U] {K : ℕ}
 
 omit [Finite ι] [Finite U] in
+/--
+@isnad1 id=le.2h6v.s6.fae951bc211d from=translated src=- shape=6a0eec66 vocab=89f730d6
+-/
 theorem contexts_small (hS : RectangleFree P.accepted K) {v : N}
     (hv : K ≤ (P.values v).ncard) : (P.contexts v).ncard ≤ K - 1 := by
   rcases hS _ _ _ (P.rectangle_subset v) with h | h <;> lia
@@ -147,7 +161,9 @@ def stops (K : ℕ) (v : N) : Set (ι → U) := {x | P.Occurs x v ∧ K ≤ (P.v
   | .union c => ∃ u ∈ c, x ∈ P.accepts u ∧ (P.values u).ncard < K
   | .product l r => (P.values l).ncard < K ∧ (P.values r).ncard < K}
 
-/-- Every accepted input has a stopping node. Rank makes the descent finite even with sharing. -/
+/-- Every accepted input has a stopping node. Rank makes the descent finite even with sharing.
+@isnad1 id=ex.3h6v.s6.98d92925f8ea from=translated src=- shape=8a32cb06 vocab=9cf01a88
+-/
 theorem exists_stop (hK : 1 < K) (hS : K ≤ P.accepted.ncard)
     {x : ι → U} (hx : x ∈ P.accepted) : ∃ v, x ∈ P.stops K v := by
   classical
@@ -178,6 +194,9 @@ def budget (K : ℕ) (v : N) : ℕ := match P.gate v with
   | .union c => (K - 1) ^ 2 * c.card
   | .product _ _ => (K - 1) ^ 3
 
+/--
+@isnad1 id=le.1h6v.s5.a0c9415f0158 from=translated src=- shape=1b999123 vocab=89edf74d
+-/
 theorem ncard_stops_le (hS : RectangleFree P.accepted K) (v : N) :
     (P.stops K v).ncard ≤ P.budget K v := by
   classical
@@ -249,7 +268,9 @@ def unionEdges : ℕ := ∑ v, match P.gate v with | .union c => c.card | _ => 0
 def products : ℕ := ∑ v, match P.gate v with | .product _ _ => 1 | _ => 0
 
 /-- **Decomposable threshold counting.** The denotation of a smooth decomposable DAG cannot
-be both large and rectangle-free unless the DAG has many nodes or edges. -/
+be both large and rectangle-free unless the DAG has many nodes or edges.
+@isnad1 id=le.3h5v.s7.e8cba60e8d0e from=translated src=- shape=5a558176 vocab=4d906ecf
+-/
 theorem ncard_le (hK : 1 < K) (hS : K ≤ P.accepted.ncard)
     (hrect : RectangleFree P.accepted K) :
     P.accepted.ncard ≤ (K - 1) ^ 2 * P.unionEdges + (K - 1) ^ 3 * P.products := by
@@ -267,7 +288,9 @@ theorem ncard_le (hK : 1 < K) (hS : K ≤ P.accepted.ncard)
       intro v _
       cases hg : P.gate v <;> simp [budget, hg]
 
-/-- A simpler bound charging the same cubic budget to each union edge or product node. -/
+/-- A simpler bound charging the same cubic budget to each union edge or product node.
+@isnad1 id=le.3h5v.s6.1512a260fd26 from=translated src=- shape=2e3efe8f vocab=4d906ecf
+-/
 theorem ncard_le_size (hK : 1 < K) (hS : K ≤ P.accepted.ncard)
     (hrect : RectangleFree P.accepted K) :
     P.accepted.ncard ≤ (K - 1) ^ 3 * (P.unionEdges + P.products) := by

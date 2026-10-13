@@ -25,11 +25,17 @@ variable {W : Type} [Fintype W] (H : SimpleGraph W)
 noncomputable def pairNormSq (q : ℝ) (R : ℕ) (u v : W) : ℝ :=
   ∑ z, (unitKernel H q R u z + unitKernel H q R v z) ^ 2
 
+/--
+@isnad1 id=eq.0h6v.s5.cf38d6316279 from=translated src=- shape=36f87d30 vocab=6167e4f0
+-/
 theorem pairNormSq_comm (q : ℝ) (R : ℕ) (u v : W) :
     pairNormSq H q R u v = pairNormSq H q R v u := by
   unfold pairNormSq
   simp only [add_comm]
 
+/--
+@isnad1 id=eq.0h6v.s6.7a1739d487ef from=translated src=- shape=12a1f677 vocab=12ea21bd
+-/
 theorem pairNormSq_eq (q : ℝ) (R : ℕ) (u v : W) :
     pairNormSq H q R u v = 2 + 2 * ∑ z, unitKernel H q R u z * unitKernel H q R v z := by
   unfold pairNormSq
@@ -49,6 +55,9 @@ noncomputable def edgeVector (q : ℝ) (R : ℕ) : Sym2 W → W → ℝ :=
     dsimp only
     rw [add_comm, pairNormSq_comm]⟩
 
+/--
+@isnad1 id=eq.0h7v.s6.0cc3f552a1cb from=translated src=- shape=41d9bd97 vocab=0202f751
+-/
 @[simp] theorem edgeVector_mk (q : ℝ) (R : ℕ) (u v z : W) :
     edgeVector H q R s(u, v) z = (unitKernel H q R u z + unitKernel H q R v z) /
       Real.sqrt (pairNormSq H q R u v) := rfl
@@ -57,13 +66,18 @@ noncomputable def edgeVector (q : ℝ) (R : ℕ) : Sym2 W → W → ℝ :=
 noncomputable def edgeScore (q : ℝ) (R : ℕ) (ω : W → ℝ) (e : Sym2 W) : ℝ :=
   form (edgeVector H q R e) ω
 
+/--
+@isnad1 id=eq.1h6v.s6.63b606c2075e from=translated src=- shape=4e8108d7 vocab=cee91782
+-/
 theorem sum_edgeVector_sq {q : ℝ} {R : ℕ} {u v : W} (hpos : 0 < pairNormSq H q R u v) :
     ∑ z, edgeVector H q R s(u, v) z ^ 2 = 1 := by
   simp only [edgeVector_mk, div_pow, ← Finset.sum_div]
   rw [Real.sq_sqrt hpos.le]
   exact div_self hpos.ne'
 
-/-- The inner product of an edge vector with the row of an endpoint. -/
+/-- The inner product of an edge vector with the row of an endpoint.
+@isnad1 id=eq.1h6v.s7.94ec75bea61d from=translated src=- shape=1ca32d44 vocab=05b9774c
+-/
 theorem sum_edgeVector_mul {q : ℝ} {R : ℕ} {u v : W} (hpos : 0 < pairNormSq H q R u v) :
     ∑ z, edgeVector H q R s(u, v) z * unitKernel H q R v z =
       Real.sqrt ((1 + ∑ z, unitKernel H q R u z * unitKernel H q R v z) / 2) := by
@@ -83,6 +97,9 @@ theorem sum_edgeVector_mul {q : ℝ} {R : ℕ} {u v : W} (hpos : 0 < pairNormSq 
   field_simp
   rw [Real.sq_sqrt hpos'.le]
 
+/--
+@isnad1 id=eq.1h6v.s5.0d00dec440e3 from=translated src=- shape=ed62026f vocab=60a02920
+-/
 theorem edgeVector_eq_zero [DecidableEq W] {q : ℝ} {R : ℕ} {e : Sym2 W} {z : W}
     (hz : z ∉ edgeSupport H R e) : edgeVector H q R e z = 0 := by
   induction e using Sym2.ind with
@@ -91,11 +108,17 @@ theorem edgeVector_eq_zero [DecidableEq W] {q : ℝ} {R : ℕ} {e : Sym2 W} {z :
     rw [edgeVector_mk, unitKernel_eq_zero_of_notMem_ball H hz.1,
       unitKernel_eq_zero_of_notMem_ball H hz.2, add_zero, zero_div]
 
+/--
+@isnad1 id=eq.2h8v.s6.1edf16de6e1e from=translated src=- shape=dbad879a vocab=4b66fa1e
+-/
 theorem edgeScore_congr [DecidableEq W] {q : ℝ} {R : ℕ} {e : Sym2 W} {S : Finset W}
     (hS : edgeSupport H R e ⊆ S) {ω ω' : W → ℝ} (h : ∀ i ∈ S, ω i = ω' i) :
     edgeScore H q R ω e = edgeScore H q R ω' e :=
   form_congr (S := S) (fun _ hi => edgeVector_eq_zero H fun hz => hi (hS hz)) h
 
+/--
+@isnad1 id=measurab.0h5v.s5.24ea42cfbea8 from=translated src=- shape=7cbbe225 vocab=44d60e08
+-/
 theorem measurable_edgeScore (q : ℝ) (R : ℕ) (e : Sym2 W) :
     Measurable fun ω => edgeScore H q R ω e :=
   Gaussian.measurable_form _

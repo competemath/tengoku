@@ -23,7 +23,9 @@ namespace Algebraic.MassProduction.HighRate
 
 open scoped BigOperators
 
-/-- Distinct reduced monomials give linearly independent evaluation tables. -/
+/-- Distinct reduced monomials give linearly independent evaluation tables.
+@isnad1 id=linearin.2h4v.s6.de8f1c6008a3 from=translated src=- shape=7dcbde7e vocab=a193a391
+-/
 theorem monomialValuesLinearIndependent
     {K Coordinate : Type u} {Index : Type*}
     [Field K] [Fintype K] [Fintype Coordinate]

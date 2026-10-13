@@ -27,6 +27,9 @@ open scoped Classical
 
 variable {V ι : Type} [Fintype V] (B : SimpleGraph V) (P : ι → Finset V)
 
+/--
+@isnad1 id=eq.2h6v.s7.ae326139daa6 from=translated src=- shape=5eb8ce65 vocab=3c730df5
+-/
 theorem induce_delete_region_cuts (disjoint : Pairwise (fun i j => Disjoint (P i) (P j)))
     (removed : Set (Sym2 V)) (subset : removed ⊆ ⋃ i, (B.cutFinset (P i) : Set (Sym2 V)))
     (i : ι) : (B.deleteEdges removed).induce {v | v ∈ P i} = B.induce {v | v ∈ P i} := by

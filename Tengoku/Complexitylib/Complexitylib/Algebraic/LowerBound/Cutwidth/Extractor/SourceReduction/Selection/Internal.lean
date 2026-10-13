@@ -25,6 +25,9 @@ namespace Algebraic.Cutwidth.Extractor.Internal
 
 open scoped Classical
 
+/--
+@isnad1 id=ex.4h10v.s7.d0bd9c657ea8 from=translated src=- shape=14500624 vocab=d43ae3eb
+-/
 theorem somewhereSampler_exists_good_fibers {α Outer Candidate Ω : Type*}
     [Fintype α] [Fintype Outer] [Fintype Ω]
     {S : α → Outer → Candidate → Ω} {L ε δ : ℝ}
@@ -62,6 +65,9 @@ theorem somewhereSampler_exists_good_fibers {α Outer Candidate Ω : Type*}
     simpa only [somewhereBadInputs, Finset.mem_filter, Finset.mem_univ, true_and,
       not_lt] using outside
 
+/--
+@isnad1 id=paritybi.2h12v.s7.3d09f4d93458 from=translated src=- shape=f5a97b76 vocab=7ae0c96d
+-/
 theorem parityBiasBound_of_seed_escape {α Choice Seed : Type*} [Fintype Choice]
     {m N : Nat} {s : Finset α} {w : α → ℝ} {σ : α → Fin N → ℝ} {β : ℝ}
     (S : Fin N → Choice → Seed) (bad : Finset (Fin N) → Choice → Finset Seed)
@@ -86,6 +92,9 @@ theorem parityBiasBound_of_seed_escape {α Choice Seed : Type*} [Fintype Choice]
   have h := bound z outside
   simpa only [Finset.prod_image good.injective.injOn] using h
 
+/--
+@isnad1 id=ex.7h16v.s9.51b720d6a339 from=translated src=- shape=65ecc3b5 vocab=89b1853c
+-/
 theorem somewhereSampler_parity_fibers {α Source Choice Seed : Type*}
     [Fintype Source] [Fintype Choice] [Fintype Seed] {N : Nat}
     {s : Finset α} {w : α → ℝ} (σ : α → Source → Fin N → ℝ)

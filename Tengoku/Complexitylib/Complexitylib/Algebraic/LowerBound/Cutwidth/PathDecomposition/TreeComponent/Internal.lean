@@ -23,6 +23,9 @@ open scoped Classical
 
 variable {W : Type} [Fintype W] (H : SimpleGraph W)
 
+/--
+@isnad1 id=ex.1h3v.s7.393a5595e50d from=translated src=- shape=51d485db vocab=3a4337ee
+-/
 theorem exists_small_tree_component_of_edge_deficit (M : Nat)
     (deficit : (M + 1) * H.edgeFinset.card < M * Fintype.card W) :
     ∃ C : H.ConnectedComponent, C.toSimpleGraph.IsTree ∧ Fintype.card C ≤ M := by
@@ -67,6 +70,9 @@ theorem exists_small_tree_component_of_edge_deficit (M : Nat)
   rw [hcount, ← Finset.mul_sum, hdegrees, H.sum_degrees_eq_twice_card_edges] at hsum
   nlinarith
 
+/--
+@isnad1 id=ex.1h2v.s6.8bc9499f18f6 from=translated src=- shape=b52be988 vocab=29f8d2fe
+-/
 theorem exists_tree_component_of_card_edgeFinset_lt
     (hcard : H.edgeFinset.card < Fintype.card W) :
     ∃ C : H.ConnectedComponent, C.toSimpleGraph.IsTree := by
@@ -93,6 +99,9 @@ private theorem sum_outside_neighbors (X : Finset W) :
   simpa only [above, below] using
     Finset.sum_card_bipartiteAbove_eq_sum_card_bipartiteBelow (s := X) (t := Xᶜ) H.Adj
 
+/--
+@isnad1 id=lt.3h3v.s9.da48b86d6b9d from=translated src=- shape=ce3b8589 vocab=fb56e2c6
+-/
 theorem complement_card_edges_lt (X : Finset W)
     (degree : ∀ v, H.degree v ≤ 3) (large : Fintype.card W < 3 * X.card)
     (outside : ∀ v ∈ X, 2 ≤ ((H.neighborFinset v) \ X).card) :

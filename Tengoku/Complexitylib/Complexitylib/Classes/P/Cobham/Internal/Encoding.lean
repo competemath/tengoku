@@ -82,31 +82,45 @@ def symDecode : List Bool → Γ
   | true :: true :: _ => .one
   | _ => .blank
 
+/--
+@isnad1 id=eq.0h1v.s3.fd6ce5c01285 from=translated src=- shape=8e1bdd70 vocab=228641dd
+-/
 @[simp] theorem symCode_length (g : Γ) : (symCode g).length = 2 := by cases g <;> rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.0b50f0f88427 from=translated src=- shape=898355e7 vocab=18dd03d1
+-/
 @[simp] theorem symCode_blank : symCode Γ.blank = [false, false] := rfl
 
 /-- The code round-trips, even with arbitrary trailing bits — which is what lets
-the decoder read a symbol off the front of a longer block. -/
+the decoder read a symbol off the front of a longer block.
+@isnad1 id=eq.0h2v.s4.8d1412ed4a96 from=translated src=- shape=5b3d5834 vocab=42492e96
+-/
 @[simp] theorem symDecode_symCode (g : Γ) (rest : List Bool) :
     symDecode (symCode g ++ rest) = g := by cases g <;> rfl
 
 /-- The decoder only ever looks at two bits, so truncating first changes
-nothing. -/
+nothing.
+@isnad1 id=eq.0h1v.s4.e77cf1e3ab36 from=translated src=- shape=f1ac4e78 vocab=29848f67
+-/
 theorem symDecode_take_two (l : List Bool) : symDecode (l.take 2) = symDecode l := by
   match l with
   | [] => rfl
   | [b] => cases b <;> rfl
   | b :: b' :: t => cases b <;> cases b' <;> rfl
 
-/-- Zero padding decodes as blank: the reason `symCode Γ.blank = [0,0]`. -/
+/-- Zero padding decodes as blank: the reason `symCode Γ.blank = [0,0]`.
+@isnad1 id=eq.1h1v.s4.ecf85d45cb55 from=translated src=- shape=19e54370 vocab=5128917a
+-/
 theorem symDecode_replicate_false {n : ℕ} (h : 2 ≤ n) :
     symDecode (List.replicate n false) = Γ.blank := by
   obtain ⟨m, rfl⟩ : ∃ m, n = m + 2 := ⟨n - 2, by omega⟩
   rw [show m + 2 = 2 + m from by omega, List.replicate_add]
   rfl
 
-/-- The code is injective. -/
+/-- The code is injective.
+@isnad1 id=injectiv.0h0v.s2.9e352991c460 from=translated src=- shape=4b736592 vocab=793ed0fe
+-/
 theorem symCode_injective : Function.Injective symCode := by
   intro a b hab
   have h1 : symDecode (symCode a ++ []) = a := symDecode_symCode a []
@@ -139,11 +153,16 @@ noncomputable def stateCode {Q : Type} [Fintype Q] [DecidableEq Q] (q : Q) :
     List Bool :=
   (Finset.univ.toList (α := Q)).map fun p => decide (p = q)
 
+/--
+@isnad1 id=eq.0h2v.s4.a58c4b6c0093 from=translated src=- shape=ae8cecbf vocab=53b61632
+-/
 @[simp] theorem stateCode_length {Q : Type} [Fintype Q] [DecidableEq Q] (q : Q) :
     (stateCode q).length = Fintype.card Q := by
   rw [stateCode, List.length_map, Finset.length_toList, Finset.card_univ]
 
-/-- Distinct states get distinct codes. -/
+/-- Distinct states get distinct codes.
+@isnad1 id=injectiv.0h1v.s4.e7f68e401a8d from=translated src=- shape=6f088699 vocab=b060fe14
+-/
 theorem stateCode_injective {Q : Type} [Fintype Q] [DecidableEq Q] :
     Function.Injective (stateCode (Q := Q)) := by
   intro a b hab
@@ -157,13 +176,21 @@ theorem stateCode_injective {Q : Type} [Fintype Q] [DecidableEq Q] :
 def cellsCode (t : Tape) (i w : ℕ) : List Bool :=
   (List.range w).flatMap fun j => symCode (t.cells (i + j))
 
+/--
+@isnad1 id=eq.0h2v.s4.14662eb4fe43 from=translated src=- shape=bf78e4ac vocab=cff02a8d
+-/
 @[simp] theorem cellsCode_zero (t : Tape) (i : ℕ) : cellsCode t i 0 = [] := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.8516ba59690e from=translated src=- shape=7c95ef91 vocab=f2716857
+-/
 @[simp] theorem cellsCode_length (t : Tape) (i w : ℕ) :
     (cellsCode t i w).length = 2 * w := by
   rw [cellsCode, length_flatMap_symCode, List.length_range]
 
-/-- Peeling the first cell off a window. -/
+/-- Peeling the first cell off a window.
+@isnad1 id=eq.0h3v.s5.596ee1e035af from=translated src=- shape=e8306ba1 vocab=51a749bd
+-/
 theorem cellsCode_succ_left (t : Tape) (i w : ℕ) :
     cellsCode t i (w + 1) = symCode (t.cells i) ++ cellsCode t (i + 1) w := by
   rw [cellsCode, cellsCode, List.range_succ_eq_map, List.flatMap_cons]
@@ -179,18 +206,29 @@ def leftCodeFrom (t : Tape) : ℕ → List Bool
 /-- The cells strictly left of the head, nearest first. -/
 def leftCode (t : Tape) : List Bool := leftCodeFrom t t.head
 
+/--
+@isnad1 id=eq.0h1v.s3.aac91bc59b00 from=translated src=- shape=fa63633d vocab=530bdc57
+-/
 @[simp] theorem leftCodeFrom_zero (t : Tape) : leftCodeFrom t 0 = [] := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.96b7ab9afa32 from=translated src=- shape=9146a759 vocab=f5c10e51
+-/
 @[simp] theorem leftCodeFrom_succ (t : Tape) (n : ℕ) :
     leftCodeFrom t (n + 1) = symCode (t.cells n) ++ leftCodeFrom t n := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.1445845d333b from=translated src=- shape=72614a36 vocab=cdf14bcd
+-/
 @[simp] theorem leftCodeFrom_length (t : Tape) (n : ℕ) :
     (leftCodeFrom t n).length = 2 * n := by
   induction n with
   | zero => rfl
   | succ n ih => simp only [leftCodeFrom_succ, List.length_append, ih, symCode_length]; omega
 
-/-- The nearest-left window depends only on the cells it covers. -/
+/-- The nearest-left window depends only on the cells it covers.
+@isnad1 id=eq.1h3v.s5.a8da2ca921d4 from=translated src=- shape=d364a76c vocab=03bdbe38
+-/
 theorem leftCodeFrom_congr {t t' : Tape} {n : ℕ}
     (h : ∀ j, j < n → t.cells j = t'.cells j) :
     leftCodeFrom t n = leftCodeFrom t' n := by
@@ -207,19 +245,29 @@ parts always account for exactly the cells `0 … W`: their total width is the
 constant `2 · (W + 1)` and a head move just shifts two bits across the split. -/
 def rightCode (t : Tape) (W : ℕ) : List Bool := cellsCode t t.head (W + 1 - t.head)
 
+/--
+@isnad1 id=eq.0h1v.s4.72139a48fb65 from=translated src=- shape=5e412272 vocab=77a11caf
+-/
 @[simp] theorem leftCode_length (t : Tape) : (leftCode t).length = 2 * t.head :=
   leftCodeFrom_length t t.head
 
+/--
+@isnad1 id=eq.0h2v.s5.bf9f5b5deaf2 from=translated src=- shape=945f14db vocab=84c055a4
+-/
 @[simp] theorem rightCode_length (t : Tape) (W : ℕ) :
     (rightCode t W).length = 2 * (W + 1 - t.head) := cellsCode_length _ _ _
 
-/-- The two halves together always span the same window. -/
+/-- The two halves together always span the same window.
+@isnad1 id=eq.1h2v.s6.f3bb11d70242 from=translated src=- shape=f18fef33 vocab=258d7d79
+-/
 theorem leftCode_rightCode_length (t : Tape) {W : ℕ} (h : t.head ≤ W + 1) :
     (leftCode t).length + (rightCode t W).length = 2 * (W + 1) := by
   simp only [leftCode_length, rightCode_length]
   omega
 
-/-- The read symbol is the first two bits of the right part. -/
+/-- The read symbol is the first two bits of the right part.
+@isnad1 id=eq.1h2v.s4.42e17240736b from=translated src=- shape=18cc1905 vocab=f590cb64
+-/
 theorem symDecode_rightCode (t : Tape) {W : ℕ} (hw : t.head ≤ W) :
     symDecode (rightCode t W) = t.read := by
   rw [rightCode, show W + 1 - t.head = (W - t.head) + 1 from by omega,
@@ -232,7 +280,9 @@ Both halves read only the cells in their own window, so an update outside that
 window is invisible to them. These are the lemmas that let a single-cell write be
 localized. -/
 
-/-- A window depends only on the cells it covers. -/
+/-- A window depends only on the cells it covers.
+@isnad1 id=eq.1h4v.s5.63bc4d361471 from=translated src=- shape=ce649051 vocab=ab9b47da
+-/
 theorem cellsCode_congr {t t' : Tape} {i w : ℕ}
     (h : ∀ j, j < w → t.cells (i + j) = t'.cells (i + j)) :
     cellsCode t i w = cellsCode t' i w := by
@@ -240,7 +290,9 @@ theorem cellsCode_congr {t t' : Tape} {i w : ℕ}
   refine List.flatMap_congr fun j hj => ?_
   rw [h j (List.mem_range.mp hj)]
 
-/-- The left half depends only on the head and the cells strictly below it. -/
+/-- The left half depends only on the head and the cells strictly below it.
+@isnad1 id=eq.2h2v.s5.15f342be8d56 from=translated src=- shape=67e7f8d7 vocab=1009367f
+-/
 theorem leftCode_congr {t t' : Tape} (hh : t.head = t'.head)
     (h : ∀ j, j < t.head → t.cells j = t'.cells j) : leftCode t = leftCode t' := by
   rw [leftCode, leftCode, ← hh]
@@ -254,7 +306,9 @@ head is at `0`" is exactly "the read symbol is `▷`", and `TM.δ_right_of_start
 then forces a right move — which is why the left half is never consulted while
 empty. -/
 
-/-- Writing at the head leaves every other cell alone. -/
+/-- Writing at the head leaves every other cell alone.
+@isnad1 id=eq.1h3v.s4.bd5d7240c51f from=translated src=- shape=1bef4d07 vocab=102986e7
+-/
 theorem write_cells_of_ne {t : Tape} {s : Γ} {j : ℕ} (h : j ≠ t.head) :
     (t.write s).cells j = t.cells j := by
   rw [Tape.write]
@@ -266,7 +320,9 @@ theorem write_cells_of_ne {t : Tape} {s : Γ} {j : ℕ} (h : j ≠ t.head) :
 model makes the write a no-op, so callers must establish that the modeled symbol
 already agrees with what is there. A raw `TM` transition writes only `Γw`, which
 excludes `▷`; the encoded simulator later supplies the corrected symbol through
-`correctWrite`. -/
+`correctWrite`.
+@isnad1 id=eq.1h2v.s4.8fb5d3c106bd from=translated src=- shape=d12c33d5 vocab=102986e7
+-/
 theorem write_cells_head {t : Tape} {s : Γ} (hs : t.head = 0 → s = t.cells t.head) :
     (t.write s).cells t.head = s := by
   rw [Tape.write]
@@ -274,13 +330,17 @@ theorem write_cells_head {t : Tape} {s : Γ} (hs : t.head = 0 → s = t.cells t.
   · next h => exact (hs h).symm
   · exact Function.update_self _ _ _
 
-/-- Writing at the head sets exactly that cell, away from cell `0`. -/
+/-- Writing at the head sets exactly that cell, away from cell `0`.
+@isnad1 id=eq.1h2v.s4.1b42fd480783 from=translated src=- shape=2745c307 vocab=102986e7
+-/
 theorem write_cells_self {t : Tape} {s : Γ} (h : t.head ≠ 0) :
     (t.write s).cells t.head = s :=
   write_cells_head fun h0 => absurd h0 h
 
 /-- **Staying put**: the left half is untouched and the right half gets its
-leading symbol replaced. -/
+leading symbol replaced.
+@isnad1 id=eq.0h2v.s3.79ca055c89b5 from=translated src=- shape=2d4c3d36 vocab=578dc4eb
+-/
 theorem leftCode_write_stay {t : Tape} {s : Γ} :
     leftCode ((t.write s).move Dir3.stay) = leftCode t := by
   have hhead : ((t.write s).move Dir3.stay).head = t.head := Tape.write_head t s
@@ -291,7 +351,9 @@ theorem leftCode_write_stay {t : Tape} {s : Γ} :
 
 /-- **Moving right**: the written symbol crosses over to the left half. This is
 the one direction a head at cell `0` can take, so it is stated with the weaker
-hypothesis that the write agrees with cell `0` when the head is there. -/
+hypothesis that the write agrees with cell `0` when the head is there.
+@isnad1 id=eq.1h2v.s5.d93c7ffc29b9 from=translated src=- shape=fc7e74d4 vocab=4b248af2
+-/
 theorem leftCode_write_right {t : Tape} {s : Γ}
     (h : t.head = 0 → s = t.cells t.head) :
     leftCode ((t.write s).move Dir3.right) = symCode s ++ leftCode t := by
@@ -305,7 +367,9 @@ theorem leftCode_write_right {t : Tape} {s : Γ}
       rw [Tape.move_cells]; exact write_cells_of_ne (by omega)
 
 /-- **Moving left**: the nearest left symbol crosses over to the right half, so
-the left half loses its first two bits. -/
+the left half loses its first two bits.
+@isnad1 id=eq.1h2v.s5.06efed9205b3 from=translated src=- shape=7d868d75 vocab=43c855fd
+-/
 theorem leftCode_write_left {t : Tape} {s : Γ} (h : t.head ≠ 0) :
     leftCode ((t.write s).move Dir3.left) = (leftCode t).drop 2 := by
   have hhead : ((t.write s).move Dir3.left).head = t.head - 1 := by
@@ -318,7 +382,9 @@ theorem leftCode_write_left {t : Tape} {s : Γ} (h : t.head ≠ 0) :
   exact leftCodeFrom_congr fun j hj => by
     rw [Tape.move_cells]; exact write_cells_of_ne (by omega)
 
-/-- **Staying put**, right half: the leading symbol is replaced. -/
+/-- **Staying put**, right half: the leading symbol is replaced.
+@isnad1 id=eq.2h3v.s5.3b290473962a from=translated src=- shape=4d635d4f vocab=bc3c70b5
+-/
 theorem rightCode_write_stay {t : Tape} {s : Γ} {W : ℕ} (h : t.head ≠ 0)
     (hW : t.head ≤ W) :
     rightCode ((t.write s).move Dir3.stay) W = symCode s ++ (rightCode t W).drop 2 := by
@@ -331,7 +397,9 @@ theorem rightCode_write_stay {t : Tape} {s : Γ} {W : ℕ} (h : t.head ≠ 0)
   · rw [List.drop_left' (by simp)]
     exact cellsCode_congr fun j _ => write_cells_of_ne (by omega)
 
-/-- **Moving right**, right half: the leading symbol is consumed. -/
+/-- **Moving right**, right half: the leading symbol is consumed.
+@isnad1 id=eq.1h3v.s5.62c2559c86a1 from=translated src=- shape=bfbeb67c vocab=13069c35
+-/
 theorem rightCode_write_right {t : Tape} {s : Γ} {W : ℕ} (hW : t.head ≤ W) :
     rightCode ((t.write s).move Dir3.right) W = (rightCode t W).drop 2 := by
   have hhead : ((t.write s).move Dir3.right).head = t.head + 1 := by
@@ -343,7 +411,9 @@ theorem rightCode_write_right {t : Tape} {s : Γ} {W : ℕ} (hW : t.head ≤ W) 
     rw [Tape.move_cells]; exact write_cells_of_ne (by omega)
 
 /-- **Moving left**, right half: the nearest left symbol and the written symbol
-both join it. -/
+both join it.
+@isnad1 id=eq.2h3v.s6.6e214e955989 from=translated src=- shape=2f9c9102 vocab=0eadb861
+-/
 theorem rightCode_write_left {t : Tape} {s : Γ} {W : ℕ} (h : t.head ≠ 0)
     (hW : t.head ≤ W) :
     rightCode ((t.write s).move Dir3.left) W =
@@ -386,6 +456,9 @@ def blockWidth (W : ℕ) : ℕ := 2 * (W + 1)
 /-- The canonical ruler of one block's width. -/
 def blockRuler (W : ℕ) : List Bool := List.replicate (blockWidth W) false
 
+/--
+@isnad1 id=eq.0h1v.s3.00a5722cfe45 from=translated src=- shape=1e92cebf vocab=ef745c3b
+-/
 @[simp] theorem blockRuler_length (W : ℕ) : (blockRuler W).length = blockWidth W := by
   simp [blockRuler]
 
@@ -394,7 +467,9 @@ and the cells from the head rightwards. -/
 def tapeBlocks (W : ℕ) (t : Tape) : List (List Bool) :=
   [padTo (blockRuler W) (leftCode t), padTo (blockRuler W) (rightCode t W)]
 
-/-- Both halves of a tape occupy one block each. -/
+/-- Both halves of a tape occupy one block each.
+@isnad1 id=eq.1h3v.s4.a622eeb15dc1 from=translated src=- shape=e1aabc11 vocab=d3aa72ca
+-/
 theorem tapeBlocks_width (W : ℕ) (t : Tape) :
     ∀ b ∈ tapeBlocks W t, b.length = (blockRuler W).length := by
   intro b hb
@@ -405,12 +480,18 @@ theorem tapeBlocks_width (W : ℕ) (t : Tape) :
     · simp
     · simp at hb
 
+/--
+@isnad1 id=eq.0h2v.s4.2a5099f4ac24 from=translated src=- shape=f2da567f vocab=705a8166
+-/
 @[simp] theorem tapeBlocks_length (W : ℕ) (t : Tape) :
     (tapeBlocks W t).length = 2 := rfl
 
 /-- A tape as a bitstring: its two half-blocks concatenated. -/
 def tapeCode (W : ℕ) (t : Tape) : List Bool := (tapeBlocks W t).flatten
 
+/--
+@isnad1 id=eq.0h2v.s4.8ba6ebcfec8e from=translated src=- shape=1da97a20 vocab=79d5a17f
+-/
 @[simp] theorem tapeCode_length (W : ℕ) (t : Tape) :
     (tapeCode W t).length = 2 * blockWidth W := by
   rw [tapeCode, tapeBlocks, List.flatten_cons, List.flatten_cons,
@@ -433,6 +514,9 @@ private theorem length_flatMap_const {α β : Type} (l : List α) (f : α → Li
 def worksCode {k : ℕ} (W : ℕ) (work : Fin k → Tape) : List Bool :=
   (List.finRange k).flatMap fun i => tapeCode W (work i)
 
+/--
+@isnad1 id=eq.0h3v.s5.d14d2f090cf0 from=translated src=- shape=f1cc7a95 vocab=507a63ab
+-/
 @[simp] theorem worksCode_length {k : ℕ} (W : ℕ) (work : Fin k → Tape) :
     (worksCode W work).length = k * (2 * blockWidth W) := by
   rw [worksCode, length_flatMap_const _ _ _ (fun i => tapeCode_length W (work i)),
@@ -445,7 +529,9 @@ every head is within `0 … t`. Taking the window `W` to be the machine's time
 bound therefore discharges the `head ≤ W` side condition of every encoding lemma
 — the simulated machine can never reach outside the encoded window. -/
 
-/-- After `t` steps from the initial configuration every head is at most `t`. -/
+/-- After `t` steps from the initial configuration every head is at most `t`.
+@isnad1 id=and.1h5v.s6.c7f90c9dcc98 from=translated src=- shape=f55e7988 vocab=ea2a5053
+-/
 theorem heads_le_of_reachesIn {k : ℕ} (tm : TM k) {x : List Bool} {t : ℕ}
     {c : Cfg k tm.Q} (h : tm.reachesIn t (tm.initCfg x) c) :
     c.input.head ≤ t ∧ c.output.head ≤ t ∧ ∀ i, (c.work i).head ≤ t := by
@@ -453,7 +539,9 @@ theorem heads_le_of_reachesIn {k : ℕ} (tm : TM k) {x : List Bool} {t : ℕ}
   exact ⟨by simpa using hin, by simpa using hout, fun i => by simpa using hwork i⟩
 
 /-- **Reading a symbol out of an encoded tape.** The head symbol is the first two
-bits of the padded right half-block — one `takeFn` in the algebra. -/
+bits of the padded right half-block — one `takeFn` in the algebra.
+@isnad1 id=eq.1h2v.s4.1a694fb846e8 from=translated src=- shape=abc9cd8b vocab=d7a3fd97
+-/
 theorem symDecode_take_padTo_rightCode {W : ℕ} (t : Tape) (hW : t.head ≤ W) :
     symDecode ((padTo (blockRuler W) (rightCode t W)).take 2) = t.read := by
   rw [take_padTo _ _ 2 (by rw [rightCode_length]; omega)
@@ -482,7 +570,9 @@ def tapeStepBlocks (R : List Bool) (s : Γ) (d : Dir3) (L Rt : List Bool) :
 The hypotheses are exactly what the corrected encoded action supplies. `hs`: at
 cell `0` the write is a no-op, so `correctWrite` replaces the raw `Γw` symbol by
 the existing `▷`. `hne`: `TM.δ_right_of_start` ensures that a head at cell `0`
-can only move *right*, so the stay and left cases never arise there. -/
+can only move *right*, so the stay and left cases never arise there.
+@isnad1 id=eq.3h4v.s6.58ebdcbc8cb0 from=translated src=- shape=a9ec283d vocab=40fb48c7
+-/
 theorem tapeStepBlocks_eq {W : ℕ} (t : Tape) (s : Γ) (d : Dir3)
     (hs : t.head = 0 → s = t.cells t.head)
     (hne : d ≠ Dir3.right → t.head ≠ 0) (hW : t.head ≤ W) :
@@ -525,7 +615,9 @@ index arithmetic. -/
 
 /-- Writing back the symbol already under the head changes nothing. This is what
 lets the read-only input tape take part in the uniform tapewise step: its action
-is "write what you read, then move". -/
+is "write what you read, then move".
+@isnad1 id=eq.0h1v.s3.160828ec4002 from=translated src=- shape=86a320aa vocab=a720de91
+-/
 theorem write_read_self (t : Tape) : t.write t.read = t := by
   rw [Tape.write]
   split
@@ -536,6 +628,9 @@ theorem write_read_self (t : Tape) : t.write t.read = t := by
 def cfgTapes {k : ℕ} {Q : Type} (c : Cfg k Q) : List Tape :=
   c.input :: c.output :: List.ofFn c.work
 
+/--
+@isnad1 id=eq.0h3v.s4.6df0aee52d38 from=translated src=- shape=ecb61107 vocab=baeee4b4
+-/
 @[simp] theorem cfgTapes_length {k : ℕ} {Q : Type} (c : Cfg k Q) :
     (cfgTapes c).length = k + 2 := by
   rw [cfgTapes, List.length_cons, List.length_cons, List.length_ofFn]
@@ -552,13 +647,18 @@ noncomputable def keyCode {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq Q]
     (c : Cfg k Q) : List Bool :=
   stateCode c.state ++ (cfgTapes c).flatMap fun t => symCode t.read
 
+/--
+@isnad1 id=eq.0h3v.s5.434a323c5eda from=translated src=- shape=59ab3829 vocab=79ce4d8f
+-/
 @[simp] theorem keyCode_length {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq Q]
     (c : Cfg k Q) : (keyCode c).length = Fintype.card Q + 2 * (k + 2) := by
   rw [keyCode, List.length_append, stateCode_length,
     length_flatMap_const (cfgTapes c) (fun t => symCode t.read) 2
       (fun t => symCode_length t.read), cfgTapes_length, Nat.mul_comm]
 
-/-- The first two bits of a tape's right half-block are its read symbol. -/
+/-- The first two bits of a tape's right half-block are its read symbol.
+@isnad1 id=eq.1h2v.s4.4dfe36371ec3 from=translated src=- shape=41121719 vocab=7c20e257
+-/
 theorem take_rightCode (t : Tape) {W : ℕ} (hW : t.head ≤ W) :
     (rightCode t W).take 2 = symCode t.read := by
   rw [rightCode, show W + 1 - t.head = (W - t.head) + 1 from by omega,
@@ -569,6 +669,9 @@ theorem take_rightCode (t : Tape) {W : ℕ} (hW : t.head ≤ W) :
 def tapesBlocks (W : ℕ) (ts : List Tape) : List (List Bool) :=
   ts.flatMap (tapeBlocks W)
 
+/--
+@isnad1 id=eq.0h2v.s4.434da5197286 from=translated src=- shape=e9976b2c vocab=151572bf
+-/
 @[simp] theorem tapesBlocks_length (W : ℕ) (ts : List Tape) :
     (tapesBlocks W ts).length = 2 * ts.length := by
   rw [tapesBlocks, length_flatMap_const _ _ 2 (fun t => tapeBlocks_length W t)]
@@ -598,7 +701,9 @@ def correctWriteSym (r s : Γ) : Γ := if r = Γ.start then Γ.start else s
 what puts it inside the transition key. -/
 def correctWrite (t : Tape) (s : Γ) : Γ := correctWriteSym t.read s
 
-/-- Correcting the write does not change what the write does. -/
+/-- Correcting the write does not change what the write does.
+@isnad1 id=eq.1h2v.s4.dd7ed5f811b4 from=translated src=- shape=2a722cb4 vocab=f7d5f617
+-/
 theorem write_correctWrite {t : Tape} (s : Γ) (h : t.StartInvariant) :
     t.write (correctWrite t s) = t.write s := by
   rw [correctWrite, correctWriteSym]
@@ -611,7 +716,9 @@ theorem write_correctWrite {t : Tape} (s : Γ) (h : t.StartInvariant) :
   · rfl
 
 /-- Under the invariant, the corrected write agrees with cell `0` when the head
-is there — the hypothesis `tapeStepBlocks_eq` needs. -/
+is there — the hypothesis `tapeStepBlocks_eq` needs.
+@isnad1 id=eq.2h2v.s4.1f57c0a3a970 from=translated src=- shape=95573b2f vocab=37de2dff
+-/
 theorem correctWrite_at_zero {t : Tape} (s : Γ) (h : t.StartInvariant)
     (hh : t.head = 0) : correctWrite t s = t.cells t.head := by
   have hr : t.read = Γ.start := by rw [Tape.read, hh]; exact h.1
@@ -649,6 +756,9 @@ noncomputable def keyPattern {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq Q]
     (p : Q × (Fin (k + 2) → Γ)) : List Bool :=
   stateCode p.1 ++ (List.ofFn p.2).flatMap symCode
 
+/--
+@isnad1 id=eq.0h3v.s6.f63f38201399 from=translated src=- shape=8892d3a2 vocab=abb41a15
+-/
 @[simp] theorem keyPattern_length {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq Q]
     (p : Q × (Fin (k + 2) → Γ)) :
     (keyPattern p).length = Fintype.card Q + 2 * (k + 2) := by
@@ -674,7 +784,9 @@ private theorem flatMap_symCode_injective :
 
 /-- **Distinct keys get distinct patterns.** Together with the fact that all
 patterns have the same length, this is what makes at most one table entry match a
-given key. -/
+given key.
+@isnad1 id=injectiv.0h2v.s5.cd81be3110c8 from=translated src=- shape=96cb8f4b vocab=1b54bfb0
+-/
 theorem keyPattern_injective {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq Q] :
     Function.Injective (keyPattern (k := k) (Q := Q)) := by
   rintro ⟨q₁, s₁⟩ ⟨q₂, s₂⟩ h
@@ -686,14 +798,18 @@ theorem keyPattern_injective {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq Q] :
   simp only [Prod.mk.injEq, true_and]
   exact List.ofFn_inj.mp hs
 
-/-- The tapes' read symbols, listed, are the configuration's read tuple. -/
+/-- The tapes' read symbols, listed, are the configuration's read tuple.
+@isnad1 id=eq.0h3v.s5.6e228f758b5c from=translated src=- shape=b03ef21a vocab=0e575244
+-/
 theorem cfgTapes_map_read {k : ℕ} {Q : Type} (c : Cfg k Q) :
     (cfgTapes c).map Tape.read = List.ofFn (cfgReads c) := by
   rw [cfgTapes, cfgReads]
   simp [List.ofFn_succ, Function.comp_def]
 
 /-- **A configuration's key is its key's pattern.** So the table entry indexed by
-`(state, reads)` is the one that matches. -/
+`(state, reads)` is the one that matches.
+@isnad1 id=eq.0h3v.s5.f02b18a9fba4 from=translated src=- shape=89a4e669 vocab=40fdc728
+-/
 theorem keyCode_eq {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq Q] (c : Cfg k Q) :
     keyCode c = keyPattern (c.state, cfgReads c) := by
   rw [keyCode, keyPattern]
@@ -714,11 +830,15 @@ def stepActsOf {k : ℕ} (tm : TM k) (q : tm.Q) (syms : Fin (k + 2) → Γ) :
 def stepStateOf {k : ℕ} (tm : TM k) (q : tm.Q) (syms : Fin (k + 2) → Γ) : tm.Q :=
   (tm.δ q (syms 0) (fun i => syms i.succ.succ) (syms 1)).1
 
-/-- The actions a configuration prescribes are the ones its key prescribes. -/
+/-- The actions a configuration prescribes are the ones its key prescribes.
+@isnad1 id=eq.0h3v.s5.8262c09d62f2 from=translated src=- shape=2228d286 vocab=e6118134
+-/
 theorem stepActs_eq_stepActsOf {k : ℕ} (tm : TM k) (c : Cfg k tm.Q) :
     stepActs tm c = stepActsOf tm c.state (cfgReads c) := rfl
 
-/-- The successor state is the one the key prescribes. -/
+/-- The successor state is the one the key prescribes.
+@isnad1 id=eq.1h4v.s5.9e06fa518cdf from=translated src=- shape=2d42ec68 vocab=3eab23fa
+-/
 theorem step_state_eq {k : ℕ} (tm : TM k) {c c' : Cfg k tm.Q}
     (h : tm.step c = some c') : c'.state = stepStateOf tm c.state (cfgReads c) := by
   have hne : ¬ c.state = tm.qhalt := fun hq => by simp [TM.step, hq] at h
@@ -728,7 +848,9 @@ theorem step_state_eq {k : ℕ} (tm : TM k) {c c' : Cfg k tm.Q}
   rfl
 
 /-- **`TM.step` is the tapewise action.** Every tape writes and moves according
-to `stepActs`, so the whole configuration's tapes step uniformly. -/
+to `stepActs`, so the whole configuration's tapes step uniformly.
+@isnad1 id=eq.3h4v.s6.fde2ae642991 from=translated src=- shape=01b3cc8d vocab=1eeed3b5
+-/
 theorem cfgTapes_step {k : ℕ} (tm : TM k) {c c' : Cfg k tm.Q}
     (h : tm.step c = some c') (hout : c.output.StartInvariant)
     (hwork : ∀ i, (c.work i).StartInvariant) :
@@ -745,7 +867,9 @@ theorem cfgTapes_step {k : ℕ} (tm : TM k) {c c' : Cfg k tm.Q}
     write_correctWrite _ (hwork _)]
 
 /-- **One tape's blocks after a step.** Immediate from `tapeStepBlocks_eq`; this
-is the form that lifts tapewise across a whole configuration. -/
+is the form that lifts tapewise across a whole configuration.
+@isnad1 id=eq.3h3v.s7.9b1968f540c8 from=translated src=- shape=60048a70 vocab=3fda92ac
+-/
 theorem tapeBlocks_step {W : ℕ} (a : Γ × Dir3) (t : Tape)
     (hs : t.head = 0 → a.1 = t.cells t.head)
     (hne : a.2 ≠ Dir3.right → t.head ≠ 0) (hW : t.head ≤ W) :
@@ -757,7 +881,9 @@ theorem tapeBlocks_step {W : ℕ} (a : Γ × Dir3) (t : Tape)
   rw [tapeStepBlocks_eq t a.1 a.2 hs hne hW]
   rfl
 
-/-- The tapewise step acts blockwise on the encoding. -/
+/-- The tapewise step acts blockwise on the encoding.
+@isnad1 id=eq.1h3v.s7.9c94f196e170 from=translated src=- shape=fc30198e vocab=858dda13
+-/
 theorem tapesBlocks_tapesStep {W : ℕ} :
     ∀ (acts : List (Γ × Dir3)) (ts : List Tape),
       List.Forall₂ (fun (a : Γ × Dir3) (t : Tape) =>
@@ -785,12 +911,17 @@ noncomputable def cfgBlocks {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq Q]
     (W : ℕ) (c : Cfg k Q) : List (List Bool) :=
   padTo (blockRuler W) (stateCode c.state) :: tapesBlocks W (cfgTapes c)
 
+/--
+@isnad1 id=eq.0h4v.s5.b148b761270c from=translated src=- shape=33e3bdf9 vocab=cb2bd48f
+-/
 theorem cfgBlocks_eq {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq Q]
     (W : ℕ) (c : Cfg k Q) :
     cfgBlocks W c =
       padTo (blockRuler W) (stateCode c.state) :: tapesBlocks W (cfgTapes c) := rfl
 
-/-- Every field of a configuration occupies exactly one block. -/
+/-- Every field of a configuration occupies exactly one block.
+@isnad1 id=eq.1h5v.s5.a7c1dd4b0f9a from=translated src=- shape=055a3199 vocab=64c606ae
+-/
 theorem cfgBlocks_width {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq Q]
     (W : ℕ) (c : Cfg k Q) :
     ∀ b ∈ cfgBlocks W c, b.length = (blockRuler W).length := by
@@ -806,13 +937,17 @@ noncomputable def cfgCode {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq Q]
     (W : ℕ) (c : Cfg k Q) : List Bool := (cfgBlocks W c).flatten
 
 /-- **Field access.** Block `i` of an encoded configuration is field `i` — so
-`Cobham.blockFn … i` reads it, and no self-delimiting decoder is ever needed. -/
+`Cobham.blockFn … i` reads it, and no self-delimiting decoder is ever needed.
+@isnad1 id=eq.1h5v.s6.9abd3285ee2f from=translated src=- shape=5ab9c291 vocab=595deeea
+-/
 theorem blockAt_cfgCode {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq Q]
     (W : ℕ) (c : Cfg k Q) (i : ℕ) (hi : i < (cfgBlocks W c).length) :
     blockAt (blockRuler W) (cfgCode W c) i = (cfgBlocks W c)[i] :=
   blockAt_flatten _ _ (cfgBlocks_width W c) i hi
 
-/-- A configuration has `2(k+2) + 1` blocks: one per tape half plus the state. -/
+/-- A configuration has `2(k+2) + 1` blocks: one per tape half plus the state.
+@isnad1 id=eq.0h4v.s6.22ace731f0fa from=translated src=- shape=9ba742fb vocab=af20a2ef
+-/
 @[simp] theorem cfgBlocks_length {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq Q]
     (W : ℕ) (c : Cfg k Q) : (cfgBlocks W c).length = 2 * (k + 2) + 1 := by
   rw [cfgBlocks, List.length_cons, tapesBlocks,
@@ -826,7 +961,9 @@ followed by the old blocks transformed two at a time by `tapeStepBlocks`.
 
 The `Forall₂` hypothesis pairs each tape with its own action, which is what a run
 supplies: `δ_right_of_start` constrains a tape at cell `0` only through *its own*
-transition entry. -/
+transition entry.
+@isnad1 id=eq.4h5v.s7.3c28eefbfd21 from=translated src=- shape=5c7442dd vocab=0e246a55
+-/
 theorem cfgBlocks_step {k : ℕ} (tm : TM k) {c c' : Cfg k tm.Q} {W : ℕ}
     (h : tm.step c = some c') (hout : c.output.StartInvariant)
     (hwork : ∀ i, (c.work i).StartInvariant)
@@ -857,7 +994,9 @@ private theorem forall₂_ofFn {α β : Type} {R : α → β → Prop} {n : ℕ}
 /-- **The step's side conditions hold in any run.** The write-agreement at cell
 `0` is `correctWrite_at_zero`, and "a head at cell `0` can only move right" is
 exactly `TM.δ_right_of_start` read through the invariant: at cell `0` the tape
-reads `▷`, which is the hypothesis that rule fires on. -/
+reads `▷`, which is the hypothesis that rule fires on.
+@isnad1 id=forall.2h4v.s6.5206391216b1 from=translated src=- shape=639c4112 vocab=a061b690
+-/
 theorem stepActs_forall₂ {k : ℕ} (tm : TM k) (c : Cfg k tm.Q) {W : ℕ}
     (hinv : ∀ t ∈ cfgTapes c, t.StartInvariant)
     (hW : ∀ t ∈ cfgTapes c, t.head ≤ W) :
@@ -890,7 +1029,9 @@ theorem stepActs_forall₂ {k : ℕ} (tm : TM k) (c : Cfg k tm.Q) {W : ℕ}
 /-- **Tape `j` lives in blocks `2j` and `2j+1`** of the tape-block list. Combined
 with the state block at the front of `cfgBlocks`, tape `j` of a configuration
 occupies blocks `2j+1` and `2j+2` — which is how `Cobham.blockFn` addresses
-them. -/
+them.
+@isnad1 id=and.0h3v.s7.c494e3196a38 from=translated src=- shape=a2ad7fdb vocab=dd56aa06
+-/
 theorem getElem?_tapesBlocks (W : ℕ) :
     ∀ (ts : List Tape) (j : ℕ),
       (tapesBlocks W ts)[2 * j]? =
@@ -921,7 +1062,9 @@ theorem getElem?_tapesBlocks (W : ℕ) :
 The first three blocks — the state and the input tape's two halves — read out
 directly. Each is one `Cobham.blockFn` on the algebra side. -/
 
-/-- Block `0` holds the state. -/
+/-- Block `0` holds the state.
+@isnad1 id=eq.0h4v.s5.e5bbae0b0212 from=translated src=- shape=08f3b8d2 vocab=700669b0
+-/
 theorem blockAt_cfgCode_state {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq Q]
     (W : ℕ) (c : Cfg k Q) :
     blockAt (blockRuler W) (cfgCode W c) 0
@@ -930,7 +1073,9 @@ theorem blockAt_cfgCode_state {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq Q]
   rfl
 
 /-- Unpadding block `0` recovers the one-hot state code, which the transition
-table then matches against its finitely many constants. -/
+table then matches against its finitely many constants.
+@isnad1 id=eq.1h4v.s5.9f5e4041cd74 from=translated src=- shape=3346fda0 vocab=c761b6ff
+-/
 theorem state_of_cfgCode {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq Q]
     (W : ℕ) (c : Cfg k Q) (hW : Fintype.card Q ≤ blockWidth W) :
     (blockAt (blockRuler W) (cfgCode W c) 0).take (Fintype.card Q)
@@ -939,7 +1084,9 @@ theorem state_of_cfgCode {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq Q]
     take_padTo _ _ _ (by simp) (by rw [stateCode_length, blockRuler_length]; omega),
     List.take_of_length_le (by simp)]
 
-/-- Block `1` is the input tape's left half. -/
+/-- Block `1` is the input tape's left half.
+@isnad1 id=eq.0h4v.s5.03a635cdf240 from=translated src=- shape=51bde4a2 vocab=5d9159c2
+-/
 theorem blockAt_cfgCode_inputLeft {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq Q]
     (W : ℕ) (c : Cfg k Q) :
     blockAt (blockRuler W) (cfgCode W c) 1
@@ -948,7 +1095,9 @@ theorem blockAt_cfgCode_inputLeft {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq 
   rfl
 
 /-- Block `2` is the input tape's right half — the one the read symbol comes
-from. -/
+from.
+@isnad1 id=eq.0h4v.s5.899c2ba4eb4a from=translated src=- shape=605e4c30 vocab=8919401f
+-/
 theorem blockAt_cfgCode_inputRight {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq Q]
     (W : ℕ) (c : Cfg k Q) :
     blockAt (blockRuler W) (cfgCode W c) 2
@@ -956,7 +1105,9 @@ theorem blockAt_cfgCode_inputRight {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq
   rw [blockAt_cfgCode W c 2 (by rw [cfgBlocks_length]; omega)]
   rfl
 
-/-- The input head's symbol, read straight out of the encoding. -/
+/-- The input head's symbol, read straight out of the encoding.
+@isnad1 id=eq.1h4v.s5.3324a5b59ef9 from=translated src=- shape=c3c62291 vocab=9b1b6b20
+-/
 theorem inputRead_of_cfgCode {k : ℕ} {Q : Type} [Fintype Q] [DecidableEq Q]
     (W : ℕ) (c : Cfg k Q) (hW : c.input.head ≤ W) :
     symDecode ((blockAt (blockRuler W) (cfgCode W c) 2).take 2) = c.input.read := by

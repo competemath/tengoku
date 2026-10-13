@@ -43,13 +43,21 @@ def encodeVec : {n : ℕ} → (Fin n → List Bool) → List Bool
   | 0, _ => []
   | _ + 1, v => pair (encodeVec (Fin.tail v)) (v 0)
 
+/--
+@isnad1 id=eq.0h1v.s4.d45a06953cbf from=translated src=- shape=7a20c624 vocab=d7bcb70e
+-/
 @[simp] theorem encodeVec_zero (v : Fin 0 → List Bool) : encodeVec v = [] := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.0167963237e0 from=translated src=- shape=402d1a3f vocab=28ec8ebd
+-/
 @[simp] theorem encodeVec_succ {n : ℕ} (v : Fin (n + 1) → List Bool) :
     encodeVec v = pair (encodeVec (Fin.tail v)) (v 0) := rfl
 
 /-- The arity-one encoding is the single component placed in the verbatim suffix
-of an empty block: `encodeVec ![x] = pair [] x`. -/
+of an empty block: `encodeVec ![x] = pair [] x`.
+@isnad1 id=eq.0h1v.s5.89d17c183bf1 from=translated src=- shape=8feb2704 vocab=86bb46ff
+-/
 theorem encodeVec_one (v : Fin 1 → List Bool) : encodeVec v = pair [] (v 0) := by
   simp [encodeVec]
 
@@ -57,21 +65,31 @@ theorem encodeVec_one (v : Fin 1 → List Bool) : encodeVec v = pair [] (v 0) :=
 def vectorLength {n : ℕ} (v : Fin n → List Bool) : ℕ :=
   ∑ i, (v i).length
 
+/--
+@isnad1 id=eq.0h1v.s4.0e4691efeaba from=translated src=- shape=4665241e vocab=b71dce8e
+-/
 @[simp] theorem vectorLength_zero (v : Fin 0 → List Bool) : vectorLength v = 0 := by
   simp [vectorLength]
 
+/--
+@isnad1 id=eq.0h2v.s6.18c844f2983b from=translated src=- shape=aaf2c48e vocab=80735690
+-/
 @[simp] theorem vectorLength_succ {n : ℕ} (v : Fin (n + 1) → List Bool) :
     vectorLength v = (v 0).length + vectorLength (Fin.tail v) := by
   rw [vectorLength, Fin.sum_univ_succ, vectorLength]
   rfl
 
-/-- Exact recursive length law for the nested tuple encoding. -/
+/-- Exact recursive length law for the nested tuple encoding.
+@isnad1 id=eq.0h2v.s7.ed95b8fcdd92 from=translated src=- shape=ed269b0c vocab=d68fa402
+-/
 theorem encodeVec_length_succ {n : ℕ} (v : Fin (n + 1) → List Bool) :
     (encodeVec v).length =
       2 * (encodeVec (Fin.tail v)).length + 2 + (v 0).length := by
   simp [encodeVec_succ]
 
-/-- `encodeVec` is injective at every arity. -/
+/-- `encodeVec` is injective at every arity.
+@isnad1 id=injectiv.0h1v.s3.ac33073d92a3 from=translated src=- shape=368e654b vocab=2b21f2d8
+-/
 theorem encodeVec_injective {n : ℕ} : Function.Injective (@encodeVec n) := by
   induction n with
   | zero =>
@@ -90,7 +108,9 @@ theorem encodeVec_injective {n : ℕ} : Function.Injective (@encodeVec n) := by
 
 /-- For fixed arity `n`, the nested encoding has length linear in the sum of the
 component lengths. The explicit coefficient also records that this is not a
-uniform-in-arity linear bound. -/
+uniform-in-arity linear bound.
+@isnad1 id=le.0h2v.s6.61220c9e986f from=translated src=- shape=370d0810 vocab=005c5715
+-/
 theorem encodeVec_length_le {n : ℕ} (v : Fin n → List Bool) :
     (encodeVec v).length ≤ 2 ^ n * (vectorLength v + 2 * n) := by
   induction n with

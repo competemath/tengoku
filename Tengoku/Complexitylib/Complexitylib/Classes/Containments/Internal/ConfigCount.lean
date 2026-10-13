@@ -50,7 +50,9 @@ structure Windowed (x : List Bool) (S : ℕ) (c : Cfg k Q) : Prop where
   /-- Output cells beyond the window are blank. -/
   output : ∀ p : ℕ, S + 1 < p → c.output.cells p = Γ.blank
 
-/-- The initial configuration is windowed. -/
+/-- The initial configuration is windowed.
+@isnad1 id=windowed.0h5v.s4.e90d4cfe8ba0 from=translated src=- shape=1ebb21eb vocab=d5221568
+-/
 theorem windowed_init (q : Q) (x : List Bool) (S : ℕ) :
     Windowed (k := k) x S (Cfg.init q x) where
   input := rfl
@@ -66,19 +68,25 @@ theorem windowed_init (q : Q) (x : List Bool) (S : ℕ) :
     simp
 
 /-- Enlarging the window preserves the invariant: what is blank beyond `S` is blank beyond any
-larger `S'` too. -/
+larger `S'` too.
+@isnad1 id=windowed.2h6v.s5.6caa12720bfe from=translated src=- shape=ab553b7f vocab=ba251f1c
+-/
 theorem Windowed.mono {x : List Bool} {S S' : ℕ} {c : Cfg k Q}
     (h : Windowed x S c) (hS : S ≤ S') : Windowed x S' c where
   input := h.input
   work := fun i p hp => h.work i p (by omega)
   output := fun p hp => h.output p (by omega)
 
-/-- Enlarging the space budget preserves a decision-space bound. -/
+/-- Enlarging the space budget preserves a decision-space bound.
+@isnad1 id=withinde.2h6v.s5.9479b5aca6bb from=translated src=- shape=2624e6ea vocab=483079d8
+-/
 theorem Cfg.WithinDecisionSpace.mono {n S S' : ℕ} {c : Cfg k Q}
     (h : c.WithinDecisionSpace n S) (hS : S ≤ S') : c.WithinDecisionSpace n S' :=
   ⟨⟨fun i => (h.1.1 i).trans hS, by have := h.1.2; omega⟩, by have := h.2; omega⟩
 
-/-- Writing at the head leaves every other cell alone. -/
+/-- Writing at the head leaves every other cell alone.
+@isnad1 id=eq.1h4v.s4.5fd2cbf84685 from=translated src=- shape=01c2fe96 vocab=e2e0e387
+-/
 theorem cells_writeAndMove_of_ne (t : Tape) (s : Γ) (d : Dir3) {p : ℕ} (hp : p ≠ t.head) :
     (t.writeAndMove s d).cells p = t.cells p := by
   show ((t.write s).move d).cells p = t.cells p
@@ -110,7 +118,9 @@ def cfgCode (nn S : ℕ) (c : Cfg k Q) : Code Q k nn S :=
    fun i => (⟨min (c.work i).head S, by omega⟩, fun p => (c.work i).cells p.val),
    (⟨min c.output.head (S + 1), by omega⟩, fun p => c.output.cells p.val))
 
-/-- Two windowed configurations inside the space bound with the same code are equal. -/
+/-- Two windowed configurations inside the space bound with the same code are equal.
+@isnad1 id=eq.5h6v.s6.e753fe6f8345 from=translated src=- shape=c598fe08 vocab=53c5cb84
+-/
 theorem cfgCode_inj {x : List Bool} {S : ℕ} {c₁ c₂ : Cfg k Q}
     (h₁ : Windowed x S c₁) (hs₁ : c₁.WithinDecisionSpace x.length S)
     (h₂ : Windowed x S c₂) (hs₂ : c₂.WithinDecisionSpace x.length S)
@@ -148,7 +158,9 @@ theorem cfgCode_inj {x : List Bool} {S : ℕ} {c₁ c₂ : Cfg k Q}
       · rw [h₁.output p hp, h₂.output p hp]
       · exact congrFun hout.2 ⟨p, by omega⟩
 
-/-- The number of codes. -/
+/-- The number of codes.
+@isnad1 id=eq.0h4v.s9.962d48a92093 from=translated src=- shape=9a3d391b vocab=29caecae
+-/
 theorem card_Code (Q : Type) [Fintype Q] (k nn S : ℕ) :
     Fintype.card (Code Q k nn S)
       = Fintype.card Q *
@@ -156,7 +168,9 @@ theorem card_Code (Q : Type) [Fintype Q] (k nn S : ℕ) :
   simp [Code, Fintype.card_prod, Γ.card]
 
 /-- **The configuration count is at most exponential in the space bound.** Both `PSPACE ⊆ EXP`
-and Savitch's theorem read the count this way: as `2` to something linear in the space bound. -/
+and Savitch's theorem read the count this way: as `2` to something linear in the space bound.
+@isnad1 id=le.0h4v.s9.bc6eca88c5b9 from=translated src=- shape=4452fc3c vocab=9bedfe60
+-/
 theorem card_Code_le_two_pow (Q : Type) [Fintype Q] (k nn S : ℕ) :
     Fintype.card (Code Q k nn S)
       ≤ 2 ^ (Fintype.card Q + (nn + S + 2) + 3 * k * (S + 1) + 3 * (S + 2)) := by

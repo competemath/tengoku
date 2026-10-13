@@ -26,6 +26,9 @@ open PathSystem PathSystem.Internal
 
 variable {V : Type} [Fintype V] (B : SimpleGraph V)
 
+/--
+@isnad1 id=nonempty.4h5v.s7.51c6f9261322 from=translated src=- shape=068fe83d vocab=0de47ae6
+-/
 theorem exists_partial (degree : ∀ v, B.degree v ≤ 3) (M : Nat) (positive : 0 < M)
     (S : Finset V) (root : V) (member : root ∈ S)
     (connected : (B.induce {v | v ∈ S}).Connected) : Nonempty (Partial B S root M) := by
@@ -64,6 +67,9 @@ theorem exists_partial (degree : ∀ v, B.degree v ≤ 3) (M : Nat) (positive : 
       (fun C h => (Finset.mem_erase.mp (region_subset B U C h)).1 rfl) count
       neighbor adjacent data
 
+/--
+@isnad1 id=ex.4h3v.s7.50f2409cbd53 from=translated src=- shape=28fc41be vocab=da4572ba
+-/
 theorem exists_partition (connected : B.Connected) (degree : ∀ v, B.degree v ≤ 3)
     (M : Nat) (positive : 0 < M) (large : M < Fintype.card V) :
     ∃ parts : Finset (Finset V), parts.biUnion id = Finset.univ ∧

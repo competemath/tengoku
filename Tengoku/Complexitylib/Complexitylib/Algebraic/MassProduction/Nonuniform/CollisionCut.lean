@@ -26,7 +26,9 @@ their collision tests independent. No independence of graph edges is needed.
 namespace Algebraic.MassProduction.Nonuniform
 
 /-- A finite set of nonisolated vertices contains a subset of at least half
-its cardinality whose vertices all have neighbors outside the subset. -/
+its cardinality whose vertices all have neighbors outside the subset.
+@isnad1 id=ex.1h3v.s6.7998d87dbf40 from=translated src=- shape=9f7f8c1b vocab=43cd593d
+-/
 theorem existsCollisionCut
     {Vertex : Type*}
     (graph : SimpleGraph Vertex) (bad : Finset Vertex)

@@ -36,7 +36,9 @@ namespace Complexity.Frontier
 
 open Filter Asymptotics
 
-/-- `log (α n + β) = o(n)` for constants `α ≥ 0` and `β ≥ 1`. -/
+/-- `log (α n + β) = o(n)` for constants `α ≥ 0` and `β ≥ 1`.
+@isnad1 id=islittle.2h2v.s6.86953b10dc3c from=translated src=- shape=f0c05784 vocab=8c70d342
+-/
 theorem isLittleO_log_affine {α β : ℝ} (hα : 0 ≤ α) (hβ : 1 ≤ β) :
     (fun n : ℕ => Real.log (α * n + β)) =o[atTop] fun n => (n : ℝ) := by
   have hlog : (fun n : ℕ => Real.log n) =o[atTop] fun n => (n : ℝ) :=
@@ -71,7 +73,9 @@ then `s > (1 + 1/A - ε) n`.
 In applications, `s` is `(r - 1)` times the number of gates of a circuit of fan-in `r`, the
 supply is the layout hypothesis applied to a graph of cycle rank at most `s - n + e(n)`, and the
 demand is a counting argument for the problem. The slack is chosen before the layout hypothesis
-provides `C`. -/
+provides `C`.
+@isnad1 id=ex.3h3v.s8.cfdc42004ea2 from=translated src=- shape=3550b727 vocab=e7d31237
+-/
 theorem eventually_lt_of_demand {A : ℝ} (hA : 0 < A) {κ : ℝ} (hκ : 0 ≤ κ) {ε : ℝ}
     (hε : 0 < ε) :
     ∃ η₀ > 0, ∀ η, 0 < η → η ≤ η₀ → ∀ (C : ℝ) (e : ℕ → ℝ), e =o[atTop] (fun n => (n : ℝ)) →

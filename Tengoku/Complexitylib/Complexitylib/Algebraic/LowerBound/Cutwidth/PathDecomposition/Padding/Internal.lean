@@ -93,6 +93,9 @@ private noncomputable def pad (D : PathDecomposition G) (f : G ↪g H) (X : Fins
       exact D.consecutive u _ _ _ (Nat.sub_le_sub_right hij _)
         (Nat.sub_le_sub_right hjk _) hui hvk
 
+/--
+@isnad1 id=ex.2h8v.s7.4aaaa61efe02 from=translated src=- shape=2f2fc192 vocab=1c90c41c
+-/
 theorem exists_pad (D : PathDecomposition G) (f : G ↪g H) (X : Finset W)
     (cover : ∀ w, w ∈ Set.range f ∨ w ∈ X) {b : Nat}
     (bound : ∀ i, (D.bag i).card ≤ b) :

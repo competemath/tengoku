@@ -46,7 +46,9 @@ private theorem inner_le_one {ι : Type} [Fintype ι] {y y' : ι → ℝ}
     exact Finset.sum_congr rfl fun i _ => by ring
   linarith
 
-/-- Unit vectors close to a common unit vector are close to each other. -/
+/-- Unit vectors close to a common unit vector are close to each other.
+@isnad1 id=le.5h5v.s7.0f8e00dc8dff from=translated src=- shape=79cafd82 vocab=c64db2fe
+-/
 theorem le_inner_of_le_inner {ι : Type} [Fintype ι] {x y y' : ι → ℝ}
     (hx : ∑ i, x i ^ 2 = 1) (hy : ∑ i, y i ^ 2 = 1) (hy' : ∑ i, y' i ^ 2 = 1) {κ : ℝ}
     (hyx : κ ≤ ∑ i, y i * x i) (hy'x : κ ≤ ∑ i, y' i * x i) :
@@ -74,7 +76,9 @@ private theorem sum_sq_sum_eq {ι J : Type} [Fintype ι] [DecidableEq J] (s : Fi
     _ = _ := by rw [Finset.sum_add_distrib]; simp
 
 /-- **Star inequality.** If `n` unit vectors each have inner product at least `κ ≥ 0` with a
-unit vector, the sum of their inner products over ordered pairs is at least `n ^ 2 κ ^ 2 - n`. -/
+unit vector, the sum of their inner products over ordered pairs is at least `n ^ 2 κ ^ 2 - n`.
+@isnad1 id=le.4h6v.s8.6a4a4886fbee from=translated src=- shape=979ac167 vocab=ffac719c
+-/
 theorem sum_inner_ordered_pairs_ge {ι J : Type} [Fintype ι] [DecidableEq J] {x : ι → ℝ}
     (hx : ∑ i, x i ^ 2 = 1) (s : Finset J) (y : J → ι → ℝ)
     (hy : ∀ j ∈ s, ∑ i, y j i ^ 2 = 1) {κ : ℝ} (hκ : 0 ≤ κ)
@@ -107,7 +111,9 @@ private theorem concaveOn_arccos : ConcaveOn ℝ (Set.Icc 0 1) Real.arccos := by
 
 /-- **Concavity bound for `arccos`.** `arccos` is concave on `[0, 1]` and antitone, so a finite
 family of arguments in that interval with average at least `x₀` has `arccos`-sum at most the
-family size times `arccos x₀`. -/
+family size times `arccos x₀`.
+@isnad1 id=le.2h4v.s6.267214c954da from=translated src=- shape=30be5a96 vocab=8757535d
+-/
 theorem sum_arccos_le {J : Type} (s : Finset J) (x : J → ℝ) {x₀ : ℝ}
     (hx : ∀ j ∈ s, 0 ≤ x j ∧ x j ≤ 1) (hsum : s.card * x₀ ≤ ∑ j ∈ s, x j) :
     ∑ j ∈ s, Real.arccos (x j) ≤ s.card * Real.arccos x₀ := by
@@ -124,7 +130,9 @@ theorem sum_arccos_le {J : Type} (s : Finset J) (x : J → ℝ) {x₀ : ℝ}
 
 /-- **Angles in a star of three.** Three unit vectors with inner product at least `κ ≥ 7/8`
 with a unit vector have pairwise angles summing, over the six ordered pairs, to at most
-`6 arccos ((3 κ ^ 2 - 1) / 2)`. -/
+`6 arccos ((3 κ ^ 2 - 1) / 2)`.
+@isnad1 id=le.5h6v.s8.142b9f9adf7e from=translated src=- shape=b3870062 vocab=61b026ea
+-/
 theorem sum_arccos_star_le {ι J : Type} [Fintype ι] [DecidableEq J] {x : ι → ℝ}
     (hx : ∑ i, x i ^ 2 = 1) (s : Finset J) (hs : s.card = 3) (y : J → ι → ℝ)
     (hy : ∀ j ∈ s, ∑ i, y j i ^ 2 = 1) {κ : ℝ} (hκ : 7 / 8 ≤ κ)

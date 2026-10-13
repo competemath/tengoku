@@ -27,6 +27,9 @@ open PathSystem PathSystem.Internal
 variable {V : Type} [Fintype V] (B : SimpleGraph V)
 
 omit [Fintype V] in
+/--
+@isnad1 id=ex.2h5v.s7.844e65113a75 from=translated src=- shape=2c4db93d vocab=17611087
+-/
 theorem exists_root_neighbor {S : Finset V} {root : V} (member : root ∈ S)
     (connected : (B.induce {v | v ∈ S}).Connected)
     (C : (B.induce {v | v ∈ S.erase root}).ConnectedComponent) :
@@ -59,6 +62,9 @@ theorem exists_root_neighbor {S : Finset V} {root : V} (member : root ∈ S)
   have rootRegion := propagation _ _ reach initial
   exact (Finset.mem_erase.mp (region_subset B (S.erase root) C rootRegion)).1 rfl
 
+/--
+@isnad1 id=le.2h4v.s7.0e249e5896c6 from=translated src=- shape=dbb4ce1e vocab=2b40f346
+-/
 theorem card_components_erase_le_degree {S : Finset V} {root : V} (member : root ∈ S)
     (connected : (B.induce {v | v ∈ S}).Connected) :
     Nat.card (B.induce {v | v ∈ S.erase root}).ConnectedComponent ≤ B.degree root := by
@@ -76,6 +82,9 @@ theorem card_components_erase_le_degree {S : Finset V} {root : V} (member : root
     Fintype.card_le_of_injective f injective
 
 omit [Fintype V] in
+/--
+@isnad1 id=connecte.2h7v.s7.37b9b036ac09 from=translated src=- shape=1f7a2ac8 vocab=93950229
+-/
 theorem connected_insert_biUnion {ι : Type} (root : V) (A : ι → Finset V)
     (neighbor : ι → V) (adjacent : ∀ i, B.Adj root (neighbor i))
     (rooted : ∀ i, A i = ∅ ∨ neighbor i ∈ A i ∧ (B.induce {v | v ∈ A i}).Connected)

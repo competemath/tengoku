@@ -31,7 +31,9 @@ namespace Cobham
 /-! ## Foundational FP building blocks -/
 
 /-- The constant empty-output function is in `FP` (the empty-support case of
-`ite_mem_finset_mem_FP`). -/
+`ite_mem_finset_mem_FP`).
+@isnad1 id=mem.0h0v.s4.bf7ba025dbd8 from=translated src=- shape=ceafcc4a vocab=05301913
+-/
 theorem const_nil_mem_FP : (fun _ : List Bool => ([] : List Bool)) ∈ FP := by
   have h := ite_mem_finset_mem_FP (fun _ => []) (∅ : Finset (List Bool))
   simpa using h

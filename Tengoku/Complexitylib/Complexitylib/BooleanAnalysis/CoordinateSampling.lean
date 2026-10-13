@@ -26,7 +26,9 @@ public section
 namespace Complexity.BooleanAnalysis
 
 /-- Joint law of `P ∪ Q` and `P \ Q`, with the difference represented as a
-mask on the full coordinate set. The product identity includes degenerate rates. -/
+mask on the full coordinate set. The product identity includes degenerate rates.
+@isnad1 id=eq.1h5v.s7.258e05045b3b from=translated src=- shape=a5f103e8 vocab=15bf9aba
+-/
 theorem bernoulliAverage_union_difference {ι : Type*} [Fintype ι] [DecidableEq ι]
     (p q r : ℝ) (hr : (p + q - p * q) * r = p * (1 - q))
     (f : (ι → Bool) → (ι → Bool) → ℝ) :
@@ -37,7 +39,9 @@ theorem bernoulliAverage_union_difference {ι : Type*} [Fintype ι] [DecidableEq
   bernoulliAverage_union_difference_internal p q r hr f
 
 /-- Conditional product law on the selected-coordinate subtype. The test
-function may depend on the union and its smaller coordinate type. -/
+function may depend on the union and its smaller coordinate type.
+@isnad1 id=eq.1h5v.s8.f1a8b0d65d84 from=translated src=- shape=b509e09a vocab=33290b17
+-/
 theorem bernoulliAverage_union_difference_subtype {ι : Type*} [Fintype ι] [DecidableEq ι]
     (p q r : ℝ) (hr : (p + q - p * q) * r = p * (1 - q))
     (f : (S : ι → Bool) → ({i // S i = true} → Bool) → ℝ) :
@@ -47,7 +51,9 @@ theorem bernoulliAverage_union_difference_subtype {ι : Type*} [Fintype ι] [Dec
   bernoulliAverage_union_difference_subtype_internal p q r hr f
 
 /-- For `p ≥ 0` and `0 < q ≤ 1`, the conditional difference rate is a
-probability and is at most `p/q`. -/
+probability and is at most `p/q`.
+@isnad1 id=and.3h2v.s7.20d5351e9d2d from=translated src=- shape=aaf19cc4 vocab=1b82c742
+-/
 theorem conditionalSamplingRate_bounds {p q : ℝ} (hp : 0 ≤ p) (hq : 0 < q) (hq' : q ≤ 1) :
     0 ≤ p * (1 - q) / (p + q - p * q) ∧
       p * (1 - q) / (p + q - p * q) ≤ p / q ∧

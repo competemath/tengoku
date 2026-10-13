@@ -25,7 +25,9 @@ namespace Algebraic.MassProduction.HighRate
 def retainedDimension (alphabet blocks : Nat) : Nat :=
   alphabet ^ blocks - (alphabet - 1) ^ blocks
 
-/-- A finite rate guarantee, with an explicit cutoff linear in precision. -/
+/-- A finite rate guarantee, with an explicit cutoff linear in precision.
+@isnad1 id=le.3h3v.s6.607ebad8117e from=translated src=- shape=3e1d292e vocab=d59a5686
+-/
 theorem retainedDimension_rate
     (alphabet blocks precision : Nat)
     (alphabetPositive : 0 < alphabet) (blocksPositive : 0 < blocks)
@@ -60,7 +62,9 @@ theorem retainedDimension_rate
     _ = _ := by ring
 
 /-- The dimension approaches the full table size in the integer precision
-form used by the circuit-cost statements. -/
+form used by the circuit-cost statements.
+@isnad1 id=ex.1h2v.s6.ac72c21ef6c8 from=translated src=- shape=5365aeac vocab=d74f2a61
+-/
 theorem retainedDimension_hasRateOne (alphabet : Nat) (alphabetPositive : 0 < alphabet) :
     ∀ precision, ∃ cutoff, ∀ blocks, cutoff ≤ blocks →
       precision * alphabet ^ blocks ≤ (precision + 1) * retainedDimension alphabet blocks := by

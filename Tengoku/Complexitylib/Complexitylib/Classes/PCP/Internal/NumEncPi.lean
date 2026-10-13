@@ -34,6 +34,9 @@ variable {α : Type}
 
 /-! ### Digits -/
 
+/--
+@isnad1 id=lt.1h3v.s6.3954f7150c31 from=translated src=- shape=09346768 vocab=1fce9507
+-/
 theorem sum_lt_pow {c n : ℕ} (g : ℕ → ℕ) (hg : ∀ i < n, g i < c) :
     ∑ i ∈ Finset.range n, g i * c ^ i < c ^ n := by
   induction n with
@@ -48,6 +51,9 @@ theorem sum_lt_pow {c n : ℕ} (g : ℕ → ℕ) (hg : ∀ i < n, g i < c) :
         _ ≤ c * c ^ n := Nat.mul_le_mul_right _ (by omega)
         _ = c ^ n * c := by ring
 
+/--
+@isnad1 id=eq.3h4v.s6.bd7f42abdf68 from=translated src=- shape=9ededa71 vocab=51222ad3
+-/
 theorem digit_sum {c : ℕ} (hc : 0 < c) (g : ℕ → ℕ) :
     ∀ {n j : ℕ}, j < n → (∀ i < n, g i < c) →
       (∑ i ∈ Finset.range n, g i * c ^ i) / c ^ j % c = g j := by
@@ -81,6 +87,9 @@ theorem digit_sum {c : ℕ} (hc : 0 < c) (g : ℕ → ℕ) :
           Nat.add_mul_div_left _ _ (Nat.pow_pos hc), Nat.div_eq_of_lt hlt,
           Nat.zero_add, Nat.mod_eq_of_lt (hg j (by omega))]
 
+/--
+@isnad1 id=eq.1h3v.s6.944630904098 from=translated src=- shape=5c7a2078 vocab=51222ad3
+-/
 theorem sum_digits {c : ℕ} :
     ∀ {n i : ℕ}, i < c ^ n → ∑ j ∈ Finset.range n, (i / c ^ j % c) * c ^ j = i := by
   intro n
@@ -113,6 +122,9 @@ theorem sum_digits {c : ℕ} :
 
 /-! ### The instance -/
 
+/--
+@isnad1 id=eq.2h3v.s5.e5c9120667a8 from=translated src=- shape=74e387a3 vocab=3b30cd17
+-/
 theorem get_eq [NumEnc α] {i : ℕ} (hi : i < card α) {a : α} (h : i = enc a) :
     get hi = a := by
   have h1 : enc (get hi) = i := enc_get hi
@@ -122,6 +134,9 @@ theorem get_eq [NumEnc α] {i : ℕ} (hi : i < card α) {a : α} (h : i = enc a)
 def encAt {n : ℕ} [NumEnc α] (f : Fin n → α) (i : ℕ) : ℕ :=
   if h : i < n then enc (f ⟨i, h⟩) else 0
 
+/--
+@isnad1 id=lt.1h4v.s5.ec3028ef7683 from=translated src=- shape=38217854 vocab=3fae578c
+-/
 theorem encAt_lt {n : ℕ} [NumEnc α] (f : Fin n → α) {i : ℕ} (hi : i < n) :
     encAt f i < card α := by
   rw [encAt, dite_eq_left hi]
