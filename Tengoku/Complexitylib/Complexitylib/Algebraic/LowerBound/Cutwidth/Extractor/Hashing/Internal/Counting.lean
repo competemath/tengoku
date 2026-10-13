@@ -27,6 +27,9 @@ noncomputable def hashFiberCount {α Seed Ω : Type*} [Fintype α]
     (E : α → Seed → Ω) (z : Seed × Ω) : ℝ :=
   ∑ x, if E x z.1 = z.2 then 1 else 0
 
+/--
+@isnad1 id=eq.0h5v.s5.5cb7cb760f49 from=translated src=- shape=8ef264eb vocab=abeade58
+-/
 theorem hashFiberCount_sum_output {α Seed Ω : Type*} [Fintype α] [Fintype Ω]
     (E : α → Seed → Ω) (y : Seed) :
     ∑ o, hashFiberCount E (y, o) = Fintype.card α := by
@@ -34,6 +37,9 @@ theorem hashFiberCount_sum_output {α Seed Ω : Type*} [Fintype α] [Fintype Ω]
   rw [Finset.sum_comm]
   simp
 
+/--
+@isnad1 id=eq.0h4v.s6.5612ecc3e931 from=translated src=- shape=f25c30dd vocab=7a254d65
+-/
 theorem hashFiberCount_sum {α Seed Ω : Type*} [Fintype α] [Fintype Seed]
     [Fintype Ω] (E : α → Seed → Ω) :
     ∑ z, hashFiberCount E z = (Fintype.card Seed : ℝ) * Fintype.card α := by
@@ -41,6 +47,9 @@ theorem hashFiberCount_sum {α Seed Ω : Type*} [Fintype α] [Fintype Seed]
   simp_rw [hashFiberCount_sum_output]
   simp
 
+/--
+@isnad1 id=eq.0h5v.s6.b04d8efee336 from=translated src=- shape=b3db0a65 vocab=1aeda355
+-/
 theorem hashFiberCount_sq_sum_output {α Seed Ω : Type*} [Fintype α] [Fintype Ω]
     (E : α → Seed → Ω) (y : Seed) :
     ∑ o, hashFiberCount E (y, o) ^ 2 =
@@ -56,6 +65,9 @@ theorem hashFiberCount_sq_sum_output {α Seed Ω : Type*} [Fintype α] [Fintype 
   simp only [ite_mul, one_mul, zero_mul]
   simp [eq_comm]
 
+/--
+@isnad1 id=eq.0h4v.s6.f0d5321baffa from=translated src=- shape=5d527615 vocab=d5b0d68c
+-/
 theorem hashFiberCount_sq_sum {α Seed Ω : Type*} [Fintype α] [Fintype Seed]
     [Fintype Ω] (E : α → Seed → Ω) :
     ∑ z, hashFiberCount E z ^ 2 =
@@ -71,6 +83,9 @@ theorem hashFiberCount_sq_sum {α Seed Ω : Type*} [Fintype α] [Fintype Seed]
   rw [Finset.card_filter]
   simp only [Nat.cast_sum, Nat.cast_ite, Nat.cast_one, Nat.cast_zero]
 
+/--
+@isnad1 id=eq.0h5v.s7.0403973467dd from=translated src=- shape=72f7154d vocab=2fbf493e
+-/
 theorem hashFiberCount_sum_test {α Seed Ω : Type*} [Fintype α] [Fintype Seed]
     [Fintype Ω] (E : α → Seed → Ω) (T : Finset (Seed × Ω)) :
     ∑ z ∈ T, hashFiberCount E z =
@@ -98,6 +113,9 @@ theorem hashFiberCount_sum_test {α Seed Ω : Type*} [Fintype α] [Fintype Seed]
       simp_rw [swap]
       simp
 
+/--
+@isnad1 id=eq.0h5v.s6.cebf391cfad6 from=translated src=- shape=49b3f918 vocab=af24ecc3
+-/
 theorem seededTestProb_eq_hashFiberCount {α Seed Ω : Type*} [Fintype α]
     [Fintype Seed] [Fintype Ω] (E : α → Seed → Ω) (T : Finset (Seed × Ω)) :
     seededTestProb E T = (∑ z ∈ T, hashFiberCount E z) /

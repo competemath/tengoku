@@ -24,12 +24,18 @@ open scoped Classical
 
 variable {V : Type} {B : SimpleGraph V} {S : Finset V} {root : V} {M : Nat}
 
+/--
+@isnad1 id=le.1h7v.s5.48350088c1bc from=translated src=- shape=73bafa52 vocab=354a1903
+-/
 theorem Partial.part_subset (Q : Partial B S root M) {P : Finset V} (member : P ∈ Q.parts) :
     P ⊆ S := by
   intro v hv
   rw [← Q.cover]
   exact Finset.mem_union_left _ (Finset.mem_biUnion.mpr ⟨P, member, hv⟩)
 
+/--
+@isnad1 id=le.0h6v.s5.f6c5d2d065f6 from=translated src=- shape=cc7dd388 vocab=ca09af4a
+-/
 theorem Partial.remainder_subset (Q : Partial B S root M) : Q.remainder ⊆ S := by
   intro v hv
   have member : v ∈ Q.parts.biUnion id ∪ Q.remainder := Finset.mem_union_right _ hv
@@ -37,6 +43,9 @@ theorem Partial.remainder_subset (Q : Partial B S root M) : Q.remainder ⊆ S :=
 
 namespace Internal
 
+/--
+@isnad1 id=nonempty.6h9v.s7.89f46998564c from=translated src=- shape=efc1bd00 vocab=590bd730
+-/
 theorem assemble {ι : Type} [Fintype ι] (B : SimpleGraph V) (S : Finset V)
     (root : V) (M : Nat) (positive : 0 < M) (region : ι → Finset V)
     (regions : Pairwise fun i j => Disjoint (region i) (region j))

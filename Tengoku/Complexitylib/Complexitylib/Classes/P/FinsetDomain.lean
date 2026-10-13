@@ -49,7 +49,9 @@ namespace Complexity
 /-- A function that agrees with the constant empty-output function except on a
 finite set `S` — that is, `fun s => if s ∈ S then g s else []` — is computable in
 polynomial (indeed linear) time. The finite table of exceptional values is
-hard-wired into the lookup machine's states. -/
+hard-wired into the lookup machine's states.
+@isnad1 id=mem.0h2v.s6.47937e1e0a19 from=translated src=- shape=40a13ece vocab=1d95877e
+-/
 theorem ite_mem_finset_mem_FP (g : List Bool → List Bool) (S : Finset (List Bool)) :
     (fun s => if s ∈ S then g s else []) ∈ FP :=
   ite_mem_finset_mem_FP_internal g S
@@ -62,6 +64,9 @@ noncomputable def keySet (L : ℕ) (Q : List Bool → Prop) : Finset (List Bool)
   ((Finset.range (L + 1)).biUnion fun n =>
     (Finset.univ : Finset (List.Vector Bool n)).image List.Vector.toList).filter Q
 
+/--
+@isnad1 id=iff.0h3v.s5.4e83e706c172 from=translated src=- shape=50a78c4a vocab=19781219
+-/
 theorem mem_keySet {L : ℕ} {Q : List Bool → Prop} {s : List Bool} :
     s ∈ keySet L Q ↔ s.length ≤ L ∧ Q s := by
   simp only [keySet, Finset.mem_filter, Finset.mem_biUnion, Finset.mem_range,

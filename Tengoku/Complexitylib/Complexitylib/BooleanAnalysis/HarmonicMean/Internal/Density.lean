@@ -24,6 +24,9 @@ namespace Complexity.BooleanAnalysis
 open Finset
 open scoped BigOperators
 
+/--
+@isnad1 id=le.4h3v.s8.9a14d1b6fb7b from=translated src=- shape=a2f7c404 vocab=6f1c3f81
+-/
 theorem harmonicTransform_good_probability_internal {n : ℕ}
     {f : (Fin n → Bool) → ℝ} (hf : ∀ x, 0 ≤ f x) (hmean : (𝔼 x, f x) = 1)
     {B : ℝ} (hB : 1 ≤ B) (hbound : ∀ x, f x ≤ B) :

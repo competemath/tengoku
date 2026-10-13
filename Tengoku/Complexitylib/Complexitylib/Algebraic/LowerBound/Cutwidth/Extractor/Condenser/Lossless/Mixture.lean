@@ -33,7 +33,9 @@ public section
 namespace Algebraic.Cutwidth.Extractor
 
 /-- Double counting over positive-size subsets, valid in any additive
-commutative monoid. The support may be empty or smaller than `K`. -/
+commutative monoid. The support may be empty or smaller than `K`.
+@isnad1 id=eq.1h5v.s6.5d1eedce65f3 from=translated src=- shape=8583b856 vocab=7b41a093
+-/
 theorem sum_powersetCard_sum {α M : Type*} [AddCommMonoid M]
     (P : Finset α) {K : Nat} (positive : 0 < K) (f : α → M) :
     ∑ S ∈ P.powersetCard K, ∑ x ∈ S, f x =
@@ -41,7 +43,9 @@ theorem sum_powersetCard_sum {α M : Type*} [AddCommMonoid M]
   Internal.sum_powersetCard_sum P positive f
 
 /-- Averaging the uniform averages of all `K`-subsets gives the uniform
-average over the original support. -/
+average over the original support.
+@isnad1 id=eq.2h4v.s6.164c75bcdb85 from=translated src=- shape=4f5e0ddb vocab=d0fc743f
+-/
 theorem powersetCard_average {α : Type*} (P : Finset α) {K : Nat}
     (positive : 0 < K) (size : K ≤ P.card) (f : α → ℝ) :
     (∑ S ∈ P.powersetCard K, (∑ x ∈ S, f x) / (K : ℝ)) /
@@ -49,7 +53,9 @@ theorem powersetCard_average {α : Type*} (P : Finset α) {K : Nat}
   Internal.powersetCard_average P positive size f
 
 /-- Every seeded test has the same probability under a flat support as under
-the uniform mixture of its `K`-subsets. -/
+the uniform mixture of its `K`-subsets.
+@isnad1 id=eq.2h7v.s8.719541e28353 from=translated src=- shape=7dca613c vocab=1862c933
+-/
 theorem seededTestProb_powersetCard {α Seed Ω : Type*} [Fintype Seed]
     (C : α → Seed → Ω) (P : Finset α) {K : Nat}
     (positive : 0 < K) (size : K ≤ P.card) (T : Finset (Seed × Ω)) :
@@ -59,7 +65,9 @@ theorem seededTestProb_powersetCard {α Seed Ω : Type*} [Fintype Seed]
   Internal.seededTestProb_powersetCard C P positive size T
 
 /-- A common error bound on all seeded tests is preserved by a supplied
-nonnegative normalized mixture, using the same weights on both sides. -/
+nonnegative normalized mixture, using the same weights on both sides.
+@isnad1 id=le.3h10v.s7.6a8552ff6b97 from=translated src=- shape=81132b82 vocab=8c519831
+-/
 theorem seededMixtureTestProb_sub_le {ι Seed Ω : Type*} [Fintype ι] [Fintype Seed]
     {Source Target : ι → Type*} [∀ i, Fintype (Source i)] [∀ i, Fintype (Target i)]
     (w : ι → ℝ) (C : ∀ i, Source i → Seed → Ω) (G : ∀ i, Target i → Seed → Ω)
@@ -72,7 +80,9 @@ theorem seededMixtureTestProb_sub_le {ι Seed Ω : Type*} [Fintype ι] [Fintype 
 
 open scoped Classical in
 /-- Witnesses on every `K`-subset give a mixture of `K`-flat conditional
-outputs for the larger support. The comparison keeps every seed unchanged. -/
+outputs for the larger support. The comparison keeps every seed unchanged.
+@isnad1 id=ex.3h7v.s9.5bfdc15f9c8e from=translated src=- shape=cdd5f8b0 vocab=8acb3c09
+-/
 theorem exists_flat_mixture_of_exact_size {α Seed Ω : Type*} [Fintype Seed]
     (C : α → Seed → Ω) (P : Finset α) {K : Nat}
     (positive : 0 < K) (size : K ≤ P.card) {ε : ℝ}

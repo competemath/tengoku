@@ -26,6 +26,9 @@ open scoped Classical
 
 variable {W : Type} [Fintype W] (H : SimpleGraph W) (S : Finset W)
 
+/--
+@isnad1 id=other.0h3v.s9.d208e007d1cc from=translated src=- shape=e59219bb vocab=4077cc8e
+-/
 theorem exists_between_cutBoundaries :
     let T := {w | w ∈ cutBoundary H S ∨ w ∈ cutBoundary H Sᶜ}
     ∃ D : PathDecomposition (H.induce T),
@@ -73,6 +76,9 @@ theorem exists_between_cutBoundaries :
   exact ⟨fun hu => u.property.resolve_left (fun h => hu (cutBoundary_subset H S h)),
     fun h => Finset.mem_compl.mp (cutBoundary_subset H Sᶜ h)⟩
 
+/--
+@isnad1 id=ex.7h7v.s10.ff88ba7b41fe from=translated src=- shape=35c815b0 vocab=b44114a1
+-/
 theorem exists_assemble_cut
     (DL : PathDecomposition (H.induce {w | w ∈ S}))
     (DM : PathDecomposition

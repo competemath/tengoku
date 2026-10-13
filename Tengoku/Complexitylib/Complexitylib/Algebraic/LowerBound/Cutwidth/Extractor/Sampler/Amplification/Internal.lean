@@ -23,6 +23,9 @@ namespace Algebraic.Cutwidth.Extractor.Internal
 
 open scoped Classical
 
+/--
+@isnad1 id=lt.3h12v.s7.3651aac2d361 from=translated src=- shape=b3d3bf41 vocab=81ee8955
+-/
 theorem card_allHitSeeds_lt {α Outer Candidate Base Ω : Type*}
     [Fintype Outer] [Fintype Candidate] [Fintype Base] [Nonempty Base]
     {Γ : Outer → Candidate → Base} {K : Nat} {ρ ε₀ : ℝ}
@@ -46,6 +49,9 @@ theorem card_allHitSeeds_lt {α Outer Candidate Base Ω : Type*}
   have hupper := (cover _ hK).trans (hcard.trans good)
   exact (not_le_of_gt (mul_lt_mul_of_pos_right separate hbase)) hupper
 
+/--
+@isnad1 id=neighbor.2h6v.s6.2c3c56cbb0cc from=translated src=- shape=048e8e62 vocab=8dc90c20
+-/
 theorem neighborCoverage_of_flatSeededExtractor {Outer Candidate Base : Type*}
     [Fintype Candidate] [Nonempty Candidate] [Fintype Base]
     {Γ : Outer → Candidate → Base} {K : Nat} {ε : ℝ}
@@ -73,6 +79,9 @@ theorem neighborCoverage_of_flatSeededExtractor {Outer Candidate Base : Type*}
   apply (mul_le_mul_iff_right₀ (mul_pos hp hc)).mp
   nlinarith [hdiscrepancy]
 
+/--
+@isnad1 id=le.3h12v.s7.edb22699fd6c from=translated src=- shape=070186f0 vocab=56033aac
+-/
 theorem somewhereBadInputs_subset {α Outer Candidate Base Ω : Type*}
     [Fintype α] [Fintype Outer] [Fintype Candidate] [Fintype Base] [Nonempty Base]
     {Γ : Outer → Candidate → Base} {K : Nat} {ρ ε₀ ε : ℝ}
@@ -89,6 +98,9 @@ theorem somewhereBadInputs_subset {α Outer Candidate Base Ω : Type*}
   have hbad := (Finset.mem_filter.mp hx).2
   linarith
 
+/--
+@isnad1 id=somewher.5h13v.s7.0b96a00e2e5e from=translated src=- shape=1d04b929 vocab=c787c8fe
+-/
 theorem sampler_amplify {α Outer Candidate Base Ω : Type*}
     [Fintype α] [Fintype Outer] [Fintype Candidate] [Fintype Base] [Fintype Ω]
     [Nonempty Base] {E : α → Base → Ω} {Γ : Outer → Candidate → Base}
@@ -104,6 +116,9 @@ theorem sampler_amplify {α Outer Candidate Base Ω : Type*}
   exact Finset.sum_le_sum_of_subset_of_nonneg
     (somewhereBadInputs_subset cover separate budget E T) fun x _ _ => hp x
 
+/--
+@isnad1 id=neighbor.1h3v.s5.78e0680dbacf from=translated src=- shape=cb898f8d vocab=1bf0c288
+-/
 theorem neighborCoverage_seedProjection {Outer Base : Type*} [Fintype Base]
     {K : Nat} (positive : 0 < K) :
     NeighborCoverage (fun (_ : Outer) (z : Base) => z) K 1 := by
@@ -119,6 +134,9 @@ theorem neighborCoverage_seedProjection {Outer Base : Type*} [Fintype Base]
         Finset.mem_image.mpr ⟨z, Finset.mem_univ _, rfl⟩⟩
   simp [hall]
 
+/--
+@isnad1 id=somewher.2h5v.s6.7f32b3c5d13f from=translated src=- shape=3560cca3 vocab=4f5c49f0
+-/
 theorem somewhereSampler_seedProjection {α Outer Ω : Type*}
     [Fintype α] [Fintype Outer] [Fintype Ω] [Nonempty Ω]
     {L ε : ℝ} (nonneg : 0 ≤ ε) (small : ε < 1) :

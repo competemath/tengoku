@@ -61,6 +61,9 @@ private theorem adj_retract [Nonempty {v // v ∉ S}]
       have fixedV := retract_outside B S (⟨v, hv⟩ : {v // v ∉ S})
       exact Or.inl (by simpa only [fixedU, fixedV] using adjacent)
 
+/--
+@isnad1 id=iff.1h5v.s7.66c2c597223f from=translated src=- shape=294538ce vocab=4c9fbbaa
+-/
 theorem reachable_iff (independent : ∀ u ∈ S, ∀ v ∈ S, ¬ B.Adj u v)
     {u v : {v // v ∉ S}} : (graph B S).Reachable u v ↔ B.Reachable u.val v.val := by
   constructor
@@ -84,6 +87,9 @@ theorem reachable_iff (independent : ∀ u ∈ S, ∀ v ∈ S, ¬ B.Adj u v)
         · exact edge.reachable.trans ih
     simpa only [retract_outside] using project p
 
+/--
+@isnad1 id=connecte.2h3v.s6.f444aef18435 from=translated src=- shape=94fc8217 vocab=d7ee7813
+-/
 theorem connected [Nonempty {v // v ∉ S}] (original : B.Connected)
     (independent : ∀ u ∈ S, ∀ v ∈ S, ¬ B.Adj u v) : (graph B S).Connected where
   preconnected u v := (reachable_iff B S independent).mpr (original.preconnected u.val v.val)
@@ -105,6 +111,9 @@ private theorem neighbor_eq_of_degree_le_two {x a b c : V} (degree : B.degree x 
   rw [← same] at member
   simpa only [Finset.mem_insert, Finset.mem_singleton] using member
 
+/--
+@isnad1 id=isacycli.2h3v.s6.8f788ce5d7c2 from=translated src=- shape=5a056c1d vocab=9be266d1
+-/
 theorem isAcyclic (forest : B.IsAcyclic)
     (degree : ∀ v ∈ S, B.degree v ≤ 2) : (graph B S).IsAcyclic := by
   cases isEmpty_or_nonempty {v // v ∉ S} with
@@ -154,6 +163,9 @@ theorem isAcyclic (forest : B.IsAcyclic)
     exact (BridgeQuotient.isAcyclic B F (fun _ he =>
       SimpleGraph.isAcyclic_iff_forall_isBridge.mp forest he.2)).comap hom injective
 
+/--
+@isnad1 id=istree.3h3v.s7.2cbb45e72dbe from=translated src=- shape=d210728c vocab=7e5b9c30
+-/
 theorem isTree [Nonempty {v // v ∉ S}] (tree : B.IsTree)
     (independent : ∀ u ∈ S, ∀ v ∈ S, ¬ B.Adj u v)
     (degree : ∀ v ∈ S, B.degree v ≤ 2) : (graph B S).IsTree :=

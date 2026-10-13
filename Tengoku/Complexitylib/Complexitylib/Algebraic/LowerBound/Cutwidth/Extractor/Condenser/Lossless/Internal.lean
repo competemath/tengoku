@@ -24,6 +24,9 @@ namespace Algebraic.Cutwidth.Extractor.Internal
 
 open scoped Classical
 
+/--
+@isnad1 id=ex.1h3v.s6.6d01fbdb3a87 from=translated src=- shape=b6dce383 vocab=afb50316
+-/
 theorem embedding_agree_on_range {α β : Type*} [Fintype α] [Fintype β]
     (f : α → β) (capacity : Fintype.card α ≤ Fintype.card β) :
     ∃ g : α ↪ β, ∀ b ∈ Set.range f, ∃ x, f x = b ∧ g x = b := by
@@ -41,6 +44,9 @@ theorem embedding_agree_on_range {α β : Type*} [Fintype α] [Fintype β]
   intro b hb
   exact ⟨r ⟨b, hb⟩, hr _, hσ _⟩
 
+/--
+@isnad1 id=ex.1h5v.s9.7e5ae1992855 from=translated src=- shape=d8fa6ac0 vocab=821caccf
+-/
 theorem exists_seedwise_injection {α Seed Ω : Type*} [Fintype Seed] [Fintype Ω]
     (C : α → Seed → Ω) (P : Finset α) (capacity : P.card ≤ Fintype.card Ω) :
     ∃ g : Seed → (P ↪ Ω),
@@ -75,6 +81,9 @@ theorem exists_seedwise_injection {α Seed Ω : Type*} [Fintype Seed] [Fintype �
     exact congrArg (fun z : P => (z, y)) xx
   exact (Finset.card_image_of_injOn injective).symm.trans (congrArg Finset.card image_eq)
 
+/--
+@isnad1 id=le.0h5v.s7.36d8918d9cf4 from=translated src=- shape=c243bf22 vocab=2257ed30
+-/
 theorem card_test_sub_le_disagreement {α β : Type*} [Fintype α]
     (f g : α → β) (T : Finset β) :
     |(((Finset.univ : Finset α).filter fun x => f x ∈ T).card : ℝ) -

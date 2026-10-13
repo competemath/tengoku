@@ -22,7 +22,9 @@ namespace Algebraic.Combinatorics.FiniteCover
 
 open Finset
 
-/-- A finite probabilistic cover bound, stated with integer cardinalities. -/
+/-- A finite probabilistic cover bound, stated with integer cardinalities.
+@isnad1 id=ex.2h6v.s7.d64f92695209 from=translated src=- shape=8d10249f vocab=0bc4701b
+-/
 theorem exists_cover_of_scaled_card_lt
     {S W : Type*} [Fintype S] [Nonempty S] [Fintype W]
     (hit : S → W → Prop) [DecidableRel hit] (p q t : Nat)

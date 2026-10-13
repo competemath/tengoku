@@ -27,7 +27,9 @@ open scoped BigOperators Classical
 
 /-- With probability at least `31/32` over `P`, `Q`, and a uniform `x ∈ X`,
 at most a `2^(-k-6)` fraction of modifications to `x` on `P` have completion
-density below `2^(-194*k)` when the coordinates in `Q` are subsequently modified. -/
+density below `2^(-194*k)` when the coordinates in `Q` are subsequently modified.
+@isnad1 id=le.6h5v.s9.7143df6af53a from=translated src=- shape=5a566099 vocab=e0f94206
+-/
 theorem mirror_bad_modifications_probability {ι : Type*} [Fintype ι] [DecidableEq ι]
     (X : Finset (ι → Bool)) (hX : X.Nonempty) {k p q : ℝ} (hk : 1 ≤ k)
     (hdef : uniformDeficit X ≤ k) (hp : 0 < p) (hq : q = 32768 * k * p) (hq' : q ≤ 1 / 2) :
@@ -39,7 +41,9 @@ theorem mirror_bad_modifications_probability {ι : Type*} [Fintype ι] [Decidabl
 /-- Improved strong mirror-set lemma, combining Korten's Section 3 argument
 with Lemma 10. A set of `(p,k)`-limits with deficit at most `k` yields a
 nonempty mirror subset of deficit at most `2*k+2`, all of whose points are
-`(32768*k*p,194*k)`-limits in the reverse direction. -/
+`(32768*k*p,194*k)`-limits in the reverse direction.
+@isnad1 id=ex.7h6v.s8.3a64f5bd536f from=translated src=- shape=4bf04f58 vocab=5b98d632
+-/
 theorem improved_mirror_set {ι : Type*} [Fintype ι] [DecidableEq ι]
     (X Y : Finset (ι → Bool)) (hX : X.Nonempty) {k p q : ℝ} (hk : 1 ≤ k)
     (hdef : uniformDeficit X ≤ k) (hp : 0 < p) (hq : q = 32768 * k * p) (hq' : q ≤ 1 / 2)

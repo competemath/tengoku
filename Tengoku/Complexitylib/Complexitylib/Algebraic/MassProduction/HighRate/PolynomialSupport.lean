@@ -24,7 +24,9 @@ open scoped BigOperators
 
 variable {K : Type*} [Field K] [CharP K 2]
 
-/-- Frobenius powers have support only at multiples of the power. -/
+/-- Frobenius powers have support only at multiples of the power.
+@isnad1 id=dvd.1h4v.s7.cd3f962e791b from=translated src=- shape=046a9a24 vocab=5d70b59d
+-/
 theorem dvdOfMemSupportPowTwo
     (polynomial : Polynomial K) (width exponent : Nat)
     (inSupport : exponent ∈ (polynomial ^ 2 ^ width).support) :

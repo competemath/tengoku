@@ -33,7 +33,9 @@ public section
 namespace Algebraic.Cutwidth.Extractor
 
 /-- At a base-good input, fewer than `K` outer seeds have all candidates in the
-test set. The strict coverage gap remains strict because the base is nonempty. -/
+test set. The strict coverage gap remains strict because the base is nonempty.
+@isnad1 id=lt.3h12v.s7.3651aac2d361 from=translated src=- shape=b3d3bf41 vocab=81ee8955
+-/
 theorem NeighborCoverage.card_allHitSeeds_lt {α Outer Candidate Base Ω : Type*}
     [Fintype Outer] [Fintype Candidate] [Fintype Base] [Nonempty Base]
     {Γ : Outer → Candidate → Base} {K : Nat} {ρ ε₀ : ℝ}
@@ -44,7 +46,9 @@ theorem NeighborCoverage.card_allHitSeeds_lt {α Outer Candidate Base Ω : Type*
   Internal.card_allHitSeeds_lt cover separate E T x good
 
 /-- Extraction forces every large support to reach at least a `1 - ε` fraction
-of outputs. The source support and the uniform seed are nonempty. -/
+of outputs. The source support and the uniform seed are nonempty.
+@isnad1 id=neighbor.2h6v.s6.2c3c56cbb0cc from=translated src=- shape=048e8e62 vocab=8dc90c20
+-/
 theorem FlatSeededExtractor.neighborCoverage {Outer Candidate Base : Type*}
     [Fintype Candidate] [Nonempty Candidate] [Fintype Base]
     {Γ : Outer → Candidate → Base} {K : Nat} {ε : ℝ}
@@ -53,7 +57,9 @@ theorem FlatSeededExtractor.neighborCoverage {Outer Candidate Base : Type*}
   Internal.neighborCoverage_of_flatSeededExtractor extract positive
 
 /-- Compose a sampler with a covering neighbor map. The target tests may be
-smaller, and the source point-mass and failure bounds are preserved exactly. -/
+smaller, and the source point-mass and failure bounds are preserved exactly.
+@isnad1 id=somewher.5h13v.s7.0b96a00e2e5e from=translated src=- shape=1d04b929 vocab=c787c8fe
+-/
 theorem Sampler.amplify {α Outer Candidate Base Ω : Type*}
     [Fintype α] [Fintype Outer] [Fintype Candidate] [Fintype Base] [Fintype Ω]
     [Nonempty Base] {E : α → Base → Ω} {Γ : Outer → Candidate → Base}
@@ -64,14 +70,18 @@ theorem Sampler.amplify {α Outer Candidate Base Ω : Type*}
     SomewhereSampler (fun x y z => E x (Γ y z)) L ε δ :=
   Internal.sampler_amplify sample cover small separate budget
 
-/-- Listing every base seed gives full coverage of every nonempty support. -/
+/-- Listing every base seed gives full coverage of every nonempty support.
+@isnad1 id=neighbor.1h3v.s5.78e0680dbacf from=translated src=- shape=cb898f8d vocab=1bf0c288
+-/
 theorem neighborCoverage_seedProjection {Outer Base : Type*} [Fintype Base]
     {K : Nat} (positive : 0 < K) :
     NeighborCoverage (fun (_ : Outer) (z : Base) => z) K 1 :=
   Internal.neighborCoverage_seedProjection positive
 
 /-- Listing every output at each outer seed has zero failure probability for
-every proper-density test. This example uses as many candidates as outputs. -/
+every proper-density test. This example uses as many candidates as outputs.
+@isnad1 id=somewher.2h5v.s6.7f32b3c5d13f from=translated src=- shape=3560cca3 vocab=4f5c49f0
+-/
 theorem somewhereSampler_seedProjection {α Outer Ω : Type*}
     [Fintype α] [Fintype Outer] [Fintype Ω] [Nonempty Ω]
     {L ε : ℝ} (nonneg : 0 ≤ ε) (small : ε < 1) :

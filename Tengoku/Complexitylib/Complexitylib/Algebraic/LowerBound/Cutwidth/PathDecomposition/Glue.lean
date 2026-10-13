@@ -23,7 +23,9 @@ namespace Algebraic.Cutwidth.PathDecomposition
 open scoped Classical
 
 /-- Concatenate induced decompositions whose adjoining bags contain every
-shared vertex. The last bag is inherited from the right decomposition. -/
+shared vertex. The last bag is inherited from the right decomposition.
+@isnad1 id=ex.8h10v.s8.a54e47429e72 from=translated src=- shape=14d3262c vocab=8fba71a6
+-/
 theorem exists_glue {W : Type} {H : SimpleGraph W} {A B : Set W}
     (D : PathDecomposition (H.induce A)) (E : PathDecomposition (H.induce B))
     (cover : ∀ w, w ∈ A ∨ w ∈ B)
@@ -39,7 +41,9 @@ theorem exists_glue {W : Type} {H : SimpleGraph W} {A B : Set W}
   Internal.exists_glue D E cover edges hend hstart hend' overlap leftBound rightBound
 
 /-- Concatenate two induced copies covering all vertices and edges. Shared
-vertices must belong to the adjoining bags, expressed through their embeddings. -/
+vertices must belong to the adjoining bags, expressed through their embeddings.
+@isnad1 id=ex.8h14v.s8.f30a9d13c46b from=translated src=- shape=4369ff7c vocab=89a53a20
+-/
 theorem exists_glue_embeddings {U V W : Type} {G : SimpleGraph U} {J : SimpleGraph V}
     {H : SimpleGraph W} (D : PathDecomposition G) (E : PathDecomposition J)
     (f : G ↪g H) (g : J ↪g H)
@@ -58,7 +62,9 @@ theorem exists_glue_embeddings {U V W : Type} {G : SimpleGraph U} {J : SimpleGra
 
 /-- Attach an induced subgraph along a boundary `X`. The remaining graph
 ends at the part of `X` outside the copy, and all edges leaving the copy meet
-`X`. Padding the copy's bags by `X` gives the final endpoint `X`. -/
+`X`. Padding the copy's bags by `X` gives the final endpoint `X`.
+@isnad1 id=ex.4h10v.s9.164ac7fd517d from=translated src=- shape=188235af vocab=329302e2
+-/
 theorem exists_attach {V W : Type} {G : SimpleGraph V} {H : SimpleGraph W}
     (f : G ↪g H) (X : Finset W)
     (D : PathDecomposition (H.induce {w | w ∉ Set.range f}))

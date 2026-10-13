@@ -42,7 +42,9 @@ in broken equality constraints.
 
 namespace Complexity
 
-/-- **Pigeonhole.** Some value is taken by at least a `1 / |α|` fraction. -/
+/-- **Pigeonhole.** Some value is taken by at least a `1 / |α|` fraction.
+@isnad1 id=ex.0h3v.s5.b32a71f951cf from=translated src=- shape=c48c5ff1 vocab=a9b22739
+-/
 theorem exists_plurality_value {V α : Type} [Fintype V] [Fintype α] [Nonempty α]
     [DecidableEq α] (f : V → α) :
     ∃ c : α, Fintype.card V
@@ -70,7 +72,9 @@ def disagreeDarts (f : G.V → α) : Finset (G.V × G.D) :=
   Finset.univ.filter fun p => f p.1 ≠ f (G.nbr p.1 p.2)
 
 /-- **Disagreement is at least the edge boundary.** Every dart leaving the set
-of vertices that differ from `c` joins two differently-labelled vertices. -/
+of vertices that differ from `c` joins two differently-labelled vertices.
+@isnad1 id=le.3h5v.s7.1d8039c42891 from=translated src=- shape=0d088617 vocab=cdb04370
+-/
 theorem card_disagreeDarts_ge {lam : ℝ} (hlam : 0 ≤ lam) (h : G.SpectralBound lam)
     (hn : 0 < G.order) (f : G.V → α) (c : α) :
     (1 - lam) * (G.deg : ℝ)
@@ -96,7 +100,9 @@ theorem card_disagreeDarts_ge {lam : ℝ} (hlam : 0 ≤ lam) (h : G.SpectralBoun
   exact le_trans (G.card_dartsBetween_compl_ge hlam h hn S) hcard
 
 /-- The form the cloud argument uses: with `c` a plurality value, the number of
-disagreeing darts is proportional to the number of deviant vertices. -/
+disagreeing darts is proportional to the number of deviant vertices.
+@isnad1 id=le.5h5v.s7.ca6894fe3a67 from=translated src=- shape=e6ad6ccd vocab=763294ad
+-/
 theorem card_disagreeDarts_ge_of_plurality [Fintype α] {lam : ℝ} (hlam : 0 ≤ lam)
     (hlam1 : lam ≤ 1) (h : G.SpectralBound lam) (hn : 0 < G.order) (f : G.V → α) (c : α)
     (hc : G.order ≤ Fintype.card α * (Finset.univ.filter fun v => f v = c).card) :

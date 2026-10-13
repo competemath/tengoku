@@ -24,7 +24,9 @@ namespace Algebraic.Cutwidth.Gaussian.Internal
 
 /-! ### Inner products of unit vectors -/
 
-/-- Cauchy–Schwarz for unit vectors: their inner product is at most one. -/
+/-- Cauchy–Schwarz for unit vectors: their inner product is at most one.
+@isnad1 id=le.2h3v.s6.b18b8996688c from=translated src=- shape=702365be vocab=6223a0b2
+-/
 theorem inner_le_one {ι : Type} [Fintype ι] {y y' : ι → ℝ}
     (hy : ∑ i, y i ^ 2 = 1) (hy' : ∑ i, y' i ^ 2 = 1) : ∑ i, y i * y' i ≤ 1 := by
   have h := Finset.sum_nonneg fun i (_ : i ∈ Finset.univ) => sq_nonneg (y i - y' i)
@@ -33,7 +35,9 @@ theorem inner_le_one {ι : Type} [Fintype ι] {y y' : ι → ℝ}
     exact Finset.sum_congr rfl fun i _ => by ring
   linarith
 
-/-- Unit vectors close to a common unit vector are close to each other. -/
+/-- Unit vectors close to a common unit vector are close to each other.
+@isnad1 id=le.5h5v.s7.0f8e00dc8dff from=translated src=- shape=79cafd82 vocab=c64db2fe
+-/
 theorem le_inner_of_le_inner {ι : Type} [Fintype ι] {x y y' : ι → ℝ}
     (hx : ∑ i, x i ^ 2 = 1) (hy : ∑ i, y i ^ 2 = 1) (hy' : ∑ i, y' i ^ 2 = 1) {κ : ℝ}
     (hyx : κ ≤ ∑ i, y i * x i) (hy'x : κ ≤ ∑ i, y' i * x i) :
@@ -46,7 +50,9 @@ theorem le_inner_of_le_inner {ι : Type} [Fintype ι] {x y y' : ι → ℝ}
   linarith
 
 /-- The squared norm of a sum of unit vectors is the family size plus the inner products
-over ordered pairs. -/
+over ordered pairs.
+@isnad1 id=eq.1h4v.s7.f34eb6148a3e from=translated src=- shape=49275e87 vocab=feaca74f
+-/
 theorem sum_sq_sum_eq {ι J : Type} [Fintype ι] [DecidableEq J] (s : Finset J)
     (y : J → ι → ℝ) (hy : ∀ j ∈ s, ∑ i, y j i ^ 2 = 1) :
     ∑ i, (∑ j ∈ s, y j i) ^ 2 = s.card + ∑ j ∈ s, ∑ j' ∈ s.erase j, ∑ i, y j i * y j' i := by
@@ -61,7 +67,9 @@ theorem sum_sq_sum_eq {ι J : Type} [Fintype ι] [DecidableEq J] (s : Finset J)
     _ = _ := by rw [Finset.sum_add_distrib]; simp
 
 /-- **Star inequality.** If `n` unit vectors each have inner product at least `κ ≥ 0` with a
-unit vector, the sum of their inner products over ordered pairs is at least `n² κ² - n`. -/
+unit vector, the sum of their inner products over ordered pairs is at least `n² κ² - n`.
+@isnad1 id=le.4h6v.s8.6a4a4886fbee from=translated src=- shape=979ac167 vocab=ffac719c
+-/
 theorem sum_inner_ordered_pairs_ge {ι J : Type} [Fintype ι] [DecidableEq J] {x : ι → ℝ}
     (hx : ∑ i, x i ^ 2 = 1) (s : Finset J) (y : J → ι → ℝ)
     (hy : ∀ j ∈ s, ∑ i, y j i ^ 2 = 1) {κ : ℝ} (hκ : 0 ≤ κ)

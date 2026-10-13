@@ -26,6 +26,9 @@ open scoped Classical
 variable {V E ι : Type} [Fintype V] [Fintype ι] {B : SimpleGraph V} {R : Multigraph V E}
   (F : RestorationFamily B R ι)
 
+/--
+@isnad1 id=le.0h7v.s6.eeef5e2d9cb7 from=translated src=- shape=b965b503 vocab=bf9dd8c8
+-/
 theorem deletedGraph_le_restrict (indices : Finset ι) :
     F.deletedGraph ≤ (F.restrict indices).deletedGraph := by
   apply B.deleteEdges_anti
@@ -35,6 +38,9 @@ theorem deletedGraph_le_restrict (indices : Finset ι) :
   obtain ⟨i, _, member⟩ := Finset.mem_biUnion.mp he
   exact Finset.mem_biUnion.mpr ⟨i, Finset.mem_univ _, member⟩
 
+/--
+@isnad1 id=eq.2h7v.s6.af51e12406e6 from=translated src=- shape=0d1b732c vocab=4573038d
+-/
 theorem delete_region_cuts_eq (H : SimpleGraph V)
     (kept : F.deletedGraph ≤ H) (original : H ≤ B) :
     H.deleteEdges (⋃ i, (H.cutFinset (F.region i) : Set (Sym2 V))) = F.deletedGraph := by

@@ -69,6 +69,9 @@ def walkCount (T : ℕ) : ℕ := ∑ ℓ ∈ Finset.range (T + 1), powDeg E ^ �
 /-- The number of powered labels, as bits of a one-hot encoding. -/
 def bits (T : ℕ) : ℕ := Fintype.card DinurAlpha ^ walkCount E T
 
+/--
+@isnad1 id=eq.0h3v.s8.1b25ef7e8245 from=translated src=- shape=9252b8c7 vocab=373acde7
+-/
 theorem card_varWalk (G : ConstraintGraph DinurAlpha) (T : ℕ) :
     Fintype.card (VarWalk (G.preprocess E).graph T) = walkCount E T := by
   have hD : Fintype.card (G.preprocess E).graph.D = powDeg E := by
@@ -81,6 +84,9 @@ theorem card_varWalk (G : ConstraintGraph DinurAlpha) (T : ℕ) :
   refine Finset.sum_congr rfl fun ℓ _ => ?_
   rw [Fintype.card_fun, Fintype.card_fin, hD]
 
+/--
+@isnad1 id=eq.0h3v.s10.6bf54a7524c0 from=translated src=- shape=3b13b976 vocab=38ed6bf0
+-/
 theorem card_kOpinion (G : ConstraintGraph DinurAlpha) (T : ℕ) :
     Fintype.card (KOpinion (G.preprocess E).graph T DinurAlpha) = bits E T := by
   show Fintype.card (VarWalk (G.preprocess E).graph T → DinurAlpha) = _
@@ -88,6 +94,9 @@ theorem card_kOpinion (G : ConstraintGraph DinurAlpha) (T : ℕ) :
 
 /-! ### The encoding -/
 
+/--
+@isnad1 id=injectiv.0h1v.s3.1c4a72951ef1 from=translated src=- shape=ca92e646 vocab=973e5810
+-/
 theorem basisVec_injective (n : ℕ) : Function.Injective (basisVec (n := n)) := by
   intro i j hij
   have h := congrFun hij i
@@ -100,6 +109,9 @@ noncomputable def enc (G : ConstraintGraph DinurAlpha) (T : ℕ)
     (σ : KOpinion (G.preprocess E).graph T DinurAlpha) : Cube (bits E T) :=
   basisVec (Fin.cast (card_kOpinion E G T) (Fintype.equivFin _ σ))
 
+/--
+@isnad1 id=injectiv.0h3v.s6.047de0f882d8 from=translated src=- shape=b31f804e vocab=c6592534
+-/
 theorem enc_injective (G : ConstraintGraph DinurAlpha) (T : ℕ) :
     Function.Injective (enc E G T) := by
   intro σ τ h
@@ -116,8 +128,14 @@ Deliberately a `def` and not an `abbrev`. The alphabet has `2^23` symbols, and
 unfold `K` to a numeral there produces terms far too large to elaborate. -/
 def K : ℕ := Fintype.card DinurAlpha
 
+/--
+@isnad1 id=le.0h0v.s3.0b5e0dae9c2c from=translated src=- shape=ff3a10fc vocab=d8773c0a
+-/
 theorem one_le_K : 1 ≤ K := Fintype.card_pos
 
+/--
+@isnad1 id=eq.0h0v.s5.297ea41edaeb from=translated src=- shape=4b736592 vocab=17eab29f
+-/
 theorem card_dinurAlpha_eq : Fintype.card DinurAlpha = K := rfl
 
 /-- **One round of amplification** with killing rate `q`. -/
@@ -129,6 +147,9 @@ noncomputable def step (q : ℕ) (hq : 0 < q) (G : ConstraintGraph DinurAlpha) :
 def edgeFactor (q : ℕ) : ℕ :=
   2 * (powDeg E ^ powT K q * q ^ powT K q) * 2 ^ Tester.ROf (bits E (powT K q)) * 22
 
+/--
+@isnad1 id=eq.1h3v.s5.8666e531de3e from=translated src=- shape=1cc8e874 vocab=34f840ed
+-/
 theorem numEdges_step (q : ℕ) (hq : 0 < q) (G : ConstraintGraph DinurAlpha) :
     (step E q hq G).numEdges = edgeFactor E q * G.numEdges := by
   rw [step, MultiTest.numEdges_toGraph, card_readIdx, RegCSP.card_dart,
@@ -138,6 +159,9 @@ theorem numEdges_step (q : ℕ) (hq : 0 < q) (G : ConstraintGraph DinurAlpha) :
   rw [powDeg]
   ring
 
+/--
+@isnad1 id=satisfia.2h3v.s4.b7978c72f0dc from=translated src=- shape=2945e314 vocab=1153984c
+-/
 theorem satisfiable_step (q : ℕ) (hq : 0 < q) (G : ConstraintGraph DinurAlpha)
     (h : G.Satisfiable) : (step E q hq G).Satisfiable :=
   RegCSP.satisfiable_compose _ _
@@ -146,11 +170,17 @@ theorem satisfiable_step (q : ℕ) (hq : 0 < q) (G : ConstraintGraph DinurAlpha)
 
 /-! ### The value -/
 
+/--
+@isnad1 id=le.0h1v.s3.2523bd592153 from=translated src=- shape=b9369acb vocab=274d35f5
+-/
 theorem preprocessLam_nonneg : 0 ≤ ConstraintGraph.preprocessLam E := by
   have := E.lam_nonneg
   rw [ConstraintGraph.preprocessLam]
   positivity
 
+/--
+@isnad1 id=lt.0h1v.s5.7db0510b5a89 from=translated src=- shape=488944eb vocab=f4f7b601
+-/
 theorem preprocessConst_pos : 0 < ConstraintGraph.preprocessConst E DinurAlpha := by
   have hd : (0 : ℝ) < E.degree := by exact_mod_cast E.degree_pos
   have hl : 0 < 1 - E.lam := by linarith [E.lam_lt_one]
@@ -162,7 +192,9 @@ theorem preprocessConst_pos : 0 < ConstraintGraph.preprocessConst E DinurAlpha :
 
 /-! ### Choosing the killing rate -/
 
-/-- **A killing rate that doubles the value.** -/
+/-- **A killing rate that doubles the value.**
+@isnad1 id=ex.0h1v.s7.3386253f9cf5 from=translated src=- shape=3dcbf633 vocab=441cfef1
+-/
 theorem exists_q : ∃ q : ℕ, 2 ≤ q ∧ 1408
     ≤ RegCSP.powSlope (RegCSP.powConst q DinurAlpha) (powT K q) (ConstraintGraph.preprocessLam E)
         * ConstraintGraph.preprocessConst E DinurAlpha := by
@@ -196,8 +228,14 @@ theorem exists_q : ∃ q : ℕ, 2 ≤ q ∧ 1408
 /-- The chosen killing rate. -/
 noncomputable def q₀ : ℕ := Classical.choose (exists_q E)
 
+/--
+@isnad1 id=le.0h1v.s3.7abf74724298 from=translated src=- shape=b9369acb vocab=e06f9282
+-/
 theorem two_le_q₀ : 2 ≤ q₀ E := (Classical.choose_spec (exists_q E)).1
 
+/--
+@isnad1 id=le.0h1v.s6.153a9f28a54e from=translated src=- shape=2a9bbf37 vocab=8cf78b95
+-/
 theorem q₀_spec : 1408
     ≤ RegCSP.powSlope (RegCSP.powConst (q₀ E) DinurAlpha) (powT K (q₀ E))
         (ConstraintGraph.preprocessLam E) * ConstraintGraph.preprocessConst E DinurAlpha :=
@@ -208,6 +246,9 @@ noncomputable def floor₀ : ℝ :=
   RegCSP.powFloor (RegCSP.powConst (q₀ E) DinurAlpha) (powT K (q₀ E))
     (ConstraintGraph.preprocessLam E)
 
+/--
+@isnad1 id=lt.0h1v.s3.a3f351f3f35b from=translated src=- shape=b9369acb vocab=e67c6b54
+-/
 theorem floor₀_pos : 0 < floor₀ E := by
   rw [floor₀, RegCSP.powFloor]
   have hl : 0 < 1 - ConstraintGraph.preprocessLam E := by
@@ -235,7 +276,9 @@ theorem floor₀_pos : 0 < floor₀ E := by
     (add_pos (add_pos hc (mul_pos two_pos hT2)) (div_pos (mul_pos two_pos hT) hl))
 
 /-- **A rational threshold** below the floor (after the composition's loss) and
-below one. -/
+below one.
+@isnad1 id=ex.0h1v.s5.a6ea7fef7386 from=translated src=- shape=28a9a58f vocab=f7d45ad3
+-/
 theorem exists_gap : ∃ g : ℚ, 0 < g ∧ g ≤ 1 ∧ (g : ℝ) ≤ floor₀ E / 704 := by
   have h : (0 : ℝ) < min (floor₀ E / 704) 1 := lt_min (by linarith [floor₀_pos E]) one_pos
   obtain ⟨g, hg0, hg1⟩ := exists_rat_btwn h
@@ -247,11 +290,22 @@ theorem exists_gap : ∃ g : ℚ, 0 < g ∧ g ≤ 1 ∧ (g : ℝ) ≤ floor₀ E
 /-- The chosen threshold. -/
 noncomputable def gap₀ : ℚ := Classical.choose (exists_gap E)
 
+/--
+@isnad1 id=lt.0h1v.s3.7628bcfbc5e6 from=translated src=- shape=b9369acb vocab=4a828a1b
+-/
 theorem gap₀_pos : 0 < gap₀ E := (Classical.choose_spec (exists_gap E)).1
+/--
+@isnad1 id=le.0h1v.s3.766e80e36eaa from=translated src=- shape=a311c14d vocab=ba10de47
+-/
 theorem gap₀_le_one : gap₀ E ≤ 1 := (Classical.choose_spec (exists_gap E)).2.1
+/--
+@isnad1 id=le.0h1v.s4.5dc07485e557 from=translated src=- shape=892db7fb vocab=2fafd477
+-/
 theorem gap₀_le : ((gap₀ E : ℚ) : ℝ) ≤ floor₀ E / 704 := (Classical.choose_spec (exists_gap E)).2.2
 
-/-- An edgeless graph has value zero. -/
+/-- An edgeless graph has value zero.
+@isnad1 id=eq.1h1v.s6.c84ea4445c7d from=translated src=- shape=c43231cd vocab=a5bb9d82
+-/
 theorem unsatVal_eq_zero_of_numEdges_eq_zero (G : ConstraintGraph DinurAlpha)
     (h : G.numEdges = 0) : G.unsatVal = 0 := by
   refine le_antisymm ?_ G.unsatVal_nonneg

@@ -23,6 +23,9 @@ public section
 
 namespace Algebraic.Cutwidth.Extractor.Internal
 
+/--
+@isnad1 id=eq.0h1v.s6.aa5115362342 from=translated src=- shape=2ac57060 vocab=f53f7d95
+-/
 theorem card_adjoinRoot_binaryModulus (s : Nat) :
     Nat.card (AdjoinRoot (binaryModulus s)) = 2 ^ (2 * 3 ^ s) := by
   let pb := AdjoinRoot.powerBasis (binaryModulus_monic s).ne_zero
@@ -30,6 +33,9 @@ theorem card_adjoinRoot_binaryModulus (s : Nat) :
   rw [Module.natCard_eq_pow_finrank (K := ZMod 2), Nat.card_zmod,
     PowerBasis.finrank pb, AdjoinRoot.powerBasis_dim, binaryModulus_natDegree]
 
+/--
+@isnad1 id=eq.0h1v.s8.42baa4b19c6a from=translated src=- shape=73291732 vocab=0d20e63d
+-/
 theorem binaryModulus_comp_cube (s : Nat) :
     (binaryModulus s).comp (Polynomial.X ^ 3) = binaryModulus (s + 1) := by
   simp only [binaryModulus, Polynomial.add_comp, Polynomial.pow_comp,

@@ -36,17 +36,23 @@ correlation bound for every graph of maximum degree three are developed here.
 
 namespace Algebraic.Cutwidth.Gaussian
 
-/-- The Gaussian cutwidth coefficient is positive. -/
+/-- The Gaussian cutwidth coefficient is positive.
+@isnad1 id=lt.0h0v.s3.93cda0b775f6 from=translated src=- shape=ff3a10fc vocab=3adc338e
+-/
 theorem cutwidthCoefficient_pos : 0 < cutwidthCoefficient :=
   Internal.cutwidthCoefficient_pos
 
 /-- The doubled coefficient `(6/π)(3 - 2√2)` is the graph-ordering coefficient; it is at
-most `20/61`, hence below `1/3`. -/
+most `20/61`, hence below `1/3`.
+@isnad1 id=le.0h0v.s5.8124cb9b807d from=translated src=- shape=b9c36195 vocab=464f05e0
+-/
 theorem two_mul_cutwidthCoefficient_le : 2 * cutwidthCoefficient ≤ 20 / 61 :=
   Internal.two_mul_cutwidthCoefficient_le
 
 /-- The circuit coefficient `1 + 1/A` of the Gaussian ordering coefficient
-`A = 2 (3/π)(3 - 2√2)` equals `1 + π(3 + 2√2)/6 ≈ 4.0517`. -/
+`A = 2 (3/π)(3 - 2√2)` equals `1 + π(3 + 2√2)/6 ≈ 4.0517`.
+@isnad1 id=eq.0h0v.s6.85229a4cdb93 from=translated src=- shape=753141f4 vocab=216d614a
+-/
 theorem one_add_inv_two_mul_cutwidthCoefficient :
     1 + 1 / (2 * cutwidthCoefficient) = 1 + Real.pi * (3 + 2 * Real.sqrt 2) / 6 :=
   Internal.one_add_inv_two_mul_cutwidthCoefficient

@@ -89,7 +89,9 @@ noncomputable def paperEvaluationCode
   evaluationCode (resourceNodes K dimension) message point
 
 /-- A tensor Lagrange basis polynomial evaluates to one at its own grid
-point. -/
+point.
+@isnad1 id=eq.1h5v.s7.2c49a44ddcac from=translated src=- shape=de8d66e9 vocab=aa457786
+-/
 theorem eval_gridBasis_self
     {K Index Coordinate : Type*}
     [Field K] [Fintype Index] [DecidableEq Index]
@@ -101,7 +103,9 @@ theorem eval_gridBasis_self
   classical
   simp [gridBasis, Lagrange.eval_basis_self nodesInjective.injOn]
 
-/-- A tensor Lagrange basis polynomial vanishes at every other grid point. -/
+/-- A tensor Lagrange basis polynomial vanishes at every other grid point.
+@isnad1 id=eq.1h6v.s7.3d344950bf86 from=translated src=- shape=f8c866f8 vocab=77424e7b
+-/
 theorem eval_gridBasis_of_ne
     {K Index Coordinate : Type*}
     [Field K] [Fintype Index] [DecidableEq Index]
@@ -118,7 +122,9 @@ theorem eval_gridBasis_of_ne
   exact Lagrange.eval_basis_of_ne coordinateDifferent.symm (Finset.mem_univ _)
 
 /-- The evaluation code agrees with the supplied message at every grid
-point. -/
+point.
+@isnad1 id=eq.1h6v.s5.f0ee45e96330 from=translated src=- shape=60d384ed vocab=072b74d5
+-/
 theorem evaluationCode_on_grid
     {K Index Coordinate : Type*}
     [Field K] [Fintype Index] [DecidableEq Index]
@@ -137,7 +143,9 @@ theorem evaluationCode_on_grid
     rw [eval_gridBasis_of_ne nodes target point pointDifferent.symm, mul_zero]
   · simp
 
-/-- Grid interpolation preserves message addition. -/
+/-- Grid interpolation preserves message addition.
+@isnad1 id=eq.0h6v.s7.f17d458a822b from=translated src=- shape=2e4e6a60 vocab=b362bd40
+-/
 theorem gridInterpolate_add
     {K Index Coordinate : Type*}
     [Field K] [Fintype Index] [DecidableEq Index]
@@ -150,7 +158,9 @@ theorem gridInterpolate_add
   simp only [gridInterpolate, Pi.add_apply, map_add, add_mul,
     Finset.sum_add_distrib]
 
-/-- Grid interpolation preserves field scalar multiplication. -/
+/-- Grid interpolation preserves field scalar multiplication.
+@isnad1 id=eq.0h6v.s7.3f4efd68979d from=translated src=- shape=59d6afef vocab=4fcedfc9
+-/
 theorem gridInterpolate_smul
     {K Index Coordinate : Type*}
     [Field K] [Fintype Index] [DecidableEq Index]
@@ -169,7 +179,9 @@ theorem gridInterpolate_smul
   simp only [map_mul]
   rw [MvPolynomial.algebraMap_eq, mul_assoc]
 
-/-- Distinct grid messages have distinct ambient evaluation tables. -/
+/-- Distinct grid messages have distinct ambient evaluation tables.
+@isnad1 id=injectiv.1h4v.s5.ae37fea28c75 from=translated src=- shape=2e09a567 vocab=5209869f
+-/
 theorem evaluationCode_injective
     {K Index Coordinate : Type*}
     [Field K] [Fintype Index] [DecidableEq Index]
@@ -225,7 +237,9 @@ private theorem totalDegree_lagrangeBasis_toMv_le
     _ = Fintype.card Index - 1 := by simp
 
 /-- A tensor basis polynomial has total degree at most the number of
-coordinates times one less than the grid width. -/
+coordinates times one less than the grid width.
+@isnad1 id=le.0h5v.s6.669ecd10eceb from=translated src=- shape=a15d9a97 vocab=f1ba92d3
+-/
 theorem totalDegree_gridBasis_le
     {K Index Coordinate : Type*}
     [Field K] [Fintype Index] [DecidableEq Index]
@@ -250,7 +264,9 @@ theorem totalDegree_gridBasis_le
     _ = Fintype.card Coordinate * (Fintype.card Index - 1) := by simp
 
 /-- The complete tensor-grid interpolant obeys the same total-degree
-budget. -/
+budget.
+@isnad1 id=le.0h5v.s6.4468892c135b from=translated src=- shape=736bb78b vocab=95cd3b8a
+-/
 theorem totalDegree_gridInterpolate_le
     {K Index Coordinate : Type*}
     [Field K] [Fintype Index] [DecidableEq Index]
@@ -267,7 +283,9 @@ theorem totalDegree_gridInterpolate_le
   rw [MvPolynomial.totalDegree_C, zero_add]
   exact totalDegree_gridBasis_le nodes point
 
-/-- The ambient evaluation table has `|K| ^ |Coordinate|` coordinates. -/
+/-- The ambient evaluation table has `|K| ^ |Coordinate|` coordinates.
+@isnad1 id=eq.0h2v.s5.66c620cb7648 from=translated src=- shape=63204881 vocab=2b8656e9
+-/
 theorem card_evaluationCodeDomain
     (K Coordinate : Type*)
     [Fintype K] [Fintype Coordinate] [DecidableEq Coordinate] :
@@ -275,7 +293,9 @@ theorem card_evaluationCodeDomain
       Fintype.card K ^ Fintype.card Coordinate := by
   simp
 
-/-- The message grid has `|Index| ^ |Coordinate|` positions. -/
+/-- The message grid has `|Index| ^ |Coordinate|` positions.
+@isnad1 id=eq.0h2v.s5.66c620cb7648 from=translated src=- shape=63204881 vocab=2b8656e9
+-/
 theorem card_evaluationCodeMessageDomain
     (Index Coordinate : Type*)
     [Fintype Index] [Fintype Coordinate] [DecidableEq Coordinate] :
@@ -283,7 +303,9 @@ theorem card_evaluationCodeMessageDomain
       Fintype.card Index ^ Fintype.card Coordinate := by
   simp
 
-/-- The fixed semantic node map is injective. -/
+/-- The fixed semantic node map is injective.
+@isnad1 id=injectiv.0h2v.s4.911c9e3d7519 from=translated src=- shape=bc71124f vocab=929c8b4a
+-/
 theorem resourceNodes_injective
     (K : Type*)
     [Fintype K]
@@ -296,7 +318,9 @@ theorem resourceNodes_injective
   exact congrArg (fun point : Fin (Fintype.card K) => point.val)
     equalFiniteIndices
 
-/-- The grid-width choice satisfies the strict affine-line degree bound. -/
+/-- The grid-width choice satisfies the strict affine-line degree bound.
+@isnad1 id=lt.2h2v.s5.ae1af7e00a00 from=translated src=- shape=9d9708bf vocab=4374c330
+-/
 theorem resourceGridWidth_degree_lt
     (fieldCard dimension : Nat)
     (fieldNontrivial : 2 <= fieldCard)
@@ -318,7 +342,9 @@ theorem resourceGridWidth_degree_lt
       (Nat.mul_lt_mul_left dimensionPositive).mpr (by omega)
     exact strictProduct.trans_le productBound
 
-/-- The paper-parameterized code is systematic on its interpolation grid. -/
+/-- The paper-parameterized code is systematic on its interpolation grid.
+@isnad1 id=eq.0h4v.s5.2bd8058fd385 from=translated src=- shape=3ee28e33 vocab=35d04b8d
+-/
 theorem paperEvaluationCode_on_grid
     (K : Type*)
     [Field K] [Fintype K]
@@ -335,7 +361,9 @@ theorem paperEvaluationCode_on_grid
     message target
 
 /-- Under the exact tensor-degree inequality, every code symbol is the sum
-of the other symbols on any affine line through it. -/
+of the other symbols on any affine line through it.
+@isnad1 id=eq.1h7v.s7.d22192998bbf from=translated src=- shape=b707af4f vocab=487ff60c
+-/
 theorem evaluationCode_line_recovery_charTwo
     {K Index Coordinate : Type*}
     [Fintype K] [Field K] [DecidableEq K] [CharP K 2]
@@ -355,7 +383,9 @@ theorem evaluationCode_line_recovery_charTwo
   exact (totalDegree_gridInterpolate_le nodes message).trans_lt degree
 
 /-- The paper's grid-width choice gives affine-line recovery in every
-positive dimension. -/
+positive dimension.
+@isnad1 id=eq.1h5v.s7.9f84ec9b406e from=translated src=- shape=44f9800d vocab=bcd3c0ab
+-/
 theorem paperEvaluationCode_line_recovery
     (K : Type*)
     [Fintype K] [Field K] [DecidableEq K] [CharP K 2]

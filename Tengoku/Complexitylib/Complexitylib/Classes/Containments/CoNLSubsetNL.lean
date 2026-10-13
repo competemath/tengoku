@@ -32,14 +32,18 @@ namespace Complexity
 def CoNLSubsetNL : Prop := coNL ⊆ NL
 
 /-- One inclusion gives the other: complementing `Lᶜ ∈ NL` turns membership in `coNL` into
-membership in `NL`. -/
+membership in `NL`.
+@isnad1 id=le.1h0v.s3.c0a211b32221 from=translated src=- shape=adadd779 vocab=60a9f3e9
+-/
 theorem coNL_subset_NL_of_NL_subset_coNL (h : NL ⊆ coNL) : coNL ⊆ NL := by
   intro L hL
   have h₁ : Lᶜ ∈ NL := hL
   have h₂ : (Lᶜ)ᶜ ∈ NL := h h₁
   rwa [compl_compl] at h₂
 
-/-- The mirror implication. -/
+/-- The mirror implication.
+@isnad1 id=le.1h0v.s3.65221167c5f6 from=translated src=- shape=adadd779 vocab=60a9f3e9
+-/
 theorem NL_subset_coNL_of_coNL_subset_NL (h : coNL ⊆ NL) : NL ⊆ coNL := by
   intro L hL
   have h₁ : Lᶜ ∈ coNL := by
@@ -47,7 +51,9 @@ theorem NL_subset_coNL_of_coNL_subset_NL (h : coNL ⊆ NL) : NL ⊆ coNL := by
     rwa [compl_compl]
   exact h h₁
 
-/-- Either inclusion settles the equality. -/
+/-- Either inclusion settles the equality.
+@isnad1 id=eq.1h0v.s3.33b155977915 from=translated src=- shape=0ad2a4e7 vocab=60a9f3e9
+-/
 theorem NL_eq_coNL_of_NL_subset_coNL (h : NL ⊆ coNL) : NL = coNL :=
   subset_antisymm h (coNL_subset_NL_of_NL_subset_coNL h)
 

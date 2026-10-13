@@ -19,6 +19,9 @@ public section
 
 namespace Complexity.KarchmerWigderson
 
+/--
+@isnad1 id=le.4h3v.s8.55768c51b34b from=translated src=- shape=0c999034 vocab=d78568b7
+-/
 theorem finite_budget_of_cost_internal {n d : ℕ} (hd : 0 < d)
     (hlarge : (32 * (32768 * 194 ^ d)) ^ d ≤ n) {m : ℝ} (hm : 0 ≤ m)
     (hcost : m ≤ (n : ℝ) ^ ((d : ℝ)⁻¹) / (32 * (32768 * (194 : ℝ) ^ d))) :

@@ -30,6 +30,9 @@ namespace Complexity.BooleanAnalysis
 open Finset
 open scoped BigOperators Classical
 
+/--
+@isnad1 id=le.6h4v.s8.e3e8f5e7dce8 from=translated src=- shape=d18a69a6 vocab=c073c4ff
+-/
 theorem harmonicTransform_sparse_good_probability_fin_internal {n : ℕ} {f : (Fin n → Bool) → ℝ}
     (hf : ∀ x, 0 ≤ f x) (hmean : (𝔼 x, f x) = 1) {k r : ℝ} (hk : 1 ≤ k)
     (hbound : ∀ x, f x ≤ (2 : ℝ) ^ k) (hr : 0 ≤ r) (hr' : r ≤ 1 / (512 * k)) :
@@ -75,6 +78,9 @@ theorem harmonicTransform_sparse_good_probability_fin_internal {n : ℕ} {f : (F
   change 63 / 64 ≤ bernoulliAverage r (fun s => if s ∈ A then (1 : ℝ) else 0)
   nlinarith
 
+/--
+@isnad1 id=le.6h4v.s8.cfb352d13d5a from=translated src=- shape=d56ac1c2 vocab=a0d69829
+-/
 theorem harmonicTransform_sparse_good_probability_internal {ι : Type*} [Fintype ι] [DecidableEq ι]
     {f : (ι → Bool) → ℝ} (hf : ∀ x, 0 ≤ f x) (hmean : (𝔼 x, f x) = 1)
     {k r : ℝ} (hk : 1 ≤ k) (hbound : ∀ x, f x ≤ (2 : ℝ) ^ k)
@@ -92,6 +98,9 @@ theorem harmonicTransform_sparse_good_probability_internal {ι : Type*} [Fintype
   rwa [bernoulliAverage_reindex_internal e r
     (fun s => if 1 / (4 * (2 : ℝ) ^ k) ≤ harmonicTransform f s then 1 else 0)] at h
 
+/--
+@isnad1 id=le.6h4v.s9.129f0e4ba639 from=translated src=- shape=f8729546 vocab=12727f0b
+-/
 theorem improved_light_patterns_density_internal {ι : Type*} [Fintype ι] [DecidableEq ι]
     {f : (ι → Bool) → ℝ}
     (hf : ∀ x, 0 ≤ f x) (hmean : (𝔼 x, f x) = 1) {k r : ℝ} (hk : 1 ≤ k)
@@ -117,6 +126,9 @@ theorem improved_light_patterns_density_internal {ι : Type*} [Fintype ι] [Deci
   · rw [ite_eq_right hs]
     split_ifs <;> norm_num
 
+/--
+@isnad1 id=eq.0h4v.s7.0e1318270e15 from=translated src=- shape=ba38748f vocab=97729f6b
+-/
 theorem coordinateMarginal_normalize_internal {ι : Type*} [Fintype ι] [DecidableEq ι]
     (mass : (ι → Bool) → ℝ) (s : ι → Bool)
     (z : {i // s i = true} → Bool) :
@@ -136,6 +148,9 @@ theorem coordinateMarginal_normalize_internal {ι : Type*} [Fintype ι] [Decidab
     exact_mod_cast (Fintype.card_pos : 0 < Fintype.card ({i // s i ≠ true} → Bool))
   field_simp
 
+/--
+@isnad1 id=le.6h4v.s10.46757ad8f7e8 from=translated src=- shape=2096a2c6 vocab=5fbd4d9a
+-/
 theorem improved_light_patterns_internal {ι : Type*} [Fintype ι] [DecidableEq ι]
     {mass : (ι → Bool) → ℝ}
     (hm : ∀ x, 0 ≤ mass x) (hmean : (∑ x, mass x) = 1) {k r : ℝ} (hk : 1 ≤ k)
@@ -189,6 +204,9 @@ theorem improved_light_patterns_internal {ι : Type*} [Fintype ι] [DecidableEq 
   simp only [havg, div_le_iff₀ hp, hcount]
   exact le_rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.9e2acd8c0e5b from=translated src=- shape=ac009517 vocab=00505050
+-/
 theorem sum_coordinateMass_internal {ι : Type*} [Fintype ι] [DecidableEq ι]
     (mass : (ι → Bool) → ℝ) (s : ι → Bool) :
     (∑ z, coordinateMass mass s z) = ∑ x, mass x := by

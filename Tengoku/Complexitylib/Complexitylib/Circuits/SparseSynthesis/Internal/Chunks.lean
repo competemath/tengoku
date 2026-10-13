@@ -26,10 +26,16 @@ variable {α : Type} [DecidableEq α]
 def tupleSupport {K : ℕ} (v : Fin K → Option α) : Finset α :=
   Finset.univ.biUnion fun i => (v i).toFinset
 
+/--
+@isnad1 id=iff.0h4v.s5.b4b820953881 from=translated src=- shape=8fd028e2 vocab=4ae2fc47
+-/
 @[simp] theorem mem_tupleSupport {K : ℕ} (v : Fin K → Option α) (a : α) :
     a ∈ tupleSupport v ↔ ∃ i, v i = some a := by
   simp [tupleSupport]
 
+/--
+@isnad1 id=le.0h3v.s4.7336761e1627 from=translated src=- shape=1c6e0d0a vocab=ab29340e
+-/
 theorem tupleSupport_card {K : ℕ} (v : Fin K → Option α) : (tupleSupport v).card ≤ K := by
   calc
     _ ≤ ∑ i : Fin K, ((v i).toFinset.card) := Finset.card_biUnion_le
@@ -41,6 +47,9 @@ noncomputable def chunkTuple (s : Finset α) (K block : ℕ) : Fin K → Option 
   fun i => if h : block * K + i.val < s.card then
     some (s.equivFin.symm ⟨block * K + i.val, h⟩).val else none
 
+/--
+@isnad1 id=iff.1h4v.s7.e9236c7383bc from=translated src=- shape=2ca0dd61 vocab=777a8130
+-/
 theorem mem_chunkTuple_iff (s : Finset α) (K : ℕ) (positive : 0 < K) (a : α) :
     (∃ block : Fin (s.card / K + 1), a ∈ tupleSupport (chunkTuple s K block.val)) ↔
       a ∈ s := by
@@ -65,6 +74,9 @@ theorem mem_chunkTuple_iff (s : Finset α) (K : ℕ) (positive : 0 < K) (a : α)
     rw [index]
     exact congrArg Subtype.val (s.equivFin.symm_apply_apply ⟨a, ha⟩)
 
+/--
+@isnad1 id=le.0h4v.s5.bd4a921b5958 from=translated src=- shape=2bef3439 vocab=c1aa25cf
+-/
 theorem sum_div_le_div_sum {ι : Type} (s : Finset ι) (f : ι → ℕ) (K : ℕ) :
     ∑ i ∈ s, f i / K ≤ (∑ i ∈ s, f i) / K := by
   by_cases positive : 0 < K

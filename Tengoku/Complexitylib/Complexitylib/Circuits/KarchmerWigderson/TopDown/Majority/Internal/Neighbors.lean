@@ -30,6 +30,9 @@ namespace Complexity.BooleanAnalysis
 open Finset
 open scoped BigOperators Classical
 
+/--
+@isnad1 id=eq.0h2v.s5.79df8236d153 from=translated src=- shape=24dfb34c vocab=b39e96f0
+-/
 theorem bernoulliAverage_popCount_internal {n : ℕ} (p : ℝ) :
     bernoulliAverage p (fun P : Fin n → Bool => (popCount P : ℝ)) = n * p := by
   have he (P : Fin n → Bool) : (popCount P : ℝ) = ∑ i, if P i then (1 : ℝ) else 0 := by
@@ -42,6 +45,9 @@ theorem bernoulliAverage_popCount_internal {n : ℕ} (p : ℝ) :
   simp_rw [hc]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s7.b086f3e1b1c8 from=translated src=- shape=296cae69 vocab=b0ab02e4
+-/
 theorem bernoulliAverage_hits_internal {n : ℕ} (p : ℝ) (s : Fin n → Bool) :
     bernoulliAverage p (fun P : Fin n → Bool =>
       if ∃ i, s i = true ∧ P i = true then (1 : ℝ) else 0) =
@@ -57,6 +63,9 @@ theorem bernoulliAverage_hits_internal {n : ℕ} (p : ℝ) (s : Fin n → Bool) 
       simpa only [f, Fintype.card_subtype, popCount] using
         bernoulliAverage_nonempty_internal (ι := {i // s i = true}) p
 
+/--
+@isnad1 id=le.3h5v.s6.eb2646aa2cfb from=translated src=- shape=604a1666 vocab=60785f22
+-/
 theorem coordinateDensity_of_neighbor_internal {n : ℕ} (X : Finset (Fin n → Bool))
     (P x : Fin n → Bool) (i : Fin n) (hi : P i = true)
     (hx : Function.update x i (!x i) ∈ X) (hsmall : popCount P ≤ 128) :
@@ -84,6 +93,9 @@ theorem coordinateDensity_of_neighbor_internal {n : ℕ} (X : Finset (Fin n → 
     _ = 1 := by rw [← Real.rpow_natCast, ← Real.rpow_add (by norm_num)]; norm_num
     _ ≤ _ := hc
 
+/--
+@isnad1 id=isdensit.3h4v.s7.e402aed430c3 from=translated src=- shape=b19aec7d vocab=6c0fc511
+-/
 theorem isDensityLimit_of_many_neighbors_internal {n : ℕ} (hn : 16 ≤ n)
     (X : Finset (Fin n → Bool)) (x s : Fin n → Bool) (hs : n ≤ 2 * popCount s)
     (hneighbor : ∀ i, s i = true → Function.update x i (!x i) ∈ X) :
@@ -124,6 +136,9 @@ theorem isDensityLimit_of_many_neighbors_internal {n : ℕ} (hn : 16 ≤ n)
   change (3 : ℝ) / 4 ≤ bernoulliAverage p _
   linarith
 
+/--
+@isnad1 id=and.1h1v.s7.f4fa64373ec0 from=translated src=- shape=ee043f7e vocab=78312bbc
+-/
 theorem majority_layers_limits_internal {n : ℕ} (hn : 16 ≤ n) :
     (∀ x ∈ weightLayer n (n / 2),
       IsDensityLimit (weightLayer n (n / 2 + 1)) (16 / n) (majorityDeficitBound n) x) ∧

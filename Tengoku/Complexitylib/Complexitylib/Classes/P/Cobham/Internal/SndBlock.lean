@@ -430,7 +430,9 @@ private theorem sndBlockTM_scan_loop :
           have : pairSnd (true :: false :: rest) = [] := by simp [pairSnd, unpair?]
           rw [this]; simpa using hpre1.hasOutput
 
-/-- `pairSnd` is polynomial-time, via the `sndBlockTM` scanner. -/
+/-- `pairSnd` is polynomial-time, via the `sndBlockTM` scanner.
+@isnad1 id=mem.0h0v.s4.86bbebb1bc0a from=translated src=- shape=08f40544 vocab=a5545a87
+-/
 theorem sndBlock_mem_FP : pairSnd ∈ FP := by
   refine ⟨1, 0, sndBlockTM, (fun m => 2 * m + 3), ?_, ?_⟩
   · intro z

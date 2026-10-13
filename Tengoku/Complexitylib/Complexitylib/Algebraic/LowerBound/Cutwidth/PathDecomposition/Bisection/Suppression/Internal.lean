@@ -26,6 +26,9 @@ open scoped Classical
 
 variable {W : Type} [Fintype W] (H : SimpleGraph W)
 
+/--
+@isnad1 id=nonempty.3h3v.s7.ed4221eaab6e from=translated src=- shape=d72543cf vocab=c6bf7800
+-/
 theorem exists_boundarySuppression {S : Finset W} (regular : H.IsRegularOfDegree 3)
     (outside : ∀ c ∈ cutBoundary H S, (H.neighborFinset c \ S).card = 1)
     (independent : ∀ c ∈ cutBoundary H S, ∀ d ∈ cutBoundary H S, ¬ H.Adj c d) :
@@ -52,6 +55,9 @@ theorem exists_boundarySuppression {S : Finset W} (regular : H.IsRegularOfDegree
   simp only [Finset.mem_insert, Finset.mem_singleton] at neighbors
   exact (or_congr eq_comm eq_comm).trans neighbors
 
+/--
+@isnad1 id=eq.0h5v.s8.cc4f555562d5 from=translated src=- shape=cd5d4f3b vocab=45e06424
+-/
 theorem BoundarySuppression.red_degree {S : Finset W} (Q : BoundarySuppression H S)
     (v : {v : W // v ∈ S \ cutBoundary H S}) :
     Q.red.degree v = (H.neighborFinset v.val ∩ cutBoundary H S).card := by
@@ -71,6 +77,9 @@ theorem BoundarySuppression.red_degree {S : Finset W} (Q : BoundarySuppression H
   have count := congrArg Finset.card same
   rwa [Finset.card_map] at count
 
+/--
+@isnad1 id=eq.0h4v.s9.5e0dc11d4df6 from=translated src=- shape=d7980125 vocab=239c1b89
+-/
 theorem boundaryInterior_degree {S : Finset W} (v : {v : W // v ∈ S \ cutBoundary H S}) :
     (H.induce {v | v ∈ S \ cutBoundary H S}).degree v =
       (H.neighborFinset v.val ∩ (S \ cutBoundary H S)).card := by
@@ -80,6 +89,9 @@ theorem boundaryInterior_degree {S : Finset W} (v : {v : W // v ∈ S \ cutBound
   change ((H.induce {v | v ∈ S \ cutBoundary H S}).neighborFinset v).card = _
   convert count using 1 <;> congr 1 <;> ext w <;> simp
 
+/--
+@isnad1 id=eq.1h5v.s9.eb90b5aaecf0 from=translated src=- shape=76450d9e vocab=7b4c0fab
+-/
 theorem BoundarySuppression.degree_sum {S : Finset W} (Q : BoundarySuppression H S)
     (regular : H.IsRegularOfDegree 3) (v : {v : W // v ∈ S \ cutBoundary H S}) :
     (H.induce {v | v ∈ S \ cutBoundary H S}).degree v + Q.red.degree v = 3 := by
@@ -108,6 +120,9 @@ private theorem two_le_card_filter_incident_iff {V E : Type} (R : Multigraph V E
   by_cases hfst : R.fst e ∈ X <;> by_cases hsnd : R.snd e ∈ X <;>
     simp [hfst, hsnd, loopless e]
 
+/--
+@isnad1 id=eq.0h5v.s7.1ac172ca2509 from=translated src=- shape=5f67e669 vocab=8a4a3d90
+-/
 theorem BoundarySuppression.internalEdges_card {S : Finset W} (Q : BoundarySuppression H S)
     (X : Finset {v : W // v ∈ S \ cutBoundary H S}) :
     (RedBlack.internalEdges Q.red X).card =
@@ -149,6 +164,9 @@ theorem BoundarySuppression.internalEdges_card {S : Finset W} (Q : BoundarySuppr
       exact Finset.mem_map.mpr ⟨⟨c, hcC⟩, (membership ⟨c, hcC⟩).mpr hc, rfl⟩
   simpa only [Finset.card_map] using congrArg Finset.card same
 
+/--
+@isnad1 id=eq.0h4v.s8.8fd3f8134ae4 from=translated src=- shape=85135658 vocab=a07a9f19
+-/
 theorem boundaryInterior_cut_card {S : Finset W}
     (X : Finset {v : W // v ∈ S \ cutBoundary H S}) :
     ((H.induce {v | v ∈ S \ cutBoundary H S}).cutFinset X).card =
@@ -201,6 +219,9 @@ theorem boundaryInterior_cut_card {S : Finset W}
   ext w
   simp
 
+/--
+@isnad1 id=ex.4h5v.s8.4aa1c2803ba4 from=translated src=- shape=233b34d6 vocab=3024efdd
+-/
 theorem BoundarySuppression.exists_helpful_set_of_positive {S : Finset W}
     (Q : BoundarySuppression H S) (regular : H.IsRegularOfDegree 3)
     (outside : ∀ c ∈ cutBoundary H S, (H.neighborFinset c \ S).card = 1)

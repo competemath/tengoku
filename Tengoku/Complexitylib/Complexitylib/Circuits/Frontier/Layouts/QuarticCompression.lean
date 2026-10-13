@@ -31,7 +31,9 @@ def Terminal : Prop :=
     (G.cut {v | v ∈ B} ∩ G.cut {v | v ∈ B'}).Nonempty →
       d < (G.cut ({v | v ∈ B} ∪ {v | v ∈ B'})).ncard
 
-/-- The block count strictly decreases with every merge, in every degree. -/
+/-- The block count strictly decreases with every merge, in every degree.
+@isnad1 id=ex.1h4v.s5.869906036a2a from=translated src=- shape=4ec06743 vocab=f85b83d9
+-/
 theorem exists_terminal [Finite V] [Finite E] (hG : G.MaxDegreeLE d) :
     ∃ c : Compression G d, c.Terminal := by
   classical
@@ -44,7 +46,9 @@ theorem exists_terminal [Finite V] [Finite E] (hG : G.MaxDegreeLE d) :
   exact hmin c' trivial hc'
 
 /-- Up to degree four the terminal quotient is simple, and each nonisolated block has
-at least three outgoing edges. -/
+at least three outgoing edges.
+@isnad1 id=final.2h5v.s5.0dd2a9a85a38 from=translated src=- shape=4301f41c vocab=a0738a94
+-/
 theorem Terminal.final [Finite E] (hc : c.Terminal) (hd : d ≤ 4) : c.Final := by
   intro B hB B' hB' hne hjoin
   have hdis : Disjoint {v | v ∈ B} {v | v ∈ B'} :=
@@ -63,7 +67,9 @@ namespace Complexity.Frontier
 open Finset
 
 /-- Endpoint charging for a simple graph with degrees three or four and no adjacent
-degree-three vertices. Each vertex contributes twelve and each edge contributes at most seven. -/
+degree-three vertices. Each vertex contributes twelve and each edge contributes at most seven.
+@isnad1 id=le.3h2v.s7.71785811c444 from=translated src=- shape=784a343a vocab=ac150faf
+-/
 theorem quartic_core_density {W : Type*} [Fintype W] (H : SimpleGraph W)
     [DecidableRel H.Adj] (hlo : ∀ v, 3 ≤ H.degree v) (hhi : ∀ v, H.degree v ≤ 4)
     (hadj : ∀ u v, H.Adj u v → 7 ≤ H.degree u + H.degree v) :

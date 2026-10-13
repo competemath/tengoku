@@ -61,13 +61,17 @@ private lemma zero_mem_canonicalLabel_set (G : Digraph V) (v : V) :
 
 omit [Fintype V] in
 /-- Every canonical label is at least `1`: immediate from the outer
-`+ 1` in the definition. -/
+`+ 1` in the definition.
+@isnad1 id=le.0h3v.s4.e1b226f02c6c from=translated src=- shape=2826fe40 vocab=550f8bde
+-/
 lemma one_le_canonicalLabel (G : Digraph V) (v : V) :
     1 ≤ G.canonicalLabel v := by
   show 1 ≤ _ + 1
   omega
 
-/-- The canonical label is bounded above by the graph's simple-path depth. -/
+/-- The canonical label is bounded above by the graph's simple-path depth.
+@isnad1 id=le.0h3v.s4.59a7308f2c1d from=translated src=- shape=ebf51dec vocab=81a8ee14
+-/
 lemma canonicalLabel_le_depth (G : Digraph V) (v : V) :
     G.canonicalLabel v ≤ G.depth := by
   set S : Set ℕ := { n | ∃ p : Fin (n + 1) → V, G.IsPath p ∧ p (Fin.last n) = v }
@@ -181,7 +185,9 @@ private lemma extend_simple_path (G : Digraph V) (hac : IsAcyclic G)
 /-- **Canonical labeling is legal in acyclic graphs.** Any simple path
 ending at `u` followed by the edge `(u,v)` is a strictly longer simple
 path ending at `v` (using acyclicity to ensure `v` does not already
-appear in the path). -/
+appear in the path).
+@isnad1 id=islegall.1h2v.s4.7b57573dc053 from=translated src=- shape=395f813d vocab=12784119
+-/
 lemma canonicalLabel_isLegal (G : Digraph V) (hac : IsAcyclic G) :
     IsLegalLabeling G G.canonicalLabel := by
   intro u v huv
@@ -245,7 +251,9 @@ end LegalLabelHelpers
 
 /-- **Depth bound from a legal labeling.** Along any directed path,
 labels are strictly increasing, hence distinct. So `depth(G)` is at
-most the number of distinct labels used by any legal labeling. -/
+most the number of distinct labels used by any legal labeling.
+@isnad1 id=le.1h3v.s5.7726a53ea6f3 from=translated src=- shape=252d0e37 vocab=3cab33e9
+-/
 lemma depth_le_image_card (G : Digraph V)
     {ℓ : V → ℕ} (hℓ : IsLegalLabeling G ℓ) :
     G.depth ≤ (Finset.univ.image ℓ).card := by
@@ -371,7 +379,9 @@ private lemma firstDifferBit_mem_Ioc
   exact Finset.mem_Ioc.mpr ⟨hpos, hle⟩
 
 /-- **Partition.** When `G` is acyclic and `G.depth ≤ 2 ^ k`, every
-edge lies in exactly one level `E_i` for `i ∈ {1,...,k}`. -/
+edge lies in exactly one level `E_i` for `i ∈ {1,...,k}`.
+@isnad1 id=eq.2h3v.s6.f91c72c8c0e7 from=translated src=- shape=2e3fc934 vocab=4a80e64c
+-/
 lemma sum_card_levelEdges_eq
     (G : Digraph V) [DecidableRel G.Adj] {k : ℕ}
     (hac : IsAcyclic G) (hd : G.depth ≤ 2 ^ k) :
@@ -426,7 +436,9 @@ private lemma exists_r_subset_sum_le
       omega
 
 /-- **Averaging.** There is a choice of `r` levels whose total edge
-count is at most `r * S / k` (equivalently, `k * total ≤ r * S`). -/
+count is at most `r * S / k` (equivalently, `k * total ≤ r * S`).
+@isnad1 id=ex.3h4v.s7.07ac1f7bee8e from=translated src=- shape=72086fe0 vocab=75466760
+-/
 lemma exists_r_levels_small
     (G : Digraph V) [DecidableRel G.Adj] {k r : ℕ} (hrk : r ≤ k)
     (hac : IsAcyclic G) (hd : G.depth ≤ 2 ^ k) :
@@ -603,7 +615,9 @@ private lemma maskOutI_image_card_le
 `I` (assuming `G` acyclic), the map sending each vertex to its
 canonical label with the `I`-th bits deleted is a legal labeling of
 the remaining graph; its image has at most `2 ^ (k - I.card)` values,
-so the remaining depth is bounded by that. -/
+so the remaining depth is bounded by that.
+@isnad1 id=le.3h4v.s7.035c407eb62e from=translated src=- shape=6788734c vocab=d4c0f165
+-/
 lemma depth_deleteEdges_levelEdges_le [DecidableEq V]
     (G : Digraph V) [DecidableRel G.Adj] {k : ℕ}
     (hac : IsAcyclic G) (hd : G.depth ≤ 2 ^ k)

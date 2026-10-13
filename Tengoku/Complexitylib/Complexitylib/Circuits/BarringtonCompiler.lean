@@ -42,13 +42,17 @@ open Equiv
 
 namespace Complexity
 
-/-- `allPermutationsFin n` contains every permutation of `Fin n`. -/
+/-- `allPermutationsFin n` contains every permutation of `Fin n`.
+@isnad1 id=mem.0h2v.s4.71b9c596211e from=translated src=- shape=b27609e9 vocab=0c1b5fde
+-/
 theorem mem_allPermutationsFin {n : ℕ} (permutation : Perm (Fin n)) :
     permutation ∈ allPermutationsFin n :=
   mem_allPermutationsFin_internal permutation
 
 /-- If two permutations are conjugate, the executable finite search returns a
-valid conjugator. -/
+valid conjugator.
+@isnad1 id=eq.1h2v.s7.fe12c9b8fda4 from=translated src=- shape=2623e28a vocab=d03560c2
+-/
 theorem firstConjugator5_spec
     (source target : Perm (Fin 5))
     (hexists : ∃ g, g * source * g⁻¹ = target) :
@@ -56,34 +60,46 @@ theorem firstConjugator5_spec
       (firstConjugator5 source target)⁻¹ = target :=
   firstConjugator5_spec_internal source target hexists
 
-/-- The fixed left base permutation is a `5`-cycle. -/
+/-- The fixed left base permutation is a `5`-cycle.
+@isnad1 id=and.0h0v.s5.c3f258801483 from=translated src=- shape=50ab1c8d vocab=9a813ba0
+-/
 theorem barringtonLeftBase_spec :
     barringtonLeftBase.IsCycle ∧ orderOf barringtonLeftBase = 5 :=
   barringtonLeftBase_spec_internal
 
-/-- The fixed right base permutation is a `5`-cycle. -/
+/-- The fixed right base permutation is a `5`-cycle.
+@isnad1 id=and.0h0v.s5.a68e13a27a97 from=translated src=- shape=50ab1c8d vocab=2e6c6683
+-/
 theorem barringtonRightBase_spec :
     barringtonRightBase.IsCycle ∧ orderOf barringtonRightBase = 5 :=
   barringtonRightBase_spec_internal
 
-/-- The fixed commutator target is a `5`-cycle. -/
+/-- The fixed commutator target is a `5`-cycle.
+@isnad1 id=and.0h0v.s5.6374950ee708 from=translated src=- shape=50ab1c8d vocab=a18394a4
+-/
 theorem barringtonTargetBase_spec :
     barringtonTargetBase.IsCycle ∧ orderOf barringtonTargetBase = 5 :=
   barringtonTargetBase_spec_internal
 
-/-- The canonical left factor is a `5`-cycle for every target value. -/
+/-- The canonical left factor is a `5`-cycle for every target value.
+@isnad1 id=and.0h1v.s5.331086591f87 from=translated src=- shape=a2cd76f2 vocab=ab6e54f6
+-/
 theorem barringtonLeft_spec (target : Perm (Fin 5)) :
     (barringtonLeft target).IsCycle ∧
       orderOf (barringtonLeft target) = 5 :=
   barringtonLeft_spec_internal target
 
-/-- The canonical right factor is a `5`-cycle for every target value. -/
+/-- The canonical right factor is a `5`-cycle for every target value.
+@isnad1 id=and.0h1v.s5.30e15a885aa7 from=translated src=- shape=a2cd76f2 vocab=fc0f87cb
+-/
 theorem barringtonRight_spec (target : Perm (Fin 5)) :
     (barringtonRight target).IsCycle ∧
       orderOf (barringtonRight target) = 5 :=
   barringtonRight_spec_internal target
 
-/-- The executable factors have commutator equal to any target `5`-cycle. -/
+/-- The executable factors have commutator equal to any target `5`-cycle.
+@isnad1 id=eq.2h1v.s6.c896ccf6162e from=translated src=- shape=2857600d vocab=0f091dc4
+-/
 theorem barrington_commutator
     (target : Perm (Fin 5)) (hcycle : target.IsCycle)
     (horder : orderOf target = 5) :
@@ -93,7 +109,9 @@ theorem barrington_commutator
 namespace BP
 
 /-- The four-block commutator program has exactly twice the sum of the source
-lengths. -/
+lengths.
+@isnad1 id=eq.0h3v.s5.dc9e98f9905e from=translated src=- shape=03b14e31 vocab=609d7d9f
+-/
 theorem length_commutatorProgram {w : ℕ} (p q : BP w) :
     (BP.commutatorProgram p q).length =
       2 * p.length + 2 * q.length :=
@@ -102,6 +120,7 @@ theorem length_commutatorProgram {w : ℕ} (p q : BP w) :
 end BP
 
 /-- The executable compiler represents a formula through any target `5`-cycle.
+@isnad1 id=computes.2h2v.s6.5087278df96c from=translated src=- shape=ccab4570 vocab=f7841f36
 -/
 theorem barringtonCompile_computes (formula : BoolFormula)
     (target : Perm (Fin 5)) (hcycle : target.IsCycle)
@@ -110,7 +129,9 @@ theorem barringtonCompile_computes (formula : BoolFormula)
       (fun assignment => BoolFormula.eval assignment formula) :=
   barringtonCompile_computes_internal formula target hcycle horder
 
-/-- The executable compiler satisfies the textbook `4 ^ depth` length bound. -/
+/-- The executable compiler satisfies the textbook `4 ^ depth` length bound.
+@isnad1 id=le.0h2v.s5.1fd22b7adfc3 from=translated src=- shape=e611e218 vocab=78d541bc
+-/
 theorem barringtonCompile_length_le
     (formula : BoolFormula) (target : Perm (Fin 5)) :
     (barringtonCompile formula target).length ≤ 4 ^ formula.depth :=
@@ -119,7 +140,9 @@ theorem barringtonCompile_length_le
 /-- The executable compiler reads no formula-external variable: any bound on
 the source formula's variable indices bounds every emitted instruction.
 Constant instructions use variable zero, so the bound is stated for a natural
-upper bound rather than as a literal subset of `formula.vars`. -/
+upper bound rather than as a literal subset of `formula.vars`.
+@isnad1 id=le.2h4v.s6.a818936b0107 from=translated src=- shape=3860d8d2 vocab=d12f0562
+-/
 theorem barringtonCompile_var_bound
     (formula : BoolFormula) (target : Equiv.Perm (Fin 5)) (bound : ℕ)
     (hvars : ∀ index ∈ formula.vars, index ≤ bound) :
@@ -127,7 +150,9 @@ theorem barringtonCompile_var_bound
       instruction.var ≤ bound :=
   barringtonCompile_var_bound_internal formula target bound hvars
 
-/-- The canonical target cycle is nonidentity. -/
+/-- The canonical target cycle is nonidentity.
+@isnad1 id=ne.0h0v.s5.974ff7b9520c from=translated src=- shape=d8fb023c vocab=ef891966
+-/
 theorem barringtonTargetBase_ne_one : barringtonTargetBase ≠ 1 := by
   intro heq
   have horder := barringtonTargetBase_spec.2
@@ -139,7 +164,9 @@ evaluates to the fixed target `barringtonTargetBase` exactly when the formula is
 true (and to the identity otherwise), the target is not the identity, and the
 program's length is at most `4 ^ depth`. That the target is a `5`-cycle is the
 separate theorem `barringtonTargetBase_spec`; this statement records only that
-it is nonidentity. -/
+it is nonidentity.
+@isnad1 id=and.0h1v.s7.042e2904ad66 from=translated src=- shape=e8b6c6b6 vocab=aeeaedf7
+-/
 theorem barringtonCompile_representation (formula : BoolFormula) :
     barringtonTargetBase ≠ 1 ∧
       (∀ assignment,

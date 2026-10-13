@@ -25,7 +25,9 @@ variable {Point : Type*} [DecidableEq Point]
 def pointSet (valid : Fin slots → Bool) (points : Fin slots → Point) : Finset Point :=
   (Finset.univ.filter (fun slot => valid slot = true)).image points
 
-/-- Membership is witnessed by a valid point slot. -/
+/-- Membership is witnessed by a valid point slot.
+@isnad1 id=iff.0h5v.s5.13d133e87852 from=translated src=- shape=00445385 vocab=003f0e4e
+-/
 theorem mem_pointSet_iff (valid : Fin slots → Bool) (points : Fin slots → Point) (point : Point) :
     point ∈ pointSet valid points ↔ ∃ slot, valid slot = true ∧ points slot = point := by
   simp [pointSet]
@@ -40,7 +42,9 @@ def Conflict (valid : Fin requests → Fin slots → Bool)
       points request slot ∈ occupied)
 
 /-- Under valid-slot injectivity, pointwise conflict absence is exactly
-disjointness from occupancy and from every other request's recovery set. -/
+disjointness from occupancy and from every other request's recovery set.
+@isnad1 id=iff.1h7v.s6.6bbda373b717 from=translated src=- shape=f38b2149 vocab=083e11a7
+-/
 theorem noConflict_iff_clean
     (valid : Fin requests → Fin slots → Bool)
     (points : Fin requests → Fin slots → Point) (occupied : Finset Point)

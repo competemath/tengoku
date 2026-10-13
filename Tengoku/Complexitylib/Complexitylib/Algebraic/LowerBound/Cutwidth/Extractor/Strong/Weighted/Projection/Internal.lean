@@ -22,6 +22,9 @@ public section
 
 namespace Algebraic.Cutwidth.Extractor.Internal
 
+/--
+@isnad1 id=weighted.2h7v.s5.67c7a2922379 from=translated src=- shape=fb921452 vocab=448f24b6
+-/
 theorem weightedStrongSeededExtractor_mono_threshold {α Seed Ω : Type*}
     [Fintype α] [Fintype Seed] [Fintype Ω]
     {E : α → Seed → Ω} {K L : Nat} {ε : ℝ}
@@ -33,6 +36,9 @@ theorem weightedStrongSeededExtractor_mono_threshold {α Seed Ω : Type*}
   exact (mul_le_mul_of_nonneg_right
     (by exact_mod_cast threshold) (probability.1 x)).trans (cap x)
 
+/--
+@isnad1 id=weighted.1h7v.s6.b65628ffd34a from=translated src=- shape=0e35a795 vocab=ba8256f1
+-/
 theorem weightedStrongSeededExtractor_fst {α Seed Ω Tail : Type*}
     [Fintype α] [Fintype Seed] [Fintype Ω] [Fintype Tail] [Nonempty Tail]
     {E : α → Seed → Ω × Tail} {K : Nat} {ε : ℝ}
@@ -75,6 +81,9 @@ private theorem prefix_add {α Seed : Type*} [Fintype α] [Fintype Seed]
   rw [mapping] at projected
   exact projected
 
+/--
+@isnad1 id=weighted.2h7v.s6.5f815137fd99 from=translated src=- shape=38d7e20e vocab=71b9644c
+-/
 theorem weightedStrongSeededExtractor_truncate {α Seed : Type*}
     [Fintype α] [Fintype Seed]
     {b M K : Nat} {ε : ℝ} {E : α → Seed → Fin M → Bool}

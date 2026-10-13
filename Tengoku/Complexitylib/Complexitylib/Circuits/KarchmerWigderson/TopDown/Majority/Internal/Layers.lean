@@ -24,12 +24,18 @@ namespace Complexity.BooleanAnalysis
 open Finset
 open scoped BigOperators Classical
 
+/--
+@isnad1 id=le.0h1v.s3.9960abe045cf from=translated src=- shape=b9369acb vocab=d5c3e9e0
+-/
 theorem le_majorityDeficitBound_internal (n : ℕ) : 128 ≤ majorityDeficitBound n := by
   have h := Real.logb_nonneg (by norm_num : (1 : ℝ) < 2)
     (show (1 : ℝ) ≤ 2 * ((n : ℝ) + 1) by have := Nat.cast_nonneg (α := ℝ) n; linarith)
   unfold majorityDeficitBound
   linarith
 
+/--
+@isnad1 id=le.0h1v.s5.8a60050d8ca8 from=translated src=- shape=45c51b80 vocab=9b052113
+-/
 theorem middle_choose_bound_internal (n : ℕ) : 2 ^ n ≤ (n + 1) * n.choose (n / 2) := by
   calc
     _ = ∑ r ∈ range (n + 1), n.choose r := (Nat.sum_range_choose n).symm
@@ -37,6 +43,9 @@ theorem middle_choose_bound_internal (n : ℕ) : 2 ^ n ≤ (n + 1) * n.choose (n
       sum_le_sum (fun r _ => Nat.choose_le_middle r n)
     _ = _ := by simp
 
+/--
+@isnad1 id=le.1h1v.s6.f0d9f91c050a from=translated src=- shape=12977818 vocab=f8a96eb3
+-/
 theorem next_middle_choose_bound_internal {n : ℕ} (hn : 2 ≤ n) :
     n.choose (n / 2) ≤ 2 * n.choose (n / 2 + 1) := by
   have he := Nat.choose_succ_right_eq n (n / 2)
@@ -45,6 +54,9 @@ theorem next_middle_choose_bound_internal {n : ℕ} (hn : 2 ≤ n) :
   have hpos : 0 < n - n / 2 := by omega
   nlinarith
 
+/--
+@isnad1 id=and.2h2v.s6.e7eaa0c21fdd from=translated src=- shape=d5d50d9f vocab=1313e0b2
+-/
 theorem weightLayer_deficit_internal {n r : ℕ} (hr : r ≤ n)
     (hcard : 2 ^ n ≤ (2 * (n + 1)) * n.choose r) :
     (weightLayer n r).Nonempty ∧ uniformDeficit (weightLayer n r) ≤ majorityDeficitBound n := by
@@ -62,6 +74,9 @@ theorem weightLayer_deficit_internal {n r : ℕ} (hr : r ≤ n)
   unfold majorityDeficitBound
   linarith
 
+/--
+@isnad1 id=and.1h1v.s7.45ed9a72caee from=translated src=- shape=ac2ad8c1 vocab=ef82d415
+-/
 theorem majority_layers_deficit_internal {n : ℕ} (hn : 2 ≤ n) :
     ((weightLayer n (n / 2)).Nonempty ∧
       uniformDeficit (weightLayer n (n / 2)) ≤ majorityDeficitBound n) ∧
@@ -73,6 +88,9 @@ theorem majority_layers_deficit_internal {n : ℕ} (hn : 2 ≤ n) :
   · exact weightLayer_deficit_internal (by omega) (by nlinarith)
   · exact weightLayer_deficit_internal (by omega) (by nlinarith)
 
+/--
+@isnad1 id=eq.1h3v.s5.cba21b042540 from=translated src=- shape=c79055ba vocab=af5fb540
+-/
 theorem popCount_update_true_internal {n : ℕ} (x : Fin n → Bool) (i : Fin n) (hi : x i = false) :
     popCount (Function.update x i true) = popCount x + 1 := by
   have he : univ.filter (fun j => Function.update x i true j = true) =
@@ -85,6 +103,9 @@ theorem popCount_update_true_internal {n : ℕ} (x : Fin n → Bool) (i : Fin n)
   · rfl
   · simp [hi]
 
+/--
+@isnad1 id=eq.1h3v.s5.71b19d8fe58c from=translated src=- shape=2266b523 vocab=af5fb540
+-/
 theorem popCount_update_false_internal {n : ℕ} (x : Fin n → Bool) (i : Fin n) (hi : x i = true) :
     popCount (Function.update x i false) + 1 = popCount x := by
   have he : univ.filter (fun j => Function.update x i false j = true) =

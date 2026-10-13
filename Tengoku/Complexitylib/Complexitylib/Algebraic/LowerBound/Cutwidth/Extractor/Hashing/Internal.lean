@@ -22,6 +22,9 @@ namespace Algebraic.Cutwidth.Extractor.Internal
 
 open scoped Classical
 
+/--
+@isnad1 id=universa.2h6v.s5.888278941118 from=translated src=- shape=ce26ee69 vocab=6e686e8b
+-/
 theorem universalHashFamily_comp_injective {α β Seed Ω : Type*} [Fintype Seed]
     [Fintype Ω] {E : α → Seed → Ω} (universal : UniversalHashFamily E)
     (f : β → α) (injective : Function.Injective f) :
@@ -29,6 +32,9 @@ theorem universalHashFamily_comp_injective {α β Seed Ω : Type*} [Fintype Seed
   intro x x' distinct
   exact universal (f x) (f x') (fun equal => distinct (injective equal))
 
+/--
+@isnad1 id=eq.0h5v.s6.bdbf3ff21537 from=translated src=- shape=3b3abce1 vocab=6ebbb3ff
+-/
 theorem seededTestProb_sub_uniform_mul {α Seed Ω : Type*} [Fintype α]
     [Fintype Seed] [Fintype Ω] [Nonempty α] [Nonempty Seed] [Nonempty Ω]
     (E : α → Seed → Ω) (T : Finset (Seed × Ω)) :
@@ -43,6 +49,9 @@ theorem seededTestProb_sub_uniform_mul {α Seed Ω : Type*} [Fintype α]
     Finset.sum_const, nsmul_eq_mul]
   field_simp
 
+/--
+@isnad1 id=le.1h5v.s6.1d84573d4150 from=translated src=- shape=0603bf26 vocab=3b8dee38
+-/
 theorem universalHashFamily_seededTestProb_sub_uniform_sq_le {α Seed Ω : Type*}
     [Fintype α] [Fintype Seed] [Fintype Ω] [Nonempty α] [Nonempty Seed] [Nonempty Ω]
     {E : α → Seed → Ω} (universal : UniversalHashFamily E) (T : Finset (Seed × Ω)) :
@@ -67,6 +76,9 @@ theorem universalHashFamily_seededTestProb_sub_uniform_sq_le {α Seed Ω : Type*
     _ ≤ _ := bound
     _ = _ := by ring
 
+/--
+@isnad1 id=le.2h6v.s7.97aae96ab970 from=translated src=- shape=48a16f2c vocab=c18e57fd
+-/
 theorem universalHashFamily_flat_test_sq_le {α Seed Ω : Type*} [Fintype Seed]
     [Fintype Ω] [Nonempty Seed] [Nonempty Ω] {E : α → Seed → Ω}
     (universal : UniversalHashFamily E) (P : Finset α) (nonempty : P.Nonempty)
@@ -79,6 +91,9 @@ theorem universalHashFamily_flat_test_sq_le {α Seed Ω : Type*} [Fintype Seed]
       (universalHashFamily_comp_injective universal (fun x : P => x.val)
         Subtype.val_injective) T
 
+/--
+@isnad1 id=flatstro.4h6v.s6.bf3526983609 from=translated src=- shape=c05faab1 vocab=cad14050
+-/
 theorem universalHashFamily_flatStrongSeededExtractor {α Seed Ω : Type*}
     [Fintype Seed] [Fintype Ω] [Nonempty Seed] [Nonempty Ω] {E : α → Seed → Ω}
     (universal : UniversalHashFamily E) {K : Nat} {ε : ℝ} (positive : 0 < K)

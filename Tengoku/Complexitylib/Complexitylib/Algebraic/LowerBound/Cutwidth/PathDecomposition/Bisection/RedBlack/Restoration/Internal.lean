@@ -26,6 +26,9 @@ open scoped Classical symmDiff
 
 variable {V E : Type} [Fintype V] [Fintype E] (B : SimpleGraph V) (R : Multigraph V E)
 
+/--
+@isnad1 id=eq.0h4v.s6.2f77c31767e5 from=translated src=- shape=6e7a4603 vocab=b183447f
+-/
 theorem cut_deleteEdges (F : Finset (Sym2 V)) (X : Finset V) :
     (B.deleteEdges (F : Set (Sym2 V))).cutFinset X = B.cutFinset X \ F := by
   ext e
@@ -34,6 +37,9 @@ theorem cut_deleteEdges (F : Finset (Sym2 V)) (X : Finset V) :
     Finset.mem_coe, Finset.mem_sdiff]
   tauto
 
+/--
+@isnad1 id=eq.1h4v.s7.e9bfe1ce76aa from=translated src=- shape=9fa8602f vocab=25cd57cb
+-/
 theorem cut_union_of_closed_inter {X A : Finset V} (closed : B.cutFinset (X ∩ A) = ∅) :
     B.cutFinset (X ∪ A) = B.cutFinset X ∆ B.cutFinset A := by
   ext e
@@ -44,6 +50,9 @@ theorem cut_union_of_closed_inter {X A : Finset V} (closed : B.cutFinset (X ∩ 
   tauto
 
 omit [Fintype V] in
+/--
+@isnad1 id=le.0h5v.s6.0b24ead38fb6 from=translated src=- shape=2d83d44d vocab=944c0a9a
+-/
 theorem card_internalEdges_union_ge (X A : Finset V) :
     (internalEdges R X).card + (internalEdges R A \ internalEdges R X).card ≤
       (internalEdges R (X ∪ A)).card := by
@@ -56,6 +65,9 @@ theorem card_internalEdges_union_ge (X A : Finset V) :
   · exact internalEdges_mono R Finset.subset_union_left hx
   · exact internalEdges_mono R Finset.subset_union_right (Finset.mem_sdiff.mp ha).1
 
+/--
+@isnad1 id=positive.3h6v.s7.0103cb20aa2a from=translated src=- shape=252aebcd vocab=5784d348
+-/
 theorem positive_restore_cut {X A : Finset V}
     (positive : Positive (B.deleteEdges (B.cutFinset A : Set (Sym2 V))) R X)
     (closed : B.cutFinset (X ∩ A) = ∅)
@@ -70,6 +82,9 @@ theorem positive_restore_cut {X A : Finset V}
   have red := card_internalEdges_union_ge R X A
   lia
 
+/--
+@isnad1 id=positive.5h6v.s7.56c9eba61ce9 from=translated src=- shape=845e4331 vocab=866e95ac
+-/
 theorem positive_restore_two_boundary {X A : Finset V}
     (positive : Positive (B.deleteEdges (B.cutFinset A : Set (Sym2 V))) R X)
     (closed : B.cutFinset (X ∩ A) = ∅)

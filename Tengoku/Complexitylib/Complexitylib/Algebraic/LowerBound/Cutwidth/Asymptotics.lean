@@ -21,7 +21,9 @@ namespace Algebraic.Cutwidth
 open Filter
 
 /-- Every fixed multiple of the binary logarithm, plus a constant, is
-eventually below every positive multiple of the input. -/
+eventually below every positive multiple of the input.
+@isnad1 id=eventual.1h3v.s6.d87c226db9bc from=translated src=- shape=8f1124b0 vocab=cc971937
+-/
 theorem eventually_mul_logb_add_lt (A B : ℝ) {δ : ℝ} (hδ : 0 < δ) :
     ∀ᶠ n : Nat in atTop, A * Real.logb 2 n + B < δ * n := by
   have hlog : (fun n : Nat => Real.log n) =o[atTop] (fun n : Nat => (n : ℝ)) :=
@@ -57,7 +59,9 @@ theorem eventually_mul_logb_add_lt (A B : ℝ) {δ : ℝ} (hδ : 0 < δ) :
   linarith
 
 /-- The ceiling binary logarithm plus a constant is eventually smaller
-than every positive linear function. -/
+than every positive linear function.
+@isnad1 id=eventual.1h2v.s5.11afa39592ae from=translated src=- shape=6a231c8a vocab=ac978038
+-/
 theorem eventually_clog_add_lt (B : ℝ) {δ : ℝ} (hδ : 0 < δ) :
     ∀ᶠ n : Nat in atTop, (Nat.clog 2 n : ℝ) + B < δ * n := by
   filter_upwards [eventually_mul_logb_add_lt 1 (B + 1) hδ, eventually_ge_atTop 1]

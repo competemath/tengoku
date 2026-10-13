@@ -23,6 +23,9 @@ namespace Algebraic.Cutwidth.PathDecomposition.Internal
 
 open scoped Classical
 
+/--
+@isnad1 id=bisectio.0h0v.s4.1375b2f3fdf6 from=translated src=- shape=e8deeb01 vocab=1b419af0
+-/
 theorem bisectionBound_coarse : BisectionBound (4 / 3) 0 := by
   intro W _ _ H _ regular _
   obtain ⟨S, _, hS⟩ := Finset.exists_subset_card_eq

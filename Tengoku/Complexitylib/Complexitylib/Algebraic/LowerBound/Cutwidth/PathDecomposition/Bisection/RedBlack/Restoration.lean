@@ -33,7 +33,9 @@ variable {V E : Type} [Fintype V] [Fintype E] (B : SimpleGraph V) (R : Multigrap
 
 /-- After isolating `A`, a positive set `X` lifts back to `X ∪ A` if the
 new internal red edges pay for the black boundary of `A` that still crosses.
-An overlap is permitted when its black cut is empty. -/
+An overlap is permitted when its black cut is empty.
+@isnad1 id=positive.3h6v.s7.0103cb20aa2a from=translated src=- shape=252aebcd vocab=5784d348
+-/
 theorem positive_restore_cut {X A : Finset V}
     (positive : Positive (B.deleteEdges (B.cutFinset A : Set (Sym2 V))) R X)
     (closed : B.cutFinset (X ∩ A) = ∅)
@@ -43,7 +45,9 @@ theorem positive_restore_cut {X A : Finset V}
 
 /-- An added set with at most two external black edges needs only one new
 internal red edge when at least one of its black boundary edges meets the
-old witness. This is the local compensation used for a disconnected thin path. -/
+old witness. This is the local compensation used for a disconnected thin path.
+@isnad1 id=positive.5h6v.s7.56c9eba61ce9 from=translated src=- shape=845e4331 vocab=866e95ac
+-/
 theorem positive_restore_two_boundary {X A : Finset V}
     (positive : Positive (B.deleteEdges (B.cutFinset A : Set (Sym2 V))) R X)
     (closed : B.cutFinset (X ∩ A) = ∅)

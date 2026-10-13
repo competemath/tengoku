@@ -26,7 +26,9 @@ open scoped Classical
 
 /-- If every vertex has a neighbor across a cut, there is a path decomposition
 starting with one side and ending with the other, of width at most the cut size.
-Edges within either side are covered by its endpoint bag. -/
+Edges within either side are covered by its endpoint bag.
+@isnad1 id=ex.2h3v.s7.38b29bd8bbb3 from=translated src=- shape=8e10e975 vocab=3d4714b0
+-/
 theorem exists_between_of_crossing {W : Type} [Fintype W] (H : SimpleGraph W)
     (S : Finset W)
     (left : ∀ u ∈ S, ∃ v ∉ S, H.Adj u v)

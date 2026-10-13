@@ -25,6 +25,9 @@ public section
 
 namespace Algebraic.Cutwidth.Extractor.Internal
 
+/--
+@isnad1 id=eq.2h8v.s6.f8b446510855 from=translated src=- shape=5a960df6 vocab=5bb62fd8
+-/
 theorem retainedSeedWeight_uniform_image {Z B Q Seed : Type*}
     [Fintype Z] [Fintype B] [Fintype Q] [Fintype Seed]
     (w : Z → ℝ) (r : Z → B → ℝ) (q : Z → B → Q) (initialSeed : Q → Seed)
@@ -48,6 +51,9 @@ theorem retainedSeedWeight_uniform_image {Z B Q Seed : Type*}
       rw [mapWeight_tagged (fun _ : Z => initialSeed) w (fun _ : Z => uniformWeight Q),
         balanced]
 
+/--
+@isnad1 id=eq.2h8v.s7.41039f25773b from=translated src=- shape=7f3e1f5d vocab=efea6c34
+-/
 theorem retainedSeedWeight_uniform_image_dist {Z B Q Seed : Type*}
     [Fintype Z] [Fintype B] [Fintype Q] [Fintype Seed] [Nonempty Seed]
     (w : Z → ℝ) (r : Z → B → ℝ) (q : Z → B → Q) (initialSeed : Q → Seed)

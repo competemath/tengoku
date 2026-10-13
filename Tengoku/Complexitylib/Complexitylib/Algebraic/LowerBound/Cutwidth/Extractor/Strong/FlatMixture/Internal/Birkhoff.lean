@@ -67,6 +67,9 @@ private theorem sum_permMatrix_support {α : Type*}
   simp only [mem_image, ← σ.eq_symm_apply]
   simp
 
+/--
+@isnad1 id=ex.5h3v.s8.906a23881de7 from=translated src=- shape=f491a7bd vocab=21e72e12
+-/
 theorem exists_permutation_flat_mixture {α : Type*} [Fintype α]
     (S : Finset α) (positive : 0 < S.card) (small : S.card < Fintype.card α)
     (p : α → ℝ) (nonnegative : ∀ x, 0 ≤ p x) (mass : ∑ x, p x = 1)

@@ -40,7 +40,9 @@ open scoped NNReal ENNReal
 
 /-! ### The planar angle law -/
 
-/-- The standard planar Gaussian density in polar coordinates. -/
+/-- The standard planar Gaussian density in polar coordinates.
+@isnad1 id=eq.0h2v.s6.939ca2946a6e from=translated src=- shape=3268eb26 vocab=89dc2ae6
+-/
 theorem gaussianPDFReal_mul_polar (r θ : ℝ) :
     gaussianPDFReal 0 1 (r * cos θ) * gaussianPDFReal 0 1 (r * sin θ) =
       (2 * π)⁻¹ * exp (-2⁻¹ * r ^ 2) := by
@@ -49,7 +51,9 @@ theorem gaussianPDFReal_mul_polar (r θ : ℝ) :
   congr 2
   linear_combination (-2⁻¹ * r ^ 2) * sin_sq_add_cos_sq θ
 
-/-- The angles with `|cos θ| ≤ k |sin θ|` are those with `|cos θ| ≤ sin (arctan k)`. -/
+/-- The angles with `|cos θ| ≤ k |sin θ|` are those with `|cos θ| ≤ sin (arctan k)`.
+@isnad1 id=iff.1h2v.s5.a13121bfdd13 from=translated src=- shape=1199fb70 vocab=0a060198
+-/
 theorem abs_cos_le_mul_abs_sin_iff {k : ℝ} (hk : 0 ≤ k) (θ : ℝ) :
     |cos θ| ≤ k * |sin θ| ↔ |cos θ| ≤ sin (arctan k) := by
   have hs : 0 ≤ sin (arctan k) := sin_arctan_nonneg.2 hk
@@ -58,7 +62,9 @@ theorem abs_cos_le_mul_abs_sin_iff {k : ℝ} (hk : 0 ≤ k) (θ : ℝ) :
     le_div_iff₀ (by positivity)]
   constructor <;> intro h <;> nlinarith
 
-/-- The angles in `(-π, π)` with `|cos θ| ≤ k |sin θ|` form two arcs centered at `±π/2`. -/
+/-- The angles in `(-π, π)` with `|cos θ| ≤ k |sin θ|` form two arcs centered at `±π/2`.
+@isnad1 id=eq.1h1v.s7.7653d4129637 from=translated src=- shape=c95d13f3 vocab=89ac4077
+-/
 theorem angle_set_eq {k : ℝ} (hk : 0 ≤ k) :
     {θ : ℝ | |cos θ| ≤ k * |sin θ|} ∩ Ioo (-π) π =
       Icc (π / 2 - arctan k) (π / 2 + arctan k) ∪
@@ -94,7 +100,9 @@ theorem angle_set_eq {k : ℝ} (hk : 0 ≤ k) :
     rw [← cos_abs]
     exact (hmem |θ| ⟨abs_nonneg _, by linarith⟩).2 hθ
 
-/-- The angles in `(-π, π)` with `|cos θ| ≤ k |sin θ|` have total length `4 arctan k`. -/
+/-- The angles in `(-π, π)` with `|cos θ| ≤ k |sin θ|` have total length `4 arctan k`.
+@isnad1 id=eq.1h1v.s6.6dac1277556d from=translated src=- shape=fdb0cb9a vocab=12975f76
+-/
 theorem volume_angle_set {k : ℝ} (hk : 0 ≤ k) :
     volume ({θ : ℝ | |cos θ| ≤ k * |sin θ|} ∩ Ioo (-π) π) = ENNReal.ofReal (4 * arctan k) := by
   have ha0 : 0 ≤ arctan k := arctan_nonneg.2 hk
@@ -105,7 +113,9 @@ theorem volume_angle_set {k : ℝ} (hk : 0 ≤ k) :
   · refine Set.disjoint_left.2 fun θ h1 h2 => ?_
     linarith [h1.1, h2.2]
 
-/-- The radial factor of the planar Gaussian integrates to one. -/
+/-- The radial factor of the planar Gaussian integrates to one.
+@isnad1 id=eq.0h0v.s6.7981f844c0b2 from=translated src=- shape=d3638c76 vocab=78040b92
+-/
 theorem lintegral_radial :
     ∫⁻ r in Ioi (0 : ℝ), ENNReal.ofReal ((2 * π)⁻¹ * (r * exp (-2⁻¹ * r ^ 2))) =
       ENNReal.ofReal (2 * π)⁻¹ := by
@@ -117,7 +127,9 @@ theorem lintegral_radial :
     have : 0 < r := hr
     positivity
 
-/-- **Planar angle law** for the product of two standard Gaussians. -/
+/-- **Planar angle law** for the product of two standard Gaussians.
+@isnad1 id=eq.1h1v.s7.951a2ad2759d from=translated src=- shape=870f1eb5 vocab=05909206
+-/
 theorem prod_gaussianReal_abs_le (k : ℝ) (hk : 0 ≤ k) :
     ((gaussianReal 0 1).prod (gaussianReal 0 1)) {p : ℝ × ℝ | |p.1| ≤ k * |p.2|} =
       ENNReal.ofReal (2 / π * arctan k) := by
@@ -156,7 +168,9 @@ theorem prod_gaussianReal_abs_le (k : ℝ) (hk : 0 ≤ k) :
   field_simp
   ring
 
-/-- **Planar angle law** for `gaussPi (Fin 2)`. -/
+/-- **Planar angle law** for `gaussPi (Fin 2)`.
+@isnad1 id=eq.1h1v.s7.b4f06d33f091 from=translated src=- shape=13bbb7c3 vocab=58f6dfa9
+-/
 theorem gaussPi_abs_le_mul_abs (k : ℝ) (hk : 0 ≤ k) :
     (gaussPi (Fin 2)).real {ω | |ω 0| ≤ k * |ω 1|} = 2 / π * arctan k := by
   have hA : MeasurableSet {p : ℝ × ℝ | |p.1| ≤ k * |p.2|} :=
@@ -170,7 +184,9 @@ theorem gaussPi_abs_le_mul_abs (k : ℝ) (hk : 0 ≤ k) :
 /-! ### Symmetric intervals carry the most mass -/
 
 /-- If translating by `2w` does not increase `f` to the right of `-w`, then the
-interval of radius `w` around `c ≥ 0` carries at most the mass of the centered one. -/
+interval of radius `w` around `c ≥ 0` carries at most the mass of the centered one.
+@isnad1 id=le.3h3v.s7.f4432910df41 from=translated src=- shape=0ac36bce vocab=e183f14b
+-/
 theorem intervalIntegral_shift_le {f : ℝ → ℝ} (hf : Continuous f) {c w : ℝ} (hc : 0 ≤ c)
     (hmono : ∀ x, -w ≤ x → f (x + 2 * w) ≤ f x) :
     ∫ x in (c - w)..(c + w), f x ≤ ∫ x in (-w)..w, f x := by
@@ -188,13 +204,17 @@ theorem intervalIntegral_shift_le {f : ℝ → ℝ} (hf : Continuous f) {c w : �
       fun x hx => hmono x hx.1
   linarith
 
-/-- The centered Gaussian density is even. -/
+/-- The centered Gaussian density is even.
+@isnad1 id=eq.0h2v.s4.a6ca981dcf9b from=translated src=- shape=8c0fd427 vocab=79687de1
+-/
 theorem gaussianPDFReal_neg (v : ℝ≥0) (x : ℝ) :
     gaussianPDFReal 0 v (-x) = gaussianPDFReal 0 v x := by
   simp [gaussianPDFReal_def]
 
 /-- The centered Gaussian density decreases under the translation by `2w` to the right
-of `-w`. -/
+of `-w`.
+@isnad1 id=le.2h3v.s6.fadb88ff021e from=translated src=- shape=a4a48a9b vocab=f1638113
+-/
 theorem gaussianPDFReal_add_two_mul_le (v : ℝ≥0) {w x : ℝ} (hw : 0 ≤ w) (hx : -w ≤ x) :
     gaussianPDFReal 0 v (x + 2 * w) ≤ gaussianPDFReal 0 v x := by
   simp only [gaussianPDFReal_def, sub_zero]
@@ -203,7 +223,9 @@ theorem gaussianPDFReal_add_two_mul_le (v : ℝ≥0) {w x : ℝ} (hw : 0 ≤ w) 
   exact div_le_div_of_nonneg_right (by nlinarith) (by positivity)
 
 /-- **One-dimensional Anderson inequality.** For a centered Gaussian, an interval of
-radius `w` carries the most mass when it is centered at the mean. -/
+radius `w` carries the most mass when it is centered at the mean.
+@isnad1 id=le.0h3v.s6.907285db691f from=translated src=- shape=de69e57b vocab=6efae089
+-/
 theorem gaussianReal_Icc_le (v : ℝ≥0) (c w : ℝ) :
     gaussianReal 0 v (Icc (c - w) (c + w)) ≤ gaussianReal 0 v (Icc (-w) w) := by
   rcases lt_or_ge w 0 with hw | hw
@@ -236,7 +258,9 @@ theorem gaussianReal_Icc_le (v : ℝ≥0) (c w : ℝ) :
     exact intervalIntegral_shift_le hcont (by linarith) hmono
 
 /-- Anderson's inequality for the event `|X - c| ≤ |Y|` with `X`, `Y` independent
-and `X` centered Gaussian. -/
+and `X` centered Gaussian.
+@isnad1 id=le.0h3v.s7.659a7aa3928d from=translated src=- shape=6d1a5d80 vocab=e82fa6d2
+-/
 theorem prod_gaussianReal_sub_le (s r : ℝ≥0) (c : ℝ) :
     ((gaussianReal 0 s).prod (gaussianReal 0 r)) {p : ℝ × ℝ | |p.1 - c| ≤ |p.2|} ≤
       ((gaussianReal 0 s).prod (gaussianReal 0 r)) {p : ℝ × ℝ | |p.1| ≤ |p.2|} := by
@@ -254,7 +278,9 @@ theorem prod_gaussianReal_sub_le (s r : ℝ≥0) (c : ℝ) :
   rw [e1, e2]
   exact gaussianReal_Icc_le s c |y|
 
-/-- `gaussianReal 0 s` is the image of the standard Gaussian under `x ↦ √s x`. -/
+/-- `gaussianReal 0 s` is the image of the standard Gaussian under `x ↦ √s x`.
+@isnad1 id=eq.0h1v.s5.cf27779cf69a from=translated src=- shape=6225b024 vocab=a5f72098
+-/
 theorem gaussianReal_map_sqrt_mul (s : ℝ≥0) :
     (gaussianReal 0 1).map (fun x => √(s : ℝ) * x) = gaussianReal 0 s := by
   rw [gaussianReal_map_const_mul, mul_zero]
@@ -263,7 +289,9 @@ theorem gaussianReal_map_sqrt_mul (s : ℝ≥0) :
   simp
 
 /-- **Planar angle law** for two independent centered Gaussians of variances `s > 0`
-and `r`. -/
+and `r`.
+@isnad1 id=eq.1h2v.s7.c080424fd400 from=translated src=- shape=83c02b04 vocab=da0f9c0d
+-/
 theorem prod_gaussianReal_abs_le_abs (s r : ℝ≥0) (hs : s ≠ 0) :
     ((gaussianReal 0 s).prod (gaussianReal 0 r)) {p : ℝ × ℝ | |p.1| ≤ |p.2|} =
       ENNReal.ofReal (2 / π * arctan (√(r : ℝ) / √(s : ℝ))) := by
@@ -281,13 +309,17 @@ theorem prod_gaussianReal_abs_le_abs (s r : ℝ≥0) (hs : s ≠ 0) :
 
 /-! ### Sheppard's bound -/
 
-/-- A threshold separating two values lies within half their gap of their midpoint. -/
+/-- A threshold separating two values lies within half their gap of their midpoint.
+@isnad1 id=le.1h3v.s5.b722ccee2097 from=translated src=- shape=c475d4ca vocab=ea710ac7
+-/
 theorem abs_add_sub_two_mul_le_of_between {t x y : ℝ} (h : Between t x y) :
     |x + y - 2 * t| ≤ |y - x| := by
   refine abs_le.2 ⟨?_, ?_⟩ <;> rcases h with ⟨h1, h2⟩ | ⟨h1, h2⟩ <;>
     rcases abs_cases (y - x) with ⟨h3, _⟩ | ⟨h3, _⟩ <;> rw [h3] <;> linarith
 
-/-- **Sheppard's bound** for coefficient vectors of equal norm with nonzero sum. -/
+/-- **Sheppard's bound** for coefficient vectors of equal norm with nonzero sum.
+@isnad1 id=le.2h4v.s8.0503c5f1d047 from=translated src=- shape=e21c71d4 vocab=ddf0a3f0
+-/
 theorem gaussPi_between_le_arctan {ι : Type} [Fintype ι] (α β : ι → ℝ)
     (hnorm : ∑ i, α i ^ 2 = ∑ i, β i ^ 2) (hsum : 0 < ∑ i, (α i + β i) ^ 2) (t : ℝ) :
     (gaussPi ι).real {ω | Between t (form α ω) (form β ω)} ≤
@@ -326,7 +358,9 @@ theorem gaussPi_between_le_arctan {ι : Type} [Fintype ι] (α β : ι → ℝ)
             0 ≤ √(((∑ i, a i ^ 2).toNNReal : ℝ)) / √(((∑ i, b i ^ 2).toNNReal : ℝ)))]),
           Real.coe_toNNReal _ (hnn a), Real.coe_toNNReal _ (hnn b)]
 
-/-- `2 arctan (tanHalf x) = arccos x`. -/
+/-- `2 arctan (tanHalf x) = arccos x`.
+@isnad1 id=eq.2h1v.s5.f8bc4c0a8eee from=translated src=- shape=88103bfc vocab=c9bdda97
+-/
 theorem two_mul_arctan_tanHalf {x : ℝ} (hx : -1 < x) (hx1 : x ≤ 1) :
     2 * arctan (tanHalf x) = arccos x := by
   set y := tanHalf x with hy
@@ -341,7 +375,9 @@ theorem two_mul_arctan_tanHalf {x : ℝ} (hx : -1 < x) (hx1 : x ≤ 1) :
   rw [← hcos, arccos_cos (by positivity [arctan_nonneg.2 hy0])
     (by linarith [arctan_lt_pi_div_two y])]
 
-/-- **Sheppard's bound** for unit forms. -/
+/-- **Sheppard's bound** for unit forms.
+@isnad1 id=le.3h4v.s7.33acebe02ad8 from=translated src=- shape=6d6f2f74 vocab=54fd62d9
+-/
 theorem gaussPi_between_le_arccos {ι : Type} [Fintype ι] {α β : ι → ℝ}
     (hα : ∑ i, α i ^ 2 = 1) (hβ : ∑ i, β i ^ 2 = 1) (hx : -1 < ∑ i, α i * β i) (t : ℝ) :
     (gaussPi ι).real {ω | Between t (form α ω) (form β ω)} ≤

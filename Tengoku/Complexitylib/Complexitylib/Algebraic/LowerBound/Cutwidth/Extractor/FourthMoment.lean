@@ -33,7 +33,9 @@ public section
 namespace Algebraic.Cutwidth.Extractor
 
 /-- Approximate first four normal moments suffice for a positive tail of
-mass at least `1/36`, beyond the normalized margin `1/8`. -/
+mass at least `1/36`, beyond the normalized margin `1/8`.
+@isnad1 id=le.6h4v.s8.e530291b5211 from=translated src=- shape=35b040cb vocab=ecda534f
+-/
 theorem fourthMoment_positive_tail_of_approx {α : Type*} (s : Finset α) (w Z : α → ℝ)
     (hw : ∀ i ∈ s, 0 ≤ w i) (hmass : ∑ i ∈ s, w i = 1)
     (hmean : |∑ i ∈ s, w i * Z i| ≤ 1 / 100)
@@ -44,7 +46,9 @@ theorem fourthMoment_positive_tail_of_approx {α : Type*} (s : Finset α) (w Z :
   Internal.fourthMoment_positive_tail_of_approx s w Z hw hmass hmean hsecond hthird hfourth
 
 /-- Approximate first four normal moments also force the negative tail,
-by applying the same certificate to the negated variable. -/
+by applying the same certificate to the negated variable.
+@isnad1 id=le.6h4v.s8.8259ebb3d0a5 from=translated src=- shape=8bc401af vocab=c1da0309
+-/
 theorem fourthMoment_negative_tail_of_approx {α : Type*} (s : Finset α) (w Z : α → ℝ)
     (hw : ∀ i ∈ s, 0 ≤ w i) (hmass : ∑ i ∈ s, w i = 1)
     (hmean : |∑ i ∈ s, w i * Z i| ≤ 1 / 100)
@@ -55,7 +59,9 @@ theorem fourthMoment_negative_tail_of_approx {α : Type*} (s : Finset α) (w Z :
   Internal.fourthMoment_negative_tail_of_approx s w Z hw hmass hmean hsecond hthird hfourth
 
 /-- Exact normal moments through degree three and fourth moment at most
-three imply the positive-tail bound. -/
+three imply the positive-tail bound.
+@isnad1 id=le.6h4v.s8.ce50e1c5ae59 from=translated src=- shape=5c6bce85 vocab=bf667430
+-/
 theorem fourthMoment_positive_tail {α : Type*} (s : Finset α) (w Z : α → ℝ)
     (hw : ∀ i ∈ s, 0 ≤ w i) (hmass : ∑ i ∈ s, w i = 1)
     (hmean : ∑ i ∈ s, w i * Z i = 0)
@@ -65,7 +71,9 @@ theorem fourthMoment_positive_tail {α : Type*} (s : Finset α) (w Z : α → �
     (1 / 36 : ℝ) ≤ ∑ i ∈ s, if 1 / 8 < Z i then w i else 0 :=
   Internal.fourthMoment_positive_tail s w Z hw hmass hmean hsecond hthird hfourth
 
-/-- The corresponding negative-tail bound under exact moment identities. -/
+/-- The corresponding negative-tail bound under exact moment identities.
+@isnad1 id=le.6h4v.s8.970a41e750e3 from=translated src=- shape=72839f56 vocab=3fbafcf7
+-/
 theorem fourthMoment_negative_tail {α : Type*} (s : Finset α) (w Z : α → ℝ)
     (hw : ∀ i ∈ s, 0 ≤ w i) (hmass : ∑ i ∈ s, w i = 1)
     (hmean : ∑ i ∈ s, w i * Z i = 0)

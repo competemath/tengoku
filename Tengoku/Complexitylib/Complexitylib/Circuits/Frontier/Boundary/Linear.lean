@@ -31,6 +31,9 @@ variable {F V Z W : Type*} [Field F] [AddCommGroup V] [Module F V]
 /-- Right completions of a left assignment in a split homogeneous linear system. -/
 def completions (x : V) : Set Z := {y | L x + R y = 0}
 
+/--
+@isnad1 id=iff.0h7v.s8.9b72d76f7bb6 from=translated src=- shape=b6cff857 vocab=82dcb544
+-/
 theorem completions_nonempty_iff (x : V) :
     (completions L R x).Nonempty ↔ L x ∈ LinearMap.range R := by
   constructor
@@ -39,7 +42,9 @@ theorem completions_nonempty_iff (x : V) :
   · rintro ⟨y, hy⟩
     exact ⟨-y, by simp [completions, hy]⟩
 
-/-- Distinct feasible syndromes have distinct completion sets. -/
+/-- Distinct feasible syndromes have distinct completion sets.
+@isnad1 id=iff.1h8v.s8.06e872e142a3 from=translated src=- shape=f7e4a3e2 vocab=bdf3f90d
+-/
 theorem completions_eq_iff {x x' : V} (hx : (completions L R x).Nonempty) :
     completions L R x = completions L R x' ↔ L x = L x' := by
   constructor
@@ -51,7 +56,9 @@ theorem completions_eq_iff {x x' : V} (hx : (completions L R x).Nonempty) :
     ext y
     simp only [completions, mem_ofPred_eq, h]
 
-/-- The feasible boundary code is the intersection of the two syndrome spaces. -/
+/-- The feasible boundary code is the intersection of the two syndrome spaces.
+@isnad1 id=eq.0h6v.s8.01919507c567 from=translated src=- shape=8581bd64 vocab=b46a1057
+-/
 theorem syndromes_eq :
     L '' {x | (completions L R x).Nonempty} =
       (↑(LinearMap.range L ⊓ LinearMap.range R) : Set W) := by
@@ -62,7 +69,9 @@ theorem syndromes_eq :
   · rintro ⟨⟨x, rfl⟩, hx⟩
     exact ⟨x, (completions_nonempty_iff L R x).mpr hx, rfl⟩
 
-/-- The dimension of the boundary code is the connectivity of the two column spaces. -/
+/-- The dimension of the boundary code is the connectivity of the two column spaces.
+@isnad1 id=eq.0h6v.s10.b510b9b1978c from=translated src=- shape=20dc053c vocab=3a1db79b
+-/
 theorem finrank_states [FiniteDimensional F W] :
     finrank F (LinearMap.range L ⊓ LinearMap.range R : Submodule F W) =
       finrank F (LinearMap.range L) + finrank F (LinearMap.range R) -
@@ -71,7 +80,9 @@ theorem finrank_states [FiniteDimensional F W] :
   lia
 
 /-- Over a finite field the exact number of feasible syndromes is `q^λ`. The `Nat.card`
-identity also makes sense over infinite fields; only the finite case is a counting bound. -/
+identity also makes sense over infinite fields; only the finite case is a counting bound.
+@isnad1 id=eq.0h6v.s10.98504aa35ff3 from=translated src=- shape=dc570c10 vocab=f52a7d16
+-/
 theorem ncard_syndromes [FiniteDimensional F W] :
     (L '' {x | (completions L R x).Nonempty}).ncard =
       Nat.card F ^ (finrank F (LinearMap.range L) + finrank F (LinearMap.range R) -
@@ -81,7 +92,9 @@ theorem ncard_syndromes [FiniteDimensional F W] :
   rw [Module.natCard_eq_pow_finrank (K := F), finrank_states L R]
 
 /-- This many states are necessary as well as sufficient: any exact classifier of right
-completion sets must separate all feasible syndromes. -/
+completion sets must separate all feasible syndromes.
+@isnad1 id=le.1h8v.s8.111b14055775 from=translated src=- shape=253775f9 vocab=377dffa5
+-/
 theorem ncard_syndromes_le_states [Finite V] {D : Type*} (code : V → D)
     (hcode : ∀ x, (completions L R x).Nonempty → ∀ x',
       (completions L R x').Nonempty → code x = code x' →

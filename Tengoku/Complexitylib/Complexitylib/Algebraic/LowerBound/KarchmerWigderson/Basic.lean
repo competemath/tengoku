@@ -64,14 +64,26 @@ def eval : Formula n → (Fin n → Bool) → Bool
   | and l r, x => l.eval x && r.eval x
   | or l r, x => l.eval x || r.eval x
 
+/--
+@isnad1 id=eq.0h4v.s4.cdc89362a458 from=translated src=- shape=30f38ad3 vocab=83ef8b20
+-/
 @[simp] theorem eval_lit (i : Fin n) (b : Bool) (x : Fin n → Bool) :
     (lit i b).eval x = (x i == b) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.534a9e7659fe from=translated src=- shape=4057549c vocab=85a23a16
+-/
 @[simp] theorem eval_const (b : Bool) (x : Fin n → Bool) : (const b : Formula n).eval x = b := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.3a0a89ce3c53 from=translated src=- shape=811d829b vocab=ad844356
+-/
 @[simp] theorem eval_and (l r : Formula n) (x : Fin n → Bool) :
     (and l r).eval x = (l.eval x && r.eval x) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.92441b3095c1 from=translated src=- shape=811d829b vocab=83a61562
+-/
 @[simp] theorem eval_or (l r : Formula n) (x : Fin n → Bool) :
     (or l r).eval x = (l.eval x || r.eval x) := rfl
 
@@ -92,6 +104,9 @@ def leaves : Formula n → Nat
   | and l r => l.leaves + r.leaves
   | or l r => l.leaves + r.leaves
 
+/--
+@isnad1 id=le.0h2v.s4.e4a60d67bedd from=translated src=- shape=179c2224 vocab=af478532
+-/
 theorem one_le_leaves : ∀ F : Formula n, 1 ≤ F.leaves
   | lit _ _ => le_rfl
   | const _ => le_rfl
@@ -105,6 +120,9 @@ def neg : Formula n → Formula n
   | and l r => or l.neg r.neg
   | or l r => and l.neg r.neg
 
+/--
+@isnad1 id=eq.0h3v.s4.3c2cca7ec77f from=translated src=- shape=875c4f69 vocab=c93e36d7
+-/
 @[simp] theorem eval_neg : ∀ (F : Formula n) (x : Fin n → Bool), F.neg.eval x = !F.eval x
   | lit i b, x => by
     simp only [neg, eval]
@@ -113,12 +131,18 @@ def neg : Formula n → Formula n
   | and l r, x => by simp [neg, eval_neg l, eval_neg r]
   | or l r, x => by simp [neg, eval_neg l, eval_neg r]
 
+/--
+@isnad1 id=eq.0h2v.s3.63910923a86b from=translated src=- shape=6046d1bd vocab=ae4e97c0
+-/
 @[simp] theorem depth_neg : ∀ F : Formula n, F.neg.depth = F.depth
   | lit _ _ => rfl
   | const _ => rfl
   | and l r => by simp [neg, depth, depth_neg l, depth_neg r]
   | or l r => by simp [neg, depth, depth_neg l, depth_neg r]
 
+/--
+@isnad1 id=eq.0h2v.s3.936766b1438c from=translated src=- shape=6046d1bd vocab=91f72185
+-/
 @[simp] theorem leaves_neg : ∀ F : Formula n, F.neg.leaves = F.leaves
   | lit _ _ => rfl
   | const _ => rfl
@@ -183,12 +207,18 @@ def toProtocol (i₀ : Fin n) : Formula n → Protocol n
   | and l r => .bob (fun y => l.eval y) (l.toProtocol i₀) (r.toProtocol i₀)
   | or l r => .alice (fun x => !l.eval x) (l.toProtocol i₀) (r.toProtocol i₀)
 
+/--
+@isnad1 id=eq.0h3v.s4.3096d95a157f from=translated src=- shape=732c8cef vocab=930b4f3d
+-/
 @[simp] theorem depth_toProtocol (i₀ : Fin n) : ∀ F : Formula n, (F.toProtocol i₀).depth = F.depth
   | lit _ _ => rfl
   | const _ => rfl
   | and l r => by simp [toProtocol, Protocol.depth, depth, depth_toProtocol i₀ l, depth_toProtocol i₀ r]
   | or l r => by simp [toProtocol, Protocol.depth, depth, depth_toProtocol i₀ l, depth_toProtocol i₀ r]
 
+/--
+@isnad1 id=eq.0h3v.s4.f14633d57e6f from=translated src=- shape=732c8cef vocab=a6d19098
+-/
 @[simp] theorem leaves_toProtocol (i₀ : Fin n) :
     ∀ F : Formula n, (F.toProtocol i₀).leaves = F.leaves
   | lit _ _ => rfl
@@ -221,7 +251,9 @@ noncomputable def toFormula :
   | bob c l r, A, B =>
       .and (l.toFormula A fun y => B y ∧ c y = false) (r.toFormula A fun y => B y ∧ c y = true)
 
-/-- The formula of a protocol solving the game on `A × B` is `1` on `A` and `0` on `B`. -/
+/-- The formula of a protocol solving the game on `A × B` is `1` on `A` and `0` on `B`.
+@isnad1 id=and.1h4v.s6.59bf06db7c46 from=translated src=- shape=d332731c vocab=bc1ed48f
+-/
 theorem toFormula_spec :
     ∀ (P : Protocol n) (A B : (Fin n → Bool) → Prop), P.Solves A B →
       (∀ x, A x → (P.toFormula A B).eval x = true) ∧ (∀ y, B y → (P.toFormula A B).eval y = false)
@@ -297,6 +329,9 @@ theorem toFormula_spec :
       · exact Or.inl (hl.2 y ⟨hy, hc⟩)
       · exact Or.inr (hr.2 y ⟨hy, hc⟩)
 
+/--
+@isnad1 id=eq.0h4v.s4.199c12d1820f from=translated src=- shape=6b819182 vocab=5294fc7b
+-/
 @[simp] theorem depth_toFormula :
     ∀ (P : Protocol n) (A B : (Fin n → Bool) → Prop), (P.toFormula A B).depth = P.depth
   | answer _, _, _ => by
@@ -307,6 +342,9 @@ theorem toFormula_spec :
   | bob _ l r, A, B => by
     simp [toFormula, Formula.depth, depth, depth_toFormula l, depth_toFormula r]
 
+/--
+@isnad1 id=eq.0h4v.s4.3cf924d3737b from=translated src=- shape=6b819182 vocab=a35509a6
+-/
 @[simp] theorem leaves_toFormula :
     ∀ (P : Protocol n) (A B : (Fin n → Bool) → Prop), (P.toFormula A B).leaves = P.leaves
   | answer _, _, _ => by

@@ -35,7 +35,9 @@ namespace Algebraic.Cutwidth.Extractor
 open scoped Classical
 
 /-- A small output test has fewer than `K` bad input fibres. The extractor is
-applied to the uniform source on all bad inputs. -/
+applied to the uniform source on all bad inputs.
+@isnad1 id=lt.3h7v.s6.58e3535c5130 from=translated src=- shape=2e6d7be9 vocab=1788db1c
+-/
 theorem FlatSeededExtractor.card_badInputs_lt {α Seed Ω : Type*}
     [Fintype α] [Fintype Seed] [Fintype Ω] [Nonempty Seed] [Nonempty Ω]
     {E : α → Seed → Ω} {K : Nat} {ε : ℝ}
@@ -46,7 +48,9 @@ theorem FlatSeededExtractor.card_badInputs_lt {α Seed Ω : Type*}
 
 /-- Extraction from flat supports of size at least `K` gives sampling for
 every probability source with point masses at most `1 / L`, if `K ≤ δ * L`.
-The source and seed need not have the same type or cardinality. -/
+The source and seed need not have the same type or cardinality.
+@isnad1 id=sampler.4h8v.s6.92bbd7dcb7c6 from=translated src=- shape=78097843 vocab=3e050218
+-/
 theorem FlatSeededExtractor.sampler {α Seed Ω : Type*}
     [Fintype α] [Fintype Seed] [Fintype Ω] [Nonempty Seed] [Nonempty Ω]
     {E : α → Seed → Ω} {K : Nat} {L ε δ : ℝ}
@@ -55,7 +59,9 @@ theorem FlatSeededExtractor.sampler {α Seed Ω : Type*}
   Internal.sampler_of_flatSeededExtractor extract positive source budget
 
 /-- For a uniform source on `P`, at most a `δ` fraction of inputs are bad
-whenever `K ≤ δ * P.card`. This keeps all source and seed multiplicities. -/
+whenever `K ≤ δ * P.card`. This keeps all source and seed multiplicities.
+@isnad1 id=le.4h9v.s7.6aa8e704c848 from=translated src=- shape=83927632 vocab=b8a74ee2
+-/
 theorem FlatSeededExtractor.card_badInputs_inter_le {α Seed Ω : Type*}
     [Fintype α] [Fintype Seed] [Fintype Ω] [Nonempty Seed] [Nonempty Ω]
     {E : α → Seed → Ω} {K : Nat} {ε δ : ℝ}
@@ -66,7 +72,9 @@ theorem FlatSeededExtractor.card_badInputs_inter_le {α Seed Ω : Type*}
   Internal.card_badInputs_inter_le extract positive P budget T small
 
 /-- Returning the uniform seed itself has no bad inputs for any small test.
-This nonvacuous example uses a seed as large as the output. -/
+This nonvacuous example uses a seed as large as the output.
+@isnad1 id=sampler.1h4v.s5.9265ebdd7d51 from=translated src=- shape=9b718b0b vocab=506e96c7
+-/
 theorem sampler_seedProjection {α Seed : Type*}
     [Fintype α] [Fintype Seed] [Nonempty Seed] {L ε : ℝ} (hε : 0 ≤ ε) :
     Sampler (fun (_ : α) (y : Seed) => y) L ε 0 :=

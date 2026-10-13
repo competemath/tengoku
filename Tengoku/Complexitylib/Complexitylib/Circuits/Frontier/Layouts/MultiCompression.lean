@@ -33,14 +33,23 @@ noncomputable def multiQuotient : Multigraph c.blocks c.External where
   src e := c.blockOf (G.src e.1)
   tgt e := c.blockOf (G.tgt e.1)
 
+/--
+@isnad1 id=loopless.0h5v.s5.d9b2a981ff3e from=translated src=- shape=eb2e5be2 vocab=5f299d94
+-/
 theorem multiQuotient_loopless : c.multiQuotient.Loopless := fun e => e.2
 
+/--
+@isnad1 id=mem.1h7v.s6.cc79b557def9 from=translated src=- shape=1b195086 vocab=2433b864
+-/
 theorem external_of_cut {B : c.blocks} {e : E} (he : e ∈ G.cut {v | v ∈ B.1}) :
     e ∈ c.External := by
   simp only [mem_cut, mem_ofPred_eq, mem_iff_blockOf_eq] at he
   intro h
   exact he (by rw [h])
 
+/--
+@isnad1 id=eq.0h6v.s7.598d93f6f134 from=translated src=- shape=34f94987 vocab=0c0408d5
+-/
 theorem ncard_edgesAt_multiQuotient (B : c.blocks) :
     (c.multiQuotient.edgesAt B).ncard = (G.cut {v | v ∈ B.1}).ncard := by
   have heq : c.multiQuotient.edgesAt B =
@@ -55,9 +64,15 @@ theorem ncard_edgesAt_multiQuotient (B : c.blocks) :
   congr 1
   exact inter_eq_left.mpr fun e he => c.external_of_cut he
 
+/--
+@isnad1 id=maxdegre.0h5v.s5.ffaff30d6fb8 from=translated src=- shape=38fc3523 vocab=cb35c38b
+-/
 theorem multiQuotient_maxDegreeLE : c.multiQuotient.MaxDegreeLE d := fun B =>
   (c.ncard_edgesAt_multiQuotient B).trans_le (c.cut_le _ B.2)
 
+/--
+@isnad1 id=le.1h6v.s7.9991c47fe0c6 from=translated src=- shape=8f8af8a9 vocab=9db6c0ed
+-/
 theorem Terminal.multi_degree_sum [Finite E] (hc : c.Terminal) (e : c.External) :
     d + 3 ≤ (c.multiQuotient.edgesAt (c.multiQuotient.src e)).ncard +
       (c.multiQuotient.edgesAt (c.multiQuotient.tgt e)).ncard := by
@@ -79,6 +94,9 @@ theorem Terminal.multi_degree_sum [Finite E] (hc : c.Terminal) (e : c.External) 
   change d + 3 ≤ (G.cut {v | v ∈ B.1}).ncard + (G.cut {v | v ∈ B'.1}).ncard
   lia
 
+/--
+@isnad1 id=le.3h6v.s7.71fbda1d86c5 from=translated src=- shape=88d7ec19 vocab=46983bbc
+-/
 theorem Terminal.multi_degree_ge_three [Finite E] (hc : c.Terminal) (hG : G.Connected)
     (two : 2 ≤ c.blocks.card) (B : c.blocks) : 3 ≤ (c.multiQuotient.edgesAt B).ncard := by
   obtain ⟨B', hB', hne⟩ := Finset.exists_mem_ne two B.1
@@ -98,7 +116,9 @@ theorem Terminal.multi_degree_ge_three [Finite E] (hc : c.Terminal) (hG : G.Conn
     exact hmem
   rcases hi with h | h <;> rw [h] at hsum <;> lia
 
-/-- Every merge moves at least one edge inside a block. -/
+/-- Every merge moves at least one edge inside a block.
+@isnad1 id=le.0h5v.s5.51226c960f5e from=translated src=- shape=c4af6457 vocab=a4c4b281
+-/
 theorem external_add_vertices_le [Finite E] :
     c.External.ncard + Nat.card V ≤ Nat.card E + c.blocks.card := by
   have hin : {e | ∃ B ∈ c.blocks, G.src e ∈ B ∧ G.tgt e ∈ B} = c.Externalᶜ := by
@@ -116,7 +136,9 @@ theorem external_add_vertices_le [Finite E] :
   rw [hin] at hcard
   lia
 
-/-- A nontrivial terminal core has at least as many edges as blocks. -/
+/-- A nontrivial terminal core has at least as many edges as blocks.
+@isnad1 id=le.3h5v.s6.d3879383a364 from=translated src=- shape=d1f0594e vocab=3f37f5c9
+-/
 theorem Terminal.multi_blocks_le_edges [Finite E] (hc : c.Terminal) (hG : G.Connected)
     (two : 2 ≤ c.blocks.card) : c.blocks.card ≤ c.External.ncard := by
   classical
@@ -130,7 +152,9 @@ theorem Terminal.multi_blocks_le_edges [Finite E] (hc : c.Terminal) (hG : G.Conn
   lia
 
 /-- The terminal multigraph core has at most `3d/(2d-3)` times the original cycle rank
-edges, expressed without division. -/
+edges, expressed without division.
+@isnad1 id=le.3h5v.s6.8c85c5636f9a from=translated src=- shape=5187ab24 vocab=3650f8c9
+-/
 theorem Terminal.multi_edge_bound [Finite E] (hc : c.Terminal) (hG : G.Connected)
     (two : 2 ≤ c.blocks.card) :
     (2 * d - 3) * c.External.ncard ≤ 3 * d * G.cycleRank := by
@@ -152,6 +176,9 @@ theorem Terminal.multi_edge_bound [Finite E] (hc : c.Terminal) (hG : G.Connected
   have hsub : 2 * d - 3 + 3 = 2 * d := by lia
   nlinarith
 
+/--
+@isnad1 id=eq.0h6v.s7.7cbf3017a4ba from=translated src=- shape=8b168847 vocab=25bd191f
+-/
 theorem ncard_cut_multiQuotient (T : Set c.blocks) :
     (G.cut {v | c.blockOf v ∈ T}).ncard = (c.multiQuotient.cut T).ncard := by
   have heq : c.multiQuotient.cut T =
@@ -163,7 +190,9 @@ theorem ncard_cut_multiQuotient (T : Set c.blocks) :
   intro h
   exact he (by change c.blockOf (G.src e) ∈ T ↔ c.blockOf (G.tgt e) ∈ T; rw [h])
 
-/-- Expand any layout of the multigraph core, with only logarithmic additional width. -/
+/-- Expand any layout of the multigraph core, with only logarithmic additional width.
+@isnad1 id=ex.2h7v.s8.06f670d53657 from=translated src=- shape=07159ffc vocab=511d1e83
+-/
 theorem exists_layout_multi [Finite V] [Finite E] {key : c.blocks → ℕ}
     (hkey : key.Injective) {X : ℝ}
     (hX : ∀ q, ((c.multiQuotient.cut {B | key B < q}).ncard : ℝ) ≤ X) :

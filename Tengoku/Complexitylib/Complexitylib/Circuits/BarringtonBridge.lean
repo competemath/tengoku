@@ -49,7 +49,9 @@ private theorem cycleType5 {g : Perm (Fin 5)} (hc : g.IsCycle) (ho : orderOf g =
     `5`-cycle `a` there is a program representing `f` through `a`. (The two
     `5`-cycles are conjugate — `isConj_iff_cycleType_eq` — and pointwise
     conjugation changes the representing permutation without adding
-    instructions.) -/
+    instructions.)
+@isnad1 id=ex.5h4v.s7.f3d8567e5226 from=translated src=- shape=2577307a vocab=f42c5d81
+-/
 theorem BP.Computes_retarget {p : BP 5} {f : (ℕ → Bool) → Bool} {σ : Perm (Fin 5)}
     (hp : BP.Computes σ p f) (hσc : σ.IsCycle) (hσo : orderOf σ = 5)
     {a : Perm (Fin 5)} (hac : a.IsCycle) (hao : orderOf a = 5) :
@@ -62,7 +64,9 @@ theorem BP.Computes_retarget {p : BP 5} {f : (ℕ → Bool) → Bool} {σ : Perm
   exact ⟨_, h⟩
 
 /-- **Exact-length retargeting.** Retargeting between `5`-cycles by pointwise
-conjugation preserves program length exactly. -/
+conjugation preserves program length exactly.
+@isnad1 id=ex.5h4v.s7.7da3e90b2ed9 from=translated src=- shape=b87f98e1 vocab=ccd9ded4
+-/
 theorem BP.Computes_retarget_length {p : BP 5}
     {f : (ℕ → Bool) → Bool} {σ : Perm (Fin 5)}
     (hp : BP.Computes σ p f) (hσc : σ.IsCycle) (hσo : orderOf σ = 5)
@@ -81,7 +85,9 @@ theorem BP.Computes_retarget_length {p : BP 5}
 
     Proof: `c = ⁅a, b⁆` for `5`-cycles `a, b` (`every_fiveCycle_is_commutator`);
     retarget the two subprograms to `a` and `b`; the commutator trick
-    (`BP.Computes_and`) then represents `f ∧ g` through `⁅a, b⁆ = c`. -/
+    (`BP.Computes_and`) then represents `f ∧ g` through `⁅a, b⁆ = c`.
+@isnad1 id=ex.8h7v.s7.35e80aac756a from=translated src=- shape=3d9e068c vocab=ce939c99
+-/
 theorem BP.Computes_and5 {p q : BP 5} {f g : (ℕ → Bool) → Bool} {σ τ : Perm (Fin 5)}
     (hp : BP.Computes σ p f) (hσc : σ.IsCycle) (hσo : orderOf σ = 5)
     (hq : BP.Computes τ q g) (hτc : τ.IsCycle) (hτo : orderOf τ = 5)

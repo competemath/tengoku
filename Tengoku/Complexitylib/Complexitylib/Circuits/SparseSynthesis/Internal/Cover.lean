@@ -23,12 +23,18 @@ open scoped BigOperators
 
 variable {α β : Type} [Fintype α]
 
+/--
+@isnad1 id=eq.0h4v.s6.f6a4c99de556 from=translated src=- shape=0181827d vocab=c6425e2c
+-/
 theorem sum_card_filter_comm (s : Finset β) (r : α → β → Prop) [DecidableRel r] :
     ∑ a : α, (s.filter (r a)).card =
       ∑ b ∈ s, (Finset.univ.filter fun a => r a b).card := by
   simp only [Finset.card_eq_sum_ones, Finset.sum_filter]
   exact Finset.sum_comm
 
+/--
+@isnad1 id=ex.1h5v.s6.5bbac7230c09 from=translated src=- shape=35490e01 vocab=fa6ce9ce
+-/
 theorem exists_dense_row (s : Finset β) (r : α → β → Prop) [DecidableRel r]
     [Nonempty α]
     (a : ℕ) (dense : ∀ b ∈ s, Fintype.card α ≤
@@ -44,6 +50,9 @@ theorem exists_dense_row (s : Finset β) (r : α → β → Prop) [DecidableRel 
   simp only [Finset.sum_const, smul_eq_mul, ← Finset.mul_sum] at lower
   nlinarith
 
+/--
+@isnad1 id=ex.2h6v.s8.804c945dce86 from=translated src=- shape=3b46d270 vocab=e642252a
+-/
 theorem exists_partial_cover (s : Finset β) (r : α → β → Prop) [DecidableRel r]
     [Nonempty α] [DecidableEq α]
     (a : ℕ) (positive : 0 < a)
@@ -86,6 +95,9 @@ theorem exists_partial_cover (s : Finset β) (r : α → β → Prop) [Decidable
         mul_le_mul_of_nonneg_right restBound (pow_nonneg ratio _)
       _ = _ := by rw [pow_succ]; ring
 
+/--
+@isnad1 id=ex.3h6v.s7.413391fe6bf9 from=translated src=- shape=683a40dd vocab=3b659592
+-/
 theorem exists_cover (s : Finset β) (r : α → β → Prop) [DecidableRel r]
     [Nonempty α] [DecidableEq α] (a length : ℕ) (positive : 0 < a)
     (size : s.card ≤ 4 ^ length)

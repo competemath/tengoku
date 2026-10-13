@@ -26,6 +26,9 @@ namespace Algebraic.Cutwidth.Extractor.Internal
 
 open scoped Classical
 
+/--
+@isnad1 id=le.1h6v.s5.5ab67a621435 from=translated src=- shape=10b2f0f0 vocab=7ed45ea4
+-/
 theorem twoBlockRepair_nonnegative {α β : Type*} [Fintype β]
     (p : α × β → ℝ) (nonnegative : ∀ x, 0 ≤ p x) (K : Nat) (μ : ℝ) :
     ∀ x, 0 ≤ twoBlockRepair p K μ x := by
@@ -36,6 +39,9 @@ theorem twoBlockRepair_nonnegative {α β : Type*} [Fintype β]
       (Nat.cast_nonneg _)
   · exact nonnegative x
 
+/--
+@isnad1 id=cappedwe.1h6v.s5.7316f5917785 from=translated src=- shape=c2d4ff06 vocab=cd46e3b5
+-/
 theorem twoBlockRepair_capped {α β : Type*} [Fintype β]
     (p : α × β → ℝ) (N K : Nat) (μ : ℝ) (cap : CappedWeight p N) :
     CappedWeight (twoBlockRepair p K μ) N := by
@@ -56,6 +62,9 @@ theorem twoBlockRepair_capped {α β : Type*} [Fintype β]
     exact (div_le_iff₀ card_pos).mpr (by simpa using row_cap)
   · exact cap ab
 
+/--
+@isnad1 id=eq.0h5v.s5.31c98dfb7493 from=translated src=- shape=ff51695b vocab=3c32beb7
+-/
 theorem twoBlockRepair_firstWeight {α β : Type*} [Fintype β] [Nonempty β]
     (p : α × β → ℝ) (K : Nat) (μ : ℝ) :
     firstWeight (twoBlockRepair p K μ) = firstWeight p := by
@@ -68,6 +77,9 @@ theorem twoBlockRepair_firstWeight {α β : Type*} [Fintype β] [Nonempty β]
   · simp only [twoBlockRepair, low, ite_false]
     rfl
 
+/--
+@isnad1 id=isprobab.1h5v.s5.3f4d58eeb76c from=translated src=- shape=450f2266 vocab=f9abe111
+-/
 theorem twoBlockRepair_probability {α β : Type*} [Fintype α] [Fintype β] [Nonempty β]
     (p : α × β → ℝ) (probability : IsProbabilityWeight p) (K : Nat) (μ : ℝ) :
     IsProbabilityWeight (twoBlockRepair p K μ) := by
@@ -77,6 +89,9 @@ theorem twoBlockRepair_probability {α β : Type*} [Fintype α] [Fintype β] [No
   rw [twoBlockRepair_firstWeight]
   simpa only [firstWeight, Fintype.sum_prod_type] using probability.2
 
+/--
+@isnad1 id=le.3h7v.s6.688d341a054e from=translated src=- shape=e26b2569 vocab=8cef8e6b
+-/
 theorem twoBlockRepair_conditional_cap {α β : Type*} [Fintype β] [Nonempty β]
     (p : α × β → ℝ) (nonnegative : ∀ x, 0 ≤ p x) {K : Nat} {μ : ℝ}
     (size : K ≤ Fintype.card β) (cap : ∀ x, p x ≤ μ) :
@@ -97,6 +112,9 @@ theorem twoBlockRepair_conditional_cap {α β : Type*} [Fintype β] [Nonempty β
     exact (mul_le_mul_of_nonneg_left (cap (a, b)) (Nat.cast_nonneg K)).trans
       (le_of_not_gt low)
 
+/--
+@isnad1 id=le.1h6v.s7.0c1b1a39fc7c from=translated src=- shape=f276e56a vocab=5aafd5bc
+-/
 theorem twoBlockRepair_row_l1_le {α β : Type*} [Fintype β] [Nonempty β]
     (p : α × β → ℝ) (nonnegative : ∀ x, 0 ≤ p x) (K : Nat) (μ : ℝ) (a : α) :
     (∑ b, |p (a, b) - twoBlockRepair p K μ (a, b)|) ≤
@@ -117,6 +135,9 @@ theorem twoBlockRepair_row_l1_le {α β : Type*} [Fintype β] [Nonempty β]
   · simp only [twoBlockRepair, low, ite_false, sub_self, abs_zero,
       Finset.sum_const_zero, mul_zero, le_refl]
 
+/--
+@isnad1 id=le.1h5v.s6.ff4c71f121a3 from=translated src=- shape=674e3184 vocab=48606a4f
+-/
 theorem twoBlockRepair_dist_le_low_mass {α β : Type*}
     [Fintype α] [Fintype β] [Nonempty β]
     (p : α × β → ℝ) (nonnegative : ∀ x, 0 ≤ p x) (K : Nat) (μ : ℝ) :
@@ -130,6 +151,9 @@ theorem twoBlockRepair_dist_le_low_mass {α β : Type*}
       Finset.sum_le_sum fun a _ => twoBlockRepair_row_l1_le p nonnegative K μ a
     _ = _ := by rw [← Finset.mul_sum, mul_comm]
 
+/--
+@isnad1 id=le.2h5v.s6.deab2b923dd2 from=translated src=- shape=28e6581d vocab=1dd103f2
+-/
 theorem twoBlockRepair_dist_le {α β : Type*}
     [Fintype α] [Fintype β] [Nonempty β]
     (p : α × β → ℝ) (probability : IsProbabilityWeight p) {K : Nat} {μ : ℝ}
@@ -152,6 +176,9 @@ theorem twoBlockRepair_dist_le {α β : Type*}
       · exact mul_nonneg (Nat.cast_nonneg _) cap_nonnegative
     _ = _ := by rw [Finset.sum_const, Finset.card_univ, nsmul_eq_mul, mul_assoc]
 
+/--
+@isnad1 id=cappedwe.2h5v.s6.7d7000eb254d from=translated src=- shape=7692b04c vocab=0e471ce6
+-/
 theorem twoBlockRepair_first_cap {α β : Type*} [Fintype β] [Nonempty β]
     (p : α × β → ℝ) {K : Nat} {μ : ℝ} (cap : ∀ x, p x ≤ μ)
     (budget : (K : ℝ) * Fintype.card β * μ ≤ 1) :
@@ -165,6 +192,9 @@ theorem twoBlockRepair_first_cap {α β : Type*} [Fintype β] [Nonempty β]
   exact (mul_le_mul_of_nonneg_left row_cap (Nat.cast_nonneg K)).trans
     (by simpa only [mul_assoc] using budget)
 
+/--
+@isnad1 id=ex.5h5v.s7.99b4c3a45e01 from=translated src=- shape=5b6112a6 vocab=252f19e7
+-/
 theorem exists_twoBlock_repair {α β : Type*} [Fintype α] [Fintype β]
     (p : α × β → ℝ) (probability : IsProbabilityWeight p) {K : Nat} {μ : ℝ}
     (positive : 0 < K) (size : K ≤ Fintype.card β) (cap : ∀ x, p x ≤ μ)
@@ -179,6 +209,9 @@ theorem exists_twoBlock_repair {α β : Type*} [Fintype α] [Fintype β]
     twoBlockRepair_conditional_cap p probability.1 size cap,
     twoBlockRepair_dist_le p probability cap⟩
 
+/--
+@isnad1 id=le.1h4v.s7.a9bacbe3883c from=translated src=- shape=f0c86448 vocab=a2cad4f3
+-/
 theorem twoBlock_pow_two_budget {m t k e : Nat} (entropy : m + t + e ≤ k) :
     (2 : ℝ) ^ m * 2 ^ t * (2 ^ k)⁻¹ ≤ (2 ^ e)⁻¹ := by
   have powers : (2 : ℝ) ^ (m + t + e) ≤ 2 ^ k :=
@@ -199,6 +232,9 @@ private theorem twoBlock_pow_two_point_cap {α : Type*} (p : α → ℝ) {k : Na
   rw [← one_div ((2 : ℝ) ^ k)]
   exact (le_div_iff₀ (by positivity)).mpr (by simpa only [mul_comm] using point)
 
+/--
+@isnad1 id=ex.6h7v.s8.5fe40ae9fe99 from=translated src=- shape=ac5730db vocab=348eee0b
+-/
 theorem exists_twoBlock_repair_pow_two {α β : Type*} [Fintype α] [Fintype β]
     (p : α × β → ℝ) (probability : IsProbabilityWeight p) {m t k e : Nat}
     (card_first : Fintype.card α = 2 ^ m) (card_second : Fintype.card β = 2 ^ m)
@@ -222,6 +258,9 @@ theorem exists_twoBlock_repair_pow_two {α β : Type*} [Fintype α] [Fintype β]
   rw [card_first]
   exact_mod_cast cost
 
+/--
+@isnad1 id=ex.5h6v.s8.7e0479107ce7 from=translated src=- shape=1c949bdf vocab=f7d64e1f
+-/
 theorem exists_twoBlock_repair_pow_two_capped {α : Type*} [Fintype α]
     (p : α × α → ℝ) (probability : IsProbabilityWeight p) {m s k e : Nat}
     (card : Fintype.card α = 2 ^ m) (cap : CappedWeight p (2 ^ k))

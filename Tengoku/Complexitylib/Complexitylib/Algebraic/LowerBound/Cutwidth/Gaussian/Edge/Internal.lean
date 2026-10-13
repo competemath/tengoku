@@ -31,7 +31,9 @@ open scoped RealInnerProductSpace NNReal ENNReal
 
 /-! ### Real Gaussian estimates -/
 
-/-- The density of `gaussianReal m v` is at most its value at the mean. -/
+/-- The density of `gaussianReal m v` is at most its value at the mean.
+@isnad1 id=le.0h3v.s5.69ccc7df6606 from=translated src=- shape=5bb0d37b vocab=619c4326
+-/
 theorem gaussianPDFReal_le_inv_sqrt (m : ℝ) (v : ℝ≥0) (x : ℝ) :
     gaussianPDFReal m v x ≤ (√(2 * Real.pi * v))⁻¹ := by
   rw [gaussianPDFReal_def]
@@ -39,13 +41,17 @@ theorem gaussianPDFReal_le_inv_sqrt (m : ℝ) (v : ℝ≥0) (x : ℝ) :
   exact div_nonpos_of_nonpos_of_nonneg (neg_nonpos.2 (sq_nonneg _)) (by positivity)
 
 /-- A nondegenerate real Gaussian gives each set at most the peak density times
-its Lebesgue measure. -/
+its Lebesgue measure.
+@isnad1 id=le.1h3v.s6.440446e7a923 from=translated src=- shape=baff3b32 vocab=90b4ecf8
+-/
 theorem gaussianReal_le_mul_volume (m : ℝ) {v : ℝ≥0} (hv : v ≠ 0) (S : Set ℝ) :
     gaussianReal m v S ≤ ENNReal.ofReal (√(2 * Real.pi * v))⁻¹ * volume S := by
   rw [gaussianReal_apply m hv, ← setLIntegral_const]
   exact lintegral_mono fun x => ENNReal.ofReal_le_ofReal (gaussianPDFReal_le_inv_sqrt m v x)
 
-/-- The half-line integral of `x * exp (-b x²)`. -/
+/-- The half-line integral of `x * exp (-b x²)`.
+@isnad1 id=eq.1h1v.s6.31056a074b7c from=translated src=- shape=c96c17c2 vocab=0d2b8861
+-/
 theorem integral_Ioi_mul_exp_neg_mul_sq {b : ℝ} (hb : 0 < b) :
     ∫ x in Ioi (0 : ℝ), x * Real.exp (-b * x ^ 2) = (2 * b)⁻¹ := by
   have h := integral_mul_cexp_neg_mul_sq (b := (b : ℂ)) (by simpa using hb)
@@ -56,7 +62,9 @@ theorem integral_Ioi_mul_exp_neg_mul_sq {b : ℝ} (hb : 0 < b) :
   exact_mod_cast h'
 
 /-- The mean absolute value of a centered real Gaussian of variance `v` is
-`√(2v/π)`. -/
+`√(2v/π)`.
+@isnad1 id=eq.0h1v.s5.6ac3ae786f1f from=translated src=- shape=68ec8988 vocab=a5cde7ca
+-/
 theorem integral_abs_gaussianReal (v : ℝ≥0) :
     ∫ x, |x| ∂gaussianReal 0 v = √(2 * v / Real.pi) := by
   rcases eq_or_ne v 0 with rfl | hv
@@ -77,7 +85,9 @@ theorem integral_abs_gaussianReal (v : ℝ≥0) :
   field_simp
 
 /-- For independent centered Gaussians `Y` and `X` of variances `r` and `s > 0`,
-the event `|X - c| ≤ |Y|` has probability at most `2 E|Y| / √(2πs)`. -/
+the event `|X - c| ≤ |Y|` has probability at most `2 E|Y| / √(2πs)`.
+@isnad1 id=le.1h3v.s7.333fa6870b48 from=translated src=- shape=f86d2aa9 vocab=4fe58428
+-/
 theorem prod_gaussianReal_le (r s : ℝ≥0) (hs : s ≠ 0) (c : ℝ) :
     ((gaussianReal 0 r).prod (gaussianReal 0 s)) {p : ℝ × ℝ | |p.2 - c| ≤ |p.1|} ≤
       ENNReal.ofReal ((√(2 * Real.pi * s))⁻¹ * (2 * √(2 * r / Real.pi))) := by
@@ -108,7 +118,9 @@ theorem prod_gaussianReal_le (r s : ℝ≥0) (hs : s ≠ 0) (c : ℝ) :
         · exact ae_of_all _ fun y => by positivity
     _ = _ := (ENNReal.ofReal_mul (by positivity)).symm
 
-/-- The constant in the crossing bound. -/
+/-- The constant in the crossing bound.
+@isnad1 id=eq.2h2v.s7.f1e8ce4ffe7c from=translated src=- shape=4eb6d28a vocab=32860076
+-/
 theorem crossing_const_eq {r s : ℝ} (hr : 0 ≤ r) (hs : 0 < s) :
     (√(2 * Real.pi * s))⁻¹ * (2 * √(2 * r / Real.pi)) = 2 / Real.pi * (√r / √s) := by
   have hπ := Real.pi_pos
@@ -126,23 +138,32 @@ section Forms
 
 variable {ι : Type} [Fintype ι]
 
-/-- A form is the inner product of the coefficient and sample vectors. -/
+/-- A form is the inner product of the coefficient and sample vectors.
+@isnad1 id=eq.0h3v.s12.59ab8d1c9a63 from=translated src=- shape=ca3c7e5c vocab=995d8675
+-/
 theorem form_eq_inner (a ω : ι → ℝ) :
     form a ω = innerSL ℝ (toLp 2 a : EuclideanSpace ℝ ι) (toLp 2 ω) := by
   simp [form, PiLp.inner_apply, mul_comm]
 
+/--
+@isnad1 id=measurab.0h2v.s4.f950c660e1d6 from=translated src=- shape=039d0b8d vocab=53417729
+-/
 theorem measurable_form (a : ι → ℝ) : Measurable (form a) := by
   unfold form; fun_prop
 
 /-- Under the standard Gaussian, the inner product with `u` has law
-`gaussianReal 0 ‖u‖²`. -/
+`gaussianReal 0 ‖u‖²`.
+@isnad1 id=eq.0h2v.s11.34f030e15a01 from=translated src=- shape=ea930662 vocab=530f5564
+-/
 theorem map_innerSL_stdGaussian (u : EuclideanSpace ℝ ι) :
     (stdGaussian (EuclideanSpace ℝ ι)).map (innerSL ℝ u) =
       gaussianReal 0 (‖u‖ ^ 2).toNNReal := by
   rw [IsGaussian.map_eq_gaussianReal, integral_strongDual_stdGaussian, variance_dual_stdGaussian,
     innerSL_apply_norm]
 
-/-- Under the standard Gaussian, inner products have covariance `⟪u, v⟫`. -/
+/-- Under the standard Gaussian, inner products have covariance `⟪u, v⟫`.
+@isnad1 id=eq.0h3v.s12.8746aacb50b9 from=translated src=- shape=ea20dc99 vocab=c3e3a74f
+-/
 theorem cov_innerSL_stdGaussian (u v : EuclideanSpace ℝ ι) :
     cov[innerSL ℝ u, innerSL ℝ v; stdGaussian (EuclideanSpace ℝ ι)] = ⟪u, v⟫ := by
   have h := covarianceBilin_apply_eq_cov (μ := stdGaussian (EuclideanSpace ℝ ι))
@@ -151,7 +172,9 @@ theorem cov_innerSL_stdGaussian (u v : EuclideanSpace ℝ ι) :
   exact h.symm
 
 /-- Inner products with orthogonal vectors are independent under the standard
-Gaussian, so their joint law is the product of their marginals. -/
+Gaussian, so their joint law is the product of their marginals.
+@isnad1 id=eq.1h3v.s12.838d69eb78b6 from=translated src=- shape=726f6576 vocab=e35bf698
+-/
 theorem map_pair_stdGaussian (u v : EuclideanSpace ℝ ι) (huv : ⟪u, v⟫ = 0) :
     (stdGaussian (EuclideanSpace ℝ ι)).map (fun x => (innerSL ℝ u x, innerSL ℝ v x)) =
       (gaussianReal 0 (‖u‖ ^ 2).toNNReal).prod (gaussianReal 0 (‖v‖ ^ 2).toNNReal) := by
@@ -162,7 +185,9 @@ theorem map_pair_stdGaussian (u v : EuclideanSpace ℝ ι) (huv : ⟪u, v⟫ = 0
   rw [(indepFun_iff_map_prod_eq_prod_map_map (by fun_prop) (by fun_prop)).1 hind,
     map_innerSL_stdGaussian, map_innerSL_stdGaussian]
 
-/-- The law of a Gaussian form. -/
+/-- The law of a Gaussian form.
+@isnad1 id=eq.0h2v.s6.57205bc8cc83 from=translated src=- shape=8b4ac6d2 vocab=a859e89b
+-/
 theorem gaussPi_map_form (a : ι → ℝ) :
     (gaussPi ι).map (form a) = gaussianReal 0 (∑ i, a i ^ 2).toNNReal := by
   have h : form a = innerSL ℝ (toLp 2 a : EuclideanSpace ℝ ι) ∘ toLp 2 := by
@@ -171,7 +196,9 @@ theorem gaussPi_map_form (a : ι → ℝ) :
     map_innerSL_stdGaussian, EuclideanSpace.real_norm_sq_eq]
 
 /-- Two Gaussian forms with orthogonal coefficients are independent: their joint
-law is the product of their marginal laws. -/
+law is the product of their marginal laws.
+@isnad1 id=eq.1h3v.s7.8ca6c6a0454b from=translated src=- shape=7be87c21 vocab=453b1553
+-/
 theorem gaussPi_map_form_pair (a b : ι → ℝ) (hab : ∑ i, a i * b i = 0) :
     (gaussPi ι).map (fun ω => (form a ω, form b ω)) =
       (gaussianReal 0 (∑ i, a i ^ 2).toNNReal).prod
@@ -186,6 +213,9 @@ theorem gaussPi_map_form_pair (a b : ι → ℝ) (hab : ∑ i, a i * b i = 0) :
 
 /-! ### The three bounds -/
 
+/--
+@isnad1 id=le.2h4v.s8.70d5dfc59ff0 from=translated src=- shape=c9bfad2a vocab=83ff180f
+-/
 theorem gaussPi_between_le (α β : ι → ℝ)
     (hnorm : ∑ i, α i ^ 2 = ∑ i, β i ^ 2) (hsum : 0 < ∑ i, (α i + β i) ^ 2) (t : ℝ) :
     (gaussPi ι).real {ω | Between t (form α ω) (form β ω)} ≤
@@ -222,6 +252,9 @@ theorem gaussPi_between_le (α β : ι → ℝ)
         rw [Real.coe_toNNReal _ (hnn a), Real.coe_toNNReal _ (hnn b),
           crossing_const_eq (hnn a) (by simpa [hb] using hsum)]
 
+/--
+@isnad1 id=le.2h4v.s7.9a6d48bfaf5d from=translated src=- shape=da969b15 vocab=7435cc1f
+-/
 theorem gaussPi_window_le (α : ι → ℝ) (hα : ∑ i, α i ^ 2 = 1)
     (s : ℝ) {δ : ℝ} (hδ : 0 ≤ δ) :
     (gaussPi ι).real {ω | s ≤ form α ω ∧ form α ω < s + δ} ≤ δ / Real.sqrt (2 * Real.pi) := by
@@ -233,6 +266,9 @@ theorem gaussPi_window_le (α : ι → ℝ) (hα : ∑ i, α i ^ 2 = 1)
   refine (ENNReal.toReal_le_of_le_ofReal (by positivity) h).trans_eq ?_
   simp [div_eq_inv_mul]
 
+/--
+@isnad1 id=le.2h3v.s7.572f68f2b95b from=translated src=- shape=a1690ec4 vocab=f4d07612
+-/
 theorem gaussPi_tail_le (α : ι → ℝ) (hα : ∑ i, α i ^ 2 = 1)
     {T : ℝ} (hT : 0 < T) :
     (gaussPi ι).real {ω | T ≤ |form α ω|} ≤ 1 / T ^ 2 := by

@@ -23,6 +23,9 @@ open scoped Classical
 
 variable {W : Type} {H : SimpleGraph W}
 
+/--
+@isnad1 id=ex.4h5v.s7.6fa3713a550d from=translated src=- shape=6310143f vocab=596f1378
+-/
 theorem exists_of_ordered_bags {I : Type} [Fintype I] [LinearOrder I]
     (bag : I → Finset W) (vertices : ∀ w, ∃ i, w ∈ bag i)
     (edges : ∀ u v, H.Adj u v → ∃ i, u ∈ bag i ∧ v ∈ bag i)
@@ -54,6 +57,9 @@ private theorem lex_snd_le {ι : Type} [LinearOrder ι] {β : ι → Type}
   · exact (lt_irrefl _ h).elim
   · exact h
 
+/--
+@isnad1 id=ex.1h3v.s7.6e877c144e85 from=translated src=- shape=663b8f33 vocab=40cbadcb
+-/
 theorem exists_of_components [Fintype W] {b : Nat}
     (parts : ∀ C : H.ConnectedComponent,
       ∃ D : PathDecomposition C.toSimpleGraph, ∀ i, (D.bag i).card ≤ b) :

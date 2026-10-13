@@ -29,11 +29,15 @@ namespace Algebraic.Cutwidth
 open scoped Classical
 
 /-- Every cubic graph admits a balanced cut of size at most `3n/2`, simply
-because this counts all its edges. This coarse instance is unconditional. -/
+because this counts all its edges. This coarse instance is unconditional.
+@isnad1 id=bisectio.0h0v.s4.1375b2f3fdf6 from=translated src=- shape=e8deeb01 vocab=1b419af0
+-/
 theorem bisectionBound_coarse : BisectionBound (4 / 3) 0 :=
   PathDecomposition.Internal.bisectionBound_coarse
 
-/-- Increasing the slack and the size threshold weakens the bisection bound. -/
+/-- Increasing the slack and the size threshold weakens the bisection bound.
+@isnad1 id=bisectio.3h4v.s4.0ec8530cf907 from=translated src=- shape=90c0f928 vocab=c134a199
+-/
 theorem BisectionBound.mono {ξ ξ' : ℝ} {N₀ N₁ : Nat} (h : BisectionBound ξ N₀)
     (hξ : ξ ≤ ξ') (hN : N₀ ≤ N₁) : BisectionBound ξ' N₁ := by
   intro W _ _ H _ regular large

@@ -28,7 +28,9 @@ open scoped Classical
 
 /-- Partition a connected subcubic graph into disjoint connected sets of
 at most `3 M` vertices. Their number is at most `2 n / M`, with the
-positive denominator cleared. -/
+positive denominator cleared.
+@isnad1 id=ex.4h3v.s7.50f2409cbd53 from=translated src=- shape=28fc41be vocab=da4572ba
+-/
 theorem exists_partition {V : Type} [Fintype V] (B : SimpleGraph V)
     (connected : B.Connected) (degree : ∀ v, B.degree v ≤ 3)
     (M : Nat) (positive : 0 < M) (large : M < Fintype.card V) :

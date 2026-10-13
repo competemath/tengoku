@@ -112,6 +112,9 @@ private noncomputable def glue (D : PathDecomposition (H.induce A))
           E.consecutive ⟨w, hwB⟩ _ _ _ (Nat.sub_le_sub_right hij _)
             (Nat.sub_le_sub_right hjk _) hwi hwk⟩
 
+/--
+@isnad1 id=ex.8h10v.s8.a54e47429e72 from=translated src=- shape=14d3262c vocab=8fba71a6
+-/
 theorem exists_glue (D : PathDecomposition (H.induce A))
     (E : PathDecomposition (H.induce B))
     (cover : ∀ w, w ∈ A ∨ w ∈ B)
@@ -147,6 +150,9 @@ theorem exists_glue (D : PathDecomposition (H.induce A))
     · simpa only [ambientBag, Finset.card_map] using leftBound _
     · simpa only [ambientBag, Finset.card_map] using rightBound _
 
+/--
+@isnad1 id=ex.8h14v.s8.afa24a89c3be from=translated src=- shape=b549367f vocab=89a53a20
+-/
 theorem exists_glue_embeddings {U V : Type} {G : SimpleGraph U} {J : SimpleGraph V}
     (D : PathDecomposition G) (E : PathDecomposition J) (f : G ↪g H) (g : J ↪g H)
     (cover : ∀ w, w ∈ Set.range f ∨ w ∈ Set.range g)
@@ -182,6 +188,9 @@ theorem exists_glue_embeddings {U V : Type} {G : SimpleGraph U} {J : SimpleGraph
     congr 1
   exact ⟨F, hmap ▸ endF, boundF⟩
 
+/--
+@isnad1 id=ex.4h10v.s9.880a32ad47b2 from=translated src=- shape=e86d56a6 vocab=329302e2
+-/
 theorem exists_attach {V : Type} {G : SimpleGraph V} (f : G ↪g H) (X : Finset W)
     (D : PathDecomposition (H.induce {w | w ∉ Set.range f}))
     (E : PathDecomposition G) (hend : D.EndsAt (X.subtype (· ∉ Set.range f)))

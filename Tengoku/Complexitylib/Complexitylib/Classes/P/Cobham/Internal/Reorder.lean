@@ -43,6 +43,9 @@ def reorder : List Bool → List Bool
   | c :: _ => [c]
   | [] => []
 
+/--
+@isnad1 id=eq.0h3v.s4.fc21dee25dde from=translated src=- shape=a3615d93 vocab=1eb5c6a0
+-/
 theorem reorder_pair_pair (A B C : List Bool) :
     reorder (pair A (pair B C)) = pair A B := by
   induction A with
@@ -680,7 +683,9 @@ private theorem reorderTM_copy_loop :
           rw [hr]
           exact hpre1
 
-/-- `reorder` is polynomial-time, via the `reorderTM` scanner. -/
+/-- `reorder` is polynomial-time, via the `reorderTM` scanner.
+@isnad1 id=mem.0h0v.s4.52cd2d849e12 from=translated src=- shape=08f40544 vocab=0ec7951d
+-/
 theorem reorder_mem_FP : reorder ∈ FP := by
   refine ⟨1, 0, reorderTM, (fun m => 3 * m + 4), ?_, ?_⟩
   · intro z

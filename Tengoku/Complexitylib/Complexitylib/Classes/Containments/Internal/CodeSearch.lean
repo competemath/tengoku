@@ -61,7 +61,9 @@ def decodeCfg (x : List Bool) (S : ℕ) (a : Code Q k x.length S) : Cfg k Q wher
 
 /-- **Decoding inverts coding on the configurations the search meets.** Inside the space window
 the clamps in `cfgCode` are inert and the cells it drops are the ones `Windowed` pins down, so
-nothing is lost. -/
+nothing is lost.
+@isnad1 id=eq.2h5v.s5.ea24dd406fc4 from=translated src=- shape=eef02f53 vocab=e1cdd93e
+-/
 theorem decodeCfg_cfgCode {x : List Bool} {S : ℕ} {c : Cfg k Q}
     (hw : Windowed x S c) (hs : c.WithinDecisionSpace x.length S) :
     decodeCfg x S (cfgCode x.length S c) = c := by
@@ -110,7 +112,9 @@ def reachCodes (tm : NTM k) (x : List Bool) (S : ℕ) (a₀ : Code tm.Q k x.leng
   | t + 1 => codeRound tm x S (reachCodes tm x S a₀ t)
 
 /-- **The code search computes exactly the specified rounds.** Every code in round `t` is the
-code of a configuration in round `t`, and conversely. -/
+code of a configuration in round `t`, and conversely.
+@isnad1 id=iff.2h7v.s7.644aeac67270 from=translated src=- shape=2ffd26d6 vocab=1416dd5e
+-/
 theorem mem_reachCodes_iff {x : List Bool} {S : ℕ} {c₀ : Cfg k tm.Q}
     (hs : ∀ c, tm.ReachesCfg c₀ c → c.WithinDecisionSpace x.length S)
     (hw : ∀ c, tm.ReachesCfg c₀ c → Windowed x S c) :
@@ -151,7 +155,9 @@ theorem mem_reachCodes_iff {x : List Bool} {S : ℕ} {c₀ : Cfg k tm.Q}
 
 /-- **Membership is a finite search over codes.** Every quantifier is over a finite type and
 every operation is a `Finset` operation, so this is an algorithm — what remains for `NL ⊆ P` is
-to bound its cost. -/
+to bound its cost.
+@isnad1 id=iff.2h6v.s9.09dc51ed06e4 from=translated src=- shape=d238f569 vocab=c3c25ebd
+-/
 theorem mem_iff_exists_mem_reachCodes {L : Language} {S : ℕ → ℕ}
     (hdec : tm.DecidesInSpace L S) (x : List Bool) {N : ℕ}
     (hN : Fintype.card (Code tm.Q k x.length (S x.length)) ≤ N) :
@@ -179,7 +185,9 @@ theorem mem_iff_exists_mem_reachCodes {L : Language} {S : ℕ → ℕ}
 end NTM
 
 /-- The concrete window is still a logarithmic bound, so the code count over it stays
-polynomial. -/
+polynomial.
+@isnad1 id=bigo.0h2v.s4.26eab20971e1 from=translated src=- shape=e87ef2ba vocab=9bee4e41
+-/
 theorem logWindow_bigO (C D : ℕ) : logWindow C D =O (fun n => Nat.log 2 n) :=
   BigO.add (BigO.const_mul_left C (BigO.refl _)) (BigO.const_le_logTwo D)
 
@@ -189,7 +197,9 @@ constants: the window is `logWindow C D |x|`, the round count is `A · (|x| + 1)
 are `Finset`s of codes over that window, and the accept test is a decidable property of a single
 code. No trace, choice sequence, machine time bound, or asymptotic quantifier survives. This is
 the specification a polynomial-time implementation has to run; what remains for `NL ⊆ P` is to
-account for its cost. -/
+account for its cost.
+@isnad1 id=ex.1h1v.s8.6daad5afe9fb from=translated src=- shape=9920d363 vocab=40e47fd1
+-/
 theorem NL_finite_search {L : Language} (hL : L ∈ NL) :
     ∃ (k : ℕ) (tm : NTM k) (C D A B : ℕ),
       ∀ x : List Bool, x ∈ L ↔

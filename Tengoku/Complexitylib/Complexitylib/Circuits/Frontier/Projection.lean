@@ -37,7 +37,9 @@ def hide : Network U (Fin n) V E where
     · simpa using hx j hj
     · simp
 
-/-- Local existential witnesses assemble into one assignment of the hidden inputs. -/
+/-- Local existential witnesses assemble into one assignment of the hidden inputs.
+@isnad1 id=iff.0h8v.s6.39f2c806041c from=translated src=- shape=b70f43a0 vocab=28dd19ec
+-/
 theorem satisfies_hide_iff [Nonempty U] (x : Fin n → U) (α : E → U) :
     N.hide.Satisfies x α ↔ ∃ y : Fin k → U, N.Satisfies (Fin.append x y) α := by
   classical
@@ -54,20 +56,26 @@ theorem satisfies_hide_iff [Nonempty U] (x : Fin n → U) (α : E → U) :
   · rintro ⟨y, hy⟩ v
     exact ⟨y, hy v⟩
 
-/-- Hiding inputs is exactly projection of the accepted set. -/
+/-- Hiding inputs is exactly projection of the accepted set.
+@isnad1 id=eq.0h6v.s6.00149c0701f3 from=translated src=- shape=ba6a0faa vocab=f4eb2d1f
+-/
 theorem accepted_hide [Nonempty U] :
     N.hide.accepted = {x | ∃ y : Fin k → U, Fin.append x y ∈ N.accepted} := by
   ext x
   simp only [accepted, mem_ofPred_eq, satisfies_hide_iff]
   exact exists_comm
 
-/-- The visible inputs read at a vertex inject into its original inputs. -/
+/-- The visible inputs read at a vertex inject into its original inputs.
+@isnad1 id=le.0h7v.s6.ba6d9d49d7a6 from=translated src=- shape=dbfb3424 vocab=9e143450
+-/
 theorem ncard_readAt_hide_le (v : V) :
     (N.hide.readAt v).ncard ≤ (N.readAt v).ncard := by
   refine ncard_le_ncard_of_injOn (Fin.castAdd k) (fun _ hi => hi)
     (Fin.castAdd_injective n k).injOn (toFinite _)
 
-/-- Hiding inputs can only reduce the number of inputs read. -/
+/-- Hiding inputs can only reduce the number of inputs read.
+@isnad1 id=le.0h6v.s6.ff82b21773ae from=translated src=- shape=18596aa7 vocab=23138531
+-/
 theorem ncard_read_hide_le : N.hide.read.ncard ≤ N.read.ncard := by
   refine ncard_le_ncard_of_injOn (Fin.castAdd k) (fun i hi => ?_)
     (Fin.castAdd_injective n k).injOn (toFinite _)

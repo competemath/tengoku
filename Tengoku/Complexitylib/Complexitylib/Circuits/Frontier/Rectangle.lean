@@ -50,6 +50,9 @@ in `A` and whose part on the complement `X^c` lies in `B`. -/
 def rectangle (X : Set ι) (A : Set (X → U)) (B : Set (↥Xᶜ → U)) : Set (ι → U) :=
   {x | X.domRestrict x ∈ A ∧ Xᶜ.domRestrict x ∈ B}
 
+/--
+@isnad1 id=iff.0h6v.s6.5fbddcdcaf84 from=translated src=- shape=7295b19e vocab=a691641d
+-/
 theorem mem_rectangle {X : Set ι} {A : Set (X → U)} {B : Set (↥Xᶜ → U)} {x : ι → U} :
     x ∈ rectangle X A B ↔ X.domRestrict x ∈ A ∧ Xᶜ.domRestrict x ∈ B :=
   Iff.rfl
@@ -70,7 +73,9 @@ theorem eq_of_domRestrict_eq {X : Set ι} {x y : ι → U}
   · exact h₁ hi
   · exact h₂ hi
 
-/-- Splitting an input into its two parts is injective. -/
+/-- Splitting an input into its two parts is injective.
+@isnad1 id=injectiv.0h3v.s6.824acee9e5ab from=translated src=- shape=ab09e5d2 vocab=c08e97d7
+-/
 theorem domRestrict_prod_injective (X : Set ι) :
     Function.Injective fun x : ι → U => (X.domRestrict x, Xᶜ.domRestrict x) :=
   fun _ _ h => eq_of_domRestrict_eq (Prod.ext_iff.mp h).1 (Prod.ext_iff.mp h).2
@@ -83,7 +88,9 @@ variable [Finite ι] [Finite U]
 carries at least `K` assignments, then `S` has at most `|U| ^ |D| * (K - 1)` elements.
 
 The rectangle whose side on `D` is *every* assignment and whose side on `D^c` is the set of
-`D^c`-parts of `S` lies inside `S`. Its first side is large, so its second side is small. -/
+`D^c`-parts of `S` lies inside `S`. Its first side is large, so its second side is small.
+@isnad1 id=le.3h5v.s6.76b07ee31dd0 from=translated src=- shape=64e4e314 vocab=183f23ad
+-/
 theorem RectangleFree.ncard_le_of_dependsOn {S : Set (ι → U)} {K : ℕ} (hS : RectangleFree S K)
     {D : Set ι} (hD : DependsOn (· ∈ S) Dᶜ) (hK : K ≤ Nat.card U ^ D.ncard) :
     S.ncard ≤ Nat.card U ^ D.ncard * (K - 1) := by
@@ -107,7 +114,9 @@ theorem RectangleFree.ncard_le_of_dependsOn {S : Set (ι → U)} {K : ℕ} (hS :
 
 /-- **The support lemma.** A rectangle-free set with at least `|U| * K ^ 2` elements depends on
 all but fewer than `log_|U| K` coordinates: if `S` depends only on the coordinates in `R`,
-then `|U| ^ |R^c| < K`. -/
+then `|U| ^ |R^c| < K`.
+@isnad1 id=lt.3h5v.s6.66be30fea4e5 from=translated src=- shape=ff5c1823 vocab=d9fa8152
+-/
 theorem RectangleFree.pow_ncard_compl_lt [Nonempty U] {S : Set (ι → U)} {K : ℕ}
     (hS : RectangleFree S K) {R : Set ι} (hR : DependsOn (· ∈ S) R)
     (hbig : Nat.card U * K ^ 2 ≤ S.ncard) :

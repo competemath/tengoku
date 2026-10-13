@@ -22,15 +22,24 @@ public section
 
 namespace Algebraic.Cutwidth.Extractor.Internal
 
+/--
+@isnad1 id=eq.0h2v.s8.aba2bbb21400 from=translated src=- shape=4f5d09a3 vocab=0d20e63d
+-/
 theorem binaryModulus_comp_pow_three (s v : Nat) :
     (binaryModulus s).comp (Polynomial.X ^ (3 ^ v)) = binaryModulus (s + v) := by
   simp only [binaryModulus, Polynomial.add_comp, Polynomial.pow_comp,
     Polynomial.X_comp, Polynomial.one_comp, ← pow_mul, Nat.pow_add]
   congr 2 <;> congr 1 <;> ring
 
+/--
+@isnad1 id=monic.0h2v.s6.309d90085264 from=translated src=- shape=32548949 vocab=daf45752
+-/
 theorem extensionModulus_monic (s v : Nat) : (extensionModulus s v).Monic :=
   binomialModulus_monic _ v
 
+/--
+@isnad1 id=eq.0h2v.s10.501013bff30e from=translated src=- shape=0c30768f vocab=8f63d180
+-/
 theorem root_extensionModulus_pow (s v : Nat) :
     AdjoinRoot.root (extensionModulus s v) ^ (3 ^ v) =
       AdjoinRoot.of (extensionModulus s v) (AdjoinRoot.root (binaryModulus s)) := by

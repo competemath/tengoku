@@ -24,6 +24,9 @@ open scoped BigOperators
 
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
+/--
+@isnad1 id=eq.0h4v.s5.33e8673c544f from=translated src=- shape=0ffd0f66 vocab=71b1e2bb
+-/
 theorem projectionAverage_eq_coordinateMarginal_internal
     (f : (ι → Bool) → ℝ) (selected x : ι → Bool) :
     projectionAverage f selected x = coordinateMarginal f selected (fun i => x i) := by
@@ -39,6 +42,9 @@ theorem projectionAverage_eq_coordinateMarginal_internal
   exact Fintype.expect_const (ι := {i // selected i = true} → Bool)
     (coordinateMarginal f selected (fun i => x i))
 
+/--
+@isnad1 id=eq.0h3v.s7.a4a8d951d7cd from=translated src=- shape=ac009517 vocab=411a15cb
+-/
 theorem expect_coordinateMarginal_internal (f : (ι → Bool) → ℝ) (selected : ι → Bool) :
     (𝔼 z, coordinateMarginal f selected z) = 𝔼 x, f x := by
   let e := Equiv.piEquivPiSubtypeProd (fun i => selected i = true) (fun _ => Bool)
@@ -46,6 +52,9 @@ theorem expect_coordinateMarginal_internal (f : (ι → Bool) → ℝ) (selected
     expect_pair_internal]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.c71f62edb8dc from=translated src=- shape=f0d6e184 vocab=1a6c6aba
+-/
 theorem harmonicTransform_eq_harmonicMean_coordinateMarginal_internal
     (f : (ι → Bool) → ℝ) (selected : ι → Bool) :
     harmonicTransform f selected = harmonicMean (coordinateMarginal f selected) := by

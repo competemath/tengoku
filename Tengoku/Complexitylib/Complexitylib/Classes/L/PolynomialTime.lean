@@ -31,7 +31,9 @@ namespace TM
 variable {k : ℕ}
 
 /-- The reduced-configuration count of a deterministic transducer using
-`O(log n)` auxiliary space is polynomial in the input length. -/
+`O(log n)` auxiliary space is polynomial in the input length.
+@isnad1 id=ex.1h3v.s6.7d5ba4d990df from=translated src=- shape=30817e66 vocab=44b6d273
+-/
 theorem transducerConfigBound_bigO_polynomial
     (tm : TM k) {S : ℕ → ℕ}
     (hS : S =O (fun n => Nat.log 2 n)) :
@@ -43,12 +45,16 @@ theorem transducerConfigBound_bigO_polynomial
 end TM
 
 /-- **`L ⊆ P`: every language decided by a deterministic log-space
-transducer is decidable in polynomial time.** -/
+transducer is decidable in polynomial time.**
+@isnad1 id=le.0h0v.s2.e6cad42370b8 from=translated src=- shape=836e6cbb vocab=3e6bc7e2
+-/
 theorem L_subset_P : L ⊆ P :=
   L_subset_P_internal
 
 /-- **`FL ⊆ FP`: every deterministic log-space transducer function is
-computable in polynomial time.** -/
+computable in polynomial time.**
+@isnad1 id=le.0h0v.s3.6e6d95fb1aeb from=translated src=- shape=1bd9911c vocab=0c3f4bc4
+-/
 theorem FL_subset_FP : FL ⊆ FP :=
   FL_subset_FP_internal
 

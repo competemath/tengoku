@@ -21,14 +21,23 @@ public section
 
 namespace Algebraic.Cutwidth.Extractor.Internal
 
+/--
+@isnad1 id=monic.0h3v.s4.66b14189c414 from=translated src=- shape=4a5c8032 vocab=524dc6e5
+-/
 theorem binomialModulus_monic {F : Type*} [Ring F] (a : F) (s : Nat) :
     (binomialModulus a s).Monic :=
   Polynomial.monic_X_pow_sub_C a (pow_ne_zero _ (by decide))
 
+/--
+@isnad1 id=eq.0h3v.s5.2bc68316429e from=translated src=- shape=ec4268a7 vocab=8a91b161
+-/
 theorem binomialModulus_natDegree {F : Type*} [Ring F] [Nontrivial F] (a : F) (s : Nat) :
     (binomialModulus a s).natDegree = 3 ^ s :=
   Polynomial.natDegree_X_pow_sub_C
 
+/--
+@isnad1 id=ex.1h1v.s6.8b3c9df4de22 from=translated src=- shape=7fd03aab vocab=2a8d903b
+-/
 theorem exists_noncube {F : Type*} [Field F] [Fintype F]
     (divisible : 3 ∣ Fintype.card F - 1) : ∃ a : F, ∀ b : F, b ^ 3 ≠ a := by
   classical
@@ -46,12 +55,18 @@ theorem exists_noncube {F : Type*} [Field F] [Fintype F]
   have equal : u = 1 := Units.ext (injective cube)
   simp [equal] at order
 
+/--
+@isnad1 id=dvd.2h2v.s5.8ea1937329dd from=translated src=- shape=05b3e8d1 vocab=67eebe52
+-/
 theorem three_dvd_card_sub_one_of_even_exponent {F : Type*} [Fintype F] {b : Nat}
     (cardinality : Fintype.card F = 2 ^ b) (even : Even b) :
     3 ∣ Fintype.card F - 1 := by
   rw [cardinality]
   simpa using Nat.pow_sub_one_dvd_pow_sub_one (x := 2) even.two_dvd
 
+/--
+@isnad1 id=and.1h3v.s6.415c08c7bbec from=translated src=- shape=81f55119 vocab=82d312bb
+-/
 theorem binomialModulus_natDegree_clog_bounds {F : Type*} [Ring F] [Nontrivial F]
     (a : F) {n : Nat} (positive : 0 < n) :
     n ≤ (binomialModulus a (Nat.clog 3 n)).natDegree ∧

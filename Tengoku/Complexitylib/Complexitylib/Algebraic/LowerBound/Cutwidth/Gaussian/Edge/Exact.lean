@@ -39,14 +39,18 @@ namespace Algebraic.Cutwidth.Gaussian
 open MeasureTheory ProbabilityTheory
 
 /-- **Planar angle law.** For independent standard Gaussians, `|Z₁| ≤ k |Z₂|` has
-probability `(2/π) arctan k`. -/
+probability `(2/π) arctan k`.
+@isnad1 id=eq.1h1v.s7.b4f06d33f091 from=translated src=- shape=13bbb7c3 vocab=58f6dfa9
+-/
 theorem gaussPi_abs_le_mul_abs (k : ℝ) (hk : 0 ≤ k) :
     (gaussPi (Fin 2)).real {ω | |ω 0| ≤ k * |ω 1|} = 2 / Real.pi * Real.arctan k :=
   Internal.gaussPi_abs_le_mul_abs k hk
 
 /-- **Sheppard's bound at every threshold.** For coefficient vectors of equal norm with
 nonzero sum, a threshold separates the two Gaussian forms with probability at most
-`(2/π) arctan (‖β - α‖ / ‖α + β‖)`. -/
+`(2/π) arctan (‖β - α‖ / ‖α + β‖)`.
+@isnad1 id=le.2h4v.s8.0503c5f1d047 from=translated src=- shape=e21c71d4 vocab=ddf0a3f0
+-/
 theorem gaussPi_between_le_arctan {ι : Type} [Fintype ι] (α β : ι → ℝ)
     (hnorm : ∑ i, α i ^ 2 = ∑ i, β i ^ 2) (hsum : 0 < ∑ i, (α i + β i) ^ 2) (t : ℝ) :
     (gaussPi ι).real {ω | Between t (form α ω) (form β ω)} ≤
@@ -54,13 +58,17 @@ theorem gaussPi_between_le_arctan {ι : Type} [Fintype ι] (α β : ι → ℝ)
         Real.arctan (Real.sqrt (∑ i, (β i - α i) ^ 2) / Real.sqrt (∑ i, (α i + β i) ^ 2)) :=
   Internal.gaussPi_between_le_arctan α β hnorm hsum t
 
-/-- `2 arctan (tan (θ/2)) = θ` in the form `2 arctan (tanHalf x) = arccos x`. -/
+/-- `2 arctan (tan (θ/2)) = θ` in the form `2 arctan (tanHalf x) = arccos x`.
+@isnad1 id=eq.2h1v.s5.f8bc4c0a8eee from=translated src=- shape=88103bfc vocab=c9bdda97
+-/
 theorem two_mul_arctan_tanHalf {x : ℝ} (hx : -1 < x) (hx1 : x ≤ 1) :
     2 * Real.arctan (tanHalf x) = Real.arccos x :=
   Internal.two_mul_arctan_tanHalf hx hx1
 
 /-- **Sheppard's bound for unit forms.** A threshold separates two unit Gaussian forms
-with probability at most `arccos ρ / π`, where `ρ` is their correlation. -/
+with probability at most `arccos ρ / π`, where `ρ` is their correlation.
+@isnad1 id=le.3h4v.s7.33acebe02ad8 from=translated src=- shape=6d6f2f74 vocab=54fd62d9
+-/
 theorem gaussPi_between_le_arccos {ι : Type} [Fintype ι] {α β : ι → ℝ}
     (hα : ∑ i, α i ^ 2 = 1) (hβ : ∑ i, β i ^ 2 = 1) (hx : -1 < ∑ i, α i * β i) (t : ℝ) :
     (gaussPi ι).real {ω | Between t (form α ω) (form β ω)} ≤

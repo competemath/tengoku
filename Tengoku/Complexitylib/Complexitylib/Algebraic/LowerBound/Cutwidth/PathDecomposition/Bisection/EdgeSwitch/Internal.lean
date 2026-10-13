@@ -27,6 +27,9 @@ open scoped Classical
 
 variable {W : Type} [Fintype W] (H : SimpleGraph W) {a b c d : W}
 
+/--
+@isnad1 id=eq.1h6v.s7.0e395fc25b43 from=translated src=- shape=d37bd0f7 vocab=5e5fec5c
+-/
 theorem switchEdges_neighbor_a (valid : Switchable H a b c d) :
     (switchEdges H a b c d).neighborFinset a = insert c ((H.neighborFinset a).erase b) := by
   obtain ⟨ab, cd, ac, bd, hac, had, hbc, hbd⟩ := valid
@@ -38,6 +41,9 @@ theorem switchEdges_neighbor_a (valid : Switchable H a b c d) :
   have hab := ab.ne
   grind
 
+/--
+@isnad1 id=eq.1h6v.s7.7ec952cf347d from=translated src=- shape=b6dc040a vocab=5e5fec5c
+-/
 theorem switchEdges_neighbor_b (valid : Switchable H a b c d) :
     (switchEdges H a b c d).neighborFinset b = insert d ((H.neighborFinset b).erase a) := by
   obtain ⟨ab, cd, ac, bd, hac, had, hbc, hbd⟩ := valid
@@ -49,6 +55,9 @@ theorem switchEdges_neighbor_b (valid : Switchable H a b c d) :
   have hab := ab.ne
   grind
 
+/--
+@isnad1 id=eq.1h6v.s7.8d9e0ad0243b from=translated src=- shape=5b192f3e vocab=5e5fec5c
+-/
 theorem switchEdges_neighbor_c (valid : Switchable H a b c d) :
     (switchEdges H a b c d).neighborFinset c = insert a ((H.neighborFinset c).erase d) := by
   obtain ⟨ab, cd, ac, bd, hac, had, hbc, hbd⟩ := valid
@@ -60,6 +69,9 @@ theorem switchEdges_neighbor_c (valid : Switchable H a b c d) :
   have hcd := cd.ne
   grind
 
+/--
+@isnad1 id=eq.1h6v.s7.59e0c474db2e from=translated src=- shape=cd31d026 vocab=5e5fec5c
+-/
 theorem switchEdges_neighbor_d (valid : Switchable H a b c d) :
     (switchEdges H a b c d).neighborFinset d = insert b ((H.neighborFinset d).erase c) := by
   obtain ⟨ab, cd, ac, bd, hac, had, hbc, hbd⟩ := valid
@@ -71,6 +83,9 @@ theorem switchEdges_neighbor_d (valid : Switchable H a b c d) :
   have hcd := cd.ne
   grind
 
+/--
+@isnad1 id=eq.4h7v.s7.6fade62caf0a from=translated src=- shape=dced9fc2 vocab=c1400662
+-/
 theorem switchEdges_neighbor_other {v : W}
     (ha : v ≠ a) (hb : v ≠ b) (hc : v ≠ c) (hd : v ≠ d) :
     (switchEdges H a b c d).neighborFinset v = H.neighborFinset v := by
@@ -85,6 +100,9 @@ private theorem card_replace_neighbor {N : Finset W} {old new : W}
   rw [Finset.card_insert_of_notMem (fun h => absent (Finset.mem_of_mem_erase h))]
   exact Finset.card_erase_add_one present
 
+/--
+@isnad1 id=eq.1h7v.s6.86d8281f0f08 from=translated src=- shape=8f217f35 vocab=94f9bb4f
+-/
 theorem switchEdges_degree (valid : Switchable H a b c d) (v : W) :
     (switchEdges H a b c d).degree v = H.degree v := by
   simp only [← SimpleGraph.card_neighborFinset_eq_degree]
@@ -110,6 +128,9 @@ theorem switchEdges_degree (valid : Switchable H a b c d) (v : W) :
       (fun h => valid.bd ((H.mem_neighborFinset d b).mp h).symm)
   rw [switchEdges_neighbor_other H ha hb hc hd]
 
+/--
+@isnad1 id=eq.4h7v.s6.df0e1098eb27 from=translated src=- shape=a1099fc5 vocab=287be7f5
+-/
 theorem switchEdges_cut {S : Finset W} (ha : a ∈ S) (hb : b ∈ S)
     (hc : c ∈ S) (hd : d ∈ S) :
     (switchEdges H a b c d).cutFinset S = H.cutFinset S := by
@@ -120,6 +141,9 @@ theorem switchEdges_cut {S : Finset W} (ha : a ∈ S) (hb : b ∈ S)
     Sym2.eq_iff, SimpleGraph.edge_adj]
   grind
 
+/--
+@isnad1 id=eq.4h8v.s7.415755d22e5a from=translated src=- shape=d13bc21d vocab=4b5bb514
+-/
 theorem switchEdges_neighbors_outside {S : Finset W} (ha : a ∈ S) (hb : b ∈ S)
     (hc : c ∈ S) (hd : d ∈ S) (v : W) :
     (switchEdges H a b c d).neighborFinset v \ S = H.neighborFinset v \ S := by
@@ -130,6 +154,9 @@ theorem switchEdges_neighbors_outside {S : Finset W} (ha : a ∈ S) (hb : b ∈ 
     Set.mem_insert_iff, Set.mem_singleton_iff, Sym2.eq_iff, SimpleGraph.edge_adj]
   grind
 
+/--
+@isnad1 id=eq.4h7v.s6.9b61b1506be6 from=translated src=- shape=1a6356d4 vocab=a082c7b3
+-/
 theorem switchEdges_boundary {S : Finset W} (ha : a ∈ S) (hb : b ∈ S)
     (hc : c ∈ S) (hd : d ∈ S) :
     cutBoundary (switchEdges H a b c d) S = cutBoundary H S := by
@@ -176,6 +203,9 @@ private theorem card_sdiff_replace_neighbor {N : Finset W} {old new : W}
   by_cases ho : old ∈ X <;> by_cases hn : new ∈ X <;>
     simp only [ho, hn, ite_true, ite_false] at * <;> lia
 
+/--
+@isnad1 id=eq.6h8v.s8.a686e55c50e1 from=translated src=- shape=75aa502a vocab=bbc35ba5
+-/
 theorem helpfulness_switchEdges (valid : Switchable H a b c d)
     {S X : Finset W} (ha : a ∈ S) (hb : b ∈ S) (hc : c ∈ S) (hd : d ∈ S)
     (hX : X ⊆ S) :
@@ -243,6 +273,9 @@ theorem helpfulness_switchEdges (valid : Switchable H a b c d)
   simp_rw [localGain, Finset.sum_add_distrib]
   rw [sumDelta]
 
+/--
+@isnad1 id=le.8h8v.s7.8608c71d8897 from=translated src=- shape=f96957bb vocab=314b8f28
+-/
 theorem helpfulness_reverse_switch_le (valid : Switchable H a b c d)
     {S X : Finset W} (ha : a ∈ S) (hb : b ∈ S) (hc : c ∈ S) (hd : d ∈ S)
     (hX : X ⊆ S)
@@ -281,6 +314,9 @@ private theorem helpfulness_restore_AC (valid : Switchable H a b c d)
       Finset.mem_sdiff.mpr ⟨(H.mem_neighborFinset b w).mpr adjacent, hw⟩⟩
   lia
 
+/--
+@isnad1 id=ex.8h8v.s8.b6a397e6dee2 from=translated src=- shape=1a026202 vocab=5a49eeee
+-/
 theorem exists_restore_boundary_switch (valid : Switchable H a b c d)
     {S X : Finset W} (degree : ∀ v ∈ S, H.degree v ≤ 3)
     (ha : a ∈ cutBoundary H S) (hb : b ∈ cutBoundary H S)
@@ -324,6 +360,9 @@ theorem exists_restore_boundary_switch (valid : Switchable H a b c d)
       ((Finset.subset_insert b X).trans (Finset.subset_insert a _)).trans
         (Finset.subset_insert c _)⟩
 
+/--
+@isnad1 id=ex.9h8v.s9.995e6a2bac7c from=translated src=- shape=1de5847f vocab=74dae486
+-/
 theorem exists_restore_three_neighbor_switch (valid : Switchable H a b c d)
     {S X : Finset W} (degree : ∀ v ∈ S, H.degree v ≤ 3)
     (ha : a ∈ S) (hb : b ∈ cutBoundary H S) (hc : c ∈ S \ cutBoundary H S)
@@ -409,6 +448,9 @@ private theorem neighbors_subset_boundary_of_three {S : Finset W} {v : W}
       exact degree)
   exact Finset.inter_eq_left.mp same
 
+/--
+@isnad1 id=ex.5h5v.s8.d734211046d8 from=translated src=- shape=e3296c4e vocab=1852e7c1
+-/
 theorem exists_boundary_switch {S : Finset W} (regular : H.IsRegularOfDegree 3)
     (noHelpful : ∀ X ⊆ S, X.card ≤ 11 → helpfulness H S X ≤ 0)
     {a b : W} (ha : a ∈ cutBoundary H S) (hb : b ∈ cutBoundary H S) (ab : H.Adj a b) :
@@ -465,6 +507,9 @@ theorem exists_boundary_switch {S : Finset W} (regular : H.IsRegularOfDegree 3)
   exact ⟨c, d, ⟨ab, cd, acAbsent, bdAbsent, ca.symm, ad, bc.ne, bd⟩,
     bc, hc, hd, cSmall, dSmall⟩
 
+/--
+@isnad1 id=ex.6h5v.s8.cccdfb0282fe from=translated src=- shape=6c857ffa vocab=1852e7c1
+-/
 theorem exists_three_neighbor_switch {S : Finset W} (regular : H.IsRegularOfDegree 3)
     (noHelpful : ∀ X ⊆ S, X.card ≤ 11 → helpfulness H S X ≤ 0)
     {a b : W} (ha : a ∈ S \ cutBoundary H S) (hb : b ∈ cutBoundary H S)

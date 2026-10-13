@@ -87,7 +87,9 @@ def cauchy (x : m → F) (y : n → F) : Matrix m n F :=
 
 /-- **Square Cauchy matrices are nonsingular.** If `∑_j v_j / (x_i - y_j) = 0` for all `i`, the
 polynomial interpolating the values `v_j / w_j` at the nodes `y_j`, where `w_j` are the nodal
-weights, vanishes at the `k` nodes `x_i`; as its degree is less than `k`, it is zero, so `v = 0`. -/
+weights, vanishes at the `k` nodes `x_i`; as its degree is less than `k`, it is zero, so `v = 0`.
+@isnad1 id=ne.3h4v.s6.d6a2e9527b8d from=translated src=- shape=06e989a8 vocab=26017b70
+-/
 theorem det_cauchy_ne_zero {k : ℕ} (x y : Fin k → F) (hx : Function.Injective x)
     (hy : Function.Injective y) (hxy : ∀ i j, x i ≠ y j) : (cauchy x y).det ≠ 0 := by
   classical
@@ -116,7 +118,9 @@ theorem det_cauchy_ne_zero {k : ℕ} (x y : Fin k → F) (hx : Function.Injectiv
   · simpa using h
 
 /-- **Cauchy matrices are totally regular**: every square submatrix is again a Cauchy
-matrix. -/
+matrix.
+@isnad1 id=totallyr.3h5v.s5.57640f7bc77b from=translated src=- shape=3f46abbc vocab=e3d4df04
+-/
 theorem totallyRegular_cauchy (x : m → F) (y : n → F) (hx : Function.Injective x)
     (hy : Function.Injective y) (hxy : ∀ i j, x i ≠ y j) : TotallyRegular (cauchy x y) := by
   intro k r c hr hc
@@ -130,7 +134,9 @@ theorem totallyRegular_cauchy (x : m → F) (y : n → F) (hx : Function.Injecti
 def cauchyNat (F : Type*) [Field F] (N : ℕ) : Matrix (Fin N) (Fin N) F :=
   cauchy (fun i : Fin N => ((i : ℕ) : F)) fun j : Fin N => ((N + j : ℕ) : F)
 
-/-- **The explicit Cauchy matrices are totally regular** over fields of characteristic zero. -/
+/-- **The explicit Cauchy matrices are totally regular** over fields of characteristic zero.
+@isnad1 id=totallyr.0h2v.s4.9f42cdeee0bd from=translated src=- shape=eeae7cc5 vocab=eba239ee
+-/
 theorem totallyRegular_cauchyNat [CharZero F] (N : ℕ) : TotallyRegular (cauchyNat F N) :=
   totallyRegular_cauchy _ _ (fun i i' h => Fin.ext (by exact_mod_cast h))
     (fun j j' h => Fin.ext (by
@@ -139,7 +145,9 @@ theorem totallyRegular_cauchyNat [CharZero F] (N : ℕ) : TotallyRegular (cauchy
     fun i j h => by have : (i : ℕ) = N + j := by exact_mod_cast h
                     omega
 
-/-- **The explicit Cauchy matrices are totally regular** over `ZMod q` for a prime `q ≥ 2 N`. -/
+/-- **The explicit Cauchy matrices are totally regular** over `ZMod q` for a prime `q ≥ 2 N`.
+@isnad1 id=totallyr.1h2v.s5.754f4cff4196 from=translated src=- shape=1fbd4d69 vocab=08be5df8
+-/
 theorem totallyRegular_cauchyZMod (q N : ℕ) [Fact q.Prime] (hq : 2 * N ≤ q) :
     TotallyRegular (cauchyNat (ZMod q) N) := by
   have hcast : ∀ a b : ℕ, a < q → b < q → ((a : ZMod q) = b ↔ a = b) := fun a b ha hb => by

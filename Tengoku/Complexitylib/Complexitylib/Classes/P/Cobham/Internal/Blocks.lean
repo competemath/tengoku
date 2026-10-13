@@ -46,12 +46,20 @@ def caseBit (s x y : List Bool) : List Bool :=
   | [] => []
   | b :: _ => bif b then x else y
 
+/--
+@isnad1 id=eq.0h2v.s4.4a681c05c08e from=translated src=- shape=e124984d vocab=5428fdba
+-/
 @[simp] theorem caseBit_nil (x y : List Bool) : caseBit [] x y = [] := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.fc937950a296 from=translated src=- shape=91cc0713 vocab=bb9a7f35
+-/
 @[simp] theorem caseBit_cons (b : Bool) (s x y : List Bool) :
     caseBit (b :: s) x y = bif b then x else y := rfl
 
-/-- Bit dispatch never returns more than its two branches together. -/
+/-- Bit dispatch never returns more than its two branches together.
+@isnad1 id=le.0h3v.s5.875d55377a5b from=translated src=- shape=cbe7ef3e vocab=41c447be
+-/
 theorem caseBit_length_le (s x y : List Bool) :
     (caseBit s x y).length ≤ (x ++ y).length := by
   cases s with
@@ -70,12 +78,20 @@ def caseBit₀ (s x y : List Bool) : List Bool :=
   | [] => y
   | b :: _ => bif b then x else y
 
+/--
+@isnad1 id=eq.0h2v.s3.52f48622dc40 from=translated src=- shape=66a2918b vocab=3d70aac4
+-/
 @[simp] theorem caseBit₀_nil (x y : List Bool) : caseBit₀ [] x y = y := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.d37d7f7e2fde from=translated src=- shape=91cc0713 vocab=a9c25394
+-/
 @[simp] theorem caseBit₀_cons (b : Bool) (s x y : List Bool) :
     caseBit₀ (b :: s) x y = bif b then x else y := rfl
 
-/-- Total bit dispatch never returns more than its two branches together. -/
+/-- Total bit dispatch never returns more than its two branches together.
+@isnad1 id=le.0h3v.s5.84fca867ae2e from=translated src=- shape=cbe7ef3e vocab=7f724994
+-/
 theorem caseBit₀_length_le (s x y : List Bool) :
     (caseBit₀ s x y).length ≤ (x ++ y).length := by
   cases s with
@@ -106,10 +122,15 @@ when the position is past the end of `x`. -/
 def bitAt (r x : List Bool) : List Bool :=
   caseBit₀ (x.drop r.length) [true] [false]
 
+/--
+@isnad1 id=eq.0h1v.s4.fe577234b1f8 from=translated src=- shape=f28be6f1 vocab=df268f54
+-/
 @[simp] theorem bitAt_nil_left (x : List Bool) :
     bitAt [] x = caseBit₀ x [true] [false] := by simp [bitAt]
 
-/-- A flag is exactly one bit long. -/
+/-- A flag is exactly one bit long.
+@isnad1 id=eq.0h2v.s4.9843dddeb4ef from=translated src=- shape=21e12edf vocab=df615de8
+-/
 theorem bitAt_length (r x : List Bool) : (bitAt r x).length = 1 := by
   rw [bitAt]
   rcases hx : x.drop r.length with _ | ⟨b, z⟩
@@ -126,12 +147,16 @@ decoder is needed inside the algebra. -/
 def padTo (r x : List Bool) : List Bool :=
   (x ++ List.replicate r.length false).take r.length
 
-/-- A padded block always has exactly the ruler's width. -/
+/-- A padded block always has exactly the ruler's width.
+@isnad1 id=eq.0h2v.s4.5c258fbb29b3 from=translated src=- shape=597339de vocab=980e940b
+-/
 @[simp] theorem padTo_length (r x : List Bool) : (padTo r x).length = r.length := by
   rw [padTo, List.length_take, List.length_append, List.length_replicate]
   omega
 
-/-- Padding a short string appends zeros. -/
+/-- Padding a short string appends zeros.
+@isnad1 id=eq.1h2v.s5.8d96935a8bd1 from=translated src=- shape=ba572b4f vocab=3ea809ef
+-/
 theorem padTo_eq_append (r x : List Bool) (h : x.length ≤ r.length) :
     padTo r x = x ++ List.replicate (r.length - x.length) false := by
   rw [padTo]
@@ -142,12 +167,16 @@ as the ruler `r`. -/
 def blockAt (r x : List Bool) (i : ℕ) : List Bool :=
   (x.drop (i * r.length)).take r.length
 
-/-- Block zero of a block-aligned string is its first block. -/
+/-- Block zero of a block-aligned string is its first block.
+@isnad1 id=eq.1h3v.s5.475a3a30dc8e from=translated src=- shape=6e642bd7 vocab=5571ec61
+-/
 @[simp] theorem blockAt_zero_append (r a x : List Bool) (h : a.length = r.length) :
     blockAt r (a ++ x) 0 = a := by
   rw [blockAt, Nat.zero_mul, List.drop_zero, ← h, List.take_left]
 
-/-- Later blocks of a block-aligned string are the blocks of its tail. -/
+/-- Later blocks of a block-aligned string are the blocks of its tail.
+@isnad1 id=eq.1h4v.s5.71ab0bf56119 from=translated src=- shape=821d26fa vocab=7177a79c
+-/
 theorem blockAt_succ_append (r a x : List Bool) (h : a.length = r.length) (i : ℕ) :
     blockAt r (a ++ x) (i + 1) = blockAt r x i := by
   have hd : (a ++ x).drop (i * a.length + a.length) = x.drop (i * a.length) := by
@@ -161,7 +190,9 @@ A simulated step reads a padded block, edits it, and re-pads. These three lemmas
 say that the padding is invisible to that: re-padding commutes with the edits, so
 the encoded step can be reasoned about on raw contents. -/
 
-/-- Extra zero padding is invisible to `padTo`. -/
+/-- Extra zero padding is invisible to `padTo`.
+@isnad1 id=eq.0h3v.s5.f955c0b92d90 from=translated src=- shape=aadf57ff vocab=f3ebfe55
+-/
 theorem padTo_append_replicate (r z : List Bool) (m : ℕ) :
     padTo r (z ++ List.replicate m false) = padTo r z := by
   rw [padTo, padTo, List.append_assoc, ← List.replicate_add, List.take_append,
@@ -169,26 +200,34 @@ theorem padTo_append_replicate (r z : List Bool) (m : ℕ) :
   congr 2
   omega
 
-/-- Re-padding a padded block is the same as padding its raw content. -/
+/-- Re-padding a padded block is the same as padding its raw content.
+@isnad1 id=eq.1h3v.s5.96f86c7c07cb from=translated src=- shape=46b05b9a vocab=43ad1264
+-/
 theorem padTo_append_padTo (r y x : List Bool) (hx : x.length ≤ r.length) :
     padTo r (y ++ padTo r x) = padTo r (y ++ x) := by
   rw [padTo_eq_append r x hx, ← List.append_assoc, padTo_append_replicate]
 
-/-- Taking from within the content of a padded block ignores the padding. -/
+/-- Taking from within the content of a padded block ignores the padding.
+@isnad1 id=eq.2h3v.s5.a466fa239c12 from=translated src=- shape=18e1803c vocab=b6547d50
+-/
 theorem take_padTo (r x : List Bool) (n : ℕ) (hn : n ≤ x.length)
     (hx : x.length ≤ r.length) :
     (padTo r x).take n = x.take n := by
   rw [padTo, List.take_take, Nat.min_eq_left (by omega : n ≤ r.length),
     List.take_append, Nat.sub_eq_zero_of_le hn, List.take_zero, List.append_nil]
 
-/-- Dropping from a padded block leaves the padding trailing at the end. -/
+/-- Dropping from a padded block leaves the padding trailing at the end.
+@isnad1 id=eq.2h3v.s6.2847c05ee0b0 from=translated src=- shape=b73751d7 vocab=29a10047
+-/
 theorem drop_padTo (r x : List Bool) (n : ℕ) (hn : n ≤ x.length)
     (hx : x.length ≤ r.length) :
     (padTo r x).drop n = x.drop n ++ List.replicate (r.length - x.length) false := by
   rw [padTo_eq_append r x hx, List.drop_append, Nat.sub_eq_zero_of_le hn,
     List.drop_zero]
 
-/-- Dropping from a padded block and re-padding ignores the padding. -/
+/-- Dropping from a padded block and re-padding ignores the padding.
+@isnad1 id=eq.2h3v.s5.25e085c383d2 from=translated src=- shape=e4a79b60 vocab=e65ad234
+-/
 theorem padTo_drop (r x : List Bool) (n : ℕ) (hn : n ≤ x.length)
     (hx : x.length ≤ r.length) :
     padTo r ((padTo r x).drop n) = padTo r (x.drop n) := by
@@ -197,7 +236,9 @@ theorem padTo_drop (r x : List Bool) (n : ℕ) (hn : n ≤ x.length)
 
 /-- **Reading a field out of a block-aligned record.** When `bs` is a list of
 blocks all as wide as the ruler `r`, block `i` of their concatenation is `bs[i]`.
-This is what makes `Cobham.blockFn` a field accessor. -/
+This is what makes `Cobham.blockFn` a field accessor.
+@isnad1 id=eq.2h3v.s6.48452988f2e6 from=translated src=- shape=18533b71 vocab=2280db3b
+-/
 theorem blockAt_flatten (r : List Bool) :
     ∀ (bs : List (List Bool)), (∀ b ∈ bs, b.length = r.length) →
       ∀ (i : ℕ) (hi : i < bs.length), blockAt r bs.flatten i = bs[i] := by
@@ -223,8 +264,14 @@ Without it `matchPrefix` could not tell "the head bit is `0`" from "there is no
 head bit", and would report a match of `[0]` against `[]`. -/
 def nonemptyFlag (x : List Bool) : List Bool := caseBit x [true] [true]
 
+/--
+@isnad1 id=eq.0h0v.s3.a1bb0537b554 from=translated src=- shape=9b1c3ca8 vocab=40012bb3
+-/
 @[simp] theorem nonemptyFlag_nil : nonemptyFlag [] = [] := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.d3b0bb9b1157 from=translated src=- shape=9edbca5f vocab=9928c626
+-/
 @[simp] theorem nonemptyFlag_cons (b : Bool) (x : List Bool) :
     nonemptyFlag (b :: x) = [true] := by cases b <;> rfl
 
@@ -238,27 +285,39 @@ def matchPrefix : List Bool → List Bool → List Bool
         (andBit (bif b then bitAt [] x else notBit (bitAt [] x))
           (matchPrefix c x.tail))
 
+/--
+@isnad1 id=eq.0h1v.s3.9fd39c6401af from=translated src=- shape=0cb05533 vocab=b80bb663
+-/
 @[simp] theorem matchPrefix_nil (x : List Bool) : matchPrefix [] x = [true] := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.1c89ef437a40 from=translated src=- shape=380ee010 vocab=ef60e940
+-/
 @[simp] theorem matchPrefix_cons (b : Bool) (c x : List Bool) :
     matchPrefix (b :: c) x =
       andBit (nonemptyFlag x)
         (andBit (bif b then bitAt [] x else notBit (bitAt [] x))
           (matchPrefix c x.tail)) := rfl
 
-/-- A constant is matched by anything it prefixes. -/
+/-- A constant is matched by anything it prefixes.
+@isnad1 id=eq.0h2v.s4.6c9f27f14b4b from=translated src=- shape=1b154e79 vocab=3d605e2c
+-/
 theorem matchPrefix_append (c y : List Bool) : matchPrefix c (c ++ y) = [true] := by
   induction c generalizing y with
   | nil => rfl
   | cons b c ih => cases b <;> simp [andBit, notBit, ih]
 
 /-- Nothing but the empty constant matches the empty string. (Not a `simp`
-lemma: `simp` unfolds the left-hand side past this shape.) -/
+lemma: `simp` unfolds the left-hand side past this shape.)
+@isnad1 id=eq.0h2v.s4.65f0a61fab46 from=translated src=- shape=94f0fef3 vocab=a08029fe
+-/
 theorem matchPrefix_nil_right (b : Bool) (c : List Bool) :
     matchPrefix (b :: c) [] = [false] := by
   cases b <;> rfl
 
-/-- Conjunction always returns a genuine one-bit flag, whatever it is given. -/
+/-- Conjunction always returns a genuine one-bit flag, whatever it is given.
+@isnad1 id=or.0h2v.s4.6a0c44065c3d from=translated src=- shape=a94b7c07 vocab=ad0b07cc
+-/
 theorem andBit_flag (x y : List Bool) :
     andBit x y = [true] ∨ andBit x y = [false] := by
   rw [andBit]
@@ -272,7 +331,9 @@ theorem andBit_flag (x y : List Bool) :
         | nil => exact Or.inr rfl
         | cons d y => cases d <;> simp
 
-/-- The match test always returns a genuine one-bit flag. -/
+/-- The match test always returns a genuine one-bit flag.
+@isnad1 id=or.0h2v.s4.27c93fecd003 from=translated src=- shape=a94b7c07 vocab=5a0a09f4
+-/
 theorem matchPrefix_flag (c x : List Bool) :
     matchPrefix c x = [true] ∨ matchPrefix c x = [false] := by
   cases c with
@@ -281,7 +342,9 @@ theorem matchPrefix_flag (c x : List Bool) :
 
 /-- **The match test is exactly the prefix test.** This is what makes a table of
 constant patterns behave like a case analysis: the entry whose pattern is a
-prefix of the key fires, and no other does. -/
+prefix of the key fires, and no other does.
+@isnad1 id=iff.0h2v.s4.e75cc224d5ab from=translated src=- shape=03ad5b03 vocab=81ea2f3f
+-/
 theorem matchPrefix_eq_true_iff (c x : List Bool) :
     matchPrefix c x = [true] ↔ c <+: x := by
   induction c generalizing x with

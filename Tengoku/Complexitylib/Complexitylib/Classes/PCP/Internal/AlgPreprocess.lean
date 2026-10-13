@@ -39,7 +39,9 @@ open NumEnc
 variable {α : Type} [DecidableEq α] (G : ConstraintGraph α) (E : ExpanderFamily)
 
 omit [DecidableEq α] in
-/-- **A half-edge's number is the code the clouds are sorted by.** -/
+/-- **A half-edge's number is the code the clouds are sorted by.**
+@isnad1 id=eq.0h3v.s4.f5417f575d98 from=translated src=- shape=edab17bf vocab=7a750479
+-/
 theorem enc_halfEdge (p : G.HalfEdge) : enc p = G.halfCode p := by
   show enc p.1 * 2 + enc p.2 = 2 * p.1.val + (if p.2 then 0 else 1)
   show p.1.val * 2 + (if p.2 then 0 else 1) = _
@@ -58,22 +60,35 @@ def preCloud (j : Fin E.degree) : (G.preprocess E).graph.D := Sum.inr (Sum.inl (
 def preExp (j : Fin E.degree) : (G.preprocess E).graph.D := Sum.inr (Sum.inr j)
 
 /-- The darts of the preprocessed graph: a self-loop, an edge-link, the
-cloud-links, and the expander's edges. -/
+cloud-links, and the expander's edges.
+@isnad1 id=eq.0h3v.s5.4596f245bc54 from=translated src=- shape=526b6d94 vocab=f57c96e7
+-/
 theorem enc_preLoop : enc (G.preLoop E) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.2941eb57f215 from=translated src=- shape=526b6d94 vocab=e960e542
+-/
 theorem enc_preEdge : enc (G.preEdge E) = 1 := by
   show 1 + 0 = 1
   omega
 
+/--
+@isnad1 id=eq.0h4v.s5.b168050d4005 from=translated src=- shape=5ac9db94 vocab=d0cfc177
+-/
 theorem enc_preCloud (j : Fin E.degree) : enc (G.preCloud E j) = 2 + j.val := by
   show 1 + (1 + j.val) = 2 + j.val
   omega
 
+/--
+@isnad1 id=eq.0h4v.s5.335fb602d57f from=translated src=- shape=1c80caea vocab=af66e1bd
+-/
 theorem enc_preExp (j : Fin E.degree) : enc (G.preExp E j) = 2 + E.degree + j.val := by
   show 1 + ((E.degree + 1) + j.val) = 2 + E.degree + j.val
   omega
 
-/-- Every dart is one of the four kinds. -/
+/-- Every dart is one of the four kinds.
+@isnad1 id=or.0h4v.s6.e3a72304ab86 from=translated src=- shape=abfdfef6 vocab=f16f6e9b
+-/
 theorem preDart_cases (d : (G.preprocess E).graph.D) :
     d = G.preLoop E ∨ d = G.preEdge E ∨ (∃ j, d = G.preCloud E j) ∨ ∃ j, d = G.preExp E j := by
   match d with
@@ -84,16 +99,28 @@ theorem preDart_cases (d : (G.preprocess E).graph.D) :
 
 /-! ### What each kind of dart does -/
 
+/--
+@isnad1 id=eq.0h4v.s6.1154ed8cdc2d from=translated src=- shape=317c58e4 vocab=9829d6f3
+-/
 theorem rot_preLoop (v : (G.preprocess E).graph.V) :
     (G.preprocess E).graph.rot (v, G.preLoop E) = (v, G.preLoop E) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.636c4a2955f4 from=translated src=- shape=b4fc3df7 vocab=cba1d751
+-/
 theorem rot_preEdge (v : G.HalfEdge) :
     (G.preprocess E).graph.rot (v, G.preEdge E) = (G.flipHalf v, G.preEdge E) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.633795bee783 from=translated src=- shape=85aa6ed1 vocab=118147f4
+-/
 theorem rot_preCloud (v : G.HalfEdge) (j : Fin E.degree) :
     (G.preprocess E).graph.rot (v, G.preCloud E j)
       = ((G.cloudRot E v j).1, G.preCloud E (G.cloudRot E v j).2) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.22f14835614f from=translated src=- shape=0d9d6416 vocab=162e1b70
+-/
 theorem rot_preExp (v : G.HalfEdge) (j : Fin E.degree) :
     (G.preprocess E).graph.rot (v, G.preExp E j)
       = (E.vertexEquiv (G.reduce E).graph
@@ -105,13 +132,17 @@ theorem rot_preExp (v : G.HalfEdge) (j : Fin E.degree) :
 /-! ### The three moves, in numbers -/
 
 omit [DecidableEq α] in
-/-- **Crossing an edge flips the last bit of the number.** -/
+/-- **Crossing an edge flips the last bit of the number.**
+@isnad1 id=eq.0h3v.s7.b04893d92afa from=translated src=- shape=f2272ed1 vocab=a7bd9f61
+-/
 theorem enc_flipHalf (p : G.HalfEdge) :
     enc (G.flipHalf p) = if enc p % 2 = 0 then enc p + 1 else enc p - 1 := by
   rw [enc_halfEdge, enc_halfEdge, halfCode, halfCode, flipHalf]
   cases p.2 <;> simp
 
-/-- **The expander's vertices are numbered as the graph's are.** -/
+/-- **The expander's vertices are numbered as the graph's are.**
+@isnad1 id=eq.0h4v.s7.9ce32566e0af from=translated src=- shape=1ff3cc3a vocab=94fb3060
+-/
 theorem enc_vertexEquiv (x : Fin (G.reduce E).graph.order) :
     enc (E.vertexEquiv (G.reduce E).graph x) = x.val := by
   show enc ((NumEnc.equivFinCard (G.reduce E).graph.V).symm x) = _
@@ -120,6 +151,9 @@ theorem enc_vertexEquiv (x : Fin (G.reduce E).graph.order) :
           ((NumEnc.equivFinCard (G.reduce E).graph.V).symm x)).val := rfl
   erw [h, Equiv.apply_symm_apply]
 
+/--
+@isnad1 id=eq.0h4v.s7.5abeca5c554a from=translated src=- shape=d6fb67d9 vocab=fdae8a7e
+-/
 theorem val_vertexEquiv_symm (v : (G.reduce E).graph.V) :
     ((E.vertexEquiv (G.reduce E).graph).symm v).val = enc v := rfl
 
@@ -135,7 +169,9 @@ noncomputable def cloudStepNum (v : Fin G.numVerts) (c : ℕ) (j : Fin E.degree)
   else (c, j.val)
 
 omit [DecidableEq α] in
-/-- **The numbers run the cloud step.** -/
+/-- **The numbers run the cloud step.**
+@isnad1 id=eq.0h5v.s6.89df19d76488 from=translated src=- shape=974edcbd vocab=2ff09a4b
+-/
 theorem cloudStepNum_eq (p : G.HalfEdge) (j : Fin E.degree) :
     G.cloudStepNum E (G.owner p) (enc p) j
       = (enc (G.cloudRot E p j).1, (G.cloudRot E p j).2.val) := by
@@ -167,6 +203,9 @@ noncomputable def ownerNum (v : ℕ) : ℕ :=
   else 0
 
 omit [DecidableEq α] in
+/--
+@isnad1 id=eq.0h3v.s5.b4aa3afef92b from=translated src=- shape=d921300f vocab=657113a5
+-/
 theorem ownerNum_enc (p : G.HalfEdge) : G.ownerNum (enc p) = (G.owner p).val := by
   have hcode : enc p = 2 * p.1.val + (if p.2 then 0 else 1) := by
     rw [enc_halfEdge, halfCode]
@@ -212,7 +251,9 @@ noncomputable def preRotNum (v d : ℕ) : ℕ × ℕ :=
     ((G.expStepN E v (d - (2 + E.degree))).1,
       (G.expStepN E v (d - (2 + E.degree))).2 + 2 + E.degree)
 
-/-- **The numbers run the preprocessed graph's rotation map.** -/
+/-- **The numbers run the preprocessed graph's rotation map.**
+@isnad1 id=eq.0h5v.s7.ee3b1c9a8237 from=translated src=- shape=33ccbfe4 vocab=bd64b88a
+-/
 theorem preRotNum_eq (v : G.HalfEdge) (d : (G.preprocess E).graph.D) :
     G.preRotNum E (enc v) (enc d)
       = (enc (((G.preprocess E).graph.rot (v, d)).1 : G.HalfEdge),

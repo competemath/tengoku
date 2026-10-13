@@ -31,6 +31,9 @@ variable {V E ι : Type} [Fintype V] [Fintype ι] {B : SimpleGraph V} {R : Multi
   (F : RestorationFamily B R ι)
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.1h8v.s7.7b8d298cc633 from=translated src=- shape=f280a531 vocab=afd7b099
+-/
 theorem cut_deletedGraph_restrict
     (cuts : Pairwise (fun i j => Disjoint (B.cutFinset (F.region i)) (B.cutFinset (F.region j))))
     (indices : Finset ι) (i : ι) :
@@ -250,6 +253,9 @@ private theorem exists_positive_restore_selected (L : ℕ)
   change (F.deletedGraph.cutFinset X).card < (internalEdges R X).card at positive
   lia
 
+/--
+@isnad1 id=ex.5h9v.s7.52a77b337687 from=translated src=- shape=112aa00f vocab=671faed1
+-/
 theorem exists_positive_of_closed_core (L : ℕ)
     (small : ∀ i, (F.region i ∪ F.attachment i).card ≤ L)
     {X : Finset V} (fresh : ∀ i, Disjoint X (F.region i))
@@ -273,6 +279,9 @@ private theorem cut_card_le_of_degree {X : Finset V} {d : ℕ}
   calc (B.cutFinset X).card ≤ X.card * d := by lia
     _ = d * X.card := Nat.mul_comm _ _
 
+/--
+@isnad1 id=ex.6h10v.s8.5540712eb9ae from=translated src=- shape=8f10ed99 vocab=c7dc07b3
+-/
 theorem exists_positive_of_closed_core_of_degree (L d : ℕ)
     (small : ∀ i, (F.region i ∪ F.attachment i).card ≤ L)
     {X : Finset V} (fresh : ∀ i, Disjoint X (F.region i))
@@ -289,6 +298,9 @@ theorem exists_positive_of_closed_core_of_degree (L d : ℕ)
       Nat.add_le_add_left (Nat.mul_le_mul_left L (cut_card_le_of_degree degree)) _
     _ = (1 + d * L) * X.card := by ring
 
+/--
+@isnad1 id=ex.3h8v.s7.3974b3db0566 from=translated src=- shape=28e7c5c0 vocab=8d9b7f02
+-/
 theorem exists_positive_restore (L : ℕ)
     (small : ∀ i, (F.region i ∪ F.attachment i).card ≤ L)
     {X : Finset V} (fresh : ∀ i, Disjoint X (F.region i))
@@ -298,6 +310,9 @@ theorem exists_positive_restore (L : ℕ)
   exact ⟨Y, subset, size.trans (Nat.add_le_add_left
     (Nat.mul_le_mul_left L (selected_card_le_cut F fresh)) _), gain⟩
 
+/--
+@isnad1 id=ex.3h8v.s7.8693dc5aa257 from=translated src=- shape=bbcd65ae vocab=990b949b
+-/
 theorem exists_positive_restore_by_marks (L : ℕ)
     (small : ∀ i, (F.region i ∪ F.attachment i).card ≤ L)
     {X : Finset V} (fresh : ∀ i, Disjoint X (F.region i))
@@ -307,6 +322,9 @@ theorem exists_positive_restore_by_marks (L : ℕ)
   exact ⟨Y, subset, size.trans (Nat.add_le_add_left
     (Nat.mul_le_mul_left L (selected_card_le_marks F fresh)) _), gain⟩
 
+/--
+@isnad1 id=ex.4h9v.s7.b5027ef53431 from=translated src=- shape=e509df1d vocab=3d757ae5
+-/
 theorem exists_positive_restore_of_degree (L d : ℕ)
     (small : ∀ i, (F.region i ∪ F.attachment i).card ≤ L)
     {X : Finset V} (fresh : ∀ i, Disjoint X (F.region i))

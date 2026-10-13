@@ -23,6 +23,9 @@ open Finset
 variable {W E : Type} [Fintype W] [Fintype E] (G : Multigraph W E)
 
 omit [Fintype W] in
+/--
+@isnad1 id=iff.0h5v.s6.919f78ce14d7 from=translated src=- shape=6af6deb9 vocab=09caea7f
+-/
 theorem mem_crossingFinset_iff {P : Finset W} {e : E} : e ∈ G.crossingFinset P ↔
     ∃ u v, ((G.src e = u ∧ G.tgt e = v) ∨ (G.src e = v ∧ G.tgt e = u)) ∧
       u ∈ P ∧ v ∉ P := by
@@ -35,7 +38,9 @@ theorem mem_crossingFinset_iff {P : Finset W} {e : E} : e ∈ G.crossingFinset P
       exact ⟨_, _, Or.inr ⟨rfl, rfl⟩, ht, hs⟩
   · rintro ⟨u, v, (⟨rfl, rfl⟩ | ⟨rfl, rfl⟩), hu, hv⟩ <;> tauto
 
-/-- The finite-grid argument also counts parallel edges. -/
+/-- The finite-grid argument also counts parallel edges.
+@isnad1 id=le.7h11v.s9.79ba868efc17 from=translated src=- shape=8f327fdd vocab=f6573e9a
+-/
 theorem card_cut_le_grid {d : ℕ} (degree : G.MaxDegreeLE d) (score : W → ℝ)
     (P : Finset W) {m a δ : ℝ} (hP : ∀ v ∈ P, score v ≤ m)
     (hPc : ∀ v ∉ P, m ≤ score v) (hδ : 0 < δ) (M : ℕ) {B : ℝ}
@@ -105,7 +110,9 @@ theorem card_cut_le_grid {d : ℕ} (degree : G.MaxDegreeLE d) (score : W → ℝ
       (G.crossingFinset {v | score v < a + i * δ}).card + d * window.card := by exact_mod_cast hnat
   exact hreal.trans (by simpa only [window, Nat.cast_add, Nat.cast_one] using mid i hi)
 
-/-- Sorting scores yields a layout without a distinct-score hypothesis. -/
+/-- Sorting scores yields a layout without a distinct-score hypothesis.
+@isnad1 id=ex.5h9v.s9.6f8132f7dfb0 from=translated src=- shape=63642e60 vocab=e234cdbe
+-/
 theorem exists_key_of_vertexScore {d : ℕ} (degree : G.MaxDegreeLE d) (score : W → ℝ)
     {a δ : ℝ} (hδ : 0 < δ) (M : ℕ) {B : ℝ}
     (low : d * (#{v | score v < a} : ℝ) ≤ B)

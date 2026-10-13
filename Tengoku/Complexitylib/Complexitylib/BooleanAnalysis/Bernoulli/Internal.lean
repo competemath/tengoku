@@ -25,18 +25,27 @@ namespace Complexity.BooleanAnalysis
 open Finset
 open scoped BigOperators Classical
 
+/--
+@isnad1 id=eq.0h2v.s8.64561018efd1 from=translated src=- shape=a0fe777c vocab=d54dac8f
+-/
 theorem sum_cons_internal {n : ℕ} (f : (Fin (n + 1) → Bool) → ℝ) :
     (∑ x, f x) = (∑ x, f (Fin.cons false x)) + ∑ x, f (Fin.cons true x) := by
   rw [← (Fin.consEquiv (fun _ : Fin (n + 1) => Bool)).sum_comp f]
   rw [Fintype.sum_prod_type, Fintype.sum_bool]
   exact add_comm _ _
 
+/--
+@isnad1 id=eq.0h4v.s6.5a8ca3a5afd6 from=translated src=- shape=f598a646 vocab=d8b58eb4
+-/
 theorem bernoulliWeight_cons_internal {n : ℕ} (p : ℝ) (b : Bool)
     (selected : Fin n → Bool) :
     bernoulliWeight p (Fin.cons b selected) =
       (if b then p else 1 - p) * bernoulliWeight p selected := by
   simp [bernoulliWeight, Fin.prod_univ_succ]
 
+/--
+@isnad1 id=eq.0h3v.s7.5ea23e064c45 from=translated src=- shape=cd8c1c94 vocab=64304ba6
+-/
 theorem bernoulliAverage_cons_internal {n : ℕ} (p : ℝ)
     (f : (Fin (n + 1) → Bool) → ℝ) :
     bernoulliAverage p f =
@@ -47,6 +56,9 @@ theorem bernoulliAverage_cons_internal {n : ℕ} (p : ℝ)
   simp_rw [bernoulliWeight_cons_internal]
   simp only [Bool.false_eq_true, ite_false, ite_true, mul_assoc, ← mul_sum]
 
+/--
+@isnad1 id=le.3h4v.s6.0be211a348e4 from=translated src=- shape=e8b0cb42 vocab=5bfe9f14
+-/
 theorem bernoulliAverage_mono_internal {ι : Type*} [Fintype ι] [DecidableEq ι]
     {p : ℝ} (hp : 0 ≤ p) (hp' : p ≤ 1) {f g : (ι → Bool) → ℝ}
     (hfg : ∀ x, f x ≤ g x) : bernoulliAverage p f ≤ bernoulliAverage p g := by
@@ -60,6 +72,9 @@ theorem bernoulliAverage_mono_internal {ι : Type*} [Fintype ι] [DecidableEq ι
   · exact hp
   · exact sub_nonneg.mpr hp'
 
+/--
+@isnad1 id=eq.0h3v.s4.d8d3a4069cc0 from=translated src=- shape=9a12e284 vocab=b1c22a44
+-/
 theorem bernoulliAverage_const_internal {ι : Type*} [Fintype ι] [DecidableEq ι] (p c : ℝ) :
     bernoulliAverage p (fun _ : ι → Bool => c) = c := by
   classical
@@ -67,11 +82,17 @@ theorem bernoulliAverage_const_internal {ι : Type*} [Fintype ι] [DecidableEq �
   rw [← sum_mul, ← Fintype.prod_sum (fun (_ : ι) (b : Bool) => if b then p else 1 - p)]
   simp
 
+/--
+@isnad1 id=eq.0h5v.s5.bfd70d4cbb9b from=translated src=- shape=f8dbf38c vocab=1a82528f
+-/
 theorem bernoulliWeight_reindex_internal {ι κ : Type*} [Fintype ι] [Fintype κ]
     (e : ι ≃ κ) (p : ℝ) (s : κ → Bool) :
     bernoulliWeight p (fun i => s (e i)) = bernoulliWeight p s := by
   exact e.prod_comp (fun i => if s i then p else 1 - p)
 
+/--
+@isnad1 id=eq.0h5v.s6.5c1d2a3cdfcc from=translated src=- shape=18209695 vocab=93a3df58
+-/
 theorem bernoulliAverage_reindex_internal {ι κ : Type*} [Fintype ι] [Fintype κ]
     [DecidableEq ι] [DecidableEq κ] (e : ι ≃ κ) (p : ℝ) (f : (κ → Bool) → ℝ) :
     bernoulliAverage p (fun x => f (fun j => x (e.symm j))) = bernoulliAverage p f := by
@@ -84,6 +105,9 @@ theorem bernoulliAverage_reindex_internal {ι κ : Type*} [Fintype ι] [Fintype 
     bernoulliWeight p (fun j => x (e.symm j)) * f (fun j => x (e.symm j))
   rw [bernoulliWeight_reindex_internal]
 
+/--
+@isnad1 id=eq.0h4v.s7.adc67d91f5f9 from=translated src=- shape=c03093c4 vocab=0ffeb4dd
+-/
 theorem bernoulliWeight_split_internal {ι : Type*} [Fintype ι]
     (p : ℝ) (s x : ι → Bool) :
     bernoulliWeight p x = bernoulliWeight p (fun i : {i // s i = true} => x i) *
@@ -91,6 +115,9 @@ theorem bernoulliWeight_split_internal {ι : Type*} [Fintype ι]
   exact (Fintype.prod_subtype_mul_prod_subtype (fun i => s i = true)
     (fun i => if x i then p else 1 - p)).symm
 
+/--
+@isnad1 id=eq.0h4v.s7.a368ab8ddf0a from=translated src=- shape=92facb88 vocab=e4d40b45
+-/
 theorem bernoulliAverage_restrict_internal {ι : Type*} [Fintype ι] [DecidableEq ι]
     (p : ℝ) (s : ι → Bool) (f : ({i // s i = true} → Bool) → ℝ) :
     bernoulliAverage p (fun x : ι → Bool => f (fun i => x i)) = bernoulliAverage p f := by
@@ -113,6 +140,9 @@ theorem bernoulliAverage_restrict_internal {ι : Type*} [Fintype ι] [DecidableE
       bernoulliAverage_const_internal (ι := {i // s i ≠ true}) p 1
   simp only [mul_assoc, ← mul_sum, ← sum_mul, htotal, one_mul]
 
+/--
+@isnad1 id=eq.0h6v.s6.3eeeee65fd59 from=translated src=- shape=439150b7 vocab=6b277737
+-/
 theorem bernoulliAverage_linear_internal {ι : Type*} [Fintype ι] [DecidableEq ι]
     (p a b : ℝ) (f g : (ι → Bool) → ℝ) :
     bernoulliAverage p (fun x => a * f x + b * g x) =
@@ -121,6 +151,9 @@ theorem bernoulliAverage_linear_internal {ι : Type*} [Fintype ι] [DecidableEq 
   simp only [mul_add, sum_add_distrib]
   congr 1 <;> rw [mul_sum] <;> apply sum_congr rfl <;> intro x _ <;> ring
 
+/--
+@isnad1 id=le.4h4v.s6.5fcc935553b4 from=translated src=- shape=19bbda31 vocab=e024e6a8
+-/
 theorem bernoulliAverage_bias_antitone_internal {n : ℕ} {f : (Fin n → Bool) → ℝ} (hf : Antitone f)
     {p q : ℝ} (hp : 0 ≤ p) (hpq : p ≤ q) (hq : q ≤ 1) :
     bernoulliAverage q f ≤ bernoulliAverage p f := by
@@ -153,6 +186,9 @@ theorem bernoulliAverage_bias_antitone_internal {n : ℕ} {f : (Fin n → Bool) 
     have h1 := mul_le_mul_of_nonneg_left (ih (hs true)) (hp.trans hpq)
     nlinarith [mul_nonneg (sub_nonneg.mpr hpq) (sub_nonneg.mpr hl)]
 
+/--
+@isnad1 id=eq.0h4v.s6.25f2bae105b3 from=translated src=- shape=6eca5796 vocab=60e8ec94
+-/
 theorem bernoulliAverage_union_internal {n : ℕ} (p q : ℝ) (f : (Fin n → Bool) → ℝ) :
     bernoulliAverage p (fun r => bernoulliAverage q (fun s =>
       f (fun i => r i || s i))) = bernoulliAverage (p + q - p * q) f := by
@@ -177,11 +213,17 @@ theorem bernoulliAverage_union_internal {n : ℕ} (p q : ℝ) (f : (Fin n → Bo
       bernoulliAverage_cons_internal]
     ring
 
+/--
+@isnad1 id=eq.0h4v.s5.c9f815195fb8 from=translated src=- shape=227ee69e vocab=d31e428b
+-/
 theorem bernoulliAverage_mul_internal {ι : Type*} [Fintype ι] [DecidableEq ι]
     (p a : ℝ) (f : (ι → Bool) → ℝ) :
     bernoulliAverage p (fun x => a * f x) = a * bernoulliAverage p f := by
   simpa using bernoulliAverage_linear_internal p a 0 f f
 
+/--
+@isnad1 id=and.2h3v.s7.eb32b9b873e1 from=translated src=- shape=b568731a vocab=91bc60d0
+-/
 theorem bernoulliAverage_indicator_bounds_internal {n : ℕ} (A : Set (Fin n → Bool))
     {p : ℝ} (hp : 0 ≤ p) (hp' : p ≤ 1) :
     0 ≤ bernoulliAverage p (fun x => if x ∈ A then (1 : ℝ) else 0) ∧
@@ -197,6 +239,9 @@ theorem bernoulliAverage_indicator_bounds_internal {n : ℕ} (A : Set (Fin n →
         (f := fun x => if x ∈ A then 1 else 0) (g := fun _ => 1)
         (by intro x; split_ifs <;> norm_num)
 
+/--
+@isnad1 id=antitone.1h2v.s6.f8349ab9f174 from=translated src=- shape=c34dd652 vocab=5e3d94ec
+-/
 theorem lowerSet_indicator_antitone_internal {n : ℕ} {A : Set (Fin n → Bool)}
     (hA : IsLowerSet A) : Antitone (fun x => if x ∈ A then (1 : ℝ) else 0) := by
   classical
@@ -206,6 +251,9 @@ theorem lowerSet_indicator_antitone_internal {n : ℕ} {A : Set (Fin n → Bool)
   · simp only [ite_eq_right hs]
     split_ifs <;> norm_num
 
+/--
+@isnad1 id=le.5h4v.s8.6753afa470e6 from=translated src=- shape=d80532fe vocab=9fb8f9e4
+-/
 theorem bernoulliAverage_lowerSet_union_internal {n : ℕ} {A : Set (Fin n → Bool)}
     (hA : IsLowerSet A)
     {p q : ℝ} (hp : 0 ≤ p) (hp' : p ≤ 1) (hq : 0 ≤ q) (hq' : q ≤ 1) :
@@ -232,6 +280,9 @@ theorem bernoulliAverage_lowerSet_union_internal {n : ℕ} {A : Set (Fin n → B
       simp_rw [bernoulliAverage_mul_internal]
       simp only [bernoulliAverage, ← mul_assoc, sum_mul]
 
+/--
+@isnad1 id=le.5h5v.s7.342a8886080a from=translated src=- shape=230f5b7a vocab=dab568ee
+-/
 theorem bernoulliAverage_lowerSet_pow_le_internal {n : ℕ} {A : Set (Fin n → Bool)}
     (hA : IsLowerSet A)
     {p q : ℝ} (hp : 0 ≤ p) (hp' : p ≤ 1) (hq : q ≤ 1)
@@ -268,6 +319,9 @@ theorem bernoulliAverage_lowerSet_pow_le_internal {n : ℕ} {A : Set (Fin n → 
   exact (bernoulliAverage_bias_antitone_internal (lowerSet_indicator_antitone_internal hA)
     (hu h).1 ((hb h).trans hh) hq).trans (hi h)
 
+/--
+@isnad1 id=eq.0h2v.s4.843287e8b62d from=translated src=- shape=03be0e20 vocab=57992912
+-/
 theorem bernoulliAverage_zero_internal {n : ℕ} (f : (Fin n → Bool) → ℝ) :
     bernoulliAverage 0 f = f (fun _ => false) := by
   induction n with
@@ -282,6 +336,9 @@ theorem bernoulliAverage_zero_internal {n : ℕ} (f : (Fin n → Bool) → ℝ) 
     funext i
     refine Fin.cases ?_ (fun j => ?_) i <;> rfl
 
+/--
+@isnad1 id=le.4h3v.s7.5505117dc46f from=translated src=- shape=a1a41947 vocab=778778a8
+-/
 theorem bernoulliAverage_lowerSet_transfer_internal {n : ℕ} {A : Set (Fin n → Bool)}
     (hA : IsLowerSet A) (hA' : A.Nonempty) {r : ℝ} (hr : 0 ≤ r) (hr' : r ≤ 1 / 20) :
     (bernoulliAverage (1 / 4) (fun x => if x ∈ A then (1 : ℝ) else 0)) ^ (5 * r) ≤
@@ -320,6 +377,9 @@ theorem bernoulliAverage_lowerSet_transfer_internal {n : ℕ} {A : Set (Fin n �
       rw [Real.rpow_natCast]
       exact bernoulliAverage_lowerSet_pow_le_internal hA hr.le hr1 (by norm_num) h hupper
 
+/--
+@isnad1 id=eq.0h5v.s6.3dbb4e3a5f71 from=translated src=- shape=c1fa9dc2 vocab=64a05d3f
+-/
 theorem bernoulliAverage_expect_comm_internal {ι : Type*} [Fintype ι] [DecidableEq ι]
     {α : Type*} (A : Finset α)
     (p : ℝ) (f : (ι → Bool) → α → ℝ) :
@@ -329,6 +389,9 @@ theorem bernoulliAverage_expect_comm_internal {ι : Type*} [Fintype ι] [Decidab
   simp_rw [mul_expect]
   exact (expect_sum_comm A univ _).symm
 
+/--
+@isnad1 id=eq.0h4v.s6.2ab44ae38966 from=translated src=- shape=1e0e18eb vocab=b47e521b
+-/
 theorem bernoulliAverage_sub_internal {ι : Type*} [Fintype ι] [DecidableEq ι]
     (p : ℝ) (f g : (ι → Bool) → ℝ) :
     bernoulliAverage p (fun s => f s - g s) = bernoulliAverage p f - bernoulliAverage p g := by

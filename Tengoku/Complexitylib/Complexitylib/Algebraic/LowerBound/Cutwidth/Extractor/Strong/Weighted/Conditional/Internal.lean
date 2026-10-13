@@ -22,6 +22,9 @@ public section
 
 namespace Algebraic.Cutwidth.Extractor.Internal
 
+/--
+@isnad1 id=eq.1h5v.s5.5baefb5399cd from=translated src=- shape=dbe6eddc vocab=23cb4ea4
+-/
 theorem conditionalWeight_factor {α β : Type*} [Fintype β]
     (p : α × β → ℝ) (nonnegative : ∀ ab, 0 ≤ p ab) (a : α) (b : β) :
     firstWeight p a * conditionalWeight p a b = p (a, b) := by
@@ -33,6 +36,9 @@ theorem conditionalWeight_factor {α β : Type*} [Fintype β]
     simp only [zero, zero_mul, vanishes]
   · rw [conditionalWeight, ite_eq_right zero, mul_div_cancel₀ _ zero]
 
+/--
+@isnad1 id=isprobab.1h4v.s5.54555717becb from=translated src=- shape=7ad098ee vocab=57827805
+-/
 theorem probabilityWeight_conditional {α β : Type*} [Fintype α] [Fintype β] [Nonempty β]
     {p : α × β → ℝ} (probability : IsProbabilityWeight p) (a : α) :
     IsProbabilityWeight (conditionalWeight p a) := by
@@ -50,6 +56,9 @@ theorem probabilityWeight_conditional {α β : Type*} [Fintype α] [Fintype β] 
     · simp only [conditionalWeight, ite_eq_right zero, ← Finset.sum_div]
       exact div_self zero
 
+/--
+@isnad1 id=isprobab.1h3v.s5.1f5a903a6131 from=translated src=- shape=52a4669f vocab=599be090
+-/
 theorem probabilityWeight_uniformExtension {α : Type*} [Fintype α]
     {w : α → ℝ} (probability : IsProbabilityWeight w) (β : Type*) [Fintype β] [Nonempty β] :
     IsProbabilityWeight (uniformExtensionWeight β w) := by
@@ -58,18 +67,27 @@ theorem probabilityWeight_uniformExtension {α : Type*} [Fintype α]
   simpa only [uniformExtensionWeight, Fintype.sum_prod_type, ← Finset.mul_sum,
     uniform.2, mul_one] using probability.2
 
+/--
+@isnad1 id=eq.0h3v.s4.f0e8feadec6a from=translated src=- shape=daf40484 vocab=af40ac2c
+-/
 theorem firstWeight_uniformExtension {α β : Type*} [Fintype β] [Nonempty β]
     (w : α → ℝ) : firstWeight (uniformExtensionWeight β w) = w := by
   have uniform := isProbabilityWeight_uniform β
   funext a
   simp only [firstWeight, uniformExtensionWeight, ← Finset.mul_sum, uniform.2, mul_one]
 
+/--
+@isnad1 id=isprobab.1h3v.s5.dcd8d767507b from=translated src=- shape=6631d688 vocab=b6ab11f6
+-/
 theorem probabilityWeight_uniformSecond {α β : Type*}
     [Fintype α] [Fintype β] [Nonempty β]
     {p : α × β → ℝ} (probability : IsProbabilityWeight p) :
     IsProbabilityWeight (uniformSecondWeight p) :=
   probabilityWeight_uniformExtension probability.first β
 
+/--
+@isnad1 id=eq.1h3v.s6.acd59e4861cf from=translated src=- shape=ea0a8767 vocab=acfe4cc9
+-/
 theorem weightDist_uniformSecond_eq {α β : Type*}
     [Fintype α] [Fintype β]
     {p : α × β → ℝ} (probability : IsProbabilityWeight p) :
@@ -86,12 +104,18 @@ theorem weightDist_uniformSecond_eq {α β : Type*}
     _ = _ := weightDist_tagged_mixture (firstWeight p) (conditionalWeight p)
       (fun _ => uniformWeight β) probability.first.1
 
+/--
+@isnad1 id=eq.0h5v.s6.29177cbd66b5 from=translated src=- shape=9012fae7 vocab=41ca1a01
+-/
 theorem firstWeight_map_fiber {α β γ : Type*}
     [Fintype α] [Fintype β] [Fintype γ]
     (p : α × β → ℝ) (f : α → β → γ) :
     firstWeight (mapWeight (fun ab => (ab.1, f ab.1 ab.2)) p) = firstWeight p := by
   rw [← mapWeight_fst, mapWeight_comp, mapWeight_fst]
 
+/--
+@isnad1 id=eq.1h5v.s7.965be6c62ede from=translated src=- shape=85af505c vocab=b72774d5
+-/
 theorem weightDist_uniformSecond_tagged {ι α β : Type*}
     [Fintype ι] [Fintype α] [Fintype β]
     (w : ι → ℝ) (p : ι → α × β → ℝ) (nonnegative : ∀ i, 0 ≤ w i) :
@@ -103,6 +127,9 @@ theorem weightDist_uniformSecond_tagged {ι α β : Type*}
   simp_rw [← mul_sub, abs_mul, abs_of_nonneg (nonnegative _)]
   simp only [Finset.sum_div, ← Finset.mul_sum, mul_div_assoc]
 
+/--
+@isnad1 id=eq.0h5v.s6.9edb40fb2fcb from=translated src=- shape=b8a970ba vocab=41ca1a01
+-/
 theorem firstWeight_map_first {α β γ : Type*}
     [Fintype α] [Fintype β] [Fintype γ]
     (p : α × β → ℝ) (f : α → γ) :
@@ -110,6 +137,9 @@ theorem firstWeight_map_first {α β γ : Type*}
       mapWeight f (firstWeight p) := by
   rw [← mapWeight_fst, mapWeight_comp, ← mapWeight_fst, mapWeight_comp]
 
+/--
+@isnad1 id=eq.0h5v.s6.c55791e67b3b from=translated src=- shape=2e6e8630 vocab=68f406c7
+-/
 theorem mapWeight_uniformExtension {α β γ : Type*}
     [Fintype α] [Fintype β] (w : α → ℝ) (f : α → γ) :
     mapWeight (fun ab : α × β => (f ab.1, ab.2)) (uniformExtensionWeight β w) =
@@ -120,6 +150,9 @@ theorem mapWeight_uniformExtension {α β γ : Type*}
   simp [mapWeight, uniformExtensionWeight, Fintype.sum_prod_type, Prod.mk.injEq,
     ite_and, Finset.sum_ite_irrel, Finset.sum_mul]
 
+/--
+@isnad1 id=eq.0h5v.s6.2b360f38190c from=translated src=- shape=ccdf048d vocab=dc2c7400
+-/
 theorem uniformSecondWeight_map_first {α β γ : Type*}
     [Fintype α] [Fintype β] [Fintype γ]
     (p : α × β → ℝ) (f : α → γ) :

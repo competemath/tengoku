@@ -74,6 +74,9 @@ def opinionOf (A : (R.killedPow q T hq).Assignment) (v : R.graph.V) {m : ℕ} (h
   A (R.graph.walkEnd m v w) ⟨⟨m, by omega⟩, R.graph.revWalk v w⟩
 
 omit [Fintype α] [DecidableEq α] [Nonempty α] in
+/--
+@isnad1 id=eq.1h7v.s6.fe9715c78b5c from=translated src=- shape=354094e4 vocab=4ba356c7
+-/
 theorem kOpinionAbout_eq_opinionOf (A : (R.killedPow q T hq).Assignment) (v : R.graph.V)
     (x : R.KLabels q T) :
     R.kOpinionAbout q T hq A v x
@@ -82,7 +85,9 @@ theorem kOpinionAbout_eq_opinionOf (A : (R.killedPow q T hq).Assignment) (v : R.
 omit [Fintype α] [DecidableEq α] [Nonempty α] in
 /-- Two effective walks of the same length with the same labels give the same
 report. Stated with the length as a hypothesis rather than by rewriting, since
-the walk's type mentions it: `subst` does the transport that `rw` cannot. -/
+the walk's type mentions it: `subst` does the transport that `rw` cannot.
+@isnad1 id=eq.5h10v.s7.7298d008f45a from=translated src=- shape=9870030b vocab=b772919c
+-/
 theorem opinionOf_congr (A : (R.killedPow q T hq).Assignment) (v : R.graph.V)
     {m m' : ℕ} (hm : m ≤ T) (hm' : m' ≤ T) (hmm : m = m')
     (w : Fin m → R.graph.D) (w' : Fin m' → R.graph.D)
@@ -97,7 +102,9 @@ theorem opinionOf_congr (A : (R.killedPow q T hq).Assignment) (v : R.graph.V)
 
 omit [Fintype α] [DecidableEq α] [Nonempty α] in
 /-- On the fibre of effective length `m`, the report is the one determined by
-the length-`m` prefix. -/
+the length-`m` prefix.
+@isnad1 id=eq.3h8v.s6.7fd2707f0280 from=translated src=- shape=75abeb95 vocab=6eb08ef8
+-/
 theorem kOpinionAbout_eq_of_stopAt (A : (R.killedPow q T hq).Assignment) (v : R.graph.V)
     (x : R.KLabels q T) {m : ℕ} (hm : m ≤ T) (h : stopAt x.2 = m) :
     R.kOpinionAbout q T hq A v x
@@ -114,7 +121,9 @@ omit [Fintype α] [Nonempty α] in
 /-- **The fibre partition.** Among the killed walks of effective length `m`,
 those reporting `val` are exactly the ones whose effective walk reports `val`,
 each carrying the same weight. So the count splits into a count of *walks* times
-that weight. -/
+that weight.
+@isnad1 id=eq.2h8v.s8.7e2aa5a4a0c0 from=translated src=- shape=5645bcac vocab=5bac1b11
+-/
 theorem card_fibre_opinion (A : (R.killedPow q T hq).Assignment) (v : R.graph.V)
     (val : α) {m : ℕ} (hm : m < T) :
     (Finset.univ.filter fun x : R.KLabels q T =>
@@ -164,7 +173,9 @@ noncomputable def kPlurality (A : (R.killedPow q T hq).Assignment) (v : R.graph.
     (R.kOpinionAbout q T hq A v))
 
 /-- **Pigeonhole.** At least a `1 / |α|` fraction of the killed walks out of `v`
-report the decoded value. -/
+report the decoded value.
+@isnad1 id=le.1h6v.s7.42594b44b6e4 from=translated src=- shape=e2940b3e vocab=eec39133
+-/
 theorem card_le_card_mul_kOpinionCount (A : (R.killedPow q T hq).Assignment)
     (v : R.graph.V) :
     Fintype.card (R.KLabels q T)
@@ -174,7 +185,9 @@ theorem card_le_card_mul_kOpinionCount (A : (R.killedPow q T hq).Assignment)
   exact h
 
 omit [Fintype α] [Nonempty α] in
-/-- The reports split by effective length. -/
+/-- The reports split by effective length.
+@isnad1 id=eq.1h7v.s7.23a87ee1aca9 from=translated src=- shape=a26051d7 vocab=bab5de04
+-/
 theorem kOpinionCount_eq_sum (A : (R.killedPow q T hq).Assignment) (v : R.graph.V)
     (val : α) :
     R.kOpinionCount q T hq A v val
@@ -204,6 +217,9 @@ noncomputable def truthCount (A : (R.killedPow q T hq).Assignment) (v : R.graph.
       R.opinionOf q T hq A v hm w = R.kPlurality q T hq A v).card
   else 0
 
+/--
+@isnad1 id=eq.2h7v.s8.8e162d4495ff from=translated src=- shape=ab56eb53 vocab=7fac2726
+-/
 theorem card_fibre_truth (A : (R.killedPow q T hq).Assignment) (v : R.graph.V)
     {m : ℕ} (hm : m < T) :
     (Finset.univ.filter fun x : R.KLabels q T =>
@@ -213,6 +229,9 @@ theorem card_fibre_truth (A : (R.killedPow q T hq).Assignment) (v : R.graph.V)
   rw [R.card_fibre_opinion q T hq A v _ hm, truthCount, dite_eq_left (le_of_lt hm)]
 
 omit [Fintype α] [DecidableEq α] [Nonempty α] in
+/--
+@isnad1 id=eq.0h4v.s6.b1129395fcfe from=translated src=- shape=281962ec vocab=3922ee6f
+-/
 theorem card_KLabels : Fintype.card (R.KLabels q T) = R.graph.deg ^ T * q ^ T := by
   rw [Fintype.card_prod, Fintype.card_fun, Fintype.card_fun, Fintype.card_fin,
     Fintype.card_fin]
@@ -220,7 +239,9 @@ theorem card_KLabels : Fintype.card (R.KLabels q T) = R.graph.deg ^ T * q ^ T :=
 
 omit [Fintype α] [DecidableEq α] [Nonempty α] in
 /-- The killed walks that never stop. This is the truncation term, and it is an
-exponentially small fraction `((q-1)/q) ^ T` of all labels. -/
+exponentially small fraction `((q-1)/q) ^ T` of all labels.
+@isnad1 id=eq.0h4v.s7.495431575ca6 from=translated src=- shape=edcae7ce vocab=a5b61677
+-/
 theorem card_stopAt_eq_top :
     (Finset.univ.filter fun x : R.KLabels q T => stopAt x.2 = T).card
       = R.graph.deg ^ T * (q - 1) ^ T := by
@@ -252,7 +273,9 @@ term of walks that never stop.
 
 This is the form the first moment consumes, since the crossing decomposition
 produces exactly these weighted sums — one for the prefix and one for the
-suffix, with independent lengths. -/
+suffix, with independent lengths.
+@isnad1 id=le.1h6v.s8.4aa37f713864 from=translated src=- shape=bfdf0e1d vocab=955ddd12
+-/
 theorem card_le_mul_sum_truthCount (A : (R.killedPow q T hq).Assignment)
     (v : R.graph.V) :
     R.graph.deg ^ T * q ^ T

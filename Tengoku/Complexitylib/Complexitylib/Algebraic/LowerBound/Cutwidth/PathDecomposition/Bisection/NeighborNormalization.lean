@@ -46,7 +46,9 @@ variable {W : Type} [Fintype W]
 
 /-- With an independent boundary, eliminate all three-boundary-neighbor
 vertices or find a helpful set of at most 55 vertices. All moved sets in
-the resulting graph transfer back with at most five times their size. -/
+the resulting graph transfer back with at most five times their size.
+@isnad1 id=or.2h3v.s9.5b6a64f696aa from=translated src=- shape=d2fa300e vocab=162aeecf
+-/
 theorem exists_no_three_neighbors_or_small_helpful (H : SimpleGraph W) (S : Finset W)
     (regular : H.IsRegularOfDegree 3)
     (independent : ∀ a ∈ cutBoundary H S, ∀ b ∈ cutBoundary H S, ¬ H.Adj a b) :
@@ -62,7 +64,9 @@ theorem exists_no_three_neighbors_or_small_helpful (H : SimpleGraph W) (S : Fins
 
 /-- Complete both normalization phases in a cubic graph. Either a helpful
 set of at most 165 vertices exists, or normalization preserves the cut and
-boundary and gives a factor-fifteen reverse transfer for every moved set. -/
+boundary and gives a factor-fifteen reverse transfer for every moved set.
+@isnad1 id=or.1h3v.s8.fd6a530c387e from=translated src=- shape=3605e94c vocab=162aeecf
+-/
 theorem exists_normalization_or_small_helpful (H : SimpleGraph W) (S : Finset W)
     (regular : H.IsRegularOfDegree 3) :
     (∃ X ⊆ S, X.card ≤ 165 ∧ 1 ≤ helpfulness H S X) ∨

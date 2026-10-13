@@ -47,10 +47,15 @@ def margGen (i : Fin 8) (v : ZMod m × ZMod m) : ZMod m × ZMod m :=
 /-- The generator that undoes a given one. -/
 def margPair (i : Fin 8) : Fin 8 := ![1, 0, 3, 2, 5, 4, 7, 6] i
 
+/--
+@isnad1 id=eq.0h1v.s4.881e91b31dbb from=translated src=- shape=848cd2ae vocab=68bf0631
+-/
 @[simp] theorem margPair_pair (i : Fin 8) : margPair (margPair i) = i := by
   fin_cases i <;> rfl
 
-/-- **Partnered generators undo each other.** -/
+/-- **Partnered generators undo each other.**
+@isnad1 id=eq.0h3v.s4.22f031a266c1 from=translated src=- shape=6c490731 vocab=64f7a65a
+-/
 theorem margGen_pair (i : Fin 8) (v : ZMod m × ZMod m) :
     margGen (margPair i) (margGen i v) = v := by
   fin_cases i <;> simp [margGen, margPair, Prod.ext_iff] <;> ring
@@ -68,7 +73,9 @@ def margRot (m : ℕ) (p : Fin (m * m) × Fin 8) : Fin (m * m) × Fin 8 :=
     haveI : NeZero m := ⟨h⟩
     ((margEquiv m).symm (margGen p.2 (margEquiv m p.1)), margPair p.2)
 
-/-- **The Margulis rotation map is an involution.** -/
+/-- **The Margulis rotation map is an involution.**
+@isnad1 id=involuti.0h1v.s4.830d9a237279 from=translated src=- shape=4705600b vocab=34bb1a28
+-/
 theorem margRot_involutive (m : ℕ) : Function.Involutive (margRot m) := by
   intro p
   by_cases h : m = 0

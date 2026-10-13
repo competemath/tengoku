@@ -96,7 +96,9 @@ private theorem headFlagTM_read (x : List Bool) :
   | nil => simp [Tape.read, Tape.move, Tape.init]
   | cons a t => cases a <;> simp [Tape.read, Tape.move, Tape.init, Γ.ofBool]
 
-/-- `headFlagTM target` computes `headFlag target` in two steps. -/
+/-- `headFlagTM target` computes `headFlag target` in two steps.
+@isnad1 id=computes.0h1v.s4.0f0211894a31 from=translated src=- shape=80b92d28 vocab=b8fb6225
+-/
 theorem headFlagTM_computesInTime (target : Bool) :
     (headFlagTM target).ComputesInTime (headFlag target) (fun _ => 2) := by
   intro x
@@ -161,7 +163,9 @@ theorem headFlagTM_computesInTime (target : Bool) :
     rw [hcells]
     simp [c1, Tape.move, Tape.init]
 
-/-- **A bit test, as a length.** -/
+/-- **A bit test, as a length.**
+@isnad1 id=mem.0h1v.s4.eb5f8766b51d from=translated src=- shape=bf1f846f vocab=ae21a9ce
+-/
 theorem headFlag_mem_FP (target : Bool) : headFlag target ∈ FP :=
   ⟨1, 0, headFlagTM target, (fun _ => 2), headFlagTM_computesInTime target,
     BigO.const_le_pow 2 1⟩

@@ -37,7 +37,9 @@ open Multigraph Relation Filter Superconcentrator.Internal
 
 variable {V E : Type} {G : Multigraph V E} {N : ℕ} {input output : Fin N → V}
 
-/-- Every superconcentrator is a hyperconcentrator. -/
+/-- Every superconcentrator is a hyperconcentrator.
+@isnad1 id=hypercon.1h6v.s5.fdc0530bb247 from=translated src=- shape=c6b0aa70 vocab=c59396c6
+-/
 theorem hyperconcentrator_of_superconcentrator (h : G.Superconcentrator input output) :
     G.Hyperconcentrator input output where
   input_injective := h.input_injective
@@ -59,13 +61,17 @@ theorem hyperconcentrator_of_superconcentrator (h : G.Superconcentrator input ou
 
 /-! ### The cut lemma -/
 
-/-- The first `k` labels number at most `k`. -/
+/-- The first `k` labels number at most `k`.
+@isnad1 id=le.0h2v.s5.2719f9155cbe from=translated src=- shape=926d19b2 vocab=a5c30053
+-/
 theorem card_filter_lt_le (k : ℕ) : (Finset.univ.filter fun j : Fin N => (j : ℕ) < k).card ≤ k :=
   (Finset.card_le_card_of_injOn (t := Finset.range k) (fun j : Fin N => (j : ℕ)) (fun j hj => by
     simpa using (Finset.mem_filter.1 hj).2) Fin.val_injective.injOn).trans (by simp)
 
 /-- **The cut lemma.** Every linear order of the vertices of an `N`-hyperconcentrator has a
-lower set whose cut has at least `⌊N/2⌋` edges. -/
+lower set whose cut has at least `⌊N/2⌋` edges.
+@isnad1 id=ex.1h6v.s6.9d6486bd88a4 from=translated src=- shape=85db22fd vocab=1a9d326a
+-/
 theorem exists_le_card_cut [Fintype V] [Fintype E] [LinearOrder V]
     (h : G.Hyperconcentrator input output) :
     ∃ L : Finset V, IsLowerSet (L : Set V) ∧ N / 2 ≤ (G.cut L).card := by
@@ -104,7 +110,9 @@ theorem exists_le_card_cut [Fintype V] [Fintype E] [LinearOrder V]
 
 /-! ### The terminals lie in one component -/
 
-/-- Every input is joined to the first output by a directed walk. -/
+/-- Every input is joined to the first output by a directed walk.
+@isnad1 id=ex.2h7v.s6.3ef3932dff03 from=translated src=- shape=a62d6bb7 vocab=181f9dea
+-/
 theorem exists_isDirWalk_first (h : G.Hyperconcentrator input output) (hN : 0 < N)
     (i : Fin N) : ∃ p, G.IsDirWalk p (input i) (output ⟨0, hN⟩) := by
   obtain ⟨target, walk, hwalk, -⟩ := h.exists_walks {i}
@@ -113,7 +121,9 @@ theorem exists_isDirWalk_first (h : G.Hyperconcentrator input output) (hN : 0 < 
   have : target i = ⟨0, hN⟩ := Fin.ext (by simp only; omega)
   exact ⟨walk i, this ▸ hw⟩
 
-/-- Every output is reached from some input by a directed walk. -/
+/-- Every output is reached from some input by a directed walk.
+@isnad1 id=ex.1h7v.s5.5a3c132827ef from=translated src=- shape=4fdc51c1 vocab=f07a2105
+-/
 theorem exists_isDirWalk_output (h : G.Hyperconcentrator input output) (j : Fin N) :
     ∃ i p, G.IsDirWalk p (input i) (output j) := by
   obtain ⟨target, walk, hwalk, hdisj⟩ := h.exists_walks Finset.univ
@@ -122,7 +132,9 @@ theorem exists_isDirWalk_output (h : G.Hyperconcentrator input output) (j : Fin 
   exact ⟨i, walk i, (hwalk i hi).2⟩
 
 /-- **All terminals lie in one component.** Every input and every output of an
-`N`-hyperconcentrator with `N > 0` is joined to the first input by an undirected walk. -/
+`N`-hyperconcentrator with `N > 0` is joined to the first input by an undirected walk.
+@isnad1 id=and.2h6v.s6.c8886324ca0d from=translated src=- shape=c4016e0e vocab=52e519ce
+-/
 theorem reflTransGen_root (h : G.Hyperconcentrator input output) (hN : 0 < N) :
     (∀ i, ReflTransGen G.Adj (input i) (input ⟨0, hN⟩)) ∧
       ∀ j, ReflTransGen G.Adj (output j) (input ⟨0, hN⟩) := by
@@ -139,13 +151,17 @@ theorem reflTransGen_root (h : G.Hyperconcentrator input output) (hN : 0 < N) :
 
 variable [Fintype E]
 
-/-- Every input has a kept edge leaving it. -/
+/-- Every input has a kept edge leaving it.
+@isnad1 id=lt.2h7v.s6.29b6ae7a493d from=translated src=- shape=9c754fe4 vocab=ac9f0880
+-/
 theorem slots_input_pos (h : G.Hyperconcentrator input output) (hN : 0 < N) (i : Fin N) :
     0 < slots G (compEdges G (input ⟨0, hN⟩)) (input i) := by
   obtain ⟨p, hp⟩ := exists_isDirWalk_first h hN i
   exact slots_pos_of_isDirWalk_left hp (h.input_ne_output _ _) ((reflTransGen_root h hN).1 i)
 
-/-- Every output has a kept edge entering it. -/
+/-- Every output has a kept edge entering it.
+@isnad1 id=lt.2h7v.s6.9cda101369aa from=translated src=- shape=db09b0c0 vocab=ac9f0880
+-/
 theorem slots_output_pos (h : G.Hyperconcentrator input output) (hN : 0 < N) (j : Fin N) :
     0 < slots G (compEdges G (input ⟨0, hN⟩)) (output j) := by
   obtain ⟨i, p, hp⟩ := exists_isDirWalk_output h j
@@ -153,7 +169,9 @@ theorem slots_output_pos (h : G.Hyperconcentrator input output) (hN : 0 < N) (j 
 
 /-- **The split graph of a hyperconcentrator.** If all inputs lie in the component of `r`,
 every input has a slot, and every output has a slot, then the split graph of the component is
-a hyperconcentrator with inputs at first slots and outputs at last slots. -/
+a hyperconcentrator with inputs at first slots and outputs at last slots.
+@isnad1 id=hypercon.4h7v.s7.5bd762f12646 from=translated src=- shape=154eef0f vocab=293fc54a
+-/
 theorem split_hyperconcentrator (h : G.Hyperconcentrator input output) {r : V}
     (hr : ∀ i, ReflTransGen G.Adj (input i) r)
     (hin : ∀ i, 0 < slots G (compEdges G r) (input i))
@@ -173,7 +191,9 @@ theorem split_hyperconcentrator (h : G.Hyperconcentrator input output) {r : V}
 variable [Fintype V]
 
 omit [Fintype E] [Fintype V] in
-/-- The `2 N` terminals are distinct vertices. -/
+/-- The `2 N` terminals are distinct vertices.
+@isnad1 id=eq.1h6v.s6.61c7a7879f8e from=translated src=- shape=1db62502 vocab=09855782
+-/
 theorem card_terminals (h : G.Hyperconcentrator input output) :
     (Finset.univ.image input ∪ Finset.univ.image output).card = 2 * N := by
   have hdisj : Disjoint (Finset.univ.image input) (Finset.univ.image output) := by
@@ -186,13 +206,17 @@ theorem card_terminals (h : G.Hyperconcentrator input output) :
   ring
 
 omit [Fintype E] in
-/-- A hyperconcentrator has at least `2 N` vertices. -/
+/-- A hyperconcentrator has at least `2 N` vertices.
+@isnad1 id=le.1h6v.s5.34d654b76f66 from=translated src=- shape=5ac28724 vocab=4fbaf5cd
+-/
 theorem two_mul_le_card_vertices (h : G.Hyperconcentrator input output) :
     2 * N ≤ Fintype.card V := by
   rw [← card_terminals h]
   exact Finset.card_le_univ _
 
-/-- The `2 N` terminals have a slot. -/
+/-- The `2 N` terminals have a slot.
+@isnad1 id=le.2h6v.s7.04b9ce20c45a from=translated src=- shape=7328c709 vocab=0a9b08d6
+-/
 theorem two_mul_le_card_slotted (h : G.Hyperconcentrator input output) (hN : 0 < N) :
     2 * N ≤ (Finset.univ.filter fun w => slots G (compEdges G (input ⟨0, hN⟩)) w ≠ 0).card := by
   rw [← card_terminals h]
@@ -203,7 +227,9 @@ theorem two_mul_le_card_slotted (h : G.Hyperconcentrator input output) (hN : 0 <
   · exact (slots_input_pos h hN i).ne'
   · exact (slots_output_pos h hN j).ne'
 
-/-- **The edge baseline.** An `N`-hyperconcentrator has at least `2 N - 1` edges. -/
+/-- **The edge baseline.** An `N`-hyperconcentrator has at least `2 N - 1` edges.
+@isnad1 id=le.2h6v.s6.cef8422a7a40 from=translated src=- shape=9a1b04b0 vocab=4471105a
+-/
 theorem two_mul_le_card_add_one (h : G.Hyperconcentrator input output) (hN : 0 < N) :
     2 * N ≤ Fintype.card E + 1 :=
   le_card_add_one_of_le_slotted (slots_input_pos h hN _) (two_mul_le_card_slotted h hN)
@@ -211,7 +237,9 @@ theorem two_mul_le_card_add_one (h : G.Hyperconcentrator input output) (hN : 0 <
 /-! ### Asymptotics -/
 
 omit [Fintype E] [Fintype V] in
-/-- `⌊N/2⌋/A` is at least `N/(2A)` minus `ε N/2` once `N ≥ 1/(A ε)`. -/
+/-- `⌊N/2⌋/A` is at least `N/(2A)` minus `ε N/2` once `N ≥ 1/(A ε)`.
+@isnad1 id=le.3h3v.s7.337a144ca391 from=translated src=- shape=50b5a622 vocab=64bfd4fd
+-/
 theorem half_div_ge {A ε : ℝ} (hA : 0 < A) (hε : 0 < ε) {n : ℕ}
     (hn : ⌈1 / (A * ε)⌉₊ ≤ n) :
     1 / (2 * A) * n - ε / 2 * n ≤ ((n / 2 : ℕ) : ℝ) / A := by

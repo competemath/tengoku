@@ -32,7 +32,9 @@ def Covers (good : State → Choice → Prop) (menu : Fin length → Choice) : P
   ∀ state, ∃ entry, good state (menu entry)
 
 /-- Counting all-bad lists and then taking a union over states gives a fixed
-menu whenever the bad-list bound is smaller than the entire list space. -/
+menu whenever the bad-list bound is smaller than the entire list space.
+@isnad1 id=ex.2h5v.s6.8ca63808a0da from=translated src=- shape=37861047 vocab=72adf337
+-/
 theorem existsCoveringMenuOfCardBound
     (good : State → Choice → Prop) (length badBound : Nat)
     (badSmall : ∀ state,
@@ -72,7 +74,9 @@ theorem existsCoveringMenuOfCardBound
     Finset.mem_univ, true_and, not_exists] using allBad
 
 /-- An exponential single-candidate failure bound and a state-description
-bound give a menu with `descriptionBits / exponent + 1` entries. -/
+bound give a menu with `descriptionBits / exponent + 1` entries.
+@isnad1 id=ex.3h5v.s7.00b2ee22aeb6 from=translated src=- shape=6cce55d1 vocab=1ce51f2e
+-/
 theorem existsCoveringMenuOfExponentialBound
     [Nonempty Choice]
     (good : State → Choice → Prop) (descriptionBits exponent : Nat)

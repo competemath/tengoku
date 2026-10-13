@@ -46,19 +46,25 @@ variable {k : ℕ} {tm : NTM k} {x : List Bool} {S : ℕ}
 /-! ## The rounds as growing finite sets -/
 
 /-- The round recursion, as a membership statement: a code is in the next round exactly when it
-is already present or is a successor of something present. -/
+is already present or is a successor of something present.
+@isnad1 id=iff.0h7v.s8.2a6dbf353f88 from=translated src=- shape=728eebfd vocab=b018426f
+-/
 theorem mem_reachCodes_succ_iff (a₀ : Code tm.Q k x.length S) (i : ℕ)
     (a : Code tm.Q k x.length S) :
     a ∈ reachCodes tm x S a₀ (i + 1) ↔
       a ∈ reachCodes tm x S a₀ i ∨ ∃ b ∈ reachCodes tm x S a₀ i, a ∈ codeSucc tm x S b := by
   simp [reachCodes, codeRound]
 
-/-- Each round contains the previous one. -/
+/-- Each round contains the previous one.
+@isnad1 id=le.0h6v.s6.b34f875e8350 from=translated src=- shape=1036db01 vocab=f6f01dca
+-/
 theorem reachCodes_subset_succ (a₀ : Code tm.Q k x.length S) (i : ℕ) :
     reachCodes tm x S a₀ i ⊆ reachCodes tm x S a₀ (i + 1) :=
   fun _ h => (mem_reachCodes_succ_iff a₀ i _).mpr (Or.inl h)
 
-/-- The rounds only grow. -/
+/-- The rounds only grow.
+@isnad1 id=le.1h7v.s6.cba3b7a36001 from=translated src=- shape=8deb33fd vocab=5ecbfae2
+-/
 theorem reachCodes_mono (a₀ : Code tm.Q k x.length S) {i j : ℕ} (hij : i ≤ j) :
     reachCodes tm x S a₀ i ⊆ reachCodes tm x S a₀ j := by
   induction j with
@@ -80,7 +86,9 @@ theorem eq_reachCodes_of_card_le {a₀ : Code tm.Q k x.length S} {i : ℕ}
   Finset.eq_of_subset_of_card_le hsub hcard
 
 /-- **Non-membership certified by a count.** Having verified as many members of round `i` as the
-round has, a code not among them is not in the round at all. -/
+round has, a code not among them is not in the round at all.
+@isnad1 id=not.3h8v.s7.e85138010fca from=translated src=- shape=5c46ff17 vocab=24871990
+-/
 theorem not_mem_reachCodes_of_card_le {a₀ : Code tm.Q k x.length S} {i : ℕ}
     {T : Finset (Code tm.Q k x.length S)} (hsub : T ⊆ reachCodes tm x S a₀ i)
     (hcard : (reachCodes tm x S a₀ i).card ≤ T.card) {a : Code tm.Q k x.length S}
@@ -88,14 +96,18 @@ theorem not_mem_reachCodes_of_card_le {a₀ : Code tm.Q k x.length S} {i : ℕ}
   rwa [eq_reachCodes_of_card_le hsub hcard] at ha
 
 /-- Conversely, a verified subset can never exceed the round it sits inside, so the count a
-machine accumulates is bounded by the true one. -/
+machine accumulates is bounded by the true one.
+@isnad1 id=le.1h7v.s6.9707c1316a68 from=translated src=- shape=96b348b6 vocab=42d24b0b
+-/
 theorem card_le_card_reachCodes {a₀ : Code tm.Q k x.length S} {i : ℕ}
     {T : Finset (Code tm.Q k x.length S)} (hsub : T ⊆ reachCodes tm x S a₀ i) :
     T.card ≤ (reachCodes tm x S a₀ i).card :=
   Finset.card_le_card hsub
 
 /-- The counting certificate at the level of the specification rounds: a subset of a round that
-is at least as large is the whole round. -/
+is at least as large is the whole round.
+@isnad1 id=eq.2h5v.s6.bc68de0679a4 from=translated src=- shape=42e9f952 vocab=6ce8c4ba
+-/
 theorem reachSet_eq_of_ncard_le (tm : NTM k) (c₀ : Cfg k tm.Q) (i : ℕ)
     {T : Set (Cfg k tm.Q)} (hsub : T ⊆ reachSet tm c₀ i)
     (hcard : (reachSet tm c₀ i).ncard ≤ T.ncard) : T = reachSet tm c₀ i :=
@@ -105,7 +117,9 @@ theorem reachSet_eq_of_ncard_le (tm : NTM k) (c₀ : Cfg k tm.Q) (i : ℕ)
 
 /-- **What `coNL` has to certify.** An input is *outside* the language exactly when no reachable
 configuration of the search is an accepting halted one — a universally quantified statement over
-a finite set, which is what inductive counting turns into a nondeterministic verification. -/
+a finite set, which is what inductive counting turns into a nondeterministic verification.
+@isnad1 id=iff.2h6v.s9.a050039bcbee from=translated src=- shape=2be1138a vocab=c3c25ebd
+-/
 theorem not_mem_iff_forall_not_accepting {L : Language} {Sf : ℕ → ℕ}
     (hdec : tm.DecidesInSpace L Sf) (x : List Bool) {N : ℕ}
     (hN : Fintype.card (Code tm.Q k x.length (Sf x.length)) ≤ N) :
@@ -120,7 +134,9 @@ end NTM
 
 /-- **The complement of an `NL` language, spelled out.** An input is outside the language exactly
 when *every* configuration the bounded search reaches fails to be accepting. This is the
-universally quantified statement inductive counting has to certify nondeterministically. -/
+universally quantified statement inductive counting has to certify nondeterministically.
+@isnad1 id=ex.1h1v.s7.09d45f2dca3d from=translated src=- shape=060f9a75 vocab=aa91e746
+-/
 theorem NL_complement_characterization_internal {L : Language} (hL : L ∈ NL) :
     ∃ (k : ℕ) (tm : NTM k) (A B : ℕ),
       ∀ x : List Bool, x ∉ L ↔
@@ -132,13 +148,17 @@ theorem NL_complement_characterization_internal {L : Language} (hL : L ∈ NL) :
   simp
 
 /-- A nondeterministic transducer respecting an explicit logarithmic window decides an `NL`
-language: the `O(log n)` side is discharged once, here. -/
+language: the `O(log n)` side is discharged once, here.
+@isnad1 id=mem.2h5v.s4.44981cb65d01 from=translated src=- shape=e1345a55 vocab=9f95e334
+-/
 theorem mem_NL_of_logWindow {L : Language} {k : ℕ} (tm : NTM k) (C D : ℕ)
     (htrans : tm.IsTransducer) (hdec : tm.DecidesInSpace L (logWindow C D)) : L ∈ NL :=
   ⟨k, tm, logWindow C D, htrans, hdec, logWindow_bigO C D⟩
 
 /-- **`NL ⊆ coNL`, reduced to the existence of one machine.** The hypothesis carries the
-log-space witness for `tm`, without which the search language is not in `NL` at all. -/
+log-space witness for `tm`, without which the search language is not in `NL` at all.
+@isnad1 id=le.1h0v.s7.6b08fdee815d from=translated src=- shape=335b3171 vocab=1051bf23
+-/
 theorem NL_subset_coNL_of_counting_internal
     (h : ∀ (k : ℕ) (tm : NTM k) (S : ℕ → ℕ) (L₀ : Language) (A B : ℕ),
       tm.DecidesInSpace L₀ S → S =O (fun n => Nat.log 2 n) →

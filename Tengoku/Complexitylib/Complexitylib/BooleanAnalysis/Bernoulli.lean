@@ -27,39 +27,53 @@ namespace Complexity.BooleanAnalysis
 open scoped Classical
 
 /-- Product Bernoulli weights sum to one. This identity holds algebraically
-for every `p`; they are nonnegative when `p ∈ [0, 1]`. -/
+for every `p`; they are nonnegative when `p ∈ [0, 1]`.
+@isnad1 id=eq.0h3v.s4.d8d3a4069cc0 from=translated src=- shape=9a12e284 vocab=b1c22a44
+-/
 theorem bernoulliAverage_const {ι : Type*} [Fintype ι] [DecidableEq ι] (p c : ℝ) :
     bernoulliAverage p (fun _ : ι → Bool => c) = c := bernoulliAverage_const_internal p c
 
-/-- Bernoulli expectation preserves pointwise inequalities at probability rates. -/
+/-- Bernoulli expectation preserves pointwise inequalities at probability rates.
+@isnad1 id=le.3h4v.s6.0be211a348e4 from=translated src=- shape=e8b0cb42 vocab=5bfe9f14
+-/
 theorem bernoulliAverage_mono {ι : Type*} [Fintype ι] [DecidableEq ι]
     {p : ℝ} (hp : 0 ≤ p) (hp' : p ≤ 1) {f g : (ι → Bool) → ℝ}
     (hfg : ∀ x, f x ≤ g x) : bernoulliAverage p f ≤ bernoulliAverage p g :=
   bernoulliAverage_mono_internal hp hp' hfg
 
-/-- An equivalence of coordinate types preserves Bernoulli expectations. -/
+/-- An equivalence of coordinate types preserves Bernoulli expectations.
+@isnad1 id=eq.0h5v.s6.5c1d2a3cdfcc from=translated src=- shape=18209695 vocab=93a3df58
+-/
 theorem bernoulliAverage_reindex {ι κ : Type*} [Fintype ι] [Fintype κ]
     [DecidableEq ι] [DecidableEq κ] (e : ι ≃ κ) (p : ℝ) (f : (κ → Bool) → ℝ) :
     bernoulliAverage p (fun x => f (fun j => x (e.symm j))) = bernoulliAverage p f :=
   bernoulliAverage_reindex_internal e p f
 
-/-- Restricting a Bernoulli mask to fixed coordinates preserves its product law. -/
+/-- Restricting a Bernoulli mask to fixed coordinates preserves its product law.
+@isnad1 id=eq.0h4v.s7.a368ab8ddf0a from=translated src=- shape=92facb88 vocab=e4d40b45
+-/
 theorem bernoulliAverage_restrict {ι : Type*} [Fintype ι] [DecidableEq ι]
     (p : ℝ) (s : ι → Bool) (f : ({i // s i = true} → Bool) → ℝ) :
     bernoulliAverage p (fun x : ι → Bool => f (fun i => x i)) = bernoulliAverage p f :=
   bernoulliAverage_restrict_internal p s f
 
-/-- Sampling at rate zero selects the empty coordinate set. -/
+/-- Sampling at rate zero selects the empty coordinate set.
+@isnad1 id=eq.0h2v.s4.843287e8b62d from=translated src=- shape=03be0e20 vocab=57992912
+-/
 theorem bernoulliAverage_zero {n : ℕ} (f : (Fin n → Bool) → ℝ) :
     bernoulliAverage 0 f = f (fun _ => false) := bernoulliAverage_zero_internal f
 
-/-- Increasing the sampling rate decreases the expectation of an antitone function. -/
+/-- Increasing the sampling rate decreases the expectation of an antitone function.
+@isnad1 id=le.4h4v.s6.5fcc935553b4 from=translated src=- shape=19bbda31 vocab=e024e6a8
+-/
 theorem bernoulliAverage_bias_antitone {n : ℕ} {f : (Fin n → Bool) → ℝ}
     (hf : Antitone f) {p q : ℝ} (hp : 0 ≤ p) (hpq : p ≤ q) (hq : q ≤ 1) :
     bernoulliAverage q f ≤ bernoulliAverage p f :=
   bernoulliAverage_bias_antitone_internal hf hp hpq hq
 
-/-- The union of independent masks of rates `p` and `q` has rate `p + q - p * q`. -/
+/-- The union of independent masks of rates `p` and `q` has rate `p + q - p * q`.
+@isnad1 id=eq.0h4v.s6.25f2bae105b3 from=translated src=- shape=6eca5796 vocab=60e8ec94
+-/
 theorem bernoulliAverage_union {n : ℕ} (p q : ℝ) (f : (Fin n → Bool) → ℝ) :
     bernoulliAverage p (fun r => bernoulliAverage q (fun s =>
       f (fun i => r i || s i))) = bernoulliAverage (p + q - p * q) f :=
@@ -68,7 +82,9 @@ theorem bernoulliAverage_union {n : ℕ} (p q : ℝ) (f : (Fin n → Bool) → �
 /-- Integer repetition form of downward-closed transference. If `h` independent
 rate-`p` masks have union rate at most `q`, membership at rate `q` forces every
 mask to belong to the downward-closed family. The hypothesis `h * p ≤ q`
-bounds that union rate. No nonemptiness assumption is needed. -/
+bounds that union rate. No nonemptiness assumption is needed.
+@isnad1 id=le.5h5v.s7.342a8886080a from=translated src=- shape=230f5b7a vocab=dab568ee
+-/
 theorem bernoulliAverage_lowerSet_pow_le {n : ℕ} {A : Set (Fin n → Bool)}
     (hA : IsLowerSet A) {p q : ℝ} (hp : 0 ≤ p) (hp' : p ≤ 1) (hq : q ≤ 1)
     (h : ℕ) (hh : (h : ℝ) * p ≤ q) :
@@ -77,7 +93,9 @@ theorem bernoulliAverage_lowerSet_pow_le {n : ℕ} {A : Set (Fin n → Bool)}
   bernoulliAverage_lowerSet_pow_le_internal hA hp hp' hq h hh
 
 /-- The `1/4`-to-sparse transfer inequality used in Korten's Lemma 10.
-Nonemptiness covers the endpoint `r = 0`, where the right side is one. -/
+Nonemptiness covers the endpoint `r = 0`, where the right side is one.
+@isnad1 id=le.4h3v.s7.5505117dc46f from=translated src=- shape=a1a41947 vocab=778778a8
+-/
 theorem bernoulliAverage_lowerSet_transfer {n : ℕ} {A : Set (Fin n → Bool)}
     (hA : IsLowerSet A) (hA' : A.Nonempty) {r : ℝ} (hr : 0 ≤ r) (hr' : r ≤ 1 / 20) :
     (bernoulliAverage (1 / 4) (fun x => if x ∈ A then (1 : ℝ) else 0)) ^ (5 * r) ≤

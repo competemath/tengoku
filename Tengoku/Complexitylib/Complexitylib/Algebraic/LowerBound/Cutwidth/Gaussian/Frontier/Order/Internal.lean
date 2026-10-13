@@ -32,7 +32,9 @@ namespace Algebraic.Cutwidth.Gaussian.Internal
 variable {W : Type} [Fintype W] [DecidableEq W] (H : SimpleGraph W) [DecidableRel H.Adj]
 
 open scoped Classical in
-/-- Three reals on both sides of a threshold give four ordered separated pairs. -/
+/-- Three reals on both sides of a threshold give four ordered separated pairs.
+@isnad1 id=le.2h4v.s7.c8ecba1075de from=translated src=- shape=8bcf5be4 vocab=6523c77a
+-/
 theorem four_le_between_pairs {t p q r : ℝ} (hlt : p < t ∨ q < t ∨ r < t)
     (hge : t ≤ p ∨ t ≤ q ∨ t ≤ r) :
     (4 : ℝ) ≤ ((if Between t p q then 1 else 0) + (if Between t p r then 1 else 0)) +
@@ -43,12 +45,16 @@ theorem four_le_between_pairs {t p q r : ℝ} (hlt : p < t ∨ q < t ∨ r < t)
     simp [Between, hp, hq, hr, not_le.mpr, not_lt.mpr] <;> norm_num <;>
     rcases hlt with h | h | h <;> rcases hge with h' | h' | h' <;> linarith
 
-/-- The edges at `v` are the edges of the graph containing `v`. -/
+/-- The edges at `v` are the edges of the graph containing `v`.
+@isnad1 id=iff.0h4v.s6.9a3b9a89e8d4 from=translated src=- shape=943c5c68 vocab=2e2bf1d3
+-/
 theorem mem_incidenceFinset_iff {v : W} {e : Sym2 W} :
     e ∈ H.incidenceFinset v ↔ e ∈ H.edgeFinset ∧ v ∈ e := by
   rw [SimpleGraph.incidenceFinset_eq_filter, Finset.mem_filter]
 
-/-- A set of edges has at most two endpoints per edge. -/
+/-- A set of edges has at most two endpoints per edge.
+@isnad1 id=le.0h2v.s6.caaa76b1e5d3 from=translated src=- shape=96f956c6 vocab=bed044a9
+-/
 theorem card_filter_exists_mem_le (F : Finset (Sym2 W)) :
     (Finset.univ.filter fun v => ∃ e ∈ F, v ∈ e).card ≤ 2 * F.card := by
   have hsub : (Finset.univ.filter fun v => ∃ e ∈ F, v ∈ e) ⊆
@@ -66,7 +72,9 @@ theorem card_filter_exists_mem_le (F : Finset (Sym2 W)) :
 
 open scoped Classical in
 /-- Below `a`: a vertex with an edge scoring at most `t < a` is an endpoint of an edge scoring
-below `a`. -/
+below `a`.
+@isnad1 id=le.1h5v.s8.d9f6666b1498 from=translated src=- shape=a704cee1 vocab=d1650901
+-/
 theorem card_filter_edgeScore_le_of_lt (score : Sym2 W → ℝ) {a t : ℝ} (ht : t < a) :
     ((Finset.univ.filter fun v => (∃ e ∈ H.edgeFinset, v ∈ e ∧ score e ≤ t) ∧
       ∃ e ∈ H.edgeFinset, v ∈ e ∧ t ≤ score e).card : ℝ) ≤
@@ -82,7 +90,9 @@ theorem card_filter_edgeScore_le_of_lt (score : Sym2 W → ℝ) {a t : ℝ} (ht 
 
 open scoped Classical in
 /-- At or above `b`: a vertex with an edge scoring at least `t ≥ b` is an endpoint of an edge
-scoring at least `b`. -/
+scoring at least `b`.
+@isnad1 id=le.1h5v.s8.a08b977ed626 from=translated src=- shape=989760fd vocab=046bee6a
+-/
 theorem card_filter_edgeScore_le_of_ge (score : Sym2 W → ℝ) {b t : ℝ} (ht : b ≤ t) :
     ((Finset.univ.filter fun v => (∃ e ∈ H.edgeFinset, v ∈ e ∧ score e ≤ t) ∧
       ∃ e ∈ H.edgeFinset, v ∈ e ∧ t ≤ score e).card : ℝ) ≤
@@ -100,7 +110,9 @@ open scoped Classical in
 /-- **Score-order path decomposition.** List the edges of a cubic graph in nondecreasing score
 order and let bag `k` hold the vertices with an incident edge at a position at most `k` and
 another at a position at least `k`. Each bag lies inside the vertices with an edge scoring at
-most `t` and an edge scoring at least `t`, where `t` is the score of the `k`-th edge. -/
+most `t` and an edge scoring at least `t`, where `t` is the score of the `k`-th edge.
+@isnad1 id=ex.1h3v.s8.d42434715306 from=translated src=- shape=2f6eba53 vocab=5619bf24
+-/
 theorem exists_pathDecomposition_subset_edgeScore (regular : H.IsRegularOfDegree 3)
     (score : Sym2 W → ℝ) :
     ∃ D : PathDecomposition H, ∀ k, ∃ t : ℝ, D.bag k ⊆ Finset.univ.filter fun v =>

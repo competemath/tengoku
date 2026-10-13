@@ -91,13 +91,18 @@ def readIn (L : Set V) : Set ι :=
 def read : Set ι :=
   N.readIn univ
 
+/--
+@isnad1 id=eq.0h5v.s5.aea2ebb0fe99 from=translated src=- shape=fd50d257 vocab=9afeb0a7
+-/
 @[simp] theorem readIn_empty : N.readIn ∅ = ∅ := by
   ext i; simp [readIn]
 
 /-- **The separator lemma.** Let `α` satisfy the network on the input `x` and `β` on the input
 `y`, and suppose that they agree on the cut of `L`. Then the network is satisfied on any input
 `z` that agrees with `x` on the inputs read in `L` and with `y` on the others, by an assignment
-that agrees with `α` on the edges touching `L` and with `β` on the remaining edges. -/
+that agrees with `α` on the edges touching `L` and with `β` on the remaining edges.
+@isnad1 id=ex.5h11v.s7.03ac3b55a7fe from=translated src=- shape=4781b0d8 vocab=1a7c0272
+-/
 theorem Satisfies.splice {N : Network U ι V E} {L : Set V} {x y z : ι → U} {α β : E → U}
     (hx : N.Satisfies x α) (hy : N.Satisfies y β) (hcut : EqOn α β (N.cut L))
     (hzx : EqOn z x (N.readIn L)) (hzy : EqOn z y (N.readIn L)ᶜ) :
@@ -125,7 +130,9 @@ theorem Satisfies.splice {N : Network U ι V E} {L : Set V} {x y z : ι → U} {
       · exact (piecewise_eq_of_notMem _ _ _ ht).symm
     exact N.check_local v y z β _ hinputs hedges (hy v)
 
-/-- Acceptance depends only on the inputs that the network reads. -/
+/-- Acceptance depends only on the inputs that the network reads.
+@isnad1 id=dependso.0h5v.s5.35a5279b19ac from=translated src=- shape=02af9eb7 vocab=54d81eb8
+-/
 theorem dependsOn_read : DependsOn (· ∈ N.accepted) N.read := by
   have key : ∀ x y : ι → U, (∀ i ∈ N.read, x i = y i) → x ∈ N.accepted → y ∈ N.accepted :=
     fun x y hxy ⟨α, hα⟩ => ⟨α, fun v =>
@@ -147,6 +154,9 @@ open Classical in
 noncomputable def frontierValues (t : ℕ) (α : E → U) : E → Option U := fun e =>
   if e ∈ N.frontier π t then some (α e) else none
 
+/--
+@isnad1 id=iff.0h9v.s6.d298cc33858e from=translated src=- shape=e0272ecf vocab=9013d645
+-/
 theorem frontierValues_eq_iff {t : ℕ} {α β : E → U} :
     N.frontierValues π t α = N.frontierValues π t β ↔ EqOn α β (N.frontier π t) := by
   constructor
@@ -197,7 +207,9 @@ variable {π} {val : (ι → U) → E → U} {extra : ℕ → (ι → U) → R}
       EqOn (val x) (val y) (N.frontier π t) →
       ∀ z, EqOn z x (N.readIn (π.initial t)) → EqOn z y (N.readIn (π.initial t))ᶜ → z ∈ S}
 
-/-- The inputs revealed while processing the vertex numbered `t` are read at that vertex. -/
+/-- The inputs revealed while processing the vertex numbered `t` are read at that vertex.
+@isnad1 id=le.3h11v.s8.f464b5952cdc from=translated src=- shape=a0eea92b vocab=24a8fe8d
+-/
 theorem newly_subset_readAt {t : ℕ} (ht : t < Nat.card V) :
     (N.frontierSweep π val extra hlast hsplice).newly t ⊆ N.readAt (π.symm ⟨t, ht⟩) := by
   rintro i ⟨hi, hi'⟩
@@ -234,7 +246,9 @@ private theorem ncard_transition_le_of_determines [Finite ι] [Finite U] {t : �
         rw [ncard_prod, ncard_univ]
 
 /-- **Transitions by width.** At a step that processes a vertex, the transition is determined by
-the extra messages, the values on the two frontiers, and the inputs read at the vertex. -/
+the extra messages, the values on the two frontiers, and the inputs read at the vertex.
+@isnad1 id=le.3h11v.s9.b8a29ab9708c from=translated src=- shape=43c1e426 vocab=5444c058
+-/
 theorem ncard_transition_le [Finite ι] [Finite U] [Finite E] {t : ℕ} (ht : t < Nat.card V) :
     ((N.frontierSweep π val extra hlast hsplice).transition t '' S).ncard ≤
       ((fun x => (extra t x, extra (t + 1) x)) '' S).ncard *
@@ -254,7 +268,9 @@ theorem ncard_transition_le [Finite ι] [Finite U] [Finite E] {t : ℕ} (ht : t 
     ← pow_add] at h
 
 /-- **Transitions by distinct labels.** If edges with the same label carry the same value,
-charge a label only once across the union of the adjacent frontiers. -/
+charge a label only once across the union of the adjacent frontiers.
+@isnad1 id=le.4h14v.s9.5396713d48d1 from=translated src=- shape=83197028 vocab=5444c058
+-/
 theorem ncard_transition_le_labels [Finite ι] [Finite U] {Λ : Type*} [Finite Λ]
     (label : E → Λ) (value : (ι → U) → Λ → U)
     (hval : ∀ x ∈ S, ∀ e, val x e = value x (label e))
@@ -282,7 +298,9 @@ theorem ncard_transition_le_labels [Finite ι] [Finite U] {Λ : Type*} [Finite �
 
 /-- **Transitions inside a closed set.** If the vertex processed lies in `W`, both frontiers lie
 among the edges at `W`, and the values on the edges at `W` are determined by the extra messages
-and the inputs read in `W`, then so is the transition. -/
+and the inputs read in `W`, then so is the transition.
+@isnad1 id=le.6h12v.s9.322d895b4d5d from=translated src=- shape=a1536d30 vocab=591c2674
+-/
 theorem ncard_transition_le_of_touching [Finite ι] [Finite U] {t : ℕ} (ht : t < Nat.card V)
     {W : Set V} (hv : π.symm ⟨t, ht⟩ ∈ W)
     (hC : N.frontier π t ∪ N.frontier π (t + 1) ⊆ N.touching W)
@@ -305,7 +323,9 @@ theorem ncard_transition_le_of_touching [Finite ι] [Finite U] {t : ℕ} (ht : t
   rwa [Nat.card_fun, Nat.card_coe_set_eq] at h
 
 /-- At the last step nothing is left on the frontier, and the transition is determined by the
-extra messages and the inputs that the network does not read. -/
+extra messages and the inputs that the network does not read.
+@isnad1 id=le.2h10v.s8.4bf600f82e5a from=translated src=- shape=08d30c32 vocab=3cfd5771
+-/
 theorem ncard_transition_last_le [Finite ι] [Finite U] :
     ((N.frontierSweep π val extra hlast hsplice).transition (Nat.card V) '' S).ncard ≤
       ((fun x => (extra (Nat.card V) x, extra (Nat.card V + 1) x)) '' S).ncard *
@@ -331,6 +351,9 @@ variable (π) [Nonempty U]
 noncomputable def witness (x : ι → U) : E → U :=
   Classical.epsilon (N.Satisfies x)
 
+/--
+@isnad1 id=satisfie.1h6v.s5.e9d61c187a94 from=translated src=- shape=8deba169 vocab=61828c93
+-/
 theorem satisfies_witness {x : ι → U} (hx : x ∈ N.accepted) : N.Satisfies x (N.witness x) :=
   Classical.epsilon_spec hx
 
@@ -345,7 +368,9 @@ noncomputable def sweep : Sweep N.accepted (Unit × (E → Option U)) :=
 `K`-rectangle-free, with at least `K` of them. If a layout has all frontiers of size at most
 `w`, every vertex has degree at most `d` and reads at most `m` inputs, then
 
-`|accepted| ≤ (K - 1) ^ 2 · (|V| · |U| ^ (w + d + m) + |U| ^ #(unread inputs))`. -/
+`|accepted| ≤ (K - 1) ^ 2 · (|V| · |U| ^ (w + d + m) + |U| ^ #(unread inputs))`.
+@isnad1 id=le.5h10v.s7.7fa9f66bd7c0 from=translated src=- shape=bf8f3966 vocab=5edef5e1
+-/
 theorem ncard_accepted_le [Finite ι] [Finite U] [Finite E] {K : ℕ}
     (hfree : RectangleFree N.accepted K) (hK : K ≤ N.accepted.ncard)
     {w d m : ℕ} (hw : ∀ t, (N.frontier π t).ncard ≤ w) (hd : N.MaxDegreeLE d)
@@ -385,7 +410,9 @@ theorem ncard_accepted_le [Finite ι] [Finite U] [Finite E] {K : ℕ}
   · exact (Nat.mul_le_mul_right _ (hunit (Nat.card V))).trans (by rw [one_mul])
 
 /-- A label budget on adjacent frontiers bounds the accepted set without charging repeated
-copies of a label. This includes the inputs read during the step in the budget `b`. -/
+copies of a label. This includes the inputs read during the step in the budget `b`.
+@isnad1 id=le.4h11v.s8.f7ce82ed0ab6 from=translated src=- shape=9b40ef8f vocab=b4a3dfad
+-/
 theorem ncard_accepted_le_labels [Finite ι] [Finite U] {Λ : Type*} [Finite Λ]
     (label : E → Λ) (value : (ι → U) → Λ → U)
     (hval : ∀ x ∈ N.accepted, ∀ e, N.witness x e = value x (label e))

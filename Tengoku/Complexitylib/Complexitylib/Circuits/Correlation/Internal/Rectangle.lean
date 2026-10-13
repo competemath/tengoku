@@ -28,11 +28,16 @@ open Finset Complexity.Frontier
 
 variable {ι : Type*}
 
+/--
+@isnad1 id=injectiv.0h0v.s3.11ec43121060 from=translated src=- shape=d3a93718 vocab=5b483473
+-/
 theorem bit_injective : Function.Injective bit := by
   intro a b h
   cases a <;> cases b <;> first | rfl | exact absurd h (by decide)
 
-/-- The sign of a quadratic form is the negated sign of its value in `ZMod 2`. -/
+/-- The sign of a quadratic form is the negated sign of its value in `ZMod 2`.
+@isnad1 id=eq.0h3v.s8.c089e4da4cac from=translated src=- shape=cbde8762 vocab=ae78aa37
+-/
 theorem boolSign_quadForm [Fintype ι] (Q : Matrix ι ι (ZMod 2)) (x : ι → Bool) :
     boolSign (quadForm Q x) = -zsign (∑ i, ∑ j, Q i j * bit (x i) * bit (x j)) := by
   unfold quadForm
@@ -49,34 +54,54 @@ def merge {γ : Type*} (p : X → γ) (q : ↥Xᶜ → γ) : ι → γ :=
 
 variable {X}
 
+/--
+@isnad1 id=eq.0h6v.s6.c7fb210b1f74 from=translated src=- shape=536078fb vocab=dabdec91
+-/
 @[simp] theorem merge_coe_left {γ : Type*} (p : X → γ) (q : ↥Xᶜ → γ) (i : X) :
     merge X p q i = p i := by
   simp [merge, i.2]
 
+/--
+@isnad1 id=eq.0h6v.s6.a105532b098f from=translated src=- shape=3b4079fd vocab=dabdec91
+-/
 @[simp] theorem merge_coe_right {γ : Type*} (p : X → γ) (q : ↥Xᶜ → γ) (i : ↥Xᶜ) :
     merge X p q i = q i := by
   have : (i : ι) ∉ X := i.2
   simp [merge, this]
 
+/--
+@isnad1 id=eq.0h5v.s5.7c4b71cfc317 from=translated src=- shape=7a70050b vocab=7efd1cac
+-/
 theorem domRestrict_merge {γ : Type*} (p : X → γ) (q : ↥Xᶜ → γ) :
     X.domRestrict (merge X p q) = p :=
   funext fun i => merge_coe_left p q i
 
+/--
+@isnad1 id=eq.0h5v.s6.c65a1d96cd8b from=translated src=- shape=883f9de0 vocab=7efd1cac
+-/
 theorem domRestrict_compl_merge {γ : Type*} (p : X → γ) (q : ↥Xᶜ → γ) :
     Xᶜ.domRestrict (merge X p q) = q :=
   funext fun i => merge_coe_right p q i
 
+/--
+@isnad1 id=eq.0h4v.s5.e29df54682ea from=translated src=- shape=49158dfd vocab=8353758d
+-/
 theorem merge_domRestrict {γ : Type*} (x : ι → γ) :
     merge X (X.domRestrict x) (Xᶜ.domRestrict x) = x := by
   funext i
   by_cases h : i ∈ X <;> simp [merge, h]
 
+/--
+@isnad1 id=eq.0h7v.s6.365ff2991745 from=translated src=- shape=449c3240 vocab=3ac715b5
+-/
 theorem comp_merge {γ δ : Type*} (f : γ → δ) (p : X → γ) (q : ↥Xᶜ → γ) :
     f ∘ merge X p q = merge X (f ∘ p) (f ∘ q) := by
   funext i
   by_cases h : i ∈ X <;> simp [merge, h]
 
-/-- A sum over all coordinates splits into the coordinates of `X` and of `Xᶜ`. -/
+/-- A sum over all coordinates splits into the coordinates of `X` and of `Xᶜ`.
+@isnad1 id=eq.0h4v.s7.5e9176648ee8 from=translated src=- shape=b9aef794 vocab=a5fd2660
+-/
 theorem sum_eq_sum_add_sum_compl [Fintype ι] [Fintype X] [Fintype ↥Xᶜ] {M : Type*}
     [AddCommMonoid M] (f : ι → M) : ∑ i, f i = ∑ i : X, f i + ∑ i : ↥Xᶜ, f i := by
   rw [← Finset.sum_filter_add_sum_filter_not univ (· ∈ X)]
@@ -84,7 +109,9 @@ theorem sum_eq_sum_add_sum_compl [Fintype ι] [Fintype X] [Fintype ↥Xᶜ] {M :
   · exact Finset.sum_subtype _ (by simp) f
   · exact Finset.sum_subtype (p := (· ∈ Xᶜ)) _ (by simp) f
 
-/-- A sum over a rectangle is a double sum over its two sides. -/
+/-- A sum over a rectangle is a double sum over its two sides.
+@isnad1 id=eq.1h7v.s7.0d8b5f7997c0 from=translated src=- shape=58c1997f vocab=d81d60ba
+-/
 theorem sum_eq_sum_sum_merge {γ : Type*} {s : Finset (ι → γ)}
     {A : Finset (X → γ)} {B : Finset (↥Xᶜ → γ)}
     (hs : ∀ x, x ∈ s ↔ X.domRestrict x ∈ A ∧ Xᶜ.domRestrict x ∈ B) (w : (ι → γ) → ℝ) :
@@ -109,13 +136,18 @@ def cutMatrix (Q : Matrix ι ι (ZMod 2)) (X : Set ι) : Matrix X ↥Xᶜ (ZMod 
   fun i j => Q i j + Q j i
 
 omit [DecidablePred (· ∈ X)] in
+/--
+@isnad1 id=eq.0h3v.s6.1c37800e6424 from=translated src=- shape=4d57a5f2 vocab=27a095db
+-/
 theorem rank_cutMatrix [Fintype ↥Xᶜ] [Finite ι] (Q : Matrix ι ι (ZMod 2)) :
     (cutMatrix Q X).rank = cutRank Q X := by
   have : Finite X := inferInstance
   rw [Matrix.rank_eq_finrank_span_row]
   rfl
 
-/-- **The polarization of a quadratic form across a cut.** -/
+/-- **The polarization of a quadratic form across a cut.**
+@isnad1 id=eq.0h5v.s10.d125e12559eb from=translated src=- shape=8dc6f0b2 vocab=cd49c13a
+-/
 theorem quad_merge [Fintype ι] [Fintype X] [Fintype ↥Xᶜ] (Q : Matrix ι ι (ZMod 2))
     (u : X → ZMod 2) (v : ↥Xᶜ → ZMod 2) :
     ∑ i, ∑ j, Q i j * merge X u v i * merge X u v j =
@@ -138,7 +170,9 @@ theorem quad_merge [Fintype ι] [Fintype X] [Fintype ↥Xᶜ] (Q : Matrix ι ι 
 variable [Fintype ι] [DecidableEq ι]
 
 /-- **Lindsey's lemma for quadratic forms.** Over any rectangle `s` for the cut `X`, the
-signed sum of the quadratic form of `Q` satisfies `(∑_s (-1)^f)² · 2^{cutRank Q X} ≤ |s| 2^n`. -/
+signed sum of the quadratic form of `Q` satisfies `(∑_s (-1)^f)² · 2^{cutRank Q X} ≤ |s| 2^n`.
+@isnad1 id=le.1h6v.s8.d7157368f80c from=translated src=- shape=683acf67 vocab=ef9c304e
+-/
 theorem sq_sum_boolSign_quadForm_mul_le (Q : Matrix ι ι (ZMod 2)) {s : Finset (ι → Bool)}
     {A : Finset (X → Bool)} {B : Finset (↥Xᶜ → Bool)}
     (hs : ∀ x, x ∈ s ↔ X.domRestrict x ∈ A ∧ Xᶜ.domRestrict x ∈ B) :

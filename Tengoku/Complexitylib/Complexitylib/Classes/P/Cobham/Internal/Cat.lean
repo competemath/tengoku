@@ -46,6 +46,9 @@ def catBlocks : List Bool → List Bool
   | false :: true :: z => z
   | _ => []
 
+/--
+@isnad1 id=eq.0h2v.s4.2c69da0d1e57 from=translated src=- shape=5dbfe548 vocab=d9e0502b
+-/
 @[simp] theorem catBlocks_pair (x y : List Bool) : catBlocks (pair x y) = x ++ y := by
   induction x with
   | nil => rfl
@@ -384,7 +387,9 @@ private theorem catTM_scan_loop :
           rw [hcb, List.append_assoc, List.cons_append, List.nil_append] at *
           exact hout
 
-/-- **Concatenation is polynomial-time.** -/
+/-- **Concatenation is polynomial-time.**
+@isnad1 id=mem.0h0v.s4.75d529b3019a from=translated src=- shape=08f40544 vocab=1f0c620d
+-/
 theorem catBlocks_mem_FP : catBlocks ∈ FP := by
   refine ⟨1, 0, catTM, (fun m => 2 * m + 3), ?_, ?_⟩
   · intro z

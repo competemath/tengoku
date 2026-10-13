@@ -20,7 +20,9 @@ public section
 
 namespace Algebraic.Cutwidth.Extractor
 
-/-- Bijections of both index types preserve the full somewhere-sampler guarantee. -/
+/-- Bijections of both index types preserve the full somewhere-sampler guarantee.
+@isnad1 id=somewher.1h12v.s6.bae8c31fcef6 from=translated src=- shape=7e9b964a vocab=1e584564
+-/
 theorem SomewhereSampler.reindex {α Outer Outer' Candidate Candidate' Ω : Type*}
     [Fintype α] [Fintype Outer] [Fintype Outer'] [Fintype Ω]
     {S : α → Outer → Candidate → Ω} {L ε δ : ℝ}

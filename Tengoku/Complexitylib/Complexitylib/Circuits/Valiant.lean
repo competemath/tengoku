@@ -50,7 +50,9 @@ that:
   `2 ^ k / 2 ^ r`.
 
 The explicit acyclicity hypothesis matches the DAG setting in which Jukna's
-canonical-labeling argument applies. -/
+canonical-labeling argument applies.
+@isnad1 id=ex.3h4v.s7.21c50d06919a from=translated src=- shape=8304cec5 vocab=6db0734e
+-/
 theorem depth_reduction
     {V : Type*} [Fintype V] [DecidableEq V]
     (G : Digraph V) [DecidableRel G.Adj]

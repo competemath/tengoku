@@ -45,7 +45,9 @@ variable {W : Type} [Fintype W] (H : SimpleGraph W) [DecidableRel H.Adj]
 variable {H}
 
 omit [Fintype W] in
-/-- Edges each with an endpoint in `Q`, no two sharing such an endpoint, number at most `|Q|`. -/
+/-- Edges each with an endpoint in `Q`, no two sharing such an endpoint, number at most `|Q|`.
+@isnad1 id=le.2h3v.s7.38f3001515f9 from=translated src=- shape=d2f16105 vocab=b3898b6b
+-/
 theorem card_le_of_endpoints {C : Finset (Sym2 W)} {Q : Finset W}
     (hend : ∀ e ∈ C, ∃ v ∈ Q, v ∈ e)
     (huniq : ∀ v ∈ Q, ∀ e ∈ C, ∀ e' ∈ C, v ∈ e → v ∈ e' → e = e') : #C ≤ #Q := by
@@ -56,7 +58,9 @@ theorem card_le_of_endpoints {C : Finset (Sym2 W)} {Q : Finset W}
   exact card_le_card_of_injOn g (fun e he => hgQ e he) fun e he e' he' h =>
     huniq (g e) (hgQ e he) e he e' he' (hge e he) (h ▸ hge e' he')
 
-/-- The endpoints of a set of edges number at most twice the edges. -/
+/-- The endpoints of a set of edges number at most twice the edges.
+@isnad1 id=le.0h2v.s6.caaa76b1e5d3 from=translated src=- shape=96f956c6 vocab=bed044a9
+-/
 theorem card_endpoints_le [DecidableEq W] (D : Finset (Sym2 W)) :
     #{w | ∃ e ∈ D, w ∈ e} ≤ 2 * #D := by
   calc #{w | ∃ e ∈ D, w ∈ e}

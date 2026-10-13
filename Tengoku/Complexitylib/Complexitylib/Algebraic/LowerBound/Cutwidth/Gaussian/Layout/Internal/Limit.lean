@@ -27,8 +27,14 @@ namespace Algebraic.Cutwidth.Gaussian.Internal
 noncomputable def crossRatio (ρ : ℝ) : ℝ :=
   Real.sqrt (1 - ρ) / Real.sqrt (1 + ρ)
 
+/--
+@isnad1 id=eq.0h1v.s5.819a1fe97476 from=translated src=- shape=aa4b156b vocab=b331090a
+-/
 theorem crossBound_eq (ρ : ℝ) : crossBound ρ = 2 / Real.pi * crossRatio ρ := rfl
 
+/--
+@isnad1 id=eq.0h0v.s6.a42a8d64d055 from=translated src=- shape=5ff03794 vocab=627c33a4
+-/
 theorem crossRatio_limit : crossRatio (2 * Real.sqrt 2 / 3) = 3 - 2 * Real.sqrt 2 := by
   have h2 : Real.sqrt 2 ^ 2 = 2 := Real.sq_sqrt (by norm_num)
   have hge : 1 ≤ Real.sqrt 2 := by
@@ -47,16 +53,25 @@ theorem crossRatio_limit : crossRatio (2 * Real.sqrt 2 / 3) = 3 - 2 * Real.sqrt 
   rw [h2]
   ring
 
+/--
+@isnad1 id=continuo.1h1v.s4.f4939c55856f from=translated src=- shape=4ef24b1f vocab=966ba81e
+-/
 theorem continuousAt_crossRatio {ρ : ℝ} (hρ : -1 < ρ) : ContinuousAt crossRatio ρ := by
   unfold crossRatio
   refine ContinuousAt.div ?_ ?_ (Real.sqrt_pos.mpr (by linarith)).ne'
   · exact (Real.continuous_sqrt.comp (continuous_const.sub continuous_id)).continuousAt
   · exact (Real.continuous_sqrt.comp (continuous_const.add continuous_id)).continuousAt
 
+/--
+@isnad1 id=continuo.0h0v.s6.391357240604 from=translated src=- shape=c5de756f vocab=1100e3b6
+-/
 theorem continuous_correlation : Continuous fun q : ℝ => 2 * q / (1 + q ^ 2) :=
   (continuous_const.mul continuous_id).div (continuous_const.add (continuous_pow 2))
     fun q => by positivity
 
+/--
+@isnad1 id=eq.0h0v.s7.2c875de5e170 from=translated src=- shape=dbbb0a43 vocab=ed31e169
+-/
 theorem correlation_limit :
     2 * (Real.sqrt 2 / 2) / (1 + (Real.sqrt 2 / 2) ^ 2) = 2 * Real.sqrt 2 / 3 := by
   have h2 : Real.sqrt 2 ^ 2 = 2 := Real.sq_sqrt (by norm_num)
@@ -64,16 +79,24 @@ theorem correlation_limit :
   field_simp
   ring
 
+/--
+@isnad1 id=le.0h0v.s4.5fe2ba83e81f from=translated src=- shape=5ccaf027 vocab=1e7d5487
+-/
 theorem cutwidthCoefficient_ge : 3 / 40 ≤ cutwidthCoefficient := by
   have hsqrt : Real.sqrt 2 < 29 / 20 := (Real.sqrt_lt' (by norm_num)).mpr (by norm_num)
   unfold cutwidthCoefficient
   rw [div_mul_eq_mul_div, le_div_iff₀ Real.pi_pos]
   nlinarith [Real.pi_le_four]
 
+/--
+@isnad1 id=lt.0h0v.s3.93cda0b775f6 from=translated src=- shape=ff3a10fc vocab=3adc338e
+-/
 theorem cutwidthCoefficient_pos : 0 < cutwidthCoefficient :=
   lt_of_lt_of_le (by norm_num) cutwidthCoefficient_ge
 
-/-- The circuit coefficient of the Gaussian ordering coefficient `2c`. -/
+/-- The circuit coefficient of the Gaussian ordering coefficient `2c`.
+@isnad1 id=eq.0h0v.s6.85229a4cdb93 from=translated src=- shape=753141f4 vocab=216d614a
+-/
 theorem one_add_inv_two_mul_cutwidthCoefficient :
     1 + 1 / (2 * cutwidthCoefficient) = 1 + Real.pi * (3 + 2 * Real.sqrt 2) / 6 := by
   have h2 : Real.sqrt 2 ^ 2 = 2 := Real.sq_sqrt (by norm_num)
@@ -84,7 +107,9 @@ theorem one_add_inv_two_mul_cutwidthCoefficient :
   field_simp
   nlinarith [h2]
 
-/-- The Gaussian ordering coefficient is at most `20/61`. -/
+/-- The Gaussian ordering coefficient is at most `20/61`.
+@isnad1 id=le.0h0v.s5.8124cb9b807d from=translated src=- shape=b9c36195 vocab=464f05e0
+-/
 theorem two_mul_cutwidthCoefficient_le : 2 * cutwidthCoefficient ≤ 20 / 61 := by
   have hsqrt : (141421 : ℝ) / 100000 < Real.sqrt 2 :=
     (Real.lt_sqrt (by norm_num)).mpr (by norm_num)
@@ -97,7 +122,9 @@ theorem two_mul_cutwidthCoefficient_le : 2 * cutwidthCoefficient ≤ 20 / 61 := 
   nlinarith
 
 /-- **Decay rate and radius.** Every correlation target below `2√2/3` is met by the
-truncated kernel for some decay rate `q < 1/√2` and some radius. -/
+truncated kernel for some decay rate `q < 1/√2` and some radius.
+@isnad1 id=ex.1h1v.s7.2407cd86c41e from=translated src=- shape=468aa073 vocab=e7d2045c
+-/
 theorem exists_decay_radius {ρ₀ : ℝ} (hρ₀g : ρ₀ < 2 * Real.sqrt 2 / 3) :
     ∃ (q : ℝ) (R : ℕ), 0 ≤ q ∧ ρ₀ ≤ 2 * q / (1 + q ^ 2) - 3 * (2 * q ^ 2) ^ R := by
   set g : ℝ := 2 * Real.sqrt 2 / 3 with hg
@@ -128,7 +155,9 @@ theorem exists_decay_radius {ρ₀ : ℝ} (hρ₀g : ρ₀ < 2 * Real.sqrt 2 / 3
   exact ⟨q, R, hq0, hρ⟩
 
 /-- **Parameters.** For every positive slack some admissible parameters bring the layout
-bound within that slack of `(3/π)(3 - 2√2)`. -/
+bound within that slack of `(3/π)(3 - 2√2)`.
+@isnad1 id=ex.1h1v.s7.7f78367467fe from=translated src=- shape=8745a9af vocab=51cbc11b
+-/
 theorem exists_parameters {ξ : ℝ} (hξ : 0 < ξ) :
     ∃ (q : ℝ) (R : ℕ) (ρ₀ T ε : ℝ) (M : ℕ), 0 ≤ q ∧ -1 < ρ₀ ∧
       ρ₀ ≤ 2 * q / (1 + q ^ 2) - 3 * (2 * q ^ 2) ^ R ∧ 0 < T ∧ 0 < ε ∧ 0 < M ∧

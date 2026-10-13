@@ -57,10 +57,16 @@ def outputsFinset (g : List Bool → List Bool) (S : Finset (List Bool)) :
     Finset (List Bool) :=
   insert [] (S.image g)
 
+/--
+@isnad1 id=mem.0h2v.s5.6367072eda99 from=translated src=- shape=a9079cee vocab=143fe2b1
+-/
 theorem nil_mem_suffixes_outputsFinset :
     ([] : List Bool) ∈ (outputsFinset g S).suffixes :=
   Finset.nil_mem_suffixes ⟨[], Finset.mem_insert_self _ _⟩
 
+/--
+@isnad1 id=mem.0h3v.s6.0bed7ad95cfb from=translated src=- shape=d0c28f66 vocab=326cedbe
+-/
 theorem output_mem_suffixes_outputsFinset {input : List Bool} :
     (if input ∈ S then g input else ([] : List Bool)) ∈ (outputsFinset g S).suffixes := by
   refine Finset.mem_suffixes_self ?_
@@ -124,6 +130,9 @@ def writeState (c : List Bool) (hc : c ∈ (outputsFinset g S).suffixes) : Looku
 /-- The halt state. -/
 def haltState : LookupState g S := .halt
 
+/--
+@isnad1 id=ne.0h3v.s4.3c2205c98236 from=translated src=- shape=13c444a7 vocab=8d22a3f4
+-/
 theorem readState_ne_haltState (p : List Bool) : readState g S p ≠ haltState g S := by
   rw [readState, haltState]
   split <;> simp
@@ -432,7 +441,9 @@ private theorem lookup_write_loop (written : List Bool) :
     · rwa [List.append_assoc, List.singleton_append] at hout'
 
 /-- The lookup machine computes `fun s => if s ∈ S then g s else []` within a
-linear time bound. -/
+linear time bound.
+@isnad1 id=computes.0h2v.s6.5a70a30888c9 from=translated src=- shape=04a53ffd vocab=0df32892
+-/
 theorem lookupTM_computesInTime :
     (lookupTM g S).ComputesInTime (fun s => if s ∈ S then g s else [])
       (fun m => m + (S.sup fun s => (g s).length) + 3) := by
@@ -468,7 +479,9 @@ end TM.FinsetDomain
 
 open Polynomial in
 /-- Internal proof that a function supported on a finite set belongs to `FP`:
-the lookup machine's linear time bound is packaged as a degree-one polynomial. -/
+the lookup machine's linear time bound is packaged as a degree-one polynomial.
+@isnad1 id=mem.0h2v.s6.47937e1e0a19 from=translated src=- shape=40a13ece vocab=1d95877e
+-/
 theorem ite_mem_finset_mem_FP_internal (g : List Bool → List Bool) (S : Finset (List Bool)) :
     (fun s => if s ∈ S then g s else []) ∈ FP := by
   rw [mem_FP_iff_computesInTime_polynomial]

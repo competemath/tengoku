@@ -47,12 +47,18 @@ noncomputable def guidedAverage (X Y : Finset (ι → Bool)) (p k : ℝ)
   𝔼 x ∈ X, bernoulliAverage p (fun P =>
     𝔼 y, guidingDensity Y k P x y * f (resample P x y))
 
+/--
+@isnad1 id=le.0h6v.s5.6741d76b93f3 from=translated src=- shape=56de9cc2 vocab=3f73571b
+-/
 theorem guidingDensity_nonneg_internal (Y : Finset (ι → Bool)) (k : ℝ) (P x y : ι → Bool) :
     0 ≤ guidingDensity Y k P x y := by
   have hd := coordinateDensity_nonneg Y P x
   unfold guidingDensity
   split_ifs <;> positivity
 
+/--
+@isnad1 id=eq.0h5v.s6.f244481e0f4f from=translated src=- shape=c03d4c95 vocab=51fa34e4
+-/
 theorem expect_guidingDensity_internal (Y : Finset (ι → Bool)) (k : ℝ) (P x : ι → Bool) :
     (𝔼 y, guidingDensity Y k P x y) = 1 := by
   unfold guidingDensity
@@ -61,6 +67,9 @@ theorem expect_guidingDensity_internal (Y : Finset (ι → Bool)) (k : ℝ) (P x
     exact div_self (ne_of_gt (lt_of_lt_of_le (by positivity) h))
   · exact Fintype.expect_const _
 
+/--
+@isnad1 id=le.1h6v.s6.60b1d07cb5af from=translated src=- shape=c9c5f2ba vocab=71045018
+-/
 theorem guidingDensity_le_internal (Y : Finset (ι → Bool)) {k : ℝ} (hk : 0 ≤ k)
     (P x y : ι → Bool) : guidingDensity Y k P x y ≤ (2 : ℝ) ^ k := by
   unfold guidingDensity
@@ -73,12 +82,18 @@ theorem guidingDensity_le_internal (Y : Finset (ι → Bool)) {k : ℝ} (hk : 0 
     positivity
   · exact Real.one_le_rpow (by norm_num) hk
 
+/--
+@isnad1 id=eq.1h6v.s5.8dd32ad05b74 from=translated src=- shape=5e744e4e vocab=ae557808
+-/
 theorem guidedAverage_const_internal (X Y : Finset (ι → Bool)) (hX : X.Nonempty) (p k c : ℝ) :
     guidedAverage X Y p k (fun _ => c) = c := by
   unfold guidedAverage
   simp_rw [← expect_mul, expect_guidingDensity_internal, one_mul, bernoulliAverage_const]
   exact expect_const hX c
 
+/--
+@isnad1 id=le.3h7v.s6.dddb0db304b3 from=translated src=- shape=10184426 vocab=0fb6407f
+-/
 theorem guidedAverage_mono_internal (X Y : Finset (ι → Bool)) {p k : ℝ} (hp : 0 ≤ p) (hp' : p ≤ 1)
     {f g : (ι → Bool) → ℝ} (hfg : ∀ z, f z ≤ g z) :
     guidedAverage X Y p k f ≤ guidedAverage X Y p k g := by
@@ -89,6 +104,9 @@ theorem guidedAverage_mono_internal (X Y : Finset (ι → Bool)) {p k : ℝ} (hp
   exact expect_le_expect fun y _ =>
     mul_le_mul_of_nonneg_left (hfg _) (guidingDensity_nonneg_internal Y k P x y)
 
+/--
+@isnad1 id=eq.0h3v.s7.858c5b9f1e3c from=translated src=- shape=3444c075 vocab=39de0890
+-/
 theorem expect_resample_internal (f : (ι → Bool) → ℝ) (P : ι → Bool) :
     (𝔼 x, 𝔼 y, f (resample P x y)) = 𝔼 z, f z := by
   have he (x : ι → Bool) : (𝔼 y, f (resample P x y)) =
@@ -103,10 +121,16 @@ theorem expect_resample_internal (f : (ι → Bool) → ℝ) (P : ι → Bool) :
   exact (expect_coordinateMarginal_comp_internal f (fun i => !P i) id).trans
     (expect_coordinateMarginal f _)
 
+/--
+@isnad1 id=eq.0h3v.s6.52483241410f from=translated src=- shape=c1369e38 vocab=1f50cc87
+-/
 theorem sum_expect_resample_internal (f : (ι → Bool) → ℝ) (P : ι → Bool) :
     (∑ x, 𝔼 y, f (resample P x y)) = ∑ z, f z := by
   rw [← Fintype.card_mul_expect, expect_resample_internal, Fintype.card_mul_expect]
 
+/--
+@isnad1 id=le.1h4v.s7.852bc66dc3ba from=translated src=- shape=64a33978 vocab=3b545e70
+-/
 theorem expect_resample_subset_le_internal (X : Finset (ι → Bool)) (f : (ι → Bool) → ℝ)
     (hf : ∀ x, 0 ≤ f x) (P : ι → Bool) :
     (𝔼 x ∈ X, 𝔼 y, f (resample P x y)) ≤ (∑ z, f z) / (X.card : ℝ) := by
@@ -117,6 +141,9 @@ theorem expect_resample_subset_le_internal (X : Finset (ι → Bool)) (f : (ι �
   rw [sum_expect_resample_internal] at hs
   exact div_le_div_of_nonneg_right hs (by positivity)
 
+/--
+@isnad1 id=le.4h6v.s7.4ab165ee38fb from=translated src=- shape=208db172 vocab=957415dc
+-/
 theorem guidedAverage_bound_internal (X Y : Finset (ι → Bool)) {p k : ℝ}
     (hp : 0 ≤ p) (hp' : p ≤ 1) (hk : 0 ≤ k) (f : (ι → Bool) → ℝ)
     (hf : ∀ z, 0 ≤ f z) :
@@ -138,6 +165,9 @@ theorem guidedAverage_bound_internal (X Y : Finset (ι → Bool)) {p k : ℝ}
   exact hm.trans ((mul_le_mul_of_nonneg_left hb (by positivity)).trans_eq
     (mul_div_assoc _ _ _).symm)
 
+/--
+@isnad1 id=le.0h5v.s7.8f5edeb75945 from=translated src=- shape=b952707f vocab=fcb31ddd
+-/
 theorem guidingDensity_hits_internal (Y : Finset (ι → Bool)) (k : ℝ) (P x : ι → Bool) :
     (if (2 : ℝ) ^ (-k) ≤ coordinateDensity Y P x then (1 : ℝ) else 0) ≤
       𝔼 y, guidingDensity Y k P x y * (if resample P x y ∈ Y then 1 else 0) := by
@@ -153,6 +183,9 @@ theorem guidingDensity_hits_internal (Y : Finset (ι → Bool)) (k : ℝ) (P x :
     exact expect_nonneg fun y _ => mul_nonneg (guidingDensity_nonneg_internal Y k P x y)
       (by split_ifs <;> norm_num)
 
+/--
+@isnad1 id=le.4h5v.s7.7cc232b00e00 from=translated src=- shape=5e000ef1 vocab=1590dc4f
+-/
 theorem guidedAverage_hits_internal (X Y : Finset (ι → Bool)) (hX : X.Nonempty) {p k : ℝ}
     (hp : 0 ≤ p) (hp' : p ≤ 1) (hlim : ∀ x ∈ X, IsDensityLimit Y p k x) :
     3 / 4 ≤ guidedAverage X Y p k (fun z => if z ∈ Y then 1 else 0) := by
@@ -161,6 +194,9 @@ theorem guidedAverage_hits_internal (X Y : Finset (ι → Bool)) (hX : X.Nonempt
     (hlim x hx).trans (bernoulliAverage_mono hp hp' (fun P => guidingDensity_hits_internal Y k P x))
   simpa only [guidedAverage, expect_const hX] using expect_le_expect (s := X) hpoint
 
+/--
+@isnad1 id=eq.0h9v.s6.5861a4657915 from=translated src=- shape=738bbf5a vocab=7d2c74a8
+-/
 theorem guidedAverage_linear_internal (X Y : Finset (ι → Bool)) (p k a b : ℝ)
     (f g : (ι → Bool) → ℝ) :
     guidedAverage X Y p k (fun z => a * f z + b * g z) =
@@ -173,6 +209,9 @@ theorem guidedAverage_linear_internal (X Y : Finset (ι → Bool)) (p k a b : �
   simp_rw [he, expect_add_distrib, ← mul_expect, bernoulliAverage_linear_internal]
   rw [expect_add_distrib, ← mul_expect, ← mul_expect]
 
+/--
+@isnad1 id=eq.0h7v.s7.e475f2ad802e from=translated src=- shape=72ab2efc vocab=f44602f8
+-/
 theorem guidedAverage_bernoulli_internal (X Y : Finset (ι → Bool)) (p q k : ℝ)
     (f : (ι → Bool) → (ι → Bool) → ℝ) :
     guidedAverage X Y p k (fun z => bernoulliAverage q (fun Q => f Q z)) =
@@ -181,6 +220,9 @@ theorem guidedAverage_bernoulli_internal (X Y : Finset (ι → Bool)) (p q k : �
   unfold guidedAverage
   simp_rw [← bernoulliAverage_mul_internal, ← bernoulliAverage_expect_comm_internal]
 
+/--
+@isnad1 id=le.3h6v.s8.230d8cb810b6 from=translated src=- shape=3bec3fb9 vocab=eabb1809
+-/
 theorem guidingDensity_small_event_internal (Y : Finset (ι → Bool)) {k : ℝ} (hk : 0 ≤ k)
     (P x : ι → Bool) (f : (ι → Bool) → ℝ) (hf : ∀ y, 0 ≤ f y) (hf' : ∀ y, f y ≤ 1) :
     (𝔼 y, guidingDensity Y k P x y * f y) ≤
@@ -204,6 +246,9 @@ theorem guidingDensity_small_event_internal (Y : Finset (ι → Bool)) {k : ℝ}
   · rw [ite_eq_right hsmall]
     linarith
 
+/--
+@isnad1 id=le.6h6v.s8.1f0e84485276 from=translated src=- shape=2a25744b vocab=39c62cd7
+-/
 theorem guidedAverage_bad_completion_internal (X Y : Finset (ι → Bool)) (hX : X.Nonempty)
     {k p q : ℝ} (hk : 1 ≤ k) (hdef : uniformDeficit X ≤ k) (hp : 0 < p)
     (hq : q = 32768 * k * p) (hq' : q ≤ 1 / 2) :
@@ -234,6 +279,9 @@ theorem guidedAverage_bad_completion_internal (X Y : Finset (ι → Bool)) (hX :
   dsimp only [f] at hm
   linarith
 
+/--
+@isnad1 id=eq.0h5v.s7.8c514c0c9b51 from=translated src=- shape=76264b84 vocab=73280f25
+-/
 theorem densityLimit_complement_internal (X : Finset (ι → Bool)) (q t : ℝ) (z : ι → Bool) :
     bernoulliAverage q (fun Q => if coordinateDensity X Q z < (2 : ℝ) ^ (-t) then
       (1 : ℝ) else 0) = 1 - bernoulliAverage q
@@ -243,6 +291,9 @@ theorem densityLimit_complement_internal (X : Finset (ι → Bool)) (q t : ℝ) 
     split_ifs <;> linarith
   simp_rw [he, bernoulliAverage_sub_internal, bernoulliAverage_const]
 
+/--
+@isnad1 id=le.7h6v.s8.190152eb4a82 from=translated src=- shape=5346b6eb vocab=a44cd951
+-/
 theorem guidedAverage_mirror_mass_internal (X Y : Finset (ι → Bool)) (hX : X.Nonempty)
     {k p q : ℝ} (hk : 1 ≤ k) (hdef : uniformDeficit X ≤ k) (hp : 0 < p)
     (hq : q = 32768 * k * p) (hq' : q ≤ 1 / 2)
@@ -281,6 +332,9 @@ theorem guidedAverage_mirror_mass_internal (X Y : Finset (ι → Bool)) (hX : X.
     simpa only [bad, neg_mul] using guidedAverage_bad_completion_internal X Y hX hk hdef hp hq hq'
   linarith
 
+/--
+@isnad1 id=ex.7h6v.s8.3a64f5bd536f from=translated src=- shape=4bf04f58 vocab=5b98d632
+-/
 theorem improved_mirror_set_internal (X Y : Finset (ι → Bool)) (hX : X.Nonempty)
     {k p q : ℝ} (hk : 1 ≤ k) (hdef : uniformDeficit X ≤ k) (hp : 0 < p)
     (hq : q = 32768 * k * p) (hq' : q ≤ 1 / 2)

@@ -33,19 +33,25 @@ section General
 
 variable {W : Type} (H : SimpleGraph W)
 
-/-- Adjacent vertices have extended distances to any vertex differing by at most one. -/
+/-- Adjacent vertices have extended distances to any vertex differing by at most one.
+@isnad1 id=le.1h5v.s5.bd4ed237487d from=translated src=- shape=68efcdd1 vocab=fa1fb4af
+-/
 theorem edist_le_edist_add_one {u v : W} (huv : H.Adj u v) (z : W) :
     H.edist u z ≤ H.edist v z + 1 :=
   calc H.edist u z ≤ H.edist u v + H.edist v z := SimpleGraph.edist_triangle
     _ = H.edist v z + 1 := by rw [SimpleGraph.edist_eq_one_iff_adj.mpr huv, add_comm]
 
-/-- A bounded extended distance is the cast of the natural distance. -/
+/-- A bounded extended distance is the cast of the natural distance.
+@isnad1 id=eq.1h5v.s5.2dc10c9ba538 from=translated src=- shape=23b979f9 vocab=86b3be6e
+-/
 theorem edist_eq_dist_of_le {v z : W} {n : ℕ} (h : H.edist v z ≤ n) :
     H.edist v z = H.dist v z := by
   have hne : H.edist v z ≠ ⊤ := ne_top_of_le_ne_top (ENat.natCast_ne_top n) h
   exact (SimpleGraph.reachable_of_edist_ne_top hne).coe_dist_eq_edist.symm
 
-/-- A vertex at distance `k + 1` has a neighbour at distance `k`. -/
+/-- A vertex at distance `k + 1` has a neighbour at distance `k`.
+@isnad1 id=ex.1h5v.s5.5cd0e40779c9 from=translated src=- shape=6c452365 vocab=f0754115
+-/
 theorem exists_adj_edist_eq {v z : W} {k : ℕ} (h : H.edist v z = (k + 1 : ℕ)) :
     ∃ w, H.Adj w z ∧ H.edist v w = k := by
   have h' : H.edist z v = (k + 1 : ℕ) := by rw [SimpleGraph.edist_comm, h]
@@ -65,22 +71,35 @@ theorem exists_adj_edist_eq {v z : W} {k : ℕ} (h : H.edist v z = (k + 1 : ℕ)
     have : k + 1 ≤ n + 1 := by exact_mod_cast htri
     exact_mod_cast (by omega : k ≤ n)
 
+/--
+@isnad1 id=eq.0h5v.s4.2761be2e3b26 from=translated src=- shape=77383564 vocab=9cba6190
+-/
 theorem kernel_self (q : ℝ) (R : ℕ) (v : W) : kernel H q R v v = 1 := by
   simp [kernel]
 
+/--
+@isnad1 id=le.1h6v.s5.ff1a15e6c707 from=translated src=- shape=5bf33de9 vocab=289e6e34
+-/
 theorem kernel_nonneg {q : ℝ} (hq : 0 ≤ q) (R : ℕ) (v z : W) : 0 ≤ kernel H q R v z := by
   unfold kernel
   split_ifs <;> positivity
 
+/--
+@isnad1 id=eq.0h6v.s4.a41506e3a1d8 from=translated src=- shape=f8ea7b1a vocab=9cba6190
+-/
 theorem kernel_comm (q : ℝ) (R : ℕ) (v z : W) : kernel H q R v z = kernel H q R z v := by
   simp only [kernel, SimpleGraph.edist_comm (u := v), SimpleGraph.dist_comm (u := v)]
 
-/-- `κ = 2q / (1 + q²)` is at most one for every real `q`. -/
+/-- `κ = 2q / (1 + q²)` is at most one for every real `q`.
+@isnad1 id=le.0h1v.s6.e34ea7dadb1c from=translated src=- shape=cc8baeb8 vocab=e624faf6
+-/
 theorem kappa_le_one (q : ℝ) : 2 * q / (1 + q ^ 2) ≤ 1 := by
   rw [div_le_one (by positivity)]
   nlinarith [sq_nonneg (q - 1)]
 
-/-- Rows whose distances differ by one meet the correlation bound with equality. -/
+/-- Rows whose distances differ by one meet the correlation bound with equality.
+@isnad1 id=eq.0h2v.s7.a03671ccc19a from=translated src=- shape=5a309ea1 vocab=c13e9fdd
+-/
 theorem kappa_mul_sq_add_sq (q x : ℝ) :
     2 * q / (1 + q ^ 2) * (x ^ 2 + (x * q) ^ 2) / 2 = x * (x * q) := by
   have hpos : (0 : ℝ) < 1 + q ^ 2 := by positivity
@@ -95,7 +114,9 @@ private theorem boundary_defect_le {q : ℝ} (R : ℕ) (I : ℝ) (hI : 0 ≤ I) 
   nlinarith [mul_le_mul_of_nonneg_right hκ hP, mul_nonneg hP hI]
 
 /-- **Pointwise defect.** For adjacent `u` and `v`, the kernel values at `z` fall short
-of `κ` times their mean square only on the truncation spheres. -/
+of `κ` times their mean square only on the truncation spheres.
+@isnad1 id=le.1h7v.s8.b7154fb2317d from=translated src=- shape=53661768 vocab=a4da7da1
+-/
 theorem kernel_defect_le {q : ℝ} (R : ℕ) {u v : W} (huv : H.Adj u v) (z : W) :
     2 * q / (1 + q ^ 2) * (kernel H q R u z ^ 2 + kernel H q R v z ^ 2) / 2 -
         kernel H q R u z * kernel H q R v z ≤
@@ -155,28 +176,49 @@ section Finite
 
 variable {W : Type} [Fintype W] (H : SimpleGraph W)
 
+/--
+@isnad1 id=iff.0h5v.s5.7452707057e3 from=translated src=- shape=0f11a645 vocab=09a78668
+-/
 theorem mem_sphere {v z : W} {d : ℕ} : z ∈ sphere H v d ↔ H.edist v z = d := by
   simp [sphere]
 
+/--
+@isnad1 id=iff.0h5v.s5.3c22d4b28c74 from=translated src=- shape=0f11a645 vocab=7a907953
+-/
 theorem mem_ball {v z : W} {r : ℕ} : z ∈ ball H v r ↔ H.edist v z ≤ r := by
   simp [ball]
 
+/--
+@isnad1 id=mem.0h4v.s4.119b9304ec1c from=translated src=- shape=e56637b0 vocab=3068180a
+-/
 theorem mem_ball_self (v : W) (r : ℕ) : v ∈ ball H v r := by
   simp [mem_ball]
 
+/--
+@isnad1 id=iff.0h5v.s5.392c9b73bf5a from=translated src=- shape=14497550 vocab=3068180a
+-/
 theorem mem_ball_comm {v z : W} {r : ℕ} : z ∈ ball H v r ↔ v ∈ ball H z r := by
   rw [mem_ball, mem_ball, SimpleGraph.edist_comm]
 
+/--
+@isnad1 id=le.1h5v.s5.8a414c648d08 from=translated src=- shape=07309280 vocab=f628d3bb
+-/
 theorem ball_mono (v : W) {r r' : ℕ} (h : r ≤ r') : ball H v r ⊆ ball H v r' := by
   intro z hz
   rw [mem_ball] at hz ⊢
   exact hz.trans (by exact_mod_cast h)
 
+/--
+@isnad1 id=le.0h4v.s5.2dec8313a592 from=translated src=- shape=b3b486fc vocab=df93ad48
+-/
 theorem sphere_subset_ball (v : W) (r : ℕ) : sphere H v r ⊆ ball H v r := by
   intro z hz
   rw [mem_sphere] at hz
   rw [mem_ball, hz]
 
+/--
+@isnad1 id=le.1h5v.s5.f2226169d4ef from=translated src=- shape=9999352c vocab=026030b8
+-/
 theorem ball_subset_ball_of_adj {u v : W} (h : H.Adj u v) (R : ℕ) :
     ball H v R ⊆ ball H u (R + 1) := by
   intro z hz
@@ -185,6 +227,9 @@ theorem ball_subset_ball_of_adj {u v : W} (h : H.Adj u v) (R : ℕ) :
     _ ≤ R + 1 := by gcongr
     _ = ((R + 1 : ℕ) : ℕ∞) := by push_cast; rfl
 
+/--
+@isnad1 id=mem.1h6v.s5.f00ab6c14517 from=translated src=- shape=cd11246e vocab=f086d7ac
+-/
 theorem mem_ball_of_not_disjoint {a b : W} {r r' : ℕ}
     (h : ¬ Disjoint (ball H a r) (ball H b r')) : b ∈ ball H a (r + r') := by
   obtain ⟨z, hza, hzb⟩ := Finset.not_disjoint_iff.mp h
@@ -193,46 +238,72 @@ theorem mem_ball_of_not_disjoint {a b : W} {r r' : ℕ}
     _ ≤ r + r' := by rw [SimpleGraph.edist_comm (u := z)]; exact add_le_add hza hzb
     _ = ((r + r' : ℕ) : ℕ∞) := by push_cast; rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.ac8043b2572e from=translated src=- shape=c42089ac vocab=d9e867b3
+-/
 theorem sphere_zero (v : W) : sphere H v 0 = {v} := by
   ext z
   rw [mem_sphere, Nat.cast_zero, SimpleGraph.edist_eq_zero_iff, Finset.mem_singleton, eq_comm]
 
+/--
+@isnad1 id=eq.0h3v.s4.eb8c2b8b8b56 from=translated src=- shape=c42089ac vocab=4e804c7a
+-/
 theorem ball_zero (v : W) : ball H v 0 = {v} := by
   ext z
   rw [mem_ball, Nat.cast_zero, nonpos_iff_eq_zero, SimpleGraph.edist_eq_zero_iff,
     Finset.mem_singleton, eq_comm]
 
+/--
+@isnad1 id=eq.1h6v.s5.5d61f137d34b from=translated src=- shape=f7a06d1a vocab=c479ff3e
+-/
 theorem kernel_eq_zero_of_notMem_ball {q : ℝ} {R : ℕ} {v z : W} (h : z ∉ ball H v R) :
     kernel H q R v z = 0 := by
   rw [mem_ball] at h
   simp [kernel, h]
 
+/--
+@isnad1 id=eq.1h6v.s5.d39a94750186 from=translated src=- shape=0be26254 vocab=e92ac7a1
+-/
 theorem kernel_of_mem_ball {q : ℝ} {R : ℕ} {v z : W} (h : z ∈ ball H v R) :
     kernel H q R v z = q ^ H.dist v z := by
   rw [mem_ball] at h
   simp [kernel, h]
 
+/--
+@isnad1 id=le.0h5v.s5.8393e305af9c from=translated src=- shape=ecb940cc vocab=a738210a
+-/
 theorem one_le_sum_kernel_sq {q : ℝ} (R : ℕ) (v : W) : 1 ≤ ∑ z, kernel H q R v z ^ 2 :=
   calc (1 : ℝ) = kernel H q R v v ^ 2 := by rw [kernel_self, one_pow]
     _ ≤ ∑ z, kernel H q R v z ^ 2 :=
       Finset.single_le_sum (f := fun z => kernel H q R v z ^ 2) (fun z _ => sq_nonneg _)
         (Finset.mem_univ v)
 
+/--
+@isnad1 id=eq.0h5v.s5.79559f99797a from=translated src=- shape=6b80f42b vocab=8db83249
+-/
 theorem sum_unitKernel_sq (q : ℝ) (R : ℕ) (v : W) : ∑ z, unitKernel H q R v z ^ 2 = 1 := by
   have hA : 1 ≤ ∑ y, kernel H q R v y ^ 2 := one_le_sum_kernel_sq H R v
   simp only [unitKernel, div_pow, ← Finset.sum_div]
   rw [Real.sq_sqrt (by linarith), div_self (by linarith)]
 
+/--
+@isnad1 id=eq.1h6v.s5.e884d9ef9f73 from=translated src=- shape=f7a06d1a vocab=4f5b9e00
+-/
 theorem unitKernel_eq_zero_of_notMem_ball {q : ℝ} {R : ℕ} {v z : W} (h : z ∉ ball H v R) :
     unitKernel H q R v z = 0 := by
   rw [unitKernel, kernel_eq_zero_of_notMem_ball H h, zero_div]
 
+/--
+@isnad1 id=le.1h6v.s5.17bb003a1aa1 from=translated src=- shape=90c49730 vocab=d3107d0c
+-/
 theorem unitKernel_nonneg {q : ℝ} (hq : 0 ≤ q) (R : ℕ) (v z : W) :
     0 ≤ unitKernel H q R v z :=
   div_nonneg (kernel_nonneg H hq R v z) (Real.sqrt_nonneg _)
 
 /-- The unit kernel rows have inner product equal to the kernel inner product divided by
-both row norms. -/
+both row norms.
+@isnad1 id=eq.0h6v.s7.f0bdc133d174 from=translated src=- shape=f6d89e56 vocab=84529697
+-/
 theorem sum_unitKernel_mul (q : ℝ) (R : ℕ) (u v : W) :
     ∑ z, unitKernel H q R u z * unitKernel H q R v z =
       (∑ z, kernel H q R u z * kernel H q R v z) /
@@ -241,7 +312,9 @@ theorem sum_unitKernel_mul (q : ℝ) (R : ℕ) (u v : W) :
 
 variable [DecidableRel H.Adj]
 
-/-- A vertex at positive distance `d + 1` has at most two neighbours at distance `d + 2`. -/
+/-- A vertex at positive distance `d + 1` has at most two neighbours at distance `d + 2`.
+@isnad1 id=le.2h5v.s7.2fdc6fd2d049 from=translated src=- shape=ac29788d vocab=12725f40
+-/
 theorem card_filter_neighborFinset_le (degree : ∀ v, H.degree v ≤ 3) {v w : W} {d : ℕ}
     (hw : H.edist v w = (d + 1 : ℕ)) :
     ((H.neighborFinset w).filter fun y => H.edist v y = (d + 1 + 1 : ℕ)).card ≤ 2 := by
@@ -263,6 +336,9 @@ theorem card_filter_neighborFinset_le (degree : ∀ v, H.degree v ≤ 3) {v w : 
         H.card_neighborFinset_eq_degree]
     _ ≤ 2 := by have := degree w; omega
 
+/--
+@isnad1 id=le.1h3v.s6.9d9b2c32b499 from=translated src=- shape=60844396 vocab=f239b2b0
+-/
 theorem card_sphere_one_le (degree : ∀ v, H.degree v ≤ 3) (v : W) :
     (sphere H v 1).card ≤ 3 := by
   have hsub : sphere H v 1 ⊆ H.neighborFinset v := by
@@ -271,6 +347,9 @@ theorem card_sphere_one_le (degree : ∀ v, H.degree v ≤ 3) (v : W) :
     exact (H.mem_neighborFinset v z).mpr hz
   exact (Finset.card_le_card hsub).trans ((H.card_neighborFinset_eq_degree v).le.trans (degree v))
 
+/--
+@isnad1 id=le.1h4v.s6.2c710f84cd21 from=translated src=- shape=2282a8dd vocab=b387d84c
+-/
 theorem card_sphere_succ_succ_le (degree : ∀ v, H.degree v ≤ 3) (v : W) (d : ℕ) :
     (sphere H v (d + 1 + 1)).card ≤ 2 * (sphere H v (d + 1)).card := by
   classical
@@ -291,6 +370,9 @@ theorem card_sphere_succ_succ_le (degree : ∀ v, H.degree v ≤ 3) (v : W) (d :
         card_filter_neighborFinset_le H degree ((mem_sphere H).mp hw)
     _ = 2 * (sphere H v (d + 1)).card := by rw [Finset.sum_const, smul_eq_mul, mul_comm]
 
+/--
+@isnad1 id=le.1h4v.s6.65800eec1f82 from=translated src=- shape=a8007ffc vocab=c85e04e2
+-/
 theorem card_sphere_succ_le (degree : ∀ v, H.degree v ≤ 3) (v : W) :
     ∀ d : ℕ, (sphere H v (d + 1)).card ≤ 3 * 2 ^ d
   | 0 => by simpa using card_sphere_one_le H degree v
@@ -300,6 +382,9 @@ theorem card_sphere_succ_le (degree : ∀ v, H.degree v ≤ 3) (v : W) :
     rw [pow_succ]
     omega
 
+/--
+@isnad1 id=le.1h4v.s6.2711b45da073 from=translated src=- shape=c5a9260d vocab=442c0792
+-/
 theorem card_sphere_le (degree : ∀ v, H.degree v ≤ 3) (v : W) :
     ∀ d : ℕ, (sphere H v d).card ≤ 3 * 2 ^ d
   | 0 => by rw [sphere_zero]; simp
@@ -326,12 +411,17 @@ private theorem card_ball_add_le (degree : ∀ v, H.degree v ≤ 3) (v : W) :
     rw [pow_succ 2 (r + 1)]
     omega
 
+/--
+@isnad1 id=le.1h4v.s6.9558e5b01443 from=translated src=- shape=cdde4844 vocab=b056e60d
+-/
 theorem card_ball_le (degree : ∀ v, H.degree v ≤ 3) (v : W) (r : ℕ) :
     (ball H v r).card ≤ 3 * 2 ^ (r + 1) := by
   have := card_ball_add_le H degree v r
   omega
 
-/-- **Kernel correlation.** -/
+/-- **Kernel correlation.**
+@isnad1 id=le.2h6v.s8.58aa77d0dfd6 from=translated src=- shape=0866efa1 vocab=da40a0a2
+-/
 theorem sum_kernel_mul_ge (degree : ∀ v, H.degree v ≤ 3) (q : ℝ) (R : ℕ) {u v : W}
     (huv : H.Adj u v) :
     2 * q / (1 + q ^ 2) * ((∑ z, kernel H q R u z ^ 2) + ∑ z, kernel H q R v z ^ 2) / 2 -
@@ -359,7 +449,9 @@ theorem sum_kernel_mul_ge (degree : ∀ v, H.degree v ≤ 3) (q : ℝ) (R : ℕ)
     nlinarith [mul_le_mul_of_nonneg_left (add_le_add hu hv) hP]
   linarith
 
-/-- **Unit kernel correlation.** -/
+/-- **Unit kernel correlation.**
+@isnad1 id=le.3h6v.s7.7b4257f6a6b3 from=translated src=- shape=c51f6859 vocab=d2f21743
+-/
 theorem sum_unitKernel_mul_ge (degree : ∀ v, H.degree v ≤ 3) {q : ℝ} (hq0 : 0 ≤ q) (R : ℕ)
     {u v : W} (huv : H.Adj u v) :
     2 * q / (1 + q ^ 2) - 3 * (2 * q ^ 2) ^ R ≤

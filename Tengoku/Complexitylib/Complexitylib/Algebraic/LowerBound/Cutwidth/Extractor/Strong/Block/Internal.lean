@@ -22,19 +22,31 @@ namespace Algebraic.Cutwidth.Extractor.Internal
 
 open scoped Classical
 
+/--
+@isnad1 id=eq.0h3v.s4.84dc84390117 from=translated src=- shape=ec940ae2 vocab=fc44f270
+-/
 theorem blockPrefix_self {α : Type*} {t : Nat} (x : Fin t → α) :
     blockPrefix (Nat.le_refl t) x = x := rfl
 
+/--
+@isnad1 id=eq.2h5v.s5.1912a2587f0f from=translated src=- shape=026b6528 vocab=098d7bac
+-/
 theorem blockPrefix_comp {α : Type*} {i j t : Nat} (hij : i ≤ j) (hjt : j ≤ t)
     (x : Fin t → α) :
     blockPrefix hij (blockPrefix hjt x) = blockPrefix (hij.trans hjt) x := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.85d5172f6d3e from=translated src=- shape=ba35a903 vocab=42d1f796
+-/
 theorem blockPrefixWeight_self {α : Type*} [Fintype α] {t : Nat}
     (p : (Fin t → α) → ℝ) : blockPrefixWeight p (Nat.le_refl t) = p := by
   unfold blockPrefixWeight
   rw [show (blockPrefix (Nat.le_refl t) : (Fin t → α) → (Fin t → α)) = id from rfl,
     mapWeight_id]
 
+/--
+@isnad1 id=eq.1h4v.s6.3ea8035d8e47 from=translated src=- shape=d0a568b2 vocab=56b24436
+-/
 theorem blockPrefixWeight_zero {α : Type*} [Fintype α] {t : Nat}
     (p : (Fin t → α) → ℝ) (h : 0 ≤ t) (u : Fin 0 → α) :
     blockPrefixWeight p h u = ∑ x, p x := by
@@ -43,6 +55,9 @@ theorem blockPrefixWeight_zero {α : Type*} [Fintype α] {t : Nat}
   intro x _
   rw [ite_eq_left (Subsingleton.elim (blockPrefix h x) u)]
 
+/--
+@isnad1 id=eq.2h5v.s5.3d4729c52096 from=translated src=- shape=69ec70fe vocab=78f617f2
+-/
 theorem blockPrefixWeight_prefix {α : Type*} [Fintype α] {i j t : Nat}
     (p : (Fin t → α) → ℝ) (hij : i ≤ j) (hjt : j ≤ t) :
     blockPrefixWeight (blockPrefixWeight p hjt) hij =
@@ -51,6 +66,9 @@ theorem blockPrefixWeight_prefix {α : Type*} [Fintype α] {i j t : Nat}
   rw [mapWeight_comp]
   rfl
 
+/--
+@isnad1 id=eq.1h7v.s6.ce3c12ad7141 from=translated src=- shape=298973ed vocab=f0dec453
+-/
 theorem blockPrefixWeight_mixture {α ι : Type*} [Fintype α] [Fintype ι] {i t : Nat}
     (p : ι → (Fin t → α) → ℝ) (w : ι → ℝ) (h : i ≤ t) (u : Fin i → α) :
     blockPrefixWeight (fun x => ∑ j, w j * p j x) h u =
@@ -64,11 +82,17 @@ theorem blockPrefixWeight_mixture {α ι : Type*} [Fintype α] [Fintype ι] {i t
   intro x _
   by_cases same : blockPrefix h x = u <;> simp [same]
 
+/--
+@isnad1 id=iff.0h3v.s6.33fc4edadea0 from=translated src=- shape=5db6864d vocab=ac4044cc
+-/
 theorem blockSource_zero_iff {α : Type*} [Fintype α]
     (p : (Fin 0 → α) → ℝ) (K : Nat) :
     IsBlockSource p K ↔ IsProbabilityWeight p := by
   simp [IsBlockSource]
 
+/--
+@isnad1 id=iff.0h3v.s6.a7ce95e8f04c from=translated src=- shape=6beb9767 vocab=7f2a4552
+-/
 theorem blockSource_one_iff {α : Type*} [Fintype α]
     (p : (Fin 1 → α) → ℝ) (K : Nat) :
     IsBlockSource p K ↔ IsProbabilityWeight p ∧ CappedWeight p K := by
@@ -82,6 +106,9 @@ theorem blockSource_one_iff {α : Type*} [Fintype α]
     subst i
     simpa only [blockPrefixWeight_self, blockPrefixWeight_zero, hp.2] using cap u
 
+/--
+@isnad1 id=isblocks.2h5v.s5.b902f5b51ea0 from=translated src=- shape=1f6453f9 vocab=9bf9526b
+-/
 theorem blockSource_mono {α : Type*} [Fintype α] {t K L : Nat}
     {p : (Fin t → α) → ℝ} (source : IsBlockSource p K) (threshold : L ≤ K) :
     IsBlockSource p L := by
@@ -91,6 +118,9 @@ theorem blockSource_mono {α : Type*} [Fintype α] {t K L : Nat}
   exact (mul_le_mul_of_nonneg_right (by exact_mod_cast threshold) nonnegative).trans
     (source.2 i u)
 
+/--
+@isnad1 id=isblocks.2h5v.s5.78fce6c97482 from=translated src=- shape=ea9e4968 vocab=ad94dfba
+-/
 theorem blockSource_prefix {α : Type*} [Fintype α] {j t K : Nat}
     {p : (Fin t → α) → ℝ} (source : IsBlockSource p K) (h : j ≤ t) :
     IsBlockSource (blockPrefixWeight p h) K := by
@@ -98,6 +128,9 @@ theorem blockSource_prefix {α : Type*} [Fintype α] {j t K : Nat}
   rw [blockPrefixWeight_prefix, blockPrefixWeight_prefix]
   exact source.2 ⟨i.val, Nat.lt_of_lt_of_le i.isLt h⟩ u
 
+/--
+@isnad1 id=cappedwe.2h5v.s5.ba72e5f84c59 from=translated src=- shape=62a85365 vocab=0021b76f
+-/
 theorem blockSource_prefix_capped {α : Type*} [Fintype α] {t K : Nat}
     {p : (Fin t → α) → ℝ} (source : IsBlockSource p K) :
     ∀ (i : Nat) (h : i ≤ t), CappedWeight (blockPrefixWeight p h) (K ^ i) := by
@@ -119,11 +152,17 @@ theorem blockSource_prefix_capped {α : Type*} [Fintype α] {t K : Nat}
         mul_le_mul_of_nonneg_left conditional (Nat.cast_nonneg _)
       _ ≤ 1 := ih (Nat.le_of_succ_le h) (blockPrefix (Nat.le_succ i) u)
 
+/--
+@isnad1 id=cappedwe.1h4v.s5.16788a437303 from=translated src=- shape=b6db724a vocab=6e418d2d
+-/
 theorem blockSource_capped {α : Type*} [Fintype α] {t K : Nat}
     {p : (Fin t → α) → ℝ} (source : IsBlockSource p K) : CappedWeight p (K ^ t) := by
   have capped := blockSource_prefix_capped source t (Nat.le_refl t)
   rwa [blockPrefixWeight_self] at capped
 
+/--
+@isnad1 id=eq.1h3v.s5.07bf66d14b14 from=translated src=- shape=dcfe86d2 vocab=1ddef371
+-/
 theorem blockSource_eq_uniform {α : Type*} [Fintype α] {t : Nat}
     {p : (Fin t → α) → ℝ} (source : IsBlockSource p (Fintype.card α)) :
     p = uniformWeight (Fin t → α) := by
@@ -131,6 +170,9 @@ theorem blockSource_eq_uniform {α : Type*} [Fintype α] {t : Nat}
     simpa only [Fintype.card_fun, Fintype.card_fin] using blockSource_capped source
   exact capped.eq_uniform source.1
 
+/--
+@isnad1 id=isblocks.2h6v.s6.9ca5fe77331b from=translated src=- shape=e419ca95 vocab=b1ed1988
+-/
 theorem blockSource_mixture {α ι : Type*} [Fintype α] [Fintype ι] {t K : Nat}
     (p : ι → (Fin t → α) → ℝ) (w : ι → ℝ) (weights : IsProbabilityWeight w)
     (sources : ∀ j, IsBlockSource (p j) K) :

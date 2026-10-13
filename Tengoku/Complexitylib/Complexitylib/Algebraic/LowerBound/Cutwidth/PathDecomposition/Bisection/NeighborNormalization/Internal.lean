@@ -194,6 +194,9 @@ private theorem Transfer.exists_le_five {M G H : SimpleGraph W} {C S A P : Finse
   exact ⟨Y, hXY, hY,
     size.trans (charge_le_five (activeBoundary_disjoint inside processed) X), gain⟩
 
+/--
+@isnad1 id=or.2h3v.s9.5b6a64f696aa from=translated src=- shape=d2fa300e vocab=162aeecf
+-/
 theorem exists_no_three_neighbors_or_small_helpful (H : SimpleGraph W) (S : Finset W)
     (regular : H.IsRegularOfDegree 3)
     (independent : ∀ a ∈ cutBoundary H S, ∀ b ∈ cutBoundary H S, ¬ H.Adj a b) :
@@ -252,6 +255,9 @@ theorem exists_no_three_neighbors_or_small_helpful (H : SimpleGraph W) (S : Fins
       obtain ⟨Y, hXY, hY, size, gain⟩ := transfer.exists_le_five inside stateG.processed hX
       exact ⟨Y, hY, hXY, size, gain⟩
 
+/--
+@isnad1 id=or.1h3v.s8.fd6a530c387e from=translated src=- shape=3605e94c vocab=162aeecf
+-/
 theorem exists_normalization_or_small_helpful (H : SimpleGraph W) (S : Finset W)
     (regular : H.IsRegularOfDegree 3) :
     (∃ X ⊆ S, X.card ≤ 165 ∧ 1 ≤ helpfulness H S X) ∨

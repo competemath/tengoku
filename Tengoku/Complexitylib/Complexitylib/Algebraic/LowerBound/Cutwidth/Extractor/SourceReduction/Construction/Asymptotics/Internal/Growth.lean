@@ -24,6 +24,9 @@ namespace Algebraic.Cutwidth.Extractor.Internal
 
 open Filter
 
+/--
+@isnad1 id=tendsto.0h0v.s4.917ae5e583f1 from=translated src=- shape=13d3cdf5 vocab=f6f30c78
+-/
 theorem sourceReduction_tendsto_clog :
     Tendsto (fun n : Nat => Nat.clog 2 (n + 1)) atTop atTop := by
   apply tendsto_atTop.2

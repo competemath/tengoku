@@ -28,7 +28,9 @@ into a bound on the pairwise angles.
 
 namespace Algebraic.Cutwidth.Gaussian
 
-/-- Unit vectors close to a common unit vector are close to each other. -/
+/-- Unit vectors close to a common unit vector are close to each other.
+@isnad1 id=le.5h5v.s7.0f8e00dc8dff from=translated src=- shape=79cafd82 vocab=c64db2fe
+-/
 theorem le_inner_of_le_inner {ι : Type} [Fintype ι] {x y y' : ι → ℝ}
     (hx : ∑ i, x i ^ 2 = 1) (hy : ∑ i, y i ^ 2 = 1) (hy' : ∑ i, y' i ^ 2 = 1) {κ : ℝ}
     (hyx : κ ≤ ∑ i, y i * x i) (hy'x : κ ≤ ∑ i, y' i * x i) :
@@ -36,7 +38,9 @@ theorem le_inner_of_le_inner {ι : Type} [Fintype ι] {x y y' : ι → ℝ}
   Internal.le_inner_of_le_inner hx hy hy' hyx hy'x
 
 /-- **Star inequality.** If `n` unit vectors each have inner product at least `κ ≥ 0` with a
-unit vector, the sum of their inner products over ordered pairs is at least `n² κ² - n`. -/
+unit vector, the sum of their inner products over ordered pairs is at least `n² κ² - n`.
+@isnad1 id=le.4h6v.s8.6a4a4886fbee from=translated src=- shape=979ac167 vocab=ffac719c
+-/
 theorem sum_inner_ordered_pairs_ge {ι J : Type} [Fintype ι] [DecidableEq J] {x : ι → ℝ}
     (hx : ∑ i, x i ^ 2 = 1) (s : Finset J) (y : J → ι → ℝ)
     (hy : ∀ j ∈ s, ∑ i, y j i ^ 2 = 1) {κ : ℝ} (hκ : 0 ≤ κ)

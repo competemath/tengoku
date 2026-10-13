@@ -105,21 +105,27 @@ def pastSide (t : ℕ) (x : ι → U) : Set (P.revealed t → U) :=
 def futureSide (t : ℕ) (x : ι → U) : Set (↥(P.revealed t)ᶜ → U) :=
   (P.revealed t)ᶜ.domRestrict '' P.peers t x
 
-/-- The rectangular hull of the peers lies inside `S`: one of its sides is small. -/
+/-- The rectangular hull of the peers lies inside `S`: one of its sides is small.
+@isnad1 id=or.1h8v.s6.e52ea3c91772 from=translated src=- shape=538936a6 vocab=ca045139
+-/
 theorem pastSide_lt_or_futureSide_lt {K : ℕ} (hS : RectangleFree S K) (t : ℕ) (x : ι → U) :
     (P.pastSide t x).ncard < K ∨ (P.futureSide t x).ncard < K := by
   refine hS _ _ _ fun z ⟨⟨y, ⟨hy, hyx⟩, hzy⟩, ⟨y', ⟨hy', hy'x⟩, hzy'⟩⟩ => ?_
   exact P.splice t y hy y' hy' (hyx.trans hy'x.symm) z
     (domRestrict_eq_domRestrict_iff.mp hzy).symm (domRestrict_eq_domRestrict_iff.mp hzy').symm
 
-/-- At the start nothing is revealed, so there is at most one revealed part. -/
+/-- At the start nothing is revealed, so there is at most one revealed part.
+@isnad1 id=le.0h6v.s5.82da2116169b from=translated src=- shape=d9bf7e45 vocab=34d07726
+-/
 theorem ncard_pastSide_zero_le (x : ι → U) : (P.pastSide 0 x).ncard ≤ 1 := by
   have : Subsingleton (P.revealed 0 → U) :=
     ⟨fun a b => funext fun i => absurd i.2 (by simp [P.revealed_zero])⟩
   exact (ncard_le_one (toFinite _)).mpr fun a _ b _ => Subsingleton.elim a b
 
 /-- At the end everything is revealed and every input of `S` is a peer, so the revealed parts
-are as numerous as `S`. -/
+are as numerous as `S`.
+@isnad1 id=eq.1h6v.s6.7e789d5c7e09 from=translated src=- shape=95790158 vocab=9a770954
+-/
 theorem ncard_pastSide_length {x : ι → U} (hx : x ∈ S) :
     (P.pastSide P.length x).ncard = S.ncard := by
   have hpeers : P.peers P.length x = S :=
@@ -137,7 +143,9 @@ noncomputable def chargeTime (K : ℕ) (x : ι → U) : ℕ :=
 noncomputable def transitionCount : ℕ :=
   ∑ t ∈ Finset.range P.length, (P.transition t '' S).ncard
 
-/-- Threshold charging only needs thin message classes, with asymmetric thresholds. -/
+/-- Threshold charging only needs thin message classes, with asymmetric thresholds.
+@isnad1 id=le.3h7v.s7.36e78ba55d09 from=translated src=- shape=cacf738b vocab=3f582aec
+-/
 theorem ncard_le_of_small_sides [Finite ι] [Finite U] {KL KR : ℕ}
     (hKL : 1 < KL) (hK : KL ≤ S.ncard)
     (hsmall : ∀ t, ∀ x ∈ S, (P.pastSide t x).ncard < KL ∨ (P.futureSide t x).ncard < KR) :
@@ -207,7 +215,9 @@ theorem ncard_le_of_small_sides [Finite ι] [Finite U] {KL KR : ℕ}
         (Finset.mul_sum ..).symm
 
 /-- **The frontier counting lemma.** A `K`-rectangle-free set with at least `K` elements has at
-most `(K - 1) ^ 2` elements per transition. -/
+most `(K - 1) ^ 2` elements per transition.
+@isnad1 id=le.2h6v.s7.eaf4e15e3c95 from=translated src=- shape=e0ac3e2b vocab=21570bb5
+-/
 theorem ncard_le [Finite ι] [Finite U] {K : ℕ} (hS : RectangleFree S K) (hK : K ≤ S.ncard) :
     S.ncard ≤ (K - 1) ^ 2 * ∑ t ∈ Finset.range P.length, (P.transition t '' S).ncard := by
   by_cases hK1 : 1 < K

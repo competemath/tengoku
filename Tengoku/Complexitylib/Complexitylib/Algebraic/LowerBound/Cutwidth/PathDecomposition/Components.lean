@@ -23,7 +23,9 @@ namespace Algebraic.Cutwidth.PathDecomposition
 open scoped Classical
 
 /-- Combine component decompositions without increasing any bag's size.
-The result also covers the empty graph, for which zero bags suffice. -/
+The result also covers the empty graph, for which zero bags suffice.
+@isnad1 id=ex.1h3v.s7.9dcca6f23fc0 from=translated src=- shape=6bb7f4f0 vocab=40cbadcb
+-/
 theorem exists_of_components {W : Type} [Fintype W] {H : SimpleGraph W} {b : Nat}
     (parts : ∀ C : H.ConnectedComponent,
       ∃ D : PathDecomposition C.toSimpleGraph, ∀ i, (D.bag i).card ≤ b) :

@@ -25,7 +25,9 @@ At `c = 4/25` the doubled coefficient is at most `5/18`, because `2 p ≤ 9/32` 
 
 namespace Algebraic.Cutwidth.Gaussian.Internal
 
-/-- A correlation target of at least `17/32` forces a decay rate below `1/√2`. -/
+/-- A correlation target of at least `17/32` forces a decay rate below `1/√2`.
+@isnad1 id=lt.2h3v.s7.7d29ad0c54e4 from=translated src=- shape=e75f525b vocab=762a6581
+-/
 theorem two_mul_sq_lt_one_of_le {q : ℝ} {R : ℕ} {ρ₀ : ℝ} (hρ₀ : 17 / 32 ≤ ρ₀)
     (hρ : ρ₀ ≤ 2 * q / (1 + q ^ 2) - 3 * (2 * q ^ 2) ^ R) : 2 * q ^ 2 < 1 := by
   by_contra hge
@@ -37,7 +39,9 @@ theorem two_mul_sq_lt_one_of_le {q : ℝ} {R : ℕ} {ρ₀ : ℝ} (hρ₀ : 17 /
   linarith
 
 /-- **Parameters.** For every positive slack some admissible parameters bring the band-jump
-bound within that slack of `exp (-c²/2)` times the frontier coefficient. -/
+bound within that slack of `exp (-c²/2)` times the frontier coefficient.
+@isnad1 id=ex.2h2v.s8.2308c54323d9 from=translated src=- shape=1ce7266f vocab=f4b1419a
+-/
 theorem exists_band_parameters {c : ℝ} (hc : 0 < c) {ξ : ℝ} (hξ : 0 < ξ) :
     ∃ (q : ℝ) (R : ℕ) (ρ₀ T ε η : ℝ) (M : ℕ), 0 ≤ q ∧ 17 / 32 ≤ ρ₀ ∧
       ρ₀ ≤ 2 * q / (1 + q ^ 2) - 3 * (2 * q ^ 2) ^ R ∧ c < T ∧ 0 < ε ∧ 0 < η ∧ 0 < M ∧
@@ -95,7 +99,9 @@ theorem exists_band_parameters {c : ℝ} (hc : 0 < c) {ξ : ℝ} (hξ : 0 < ξ) 
       nlinarith
     linarith
 
-/-- `exp (-(4/25)²/2) = exp (-8/625) ≤ 80/81`. -/
+/-- `exp (-(4/25)²/2) = exp (-8/625) ≤ 80/81`.
+@isnad1 id=le.0h0v.s6.37c9ffdd59b6 from=translated src=- shape=df229aa4 vocab=10d99d2e
+-/
 theorem exp_neg_four_div_twentyFive_sq_le :
     Real.exp (-((4 / 25 : ℝ) ^ 2) / 2) ≤ 80 / 81 := by
   have h : -((4 / 25 : ℝ) ^ 2) / 2 = -(8 / 625) := by norm_num
@@ -107,7 +113,9 @@ theorem exp_neg_four_div_twentyFive_sq_le :
   rw [h]
   nlinarith [Real.exp_pos (-(8 / 625 : ℝ))]
 
-/-- At `c = 4/25` the doubled band-jump coefficient is at most `5/18`. -/
+/-- At `c = 4/25` the doubled band-jump coefficient is at most `5/18`.
+@isnad1 id=le.0h0v.s6.b3139cc3a5c1 from=translated src=- shape=d4460699 vocab=3070534b
+-/
 theorem two_mul_exp_mul_frontierCoefficient_le :
     2 * (Real.exp (-((4 / 25 : ℝ) ^ 2) / 2) * frontierCoefficient) ≤ 5 / 18 := by
   have he := exp_neg_four_div_twentyFive_sq_le

@@ -22,6 +22,9 @@ namespace Complexity.BooleanAnalysis
 open Finset
 open scoped BigOperators
 
+/--
+@isnad1 id=le.2h2v.s6.c539f2e5682e from=translated src=- shape=c065c413 vocab=a31a7c56
+-/
 theorem harmonicPair_le_midpoint_internal {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) :
     2 * a * b / (a + b) ≤ (a + b) / 2 := by
   by_cases hz : a + b = 0
@@ -30,6 +33,9 @@ theorem harmonicPair_le_midpoint_internal {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤
   apply (div_le_iff₀ hp).mpr
   nlinarith [sq_nonneg (a - b)]
 
+/--
+@isnad1 id=le.4h4v.s7.e59425d3ea5a from=translated src=- shape=e6efd33e vocab=a31a7c56
+-/
 theorem harmonicPair_mono_internal {a b c d : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b)
     (hac : a ≤ c) (hbd : b ≤ d) : 2 * a * b / (a + b) ≤ 2 * c * d / (c + d) := by
   have hc := ha.trans hac
@@ -43,6 +49,9 @@ theorem harmonicPair_mono_internal {a b c d : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b)
   nlinarith [mul_nonneg (mul_nonneg ha hc) (sub_nonneg.mpr hbd),
     mul_nonneg (mul_nonneg hb hd) (sub_nonneg.mpr hac)]
 
+/--
+@isnad1 id=le.4h5v.s7.84b14507cdf1 from=translated src=- shape=7a88534e vocab=aa22654f
+-/
 theorem harmonicTransform_concave_internal {ι : Type*} [Fintype ι] [DecidableEq ι]
     {f g : (ι → Bool) → ℝ} (hf : ∀ x, 0 ≤ f x) (hg : ∀ x, 0 ≤ g x)
     {t : ℝ} (ht : 0 ≤ t) (ht' : t ≤ 1) (selected : ι → Bool) :
@@ -58,6 +67,9 @@ theorem harmonicTransform_concave_internal {ι : Type*} [Fintype ι] [DecidableE
   exact harmonicMean_concave_internal (projectionAverage_nonneg_internal hf selected)
     (projectionAverage_nonneg_internal hg selected) ht ht'
 
+/--
+@isnad1 id=le.2h4v.s6.e537eea1c51a from=translated src=- shape=56cb0ee8 vocab=9408b770
+-/
 theorem harmonicTransform_antitone_internal {n : ℕ} {f : (Fin n → Bool) → ℝ}
     (hf : ∀ x, 0 ≤ f x) {r s : Fin n → Bool}
     (hrs : ∀ i, r i = true → s i = true) : harmonicTransform f s ≤ harmonicTransform f r := by
@@ -85,6 +97,9 @@ theorem harmonicTransform_antitone_internal {n : ℕ} {f : (Fin n → Bool) → 
       exact harmonicPair_mono_internal (harmonicTransform_nonneg_internal h0 s)
         (harmonicTransform_nonneg_internal h1 s) (ih h0 htail) (ih h1 htail)
 
+/--
+@isnad1 id=eq.0h2v.s6.81ad079e6382 from=translated src=- shape=b42dfc65 vocab=e5b2efb7
+-/
 theorem harmonicTransform_empty_internal {ι : Type*} [Fintype ι] [DecidableEq ι]
     (f : (ι → Bool) → ℝ) : harmonicTransform f (fun _ => false) = 𝔼 x, f x := by
   have he : projectionAverage f (fun _ => false) = fun _ => 𝔼 x, f x := by
@@ -92,6 +107,9 @@ theorem harmonicTransform_empty_internal {ι : Type*} [Fintype ι] [DecidableEq 
     simp [projectionAverage]
   rw [harmonicTransform, he, harmonicMean_const_internal]
 
+/--
+@isnad1 id=eq.0h2v.s5.d4ac7113971a from=translated src=- shape=92df96e2 vocab=e29e2aad
+-/
 theorem harmonicTransform_full_internal {ι : Type*} [Fintype ι] [DecidableEq ι]
     (f : (ι → Bool) → ℝ) : harmonicTransform f (fun _ => true) = harmonicMean f := by
   have he : projectionAverage f (fun _ => true) = f := by
@@ -99,6 +117,9 @@ theorem harmonicTransform_full_internal {ι : Type*} [Fintype ι] [DecidableEq �
     simp [projectionAverage]
   rw [harmonicTransform, he]
 
+/--
+@isnad1 id=le.1h3v.s6.37acb57e9337 from=translated src=- shape=8c4d5f4f vocab=e0011664
+-/
 theorem harmonicTransform_le_expect_internal {n : ℕ} {f : (Fin n → Bool) → ℝ}
     (hf : ∀ x, 0 ≤ f x) (selected : Fin n → Bool) :
     harmonicTransform f selected ≤ 𝔼 x, f x := by

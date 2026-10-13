@@ -26,7 +26,9 @@ still gives the required exponential bound, using `k^k ≤ 3^k * k!`.
 
 namespace Complexity.Shallow
 
-/-- A convenient elementary form of the factorial estimate; no asymptotics. -/
+/-- A convenient elementary form of the factorial estimate; no asymptotics.
+@isnad1 id=le.0h1v.s5.bbb54dfd5ba6 from=translated src=- shape=e479d15c vocab=bf88f0e0
+-/
 theorem pow_self_le_three_pow_mul_factorial (k : ℕ) :
     k ^ k ≤ 3 ^ k * k.factorial := by
   have h := Real.pow_div_factorial_le_exp (x := (k : ℝ)) (by positivity) k
@@ -63,7 +65,9 @@ private theorem cover_power_lt (q n : ℕ) (hq : 0 < q) :
   nlinarith
 
 /-- A success density of at least `1/q` covers `2^n` obligations with
-`q * (n + 1)` tests. Repetition of tests is permitted. -/
+`q * (n + 1)` tests. Repetition of tests is permitted.
+@isnad1 id=ex.3h5v.s7.effe43d52865 from=translated src=- shape=bda3d993 vocab=05ac0221
+-/
 theorem exists_cover {S W : Type*} [Fintype S] [Nonempty S] [Fintype W]
     (hit : S → W → Prop) [DecidableRel hit] (q n : ℕ) (hq : 0 < q)
     (hw : Fintype.card W ≤ 2 ^ n)
@@ -83,7 +87,9 @@ theorem exists_cover {S W : Type*} [Fintype S] [Nonempty S] [Fintype W]
   · exact (Nat.mul_le_mul_right _ hw).trans_lt (cover_power_lt q n hq)
 
 /-- The shifted tests cover any `2^n` valid weight vectors using at most
-`3^|G| * (n+1)` tests. -/
+`3^|G| * (n+1)` tests.
+@isnad1 id=ex.2h5v.s8.eae6f182b30b from=translated src=- shape=311ff4f3 vocab=4da92276
+-/
 theorem exists_shiftTest_cover {G W : Type*} [Fintype G] [AddCommGroup G]
     [Fintype W] (t : G) (w : W → G → G) (n : ℕ)
     (hcard : Fintype.card W ≤ 2 ^ n) (hw : ∀ x, ∑ i, w x i = t) :

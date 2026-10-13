@@ -45,6 +45,9 @@ noncomputable def bagN (i : Nat) : Finset W :=
   if h : i < D.length then D.bag ⟨i, h⟩ else ∅
 
 omit [Fintype W] [DecidableEq W] [DecidableRel H.Adj] in
+/--
+@isnad1 id=le.1h5v.s6.e0c5f87f5a63 from=translated src=- shape=e2f05f95 vocab=19e04aeb
+-/
 theorem card_bagN_le {p : Nat} (hbag : ∀ i, (D.bag i).card ≤ p + 1) (i : Nat) :
     (bagN H D i).card ≤ p + 1 := by
   unfold bagN
@@ -53,6 +56,9 @@ theorem card_bagN_le {p : Nat} (hbag : ∀ i, (D.bag i).card ≤ p + 1) (i : Nat
   · simp
 
 omit [Fintype W] [DecidableEq W] [DecidableRel H.Adj] in
+/--
+@isnad1 id=mem.4h7v.s6.e71db2efb3d5 from=translated src=- shape=144f4f25 vocab=30c7a661
+-/
 theorem bagN_consecutive {w : W} {i j k : Nat} (hij : i ≤ j) (hjk : j ≤ k)
     (hi : w ∈ bagN H D i) (hk : w ∈ bagN H D k) : w ∈ bagN H D j := by
   have hk' : k < D.length := by
@@ -68,6 +74,9 @@ noncomputable def bagOf (e : Sym2 W) : Nat :=
   if h : ∃ i : Nat, ∀ a ∈ e, a ∈ bagN H D i then Nat.find h else 0
 
 omit [DecidableRel H.Adj] in
+/--
+@isnad1 id=mem.2h5v.s6.ec091af21e76 from=translated src=- shape=263a066d vocab=0f5a8837
+-/
 theorem mem_bagN_bagOf {e : Sym2 W} (he : e ∈ H.edgeSet) {a : W} (ha : a ∈ e) :
     a ∈ bagN H D (bagOf H D e) := by
   induction e using Sym2.ind with
@@ -82,7 +91,9 @@ theorem mem_bagN_bagOf {e : Sym2 W} (he : e ∈ H.edgeSet) {a : W} (ha : a ∈ e
     exact Nat.find_spec h a ha
 
 omit [DecidableRel H.Adj] in
-/-- An edge is placed no later than any bag containing both endpoints. -/
+/-- An edge is placed no later than any bag containing both endpoints.
+@isnad1 id=le.1h5v.s6.34cebe99f307 from=translated src=- shape=a333d261 vocab=0e9982fc
+-/
 theorem bagOf_le {e : Sym2 W} (i : Fin D.length)
     (he : ∀ a ∈ e, a ∈ D.bag i) : bagOf H D e ≤ i.val := by
   have hi : ∀ a ∈ e, a ∈ bagN H D i.val := by
@@ -98,10 +109,16 @@ noncomputable def rank (e : Sym2 W) : Nat :=
   (Fintype.equivFin (Sym2 W) e).val
 
 omit [DecidableEq W] in
+/--
+@isnad1 id=lt.0h2v.s4.508495b5f0d9 from=translated src=- shape=a784deaf vocab=15a554bb
+-/
 theorem rank_lt (e : Sym2 W) : rank e < Fintype.card (Sym2 W) :=
   (Fintype.equivFin (Sym2 W) e).isLt
 
 omit [DecidableEq W] in
+/--
+@isnad1 id=injectiv.0h1v.s3.1b677a3ae39a from=translated src=- shape=62a57f4c vocab=35701507
+-/
 theorem rank_injective : Function.Injective (rank : Sym2 W → Nat) :=
   fun _ _ h => (Fintype.equivFin (Sym2 W)).injective (Fin.ext h)
 
@@ -109,7 +126,9 @@ theorem rank_injective : Function.Injective (rank : Sym2 W → Nat) :=
 noncomputable def pos (e : Sym2 W) : Nat :=
   bagOf H D e * Fintype.card (Sym2 W) + rank e
 
-/-- Mixed-radix comparison: the leading digit is monotone. -/
+/-- Mixed-radix comparison: the leading digit is monotone.
+@isnad1 id=le.2h5v.s5.01099f0ab26d from=translated src=- shape=37aecf9a vocab=923b6325
+-/
 theorem digit_le_of_le {b b' r r' c : Nat} (hr' : r' < c)
     (h : b * c + r ≤ b' * c + r') : b ≤ b' := by
   by_contra hlt
@@ -119,6 +138,9 @@ theorem digit_le_of_le {b b' r r' c : Nat} (hr' : r' < c)
   omega
 
 omit [DecidableRel H.Adj] in
+/--
+@isnad1 id=injectiv.0h3v.s4.fd5e3df94443 from=translated src=- shape=f8410d62 vocab=7b69d4bd
+-/
 theorem pos_injective : Function.Injective (pos H D) := by
   intro e e' h
   have h₁ := digit_le_of_le (rank_lt e') h.le
@@ -130,6 +152,9 @@ theorem pos_injective : Function.Injective (pos H D) := by
   omega
 
 omit [DecidableRel H.Adj] in
+/--
+@isnad1 id=le.1h5v.s5.effd7f140851 from=translated src=- shape=32253327 vocab=db07f425
+-/
 theorem bagOf_le_of_pos_le {e e' : Sym2 W} (h : pos H D e ≤ pos H D e') :
     bagOf H D e ≤ bagOf H D e' :=
   digit_le_of_le (rank_lt e') h

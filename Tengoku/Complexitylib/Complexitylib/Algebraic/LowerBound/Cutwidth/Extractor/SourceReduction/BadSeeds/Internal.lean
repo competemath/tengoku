@@ -45,6 +45,9 @@ private theorem exists_tuple_image {ι : Type*} (U : Finset ι) {t : Nat}
     rw [dite_eq_left j.isLt]
     exact congrArg Subtype.val (U.equivFin.symm_apply_apply ⟨x, hx⟩)
 
+/--
+@isnad1 id=le.0h2v.s5.9d61a5d26039 from=translated src=- shape=973d5182 vocab=d0fdb24f
+-/
 theorem card_parityTests_le_pow (ι : Type*) [Fintype ι] (t : Nat) :
     (parityTests ι t).card ≤ Fintype.card ι ^ t := by
   have inside : parityTests ι t ⊆
@@ -60,6 +63,9 @@ theorem card_parityTests_le_pow (ι : Type*) [Fintype ι] (t : Nat) :
     _ ≤ Fintype.card (Fin t → ι) := Finset.card_image_le
     _ = Fintype.card ι ^ t := Fintype.card_pi_const ι t
 
+/--
+@isnad1 id=le.2h6v.s7.fd65d5f5339b from=translated src=- shape=edfa1c16 vocab=b4ca85eb
+-/
 theorem card_parityBadSeeds_le {ι Choice Seed : Type*} [Fintype ι] [Fintype Choice]
     [Fintype Seed] (bad : Finset ι → Choice → Finset Seed) (t : Nat)
     {η : ℝ} (hη : 0 ≤ η)

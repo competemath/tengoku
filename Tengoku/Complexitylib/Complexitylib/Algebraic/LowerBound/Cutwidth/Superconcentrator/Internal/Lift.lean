@@ -36,25 +36,34 @@ variable {V E : Type} {G : Multigraph V E}
 
 /-! ### Walks and undirected reachability -/
 
+/--
+@isnad1 id=adj.1h5v.s4.746bb51ef526 from=translated src=- shape=2eed0276 vocab=79e57392
+-/
 theorem adj_of_dirAdj {u v : V} (h : G.DirAdj u v) : G.Adj u v := by
   obtain ⟨e, h₁, h₂⟩ := h
   exact ⟨e, Or.inl ⟨h₁, h₂⟩⟩
 
-/-- The ends of a directed walk are joined by an undirected walk. -/
+/-- The ends of a directed walk are joined by an undirected walk.
+@isnad1 id=refltran.1h6v.s4.7c2c10b7a5f2 from=translated src=- shape=4e67468d vocab=d3ac4491
+-/
 theorem reflTransGen_of_isDirWalk {p : List V} {u v : V} (h : G.IsDirWalk p u v) :
     ReflTransGen G.Adj u v := by
   obtain ⟨l, -, hc, hlast⟩ := exists_eq_cons_of_isDirWalk h
   exact ReflTransGen.mono (fun _ _ => adj_of_dirAdj) _ _
     (List.relationReflTransGen_of_exists_isChain_cons l hc hlast)
 
-/-- Every vertex of a directed walk is joined to its first vertex by an undirected walk. -/
+/-- Every vertex of a directed walk is joined to its first vertex by an undirected walk.
+@isnad1 id=refltran.2h7v.s5.090a8825ba90 from=translated src=- shape=c180b2d0 vocab=909a8bcb
+-/
 theorem reflTransGen_of_mem_isDirWalk {p : List V} {u v : V} (h : G.IsDirWalk p u v) {z : V}
     (hz : z ∈ p) : ReflTransGen G.Adj u z := by
   obtain ⟨l, rfl, hc, -⟩ := exists_eq_cons_of_isDirWalk h
   exact List.IsChain.induction (fun z => ReflTransGen G.Adj u z) _ hc
     (fun _ _ hxy hx => hx.tail (adj_of_dirAdj hxy)) (fun _ => .refl) z hz
 
-/-- In a superconcentrator, every input reaches every output. -/
+/-- In a superconcentrator, every input reaches every output.
+@isnad1 id=ex.1h8v.s5.510f3e85f8d6 from=translated src=- shape=8e2125ac vocab=3a096ef8
+-/
 theorem exists_isDirWalk {N : ℕ} {input output : Fin N → V}
     (h : G.Superconcentrator input output) (i j : Fin N) :
     ∃ p, G.IsDirWalk p (input i) (output j) := by
@@ -71,15 +80,23 @@ variable [Fintype E]
 noncomputable def compEdges (G : Multigraph V E) (r : V) : Finset E :=
   Finset.univ.filter fun e => ReflTransGen G.Adj (G.fst e) r
 
+/--
+@isnad1 id=iff.0h5v.s5.b95b413c7e28 from=translated src=- shape=3539a851 vocab=51fe1c62
+-/
 theorem mem_compEdges {r : V} {e : E} :
     e ∈ compEdges G r ↔ ReflTransGen G.Adj (G.fst e) r := by
   simp [compEdges]
 
+/--
+@isnad1 id=refltran.1h5v.s5.623513b9b51e from=translated src=- shape=cf47abc7 vocab=a137ac6a
+-/
 theorem reflTransGen_snd_of_mem_compEdges {r : V} {e : E} (he : e ∈ compEdges G r) :
     ReflTransGen G.Adj (G.snd e) r :=
   ReflTransGen.head ⟨e, Or.inr ⟨rfl, rfl⟩⟩ (mem_compEdges.1 he)
 
-/-- A vertex with a slot lies in the component. -/
+/-- A vertex with a slot lies in the component.
+@isnad1 id=refltran.1h5v.s5.edcc42b05f82 from=translated src=- shape=a4e998c6 vocab=71ee861c
+-/
 theorem reflTransGen_of_slots_pos {r w : V} (hw : 0 < slots G (compEdges G r) w) :
     ReflTransGen G.Adj w r := by
   unfold slots at hw
@@ -91,7 +108,9 @@ theorem reflTransGen_of_slots_pos {r w : V} (hw : 0 < slots G (compEdges G r) w)
     simp only [inEdges, Finset.mem_filter] at he
     exact he.2 ▸ reflTransGen_snd_of_mem_compEdges he.1
 
-/-- The split graph of a component is connected. -/
+/-- The split graph of a component is connected.
+@isnad1 id=connecte.1h4v.s6.9fe2a3a5a37a from=translated src=- shape=43f4f2cf vocab=c99afda0
+-/
 theorem split_connected {r : V} (hr : 0 < slots G (compEdges G r) r) :
     (split G (compEdges G r)).Connected := by
   set K := compEdges G r
@@ -122,7 +141,9 @@ theorem split_connected {r : V} (hr : 0 < slots G (compEdges G r) r) :
 /-! ### Lifting walks -/
 
 /-- A directed walk in the component lifts from any entering slot of its first vertex to the
-last slot of its last vertex, through the paths of vertices of `P ⊇` the walk. -/
+last slot of its last vertex, through the paths of vertices of `P ⊇` the walk.
+@isnad1 id=refltran.7h9v.s8.2d1f11c25460 from=translated src=- shape=80263a8c vocab=55f7158e
+-/
 theorem reflTransGen_lift {r : V} (P : Set V) :
     ∀ (u : V) (l : List V), (u :: l).IsChain G.DirAdj → ReflTransGen G.Adj u r →
       (∀ z ∈ u :: l, z ∈ P) → ∀ x y : SplitVertex G (compEdges G r), x.1 = u →
@@ -169,7 +190,9 @@ theorem reflTransGen_lift {r : V} (P : Set V) :
 
 /-- **Lifting one walk.** A directed walk from `u` to `v` in the component of `r`, where `u`
 and `v` have slots, lifts to a directed walk of the split graph from the first slot of `u` to
-the last slot of `v` that stays in the paths of the vertices of the walk. -/
+the last slot of `v` that stays in the paths of the vertices of the walk.
+@isnad1 id=ex.4h7v.s8.4dd2e0056401 from=translated src=- shape=fe2d8020 vocab=9c1df23f
+-/
 theorem exists_lift_isDirWalk {r : V} {p : List V} {u v : V} (h : G.IsDirWalk p u v)
     (hr : ReflTransGen G.Adj u r) (hu : 0 < slots G (compEdges G r) u)
     (hv : 0 < slots G (compEdges G r) v) :
@@ -192,7 +215,9 @@ theorem exists_lift_isDirWalk {r : V} {p : List V} {u v : V} (h : G.IsDirWalk p 
 /-- **Lifting a family of vertex-disjoint walks.** Let all terminals `input i` lie in the
 component of `r`, and let every `input i` and every `output j` have a slot. Vertex-disjoint
 directed walks from `input i` to `output (target i)` lift to vertex-disjoint directed walks of
-the split graph from the first slot of `input i` to the last slot of `output (target i)`. -/
+the split graph from the first slot of `input i` to the last slot of `output (target i)`.
+@isnad1 id=ex.5h11v.s8.9943e9d5a0f5 from=translated src=- shape=e1b71928 vocab=5c06ba52
+-/
 theorem exists_lift_walks {ι κ : Type*} {r : V} {input : ι → V} {output : κ → V}
     (hr : ∀ i, ReflTransGen G.Adj (input i) r)
     (hin : ∀ i, 0 < slots G (compEdges G r) (input i))
@@ -216,7 +241,9 @@ theorem exists_lift_walks {ι κ : Type*} {r : V} {input : ι → V} {output : �
 
 /-- **The split graph of a superconcentrator.** If all inputs lie in the component of `r`,
 every input has a slot, and every output has a slot, then the split graph of the component is
-a superconcentrator with inputs at first slots and outputs at last slots. -/
+a superconcentrator with inputs at first slots and outputs at last slots.
+@isnad1 id=supercon.4h7v.s7.70eba60d98df from=translated src=- shape=14bad4cd vocab=88fd2080
+-/
 theorem split_superconcentrator {N : ℕ} {input output : Fin N → V}
     (h : G.Superconcentrator input output) {r : V} (hr : ∀ i, ReflTransGen G.Adj (input i) r)
     (hin : ∀ i, 0 < slots G (compEdges G r) (input i))

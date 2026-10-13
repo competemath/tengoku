@@ -39,7 +39,9 @@ open scoped Classical in
 /-- **Score-order path decomposition.** List the edges of a cubic graph in nondecreasing score
 order and let bag `k` hold the vertices with an incident edge at a position at most `k` and
 another at a position at least `k`. Each bag lies inside the vertices with an edge scoring at
-most `t` and an edge scoring at least `t`, where `t` is the score of the `k`-th edge. -/
+most `t` and an edge scoring at least `t`, where `t` is the score of the `k`-th edge.
+@isnad1 id=ex.1h3v.s8.d42434715306 from=translated src=- shape=2f6eba53 vocab=5619bf24
+-/
 theorem exists_pathDecomposition_subset_edgeScore (regular : H.IsRegularOfDegree 3)
     (score : Sym2 W → ℝ) :
     ∃ D : PathDecomposition H, ∀ k, ∃ t : ℝ, D.bag k ⊆ Finset.univ.filter fun v =>

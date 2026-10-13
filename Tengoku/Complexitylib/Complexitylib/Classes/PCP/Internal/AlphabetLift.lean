@@ -46,23 +46,41 @@ def lift (G : ConstraintGraph α) (f : α → β) : ConstraintGraph β where
   rel := fun e b₁ b₂ =>
     decide (∃ a₁ : α, ∃ a₂ : α, f a₁ = b₁ ∧ f a₂ = b₂ ∧ G.rel e a₁ a₂ = true)
 
+/--
+@isnad1 id=eq.0h7v.s7.deed73ca79b8 from=translated src=- shape=be255428 vocab=3906da4a
+-/
 @[simp] theorem rel_lift (G : ConstraintGraph α) (f : α → β) (e : Fin (G.lift f).numEdges)
     (b₁ b₂ : β) :
     (G.lift f).rel e b₁ b₂
       = decide (∃ a₁ : α, ∃ a₂ : α, f a₁ = b₁ ∧ f a₂ = b₂ ∧ G.rel e a₁ a₂ = true) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.6d73343b94a1 from=translated src=- shape=f06b0d36 vocab=33d76178
+-/
 @[simp] theorem tail_lift (G : ConstraintGraph α) (f : α → β)
     (e : Fin (G.lift f).numEdges) : (G.lift f).tail e = G.tail e := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.b641b22f366e from=translated src=- shape=f06b0d36 vocab=16e13dae
+-/
 @[simp] theorem head_lift (G : ConstraintGraph α) (f : α → β)
     (e : Fin (G.lift f).numEdges) : (G.lift f).head e = G.head e := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.2c2119b389de from=translated src=- shape=19e52d72 vocab=b05bd487
+-/
 @[simp] theorem numEdges_lift (G : ConstraintGraph α) (f : α → β) :
     (G.lift f).numEdges = G.numEdges := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.a0990376bf20 from=translated src=- shape=19e52d72 vocab=44a58816
+-/
 @[simp] theorem numVerts_lift (G : ConstraintGraph α) (f : α → β) :
     (G.lift f).numVerts = G.numVerts := rfl
 
+/--
+@isnad1 id=iff.0h6v.s6.4512365a848f from=translated src=- shape=8f021aa7 vocab=16a8aae8
+-/
 theorem satisfies_lift_iff (G : ConstraintGraph α) (f : α → β)
     (b : (G.lift f).Assignment) (e : Fin (G.lift f).numEdges) :
     (G.lift f).Satisfies b e ↔
@@ -71,7 +89,9 @@ theorem satisfies_lift_iff (G : ConstraintGraph α) (f : α → β)
   rw [Satisfies, satisfies]
   simp
 
-/-- **Satisfiability is unchanged.** -/
+/-- **Satisfiability is unchanged.**
+@isnad1 id=iff.1h4v.s5.e179be982806 from=translated src=- shape=c9e40fbc vocab=96fe7eaa
+-/
 theorem satisfiable_lift_iff (G : ConstraintGraph α) {f : α → β} (hf : Function.Injective f)
     [Nonempty α] : (G.lift f).Satisfiable ↔ G.Satisfiable := by
   classical

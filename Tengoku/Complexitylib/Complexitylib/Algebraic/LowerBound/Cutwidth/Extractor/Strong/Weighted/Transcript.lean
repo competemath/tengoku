@@ -30,7 +30,9 @@ namespace Algebraic.Cutwidth.Extractor
 
 open scoped Classical
 
-/-- Normalized transcript and side kernels define a normalized factored joint law. -/
+/-- Normalized transcript and side kernels define a normalized factored joint law.
+@isnad1 id=isprobab.3h6v.s6.fd81a4c889ea from=translated src=- shape=294921a8 vocab=f1abb1a4
+-/
 theorem factoredWeight_probability {Z A B : Type*}
     [Fintype Z] [Fintype A] [Fintype B]
     (w : Z → ℝ) (l : Z → A → ℝ) (r : Z → B → ℝ)
@@ -38,7 +40,9 @@ theorem factoredWeight_probability {Z A B : Type*}
     (hr : ∀ z, IsProbabilityWeight (r z)) : IsProbabilityWeight (factoredWeight w l r) :=
   Internal.factoredWeight_probability w l r hw hl hr
 
-/-- A deterministic message extends the transcript to another probability law. -/
+/-- A deterministic message extends the transcript to another probability law.
+@isnad1 id=isprobab.2h6v.s5.e7793a819e2f from=translated src=- shape=7462dac1 vocab=581fd75a
+-/
 theorem observedTranscriptWeight_probability {Z A U : Type*}
     [Fintype Z] [Fintype A] [Fintype U]
     (w : Z → ℝ) (p : Z → A → ℝ) (f : Z → A → U)
@@ -46,20 +50,26 @@ theorem observedTranscriptWeight_probability {Z A U : Type*}
     IsProbabilityWeight (observedTranscriptWeight w p f) :=
   Internal.observedTranscriptWeight_probability w p f hw hp
 
-/-- Every updated conditional row is normalized, even for an impossible message. -/
+/-- Every updated conditional row is normalized, even for an impossible message.
+@isnad1 id=isprobab.1h6v.s5.e3ed05c3afc4 from=translated src=- shape=c6e8d7ff vocab=45cd69c3
+-/
 theorem observedTranscriptKernel_probability {Z A U : Type*} [Fintype A] [Fintype U]
     (p : Z → A → ℝ) (f : Z → A → U) (probability : ∀ z, IsProbabilityWeight (p z))
     (zu : Z × U) : IsProbabilityWeight (observedTranscriptKernel p f zu) :=
   Internal.observedTranscriptKernel_probability p f probability zu
 
-/-- A null observation row uses exactly the existing uniform completion. -/
+/-- A null observation row uses exactly the existing uniform completion.
+@isnad1 id=eq.1h6v.s6.e2d1593fd7e8 from=translated src=- shape=9fd383bc vocab=ade1addf
+-/
 theorem observedTranscriptKernel_eq_uniform {Z A U : Type*} [Fintype A]
     (p : Z → A → ℝ) (f : Z → A → U) (zu : Z × U)
     (zero : mapWeight (f zu.1) (p zu.1) zu.2 = 0) :
     observedTranscriptKernel p f zu = uniformWeight A :=
   Internal.observedTranscriptKernel_eq_uniform p f zu zero
 
-/-- The new joint source masses are the original masses restricted to the message event. -/
+/-- The new joint source masses are the original masses restricted to the message event.
+@isnad1 id=eq.1h8v.s7.6d14a1af97fa from=translated src=- shape=fdad713f vocab=c48fe4f1
+-/
 theorem observedTranscriptWeight_mul_kernel {Z A U : Type*} [Fintype A]
     (w : Z → ℝ) (p : Z → A → ℝ) (f : Z → A → U)
     (nonnegative : ∀ z a, 0 ≤ p z a) (zu : Z × U) (a : A) :
@@ -67,7 +77,9 @@ theorem observedTranscriptWeight_mul_kernel {Z A U : Type*} [Fintype A]
       if f zu.1 a = zu.2 then w zu.1 * p zu.1 a else 0 :=
   Internal.observedTranscriptWeight_mul_kernel w p f nonnegative zu a
 
-/-- Observing the left side preserves the right kernel and the complete actual joint law. -/
+/-- Observing the left side preserves the right kernel and the complete actual joint law.
+@isnad1 id=eq.1h8v.s7.90f244a1a47f from=translated src=- shape=1a44362d vocab=446875dc
+-/
 theorem factoredWeight_observe_left {Z A B U : Type*}
     [Fintype Z] [Fintype A] [Fintype B]
     (w : Z → ℝ) (l : Z → A → ℝ) (r : Z → B → ℝ) (f : Z → A → U)
@@ -78,7 +90,9 @@ theorem factoredWeight_observe_left {Z A B U : Type*}
         (fun zu => r zu.1) :=
   Internal.factoredWeight_observe_left w l r f nonnegative
 
-/-- Observing the right side preserves the left kernel and the complete actual joint law. -/
+/-- Observing the right side preserves the left kernel and the complete actual joint law.
+@isnad1 id=eq.1h8v.s7.8fff98e3a21f from=translated src=- shape=c8bfddc3 vocab=446875dc
+-/
 theorem factoredWeight_observe_right {Z A B V : Type*}
     [Fintype Z] [Fintype A] [Fintype B]
     (w : Z → ℝ) (l : Z → A → ℝ) (r : Z → B → ℝ) (g : Z → B → V)
@@ -89,7 +103,9 @@ theorem factoredWeight_observe_right {Z A B V : Type*}
         (observedTranscriptKernel r g) :=
   Internal.factoredWeight_observe_right w l r g nonnegative
 
-/-- A left message followed by an adaptive right message has an exact factored representation. -/
+/-- A left message followed by an adaptive right message has an exact factored representation.
+@isnad1 id=eq.2h10v.s8.b944cd917087 from=translated src=- shape=f416e908 vocab=446875dc
+-/
 theorem factoredWeight_observe_left_right {Z A B U V : Type*}
     [Fintype Z] [Fintype A] [Fintype B] [Fintype U]
     (w : Z → ℝ) (l : Z → A → ℝ) (r : Z → B → ℝ)
@@ -104,7 +120,9 @@ theorem factoredWeight_observe_left_right {Z A B U V : Type*}
         (observedTranscriptKernel (fun zu => r zu.1) g) :=
   Internal.factoredWeight_observe_left_right w l r f g left_nonnegative right_nonnegative
 
-/-- Both conditional sides and the transcript remain normalized after two alternating messages. -/
+/-- Both conditional sides and the transcript remain normalized after two alternating messages.
+@isnad1 id=and.3h10v.s7.bf9e871f6151 from=translated src=- shape=b0e365d6 vocab=77b8453a
+-/
 theorem observedTranscript_left_right_probability {Z A B U V : Type*}
     [Fintype Z] [Fintype A] [Fintype B] [Fintype U] [Fintype V]
     (w : Z → ℝ) (l : Z → A → ℝ) (r : Z → B → ℝ)

@@ -28,17 +28,26 @@ open scoped Classical
 variable {V E : Type} [Fintype V] [Fintype E] (B : SimpleGraph V) (R : Multigraph V E)
 
 omit [Fintype V] in
+/--
+@isnad1 id=iff.0h5v.s6.acd73d76b488 from=translated src=- shape=243bf277 vocab=bbcbc0ec
+-/
 theorem mem_internalEdges {X : Finset V} {e : E} :
     e ∈ internalEdges R X ↔ R.fst e ∈ X ∧ R.snd e ∈ X := by
   simp only [internalEdges, Finset.mem_filter, Finset.mem_univ, true_and]
 
 omit [Fintype V] in
+/--
+@isnad1 id=le.1h5v.s5.b5f8e246ab46 from=translated src=- shape=b3f552c0 vocab=52ed3428
+-/
 theorem internalEdges_mono {X Y : Finset V} (h : X ⊆ Y) :
     internalEdges R X ⊆ internalEdges R Y := by
   intro e he
   obtain ⟨hfst, hsnd⟩ := (mem_internalEdges R).mp he
   exact (mem_internalEdges R).mpr ⟨h hfst, h hsnd⟩
 
+/--
+@isnad1 id=le.1h4v.s6.be097ab31979 from=translated src=- shape=b521f359 vocab=873814f8
+-/
 theorem cut_union_subset_of_empty (X : Finset V) {Y : Finset V}
     (closed : B.cutFinset Y = ∅) : B.cutFinset (X ∪ Y) ⊆ B.cutFinset X := by
   intro e he
@@ -52,6 +61,9 @@ theorem cut_union_subset_of_empty (X : Finset V) {Y : Finset V}
     rw [closed] at heY
     exact (Finset.notMem_empty _ heY).elim
 
+/--
+@isnad1 id=eq.1h5v.s6.db18d2f07333 from=translated src=- shape=253722f5 vocab=76f26ecc
+-/
 theorem cut_biUnion_eq_empty {ι : Type} (I : Finset ι) (A : ι → Finset V)
     (closed : ∀ i ∈ I, B.cutFinset (A i) = ∅) :
     B.cutFinset (I.biUnion A) = ∅ := by
@@ -65,12 +77,18 @@ theorem cut_biUnion_eq_empty {ι : Type} (I : Finset ι) (A : ι → Finset V)
   rw [closed i hi] at heA
   exact Finset.notMem_empty _ heA
 
+/--
+@isnad1 id=positive.3h6v.s6.f1e88d0da6bc from=translated src=- shape=05aed732 vocab=81c0939c
+-/
 theorem positive_of_closed_edge {X : Finset V} (closed : B.cutFinset X = ∅)
     {e : E} (hfst : R.fst e ∈ X) (hsnd : R.snd e ∈ X) : Positive B R X := by
   change (B.cutFinset X).card < (internalEdges R X).card
   rw [closed, Finset.card_empty]
   exact Finset.card_pos.mpr ⟨e, (mem_internalEdges R).mpr ⟨hfst, hsnd⟩⟩
 
+/--
+@isnad1 id=ex.4h8v.s7.88e207695383 from=translated src=- shape=bc384f37 vocab=2cb7574e
+-/
 theorem exists_positive_of_attachments (P : Finset V) (edges : Finset E)
     (A : E → Finset V) (M : Nat)
     (cut : (B.cutFinset P).card < edges.card)
@@ -97,6 +115,9 @@ theorem exists_positive_of_attachments (P : Finset V) (edges : Finset E)
   refine ⟨X, by dsimp only [X]; lia, ?_⟩
   exact (black.trans_lt cut).trans_le (Finset.card_le_card red)
 
+/--
+@isnad1 id=le.2h3v.s6.8a57a84614d3 from=translated src=- shape=1e37bf35 vocab=2b3f18b0
+-/
 theorem card_cut_le_two_of_connected {P : Finset V}
     (connected : (B.induce {v | v ∈ P}).Connected)
     (degree : ∀ v ∈ P, B.degree v ≤ 2) : (B.cutFinset P).card ≤ 2 := by
@@ -110,6 +131,9 @@ theorem card_cut_le_two_of_connected {P : Finset V}
   rw [cardP] at treeCount
   lia
 
+/--
+@isnad1 id=ex.6h8v.s8.566d9eb207cc from=translated src=- shape=259624da vocab=db82b1e9
+-/
 theorem exists_positive_of_three_attachments (P : Finset V) (edges : Finset E)
     (A : E → Finset V) (M : Nat)
     (connected : (B.induce {v | v ∈ P}).Connected)
@@ -124,6 +148,9 @@ theorem exists_positive_of_three_attachments (P : Finset V) (edges : Finset E)
     lia
   simpa only [three] using exists_positive_of_attachments B R P edges A M cut closed small attached
 
+/--
+@isnad1 id=ex.5h10v.s8.8367929ea030 from=translated src=- shape=560ac1e2 vocab=44475203
+-/
 theorem exists_positive_of_walk_attachments {u v : V} (p : B.Walk u v)
     (edges : Finset E) (A : E → Finset V) (M : Nat)
     (degree : ∀ w ∈ p.support, B.degree w ≤ 2) (three : edges.card = 3)
@@ -146,6 +173,9 @@ theorem exists_positive_of_walk_attachments {u v : V} (p : B.Walk u v)
   rw [p.length_support] at supportBound
   exact ⟨X, by lia, positive⟩
 
+/--
+@isnad1 id=ex.0h2v.s7.e755e862fa4b from=translated src=- shape=ef24cb74 vocab=094902b8
+-/
 theorem exists_adjacent_pair_le_three_average {n : Nat} (w : Fin (n + 2) → Nat) :
     ∃ i : Fin (n + 1), (n + 2) * (w i.castSucc + w i.succ) ≤ 3 * ∑ j, w j := by
   cases n with
@@ -171,6 +201,9 @@ theorem exists_adjacent_pair_le_three_average {n : Nat} (w : Fin (n + 2) → Nat
       simp only [Nat.mul_assoc] at compare
       exact (not_lt_of_ge (bound.trans compare)) total
 
+/--
+@isnad1 id=ex.1h2v.s8.3bd01d3da3ac from=translated src=- shape=04d3f73f vocab=0da55542
+-/
 theorem exists_three_close_positions {n : Nat} (pos : Fin (n + 3) → Nat)
     (ordered : Monotone pos) :
     ∃ i : Fin (n + 1), (n + 2) * (pos i.succ.succ - pos i.castSucc.castSucc) ≤
@@ -191,6 +224,9 @@ theorem exists_three_close_positions {n : Nat} (pos : Fin (n + 3) → Nat)
     lia
   exact ⟨i, by rwa [pair, total] at light⟩
 
+/--
+@isnad1 id=ex.7h12v.s9.db660d290226 from=translated src=- shape=838c1f8e vocab=9b2d2f97
+-/
 theorem exists_positive_of_thin_walk {u v : V} (p : B.Walk u v) {n : Nat}
     (edge : Fin (n + 3) ↪ E) (pos : Fin (n + 3) → Nat) (A : E → Finset V) (M : Nat)
     (ordered : Monotone pos) (within : ∀ i, pos i ≤ p.length)

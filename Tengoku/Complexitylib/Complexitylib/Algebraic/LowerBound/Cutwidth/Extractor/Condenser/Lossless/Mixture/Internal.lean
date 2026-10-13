@@ -23,6 +23,9 @@ namespace Algebraic.Cutwidth.Extractor.Internal
 
 open scoped Classical
 
+/--
+@isnad1 id=eq.1h5v.s6.5d1eedce65f3 from=translated src=- shape=8583b856 vocab=7b41a093
+-/
 theorem sum_powersetCard_sum {α M : Type*} [AddCommMonoid M]
     (P : Finset α) {K : Nat} (positive : 0 < K) (f : α → M) :
     ∑ S ∈ P.powersetCard K, ∑ x ∈ S, f x =
@@ -45,6 +48,9 @@ theorem sum_powersetCard_sum {α M : Type*} [AddCommMonoid M]
         congrArg (fun n : Nat => n • f x) count
     _ = _ := Finset.sum_nsmul P _ f
 
+/--
+@isnad1 id=eq.0h5v.s7.02c8499956ab from=translated src=- shape=bf8b0a67 vocab=b0d5dd0d
+-/
 theorem seededTestProb_eq_sum {α Seed Ω : Type*} [Fintype α] [Fintype Seed]
     (C : α → Seed → Ω) (T : Finset (Seed × Ω)) :
     seededTestProb C T =
@@ -57,6 +63,9 @@ theorem seededTestProb_eq_sum {α Seed Ω : Type*} [Fintype α] [Fintype Seed]
   intro x _
   rw [Finset.card_filter]
 
+/--
+@isnad1 id=eq.0h6v.s7.025ecbecb9c6 from=translated src=- shape=2f1dd094 vocab=b9f2daf1
+-/
 theorem seededTestProb_support_eq_sum {α Seed Ω : Type*} [Fintype Seed]
     (C : α → Seed → Ω) (P : Finset α) (T : Finset (Seed × Ω)) :
     seededTestProb (fun x : P => C x.val) T =
@@ -67,6 +76,9 @@ theorem seededTestProb_support_eq_sum {α Seed Ω : Type*} [Fintype Seed]
   exact Finset.sum_attach P (fun x =>
     ((Finset.univ.filter fun y => (y, C x y) ∈ T).card : ℝ))
 
+/--
+@isnad1 id=eq.2h4v.s6.164c75bcdb85 from=translated src=- shape=4f5e0ddb vocab=d0fc743f
+-/
 theorem powersetCard_average {α : Type*} (P : Finset α) {K : Nat}
     (positive : 0 < K) (size : K ≤ P.card) (f : α → ℝ) :
     (∑ S ∈ P.powersetCard K, (∑ x ∈ S, f x) / (K : ℝ)) /
@@ -88,6 +100,9 @@ theorem powersetCard_average {α : Type*} (P : Finset α) {K : Nat}
     _ = (∑ x ∈ P, f x) * (((P.powersetCard K).card : ℝ) * K) := by rw [count]
     _ = _ := by ring
 
+/--
+@isnad1 id=eq.2h7v.s8.719541e28353 from=translated src=- shape=7dca613c vocab=1862c933
+-/
 theorem seededTestProb_powersetCard {α Seed Ω : Type*} [Fintype Seed]
     (C : α → Seed → Ω) (P : Finset α) {K : Nat}
     (positive : 0 < K) (size : K ≤ P.card) (T : Finset (Seed × Ω)) :
@@ -115,6 +130,9 @@ theorem seededTestProb_powersetCard {α Seed Ω : Type*} [Fintype Seed]
       rw [powersetCard_average P positive size hits]
     _ = _ := by rw [seededTestProb_support_eq_sum, div_div]
 
+/--
+@isnad1 id=le.3h5v.s7.7ef28c77028b from=translated src=- shape=eb533b40 vocab=8b4614ac
+-/
 theorem abs_mixture_sub_le {ι : Type*} [Fintype ι] (w p q : ι → ℝ)
     (nonnegative : ∀ i, 0 ≤ w i) (mass : ∑ i, w i = 1) {ε : ℝ}
     (close : ∀ i, |p i - q i| ≤ ε) :
@@ -131,6 +149,9 @@ theorem abs_mixture_sub_le {ι : Type*} [Fintype ι] (w p q : ι → ℝ)
       Finset.sum_le_sum fun i _ => mul_le_mul_of_nonneg_left (close i) (nonnegative i)
     _ = ε := by rw [← Finset.sum_mul, mass, one_mul]
 
+/--
+@isnad1 id=le.3h10v.s7.6a8552ff6b97 from=translated src=- shape=81132b82 vocab=8c519831
+-/
 theorem seededMixtureTestProb_sub_le {ι Seed Ω : Type*} [Fintype ι] [Fintype Seed]
     {Source Target : ι → Type*} [∀ i, Fintype (Source i)] [∀ i, Fintype (Target i)]
     (w : ι → ℝ) (C : ∀ i, Source i → Seed → Ω) (G : ∀ i, Target i → Seed → Ω)
@@ -143,6 +164,9 @@ theorem seededMixtureTestProb_sub_le {ι Seed Ω : Type*} [Fintype ι] [Fintype 
   exact abs_mixture_sub_le w (fun i => seededTestProb (C i) T)
     (fun i => seededTestProb (G i) T) nonnegative mass (fun i => close i T)
 
+/--
+@isnad1 id=eq.2h7v.s8.59de89b819c5 from=translated src=- shape=1450e1a9 vocab=9d88d606
+-/
 theorem seededTestProb_eq_uniformMixture {α Seed Ω : Type*} [Fintype Seed]
     (C : α → Seed → Ω) (P : Finset α) {K : Nat}
     (positive : 0 < K) (size : K ≤ P.card) (T : Finset (Seed × Ω)) :
@@ -153,6 +177,9 @@ theorem seededTestProb_eq_uniformMixture {α Seed Ω : Type*} [Fintype Seed]
   rw [seededTestProb_powersetCard C P positive size T, seededMixtureTestProb,
     ← Finset.mul_sum, div_eq_mul_inv, mul_comm]
 
+/--
+@isnad1 id=ex.3h7v.s9.5bfdc15f9c8e from=translated src=- shape=cdd5f8b0 vocab=8acb3c09
+-/
 theorem exists_flat_mixture_of_exact_size {α Seed Ω : Type*} [Fintype Seed]
     (C : α → Seed → Ω) (P : Finset α) {K : Nat}
     (positive : 0 < K) (size : K ≤ P.card) {ε : ℝ}

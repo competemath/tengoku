@@ -61,6 +61,9 @@ number-theoretic smash `x # y = 2^(|x|·|y|)`. -/
 def smash (x y : List Bool) : List Bool :=
   List.replicate (x.length * y.length) true
 
+/--
+@isnad1 id=eq.0h2v.s4.dd060a5960f3 from=translated src=- shape=ba5ec024 vocab=b36366b3
+-/
 @[simp] theorem smash_length (x y : List Bool) :
     (smash x y).length = x.length * y.length := by
   simp [smash]
@@ -78,10 +81,16 @@ def recNotation {n : ℕ} (g : (Fin n → List Bool) → List Bool)
   | b :: x, v =>
       (bif b then h₁ else h₀) (Fin.cons x (Fin.cons (recNotation g h₀ h₁ x v) v))
 
+/--
+@isnad1 id=eq.0h5v.s6.7780d07a1cd2 from=translated src=- shape=184c46c9 vocab=9376078d
+-/
 @[simp] theorem recNotation_nil {n : ℕ} (g : (Fin n → List Bool) → List Bool)
     (h₀ h₁ : (Fin (n + 2) → List Bool) → List Bool) (v : Fin n → List Bool) :
     recNotation g h₀ h₁ [] v = g v := rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.40bbbe1a4dfd from=translated src=- shape=59f6fada vocab=770a6d4d
+-/
 @[simp] theorem recNotation_cons {n : ℕ} (g : (Fin n → List Bool) → List Bool)
     (h₀ h₁ : (Fin (n + 2) → List Bool) → List Bool) (b : Bool) (x : List Bool)
     (v : Fin n → List Bool) :

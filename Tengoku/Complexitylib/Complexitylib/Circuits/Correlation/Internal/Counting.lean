@@ -33,7 +33,9 @@ def colVec (R : Matrix (Fin m) (Fin m) (ZMod 2)) (S : Set (Fin m)) (j : Fin m) :
     S → ZMod 2 :=
   fun i => R i j
 
-/-- **Column bases.** The columns of a block contain a spanning set of the block's rank. -/
+/-- **Column bases.** The columns of a block contain a spanning set of the block's rank.
+@isnad1 id=ex.0h4v.s10.0f3baf7233b1 from=translated src=- shape=8318b5cb vocab=a5becb5f
+-/
 theorem exists_spanning_columns (R : Matrix (Fin m) (Fin m) (ZMod 2)) (S T : Finset (Fin m)) :
     ∃ T' ⊆ T, T'.card = blockRank R ↑S ↑T ∧
       ∀ j ∈ T, colVec R ↑S j ∈ Submodule.span (ZMod 2) (colVec R ↑S '' ↑T') := by
@@ -79,6 +81,9 @@ noncomputable def spanCoeff (R : Matrix (Fin m) (Fin m) (ZMod 2)) (S T' : Finset
     Classical.choose ((Submodule.mem_span_image_finset_iff_exists_fun (ZMod 2)).mp h)
   else 0
 
+/--
+@isnad1 id=eq.1h5v.s10.52893674fc68 from=translated src=- shape=f220f2c4 vocab=5a7518e7
+-/
 theorem spanCoeff_spec {R : Matrix (Fin m) (Fin m) (ZMod 2)} {S T' : Finset (Fin m)}
     {j : Fin m} (h : colVec R ↑S j ∈ Submodule.span (ZMod 2) (colVec R ↑S '' ↑T')) :
     ∑ l, spanCoeff R S T' j l • colVec R ↑S l = colVec R ↑S j := by
@@ -87,7 +92,9 @@ theorem spanCoeff_spec {R : Matrix (Fin m) (Fin m) (ZMod 2)} {S T' : Finset (Fin
   exact Classical.choose_spec ((Submodule.mem_span_image_finset_iff_exists_fun (ZMod 2)).mp h)
 
 /-- **Counting spanned matrices.** A matrix in `spannedBy S T T'` is determined by the
-coefficients for the columns in `T \ T'` and by its entries outside `S × (T \ T')`. -/
+coefficients for the columns in `T \ T'` and by its entries outside `S × (T \ T')`.
+@isnad1 id=le.0h4v.s7.d44372b88f61 from=translated src=- shape=8e8ad946 vocab=e922daf8
+-/
 theorem card_spannedBy_mul_le (S T T' : Finset (Fin m)) :
     (spannedBy S T T').card * 2 ^ (S.card * (T \ T').card) ≤
       2 ^ ((T \ T').card * T'.card) * 2 ^ (m * m) := by
@@ -140,7 +147,9 @@ noncomputable def deficientOn (t : ℕ) (S T : Finset (Fin m)) :
     Finset (Matrix (Fin m) (Fin m) (ZMod 2)) :=
   univ.filter fun R => S.card = T.card ∧ blockRank R ↑S ↑T + t < S.card
 
-/-- Each block is deficient for at most a `2^{m - (t+1)²}` fraction of all matrices. -/
+/-- Each block is deficient for at most a `2^{m - (t+1)²}` fraction of all matrices.
+@isnad1 id=le.0h4v.s7.1918291eca0c from=translated src=- shape=e51ad77a vocab=c11e6778
+-/
 theorem card_deficientOn_mul_le (t : ℕ) (S T : Finset (Fin m)) :
     (deficientOn t S T).card * 2 ^ ((t + 1) ^ 2) ≤ 2 ^ m * 2 ^ (m * m) := by
   classical
@@ -189,7 +198,9 @@ theorem card_deficientOn_mul_le (t : ℕ) (S T : Finset (Fin m)) :
     _ ≤ 2 ^ m * 2 ^ (m * m) := Nat.mul_le_mul_right _ h𝒯
 
 /-- **Existence by counting.** If `3m < (t + 1)²`, some `m × m` matrix over `GF(2)` is
-submatrix-robust with deficiency `t`. -/
+submatrix-robust with deficiency `t`.
+@isnad1 id=ex.1h2v.s6.ca2c47ec77ba from=translated src=- shape=daabfa56 vocab=65d00b4e
+-/
 theorem exists_submatrixRobust_of_lt {t : ℕ} (ht : 3 * m < (t + 1) ^ 2) :
     ∃ R : Matrix (Fin m) (Fin m) (ZMod 2), SubmatrixRobust R t := by
   classical
@@ -232,6 +243,9 @@ theorem exists_submatrixRobust_of_lt {t : ℕ} (ht : 3 * m < (t + 1) ^ 2) :
     rw [← Set.ncard_eq_toFinset_card']
     exact hcon
 
+/--
+@isnad1 id=lt.0h1v.s5.bd73806ec3a5 from=translated src=- shape=0881230f vocab=b0a918c9
+-/
 theorem three_mul_lt_robustDeficiency_add_one_sq (m : ℕ) :
     3 * m < (robustDeficiency m + 1) ^ 2 := by
   have h := Nat.lt_succ_sqrt' m

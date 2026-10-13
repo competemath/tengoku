@@ -41,7 +41,9 @@ structure LineCode (K Coordinate : Type*)
   lineRecovery : ∀ message target (direction : ℙ K (Coordinate → K)),
     encode message target = ∑ point ∈ puncturedLine target direction, encode message point
 
-/-- Digit matrices have distinct natural exponent vectors. -/
+/-- Digit matrices have distinct natural exponent vectors.
+@isnad1 id=injectiv.0h3v.s4.b6ad39e4aa44 from=translated src=- shape=9577492e vocab=57b086bd
+-/
 theorem digitDegrees_injective (Coordinate : Type*) (blockWidth blocks : Nat) :
     Function.Injective (digitDegrees (Coordinate := Coordinate)
       (blockWidth := blockWidth) (blocks := blocks)) := by

@@ -36,14 +36,18 @@ noncomputable def lineMonomial (degrees : Coordinate → Nat)
     (center direction : Coordinate → K) : Polynomial K :=
   ∏ coordinate, lineCoordinate center direction coordinate ^ degrees coordinate
 
-/-- Evaluation commutes with affine-line restriction. -/
+/-- Evaluation commutes with affine-line restriction.
+@isnad1 id=eq.0h6v.s6.2a6abaedccce from=translated src=- shape=cf1ae748 vocab=9ec33ec2
+-/
 theorem lineMonomial_eval (degrees : Coordinate → Nat)
     (center direction : Coordinate → K) (parameter : K) :
     (lineMonomial degrees center direction).eval parameter =
       monomialValue degrees (fun coordinate => center coordinate + direction coordinate * parameter) := by
   simp [lineMonomial, monomialValue, lineCoordinate, Polynomial.eval_prod]
 
-/-- Restriction cannot increase the total monomial degree. -/
+/-- Restriction cannot increase the total monomial degree.
+@isnad1 id=le.0h5v.s5.345ff07904e2 from=translated src=- shape=1f0094a5 vocab=4f4cd81d
+-/
 theorem lineMonomialNatDegree_le (degrees : Coordinate → Nat)
     (center direction : Coordinate → K) :
     (lineMonomial degrees center direction).natDegree ≤ ∑ coordinate, degrees coordinate := by
@@ -54,7 +58,9 @@ theorem lineMonomialNatDegree_le (degrees : Coordinate → Nat)
     (natDegree_lineCoordinate_le center direction coordinate)
 
 /-- Splitting exponents modulo a power of two separates the low-degree
-factor from a Frobenius power. -/
+factor from a Frobenius power.
+@isnad1 id=eq.0h6v.s7.f5bcf819f18b from=translated src=- shape=2a75866b vocab=2a0ca120
+-/
 theorem lineMonomialSplit (degrees : Coordinate → Nat)
     (center direction : Coordinate → K) (width : Nat) :
     lineMonomial degrees center direction =
@@ -90,7 +96,9 @@ private theorem sumPowEqZero [Fintype K] (exponent : Nat)
 
 omit [Fintype Coordinate] in
 /-- A polynomial with no positive `q - 1` multiples in its support has
-zero evaluation sum over the finite field. -/
+zero evaluation sum over the finite field.
+@isnad1 id=eq.1h2v.s6.4a0ba0102ad3 from=translated src=- shape=d23f9062 vocab=9430c370
+-/
 theorem polynomialSumEqZeroOfNoPositiveMultiples [Fintype K]
     (polynomial : Polynomial K)
     (notMultiple : ∀ exponent ∈ polynomial.support,

@@ -26,6 +26,9 @@ open scoped BigOperators
 variable {α : Type*} [Fintype α] [Nonempty α]
 
 omit [Nonempty α] in
+/--
+@isnad1 id=le.1h2v.s5.4b43c2fb1a6e from=translated src=- shape=92c325ac vocab=32c96a78
+-/
 theorem harmonicMean_nonneg_internal {f : α → ℝ} (hf : ∀ x, 0 ≤ f x) :
     0 ≤ harmonicMean f := by
   unfold harmonicMean
@@ -33,6 +36,9 @@ theorem harmonicMean_nonneg_internal {f : α → ℝ} (hf : ∀ x, 0 ≤ f x) :
   · exact le_rfl
   · exact inv_nonneg.mpr (expect_nonneg fun x _ => inv_nonneg.mpr (hf x))
 
+/--
+@isnad1 id=le.2h3v.s6.11d240768c76 from=translated src=- shape=37f15ab3 vocab=cb1b6c73
+-/
 theorem harmonicMean_le_energy_internal {f w : α → ℝ} (hf : ∀ x, 0 ≤ f x)
     (hw : (𝔼 x, w x) = 1) : harmonicMean f ≤ 𝔼 x, f x * w x ^ 2 := by
   classical
@@ -60,6 +66,9 @@ theorem harmonicMean_le_energy_internal {f w : α → ℝ} (hf : ∀ x, 0 ≤ f 
   dsimp [h] at hs
   linarith
 
+/--
+@isnad1 id=ex.1h2v.s7.0c3e7f355fdb from=translated src=- shape=9dbbf4d9 vocab=cb1b6c73
+-/
 theorem harmonicMean_exists_weight_internal {f : α → ℝ} (hf : ∀ x, 0 ≤ f x) :
     ∃ w : α → ℝ, (∀ x, 0 ≤ w x) ∧ (𝔼 x, w x) = 1 ∧
       (𝔼 x, f x * w x ^ 2) = harmonicMean f := by
@@ -92,6 +101,9 @@ theorem harmonicMean_exists_weight_internal {f : α → ℝ} (hf : ∀ x, 0 ≤ 
       dsimp [h]
       field_simp
 
+/--
+@isnad1 id=eq.1h2v.s7.d65368ca3c96 from=translated src=- shape=c31934f1 vocab=9c4d5742
+-/
 theorem harmonicMean_variational_internal {f : α → ℝ} (hf : ∀ x, 0 ≤ f x) :
     harmonicMean f = sInf {a : ℝ | ∃ w : α → ℝ,
       (∀ x, 0 ≤ w x) ∧ (𝔼 x, w x) = 1 ∧ (𝔼 x, f x * w x ^ 2) = a} := by
@@ -102,6 +114,9 @@ theorem harmonicMean_variational_internal {f : α → ℝ} (hf : ∀ x, 0 ≤ f 
   · rintro _ ⟨w, _, hw, rfl⟩
     exact harmonicMean_le_energy_internal hf hw
 
+/--
+@isnad1 id=le.2h3v.s5.1dda5d8661ef from=translated src=- shape=7921e296 vocab=90db7c68
+-/
 theorem harmonicMean_mono_internal {f g : α → ℝ}
     (hf : ∀ x, 0 ≤ f x) (hfg : ∀ x, f x ≤ g x) :
     harmonicMean f ≤ harmonicMean g := by
@@ -111,6 +126,9 @@ theorem harmonicMean_mono_internal {f g : α → ℝ}
   exact (harmonicMean_le_energy_internal hf hw).trans
     (expect_le_expect fun x _ => mul_le_mul_of_nonneg_right (hfg x) (sq_nonneg _))
 
+/--
+@isnad1 id=le.4h4v.s7.b2935e0103b0 from=translated src=- shape=5c66275e vocab=6cd5c4de
+-/
 theorem harmonicMean_concave_internal {f g : α → ℝ}
     (hf : ∀ x, 0 ≤ f x) (hg : ∀ x, 0 ≤ g x)
     {t : ℝ} (ht : 0 ≤ t) (ht' : t ≤ 1) :
@@ -127,16 +145,25 @@ theorem harmonicMean_concave_internal {f g : α → ℝ}
       simp_rw [add_mul, mul_assoc, expect_add_distrib, ← mul_expect]
     _ = _ := he
 
+/--
+@isnad1 id=le.1h2v.s5.3daf5dea7bd3 from=translated src=- shape=2add7083 vocab=cffc9632
+-/
 theorem harmonicMean_le_expect_internal {f : α → ℝ} (hf : ∀ x, 0 ≤ f x) :
     harmonicMean f ≤ 𝔼 x, f x := by
   simpa using harmonicMean_le_energy_internal (w := fun _ => 1) hf (by simp)
 
+/--
+@isnad1 id=eq.0h2v.s4.d00bf32dca9a from=translated src=- shape=5addde91 vocab=3dede0ac
+-/
 theorem harmonicMean_const_internal (c : ℝ) :
     harmonicMean (fun _ : α => c) = c := by
   classical
   by_cases hc : c = 0 <;> simp [harmonicMean, hc]
 
 omit [Nonempty α] in
+/--
+@isnad1 id=eq.0h4v.s5.308282c1f7b3 from=translated src=- shape=e7a09824 vocab=9c36c4d1
+-/
 theorem harmonicMean_equiv_internal {β : Type*} [Fintype β]
     (e : α ≃ β) (f : β → ℝ) : harmonicMean (fun x => f (e x)) = harmonicMean f := by
   classical
@@ -148,6 +175,9 @@ theorem harmonicMean_equiv_internal {β : Type*} [Fintype β]
   rw [Fintype.expect_equiv e (fun x => (f (e x))⁻¹) (fun y => (f y)⁻¹)
     (fun _ => rfl)]
 
+/--
+@isnad1 id=le.1h3v.s6.ce6819b6491a from=translated src=- shape=b34cf0dc vocab=cffc9632
+-/
 theorem harmonicMean_average_internal {β : Type*} [Fintype β]
     {f : β → α → ℝ} (hf : ∀ y x, 0 ≤ f y x) :
     (𝔼 y, harmonicMean (f y)) ≤ harmonicMean (fun x => 𝔼 y, f y x) := by
@@ -162,16 +192,25 @@ theorem harmonicMean_average_internal {β : Type*} [Fintype β]
     _ = _ := he
 
 omit [Nonempty α] in
+/--
+@isnad1 id=eq.0h3v.s6.76984fe9aac3 from=translated src=- shape=defcceaf vocab=7d2814ee
+-/
 theorem expect_pair_internal {β : Type*} [Fintype β] (f : α × β → ℝ) :
     (𝔼 x, f x) = 𝔼 a, 𝔼 b, f (a, b) := by
   simpa only [univ_product_univ] using expect_product univ univ f
 
+/--
+@isnad1 id=eq.0h1v.s5.cf8c51cb771a from=translated src=- shape=f486fa40 vocab=3b628bb0
+-/
 theorem expect_bool_internal (f : Bool → ℝ) :
     (𝔼 b, f b) = (f false + f true) / 2 := by
   rw [Fintype.expect_eq_sum_div_card, Fintype.sum_bool]
   simp only [Fintype.card_bool, Nat.cast_ofNat]
   ring
 
+/--
+@isnad1 id=eq.1h2v.s6.43c295c7c5a4 from=translated src=- shape=a32a98a5 vocab=93d025a7
+-/
 theorem harmonicMean_pair_internal {f : Bool → α → ℝ} (hf : ∀ b x, 0 ≤ f b x) :
     harmonicMean (fun x : Bool × α => f x.1 x.2) =
       2 * harmonicMean (f false) * harmonicMean (f true) /
@@ -202,6 +241,9 @@ theorem harmonicMean_pair_internal {f : Bool → α → ℝ} (hf : ∀ b x, 0 �
   field_simp [ne_of_gt (hp false), ne_of_gt (hp true), ne_of_gt hsum]
   simpa only [one_div, add_comm] using (div_self (ne_of_gt hsum)).symm
 
+/--
+@isnad1 id=le.4h4v.s6.b4a772c85d45 from=translated src=- shape=e1696c82 vocab=0435d1ca
+-/
 theorem harmonicMean_light_fraction_le_internal {f : α → ℝ} (hf : ∀ x, 0 ≤ f x)
     {a b : ℝ} (ha : 0 < a) (ha' : a ≤ harmonicMean f) (hb : 0 ≤ b) :
     (𝔼 x, if f x ≤ b then (1 : ℝ) else 0) ≤ b / a := by

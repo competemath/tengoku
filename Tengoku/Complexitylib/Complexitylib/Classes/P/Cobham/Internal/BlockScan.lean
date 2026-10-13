@@ -26,14 +26,18 @@ namespace Cobham
 
 /-- Stripping the head component of an encoded vector yields the encoded tail.
 (Not a `simp` lemma: `simp` already reaches this via `encodeVec_succ` and
-`pairFst_pair`.) -/
+`pairFst_pair`.)
+@isnad1 id=eq.0h2v.s5.db20023e19ad from=translated src=- shape=63c54966 vocab=e8161f06
+-/
 theorem fstBlock_encodeVec_succ {n : ℕ} (v : Fin (n + 1) → List Bool) :
     pairFst (encodeVec v) = encodeVec (Fin.tail v) := by
   simp
 
 /-- The suffix of an encoded vector is its head component.
 (Not a `simp` lemma: `simp` already reaches this via `encodeVec_succ` and
-`pairSnd_pair`.) -/
+`pairSnd_pair`.)
+@isnad1 id=eq.0h2v.s6.080eb564d4db from=translated src=- shape=b2e87a03 vocab=8ad3dd44
+-/
 theorem sndBlock_encodeVec_succ {n : ℕ} (v : Fin (n + 1) → List Bool) :
     pairSnd (encodeVec v) = v 0 := by
   simp

@@ -39,7 +39,9 @@ open scoped NNReal ENNReal
 
 /-! ### The angular window -/
 
-/-- On `[-π, π]`, `|sin ψ| = sin |ψ|`. -/
+/-- On `[-π, π]`, `|sin ψ| = sin |ψ|`.
+@isnad1 id=eq.1h1v.s4.d3420000036b from=translated src=- shape=600a4080 vocab=a0731b83
+-/
 theorem abs_sin_eq_sin_abs {ψ : ℝ} (h : |ψ| ≤ π) : |sin ψ| = sin |ψ| := by
   have hs : 0 ≤ sin |ψ| := sin_nonneg_of_nonneg_of_le_pi (abs_nonneg ψ) h
   rcases abs_cases ψ with ⟨he, _⟩ | ⟨he, _⟩ <;> rw [he] at hs ⊢
@@ -48,7 +50,9 @@ theorem abs_sin_eq_sin_abs {ψ : ℝ} (h : |ψ| ≤ π) : |sin ψ| = sin |ψ| :=
     exact abs_of_nonpos (by linarith)
 
 /-- If `cos (θ + φ) ≤ y ≤ cos (θ - φ)` with `θ ∈ [0, π]` and `φ ≥ 0`, then `θ` lies within
-`φ` of `arccos y`. -/
+`φ` of `arccos y`.
+@isnad1 id=le.5h3v.s6.aaf94debf14e from=translated src=- shape=cea0fc27 vocab=e4e5a8ba
+-/
 theorem abs_sub_arccos_le {θ φ y : ℝ} (hθ0 : 0 ≤ θ) (hθπ : θ ≤ π) (hφ : 0 ≤ φ)
     (h1 : cos (θ + φ) ≤ y) (h2 : y ≤ cos (θ - φ)) : |θ - arccos y| ≤ φ := by
   rw [abs_le]
@@ -65,7 +69,9 @@ theorem abs_sub_arccos_le {θ φ y : ℝ} (hθ0 : 0 ≤ θ) (hθπ : θ ≤ π) 
       linarith
 
 /-- At radius `R > 0` and angle `ψ ∈ [-π, π]`, the event `|cos φ x - c| ≤ sin φ |y|` forces
-`|c| ≤ R` and puts `|ψ|` within `φ` of `arccos (c / R)`. -/
+`|c| ≤ R` and puts `|ψ|` within `φ` of `arccos (c / R)`.
+@isnad1 id=and.4h4v.s7.bd5055f572cb from=translated src=- shape=ebb1afa0 vocab=a96e0bbd
+-/
 theorem polar_event {φ c R ψ : ℝ} (hφ : 0 ≤ φ) (hR : 0 < R) (hψ : |ψ| ≤ π)
     (h : |cos φ * (R * cos ψ) - c| ≤ sin φ * |R * sin ψ|) :
     |c| ≤ R ∧ |(|ψ|) - arccos (c / R)| ≤ φ := by
@@ -80,7 +86,9 @@ theorem polar_event {φ c R ψ : ℝ} (hφ : 0 ≤ φ) (hR : 0 < R) (hψ : |ψ| 
   · nlinarith [mul_le_mul_of_nonneg_left (cos_le_one (|ψ| - φ)) hR.le]
 
 /-- At radius `R > 0`, the angles in `(-π, π)` of the event `|cos φ x - c| ≤ sin φ |y|` have
-total length at most `4φ`, and there are none unless `|c| ≤ R`. -/
+total length at most `4φ`, and there are none unless `|c| ≤ R`.
+@isnad1 id=le.2h3v.s7.5555e7686cf8 from=translated src=- shape=6fe3bc9b vocab=5e87d150
+-/
 theorem volume_polar_event_le {φ c R : ℝ} (hφ : 0 ≤ φ) (hR : 0 < R) :
     volume ({ψ : ℝ | |cos φ * (R * cos ψ) - c| ≤ sin φ * |R * sin ψ|} ∩ Ioo (-π) π) ≤
       (Ici |c|).indicator (fun _ => ENNReal.ofReal (4 * φ)) R := by
@@ -110,7 +118,9 @@ theorem volume_polar_event_le {φ c R : ℝ} (hφ : 0 ≤ φ) (hR : 0 < R) :
 
 /-! ### Decay of the planar angle law -/
 
-/-- The angle `arctan (√r / √s)` has cosine `√s / √(s + r)` and sine `√r / √(s + r)`. -/
+/-- The angle `arctan (√r / √s)` has cosine `√s / √(s + r)` and sine `√r / √(s + r)`.
+@isnad1 id=and.2h2v.s6.a83eb796e200 from=translated src=- shape=5bbabef5 vocab=39a83f26
+-/
 theorem cos_sin_arctan_sqrt_div {s r : ℝ} (hs : 0 < s) (hr : 0 ≤ r) :
     cos (arctan (√r / √s)) = √s / √(s + r) ∧ sin (arctan (√r / √s)) = √r / √(s + r) := by
   have hs' : 0 < √s := Real.sqrt_pos.2 hs

@@ -39,6 +39,9 @@ private theorem middle_unique (forest : B.IsAcyclic) {u v x y : V} (different : 
 
 variable [Fintype V] (S : Finset V)
 
+/--
+@isnad1 id=ex.4h3v.s10.4a62d992ac97 from=translated src=- shape=3de0397a vocab=b499ede0
+-/
 theorem exists_connection_equiv (forest : B.IsAcyclic)
     (independent : ∀ u ∈ S, ∀ v ∈ S, ¬ B.Adj u v)
     (coreIndependent : ∀ u ∉ S, ∀ v ∉ S, ¬ B.Adj u v)
@@ -108,6 +111,9 @@ theorem exists_connection_equiv (forest : B.IsAcyclic)
   refine ⟨Equiv.ofBijective f ⟨injective, surjective⟩, fun x => ?_⟩
   exact ⟨left x, right x, rfl, adjacentL x, adjacentR x⟩
 
+/--
+@isnad1 id=eq.4h3v.s8.910f25241721 from=translated src=- shape=43005147 vocab=f8f97668
+-/
 theorem edge_ncard_eq_degree_two (forest : B.IsAcyclic)
     (independent : ∀ u ∈ S, ∀ v ∈ S, ¬ B.Adj u v)
     (coreIndependent : ∀ u ∉ S, ∀ v ∉ S, ¬ B.Adj u v)

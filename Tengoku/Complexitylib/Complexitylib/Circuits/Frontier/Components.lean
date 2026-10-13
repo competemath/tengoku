@@ -57,20 +57,28 @@ noncomputable def cycleRankOn (W : Set V) : ℕ :=
 
 /-! ### Closed sets -/
 
-/-- A set of vertices is closed when every edge has either both endpoints in it or none. -/
+/-- A set of vertices is closed when every edge has either both endpoints in it or none.
+@isnad1 id=iff.0h4v.s5.67c8abf2b456 from=translated src=- shape=cf80be8e vocab=49ac5707
+-/
 theorem cut_eq_empty_iff {W : Set V} : G.cut W = ∅ ↔ ∀ e, (G.src e ∈ W ↔ G.tgt e ∈ W) := by
   simp [eq_empty_iff_forall_notMem, mem_cut]
 
-/-- Every edge of the cut of `L` has an endpoint in `L`. -/
+/-- Every edge of the cut of `L` has an endpoint in `L`.
+@isnad1 id=le.0h4v.s4.7b9b55eda0a7 from=translated src=- shape=a632e95e vocab=c0b736c1
+-/
 theorem cut_subset_touching (L : Set V) : G.cut L ⊆ G.touching L := fun e he => by
   by_contra h
   exact he (iff_of_false (not_or.1 h).1 (not_or.1 h).2)
 
-/-- A larger set of vertices touches more edges. -/
+/-- A larger set of vertices touches more edges.
+@isnad1 id=le.1h5v.s5.1ca1a23d8f81 from=translated src=- shape=6d83efe5 vocab=13185801
+-/
 theorem touching_mono {L M : Set V} (h : L ⊆ M) : G.touching L ⊆ G.touching M :=
   fun _ he => he.imp (@h _) (@h _)
 
-/-- Walks do not leave closed sets. -/
+/-- Walks do not leave closed sets.
+@isnad1 id=mem.3h6v.s5.e7ffb32bdfa2 from=translated src=- shape=2f1ec3e3 vocab=f9cc80a0
+-/
 theorem mem_of_reflTransGen {W : Set V} (hW : G.cut W = ∅) {u v : V}
     (huv : Relation.ReflTransGen G.Adj u v) (hu : u ∈ W) : v ∈ W := by
   rw [cut_eq_empty_iff] at hW
@@ -82,7 +90,9 @@ theorem mem_of_reflTransGen {W : Set V} (hW : G.cut W = ∅) {u v : V}
     · exact (hW e).2 ih
 
 /-- **Closed sets do not change cuts.** Adding a closed set `K` to a set `L` disjoint from it
-does not change the cut of `L`. -/
+does not change the cut of `L`.
+@isnad1 id=eq.2h5v.s6.f3eed2c5e1ac from=translated src=- shape=02e0b3f2 vocab=6a39dded
+-/
 theorem cut_union_of_cut_eq_empty {K L : Set V} (hK : G.cut K = ∅) (h : Disjoint K L) :
     G.cut (K ∪ L) = G.cut L := by
   ext e
@@ -92,7 +102,9 @@ theorem cut_union_of_cut_eq_empty {K L : Set V} (hK : G.cut K = ∅) (h : Disjoi
     simp [mem_cut, hs, ht, disjoint_left.1 h hs, disjoint_left.1 h ht]
   · simp [mem_cut, hs, mt hKe.2 hs]
 
-/-- The difference of two closed sets is closed. -/
+/-- The difference of two closed sets is closed.
+@isnad1 id=eq.2h5v.s5.58748bc32737 from=translated src=- shape=6f84e9ab vocab=8fb71fbf
+-/
 theorem cut_diff_eq_empty {K W : Set V} (hK : G.cut K = ∅) (hW : G.cut W = ∅) :
     G.cut (K \ W) = ∅ := by
   rw [cut_eq_empty_iff] at *
@@ -105,16 +117,22 @@ theorem cut_diff_eq_empty {K W : Set V} (hK : G.cut K = ∅) (hW : G.cut W = ∅
 def component (v : V) : Set V :=
   {u | Relation.ReflTransGen G.Adj v u}
 
-/-- Every vertex lies in its own component. -/
+/-- Every vertex lies in its own component.
+@isnad1 id=mem.0h4v.s4.f3e19bdd8546 from=translated src=- shape=f14baca4 vocab=4426841f
+-/
 theorem mem_component_self (v : V) : v ∈ G.component v :=
   Relation.ReflTransGen.refl
 
-/-- Connected components are closed. -/
+/-- Connected components are closed.
+@isnad1 id=eq.0h4v.s4.5ac99f4cede8 from=translated src=- shape=12e193c5 vocab=bba6e302
+-/
 theorem cut_component (v : V) : G.cut (G.component v) = ∅ :=
   G.cut_eq_empty_iff.2 fun e =>
     ⟨fun h => h.tail ⟨e, Or.inl ⟨rfl, rfl⟩⟩, fun h => h.tail ⟨e, Or.inr ⟨rfl, rfl⟩⟩⟩
 
-/-- A closed set contains the connected component of each of its vertices. -/
+/-- A closed set contains the connected component of each of its vertices.
+@isnad1 id=le.2h5v.s5.62ddde950b7f from=translated src=- shape=ac7ae2a7 vocab=4cd01fd1
+-/
 theorem component_subset {W : Set V} (hW : G.cut W = ∅) {v : V} (hv : v ∈ W) :
     G.component v ⊆ W :=
   fun _ hu => G.mem_of_reflTransGen hW hu hv
@@ -127,18 +145,24 @@ def induce (W : Set V) : Multigraph W {e // G.src e ∈ W ∧ G.tgt e ∈ W} whe
   tgt e := ⟨G.tgt e, e.2.2⟩
 
 variable {G} in
-/-- Induced subgraphs of loopless graphs are loopless. -/
+/-- Induced subgraphs of loopless graphs are loopless.
+@isnad1 id=loopless.1h4v.s5.4c1d777e69a6 from=translated src=- shape=fbe3d4be vocab=1f14ea4f
+-/
 theorem Loopless.induce (hG : G.Loopless) (W : Set V) : (G.induce W).Loopless :=
   fun e h => hG e (congrArg Subtype.val h)
 
 variable {G} in
-/-- Induced subgraphs have no larger degrees. -/
+/-- Induced subgraphs have no larger degrees.
+@isnad1 id=maxdegre.1h5v.s5.8de205977933 from=translated src=- shape=e0cb3b54 vocab=acf9b212
+-/
 theorem MaxDegreeLE.induce [Finite E] {d : ℕ} (hG : G.MaxDegreeLE d) (W : Set V) :
     (G.induce W).MaxDegreeLE d := fun w =>
   (ncard_le_ncard_of_injOn Subtype.val (fun _ he => he.imp (congrArg Subtype.val)
     (congrArg Subtype.val)) Subtype.val_injective.injOn).trans (hG w)
 
-/-- **Components are connected.** -/
+/-- **Components are connected.**
+@isnad1 id=connecte.0h4v.s6.97a9a0220503 from=translated src=- shape=79043c76 vocab=6bf251a5
+-/
 theorem connected_induce_component (v : V) : (G.induce (G.component v)).Connected := by
   have key (u : V) (hu : Relation.ReflTransGen G.Adj v u) :
       Relation.ReflTransGen (G.induce (G.component v)).Adj ⟨v, G.mem_component_self v⟩ ⟨u, hu⟩ := by
@@ -152,7 +176,9 @@ theorem connected_induce_component (v : V) : (G.induce (G.component v)).Connecte
       · exact ih.tail ⟨⟨e, hc, hb⟩, Or.inr ⟨rfl, rfl⟩⟩
   exact connected_of_forall_reflTransGen _ fun u => reflTransGen_adj_symm (key u u.2)
 
-/-- The edges touching a closed set `W` are the edges of the subgraph induced on `W`. -/
+/-- The edges touching a closed set `W` are the edges of the subgraph induced on `W`.
+@isnad1 id=eq.1h4v.s5.befb7ae8fd96 from=translated src=- shape=668872d6 vocab=2738a3cf
+-/
 theorem touching_eq_of_cut_eq_empty {W : Set V} (hW : G.cut W = ∅) :
     G.touching W = {e | G.src e ∈ W ∧ G.tgt e ∈ W} := by
   ext e
@@ -160,20 +186,26 @@ theorem touching_eq_of_cut_eq_empty {W : Set V} (hW : G.cut W = ∅) :
   simp only [touching, mem_ofPred_eq]
   tauto
 
-/-- The subgraph induced on a closed set `W` has the cycle rank of `W`. -/
+/-- The subgraph induced on a closed set `W` has the cycle rank of `W`.
+@isnad1 id=eq.1h4v.s6.ae4d7edc7bbf from=translated src=- shape=bc163af8 vocab=4193ba79
+-/
 theorem cycleRank_induce {W : Set V} (hW : G.cut W = ∅) :
     (G.induce W).cycleRank = G.cycleRankOn W := by
   rw [cycleRankOn, G.touching_eq_of_cut_eq_empty hW]
   rfl
 
 /-- A closed set `W` spanning a connected subgraph has at least `|W| - 1` edges, so its cycle
-rank `|E(W)| + 1 - |W|` involves no truncation. -/
+rank `|E(W)| + 1 - |W|` involves no truncation.
+@isnad1 id=le.2h4v.s6.3f785733c542 from=translated src=- shape=8445c99e vocab=cd628983
+-/
 theorem ncard_le_ncard_touching_add_one [Finite E] {W : Set V} (hW : G.cut W = ∅)
     (hc : (G.induce W).Connected) : W.ncard ≤ (G.touching W).ncard + 1 := by
   rw [G.touching_eq_of_cut_eq_empty hW]
   exact hc.card_vertex_le
 
-/-- On a closed set `W`, the cuts of the induced subgraph are the cuts of `G`. -/
+/-- On a closed set `W`, the cuts of the induced subgraph are the cuts of `G`.
+@isnad1 id=eq.1h5v.s7.f07c46b9c2e2 from=translated src=- shape=aff53696 vocab=0abab243
+-/
 theorem cut_image_val {W : Set V} (hW : G.cut W = ∅) (S : Set W) :
     G.cut (Subtype.val '' S) = Subtype.val '' (G.induce W).cut S := by
   have key (e : {e // G.src e ∈ W ∧ G.tgt e ∈ W}) :
@@ -291,7 +323,9 @@ private theorem exists_layout_of_list {V : Type*} {L : List V} (hnd : L.Nodup)
 loopless graph of maximum degree `d`, connected or not, has a layout such that at every step `t`
 the vertex processed lies in a closed set `W` with at least `|W| - 1` edges (a connected
 component), both frontiers of the step lie among the edges of `W`, and both are at most
-`(A + η) β₁(W) + η |V| + C`. -/
+`(A + η) β₁(W) + η |V| + C`.
+@isnad1 id=ex.2h3v.s8.25468091e31a from=translated src=- shape=b2ba7adf vocab=255b76d8
+-/
 theorem LayoutBound.exists_layout_componentwise {d : ℕ} {A : ℝ} (h : LayoutBound d A) {η : ℝ}
     (hη : 0 < η) :
     ∃ C : ℝ, ∀ (V E : Type) [Finite V] [Finite E] (G : Multigraph V E),

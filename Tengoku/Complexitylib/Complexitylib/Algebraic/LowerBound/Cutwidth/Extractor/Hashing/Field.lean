@@ -25,18 +25,24 @@ namespace Algebraic.Cutwidth.Extractor
 
 variable {F Ω : Type*} [Field F] [AddCommGroup Ω]
 
-/-- Every fixed-seed field hash preserves source addition. -/
+/-- Every fixed-seed field hash preserves source addition.
+@isnad1 id=eq.0h6v.s6.513784da37d9 from=translated src=- shape=35c87b9e vocab=9e213ef6
+-/
 theorem fieldHash_add (projection : F →+ Ω) (a b seed : F) :
     fieldHash projection (a + b) seed =
       fieldHash projection a seed + fieldHash projection b seed :=
   Internal.fieldHash_add projection a b seed
 
-/-- Every fixed-seed field hash sends zero to zero. -/
+/-- Every fixed-seed field hash sends zero to zero.
+@isnad1 id=eq.0h4v.s6.eeb33498ea7c from=translated src=- shape=68e3518e vocab=2b5e930a
+-/
 theorem fieldHash_zero (projection : F →+ Ω) (seed : F) :
     fieldHash projection 0 seed = 0 :=
   Internal.fieldHash_zero projection seed
 
-/-- Colliding hashes are exactly the seeds whose scaled difference lies in the kernel. -/
+/-- Colliding hashes are exactly the seeds whose scaled difference lies in the kernel.
+@isnad1 id=iff.0h6v.s7.812bc0ecc830 from=translated src=- shape=1fbd106b vocab=5a2d5571
+-/
 theorem fieldHash_collision_iff (projection : F →+ Ω) (a b seed : F) :
     fieldHash projection a seed = fieldHash projection b seed ↔
       projection (seed * (a - b)) = 0 :=

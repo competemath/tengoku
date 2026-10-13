@@ -34,15 +34,23 @@ namespace Complexity
 def mle₁ {R : Type*} [CommRing R] (f : Bool → R) (x : R) : R :=
   f false * (1 - x) + f true * x
 
+/--
+@isnad1 id=eq.0h2v.s5.c2bb79a55593 from=translated src=- shape=d8e44bf3 vocab=9c21d85b
+-/
 @[simp] theorem mle₁_zero {R : Type*} [CommRing R] (f : Bool → R) :
     mle₁ f 0 = f false := by
   simp [mle₁]
 
+/--
+@isnad1 id=eq.0h2v.s5.062a30c93080 from=translated src=- shape=d8e44bf3 vocab=ad2d9ebe
+-/
 @[simp] theorem mle₁_one {R : Type*} [CommRing R] (f : Bool → R) :
     mle₁ f 1 = f true := by
   simp [mle₁]
 
-/-- At either Boolean point (`0` or `1`), the extension agrees with `f`. -/
+/-- At either Boolean point (`0` or `1`), the extension agrees with `f`.
+@isnad1 id=eq.0h3v.s5.7de16782c7f4 from=translated src=- shape=fa8f894d vocab=4cb67b36
+-/
 theorem mle₁_bool {R : Type*} [CommRing R] (f : Bool → R) (b : Bool) :
     mle₁ f (if b then 1 else 0) = f b := by
   cases b <;> simp

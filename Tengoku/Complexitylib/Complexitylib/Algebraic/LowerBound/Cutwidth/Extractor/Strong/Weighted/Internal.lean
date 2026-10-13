@@ -26,6 +26,9 @@ namespace Algebraic.Cutwidth.Extractor.Internal
 
 open scoped Classical
 
+/--
+@isnad1 id=isprobab.1h2v.s4.e0437aa9a9d6 from=translated src=- shape=b161458b vocab=93fa7a84
+-/
 theorem probabilityWeight_flatWeight {α : Type*} [Fintype α]
     (P : Finset α) (nonempty : P.Nonempty) : IsProbabilityWeight (flatWeight P) := by
   have positive : (0 : ℝ) < P.card := by exact_mod_cast nonempty.card_pos
@@ -36,6 +39,9 @@ theorem probabilityWeight_flatWeight {α : Type*} [Fintype α]
   · simp only [flatWeight, Finset.sum_ite_mem_eq, Finset.sum_const, nsmul_eq_mul]
     exact mul_inv_cancel₀ positive.ne'
 
+/--
+@isnad1 id=cappedwe.1h3v.s4.01f704fc3dad from=translated src=- shape=dab45755 vocab=f3c43b4f
+-/
 theorem cappedWeight_flatWeight {α : Type*} (P : Finset α) {K : Nat}
     (size : K ≤ P.card) : CappedWeight (flatWeight P) K := by
   intro x
@@ -47,6 +53,9 @@ theorem cappedWeight_flatWeight {α : Type*} (P : Finset α) {K : Nat}
     exact (div_le_one positive).mpr (by exact_mod_cast size)
   · simp
 
+/--
+@isnad1 id=eq.0h5v.s5.14f618837670 from=translated src=- shape=38e6679f vocab=830c9018
+-/
 theorem weightedSeededTestProb_uniformWeight {α Seed Ω : Type*}
     [Fintype α] [Fintype Seed] (E : α → Seed → Ω) (T : Finset (Seed × Ω)) :
     weightedSeededTestProb (uniformWeight α) E T = seededTestProb E T := by
@@ -54,6 +63,9 @@ theorem weightedSeededTestProb_uniformWeight {α Seed Ω : Type*}
   simp only [uniformWeight, ← Finset.mul_sum, div_eq_mul_inv, mul_inv_rev]
   ring
 
+/--
+@isnad1 id=eq.0h6v.s6.f4b1f337a322 from=translated src=- shape=0b9cb486 vocab=44548b5f
+-/
 theorem weightedSeededTestProb_flatWeight {α Seed Ω : Type*}
     [Fintype α] [Fintype Seed] (E : α → Seed → Ω) (P : Finset α)
     (T : Finset (Seed × Ω)) :
@@ -63,6 +75,9 @@ theorem weightedSeededTestProb_flatWeight {α Seed Ω : Type*}
     div_eq_mul_inv, mul_inv_rev]
   ring
 
+/--
+@isnad1 id=eq.0h8v.s6.c4bd541c33d8 from=translated src=- shape=e260837d vocab=70f76d74
+-/
 theorem weightedSeededTestProb_mixture {α ι Seed Ω : Type*}
     [Fintype α] [Fintype ι] [Fintype Seed]
     (w : ι → ℝ) (p : ι → α → ℝ) (E : α → Seed → Ω) (T : Finset (Seed × Ω)) :
@@ -74,6 +89,9 @@ theorem weightedSeededTestProb_mixture {α ι Seed Ω : Type*}
   intro i _
   rw [← Finset.mul_sum, mul_div_assoc]
 
+/--
+@isnad1 id=weighted.2h6v.s5.6c36c6bf70ad from=translated src=- shape=19fd012f vocab=9e412ea0
+-/
 theorem weightedStrong_of_flat {α Seed Ω : Type*}
     [Fintype α] [Fintype Seed] [Fintype Ω] {E : α → Seed → Ω} {K : Nat} {ε : ℝ}
     (extract : FlatStrongSeededExtractor E K ε) (positive : 0 < K) :
@@ -96,6 +114,9 @@ theorem weightedStrong_of_flat {α Seed Ω : Type*}
   · exact Finset.card_pos.mp (by simpa only [S.property] using positive)
   · exact S.property.ge
 
+/--
+@isnad1 id=flatstro.1h6v.s5.bfaa63cb8733 from=translated src=- shape=90d977f8 vocab=5e0b4ace
+-/
 theorem flatStrong_of_weighted {α Seed Ω : Type*}
     [Fintype α] [Fintype Seed] [Fintype Ω] {E : α → Seed → Ω} {K : Nat} {ε : ℝ}
     (extract : WeightedStrongSeededExtractor E K ε) : FlatStrongSeededExtractor E K ε := by

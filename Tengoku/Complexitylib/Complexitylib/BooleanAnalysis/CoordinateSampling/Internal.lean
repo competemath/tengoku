@@ -25,6 +25,9 @@ namespace Complexity.BooleanAnalysis
 
 open scoped Classical
 
+/--
+@isnad1 id=eq.1h5v.s7.32c0e95c9e31 from=translated src=- shape=28f1b896 vocab=2eb5a09f
+-/
 theorem bernoulliAverage_union_difference_fin_internal {n : ℕ} (p q r : ℝ)
     (hr : (p + q - p * q) * r = p * (1 - q))
     (f : (Fin n → Bool) → (Fin n → Bool) → ℝ) :
@@ -62,6 +65,9 @@ theorem bernoulliAverage_union_difference_fin_internal {n : ℕ} (p q r : ℝ)
       bernoulliAverage (p + q - p * q) (fun S => bernoulliAverage r (fun T =>
         f (Fin.cons true S) (Fin.cons false (fun i => S i && T i))))) * hr
 
+/--
+@isnad1 id=eq.1h5v.s7.258e05045b3b from=translated src=- shape=a5f103e8 vocab=15bf9aba
+-/
 theorem bernoulliAverage_union_difference_internal {ι : Type*} [Fintype ι] [DecidableEq ι]
     (p q r : ℝ)
     (hr : (p + q - p * q) * r = p * (1 - q))
@@ -77,6 +83,9 @@ theorem bernoulliAverage_union_difference_internal {ι : Type*} [Fintype ι] [De
   exact bernoulliAverage_union_difference_fin_internal p q r hr (fun S R =>
     f (fun i => S (e.symm i)) (fun i => R (e.symm i)))
 
+/--
+@isnad1 id=and.3h2v.s7.20d5351e9d2d from=translated src=- shape=aaf19cc4 vocab=1b82c742
+-/
 theorem conditionalSamplingRate_bounds_internal {p q : ℝ} (hp : 0 ≤ p) (hq : 0 < q) (hq' : q ≤ 1) :
     0 ≤ p * (1 - q) / (p + q - p * q) ∧
       p * (1 - q) / (p + q - p * q) ≤ p / q ∧
@@ -89,6 +98,9 @@ theorem conditionalSamplingRate_bounds_internal {p q : ℝ} (hp : 0 ≤ p) (hq :
   · apply (div_le_one htheta).mpr
     linarith
 
+/--
+@isnad1 id=eq.1h5v.s8.f1a8b0d65d84 from=translated src=- shape=b509e09a vocab=33290b17
+-/
 theorem bernoulliAverage_union_difference_subtype_internal {ι : Type*} [Fintype ι] [DecidableEq ι]
     (p q r : ℝ)
     (hr : (p + q - p * q) * r = p * (1 - q))

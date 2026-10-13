@@ -28,26 +28,41 @@ open Set
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=injectiv.0h1v.s4.a4ff94f5ea82 from=translated src=- shape=2a3d8bc8 vocab=e38e4aca
+-/
 theorem leftIdx_injective : Function.Injective (leftIdx n) := by
   intro a b h
   exact Fin.ext (by simpa [leftIdx] using congrArg Fin.val h)
 
+/--
+@isnad1 id=injectiv.0h1v.s4.dffd5f1c19cb from=translated src=- shape=2a3d8bc8 vocab=1d95cdac
+-/
 theorem rightIdx_injective : Function.Injective (rightIdx n) := by
   intro a b h
   exact Fin.ext (by simpa [rightIdx] using congrArg Fin.val h)
 
+/--
+@isnad1 id=ne.0h3v.s5.b058b0d99001 from=translated src=- shape=0af759cd vocab=201f0184
+-/
 theorem leftIdx_ne_rightIdx (a b : Fin (n / 2)) : leftIdx n a ≠ rightIdx n b := by
   intro h
   have := congrArg Fin.val h
   simp only [leftIdx, rightIdx] at this
   omega
 
+/--
+@isnad1 id=disjoint.0h1v.s6.8fdff976aa90 from=translated src=- shape=b75b5468 vocab=75d233cc
+-/
 theorem disjoint_range_leftIdx_rightIdx :
     Disjoint (range (leftIdx n)) (range (rightIdx n)) := by
   rw [Set.disjoint_left]
   rintro _ ⟨a, rfl⟩ ⟨b, hb⟩
   exact leftIdx_ne_rightIdx a b hb.symm
 
+/--
+@isnad1 id=eq.0h4v.s6.c3dc3990c50d from=translated src=- shape=4e2f1d65 vocab=b9a64725
+-/
 theorem bipartiteMatrix_apply (R : Matrix (Fin (n / 2)) (Fin (n / 2)) (ZMod 2))
     (a b : Fin (n / 2)) : bipartiteMatrix n R (leftIdx n a) (rightIdx n b) = R a b := by
   unfold bipartiteMatrix
@@ -61,6 +76,9 @@ theorem bipartiteMatrix_apply (R : Matrix (Fin (n / 2)) (Fin (n / 2)) (ZMod 2))
     simp [leftIdx_injective.ne ha']
   · simp
 
+/--
+@isnad1 id=eq.1h4v.s7.f937b603ea8a from=translated src=- shape=c24f3cb3 vocab=683d2408
+-/
 theorem bipartiteMatrix_eq_zero (R : Matrix (Fin (n / 2)) (Fin (n / 2)) (ZMod 2))
     {i j : Fin n} (h : i ∉ range (leftIdx n) ∨ j ∉ range (rightIdx n)) :
     bipartiteMatrix n R i j = 0 := by
@@ -72,7 +90,9 @@ theorem bipartiteMatrix_eq_zero (R : Matrix (Fin (n / 2)) (Fin (n / 2)) (ZMod 2)
     · exact absurd ⟨b, rfl⟩ h
   · rfl
 
-/-- The bilinear form is the quadratic form of the bipartite matrix. -/
+/-- The bilinear form is the quadratic form of the bipartite matrix.
+@isnad1 id=eq.0h2v.s5.a74b0239a6d3 from=translated src=- shape=eefd9887 vocab=7a092dee
+-/
 theorem bilinForm_eq_quadForm (R : Matrix (Fin (n / 2)) (Fin (n / 2)) (ZMod 2)) :
     bilinForm R = quadForm (bipartiteMatrix n R) := by
   funext x
@@ -106,7 +126,9 @@ theorem bilinForm_eq_quadForm (R : Matrix (Fin (n / 2)) (Fin (n / 2)) (ZMod 2)) 
           simp [Ne.symm hi]
         · simp
 
-/-- Two injective relabellings with disjoint ranges pull back at most `|V|` elements of `V`. -/
+/-- Two injective relabellings with disjoint ranges pull back at most `|V|` elements of `V`.
+@isnad1 id=le.3h5v.s6.948d466c1ef1 from=translated src=- shape=644dc6f7 vocab=256dda28
+-/
 theorem ncard_preimage_add_ncard_preimage_le {m : ℕ} {f g : Fin m → Fin n}
     (hf : Function.Injective f) (hg : Function.Injective g)
     (hfg : Disjoint (range f) (range g)) (V : Set (Fin n)) :
@@ -115,7 +137,9 @@ theorem ncard_preimage_add_ncard_preimage_le {m : ℕ} {f g : Fin m → Fin n}
     ← ncard_union_eq (hfg.mono (image_subset_range _ _) (image_subset_range _ _))]
   exact ncard_le_ncard (union_subset (image_preimage_subset _ _) (image_preimage_subset _ _))
 
-/-- A robust matrix has every block of rank at least its smaller side minus `t`. -/
+/-- A robust matrix has every block of rank at least its smaller side minus `t`.
+@isnad1 id=le.1h5v.s5.409674f4a19a from=translated src=- shape=c47222c5 vocab=3dbe4fc6
+-/
 theorem SubmatrixRobust.min_le {m : ℕ} {R : Matrix (Fin m) (Fin m) (ZMod 2)} {t : ℕ}
     (hR : SubmatrixRobust R t) (A B : Set (Fin m)) :
     min A.ncard B.ncard ≤ blockRank R A B + t := by
@@ -125,7 +149,9 @@ theorem SubmatrixRobust.min_le {m : ℕ} {R : Matrix (Fin m) (Fin m) (ZMod 2)} {
   rw [hA'c] at h
   exact h.trans (Nat.add_le_add_right (blockRank_mono R hA' hB') t)
 
-/-- **Bisection cut rank of a robust bilinear form.** -/
+/-- **Bisection cut rank of a robust bilinear form.**
+@isnad1 id=le.2h4v.s7.5f526d578a93 from=translated src=- shape=c83a8f13 vocab=0abd4e6b
+-/
 theorem half_le_cutRank_bipartiteMatrix {R : Matrix (Fin (n / 2)) (Fin (n / 2)) (ZMod 2)}
     {t : ℕ} (hR : SubmatrixRobust R t) {U : Set (Fin n)} (hU : U.ncard = n / 2) :
     n / 2 ≤ cutRank (bipartiteMatrix n R) U + (2 * t + 1) := by

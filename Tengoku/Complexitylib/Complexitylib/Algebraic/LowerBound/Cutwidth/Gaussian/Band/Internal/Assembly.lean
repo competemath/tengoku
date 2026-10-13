@@ -47,13 +47,18 @@ def maskGraph (β : Sym2 W → Bool) : SimpleGraph W where
   loopless := ⟨fun u h => H.ne_of_adj h.1 rfl⟩
 
 omit [Fintype W] [DecidableEq W] [DecidableRel H.Adj] in
+/--
+@isnad1 id=eq.0h4v.s6.c175a36eb653 from=translated src=- shape=c875b53c vocab=8eda68e6
+-/
 theorem bandGraph_eq_maskGraph (score : Sym2 W → ℝ) (c : ℝ) :
     bandGraph H score c = maskGraph H (fun e => decide (-c ≤ score e ∧ score e < c)) := by
   ext u v
   simp [bandGraph, maskGraph]
 
 omit [DecidableEq W] [DecidableRel H.Adj] in
-/-- The cluster event depends on the sample only through the finitely many band indicators. -/
+/-- The cluster event depends on the sample only through the finitely many band indicators.
+@isnad1 id=measurab.0h7v.s5.eb9993131e6c from=translated src=- shape=de84e171 vocab=922ea98f
+-/
 theorem measurableSet_bigBandEvent (q : ℝ) (R : ℕ) (c : ℝ) (K : ℕ) (v : W) :
     MeasurableSet (bigBandEvent H q R c K v) := by
   set f : (W → ℝ) → Sym2 W → Bool := fun ω e =>
@@ -76,6 +81,9 @@ theorem measurableSet_bigBandEvent (q : ℝ) (R : ℕ) (c : ℝ) (K : ℕ) (v : 
   exact (Set.to_countable _).measurableSet.preimage hmeas
 
 omit [DecidableRel H.Adj] in
+/--
+@isnad1 id=iff.0h8v.s6.4a7fd9ee4438 from=translated src=- shape=72708f8a vocab=777bbc25
+-/
 theorem mem_bigBandEvent {q : ℝ} {R : ℕ} {c : ℝ} {K : ℕ} {v : W} {ω : W → ℝ} :
     ω ∈ bigBandEvent H q R c K v ↔
       K < (Finset.univ.filter fun u =>
@@ -91,7 +99,9 @@ noncomputable def bandBlock (score : Sym2 W → ℝ) (c : ℝ) (e : Sym2 W) : �
     ((bandGraph H score c).connectedComponentMk (Quot.out e).1) : ℕ)
 
 omit [Fintype W] [DecidableEq W] [DecidableRel H.Adj] in
-/-- A band edge of `H` at `v` lies in the band cluster of `v`. -/
+/-- A band edge of `H` at `v` lies in the band cluster of `v`.
+@isnad1 id=eq.3h6v.s6.046a3ffb8def from=translated src=- shape=73466066 vocab=03542834
+-/
 theorem connectedComponentMk_out_eq {score : Sym2 W → ℝ} {c : ℝ} {e : Sym2 W}
     (he : e ∈ H.edgeSet) (hband : -c ≤ score e ∧ score e < c) {v : W} (hv : v ∈ e) :
     (bandGraph H score c).connectedComponentMk (Quot.out e).1 =
@@ -105,7 +115,9 @@ theorem connectedComponentMk_out_eq {score : Sym2 W → ℝ} {c : ℝ} {e : Sym2
   · exact SimpleGraph.ConnectedComponent.connectedComponentMk_eq_of_adj hadj
 
 /-- **Vertices of a block.** The vertices touching the band edges of one block lie in one
-band cluster, so they number at most `K` or lie in clusters of more than `K` vertices. -/
+band cluster, so they number at most `K` or lie in clusters of more than `K` vertices.
+@isnad1 id=le.0h6v.s8.72fa7c7ea9b3 from=translated src=- shape=1fa17e38 vocab=f6cc958d
+-/
 theorem card_filter_bandBlock_le (score : Sym2 W → ℝ) (c : ℝ) (K j : ℕ) :
     ((Finset.univ.filter fun v => ∃ e ∈ H.edgeFinset, v ∈ e ∧ -c ≤ score e ∧ score e < c ∧
         bandBlock H score c e = j).card : ℝ) ≤
@@ -152,7 +164,9 @@ theorem card_filter_bandBlock_le (score : Sym2 W → ℝ) (c : ℝ) (K j : ℕ) 
 /-! ### Markov's inequality for a count of events -/
 
 /-- If the expected number of events is at most `m > 0`, at least `2 m` of them occur with
-probability at most `1/2`. -/
+probability at most `1/2`.
+@isnad1 id=le.3h6v.s7.488075ba901c from=translated src=- shape=e3d9dfac vocab=a9d8b9b3
+-/
 theorem measureReal_two_mul_le_sum_indicator_le {Ω ι : Type*} [MeasurableSpace Ω]
     {μ : Measure Ω} [IsProbabilityMeasure μ] (F : Finset ι) (A : ι → Set Ω)
     (hA : ∀ i ∈ F, MeasurableSet (A i)) {m : ℝ} (hm : 0 < m)
@@ -184,6 +198,9 @@ noncomputable def bandLayoutBound (ρ₀ c T ε η : ℝ) (M : ℕ) : ℝ :=
     (Real.exp (-(c ^ 2) / 2) * frontierBound ρ₀ + 3 * ((T - c) / M) / Real.sqrt (2 * Real.pi) +
       3 * ε + 2 * η)
 
+/--
+@isnad1 id=le.0h1v.s3.f4555087cf35 from=translated src=- shape=8a62b088 vocab=582bbc3d
+-/
 theorem frontierBound_nonneg (ρ₀ : ℝ) : 0 ≤ frontierBound ρ₀ := by
   unfold frontierBound
   have := Real.arccos_nonneg ((1 + 3 * ρ₀) / 4)

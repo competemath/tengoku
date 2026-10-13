@@ -35,7 +35,9 @@ open scoped Classical
 
 /-- Complete one representative per reached output to an injection at each
 seed. The number of unchanged original pairs is exactly the neighbor count.
-The statement also holds for empty source, seed, and output types. -/
+The statement also holds for empty source, seed, and output types.
+@isnad1 id=ex.1h5v.s9.7e5ae1992855 from=translated src=- shape=d8fa6ac0 vocab=821caccf
+-/
 theorem exists_seedwise_injection {α Seed Ω : Type*} [Fintype Seed] [Fintype Ω]
     (C : α → Seed → Ω) (P : Finset α) (capacity : P.card ≤ Fintype.card Ω) :
     ∃ g : Seed → (P ↪ Ω),

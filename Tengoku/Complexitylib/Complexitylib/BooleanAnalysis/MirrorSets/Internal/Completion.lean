@@ -31,10 +31,16 @@ open scoped BigOperators Classical
 
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
+/--
+@isnad1 id=eq.0h5v.s5.6d3477eeffdc from=translated src=- shape=a2cb21e2 vocab=4562a734
+-/
 theorem projectionAverage_const_mul_internal (a : ℝ) (f : (ι → Bool) → ℝ) (s x : ι → Bool) :
     projectionAverage (fun y => a * f y) s x = a * projectionAverage f s x := by
   exact (mul_expect _ _ _).symm
 
+/--
+@isnad1 id=eq.0h6v.s7.2ac2914c7c8b from=translated src=- shape=c0790018 vocab=24f74be0
+-/
 theorem projectionAverage_fiber_internal (f : (ι → Bool) → ℝ) (s x : ι → Bool)
     (R u : {i // s i = true} → Bool) :
     projectionAverage (fun z => f (completePattern s x z)) R u =
@@ -50,6 +56,9 @@ theorem projectionAverage_fiber_internal (f : (ι → Bool) → ℝ) (s x : ι �
   · simp only [completePattern, dite_eq_left hs]
   · simp [completePattern, hs]
 
+/--
+@isnad1 id=eq.0h4v.s6.2e8e78c74171 from=translated src=- shape=3aaae563 vocab=f449bacb
+-/
 theorem coordinateDensity_eq_projection_internal (X : Finset (ι → Bool)) (s x : ι → Bool) :
     coordinateDensity X s x =
       projectionAverage (fun y => if y ∈ X then 1 else 0) (fun i => !s i) x := by
@@ -61,6 +70,9 @@ theorem coordinateDensity_eq_projection_internal (X : Finset (ι → Bool)) (s x
   funext i
   cases hs : s i <;> simp [resample, hs]
 
+/--
+@isnad1 id=eq.1h6v.s8.56a42873ec85 from=translated src=- shape=a0150f2b vocab=4104565a
+-/
 theorem projectionAverage_uniformDensity_fiber_internal (X : Finset (ι → Bool)) (s x : ι → Bool)
     (hX : (coordinateFiber X s x).Nonempty) (R u : {i // s i = true} → Bool) :
     projectionAverage (uniformDensity (coordinateFiber X s x)) R u =
@@ -80,11 +92,17 @@ theorem projectionAverage_uniformDensity_fiber_internal (X : Finset (ι → Bool
   funext i
   by_cases hs : s i = true <;> simp [hs]
 
+/--
+@isnad1 id=eq.0h4v.s7.ce7c6fc2df47 from=translated src=- shape=b569d9d1 vocab=8d878994
+-/
 theorem expect_coordinateMarginal_comp_internal (f : (ι → Bool) → ℝ) (s : ι → Bool) (g : ℝ → ℝ) :
     (𝔼 x, g (projectionAverage f s x)) = 𝔼 z, g (coordinateMarginal f s z) := by
   simp_rw [projectionAverage_eq_coordinateMarginal]
   exact expect_restrict_coordinates s (fun z => g (coordinateMarginal f s z))
 
+/--
+@isnad1 id=le.5h5v.s11.033727ce4165 from=translated src=- shape=e77ddc2a vocab=dbdb628c
+-/
 theorem coordinateFiber_light_patterns_internal (X : Finset (ι → Bool)) (hX : X.Nonempty)
     (s : ι → Bool) {k r : ℝ} (hk : 1 ≤ k) (hdef : uniformDeficit X ≤ k)
     (hr : 0 ≤ r) (hr' : r ≤ 1 / (32768 * k)) :
@@ -119,6 +137,9 @@ theorem coordinateFiber_light_patterns_internal (X : Finset (ι → Bool)) (hX :
   have hg := coordinateFiber_good_probability X hX s (show 0 < k by linarith) hdef
   nlinarith
 
+/--
+@isnad1 id=le.4h6v.s10.0506de3355a0 from=translated src=- shape=cbb32d57 vocab=eced7509
+-/
 theorem fiber_completion_density_internal (X : Finset (ι → Bool)) (s x : ι → Bool)
     (hX : (coordinateFiber X s x).Nonempty) (R : {i // s i = true} → Bool)
     {k : ℝ} (hk : 1 ≤ k) (hd : uniformDeficit (coordinateFiber X s x) ≤ 64 * k)
@@ -153,6 +174,9 @@ theorem fiber_completion_density_internal (X : Finset (ι → Bool)) (s x : ι �
     (fun v => if v ≤ (2 : ℝ) ^ (-128 * k - 2) then (1 : ℝ) else 0)] at he
   exact (he.trans hl).trans (Real.rpow_le_rpow_of_exponent_le (by norm_num) (by linarith))
 
+/--
+@isnad1 id=eq.0h6v.s5.8000614a912d from=translated src=- shape=918a7d6d vocab=324ff8fa
+-/
 theorem coordinateDensity_resample_union_internal (X : Finset (ι → Bool)) (P Q x y : ι → Bool) :
     coordinateDensity X Q (resample P x y) =
       coordinateDensity X Q (resample (fun i => P i || Q i) x y) := by
@@ -163,6 +187,9 @@ theorem coordinateDensity_resample_union_internal (X : Finset (ι → Bool)) (P 
   funext i
   cases hp : P i <;> cases hq : Q i <;> simp [resample, hp, hq]
 
+/--
+@isnad1 id=le.4h6v.s10.f33b7dc4a182 from=translated src=- shape=ca59291d vocab=b3647f90
+-/
 theorem fiber_completion_density_union_internal (X : Finset (ι → Bool)) (P Q x : ι → Bool)
     (hx : x ∈ X) {k : ℝ} (hk : 1 ≤ k)
     (hd : uniformDeficit (coordinateFiber X (fun i => P i || Q i) x) ≤ 64 * k)
@@ -185,6 +212,9 @@ theorem fiber_completion_density_union_internal (X : Finset (ι → Bool)) (P Q 
       (2 : ℝ) ^ (-194 * k) then (1 : ℝ) else 0)]
   exact ht
 
+/--
+@isnad1 id=le.10h6v.s9.79d8bbc02ea7 from=translated src=- shape=707074bc vocab=42dc25d2
+-/
 theorem bad_modifications_probability_aux_internal (X : Finset (ι → Bool)) (hX : X.Nonempty)
     {k p q r : ℝ} (hk : 1 ≤ k) (hdef : uniformDeficit X ≤ k)
     (hp : 0 ≤ p) (hp' : p ≤ 1) (hq : 0 ≤ q) (hq' : q ≤ 1)
@@ -220,6 +250,9 @@ theorem bad_modifications_probability_aux_internal (X : Finset (ι → Bool)) (h
   · simp only [ite_eq_right hg]
     split_ifs <;> norm_num
 
+/--
+@isnad1 id=le.6h5v.s9.7143df6af53a from=translated src=- shape=5a566099 vocab=e0f94206
+-/
 theorem mirror_bad_modifications_probability_internal (X : Finset (ι → Bool)) (hX : X.Nonempty)
     {k p q : ℝ} (hk : 1 ≤ k) (hdef : uniformDeficit X ≤ k) (hp : 0 < p)
     (hq : q = 32768 * k * p) (hq' : q ≤ 1 / 2) :

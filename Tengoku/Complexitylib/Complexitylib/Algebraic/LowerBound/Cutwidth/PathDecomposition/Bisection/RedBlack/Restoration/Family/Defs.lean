@@ -69,7 +69,9 @@ noncomputable def deletedGraph (F : RestorationFamily B R ι) : SimpleGraph V :=
   B.deleteEdges (F.deletedEdges : Set (Sym2 V))
 
 omit [Fintype ι] in
-/-- Restricting the family deletes exactly the cuts of the selected regions. -/
+/-- Restricting the family deletes exactly the cuts of the selected regions.
+@isnad1 id=eq.0h7v.s6.2678e15cc657 from=translated src=- shape=0065dece vocab=861deb94
+-/
 theorem deletedEdges_restrict (F : RestorationFamily B R ι) (indices : Finset ι) :
     (F.restrict indices).deletedEdges = indices.biUnion (fun i => B.cutFinset (F.region i)) := by
   ext e

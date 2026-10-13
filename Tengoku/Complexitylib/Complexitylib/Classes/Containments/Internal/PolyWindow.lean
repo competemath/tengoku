@@ -32,7 +32,9 @@ namespace Complexity
 
 /-- **A `PSPACE` language comes with an explicit polynomial window.** Membership in `PSPACE` only
 gives an asymptotic bound on some space function; a machine has to be handed a concrete
-polynomial, since the window it must respect is a function of the input length it can evaluate. -/
+polynomial, since the window it must respect is a function of the input length it can evaluate.
+@isnad1 id=ex.1h1v.s7.3ada8ab895f0 from=translated src=- shape=1f1b099d vocab=9aa69803
+-/
 theorem exists_poly_window_of_mem_PSPACE {L : Language} (h : L ∈ PSPACE) :
     ∃ (k : ℕ) (tm : TM k) (q : Polynomial ℕ),
       (∀ x : List Bool, ∀ c', tm.reaches (tm.initCfg x) c' →
@@ -50,7 +52,9 @@ theorem exists_poly_window_of_mem_PSPACE {L : Language} (h : L ∈ PSPACE) :
 
 /-- **A machine with an explicit polynomial window decides a `PSPACE` language.** The exact
 converse: together the two say that membership in `PSPACE` *is* the existence of a machine
-keeping a polynomial window, with no asymptotics left to manage. -/
+keeping a polynomial window, with no asymptotics left to manage.
+@isnad1 id=mem.2h4v.s7.f1ed4f1044de from=translated src=- shape=e9e53fe1 vocab=9aa69803
+-/
 theorem mem_PSPACE_of_polyWindow {L : Language} {k : ℕ} (tm : TM k) (q : Polynomial ℕ)
     (hwin : ∀ (x : List Bool) (c' : Cfg k tm.Q), tm.reaches (tm.initCfg x) c' →
       c'.WithinDecisionSpace x.length (q.eval x.length))
@@ -62,7 +66,9 @@ theorem mem_PSPACE_of_polyWindow {L : Language} {k : ℕ} (tm : TM k) (q : Polyn
 
 /-- **A machine with an explicit polynomial time bound decides a `P` language.** The time-domain
 counterpart of `mem_PSPACE_of_polyWindow`: a construction hands back a concrete `Polynomial ℕ`
-and gets the class membership, with the asymptotics discharged here. -/
+and gets the class membership, with the asymptotics discharged here.
+@isnad1 id=mem.1h4v.s4.fb4ce8605f5f from=translated src=- shape=af5c13d1 vocab=ab7ff540
+-/
 theorem mem_P_of_polyTime {L : Language} {k : ℕ} (tm : TM k) (q : Polynomial ℕ)
     (hdec : tm.DecidesInTime L (fun n => q.eval n)) : L ∈ P :=
   Set.mem_iUnion.mpr ⟨q.natDegree, k, tm, fun n => q.eval n, hdec,

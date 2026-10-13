@@ -16,7 +16,9 @@ public section
 
 namespace Complexity
 
-/-- Internal proof that materializing unary input length is in `FP`. -/
+/-- Internal proof that materializing unary input length is in `FP`.
+@isnad1 id=mem.0h0v.s4.e35d0b0702c0 from=translated src=- shape=c95762a7 vocab=7df7b9db
+-/
 theorem unaryLength_mem_FP_internal :
     (fun x : List Bool => List.replicate x.length true) ∈ FP := by
   refine ⟨1, 0, TM.unaryLengthTM,

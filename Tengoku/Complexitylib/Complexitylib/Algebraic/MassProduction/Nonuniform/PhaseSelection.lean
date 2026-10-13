@@ -24,7 +24,9 @@ namespace Algebraic.MassProduction.Nonuniform
 open scoped LinearAlgebra.Projectivization
 
 /-- A successful candidate has an exactly half-sized clean subset with
-disjoint recovery lines and a fixed-size complement. -/
+disjoint recovery lines and a fixed-size complement.
+@isnad1 id=ex.1h6v.s8.f067ecc00b88 from=translated src=- shape=75d9d3a3 vocab=5d6beb78
+-/
 theorem HalfClean.existsHalfSelection
     {K V : Type*} [Field K] [Finite K] [AddCommGroup V] [Module K V]
     (state : PhaseState V (ℙ K V) capacity active)

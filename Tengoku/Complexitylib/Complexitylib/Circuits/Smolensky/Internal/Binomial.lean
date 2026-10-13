@@ -24,7 +24,9 @@ namespace Smolensky
 
 open Finset
 
-/-- The central binomial coefficient satisfies `C(2m, m)² (2m + 1) ≤ 16^m`. -/
+/-- The central binomial coefficient satisfies `C(2m, m)² (2m + 1) ≤ 16^m`.
+@isnad1 id=le.0h1v.s6.f2c269e0ee36 from=translated src=- shape=81360040 vocab=c614f8dc
+-/
 theorem centralBinom_sq_mul_le (m : ℕ) :
     m.centralBinom ^ 2 * (2 * m + 1) ≤ 16 ^ m := by
   induction m with
@@ -47,7 +49,9 @@ theorem centralBinom_sq_mul_le (m : ℕ) :
         _ = (m + 1) ^ 2 * 16 ^ (m + 1) := by ring
     exact Nat.le_of_mul_le_mul_left key (by positivity)
 
-/-- The middle binomial coefficient satisfies `C(n, ⌊n/2⌋)² (n + 1) ≤ 4^n`. -/
+/-- The middle binomial coefficient satisfies `C(n, ⌊n/2⌋)² (n + 1) ≤ 4^n`.
+@isnad1 id=le.0h1v.s6.d32b6f556455 from=translated src=- shape=c75a6e86 vocab=9b052113
+-/
 theorem choose_half_sq_mul_le (n : ℕ) :
     n.choose (n / 2) ^ 2 * (n + 1) ≤ 4 ^ n := by
   obtain ⟨m, rfl | rfl⟩ := Nat.even_or_odd' n
@@ -78,7 +82,9 @@ theorem choose_half_sq_mul_le (n : ℕ) :
     omega
 
 /-- Complementation shows that at most half of all subsets have fewer than
-`n / 2` elements. -/
+`n / 2` elements.
+@isnad1 id=le.0h1v.s6.0137cdbb095b from=translated src=- shape=29ef73cd vocab=5cf4ac43
+-/
 theorem two_mul_card_small_le (n : ℕ) :
     2 * (univ.filter fun S : Finset (Fin n) => 2 * S.card < n).card ≤ 2 ^ n := by
   set A := univ.filter fun S : Finset (Fin n) => 2 * S.card < n
@@ -106,7 +112,9 @@ theorem two_mul_card_small_le (n : ℕ) :
   omega
 
 /-- Subsets of size between `n / 2` and `n / 2 + t` number at most
-`(t + 1) · C(n, ⌊n/2⌋)`. -/
+`(t + 1) · C(n, ⌊n/2⌋)`.
+@isnad1 id=le.0h2v.s7.4e2b4f2ef11f from=translated src=- shape=0fc2b702 vocab=e636e81c
+-/
 theorem card_middle_le (n t : ℕ) :
     (univ.filter fun S : Finset (Fin n) =>
       n ≤ 2 * S.card ∧ S.card ≤ n / 2 + t).card ≤ (t + 1) * n.choose (n / 2) := by
@@ -140,7 +148,9 @@ theorem card_middle_le (n t : ℕ) :
     _ = (t + 1) * n.choose (n / 2) := Nat.mul_comm _ _
 
 /-- When `100 (t + 1)² ≤ n + 1`, at most `6/10` of the subsets of `Fin n` have
-at most `n / 2 + t` elements. -/
+at most `n / 2 + t` elements.
+@isnad1 id=le.1h2v.s7.5bbe93a13345 from=translated src=- shape=e0192a84 vocab=ed0848b5
+-/
 theorem ten_mul_card_le_internal (n t : ℕ) (h : 100 * (t + 1) ^ 2 ≤ n + 1) :
     10 * (univ.filter fun S : Finset (Fin n) => S.card ≤ n / 2 + t).card ≤ 6 * 2 ^ n := by
   set A := univ.filter fun S : Finset (Fin n) => 2 * S.card < n

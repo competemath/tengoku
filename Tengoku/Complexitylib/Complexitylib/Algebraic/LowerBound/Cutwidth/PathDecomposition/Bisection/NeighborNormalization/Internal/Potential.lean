@@ -29,9 +29,15 @@ variable {W : Type}
 noncomputable def charge (B P X : Finset W) : ℕ :=
   X.card + 4 * (X ∩ B).card + (X ∩ P).card
 
+/--
+@isnad1 id=eq.0h2v.s4.d4d28707fade from=translated src=- shape=76743321 vocab=bcf397b8
+-/
 theorem charge_empty (X : Finset W) : charge ∅ ∅ X = X.card := by
   simp [charge]
 
+/--
+@isnad1 id=le.2h6v.s5.382cfc70c569 from=translated src=- shape=fd5f2c22 vocab=104eaa73
+-/
 theorem charge_mono {B D P Q X : Finset W} (hBD : B ⊆ D) (hPQ : P ⊆ Q) :
     charge B P X ≤ charge D Q X := by
   have boundaryCount := Finset.card_le_card (show X ∩ B ⊆ X ∩ D from
@@ -41,6 +47,9 @@ theorem charge_mono {B D P Q X : Finset W} (hBD : B ⊆ D) (hPQ : P ⊆ Q) :
   dsimp [charge]
   lia
 
+/--
+@isnad1 id=le.1h4v.s5.f8f2a4db0dba from=translated src=- shape=34d4c79a vocab=39c0c9db
+-/
 theorem charge_le_five {B P : Finset W} (disjoint : Disjoint B P) (X : Finset W) :
     charge B P X ≤ 5 * X.card := by
   have subset : X ∩ P ⊆ X \ B := by
@@ -53,7 +62,9 @@ theorem charge_le_five {B P : Finset W} (disjoint : Disjoint B P) (X : Finset W)
   lia
 
 /-- Selecting the missing boundary endpoint costs one vertex, paid for by
-the selected center whose configuration is being reversed. -/
+the selected center whose configuration is being reversed.
+@isnad1 id=le.5h8v.s7.68c71737393e from=translated src=- shape=08503671 vocab=d802ce0e
+-/
 theorem charge_restore_center {B P T X Y : Finset W} {a b : W}
     (fresh : a ∉ P) (selected : a ∈ X) (hbB : b ∉ B) (hbP : b ∉ P)
     (support : Y ⊆ insert b X) :
@@ -88,7 +99,9 @@ theorem charge_restore_center {B P T X Y : Finset W} {a b : W}
   lia
 
 /-- A selected boundary endpoint supplies four credits. All added vertices
-are outside earlier configurations, so they require no further credit. -/
+are outside earlier configurations, so they require no further credit.
+@isnad1 id=le.10h9v.s7.4ed9e47d5ce0 from=translated src=- shape=7e8d9010 vocab=5592d6ea
+-/
 theorem charge_restore_boundary {B P T X Y : Finset W} {a b c : W}
     (haB : a ∉ B) (haP : a ∉ P) (hcB : c ∉ B) (hcP : c ∉ P)
     (separate : Disjoint T B) (interior : Disjoint T P)

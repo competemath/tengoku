@@ -52,16 +52,22 @@ is at most `R`, and `0` otherwise. -/
 noncomputable def kernel (q : ℝ) (R : ℕ) (v z : W) : ℝ :=
   if H.edist v z ≤ R then q ^ H.dist v z else 0
 
-/-- The kernel row of `v` takes the value `1` at `v`. -/
+/-- The kernel row of `v` takes the value `1` at `v`.
+@isnad1 id=eq.0h5v.s4.7c67b33ff826 from=translated src=- shape=77383564 vocab=c59352a8
+-/
 theorem kernel_self (q : ℝ) (R : ℕ) (v : W) : kernel H q R v v = 1 := by
   simp [kernel]
 
-/-- The kernel is nonnegative for a nonnegative ratio. -/
+/-- The kernel is nonnegative for a nonnegative ratio.
+@isnad1 id=le.1h6v.s5.585a171e84e5 from=translated src=- shape=5bf33de9 vocab=1a7f76b0
+-/
 theorem kernel_nonneg {q : ℝ} (hq : 0 ≤ q) (R : ℕ) (v z : W) : 0 ≤ kernel H q R v z := by
   unfold kernel
   split_ifs <;> positivity
 
-/-- The kernel is symmetric. -/
+/-- The kernel is symmetric.
+@isnad1 id=eq.0h6v.s4.464759369346 from=translated src=- shape=f8ea7b1a vocab=c59352a8
+-/
 theorem kernel_comm (q : ℝ) (R : ℕ) (v z : W) : kernel H q R v z = kernel H q R z v := by
   simp only [kernel, SimpleGraph.edist_comm (u := v), SimpleGraph.dist_comm (u := v)]
 
@@ -169,36 +175,62 @@ section Finite
 
 variable {W : Type} [Fintype W] (H : SimpleGraph W)
 
+/--
+@isnad1 id=iff.0h5v.s5.594eca8e80e0 from=translated src=- shape=0f11a645 vocab=7ce3e9ac
+-/
 @[simp]
 theorem mem_sphere {v z : W} {d : ℕ} : z ∈ sphere H v d ↔ H.edist v z = d := by
   simp [sphere]
 
+/--
+@isnad1 id=iff.0h5v.s5.af9468523fc1 from=translated src=- shape=0f11a645 vocab=5190a5dc
+-/
 @[simp]
 theorem mem_ball {v z : W} {r : ℕ} : z ∈ ball H v r ↔ H.edist v z ≤ r := by
   simp [ball]
 
+/--
+@isnad1 id=mem.0h4v.s4.e1ffff824066 from=translated src=- shape=e56637b0 vocab=bf895264
+-/
 theorem mem_ball_self (v : W) (r : ℕ) : v ∈ ball H v r := by
   simp
 
+/--
+@isnad1 id=iff.0h5v.s5.e963781970ee from=translated src=- shape=14497550 vocab=bf895264
+-/
 theorem mem_ball_comm {v z : W} {r : ℕ} : z ∈ ball H v r ↔ v ∈ ball H z r := by
   rw [mem_ball, mem_ball, SimpleGraph.edist_comm]
 
+/--
+@isnad1 id=le.1h5v.s5.7f1da24dd6f6 from=translated src=- shape=07309280 vocab=d7b740ec
+-/
 theorem ball_mono (v : W) {r r' : ℕ} (h : r ≤ r') : ball H v r ⊆ ball H v r' :=
   fun _ hz => (mem_ball H).mpr (((mem_ball H).mp hz).trans (by exact_mod_cast h))
 
+/--
+@isnad1 id=le.0h4v.s5.6bb11ff96b7a from=translated src=- shape=b3b486fc vocab=853ce723
+-/
 theorem sphere_subset_ball (v : W) (r : ℕ) : sphere H v r ⊆ ball H v r :=
   fun _ hz => (mem_ball H).mpr ((mem_sphere H).mp hz).le
 
+/--
+@isnad1 id=eq.0h3v.s4.fcdd1dd4ec14 from=translated src=- shape=c42089ac vocab=f490af81
+-/
 theorem sphere_zero (v : W) : sphere H v 0 = {v} := by
   ext z
   rw [mem_sphere, Nat.cast_zero, SimpleGraph.edist_eq_zero_iff, Finset.mem_singleton, eq_comm]
 
+/--
+@isnad1 id=eq.0h3v.s4.be108c50f2c5 from=translated src=- shape=c42089ac vocab=0fc40282
+-/
 theorem ball_zero (v : W) : ball H v 0 = {v} := by
   ext z
   rw [mem_ball, Nat.cast_zero, nonpos_iff_eq_zero, SimpleGraph.edist_eq_zero_iff,
     Finset.mem_singleton, eq_comm]
 
-/-- The ball around a neighbour lies in the ball of one larger radius. -/
+/-- The ball around a neighbour lies in the ball of one larger radius.
+@isnad1 id=le.1h5v.s5.2ca6293ff638 from=translated src=- shape=9999352c vocab=298c95a2
+-/
 theorem ball_subset_ball_of_adj {u v : W} (h : H.Adj u v) (R : ℕ) :
     ball H v R ⊆ ball H u (R + 1) := by
   intro z hz
@@ -207,7 +239,9 @@ theorem ball_subset_ball_of_adj {u v : W} (h : H.Adj u v) (R : ℕ) :
     _ ≤ R + 1 := by gcongr
     _ = ((R + 1 : ℕ) : ℕ∞) := by push_cast; rfl
 
-/-- Overlapping balls have centres within the sum of their radii. -/
+/-- Overlapping balls have centres within the sum of their radii.
+@isnad1 id=mem.1h6v.s5.f62ae176ea90 from=translated src=- shape=cd11246e vocab=82dc28d5
+-/
 theorem mem_ball_of_not_disjoint {a b : W} {r r' : ℕ}
     (h : ¬ Disjoint (ball H a r) (ball H b r')) : b ∈ ball H a (r + r') := by
   obtain ⟨z, hza, hzb⟩ := Finset.not_disjoint_iff.mp h
@@ -216,37 +250,49 @@ theorem mem_ball_of_not_disjoint {a b : W} {r r' : ℕ}
     _ ≤ r + r' := by rw [SimpleGraph.edist_comm (u := z)]; exact add_le_add hza hzb
     _ = ((r + r' : ℕ) : ℕ∞) := by push_cast; rfl
 
-/-- The kernel row of `v` vanishes outside the ball of radius `R`. -/
+/-- The kernel row of `v` vanishes outside the ball of radius `R`.
+@isnad1 id=eq.1h6v.s5.3e3ac566bbbd from=translated src=- shape=f7a06d1a vocab=838e184b
+-/
 theorem kernel_eq_zero_of_notMem_ball {q : ℝ} {R : ℕ} {v z : W} (h : z ∉ ball H v R) :
     kernel H q R v z = 0 := by
   rw [mem_ball] at h
   simp [kernel, h]
 
-/-- Inside the ball of radius `R`, the kernel row of `v` is `q ^ dist(v, z)`. -/
+/-- Inside the ball of radius `R`, the kernel row of `v` is `q ^ dist(v, z)`.
+@isnad1 id=eq.1h6v.s5.8ae311c5dcd8 from=translated src=- shape=0be26254 vocab=e218e27f
+-/
 theorem kernel_of_mem_ball {q : ℝ} {R : ℕ} {v z : W} (h : z ∈ ball H v R) :
     kernel H q R v z = q ^ H.dist v z := by
   rw [mem_ball] at h
   simp [kernel, h]
 
-/-- Every kernel row has squared norm at least one. -/
+/-- Every kernel row has squared norm at least one.
+@isnad1 id=le.0h5v.s5.08c26760d588 from=translated src=- shape=ecb940cc vocab=9c4f9ef5
+-/
 theorem one_le_sum_kernel_sq {q : ℝ} (R : ℕ) (v : W) : 1 ≤ ∑ z, kernel H q R v z ^ 2 :=
   calc (1 : ℝ) = kernel H q R v v ^ 2 := by rw [kernel_self, one_pow]
     _ ≤ ∑ z, kernel H q R v z ^ 2 :=
       Finset.single_le_sum (f := fun z => kernel H q R v z ^ 2) (fun z _ => sq_nonneg _)
         (Finset.mem_univ v)
 
-/-- The unit kernel row has norm one. -/
+/-- The unit kernel row has norm one.
+@isnad1 id=eq.0h5v.s5.0c304fcaa79b from=translated src=- shape=6b80f42b vocab=6c0e5c56
+-/
 theorem sum_unitKernel_sq (q : ℝ) (R : ℕ) (v : W) : ∑ z, unitKernel H q R v z ^ 2 = 1 := by
   have hA : 1 ≤ ∑ y, kernel H q R v y ^ 2 := one_le_sum_kernel_sq H R v
   simp only [unitKernel, div_pow, ← Finset.sum_div]
   rw [Real.sq_sqrt (by linarith), div_self (by linarith)]
 
-/-- The unit kernel row of `v` vanishes outside the ball of radius `R`. -/
+/-- The unit kernel row of `v` vanishes outside the ball of radius `R`.
+@isnad1 id=eq.1h6v.s5.899ef38602ad from=translated src=- shape=f7a06d1a vocab=7cdac91a
+-/
 theorem unitKernel_eq_zero_of_notMem_ball {q : ℝ} {R : ℕ} {v z : W} (h : z ∉ ball H v R) :
     unitKernel H q R v z = 0 := by
   rw [unitKernel, kernel_eq_zero_of_notMem_ball H h, zero_div]
 
-/-- The unit kernel is nonnegative for a nonnegative ratio. -/
+/-- The unit kernel is nonnegative for a nonnegative ratio.
+@isnad1 id=le.1h6v.s5.b45bba9d1c10 from=translated src=- shape=90c49730 vocab=fd9ed951
+-/
 theorem unitKernel_nonneg {q : ℝ} (hq : 0 ≤ q) (R : ℕ) (v z : W) :
     0 ≤ unitKernel H q R v z :=
   div_nonneg (kernel_nonneg H hq R v z) (Real.sqrt_nonneg _)
@@ -287,7 +333,9 @@ private theorem card_sphere_succ_le_sum (v : W) (d : ℕ) :
     Finset.mem_filter.mpr ⟨(H.mem_neighborFinset w z).mpr hwz, (mem_sphere H).mp hz⟩⟩
 
 /-- In maximum degree `D`, the sphere of radius `d + 1` has at most
-`D * (D - 1) ^ d` vertices. -/
+`D * (D - 1) ^ d` vertices.
+@isnad1 id=le.1h5v.s6.bb5807f41811 from=translated src=- shape=91d43d13 vocab=b1f6ea25
+-/
 theorem card_sphere_succ_le_degree {D : ℕ} (degree : ∀ v, H.degree v ≤ D) (v : W) (d : ℕ) :
     (sphere H v (d + 1)).card ≤ D * (D - 1) ^ d := by
   induction d with
@@ -304,10 +352,15 @@ theorem card_sphere_succ_le_degree {D : ℕ} (degree : ∀ v, H.degree v ≤ D) 
       _ ≤ (D - 1) * (D * (D - 1) ^ d) := Nat.mul_le_mul_left _ ih
       _ = D * (D - 1) ^ (d + 1) := by ring
 
+/--
+@isnad1 id=le.1h4v.s6.dccf87975dfe from=translated src=- shape=a8007ffc vocab=e1a8bacc
+-/
 theorem card_sphere_succ_le (degree : ∀ v, H.degree v ≤ 3) (v : W) (d : ℕ) :
     (sphere H v (d + 1)).card ≤ 3 * 2 ^ d := card_sphere_succ_le_degree H degree v d
 
-/-- Sphere growth in any fixed maximum degree. -/
+/-- Sphere growth in any fixed maximum degree.
+@isnad1 id=le.2h5v.s6.ea65817882c1 from=translated src=- shape=5521a9b0 vocab=2dfdb64c
+-/
 theorem card_sphere_le_degree {D : ℕ} (hD : 2 ≤ D) (degree : ∀ v, H.degree v ≤ D)
     (v : W) (d : ℕ) : (sphere H v d).card ≤ D * (D - 1) ^ d := by
   cases d with
@@ -317,7 +370,9 @@ theorem card_sphere_le_degree {D : ℕ} (hD : 2 ≤ D) (degree : ∀ v, H.degree
     rw [pow_succ, ← mul_assoc]
     exact Nat.le_mul_of_pos_right _ (by lia)
 
-/-- A convenient locality bound; sharp ball growth is unnecessary for concentration. -/
+/-- A convenient locality bound; sharp ball growth is unnecessary for concentration.
+@isnad1 id=le.2h5v.s6.1914da1bc619 from=translated src=- shape=7a3a1f96 vocab=5ee6b7d9
+-/
 theorem card_ball_le_degree {D : ℕ} (hD : 2 ≤ D) (degree : ∀ v, H.degree v ≤ D)
     (v : W) (r : ℕ) : (ball H v r).card ≤ D ^ (r + 1) := by
   induction r with
@@ -344,7 +399,9 @@ theorem card_ball_le_degree {D : ℕ} (hD : 2 ≤ D) (degree : ∀ v, H.degree v
     nlinarith
 
 /-- In a graph of maximum degree three, the sphere of radius `d` has at most
-`3 * 2 ^ d` vertices. -/
+`3 * 2 ^ d` vertices.
+@isnad1 id=le.1h4v.s6.b40ebc00ed0f from=translated src=- shape=c5a9260d vocab=a77384e7
+-/
 theorem card_sphere_le (degree : ∀ v, H.degree v ≤ 3) (v : W) (d : ℕ) :
     (sphere H v d).card ≤ 3 * 2 ^ d := by
   cases d with
@@ -373,7 +430,9 @@ private theorem card_ball_add_le (degree : ∀ v, H.degree v ≤ 3) (v : W) (r :
     omega
 
 /-- In a graph of maximum degree three, the ball of radius `r` has at most
-`3 * 2 ^ (r + 1)` vertices. -/
+`3 * 2 ^ (r + 1)` vertices.
+@isnad1 id=le.1h4v.s6.2a3328268ef9 from=translated src=- shape=cdde4844 vocab=8576e103
+-/
 theorem card_ball_le (degree : ∀ v, H.degree v ≤ 3) (v : W) (r : ℕ) :
     (ball H v r).card ≤ 3 * 2 ^ (r + 1) := by
   have := card_ball_add_le H degree v r
@@ -381,7 +440,9 @@ theorem card_ball_le (degree : ∀ v, H.degree v ≤ 3) (v : W) (r : ℕ) :
 
 /-- **Pointwise correlation inequality, summed.** For adjacent vertices the kernel rows have
 inner product at least `κ` times the mean of their squared norms, up to the truncation
-boundary, where `κ = 2q/(1+q^2)`. -/
+boundary, where `κ = 2q/(1+q^2)`.
+@isnad1 id=le.3h7v.s8.a2f7aa85bd3b from=translated src=- shape=6dc03546 vocab=0822b4a3
+-/
 theorem sum_kernel_mul_ge_degree {D : ℕ} (hD : 2 ≤ D) (degree : ∀ v, H.degree v ≤ D)
     (q : ℝ) (R : ℕ) {u v : W}
     (huv : H.Adj u v) :
@@ -411,6 +472,9 @@ theorem sum_kernel_mul_ge_degree {D : ℕ} (hD : 2 ≤ D) (degree : ∀ v, H.deg
     nlinarith [mul_le_mul_of_nonneg_left (add_le_add hu hv) hP]
   linarith
 
+/--
+@isnad1 id=le.2h6v.s8.ebd7d218ef5c from=translated src=- shape=0866efa1 vocab=2afc771a
+-/
 theorem sum_kernel_mul_ge (degree : ∀ v, H.degree v ≤ 3) (q : ℝ) (R : ℕ) {u v : W}
     (huv : H.Adj u v) :
     2 * q / (1 + q ^ 2) * ((∑ z, kernel H q R u z ^ 2) + ∑ z, kernel H q R v z ^ 2) / 2 -
@@ -418,7 +482,9 @@ theorem sum_kernel_mul_ge (degree : ∀ v, H.degree v ≤ 3) (q : ℝ) (R : ℕ)
   simpa using sum_kernel_mul_ge_degree H (by norm_num : 2 ≤ 3) degree q R huv
 
 /-- **Correlation of adjacent rows.** For a nonnegative ratio `q`, the unit kernel rows of
-adjacent vertices have inner product at least `2q/(1+q^2) - D ((D-1)q^2)^R`. -/
+adjacent vertices have inner product at least `2q/(1+q^2) - D ((D-1)q^2)^R`.
+@isnad1 id=le.4h7v.s7.773ff22d916c from=translated src=- shape=640c2f55 vocab=f0f5ceec
+-/
 theorem sum_unitKernel_mul_ge_degree {D : ℕ} (hD : 2 ≤ D) (degree : ∀ v, H.degree v ≤ D)
     {q : ℝ} (hq0 : 0 ≤ q) (R : ℕ)
     {u v : W} (huv : H.Adj u v) :
@@ -443,6 +509,9 @@ theorem sum_unitKernel_mul_ge_degree {D : ℕ} (hD : 2 ≤ D) (degree : ∀ v, H
   rw [le_div_iff₀ (by positivity)]
   nlinarith [mul_le_mul_of_nonneg_left hamgm hκ, mul_le_mul_of_nonneg_left h1 he]
 
+/--
+@isnad1 id=le.3h6v.s7.a139294cfe4b from=translated src=- shape=c51f6859 vocab=4e1ab4af
+-/
 theorem sum_unitKernel_mul_ge (degree : ∀ v, H.degree v ≤ 3) {q : ℝ} (hq0 : 0 ≤ q) (R : ℕ)
     {u v : W} (huv : H.Adj u v) :
     2 * q / (1 + q ^ 2) - 3 * (2 * q ^ 2) ^ R ≤

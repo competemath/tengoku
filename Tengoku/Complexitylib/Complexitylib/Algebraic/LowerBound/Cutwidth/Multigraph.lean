@@ -57,6 +57,9 @@ def Loopless : Prop :=
 def Adj (u v : V) : Prop :=
   ∃ e, (G.fst e = u ∧ G.snd e = v) ∨ (G.fst e = v ∧ G.snd e = u)
 
+/--
+@isnad1 id=adj.1h5v.s4.dedc12388976 from=translated src=- shape=16f4ca43 vocab=2dd3164e
+-/
 theorem Adj.symm {G : Multigraph V E} {u v : V} (h : G.Adj u v) : G.Adj v u := by
   obtain ⟨e, h | h⟩ := h
   · exact ⟨e, Or.inr h⟩
@@ -66,14 +69,18 @@ theorem Adj.symm {G : Multigraph V E} {u v : V} (h : G.Adj u v) : G.Adj v u := b
 def Connected : Prop :=
   ∀ u v, Relation.ReflTransGen G.Adj u v
 
-/-- Reachability along walks is symmetric. -/
+/-- Reachability along walks is symmetric.
+@isnad1 id=refltran.1h5v.s4.faf8c03e0198 from=translated src=- shape=d22a52d8 vocab=7c7e8519
+-/
 theorem reflTransGen_adj_symm {G : Multigraph V E} {u v : V}
     (h : Relation.ReflTransGen G.Adj u v) : Relation.ReflTransGen G.Adj v u := by
   induction h with
   | refl => exact Relation.ReflTransGen.refl
   | tail _ step ih => exact Relation.ReflTransGen.head step.symm ih
 
-/-- A multigraph in which every vertex reaches a common vertex is connected. -/
+/-- A multigraph in which every vertex reaches a common vertex is connected.
+@isnad1 id=connecte.1h4v.s4.180b328ce7d6 from=translated src=- shape=472bf95f vocab=7cf0f5c1
+-/
 theorem connected_of_forall_reflTransGen {G : Multigraph V E} (root : V)
     (h : ∀ v, Relation.ReflTransGen G.Adj v root) : G.Connected :=
   fun u v => (h u).trans (reflTransGen_adj_symm (h v))
@@ -86,6 +93,9 @@ variable [Fintype E]
 noncomputable def edgesAt (v : V) : Finset E :=
   Finset.univ.filter fun e => G.Incident v e
 
+/--
+@isnad1 id=iff.0h5v.s5.cfcdc81d2378 from=translated src=- shape=65e9cb56 vocab=3c46bc1a
+-/
 theorem mem_edgesAt {v : V} {e : E} : e ∈ G.edgesAt v ↔ G.Incident v e := by
   simp [edgesAt]
 
@@ -101,19 +111,30 @@ def MaxDegreeLE (d : Nat) : Prop :=
 noncomputable def cut (L : Finset V) : Finset E :=
   Finset.univ.filter fun e => ¬ (G.fst e ∈ L ↔ G.snd e ∈ L)
 
+/--
+@isnad1 id=iff.0h5v.s6.e1862d7167f9 from=translated src=- shape=cdbb3d64 vocab=82bfac22
+-/
 theorem mem_cut {L : Finset V} {e : E} :
     e ∈ G.cut L ↔ ¬ (G.fst e ∈ L ↔ G.snd e ∈ L) := by
   simp [cut]
 
+/--
+@isnad1 id=eq.0h3v.s4.272561b1d65a from=translated src=- shape=5e33f431 vocab=1c803068
+-/
 @[simp] theorem cut_empty : G.cut ∅ = ∅ := by
   ext e
   simp [mem_cut]
 
+/--
+@isnad1 id=eq.0h3v.s4.a75c8c8d1b34 from=translated src=- shape=57d6d156 vocab=f872127f
+-/
 @[simp] theorem cut_univ [Fintype V] : G.cut Finset.univ = ∅ := by
   ext e
   simp [mem_cut]
 
-/-- An edge in a cut is incident to a vertex in the set and to one outside it. -/
+/-- An edge in a cut is incident to a vertex in the set and to one outside it.
+@isnad1 id=or.1h5v.s6.54959c3b1c69 from=translated src=- shape=7de7c393 vocab=82bfac22
+-/
 theorem exists_mem_of_mem_cut {L : Finset V} {e : E} (h : e ∈ G.cut L) :
     (G.fst e ∈ L ∧ G.snd e ∉ L) ∨ (G.fst e ∉ L ∧ G.snd e ∈ L) := by
   rw [mem_cut] at h

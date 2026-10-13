@@ -55,7 +55,9 @@ namespace Complexity
     `5`-cycle `c` of `S₅`, there is a width-`5` permutation branching program that
     represents `φ` through `c` — evaluating to `c` when `φ` is true and to the
     identity otherwise. Proved by structural recursion on `φ` using the bridged
-    Barrington moves. -/
+    Barrington moves.
+@isnad1 id=ex.2h2v.s6.adeb0c1c3056 from=translated src=- shape=10c9e0dd vocab=dbab9e56
+-/
 theorem Computes_formula (φ : BoolFormula) :
     ∀ (c : Perm (Fin 5)), c.IsCycle → orderOf c = 5 →
       ∃ r : BP 5, BP.Computes c r (fun α => BoolFormula.eval α φ) := by
@@ -96,7 +98,9 @@ theorem Computes_formula (φ : BoolFormula) :
     computed by a width-`5` permutation branching program: there is a program `r`
     and a nonidentity permutation `σ ∈ S₅` such that `r` evaluates to `σ` exactly
     when `φ` is true and to the identity otherwise. (The concrete witness cycle is
-    `finRotate 5`.) -/
+    `finRotate 5`.)
+@isnad1 id=ex.0h1v.s7.b67bacd36bb0 from=translated src=- shape=59e22e86 vocab=8f900b04
+-/
 theorem barrington_representation (φ : BoolFormula) :
     ∃ (r : BP 5) (σ : Perm (Fin 5)), σ ≠ 1 ∧
       ∀ α, BP.eval α r = if BoolFormula.eval α φ then σ else 1 := by
@@ -111,7 +115,9 @@ theorem barrington_representation (φ : BoolFormula) :
     when `φ` is true. Reading `(BP.eval α r) x ≠ x` therefore computes `φ`,
     turning the permutation-valued representation into a genuine Boolean output.
     (The point `x` is any point the representing cycle `σ` moves; `σ ≠ 1`
-    guarantees one exists.) -/
+    guarantees one exists.)
+@isnad1 id=ex.0h1v.s6.a16bf8d9f7da from=translated src=- shape=eaa2cad6 vocab=c039e112
+-/
 theorem barrington_boolean (φ : BoolFormula) :
     ∃ (r : BP 5) (x : Fin 5), ∀ α, ((BP.eval α r) x ≠ x ↔ BoolFormula.eval α φ = true) := by
   obtain ⟨r, σ, hσ1, hr⟩ := barrington_representation φ
