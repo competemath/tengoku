@@ -12,7 +12,17 @@ from pathlib import Path
 
 WORKFLOWS = Path(__file__).resolve().parents[3] / ".github" / "workflows"
 HOLD_THE_TREE = ("build.yml", "queue-gate.yml", "isnad-tag.yml", "independent-check.yml")
-FREED = ("/usr/share/dotnet", "/usr/local/lib/android", "/opt/ghc", "/usr/local/.ghcup", "/opt/hostedtoolcache", "/usr/local/share/boost", "/usr/share/swift", "/usr/lib/jvm", "/usr/share/miniconda")
+FREED = (
+    "/usr/share/dotnet",
+    "/usr/local/lib/android",
+    "/opt/ghc",
+    "/usr/local/.ghcup",
+    "/opt/hostedtoolcache",
+    "/usr/local/share/boost",
+    "/usr/share/swift",
+    "/usr/lib/jvm",
+    "/usr/share/miniconda",
+)
 NEEDED = ("/usr/bin", "/usr/lib/x86_64-linux-gnu", "/usr/local/bin", "/home/runner", "$HOME", "/usr/sbin", "/etc", "/var/lib")
 
 
