@@ -43,7 +43,9 @@ jobs:
     steps:
       - name: Free disk (the export of the whole tree is several GB)
         run: |
-          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /usr/local/.ghcup /opt/hostedtoolcache/CodeQL /usr/local/share/boost /usr/share/swift
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /usr/local/.ghcup /opt/hostedtoolcache /usr/local/share/boost /usr/share/swift /usr/lib/jvm /usr/share/miniconda /usr/local/share/powershell /usr/local/lib/node_modules /opt/az /usr/local/graalvm /usr/local/share/chromium
+          sudo docker image prune --all --force >/dev/null 2>&1 || true
+          sudo swapoff -a >/dev/null 2>&1 || true; sudo rm -f /mnt/swapfile /swapfile || true
           df -h /
       - name: The commit, in full (the run title names it, and a release matches the title exactly)
         env: { WANT: "${{ inputs.commit }}" }
