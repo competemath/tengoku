@@ -1,0 +1,40 @@
+/-
+Copyright (c) 2026 Jukka Suomela. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Jukka Suomela
+-/
+module
+
+public import Tengoku.LeanPool.LeanPool.TwoColoringOneRound.LowerBound.N1000000BCompressionComputeS0IntGoal
+import Tengoku.LeanPool.LeanPool.TwoColoringOneRound.LowerBound.N1000000BCompressionComputeS0IntBlock0
+import Tengoku.LeanPool.LeanPool.TwoColoringOneRound.LowerBound.N1000000BCompressionComputeS0IntBlock1
+import Tengoku.LeanPool.LeanPool.TwoColoringOneRound.LowerBound.N1000000BCompressionComputeS0IntBlock2
+import Tengoku.LeanPool.LeanPool.TwoColoringOneRound.LowerBound.N1000000BCompressionComputeS0IntBlock3
+import Tengoku.LeanPool.LeanPool.TwoColoringOneRound.LowerBound.N1000000BCompressionComputeS0IntBlock4
+import Tengoku.LeanPool.LeanPool.TwoColoringOneRound.LowerBound.N1000000BCompressionComputeS0IntBlock5
+import Tengoku.LeanPool.LeanPool.TwoColoringOneRound.LowerBound.N1000000BCompressionComputeS0IntBlock6
+public import Tengoku
+
+/-!
+# LeanPool.TwoColoringOneRound.LowerBound.N1000000BCompressionComputeS0Int
+-/
+
+@[expose] public section
+
+namespace Distributed2Coloring.LowerBound
+
+namespace N1000000BCompressionCompute
+
+theorem s0IntGoal_all (r : Block) (p q : Fin 3) : S0IntGoal r p q := by
+  fin_cases r <;> first
+    | simpa using (s0IntGoal_block0 (p := p) (q := q))
+    | simpa using (s0IntGoal_block1 (p := p) (q := q))
+    | simpa using (s0IntGoal_block2 (p := p) (q := q))
+    | simpa using (s0IntGoal_block3 (p := p) (q := q))
+    | simpa using (s0IntGoal_block4 (p := p) (q := q))
+    | simpa using (s0IntGoal_block5 (p := p) (q := q))
+    | simpa using (s0IntGoal_block6 (p := p) (q := q))
+
+end N1000000BCompressionCompute
+
+end Distributed2Coloring.LowerBound
