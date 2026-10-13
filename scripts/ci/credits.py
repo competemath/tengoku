@@ -86,6 +86,12 @@ def moved_in_markdown(path: str, text: str) -> bool:
     return True
 
 
+def terminator_split(text: str) -> str:
+    """The line without a docstring terminator at its end (`... credit. -/` is `... credit.`), or "" when it does not end with one."""
+    core = text.rstrip()
+    return core[:-2].rstrip() if core.endswith("-/") and len(core) > 2 else ""
+
+
 hits = []
 for st, p in changed_files(base, head):
     if st == "A" or match(p, EXEMPT) or (st == "D" and deregistered(base, p)):
@@ -94,8 +100,18 @@ for st, p in changed_files(base, head):
         continue  # a deleted module, or the data of a whole library that is razed
     rx = CREDIT_MD if p.endswith(".md") else CREDIT
     kept = moved_lines(p) if st == "D" else set()
+    # A docstring that gets a line added at its end (the isnad tagger's `@isnad1 ...`) loses its ` -/` on the line that carried it; if that line carries a marker (an ordinary "credit" in
+    # the sentence, tengoku#539), it counts as changed, though its text is still there. A line whose text survives VERBATIM as a gained line, with only the terminator gone, has lost nothing.
+    # Per occurrence, as the Markdown move above: one gained line covers one removal.
+    gained: Counter[str] = Counter()
+    if p.endswith(".lean") and st != "D":
+        gained.update(t.rstrip() for _, t in added_lines(base, head, p))
     for no, text in removed_lines(base, head, p):
         if not rx.search(text) or text in kept or moved_in_markdown(p, text):
+            continue
+        core = terminator_split(text)
+        if core and gained[core] > 0:
+            gained[core] -= 1
             continue
         if raze and re.fullmatch(r"data/intake/[^/]+/manifest\.jsonl", p) and razed_record(text):
             continue
