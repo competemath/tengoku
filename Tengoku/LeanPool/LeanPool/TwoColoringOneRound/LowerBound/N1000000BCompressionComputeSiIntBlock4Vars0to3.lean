@@ -1,0 +1,47 @@
+/-
+Copyright (c) 2026 Jukka Suomela. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Jukka Suomela
+-/
+module
+
+public import Tengoku.LeanPool.LeanPool.TwoColoringOneRound.LowerBound.N1000000BCompressionComputeSiIntGoal
+public import Tengoku
+
+/-!
+# LeanPool.TwoColoringOneRound.LowerBound.N1000000BCompressionComputeSiIntBlock4Vars0to3
+-/
+
+@[expose] public section
+
+namespace Distributed2Coloring.LowerBound
+
+namespace N1000000BCompressionCompute
+
+-- Kernel-checked computation for the 9 entries of `SiIntGoal` at block `4` and variable `0`.
+theorem siIntGoal_block4_var0 :
+    ∀ p q : Fin 3,
+      SiIntGoal (r := (⟨4, by decide⟩ : Block)) (i := (⟨0, by decide⟩ : Var)) p q := by
+  decide +kernel
+
+-- Kernel-checked computation for the 9 entries of `SiIntGoal` at block `4` and variable `1`.
+theorem siIntGoal_block4_var1 :
+    ∀ p q : Fin 3,
+      SiIntGoal (r := (⟨4, by decide⟩ : Block)) (i := (⟨1, by decide⟩ : Var)) p q := by
+  decide +kernel
+
+-- Kernel-checked computation for the 9 entries of `SiIntGoal` at block `4` and variable `2`.
+theorem siIntGoal_block4_var2 :
+    ∀ p q : Fin 3,
+      SiIntGoal (r := (⟨4, by decide⟩ : Block)) (i := (⟨2, by decide⟩ : Var)) p q := by
+  decide +kernel
+
+-- Kernel-checked computation for the 9 entries of `SiIntGoal` at block `4` and variable `3`.
+theorem siIntGoal_block4_var3 :
+    ∀ p q : Fin 3,
+      SiIntGoal (r := (⟨4, by decide⟩ : Block)) (i := (⟨3, by decide⟩ : Var)) p q := by
+  decide +kernel
+
+end N1000000BCompressionCompute
+
+end Distributed2Coloring.LowerBound
