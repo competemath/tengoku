@@ -77,11 +77,16 @@ noncomputable def uniformSignPMF (n : ℕ) : PMF (Fin n → Bool) :=
             rfl
         _ = 1 := ENNReal.mul_inv_cancel h_two_pow_ne_zero h_two_pow_ne_top)
 
+/--
+@isnad1 id=eq.0h2v.s6.6c2eeae6762c from=translated src=- shape=5648c62d vocab=86bb6c42
+-/
 @[simp] lemma uniformSignPMF_apply (σ : Fin n → Bool) :
     uniformSignPMF n σ = ((2 : ℝ≥0∞) ^ n)⁻¹ := rfl
 
 /-- The mass of every sign vector in `uniformSignPMF` converts cleanly to
-the real-valued reciprocal `(2^n : ℝ)⁻¹`. -/
+the real-valued reciprocal `(2^n : ℝ)⁻¹`.
+@isnad1 id=eq.0h2v.s5.19a2027b1c84 from=translated src=- shape=e6e6957c vocab=e9b627bf
+-/
 lemma uniformSignPMF_apply_toReal (σ : Fin n → Bool) :
     (uniformSignPMF n σ).toReal = ((2 : ℝ) ^ n)⁻¹ := by
   rw [uniformSignPMF_apply, ENNReal.toReal_inv, ENNReal.toReal_pow]
@@ -91,7 +96,9 @@ lemma uniformSignPMF_apply_toReal (σ : Fin n → Bool) :
 
 /-- The discrete uniform average over the sign vectors equals the
 expectation of `f` under `uniformSignPMF`. The averaging factor
-`(2^n : ℝ)⁻¹` is the real-valued mass of each sign vector. -/
+`(2^n : ℝ)⁻¹` is the real-valued mass of each sign vector.
+@isnad1 id=eq.0h2v.s7.ee9dac5b48b1 from=translated src=- shape=48a40833 vocab=91f341a5
+-/
 theorem uniform_average_eq_finset_sum (f : (Fin n → Bool) → ℝ) :
     ((2 : ℝ) ^ n)⁻¹ * ∑ σ : Fin n → Bool, f σ
       = ∫ σ, f σ ∂(uniformSignPMF n).toMeasure := by
@@ -127,7 +134,9 @@ The combinatorial definition of `empiricalRademacherComplexity` from
 `FormalSLT.Rademacher.FiniteSample` equals the Bochner
 expectation of the supremum-of-signed-empirical-means functional under
 the uniform distribution on sign vectors. This is the recognizable
-"expectation form" used throughout statistical learning theory. -/
+"expectation form" used throughout statistical learning theory.
+@isnad1 id=eq.0h5v.s6.2835e429b5b9 from=translated src=- shape=2f9f5796 vocab=f39d0947
+-/
 theorem empiricalRademacherComplexity_eq_integral
     [Fintype ι] [Nonempty ι]
     (ℓ : ι → Z → ℝ) (z : Fin n → Z) :

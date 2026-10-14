@@ -44,7 +44,9 @@ variable {V : Type*} [Fintype V] {G : SimpleGraph V} [DecidableEq V] [DecidableR
 
 omit [Fintype V] [DecidableEq V] [DecidableRel G.Adj] in
 /-- **Penultimate of a length-`1` walk is its start.**  A one-edge walk `x → w` has penultimate
-vertex `getVert 0 = x`. -/
+vertex `getVert 0 = x`.
+@isnad1 id=eq.1h5v.s5.04187b2301a9 from=translated src=- shape=f299d032 vocab=675436c4
+-/
 theorem penultimate_of_length_one {x w : V} {p : G.Walk x w} (hp : p.length = 1) :
     p.penultimate = x := by
   change p.getVert (p.length - 1) = x
@@ -55,7 +57,9 @@ theorem penultimate_of_length_one {x w : V} {p : G.Walk x w} (hp : p.length = 1)
 
 /-- **Sigma-to-per-start expansion.**  A weighted marginal filtered by a predicate `Q` of the
 `(end, penultimate)` pair equals the sum over starts `x` of the per-start filtered weight.  This is
-`Finset.sum_sigma` for the `nbAll = univ.sigma nbWalksFrom` decomposition. -/
+`Finset.sum_sigma` for the `nbAll = univ.sigma nbWalksFrom` decomposition.
+@isnad1 id=eq.0h4v.s9.c6f28332e117 from=translated src=- shape=27d923b1 vocab=4633ed5b
+-/
 theorem sum_nbAll_filter (k : ℕ) (Q : V → V → Prop) [DecidableRel Q] :
     ∑ t ∈ (nbAll (G := G) k).filter (fun t => Q t.2.1 t.2.2.penultimate), nbWeight t.2 =
       ∑ x : V, ∑ s ∈ (nbWalksFrom G x k).filter (fun s => Q s.1 s.2.penultimate), nbWeight s := by
@@ -64,7 +68,9 @@ theorem sum_nbAll_filter (k : ℕ) (Q : V → V → Prop) [DecidableRel Q] :
   rw [Finset.sum_filter]
 
 /-- The last-edge marginal `nbLastWeight k u v`, written as a sum over starts of the per-start
-weight of length-`k` walks ending at `v` with penultimate `u`. -/
+weight of length-`k` walks ending at `v` with penultimate `u`.
+@isnad1 id=eq.0h5v.s7.ed9244ffee9d from=translated src=- shape=9ed1273f vocab=0661e9bc
+-/
 theorem nbLastWeight_eq_sum (k : ℕ) (u v : V) :
     nbLastWeight (G := G) k u v =
       ∑ x : V, ∑ s ∈ (nbWalksFrom G x k).filter (fun s => s.1 = v ∧ s.2.penultimate = u),
@@ -73,7 +79,9 @@ theorem nbLastWeight_eq_sum (k : ℕ) (u v : V) :
   exact sum_nbAll_filter k (fun a b => a = v ∧ b = u)
 
 /-- The prefix (source) sum of the extension bijection, written as a sum over starts.  These are the
-length-`k` walks ending at `u` whose penultimate avoids `v` (so they extend to `v`). -/
+length-`k` walks ending at `u` whose penultimate avoids `v` (so they extend to `v`).
+@isnad1 id=eq.0h5v.s9.6527b1635e81 from=translated src=- shape=ebb58423 vocab=4633ed5b
+-/
 theorem sum_R_eq_sum (k : ℕ) (u v : V) :
     ∑ t ∈ (nbAll (G := G) k).filter (fun t => t.2.1 = u ∧ t.2.2.penultimate ≠ v), nbWeight t.2 =
       ∑ x : V, ∑ s ∈ (nbWalksFrom G x k).filter (fun s => s.1 = u ∧ s.2.penultimate ≠ v),
@@ -86,7 +94,9 @@ theorem sum_R_eq_sum (k : ℕ) (u v : V) :
 weight it contributes to length-`(k+1)` walks with last edge `(u, v)` is `nbWeight s' · (deg u
 −1)⁻¹`
 when `s'` ends at `u` and its penultimate avoids `v` (so the extension to `v` is non-backtracking),
-and `0` otherwise.  This is the mass-conservation identity behind `xP = x`. -/
+and `0` otherwise.  This is the mass-conservation identity behind `xP = x`.
+@isnad1 id=eq.3h7v.s8.23e8c8ca114d from=translated src=- shape=8fe589e4 vocab=f14aba3f
+-/
 theorem sum_nbExtend_ite {u v : V} (huv : G.Adj u v) {x : V} {k : ℕ} (hk : 1 ≤ k)
     {s' : Σ w : V, G.Walk x w} (hs' : s' ∈ nbWalksFrom G x k) :
     (∑ s ∈ nbExtend G x s', (if s.1 = v ∧ s.2.penultimate = u then nbWeight s else 0)) =
@@ -138,7 +148,9 @@ theorem sum_nbExtend_ite {u v : V} (huv : G.Adj u v) {x : V} {k : ℕ} (hk : 1 �
 /-- **Per-start one-step recursion.**  For a fixed start `x` and `k ≥ 1`, the per-start weight of
 length-`(k+1)` walks with last edge `(u, v)` is the per-start prefix mass (walks ending at `u` whose
 penultimate avoids `v`) scaled by `(deg u − 1)⁻¹`.  Assembled from the `biUnion` decomposition and
-`sum_nbExtend_ite`. -/
+`sum_nbExtend_ite`.
+@isnad1 id=eq.2h6v.s9.b0c24d4f6e7d from=translated src=- shape=f1513e0b vocab=39aeab76
+-/
 theorem innerLast_succ {u v : V} (huv : G.Adj u v) (x : V) {k : ℕ} (hk : 1 ≤ k) :
     ∑ s ∈ (nbWalksFrom G x (k + 1)).filter (fun s => s.1 = v ∧ s.2.penultimate = u), nbWeight s =
       (∑ s' ∈ (nbWalksFrom G x k).filter (fun s' => s'.1 = u ∧ s'.2.penultimate ≠ v), nbWeight s')
@@ -162,7 +174,9 @@ theorem innerLast_succ {u v : V} (huv : G.Adj u v) (x : V) {k : ℕ} (hk : 1 ≤
 
 /-- **Refolding the prefix mass into last-edge marginals.**  The prefix sum (length-`k` walks ending
 at `u`, penultimate avoiding `v`) is the sum over admissible previous vertices `w ∈ N(u) \ {v}` of
-the last-edge marginals `nbLastWeight k w u`.  A fiberwise partition on the penultimate. -/
+the last-edge marginals `nbLastWeight k w u`.  A fiberwise partition on the penultimate.
+@isnad1 id=eq.2h5v.s9.e2ae4640f4d4 from=translated src=- shape=6d842180 vocab=a701fe5c
+-/
 theorem sum_R_eq_sum_lastWeight {u v : V} (huv : G.Adj u v) {k : ℕ} (hk : 1 ≤ k) :
     ∑ t ∈ (nbAll (G := G) k).filter (fun t => t.2.1 = u ∧ t.2.2.penultimate ≠ v), nbWeight t.2 =
       ∑ w ∈ G.neighborFinset u \ {v}, nbLastWeight (G := G) k w u := by
@@ -190,7 +204,9 @@ theorem sum_R_eq_sum_lastWeight {u v : V} (huv : G.Adj u v) {k : ℕ} (hk : 1 �
 /-- **The exact one-step recursion** (the engine of W3).  For `k ≥ 1` and `G.Adj u v`, the last-edge
 marginal at step `k+1` is the sum of the previous-step last-edge marginals over the admissible
 predecessors `w ∈ N(u) \ {v}`, scaled by `(deg u − 1)⁻¹` — the concat step redistributes each
-prefix's mass equally to its `deg u − 1` extensions. -/
+prefix's mass equally to its `deg u − 1` extensions.
+@isnad1 id=eq.2h5v.s7.71f274b87087 from=translated src=- shape=2bb5e886 vocab=2761becb
+-/
 theorem nbLastWeight_succ_eq {u v : V} (huv : G.Adj u v) {k : ℕ} (hk : 1 ≤ k) :
     nbLastWeight (G := G) (k + 1) u v =
       (∑ w ∈ G.neighborFinset u \ {v}, nbLastWeight (G := G) k w u) * ((G.degree u : ℝ) - 1)⁻¹ := by
@@ -215,7 +231,9 @@ total weight of the length-`k` non-backtracking walks whose last directed edge i
 exactly
 `1`.  The weighted last-edge marginal is *stationary*.  Proof by induction on `k`: the base case is
 the single edge `u → v` (weight `1`); the step uses `nbLastWeight_succ_eq`, the induction hypothesis
-over the `deg u − 1` predecessors, and `mul_inv_cancel₀` with `deg u − 1 ≠ 0`. -/
+over the `deg u − 1` predecessors, and `mul_inv_cancel₀` with `deg u − 1 ≠ 0`.
+@isnad1 id=eq.3h5v.s6.baa9aeec922f from=translated src=- shape=24d4c268 vocab=82257740
+-/
 theorem nbLastWeight_eq_one (hδ2 : ∀ w, 2 ≤ G.degree w) {k : ℕ} (hk : 1 ≤ k) :
     ∀ {u v : V}, G.Adj u v → nbLastWeight (G := G) k u v = 1 := by
   induction k, hk using Nat.le_induction with
@@ -276,7 +294,9 @@ theorem nbLastWeight_eq_one (hδ2 : ∀ w, 2 ≤ G.degree w) {k : ℕ} (hk : 1 �
 
 /-- **The end marginal is the sum of the last-edge marginals over the neighbours.**  A fiberwise
 partition of the length-`k` walks ending at `v` by their penultimate vertex (which is always a
-neighbour of `v`). -/
+neighbour of `v`).
+@isnad1 id=eq.1h4v.s6.fc1432bee170 from=translated src=- shape=482aad2f vocab=5c007739
+-/
 theorem nbEndWeight_eq_sum_lastWeight {v : V} {k : ℕ} (hk : 1 ≤ k) :
     nbEndWeight (G := G) k v = ∑ u ∈ G.neighborFinset v, nbLastWeight (G := G) k u v := by
   have hmaps : ∀ t ∈ (nbAll (G := G) k).filter (fun t => t.2.1 = v),
@@ -296,7 +316,9 @@ theorem nbEndWeight_eq_sum_lastWeight {v : V} {k : ℕ} (hk : 1 ≤ k) :
 /-- **W4.**  Under `δ ≥ 2`, for `k ≥ 1` the total weight of the length-`k` non-backtracking walks
 ending at `v` is exactly `deg v` — the exact degree-bias (unlike the raw end-count, which obeys no
 usable law).  Each summand of the neighbour partition is `1` by W3, so the sum is `|N(v)| = deg
-v`. -/
+v`.
+@isnad1 id=eq.2h4v.s6.2d431d2e1f24 from=translated src=- shape=133549cb vocab=92b19948
+-/
 theorem nbEndWeight_eq_degree (hδ2 : ∀ w, 2 ≤ G.degree w) {v : V} {k : ℕ} (hk : 1 ≤ k) :
     nbEndWeight (G := G) k v = (G.degree v : ℝ) := by
   rw [nbEndWeight_eq_sum_lastWeight hk]
@@ -311,7 +333,9 @@ theorem nbEndWeight_eq_degree (hδ2 : ∀ w, 2 ≤ G.degree w) {v : V} {k : ℕ}
 
 /-- **W5.**  Under `δ ≥ 2`, for `k ≥ 1` the total weight of all length-`k` non-backtracking walks is
 exactly `D = ∑ v, deg v` — the constant the weighted AM–GM (W7) normalizes against (its exponent
-collapse).  Sum the end marginals (W4) over all endpoints. -/
+collapse).  Sum the end marginals (W4) over all endpoints.
+@isnad1 id=eq.2h3v.s6.23b7fecf733d from=translated src=- shape=3254832f vocab=68dfbbad
+-/
 theorem nbWeightTotal_eq (hδ2 : ∀ w, 2 ≤ G.degree w) {k : ℕ} (hk : 1 ≤ k) :
     nbWeightTotal (G := G) k = ∑ v : V, (G.degree v : ℝ) := by
   have hmaps : ∀ t ∈ nbAll (G := G) k, t.2.1 ∈ (univ : Finset V) := fun _ _ => mem_univ _

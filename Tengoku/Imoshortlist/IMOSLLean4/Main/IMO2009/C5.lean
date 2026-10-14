@@ -71,7 +71,9 @@ def applyAMove [Preorder G] [AddLeftMono G] {r : G} {hr : r ≥ 0}
   board i := X.board i + A.y i
   board_nonneg i := add_nonneg (X.board_nonneg i) (A.y_nonneg i)
 
-/-- Player A's move adds to each number by at most `r`. -/
+/-- Player A's move adds to each number by at most `r`.
+@isnad1 id=le.1h4v.s6.db7dc77f9267 from=translated src=- shape=f325c612 vocab=277343ad
+-/
 theorem AMove.y_le_r [PartialOrder G] [AddLeftMono G] {r : G} {hr : r ≥ 0}
     (A : AMove r hr) (i) : A.y i ≤ r :=
   calc A.y i
@@ -97,29 +99,39 @@ def applyBMove : GameState r hr where
   board i := if i = B.index ∨ i = B.index + 1 then 0 else X.board i
   board_nonneg i := by split_ifs; exacts [le_refl 0, X.board_nonneg i]
 
-/-- The number `x_i` after B's move indexed `i`. -/
+/-- The number `x_i` after B's move indexed `i`.
+@isnad1 id=eq.1h4v.s6.90a7440e5b9d from=translated src=- shape=66f37809 vocab=36bb1f6a
+-/
 theorem applyBMove_board_index : (X.applyBMove B).board B.index = 0 :=
   ite_eq_left (Or.inl rfl)
 
-/-- The number `x_{i + 1}` after B's move indexed `i`. -/
+/-- The number `x_{i + 1}` after B's move indexed `i`.
+@isnad1 id=eq.1h4v.s7.01ba1e64c43e from=translated src=- shape=6f2fe269 vocab=91f69d80
+-/
 theorem applyBMove_board_index_add_one : (X.applyBMove B).board (B.index + 1) = 0 :=
   ite_eq_left (Or.inr rfl)
 
-/-- The number `x_{i + 2}` after B's move indexed `i`. -/
+/-- The number `x_{i + 2}` after B's move indexed `i`.
+@isnad1 id=eq.1h4v.s7.5dd10dd72fe3 from=translated src=- shape=9638226a vocab=91f69d80
+-/
 theorem applyBMove_board_index_add_two :
     (X.applyBMove B).board (B.index + 2) = X.board (B.index + 2) := by
   refine ite_eq_right ?_
   rw [add_eq_left, add_right_inj]
   decide
 
-/-- The number `x_{i + 3}` after B's move indexed `i`. -/
+/-- The number `x_{i + 3}` after B's move indexed `i`.
+@isnad1 id=eq.1h4v.s7.3dc12bfc216d from=translated src=- shape=9638226a vocab=91f69d80
+-/
 theorem applyBMove_board_index_add_three :
     (X.applyBMove B).board (B.index + 3) = X.board (B.index + 3) := by
   refine ite_eq_right ?_
   rw [add_eq_left, add_right_inj]
   decide
 
-/-- The number `x_{i + 4}` after B's move indexed `i`. -/
+/-- The number `x_{i + 4}` after B's move indexed `i`.
+@isnad1 id=eq.1h4v.s7.01041d07c984 from=translated src=- shape=9638226a vocab=91f69d80
+-/
 theorem applyBMove_board_index_add_four :
     (X.applyBMove B).board (B.index + 4) = X.board (B.index + 4) := by
   refine ite_eq_right ?_
@@ -151,7 +163,9 @@ def good {r : G} {hr : r ≥ 0} (X : GameState r hr) (b : Bool) : Prop :=
     ∧ bif b then X.board i = 0 ∧ X.board (i + 1) = 0
       else X.board i ≤ 2 • r ∧ X.board (i + 1) ≤ 2 • r
 
-/-- The initial state is good. -/
+/-- The initial state is good.
+@isnad1 id=good.1h3v.s5.35656b66ac1a from=translated src=- shape=357496de vocab=cea8e1cd
+-/
 theorem init_is_good [AddLeftMono G] {r : G} {hr : r ≥ 0} (isPlayerATurn) :
     good (GameState.init r hr) isPlayerATurn := by
   refine ⟨0, (zero_add 0).trans_le hr, hr, ?_⟩
@@ -159,7 +173,9 @@ theorem init_is_good [AddLeftMono G] {r : G} {hr : r ≥ 0} (isPlayerATurn) :
   have hr2 : 2 • r ≥ 0 := nsmul_nonneg hr 2
   exact ⟨hr2, hr2⟩
 
-/-- A good state is not lost. -/
+/-- A good state is not lost.
+@isnad1 id=not.2h4v.s6.ed99172148a2 from=translated src=- shape=ce9e6a62 vocab=bc47a6c3
+-/
 theorem good.not_isLost [AddLeftMono G] {r : G} {hr : r ≥ 0}
     {X : GameState r hr} (hX : good X isPlayerATurn) : ¬isLost X := by
   rcases hX with ⟨i, h24, h3, h01⟩
@@ -184,7 +200,9 @@ theorem good.not_isLost [AddLeftMono G] {r : G} {hr : r ≥ 0}
     | 3 => exact h3.trans hr2
     | 4 => exact (le_add_of_nonneg_left (X.board_nonneg _)).trans h24
 
-/-- If a state is good before B's turn, then some move of B preserve goodness. -/
+/-- If a state is good before B's turn, then some move of B preserve goodness.
+@isnad1 id=ex.2h3v.s6.417cae77a887 from=translated src=- shape=a62f7aab vocab=d0018562
+-/
 theorem good.exists_BMove {r : G} {hr : r ≥ 0} {X : GameState r hr} (hX : good X false) :
     ∃ B, good (X.applyBMove B) true := by
   rcases hX with ⟨B_index, h24, h3, h01⟩
@@ -199,7 +217,9 @@ section
 
 variable [LinearOrder G] [IsOrderedAddMonoid G] [AddLeftStrictMono G] {r : G} {hr : r ≥ 0}
 
-/-- If a state is good before A's turn, then any move of A preserve goodness. -/
+/-- If a state is good before A's turn, then any move of A preserve goodness.
+@isnad1 id=good.2h4v.s7.d47a8a219eef from=translated src=- shape=0b0c169e vocab=96251d28
+-/
 theorem good.forall_AMove {X : GameState r hr} (hX : good X true) (A : AMove r hr) :
     good (X.applyAMove A) false := by
   set Z : GameState r hr := X.applyAMove A
@@ -278,7 +298,9 @@ theorem good.forall_AMove {X : GameState r hr} (hX : good X true) (A : AMove r h
         _ ≤ r + r := add_le_add hi24 (A.y_le_r _)
         _ = 2 • r := (two_nsmul r).symm
 
-/-- A losing state is not good. -/
+/-- A losing state is not good.
+@isnad1 id=not.2h4v.s7.9f0784e2a7b4 from=translated src=- shape=8b0a41bb vocab=fd65b902
+-/
 theorem isLosing.not_good {X : GameState r hr} (hXb : isLosing X isPlayerATurn) :
     ¬good X isPlayerATurn := by
   intro hX0; induction hXb with
@@ -286,7 +308,9 @@ theorem isLosing.not_good {X : GameState r hr} (hXb : isLosing X isPlayerATurn) 
   | ofBMove X hX X_ih => exact hX0.exists_BMove.elim X_ih
   | ofAMove X A hXA X_ih => exact X_ih (hX0.forall_AMove A)
 
-/-- The initial state is not losing. -/
+/-- The initial state is not losing.
+@isnad1 id=not.1h3v.s6.e24476e96013 from=translated src=- shape=0124d2e0 vocab=19b6c471
+-/
 theorem not_isLosing_init (isPlayerATurn) : ¬(GameState.init r hr).isLosing isPlayerATurn :=
   λ h ↦ h.not_good (init_is_good isPlayerATurn)
 
@@ -294,7 +318,9 @@ end
 
 end GameState
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=not.1h2v.s6.b365062b8423 from=translated src=- shape=1047fb3b vocab=d21f122f
+-/
 theorem final_solution [LinearOrder G] [IsOrderedAddMonoid G] [AddLeftStrictMono G]
     {r : G} {hr : r ≥ 0} : ¬(GameState.init r hr).isLosing true :=
   GameState.not_isLosing_init true

@@ -59,30 +59,42 @@ namespace IsTournament
 variable {Arc : ι → ι → Bool} (h : IsTournament Arc) {i j : ι}
 include h
 
-/-- The endpoints of an arc are distinct. -/
+/-- The endpoints of an arc are distinct.
+@isnad1 id=ne.2h4v.s4.f3c9ec1c511a from=translated src=- shape=3e73e456 vocab=4a2fd751
+-/
 theorem ne_of_arc (hij : Arc i j) : i ≠ j := by
   rintro rfl
   simp [h.arc_self] at hij
 
 /-- The endpoints of an arc are distinct.  The primed name follows Mathlib's `LT.lt.ne'`
-convention: the conclusion is `j ≠ i`, the reverse of `BSLambda.IsTournament.ne_of_arc`. -/
+convention: the conclusion is `j ≠ i`, the reverse of `BSLambda.IsTournament.ne_of_arc`.
+@isnad1 id=ne.2h4v.s4.1aff11cbf62d from=translated src=- shape=a02b47e4 vocab=4a2fd751
+-/
 theorem ne_of_arc' (hij : Arc i j) : j ≠ i := (h.ne_of_arc hij).symm
 
 /-- Asymmetry in the `Bool`-equation form consumed by the certificate-conflict lemmas:
-an arc `i → j` forces `Arc j i = false`. -/
+an arc `i → j` forces `Arc j i = false`.
+@isnad1 id=eq.2h4v.s4.fb22ffbe4a74 from=translated src=- shape=4f119b47 vocab=71203a58
+-/
 theorem arc_eq_false_of_arc (hij : Arc i j) : Arc j i = false := by
   rw [h.arc_eq_not_arc (h.ne_of_arc hij).symm, hij, Bool.not_true]
 
-/-- The arc relation of a tournament is asymmetric. -/
+/-- The arc relation of a tournament is asymmetric.
+@isnad1 id=not.2h4v.s5.3141a3c290ca from=translated src=- shape=48b6d830 vocab=4a2fd751
+-/
 theorem arc_asymm (hij : Arc i j) : ¬ Arc j i :=
   Bool.eq_false_iff.mp (h.arc_eq_false_of_arc hij)
 
-/-- Any two distinct vertices of a tournament are joined by an arc. -/
+/-- Any two distinct vertices of a tournament are joined by an arc.
+@isnad1 id=or.2h4v.s5.23fe450a4aa7 from=translated src=- shape=1f6026dd vocab=4a2fd751
+-/
 theorem arc_or_arc (hij : i ≠ j) : Arc i j ∨ Arc j i := by
   cases hb : Arc j i <;> simp [h.arc_eq_not_arc hij, hb]
 
 /-- The `Bool`-equation form of `BSLambda.IsTournament.arc_or_arc`: if `j` does not beat `i`
-then `i` beats `j`. -/
+then `i` beats `j`.
+@isnad1 id=eq.3h4v.s5.bcd7d188715b from=translated src=- shape=13a3d6d7 vocab=71203a58
+-/
 theorem arc_of_not_arc (hij : i ≠ j) (hji : Arc j i = false) : Arc i j := by
   rw [h.arc_eq_not_arc hij, hji, Bool.not_false]
 
@@ -99,18 +111,28 @@ def inNbrs (Arc : ι → ι → Bool) (i : ι) : Finset ι := {j | Arc j i}
 section Nbrs
 variable {Arc : ι → ι → Bool} {i j : ι}
 
+/--
+@isnad1 id=iff.0h4v.s5.32e8cf32c60c from=translated src=- shape=9f002ada vocab=9c6af4ce
+-/
 @[simp] theorem mem_outNbrs : j ∈ outNbrs Arc i ↔ Arc i j := by simp [outNbrs]
 
+/--
+@isnad1 id=iff.0h4v.s5.1bf2ebf4e676 from=translated src=- shape=a955ead6 vocab=616ac171
+-/
 @[simp] theorem mem_inNbrs : j ∈ inNbrs Arc i ↔ Arc j i := by simp [inNbrs]
 
 variable (Arc) in
-/-- Counting the arcs of `Arc` by tail and by head. -/
+/-- Counting the arcs of `Arc` by tail and by head.
+@isnad1 id=eq.0h2v.s5.e57a909b7ecb from=translated src=- shape=4b60cfd6 vocab=2ba2b801
+-/
 theorem sum_card_outNbrs_eq_sum_card_inNbrs :
     ∑ x, (outNbrs Arc x).card = ∑ x, (inNbrs Arc x).card := by
   simp only [outNbrs, inNbrs, card_filter]
   exact sum_comm
 
-/-- The out-neighbourhood and the in-neighbourhood of a vertex are disjoint. -/
+/-- The out-neighbourhood and the in-neighbourhood of a vertex are disjoint.
+@isnad1 id=disjoint.1h3v.s5.278125629994 from=translated src=- shape=290f76d9 vocab=cf5341bb
+-/
 theorem IsTournament.disjoint_outNbrs_inNbrs (h : IsTournament Arc) (v : ι) :
     Disjoint (outNbrs Arc v) (inNbrs Arc v) :=
   disjoint_left.2 fun _ hx hx' ↦ h.arc_asymm (mem_outNbrs.1 hx) (mem_inNbrs.1 hx')
@@ -131,15 +153,26 @@ def middles (Arc : ι → ι → Bool) (u v : ι) : Finset ι := outNbrs Arc u �
 section Common
 variable {Arc : ι → ι → Bool} {i j l u v : ι}
 
+/--
+@isnad1 id=iff.0h5v.s5.c45b386cb7c6 from=translated src=- shape=7b6b2aec vocab=2f0465c2
+-/
 @[simp] theorem mem_commonOut : l ∈ commonOut Arc i j ↔ Arc i l ∧ Arc j l := by simp [commonOut]
 
+/--
+@isnad1 id=iff.0h5v.s5.c2606268f0c5 from=translated src=- shape=33b159dd vocab=1fac5fd8
+-/
 @[simp] theorem mem_commonIn : l ∈ commonIn Arc i j ↔ Arc l i ∧ Arc l j := by simp [commonIn]
 
+/--
+@isnad1 id=iff.0h5v.s5.f9edfd4d563e from=translated src=- shape=844f75a7 vocab=def98883
+-/
 @[simp] theorem mem_middles : l ∈ middles Arc u v ↔ Arc u l ∧ Arc l v := by simp [middles]
 
 variable (Arc u) in
 /-- Counting the arcs inside the out-neighbourhood of `u` by tail and by head: a pure
-double-counting identity, with no regularity assumption on `Arc`. -/
+double-counting identity, with no regularity assumption on `Arc`.
+@isnad1 id=eq.0h3v.s5.319e93f8015c from=translated src=- shape=a73e7454 vocab=70752274
+-/
 theorem sum_card_commonOut_eq_sum_card_middles :
     ∑ y ∈ outNbrs Arc u, (commonOut Arc u y).card
       = ∑ y ∈ outNbrs Arc u, (middles Arc u y).card := by
@@ -151,7 +184,9 @@ namespace IsTournament
 variable (h : IsTournament Arc)
 include h
 
-/-- The out- and in-neighbours of `v` are exactly the vertices other than `v`. -/
+/-- The out- and in-neighbours of `v` are exactly the vertices other than `v`.
+@isnad1 id=eq.1h3v.s5.aff460de387c from=translated src=- shape=ce7ad885 vocab=437d5da0
+-/
 theorem outNbrs_union_inNbrs (v : ι) : outNbrs Arc v ∪ inNbrs Arc v = univ.erase v := by
   ext x
   simp only [mem_union, mem_outNbrs, mem_inNbrs, mem_erase, mem_univ, and_true]
@@ -159,7 +194,9 @@ theorem outNbrs_union_inNbrs (v : ι) : outNbrs Arc v ∪ inNbrs Arc v = univ.er
     fun hx ↦ h.arc_or_arc hx.symm⟩
 
 omit [DecidableEq ι] in
-/-- Out-neighbours and in-neighbours of a vertex partition the remaining vertices. -/
+/-- Out-neighbours and in-neighbours of a vertex partition the remaining vertices.
+@isnad1 id=eq.1h3v.s5.6848b61da854 from=translated src=- shape=ad96622f vocab=112c534c
+-/
 theorem card_outNbrs_add_card_inNbrs (v : ι) :
     (outNbrs Arc v).card + (inNbrs Arc v).card + 1 = Fintype.card ι := by
   classical
@@ -186,7 +223,9 @@ namespace IsDRTournamentWith
 variable {Arc : ι → ι → Bool} {d t : ℕ} (h : IsDRTournamentWith Arc d t) {u v : ι}
 include h
 
-/-- Every vertex of a doubly regular tournament has in-degree `d` as well. -/
+/-- Every vertex of a doubly regular tournament has in-degree `d` as well.
+@isnad1 id=eq.1h5v.s5.a18c572ea305 from=translated src=- shape=5ed3b76a vocab=58feb221
+-/
 theorem card_inNbrs (i : ι) : (inNbrs Arc i).card = d := by
   have hall (x : ι) : (inNbrs Arc x).card = (inNbrs Arc i).card := by
     have h1 := h.card_outNbrs_add_card_inNbrs x
@@ -197,14 +236,18 @@ theorem card_inNbrs (i : ι) : (inNbrs Arc i).card = d := by
   rw [sum_const_nat fun x _ ↦ h.card_outNbrs x, sum_const_nat fun x _ ↦ hall x, card_univ] at hsum
   exact (Nat.eq_of_mul_eq_mul_left (Fintype.card_pos_iff.2 ⟨i⟩) hsum).symm
 
-/-- A doubly regular tournament on a nonempty `ι` has `2 * d + 1` vertices. -/
+/-- A doubly regular tournament on a nonempty `ι` has `2 * d + 1` vertices.
+@isnad1 id=eq.1h4v.s5.e359277ce31e from=translated src=- shape=1aeaf171 vocab=da87fa2e
+-/
 theorem card_eq_two_mul_add_one [Nonempty ι] : Fintype.card ι = 2 * d + 1 := by
   have hi := h.card_outNbrs_add_card_inNbrs (Classical.arbitrary ι)
   rw [h.card_outNbrs, h.card_inNbrs] at hi
   omega
 
 /-- Along an arc `u → v` the out-neighbours of `u` split into `v` itself, the middles of the
-arc, and the `t` common out-neighbours of `u` and `v`. -/
+arc, and the `t` common out-neighbours of `u` and `v`.
+@isnad1 id=eq.2h6v.s6.71dbecc4cfe4 from=translated src=- shape=3f5cd7ff vocab=82013c9e
+-/
 theorem card_middles_add_add_one (huv : Arc u v) : (middles Arc u v).card + t + 1 = d := by
   have hdisj : Disjoint (middles Arc u v) (commonOut Arc u v) :=
     disjoint_left.2 fun _ hx hx' ↦ h.arc_asymm (mem_middles.1 hx).2 (mem_commonOut.1 hx').2
@@ -218,7 +261,9 @@ theorem card_middles_add_add_one (huv : Arc u v) : (middles Arc u v).card + t + 
   rw [← h.card_outNbrs u, hsplit, card_insert_of_notMem (by simp [h.arc_self]),
     card_union_of_disjoint hdisj, h.card_commonOut (h.ne_of_arc huv)]
 
-/-- A doubly regular tournament with at least two vertices has positive out-degree. -/
+/-- A doubly regular tournament with at least two vertices has positive out-degree.
+@isnad1 id=lt.1h4v.s5.2d29dd3f0b61 from=translated src=- shape=9f9d9256 vocab=0aca554d
+-/
 theorem d_pos [Nontrivial ι] : 0 < d := by
   obtain ⟨a, b, hab⟩ := exists_pair_ne ι
   obtain hb | hb := h.arc_or_arc hab
@@ -226,7 +271,9 @@ theorem d_pos [Nontrivial ι] : 0 < d := by
     (card_pos.2 ⟨a, mem_outNbrs.2 hb⟩).trans_eq (h.card_outNbrs b)]
 
 /-- A doubly regular tournament with at least two vertices satisfies `d = 2 * t + 1`; in
-particular `d - 1 - t = t`. -/
+particular `d - 1 - t = t`.
+@isnad1 id=eq.1h4v.s5.63ae932fc87c from=translated src=- shape=95a830fe vocab=a50c46cc
+-/
 theorem d_eq_two_mul_t_add_one [Nontrivial ι] : d = 2 * t + 1 := by
   obtain ⟨x⟩ : Nonempty ι := inferInstance
   obtain ⟨w, hw⟩ : (outNbrs Arc x).Nonempty := by
@@ -248,7 +295,9 @@ theorem d_eq_two_mul_t_add_one [Nontrivial ι] : d = 2 * t + 1 := by
   omega
 
 /-- In a doubly regular tournament with at least two vertices, every arc `u → v` has exactly
-`t` middle vertices. -/
+`t` middle vertices.
+@isnad1 id=eq.2h6v.s5.552806707044 from=translated src=- shape=b754c7a4 vocab=1f159c50
+-/
 theorem card_middles [Nontrivial ι] (huv : Arc u v) : (middles Arc u v).card = t := by
   have h1 := h.card_middles_add_add_one huv
   have h2 := h.d_eq_two_mul_t_add_one

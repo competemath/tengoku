@@ -32,11 +32,15 @@ namespace IMO2024N1
   it holds that either `d + 1 ∣ n` or `d + 1` is prime. -/
 def good (n : ℕ) := ∀ d, d ∣ n → d + 1 ∣ n ∨ Nat.Prime (d + 1)
 
-/-- `9` is not prime. -/
+/-- `9` is not prime.
+@isnad1 id=not.0h0v.s2.209bf844ae6f from=translated src=- shape=8d7dbbf6 vocab=1464e337
+-/
 theorem not_prime_nine : ¬Nat.Prime 9 := by
   decide
 
-/-- If `2^k` is good, then `k ≤ 2`. -/
+/-- If `2^k` is good, then `k ≤ 2`.
+@isnad1 id=le.1h1v.s4.c34fb24a58b9 from=translated src=- shape=e1d1da9d vocab=8aaf8b76
+-/
 theorem good_two_pow_imp {k} (hk : good (2 ^ k)) : k ≤ 2 := by
   ---- Suppose `k ≥ 3`.
   refine Nat.le_of_not_lt λ hk0 ↦ ?_
@@ -47,7 +51,9 @@ theorem good_two_pow_imp {k} (hk : good (2 ^ k)) : k ≤ 2 := by
   replace hk : 3 ∣ 2 := Nat.prime_three.dvd_of_dvd_pow hk
   revert hk; decide
 
-/-- If `l > 1` and `l` is odd, then `2^l + 1` is not prime. -/
+/-- If `l > 1` and `l` is odd, then `2^l + 1` is not prime.
+@isnad1 id=not.2h1v.s5.580475f5cc0f from=translated src=- shape=d0d95c33 vocab=745cfcb2
+-/
 theorem not_prime_two_pow_add_one_of_odd (hl : l > 1) (hl0 : Odd l) :
     ¬Nat.Prime (2 ^ l + 1) := by
   ---- We just observe that `3 ∣ 2^l + 1` and `3 < 2^l + 1`.
@@ -57,7 +63,9 @@ theorem not_prime_two_pow_add_one_of_odd (hl : l > 1) (hl0 : Odd l) :
   exact Nat.not_prime_of_dvd_of_lt (m := 3) (n := 2 ^ l + 1) hl1
     (Nat.le_succ 2) (Nat.succ_lt_succ (Nat.pow_lt_pow_right Nat.one_lt_two hl))
 
-/-- If `0 < j ≤ k`, then `2^k + 1 ∤ 2^j - 1`. -/
+/-- If `0 < j ≤ k`, then `2^k + 1 ∤ 2^j - 1`.
+@isnad1 id=not.2h2v.s6.b884dda5add8 from=translated src=- shape=e5eb1159 vocab=499afad1
+-/
 theorem two_pow_add_one_not_dvd_two_pow_sub_one (hj : j ≠ 0) (h : j ≤ k) :
     ¬2 ^ k + 1 ∣ 2 ^ j - 1 := by
   refine Nat.not_dvd_of_pos_of_lt (Nat.sub_pos_of_lt (Nat.one_lt_two_pow hj)) ?_
@@ -81,7 +89,9 @@ theorem eq_two_of_pow_pred_add_one_dvd_pow_sub_one
   rw [Nat.sub_eq_iff_eq_add hk1.le, Nat.two_mul, Nat.add_assoc, Nat.add_right_inj] at hk0
   exact Nat.pred_eq_succ_iff.mp (Nat.pow_right_injective (Nat.le_refl 2) hk0)
 
-/-- If `2^k m` is good, where `m > 1`, then `k = 2` and `m = 3`. -/
+/-- If `2^k m` is good, where `m > 1`, then `k = 2` and `m = 3`.
+@isnad1 id=and.3h2v.s6.a1116c8205b7 from=translated src=- shape=3c7b0c8b vocab=5980f433
+-/
 theorem good_two_pow_mul_odd_imp (hm : Odd m) (hm0 : m > 1) (h : good (2 ^ k * m)) :
     k = 2 ∧ m = 3 := by
   ---- First, there exists a non-negative integer `j ≤ k` such that `m = 2^j - 1`.
@@ -136,7 +146,9 @@ theorem good_two_pow_mul_odd_imp (hm : Odd m) (hm0 : m > 1) (h : good (2 ^ k * m
     eq_two_of_pow_pred_add_one_dvd_pow_sub_one (Nat.zero_lt_of_lt hk) h0
   exact absurd h0 hk.ne.symm
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.1h1v.s5.76e6aaf91fc6 from=translated src=- shape=6dea2db6 vocab=6a6de858
+-/
 theorem final_solution (hn : n > 0) : good n ↔ (n = 1 ∨ n = 2 ∨ n = 4) ∨ n = 12 := by
   ---- First show that `n = 1, 2, 4, 12` works, by doing direct decision procedure.
   refine Iff.symm ⟨λ h ↦ ?_, λ h ↦ ?_⟩

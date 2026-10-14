@@ -29,7 +29,9 @@ def 𝔽₄Map : 𝔽₄ → ℤφ
   | X => ℤφ.φ
   | Y => 1 - ℤφ.φ
 
-/-- The map `𝔽₄Map` is good. -/
+/-- The map `𝔽₄Map` is good.
+@isnad1 id=good.0h0v.s3.8ca266142716 from=translated src=- shape=54c8eceb vocab=45772c92
+-/
 theorem 𝔽₄Map_is_good : good 𝔽₄Map
   | O, O => rfl
   | O, I => rfl
@@ -48,6 +50,8 @@ theorem 𝔽₄Map_is_good : good 𝔽₄Map
   | Y, X => rfl
   | Y, Y => rfl
 
-/-- The map `𝔽₄Map` is non-trivial good. -/
+/-- The map `𝔽₄Map` is non-trivial good.
+@isnad1 id=nontrivi.0h0v.s3.d78f81515509 from=translated src=- shape=54c8eceb vocab=43b94436
+-/
 theorem 𝔽₄Map_is_NontrivialGood : NontrivialGood 𝔽₄Map :=
   ⟨𝔽₄Map_is_good, rfl⟩

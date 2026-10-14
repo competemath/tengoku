@@ -61,25 +61,33 @@ namespace IMO2007A6
 
 open Finset
 
-/-- We have `∑_i a_{k + i} = ∑_i a_i`, where the summation runs over `Fin n`. -/
+/-- We have `∑_i a_{k + i} = ∑_i a_i`, where the summation runs over `Fin n`.
+@isnad1 id=eq.0h4v.s6.4707827ff774 from=translated src=- shape=22349763 vocab=08384bb3
+-/
 theorem Fin_sum_add_left [NeZero n] [AddCommMonoid M] (a : Fin n → M) (k) :
     ∑ i, a (k + i) = ∑ i, a i :=
   Fintype.sum_equiv (Equiv.addLeft k) _ _ (λ _ ↦ rfl)
 
-/-- We have `∑_i a_{i + k} = ∑_i a_i`, where the summation runs over `Fin n`. -/
+/-- We have `∑_i a_{i + k} = ∑_i a_i`, where the summation runs over `Fin n`.
+@isnad1 id=eq.0h4v.s6.bbf75a09d364 from=translated src=- shape=73566894 vocab=08384bb3
+-/
 theorem Fin_sum_add_right [NeZero n] [AddCommMonoid M] (a : Fin n → M) (k) :
     ∑ i, a (i + k) = ∑ i, a i :=
   Fintype.sum_equiv (Equiv.addRight k) _ _ (λ _ ↦ rfl)
 
 open Fin.NatCast in
-/-- Taking `Fin.castLE` is the same as casting the value into the higher `Fin`. -/
+/-- Taking `Fin.castLE` is the same as casting the value into the higher `Fin`.
+@isnad1 id=eq.1h3v.s5.b3ebcf04f85a from=translated src=- shape=006426fc vocab=a862a5de
+-/
 theorem Fin_castLE_eq_natCast_val [NeZero m] (h : n ≤ m) (i : Fin n) :
     i.castLE h = i.val := by
   rw [Fin.ext_iff, Fin.val_castLE, Fin.val_natCast, Nat.mod_eq_of_lt (i.2.trans_le h)]
 
 open Fin.NatCast in
 /-- The identity
-  `∑_i (x_i^2 + 2 x_i (x_{i + 1} + x_{i + 2})) = ∑_i x_{i + 2} ∑_{j < 5} x_{i + j}`. -/
+  `∑_i (x_i^2 + 2 x_i (x_{i + 1} + x_{i + 2})) = ∑_i x_{i + 2} ∑_{j < 5} x_{i + j}`.
+@isnad1 id=eq.1h3v.s8.f7620d5654a7 from=translated src=- shape=30d74224 vocab=7974a251
+-/
 theorem main_identity [CommSemiring R] [NeZero n] (hn : n ≥ 5) (x : Fin n → R) :
     ∑ i, (x i ^ 2 + 2 * x i * (x (i + 1) + x (i + 1 + 1)))
       = ∑ i, x (i + 2) * ∑ j : Fin 5, x (i + j.castLE hn) := by
@@ -123,7 +131,9 @@ theorem main_identity [CommSemiring R] [NeZero n] (hn : n ≥ 5) (x : Fin n → 
       _ = ∑ i, x (i + 2) * x (i + 4) := by simp_rw [add_assoc, two_add_two_eq_four]
 
 /-- The identity `∑_i x_i x_{i + 1} + x_n x_1 = ∑_i y_i y_{i + 1} + x_0 (x_n + x_1)`;
-  LHS sum is over `Fin (n + 1)` and `y : Fin n → R` is defined by `y_i = x_{i + 1}`. -/
+  LHS sum is over `Fin (n + 1)` and `y : Fin n → R` is defined by `y_i = x_{i + 1}`.
+@isnad1 id=eq.0h3v.s8.7fef243d9e04 from=translated src=- shape=bf1ddd47 vocab=95f77d40
+-/
 theorem main_ineq_identity [CommSemiring R] [hn : NeZero n] (x : Fin (n + 1) → R) :
     ∑ i, x i * x (i + 1) + x (Fin.last n) * x 1
       = ∑ i : Fin n, x i.succ * x (i + 1).succ + x 0 * (x (Fin.last n) + x 1) := by
@@ -142,7 +152,9 @@ theorem main_ineq_identity [CommSemiring R] [hn : NeZero n] (x : Fin (n + 1) →
       simp_rw [Fin.succ_castSucc, Fin.coeSucc_eq_succ]
 
 /-- If `n ≥ 5` and `x_0, x_1, …, x_{n - 1} ≥ 0`, then for any indices `j₁, j₂`, there exists
-  an index `i₀` such that `x_{i₀} + 2 ∑_{i ≠ i₀} x_i ≥ 4(x_{i₀ + j₁} + x_{i₀ + j₂})`. -/
+  an index `i₀` such that `x_{i₀} + 2 ∑_{i ≠ i₀} x_i ≥ 4(x_{i₀ + j₁} + x_{i₀ + j₂})`.
+@isnad1 id=ex.2h5v.s8.a862d9d85190 from=translated src=- shape=d58beee1 vocab=144d3e22
+-/
 theorem exists_index_special
     [AddCommMonoid G] [LinearOrder G] [IsOrderedCancelAddMonoid G] [AddLeftStrictMono G]
     (hn : n ≥ 5) {x : Fin n → G} (hx : ∀ i, 0 ≤ x i) (j₁ j₂) :
@@ -167,7 +179,9 @@ theorem exists_index_special
 
 variable {R} [CommSemiring R] [LinearOrder R] [IsStrictOrderedRing R] [ExistsAddOfLE R]
 
-/-- The inequality `4 ∑_i x_i x_{i + 1} ≤ (∑_i x_i)^2` over `Fin 4`. -/
+/-- The inequality `4 ∑_i x_i x_{i + 1} ≤ (∑_i x_i)^2` over `Fin 4`.
+@isnad1 id=le.0h2v.s8.5a690d1de9c5 from=translated src=- shape=d5542dfc vocab=d059ec62
+-/
 theorem main_ineq_Fin4 (x : Fin 4 → R) : 4 * ∑ i, x i * x (i + 1) ≤ (∑ i, x i) ^ 2 := by
   calc 4 * ∑ i, x i * x (i + 1)
     _ = 4 * (x 0 * x 1 + x 1 * x 2 + x 2 * x 3 + x 3 * x 0) :=
@@ -178,7 +192,9 @@ theorem main_ineq_Fin4 (x : Fin 4 → R) : 4 * ∑ i, x i * x (i + 1) ≤ (∑ i
     _ ≤ (x 0 + x 2 + (x 1 + x 3)) ^ 2 := four_mul_le_pow_two_add _ _
     _ ≤ (∑ i, x i) ^ 2 := by rw [Fin.sum_univ_four, add_add_add_comm, ← add_assoc]
 
-/-- The inequality `4 ∑_i x_i x_{i + 1} ≤ (∑_i x_i)^2`. -/
+/-- The inequality `4 ∑_i x_i x_{i + 1} ≤ (∑_i x_i)^2`.
+@isnad1 id=le.2h3v.s7.6436172631a1 from=translated src=- shape=2a435bf3 vocab=1080e37f
+-/
 theorem main_ineq [hn : NeZero n] (hn0 : n ≥ 4) {x : Fin n → R} (hx : ∀ i, 0 ≤ x i) :
     4 * ∑ i, x i * x (i + 1) ≤ (∑ i, x i) ^ 2 := by
   ---- Induction on n `n`; the base case `n = 4` is proved in `main_ineq_Fin4`.
@@ -219,7 +235,9 @@ theorem main_ineq [hn : NeZero n] (hn0 : n ≥ 4) {x : Fin n → R} (hx : ∀ i,
         mul_add, ← sq, ← add_assoc, nsmul_eq_mul, Nat.cast_two, mul_comm, ← add_sq',
         add_comm, ← Fin.sum_univ_succ]
 
-/-- The general result `(3 ∑_i a_i^2 a_{i + 1})^2 ≤ 2 (∑_i a_i^2)^3`. -/
+/-- The general result `(3 ∑_i a_i^2 a_{i + 1})^2 ≤ 2 (∑_i a_i^2)^3`.
+@isnad1 id=le.1h3v.s8.281799d3ee96 from=translated src=- shape=f82c7d6f vocab=1080e37f
+-/
 theorem general_result [NeZero n] (hn : n ≥ 5) (a : Fin n → R) :
     (3 * ∑ i, a i ^ 2 * a (i + 1)) ^ 2 ≤ 2 * (∑ i, a i ^ 2) ^ 3 := by
   /- Prove `(3 ∑_i a_i^2 a_{i + 1})^2 ≤ (∑_i a_i^2)(∑_i (a_i^2 + 2 a_{i + 1} a_{i + 2})^2)`.
@@ -269,7 +287,9 @@ theorem general_result [NeZero n] (hn : n ≥ 5) (a : Fin n → R) :
     _ = (∑ i, a i ^ 2) ^ 2 := by
       rw [Fin_sum_add_right (λ i ↦ a i ^ 2 * ∑ j, a j ^ 2), sq, sum_mul]
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=lt.2h3v.s8.58117e145b61 from=translated src=- shape=51442b06 vocab=15018c79
+-/
 theorem final_solution [NeZero n] (hn : n ≥ 5) {a : Fin n → R} (ha : ∑ i, a i ^ 2 = 1) :
     25 * ∑ i, a i ^ 2 * a (i + 1) < 12 := by
   refine lt_of_pow_lt_pow_left₀ 2 (Nat.ofNat_nonneg 12) ?_

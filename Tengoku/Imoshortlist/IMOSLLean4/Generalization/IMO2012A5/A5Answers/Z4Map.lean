@@ -28,7 +28,9 @@ def ℤ₄Map : ℤ₄ → ℤ
   | ℤ₄2 => 1
   | ℤ₄3 => 0
 
-/-- The map `ℤ₄Map` is good. -/
+/-- The map `ℤ₄Map` is good.
+@isnad1 id=good.0h0v.s3.ec556a5d8554 from=translated src=- shape=54c8eceb vocab=e9eecc72
+-/
 theorem ℤ₄Map_is_good : good ℤ₄Map
   | ℤ₄0, ℤ₄0 => rfl
   | ℤ₄0, ℤ₄1 => rfl
@@ -47,6 +49,8 @@ theorem ℤ₄Map_is_good : good ℤ₄Map
   | ℤ₄3, ℤ₄2 => rfl
   | ℤ₄3, ℤ₄3 => rfl
 
-/-- The map `ℤ₄Map` is non-trivial good. -/
+/-- The map `ℤ₄Map` is non-trivial good.
+@isnad1 id=nontrivi.0h0v.s4.d5fbfb99d15e from=translated src=- shape=54c8eceb vocab=30dbd28e
+-/
 theorem ℤ₄Map_is_NontrivialGood : NontrivialGood ℤ₄Map :=
   ⟨ℤ₄Map_is_good, rfl⟩

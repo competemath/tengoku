@@ -54,12 +54,16 @@ def IsNonBacktracking {V : Type*} {G : SimpleGraph V} {u v : V} (w : G.Walk u v)
   ∀ i : ℕ, i + 2 ≤ w.length → w.getVert (i + 2) ≠ w.getVert i
 
 /-- Any walk of length at most `1` (in particular `nil` and a single edge) is non-backtracking:
-there is no position `i` with `i + 2 ≤ w.length`. -/
+there is no position `i` with `i + 2 ≤ w.length`.
+@isnad1 id=isnonbac.1h5v.s5.67ea80db8c25 from=translated src=- shape=92471beb vocab=948fdaff
+-/
 theorem isNonBacktracking_of_length_le_one {V : Type*} {G : SimpleGraph V} {u v : V}
     {w : G.Walk u v} (hw : w.length ≤ 1) : IsNonBacktracking w := by
   intro i hi; omega
 
-/-- A single-edge walk is non-backtracking. -/
+/-- A single-edge walk is non-backtracking.
+@isnad1 id=isnonbac.1h4v.s4.930946c92ddc from=translated src=- shape=9bb491ca vocab=49bfe79e
+-/
 theorem isNonBacktracking_cons_nil {V : Type*} {G : SimpleGraph V} {u v : V} (h : G.Adj u v) :
     IsNonBacktracking (Walk.cons h Walk.nil) :=
   isNonBacktracking_of_length_le_one (by simp)
@@ -69,7 +73,9 @@ non-backtracking walk of length `≤ r` is a path.  (The special case where the 
 edge at a time is the landed ray-growth `exists_isPath_len_of_min_two`.)  Peeling the first edge,
 the tail is a non-backtracking walk of length `≤ r`, hence a path by induction.  If the start
 vertex `x` were revisited on the tail, the sub-path to it and the single reversing edge give two
-distinct paths whose total length is `≤ r`, closing a cycle of length `≤ 2r + 1` — impossible. -/
+distinct paths whose total length is `≤ r`, closing a cycle of length `≤ 2r + 1` — impossible.
+@isnad1 id=ispath.3h6v.s6.faf8f2bd31d0 from=translated src=- shape=048b6ea2 vocab=49c8e567
+-/
 theorem nb_walk_isPath_of_girth {V : Type*} (G : SimpleGraph V) {r : ℕ}
     (hg : ∀ (v : V) (c : G.Walk v v), c.IsCycle → 2 * r + 1 < c.length) :
     ∀ {x y : V} (w : G.Walk x y), IsNonBacktracking w → w.length ≤ r → w.IsPath := by
@@ -118,7 +124,9 @@ theorem nb_walk_isPath_of_girth {V : Type*} (G : SimpleGraph V) {r : ℕ}
 /-- **The `deg − 1` branching atom.**  A non-backtracking walk arriving at `y` from `z` may continue
 to any neighbour of `y` *except* `z`; these valid next-vertices are `neighborFinset y \ {z}` and
 there are exactly `deg y − 1` of them.  This is the per-step count the AHL non-backtracking-walk
-count is built on. -/
+count is built on.
+@isnad1 id=eq.1h4v.s6.ddb027505145 from=translated src=- shape=b28f11fd vocab=1716257c
+-/
 theorem nb_extension_count {V : Type*} (G : SimpleGraph V) [Fintype V] [DecidableEq V]
     [DecidableRel G.Adj] {y z : V} (h : G.Adj y z) :
     (G.neighborFinset y \ {z}).card = G.degree y - 1 := by

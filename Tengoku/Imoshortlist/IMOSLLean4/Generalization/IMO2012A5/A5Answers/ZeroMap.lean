@@ -22,9 +22,15 @@ namespace Generalization
 
 variable [NonAssocSemiring R] [NonAssocSemiring S]
 
+/--
+@isnad1 id=good.0h2v.s5.6cd46077de6d from=translated src=- shape=bdb19f59 vocab=bb20d676
+-/
 theorem zero_is_good : good (λ _ : R ↦ (0 : S)) :=
   λ _ _ ↦ by rw [add_zero, zero_mul]
 
+/--
+@isnad1 id=or.1h3v.s6.c210ff2378c8 from=translated src=- shape=a12d0271 vocab=95aaa904
+-/
 theorem good_Nontrivial_or_eq_zero [IsCancelAdd S] [NoZeroDivisors S]
     {f : R → S} (h : good f) : NontrivialGood f ∨ f = (λ _ ↦ 0) :=
   ---- First get `f(1) = 0`
@@ -37,6 +43,9 @@ theorem good_Nontrivial_or_eq_zero [IsCancelAdd S] [NoZeroDivisors S]
   (zero_eq_mul.mp (h1 0)).symm.imp (λ h1 ↦ ⟨h, h1⟩)
     (λ h2 ↦ funext λ x ↦ by specialize h1 x; rwa [h2, zero_add, mul_one, eq_comm] at h1)
 
+/--
+@isnad1 id=iff.0h3v.s6.5a63586cc4fe from=translated src=- shape=f6aeda8e vocab=95aaa904
+-/
 theorem good_iff_Nontrivial_or_eq_zero [IsCancelAdd S] [NoZeroDivisors S] {f : R → S} :
     good f ↔ NontrivialGood f ∨ f = (λ _ ↦ 0) :=
   ⟨good_Nontrivial_or_eq_zero, λ h ↦ h.elim NontrivialGood.is_good λ h ↦ h ▸ zero_is_good⟩

@@ -37,24 +37,42 @@ variable (X : goodSeq)
 
 def b (k : ℕ) : ℕ := (2 * ∑ i ∈ range k, X.a i) / X.a k
 
+/--
+@isnad1 id=eq.0h1v.s4.885a5e4f67a3 from=translated src=- shape=9b4d794a vocab=be8aa35f
+-/
 lemma b_zero : X.b 0 = 0 := by
   rw [b, sum_range_zero, Nat.mul_zero, Nat.zero_div]
 
+/--
+@isnad1 id=eq.0h2v.s5.5f80899bb2e7 from=translated src=- shape=cbc05310 vocab=c4788f58
+-/
 lemma b_spec (k) : X.b k * X.a k = 2 * ∑ i ∈ range k, X.a i :=
   Nat.div_mul_cancel (X.a_spec k)
 
+/--
+@isnad1 id=lt.0h2v.s4.8e04df444bba from=translated src=- shape=2e614b71 vocab=872feeca
+-/
 lemma b_succ_pos (k) : 0 < X.b (k + 1) := by
   apply Nat.pos_of_mul_pos_right (b := X.a (k + 1))
   rw [X.b_spec, sum_range_succ]
   exact Nat.mul_pos Nat.two_pos (Nat.add_pos_right _ (X.a_pos k))
 
+/--
+@isnad1 id=eq.0h2v.s6.92a90622f689 from=translated src=- shape=32c4b887 vocab=42510e54
+-/
 lemma b_formula (k) : X.b (k + 1) * X.a (k + 1) = (X.b k + 2) * X.a k := by
   rw [X.b_spec, Nat.add_mul, X.b_spec, sum_range_succ, Nat.mul_add]
 
+/--
+@isnad1 id=le.0h2v.s5.e94f9fecabb6 from=translated src=- shape=d4057deb vocab=ca45f914
+-/
 lemma b_succ_le (k) : X.b (k + 1) ≤ X.b k + 1 :=
   Nat.le_of_lt_succ <| Nat.lt_of_not_le λ h ↦ (X.b_formula k).not_gt <|
     Nat.mul_lt_mul_of_le_of_lt h (X.a_strictMono k.lt_succ_self) (X.b_succ_pos k)
 
+/--
+@isnad1 id=ex.0h2v.s3.a53054e09fb3 from=translated src=- shape=9a2b1067 vocab=4f5e4805
+-/
 lemma b_not_bdd (M) : ∃ k, M ≤ X.b k := by
   by_contra h; simp only [not_exists, not_le] at h
   obtain ⟨p, ha0p, hMp, hp⟩ : ∃ p : ℕ, X.a 0 < p ∧ M + 2 ≤ p ∧ p.Prime := by
@@ -68,6 +86,9 @@ lemma b_not_bdd (M) : ∃ k, M ≤ X.b k := by
   refine h0.resolve_left (Nat.not_dvd_of_pos_of_lt (Nat.succ_pos _) ?_)
   exact (Nat.add_lt_add_right (h k) 2).trans_le hMp
 
+/--
+@isnad1 id=ex.1h2v.s4.73a876475aeb from=translated src=- shape=bba1088f vocab=0a67d3c4
+-/
 lemma exists_dvd_a_of_pos (hN : 0 < N) : ∃ k, N ∣ X.a k := by
   obtain ⟨k, hk, hk0⟩ : ∃ k, X.b (k + 1) = N ∧ X.b k + 1 = N := by
     have h : ∃ k, N ≤ X.b k := X.b_not_bdd N
@@ -84,5 +105,7 @@ lemma exists_dvd_a_of_pos (hN : 0 < N) : ∃ k, N ∣ X.a k := by
 
 end goodSeq
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ex.1h2v.s4.73a876475aeb from=translated src=- shape=bba1088f vocab=0a67d3c4
+-/
 alias final_solution := goodSeq.exists_dvd_a_of_pos

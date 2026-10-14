@@ -66,14 +66,23 @@ instance : Mul 𝔽₂ε := ⟨𝔽₂ε.mul⟩
 
 /-! ### `𝔽₂[ε]` is a commutative group -/
 
+/--
+@isnad1 id=eq.0h1v.s4.95aa5c11be2b from=translated src=- shape=eeffd242 vocab=53a48133
+-/
 protected theorem add_zero : ∀ x : 𝔽₂ε, x + 0 = x
   | O => rfl
   | I => rfl
   | X => rfl
   | Y => rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.4856bcf0493d from=translated src=- shape=bbd74598 vocab=53a48133
+-/
 protected theorem zero_add (x : 𝔽₂ε) : 0 + x = x := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.cab5d1739b44 from=translated src=- shape=900bc7c0 vocab=53a48133
+-/
 protected theorem add_comm : ∀ x y : 𝔽₂ε, x + y = y + x
   | O, x => x.add_zero.symm
   | x, O => x.add_zero
@@ -87,6 +96,9 @@ protected theorem add_comm : ∀ x y : 𝔽₂ε, x + y = y + x
   | Y, X => rfl
   | Y, Y => rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.2ebfdf77dd2f from=translated src=- shape=03a6b791 vocab=53a48133
+-/
 protected theorem add_assoc : ∀ x y z : 𝔽₂ε, x + y + z = x + (y + z)
   | O, _, _ => rfl
   | x, O, z => congr_arg (· + z) x.add_zero
@@ -119,6 +131,9 @@ protected theorem add_assoc : ∀ x y z : 𝔽₂ε, x + y + z = x + (y + z)
   | Y, Y, X => rfl
   | Y, Y, Y => rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.f5b8f0a8732d from=translated src=- shape=f2c77883 vocab=9b657890
+-/
 protected theorem neg_add_cancel : ∀ x : 𝔽₂ε, -x + x = 0
   | O => rfl
   | I => rfl
@@ -136,22 +151,37 @@ instance : AddCommGroup 𝔽₂ε :=
 
 /-! ### `𝔽₂[ε]` is a ring -/
 
+/--
+@isnad1 id=eq.0h1v.s4.4d71164c3ecf from=translated src=- shape=8c4189b2 vocab=4145ae3a
+-/
 protected theorem zero_mul (x : 𝔽₂ε) : 0 * x = 0 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.43cccf785bbf from=translated src=- shape=4b31552c vocab=4145ae3a
+-/
 protected theorem mul_zero : ∀ x : 𝔽₂ε, x * 0 = 0
   | O => rfl
   | I => rfl
   | X => rfl
   | Y => rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.e2fdf538f516 from=translated src=- shape=eeffd242 vocab=4145ae3a
+-/
 protected theorem mul_one : ∀ x : 𝔽₂ε, x * 1 = x
   | O => rfl
   | I => rfl
   | X => rfl
   | Y => rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.4dbd4392ddaa from=translated src=- shape=bbd74598 vocab=4145ae3a
+-/
 protected theorem one_mul (x : 𝔽₂ε) : 1 * x = x := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.596af2a50fa2 from=translated src=- shape=900bc7c0 vocab=4145ae3a
+-/
 protected theorem mul_comm : ∀ x y : 𝔽₂ε, x * y = y * x
   | I, x => x.mul_one.symm
   | x, I => x.mul_one
@@ -165,6 +195,9 @@ protected theorem mul_comm : ∀ x y : 𝔽₂ε, x * y = y * x
   | Y, X => rfl
   | Y, Y => rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.e88650b1a43e from=translated src=- shape=03a6b791 vocab=4145ae3a
+-/
 protected theorem mul_assoc : ∀ x y z : 𝔽₂ε, x * y * z = x * (y * z)
   | O, _, _ => rfl
   | I, _, _ => rfl
@@ -189,6 +222,9 @@ protected theorem mul_assoc : ∀ x y z : 𝔽₂ε, x * y * z = x * (y * z)
   | Y, Y, X => rfl
   | Y, Y, Y => rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.33f6b1cc6a47 from=translated src=- shape=1dfc5842 vocab=5449e66f
+-/
 protected theorem mul_add : ∀ x y z : 𝔽₂ε, x * (y + z) = x * y + x * z
   | O, _, _ => rfl
   | I, _, _ => rfl
@@ -219,6 +255,9 @@ protected theorem mul_add : ∀ x y z : 𝔽₂ε, x * (y + z) = x * y + x * z
   | Y, Y, X => rfl
   | Y, Y, Y => rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.93fbc6570d0e from=translated src=- shape=89e741f9 vocab=5449e66f
+-/
 protected theorem add_mul (x y z : 𝔽₂ε) : (x + y) * z = x * z + y * z :=
   by rw [𝔽₂ε.mul_comm, 𝔽₂ε.mul_add, z.mul_comm, z.mul_comm]
 
@@ -246,6 +285,9 @@ def cast [AddMonoidWithOne R] (r : R) : 𝔽₂ε → R
 variable [NonAssocSemiring R] [CharTwo R] {r : R} (h : r * r = 0)
 include h
 
+/--
+@isnad1 id=eq.1h4v.s6.6c5c87776f50 from=translated src=- shape=d588c470 vocab=e0aadb8b
+-/
 theorem cast_mul : ∀ x y : 𝔽₂ε, cast r (x * y) = cast r x * cast r y
   | O, _ => (zero_mul _).symm
   | I, _ => (one_mul _).symm

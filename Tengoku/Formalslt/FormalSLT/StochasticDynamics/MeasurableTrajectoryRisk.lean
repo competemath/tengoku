@@ -51,7 +51,9 @@ private lemma stronglyMeasurable_piLE_of_prefix_general
   exact hg.comp_measurable (comap_measurable _)
 
 /-- A jointly measurable score observed at step `n` is measurable with
-respect to the path through coordinate `n+1`. -/
+respect to the path through coordinate `n+1`.
+@isnad1 id=strongly.1h3v.s6.5710a728c0bb from=translated src=- shape=876580dc vocab=64e9dcba
+-/
 lemma stronglyMeasurable_observedTrajectoryScore_succ_of_joint
     {score : TrajectoryScore Z}
     (hscore_meas : JointlyStronglyMeasurableTrajectoryScore score)
@@ -79,6 +81,9 @@ lemma stronglyMeasurable_observedTrajectoryScore_succ_of_joint
   simp only [g, Preorder.frestrictLe_apply]
   congr 1
 
+/--
+@isnad1 id=measurab.1h3v.s5.33e47d954afe from=translated src=- shape=876580dc vocab=65e807a7
+-/
 lemma measurable_observedTrajectoryScore_of_joint
     {score : TrajectoryScore Z}
     (hscore_meas : JointlyStronglyMeasurableTrajectoryScore score)
@@ -87,6 +92,9 @@ lemma measurable_observedTrajectoryScore_of_joint
   ((stronglyMeasurable_observedTrajectoryScore_succ_of_joint hscore_meas n).mono
     ((Filtration.piLE (X := fun _ : ℕ ↦ Z)).le (n + 1))).measurable
 
+/--
+@isnad1 id=integrab.2h5v.s8.6f60e06dae68 from=translated src=- shape=b6e44eb6 vocab=92716f4e
+-/
 lemma integrable_observedTrajectoryScore_of_joint
     {kappa : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z}
     [∀ n, IsMarkovKernel (kappa n)] {x0 : Z} {score : TrajectoryScore Z}
@@ -102,7 +110,9 @@ lemma integrable_observedTrajectoryScore_of_joint
     exact (observedTrajectoryScore_mem_Icc hscore n x).2
 
 /-- The continuation integral of a measurable observed score reduces to the
-one-step kernel integral selected by the supplied prefix. -/
+one-step kernel integral selected by the supplied prefix.
+@isnad1 id=eq.1h5v.s9.375b646ff427 from=translated src=- shape=6affe1e0 vocab=c9b901fd
+-/
 lemma integral_observedTrajectoryScore_traj_of_joint
     (kappa : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z)
     [∀ n, IsMarkovKernel (kappa n)]
@@ -148,7 +158,9 @@ lemma integral_observedTrajectoryScore_traj_of_joint
         exact map_trajectory_next kappa n u]
 
 /-- The kernel-conditional risk is prefix-measurable on an arbitrary
-measurable state space. -/
+measurable state space.
+@isnad1 id=strongly.1h4v.s8.2947bdbb59f9 from=translated src=- shape=76e6ac85 vocab=6c21268a
+-/
 lemma stronglyMeasurable_conditionalTrajectoryRisk_of_joint
     (kappa : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z)
     [∀ n, IsMarkovKernel (kappa n)]
@@ -169,6 +181,9 @@ lemma stronglyMeasurable_conditionalTrajectoryRisk_of_joint
   simpa only [g] using
     stronglyMeasurable_piLE_of_prefix_general n g hg
 
+/--
+@isnad1 id=mem.2h5v.s8.dfcc9c50e3be from=translated src=- shape=8b77705f vocab=36db270b
+-/
 lemma conditionalTrajectoryRisk_mem_Icc_of_joint
     (kappa : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z)
     [∀ n, IsMarkovKernel (kappa n)] {score : TrajectoryScore Z}
@@ -197,6 +212,9 @@ lemma conditionalTrajectoryRisk_mem_Icc_of_joint
       ∫ y, rowScore y ∂kappa n u ≤ ∫ _ : Z, (1 : ℝ) ∂kappa n u := hle
       _ = 1 := by simp
 
+/--
+@isnad1 id=integrab.2h5v.s8.74d6058ee3b5 from=translated src=- shape=ab0b1d18 vocab=0cf4576e
+-/
 lemma integrable_conditionalTrajectoryRisk_of_joint
     {kappa : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z}
     [∀ n, IsMarkovKernel (kappa n)] {x0 : Z} {score : TrajectoryScore Z}
@@ -216,7 +234,9 @@ lemma integrable_conditionalTrajectoryRisk_of_joint
     exact (conditionalTrajectoryRisk_mem_Icc_of_joint kappa hscore_meas hscore n x).2
 
 /-- Exact conditional expectation for a bounded jointly measurable score on
-an arbitrary measurable state space. -/
+an arbitrary measurable state space.
+@isnad1 id=eventual.2h5v.s8.9fb356229e8d from=translated src=- shape=18c250af vocab=341e2d11
+-/
 theorem observedTrajectoryScore_condExp_of_joint
     (kappa : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z)
     [∀ n, IsMarkovKernel (kappa n)] (x0 : Z)
@@ -238,6 +258,9 @@ theorem observedTrajectoryScore_condExp_of_joint
     kappa score hscore_meas n]
   rfl
 
+/--
+@isnad1 id=incremen.1h3v.s8.3e6071cca2cb from=translated src=- shape=31fbfab4 vocab=b7ba4c40
+-/
 lemma trajectoryRiskInnovation_incrementAdapted_of_joint
     (kappa : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z)
     [∀ n, IsMarkovKernel (kappa n)]
@@ -251,6 +274,9 @@ lemma trajectoryRiskInnovation_incrementAdapted_of_joint
     ((stronglyMeasurable_conditionalTrajectoryRisk_of_joint kappa hscore_meas n).mono
       ((Filtration.piLE (X := fun _ : ℕ ↦ Z)).mono (Nat.le_succ n)))
 
+/--
+@isnad1 id=integrab.2h5v.s8.06d4a57feef4 from=translated src=- shape=ab0b1d18 vocab=bbc7f2e1
+-/
 lemma integrable_trajectoryRiskInnovation_of_joint
     {kappa : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z}
     [∀ n, IsMarkovKernel (kappa n)] {x0 : Z} {score : TrajectoryScore Z}
@@ -264,6 +290,9 @@ lemma integrable_trajectoryRiskInnovation_of_joint
     (integrable_conditionalTrajectoryRisk_of_joint
       (kappa := kappa) (x0 := x0) hscore_meas hscore n)
 
+/--
+@isnad1 id=le.2h5v.s8.0671fb8b8cc2 from=translated src=- shape=58f0b12d vocab=e6575006
+-/
 lemma abs_trajectoryRiskInnovation_le_one_of_joint
     (kappa : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z)
     [∀ n, IsMarkovKernel (kappa n)] {score : TrajectoryScore Z}
@@ -280,7 +309,9 @@ lemma abs_trajectoryRiskInnovation_le_one_of_joint
   unfold trajectoryRiskInnovation
   constructor <;> linarith
 
-/-- The general-state trajectory innovation is conditionally centered. -/
+/-- The general-state trajectory innovation is conditionally centered.
+@isnad1 id=eventual.2h5v.s8.cd57a5020440 from=translated src=- shape=f265b8bb vocab=bc486e9f
+-/
 theorem trajectoryRiskInnovation_condExp_eq_zero_of_joint
     (kappa : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z)
     [∀ n, IsMarkovKernel (kappa n)] (x0 : Z)
@@ -326,7 +357,9 @@ theorem trajectoryRiskInnovation_condExp_eq_zero_of_joint
   simp
 
 /-- A bounded jointly measurable score retains the sharp `1/4` conditional
-second-moment bound on arbitrary measurable state spaces. -/
+second-moment bound on arbitrary measurable state spaces.
+@isnad1 id=eventual.2h5v.s8.a50860c424fc from=translated src=- shape=48cb5c4d vocab=45ed5801
+-/
 theorem trajectoryRiskInnovation_condSecondMoment_le_one_fourth_of_joint
     (kappa : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z)
     [∀ n, IsMarkovKernel (kappa n)] (x0 : Z)
@@ -387,6 +420,9 @@ def measurableTrajectoryRiskShortfall
     (score : TrajectoryScore Z) (n : ℕ) (x : ℕ → Z) : ℝ :=
   conditionalTrajectoryRisk kappa score n x - observedTrajectoryScore score n x
 
+/--
+@isnad1 id=eq.0h4v.s7.1274a468c387 from=translated src=- shape=852d9a29 vocab=b2354476
+-/
 lemma measurableTrajectoryRiskShortfall_eq_neg_innovation
     (kappa : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z)
     (score : TrajectoryScore Z) (n : ℕ) :
@@ -399,6 +435,9 @@ lemma measurableTrajectoryRiskShortfall_eq_neg_innovation
       conditionalTrajectoryRisk kappa score n x)
   ring
 
+/--
+@isnad1 id=incremen.1h3v.s8.38e03f1605fe from=translated src=- shape=31fbfab4 vocab=27bff5cf
+-/
 lemma measurableTrajectoryRiskShortfall_incrementAdapted_of_joint
     (kappa : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z)
     [∀ n, IsMarkovKernel (kappa n)]
@@ -412,6 +451,9 @@ lemma measurableTrajectoryRiskShortfall_incrementAdapted_of_joint
   exact (trajectoryRiskInnovation_incrementAdapted_of_joint
     kappa hscore_meas n).neg
 
+/--
+@isnad1 id=le.2h5v.s8.1be9090fac39 from=translated src=- shape=58f0b12d vocab=50347b04
+-/
 lemma abs_measurableTrajectoryRiskShortfall_le_one_of_joint
     (kappa : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z)
     [∀ n, IsMarkovKernel (kappa n)] {score : TrajectoryScore Z}
@@ -424,6 +466,9 @@ lemma abs_measurableTrajectoryRiskShortfall_le_one_of_joint
   exact abs_trajectoryRiskInnovation_le_one_of_joint
     kappa hscore_meas hscore n x
 
+/--
+@isnad1 id=eventual.2h5v.s8.4208820afc3b from=translated src=- shape=f265b8bb vocab=5db93d18
+-/
 theorem measurableTrajectoryRiskShortfall_condExp_eq_zero_of_joint
     (kappa : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z)
     [∀ n, IsMarkovKernel (kappa n)] (x0 : Z)
@@ -442,6 +487,9 @@ theorem measurableTrajectoryRiskShortfall_condExp_eq_zero_of_joint
   rw [hneg]
   simp only [Pi.neg_apply, hzero, Pi.zero_apply, neg_zero]
 
+/--
+@isnad1 id=eventual.2h5v.s8.09ef1177d4f6 from=translated src=- shape=48cb5c4d vocab=37b80fab
+-/
 theorem measurableTrajectoryRiskShortfall_condSecondMoment_le_one_fourth_of_joint
     (kappa : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z)
     [∀ n, IsMarkovKernel (kappa n)] (x0 : Z)
@@ -472,6 +520,9 @@ def affineRealPrefixKernel (n : ℕ) :
     (fun u ↦ (u ⟨n, Finset.mem_Iic.mpr le_rfl⟩ + 1) / 2)
     (by fun_prop)
 
+/--
+@isnad1 id=ismarkov.0h1v.s6.48f47efb74f5 from=translated src=- shape=a6d8d94c vocab=4fed83a5
+-/
 instance affineRealPrefixKernel.instIsMarkovKernel (n : ℕ) :
     IsMarkovKernel (affineRealPrefixKernel n) := by
   unfold affineRealPrefixKernel
@@ -481,6 +532,9 @@ instance affineRealPrefixKernel.instIsMarkovKernel (n : ℕ) :
 def clippedRealTrajectoryScore : TrajectoryScore ℝ :=
   fun _ _ y ↦ max 0 (min 1 y)
 
+/--
+@isnad1 id=jointlys.0h0v.s2.1daa1b1861d3 from=translated src=- shape=25b03439 vocab=1d9284e6
+-/
 lemma clippedRealTrajectoryScore_jointlyStronglyMeasurable :
     JointlyStronglyMeasurableTrajectoryScore clippedRealTrajectoryScore := by
   intro n
@@ -488,6 +542,9 @@ lemma clippedRealTrajectoryScore_jointlyStronglyMeasurable :
     (fun p : (((i : Finset.Iic n) → ℝ) × ℝ) ↦ max 0 (min 1 p.2))
   exact (continuous_const.max (continuous_const.min continuous_snd)).stronglyMeasurable
 
+/--
+@isnad1 id=mem.0h3v.s5.00a97c1bc2c3 from=translated src=- shape=d5f343ff vocab=2ef6e79c
+-/
 lemma clippedRealTrajectoryScore_mem_Icc
     (n : ℕ) (u : (i : Finset.Iic n) → ℝ) (y : ℝ) :
     clippedRealTrajectoryScore n u y ∈ Set.Icc (0 : ℝ) 1 := by
@@ -496,7 +553,9 @@ lemma clippedRealTrajectoryScore_mem_Icc
   · exact max_le (by norm_num) (min_le_left 1 y)
 
 /-- The general conditional-expectation theorem instantiated on a genuinely
-infinite state space. -/
+infinite state space.
+@isnad1 id=eventual.0h2v.s6.b7d6c5a7b205 from=translated src=- shape=8de7967c vocab=5053e603
+-/
 theorem clippedRealTrajectoryScore_condExp (x0 : ℝ) (n : ℕ) :
     (trajectoryMeasure affineRealPrefixKernel x0)[
         observedTrajectoryScore clippedRealTrajectoryScore n |
@@ -510,7 +569,9 @@ theorem clippedRealTrajectoryScore_condExp (x0 : ℝ) (n : ℕ) :
     clippedRealTrajectoryScore_mem_Icc n
 
 /-- On the zero prefix, the first affine continuation and its clipped risk are
-exactly `1/2`. -/
+exactly `1/2`.
+@isnad1 id=eq.0h0v.s5.51e161483ac9 from=translated src=- shape=a595b9b5 vocab=8309a091
+-/
 lemma clippedRealTrajectoryRisk_zero_prefix :
     conditionalTrajectoryRisk affineRealPrefixKernel
       clippedRealTrajectoryScore 0 (fun _ ↦ 0) = (1 / 2 : ℝ) := by

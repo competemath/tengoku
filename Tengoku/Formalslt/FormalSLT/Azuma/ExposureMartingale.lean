@@ -54,6 +54,9 @@ by the first `k` coordinates. -/
 
 variable {n Z}
 
+/--
+@isnad1 id=le.0h3v.s5.2fb79c925390 from=translated src=- shape=0e512294 vocab=6375bbbe
+-/
 lemma coordinateSubAlgebra_le_pi (k : Fin (n + 1)) :
     coordinateSubAlgebra n Z k ≤
       (inferInstance : MeasurableSpace (Fin n → Z)) := by
@@ -66,6 +69,9 @@ lemma coordinateSubAlgebra_le_pi (k : Fin (n + 1)) :
   exact le_iSup
     (fun a => (inferInstance : MeasurableSpace Z).comap (fun b : Fin n → Z => b a)) i
 
+/--
+@isnad1 id=monotone.0h2v.s6.bfbd599da771 from=translated src=- shape=4f9c5b4f vocab=4706a335
+-/
 lemma coordinateSubAlgebra_mono :
     Monotone (coordinateSubAlgebra n Z) := by
   intro k₁ k₂ hk
@@ -75,7 +81,9 @@ lemma coordinateSubAlgebra_mono :
     (inferInstance : MeasurableSpace Z).comap (fun s : Fin n → Z => s i)) i ?_
   exact lt_of_lt_of_le hi hk
 
-/-- At index `0`, no coordinates are exposed: the σ-algebra is trivial. -/
+/-- At index `0`, no coordinates are exposed: the σ-algebra is trivial.
+@isnad1 id=eq.0h2v.s6.452c2ae07362 from=translated src=- shape=4e3a9952 vocab=7579e27a
+-/
 lemma coordinateSubAlgebra_zero :
     coordinateSubAlgebra n Z (0 : Fin (n + 1)) = ⊥ := by
   unfold coordinateSubAlgebra
@@ -86,7 +94,9 @@ lemma coordinateSubAlgebra_zero :
   · exact bot_le
 
 /-- At index `Fin.last n`, every coordinate is exposed: the σ-algebra
-is the full product σ-algebra. -/
+is the full product σ-algebra.
+@isnad1 id=eq.0h2v.s5.a43d8362420c from=translated src=- shape=c03f2bf4 vocab=ec59dd8f
+-/
 lemma coordinateSubAlgebra_last :
     coordinateSubAlgebra n Z (Fin.last n)
       = (inferInstance : MeasurableSpace (Fin n → Z)) := by
@@ -117,6 +127,9 @@ def coordinateFiltration :
   mono' := coordinateSubAlgebra_mono
   le' := coordinateSubAlgebra_le_pi
 
+/--
+@isnad1 id=eq.0h3v.s6.e27f0282c1e0 from=translated src=- shape=9743c0da vocab=12e843a8
+-/
 @[simp]
 lemma coordinateFiltration_apply (k : Fin (n + 1)) :
     (coordinateFiltration n Z) k = coordinateSubAlgebra n Z k := rfl
@@ -139,7 +152,9 @@ noncomputable def exposureMartingale (μ : Fin n → Measure Z) (f : (Fin n → 
 
 /-- The exposure martingale is a martingale under the product measure,
 provided the product measure is finite (e.g. when `μ` is a probability
-measure on `Z`). -/
+measure on `Z`).
+@isnad1 id=martinga.0h4v.s7.3138c94cd43c from=translated src=- shape=27ca676c vocab=56286e43
+-/
 theorem exposureMartingale_isMartingale
     [IsFiniteMeasure (Measure.pi μ)]
     (f : (Fin n → Z) → ℝ) :
@@ -148,7 +163,9 @@ theorem exposureMartingale_isMartingale
   martingale_condExp f (coordinateFiltration n Z) _
 
 /-- At `k = 0`, the exposure martingale is (a.e.) the constant function
-equal to `∫ f dμⁿ`. -/
+equal to `∫ f dμⁿ`.
+@isnad1 id=eventual.0h4v.s7.90c69ca382b1 from=translated src=- shape=d062499c vocab=2b5b89c4
+-/
 theorem exposureMartingale_zero_ae
     [IsProbabilityMeasure (Measure.pi μ)]
     (f : (Fin n → Z) → ℝ) :
@@ -161,7 +178,9 @@ theorem exposureMartingale_zero_ae
 
 /-- At `k = Fin.last n`, the exposure martingale equals `f` (a.e.).
 This is the terminal identity needed for the telescoping decomposition
-`Mₙ - M₀ = f - E[f]` used in McDiarmid's proof. -/
+`Mₙ - M₀ = f - E[f]` used in McDiarmid's proof.
+@isnad1 id=eventual.2h4v.s7.d00a48c4f79c from=translated src=- shape=d3fdfea5 vocab=f310693a
+-/
 theorem exposureMartingale_last_ae
     [IsFiniteMeasure (Measure.pi μ)]
     {f : (Fin n → Z) → ℝ} (hf : StronglyMeasurable f)

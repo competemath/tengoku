@@ -43,20 +43,26 @@ def good [Ring R] [Preorder R] (f : R → R) :=
 
 namespace good
 
-/-- For any `x, t ∈ R`, we have `f(t) ≤ (t - x) f(x) + f(f(x))`. -/
+/-- For any `x, t ∈ R`, we have `f(t) ≤ (t - x) f(x) + f(f(x))`.
+@isnad1 id=le.1h4v.s6.c9a7a3ea1003 from=translated src=- shape=4444c574 vocab=a08d4b3a
+-/
 theorem alt [Ring R] [Preorder R] {f : R → R} (hf : good f) (x t : R) :
     f t ≤ (t - x) * f x + f (f x) := calc
   _ = f (x + (t - x)) := congrArg f (add_sub_cancel x t).symm
   _ ≤ _ := hf x (t - x)
 
-/-- For any `x, t ∈ R`, we have `f(t) - f(f(x)) ≤ (t - x) f(x)`. -/
+/-- For any `x, t ∈ R`, we have `f(t) - f(f(x)) ≤ (t - x) f(x)`.
+@isnad1 id=le.1h4v.s6.ecdb62e42b2b from=translated src=- shape=c67d9ab5 vocab=c44a058f
+-/
 theorem alt' [Ring R] [LinearOrder R] [IsOrderedAddMonoid R]
     {f : R → R} (hf : good f) (x t : R) :
     f t - f (f x) ≤ (t - x) * f x := calc
   _ ≤ ((t - x) * f x + f (f x)) - f (f x) := sub_le_sub_right (hf.alt x t) _
   _ = _ := add_sub_cancel_right _ _
 
-/-- For any `a ∈ R`, we have `a f(a) ≤ 0`. -/
+/-- For any `a ∈ R`, we have `a f(a) ≤ 0`.
+@isnad1 id=le.1h3v.s6.51b9a3095943 from=translated src=- shape=ee00163e vocab=df906c85
+-/
 theorem self_mul_map_nonpos [CommRing R] [LinearOrder R] [IsOrderedAddMonoid R]
     {f : R → R} (hf : good f) (a : R) : a * f a ≤ 0 := by
   let b : R := 2 * f a
@@ -70,7 +76,9 @@ theorem self_mul_map_nonpos [CommRing R] [LinearOrder R] [IsOrderedAddMonoid R]
   _ = -(f a * f b) + (f b - a) * f a := by rw [sub_add_cancel_right, neg_mul]
   _ = -(a * f a) := by rw [mul_comm, sub_mul, sub_eq_add_neg, neg_add_cancel_left]
 
-/-- For any `x ∈ R`, we have `f(f(x)) ≥ f(x)`. -/
+/-- For any `x ∈ R`, we have `f(f(x)) ≥ f(x)`.
+@isnad1 id=le.1h3v.s5.8d5186956442 from=translated src=- shape=9d8d313e vocab=ecaa5375
+-/
 theorem map_le_map_map [Ring R] [Preorder R] {f : R → R} (hf : good f) (x : R) :
     f x ≤ f (f x) := calc
   _ = f (x + 0) := congrArg f (add_zero x).symm
@@ -80,7 +88,9 @@ theorem map_le_map_map [Ring R] [Preorder R] {f : R → R} (hf : good f) (x : R)
 variable [CommRing R] [LinearOrder R] [IsStrictOrderedRing R] {f : R → R} (hf : good f)
 include hf
 
-/-- For any `x ∈ R`, we have `f(x) ≤ 0`. -/
+/-- For any `x ∈ R`, we have `f(x) ≤ 0`.
+@isnad1 id=le.1h3v.s6.17894b82f98e from=translated src=- shape=ca4d6501 vocab=27c0fec4
+-/
 theorem map_nonpos (x : R) : f x ≤ 0 := by
   ---- Suppose that `f(x) > 0`.
   refine le_of_not_gt λ h ↦ ?_
@@ -89,12 +99,16 @@ theorem map_nonpos (x : R) : f x ≤ 0 := by
   ---- But we had `a f(a) ≤ 0` for all `a`, so `f(x) f(f(x)) ≤ 0`; contradiction.
   exact h0.not_ge (hf.self_mul_map_nonpos (f x))
 
-/-- For any `x ∈ R` with `x < 0`, we have `f(x) = 0`. -/
+/-- For any `x ∈ R` with `x < 0`, we have `f(x) = 0`.
+@isnad1 id=eq.2h3v.s6.830c08b4008d from=translated src=- shape=0d35faeb vocab=f86e8dd4
+-/
 theorem map_eq_zero_of_neg {x : R} (hx : x < 0) : f x = 0 :=
   ---- This holds since `x f(x) ≤ 0` implies `f(x) ≥ 0` for `x < 0`.
   (hf.map_nonpos x).antisymm (nonneg_of_mul_nonpos_right (hf.self_mul_map_nonpos x) hx)
 
-/-- We have `f(0) = 0`. -/
+/-- We have `f(0) = 0`.
+@isnad1 id=eq.1h2v.s6.691734d0f435 from=translated src=- shape=a2fee3be vocab=4890a435
+-/
 theorem map_zero : f 0 = 0 := by
   ---- It suffices to show `f(0) ≥ 0`.
   apply (hf.map_nonpos 0).antisymm
@@ -103,11 +117,15 @@ theorem map_zero : f 0 = 0 := by
   ---- Then `f(y) = 0`, so `f(y) ≤ f(f(y))` yields `f(0) ≥ 0`.
   simpa only [hf.map_eq_zero_of_neg hy] using hf.map_le_map_map y
 
-/-- For any `x ∈ R` with `x ≤ 0`, we have `f(x) = 0`. -/
+/-- For any `x ∈ R` with `x ≤ 0`, we have `f(x) = 0`.
+@isnad1 id=eq.2h3v.s6.d7140ca20532 from=translated src=- shape=0d35faeb vocab=27c0fec4
+-/
 theorem map_eq_zero_of_nonpos {x : R} (hx : x ≤ 0) : f x = 0 :=
   hx.lt_or_eq.elim hf.map_eq_zero_of_neg (λ hx ↦ hx ▸ hf.map_zero)
 
 end good
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=eq.2h3v.s6.d7140ca20532 from=translated src=- shape=0d35faeb vocab=27c0fec4
+-/
 alias final_solution := good.map_eq_zero_of_nonpos

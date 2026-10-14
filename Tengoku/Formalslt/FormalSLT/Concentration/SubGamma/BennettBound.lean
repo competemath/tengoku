@@ -188,6 +188,7 @@ This is the pointwise input to the conditional MGF extractor in
 `FormalSLT.Concentration.SubGamma.Extractor`. The inequality holds on
 *both* signs of `x` via the unified series argument in
 `exp_sub_one_sub_id_le_bennett`.
+@isnad1 id=le.5h3v.s7.b4dc2fd2c169 from=translated src=- shape=d963f6ec vocab=ee8e65b7
 -/
 theorem bennett_taylor_bound
     {x b lam : ℝ}

@@ -53,7 +53,9 @@ namespace ACMax
 variable {V : Type*} [Fintype V]
 
 open Classical in
-/-- Partition of `N(g)` by `deg3Set`-membership: `|D3(g)| + i(g) = deg g`. -/
+/-- Partition of `N(g)` by `deg3Set`-membership: `|D3(g)| + i(g) = deg g`.
+@isnad1 id=eq.0h3v.s6.32edb06f9996 from=translated src=- shape=be71e012 vocab=0c29ae52
+-/
 theorem card_hubTwins_add_intDeg (G : SimpleGraph V) (g : V) :
     (hubTwins G g).card + intDeg G g = G.degree g := by
   unfold hubTwins intDeg
@@ -61,7 +63,9 @@ theorem card_hubTwins_add_intDeg (G : SimpleGraph V) (g : V) :
   exact G.card_neighborFinset_eq_degree g
 
 open Classical in
-/-- Partition of `D3(g)` by `D3(h)`-membership: `p(g,h) + s(g,h) = |D3(g)|`. -/
+/-- Partition of `D3(g)` by `D3(h)`-membership: `p(g,h) + s(g,h) = |D3(g)|`.
+@isnad1 id=eq.0h4v.s5.84ec928f255b from=translated src=- shape=f43fd187 vocab=ec9249f8
+-/
 theorem privTwins_card_eq (G : SimpleGraph V) (g h : V) :
     (privTwins G g h).card + (sharedTwins G g h).card = (hubTwins G g).card := by
   unfold privTwins sharedTwins
@@ -81,7 +85,9 @@ namespace ACMax
 
 open Classical in
 /-- `mIncidence` written with the ambient decidability instances of `Fin n` (bridging the
-`Classical` instances baked into the definition over an abstract vertex type). -/
+`Classical` instances baked into the definition over an abstract vertex type).
+@isnad1 id=eq.0h2v.s6.a42e4de2239d from=translated src=- shape=7904abf1 vocab=e92baadf
+-/
 theorem mIncidence_eq (n : ℕ) (G : SimpleGraph (Fin n)) :
     mIncidence G = ∑ v ∈ deg3Set G, (G.neighborFinset v ∩ deg3Set G).card := by
   unfold mIncidence
@@ -92,7 +98,9 @@ theorem mIncidence_eq (n : ℕ) (G : SimpleGraph (Fin n)) :
 
 open Classical in
 /-- Membership in `hubTwins`, stated over a general vertex type so that the classical
-decidability instances inside the definition match those synthesised in the proof. -/
+decidability instances inside the definition match those synthesised in the proof.
+@isnad1 id=iff.0h4v.s6.1fe4ee65c58f from=translated src=- shape=51a6a3d6 vocab=fb1420e4
+-/
 theorem mem_hubTwins_adj {V : Type*} [Fintype V] {G : SimpleGraph V} {g v : V} :
     v ∈ hubTwins G g ↔ G.Adj g v ∧ G.degree v = 3 := by
   unfold hubTwins
@@ -100,7 +108,9 @@ theorem mem_hubTwins_adj {V : Type*} [Fintype V] {G : SimpleGraph V} {g v : V} :
 
 open Classical in
 /-- **The incidence collapse**: when all `M`-edges coincide, the incidence
-count is at most `2` — the two endpoints of the single edge. -/
+count is at most `2` — the two endpoints of the single edge.
+@isnad1 id=le.1h2v.s8.06173e5cfc42 from=translated src=- shape=1842a5a4 vocab=f92fb3b9
+-/
 theorem mIncidence_le_two (n : ℕ) (G : SimpleGraph (Fin n))
     (huniq : ∀ t₁ t₂ t₃ t₄ : Fin n, G.Adj t₁ t₂ → G.Adj t₃ t₄ →
       G.degree t₁ = 3 → G.degree t₂ = 3 → G.degree t₃ = 3 →
@@ -200,7 +210,9 @@ theorem mIncidence_le_two (n : ℕ) (G : SimpleGraph (Fin n))
     exact hE t u hu.1 (mem_deg3Set.mp ht) (mem_deg3Set.mp hu.2)
 
 open Classical in
-/-- `M`-endpoints under the dichotomy: at most `2`. -/
+/-- `M`-endpoints under the dichotomy: at most `2`.
+@isnad1 id=le.1h2v.s9.e870ae921918 from=translated src=- shape=c0a70f22 vocab=f7b4d647
+-/
 theorem medge_endpoint_card_le_two (n : ℕ) (G : SimpleGraph (Fin n))
     (huniq : ∀ t₁ t₂ t₃ t₄ : Fin n, G.Adj t₁ t₂ → G.Adj t₃ t₄ →
       G.degree t₁ = 3 → G.degree t₂ = 3 → G.degree t₃ = 3 →
@@ -232,7 +244,9 @@ theorem medge_endpoint_card_le_two (n : ℕ) (G : SimpleGraph (Fin n))
   exact hle.trans (mIncidence_le_two n G huniq)
 
 open Classical in
-/-- Endpoint hubs under the dichotomy: at most `4`. -/
+/-- Endpoint hubs under the dichotomy: at most `4`.
+@isnad1 id=le.2h2v.s10.4ae103bb0df1 from=translated src=- shape=3deac467 vocab=c6b49445
+-/
 theorem medge_endpoint_hub_card_le_four (n : ℕ) (G : SimpleGraph (Fin n))
     (_h : ResidualCore n G)
     (huniq : ∀ t₁ t₂ t₃ t₄ : Fin n, G.Adj t₁ t₂ → G.Adj t₃ t₄ →
@@ -324,7 +338,9 @@ open Classical in
 twins with the anchor `g₀`, whose twin set has size `a` and consists of degree-3
 vertices, then `σ₀·|T \ {g₀}| ≤ 2a`: counting incidences `(t, h)` with
 `t ∈ sharedTwins g₀ h`, each `h` contributes `≥ σ₀`, while each twin `t` has only
-`|N(t)| = 3` slots, one of which is `g₀` itself — so `t` serves at most `2` members. -/
+`|N(t)| = 3` slots, one of which is `g₀` itself — so `t` serves at most `2` members.
+@isnad1 id=le.3h6v.s7.a4562b1acaa0 from=translated src=- shape=4e623d6b vocab=de82654a
+-/
 theorem anchored_sharing_count [DecidableEq V] (G : SimpleGraph V) (g₀ : V)
     (T : Finset V) (σ₀ a : ℕ)
     (hshare : ∀ h ∈ T.erase g₀, σ₀ ≤ (sharedTwins G g₀ h).card)
@@ -392,7 +408,9 @@ open Classical in
 /-- **Forced sharing at internal degree `≤ i₀`.**  On the `SeaFatBoundary`, a nonadjacent
 equal-twin-count hub pair with `intDeg ≤ i₀` each and `mCross = 0` shares at least
 `3 − i₀` twins: the gap terms of `dsValue` cancel, so `5 ≤ i(g) + i(h) + 2s ≤ 2i₀ + 2s`,
-and since `5 − 2i₀` is odd, `s ≥ ⌈(5 − 2i₀)/2⌉ = 3 − i₀`. -/
+and since `5 − 2i₀` is odd, `s ≥ ⌈(5 − 2i₀)/2⌉ = 3 − i₀`.
+@isnad1 id=le.9h5v.s7.c79c461bfb18 from=translated src=- shape=66323b3d vocab=7a58a1d7
+-/
 theorem sfb_forces_sharing_of_intDeg_le (G : SimpleGraph V) (hb : SeaFatBoundary G)
     (g h : V) (i₀ : ℕ) (hne : g ≠ h) (hg4 : 4 ≤ G.degree g) (hh4 : 4 ≤ G.degree h)
     (heq : (hubTwins G g).card = (hubTwins G h).card)
@@ -420,7 +438,9 @@ leaving `≥ 4 ≥ gap` far pads). -/
 
 open Classical in
 /-- **Gap-0 firing**: a DS-unblocked hub pair with *equal* private-twin counts is a W1
-configuration — the empty pad set closes the count. -/
+configuration — the empty pad set closes the count.
+@isnad1 id=w1config.5h4v.s7.eb4ed6b87611 from=translated src=- shape=34ffcfd6 vocab=a3e89ecb
+-/
 theorem w1_of_unblocked_eq_twins (G : SimpleGraph V) (g h : V)
     (hg4 : 4 ≤ G.degree g) (hh4 : 4 ≤ G.degree h) (hne : g ≠ h)
     (heq : (privTwins G g h).card = (privTwins G h g).card)
@@ -455,7 +475,9 @@ section GenericV
 variable {V : Type*} [Fintype V]
 
 open Classical in
-/-- Membership in `hubTwins`: a hub twin of `g` is a degree-3 neighbour. -/
+/-- Membership in `hubTwins`: a hub twin of `g` is a degree-3 neighbour.
+@isnad1 id=iff.0h4v.s6.1fe4ee65c58f from=translated src=- shape=51a6a3d6 vocab=fb1420e4
+-/
 theorem mem_hubTwins_iff {G : SimpleGraph V} {g v : V} :
     v ∈ hubTwins G g ↔ G.Adj g v ∧ G.degree v = 3 := by
   unfold hubTwins
@@ -485,7 +507,9 @@ open Classical in
 /-- **The σ-value pair gap.**  Two heavy σ-values summing strictly above `3/2`
 sum to at least `32/21`: the σ-value set `{2/3, 3/4, 4/5, 5/6, 6/7, …}` is
 discrete, so the sum cannot approach `3/2` from above — the minimum is the
-`(5, 9)`-profile `2/3 + 6/7 = 32/21`. -/
+`(5, 9)`-profile `2/3 + 6/7 = 32/21`.
+@isnad1 id=le.3h2v.s6.77b9e1317de1 from=translated src=- shape=49f80728 vocab=5341834b
+-/
 theorem sigma_pair_gap {d₁ d₂ : ℕ} (h₁ : 5 ≤ d₁) (h₂ : 5 ≤ d₂)
     (h : (3 / 2 : ℝ) < sigma d₁ + sigma d₂) :
     (32 / 21 : ℝ) ≤ sigma d₁ + sigma d₂ := by
@@ -551,7 +575,9 @@ open Classical in
 σ-mass at least `32/21` from its heavy neighbours: with a degree-4 neighbour
 present, the remaining two heavy σ-values sum strictly above `3/2`, hence to
 at least `32/21` by the pair gap; with no degree-4 neighbour the heavy sum
-already exceeds `2`. -/
+already exceeds `2`.
+@isnad1 id=le.3h3v.s8.ded20ae7ead3 from=translated src=- shape=52cc639c vocab=1464c731
+-/
 theorem heavy_sigma_into_suppressed_sharp (G : SimpleGraph (Fin n)) (t : Fin n)
     (h3 : ∀ v, 3 ≤ G.degree v) (hd : G.degree t = 3) (hs : 2 < sigS G t) :
     (32 / 21 : ℝ) ≤ ∑ w ∈ (G.neighborFinset t).filter (fun w => 5 ≤ G.degree w),
@@ -624,7 +650,9 @@ theorem heavy_sigma_into_suppressed_sharp (G : SimpleGraph (Fin n)) (t : Fin n)
 open Classical in
 /-- **The sharp weighted heavy ledger** (integer-profile demand):
 
-  `(32/21)·#suppressed ≤ Σ_{deg w ≥ 5} σ(deg w)·|hubTwins w|`. -/
+  `(32/21)·#suppressed ≤ Σ_{deg w ≥ 5} σ(deg w)·|hubTwins w|`.
+@isnad1 id=le.1h2v.s9.72937e86887a from=translated src=- shape=c595d6e0 vocab=0148ea17
+-/
 theorem weighted_heavy_ledger_sharp (G : SimpleGraph (Fin n))
     (h3 : ∀ v, 3 ≤ G.degree v) :
     (32 / 21 : ℝ) * ((Finset.univ.filter
@@ -704,7 +732,9 @@ variable {V : Type*} [Fintype V]
 /-! ## Small vocabulary lemmas -/
 
 open Classical in
-/-- The twin count never exceeds the degree: `|D3(g)| ≤ deg g`. -/
+/-- The twin count never exceeds the degree: `|D3(g)| ≤ deg g`.
+@isnad1 id=le.0h3v.s5.4113c69d9533 from=translated src=- shape=f9ef6ba0 vocab=0dfde4e9
+-/
 theorem hubTwins_card_le_degree (G : SimpleGraph V) (g : V) :
     (hubTwins G g).card ≤ G.degree g := by
   have h := card_hubTwins_add_intDeg G g
@@ -712,7 +742,9 @@ theorem hubTwins_card_le_degree (G : SimpleGraph V) (g : V) :
 
 open Classical in
 /-- A nonzero `mCross` produces an explicit cross edge: a private twin `t` of
-`g` against `h` adjacent to a private twin `t'` of `h` against `g`. -/
+`g` against `h` adjacent to a private twin `t'` of `h` against `g`.
+@isnad1 id=ex.1h4v.s6.239f223c1ae5 from=translated src=- shape=0357b809 vocab=c9f8448c
+-/
 theorem exists_cross_edge_of_mCross_ne_zero (G : SimpleGraph V) (g h : V)
     (hmx : mCross G g h ≠ 0) :
     ∃ t ∈ privTwins G g h, ∃ t' ∈ privTwins G h g, G.Adj t t' := by
@@ -734,7 +766,9 @@ hubs with `deg ≥ 4`, `intDeg ≤ i₀ ≤ 2`, the same twin count `a`, and van
 pairwise `mCross` satisfies `|T| ≤ 1 + i₀ + 2a`: anchored at any `g₀ ∈ T`, at
 most `i₀` partners are adjacent to `g₀` (they are non-degree-3 neighbours) and
 at most `2a` are nonadjacent (each shares `≥ 3 − i₀ ≥ 1` twins with `g₀`, and
-each of `g₀`'s `a` twins serves at most `2` partners). -/
+each of `g₀`'s `a` twins serves at most `2` partners).
+@isnad1 id=le.4h5v.s7.64beea5d7547 from=translated src=- shape=155dbd3d vocab=2aaa1910
+-/
 theorem class_cap_with_adj (n : ℕ) (G : SimpleGraph (Fin n))
     (hb : SeaFatBoundary G) (a i₀ : ℕ) (hi : i₀ ≤ 2) (T : Finset (Fin n))
     (hT : ∀ g ∈ T, 4 ≤ G.degree g ∧ intDeg G g ≤ i₀ ∧ (hubTwins G g).card = a)
@@ -821,7 +855,9 @@ open Classical in
 /-- On the compact cell (`¬HasUsableFarPair`), two distinct usable vertices are
 adjacent, share a common neighbour, or carry an edge between their
 neighbourhoods: the negation of all three would exhibit a usable clean far
-pair. -/
+pair.
+@isnad1 id=or.4h4v.s6.c47e6fab4c10 from=translated src=- shape=94ce1d91 vocab=dd9478d1
+-/
 theorem usable_pair_mechanism {n : ℕ} (G : SimpleGraph (Fin n))
     (hcpt : ¬HasUsableFarPair G) (t t' : Fin n) (hne : t ≠ t')
     (ht : sigS G t ≤ 2) (ht' : sigS G t' ≤ 2) :
@@ -867,7 +903,9 @@ open Classical in
 /-- **Mid-usable Moore bound.**  On the compact cell, the set of degree-5
 usable vertices all of whose neighbours have degree `≤ 8` has at most `286`
 elements: every member mediates with a fixed member `u₀` within the
-parent-erased ball `1 + 5 + 5·7 + 5·7·7 = 286` around `u₀`. -/
+parent-erased ball `1 + 5 + 5·7 + 5·7·7 = 286` around `u₀`.
+@isnad1 id=le.1h2v.s10.d3fafba091b5 from=translated src=- shape=d291edd9 vocab=792e116a
+-/
 theorem mid_usable5_card_le (n : ℕ) (G : SimpleGraph (Fin n))
     (hcpt : ¬HasUsableFarPair G) :
     (Finset.univ.filter (fun u : Fin n =>
@@ -1044,7 +1082,9 @@ open Classical in
 /-- **The `W₅` split**: the usable degree-5 two-twin class is covered by the
 mid-usable Moore class together with the big-hub cloud class `W₅ᵇ`:
 
-  `N₅ ≤ 206 + N₅ᵇ`. -/
+  `N₅ ≤ 206 + N₅ᵇ`.
+@isnad1 id=le.1h2v.s10.0c6f1c5703b4 from=translated src=- shape=138cf7cd vocab=605a88f2
+-/
 theorem w5_card_split (n : ℕ) (G : SimpleGraph (Fin n))
     (hcpt : ¬HasUsableFarPair G) :
     ((Finset.univ.filter (fun w : Fin n =>
@@ -1101,7 +1141,9 @@ open Finset
 open Classical in
 /-- **The `σ` integer program.**  Three neighbour degrees in `[3,8]` whose slot
 values sum to `≤ 2` have degree sum `≤ 19` — the `{8,8,3}` maximiser
-(`σ = 5/6+5/6+0 = 5/3`).  `{8,8,4}` already costs `13/6 > 2`. -/
+(`σ = 5/6+5/6+0 = 5/3`).  `{8,8,4}` already costs `13/6 > 2`.
+@isnad1 id=le.7h3v.s6.15695d2484e8 from=translated src=- shape=76f119e4 vocab=2f0ec2ca
+-/
 theorem sigma_deg_triple_sum_le {da db dc : ℕ}
     (ha3 : 3 ≤ da) (ha8 : da ≤ 8) (hb3 : 3 ≤ db) (hb8 : db ≤ 8)
     (hc3 : 3 ≤ dc) (hc8 : dc ≤ 8)
@@ -1115,7 +1157,9 @@ theorem sigma_deg_triple_sum_le {da db dc : ℕ}
 open Classical in
 /-- **The neighbour-degree cap.**  A usable degree-3 vertex `u` (`sigS u ≤ 2`)
 whose neighbours all have degree `≤ 8`, in a graph of minimum degree `≥ 3`, has
-neighbour-degree sum `≤ 19`. -/
+neighbour-degree sum `≤ 19`.
+@isnad1 id=le.4h3v.s8.a3ccca6a09dd from=translated src=- shape=575b7e83 vocab=3810c7c9
+-/
 theorem nbr_deg_sum_le_nineteen (n : ℕ) (G : SimpleGraph (Fin n))
     (h3 : ∀ v : Fin n, 3 ≤ G.degree v)
     (u : Fin n) (hdeg : G.degree u = 3) (hsig : sigS G u ≤ 2)
@@ -1278,7 +1322,9 @@ private theorem mid_leaves_card_le_sharp_hLC : ∀ (n : ℕ) (G : SimpleGraph (F
 open Classical in
 /-- **Sharpened mid-leaves Moore bound.**  On the compact cell, in a graph of
 minimum degree `≥ 3`, the set of degree-3 usable vertices all of whose
-neighbours have degree `≤ 8` has at most `108` elements. -/
+neighbours have degree `≤ 8` has at most `108` elements.
+@isnad1 id=le.3h2v.s10.51631cbdea3e from=translated src=- shape=4cb0edfa vocab=3f177985
+-/
 theorem mid_leaves_card_le_sharp (n : ℕ) (G : SimpleGraph (Fin n))
     (h3 : ∀ v : Fin n, 3 ≤ G.degree v)
     (hcpt : ¬HasUsableFarPair G)
@@ -1432,7 +1478,9 @@ open Classical in
 /-- The usable degree-3 set splits into the sharpened mid part (`≤ 108` on the
 compact cell, min degree `≥ 3`) and the vertices carrying a **big** (`deg ≥ 9`)
 neighbour.  Drop-in replacement for `usable_deg3_split_mid` with the improved
-constant. -/
+constant.
+@isnad1 id=le.3h2v.s10.a0bc733a16a1 from=translated src=- shape=3a1cafbf vocab=3f177985
+-/
 theorem usable_deg3_split_mid_sharp (n : ℕ) (G : SimpleGraph (Fin n))
     (h3 : ∀ v : Fin n, 3 ≤ G.degree v)
     (hcpt : ¬HasUsableFarPair G)

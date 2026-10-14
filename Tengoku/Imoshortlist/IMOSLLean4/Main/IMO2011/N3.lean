@@ -37,19 +37,25 @@ section
 
 variable [CommRing R]
 
-/-- If `d ∣ n`, then the function `x ↦ x^d` is `n`-good. -/
+/-- If `d ∣ n`, then the function `x ↦ x^d` is `n`-good.
+@isnad1 id=good.1h3v.s5.a609baa158e9 from=translated src=- shape=4bfb9dce vocab=8a80c0e5
+-/
 theorem of_dvd {d n : ℕ} (hdn : d ∣ n) : good n (λ x : R ↦ x ^ d) := by
   intro x y; calc x ^ d - y ^ d
     _ ∣ (x ^ d) ^ (n / d) - (y ^ d) ^ (n / d) := sub_dvd_pow_sub_pow _ _ _
     _ = x ^ n - y ^ n := by rw [← pow_mul, ← pow_mul, Nat.mul_div_cancel' hdn]
 
-/-- If `f : R → R` is `n`-good, then `f + c` is `n`-good for any `c : R`. -/
+/-- If `f : R → R` is `n`-good, then `f + c` is `n`-good for any `c : R`.
+@isnad1 id=good.1h4v.s5.e0e63deca94f from=translated src=- shape=444831e2 vocab=870917c2
+-/
 theorem add_right {f : R → R} (hf : good n f) (c) : good n (f · + c) := by
   intro x y; calc f x + c - (f y + c)
     _ = f x - f y := add_sub_add_right_eq_sub _ _ c
     _ ∣ x ^ n - y ^ n := hf _ _
 
-/-- If `f : R → R` is `n`-good, then `εf` is `n`-good for any unit `ε : Rˣ`. -/
+/-- If `f : R → R` is `n`-good, then `εf` is `n`-good for any unit `ε : Rˣ`.
+@isnad1 id=good.1h4v.s6.485df39006dd from=translated src=- shape=21b3c3b1 vocab=b8cf81cd
+-/
 theorem mul_unit_left {f : R → R} (hf : good n f) (ε : Rˣ) : good n (ε * f ·) := by
   intro x y; calc ε * f x - ε * f y
     _ = ε * (f x - f y) := (mul_sub _ _ _).symm
@@ -57,7 +63,9 @@ theorem mul_unit_left {f : R → R} (hf : good n f) (ε : Rˣ) : good n (ε * f 
     _ ∣ x ^ n - y ^ n := hf _ _
 
 /-- If `f : R → R` is `n`-good and `f(0) = 0`, then for any prime element `p`,
-  there exists `d ≤ n` such that `f(p)` and `p^d` are associated. -/
+  there exists `d ≤ n` such that `f(p)` and `p^d` are associated.
+@isnad1 id=ex.4h4v.s7.b067a59eb986 from=translated src=- shape=2e4782bd vocab=38ad8c02
+-/
 theorem map_prime_of_map_zero [NoZeroDivisors R] (hn : n ≠ 0)
     {f : R → R} (hf : good n f) (hf0 : f 0 = 0) {p : R} (hp : Prime p) :
     ∃ d ≤ n, Associated (f p) (p ^ d) := by
@@ -72,7 +80,9 @@ variable (hn : n ≠ 0) {f : ℤ → ℤ} (hf : good n f) (hf0 : f 0 = 0)
 include hn hf hf0
 
 /-- If `f : ℤ → ℤ` is `n`-good with `f(0) = 0`, then there exists an integer `d ≤ n`
-  and a unit `ε : ℤˣ` such that `f(p) = εp^d` for infinitely many `p : ℕ`. -/
+  and a unit `ε : ℤˣ` such that `f(p) = εp^d` for infinitely many `p : ℕ`.
+@isnad1 id=ex.3h2v.s6.d68b28d32e75 from=translated src=- shape=db902e85 vocab=3e612d91
+-/
 theorem Int_exists_infinite_nat_map_eq_unit_mul_pow :
     ∃ d ≤ n, ∃ ε : ℤˣ, ∀ N : ℕ, ∃ p : ℕ, f p = ε * p ^ d ∧ p > N := by
   /- The proof uses pigeonhole, so first construct a function `T : Fin (n + 1) × ℤˣ`
@@ -96,7 +106,9 @@ theorem Int_exists_infinite_nat_map_eq_unit_mul_pow :
   exact ⟨d, Nat.le_of_lt_add_one d.2, ε, λ N ↦ h.exists_gt N⟩
 
 /-- If `f : ℤ → ℤ` is `n`-good with `f(0) = 0`, then there exists an integer `d ∣ n`
-  and a unit `ε : ℤˣ` such that `(ε f(x))^{n / d} = x^n` for all `x : ℤ`. -/
+  and a unit `ε : ℤˣ` such that `(ε f(x))^{n / d} = x^n` for all `x : ℤ`.
+@isnad1 id=ex.3h2v.s6.9f314ebd40f7 from=translated src=- shape=c67df5a0 vocab=bfde2e3a
+-/
 theorem Int_exists_exponent_dvd_and_unit_f_formula :
     ∃ d, d ∣ n ∧ ∃ ε : ℤˣ, ∀ x : ℤ, (ε * f x) ^ (n / d) = x ^ n := by
   ---- Pick `d ≤ n` and a unit `ε` such that `f(p) = εp^d` for infinitely many `p : ℕ`.
@@ -184,7 +196,9 @@ theorem Int_exists_exponent_dvd_and_unit_f_formula :
 end
 
 /-- If `f : ℤ → ℤ` is `n`-good with `n` odd and `f(0) = 0`, then there exists an
-  integer `d ∣ n` and a unit `ε : ℤˣ` such that `f(x) = εx^d` for all `x : ℤ`. -/
+  integer `d ∣ n` and a unit `ε : ℤˣ` such that `f(x) = εx^d` for all `x : ℤ`.
+@isnad1 id=ex.3h2v.s6.eb25e83d299b from=translated src=- shape=be359311 vocab=9f7e63aa
+-/
 theorem Int_eq_unit_mul_pow
     (hn : Odd n) {f : ℤ → ℤ} (hf : good n f) (hf0 : f 0 = 0) :
     ∃ d, d ∣ n ∧ ∃ ε : ℤˣ, ∀ x, f x = ε * x ^ d := by
@@ -204,7 +218,9 @@ theorem Int_eq_unit_mul_pow
 
 end good
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.1h2v.s6.f3c255aca900 from=translated src=- shape=79f49b14 vocab=5f15e023
+-/
 theorem final_solution {n : ℕ} (hn : Odd n) {f : ℤ → ℤ} :
     good n f ↔ ∃ c : ℤ, ∃ d, d ∣ n ∧ ∃ ε : ℤˣ, f = λ x ↦ ε * x ^ d + c := by
   refine ⟨λ hf ↦ ?_, ?_⟩

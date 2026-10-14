@@ -31,7 +31,9 @@ namespace IMO2012N3
 
 /-! ### Extra lemmas -/
 
-/-- For `p, k, r ∈ ℕ` with `p` prime and `r < p`, we have `p ∤ (pk + 1) … (pk + r)`. -/
+/-- For `p, k, r ∈ ℕ` with `p` prime and `r < p`, we have `p ∤ (pk + 1) … (pk + r)`.
+@isnad1 id=not.2h3v.s5.61e2d0691b7c from=translated src=- shape=7a50061f vocab=30f8f811
+-/
 theorem prime_not_dvd_ascFactorial (hp : Nat.Prime p) (k : ℕ) (hr : r < p) :
     ¬p ∣ (p * k + 1).ascFactorial r := by
   ---- The proof is by induction on `r`; the details are easy.
@@ -40,7 +42,9 @@ theorem prime_not_dvd_ascFactorial (hp : Nat.Prime p) (k : ℕ) (hr : r < p) :
   rw [Nat.add_right_comm, Nat.add_assoc, Nat.dvd_add_right ⟨k, rfl⟩]
   exact Nat.not_dvd_of_pos_of_lt (Nat.succ_pos r) hr
 
-/-- If `p` is prime and `k ≠ 0` then `pk ∤ C(pk, p)`. -/
+/-- If `p` is prime and `k ≠ 0` then `pk ∤ C(pk, p)`.
+@isnad1 id=not.2h2v.s5.617c351d15cb from=translated src=- shape=d57faa29 vocab=45c751cf
+-/
 theorem prime_choose_not_dvd (hp : Nat.Prime p) (hk : k ≠ 0) :
     ¬(p * k) ∣ (p * k).choose p := by
   intro h
@@ -63,7 +67,9 @@ theorem prime_choose_not_dvd (hp : Nat.Prime p) (hk : k ≠ 0) :
 /-- A non-negative integer `m` is called *good* if `n ∣ C(n, m - 2n)` for all `n ≤ m/2`. -/
 def good (m : ℕ) := ∀ n ≤ m / 2, n ∣ Nat.choose n (m - 2 * n)
 
-/-- A prime number is good. -/
+/-- A prime number is good.
+@isnad1 id=good.1h1v.s2.e3f91d4c8570 from=translated src=- shape=6321fd23 vocab=b2f9989e
+-/
 theorem prime_is_good (hp : Nat.Prime p) : good p := by
   ---- If `p = 2`, then we only need to check `n = 0` and `n = 1`.
   obtain rfl | ⟨k, rfl⟩ : p = 2 ∨ Odd p := hp.eq_two_or_odd'
@@ -98,13 +104,17 @@ theorem prime_is_good (hp : Nat.Prime p) : good p := by
   ---- Thus we are done.
   exact h0.symm.dvd_of_dvd_mul_right h
 
-/-- If `2k` is good, then `k = 1`. -/
+/-- If `2k` is good, then `k = 1`.
+@isnad1 id=eq.1h1v.s4.2a225592f165 from=translated src=- shape=e1d1da9d vocab=30c183d9
+-/
 theorem good_two_mul_imp (hk : good (2 * k)) : k = 1 := by
   ---- Indeed, just plug `n = k` and see.
   specialize hk k (Nat.mul_div_right k Nat.two_pos).ge
   rwa [Nat.sub_self, Nat.choose_zero_right, Nat.dvd_one] at hk
 
-/-- If `p(2k + 1)` is good where `p` is prime, then `k = 0`. -/
+/-- If `p(2k + 1)` is good where `p` is prime, then `k = 0`.
+@isnad1 id=eq.2h2v.s5.06bb395ddcd1 from=translated src=- shape=e7aed868 vocab=ba33325f
+-/
 theorem good_prime_mul_odd_imp (hp : Nat.Prime p) (hpk : good (p * (2 * k + 1))) :
     k = 0 := by
   ---- Suppose for the sake of contradiction that `k ≠ 0`.
@@ -120,7 +130,9 @@ theorem good_prime_mul_odd_imp (hp : Nat.Prime p) (hpk : good (p * (2 * k + 1)))
   ---- This is known to be false for `k > 0`; see `prime_choose_not_dvd`.
   exact prime_choose_not_dvd hp hk hpk
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.1h1v.s4.373d037a59b1 from=translated src=- shape=61782199 vocab=80119500
+-/
 theorem final_solution (hm : 1 < m) : good m ↔ Nat.Prime m := by
   ---- The `←` direction is solved via `prime_is_good`, so now focus on `→`.
   refine ⟨λ hm0 ↦ ?_, prime_is_good⟩

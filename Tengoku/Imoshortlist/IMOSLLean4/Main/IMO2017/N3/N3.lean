@@ -29,6 +29,9 @@ open Finset
 
 /-! ### Extra lemmas -/
 
+/--
+@isnad1 id=iff.0h2v.s5.d905be86283a from=translated src=- shape=0a1c60b8 vocab=533a97eb
+-/
 lemma mod_succ_eq_iff : k % n.succ = n ↔ n.succ ∣ k + 1 := by
   refine ⟨λ h ↦ ?_, λ h ↦ ?_⟩
   · rw [Nat.dvd_iff_mod_eq_zero, ← Nat.mod_add_mod, h, Nat.mod_self]
@@ -38,6 +41,9 @@ lemma mod_succ_eq_iff : k % n.succ = n ↔ n.succ ∣ k + 1 := by
     rcases h with ⟨j, rfl⟩
     rw [Nat.add_mul_mod_self_left, Nat.mod_succ]
 
+/--
+@isnad1 id=ex.1h3v.s6.e350d1bd9837 from=translated src=- shape=c55793f2 vocab=86eb5933
+-/
 theorem Nat_exists_iterate_mod_eq (hp : 0 < p) (f : ℕ → ℕ) (i : ℕ) :
     ∃ k m, m > 0 ∧ m ≤ p ∧ f^[k + m] i % p = f^[k] i % p := by
   ---- Reduce to the true pigeonhole principle with pigenhole indexed by `[p + 1]`
@@ -62,6 +68,9 @@ open Fin.NatCast
 
 variable [AddCommMonoid M]
 
+/--
+@isnad1 id=eq.0h5v.s6.3d55359a1f3b from=translated src=- shape=fb0e316e vocab=3963aa2a
+-/
 lemma sum_Ico_fin_boole_last (a : M) (n k m : ℕ) :
     ∑ i ∈ Ico k m, (if (i : Fin n.succ) = Fin.last n then a else 0)
       = (m / n.succ - k / n.succ) • a := by
@@ -81,12 +90,18 @@ lemma sum_Ico_fin_boole_last (a : M) (n k m : ℕ) :
       refine congrArg₂ _ (if_congr ?_ (one_nsmul a).symm (zero_nsmul a).symm) rfl
       rw [Fin.ext_iff, Fin.val_natCast, Fin.val_last, mod_succ_eq_iff]
 
+/--
+@isnad1 id=eq.0h4v.s6.3d46a2eeaf7e from=translated src=- shape=518376ba vocab=eec2f91a
+-/
 lemma sum_Ico_fin_add {n : ℕ} (f : Fin n.succ → M) (i : ℕ) :
     ∑ j ∈ Ico i (i + n.succ), f j = ∑ j : Fin n.succ, f j := by
   rw [sum_Ico_eq_sum_range, Nat.add_sub_cancel_left, ← Fin.sum_univ_eq_sum_range]
   simp only [Nat.cast_add, Fin.cast_val_eq_self]
   exact Equiv.sum_comp (Equiv.addLeft (i : Fin n.succ)) f
 
+/--
+@isnad1 id=eq.0h5v.s6.127f7a78d1ab from=translated src=- shape=3fc1c353 vocab=48f8a928
+-/
 lemma sum_Ico_fin_add_mul {n : ℕ} (f : Fin n.succ → M) (i : ℕ) :
     ∀ k, ∑ j ∈ Ico i (i + n.succ * k), f j = k • ∑ j : Fin n.succ, f j := by
   refine Nat.rec ?_ λ k hk ↦ ?_
@@ -114,24 +129,42 @@ variable (X : SpecialTuple n)
 
 def sum : ℤ := ∑ i, X.toFun i
 
+/--
+@isnad1 id=eq.0h2v.s5.bfed320fdf46 from=translated src=- shape=c02efbe5 vocab=c812c2ec
+-/
 lemma sum_def : X.sum = ∑ i : Fin n.pred.succ, X.toFun i := rfl
 
 /-- `g(i) = i + f(i) + 1`, where `f` is `jump_shift` -/
 def jump_index (i : ℕ) : ℕ := open Fin.NatCast in i + ((X.jump_shift i).1 + 1)
 
+/--
+@isnad1 id=lt.0h3v.s3.af37e9aa3944 from=translated src=- shape=d09d8ce9 vocab=587e9142
+-/
 lemma lt_jump_index (i : ℕ) : i < X.jump_index i :=
   Nat.lt_add_of_pos_right (Nat.succ_pos _)
 
+/--
+@isnad1 id=le.0h3v.s3.0255225087b3 from=translated src=- shape=d09d8ce9 vocab=ea3b1e1a
+-/
 lemma le_jump_index (i : ℕ) : i ≤ X.jump_index i :=
   (X.lt_jump_index i).le
 
+/--
+@isnad1 id=le.0h4v.s4.7120df1d24a5 from=translated src=- shape=abcacceb vocab=2350c87c
+-/
 lemma le_jump_index_iterate (i) : ∀ k, i ≤ X.jump_index^[k] i := by
   refine Nat.rec i.le_refl λ k hk ↦ hk.trans ?_
   rw [iterate_succ_apply']; exact X.le_jump_index _
 
+/--
+@isnad1 id=lt.1h4v.s4.1479d20ff835 from=translated src=- shape=a31ea5f2 vocab=011c016c
+-/
 lemma lt_jump_index_iterate_of_pos (i) (hk : 0 < k) : i < X.jump_index^[k] i :=
   Nat.succ_pred_eq_of_pos hk ▸ (X.lt_jump_index _).trans_le (X.le_jump_index_iterate _ _)
 
+/--
+@isnad1 id=le.0h3v.s4.af09cec89790 from=translated src=- shape=828daaa3 vocab=8a257149
+-/
 lemma jump_index_le_add (i : ℕ) : X.jump_index i ≤ i + n.pred.succ :=
   Nat.add_le_add_left (Fin.isLt _) i
 
@@ -166,9 +199,15 @@ def ofComposite : SpecialTuple (a * b) where
       exacts [Nat.le_succ_of_le ((a * b).one_mul.trans_le (Nat.le_of_not_lt h1)),
         (Nat.add_lt_add_of_lt_of_le hi h0).trans_eq (a * b).two_mul.symm]
 
+/--
+@isnad1 id=eq.2h3v.s6.398460b10e6d from=translated src=- shape=fadabe5c vocab=7ec4bd0e
+-/
 lemma ofComposite_toFun_apply (i) :
   (ofComposite ha hb).toFun i = a - if i = Fin.last _ then a else 0 := rfl
 
+/--
+@isnad1 id=eq.2h2v.s6.39b45f5240e9 from=translated src=- shape=1f0ecfb7 vocab=69005642
+-/
 theorem ofComposite_sum : (ofComposite ha hb).sum = a * (a * b - 1) := by
   simp only [sum_def, ofComposite_toFun_apply, Nat.cast_ite]
   rw [sum_sub_distrib, Fin.sum_const, Nat.cast_zero, Fintype.sum_ite_eq',
@@ -187,17 +226,26 @@ open Function
 
 variable (X : SpecialTuple n)
 
+/--
+@isnad1 id=dvd.0h3v.s6.0582f0b5d5d0 from=translated src=- shape=5fa87a4a vocab=70585216
+-/
 lemma dvd_sum_range_jump_shift_succ (i : Fin n.pred.succ) :
     (n : ℤ) ∣ ∑ j ∈ range (X.jump_shift i + 1), X.toFun (i + j) := by
   have h := X.jump_shift_spec i
   simp only [sum_Ico_eq_sum_range, Nat.cast_add] at h
   rwa [Nat.add_sub_cancel_left, Fin.cast_val_eq_self] at h
 
+/--
+@isnad1 id=dvd.0h3v.s5.fff019bdcdd9 from=translated src=- shape=32326e47 vocab=81c49c38
+-/
 lemma dvd_sum_Ico_jump_index (i : ℕ) :
     (n : ℤ) ∣ ∑ j ∈ Ico i (X.jump_index i), X.toFun j := by
   rw [jump_index, sum_Ico_eq_sum_range, Nat.add_sub_cancel_left]
   simp only [Nat.cast_add]; exact X.dvd_sum_range_jump_shift_succ _
 
+/--
+@isnad1 id=dvd.0h4v.s5.d431cdbe8a89 from=translated src=- shape=cf45562e vocab=d32fd923
+-/
 lemma dvd_sum_Ico_jump_index_iterate (i : ℕ) :
     ∀ k, (n : ℤ) ∣ ∑ j ∈ Ico i (X.jump_index^[k] i), X.toFun j := by
   refine Nat.rec ⟨0, ?_⟩ λ k hk ↦ ?_
@@ -206,6 +254,9 @@ lemma dvd_sum_Ico_jump_index_iterate (i : ℕ) :
     rw [sum_Ico_consecutive _ (X.le_jump_index_iterate i k) (X.le_jump_index _)] at hk
     rwa [iterate_succ_apply']
 
+/--
+@isnad1 id=ex.1h2v.s5.2585bb0f66b0 from=translated src=- shape=8735536c vocab=434f37fd
+-/
 lemma exists_dvd_pos_lt_nsmul_sum (hn : 0 < n) (X : SpecialTuple n.succ) :
     ∃ m > 0, m < n.succ ∧ (n.succ : ℤ) ∣ m • X.sum := by
   have hn0 : 1 < n.succ := Nat.succ_lt_succ hn
@@ -252,7 +303,9 @@ end SpecialTuple
 
 /-! ### Final solution -/
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.1h1v.s4.7481c5f13c71 from=translated src=- shape=f49315ff vocab=c15bdb44
+-/
 theorem final_solution (hn : 1 < n) : (∀ X : SpecialTuple n, (n : ℤ) ∣ X.sum) ↔ n.Prime := by
   refine ⟨λ h ↦ ?_, λ h X ↦ ?_⟩
   ---- `→` direction

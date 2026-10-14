@@ -62,7 +62,9 @@ entropies. For every earlier scale `k ≤ j` the cover count is dominated by
 `coveringNumberAtRadius (radiusScale / 2^(k+1))`, and since the radius floor at
 `k` is no smaller than at `j`, antitonicity moves the bound down to the floor at
 `j`; `Real.log` and `Real.sqrt` monotonicity then close each term, and
-`Finset.sup'_le` lifts the pointwise bound to the envelope. -/
+`Finset.sup'_le` lifts the pointwise bound to the envelope.
+@isnad1 id=le.5h5v.s7.d9e80733f9ff from=translated src=- shape=ab644ba9 vocab=f43b52c9
+-/
 theorem coveringNumber_entropy_dominates_dyadicCoverEnvelope
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))

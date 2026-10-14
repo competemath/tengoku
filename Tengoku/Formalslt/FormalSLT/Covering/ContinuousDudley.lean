@@ -110,7 +110,9 @@ Borel space, `MeasurableSpace.borel`).
 
 This is the bridge from a pointwise process to its supremum functional that the
 continuous Dudley integral integrates against. Continuity of paths is the
-explicit separability/modulus hypothesis. -/
+explicit separability/modulus hypothesis.
+@isnad1 id=measurab.4h4v.s6.b09c3629cfad from=translated src=- shape=235a2951 vocab=f3e6c28e
+-/
 theorem sup_measurable_countable_dense
     {α : Type*} [MeasurableSpace α]
     [PseudoMetricSpace T]
@@ -136,7 +138,9 @@ a countable dense subset, so a sample-continuous process with measurable
 evaluations has a measurable pointwise supremum. This discharges one explicit
 dense-skeleton hypothesis on the path toward the infinite-index Dudley bridge;
 the sample-path continuity hypothesis remains the load-bearing separability
-input. -/
+input.
+@isnad1 id=measurab.2h3v.s6.fbd2a416b651 from=translated src=- shape=2f9d1575 vocab=2335f649
+-/
 theorem sup_measurable_of_separableSpace
     {α : Type*} [MeasurableSpace α]
     [PseudoMetricSpace T] [TopologicalSpace.SeparableSpace T]
@@ -153,7 +157,9 @@ theorem sup_measurable_of_separableSpace
 For a nonempty separable pseudometric index space, Mathlib's dense sequence has
 a point inside every positive-radius ball around every target. This is the
 metric atom needed to turn the separability bridge into an explicit
-`ℕ`-indexed skeleton in later infinite-index Dudley steps. -/
+`ℕ`-indexed skeleton in later infinite-index Dudley steps.
+@isnad1 id=ex.1h3v.s5.5db757751a77 from=translated src=- shape=44f66edc vocab=77abb4c7
+-/
 theorem exists_denseSeq_dist_lt
     [PseudoMetricSpace T] [TopologicalSpace.SeparableSpace T] [Nonempty T]
     (t : T) {ε : ℝ} (hε : 0 < ε) :
@@ -171,7 +177,9 @@ For a continuous real-valued functional on a nonempty separable pseudometric
 space, taking the supremum over Mathlib's dense sequence gives the same value as
 taking the supremum over the full index type. This is the `ℕ`-indexed
 specialization of the dense-subset reduction used by
-`sup_measurable_countable_dense`. -/
+`sup_measurable_countable_dense`.
+@isnad1 id=eq.1h2v.s6.1f5fee555f0f from=translated src=- shape=43f0e01d vocab=bf1750e8
+-/
 theorem iSup_denseSeq_eq_iSup
     [PseudoMetricSpace T] [TopologicalSpace.SeparableSpace T] [Nonempty T]
     (f : T → ℝ) (hf : Continuous f) :
@@ -189,7 +197,9 @@ theorem iSup_denseSeq_eq_iSup
 If a real-valued functional is bounded above on the full index space, then its
 restriction to Mathlib's dense sequence is also bounded above. This is the
 bounded-range side condition needed by later conditional-supremum arguments on
-the countable skeleton. -/
+the countable skeleton.
+@isnad1 id=bddabove.1h2v.s5.13c2168368d0 from=translated src=- shape=034c54ed vocab=ff5dadbc
+-/
 theorem bddAbove_range_denseSeq
     [PseudoMetricSpace T] [TopologicalSpace.SeparableSpace T] [Nonempty T]
     (f : T → ℝ)
@@ -207,7 +217,9 @@ the index space bounds every sample path above. Taking the modulus at error
 `1` gives a positive radius. A finite net at that radius supplies finitely many
 centers, and every value of the sample path is at most the value at its chosen
 center plus `1`. The finite supremum over the centers plus `1` is therefore a
-genuine upper bound for the whole range. -/
+genuine upper bound for the whole range.
+@isnad1 id=bddabove.2h4v.s6.5e31e4a62ecf from=translated src=- shape=3e3fa1da vocab=a42b8809
+-/
 theorem bddAbove_range_of_totallyBounded_uniformModulus
     {Ω : Type*} [Fintype Ω]
     [PseudoMetricSpace T] [Nonempty T]
@@ -246,7 +258,9 @@ theorem bddAbove_range_of_totallyBounded_uniformModulus
 
 For a process with measurable evaluations, the supremum over Mathlib's
 `ℕ`-indexed dense sequence is measurable. No path-continuity assumption is
-needed for this countable supremum statement. -/
+needed for this countable supremum statement.
+@isnad1 id=measurab.1h3v.s6.998e7e1a0ca9 from=translated src=- shape=96e69784 vocab=11bdf042
+-/
 theorem sup_measurable_denseSeq
     {α : Type*} [MeasurableSpace α]
     [PseudoMetricSpace T] [TopologicalSpace.SeparableSpace T] [Nonempty T]
@@ -260,7 +274,9 @@ theorem sup_measurable_denseSeq
 For a sample-continuous process on a nonempty separable pseudometric index
 space, the countable dense-sequence supremum agrees pointwise with the full
 supremum over the index type. This is the process-level form of
-`iSup_denseSeq_eq_iSup`. -/
+`iSup_denseSeq_eq_iSup`.
+@isnad1 id=eq.1h3v.s6.4fd7fab342de from=translated src=- shape=55622e80 vocab=f76d4d2d
+-/
 theorem denseSeq_sup_eq_full_sup
     {α : Type*} [MeasurableSpace α]
     [PseudoMetricSpace T] [TopologicalSpace.SeparableSpace T] [Nonempty T]
@@ -275,7 +291,9 @@ theorem denseSeq_sup_eq_full_sup
 
 If a real-valued functional is bounded above on a nonempty index type, then
 every positive error admits a point whose value is within that error of the
-conditional supremum. -/
+conditional supremum.
+@isnad1 id=ex.2h3v.s5.4cd0502da235 from=translated src=- shape=7846edad vocab=ffb9fb44
+-/
 theorem exists_iSup_le_add_of_bddAbove
     [Nonempty T] (f : T → ℝ) (hbdd : BddAbove (Set.range f))
     {ε : ℝ} (hε : 0 < ε) :
@@ -287,7 +305,9 @@ theorem exists_iSup_le_add_of_bddAbove
 /-- **Outcome-indexed approximate maximizers for bounded sample paths.**
 
 For a finite outcome space, bounded-above sample paths admit a single witness
-function choosing an approximate maximizer for each outcome. -/
+function choosing an approximate maximizer for each outcome.
+@isnad1 id=ex.2h4v.s6.5e4f0c8fa3d5 from=translated src=- shape=d8643fff vocab=7a97943e
+-/
 theorem exists_iSup_witness_function
     {Ω : Type*} [Fintype Ω] [Nonempty T]
     (Y : Ω → T → ℝ)
@@ -309,7 +329,9 @@ approximate maximizers for the full supremum; the two pathwise modulus
 hypotheses move from ambient points to the finite skeleton and from the
 skeleton to the terminal dyadic projection. Entropy side conditions and the
 coarse projected budget are still explicit because they are separate analytic
-inputs. -/
+inputs.
+@isnad1 id=separabl.12h12v.s9.382241cb5524 from=translated src=- shape=08f9336e vocab=711f79c4
+-/
 theorem separableTerminalSupremumBoundaryChoice_of_iSup_pathwiseModuli
     {Ω : Type*} [Fintype Ω]
     [PseudoMetricSpace T] [Nonempty T]
@@ -408,7 +430,9 @@ theorem separableTerminalSupremumBoundaryChoice_of_iSup_pathwiseModuli
 This is the no-cardinality variant of
 `separableTerminalSupremumBoundaryChoice_of_iSup_pathwiseModuli`; it keeps the
 finite skeleton nonempty but does not require nontrivial projection-pair
-cardinalities. -/
+cardinalities.
+@isnad1 id=separabl.11h12v.s9.cf28f647d335 from=translated src=- shape=449bcbe5 vocab=50142f4e
+-/
 theorem separableTerminalSupremumBoundaryChoiceNonempty_of_iSup_pathwiseModuli
     {Ω : Type*} [Fintype Ω]
     [PseudoMetricSpace T] [Nonempty T]
@@ -496,7 +520,9 @@ theorem separableTerminalSupremumBoundaryChoiceNonempty_of_iSup_pathwiseModuli
     (terminalError := terminalError) herror' hentropyAtRadius
     hintervalIntegrable hseparable hterminalModulus hcoarse
 
-/-- The terminal radii of the dyadic chaining net schedule tend to zero. -/
+/-- The terminal radii of the dyadic chaining net schedule tend to zero.
+@isnad1 id=tendsto.0h1v.s4.e4c9f1d3654f from=translated src=- shape=b84d5f5d vocab=194f7ab8
+-/
 theorem tendsto_dyadicChainingNetRadius_atTop (radiusScale : ℝ) :
     Tendsto (fun m : ℕ => dyadicChainingNetRadius radiusScale m) atTop (𝓝 0) := by
   unfold dyadicChainingNetRadius
@@ -512,7 +538,9 @@ theorem tendsto_dyadicChainingNetRadius_atTop (radiusScale : ℝ) :
   intro m
   rw [div_pow, one_pow, mul_one_div]
 
-/-- Some dyadic terminal radius is smaller than any positive target scale. -/
+/-- Some dyadic terminal radius is smaller than any positive target scale.
+@isnad1 id=ex.1h2v.s4.627e568fb587 from=translated src=- shape=d2bd5298 vocab=cf3d3e1f
+-/
 theorem exists_dyadicChainingNetRadius_le
     (radiusScale : ℝ) {δ : ℝ} (hδ : 0 < δ) :
     ∃ m : ℕ, dyadicChainingNetRadius radiusScale m ≤ δ := by
@@ -532,7 +560,9 @@ radii tend to zero, a sufficiently late scale fits any positive terminal
 modulus radius. Intersecting that eventual small-radius condition with eventual
 cardinality, entropy-envelope, interval-integrability, and coarse-budget
 obligations gives the `hscale` selector used by the full-supremum boundary
-constructor. -/
+constructor.
+@isnad1 id=ex.4h7v.s10.a2e5552f9498 from=translated src=- shape=708cf723 vocab=57cca743
+-/
 theorem dyadicChainingScaleSelector_of_eventually_obligations
     {Ω : Type*} [Fintype Ω]
     [PseudoMetricSpace T] [Nonempty T]
@@ -614,7 +644,9 @@ theorem dyadicChainingScaleSelector_of_eventually_obligations
 
 /-- Singleton-safe dyadic boundary scale selector from eventual finite-scale
 obligations. This keeps the analytic small-radius selection and drops only the
-nontrivial projection-pair cardinality obligation. -/
+nontrivial projection-pair cardinality obligation.
+@isnad1 id=ex.4h7v.s9.d6988b6a8b8d from=translated src=- shape=2e77793d vocab=a2117ff5
+-/
 theorem dyadicChainingScaleSelector_of_eventually_obligations_nonempty
     {Ω : Type*} [Fintype Ω]
     [PseudoMetricSpace T] [Nonempty T]
@@ -688,7 +720,9 @@ scale for the full conditional supremum `ω ↦ ⨆ t, P.X ω t`. Bounded sample
 give approximate maximizers for the supremum; the supplied one-sided uniform
 modulus gives the finite skeleton and terminal projection errors; `hscale`
 selects a dyadic terminal level whose radius fits the terminal modulus and
-supplies the finite entropy/coarse-budget data at that level. -/
+supplies the finite entropy/coarse-budget data at that level.
+@isnad1 id=ex.6h7v.s9.c3b5b6e5b906 from=translated src=- shape=381d2b53 vocab=711f79c4
+-/
 theorem separableTerminalSupremumBoundaryChoice_exists_of_iSup_uniformModulus
     {Ω : Type*} [Fintype Ω]
     [PseudoMetricSpace T] [Nonempty T]
@@ -772,7 +806,9 @@ theorem separableTerminalSupremumBoundaryChoice_exists_of_iSup_uniformModulus
 /-- Singleton-safe boundary certificates for the full supremum from a uniform
 path modulus. This version has no nontrivial projection-pair cardinality
 obligation; the selected scale supplies only the terminal-radius, entropy,
-integrability, and coarse-budget data. -/
+integrability, and coarse-budget data.
+@isnad1 id=ex.6h7v.s9.b15a1d9f3601 from=translated src=- shape=65054e8e vocab=50142f4e
+-/
 theorem separableTerminalSupremumBoundaryChoiceNonempty_exists_of_iSup_uniformModulus
     {Ω : Type*} [Fintype Ω]
     [PseudoMetricSpace T] [Nonempty T]
@@ -853,7 +889,9 @@ This discharges the `hscale` selector in
 `separableTerminalSupremumBoundaryChoice_exists_of_iSup_uniformModulus`: the
 dyadic terminal radii tend to zero, so any positive terminal modulus radius can
 be met at a sufficiently late scale, and the eventual finite-scale obligations
-hold at the same selected scale. -/
+hold at the same selected scale.
+@isnad1 id=ex.6h7v.s9.986daa009815 from=translated src=- shape=a9c8e5f1 vocab=0e66f14f
+-/
 theorem separableTerminalSupremumBoundaryChoice_exists_of_iSup_uniformModulus_eventually
     {Ω : Type*} [Fintype Ω]
     [PseudoMetricSpace T] [Nonempty T]
@@ -912,7 +950,9 @@ theorem separableTerminalSupremumBoundaryChoice_exists_of_iSup_uniformModulus_ev
       (entropyAtRadius := entropyAtRadius) hobligations)
 
 /-- Singleton-safe boundary certificates for the full supremum, with the dyadic
-scale selected from eventual entropy/integrability/coarse obligations. -/
+scale selected from eventual entropy/integrability/coarse obligations.
+@isnad1 id=ex.6h7v.s9.3570fe8032b1 from=translated src=- shape=b9eda621 vocab=c61581af
+-/
 theorem separableTerminalSupremumBoundaryChoiceNonempty_exists_of_iSup_uniformModulus_eventually
     {Ω : Type*} [Fintype Ω]
     [PseudoMetricSpace T] [Nonempty T]
@@ -977,7 +1017,9 @@ refines (`m → ∞`), provided the entropy profile is interval-integrable on
 
 By `FiniteSubGaussianChaining.shiftedDyadicIntervalIntegralSum_eq_truncatedIntervalIntegral`
 the truncated integral equals the discrete dyadic annulus-integral sum, so this
-is exactly "the discrete sum converges to the continuous integral." -/
+is exactly "the discrete sum converges to the continuous integral."
+@isnad1 id=tendsto.2h2v.s7.2603e0d9abe1 from=translated src=- shape=f784c708 vocab=83186b01
+-/
 theorem dyadic_limit_of_total_bounded_bricks
     (radiusScale : ℝ) (hradiusScale : 0 < radiusScale)
     (entropyAtRadius : ℝ → ℝ)

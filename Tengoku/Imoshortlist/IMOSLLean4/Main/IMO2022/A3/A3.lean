@@ -24,6 +24,9 @@ variable [CommSemiring R] [LinearOrder R] [IsStrictOrderedRing R]
 
 /-! ### Extra lemmas -/
 
+/--
+@isnad1 id=eq.1h3v.s7.6b75ea6ef2dc from=translated src=- shape=323312ee vocab=e26e2961
+-/
 lemma add_sq_le_two_mul_imp [ExistsAddOfLE R] {x y : R} (h : x ^ 2 + y ^ 2 ≤ 2 * x * y) :
     x = y := by
   have X {x c : R} (h : x ^ 2 + (x + c) ^ 2 ≤ 2 * x * (x + c)) : c = 0 := by
@@ -42,6 +45,9 @@ lemma add_sq_le_two_mul_imp [ExistsAddOfLE R] {x y : R} (h : x ^ 2 + y ^ 2 ≤ 2
   However, as we show below, the functional equation still only has at most one solution. -/
 def weakGood (f : R → R) := ∀ x > 0, ∃! y > 0, x * f y + y * f x ≤ 2
 
+/--
+@isnad1 id=iff.0h2v.s6.77050afa2870 from=translated src=- shape=b40d8664 vocab=fdc4ecd6
+-/
 theorem weakGood_iff [ExistsAddOfLE R] {f : R → R} : weakGood f ↔ ∀ x > 0, x * f x = 1 := by
   refine ⟨λ hf ↦ ?_, λ hf x hx ↦ ?_⟩
   ---- `→` direction
@@ -105,6 +111,9 @@ def posSubtypeExt (f : {x : R // 0 < x} → {x : R // 0 < x}) (x : R) : R :=
   dite (0 < x) (λ h ↦ f ⟨x, h⟩) (λ _ ↦ 0)
 
 omit [IsStrictOrderedRing R] in
+/--
+@isnad1 id=eq.0h3v.s7.198827a6508c from=translated src=- shape=2574106b vocab=840b7bb9
+-/
 lemma posSubtypeExt_spec (f : {x : R // 0 < x} → {x : R // 0 < x}) (x : {x : R // 0 < x}) :
     posSubtypeExt f x.1 = f x :=
   dite_eq_left _
@@ -112,6 +121,9 @@ lemma posSubtypeExt_spec (f : {x : R // 0 < x} → {x : R // 0 < x}) (x : {x : R
 def good (f : {x : R // 0 < x} → {x : R // 0 < x}) :=
   ∀ x, ∃! y, x * f y + y * f x ≤ ⟨2, two_pos⟩
 
+/--
+@isnad1 id=iff.0h2v.s6.3a0acd46bfbb from=translated src=- shape=360a3121 vocab=3b3df638
+-/
 lemma good_iff_posSubtypeExt_weakGood {f : {x : R // 0 < x} → {x : R // 0 < x}} :
     good f ↔ weakGood (posSubtypeExt f) := by
   refine ⟨λ hf x hx ↦ ?_, λ hf x ↦ ?_⟩
@@ -131,7 +143,9 @@ lemma good_iff_posSubtypeExt_weakGood {f : {x : R // 0 < x} → {x : R // 0 < x}
     · refine Subtype.ext (hy1 z.1 ⟨z.2, ?_⟩)
       rwa [posSubtypeExt_spec, posSubtypeExt_spec]
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h2v.s8.6f9d2163a4f4 from=translated src=- shape=80e13425 vocab=53d04bde
+-/
 theorem final_solution [ExistsAddOfLE R] {f : {x : R // 0 < x} → {x : R // 0 < x}} :
     good f ↔ ∀ x, x * f x = 1 := by
   rw [good_iff_posSubtypeExt_weakGood, weakGood_iff]

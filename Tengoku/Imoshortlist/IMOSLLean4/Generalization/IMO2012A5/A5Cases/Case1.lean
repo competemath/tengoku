@@ -30,12 +30,16 @@ variable {f : R → S} (hf : NontrivialGood f) (h : f (-1) ≠ 0)
 include hf h
 
 omit [NoZeroDivisors S] h in
-/-- (1.1) -/
+/-- (1.1)
+@isnad1 id=eq.1h4v.s7.ccc6fa29d574 from=translated src=- shape=a74af5b5 vocab=ddc58a8b
+-/
 theorem Eq1 (x : R) : f (-x) = f (x + 1) * f (-1) + f x := by
   have h0 := hf.is_good (x + 1) (-1)
   rwa [add_neg_cancel_right, mul_neg_one (x + 1), neg_add, neg_add_cancel_right] at h0
 
-/-- (1.2) -/
+/-- (1.2)
+@isnad1 id=eq.2h4v.s7.1f1dde2b2383 from=translated src=- shape=13d41207 vocab=e09baf10
+-/
 theorem Eq2 (x : R) : f (-x) = -f (x + 2) := by
   replace hf := Eq1 hf
   have h0 := hf (-(x + 1))
@@ -43,19 +47,28 @@ theorem Eq2 (x : R) : f (-x) = -f (x + 2) := by
     ← add_mul, mul_eq_zero, or_iff_left h, add_assoc, one_add_one_eq_two] at h0
   exact eq_neg_of_add_eq_zero_left h0
 
+/--
+@isnad1 id=eq.2h3v.s7.fab1b913dd11 from=translated src=- shape=83ea33bb vocab=8166b8c3
+-/
 lemma map_two : f 2 = 1 := by
   rw [← zero_add 2, ← neg_inj, ← Eq2 hf h, neg_zero, hf.map_zero]
 
 omit [NoZeroDivisors S] h in
-/-- (1.3) -/
+/-- (1.3)
+@isnad1 id=eq.1h5v.s7.47d4fe9cb321 from=translated src=- shape=fa16424c vocab=ddc58a8b
+-/
 theorem Eq3 (x y : R) : f (-x) * f (-y) + f (-(x + y)) = f x * f y + f (x + y) := by
   rw [neg_add, ← hf.is_good, neg_mul_neg, hf.is_good]
 
-/-- (1.4) -/
+/-- (1.4)
+@isnad1 id=eq.2h4v.s7.85dbf3cb9f8e from=translated src=- shape=77aafbcc vocab=13c6953a
+-/
 theorem Eq4 (x : R) : f (2 * x + 1) = f x - f (-x) := by
   rw [hf.is_good, map_two hf h, one_mul, add_comm 2, Eq2 hf h, sub_neg_eq_add]
 
-/-- (1.5) -/
+/-- (1.5)
+@isnad1 id=or.2h4v.s7.8b43cd8a96c7 from=translated src=- shape=0983c3f0 vocab=a01bab83
+-/
 theorem Eq5 (x : R) : f (x + 1) = 0 ∨ f x + f (-x) = f (-1) := by
   ---- First factorize `f(x)^2 - f(-x)^2`
   have h0 : f x * f x - f (-x) * f (-x) = (f x - f (-x)) * (f x + f (-x)) := by
@@ -70,7 +83,9 @@ theorem Eq5 (x : R) : f (x + 1) = 0 ∨ f x + f (-x) = f (-1) := by
   rw [Eq1 hf, sub_add_cancel_right, neg_eq_zero, mul_eq_zero] at h1
   exact h1.resolve_right h
 
-/-- (1.6) -/
+/-- (1.6)
+@isnad1 id=eq.3h4v.s7.20849c934473 from=translated src=- shape=35ae7047 vocab=a01bab83
+-/
 theorem Eq6 {x : R} (h0 : f (x + 1) = 0) : f x = -1 := by
   ---- `f(-x) = f(x)`
   have h1 := Eq1 hf x
@@ -90,6 +105,9 @@ theorem Eq6 {x : R} (h0 : f (x + 1) = 0) : f x = -1 := by
     neg_eq_iff_add_eq_zero, h1, ← add_one_mul (f x), mul_eq_zero] at h2
   exact eq_neg_of_add_eq_zero_left (h2.resolve_right h)
 
+/--
+@isnad1 id=or.2h3v.s7.5893ac48940b from=translated src=- shape=9ef0f851 vocab=8166b8c3
+-/
 lemma map_neg_one_cases : f (-1) = -2 ∨ f (-1) = 1 := by
   rw [← sub_eq_zero (b := 1), eq_neg_iff_add_eq_zero, ← mul_eq_zero,
     mul_sub_one, add_mul, two_mul, add_sub_assoc, add_sub_add_left_eq_sub]
@@ -101,6 +119,9 @@ lemma map_neg_one_cases : f (-1) = -2 ∨ f (-1) = 1 := by
 
 /-! ### Subcase 1.1: `f(-1) = -2`, `char(S) ∤ 2` -/
 
+/--
+@isnad1 id=ex.3h3v.s8.f0e679c02614 from=translated src=- shape=5613af4a vocab=953d981d
+-/
 theorem Subcase11_solution (h0 : f (-1) = -2) :
     ∃ φ : R →+* S, ∀ x, f x = φ (x - 1) :=
   sub_one_solver hf λ x ↦ by
@@ -126,6 +147,9 @@ variable {f : R → S} (hf : GoodSubcase12 f)
 include hf
 
 omit [NoZeroDivisors S] in
+/--
+@isnad1 id=ne.1h3v.s6.cd4aeaba3e66 from=translated src=- shape=ffaf741a vocab=498acbc8
+-/
 lemma map_neg_one_ne_zero : f (-1) ≠ 0 :=
   λ h ↦ hf.Schar <| by rw [← mul_one (3 : S), ← hf.map_neg_one, h, mul_zero]
 
@@ -144,11 +168,17 @@ lemma eq_zero_or_map_neg_add_self (x) : x = 0 ∨ f x + f (-x) = 1 :=
   (Case1.Eq5 hf.toNontrivialGood (map_neg_one_ne_zero hf) x).imp
     (λ h ↦ eq_zero_of_map_add_one hf h) (λ h ↦ h.trans hf.map_neg_one)
 
+/--
+@isnad1 id=eq.1h4v.s7.255b98f0be5d from=translated src=- shape=e83239d3 vocab=2fe9d9f5
+-/
 lemma triple_sum_eq_zero (x) : f x + f (x + 1) + f (x + 2) = 0 := by
   have h := Eq1 hf.toNontrivialGood x
   rwa [Case1.Eq2 hf.toNontrivialGood (map_neg_one_ne_zero hf), hf.map_neg_one,
     mul_one, neg_eq_iff_add_eq_zero, add_comm, add_comm (f _)] at h
 
+/--
+@isnad1 id=eq.1h3v.s6.bc1c558cb59c from=translated src=- shape=d755464e vocab=f244f830
+-/
 lemma Rchar : (3 : R) = 0 := by
   refine hf.period_imp_zero λ x ↦ ?_
   have h := triple_sum_eq_zero hf
@@ -156,6 +186,9 @@ lemma Rchar : (3 : R) = 0 := by
   rwa [add_assoc x, one_add_one_eq_two, ← add_rotate, ← h x, add_left_inj,
     add_left_inj, add_assoc, add_comm 1, two_add_one_eq_three] at h0
 
+/--
+@isnad1 id=or.1h4v.s6.8873b859ceee from=translated src=- shape=a8d15ffa vocab=4d474d86
+-/
 lemma value_bash (x : R) : x = 0 ∨ x = 1 ∨ x = -1 := by
   ---- Assume that `f(y) + f(-y) = 1` for all `y = x, x - 1, x + 1`; else done
   have h := eq_zero_or_map_neg_add_self hf

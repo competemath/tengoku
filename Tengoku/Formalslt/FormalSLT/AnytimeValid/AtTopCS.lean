@@ -29,7 +29,9 @@ variable {Ω : Type*} {m0 : MeasurableSpace Ω} {μ : Measure Ω}
 def atTopCrossingEvent (M : ℕ → Ω → ℝ) (a : ℝ) : Set Ω :=
   {ω | ∃ n : ℕ, a ≤ M n ω}
 
-/-- Finite running-max crossing events exhaust the countable crossing event. -/
+/-- Finite running-max crossing events exhaust the countable crossing event.
+@isnad1 id=eq.0h3v.s5.41feb5d33d62 from=translated src=- shape=c7815aeb vocab=3837dd63
+-/
 theorem finiteRunningMax_event_iUnion_eq_atTopCrossingEvent
     (M : ℕ → Ω → ℝ) (a : ℝ) :
     (⋃ n : ℕ, {ω | a ≤ finiteRunningMax M n ω})
@@ -51,7 +53,9 @@ theorem finiteRunningMax_event_iUnion_eq_atTopCrossingEvent
       (s := Finset.range (n + 1))
       (Finset.mem_range.mpr (Nat.lt_succ_self n))
 
-/-- The finite running-max crossing events are monotone in the horizon. -/
+/-- The finite running-max crossing events are monotone in the horizon.
+@isnad1 id=monotone.0h3v.s5.16199d0e389f from=translated src=- shape=87f2ecb9 vocab=eadbe23b
+-/
 theorem finiteRunningMax_event_mono (M : ℕ → Ω → ℝ) (a : ℝ) :
     Monotone fun n : ℕ => {ω | a ≤ finiteRunningMax M n ω} := by
   classical
@@ -75,6 +79,7 @@ def atTopSubGammaUpperFailure {Ω : Type*}
 /--
 The fixed-lambda running-mean atTop boundary is contained in the fixed
 exponential-process crossing event.
+@isnad1 id=le.2h6v.s6.5488fcd001c5 from=translated src=- shape=09e8db20 vocab=cf6f07a2
 -/
 theorem atTopSubGammaUpperFailure_subset_exponential_crossing
     {Ω : Type*} {X : ℕ → Ω → ℝ} {sigma2 b lam delta : ℝ}
@@ -103,6 +108,7 @@ theorem atTopSubGammaUpperFailure_subset_exponential_crossing
 The fixed-lambda atTop boundary is not vacuous: for the zero process with
 zero variance proxy and confidence level `exp (-1)`, the upper failure event is
 empty.
+@isnad1 id=eq.1h1v.s5.f7e08b105545 from=translated src=- shape=de3c8bc2 vocab=3bb8f9b4
 -/
 theorem atTopSubGammaUpperFailure_zero_process_empty {lam : ℝ} (hlam : 0 < lam) :
     atTopSubGammaUpperFailure

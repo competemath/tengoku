@@ -33,6 +33,9 @@ open Finset
 variable {b : ℕ → ℤ} (b_pos : ∀ n : ℕ, 0 < b n)
 include b_pos
 
+/--
+@isnad1 id=eq.1h2v.s6.d3a2efa0f238 from=translated src=- shape=4b60964b vocab=b3a99d9a
+-/
 theorem main_equality :
     ∀ n, a b n.succ = (a b n * (b n - 1) + (range n).sum λ i ↦ a b i * |b i - 2|) + 1
   | 0 => by rw [a, a, Int.zero_mul, zero_add, sum_range_zero, zero_add]
@@ -46,6 +49,9 @@ theorem main_equality :
       · have h0 : 0 ≤ b n - 2 := sub_nonneg_of_le (Int.add_one_le_of_lt h)
         rw [ite_eq_right h.ne.symm, abs_of_nonneg h0, sub_sub_sub_cancel_left]; rfl
 
+/--
+@isnad1 id=and.1h2v.s6.5718c5441768 from=translated src=- shape=27732de1 vocab=60440deb
+-/
 theorem a_and_sum_nonneg : ∀ n, 0 ≤ a b n ∧ 0 ≤ (range n).sum λ i ↦ a b i * |b i - 2|
   | 0 => ⟨le_refl 0, le_refl 0⟩
   | n + 1 => by
@@ -55,6 +61,9 @@ theorem a_and_sum_nonneg : ∀ n, 0 ≤ a b n ∧ 0 ≤ (range n).sum λ i ↦ a
         exact add_nonneg (add_nonneg (Int.mul_nonneg h h1) h0) Int.one_nonneg
       · exact add_nonneg h0 (Int.mul_nonneg h (abs_nonneg _))
 
+/--
+@isnad1 id=le.1h2v.s6.acd1a3ecca19 from=translated src=- shape=c2a8e10e vocab=7755f0fd
+-/
 theorem a_plus_sum_ge : ∀ n : ℕ, (n : ℤ) ≤ a b n + (range n).sum λ i ↦ a b i * |b i - 2|
   | 0 => le_refl 0
   | n + 1 => by
@@ -69,7 +78,9 @@ theorem a_plus_sum_ge : ∀ n : ℕ, (n : ℤ) ≤ a b n + (range n).sum λ i �
     refine Int.mul_le_mul_of_nonneg_left ?_ h
     rw [← sub_le_iff_le_add', ← neg_sub]; exact neg_le_abs (b n - 2)
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=or.1h2v.s5.38735c043249 from=translated src=- shape=8adbd190 vocab=612f8129
+-/
 theorem final_solution : ∀ n : ℕ, (n : ℤ) ≤ a b n ∨ (n : ℤ) ≤ a b n.succ
   | 0 => Or.inl (le_refl 0)
   | n + 1 => by

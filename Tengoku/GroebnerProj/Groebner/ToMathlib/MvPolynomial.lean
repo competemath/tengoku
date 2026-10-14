@@ -10,6 +10,9 @@ variable {τ σ R : Type*} [CommSemiring R] {f : σ → τ} (hf : f.Injective) {
 -- lemmas merged: https://github.com/leanprover-community/mathlib4/pull/34758
 
 -- not yet submitted
+/--
+@isnad1 id=eq.2h5v.s8.3f7cb1aa653e from=translated src=- shape=98c7cabe vocab=18175009
+-/
 lemma rename_killCompl_app (hf : Function.Injective f) {p : MvPolynomial τ R}
     (hp : ↑p.vars ⊆ Set.range f) : (p.killCompl hf).rename f = p := by
   classical

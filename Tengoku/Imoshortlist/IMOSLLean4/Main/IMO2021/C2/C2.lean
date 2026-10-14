@@ -27,13 +27,22 @@ def good (f : Fin (m + 1) → Fin n) := ∀ k i, ∃ j ≤ n, f (k + j) = i
 
 /-! ### Addition on `Fin` as bijection -/
 
+/--
+@isnad1 id=eq.0h3v.s5.02684946db8d from=translated src=- shape=99e08e8c vocab=87d30e84
+-/
 lemma Fin_add_comm (x y : Fin m) : x + y = y + x := by
   rw [Fin.ext_iff, Fin.val_add, Fin.val_add, Nat.add_comm]
 
+/--
+@isnad1 id=eq.0h4v.s6.8aaf2eaf4b3b from=translated src=- shape=89ecf9a8 vocab=87d30e84
+-/
 lemma Fin_add_assoc (x y z : Fin m) : x + y + z = x + (y + z) := by
   simp only [Fin.ext_iff, Fin.val_add]
   rw [Nat.mod_add_mod, Nat.add_mod_mod, Nat.add_assoc]
 
+/--
+@isnad1 id=eq.0h2v.s5.e96c1c8fd5cc from=translated src=- shape=6b35378c vocab=5c336112
+-/
 lemma Fin_cast_mul_add_self (x : Fin m.succ) : ((m * x.1 : ℕ) : Fin m.succ) + x = 0 := by
   rw [Fin.ext_iff, Fin.val_add, Fin.val_natCast, Nat.mod_add_mod,
     Fin.val_zero, ← Nat.succ_mul, Nat.mul_mod_right]
@@ -45,6 +54,9 @@ def Fin_add_equiv (j : Fin (m + 1)) : Fin (m + 1) ≃ Fin (m + 1) where
     simp only; rw [Fin_add_assoc, Fin_add_comm j, Fin_cast_mul_add_self, Fin.add_zero]
   right_inv := λ x ↦ by simp only; rw [Fin_add_assoc, Fin_cast_mul_add_self, Fin.add_zero]
 
+/--
+@isnad1 id=le.1h3v.s6.c28e975bcabd from=translated src=- shape=346f10e0 vocab=27a57947
+-/
 theorem good.mod_le_div {f : Fin (m + 1) → Fin n} (hf : good f) :
     (m + 1) % n ≤ (m + 1) / n := by
   match n with | 0 => exact (f 0).elim0 | n + 1 => ?_
@@ -77,10 +89,16 @@ theorem good.mod_le_div {f : Fin (m + 1) → Fin n} (hf : good f) :
 
 /-! ### Properties of a special function -/
 
+/--
+@isnad1 id=eq.1h2v.s5.3b7731571278 from=translated src=- shape=28bfb092 vocab=806952f6
+-/
 lemma Icc_succ_right (h : i ≤ j) : Icc i (j + 1) = insert (j + 1) (Icc i j) := by
   ext x; rw [mem_Icc, mem_insert, mem_Icc, Nat.le_succ_iff, and_or_left, or_comm,
     and_iff_right_of_imp λ hx ↦ Nat.le_trans (Nat.le_succ_of_le h) (Nat.le_of_eq hx.symm)]
 
+/--
+@isnad1 id=eq.2h4v.s6.e9ccabc21f9d from=translated src=- shape=e77950a5 vocab=80969f1d
+-/
 lemma image_mul_div (h : a ≤ b) (i : ℕ) :
     ∀ j ≥ i, (Icc i j).image (λ x ↦ a * x / b) = Icc (a * i / b) (a * j / b) := by
   ---- Induction on `n`; the base case `n = m` is immediate
@@ -102,6 +120,9 @@ lemma image_mul_div (h : a ≤ b) (i : ℕ) :
   ---- Case 2: `c = 1`
   · exact (Icc_succ_right hn).symm
 
+/--
+@isnad1 id=ex.2h5v.s6.007edc069689 from=translated src=- shape=c08c1eb8 vocab=196b2b5a
+-/
 lemma exists_le_mul_div_add_eq (h : a ≤ b) (x : ℕ) (h0 : c ≤ a * m / b) :
     ∃ k ≤ m, a * (x + k) / b = a * x / b + c := by
   replace h0 : a * x / b + c ∈ Icc (a * x / b) (a * (x + m) / b) :=
@@ -112,6 +133,9 @@ lemma exists_le_mul_div_add_eq (h : a ≤ b) (x : ℕ) (h0 : c ≤ a * m / b) :
   refine ⟨l - x, Nat.sub_le_of_le_add h0.2, ?_⟩
   rw [Nat.add_sub_cancel' h0.1, h1]
 
+/--
+@isnad1 id=eq.0h3v.s7.d8dc7dec4898 from=translated src=- shape=a14176a5 vocab=37e3d42d
+-/
 lemma mul_div_Fin_eq_mod (n i m) :
     (((n + 1) * i / (m + 1) : ℕ) : Fin (n + 1)) = ↑((n + 1) * (i % (m + 1)) / (m + 1)) :=
   calc
@@ -119,12 +143,18 @@ lemma mul_div_Fin_eq_mod (n i m) :
       rw [← Nat.mul_add_div m.succ_pos, Nat.mul_left_comm, ← Nat.mul_add, Nat.div_add_mod]
     _ = _ := by rw [← Fin.val_inj, Fin.val_natCast, Fin.val_natCast, Nat.mul_add_mod]
 
+/--
+@isnad1 id=eq.0h4v.s7.1d9f37cf7b03 from=translated src=- shape=a09e5ab4 vocab=37e3d42d
+-/
 lemma mul_div_Fin_eq_mod2 (n T i m) :
     (((n + 1) * T * i / (m + 1) : ℕ) : Fin (n + 1))
       = ↑((n + 1) * T * (i % (m + 1)) / (m + 1)) := by
   rw [Nat.mul_assoc, Nat.mul_assoc, mul_div_Fin_eq_mod,
     ← Nat.mul_mod_mod, ← mul_div_Fin_eq_mod]
 
+/--
+@isnad1 id=good.1h2v.s6.9b39236abd47 from=translated src=- shape=fd931f3c vocab=bfc4d63a
+-/
 lemma mul_div_good_of_bound {n m : ℕ} (h : m.succ % n.succ ≤ m.succ / n.succ) :
     good λ x : Fin m.succ ↦
       ((n.succ * (m.succ / n.succ) * x.1 / m.succ : ℕ) : Fin n.succ) := by
@@ -145,7 +175,9 @@ lemma mul_div_good_of_bound {n m : ℕ} (h : m.succ % n.succ ≤ m.succ / n.succ
 
 /-! ### Summary -/
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h2v.s5.6d5b53ceb3ed from=translated src=- shape=34a57220 vocab=fb43d01f
+-/
 theorem final_solution {n m : ℕ} :
     (∃ f : Fin m.succ → Fin n.succ, good f) ↔ m.succ % n.succ ≤ m.succ / n.succ :=
   ⟨λ ⟨_, hf⟩ ↦ hf.mod_le_div, λ h ↦ ⟨_, mul_div_good_of_bound h⟩⟩

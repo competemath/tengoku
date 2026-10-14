@@ -21,17 +21,23 @@ namespace IMOSL
 namespace Extra
 namespace LinearSolver
 
-/-- Linear solver for functions from `Nat` to `Nat`. -/
+/-- Linear solver for functions from `Nat` to `Nat`.
+@isnad1 id=eq.1h3v.s6.8680680e3ce7 from=translated src=- shape=7c18d75f vocab=5c386ba3
+-/
 theorem NatNat {f : Nat → Nat} (hf : ∀ n, f (n + 1) = c + f n) : ∀ n, f n = c * n + f 0 :=
   Nat.rec (by rw [Nat.mul_zero, Nat.zero_add]) λ n hn ↦ by
     rw [hf, Nat.mul_succ, hn, Nat.add_left_comm, Nat.add_assoc]
 
-/-- Linear solver for functions from `Nat` to `Int`. -/
+/-- Linear solver for functions from `Nat` to `Int`.
+@isnad1 id=eq.1h3v.s6.36d1e65782c6 from=translated src=- shape=8801d71a vocab=dad48272
+-/
 theorem NatInt {f : Nat → Int} (hf : ∀ n, f (n + 1) = c + f n) : ∀ n, f n = c * n + f 0 :=
   Nat.rec (by rw [Int.natCast_zero, Int.mul_zero, Int.zero_add]) λ n hn ↦ by
     rw [Int.natCast_succ, Int.mul_add, Int.mul_one, hf, Int.add_comm _ c, hn, Int.add_assoc]
 
-/-- Linear solver for functions from `Int` to `Int`. -/
+/-- Linear solver for functions from `Int` to `Int`.
+@isnad1 id=eq.1h3v.s6.d3af35d81d67 from=translated src=- shape=7c18d75f vocab=04e5438e
+-/
 theorem IntInt {f : Int → Int} (hf : ∀ n, f (n + 1) = c + f n) : ∀ n, f n = c * n + f 0 := by
   refine Int.rec ?_ ?_
   ---- Solve the case `n ≥ 0`.

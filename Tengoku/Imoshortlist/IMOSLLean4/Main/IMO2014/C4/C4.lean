@@ -43,17 +43,28 @@ Certainly, more lemmas would be added if the theory is intended to be developed 
 /-- Weight of a multiset of lattice points, parametrized by two base weights -/
 def weight (w : ℕ × ℕ) (S : Multiset (ℕ × ℕ)) : ℕ := (S.map λ p ↦ w.1 ^ p.1 * w.2 ^ p.2).sum
 
+/--
+@isnad1 id=eq.0h3v.s6.a8b460593f42 from=translated src=- shape=bc2c6630 vocab=dfa54a00
+-/
 theorem weight_cons (w v S) : weight w (v ::ₘ S) = w.1 ^ v.1 * w.2 ^ v.2 + weight w S := by
   unfold weight; rw [map_cons, sum_cons]
 
+/--
+@isnad1 id=eq.0h3v.s5.13a9f092bb1d from=translated src=- shape=bf539fc8 vocab=2baa061c
+-/
 theorem weight_add (w S T) : weight w (S + T) = weight w S + weight w T := by
   unfold weight; rw [Multiset.map_add, sum_add]
 
+/--
+@isnad1 id=eq.0h2v.s5.8925fae43d6e from=translated src=- shape=1b6608b2 vocab=6328120b
+-/
 theorem weight_sum (w) (P : Multiset (Multiset (ℕ × ℕ))) :
     weight w P.sum = (P.map (weight w)).sum :=
   Multiset.induction_on P rfl λ p P h ↦ by rw [sum_cons, weight_add, h, map_cons, sum_cons]
 
-/-- `(x, y)`-weight of a translated multiset -/
+/-- `(x, y)`-weight of a translated multiset
+@isnad1 id=eq.0h3v.s6.5744131897fe from=translated src=- shape=86ffbfbc vocab=f0704752
+-/
 theorem weight_translate (w s S) :
     weight w (S.map λ p ↦ s + p) = w.1 ^ s.1 * w.2 ^ s.2 * weight w S := by
   refine Multiset.induction_on S rfl λ p S h ↦ ?_
@@ -67,7 +78,9 @@ def T4Filter : Fin 4 → ℕ × ℕ
   | 3 => (5, 3)
   | 4 => (3, 13)
 
-/-- Filtered weight of base skew-tetromino mod `32` -/
+/-- Filtered weight of base skew-tetromino mod `32`
+@isnad1 id=eq.0h2v.s6.7ef1c2fe0b69 from=translated src=- shape=86e414a0 vocab=40209ae3
+-/
 theorem weight_T4Filter_BaseSkewT4_mod32 :
     ∀ i j, weight (T4Filter i) (BaseSkewT4 j) % 32 = 16 * if i = j then 1 else 0
   | 1, 1 => rfl
@@ -87,19 +100,27 @@ theorem weight_T4Filter_BaseSkewT4_mod32 :
   | 4, 3 => rfl
   | 4, 4 => rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.06bc1a80600c from=translated src=- shape=0986b1da vocab=36af0c0e
+-/
 theorem T4Filter_fst_mod2 : ∀ i, (T4Filter i).1 % 2 = 1
   | 1 => rfl
   | 2 => rfl
   | 3 => rfl
   | 4 => rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.2a0e39ec2497 from=translated src=- shape=0986b1da vocab=19bcebdc
+-/
 theorem T4Filter_snd_mod2 : ∀ i, (T4Filter i).2 % 2 = 1
   | 1 => rfl
   | 2 => rfl
   | 3 => rfl
   | 4 => rfl
 
-/-- Filtered weight of skew-tetromino mod `32` -/
+/-- Filtered weight of skew-tetromino mod `32`
+@isnad1 id=eq.0h2v.s6.7395fcff266f from=translated src=- shape=b4aa8587 vocab=1d98059f
+-/
 theorem weight_T4Filter_SkewT4_mod32 (i q) :
     weight (T4Filter i) (SkewT4 q) % 32 = 16 * if i = q.1 then 1 else 0 := by
   rw [SkewT4, weight_translate, ← Nat.mul_mod_mod, weight_T4Filter_BaseSkewT4_mod32]
@@ -109,6 +130,9 @@ theorem weight_T4Filter_SkewT4_mod32 (i q) :
       Nat.pow_mod, T4Filter_snd_mod2, Nat.one_pow]
   · rw [Nat.mul_zero, Nat.zero_mod]
 
+/--
+@isnad1 id=eq.0h2v.s7.719d1b968d1d from=translated src=- shape=123d556b vocab=db6fbc91
+-/
 theorem weight_T4Filter_sum_SkewT4_mod32 (i : Fin 4) (P : Multiset (Fin 4 × ℕ × ℕ)) :
     weight (T4Filter i) (P.map SkewT4).sum % 32 = 16 * ((P.map Prod.fst).count i % 2) := by
   rw [weight_sum, map_map, sum_nat_mod, map_map]
@@ -119,7 +143,9 @@ theorem weight_T4Filter_sum_SkewT4_mod32 (i : Fin 4) (P : Multiset (Fin 4 × ℕ
 
 /-! ### Final solution -/
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=eq.1h3v.s7.4eda615e9239 from=translated src=- shape=e1fb406a vocab=0ea29ca7
+-/
 theorem final_solution (h : (map SkewT4 P).sum = (map SkewT4 Q).sum) (i : Fin 4) :
     (P.map Prod.fst).count i % 2 = (Q.map Prod.fst).count i % 2 := by
   rw [← Nat.mul_right_inj (Nat.succ_ne_zero 15), ← weight_T4Filter_sum_SkewT4_mod32,

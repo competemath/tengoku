@@ -68,7 +68,9 @@ def targetSum [Field F] (x : Fin 4 → F) : F :=
 
 variable [Field F] [LinearOrder F] [IsStrictOrderedRing F]
 
-/-- Cauchy-Schwarz inequality, Engel form, in 2 variables. -/
+/-- Cauchy-Schwarz inequality, Engel form, in 2 variables.
+@isnad1 id=le.2h5v.s8.067e92130a97 from=translated src=- shape=133452f5 vocab=da1279f4
+-/
 theorem CauchySchwarzEngel2 (a b : F) (hc : c > 0) (hd : d > 0) :
     (a + b) ^ 2 / (c + d) ≤ a ^ 2 / c + b ^ 2 / d :=
   suffices (a + b) ^ 2 ≤ (a ^ 2 / c + b ^ 2 / d) * (c + d)
@@ -89,7 +91,9 @@ theorem CauchySchwarzEngel2 (a b : F) (hc : c > 0) (hd : d > 0) :
 
 /-- The estimate
   `(a - b)(a - c)/(a + b + c) + (c - d)(c - a)/(c + d + a) ≥ 2(a - c)^2/(2(a + c) + (b + d))`
-  when `a + c + b > 0` and `a + c + d > 0`. -/
+  when `a + c + b > 0` and `a + c + d > 0`.
+@isnad1 id=le.2h5v.s9.dea856109d18 from=translated src=- shape=b9f6b985 vocab=3c4c37c4
+-/
 theorem two_term_estimate {a b c d : F} (hacb : a + c + b > 0) (hacd : a + c + d > 0) :
     2 * (a - c) ^ 2 / (2 * (a + c) + (b + d))
       - 3 * (a - c) * (b - d) / 2 * ((a + c) / ((a + c + b) * (a + c + d)))
@@ -112,7 +116,9 @@ theorem two_term_estimate {a b c d : F} (hacb : a + c + b > 0) (hacd : a + c + d
     _ = (a - b) * (a - c) / (a + b + c) + (c - d) * (c - a) / (c + d + a) := by
       rw [add_right_comm a b c, add_rotate a c d]
 
-/-- For any `a, b, c > 0`, we have `a/((a + b)(a + c)) < (a + b + c)⁻¹`. -/
+/-- For any `a, b, c > 0`, we have `a/((a + b)(a + c)) < (a + b + c)⁻¹`.
+@isnad1 id=lt.3h4v.s8.5cf847fc58fc from=translated src=- shape=421ac189 vocab=9c2b8e8a
+-/
 theorem div_add_mul_add_lt {a b c : F} (ha : a > 0) (hb : b > 0) (hc : c > 0) :
     a / ((a + b) * (a + c)) < (a + (b + c))⁻¹ := by
   have h : (a + b) * (a + c) > 0 := mul_pos (add_pos ha hb) (add_pos ha hc)
@@ -122,7 +128,9 @@ theorem div_add_mul_add_lt {a b c : F} (ha : a > 0) (hb : b > 0) (hc : c > 0) :
   exact mul_pos hb hc
 
 /-- The estimate `|(a + c)/((a + c + b)(a + c + d)) - (b + d)/((b + d + c)(b + d + a))|
-  < 1/((a + c) + (b + d))`. -/
+  < 1/((a + c) + (b + d))`.
+@isnad1 id=lt.1h2v.s9.04c83ce341c2 from=translated src=- shape=d8c508c3 vocab=7072fa12
+-/
 theorem abs_sub_estimate {x : Fin 4 → F} (hx : ∀ i, x i > 0) :
     |(x 0 + x 2) / ((x 0 + x 2 + x 1) * (x 0 + x 2 + x 3))
       - (x 1 + x 3) / ((x 1 + x 3 + x 2) * (x 1 + x 3 + x 0))|
@@ -136,7 +144,9 @@ theorem abs_sub_estimate {x : Fin 4 → F} (hx : ∀ i, x i > 0) :
     ((div_add_mul_add_lt hx13 (hx 2) (hx 0)).trans_eq ?_)
   rw [add_comm (x 2), add_comm]
 
-/-- The main inequality. -/
+/-- The main inequality.
+@isnad1 id=other.1h2v.s9.d2ad22479f61 from=translated src=- shape=5aee6e6d vocab=dee3ae85
+-/
 theorem main_ineq {x : Fin 4 → F} (hx : ∀ i, x i > 0) :
     let ε₁ : F := x 0 - x 2
     let ε₂ : F := x 1 - x 3
@@ -182,7 +192,9 @@ theorem main_ineq {x : Fin 4 → F} (hx : ∀ i, x i > 0) :
       rw [div_mul_div_comm, ← mul_assoc, X6, mul_assoc 3, mul_right_comm, X9, sub_div]
 
 /-- The bound `4(x + y)^2 - 9xy ≥ (x + y)^2`, weakening the
-  lower bound in the main inequality to `(|ε₁| + |ε₂|)^2/(6S)`. -/
+  lower bound in the main inequality to `(|ε₁| + |ε₂|)^2/(6S)`.
+@isnad1 id=le.0h3v.s7.346d7f27830e from=translated src=- shape=4a016724 vocab=a13958d7
+-/
 theorem bound_weakening (x y : F) :
     (x + y) ^ 2 ≤ 4 * (x + y) ^ 2 - 9 * (x * y) := by
   have h : 4 * (4 * (x + y) ^ 2 - 9 * (x * y) - (x + y) ^ 2)
@@ -190,13 +202,17 @@ theorem bound_weakening (x y : F) :
   rw [← sub_nonneg, ← mul_nonneg_iff_of_pos_left four_pos, h]
   exact add_nonneg (mul_nonneg zero_le_three (sq_nonneg _)) (sq_nonneg _)
 
-/-- Final solution, part 1 -/
+/-- Final solution, part 1
+@isnad1 id=le.1h2v.s6.8ad72b8a8fd6 from=translated src=- shape=286a3016 vocab=3499682e
+-/
 theorem final_solution_part1 {x : Fin 4 → F} (hx : ∀ i, x i > 0) : 0 ≤ targetSum x :=
   (main_ineq hx).trans' <| div_nonneg ((sq_nonneg _).trans (bound_weakening _ _)) <|
     mul_nonneg (by norm_num : 0 ≤ (6 : F)) <|
       add_nonneg (add_pos (hx 0) (hx 2)).le (add_pos (hx 1) (hx 3)).le
 
-/-- Final solution, part 2 -/
+/-- Final solution, part 2
+@isnad1 id=iff.1h2v.s7.8b26230910a4 from=translated src=- shape=b7261438 vocab=7e0ce60b
+-/
 theorem final_solution_part2 {x : Fin 4 → F} (hx : ∀ i, x i > 0) :
     targetSum x = 0 ↔ x 0 = x 2 ∧ x 1 = x 3 := by
   ---- The `←` direction is easy.

@@ -48,7 +48,9 @@ variable [Ring R] [LinearOrder R] [FloorRing R] [IsStrictOrderedRing R]
 /-- The function `f(r) = ⌊r⌋ (r - ⌊r⌋)`. -/
 abbrev f (r : R) := ⌊r⌋ * Int.fract r
 
-/-- For any `r ∈ R`, we have `|⌊f(r)⌋| ≤ |⌊r⌋|`. -/
+/-- For any `r ∈ R`, we have `|⌊f(r)⌋| ≤ |⌊r⌋|`.
+@isnad1 id=le.0h2v.s5.f6a59c06cd8b from=translated src=- shape=6a7ded7b vocab=10d3efe6
+-/
 theorem floor_f_abs_le_floor_abs (r : R) : |⌊f r⌋| ≤ |⌊r⌋| := by
   have hr0 : 0 ≤ Int.fract r := Int.fract_nonneg r
   have hr1 : Int.fract r ≤ 1 := (Int.fract_lt_one r).le
@@ -66,7 +68,9 @@ theorem floor_f_abs_le_floor_abs (r : R) : |⌊f r⌋| ≤ |⌊r⌋| := by
     rw [abs_of_nonpos hr2, abs_of_nonpos hr0, neg_le_neg_iff, Int.le_floor]
     exact le_mul_of_le_one_right hr hr1
 
-/-- For any `r ∈ R`, `(⌊f^k(r)⌋)_{k ≥ 0}` converges to `-C` for some `C : ℕ`. -/
+/-- For any `r ∈ R`, `(⌊f^k(r)⌋)_{k ≥ 0}` converges to `-C` for some `C : ℕ`.
+@isnad1 id=ex.0h2v.s6.4fa6b0f16e08 from=translated src=- shape=01702d1e vocab=ef25ceb2
+-/
 theorem floor_f_iter_converges (r : R) : ∃ (C N : ℕ), ∀ n ≥ N, ⌊f^[n] r⌋ = -C := by
   ---- First, `(|⌊f^k(r)⌋|)_{k ≥ 0}` converges to some `C : ℕ`.
   obtain ⟨C, N, h⟩ : ∃ C N, ∀ n ≥ N, ⌊f^[n] r⌋.natAbs = C := by
@@ -91,7 +95,9 @@ theorem floor_f_iter_converges (r : R) : ∃ (C N : ℕ), ∀ n ≥ N, ⌊f^[n] 
     (by simpa [Int.floor_lt] using mul_lt_of_lt_one_right hC (Int.fract_lt_one _))
 
 /-- If `(⌊f^k(r)⌋)_{k ≥ 0} → -1`, then `(f^k(r))_{k ≥ 0}` alternates
-  `-s, s - 1, -s, s - 1, …` for some `s ∈ R` with `0 < s < 1`. -/
+  `-s, s - 1, -s, s - 1, …` for some `s ∈ R` with `0 < s < 1`.
+@isnad1 id=ex.1h2v.s7.b0bbe5221a29 from=translated src=- shape=b3493acc vocab=3fa52070
+-/
 theorem f_iter_alt_of_floor_f_iter_lim_one {r : R} (h : ∃ N, ∀ n ≥ N, ⌊f^[n] r⌋ = -1) :
     ∃ s, (0 < s ∧ s < 1) ∧ ∃ N, ∀ n ≥ N, f^[n] r = if n % 2 = 0 then -s else s - 1 := by
   ---- We take `s = -f^{2N}(r)`; the `2N` is chosen to be even and `≥ N`.
@@ -119,7 +125,9 @@ theorem f_iter_alt_of_floor_f_iter_lim_one {r : R} (h : ∃ N, ∀ n ≥ N, ⌊f
       neg_one_mul, sub_add_cancel, neg_add', neg_mul_neg, one_mul]
 
 omit [IsStrictOrderedRing R] in
-/-- If `⌊r⌋ = -C`, then `(C + 1) f(r) + C^2 = -C ((C + 1)r + C^2)`. -/
+/-- If `⌊r⌋ = -C`, then `(C + 1) f(r) + C^2 = -C ((C + 1)r + C^2)`.
+@isnad1 id=eq.1h3v.s8.8458f98885b2 from=translated src=- shape=64a5de09 vocab=4d2e06f0
+-/
 theorem f_formula_of_floor_eq_neg {r : R} {C : ℕ} (h : ⌊r⌋ = -C) :
     (C + 1) * f r + C ^ 2 = (-C) * ((C + 1) * r + C ^ 2) := by
   rw [f, Int.fract, h, Int.cast_neg, sub_neg_eq_add, Int.cast_natCast]
@@ -132,7 +140,9 @@ variable [Archimedean R]
 
 /-- Suppose that `R` is archimedean and `C ≥ 2` is an positive integer.
   If `⌊f^k(r)⌋ = -C` for all `k`, then `(C + 1)r + C^2 = 0`.
-  This is the only step that requires `R` to be archimedean. -/
+  This is the only step that requires `R` to be archimedean.
+@isnad1 id=eq.2h3v.s7.683f07c005a1 from=translated src=- shape=5fb90d21 vocab=90381f1b
+-/
 theorem f_formula_of_archimedean_of_floor_eq_neg_nat
     {r : R} {C : ℕ} (hC : 2 ≤ C) (h : ∀ k, ⌊f^[k] r⌋ = -C) :
     (C + 1) * r + C ^ 2 = 0 := by
@@ -161,14 +171,18 @@ theorem f_formula_of_archimedean_of_floor_eq_neg_nat
   exact hk.not_gt (Int.abs_sub_lt_one_of_floor_eq_floor ((h k).trans (h 0).symm))
 
 /-- Suppose that `R` is archimedean and `C ≥ 2` is an positive integer.
-  If `⌊f^N(r)⌋ = -C` for all `n ≥ N`, then `(C + 1) f^N(r) + C^2 = 0`. -/
+  If `⌊f^N(r)⌋ = -C` for all `n ≥ N`, then `(C + 1) f^N(r) + C^2 = 0`.
+@isnad1 id=eq.2h4v.s7.73a52d780e69 from=translated src=- shape=0f9b96f6 vocab=e809b298
+-/
 theorem f_formula2_of_archimedean_of_floor_eq_neg_nat
     {r : R} {C : ℕ} (hC : 2 ≤ C) (h : ∀ n ≥ N, ⌊f^[n] r⌋ = -C) :
     (C + 1) * f^[N] r + C ^ 2 = 0 :=
   f_formula_of_archimedean_of_floor_eq_neg_nat hC
     λ k ↦ f.iterate_add_apply k N r ▸ h _ (Nat.le_add_left N k)
 
-/-- The sequence `(f^k(r))_{k ≥ 0}` eventually is either constant or alternating. -/
+/-- The sequence `(f^k(r))_{k ≥ 0}` eventually is either constant or alternating.
+@isnad1 id=or.0h2v.s7.b4005e7982ef from=translated src=- shape=74583ad9 vocab=ab09a60d
+-/
 theorem f_iter_converges_or_alt (r : R) :
     (∃ r₀ N, ∀ n ≥ N, f^[n] r = r₀) ∨
       (∃ s : R, (0 < s ∧ s < 1) ∧
@@ -193,7 +207,9 @@ theorem f_iter_converges_or_alt (r : R) :
       add_pos (Nat.cast_pos.mpr (Nat.zero_lt_of_lt hC)) one_pos
     exact mul_left_cancel₀ hC.ne.symm (add_right_cancel h)
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ex.0h2v.s6.21406ec722f8 from=translated src=- shape=6ce8e0f8 vocab=43a74c78
+-/
 theorem final_solution (r : R) : ∃ N, ∀ n ≥ N, f^[n + 2] r = f^[n] r := by
   obtain ⟨r₀, N, h⟩ | ⟨s, -, N, h⟩ := f_iter_converges_or_alt r
   ---- Case 1: `(f^k(r))_{k ≥ 0}` eventually converges

@@ -32,7 +32,9 @@ def good (n : ℕ) :=
   ∀ x : ℕ → Bool, ∃ a b, n ≤ a ∧ a < b ∧ b ≤ 2 * n ∧ x a = x b ∧ ∃ k, a + b = k ^ 2
 
 /-- If there exists `a, b, c ∈ ℕ` such that `n ≤ a < b < c ≤ 2n` and
-  all of `a + b`, `b + c`, and `c + a` is a square, then `n` is good. -/
+  all of `a + b`, `b + c`, and `c + a` is a square, then `n` is good.
+@isnad1 id=good.7h7v.s7.20f2170f1fff from=translated src=- shape=593108a9 vocab=51b8c02f
+-/
 theorem good_cond1 (h : n ≤ a) (h0 : a < b) (h1 : b < c) (h2 : c ≤ 2 * n)
     (h3 : a + b = k ^ 2) (h4 : a + c = l ^ 2) (h5 : b + c = m ^ 2) :
     good n := by
@@ -46,7 +48,9 @@ theorem good_cond1 (h : n ≤ a) (h0 : a < b) (h1 : b < c) (h2 : c ≤ 2 * n)
 
 /-- If `k^2 + 6k + 8 ≤ n ≤ 2k^2 + 4k` for some `k`, then `n` is good.
   This is equivalent to the official solution's formulation of the step,
-  as `2k^2 + 4k = 2(k + 2)^2 - 4(k + 2)` and `2(k^2 + 6k + 8) = 2(k + 2)^2 + 4(k + 2)`. -/
+  as `2k^2 + 4k = 2(k + 2)^2 - 4(k + 2)` and `2(k^2 + 6k + 8) = 2(k + 2)^2 + 4(k + 2)`.
+@isnad1 id=good.2h2v.s6.15188fca6ab5 from=translated src=- shape=31b06a39 vocab=157f14ad
+-/
 theorem good_cond2 (h : n ≤ 2 * k ^ 2 + 4 * k) (h0 : k ^ 2 + 6 * k + 8 ≤ n) : good n := by
   ---- Set `a = 2k^2 + 4k`, `b = 2k^2 + 8k + 9`, and `c = 2(k^2 + 6k + 8)`.
   refine good_cond1 (b := 2 * k ^ 2 + 8 * k + 9) (k := 2 * k + 3)
@@ -96,7 +100,9 @@ theorem good_cond2 (h : n ≤ 2 * k ^ 2 + 4 * k) (h0 : k ^ 2 + 6 * k + 8 ≤ n) 
         Nat.pow_two, Nat.mul_right_comm 2 k, ← Nat.mul_assoc 5]
     _ = (2 * k + 5) ^ 2 := by rw [Nat.pow_two, Nat.add_mul]
 
-/-- If `n ≥ 99`, then `k^2 + 6k + 8 ≤ n ≤ 2k^2 + 4k` for some `k`. -/
+/-- If `n ≥ 99`, then `k^2 + 6k + 8 ≤ n ≤ 2k^2 + 4k` for some `k`.
+@isnad1 id=ex.1h1v.s6.cdda53da0bfa from=translated src=- shape=b7638f68 vocab=65f17359
+-/
 theorem good_cond2_of_ge99 {n} (hn : n ≥ 99) :
     ∃ k, n ≤ 2 * k ^ 2 + 4 * k ∧ k ^ 2 + 6 * k + 8 ≤ n := by
   ---- Induction on `n`, discharging the base case immediately.
@@ -136,6 +142,8 @@ theorem good_cond2_of_ge99 {n} (hn : n ≥ 99) :
       _ ≤ 2 * k ^ 2 + 4 * k + 1 :=
         Nat.succ_le_succ (Nat.add_le_add_left (Nat.mul_le_mul_right _ (Nat.le_succ 3)) _)
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=good.1h1v.s3.81af3fcc5142 from=translated src=- shape=03cacb02 vocab=0511c927
+-/
 theorem final_solution (hn : n ≥ 99) : good n :=
   (good_cond2_of_ge99 hn).elim λ _ h ↦ good_cond2 h.1 h.2

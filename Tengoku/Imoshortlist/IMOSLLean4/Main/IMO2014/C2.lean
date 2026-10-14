@@ -34,7 +34,9 @@ open Multiset
 
 /-! ### Extra lemmas -/
 
-/-- If `n ≤ |M|`, then there exists a sub-multiset of `M` of cardinality `n`. -/
+/-- If `n ≤ |M|`, then there exists a sub-multiset of `M` of cardinality `n`.
+@isnad1 id=ex.1h3v.s5.921007093565 from=translated src=- shape=3298361f vocab=e34bb1d8
+-/
 theorem exists_le_card_eq_of_card_le {M : Multiset α} (hnM : n ≤ M.card) :
     ∃ S ≤ M, S.card = n := by
   ---- Induction on `M`; the base case `M = ∅` is trivial.
@@ -51,7 +53,9 @@ theorem exists_le_card_eq_of_card_le {M : Multiset α} (hnM : n ≤ M.card) :
 
 /-- AM-GM inequality on multisets whose size is a power of `2`.
   Using Cauchy induction (see `Nat.cauchy_induction_two_mul`), it is possible to
-  lift the assumption on the size of the multiset, but we are not doing that. -/
+  lift the assumption on the size of the multiset, but we are not doing that.
+@isnad1 id=le.1h2v.s6.04f682b1586e from=translated src=- shape=d61ec3b2 vocab=237a5542
+-/
 theorem AM_GM_Multiset_Nat_card_eq_two_pow {M : Multiset ℕ} (h : M.card = 2 ^ n) :
     (2 ^ n) ^ (2 ^ n) * M.prod ≤ M.sum ^ (2 ^ n) := by
   ---- Induction on `n`; the base case `n = 0`, `|M| = 1`, is trivial.
@@ -85,20 +89,26 @@ def good (M N : Multiset ℕ) := ∃ T a b, M = {a, b} + T ∧ N = {a + b, a + b
 
 namespace good
 
-/-- If `(M, N)` is good. then `|M| = |N|`. -/
+/-- If `(M, N)` is good. then `|M| = |N|`.
+@isnad1 id=eq.1h2v.s4.768ea525095c from=translated src=- shape=d0b7b6ec vocab=cf1471d4
+-/
 theorem card_eq (h : good M N) : M.card = N.card := by
   rcases h with ⟨T, a, b, rfl, rfl⟩
   iterate 2 rw [card_add, card_pair]
 
 /-- Let `M_0, …, M_n` be multisets such that `(M_i, M_{i + 1})` is good for each `i`.
-  If `|M_0| = k`, then `|M_n| = k`. -/
+  If `|M_0| = k`, then `|M_n| = k`.
+@isnad1 id=eq.2h3v.s5.f66f804e0fcf from=translated src=- shape=a0eb80ee vocab=52a8c8f2
+-/
 theorem chain_card_eq (hMl : List.IsChain good (M :: l)) (hMk : M.card = k) :
     ((M :: l).getLast (l.cons_ne_nil M)).card = k := by
   induction l generalizing M with
   | nil => exact hMk
   | cons N l l_ih => exact l_ih hMl.of_cons (hMl.rel.card_eq.symm.trans hMk)
 
-/-- If `(M, N)` is good, then `4 ∏_{x ∈ M} x ≤ ∏_{x ∈ N} x`. -/
+/-- If `(M, N)` is good, then `4 ∏_{x ∈ M} x ≤ ∏_{x ∈ N} x`.
+@isnad1 id=le.1h2v.s5.7c84e81194f3 from=translated src=- shape=60e14e47 vocab=9ed17579
+-/
 theorem four_mul_prod_le (h : good M N) : 4 * M.prod ≤ N.prod := by
   rcases h with ⟨T, a, b, rfl, rfl⟩
   rw [prod_add, prod_pair, prod_add, prod_pair,
@@ -106,7 +116,9 @@ theorem four_mul_prod_le (h : good M N) : 4 * M.prod ≤ N.prod := by
   exact Nat.mul_le_mul_right _ (four_mul_le_pow_two_add a b)
 
 /-- Let `M_0, …, M_n` be multisets such that `(M_i, M_{i + 1})` is good for each `i`.
-  Then `4^n ∏_{x ∈ M_0} x ≤ ∏_{x ∈ M_n} x`. -/
+  Then `4^n ∏_{x ∈ M_0} x ≤ ∏_{x ∈ M_n} x`.
+@isnad1 id=le.1h2v.s6.20b29495eeff from=translated src=- shape=3772ceac vocab=da3fcc3f
+-/
 theorem chain_four_pow_prod_le (hMl : List.IsChain good (M :: l)) :
     4 ^ l.length * M.prod ≤ ((M :: l).getLast (l.cons_ne_nil M)).prod := by
   ---- Induction on `l`, where the base case `l = []` is trivial.
@@ -123,7 +135,9 @@ theorem chain_four_pow_prod_le (hMl : List.IsChain good (M :: l)) :
 
 end good
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=le.3h2v.s7.1484b8429b70 from=translated src=- shape=66109b3c vocab=eff2d82f
+-/
 theorem final_solution {m l} (hm : m > 0) (hlm : l.length = m * 2 ^ (m - 1))
     (hlm0 : List.IsChain good (replicate (2 ^ m) 1 :: l)) :
     4 ^ m ≤ ((replicate (2 ^ m) 1 :: l).getLast (l.cons_ne_nil _)).sum := by

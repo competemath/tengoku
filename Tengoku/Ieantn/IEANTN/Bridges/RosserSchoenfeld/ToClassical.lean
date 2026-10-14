@@ -27,7 +27,9 @@ namespace IEANTN.Bridges.RosserSchoenfeld
 
 open IEANTN
 
-/-- The `log(t/17)` region contains the plain classical one above the same height. -/
+/-- The `log(t/17)` region contains the plain classical one above the same height.
+@isnad1 id=zerofree.1h0v.s1.3f1849c500c9 from=translated src=- shape=1d48f1ac vocab=4ae5c130
+-/
 theorem bridge_to_classical (h : RosserSchoenfeld.v1.zero_free_region) :
     RosserSchoenfeld.v1.zero_free_region_classical := by
   intro σ t ht hσ

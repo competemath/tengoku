@@ -26,6 +26,7 @@ namespace FormalSLT.Concentration.SubGamma
 
 For `Z` strongly `m`-measurable and (almost surely) bounded, and `Y`
 integrable, the conditional expectation pulls the bounded factor out.
+@isnad1 id=eventual.4h7v.s7.86d6f70e3c80 from=translated src=- shape=af8fb6d1 vocab=2c7a58ca
 -/
 theorem condExp_mul_bounded_left
     {Ω : Type*} {m₀ : MeasurableSpace Ω}

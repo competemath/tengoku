@@ -26,6 +26,9 @@ namespace IMO2018N2
 
 open Finset
 
+/--
+@isnad1 id=modeq.2h3v.s6.7d010cfb885d from=translated src=- shape=7bd4b3d0 vocab=8319b42f
+-/
 theorem add_modeq_mul_add_one (h : a ≡ 1 [ZMOD n]) (h0 : b ≡ 1 [ZMOD n]) :
     a + b ≡ a * b + 1 [ZMOD n ^ 2] := by
   rw [Int.modEq_iff_dvd, sq, add_comm, ← sub_sub_sub_eq, ← one_sub_mul, ← mul_one_sub]
@@ -38,11 +41,17 @@ section
 variable {n : ℤ} {f : ι → ℤ} (h : ∀ i ∈ S, f i ≡ 1 [ZMOD n])
 include h
 
+/--
+@isnad1 id=modeq.1h4v.s5.c1359fdc6660 from=translated src=- shape=a0166a61 vocab=161d8c6e
+-/
 theorem prod_one_modeq_one_mod : S.prod f ≡ 1 [ZMOD n] := by
   induction S using Finset.induction with | empty => rfl | insert i S h0 h1 => ?_
   rw [prod_insert h0, ← Int.mul_one 1]
   exact (h i (mem_insert_self i S)).mul (h1 λ j h2 ↦ h j (mem_insert_of_mem h2))
 
+/--
+@isnad1 id=modeq.1h4v.s6.55e322a66b7b from=translated src=- shape=3f99fe9d vocab=4a5d1a25
+-/
 theorem prod_one_mod_add_card_modeq_sum_add_one :
     S.prod f + S.card ≡ S.sum f + 1 [ZMOD n ^ 2] := by
   induction S using Finset.induction with | empty => rfl | insert i S h0 h1 => ?_
@@ -54,6 +63,9 @@ theorem prod_one_mod_add_card_modeq_sum_add_one :
   rw [add_assoc, add_assoc]
   exact (h1 h2).add_left _
 
+/--
+@isnad1 id=modeq.2h4v.s6.9d9726cada96 from=translated src=- shape=20c3856a vocab=0d67ec34
+-/
 theorem prod_one_mod_modeq_one_mod_sq (h0 : S.sum f ≡ S.card [ZMOD n ^ 2]) :
     S.prod f ≡ 1 [ZMOD n ^ 2] := by
   apply prod_one_mod_add_card_modeq_sum_add_one at h
@@ -62,7 +74,9 @@ theorem prod_one_mod_modeq_one_mod_sq (h0 : S.sum f ≡ S.card [ZMOD n ^ 2]) :
 
 end
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=modeq.3h4v.s7.efcebd64b35b from=translated src=- shape=af943f28 vocab=0d67ec34
+-/
 theorem final_solution {n : ℤ} {f : ι → ι → ℤ} (h : ∀ i ∈ S, ∀ j ∈ S, f i j ≡ 1 [ZMOD n])
     (h0 : ∀ i ∈ S, ∑ j ∈ S, f i j ≡ S.card [ZMOD n ^ 2])
     (h1 : ∀ j ∈ S, ∑ i ∈ S, f i j ≡ S.card [ZMOD n ^ 2]) :

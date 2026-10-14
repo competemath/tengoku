@@ -39,11 +39,16 @@ def unitIntervalZero : UnitInterval :=
 def unitIntervalOne : UnitInterval :=
   ⟨1, by simp⟩
 
+/--
+@isnad1 id=eq.0h0v.s5.bda4b3f92da4 from=translated src=- shape=34bef2d9 vocab=bfd90d6e
+-/
 @[simp] theorem dist_unitIntervalZero_unitIntervalOne :
     dist unitIntervalZero unitIntervalOne = 1 := by
   norm_num [unitIntervalZero, unitIntervalOne, Subtype.dist_eq, Real.dist_eq]
 
-/-- The unit interval is totally bounded. -/
+/-- The unit interval is totally bounded.
+@isnad1 id=totallyb.0h0v.s5.14f8f6be62fd from=translated src=- shape=3905abf2 vocab=107623c0
+-/
 theorem unitInterval_totallyBounded_univ :
     TotallyBounded (Set.univ : Set UnitInterval) := by
   simpa [UnitInterval] using
@@ -57,7 +62,9 @@ def unitIntervalFiniteNet (ε : ℝ) (hε : 0 < ε) :
     (T := UnitInterval) unitInterval_totallyBounded_univ ε hε
 
 /-- The extracted unit-interval finite net covers every point at the requested
-radius. -/
+radius.
+@isnad1 id=le.1h2v.s6.a24b1653f702 from=translated src=- shape=5d9ac292 vocab=81732f1c
+-/
 theorem unitIntervalFiniteNet_covers {ε : ℝ} (hε : 0 < ε)
     (t : UnitInterval) :
     dist t ((unitIntervalFiniteNet ε hε).net.projection t) ≤ ε := by
@@ -72,7 +79,9 @@ def unitIntervalDyadicFiniteNet {radiusScale : ℝ}
     (T := UnitInterval) unitInterval_totallyBounded_univ hradiusScale j
 
 /-- Every unit-interval point is covered by the dyadic finite net at each
-scheduled radius. -/
+scheduled radius.
+@isnad1 id=le.1h3v.s6.a7a4cef677b8 from=translated src=- shape=9068b8d7 vocab=8069e22f
+-/
 theorem unitIntervalDyadicFiniteNet_covers {radiusScale : ℝ}
     (hradiusScale : 0 < radiusScale) (j : ℕ) (t : UnitInterval) :
     dist t ((unitIntervalDyadicFiniteNet hradiusScale j).net.projection t) ≤
@@ -116,6 +125,9 @@ def unitIntervalDyadicGridCenter (level : ℕ)
       rw [div_self (ne_of_gt hden_pos)] at hle
       exact hle⟩
 
+/--
+@isnad1 id=eq.0h1v.s3.c8569a6d6561 from=translated src=- shape=bee640bc vocab=46036d0a
+-/
 @[simp] theorem unitIntervalDyadicGridCenter_leftEndpoint (level : ℕ) :
     unitIntervalDyadicGridCenter level
         (unitIntervalDyadicGridLeftIndex level) =
@@ -124,6 +136,9 @@ def unitIntervalDyadicGridCenter (level : ℕ)
   simp [unitIntervalDyadicGridCenter, unitIntervalDyadicGridLeftIndex,
     unitIntervalZero]
 
+/--
+@isnad1 id=eq.0h1v.s3.66a1e3616144 from=translated src=- shape=bee640bc vocab=eb7a5dfd
+-/
 @[simp] theorem unitIntervalDyadicGridCenter_rightEndpoint (level : ℕ) :
     unitIntervalDyadicGridCenter level
         (unitIntervalDyadicGridRightIndex level) =
@@ -135,7 +150,9 @@ def unitIntervalDyadicGridCenter (level : ℕ)
   rw [div_self]
   exact_mod_cast pow_ne_zero level (by norm_num : (2 : ℕ) ≠ 0)
 
-/-- Cardinality of the dyadic grid at level `level`. -/
+/-- Cardinality of the dyadic grid at level `level`.
+@isnad1 id=eq.0h1v.s6.d3bf262ecb1a from=translated src=- shape=de3fa9a7 vocab=f23c7678
+-/
 theorem unitIntervalDyadicGrid_card (level : ℕ) :
     Fintype.card (unitIntervalDyadicGridIndex level) =
       (2 : ℕ) ^ level + 1 := by
@@ -147,7 +164,9 @@ def unitIntervalDyadicGridPairCoverCount (j : ℕ) : ℕ :=
   ((2 : ℕ) ^ (j + 1) + 1) * ((2 : ℕ) ^ (j + 2) + 1)
 
 /-- The first adjacent dyadic grid pair, levels `1` and `2`, has product count
-`15`. -/
+`15`.
+@isnad1 id=eq.0h0v.s3.70a150abb17f from=translated src=- shape=3c26ae4f vocab=63764243
+-/
 theorem unitIntervalDyadicGridPairCoverCount_zero :
     unitIntervalDyadicGridPairCoverCount 0 = 15 := by
   norm_num [unitIntervalDyadicGridPairCoverCount]
@@ -173,7 +192,9 @@ def unitIntervalDyadicGridFloorProject (level : ℕ) (t : UnitInterval) :
 /-- The floor-projected dyadic grid covers `[0,1]` at the grid spacing
 `1 / 2^level`. This is a reusable generic coverage theorem; the sharper
 half-spacing nearest-grid theorem is left to the explicit half/quarter meshes
-or a later rounded projection. -/
+or a later rounded projection.
+@isnad1 id=le.0h2v.s6.9c6da325f787 from=translated src=- shape=7ca8a347 vocab=a1077db0
+-/
 theorem unitIntervalDyadicGridFloorProject_dist_le
     (level : ℕ) (t : UnitInterval) :
     dist t
@@ -257,32 +278,42 @@ def unitIntervalDyadicGridNet (level : ℕ) :
     covers := unitIntervalDyadicGridFloorProject_dist_le level }
 
 /-- The generic dyadic grid finite net covers the unit interval at spacing
-`1 / 2^level`. -/
+`1 / 2^level`.
+@isnad1 id=le.0h2v.s6.42306f1c6ddf from=translated src=- shape=80b7b129 vocab=8d636fad
+-/
 theorem unitIntervalDyadicGridNet_covers (level : ℕ) (t : UnitInterval) :
     dist t ((unitIntervalDyadicGridNet level).projection t) ≤
       (1 : ℝ) / (((2 : ℕ) ^ level : ℕ) : ℝ) :=
   (unitIntervalDyadicGridNet level).projection_dist_le t
 
-/-- The generic dyadic grid finite net has `2^level + 1` centers. -/
+/-- The generic dyadic grid finite net has `2^level + 1` centers.
+@isnad1 id=eq.0h1v.s6.28c5cd601e7b from=translated src=- shape=bc13ed9b vocab=46f53faf
+-/
 theorem unitIntervalDyadicGridNet_coveringNumber (level : ℕ) :
     (unitIntervalDyadicGridNet level).coveringNumber =
       (2 : ℕ) ^ level + 1 := by
   simp [FiniteNet.coveringNumber, unitIntervalDyadicGridIndex]
 
-/-- The level-`1` generic dyadic grid finite net has three centers. -/
+/-- The level-`1` generic dyadic grid finite net has three centers.
+@isnad1 id=eq.0h0v.s5.ee79319df616 from=translated src=- shape=1a3df6f0 vocab=46f53faf
+-/
 theorem unitIntervalDyadicGridNet_coveringNumber_one :
     (unitIntervalDyadicGridNet 1).coveringNumber = 3 := by
   rw [unitIntervalDyadicGridNet_coveringNumber]
   norm_num
 
-/-- The level-`2` generic dyadic grid finite net has five centers. -/
+/-- The level-`2` generic dyadic grid finite net has five centers.
+@isnad1 id=eq.0h0v.s5.329ea05ff5c3 from=translated src=- shape=1a3df6f0 vocab=46f53faf
+-/
 theorem unitIntervalDyadicGridNet_coveringNumber_two :
     (unitIntervalDyadicGridNet 2).coveringNumber = 5 := by
   rw [unitIntervalDyadicGridNet_coveringNumber]
   norm_num
 
 /-- The first adjacent generic dyadic grid-net covering-number product is the
-same `15` count used by the explicit half/quarter mesh pair. -/
+same `15` count used by the explicit half/quarter mesh pair.
+@isnad1 id=eq.0h0v.s6.11d850b1e771 from=translated src=- shape=5ac4d019 vocab=9c381d0a
+-/
 theorem unitIntervalDyadicGridNet_coveringNumberPair_zero :
     (unitIntervalDyadicGridNet 1).coveringNumber *
         (unitIntervalDyadicGridNet 2).coveringNumber =
@@ -319,7 +350,9 @@ def unitIntervalDyadicGridRoundProject (level : ℕ) (t : UnitInterval) :
     simpa [n, unitIntervalDyadicGridIndex] using hfloor_lt⟩
 
 /-- The rounded dyadic grid projection covers `[0,1]` at half the grid spacing,
-`1 / 2^(level + 1)`. -/
+`1 / 2^(level + 1)`.
+@isnad1 id=le.0h2v.s6.5b04ef497196 from=translated src=- shape=59eb5feb vocab=773fcbf4
+-/
 theorem unitIntervalDyadicGridRoundProject_dist_le
     (level : ℕ) (t : UnitInterval) :
     dist t
@@ -385,6 +418,9 @@ theorem unitIntervalDyadicGridRoundProject_dist_le
   simpa [unitIntervalDyadicGridCenter, unitIntervalDyadicGridRoundProject,
     n, a, m] using hscaled
 
+/--
+@isnad1 id=eq.0h1v.s3.5121daf65fca from=translated src=- shape=4ef0e148 vocab=2f3b56a1
+-/
 @[simp] theorem unitIntervalDyadicGridRoundProject_zero (level : ℕ) :
     unitIntervalDyadicGridRoundProject level unitIntervalZero =
       unitIntervalDyadicGridLeftIndex level := by
@@ -394,6 +430,9 @@ theorem unitIntervalDyadicGridRoundProject_dist_le
       ((((2 : ℕ) ^ level : ℕ) : ℝ) * (0 : ℝ) + (1 : ℝ) / 2) = 0
   norm_num [Nat.floor_eq_iff]
 
+/--
+@isnad1 id=eq.0h1v.s3.3eb1c0a8d5a3 from=translated src=- shape=4ef0e148 vocab=58da4373
+-/
 @[simp] theorem unitIntervalDyadicGridRoundProject_one (level : ℕ) :
     unitIntervalDyadicGridRoundProject level unitIntervalOne =
       unitIntervalDyadicGridRightIndex level := by
@@ -431,32 +470,42 @@ def unitIntervalDyadicRoundedGridNet (level : ℕ) :
     covers := unitIntervalDyadicGridRoundProject_dist_le level }
 
 /-- The rounded generic dyadic grid finite net covers `[0,1]` at half-spacing
-radius `1 / 2^(level + 1)`. -/
+radius `1 / 2^(level + 1)`.
+@isnad1 id=le.0h2v.s6.ad87da44733d from=translated src=- shape=ab7b204e vocab=fde21b21
+-/
 theorem unitIntervalDyadicRoundedGridNet_covers (level : ℕ) (t : UnitInterval) :
     dist t ((unitIntervalDyadicRoundedGridNet level).projection t) ≤
       (1 : ℝ) / (((2 : ℕ) ^ (level + 1) : ℕ) : ℝ) :=
   (unitIntervalDyadicRoundedGridNet level).projection_dist_le t
 
-/-- The rounded generic dyadic grid finite net has `2^level + 1` centers. -/
+/-- The rounded generic dyadic grid finite net has `2^level + 1` centers.
+@isnad1 id=eq.0h1v.s6.6c0e8a61ed26 from=translated src=- shape=bc13ed9b vocab=86ea377c
+-/
 theorem unitIntervalDyadicRoundedGridNet_coveringNumber (level : ℕ) :
     (unitIntervalDyadicRoundedGridNet level).coveringNumber =
       (2 : ℕ) ^ level + 1 := by
   simp [FiniteNet.coveringNumber, unitIntervalDyadicGridIndex]
 
-/-- The level-`1` rounded generic dyadic grid finite net has three centers. -/
+/-- The level-`1` rounded generic dyadic grid finite net has three centers.
+@isnad1 id=eq.0h0v.s5.7453414044a0 from=translated src=- shape=1a3df6f0 vocab=86ea377c
+-/
 theorem unitIntervalDyadicRoundedGridNet_coveringNumber_one :
     (unitIntervalDyadicRoundedGridNet 1).coveringNumber = 3 := by
   rw [unitIntervalDyadicRoundedGridNet_coveringNumber]
   norm_num
 
-/-- The level-`2` rounded generic dyadic grid finite net has five centers. -/
+/-- The level-`2` rounded generic dyadic grid finite net has five centers.
+@isnad1 id=eq.0h0v.s5.6c06ec2263c7 from=translated src=- shape=1a3df6f0 vocab=86ea377c
+-/
 theorem unitIntervalDyadicRoundedGridNet_coveringNumber_two :
     (unitIntervalDyadicRoundedGridNet 2).coveringNumber = 5 := by
   rw [unitIntervalDyadicRoundedGridNet_coveringNumber]
   norm_num
 
 /-- The first adjacent rounded generic dyadic grid-net covering-number product
-is the same `15` count used by the explicit half/quarter mesh pair. -/
+is the same `15` count used by the explicit half/quarter mesh pair.
+@isnad1 id=eq.0h0v.s6.a8f8d5d82b4c from=translated src=- shape=5ac4d019 vocab=66477baa
+-/
 theorem unitIntervalDyadicRoundedGridNet_coveringNumberPair_zero :
     (unitIntervalDyadicRoundedGridNet 1).coveringNumber *
         (unitIntervalDyadicRoundedGridNet 2).coveringNumber =
@@ -532,12 +581,16 @@ def unitIntervalQuarterMeshNet : FiniteNet UnitInterval (Fin 5) :=
     covers := unitIntervalQuarterMeshProject_dist_le }
 
 /-- The explicit quarter mesh covers every unit-interval point at radius
-`1/8`. -/
+`1/8`.
+@isnad1 id=le.0h1v.s6.43962e2a3d1e from=translated src=- shape=24bf7efb vocab=2ae33ad6
+-/
 theorem unitIntervalQuarterMeshNet_covers (t : UnitInterval) :
     dist t (unitIntervalQuarterMeshNet.projection t) ≤ (1 : ℝ) / 8 :=
   unitIntervalQuarterMeshNet.projection_dist_le t
 
-/-- The explicit quarter mesh has five centers. -/
+/-- The explicit quarter mesh has five centers.
+@isnad1 id=eq.0h0v.s4.b2d5a2c595dc from=translated src=- shape=ca51c511 vocab=50ee4055
+-/
 theorem unitIntervalQuarterMeshNet_coveringNumber :
     unitIntervalQuarterMeshNet.coveringNumber = 5 := by
   simp [FiniteNet.coveringNumber]
@@ -591,17 +644,23 @@ def unitIntervalHalfMeshNet : FiniteNet UnitInterval (Fin 3) :=
     radius_nonneg := by norm_num
     covers := unitIntervalHalfMeshProject_dist_le }
 
-/-- The explicit half mesh covers every unit-interval point at radius `1/4`. -/
+/-- The explicit half mesh covers every unit-interval point at radius `1/4`.
+@isnad1 id=le.0h1v.s6.fc0e041bf8d8 from=translated src=- shape=24bf7efb vocab=1bf9c2a9
+-/
 theorem unitIntervalHalfMeshNet_covers (t : UnitInterval) :
     dist t (unitIntervalHalfMeshNet.projection t) ≤ (1 : ℝ) / 4 :=
   unitIntervalHalfMeshNet.projection_dist_le t
 
-/-- The explicit half mesh has three centers. -/
+/-- The explicit half mesh has three centers.
+@isnad1 id=eq.0h0v.s4.b96a53cc314e from=translated src=- shape=ca51c511 vocab=57515287
+-/
 theorem unitIntervalHalfMeshNet_coveringNumber :
     unitIntervalHalfMeshNet.coveringNumber = 3 := by
   simp [FiniteNet.coveringNumber]
 
-/-- The explicit adjacent half/quarter projection-pair family is nontrivial. -/
+/-- The explicit adjacent half/quarter projection-pair family is nontrivial.
+@isnad1 id=lt.0h0v.s6.2586923785c1 from=translated src=- shape=c714df7a vocab=8ad312cc
+-/
 theorem unitIntervalHalfQuarterPair_card_gt_one :
     1 < Fintype.card
       (FiniteNet.ProjectionPair unitIntervalHalfMeshNet unitIntervalQuarterMeshNet) := by
@@ -622,7 +681,9 @@ theorem unitIntervalHalfQuarterPair_card_gt_one :
     unitIntervalZero, unitIntervalOne] at hproj
 
 /-- The product of the explicit half and quarter mesh covering numbers is
-`15`. -/
+`15`.
+@isnad1 id=eq.0h0v.s5.770257d7e33a from=translated src=- shape=d5be7926 vocab=4811f902
+-/
 theorem unitIntervalHalfQuarter_coveringNumber_product :
     unitIntervalHalfMeshNet.coveringNumber *
         unitIntervalQuarterMeshNet.coveringNumber = 15 := by
@@ -630,7 +691,9 @@ theorem unitIntervalHalfQuarter_coveringNumber_product :
     unitIntervalQuarterMeshNet_coveringNumber]
 
 /-- The explicit half/quarter covering-number product is the first adjacent
-dyadic grid pair count. -/
+dyadic grid pair count.
+@isnad1 id=eq.0h0v.s5.b20a95d655ee from=translated src=- shape=302f0496 vocab=e2e2743a
+-/
 theorem unitIntervalHalfQuarter_coveringNumber_product_eq_dyadicGridPairCoverCount_zero :
     unitIntervalHalfMeshNet.coveringNumber *
         unitIntervalQuarterMeshNet.coveringNumber =
@@ -664,7 +727,9 @@ def unitIntervalZeroProcess :
         nlinarith [sq_nonneg lam, sq_nonneg (dist s t)]
       simpa [mul_assoc] using Real.one_le_exp hnonneg }
 
-/-- The zero process satisfies the finite sub-Gaussian increment MGF bound. -/
+/-- The zero process satisfies the finite sub-Gaussian increment MGF bound.
+@isnad1 id=le.0h3v.s7.8ce895e89528 from=translated src=- shape=1cfdd923 vocab=a2eea196
+-/
 theorem unitIntervalZeroProcess_increment_mgf
     (s t : UnitInterval) (lam : ℝ) :
     finiteExpectation unitIntervalZeroProcess.weight
@@ -686,7 +751,9 @@ private lemma unitInterval_dist_sq_eq (s t : UnitInterval) :
   ring
 
 /-- The one-coordinate Rademacher MGF bound for the unit-interval linear
-process. -/
+process.
+@isnad1 id=le.0h3v.s7.0c8674ced1eb from=translated src=- shape=f4ff311b vocab=76f051e7
+-/
 theorem unitInterval_rademacherLinear_mgf_bound
     (s t : UnitInterval) (lam : ℝ) :
     finiteExpectation (fun _ : Bool => (1 : ℝ) / 2)
@@ -748,7 +815,9 @@ def unitIntervalRademacherLinearProcess :
         unitInterval_rademacherLinear_mgf_bound s t lam }
 
 /-- The packaged Rademacher linear process satisfies the finite
-sub-Gaussian increment MGF bound. -/
+sub-Gaussian increment MGF bound.
+@isnad1 id=le.0h3v.s7.be540effa473 from=translated src=- shape=1cfdd923 vocab=08a5b636
+-/
 theorem unitIntervalRademacherLinearProcess_increment_mgf
     (s t : UnitInterval) (lam : ℝ) :
     finiteExpectation unitIntervalRademacherLinearProcess.weight
@@ -764,7 +833,9 @@ theorem unitIntervalRademacherLinearProcess_increment_mgf
 
 The ambient index space is the non-finite unit interval, while the supremum
 here is over the finite realized projection-pair family. The concrete mesh
-sizes give the displayed `log 15` entropy term. -/
+sizes give the displayed `log 15` entropy term.
+@isnad1 id=le.0h0v.s8.f13a9bee572b from=translated src=- shape=8b5e15a0 vocab=3664f2ed
+-/
 theorem unitIntervalRademacherLinear_halfQuarter_increment_log15_bound :
     finiteExpectation unitIntervalRademacherLinearProcess.weight
       (fun ω => finiteSup
@@ -835,15 +906,23 @@ unit interval. It is `1` for the positive sign and `0` for the negative sign. -/
 def unitIntervalRademacherLinearSup : Bool → ℝ :=
   fun b => if b then 1 else 0
 
+/--
+@isnad1 id=eq.0h0v.s3.23d89835f6a2 from=translated src=- shape=b0ae1d2b vocab=21661b71
+-/
 @[simp] theorem unitIntervalRademacherLinearSup_true :
     unitIntervalRademacherLinearSup true = 1 := by
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.0d4e099dc211 from=translated src=- shape=b0ae1d2b vocab=1949590a
+-/
 @[simp] theorem unitIntervalRademacherLinearSup_false :
     unitIntervalRademacherLinearSup false = 0 := by
   rfl
 
-/-- The supplied supremum has nonzero expectation under the fair-sign weights. -/
+/-- The supplied supremum has nonzero expectation under the fair-sign weights.
+@isnad1 id=eq.0h0v.s5.87288b2075db from=translated src=- shape=71b08f1b vocab=82dc6dbc
+-/
 theorem unitIntervalRademacherLinearSup_expectation :
     finiteExpectation unitIntervalRademacherLinearProcess.weight
       unitIntervalRademacherLinearSup = (1 : ℝ) / 2 := by
@@ -857,7 +936,9 @@ private lemma unitInterval_value_le_one (t : UnitInterval) : (t : ℝ) ≤ 1 :=
   t.2.2
 
 /-- The supplied supremum is an upper bound for the full non-finite
-unit-interval index family. -/
+unit-interval index family.
+@isnad1 id=le.0h2v.s4.418cc7ff9067 from=translated src=- shape=18032d55 vocab=43616063
+-/
 theorem unitIntervalRademacherLinearSup_upper (ω : Bool) (t : UnitInterval) :
     unitIntervalRademacherLinearProcess.X ω t ≤
       unitIntervalRademacherLinearSup ω := by
@@ -870,7 +951,9 @@ theorem unitIntervalRademacherLinearSup_upper (ω : Bool) (t : UnitInterval) :
       unitIntervalRademacherLinearSup, signOfBool] using
       unitInterval_value_le_one t
 
-/-- The supplied supremum is attained by an endpoint of the unit interval. -/
+/-- The supplied supremum is attained by an endpoint of the unit interval.
+@isnad1 id=ex.0h1v.s4.65e2abef0b82 from=translated src=- shape=baf0329a vocab=6852d42a
+-/
 theorem unitIntervalRademacherLinearSup_attained (ω : Bool) :
     ∃ t : UnitInterval,
       unitIntervalRademacherLinearProcess.X ω t =
@@ -884,7 +967,9 @@ theorem unitIntervalRademacherLinearSup_attained (ω : Bool) :
       unitIntervalRademacherLinearSup, unitIntervalOne, signOfBool]
 
 /-- The supplied supremum is the least upper bound of the non-finite
-unit-interval index family. -/
+unit-interval index family.
+@isnad1 id=isleast.0h1v.s4.d2e7e9413c9b from=translated src=- shape=c959fef9 vocab=41ced029
+-/
 theorem unitIntervalRademacherLinearSup_isLeastUpperBound (ω : Bool) :
     IsLeast
       {c : ℝ | ∀ t : UnitInterval,
@@ -898,7 +983,9 @@ theorem unitIntervalRademacherLinearSup_isLeastUpperBound (ω : Bool) :
     exact hc t
 
 /-- The supplied supremum is the least upper bound of the actual range of the
-unit-interval Rademacher process. -/
+unit-interval Rademacher process.
+@isnad1 id=islub.0h1v.s4.c89c34e22f00 from=translated src=- shape=7fd8ff08 vocab=aa1aa3bf
+-/
 theorem unitIntervalRademacherLinearSup_isLUB_range (ω : Bool) :
     IsLUB
       (Set.range (fun t : UnitInterval =>
@@ -914,7 +1001,9 @@ theorem unitIntervalRademacherLinearSup_isLUB_range (ω : Bool) :
     exact hc ⟨t, rfl⟩
 
 /-- The supplied supremum is equal to the order supremum of the range of the
-unit-interval Rademacher process. -/
+unit-interval Rademacher process.
+@isnad1 id=eq.0h1v.s4.e569027712cf from=translated src=- shape=ce93beb4 vocab=30766ec5
+-/
 theorem unitIntervalRademacherLinearSup_sSup_range (ω : Bool) :
     sSup
       (Set.range (fun t : UnitInterval =>
@@ -978,7 +1067,9 @@ def unitIntervalRoundedDyadicGridCoverCount (j : ℕ) : ℕ :=
   (2 ^ (j + 1) + 1) * (2 ^ (j + 2) + 1)
 
 /-- The adjacent rounded-dyadic-grid product-count envelope is monotone in the
-scale. -/
+scale.
+@isnad1 id=monotone.0h0v.s2.3c1b8d38adc8 from=translated src=- shape=e3d48bcb vocab=fd70371a
+-/
 theorem monotone_unitIntervalRoundedDyadicGridCoverCount :
     Monotone unitIntervalRoundedDyadicGridCoverCount := by
   intro i j hij
@@ -995,7 +1086,9 @@ theorem monotone_unitIntervalRoundedDyadicGridCoverCount :
 
 /-- The rounded-dyadic-grid entropy-at-scale sequence is monotone, so the
 finite prefix-sup envelope can be eliminated from arbitrary finite-horizon
-bounds. -/
+bounds.
+@isnad1 id=monotone.0h0v.s3.0b1f712cb842 from=translated src=- shape=63625ef3 vocab=6488e7cd
+-/
 theorem monotone_unitIntervalRoundedDyadicGridEntropy :
     Monotone
       (fun j : ℕ =>
@@ -1011,7 +1104,9 @@ theorem monotone_unitIntervalRoundedDyadicGridEntropy :
       (by
         exact_mod_cast monotone_unitIntervalRoundedDyadicGridCoverCount hij))
 
-/-- Prefix-sup simplification for the rounded-dyadic-grid entropy sequence. -/
+/-- Prefix-sup simplification for the rounded-dyadic-grid entropy sequence.
+@isnad1 id=eq.0h0v.s4.822caf400fec from=translated src=- shape=cad333e8 vocab=483ea397
+-/
 theorem unitIntervalRoundedDyadicGridEntropy_prefixSup :
     FiniteSubGaussianProcess.finitePrefixSupEnvelope
         (fun j : ℕ =>
@@ -1021,12 +1116,18 @@ theorem unitIntervalRoundedDyadicGridEntropy_prefixSup :
   FiniteSubGaussianProcess.finitePrefixSupEnvelope_eq_self_of_monotone
     monotone_unitIntervalRoundedDyadicGridEntropy
 
+/--
+@isnad1 id=eq.0h1v.s5.a55256e03928 from=translated src=- shape=2051c387 vocab=a2ace5cb
+-/
 theorem unitIntervalRoundedDyadicGridNet_dist
     (j : ℕ) :
     (unitIntervalRoundedDyadicGridNet j).dist =
       unitIntervalRademacherLinearProcess.dist := by
   rfl
 
+/--
+@isnad1 id=lt.0h1v.s7.97a2cf365987 from=translated src=- shape=26e3c664 vocab=f62a4631
+-/
 theorem unitIntervalRoundedDyadicGridNet_radius_pos (j : ℕ) :
     0 < (unitIntervalRoundedDyadicGridNet j).radius +
       (unitIntervalRoundedDyadicGridNet (j + 1)).radius := by
@@ -1036,6 +1137,9 @@ theorem unitIntervalRoundedDyadicGridNet_radius_pos (j : ℕ) :
     (unitIntervalRoundedDyadicGridNet (j + 1)).radius_nonneg
   exact add_pos_of_pos_of_nonneg hleft hright
 
+/--
+@isnad1 id=le.0h1v.s7.6a06fe7fb25b from=translated src=- shape=1223a6ce vocab=ad2ea11f
+-/
 theorem unitIntervalRoundedDyadicGridNet_radius_geometric (j : ℕ) :
     (unitIntervalRoundedDyadicGridNet j).radius +
         (unitIntervalRoundedDyadicGridNet (j + 1)).radius ≤
@@ -1068,6 +1172,9 @@ theorem unitIntervalRoundedDyadicGridNet_radius_geometric (j : ℕ) :
     _ = (1 : ℝ) / (2 : ℝ) ^ j := by
           field_simp [hpow_pos.ne']
 
+/--
+@isnad1 id=eq.0h1v.s7.a8064b79def7 from=translated src=- shape=7212eb28 vocab=3fc7f34f
+-/
 theorem unitIntervalRoundedDyadicGridNet_coveringNumber_product (j : ℕ) :
     (unitIntervalRoundedDyadicGridNet j).coveringNumber *
         (unitIntervalRoundedDyadicGridNet (j + 1)).coveringNumber =
@@ -1093,6 +1200,9 @@ private theorem unitIntervalRoundedDyadicGridNet_radius_le_quarter (j : ℕ) :
   simpa [unitIntervalRoundedDyadicGridNet, unitIntervalDyadicRoundedGridNet,
     Nat.add_assoc] using hle
 
+/--
+@isnad1 id=lt.0h1v.s8.43225e404524 from=translated src=- shape=12cf3265 vocab=065c3ff1
+-/
 theorem unitIntervalRoundedDyadicGridNet_pair_card_gt_one (j : ℕ) :
     1 < Fintype.card
       (FiniteNet.ProjectionPair
@@ -1140,12 +1250,18 @@ theorem unitIntervalRoundedDyadicGridNet_pair_card_gt_one (j : ℕ) :
     hdist_le.trans hradius_le
   norm_num [dist_unitIntervalZero_unitIntervalOne] at hdist_half
 
+/--
+@isnad1 id=le.0h1v.s7.80387b908b6a from=translated src=- shape=7212eb28 vocab=ae91f687
+-/
 theorem unitIntervalRoundedDyadicGridNet_coverCount_le (j : ℕ) :
     (unitIntervalRoundedDyadicGridNet j).coveringNumber *
         (unitIntervalRoundedDyadicGridNet (j + 1)).coveringNumber ≤
       unitIntervalRoundedDyadicGridCoverCount j := by
   rw [unitIntervalRoundedDyadicGridNet_coveringNumber_product]
 
+/--
+@isnad1 id=lt.1h2v.s7.d16e6d1ef41b from=translated src=- shape=f846405b vocab=e4b12eef
+-/
 theorem unitIntervalRoundedDyadicGridNet_radius_pos_range (m : ℕ) :
     ∀ j ∈ Finset.range m,
       0 < (unitIntervalRoundedDyadicGridNet j).radius +
@@ -1153,6 +1269,9 @@ theorem unitIntervalRoundedDyadicGridNet_radius_pos_range (m : ℕ) :
   intro j _hj
   exact unitIntervalRoundedDyadicGridNet_radius_pos j
 
+/--
+@isnad1 id=le.1h2v.s7.02d5e06eba26 from=translated src=- shape=082fa39b vocab=d0d865c8
+-/
 theorem unitIntervalRoundedDyadicGridNet_radius_geometric_range (m : ℕ) :
     ∀ j ∈ Finset.range m,
       (unitIntervalRoundedDyadicGridNet j).radius +
@@ -1161,6 +1280,9 @@ theorem unitIntervalRoundedDyadicGridNet_radius_geometric_range (m : ℕ) :
   intro j _hj
   exact unitIntervalRoundedDyadicGridNet_radius_geometric j
 
+/--
+@isnad1 id=lt.1h2v.s8.c34921faebe8 from=translated src=- shape=48e54283 vocab=b8c1d1bf
+-/
 theorem unitIntervalRoundedDyadicGridNet_pair_card_gt_one_range (m : ℕ) :
     ∀ j ∈ Finset.range m,
       1 < Fintype.card
@@ -1170,6 +1292,9 @@ theorem unitIntervalRoundedDyadicGridNet_pair_card_gt_one_range (m : ℕ) :
   intro j _hj
   exact unitIntervalRoundedDyadicGridNet_pair_card_gt_one j
 
+/--
+@isnad1 id=le.1h2v.s7.c994d827fd87 from=translated src=- shape=0058fe81 vocab=ca41d6cc
+-/
 theorem unitIntervalRoundedDyadicGridNet_coverCount_le_range (m : ℕ) :
     ∀ j ∈ Finset.range m,
       (unitIntervalRoundedDyadicGridNet j).coveringNumber *
@@ -1256,7 +1381,9 @@ abbrev unitIntervalDyadicPair01 : Type :=
 
 /-- The first adjacent dyadic projection-pair family over `[0,1]` is
 nontrivial. The radius-`1/4` net cannot project both endpoints to the same
-center. -/
+center.
+@isnad1 id=lt.0h0v.s6.cdcaf46c16c7 from=translated src=- shape=a1bca669 vocab=54221101
+-/
 theorem unitIntervalDyadicPair01_card_gt_one :
     1 < Fintype.card unitIntervalDyadicPair01 := by
   classical
@@ -1318,7 +1445,9 @@ def unitIntervalDyadicEntropyCapM1 : ℝ :=
           (radiusScale := (1 : ℝ)) (by norm_num) j : ℝ))) 0
 
 /-- The constant first-scale entropy cap satisfies the `m = 1` entropy-envelope
-side condition. -/
+side condition.
+@isnad1 id=unitinte.0h0v.s2.82724a40b058 from=translated src=- shape=50a8d997 vocab=08bee9e6
+-/
 theorem unitIntervalDyadicEntropyM1Condition_constCap :
     unitIntervalDyadicEntropyM1Condition
       (fun _ : ℝ => unitIntervalDyadicEntropyCapM1) := by

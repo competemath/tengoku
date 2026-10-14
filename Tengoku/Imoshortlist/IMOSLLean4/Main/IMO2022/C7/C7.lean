@@ -36,9 +36,15 @@ section
 variable [Add α] [Max α] {S : Set α} (hS : AddMaxClosed S) (hv : v ∈ S) (hw : w ∈ S)
 include hS hv hw
 
+/--
+@isnad1 id=mem.4h5v.s5.ec64f43ee2b8 from=translated src=- shape=624a7606 vocab=9d285d20
+-/
 theorem mem_of_add_eq (hx : x = v + w) : x ∈ S :=
   hx ▸ hS.add_mem _ hv _ hw
 
+/--
+@isnad1 id=mem.4h5v.s5.754a20adad6e from=translated src=- shape=4832cc30 vocab=1e603f23
+-/
 theorem mem_of_sup_eq (hx : x = v ⊔ w) : x ∈ S :=
   hx ▸ hS.sup_mem _ hv _ hw
 
@@ -49,6 +55,9 @@ section
 variable [Add α] [SemilatticeSup α] {S : Set α} (hS : AddMaxClosed S)
 include hS
 
+/--
+@isnad1 id=mem.2h4v.s5.6bee5898c054 from=translated src=- shape=d6efe037 vocab=01889b46
+-/
 theorem Finset_range_sup_mem {f : ℕ → α} (hf : ∀ k, f k ∈ S) :
     ∀ n : ℕ, (Finset.range n.succ).sup' Finset.nonempty_range_add_one f ∈ S := by
   refine Nat.rec ?_ λ n hn ↦ ?_
@@ -57,11 +66,17 @@ theorem Finset_range_sup_mem {f : ℕ → α} (hf : ∀ k, f k ∈ S) :
     rw [Finset.sup'_insert Finset.nonempty_range_add_one]
     exact hS.sup_mem _ (hf n.succ) _ hn
 
+/--
+@isnad1 id=mem.3h5v.s6.44692690d996 from=translated src=- shape=3dc59157 vocab=23fc9d9c
+-/
 theorem mem_of_Finset_range_sup_eq {f : ℕ → α} (hf : ∀ k, f k ∈ S) {x : α}
     (hx : x = (Finset.range (n + 1)).sup' Finset.nonempty_range_add_one f) : x ∈ S :=
   hx ▸ Finset_range_sup_mem hS hf n
 
 open Fin.NatCast in
+/--
+@isnad1 id=mem.2h4v.s6.d6e12a24d3bf from=translated src=- shape=b89f09b6 vocab=de735269
+-/
 theorem Fin_univ_sup_mem {f : Fin (n + 1) → α} (hf : ∀ k, f k ∈ S) :
     Finset.univ.sup' Finset.univ_nonempty f ∈ S := by
   have h : (Finset.range n.succ).image (λ k : ℕ ↦ (k : Fin (n + 1))) = Finset.univ :=
@@ -70,6 +85,9 @@ theorem Fin_univ_sup_mem {f : Fin (n + 1) → α} (hf : ∀ k, f k ∈ S) :
   simp only [← h, ← Finset.sup'_comp_eq_image Finset.nonempty_range_add_one]
   exact Finset_range_sup_mem hS (λ k ↦ hf k) n
 
+/--
+@isnad1 id=mem.3h5v.s6.bd9e671ebf3d from=translated src=- shape=df020e00 vocab=de735269
+-/
 theorem mem_of_Fin_univ_sup_eq {f : Fin (n + 1) → α} (hf : ∀ k, f k ∈ S)
     {x : α} (hx : x = Finset.univ.sup' Finset.univ_nonempty f) : x ∈ S :=
   hx ▸ hS.Fin_univ_sup_mem hf
@@ -81,14 +99,23 @@ section
 variable [Max α] [AddCommMonoid α] {S : Set α} (hS : AddMaxClosed S)
 include hS
 
+/--
+@isnad1 id=mem.3h4v.s6.c8b569f7c53d from=translated src=- shape=9da23517 vocab=49cfeed8
+-/
 theorem smul_mem_of_pos (hv : v ∈ S) : ∀ n > 0, n • v ∈ S :=
   Nat.le_induction ((one_nsmul v).symm ▸ hv)
     λ n _ hn ↦ hS.mem_of_add_eq hn hv (succ_nsmul v n)
 
+/--
+@isnad1 id=mem.3h5v.s6.90e815291e30 from=translated src=- shape=b8d704c0 vocab=4bbfc3e1
+-/
 theorem add_smul_mem (hv : v ∈ S) (hw : w ∈ S) : ∀ n : ℕ, v + n • w ∈ S
   | 0 => by rwa [zero_nsmul, add_zero]
   | n + 1 => hS.add_mem _ hv _ (hS.smul_mem_of_pos hw _ n.succ_pos)
 
+/--
+@isnad1 id=mem.4h6v.s6.d7f6ff0bb891 from=translated src=- shape=aec5a8f3 vocab=4bbfc3e1
+-/
 theorem mem_of_add_smul_eq (hv : v ∈ S) (hw : w ∈ S) {n : ℕ} (hx : x = v + n • w) : x ∈ S :=
   hx ▸ hS.add_smul_mem hv hw n
 
@@ -96,22 +123,37 @@ end
 
 /-! ##### Some non-trivial examples of closed sets -/
 
+/--
+@isnad1 id=addmaxcl.0h1v.s3.f248d4f52289 from=translated src=- shape=4c9b52a8 vocab=c9ae6306
+-/
 theorem univ [Add α] [Max α] : AddMaxClosed (Set.univ : Set α) where
   add_mem := λ _ _ _ _ ↦ Set.mem_univ _
   sup_mem := λ _ _ _ _ ↦ Set.mem_univ _
 
+/--
+@isnad1 id=addmaxcl.0h1v.s4.d25eb0d44cc3 from=translated src=- shape=6860a48c vocab=64b7caa3
+-/
 theorem empty [Add α] [Max α] : AddMaxClosed (∅ : Set α) where
   add_mem := λ _ _ _ ↦ id
   sup_mem := λ _ _ _ ↦ id
 
+/--
+@isnad1 id=addmaxcl.0h2v.s5.66cb0959891c from=translated src=- shape=641b07d5 vocab=ec07c2f4
+-/
 theorem ofNonnegHalf (i : ι) : AddMaxClosed {v : ι → ℤ | 0 ≤ v i} where
   add_mem := λ _ hv _ hw ↦ Int.add_nonneg hv hw
   sup_mem := λ _ hv _ _ ↦ hv.trans (Int.le_max_left _ _)
 
+/--
+@isnad1 id=addmaxcl.0h2v.s5.8501c7d87d83 from=translated src=- shape=c73f1d4a vocab=ec07c2f4
+-/
 theorem ofNonposHalf (i : ι) : AddMaxClosed {v : ι → ℤ | v i ≤ 0} where
   add_mem := λ _ hv _ hw ↦ Int.add_nonpos hv hw
   sup_mem := λ _ hv _ hw ↦ Set.mem_ofPred_eq.mpr (sup_le_iff.mpr ⟨hv, hw⟩)
 
+/--
+@isnad1 id=addmaxcl.2h5v.s6.92613749dad8 from=translated src=- shape=b1da26e3 vocab=9ba8d9b1
+-/
 theorem ofSlopedHalf {x y : ℤ} (hx : 0 ≤ x) (hy : 0 ≤ y) (i j : ι) :
     AddMaxClosed {v : ι → ℤ | x * v i ≤ y * v j} where
   add_mem := λ v hv w hw ↦ by
@@ -122,6 +164,9 @@ theorem ofSlopedHalf {x y : ℤ} (hx : 0 ≤ x) (hy : 0 ≤ y) (i j : ι) :
     rw [mul_max_of_nonneg _ _ hx, mul_max_of_nonneg _ _ hy]
     exact max_le_max hv hw
 
+/--
+@isnad1 id=addmaxcl.1h4v.s6.84ef1cecaa78 from=translated src=- shape=69632675 vocab=c4ea87c0
+-/
 theorem ofPreimage {S : Set (α → ℤ)} (hS : AddMaxClosed S) (i : α → β) :
     AddMaxClosed ((· ∘ i) ⁻¹' S) where
   add_mem := λ _ hv _ hw ↦ hS.add_mem _ hv _ hw
@@ -129,6 +174,9 @@ theorem ofPreimage {S : Set (α → ℤ)} (hS : AddMaxClosed S) (i : α → β) 
 
 /-! ##### Closed sets satisfying certain conditions -/
 
+/--
+@isnad1 id=mem.3h3v.s7.6674e3f2686c from=translated src=- shape=0a92c1c7 vocab=a196afab
+-/
 theorem Nat_Finsupp_mem_of_zero_single_mem [DecidableEq ι] {S : Set (ι → ℤ)}
     (hS : AddMaxClosed S) (hS0 : 0 ∈ S) (hS1 : ∀ i, ⇑(Finsupp.single i 1) ∈ S) (v : ι →₀ ℕ) :
     Nat.cast ∘ v ∈ S := by
@@ -152,11 +200,17 @@ variable [Fintype ι] [DecidableEq ι] {S : Set (ι → ℤ)}
   (hS : AddMaxClosed S) (hS0 : 0 ∈ S) (hS1 : ∀ i, Pi.single i 1 ∈ S)
 include hS hS0 hS1
 
+/--
+@isnad1 id=mem.3h3v.s7.49daba0d78fb from=translated src=- shape=55066421 vocab=c3fb3b77
+-/
 theorem Nat_mem_of_zero_single_mem (v : ι → ℕ) : Nat.cast ∘ v ∈ S := by
   refine Nat_Finsupp_mem_of_zero_single_mem hS hS0 (λ i ↦ ?_)
     (Finsupp.onFinset Finset.univ v λ _ _ ↦ Finset.mem_univ _)
   rw [Finsupp.single, Finsupp.coe_mk]; convert hS1 i
 
+/--
+@isnad1 id=mem.4h3v.s7.fae4cc577ad3 from=translated src=- shape=45b1c188 vocab=79d9c2f7
+-/
 theorem Int_mem_of_zero_single_mem {v : ι → ℤ} (hf : ∀ i, 0 ≤ v i) : v ∈ S := by
   lift v to ι → ℕ using hf; exact Nat_mem_of_zero_single_mem hS hS0 hS1 v
 
@@ -188,13 +242,22 @@ def AddSupGenerator [Add α] [Max α] (A : Finset α) :=
 
 namespace AddSupGenerator
 
+/--
+@isnad1 id=addsupge.0h1v.s4.52586ffe468e from=translated src=- shape=456cb356 vocab=0710eaa4
+-/
 lemma univ [Fintype α] [Add α] [Max α] : AddSupGenerator (Finset.univ : Finset α) :=
   λ S hS _ ↦ by rwa [Finset.coe_univ, Set.univ_subset_iff] at hS
 
+/--
+@isnad1 id=addsupge.2h3v.s5.b85549c57a07 from=translated src=- shape=f953a2de vocab=ee27cd1b
+-/
 lemma ofSubset [Add α] [Max α] {A B : Finset α} (hA : AddSupGenerator A) (hAB : A ⊆ B) :
     AddSupGenerator B :=
   λ S hS ↦ hA S λ _ h ↦ hS (hAB h)
 
+/--
+@isnad1 id=addsupge.1h4v.s6.8c7ae213a2bb from=translated src=- shape=bde27966 vocab=d8a78243
+-/
 lemma ofEmbedding [DecidableEq α] [Fintype β] [DecidableEq β]
     {A : Finset (α → ℤ)} (hA : AddSupGenerator A) (ι : β ↪ α) :
     AddSupGenerator (A.image λ f ↦ f ∘ ι) := by
@@ -208,10 +271,16 @@ end AddSupGenerator
 
 /-! ##### Instances of add-sup generators -/
 
+/--
+@isnad1 id=not.0h1v.s4.a880e26d7c5b from=translated src=- shape=f1baee05 vocab=82c3b6cf
+-/
 theorem empty_not_AddSupGenerator [Add α] [Max α] [Nonempty α] :
     ¬AddSupGenerator (∅ : Finset α) :=
   λ h ↦ Set.empty_ne_univ (h ∅ (λ _ hf ↦ Set.mem_toFinset.mp hf) AddMaxClosed.empty)
 
+/--
+@isnad1 id=not.1h3v.s6.3bddae58d8fd from=translated src=- shape=0ce3fafb vocab=1ecd3915
+-/
 theorem not_AddSupGenerator_of_subset_NonnegHalf
     {S : Finset (ι → ℤ)} (hS : (S : Set (ι → ℤ)) ⊆ {v | 0 ≤ v i}) :
     ¬AddSupGenerator S := by
@@ -219,6 +288,9 @@ theorem not_AddSupGenerator_of_subset_NonnegHalf
     h _ hS (AddMaxClosed.ofNonnegHalf i) ▸ Set.mem_univ _
   exact (Int.negSucc_not_nonneg 0).mp h0
 
+/--
+@isnad1 id=not.1h3v.s6.541d3d008c2d from=translated src=- shape=b8d97243 vocab=1ecd3915
+-/
 theorem not_AddSupGenerator_of_subset_NonposHalf
     {S : Finset (ι → ℤ)} (hS : (S : Set (ι → ℤ)) ⊆ {v | v i ≤ 0}) :
     ¬AddSupGenerator S := by
@@ -226,6 +298,9 @@ theorem not_AddSupGenerator_of_subset_NonposHalf
     h _ hS (AddMaxClosed.ofNonposHalf i) ▸ Set.mem_univ _
   exact (Int.negSucc_not_nonneg 0).mp h0
 
+/--
+@isnad1 id=not.0h2v.s5.d40119fedbae from=translated src=- shape=088f6823 vocab=c29b5ffb
+-/
 theorem singleton_not_AddSupGenerator [hι : Nonempty ι] (v : ι → ℤ) :
     ¬AddSupGenerator {v} := by
   intro h; rcases hι with ⟨i⟩
@@ -233,6 +308,9 @@ theorem singleton_not_AddSupGenerator [hι : Nonempty ι] (v : ι → ℤ) :
   exacts [not_AddSupGenerator_of_subset_NonnegHalf (Finset.singleton_subset_set_iff.mpr h0) h,
     not_AddSupGenerator_of_subset_NonposHalf (Finset.singleton_subset_set_iff.mpr h0) h]
 
+/--
+@isnad1 id=addsupge.0h0v.s8.cd295fcaf745 from=translated src=- shape=dbcc9458 vocab=cff8fa33
+-/
 theorem Fin2_AddSupGenerator : AddSupGenerator {![-1, 1], ![1, -2]} := by
   intro S hS hS0; replace hS : ![-1, 1] ∈ S ∧ ![1, -2] ∈ S := by
     rw [Finset.coe_insert, Finset.coe_singleton] at hS
@@ -253,6 +331,9 @@ variable [Fintype ι] [DecidableEq ι] {v w : ι → ℤ} (h : AddSupGenerator {
 include h
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=lt.1h4v.s6.78cead04a4ed from=translated src=- shape=918650cc vocab=845a1cea
+-/
 theorem doubleton_AddSupGenerator_imp₁ (i) : v i * w i < 0 := by
   rw [← not_le, mul_nonneg_iff]
   rintro (⟨h0, h1⟩ | ⟨h0, h1⟩)
@@ -265,6 +346,9 @@ theorem doubleton_AddSupGenerator_imp₁ (i) : v i * w i < 0 := by
     rw [Finset.coe_insert, Finset.coe_singleton]
     rintro _ (rfl | rfl); exacts [h0, h1]
 
+/--
+@isnad1 id=lt.2h5v.s6.21b2a8535a61 from=translated src=- shape=abcf2e78 vocab=291dcbce
+-/
 theorem doubleton_AddSupGenerator_imp₂ (h0 : i ≠ j) : v i * v j < 0 := by
   ---- First reduce the problem to the case `v_i > 0`
   wlog hvi : 0 < v i generalizing h v w
@@ -296,6 +380,9 @@ theorem doubleton_AddSupGenerator_imp₂ (h0 : i ≠ j) : v i * v j < 0 := by
 
 end
 
+/--
+@isnad1 id=not.0h2v.s7.261b7c6faab7 from=translated src=- shape=8d8c1f62 vocab=66abeab2
+-/
 theorem Fin3_doubleton_not_AddSupGenerator (v w : Fin 3 → ℤ) : ¬AddSupGenerator {v, w} := by
   have X : ∀ i : Fin 3, i ≠ i + 1 := by decide
   intro h; replace h (i) := doubleton_AddSupGenerator_imp₂ h (X i)
@@ -304,6 +391,9 @@ theorem Fin3_doubleton_not_AddSupGenerator (v w : Fin 3 → ℤ) : ¬AddSupGener
   rw [mul_mul_mul_comm, mul_rotate (v 0), ← sq] at h0
   exact h0.not_ge (sq_nonneg _)
 
+/--
+@isnad1 id=addsupge.0h1v.s9.30b1fecf54bf from=translated src=- shape=8ca50911 vocab=6a67657d
+-/
 theorem Fin_general_AddSupGenerator (n : ℕ) :
     AddSupGenerator {-1, λ k ↦ k.1, λ k : Fin (n + 1) ↦ 1 - (k.1 : ℤ) ^ 2} := by
   intro S hS hS0
@@ -340,20 +430,32 @@ def good (ι : Type*) (n : ℕ) := ∃ I : Finset (ι → ℤ), I.card ≤ n ∧
 
 namespace good
 
+/--
+@isnad1 id=good.2h3v.s4.12825d2eb934 from=translated src=- shape=378ad34f vocab=eaabe5e8
+-/
 theorem of_Nat_le (h : n ≤ k) : good ι n → good ι k :=
   λ ⟨I, hI, hI0⟩ ↦ ⟨I, hI.trans h, hI0⟩
 
+/--
+@isnad1 id=iff.2h3v.s4.6b8fd3f64e29 from=translated src=- shape=c70ca121 vocab=b1689d4e
+-/
 theorem iff_of_self_and_succ (hN : ¬good ι N) (hN0 : good ι N.succ) :
     good ι n ↔ N.succ ≤ n :=
   ⟨λ h ↦ Nat.lt_of_not_le λ h0 ↦ hN (h.of_Nat_le h0), hN0.of_Nat_le⟩
 
 variable [Fintype α] [DecidableEq α] [Fintype β] [DecidableEq β]
 
+/--
+@isnad1 id=good.2h3v.s5.4cd7ebc4cd52 from=translated src=- shape=5fbff44d vocab=9cfa2d95
+-/
 theorem of_Fintype_card_le (h : Fintype.card β ≤ Fintype.card α) : good α n → good β n := by
   rintro ⟨A, hA, hA0⟩
   obtain ⟨ι⟩ : Nonempty (β ↪ α) := Function.Embedding.nonempty_of_card_le h
   exact ⟨A.image (· ∘ ι), Finset.card_image_le.trans hA, hA0.ofEmbedding ι⟩
 
+/--
+@isnad1 id=iff.1h3v.s5.6bd49587869e from=translated src=- shape=30eb3e57 vocab=81d3ef69
+-/
 theorem iff_Fintype_card_eq (h : Fintype.card α = Fintype.card β) : good α n ↔ good β n :=
   ⟨λ hn ↦ hn.of_Fintype_card_le h.symm.le, λ hn ↦ hn.of_Fintype_card_le h.le⟩
 
@@ -361,6 +463,9 @@ end good
 
 /-! ##### `good` on explicit types -/
 
+/--
+@isnad1 id=iff.0h1v.s3.0ed18979a201 from=translated src=- shape=3f2d562c vocab=0c04e526
+-/
 theorem good_Empty_iff : good Empty n ↔ 1 ≤ n := by
   refine good.iff_of_self_and_succ ?_ ?_
   · rintro ⟨I, hI, hI0⟩
@@ -369,21 +474,33 @@ theorem good_Empty_iff : good Empty n ↔ 1 ≤ n := by
   · refine ⟨{0}, Nat.le_refl 1, ?_⟩
     rw [Finset.singleton_eq_univ]; exact AddSupGenerator.univ
 
+/--
+@isnad1 id=not.0h1v.s3.3439b81a6567 from=translated src=- shape=5e8d1ab7 vocab=1ae0f2f2
+-/
 theorem not_good_one_of_Nonempty [hι : Nonempty ι] : ¬good ι 1 := by
   rintro ⟨I, hI, hI0⟩
   rw [Nat.le_one_iff_eq_zero_or_eq_one, Finset.card_eq_zero, Finset.card_eq_one] at hI
   rcases hI with rfl | ⟨v, rfl⟩
   exacts [empty_not_AddSupGenerator hI0, singleton_not_AddSupGenerator v hI0]
 
+/--
+@isnad1 id=good.0h0v.s3.169851378903 from=translated src=- shape=1208839f vocab=709bb0af
+-/
 theorem good_Fin2_two : good (Fin 2) 2 :=
   ⟨_, Finset.card_le_two, Fin2_AddSupGenerator⟩
 
+/--
+@isnad1 id=not.0h0v.s3.0e5797d63389 from=translated src=- shape=84352c41 vocab=709bb0af
+-/
 theorem not_good_Fin3_two : ¬good (Fin 3) 2 := by
   rintro ⟨I, hI, hI0⟩
   rw [Nat.le_succ_iff, Finset.card_eq_two] at hI
   rcases hI with hI | ⟨x, y, -, rfl⟩
   exacts [not_good_one_of_Nonempty ⟨I, hI, hI0⟩, Fin3_doubleton_not_AddSupGenerator _ _ hI0]
 
+/--
+@isnad1 id=good.0h1v.s3.dda486a49a0c from=translated src=- shape=7eb34a73 vocab=d4324cc4
+-/
 theorem good_Fin_three (n : ℕ) : good (Fin n.succ) 3 :=
   ⟨_, Finset.card_le_three, Fin_general_AddSupGenerator n⟩
 
@@ -391,22 +508,33 @@ theorem good_Fin_three (n : ℕ) : good (Fin n.succ) 3 :=
 
 variable [Fintype ι] [DecidableEq ι]
 
+/--
+@isnad1 id=iff.1h2v.s5.ddc697b60193 from=translated src=- shape=f5bb1c8e vocab=9cfa2d95
+-/
 theorem good_Fintype_iff₁ (hι : Fintype.card ι = 0) : good ι n ↔ 1 ≤ n := by
   rw [good.iff_Fintype_card_eq (β := Empty) hι, good_Empty_iff]
 
+/--
+@isnad1 id=iff.2h2v.s5.04c2b5faaa5b from=translated src=- shape=de527ffb vocab=9cfa2d95
+-/
 theorem good_Fintype_iff₂ (hι : Fintype.card ι ≠ 0) (hι0 : Fintype.card ι ≤ 2) :
     good ι n ↔ 2 ≤ n :=
   have : Nonempty ι := (isEmpty_or_nonempty ι).resolve_left λ _ ↦ hι Fintype.card_eq_zero
   good.iff_of_self_and_succ not_good_one_of_Nonempty
     (good_Fin2_two.of_Fintype_card_le (α := Fin 2) hι0)
 
+/--
+@isnad1 id=iff.1h2v.s5.fe3e1ea142c1 from=translated src=- shape=523ae6fd vocab=9cfa2d95
+-/
 theorem good_Fintype_iff₃ (hι : 3 ≤ Fintype.card ι) : good ι n ↔ 3 ≤ n :=
   good.iff_of_self_and_succ
     (λ h ↦ not_good_Fin3_two (h.of_Fintype_card_le hι))
     ((good_Fin_three (Fintype.card ι)).of_Fintype_card_le <|
       (Nat.le_succ _).trans_eq (Fintype.card_fin _).symm)
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h2v.s6.477056602cc5 from=translated src=- shape=c3e784dd vocab=d0eb7896
+-/
 theorem final_solution :
     good ι n ↔ n ≥ if Fintype.card ι = 0 then 1 else
       if Fintype.card ι ≤ 2 then 2 else 3 := by

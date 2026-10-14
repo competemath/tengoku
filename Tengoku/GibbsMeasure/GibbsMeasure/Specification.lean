@@ -35,6 +35,9 @@ thought of as discovering `Λ₂` straight away. -/
 def IsConsistent (γ : ∀ Λ : Finset S, Kernel[cylinderEvents Λᶜ] (S → E) (S → E)) : Prop :=
   ∀ ⦃Λ₁ Λ₂⦄, Λ₁ ⊆ Λ₂ → (γ Λ₁).comap id (by exact cylinderEvents_le_pi) ∘ₖ γ Λ₂ = γ Λ₂
 
+/--
+@isnad1 id=iff.0h4v.s6.8e27b4ef4ce3 from=translated src=- shape=2a7d81a5 vocab=7919f73c
+-/
 lemma isConsistentKernel_cylinderEventsCompl
     {γ : ∀ Λ : Finset S, Kernel[cylinderEvents Λᶜ] (S → E) (S → E)} :
     Filtration.cylinderEventsCompl.IsConsistentKernel (fun Λ ↦ γ (OrderDual.ofDual Λ)) ↔
@@ -67,18 +70,29 @@ instance instDFunLike :
   coe := toFun
   coe_injective γ₁ γ₂ h := by cases γ₁; cases γ₂; congr
 
-/-- The boundary condition kernels of a specification are consistent. -/
+/-- The boundary condition kernels of a specification are consistent.
+@isnad1 id=isconsis.0h4v.s6.d72170a0df52 from=translated src=- shape=07398625 vocab=8f178ced
+-/
 lemma isConsistent (γ : Specification S E) : IsConsistent γ := γ.isConsistent'
 
 initialize_simps_projections Specification (toFun → apply)
 
 variable {γ γ₁ γ₂ : Specification S E} {Λ Λ₁ Λ₂ : Finset S}
 
+/--
+@isnad1 id=eq.1h5v.s7.1ba4366239f9 from=translated src=- shape=da09ddcb vocab=d458f644
+-/
 @[ext] lemma ext : (∀ Λ, γ₁ Λ = γ₂ Λ) → γ₁ = γ₂ := DFunLike.ext _ _
 
+/--
+@isnad1 id=eq.1h7v.s8.008d5eff6b34 from=translated src=- shape=4ca16a5f vocab=61228c31
+-/
 protected lemma bind (hΛ : Λ₁ ⊆ Λ₂) (η : S → E) : (γ Λ₂ η).bind (γ Λ₁) = γ Λ₂ η :=
   DFunLike.congr_fun (γ.isConsistent hΛ) η
 
+/--
+@isnad1 id=eq.2h8v.s9.5b2f76993990 from=translated src=- shape=8f76b178 vocab=f217206b
+-/
 lemma lintegral_bind (hΛ : Λ₁ ⊆ Λ₂) {f : (S → E) → ℝ≥0∞} (hf : Measurable f) (η : S → E) :
     ∫⁻ x, f x ∂γ Λ₂ η = ∫⁻ ζ, ∫⁻ x, f x ∂γ Λ₁ ζ ∂γ Λ₂ η := by
   conv_lhs => rw [← γ.isConsistent hΛ]
@@ -92,6 +106,9 @@ def IsIndep (γ : Specification S E) : Prop :=
   ∀ ⦃Λ₁ Λ₂⦄ [DecidableEq S], (γ Λ₁).comap id (by exact cylinderEvents_le_pi) ∘ₖ γ Λ₂ =
       (γ (Λ₁ ∪ Λ₂)).comap id (measurable_id'' <| by gcongr; exact Finset.subset_union_right)
 
+/--
+@isnad1 id=eq.1h7v.s9.8d42646d13c1 from=translated src=- shape=d3a673a2 vocab=088353a2
+-/
 lemma IsIndep.bind_eq_union [DecidableEq S] (hγ : γ.IsIndep) (Λ₁ Λ₂ : Finset S) (η : S → E) :
     (γ Λ₂ η).bind (γ Λ₁) = γ (Λ₁ ∪ Λ₂) η := by
   simpa [Kernel.comp_apply, Kernel.comap_apply, id_eq] using
@@ -106,6 +123,9 @@ kernels. -/
 class IsMarkov (γ : Specification S E) : Prop where
   isMarkovKernel : ∀ Λ, IsMarkovKernel (γ Λ)
 
+/--
+@isnad1 id=ismarkov.0h5v.s6.8c3822adc6e8 from=translated src=- shape=dfb2e9f8 vocab=951fa9de
+-/
 instance IsMarkov.toIsMarkovKernel [γ.IsMarkov] {Λ : Finset S} : IsMarkovKernel (γ Λ) :=
   isMarkovKernel _
 
@@ -116,12 +136,18 @@ section IsProper
 /-- A specification is proper if all its boundary condition kernels are. -/
 def IsProper (γ : Specification S E) : Prop := ∀ Λ : Finset S, (γ Λ).IsProper
 
+/--
+@isnad1 id=iff.0h4v.s8.47084fa84afe from=translated src=- shape=ce743c35 vocab=72cb9541
+-/
 lemma isProper_iff_restrict_eq_indicator_smul :
     γ.IsProper ↔
       ∀ (Λ : Finset S) ⦃B : Set (S → E)⦄ (hB : MeasurableSet[cylinderEvents Λᶜ] B) (x : S → E),
       (γ Λ).restrict (cylinderEvents_le_pi _ hB) x = B.indicator (1 : (S → E) → ℝ≥0∞) x • γ Λ x :=
   forall_congr' fun _ ↦ Kernel.isProper_iff_restrict_eq_indicator_smul _
 
+/--
+@isnad1 id=iff.0h4v.s8.afe4307cdbe2 from=translated src=- shape=d5da8692 vocab=a9ba6d5d
+-/
 lemma isProper_iff_inter_eq_indicator_mul :
     γ.IsProper ↔
       ∀ (Λ : Finset S) ⦃A : Set (S → E)⦄ (_hA : MeasurableSet A) ⦃B : Set (S → E)⦄
@@ -137,16 +163,25 @@ alias ⟨IsProper.inter_eq_indicator_mul, IsProper.of_inter_eq_indicator_mul⟩ 
 
 variable {A B : Set (S → E)} {f g : (S → E) → ℝ≥0∞} {η₀ : S → E}
 
+/--
+@isnad1 id=eq.3h8v.s8.856e4f313263 from=translated src=- shape=d503be37 vocab=05ecade4
+-/
 lemma IsProper.setLIntegral_eq_indicator_mul_lintegral (hγ : γ.IsProper) (Λ : Finset S)
     (hf : Measurable f) (hB : MeasurableSet[cylinderEvents Λᶜ] B) :
     ∫⁻ x in B, f x ∂(γ Λ η₀) = B.indicator 1 η₀ * ∫⁻ x, f x ∂(γ Λ η₀) :=
   (hγ Λ).setLIntegral_eq_indicator_mul_lintegral cylinderEvents_le_pi hf hB _
 
+/--
+@isnad1 id=eq.4h9v.s8.6736ffe71c5b from=translated src=- shape=b40afe00 vocab=b7262f39
+-/
 lemma IsProper.setLIntegral_inter_eq_indicator_mul_setLIntegral (Λ : Finset S) (hγ : γ.IsProper)
     (hf : Measurable f) (hA : MeasurableSet A) (hB : MeasurableSet[cylinderEvents Λᶜ] B) :
     ∫⁻ x in A ∩ B, f x ∂(γ Λ η₀) = B.indicator 1 η₀ * ∫⁻ x in A, f x ∂(γ Λ η₀) :=
   (hγ Λ).setLIntegral_inter_eq_indicator_mul_setLIntegral cylinderEvents_le_pi hf hA hB _
 
+/--
+@isnad1 id=eq.3h8v.s8.461a977c533c from=translated src=- shape=826bc45a vocab=f59f9047
+-/
 lemma IsProper.lintegral_mul (hγ : γ.IsProper) (Λ : Finset S) (hf : Measurable f)
     (hg : Measurable[cylinderEvents Λᶜ] g) :
     ∫⁻ x, g x * f x ∂(γ Λ η₀) = g η₀ * ∫⁻ x, f x ∂(γ Λ η₀) :=
@@ -196,10 +231,16 @@ noncomputable def modificationKer (γ : ∀ Λ : Finset S, Kernel[cylinderEvents
       simp_rw [MeasureTheory.withDensity_apply _ hs]
       exact (Measure.measurable_setLIntegral (hρ _) hs).comp (γ Λ).measurable)
 
+/--
+@isnad1 id=eq.0h4v.s6.06b5e52223f7 from=translated src=- shape=d513a2ac vocab=554383df
+-/
 @[simp] lemma modificationKer_one' (γ : ∀ Λ : Finset S, Kernel[cylinderEvents Λᶜ] (S → E) (S → E)) :
     modificationKer γ (fun _Λ _η ↦ 1) (fun _Λ ↦ measurable_const) = γ := by ext Λ; simp
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h4v.s7.85473975a300 from=translated src=- shape=4c5a879a vocab=62c72ecb
+-/
 @[simp] lemma modificationKer_one (γ : ∀ Λ : Finset S, Kernel[cylinderEvents Λᶜ] (S → E) (S → E)) :
     modificationKer γ 1 (fun _Λ ↦ measurable_const) = γ := by ext Λ; simp
 
@@ -211,12 +252,21 @@ structure IsModifier (γ : Specification S E) (ρ : Finset S → (S → E) → �
   measurable Λ : Measurable (ρ Λ)
   isConsistent : IsConsistent (modificationKer γ ρ measurable)
 
+/--
+@isnad1 id=ismodifi.0h4v.s4.deb0042eb9fa from=translated src=- shape=30f0bf87 vocab=5012a710
+-/
 @[simp] lemma IsModifier.one' : γ.IsModifier (fun _Λ _η ↦ 1) where
   measurable _ := measurable_const
   isConsistent := by simpa using γ.isConsistent
 
+/--
+@isnad1 id=ismodifi.0h4v.s6.fe5d47a0fd14 from=translated src=- shape=2af67638 vocab=5012a710
+-/
 @[simp] lemma IsModifier.one : γ.IsModifier 1 := .one'
 
+/--
+@isnad1 id=eq.3h8v.s9.ba24aa720b24 from=translated src=- shape=baf98204 vocab=816e1000
+-/
 lemma comp_modificationKer_apply (hγ : γ.IsProper) (hρ : ∀ Λ, Measurable (ρ Λ))
     (hΛ : Λ₁ ⊆ Λ₂) (η : S → E) :
     ((modificationKer γ ρ hρ Λ₁).comap id (measurable_id'' cylinderEvents_le_pi) ∘ₖ
@@ -252,6 +302,9 @@ lemma comp_modificationKer_apply (hγ : γ.IsProper) (hρ : ∀ Λ, Measurable (
     ((hF.mono cylinderEvents_le_pi le_rfl).mul (hρ Λ₂)) η]
   exact lintegral_congr fun ζ ↦ by rw [hγ.lintegral_mul _ (hρ Λ₂) hF, mul_comm]
 
+/--
+@isnad1 id=iff.1h5v.s8.00ce46b86ff9 from=translated src=- shape=01fb5012 vocab=79ae653e
+-/
 lemma isModifier_iff_ae_eq [γ.IsMarkov] (hγ : γ.IsProper) :
     γ.IsModifier ρ ↔ (∀ Λ, Measurable (ρ Λ)) ∧ ∀ ⦃Λ₁ Λ₂⦄, Λ₁ ⊆ Λ₂ → ∀ η,
       ρ Λ₂ =ᵐ[γ Λ₂ η] fun ω ↦ ρ Λ₁ ω * ∫⁻ ζ, ρ Λ₂ ζ ∂γ Λ₁ ω := by
@@ -269,6 +322,9 @@ lemma isModifier_iff_ae_eq [γ.IsMarkov] (hγ : γ.IsProper) :
     rw [comp_modificationKer_apply hγ hmeas hΛ, modificationKer_apply]
     exact (withDensity_congr_ae (hb hΛ η)).symm
 
+/--
+@isnad1 id=iff.3h8v.s10.b3776ee7ef2a from=translated src=- shape=c9c8d25f vocab=dc9c87f0
+-/
 lemma ae_eq_mul_lintegral_iff_ae_mul_comm [IsMarkovKernel (γ Λ₁)] (hγ : γ.IsProper)
     (hmeas : ∀ Λ, Measurable (ρ Λ)) (η₂ : S → E)
     (hnorm : ∫⁻ ζ, ρ Λ₁ ζ ∂γ Λ₁ η₂ = 1) :
@@ -291,6 +347,9 @@ lemma ae_eq_mul_lintegral_iff_ae_mul_comm [IsMarkovKernel (γ Λ₁)] (hγ : γ.
     rw [lintegral_const_mul _ (hmeas Λ₁), lintegral_mul_const _ (hmeas Λ₂), hnorm, mul_one] at this
     rw [this, hGζ, mul_comm]
 
+/--
+@isnad1 id=iff.3h8v.s9.e92cad08f517 from=translated src=- shape=109fa324 vocab=a5ed961f
+-/
 lemma ae_eq_mul_lintegral_iff_ae_eq_sdiff [DecidableEq S] (hindep : γ.IsIndep)
     (hmeas : ∀ Λ, Measurable (ρ Λ)) (hΛ : Λ₁ ⊆ Λ₂) (η₁ : S → E) :
     (ρ Λ₂ =ᵐ[γ Λ₂ η₁] fun ω ↦ ρ Λ₁ ω * ∫⁻ ζ, ρ Λ₂ ζ ∂γ Λ₁ ω) ↔
@@ -304,6 +363,9 @@ lemma ae_eq_mul_lintegral_iff_ae_eq_sdiff [DecidableEq S] (hindep : γ.IsIndep)
   exact Measure.ae_bind_iff ((γ Λ₁).measurable.mono cylinderEvents_le_pi le_rfl).aemeasurable
     (measurableSet_eq_fun (hmeas Λ₂) ((hmeas Λ₁).mul hG))
 
+/--
+@isnad1 id=iff.3h5v.s9.7e45d104032b from=translated src=- shape=b11b729d vocab=11d4d2c7
+-/
 lemma isModifier_iff_ae_comm [DecidableEq S] [γ.IsMarkov] (hγ : γ.IsProper) (hindep : γ.IsIndep)
     (hnorm : ∀ Λ η, ∫⁻ ζ, ρ Λ ζ ∂γ Λ η = 1) :
     γ.IsModifier ρ ↔ (∀ Λ, Measurable (ρ Λ)) ∧
@@ -329,14 +391,23 @@ noncomputable def modification (γ : Specification S E) (ρ : Finset S → (S �
   isConsistent' := hρ.isConsistent
 
 -- This is not simp as we want to keep `modificationKer` an implementation detail
+/--
+@isnad1 id=eq.1h5v.s7.d850d8137291 from=translated src=- shape=122ed5fa vocab=5097b79d
+-/
 lemma coe_modification (γ : Specification S E) (ρ : Finset S → (S → E) → ℝ≥0∞)
     (hρ : γ.IsModifier ρ) : γ.modification ρ hρ = modificationKer γ ρ hρ.measurable := rfl
 
+/--
+@isnad1 id=eq.1h7v.s8.f68baa797314 from=translated src=- shape=d53de8f8 vocab=eb3f0757
+-/
 @[simp]
 lemma modification_apply (γ : Specification S E) (ρ : Finset S → (S → E) → ℝ≥0∞)
     (hρ : γ.IsModifier ρ) (Λ : Finset S) (η : S → E) :
     γ.modification ρ hρ Λ η = (γ Λ η).withDensity (ρ Λ) := rfl
 
+/--
+@isnad1 id=eq.2h6v.s8.f8c7c5d717d8 from=translated src=- shape=f1fe6d8b vocab=776b89aa
+-/
 @[simp]
 lemma modificationKer_modification {ρ₁ ρ₂ : Finset S → (S → E) → ℝ≥0∞}
     (hρ₁ : γ.IsModifier ρ₁) (hρ₂ : ∀ Λ, Measurable (ρ₂ Λ)) :
@@ -344,17 +415,29 @@ lemma modificationKer_modification {ρ₁ ρ₂ : Finset S → (S → E) → ℝ
       modificationKer γ (ρ₁ * ρ₂) (fun Λ ↦ (hρ₁.measurable Λ).mul (hρ₂ Λ)) := by
   ext Λ η; simp [withDensity_mul, hρ₁.measurable, hρ₂]
 
+/--
+@isnad1 id=ismodifi.2h6v.s6.80b0f507b5b7 from=translated src=- shape=a6f4b9da vocab=6dec3242
+-/
 @[simp] lemma IsModifier.mul {ρ₁ ρ₂ : Finset S → (S → E) → ℝ≥0∞}
     (hρ₁ : γ.IsModifier ρ₁) (hρ₂ : (γ.modification ρ₁ hρ₁).IsModifier ρ₂) :
     γ.IsModifier (ρ₁ * ρ₂) where
   measurable Λ := (hρ₁.measurable _).mul (hρ₂.measurable _)
   isConsistent := by simpa using hρ₂.isConsistent
 
+/--
+@isnad1 id=eq.0h4v.s5.4eb44ab950e5 from=translated src=- shape=0ec0fa76 vocab=3d213428
+-/
 @[simp] lemma modification_one' (γ : Specification S E) :
     γ.modification (fun _Λ _η ↦ 1) .one' = γ := by ext; simp
 
+/--
+@isnad1 id=eq.0h4v.s6.7201c07da752 from=translated src=- shape=7ba8591e vocab=5e2272a6
+-/
 @[simp] lemma modification_one (γ : Specification S E) : γ.modification 1 .one = γ := by ext; simp
 
+/--
+@isnad1 id=eq.2h6v.s7.e30dc588ad66 from=translated src=- shape=87875647 vocab=ac891947
+-/
 @[simp] lemma modification_modification (γ : Specification S E) (ρ₁ ρ₂ : Finset S → (S → E) → ℝ≥0∞)
     (hρ₁ : γ.IsModifier ρ₁) (hρ₂ : (γ.modification ρ₁ hρ₁).IsModifier ρ₂) :
     (γ.modification ρ₁ hρ₁).modification ρ₂ hρ₂ = γ.modification (ρ₁ * ρ₂) (hρ₁.mul hρ₂) := by
@@ -363,6 +446,9 @@ lemma modificationKer_modification {ρ₁ ρ₂ : Finset S → (S → E) → ℝ
   rw [withDensity_apply _ hs, withDensity_apply _ hs,
     setLIntegral_withDensity_eq_setLIntegral_mul _ (hρ₁.measurable Λ) (hρ₂.1 Λ) hs]
 
+/--
+@isnad1 id=isproper.2h5v.s5.7172c53b9e32 from=translated src=- shape=b029e5d3 vocab=b057244a
+-/
 protected lemma IsProper.modification (hγ : γ.IsProper) {hρ} : (γ.modification ρ hρ).IsProper := by
   refine IsProper.of_inter_eq_indicator_mul fun Λ A hA B hB η ↦ ?_
   rw [modification_apply, withDensity_apply _ hA,

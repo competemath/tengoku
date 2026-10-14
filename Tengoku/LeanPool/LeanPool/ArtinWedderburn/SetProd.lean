@@ -30,11 +30,17 @@ def leftMul (a : R) : Set R := {x | ∃ r : R, x = r * a}
 /-- The set `aR = {a * r | r : R}` of right multiples of `a`. -/
 def rightMul (a : R) : Set R := {x | ∃ r : R, x = a * r}
 
+/--
+@isnad1 id=eq.1h3v.s6.63d62a314e84 from=translated src=- shape=43407117 vocab=54b12cee
+-/
 theorem left_mul_zero_impl_mul_zero : bothMul a b = {0} → a * b = 0 := by
   intro h
   have k : a * b ∈ bothMul a b := by use 1; simp
   simp_all
 
+/--
+@isnad1 id=eq.1h4v.s6.826c629a15a0 from=translated src=- shape=0cf6c89d vocab=54b12cee
+-/
 theorem in_particular (a c b : R) : bothMul a b = {0} → a * c * b = 0 := by
   intro h
   have k : a * c * b ∈ bothMul a b := by use c
@@ -43,6 +49,9 @@ theorem in_particular (a c b : R) : bothMul a b = {0} → a * c * b = 0 := by
 open Pointwise Set
 
 -- aRb = 0 implies Ra = 0 or Rb = 0
+/--
+@isnad1 id=eq.1h3v.s6.ffd7c4409927 from=translated src=- shape=d98109af vocab=1f3105e8
+-/
 theorem both_mul_zero_one_left_zero :
     bothMul a b = {0} → (leftMul a) * (leftMul b) = {0} := by
   intro h
@@ -77,6 +86,9 @@ def leftIdealOfElement (a : R) : Ideal R :=
       rw [hr]
       noncomm_ring }
 
+/--
+@isnad1 id=eq.0h2v.s5.75f236373e18 from=translated src=- shape=599a7239 vocab=c6d648d9
+-/
 theorem carrier_of_left_ideal_of_element (a : R) :
     (leftIdealOfElement a).carrier = leftMul a := rfl
 

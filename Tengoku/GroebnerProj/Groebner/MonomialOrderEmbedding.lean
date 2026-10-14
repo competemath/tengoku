@@ -15,6 +15,9 @@ def RelHom.onFun {α : Type*} {β : Type*} (r : β → β → Prop) (f : α → 
   toFun := f
   map_rel' := by simp
 
+/--
+@isnad1 id=eq.0h4v.s5.9736738f541d from=translated src=- shape=b876d816 vocab=e6e4b7a3
+-/
 @[simp] lemma RelHom.coe_onFun {α : Type*} {β : Type*} {r : β → β → Prop} (f : α → β) :
     RelHom.onFun r f = f := rfl
 
@@ -39,6 +42,9 @@ noncomputable def ofInjective.toSyn' (m : MonomialOrder σ) {σ' : Type*} (f : �
   AddEquiv.refl (σ' →₀ ℕ)
 
 -- submitted: https://github.com/leanprover-community/mathlib4/pull/32829
+/--
+@isnad1 id=isordere.0h1v.s5.dbe6bd58c711 from=translated src=- shape=affebb5f vocab=d1d254a9
+-/
 @[to_additive toIsOrderedCancelAddMonoid']
 lemma toIsOrderedCancelMonoid' {α}
     [CancelCommMonoid α] [LinearOrder α] [IsOrderedMonoid α] : IsOrderedCancelMonoid α where
@@ -91,40 +97,70 @@ instance instFunLike : FunLike (Embedding m' m) σ' σ where
     convert_to (Embedding.mk _ _) = ⟨_, _⟩
     simpa using h
 
+/--
+@isnad1 id=eq.1h6v.s6.5d3e18486fa4 from=translated src=- shape=688c951b vocab=6eb3ea1a
+-/
 @[ext] lemma ext {e₁ e₂ : Embedding m' m} (h : ⇑e₁ = ⇑e₂) : e₁ = e₂ :=
   (instFunLike ..).coe_injective h
 
+/--
+@isnad1 id=eq.0h5v.s5.4c57bd82813b from=translated src=- shape=feceea7e vocab=0ad2c7a1
+-/
 @[simp] lemma coe_toEmbedding_eq_coe : ⇑e.toEmbedding = ⇑e := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.fc31b68be806 from=translated src=- shape=fcbdc512 vocab=7aff311a
+-/
 @[simp] lemma toFun_eq_coe : e.toFun = ⇑e := rfl
 
+/--
+@isnad1 id=monotone.0h5v.s8.1fd295813147 from=translated src=- shape=7f539fd1 vocab=3a87b4ac
+-/
 lemma monotone : Monotone (m.toSyn ∘ Finsupp.mapDomain e ∘ m'.toSyn.symm) := e.monotone'
 
+/--
+@isnad1 id=injectiv.0h5v.s5.0c1327f04c45 from=translated src=- shape=0b5c4c3a vocab=98ffdaa6
+-/
 @[simp]
 lemma coe_injective : Function.Injective e := e.toEmbedding.inj'
 
+/--
+@isnad1 id=strictmo.0h5v.s8.6d095a8925b4 from=translated src=- shape=7f539fd1 vocab=0bb6d5ff
+-/
 lemma toStrictMono : StrictMono (m.toSyn ∘ Finsupp.mapDomain e ∘ m'.toSyn.symm) :=
   e.monotone'.strictMono_of_injective <| by
     simpa using Finsupp.mapDomain_injective <| e.coe_injective
 
 noncomputable def toOrderEmbedding : OrderEmbedding m'.syn m.syn := .ofStrictMono _ e.toStrictMono
 
+/--
+@isnad1 id=iff.0h7v.s9.86658b9feee1 from=translated src=- shape=dba7c96a vocab=d648dab0
+-/
 @[simp]
 lemma le_iff_le (a b : m'.syn) :
     Finsupp.mapDomain e (m'.toSyn.symm a) ≼[m] Finsupp.mapDomain e (m'.toSyn.symm b) ↔ a ≤ b :=
   e.toOrderEmbedding.le_iff_le
 
+/--
+@isnad1 id=iff.0h7v.s9.3f1a84990d38 from=translated src=- shape=b7f31dee vocab=d5e5950e
+-/
 @[simp]
 lemma le_iff_le' (a b : σ' →₀ ℕ) :
     Finsupp.mapDomain e a ≼[m] Finsupp.mapDomain e b ↔ a ≼[m'] b := by
   nth_rw 1 [← m'.toSyn.symm_apply_apply a, ← m'.toSyn.symm_apply_apply b]
   exact e.le_iff_le ..
 
+/--
+@isnad1 id=iff.0h7v.s9.052dadbfb5c6 from=translated src=- shape=dba7c96a vocab=69d3490f
+-/
 @[simp]
 lemma lt_iff_lt (a b : m'.syn) :
     Finsupp.mapDomain e (m'.toSyn.symm a) ≺[m] Finsupp.mapDomain e (m'.toSyn.symm b) ↔ a < b :=
   e.toOrderEmbedding.lt_iff_lt
 
+/--
+@isnad1 id=iff.0h7v.s9.b3c81dba0bd3 from=translated src=- shape=b7f31dee vocab=bb304054
+-/
 @[simp]
 lemma lt_iff_lt' (a b : σ' →₀ ℕ) :
     Finsupp.mapDomain e a ≺[m] Finsupp.mapDomain e b ↔ a ≺[m'] b := by
@@ -143,7 +179,9 @@ def ofInjective {f : σ' → σ} (hf : f.Injective) : Embedding (m.ofInjective h
     convert_to! map _ ≤ map _ at ⊢ h
     simpa [MonomialOrder.ofInjective, ofInjective.toSyn', map] using h
 
-/-- Renaming with an monomial ordering embedding preserves `degree`. -/
+/-- Renaming with an monomial ordering embedding preserves `degree`.
+@isnad1 id=eq.0h7v.s8.1c133eff5e57 from=translated src=- shape=42039eae vocab=21a5c2d5
+-/
 lemma degree_rename : m.degree (p.rename e) = (m'.degree p).mapDomain e := by
   classical
   simp? [degree, support_rename_of_injective e.coe_injective] says
@@ -154,6 +192,9 @@ lemma degree_rename : m.degree (p.rename e) = (m'.degree p).mapDomain e := by
   · simp [Function.comp_def]
   · simp [← Finset.apply_sup_eq_sup_comp_of_linearOrder _ e.monotone (by simp)]
 
+/--
+@isnad1 id=iff.0h8v.s8.1a1362cb7fb2 from=translated src=- shape=1111cb7a vocab=ba7cc77b
+-/
 @[simp]
 lemma degree_eq_degree (p q : MvPolynomial σ' R) :
     m.degree (p.rename e) = m.degree (q.rename e) ↔ m'.degree p = m'.degree q := by
@@ -161,22 +202,33 @@ lemma degree_eq_degree (p q : MvPolynomial σ' R) :
   simp [e.degree_rename,
     Finsupp.mapDomain_injective e.coe_injective |>.eq_iff]
 
+/--
+@isnad1 id=iff.0h8v.s9.14bbd41c762d from=translated src=- shape=1b7d3a68 vocab=2b9efb95
+-/
 @[simp]
 lemma degree_le_degree (p q : MvPolynomial σ' R) :
     m.degree (p.rename e) ≼[m] m.degree (q.rename e) ↔ m'.degree p ≼[m'] m'.degree q := by
   simp [e.degree_rename]
 
+/--
+@isnad1 id=iff.0h8v.s8.b2d6dcfd5398 from=translated src=- shape=1111cb7a vocab=b1f9ef34
+-/
 @[simp]
 lemma degree_le_degree' (p q : MvPolynomial σ' R) :
     m.degree (p.rename e) ≤ m.degree (q.rename e) ↔ m'.degree p ≤ m'.degree q := by
   simp [e.degree_rename, Finsupp.mapDomain_le_mapDomain_iff_le e.coe_injective]
 
+/--
+@isnad1 id=iff.0h8v.s9.2d759298dac4 from=translated src=- shape=1b7d3a68 vocab=ead4d153
+-/
 @[simp]
 lemma degree_lt_degree (p q : MvPolynomial σ' R) :
     m.degree (p.rename e) ≺[m] m.degree (q.rename e) ↔ m'.degree p ≺[m'] m'.degree q := by
   simp [e.degree_rename]
 
-/-- Renaming with an monomial ordering embedding preserves `degree`. -/
+/-- Renaming with an monomial ordering embedding preserves `degree`.
+@isnad1 id=eq.0h7v.s8.9bd2569c536f from=translated src=- shape=5e39d747 vocab=b3b32e3a
+-/
 lemma withBotDegree_rename :
     m.withBotDegree (p.rename e) = (m'.withBotDegree p).map (·.mapDomain e) := by
   wlog! hp : p ≠ 0
@@ -185,6 +237,9 @@ lemma withBotDegree_rename :
   · simp [e.degree_rename]
   · simp [rename_eq_zero_iff_of_injective _ (R := R) e.coe_injective, hp]
 
+/--
+@isnad1 id=eq.0h7v.s9.cfa4041508f3 from=translated src=- shape=cfd08263 vocab=56d90c46
+-/
 lemma toWithBotSyn_withBotDegree_rename :
     m.toWithBotSyn (m.withBotDegree (p.rename e)) =
       (m'.toWithBotSyn (m'.withBotDegree p)).map
@@ -195,6 +250,9 @@ lemma toWithBotSyn_withBotDegree_rename :
   · simp [e.degree_rename]
   · simp [rename_eq_zero_iff_of_injective _ (R := R) e.coe_injective, hp]
 
+/--
+@isnad1 id=iff.0h8v.s10.f3b610888016 from=translated src=- shape=227e33eb vocab=420aee51
+-/
 @[simp]
 lemma withBotDegree_le_withBotDegree_iff (p q : MvPolynomial σ' R) :
     m.withBotDegree (p.rename e) ≼'[m] m.withBotDegree (q.rename e) ↔
@@ -203,6 +261,9 @@ lemma withBotDegree_le_withBotDegree_iff (p q : MvPolynomial σ' R) :
   rw [WithBot.map_le_iff _]
   exact e.le_iff_le _ _
 
+/--
+@isnad1 id=iff.0h9v.s10.03d8744719a2 from=translated src=- shape=9c193ca6 vocab=ecca0cdd
+-/
 lemma withBotDegree_add_withBotDegree_le_withBotDegree_iff (r p q : MvPolynomial σ' R) :
     m.withBotDegree (r.rename e) +
       m.withBotDegree (p.rename e) ≼'[m] m.withBotDegree (q.rename e) ↔
@@ -212,6 +273,9 @@ lemma withBotDegree_add_withBotDegree_le_withBotDegree_iff (r p q : MvPolynomial
   · exact e.le_iff_le _ _
   · simp [Finsupp.mapDomain_add]
 
+/--
+@isnad1 id=iff.0h9v.s10.a3f88357196f from=translated src=- shape=c1b5576b vocab=ecca0cdd
+-/
 @[simp]
 lemma withBotDegree_add_withBotDegree_le_withBotDegree_iff' (r p q : MvPolynomial σ' R) :
     m.toWithBotSyn (m.withBotDegree (r.rename e)) + m.toWithBotSyn (m.withBotDegree (p.rename e)) ≤
@@ -220,6 +284,9 @@ lemma withBotDegree_add_withBotDegree_le_withBotDegree_iff' (r p q : MvPolynomia
       m'.toWithBotSyn (m'.withBotDegree q) := by
   simpa using e.withBotDegree_add_withBotDegree_le_withBotDegree_iff r p q
 
+/--
+@isnad1 id=iff.0h8v.s10.e042e19b028b from=translated src=- shape=227e33eb vocab=a2eda73b
+-/
 @[simp]
 lemma withBotDegree_lt_withBotDegree_iff (p q : MvPolynomial σ' R) :
     m.withBotDegree (p.rename e) ≺'[m] m.withBotDegree (q.rename e) ↔
@@ -228,17 +295,29 @@ lemma withBotDegree_lt_withBotDegree_iff (p q : MvPolynomial σ' R) :
   rw [WithBot.map_lt_iff _]
   exact e.lt_iff_lt _ _
 
+/--
+@isnad1 id=eq.0h7v.s7.fb7cec6d8be3 from=translated src=- shape=c3ba4190 vocab=93a6d8dc
+-/
 @[simp]
 lemma leadingCoeff_rename : m.leadingCoeff (p.rename e) = m'.leadingCoeff p := by
   simp [leadingCoeff, degree_rename]
 
+/--
+@isnad1 id=eq.0h7v.s7.7b48897a9f0b from=translated src=- shape=709646d8 vocab=fb4a89e0
+-/
 @[simp]
 lemma monic_rename : m.Monic (p.rename e) = m'.Monic p := by
   simp [Monic]
 
+/--
+@isnad1 id=eq.0h7v.s8.8f0646c32749 from=translated src=- shape=e2667144 vocab=1fa86f44
+-/
 lemma leadingTerm_rename : m.leadingTerm (p.rename e) = (m'.leadingTerm p).rename e := by
   simp [leadingTerm, degree_rename, rename_monomial]
 
+/--
+@isnad1 id=eq.0h8v.s9.ede40d5d4210 from=translated src=- shape=584a18cd vocab=2e57ee3d
+-/
 lemma sPolynomial_rename {R} [CommRing R] (p q : MvPolynomial σ' R) :
     m.sPolynomial (p.rename e) (q.rename e) = (m'.sPolynomial p q).rename e := by
   simp [sPolynomial, degree_rename, leadingCoeff_rename, rename_monomial,

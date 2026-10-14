@@ -34,13 +34,17 @@ variable {n : ℕ}
 
 /-! ## Sign product orthogonality -/
 
-/-- Product of signs at the same coordinate squares to 1. -/
+/-- Product of signs at the same coordinate squares to 1.
+@isnad1 id=eq.0h3v.s5.26870da79fad from=translated src=- shape=6bf11d1b vocab=4ffc987b
+-/
 lemma signProduct_same (σ : Fin n → Bool) (k : Fin n) :
     signOfBool (σ k) * signOfBool (σ k) = 1 :=
   signOfBool_sq (σ k)
 
 /-- Sum of sign products over all sign vectors: when k = j, the sum is 2^n
-(each term is 1); when k ≠ j, the sum is 0 (cancellation via flipAt). -/
+(each term is 1); when k ≠ j, the sum is 0 (cancellation via flipAt).
+@isnad1 id=eq.0h3v.s6.bed7dcd95d60 from=translated src=- shape=a5712dac vocab=ec9647d2
+-/
 lemma sum_signProduct (k j : Fin n) :
     ∑ σ : Fin n → Bool, signOfBool (σ k) * signOfBool (σ j) =
     if k = j then (2 : ℝ) ^ n else 0 := by
@@ -67,7 +71,9 @@ lemma sum_signProduct (k j : Fin n) :
     linarith
 
 /-- Normalized sign product orthogonality:
-`(2^n)⁻¹ · ∑_σ signOfBool(σ k) · signOfBool(σ j) = δ_{kj}`. -/
+`(2^n)⁻¹ · ∑_σ signOfBool(σ k) · signOfBool(σ j) = δ_{kj}`.
+@isnad1 id=eq.0h3v.s6.b6e6cb42401e from=translated src=- shape=f901257c vocab=bffaa94c
+-/
 lemma avg_signProduct (k j : Fin n) :
     ((2 : ℝ) ^ n)⁻¹ * ∑ σ : Fin n → Bool, signOfBool (σ k) * signOfBool (σ j) =
     if k = j then 1 else 0 := by
@@ -80,7 +86,9 @@ lemma avg_signProduct (k j : Fin n) :
 
 /-- The sign-averaged squared norm identity: summing ‖∑_k σ_k • z_k‖² over
 all sign vectors σ gives 2^n · ∑_k ‖z_k‖². The key step is the bilinear
-expansion of the norm² into a double sum, followed by sign orthogonality. -/
+expansion of the norm² into a double sum, followed by sign orthogonality.
+@isnad1 id=eq.0h3v.s7.77a2a0367303 from=translated src=- shape=a6b004a3 vocab=f29ffe4d
+-/
 lemma sum_sign_norm_sq {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     (z : Fin n → E) :
     ∑ σ : Fin n → Bool, ‖∑ k : Fin n, signOfBool (σ k) • z k‖ ^ 2 =
@@ -109,7 +117,9 @@ lemma sum_sign_norm_sq {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ
 /-! ## Cauchy-Schwarz sup bound -/
 
 /-- For predictors with `‖w_i‖ ≤ R`, the sup of inner products is bounded:
-`sup'_i ⟪w_i, v⟫ ≤ R · ‖v‖`. -/
+`sup'_i ⟪w_i, v⟫ ≤ R · ‖v‖`.
+@isnad1 id=le.2h5v.s6.d80b9d1712ec from=translated src=- shape=1106fe1b vocab=e25693d7
+-/
 lemma sup_inner_le {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     {ι : Type*} [Fintype ι] [Nonempty ι]
     (w : ι → E) (R : ℝ) (_hR : 0 ≤ R) (hw : ∀ i, ‖w i‖ ≤ R) (v : E) :
@@ -127,7 +137,9 @@ lemma sup_inner_le {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 
 /-- The sign-averaged norm is bounded by √(∑ ‖z_k‖²). This combines the
 discrete Cauchy-Schwarz inequality (Jensen for RMS) with the sign-averaged
-squared norm identity. -/
+squared norm identity.
+@isnad1 id=le.0h3v.s7.bfcffd851e66 from=translated src=- shape=3a239396 vocab=fa50410f
+-/
 lemma sign_avg_norm_le_sqrt {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     (z : Fin n → E) :
     ((2 : ℝ) ^ n)⁻¹ * ∑ σ : Fin n → Bool,
@@ -258,6 +270,7 @@ private theorem linearPredictor_rademacher_uniform_innerProduct
 linear predictors on `EuclideanSpace ℝ (Fin d)`. This is the finite-dimensional
 Euclidean API for the proved inner-product-space lemma above:
 `Rad_S({x ↦ ⟪w_i, x⟫ : ‖w_i‖ ≤ R}) ≤ R * n⁻¹ * sqrt(∑_k ‖z_k‖²)`.
+@isnad1 id=le.3h6v.s8.1f54b81971c4 from=translated src=- shape=000a7df9 vocab=cf9b3c42
 -/
 theorem linearPredictor_rademacher
     {d : ℕ} {ι : Type*} [Fintype ι] [Nonempty ι]
@@ -275,6 +288,7 @@ theorem linearPredictor_rademacher
 sample vector in `EuclideanSpace ℝ (Fin d)` satisfies `‖z_k‖ ≤ B`, then the
 finite-sample, finite-class Rademacher complexity of the scalar linear class is
 at most `R * B / sqrt n`.
+@isnad1 id=le.5h7v.s8.eb3e3da0c153 from=translated src=- shape=bea3b980 vocab=d6dba4b2
 -/
 theorem linearPredictor_rademacher_uniform
     {d : ℕ} {ι : Type*} [Fintype ι] [Nonempty ι]
@@ -289,7 +303,9 @@ theorem linearPredictor_rademacher_uniform
   linearPredictor_rademacher_uniform_innerProduct w z R B hR hB hw hz hn
 
 /-- Compatibility alias for the finite-dimensional Euclidean linear-predictor
-Rademacher bound. -/
+Rademacher bound.
+@isnad1 id=le.3h6v.s8.1f54b81971c4 from=translated src=- shape=000a7df9 vocab=cf9b3c42
+-/
 theorem linearPredictor_rademacher_finiteDim
     {d : ℕ} {ι : Type*} [Fintype ι] [Nonempty ι]
     (w : ι → EuclideanSpace ℝ (Fin d)) (z : Fin n → EuclideanSpace ℝ (Fin d))
@@ -302,7 +318,9 @@ theorem linearPredictor_rademacher_finiteDim
     R * (n : ℝ)⁻¹ * Real.sqrt (∑ k : Fin n, ‖z k‖ ^ 2) :=
   linearPredictor_rademacher w z R hR hw hn
 
-/-- Compatibility alias for the finite-dimensional bounded-input corollary. -/
+/-- Compatibility alias for the finite-dimensional bounded-input corollary.
+@isnad1 id=le.5h7v.s8.eb3e3da0c153 from=translated src=- shape=bea3b980 vocab=d6dba4b2
+-/
 theorem linearPredictor_rademacher_uniform_finiteDim
     {d : ℕ} {ι : Type*} [Fintype ι] [Nonempty ι]
     (w : ι → EuclideanSpace ℝ (Fin d)) (z : Fin n → EuclideanSpace ℝ (Fin d))

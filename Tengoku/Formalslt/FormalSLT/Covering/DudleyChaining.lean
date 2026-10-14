@@ -37,7 +37,9 @@ variable {n : ℕ}
 ε₂-cover N₂, then `R̂_S(F) ≤ ε₁ + ε₂ + R̂_S(N₂)`.
 
 This is the simplest form of iterated peeling — two applications of
-`rademacher_covering_bound` composed. -/
+`rademacher_covering_bound` composed.
+@isnad1 id=le.5h13v.s7.29e567d249fb from=translated src=- shape=cab9e5fa vocab=c18df83c
+-/
 theorem rademacher_two_step_chaining
     {ι₁ ι₂ ι₃ Z : Type*}
     [Fintype ι₁] [Nonempty ι₁]
@@ -69,7 +71,9 @@ Massart on the finest net gives the bound
 This is the workhorse bound for most practical applications: choose ε₁
 as a coarse cover (controlling the first residual) and ε₂ as a fine
 cover (controlling the second residual), then Massart bounds the
-Rademacher complexity of the finite finest net. -/
+Rademacher complexity of the finite finest net.
+@isnad1 id=le.8h14v.s8.b8773432f269 from=translated src=- shape=aa5c9733 vocab=41cc482f
+-/
 theorem rademacher_two_step_massart
     {ι₁ ι₂ ι₃ Z : Type*}
     [Fintype ι₁] [Nonempty ι₁]

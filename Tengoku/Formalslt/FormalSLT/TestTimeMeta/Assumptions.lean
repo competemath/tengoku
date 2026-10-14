@@ -83,7 +83,9 @@ def testTimeMetaBound (assumptions : TestTimeMetaAssumptions) : ℝ :=
 def testTimeMetaConclusion (assumptions : TestTimeMetaAssumptions) : Prop :=
   assumptions.populationRisk ≤ testTimeMetaBound assumptions
 
-/-- Sanity theorem exposing the named-assumption bundle. -/
+/-- Sanity theorem exposing the named-assumption bundle.
+@isnad1 id=testtime.1h1v.s2.669815c58982 from=translated src=- shape=6321fd23 vocab=9c8903b2
+-/
 theorem testTimeNamedAssumptions_valid
     (assumptions : TestTimeMetaAssumptions)
     (hconclusion : testTimeMetaConclusion assumptions) :

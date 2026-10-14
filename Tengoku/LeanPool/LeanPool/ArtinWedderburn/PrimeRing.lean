@@ -37,6 +37,9 @@ def IsPrimeRing (R : Type*) [Ring R] : Prop :=
 open Pointwise Set
 
 -- equivalence between 1) and 2)
+/--
+@isnad1 id=iff.0h1v.s6.b4863062362d from=translated src=- shape=c50b9778 vocab=a5b0d62e
+-/
 theorem prime_ring_equiv :
     IsPrimeRing R ↔ ∀ (a b : R), bothMul a b = {0} → a = 0 ∨ b = 0 := by
   constructor
@@ -86,19 +89,34 @@ theorem prime_ring_equiv :
       | inl hx => contradiction
       | inr hy => exact hy
 
+/--
+@isnad1 id=le.0h2v.s7.6e2bb7503b7f from=translated src=- shape=7aa538f6 vocab=5d814c82
+-/
 theorem span_le_two_sided_span (S : Set R) :
     Ideal.span S ≤ TwoSidedIdeal.asIdeal (TwoSidedIdeal.span S) := by
   have h : S ⊆ TwoSidedIdeal.asIdeal (TwoSidedIdeal.span S) := TwoSidedIdeal.subset_span
   exact Ideal.span_le.mpr h
 
+/--
+@isnad1 id=iff.0h3v.s6.7c785362ad13 from=translated src=- shape=657e6ab8 vocab=25eea29d
+-/
 theorem two_sided_ideal_equality (I J : TwoSidedIdeal R) :
     I = J ↔ (↑I : Set R) = (↑J : Set R) := SetLike.ext'_iff
 
+/--
+@isnad1 id=iff.0h3v.s6.cdf43fbddbbb from=translated src=- shape=657e6ab8 vocab=826affa8
+-/
 theorem ideal_equality (I J : Ideal R) : I = J ↔ (↑I : Set R) = (↑J : Set R) := SetLike.ext'_iff
 
+/--
+@isnad1 id=eq.0h2v.s7.efa88d3870a7 from=translated src=- shape=90532477 vocab=77afb922
+-/
 theorem equal_sets (I : TwoSidedIdeal R) :
     (↑(TwoSidedIdeal.asIdeal I) : Set R) = (↑I : Set R) := rfl
 
+/--
+@isnad1 id=iff.0h3v.s8.9d311f304099 from=translated src=- shape=273fccd5 vocab=08641b25
+-/
 theorem ideal_eq_to_two_sided_ideal_eq (I J : TwoSidedIdeal R) :
     I = J ↔ TwoSidedIdeal.asIdeal I = TwoSidedIdeal.asIdeal J := by
   constructor
@@ -108,12 +126,21 @@ theorem ideal_eq_to_two_sided_ideal_eq (I J : TwoSidedIdeal R) :
     rw [← equal_sets I, ← equal_sets J]
     exact (ideal_equality (TwoSidedIdeal.asIdeal I) (TwoSidedIdeal.asIdeal J)).mp h
 
+/--
+@isnad1 id=iff.0h2v.s6.bf178c44147a from=translated src=- shape=f6140913 vocab=29465cef
+-/
 theorem two_sided_bot_iff_set_zero (I : TwoSidedIdeal R) : I = ⊥ ↔ (I : Set R) = {0} :=
   Iff.symm (StrictMono.apply_eq_bot_iff fun ⦃_ _⦄ a ↦ a)
 
+/--
+@isnad1 id=iff.0h2v.s6.9b7cc642d448 from=translated src=- shape=f6140913 vocab=9a359158
+-/
 theorem ideal_bot_iff_set_zero (I : Ideal R) : I = ⊥ ↔ (I : Set R) = {0} :=
   Iff.symm (StrictMono.apply_eq_bot_iff fun ⦃_ _⦄ a ↦ a)
 
+/--
+@isnad1 id=iff.0h2v.s7.3ed10d62e7ba from=translated src=- shape=e2a5defa vocab=7e31204d
+-/
 theorem ideal_bot (I : TwoSidedIdeal R) : I = ⊥ ↔ TwoSidedIdeal.asIdeal I = ⊥ := by
   constructor
   · simp_all
@@ -121,9 +148,15 @@ theorem ideal_bot (I : TwoSidedIdeal R) : I = ⊥ ↔ TwoSidedIdeal.asIdeal I = 
     apply (two_sided_bot_iff_set_zero I).mpr
     apply (ideal_bot_iff_set_zero (TwoSidedIdeal.asIdeal I)).mp h
 
+/--
+@isnad1 id=le.0h2v.s7.6e2bb7503b7f from=translated src=- shape=7aa538f6 vocab=5d814c82
+-/
 theorem ideal_span_sub_two_sided_ideal_span (S : Set R) :
     Ideal.span S ≤ TwoSidedIdeal.asIdeal (TwoSidedIdeal.span S) := span_le_two_sided_span S
 
+/--
+@isnad1 id=eq.1h3v.s8.08380e46e540 from=translated src=- shape=1e2d7d9a vocab=ef55e680
+-/
 theorem same_prod (I J : TwoSidedIdeal R) :
     I * J = ⊥ → (TwoSidedIdeal.asIdeal I) * (TwoSidedIdeal.asIdeal J) = ⊥ := by
   intro h
@@ -138,6 +171,9 @@ theorem same_prod (I J : TwoSidedIdeal R) :
     simp_all
   · simp_all
 
+/--
+@isnad1 id=or.2h3v.s7.1ebe8a3d98b4 from=translated src=- shape=bb6eff8d vocab=4caf45ec
+-/
 theorem prime_ring_implies_prime_by_two_sided :
     IsPrimeRing R → ∀ (I J : TwoSidedIdeal R), I * J = ⊥ → I = ⊥ ∨ J = ⊥ := by
   rintro hR I J hIJ
@@ -147,6 +183,9 @@ theorem prime_ring_implies_prime_by_two_sided :
   | inl hi => apply Or.inl; exact (ideal_bot I).mpr hi
   | inr hj => apply Or.inr; exact (ideal_bot J).mpr hj
 
+/--
+@isnad1 id=eq.1h2v.s5.b0a80b7c1ad4 from=translated src=- shape=ef59dd99 vocab=fe8be93c
+-/
 theorem two_sided_span_bot_el_zero (a : R) : TwoSidedIdeal.span {a} = ⊥ → a = 0 := by
   intro h
   have ha : a ∈ TwoSidedIdeal.span {a} :=
@@ -156,18 +195,27 @@ theorem two_sided_span_bot_el_zero (a : R) : TwoSidedIdeal.span {a} = ⊥ → a 
 /-- The two-sided multiplicative closure `RaR = {y * a * z | y, z : R}` of `a`. -/
 def mulClosure (a : R) : Set R := {x : R | ∃ y z : R, x = y * a * z}
 
+/--
+@isnad1 id=mem.1h4v.s5.2c3e3ae89e2f from=translated src=- shape=fae8350e vocab=1e10db6d
+-/
 theorem mul_closure_left (a : R) :
     ∀ x y, y ∈ mulClosure a → x * y ∈ mulClosure a := by
   rintro x y ⟨y1, y2, hy⟩
   use x * y1, y2
   simp only [mul_assoc, hy]
 
+/--
+@isnad1 id=mem.1h4v.s5.6b393460d911 from=translated src=- shape=bd486540 vocab=1e10db6d
+-/
 theorem mul_closure_right (a : R) :
     ∀ y x, y ∈ mulClosure a → y * x ∈ mulClosure a := by
   rintro y x ⟨y1, y2, hy⟩
   use y1, y2 * x
   simp only [mul_assoc, hy]
 
+/--
+@isnad1 id=le.0h2v.s5.f220bdf52f4c from=translated src=- shape=d10794d1 vocab=c6eea258
+-/
 theorem mul_closure_sub_span (a : R) : mulClosure a ⊆ TwoSidedIdeal.span {a} := by
   rintro x ⟨y, z, hx⟩
   rw [hx]
@@ -176,6 +224,9 @@ theorem mul_closure_sub_span (a : R) : mulClosure a ⊆ TwoSidedIdeal.span {a} :
   exact TwoSidedIdeal.mul_mem_right (TwoSidedIdeal.span {a}) (y * a) z
     (TwoSidedIdeal.mul_mem_left (TwoSidedIdeal.span {a}) y a a_in_span)
 
+/--
+@isnad1 id=eq.0h2v.s6.e38901296316 from=translated src=- shape=2ce78184 vocab=cfca7562
+-/
 theorem ideal_mul_closure (a : R) :
     AddSubgroup.closure (mulClosure a) = ((TwoSidedIdeal.span (mulClosure a)) : Set R) := by
   ext x
@@ -184,10 +235,16 @@ theorem ideal_mul_closure (a : R) :
       (mul_closure_left a) (mul_closure_right a) x
   exact id (Iff.symm lem)
 
+/--
+@isnad1 id=le.1h3v.s6.873f2dc98d11 from=translated src=- shape=32335c54 vocab=1dd71749
+-/
 theorem sub_span (s : Set R) (I : TwoSidedIdeal R) : s ⊆ I → TwoSidedIdeal.span s ≤ I := by
   intro h x hx
   exact TwoSidedIdeal.mem_span_iff.mp hx I h
 
+/--
+@isnad1 id=eq.0h2v.s5.080c0e2b97cc from=translated src=- shape=4bfb675c vocab=7595a260
+-/
 theorem span_mul_closure_eq_span (a : R) :
     TwoSidedIdeal.span (mulClosure a) = TwoSidedIdeal.span {a} := by
   apply le_antisymm
@@ -199,6 +256,9 @@ theorem span_mul_closure_eq_span (a : R) :
     use 1, 1
     simp
 
+/--
+@isnad1 id=eq.3h5v.s6.5dacff2f88b9 from=translated src=- shape=d3a5e85b vocab=b560e787
+-/
 lemma both_mul_zero {a b x y : R} (hab : bothMul a b = {0}) (hx : x ∈ mulClosure a)
     (hy : y ∈ mulClosure b) : x * y = 0 := by
   obtain ⟨x1, x2, hx⟩ := hx
@@ -211,6 +271,9 @@ lemma both_mul_zero {a b x y : R} (hab : bothMul a b = {0}) (hx : x ∈ mulClosu
     x1 * a * x2 * (y1 * b * y2) = x1 * (a * (x2 * y1) * b) * y2 := by noncomm_ring
     _ = 0 := by rw [prod_zero]; noncomm_ring
 
+/--
+@isnad1 id=eq.3h5v.s6.fadba6e0d1df from=translated src=- shape=b274af5a vocab=8b59cf19
+-/
 lemma span_mul_closure_bot_forall {a b x y : R} (hab : bothMul a b = {0})
     (hx : x ∈ AddSubgroup.closure (mulClosure a)) (hy : y ∈ mulClosure b) : x * y = 0 := by
   induction hx using AddSubgroup.closure_induction with
@@ -222,6 +285,9 @@ lemma span_mul_closure_bot_forall {a b x y : R} (hab : bothMul a b = {0})
   | neg u hu ihu =>
     simp_all
 
+/--
+@isnad1 id=eq.3h5v.s6.af36f8ed6442 from=translated src=- shape=c226b2d9 vocab=8a678042
+-/
 lemma span_mul_closure_bot_forall' {a b x y : R} (hab : bothMul a b = {0})
     (hx : x ∈ TwoSidedIdeal.span {a}) (hy : y ∈ mulClosure b) : x * y = 0 := by
   rw [← span_mul_closure_eq_span a] at hx
@@ -231,6 +297,9 @@ lemma span_mul_closure_bot_forall' {a b x y : R} (hab : bothMul a b = {0})
     exact hx'
   · exact hy
 
+/--
+@isnad1 id=eq.1h3v.s6.612a4bc6ca65 from=translated src=- shape=35f45531 vocab=d8d9cc6f
+-/
 theorem span_mul_closure_bot (a b : R) (hab : bothMul a b = {0}) :
     (TwoSidedIdeal.span {a} : Set R) * (mulClosure b) = {0} := by
   ext x
@@ -244,6 +313,9 @@ theorem span_mul_closure_bot (a b : R) (hab : bothMul a b = {0}) :
     rw [hx]
     refine ⟨0, TwoSidedIdeal.zero_mem _, 0, ⟨0, 0, by noncomm_ring⟩, by noncomm_ring⟩
 
+/--
+@isnad1 id=eq.3h5v.s7.a9439eaa1db1 from=translated src=- shape=064bb68d vocab=c03f3529
+-/
 lemma two_sided_span_bot_forall {a b x y : R} (hab : bothMul a b = {0})
     (hx : x ∈ TwoSidedIdeal.span {a}) (hy : y ∈ AddSubgroup.closure (mulClosure b)) :
     x * y = 0 := by
@@ -259,6 +331,9 @@ lemma two_sided_span_bot_forall {a b x y : R} (hab : bothMul a b = {0})
   | neg u hu ihu =>
     simp_all
 
+/--
+@isnad1 id=eq.1h3v.s7.d3aafcc1af2b from=translated src=- shape=dbccbf99 vocab=ec739896
+-/
 lemma span_mul_span_bot' (a b : R) (hab : bothMul a b = {0}) :
     (TwoSidedIdeal.span {a} : Set R) * (AddSubgroup.closure (mulClosure b)) = {0} := by
   ext x
@@ -273,6 +348,9 @@ lemma span_mul_span_bot' (a b : R) (hab : bothMul a b = {0}) :
     refine ⟨0, TwoSidedIdeal.zero_mem _, 0,
       zero_mem (AddSubgroup.closure (mulClosure b)), by noncomm_ring⟩
 
+/--
+@isnad1 id=eq.1h3v.s7.8ef2628583e6 from=translated src=- shape=17c2d6c4 vocab=a22dc7f9
+-/
 theorem span_mul_span_bot (a b : R) (hab : bothMul a b = {0}) :
     (TwoSidedIdeal.span {a} : Set R) * (TwoSidedIdeal.span {b} : Set R) = {0} := by
   have k : (TwoSidedIdeal.span {b} : Set R) = AddSubgroup.closure (mulClosure b) := by
@@ -280,6 +358,9 @@ theorem span_mul_span_bot (a b : R) (hab : bothMul a b = {0}) :
   rw [k]
   exact span_mul_span_bot' a b hab
 
+/--
+@isnad1 id=eq.1h3v.s6.833d81bd3d61 from=translated src=- shape=7712d73d vocab=a48e9915
+-/
 theorem bothmul_zero_implies_prod_zero (a b : R) :
     bothMul a b = {0} → TwoSidedIdeal.span {a} * TwoSidedIdeal.span {b} = ⊥ := by
   intro hab
@@ -289,6 +370,9 @@ theorem bothmul_zero_implies_prod_zero (a b : R) :
   rw [← k]
   rw [span_mul_span_bot a b hab]
 
+/--
+@isnad1 id=or.2h3v.s7.db85d0443c80 from=translated src=- shape=e253b588 vocab=28e79319
+-/
 theorem prime_for_two_sided_implies_condition2 :
     (∀ (I J : TwoSidedIdeal R), I * J = ⊥ → I = ⊥ ∨ J = ⊥) →
       (∀ (a b : R), bothMul a b = {0} → a = 0 ∨ b = 0) := by
@@ -301,6 +385,9 @@ theorem prime_for_two_sided_implies_condition2 :
   | inr hb => apply Or.inr; exact two_sided_span_bot_el_zero b hb
 
 -- equivalence between 1) and 3)
+/--
+@isnad1 id=iff.0h1v.s7.1cd1ccf62079 from=translated src=- shape=d3d2a42f vocab=4caf45ec
+-/
 theorem prime_ring_equiv' :
     IsPrimeRing R ↔ ∀ (I J : TwoSidedIdeal R), I * J = ⊥ → I = ⊥ ∨ J = ⊥ := by
   constructor
@@ -309,6 +396,9 @@ theorem prime_ring_equiv' :
     exact prime_ring_equiv.mpr (prime_for_two_sided_implies_condition2 hR)
 
 -- Every simple ring is prime
+/--
+@isnad1 id=isprimer.0h1v.s4.c914b24b5320 from=translated src=- shape=c612a321 vocab=cdb948a3
+-/
 theorem simple_ring_is_prime [IsSimpleRing R] : IsPrimeRing R := by
   apply prime_ring_equiv'.mpr
   intro I J hIJ

@@ -34,6 +34,7 @@ When `μ[X | m] =ᵐ[μ] 0`, the conditional second moment `μ[X² | m]`
 bounds it directly.
 
 Stated as the explicit identity so downstream proofs can rewrite freely.
+@isnad1 id=eventual.3h5v.s7.693b37693eef from=translated src=- shape=1fc1bc4e vocab=a480eeaa
 -/
 theorem condExp_sq_eq_condVar_of_centered
     {Ω : Type*} {m₀ : MeasurableSpace Ω}

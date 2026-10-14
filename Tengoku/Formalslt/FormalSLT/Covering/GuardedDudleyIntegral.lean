@@ -41,7 +41,9 @@ def GuardedAntitoneOnDyadicAnnulus
 
 This is the exact local replacement for
 `FiniteSubGaussianChaining.dyadic_lowerEndpoint_mul_width_le_intervalIntegral`:
-it replaces global antitonicity with `GuardedAntitoneOnDyadicAnnulus`. -/
+it replaces global antitonicity with `GuardedAntitoneOnDyadicAnnulus`.
+@isnad1 id=le.3h3v.s8.1ec066a72851 from=translated src=- shape=398a84f0 vocab=7edca6ac
+-/
 theorem guarded_dyadic_lowerEndpoint_mul_width_le_intervalIntegral
     {radiusScale : ℝ} (entropyAtRadius : ℝ → ℝ) (j : ℕ)
     (hradiusScale_nonneg : 0 ≤ radiusScale)
@@ -74,7 +76,9 @@ theorem guarded_dyadic_lowerEndpoint_mul_width_le_intervalIntegral
 
 The comparison is finite and only needs positive-radius annulus domination for
 the finitely many dyadic annuli in `range m`; it never asks for
-`entropyAtRadius 0`. -/
+`entropyAtRadius 0`.
+@isnad1 id=le.3h3v.s8.4dbdfcf5f26c from=translated src=- shape=b0acccce vocab=8b89ccce
+-/
 theorem finiteDyadicEntropyAtRadiusUpperSum_le_two_mul_shifted_intervalIntegral_sum_guarded
     {radiusScale : ℝ} (m : ℕ) (entropyAtRadius : ℝ → ℝ)
     (hradiusScale_nonneg : 0 ≤ radiusScale)
@@ -118,7 +122,9 @@ theorem finiteDyadicEntropyAtRadiusUpperSum_le_two_mul_shifted_intervalIntegral_
 
 The lower endpoint is `radiusScale / 2^(m+1)`, not zero. This is the guarded
 positive-radius bridge needed before a later continuous theorem can take a
-limit as the lower endpoint tends to zero. -/
+limit as the lower endpoint tends to zero.
+@isnad1 id=le.3h3v.s8.d23010897e0b from=translated src=- shape=f5827b12 vocab=36f00762
+-/
 theorem finiteDyadicEntropyAtRadiusUpperSum_le_two_mul_truncatedIntervalIntegral_guarded
     {radiusScale : ℝ} (m : ℕ) (entropyAtRadius : ℝ → ℝ)
     (hradiusScale_nonneg : 0 ≤ radiusScale)
@@ -148,6 +154,9 @@ zero, while staying real-valued at zero for Lean convenience. -/
 def positiveRadiusReciprocalEntropy (ε : ℝ) : ℝ :=
   if 0 < ε then ε⁻¹ else 0
 
+/--
+@isnad1 id=guardeda.1h2v.s4.6e30adffe377 from=translated src=- shape=10ecdbc9 vocab=81f757c8
+-/
 theorem positiveRadiusReciprocalEntropy_guarded
     {radiusScale : ℝ} (hradiusScale : 0 < radiusScale) (j : ℕ) :
     GuardedAntitoneOnDyadicAnnulus
@@ -166,14 +175,18 @@ theorem positiveRadiusReciprocalEntropy_guarded
 
 This is the concrete type-level separation from the old theorem surface:
 global antitonicity would force `f 1 ≤ f 0`, but the witness has `f 1 = 1`
-and `f 0 = 0`. -/
+and `f 0 = 0`.
+@isnad1 id=not.0h0v.s2.b1bd50208329 from=translated src=- shape=8524eaa4 vocab=eeb38eee
+-/
 theorem not_globalAntitone_positiveRadiusReciprocalEntropy :
     ¬ Antitone positiveRadiusReciprocalEntropy := by
   intro hanti
   have hbad := hanti (show (0 : ℝ) ≤ 1 by norm_num)
   norm_num [positiveRadiusReciprocalEntropy] at hbad
 
-/-- The reciprocal witness is integrable on every positive dyadic annulus. -/
+/-- The reciprocal witness is integrable on every positive dyadic annulus.
+@isnad1 id=interval.1h2v.s6.f50ce41ee900 from=translated src=- shape=94e2bb2c vocab=032ec3e7
+-/
 theorem positiveRadiusReciprocalEntropy_intervalIntegrable_dyadic
     {radiusScale : ℝ} (hradiusScale : 0 < radiusScale) (j : ℕ) :
     IntervalIntegrable positiveRadiusReciprocalEntropy MeasureTheory.volume
@@ -207,7 +220,9 @@ theorem positiveRadiusReciprocalEntropy_intervalIntegrable_dyadic
 finite positive-annulus integrability is supplied.
 
 This theorem records the intended stronger API shape: no global antitonicity
-and no value at zero is required. -/
+and no value at zero is required.
+@isnad1 id=le.1h2v.s6.ad875e12aa2f from=translated src=- shape=eddf54f5 vocab=d8c7cf35
+-/
 theorem positiveRadiusReciprocalEntropy_truncated_bridge
     {radiusScale : ℝ} (m : ℕ) (hradiusScale : 0 < radiusScale) :
     FiniteSubGaussianProcess.finiteDyadicEntropyAtRadiusUpperSum radiusScale m

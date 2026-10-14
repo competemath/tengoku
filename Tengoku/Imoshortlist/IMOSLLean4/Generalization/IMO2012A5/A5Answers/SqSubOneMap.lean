@@ -44,17 +44,32 @@ variable [CommRing R]
 def RestrictedSq (x : R) : SqSubring R :=
   ⟨x ^ 2, AddSubgroup.subset_closure ⟨x, rfl⟩⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.ae8c2435ae2d from=translated src=- shape=a8f8dc0f vocab=3d6a9871
+-/
 theorem RestrictedSq_coe (x : R) : (RestrictedSq x : R) = x ^ 2 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.11f4b03f6325 from=translated src=- shape=3fc9b75c vocab=227b9ea7
+-/
 theorem RestrictedSq_apply_zero : RestrictedSq (R := R) 0 = 0 :=
   Subtype.ext <| zero_pow (Nat.succ_ne_zero 1)
 
+/--
+@isnad1 id=good.0h1v.s6.e130cb1f678d from=translated src=- shape=5e32e356 vocab=895d2bae
+-/
 theorem sq_sub_one_is_good : good (λ (x : R) ↦ x ^ 2 - 1) :=
   λ _ _ ↦ by ring
 
+/--
+@isnad1 id=good.0h1v.s9.db617e4122c1 from=translated src=- shape=971333b0 vocab=6ffaf735
+-/
 theorem RestrictedSq_sub_one_is_good : good (RestrictedSq (R := R) - 1) :=
   λ x y ↦ Subtype.ext (sq_sub_one_is_good x y)
 
+/--
+@isnad1 id=nontrivi.0h1v.s9.66714f210b40 from=translated src=- shape=971333b0 vocab=e5e80362
+-/
 theorem RestrictedSq_sub_one_is_NontrivialGood :
     NontrivialGood (RestrictedSq (R := R) - 1) :=
   ⟨RestrictedSq_sub_one_is_good, (sub_add_cancel _ _).trans RestrictedSq_apply_zero⟩

@@ -20,6 +20,9 @@ Prove that $(a_n)_{n ≥ 1}$ is eventually constant.
 namespace IMOSL
 namespace IMO2018N4
 
+/--
+@isnad1 id=dvd.1h2v.s5.555a9699c9a7 from=translated src=- shape=eaaf3b24 vocab=56b363e9
+-/
 lemma lemma1 {a c : ℕ} (h : a * a.gcd c ∣ c ^ 2) : a ∣ c := by
   obtain rfl | ha : a = 0 ∨ 0 < a := a.eq_zero_or_pos
   · rw [Nat.zero_mul, Nat.zero_dvd, sq, Nat.mul_eq_zero, or_self] at h
@@ -29,6 +32,9 @@ lemma lemma1 {a c : ℕ} (h : a * a.gcd c ∣ c ^ 2) : a ∣ c := by
       exact Nat.dvd_gcd (Nat.mul_dvd_mul_left a (a.gcd_dvd_right c)) h
     exact Nat.dvd_of_mul_dvd_mul_right (Nat.gcd_pos_of_pos_left c ha) h
 
+/--
+@isnad1 id=dvd.1h3v.s6.5de41640509d from=translated src=- shape=cac589c0 vocab=e3b44a6a
+-/
 lemma lemma2 {a b c : ℕ} (h : a.gcd b * c ∣ a * b + c ^ 2) : a.gcd b ∣ a.gcd c := by
   replace h : a.gcd b * (a.gcd b).gcd c ∣ a * b + c ^ 2 :=
     Nat.dvd_trans (Nat.mul_dvd_mul_left _ (Nat.gcd_dvd_right _ _)) h
@@ -37,6 +43,9 @@ lemma lemma2 {a b c : ℕ} (h : a.gcd b * c ∣ a * b + c ^ 2) : a.gcd b ∣ a.g
     exact (Nat.gcd_dvd_left _ _).trans (a.gcd_dvd_right b)
   exact Nat.dvd_gcd (a.gcd_dvd_left b) (lemma1 h)
 
+/--
+@isnad1 id=dvd.1h3v.s6.7c930e8682ac from=translated src=- shape=677ad145 vocab=e3b44a6a
+-/
 lemma lemma3 {a b c : ℕ} (h : a.gcd b * c ∣ a * b + c ^ 2) : c * a.gcd b ∣ b * a.gcd c := by
   replace h : a.gcd b * c ∣ a * b := by
     refine (Nat.dvd_add_left (sq c ▸ ?_)).mp h
@@ -44,7 +53,9 @@ lemma lemma3 {a b c : ℕ} (h : a.gcd b * c ∣ a * b + c ^ 2) : c * a.gcd b ∣
   rw [c.mul_comm, ← Nat.gcd_mul_left, b.mul_comm]
   exact Nat.dvd_gcd h (Nat.mul_dvd_mul_right (a.gcd_dvd_right b) c)
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ex.2h1v.s7.c0b484133083 from=translated src=- shape=e9a8c4ae vocab=2697fa17
+-/
 theorem final_solution {a : ℕ → ℕ} (ha : ∀ n, 0 < a n)
     (ha0 : ∃ K, ∀ n ≥ K, ∃ z : ℤ, (z : ℚ) =
       (∑ i ∈ Finset.range n, (a i : ℚ) / a (i + 1)) + a n / a 0) :

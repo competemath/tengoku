@@ -19,7 +19,9 @@ noncomputable section
 
 variable {Ω ι : Type*}
 
-/-- Finite Jensen for the exponential function in weighted-expectation form. -/
+/-- Finite Jensen for the exponential function in weighted-expectation form.
+@isnad1 id=le.2h4v.s6.dc9ddf4e1583 from=translated src=- shape=871ed725 vocab=64293132
+-/
 theorem exp_finiteExpectation_le_of_jensen [Fintype Ω]
     (w : Ω → ℝ) (hw : ∀ ω : Ω, 0 ≤ w ω)
     (hsum : ∑ ω : Ω, w ω = 1)
@@ -89,6 +91,7 @@ private lemma sqrt_two_sq_mul_eq (sigma L : ℝ) (hsigma : 0 ≤ sigma) :
 /--
 Finite maximal inequality for a one-sided sub-Gaussian family over a finite
 weighted probability space.
+@isnad1 id=le.5h5v.s7.c4606eadfb22 from=translated src=- shape=77473e5c vocab=32719f69
 -/
 theorem subgaussian_finite_max
     [Fintype Ω] [Fintype ι] [Nonempty ι]
@@ -184,6 +187,7 @@ private lemma finiteSup_abs_le_signedSup
 /--
 Two-sided finite maximal inequality, proved by applying
 `subgaussian_finite_max` to the signed family indexed by `Bool × ι`.
+@isnad1 id=le.6h5v.s8.0dcb1acdee45 from=translated src=- shape=d6a34861 vocab=b9a29fec
 -/
 theorem subgaussian_finite_max_abs
     [Fintype Ω] [Fintype ι] [Nonempty ι]

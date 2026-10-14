@@ -28,7 +28,9 @@ def 𝔽₂εMap : 𝔽₂ε → ℤ
   | X => 1
   | Y => 0
 
-/-- The map `𝔽₂εMap` is good. -/
+/-- The map `𝔽₂εMap` is good.
+@isnad1 id=good.0h0v.s3.a21ce9a91047 from=translated src=- shape=54c8eceb vocab=5095a36a
+-/
 theorem 𝔽₂εMap_is_good : good 𝔽₂εMap
   | O, O => rfl
   | O, I => rfl
@@ -47,6 +49,8 @@ theorem 𝔽₂εMap_is_good : good 𝔽₂εMap
   | Y, X => rfl
   | Y, Y => rfl
 
-/-- The map `𝔽₂εMap` is non-trivial good. -/
+/-- The map `𝔽₂εMap` is non-trivial good.
+@isnad1 id=nontrivi.0h0v.s4.4ff0d5a01afc from=translated src=- shape=54c8eceb vocab=ab1b212a
+-/
 theorem 𝔽₂εMap_is_NontrivialGood : NontrivialGood 𝔽₂εMap :=
   ⟨𝔽₂εMap_is_good, rfl⟩

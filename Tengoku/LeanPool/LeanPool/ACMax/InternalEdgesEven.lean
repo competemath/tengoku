@@ -19,7 +19,9 @@ neighbours of `v` lying in `s` equals twice the number of edges internal to `s`,
 namespace ACMax
 
 open Classical in
-/-- `∑_{v ∈ s} |N(v) ∩ s|` is even (it counts each internal edge twice). -/
+/-- `∑_{v ∈ s} |N(v) ∩ s|` is even (it counts each internal edge twice).
+@isnad1 id=even.0h3v.s6.0351aa8619b9 from=translated src=- shape=2c340513 vocab=ed0a890b
+-/
 theorem sum_inDegree_even {V : Type*} [Fintype V] (G : SimpleGraph V) (s : Finset V) :
     Even (∑ v ∈ s, (G.neighborFinset v ∩ s).card) := by
   classical

@@ -30,7 +30,9 @@ namespace IMO2006N7
 
 open Finset in
 /-- Given `b n : ℕ` with `n > 1`, there exists `M k : ℕ`
-  with `0 < k < n` such that `b^{M + k} ≡ b^M (mod n)`. -/
+  with `0 < k < n` such that `b^{M + k} ≡ b^M (mod n)`.
+@isnad1 id=ex.1h2v.s6.2024981c1b04 from=translated src=- shape=3d207d5f vocab=8c2d70ae
+-/
 theorem exists_ne_pow_modeq {n : ℕ} (hn : 1 < n) (b : ℕ) :
     ∃ M : ℕ, ∃ k > 0, k < n ∧ b ^ (M + k) ≡ b ^ M [MOD n] := by
   ---- If `n ∣ b^M` for some `M`, then we are done.
@@ -57,7 +59,9 @@ theorem exists_ne_pow_modeq {n : ℕ} (hn : 1 < n) (b : ℕ) :
   refine ⟨x, y - x, Nat.sub_pos_of_lt h1, (y.sub_le x).trans_lt (mem_range.mp hy), ?_⟩
   rwa [Nat.add_sub_cancel' h1.le, Nat.ModEq.comm]
 
-/-- If `a ≡ b (mod d)`, then there exists `t` such that `a + dt ≡ b (mod n)`. -/
+/-- If `a ≡ b (mod d)`, then there exists `t` such that `a + dt ≡ b (mod n)`.
+@isnad1 id=ex.2h4v.s5.88467b3cd269 from=translated src=- shape=59604e17 vocab=817c804a
+-/
 theorem exists_mod_eq_mul_add_of_dvd {n a b d : ℕ} (hn : 0 < n) (h : a ≡ b [MOD d]) :
     ∃ t, a + d * t ≡ b [MOD n] := by
   obtain h0 | h0 : a ≤ b ∨ b ≤ a := Nat.le_total a b
@@ -73,7 +77,9 @@ theorem exists_mod_eq_mul_add_of_dvd {n a b d : ℕ} (hn : 0 < n) (h : a ≡ b [
       _ ≡ a [MOD n] := Nat.add_modulus_mul_modEq_iff.mpr rfl
       _ = b + (a - b) := (Nat.add_sub_cancel' h0).symm
 
-/-- The general claim -/
+/-- The general claim
+@isnad1 id=ex.1h4v.s5.fca81ee04ac4 from=translated src=- shape=76815e6c vocab=214f7941
+-/
 theorem general_claim {n : ℕ} (hn : 0 < n) (b N r) : ∃ m ≥ N, b ^ m + m ≡ r [MOD n] := by
   ---- Step 1: Induction on `n`; the base case `n = 1` is trivial.
   induction n using Nat.strong_induction_on generalizing N r with | h n n_ih => ?_
@@ -104,6 +110,8 @@ theorem general_claim {n : ℕ} (hn : 0 < n) (b N r) : ∃ m ≥ N, b ^ m + m �
   refine ⟨m' + k * s, Nat.le_add_right_of_le hm'.2, ((h s).add_right _).trans ?_⟩
   rwa [← Nat.add_assoc]
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ex.1h2v.s5.76cbbf5cce24 from=translated src=- shape=96a25fab vocab=3dd4c085
+-/
 theorem final_solution (hn : 0 < n) (b) : ∃ m, n ∣ b ^ m + m :=
   (general_claim hn b 0 0).imp λ _ h ↦ Nat.dvd_of_mod_eq_zero h.2

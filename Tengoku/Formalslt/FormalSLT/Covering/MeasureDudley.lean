@@ -114,7 +114,9 @@ structure MeasureSubGaussianProcess [MeasurableSpace Ω]
 
 namespace MeasureSubGaussianProcess
 
-/-- Radius-bounded form of the arbitrary-measure increment MGF bound. -/
+/-- Radius-bounded form of the arbitrary-measure increment MGF bound.
+@isnad1 id=le.2h8v.s7.93e68827a827 from=translated src=- shape=4e714b09 vocab=cd036c3e
+-/
 theorem increment_mgf_le_radius
     [MeasurableSpace Ω] {μ : Measure Ω}
     (P : MeasureSubGaussianProcess μ T)
@@ -133,7 +135,9 @@ theorem increment_mgf_le_radius
 
 end MeasureSubGaussianProcess
 
-/-- A finite supremum of integrable real random variables is integrable. -/
+/-- A finite supremum of integrable real random variables is integrable.
+@isnad1 id=integrab.1h4v.s6.3affbb097dca from=translated src=- shape=6f71ea95 vocab=4a50e6d6
+-/
 theorem integrable_finiteSup_of_integrable
     [MeasurableSpace Ω] (μ : Measure Ω)
     {I : Type*} [Fintype I] [Nonempty I]
@@ -163,7 +167,9 @@ theorem integrable_finiteSup_of_integrable
 
 /-- Integrability closure for the shifted exponential of a finite supremum.
 Positivity of `lam` makes the shifted exponential monotone, so it commutes with
-the finite maximum. -/
+the finite maximum.
+@isnad1 id=integrab.2h6v.s7.39e372791f45 from=translated src=- shape=84dca7c1 vocab=c071c248
+-/
 theorem integrable_exp_finiteSup_sub_of_integrable
     [MeasurableSpace Ω] (μ : Measure Ω)
     {I : Type*} [Fintype I] [Nonempty I]
@@ -198,7 +204,9 @@ real random variable `Z` is at most `1`, then the mean of `Z` is at most
 `FiniteSubGaussianChaining.expectation_le_of_shifted_exp_mgf`; the same
 `exp x ≥ 1 + x` Chernoff step drives both, with `integral_mono`,
 `integral_add`, and `integral_const` (with `μ univ = 1`) standing in for the
-finite-sum algebra. -/
+finite-sum algebra.
+@isnad1 id=le.4h5v.s7.313454e065bb from=translated src=- shape=234dc987 vocab=362cfdd5
+-/
 theorem integral_le_of_shifted_exp_mgf
     [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
     (Z : Ω → ℝ) (lam budget : ℝ) (hlam : 0 < lam)
@@ -251,7 +259,9 @@ integral analog of `FiniteSubGaussianChaining.finite_expectedSup_le_of_shifted_m
 the exponential of a finite max is bounded by the sum of coordinate
 exponentials (`exp_finiteSup_sub_le_sum_exp_sub`, measure-independent), and the
 integral then distributes over the finite coordinate family by
-`integral_finsetSum`. -/
+`integral_finsetSum`.
+@isnad1 id=le.5h6v.s8.53269570aa6b from=translated src=- shape=2e23e865 vocab=e59a34a7
+-/
 theorem integral_expectedSup_le_of_shifted_mgf
     [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
     [Fintype T] [Nonempty T]
@@ -299,7 +309,9 @@ theorem integral_expectedSup_le_of_shifted_mgf
 If every coordinate has moment generating function at most `exp q` at a fixed
 positive `λ` against a probability measure `μ`, then the mean of the finite
 supremum is at most `(log |T| + q) / λ`. This is the integral analog of
-`FiniteSubGaussianChaining.finite_expectedSup_le_of_mgf_log`. -/
+`FiniteSubGaussianChaining.finite_expectedSup_le_of_mgf_log`.
+@isnad1 id=le.5h6v.s8.a67bcfb7c6f0 from=translated src=- shape=26c827b2 vocab=4ca97ad8
+-/
 theorem integral_finiteSup_le_of_mgf_log
     [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
     [Fintype T] [Nonempty T]
@@ -361,7 +373,9 @@ theorem integral_finiteSup_le_of_mgf_log
           simp
 
 /-- Fixed-tilt finite-max bound with all measure-theoretic integrability
-obligations discharged from coordinate hypotheses. -/
+obligations discharged from coordinate hypotheses.
+@isnad1 id=le.4h6v.s7.b379a6b16724 from=translated src=- shape=d2af7c8d vocab=b9459a4f
+-/
 theorem integral_finiteSup_le_of_mgf_log_of_integrable
     [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
     {I : Type*} [Fintype I] [Nonempty I]
@@ -397,7 +411,9 @@ theorem integral_finiteSup_le_of_mgf_log_of_integrable
   exact integral_finiteSup_le_of_mgf_log μ Y lam q hlam
     hsup_shift_int hmeanSup_int hcoord_shift_int hcoord
 
-/-- Optimized arbitrary-measure finite sub-Gaussian maximum bound. -/
+/-- Optimized arbitrary-measure finite sub-Gaussian maximum bound.
+@isnad1 id=le.5h5v.s8.e8425081a0fe from=translated src=- shape=0a366910 vocab=69407a7b
+-/
 theorem integral_finiteSup_le_of_subGaussian_mgf_sqrt
     [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
     {I : Type*} [Fintype I] [Nonempty I]
@@ -434,7 +450,9 @@ theorem integral_finiteSup_le_of_subGaussian_mgf_sqrt
           simpa [L, mul_assoc, mul_left_comm, mul_comm] using hopt
 
 /-- Optimized arbitrary-measure finite sub-Gaussian maximum bound, including
-singleton index families. A singleton pays zero entropy. -/
+singleton index families. A singleton pays zero entropy.
+@isnad1 id=le.4h5v.s8.268765a959d4 from=translated src=- shape=8a0ec495 vocab=69407a7b
+-/
 theorem integral_finiteSup_le_of_subGaussian_mgf_sqrt_nonempty
     [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
     {I : Type*} [Fintype I] [Nonempty I]
@@ -484,7 +502,9 @@ theorem integral_finiteSup_le_of_subGaussian_mgf_sqrt_nonempty
 namespace MeasureSubGaussianProcess
 
 /-- One-scale square-root entropy bound for a finite family of increments over
-an arbitrary probability space. -/
+an arbitrary probability space.
+@isnad1 id=le.3h8v.s7.de0ea7918f39 from=translated src=- shape=752c184c vocab=b4c705de
+-/
 theorem integral_incrementFamilySup_le_radius_sqrt_nonempty
     [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
     {I : Type*} [Fintype I] [Nonempty I]
@@ -515,7 +535,9 @@ maximum over realized projection-pair increments is controlled by the square
 root of the log product of their chosen-net cardinalities (the two
 `FiniteNet.coveringNumber` fields). The projection-pair radius and cardinality
 estimates are derived internally. No `MeasureChainingBudget`, coarse budget,
-terminal boundary, or finite outcome-space assumption appears. -/
+terminal boundary, or finite outcome-space assumption appears.
+@isnad1 id=le.6h8v.s8.2c842ac0efe7 from=translated src=- shape=2dde658f vocab=a1bf0ae8
+-/
 theorem integral_projectionPairSup_le_coveringNumber_sqrt
     [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
     [Nonempty T] {A B : Type*} [Fintype A] [Fintype B]
@@ -613,7 +635,9 @@ same step the finite lane uses), and squeezes the boundary slack `eta → 0`.
 
 In the empirical Rademacher normalization `varianceProxy ≍ B²/n`,
 `4·√(2·varianceProxy)` is the `C/√n` constant of Boucheron–Lugosi–Massart 2013
-§13 and `entropyAtRadius ε` plays the role of `√(log N(F, ε))`. -/
+§13 and `entropyAtRadius ε` plays the role of `√(log N(F, ε))`.
+@isnad1 id=le.5h7v.s7.76b91ef5f038 from=translated src=- shape=76d04977 vocab=a4dc63b7
+-/
 theorem continuous_dudley_entropy_integral_of_measure
     [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ]
@@ -696,7 +720,9 @@ In the empirical Rademacher normalization `varianceProxy ≍ B²/n` this reads
   `∫ ω, supFunctional ω ∂μ ≤ coarseBudget + (C/√n) ∫₀^{R/2} √(log N(F, ε)) dε`,
 
 the Dudley entropy integral with a genuine measure-theoretic expectation on the
-left, against an arbitrary probability measure `μ`. -/
+left, against an arbitrary probability measure `μ`.
+@isnad1 id=le.5h7v.s7.f6246f7e4c12 from=translated src=- shape=7f3032c2 vocab=aaa3f81c
+-/
 theorem continuous_dudley_entropy_integral_of_measure_coveringNumber
     [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ]
@@ -738,7 +764,9 @@ instance : IsProbabilityMeasure uniformBool := by
     Pi.one_apply, mul_one]
   rw [ENNReal.inv_two_add_inv_two]
 
-/-- The integral against `uniformBool` is the genuine two-point average. -/
+/-- The integral against `uniformBool` is the genuine two-point average.
+@isnad1 id=eq.0h1v.s6.b73ca1d0c2a2 from=translated src=- shape=9205a1ee vocab=d133cb0f
+-/
 theorem integral_uniformBool (f : Bool → ℝ) :
     (∫ ω, f ω ∂uniformBool) = 2⁻¹ * f true + 2⁻¹ * f false := by
   haveI : IsFiniteMeasure ((2⁻¹ : ENNReal) • Measure.dirac true) :=
@@ -755,16 +783,22 @@ theorem integral_uniformBool (f : Bool → ℝ) :
 /-- Discrete distance on the Boolean index set. -/
 def boolProjectionDist (s t : Bool) : ℝ := if s = t then 0 else 1
 
-/-- The Boolean discrete distance is nonnegative. -/
+/-- The Boolean discrete distance is nonnegative.
+@isnad1 id=le.0h2v.s4.4b9f1d1aa05d from=translated src=- shape=5ffe46ab vocab=64773529
+-/
 theorem boolProjectionDist_nonneg (s t : Bool) : 0 ≤ boolProjectionDist s t := by
   by_cases h : s = t <;> simp [boolProjectionDist, h]
 
-/-- Symmetry of the Boolean discrete distance. -/
+/-- Symmetry of the Boolean discrete distance.
+@isnad1 id=eq.0h2v.s3.0c78f564bdeb from=translated src=- shape=ab795eaa vocab=6723340f
+-/
 theorem boolProjectionDist_symm (s t : Bool) :
     boolProjectionDist s t = boolProjectionDist t s := by
   cases s <;> cases t <;> norm_num [boolProjectionDist]
 
-/-- Triangle inequality for the Boolean discrete distance. -/
+/-- Triangle inequality for the Boolean discrete distance.
+@isnad1 id=le.0h3v.s4.814d19369318 from=translated src=- shape=5968a5f3 vocab=c3d67484
+-/
 theorem boolProjectionDist_triangle (x y z : Bool) :
     boolProjectionDist x z ≤ boolProjectionDist x y + boolProjectionDist y z := by
   cases x <;> cases y <;> cases z <;> norm_num [boolProjectionDist]
@@ -774,7 +808,9 @@ def boolProjectionValue (ω t : Bool) : ℝ :=
   if t then signOfBool ω else 0
 
 /-- The Boolean projection process has sub-Gaussian increments with unit
-variance proxy under `uniformBool`. -/
+variance proxy under `uniformBool`.
+@isnad1 id=le.0h3v.s6.6347d79398ce from=translated src=- shape=8efe9848 vocab=37d7c083
+-/
 theorem boolProjection_mgf_bound (s t : Bool) (lam : ℝ) :
     (∫ ω, Real.exp
         (lam * (boolProjectionValue ω t - boolProjectionValue ω s)) ∂uniformBool) ≤

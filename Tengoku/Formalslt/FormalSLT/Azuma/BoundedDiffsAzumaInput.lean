@@ -64,6 +64,9 @@ def splice (k : Fin (n + 1)) (S T : Fin n → Z) : Fin n → Z :=
   fun i => if (i : ℕ) < (k : ℕ) then S i else T i
 
 omit [MeasurableSpace Z] in
+/--
+@isnad1 id=eq.0h4v.s5.13ccd1bc80ca from=translated src=- shape=12a04b68 vocab=cdcf0a33
+-/
 @[simp]
 lemma splice_zero (S T : Fin n → Z) : splice (0 : Fin (n + 1)) S T = T := by
   funext i
@@ -71,6 +74,9 @@ lemma splice_zero (S T : Fin n → Z) : splice (0 : Fin (n + 1)) S T = T := by
   simp
 
 omit [MeasurableSpace Z] in
+/--
+@isnad1 id=eq.0h4v.s4.f84ea9390c89 from=translated src=- shape=deac47d5 vocab=84d551d7
+-/
 @[simp]
 lemma splice_last (S T : Fin n → Z) : splice (Fin.last n) S T = S := by
   funext i
@@ -79,7 +85,9 @@ lemma splice_last (S T : Fin n → Z) : splice (Fin.last n) S T = S := by
     simp [Fin.val_last]
   exact ite_eq_left hi
 
-/-- Joint measurability of `splice` in `(S, T)`. -/
+/-- Joint measurability of `splice` in `(S, T)`.
+@isnad1 id=measurab.0h3v.s6.a0bf94bf4273 from=translated src=- shape=ec739b59 vocab=1d2f6a05
+-/
 lemma measurable_splice (k : Fin (n + 1)) :
     Measurable (fun ST : (Fin n → Z) × (Fin n → Z) => splice k ST.1 ST.2) := by
   refine measurable_pi_iff.mpr (fun i => ?_)
@@ -92,7 +100,9 @@ lemma measurable_splice (k : Fin (n + 1)) :
     exact (measurable_pi_apply i).comp measurable_snd
 
 omit [MeasurableSpace Z] in
-/-- `splice` is unaffected by changing `S` at any tail index. -/
+/-- `splice` is unaffected by changing `S` at any tail index.
+@isnad1 id=eq.1h7v.s6.cbde71464ff7 from=translated src=- shape=ca7894c1 vocab=a2ef57ef
+-/
 lemma splice_update_tail (k : Fin (n + 1)) (S T : Fin n → Z)
     {i : Fin n} (hi : ¬ ((i : ℕ) < (k : ℕ))) (z' : Z) :
     splice k (Function.update S i z') T = splice k S T := by
@@ -108,7 +118,9 @@ lemma splice_update_tail (k : Fin (n + 1)) (S T : Fin n → Z)
   · simp [hjk]
 
 omit [MeasurableSpace Z] in
-/-- `splice` is unaffected by changing `T` at any prefix index. -/
+/-- `splice` is unaffected by changing `T` at any prefix index.
+@isnad1 id=eq.1h7v.s6.f4eed1e60023 from=translated src=- shape=dd09e507 vocab=a2ef57ef
+-/
 lemma splice_update_prefix (k : Fin (n + 1)) (S T : Fin n → Z)
     {i : Fin n} (hi : (i : ℕ) < (k : ℕ)) (z' : Z) :
     splice k S (Function.update T i z') = splice k S T := by
@@ -141,13 +153,17 @@ noncomputable def partialIntegral (k : Fin (n + 1)) (f : (Fin n → Z) → ℝ) 
   fun S => ∫ T, f (splice k S T) ∂(Measure.pi μ)
 
 /-- At `k = 0`, the prefix is empty, so the candidate equals the
-unconditional expectation of `f`. -/
+unconditional expectation of `f`.
+@isnad1 id=eq.0h5v.s6.96c1ed2a8ff5 from=translated src=- shape=b1f72980 vocab=c1b62706
+-/
 lemma partialIntegral_zero (f : (Fin n → Z) → ℝ) (S : Fin n → Z) :
     partialIntegral μ 0 f S = ∫ T, f T ∂(Measure.pi μ) := by
   simp [partialIntegral]
 
 /-- At `k = Fin.last n`, the prefix is the full sample, so the
-candidate equals `f S` (under a probability measure). -/
+candidate equals `f S` (under a probability measure).
+@isnad1 id=eq.0h5v.s6.ffc2f394519c from=translated src=- shape=ed36d5f9 vocab=0b07d362
+-/
 lemma partialIntegral_last
     [IsProbabilityMeasure (Measure.pi μ)]
     (f : (Fin n → Z) → ℝ) (S : Fin n → Z) :
@@ -162,7 +178,9 @@ lemma partialIntegral_last
 /-- Tail-update invariance: `partialIntegral` is unchanged by updating
 `S` at any index in the tail `i ≥ k`. This is the structural property
 that supports `partialIntegral` being measurable w.r.t. the
-prefix-only σ-algebra `coordinateSubAlgebra n Z k`. -/
+prefix-only σ-algebra `coordinateSubAlgebra n Z k`.
+@isnad1 id=eq.1h8v.s6.fd759a9e7e05 from=translated src=- shape=58aaeffc vocab=4d66300a
+-/
 lemma partialIntegral_invariant_on_tail_update
     (k : Fin (n + 1)) (f : (Fin n → Z) → ℝ) (S : Fin n → Z)
     {i : Fin n} (hi : ¬ ((i : ℕ) < (k : ℕ))) (z' : Z) :
@@ -184,7 +202,9 @@ is a separate sub-PR and uses the tail-update invariance lemma above
 to factor `partialIntegral` through the prefix coordinates. -/
 
 /-- Strong measurability of `partialIntegral` w.r.t. the full product
-σ-algebra on `Fin n → Z`. -/
+σ-algebra on `Fin n → Z`.
+@isnad1 id=strongly.1h5v.s6.0c6768850397 from=translated src=- shape=55bd8b11 vocab=5b18c0ec
+-/
 lemma stronglyMeasurable_partialIntegral
     [SFinite (Measure.pi μ)]
     (k : Fin (n + 1)) {f : (Fin n → Z) → ℝ}
@@ -205,7 +225,9 @@ eventual `coordinateSubAlgebra n Z k`-strong-measurability of
 for the conditional-expectation identification). -/
 
 /-- Pointwise prefix-agreement principle: `partialIntegral μ k f`
-depends only on the prefix coords of its argument. -/
+depends only on the prefix coords of its argument.
+@isnad1 id=eq.1h7v.s6.b0216a82d511 from=translated src=- shape=1c46c0bf vocab=49f6053b
+-/
 lemma partialIntegral_eq_of_agree_prefix
     (k : Fin (n + 1)) (f : (Fin n → Z) → ℝ) (S S' : Fin n → Z)
     (hagree : ∀ i : Fin n, (i : ℕ) < (k : ℕ) → S i = S' i) :
@@ -290,7 +312,9 @@ private lemma partialIntegral_eq_comp_prefixToFull
 
 /-- Strong measurability of `partialIntegral μ k f` w.r.t.
 `coordinateSubAlgebra n Z k`. The proof factors `partialIntegral`
-through the prefix-only round-trip `prefixToFull`. -/
+through the prefix-only round-trip `prefixToFull`.
+@isnad1 id=strongly.1h5v.s6.61af0aae1a6e from=translated src=- shape=4ad4578d vocab=d7fcd672
+-/
 lemma stronglyMeasurable_coordinateSubAlgebra_partialIntegral
     [SFinite (Measure.pi μ)]
     (k : Fin (n + 1)) {f : (Fin n → Z) → ℝ}
@@ -402,7 +426,9 @@ private lemma measurePreserving_pairProj (k : Fin (n + 1)) :
 
 omit [Nonempty Z] in
 /-- Under any probability measure `μ`, the joint splice map
-`(S, T) ↦ splice k S T` is measure-preserving from `μⁿ × μⁿ` to `μⁿ`. -/
+`(S, T) ↦ splice k S T` is measure-preserving from `μⁿ × μⁿ` to `μⁿ`.
+@isnad1 id=measurep.0h4v.s7.e5e5157ef1e5 from=translated src=- shape=3e3bb0e8 vocab=f9090b37
+-/
 lemma measurePreserving_splice (k : Fin (n + 1)) :
     MeasurePreserving (fun ST : (Fin n → Z) × (Fin n → Z) => splice k ST.1 ST.2)
       ((Measure.pi μ).prod (Measure.pi μ))
@@ -499,7 +525,9 @@ private lemma mem_iff_of_agree_prefix
 /-! ### Integrability and the set-integral identity -/
 
 omit [Nonempty Z] in
-/-- `partialIntegral μ k f` is integrable when `f` is. -/
+/-- `partialIntegral μ k f` is integrable when `f` is.
+@isnad1 id=integrab.1h5v.s7.ef8ecd844e2f from=translated src=- shape=d12404f6 vocab=7b95f173
+-/
 lemma integrable_partialIntegral
     (k : Fin (n + 1)) {f : (Fin n → Z) → ℝ}
     (hf : Integrable f (Measure.pi μ)) :
@@ -515,7 +543,9 @@ lemma integrable_partialIntegral
 
 omit [Nonempty Z] in
 /-- The set-integral identity: for any `ℱ_k`-measurable set `s`,
-the set-integral of `partialIntegral μ k f` equals that of `f`. -/
+the set-integral of `partialIntegral μ k f` equals that of `f`.
+@isnad1 id=eq.3h6v.s8.751aef31d1e4 from=translated src=- shape=92e7d8a8 vocab=391563dd
+-/
 lemma setIntegral_partialIntegral_eq
     (k : Fin (n + 1)) {f : (Fin n → Z) → ℝ}
     (hf : StronglyMeasurable f)
@@ -598,7 +628,9 @@ lemma setIntegral_partialIntegral_eq
 /-- The exposure martingale is the partial integral, almost everywhere.
 This is the conditional-expectation identification: it says that
 `M_k S = E[f | first k coords](S)` admits the explicit prefix/tail
-integral representation `partialIntegral μ k f S = ∫ T, f(splice k S T) ∂μⁿ`. -/
+integral representation `partialIntegral μ k f S = ∫ T, f(splice k S T) ∂μⁿ`.
+@isnad1 id=eventual.2h5v.s7.852165674c41 from=translated src=- shape=468adcb9 vocab=fc043382
+-/
 theorem partialIntegral_eq_condExp_ae
     (k : Fin (n + 1)) {f : (Fin n → Z) → ℝ}
     (hf : StronglyMeasurable f)

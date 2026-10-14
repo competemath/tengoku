@@ -29,6 +29,9 @@ structure weakGood [Semiring R] [PartialOrder R] (f : R → R) : Prop where
 
 variable [CommSemiring R] [LinearOrder R] [IsStrictOrderedRing R]
 
+/--
+@isnad1 id=or.1h3v.s7.10f909f56b88 from=translated src=- shape=701d9991 vocab=73574440
+-/
 theorem side_ineq [ExistsAddOfLE R] {x y : R} (h : (x ^ 2 + 1) * y = (y ^ 2 + 1) * x) :
     x = y ∨ y * x = 1 := by
   wlog h0 : ∃ c, y = x + c
@@ -48,6 +51,9 @@ theorem side_ineq [ExistsAddOfLE R] {x y : R} (h : (x ^ 2 + 1) * y = (y ^ 2 + 1)
   · rw [mul_one_add c, add_eq_left, mul_eq_zero] at h
     rwa [add_eq_left, or_comm]
 
+/--
+@isnad1 id=iff.0h2v.s7.cf365414bffa from=translated src=- shape=33c8ec48 vocab=0d74fbf5
+-/
 theorem weakGood_iff [ExistsAddOfLE R] {f : R → R} :
     weakGood f ↔ (∀ x > 0, f x = x) ∨ (∀ x > 0, x * f x = 1) := by
   refine ⟨λ hf ↦ ?_, λ hf ↦ ?_⟩
@@ -111,6 +117,9 @@ def posSubtypeExt (f : {x : R // 0 < x} → {x : R // 0 < x}) (x : R) : R :=
   dite (0 < x) (λ h ↦ f ⟨x, h⟩) (λ _ ↦ 0)
 
 omit [IsStrictOrderedRing R] in
+/--
+@isnad1 id=eq.0h3v.s7.4b7da9c50241 from=translated src=- shape=2574106b vocab=6c10fdde
+-/
 lemma posSubtypeExt_spec (f : {x : R // 0 < x} → {x : R // 0 < x}) (x : {x : R // 0 < x}) :
     posSubtypeExt f x.1 = f x :=
   dite_eq_left _
@@ -119,6 +128,9 @@ def good (f : {x : R // 0 < x} → {x : R // 0 < x}) :=
   ∀ p q r s, p * q = r * s →
     (f p ^ 2 + f q ^ 2) * (r ^ 2 + s ^ 2) = (p ^ 2 + q ^ 2) * (f (r ^ 2) + f (s ^ 2))
 
+/--
+@isnad1 id=iff.0h2v.s6.e3531f6d16a0 from=translated src=- shape=360a3121 vocab=6b706050
+-/
 lemma good_iff_posSubtypeExt_weakGood {f : {x : R // 0 < x} → {x : R // 0 < x}} :
     good f ↔ weakGood (posSubtypeExt f) := by
   have X (x : {x : R // 0 < x}) : x.1 ^ 2 = (x ^ 2).1 := rfl
@@ -137,7 +149,9 @@ lemma good_iff_posSubtypeExt_weakGood {f : {x : R // 0 < x} → {x : R // 0 < x}
     simp only [posSubtypeExt_spec, ← Positive.coe_add, X] at h
     exact Subtype.coe_inj.mp h
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h2v.s9.2eb753bf087b from=translated src=- shape=2c9334b5 vocab=5f2d92d2
+-/
 theorem final_solution [ExistsAddOfLE R] {f : {x : R // 0 < x} → {x : R // 0 < x}} :
     good f ↔ f = id ∨ ∀ x, x * f x = 1 := by
   rw [good_iff_posSubtypeExt_weakGood, weakGood_iff, funext_iff]

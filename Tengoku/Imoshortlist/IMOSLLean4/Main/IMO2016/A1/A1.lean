@@ -23,6 +23,9 @@ namespace IMO2016A1
 
 open Multiset
 
+/--
+@isnad1 id=le.2h3v.s6.53bb06b4e85b from=translated src=- shape=a04f226e vocab=77323962
+-/
 theorem ring_prod_le_pow_card [CommSemiring R] [PartialOrder R] [IsOrderedRing R]
     {M : Multiset R} (hM : ∀ x ∈ M, 0 ≤ x) (hr : ∀ x ∈ M, x ≤ r) :
     M.prod ≤ r ^ card M := by
@@ -33,6 +36,9 @@ theorem ring_prod_le_pow_card [CommSemiring R] [PartialOrder R] [IsOrderedRing R
       rw [forall_mem_cons] at hM hr
       exact mul_le_mul hr.1 (M_ih hM.2 hr.2) (prod_nonneg hM.2) (hM.1.trans hr.1)
 
+/--
+@isnad1 id=eq.1h5v.s7.366ce51e10a2 from=translated src=- shape=64149d4e vocab=13bd2de4
+-/
 theorem ring_id [CommSemiring R] {x y z c : R} (h : x * y = c + z) :
     (x ^ 2 + c) * (y ^ 2 + c) = z ^ 2 + c * (x + y) ^ 2 := by
   rw [add_mul, mul_add, ← mul_pow, add_assoc, h, add_comm c, mul_comm, ← mul_add,
@@ -45,6 +51,9 @@ theorem ring_id [CommSemiring R] {x y z c : R} (h : x * y = c + z) :
 
 variable [CommSemiring R] [LinearOrder R] [IsStrictOrderedRing R] [ExistsAddOfLE R]
 
+/--
+@isnad1 id=le.3h6v.s8.162e1d4fc4ad from=translated src=- shape=0fa01343 vocab=e26e2961
+-/
 theorem main_claim {x y z w c : R} (h : x + y = z + w) (h0 : c ≤ x * y) (h1 : x * y ≤ z * w) :
     (x ^ 2 + c) * (y ^ 2 + c) ≤ (z ^ 2 + c) * (w ^ 2 + c) := by
   obtain ⟨a, ha⟩ : ∃ a, x * y = c + a := exists_add_of_le h0
@@ -55,7 +64,9 @@ theorem main_claim {x y z w c : R} (h : x + y = z + w) (h0 : c ≤ x * y) (h1 : 
   rw [ring_id ha, ring_id hb, h, add_le_add_iff_right]
   exact pow_le_pow_left₀ h0 h1 2
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=le.4h4v.s8.dcf7c33dbab1 from=translated src=- shape=ed46b053 vocab=d3e82cbb
+-/
 theorem final_solution {M : Multiset R} (hM : ∀ x ∈ M, 0 ≤ x) :
     ∀ {c} (_ : 0 ≤ c) (_ : ∀ x y, {x, y} ≤ M → c ≤ x * y) {r} (_ : M.sum ≤ card M • r),
     (M.map (· ^ 2 + c)).prod ≤ (r ^ 2 + c) ^ (card M) := by

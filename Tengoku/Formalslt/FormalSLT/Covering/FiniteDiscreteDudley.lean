@@ -28,10 +28,16 @@ noncomputable section
 def finDiscreteDist {n : ℕ} (s t : Fin n) : ℝ :=
   if s = t then 0 else 1
 
+/--
+@isnad1 id=le.0h3v.s4.fe9d87b3168e from=translated src=- shape=73bb348e vocab=dd1b8025
+-/
 theorem finDiscreteDist_nonneg {n : ℕ} (s t : Fin n) :
     0 ≤ finDiscreteDist s t := by
   by_cases h : s = t <;> simp [finDiscreteDist, h]
 
+/--
+@isnad1 id=eq.0h3v.s4.90026959c7cc from=translated src=- shape=7a5478ec vocab=811a6bf0
+-/
 theorem finDiscreteDist_symm {n : ℕ} (s t : Fin n) :
     finDiscreteDist s t = finDiscreteDist t s := by
   by_cases h : s = t
@@ -42,6 +48,9 @@ theorem finDiscreteDist_symm {n : ℕ} (s t : Fin n) :
       exact h hts.symm
     simp [finDiscreteDist, h, hts]
 
+/--
+@isnad1 id=le.0h4v.s5.73989b709c8a from=translated src=- shape=da6e799f vocab=d9dd7550
+-/
 theorem finDiscreteDist_triangle {n : ℕ} (x y z : Fin n) :
     finDiscreteDist x z ≤ finDiscreteDist x y + finDiscreteDist y z := by
   by_cases hxz : x = z
@@ -56,6 +65,9 @@ theorem finDiscreteDist_triangle {n : ℕ} (x y z : Fin n) :
         simp [finDiscreteDist, hxz]
       · simp [finDiscreteDist, hxz, hxy, hyz]
 
+/--
+@isnad1 id=nonempty.0h1v.s4.bfb1f5508527 from=translated src=- shape=9ce4aef8 vocab=f8a28a14
+-/
 instance finNonempty_of_fact_two_le (n : ℕ) [Fact (2 ≤ n)] : Nonempty (Fin n) :=
   ⟨⟨0, Nat.lt_of_lt_of_le (by norm_num) (Fact.out : 2 ≤ n)⟩⟩
 
@@ -82,6 +94,9 @@ private theorem finDiscreteRademacherValue_le_one {n : ℕ} [Fact (2 ≤ n)]
   · cases ω <;> simp [finDiscreteRademacherValue, ht, signOfBool]
   · simp [finDiscreteRademacherValue, ht]
 
+/--
+@isnad1 id=le.0h4v.s7.afdac44500a4 from=translated src=- shape=647b8a2d vocab=5e0b9e9c
+-/
 theorem finDiscrete_rademacher_mgf_bound {n : ℕ} [Fact (2 ≤ n)]
     (s t : Fin n) (lam : ℝ) :
     finiteExpectation (fun _ : Bool => (1 : ℝ) / 2)
@@ -171,16 +186,25 @@ def finDiscreteDyadicNet (n : ℕ) (j : ℕ) : FiniteNet (Fin n) (Fin n) where
 def finDiscreteDyadicCoverCount (n : ℕ) (_j : ℕ) : ℕ :=
   n * n
 
+/--
+@isnad1 id=eq.0h2v.s5.e3d7c06ed5e2 from=translated src=- shape=6779f124 vocab=a0d629ba
+-/
 theorem finDiscreteDyadicNet_dist (n : ℕ) [Fact (2 ≤ n)] (j : ℕ) :
     (finDiscreteDyadicNet n j).dist = (finDiscreteRademacherProcess n).dist := by
   rfl
 
+/--
+@isnad1 id=lt.0h2v.s5.d7a232b278ed from=translated src=- shape=93f79c20 vocab=73f0365b
+-/
 theorem finDiscreteDyadicNet_radius_pos (n : ℕ) (j : ℕ) :
     0 < (finDiscreteDyadicNet n j).radius +
       (finDiscreteDyadicNet n (j + 1)).radius := by
   simp [finDiscreteDyadicNet]
   positivity
 
+/--
+@isnad1 id=le.0h2v.s6.bafdf78ac790 from=translated src=- shape=cae495ad vocab=859d2617
+-/
 theorem finDiscreteDyadicNet_radius_geometric (n : ℕ) (j : ℕ) :
     (finDiscreteDyadicNet n j).radius +
         (finDiscreteDyadicNet n (j + 1)).radius ≤
@@ -208,6 +232,9 @@ theorem finDiscreteDyadicNet_radius_geometric (n : ℕ) (j : ℕ) :
     _ = (1 : ℝ) / (2 : ℝ) ^ j := by
           field_simp [hpow_pos.ne']
 
+/--
+@isnad1 id=lt.0h2v.s6.5772a180d5e3 from=translated src=- shape=d024c437 vocab=13b09dbc
+-/
 theorem finDiscreteDyadicNet_pair_card_gt_one {n : ℕ} [Fact (2 ≤ n)] (j : ℕ) :
     1 < Fintype.card
       (FiniteNet.ProjectionPair
@@ -226,10 +253,16 @@ theorem finDiscreteDyadicNet_pair_card_gt_one {n : ℕ} [Fact (2 ≤ n)] (j : �
   change finZero = finOne at hfst
   exact finZero_ne_finOne (n := n) hfst
 
+/--
+@isnad1 id=eq.0h2v.s4.c325b952935c from=translated src=- shape=c2b3aeaa vocab=e48f344c
+-/
 theorem finDiscreteDyadicNet_coveringNumber (n : ℕ) (j : ℕ) :
     (finDiscreteDyadicNet n j).coveringNumber = n := by
   simp [FiniteNet.coveringNumber]
 
+/--
+@isnad1 id=le.0h2v.s5.31416d615128 from=translated src=- shape=137daa88 vocab=8b4a309c
+-/
 theorem finDiscreteDyadicNet_coverCount_le (n : ℕ) (j : ℕ) :
     (finDiscreteDyadicNet n j).coveringNumber *
         (finDiscreteDyadicNet n (j + 1)).coveringNumber ≤
@@ -295,6 +328,9 @@ def finDiscreteDudleyInstance (n : ℕ) [Fact (2 ≤ n)] :
 def finDiscreteRademacherSup {n : ℕ} [Fact (2 ≤ n)] (ω : Bool) : ℝ :=
   finiteSup (fun t : Fin n => (finDiscreteRademacherProcess n).X ω t)
 
+/--
+@isnad1 id=le.0h3v.s6.e05108711e05 from=translated src=- shape=c3ce18d0 vocab=d590c2a6
+-/
 theorem finDiscreteRademacherSup_le_projectedSup {n : ℕ} [Fact (2 ≤ n)] (m : ℕ)
     (ω : Bool) :
     finDiscreteRademacherSup (n := n) ω ≤

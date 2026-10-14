@@ -49,7 +49,9 @@ def isOneOpReachable (y x : Fin n → ℕ) :=
     (y i = x j + 1 ∨ y i = x i - 1) ∧ (∀ k ≠ i, k ≠ j → y k = x k)
 
 /-- If the numbers in a state `x : Fin n → ℕ` are bounded by `M`, then the numbers in any
-  state `y : Fin n → ℕ` reachable in one operation from `x` is also bounded by `M`. -/
+  state `y : Fin n → ℕ` reachable in one operation from `x` is also bounded by `M`.
+@isnad1 id=le.2h5v.s5.986c3b8ab894 from=translated src=- shape=2b2829ee vocab=857a8bc2
+-/
 theorem isOneOpReachable.bdd_of_bdd (h : isOneOpReachable y x) (hx : ∀ k, x k ≤ M) (k) :
     y k ≤ M := by
   ---- The proof is just casework on `k`.
@@ -62,7 +64,9 @@ theorem isOneOpReachable.bdd_of_bdd (h : isOneOpReachable y x) (hx : ∀ k, x k 
   · rcases h0 with h0 | h0
     exacts [h0.trans_le ((hx k).trans' hij0), h0.trans_le ((Nat.sub_le _ _).trans (hx k))]
 
-/-- Rearrangement lemma: if `a < b` and `c < d` then `ad + bc < ac + bd`. -/
+/-- Rearrangement lemma: if `a < b` and `c < d` then `ad + bc < ac + bd`.
+@isnad1 id=lt.2h4v.s6.fe2d2e3cc740 from=translated src=- shape=c40a25d9 vocab=304a85f3
+-/
 theorem Nat_rearrangement_two {a b c d : ℕ} (h : a < b) (h0 : c < d) :
     a * d + b * c < a * c + b * d :=
   calc a * d + b * c
@@ -74,7 +78,9 @@ theorem Nat_rearrangement_two {a b c d : ℕ} (h : a < b) (h0 : c < d) :
     rw [Nat.add_assoc, ← Nat.mul_add, Nat.add_sub_cancel' h0.le]
 
 open Finset
-/-- If a state `x` reaches `y` in one operation, then `∑_k kx_k < ∑_k ky_k`. -/
+/-- If a state `x` reaches `y` in one operation, then `∑_k kx_k < ∑_k ky_k`.
+@isnad1 id=lt.1h3v.s6.e6c88cfce7d6 from=translated src=- shape=4baae63a vocab=f48e049f
+-/
 theorem isOneOpReachable.sum_mul_lt{y x : Fin n → ℕ} (h : isOneOpReachable y x) :
     ∑ k, k * x k < ∑ k, k * y k := by
   ---- Let `i < j` with `x_j < x_i`, `y_j = x_i`, and `y_i ∈ {x_j + 1, x_i - 1}`.
@@ -107,7 +113,9 @@ inductive isLosing : (Fin n → ℕ) → Prop where
   | of_forall_isOneOpReachable (h : ∀ y, isOneOpReachable y x → isLosing y) : isLosing x
 
 open Finset
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=islosing.0h2v.s3.81c605eb69f3 from=translated src=- shape=f78b0eb2 vocab=1c696447
+-/
 theorem final_solution (x : Fin n → ℕ) : isLosing x := by
   ---- Fix a large integer `M` greater than or equal to the `x_k`'s.
   obtain ⟨M, hM⟩ : ∃ M, ∀ i, x i ≤ M := ⟨univ.sup x, λ _ ↦ le_sup (mem_univ _)⟩

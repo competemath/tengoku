@@ -45,13 +45,17 @@ def lossVector (ℓ : ι → Z → ℝ) (z : Fin n → Z) (i : ι) : Fin n → �
 def effectiveClass (ℓ : ι → Z → ℝ) (z : Fin n → Z) : Finset (Fin n → ℝ) :=
   (Finset.univ : Finset ι).image (lossVector ℓ z)
 
-/-- The effective class is nonempty (since ι is nonempty). -/
+/-- The effective class is nonempty (since ι is nonempty).
+@isnad1 id=nonempty.0h5v.s5.4f0bc3e30d25 from=translated src=- shape=faeb954f vocab=8e86c5e1
+-/
 lemma effectiveClass_nonempty (ℓ : ι → Z → ℝ) (z : Fin n → Z) :
     (effectiveClass ℓ z).Nonempty :=
   Finset.Nonempty.image Finset.univ_nonempty _
 
 omit [Nonempty ι] in
-/-- The effective class cardinality is at most the full class size. -/
+/-- The effective class cardinality is at most the full class size.
+@isnad1 id=le.0h5v.s5.e9eab27a0b6a from=translated src=- shape=b0b0f33d vocab=a1f1d968
+-/
 lemma effectiveClass_card_le (ℓ : ι → Z → ℝ) (z : Fin n → Z) :
     (effectiveClass ℓ z).card ≤ Fintype.card ι :=
   Finset.card_image_le
@@ -60,7 +64,9 @@ lemma effectiveClass_card_le (ℓ : ι → Z → ℝ) (z : Fin n → Z) :
 loss-vector map, so it equals the sup over the effective class.
 
 This is the key reduction: the signed-average sup depends on i only through
-the loss pattern `(ℓ i (z 0), ..., ℓ i (z (n-1)))`. -/
+the loss pattern `(ℓ i (z 0), ..., ℓ i (z (n-1)))`.
+@isnad1 id=eq.0h6v.s7.bae3b37297d7 from=translated src=- shape=75dba7f7 vocab=0dbd345b
+-/
 lemma sup'_eq_sup'_effectiveClass (ℓ : ι → Z → ℝ) (z : Fin n → Z)
     (σ : Fin n → Bool) :
     (Finset.univ : Finset ι).sup' Finset.univ_nonempty
@@ -81,7 +87,9 @@ with `|effectiveClass|` (number of distinct loss patterns on the sample)
 in place of `Fintype.card ι`.
 
 This improves on `massart_finite_class` whenever the hypothesis class has
-redundant hypotheses that agree on the sample. -/
+redundant hypotheses that agree on the sample.
+@isnad1 id=le.4h6v.s7.1001944976f3 from=translated src=- shape=6ddef2ca vocab=46cf6d45
+-/
 theorem empiricalRademacherComplexity_le_massart_effective
     {ℓ : ι → Z → ℝ} {B : ℝ} (hB : 0 < B)
     (hℓ_bdd : ∀ i z, |ℓ i z| ≤ B)

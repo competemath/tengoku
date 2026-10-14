@@ -29,8 +29,17 @@ noncomputable def polyP (R : Type*) [CommRing R] : ℕ → Polynomial R
   | 1 => 1
   | (n + 2) => polyP R (n + 1) - Polynomial.X * polyP R n
 
+/--
+@isnad1 id=eq.0h1v.s5.72ca7cd95d90 from=translated src=- shape=0cccbc47 vocab=e408a496
+-/
 theorem polyP_zero (R : Type*) [CommRing R] : polyP R 0 = 1 := rfl
+/--
+@isnad1 id=eq.0h1v.s5.5f238bb36a94 from=translated src=- shape=0cccbc47 vocab=e408a496
+-/
 theorem polyP_one (R : Type*) [CommRing R] : polyP R 1 = 1 := rfl
+/--
+@isnad1 id=eq.0h2v.s7.30b925ef8b08 from=translated src=- shape=d8f9e191 vocab=f352d44d
+-/
 theorem polyP_succ_succ (R : Type*) [CommRing R] (n : ℕ) :
     polyP R (n + 2) = polyP R (n + 1) - Polynomial.X * polyP R n := rfl
 
@@ -96,6 +105,9 @@ noncomputable def alphaValues (m μ : ℕ) {s : ℕ} (ξ : Nat.Partition s) : Li
 
 /-! ## Basic properties of polyP -/
 
+/--
+@isnad1 id=eq.0h2v.s5.d1b8b24bb5b5 from=translated src=- shape=16072c23 vocab=c8088621
+-/
 lemma polyP_constantCoeff (R : Type*) [CommRing R] (n : ℕ) :
     (polyP R n).coeff 0 = 1 := by
   induction n using Nat.strong_induction_on with
@@ -105,10 +117,16 @@ lemma polyP_constantCoeff (R : Type*) [CommRing R] (n : ℕ) :
     | n + 2 =>
       simp [polyP, ih (n + 1) (by omega), ih n (by omega)]
 
+/--
+@isnad1 id=ne.0h2v.s6.f08b67e966fa from=translated src=- shape=a1d56855 vocab=d2290362
+-/
 lemma polyP_coe_constantCoeff_ne_zero (K : Type*) [Field K] (m : ℕ) :
     PowerSeries.constantCoeff (↑(polyP K m) : PowerSeries K) ≠ 0 := by
   simp [polyP_constantCoeff]
 
+/--
+@isnad1 id=ne.0h3v.s7.3a664c373eb9 from=translated src=- shape=dbef59db vocab=9366b28f
+-/
 lemma polyP_coe_pow_constantCoeff_ne_zero (K : Type*) [Field K] (m k : ℕ) :
     PowerSeries.constantCoeff ((↑(polyP K m) : PowerSeries K) ^ k) ≠ 0 := by
   rw [map_pow]
@@ -130,6 +148,9 @@ noncomputable def dCoeff (K : Type*) [Field K] (m a b u : ℕ) : K :=
 
 /-! ## Reduced form of the generating function -/
 
+/--
+@isnad1 id=eq.1h4v.s7.9b3686dd7ec8 from=translated src=- shape=be8d3281 vocab=e96e2292
+-/
 lemma partitionPoly_eq_pow_mul_nonMax (K : Type*) [CommRing K] (m : ℕ) {s : ℕ}
     (ξ : Nat.Partition s) (h_parts : ∀ i ∈ ξ.parts, i ≤ m) :
     partitionPoly K ξ = polyP K m ^ countMaxParts m ξ * nonMaxPartsPoly K m ξ := by
@@ -143,11 +164,17 @@ lemma partitionPoly_eq_pow_mul_nonMax (K : Type*) [CommRing K] (m : ℕ) {s : �
     Multiset.filter_congr fun x hx =>
       ⟨fun h => Nat.lt_of_le_of_ne (h_parts x hx) h, fun h => Nat.ne_of_lt h⟩]
 
+/--
+@isnad1 id=eq.0h5v.s6.e4d7358aff0d from=translated src=- shape=a46f95fd vocab=a6f4a628
+-/
 lemma alphaProd_eq_mul_nonMax (K : Type*) [CommRing K] (m μ : ℕ) {s : ℕ}
     (ξ : Nat.Partition s) :
     alphaProd K m μ ξ = polyP K (m - μ % m - 1) * nonMaxPartsPoly K m ξ := by
   simp only [alphaProd, alphaMultiset, nonMaxPartsPoly, Multiset.map_cons, Multiset.prod_cons]
 
+/--
+@isnad1 id=eq.0h3v.s6.7edb58bee4e1 from=translated src=- shape=0043d681 vocab=dc81ef26
+-/
 lemma ps_inv_pow_eq (K : Type*) [Field K] (φ : PowerSeries K) (k : ℕ) :
     (φ ^ k)⁻¹ = φ⁻¹ ^ k := by
   induction k with
@@ -155,6 +182,9 @@ lemma ps_inv_pow_eq (K : Type*) [Field K] (φ : PowerSeries K) (k : ℕ) :
   | succ n ih =>
     rw [pow_succ, PowerSeries.mul_inv_rev, ih, mul_comm, pow_succ]
 
+/--
+@isnad1 id=eq.2h4v.s7.b14bb487b9ac from=translated src=- shape=f5635d66 vocab=5ec65d53
+-/
 lemma pow_mul_pow_inv_cancel (K : Type*) [Field K] (P : PowerSeries K) (t e : ℕ)
     (hte : t ≤ e) (hP : PowerSeries.constantCoeff P ≠ 0) :
     P ^ t * (P ^ e)⁻¹ = (P ^ (e - t))⁻¹ := by
@@ -166,6 +196,9 @@ lemma pow_mul_pow_inv_cancel (K : Type*) [Field K] (P : PowerSeries K) (t e : �
     one_mul]
   simp_all
 
+/--
+@isnad1 id=eq.3h5v.s7.0f957a155e26 from=translated src=- shape=d7a14e43 vocab=b4a5a116
+-/
 theorem genFun_eq_reduced (K : Type*) [Field K] (m μ : ℕ) {s : ℕ}
     (ξ : Nat.Partition s) (_hm : 2 ≤ m) (h_parts : ∀ i ∈ ξ.parts, i ≤ m)
     (hk : countMaxParts m ξ ≤ μ / m + 1) :
@@ -213,6 +246,9 @@ private lemma polyP_coeff_step_pos (R : Type*) [CommRing R] (m : ℕ) (j : ℕ) 
       Nat.choose_eq_zero_iff.mpr (by omega : 0 < j - 1),
       Nat.cast_zero, mul_zero, sub_self]
 
+/--
+@isnad1 id=eq.0h3v.s6.c1f78004a049 from=translated src=- shape=93627caf vocab=784c6b57
+-/
 theorem polyP_coeff (R : Type*) [CommRing R] (n j : ℕ) :
     (polyP R n).coeff j = (-1 : R) ^ j * (Nat.choose (n - j) j : ℕ) := by
   revert j
@@ -233,6 +269,9 @@ theorem polyP_coeff (R : Type*) [CommRing R] (n j : ℕ) :
         have key := polyP_coeff_step_pos R m (j + 1) (by omega)
         simp_all
 
+/--
+@isnad1 id=eq.0h4v.s7.87a18fe1b22d from=translated src=- shape=86d25439 vocab=df4ae43c
+-/
 theorem D_coeff_mk (K : Type*) [Field K] (m a b : ℕ) :
     (↑(polyP K a * polyP K b) : PowerSeries K) * ((↑(polyP K m) : PowerSeries K))⁻¹ =
       PowerSeries.mk (dCoeff K m a b) := by
@@ -241,6 +280,9 @@ theorem D_coeff_mk (K : Type*) [Field K] (m a b : ℕ) :
 
 /-! ## Theorem 2: Cauchy product form -/
 
+/--
+@isnad1 id=eq.3h6v.s8.44ceb1a17c6a from=translated src=- shape=79093ec9 vocab=c20cb94b
+-/
 theorem thm_comb_cauchy (K : Type*) [Field K] (m μ : ℕ) {s : ℕ}
     (ξ : Nat.Partition s) (hm : 2 ≤ m) (h_parts : ∀ i ∈ ξ.parts, i ≤ m)
     (hk : countMaxParts m ξ ≤ μ / m + 1) (r : ℕ) :
@@ -305,6 +347,9 @@ private lemma coeff_fin_prod_eq_antidiag_sum' (n r : ℕ) (F : Fin n → PowerSe
               fun h => by simp_all [Finset.Nat.mem_antidiagonalTuple]⟩)
     fun l _ => by congr 1
 
+/--
+@isnad1 id=other.0h5v.s8.d25acffe5fe2 from=translated src=- shape=12371664 vocab=341aafe3
+-/
 lemma cauchy_product_as_fin_prod (m μ : ℕ) {s : ℕ}
     (ξ : Nat.Partition s) (r : ℕ) :
     let αs := alphaValues m μ ξ
@@ -333,6 +378,9 @@ lemma cauchy_product_as_fin_prod (m μ : ℕ) {s : ℕ}
   rw [hmerge, coeff_fin_prod_eq_antidiag_sum' (L1 + k) r F]
   exact Finset.sum_congr rfl fun f _ => inner_prod_eq αs m k f
 
+/--
+@isnad1 id=other.3h5v.s7.8f7d3612e463 from=translated src=- shape=0c4cc068 vocab=d7f18c67
+-/
 theorem thm_comb (m μ : ℕ) {s : ℕ}
     (ξ : Nat.Partition s) (hm : 2 ≤ m) (h_parts : ∀ i ∈ ξ.parts, i ≤ m)
     (hk : countMaxParts m ξ ≤ μ / m + 1) (r : ℕ) :
@@ -353,6 +401,9 @@ theorem thm_comb (m μ : ℕ) {s : ℕ}
 
 /-! ## Theorem 3: Part (i) - Factorization -/
 
+/--
+@isnad1 id=eq.0h3v.s8.b89afc7478e6 from=translated src=- shape=5dc609f3 vocab=9b00cf62
+-/
 lemma coe_prod_mul_inv_pow_eq_prod (m k : ℕ)
     (pairs : Fin k → ℕ × ℕ) :
     (↑(∏ ν : Fin k, (polyP ℚ (pairs ν).1 * polyP ℚ (pairs ν).2)) : PowerSeries ℚ) *
@@ -367,6 +418,9 @@ lemma coe_prod_mul_inv_pow_eq_prod (m k : ℕ)
         ∏ _ν : Fin k, ((↑(polyP ℚ m) : PowerSeries ℚ)⁻¹) from (Fin.prod_const k _).symm]
   exact Finset.prod_mul_distrib.symm
 
+/--
+@isnad1 id=eq.6h6v.s8.b1694a8747b4 from=translated src=- shape=583c7e72 vocab=bbe1e74b
+-/
 theorem thm_manifest_factorization (m μ : ℕ) {s : ℕ}
     (ξ : Nat.Partition s) (hm : 2 ≤ m) (h_parts : ∀ i ∈ ξ.parts, i ≤ m)
     (hk_nonneg : countMaxParts m ξ ≤ μ / m + 1)
@@ -389,6 +443,9 @@ theorem thm_manifest_factorization (m μ : ℕ) {s : ℕ}
 
 /-! ## Theorem 3: Part (i), coefficient form -/
 
+/--
+@isnad1 id=eq.0h3v.s7.c1a02850ecde from=translated src=- shape=b7f0ffa1 vocab=be258261
+-/
 lemma coeff_prod_mk_eq_sum_antidiag (k r : ℕ) (g : Fin k → ℕ → ℚ) :
     (PowerSeries.coeff r) (∏ ν : Fin k, PowerSeries.mk (g ν)) =
       ∑ f ∈ Finset.Nat.antidiagonalTuple k r,
@@ -396,6 +453,9 @@ lemma coeff_prod_mk_eq_sum_antidiag (k r : ℕ) (g : Fin k → ℕ → ℚ) :
   rw [coeff_fin_prod_eq_antidiag_sum' k r (fun ν => PowerSeries.mk (g ν))]
   simp_rw [PowerSeries.coeff_mk]
 
+/--
+@isnad1 id=eq.6h7v.s8.615bc68dbd08 from=translated src=- shape=a0072118 vocab=b86e99b1
+-/
 theorem thm_manifest_coeff_formula (m μ : ℕ) {s : ℕ}
     (ξ : Nat.Partition s) (hm : 2 ≤ m) (h_parts : ∀ i ∈ ξ.parts, i ≤ m)
     (hk_nonneg : countMaxParts m ξ ≤ μ / m + 1)
@@ -415,21 +475,33 @@ theorem thm_manifest_coeff_formula (m μ : ℕ) {s : ℕ}
 
 /-! ## Theorem 3: Part (ii) - Nonnegativity of dCoeff -/
 
+/--
+@isnad1 id=eq.0h1v.s4.4c0a79b35488 from=translated src=- shape=4a8e7988 vocab=8b446d2e
+-/
 lemma polyP_map_intCast (n : ℕ) :
     polyP ℚ n = Polynomial.map (Int.castRingHom ℚ) (polyP ℤ n) := by
   ext j
   simp [Polynomial.coeff_map, polyP_coeff]
 
+/--
+@isnad1 id=eq.0h1v.s5.88492c42e60d from=translated src=- shape=3fae0212 vocab=a7e58172
+-/
 lemma polyP_coe_int_constantCoeff (m : ℕ) :
     PowerSeries.constantCoeff (↑(polyP ℤ m) : PowerSeries ℤ) = 1 := by
   simp [polyP_constantCoeff]
 
+/--
+@isnad1 id=eq.0h1v.s6.d7588c0e712f from=translated src=- shape=9eb70fe7 vocab=24c7dd60
+-/
 lemma polyP_map_coe_eq (m : ℕ) :
     (PowerSeries.map (Int.castRingHom ℚ)) (↑(polyP ℤ m) : PowerSeries ℤ) =
     (↑(polyP ℚ m) : PowerSeries ℚ) := by
   rw [polyP_map_intCast m]
   exact Polynomial.polynomial_map_coe.symm
 
+/--
+@isnad1 id=eq.0h1v.s6.f3b24f633bb5 from=translated src=- shape=18af11db vocab=38da2dbb
+-/
 lemma polyP_inv_map_eq (m : ℕ) :
     (PowerSeries.map (Int.castRingHom ℚ))
       ((↑(polyP ℤ m) : PowerSeries ℤ).invOfUnit 1) =
@@ -439,11 +511,17 @@ lemma polyP_inv_map_eq (m : ℕ) :
       rw [Units.val_one]
       exact polyP_coe_int_constantCoeff m), map_one]
 
+/--
+@isnad1 id=ex.0h2v.s6.8f8807ad0769 from=translated src=- shape=33f60bdb vocab=228a5263
+-/
 lemma polyP_inv_coeff_is_int (m u : ℕ) :
     ∃ z : ℤ, (PowerSeries.coeff u) ((↑(polyP ℚ m) : PowerSeries ℚ)⁻¹) = ↑z := by
   rw [← polyP_inv_map_eq m, PowerSeries.coeff_map]
   exact ⟨_, rfl⟩
 
+/--
+@isnad1 id=ex.0h3v.s7.e7beb4f5a797 from=translated src=- shape=4c47c7e2 vocab=a3078733
+-/
 lemma polyP_prod_coeff_is_int (a b u : ℕ) :
     ∃ z : ℤ, (PowerSeries.coeff u) (↑(polyP ℚ a * polyP ℚ b) : PowerSeries ℚ) = ↑z := by
   set p := polyP ℤ a * polyP ℤ b
@@ -454,6 +532,9 @@ lemma polyP_prod_coeff_is_int (a b u : ℕ) :
     rw [Polynomial.map_mul, ← polyP_map_intCast a, ← polyP_map_intCast b]]
   simp
 
+/--
+@isnad1 id=ex.1h3v.s5.56d1a2bd3240 from=translated src=- shape=c7eefe6a vocab=456acc47
+-/
 lemma sum_int_cast_of_each_int {ι : Type*} (s : Finset ι) (f : ι → ℚ)
     (hf : ∀ i ∈ s, ∃ z : ℤ, f i = ↑z) :
     ∃ z : ℤ, ∑ i ∈ s, f i = ↑z := by
@@ -464,6 +545,9 @@ lemma sum_int_cast_of_each_int {ι : Type*} (s : Finset ι) (f : ι → ℚ)
     obtain ⟨z₂, hz₂⟩ := ih (fun i hi => hf i (Finset.mem_cons.mpr (Or.inr hi)))
     exact ⟨z₁ + z₂, by rw [Finset.sum_cons, hz₁, hz₂, Int.cast_add]⟩
 
+/--
+@isnad1 id=ex.2h3v.s8.4a98a6eba9cb from=translated src=- shape=ee37fa68 vocab=5126fb7c
+-/
 lemma int_coeff_mul_int_coeff (α β : PowerSeries ℚ)
     (hα : ∀ n, ∃ z : ℤ, (PowerSeries.coeff n) α = ↑z)
     (hβ : ∀ n, ∃ z : ℤ, (PowerSeries.coeff n) β = ↑z)
@@ -475,6 +559,9 @@ lemma int_coeff_mul_int_coeff (α β : PowerSeries ℚ)
     let ⟨z₂, hz₂⟩ := hβ p.2
     ⟨z₁ * z₂, by rw [hz₁, hz₂, Int.cast_mul]⟩
 
+/--
+@isnad1 id=ex.0h4v.s4.263dc280979c from=translated src=- shape=022e786c vocab=29ae5c05
+-/
 lemma D_coeff_is_int (m a b u : ℕ) :
     ∃ z : ℤ, dCoeff ℚ m a b u = ↑z :=
   int_coeff_mul_int_coeff _ _
@@ -599,6 +686,9 @@ private lemma stripMatrix_det_recurrence (n : ℕ) :
     neg_one_pow_double (n + 1)]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s4.1b07c030e9f2 from=translated src=- shape=7282fd2f vocab=91931ac0
+-/
 lemma stripMatrix_det (m : ℕ) :
     (stripMatrix m).det = ↑(polyP ℚ m) := by
   induction m using Nat.strong_induction_on with
@@ -852,6 +942,9 @@ private lemma matrix_inv_entry_eq {n : ℕ} (A : Matrix (Fin n) (Fin n) (PowerSe
     h_isUnit.unit_spec]
   exact_mod_cast h_isUnit.unit.mul_inv
 
+/--
+@isnad1 id=eq.2h3v.s7.e7dc12969af5 from=translated src=- shape=59803498 vocab=7f7e4590
+-/
 lemma stripMatrix_inv_entry (m : ℕ) (hm : 2 ≤ m) (a j : Fin m)
     (haj : a.val ≤ j.val) :
     (stripMatrix m)⁻¹ a j =
@@ -863,6 +956,9 @@ lemma stripMatrix_inv_entry (m : ℕ) (hm : 2 ≤ m) (a j : Fin m)
     stripMatrix_det, stripMatrix_adjugate_entry m hm a j haj, Polynomial.coe_mul]
   ring
 
+/--
+@isnad1 id=eq.4h4v.s7.c2d977670f3e from=translated src=- shape=dc2b785f vocab=75ad56a9
+-/
 lemma D_coeff_eq_matrix_inv_coeff (m a b u : ℕ) (hm : 2 ≤ m)
     (ha : a ≤ m - 1) (hb : b ≤ m - 1) (hab : a + b ≤ m - 1) :
     dCoeff ℚ m a b u =
@@ -1038,6 +1134,9 @@ private lemma pathCountVec_eq_inv_entry (m : ℕ) (target : Fin m) (i : Fin m) :
       Matrix.one_mulVec]).symm i
   rwa [Matrix.mulVec_single_one] at h
 
+/--
+@isnad1 id=le.2h4v.s7.8460ccf1095d from=translated src=- shape=c8091ab4 vocab=ee027135
+-/
 lemma stripMatrix_inv_coeff_nonneg (m : ℕ) (_hm : 2 ≤ m)
     (a j : Fin m) (_haj : a.val ≤ j.val) (u : ℕ) :
     (0 : ℚ) ≤ (PowerSeries.coeff u) ((stripMatrix m)⁻¹ a j) := by
@@ -1047,6 +1146,9 @@ lemma stripMatrix_inv_coeff_nonneg (m : ℕ) (_hm : 2 ≤ m)
 
 /-! ### Main theorem -/
 
+/--
+@isnad1 id=le.4h4v.s6.55d2a01d3e1a from=translated src=- shape=1e52df41 vocab=73433e70
+-/
 theorem thm_manifest_D_nonneg (m a b u : ℕ) (hm : 2 ≤ m)
     (ha : a ≤ m - 1) (hb : b ≤ m - 1) (hab : a + b ≤ m - 1) :
     (0 : ℚ) ≤ dCoeff ℚ m a b u := by
@@ -1054,6 +1156,9 @@ theorem thm_manifest_D_nonneg (m a b u : ℕ) (hm : 2 ≤ m)
   exact stripMatrix_inv_coeff_nonneg m hm ⟨a, by omega⟩ ⟨m - 1 - b, by omega⟩
     (by simp; omega) u
 
+/--
+@isnad1 id=ex.4h4v.s6.16a3c5dea85d from=translated src=- shape=d474079b vocab=57091683
+-/
 lemma D_coeff_eq_nat_cast (m a b u : ℕ) (hm : 2 ≤ m)
     (ha : a ≤ m - 1) (hb : b ≤ m - 1) (hab : a + b ≤ m - 1) :
     ∃ (w : ℕ), dCoeff ℚ m a b u = ↑w := by
@@ -1065,6 +1170,9 @@ lemma D_coeff_eq_nat_cast (m a b u : ℕ) (hm : 2 ≤ m)
 
 /-! ## Theorem 3: Part (iii) - Nonnegativity of all coefficients -/
 
+/--
+@isnad1 id=le.6h7v.s8.27b1d116dd6b from=translated src=- shape=4d2ccae3 vocab=97bbc40e
+-/
 theorem thm_manifest_coeff_nonneg (m μ : ℕ) {s : ℕ}
     (ξ : Nat.Partition s) (hm : 2 ≤ m) (h_parts : ∀ i ∈ ξ.parts, i ≤ m)
     (hk_nonneg : countMaxParts m ξ ≤ μ / m + 1)

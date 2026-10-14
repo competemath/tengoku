@@ -26,28 +26,49 @@ open Finset
 
 abbrev x : ℕ → Bool := Nat.binaryRec false λ bit k ↦ xor (bit || k.bodd)
 
+/--
+@isnad1 id=eq.0h0v.s3.bd6a57a245f1 from=translated src=- shape=d3a93718 vocab=64886864
+-/
 theorem x_zero : x 0 = false :=
   Nat.binaryRec_zero false λ bit k ↦ xor (bit || k.bodd)
 
+/--
+@isnad1 id=eq.0h1v.s4.5446458dce5f from=translated src=- shape=6cf23fea vocab=8e51a0e7
+-/
 theorem x_mul2 (k : ℕ) : x (2 * k) = xor k.bodd (x k) :=
   Nat.binaryRec_eq false k (Or.inl rfl)
 
+/--
+@isnad1 id=eq.0h1v.s5.73d6ffa495a5 from=translated src=- shape=f53f1fde vocab=e5b1b48e
+-/
 theorem x_mul2_add1 (k : ℕ) : x (2 * k + 1) = !x k := by
   apply (Nat.binaryRec_eq true k (Or.inl rfl)).trans
   rw [Bool.true_or, Bool.true_xor]
 
+/--
+@isnad1 id=eq.0h1v.s4.212ebae9d070 from=translated src=- shape=6cf23fea vocab=8e51a0e7
+-/
 theorem x_mul4 (k : ℕ) : x (4 * k) = xor k.bodd (x k) := by
   rw [Nat.mul_assoc 2 2, x_mul2, x_mul2, Nat.bodd_mul,
     Nat.bodd_two, Bool.false_and, Bool.false_xor]
 
+/--
+@isnad1 id=eq.0h1v.s5.f8deb796851d from=translated src=- shape=0e503fd1 vocab=e5b1b48e
+-/
 theorem x_mul4_add1 (k : ℕ) : x (4 * k + 1) = !x (4 * k) := by
   rw [Nat.mul_assoc 2 2, x_mul2, x_mul2_add1, Nat.bodd_mul,
     Nat.bodd_two, Bool.false_and, Bool.false_xor]
 
+/--
+@isnad1 id=eq.0h1v.s5.086574eb1988 from=translated src=- shape=ab729e76 vocab=4ec3e4c2
+-/
 theorem x_mul4_add2 (k : ℕ) : x (4 * k + 2) = x k := by
   rw [Nat.mul_assoc 2 2, ← Nat.mul_succ, x_mul2, x_mul2_add1, Nat.bodd_succ, Nat.bodd_mul,
     Nat.bodd_two, Bool.false_and, Bool.not_false, Bool.true_xor, Bool.not_not]
 
+/--
+@isnad1 id=eq.0h1v.s5.9724c346c12c from=translated src=- shape=ab729e76 vocab=4ec3e4c2
+-/
 theorem x_mul4_add3 (k : ℕ) : x (4 * k + 3) = x k := by
   show x (2 * 2 * k + 2 + 1) = x k
   rw [Nat.mul_assoc, ← Nat.mul_succ, x_mul2_add1, x_mul2_add1, Bool.not_not]
@@ -56,26 +77,44 @@ theorem x_mul4_add3 (k : ℕ) : x (4 * k + 3) = x k := by
 
 abbrev S (n : ℕ) : ℤ := (range n).sum λ k ↦ cond (x k) (-1) 1
 
+/--
+@isnad1 id=eq.0h0v.s3.11b8962b3de6 from=translated src=- shape=1ac31801 vocab=b73b5313
+-/
 theorem S_zero : S 0 = 0 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.b9b24b91e971 from=translated src=- shape=15113800 vocab=5d9024dc
+-/
 theorem S_succ (a : ℕ) : S a.succ = S a + cond (x a) (-1) 1 :=
   sum_range_succ _ a
 
+/--
+@isnad1 id=eq.0h1v.s5.c2cd9b96a9f9 from=translated src=- shape=a5d129ff vocab=54b22309
+-/
 theorem S_mul4_add2 (k : ℕ) : S (4 * k + 2) = S (4 * k) := by
   rw [S_succ, S_succ, add_assoc, add_eq_left, x_mul4_add1]
   exact (x (4 * k)).recOn rfl rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.e53782512d90 from=translated src=- shape=961f34c0 vocab=f166b3f2
+-/
 theorem S_mul4 : ∀ k : ℕ, S (4 * k) = 2 * S k :=
   Nat.rec rfl λ k h ↦ by
     change S (4 * k + 4) = 2 * S k.succ
     rw [S_succ, x_mul4_add3, S_succ, x_mul4_add2, S_mul4_add2,
       h, add_assoc, ← two_mul, ← mul_add, ← S_succ]
 
+/--
+@isnad1 id=eq.0h1v.s3.4c9a923fed75 from=translated src=- shape=7718e021 vocab=f11706f8
+-/
 theorem S_parity : ∀ k : ℕ, (S k).bodd = k.bodd :=
   Nat.rec rfl λ k h ↦ by
     rw [Nat.bodd_succ, S_succ, Int.bodd_add, h, ← Bool.xor_true]
     exact (x k).rec rfl rfl
 
+/--
+@isnad1 id=iff.1h2v.s6.b35670024017 from=translated src=- shape=75d5bf22 vocab=71a70511
+-/
 theorem S_four_mul_add_eq_zero_iff (q : ℕ) {r : ℕ} (h : r < 4) :
     S (4 * q + r) = 0 ↔ S q = 0 ∧ (r = 0 ∨ r = 2) := by
   refine ⟨fun h0 ↦ (and_iff_right_of_imp ?_).mpr ?_, fun h0 ↦ ?_⟩
@@ -99,7 +138,9 @@ theorem S_four_mul_add_eq_zero_iff (q : ℕ) {r : ℕ} (h : r < 4) :
 
 /-! ### Summary -/
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=le.0h1v.s3.2cb061fe272b from=translated src=- shape=b9369acb vocab=2b4c3497
+-/
 theorem final_solution : ∀ k : ℕ, 0 ≤ S k := by
   ---- Reduce to showing that `x_k = ff` whenever `S_k = 0`
   suffices ∀ k, S k = 0 → x k = false by

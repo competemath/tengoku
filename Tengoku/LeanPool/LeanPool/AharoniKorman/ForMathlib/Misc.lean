@@ -18,6 +18,9 @@ mathlib.
 
 namespace LeanPool.AharoniKorman
 
+/--
+@isnad1 id=subsingl.2h3v.s5.379d7a4fce76 from=translated src=- shape=77615e93 vocab=81f1211a
+-/
 lemma chain_intersect_antichain {α : Type*} [PartialOrder α] {s t : Set α}
     (hs : IsChain (· ≤ ·) s) (ht : IsAntichain (· ≤ ·) t) :
     (s ∩ t).Subsingleton := by

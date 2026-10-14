@@ -371,7 +371,9 @@ private theorem exists_induced_2K2_of_triangleFree_smalldeg_hall.{u_1} : ∀ {V 
 
 open Classical in
 /-- If `D` induces a triangle-free subgraph of `G` with in-`D` degrees in `[1,3]` and
-`|D| ≥ 7`, then `D` contains an induced `2K₂`. -/
+`|D| ≥ 7`, then `D` contains an induced `2K₂`.
+@isnad1 id=ex.4h3v.s8.a3bcef6241ba from=translated src=- shape=985817c3 vocab=7b9e2906
+-/
 theorem exists_induced_2K2_of_triangleFree_smalldeg {V : Type*} [Fintype V]
     (G : SimpleGraph V) (D : Finset V)
     (htri : ∀ a ∈ D, ∀ b ∈ D, ∀ c ∈ D, ¬ (G.Adj a b ∧ G.Adj b c ∧ G.Adj a c))

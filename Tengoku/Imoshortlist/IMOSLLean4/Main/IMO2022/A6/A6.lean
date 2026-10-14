@@ -34,9 +34,15 @@ instance [Add G] : FunLike (InfectiousFun G) G G where
   coe f := f.toFun
   coe_injective f g h := by rwa [InfectiousFun.mk.injEq]
 
+/--
+@isnad1 id=eq.1h3v.s5.541b8178e01b from=translated src=- shape=b15bb5b9 vocab=245df6a0
+-/
 @[ext] theorem ext [Add G] {f g : InfectiousFun G} : (∀ x, f x = g x) → f = g :=
   DFunLike.ext _ _
 
+/--
+@isnad1 id=eq.0h4v.s6.38c9ccfb7b00 from=translated src=- shape=38151fa9 vocab=55572fa5
+-/
 theorem infectious_def [Add G] (f : InfectiousFun G) (x y) : f (x + f y) = f x + f y :=
   f.infectious_def' x y
 
@@ -44,6 +50,9 @@ section
 
 variable [AddGroup G] (f : InfectiousFun G)
 
+/--
+@isnad1 id=eq.0h4v.s7.f05757c45f81 from=translated src=- shape=38151fa9 vocab=84900867
+-/
 theorem infectious_sub (x y) : f (x - f y) = f x - f y := by
   rw [eq_sub_iff_add_eq, ← f.infectious_def, sub_add_cancel]
 
@@ -53,6 +62,9 @@ def rangeSubgroup : AddSubgroup G :=
     rintro _ ⟨x, rfl⟩ _ ⟨y, rfl⟩
     exact ⟨x - f y, (f.infectious_sub x y).trans (sub_eq_add_neg _ _)⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.973ae912054a from=translated src=- shape=e3dbb1ed vocab=54fa259c
+-/
 theorem map_zsmul_map_zero (k : ℤ) : f (k • f 0) = (k + 1) • f 0 := by
   obtain ⟨g, h⟩ : k • f 0 ∈ rangeSubgroup f := f.rangeSubgroup.zsmul_mem ⟨0, rfl⟩ k
   rw [← zero_add (k • _), Int.add_comm, one_add_zsmul, ← h, f.infectious_def]
@@ -75,6 +87,9 @@ end InfectiousFun
 /-- The main definition -/
 def good (G) [AddGroup G] (m n : ℤ) := ∀ f : InfectiousFun G, ∃ z, m • f z = n • z
 
+/--
+@isnad1 id=iff.0h4v.s6.02d2e4fe4a23 from=translated src=- shape=5c512ad2 vocab=a05be76f
+-/
 lemma gcd_addOrderOf_dvd_iff [AddGroup G] {g : G} {a b : ℤ} :
     a.gcd (addOrderOf g) ∣ b.natAbs ↔ ∃ k : ℤ, (a * k) • g = b • g := by
   have h : b.natAbs = b ∨ b.natAbs = -b := b.natAbs_eq.imp Eq.symm Int.eq_neg_comm.mp
@@ -94,6 +109,9 @@ lemma gcd_addOrderOf_dvd_iff [AddGroup G] {g : G} {a b : ℤ} :
     · intro ⟨k, y, h⟩; refine ⟨-k, y, ?_⟩
       rw [← h, mul_neg, ← add_sub_assoc, neg_add_cancel, zero_sub]
 
+/--
+@isnad1 id=good.1h3v.s5.b514b73b7a7e from=translated src=- shape=e5dfa093 vocab=b70634dd
+-/
 theorem imp_good [AddGroup G] (h : ∀ g : G, (m - n).gcd (addOrderOf g) ∣ m.natAbs) :
     good G m n := by
   intro f; replace h := gcd_addOrderOf_dvd_iff.mp (h (f 0))
@@ -106,6 +124,9 @@ section
 variable [AddCommGroup G] (h : good G m n) (H : AddSubgroup G)
 include h
 
+/--
+@isnad1 id=ex.2h6v.s8.49bd5cf456b0 from=translated src=- shape=4539b78c vocab=7dda5693
+-/
 theorem good_mk_of_repFn_prop
     (φ : G ⧸ H → H) (rep : G ⧸ H → G) (hrep : ∀ x, (rep x : G ⧸ H) = x) :
     ∃ (j : G ⧸ H) (h : H), (m - n) • h = -(m • φ j) + n • rep j := by
@@ -117,11 +138,16 @@ theorem good_mk_of_repFn_prop
   rw [eq_neg_add_iff_add_eq, sub_zsmul, ← add_assoc, ← zsmul_add, hz,
     ← zsmul_neg, neg_add_rev, neg_neg, ← zsmul_add, add_neg_cancel_left]
 
-/-- Version of `good_mk_of_repFn'_prop` -/
+/-- Version of `good_mk_of_repFn'_prop`
+@isnad1 id=ex.1h5v.s8.324ad046c2f6 from=translated src=- shape=7f4a5d40 vocab=2ce56b16
+-/
 theorem good_mk_of_Quot_prop (φ : G ⧸ H → H) :
     ∃ (j : G ⧸ H) (h : H), (m - n) • h = -(m • φ j) + n • Quot.out j :=
   good_mk_of_repFn_prop h H φ Quot.out Quot.out_eq
 
+/--
+@isnad1 id=ex.1h5v.s7.852938be258a from=translated src=- shape=c641a841 vocab=8901f60d
+-/
 theorem good_m_zsmul_eq_sub_zsmul (a : H) : ∃ b : H, (m - n) • (b : G) = m • a := by
   classical
   obtain ⟨j, b, h0⟩ := good_mk_of_Quot_prop h H
@@ -136,13 +162,18 @@ theorem good_m_zsmul_eq_sub_zsmul (a : H) : ∃ b : H, (m - n) • (b : G) = m �
 
 end
 
+/--
+@isnad1 id=dvd.1h4v.s5.8000457a4e01 from=translated src=- shape=ff2b18ad vocab=700b2552
+-/
 theorem good_imp [AddCommGroup G] (h : good G m n) (g : G) :
     (m - n).gcd (addOrderOf g) ∣ m.natAbs := by
   obtain ⟨⟨_, k, rfl⟩, hk⟩ :=
     good_m_zsmul_eq_sub_zsmul h _ ⟨g, AddSubgroup.mem_zmultiples g⟩
   exact gcd_addOrderOf_dvd_iff.mpr ⟨k, (mul_zsmul _ _ _).trans hk⟩
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h3v.s5.0233b0301992 from=translated src=- shape=c2dbb10c vocab=700b2552
+-/
 theorem final_solution [AddCommGroup G] :
     good G m n ↔ ∀ g : G, (m - n).gcd (addOrderOf g) ∣ m.natAbs :=
   ⟨good_imp, imp_good⟩

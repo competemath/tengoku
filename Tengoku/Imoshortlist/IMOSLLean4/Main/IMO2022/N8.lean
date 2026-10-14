@@ -28,7 +28,9 @@ open scoped NumberTheorySymbols
 
 /-! ### Some lemmas on Jacobi symbols -/
 
-/-- If `a ∈ {0, 1, -1}`, then `a^{2n + 1} = a` for any `n ∈ ℕ`. -/
+/-- If `a ∈ {0, 1, -1}`, then `a^{2n + 1} = a` for any `n ∈ ℕ`.
+@isnad1 id=eq.1h2v.s6.bcaf6a8b5aa7 from=translated src=- shape=e7b4d06e vocab=b0c84f33
+-/
 theorem pow_odd'_eq_self_of_zero_or_one_or_neg_one
     {a : ℤ} (ha : a = 0 ∨ a = 1 ∨ a = -1) (n) :
     a ^ (2 * n + 1) = a := by
@@ -36,35 +38,49 @@ theorem pow_odd'_eq_self_of_zero_or_one_or_neg_one
   · rw [Int.pow_succ, Int.mul_zero]
   · rw [Int.pow_succ, pow_mul, sq_eq_one_iff.mpr ha, Int.one_pow, Int.one_mul]
 
-/-- `J(a | b)^{2n + 1} = J(a | b)`. -/
+/-- `J(a | b)^{2n + 1} = J(a | b)`.
+@isnad1 id=eq.0h3v.s5.4517a29d3cb6 from=translated src=- shape=a67b9adb vocab=0ac10b09
+-/
 theorem jacobiSym_pow_odd'_eq_self (a b n) : J(a | b) ^ (2 * n + 1) = J(a | b) :=
   pow_odd'_eq_self_of_zero_or_one_or_neg_one (jacobiSym.trichotomy a b) n
 
-/-- `J(a^{2n + 1} | b) = J(a | b)`. -/
+/-- `J(a^{2n + 1} | b) = J(a | b)`.
+@isnad1 id=eq.0h3v.s5.8cfc25024680 from=translated src=- shape=b99a666d vocab=0ac10b09
+-/
 theorem jacobiSym_pow_left_odd'_eq_self (a b n) : J(a ^ (2 * n + 1) | b) = J(a | b) :=
   (jacobiSym.pow_left a _ b).trans (jacobiSym_pow_odd'_eq_self a b n)
 
-/-- `J(2 | 5) = -1`. -/
+/-- `J(2 | 5) = -1`.
+@isnad1 id=eq.0h0v.s4.be43e153b9cb from=translated src=- shape=e918cc0a vocab=195e9057
+-/
 theorem jacobiSym_two_five : J(2 | 5) = -1 :=
   jacobiSym.at_two (Nat.odd_iff.mpr rfl)
 
-/-- If `a ≡ b (mod c)`, then `J(a | c) = J(b | c)`. -/
+/-- If `a ≡ b (mod c)`, then `J(a | c) = J(b | c)`.
+@isnad1 id=eq.1h3v.s4.2e36ad92a8c5 from=translated src=- shape=54ce3919 vocab=462ff683
+-/
 theorem jacobiSym_of_modeq {a b : ℤ} {c : ℕ} (h : a ≡ b [ZMOD c]) : J(a | c) = J(b | c) := by
   rw [jacobiSym.mod_left, h, ← jacobiSym.mod_left]
 
-/-- If `a ≡ b (mod c)`, then `J(a | c) = J(b | c)`, `ℕ` version. -/
+/-- If `a ≡ b (mod c)`, then `J(a | c) = J(b | c)`, `ℕ` version.
+@isnad1 id=eq.1h3v.s4.39e2c66d0cc5 from=translated src=- shape=e829855f vocab=e89204b9
+-/
 theorem jacobiSym_of_modeq_nat {a b c : ℕ} (h : a ≡ b [MOD c]) : J(a | c) = J(b | c) :=
   jacobiSym_of_modeq (Int.natCast_modEq_iff.mpr h)
 
 /-! ### Start of the problem -/
 
-/-- If `N > 0`, then `5 ≢ 3 (mod 2 + N)`. -/
+/-- If `N > 0`, then `5 ≢ 3 (mod 2 + N)`.
+@isnad1 id=not.1h1v.s5.a958bda911e7 from=translated src=- shape=04e238bf vocab=e3d0589b
+-/
 theorem five_not_modeq_three_mod_two_add_N (hN : 0 < N) : ¬5 ≡ 3 [MOD 2 + N] :=
   ---- `5 ≡ 3 (mod 2 + N)` implies `2 + N ∣ 2`, which is impossible since `N > 0`.
   λ h0 ↦ Nat.not_dvd_of_pos_of_lt Nat.two_pos (Nat.lt_add_of_pos_right hN)
     ((Nat.modEq_iff_dvd' (by norm_num : 3 ≤ 5)).mp h0.symm)
 
-/-- If `N ≡ 2 (mod 3)` and `k > 0`, then `5 ≢ 3 (mod 2 + N)`. -/
+/-- If `N ≡ 2 (mod 3)` and `k > 0`, then `5 ≢ 3 (mod 2 + N)`.
+@isnad1 id=not.2h2v.s6.5f30061ae8b9 from=translated src=- shape=93072e83 vocab=935b0fa1
+-/
 theorem twenty_five_pow_not_modeq_nine_mod_four_pow_add_N (hN : N % 3 = 2) (hk : 0 < k) :
     ¬25 ^ k ≡ 9 ^ k [MOD 4 ^ k + N] := by
   ---- First note that `3 ∣ 4^k + N`.
@@ -78,7 +94,9 @@ theorem twenty_five_pow_not_modeq_nine_mod_four_pow_add_N (hN : N % 3 = 2) (hk :
     _ ≠ 0 := Nat.one_ne_zero
     _ = 9 ^ k % 3 := by rw [Nat.pow_mod, Nat.zero_pow hk]
 
-/-- If `N ≡ 5 (mod 60)`, then `5^n ≢ 3^n (mod 2^n + N)` for any `n > 0`. -/
+/-- If `N ≡ 5 (mod 60)`, then `5^n ≢ 3^n (mod 2^n + N)` for any `n > 0`.
+@isnad1 id=not.2h2v.s6.c138113682ee from=translated src=- shape=678b081e vocab=935b0fa1
+-/
 theorem five_pow_not_modeq_three_pow_mod_two_pow_add_N (hn : 0 < n) (hN : N % 60 = 5) :
     ¬5 ^ n ≡ 3 ^ n [MOD 2 ^ n + N] := by
   ---- First solve the case where `n` is even.
@@ -132,6 +150,8 @@ theorem five_pow_not_modeq_three_pow_mod_two_pow_add_N (hn : 0 < n) (hN : N % 60
       exact jacobiSym_of_modeq_nat hN
     _ = 1 := jacobiSym.one_left 3
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=not.1h1v.s6.8d9d18a29aa1 from=translated src=- shape=864eeace vocab=cb46fc80
+-/
 theorem final_solution (hn : 0 < n) : ¬5 ^ n ≡ 3 ^ n [MOD 2 ^ n + 65] :=
   five_pow_not_modeq_three_pow_mod_two_pow_add_N hn rfl

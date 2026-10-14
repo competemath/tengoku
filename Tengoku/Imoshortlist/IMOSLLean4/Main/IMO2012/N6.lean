@@ -26,7 +26,9 @@ namespace IMO2012N6
 
 /-- Let `p ≡ 3 (mod 4)` be a prime number and `x` be a non-negative integer.
   If `p ∣ x^{2^n} - 1` for some `n : ℕ`, then `p ∣ x^2 - 1`.
-  (We do not require `x = 0` due to how subtraction works over `ℕ`.) -/
+  (We do not require `x = 0` due to how subtraction works over `ℕ`.)
+@isnad1 id=dvd.3h3v.s6.007efbaa5be3 from=translated src=- shape=78a0fb9b vocab=d8faf817
+-/
 theorem prime_dvd_sq_sub_one_of_dvd_two_pow_sub_one
     {p x : ℕ} (hp : Nat.Prime p) (hp0 : p % 4 = 3) (hpx : p ∣ x ^ (2 ^ n) - 1) :
     p ∣ x ^ 2 - 1 := by
@@ -61,7 +63,9 @@ theorem prime_dvd_sq_sub_one_of_dvd_two_pow_sub_one
   rw [← Nat.cast_pow, ← Nat.cast_one, ZMod.natCast_eq_natCast_iff] at hpx
   exact (Nat.modEq_iff_dvd' (Nat.pow_pos hx)).mp hpx.symm
 
-/-- If `a, b ≠ 0`, `a ≡ b (mod c)` and `ν_p(b) < ν_p(c)`, then `ν_p(a) = ν_p(b)`. -/
+/-- If `a, b ≠ 0`, `a ≡ b (mod c)` and `ν_p(b) < ν_p(c)`, then `ν_p(a) = ν_p(b)`.
+@isnad1 id=eq.4h4v.s6.29ccd0aeb2cf from=translated src=- shape=3e84de1f vocab=fc2ffa0a
+-/
 theorem factorization_eq_of_modeq_of_lt (ha : a ≠ 0) (hb : b ≠ 0)
     (h : a ≡ b [MOD c]) (h0 : Nat.factorization b p < Nat.factorization c p) :
     Nat.factorization a p = Nat.factorization b p := by
@@ -83,7 +87,9 @@ theorem factorization_eq_of_modeq_of_lt (ha : a ≠ 0) (hb : b ≠ 0)
     exact Nat.pow_succ_factorization_not_dvd hb hp h
 
 open Finset in
-/-- Custom factorization lemma. -/
+/-- Custom factorization lemma.
+@isnad1 id=eq.2h2v.s5.5b531796a1ed from=translated src=- shape=f97fa46b vocab=1d64ccbc
+-/
 lemma Nat_prod_pow_range_factorization {m n : ℕ} (hn : n ≠ 0) (hnm : n < m) :
     ∏ p ∈ range m, p ^ Nat.factorization n p = n := by
   ---- The proof is essentially "transfer the product to a version with `padicValNat`".
@@ -100,7 +106,9 @@ lemma Nat_prod_pow_range_factorization {m n : ℕ} (hn : n ≠ 0) (hnm : n < m) 
 
 open Finset in
 /-- For any positive integer `y`, there exists infinitely many primes
-  `p ≡ 3 (mod 4)` such that `p ∣ 2^n y + 1` for some `n : ℕ`. -/
+  `p ≡ 3 (mod 4)` such that `p ∣ 2^n y + 1` for some `n : ℕ`.
+@isnad1 id=ex.1h2v.s6.de2bf6416a64 from=translated src=- shape=90dcbae2 vocab=1c809693
+-/
 theorem exists_infinite_prime_3mod4_dvd_two_pow_mul_add_one {y : ℕ} (hy : y > 0) (N) :
     ∃ p ≥ N, Nat.Prime p ∧ p % 4 = 3 ∧ ∃ n, p ∣ 2 ^ n * y + 1 := by
   ---- WLOG assume that `y` is odd.
@@ -229,7 +237,9 @@ theorem eq_one_of_two_pow_mul_add_one_dvd_pow_two_pow_sub_one
   rw [Nat.sub_eq_zero_iff_le, Nat.pow_le_one_iff (Nat.succ_ne_zero 1)] at h
   exact Nat.le_antisymm h hx
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=eq.3h2v.s7.e6d55918dff5 from=translated src=- shape=5233f0d0 vocab=ecff02cd
+-/
 theorem final_solution {x y : ℕ} (hx : x > 0) (hy : y > 0)
     (h : ∀ n > 0, 2 ^ n * y + 1 ∣ x ^ (2 ^ n) - 1) : x = 1 := by
   ---- Work with `2y` and `x^2` instead of `y` and `x`.

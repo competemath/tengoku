@@ -39,20 +39,26 @@ This does not change the statement to be proved.
 namespace IMOSL
 namespace IMO2008N6
 
-/-- If `k + m = n`, then `k^2 ≡ m^2 (mod n)`. -/
+/-- If `k + m = n`, then `k^2 ≡ m^2 (mod n)`.
+@isnad1 id=modeq.1h3v.s5.3697fb3c9228 from=translated src=- shape=8cc212af vocab=3b5a0f98
+-/
 theorem sq_modeq_sq_of_add_eq (h : k + m = n) : k ^ 2 ≡ m ^ 2 [MOD n] := by
   subst h; refine (Nat.ModEq.refl (k * m)).add_right_cancel ?_
   rw [Nat.pow_two, Nat.pow_two, ← Nat.mul_add, ← Nat.add_mul,
     Nat.ModEq, Nat.mul_mod_left, Nat.add_comm, Nat.mul_mod_right]
 
-/-- If `k ≤ n` and `n ∣ k^2 + c`, then `n ∣ (n - k)^2 + c`. -/
+/-- If `k ≤ n` and `n ∣ k^2 + c`, then `n ∣ (n - k)^2 + c`.
+@isnad1 id=dvd.2h3v.s6.91933401d36c from=translated src=- shape=f676eb71 vocab=499afad1
+-/
 theorem dvd_sub_sq_add_of_le
     {k n : ℕ} (h : k ≤ n) (h0 : n ∣ k ^ 2 + c) : n ∣ (n - k) ^ 2 + c := by
   rw [Nat.dvd_iff_mod_eq_zero, ← Nat.dvd_iff_mod_eq_zero.mp h0]
   exact (sq_modeq_sq_of_add_eq (Nat.sub_add_cancel h)).add_right c
 
 /-- If there exists an integer `m` such that `n ∣ m^2 + c`,
-  then such `m` exist even with the restriction `2m ≤ p`. -/
+  then such `m` exist even with the restriction `2m ≤ p`.
+@isnad1 id=ex.1h2v.s6.eb255e2665a8 from=translated src=- shape=e39e9663 vocab=bcb3a90b
+-/
 theorem exists_two_mul_le_of_exists_dvd_sq_add (hnc : ∃ m, n ∣ m ^ 2 + c) :
     ∃ m, 2 * m ≤ n ∧ n ∣ m ^ 2 + c := by
   rcases hnc with ⟨m, hm⟩
@@ -75,7 +81,9 @@ theorem exists_two_mul_le_of_exists_dvd_sq_add (hnc : ∃ m, n ∣ m ^ 2 + c) :
   exact ⟨n - m, hm1, dvd_sub_sq_add_of_le (Nat.le_of_lt hm0) hm⟩
 
 /-- If `p ≡ 1 (mod 4)`, then there exists an integer `n`
-  such that `p ≥ 2n` and `p ∣ n^2 + 1`. -/
+  such that `p ≥ 2n` and `p ∣ n^2 + 1`.
+@isnad1 id=ex.2h1v.s6.be21b74437a3 from=translated src=- shape=fe1440e6 vocab=23d7d0a2
+-/
 theorem exists_two_mul_le_and_dvd_sq_add_one (hp : Nat.Prime p) (hp0 : p ≡ 1 [MOD 4]) :
     ∃ n, 2 * n ≤ p ∧ p ∣ n ^ 2 + 1 := by
   have : Fact (Nat.Prime p) := ⟨hp⟩
@@ -86,7 +94,9 @@ theorem exists_two_mul_le_and_dvd_sq_add_one (hp : Nat.Prime p) (hp0 : p ≡ 1 [
       ZMod.natCast_val, ZMod.cast_id, sq, ← hc, neg_add_cancel]
   exact exists_two_mul_le_of_exists_dvd_sq_add ⟨c.val, hc⟩
 
-/-- If `n` is odd, then `n^2 ≡ 1 (mod 8)`. -/
+/-- If `n` is odd, then `n^2 ≡ 1 (mod 8)`.
+@isnad1 id=modeq.1h1v.s5.ae9bcb3bd360 from=translated src=- shape=4f400031 vocab=1e8cec54
+-/
 theorem sq_modeq_one_eight_of_odd (hn : Odd n) : n ^ 2 ≡ 1 [MOD 8] := by
   replace hn : n % 2 = 1 := Nat.odd_iff.mp hn
   change n ^ 2 % 8 = 1
@@ -98,7 +108,9 @@ theorem sq_modeq_one_eight_of_odd (hn : Odd n) : n ^ 2 ≡ 1 [MOD 8] := by
   revert hn; revert n; decide
 
 /-- If `p ≡ 1 (mod 8)`, then there exists an integer `n`
-  such that `p > 2n + √(10n)` and `p ∣ n^2 + 1`. -/
+  such that `p > 2n + √(10n)` and `p ∣ n^2 + 1`.
+@isnad1 id=ex.2h1v.s6.b08a7129ffa7 from=translated src=- shape=6b73ed63 vocab=249fff96
+-/
 theorem exists_two_mul_add_sqrt_10_mul_lt_and_dvd_sq_add_one
     (hp : Nat.Prime p) (hp0 : p ≡ 1 [MOD 8]) :
     ∃ n, 2 * n + Nat.sqrt (10 * n) < p ∧ p ∣ n ^ 2 + 1 := by
@@ -133,7 +145,9 @@ theorem exists_two_mul_add_sqrt_10_mul_lt_and_dvd_sq_add_one
   rw [Nat.succ_mul, Nat.add_lt_add_iff_right, Nat.mul_right_comm, ← Nat.sqrt_lt'] at hl
   exact Nat.add_lt_of_lt_sub' hl
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ex.0h1v.s6.cf5cbeb9b75a from=translated src=- shape=3f627572 vocab=0209f463
+-/
 theorem final_solution (N) :
     ∃ n ≥ N, ∃ p, Nat.Prime p ∧ 2 * n + Nat.sqrt (10 * n) < p ∧ p ∣ n ^ 2 + 1 := by
   ---- We first pick the primes `p` with the condition `p > N^2` and `p ≡ 1 (mod 8)`.

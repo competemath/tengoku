@@ -31,7 +31,9 @@ open Finset
 /-- The function `f(n) = 1/n ∑_{k ≤ n} ⌊n/k⌋`. -/
 def f (n : ℕ) : Rat := Rat.divInt ((∑ k ∈ Icc 1 n, n / k : ℕ) : ℤ) n
 
-/-- The formula `∑_{k ≤ n} ⌊n/k⌋ = ∑_{k ≤ n} d(k)`. -/
+/-- The formula `∑_{k ≤ n} ⌊n/k⌋ = ∑_{k ≤ n} d(k)`.
+@isnad1 id=eq.0h1v.s5.dfa06e4e7023 from=translated src=- shape=982b6939 vocab=3bac2580
+-/
 theorem sum_div_eq_sum_card_divisors (n : ℕ) :
     ∑ k ∈ Icc 1 n, n / k = ∑ k ∈ Icc 1 n, #k.divisors := by
   ---- Proceed by induction.
@@ -48,7 +50,9 @@ theorem sum_div_eq_sum_card_divisors (n : ℕ) :
     _ = ∑ k ∈ Icc 1 (n + 1), #k.divisors := by
       rw [n_ih, sum_Icc_succ_top n.succ_pos, ← Ico_succ_right_eq_Icc]; rfl
 
-/-- If `m ∑_{k ≤ n} d(k) < n ∑_{k ≤ m} d(k)`, then `f(n) < f(m)`. -/
+/-- If `m ∑_{k ≤ n} d(k) < n ∑_{k ≤ m} d(k)`, then `f(n) < f(m)`.
+@isnad1 id=lt.1h2v.s6.2dc330333f7d from=translated src=- shape=167a7b65 vocab=457ba133
+-/
 theorem f_lt_f_of_sum_div
     {m n : ℕ} (h : m * ∑ k ∈ Icc 1 n, #k.divisors < n * ∑ k ∈ Icc 1 m, #k.divisors) :
     f n < f m := by
@@ -70,7 +74,9 @@ theorem f_lt_f_of_sum_div
 /-! ### Part 1 -/
 
 /-- Let `g : ℕ → ℕ` be an unbounded function.
-  Then there exists infinitely many `n` such that `g(k) < g(n)` for all `k < n`. -/
+  Then there exists infinitely many `n` such that `g(k) < g(n)` for all `k < n`.
+@isnad1 id=ex.1h2v.s5.efc646a76f6c from=translated src=- shape=636e8a68 vocab=590c6ac3
+-/
 theorem exists_infinite_map_lt_of_lt_of_unbounded {g : ℕ → ℕ} (hg : ∀ M, ∃ n, M < g n) (N) :
     ∃ n ≥ N, ∀ k < n, g k < g n := by
   ---- If all such `n` are `≤ N`, then all values of `g` are at most `max{g(k) : k ≤ N}`.
@@ -83,7 +89,9 @@ theorem exists_infinite_map_lt_of_lt_of_unbounded {g : ℕ → ℕ} (hg : ∀ M,
   · obtain ⟨k, hk, hk0⟩ : ∃ k < n, g n ≤ g k := hg _ hn
     exact hk0.trans (n_ih k hk)
 
-/-- There exists infinitely many `n` such that `d(k) < d(n)` for all `k < n`. -/
+/-- There exists infinitely many `n` such that `d(k) < d(n)` for all `k < n`.
+@isnad1 id=ex.0h1v.s4.3dc92e7fcd9d from=translated src=- shape=c5f7c992 vocab=97ebf5d5
+-/
 theorem exists_infinite_card_divisors_lt_of_lt (N : ℕ) :
     ∃ n ≥ N, ∀ k < n, #k.divisors < #n.divisors :=
   have h (M) : ∃ n : ℕ, M < #n.divisors := by
@@ -92,7 +100,9 @@ theorem exists_infinite_card_divisors_lt_of_lt (N : ℕ) :
     exact Nat.lt_add_one M
   exists_infinite_map_lt_of_lt_of_unbounded h N
 
-/-- If `n > 1` and `d(k) < d(n)` for all `k < n`, then `f(n - 1) < f(n)`. -/
+/-- If `n > 1` and `d(k) < d(n)` for all `k < n`, then `f(n - 1) < f(n)`.
+@isnad1 id=lt.2h1v.s5.ca0c5c5d6b6a from=translated src=- shape=dcc9680b vocab=a5b3b144
+-/
 theorem f_pred_lt_of_card_divisors (hn : n > 0) (hn0 : ∀ k < n, #k.divisors < #n.divisors) :
     f (n - 1) < f n := by
   ---- The case `n = 1` follows by how division is defined in Lean.
@@ -113,7 +123,9 @@ theorem f_pred_lt_of_card_divisors (hn : n > 0) (hn0 : ∀ k < n, #k.divisors < 
     _ = (n - 1) * ∑ k ∈ Icc 1 n, #k.divisors := by
       rw [← Nat.mul_add, ← sum_Icc_succ_top (Nat.succ_pos _), hn2]
 
-/-- Final solution, part 1 -/
+/-- Final solution, part 1
+@isnad1 id=ex.0h1v.s4.1fa0aec11e8b from=translated src=- shape=f6438ca2 vocab=4d705f65
+-/
 theorem final_solution_part1 (N : ℕ) : ∃ n ≥ N, f n < f (n + 1) := by
   ---- Pick some `t > N` such that `d(k) < d(t)` for all `k < t`.
   obtain ⟨t, ht, ht0⟩ : ∃ t > N, ∀ k < t, #k.divisors < #t.divisors :=
@@ -127,7 +139,9 @@ theorem final_solution_part1 (N : ℕ) : ∃ n ≥ N, f n < f (n + 1) := by
 
 /-! ### Part 2 -/
 
-/-- For `n > 1`, we have `d(n) > 1`. -/
+/-- For `n > 1`, we have `d(n) > 1`.
+@isnad1 id=lt.1h1v.s4.a7928c861060 from=translated src=- shape=2b5cef4b vocab=75fba90f
+-/
 theorem one_lt_card_divisors {n : ℕ} (hn : n > 1) : #n.divisors > 1 := calc
   1 < #n.properDivisors + 1 :=
     Nat.lt_add_of_pos_left (card_pos.mpr ⟨1, Nat.one_mem_properDivisors_iff_one_lt.mpr hn⟩)
@@ -135,7 +149,9 @@ theorem one_lt_card_divisors {n : ℕ} (hn : n > 1) : #n.divisors > 1 := calc
     (card_insert_of_notMem Nat.self_notMem_properDivisors).symm
   _ = #n.divisors := congrArg card (Nat.insert_self_properDivisors (Nat.ne_zero_of_lt hn))
 
-/-- For `n ≥ 6`, we have `∑_{k ≤ n} d(k) > 2n`. -/
+/-- For `n ≥ 6`, we have `∑_{k ≤ n} d(k) > 2n`.
+@isnad1 id=lt.1h1v.s5.6b799991bba9 from=translated src=- shape=d6ab3f67 vocab=b3faef47
+-/
 theorem two_mul_lt_sum_divisors {n : ℕ} (hn : n ≥ 6) :
     2 * n < ∑ k ∈ Icc 1 n, #k.divisors := by
   ---- By induction, we just have to check at `n = 6`.
@@ -146,7 +162,9 @@ theorem two_mul_lt_sum_divisors {n : ℕ} (hn : n ≥ 6) :
       Nat.add_lt_add_of_lt_of_le n_ih (one_lt_card_divisors hn)
     _ = ∑ k ∈ Icc 1 (n + 1), #k.divisors := (sum_Icc_succ_top hn.le _).symm
 
-/-- If `p > 6` is prime, then `f(p) < f(p - 1)`. -/
+/-- If `p > 6` is prime, then `f(p) < f(p - 1)`.
+@isnad1 id=lt.2h1v.s5.55d0163f93c7 from=translated src=- shape=a4fd0fe8 vocab=b79ce986
+-/
 theorem f_lt_pred_of_prime {p : ℕ} (hp : p > 6) (hp0 : p.Prime) : f p < f (p - 1) := by
   refine f_lt_f_of_sum_div ?_
   have hp1 : p - 1 + 1 = p := Nat.succ_pred_prime hp0
@@ -159,7 +177,9 @@ theorem f_lt_pred_of_prime {p : ℕ} (hp : p > 6) (hp0 : p.Prime) : f p < f (p -
       Nat.add_lt_add_left (two_mul_lt_sum_divisors (Nat.le_pred_of_lt hp)) _
     _ = p * ∑ k ∈ Icc 1 (p - 1), #k.divisors := by rw [← Nat.add_one_mul, hp1]
 
-/-- Final solution, part 2 -/
+/-- Final solution, part 2
+@isnad1 id=ex.0h1v.s4.83c4abc98fb5 from=translated src=- shape=d6717ebf vocab=4d705f65
+-/
 theorem final_solution_part2 (N : ℕ) : ∃ n ≥ N, f (n + 1) < f n := by
   ---- Take any prime `p > max(6, N)`.
   obtain ⟨p, hp, hp0⟩ : ∃ p > max 6 N, Nat.Prime p := Nat.exists_infinite_primes _

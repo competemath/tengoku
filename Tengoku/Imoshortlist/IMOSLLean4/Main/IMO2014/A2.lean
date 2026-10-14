@@ -36,43 +36,59 @@ def f [Ring R] [Invertible (2 : R)] [LT R] [DecidableLT R] (x : R) : R :=
 
 variable [CommRing R] [Invertible (2 : R)] [LinearOrder R]
 
-/-- If `x < 1/2` then `f(x) = x + 1/2`. -/
+/-- If `x < 1/2` then `f(x) = x + 1/2`.
+@isnad1 id=eq.1h2v.s7.ccc15884aa5b from=translated src=- shape=b11fc687 vocab=c3f33d3e
+-/
 theorem f_of_lt_invOf_two {x : R} (hx : x < ⅟2) : f x = x + ⅟2 :=
   ite_eq_left hx
 
-/-- If `x ≥ 1/2` then `f(x) = x^2`. -/
+/-- If `x ≥ 1/2` then `f(x) = x^2`.
+@isnad1 id=eq.1h2v.s7.d5e80338ca85 from=translated src=- shape=01badad6 vocab=d3660d3f
+-/
 theorem f_of_invOf_two_le {x : R} (hx : ⅟2 ≤ x) : f x = x ^ 2 :=
   ite_eq_right hx.not_gt
 
 variable [IsStrictOrderedRing R]
 
-/-- If `x > 0`, then `f(x) > 0`. -/
+/-- If `x > 0`, then `f(x) > 0`.
+@isnad1 id=lt.1h2v.s7.fb65ee83322d from=translated src=- shape=87e64feb vocab=3b7b426c
+-/
 theorem f_pos {x : R} (hx : x > 0) : f x > 0 := by
   unfold f; split_ifs
   exacts [add_pos hx (invOf_pos.mp two_pos), pow_pos hx 2]
 
-/-- If `x > 0`, then `f^n(x) > 0` for all `n : ℕ`. -/
+/-- If `x > 0`, then `f^n(x) > 0` for all `n : ℕ`.
+@isnad1 id=lt.1h3v.s7.c446839dbdd0 from=translated src=- shape=f2ba752f vocab=580a9348
+-/
 theorem f_iterate_pos {x : R} (hx : x > 0) (n : ℕ) : f^[n] x > 0 := by
   induction n generalizing x with | zero => exact hx | succ n n_ih => exact n_ih (f_pos hx)
 
-/-- If `x < 1`, then `f(x) < 1`. -/
+/-- If `x < 1`, then `f(x) < 1`.
+@isnad1 id=lt.1h2v.s7.fd6483069a80 from=translated src=- shape=87e64feb vocab=cb7b7e25
+-/
 theorem f_lt_one {x : R} (hx0 : x < 1) : f x < 1 := by
   unfold f; split_ifs with hx1
   · rwa [← invOf_two_add_invOf_two, add_lt_add_iff_right]
   · replace hx1 : 0 ≤ x := (invOf_nonneg.mpr zero_le_two).trans (not_lt.mp hx1)
     exact pow_lt_one₀ hx1 hx0 (Nat.succ_ne_zero 1)
 
-/-- If `x < 1`, then `f^n(x) < 1` for all `n : ℕ`. -/
+/-- If `x < 1`, then `f^n(x) < 1` for all `n : ℕ`.
+@isnad1 id=lt.1h3v.s7.12c09d2de3f7 from=translated src=- shape=f2ba752f vocab=c93e270f
+-/
 theorem f_iterate_lt_one {x : R} (hx : x < 1) (n : ℕ) : f^[n] x < 1 := by
   induction n generalizing x with | zero => exact hx | succ n n_ih => exact n_ih (f_lt_one hx)
 
 omit [IsStrictOrderedRing R] in
-/-- If `a, b < 1/2`, then `f(b) - f(a) = b - a`. -/
+/-- If `a, b < 1/2`, then `f(b) - f(a) = b - a`.
+@isnad1 id=eq.2h3v.s7.eacae4a09c8d from=translated src=- shape=36ca7a82 vocab=349c4f9a
+-/
 theorem f_sub_f_of_lt_invOf_two {a b : R} (ha : a < ⅟2) (hb : b < ⅟2) :
     f b - f a = b - a := by
   rw [f_of_lt_invOf_two ha, f_of_lt_invOf_two hb, add_sub_add_right_eq_sub]
 
-/-- If `b ≥ a ≥ 1/2`, then `f(b) - f(a) ≥ (b - a) + (b - a)^2`. -/
+/-- If `b ≥ a ≥ 1/2`, then `f(b) - f(a) ≥ (b - a) + (b - a)^2`.
+@isnad1 id=le.2h3v.s8.45db328fb1e9 from=translated src=- shape=020cb2ce vocab=97f45a47
+-/
 theorem f_sub_f_of_invOf_two_le {a b : R} (ha : ⅟2 ≤ a) (hab : a ≤ b) :
     (b - a) + (b - a) ^ 2 ≤ f b - f a := calc
   _ = (b - a) * (1 + (b - a)) := by rw [sq, mul_one_add]
@@ -84,7 +100,9 @@ theorem f_sub_f_of_invOf_two_le {a b : R} (ha : ⅟2 ≤ a) (hab : a ≤ b) :
 
 /-- Suppose that `0 < a ≤ b < 1`, and `(f(a) - a)(f(b) - b) ≥ 0`.
   Then one of the following holds: (1). `f(b) - f(a) ≥ (b - a) + (b - a)^2`; or
-  (2). `f(b) - f(a) = b - a` and `f^2(b) - f^2(a) ≥ (b - a) + (b - a)^2`. -/
+  (2). `f(b) - f(a) = b - a` and `f^2(b) - f^2(a) ≥ (b - a) + (b - a)^2`.
+@isnad1 id=or.4h3v.s9.61296f26aeee from=translated src=- shape=a7de936a vocab=798bb56d
+-/
 theorem main_lemma
     {a b : R} (ha : a > 0) (hab : a ≤ b) (hb : b < 1) (h : 0 ≤ (f a - a) * (f b - b)) :
     (b - a + (b - a) ^ 2 ≤ f b - f a) ∨
@@ -115,7 +133,9 @@ variable [Archimedean R] {a b : R} (ha : a > 0) (hab : a < b) (hb : b < 1)
 include ha hab hb
 
 /-- Suppose that `R` is archimedean. Then for any `a, b : R` with `0 < a < b < 1`,
-  there exists `n : ℕ` such that `(f^{n + 1}(a) - f^n(a))(f^{n + 1}(b) - f^n(b)) < 0`. -/
+  there exists `n : ℕ` such that `(f^{n + 1}(a) - f^n(a))(f^{n + 1}(b) - f^n(b)) < 0`.
+@isnad1 id=ex.3h3v.s8.cf2977e2f578 from=translated src=- shape=5648df70 vocab=0689eae0
+-/
 theorem exists_diff_iterate_mul_diff_iterate_neg :
     ∃ n, (f^[n + 1] a - f^[n] a) * (f^[n + 1] b - f^[n] b) < 0 := by
   replace ha (n : ℕ) : f^[n] a > 0 := f_iterate_pos ha n
@@ -163,7 +183,9 @@ theorem exists_diff_iterate_mul_diff_iterate_neg :
     _ < 1 - 0 := sub_lt_sub (hb _) (ha _)
     _ = 1 := sub_zero _
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ex.3h3v.s8.37c8df70984c from=translated src=- shape=16dc7c32 vocab=434cdf78
+-/
 theorem final_solution : ∃ n > 0, (f^[n] a - f^[n - 1] a) * (f^[n] b - f^[n - 1] b) < 0 := by
   obtain ⟨n, hn⟩ : ∃ n, (f^[n + 1] a - f^[n] a) * (f^[n + 1] b - f^[n] b) < 0 :=
     exists_diff_iterate_mul_diff_iterate_neg ha hab hb

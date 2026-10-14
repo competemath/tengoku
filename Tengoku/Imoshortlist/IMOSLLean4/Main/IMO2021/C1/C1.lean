@@ -30,6 +30,9 @@ structure FiniteIncidenceColouring (V α : Type*) where
 
 variable [Infinite V] (C : FiniteIncidenceColouring V α)
 
+/--
+@isnad1 id=ex.1h3v.s6.acaf7877aa98 from=translated src=- shape=f4f80b98 vocab=af8c5fb2
+-/
 theorem monochromatic_of_triangle
     (h : ∀ {x y z}, y ≠ z → C.colour x y = C.colour x z → C.colour y z = C.colour x z) :
     ∃ c : α, ∀ x y : V, x ≠ y → C.colour x y = c := by
@@ -62,7 +65,9 @@ theorem monochromatic_of_triangle
   refine h hv ?_
   rw [C.colour_symm, ← h h0 hw0, h h0 hw, C.colour_symm]
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ex.1h3v.s6.a4f8f5b0342d from=translated src=- shape=888de252 vocab=af8c5fb2
+-/
 theorem final_solution (h : ∀ c : α, ∃ x y : V, x ≠ y ∧ C.colour x y ≠ c) :
     ∃ x y z, y ≠ z ∧ C.colour x y = C.colour x z ∧ C.colour y z ≠ C.colour x z := by
   contrapose! h; exact monochromatic_of_triangle C λ h0 ↦ h _ _ _ h0

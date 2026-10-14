@@ -29,12 +29,18 @@ variable [AddCommGroup G] [AddCancelCommMonoid H] (hH : ∀ x y : H, 2 • x = 2
 
 include hH h
 
+/--
+@isnad1 id=eq.2h3v.s7.9a128fad71fb from=translated src=- shape=8f820c05 vocab=196eb6f1
+-/
 @[deprecated "Prefer solving the functional equation directly." (since := "2025-03-08")]
 lemma map_zero : f 0 = 0 := by
   specialize h 0 0
   rw [add_zero, sub_zero, two_nsmul, left_eq_add, ← two_nsmul] at h
   exact hH _ _ (h.trans (nsmul_zero 2).symm)
 
+/--
+@isnad1 id=eq.2h4v.s7.a4beea8e2701 from=translated src=- shape=e0fd5588 vocab=acfcbe6c
+-/
 @[deprecated "Prefer solving the functional equation directly." (since := "2025-03-08")]
 lemma map_even (x) : f (-x) = f x := by
   have h0 := h 0 x
@@ -63,6 +69,9 @@ def BilinMap_at (x : G) : G →+ H :=
         add_right_comm, ← add_assoc x, ← add_assoc, ← add_assoc,
         map_triple hH h, add_right_comm, add_assoc] }
 
+/--
+@isnad1 id=eq.2h5v.s8.f2a725ffafba from=translated src=- shape=a13837df vocab=cbaa51d6
+-/
 @[deprecated "Prefer solving the functional equation directly." (since := "2025-03-08")]
 lemma BilinMap_at_symm (x y : G) : BilinMap_at hH h x y = BilinMap_at hH h y x :=
   congrArg₂ (f · - ·) (add_comm x y) (add_comm (f x) (f y))
@@ -77,18 +86,30 @@ def BilinMap : G →+ G →+ H :=
       rw [BilinMap_at_symm hH h, map_add]
       apply congrArg₂ <;> exact BilinMap_at_symm hH h _ _ }
 
+/--
+@isnad1 id=eq.2h5v.s10.e2c9405ba431 from=translated src=- shape=f0d5cd9e vocab=cb82a49e
+-/
 @[deprecated "Prefer solving the functional equation directly." (since := "2025-03-08")]
 lemma BilinMap_symm (x y : G) : BilinMap hH h x y = BilinMap hH h y x :=
   BilinMap_at_symm hH h x y
 
+/--
+@isnad1 id=eq.2h5v.s9.2d0e6811f3c6 from=translated src=- shape=bf40dcd9 vocab=cb82a49e
+-/
 @[deprecated "Prefer solving the functional equation directly." (since := "2025-03-08")]
 lemma BilinMap_def (x y : G) : BilinMap hH h x y = f (x + y) - (f x + f y) := rfl
 
+/--
+@isnad1 id=eq.2h4v.s9.58832f24c441 from=translated src=- shape=02a645ac vocab=cb82a49e
+-/
 @[deprecated "Prefer solving the functional equation directly." (since := "2025-03-08")]
 lemma BilinMap_eq_two_nsmul (x : G) : BilinMap hH h x x = 2 • f x := by
   rw [two_nsmul, ← neg_inj, ← map_neg, BilinMap_def,
     add_neg_cancel, map_zero hH h, map_even hH h, zero_sub]
 
+/--
+@isnad1 id=eq.2h5v.s9.a26a575b653b from=translated src=- shape=18242698 vocab=cb82a49e
+-/
 @[deprecated "Prefer solving the functional equation directly." (since := "2025-03-08")]
 lemma two_nsmul_BilinMap_eq (x y : G) :
     2 • BilinMap hH h x y = f (x + y) - f (x - y) := by

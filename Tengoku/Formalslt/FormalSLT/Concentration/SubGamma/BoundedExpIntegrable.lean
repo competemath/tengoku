@@ -21,6 +21,7 @@ namespace FormalSLT.Concentration.SubGamma
 
 If `|X| ≤ b` almost surely on a probability space, then `exp(λ X)` is
 integrable for every `λ`.
+@isnad1 id=integrab.2h6v.s6.b76251f564b9 from=translated src=- shape=cdf39521 vocab=d880ab24
 -/
 theorem integrable_exp_mul_of_bounded
     {Ω : Type*} {mΩ : MeasurableSpace Ω}

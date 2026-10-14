@@ -62,13 +62,17 @@ def diagonalGaussianDensity {d : ℕ}
     (params : DiagonalGaussianParams d) (x : GaussianParameterSpace d) : ℝ :=
   ∏ i, gaussianCoordinateDensity (params.mean i) (params.variance i) (x i)
 
-/-- The one-dimensional Gaussian density factor is nonnegative. -/
+/-- The one-dimensional Gaussian density factor is nonnegative.
+@isnad1 id=le.0h3v.s4.4d8593605e6e from=translated src=- shape=ac9c39a3 vocab=f5c425ac
+-/
 theorem gaussianCoordinateDensity_nonneg (mean variance x : ℝ) :
     0 ≤ gaussianCoordinateDensity mean variance x := by
   unfold gaussianCoordinateDensity
   exact mul_nonneg (inv_nonneg.mpr (Real.sqrt_nonneg _)) (Real.exp_pos _).le
 
-/-- The product density for a diagonal Gaussian is nonnegative. -/
+/-- The product density for a diagonal Gaussian is nonnegative.
+@isnad1 id=le.0h3v.s4.d68015e6632e from=translated src=- shape=d78b0cc0 vocab=516138d9
+-/
 theorem diagonalGaussianDensity_nonneg {d : ℕ}
     (params : DiagonalGaussianParams d) (x : GaussianParameterSpace d) :
     0 ≤ diagonalGaussianDensity params x := by
@@ -86,7 +90,9 @@ def diagonalGaussianMeasure {d : ℕ}
     (params : DiagonalGaussianParams d) : Measure (GaussianParameterSpace d) :=
   volume.withDensity (diagonalGaussianENNRealDensity params)
 
-/-- A diagonal Gaussian measure is absolutely continuous with respect to volume. -/
+/-- A diagonal Gaussian measure is absolutely continuous with respect to volume.
+@isnad1 id=absolute.0h2v.s5.e10196033e0b from=translated src=- shape=33820980 vocab=78598949
+-/
 theorem diagonalGaussianMeasure_absolutelyContinuous_volume {d : ℕ}
     (params : DiagonalGaussianParams d) :
     diagonalGaussianMeasure params ≪ volume := by
@@ -98,7 +104,9 @@ def sphericalGaussianMeasure {d : ℕ}
     (params : SphericalGaussianParams d) : Measure (GaussianParameterSpace d) :=
   diagonalGaussianMeasure params.toDiagonal
 
-/-- A spherical Gaussian measure is absolutely continuous with respect to volume. -/
+/-- A spherical Gaussian measure is absolutely continuous with respect to volume.
+@isnad1 id=absolute.0h2v.s5.1c87cbc415f7 from=translated src=- shape=33820980 vocab=2eabc9c5
+-/
 theorem sphericalGaussianMeasure_absolutelyContinuous_volume {d : ℕ}
     (params : SphericalGaussianParams d) :
     sphericalGaussianMeasure params ≪ volume := by
@@ -118,7 +126,9 @@ def diagonalGaussianKLClosedForm {d : ℕ}
       (posterior.mean i - prior.mean i) ^ (2 : Nat) / prior.variance i -
       1 + Real.log (prior.variance i / posterior.variance i)) / 2
 
-/-- The diagonal Gaussian KL backend is the standard coordinatewise closed form. -/
+/-- The diagonal Gaussian KL backend is the standard coordinatewise closed form.
+@isnad1 id=eq.0h3v.s4.24682494d732 from=translated src=- shape=1acb4e4b vocab=020c0b31
+-/
 theorem diagonalGaussianKL_eq_sum_closedForm {d : ℕ}
     (posterior prior : DiagonalGaussianParams d) :
     diagonalGaussianKL posterior prior =
@@ -144,7 +154,9 @@ def sphericalGaussianKLClosedForm {d : ℕ}
       squaredMeanDistance posterior.mean prior.mean / prior.variance) /
     2
 
-/-- Spherical Gaussian KL formula. -/
+/-- Spherical Gaussian KL formula.
+@isnad1 id=eq.0h3v.s4.350eb2a9a2d0 from=translated src=- shape=1acb4e4b vocab=139264b0
+-/
 theorem sphericalGaussianKL_eq_closedForm {d : ℕ}
     (posterior prior : SphericalGaussianParams d) :
     sphericalGaussianKL posterior prior =
@@ -216,7 +228,9 @@ theorem sphericalGaussianKL_eq_closedForm {d : ℕ}
               2 := by
               ring
 
-/-- KL formula for `N(m, σ² I)` against the zero-mean prior `N(0, τ² I)`. -/
+/-- KL formula for `N(m, σ² I)` against the zero-mean prior `N(0, τ² I)`.
+@isnad1 id=eq.2h4v.s7.0310a1708398 from=translated src=- shape=4fc78f23 vocab=017a65e3
+-/
 theorem sphericalGaussianKL_zeroMeanPrior_eq_closedForm
     {d : ℕ} (mean : GaussianParameterSpace d)
     {posteriorVariance priorVariance : ℝ}
@@ -237,7 +251,9 @@ theorem sphericalGaussianKL_zeroMeanPrior_eq_closedForm
   rw [sphericalGaussianKL_eq_closedForm]
   rfl
 
-/-- Equal-variance spherical Gaussian KL collapses to the squared mean distance term. -/
+/-- Equal-variance spherical Gaussian KL collapses to the squared mean distance term.
+@isnad1 id=eq.1h4v.s6.f937590829fd from=translated src=- shape=17e13616 vocab=45ef6ffa
+-/
 theorem sphericalGaussianKL_equalVariance_eq
     {d : ℕ} (posteriorMean priorMean : GaussianParameterSpace d)
     {variance : ℝ} (hvariance : 0 < variance) :

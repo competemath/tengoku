@@ -45,6 +45,7 @@ conditional MGF satisfies a sub-gamma bound on the regime `b · λ < 3`.
 
 This derives the bound from the bounded and conditional-variance
 hypotheses alone, with no MGF assumption.
+@isnad1 id=eventual.9h7v.s8.3b41d44af9b7 from=translated src=- shape=fb5732eb vocab=52bc7f19
 -/
 theorem condSubGammaMGF_of_bounded_centered_condVariance
     {Ω : Type*} [m₀ : MeasurableSpace Ω]

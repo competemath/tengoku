@@ -37,7 +37,9 @@ namespace IMO2015N1
 /-- The function `f : ℤ → ℤ` defined by `f(n) = n ⌊n/2⌋`. -/
 abbrev f (n : Int) : Int := n * (n / 2)
 
-/-- The main claim: if `2c` divides `m - 3` and `f(m) - 3`, then `4c` divides `m - 3`. -/
+/-- The main claim: if `2c` divides `m - 3` and `f(m) - 3`, then `4c` divides `m - 3`.
+@isnad1 id=dvd.2h2v.s6.79d20e4f8be3 from=translated src=- shape=d96623d9 vocab=54fef16d
+-/
 theorem main_claim (h : 2 * c ∣ m - 3) (h0 : 2 * c ∣ f m - 3) : 2 * (2 * c) ∣ m - 3 := by
   ---- The case `c = 0` is trivial.
   obtain rfl | hc : c = 0 ∨ c ≠ 0 := Decidable.em _
@@ -63,7 +65,9 @@ theorem main_claim (h : 2 * c ∣ m - 3) (h0 : 2 * c ∣ f m - 3) : 2 * (2 * c) 
   rw [Int.add_sub_cancel, Int.mul_comm]
   exact Int.mul_dvd_mul_left _ hd
 
-/-- `f^k(M)` is odd for all `M` if and only if `M = 3`. -/
+/-- `f^k(M)` is odd for all `M` if and only if `M = 3`.
+@isnad1 id=iff.0h1v.s4.0f170cdb65e3 from=translated src=- shape=2f7a15f3 vocab=0217489f
+-/
 theorem f_iterate_odd_iff : (∀ k : ℕ, ¬2 ∣ f^[k] M) ↔ M = 3 := by
   ---- The `←` direction is easy since `f(3) = 3`.
   refine Iff.symm ⟨?_, λ hM ↦ ?_⟩
@@ -89,6 +93,8 @@ theorem f_iterate_odd_iff : (∀ k : ℕ, ¬2 ∣ f^[k] M) ↔ M = 3 := by
   exact Int.eq_of_sub_eq_zero (Int.eq_zero_of_dvd_of_natAbs_lt_natAbs hM
     (Nat.lt_trans (Nat.lt_succ_self _) Nat.lt_two_pow_self))
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h1v.s4.88ebe56d9576 from=translated src=- shape=41733a96 vocab=0217489f
+-/
 theorem final_solution : (∃ k : ℕ, 2 ∣ f^[k] M) ↔ M ≠ 3 := by
   rw [iff_not_comm, not_exists, f_iterate_odd_iff]

@@ -38,11 +38,15 @@ namespace IMO2015N7
   `gcd(f(m) + n, f(n) + m) ≤ k` for all `m ≠ n`. -/
 def good (k : ℕ+) (f : ℕ+ → ℕ+) := ∀ m n, m ≠ n → (f m + n).gcd (f n + m) ≤ k
 
-/-- If `f` is `k`-good and `t ≥ k`, then `f` is `t`-good. -/
+/-- If `f` is `k`-good and `t ≥ k`, then `f` is `t`-good.
+@isnad1 id=good.2h3v.s5.d5b1be59b26f from=translated src=- shape=b1b9aff2 vocab=b4db0268
+-/
 theorem good.of_ge (hf : good k f) (htk : t ≥ k) : good t f :=
   λ m n h ↦ (hf m n h).trans htk
 
-/-- There exists no `1`-good function. -/
+/-- There exists no `1`-good function.
+@isnad1 id=not.0h1v.s3.6dae15a39d0a from=translated src=- shape=d97c0fed vocab=b69fe0b1
+-/
 theorem not_good_one (f) : ¬good 1 f := by
   ---- Suppose `f` is `1`-good, which means `2 ∤ gcd(f(m) + n, f(n) + m)` for `m ≠ n`.
   intro h
@@ -74,15 +78,21 @@ theorem not_good_one (f) : ¬good 1 f := by
 /-- The function `g : ℕ → ℕ` defined by `g(0) = 0` and `g(n + 1) = (2^{g(n) + 1})!`. -/
 def goodHelperNat (n : ℕ) : ℕ := (λ n ↦ (2 ^ (n + 1)).factorial)^[n] 1
 
-/-- `g(0) = 1`. -/
+/-- `g(0) = 1`.
+@isnad1 id=eq.0h0v.s3.23cd6b6b7433 from=translated src=- shape=3c26ae4f vocab=a32213a2
+-/
 theorem goodHelperNat_zero : goodHelperNat 0 = 1 := rfl
 
-/-- `g(n + 1) = (2^{g(n) + 1})!`. -/
+/-- `g(n + 1) = (2^{g(n) + 1})!`.
+@isnad1 id=eq.0h1v.s5.72fa6ba6485a from=translated src=- shape=aa53e005 vocab=5ff7c2ef
+-/
 theorem goodHelperNat_succ (n) :
     goodHelperNat (n + 1) = (2 ^ (goodHelperNat n + 1)).factorial :=
   Function.iterate_succ_apply' _ n 1
 
-/-- `g` is strictly increasing. -/
+/-- `g` is strictly increasing.
+@isnad1 id=strictmo.0h0v.s2.f79bca6cf57d from=translated src=- shape=e3d48bcb vocab=cf457a9c
+-/
 theorem goodHelperNat_strictMono : StrictMono goodHelperNat := by
   refine strictMono_nat_of_lt_succ λ n ↦ ?_
   let N := goodHelperNat n
@@ -92,17 +102,23 @@ theorem goodHelperNat_strictMono : StrictMono goodHelperNat := by
     _ ≤ (2 ^ (N + 1)).factorial := Nat.self_le_factorial (2 ^ (N + 1))
     _ = goodHelperNat (n + 1) := (goodHelperNat_succ n).symm
 
-/-- For any `n`, we have `g(n) > n`. -/
+/-- For any `n`, we have `g(n) > n`.
+@isnad1 id=lt.0h1v.s3.cbc77332a546 from=translated src=- shape=a365602c vocab=aebdbe7f
+-/
 theorem goodHelperNat_gt_self (n) : goodHelperNat n > n :=
   calc n
   _ < n + goodHelperNat 0 := Nat.lt_succ_self n
   _ ≤ goodHelperNat n := goodHelperNat_strictMono.add_le_nat n 0
 
-/-- For any `n`, we have `g(n) > 0`. -/
+/-- For any `n`, we have `g(n) > 0`.
+@isnad1 id=lt.0h1v.s3.e0153287412f from=translated src=- shape=b14ee516 vocab=aebdbe7f
+-/
 theorem goodHelperNat_pos (n) : goodHelperNat n > 0 :=
   Nat.zero_lt_of_lt (goodHelperNat_gt_self n)
 
-/-- For any `n`, we have `n + 1 < 2^{g(n) + 1}`. -/
+/-- For any `n`, we have `n + 1 < 2^{g(n) + 1}`.
+@isnad1 id=lt.0h1v.s5.65678ba2a05f from=translated src=- shape=7ea65b64 vocab=e81fffe6
+-/
 theorem succ_lt_two_pow_goodHelperNat_succ (n) : n + 1 < 2 ^ (goodHelperNat n + 1) :=
   calc n + 1
   _ < goodHelperNat n + 1 := Nat.succ_lt_succ (goodHelperNat_gt_self n)
@@ -111,22 +127,30 @@ theorem succ_lt_two_pow_goodHelperNat_succ (n) : n + 1 < 2 ^ (goodHelperNat n + 
 /-- The function `f(n) = 2^{g(n) + 1} - (n + 1)`, which we claim is `2`-good. -/
 def goodFnNat (n : ℕ) := 2 ^ (goodHelperNat n + 1) - (n + 1)
 
-/-- Over `ℕ`, it is convenient to write `f(n) + n + 1 = 2^{g(n) + 1}`. -/
+/-- Over `ℕ`, it is convenient to write `f(n) + n + 1 = 2^{g(n) + 1}`.
+@isnad1 id=eq.0h1v.s5.a6a65e63691d from=translated src=- shape=5d03d2fe vocab=c0c16994
+-/
 theorem goodFnNat_spec (n) : goodFnNat n + (n + 1) = 2 ^ (goodHelperNat n + 1) :=
   Nat.sub_add_cancel (succ_lt_two_pow_goodHelperNat_succ n).le
 
-/-- For any `n`, we have `f(n) > 0` -/
+/-- For any `n`, we have `f(n) > 0`
+@isnad1 id=lt.0h1v.s3.342d54fd7ef1 from=translated src=- shape=b14ee516 vocab=bd72f40c
+-/
 theorem goodFnNat_pos (n) : goodFnNat n > 0 :=
   Nat.sub_pos_of_lt (succ_lt_two_pow_goodHelperNat_succ n)
 
-/-- For any `n`, we have `(f(n) + n) % 4 = 3`. -/
+/-- For any `n`, we have `(f(n) + n) % 4 = 3`.
+@isnad1 id=eq.0h1v.s4.0f0fb24fcf05 from=translated src=- shape=c647a284 vocab=52a6a38b
+-/
 theorem goodFnNat_add_self_mod_four_eq_three (n) : (goodFnNat n + n) % 4 = 3 := by
   obtain ⟨k, hk⟩ : 4 ∣ 2 ^ (goodHelperNat n + 1) :=
     Nat.pow_dvd_pow 2 (Nat.succ_le_succ (goodHelperNat_pos n))
   rw [← Nat.add_mod_right, ← Nat.add_assoc _ 1 3, Nat.add_assoc _ n,
     goodFnNat_spec, hk, Nat.mul_add_mod_self_left]
 
-/-- For any `m` and `n`, we have `4 ∤ gcd(f(m) + n, f(n) + m)`. -/
+/-- For any `m` and `n`, we have `4 ∤ gcd(f(m) + n, f(n) + m)`.
+@isnad1 id=not.0h2v.s5.bc38af92ed13 from=translated src=- shape=2b5f79ca vocab=f73e8c2f
+-/
 theorem not_four_dvd_gcd_goodFnNat_cross_add (m n) :
     ¬4 ∣ (goodFnNat m + n).gcd (goodFnNat n + m) := by
   ---- If `4 ∣ gcd(f(m) + n, f(n) + m)`, then `4 ∣ f(m) + n + f(n) + m`.
@@ -139,7 +163,9 @@ theorem not_four_dvd_gcd_goodFnNat_cross_add (m n) :
     goodFnNat_add_self_mod_four_eq_three] at h
   exact Nat.succ_ne_zero 1 h
 
-/-- For any `m ≠ n`, the only odd number dividing `gcd(f(m) + n, f(n) + m)` is `1`. -/
+/-- For any `m ≠ n`, the only odd number dividing `gcd(f(m) + n, f(n) + m)` is `1`.
+@isnad1 id=eq.3h3v.s5.b530fa1c25e5 from=translated src=- shape=f7d75b60 vocab=e7c982de
+-/
 theorem odd_dvd_gcd_goodFnNat_cross_add_imp (h : m ≠ n) (ht : Odd t)
     (h0 : t ∣ (goodFnNat m + n).gcd (goodFnNat n + m)) : t = 1 := by
   ---- WLOG assume `m > n`.
@@ -187,7 +213,9 @@ theorem odd_dvd_gcd_goodFnNat_cross_add_imp (h : m ≠ n) (ht : Odd t)
   ---- But `t` is coprime to `2`; this forces `t = 1`.
   exact (ht.symm.pow_right _).eq_one_of_dvd h0
 
-/-- For any `m ≠ n`, the number `gcd(f(m) + n, f(n) + m)` is a power of `2`. -/
+/-- For any `m ≠ n`, the number `gcd(f(m) + n, f(n) + m)` is a power of `2`.
+@isnad1 id=ex.1h2v.s5.6a2b0028fbb1 from=translated src=- shape=1c31440b vocab=799c2d6d
+-/
 theorem gcd_goodFnNat_cross_add_eq_two_pow (h : m ≠ n) :
     ∃ k, (goodFnNat m + n).gcd (goodFnNat n + m) = 2 ^ k := by
   obtain ⟨k, t, ht, h1⟩ :
@@ -198,7 +226,9 @@ theorem gcd_goodFnNat_cross_add_eq_two_pow (h : m ≠ n) :
     odd_dvd_gcd_goodFnNat_cross_add_imp h ht ⟨2 ^ k, h1.trans (Nat.mul_comm _ _)⟩
   exact ⟨k, h1.trans (Nat.mul_one _)⟩
 
-/-- For any `m ≠ n`, we have `gcd(f(m) + n, f(n) + m) ≤ 2`. -/
+/-- For any `m ≠ n`, we have `gcd(f(m) + n, f(n) + m) ≤ 2`.
+@isnad1 id=le.1h2v.s5.c33d71960050 from=translated src=- shape=1b73ff32 vocab=1647c92e
+-/
 theorem gcd_goodFnNat_cross_add_le_two (h : m ≠ n) :
     (goodFnNat m + n).gcd (goodFnNat n + m) ≤ 2 := by
   obtain ⟨k, hk⟩ : ∃ k, (goodFnNat m + n).gcd (goodFnNat n + m) = 2 ^ k :=
@@ -212,13 +242,17 @@ theorem gcd_goodFnNat_cross_add_le_two (h : m ≠ n) :
 /-- `goodFnNat`, but over `ℕ+`. -/
 def goodFn (n : ℕ+) : ℕ+ := ⟨goodFnNat n, goodFnNat_pos n⟩
 
-/-- `goodFn` is indeed `2`-good. -/
+/-- `goodFn` is indeed `2`-good.
+@isnad1 id=good.0h0v.s3.4b83bae34bc5 from=translated src=- shape=cef8a6bf vocab=2c182190
+-/
 theorem good_two_goodFn : good 2 goodFn :=
   λ _ _ h ↦ gcd_goodFnNat_cross_add_le_two (mt PNat.eq h)
 
 /-! ### Summary -/
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h1v.s5.30ebd393a40c from=translated src=- shape=ded12517 vocab=75fa39b3
+-/
 theorem final_solution : (∃ f, good k f) ↔ k ≥ 2 :=
   ⟨λ ⟨f, hf⟩ ↦ one_lt_of_ne_one λ hk ↦ not_good_one f (hk ▸ hf),
   λ hk ↦ ⟨goodFn, good_two_goodFn.of_ge hk⟩⟩

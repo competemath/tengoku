@@ -30,7 +30,9 @@ namespace IMO2009N2
 open ArithmeticFunction
 open scoped ArithmeticFunction.Omega
 
-/-- Given `a, b ∈ ℕ`, `a + b` is even if and only if `a ≡ b (mod 2)`. -/
+/-- Given `a, b ∈ ℕ`, `a + b` is even if and only if `a ≡ b (mod 2)`.
+@isnad1 id=iff.0h2v.s5.bb19942f95c0 from=translated src=- shape=4df8ee83 vocab=38e90233
+-/
 theorem even_add_iff_mod_two_eq {a b : ℕ} : Even (a + b) ↔ a % 2 = b % 2 := by
   rw [Nat.even_iff, Nat.add_mod]
   have ha : a % 2 < 2 := Nat.mod_lt _ Nat.two_pos
@@ -39,7 +41,9 @@ theorem even_add_iff_mod_two_eq {a b : ℕ} : Even (a + b) ↔ a % 2 = b % 2 := 
   generalize b % 2 = b' at hb ⊢
   revert a' b'; decide
 
-/-- For any `N`, there exists `n ≥ N` such that `Ω(n(n + 1))` is not even. -/
+/-- For any `N`, there exists `n ≥ N` such that `Ω(n(n + 1))` is not even.
+@isnad1 id=ex.0h1v.s5.06808fb3d0f1 from=translated src=- shape=aa423527 vocab=c79c7697
+-/
 theorem infinite_cardFactors_mul_succ_self_not_even (N) :
     ∃ n ≥ N, ¬Even (Ω (n * (n + 1))) := by
   ---- Suppose not; then `Ω(n) ≡ Ω(n + 1) (mod 2)` for every `n ≥ N + 1`.
@@ -62,7 +66,9 @@ theorem infinite_cardFactors_mul_succ_self_not_even (N) :
     ← Nat.two_mul, Nat.mul_mod_right] at h
   exact Nat.one_ne_zero h
 
-/-- Final solution, part 1 -/
+/-- Final solution, part 1
+@isnad1 id=ex.0h1v.s6.6818f9761fc3 from=translated src=- shape=9bbb5d27 vocab=72fdeac1
+-/
 theorem final_solution_part1 (N) :
     ∃ a b, a ≠ b ∧ ∀ k < N, Even (Ω ((a + k) * (b + k))) := by
   ---- There exists `a ≠ b` such that `Ω(a + k + 1) ≡ Ω(b + k + 1) (mod 2)` for all `k < N`.
@@ -76,7 +82,9 @@ theorem final_solution_part1 (N) :
   have X (c : ℕ) : c + 1 + k ≠ 0 := (c.succ_add k).trans_ne (c + k).succ_ne_zero
   rw [cardFactors_mul (X _) (X _), even_add_iff_mod_two_eq, hab k hk]
 
-/-- Final solution, part 2 -/
+/-- Final solution, part 2
+@isnad1 id=eq.1h2v.s5.d823e072bc79 from=translated src=- shape=8c2d8a44 vocab=23a752c6
+-/
 theorem final_solution_part2 (h : ∀ n, Even (Ω ((a + n) * (b + n)))) : a = b := by
   ---- WLOG let `a ≤ b`.
   wlog h0 : a ≤ b

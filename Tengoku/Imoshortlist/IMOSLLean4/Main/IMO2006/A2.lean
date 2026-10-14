@@ -34,23 +34,33 @@ def a (F) [Field F] : ℕ → F
 
 variable {F} [Field F]
 
-/-- `a_0 = -1`. -/
+/-- `a_0 = -1`.
+@isnad1 id=eq.0h1v.s5.8d29f35ea385 from=translated src=- shape=65fa3983 vocab=577a5d48
+-/
 lemma a_zero : a F 0 = -1 := by rw [a]
 
-/-- `a_{n + 1} = -∑ i ≤ n, a_i/(n + 2 - i)`. -/
+/-- `a_{n + 1} = -∑ i ≤ n, a_i/(n + 2 - i)`.
+@isnad1 id=eq.0h2v.s6.24b413b2cfef from=translated src=- shape=4da8ebfa vocab=1bbb5658
+-/
 lemma a_succ (n) : a F (n + 1) = -∑ i ∈ range (n + 1), a F i / (n + 2 - i : ℕ) := by
   rw [a, ← Fin.sum_univ_eq_sum_range]
 
-/-- `a_1 = 1/2`. -/
+/-- `a_1 = 1/2`.
+@isnad1 id=eq.0h1v.s5.c33772774551 from=translated src=- shape=65fa3983 vocab=2bf7ebb9
+-/
 lemma a_one : a F 1 = 2⁻¹ := by
   rw [a, Fin.sum_univ_one, Fin.val_zero, a_zero, neg_div, neg_neg, one_div]; rfl
 
-/-- Recursive formula for `a_{n + 1}` across all `n > 0`. -/
+/-- Recursive formula for `a_{n + 1}` across all `n > 0`.
+@isnad1 id=eq.1h2v.s6.4f3f10104e71 from=translated src=- shape=5725ef78 vocab=e431ae30
+-/
 lemma a_rec (hn : 0 < n) : ∑ i ∈ range (n + 1), a F i / (n + 1 - i : ℕ) = 0 := by
   rw [← Nat.succ_pred_eq_of_pos hn, sum_range_succ, add_eq_zero_iff_eq_neg',
     ← a_succ, Nat.add_sub_cancel_left, Nat.cast_one, div_one]
 
-/-- Main formula for `a_{n + 1}` as a positive linear combination of `a_1, …, a_n`. -/
+/-- Main formula for `a_{n + 1}` as a positive linear combination of `a_1, …, a_n`.
+@isnad1 id=eq.1h2v.s8.1d8f8d783daf from=translated src=- shape=ffe9672a vocab=2168b7a2
+-/
 lemma main_formula (hn : 0 < n) :
     (n + 2 : ℕ) * a F (n + 1) =
       ∑ i ∈ range (n + 1), a F i * ((n + 1 : ℕ) / (n + 1 - i : ℕ)
@@ -69,7 +79,9 @@ lemma main_formula (hn : 0 < n) :
 
 variable [LinearOrder F] [IsStrictOrderedRing F]
 
-/-- We have `(n + 1)/(n + 1 - i) < n/(n - i)` if `0 < i < n`. -/
+/-- We have `(n + 1)/(n + 1 - i) < n/(n - i)` if `0 < i < n`.
+@isnad1 id=lt.2h3v.s7.7ad3c8fb5446 from=translated src=- shape=a824aa11 vocab=6895d85a
+-/
 lemma coeff_pos (hi : 0 < i) (hin : i < n) :
     ((n + 1 : ℕ) / (n + 1 - i : ℕ) : F) < n / (n - i : ℕ) := by
   have h : 0 < ((n - i : ℕ) : F) := by rwa [Nat.cast_pos, Nat.sub_pos_iff_lt]
@@ -83,7 +95,9 @@ lemma coeff_pos (hi : 0 < i) (hin : i < n) :
     add_lt_add_right (div_lt_div_of_pos_left (Nat.cast_pos.mpr hi) h h0) 1
   _ = _ := by rw [one_add_div h.ne.symm, ← Nat.cast_add, Nat.sub_add_cancel hin.le]
 
-/-- We have `a_{n + 1} > 0` for all `n ≥ 0`. -/
+/-- We have `a_{n + 1} > 0` for all `n ≥ 0`.
+@isnad1 id=lt.0h2v.s6.5a2759539d95 from=translated src=- shape=9e9fed14 vocab=ccc7d6e4
+-/
 theorem a_succ_pos (n) : 0 < a F (n + 1) := by
   ---- Proceed by strong induction on `n`.
   induction n using Nat.strong_induction_on with | h n n_ih => ?_
@@ -107,6 +121,8 @@ theorem a_succ_pos (n) : 0 < a F (n + 1) := by
   rw [sum_range_succ', h, add_zero]
   exact sum_pos (λ i hi ↦ n_ih (mem_range.mp hi)) (nonempty_range_iff.mpr hn.ne.symm)
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=lt.1h2v.s6.a71d2238f71c from=translated src=- shape=de707059 vocab=e070e26d
+-/
 theorem final_solution {n} (hn : n > 0) : a F n > 0 :=
   match n with | Nat.zero => absurd hn (Nat.lt_irrefl 0) | Nat.succ n => a_succ_pos n

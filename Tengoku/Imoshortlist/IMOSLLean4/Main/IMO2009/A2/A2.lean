@@ -28,14 +28,23 @@ section
 
 variable [CommRing R]
 
+/--
+@isnad1 id=eq.0h4v.s8.f9202a3253b0 from=translated src=- shape=12387ff7 vocab=7bb0ab33
+-/
 theorem ring_identity1 (a b c : R) :
     (a + b) * (b + c) * (c + a) + a * b * c
       = (a + b + c) * (a * b + b * c + c * a) := by ring
 
+/--
+@isnad1 id=eq.0h4v.s9.772675d4df11 from=translated src=- shape=b7b99ead vocab=9c1cdc1d
+-/
 theorem ring_identity2 (a b c : R) :
     2 * ((a * b + b * c + c * a) ^ 2 - 3 * (a * b * c * (a + b + c))) =
       (a * b - b * c) ^ 2 + (b * c - c * a) ^ 2 + (c * a - a * b) ^ 2 := by ring
 
+/--
+@isnad1 id=eq.0h4v.s7.7444eebefacd from=translated src=- shape=a96229dd vocab=d8139c59
+-/
 theorem ring_identity3 (a b c : R) : (a + b) + (c + a) + (b + c) = 2 * (a + b + c) := by ring
 
 end
@@ -46,10 +55,16 @@ section
 
 variable [CommRing R] [LinearOrder R] [IsStrictOrderedRing R]
 
+/--
+@isnad1 id=le.0h3v.s7.4eff945b3e83 from=translated src=- shape=78fdc8b5 vocab=8839cfdf
+-/
 theorem ring_ineq1 (a b : R) : 2 ^ 2 * (a * b) ≤ (a + b) ^ 2 := by
   rw [add_sq', sq, two_mul, add_mul, ← mul_assoc, add_le_add_iff_right]
   exact two_mul_le_add_sq a b
 
+/--
+@isnad1 id=le.3h4v.s8.60f5b2dc2ea3 from=translated src=- shape=9ccb67a5 vocab=8839cfdf
+-/
 theorem ring_ineq2 {a b c : R} (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c) :
     2 ^ 3 * (a * b * c) ≤ (a + b) * (b + c) * (c + a) := by
   have X {x y : R} : 0 ≤ x → 0 ≤ y → 0 ≤ x * y := mul_nonneg
@@ -65,6 +80,9 @@ theorem ring_ineq2 {a b c : R} (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c) :
         (Z c a) (X Y2 (X hc ha)) (X (Y _) (Y _))
     _ = _ := by rw [mul_pow, mul_pow]
 
+/--
+@isnad1 id=le.3h4v.s8.d2f889409bf7 from=translated src=- shape=b1990261 vocab=8839cfdf
+-/
 theorem ring_ineq3 {a b c : R} (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c) :
     (2 ^ 3) * ((a + b + c) * (a * b + b * c + c * a))
       ≤ (3 * 3) * ((a + b) * (b + c) * (c + a)) := by
@@ -72,11 +90,17 @@ theorem ring_ineq3 {a b c : R} (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c) :
   rw [X, add_one_mul, ← ring_identity1, mul_add, add_le_add_iff_left]
   exact ring_ineq2 ha hb hc
 
+/--
+@isnad1 id=le.0h4v.s8.9b3b71875b37 from=translated src=- shape=5f67f89d vocab=8839cfdf
+-/
 theorem ring_ineq4 (a b c : R) :
     3 * (a * b * c * (a + b + c)) ≤ (a * b + b * c + c * a) ^ 2 := by
   rw [← sub_nonneg, ← mul_nonneg_iff_of_pos_left zero_lt_two, ring_identity2]
   exact add_nonneg (add_nonneg (sq_nonneg _) (sq_nonneg _)) (sq_nonneg _)
 
+/--
+@isnad1 id=lt.3h4v.s7.9881a0f7a277 from=translated src=- shape=f9c832dd vocab=6fcd4986
+-/
 theorem ring_ineq5 {a b c : R} (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) :
     0 < a * b + b * c + c * a :=
   add_pos (add_pos (mul_pos ha hb) (mul_pos hb hc)) (mul_pos hc ha)
@@ -90,12 +114,18 @@ section
 variable [Field F] {a b c : F} (ha : a ≠ 0) (hb : b ≠ 0) (hc : c ≠ 0)
 include ha hb hc
 
+/--
+@isnad1 id=eq.3h4v.s8.b48e06614b7e from=translated src=- shape=87d9cbaa vocab=2229e256
+-/
 theorem field_identity1 : (a * b)⁻¹ + (b * c)⁻¹ + (c * a)⁻¹ = (a + b + c) / (a * b * c) := by
   have hab : a * b ≠ 0 := mul_ne_zero ha hb
   rw [eq_div_iff_mul_eq (mul_ne_zero hab hc), add_mul, add_mul, add_rotate,
     inv_mul_cancel_left₀ hab, mul_rotate, inv_mul_cancel_left₀ (mul_ne_zero hb hc),
     mul_rotate, inv_mul_cancel_left₀ (mul_ne_zero hc ha)]
 
+/--
+@isnad1 id=eq.3h4v.s8.02c16ae715ca from=translated src=- shape=01886f2c vocab=9ca5c741
+-/
 theorem field_identity2 : a * b * c * (a⁻¹ + b⁻¹ + c⁻¹) = a * b + b * c + c * a := by
   rw [← add_rotate, mul_add, mul_add, mul_inv_cancel_right₀ hc, mul_rotate a,
     mul_inv_cancel_right₀ ha, mul_rotate b, mul_inv_cancel_right₀ hb]
@@ -108,6 +138,9 @@ variable [Field F] [LinearOrder F] [IsStrictOrderedRing F]
   {a b c : F} (ha : 0 < a) (hb : 0 < b) (hc : 0 < c)
 include ha hb hc
 
+/--
+@isnad1 id=le.3h4v.s8.5001aebc94f3 from=translated src=- shape=6f04a73a vocab=983aa763
+-/
 theorem field_ineq1 : ((2 * a + b + c) ^ 2)⁻¹ ≤ (2 ^ 2 * ((a + b) * (a + c)))⁻¹ := by
   rw [two_mul, add_assoc, add_add_add_comm]
   have hab : 0 < a + b := add_pos ha hb
@@ -115,6 +148,9 @@ theorem field_ineq1 : ((2 * a + b + c) ^ 2)⁻¹ ≤ (2 ^ 2 * ((a + b) * (a + c)
   refine (inv_le_inv₀ (pow_pos (add_pos hab hac) 2) ?_).mpr (ring_ineq1 _ _)
   exact mul_pos (pow_pos (zero_lt_two' F) 2) (mul_pos hab hac)
 
+/--
+@isnad1 id=le.3h4v.s9.af75b819cf3b from=translated src=- shape=2a16f5ee vocab=b88db9ee
+-/
 theorem field_ineq2 :
     ((2 * a + b + c) ^ 2)⁻¹ + ((2 * b + c + a) ^ 2)⁻¹ + ((2 * c + a + b) ^ 2)⁻¹
       ≤ (a + b + c) / (2 * ((a + b) * (b + c) * (c + a))) := by
@@ -128,6 +164,9 @@ theorem field_ineq2 :
     ← one_div, div_mul_div_comm, one_mul, ring_identity3, sq, mul_assoc,
     mul_div_mul_left _ _ (two_ne_zero' F), mul_right_comm]
 
+/--
+@isnad1 id=le.3h4v.s9.42154da6c108 from=translated src=- shape=993a8b7f vocab=ce970e7b
+-/
 theorem field_ineq3 :
     (a + b + c) / (2 * ((a + b) * (b + c) * (c + a)))
       ≤ (3 * 3) / (16 * (a * b + b * c + c * a)) := by
@@ -138,11 +177,17 @@ theorem field_ineq3 :
     div_le_div_iff_of_pos_right (zero_lt_two' F), div_le_div_iff₀ h h0, mul_left_comm]
   exact ring_ineq3 ha.le hb.le hc.le
 
+/--
+@isnad1 id=le.3h4v.s9.d66c1b83e8f1 from=translated src=- shape=aa2f4fb9 vocab=b88db9ee
+-/
 theorem field_ineq4 :
     ((2 * a + b + c) ^ 2)⁻¹ + ((2 * b + c + a) ^ 2)⁻¹ + ((2 * c + a + b) ^ 2)⁻¹
       ≤ (3 * 3) / (16 * (a * b + b * c + c * a)) :=
   (field_ineq2 ha hb hc).trans (field_ineq3 ha hb hc)
 
+/--
+@isnad1 id=le.4h4v.s8.745e7dc5eccc from=translated src=- shape=b0dc115e vocab=595f0f85
+-/
 theorem field_ineq5 (h : a⁻¹ + b⁻¹ + c⁻¹ = a + b + c) : 3 ≤ a * b + b * c + c * a := by
   have h0 := ring_ineq4 a b c
   rw [← h, field_identity2 ha.ne.symm hb.ne.symm hc.ne.symm, sq] at h0
@@ -150,7 +195,9 @@ theorem field_ineq5 (h : a⁻¹ + b⁻¹ + c⁻¹ = a + b + c) : 3 ≤ a * b + b
 
 /-! ### Summary -/
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=le.4h4v.s9.9fcf180d4833 from=translated src=- shape=b86ee284 vocab=b88db9ee
+-/
 theorem final_solution (h : a⁻¹ + b⁻¹ + c⁻¹ = a + b + c) :
     ((2 * a + b + c) ^ 2)⁻¹ + ((2 * b + c + a) ^ 2)⁻¹ + ((2 * c + a + b) ^ 2)⁻¹ ≤ 3 / 16 := by
   apply (field_ineq4 ha hb hc).trans

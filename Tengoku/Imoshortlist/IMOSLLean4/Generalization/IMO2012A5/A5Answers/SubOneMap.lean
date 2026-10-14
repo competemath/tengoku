@@ -23,13 +23,22 @@ namespace Generalization
 
 variable [NonAssocRing R]
 
+/--
+@isnad1 id=good.0h1v.s5.664be42414ab from=translated src=- shape=f6532b26 vocab=da79c5fe
+-/
 theorem sub_one_is_good : good (λ (x : R) ↦ x - 1) := λ x y ↦ by
   rw [sub_one_mul, mul_sub_one, sub_sub, ← add_sub_assoc x, sub_add_cancel]
   exact add_sub_cancel_right _ _
 
+/--
+@isnad1 id=nontrivi.0h1v.s6.b72f61e7a1ba from=translated src=- shape=f6532b26 vocab=c8b9bb96
+-/
 theorem sub_one_is_NontrivialGood : NontrivialGood (λ (x : R) ↦ x - 1) :=
   ⟨sub_one_is_good, sub_add_cancel 0 1⟩
 
+/--
+@isnad1 id=ex.2h3v.s7.ef79496c1b2f from=translated src=- shape=b2591155 vocab=6ece270e
+-/
 theorem sub_one_solver [NonAssocRing S] {f : R → S} (hf : NontrivialGood f)
     (h : ∀ x, f (x + 1) = f x + 1) : ∃ φ : R →+* S, ∀ x, f x = φ (x - 1) := by
   ---- Reduce to showing `f(x + y) = f(x) + f(y) + 1` for all `x y : R`

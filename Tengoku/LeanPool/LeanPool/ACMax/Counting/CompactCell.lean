@@ -66,26 +66,42 @@ noncomputable def sigS (G : SimpleGraph V) (u : V) : ℝ :=
 /-! ### `σ` arithmetic (`L-FB-2` real-valued facts) -/
 
 open Classical in
+/--
+@isnad1 id=eq.0h0v.s3.d65a6a60512d from=translated src=- shape=1ac31801 vocab=552bfa54
+-/
 theorem sigma_three : sigma 3 = 0 := by simp [sigma]
 
 open Classical in
+/--
+@isnad1 id=eq.0h0v.s4.9aa7d0494206 from=translated src=- shape=4683683d vocab=790da2a8
+-/
 theorem sigma_four : sigma 4 = 1 / 2 := by norm_num [sigma]
 
 open Classical in
+/--
+@isnad1 id=eq.0h0v.s5.9db54fd3f221 from=translated src=- shape=4683683d vocab=790da2a8
+-/
 theorem sigma_five : sigma 5 = 2 / 3 := by norm_num [sigma]
 
 open Classical in
+/--
+@isnad1 id=eq.0h0v.s5.62bd633625bd from=translated src=- shape=4683683d vocab=790da2a8
+-/
 theorem sigma_six : sigma 6 = 3 / 4 := by norm_num [sigma]
 
 open Classical in
-/-- `σ(d) ≥ 0` for `d ≥ 3`. -/
+/-- `σ(d) ≥ 0` for `d ≥ 3`.
+@isnad1 id=le.1h1v.s4.2c715bdeff21 from=translated src=- shape=7f2e781e vocab=deb534da
+-/
 theorem sigma_nonneg {d : ℕ} (hd : 3 ≤ d) : 0 ≤ sigma d := by
   unfold sigma
   have h3 : (3 : ℝ) ≤ (d : ℝ) := by exact_mod_cast hd
   apply div_nonneg <;> linarith
 
 open Classical in
-/-- `σ(d) < 1` for `d ≥ 3`. -/
+/-- `σ(d) < 1` for `d ≥ 3`.
+@isnad1 id=lt.1h1v.s4.e611d2c5892d from=translated src=- shape=aa240375 vocab=3b2fac10
+-/
 theorem sigma_lt_one {d : ℕ} (hd : 3 ≤ d) : sigma d < 1 := by
   unfold sigma
   have h3 : (3 : ℝ) ≤ (d : ℝ) := by exact_mod_cast hd
@@ -93,7 +109,9 @@ theorem sigma_lt_one {d : ℕ} (hd : 3 ≤ d) : sigma d < 1 := by
   linarith
 
 open Classical in
-/-- `σ` is monotone on `d ≥ 3`: `σ(d) = 1 − 1/(d−2)`. -/
+/-- `σ` is monotone on `d ≥ 3`: `σ(d) = 1 − 1/(d−2)`.
+@isnad1 id=le.2h2v.s4.bd871e54963a from=translated src=- shape=27ee7cf2 vocab=deb534da
+-/
 theorem sigma_le_of_le {c d : ℕ} (hc : 3 ≤ c) (hcd : c ≤ d) : sigma c ≤ sigma d := by
   unfold sigma
   have hc3 : (3 : ℝ) ≤ (c : ℝ) := by exact_mod_cast hc
@@ -114,7 +132,9 @@ theorem sigma_le_of_le {c d : ℕ} (hc : 3 ≤ c) (hcd : c ≤ d) : sigma c ≤ 
 open Classical in
 /-- **`σ`-usability at `Δ = 5`**: three neighbours of degree `≤ 5` give
 `σ-sum ≤ 2` (the `(5,5,5)` tie).  This is the exact fact that makes *every*
-degree-3 vertex a usable slot far-pair end in a `Δ ≤ 5` world. -/
+degree-3 vertex a usable slot far-pair end in a `Δ ≤ 5` world.
+@isnad1 id=le.3h3v.s7.54c64370f433 from=translated src=- shape=bf2cf976 vocab=9f2d223d
+-/
 theorem sigSum_le_two_of_three_nbrs_deg_le_five (G : SimpleGraph V) (u : V)
     (hmin : ∀ w : V, 3 ≤ G.degree w)
     (hdeg : G.degree u = 3) (hnbr : ∀ w ∈ G.neighborFinset u, G.degree w ≤ 5) :
@@ -133,7 +153,9 @@ theorem sigSum_le_two_of_three_nbrs_deg_le_five (G : SimpleGraph V) (u : V)
 /-! ## `cW` positivity -/
 
 open Classical in
-/-- The mass factor is at least `1` on a graph of minimum degree `≥ 3`. -/
+/-- The mass factor is at least `1` on a graph of minimum degree `≥ 3`.
+@isnad1 id=le.1h3v.s6.d576a4c95813 from=translated src=- shape=75a45adc vocab=f184325d
+-/
 theorem one_le_cW (G : SimpleGraph V) (u : V) (hmin : ∀ w : V, 3 ≤ G.degree w) :
     1 ≤ cW G u := by
   unfold cW
@@ -145,6 +167,9 @@ theorem one_le_cW (G : SimpleGraph V) (u : V) (hmin : ∀ w : V, 3 ≤ G.degree 
   linarith
 
 open Classical in
+/--
+@isnad1 id=lt.1h3v.s6.ce5c59cb42fb from=translated src=- shape=d3bd6056 vocab=da29f7e0
+-/
 theorem cW_pos (G : SimpleGraph V) (u : V) (hmin : ∀ w : V, 3 ≤ G.degree w) :
     0 < cW G u :=
   lt_of_lt_of_le one_pos (one_le_cW G u hmin)
@@ -153,7 +178,9 @@ theorem cW_pos (G : SimpleGraph V) (u : V) (hmin : ∀ w : V, 3 ≤ G.degree w) 
 
 open Classical in
 /-- **The per-slot identity.**  With slot weight `p = au/(d−2)` and worst-case
-leak `d − 1`, the slot cost equals `2·p² + au²·σ(d)`. -/
+leak `d − 1`, the slot cost equals `2·p² + au²·σ(d)`.
+@isnad1 id=eq.1h2v.s7.468f803998a8 from=translated src=- shape=d5bf73dd vocab=2efd920e
+-/
 theorem slot_pointwise (au : ℝ) (d : ℕ) (hd : 3 ≤ d) :
     (au - au / ((d : ℝ) - 2)) ^ 2 + ((d : ℝ) - 1) * (au / ((d : ℝ) - 2)) ^ 2
       = 2 * (au / ((d : ℝ) - 2)) ^ 2 + au ^ 2 * sigma d := by
@@ -200,7 +227,9 @@ all three neighbours of degree `≥ 4`, one of degree `≥ 6`, and two of degree
 
 open Classical in
 /-- σ is monotone on `d ≥ 3` (restatement of `sigma_le_of_le` in the
-frontier-facing name). -/
+frontier-facing name).
+@isnad1 id=le.2h2v.s4.bd871e54963a from=translated src=- shape=27ee7cf2 vocab=deb534da
+-/
 theorem sigma_mono {d e : ℕ} (hd : 3 ≤ d) (hde : d ≤ e) : sigma d ≤ sigma e :=
   sigma_le_of_le hd hde
 
@@ -208,7 +237,9 @@ theorem sigma_mono {d e : ℕ} (hd : 3 ≤ d) (hde : d ≤ e) : sigma d ≤ sigm
 
 open Classical in
 /-- **Usability of light degree-3 vertices**: a degree-3 vertex all of whose
-neighbours have degree ≤ 5 has `sigS ≤ 3 · σ(5) = 2`. -/
+neighbours have degree ≤ 5 has `sigS ≤ 3 · σ(5) = 2`.
+@isnad1 id=le.3h3v.s7.dd52edb54bc2 from=translated src=- shape=410d597f vocab=9f2d223d
+-/
 theorem usable_deg3_of_light (G : SimpleGraph V) (u : V)
     (hd : G.degree u = 3) (h3 : ∀ w, 3 ≤ G.degree w)
     (hlight : ∀ w ∈ G.neighborFinset u, G.degree w ≤ 5) :
@@ -220,7 +251,9 @@ theorem usable_deg3_of_light (G : SimpleGraph V) (u : V)
 open Classical in
 /-- **Structure of a non-usable degree-3 vertex**: if `deg u = 3` and
 `sigS G u > 2`, then all three neighbours are heavy (degree ≥ 4), at least one
-has degree ≥ 6, and at least two have degree ≥ 5. -/
+has degree ≥ 6, and at least two have degree ≥ 5.
+@isnad1 id=and.3h3v.s8.f53c0130b4d4 from=translated src=- shape=21e7ae83 vocab=282c2053
+-/
 theorem nonusable_deg3_structure (G : SimpleGraph V) (u : V)
     (hd : G.degree u = 3) (h3 : ∀ w, 3 ≤ G.degree w)
     (h : 2 < sigS G u) :
@@ -333,14 +366,18 @@ noncomputable def closeSet (G : SimpleGraph (Fin n)) (u₀ : Fin n) : Finset (Fi
         (fun w => G.neighborFinset w))
 
 open Classical in
-/-- The centre is in the ball. -/
+/-- The centre is in the ball.
+@isnad1 id=mem.0h3v.s4.913c1f18c935 from=translated src=- shape=b94b4ed4 vocab=6e1adc28
+-/
 theorem mem_closeSet_self (G : SimpleGraph (Fin n)) (u₀ : Fin n) :
     u₀ ∈ closeSet G u₀ := by
   unfold closeSet
   exact Finset.mem_insert_self _ _
 
 open Classical in
-/-- A neighbour of `u₀` is in the ball. -/
+/-- A neighbour of `u₀` is in the ball.
+@isnad1 id=mem.1h4v.s5.2cf7bb49337a from=translated src=- shape=9e554caa vocab=25c0e46f
+-/
 theorem mem_closeSet_of_adj (G : SimpleGraph (Fin n)) {u₀ v : Fin n}
     (h : G.Adj u₀ v) : v ∈ closeSet G u₀ := by
   unfold closeSet
@@ -348,7 +385,9 @@ theorem mem_closeSet_of_adj (G : SimpleGraph (Fin n)) {u₀ v : Fin n}
     Finset.mem_union_left _ <| (SimpleGraph.mem_neighborFinset G u₀ v).mpr h
 
 open Classical in
-/-- A second neighbour of `u₀` is in the ball. -/
+/-- A second neighbour of `u₀` is in the ball.
+@isnad1 id=mem.2h5v.s5.d9a65586c138 from=translated src=- shape=fccbb5f9 vocab=25c0e46f
+-/
 theorem mem_closeSet_of_adj_adj (G : SimpleGraph (Fin n)) {u₀ w v : Fin n}
     (h1 : G.Adj u₀ w) (h2 : G.Adj w v) : v ∈ closeSet G u₀ := by
   unfold closeSet
@@ -358,7 +397,9 @@ theorem mem_closeSet_of_adj_adj (G : SimpleGraph (Fin n)) {u₀ w v : Fin n}
         (SimpleGraph.mem_neighborFinset G w v).mpr h2⟩
 
 open Classical in
-/-- A third neighbour of `u₀` is in the ball. -/
+/-- A third neighbour of `u₀` is in the ball.
+@isnad1 id=mem.3h6v.s5.08dd47e45c23 from=translated src=- shape=b348caf2 vocab=25c0e46f
+-/
 theorem mem_closeSet_of_adj_adj_adj (G : SimpleGraph (Fin n)) {u₀ w x v : Fin n}
     (h1 : G.Adj u₀ w) (h2 : G.Adj w x) (h3 : G.Adj x v) : v ∈ closeSet G u₀ := by
   unfold closeSet
@@ -371,7 +412,9 @@ theorem mem_closeSet_of_adj_adj_adj (G : SimpleGraph (Fin n)) {u₀ w x v : Fin 
 
 open Classical in
 /-- **Vertices outside the ball are far**: `v ∉ closeSet G u₀` yields the four
-combinatorial distance-`≥ 4` conditions of a clean far pair. -/
+combinatorial distance-`≥ 4` conditions of a clean far pair.
+@isnad1 id=and.1h4v.s6.5fc217fb8974 from=translated src=- shape=ea7af4a5 vocab=25c0e46f
+-/
 theorem far_of_not_mem_closeSet (G : SimpleGraph (Fin n)) (u₀ v : Fin n)
     (hv : v ∉ closeSet G u₀) :
     v ≠ u₀ ∧ ¬G.Adj u₀ v ∧ (∀ w, ¬(G.Adj u₀ w ∧ G.Adj v w)) ∧
@@ -388,7 +431,9 @@ theorem far_of_not_mem_closeSet (G : SimpleGraph (Fin n)) (u₀ v : Fin n)
 
 open Classical in
 /-- **On the compact cell, far vertices are non-usable**: with no usable far
-pair and `u₀` usable, every vertex outside the ball has `sigS > 2`. -/
+pair and `u₀` usable, every vertex outside the ball has `sigS > 2`.
+@isnad1 id=lt.3h4v.s6.0cb21c2d5ca5 from=translated src=- shape=c52e2b22 vocab=ed63c16e
+-/
 theorem nonusable_of_far (G : SimpleGraph (Fin n))
     (hcpt : ¬HasUsableFarPair G) (u₀ : Fin n) (hu₀ : sigS G u₀ ≤ 2)
     (v : Fin n) (hv : v ∉ closeSet G u₀) :
@@ -401,7 +446,9 @@ theorem nonusable_of_far (G : SimpleGraph (Fin n))
 open Classical in
 /-- **Non-usable light vertices see a heavy vertex**: if `deg v ≤ 4` and
 `sigS v > 2`, some neighbour has degree ≥ 5 (else all `σ`-terms are ≤ 1/2 and
-the sum is ≤ 4·(1/2) = 2). -/
+the sum is ≤ 4·(1/2) = 2).
+@isnad1 id=ex.3h3v.s8.e5eea6bf8707 from=translated src=- shape=c48c1371 vocab=93bb2d39
+-/
 theorem nonusable_light_has_heavy_nbr (G : SimpleGraph (Fin n))
     (h3 : ∀ w, 3 ≤ G.degree w) (v : Fin n) (hd : G.degree v ≤ 4)
     (h : 2 < sigS G v) :
@@ -428,7 +475,9 @@ theorem nonusable_light_has_heavy_nbr (G : SimpleGraph (Fin n))
 
 open Classical in
 /-- **The non-usable light population is at most `5·X`**: each such vertex is a
-neighbour of a heavy vertex, and `∑_{heavy w} deg w ≤ 5·∑_{heavy w} (deg w − 4)`. -/
+neighbour of a heavy vertex, and `∑_{heavy w} deg w ≤ 5·∑_{heavy w} (deg w − 4)`.
+@isnad1 id=le.1h2v.s8.ce7efc9063cf from=translated src=- shape=5f724add vocab=7539c7cc
+-/
 theorem card_nonusable_light_le (G : SimpleGraph (Fin n))
     (h3 : ∀ w, 3 ≤ G.degree w) :
     (Finset.univ.filter (fun v : Fin n => G.degree v ≤ 4 ∧ 2 < sigS G v)).card
@@ -460,7 +509,9 @@ theorem card_nonusable_light_le (G : SimpleGraph (Fin n))
 
 open Classical in
 /-- **The heavy population is at most `X`**: each heavy vertex contributes at
-least `1` to the excess. -/
+least `1` to the excess.
+@isnad1 id=le.0h2v.s7.6dc1866d5e46 from=translated src=- shape=83e46b3f vocab=c4a1ca11
+-/
 theorem card_heavy_le (G : SimpleGraph (Fin n)) :
     (Finset.univ.filter (fun v : Fin n => 5 ≤ G.degree v)).card ≤ excessX n G := by
   rw [excessX]
@@ -485,7 +536,9 @@ cubic one. -/
 open Classical in
 /-- **Local pointwise-summed degree bound**: with minimum degree 3,
 `∑_{w ∈ S} (deg w − 1) ≤ 3·|S| + ∑_{w ∈ S, deg ≥ 5} (deg w − 4)` — the excess
-part charged only to `S` itself. -/
+part charged only to `S` itself.
+@isnad1 id=le.1h3v.s8.702f1d9c9353 from=translated src=- shape=e92405d1 vocab=249e4698
+-/
 theorem sum_degree_sub_one_le_local (G : SimpleGraph (Fin n)) (S : Finset (Fin n))
     (h3 : ∀ v, 3 ≤ G.degree v) :
     ∑ w ∈ S, (G.degree w - 1)
@@ -505,6 +558,9 @@ theorem sum_degree_sub_one_le_local (G : SimpleGraph (Fin n)) (S : Finset (Fin n
         rw [Finset.sum_filter]
 
 open Classical in
+/--
+@isnad1 id=le.2h3v.s8.b36c8447de67 from=translated src=- shape=7ffecfc7 vocab=0cb15a41
+-/
 theorem card_closeSet_le_light_twoball (G : SimpleGraph (Fin n)) (u₀ : Fin n)
     (h3 : ∀ v, 3 ≤ G.degree v) (h4 : G.degree u₀ ≤ 4) :
     (closeSet G u₀).card ≤ 53 + 4 * ∑ w ∈ (insert u₀ (G.neighborFinset u₀

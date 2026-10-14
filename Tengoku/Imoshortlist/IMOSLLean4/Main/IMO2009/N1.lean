@@ -28,7 +28,9 @@ namespace IMO2009N1
 
 open Fin.NatCast in
 /-- If `a_1, a_2, …, a_k` satisfies `a_i a_{i + 1} ≡ a_i (mod n)` for all `i ≤ k`,
-  where we denote `a_{k + 1} = a_1`, then all the `a_i`'s are congruent mod `n`. -/
+  where we denote `a_{k + 1} = a_1`, then all the `a_i`'s are congruent mod `n`.
+@isnad1 id=modeq.1h5v.s6.7576f00bd6ad from=translated src=- shape=f5779adc vocab=cc272210
+-/
 theorem main_lemma {a : Fin (Nat.succ k) → ℤ} (ha : ∀ i, a i * a (i + 1) ≡ a i [ZMOD n]) :
     ∀ i j, a i ≡ a j [ZMOD n] := by
   ---- By inducting, we get `a_i a_{i + m + 1} ≡ a_i (mod n)` for all `i` and `m ∈ ℕ`.
@@ -51,7 +53,9 @@ theorem main_lemma {a : Fin (Nat.succ k) → ℤ} (ha : ∀ i, a i * a (i + 1) �
     _ = a j * a i := by rw [mul_comm]
     _ ≡ a j [ZMOD n] := h j i
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=not.3h3v.s6.ea5212b4532c from=translated src=- shape=c94810ea vocab=5fe74c3c
+-/
 theorem final_solution (hk : 1 < Nat.succ k) {a : Fin (Nat.succ k) → ℤ}
     (ha : a.Injective) {n : ℕ} (ha0 : ∀ i, 0 < a i ∧ a i ≤ n) :
     ¬∀ i, (n : ℤ) ∣ a i * (a (i + 1) - 1) := by

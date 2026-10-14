@@ -37,13 +37,17 @@ abbrev IsCommonBeliefAt {ι : Type*} (P : ι → Partition Ω) (μ : Measure Ω)
     (p : ENNReal) (C : Set Ω) (ω : Ω) : Prop :=
   ∃ E : Set Ω, ω ∈ E ∧ (∀ i, (P i).IsEvidentBelief μ p E) ∧ ∀ i, E ⊆ (P i).belief μ p C
 
-/-- Monotonicity of belief: `X ⊆ Y` implies `P.belief μ p X ⊆ P.belief μ p Y`. -/
+/-- Monotonicity of belief: `X ⊆ Y` implies `P.belief μ p X ⊆ P.belief μ p Y`.
+@isnad1 id=le.1h6v.s5.276440c40879 from=translated src=- shape=6086879c vocab=b625c41f
+-/
 lemma Partition.belief_mono (P : Partition Ω) (μ : Measure Ω)
     (p : ENNReal) {X Y : Set Ω} (hXY : X ⊆ Y) :
     P.belief μ p X ⊆ P.belief μ p Y := fun _ hω ↦
   hω.trans (ENNReal.div_le_div_right (measure_mono (inter_subset_inter_left _ hXY)) _)
 
-/-- The belief set equals a union over partition atoms with sufficient conditional probability. -/
+/-- The belief set equals a union over partition atoms with sufficient conditional probability.
+@isnad1 id=eq.0h5v.s7.d3b3b64f41ad from=translated src=- shape=a6807617 vocab=bd94f377
+-/
 lemma Partition.belief_eq_biUnion {P : Partition Ω}
     (μ : Measure Ω)
     (p : ENNReal) (X : Set Ω) :
@@ -56,7 +60,9 @@ lemma Partition.belief_eq_biUnion {P : Partition Ω}
   rw [Partition.class_eq_of_mem hs hωs]
   exact hps
 
-/-- For a measurable countable partition `P`, the belief set `P.belief μ p X` is measurable. -/
+/-- For a measurable countable partition `P`, the belief set `P.belief μ p X` is measurable.
+@isnad1 id=measurab.2h5v.s5.78d0ddf0dde8 from=translated src=- shape=9a8c804f vocab=3a44e810
+-/
 lemma Partition.measurableSet_belief {P : Partition Ω} (hP : P.Measurable)
     (hPc : P.val.Countable) (μ : Measure Ω)
     (p : ENNReal) (X : Set Ω) :
@@ -65,7 +71,9 @@ lemma Partition.measurableSet_belief {P : Partition Ω} (hP : P.Measurable)
   exact MeasurableSet.biUnion (hPc.mono fun _ hs ↦ hs.1) (fun s hs ↦ hP s hs.1)
 
 omit [IsProbabilityMeasure μ] in
-/-- The downward step of belief idempotence. -/
+/-- The downward step of belief idempotence.
+@isnad1 id=le.1h5v.s5.7200af7441a1 from=translated src=- shape=ca9a8fa3 vocab=a63e4775
+-/
 lemma Partition.belief_belief_subset {P : Partition Ω}
     {p : ENNReal} (hp : 0 < p) (X : Set Ω) :
     P.belief μ p (P.belief μ p X) ⊆ P.belief μ p X := by
@@ -87,7 +95,9 @@ lemma Partition.belief_belief_subset {P : Partition Ω}
     simpa only [measure_empty, ENNReal.zero_div] using hs_prob
   exact (not_le.mpr hp) h_zero
 
-/-- If `0 < p ≤ a / b`, then `0 < a`. -/
+/-- If `0 < p ≤ a / b`, then `0 < a`.
+@isnad1 id=lt.2h3v.s5.8427245eeae7 from=translated src=- shape=492bb2e2 vocab=f01e2841
+-/
 lemma ennreal_num_pos_of_ratio_ge {p a b : ENNReal} (hp : 0 < p)
     (h : p ≤ a / b) : 0 < a := by
   by_contra h₁
@@ -96,7 +106,9 @@ lemma ennreal_num_pos_of_ratio_ge {p a b : ENNReal} (hp : 0 < p)
   exact absurd (h.trans_lt hp) (lt_irrefl _)
 
 omit [IsProbabilityMeasure μ] in
-/-- If `A` is `p`-evident with `0 < p`, then `μ A > 0`. -/
+/-- If `A` is `p`-evident with `0 < p`, then `μ A > 0`.
+@isnad1 id=lt.3h6v.s6.1e83efb3b629 from=translated src=- shape=a9352a76 vocab=04936e99
+-/
 lemma measure_pos_of_evident_belief {P : Partition Ω}
     {p : ENNReal} (hp : 0 < p) {A : Set Ω} {ω : Ω}
     (hω : ω ∈ A) (hev : A ⊆ P.belief μ p A) :
@@ -104,12 +116,16 @@ lemma measure_pos_of_evident_belief {P : Partition Ω}
   (ennreal_num_pos_of_ratio_ge hp (hev hω)).trans_le (measure_mono Set.inter_subset_left)
 
 omit [IsProbabilityMeasure μ] in
-/-- A set of positive measure is nonempty. -/
+/-- A set of positive measure is nonempty.
+@isnad1 id=nonempty.1h3v.s5.7aa67d39b903 from=translated src=- shape=52432392 vocab=4876a42c
+-/
 lemma nonempty_of_measure_pos {s : Set Ω} (h : 0 < μ s) : s.Nonempty :=
   Set.nonempty_iff_ne_empty.mpr fun he ↦ by simp [he] at h
 
 omit [IsProbabilityMeasure μ] in
-/-- If `A ⊆ P.belief μ p {ω | P.probabilityAt μ E ω = r}`, then probability equals r on A. -/
+/-- If `A ⊆ P.belief μ p {ω | P.probabilityAt μ E ω = r}`, then probability equals r on A.
+@isnad1 id=eq.3h8v.s6.1a46ae86bcaf from=translated src=- shape=ae547c73 vocab=089fe8fc
+-/
 lemma probabilityAt_eq_of_belief_const
     {P : Partition Ω} {p : ENNReal} (hp : 0 < p) {E A : Set Ω} {r : ENNReal}
     (hA : A ⊆ P.belief μ p {ω | P.probabilityAt μ E ω = r}) :
@@ -127,6 +143,9 @@ lemma probabilityAt_eq_of_belief_const
 
 /-! ## Helpers for `core_bound` -/
 
+/--
+@isnad1 id=eq.4h8v.s7.712fb5f9ea8c from=translated src=- shape=544c6d8d vocab=6138731d
+-/
 lemma core_bound.atom_E_eq {P : Partition Ω} (hP' : ∀ s ∈ P, μ s > 0)
     {A E : Set Ω} {r : ENNReal}
     (hAR : ∀ ω ∈ A, P.probabilityAt μ E ω = r)
@@ -136,6 +155,9 @@ lemma core_bound.atom_E_eq {P : Partition Ω} (hP' : ∀ s ∈ P, μ s > 0)
     simpa [Partition.probabilityAt, Partition.class_eq_of_mem hs hω.2] using hAR ω hω.1
   rw [← h, ENNReal.div_mul_cancel (hP' s hs).ne' (measure_ne_top μ s)]
 
+/--
+@isnad1 id=le.4h7v.s7.5803bfcc82a0 from=translated src=- shape=975cf19d vocab=ee03a52a
+-/
 lemma core_bound.atom_evidence {P : Partition Ω} (hP' : ∀ s ∈ P, μ s > 0)
     {p : ENNReal} {A : Set Ω} (hAev : A ⊆ P.belief μ p A)
     {s : Set Ω} (hs : s ∈ P) {ω : Ω} (hω : ω ∈ A ∩ s) :
@@ -153,6 +175,9 @@ private lemma atom_real_arith {x αr r p δ : ℝ}
   rw [abs_le]
   refine ⟨?_, ?_⟩ <;> nlinarith [mul_le_mul_of_nonneg_right hx1 h1, mul_nonneg hx0 h1]
 
+/--
+@isnad1 id=le.6h8v.s8.5bff6c9bd973 from=translated src=- shape=5a7779e2 vocab=e2bbcafb
+-/
 lemma core_bound.atom_real_bound {P : Partition Ω} (hP' : ∀ s ∈ P, μ s > 0)
     {p : ENNReal} {A E : Set Ω} (hA : MeasurableSet A)
     {r : ENNReal} {s : Set Ω} (hs : s ∈ P) (hAsmu : 0 < μ (A ∩ s))
@@ -214,6 +239,9 @@ lemma core_bound.atom_real_bound {P : Partition Ω} (hP' : ∀ s ∈ P, μ s > 0
     ((div_le_one hms_pos_R).mpr hmAs_le_ms) hp_le_α
     (div_nonneg ENNReal.toReal_nonneg hms_pos_R.le) hδ_ub heq
 
+/--
+@isnad1 id=eq.3h4v.s7.400615b63299 from=translated src=- shape=030db648 vocab=15580d74
+-/
 lemma core_bound.tsum_decomp_A {P : Partition Ω} (hP : P.Measurable)
     (hP' : ∀ s ∈ P, μ s > 0) {A : Set Ω} (hA : MeasurableSet A) :
     μ A = ∑' (s : P.val), μ (A ∩ s.1) := by
@@ -230,11 +258,17 @@ lemma core_bound.tsum_decomp_A {P : Partition Ω} (hP : P.Measurable)
       inter_subset_right inter_subset_right)
     (fun s ↦ hA.inter (hP s.1 s.2))
 
+/--
+@isnad1 id=le.2h4v.s6.55b7776e6c5d from=translated src=- shape=31209b52 vocab=d0265399
+-/
 lemma core_bound.abs_sub_div_le_of_mul {T q r b : ℝ} (hT : 0 < T)
     (h : |r * T - q| ≤ T * b) : |r - q / T| ≤ b := by
   rw [show r - q / T = (r * T - q) / T by field_simp, abs_div, abs_of_pos hT, div_le_iff₀ hT]
   linarith
 
+/--
+@isnad1 id=le.1h8v.s8.75609a10b9cf from=translated src=- shape=2aa742e9 vocab=9f1c9864
+-/
 lemma core_bound.weighted_atom_bound
     {P : Partition Ω} {A E : Set Ω} {p r : ENNReal}
     (hAtom : ∀ (s : P.val), 0 < μ (A ∩ s.1) →
@@ -257,6 +291,9 @@ lemma core_bound.weighted_atom_bound
       le_antisymm (hμA_zero ▸ measure_mono fun _ ⟨⟨_, h⟩, h'⟩ ↦ ⟨h, h'⟩) zero_le
     simp [hμA_zero, hμEA_zero]
 
+/--
+@isnad1 id=le.3h7v.s9.7b9739af3f97 from=translated src=- shape=d9b78cb2 vocab=f2cf0561
+-/
 lemma core_bound.weighted_sum_bound
     {P : Partition Ω}
     {p : ENNReal} {A E : Set Ω} {r : ENNReal}
@@ -284,7 +321,9 @@ lemma core_bound.weighted_sum_bound
   refine (tsum_of_norm_bounded (hSumA.mul_right _).hasSum hterm).trans ?_
   rw [tsum_mul_right, ← hAtsum]
 
-/-- Core bound (Step 4 of the informal proof). -/
+/-- Core bound (Step 4 of the informal proof).
+@isnad1 id=le.7h7v.s7.46e5fc332e0f from=translated src=- shape=293c4492 vocab=82add17d
+-/
 lemma core_bound {P : Partition Ω} (hP : P.Measurable) (hP' : ∀ s ∈ P, μ s > 0)
     {p : ENNReal} {A E : Set Ω}
     (hA : MeasurableSet A) (hAmu : 0 < μ A) (hAev : A ⊆ P.belief μ p A)
@@ -305,6 +344,9 @@ lemma core_bound {P : Partition Ω} (hP : P.Measurable) (hP' : ∀ s ∈ P, μ s
     (ENNReal.toReal_pos hAmu.ne' (measure_lt_top μ A).ne)
     (core_bound.weighted_sum_bound hμA hμEA hAtom)
 
+/--
+@isnad1 id=le.5h10v.s7.fd27829348f7 from=translated src=- shape=da5dedfb vocab=a60ce3d7
+-/
 lemma agreeToDisagree_beliefs {ι : Type*} {P : ι → Partition Ω}
     (hP : ∀ i, (P i).Measurable) (hP' : ∀ i, ∀ s ∈ P i, μ s > 0)
     {E : Set Ω} (hE : MeasurableSet E) (ω : Ω) {p : ENNReal} (hp : 0 < p) {r : ι → ENNReal}

@@ -22,18 +22,30 @@ namespace IMO2013N6
 def good (f : ℚ → ℤ) :=
   ∀ (x : ℚ) (a : ℤ) (b : ℕ), 0 < b → f ((f x + a) / b) = f ((x + a) / b)
 
+/--
+@isnad1 id=good.0h1v.s2.d201f8c3650e from=translated src=- shape=5d0e0b4d vocab=9ca0f70d
+-/
 theorem good_const (C : ℤ) : good (λ _ ↦ C) := λ _ _ _ _ ↦ rfl
 
+/--
+@isnad1 id=good.0h0v.s3.4778d79d4b6d from=translated src=- shape=87ceb31f vocab=637743a2
+-/
 theorem good_floor : good Int.floor := λ x a b hb ↦ by
   refine Int.floor_congr λ n ↦ ?_
   replace hb : 0 < (b : ℚ) := Nat.cast_pos.mpr hb
   rw [← Int.cast_add, ← Int.floor_add_intCast, le_div_iff₀ hb, le_div_iff₀ hb,
     ← Int.cast_natCast, ← Int.cast_mul, Int.cast_le, Int.le_floor]
 
+/--
+@isnad1 id=good.1h1v.s4.36d5e9b81db7 from=translated src=- shape=9a5a2796 vocab=ff056ae1
+-/
 theorem good_neg_map_neg (hf : good f) : good (λ x ↦ -f (-x)) := λ x a b hb ↦ by
   rw [Int.cast_neg, neg_inj, ← neg_div, neg_add, neg_neg,
     ← a.cast_neg, hf _ _ b hb, Int.cast_neg, ← neg_add, neg_div]
 
+/--
+@isnad1 id=good.0h0v.s3.531f3bb568ed from=translated src=- shape=87ceb31f vocab=0a8464a0
+-/
 theorem good_ceil : good Int.ceil :=
   good_neg_map_neg good_floor
 
@@ -42,6 +54,9 @@ section
 variable (hf : good f)
 include hf
 
+/--
+@isnad1 id=ex.2h2v.s4.91f8a7f17e7d from=translated src=- shape=7c55c154 vocab=261385e1
+-/
 lemma const_of_not_int_id {n : ℤ} (h : f n ≠ n) : ∃ C, f = λ _ ↦ C := by
   rw [← sub_ne_zero] at h
   have h0 (k : ℤ) : f (k + ↑(f n - n) / |f n - n|) = f k := by
@@ -69,6 +84,9 @@ lemma const_of_not_int_id {n : ℤ} (h : f n ≠ n) : ∃ C, f = λ _ ↦ C := b
 variable (h : ∀ n : ℤ, f n = n)
 include h
 
+/--
+@isnad1 id=eq.2h3v.s5.a3ebf965244e from=translated src=- shape=e81a6553 vocab=c5b24aeb
+-/
 lemma int_id_map_add_int (x : ℚ) (a : ℤ) : f (x + a) = f x + a := by
   specialize hf x a 1 Nat.one_pos
   rwa [Nat.cast_one, div_one, div_one, ← Int.cast_add, h, eq_comm] at hf
@@ -118,7 +136,9 @@ lemma eq_floor_of_map_half_nonpos (h0 : f 2⁻¹ ≤ 0) : f = Int.floor := by
 
 end
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h1v.s5.07ce4e82db46 from=translated src=- shape=1e82ce07 vocab=c3378347
+-/
 theorem final_solution : good f ↔ (∃ C, f = λ _ ↦ C) ∨ f = Int.floor ∨ f = Int.ceil := by
   refine ⟨λ h ↦ ?_, λ h ↦ ?_⟩
   ---- `→` direction

@@ -46,11 +46,15 @@ instance : FunLike Card4NatSet (Fin 4) ℕ where
   coe := toFun
   coe_injective _ _ := Card4NatSet.ext
 
-/-- Each `a_i` is positive. -/
+/-- Each `a_i` is positive.
+@isnad1 id=lt.0h2v.s5.d116fba34245 from=translated src=- shape=98cec388 vocab=5d744695
+-/
 theorem pos (A : Card4NatSet) (i) : A i > 0 :=
   A.pos' i
 
-/-- We have `a_0 < a_1 < a_2 < a_3`. -/
+/-- We have `a_0 < a_1 < a_2 < a_3`.
+@isnad1 id=strictmo.0h1v.s5.3f21be2d5150 from=translated src=- shape=08650aa8 vocab=1338e87e
+-/
 theorem strictMono (A : Card4NatSet) : StrictMono A :=
   A.strictMono'
 
@@ -58,12 +62,16 @@ theorem strictMono (A : Card4NatSet) : StrictMono A :=
 def pSet (A : Card4NatSet) : Finset (Fin 4 × Fin 4) :=
   {(i, j) : Fin 4 × Fin 4 | i < j ∧ A i + A j ∣ A 0 + A 1 + A 2 + A 3}
 
-/-- Membership definition of `pSet`. -/
+/-- Membership definition of `pSet`.
+@isnad1 id=iff.0h3v.s8.5a9859a68ed0 from=translated src=- shape=69cd2598 vocab=fd1b0001
+-/
 lemma mem_pSet_iff {A : Card4NatSet} :
     (i, j) ∈ A.pSet ↔ i < j ∧ A i + A j ∣ A 0 + A 1 + A 2 + A 3 :=
   mem_filter_univ _
 
-/-- If `(i, j)` belongs to `pSet`, then `a_i + a_j ∣ a_0 + a_1 + a_2 + a_3`. -/
+/-- If `(i, j)` belongs to `pSet`, then `a_i + a_j ∣ a_0 + a_1 + a_2 + a_3`.
+@isnad1 id=dvd.1h3v.s8.9773543bfda3 from=translated src=- shape=ff3b255b vocab=27b07dbd
+-/
 lemma mem_pSet_imp {A : Card4NatSet} (h : (i, j) ∈ A.pSet) :
     A i + A j ∣ A 0 + A 1 + A 2 + A 3 :=
   (mem_pSet_iff.mp h).2
@@ -74,10 +82,14 @@ def nsmul (A : Card4NatSet) (hn : 0 < n) : Card4NatSet where
   pos' i := Nat.mul_pos hn (A.pos i)
   strictMono' _ _ h := Nat.mul_lt_mul_of_pos_left (A.strictMono h) hn
 
-/-- The definition of scalar multiplication on `Card4NatSet`. -/
+/-- The definition of scalar multiplication on `Card4NatSet`.
+@isnad1 id=eq.1h3v.s6.1dbe9ec7aad5 from=translated src=- shape=da810d60 vocab=69fd1be2
+-/
 lemma nsmul_apply (A : Card4NatSet) (hn : 0 < n) (i) : A.nsmul hn i = n * A i := rfl
 
-/-- The set `pSet` is stable under scalar multiplication. -/
+/-- The set `pSet` is stable under scalar multiplication.
+@isnad1 id=eq.1h2v.s5.2552d0a0c030 from=translated src=- shape=1c8ce2c1 vocab=31e50e30
+-/
 lemma pSet_nsmul (A : Card4NatSet) (hn : 0 < n) : (A.nsmul hn).pSet = A.pSet := by
   refine Finset.ext λ (i, j) ↦ ?_
   simp only [mem_pSet_iff, nsmul_apply, ← Nat.mul_add]
@@ -85,7 +97,9 @@ lemma pSet_nsmul (A : Card4NatSet) (hn : 0 < n) : (A.nsmul hn).pSet = A.pSet := 
 
 /-! ### Start of the problem -/
 
-/-- The indices in the `pSet` can only be one of `(0, 1), (0, 2), (0, 3), (1, 2)`. -/
+/-- The indices in the `pSet` can only be one of `(0, 1), (0, 2), (0, 3), (1, 2)`.
+@isnad1 id=le.0h1v.s9.17babf0d7a3c from=translated src=- shape=4c29a874 vocab=6fd5176a
+-/
 lemma pSet_subset (A : Card4NatSet) : A.pSet ⊆ {(0, 1), (0, 2), (0, 3), (1, 2)} := by
   ---- For convenience, write `S = {(0, 1), (0, 2), (0, 3), (1, 2)}`, and let `p ∈ A.pSet`.
   set S : Finset (Fin 4 × Fin 4) := {(0, 1), (0, 2), (0, 3), (1, 2)}
@@ -112,11 +126,15 @@ lemma pSet_subset (A : Card4NatSet) : A.pSet ⊆ {(0, 1), (0, 2), (0, 3), (1, 2)
   ---- The case `p ∈ S` is the goal.
   · exact h
 
-/-- The size of the `pSet` is at most four. -/
+/-- The size of the `pSet` is at most four.
+@isnad1 id=le.0h1v.s4.4aa1dadf48ce from=translated src=- shape=66ac0738 vocab=70cf3a8d
+-/
 lemma card_pSet_le_four (A : Card4NatSet) : #A.pSet ≤ 4 :=
   card_le_card A.pSet_subset
 
-/-- If `(0, 3)` and `(1, 2)` belongs to `pSet`, then `a_0 + a_3 = a_1 + a_2`. -/
+/-- If `(0, 3)` and `(1, 2)` belongs to `pSet`, then `a_0 + a_3 = a_1 + a_2`.
+@isnad1 id=eq.1h1v.s8.d0116a333c88 from=translated src=- shape=08a3e93f vocab=e6de2493
+-/
 lemma a0_add_a3_eq_a1_add_a2 {A : Card4NatSet} (hA : {(0, 3), (1, 2)} ⊆ A.pSet) :
     A 0 + A 3 = A 1 + A 2 := by
   have hA0 : A 0 + A 3 ∣ A 0 + A 1 + A 2 + A 3 := mem_pSet_imp (hA (mem_insert_self _ _))
@@ -128,7 +146,9 @@ lemma a0_add_a3_eq_a1_add_a2 {A : Card4NatSet} (hA : {(0, 3), (1, 2)} ⊆ A.pSet
     rwa [Nat.add_assoc (A 0), Nat.add_right_comm, Nat.dvd_add_self_right] at hA
   exact Nat.dvd_antisymm hA0 hA
 
-/-- If `a_0 + a_3 = a_1 + a_2` and `(0, 2) ∈ A.pSet`, then `3(a_0 + a_2) = 2(a_1 + a_2)`. -/
+/-- If `a_0 + a_3 = a_1 + a_2` and `(0, 2) ∈ A.pSet`, then `3(a_0 + a_2) = 2(a_1 + a_2)`.
+@isnad1 id=eq.2h1v.s8.361d03428665 from=translated src=- shape=7c3b0d56 vocab=128c40fd
+-/
 lemma three_mul_a0_add_a2_eq_two_mul_a1
     {A : Card4NatSet} (hA : A 0 + A 3 = A 1 + A 2) (hA0 : (0, 2) ∈ A.pSet) :
     3 * (A 0 + A 2) = 2 * (A 1 + A 2) := by
@@ -158,7 +178,9 @@ lemma three_mul_a0_add_a2_eq_two_mul_a1
       _ ≤ 4 * (A 0 + A 2) := Nat.mul_le_mul_left _ (Nat.le_add_left _ _)
 
 /-- If the size is exactly `4`, then `A` is a scalar multiple of
-  either `{1, 5, 7, 11}` or `{1, 11, 19, 29}`. -/
+  either `{1, 5, 7, 11}` or `{1, 11, 19, 29}`.
+@isnad1 id=or.1h1v.s8.1390f1f85e91 from=translated src=- shape=f083ca68 vocab=3155c328
+-/
 lemma four_le_card_pSet_imp {A : Card4NatSet} (hA : 4 ≤ #A.pSet) :
     ⇑A = A 0 • ![1, 5, 7, 11] ∨ ⇑A = A 0 • ![1, 11, 19, 29] := by
   ---- The `pSet` is contained in (equal to) `{(0, 1), (0, 2), (0, 3), (1, 2)}`.
@@ -241,7 +263,9 @@ def MaxSet2 : Card4NatSet where
   strictMono' := by decide
 
 /-- We have `p_A = 4` if and only if `A` is a
-  scalar multiple of `{1, 5, 7, 11}` or `{1, 11, 19, 29}`. -/
+  scalar multiple of `{1, 5, 7, 11}` or `{1, 11, 19, 29}`.
+@isnad1 id=iff.0h1v.s6.681d087e2654 from=translated src=- shape=60d6076e vocab=dd94504d
+-/
 lemma four_le_card_pSet_iff {A : Card4NatSet} :
     4 ≤ #A.pSet ↔ ∃ (n : ℕ) (hn : n > 0), A = MaxSet1.nsmul hn ∨ A = MaxSet2.nsmul hn := by
   refine ⟨?_, ?_⟩
@@ -255,7 +279,9 @@ lemma four_le_card_pSet_iff {A : Card4NatSet} :
 end Card4NatSet
 
 open Card4NatSet in
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h1v.s8.f245e1938f84 from=translated src=- shape=7a90d99e vocab=6265451c
+-/
 theorem final_solution {A : Card4NatSet} :
     (∀ B : Card4NatSet, #B.pSet ≤ #A.pSet) ↔
       ∃ n > 0, ⇑A = n • ![1, 5, 7, 11] ∨ ⇑A = n • ![1, 11, 19, 29] :=

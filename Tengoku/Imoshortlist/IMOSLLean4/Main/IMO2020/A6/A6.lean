@@ -25,10 +25,16 @@ def good (f : ℤ → ℤ) := ∀ a b, f^[a.natAbs ^ 2 + b.natAbs ^ 2] (a + b) =
 
 /- ### Answer -/
 
+/--
+@isnad1 id=eq.0h2v.s5.fc5bda83a8cf from=translated src=- shape=16742d21 vocab=101da19c
+-/
 theorem add_one_iterate : ∀ n (a : ℤ), (· + 1)^[n] a = a + n := by
   refine Nat.rec (λ a ↦ a.add_zero.symm) (λ n h a ↦ ?_)
   rw [iterate_succ_apply', h, Int.add_assoc]; rfl
 
+/--
+@isnad1 id=good.0h0v.s4.df3a6a232385 from=translated src=- shape=585bfb7d vocab=e9fa5f2b
+-/
 theorem good_add_one : good (· + 1) := λ a b ↦ by
   have h (c : ℤ) : c + (c.natAbs ^ 2 : ℕ) = c * (c + 1) := by
     rw [Int.natCast_pow, Int.natAbs_sq, Int.pow_succ, Int.pow_succ,
@@ -36,11 +42,17 @@ theorem good_add_one : good (· + 1) := λ a b ↦ by
   rw [add_one_iterate, Int.natCast_add, ← h, ← h,
     a.add_assoc, b.add_left_comm, ← a.add_assoc]
 
+/--
+@isnad1 id=eq.0h4v.s4.345757476474 from=translated src=- shape=91fae280 vocab=6b2c3112
+-/
 theorem const_iterate {α : Type*} (a b : α) :
     ∀ n, (λ _ ↦ b)^[n] a = bif n.beq 0 then a else b
   | 0 => rfl
   | _ + 1 => iterate_succ_apply' _ _ _
 
+/--
+@isnad1 id=good.0h0v.s3.45348b026e1e from=translated src=- shape=f7fe7e42 vocab=63135517
+-/
 theorem good_zero : good (λ _ ↦ 0) := λ a b ↦ by
   rw [const_iterate, ← Int.add_mul, Int.mul_zero]
   cases h : (a.natAbs ^ 2 + b.natAbs ^ 2).beq 0 with | false => rfl | true => ?_
@@ -56,15 +68,24 @@ namespace good
 variable (h : good f)
 include h
 
+/--
+@isnad1 id=eq.1h2v.s5.bfb1a7e98ab4 from=translated src=- shape=7a4484f2 vocab=d7ce4e23
+-/
 theorem map_iterate_sq (a : ℤ) : f^[a.natAbs ^ 2] a = a * f a := by
   have h := h a 0; rwa [Int.zero_mul, Int.add_zero, Int.add_zero] at h
 
+/--
+@isnad1 id=eq.1h1v.s4.41be35d4f288 from=translated src=- shape=95a4fed6 vocab=b38a11b8
+-/
 theorem map_neg_one : f (-1) = 0 := by
   have h : f (-1) = -1 * f (-1) := by exact map_iterate_sq h (-1)
   rw [Int.neg_mul, Int.one_mul, ← Int.add_left_inj (k := f (-1)),
     Int.add_left_neg, ← Int.two_mul, Int.mul_eq_zero] at h
   exact h.resolve_left (ne_of_beq_false rfl)
 
+/--
+@isnad1 id=eq.1h2v.s6.14a629403531 from=translated src=- shape=2608f1d9 vocab=4a4ec578
+-/
 theorem map_iterate_sq_add_one (a : ℤ) :
     f^[(a + 1).natAbs ^ 2 + 1] a = f^[(a + 1).natAbs ^ 2] (a + 1) := by
   have h0 := h (a + 1) (-1)
@@ -74,6 +95,9 @@ theorem map_iterate_sq_add_one (a : ℤ) :
 theorem eq_add_one_of_injective (h0 : f.Injective) : f = (· + 1) :=
   funext λ a ↦ h0.iterate ((a + 1).natAbs ^ 2) (map_iterate_sq_add_one h a)
 
+/--
+@isnad1 id=ex.1h3v.s5.cc2b2f4f49da from=translated src=- shape=537c060a vocab=45ea8705
+-/
 theorem exists_iter_add_large_eq (a : ℤ) : ∀ k, ∃ N, f^[N + k] a = f^[N] (a + k) := by
   refine Nat.rec ⟨0, a.add_zero.symm⟩ λ k h0 ↦ ?_
   rcases h0 with ⟨N, h0⟩
@@ -83,6 +107,9 @@ theorem exists_iter_add_large_eq (a : ℤ) : ∀ k, ∃ N, f^[N + k] a = f^[N] (
     ← iterate_add_apply, Nat.add_comm _ (N + k), Nat.add_add_add_comm]
 
 open Finset in
+/--
+@isnad1 id=ex.2h1v.s5.a1b9574dd8c5 from=translated src=- shape=9c44a305 vocab=e3ee858c
+-/
 theorem orbit_zero_bdd_of_not_injective (h0 : ¬f.Injective) :
     ∃ M, ∀ n, (f^[n] 0).natAbs < M := by
   ---- First get `f(a + k) = f(a)` for some `k > 0`
@@ -172,7 +199,9 @@ theorem eq_zero_of_not_injective (h0 : ∃ M, ∀ n, (f^[n] 0).natAbs < M) : f =
 
 end good
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h1v.s5.7bb7a2bea597 from=translated src=- shape=282b6d76 vocab=e9fa5f2b
+-/
 theorem final_solution {f : ℤ → ℤ} : good f ↔ f = (· + 1) ∨ f = λ _ ↦ 0 :=
   ⟨λ h ↦ (em f.Injective).imp h.eq_add_one_of_injective
     (λ h0 ↦ h.eq_zero_of_not_injective (h.orbit_zero_bdd_of_not_injective h0)),

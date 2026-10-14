@@ -43,7 +43,9 @@ def continuousPriorMixtureProcess
 /-- A continuous prior mixture dominates the prior mass of any measurable
 parameter set times a uniform lower bound for the component processes on that
 set.  This is the generic integral form of the positive-mass comparison used
-by nonatomic betting mixtures. -/
+by nonatomic betting mixtures.
+@isnad1 id=le.4h8v.s7.4492ef74558e from=translated src=- shape=8e369372 vocab=cba3392b
+-/
 theorem continuousPriorMixtureProcess_competes_of_priorMass
     (prior : Measure Θ) [IsFiniteMeasure prior]
     {M : Θ → ℕ → Ω → ℝ} {B : Set Θ} (hB : MeasurableSet B)
@@ -72,6 +74,7 @@ The product-integrability hypotheses are the exact Fubini obligations needed
 to test the inequality on filtration-measurable sets.  In particular, the
 conclusion is not obtained by assuming that conditional expectation commutes
 with the prior integral.
+@isnad1 id=eventual.7h8v.s9.c3328a651457 from=translated src=- shape=36e77a4d vocab=6aaa7f86
 -/
 theorem continuousPriorMixture_condExp_step_of_fixed_hypothesis_steps
     {μ : @Measure Ω mΩ} [IsProbabilityMeasure μ]
@@ -144,6 +147,7 @@ family with everywhere-nonnegative values is a nonnegative supermartingale.
 All joint and restricted-product integrability assumptions needed by Fubini are
 explicit.  The theorem therefore supplies the missing continuous-hypothesis
 analogue of the finite prior sum in `TimeUniformPACBayes`.
+@isnad1 id=and.8h7v.s9.9767c008c182 from=translated src=- shape=76b61243 vocab=4a2611ba
 -/
 theorem continuousPriorMixture_supermartingale
     {μ : @Measure Ω mΩ} [IsProbabilityMeasure μ]
@@ -194,6 +198,7 @@ This is the submartingale analogue of
 `continuousPriorMixture_condExp_step_of_fixed_hypothesis_steps`.  The product
 integrability hypotheses expose the Fubini obligations rather than assuming
 that conditional expectation commutes with the prior integral.
+@isnad1 id=eventual.7h8v.s9.bca0a918a5aa from=translated src=- shape=bd470c9e vocab=6aaa7f86
 -/
 theorem continuousPriorMixture_condExp_step_ge_of_fixed_hypothesis_steps
     {μ : @Measure Ω mΩ} [IsProbabilityMeasure μ]
@@ -263,6 +268,7 @@ theorem continuousPriorMixture_condExp_step_ge_of_fixed_hypothesis_steps
 A probability-prior integral of a prior-almost-everywhere submartingale
 family is a submartingale, under the explicit product-integrability
 obligations needed by Fubini.
+@isnad1 id=submarti.7h7v.s8.8e677ad6942d from=translated src=- shape=3018234c vocab=ac8b679b
 -/
 theorem continuousPriorMixture_submartingale
     {μ : @Measure Ω mΩ} [IsProbabilityMeasure μ]
@@ -313,6 +319,7 @@ def timeUniformContinuousPACBayesUpperFailure
 /--
 Continuous Donsker--Varadhan inversion: a posterior boundary failure forces the
 prior exponential mixture to cross `1 / delta` at the same time.
+@isnad1 id=le.5h6v.s7.fd62af68e95f from=translated src=- shape=7b8b19b3 vocab=ba3409fa
 -/
 theorem timeUniformContinuousPACBayesUpperFailure_subset_crossing
     (prior posterior : Measure Θ)

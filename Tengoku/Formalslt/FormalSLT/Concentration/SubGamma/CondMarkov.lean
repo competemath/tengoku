@@ -42,6 +42,7 @@ The conditional probability is encoded as
 `μ[1_{Y ≥ c} | m]` — the conditional expectation of the indicator. (This
 is *not* the pointwise indicator: the inequality is at the conditional
 level, not the realisation level.)
+@isnad1 id=eventual.5h6v.s7.b14c8ced48af from=translated src=- shape=91fa85ef vocab=2e65fb37
 -/
 theorem cond_markov_of_nonneg
     {Ω : Type*} {m₀ : MeasurableSpace Ω}
