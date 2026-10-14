@@ -53,7 +53,9 @@ def Computations : Type _ := Σ c : Conf es, Computation es c
 def isLinearisation (c : Conf es) (t : List es.Event) : Prop :=
   ∃ p : Path es (emptyConf es) c, Path.trace es p ≈ₜ t
 
-/-- Every computation determines a linearisation of its target configuration. -/
+/-- Every computation determines a linearisation of its target configuration.
+@isnad1 id=ex.0h3v.s4.bf96cc08c028 from=translated src=- shape=87f96659 vocab=98686700
+-/
 lemma computation_is_linearisation {c : Conf es} (comp : Computation es c) :
     ∃ t : List es.Event, isLinearisation es c t := by
   obtain ⟨p, rfl⟩ := Quotient.exists_rep comp
@@ -66,7 +68,9 @@ def ReachableConf : Type _ := {c : Conf es // Nonempty (Computation es c)}
 def computationToReachable : Computations es → ReachableConf es :=
   fun p => ⟨p.1, ⟨p.2⟩⟩
 
-/-- The map from computations to reachable configurations is surjective. -/
+/-- The map from computations to reachable configurations is surjective.
+@isnad1 id=surjecti.0h1v.s3.aefa52f9a023 from=translated src=- shape=ca92e646 vocab=c31eea73
+-/
 lemma computation_to_reachable_surjective :
     Function.Surjective (computationToReachable es) :=
   fun ⟨c, ⟨comp⟩⟩ => ⟨⟨c, comp⟩, rfl⟩

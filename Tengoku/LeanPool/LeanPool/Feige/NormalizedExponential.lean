@@ -56,34 +56,52 @@ def exponentialSimplexSource : Set (ℝ × (Fin n → ℝ)) :=
 def positiveExponentialOrthant : Set (ℝ × (Fin n → ℝ)) :=
   {e | 0 ≤ e.1 ∧ (∀ i, 0 ≤ e.2 i) ∧ 0 < exponentialTotal e}
 
+/--
+@isnad1 id=continuo.0h1v.s5.e5dfd7cfd7df from=translated src=- shape=3d04320b vocab=d0851151
+-/
 theorem continuous_exponentialTotal :
     Continuous (exponentialTotal : (ℝ × (Fin n → ℝ)) → ℝ) := by
   unfold exponentialTotal
   fun_prop
 
+/--
+@isnad1 id=continuo.0h1v.s6.97204fc554cb from=translated src=- shape=58efe012 vocab=f97988ca
+-/
 theorem continuous_exponentialSimplexForward :
     Continuous (exponentialSimplexForward :
       (ℝ × (Fin n → ℝ)) → ℝ × (Fin n → ℝ)) := by
   unfold exponentialSimplexForward
   fun_prop
 
+/--
+@isnad1 id=measurab.0h1v.s5.b5086c8305de from=translated src=- shape=58efe012 vocab=ff66e28c
+-/
 theorem measurable_exponentialSimplexForward :
     Measurable (exponentialSimplexForward :
       (ℝ × (Fin n → ℝ)) → ℝ × (Fin n → ℝ)) :=
   continuous_exponentialSimplexForward.measurable
 
+/--
+@isnad1 id=measurab.0h1v.s5.46aa3c629136 from=translated src=- shape=58efe012 vocab=9075d2c0
+-/
 theorem measurable_exponentialSimplexInverse :
     Measurable (exponentialSimplexInverse :
       (ℝ × (Fin n → ℝ)) → ℝ × (Fin n → ℝ)) := by
   unfold exponentialSimplexInverse exponentialTotal
   fun_prop
 
+/--
+@isnad1 id=measurab.0h1v.s4.6a480666250a from=translated src=- shape=86c19a80 vocab=4d59b183
+-/
 theorem isMeasurableSet_exponentialSimplexSource :
     MeasurableSet (exponentialSimplexSource :
       Set (ℝ × (Fin n → ℝ))) := by
   exact (isOpen_lt continuous_const continuous_fst).measurableSet.inter
     (measurableSet_fullSimplex.preimage measurable_snd)
 
+/--
+@isnad1 id=measurab.0h1v.s4.fa17a2058c6e from=translated src=- shape=86c19a80 vocab=e905bb13
+-/
 theorem isMeasurableSet_positiveExponentialOrthant :
     MeasurableSet (positiveExponentialOrthant :
       Set (ℝ × (Fin n → ℝ))) := by
@@ -97,12 +115,18 @@ theorem isMeasurableSet_positiveExponentialOrthant :
     measurableSet_lt measurable_const continuous_exponentialTotal.measurable
   exact hfirst.inter (hcoords.inter htotal)
 
+/--
+@isnad1 id=eq.0h2v.s4.07524e2375e3 from=translated src=- shape=70ced4a3 vocab=0202d76c
+-/
 theorem exponentialTotal_forward (z : ℝ × (Fin n → ℝ)) :
     exponentialTotal (exponentialSimplexForward z) = z.1 := by
   simp only [exponentialTotal, exponentialSimplexForward]
   rw [← Finset.mul_sum]
   ring
 
+/--
+@isnad1 id=mem.1h2v.s5.70a07b852629 from=translated src=- shape=2a8ebe69 vocab=eed65ea3
+-/
 theorem exponentialSimplexForward_mem
     {z : ℝ × (Fin n → ℝ)} (hz : z ∈ exponentialSimplexSource) :
     exponentialSimplexForward z ∈ positiveExponentialOrthant := by
@@ -113,6 +137,9 @@ theorem exponentialSimplexForward_mem
   · rw [exponentialTotal_forward]
     exact ht
 
+/--
+@isnad1 id=mem.1h2v.s5.f710f1a07f4d from=translated src=- shape=2a8ebe69 vocab=9d6e959a
+-/
 theorem exponentialSimplexInverse_mem
     {e : ℝ × (Fin n → ℝ)} (he : e ∈ positiveExponentialOrthant) :
     exponentialSimplexInverse e ∈ exponentialSimplexSource := by
@@ -128,6 +155,9 @@ theorem exponentialSimplexInverse_mem
     unfold exponentialTotal
     linarith
 
+/--
+@isnad1 id=eq.1h2v.s5.12a7490fc2e9 from=translated src=- shape=452826cd vocab=f925ed7b
+-/
 theorem exponentialSimplexInverse_forward
     {z : ℝ × (Fin n → ℝ)} (hz : z ∈ exponentialSimplexSource) :
     exponentialSimplexInverse (exponentialSimplexForward z) = z := by
@@ -142,6 +172,9 @@ theorem exponentialSimplexInverse_forward
     simp only [exponentialSimplexForward]
     exact mul_div_cancel_left₀ (z.2 i) ht.ne'
 
+/--
+@isnad1 id=eq.1h2v.s5.eb05aef5ce0e from=translated src=- shape=452826cd vocab=a93dfcfb
+-/
 theorem exponentialSimplexForward_inverse
     {e : ℝ × (Fin n → ℝ)} (he : e ∈ positiveExponentialOrthant) :
     exponentialSimplexForward (exponentialSimplexInverse e) = e := by
@@ -158,7 +191,9 @@ theorem exponentialSimplexForward_inverse
     exact mul_div_cancel₀ (e.2 i) ht.ne'
 
 /-- The coordinate change is a bijection between its natural source and
-target domains. -/
+target domains.
+@isnad1 id=bijon.0h1v.s4.e3deccd0a564 from=translated src=- shape=9fe868ba vocab=5cbd65e3
+-/
 theorem exponentialSimplex_bijOn :
     Set.BijOn (exponentialSimplexForward (n := n))
       (exponentialSimplexSource (n := n))
@@ -199,12 +234,18 @@ noncomputable def exponentialSimplexForwardDerivative
       (1 - ∑ i, z.2 i) • dt).prod
     (ContinuousLinearMap.pi fun i ↦ z.1 • dx i + z.2 i • dt))
 
+/--
+@isnad1 id=eq.0h2v.s8.8adbd67a6935 from=translated src=- shape=e3a7e065 vocab=cc6aa293
+-/
 @[simp]
 theorem simplexCoordinateSumDerivative_apply
     (h : ℝ × (Fin n → ℝ)) :
     simplexCoordinateSumDerivative h = ∑ i, h.2 i := by
   simp [simplexCoordinateSumDerivative]
 
+/--
+@isnad1 id=eq.0h3v.s9.8966f98a11e3 from=translated src=- shape=71f61d35 vocab=f6cc9548
+-/
 theorem exponentialSimplexForwardDerivative_apply
     (z h : ℝ × (Fin n → ℝ)) :
     exponentialSimplexForwardDerivative z h =
@@ -213,6 +254,9 @@ theorem exponentialSimplexForwardDerivative_apply
   ext <;> simp [exponentialSimplexForwardDerivative,
     simplexCoordinateSumDerivative_apply] <;> ring
 
+/--
+@isnad1 id=hasfderi.0h2v.s7.beb2c53e18d1 from=translated src=- shape=4c684c6b vocab=7fae6814
+-/
 theorem hasFDerivAt_exponentialSimplexForward
     (z : ℝ × (Fin n → ℝ)) :
     HasFDerivAt exponentialSimplexForward
@@ -226,6 +270,9 @@ theorem hasFDerivAt_exponentialSimplexForward
     fun_prop
   exact h
 
+/--
+@isnad1 id=eq.0h2v.s9.18ef49c9e5dd from=translated src=- shape=8d981a83 vocab=8a432a18
+-/
 theorem fderiv_exponentialSimplexForward
     (z : ℝ × (Fin n → ℝ)) :
     fderiv ℝ exponentialSimplexForward z =
@@ -240,7 +287,9 @@ def optionVectorToProduct (v : Option (Fin n) → ℝ) :
     ℝ × (Fin n → ℝ) :=
   (v none, fun i ↦ v (some i))
 
-/-- The optional-coordinate identification is measurable. -/
+/-- The optional-coordinate identification is measurable.
+@isnad1 id=measurab.0h1v.s5.68693aa302ee from=translated src=- shape=94d3e796 vocab=5b41dd68
+-/
 theorem measurable_optionVectorToProduct :
     Measurable (optionVectorToProduct (n := n)) := by
   unfold optionVectorToProduct
@@ -252,6 +301,9 @@ def productToOptionVector (z : ℝ × (Fin n → ℝ)) :
   | none => z.1
   | some i => z.2 i
 
+/--
+@isnad1 id=eq.0h2v.s4.c35488a0dc5f from=translated src=- shape=3e31b8f8 vocab=5818a3c9
+-/
 @[simp]
 theorem productToOptionVector_optionVectorToProduct
     (v : Option (Fin n) → ℝ) :
@@ -259,6 +311,9 @@ theorem productToOptionVector_optionVectorToProduct
   funext i
   cases i <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.7a77581e7284 from=translated src=- shape=79d2a4dc vocab=d199b5c7
+-/
 @[simp]
 theorem optionVectorToProduct_productToOptionVector
     (z : ℝ × (Fin n → ℝ)) :
@@ -275,6 +330,9 @@ noncomputable def exponentialSimplexJacobianMatrix
   | some i, none => z.2 i
   | some i, some j => if i = j then z.1 else 0
 
+/--
+@isnad1 id=eq.0h2v.s5.6b8a497797ab from=translated src=- shape=d35ef2e7 vocab=e0808993
+-/
 @[simp]
 theorem exponentialSimplexJacobianMatrix_none_none
     (z : ℝ × (Fin n → ℝ)) :
@@ -282,18 +340,27 @@ theorem exponentialSimplexJacobianMatrix_none_none
       1 - ∑ i, z.2 i :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.f4897b4b2fea from=translated src=- shape=a3e0c364 vocab=46f478cb
+-/
 @[simp]
 theorem exponentialSimplexJacobianMatrix_none_some
     (z : ℝ × (Fin n → ℝ)) (j : Fin n) :
     exponentialSimplexJacobianMatrix z none (some j) = -z.1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.65bc30242674 from=translated src=- shape=7ed828cd vocab=97a63623
+-/
 @[simp]
 theorem exponentialSimplexJacobianMatrix_some_none
     (z : ℝ × (Fin n → ℝ)) (i : Fin n) :
     exponentialSimplexJacobianMatrix z (some i) none = z.2 i :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.a92e9c6e9412 from=translated src=- shape=bc761064 vocab=54583d4e
+-/
 @[simp]
 theorem exponentialSimplexJacobianMatrix_some_some
     (z : ℝ × (Fin n → ℝ)) (i j : Fin n) :
@@ -301,6 +368,9 @@ theorem exponentialSimplexJacobianMatrix_some_some
       if i = j then z.1 else 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.19c6f87a7bf2 from=translated src=- shape=2ec6cc7c vocab=936ddd9d
+-/
 theorem exponentialSimplexJacobianMatrix_mulVec_none
     (z : ℝ × (Fin n → ℝ)) (v : Option (Fin n) → ℝ) :
     (exponentialSimplexJacobianMatrix z).mulVec v none =
@@ -310,6 +380,9 @@ theorem exponentialSimplexJacobianMatrix_mulVec_none
     Finset.mul_sum]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s6.a3cd1576c672 from=translated src=- shape=03480159 vocab=c558bfa9
+-/
 theorem exponentialSimplexJacobianMatrix_mulVec_some
     (z : ℝ × (Fin n → ℝ)) (v : Option (Fin n) → ℝ) (i : Fin n) :
     (exponentialSimplexJacobianMatrix z).mulVec v (some i) =
@@ -318,7 +391,9 @@ theorem exponentialSimplexJacobianMatrix_mulVec_some
   simp [Matrix.mulVec, dotProduct, Fintype.sum_option, mul_comm]
 
 /-- The explicit Jacobian matrix represents the Fréchet derivative proved
-above. -/
+above.
+@isnad1 id=eq.0h3v.s8.3d8e5ad6d577 from=translated src=- shape=42db0c72 vocab=7835ed1b
+-/
 theorem productToOptionVector_derivative_eq_mulVec
     (z : ℝ × (Fin n → ℝ)) (v : Option (Fin n) → ℝ) :
     productToOptionVector
@@ -346,6 +421,9 @@ noncomputable def reducedExponentialSimplexJacobianMatrix
   (exponentialSimplexJacobianMatrix z).updateRow none
     (∑ k, (1 : ℝ) • (exponentialSimplexJacobianMatrix z) k)
 
+/--
+@isnad1 id=eq.0h2v.s6.7f93e3c71e14 from=translated src=- shape=f0f31480 vocab=5c929234
+-/
 theorem det_reducedExponentialSimplexJacobianMatrix
     (z : ℝ × (Fin n → ℝ)) :
     (reducedExponentialSimplexJacobianMatrix z).det =
@@ -354,6 +432,9 @@ theorem det_reducedExponentialSimplexJacobianMatrix
   simpa using Matrix.det_updateRow_sum
     (exponentialSimplexJacobianMatrix z) none (fun _ ↦ (1 : ℝ))
 
+/--
+@isnad1 id=eq.0h2v.s4.fe683998d4db from=translated src=- shape=ca1f742a vocab=8b248553
+-/
 @[simp]
 theorem reducedExponentialSimplexJacobianMatrix_none_none
     (z : ℝ × (Fin n → ℝ)) :
@@ -365,6 +446,9 @@ theorem reducedExponentialSimplexJacobianMatrix_none_none
   rw [Fintype.sum_option]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s4.a9c8d53743c1 from=translated src=- shape=54f26cec vocab=9603f2b8
+-/
 @[simp]
 theorem reducedExponentialSimplexJacobianMatrix_none_some
     (z : ℝ × (Fin n → ℝ)) (j : Fin n) :
@@ -376,6 +460,9 @@ theorem reducedExponentialSimplexJacobianMatrix_none_some
   rw [Fintype.sum_option]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s5.1cc844323ca9 from=translated src=- shape=7ed828cd vocab=e732e3c0
+-/
 @[simp]
 theorem reducedExponentialSimplexJacobianMatrix_some_none
     (z : ℝ × (Fin n → ℝ)) (i : Fin n) :
@@ -383,6 +470,9 @@ theorem reducedExponentialSimplexJacobianMatrix_some_none
   rw [reducedExponentialSimplexJacobianMatrix, Matrix.updateRow_ne (by simp)]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.4b742cc0bfaa from=translated src=- shape=bc761064 vocab=8d3321d2
+-/
 @[simp]
 theorem reducedExponentialSimplexJacobianMatrix_some_some
     (z : ℝ × (Fin n → ℝ)) (i j : Fin n) :
@@ -391,6 +481,9 @@ theorem reducedExponentialSimplexJacobianMatrix_some_some
   rw [reducedExponentialSimplexJacobianMatrix, Matrix.updateRow_ne (by simp)]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.425942b00b3c from=translated src=- shape=e1c5bace vocab=c06965c9
+-/
 theorem det_reducedExponentialSimplexJacobianMatrix_eq_pow
     (z : ℝ × (Fin n → ℝ)) :
     (reducedExponentialSimplexJacobianMatrix z).det = z.1 ^ n := by
@@ -421,7 +514,9 @@ theorem det_reducedExponentialSimplexJacobianMatrix_eq_pow
   simp [Fintype.prod_option]
 
 /-- The Jacobian determinant of the radial--simplex coordinate map is
-`t ^ n`. -/
+`t ^ n`.
+@isnad1 id=eq.0h2v.s5.73e7440278dc from=translated src=- shape=e1c5bace vocab=56442a8b
+-/
 theorem det_exponentialSimplexJacobianMatrix
     (z : ℝ × (Fin n → ℝ)) :
     (exponentialSimplexJacobianMatrix z).det = z.1 ^ n := by
@@ -439,7 +534,9 @@ noncomputable def exponentialCoordinateBasis :
 
 /-- The determinant of the Fréchet derivative, in the intrinsic
 finite-dimensional determinant used by Mathlib's change-of-variables
-theorem. -/
+theorem.
+@isnad1 id=eq.0h2v.s6.659241604388 from=translated src=- shape=1420fe94 vocab=2f6dd8ae
+-/
 theorem det_exponentialSimplexForwardDerivative
     (z : ℝ × (Fin n → ℝ)) :
     (exponentialSimplexForwardDerivative z).det = z.1 ^ n := by
@@ -458,7 +555,9 @@ theorem det_exponentialSimplexForwardDerivative
       Equiv.piOptionEquivProd, Pi.single_apply]
 
 /-- The coordinate Haar measure is exactly the default product Lebesgue
-measure, not merely a nonzero scalar multiple of it. -/
+measure, not merely a nonzero scalar multiple of it.
+@isnad1 id=eq.0h1v.s7.e8bd51fed59a from=translated src=- shape=a19fcc85 vocab=2aaf9a7b
+-/
 theorem exponentialCoordinateBasis_addHaar_eq_volume :
     (exponentialCoordinateBasis (n := n)).addHaar =
       (volume : Measure (ℝ × (Fin n → ℝ))) := by
@@ -493,7 +592,9 @@ theorem exponentialCoordinateBasis_addHaar_eq_volume :
 /-- Restricted change of variables from radial--simplex coordinates to the
 positive exponential orthant.  This is the nonnegative integral formula
 directly supplied by Mathlib's finite-dimensional Jacobian theorem, with
-all geometric and differentiability hypotheses discharged here. -/
+all geometric and differentiability hypotheses discharged here.
+@isnad1 id=eq.0h2v.s8.8ceff222f1a4 from=translated src=- shape=61f13970 vocab=ff5de4b6
+-/
 theorem lintegral_positiveExponentialOrthant_eq
     (g : (ℝ × (Fin n → ℝ)) → ℝ≥0∞) :
     ∫⁻ e in positiveExponentialOrthant (n := n), g e ∂volume =
@@ -517,7 +618,9 @@ theorem lintegral_positiveExponentialOrthant_eq
 /-! ## The radial Gamma integral -/
 
 /-- The elementary radial integral appearing after the normalized
-exponential change of variables. -/
+exponential change of variables.
+@isnad1 id=eq.0h1v.s6.3a9b87d62cfd from=translated src=- shape=baac4ac7 vocab=db1a0472
+-/
 theorem integral_exp_neg_mul_pow_Ioi (n : ℕ) :
     ∫ t : ℝ in Ioi 0, Real.exp (-t) * t ^ n =
       (n.factorial : ℝ) := by
@@ -529,7 +632,9 @@ theorem integral_exp_neg_mul_pow_Ioi (n : ℕ) :
   rw [Real.integral_rpow_mul_exp_neg_mul_Ioi (by positivity) zero_lt_one]
   simp [Real.Gamma_nat_eq_factorial]
 
-/-- `ENNReal`/Tonelli form of the radial Gamma integral. -/
+/-- `ENNReal`/Tonelli form of the radial Gamma integral.
+@isnad1 id=eq.0h1v.s6.021f1c0528d9 from=translated src=- shape=87115298 vocab=64e0486d
+-/
 theorem lintegral_ofReal_exp_neg_mul_pow_Ioi (n : ℕ) :
     ∫⁻ t : ℝ in Ioi 0,
         ENNReal.ofReal (Real.exp (-t) * t ^ n) =
@@ -548,6 +653,9 @@ theorem lintegral_ofReal_exp_neg_mul_pow_Ioi (n : ℕ) :
 
 /-! ## Normalized exponential coordinates -/
 
+/--
+@isnad1 id=eq.0h1v.s5.041a82cca6d7 from=translated src=- shape=027451b8 vocab=51a448bb
+-/
 theorem exponentialSimplexSource_eq_prod :
     exponentialSimplexSource (n := n) =
       Ioi (0 : ℝ) ×ˢ fullSimplex (Fin n) := by
@@ -555,7 +663,9 @@ theorem exponentialSimplexSource_eq_prod :
   simp [exponentialSimplexSource]
 
 /-- Tonelli separation of the radial factor from an arbitrary measurable
-nonnegative test function on the simplex. -/
+nonnegative test function on the simplex.
+@isnad1 id=eq.1h2v.s8.2560f6beca5f from=translated src=- shape=4ab39233 vocab=4d42c282
+-/
 theorem lintegral_exponentialRadial_mul_test
     (h : (Fin n → ℝ) → ℝ≥0∞) (hh : Measurable h) :
     ∫⁻ z in exponentialSimplexSource (n := n),
@@ -581,7 +691,9 @@ noncomputable def normalizedExponentialSimplexMeasure :
 
 /-- Identification of normalized independent exponentials with the
 factorial-density uniform simplex measure, formulated against arbitrary
-measurable nonnegative test functions. -/
+measurable nonnegative test functions.
+@isnad1 id=eq.1h2v.s7.7f0ab95de6b4 from=translated src=- shape=b310bd44 vocab=870614fe
+-/
 theorem lintegral_normalizedExponential_eq_simplex
     (h : (Fin n → ℝ) → ℝ≥0∞) (hh : Measurable h) :
     ∫⁻ e in positiveExponentialOrthant (n := n),
@@ -611,6 +723,9 @@ half-line. -/
 noncomputable def unitExponentialDensity (t : ℝ) : ℝ :=
   (Ici (0 : ℝ)).indicator (fun t ↦ Real.exp (-t)) t
 
+/--
+@isnad1 id=eq.0h0v.s5.649a53636936 from=translated src=- shape=f0e61117 vocab=e19f3a44
+-/
 theorem integral_unitExponentialDensity :
     ∫ t : ℝ, unitExponentialDensity t = 1 := by
   change ∫ t : ℝ, (Ici (0 : ℝ)).indicator
@@ -619,7 +734,9 @@ theorem integral_unitExponentialDensity :
   rw [integral_Ici_eq_integral_Ioi]
   simpa using integral_exp_neg_mul_pow_Ioi 0
 
-/-- A finite product of unit exponential densities has total mass one. -/
+/-- A finite product of unit exponential densities has total mass one.
+@isnad1 id=eq.0h1v.s6.c7486ebed51a from=translated src=- shape=c670091d vocab=97a3de89
+-/
 theorem integral_pi_unitExponentialDensity :
     ∫ x : Fin n → ℝ, ∏ i, unitExponentialDensity (x i) = 1 := by
   rw [integral_fintype_prod_volume_eq_prod]

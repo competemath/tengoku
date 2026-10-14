@@ -79,7 +79,9 @@ private lemma three_centres_collinear
       Submodule.finrank_mono horth
     _ = 1 := hfo
 
-/-- Three distinct members of a convex-independent family cannot be collinear. -/
+/-- Three distinct members of a convex-independent family cannot be collinear.
+@isnad1 id=false.5h4v.s8.3c47903d554f from=translated src=- shape=dc91f251 vocab=d607bc85
+-/
 theorem three_collinear_not_convexIndependent
     {p : Vertex → Plane} (hC : ConvexIndependent ℝ p)
     {i j k : Vertex} (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k)
@@ -97,7 +99,9 @@ theorem three_collinear_not_convexIndependent
     simp [hij, hik] at hi
 
 /-- At most two vertices of a convex-independent planar family are equidistant
-from any fixed pair of distinct vertices. -/
+from any fixed pair of distinct vertices.
+@isnad1 id=le.2h3v.s8.2218580443c3 from=translated src=- shape=8157275e vocab=c61cb1dc
+-/
 theorem equidistantCentres_card_le_two
     {p : Vertex → Plane} (hC : ConvexIndependent ℝ p)
     {a b : Vertex} (hab : a ≠ b) :
@@ -121,7 +125,9 @@ theorem equidistantCentres_card_le_two
     three_centres_collinear (hC.injective.ne hab) e1 e2 e3
   exact three_collinear_not_convexIndependent hC h12 h13 h23 hCol
 
-/-- A realisation in convex position has pair multiplicity at most two. -/
+/-- A realisation in convex position has pair multiplicity at most two.
+@isnad1 id=pairspar.2h2v.s7.b9cc8de1208d from=translated src=- shape=1bf4f352 vocab=b842d54e
+-/
 theorem pairSparse_of_realises
     {p : Vertex → Plane} (hC : ConvexIndependent ℝ p)
     (Q : OctagonIncidence) (hR : Realises p Q) :
@@ -140,7 +146,9 @@ theorem pairSparse_of_realises
   norm_num
   exact (Finset.card_le_card hsubset).trans (equidistantCentres_card_le_two hC hab)
 
-/-- Failure at every vertex canonically yields a four-target incidence system. -/
+/-- Failure at every vertex canonically yields a four-target incidence system.
+@isnad1 id=ex.1h1v.s4.3fc61db67493 from=translated src=- shape=e3d93152 vocab=a0af3a0b
+-/
 theorem incidence_of_all_hasFour
     {p : Vertex → Plane} (h : ∀ v, HasFourEquidistant p v) :
     ∃ Q : OctagonIncidence, Realises p Q := by
@@ -153,7 +161,9 @@ theorem incidence_of_all_hasFour
   intro v
   exact (h v).choose_spec.2.2
 
-/-- Any failed convex octagon produces a balanced, pair-sparse incidence system. -/
+/-- Any failed convex octagon produces a balanced, pair-sparse incidence system.
+@isnad1 id=ex.2h1v.s7.48e592f9e62e from=translated src=- shape=3deb3515 vocab=b192484b
+-/
 theorem reduction_of_all_hasFour
     {p : Vertex → Plane} (hC : ConvexIndependent ℝ p)
     (h : ∀ v, HasFourEquidistant p v) :

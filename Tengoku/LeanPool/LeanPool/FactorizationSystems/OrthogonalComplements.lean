@@ -309,6 +309,9 @@ def diagonalMapLimitIsClosedUnderLimitsROrtComplement (W : MorphismProperty C) {
   exact do_the_magic
 
 /- The diagonal constructed in the previous lemma makes the upper triangle commute -/
+/--
+@isnad1 id=eq.0h11v.s8.406fe4054401 from=translated src=- shape=f62b4585 vocab=4ece6207
+-/
 lemma diagonal_comm_top_limit_is_closed_under_limits_r_ort_complement (W : MorphismProperty C)
   {A B : C} {J : Type u} [Category.{v} J] (f : J ⥤ Arrow C) (s : Limits.LimitCone f)
   (m : A ⟶ B) (Wm : W m) (sq_lim : squareCompletion m s.cone.pt.hom)
@@ -333,6 +336,9 @@ lemma diagonal_comm_top_limit_is_closed_under_limits_r_ort_complement (W : Morph
       exact (m_ort_fi.diagonal sq_i).comm_top
 
 /- The bottom triangle commutes as well -/
+/--
+@isnad1 id=eq.0h11v.s8.a43ae4876f26 from=translated src=- shape=52335f26 vocab=cd3f8af8
+-/
 lemma diagonal_comm_bot_limit_is_closed_under_limits_r_ort_complement (W : MorphismProperty C)
   {A B : C} {J : Type u} [Category.{v} J] [CategoryTheory.Limits.HasInitial C] (f : J ⥤ Arrow C)
   (s : Limits.LimitCone f) (m : A ⟶ B) (Wm : W m) (sq_lim : squareCompletion m s.cone.pt.hom)
@@ -408,6 +414,9 @@ def diagonalPostcompIsDiagonal {J : Type u}
         _ = S.bot ≫ (s.cone.π.app i).right := by rw [reassoc_of% d.comm_bot]
   }
 
+/--
+@isnad1 id=eq.0h13v.s9.36e73a7a340b from=translated src=- shape=0dcc90db vocab=7027f812
+-/
 lemma diagonal_unique_limit_is_closed_under_limits_r_ort_complement (W : MorphismProperty C)
   {A B : C} {J : Type u} [Category.{v} J] [_inst : Limits.HasInitial C] (f : J ⥤ Arrow C)
   (s : Limits.LimitCone f) (m : A ⟶ B) (Wm : W m)
@@ -436,6 +445,9 @@ def isClosedUnderLimitsROrtComplement (W : MorphismProperty C) {A B : C} {J : Ty
   }
 
 /- We now proceed to show that the right orthogonal complement is closed under composition -/
+/--
+@isnad1 id=rightort.0h9v.s6.cc9fd5b05d71 from=translated src=- shape=5f10169b vocab=a844d660
+-/
 lemma is_closed_under_comp_r_ort_complement (W : MorphismProperty C) {X Y Z : C} (r : X ⟶ Y)
   (hr : (rightOrthogonalComplement W) r) (r' : Y ⟶ Z) (hr' : (rightOrthogonalComplement W) r') :
   (rightOrthogonalComplement W) (r ≫ r') := by
@@ -491,6 +503,9 @@ lemma is_closed_under_comp_r_ort_complement (W : MorphismProperty C) {X Y Z : C}
       exact (homOrthogonalImpliesOrthogonal (hr l hl)).diagonal_unique S'' Δ Δ'}
 
 /- The left orthogonal complement of any class of morphisms is closed under composition as well -/
+/--
+@isnad1 id=leftorth.0h9v.s6.d6f7fb1fb235 from=translated src=- shape=5f10169b vocab=0c29678a
+-/
 lemma is_closed_under_comp_l_ort_complement (W : MorphismProperty C) {D E F : C} (l : D ⟶ E)
   (hl : (leftOrthogonalComplement W) l) (l' : E ⟶ F) (hl' : (leftOrthogonalComplement W) l') :
   (leftOrthogonalComplement W) (l ≫ l') := by
@@ -546,6 +561,9 @@ lemma is_closed_under_comp_l_ort_complement (W : MorphismProperty C) {D E F : C}
       exact (homOrthogonalImpliesOrthogonal (hl' r hr)).diagonal_unique S'' Δ Δ' }
 
 /- The right orthogonal complement of any class of morphism has the left cancellation property. -/
+/--
+@isnad1 id=rightort.0h9v.s6.4d7fb7752330 from=translated src=- shape=096ec324 vocab=a844d660
+-/
 lemma left_cancellation_r_ort_complement (W : MorphismProperty C) {X Y Z : C} (r : X ⟶ Y)
   (r' : Y ⟶ Z) (hr' : (rightOrthogonalComplement W) r')
   (hr'r : (rightOrthogonalComplement W) (r ≫ r')) : (rightOrthogonalComplement W) r := by
@@ -596,6 +614,9 @@ lemma left_cancellation_r_ort_complement (W : MorphismProperty C) {X Y Z : C} (r
   }
 
 /- Moreover, the right orthogonal complement of any class of morphisms is closed under base change-/
+/--
+@isnad1 id=rightort.0h8v.s6.c0f03f47de40 from=translated src=- shape=c15273e0 vocab=547f30b4
+-/
 lemma base_change_r_ort_complement [Limits.HasPullbacks C] (W : MorphismProperty C) {Y X' Y' : C}
   (r' : X' ⟶ Y') (hr' : (rightOrthogonalComplement W) r') (f : Y ⟶ Y') :
   (rightOrthogonalComplement W) (Limits.pullback.snd r' f) := by
@@ -649,6 +670,9 @@ lemma base_change_r_ort_complement [Limits.HasPullbacks C] (W : MorphismProperty
       · rw [d.comm_bot, ← d'.comm_bot]}
 
 /- The left orthogonal complement of any class of maps contains isomorphisms -/
+/--
+@isnad1 id=contains.0h2v.s4.f5637bfcb49a from=translated src=- shape=ed10201d vocab=1dcca4d4
+-/
 lemma contains_isos_left_ort_complement (R : MorphismProperty C) :
   containsIsos (leftOrthogonalComplement R) := by
   intro A B f X Y g Rg
@@ -665,6 +689,9 @@ lemma contains_isos_left_ort_complement (R : MorphismProperty C) :
       simpa using congrArg (f.inv ≫ ·) h }
 
 /- The right orthogonal complement of any class of maps contains isomorphisms -/
+/--
+@isnad1 id=contains.0h2v.s4.12233b592346 from=translated src=- shape=ed10201d vocab=cf9413c4
+-/
 lemma contains_isos_right_ort_complement (L : MorphismProperty C) :
   containsIsos (rightOrthogonalComplement L) := by
     intro X Y g A B f Lf

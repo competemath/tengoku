@@ -31,6 +31,9 @@ def meanOneNormalize (μ : Measure Ω) (i : Fin n) (ω : Ω) : ℝ :=
   if (∫ ω', Y i ω' ∂μ) = 0 then 1
   else Y i ω / ∫ ω', Y i ω' ∂μ
 
+/--
+@isnad1 id=measurab.1h5v.s5.70f77e01bd5f from=translated src=- shape=d481f806 vocab=e4a0a66b
+-/
 theorem meanOneNormalize_measurable
     (hY : ∀ i, Measurable (Y i)) (i : Fin n) :
     Measurable (meanOneNormalize Y μ i) := by
@@ -39,6 +42,9 @@ theorem meanOneNormalize_measurable
   · exact measurable_const
   · exact (hY i).div_const _
 
+/--
+@isnad1 id=integrab.1h5v.s6.429eeda3a4ba from=translated src=- shape=ef26b3bd vocab=c88ef2ed
+-/
 theorem meanOneNormalize_integrable
     [IsFiniteMeasure μ]
     (hY : ∀ i, Integrable (Y i) μ) (i : Fin n) :
@@ -48,6 +54,9 @@ theorem meanOneNormalize_integrable
   · exact integrable_const 1
   · exact (hY i).div_const _
 
+/--
+@isnad1 id=le.1h6v.s5.0e858b455f1f from=translated src=- shape=3add0da3 vocab=c08c08ca
+-/
 theorem meanOneNormalize_nonneg
     (hY : ∀ i ω, 0 ≤ Y i ω) (i : Fin n) (ω : Ω) :
     0 ≤ meanOneNormalize Y μ i ω := by
@@ -58,6 +67,9 @@ theorem meanOneNormalize_nonneg
       (integral_nonneg (hY i)) (Ne.symm hm)
     exact div_nonneg (hY i ω) hmean.le
 
+/--
+@isnad1 id=eq.0h5v.s5.a4d31b5b4395 from=translated src=- shape=935f4b01 vocab=f304e25c
+-/
 theorem meanOneNormalize_mean
     [IsProbabilityMeasure μ]
     (i : Fin n) :
@@ -68,6 +80,9 @@ theorem meanOneNormalize_mean
   · simp_rw [div_eq_inv_mul]
     rw [integral_const_mul, inv_mul_cancel₀ hm]
 
+/--
+@isnad1 id=iindepfu.1h4v.s5.1e382fc5d7c8 from=translated src=- shape=2c651dc1 vocab=a57ffbca
+-/
 theorem meanOneNormalize_iIndepFun
     (hYindep : iIndepFun Y μ) :
     iIndepFun (meanOneNormalize Y μ) μ := by
@@ -83,6 +98,9 @@ theorem meanOneNormalize_iIndepFun
       else Y i x / ∫ ω, Y i ω ∂μ) μ
   exact h
 
+/--
+@isnad1 id=eventual.3h4v.s7.3848a020e1e5 from=translated src=- shape=5e8a5d2c vocab=0d28d1d8
+-/
 theorem ae_le_meanOneNormalize
     (hYint : ∀ i, Integrable (Y i) μ)
     (hYnonneg : ∀ i ω, 0 ≤ Y i ω)

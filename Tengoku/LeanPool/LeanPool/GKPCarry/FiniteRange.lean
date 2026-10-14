@@ -35,7 +35,9 @@ def hasAtLeastTernaryTwos : (required n : ℕ) → Bool
 termination_by _ n => n
 decreasing_by all_goals exact Nat.div_lt_self (Nat.pos_of_ne_zero hzero) (by decide)
 
-/-- The digit scanner is equivalent to counting twos in the canonical ternary expansion. -/
+/-- The digit scanner is equivalent to counting twos in the canonical ternary expansion.
+@isnad1 id=iff.0h2v.s5.88ea9f12e623 from=translated src=- shape=fc7c1d79 vocab=f486abb6
+-/
 theorem hasAtLeastTernaryTwos_eq_true (required n : ℕ) :
     hasAtLeastTernaryTwos required n = true ↔ required ≤ (Nat.digits 3 n).count 2 := by
   induction n using Nat.strong_induction_on generalizing required with
@@ -292,14 +294,18 @@ private theorem finiteModularCertificate
 
 /-- For every `m` in the closed interval from `27` through `6560`, the first
 `6 * ternaryLength m` little-endian ternary digits of `4 ^ m` contain at least
-two digits equal to `2`. -/
+two digits equal to `2`.
+@isnad1 id=hastwote.2h1v.s5.e790b3a0e89f from=translated src=- shape=212133c0 vocab=9a3bb070
+-/
 theorem four_pow_has_two_ternary_twos_in_finite_range
     {m : ℕ} (hlower : 27 ≤ m) (hupper : m ≤ 6560) :
     hasTwoTernaryTwosBelow (6 * ternaryLength m) (4 ^ m) := by
   rw [hasTwoTernaryTwosBelow_iff_mod, ← powMod_eq_pow_mod]
   exact finiteModularCertificate hlower hupper
 
-/-- Equivalent length-indexed form of the bounded ternary-prefix theorem. -/
+/-- Equivalent length-indexed form of the bounded ternary-prefix theorem.
+@isnad1 id=hastwote.2h1v.s5.9fd711d4353d from=translated src=- shape=eec3ee2e vocab=9a3bb070
+-/
 theorem four_pow_has_two_ternary_twos_of_length_le_eight
     {m : ℕ} (hlower : 27 ≤ m) (hlength : ternaryLength m ≤ 8) :
     hasTwoTernaryTwosBelow (6 * ternaryLength m) (4 ^ m) := by
@@ -310,7 +316,9 @@ theorem four_pow_has_two_ternary_twos_of_length_le_eight
 
 /-- Bounded C3 carry result: throughout `27 ≤ m ≤ 6560`, doubling
 the selected prefix of the ternary expansion of `4 ^ m` produces at least two
-outgoing carries. -/
+outgoing carries.
+@isnad1 id=le.2h1v.s5.ad8638805449 from=translated src=- shape=44297698 vocab=af1d4d5d
+-/
 theorem four_pow_prefix_carry_count_ge_two_in_finite_range
     {m : ℕ} (hlower : 27 ≤ m) (hupper : m ≤ 6560) :
     2 ≤ prefixTernaryDoubleCarryCount

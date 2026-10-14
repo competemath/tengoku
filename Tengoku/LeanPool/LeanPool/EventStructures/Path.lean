@@ -69,7 +69,9 @@ inductive ExecList : Conf es → List es.Event → Conf es → Type _
       (hnext : ExecList (nextConf es c e h) t c') :
       ExecList c (e :: t) c'
 
-/-- Left identity law: composing with the identity path on the right. -/
+/-- Left identity law: composing with the identity path on the right.
+@isnad1 id=eq.0h4v.s4.adf9a0a83976 from=translated src=- shape=c7721e38 vocab=adc53ce7
+-/
 lemma path_comp_id {c₁ c₂ : Conf es} (h : Path es c₁ c₂) :
     pathComp es h (pathId es c₂) = h := by
   induction h with
@@ -78,11 +80,15 @@ lemma path_comp_id {c₁ c₂ : Conf es} (h : Path es c₁ c₂) :
     simp only [pathComp, pathId] at ih ⊢
     rw [ih]
 
-/-- Right identity law: composing with the identity path on the left. -/
+/-- Right identity law: composing with the identity path on the left.
+@isnad1 id=eq.0h4v.s4.68ab344ce5eb from=translated src=- shape=847f8794 vocab=adc53ce7
+-/
 lemma path_id_comp {c₁ c₂ : Conf es} (h : Path es c₁ c₂) :
     pathComp es (pathId es c₁) h = h := rfl
 
-/-- Associativity law: composition of paths is associative. -/
+/-- Associativity law: composition of paths is associative.
+@isnad1 id=eq.0h8v.s5.30cf045f647d from=translated src=- shape=d2f18d05 vocab=a76677f2
+-/
 lemma path_comp_assoc {c₁ c₂ c₃ c₄ : Conf es}
     (h₁₂ : Path es c₁ c₂) (h₂₃ : Path es c₂ c₃) (h₃₄ : Path es c₃ c₄) :
     pathComp es (pathComp es h₁₂ h₂₃) h₃₄ = pathComp es h₁₂ (pathComp es h₂₃ h₃₄) := by
@@ -101,9 +107,15 @@ def trace {c₁ c₂ : Conf es} (hPath : Path es c₁ c₂) : List es.Event :=
 def length {c₁ c₂ : Conf es} (hPath : Path es c₁ c₂) : Nat :=
   (trace es hPath).length
 
+/--
+@isnad1 id=eq.0h2v.s4.d964a4edb6fe from=translated src=- shape=f667d901 vocab=484d4ad3
+-/
 @[simp] lemma length_refl {c : Conf es} : length es (Path.refl (c:=c)) = 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.58c253a9d27a from=translated src=- shape=39573c18 vocab=6791cfa9
+-/
 @[simp] lemma length_step {c₁ c₂ c₃ : Conf es} (hEdge : Edge es c₁ c₂)
     (hPath : Path es c₂ c₃) :
     length es (Path.step hEdge hPath) = Nat.succ (length es hPath) := by
@@ -121,6 +133,9 @@ def execListToPath {c₁ c₂ : Conf es} {t : List es.Event} (h : ExecList es c�
           conf₂_equals := rfl }
         (execListToPath hnext)
 
+/--
+@isnad1 id=eq.0h5v.s5.c6250cd3f950 from=translated src=- shape=587f9f2a vocab=324217be
+-/
 @[simp] lemma execList_trace {c₁ c₂ : Conf es} {t : List es.Event}
     (h : ExecList es c₁ t c₂) : trace es (execListToPath (es:=es) h) = t := by
   induction h with
@@ -128,11 +143,16 @@ def execListToPath {c₁ c₂ : Conf es} {t : List es.Event} (h : ExecList es c�
   | cons e h hnext ih =>
       simp [execListToPath, trace, ih]
 
+/--
+@isnad1 id=eq.0h5v.s5.005dd981711f from=translated src=- shape=3a3b3714 vocab=1752a39d
+-/
 @[simp] lemma execList_length {c₁ c₂ : Conf es} {t : List es.Event}
     (h : ExecList es c₁ t c₂) : length es (execListToPath (es:=es) h) = t.length := by
   simp [length, execList_trace (es:=es) h]
 
-/-- Target configuration from an exec list is the source plus the list's events. -/
+/-- Target configuration from an exec list is the source plus the list's events.
+@isnad1 id=eq.0h5v.s6.4702da4b202d from=translated src=- shape=18cf99af vocab=45b0cb78
+-/
 lemma execList_target_eq_union {c₁ c₂ : Conf es} {t : List es.Event}
     (h : ExecList es c₁ t c₂) :
     c₂.1 = c₁.1 ∪ {e | e ∈ t} := by
@@ -144,7 +164,9 @@ lemma execList_target_eq_union {c₁ c₂ : Conf es} {t : List es.Event}
     simp [nextConf, ih, List.mem_cons, Set.mem_union]
     tauto
 
-/-- Events executed in an exec list are not already in its source configuration. -/
+/-- Events executed in an exec list are not already in its source configuration.
+@isnad1 id=not.1h6v.s5.24bda2163c7b from=translated src=- shape=114a4d86 vocab=6ffebafd
+-/
 lemma execList_not_mem_source {c₁ c₂ : Conf es} {t : List es.Event}
     (h : ExecList es c₁ t c₂) : ∀ e ∈ t, e ∉ c₁.1 := by
   induction h with
@@ -193,7 +215,9 @@ noncomputable def execListLift {c_small c_large c_target : Conf es} {t : List es
     obtain ⟨c_target', h_exec'⟩ := ih hsub_next hfresh_next
     exact ⟨c_target', ExecList.cons e h' h_exec'⟩
 
-/-- Existence of a path length. -/
+/-- Existence of a path length.
+@isnad1 id=ex.1h3v.s5.370bf1e49bd9 from=translated src=- shape=d73197f3 vocab=9c12d768
+-/
 lemma pathLengthExists {c₁ c₂ : Conf es} (h : Nonempty (Path es c₁ c₂)) :
     ∃ n, ∃ p : Path es c₁ c₂, length es p = n := by
   simp_all
@@ -203,16 +227,24 @@ noncomputable def minPathLength {c₁ c₂ : Conf es} (h : Nonempty (Path es c�
   classical
   exact Nat.find (pathLengthExists (es := es) h)
 
+/--
+@isnad1 id=ex.1h3v.s5.0da2100016a5 from=translated src=- shape=0593ebf5 vocab=02b902ca
+-/
 lemma minPathLength_spec {c₁ c₂ : Conf es} (h : Nonempty (Path es c₁ c₂)) :
     ∃ p : Path es c₁ c₂, length es p = minPathLength (es := es) h := by
   classical
   simpa [minPathLength] using (Nat.find_spec (pathLengthExists (es := es) h))
 
+/--
+@isnad1 id=le.1h4v.s5.5edaa2332ad5 from=translated src=- shape=5ffd5823 vocab=665f5f2e
+-/
 lemma minPathLength_le {c₁ c₂ : Conf es} (h : Nonempty (Path es c₁ c₂)) (p : Path es c₁ c₂) :
     minPathLength (es := es) h ≤ length es p := by
   classical
   simpa [minPathLength] using (Nat.find_min' (H := pathLengthExists (es := es) h) ⟨p, rfl⟩)
-/-- The trace of an execListToPath is exactly the original list. -/
+/-- The trace of an execListToPath is exactly the original list.
+@isnad1 id=eq.0h5v.s5.c6250cd3f950 from=translated src=- shape=587f9f2a vocab=324217be
+-/
 lemma execList_to_path_trace {c₁ c₂ : Conf es} {t : List es.Event}
     (h : ExecList es c₁ t c₂) :
     trace es (execListToPath (es := es) h) = t :=
@@ -241,21 +273,29 @@ def PathEquiv {c₁ c₂ : Conf es} (p₁ p₂ : Path es c₁ c₂) : Prop :=
 /-- Notation for path equivalence. -/
 local infixr:60 " ≈ₚ " => PathEquiv es
 
-/-- Path equivalence is reflexive. -/
+/-- Path equivalence is reflexive.
+@isnad1 id=pathequi.0h4v.s4.6d69fc9416aa from=translated src=- shape=7fc6a9ac vocab=2274032d
+-/
 lemma pathEquiv_refl {c₁ c₂ : Conf es} : ∀ p, @PathEquiv es c₁ c₂ p p :=
   fun _ => TraceEquiv.refl _
 
-/-- Path equivalence is symmetric. -/
+/-- Path equivalence is symmetric.
+@isnad1 id=pathequi.1h5v.s4.8d6ad7346398 from=translated src=- shape=4203c575 vocab=2274032d
+-/
 lemma pathEquiv_symm {c₁ c₂ : Conf es} :
     ∀ ⦃p₁ p₂⦄, @PathEquiv es c₁ c₂ p₁ p₂ → @PathEquiv es c₁ c₂ p₂ p₁ :=
   fun _ _ h => Trace.traceEquiv_symm es h
 
-/-- Path equivalence is transitive. -/
+/-- Path equivalence is transitive.
+@isnad1 id=pathequi.2h6v.s5.4167c43fa47c from=translated src=- shape=76331dd9 vocab=2274032d
+-/
 lemma pathEquiv_trans {c₁ c₂ : Conf es} : ∀ ⦃p₁ p₂ p₃⦄,
     @PathEquiv es c₁ c₂ p₁ p₂ → @PathEquiv es c₁ c₂ p₂ p₃ → @PathEquiv es c₁ c₂ p₁ p₃ :=
   fun _ _ _ h₁ h₂ => Trace.traceEquiv_trans es h₁ h₂
 
-/-- Path equivalence is an equivalence relation. -/
+/-- Path equivalence is an equivalence relation.
+@isnad1 id=equivale.0h3v.s4.d2f5177da23b from=translated src=- shape=71731232 vocab=68212c50
+-/
 lemma pathEquivEquivalence (c₁ c₂ : Conf es) : Equivalence (@PathEquiv es c₁ c₂) where
   refl := pathEquiv_refl es
   symm := @pathEquiv_symm es c₁ c₂
@@ -268,7 +308,9 @@ instance pathSetoid (c₁ c₂ : Conf es) : Setoid (Path es c₁ c₂) where
   r := PathEquiv es
   iseqv := pathEquivEquivalence es c₁ c₂
 
-/-- Trace of path composition is concatenation of traces. -/
+/-- Trace of path composition is concatenation of traces.
+@isnad1 id=eq.0h6v.s5.67f1e85c0c3d from=translated src=- shape=a3ad1142 vocab=ddfc715e
+-/
 lemma trace_comp {c₁ c₂ c₃ : Conf es} (p₁₂ : Path es c₁ c₂) (p₂₃ : Path es c₂ c₃) :
     trace es (pathComp es p₁₂ p₂₃) = trace es p₁₂ ++ trace es p₂₃ := by
   induction p₁₂ with
@@ -301,19 +343,25 @@ def asyncPathComp {c₁ c₂ c₃ : Conf es}
       exact Trace.traceEquiv_append es ha hb)
     p₁₂ p₂₃
 
-/-- Left identity law for asynchronous path composition. -/
+/-- Left identity law for asynchronous path composition.
+@isnad1 id=eq.0h4v.s4.8ec26892f4b3 from=translated src=- shape=847f8794 vocab=56d0ef75
+-/
 lemma async_path_id_comp {c₁ c₂ : Conf es} (p : Async es c₁ c₂) :
     asyncPathComp es (asyncPathId es c₁) p = p := by
   induction p using Quotient.ind
   rfl
 
-/-- Right identity law for asynchronous path composition. -/
+/-- Right identity law for asynchronous path composition.
+@isnad1 id=eq.0h4v.s4.8de682c76692 from=translated src=- shape=c7721e38 vocab=56d0ef75
+-/
 lemma async_path_comp_id {c₁ c₂ : Conf es} (p : Async es c₁ c₂) :
     asyncPathComp es p (asyncPathId es c₂) = p := by
   induction p using Quotient.ind
   exact congrArg (mk es) (Path.path_comp_id es _)
 
-/-- Associativity law for asynchronous path composition. -/
+/-- Associativity law for asynchronous path composition.
+@isnad1 id=eq.0h8v.s5.b3d649736b1d from=translated src=- shape=d2f18d05 vocab=9863891b
+-/
 lemma assoc {c₁ c₂ c₃ c₄ : Conf es}
     (p₁₂ : Async es c₁ c₂) (p₂₃ : Async es c₂ c₃) (p₃₄ : Async es c₃ c₄) :
     asyncPathComp es (asyncPathComp es p₁₂ p₂₃) p₃₄ =
@@ -325,12 +373,16 @@ lemma assoc {c₁ c₂ c₃ c₄ : Conf es}
 
 end Async
 
-/-- The length of a path's trace equals the length of the path. -/
+/-- The length of a path's trace equals the length of the path.
+@isnad1 id=eq.0h4v.s4.9a04c473c7d4 from=translated src=- shape=6083a609 vocab=379be2cc
+-/
 lemma trace_length_eq_length {c₁ c₂ : Conf es} (p : Path es c₁ c₂) :
     (trace es p).length = length es p :=
   rfl
 
-/-- Paths are monotone: the source configuration is a subset of the target. -/
+/-- Paths are monotone: the source configuration is a subset of the target.
+@isnad1 id=le.0h4v.s5.6e2e3104a89c from=translated src=- shape=831f7acd vocab=d11582be
+-/
 lemma path_subset {c₁ c₂ : Conf es} (p : Path es c₁ c₂) : c₁.1 ⊆ c₂.1 := by
   induction p with
   | refl => exact Set.Subset.rfl
@@ -341,7 +393,9 @@ lemma path_subset {c₁ c₂ : Conf es} (p : Path es c₁ c₂) : c₁.1 ⊆ c�
       simpa [hEdge.conf₂_equals] using hx'
     exact Set.Subset.trans h₁₂ ih
 
-/-- Events executed in a path must be added to reach the target configuration. -/
+/-- Events executed in a path must be added to reach the target configuration.
+@isnad1 id=mem.1h5v.s5.5b9a22d11a55 from=translated src=- shape=624db591 vocab=fb1d3c30
+-/
 lemma trace_of_path {c₁ c₂ : Conf es} (p : Path es c₁ c₂) :
     ∀ e ∈ trace es p, e ∈ c₂.1 := by
   induction p with
@@ -359,7 +413,9 @@ lemma trace_of_path {c₁ c₂ : Conf es} (p : Path es c₁ c₂) :
       exact ih e h_in_rest
 
 /-- Events in the trace of a path are not in the source configuration:
-    each edge adds a fresh event. -/
+    each edge adds a fresh event.
+@isnad1 id=not.1h5v.s5.d798d1414bf8 from=translated src=- shape=32bd351d vocab=fb1d3c30
+-/
 lemma trace_not_mem_source {c₁ c₂ : Conf es} (p : Path es c₁ c₂) :
     ∀ e ∈ trace es p, e ∉ c₁.1 := by
   induction p with
@@ -376,7 +432,9 @@ lemma trace_not_mem_source {c₁ c₂ : Conf es} (p : Path es c₁ c₂) :
       exact ih e h_in_rest hec₂
 
 /-- Every event in the trace of a path appears exactly once: enabling requires
-    freshness, so no event can be executed twice along a path. -/
+    freshness, so no event can be executed twice along a path.
+@isnad1 id=nodup.0h4v.s4.f8737aa284fe from=translated src=- shape=2b32a15a vocab=a38d6953
+-/
 lemma trace_nodup {c₁ c₂ : Conf es} (p : Path es c₁ c₂) : (trace es p).Nodup := by
   induction p with
   | refl => simp [trace]
@@ -387,7 +445,9 @@ lemma trace_nodup {c₁ c₂ : Conf es} (p : Path es c₁ c₂) : (trace es p).N
     rw [hEdge.conf₂_equals]
     exact Set.mem_union_right _ rfl
 
-/-- A path requires executing at least the events in its trace. -/
+/-- A path requires executing at least the events in its trace.
+@isnad1 id=eq.0h4v.s4.c84c7bd346e2 from=translated src=- shape=3613c0dc vocab=379be2cc
+-/
 lemma path_length_ge_trace_length {c₁ c₂ : Conf es} (p : Path es c₁ c₂) :
     length es p = (trace es p).length :=
   rfl

@@ -28,7 +28,9 @@ import Tengoku.LeanPool.LeanPool.Erdos97ConvexOctagon.ResidualAlgebra12
 namespace Erdos97Octagon
 
 /-- None of the thirteen explicit candidate systems has a convex-independent
-realisation. This statement does not assert that the family is exhaustive. -/
+realisation. This statement does not assert that the family is exhaustive.
+@isnad1 id=not.1h2v.s7.3041b1fb38d8 from=translated src=- shape=eb782086 vocab=0fc79b75
+-/
 theorem residualRepresentative_not_convex_realises
     (classIndex : Fin 13) {p : Vertex → Plane}
     (hC : ConvexIndependent ℝ p) :

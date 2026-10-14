@@ -42,10 +42,16 @@ variable {Ω ι : Type*} {m : MeasurableSpace Ω} {X : Ω → ℝ} {p : ℕ} {μ
 
 section GeneratingFunctionDerivatives
 
+/--
+@isnad1 id=aestrong.1h5v.s5.5e5dc93461b1 from=translated src=- shape=b236fe0c vocab=3716dbb9
+-/
 lemma aemeasurable_expt {X : Ω → ℝ} (t : ℝ) (hX : AEMeasurable X μ) :
     AEStronglyMeasurable (fun ω ↦ rexp (t * (X ω))) μ :=
   aestronglyMeasurable_iff_aemeasurable.mpr <| measurable_exp.comp_aemeasurable' (hX.const_mul t)
 
+/--
+@isnad1 id=integrab.3h6v.s6.0260b36ea8d0 from=translated src=- shape=a3543fdd vocab=5a054ea5
+-/
 lemma integrable_expt [IsFiniteMeasure μ] {X : Ω → ℝ} (t b : ℝ) (ht : t > 0)
     (hX : AEMeasurable X μ) (hb : ∀ᵐ ω ∂μ, X ω ≤ b) :
     Integrable (fun ω ↦ exp (t * (X ω))) μ := by
@@ -69,6 +75,9 @@ lemma integrable_expt [IsFiniteMeasure μ] {X : Ω → ℝ} (t b : ℝ) (ht : t 
   exact ⟨aestronglyMeasurable_iff_aemeasurable.mpr <|
     measurable_exp.comp_aemeasurable' (hX.const_mul t), hm1⟩
 
+/--
+@isnad1 id=integrab.2h7v.s6.c22fdfb17f95 from=translated src=- shape=68238c33 vocab=7470c3f0
+-/
 lemma integrable_expt_bound [IsFiniteMeasure μ] {X : Ω → ℝ} {t a b : ℝ} (hX : AEMeasurable X μ)
     (h : ∀ᵐ ω ∂μ, X ω ∈ Set.Icc a b) :
     Integrable (fun ω ↦ exp (t * (X ω))) μ := by
@@ -84,6 +93,9 @@ lemma integrable_expt_bound [IsFiniteMeasure μ] {X : Ω → ℝ} {t a b : ℝ} 
       apply neg_le_neg h.1
     · exact Left.neg_pos_iff.mpr ht
 
+/--
+@isnad1 id=le.2h7v.s7.5900d5029f9d from=translated src=- shape=f1fce246 vocab=260e31c8
+-/
 lemma tilt_var_bound [IsProbabilityMeasure μ] (a b t : ℝ) {X : Ω → ℝ}
     (h : ∀ᵐ ω ∂μ, X ω ∈ Set.Icc a b)
     (hX : AEMeasurable X μ) :
@@ -94,6 +106,9 @@ lemma tilt_var_bound [IsProbabilityMeasure μ] (a b t : ℝ) {X : Ω → ℝ}
       ((tilted_absolutelyContinuous μ fun ω ↦ t * X ω) h)
       (hX.mono_ac (tilted_absolutelyContinuous μ fun ω ↦ t * X ω))
 
+/--
+@isnad1 id=integrab.2h6v.s6.260e16f377da from=translated src=- shape=b13def3c vocab=b991ba08
+-/
 theorem integrable_bounded [IsFiniteMeasure μ] (a b : ℝ)
     {X : Ω → ℝ} (hX : AEMeasurable X μ) (h : ∀ᵐ ω ∂μ, X ω ∈ Set.Icc a b) :
     Integrable X μ := by
@@ -102,6 +117,9 @@ theorem integrable_bounded [IsFiniteMeasure μ] (a b : ℝ)
      filter_upwards [h.mono fun ω h ↦ h.1, h.mono fun ω h ↦ h.2] with ω using abs_le_max_abs_abs
   exact ⟨aestronglyMeasurable_iff_aemeasurable.mpr hX, m1⟩
 
+/--
+@isnad1 id=integrab.2h7v.s6.88b8f86b3a49 from=translated src=- shape=4ba3dc8a vocab=7470c3f0
+-/
 theorem integrable_deriv_expt [IsFiniteMeasure μ] (t a b : ℝ)
     {X : Ω → ℝ} (hX : AEMeasurable X μ) (h : ∀ᵐ ω ∂μ, X ω ∈ Set.Icc a b) :
     Integrable (fun ω ↦ rexp (t * X ω) * X ω) μ := by
@@ -119,6 +137,9 @@ theorem integrable_deriv_expt [IsFiniteMeasure μ] (t a b : ℝ)
       mul_le_mul_of_nonneg_left (le_trans' (le_abs_self (max ‖a‖ ‖b‖))
         (abs_le_max_abs_abs h.1 h.2) : |X ω| ≤ |c|) (abs_nonneg t)
 
+/--
+@isnad1 id=eq.1h6v.s7.73780ec0a1aa from=translated src=- shape=28eec349 vocab=5d56dbcf
+-/
 theorem integral_tilted [IsFiniteMeasure μ]
     (t : ℝ) (f : ℝ → ℝ) {X : Ω → ℝ} (hX : AEMeasurable X μ) :
     (μ.tilted (fun ω ↦ t * X ω))[fun ω ↦ f (X ω)] =

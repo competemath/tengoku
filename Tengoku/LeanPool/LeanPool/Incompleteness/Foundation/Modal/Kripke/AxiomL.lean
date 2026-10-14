@@ -27,6 +27,9 @@ abbrev TransitiveIrreflexiveFiniteFrameClass : FiniteFrameClass :=
 
 variable {F : Frame}
 
+/--
+@isnad1 id=realize.2h1v.s5.5ad07ebd2282 from=translated src=- shape=89219a3b vocab=7e46a707
+-/
 lemma validate_L_of_trans_and_cwf (hTrans : IsTrans F.World F.Rel) (hCWF :
     ConverseWellFounded F.Rel) : F ⊧ (Axioms.L (.atom 0)) := by
   rintro V w;
@@ -51,6 +54,9 @@ lemma validate_L_of_trans_and_cwf (hTrans : IsTrans F.World F.Rel) (hCWF :
       exact rmn;
     · assumption;
 
+/--
+@isnad1 id=istrans.1h1v.s4.04e4664d00ed from=translated src=- shape=7bcd3d67 vocab=53b8b5fa
+-/
 lemma trans_of_validate_L : F ⊧ (Axioms.L (.atom 0)) → IsTrans F.World F.Rel := by
   contrapose;
   intro hT;
@@ -80,6 +86,9 @@ lemma trans_of_validate_L : F ⊧ (Axioms.L (.atom 0)) → IsTrans F.World F.Rel
     · assumption;
     · simp [Semantics.Realize, Satisfies];
 
+/--
+@isnad1 id=converse.1h1v.s4.17477c5e61a4 from=translated src=- shape=7bcd3d67 vocab=dcb8dd6f
+-/
 lemma cwf_of_validate_L : F ⊧ (Axioms.L (.atom 0)) → ConverseWellFounded F.Rel := by
   contrapose;
   intro hCF;

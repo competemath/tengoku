@@ -41,6 +41,9 @@ variable {L : Language.{0, 0}}
 instance instSMulPermStructureSpace : SMul (Equiv.Perm ℕ) (StructureSpace L) where
   smul σ c := fun q => c ⟨q.1, ⇑σ⁻¹ ∘ q.2⟩
 
+/--
+@isnad1 id=eq.0h5v.s7.be6423f233c8 from=translated src=- shape=10ff4e6f vocab=b931e65d
+-/
 @[simp] theorem logicAction_apply (σ : Equiv.Perm ℕ) (c : StructureSpace L)
     (R : Σ l, L.Relations l) (v : Fin R.1 → ℕ) :
     (σ • c) ⟨R, v⟩ = c ⟨R, ⇑σ⁻¹ ∘ v⟩ := rfl
@@ -80,7 +83,9 @@ private theorem orbit_iff_iso (c d : StructureSpace L) :
 /-! ## Action invariance = isomorphism invariance -/
 
 /-- **The equivalence** (issue #27, milestone 10): action-invariance and isomorphism-invariance of
-a class of coded structures coincide. -/
+a class of coded structures coincide.
+@isnad1 id=iff.0h2v.s4.28469a76318d from=translated src=- shape=44779e3f vocab=52fa5a48
+-/
 theorem actionInvariant_iff_isomorphismInvariant (B : Set (StructureSpace L)) :
     ActionInvariant B ↔ IsomorphismInvariant B := by
   constructor

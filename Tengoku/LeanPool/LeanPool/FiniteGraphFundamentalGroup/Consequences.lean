@@ -56,6 +56,9 @@ noncomputable def graphFundamentalGroupBasis {V : Type u} [Quiver.{u} V]
   simpa [graphGeneratorSet] using!
     (spanningTreeBasis (graphTree root))
 
+/--
+@isnad1 id=eq.0h3v.s9.1f9edd953eb7 from=translated src=- shape=768ae304 vocab=c5e4c620
+-/
 theorem graphFundamentalGroupBasis_repr_apply {V : Type u} [Quiver.{u} V]
     [WeaklyConnected V] (root : V)
     (e : graphGeneratorSet root) :
@@ -98,6 +101,9 @@ noncomputable def graphFundamentalGroupRootEquiv {V : Type u} [Quiver.{u} V]
       map_mul' := fun γ₁ γ₂ => by
         simp [CategoryTheory.End.mul_def, Category.assoc] }
 
+/--
+@isnad1 id=eq.0h2v.s7.add86a9a3517 from=translated src=- shape=02479166 vocab=f85bb245
+-/
 @[simp]
 theorem graphFundamentalGroupRootEquiv_refl {V : Type u} [Quiver.{u} V]
     [WeaklyConnected V] (root : V) :
@@ -105,7 +111,9 @@ theorem graphFundamentalGroupRootEquiv_refl {V : Type u} [Quiver.{u} V]
   ext γ
   simp [graphFundamentalGroupRootEquiv, graphRootChangeHom]
 
-/-- The geodesic tree has `V - 1` edges and therefore cannot exceed the edge set. -/
+/-- The geodesic tree has `V - 1` edges and therefore cannot exceed the edge set.
+@isnad1 id=le.0h2v.s5.a360d389faba from=translated src=- shape=c95f96ed vocab=95255806
+-/
 theorem graph_tree_edge_count_le {V : Type u} [Quiver.{u} V]
     [Fintype V] [FiniteQuiver V] [WeaklyConnected V] (root : V) :
     vertexCount (V := V) - 1 ≤ edgeCount (V := V) := by
@@ -129,6 +137,9 @@ theorem graph_tree_edge_count_le {V : Type u} [Quiver.{u} V]
   exact hle
 
 /-! This identity is the usual `E - (V - 1)` formula, expressed in `ℕ`. -/
+/--
+@isnad1 id=eq.0h2v.s5.5cc7541d2f25 from=translated src=- shape=3fbb07e6 vocab=5cc54aff
+-/
 theorem cycleRank_eq_edgeCount_sub_tree {V : Type u} [Quiver.{u} V]
     [Fintype V] [FiniteQuiver V] [WeaklyConnected V] (root : V) :
     cycleRank (V := V) = edgeCount (V := V) - (vertexCount (V := V) - 1) := by
@@ -138,6 +149,9 @@ theorem cycleRank_eq_edgeCount_sub_tree {V : Type u} [Quiver.{u} V]
     edgeCount (V := V) - (vertexCount (V := V) - 1)
   omega
 
+/--
+@isnad1 id=iff.0h2v.s5.c7d0ce534cec from=translated src=- shape=333ef094 vocab=699b7274
+-/
 theorem cycleRank_pos_iff {V : Type u} [Quiver.{u} V]
     [Fintype V] [FiniteQuiver V] [WeaklyConnected V] (root : V) :
     0 < cycleRank (V := V) ↔
@@ -146,6 +160,9 @@ theorem cycleRank_pos_iff {V : Type u} [Quiver.{u} V]
   rw [cycleRank_eq_edgeCount_sub_tree root]
   omega
 
+/--
+@isnad1 id=iff.0h2v.s5.fc4dc721631b from=translated src=- shape=a53994f9 vocab=5cc54aff
+-/
 theorem cycleRank_eq_zero_iff_tree_edge_count {V : Type u} [Quiver.{u} V]
     [Fintype V] [FiniteQuiver V] [WeaklyConnected V] (root : V) :
     cycleRank (V := V) = 0 ↔
@@ -154,7 +171,9 @@ theorem cycleRank_eq_zero_iff_tree_edge_count {V : Type u} [Quiver.{u} V]
   rw [cycleRank_eq_edgeCount_sub_tree root]
   omega
 
-/-- The combinatorial fundamental group is trivial exactly in the tree case. -/
+/-- The combinatorial fundamental group is trivial exactly in the tree case.
+@isnad1 id=iff.0h2v.s5.da0139ad599d from=translated src=- shape=07677886 vocab=348a07bb
+-/
 theorem graphFundamentalGroup_subsingleton_iff_cycleRank_zero
     {V : Type u} [Quiver.{u} V] [Fintype V] [FiniteQuiver V]
     [WeaklyConnected V] (root : V) :

@@ -44,7 +44,9 @@ def toFinsetFamily {m n : ℕ} (M : BinaryMatrix m n) :
 noncomputable def vcDim {m n : ℕ} (M : BinaryMatrix m n) : ℕ :=
   M.toFinsetFamily.vcDim
 
-/-- Our `shatters` coincides with Mathlib's `Finset.Shatters` on the associated family. -/
+/-- Our `shatters` coincides with Mathlib's `Finset.Shatters` on the associated family.
+@isnad1 id=iff.0h4v.s4.e1e5f935b799 from=translated src=- shape=14a95c72 vocab=33b2211e
+-/
 theorem shatters_iff {m n : ℕ} (M : BinaryMatrix m n) (S : Finset (Fin n)) :
     M.shatters S ↔ M.toFinsetFamily.Shatters S := by
   constructor
@@ -78,7 +80,9 @@ theorem shatters_iff {m n : ℕ} (M : BinaryMatrix m n) (S : Finset (Fin n)) :
       exact this.2
 
 /-- Two `Bool`-valued functions on `Fin n` that agree on which indices are `true`
-    (as witnessed by equal `univ.filter`) are equal. -/
+    (as witnessed by equal `univ.filter`) are equal.
+@isnad1 id=eq.1h3v.s6.56685304779d from=translated src=- shape=74b98080 vocab=668184a6
+-/
 theorem bool_fun_eq_of_filter_eq {n : ℕ} (f g : Fin n → Bool)
     (h : Finset.univ.filter (fun j => f j = true) =
          Finset.univ.filter (fun j => g j = true)) :
@@ -95,7 +99,9 @@ theorem bool_fun_eq_of_filter_eq {n : ℕ} (f g : Fin n → Bool)
   · simp_all
 
 /-- **Sauer-Shelah lemma for binary matrices**: the number of distinct rows in the
-    Finset family is bounded by the sum of binomial coefficients up to the VC dimension. -/
+    Finset family is bounded by the sum of binomial coefficients up to the VC dimension.
+@isnad1 id=le.1h4v.s5.90fd14963c21 from=translated src=- shape=e0ab00e9 vocab=2d4d8964
+-/
 theorem card_toFinsetFamily_le {m n : ℕ} (M : BinaryMatrix m n)
     {d : ℕ} (hd : M.toFinsetFamily.vcDim ≤ d) :
     M.toFinsetFamily.card ≤ ∑ k ∈ Finset.Iic d, n.choose k := by
@@ -120,7 +126,9 @@ these columns are shattered by `M`.
 -/
 
 /-- Auxiliary: if `M.transpose` shatters `S ⊆ Fin m` with `|S| ≥ 2^(d+1)`,
-    then `M` shatters some set of `d+1` columns. -/
+    then `M` shatters some set of `d+1` columns.
+@isnad1 id=ex.2h5v.s6.894ca7d63b23 from=translated src=- shape=2e55e461 vocab=74501d15
+-/
 theorem transpose_shatters_imp_shatters {m n : ℕ} (M : BinaryMatrix m n)
     {d : ℕ} (S : Finset (Fin m)) (hS : M.transpose.shatters S)
     (hcard : 2 ^ (d + 1) ≤ S.card) :
@@ -207,7 +215,9 @@ theorem transpose_shatters_imp_shatters {m n : ℕ} (M : BinaryMatrix m n)
     then `M.transpose` has VC dimension ≤ `2^(d+1) - 1`.
 
     This is the fundamental bridge between primal and dual shattering.
-    Proved via the bitstring coding argument (Assouad 1983). -/
+    Proved via the bitstring coding argument (Assouad 1983).
+@isnad1 id=le.1h4v.s6.c4e2b3c69780 from=translated src=- shape=e05d1021 vocab=df0085e2
+-/
 theorem assouad_transpose_vcDim {m n : ℕ} (M : BinaryMatrix m n)
     {d : ℕ} (hd : M.vcDim ≤ d) :
     M.transpose.vcDim ≤ 2 ^ (d + 1) - 1 := by

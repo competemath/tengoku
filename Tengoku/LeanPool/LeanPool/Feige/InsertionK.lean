@@ -57,7 +57,9 @@ noncomputable def insertionTheta {n : ℕ}
     insertionWidth γ β σ r
 
 /-- The defining interpolation identity, whenever the band has positive
-width (nonzero is algebraically sufficient). -/
+width (nonzero is algebraically sufficient).
+@isnad1 id=eq.1h5v.s6.41a9ee11869f from=translated src=- shape=9964fe64 vocab=c7302a9d
+-/
 theorem insertionOldK_eq_upper_add_theta_mul_width {n : ℕ}
     (γ β : Fin (n + 1) → ℝ) (σ : Equiv.Perm (Fin n)) (r : ℕ)
     (hw : insertionWidth γ β σ r ≠ 0) :
@@ -69,7 +71,9 @@ theorem insertionOldK_eq_upper_add_theta_mul_width {n : ℕ}
   ring
 
 /-- The interpolation identity on the whole zero-extended sequence, given
-nondegeneracy of every genuine insertion band. -/
+nondegeneracy of every genuine insertion band.
+@isnad1 id=eq.1h5v.s6.0fe722516253 from=translated src=- shape=f7efb7b1 vocab=fca17210
+-/
 theorem insertionOldK_eq_upper_add_theta_mul_width_all {n : ℕ}
     (γ β : Fin (n + 1) → ℝ) (σ : Equiv.Perm (Fin n))
     (hw : ∀ r < n + 1, insertionWidth γ β σ r ≠ 0) (r : ℕ) :
@@ -87,6 +91,9 @@ theorem insertionOldK_eq_upper_add_theta_mul_width_all {n : ℕ}
     rw [hF, hA]
     simp [insertionTheta, insertionWidth, hF, hA, hB]
 
+/--
+@isnad1 id=eq.0h4v.s6.824b407a3830 from=translated src=- shape=4a1b5736 vocab=7567144e
+-/
 @[simp]
 theorem insertionTheta_sentinel {n : ℕ}
     (γ β : Fin (n + 1) → ℝ) (σ : Equiv.Perm (Fin n)) :
@@ -97,7 +104,9 @@ theorem insertionTheta_sentinel {n : ℕ}
   simp
 
 /-- At every genuine level, the statistic along the inserted permutation is
-exactly `Bᵣ` before insertion and `Aᵣ₋₁` afterwards. -/
+exactly `Bᵣ` before insertion and `Aᵣ₋₁` afterwards.
+@isnad1 id=eq.0h6v.s7.6a09ab563091 from=translated src=- shape=2431d43a vocab=d438043d
+-/
 theorem booleanChainK_insertChainPerm_eq {n : ℕ}
     (γ β : Fin (n + 1) → ℝ) (σ : Equiv.Perm (Fin n))
     (J : Fin (n + 1)) (r : Fin (n + 2)) :
@@ -117,7 +126,9 @@ theorem booleanChainK_insertChainPerm_eq {n : ℕ}
     rw [dite_eq_left hrlt]
 
 /-- The preceding identity, including the zero sentinel and the zero
-extension beyond it. -/
+extension beyond it.
+@isnad1 id=eq.0h6v.s6.225a3b5a0370 from=translated src=- shape=3d2d2418 vocab=d438043d
+-/
 theorem booleanChainK_insertChainPerm_eq_nat {n : ℕ}
     (γ β : Fin (n + 1) → ℝ) (σ : Equiv.Perm (Fin n))
     (J : Fin (n + 1)) (r : ℕ) :
@@ -134,7 +145,9 @@ theorem booleanChainK_insertChainPerm_eq_nat {n : ℕ}
     rw [dite_eq_right (by omega : ¬r - 1 < n + 1)]
 
 /-- The actual chain mass at a present lower state `Cⱼ` is its lower rank
-contribution. -/
+contribution.
+@isnad1 id=eq.1h6v.s7.fc4e8513c4ad from=translated src=- shape=81c96802 vocab=dabab368
+-/
 theorem chainMass_booleanChainK_insert_lower {n : ℕ}
     (γ β : Fin (n + 1) → ℝ) (σ : Equiv.Perm (Fin n))
     (J j : Fin (n + 1)) (hjJ : j ≤ J) :
@@ -152,7 +165,9 @@ theorem chainMass_booleanChainK_insert_lower {n : ℕ}
       hjJ rfl)
 
 /-- The actual chain mass at a present upper state `Hⱼ` is its upper rank
-contribution, including the terminal edge to the zero sentinel. -/
+contribution, including the terminal edge to the zero sentinel.
+@isnad1 id=eq.1h6v.s7.6d71b84f35f0 from=translated src=- shape=3b2046fa vocab=092092e9
+-/
 theorem chainMass_booleanChainK_insert_upper {n : ℕ}
     (γ β : Fin (n + 1) → ℝ) (σ : Equiv.Perm (Fin n))
     (J j : Fin (n + 1)) (hJj : J ≤ j) :

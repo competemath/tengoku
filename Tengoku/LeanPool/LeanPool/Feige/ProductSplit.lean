@@ -22,6 +22,9 @@ open Finset
 
 namespace Feige
 
+/--
+@isnad1 id=eq.0h1v.s6.0c8bd62004db from=translated src=- shape=10979a33 vocab=f4bec8e4
+-/
 theorem univ_eq_insert_last_lift_univ {n : ℕ} :
     (Finset.univ : Finset (Fin (n + 1))) =
       insert (Fin.last n) (liftChainState (Finset.univ : Finset (Fin n))) := by
@@ -31,7 +34,9 @@ theorem univ_eq_insert_last_lift_univ {n : ℕ} :
   · obtain ⟨j, rfl⟩ := Fin.exists_castSucc_eq.mpr hi
     simp
 
-/-- Product mass of a high set not containing the last coordinate. -/
+/-- Product mass of a high set not containing the last coordinate.
+@isnad1 id=eq.0h3v.s6.b4735caf5ac3 from=translated src=- shape=650fbff4 vocab=39342232
+-/
 theorem highSetMass_lift {n : ℕ}
     (p : Fin (n + 1) → ℝ) (S : Finset (Fin n)) :
     highSetMass p (liftChainState S) =
@@ -60,7 +65,9 @@ theorem highSetMass_lift {n : ℕ}
   ring
 
 /-- Product mass of the corresponding high set containing the last
-coordinate. -/
+coordinate.
+@isnad1 id=eq.0h3v.s7.3174090768bc from=translated src=- shape=b825a842 vocab=24ad2f25
+-/
 theorem highSetMass_insert_last {n : ℕ}
     (p : Fin (n + 1) → ℝ) (S : Finset (Fin n)) :
     highSetMass p (insert (Fin.last n) (liftChainState S)) =
@@ -122,7 +129,9 @@ private theorem sum_powerset_lift {n : ℕ}
     rfl
 
 /-- Reindexing all subsets of `Fin (n + 1)` by an old subset and a last
-coordinate bit. -/
+coordinate bit.
+@isnad1 id=eq.0h2v.s7.a40e1b180ff6 from=translated src=- shape=0fd25371 vocab=9e586453
+-/
 theorem sum_powerset_succ {n : ℕ}
     (f : Finset (Fin (n + 1)) → ℝ) :
     (∑ S ∈ (Finset.univ : Finset (Fin (n + 1))).powerset, f S) =
@@ -160,7 +169,9 @@ theorem sum_powerset_succ {n : ℕ}
     ← sum_powerset_lift (fun S ↦ f (insert (Fin.last n) S))]
   rw [Finset.sum_add_distrib]
 
-/-- Product expectation recursion at the last coordinate. -/
+/-- Product expectation recursion at the last coordinate.
+@isnad1 id=eq.0h3v.s6.eec56e0ed5b1 from=translated src=- shape=c034d7af vocab=05438a84
+-/
 theorem productHighSetExpectation_succ {n : ℕ}
     (p : Fin (n + 1) → ℝ) (g : Finset (Fin (n + 1)) → ℝ) :
     productHighSetExpectation p g =

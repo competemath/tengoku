@@ -54,9 +54,15 @@ open Set Filter Topology
 def prependWord (w : List Bool) (x : ℕ → Bool) : ℕ → Bool := fun n =>
   if n < w.length then w.getD n false else x (n - w.length)
 
+/--
+@isnad1 id=eq.1h3v.s4.44cc0b105600 from=translated src=- shape=4a9ea419 vocab=3833d6f5
+-/
 theorem prependWord_apply_of_lt {w : List Bool} {n : ℕ} (h : n < w.length) (x : ℕ → Bool) :
     prependWord w x n = w.getD n false := ite_eq_left h
 
+/--
+@isnad1 id=eq.1h3v.s5.f32f6cec3c20 from=translated src=- shape=51a4f0f9 vocab=9bf7d94a
+-/
 theorem prependWord_apply_of_le {w : List Bool} {n : ℕ} (h : w.length ≤ n) (x : ℕ → Bool) :
     prependWord w x n = x (n - w.length) := ite_eq_right (not_lt.mpr h)
 
@@ -66,6 +72,9 @@ private def wordCylinder (w : List Bool) : Set (ℕ → Bool) := Set.range (prep
 /-- The word formed by the first `n` values of `x`. -/
 def wordOf (x : ℕ → Bool) (n : ℕ) : List Bool := List.ofFn fun i : Fin n => x i
 
+/--
+@isnad1 id=eq.0h2v.s3.69284ad0b7a7 from=translated src=- shape=9bea7da9 vocab=8bd60e65
+-/
 @[simp] theorem length_wordOf (x : ℕ → Bool) (n : ℕ) : (wordOf x n).length = n :=
   List.length_ofFn
 
@@ -109,6 +118,9 @@ private theorem le_canonicalLen (n : ℕ) : (wordEnum n).length ≤ canonicalLen
   | zero => exact le_rfl
   | succ _ => exact le_max_left _ _
 
+/--
+@isnad1 id=strictmo.0h0v.s2.d420b66387ed from=translated src=- shape=e3d48bcb vocab=9668f61d
+-/
 theorem canonicalLen_strictMono : StrictMono canonicalLen :=
   strictMono_nat_of_lt_succ fun _ =>
     lt_of_lt_of_le (Nat.lt_succ_self _) (le_max_right _ _)
@@ -117,12 +129,18 @@ theorem canonicalLen_strictMono : StrictMono canonicalLen :=
 length of the schedule. -/
 def canonicalWord (n : ℕ) : List Bool := padTo (wordEnum n) (canonicalLen n)
 
+/--
+@isnad1 id=eq.0h1v.s3.a19d1fe76e21 from=translated src=- shape=1e92cebf vocab=e15b90bb
+-/
 theorem length_canonicalWord (n : ℕ) : (canonicalWord n).length = canonicalLen n :=
   length_padTo (le_canonicalLen n)
 
 /-- The canonical dense and sparse set of finite binary words. -/
 def canonicalS : Set (List Bool) := Set.range canonicalWord
 
+/--
+@isnad1 id=densewor.0h0v.s1.219edd50937c from=translated src=- shape=49959d42 vocab=eb7b0611
+-/
 theorem denseWords_canonicalS : DenseWords canonicalS := by
   intro r
   refine ⟨canonicalWord (Encodable.encode r), ⟨_, rfl⟩, ?_⟩

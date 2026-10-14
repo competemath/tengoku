@@ -31,7 +31,9 @@ def IsAP4 (a b c d : ℕ) : Prop :=
 
 /-- The equation-based representation used in this formalization is equivalent
 to the paper's progression `a, a+r, a+2r, a+3r`, with a nonzero **integer**
-common difference. In particular, decreasing progressions are included. -/
+common difference. In particular, decreasing progressions are included.
+@isnad1 id=iff.0h4v.s6.9689855a71a6 from=translated src=- shape=8e2d2c93 vocab=8565569a
+-/
 theorem isAP4_iff_integer_progression {a b c d : ℕ} :
     IsAP4 a b c d ↔ ∃ r : ℤ, r ≠ 0 ∧
       (b : ℤ) = (a : ℤ) + r ∧

@@ -26,7 +26,9 @@ abbrev SearchRow := Finset Vertex
 def rowOptions (v : Vertex) : List SearchRow :=
   (((List.finRange 8).filter (· ≠ v)).sublistsLen 4).map List.toFinset
 
-/-- Every row of an octagon incidence system occurs in the finite row list. -/
+/-- Every row of an octagon incidence system occurs in the finite row list.
+@isnad1 id=mem.0h2v.s4.ebbe863ac8e7 from=translated src=- shape=a6ff403a vocab=18aceb70
+-/
 theorem target_row_mem_rowOptions (Q : OctagonIncidence) (v : Vertex) :
     Q.targets v ∈ rowOptions v := by
   let row := (Q.targets v).sort (· ≤ ·)
@@ -68,6 +70,9 @@ def decodeMap (code : UInt64) (vertex : Vertex) : Vertex :=
 def packedRow (mask : UInt64) : Finset Vertex :=
   Finset.univ.filter fun target => bitSetB mask target.val
 
+/--
+@isnad1 id=iff.0h2v.s4.68dca41985ed from=translated src=- shape=33b2fdc9 vocab=bebb0c51
+-/
 @[simp] theorem mem_packedRow (mask : UInt64) (target : Vertex) :
     target ∈ packedRow mask ↔ bitSetB mask target.val = true := by
   simp [packedRow]
@@ -84,6 +89,9 @@ def packedSelectsB (code : UInt64) (centre target : Vertex) : Bool :=
 def packedIncidence (code : UInt64) : RawIncidence := fun centre =>
   Finset.univ.filter fun target => packedSelectsB code centre target
 
+/--
+@isnad1 id=iff.0h3v.s4.bf5d401b004c from=translated src=- shape=853e1f26 vocab=389fd657
+-/
 @[simp] theorem mem_packedIncidence (code : UInt64) (centre target : Vertex) :
     target ∈ packedIncidence code centre ↔ packedSelectsB code centre target = true := by
   simp [packedIncidence]

@@ -58,7 +58,9 @@ structure FactorizationSystem {C : Type u} [Category.{v} C] (L R : MorphismPrope
     (comm₁ : leftMap f ≫ i.hom = left) → (comm₂ : i.hom ≫ right = rightMap f) →
     i = (factorizationIso f im left p right q fact).fst
 
-/-- A useful characterization of the uniqueness of the factorization iso -/
+/-- A useful characterization of the uniqueness of the factorization iso
+@isnad1 id=eq.6h19v.s8.9904742c4465 from=translated src=- shape=26a07c71 vocab=87d90e6d
+-/
 lemma factorization_iso_is_unique' {L R : MorphismProperty C} (F : FactorizationSystem L R)
   {X Y : C} (f : X ⟶ Y) (E E' : C) (s : X ⟶ E) (hs : L s) (p : E ⟶ Y) (hp : R p) (fact : s ≫ p = f)
   (s' : X ⟶ E') (hs' : L s') (p' : E' ⟶ Y) (hp' : R p') (fact' : s' ≫ p' = f)
@@ -91,14 +93,18 @@ def MorphismPropertySlice (W : MorphismProperty C) (X : C) : MorphismProperty (O
   exact W ((Over.forget X).map f)
 
 /-- If a class of morphisms contains isomorphisms,
-then so does the class of morphisms in the slice -/
+then so does the class of morphisms in the slice
+@isnad1 id=contains.1h3v.s5.21dab4af16f5 from=translated src=- shape=bd33be6d vocab=81405a92
+-/
 lemma contains_isos_slice : {W : MorphismProperty C} → {X : C} →  containsIsos W →
     containsIsos (MorphismPropertySlice W X) := by
   intro _ X h _ _ i
   exact h (asIso ((Over.forget X).map i.hom))
 
 /-- If a class of morphisms is closed under composition,
-then so does the class of morphisms in the slice -/
+then so does the class of morphisms in the slice
+@isnad1 id=isclosed.1h3v.s5.e084cf1b6759 from=translated src=- shape=bd33be6d vocab=737f4fa2
+-/
 lemma is_closed_comp_slice {W : MorphismProperty C} {X : C} (h : is_closed_comp W) :
     is_closed_comp (MorphismPropertySlice W X) where
   precomp f hf g hg := by
@@ -112,7 +118,9 @@ lemma is_closed_comp_slice {W : MorphismProperty C} {X : C} (h : is_closed_comp 
 
 namespace Over
 
-/-- If a triangle commutes in the slice C/X, then it commutes in C -/
+/-- If a triangle commutes in the slice C/X, then it commutes in C
+@isnad1 id=eq.1h8v.s7.84a9c7e97cad from=translated src=- shape=f851f5e7 vocab=5b4dac65
+-/
 lemma forget_map_comp :
     {X : C} → {p q r : Over X} → (F : p ⟶ q) → (G : q ⟶ r) → (H : p ⟶ r) →
     (hyp : F ≫ G = H) → (F.left ≫ G.left = H.left) := by
@@ -150,6 +158,9 @@ def leftMapSlice : {X : C} → {L R : MorphismProperty C} → (F : Factorization
       change f.hom ≫ 𝟙 X = f.hom
       rw [Category.comp_id]))
 
+/--
+@isnad1 id=morphism.0h8v.s6.de281ec279ee from=translated src=- shape=f64751bc vocab=7d859279
+-/
 lemma left_map_in_left_class_slice : {X : C} → {L R : MorphismProperty C} →
     (F : FactorizationSystem L R) → {f g : Over X} → (φ : f ⟶ g) →
     (MorphismPropertySlice L X) (leftMapSlice F φ) := by
@@ -163,6 +174,9 @@ def rightMapSlice : {X : C} → {L R : MorphismProperty C} → (F : Factorizatio
   rintro _ _ _ F _ _ ⟨φ,_,_⟩
   exact Over.homMk (F.rightMap φ) (by aesop_cat)
 
+/--
+@isnad1 id=morphism.0h8v.s6.001b1c889601 from=translated src=- shape=fa8c2992 vocab=a8588e98
+-/
 lemma right_map_in_right_class_slice : {X : C} → {L R : MorphismProperty C} →
     (F : FactorizationSystem L R) → {f g : Over X} → (φ : f ⟶ g) →
     (MorphismPropertySlice R X) (rightMapSlice F φ) := by
@@ -170,6 +184,9 @@ lemma right_map_in_right_class_slice : {X : C} → {L R : MorphismProperty C} �
   have el := F.right_map_in_right_class φ
   aesop_cat
 
+/--
+@isnad1 id=eq.0h8v.s6.7caca10e1914 from=translated src=- shape=09c42c35 vocab=b0af9c93
+-/
 lemma factorization_slice : {X : C} → {L R : MorphismProperty C} → (F : FactorizationSystem L R) →
     {f g : Over X} → (φ : f ⟶ g) → leftMapSlice F φ ≫ rightMapSlice F φ = φ := by
   rintro _ _ _ F _ _ ⟨φ,_,_⟩
@@ -200,6 +217,9 @@ def factorizationIsoSlice : {X : C} → {L R : MorphismProperty C} → (F : Fact
     snd := by aesop_cat
   }
 
+/--
+@isnad1 id=eq.3h14v.s9.05c60b94076b from=translated src=- shape=304d8baf vocab=4f7fc0ff
+-/
 lemma factorization_iso_is_unique_slice : {X : C} → {L R : MorphismProperty C} →
     (F : FactorizationSystem L R) → {f g : Over X} → (φ : f ⟶ g) → (im : Over X) → (left : f ⟶ im) →
     (p : (MorphismPropertySlice L X) left) → (right : im ⟶ g) →
@@ -262,6 +282,9 @@ def factFactIso : (F : FactorizationSystem L R) → {X Y : C} →  (f : X ⟶ Y)
   · exact (F.factorizationIso f E' l' p' r' q' fact').fst
 
 /- the isomorphisms commutes with left maps -/
+/--
+@isnad1 id=eq.2h17v.s7.17f6381068b5 from=translated src=- shape=4a8afc56 vocab=4b032746
+-/
 lemma fact_fact_iso_comm_left : (F : FactorizationSystem L R) → {X Y : C} →  (f : X ⟶ Y) →
     (E : C) → (l : X ⟶ E) → (p : L l) → (r : E ⟶ Y) → (q : R r) → (fact : l ≫ r = f) →
     (E' : C) → (l' : X ⟶ E') → (p' : L l') → (r' : E' ⟶ Y) → (q' : R r') → (fact' : l' ≫ r' = f) →
@@ -279,6 +302,9 @@ lemma fact_fact_iso_comm_left : (F : FactorizationSystem L R) → {X Y : C} → 
     _ = l' := comm_left'
 
 /- the isomorphisms commutes with right maps -/
+/--
+@isnad1 id=eq.2h17v.s7.00a2fa355a55 from=translated src=- shape=294988ce vocab=4b032746
+-/
 lemma fact_fact_iso_comm_right : (F : FactorizationSystem L R) → {X Y : C} →  (f : X ⟶ Y) →
     (E : C) → (l : X ⟶ E) → (p : L l) → (r : E ⟶ Y) → (q : R r) → (fact : l ≫ r = f) →
     (E' : C) → (l' : X ⟶ E') → (p' : L l') → (r' : E' ⟶ Y) → (q' : R r') → (fact' : l' ≫ r' = f) →
@@ -310,6 +336,9 @@ instance Inter : Inter (MorphismProperty C) where
 end MorphismProperty
 
 /- The intersection of the left and the right class are precisely the isomorphisms -/
+/--
+@isnad1 id=eq.0h4v.s5.e2510edec790 from=translated src=- shape=9caa27b1 vocab=83077f3b
+-/
 lemma left_right_intersection_iso :
     FactorizationSystem L R → L ∩ R = MorphismProperty.isomorphisms C := by
   intro F
@@ -352,6 +381,9 @@ def rightCancellation (W : MorphismProperty C) : Prop :=
 
 end MorphismProperty
 
+/--
+@isnad1 id=rightcan.0h4v.s4.cab5352d0862 from=translated src=- shape=86b80f9a vocab=a0c13c50
+-/
 lemma right_cancellation_left_class :
     (F : FactorizationSystem L R) → MorphismProperty.rightCancellation L := by
   intro F X Y Z u v Lw Lu
@@ -378,6 +410,9 @@ lemma right_cancellation_left_class :
   have Lsp := F.is_closed_comp_left_class.precomp s (F.left_map_in_left_class v) p Lp
   rwa [←fact]
 
+/--
+@isnad1 id=leftcanc.0h4v.s4.28db4b633adc from=translated src=- shape=caf5116a vocab=efbb4001
+-/
 lemma left_cancellation_right_class :
     (F : FactorizationSystem L R) → MorphismProperty.leftCancellation R := by
   intro F X Y Z u v Rw Rv

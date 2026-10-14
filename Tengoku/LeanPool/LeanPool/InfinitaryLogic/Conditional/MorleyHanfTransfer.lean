@@ -228,7 +228,9 @@ legacy — their oracle is strictly stronger than needed. -/
 assuming only `MorleySeedTailTemplateRealizable` — which is itself proved
 (`morleySeedTailTemplateRealizable_holds`); see `morley_hanf` in
 `Conditional/MorleyHanfSchemaDischarge.lean` for the hypothesis-free endpoint. Consumes no
-extraction: the route is `hasArbLargeModels_of_seed_realizability`. -/
+extraction: the route is `hasArbLargeModels_of_seed_realizability`.
+@isnad1 id=ishanfbo.1h2v.s5.74836c5fe7e5 from=translated src=- shape=41e1629d vocab=abe50879
+-/
 theorem morley_hanf_of_seed_realizable
     {L' : Language.{0, 0}}
     (hRealize : MorleySeedTailTemplateRealizable (L' := L'))

@@ -95,7 +95,9 @@ private lemma sublattice_quadratic_form_ge_seven
         a²·(Δi² + Δi·Δj + Δj²).
     By `sublattice_quadratic_form_ge_seven`, the integer quadratic form
     `Δi² + Δi·Δj + Δj² ≥ 7`, so squared distance ≥ 7·a², giving distance
-    ≥ a·√7. -/
+    ≥ a·√7.
+@isnad1 id=le.2h4v.s9.9df8eae69d01 from=translated src=- shape=18b4627d vocab=a68ae1d5
+-/
 lemma dist_between_same_color_lattice_points
     {i j i' j' : ℤ} (hne : (i, j) ≠ (i', j'))
     (hsame : ((i + 3 * j) : ZMod 7) = ((i' + 3 * j') : ZMod 7)) :

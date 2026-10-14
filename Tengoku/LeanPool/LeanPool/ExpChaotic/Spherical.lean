@@ -38,7 +38,9 @@ unit sphere by a uniform equivalence. Equicontinuity uses mathlib's standard
 `EquicontinuousAt` definition. The iterates remain defined only on the plane.
 -/
 
-/-- Every sufficiently late iterate of a nonempty open set contains both `1` and `2`. -/
+/-- Every sufficiently late iterate of a nonempty open set contains both `1` and `2`.
+@isnad1 id=ex.2h1v.s6.9527c471762c from=translated src=- shape=d9f1ca3c vocab=18d026ec
+-/
 theorem eventually_hits_one_and_two {U : Set ℂ} (hU : IsOpen U) (hUne : U.Nonempty) :
     ∃ N : ℕ, ∀ n ≥ N,
       (∃ z ∈ U, expIterate n z = 1) ∧ (∃ z ∈ U, expIterate n z = 2) := by
@@ -48,7 +50,9 @@ theorem eventually_hits_one_and_two {U : Set ℂ} (hU : IsOpen U) (hUne : U.None
     ⟨h₁ n (le_trans (le_max_left _ _) hn), h₂ n (le_trans (le_max_right _ _) hn)⟩⟩
 
 /-- The two-target obstruction to equicontinuity, for any separated uniform target
-and any target map distinguishing `1` and `2`. The domain is the Euclidean plane. -/
+and any target map distinguishing `1` and `2`. The domain is the Euclidean plane.
+@isnad1 id=not.1h3v.s6.5e06253c7c5d from=translated src=- shape=23a5ed84 vocab=8b35c48a
+-/
 theorem not_equicontinuousAt_expIterate_comp
     {Y : Type*} [UniformSpace Y] [T0Space Y]
     {q : ℂ → Y} (hq : q 1 ≠ q 2) (z : ℂ) :
@@ -88,14 +92,18 @@ def riemannSphereUniformEquivUnitSphere :
 def sphericalExpIterate (n : ℕ) (z : ℂ) : RiemannSphere :=
   (expIterate n z : OnePoint ℂ)
 
-/-- The exponential iterates fail to be spherically equicontinuous at every finite point. -/
+/-- The exponential iterates fail to be spherically equicontinuous at every finite point.
+@isnad1 id=not.0h1v.s4.d6a7715f8e0a from=translated src=- shape=73593dd7 vocab=9bbce795
+-/
 theorem not_equicontinuousAt_sphericalExpIterate (z : ℂ) :
     ¬ EquicontinuousAt sphericalExpIterate z := by
   apply not_equicontinuousAt_expIterate_comp
     (q := fun w : ℂ => (w : OnePoint ℂ)) _ z
   exact fun h => (by norm_num : (1 : ℂ) ≠ 2) (OnePoint.coe_injective h)
 
-/-- The same non-equicontinuity statement with the ordinary metric sphere as codomain. -/
+/-- The same non-equicontinuity statement with the ordinary metric sphere as codomain.
+@isnad1 id=not.0h1v.s11.b236977e36c4 from=translated src=- shape=b6ce6f50 vocab=9db0abf8
+-/
 theorem not_equicontinuousAt_unitSphereExpIterate (z : ℂ) :
     ¬ EquicontinuousAt
       (fun n w => riemannSphereUniformEquivUnitSphere (sphericalExpIterate n w)) z := by
@@ -114,7 +122,9 @@ allows arbitrary sphere-valued limit functions, including functions taking the v
 -/
 
 /-- Eventual point covering obstructs all locally uniform subsequential limits in any
-separated uniform target, provided the continuous target map distinguishes `1` and `2`. -/
+separated uniform target, provided the continuous target map distinguishes `1` and `2`.
+@isnad1 id=not.5h5v.s7.22d694641ee5 from=translated src=- shape=aa932ac1 vocab=cda3d9bf
+-/
 theorem not_tendstoLocallyUniformlyOn_expIterate_comp
     {Y : Type*} [UniformSpace Y] [T0Space Y]
     {q : ℂ → Y} (hqcont : Continuous q) (hq : q 1 ≠ q 2)
@@ -147,7 +157,9 @@ theorem not_tendstoLocallyUniformlyOn_expIterate_comp
   exact hq ((hvalue 1 one_ne_zero).symm.trans (hvalue 2 (by norm_num)))
 
 /-- The two-target obstruction with the limit function defined only on its domain `U`.
-The auxiliary extension in the proof serves solely to use Mathlib's ambient-domain API. -/
+The auxiliary extension in the proof serves solely to use Mathlib's ambient-domain API.
+@isnad1 id=not.5h5v.s7.59bc4be513b5 from=translated src=- shape=c5a53f53 vocab=313278f4
+-/
 theorem not_tendstoLocallyUniformly_expIterate_comp
     {Y : Type*} [UniformSpace Y] [T0Space Y]
     {q : ℂ → Y} (hqcont : Continuous q) (hq : q 1 ≠ q 2)
@@ -166,7 +178,9 @@ theorem not_tendstoLocallyUniformly_expIterate_comp
   rwa [hrestrict]
 
 /-- No increasing subsequence of exponential iterates converges locally uniformly in
-the spherical uniformity on a nonempty open set, to any sphere-valued function. -/
+the spherical uniformity on a nonempty open set, to any sphere-valued function.
+@isnad1 id=not.3h3v.s6.6a4c102a8a99 from=translated src=- shape=73d14622 vocab=1ef27a55
+-/
 theorem not_tendstoLocallyUniformlyOn_sphericalExpIterate
     {U : Set ℂ} (hU : IsOpen U) (hUne : U.Nonempty)
     {φ : ℕ → ℕ} (hφ : StrictMono φ) (g : ℂ → RiemannSphere) :
@@ -183,7 +197,9 @@ def HasSensitiveDependenceVia {Y : Type*} [MetricSpace Y] (q : ℂ → Y) : Prop
       δ ≤ dist (q (expIterate n z)) (q (expIterate n w))
 
 /-- **Corollary 4.4.** The exponential map has sensitive dependence with respect to spherical
-distance, represented by the ordinary metric on the unit sphere in `ℝ³`. -/
+distance, represented by the ordinary metric on the unit sphere in `ℝ³`.
+@isnad1 id=hassensi.0h0v.s11.1881b557b367 from=translated src=- shape=3300f250 vocab=3607729a
+-/
 theorem spherical_sensitive_dependence_exp :
     HasSensitiveDependenceVia
       (fun w : ℂ => riemannSphereUniformEquivUnitSphere (w : OnePoint ℂ)) := by

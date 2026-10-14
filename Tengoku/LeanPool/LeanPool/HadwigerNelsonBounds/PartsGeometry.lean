@@ -51,6 +51,9 @@ def radicalCoefficient (p : PartsPoint) : Int := p.a * p.b + p.c * p.d
 def IsUnit (p : PartsPoint) : Bool :=
   decide (p.normNumerator = 144 ∧ p.radicalCoefficient = 0)
 
+/--
+@isnad1 id=iff.0h1v.s4.f1ddf9e26dfe from=translated src=- shape=209cba00 vocab=f2fdfd9c
+-/
 lemma isUnit_iff (p : PartsPoint) :
     p.IsUnit ↔ p.normNumerator = 144 ∧ p.radicalCoefficient = 0 := by
   simp [IsUnit]
@@ -61,13 +64,22 @@ noncomputable def toR2 (p : PartsPoint) : R2 :=
     ![((p.a : ℝ) + (p.b : ℝ) * Real.sqrt 33) / 12,
       (3 * (p.c : ℝ) + (p.d : ℝ) * Real.sqrt 33) / (12 * Real.sqrt 3)]
 
+/--
+@isnad1 id=eq.0h1v.s7.d42d98687815 from=translated src=- shape=a3d15b36 vocab=7aef5bb8
+-/
 @[simp] lemma toR2_zero (p : PartsPoint) :
     p.toR2 0 = ((p.a : ℝ) + (p.b : ℝ) * Real.sqrt 33) / 12 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s9.9cee04ef48cf from=translated src=- shape=f1ec7d41 vocab=55d8e6f8
+-/
 @[simp] lemma toR2_one (p : PartsPoint) :
     p.toR2 1 =
       (3 * (p.c : ℝ) + (p.d : ℝ) * Real.sqrt 33) / (12 * Real.sqrt 3) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.dc9f30f5917a from=translated src=- shape=63ddb0e9 vocab=372eba45
+-/
 lemma dist_sq (p q : PartsPoint) :
     dist p.toR2 q.toR2 ^ 2 =
       ((p.sub q).normNumerator : ℝ) / 144 +
@@ -87,7 +99,9 @@ lemma dist_sq (p q : PartsPoint) :
   rw [hs33sq, hs3sq]
   ring
 
-/-- Every positive exact unit vector embeds as a Euclidean unit segment. -/
+/-- Every positive exact unit vector embeds as a Euclidean unit segment.
+@isnad1 id=eq.1h2v.s6.819c260977da from=translated src=- shape=9db32cbd vocab=e6a6d6ef
+-/
 lemma dist_eq_one_of_isUnit {p q : PartsPoint} (h : (p.sub q).IsUnit) :
     dist p.toR2 q.toR2 = 1 := by
   rw [isUnit_iff] at h

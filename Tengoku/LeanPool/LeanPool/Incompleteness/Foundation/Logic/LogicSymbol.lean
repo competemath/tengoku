@@ -149,6 +149,9 @@ variable (f : F) (a b : α)
 
 instance : CoeFun F (fun _ => α → β) := ⟨DFunLike.coe⟩
 
+/--
+@isnad1 id=eq.0h6v.s6.2b6e6ee0efa3 from=translated src=- shape=c935b3b9 vocab=ed25275e
+-/
 @[simp] lemma map_iff : f (a <=> b) = f a <=> f b := by simp[LogicalConnective.iff]
 
 end HomClass
@@ -178,6 +181,9 @@ instance : FunLike (α →ˡᶜ β) α β where
     rintro ⟨_⟩ ⟨_⟩ h
     simpa only [mk.injEq] using h
 
+/--
+@isnad1 id=eq.1h4v.s6.ed45835089ea from=translated src=- shape=632a3698 vocab=7d6eb34a
+-/
 @[ext] lemma ext (f g : α →ˡᶜ β) (h : ∀ x, f x = g x) : f = g := DFunLike.ext f g h
 
 instance : HomClass (α →ˡᶜ β) α β where
@@ -200,6 +206,9 @@ protected def id : α →ˡᶜ α where
   map_and' := by simp
   map_or' := by simp
 
+/--
+@isnad1 id=eq.0h2v.s4.ffbcc63cde55 from=translated src=- shape=1233aa71 vocab=754517e8
+-/
 @[simp] lemma app_id (a : α) : LogicalConnective.Hom.id a = a := rfl
 
 /-- Imported declaration from the Incompleteness formalization. -/
@@ -212,6 +221,9 @@ def comp (g : β →ˡᶜ γ) (f : α →ˡᶜ β) : α →ˡᶜ γ where
   map_and' := by simp
   map_or' := by simp
 
+/--
+@isnad1 id=eq.0h6v.s6.c1ad4f1511a5 from=translated src=- shape=80d14110 vocab=997b4af6
+-/
 @[simp] lemma app_comp (g : β →ˡᶜ γ) (f : α →ˡᶜ β) (a : α) :
      g.comp f a = g (f a) := rfl
 
@@ -273,10 +285,19 @@ def conjLt (φ : ℕ → α) : ℕ → α
   | 0     => ⊤
   | k + 1 => φ k ⋏ conjLt φ k
 
+/--
+@isnad1 id=eq.0h2v.s4.07a7c54c715a from=translated src=- shape=beb80f2a vocab=79ac4ebc
+-/
 @[simp] lemma conjLt_zero (φ : ℕ → α) : conjLt φ 0 = ⊤ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.a7277d492087 from=translated src=- shape=fb0e54f4 vocab=72bfb5c1
+-/
 @[simp] lemma conjLt_succ (φ : ℕ → α) (k) : conjLt φ (k + 1) = φ k ⋏ conjLt φ k := rfl
 
+/--
+@isnad1 id=iff.0h5v.s5.fe6f00777882 from=translated src=- shape=b7d45009 vocab=1df7af5e
+-/
 @[simp] lemma hom_conj_prop [FunLike F α Prop] [LogicalConnective.HomClass F α Prop] (f : F) (φ :
     ℕ → α) :
     f (conjLt φ k) ↔ ∀ i < k, f (φ i) := by
@@ -299,10 +320,19 @@ def disjLt (φ : ℕ → α) : ℕ → α
   | 0     => ⊥
   | k + 1 => φ k ⋎ disjLt φ k
 
+/--
+@isnad1 id=eq.0h2v.s4.3d2bd4421672 from=translated src=- shape=beb80f2a vocab=09c312de
+-/
 @[simp] lemma disjLt_zero (φ : ℕ → α) : disjLt φ 0 = ⊥ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.bb0f25e24dfa from=translated src=- shape=fb0e54f4 vocab=56bb5130
+-/
 @[simp] lemma disjLt_succ (φ : ℕ → α) (k) : disjLt φ (k + 1) = φ k ⋎ disjLt φ k := rfl
 
+/--
+@isnad1 id=iff.0h5v.s5.ecb3739e6bc8 from=translated src=- shape=71a7a214 vocab=1142ccaf
+-/
 @[simp] lemma hom_disj_prop [FunLike F α Prop] [LogicalConnective.HomClass F α Prop] (f : F) (φ :
     ℕ → α) :
     f (disjLt φ k) ↔ ∃ i < k, f (φ i) := by
@@ -337,10 +367,19 @@ def conjVec : {n : ℕ} → (Fin n → α) → α
   | 0,     _ => ⊤
   | _ + 1, v => v 0 ⋏ conjVec (vecTail v)
 
+/--
+@isnad1 id=eq.0h2v.s4.db0b54ce5cf8 from=translated src=- shape=f83710f0 vocab=c43f3209
+-/
 @[simp] lemma conj_nil (v : Fin 0 → α) : conjVec v = ⊤ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.e74907046279 from=translated src=- shape=af70d92c vocab=7cc717e9
+-/
 @[simp] lemma conj_cons {a : α} {v : Fin n → α} : conjVec (a :> v) = a ⋏ conjVec v := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.bc40de4ff50d from=translated src=- shape=9a8b2d32 vocab=11d82fb0
+-/
 @[simp] lemma conj_hom_prop [FunLike F α Prop] [LogicalConnective.HomClass F α Prop]
   (f : F) (v : Fin n → α) : f (conjVec v) = ∀ i, f (v i) := by
   induction n with
@@ -353,12 +392,18 @@ def conjVec : {n : ℕ} → (Fin n → α) → α
     · intro ⟨hz, hs⟩ i; cases i using Fin.cases; { exact hz }; { exact hs _ }
     · intro h; exact ⟨h 0, fun i => h _⟩
 
+/--
+@isnad1 id=eq.0h6v.s6.4511aac11af4 from=translated src=- shape=f01309fd vocab=79701686
+-/
 lemma hom_conj [FunLike F α β] [LogicalConnective.HomClass F α β] (f : F) (v : Fin n → α) :
     f (conjVec v) = conjVec (f ∘ v) := by
   induction n with
   | zero => simp only [conjVec, LogicalConnective.HomClass.map_top]
   | succ n ih => simp [ih, conjVec, Matrix.vecTail_comp]
 
+/--
+@isnad1 id=eq.0h6v.s6.e7a89e551743 from=translated src=- shape=7d1dc7a1 vocab=11d82fb0
+-/
 lemma hom_conj₂ [FunLike F α β] [LogicalConnective.HomClass F α β] (f : F) (v : Fin n → α) :
     f (conjVec v) = conjVec fun i => f (v i) :=
   hom_conj f v
@@ -368,10 +413,19 @@ def disj : {n : ℕ} → (Fin n → α) → α
   | 0,     _ => ⊥
   | _ + 1, v => v 0 ⋎ disj (vecTail v)
 
+/--
+@isnad1 id=eq.0h2v.s4.f42d6b5eba55 from=translated src=- shape=f83710f0 vocab=04633f03
+-/
 @[simp] lemma disj_nil (v : Fin 0 → α) : disj v = ⊥ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.bccd31ce80bf from=translated src=- shape=af70d92c vocab=159068e6
+-/
 @[simp] lemma disj_cons {a : α} {v : Fin n → α} : disj (a :> v) = a ⋎ disj v := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.d1bb49ef1f81 from=translated src=- shape=a2ed5ee5 vocab=9d3c4b89
+-/
 @[simp] lemma disj_hom_prop [FunLike F α Prop] [LogicalConnective.HomClass F α Prop]
   (f : F) (v : Fin n → α) : f (disj v) = ∃ i, f (v i) := by
   induction n with
@@ -385,12 +439,18 @@ def disj : {n : ℕ} → (Fin n → α) → α
     · rintro ⟨i, h⟩
       cases i using Fin.cases; { left; exact h }; { right; exact ⟨_, h⟩ }
 
+/--
+@isnad1 id=eq.0h6v.s6.1a337b0d6805 from=translated src=- shape=f01309fd vocab=feb15e07
+-/
 lemma hom_disj [FunLike F α β] [LogicalConnective.HomClass F α β] (f : F) (v : Fin n → α) :
     f (disj v) = disj (f ∘ v) := by
   induction n with
   | zero => simp only [disj, LogicalConnective.HomClass.map_bot]
   | succ n ih => simp [ih, disj, Matrix.vecTail_comp]
 
+/--
+@isnad1 id=eq.0h6v.s6.650d84866d05 from=translated src=- shape=7d1dc7a1 vocab=9d3c4b89
+-/
 lemma hom_disj' [FunLike F α β] [LogicalConnective.HomClass F α β] (f : F) (v : Fin n → α) :
     f (disj v) = disj fun i => f (v i) :=
   hom_disj f v
@@ -410,14 +470,26 @@ def conj : List α → α
   | []      => ⊤
   | a :: as => a ⋏ as.conj
 
+/--
+@isnad1 id=eq.0h1v.s4.190bf1fc551b from=translated src=- shape=e715c2b8 vocab=c2b4e3aa
+-/
 @[simp] lemma conj_nil : conj (α := α) [] = ⊤ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.ffdcb85f3c3e from=translated src=- shape=1cdb2318 vocab=d6e5f104
+-/
 @[simp] lemma conj_cons {a : α} {as : List α} : conj (a :: as) = a ⋏ as.conj := rfl
 
+/--
+@isnad1 id=iff.0h4v.s5.c440a86652d0 from=translated src=- shape=cf17cb39 vocab=809886f8
+-/
 lemma map_conj [FunLike F α Prop] [LogicalConnective.HomClass F α Prop] (f : F) (l : List α) :
     f l.conj ↔ ∀ a ∈ l, f a := by
   induction l <;> simp[*]
 
+/--
+@isnad1 id=iff.0h5v.s6.2343eed62663 from=translated src=- shape=73a26591 vocab=02b39518
+-/
 lemma map_conj_append [FunLike F α Prop] [LogicalConnective.HomClass F α Prop] (f : F) (l₁ l₂ :
     List α) :
     f (l₁ ++ l₂).conj ↔ f (l₁.conj ⋏ l₂.conj) := by
@@ -428,14 +500,26 @@ def disj : List α → α
   | []      => ⊥
   | a :: as => a ⋎ as.disj
 
+/--
+@isnad1 id=eq.0h1v.s4.be80392d66b8 from=translated src=- shape=e715c2b8 vocab=69b59c1f
+-/
 @[simp] lemma disj_nil : disj (α := α) [] = ⊥ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.be3e29e4cf1a from=translated src=- shape=1cdb2318 vocab=46c29559
+-/
 @[simp] lemma disj_cons {a : α} {as : List α} : disj (a :: as) = a ⋎ as.disj := rfl
 
+/--
+@isnad1 id=iff.0h4v.s5.b9c51cbbd502 from=translated src=- shape=3fbf8709 vocab=6577bd19
+-/
 lemma map_disj [FunLike F α Prop] [LogicalConnective.HomClass F α Prop] (f : F) (l : List α) :
     f l.disj ↔ ∃ a ∈ l, f a := by
   induction l <;> simp[*]
 
+/--
+@isnad1 id=iff.0h5v.s6.1f76516631f9 from=translated src=- shape=73a26591 vocab=9dff2084
+-/
 lemma map_disj_append [FunLike F α Prop] [LogicalConnective.HomClass F α Prop] (f : F) (l₁ l₂ :
     List α) :
     f (l₁ ++ l₂).disj ↔ f (l₁.disj ⋎ l₂.disj) := by
@@ -457,6 +541,9 @@ def conj₂ : List F → F
 /-- Imported declaration from the Incompleteness formalization. -/
 prefix:80 "⋀" => List.conj₂
 
+/--
+@isnad1 id=eq.0h4v.s5.1437791536c5 from=translated src=- shape=90268c0f vocab=1ffa3b04
+-/
 @[simp] lemma conj₂_cons_nonempty {a : F} {as : List F} (h : as ≠ [] := by assumption) :
     ⋀(a :: as) = a ⋏ ⋀as := by
   cases as with
@@ -472,12 +559,24 @@ def disj₂ : List F → F
 /-- Imported declaration from the Incompleteness formalization. -/
 prefix:80 "⋁" => disj₂
 
+/--
+@isnad1 id=eq.0h1v.s4.27ecf98dd024 from=translated src=- shape=e715c2b8 vocab=e4d84956
+-/
 @[simp] lemma disj₂_nil : ⋁[] = (⊥ : F) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.4e03630525df from=translated src=- shape=ef8c797d vocab=fcfc0480
+-/
 @[simp] lemma disj₂_singleton : ⋁[φ] = φ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.21ecd0cc38a2 from=translated src=- shape=ecbc195b vocab=0de1ba2d
+-/
 @[simp] lemma disj₂_doubleton : ⋁[φ, ψ] = φ ⋎ ψ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.3a0df96654c2 from=translated src=- shape=90268c0f vocab=fa2ad19c
+-/
 @[simp] lemma disj₂_cons_nonempty {a : F} {as : List F} (h : as ≠ [] := by assumption) :
     ⋁(a :: as) = a ⋎ ⋁as := by
   cases as with
@@ -497,10 +596,16 @@ variable [LogicalConnective α]
 /-- Imported declaration from the Incompleteness formalization. -/
 noncomputable def conj (s : Finset α) : α := s.toList.conj
 
+/--
+@isnad1 id=iff.0h4v.s5.0a7fa01a1ef5 from=translated src=- shape=cf17cb39 vocab=343f5773
+-/
 lemma map_conj [FunLike F α Prop] [LogicalConnective.HomClass F α Prop] (f : F) (s : Finset α) :
     f s.conj ↔ ∀ a ∈ s, f a := by
   simpa [conj] using List.map_conj f s.toList
 
+/--
+@isnad1 id=iff.0h5v.s6.4294d95d9d16 from=translated src=- shape=463f5e8b vocab=fa3009df
+-/
 lemma map_conj_union [DecidableEq α] [FunLike F α Prop] [LogicalConnective.HomClass F α Prop]
     (f : F) (s₁ s₂ : Finset α) : f (s₁ ∪ s₂).conj ↔ f (s₁.conj ⋏ s₂.conj) := by
   simp only [Finset.mem_union, LogicalConnective.HomClass.map_and, LogicalConnective.Prop.and_eq,
@@ -510,10 +615,16 @@ lemma map_conj_union [DecidableEq α] [FunLike F α Prop] [LogicalConnective.Hom
 /-- Imported declaration from the Incompleteness formalization. -/
 noncomputable def disj (s : Finset α) : α := s.toList.disj
 
+/--
+@isnad1 id=iff.0h4v.s6.2dc5e7aa5599 from=translated src=- shape=3fbf8709 vocab=f2391a1d
+-/
 lemma map_disj [FunLike F α Prop] [LogicalConnective.HomClass F α Prop] (f : F) (s : Finset α) :
     f s.disj ↔ ∃ a ∈ s, f a := by
   simpa [disj] using List.map_disj f s.toList
 
+/--
+@isnad1 id=iff.0h5v.s6.66085c6d9f6d from=translated src=- shape=463f5e8b vocab=dafdde6c
+-/
 lemma map_disj_union [DecidableEq α] [FunLike F α Prop] [LogicalConnective.HomClass F α Prop]
     (f : F) (s₁ s₂ : Finset α) : f (s₁ ∪ s₂).disj ↔ f (s₁.disj ⋎ s₂.disj) := by
   simp only [Finset.mem_union, LogicalConnective.HomClass.map_or, LogicalConnective.Prop.or_eq,

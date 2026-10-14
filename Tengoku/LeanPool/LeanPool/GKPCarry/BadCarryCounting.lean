@@ -28,7 +28,9 @@ def ternaryWordDigits {length : ℕ}
     (word : List.Vector (Fin 3) length) : List ℕ :=
   word.toList.map Fin.val
 
-/-- Peel the least significant digit off a nonempty ternary word. -/
+/-- Peel the least significant digit off a nonempty ternary word.
+@isnad1 id=eq.0h2v.s6.925415bd2305 from=translated src=- shape=11f5b7d4 vocab=f684227b
+-/
 lemma ternaryWordDigits_succ {length : ℕ}
     (word : List.Vector (Fin 3) (length + 1)) :
     ternaryWordDigits word =
@@ -77,7 +79,9 @@ def badCarryWordCountFrom : BadCarryState → ℕ → ℕ
         badCarryWordCountFrom (badCarryStateStep state digit.val) length
 
 /-- The recursive count is the actual cardinality of the corresponding finite
-word type. -/
+word type.
+@isnad1 id=eq.0h2v.s6.6dc45c82b153 from=translated src=- shape=913a1e7f vocab=f2c61850
+-/
 theorem card_badCarryWordsFrom_eq_count
     (state : BadCarryState) (length : ℕ) :
     Fintype.card (BadCarryWordsFrom state length) =
@@ -91,6 +95,9 @@ theorem card_badCarryWordsFrom_eq_count
       simp only [ih]
       rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.76eb74ec7b7f from=translated src=- shape=ab64f1ab vocab=a6addba6
+-/
 lemma badCarryWordCountFrom_good (length : ℕ) :
     badCarryWordCountFrom .good length = 0 := by
   induction length with
@@ -98,6 +105,9 @@ lemma badCarryWordCountFrom_good (length : ℕ) :
   | succ length ih =>
       simp [badCarryWordCountFrom, badCarryStateStep, ih]
 
+/--
+@isnad1 id=eq.0h1v.s4.0940fd997569 from=translated src=- shape=0a7c0038 vocab=403628ec
+-/
 lemma badCarryWordCountFrom_oneCarryNoCarry (length : ℕ) :
     badCarryWordCountFrom .oneCarryNoCarry length = 2 ^ length := by
   induction length with
@@ -112,12 +122,18 @@ lemma badCarryWordCountFrom_oneCarryNoCarry (length : ℕ) :
       rw [ih, badCarryWordCountFrom_good, pow_succ]
       ring
 
+/--
+@isnad1 id=eq.0h1v.s5.4d31953efc51 from=translated src=- shape=8cc0a901 vocab=c32d7f3e
+-/
 lemma badCarryWordCountFrom_oneCarryOut_succ (length : ℕ) :
     badCarryWordCountFrom .oneCarryOut (length + 1) = 2 ^ length := by
   rw [badCarryWordCountFrom, Fin.sum_univ_three]
   simp [badCarryStateStep, badCarryWordCountFrom_good,
     badCarryWordCountFrom_oneCarryNoCarry]
 
+/--
+@isnad1 id=eq.0h1v.s5.87d758f0ae62 from=translated src=- shape=a9819b0d vocab=75d9c882
+-/
 lemma badCarryWordCountFrom_zeroCarry_succ (length : ℕ) :
     badCarryWordCountFrom .zeroCarry (length + 1) =
       2 * badCarryWordCountFrom .zeroCarry length +
@@ -126,7 +142,9 @@ lemma badCarryWordCountFrom_zeroCarry_succ (length : ℕ) :
   simp [badCarryStateStep]
   omega
 
-/-- Exact dynamic-programming count of deficient-carry ternary words. -/
+/-- Exact dynamic-programming count of deficient-carry ternary words.
+@isnad1 id=eq.0h1v.s5.57e0fdfbfedd from=translated src=- shape=fd00620c vocab=433c1e4f
+-/
 theorem badCarryWordCountFrom_zeroCarry_closed (n : ℕ) :
     badCarryWordCountFrom .zeroCarry (n + 2) =
       (n + 7) * 2 ^ n := by
@@ -142,14 +160,18 @@ theorem badCarryWordCountFrom_zeroCarry_closed (n : ℕ) :
       ring
 
 /-- Headline enumeration theorem: among all ternary words of length `n + 2`,
-exactly `(n + 7) * 2 ^ n` have fewer than two doubling carries. -/
+exactly `(n + 7) * 2 ^ n` have fewer than two doubling carries.
+@isnad1 id=eq.0h1v.s7.3ba3d7d5e59b from=translated src=- shape=50d73196 vocab=0995c2c3
+-/
 theorem card_badCarryWords (n : ℕ) :
     Fintype.card (BadCarryWords (n + 2)) =
       (n + 7) * 2 ^ n := by
   rw [card_badCarryWordsFrom_eq_count]
   exact badCarryWordCountFrom_zeroCarry_closed n
 
-/-- The ambient set contains all `3 ^ (n + 2)` ternary words. -/
+/-- The ambient set contains all `3 ^ (n + 2)` ternary words.
+@isnad1 id=eq.0h1v.s6.63855311535e from=translated src=- shape=e8a4952a vocab=b1553aee
+-/
 theorem card_allTernaryWords (n : ℕ) :
     Fintype.card (List.Vector (Fin 3) (n + 2)) = 3 ^ (n + 2) := by
   simp

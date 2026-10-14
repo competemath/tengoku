@@ -31,7 +31,9 @@ noncomputable section
 
 /-! ## The six lemmas in the HOL Light proof -/
 
-/-- Derivative recursion for the iterates of the exponential. -/
+/-- Derivative recursion for the iterates of the exponential.
+@isnad1 id=eq.0h2v.s6.6b1facb038e6 from=translated src=- shape=753067ee vocab=d1ca44c0
+-/
 theorem deriv_expIterate_succ (n : ℕ) (z : ℂ) :
     deriv (expIterate (n + 1)) z =
       deriv (expIterate n) z *
@@ -51,7 +53,9 @@ theorem deriv_expIterate_succ (n : ℕ) (z : ℂ) :
   exact h.deriv
 
 /-- The imaginary part of an exponential is controlled by the imaginary
-part of its argument and the norm of the exponential. -/
+part of its argument and the norm of the exponential.
+@isnad1 id=le.0h1v.s4.b2521471a490 from=translated src=- shape=64ad0276 vocab=321bdecd
+-/
 theorem abs_im_exp_le (w : ℂ) :
     |(Complex.exp w).im| ≤
       |w.im| * ‖Complex.exp w‖ := by
@@ -61,13 +65,17 @@ theorem abs_im_exp_le (w : ℂ) :
     exact Real.abs_sin_le_abs
   nlinarith [Real.exp_pos w.re, hsin]
 
-/-- The absolute value of the imaginary part is at most the complex norm. -/
+/-- The absolute value of the imaginary part is at most the complex norm.
+@isnad1 id=le.0h1v.s3.022ac65bd5b3 from=translated src=- shape=5eb7ddd2 vocab=64deca55
+-/
 theorem abs_im_le_norm_aux (w : ℂ) :
     |w.im| ≤ ‖w‖ := by
   exact Complex.abs_im_le_norm w
 
 /-- **Lemma 1.** The imaginary part of an exponential iterate is bounded by the norm of
-its derivative. HOL Light: `LEMMA_1`. -/
+its derivative. HOL Light: `LEMMA_1`.
+@isnad1 id=le.1h2v.s6.dd91a118a88d from=translated src=- shape=80b12c9a vocab=8cd5e263
+-/
 theorem lemma1_im_le_norm_deriv {n : ℕ} (hn : 1 ≤ n) (z : ℂ) :
     |(expIterate n z).im| ≤ ‖deriv (expIterate n) z‖ := by
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le hn
@@ -93,7 +101,9 @@ theorem lemma1_im_le_norm_deriv {n : ℕ} (hn : 1 ≤ n) (z : ℂ) :
               exact mul_le_mul_of_nonneg_right (ih (by omega)) (norm_nonneg _)
 
 /-- **Lemma 2(a).** In the central strip, the real part increases by at least
-`1 - log 2`. HOL Light: `LEMMA_2a`. -/
+`1 - log 2`. HOL Light: `LEMMA_2a`.
+@isnad1 id=le.1h1v.s5.5a7ff50b0d72 from=translated src=- shape=44eeb76d vocab=5ef870fe
+-/
 theorem lemma2a_real_growth {z : ℂ} (hz : z ∈ centralStrip) :
     z.re + (1 - Real.log 2) ≤ (Complex.exp z).re := by
   change |z.im| ≤ Real.pi / 3 at hz
@@ -140,7 +150,9 @@ theorem lemma2a_real_growth {z : ℂ} (hz : z ∈ centralStrip) :
           nlinarith [Real.exp_pos z.re]
 
 /-- **Lemma 2(b).** Every non-real orbit eventually leaves the central strip.
-HOL Light: `LEMMA_2b`. -/
+HOL Light: `LEMMA_2b`.
+@isnad1 id=ex.1h1v.s4.efd748d34c06 from=translated src=- shape=408d8c5b vocab=ffa070c5
+-/
 theorem lemma2b_eventually_leaves_strip {z : ℂ} (hz : ¬ OnRealAxis z) :
     ∃ n : ℕ, expIterate n z ∉ centralStrip := by
   by_contra hcontra
@@ -238,7 +250,9 @@ theorem lemma2b_eventually_leaves_strip {z : ℂ} (hz : ¬ OnRealAxis z) :
   have h3 := hstrip (N + d)
   linarith
 
-/-- The image of an *open set* under an injective holomorphic map is open. -/
+/-- The image of an *open set* under an injective holomorphic map is open.
+@isnad1 id=isopen.3h2v.s6.82b02344d0ac from=translated src=- shape=a1f92793 vocab=7f6143ae
+-/
 theorem isOpen_image_of_injOn
     {g : ℂ → ℂ} {U : Set ℂ} (hU : IsOpen U)
     (hg : DifferentiableOn ℂ g U) (hinj : Set.InjOn g U) :
@@ -263,7 +277,9 @@ theorem isOpen_image_of_injOn
     exact hne (by linear_combination hzz - (rfl : z = z))
   · exact hmap (Filter.image_mem_map hnhds)
 
-/-- The image of the ball under an injective holomorphic map is open. -/
+/-- The image of the ball under an injective holomorphic map is open.
+@isnad1 id=isopen.2h3v.s7.a572b3089bd1 from=translated src=- shape=7a2f25fe vocab=8f1b7e43
+-/
 theorem lemma3_isOpen_image
     {g : ℂ → ℂ} {b : ℂ} {r : ℝ}
     (hg : DifferentiableOn ℂ g (ball b r))
@@ -275,7 +291,9 @@ theorem lemma3_isOpen_image
 complex differentiable, with the reciprocal derivative. This is the Lean analogue of HOL
 Light's `HOLOMORPHIC_ON_INVERSE`, which Mathlib does not currently provide. Continuity of the
 inverse comes from the open mapping property, after which `HasDerivAt.of_local_left_inverse`
-supplies the derivative. -/
+supplies the derivative.
+@isnad1 id=hasderiv.4h4v.s8.6a5512f025d8 from=translated src=- shape=7d044809 vocab=8db81eac
+-/
 theorem lemma3_hasDerivAt_invFunOn
     {g : ℂ → ℂ} {b : ℂ} {r : ℝ}
     (hg : DifferentiableOn ℂ g (ball b r))
@@ -315,7 +333,9 @@ theorem lemma3_hasDerivAt_invFunOn
 /-- **Lemma 3.** Quantitative open mapping estimate, following Harrison's `LEMMA_3`.
 The proof uses his closest-point device: `t` is the distance from `g b` to the complement of
 the image, so `ball (g b) t` lies in the image and is convex, which is exactly what the mean
-value inequality needs. -/
+value inequality needs.
+@isnad1 id=le.6h4v.s8.5f297a10d3b5 from=translated src=- shape=26a34468 vocab=4a7d41b7
+-/
 theorem lemma3_ball_image_of_deriv_lower_bound
     {g : ℂ → ℂ} {b : ℂ} {r m : ℝ}
     (hr : 0 < r) (hm : 0 ≤ m)

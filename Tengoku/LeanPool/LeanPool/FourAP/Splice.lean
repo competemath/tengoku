@@ -23,7 +23,9 @@ namespace FourAP
 
 /-- Lemma 2, from “Suppose, for a contradiction, that a 4AP ...” to the end.
 `hparity` excludes progressions with even common difference. `hguard` is exactly
-the displayed odd-before-even property labelled `eq:odd-even` in the paper. -/
+the displayed odd-before-even property labelled `eq:odd-even` in the paper.
+@isnad1 id=safe.5h2v.s7.ba71655411ad from=translated src=- shape=d39f49c0 vocab=1fcfb0a4
+-/
 theorem safe_of_parity_and_guard {P Q : List ℕ}
     (hP : Safe bits P) (hp : P.IsPrefix Q) (hq : Q.Nodup)
     (hparity : ∀ ⦃a b c d : ℕ⦄, IsAP4 a b c d → a % 2 = b % 2 →

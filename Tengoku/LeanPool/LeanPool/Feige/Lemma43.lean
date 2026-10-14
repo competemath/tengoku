@@ -56,6 +56,9 @@ noncomputable def w (ν : Measure ℝ) (c d : ℝ) : ℝ :=
 noncomputable def theta (ν : Measure ℝ) (c d : ℝ) : ℝ :=
   u ν d / w ν c d
 
+/--
+@isnad1 id=lt.2h3v.s5.654f27eaa9db from=translated src=- shape=f291ea59 vocab=b63e7ffd
+-/
 theorem w_pos
     (ν : Measure ℝ) [IsProbabilityMeasure ν] {c d : ℝ}
     (hc : 0 < c) (hd : 0 < d) :
@@ -110,7 +113,9 @@ def ProbabilityRelations
   F νM = B νM c - v νM c
 
 /-- Identity half of the local transfer step, stated entirely in the actual
-probability quantities of the two laws. -/
+probability quantities of the two laws.
+@isnad1 id=eq.5h6v.s8.532d00b64386 from=translated src=- shape=0cc72388 vocab=158f6a24
+-/
 theorem transfer_identity
     (νP νM : Measure ℝ) [IsProbabilityMeasure νP]
     [IsProbabilityMeasure νM] {a b c d : ℝ}
@@ -150,7 +155,9 @@ theorem transfer_identity
 /-- Order half of the local transfer step after identifying the four actual
 tail probabilities with the corresponding convolution-density integrals.
 The identification hypotheses are the exact interface needed from a
-density-of-pushforward lemma. -/
+density-of-pushforward lemma.
+@isnad1 id=le.13h9v.s7.9d3dc3b8e827 from=translated src=- shape=0af35721 vocab=e61aadc1
+-/
 theorem theta_plus_ge_theta_minus_of_fourPoint
     {f : ℝ → ℝ≥0∞} (hfmeas : Measurable f)
     (hflc : LikelihoodRatio.FourPointLogConcave f)
@@ -177,7 +184,9 @@ theorem theta_plus_ge_theta_minus_of_fourPoint
     exact (ENNReal.ofReal_le_ofReal_iff (mul_nonneg huP0 hvM0)).mp hcrossE
   exact LikelihoodRatio.theta_le_theta_of_cross hwP hwM hcross
 
-/-- Order half in the named probability quantities. -/
+/-- Order half in the named probability quantities.
+@isnad1 id=le.7h7v.s6.49c8967d7254 from=translated src=- shape=3f5a96ad vocab=d31ccbcc
+-/
 theorem theta_order
     {f : ℝ → ℝ≥0∞} (hfmeas : Measurable f)
     (hflc : LikelihoodRatio.FourPointLogConcave f)
@@ -198,7 +207,9 @@ theorem theta_order
 The analytic/probability identities and the density identifications are
 separate named hypotheses, and the conclusion exposes the factorized
 transfer identity, the likelihood-ratio order, and positivity of both
-denominators. -/
+denominators.
+@isnad1 id=and.10h7v.s8.6ab2b7a2ab69 from=translated src=- shape=e6be1215 vocab=cc7548b4
+-/
 theorem complete
     {f : ℝ → ℝ≥0∞} (hfmeas : Measurable f)
     (hflc : LikelihoodRatio.FourPointLogConcave f)

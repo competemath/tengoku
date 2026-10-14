@@ -22,7 +22,9 @@ public import Tengoku
 
 namespace HadwigerNelsonBounds
 
-/-- Every hard-case leaf certificate has been kernel checked. -/
+/-- Every hard-case leaf certificate has been kernel checked.
+@isnad1 id=verifies.0h1v.s3.ac267a24525c from=translated src=- shape=b770544b vocab=66ce7e30
+-/
 theorem partsGadgetHardCertificates_verify (index : Fin 31) :
     (partsGadgetHardCertificates index).Verifies := by
   fin_cases index
@@ -58,7 +60,9 @@ theorem partsGadgetHardCertificates_verify (index : Fin 31) :
   · exact partsGadgetHardCertificate29_verifies
   · exact partsGadgetHardCertificate30_verifies
 
-/-- The case router covers every unblocked normalized color. -/
+/-- The case router covers every unblocked normalized color.
+@isnad1 id=verifies.0h0v.s3.82818a41b418 from=translated src=- shape=fb58fac9 vocab=540469cf
+-/
 theorem partsGadgetHardCaseTree_verifiesRouting :
     partsGadgetHardCaseTree.VerifiesRouting partsGadgetHardCertificates := by
   decide

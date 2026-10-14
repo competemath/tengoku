@@ -30,6 +30,9 @@ open Nat
 
 /-! ## Modular carry certificates -/
 
+/--
+@isnad1 id=le.0h3v.s4.9408342e7f44 from=translated src=- shape=a8a96832 vocab=d3fc84e0
+-/
 lemma ternaryDoubleCarryCountAux_append_le
     (prefixDigits suffix : List ℕ) (carry : ℕ) :
     ternaryDoubleCarryCountAux prefixDigits carry ≤
@@ -42,7 +45,9 @@ lemma ternaryDoubleCarryCountAux_append_le
         (ih (ternaryDoubleCarryStep carry digit)) _
 
 /-- The carry count of a canonical ternary residue modulo `3 ^ depth` is a
-lower bound for the carry count of the whole number. -/
+lower bound for the carry count of the whole number.
+@isnad1 id=le.0h2v.s5.88e5475eedd4 from=translated src=- shape=8ab85eb5 vocab=d71fc9be
+-/
 theorem ternaryDoubleCarryCount_mod_pow_le (depth n : ℕ) :
     ternaryDoubleCarryCount (Nat.digits 3 (n % 3 ^ depth)) ≤
       ternaryDoubleCarryCount (Nat.digits 3 n) := by
@@ -85,7 +90,9 @@ theorem ternaryDoubleCarryCount_mod_pow_le (depth n : ℕ) :
           Nat.digits 3 quotient) 0)
 
 /-- Any finite modular prefix with two carries certifies divisibility by nine
-for the full central binomial coefficient. -/
+for the full central binomial coefficient.
+@isnad1 id=dvd.1h2v.s5.9e12afbafaeb from=translated src=- shape=aa5a9c3f vocab=e762a6a2
+-/
 theorem nine_dvd_centralBinom_of_modular_carry_certificate
     {depth n : ℕ}
     (hcarry :
@@ -96,11 +103,15 @@ theorem nine_dvd_centralBinom_of_modular_carry_certificate
 
 /-! ## The period modulo `27` -/
 
-/-- The exponent period used for the three-digit ternary prefix. -/
+/-- The exponent period used for the three-digit ternary prefix.
+@isnad1 id=eq.0h0v.s5.c8e3aaa5816a from=translated src=- shape=6a92bc9d vocab=df461349
+-/
 lemma two_pow_eighteen_mod_twentySeven : (2 : ℕ) ^ 18 % 27 = 1 := by
   decide
 
-/-- The residue of `2 ^ k` modulo `27` depends only on `k % 18`. -/
+/-- The residue of `2 ^ k` modulo `27` depends only on `k % 18`.
+@isnad1 id=eq.0h1v.s6.be7bf90fc498 from=translated src=- shape=0fd08476 vocab=df461349
+-/
 theorem two_pow_mod_twentySeven_eq_reduced_exponent (k : ℕ) :
     (2 : ℕ) ^ k % 27 = 2 ^ (k % 18) % 27 := by
   have hk : k = 18 * (k / 18) + k % 18 := by omega
@@ -122,13 +133,17 @@ def gkpSafeExponentResiduesMod18 : Finset ℕ :=
   {3, 4, 5, 7, 9, 10, 11, 15, 17}
 
 /-- Exactly half of the exponent classes modulo `18` pass the three-digit
-carry sieve. -/
+carry sieve.
+@isnad1 id=eq.0h0v.s3.91252ed0458d from=translated src=- shape=3701a056 vocab=b68629d3
+-/
 theorem card_gkpSafeExponentResiduesMod18 :
     gkpSafeExponentResiduesMod18.card = 9 := by
   decide
 
 /-- Exact classification of the exponent classes whose residue modulo `27`
-already displays two ternary doubling carries. -/
+already displays two ternary doubling carries.
+@isnad1 id=iff.0h1v.s6.2cdfe5ec0b97 from=translated src=- shape=8322bf4c vocab=d1f0c5ae
+-/
 theorem lowThreeCarryCertificate_iff (k : ℕ) :
     2 ≤ ternaryDoubleCarryCount (Nat.digits 3 (2 ^ k % 27)) ↔
       k % 18 ∈ gkpSafeExponentResiduesMod18 := by
@@ -141,7 +156,9 @@ theorem lowThreeCarryCertificate_iff (k : ℕ) :
 
 /-- **Infinite periodic GKP slice.** If `k` lies in one of nine explicit
 classes modulo `18`, then the central binomial coefficient indexed by `2 ^ k`
-is divisible by `9`. -/
+is divisible by `9`.
+@isnad1 id=dvd.1h1v.s5.005ed9a19e01 from=translated src=- shape=7e4d7aa9 vocab=fb473428
+-/
 theorem nine_dvd_centralBinom_two_pow_of_safe_mod_eighteen
     {k : ℕ} (hk : k % 18 ∈ gkpSafeExponentResiduesMod18) :
     9 ∣ Nat.centralBinom (2 ^ k) := by
@@ -150,7 +167,9 @@ theorem nine_dvd_centralBinom_two_pow_of_safe_mod_eighteen
   exact (lowThreeCarryCertificate_iff k).mpr hk
 
 /-- On the same nine infinite classes, powers of two avoid the deficient-carry
-language used in the exact GKP characterization. -/
+language used in the exact GKP characterization.
+@isnad1 id=eq.1h1v.s5.e663c5b71efc from=translated src=- shape=a81eea08 vocab=6a7224a2
+-/
 theorem badCarryLanguage_two_pow_eq_false_of_safe_mod_eighteen
     {k : ℕ} (hk : k % 18 ∈ gkpSafeExponentResiduesMod18) :
     badCarryLanguage (Nat.digits 3 (2 ^ k)) = false := by

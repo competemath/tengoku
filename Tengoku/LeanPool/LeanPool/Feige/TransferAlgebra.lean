@@ -36,7 +36,9 @@ variable {APlus AMinus BPlus BMinus FPlus FMinus : ℝ}
 variable {thetaPlus thetaMinus : ℝ}
 
 /-- An intermediate identity obtained from the Stein relations after
-substituting `Bε = Aε + wε` and `wε = uε + vε`. -/
+substituting `Bε = Aε + wε` and `wε = uε + vε`.
+@isnad1 id=eq.6h14v.s7.f8748a19aad0 from=translated src=- shape=59c63897 vocab=b5c6e8b6
+-/
 theorem exponentialTransfer_eq24
     (hwPlus : wPlus = uPlus + vPlus)
     (hwMinus : wMinus = uMinus + vMinus)
@@ -52,7 +54,9 @@ theorem exponentialTransfer_eq24
   linear_combination hA + hB
 
 /-- A second intermediate identity obtained after substituting
-`Fε = Bε - vε`. -/
+`Fε = Bε - vε`.
+@isnad1 id=eq.3h9v.s7.f4b7fecb03b9 from=translated src=- shape=9a1e648b vocab=b5c6e8b6
+-/
 theorem exponentialTransfer_eq25
     (hFPlus : FPlus = BPlus - vPlus)
     (hFMinus : FMinus = BMinus - vMinus)
@@ -62,7 +66,9 @@ theorem exponentialTransfer_eq25
   rw [hFPlus, hFMinus]
   linear_combination hB
 
-/-- The definition `θ = u / w`, rewritten without division. -/
+/-- The definition `θ = u / w`, rewritten without division.
+@isnad1 id=eq.3h4v.s6.31eb49817ffa from=translated src=- shape=f7605728 vocab=335f4d48
+-/
 theorem one_sub_theta_mul_w
     (hw : wPlus = uPlus + vPlus)
     (hw0 : wPlus ≠ 0)
@@ -77,6 +83,7 @@ theorem one_sub_theta_mul_w
 The assumptions spell out every definitional relation among the abstract
 probability quantities.  Positivity from the probabilistic statement is
 stronger than the nonvanishing assumptions used here.
+@isnad1 id=eq.13h18v.s8.84a59d3aa270 from=translated src=- shape=fb600707 vocab=335f4d48
 -/
 theorem exponentialTransfer_identity
     (hwPlus : wPlus = uPlus + vPlus)

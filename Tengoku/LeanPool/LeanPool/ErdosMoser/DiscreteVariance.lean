@@ -23,7 +23,9 @@ namespace LeanPool.ErdosMoser
 open Finset
 
 /-- Closed form for the sum of squares over `Finset.range m`, stated over the
-reals for use in the variance calculation. -/
+reals for use in the variance calculation.
+@isnad1 id=eq.0h1v.s6.54cfcf6d3a54 from=translated src=- shape=98d81c40 vocab=01efd949
+-/
 lemma sumSquaresRange (m : ℕ) :
     6 * ∑ i ∈ Finset.range m, (i : ℝ) ^ 2 =
       (m : ℝ) * ((m : ℝ) - 1) * (2 * (m : ℝ) - 1) := by
@@ -37,7 +39,9 @@ lemma sumSquaresRange (m : ℕ) :
     linarith [ih]
 
 /-- Pairwise-difference form of the unnormalized variance of a function on a
-finite set. -/
+finite set.
+@isnad1 id=eq.0h3v.s7.beebff791794 from=translated src=- shape=728e4c5d vocab=46ccd470
+-/
 lemma twoMulCardSumSquaresSubSquareEqSumPairsDiffSquare
     {ι : Type*} (s : Finset ι) (g : ι → ℝ) :
     2 * ((s.card : ℝ) * (∑ i ∈ s, g i ^ 2) - (∑ i ∈ s, g i) ^ 2) =
@@ -80,7 +84,9 @@ lemma twoMulCardSumSquaresSubSquareEqSumPairsDiffSquare
   ring
 
 /-- A strictly increasing natural-valued sequence grows by at least the
-difference of its indices. -/
+difference of its indices.
+@isnad1 id=le.2h4v.s5.78722a241037 from=translated src=- shape=7f08ab23 vocab=b85eec72
+-/
 lemma strictMonoFinNatLeDiff {m : ℕ} {g : Fin m → ℕ} (hg : StrictMono g)
     {i j : Fin m} (h : i ≤ j) : (j : ℕ) - (i : ℕ) ≤ g j - g i := by
   suffices hGeneral : ∀ (d : ℕ) (i j : Fin m), (i : ℕ) + d = (j : ℕ) →
@@ -121,7 +127,9 @@ lemma strictMonoFinNatLeDiff {m : ℕ} {g : Fin m → ℕ} (hg : StrictMono g)
     omega
 
 /-- Increasing a collection of distinct natural numbers can only increase
-each squared pairwise difference from that of consecutive indices. -/
+each squared pairwise difference from that of consecutive indices.
+@isnad1 id=le.1h4v.s6.24d4bd10a503 from=translated src=- shape=c5f30d2d vocab=24935255
+-/
 lemma strictMonoFinNatDiffSquareGe {m : ℕ} {g : Fin m → ℕ} (hg : StrictMono g)
     (i j : Fin m) :
     (((i : ℕ) : ℝ) - ((j : ℕ) : ℝ)) ^ 2 ≤
@@ -174,7 +182,9 @@ lemma strictMonoFinNatDiffSquareGe {m : ℕ} {g : Fin m → ℕ} (hg : StrictMon
     exact pow_le_pow_left₀ hNonnegative hDifferenceReal 2
 
 /-- Among finite sets of natural numbers of a fixed cardinality, an initial
-interval minimizes the unnormalized empirical variance. -/
+interval minimizes the unnormalized empirical variance.
+@isnad1 id=le.0h1v.s7.c6eca96d5a4f from=translated src=- shape=c66fe83d vocab=a26e3cc0
+-/
 theorem varianceLowerBoundFinsetNat (T : Finset ℕ) :
     (T.card : ℝ) ^ 2 * ((T.card : ℝ) ^ 2 - 1) / 12 ≤
       (T.card : ℝ) * (∑ t ∈ T, (t : ℝ) ^ 2) -

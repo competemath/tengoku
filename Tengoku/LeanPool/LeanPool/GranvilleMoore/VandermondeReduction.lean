@@ -78,7 +78,9 @@ scalars factor out of the determinant all at once.
 
 This is the general form: no relation between `f` and the row index is assumed, so the residual
 determinant is a generalized Vandermonde determinant rather than a product. Every other result
-in this file is a specialization. -/
+in this file is a specialization.
+@isnad1 id=eq.1h6v.s7.29a9c1747bd8 from=translated src=- shape=f9eae4e3 vocab=47a2e319
+-/
 theorem det_of_eq_mul_pow_exponents (c v : Fin n → R) (f : Fin n → ℕ)
     (M : Matrix (Fin n) (Fin n) R) (h : ∀ i j, M i j = c j * v j ^ f i) :
     M.det = (∏ j, c j) * (Matrix.of fun i j => v j ^ f i).det := by
@@ -113,7 +115,9 @@ column, times the column's value raised to the row index — then
 
 The shape is what it is because such an `M` is `(Matrix.vandermonde v)ᵀ` with column `j`
 rescaled by `c j`: rescaling a column multiplies the determinant by that scalar, and
-transposing does not change it. -/
+transposing does not change it.
+@isnad1 id=eq.1h5v.s7.5309de62c290 from=translated src=- shape=28636950 vocab=98d02016
+-/
 theorem det_of_eq_mul_pow (c v : Fin n → R) (M : Matrix (Fin n) (Fin n) R)
     (h : ∀ i j, M i j = c j * v j ^ (i : ℕ)) :
     M.det = (∏ j, c j) * ∏ i : Fin n, ∏ j ∈ Finset.Ioi i, (v j - v i) := by
@@ -125,7 +129,9 @@ theorem det_of_eq_mul_pow (c v : Fin n → R) (M : Matrix (Fin n) (Fin n) R)
 
 This is the form the main theorem needs: the `p`-adic valuation of the Moore determinant hits
 its lower bound iff the reduced last rung is invertible mod `p`, and that is a statement about
-the Fermat quotients being distinct. -/
+the Fermat quotients being distinct.
+@isnad1 id=iff.2h5v.s7.af1fba9f08aa from=translated src=- shape=a73e1395 vocab=43e22e88
+-/
 theorem det_of_eq_mul_pow_ne_zero_iff [IsDomain R] (c v : Fin n → R)
     (M : Matrix (Fin n) (Fin n) R) (hc : ∀ j, c j ≠ 0)
     (h : ∀ i j, M i j = c j * v j ^ (i : ℕ)) :
@@ -135,7 +141,9 @@ theorem det_of_eq_mul_pow_ne_zero_iff [IsDomain R] (c v : Fin n → R)
     and_iff_right (Finset.prod_ne_zero_iff.mpr fun j _ => hc j)]
 
 /-- The contrapositive of `GranvilleMoore.det_of_eq_mul_pow_ne_zero_iff`, in the explicit
-"two coincident values" form. -/
+"two coincident values" form.
+@isnad1 id=iff.2h5v.s7.b0ed4914aa39 from=translated src=- shape=570dba54 vocab=10f0462c
+-/
 theorem det_of_eq_mul_pow_eq_zero_iff [IsDomain R] (c v : Fin n → R)
     (M : Matrix (Fin n) (Fin n) R) (hc : ∀ j, c j ≠ 0)
     (h : ∀ i j, M i j = c j * v j ^ (i : ℕ)) :
@@ -146,7 +154,9 @@ theorem det_of_eq_mul_pow_eq_zero_iff [IsDomain R] (c v : Fin n → R)
 
 /-- Subtracting a multiple of another row of the *same* matrix from row `i` does not change the
 determinant. This is `Matrix.det_updateRow_add_smul_self` phrased with a subtraction and a ring
-multiplication, which is how the row operation of the `d = p` case actually presents itself. -/
+multiplication, which is how the row operation of the `d = p` case actually presents itself.
+@isnad1 id=eq.1h6v.s6.5c72872cf5d7 from=translated src=- shape=de6f5a22 vocab=ce5f0e0f
+-/
 theorem det_updateRow_sub_smul_self (M : Matrix (Fin n) (Fin n) R) {i i₁ : Fin n}
     (hne : i ≠ i₁) (k : R) :
     (M.updateRow i fun j => M i j - k * M i₁ j).det = M.det := by
@@ -163,7 +173,9 @@ No further simplification is available in general: for `e` outside the original 
 the residual determinant is a Schur polynomial times the Vandermonde product, not the
 Vandermonde product itself. The two cases that *do* collapse are
 `GranvilleMoore.det_of_eq_mul_pow_updateRow_last` and
-`GranvilleMoore.det_of_eq_mul_pow_updateRow_sub`. -/
+`GranvilleMoore.det_of_eq_mul_pow_updateRow_sub`.
+@isnad1 id=eq.1h7v.s8.06996548652c from=translated src=- shape=6eebccd9 vocab=b2071ea3
+-/
 theorem det_of_eq_mul_pow_updateRow (c v : Fin n → R) (M : Matrix (Fin n) (Fin n) R)
     (iLast : Fin n) (e : ℕ) (h : ∀ i j, M i j = c j * v j ^ (i : ℕ)) :
     (M.updateRow iLast fun j => c j * v j ^ e).det
@@ -176,7 +188,9 @@ theorem det_of_eq_mul_pow_updateRow (c v : Fin n → R) (M : Matrix (Fin n) (Fin
 /-- The special case of `GranvilleMoore.det_of_eq_mul_pow_updateRow` in which the modified
 exponent is the one the row already had, `e = n - 1` in the last row: the determinant is the
 plain scaled Vandermonde determinant, so the caller can reduce to
-`GranvilleMoore.det_of_eq_mul_pow`. -/
+`GranvilleMoore.det_of_eq_mul_pow`.
+@isnad1 id=eq.1h5v.s9.487fc94db775 from=translated src=- shape=99444a16 vocab=64829682
+-/
 theorem det_of_eq_mul_pow_updateRow_last (c v : Fin (n + 1) → R)
     (M : Matrix (Fin (n + 1)) (Fin (n + 1)) R) (h : ∀ i j, M i j = c j * v j ^ (i : ℕ)) :
     (M.updateRow (Fin.last n) fun j => c j * v j ^ n).det
@@ -193,7 +207,9 @@ determinant is unchanged, hence still the scaled Vandermonde determinant.
 This is exactly what the exceptional Fermat congruence produces: it contributes
 `x * q_p(x) ^ (p-1) - x * q_p(x)` in the last row instead of `x * q_p(x) ^ (p-1)`, i.e. the
 `v ^ (iLast)` row minus one copy of the `v ^ 1` row, and a row operation of that form is
-determinant-preserving. -/
+determinant-preserving.
+@isnad1 id=eq.2h8v.s8.e519097c0ffb from=translated src=- shape=f99e116f vocab=35bba967
+-/
 theorem det_of_eq_mul_pow_updateRow_sub (c v : Fin n → R) (M : Matrix (Fin n) (Fin n) R)
     {iLast i₁ : Fin n} (hne : iLast ≠ i₁) (k : R)
     (h : ∀ i j, M i j = c j * v j ^ (i : ℕ)) :

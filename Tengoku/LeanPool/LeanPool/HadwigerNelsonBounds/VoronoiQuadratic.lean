@@ -103,7 +103,9 @@ private lemma cornerZeroOne_upper_le_third {α β : ℝ}
   · linarith
 
 /-- Every point of the half-open lattice-coordinate unit square lies within
-quadratic-form radius 1 / 3 of one of its four corners. -/
+quadratic-form radius 1 / 3 of one of its four corners.
+@isnad1 id=ex.4h2v.s7.59c4ba5fd7d0 from=translated src=- shape=e169a4a8 vocab=9e5744f5
+-/
 lemma unitSquare_has_near_lattice_corner {α β : ℝ}
     (hαLower : 0 ≤ α) (hαUpper : α < 1)
     (hβLower : 0 ≤ β) (hβUpper : β < 1) :

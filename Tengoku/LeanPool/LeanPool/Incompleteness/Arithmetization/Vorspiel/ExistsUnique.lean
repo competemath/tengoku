@@ -14,6 +14,9 @@ public import Tengoku
 namespace Classical
 variable {α : Sort*} {p : α → Prop} {r : α → α → Prop}
 
+/--
+@isnad1 id=existsun.1h5v.s5.3e9983fb6044 from=translated src=- shape=b670e023 vocab=473e8df7
+-/
 lemma exitsUnique_extend (h : ∀ x, p x → ∃! y, r x y) (default : α) (x : α) :
     ∃! y, (p x → r x y) ∧ (¬p x → y = default) := by
   by_cases hx : p x

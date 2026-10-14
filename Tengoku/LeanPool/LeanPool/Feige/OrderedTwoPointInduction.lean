@@ -25,7 +25,9 @@ open scoped BigOperators
 namespace Feige
 
 /-- Revealing one independent Bernoulli coordinate preserves monotonicity
-of a payoff on the Boolean lattice. -/
+of a payoff on the Boolean lattice.
+@isnad1 id=monotone.3h3v.s6.77c8058bd569 from=translated src=- shape=70538c4a vocab=6173c2ea
+-/
 theorem monotone_revealedLastPayoff {n : ℕ}
     {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1)
     {g : Finset (Fin (n + 1)) → ℝ} (hg : Monotone g) :

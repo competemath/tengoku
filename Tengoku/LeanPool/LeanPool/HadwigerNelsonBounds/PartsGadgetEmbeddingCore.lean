@@ -52,6 +52,9 @@ noncomputable def partsGadgetPoint (vertex : Fin 73) : R2 :=
   partsApplyPatch descriptor.rotated
     (partsAxialPoint descriptor.q descriptor.r)
 
+/--
+@isnad1 id=eq.1h4v.s4.71a400d8b802 from=translated src=- shape=2274674b vocab=61b2d4e1
+-/
 lemma partsGadgetPoint_eq_of_axialAt {rotated : Bool} {q r : ℤ}
     {vertex : Fin 73} (hposition : partsGadgetAxialAt rotated q r vertex) :
     partsGadgetPoint vertex = partsApplyPatch rotated (partsAxialPoint q r) := by
@@ -160,7 +163,9 @@ private lemma partsGadgetPoint_dist_eq_one_of_crossPatch
       hdisplacement
   · exact (hrotated (by simp [hleft, hright])).elim
 
-/-- Every arithmetically classified gadget edge has Euclidean length one. -/
+/-- Every arithmetically classified gadget edge has Euclidean length one.
+@isnad1 id=eq.1h2v.s6.2c31a51387be from=translated src=- shape=7c3c4895 vocab=77eadddf
+-/
 theorem partsGadgetPoint_dist_eq_one_of_edgeCase {left right : Fin 73}
     (hedge : PartsGadgetEdgeCase left right) :
     dist (partsGadgetPoint left) (partsGadgetPoint right) = 1 := by
@@ -169,6 +174,9 @@ theorem partsGadgetPoint_dist_eq_one_of_edgeCase {left right : Fin 73}
   · exact partsGadgetPoint_dist_eq_one_of_samePatch hpatch hnorm
   · exact partsGadgetPoint_dist_eq_one_of_crossPatch hrotated hq hr hnorm
 
+/--
+@isnad1 id=eq.1h2v.s4.02a6ed6fc55a from=translated src=- shape=66ff5d2a vocab=2f9f9475
+-/
 lemma PartsGadgetTriangleWitnessData.point_a_eq
     {witness : PartsGadgetTriangleWitnessData} {root : Fin 73}
     (hvalid : witness.Valid root) :
@@ -178,6 +186,9 @@ lemma PartsGadgetTriangleWitnessData.point_a_eq
   rw [partsGadgetPoint_eq_of_axialAt hvalid.2.1]
   exact (partsTriangleMotion_A _ _ _ _).symm
 
+/--
+@isnad1 id=eq.1h2v.s4.5259e9a79b20 from=translated src=- shape=66ff5d2a vocab=2873f208
+-/
 lemma PartsGadgetTriangleWitnessData.point_b_eq
     {witness : PartsGadgetTriangleWitnessData} {root : Fin 73}
     (hvalid : witness.Valid root) :
@@ -187,6 +198,9 @@ lemma PartsGadgetTriangleWitnessData.point_b_eq
   rw [partsGadgetPoint_eq_of_axialAt hvalid.2.2.1]
   exact (partsTriangleMotion_B _ _ _ _).symm
 
+/--
+@isnad1 id=eq.1h2v.s4.0f2af62ad9b8 from=translated src=- shape=66ff5d2a vocab=1307339e
+-/
 lemma PartsGadgetTriangleWitnessData.point_c_eq
     {witness : PartsGadgetTriangleWitnessData} {root : Fin 73}
     (hvalid : witness.Valid root) :
@@ -196,6 +210,9 @@ lemma PartsGadgetTriangleWitnessData.point_c_eq
   rw [partsGadgetPoint_eq_of_axialAt hvalid.2.2.2]
   exact (partsTriangleMotion_C _ _ _ _).symm
 
+/--
+@isnad1 id=not.1h3v.s7.4d5fcf1c7049 from=translated src=- shape=a1b4648a vocab=f02719d0
+-/
 lemma partsGadgetWitness_roles_not_monochromatic
     (planeColoring : unitDistanceGraph.Coloring (Fin 4))
     {witness : PartsGadgetTriangleWitnessData} {root : Fin 73}
@@ -209,6 +226,9 @@ lemma partsGadgetWitness_roles_not_monochromatic
     PartsGadgetTriangleWitnessData.point_c_eq hvalid]
   exact parts_triangle_motion_not_monochromatic planeColoring _ _ _ _
 
+/--
+@isnad1 id=and.2h7v.s6.9cbbe02fe49d from=translated src=- shape=1136987e vocab=f7a6eb4c
+-/
 lemma partsGadget_monochromatic_of_sameTriple
     (coloring : Fin 73 → Fin 4) {a b c x y z : Fin 73}
     (hsame : partsGadgetSameTriple a b c x y z)

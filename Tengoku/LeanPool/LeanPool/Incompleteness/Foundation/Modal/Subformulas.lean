@@ -26,11 +26,17 @@ namespace subformulas
 
 variable [DecidableEq α]
 
+/--
+@isnad1 id=mem.0h2v.s5.935ebc9d5433 from=translated src=- shape=72bcf7ef vocab=7f8bb414
+-/
 @[simp] lemma mem_self {φ : Formula α} :
     φ ∈ φ.subformulas := by induction φ <;> { simp [subformulas]; try tauto; }
 
 variable {φ ψ χ : Formula α}
 
+/--
+@isnad1 id=and.1h4v.s6.cd6211245cbb from=translated src=- shape=885ce6ba vocab=6a995770
+-/
 lemma mem_imp (h : (ψ ==> χ) ∈ φ.subformulas) : ψ ∈ φ.subformulas ∧ χ ∈ φ.subformulas := by
   induction φ using Formula.rec' with
   | hfalsum =>
@@ -49,10 +55,19 @@ lemma mem_imp (h : (ψ ==> χ) ∈ φ.subformulas) : ψ ∈ φ.subformulas ∧ �
     simp only [subformulas, Finset.mem_insert] at h ⊢
     simp_all
 
+/--
+@isnad1 id=mem.1h4v.s6.c1a51fc8a423 from=translated src=- shape=17ca8d02 vocab=6a995770
+-/
 lemma mem_imp₁ (h : (ψ ==> χ) ∈ φ.subformulas) : ψ ∈ φ.subformulas := mem_imp h |>.1
 
+/--
+@isnad1 id=mem.1h4v.s6.dd06f200313b from=translated src=- shape=c097fc20 vocab=6a995770
+-/
 lemma mem_imp₂ (h : (ψ ==> χ) ∈ φ.subformulas) : χ ∈ φ.subformulas := mem_imp h |>.2
 
+/--
+@isnad1 id=mem.1h3v.s6.2a12b5a0f80f from=translated src=- shape=fb49052b vocab=d00eebb5
+-/
 lemma mem_box (h : □ψ ∈ φ.subformulas) : ψ ∈ φ.subformulas := by
   induction φ using Formula.rec' with
   | hfalsum =>
@@ -79,6 +94,9 @@ attribute [aesop safe 5 forward]
   mem_imp₂
   mem_box
 
+/--
+@isnad1 id=le.1h3v.s5.6d99596b3424 from=translated src=- shape=79bd4691 vocab=5291cef0
+-/
 @[simp]
 lemma complexity_lower (h : ψ ∈ φ.subformulas) : ψ.complexity ≤ φ.complexity  := by
   induction φ using Formula.rec' with
@@ -140,8 +158,17 @@ namespace SubformulaClosed
 
 variable {φ : Formula α} {P : FormulaSet α} [hP : P.SubformulaClosed]
 
+/--
+@isnad1 id=mem.1h4v.s5.c297d6cbfb0e from=translated src=- shape=bd0ea1c9 vocab=911c6359
+-/
 lemma mem_imp₁ (h : φ ==> ψ ∈ P) : φ ∈ P := hP.imp_closed h |>.1
+/--
+@isnad1 id=mem.1h4v.s5.02f03bbd69d3 from=translated src=- shape=338980b4 vocab=911c6359
+-/
 lemma mem_imp₂ (h : φ ==> ψ ∈ P) : ψ ∈ P := hP.imp_closed h |>.2
+/--
+@isnad1 id=mem.1h3v.s5.3bd415599a00 from=translated src=- shape=fcb96457 vocab=00b74bb3
+-/
 lemma mem_box (h : □φ ∈ P) : φ ∈ P := hP.box_closed h
 
 end SubformulaClosed

@@ -36,7 +36,9 @@ private lemma sqrt_three_lt_two : Real.sqrt 3 < 2 := by
   have hpos : 0 ≤ Real.sqrt 3 := Real.sqrt_nonneg _
   nlinarith [h2, hpos]
 
-/-- The within-tile diameter `2·(a/√3) = √3/2` is `< 1`. -/
+/-- The within-tile diameter `2·(a/√3) = √3/2` is `< 1`.
+@isnad1 id=lt.0h0v.s5.eed358f78a9d from=translated src=- shape=7cb9eeca vocab=21f633f8
+-/
 lemma isbell_voronoi_diameter_lt_one :
     2 * (isbellLatticeStep / Real.sqrt 3) < 1 := by
   unfold isbellLatticeStep
@@ -53,7 +55,9 @@ lemma isbell_voronoi_diameter_lt_one :
   rw [key]
   linarith [hlt]
 
-/-- The same-color spacing `a·(√7 − 2/√3) > 1` for `a = 3/4`. -/
+/-- The same-color spacing `a·(√7 − 2/√3) > 1` for `a = 3/4`.
+@isnad1 id=lt.0h0v.s5.f017f9b7a2af from=translated src=- shape=fcab4bd8 vocab=0470cd71
+-/
 lemma isbell_same_color_min_gt_one :
     isbellLatticeStep * (Real.sqrt 7 - 2 / Real.sqrt 3) > 1 := by
   unfold isbellLatticeStep

@@ -28,6 +28,9 @@ open Classical in
 def delta (n : ℕ) (S : Finset α) : Finset α :=
   S.filter fun p => C.beta S p < n ∧ p = (S.filter fun q => C.beta S q = C.beta S p).min
 
+/--
+@isnad1 id=le.0h4v.s4.7b01c46e31d0 from=translated src=- shape=e0b86815 vocab=7a7085b7
+-/
 theorem delta_card (n : ℕ) (S : Finset α) : (C.delta n S).card ≤ n := by
   have key : (C.delta n S).card ≤ (Finset.range n).card := by
     apply Finset.card_le_card_of_injOn (C.beta S)
@@ -41,6 +44,9 @@ theorem delta_card (n : ℕ) (S : Finset α) : (C.delta n S).card ≤ n := by
       rw [← WithTop.coe_eq_coe, x_min, y_min, hxy]
   rwa [Finset.card_range] at key
 
+/--
+@isnad1 id=or.1h5v.s6.fdc742a8c84f from=translated src=- shape=d9183cb2 vocab=ab3bb349
+-/
 theorem not_mem_delta {n : ℕ} {S : Finset α} {p' : α} (h : p' ∈ S \ C.delta n S) :
     n ≤ C.beta S p' ∨ ∃ p, p ∈ C.delta n S ∧ C.beta S p = C.beta S p' ∧ p < p' := by
   rw [delta, Finset.mem_sdiff, Finset.mem_filter, not_and, not_and_or] at h
@@ -76,6 +82,9 @@ theorem not_mem_delta {n : ℕ} {S : Finset α} {p' : α} (h : p' ∈ S \ C.delt
       · exfalso; apply h; rw [← def_p, p_eq_p']
     rw [def_p]; exact Finset.min'_le _ _ p'_in_row
 
+/--
+@isnad1 id=false.10h9v.s7.23e0f064c813 from=translated src=- shape=51370454 vocab=285734fe
+-/
 theorem find_join {n : ℕ} {S : Finset α} (l : C.Label S) (cup_free : ¬C.HasNCup (n + 4) S)
     (no_join : ¬C.HasJoin (n + 3) (n + 2) S) (o p : α) (c : List α) (m : ℕ) (o_in_S : o ∈ S)
     (p_in_S : p ∈ S) (o_le_p : o ≤ p) (c_in_S : c.In S) (c_ncup : C.NCup m c) (c_head : p ∈ c.head?)
@@ -110,6 +119,9 @@ theorem find_join {n : ℕ} {S : Finset α} (l : C.Label S) (cup_free : ¬C.HasN
     have c'_in_S := List.subset_in c'_in_c c_in_S
     exact ⟨o, d', c', ⟨d'_ncup, d'_in_S, d'_last⟩, c'_ncup, c'_in_S, c'_head⟩
 
+/--
+@isnad1 id=and.4h8v.s7.f0978d36cf64 from=translated src=- shape=4d36fb79 vocab=72b964a9
+-/
 theorem laced_extension {n : ℕ} {S D : Finset α} (l : C.Label S) (cup_free : ¬C.HasNCup (n + 4) S)
     (def_D : D = C.delta (n + 2) S) (no_join : ¬C.HasJoin (n + 3) (n + 2) S) {p' r : α}
     (p'r_laced : C.HasLaced (n + 2) (S \ D) p' r) :
@@ -185,6 +197,9 @@ theorem laced_extension {n : ℕ} {S D : Finset α} (l : C.Label S) (cup_free : 
       by omega, dp_last, ?_, List.mem_getLast?_cons c_last, cr_head⟩
     rw [List.head?_cons]; rfl
 
+/--
+@isnad1 id=maingoal.1h3v.s5.e1167fbb836a from=translated src=- shape=c365ef47 vocab=0b5b20cf
+-/
 theorem main_induction_wlog (n : ℕ) : C.MainGoal n → C.MainGoalWlog (n + 1) :=
   by
   intro ih S no_join S_card cap4_free cup_free

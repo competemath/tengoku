@@ -30,6 +30,9 @@ class pattern_n (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ) : Prop wh
 class nzPattern_n (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ) extends pattern_n F f n where
   non_zero : ∀ i, ∀ m, 1 ≤ i ∧ i ≤ n → f (i, m) ≠ 0
 
+/--
+@isnad1 id=eq.1h5v.s7.f11f14eb5792 from=translated src=- shape=0a49a856 vocab=1aa1902b
+-/
 lemma pattern_nContinuant1 (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ) [nzPattern_n F f n] :
     ∀ i, i ≤ n - 1 → ∀ m, f (i + 2, m) = f (2, m + i) * f (i + 1, m) - f (i, m) := by
   intro i
@@ -76,6 +79,9 @@ lemma pattern_nContinuant1 (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ
     convert hgoal using 2
 
 -- The second continuant lemma is proved like the first
+/--
+@isnad1 id=eq.1h5v.s7.94ee136da42f from=translated src=- shape=2892c367 vocab=1aa1902b
+-/
 lemma pattern_nContinuant2 (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ) [nzPattern_n F f n] :
     ∀ i, i ≤ n - 1 → ∀ m,
       f (i, m + 2) = f (n - 1, m + 2) * f (i + 1, m + 1) - f (i + 2, m) := by
@@ -159,6 +165,9 @@ lemma pattern_nContinuant2 (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ
     rw [@pattern_n.topBordZeros F _ f n _ (m + 2),
       @pattern_n.botBordZeros_n F _ f n _ 2 m (by linarith), zero_mul, sub_zero]
 
+/--
+@isnad1 id=eq.1h5v.s6.8842375fd707 from=translated src=- shape=0849b090 vocab=60d1d70b
+-/
 theorem glideSymm (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ) [nzPattern_n F f n] :
     ∀ i, i ≤ n + 1 → ∀ m, f (n + 1 - i, m + i) = f (i, m) := by
   -- we need glideSymm in chapter 3
@@ -202,6 +211,9 @@ theorem glideSymm (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ) [nzPatt
           rw [h₂, h₃, ih₁ (by linarith) m]
       _ = f (n - i - 1, m + i + 2) := by rw [h₅]
 
+/--
+@isnad1 id=eq.1h5v.s6.6278e3ea89bf from=translated src=- shape=da3de134 vocab=9b7c5740
+-/
 theorem translationInvariance (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ) [nzPattern_n F f n] :
     ∀ i, i ≤ n + 1 → ∀ m, f (i, m) = f (i, m + n + 1) := by
   intro i ileq m
@@ -214,6 +226,9 @@ theorem translationInvariance (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : 
   omega
 
 -- A stronger version of the translation invariance - may be useful
+/--
+@isnad1 id=eq.1h5v.s6.dd9d4ce3deb4 from=translated src=- shape=4e428e26 vocab=c697b77d
+-/
 lemma strongTranslationInvariance (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ)
     [nzPattern_n F f n] : ∀ i, i ≤ n + 1 → ∀ m, f (i, m) = f (i, m % (n + 1)) := by
   intro i ileq m
@@ -233,6 +248,9 @@ lemma strongTranslationInvariance (F : Type*) [Field F] (f : ℕ × ℕ → F) (
       have h₃ : m % (n + 1) = (m - (n + 1)) % (n + 1) := Nat.mod_eq_sub_mod h₁
       rw [h₃, ih]
 
+/--
+@isnad1 id=finite.0h3v.s4.ad92d6a89cdb from=translated src=- shape=3dc66ae0 vocab=894647b4
+-/
 lemma imageFinite (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ) [nzPattern_n F f n] :
     Finite (Set.range f) := by
   -- We use i ≤ n instead of 1 ≤ i ≤ n to simplify the induction. Lean also automatically infers

@@ -23,6 +23,9 @@ We construct an example of factorization system: (Mono,Epi) on Set
 -/
 
 /- Every iso is an epi -/
+/--
+@isnad1 id=epimorph.0h5v.s5.d1609fa51bb5 from=translated src=- shape=51dae6c3 vocab=ffeded5e
+-/
 lemma isIsoIsEpi : {X Y : C} → (f : X ⟶ Y) →
       MorphismProperty.isomorphisms _ f → MorphismProperty.epimorphisms _ f := by
   intro X Y f hf
@@ -30,17 +33,26 @@ lemma isIsoIsEpi : {X Y : C} → (f : X ⟶ Y) →
   exact {left_cancellation := by exact (IsIso.epi_of_iso f).left_cancellation}
 
 /- Iso ⊆ Epi -/
+/--
+@isnad1 id=contains.0h1v.s3.fe7db596e258 from=translated src=- shape=84bfdc15 vocab=5faa1802
+-/
 lemma epimorphismsContainsIsos : containsIsos (MorphismProperty.epimorphisms C) := by
     intro X Y isof
     exact isIsoIsEpi isof.hom (Iso.isIso_hom isof)
 
 /- Epimorphisms are closed under composition -/
+/--
+@isnad1 id=isclosed.0h1v.s3.9d442b73a463 from=translated src=- shape=84bfdc15 vocab=d8016d78
+-/
 lemma epimorphismsClosedUnderComp : is_closed_comp (MorphismProperty.epimorphisms C) where
     precomp := by exact epi_comp
     postcomp := by
         simp_all
 
 /- Every iso is a mono -/
+/--
+@isnad1 id=monomorp.0h5v.s5.3901a8245a5a from=translated src=- shape=51dae6c3 vocab=56aa4b7c
+-/
 lemma isIsoIsMono : {X Y : C} → (f : X ⟶ Y) →
         MorphismProperty.isomorphisms _ f → MorphismProperty.monomorphisms _ f := by
     intro X Y f hf
@@ -48,11 +60,17 @@ lemma isIsoIsMono : {X Y : C} → (f : X ⟶ Y) →
     exact {right_cancellation := by exact (IsIso.mono_of_iso f).right_cancellation}
 
 /- Mono ⊆ Iso -/
+/--
+@isnad1 id=contains.0h1v.s3.add0988dba70 from=translated src=- shape=84bfdc15 vocab=b30a0062
+-/
 lemma monomorphismsContainsIsos : containsIsos (MorphismProperty.monomorphisms C) := by
     intro X Y isof
     exact isIsoIsMono isof.hom (Iso.isIso_hom isof)
 
 /- Monomorphisms are closed under composition -/
+/--
+@isnad1 id=isclosed.0h1v.s3.8cee7baf1593 from=translated src=- shape=84bfdc15 vocab=ee0dff37
+-/
 lemma monomorphismsClosedUnderComp : is_closed_comp (MorphismProperty.monomorphisms C) where
     precomp := by exact mono_comp
     postcomp := by
@@ -73,12 +91,18 @@ def rightMapSet {X Y : Type u} (f : X ⟶ Y) : imageSet f ⟶ Y :=
   TypeCat.ofHom fun y => y.1
 
 /- The image factorization of a map -/
+/--
+@isnad1 id=eq.0h3v.s5.fed6571d42b7 from=translated src=- shape=8e27d465 vocab=2dff3c0e
+-/
 lemma factorization_set {X Y : Type u} (f : X ⟶ Y) :
     leftMapSet f ≫ rightMapSet f = f := by
   ext x
   rfl
 
 /- The left map of the image factorization of a map is epi -/
+/--
+@isnad1 id=epimorph.0h3v.s4.e6e40a52c374 from=translated src=- shape=37fe7772 vocab=2340508d
+-/
 lemma left_map_in_left_class_set {X Y : Type u} (f : X ⟶ Y) :
     MorphismProperty.epimorphisms _ (leftMapSet f) := by
   apply (epi_iff_surjective (leftMapSet f)).mpr
@@ -88,6 +112,9 @@ lemma left_map_in_left_class_set {X Y : Type u} (f : X ⟶ Y) :
   exact hx
 
 /- The right map of the image factorization of a map is mono -/
+/--
+@isnad1 id=monomorp.0h3v.s4.e4341fb33ee7 from=translated src=- shape=904b8b8c vocab=efd6788b
+-/
 lemma right_map_in_right_class_set {X Y : Type u} (f : X ⟶ Y) :
     MorphismProperty.monomorphisms _ (rightMapSet f) := by
   apply (mono_iff_injective (rightMapSet f)).mpr
@@ -97,6 +124,9 @@ lemma right_map_in_right_class_set {X Y : Type u} (f : X ⟶ Y) :
 
 /- Given another (Epi,Mono) factorization of a map, there
 is a unique way solve the corresponding lifting problem -/
+/--
+@isnad1 id=existsun.1h9v.s7.04d92dbfcb6e from=translated src=- shape=e47331b4 vocab=9f104a24
+-/
 lemma factorization_iso_set_hom' {X Y : Type u} (f : X ⟶ Y) (im : Type u)
     (left : X ⟶ im) (_ : MorphismProperty.epimorphisms _ left) (right : im ⟶ Y)
     (q : MorphismProperty.monomorphisms _ right) (fact : left ≫ right = f) (y : imageSet f) :
@@ -122,6 +152,9 @@ def factorizationIsoSetHom : {X Y : Type u} → (f : X ⟶ Y) → (im : Type u) 
   exact TypeCat.ofHom fun y => (factorization_iso_set_hom' f im left p right q fact y).choose
 
 /- The commutiativity of the right triangle with the diagonal filler -/
+/--
+@isnad1 id=eq.1h8v.s6.02fb6fa560f3 from=translated src=- shape=b8e80150 vocab=7a1241f6
+-/
 lemma factorization_iso_set_hom_comm_right : {X Y : Type u} → (f : X ⟶ Y) → (im : Type u) →
     (left : X ⟶ im) → (p : MorphismProperty.epimorphisms _ left) → (right : im ⟶ Y) →
     (q : MorphismProperty.monomorphisms _ right) → (fact : left ≫ right = f) →
@@ -131,6 +164,9 @@ lemma factorization_iso_set_hom_comm_right : {X Y : Type u} → (f : X ⟶ Y) �
   exact (Exists.choose_spec (factorization_iso_set_hom' f im left p right q fact y)).left
 
 /- The commutiativity of the left triangle with the diagonal filler -/
+/--
+@isnad1 id=eq.1h8v.s6.d77213ca4398 from=translated src=- shape=1471001b vocab=2a1e98b8
+-/
 lemma factorization_iso_set_hom_comm_left : {X Y : Type u} → (f : X ⟶ Y) → (im : Type u) →
     (left : X ⟶ im) → (p : MorphismProperty.epimorphisms _ left) → (right : im ⟶ Y) →
     (q : MorphismProperty.monomorphisms _ right) → (fact : left ≫ right = f) →
@@ -158,6 +194,9 @@ def factorizationIsoSetInv : {X Y : Type u} → (f : X ⟶ Y) → (im : Type u) 
   ⟨right y, existence⟩
 
 /- The commutiativity of the right triangle with the inverse to the diagonal filler -/
+/--
+@isnad1 id=eq.1h7v.s6.896580e7069c from=translated src=- shape=efcd6c07 vocab=8ff2d58c
+-/
 lemma factorization_iso_set_inv_comm_right : {X Y : Type u} → (f : X ⟶ Y) → (im : Type u) →
     (left : X ⟶ im) → (p : MorphismProperty.epimorphisms _ left) → (right : im ⟶ Y) →
     (fact : left ≫ right = f) →
@@ -167,6 +206,9 @@ lemma factorization_iso_set_inv_comm_right : {X Y : Type u} → (f : X ⟶ Y) �
   rfl
 
 /- The commutiativity of the left triangle with the inverse to the diagonal filler -/
+/--
+@isnad1 id=eq.1h7v.s6.d4e78330beb2 from=translated src=- shape=54236fa8 vocab=9117e6bc
+-/
 lemma factorization_iso_set_inv_comm_left : {X Y : Type u} → (f : X ⟶ Y) → (im : Type u) →
     (left : X ⟶ im) → (p : MorphismProperty.epimorphisms _ left) → (right : im ⟶ Y) →
     (fact : left ≫ right = f) →
@@ -207,6 +249,9 @@ def factorizationIsoSet : {X Y : Type u} → (f : X ⟶ Y) → (im : Type u) →
   }
 
 /- The uniqueness of the factorization isomorphism -/
+/--
+@isnad1 id=eq.3h9v.s8.117a6db946f2 from=translated src=- shape=12c5559a vocab=63b8be24
+-/
 lemma factorization_iso_is_unique_set : {X Y : Type u} → (f : X ⟶ Y) → (im : Type u) →
     (left : X ⟶ im) → (p : MorphismProperty.epimorphisms _ left) → (right : im ⟶ Y) →
     (q : MorphismProperty.monomorphisms _ right) → (fact : left ≫ right = f) →

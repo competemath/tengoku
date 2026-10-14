@@ -41,12 +41,17 @@ def partsRootDecisionNodes : Array (Array PartsRootNode) := #[
   partsRootDecisionChunk15,
 ]
 
+/--
+@isnad1 id=eq.0h0v.s4.23a196ba1b61 from=translated src=- shape=63965382 vocab=9bc36e76
+-/
 theorem partsRootDecision_verifies :
     PartsRootVerifiesNodeB partsRootDecisionNodes 1024
       partsNormalizedRootPath 0 = true := by
   decide +kernel
 
-/-- No proper coloring of the Parts graph extends the normalized fixed root. -/
+/-- No proper coloring of the Parts graph extends the normalized fixed root.
+@isnad1 id=false.2h1v.s4.9848aa17321c from=translated src=- shape=775d695d vocab=9471ac6e
+-/
 theorem no_parts_coloring_of_normalized_root {coloring : Fin 481 → Fin 4}
     (hproper : PartsProper coloring)
     (hroots : PartsExtends coloring partsNormalizedRootPath) : False := by

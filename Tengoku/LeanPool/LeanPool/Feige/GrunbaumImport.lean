@@ -28,12 +28,18 @@ def simplexToEuclidean (n : ℕ) :
     (Fin n → ℝ) → Grunbaum.SimplexE n :=
   WithLp.toLp 2
 
+/--
+@isnad1 id=measurab.0h1v.s5.f5c062078faf from=translated src=- shape=cae58d9e vocab=6d77bd3b
+-/
 theorem measurable_simplexToEuclidean (n : ℕ) :
     Measurable (simplexToEuclidean n) :=
   by
     simpa [simplexToEuclidean] using
       (PiLp.volume_preserving_toLp (Fin n)).measurable
 
+/--
+@isnad1 id=eq.0h3v.s5.3a98aca84ffc from=translated src=- shape=dbd2a47d vocab=f4e41968
+-/
 @[simp]
 theorem simplexToEuclidean_apply
     (n : ℕ) (x : Fin n → ℝ) (i : Fin n) :
@@ -41,7 +47,9 @@ theorem simplexToEuclidean_apply
   PiLp.toLp_apply 2 (fun _ : Fin n => ℝ) x i
 
 /-- The two projects use exactly the same standard simplex, modulo the
-canonical `PiLp.toLp` wrapper. -/
+canonical `PiLp.toLp` wrapper.
+@isnad1 id=iff.0h2v.s5.3abccc5eb107 from=translated src=- shape=d2acfb7a vocab=7ccd89a1
+-/
 theorem simplexToEuclidean_mem_simplexSet_iff
     (n : ℕ) (x : Fin n → ℝ) :
     simplexToEuclidean n x ∈ Grunbaum.simplexSet n ↔
@@ -50,6 +58,9 @@ theorem simplexToEuclidean_mem_simplexSet_iff
     Set.mem_ofPred_eq, Grunbaum.coordinateSum_apply,
     simplexToEuclidean_apply]
 
+/--
+@isnad1 id=eq.0h1v.s4.44412dc1aef5 from=translated src=- shape=3f7c3f8b vocab=e8110b85
+-/
 theorem simplexToEuclidean_preimage_simplexSet (n : ℕ) :
     simplexToEuclidean n ⁻¹' Grunbaum.simplexSet n =
       fullSimplex (Fin n) := by
@@ -57,7 +68,9 @@ theorem simplexToEuclidean_preimage_simplexSet (n : ℕ) :
   exact simplexToEuclidean_mem_simplexSet_iff n x
 
 /-- Lebesgue volume of the simplex is unchanged by the canonical
-coordinate-function/Euclidean-space identification. -/
+coordinate-function/Euclidean-space identification.
+@isnad1 id=eq.0h1v.s8.a9bef2eca6da from=translated src=- shape=4407327c vocab=094e0542
+-/
 theorem volume_simplexSet_eq_volume_fullSimplex (n : ℕ) :
     volume (Grunbaum.simplexSet n) =
       volume (fullSimplex (Fin n)) := by
@@ -68,7 +81,9 @@ theorem volume_simplexSet_eq_volume_fullSimplex (n : ℕ) :
   rw [simplexToEuclidean_preimage_simplexSet]
 
 /-- Transport of intersections with the standard simplex.  This is the
-form needed to compare the two normalized halfspace-volume ratios. -/
+form needed to compare the two normalized halfspace-volume ratios.
+@isnad1 id=eq.1h2v.s8.ba9a3473f97a from=translated src=- shape=acccf198 vocab=6350e8d9
+-/
 theorem volume_simplexSet_inter_eq_volume_fullSimplex_inter_preimage
     (n : ℕ) {A : Set (Grunbaum.SimplexE n)}
     (hA : MeasurableSet A) :

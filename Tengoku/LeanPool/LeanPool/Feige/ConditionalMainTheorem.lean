@@ -23,7 +23,9 @@ namespace Feige
 
 /-- The `δ = 1` specialization of Theorem 1.1, assembled from Theorem 2.1
 and the two geometric facts identifying and bounding the Dirichlet
-statistic. -/
+statistic.
+@isnad1 id=isoptima.3h1v.s4.e3af5d424972 from=translated src=- shape=5b820a20 vocab=38cad33f
+-/
 theorem sharp_unit_slack_feige_of_paper_inputs
     {n : ℕ}
     (hcal : UniversalCalibration

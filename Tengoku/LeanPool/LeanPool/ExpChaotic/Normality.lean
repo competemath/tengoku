@@ -59,7 +59,9 @@ def juliaSet (f : ℂ → ℂ) : Set ℂ := (fatouSet f)ᶜ
 /-! ## Restriction -/
 
 /-- Normality is inherited by subsets. A limit on `U` restricts along the continuous
-inclusion `V → U`. -/
+inclusion `V → U`.
+@isnad1 id=isnormal.2h5v.s5.f5a198c84809 from=translated src=- shape=cf6b9aff vocab=c2e1314b
+-/
 theorem IsNormalSequenceOn.mono {α β : Type*} [TopologicalSpace α] [UniformSpace β]
     {F : ℕ → α → β} {U V : Set α} (h : IsNormalSequenceOn F U) (hVU : V ⊆ U) :
     IsNormalSequenceOn F V := by
@@ -69,7 +71,9 @@ theorem IsNormalSequenceOn.mono {α β : Type*} [TopologicalSpace α] [UniformSp
   obtain ⟨ψ, hψ, g, hg⟩ := h φ hφ
   exact ⟨ψ, hψ, g ∘ i, hg.comp i hi⟩
 
-/-- The local Fatou-set definition can be tested on open disks. -/
+/-- The local Fatou-set definition can be tested on open disks.
+@isnad1 id=iff.0h2v.s6.250b81111cf3 from=translated src=- shape=44e5e47c vocab=1730ad58
+-/
 theorem mem_fatouSet_iff_exists_ball {f : ℂ → ℂ} {z : ℂ} :
     z ∈ fatouSet f ↔ ∃ r : ℝ, 0 < r ∧
       IsNormalSequenceOn (fun n w => ((f^[n]) w : RiemannSphere)) (ball z r) := by
@@ -82,7 +86,9 @@ theorem mem_fatouSet_iff_exists_ball {f : ℂ → ℂ} {z : ℂ} :
 
 /-! ## Non-normality and Misiurewicz's theorem -/
 
-/-- The sphere-valued exponential iterates are not normal on a nonempty open set. -/
+/-- The sphere-valued exponential iterates are not normal on a nonempty open set.
+@isnad1 id=not.2h1v.s5.23292926161d from=translated src=- shape=de5417b8 vocab=e1669c02
+-/
 theorem not_isNormalSequenceOn_sphericalExpIterate
     {U : Set ℂ} (hU : IsOpen U) (hUne : U.Nonempty) :
     ¬ IsNormalSequenceOn sphericalExpIterate U := by
@@ -93,13 +99,17 @@ theorem not_isNormalSequenceOn_sphericalExpIterate
     (fun h => (by norm_num : (1 : ℂ) ≠ 2) (OnePoint.coe_injective h)) hU hUne hψ g hg
 
 /-- Misiurewicz's theorem in Fatou-set form: the sphere-valued iterates are normal
-on no neighbourhood. -/
+on no neighbourhood.
+@isnad1 id=eq.0h0v.s3.b9204add76a7 from=translated src=- shape=72bba4e3 vocab=fe75d260
+-/
 theorem misiurewicz_fatouSet_exp : fatouSet exponentialMap = ∅ := by
   apply Set.eq_empty_iff_forall_notMem.mpr
   rintro z ⟨U, hU, hz, hnormal⟩
   exact not_isNormalSequenceOn_sphericalExpIterate hU ⟨z, hz⟩ hnormal
 
-/-- Misiurewicz's theorem: the Julia set of the complex exponential is the plane. -/
+/-- Misiurewicz's theorem: the Julia set of the complex exponential is the plane.
+@isnad1 id=eq.0h0v.s2.124a3c632515 from=translated src=- shape=0a817633 vocab=9e54d6d6
+-/
 theorem misiurewicz_juliaSet_exp : juliaSet exponentialMap = Set.univ := by
   rw [juliaSet, misiurewicz_fatouSet_exp, Set.compl_empty]
 

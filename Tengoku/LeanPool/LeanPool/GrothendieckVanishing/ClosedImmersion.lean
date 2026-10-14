@@ -53,6 +53,9 @@ namespace TopCat
 def closedIncl {X : TopCat.{u}} {s : Set X} (hs : IsClosed s) : TopCat.of s ⟶ X :=
   TopCat.ofHom ⟨Subtype.val, hs.isClosedEmbedding_subtypeVal.continuous⟩
 
+/--
+@isnad1 id=eq.1h2v.s7.d81abc62193e from=translated src=- shape=a3b11142 vocab=9001eb43
+-/
 lemma set_range_closedIncl {X : TopCat.{u}} {s : Set X} (hs : IsClosed s) :
     Set.range (closedIncl hs : s → X) = s := by
   ext x
@@ -62,14 +65,23 @@ lemma set_range_closedIncl {X : TopCat.{u}} {s : Set X} (hs : IsClosed s) :
   · intro hx
     exact ⟨⟨x, hx⟩, rfl⟩
 
+/--
+@isnad1 id=isclosed.1h2v.s7.1081049d9aa3 from=translated src=- shape=f618181a vocab=15962465
+-/
 lemma closedIncl_isClosedEmbedding {X : TopCat.{u}} {s : Set X} (hs : IsClosed s) :
     Topology.IsClosedEmbedding (closedIncl hs) :=
   hs.isClosedEmbedding_subtypeVal
 
+/--
+@isnad1 id=isinduci.1h2v.s7.6dcc820b13d5 from=translated src=- shape=f618181a vocab=40505091
+-/
 lemma closedIncl_isInducing {X : TopCat.{u}} {s : Set X} (hs : IsClosed s) :
     Topology.IsInducing (closedIncl hs) :=
   (closedIncl_isClosedEmbedding hs).isInducing
 
+/--
+@isnad1 id=eq.2h3v.s9.3d31763ee401 from=translated src=- shape=c901456f vocab=eb255f8e
+-/
 theorem closedIncl_map_eq_bot_of_le_compl {X : TopCat.{u}} {s : Set X} (hs : IsClosed s)
     {U : Opens X} (hU : U ≤ ⟨sᶜ, hs.isOpen_compl⟩) :
     (Opens.map (closedIncl hs)).obj U = ⊥ := by
@@ -80,6 +92,9 @@ theorem closedIncl_map_eq_bot_of_le_compl {X : TopCat.{u}} {s : Set X} (hs : IsC
     exact Set.disjoint_left.mpr fun x hxU hxS ↦ hU hxU hxS
   simpa using (Set.preimage_eq_empty hdisj)
 
+/--
+@isnad1 id=isiso.1h5v.s8.3b3c0f6f7f04 from=translated src=- shape=b2b7cb46 vocab=09e7e5e2
+-/
 instance closedIncl_stalkPushforward_isIso {X : TopCat.{u}} {s : Set X} {hs : IsClosed s}
     {C : Type*} [Category.{u} C] [HasColimits C]
     {F : (TopCat.of s).Presheaf C} {x : TopCat.of s} :
@@ -87,6 +102,9 @@ instance closedIncl_stalkPushforward_isIso {X : TopCat.{u}} {s : Set X} {hs : Is
   Presheaf.stalkPushforward.stalkPushforward_iso_of_isInducing
     C (closedIncl_isInducing hs) F x
 
+/--
+@isnad1 id=isbasis.1h3v.s7.e97e2f208986 from=translated src=- shape=39e506c3 vocab=596d5597
+-/
 lemma opensMap_range_isBasis_of_isInducing {X Y : TopCat.{u}} {f : X ⟶ Y}
     (hf : Topology.IsInducing f) :
     Opens.IsBasis (Set.range (Opens.map f).obj) := by
@@ -96,12 +114,18 @@ lemma opensMap_range_isBasis_of_isInducing {X Y : TopCat.{u}} {f : X ⟶ Y}
   refine ⟨hf.functorObj U, ?_⟩
   simpa using hf.map_functorObj U
 
+/--
+@isnad1 id=iscoverd.1h3v.s7.4ec294081961 from=translated src=- shape=cc79c6c0 vocab=dd3ca5c7
+-/
 lemma opensMap_isCoverDense_of_isInducing {X Y : TopCat.{u}} {f : X ⟶ Y}
     (hf : Topology.IsInducing f) :
     (Opens.map f).IsCoverDense (Opens.grothendieckTopology X) := by
   rw [TopCat.Opens.coverDense_iff_isBasis]
   exact opensMap_range_isBasis_of_isInducing hf
 
+/--
+@isnad1 id=islocall.0h3v.s6.2134074ab7f9 from=translated src=- shape=1bc4c305 vocab=7fbadd8b
+-/
 instance opensMap_isLocallyFull {X Y : TopCat.{u}} (f : X ⟶ Y) :
     (Opens.map f).IsLocallyFull (Opens.grothendieckTopology X) where
   functorPushforward_imageSieve_mem := by
@@ -114,6 +138,9 @@ instance opensMap_isLocallyFull {X Y : TopCat.{u}} (f : X ⟶ Y) :
       exact Subsingleton.elim _ _
     · exact ⟨hx, i.le hx⟩
 
+/--
+@isnad1 id=injectiv.0h8v.s8.e988a8d397af from=translated src=- shape=7916f107 vocab=55bb8df8
+-/
 theorem locallyInjective_stalkFunctor_map_injective
     {C : Type*} [Category.{u} C] [HasColimits C]
     {FC : C → C → Type*} {CC : C → Type u}
@@ -142,6 +169,9 @@ theorem locallyInjective_stalkFunctor_map_injective
   apply F.germ_ext Z hxZ (iZW ≫ iWU) (iZW ≫ iWV)
   simpa using hEqZ
 
+/--
+@isnad1 id=isiso.0h6v.s8.55c6c9ea312b from=translated src=- shape=fdba9561 vocab=86ef1e3c
+-/
 theorem stalkFunctor_map_iso_toSheafify
     {C : Type*} [Category.{u} C] [HasColimits C]
     {FC : C → C → Type*} {CC : C → Type u}
@@ -164,6 +194,9 @@ theorem stalkFunctor_map_iso_toSheafify
       ((TopCat.Presheaf.locally_surjective_iff_surjective_on_stalks
         (T := CategoryTheory.toSheafify (Opens.grothendieckTopology X) P)).mp hls) x
 
+/--
+@isnad1 id=isiso.1h6v.s10.021db1dc8b5b from=translated src=- shape=1be9273e vocab=3dee912b
+-/
 theorem closedIncl_counit_isIso
     {C : Type*} [Category.{u} C]
     {FC : C → C → Type*} {CC : C → Type u}
@@ -203,7 +236,9 @@ theorem closedIncl_counit_isIso
 end TopCat
 
 /-- Stalks of a pushforward along a closed inclusion vanish outside the closed set:
-    if `x ∉ s`, every element of `stalk(i_*(G), x)` is zero. -/
+    if `x ∉ s`, every element of `stalk(i_*(G), x)` is zero.
+@isnad1 id=eq.3h5v.s10.c99cf0d4bb37 from=translated src=- shape=bb6ab71f vocab=c78d059f
+-/
 theorem pushforward_closedIncl_stalk_eq_zero
     {X : TopCat.{u}} {s : Set X} (hs : IsClosed s)
     {G : TopCat.Presheaf AddCommGrpCat.{u} (TopCat.of s)} (hG : G.IsSheaf)
@@ -230,7 +265,9 @@ theorem pushforward_closedIncl_stalk_eq_zero
 /-- Pushforward along a closed immersion preserves epis: if `f : F ⟶ G` is epi in
     presheaves on the closed subspace, then `i_*(f)` is epi in sheaves on the ambient
     space whenever `f` is locally surjective.
-    Proof: stalkwise surjectivity (identity on the closed set, zero outside). -/
+    Proof: stalkwise surjectivity (identity on the closed set, zero outside).
+@isnad1 id=epi.4h5v.s13.353f7878e1eb from=translated src=- shape=00b3d362 vocab=913d00fa
+-/
 theorem epi_pushforward_map_closedIncl_of_locallySurjective
     {X : TopCat.{u}} {s : Set X} (hs : IsClosed s)
     {F G : TopCat.Presheaf AddCommGrpCat.{u} (TopCat.of s)}

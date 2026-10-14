@@ -202,12 +202,16 @@ private theorem pairCount_cons
     cases hsecond : bitSetB row second.val <;>
     simp [hfirst, hsecond]
 
-/-- The empty packed pair state exactly represents the empty assignment list. -/
+/-- The empty packed pair state exactly represents the empty assignment list.
+@isnad1 id=exact.0h0v.s2.d41c7ea8055b from=translated src=- shape=0072ad64 vocab=518299b3
+-/
 theorem PairState.empty_exact : PairState.empty.Exact [] := by
   intro first second _hpair
   simp [PairState.empty, pairCount, bitSetB_zero_pair]
 
-/-- Adding an audited row mask preserves exact packed pair counts. -/
+/-- Adding an audited row mask preserves exact packed pair counts.
+@isnad1 id=exact.2h5v.s5.6bbaa9d1cce8 from=translated src=- shape=b6de3959 vocab=1a501c0a
+-/
 theorem PairState.Exact.add
     {state : PairState} {assignments : List RowAssignment}
     (hexact : state.Exact assignments)
@@ -230,7 +234,9 @@ theorem PairState.Exact.add
         simp only [Bool.and_true, Bool.or_eq_true, decide_eq_true_eq]
         omega
 
-/-- Exact pair states are invariant under reordering the semantic assignment list. -/
+/-- Exact pair states are invariant under reordering the semantic assignment list.
+@isnad1 id=exact.2h3v.s4.3ea8a4736994 from=translated src=- shape=f5885e88 vocab=38f67dbe
+-/
 theorem PairState.Exact.perm
     {state : PairState} {assignments assignments' : List RowAssignment}
     (hexact : state.Exact assignments) (hperm : assignments.Perm assignments') :
@@ -265,7 +271,9 @@ private theorem vertexPairTuples_mem_vertexPairs
   revert first second
   decide
 
-/-- Exact packed pair state makes its constant-time guard complete for a compatible row. -/
+/-- Exact packed pair state makes its constant-time guard complete for a compatible row.
+@isnad1 id=eq.3h4v.s5.bfc7b5f68f87 from=translated src=- shape=ca598f70 vocab=12682a26
+-/
 theorem PairState.compatible_of_exact
     {state : PairState} {assignments : List RowAssignment} {row pairMask : UInt64}
     (hexact : state.Exact assignments)

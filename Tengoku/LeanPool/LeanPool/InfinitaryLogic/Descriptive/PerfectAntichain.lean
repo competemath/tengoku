@@ -66,7 +66,9 @@ variable {r : Setoid X} {A B : Set X}
 
 /-- Enlarging the ambient set preserves a Cantor antichain.  Keeping this separate is what lets
 the scheme wrappers below conclude at the scheme's own root rather than carrying a containment
-hypothesis. -/
+hypothesis.
+@isnad1 id=hascanto.2h4v.s5.fc15c65262d1 from=translated src=- shape=c3d02c23 vocab=351ad641
+-/
 theorem HasCantorAntichainOn.mono (h : HasCantorAntichainOn r A) (hAB : A ⊆ B) :
     HasCantorAntichainOn r B := by
   obtain ⟨f, hcont, hmem, hineq⟩ := h
@@ -86,7 +88,9 @@ private theorem injective_of_pairwise_inequiv {f : (ℕ → Bool) → X}
 /-- A Cantor antichain is injective.
 
 The inequivalence clause is deliberately **not** restated in the conclusion: it is already the
-content of `h`, and a consumer needing it should unpack `h`.  One job per adapter. -/
+content of `h`, and a consumer needing it should unpack `h`.  One job per adapter.
+@isnad1 id=ex.1h3v.s6.c34cdbf8f85c from=translated src=- shape=9c988d5f vocab=84d2c3ab
+-/
 theorem HasCantorAntichainOn.injective (h : HasCantorAntichainOn r A) :
     ∃ f : (ℕ → Bool) → X, Continuous f ∧ Set.range f ⊆ A ∧ Function.Injective f := by
   obtain ⟨f, hcont, hmem, hineq⟩ := h
@@ -119,7 +123,9 @@ private theorem mk_le_continuum_of_polish {α : Type u} [MetricSpace α] [Comple
   simp only [lift_uzero] at h1
   exact h1.trans (by simp [aleph0_power_aleph0])
 
-/-- The quotient of a Polish space has cardinality ≤ continuum. -/
+/-- The quotient of a Polish space has cardinality ≤ continuum.
+@isnad1 id=le.0h2v.s5.5183b01bc2c9 from=translated src=- shape=9661f87a vocab=62c38678
+-/
 theorem mk_quotient_le_continuum_of_polish {α : Type u} [MetricSpace α] [CompleteSpace α]
     [SecondCountableTopology α] [Nonempty α] (r : Setoid α) :
     #(Quotient r) ≤ Cardinal.continuum :=

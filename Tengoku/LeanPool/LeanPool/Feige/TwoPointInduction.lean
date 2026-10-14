@@ -25,6 +25,9 @@ noncomputable def productHighSetExpectation {m : ℕ}
     (p : Fin m → ℝ) (g : Finset (Fin m) → ℝ) : ℝ :=
   ∑ S ∈ Finset.univ.powerset, highSetMass p S * g S
 
+/--
+@isnad1 id=eq.0h2v.s4.0d0fbf8405c9 from=translated src=- shape=da2bac75 vocab=1d9c0f83
+-/
 @[simp]
 theorem productHighSetExpectation_one {m : ℕ} (p : Fin m → ℝ) :
     productHighSetExpectation p (fun _ ↦ 1) = 1 := by
@@ -32,6 +35,9 @@ theorem productHighSetExpectation_one {m : ℕ} (p : Fin m → ℝ) :
   simp only [mul_one]
   exact sum_highSetMass p
 
+/--
+@isnad1 id=eq.0h4v.s5.2253f343241b from=translated src=- shape=402ac3f8 vocab=454242d2
+-/
 theorem productExpectation_rejection_eq {m : ℕ}
     (γ β : Fin m → ℝ) (α : ℝ) :
     productHighSetExpectation (twoPointHighProbability γ β)

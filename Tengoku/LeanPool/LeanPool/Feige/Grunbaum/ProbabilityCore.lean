@@ -38,6 +38,9 @@ private lemma exists_apply_ne (L : E →L[ℝ] ℝ) (hL : L ≠ 0) (t : ℝ) :
     simpa using h x
   · exact ⟨0, by simpa using Ne.symm ht⟩
 
+/--
+@isnad1 id=eq.1h3v.s8.9cee866b7eb1 from=translated src=- shape=e1309682 vocab=b2df3c1a
+-/
 lemma volume_preimage_singleton_eq_zero (L : E →L[ℝ] ℝ) (hL : L ≠ 0) (t : ℝ) :
     volume (L ⁻¹' ({t} : Set ℝ)) = 0 := by
   let A : AffineSubspace ℝ E :=
@@ -53,6 +56,9 @@ lemma volume_preimage_singleton_eq_zero (L : E →L[ℝ] ℝ) (hL : L ≠ 0) (t 
   rw [← hA_coe]
   exact Measure.addHaar_affineSubspace volume A hA_ne_top
 
+/--
+@isnad1 id=nullsing.1h3v.s8.5c183567be31 from=translated src=- shape=474f2748 vocab=573a4c70
+-/
 lemma nullSingletonClass_map_uniform
     (K : Set E) (L : E →L[ℝ] ℝ) (hL : L ≠ 0) :
     NullSingletonClass (((volume K)⁻¹ • volume.restrict K).map L) := by
@@ -69,6 +75,9 @@ end Projection
 
 section CDF
 
+/--
+@isnad1 id=continuo.0h1v.s5.336c0857d5c5 from=translated src=- shape=d183f2f7 vocab=9b9d1207
+-/
 lemma continuous_cdf_of_noAtoms (μ : Measure ℝ) [IsProbabilityMeasure μ]
     [NullSingletonClass μ] : Continuous (cdf μ) := by
   rw [continuous_iff_continuousAt]
@@ -83,6 +92,9 @@ lemma continuous_cdf_of_noAtoms (μ : Measure ℝ) [IsProbabilityMeasure μ]
     rw [StieltjesFunction.measure_singleton] at hzero
     exact sub_nonpos.mp (ENNReal.ofReal_eq_zero.mp hzero)
 
+/--
+@isnad1 id=eq.2h2v.s6.5f9090da498e from=translated src=- shape=e7c001c7 vocab=6950b209
+-/
 lemma measure_cdf_preimage_Iic (μ : Measure ℝ) [IsProbabilityMeasure μ]
     [NullSingletonClass μ] (u : ℝ) (hu0 : 0 ≤ u) (hu1 : u < 1) :
     μ ((cdf μ) ⁻¹' Iic u) = ENNReal.ofReal u := by
@@ -150,11 +162,17 @@ def cdfToUnitInterval (μ : Measure ℝ) (x : ℝ) : I :=
   ⟨cdf μ x, cdf_nonneg μ x, cdf_le_one μ x⟩
 
 open unitInterval in
+/--
+@isnad1 id=measurab.0h1v.s5.2fca6eaa8ffa from=translated src=- shape=3d7b694f vocab=d7c074b6
+-/
 lemma measurable_cdfToUnitInterval (μ : Measure ℝ) [IsProbabilityMeasure μ]
     [NullSingletonClass μ] : Measurable (cdfToUnitInterval μ) :=
   (continuous_cdf_of_noAtoms μ).measurable.subtype_mk
 
 open unitInterval in
+/--
+@isnad1 id=eq.0h2v.s6.651a088f22b9 from=translated src=- shape=8f2dba94 vocab=43551288
+-/
 theorem map_cdfToUnitInterval_apply_Iic (μ : Measure ℝ) [IsProbabilityMeasure μ]
     [NullSingletonClass μ] (u : I) :
     μ.map (cdfToUnitInterval μ) (Iic u) = ENNReal.ofReal (u : ℝ) := by
@@ -178,6 +196,9 @@ end CDF
 
 section LayerCake
 
+/--
+@isnad1 id=eq.3h4v.s7.6d23e9a76d1a from=translated src=- shape=ff556d9d vocab=2122ee08
+-/
 lemma Integrable.integral_eq_integral_Ioc_meas_lt'
     {α : Type*} [MeasurableSpace α] {μ : Measure α} {f : α → ℝ} {M : ℝ}
     (f_intble : Integrable f μ) (f_nn : 0 ≤ᵐ[μ] f)
@@ -196,6 +217,9 @@ lemma Integrable.integral_eq_integral_Ioc_meas_lt'
   rw [measureReal_def, ENNReal.toReal_eq_zero_iff]
   exact Or.inl <| measure_mono_null (fun a ha ↦ htM.trans ha) obs
 
+/--
+@isnad1 id=eq.1h2v.s6.f81c9fe69fc0 from=translated src=- shape=5b8e27e7 vocab=3485a3ec
+-/
 theorem integral_cdf_rpow_inv_natCast (μ : Measure ℝ) [IsProbabilityMeasure μ]
     [NullSingletonClass μ] {n : ℕ} (hn : n ≠ 0) :
     (∫ x, (cdf μ x) ^ ((n : ℝ)⁻¹) ∂μ) = (n : ℝ) / (n + 1) := by
@@ -271,6 +295,9 @@ end LayerCake
 
 section Jensen
 
+/--
+@isnad1 id=le.4h3v.s7.8e6ac62b873d from=translated src=- shape=f5b18695 vocab=3242b8da
+-/
 theorem cdf_rpow_inv_natCast_le_at_mean
     (μ : Measure ℝ) [IsProbabilityMeasure μ] [NullSingletonClass μ]
     {n : ℕ} (hn : n ≠ 0) (m : ℝ)
@@ -319,6 +346,9 @@ def volumeCentroid (K : Set E) : E :=
 
 omit [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
   [BorelSpace E] [Measure.IsAddHaarMeasure (volume : Measure E)] in
+/--
+@isnad1 id=isprobab.2h2v.s6.ddc195b131ba from=translated src=- shape=445b11c7 vocab=23bd866d
+-/
 lemma isProbabilityMeasure_uniformVolume (K : Set E)
     (hK0 : volume K ≠ 0) (hKtop : volume K ≠ ∞) :
     IsProbabilityMeasure (uniformVolume K) := by
@@ -329,11 +359,17 @@ lemma isProbabilityMeasure_uniformVolume (K : Set E)
 
 omit [FiniteDimensional ℝ E] [BorelSpace E]
   [Measure.IsAddHaarMeasure (volume : Measure E)] in
+/--
+@isnad1 id=eq.0h2v.s5.a07421245ae4 from=translated src=- shape=92f496f4 vocab=5b2b5225
+-/
 lemma volumeCentroid_eq_integral_uniformVolume (K : Set E) :
     volumeCentroid K = ∫ x, x ∂uniformVolume K := by
   simpa [volumeCentroid, uniformVolume] using
     (setAverage_eq' (μ := volume) (fun x : E ↦ x) K)
 
+/--
+@isnad1 id=eq.1h3v.s8.93a95442661c from=translated src=- shape=e5b7354a vocab=243e9d1c
+-/
 lemma integral_id_map_uniformVolume_eq_centroid_projection
     (K : Set E) (hK : IsCompact K) (L : E →L[ℝ] ℝ) :
     (∫ t : ℝ, t ∂(uniformVolume K).map L) = L (volumeCentroid K) := by
@@ -360,6 +396,9 @@ variable {α E F : Type*} [MeasurableSpace α]
   [CompleteSpace E]
   [NormedAddCommGroup F] [NormedSpace ℝ F] [CompleteSpace F]
 
+/--
+@isnad1 id=eq.1h7v.s8.7554548805e9 from=translated src=- shape=2140e73a vocab=e3657edd
+-/
 lemma ContinuousLinearMap.map_setAverage (L : E →L[ℝ] F)
     (μ : Measure α) (s : Set α) (f : α → E) (hf : IntegrableOn f s μ) :
     L (⨍ x in s, f x ∂μ) = ⨍ x in s, L (f x) ∂μ := by

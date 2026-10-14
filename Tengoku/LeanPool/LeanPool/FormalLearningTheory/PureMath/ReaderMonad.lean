@@ -45,18 +45,24 @@ def ReaderSel.bind {ι : Type u} {α : Type v} {γ : Type w}
   family := fun i a => (f (r.family (r.sel a) a)).family i a
   sel := fun a => (f (r.family (r.sel a) a)).sel a
 
-/-- Left unit: bind (pure f) g a = (g (f a)).eval a -/
+/-- Left unit: bind (pure f) g a = (g (f a)).eval a
+@isnad1 id=eq.0h7v.s5.e4fcd1d239a7 from=translated src=- shape=729f91fe vocab=25d050d6
+-/
 theorem ReaderSel.left_unit {ι : Type u} {α : Type v} {γ : Type w}
     (i₀ : ι) (f : α → γ)
     (g : γ → ReaderSel ι α γ) (a : α) :
     (ReaderSel.pure i₀ f |>.bind g).eval a = (g (f a)).eval a := rfl
 
-/-- Right unit: bind r (fun v => pure (const v)) a = r.eval a -/
+/-- Right unit: bind r (fun v => pure (const v)) a = r.eval a
+@isnad1 id=eq.0h6v.s5.e0397a97f6ed from=translated src=- shape=a770a738 vocab=25d050d6
+-/
 theorem ReaderSel.right_unit {ι : Type u} {α : Type v} {γ : Type w}
     (r : ReaderSel ι α γ) (i₀ : ι) (a : α) :
     (r.bind (fun v => ReaderSel.pure i₀ (fun _ => v))).eval a = r.eval a := rfl
 
-/-- Associativity: bind (bind r f) g = bind r (fun v => bind (f v) g) -/
+/-- Associativity: bind (bind r f) g = bind r (fun v => bind (f v) g)
+@isnad1 id=eq.0h7v.s6.eb16c5f0a321 from=translated src=- shape=840d52cd vocab=fbd94c47
+-/
 theorem ReaderSel.assoc {ι : Type u} {α : Type v} {γ : Type w}
     (r : ReaderSel ι α γ)
     (f : γ → ReaderSel ι α γ) (g : γ → ReaderSel ι α γ) (a : α) :

@@ -71,12 +71,18 @@ def BadCarryState.neededCarries : BadCarryState → ℕ
   | .oneCarryNoCarry => 1
   | .good => 0
 
+/--
+@isnad1 id=eq.0h1v.s3.9b30eea7a3c4 from=translated src=- shape=6665dac3 vocab=60a8be52
+-/
 lemma badCarryStateAux_good (digits : List ℕ) :
     badCarryStateAux digits .good = .good := by
   induction digits with
   | nil => rfl
   | cons digit digits ih => simp [badCarryStateAux, badCarryStateStep, ih]
 
+/--
+@isnad1 id=iff.1h2v.s5.3002380487f8 from=translated src=- shape=cde595e5 vocab=c6f0a5ac
+-/
 lemma badCarryStateAux_ne_good_iff_carryCount_lt_needed :
     ∀ digits : List ℕ, (∀ digit ∈ digits, digit < 3) →
       ∀ state : BadCarryState,
@@ -99,7 +105,9 @@ lemma badCarryStateAux_ne_good_iff_carryCount_lt_needed :
           badCarryStateAux_good]
 
 /-- Automaton correctness: on valid ternary words, membership is equivalent to
-creating fewer than two carries under doubling. -/
+creating fewer than two carries under doubling.
+@isnad1 id=iff.1h1v.s5.750a3a55439d from=translated src=- shape=896eb778 vocab=c27001cb
+-/
 theorem badCarryLanguage_true_iff_carryCount_lt_two
     {digits : List ℕ} (hdigits : ∀ digit ∈ digits, digit < 3) :
     badCarryLanguage digits = true ↔
@@ -134,17 +142,26 @@ def badCarryLanguageShape (digits : List ℕ) : Prop :=
     badCarryExactlyOneTopTwo digits ∨
       badCarryExactlyOneTwoFollowedByZero digits
 
+/--
+@isnad1 id=iff.0h2v.s4.ade092bae718 from=translated src=- shape=37c9ba66 vocab=374b969f
+-/
 lemma badCarryAllZeroOrOne_cons {digit : ℕ} {digits : List ℕ} :
     badCarryAllZeroOrOne (digit :: digits) ↔
       digit < 2 ∧ badCarryAllZeroOrOne digits := by
   simp [badCarryAllZeroOrOne]
 
+/--
+@isnad1 id=iff.1h2v.s4.c88f90e860e1 from=translated src=- shape=4904e0bd vocab=374b969f
+-/
 lemma badCarryAllZeroOrOne_cons_of_lt
     {digit : ℕ} {digits : List ℕ} (hdigit : digit < 2) :
     badCarryAllZeroOrOne (digit :: digits) ↔
       badCarryAllZeroOrOne digits := by
   simp [badCarryAllZeroOrOne_cons, hdigit]
 
+/--
+@isnad1 id=iff.1h2v.s4.6e03e543da64 from=translated src=- shape=4904e0bd vocab=46a4b99a
+-/
 lemma badCarryExactlyOneTopTwo_cons_of_lt
     {digit : ℕ} {digits : List ℕ} (hdigit : digit < 2) :
     badCarryExactlyOneTopTwo (digit :: digits) ↔
@@ -163,6 +180,9 @@ lemma badCarryExactlyOneTopTwo_cons_of_lt
     exact ⟨digit :: lows,
       badCarryAllZeroOrOne_cons.mpr ⟨hdigit, hlows⟩, by simp⟩
 
+/--
+@isnad1 id=iff.1h2v.s4.9490e62ab9f2 from=translated src=- shape=4904e0bd vocab=67ab8c93
+-/
 lemma badCarryExactlyOneTwoFollowedByZero_cons_of_lt
     {digit : ℕ} {digits : List ℕ} (hdigit : digit < 2) :
     badCarryExactlyOneTwoFollowedByZero (digit :: digits) ↔
@@ -183,6 +203,9 @@ lemma badCarryExactlyOneTwoFollowedByZero_cons_of_lt
       badCarryAllZeroOrOne_cons.mpr ⟨hdigit, hlows⟩,
       hhighs, by simp⟩
 
+/--
+@isnad1 id=iff.1h2v.s4.55931b233d41 from=translated src=- shape=4904e0bd vocab=8290d6ca
+-/
 lemma badCarryLanguageShape_cons_of_lt
     {digit : ℕ} {digits : List ℕ} (hdigit : digit < 2) :
     badCarryLanguageShape (digit :: digits) ↔
@@ -192,6 +215,9 @@ lemma badCarryLanguageShape_cons_of_lt
     badCarryExactlyOneTopTwo_cons_of_lt hdigit,
     badCarryExactlyOneTwoFollowedByZero_cons_of_lt hdigit]
 
+/--
+@isnad1 id=iff.0h1v.s3.e4517f667433 from=translated src=- shape=e5e265ff vocab=70f2ab02
+-/
 lemma badCarryStateAux_oneCarryNoCarry_ne_good_iff_allZeroOrOne :
     ∀ digits : List ℕ,
       badCarryStateAux digits .oneCarryNoCarry ≠ .good ↔
@@ -208,6 +234,9 @@ lemma badCarryStateAux_oneCarryNoCarry_ne_good_iff_allZeroOrOne :
         simp [badCarryStateAux, badCarryStateStep, hdigit,
           badCarryStateAux_good, hshape]
 
+/--
+@isnad1 id=iff.0h1v.s5.689c1c4953eb from=translated src=- shape=9b698c31 vocab=40425b6d
+-/
 lemma badCarryStateAux_oneCarryOut_ne_good_iff :
     ∀ digits : List ℕ,
       badCarryStateAux digits .oneCarryOut ≠ .good ↔
@@ -223,6 +252,9 @@ lemma badCarryStateAux_oneCarryOut_ne_good_iff :
       · simp [badCarryStateAux, badCarryStateStep, hdigit,
           badCarryStateAux_good]
 
+/--
+@isnad1 id=iff.0h1v.s5.b3bf37341796 from=translated src=- shape=8f46bd00 vocab=85ffb18d
+-/
 lemma badCarryLanguageShape_two_cons_iff {digits : List ℕ} :
     badCarryLanguageShape (2 :: digits) ↔
       digits = [] ∨
@@ -257,6 +289,9 @@ lemma badCarryLanguageShape_two_cons_iff {digits : List ℕ} :
     · exact Or.inr (Or.inr ⟨[], highs, by simp [badCarryAllZeroOrOne],
         hhighs, by simp⟩)
 
+/--
+@isnad1 id=not.2h2v.s4.a068b10dea5c from=translated src=- shape=936c5854 vocab=8290d6ca
+-/
 lemma badCarryLanguageShape_cons_of_invalid
     {digit : ℕ} {digits : List ℕ}
     (hsmall : ¬ digit < 2) (htwo : digit ≠ 2) :
@@ -285,6 +320,9 @@ lemma badCarryLanguageShape_cons_of_invalid
         have hdigit := hlows d List.mem_cons_self
         omega
 
+/--
+@isnad1 id=iff.0h1v.s3.06cecdb97e2e from=translated src=- shape=e5e265ff vocab=90b770e1
+-/
 lemma badCarryStateAux_zeroCarry_ne_good_iff_shape :
     ∀ digits : List ℕ,
       badCarryStateAux digits .zeroCarry ≠ .good ↔
@@ -308,7 +346,9 @@ lemma badCarryStateAux_zeroCarry_ne_good_iff_shape :
             badCarryStateAux_good, hshape]
 
 /-- Exact classification of the deficient-carry language into three explicit
-little-endian digit shapes. -/
+little-endian digit shapes.
+@isnad1 id=iff.0h1v.s3.1f4a217c6e57 from=translated src=- shape=8c1bf180 vocab=246eff44
+-/
 theorem badCarryLanguage_true_iff_shape (digits : List ℕ) :
     badCarryLanguage digits = true ↔
       badCarryLanguageShape digits := by

@@ -23,9 +23,15 @@ def IsWalk (tail head : E → W) : W → List E → W → Prop
   | x, [], y => x = y
   | x, e :: l, y => tail e = x ∧ IsWalk tail head (head e) l y
 
+/--
+@isnad1 id=iff.0h6v.s4.27f1701e55cc from=translated src=- shape=f71bbbf2 vocab=9e4d1800
+-/
 @[simp] theorem IsWalk_nil (tail head : E → W) (x y : W) :
     IsWalk tail head x [] y ↔ x = y := Iff.rfl
 
+/--
+@isnad1 id=iff.0h8v.s5.7fb0d3893f00 from=translated src=- shape=e08bf7e4 vocab=54188670
+-/
 @[simp] theorem IsWalk_cons (tail head : E → W) (x : W) (e : E) (l : List E) (y : W) :
     IsWalk tail head x (e :: l) y ↔ (tail e = x ∧ IsWalk tail head (head e) l y) := Iff.rfl
 
@@ -34,6 +40,9 @@ def walkBool [DecidableEq W] (tail head : E → W) : W → List E → W → Bool
   | x, [], y => decide (x = y)
   | x, e :: l, y => decide (tail e = x) && walkBool tail head (head e) l y
 
+/--
+@isnad1 id=iff.0h7v.s5.9134fc475a04 from=translated src=- shape=324484e4 vocab=4ac47932
+-/
 theorem walkBool_iff [DecidableEq W] (tail head : E → W) (x : W) (l : List E) (y : W) :
     walkBool tail head x l y = true ↔ IsWalk tail head x l y := by
   induction l generalizing x with
@@ -52,7 +61,9 @@ def unsplittableLoad {R K E : Type} [AddCommMonoid R] [Fintype K] [DecidableEq E
     (d : K → R) (P : K → List E) (a : E) : R :=
   ∑ k : K, (P k).count a • d k
 
-/-- On arc-simple paths, traversal-counting load agrees with the membership formula. -/
+/-- On arc-simple paths, traversal-counting load agrees with the membership formula.
+@isnad1 id=eq.1h6v.s6.a60f44d11c19 from=translated src=- shape=7105ec2e vocab=466ef191
+-/
 theorem unsplittableLoad_eq_sum_of_nodup {R K E : Type} [AddCommMonoid R] [Fintype K]
     [DecidableEq E] (d : K → R) (P : K → List E) (a : E) (h : ∀ k, (P k).Nodup) :
     unsplittableLoad d P a = ∑ k : K, if a ∈ P k then d k else 0 := by

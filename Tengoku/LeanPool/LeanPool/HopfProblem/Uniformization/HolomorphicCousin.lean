@@ -83,6 +83,9 @@ private theorem
   exact
     (finsum_eq_single (fun i => ρ i x) i₀ (hzero x hx)).symm.trans (ρ.sum_eq_one (Set.mem_univ x))
 
+/--
+@isnad1 id=ex.4h8v.s10.98d251aace01 from=translated src=- shape=4369decf vocab=571c847a
+-/
 public
 theorem HolomorphicCousin.exists_smoothPartitionOfUnity_eq_one_near_closed {ι E H M : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E] [TopologicalSpace H]

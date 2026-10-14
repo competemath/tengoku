@@ -25,7 +25,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
   [Measure.IsAddHaarMeasure (volume : Measure E)]
 
 /-- A nonzero linear functional has no boundary mass, so closed and strict
-halfspaces cut the same volume from every measurable set. -/
+halfspaces cut the same volume from every measurable set.
+@isnad1 id=eq.2h4v.s9.c0bb50e89e79 from=translated src=- shape=d560d4ef vocab=7be58016
+-/
 theorem volume_inter_le_eq_volume_inter_lt
     (K : Set E) (hK : MeasurableSet K)
     (L : E →L[ℝ] ℝ) (hL : L ≠ 0) (t : ℝ) :

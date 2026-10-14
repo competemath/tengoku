@@ -85,36 +85,75 @@ instance : Coe α (Formula α) := ⟨atom⟩
 
 end «lp_section_1»
 
+/--
+@isnad1 id=eq.0h1v.s5.29aa80fe9d18 from=translated src=- shape=899c32bf vocab=500f24a6
+-/
 @[simp] lemma neg_bot : ∼(⊥ : Formula α) = ⊤ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.623013f6dc70 from=translated src=- shape=c90f15fe vocab=f57f013d
+-/
 lemma or_eq (φ ψ : Formula α) : or φ ψ = φ ⋎ ψ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.dd6b0e571880 from=translated src=- shape=c90f15fe vocab=3b1b8b06
+-/
 lemma and_eq (φ ψ : Formula α) : and φ ψ = φ ⋏ ψ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.fda17e4eb678 from=translated src=- shape=c90f15fe vocab=5e27601c
+-/
 lemma imp_eq (φ ψ : Formula α) : imp φ ψ = φ ==> ψ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.f153477b9b1c from=translated src=- shape=c2b6d1b2 vocab=24992fc8
+-/
 lemma neg_eq (φ : Formula α) : neg φ = ∼φ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.db9a0999dc4c from=translated src=- shape=c2b6d1b2 vocab=eeb0928b
+-/
 lemma box_eq (φ : Formula α) : box φ = □φ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.4c65b040c9e7 from=translated src=- shape=c2b6d1b2 vocab=567032ca
+-/
 lemma dia_eq (φ : Formula α) : dia φ = ◇φ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.ec026032a61b from=translated src=- shape=8067ab0c vocab=c72a2bd5
+-/
 lemma iff_eq (φ ψ : Formula α) : φ <=> ψ = (φ ==> ψ) ⋏ (ψ ==> φ) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.b9f986d7e8e5 from=translated src=- shape=a92aae16 vocab=fe405507
+-/
 lemma falsum_eq : (falsum : Formula α) = ⊥ := rfl
 
+/--
+@isnad1 id=iff.0h5v.s5.d3a72d0ffef0 from=translated src=- shape=356e8d20 vocab=419bb852
+-/
 @[simp] lemma and_inj (φ₁ ψ₁ φ₂ ψ₂ : Formula α) :
     φ₁ ⋏ φ₂ = ψ₁ ⋏ ψ₂ ↔ φ₁ = ψ₁ ∧ φ₂ = ψ₂ := by
   simp[Wedge.wedge]
 
+/--
+@isnad1 id=iff.0h5v.s5.389dba343a01 from=translated src=- shape=356e8d20 vocab=b5f3218c
+-/
 @[simp] lemma or_inj (φ₁ ψ₁ φ₂ ψ₂ : Formula α) :
     φ₁ ⋎ φ₂ = ψ₁ ⋎ ψ₂ ↔ φ₁ = ψ₁ ∧ φ₂ = ψ₂ := by
   simp[Vee.vee]
 
+/--
+@isnad1 id=iff.0h5v.s5.502e725b8d96 from=translated src=- shape=356e8d20 vocab=767c1570
+-/
 @[simp] lemma imp_inj (φ₁ ψ₁ φ₂ ψ₂ : Formula α) :
     φ₁ ==> φ₂ = ψ₁ ==> ψ₂ ↔ φ₁ = ψ₁ ∧ φ₂ = ψ₂ := by
   simp[Arrow.arrow]
 
+/--
+@isnad1 id=iff.0h3v.s5.6434943c2262 from=translated src=- shape=af747b6b vocab=0b89db95
+-/
 @[simp] lemma neg_inj (φ ψ : Formula α) : ∼φ = ∼ψ ↔ φ = ψ := by simp [NegAbbrev.neg];
 
 /-
@@ -143,9 +182,15 @@ def degree : Formula α → Nat
   | φ ==> ψ => max φ.degree ψ.degree
   | □φ => φ.degree + 1
 
+/--
+@isnad1 id=eq.0h2v.s4.904f3e90f4b7 from=translated src=- shape=b04106a2 vocab=2cfaa721
+-/
 @[simp] lemma degree_neg (φ : Formula α) :
     degree (∼φ) = degree φ := by
   induction φ <;> simp_all [degree]
+/--
+@isnad1 id=eq.0h3v.s5.54b7a05b48fb from=translated src=- shape=9e579978 vocab=7d2d1074
+-/
 @[simp] lemma degree_imp (φ ψ : Formula α) :
     degree (φ ==> ψ) = max (degree φ) (degree ψ) := by
   simp [degree]
@@ -244,8 +289,14 @@ def negated : Formula α → Bool
   | ∼_ => True
   | _  => False
 
+/--
+@isnad1 id=eq.0h2v.s4.0d7296621054 from=translated src=- shape=613ace56 vocab=be530fdd
+-/
 @[simp] lemma negated_def : (∼φ).negated := by simp [negated]
 
+/--
+@isnad1 id=iff.0h3v.s5.32f1d2664139 from=translated src=- shape=f47a33bb vocab=71049c94
+-/
 @[simp]
 lemma negated_imp : (φ ==> ψ).negated ↔ (ψ = ⊥) := by
   simp [negated];
@@ -253,12 +304,18 @@ lemma negated_imp : (φ ==> ψ).negated ↔ (ψ = ⊥) := by
   · simp_all [Formula.imp_eq]; rfl;
   · simp_all [Formula.imp_eq]; simpa;
 
+/--
+@isnad1 id=iff.0h2v.s5.0eef0684b4a8 from=translated src=- shape=f301b4fa vocab=be530fdd
+-/
 lemma negated_iff : φ.negated ↔ ∃ ψ, φ = ∼ψ := by
   classical
   induction φ using Formula.casesNeg with
   | himp => simp [negated_imp, NegAbbrev.neg];
   | _ => simp [negated]
 
+/--
+@isnad1 id=iff.0h2v.s5.5b209f3cf55e from=translated src=- shape=6b76a6d9 vocab=be530fdd
+-/
 lemma not_negated_iff : ¬φ.negated ↔ ∀ ψ, φ ≠ ∼ψ := by
   classical
   induction φ using Formula.casesNeg with

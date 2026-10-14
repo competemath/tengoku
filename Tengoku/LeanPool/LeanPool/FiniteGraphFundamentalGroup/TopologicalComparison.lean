@@ -45,6 +45,9 @@ def coverSymPathValue {root : V}
       (graphCoverSymmetricFreeGroupoidMap root).obj b :=
   (CategoryTheory.Paths.lift (graphCoverSymmetricFreeGroupoidMap root)).map p
 
+/--
+@isnad1 id=eq.0h7v.s8.5e14c9bd0cea from=translated src=- shape=f909b6a3 vocab=faca35b2
+-/
 theorem coverSymPathValue_cons {root : V}
     {a b c : Symmetrify (graphCoverVertex root)}
     (p : @Quiver.Path (Symmetrify (graphCoverVertex root))
@@ -56,6 +59,9 @@ theorem coverSymPathValue_cons {root : V}
       coverSymPathValue p ≫ (graphCoverSymmetricFreeGroupoidMap root).map e := by
   exact CategoryTheory.Paths.lift_cons (graphCoverSymmetricFreeGroupoidMap root) p e
 
+/--
+@isnad1 id=eq.0h5v.s8.f79ce2327082 from=translated src=- shape=1e34e599 vocab=00963961
+-/
 theorem graphCoverSymmetricFreeGroupoidMap_endpoint {root : V}
     {y z : Symmetrify (graphCoverVertex root)}
     (e : @Quiver.Hom (Symmetrify (graphCoverVertex root))
@@ -71,6 +77,9 @@ theorem graphCoverSymmetricFreeGroupoidMap_endpoint {root : V}
       change z.2 = y.2 ≫ Groupoid.inv ((Quiver.FreeGroupoid.of V).map e.1)
       simpa only [Groupoid.inv_eq_inv] using (IsIso.eq_comp_inv _).2 e.property
 
+/--
+@isnad1 id=eq.0h4v.s7.280c9d327026 from=translated src=- shape=3eeae688 vocab=b3e30cef
+-/
 theorem coverSymPathValue_endpoint {root : V} (x : graphCoverVertex root)
     (p : @Quiver.Path (Symmetrify (graphCoverVertex root))
       (Quiver.symmetrifyQuiver (graphCoverVertex root))
@@ -93,6 +102,9 @@ abbrev baseSymPathValue {a b : Symmetrify V}
     (Quiver.FreeGroupoid.of V).obj a ⟶ (Quiver.FreeGroupoid.of V).obj b :=
   Quot.mk _ p
 
+/--
+@isnad1 id=eq.0h5v.s7.5f583f43e2ef from=translated src=- shape=435d3814 vocab=cac815a0
+-/
 theorem coverSymPathValue_eq_baseSymPathValue {root : V}
     {a b : Symmetrify (graphCoverVertex root)}
     (p : @Quiver.Path (Symmetrify (graphCoverVertex root))
@@ -139,6 +151,9 @@ def coverSymPathWord {root : V}
   | nil => exact []
   | cons p e ih => exact coverSymEdgeLetter e :: ih
 
+/--
+@isnad1 id=eq.0h7v.s6.b1614617ffe2 from=translated src=- shape=7e725b47 vocab=16785266
+-/
 theorem coverSymPathWord_cons {root : V}
     {a b c : Symmetrify (graphCoverVertex root)}
     (p : @Quiver.Path (Symmetrify (graphCoverVertex root))
@@ -172,6 +187,9 @@ inductive symPathNoBacktrack {W : Type u} [Quiver.{u} W]
         (@Quiver.Path.cons (Symmetrify W) (Quiver.symmetrifyQuiver W)
           _ _ _ p e)
 
+/--
+@isnad1 id=sympathn.1h4v.s5.5e79fd8fd08b from=translated src=- shape=b497851f vocab=5bd9e162
+-/
 theorem symPathNoBacktrack_of_shortest {W : Type u} [Quiver.{u} W]
     {r a : Symmetrify W}
     (p : @Quiver.Path (Symmetrify W) (Quiver.symmetrifyQuiver W) r a)
@@ -199,6 +217,9 @@ theorem symPathNoBacktrack_of_shortest {W : Type u} [Quiver.{u} W]
         simp only [Quiver.Path.length_cons] at h
         omega
 
+/--
+@isnad1 id=eq.2h7v.s7.34617b6c8b61 from=translated src=- shape=2ee97538 vocab=1f7e3498
+-/
 theorem coverSymEdgeLetter_cancel {root : V}
     {a b c : Symmetrify (graphCoverVertex root)}
     (f : @Quiver.Hom (Symmetrify (graphCoverVertex root))
@@ -242,6 +263,9 @@ theorem coverSymEdgeLetter_cancel {root : V}
           cases htotal
           rfl
 
+/--
+@isnad1 id=isreduce.1h4v.s6.b9ab60ab30d3 from=translated src=- shape=bf696369 vocab=7104c897
+-/
 theorem coverSymPathWord_isReduced {root : V}
     {a : Symmetrify (graphCoverVertex root)}
     (p : @Quiver.Path (Symmetrify (graphCoverVertex root))
@@ -278,6 +302,9 @@ abbrev coverFreeGroupValue {root : V}
   singleObjHomValue ((graphFreeGroupoidToFreeGroup (V := V)).map
     (coverSymPathValue p))
 
+/--
+@isnad1 id=eq.0h3v.s5.f5ff605dbab5 from=translated src=- shape=3c2439ab vocab=56db7a4f
+-/
 theorem coverFreeGroupValue_nil {root : V} (x : graphCoverVertex root) :
     coverFreeGroupValue
       (Quiver.Path.nil : @Quiver.Path (Symmetrify (graphCoverVertex root))
@@ -285,6 +312,9 @@ theorem coverFreeGroupValue_nil {root : V} (x : graphCoverVertex root) :
   change (1 : FreeGroup (Quiver.Total V)) = 1
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.52b80ffc0a9f from=translated src=- shape=29f89d86 vocab=043c321b
+-/
 theorem coverFreeGroupValue_cons {root : V}
     {a b c : Symmetrify (graphCoverVertex root)}
     (p : @Quiver.Path (Symmetrify (graphCoverVertex root))
@@ -299,6 +329,9 @@ theorem coverFreeGroupValue_cons {root : V}
   unfold coverFreeGroupValue
   rw [coverSymPathValue_cons, Functor.map_comp, SingleObj.comp_as_mul]
 
+/--
+@isnad1 id=eq.0h2v.s7.5a43a25c2dd2 from=translated src=- shape=bf42d0b5 vocab=0235afb5
+-/
 theorem graphFreeGroupoidToFreeGroup_map_pos {V : Type u} [Quiver.{u} V]
     (e : Quiver.Total V) :
     singleObjHomValue ((graphFreeGroupoidToFreeGroup (V := V)).map
@@ -316,6 +349,9 @@ theorem graphFreeGroupoidToFreeGroup_map_pos {V : Type u} [Quiver.{u} V]
     exact hm
   simpa [graphFreeGroupPrefunctor] using hm'
 
+/--
+@isnad1 id=eq.0h5v.s8.8eebc22d4d41 from=translated src=- shape=50a784cd vocab=f97eddd2
+-/
 theorem coverFreeGroupMap_letter {root : V}
     {a b : Symmetrify (graphCoverVertex root)}
     (e : @Quiver.Hom (Symmetrify (graphCoverVertex root))
@@ -337,6 +373,9 @@ theorem coverFreeGroupMap_letter {root : V}
         (V := V) (⟨_, _, e.1⟩ : Quiver.Total V)
       exact congrArg (fun q => q⁻¹) h
 
+/--
+@isnad1 id=eq.0h6v.s7.11477afb909f from=translated src=- shape=a739e91a vocab=ac8295cc
+-/
 theorem coverFreeGroupValue_cons_letter {root : V}
     {a b : Symmetrify (graphCoverVertex root)}
     (p : @Quiver.Path (Symmetrify (graphCoverVertex root))
@@ -350,6 +389,9 @@ theorem coverFreeGroupValue_cons_letter {root : V}
       FreeGroup.mk [coverSymEdgeLetter e] * coverFreeGroupValue p := by
   rw [coverFreeGroupValue_cons, coverFreeGroupMap_letter]
 
+/--
+@isnad1 id=eq.0h4v.s5.1823c8647a13 from=translated src=- shape=e39aedcc vocab=cfb43132
+-/
 theorem coverFreeGroupValue_eq_word {root : V}
     {a : Symmetrify (graphCoverVertex root)}
     (p : @Quiver.Path (Symmetrify (graphCoverVertex root))
@@ -366,6 +408,9 @@ theorem coverFreeGroupValue_eq_word {root : V}
       rw [coverFreeGroupValue_cons_letter, ih, FreeGroup.mul_mk]
       rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.fc61701da86c from=translated src=- shape=0fc25e6e vocab=f02473d2
+-/
 theorem coverSymPathWord_length {root : V}
     {a b : Symmetrify (graphCoverVertex root)}
     (p : @Quiver.Path (Symmetrify (graphCoverVertex root))
@@ -377,6 +422,9 @@ theorem coverSymPathWord_length {root : V}
       rw [coverSymPathWord_cons, List.length_cons, Quiver.Path.length_cons]
       simp [ih]
 
+/--
+@isnad1 id=eq.0h5v.s6.c34adcb22540 from=translated src=- shape=8bb9f1c6 vocab=f7d1ab24
+-/
 theorem coverFreeGroupValue_eq_of_endpoint {root : V}
     {a : Symmetrify (graphCoverVertex root)}
     (p q : @Quiver.Path (Symmetrify (graphCoverVertex root))
@@ -389,6 +437,9 @@ theorem coverFreeGroupValue_eq_of_endpoint {root : V}
   exact congrArg (fun h => singleObjHomValue
     ((graphFreeGroupoidToFreeGroup (V := V)).map h)) hvalue
 
+/--
+@isnad1 id=eq.1h7v.s7.5ef9bfa83c46 from=translated src=- shape=96fd4699 vocab=8082ef74
+-/
 theorem coverSymEdge_star_eq_of_letter_eq {root : V}
     {a b c : Symmetrify (graphCoverVertex root)}
     (e : @Quiver.Hom (Symmetrify (graphCoverVertex root))
@@ -426,6 +477,9 @@ theorem coverSymEdge_star_eq_of_letter_eq {root : V}
           cases hcostar'
           rfl
 
+/--
+@isnad1 id=heq.1h7v.s6.fb6783df0291 from=translated src=- shape=f912ce46 vocab=b2ae3f4d
+-/
 theorem coverSymEdge_eq_of_letter_eq {root : V}
     {a b c : Symmetrify (graphCoverVertex root)}
     (e : @Quiver.Hom (Symmetrify (graphCoverVertex root))
@@ -436,6 +490,9 @@ theorem coverSymEdge_eq_of_letter_eq {root : V}
   have hstar := coverSymEdge_star_eq_of_letter_eq e f h
   exact (Sigma.ext_iff.mp hstar).2
 
+/--
+@isnad1 id=eq.1h6v.s7.daa25de43cff from=translated src=- shape=816d35bf vocab=ff6df224
+-/
 theorem coverSymPathStar_eq_of_word_eq {root : V}
     {a b : Symmetrify (graphCoverVertex root)}
     (p : @Quiver.Path (Symmetrify (graphCoverVertex root))
@@ -471,6 +528,9 @@ theorem coverSymPathStar_eq_of_word_eq {root : V}
           cases hstar
           rfl
 
+/--
+@isnad1 id=eq.2h5v.s7.ed91ac865fdc from=translated src=- shape=3f8c27b2 vocab=ca33e553
+-/
 theorem coverSymPath_eq_of_same_endpoint_of_noBacktrack {root : V}
     {a : Symmetrify (graphCoverVertex root)}
     (p q : @Quiver.Path (Symmetrify (graphCoverVertex root))
@@ -487,6 +547,9 @@ theorem coverSymPath_eq_of_same_endpoint_of_noBacktrack {root : V}
   have hstar := coverSymPathStar_eq_of_word_eq p q hword
   exact eq_of_heq (Sigma.ext_iff.mp hstar).2
 
+/--
+@isnad1 id=rootedco.0h2v.s4.331adb3e59d6 from=translated src=- shape=0f05ea3a vocab=4c6eda60
+-/
 theorem graphCoverSymmetric_rootedConnected {V : Type u} [Quiver.{u} V]
     (root : V) :
     @RootedConnected (Symmetrify (graphCoverVertex root))
@@ -517,6 +580,9 @@ theorem graphCoverSymmetric_rootedConnected {V : Type u} [Quiver.{u} V]
   rw [← hx]
   exact ⟨q⟩
 
+/--
+@isnad1 id=rootedco.0h2v.s4.331adb3e59d6 from=translated src=- shape=0f05ea3a vocab=4c6eda60
+-/
 noncomputable instance graphCoverSymmetricRootedConnected
     {V : Type u} [Quiver.{u} V] (root : V) :
     @RootedConnected (Symmetrify (graphCoverVertex root))
@@ -540,6 +606,9 @@ noncomputable instance graphCoverSymmetricTreeArborescence
     (graphCoverRootVertex root)
     (graphCoverSymmetricRootedConnected root)
 
+/--
+@isnad1 id=or.0h5v.s7.6c6b62e07b23 from=translated src=- shape=0ee69d51 vocab=eabcb958
+-/
 theorem graphCoverSymmetric_edge_or_reverse_mem_tree {V : Type u} [Quiver.{u} V]
     (root : V)
     {a b : Symmetrify (graphCoverVertex root)}
@@ -655,6 +724,9 @@ def graphRealizationSignedPreMap {U W : Type u} [Quiver.{u} U] [Quiver.{u} W]
       let e := graphEdgeUnderlying z.1
       Sum.inr ⟨graphDiscreteEdge (g e), r e z.2⟩)
 
+/--
+@isnad1 id=continuo.0h5v.s8.ae9132e22a7a from=translated src=- shape=bb4ea56f vocab=0dfc2108
+-/
 theorem graphRealizationSignedPreMap_continuous
     {U W : Type u} [Quiver.{u} U] [Quiver.{u} W]
     (f : U → W) (g : Quiver.Total U → Quiver.Total W)
@@ -700,6 +772,9 @@ def graphRealizationSignedMap {U W : Type u} [Quiver.{u} U] [Quiver.{u} W]
   | symm x y h ih => exact ih.symm
   | trans x y z hxy hyz ihxy ihyz => exact ihxy.trans ihyz
 
+/--
+@isnad1 id=continuo.2h5v.s9.6dcd718e7cd6 from=translated src=- shape=36fb0abb vocab=d771e649
+-/
 theorem continuous_graphRealizationSignedMap
     {U W : Type u} [Quiver.{u} U] [Quiver.{u} W]
     (f : U → W) (g : Quiver.Total U → Quiver.Total W)
@@ -720,6 +795,9 @@ theorem continuous_graphRealizationSignedMap
   change Continuous (Quotient.lift F _)
   exact hcont.quotient_lift _
 
+/--
+@isnad1 id=eq.2h6v.s8.0642840d5de0 from=translated src=- shape=17180def vocab=2bf562c5
+-/
 @[simp]
 theorem graphRealizationSignedMap_vertex
     {U W : Type u} [Quiver.{u} U] [Quiver.{u} W]
@@ -736,6 +814,9 @@ theorem graphRealizationSignedMap_vertex
     (v : U) :
     graphRealizationSignedMap f g r h0 h1 (graphVertex v) = graphVertex (f v) := rfl
 
+/--
+@isnad1 id=eq.2h7v.s10.b66993553d58 from=translated src=- shape=702c9f1c vocab=614a2fc6
+-/
 @[simp]
 theorem graphRealizationSignedMap_edgePath
     {U W : Type u} [Quiver.{u} U] [Quiver.{u} W]
@@ -778,6 +859,9 @@ def graphCoverTreeEdgeChoiceProperty {V : Type u} [Quiver.{u} V]
     (d : Quiver.Total (graphCoverSymmetricTree root)) : Prop :=
   graphCoverTreeEdgeBase root d = e
 
+/--
+@isnad1 id=nonempty.0h3v.s6.ed489ba6b8e3 from=translated src=- shape=5c458fc2 vocab=7c125ca7
+-/
 theorem graphCoverTreeEdgeChoice_exists {V : Type u} [Quiver.{u} V]
     (root : V) (e : Quiver.Total (graphCoverVertex root)) :
     Nonempty {d : Quiver.Total (graphCoverSymmetricTree root) //
@@ -801,6 +885,9 @@ noncomputable def graphCoverTreeEdgeChoice {V : Type u} [Quiver.{u} V]
     Quiver.Total (graphCoverSymmetricTree root) :=
   (Classical.choice (graphCoverTreeEdgeChoice_exists root e)).1
 
+/--
+@isnad1 id=eq.0h3v.s5.77bc47d5e4ef from=translated src=- shape=6955162d vocab=a6a483b3
+-/
 theorem graphCoverTreeEdgeChoice_base {V : Type u} [Quiver.{u} V]
     (root : V) (e : Quiver.Total (graphCoverVertex root)) :
     graphCoverTreeEdgeBase root (graphCoverTreeEdgeChoice root e) = e :=
@@ -818,16 +905,28 @@ def graphRealizationIntervalSymm : C(I, I) where
   toFun := σ
   continuous_toFun := by fun_prop
 
+/--
+@isnad1 id=eq.0h1v.s6.9b0ff8dd34b9 from=translated src=- shape=c12b8144 vocab=765de4c3
+-/
 @[simp]
 theorem graphRealizationIntervalSymm_apply (t : I) :
     graphRealizationIntervalSymm t = σ t := rfl
 
+/--
+@isnad1 id=eq.0h0v.s6.2cf9051d21f8 from=translated src=- shape=ada2fd0c vocab=f344d120
+-/
 theorem graphRealizationIntervalSymm_zero :
     graphRealizationIntervalSymm 0 = 1 := by simp [graphRealizationIntervalSymm]
 
+/--
+@isnad1 id=eq.0h0v.s6.6208ace7738e from=translated src=- shape=ada2fd0c vocab=f344d120
+-/
 theorem graphRealizationIntervalSymm_one :
     graphRealizationIntervalSymm 1 = 0 := by simp [graphRealizationIntervalSymm]
 
+/--
+@isnad1 id=eq.0h1v.s7.2037a3a92051 from=translated src=- shape=087868fb vocab=f344d120
+-/
 theorem graphRealizationIntervalSymm_symm (t : I) :
     graphRealizationIntervalSymm (graphRealizationIntervalSymm t) = t := by
   apply Subtype.ext
@@ -843,6 +942,9 @@ def graphCoverTreeFoldCoordinate {V : Type u} [Quiver.{u} V]
   | inl _ => exact ContinuousMap.id I
   | inr _ => exact graphRealizationIntervalSymm
 
+/--
+@isnad1 id=eq.1h5v.s8.535f584e3646 from=translated src=- shape=ed0e7233 vocab=3a0f83d7
+-/
 theorem graphCoverTreeFoldCoordinate_positive {V : Type u} [Quiver.{u} V]
     (root : V) {a b : graphCoverVertex root}
     (e : a ⟶ b) (h : Sum.inl e ∈ graphCoverSymmetricTree root a b) :
@@ -850,6 +952,9 @@ theorem graphCoverTreeFoldCoordinate_positive {V : Type u} [Quiver.{u} V]
         ⟨a, b, ⟨Sum.inl e, h⟩⟩ = ContinuousMap.id I := by
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s8.7e8254a1401d from=translated src=- shape=838ac285 vocab=009bfea0
+-/
 theorem graphCoverTreeFoldCoordinate_negative {V : Type u} [Quiver.{u} V]
     (root : V) {a b : graphCoverVertex root}
     (e : a ⟶ b) (h : Sum.inr e ∈ graphCoverSymmetricTree root b a) :
@@ -857,6 +962,9 @@ theorem graphCoverTreeFoldCoordinate_negative {V : Type u} [Quiver.{u} V]
         ⟨b, a, ⟨Sum.inr e, h⟩⟩ = graphRealizationIntervalSymm := by
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.8067344eb493 from=translated src=- shape=7a5ad1c5 vocab=27b98830
+-/
 theorem graphCoverTreeFold_h0 {V : Type u} [Quiver.{u} V]
     (root : V) (d : Quiver.Total (graphCoverSymmetricTree root)) :
     graphRealizationQuotient
@@ -880,6 +988,9 @@ theorem graphCoverTreeFold_h0 {V : Type u} [Quiver.{u} V]
       rw [graphEdgePath_one]
       rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.8c7572ea7037 from=translated src=- shape=7a5ad1c5 vocab=47fa4ad7
+-/
 theorem graphCoverTreeFold_h1 {V : Type u} [Quiver.{u} V]
     (root : V) (d : Quiver.Total (graphCoverSymmetricTree root)) :
     graphRealizationQuotient
@@ -915,17 +1026,26 @@ noncomputable def graphCoverTreeToCover {V : Type u} [Quiver.{u} V]
     (graphCoverTreeFold_h0 root)
     (graphCoverTreeFold_h1 root)
 
+/--
+@isnad1 id=continuo.0h2v.s9.ba577f60fb8b from=translated src=- shape=af163c0a vocab=c0e83289
+-/
 theorem continuous_graphCoverTreeToCover {V : Type u} [Quiver.{u} V]
     (root : V) :
     Continuous (graphCoverTreeToCover root) :=
   continuous_graphRealizationSignedMap _ _ _ _ _
 
+/--
+@isnad1 id=eq.0h3v.s6.8b577e1a2d0f from=translated src=- shape=7354432e vocab=b7f41613
+-/
 @[simp]
 theorem graphCoverTreeToCover_vertex {V : Type u} [Quiver.{u} V]
     (root : V) (v : graphCoverSymmetricTree root) :
     graphCoverTreeToCover root (graphVertex v) =
       graphVertex (graphCoverTreeVertexForget root v) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.18f4a5c2ed98 from=translated src=- shape=4b7044ff vocab=3b2eca14
+-/
 @[simp]
 theorem graphCoverTreeToCover_edgePath {V : Type u} [Quiver.{u} V]
     (root : V)
@@ -949,18 +1069,27 @@ noncomputable def graphCoverSectionCoordinate {V : Type u} [Quiver.{u} V]
   | true => ContinuousMap.id I
   | false => graphRealizationIntervalSymm
 
+/--
+@isnad1 id=eq.1h3v.s6.d2ff0fa75dd6 from=translated src=- shape=e28ef0a7 vocab=0ed139be
+-/
 theorem graphCoverSectionCoordinate_positive {V : Type u} [Quiver.{u} V]
     (root : V) (e : Quiver.Total (graphCoverVertex root))
     (h : graphCoverTreeEdgeSign root (graphCoverTreeEdgeChoice root e) = true) :
     graphCoverSectionCoordinate root e = ContinuousMap.id I := by
   simp [graphCoverSectionCoordinate, h]
 
+/--
+@isnad1 id=eq.1h3v.s6.b3954d68c989 from=translated src=- shape=d10efce5 vocab=c08c9962
+-/
 theorem graphCoverSectionCoordinate_negative {V : Type u} [Quiver.{u} V]
     (root : V) (e : Quiver.Total (graphCoverVertex root))
     (h : graphCoverTreeEdgeSign root (graphCoverTreeEdgeChoice root e) = false) :
     graphCoverSectionCoordinate root e = graphRealizationIntervalSymm := by
   simp [graphCoverSectionCoordinate, h]
 
+/--
+@isnad1 id=eq.0h3v.s8.59a81ba7656f from=translated src=- shape=3c5e53c4 vocab=512a6b55
+-/
 theorem graphCoverSection_h0 {V : Type u} [Quiver.{u} V]
     (root : V) (e : Quiver.Total (graphCoverVertex root)) :
     graphRealizationQuotient
@@ -1006,6 +1135,9 @@ theorem graphCoverSection_h0 {V : Type u} [Quiver.{u} V]
       cases he
       rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.af6fe1453e6f from=translated src=- shape=3c5e53c4 vocab=957de0fb
+-/
 theorem graphCoverSection_h1 {V : Type u} [Quiver.{u} V]
     (root : V) (e : Quiver.Total (graphCoverVertex root)) :
     graphRealizationQuotient
@@ -1063,17 +1195,26 @@ noncomputable def graphCoverToTree {V : Type u} [Quiver.{u} V]
     (graphCoverSection_h0 root)
     (graphCoverSection_h1 root)
 
+/--
+@isnad1 id=continuo.0h2v.s9.848c74795500 from=translated src=- shape=bd095431 vocab=23e2340d
+-/
 theorem continuous_graphCoverToTree {V : Type u} [Quiver.{u} V]
     (root : V) :
     Continuous (graphCoverToTree root) :=
   continuous_graphRealizationSignedMap _ _ _ _ _
 
+/--
+@isnad1 id=eq.0h3v.s6.38386544ed75 from=translated src=- shape=26518680 vocab=08fd392e
+-/
 @[simp]
 theorem graphCoverToTree_vertex {V : Type u} [Quiver.{u} V]
     (root : V) (v : graphCoverVertex root) :
     graphCoverToTree root (graphVertex v) =
       graphVertex (graphCoverVertexEmbed root v) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.72ff8e3e1991 from=translated src=- shape=9d2028b7 vocab=34d68c36
+-/
 @[simp]
 theorem graphCoverToTree_edgePath {V : Type u} [Quiver.{u} V]
     (root : V) (e : Quiver.Total (graphCoverVertex root))
@@ -1082,6 +1223,9 @@ theorem graphCoverToTree_edgePath {V : Type u} [Quiver.{u} V]
       graphEdgePath (graphCoverTreeEdgeChoice root e)
         (graphCoverSectionCoordinate root e t) := rfl
 
+/--
+@isnad1 id=eq.2h4v.s9.6ee9503c1b37 from=translated src=- shape=45ed43e7 vocab=29c761fe
+-/
 theorem graphRealization_map_ext {U W : Type u} [Quiver.{u} U] [Quiver.{u} W]
     (F G : graphRealization U → graphRealization W)
     (hv : ∀ v : U, F (graphVertex v) = G (graphVertex v))
@@ -1097,11 +1241,17 @@ theorem graphRealization_map_ext {U W : Type u} [Quiver.{u} U] [Quiver.{u} W]
       rcases z with ⟨e, t⟩
       exact he (graphEdgeUnderlying e) t
 
+/--
+@isnad1 id=eq.0h3v.s4.6d242182699b from=translated src=- shape=25c58e3b vocab=18d19423
+-/
 theorem graphCoverTreeVertexForget_embed {V : Type u} [Quiver.{u} V]
     (root : V) (v : graphCoverVertex root) :
     graphCoverTreeVertexForget root (graphCoverVertexEmbed root v) = v := by
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.466c2f182c00 from=translated src=- shape=ff4642c2 vocab=616b94e1
+-/
 theorem graphCoverTreeToCover_comp_graphCoverToTree
     {V : Type u} [Quiver.{u} V] (root : V) :
     (graphCoverTreeToCover root) ∘ (graphCoverToTree root) =
@@ -1151,6 +1301,9 @@ theorem graphCoverTreeToCover_comp_graphCoverToTree
           simpa [graphCoverTreeEdgeBase] using hbase
         rw [he]
 
+/--
+@isnad1 id=eq.1h4v.s7.5cbfe9b39ff8 from=translated src=- shape=a3beee82 vocab=0a4ae7e6
+-/
 theorem graphCoverTreeEdgeBase_injective
     {V : Type u} [Quiver.{u} V] (root : V)
     (d₁ d₂ : Quiver.Total (graphCoverSymmetricTree root))
@@ -1204,6 +1357,9 @@ theorem graphCoverTreeEdgeBase_injective
           cases htotal
           rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.ebfbd7b0ca0d from=translated src=- shape=244990d9 vocab=616b94e1
+-/
 theorem graphCoverToTree_comp_graphCoverTreeToCover
     {V : Type u} [Quiver.{u} V] (root : V) :
     (graphCoverToTree root) ∘ (graphCoverTreeToCover root) =
@@ -1284,6 +1440,9 @@ noncomputable def graphCoverRealizationHomotopyEquiv
       exact congrFun (graphCoverToTree_comp_graphCoverTreeToCover root) x
     rw [hcomp]
 
+/--
+@isnad1 id=contract.0h2v.s7.84f3afc8fd99 from=translated src=- shape=bcb18a3f vocab=be9a43c5
+-/
 noncomputable instance graphCoverRealization_contractible
     {V : Type u} [Quiver.{u} V] (root : V) :
     ContractibleSpace (graphRealization (graphCoverVertex root)) := by
@@ -1297,6 +1456,9 @@ abbrev graphBaseSymPathValue {V : Type u} [Quiver.{u} V]
   @baseSymPathValue V _ (show Symmetrify V from a)
     (show Symmetrify V from b) p
 
+/--
+@isnad1 id=eq.0h4v.s9.231e94a07d76 from=translated src=- shape=cfd64177 vocab=c146db71
+-/
 theorem graphFreeGroupoidToTopological_map_path {V : Type u} [Quiver.{u} V]
     {a b : V}
     (p : @Quiver.Path (Symmetrify V) (Quiver.symmetrifyQuiver V) a b) :
@@ -1329,6 +1491,9 @@ theorem graphFreeGroupoidToTopological_map_path {V : Type u} [Quiver.{u} V]
 variable {V : Type u} [Quiver.{u} V] [WeaklyConnected V]
 
 omit [WeaklyConnected V] in
+/--
+@isnad1 id=ex.1h3v.s6.28febd814711 from=translated src=- shape=3fbbed11 vocab=00cc15ed
+-/
 theorem graphCoverRealization_fiber_vertex
     (root : V) {z : graphCoverRealization root}
     (hz : graphCoverRealizationProjection root z = graphVertex root) :
@@ -1384,6 +1549,9 @@ theorem graphCoverRealization_fiber_vertex
             simpa [graphCoverProjection] using hzproj)
 
 omit [WeaklyConnected V] in
+/--
+@isnad1 id=eq.0h5v.s9.b73304381351 from=translated src=- shape=76ebc4e4 vocab=3133e17c
+-/
 theorem graphCoverRealizationQuiverPath_map
     (root : V) {a b : graphCoverVertex root}
     (p : @Quiver.Path (Symmetrify (graphCoverVertex root))
@@ -1421,6 +1589,9 @@ def graphCoverRootFiberPoint (root : V) :
     rfl
   ⟩
 
+/--
+@isnad1 id=eq.2h6v.s8.63f31ced43b7 from=translated src=- shape=a3f7b395 vocab=fd634f36
+-/
 theorem graphRealizationQuiverPath_cast
     {W : Type u} [Quiver.{u} W]
     {a b a' b' : W} (ha : a = a') (hb : b = b')
@@ -1432,6 +1603,9 @@ theorem graphRealizationQuiverPath_cast
   cases hb
   rfl
 
+/--
+@isnad1 id=ex.0h3v.s10.9bd3de3a6e06 from=translated src=- shape=4e18dc4b vocab=ea33c8c4
+-/
 theorem graphCombinatorialToTopological_surjective_of_path
     (root : V) (γ : Path (graphVertex root) (graphVertex root)) :
     ∃ p : @Quiver.Path (Symmetrify V) (Quiver.symmetrifyQuiver V)
@@ -1530,6 +1704,9 @@ theorem graphCombinatorialToTopological_surjective_of_path
         (congrArg (fun r => r t) hqcast).symm
   rw [← hqmap, ← hmap]
 
+/--
+@isnad1 id=surjecti.0h2v.s10.cdbad26dfa60 from=translated src=- shape=a681150a vocab=432edd42
+-/
 theorem graphCombinatorialToTopological_surjective
     (root : V) :
     Function.Surjective (graphCombinatorialToTopological root) := by
@@ -1540,6 +1717,9 @@ theorem graphCombinatorialToTopological_surjective
   refine ⟨graphBaseSymPathValue p, ?_⟩
   simpa [graphCombinatorialToTopological, graphFreeGroupoidToTopological] using hp
 
+/--
+@isnad1 id=heq.2h6v.s7.aa05b6d6f9fc from=translated src=- shape=cd7a1fe6 vocab=e59bebd7
+-/
 theorem baseSymPathValue_cast_heq
     {V : Type u} [Quiver.{u} V]
     {a b a' b' : Symmetrify V} (ha : a = a') (hb : b = b')
@@ -1709,6 +1889,9 @@ private theorem graphCombinatorialToTopological_injective_of_paths
     hpvalue.symm.trans (heq_of_eq hprojection)
   exact eq_of_heq (hmid.trans hqvalue)
 
+/--
+@isnad1 id=injectiv.0h2v.s10.2ced4b903a84 from=translated src=- shape=a681150a vocab=17790418
+-/
 theorem graphCombinatorialToTopological_injective
     (root : V) :
     Function.Injective (graphCombinatorialToTopological root) := by
@@ -1748,6 +1931,9 @@ noncomputable def graphTopologicalFundamentalGroupEquiv
   (graphCombinatorialToTopologicalEquiv root).symm.trans
     (graphFundamentalGroupEquiv root)
 
+/--
+@isnad1 id=nonempty.0h2v.s8.899564de1c27 from=translated src=- shape=ebdfbab7 vocab=d82a70ca
+-/
 theorem proved_topological_fundamental_group_free_rank
     {V : Type u} [Quiver.{u} V] [Fintype V] [FiniteQuiver V]
     [WeaklyConnected V] (root : V) :

@@ -51,10 +51,15 @@ noncomputable def rejectedMass (α : ℝ) : ℝ := by
   exact ∑ j ∈ (Finset.range (m + 1)).filter (fun j ↦ C.K j ≤ α),
     chainMass C.K j
 
+/--
+@isnad1 id=le.0h3v.s4.bbd11cb94f24 from=translated src=- shape=a55bbd7d vocab=0e9fa3c6
+-/
 theorem mass_nonneg (j : ℕ) : 0 ≤ chainMass C.K j := by
   exact sub_nonneg.mpr (C.antitone (Nat.le_succ j))
 
-/-- A shifted telescoping sum of adjacent differences. -/
+/-- A shifted telescoping sum of adjacent differences.
+@isnad1 id=eq.0h3v.s5.77ee66b83992 from=translated src=- shape=f3afd3ac vocab=5b7b91ff
+-/
 theorem sum_chainMass_shift (K : ℕ → ℝ) (t r : ℕ) :
     (∑ j ∈ Finset.range r, chainMass K (t + j)) = K t - K (t + r) := by
   induction r with
@@ -64,7 +69,9 @@ theorem sum_chainMass_shift (K : ℕ → ℝ) (t r : ℕ) :
       simp only [chainMass]
       ring_nf
 
-/-- Telescoping over a half-open interval of indices. -/
+/-- Telescoping over a half-open interval of indices.
+@isnad1 id=eq.1h3v.s5.c608fdc886ff from=translated src=- shape=bf373e4e vocab=4e128287
+-/
 theorem sum_chainMass_Ico (K : ℕ → ℝ) {t u : ℕ} (htu : t ≤ u) :
     (∑ j ∈ Finset.Ico t u, chainMass K j) = K t - K u := by
   rw [Finset.sum_Ico_eq_sub _ htu]
@@ -74,7 +81,9 @@ theorem sum_chainMass_Ico (K : ℕ → ℝ) {t u : ℕ} (htu : t ≤ u) :
   rw [hzero u, hzero t]
   ring
 
-/-- The adjacent-difference masses telescope to one. -/
+/-- The adjacent-difference masses telescope to one.
+@isnad1 id=eq.0h2v.s5.2df87ddc989a from=translated src=- shape=032b9fde vocab=c0133f88
+-/
 theorem total_mass :
     (∑ j ∈ Finset.range (m + 1), chainMass C.K j) = 1 := by
   calc
@@ -84,13 +93,18 @@ theorem total_mass :
     _ = 1 := by rw [C.initial, C.sentinel, sub_zero]
 
 /-- The mass from position `t` through the final genuine state `m` is
-exactly the statistic value at `t`. -/
+exactly the statistic value at `t`.
+@isnad1 id=eq.1h3v.s6.a1444e4cabba from=translated src=- shape=fa103978 vocab=15c3bb64
+-/
 theorem terminal_mass {t : ℕ} (ht : t ≤ m + 1) :
     (∑ j ∈ Finset.range (m + 1 - t), chainMass C.K (t + j)) = C.K t := by
   rw [sum_chainMass_shift]
   have hadd : t + (m + 1 - t) = m + 1 := Nat.add_sub_of_le ht
   rw [hadd, C.sentinel, sub_zero]
 
+/--
+@isnad1 id=eq.1h3v.s5.2653e955032b from=translated src=- shape=e8ae1e00 vocab=33d7f91e
+-/
 theorem terminal_mass_Ico {t : ℕ} (ht : t ≤ m + 1) :
     (∑ j ∈ Finset.Ico t (m + 1), chainMass C.K j) = C.K t := by
   rw [Finset.sum_Ico_eq_sub _ ht]
@@ -104,7 +118,9 @@ theorem terminal_mass_Ico {t : ℕ} (ht : t ≤ m + 1) :
   ring
 
 /-- Terminal-segment form of exact chain calibration: if rejection begins
-at `t`, its chain probability is at most its threshold `α`. -/
+at `t`, its chain probability is at most its threshold `α`.
+@isnad1 id=le.2h4v.s6.4c926e583670 from=translated src=- shape=9c94fc75 vocab=15c3bb64
+-/
 theorem calibration_terminal {t : ℕ} (ht : t ≤ m + 1) {α : ℝ}
     (hreject : C.K t ≤ α) :
     (∑ j ∈ Finset.range (m + 1 - t), chainMass C.K (t + j)) ≤ α := by
@@ -113,7 +129,9 @@ theorem calibration_terminal {t : ℕ} (ht : t ≤ m + 1) {α : ℝ}
 
 /-- Rejection-set formulation of exact chain calibration.  Monotonicity
 makes the rejected states a terminal segment; `hterminal` names its first
-index.  The case `t = m + 1` represents an empty rejection set. -/
+index.  The case `t = m + 1` represents an empty rejection set.
+@isnad1 id=le.4h4v.s6.943dbe43762a from=translated src=- shape=256d7f8d vocab=63d72ac5
+-/
 theorem exact_chain_calibration {t : ℕ} (ht : t ≤ m + 1) {α : ℝ}
     (hα : 0 ≤ α)
     (hterminal : ∀ j, j < m + 1 → (C.K j ≤ α ↔ t ≤ j))
@@ -140,7 +158,9 @@ theorem exact_chain_calibration {t : ℕ} (ht : t ≤ m + 1) {α : ℝ}
 
 /-- Exact calibration along a chain, with the first rejected state chosen
 automatically.  The zero sentinel guarantees that such an index exists; if
-it is the sentinel itself, the genuine rejection set is empty. -/
+it is the sentinel itself, the genuine rejection set is empty.
+@isnad1 id=le.1h3v.s4.08e7b5b3d5f3 from=translated src=- shape=ceaeff99 vocab=07c746d1
+-/
 theorem exact_chain_calibration' {α : ℝ} (hα : 0 ≤ α) :
     C.rejectedMass α ≤ α := by
   have hexists : ∃ t : ℕ, C.K t ≤ α := by

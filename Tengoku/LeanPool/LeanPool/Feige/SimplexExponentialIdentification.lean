@@ -27,6 +27,9 @@ namespace Feige
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=eq.0h0v.s4.d5c98e02b23d from=translated src=- shape=25d9d552 vocab=ba1f6e9d
+-/
 theorem expMeasure_one_eq_withDensity_unitExponentialDensity :
     expMeasure 1 = volume.withDensity
       (fun x ↦ ENNReal.ofReal (unitExponentialDensity x)) := by
@@ -37,7 +40,9 @@ theorem expMeasure_one_eq_withDensity_unitExponentialDensity :
   by_cases hx : 0 ≤ x <;> simp [Set.indicator, hx]
 
 /-- Binary density-product bridge used in the finite-dimensional
-induction. -/
+induction.
+@isnad1 id=eq.2h4v.s7.fdf989a86ce2 from=translated src=- shape=138043c1 vocab=ccc00f9c
+-/
 theorem prod_withDensity_eq_volume_withDensity
     {α β : Type*} [MeasureSpace α] [MeasureSpace β]
     [SFinite (volume : Measure β)]
@@ -51,7 +56,9 @@ theorem prod_withDensity_eq_volume_withDensity
 
 /-- Transporting a density through a measure-preserving measurable
 equivalence transports the underlying measure and composes the density
-with the equivalence. -/
+with the equivalence.
+@isnad1 id=eq.2h6v.s7.d9b19c9d6e8d from=translated src=- shape=ca256b24 vocab=b047f7a9
+-/
 theorem MeasurePreserving.map_withDensity_equiv
     {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
     {μ : Measure α} {ν : Measure β}
@@ -67,7 +74,9 @@ theorem MeasurePreserving.map_withDensity_equiv
     hT.setLIntegral_comp_preimage hs hf
 
 /-- One induction step: adjoining an independent unit exponential to a
-finite-dimensional density multiplies the joint density. -/
+finite-dimensional density multiplies the joint density.
+@isnad1 id=eq.1h2v.s6.e6b2f4c4f769 from=translated src=- shape=137c2333 vocab=9c94641b
+-/
 theorem expMeasure_prod_withDensity
     {β : Type*} [MeasureSpace β]
     [SFinite (volume : Measure β)]
@@ -88,6 +97,9 @@ noncomputable def finExponentialDensity (n : ℕ) :
     (Fin n → ℝ) → ℝ≥0∞ :=
   fun x ↦ ∏ i, ENNReal.ofReal (unitExponentialDensity (x i))
 
+/--
+@isnad1 id=measurab.0h1v.s4.9ed5d3187c9b from=translated src=- shape=e6b716cb vocab=a4fc65b9
+-/
 theorem measurable_finExponentialDensity (n : ℕ) :
     Measurable (finExponentialDensity n) := by
   unfold finExponentialDensity
@@ -100,7 +112,9 @@ theorem measurable_finExponentialDensity (n : ℕ) :
       (measurableSet_Ici.preimage (measurable_pi_apply i))
 
 /-- The finite product of unit exponential laws has the product of the
-one-dimensional exponential densities with respect to Lebesgue volume. -/
+one-dimensional exponential densities with respect to Lebesgue volume.
+@isnad1 id=eq.0h1v.s6.92bd362b6acf from=translated src=- shape=581016f3 vocab=e9437392
+-/
 theorem pi_expMeasure_eq_withDensity (n : ℕ) :
     Measure.pi (fun _ : Fin n ↦ expMeasure 1) =
       (volume : Measure (Fin n → ℝ)).withDensity
@@ -173,6 +187,9 @@ theorem pi_expMeasure_eq_withDensity (n : ℕ) :
           exact MeasurePreserving.map_withDensity_equiv T.symm hVol.symm
             (measurable_finExponentialDensity (n + 1))
 
+/--
+@isnad1 id=eq.0h2v.s5.ef7e429834e7 from=translated src=- shape=722c2e96 vocab=3149434e
+-/
 theorem productExponentialDensity_eq_ofReal_joint
     (e : ℝ × (Fin n → ℝ)) :
     ENNReal.ofReal (unitExponentialDensity e.1) *
@@ -191,6 +208,9 @@ theorem productExponentialDensity_eq_ofReal_joint
     · simp [Set.indicator, h0, (Real.exp_pos (-e.1)).le]
     · simp [Set.indicator, h0]
 
+/--
+@isnad1 id=eq.0h1v.s6.28429be518d5 from=translated src=- shape=b8928d6a vocab=d055473d
+-/
 theorem expMeasure_prod_pi_eq_realExponentialProductMeasure :
     (expMeasure 1).prod
         (Measure.pi (fun _ : Fin n ↦ expMeasure 1)) =
@@ -237,11 +257,17 @@ def nnrealOptionToRealOption
     (e : Option (Fin n) → NNReal) : Option (Fin n) → ℝ :=
   fun i ↦ (e i : ℝ)
 
+/--
+@isnad1 id=measurab.0h1v.s5.6ff060e95b5a from=translated src=- shape=38520e02 vocab=9dc53ed3
+-/
 theorem measurable_nnrealOptionToRealOption :
     Measurable (nnrealOptionToRealOption (n := n)) := by
   unfold nnrealOptionToRealOption
   fun_prop
 
+/--
+@isnad1 id=eq.0h1v.s7.8a2200c1b813 from=translated src=- shape=9d9145f9 vocab=e73d76fb
+-/
 theorem map_realOptionProductMeasure :
     Measure.map (optionVectorToProduct (n := n))
         (Measure.pi (fun _ : Option (Fin n) ↦ expMeasure 1)) =
@@ -275,12 +301,18 @@ noncomputable def nnrealNormalizedCoordinates
     (e : Option (Fin n) → NNReal) : Fin n → ℝ :=
   fun i ↦ (e (some i) : ℝ) / nnrealExponentialTotal e
 
+/--
+@isnad1 id=measurab.0h1v.s4.82e4ce4dab4f from=translated src=- shape=755d2504 vocab=d90aeb69
+-/
 theorem measurable_nnrealExponentialTotal :
     Measurable (nnrealExponentialTotal :
       (Option (Fin n) → NNReal) → ℝ) := by
   unfold nnrealExponentialTotal
   fun_prop
 
+/--
+@isnad1 id=mem.1h2v.s5.261f61d1d1b1 from=translated src=- shape=e37efed1 vocab=410cdc00
+-/
 theorem nnrealNormalizedCoordinates_mem_fullSimplex
     {e : Option (Fin n) → NNReal}
     (ht : 0 < nnrealExponentialTotal e) :
@@ -295,7 +327,9 @@ theorem nnrealNormalizedCoordinates_mem_fullSimplex
     exact le_add_of_nonneg_left (e none).coe_nonneg
 
 /-- On every nonzero exponential vector, the event defining `dirichletK`
-is exactly the simplex halfspace event after normalization. -/
+is exactly the simplex halfspace event after normalization.
+@isnad1 id=iff.1h3v.s6.a60aec33c98b from=translated src=- shape=4cf2e861 vocab=232c99cd
+-/
 theorem mem_kEvent_iff_normalized_simplex_event
     (y : Fin n → ℝ) {e : Option (Fin n) → NNReal}
     (ht : 0 < nnrealExponentialTotal e) :
@@ -341,6 +375,9 @@ theorem mem_kEvent_iff_normalized_simplex_event
     rw [this]
     linarith
 
+/--
+@isnad1 id=eq.0h2v.s4.74fd827bf1d8 from=translated src=- shape=ba559eb4 vocab=2d74d8d7
+-/
 theorem normalizedCoordinates_realProduct_comp
     (e : Option (Fin n) → NNReal) :
     normalizedExponentialCoordinates
@@ -348,6 +385,9 @@ theorem normalizedCoordinates_realProduct_comp
       nnrealNormalizedCoordinates e := by
   rfl
 
+/--
+@isnad1 id=iff.0h3v.s5.54bd9fa0cac2 from=translated src=- shape=b489c324 vocab=2b6c3300
+-/
 theorem mem_kEvent_iff_normalized_simplex_event'
     (y : Fin n → ℝ) (e : Option (Fin n) → NNReal) :
     e ∈ kEvent y ↔

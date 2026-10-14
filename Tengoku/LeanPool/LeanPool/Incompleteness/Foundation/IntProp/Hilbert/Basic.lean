@@ -111,6 +111,9 @@ open Entailment
 
 variable {H₁ H₂ : Hilbert α}
 
+/--
+@isnad1 id=weakerth.1h3v.s5.d6698ae9e458 from=translated src=- shape=d1aa6327 vocab=41f12b9f
+-/
 lemma weakerThan_of_dominate_axiomInstances (hMaxm : ∀ {φ :
     Formula α}, φ ∈ H₁.axiomInstances → H₂ ⊢! φ)
   : H₁ wkn H₂ := by
@@ -121,6 +124,9 @@ lemma weakerThan_of_dominate_axiomInstances (hMaxm : ∀ {φ :
   | mdp ihpq ihp => exact ihpq ⨀ ihp;
   | _ => simp;
 
+/--
+@isnad1 id=weakerth.1h3v.s5.cbc04b538c65 from=translated src=- shape=4fd8ca4f vocab=9bd2ada0
+-/
 lemma weakerThan_of_subset_axioms (hSubset : H₁.axioms ⊆ H₂.axioms) : H₁ wkn H₂ := by
   apply weakerThan_of_dominate_axiomInstances;
   rintro φ ⟨ψ, hs, ⟨s, rfl⟩⟩;

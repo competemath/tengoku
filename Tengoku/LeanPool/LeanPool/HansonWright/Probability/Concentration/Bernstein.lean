@@ -46,7 +46,9 @@ universe u v
 
 variable {Ω : Type u} [MeasurableSpace Ω]
 
-/-- A one-sided Bernstein tail bound from a local quadratic CGF estimate. -/
+/-- A one-sided Bernstein tail bound from a local quadratic CGF estimate.
+@isnad1 id=le.6h7v.s8.6b876751ba76 from=translated src=- shape=a99a3fa5 vocab=9e5ff95e
+-/
 theorem bernstein_one_sided_of_cgf_bound {Ω : Type*} [MeasurableSpace Ω]
     {μ : Measure Ω} [IsProbabilityMeasure μ] {Y : Ω → ℝ} {v b C t : ℝ}
     (hC : 0 < C) (hv : 0 < v) (hb : 0 < b)
@@ -114,7 +116,9 @@ theorem bernstein_one_sided_of_cgf_bound {Ω : Type*} [MeasurableSpace Ω]
         rw [h_rate]
         ring_nf
 
-/-- A two-sided Bernstein tail bound from a local quadratic CGF estimate. -/
+/-- A two-sided Bernstein tail bound from a local quadratic CGF estimate.
+@isnad1 id=le.6h7v.s8.8bd4984aafe8 from=translated src=- shape=a8980abd vocab=9e5ff95e
+-/
 theorem bernstein_two_sided_of_cgf_bound {Ω : Type*} [MeasurableSpace Ω]
     {μ : Measure Ω} [IsProbabilityMeasure μ] {Y : Ω → ℝ} {v b C t : ℝ}
     (hC : 0 < C) (hv : 0 < v) (hb : 0 < b)
@@ -303,6 +307,9 @@ private lemma scalarBernstein_integrable_exp_mul_of_abs_le
     exact (abs_le.mp hω)
   exact integrable_expt_bound hX hIcc
 
+/--
+@isnad1 id=integrab.3h6v.s7.d1aaaac79fdf from=translated src=- shape=25b150fe vocab=6e4f113e
+-/
 lemma iIndepFun.integrable_exp_mul_finsetSum
     {ι : Type*} {μ : Measure Ω} [IsFiniteMeasure μ]
     {X : ι → Ω → ℝ} (h_indep : iIndepFun X μ)
@@ -328,6 +335,7 @@ lemma iIndepFun.integrable_exp_mul_finsetSum
 
 /--
 Bernstein MGF bound for one centered, almost surely bounded real random variable.
+@isnad1 id=le.5h5v.s7.b039c33df974 from=translated src=- shape=706a3fe4 vocab=57e79fad
 -/
 theorem bernstein_mgf_le_of_centered_abs_le
     {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -411,6 +419,7 @@ theorem bernstein_mgf_le_of_centered_abs_le
 
 /--
 Bernstein CGF bound for one centered, almost surely bounded real random variable.
+@isnad1 id=le.5h5v.s7.17582b5287fb from=translated src=- shape=b5d0b7a2 vocab=8d65cbf8
 -/
 theorem bernstein_cgf_le_of_centered_abs_le
     {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -434,6 +443,7 @@ theorem bernstein_cgf_le_of_centered_abs_le
 
 /--
 The CGF of a finite independent sum satisfies the rational Bernstein bound.
+@isnad1 id=le.7h8v.s8.3233427a5ff8 from=translated src=- shape=c867b461 vocab=7cfb20bb
 -/
 theorem bernstein_cgf_sum_le
     {ι : Type*} {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -483,6 +493,7 @@ theorem bernstein_cgf_sum_le
 
 /--
 Exact one-sided Bernstein tail bound from a rational Bernstein CGF estimate.
+@isnad1 id=le.5h6v.s8.d652ee1b4ab4 from=translated src=- shape=c66fcf80 vocab=21938498
 -/
 theorem bernstein_one_sided_of_rational_cgf_bound
     {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -540,6 +551,7 @@ theorem bernstein_one_sided_of_rational_cgf_bound
 
 /--
 Scalar Bernstein inequality for a finite set of independent centered bounded summands.
+@isnad1 id=le.8h8v.s8.bf74a0056987 from=translated src=- shape=0673e565 vocab=d8b7d3a1
 -/
 theorem bernstein_inequality_finset
     {ι : Type*} {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -574,6 +586,7 @@ theorem bernstein_inequality_finset
 
 /--
 Convenience `[Fintype ι]` wrapper for the scalar Bernstein inequality.
+@isnad1 id=le.8h7v.s8.bec126cc7d9a from=translated src=- shape=ed5c2a1b vocab=8489adc7
 -/
 theorem bernstein_inequality
     {ι : Type*} [Fintype ι]

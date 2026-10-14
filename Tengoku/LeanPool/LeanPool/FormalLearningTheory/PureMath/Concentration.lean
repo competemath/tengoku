@@ -45,7 +45,9 @@ attribute [local instance] Classical.propDecidable
 /-- Chebyshev majority bound: if k ≥ 9/δ independent events each have probability ≥ 2 / 3,
     then the probability that strictly more than k/2 of them hold is ≥ 1-δ.
     Uses indicator random variables, Popoviciu's variance bound, independence for
-    variance of sums, and Chebyshev's inequality. -/
+    variance of sums, and Chebyshev's inequality.
+@isnad1 id=le.5h5v.s7.cfebdcc6f23f from=translated src=- shape=4e53204b vocab=18e2e841
+-/
 lemma chebyshev_majority_bound
     {Ω : Type*} [MeasurableSpace Ω] {μ : MeasureTheory.Measure Ω}
     [MeasureTheory.IsProbabilityMeasure μ]

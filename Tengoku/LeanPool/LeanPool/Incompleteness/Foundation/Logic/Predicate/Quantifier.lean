@@ -60,10 +60,19 @@ lemma eq_sigma : sigma = Sg := rfl
 
 lemma eq_pi : pi = Pg := rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.bd2652ed0a84 from=translated src=- shape=dce07c30 vocab=55be10ff
+-/
 @[simp] lemma alt_sigma : alt Sg = Pg := rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.5a41b408049f from=translated src=- shape=dce07c30 vocab=55be10ff
+-/
 @[simp] lemma alt_pi : alt Pg = Sg := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.0d4784247498 from=translated src=- shape=47dcad53 vocab=8b41e959
+-/
 @[simp] lemma alt_alt (Γ : Polarity) : Γ.alt.alt = Γ := by rcases Γ <;> rfl
 
 end Polarity
@@ -91,12 +100,24 @@ lemma eq_pi : pi = Pg := rfl
 
 lemma eq_delta : delta = Dlt := rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.0c5580e8977f from=translated src=- shape=dce07c30 vocab=5c721ec8
+-/
 @[simp] lemma alt_sigma : alt Sg = Pg := rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.196db632fcbe from=translated src=- shape=dce07c30 vocab=5c721ec8
+-/
 @[simp] lemma alt_pi : alt Pg = Sg := rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.691c6dfefbbd from=translated src=- shape=dce07c30 vocab=f0b87a45
+-/
 @[simp] lemma alt_delta : alt Dlt = Dlt := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.53a62a4225ed from=translated src=- shape=47dcad53 vocab=f1209912
+-/
 @[simp] lemma alt_alt (Γ : SigmaPiDelta) : Γ.alt.alt = Γ := by rcases Γ <;> rfl
 
 end SigmaPiDelta
@@ -143,8 +164,14 @@ def quant : Polarity → α (n + 1) → α n
   | Sg, φ => ∃' φ
   | Pg, φ => ∀' φ
 
+/--
+@isnad1 id=eq.0h3v.s5.19873671eefa from=translated src=- shape=90504260 vocab=539f2fb9
+-/
 @[simp] lemma quant_sigma (φ : α (n + 1)) : quant Sg φ = ∃' φ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.67d99cd6f1d8 from=translated src=- shape=90504260 vocab=bc273ebd
+-/
 @[simp] lemma quant_pi (φ : α (n + 1)) : quant Pg φ = ∀' φ := rfl
 
 end «lp_section_1»
@@ -161,8 +188,14 @@ def univClosure : {n : ℕ} → α n → α 0
 /-- Imported declaration from the Incompleteness formalization. -/
 prefix:64 "∀* " => univClosure
 
+/--
+@isnad1 id=eq.0h2v.s5.9867886e3090 from=translated src=- shape=f69b1747 vocab=c5204fe2
+-/
 @[simp] lemma univClosure_zero (a : α 0) : ∀* a = a := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.e50eecf15b66 from=translated src=- shape=cdb8ba66 vocab=8fec54e0
+-/
 lemma univClosure_succ {n} (a : α (n + 1)) : ∀* a = ∀* ∀' a := rfl
 
 /-- Imported declaration from the Incompleteness formalization. -/
@@ -173,10 +206,19 @@ def univItr : (k : ℕ) → α (n + k) → α n
 /-- Imported declaration from the Incompleteness formalization. -/
 notation "∀^[" k "] " φ:64 => univItr k φ
 
+/--
+@isnad1 id=eq.0h3v.s4.0f1bb1687c4c from=translated src=- shape=bac807c1 vocab=6c5a8617
+-/
 @[simp] lemma univItr_zero (a : α n) : ∀^[0] a = a := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.8f9fb1672857 from=translated src=- shape=6ee67882 vocab=307504e8
+-/
 @[simp] lemma univItr_one (a : α (n + 1)) : ∀^[1] a = ∀' a := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.333a3f4d39b3 from=translated src=- shape=874a1a9e vocab=307504e8
+-/
 lemma univItr_succ {k} (a : α (n + (k + 1))) : ∀^[k + 1] a = ∀^[k] (∀' a) := rfl
 
 end «lp_section_2»
@@ -193,8 +235,14 @@ def exClosure : {n : ℕ} → α n → α 0
 /-- Imported declaration from the Incompleteness formalization. -/
 prefix:64 "∃* " => exClosure
 
+/--
+@isnad1 id=eq.0h2v.s5.3cfbe833a7b7 from=translated src=- shape=f69b1747 vocab=36332410
+-/
 @[simp] lemma exClosure_zero (a : α 0) : ∃* a = a := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.0d83d22f77b6 from=translated src=- shape=cdb8ba66 vocab=ba6aa582
+-/
 lemma exClosure_succ {n} (a : α (n + 1)) : ∃* a = ∃* ∃' a := rfl
 
 /-- Imported declaration from the Incompleteness formalization. -/
@@ -205,10 +253,19 @@ def exItr : (k : ℕ) → α (n + k) → α n
 /-- Imported declaration from the Incompleteness formalization. -/
 notation "∃^[" k "] " φ:64 => exItr k φ
 
+/--
+@isnad1 id=eq.0h3v.s4.1ce3d8a0f672 from=translated src=- shape=bac807c1 vocab=49e53758
+-/
 @[simp] lemma exItr_zero (a : α n) : ∃^[0] a = a := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.5aaf7c9f8b7e from=translated src=- shape=6ee67882 vocab=4155c5dc
+-/
 @[simp] lemma exItr_one (a : α (n + 1)) : ∃^[1] a = ∃' a := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.f05d8a94a90c from=translated src=- shape=874a1a9e vocab=4155c5dc
+-/
 lemma exItr_succ {k} (a : α (n + (k + 1))) : ∃^[k + 1] a = ∃^[k] (∃' a) := rfl
 
 end «lp_section_3»

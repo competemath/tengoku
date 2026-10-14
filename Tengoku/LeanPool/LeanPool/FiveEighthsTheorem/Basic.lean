@@ -58,12 +58,17 @@ private theorem card_div_card_eq_one_div_index [Finite G] (H : Subgroup G) :
   rw [div_eq_div_iff (by exact_mod_cast hG) (by exact_mod_cast hindex), one_mul]
   exact_mod_cast Subgroup.card_mul_index H
 
+/--
+@isnad1 id=eq.0h1v.s5.a2af1f143502 from=translated src=- shape=8c7a90e3 vocab=385ee650
+-/
 theorem centralFraction_eq_one_div_index [Finite G] :
     centralFraction G = 1 / ((Subgroup.center G).index : ℚ) :=
   card_div_card_eq_one_div_index (Subgroup.center G)
 
 /-- If `G` is nonabelian then `G ⧸ Z(G)` is not cyclic, so the index of the center cannot be
-prime. -/
+prime.
+@isnad1 id=ne.2h2v.s5.7c12a68e8c6d from=translated src=- shape=90722759 vocab=99d85f1e
+-/
 theorem center_index_ne_prime (h : ¬IsMulCommutative G) {p : ℕ} (hp : p.Prime) :
     (Subgroup.center G).index ≠ p := by
   intro heq
@@ -74,7 +79,9 @@ theorem center_index_ne_prime (h : ¬IsMulCommutative G) {p : ℕ} (hp : p.Prime
     (QuotientGroup.mk' (Subgroup.center G)) (QuotientGroup.ker_mk' _).le)
 
 /-- The center of a finite nonabelian group has index at least `4`: the index is nonzero by
-finiteness, is not `1` by noncommutativity, and is not `2` or `3` because those are prime. -/
+finiteness, is not `1` by noncommutativity, and is not `2` or `3` because those are prime.
+@isnad1 id=le.1h1v.s5.b9f1fad63630 from=translated src=- shape=df5dd593 vocab=f1d8b393
+-/
 theorem four_le_center_index [Finite G] (h : ¬IsMulCommutative G) :
     4 ≤ (Subgroup.center G).index := by
   have h0 : (Subgroup.center G).index ≠ 0 := Subgroup.index_ne_zero_of_finite
@@ -84,7 +91,9 @@ theorem four_le_center_index [Finite G] (h : ¬IsMulCommutative G) :
   have h3 := center_index_ne_prime h Nat.prime_three
   omega
 
-/-- The center of a finite nonabelian group contains at most a quarter of its elements. -/
+/-- The center of a finite nonabelian group contains at most a quarter of its elements.
+@isnad1 id=le.1h1v.s5.4a2809ee035a from=translated src=- shape=34868ac4 vocab=a7fc14b9
+-/
 theorem centralFraction_le_quarter [Finite G] (h : ¬IsMulCommutative G) :
     centralFraction G ≤ 1 / 4 := by
   have h4 := four_le_center_index h
@@ -94,7 +103,9 @@ theorem centralFraction_le_quarter [Finite G] (h : ¬IsMulCommutative G) :
   exact_mod_cast h4
 
 /-- The centralizer of a noncentral element is a proper subgroup, so its index is at
-least `2`. -/
+least `2`.
+@isnad1 id=le.1h2v.s5.d6507f1df294 from=translated src=- shape=c9890956 vocab=0e46b8e6
+-/
 theorem two_le_centralizer_index [Finite G] {g : G} (hg : g ∉ Subgroup.center G) :
     2 ≤ (Subgroup.centralizer {g} : Subgroup G).index := by
   have h0 : (Subgroup.centralizer {g} : Subgroup G).index ≠ 0 := Subgroup.index_ne_zero_of_finite
@@ -104,7 +115,9 @@ theorem two_le_centralizer_index [Finite G] {g : G} (hg : g ∉ Subgroup.center 
     hne_top (Subgroup.index_eq_one.mp h1)
   omega
 
-/-- The centralizer of a noncentral element contains at most half of the elements. -/
+/-- The centralizer of a noncentral element contains at most half of the elements.
+@isnad1 id=le.1h2v.s5.53b35622741a from=translated src=- shape=ddd48e51 vocab=c7511f4c
+-/
 theorem centralizerFraction_le_half [Finite G] {g : G} (hg : g ∉ Subgroup.center G) :
     centralizerFraction g ≤ 1 / 2 := by
   have h2 := two_le_centralizer_index hg
@@ -124,7 +137,9 @@ private theorem ncard_le_ncard_univ {α : Type*} [Finite α] (p : α → Prop) :
     Set.ncard { g | p g } ≤ Set.ncard (Set.univ : Set α) :=
   Set.ncard_le_ncard (Set.subset_univ _) Set.finite_univ
 
-/-- The commuting probability of `G` counts the commuting pairs of elements. -/
+/-- The commuting probability of `G` counts the commuting pairs of elements.
+@isnad1 id=eq.0h1v.s6.a7ac1625908d from=translated src=- shape=e4b6d30a vocab=a759a797
+-/
 theorem commProb_eq_ncard_div_sq (G : Type*) [Group G] :
     commProb G = (Set.ncard { (g, h) : G × G | g * h = h * g } : ℚ) / (Nat.card G : ℚ) ^ 2 := by
   have key : Nat.card { p : G × G // Commute p.1 p.2 }
@@ -231,7 +246,9 @@ private theorem commProb_le_five_eighths_of_finite (G : Type*) [Group G] [Finite
 
 /-- **The 5/8 theorem**: the commuting probability of a nonabelian group is at most `5/8`. For
 infinite groups, this follows from Mathlib's convention that `commProb` is `0`; the finite case is
-Gustafson's theorem. -/
+Gustafson's theorem.
+@isnad1 id=le.1h1v.s5.a90eeb2d9991 from=translated src=- shape=817aa61f vocab=68bf494c
+-/
 theorem commProb_le_five_eighths (G : Type*) [Group G] (h : ¬IsMulCommutative G) :
     commProb G ≤ 5 / 8 := by
   rcases finite_or_infinite G with hfinite | hinfinite

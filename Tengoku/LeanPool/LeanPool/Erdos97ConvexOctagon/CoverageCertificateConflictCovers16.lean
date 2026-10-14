@@ -79,7 +79,9 @@ def conflictCovers64 : Array ConflictCover :=
   ⟨7, 544212992, 33822211199, [11, 20, 21, 22, 29]⟩,
   ⟨6, 140738036766720, 34359607295, [11, 12, 20, 21, 23, 29, 47]⟩]
 
-/-- Every entry in conflict-cover group 64 passes its audit. -/
+/-- Every entry in conflict-cover group 64 passes its audit.
+@isnad1 id=eq.0h0v.s3.fb90ceaa48f9 from=translated src=- shape=0547e772 vocab=10744726
+-/
 theorem conflictCovers64_valid :
     conflictCovers64.toList.all ConflictCover.validB = true := by
   decide
@@ -151,7 +153,9 @@ def conflictCovers65 : Array ConflictCover :=
   ⟨6, 137439480836, 34359344383, [2, 10, 11, 19, 37]⟩,
   ⟨6, 140737489963008, 34359541627, [11, 15, 19, 20, 47]⟩]
 
-/-- Every entry in conflict-cover group 65 passes its audit. -/
+/-- Every entry in conflict-cover group 65 passes its audit.
+@isnad1 id=eq.0h0v.s3.e158a3f97ffb from=translated src=- shape=0547e772 vocab=6de6146c
+-/
 theorem conflictCovers65_valid :
     conflictCovers65.toList.all ConflictCover.validB = true := by
   decide
@@ -222,7 +226,9 @@ def conflictCovers66 : Array ConflictCover :=
   ⟨6, 549757429760, 34359377919, [11, 13, 15, 19, 20, 39]⟩,
   ⟨6, 137439512592, 34359443451, [4, 11, 15, 19, 37]⟩]
 
-/-- Every entry in conflict-cover group 66 passes its audit. -/
+/-- Every entry in conflict-cover group 66 passes its audit.
+@isnad1 id=eq.0h0v.s3.5508a89450cb from=translated src=- shape=0547e772 vocab=5cde1409
+-/
 theorem conflictCovers66_valid :
     conflictCovers66.toList.all ConflictCover.validB = true := by
   decide
@@ -293,7 +299,9 @@ def conflictCovers67 : Array ConflictCover :=
   ⟨7, 3674112, 16910450071, [12, 19, 20, 21]⟩,
   ⟨6, 140737760497664, 34359738335, [12, 15, 19, 20, 21, 28, 47]⟩]
 
-/-- Every entry in conflict-cover group 67 passes its audit. -/
+/-- Every entry in conflict-cover group 67 passes its audit.
+@isnad1 id=eq.0h0v.s3.83558da8e67b from=translated src=- shape=0547e772 vocab=cdff94e0
+-/
 theorem conflictCovers67_valid :
     conflictCovers67.toList.all ConflictCover.validB = true := by
   decide

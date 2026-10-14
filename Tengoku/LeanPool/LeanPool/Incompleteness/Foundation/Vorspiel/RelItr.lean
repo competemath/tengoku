@@ -21,18 +21,30 @@ namespace iterate
 
 variable {R : Rel α α} {n m : ℕ}
 
+/--
+@isnad1 id=iff.0h4v.s4.8d4efc69e7aa from=translated src=- shape=420596d3 vocab=b70f88ab
+-/
 @[simp]
 lemma iff_zero {x y : α} : R.iterate 0 x y ↔ x = y := iff_of_eq rfl
 
+/--
+@isnad1 id=iff.0h5v.s5.13212afdc6d2 from=translated src=- shape=dc0f9f1d vocab=bdf737ed
+-/
 @[simp]
 lemma iff_succ {x y : α} : R.iterate (n + 1) x y ↔ ∃ z, R x z ∧ R.iterate n z y := iff_of_eq rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.41ad4986663c from=translated src=- shape=487d5b42 vocab=9899decb
+-/
 @[simp]
 lemma eq : Rel.iterate (α := α) (· = ·) n = (· = ·) := by
   induction n with
   | zero => rfl;
   | succ n ih => aesop
 
+/--
+@isnad1 id=iff.0h5v.s5.57c8c92ca493 from=translated src=- shape=f8b62005 vocab=bdf737ed
+-/
 lemma forward : (R.iterate (n + 1) x y) ↔ ∃ z, R.iterate n x z ∧ R z y := by
   induction n generalizing x y with
   | zero => simp_all;
@@ -44,13 +56,22 @@ lemma forward : (R.iterate (n + 1) x y) ↔ ∃ z, R.iterate n x z ∧ R z y := 
     · rintro ⟨z, ⟨w, Rxw, Rwz⟩, Rzy⟩;
       exact ⟨w, Rxw, ih.mpr ⟨z, Rwz, Rzy⟩⟩;
 
+/--
+@isnad1 id=iterate.1h4v.s4.a14ff8e28b8e from=translated src=- shape=ed31f4f8 vocab=9899decb
+-/
 lemma true_any (h : x = y) : Rel.iterate (fun _ _ => True) n x y := by
   induction n with
   | zero => simpa;
   | succ n ih => use x;
 
+/--
+@isnad1 id=iterate.2h6v.s5.20be26e2c9b4 from=translated src=- shape=47992ce6 vocab=b70f88ab
+-/
 lemma congr (h : R.iterate n x y) (he : n = m) : R.iterate m x y := he ▸ h
 
+/--
+@isnad1 id=iff.0h6v.s5.e03e890e593f from=translated src=- shape=d96ab26c vocab=bdf737ed
+-/
 lemma comp : (∃ z, R.iterate n x z ∧ R.iterate m z y) ↔ R.iterate (n + m) x y := by
   constructor;
   · rintro ⟨z, hzx, hzy⟩;

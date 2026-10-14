@@ -86,6 +86,9 @@ instance instPreadditivePresheafLeanPool
   delta TopCat.Presheaf
   exact functorCategoryPreadditive
 
+/--
+@isnad1 id=hasext.0h1v.s3.9ea733865e49 from=translated src=- shape=4c19b7a8 vocab=d3537cb7
+-/
 noncomputable instance sheafHasExt (X : TopCat.{u}) :
     HasExt.{u} (TopCat.Sheaf AddCommGrpCat.{u} X) :=
   inferInstanceAs (HasExt.{u} (TopCat.Sheaf AddCommGrpCat.{u} X))
@@ -183,6 +186,9 @@ noncomputable def sheafHSuccMap {X : TopCat.{u}}
       (fun y ↦ y.comp hS.extClass rfl)
       (fun a b ↦ Ext.add_comp a b hS.extClass rfl)
 
+/--
+@isnad1 id=eq.1h4v.s12.760d83d10b4f from=translated src=- shape=ac1ab1e3 vocab=2c0657ed
+-/
 theorem sheafH_succ_map_apply {X : TopCat.{u}}
     {S : ShortComplex (TopCat.Sheaf AddCommGrpCat.{u} X)}
     (hS : S.ShortExact)
@@ -191,7 +197,9 @@ theorem sheafH_succ_map_apply {X : TopCat.{u}}
     ConcreteCategory.hom (sheafHSuccMap hS n) y = y.comp hS.extClass rfl := rfl
 
 /-- If the middle term has subsingleton cohomology in degree `n + 1`, every
-`H^(n+1)(S.X₁)` class comes from some `H^n(S.X₃)` class via the successor map. -/
+`H^(n+1)(S.X₁)` class comes from some `H^n(S.X₃)` class via the successor map.
+@isnad1 id=ex.2h4v.s12.e858d472b254 from=translated src=- shape=2c54885c vocab=0001f506
+-/
 theorem sheafH_succ_map_exists_preimage_of_subsingleton_middle {X : TopCat.{u}}
     {S : ShortComplex (TopCat.Sheaf AddCommGrpCat.{u} X)}
     (hS : S.ShortExact)
@@ -202,6 +210,9 @@ theorem sheafH_succ_map_exists_preimage_of_subsingleton_middle {X : TopCat.{u}}
   obtain ⟨y, hy⟩ := Ext.covariant_sequence_exact₁ _ hS x (@Subsingleton.elim _ h₂H _ _) rfl
   exact ⟨y, (sheafH_succ_map_apply hS n y).trans hy⟩
 
+/--
+@isnad1 id=iszero.2h2v.s8.560995ec4669 from=translated src=- shape=5fa06475 vocab=e02f1b9c
+-/
 theorem sheaf_isZero_of_zero_stalks (X : TopCat.{u})
     {F : TopCat.Presheaf AddCommGrpCat.{u} X} (hF : F.IsSheaf)
     (hstalk : ∀ (x : X)
@@ -230,7 +241,9 @@ noncomputable def sheafH0EquivSections {X : TopCat.{u}}
   Sheaf.H.equiv₀ F Limits.isTerminalTop
 
 /-- Naturality of `sheafH0EquivSections`: composing `x` with `mk₀ f` at
-    degree 0 corresponds to applying `f.app(⊤)` on sections. -/
+    degree 0 corresponds to applying `f.app(⊤)` on sections.
+@isnad1 id=eq.0h5v.s14.655a73b1d5b7 from=translated src=- shape=756c22da vocab=a513a62f
+-/
 lemma sheafH0EquivSections_natural {X : TopCat.{u}}
     {F G : TopCat.Sheaf AddCommGrpCat.{u} X} (f : F ⟶ G) (x : Sheaf.H F 0) :
     sheafH0EquivSections G (x.comp (Ext.mk₀ f) (add_zero 0)) =
@@ -299,6 +312,9 @@ noncomputable def sheafH1CokernelIsoOfSubsingletonMiddle {X : TopCat.{u}}
   haveI : IsIso πH := isIso_of_mono_of_epi πH
   exact asIso πH
 
+/--
+@isnad1 id=eq.2h3v.s15.b8c887d5a89c from=translated src=- shape=fdeb5630 vocab=98f284cc
+-/
 @[simp] theorem sheafH1_cokernel_iso_of_subsingleton_middle_hom_π {X : TopCat.{u}}
     {S : ShortComplex (TopCat.Sheaf AddCommGrpCat.{u} X)}
     (hS : S.ShortExact)
@@ -312,7 +328,9 @@ noncomputable def sheafH1CokernelIsoOfSubsingletonMiddle {X : TopCat.{u}}
     sheafH_succ_map_apply hS 0 ((sheafH0EquivSections S.X₃).symm s)
 
 /-- If a sheaf morphism is surjective on top sections, then every degree-zero cohomology
-    class of the target lifts along it. -/
+    class of the target lifts along it.
+@isnad1 id=ex.1h5v.s11.550cd783fcfd from=translated src=- shape=e6793bf4 vocab=37fb0f24
+-/
 theorem sheafH0_surj_of_epi_app_top {X : TopCat.{u}}
     {F G : TopCat.Sheaf AddCommGrpCat.{u} X} (f : F ⟶ G)
     (hf : Epi (f.hom.app (op ⊤))) :
@@ -338,7 +356,9 @@ private theorem subsingleton_H1_via_surj {C' : Type*} [Category C'] [Abelian C']
   simp only [← hc, ← hd, ← hc', ← hd', Ext.comp_assoc_of_second_deg_zero _ (Ext.mk₀ S.g)
     hSE.extClass rfl, hSE.comp_extClass, Ext.comp_zero _ _ 1 1 rfl]
 
-/-- `H¹` vanishing via degree-zero surjectivity. -/
+/-- `H¹` vanishing via degree-zero surjectivity.
+@isnad1 id=subsingl.3h2v.s10.693dbb5b339d from=translated src=- shape=2a9a30fa vocab=dbd0f425
+-/
 theorem sheafH_subsingleton_H1_via_surj {X : TopCat.{u}}
     {S : ShortComplex (TopCat.Sheaf AddCommGrpCat.{u} X)}
     (hS : S.ShortExact)
@@ -348,7 +368,9 @@ theorem sheafH_subsingleton_H1_via_surj {X : TopCat.{u}}
     Subsingleton (Sheaf.H S.X₁ 1) :=
   subsingleton_H1_via_surj _ hS h₂H h_surj
 
-/-- `H¹` vanishing criterion from surjective top sections. -/
+/-- `H¹` vanishing criterion from surjective top sections.
+@isnad1 id=subsingl.3h2v.s10.3e7ea66cbec1 from=translated src=- shape=fa545d70 vocab=d1192073
+-/
 theorem sheafH_subsingleton_H1_via_epi_app_top {X : TopCat.{u}}
     {S : ShortComplex (TopCat.Sheaf AddCommGrpCat.{u} X)}
     (hS : S.ShortExact)
@@ -357,7 +379,9 @@ theorem sheafH_subsingleton_H1_via_epi_app_top {X : TopCat.{u}}
     Subsingleton (Sheaf.H S.X₁ 1) :=
   sheafH_subsingleton_H1_via_surj hS h₂H (sheafH0_surj_of_epi_app_top S.g hg)
 
-/-- Positive-degree cohomology of an injective sheaf is subsingleton. -/
+/-- Positive-degree cohomology of an injective sheaf is subsingleton.
+@isnad1 id=subsingl.0h4v.s6.ef1d7b0dad97 from=translated src=- shape=c386aff7 vocab=6f3f34a6
+-/
 theorem sheafH_subsingleton_of_injective
     {C : Type u} [Category.{v} C] {J : GrothendieckTopology C}
     [HasSheafify J AddCommGrpCat.{w}] [HasExt.{w'} (Sheaf J AddCommGrpCat.{w})]
@@ -367,7 +391,9 @@ theorem sheafH_subsingleton_of_injective
     (Ext.subsingleton_of_injective
       ((constantSheaf J AddCommGrpCat.{w}).obj (AddCommGrpCat.of (ULift.{w} ℤ))) I n)
 
-/-- `H¹` vanishing criterion with injective middle term. -/
+/-- `H¹` vanishing criterion with injective middle term.
+@isnad1 id=subsingl.2h2v.s10.616889675a06 from=translated src=- shape=aa28a974 vocab=29ac0cb2
+-/
 theorem sheafH_subsingleton_H1_of_injective_of_epi_app_top {X : TopCat.{u}}
     {S : ShortComplex (TopCat.Sheaf AddCommGrpCat.{u} X)}
     (hS : S.ShortExact)
@@ -380,7 +406,9 @@ theorem sheafH_subsingleton_H1_of_injective_of_epi_app_top {X : TopCat.{u}}
 
 /-- Forward dimension shifting with injective middle term:
     if `0 → S.X₁ → S.X₂ → S.X₃ → 0` is short exact, `S.X₂` is injective,
-    and `H^n(S.X₃)=0`, then `H^(n+1)(S.X₁)=0`. -/
+    and `H^n(S.X₃)=0`, then `H^(n+1)(S.X₁)=0`.
+@isnad1 id=subsingl.2h3v.s8.b1f0a83cfbac from=translated src=- shape=985965fe vocab=6fca7760
+-/
 theorem sheafH_dimension_shift_of_injective {X : TopCat.{u}}
     {S : ShortComplex (TopCat.Sheaf AddCommGrpCat.{u} X)}
     (hS : S.ShortExact)
@@ -399,6 +427,9 @@ noncomputable def sheafCohomologyFunctor (X : TopCat.{u}) (n : ℕ) :
   extFunctorObj ((constantSheaf (Opens.grothendieckTopology X) AddCommGrpCat).obj
     (AddCommGrpCat.of (ULift.{u} ℤ))) n
 
+/--
+@isnad1 id=eq.0h6v.s10.100dca09198b from=translated src=- shape=62e11793 vocab=d9fc28da
+-/
 @[simp]
 theorem sheafCohomologyFunctor_map_apply (X : TopCat.{u}) (n : ℕ)
     {F G : TopCat.Sheaf AddCommGrpCat.{u} X} (f : F ⟶ G)
@@ -409,7 +440,9 @@ theorem sheafCohomologyFunctor_map_apply (X : TopCat.{u}) (n : ℕ)
 -- If both ends of a short exact sequence have vanishing H^n, so does the middle.
 
 /-- Naturality of `sheafH1CokernelIsoOfSubsingletonMiddle` for a morphism between
-    two short exact sequences of sheaves. -/
+    two short exact sequences of sheaves.
+@isnad1 id=eq.4h4v.s13.9c48d721495e from=translated src=- shape=b8dc91e7 vocab=7a683a19
+-/
 theorem sheafH1_cokernel_iso_of_subsingleton_middle_natural {X : TopCat.{u}}
     {S₁ S₂ : ShortComplex (TopCat.Sheaf AddCommGrpCat.{u} X)}
     (hS₁ : S₁.ShortExact) (hS₂ : S₂.ShortExact) (φ : S₁ ⟶ S₂)
@@ -510,7 +543,9 @@ private theorem sheafH_succ_iso_of_subsingleton_middle_hom_apply {X : TopCat.{u}
   sheafH_extClassAddEquiv_of_subsingleton_middle_apply hS n h₂n h₂succ y
 
 /-- Naturality of `sheafHSuccIsoOfSubsingletonMiddle` for a morphism between two
-short exact sequences of sheaves. -/
+short exact sequences of sheaves.
+@isnad1 id=eq.6h5v.s11.e87f56cb1b12 from=translated src=- shape=bd527de9 vocab=76030167
+-/
 theorem sheafH_succ_iso_of_subsingleton_middle_natural {X : TopCat.{u}}
     {S₁ S₂ : ShortComplex (TopCat.Sheaf AddCommGrpCat.{u} X)}
     (hS₁ : S₁.ShortExact) (hS₂ : S₂.ShortExact) (φ : S₁ ⟶ S₂) (n : ℕ)

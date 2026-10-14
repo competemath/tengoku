@@ -107,6 +107,9 @@ section «lp_section_2»
 
 variable {M T} {FM : Model}
 
+/--
+@isnad1 id=refl.2h3v.s5.4f9119005a5d from=translated src=- shape=95bb7cab vocab=36af2950
+-/
 lemma reflexive_filterOf_of_reflexive (h_filter : FilterOf FM M T) (hRefl : Std.Refl M.toFrame) :
     Std.Refl FM.Rel := by
   constructor
@@ -114,6 +117,9 @@ lemma reflexive_filterOf_of_reflexive (h_filter : FilterOf FM M T) (hRefl : Std.
   obtain ⟨x, hx⟩ := Quotient.exists_rep (cast (h_filter.def_world) Qx);
   convert h_filter.def_rel₁ <| hRefl.refl x <;> simp_all;
 
+/--
+@isnad1 id=serial.2h3v.s5.0cda4be95f40 from=translated src=- shape=95bb7cab vocab=9b65140b
+-/
 lemma serial_filterOf_of_serial (h_filter : FilterOf FM M T) (hSerial : Serial M.toFrame) :
     Serial FM.Rel := by
   intro Qx;
@@ -174,6 +180,9 @@ namespace finestFilterationModel
 
 variable {M T}
 
+/--
+@isnad1 id=filterof.0h2v.s4.cd2c388c28bf from=translated src=- shape=4927d6fd vocab=4324f121
+-/
 instance filterOf : FilterOf (finestFilterationModel M T) M T where
   def_box := by
     intro Qx Qy rQxQy;
@@ -181,6 +190,9 @@ instance filterOf : FilterOf (finestFilterationModel M T) M T where
     simp_all [Satisfies];
 
 omit [T.SubformulaClosed] in
+/--
+@isnad1 id=issymmet.1h2v.s4.e52efe9356e4 from=translated src=- shape=b511eee4 vocab=d2a9d3f4
+-/
 lemma symmetric_of_symmetric (hSymm : IsSymmetric M.toFrame) :
     IsSymmetric (finestFilterationModel M T).Rel := by
   intro Qx Qy RQxQy;
@@ -199,7 +211,9 @@ namespace finestFilterationTransitiveClosureModel
 
 variable {M T}
 
-/-- Imported declaration from the Incompleteness formalization. -/
+/-- Imported declaration from the Incompleteness formalization.
+@isnad1 id=filterof.1h2v.s4.59d3c891b072 from=translated src=- shape=e01d06cc vocab=51add02c
+-/
 theorem filterOf (M_trans : IsTrans M.World M.Rel) :
     FilterOf (finestFilterationTransitiveClosureModel M T) M T where
   def_rel₁ := by
@@ -227,15 +241,24 @@ theorem filterOf (M_trans : IsTrans M.World M.Rel) :
         exact hpx _ (M_trans.trans _ _ _ rxy ryv);
 
 omit [T.SubformulaClosed] in
+/--
+@isnad1 id=istrans.0h2v.s4.e06700871198 from=translated src=- shape=06470dad vocab=3fce9f01
+-/
 lemma transitive : IsTrans (finestFilterationTransitiveClosureModel M T).World
       (finestFilterationTransitiveClosureModel M T).Rel :=
   Frame.TransitiveClosure.rel_transitive
 
 omit [T.SubformulaClosed] in
+/--
+@isnad1 id=issymmet.1h2v.s4.95fd47f6bf09 from=translated src=- shape=b511eee4 vocab=e0cafe7f
+-/
 lemma symmetric_of_symmetric (M_symm : IsSymmetric M.Rel) :
     IsSymmetric (finestFilterationTransitiveClosureModel M T).Rel :=
   Frame.TransitiveClosure.rel_symmetric <| finestFilterationModel.symmetric_of_symmetric M_symm
 
+/--
+@isnad1 id=refl.2h2v.s5.0ff093a7597c from=translated src=- shape=341f2300 vocab=4b4ea618
+-/
 lemma reflexive_of_transitive_reflexive (M_trans : IsTrans M.World M.Rel) (M_refl :
     Std.Refl M.Rel) : Std.Refl (finestFilterationTransitiveClosureModel M T).Rel := by
   exact reflexive_filterOf_of_reflexive (filterOf M_trans) M_refl;
@@ -249,6 +272,9 @@ section «lp_section_3»
 variable {M : Model} {T : FormulaSet ℕ} [T.SubformulaClosed]
          (FM : Model) (filterOf : FilterOf FM M T)
 
+/--
+@isnad1 id=iff.2h5v.s6.9fdf3f24c708 from=translated src=- shape=b78a125b vocab=bd70ff9f
+-/
 theorem filteration {x : M.World} {φ : Formula ℕ} (hs : φ ∈ T) :
     x ⊧ φ ↔ (cast (filterOf.def_world.symm) ⟦x⟧) ⊧ φ := by
   induction φ using Formula.rec' generalizing x with

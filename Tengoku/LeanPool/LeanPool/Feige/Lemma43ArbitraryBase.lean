@@ -29,7 +29,9 @@ local instance : IsProbabilityMeasure (expMeasure 1) :=
 
 /-- The factorized transfer identity and denominator positivity require no
 density or TP2 assumption: they hold for the two exponential shifts of
-every probability base law. -/
+every probability base law.
+@isnad1 id=other.4h5v.s7.615971b81b0a from=translated src=- shape=d7135b2c vocab=6136c07e
+-/
 theorem identity_and_w_pos
     (μ : Measure ℝ) [IsProbabilityMeasure μ]
     {a b c d : ℝ} (ha : 0 < a) (hb : 0 < b)
@@ -63,7 +65,9 @@ theorem identity_and_w_pos
 
 /-- At a terminal base law supported on the nonpositive half-line, the
 negative endpoint has zero nonnegative tail and hence zero transfer
-parameter. -/
+parameter.
+@isnad1 id=other.2h4v.s6.c1cbfe74fade from=translated src=- shape=994baa15 vocab=676532b3
+-/
 theorem terminal_zMinus
     (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (hpos : μ (Ioi 0) = 0) {b c d : ℝ}

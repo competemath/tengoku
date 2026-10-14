@@ -86,7 +86,9 @@ variable {L : Type*} [Field L] {ΓL : Type*} [LinearOrderedCommGroupWithZero ΓL
 variable [Algebra K L] [vK.HasExtension vL]
 
 /-- If a finite sum is zero, and all elements are non-zero, then at least two elements must have
-the same valuation. -/
+the same valuation.
+@isnad1 id=ex.2h5v.s7.7ec1ce8d44c6 from=translated src=- shape=999e53a3 vocab=d3f1b987
+-/
 lemma Valuation.sum_eq_zero_implies_val_eq
     {I : Type*} [Fintype I] [Nonempty I]
     (f : I → L)
@@ -112,7 +114,9 @@ lemma Valuation.sum_eq_zero_implies_val_eq
   exact h_val_nz h_val.symm
 
 /-- Elements with valuations in strictly distinct cosets modulo v(K×) are linearly independent
-over K. -/
+over K.
+@isnad1 id=linearin.2h6v.s8.d79eb96dc36b from=translated src=- shape=cb4cb959 vocab=88d1e1e5
+-/
 lemma Valuation.linearIndependent_of_val_distinct_coset
     {I : Type*}
     (z : I → L)
@@ -167,7 +171,9 @@ lemma Valuation.linearIndependent_of_val_distinct_coset
   rw [hs_nz, Finset.mem_filter] at hi_prop hj_prop
   exact hz_dist i j hij' (g i) (g j) hi_prop.2 hj_prop.2 hval
 
-/-- Elements with no-cancellation property are linearly independent over K. -/
+/-- Elements with no-cancellation property are linearly independent over K.
+@isnad1 id=linearin.2h6v.s9.778e21e65306 from=translated src=- shape=203e74e5 vocab=a54e8a23
+-/
 lemma Valuation.linearIndependent_of_val_no_cancel
     {J : Type*} [Fintype J]
     (u : J → L)
@@ -202,7 +208,9 @@ lemma Valuation.linearIndependent_of_val_no_cancel
 
 /-- Valuation Independence.
 If elements have valuations in distinct cosets and residues that are linearly independent,
-then their products are linearly independent over K. -/
+then their products are linearly independent over K.
+@isnad1 id=linearin.4h8v.s9.7f8ea17927ee from=translated src=- shape=081a7d8e vocab=e23ac094
+-/
 lemma Valuation.valuation_independence
     {I J : Type*} [Finite I] [Fintype J]
     (z : I → L) (hz_nz : ∀ i, z i ≠ 0)
@@ -343,7 +351,9 @@ lemma Valuation.valuation_independence
 
 /-- For a family `u` of elements of valuation one whose residues are linearly independent over the
 base residue field, no nontrivial `K`-linear combination cancels: there is an index attaining the
-maximal valuation, equal to the valuation of the whole sum. -/
+maximal valuation, equal to the valuation of the whole sum.
+@isnad1 id=ex.4h10v.s10.ee970cd1f4e3 from=translated src=- shape=e53d0f26 vocab=6f13c1c5
+-/
 lemma Valuation.exists_max_val_no_cancel
     {J : Type*} [Fintype J] [Nonempty J]
     (u : J → L) (u_sub : J → vL.valuationSubring) (hu_eq : ∀ j, (u_sub j : L) = u j)
@@ -472,6 +482,7 @@ lemma Valuation.exists_max_val_no_cancel
 
 /-- The fundamental inequality for finite extensions of valued fields.
 `[L : K] ≥ e(w/v) · f(w/v)`
+@isnad1 id=le.0h6v.s7.e6cf0a14abd5 from=translated src=- shape=038e1f20 vocab=432667ab
 -/
 theorem Valuation.fundamentalInequality [FiniteDimensional K L] :
     Valuation.ramificationIndex K vL * Valuation.residueDegree vK vL ≤ Module.finrank K L := by

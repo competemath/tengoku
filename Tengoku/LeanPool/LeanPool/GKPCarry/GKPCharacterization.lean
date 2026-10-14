@@ -31,7 +31,9 @@ namespace GKPCarry
 open Nat
 
 /-- Divisibility by nine is exactly the condition that ternary doubling creates
-at least two carries. -/
+at least two carries.
+@isnad1 id=iff.0h1v.s4.58a1a61c27ee from=translated src=- shape=94743692 vocab=86e27751
+-/
 theorem nine_dvd_centralBinom_iff_two_le_ternaryDoubleCarryCount (n : ℕ) :
     9 ∣ Nat.centralBinom n ↔
       2 ≤ ternaryDoubleCarryCount (Nat.digits 3 n) := by
@@ -55,7 +57,9 @@ theorem nine_dvd_centralBinom_iff_two_le_ternaryDoubleCarryCount (n : ℕ) :
   · exact nine_dvd_centralBinom_of_two_le_ternaryDoubleCarryCount
 
 /-- The automaton accepts the canonical ternary expansion of `n` exactly when
-`9` does not divide its central binomial coefficient. -/
+`9` does not divide its central binomial coefficient.
+@isnad1 id=iff.0h1v.s4.6f6156ac29b8 from=translated src=- shape=4613d6e3 vocab=13d101d7
+-/
 theorem badCarryLanguage_digits_true_iff_not_nine_dvd (n : ℕ) :
     badCarryLanguage (Nat.digits 3 n) = true ↔
       ¬ 9 ∣ Nat.centralBinom n := by
@@ -71,7 +75,9 @@ def gkpBadCarryLanguageExclusion : Prop :=
     badCarryLanguage (Nat.digits 3 (2 ^ k)) = false
 
 /-- The language-avoidance statement is equivalent to excluding each of the
-three concrete deficient-carry shapes. -/
+three concrete deficient-carry shapes.
+@isnad1 id=iff.0h0v.s7.ad33043cd03b from=translated src=- shape=27df4ed0 vocab=00340a6f
+-/
 theorem gkpBadCarryLanguageExclusion_iff_shape_exclusions :
     gkpBadCarryLanguageExclusion ↔
       (∀ k : ℕ, 2 < k → k ≠ 6 → k ≠ 8 →
@@ -108,7 +114,9 @@ theorem gkpBadCarryLanguageExclusion_iff_shape_exclusions :
         · exact False.elim ((htop k hk2 hk6 hk8) hshape)
         · exact False.elim ((hfollow k hk2 hk6 hk8) hshape)
 
-/-- GKP implies avoidance of the deficient-carry language. -/
+/-- GKP implies avoidance of the deficient-carry language.
+@isnad1 id=gkpbadca.1h0v.s1.36a076c09af8 from=translated src=- shape=1d48f1ac vocab=9f3818c4
+-/
 theorem gkpBadCarryLanguageExclusion_of_gkp
     (h : gkpConjecture) :
     gkpBadCarryLanguageExclusion := by
@@ -121,7 +129,9 @@ theorem gkpBadCarryLanguageExclusion_of_gkp
       exact False.elim
         ((badCarryLanguage_digits_true_iff_not_nine_dvd (2 ^ k)).mp hbad hdiv)
 
-/-- Avoidance of the deficient-carry language implies GKP. -/
+/-- Avoidance of the deficient-carry language implies GKP.
+@isnad1 id=gkpconje.1h0v.s1.89a8d0e20789 from=translated src=- shape=1d48f1ac vocab=9f3818c4
+-/
 theorem gkpConjecture_of_badCarryLanguageExclusion
     (h : gkpBadCarryLanguageExclusion) :
     gkpConjecture := by
@@ -139,14 +149,18 @@ theorem gkpConjecture_of_badCarryLanguageExclusion
   contradiction
 
 /-- Headline theorem: the GKP conjecture is equivalent to avoidance of the
-explicit deficient-carry regular language by nonexceptional powers of two. -/
+explicit deficient-carry regular language by nonexceptional powers of two.
+@isnad1 id=iff.0h0v.s1.3b5a9ad0c00c from=translated src=- shape=25b03439 vocab=9f3818c4
+-/
 theorem gkpConjecture_iff_badCarryLanguageExclusion :
     gkpConjecture ↔ gkpBadCarryLanguageExclusion :=
   ⟨gkpBadCarryLanguageExclusion_of_gkp,
     gkpConjecture_of_badCarryLanguageExclusion⟩
 
 /-- The GKP exclusion would imply the tail of Erdős Problem 406: powers of two
-above `2 ^ 8` cannot have ternary expansions using only `0` and `1`. -/
+above `2 ^ 8` cannot have ternary expansions using only `0` and `1`.
+@isnad1 id=not.2h1v.s5.549848fbc6a2 from=translated src=- shape=a53f4bb2 vocab=cbd1b0cc
+-/
 theorem erdos406_tail_of_gkpBadCarryLanguageExclusion
     (h : gkpBadCarryLanguageExclusion) :
     ∀ k : ℕ, 8 < k →

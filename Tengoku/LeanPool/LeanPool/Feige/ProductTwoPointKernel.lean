@@ -30,14 +30,18 @@ noncomputable def augmentedConditionalProduct {n : ℕ}
     (p : Fin n → AugmentedTwoPointParams) : Measure (Fin n → ℝ) :=
   Measure.pi (fun i ↦ augmentedTwoPointKernel (p i))
 
-/-- Each coordinate of every conditional product is a mean-one law. -/
+/-- Each coordinate of every conditional product is a mean-one law.
+@isnad1 id=eq.0h3v.s6.03ce62465860 from=translated src=- shape=8003bb3c vocab=43ce3848
+-/
 theorem augmentedConditionalProduct_coordinate_mean {n : ℕ}
     (p : Fin n → AugmentedTwoPointParams) (i : Fin n) :
     (∫ x : ℝ, x ∂augmentedTwoPointKernel (p i)) = 1 :=
   augmentedTwoPointKernel_mean (p i)
 
 /-- Each coordinate of every conditional product is supported on at most two
-points (one point on the atom branch). -/
+points (one point on the atom branch).
+@isnad1 id=eq.0h3v.s7.55c98b144c53 from=translated src=- shape=7012602a vocab=27192d89
+-/
 theorem augmentedConditionalProduct_coordinate_support {n : ℕ}
     (p : Fin n → AugmentedTwoPointParams) (i : Fin n) :
     augmentedTwoPointKernel (p i)
@@ -49,7 +53,9 @@ theorem augmentedConditionalProduct_coordinate_support {n : ℕ}
 /-- Binary Fubini exchange: independently binding two latent laws against
 their coordinate kernels is the same as binding their product against the
 parallel product kernel.  This is the recursion step needed for a finite
-product. -/
+product.
+@isnad1 id=eq.0h8v.s7.db3c8bec792a from=translated src=- shape=6efdfa28 vocab=fea47967
+-/
 theorem parallelComp_comp_prod_measure
     {α β γ δ : Type*} [MeasurableSpace α] [MeasurableSpace β]
     [MeasurableSpace γ] [MeasurableSpace δ]
@@ -90,6 +96,9 @@ noncomputable def recursiveAugmentedKernel :
           (finHeadTailEquiv AugmentedTwoPointParams n).measurable).map
         (finHeadTailEquiv ℝ n).symm)
 
+/--
+@isnad1 id=ismarkov.0h1v.s5.f2b48ab1203a from=translated src=- shape=97837839 vocab=920b3be6
+-/
 instance recursiveAugmentedKernel_markov (n : ℕ) :
     IsMarkovKernel (recursiveAugmentedKernel n) := by
   induction n with
@@ -103,7 +112,9 @@ instance recursiveAugmentedKernel_markov (n : ℕ) :
         (finHeadTailEquiv ℝ n).symm.measurable
 
 /-- Binding is invariant under simultaneous measurable-equivalence changes
-of latent and observation coordinates. -/
+of latent and observation coordinates.
+@isnad1 id=eq.0h8v.s7.bd31600091f2 from=translated src=- shape=6a8ce052 vocab=f9954fef
+-/
 theorem bind_congr_measurableEquiv
     {α α' β β' : Type*} [MeasurableSpace α] [MeasurableSpace α']
     [MeasurableSpace β] [MeasurableSpace β']
@@ -144,6 +155,9 @@ noncomputable def recursiveRealProduct :
       ((μ 0).prod (recursiveRealProduct n (fun i => μ (Fin.succ i)))).map
         (finHeadTailEquiv ℝ n).symm
 
+/--
+@isnad1 id=sfinite.0h2v.s5.45934c1a5999 from=translated src=- shape=0c13421c vocab=3aa2c0c6
+-/
 instance recursiveAugmentedLatent_sfinite
     (n : ℕ) (latent : Fin n → Measure AugmentedTwoPointParams)
     [∀ i, SFinite (latent i)] :
@@ -164,7 +178,9 @@ instance recursiveAugmentedLatent_sfinite
 
 /-- Finite recursive product-of-binds theorem.  This is the full induction:
 the binary Fubini step handles head/tail and the measurable-equivalence
-conjugation returns to `Fin (n+1)` coordinates. -/
+conjugation returns to `Fin (n+1)` coordinates.
+@isnad1 id=eq.0h2v.s7.f4fb8494df92 from=translated src=- shape=dd40ace2 vocab=69fba8bd
+-/
 theorem recursiveAugmentedKernel_comp_latent
     (n : ℕ) (latent : Fin n → Measure AugmentedTwoPointParams)
     [∀ i, SFinite (latent i)] :
@@ -188,12 +204,16 @@ theorem recursiveAugmentedKernel_comp_latent
       rw [parallelComp_comp_prod_measure]
       rw [ih (fun i => latent (Fin.succ i))]
 
-/-- Zero-dimensional recursive product. -/
+/-- Zero-dimensional recursive product.
+@isnad1 id=eq.0h1v.s6.46ecbce42c1f from=translated src=- shape=e307350d vocab=0dafcac1
+-/
 theorem recursiveRealProduct_zero (μ : Fin 0 → Measure ℝ) :
     recursiveRealProduct 0 μ =
       Measure.dirac (fun i : Fin 0 => Fin.elim0 i) := rfl
 
-/-- The head/tail recursive product is the standard finite `Measure.pi`. -/
+/-- The head/tail recursive product is the standard finite `Measure.pi`.
+@isnad1 id=eq.0h2v.s5.2cb36dc7ffbe from=translated src=- shape=c9a3ad7a vocab=1882ad39
+-/
 theorem recursiveRealProduct_eq_pi
     (n : ℕ) (μ : Fin n → Measure ℝ)
     [∀ i, IsProbabilityMeasure (μ i)] :

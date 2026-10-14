@@ -79,6 +79,9 @@ def PartsProper (coloring : Fin 481 → Fin 4) : Prop :=
 /-- The four colors, as data for the executable checker. -/
 def partsColors : List (Fin 4) := [0, 1, 2, 3]
 
+/--
+@isnad1 id=mem.0h1v.s4.50d377ed6084 from=translated src=- shape=38858b8f vocab=b5662928
+-/
 lemma mem_partsColors (color : Fin 4) : color ∈ partsColors := by
   fin_cases color <;> simp [partsColors]
 
@@ -87,6 +90,9 @@ def PartsBlocksB (path : List PartsAssignment) (vertex : Fin 481) (color : Fin 4
   path.any fun assignment =>
     assignment.color == color && partsAdjacent vertex assignment.vertex
 
+/--
+@isnad1 id=iff.0h3v.s4.926e3b02be94 from=translated src=- shape=a473fe71 vocab=83e303dd
+-/
 lemma partsBlocksB_eq_true {path : List PartsAssignment} {vertex : Fin 481}
     {color : Fin 4} : PartsBlocksB path vertex color = true ↔
       PartsBlocks path vertex color := by
@@ -141,6 +147,9 @@ instance (certificate : PartsCertificate) : Decidable certificate.Verifies := by
   unfold PartsCertificate.Verifies
   infer_instance
 
+/--
+@isnad1 id=not.2h3v.s5.a1f4b3da36b2 from=translated src=- shape=bffb5b9f vocab=6838a70d
+-/
 lemma not_partsBlocks_of_proper {coloring : Fin 481 → Fin 4}
     (hproper : PartsProper coloring) (path : List PartsAssignment)
     (hextends : PartsExtends coloring path) (vertex : Fin 481) :
@@ -151,6 +160,9 @@ lemma not_partsBlocks_of_proper {coloring : Fin 481 → Fin 4}
   apply hne
   rw [hpath, hcolor]
 
+/--
+@isnad1 id=eq.3h3v.s5.871176ddb03c from=translated src=- shape=3c54867c vocab=3c3cd993
+-/
 lemma partsForcedB_sound {coloring : Fin 481 → Fin 4}
     (hproper : PartsProper coloring) {path : List PartsAssignment}
     (hextends : PartsExtends coloring path) {assignment : PartsAssignment}
@@ -165,6 +177,9 @@ lemma partsForcedB_sound {coloring : Fin 481 → Fin 4}
   · exact False.elim ((not_partsBlocks_of_proper hproper path hextends assignment.vertex)
       (partsBlocksB_eq_true.mp hblocked))
 
+/--
+@isnad1 id=partsext.3h4v.s5.67c9057cda33 from=translated src=- shape=158dd0c6 vocab=0d979341
+-/
 lemma partsRunStemB_sound {coloring : Fin 481 → Fin 4}
     (hproper : PartsProper coloring) :
     ∀ {stem path extended}, PartsRunStemB stem path = some extended →
@@ -189,6 +204,9 @@ lemma partsRunStemB_sound {coloring : Fin 481 → Fin 4}
         · exact hextends current hin
       · contradiction
 
+/--
+@isnad1 id=false.3h5v.s5.0e1c8a91bc52 from=translated src=- shape=52a6c55f vocab=d127a15f
+-/
 lemma partsVerifiesNodeB_unsat {nodes : Array (Array PartsTreeNode)}
     {coloring : Fin 481 → Fin 4} (hproper : PartsProper coloring) :
     ∀ {fuel path index}, PartsVerifiesNodeB nodes fuel path index = true →
@@ -226,7 +244,9 @@ lemma partsVerifiesNodeB_unsat {nodes : Array (Array PartsTreeNode)}
               · rfl
               · exact hextended assignment hin
 
-/-- Soundness of a checked Parts coloring tree. -/
+/-- Soundness of a checked Parts coloring tree.
+@isnad1 id=false.3h2v.s4.d454dec0d7c9 from=translated src=- shape=7734fdc3 vocab=bd030cd0
+-/
 theorem PartsCertificate.not_colorable (certificate : PartsCertificate)
     (hverify : certificate.Verifies) {coloring : Fin 481 → Fin 4}
     (hproper : PartsProper coloring)

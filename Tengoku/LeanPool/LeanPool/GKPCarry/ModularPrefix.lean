@@ -20,6 +20,9 @@ evaluate those residues without first constructing the enormous value `4 ^ m`.
 
 namespace GKPCarry
 
+/--
+@isnad1 id=eq.1h3v.s5.1c5f8ded82f8 from=translated src=- shape=cf13e952 vocab=ccb3d120
+-/
 lemma count_append_replicate_zero
     {value : ℕ} (hvalue : value ≠ 0) (digits : List ℕ) (count : ℕ) :
     (digits ++ List.replicate count 0).count value = digits.count value := by
@@ -28,7 +31,9 @@ lemma count_append_replicate_zero
   omega
 
 /-- Taking `depth` ternary digits preserves exactly the nonzero digits of the
-residue modulo `3 ^ depth`. -/
+residue modulo `3 ^ depth`.
+@isnad1 id=eq.0h2v.s6.1d45c5f40f8c from=translated src=- shape=5a8d3a54 vocab=fdb6c9df
+-/
 lemma count_two_take_eq_count_two_mod_pow (depth n : ℕ) :
     ((Nat.digits 3 n).take depth).count 2 =
       (Nat.digits 3 (n % 3 ^ depth)).count 2 := by
@@ -73,7 +78,9 @@ lemma count_two_take_eq_count_two_mod_pow (depth n : ℕ) :
       List.take_of_length_le hpadded_length.le]
     exact count_append_replicate_zero (by decide) _ _
 
-/-- The two-`2` prefix predicate can be checked on a modular residue. -/
+/-- The two-`2` prefix predicate can be checked on a modular residue.
+@isnad1 id=iff.0h2v.s5.61609d6f72e0 from=translated src=- shape=f5433c3c vocab=a38bb63c
+-/
 theorem hasTwoTernaryTwosBelow_iff_mod (depth n : ℕ) :
     hasTwoTernaryTwosBelow depth n ↔
       2 ≤ (Nat.digits 3 (n % 3 ^ depth)).count 2 := by
@@ -91,6 +98,9 @@ def powModDigits (base modulus : ℕ) : List ℕ → ℕ
 def powMod (base exponent modulus : ℕ) : ℕ :=
   powModDigits base modulus (Nat.digits 2 exponent)
 
+/--
+@isnad1 id=eq.1h3v.s6.8cbe46fbb414 from=translated src=- shape=7d674f84 vocab=7d739ed5
+-/
 theorem powModDigits_eq_pow_mod
     (base modulus : ℕ) (digits : List ℕ)
     (hdigits : ∀ digit ∈ digits, digit < 2) :
@@ -118,7 +128,9 @@ theorem powModDigits_eq_pow_mod
         rw [hrec, hsquare, pow_add]
         norm_num [Nat.mul_mod]
 
-/-- `powMod` computes the ordinary power modulo `modulus`. -/
+/-- `powMod` computes the ordinary power modulo `modulus`.
+@isnad1 id=eq.0h3v.s5.fff2f83fb3c4 from=translated src=- shape=c38b7731 vocab=b24ba9f6
+-/
 theorem powMod_eq_pow_mod (base exponent modulus : ℕ) :
     powMod base exponent modulus = base ^ exponent % modulus := by
   rw [powMod, powModDigits_eq_pow_mod]

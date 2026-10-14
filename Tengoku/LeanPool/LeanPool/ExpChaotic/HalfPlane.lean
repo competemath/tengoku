@@ -37,7 +37,9 @@ this is enough: if no image of `V` meets the real axis then each image, being co
 in one open half-plane, and a Möbius transformation makes the family bounded. -/
 
 /-- Cauchy's estimate: a holomorphic function bounded by `M` has `‖deriv f z‖ ≤ M / r`
-whenever `closedBall z r` lies in the domain. -/
+whenever `closedBall z r` lies in the domain.
+@isnad1 id=le.5h5v.s7.6cf191a06f93 from=translated src=- shape=6f759aee vocab=63a410a0
+-/
 theorem norm_deriv_le_of_bounded
     {f : ℂ → ℂ} {U : Set ℂ} {M r : ℝ} {z : ℂ}
     (hU : IsOpen U) (hf : DifferentiableOn ℂ f U)
@@ -48,7 +50,9 @@ theorem norm_deriv_le_of_bounded
   exact Complex.norm_cderiv_le hr
     (fun w hw => hb w (hzr (sphere_subset_closedBall hw)))
 
-/-- A holomorphic function bounded by `M` on `ball c (2ρ)` is `2M/ρ`-Lipschitz on `ball c ρ`. -/
+/-- A holomorphic function bounded by `M` on `ball c (2ρ)` is `2M/ρ`-Lipschitz on `ball c ρ`.
+@isnad1 id=le.5h6v.s8.2f9b2409a9b7 from=translated src=- shape=cb0c0e30 vocab=87995784
+-/
 theorem norm_sub_le_of_bounded
     {f : ℂ → ℂ} {M ρ : ℝ} {c : ℂ} (hρ : 0 < ρ)
     (hf : DifferentiableOn ℂ f (ball c (2 * ρ)))
@@ -82,7 +86,9 @@ theorem norm_sub_le_of_bounded
   exact (convex_ball c ρ).norm_image_sub_le_of_norm_hasFDerivWithin_le hder hbound hy hx
 
 /-- **Weak Montel, equicontinuity form.** A uniformly bounded family of holomorphic functions
-on `ball c (2ρ)` is equicontinuous on `ball c ρ`, with a modulus independent of the index. -/
+on `ball c (2ρ)` is equicontinuous on `ball c ρ`, with a modulus independent of the index.
+@isnad1 id=ex.4h6v.s8.f0d3445901e1 from=translated src=- shape=c114de01 vocab=fc3604e2
+-/
 theorem equicontinuous_of_bounded
     {ι : Type*} {F : ι → ℂ → ℂ} {M ρ : ℝ} {c : ℂ} (hρ : 0 < ρ)
     (hF : ∀ i, DifferentiableOn ℂ (F i) (ball c (2 * ρ)))
@@ -116,7 +122,9 @@ If no image of `V` meets the real axis then each image, being connected, lies in
 half-plane. A Cayley transform carries that half-plane into the unit disc, making the
 transformed family uniformly bounded, so `equicontinuous_of_bounded` applies. -/
 
-/-- `z ↦ (z - i)/(z + i)` maps the upper half-plane into the unit disc. -/
+/-- `z ↦ (z - i)/(z + i)` maps the upper half-plane into the unit disc.
+@isnad1 id=lt.1h1v.s5.678e4affd07c from=translated src=- shape=9efcb09b vocab=d55852ee
+-/
 theorem norm_cayleyUp_lt_one {z : ℂ} (hz : 0 < z.im) :
     ‖(z - Complex.I) / (z + Complex.I)‖ < 1 := by
   have hlt : ‖z - Complex.I‖ < ‖z + Complex.I‖ := by
@@ -129,14 +137,18 @@ theorem norm_cayleyUp_lt_one {z : ℂ} (hz : 0 < z.im) :
   rw [norm_div, div_lt_one (lt_of_le_of_lt (norm_nonneg _) hlt)]
   exact hlt
 
-/-- `z ↦ (z + i)/(z - i)` maps the lower half-plane into the unit disc. -/
+/-- `z ↦ (z + i)/(z - i)` maps the lower half-plane into the unit disc.
+@isnad1 id=lt.1h1v.s5.0f14ddd37360 from=translated src=- shape=690af023 vocab=d55852ee
+-/
 theorem norm_cayleyDown_lt_one {z : ℂ} (hz : z.im < 0) :
     ‖(z + Complex.I) / (z - Complex.I)‖ < 1 := by
   have hupper := norm_cayleyUp_lt_one (z := -z) (by simpa using hz)
   simpa only [show -z - Complex.I = -(z + Complex.I) by ring,
     show -z + Complex.I = -(z - Complex.I) by ring, neg_div_neg_eq] using hupper
 
-/-- The Cayley transform of the upper half-plane is inverted by `u ↦ i(1+u)/(1-u)`. -/
+/-- The Cayley transform of the upper half-plane is inverted by `u ↦ i(1+u)/(1-u)`.
+@isnad1 id=eq.1h1v.s6.8cfdf9ae938d from=translated src=- shape=b5fcc17a vocab=e23fe136
+-/
 theorem cayleyUp_inv {w : ℂ} (hw : w + Complex.I ≠ 0) :
     Complex.I * (1 + (w - Complex.I) / (w + Complex.I))
       / (1 - (w - Complex.I) / (w + Complex.I)) = w := by
@@ -151,7 +163,9 @@ theorem cayleyUp_inv {w : ℂ} (hw : w + Complex.I ≠ 0) :
   rw [h1, h2]
   field_simp
 
-/-- The Cayley transform of the lower half-plane is inverted by `u ↦ i(u+1)/(u-1)`. -/
+/-- The Cayley transform of the lower half-plane is inverted by `u ↦ i(u+1)/(u-1)`.
+@isnad1 id=eq.1h1v.s6.efcd9b7757b0 from=translated src=- shape=fbe677b6 vocab=e23fe136
+-/
 theorem cayleyDown_inv {w : ℂ} (hw : w - Complex.I ≠ 0) :
     Complex.I * (1 + (w + Complex.I) / (w - Complex.I))
       / ((w + Complex.I) / (w - Complex.I) - 1) = w := by
@@ -165,21 +179,27 @@ theorem cayleyDown_inv {w : ℂ} (hw : w - Complex.I ≠ 0) :
   rw [show (w + Complex.I) / (w - Complex.I) - 1 =
     -(1 - (w + Complex.I) / (w - Complex.I)) by ring, div_neg, hupper, neg_neg]
 
-/-- The denominator of the upper-half-plane Cayley transform does not vanish there. -/
+/-- The denominator of the upper-half-plane Cayley transform does not vanish there.
+@isnad1 id=ne.1h1v.s4.d24445d4e4e1 from=translated src=- shape=0ee30518 vocab=85a8296c
+-/
 theorem add_I_ne_zero {z : ℂ} (h : 0 < z.im) : z + Complex.I ≠ 0 := by
   intro hc
   have him : (z + Complex.I).im = 0 := by rw [hc, Complex.zero_im]
   simp only [Complex.add_im, Complex.I_im] at him
   linarith
 
-/-- The denominator of the lower-half-plane Cayley transform does not vanish there. -/
+/-- The denominator of the lower-half-plane Cayley transform does not vanish there.
+@isnad1 id=ne.1h1v.s4.e57531bf1807 from=translated src=- shape=248e7979 vocab=f3c11b74
+-/
 theorem sub_I_ne_zero {z : ℂ} (h : z.im < 0) : z - Complex.I ≠ 0 := by
   have hupper := add_I_ne_zero (z := -z) (by simpa using h)
   simpa only [show -z + Complex.I = -(z - Complex.I) by ring, neg_ne_zero] using hupper
 
 /-- **Each image lies wholly in one open half-plane.** If no forward image of the connected
 set `V` meets the real axis, then for each `n` the image is entirely in the upper half-plane
-or entirely in the lower one — by the intermediate value theorem applied to `Im`. -/
+or entirely in the lower one — by the intermediate value theorem applied to `Im`.
+@isnad1 id=or.2h2v.s6.a2be8c786d3f from=translated src=- shape=e7c85e69 vocab=b807e2b0
+-/
 theorem image_in_half_plane {V : Set ℂ} (hVconn : IsConnected V)
     (hnoreal : ∀ (n : ℕ), ∀ z ∈ V, (expIterate n z).im ≠ 0) (n : ℕ) :
     (∀ z ∈ V, 0 < (expIterate n z).im) ∨ (∀ z ∈ V, (expIterate n z).im < 0) := by
@@ -202,7 +222,9 @@ theorem image_in_half_plane {V : Set ℂ} (hVconn : IsConnected V)
   exact hnoreal n y hy hyval
 
 /-- The Cayley transform of an iterate is holomorphic wherever the iterate has positive
-imaginary part. -/
+imaginary part.
+@isnad1 id=differen.1h2v.s7.012d24e83f08 from=translated src=- shape=eb9f9cac vocab=4e68bffa
+-/
 theorem differentiableOn_cayleyUp {U : Set ℂ} {n : ℕ}
     (hpos : ∀ z ∈ U, 0 < (expIterate n z).im) :
     DifferentiableOn ℂ
@@ -213,7 +235,9 @@ theorem differentiableOn_cayleyUp {U : Set ℂ} {n : ℕ}
     (add_I_ne_zero (hpos z hz)))).differentiableWithinAt
 
 /-- The lower-half-plane Cayley transform of an iterate is holomorphic wherever
-that iterate has negative imaginary part. -/
+that iterate has negative imaginary part.
+@isnad1 id=differen.1h2v.s7.0858d371f532 from=translated src=- shape=d812d641 vocab=4e68bffa
+-/
 theorem differentiableOn_cayleyDown {U : Set ℂ} {n : ℕ}
     (hneg : ∀ z ∈ U, (expIterate n z).im < 0) :
     DifferentiableOn ℂ
@@ -225,7 +249,9 @@ theorem differentiableOn_cayleyDown {U : Set ℂ} {n : ℕ}
 
 /-- **The transformed family is uniformly bounded, hence equicontinuous.** Along any set of
 times whose images all lie in the upper half-plane, the Cayley transforms of the iterates are
-bounded by `1` on `ball c (2ρ)`, so `equicontinuous_of_bounded` applies on `ball c ρ`. -/
+bounded by `1` on `ball c (2ρ)`, so `equicontinuous_of_bounded` applies on `ball c ρ`.
+@isnad1 id=ex.3h4v.s8.fdccc3efaa30 from=translated src=- shape=8674cf41 vocab=c067a495
+-/
 theorem equicontinuous_cayleyUp {c : ℂ} {ρ : ℝ} (hρ : 0 < ρ)
     {T : Set ℕ} (hT : ∀ n ∈ T, ∀ z ∈ ball c (2 * ρ), 0 < (expIterate n z).im)
     {ε : ℝ} (hε : 0 < ε) :
@@ -237,7 +263,9 @@ theorem equicontinuous_cayleyUp {c : ℂ} {ρ : ℝ} (hρ : 0 < ρ)
     (fun n => differentiableOn_cayleyUp (fun z hz => hT n.1 n.2 z hz))
     (fun n w hw => le_of_lt (norm_cayleyUp_lt_one (hT n.1 n.2 w hw))) hε
 
-/-- The Cayley transform never takes the value `1`. -/
+/-- The Cayley transform never takes the value `1`.
+@isnad1 id=ne.1h1v.s5.4f8b6ca5ab11 from=translated src=- shape=80f6983b vocab=68bb26c1
+-/
 theorem cayleyUp_ne_one {w : ℂ} (hw : w + Complex.I ≠ 0) :
     (w - Complex.I) / (w + Complex.I) ≠ 1 := by
   intro h
@@ -247,7 +275,9 @@ theorem cayleyUp_ne_one {w : ℂ} (hw : w + Complex.I ≠ 0) :
 
 /-- **Push-back.** Near a finite point `p ≠ -i`, closeness of Cayley
 transforms gives closeness of the points themselves. This is what converts the equicontinuity
-of the transformed family back into Euclidean information about the iterates. -/
+of the transformed family back into Euclidean information about the iterates.
+@isnad1 id=ex.2h2v.s7.133d162565b4 from=translated src=- shape=73883508 vocab=fea4a844
+-/
 theorem norm_sub_lt_of_cayley_close
     {p : ℂ} (hp : p + Complex.I ≠ 0) {η : ℝ} (hη : 0 < η) :
     ∃ ε > 0, ∀ w : ℂ, w + Complex.I ≠ 0 →

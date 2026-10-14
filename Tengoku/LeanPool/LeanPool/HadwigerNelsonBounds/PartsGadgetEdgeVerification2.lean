@@ -13,6 +13,9 @@ public import Tengoku.LeanPool.LeanPool.HadwigerNelsonBounds.PartsGadgetEmbeddin
 
 namespace HadwigerNelsonBounds
 
+/--
+@isnad1 id=partsgad.1h1v.s6.2d0c80cfac43 from=translated src=- shape=8d1778ec vocab=4d866cce
+-/
 lemma partsGadgetEdgeCase38 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 38) :
     PartsGadgetEdgeCase 38 neighbor := by
@@ -21,6 +24,9 @@ lemma partsGadgetEdgeCase38 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=partsgad.1h1v.s6.9671ecc1053d from=translated src=- shape=8d1778ec vocab=4d866cce
+-/
 lemma partsGadgetEdgeCase39 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 39) :
     PartsGadgetEdgeCase 39 neighbor := by
@@ -29,6 +35,9 @@ lemma partsGadgetEdgeCase39 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=partsgad.1h1v.s6.1285c4580a04 from=translated src=- shape=8d1778ec vocab=4d866cce
+-/
 lemma partsGadgetEdgeCase40 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 40) :
     PartsGadgetEdgeCase 40 neighbor := by
@@ -37,6 +46,9 @@ lemma partsGadgetEdgeCase40 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=partsgad.1h1v.s6.13ed178c4888 from=translated src=- shape=8d1778ec vocab=4d866cce
+-/
 lemma partsGadgetEdgeCase41 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 41) :
     PartsGadgetEdgeCase 41 neighbor := by
@@ -45,6 +57,9 @@ lemma partsGadgetEdgeCase41 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=partsgad.1h1v.s6.3ab2e8313188 from=translated src=- shape=8d1778ec vocab=4d866cce
+-/
 lemma partsGadgetEdgeCase42 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 42) :
     PartsGadgetEdgeCase 42 neighbor := by
@@ -53,6 +68,9 @@ lemma partsGadgetEdgeCase42 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=partsgad.1h1v.s6.525908f4e227 from=translated src=- shape=8d1778ec vocab=4d866cce
+-/
 lemma partsGadgetEdgeCase43 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 43) :
     PartsGadgetEdgeCase 43 neighbor := by
@@ -61,6 +79,9 @@ lemma partsGadgetEdgeCase43 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=partsgad.1h1v.s6.e8605ff6c324 from=translated src=- shape=8d1778ec vocab=4d866cce
+-/
 lemma partsGadgetEdgeCase44 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 44) :
     PartsGadgetEdgeCase 44 neighbor := by
@@ -69,6 +90,9 @@ lemma partsGadgetEdgeCase44 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=partsgad.1h1v.s6.5933a02e2631 from=translated src=- shape=8d1778ec vocab=4d866cce
+-/
 lemma partsGadgetEdgeCase45 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 45) :
     PartsGadgetEdgeCase 45 neighbor := by
@@ -77,6 +101,9 @@ lemma partsGadgetEdgeCase45 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=partsgad.1h1v.s6.0e16bfee3a36 from=translated src=- shape=8d1778ec vocab=4d866cce
+-/
 lemma partsGadgetEdgeCase46 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 46) :
     PartsGadgetEdgeCase 46 neighbor := by
@@ -85,6 +112,9 @@ lemma partsGadgetEdgeCase46 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=partsgad.1h1v.s6.d1c937e08afd from=translated src=- shape=8d1778ec vocab=4d866cce
+-/
 lemma partsGadgetEdgeCase47 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 47) :
     PartsGadgetEdgeCase 47 neighbor := by
@@ -93,6 +123,9 @@ lemma partsGadgetEdgeCase47 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=partsgad.1h1v.s6.4f10f9dcc4d5 from=translated src=- shape=8d1778ec vocab=4d866cce
+-/
 lemma partsGadgetEdgeCase48 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 48) :
     PartsGadgetEdgeCase 48 neighbor := by
@@ -101,6 +134,9 @@ lemma partsGadgetEdgeCase48 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=partsgad.1h1v.s6.0354c2ea40ff from=translated src=- shape=8d1778ec vocab=4d866cce
+-/
 lemma partsGadgetEdgeCase49 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 49) :
     PartsGadgetEdgeCase 49 neighbor := by
@@ -109,6 +145,9 @@ lemma partsGadgetEdgeCase49 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=partsgad.1h1v.s6.9b5b27d5cf81 from=translated src=- shape=8d1778ec vocab=4d866cce
+-/
 lemma partsGadgetEdgeCase50 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 50) :
     PartsGadgetEdgeCase 50 neighbor := by
@@ -117,6 +156,9 @@ lemma partsGadgetEdgeCase50 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=partsgad.1h1v.s6.3de19afe426d from=translated src=- shape=8d1778ec vocab=4d866cce
+-/
 lemma partsGadgetEdgeCase51 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 51) :
     PartsGadgetEdgeCase 51 neighbor := by
@@ -125,6 +167,9 @@ lemma partsGadgetEdgeCase51 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=partsgad.1h1v.s6.136e94f7601d from=translated src=- shape=8d1778ec vocab=4d866cce
+-/
 lemma partsGadgetEdgeCase52 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 52) :
     PartsGadgetEdgeCase 52 neighbor := by
@@ -133,6 +178,9 @@ lemma partsGadgetEdgeCase52 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=partsgad.1h1v.s6.cb30bbdff7f3 from=translated src=- shape=8d1778ec vocab=4d866cce
+-/
 lemma partsGadgetEdgeCase53 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 53) :
     PartsGadgetEdgeCase 53 neighbor := by
@@ -141,6 +189,9 @@ lemma partsGadgetEdgeCase53 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=partsgad.1h1v.s6.2a34cd184f2c from=translated src=- shape=8d1778ec vocab=4d866cce
+-/
 lemma partsGadgetEdgeCase54 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 54) :
     PartsGadgetEdgeCase 54 neighbor := by
@@ -149,6 +200,9 @@ lemma partsGadgetEdgeCase54 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=partsgad.1h1v.s6.de40f0ace9c8 from=translated src=- shape=8d1778ec vocab=4d866cce
+-/
 lemma partsGadgetEdgeCase55 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 55) :
     PartsGadgetEdgeCase 55 neighbor := by
@@ -157,6 +211,9 @@ lemma partsGadgetEdgeCase55 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=partsgad.1h1v.s6.26350162ad3d from=translated src=- shape=8d1778ec vocab=4d866cce
+-/
 lemma partsGadgetEdgeCase56 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 56) :
     PartsGadgetEdgeCase 56 neighbor := by

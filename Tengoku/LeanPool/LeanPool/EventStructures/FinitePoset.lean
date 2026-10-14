@@ -19,7 +19,9 @@ partial order) has a minimal element.
 
 namespace EventStructures
 
-/-- Classical: A non-empty finite subset of a well-founded partial order has a minimal element. -/
+/-- Classical: A non-empty finite subset of a well-founded partial order has a minimal element.
+@isnad1 id=ex.1h2v.s5.60c413e438e0 from=translated src=- shape=cb94ef25 vocab=9a7203af
+-/
 lemma Finset.exists_minimal_of_nonempty {α : Type*} [PartialOrder α] [WellFoundedLT α]
     (T : Finset α) (hne : T.Nonempty) :
     ∃ x ∈ T, ∀ y ∈ T, y < x → False := by
@@ -39,7 +41,9 @@ lemma Finset.exists_minimal_of_nonempty {α : Type*} [PartialOrder α] [WellFoun
     exact ⟨m, hmT, hmmin, le_trans hm_le (le_of_lt hy_lt)⟩
 
 /-- Constructive: every nonempty finite subset of a
-    decidable strict order has a minimal element (no well-foundedness needed). -/
+    decidable strict order has a minimal element (no well-foundedness needed).
+@isnad1 id=ex.1h2v.s5.346c10dc89d4 from=translated src=- shape=135c5e00 vocab=2451f2fc
+-/
 lemma Finset.exists_minimal_dec {α : Type*} [PartialOrder α]
     (T : Finset α) (hne : T.Nonempty) :
     ∃ x ∈ T, ∀ y ∈ T, ¬ y < x := by

@@ -42,7 +42,9 @@ def CompleteConclusion
     0 < w νP c d ∧ 0 < w νM c d
 
 /-- The order half of the local transfer result for a distinguished
-exponential plus an arbitrary finite list of signed scaled exponentials. -/
+exponential plus an arbitrary finite list of signed scaled exponentials.
+@isnad1 id=le.4h5v.s6.8dead48fde0b from=translated src=- shape=c5b26147 vocab=51718dec
+-/
 theorem finiteSignedExp_theta_order
     (Fs : List SignedExpFactor)
     {a b c d : ℝ}
@@ -59,7 +61,9 @@ theorem finiteSignedExp_theta_order
     ha hb hc hd
 
 /-- The full local transfer result, with every analytic and probability
-hypothesis discharged, for a finite signed-exponential common part. -/
+hypothesis discharged, for a finite signed-exponential common part.
+@isnad1 id=complete.4h5v.s5.bbb73c4b66e9 from=translated src=- shape=92277212 vocab=af41bb54
+-/
 theorem finiteSignedExp_complete
     (Fs : List SignedExpFactor)
     {a b c d : ℝ}
@@ -72,7 +76,9 @@ theorem finiteSignedExp_complete
       ha hb hc hd
 
 /-- Actual insertion-edge specialization: the changed low coordinate is
-the positive shift and the changed high coordinate is the negative shift. -/
+the positive shift and the changed high coordinate is the negative shift.
+@isnad1 id=le.4h7v.s7.afe166cc4402 from=translated src=- shape=00e7b672 vocab=8a49aaa2
+-/
 theorem commonFactors_theta_order
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (γ β : ι → ℝ) (hγ : ∀ i, 0 < γ i) (hβ : ∀ i, 0 < β i)
@@ -94,7 +100,9 @@ theorem commonFactors_theta_order
     (hγ changed).le (hβ changed).le hc hd
 
 /-- The full automatic local transfer result on every genuine insertion
-edge. -/
+edge.
+@isnad1 id=complete.4h7v.s6.f7bc54d5a59d from=translated src=- shape=42d626e6 vocab=352541c0
+-/
 theorem commonFactors_complete
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (γ β : ι → ℝ) (hγ : ∀ i, 0 < γ i) (hβ : ∀ i, 0 < β i)

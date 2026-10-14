@@ -80,7 +80,9 @@ def conflictCovers68 : Array ConflictCover :=
   ⟨7, 807404548, 33822342207, [2, 10, 21, 28, 29]⟩,
   ⟨5, 272632902, 33822867455, [1, 2, 6, 10, 11, 22, 28]⟩]
 
-/-- Every entry in conflict-cover group 68 passes its audit. -/
+/-- Every entry in conflict-cover group 68 passes its audit.
+@isnad1 id=eq.0h0v.s3.54fc4e27aa4f from=translated src=- shape=0547e772 vocab=08d6dc8b
+-/
 theorem conflictCovers68_valid :
     conflictCovers68.toList.all ConflictCover.validB = true := by
   decide
@@ -152,7 +154,9 @@ def conflictCovers69 : Array ConflictCover :=
   ⟨6, 687732166656, 34326150579, [12, 19, 29, 37, 39]⟩,
   ⟨6, 552710706176, 34359737855, [10, 12, 21, 28, 29, 31, 39]⟩]
 
-/-- Every entry in conflict-cover group 69 passes its audit. -/
+/-- Every entry in conflict-cover group 69 passes its audit.
+@isnad1 id=eq.0h0v.s3.04414ee3840a from=translated src=- shape=0547e772 vocab=3665f8ff
+-/
 theorem conflictCovers69_valid :
     conflictCovers69.toList.all ConflictCover.validB = true := by
   decide
@@ -220,7 +224,9 @@ def conflictCovers70 : Array ConflictCover :=
   ⟨6, 268961826, 25174196223, [1, 5, 11, 19, 28]⟩, ⟨6, 2415920160, 25232916223, [5, 10, 28, 31]⟩,
   ⟨6, 2418025504, 34359721727, [5, 10, 13, 21, 28, 31]⟩]
 
-/-- Every entry in conflict-cover group 70 passes its audit. -/
+/-- Every entry in conflict-cover group 70 passes its audit.
+@isnad1 id=eq.0h0v.s3.b14d4d222d41 from=translated src=- shape=0547e772 vocab=ff945036
+-/
 theorem conflictCovers70_valid :
     conflictCovers70.toList.all ConflictCover.validB = true := by
   decide
@@ -291,7 +297,9 @@ def conflictCovers71 : Array ConflictCover :=
   ⟨6, 687195293698, 34325889023, [1, 11, 19, 37, 39]⟩,
   ⟨7, 70368745750528, 34158214659, [19, 20, 46]⟩]
 
-/-- Every entry in conflict-cover group 71 passes its audit. -/
+/-- Every entry in conflict-cover group 71 passes its audit.
+@isnad1 id=eq.0h0v.s3.96688b2cd8b2 from=translated src=- shape=0547e772 vocab=e73a5013
+-/
 theorem conflictCovers71_valid :
     conflictCovers71.toList.all ConflictCover.validB = true := by
   decide

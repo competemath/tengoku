@@ -35,7 +35,9 @@ def insertionEdgeScale {n : ℕ}
   if hj : j < n then γ (σ ⟨j, hj⟩).castSucc else 1
 
 /-- The zero-extended interpolation sequence is identically zero from its
-sentinel onward. -/
+sentinel onward.
+@isnad1 id=eq.1h5v.s6.661aad34d289 from=translated src=- shape=db11cdd8 vocab=7a1db92d
+-/
 theorem insertionTheta_eq_zero_of_ge {n : ℕ}
     (γ β : Fin (n + 1) → ℝ) (σ : Equiv.Perm (Fin n))
     {r : ℕ} (hr : n + 1 ≤ r) :
