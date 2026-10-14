@@ -9,9 +9,11 @@
 ## About
 Formal mathematics is mathematics that a computer can check, step by step. It is scattered across hundreds of separate
 projects, written for different versions of the language, Lean 4. Tengoku brings them together in one verified library
-on one version, so that agentic theorem provers can use all of it at once.
+on one version, so that agentic theorem provers can use all of it at once. A theorem in Tengoku is declared trusted (or Leak-trusted) 
+if it compiles from scratch in the self-contained Tengoku tree, on one of the pinned Lean toolchains listed in the badges 
+above, with no sorry, only the standard 3 axioms, and passing checks intended to catch contradictory assumptions.
 
-One of the things we would like to see, is that Tengoku significantly improves proving capacity of an [ATP](https://en.wikipedia.org/wiki/Automated_theorem_proving), compared
+One of the things we would like to see is that Tengoku significantly improves the proving capacity of an [ATP](https://en.wikipedia.org/wiki/Automated_theorem_proving), compared
 to when it uses Mathlib. We also hope that the unification of many disparate libraries makes it easier for ATPs to bridge
 seemingly unrelated mathematics, and the discovery of new mathematics. Finally, we hope Tengoku acts as a continuously improving, 
 reliable context for automated theorem provers. By reliable, we mean a system designed to be exceptionally cynical of all dependencies, even the Lean 4 kernel and elaboration ecosystem - [why](docs/why-cynical.md) and [how](docs/reliability.md) we do that.
@@ -57,7 +59,7 @@ at, in the [goals](GOALS.md) file.
 
 [How credit works](docs/credit.md) · [Contributing](CONTRIBUTING.md) · [How a theorem gets in](docs/how-a-pr-flows.md) · [Code of Ethics](https://github.com/competemath/.github/blob/main/CODE_OF_ETHICS.md) · [Posting guidelines](https://github.com/competemath/.github/blob/main/POSTING.md) · [Found an issue, or have an idea?](https://github.com/competemath/tengoku/issues/new) · [Found a security problem?](SECURITY.md). 
 
-If you are unsure if an issue is a security problem, assume it is and raise it via the formal procedure above anyway.
+If you are unsure if an issue is a security problem, assume it is.
 
 ## Learn more
 - [Why Tengoku does not trust the toolchain](docs/why-cynical.md): case studies of Lean 4 failures
