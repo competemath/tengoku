@@ -38,6 +38,9 @@ noncomputable def rFullPart (r m : ℕ) : ℕ :=
 /-
 The factorization of rFullPart r m equals the filtered factorization of m.
 -/
+/--
+@isnad1 id=eq.1h2v.s6.7f67f3afd73a from=translated src=- shape=5cce0d5d vocab=a84125a9
+-/
 lemma rFullPart_factorization (r m : ℕ) (_hm : m ≠ 0) :
     (rFullPart r m).factorization =
       m.factorization.filter (fun p => r ≤ m.factorization p) := by
@@ -48,6 +51,9 @@ lemma rFullPart_factorization (r m : ℕ) (_hm : m ≠ 0) :
 /-
 rFullPart r m is nonzero when m is nonzero.
 -/
+/--
+@isnad1 id=lt.1h2v.s4.9bd99744bf57 from=translated src=- shape=bd51eff3 vocab=66e0a14f
+-/
 lemma rFullPart_pos (r m : ℕ) (_hm : m ≠ 0) : 0 < rFullPart r m := by
   exact Finset.prod_pos fun p hp =>
     pow_pos (Nat.pos_of_mem_primeFactors (Finset.mem_filter.mp hp |>.1)) _
@@ -56,6 +62,9 @@ lemma rFullPart_pos (r m : ℕ) (_hm : m ≠ 0) : 0 < rFullPart r m := by
 
 /-
 B_r(m) divides m.
+-/
+/--
+@isnad1 id=dvd.1h2v.s4.69ed475e5b65 from=translated src=- shape=96d9866c vocab=1a6a636c
 -/
 lemma rFullPart_dvd (r m : ℕ) (hm : m ≠ 0) : rFullPart r m ∣ m := by
   have h_factorization :
@@ -74,6 +83,9 @@ lemma rFullPart_dvd (r m : ℕ) (hm : m ≠ 0) : rFullPart r m ∣ m := by
 
 /-
 L1: A perfect r-th power is r-full: B_r(m^r) = m^r for m ≥ 1 and r ≥ 1.
+-/
+/--
+@isnad1 id=eq.2h2v.s5.4edb28d790e4 from=translated src=- shape=35eabbdc vocab=1fe18c1c
 -/
 lemma rFullPart_pow (r m : ℕ) (hm : m ≠ 0) (hr : r ≠ 0) :
     rFullPart r (m ^ r) = m ^ r := by
@@ -101,6 +113,9 @@ lemma rFullPart_pow (r m : ℕ) (hm : m ≠ 0) (hr : r ≠ 0) :
 /-
 If d^r ∣ m and m ≠ 0, then d^r ∣ B_r(m).
 -/
+/--
+@isnad1 id=dvd.2h3v.s5.b537c4ac9b57 from=translated src=- shape=7365f7d9 vocab=87cea6dc
+-/
 lemma pow_dvd_rFullPart (r m d : ℕ) (hm : m ≠ 0) (hdvd : d ^ r ∣ m) :
     d ^ r ∣ rFullPart r m := by
   by_cases hr : r = 0
@@ -116,7 +131,9 @@ lemma pow_dvd_rFullPart (r m d : ℕ) (hm : m ≠ 0) (hdvd : d ^ r ∣ m) :
   · aesop;
   · exact Nat.ne_of_gt ( rFullPart_pos r m hm )
 
-/-- If d^r ∣ m and m ≠ 0, then d^r ≤ B_r(m). -/
+/-- If d^r ∣ m and m ≠ 0, then d^r ≤ B_r(m).
+@isnad1 id=le.2h3v.s5.e35e87f2bbcd from=translated src=- shape=2518156c vocab=cef9f30c
+-/
 lemma pow_le_rFullPart (r m d : ℕ) (hm : m ≠ 0) (hdvd : d ^ r ∣ m) :
     d ^ r ≤ rFullPart r m :=
   Nat.le_of_dvd (rFullPart_pos r m hm) (pow_dvd_rFullPart r m d hm hdvd)
@@ -127,6 +144,9 @@ lemma pow_le_rFullPart (r m d : ℕ) (hm : m ≠ 0) (hdvd : d ^ r ∣ m) :
 For odd r and a ≥ 1, (a + 1) ∣ (a^r + 1).
     Proof: a ≡ -1 (mod a+1), so a^r ≡ (-1)^r = -1 (mod a+1).
 -/
+/--
+@isnad1 id=dvd.1h2v.s5.bc35e0a1e499 from=translated src=- shape=896c56f0 vocab=8ddac598
+-/
 lemma odd_pow_add_one_dvd (r a : ℕ) (hr : Odd r) :
     (a + 1) ∣ (a ^ r + 1) := by
   simpa using hr.nat_add_dvd_pow_add_pow a 1
@@ -135,7 +155,9 @@ lemma odd_pow_add_one_dvd (r a : ℕ) (hr : Odd r) :
 
 variable {r q : ℕ}
 
-/-- (i) B_r(n) = n where n = (q^r - 1)^r. -/
+/-- (i) B_r(n) = n where n = (q^r - 1)^r.
+@isnad1 id=eq.2h2v.s6.85d56650e10e from=translated src=- shape=4b19f52d vocab=7cb79fb6
+-/
 theorem erdos367_i (hr : 0 < r) (hq : 2 ≤ q) :
     rFullPart r ((q ^ r - 1) ^ r) = (q ^ r - 1) ^ r := by
   apply rFullPart_pow
@@ -146,19 +168,26 @@ theorem erdos367_i (hr : 0 < r) (hq : 2 ≤ q) :
 /-
 (ii) q^r ∣ (q^r - 1)^r + 1.
 -/
+/--
+@isnad1 id=dvd.2h2v.s6.9f952ef5ed0e from=translated src=- shape=c1b12dbe vocab=d26dbc71
+-/
 theorem erdos367_ii (hr : Odd r) (hq : 2 ≤ q) :
     q ^ r ∣ (q ^ r - 1) ^ r + 1 := by
   convert odd_pow_add_one_dvd r ( q ^ r - 1 ) hr using 1;
   rw [ Nat.sub_add_cancel ( Nat.one_le_pow _ _ ( by linarith ) ) ]
 
-/-- B_r(n+1) ≥ q^r. -/
+/-- B_r(n+1) ≥ q^r.
+@isnad1 id=le.3h2v.s6.7f91025e208a from=translated src=- shape=c4415010 vocab=5fba2ffc
+-/
 theorem erdos367_Br_succ_ge (hr_odd : Odd r) (_hr : 0 < r) (hq : 2 ≤ q) :
     q ^ r ≤ rFullPart r ((q ^ r - 1) ^ r + 1) := by
   apply pow_le_rFullPart r _ q
   · positivity
   · exact erdos367_ii hr_odd hq
 
-/-- (iii) B_r(n) · B_r(n+1) ≥ n · q^r. -/
+/-- (iii) B_r(n) · B_r(n+1) ≥ n · q^r.
+@isnad1 id=le.3h2v.s7.858df447b810 from=translated src=- shape=d8a387fe vocab=4d369d61
+-/
 theorem erdos367_iii (hr_odd : Odd r) (hr : 0 < r) (hq : 2 ≤ q) :
     (q ^ r - 1) ^ r * q ^ r ≤
       rFullPart r ((q ^ r - 1) ^ r) * rFullPart r ((q ^ r - 1) ^ r + 1) := by
@@ -167,6 +196,9 @@ theorem erdos367_iii (hr_odd : Odd r) (hr : 0 < r) (hq : 2 ≤ q) :
 
 /-
 (iv) (B_r(n) · B_r(n+1))^r > n^(r+1).
+-/
+/--
+@isnad1 id=lt.3h2v.s7.d8c77b158163 from=translated src=- shape=c6e2e9f6 vocab=4d369d61
 -/
 theorem erdos367_iv (hr_odd : Odd r) (hr : 0 < r) (hq : 2 ≤ q) :
     ((q ^ r - 1) ^ r) ^ (r + 1) <

@@ -45,14 +45,22 @@ namespace ApproximableMap
 def iterFrom (f : ApproximableMap V V) (a : V.Element) (n : ℕ) : V.Element :=
   (f.toElementMap)^[n] a
 
+/--
+@isnad1 id=eq.0h4v.s4.a55899eeefff from=translated src=- shape=24dccf54 vocab=9fdad7b7
+-/
 @[simp] theorem iterFrom_zero (f : ApproximableMap V V) (a : V.Element) :
     f.iterFrom a 0 = a := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.acfadc01e768 from=translated src=- shape=681a530d vocab=6c9700b5
+-/
 theorem iterFrom_succ (f : ApproximableMap V V) (a : V.Element) (n : ℕ) :
     f.iterFrom a (n + 1) = f.toElementMap (f.iterFrom a n) := by
   rw [iterFrom, iterFrom, Function.iterate_succ', Function.comp_apply]
 
-/-- One step of the chain: `fⁿ(a) ⊑ fⁿ⁺¹(a)` (proved choice-free by induction). -/
+/-- One step of the chain: `fⁿ(a) ⊑ fⁿ⁺¹(a)` (proved choice-free by induction).
+@isnad1 id=le.1h5v.s6.6391182c925c from=translated src=- shape=51eb7737 vocab=b40b62d3
+-/
 theorem iterFrom_step (f : ApproximableMap V V) {a : V.Element} (ha : a ≤ f.toElementMap a)
     (n : ℕ) : f.iterFrom a n ≤ f.iterFrom a (n + 1) := by
   induction n with
@@ -63,7 +71,9 @@ theorem iterFrom_step (f : ApproximableMap V V) {a : V.Element} (ha : a ≤ f.to
 
 /-- When `a ⊑ f(a)`, the chain `fⁿ(a)` is monotone: `n ≤ m ⟹ fⁿ(a) ⊑ fᵐ(a)`.
 Proved by induction
-on `n ≤ m` (so as to stay **choice-free**, unlike `monotone_nat_of_le_succ`). -/
+on `n ≤ m` (so as to stay **choice-free**, unlike `monotone_nat_of_le_succ`).
+@isnad1 id=le.2h6v.s6.91efbd02e3c0 from=translated src=- shape=eb257df8 vocab=85e7f500
+-/
 theorem iterFrom_mono (f : ApproximableMap V V) {a : V.Element} (ha : a ≤ f.toElementMap a)
     {n m : ℕ} (hnm : n ≤ m) : f.iterFrom a n ≤ f.iterFrom a m := by
   induction hnm with
@@ -79,7 +89,9 @@ def fixAbove (f : ApproximableMap V V) {a : V.Element} (ha : a ≤ f.toElementMa
       iterFrom_mono f ha (le_max_right i j)⟩)
 
 /-- `a ⊑ fixAbove f ha`: the constructed fixed point lies above `a` (it is the `n
-= 0` term). -/
+= 0` term).
+@isnad1 id=le.1h4v.s5.ebb2322e2e96 from=translated src=- shape=dda58756 vocab=55b25f5e
+-/
 theorem le_fixAbove (f : ApproximableMap V V) {a : V.Element} (ha : a ≤ f.toElementMap a) :
     a ≤ f.fixAbove ha := by
   have := NeighborhoodSystem.le_iSupDirected (f.iterFrom a)
@@ -88,7 +100,9 @@ theorem le_fixAbove (f : ApproximableMap V V) {a : V.Element} (ha : a ≤ f.toEl
   rwa [iterFrom_zero] at this
 
 /-- **Exercise 4.7 (Scott 1981, PRG-19).** `fixAbove f ha` is a fixed point: `f(x)
-= x`. -/
+= x`.
+@isnad1 id=eq.1h4v.s5.d1a0373fc539 from=translated src=- shape=4a89f809 vocab=55b25f5e
+-/
 theorem fixAbove_isFixed (f : ApproximableMap V V) {a : V.Element} (ha : a ≤ f.toElementMap a) :
     f.toElementMap (f.fixAbove ha) = f.fixAbove ha := by
   set hdir := (fun i j => ⟨max i j, iterFrom_mono f ha (le_max_left i j),
@@ -113,7 +127,9 @@ theorem fixAbove_isFixed (f : ApproximableMap V V) {a : V.Element} (ha : a ≤ f
 
 /-- **Exercise 4.7 (Scott 1981, PRG-19).** `fixAbove f ha` is the *least* fixed
 point above `a`:
-any `z` with `a ⊑ z` and `f(z) ⊑ z` lies above it. (Relativized form of 4.2(iii).) -/
+any `z` with `a ⊑ z` and `f(z) ⊑ z` lies above it. (Relativized form of 4.2(iii).)
+@isnad1 id=le.3h5v.s6.6e1b4b74dcf6 from=translated src=- shape=5776bf4f vocab=55b25f5e
+-/
 theorem fixAbove_least (f : ApproximableMap V V) {a : V.Element} (ha : a ≤ f.toElementMap a)
     {z : V.Element} (haz : a ≤ z) (hz : f.toElementMap z ≤ z) : f.fixAbove ha ≤ z := by
   apply NeighborhoodSystem.iSupDirected_le

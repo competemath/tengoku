@@ -24,7 +24,9 @@ under the strict anchor).
 
 namespace LeanPool.Erdos132ConvexK3
 
-/-- Strict cyclic convexity makes the labelled boundary map injective. -/
+/-- Strict cyclic convexity makes the labelled boundary map injective.
+@isnad1 id=injectiv.2h2v.s5.5d0d2ff805bd from=translated src=- shape=ff619ab0 vocab=82e508ba
+-/
 theorem cyclic_strict_convex_injective
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ}
     (hConvex : CyclicStrictConvex P) (hn : 3 ≤ n) : Function.Injective P := by
@@ -37,7 +39,9 @@ theorem cyclic_strict_convex_injective
     rw [← hij] at hturn
     simp [turn] at hturn
 
-/-- Four increasing offsets in one turn form a strict convex quadrilateral. -/
+/-- Four increasing offsets in one turn form a strict convex quadrilateral.
+@isnad1 id=strictco.5h6v.s6.03a827e86115 from=translated src=- shape=6527f368 vocab=80ae23cb
+-/
 theorem cyclic_strict_convex_quad_zero_offsets
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ}
     (hConvex : CyclicStrictConvex P) (base : Fin n)
@@ -61,7 +65,9 @@ theorem cyclic_strict_convex_quad_zero_offsets
     simpa [hperiodZero] using h
 
 /-- Every positive offset past the next vertex is in the common open
-half-plane of the consecutive centers `base, base + 1`. -/
+half-plane of the consecutive centers `base, base + 1`.
+@isnad1 id=inleftop.3h4v.s6.44d427c3c58c from=translated src=- shape=3e8926d6 vocab=c9636e64
+-/
 theorem cyclic_offset_in_left_open_half_plane
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ}
     (hConvex : CyclicStrictConvex P) (base : Fin n) {k : ℕ}
@@ -73,7 +79,9 @@ theorem cyclic_offset_in_left_open_half_plane
   simpa [InLeftOpenHalfPlane] using h
 
 /-- A fixed ordered pair of radii contributes at most one cyclic offset in
-the open half-plane beyond the next vertex. -/
+the open half-plane beyond the next vertex.
+@isnad1 id=le.4h6v.s7.553eefeacf3e from=translated src=- shape=d05719f1 vocab=60644f1f
+-/
 theorem cyclic_fixed_radii_offset_card_le_one
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ}
     (hConvex : CyclicStrictConvex P) (hn : 3 ≤ n) (base : Fin n)
@@ -110,7 +118,9 @@ theorem cyclic_fixed_radii_offset_card_le_one
   exact add_left_cancel hlabel
 
 /-- A counterclockwise neighbor cannot pass the offset representing the
-first clockwise neighbor. -/
+first clockwise neighbor.
+@isnad1 id=le.2h7v.s6.61a18d9f9750 from=translated src=- shape=979b8775 vocab=fd039fc3
+-/
 theorem ccw_neighbor_offset_le_clockwise_boundary
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ} {v k : Fin n}
     (hdegree : 0 < vertexDegree P d₁ d₂ d₃ v)
@@ -144,7 +154,9 @@ theorem ccw_neighbor_offset_le_clockwise_boundary
   omega
 
 /-- Equality of squared distances is equality of ordinary Euclidean
-distances. -/
+distances.
+@isnad1 id=eq.1h4v.s5.f2e14032b5ba from=translated src=- shape=8b9fd7dc vocab=b8665d84
+-/
 theorem euclideanDist_eq_of_sqDist_eq
     {a b c d : Point ℝ} (h : sqDist a b = sqDist c d) :
     euclideanDist a b = euclideanDist c d := by
@@ -152,7 +164,9 @@ theorem euclideanDist_eq_of_sqDist_eq
   exact (sq_eq_sq₀ dist_nonneg dist_nonneg).mp h
 
 /-- The second strict edge--diagonal inequality, obtained by rotating the
-four cyclic vertices once. -/
+four cyclic vertices once.
+@isnad1 id=lt.1h4v.s5.4302af6cbaf9 from=translated src=- shape=05cd10de vocab=1085c0c2
+-/
 theorem edge_diagonal_inequality_rotated
     {x p u r : Point ℝ} (hquad : StrictConvexQuad x p u r) :
     euclideanDist p u + euclideanDist x r <
@@ -170,7 +184,9 @@ theorem edge_diagonal_inequality_rotated
 
 /-- If the anchor from the first center is no longer than the anchor from
 the next center, strict edge--diagonal comparison reverses that order at a
-point on the far arc. -/
+point on the far arc.
+@isnad1 id=lt.2h4v.s5.d49eea98db8b from=translated src=- shape=2f3ead85 vocab=59586599
+-/
 theorem far_arc_strict_center_comparison
     {x p u r : Point ℝ} (hquad : StrictConvexQuad x p u r)
     (hanchor : sqDist x u ≤ sqDist p u) : sqDist x r < sqDist p r := by
@@ -184,7 +200,9 @@ theorem far_arc_strict_center_comparison
   exact (sq_lt_sq₀ dist_nonneg dist_nonneg).mpr hdist
 
 /-- With exactly three ranked distances, a strict comparison has only the
-three ordered radius slots used in the project proof draft. -/
+three ordered radius slots used in the project proof draft.
+@isnad1 id=or.4h8v.s7.29cf2da9d1e7 from=translated src=- shape=d1d7a81f vocab=9ade9537
+-/
 theorem strict_top_three_rank_slots
     {n : ℕ} {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ} {x p r : Fin n}
     (hClasses : HasTopThreeDistanceClasses P d₁ d₂ d₃)
@@ -269,7 +287,9 @@ private theorem d3_d1_tail_slot_empty
 `u` is the first counterclockwise neighbor of `x + 3`, and `z` is the first
 clockwise neighbor of `x`.  Under the three displayed ladder colors, an
 `xu = d₁` anchor gives degree at most six, while `xu = d₂` gives degree at
-most five. -/
+most five.
+@isnad1 id=and.3h6v.s8.fc2107cc68f8 from=translated src=- shape=343229b5 vocab=77102c4d
+-/
 theorem maximal_gap_tail_degree_bounds
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (S : ErLVAtVertexUseSite P d₁ d₂ d₃)
@@ -482,7 +502,9 @@ theorem maximal_gap_tail_degree_bounds
       _ ≤ 5 := by omega
 
 /-- The four vertices `x, x+1, u, z` used by the tail lemma occur in strict
-cyclic order at every maximal-gap degree-seven use site. -/
+cyclic order at every maximal-gap degree-seven use site.
+@isnad1 id=strictco.0h6v.s6.b9457fd39325 from=translated src=- shape=096b0e2b vocab=1613fe5b
+-/
 theorem erlv_x_p_u_z_strict_convex_quad
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (S : ErLVAtVertexUseSite P d₁ d₂ d₃) :
@@ -537,7 +559,9 @@ theorem erlv_x_p_u_z_strict_convex_quad
 
 /-- If the opposite sides `pu,zx` have ranks `d₁,d₃` and the diagonal
 `pz` has rank `d₂`, strict ED forces the other diagonal `xu` into
-`d₁ ∨ d₂`. -/
+`d₁ ∨ d₂`.
+@isnad1 id=or.6h9v.s7.989266e0de3b from=translated src=- shape=144a1e88 vocab=d5b816cc
+-/
 theorem d1_d3_opposite_sides_force_xu_top_two
     {n : ℕ} {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ} {x p u z : Fin n}
     (hClasses : HasTopThreeDistanceClasses P d₁ d₂ d₃)
@@ -564,7 +588,9 @@ theorem d1_d3_opposite_sides_force_xu_top_two
   · exact (ne_of_lt hsqGrow (hxz.trans h₃.symm)).elim
 
 /-- The rigid `(2,2)` ladders supply every hypothesis of the tail lemma and
-force `xu` into one of its two clauses. -/
+force `xu` into one of its two clauses.
+@isnad1 id=other.1h6v.s7.d70c2ff17d34 from=translated src=- shape=262779e9 vocab=7456f1ff
+-/
 theorem erlv_case22_tail_rank_data
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (S : ErLVAtVertexUseSite P d₁ d₂ d₃) (h22 : S.Case22) :
@@ -616,7 +642,9 @@ theorem erlv_case22_tail_rank_data
     S.classes hquad hxzAdj hpu hxz hpz
   exact ⟨hpu, hxz, hpz, hxu⟩
 
-/-- The maximal-gap tail lemma closes the whole rigid `(2,2)` branch. -/
+/-- The maximal-gap tail lemma closes the whole rigid `(2,2)` branch.
+@isnad1 id=erlvatve.0h0v.s0.f1854c8d9f8d from=translated src=- shape=45709ebd vocab=f1854c8d
+-/
 theorem erlv_at_vertex_case22_impossible_of_tail :
     ErLVAtVertexCase22Impossible := by
   intro n _ P d₁ d₂ d₃ S h22
@@ -630,25 +658,33 @@ theorem erlv_at_vertex_case22_impossible_of_tail :
     have hhigh := S.highDegree S.x
     omega
 
-/-- Session-9 obligation 5/8, discharged by unconditional branch closure. -/
+/-- Session-9 obligation 5/8, discharged by unconditional branch closure.
+@isnad1 id=erlvatve.0h0v.s0.8e354c00c787 from=translated src=- shape=45709ebd vocab=8e354c00
+-/
 theorem erlv_at_vertex_case22_zt_d1_impossible_of_tail :
     ErLVAtVertexCase22ZTD1Impossible := by
   intro n _ P d₁ d₂ d₃ S h22 _
   exact erlv_at_vertex_case22_impossible_of_tail P d₁ d₂ d₃ S h22
 
-/-- Session-9 obligation 6/8, discharged by unconditional branch closure. -/
+/-- Session-9 obligation 6/8, discharged by unconditional branch closure.
+@isnad1 id=erlvatve.0h0v.s0.fc40cd0c8d01 from=translated src=- shape=45709ebd vocab=fc40cd0c
+-/
 theorem erlv_at_vertex_case22_zt_d2_impossible_of_tail :
     ErLVAtVertexCase22ZTD2Impossible := by
   intro n _ P d₁ d₂ d₃ S h22 _
   exact erlv_at_vertex_case22_impossible_of_tail P d₁ d₂ d₃ S h22
 
-/-- Session-9 obligation 7/8, discharged by unconditional branch closure. -/
+/-- Session-9 obligation 7/8, discharged by unconditional branch closure.
+@isnad1 id=erlvatve.0h0v.s0.0777a8e7742f from=translated src=- shape=45709ebd vocab=0777a8e7
+-/
 theorem erlv_at_vertex_case22_xu_d1_impossible_of_tail :
     ErLVAtVertexCase22XUD1Impossible := by
   intro n _ P d₁ d₂ d₃ S h22 _
   exact erlv_at_vertex_case22_impossible_of_tail P d₁ d₂ d₃ S h22
 
-/-- Session-9 obligation 8/8, discharged by unconditional branch closure. -/
+/-- Session-9 obligation 8/8, discharged by unconditional branch closure.
+@isnad1 id=erlvatve.0h0v.s0.062794cb1d20 from=translated src=- shape=45709ebd vocab=062794cb
+-/
 theorem erlv_at_vertex_case22_xu_d2_impossible_of_tail :
     ErLVAtVertexCase22XUD2Impossible := by
   intro n _ P d₁ d₂ d₃ S h22 _
@@ -657,7 +693,9 @@ theorem erlv_at_vertex_case22_xu_d2_impossible_of_tail :
 namespace K3CoverSequence
 
 /-- A path with one left and one right cover has made two strict rank
-increases, regardless of their order, so it ends in `d₁`. -/
+increases, regardless of their order, so it ends in `d₁`.
+@isnad1 id=eq.3h7v.s6.cca9cfefbdc8 from=translated src=- shape=dbd70eb0 vocab=6b2be833
+-/
 theorem one_left_one_right_end_at_d1
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hClasses : HasTopThreeDistanceClasses P d₁ d₂ d₃)
@@ -681,7 +719,9 @@ theorem one_left_one_right_end_at_d1
 end K3CoverSequence
 
 /-- The tail lemma closes the `(1,2)` shared-tip subcase whose other
-terminal edge has color `d₂`. -/
+terminal edge has color `d₂`.
+@isnad1 id=erlvatve.0h0v.s0.cda76f2cf100 from=translated src=- shape=45709ebd vocab=cda76f2c
+-/
 theorem erlv_at_vertex_case12_other_d2_impossible_of_tail :
     ErLVAtVertexCase12OtherD2Impossible := by
   intro n _ P d₁ d₂ d₃ S h12 hOther
@@ -740,7 +780,9 @@ theorem erlv_at_vertex_case12_other_d2_impossible_of_tail :
     omega
 
 /-- Session-11 boundary: after the maximal-gap tail port, only the three
-shared-tip colors `(1,2)-d₁`, `(2,1)-d₁`, and `(2,1)-d₂` remain. -/
+shared-tip colors `(1,2)-d₁`, `(2,1)-d₁`, and `(2,1)-d₂` remain.
+@isnad1 id=erlvatve.3h0v.s2.e0aabc77c82e from=translated src=- shape=b198369b vocab=7c1ab0b5
+-/
 theorem erlv_at_vertex_exceptional_branches_impossible_of_remaining_three
     (h12D1 : ErLVAtVertexCase12OtherD1Impossible)
     (h21D1 : ErLVAtVertexCase21OtherD1Impossible)

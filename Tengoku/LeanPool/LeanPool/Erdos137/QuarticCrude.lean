@@ -60,7 +60,9 @@ def BlockRadLB4 : Prop :=
       ((∏ j ∈ Finset.range (k / 4), rad (F 4 (n + 4 * j)) : ℕ) : ℝ)
 
 /-- `BlockRadLB4` is exactly the `g = 4` instance of the generic `BlockRadLBg` (the exponents
-`3/4` and `(4-1)/4` agree, and the guard `4 ≤ k` matches `g ≤ k`). -/
+`3/4` and `(4-1)/4` agree, and the guard `4 ≤ k` matches `g ≤ k`).
+@isnad1 id=iff.0h0v.s3.3efc27daf4db from=translated src=- shape=9ae76a30 vocab=972fed77
+-/
 lemma blockRadLB4_iff : BlockRadLB4 ↔ BlockRadLBg 4 := by
   unfold BlockRadLB4 BlockRadLBg
   constructor
@@ -82,10 +84,14 @@ def overlap4 (k n p : ℕ) : ℕ := overlapg 4 k n p
 /-- The over-count `W4 k n`: the `g = 4` instance of the generic `Wg`. -/
 def W4 (k n : ℕ) : ℕ := Wg 4 k n
 
-/-- **`B4 k n` divides `F k n`** (the `g = 4` instance of `Bg_dvd_F`). -/
+/-- **`B4 k n` divides `F k n`** (the `g = 4` instance of `Bg_dvd_F`).
+@isnad1 id=dvd.0h2v.s3.aeb6c818ddc0 from=translated src=- shape=6c8684e5 vocab=df383004
+-/
 lemma B4_dvd_F (k n : ℕ) : B4 k n ∣ F k n := Bg_dvd_F (by norm_num) k n
 
-/-- **Overlap bound (g = 4): `W4 k n ≤ k^k`.** The `g = 4` instance of `Wg_le_pow`. -/
+/-- **Overlap bound (g = 4): `W4 k n ≤ k^k`.** The `g = 4` instance of `Wg_le_pow`.
+@isnad1 id=le.1h2v.s5.5ec415c35d7d from=translated src=- shape=1d93e500 vocab=ffc0d5de
+-/
 theorem W4_le_pow {k n : ℕ} (hn : 1 ≤ n) : W4 k n ≤ k ^ k :=
   Wg_le_pow (by norm_num) hn
 

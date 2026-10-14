@@ -64,6 +64,9 @@ def iSupDirected {α : Type*} {V : NeighborhoodSystem α} {I : Type*} [Nonempty 
   V.sSupDirected (Set.range a) (Set.range_nonempty a) (by
     simp_all)
 
+/--
+@isnad1 id=iff.1h5v.s6.2af6a13fceee from=translated src=- shape=0389a4db vocab=303c38fb
+-/
 theorem mem_iSupDirected {α : Type*} {V : NeighborhoodSystem α} {I : Type*} [Nonempty I]
     (a : I → V.Element) (hdir : ∀ i j, ∃ k, a i ≤ a k ∧ a j ≤ a k) {Z : Set α} :
     (iSupDirected a hdir).mem Z ↔ ∃ i, (a i).mem Z := by
@@ -71,11 +74,17 @@ theorem mem_iSupDirected {α : Type*} {V : NeighborhoodSystem α} {I : Type*} [N
   · rintro ⟨s, ⟨i, rfl⟩, hsZ⟩; exact ⟨i, hsZ⟩
   · rintro ⟨i, hi⟩; exact ⟨a i, ⟨i, rfl⟩, hi⟩
 
+/--
+@isnad1 id=le.1h5v.s6.77c26ccd9ac9 from=translated src=- shape=a574e343 vocab=4881a5ed
+-/
 theorem le_iSupDirected {α : Type*} {V : NeighborhoodSystem α} {I : Type*} [Nonempty I]
     (a : I → V.Element) (hdir : ∀ i j, ∃ k, a i ≤ a k ∧ a j ≤ a k) (i : I) :
     a i ≤ iSupDirected a hdir :=
   fun _ hZ => (mem_iSupDirected a hdir).mpr ⟨i, hZ⟩
 
+/--
+@isnad1 id=le.2h5v.s6.9dfbe9bc4800 from=translated src=- shape=d42a4b12 vocab=4881a5ed
+-/
 theorem iSupDirected_le {α : Type*} {V : NeighborhoodSystem α} {I : Type*} [Nonempty I]
     (a : I → V.Element) (hdir : ∀ i j, ∃ k, a i ≤ a k ∧ a j ≤ a k) {y : V.Element}
     (hy : ∀ i, a i ≤ y) : iSupDirected a hdir ≤ y := by
@@ -134,7 +143,9 @@ def ofMono (m : (X : Set α) → V₀.mem X → V₁.Element)
 
 /-- **Exercise 2.8 (extension, computed).** The map `ofMono m` realizes `m` on
 finite elements:
-`(ofMono m)(↑X) = m(↑X)`. -/
+`(ofMono m)(↑X) = m(↑X)`.
+@isnad1 id=eq.2h6v.s6.59e6ac6fbdb6 from=translated src=- shape=43d79119 vocab=ccc78b4c
+-/
 theorem toElementMap_ofMono_principal
     (m : (X : Set α) → V₀.mem X → V₁.Element)
     (hmono : ∀ (X X' : Set α) (hX : V₀.mem X) (hX' : V₀.mem X'), X' ⊆ X → m X hX ≤ m X' hX')
@@ -154,7 +165,9 @@ theorem toElementMap_ofMono_principal
 /-- **Exercise 2.9 (Scott 1981, PRG-19).** `f(x) = ⋃ {f(↑X) ∣ X ∈ x}`: a
 neighbourhood `Y` lies in
 `f(x)` iff it lies in `f(↑X)` for some `X ∈ x`. (Immediate from
-`rel_iff_mem_principal`.) -/
+`rel_iff_mem_principal`.)
+@isnad1 id=iff.0h7v.s6.f57d021248ee from=translated src=- shape=bf4c7fd9 vocab=729cd920
+-/
 theorem toElementMap_mem_iff_principal (f : ApproximableMap V₀ V₁) (x : V₀.Element) {Y : Set β} :
     (f.toElementMap x).mem Y ↔
       ∃ (X : Set α) (hx : x.mem X), (f.toElementMap (V₀.principal (x.sub hx))).mem Y := by
@@ -184,7 +197,9 @@ def interMap (f g : ApproximableMap V₀ V₁) : ApproximableMap V₀ V₁ where
 /-- **Exercise 2.10.** `h(x) = f(x) ∩ g(x)` (the meet in `|𝒟₁|`). The non-trivial
 direction combines
 witnesses `X ∈ x` (for `f`) and `X' ∈ x` (for `g`) through `X ∩ X' ∈ x` using
-`mono`. -/
+`mono`.
+@isnad1 id=iff.0h8v.s6.5c47a6a8e10b from=translated src=- shape=b511597d vocab=c398ee9f
+-/
 theorem mem_toElementMap_interMap (f g : ApproximableMap V₀ V₁) (x : V₀.Element) {Z : Set β} :
     ((interMap f g).toElementMap x).mem Z ↔
       (f.toElementMap x).mem Z ∧ (g.toElementMap x).mem Z := by
@@ -202,7 +217,9 @@ theorem mem_toElementMap_interMap (f g : ApproximableMap V₀ V₁) (x : V₀.El
 
 /-- **Exercise 2.11 (Scott 1981, PRG-19).** Approximable mappings *preserve
 directed unions*:
-`f(⋃ᵢ a i) = ⋃ᵢ f(a i)`. Both sides have member `Y` iff `∃ i X, X ∈ a i ∧ X f Y`. -/
+`f(⋃ᵢ a i) = ⋃ᵢ f(a i)`. Both sides have member `Y` iff `∃ i X, X ∈ a i ∧ X f Y`.
+@isnad1 id=eq.1h7v.s6.60df9155edaa from=translated src=- shape=ca88c8fa vocab=d8ac6d61
+-/
 theorem toElementMap_iSupDirected (f : ApproximableMap V₀ V₁) {I : Type*} [Nonempty I]
     (a : I → V₀.Element) (hdir : ∀ i j, ∃ k, a i ≤ a k ∧ a j ≤ a k) :
     f.toElementMap (NeighborhoodSystem.iSupDirected a hdir) =
@@ -244,7 +261,9 @@ def iSupMap {I : Type*} [Nonempty I] (f : I → ApproximableMap V₀ V₁)
     exact ⟨i, (f i).mono hi hX'X hZZ' hX' hZ'⟩
 
 /-- **Exercise 2.12.** The induced elementwise map is the pointwise union: `g(x) =
-⋃ᵢ f i (x)`. -/
+⋃ᵢ f i (x)`.
+@isnad1 id=iff.1h8v.s7.547e5f9fbace from=translated src=- shape=a3d1e1b5 vocab=d104492f
+-/
 theorem mem_toElementMap_iSupMap {I : Type*} [Nonempty I] (f : I → ApproximableMap V₀ V₁)
     (hdir : ∀ i j, ∃ k, (∀ X Y, (f i).rel X Y → (f k).rel X Y) ∧
       (∀ X Y, (f j).rel X Y → (f k).rel X Y)) (x : V₀.Element) {Y : Set β} :
@@ -316,12 +335,17 @@ def toElementMap₂ (f : ApproximableMap₂ V₀ V₁ V₂) (x : V₀.Element) (
     rintro Z Z' ⟨X, Y, hX, hY, hrel⟩ hZ' hZZ'
     exact ⟨X, Y, hX, hY, f.mono hrel subset_rfl subset_rfl hZZ' (x.sub hX) (y.sub hY) hZ'⟩
 
+/--
+@isnad1 id=iff.0h10v.s6.054a6ab32aa6 from=translated src=- shape=26314453 vocab=78ebe453
+-/
 @[simp] theorem mem_toElementMap₂ (f : ApproximableMap₂ V₀ V₁ V₂) (x : V₀.Element) (y : V₁.Element)
     {Z : Set γ} : (f.toElementMap₂ x y).mem Z ↔ ∃ X Y, x.mem X ∧ y.mem Y ∧ f.rel X Y Z := Iff.rfl
 
 /-- **Exercise 2.19 (recovery of the relation).** `X, Y f Z ↔ Z ∈ f(↑X, ↑Y)`, the
 two-variable
-analogue of Proposition 2.2(ii). -/
+analogue of Proposition 2.2(ii).
+@isnad1 id=iff.2h10v.s6.e4f21784a2c8 from=translated src=- shape=76f3706f vocab=4c0aae12
+-/
 theorem rel₂_iff_mem_principal (f : ApproximableMap₂ V₀ V₁ V₂) {X : Set α} (hX : V₀.mem X)
     {Y : Set β} (hY : V₁.mem Y) {Z : Set γ} :
     f.rel X Y Z ↔ (f.toElementMap₂ (V₀.principal hX) (V₁.principal hY)).mem Z := by
@@ -333,7 +357,9 @@ theorem rel₂_iff_mem_principal (f : ApproximableMap₂ V₀ V₁ V₂) {X : Se
 
 /-- **Exercise 2.19 (monotonicity).** The two-variable elementwise map is monotone
 in each argument
-jointly: `x ⊑ x'`, `y ⊑ y'` imply `f(x, y) ⊑ f(x', y')`. -/
+jointly: `x ⊑ x'`, `y ⊑ y'` imply `f(x, y) ⊑ f(x', y')`.
+@isnad1 id=le.2h11v.s6.441d04b86645 from=translated src=- shape=aa3f75f8 vocab=4eb73fe2
+-/
 theorem toElementMap₂_mono (f : ApproximableMap₂ V₀ V₁ V₂) {x x' : V₀.Element} {y y' : V₁.Element}
     (hx : x ≤ x') (hy : y ≤ y') : f.toElementMap₂ x y ≤ f.toElementMap₂ x' y' := by
   rintro Z ⟨X, Y, hX, hY, hrel⟩

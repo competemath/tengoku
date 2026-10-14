@@ -51,7 +51,9 @@ def F (k n : ℕ) : ℕ := ∏ i ∈ Finset.range k, (n + i)
 
 /-! ### Auxiliary lemmas -/
 
-/-- Every element of the factorization support is a prime. -/
+/-- Every element of the factorization support is a prime.
+@isnad1 id=prime.1h2v.s4.dab73c0b70c0 from=translated src=- shape=fc365083 vocab=4776634d
+-/
 lemma prime_of_mem_factorization_support {m p : ℕ} (hp : p ∈ m.factorization.support) :
     Nat.Prime p := by
   simp_all
@@ -59,11 +61,17 @@ lemma prime_of_mem_factorization_support {m p : ℕ} (hp : p ∈ m.factorization
 /-
 rad(m) ≥ 1 for all m.
 -/
+/--
+@isnad1 id=le.0h1v.s3.93567eba2928 from=translated src=- shape=8a62b088 vocab=798273ca
+-/
 lemma rad_pos (m : ℕ) : 1 ≤ rad m := by
   exact Finset.prod_pos fun p hp => Nat.Prime.pos ( prime_of_mem_factorization_support hp )
 
 /-
 F(k, n) ≥ 1 when n ≥ 1.
+-/
+/--
+@isnad1 id=le.1h2v.s4.3fe14f0aa058 from=translated src=- shape=61bdc3e7 vocab=0ae0e3a6
 -/
 lemma F_pos {k n : ℕ} (hn : 1 ≤ n) : 1 ≤ F k n := by
   exact Nat.one_le_iff_ne_zero.mpr <| Finset.prod_ne_zero_iff.mpr fun i hi => by linarith;
@@ -71,11 +79,17 @@ lemma F_pos {k n : ℕ} (hn : 1 ≤ n) : 1 ≤ F k n := by
 /-
 F(k, n) ≠ 0 when n ≥ 1.
 -/
+/--
+@isnad1 id=ne.1h2v.s4.53e21dad3503 from=translated src=- shape=41cb78f6 vocab=0ae0e3a6
+-/
 lemma F_ne_zero {k n : ℕ} (hn : 1 ≤ n) : F k n ≠ 0 := by
   exact Finset.prod_ne_zero_iff.mpr fun _ _ => by positivity;
 
 /-
 Each factor n + i ≤ k * n for i < k, when n ≥ 1 and k ≥ 1.
+-/
+/--
+@isnad1 id=le.3h3v.s5.05ef2c915f76 from=translated src=- shape=0f91ad8e vocab=923b6325
 -/
 lemma factor_le_mul {k n i : ℕ} (_hk : 1 ≤ k) (hn : 1 ≤ n) (hi : i < k) :
     n + i ≤ k * n := by
@@ -105,6 +119,9 @@ Cast of lemma_star to ℝ: B₂(m) ≤ m²/rad(m)².
 /-
 rad(m) cast to ℝ is positive for m ≠ 0. Actually rad is always ≥ 1.
 -/
+/--
+@isnad1 id=lt.0h1v.s4.8e8c403894f8 from=translated src=- shape=2cbac45b vocab=18fa0b38
+-/
 lemma rad_cast_pos (m : ℕ) : (0 : ℝ) < (rad m : ℝ) := by
   exact_mod_cast rad_pos m
 
@@ -122,7 +139,9 @@ def RadLB (k : ℕ) : Prop :=
 i.e. `p ∣ N → p ^ 2 ∣ N` for all primes `p`. -/
 def Powerful (N : ℕ) : Prop := ∀ p : ℕ, p.Prime → p ∣ N → p ^ 2 ∣ N
 
-/-- For powerful `N`, the 2-full part `B2 N` is all of `N`. -/
+/-- For powerful `N`, the 2-full part `B2 N` is all of `N`.
+@isnad1 id=eq.2h1v.s4.606bb168ce28 from=translated src=- shape=c808c871 vocab=df96a11a
+-/
 theorem powerful_B2_eq {N : ℕ} (hN : N ≠ 0) (hP : Powerful N) : B2 N = N := by
   unfold B2
   have hfilter : (N.factorization.support.filter (fun p => 2 ≤ N.factorization p))

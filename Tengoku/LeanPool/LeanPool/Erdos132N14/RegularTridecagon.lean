@@ -30,10 +30,16 @@ noncomputable section
 def regularThirteenRoot : ℂ :=
   Complex.exp (2 * (Real.pi : ℂ) * Complex.I / 13)
 
+/--
+@isnad1 id=isprimit.0h0v.s3.8b153cbd6eb2 from=translated src=- shape=aeae7466 vocab=24ca09fe
+-/
 theorem regularThirteenRoot_isPrimitive :
     IsPrimitiveRoot regularThirteenRoot 13 := by
   exact Complex.isPrimitiveRoot_exp 13 (by norm_num)
 
+/--
+@isnad1 id=eq.0h0v.s3.236731739397 from=translated src=- shape=b3c4969c vocab=45e06059
+-/
 theorem norm_regularThirteenRoot : ‖regularThirteenRoot‖ = 1 := by
   rw [regularThirteenRoot, Complex.norm_exp]
   norm_num
@@ -42,6 +48,9 @@ theorem norm_regularThirteenRoot : ‖regularThirteenRoot‖ = 1 := by
 def regularTridecagonPoint (i : Fin 13) : ℂ :=
   regularThirteenRoot ^ i.val
 
+/--
+@isnad1 id=injectiv.0h0v.s3.e9007535fb7e from=translated src=- shape=bfe16b09 vocab=4b07d954
+-/
 theorem regularTridecagonPoint_injective :
     Function.Injective regularTridecagonPoint := by
   intro i j hij
@@ -53,16 +62,24 @@ def regularTridecagon : Configuration (Fin 13) where
   point := regularTridecagonPoint
   injective := regularTridecagonPoint_injective
 
+/--
+@isnad1 id=eq.0h1v.s4.a6e1a4dc3a97 from=translated src=- shape=8ce4ba95 vocab=03292416
+-/
 theorem norm_regularTridecagonPoint (i : Fin 13) :
     ‖regularTridecagonPoint i‖ = 1 := by
   simp [regularTridecagonPoint, norm_regularThirteenRoot]
 
+/--
+@isnad1 id=eq.0h1v.s5.df6e97bc2e3a from=translated src=- shape=7a5ed7a5 vocab=a9dbaabd
+-/
 theorem normSq_regularTridecagonPoint (i : Fin 13) :
     Complex.normSq (regularTridecagonPoint i) = 1 := by
   rw [← Complex.sq_norm, norm_regularTridecagonPoint]
   norm_num
 
-/-- The regular tridecagon is centered at the origin. -/
+/-- The regular tridecagon is centered at the origin.
+@isnad1 id=eq.0h0v.s5.561bf3de9947 from=translated src=- shape=c69a548c vocab=a8d4bf45
+-/
 theorem sum_regularTridecagonPoint :
     ∑ i : Fin 13, regularTridecagonPoint i = 0 := by
   rw [show (∑ i : Fin 13, regularTridecagonPoint i) =
@@ -71,7 +88,9 @@ theorem sum_regularTridecagonPoint :
       (Fin.sum_univ_eq_sum_range (fun i ↦ regularThirteenRoot ^ i) 13)]
   exact regularThirteenRoot_isPrimitive.geom_sum_eq_zero (by norm_num)
 
-/-- Its second complex harmonic also vanishes. -/
+/-- Its second complex harmonic also vanishes.
+@isnad1 id=eq.0h0v.s5.11b769301d3a from=translated src=- shape=e46c47c3 vocab=05be4c34
+-/
 theorem sum_regularTridecagonPoint_sq :
     ∑ i : Fin 13, regularTridecagonPoint i ^ 2 = 0 := by
   have hprimitiveSquare :=
@@ -91,13 +110,18 @@ theorem sum_regularTridecagonPoint_sq :
 def planeDot (x y : ℂ) : ℝ :=
   x.re * y.re + x.im * y.im
 
+/--
+@isnad1 id=eq.0h2v.s6.f1cbd146acbd from=translated src=- shape=1505c307 vocab=12051a20
+-/
 theorem normSq_sub (x y : ℂ) :
     Complex.normSq (x - y) =
       Complex.normSq x + Complex.normSq y - 2 * planeDot x y := by
   simp [Complex.normSq_apply, planeDot]
   ring
 
-/-- The regular tridecagon is a unit tight frame with frame constant `13 / 2`. -/
+/-- The regular tridecagon is a unit tight frame with frame constant `13 / 2`.
+@isnad1 id=eq.0h1v.s6.328b15179322 from=translated src=- shape=01beb9dc vocab=c12f72ce
+-/
 theorem regularTridecagon_isotropy (v : ℂ) :
     ∑ i : Fin 13, planeDot v (regularTridecagonPoint i) ^ 2 =
       (13 / 2 : ℝ) * Complex.normSq v := by
@@ -182,7 +206,9 @@ theorem regularTridecagon_isotropy (v : ℂ) :
       simp [Complex.normSq_apply]
       ring
 
-/-- Sum of squared distances from an arbitrary point to the unit tridecagon. -/
+/-- Sum of squared distances from an arbitrary point to the unit tridecagon.
+@isnad1 id=eq.0h1v.s6.a29f1a7bbdd8 from=translated src=- shape=b150bd41 vocab=0c95b766
+-/
 theorem regularTridecagon_second_moment (v : ℂ) :
     ∑ i : Fin 13, Complex.normSq (v - regularTridecagonPoint i) =
       13 * (Complex.normSq v + 1) := by
@@ -204,7 +230,9 @@ theorem regularTridecagon_second_moment (v : ℂ) :
         Fintype.card_fin, nsmul_eq_mul, ← Finset.mul_sum, hdot]
       ring
 
-/-- Sum of fourth powers of distances from an arbitrary point to the tridecagon. -/
+/-- Sum of fourth powers of distances from an arbitrary point to the tridecagon.
+@isnad1 id=eq.0h1v.s7.464e373f1cbd from=translated src=- shape=9257cb2a vocab=e6811ddf
+-/
 theorem regularTridecagon_fourth_moment (v : ℂ) :
     ∑ i : Fin 13, Complex.normSq (v - regularTridecagonPoint i) ^ 2 =
       13 * (Complex.normSq v ^ 2 + 4 * Complex.normSq v + 1) := by
@@ -231,6 +259,9 @@ theorem regularTridecagon_fourth_moment (v : ℂ) :
         ← Finset.mul_sum, hdot, regularTridecagon_isotropy]
       ring
 
+/--
+@isnad1 id=eq.0h1v.s5.79367f62be49 from=translated src=- shape=d789e090 vocab=7cc1fff4
+-/
 theorem normSq_regularThirteenRoot_pow (n : ℕ) :
     Complex.normSq (regularThirteenRoot ^ n) = 1 := by
   rw [← Complex.sq_norm, norm_pow, norm_regularThirteenRoot]
@@ -283,6 +314,9 @@ private theorem regularChord_pow_eq_or_product_eq_one
       exact normSq_regularThirteenRoot_pow b
     simpa [hyunit] using Complex.mul_conj y
 
+/--
+@isnad1 id=injectiv.0h0v.s3.8d65bbdf4760 from=translated src=- shape=bfe16b09 vocab=9b82bdbe
+-/
 theorem regularTridecagonChord_injective :
     Function.Injective regularTridecagonChord := by
   intro k l hkl
@@ -345,6 +379,9 @@ private theorem dist_one_root_pow_eq_of_sum_eq_thirteen
       rw [halgebra]
     _ = ‖1 - regularThirteenRoot ^ b‖ := norm_neg _
 
+/--
+@isnad1 id=eq.1h2v.s7.6e544298cb1e from=translated src=- shape=c2abe3ff vocab=655e0ebd
+-/
 theorem normSq_one_root_pow_eq_of_sum_eq_thirteen
     {a b : ℕ} (hsum : a + b = 13) :
     Complex.normSq (1 - regularThirteenRoot ^ a) =
@@ -354,7 +391,9 @@ theorem normSq_one_root_pow_eq_of_sum_eq_thirteen
   rw [Complex.dist_eq, Complex.dist_eq, Complex.sq_norm, Complex.sq_norm] at h
   exact h
 
-/-- Twice the sum of the six squared chord lengths. -/
+/-- Twice the sum of the six squared chord lengths.
+@isnad1 id=eq.0h0v.s6.dd6d6fa6b0dc from=translated src=- shape=2caa1560 vocab=73162ebe
+-/
 theorem regularTridecagon_chord_second_sum :
     2 * (∑ k : Fin 6, regularTridecagonChord k ^ 2) = 26 := by
   have h12 := normSq_one_root_pow_eq_of_sum_eq_thirteen
@@ -391,7 +430,9 @@ theorem regularTridecagon_chord_second_sum :
   ring_nf at h ⊢
   exact h
 
-/-- Twice the sum of the squares of the six squared chord lengths. -/
+/-- Twice the sum of the squares of the six squared chord lengths.
+@isnad1 id=eq.0h0v.s6.c39f899f247f from=translated src=- shape=667d0c88 vocab=73162ebe
+-/
 theorem regularTridecagon_chord_fourth_sum :
     2 * (∑ k : Fin 6, (regularTridecagonChord k ^ 2) ^ 2) = 78 := by
   have h12 := normSq_one_root_pow_eq_of_sum_eq_thirteen
@@ -460,7 +501,9 @@ private theorem regularTridecagon_pairDistance_eq_chord_iff
       omega
 
 /-- Every one of the six regular-tridecagon chord lengths occurs on exactly
-thirteen unordered vertex pairs. -/
+thirteen unordered vertex pairs.
+@isnad1 id=eq.0h1v.s5.6e7eb45582eb from=translated src=- shape=1f8f3a9a vocab=a6ca5437
+-/
 theorem regularTridecagon_chord_multiplicity (k : Fin 6) :
     regularTridecagon.distanceMultiplicity Finset.univ
       (regularTridecagonChord k) = 13 := by
@@ -497,6 +540,9 @@ def dodecagonWithCenterPoint (i : Fin 13) : ℂ :=
   | 11 => ⟨1 / 2, -Real.sqrt 3 / 2⟩
   | _ => ⟨Real.sqrt 3 / 2, -1 / 2⟩
 
+/--
+@isnad1 id=injectiv.0h0v.s3.6b16f91f29fc from=translated src=- shape=bfe16b09 vocab=5c3a95bf
+-/
 theorem dodecagonWithCenterPoint_injective :
     Function.Injective dodecagonWithCenterPoint := by
   have hroot : (1 : ℝ) < Real.sqrt 3 := by
@@ -529,6 +575,9 @@ def hexagramWithCenterPoint (i : Fin 13) : ℂ :=
   | 11 => ⟨0, -1⟩
   | _ => ⟨Real.sqrt 3 / 2, -1 / 2⟩
 
+/--
+@isnad1 id=injectiv.0h0v.s3.52aff6f6fa03 from=translated src=- shape=bfe16b09 vocab=4849a0fa
+-/
 theorem hexagramWithCenterPoint_injective :
     Function.Injective hexagramWithCenterPoint := by
   have hroot : (0 : ℝ) < Real.sqrt 3 := Real.sqrt_pos.2 (by norm_num)
@@ -542,7 +591,9 @@ def hexagramWithCenter : Configuration (Fin 13) where
   point := hexagramWithCenterPoint
   injective := hexagramWithCenterPoint_injective
 
-/-- The centered dodecagon has exactly twenty-four unit-distance pairs. -/
+/-- The centered dodecagon has exactly twenty-four unit-distance pairs.
+@isnad1 id=eq.0h0v.s5.6a5b95c1dc04 from=translated src=- shape=3ad635f2 vocab=0f351588
+-/
 theorem dodecagonWithCenter_unit_distance_multiplicity :
     dodecagonWithCenter.distanceMultiplicity Finset.univ 1 = 24 := by
   rw [Configuration.distanceMultiplicity]
@@ -591,14 +642,23 @@ def hexagramUnitPair (k : Fin 24) : Fin 13 × Fin 13 :=
   | 22 => (10, 11)
   | _ => (11, 12)
 
+/--
+@isnad1 id=injectiv.0h0v.s4.8b1c5c623e84 from=translated src=- shape=a6e4c181 vocab=03d38a90
+-/
 theorem hexagramUnitPair_injective : Function.Injective hexagramUnitPair := by
   decide +kernel
 
+/--
+@isnad1 id=mem.0h1v.s6.5c9e9a1b27e6 from=translated src=- shape=80f10d27 vocab=8a061229
+-/
 theorem hexagramUnitPair_mem_pairs (k : Fin 24) :
     hexagramUnitPair k ∈ pairs (Finset.univ : Finset (Fin 13)) := by
   revert k
   decide +kernel
 
+/--
+@isnad1 id=eq.0h1v.s4.124ba7f34446 from=translated src=- shape=dad009ad vocab=dc0c0c50
+-/
 theorem hexagramUnitPair_distance (k : Fin 24) :
     hexagramWithCenter.pairDistance (hexagramUnitPair k) = 1 := by
   fin_cases k <;>
@@ -608,7 +668,9 @@ theorem hexagramUnitPair_distance (k : Fin 24) :
     nlinarith [Real.sq_sqrt (by norm_num : (0 : ℝ) ≤ 3),
       Real.sqrt_pos.2 (by norm_num : (0 : ℝ) < 3)]
 
-/-- The centered hexagram has at least twenty-four unit-distance pairs. -/
+/-- The centered hexagram has at least twenty-four unit-distance pairs.
+@isnad1 id=le.0h0v.s5.bf287202d2f8 from=translated src=- shape=c3732677 vocab=cf2ecb34
+-/
 theorem hexagramWithCenter_unit_distance_multiplicity :
     24 ≤ hexagramWithCenter.distanceMultiplicity Finset.univ 1 := by
   rw [Configuration.distanceMultiplicity]

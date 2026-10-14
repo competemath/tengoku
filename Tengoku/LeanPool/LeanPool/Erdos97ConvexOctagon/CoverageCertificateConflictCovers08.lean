@@ -76,7 +76,9 @@ def conflictCovers32 : Array ConflictCover :=
   ⟨6, 277874720, 33822867199, [5, 11, 20, 23, 28]⟩,
   ⟨4, 36099165763143680, 32195322609, [11, 46, 55]⟩]
 
-/-- Every entry in conflict-cover group 32 passes its audit. -/
+/-- Every entry in conflict-cover group 32 passes its audit.
+@isnad1 id=eq.0h0v.s3.64bd05abd87d from=translated src=- shape=0547e772 vocab=8e01066c
+-/
 theorem conflictCovers32_valid :
     conflictCovers32.toList.all ConflictCover.validB = true := by
   decide
@@ -146,7 +148,9 @@ def conflictCovers33 : Array ConflictCover :=
   ⟨6, 140737756827680, 34357620734, [5, 12, 15, 28, 47]⟩,
   ⟨5, 274878468228, 34359738335, [2, 7, 12, 15, 19, 38]⟩]
 
-/-- Every entry in conflict-cover group 33 passes its audit. -/
+/-- Every entry in conflict-cover group 33 passes its audit.
+@isnad1 id=eq.0h0v.s3.bf5bf9ce6507 from=translated src=- shape=0547e772 vocab=b4517472
+-/
 theorem conflictCovers33_valid :
     conflictCovers33.toList.all ConflictCover.validB = true := by
   decide
@@ -216,7 +220,9 @@ def conflictCovers34 : Array ConflictCover :=
   ⟨5, 1342211264, 25769803775, [6, 7, 10, 15, 28, 30]⟩,
   ⟨5, 276829376, 34091302911, [6, 7, 10, 12, 23, 28]⟩]
 
-/-- Every entry in conflict-cover group 34 passes its audit. -/
+/-- Every entry in conflict-cover group 34 passes its audit.
+@isnad1 id=eq.0h0v.s3.5da5f34d13a7 from=translated src=- shape=0547e772 vocab=76421aa3
+-/
 theorem conflictCovers34_valid :
     conflictCovers34.toList.all ConflictCover.validB = true := by
   decide
@@ -287,7 +293,9 @@ def conflictCovers35 : Array ConflictCover :=
   ⟨6, 140737756801184, 34342961149, [5, 7, 11, 13, 28, 47]⟩,
   ⟨6, 139854885024, 34359738366, [5, 7, 12, 13, 28, 31, 37]⟩]
 
-/-- Every entry in conflict-cover group 35 passes its audit. -/
+/-- Every entry in conflict-cover group 35 passes its audit.
+@isnad1 id=eq.0h0v.s3.4150a297628a from=translated src=- shape=0547e772 vocab=a40a9c99
+-/
 theorem conflictCovers35_valid :
     conflictCovers35.toList.all ConflictCover.validB = true := by
   decide

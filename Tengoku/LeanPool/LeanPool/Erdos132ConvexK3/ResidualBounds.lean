@@ -24,7 +24,9 @@ conditional four-edge cage.
 namespace LeanPool.Erdos132ConvexK3
 
 /-- A fixed pair of radii contributes at most one point in one open
-half-plane of the line of distinct centers. -/
+half-plane of the line of distinct centers.
+@isnad1 id=le.2h5v.s6.39d67b90e49f from=translated src=- shape=b5310d52 vocab=eeb1f803
+-/
 theorem same_half_plane_fixed_radii_card_le_one
     {a b : Point ℝ} (hab : a ≠ b) {S : Finset (Point ℝ)} {radiusA radiusB : ℝ}
     (hS : ∀ p ∈ S,
@@ -41,7 +43,9 @@ theorem same_half_plane_fixed_radii_card_le_one
   · exact hqData.2.2
 
 /-- A branch covered by two fixed-radius circle families has at most two
-points once each family has the half-plane uniqueness bound. -/
+points once each family has the half-plane uniqueness bound.
+@isnad1 id=le.3h3v.s6.1019cc19c2a9 from=translated src=- shape=09b60a08 vocab=9942b270
+-/
 theorem two_circle_families_card_le_two
     {S A B : Finset (Point ℝ)}
     (hcover : S ⊆ A ∪ B) (hA : A.card ≤ 1) (hB : B.card ≤ 1) :
@@ -52,7 +56,9 @@ theorem two_circle_families_card_le_two
     _ ≤ 2 := by omega
 
 /-- A branch covered by three fixed-radius circle families has at most three
-points. -/
+points.
+@isnad1 id=le.4h4v.s6.6b95dbd009cb from=translated src=- shape=78b19e04 vocab=9942b270
+-/
 theorem three_circle_families_card_le_three
     {S A B C : Finset (Point ℝ)}
     (hcover : S ⊆ A ∪ B ∪ C)
@@ -66,7 +72,9 @@ theorem three_circle_families_card_le_three
     _ ≤ 3 := by omega
 
 /-- Draft (6.3): two circle slots on either boundary arc, plus the shared
-tip, give degree at most five when the tip is a `d₂` partner. -/
+tip, give degree at most five when the tip is a `d₂` partner.
+@isnad1 id=le.3h3v.s5.22be88c0afe4 from=translated src=- shape=0565bf37 vocab=086a35fc
+-/
 theorem one_sided_shared_tip_d2_degree_bound
     {degree leftArc rightArc : ℕ}
     (hdegree : degree ≤ leftArc + rightArc + 1)
@@ -75,7 +83,9 @@ theorem one_sided_shared_tip_d2_degree_bound
   omega
 
 /-- Draft (6.4): three circle slots on either boundary arc, plus the shared
-tip, give degree at most seven when the tip is a diameter partner. -/
+tip, give degree at most seven when the tip is a diameter partner.
+@isnad1 id=le.3h3v.s5.9d7b744b9f43 from=translated src=- shape=0565bf37 vocab=086a35fc
+-/
 theorem one_sided_shared_tip_d1_degree_bound
     {degree leftArc rightArc : ℕ}
     (hdegree : degree ≤ leftArc + rightArc + 1)
@@ -83,12 +93,16 @@ theorem one_sided_shared_tip_d1_degree_bound
     degree ≤ 7 := by
   omega
 
-/-- Unique farthest immediately gives the low-tip branch of Section 6.1. -/
+/-- Unique farthest immediately gives the low-tip branch of Section 6.1.
+@isnad1 id=le.1h1v.s4.0f3036659b4c from=translated src=- shape=1bc32d48 vocab=58b355c3
+-/
 theorem one_sided_shared_tip_low_degree_bound
     {degree : ℕ} (hdegree : degree ≤ 1) : degree ≤ 1 := hdegree
 
 /-- Attempt 12, Section 1.  ED across the surviving `d₂` rung contradicts
-the top-two gap and strict unique-farthest inequality if `Vs=d₁`. -/
+the top-two gap and strict unique-farthest inequality if `Vs=d₁`.
+@isnad1 id=ne.3h4v.s5.9359b314dc41 from=translated src=- shape=98ec2fa9 vocab=91bdb49a
+-/
 theorem one_penultimate_anti_saturation
     {d₁ d₂ Vs Vp : ℝ}
     (hVpClasses : Vp ≤ d₁ ∧ (Vp < d₁ → Vp ≤ d₂))
@@ -101,7 +115,9 @@ theorem one_penultimate_anti_saturation
   linarith
 
 /-- Combining the anti-saturation exclusion with the one-sided `d₂` and
-low-tip bounds gives the four saturation words degree at most five. -/
+low-tip bounds gives the four saturation words degree at most five.
+@isnad1 id=le.4h5v.s6.0c90dfc1ebc7 from=translated src=- shape=8e285552 vocab=eb3a0309
+-/
 theorem one_penultimate_shared_tip_degree_le_five
     {degree : ℕ} {Vs d₁ d₂ d₃ : ℝ}
     (hSplit : Vs = d₁ ∨ Vs = d₂ ∨ Vs ≤ d₃)
@@ -142,7 +158,9 @@ def fourEdgeLongPackage : CageDistanceBand → ℕ
   | .d3 => 1
   | .below => 0
 
-/-- Kernel rendering of both rows of the exact package table (6.5). -/
+/-- Kernel rendering of both rows of the exact package table (6.5).
+@isnad1 id=and.0h0v.s6.d7a69643ed2c from=translated src=- shape=cb60b5f4 vocab=785644a7
+-/
 theorem four_edge_cage_package_table :
     fourEdgeGeneralPackage .d1 = 4 ∧
     fourEdgeGeneralPackage .d2 = 3 ∧
@@ -155,7 +173,9 @@ theorem four_edge_cage_package_table :
   decide
 
 /-- Draft (6.6): in the long metric regime, degree at least seven forces
-both central endpoint distances into the diameter band. -/
+both central endpoint distances into the diameter band.
+@isnad1 id=and.2h3v.s5.4b55069862cb from=translated src=- shape=f6747dd6 vocab=0d3da0d2
+-/
 theorem four_edge_cage_long_high_degree_forces_d1d1
     {degree : ℕ} {left right : CageDistanceBand}
     (hdegree : 7 ≤ degree)
@@ -165,7 +185,9 @@ theorem four_edge_cage_long_high_degree_forces_d1d1
     simp [fourEdgeLongPackage] at hpackage ⊢ <;> omega
 
 /-- Draft (6.7): in the short metric regime, degree at least seven forces
-exactly one of the three displayed central states. -/
+exactly one of the three displayed central states.
+@isnad1 id=or.2h3v.s5.e27c782e6c56 from=translated src=- shape=9d5f3cfb vocab=a50ab239
+-/
 theorem four_edge_cage_short_high_degree_forces_three_states
     {degree : ℕ} {left right : CageDistanceBand}
     (hdegree : 7 ≤ degree)
@@ -177,7 +199,9 @@ theorem four_edge_cage_short_high_degree_forces_three_states
   cases left <;> cases right <;>
     simp [fourEdgeGeneralPackage] at hpackage ⊢ <;> omega
 
-/-- Long-regime half-plane uniqueness turns (6.6) into (6.8). -/
+/-- Long-regime half-plane uniqueness turns (6.6) into (6.8).
+@isnad1 id=le.3h6v.s6.b2702721dc37 from=translated src=- shape=5576be38 vocab=1ae7a356
+-/
 theorem four_edge_cage_long_min_degree_le_six
     {degreeP degreeQ : ℕ}
     {leftP rightP leftQ rightQ : CageDistanceBand}
@@ -199,7 +223,9 @@ theorem four_edge_cage_long_min_degree_le_six
   exact hUniqueD1D1 ⟨hleftP, hrightP, hleftQ, hrightQ⟩
 
 /-- Short-regime occupied-circle exclusions and uniqueness turn (6.7) into
-the conditional cage conclusion (6.8). -/
+the conditional cage conclusion (6.8).
+@isnad1 id=le.7h6v.s6.ecc0d599f048 from=translated src=- shape=5ad3207d vocab=cb73b62d
+-/
 theorem four_edge_cage_short_min_degree_le_six
     {degreeP degreeQ : ℕ}
     {leftP rightP leftQ rightQ : CageDistanceBand}

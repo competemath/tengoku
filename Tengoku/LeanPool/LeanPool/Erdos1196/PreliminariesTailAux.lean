@@ -33,6 +33,7 @@ namespace PrimitiveSetsAboveX
 /--
 The logarithmic antiderivative underlying `tailEstimate` has derivative
 `-1 / (t log(ct)^2)`.
+@isnad1 id=hasderiv.2h2v.s7.6cff1413fc54 from=translated src=- shape=23ca8d03 vocab=50ffe590
 -/
 lemma hasDerivAt_inv_log_mul {c t : ℝ} (hc : 0 < c) (hct : 1 < c * t) :
     HasDerivAt (fun u => (Real.log (c * u))⁻¹)
@@ -53,6 +54,7 @@ lemma hasDerivAt_inv_log_mul {c t : ℝ} (hc : 0 < c) (hct : 1 < c * t) :
 /--
 Squaring the inverse logarithm gives the exact derivative
 `-2 / (t log(ct)^3)`.
+@isnad1 id=hasderiv.2h2v.s7.b926ccb862fe from=translated src=- shape=7c2ccb58 vocab=50ffe590
 -/
 lemma hasDerivAt_inv_log_sq_mul {c t : ℝ} (hc : 0 < c) (hct : 1 < c * t) :
     HasDerivAt (fun u => (Real.log (c * u))⁻¹ ^ 2)
@@ -94,12 +96,16 @@ private lemma integrableOn_Ioi_inv_log_sq_and_integral_eq {c y : ℝ} (hc : 0 < 
   simpa [sub_eq_add_neg, integral_neg, div_eq_mul_inv, mul_comm, mul_left_comm, mul_assoc] using
     hneg
 
-/-- The logarithmic kernel `1 / (t log(ct)^2)` is integrable on every admissible tail. -/
+/-- The logarithmic kernel `1 / (t log(ct)^2)` is integrable on every admissible tail.
+@isnad1 id=integrab.2h2v.s6.5de91d7830dc from=translated src=- shape=c8acd85f vocab=bd9c73ec
+-/
 lemma integrableOn_Ioi_inv_log_sq {c y : ℝ} (hc : 0 < c) (hy : 1 < c * y) :
     IntegrableOn (fun t => (1 : ℝ) / (t * Real.log (c * t) ^ 2)) (Set.Ioi y) :=
   (integrableOn_Ioi_inv_log_sq_and_integral_eq hc hy).1
 
-/-- The integral of `1 / (t log(ct)^2)` over a tail is exactly `1 / log(cy)`. -/
+/-- The integral of `1 / (t log(ct)^2)` over a tail is exactly `1 / log(cy)`.
+@isnad1 id=eq.2h2v.s7.36f6530a3d24 from=translated src=- shape=a9582e48 vocab=a458d7f1
+-/
 lemma integral_Ioi_inv_log_sq {c y : ℝ} (hc : 0 < c) (hy : 1 < c * y) :
     ∫ t in Set.Ioi y, (1 : ℝ) / (t * Real.log (c * t) ^ 2) = (Real.log (c * y))⁻¹ :=
   (integrableOn_Ioi_inv_log_sq_and_integral_eq hc hy).2
@@ -131,12 +137,16 @@ private lemma integrableOn_Ioi_two_inv_log_cube_and_integral_eq {c y : ℝ} (hc 
   simpa [sub_eq_add_neg, integral_neg, div_eq_mul_inv, mul_comm, mul_left_comm, mul_assoc] using
     hneg
 
-/-- The cubic logarithmic kernel `2 / (t log(ct)^3)` is integrable on every admissible tail. -/
+/-- The cubic logarithmic kernel `2 / (t log(ct)^3)` is integrable on every admissible tail.
+@isnad1 id=integrab.2h2v.s6.bbaa666fee88 from=translated src=- shape=c8acd85f vocab=bd9c73ec
+-/
 lemma integrableOn_Ioi_two_inv_log_cube {c y : ℝ} (hc : 0 < c) (hy : 1 < c * y) :
     IntegrableOn (fun t => 2 / (t * Real.log (c * t) ^ 3)) (Set.Ioi y) :=
   (integrableOn_Ioi_two_inv_log_cube_and_integral_eq hc hy).1
 
-/-- The integral of `2 / (t log(ct)^3)` over a tail equals the square of the inverse logarithm. -/
+/-- The integral of `2 / (t log(ct)^3)` over a tail equals the square of the inverse logarithm.
+@isnad1 id=eq.2h2v.s7.adc30e50f9bd from=translated src=- shape=4ace2cb3 vocab=a458d7f1
+-/
 lemma integral_Ioi_two_inv_log_cube {c y : ℝ} (hc : 0 < c) (hy : 1 < c * y) :
     ∫ t in Set.Ioi y, 2 / (t * Real.log (c * t) ^ 3) = (Real.log (c * y))⁻¹ ^ 2 :=
   (integrableOn_Ioi_two_inv_log_cube_and_integral_eq hc hy).2

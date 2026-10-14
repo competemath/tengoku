@@ -86,30 +86,51 @@ def embPair (P Q : Set (List Bool × α)) : Set (List Bool × α) := embL P ∪ 
 `Δ`. -/
 def Gamma (D : NeighborhoodSystem α) : Set (List Bool × α) := {t | t.2 ∈ D.master}
 
+/--
+@isnad1 id=iff.0h4v.s5.f8a540561df4 from=translated src=- shape=8dd5ba3e vocab=d93f05b3
+-/
 @[simp] theorem mem_embZero {X : Set α} {p : List Bool} {a : α} :
     (p, a) ∈ embZero X ↔ p = [] ∧ a ∈ X := Iff.rfl
 
+/--
+@isnad1 id=iff.0h4v.s6.048aedc1a6da from=translated src=- shape=c76d1344 vocab=93067cfc
+-/
 @[simp] theorem mem_embL {P : Set (List Bool × α)} {p : List Bool} {a : α} :
     (p, a) ∈ embL P ↔ ∃ p', p = true :: p' ∧ (p', a) ∈ P := Iff.rfl
 
+/--
+@isnad1 id=iff.0h4v.s6.06c77418bbaf from=translated src=- shape=c76d1344 vocab=492ac62f
+-/
 @[simp] theorem mem_embR {Q : Set (List Bool × α)} {p : List Bool} {a : α} :
     (p, a) ∈ embR Q ↔ ∃ q', p = false :: q' ∧ (q', a) ∈ Q := Iff.rfl
 
+/--
+@isnad1 id=iff.0h5v.s6.cd0a21254169 from=translated src=- shape=1751b118 vocab=524045e3
+-/
 @[simp] theorem mem_embPair {P Q : Set (List Bool × α)} {p : List Bool} {a : α} :
     (p, a) ∈ embPair P Q ↔
       (∃ p', p = true :: p' ∧ (p', a) ∈ P) ∨ (∃ q', p = false :: q' ∧ (q', a) ∈ Q) := Iff.rfl
 
+/--
+@isnad1 id=iff.0h4v.s5.f995d114bee7 from=translated src=- shape=750d6810 vocab=fc505bce
+-/
 @[simp] theorem mem_Gamma {D : NeighborhoodSystem α} {p : List Bool} {a : α} :
     (p, a) ∈ Gamma D ↔ a ∈ D.master := Iff.rfl
 
 /-! ### Intersection identities. -/
 
+/--
+@isnad1 id=eq.0h3v.s5.4be08846fdf2 from=translated src=- shape=e659e96b vocab=695cd589
+-/
 theorem embZero_inter (X X' : Set α) :
     embZero X ∩ embZero X' = embZero (X ∩ X' : Set α) := by
   ext ⟨p, a⟩
   simp only [Set.mem_inter_iff, mem_embZero]
   tauto
 
+/--
+@isnad1 id=eq.0h5v.s6.ab9ac6151d43 from=translated src=- shape=f9e762fa vocab=556ada87
+-/
 theorem embPair_inter (P Q P' Q' : Set (List Bool × α)) :
     embPair P Q ∩ embPair P' Q' = embPair (P ∩ P') (Q ∩ Q') := by
   ext ⟨p, a⟩
@@ -118,6 +139,9 @@ theorem embPair_inter (P Q P' Q' : Set (List Bool × α)) :
   · simp
   · cases b <;> simp [List.cons.injEq]
 
+/--
+@isnad1 id=eq.0h4v.s5.5f7b024427e0 from=translated src=- shape=10fce35e vocab=8557689b
+-/
 theorem embZero_inter_embPair (X : Set α) (P Q : Set (List Bool × α)) :
     embZero X ∩ embPair P Q = ∅ := by
   ext ⟨p, a⟩
@@ -125,6 +149,9 @@ theorem embZero_inter_embPair (X : Set α) (P Q : Set (List Bool × α)) :
 
 /-! ### Subset / injectivity. -/
 
+/--
+@isnad1 id=iff.0h3v.s5.d870972ca6e4 from=translated src=- shape=365ca096 vocab=da7a2133
+-/
 theorem embZero_subset {X X' : Set α} : embZero X ⊆ embZero X' ↔ X ⊆ X' := by
   constructor
   · intro h a ha
@@ -132,6 +159,9 @@ theorem embZero_subset {X X' : Set α} : embZero X ⊆ embZero X' ↔ X ⊆ X' :
     exact this.2
   · intro h t ht; exact ⟨ht.1, h ht.2⟩
 
+/--
+@isnad1 id=iff.0h5v.s6.6150ed84cc12 from=translated src=- shape=95c055aa vocab=8b036a0e
+-/
 theorem embPair_subset {P Q P' Q' : Set (List Bool × α)} :
     embPair P Q ⊆ embPair P' Q' ↔ P ⊆ P' ∧ Q ⊆ Q' := by
   constructor
@@ -150,9 +180,15 @@ theorem embPair_subset {P Q P' Q' : Set (List Bool × α)} :
     · exact Or.inl ⟨p', hp', hP hPmem⟩
     · exact Or.inr ⟨q', hq', hQ hQmem⟩
 
+/--
+@isnad1 id=eq.1h3v.s4.94f64474435e from=translated src=- shape=9e07a281 vocab=23dbeea5
+-/
 theorem embZero_injective {X X' : Set α} (h : embZero X = embZero X') : X = X' :=
   Set.Subset.antisymm (embZero_subset.mp h.subset) (embZero_subset.mp h.symm.subset)
 
+/--
+@isnad1 id=and.1h5v.s5.570e5a19598c from=translated src=- shape=4850ceb8 vocab=b105de2f
+-/
 theorem embPair_injective {P Q P' Q' : Set (List Bool × α)}
     (h : embPair P Q = embPair P' Q') : P = P' ∧ Q = Q' := by
   obtain ⟨hP, hQ⟩ := embPair_subset.mp h.subset
@@ -161,23 +197,38 @@ theorem embPair_injective {P Q P' Q' : Set (List Bool × α)}
 
 /-! ### Nonemptiness and `⊆ Γ`. -/
 
+/--
+@isnad1 id=nonempty.1h2v.s4.6c404f15abb4 from=translated src=- shape=19434ad0 vocab=ed9f42d2
+-/
 theorem embZero_nonempty {X : Set α} (hX : X.Nonempty) : (embZero X).Nonempty := by
   obtain ⟨a, ha⟩ := hX; exact ⟨([], a), rfl, ha⟩
 
+/--
+@isnad1 id=nonempty.1h3v.s4.3f235bef2640 from=translated src=- shape=9754b091 vocab=bcfce106
+-/
 theorem embPair_nonempty {P Q : Set (List Bool × α)} (hP : P.Nonempty) :
     (embPair P Q).Nonempty := by
   obtain ⟨⟨p', a⟩, hP⟩ := hP; exact ⟨(true :: p', a), Or.inl ⟨p', rfl, hP⟩⟩
 
+/--
+@isnad1 id=le.1h3v.s4.1e7e3f7aaf07 from=translated src=- shape=39b0d963 vocab=33d4d9a9
+-/
 theorem embZero_subset_Gamma {D : NeighborhoodSystem α} {X : Set α} (hX : D.mem X) :
     embZero X ⊆ Gamma D := by
   rintro ⟨p, a⟩ ⟨-, ha⟩; exact D.sub_master hX ha
 
+/--
+@isnad1 id=le.2h4v.s6.53871f04a19f from=translated src=- shape=0c18a51c vocab=30d3ff3a
+-/
 theorem embPair_subset_Gamma {D : NeighborhoodSystem α} {P Q : Set (List Bool × α)}
     (hP : P ⊆ Gamma D) (hQ : Q ⊆ Gamma D) : embPair P Q ⊆ Gamma D := by
   rintro ⟨p, a⟩ (⟨p', -, hPmem⟩ | ⟨q', -, hQmem⟩)
   · have h := hP hPmem; exact h
   · have h := hQ hQmem; exact h
 
+/--
+@isnad1 id=nonempty.1h2v.s4.4f2f819ebcc2 from=translated src=- shape=5613bf92 vocab=f9a8c8ee
+-/
 theorem Gamma_nonempty {D : NeighborhoodSystem α} (hD : ∀ X, D.mem X → X.Nonempty) :
     (Gamma D).Nonempty := by
   obtain ⟨a, ha⟩ := hD D.master D.master_mem; exact ⟨([], a), ha⟩
@@ -196,7 +247,9 @@ inductive MemS (D : NeighborhoodSystem α) : Set (List Bool × α) → Prop
   | pair {P Q : Set (List Bool × α)} : MemS D P → MemS D Q → MemS D (embPair P Q)
 
 /-- Every neighbourhood of `D^§` is a subset of the master `Γ` (Scott's `𝒟^§ ⊆
-𝒫(Γ)`). -/
+𝒫(Γ)`).
+@isnad1 id=le.1h3v.s4.f049698894b9 from=translated src=- shape=0a8b493d vocab=86463742
+-/
 theorem memS_subset_gamma {D : NeighborhoodSystem α} {W : Set (List Bool × α)}
     (hW : MemS D W) : W ⊆ Gamma D := by
   induction hW with
@@ -204,7 +257,9 @@ theorem memS_subset_gamma {D : NeighborhoodSystem α} {W : Set (List Bool × α)
   | zero hX => exact embZero_subset_Gamma hX
   | pair _ _ ihP ihQ => exact embPair_subset_Gamma ihP ihQ
 
-/-- Under Scott's standing assumption `∅ ∉ 𝒟`, no neighbourhood of `D^§` is empty. -/
+/-- Under Scott's standing assumption `∅ ∉ 𝒟`, no neighbourhood of `D^§` is empty.
+@isnad1 id=nonempty.2h3v.s5.59687b79a281 from=translated src=- shape=0f31666c vocab=5da68bf9
+-/
 theorem memS_nonempty {D : NeighborhoodSystem α} (hD : ∀ X, D.mem X → X.Nonempty)
     {W : Set (List Bool × α)} (hW : MemS D W) : W.Nonempty := by
   induction hW with
@@ -220,7 +275,9 @@ cross cases
 non-empty
 (`memS_nonempty`); the `0A ∩ 0B` case uses `𝒟`'s own closure; the `(1P∪2Q) ∩
 (1P'∪2Q')` case recurses
-on `P, P'` and `Q, Q'`. -/
+on `P, P'` and `Q, Q'`.
+@isnad1 id=mems.5h5v.s6.47b6be225aac from=translated src=- shape=59c38545 vocab=8885447c
+-/
 theorem memS_inter {D : NeighborhoodSystem α} (hD : ∀ X, D.mem X → X.Nonempty) :
     ∀ {X : Set (List Bool × α)}, MemS D X → ∀ {Y : Set (List Bool × α)}, MemS D Y →
       ∀ {Z : Set (List Bool × α)}, MemS D Z → Z ⊆ X ∩ Y → MemS D (X ∩ Y) := by
@@ -291,9 +348,15 @@ def Dsharp (D : NeighborhoodSystem α) (hD : ∀ X, D.mem X → X.Nonempty) :
   inter_mem := fun hX hY hZ hsub => memS_inter hD hX hY hZ hsub
   sub_master := memS_subset_gamma
 
+/--
+@isnad1 id=iff.1h3v.s5.ddd8b16bac1b from=translated src=- shape=6accdab4 vocab=4e809985
+-/
 @[simp] theorem Dsharp_mem {D : NeighborhoodSystem α} {hD : ∀ X, D.mem X → X.Nonempty}
     {W : Set (List Bool × α)} : (Dsharp D hD).mem W ↔ MemS D W := Iff.rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.a01f7e3f6b98 from=translated src=- shape=0080fd45 vocab=48490dd9
+-/
 @[simp] theorem Dsharp_master {D : NeighborhoodSystem α} {hD : ∀ X, D.mem X → X.Nonempty} :
     (Dsharp D hD).master = Gamma D := rfl
 
@@ -305,6 +368,9 @@ shape of their `{1,2}`-paths, using non-emptiness), a `D^§`-neighbourhood of a
 given shape can only
 have arisen from the matching constructor. -/
 
+/--
+@isnad1 id=mem.2h3v.s4.cc3d84c9c3a7 from=translated src=- shape=1e912527 vocab=c7268ef1
+-/
 theorem memS_embZero_inv {D : NeighborhoodSystem α} (hD : ∀ X, D.mem X → X.Nonempty) {X : Set α}
     (h : MemS D (embZero X)) : D.mem X := by
   generalize hW : embZero X = W at h
@@ -325,6 +391,9 @@ theorem memS_embZero_inv {D : NeighborhoodSystem α} (hD : ∀ X, D.mem X → X.
     have hz : t ∈ embZero X := by rw [← hW] at ht; exact ht
     exact hcons hz.1
 
+/--
+@isnad1 id=and.2h4v.s5.232ae52113f8 from=translated src=- shape=30e4be4b vocab=f8e9ad77
+-/
 theorem memS_embPair_inv {D : NeighborhoodSystem α} (hD : ∀ X, D.mem X → X.Nonempty)
     {P Q : Set (List Bool × α)} (h : MemS D (embPair P Q)) : MemS D P ∧ MemS D Q := by
   generalize hW : embPair P Q = W at h
@@ -358,7 +427,9 @@ variable (D : NeighborhoodSystem α) (hD : ∀ X, D.mem X → X.Nonempty)
 include hD
 
 /-- No neighbourhood of `D^§ × D^§` is empty (needed to form the sum `D + (D^§ ×
-D^§)`). -/
+D^§)`).
+@isnad1 id=nonempty.2h3v.s6.f08ee2d2f971 from=translated src=- shape=c1e6d3fd vocab=1c5b3664
+-/
 theorem prod_dsharp_nonempty :
     ∀ V, (prod (Dsharp D hD) (Dsharp D hD)).mem V → V.Nonempty := by
   rintro V ⟨P, Q, hP, hQ, rfl⟩
@@ -371,7 +442,9 @@ def sumSys : NeighborhoodSystem (Option (α ⊕ ((List Bool × α) ⊕ (List Boo
   sum D (prod (Dsharp D hD) (Dsharp D hD)) hD (prod_dsharp_nonempty D hD)
 
 /-- A sum-neighbourhood of the form `0X` arises only from the left factor, so `X ∈
-𝒟`. -/
+𝒟`.
+@isnad1 id=mem.2h3v.s5.73dfa735b9f2 from=translated src=- shape=91966537 vocab=82f30b0e
+-/
 theorem sum_mem_inj₀_inv {X : Set α} (h : (sumSys D hD).mem (inj₀ X)) : D.mem X := by
   rcases h with h0 | ⟨X', hX', heq⟩ | ⟨Y', hY', heq⟩
   · exact absurd (h0 ▸ none_mem_sumMaster) none_mem_inj₀
@@ -380,7 +453,9 @@ theorem sum_mem_inj₀_inv {X : Set α} (h : (sumSys D hD).mem (inj₀ X)) : D.m
     exact absurd (heq ▸ ir_mem_inj₁.mpr hb) ir_mem_inj₀
 
 /-- A sum-neighbourhood of the form `1V` arises only from the right factor, so `V
-∈ 𝒟^§ × 𝒟^§`. -/
+∈ 𝒟^§ × 𝒟^§`.
+@isnad1 id=mem.2h3v.s6.11a30e4d0d16 from=translated src=- shape=8c31d6b4 vocab=a80e38be
+-/
 theorem sum_mem_inj₁_inv {V : Set ((List Bool × α) ⊕ (List Bool × α))}
     (h : (sumSys D hD).mem (inj₁ V)) : (prod (Dsharp D hD) (Dsharp D hD)).mem V := by
   rcases h with h0 | ⟨X', hX', heq⟩ | ⟨Y', hY', heq⟩
@@ -389,7 +464,9 @@ theorem sum_mem_inj₁_inv {V : Set ((List Bool × α) ⊕ (List Bool × α))}
     exact absurd (heq ▸ il_mem_inj₀.mpr ha) il_mem_inj₁
   · rw [inj₁_injective heq]; exact hY'
 
-/-- No neighbourhood of the sum `D + (D^§ × D^§)` is empty. -/
+/-- No neighbourhood of the sum `D + (D^§ × D^§)` is empty.
+@isnad1 id=nonempty.2h3v.s6.e1810fee47bd from=translated src=- shape=5342b18a vocab=fee4fd70
+-/
 theorem sumSys_mem_nonempty {W : Set (Option (α ⊕ ((List Bool × α) ⊕ (List Bool × α))))}
     (h : (sumSys D hD).mem W) : W.Nonempty := by
   rcases h with rfl | ⟨X, hX, rfl⟩ | ⟨Y, hY, rfl⟩
@@ -457,6 +534,9 @@ def toS (z : (Dsharp D hD).Element) : (sumSys D hD).Element where
         obtain ⟨hPP, hQQ⟩ := prodNbhd_subset_iff.mp (inj₁_subset_inj₁.mp hsub)
         exact z.up_mem hzPQ (MemS.pair hP' hQ') (embPair_subset.mpr ⟨hPP, hQQ⟩)
 
+/--
+@isnad1 id=iff.2h4v.s6.5fa3d1587f55 from=translated src=- shape=6b3d5145 vocab=378a5037
+-/
 @[simp] theorem toS_mem_inj₀ {z : (Dsharp D hD).Element} {X : Set α} (hX : D.mem X) :
     (toS D hD z).mem (inj₀ X) ↔ z.mem (embZero X) := by
   constructor
@@ -467,6 +547,9 @@ def toS (z : (Dsharp D hD).Element) : (sumSys D hD).Element where
       exact absurd (heq ▸ il_mem_inj₀.mpr ha) il_mem_inj₁
   · intro hz; exact Or.inr (Or.inl ⟨X, hX, rfl, hz⟩)
 
+/--
+@isnad1 id=iff.3h5v.s6.657dfd627505 from=translated src=- shape=10eae885 vocab=84054622
+-/
 @[simp] theorem toS_mem_inj₁ {z : (Dsharp D hD).Element} {P Q : Set (List Bool × α)}
     (hP : MemS D P) (hQ : MemS D Q) :
     (toS D hD z).mem (inj₁ (prodNbhd P Q)) ↔ z.mem (embPair P Q) := by
@@ -553,12 +636,18 @@ def fromS (s : (sumSys D hD).Element) : (Dsharp D hD).Element where
         exact s.up_mem hsPQ (Or.inr (Or.inr ⟨prodNbhd P' Q', prod_mem_prodNbhd hP' hQ', rfl⟩))
           (inj₁_subset_inj₁.mpr (prodNbhd_subset_iff.mpr ⟨hPP, hQQ⟩))
 
+/--
+@isnad1 id=ne.1h3v.s5.589949be6aaf from=translated src=- shape=91193ac4 vocab=af3b042f
+-/
 theorem embZero_ne_Gamma (X : Set α) : embZero X ≠ Gamma D := by
   intro h
   obtain ⟨a, ha⟩ := hD D.master D.master_mem
   have hmem : ((true :: [], a) : List Bool × α) ∈ Gamma D := ha
   rw [← h] at hmem; exact absurd hmem.1 (by simp)
 
+/--
+@isnad1 id=ne.1h4v.s5.7aab1128a996 from=translated src=- shape=e976d4c0 vocab=9fb34e65
+-/
 theorem embPair_ne_Gamma (P Q : Set (List Bool × α)) : embPair P Q ≠ Gamma D := by
   intro h
   obtain ⟨a, ha⟩ := hD D.master D.master_mem
@@ -568,6 +657,9 @@ theorem embPair_ne_Gamma (P Q : Set (List Bool × α)) : embPair P Q ≠ Gamma D
   · simp at hp'
   · simp at hq'
 
+/--
+@isnad1 id=ne.2h5v.s5.4b4845df1290 from=translated src=- shape=958c2d46 vocab=b14c5958
+-/
 theorem embZero_ne_embPair {X : Set α} (hX : D.mem X) (P Q : Set (List Bool × α)) :
     embZero X ≠ embPair P Q := by
   intro h
@@ -575,6 +667,9 @@ theorem embZero_ne_embPair {X : Set α} (hX : D.mem X) (P Q : Set (List Bool × 
   have hmem : (([], a) : List Bool × α) ∈ embPair P Q := h ▸ (⟨rfl, ha⟩ : ([], a) ∈ embZero X)
   simp_all
 
+/--
+@isnad1 id=iff.2h4v.s6.6c604f9a9d02 from=translated src=- shape=05a10de5 vocab=1b855a31
+-/
 @[simp] theorem fromS_mem_embZero {s : (sumSys D hD).Element} {X : Set α} (hX : D.mem X) :
     (fromS D hD s).mem (embZero X) ↔ s.mem (inj₀ X) := by
   constructor
@@ -584,6 +679,9 @@ theorem embZero_ne_embPair {X : Set α} (hX : D.mem X) (P Q : Set (List Bool × 
     · exact absurd heq (embZero_ne_embPair D hD hX P Q)
   · intro hs; exact Or.inr (Or.inl ⟨X, hX, rfl, hs⟩)
 
+/--
+@isnad1 id=iff.3h5v.s6.a00bebdb5740 from=translated src=- shape=40980832 vocab=45868370
+-/
 @[simp] theorem fromS_mem_embPair {s : (sumSys D hD).Element} {P Q : Set (List Bool × α)}
     (hP : MemS D P) (hQ : MemS D Q) :
     (fromS D hD s).mem (embPair P Q) ↔ s.mem (inj₁ (prodNbhd P Q)) := by
@@ -595,7 +693,9 @@ theorem embZero_ne_embPair {X : Set α} (hX : D.mem X) (P Q : Set (List Bool × 
       rw [hPP, hQQ]; exact hs
   · intro hs; exact Or.inr (Or.inr ⟨P, Q, hP, hQ, rfl, hs⟩)
 
-/-- `fromS ∘ toS = id`. -/
+/-- `fromS ∘ toS = id`.
+@isnad1 id=eq.1h3v.s5.222aba1e5cba from=translated src=- shape=f56b03a4 vocab=cad0c285
+-/
 theorem fromS_toS (z : (Dsharp D hD).Element) : fromS D hD (toS D hD z) = z := by
   apply NeighborhoodSystem.Element.ext
   intro W
@@ -610,7 +710,9 @@ theorem fromS_toS (z : (Dsharp D hD).Element) : fromS D hD (toS D hD z) = z := b
     | @zero X hX => exact Or.inr (Or.inl ⟨X, hX, rfl, (toS_mem_inj₀ D hD hX).mpr hW⟩)
     | @pair P Q hP hQ => exact Or.inr (Or.inr ⟨P, Q, hP, hQ, rfl, (toS_mem_inj₁ D hD hP hQ).mpr hW⟩)
 
-/-- `toS ∘ fromS = id`. -/
+/-- `toS ∘ fromS = id`.
+@isnad1 id=eq.1h3v.s5.2753efbe03db from=translated src=- shape=1114a26a vocab=3fada968
+-/
 theorem toS_fromS (s : (sumSys D hD).Element) : toS D hD (fromS D hD s) = s := by
   apply NeighborhoodSystem.Element.ext
   intro W
@@ -655,7 +757,9 @@ D^§)`.** The tree
 algebra `D^§` is, as a domain, isomorphic to `D + (D^§ × D^§)` — Scott's defining
 isomorphism, "as can
 be seen by reference to the equation for `D^§` and the definitions of `+` and
-`×`". -/
+`×`".
+@isnad1 id=isomorph.1h2v.s6.f1c6c36284aa from=translated src=- shape=bde7f423 vocab=1db2ce66
+-/
 theorem dsharp_domain_equation :
     Dsharp D hD ≅ᴰ sum D (prod (Dsharp D hD) (Dsharp D hD)) hD (prod_dsharp_nonempty D hD) :=
   ⟨dsharpEquiv D hD⟩
@@ -697,7 +801,9 @@ def inSharp (x : D.Element) : (Dsharp D hD).Element where
 /-- **Example 6.1 (Scott 1981, PRG-19).** `λx. x^§` is an *isomorphic injection*:
 `x^§ ⊑ x'^§ ↔
 x ⊑ x'`
-(in particular one-one). -/
+(in particular one-one).
+@isnad1 id=iff.1h4v.s6.51d8df6c0ee7 from=translated src=- shape=25a3dd46 vocab=5dfd1c5b
+-/
 theorem inSharp_le_iff {x x' : D.Element} : inSharp D hD x ≤ inSharp D hD x' ↔ x ≤ x' := by
   constructor
   · intro h X hX
@@ -747,7 +853,9 @@ def pairSharp (x y : (Dsharp D hD).Element) : (Dsharp D hD).Element where
 
 /-- **Example 6.1 (Scott 1981, PRG-19).** `λx, y. ⟨x, y⟩` is an *isomorphic
 injection*:
-`⟨x, y⟩ ⊑ ⟨x', y'⟩ ↔ x ⊑ x' ∧ y ⊑ y'`. -/
+`⟨x, y⟩ ⊑ ⟨x', y'⟩ ↔ x ⊑ x' ∧ y ⊑ y'`.
+@isnad1 id=iff.1h6v.s7.43899c3422eb from=translated src=- shape=39ef8260 vocab=715d68cc
+-/
 theorem pairSharp_le_iff {x x' y y' : (Dsharp D hD).Element} :
     pairSharp D hD x y ≤ pairSharp D hD x' y' ↔ x ≤ x' ∧ y ≤ y' := by
   constructor

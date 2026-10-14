@@ -68,7 +68,9 @@ def geomQ (q i : ℕ) : ℕ := ∑ k ∈ Finset.range i, q ^ k
 
 /-- **GOLDEN identity (KERNEL-CLEAN).**  `(q-1)·G q i + 1 = q^i` for `q ≥ 1`.
 Division- and subtraction-free form of `G q i = (q^i - 1)/(q - 1)`, from `geom_sum_mul_add`
-at `x = q-1` (`(q-1)+1 = q`). -/
+at `x = q-1` (`(q-1)+1 = q`).
+@isnad1 id=eq.1h2v.s6.ccf260c900e7 from=translated src=- shape=80240b51 vocab=ed428e3f
+-/
 theorem geomQ_golden {q : ℕ} (hq : 1 ≤ q) (i : ℕ) :
     (q - 1) * geomQ q i + 1 = q ^ i := by
   unfold geomQ
@@ -77,16 +79,22 @@ theorem geomQ_golden {q : ℕ} (hq : 1 ≤ q) (i : ℕ) :
   rw [hx] at h
   rw [mul_comm]; exact h
 
-/-- `(q-1)·G q i = q^i - 1` (KERNEL-CLEAN corollary). -/
+/-- `(q-1)·G q i = q^i - 1` (KERNEL-CLEAN corollary).
+@isnad1 id=eq.1h2v.s6.61a52311146c from=translated src=- shape=8166bc17 vocab=a938f665
+-/
 theorem geomQ_mul {q : ℕ} (hq : 1 ≤ q) (i : ℕ) :
     (q - 1) * geomQ q i = q ^ i - 1 := by
   have := geomQ_golden hq i; omega
 
-/-- `G q (i+1) = G q i + q^i` (KERNEL-CLEAN). -/
+/-- `G q (i+1) = G q i + q^i` (KERNEL-CLEAN).
+@isnad1 id=eq.0h2v.s5.1da4a8dd1a1b from=translated src=- shape=ce6e45c1 vocab=0e473ca3
+-/
 theorem geomQ_succ (q i : ℕ) : geomQ q (i + 1) = geomQ q i + q ^ i := by
   unfold geomQ; rw [Finset.sum_range_succ]
 
-/-- `1 ≤ G q i` for `i ≥ 1` (the `k=0` term is `1`; KERNEL-CLEAN). -/
+/-- `1 ≤ G q i` for `i ≥ 1` (the `k=0` term is `1`; KERNEL-CLEAN).
+@isnad1 id=le.1h2v.s4.dc1cb8bfb677 from=translated src=- shape=61bdc3e7 vocab=9861829d
+-/
 theorem one_le_geomQ {q i : ℕ} (hi : 1 ≤ i) : 1 ≤ geomQ q i := by
   unfold geomQ
   have h0 : (0 : ℕ) ∈ Finset.range i := Finset.mem_range.mpr (by omega)
@@ -110,7 +118,9 @@ condition (3) reduces to `q^i < p^m`.
 Proof.  `p, q` odd ⟹ `2·((q-1)/2) = q-1` and `2·((p^m+1)/2) = p^m+1`.  From `hTS`,
 `2T < p^m + 1`, so `2T ≤ p^m`.  From `hlo`, `2·((q-1)/2·G i + 1) ≤ 2T`, i.e.
 `(q-1)·G i + 2 ≤ 2T ≤ p^m`.  The golden identity `(q-1)·G i = q^i - 1` then gives
-`(q^i - 1) + 2 ≤ p^m`, i.e. `q^i + 1 ≤ p^m`, hence `q^i < p^m`. -/
+`(q^i - 1) + 2 ≤ p^m`, i.e. `q^i + 1 ≤ p^m`, hence `q^i < p^m`.
+@isnad1 id=lt.5h5v.s7.1b893923afb4 from=translated src=- shape=53123690 vocab=8c49aff2
+-/
 theorem cond3_of_tail_small {p q : ℕ} (hq : 3 ≤ q)
     (hpo : Odd p) (hqo : Odd q) (m i T : ℕ)
     (hlo : (q - 1) / 2 * geomQ q i + 1 ≤ T)
@@ -157,7 +167,9 @@ instance (q i n : ℕ) : Decidable (StrictGoodAt q i n) := by
   unfold StrictGoodAt; infer_instance
 
 /-- There is a strictly-good index above `j = topBadIndex q n` (KERNEL-CLEAN): for any
-`i ≥ length` the digit reads `0`, and `0 < (q-1)/2` since `q ≥ 3`. -/
+`i ≥ length` the digit reads `0`, and `0 < (q-1)/2` since `q ≥ 3`.
+@isnad1 id=ex.2h2v.s5.8c8f88a6d2be from=translated src=- shape=4169f724 vocab=86fddbac
+-/
 theorem exists_strictGood_above {q n : ℕ} (hq : 3 ≤ q) (_hbad : 0 < badCountQ q n) :
     ∃ i, topBadIndex q n < i ∧ StrictGoodAt q i n := by
   set j := topBadIndex q n with hj
@@ -178,12 +190,16 @@ defined for `q ≥ 3` and a positive bad count.  Carries the existence witness. 
 noncomputable def leastGoodAbove {q n : ℕ} (hq : 3 ≤ q) (hbad : 0 < badCountQ q n) : ℕ :=
   Nat.find (exists_strictGood_above hq hbad)
 
-/-- `leastGoodAbove` lies strictly above the top bad index (KERNEL-CLEAN). -/
+/-- `leastGoodAbove` lies strictly above the top bad index (KERNEL-CLEAN).
+@isnad1 id=lt.2h2v.s5.7207cb746591 from=translated src=- shape=1e473526 vocab=60acef3d
+-/
 theorem topBad_lt_leastGoodAbove {q n : ℕ} (hq : 3 ≤ q) (hbad : 0 < badCountQ q n) :
     topBadIndex q n < leastGoodAbove hq hbad :=
   (Nat.find_spec (exists_strictGood_above hq hbad)).1
 
-/-- `leastGoodAbove` is strictly good (KERNEL-CLEAN). -/
+/-- `leastGoodAbove` is strictly good (KERNEL-CLEAN).
+@isnad1 id=strictgo.2h2v.s5.7c55bc547b43 from=translated src=- shape=c803a970 vocab=0d53c215
+-/
 theorem strictGoodAt_leastGoodAbove {q n : ℕ} (hq : 3 ≤ q) (hbad : 0 < badCountQ q n) :
     StrictGoodAt q (leastGoodAbove hq hbad) n :=
   (Nat.find_spec (exists_strictGood_above hq hbad)).2
@@ -191,7 +207,9 @@ theorem strictGoodAt_leastGoodAbove {q n : ℕ} (hq : 3 ≤ q) (hbad : 0 < badCo
 /-- **Minimality (KERNEL-CLEAN).**  No index strictly between `j` and `leastGoodAbove` is
 strictly good: any `k` with `j < k < leastGoodAbove` has `(q-1)/2 < n / q^k % q` — wait,
 this is `¬ StrictGoodAt`, i.e. the digit is `≥ B`.  Combined with `digit_good_above_top`
-(`≤ B`) this pins the middle digits to exactly `B`. -/
+(`≤ B`) this pins the middle digits to exactly `B`.
+@isnad1 id=not.4h3v.s5.3ec1365d22c3 from=translated src=- shape=a77b0813 vocab=e1963972
+-/
 theorem not_strictGood_of_lt_leastGoodAbove {q n k : ℕ} (hq : 3 ≤ q)
     (hbad : 0 < badCountQ q n) (hjk : topBadIndex q n < k)
     (hk : k < leastGoodAbove hq hbad) : ¬ StrictGoodAt q k n := by
@@ -202,7 +220,9 @@ theorem not_strictGood_of_lt_leastGoodAbove {q n k : ℕ} (hq : 3 ≤ q)
 
 /-- **Middle digits are exactly `B` (KERNEL-CLEAN).**  For `j < k < i = leastGoodAbove`,
 the base-`q` digit of `n` at index `k` equals `(q-1)/2`.  (`digit_good_above_top` gives
-`≤ B`; non-strict-goodness gives `≥ B`.) -/
+`≤ B`; non-strict-goodness gives `≥ B`.)
+@isnad1 id=eq.4h3v.s6.0f34b976da3c from=translated src=- shape=834683ae vocab=90274ed6
+-/
 theorem middle_digit_eq {q n k : ℕ} (hq : 3 ≤ q) (hbad : 0 < badCountQ q n)
     (hjk : topBadIndex q n < k) (hk : k < leastGoodAbove hq hbad) :
     n / q ^ k % q = (q - 1) / 2 := by
@@ -222,7 +242,9 @@ We prove it by a clean upward induction on the cutoff `t` from `j+1` to `i`, tel
 the partial lower bound `LB t := b_j·q^j + B·(q^{j+1} + … + q^{t-1})` via the base-`q`
 mod-recursion `n % q^{t+1} = n % q^t + q^t·(n/q^t % q)`. -/
 
-/-- Base-`q` mod-recursion (KERNEL-CLEAN): `n % q^{t+1} = n % q^t + q^t·(n / q^t % q)`. -/
+/-- Base-`q` mod-recursion (KERNEL-CLEAN): `n % q^{t+1} = n % q^t + q^t·(n / q^t % q)`.
+@isnad1 id=eq.0h3v.s6.6e61da2d9197 from=translated src=- shape=c248c299 vocab=a5cfd73a
+-/
 theorem mod_pow_succ (n q t : ℕ) :
     n % q ^ (t + 1) = n % q ^ t + q ^ t * (n / q ^ t % q) := by
   conv_lhs => rw [pow_succ]
@@ -235,7 +257,9 @@ def tailLB (q n j t : ℕ) : ℕ :=
 
 /-- **Inductive tail bound (KERNEL-CLEAN).**  For `j = topBadIndex q n`, `i = leastGoodAbove`,
 and any `t` with `j < t ≤ i`: `tailLB q n j t ≤ n % q^t`.  The middle digits being exactly
-`B` (`middle_digit_eq`) feed the inductive step. -/
+`B` (`middle_digit_eq`) feed the inductive step.
+@isnad1 id=le.4h3v.s6.df7cc66e2c3e from=translated src=- shape=3b63afc8 vocab=b31484e7
+-/
 theorem tailLB_le_mod {q n : ℕ} (hq : 3 ≤ q) (hbad : 0 < badCountQ q n)
     {t : ℕ} (htlo : topBadIndex q n < t) (hthi : t ≤ leastGoodAbove hq hbad) :
     tailLB q n (topBadIndex q n) t ≤ n % q ^ t := by
@@ -277,7 +301,9 @@ theorem tailLB_le_mod {q n : ℕ} (hq : 3 ≤ q) (hbad : 0 < badCountQ q n)
 
 /-- **THE TAIL LOWER BOUND (KERNEL-CLEAN).**  `(q-1)/2 · G q i + 1 ≤ n % q^i`, where
 `i = leastGoodAbove`.  Assembles `tailLB_le_mod` (at `t = i`) with `b_j ≥ B+1` and the
-golden identity: `tailLB q n j i = b_j q^j + B(q^{j+1}+…+q^{i-1}) ≥ B·G i + 1`. -/
+golden identity: `tailLB q n j i = b_j q^j + B(q^{j+1}+…+q^{i-1}) ≥ B·G i + 1`.
+@isnad1 id=le.2h2v.s6.3a0eb189b0ce from=translated src=- shape=4d4b4479 vocab=ae3bb01d
+-/
 theorem tail_ge {q n : ℕ} (hq : 3 ≤ q) (hbad : 0 < badCountQ q n) :
     (q - 1) / 2 * geomQ q (leastGoodAbove hq hbad) + 1 ≤ n % q ^ (leastGoodAbove hq hbad) := by
   -- Abbreviations as plain `let`-free locals (avoid `set` aliasing of `q^j`).
@@ -354,7 +380,9 @@ strictly good, and satisfies condition (3) `q^i < p^m`.
 This is the producer the ADD branch consumes: `i` is a valid place to add (digit strictly
 good, above the top bad digit), and `q^i < p^m` guarantees the EGRS density `Fact`
 (`RoundUp.exists_lowDigits_between` at `x = q^i - T`) yields a correction `< p^m` that is
-base-`p` safe (via `RepairDV.lowDigits_disjoint_add`). -/
+base-`p` safe (via `RepairDV.lowDigits_disjoint_add`).
+@isnad1 id=ex.6h4v.s7.e24e8bf60566 from=translated src=- shape=fbf31dd3 vocab=82f65eab
+-/
 theorem cond3_window {p q : ℕ} (_hp : 3 ≤ p) (hq : 3 ≤ q) (hpo : Odd p) (hqo : Odd q)
     (n m : ℕ) (hbad : 0 < badCountQ q n)
     (hTS : n % q ^ (leastGoodAbove hq hbad) < (p ^ m + 1) / 2) :

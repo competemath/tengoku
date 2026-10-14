@@ -215,8 +215,14 @@ def comp {A B C : TAlgebra T} (β : AlgHom B C) (α : AlgHom A B) : AlgHom A C w
   comm := by
     rw [Category.assoc, α.comm, ← Category.assoc, β.comm, Category.assoc, ← T.map_comp]
 
+/--
+@isnad1 id=eq.0h3v.s5.b6145b80a3fc from=translated src=- shape=f257015b vocab=c0e1161b
+-/
 @[simp] theorem id_hom (A : TAlgebra T) : (AlgHom.id A).hom = Category.id A.carrier := rfl
 
+/--
+@isnad1 id=eq.0h7v.s6.d477fc15f3b6 from=translated src=- shape=067584c7 vocab=5a48837c
+-/
 @[simp] theorem comp_hom {A B C : TAlgebra T} (β : AlgHom B C) (α : AlgHom A B) :
     (β.comp α).hom = β.hom ⊚ α.hom := rfl
 

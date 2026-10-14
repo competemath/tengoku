@@ -98,11 +98,16 @@ def mapOfOpen (U : Set V.Element) : ApproximableMap V sierpinski where
       · have hbo : V.basicOpen X' ⊆ V.basicOpen X := fun z hz => z.up_mem hz hX hX'X
         exact subset_trans hbo hsub
 
+/--
+@isnad1 id=iff.0h5v.s6.42d0991219f1 from=translated src=- shape=1bb49d84 vocab=b56f5207
+-/
 @[simp] theorem mapOfOpen_rel (U : Set V.Element) (X : Set α) (Y : Set Unit) :
     (mapOfOpen V U).rel X Y ↔ V.mem X ∧ (Y = Set.univ ∨ (Y = ∅ ∧ V.basicOpen X ⊆ U)) := Iff.rfl
 
 /-- The decisive special case: `X (mapOfOpen U) ∅ ↔ [X] ⊆ U` (for a neighbourhood
-`X`). -/
+`X`).
+@isnad1 id=iff.0h4v.s5.cb87ce28db29 from=translated src=- shape=3a2e0aa3 vocab=72fec20d
+-/
 theorem mapOfOpen_rel_empty (U : Set V.Element) (X : Set α) :
     (mapOfOpen V U).rel X ∅ ↔ V.mem X ∧ V.basicOpen X ⊆ U := by
   rw [mapOfOpen_rel]
@@ -121,7 +126,9 @@ the top of `𝒪`. -/
 def openOfMap (f : ApproximableMap V sierpinski) : Set V.Element :=
   {x | ∃ X, x.mem X ∧ f.rel X ∅}
 
-/-- `openOfMap f` is open: it is a union of basic opens `[X]`. -/
+/-- `openOfMap f` is open: it is a union of basic opens `[X]`.
+@isnad1 id=isopen.0h3v.s4.57806bb20408 from=translated src=- shape=eebeda1a vocab=175e8db9
+-/
 theorem openOfMap_isOpen (f : ApproximableMap V sierpinski) : IsOpen (openOfMap V f) := by
   intro x hx
   obtain ⟨X, hxX, hf⟩ := hx

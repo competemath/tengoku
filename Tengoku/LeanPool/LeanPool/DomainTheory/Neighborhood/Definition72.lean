@@ -94,7 +94,9 @@ variable {V : NeighborhoodSystem α} {W : NeighborhoodSystem β}
 relation
 `Xₙ I Xₘ` is `Xₙ ⊆ Xₘ` (`incl_computable`), which is recursively *decidable*,
 hence recursively
-enumerable. -/
+enumerable.
+@isnad1 id=iscomput.0h3v.s4.4dbb8ea0f0f9 from=translated src=- shape=b9c7e0e2 vocab=45018c0d
+-/
 theorem idMap_isComputable (P : ComputablePresentation V) :
     IsComputableMap P P (idMap V) :=
   (RecDecidable.of_iff (fun t => by

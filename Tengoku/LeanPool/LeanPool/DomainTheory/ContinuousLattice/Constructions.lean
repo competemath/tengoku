@@ -41,7 +41,9 @@ element of
 `S` (which exists by finiteness) is, by directedness, the greatest element, hence
 the
 supremum. This is the order-theoretic heart of "finite ⟹ continuous" (Scott 1972,
-2.8). -/
+2.8).
+@isnad1 id=mem.3h2v.s5.54ee05ad535d from=translated src=- shape=b0869fb4 vocab=18b31ba3
+-/
 theorem directedOn_finite_sSup_mem {S : Set D} (hSfin : S.Finite) (hSne : S.Nonempty)
     (hSdir : DirectedOn (· ≤ ·) S) : sSup S ∈ S := by
   obtain ⟨m, hm⟩ := hSfin.exists_maximal hSne
@@ -58,7 +60,9 @@ a finite
 lattice every principal up-set `Set.Ici y` is Scott-open (a non-empty directed set
 is finite,
 so it attains its supremum), hence `y ≪ y`; therefore `y` is the supremum of `{x |
-x ≪ y}`. -/
+x ≪ y}`.
+@isnad1 id=iscontin.0h1v.s3.b6f411d78478 from=translated src=- shape=c612a321 vocab=e5443a77
+-/
 theorem proposition_2_8 [Finite D] : IsContinuousLattice D := by
   intro y
   have hopen : ScottOpen (Set.Ici y) := by
@@ -85,7 +89,9 @@ product
 therefore
 dominates every `[a]ⁱ`, so `a = ([a]ⁱ)ᵢ ≤ bᵢ`; ranging over `a ≪ yᵢ` and using
 continuity of
-`Dᵢ` gives `yᵢ ≤ bᵢ` for all `i`, i.e. `y ≤ b`. -/
+`Dᵢ` gives `yᵢ ≤ bᵢ` for all `i`, i.e. `y ≤ b`.
+@isnad1 id=iscontin.1h2v.s5.e14de9354da9 from=translated src=- shape=277a5259 vocab=729e2372
+-/
 theorem proposition_2_9_a {ι : Type*} (E : ι → Type*) [∀ i, CompleteLattice (E i)]
     (hE : ∀ i, IsContinuousLattice (E i)) : IsContinuousLattice (∀ i, E i) := by
   classical
@@ -149,7 +155,9 @@ Scott-open `U` and a
 /-- Plugging a value into a fixed coordinate, `v ↦ Function.update z i v`,
 preserves directed
 suprema: away from `i` the result is the constant `z j`, and at `i` it is the
-identity. -/
+identity.
+@isnad1 id=preserve.0h4v.s5.c292b5719da4 from=translated src=- shape=2c65e87a vocab=418f93dd
+-/
 theorem update_preservesDirectedSup {ι : Type*} [DecidableEq ι] {E : ι → Type*}
     [∀ i, CompleteLattice (E i)] (z : ∀ i, E i) (i : ι) :
     PreservesDirectedSup (fun v : E i => Function.update z i v) := by
@@ -167,7 +175,9 @@ theorem update_preservesDirectedSup {ι : Type*} [DecidableEq ι] {E : ι → Ty
 `aᵢ ≪ zᵢ`. The witnessing Scott-open neighbourhood of `zᵢ` is the preimage of a
 product Scott-open
 witness under `v ↦ Function.update z i v`, which is Scott-open by
-`update_preservesDirectedSup`. -/
+`update_preservesDirectedSup`.
+@isnad1 id=waybelow.1h5v.s5.2848464e894a from=translated src=- shape=f3fa3932 vocab=30bb9b43
+-/
 theorem wayBelow_proj {ι : Type*} {E : ι → Type*} [∀ i, CompleteLattice (E i)]
     {a z : ∀ i, E i} (h : a ≪ z) (i : ι) : a i ≪ z i := by
   classical
@@ -186,7 +196,9 @@ all but finitely many `j`. The finite truncations `Z F = (fun j => if j ∈ F th
 j else ⊥)` form a
 directed family with supremum `z`; since `a ≪ z = ⊔_F Z F`, already `a ≤ Z F` for
 some finite `F`,
-forcing `aⱼ = ⊥` off `F`. -/
+forcing `aⱼ = ⊥` off `F`.
+@isnad1 id=ex.1h4v.s6.c5d8ec0156eb from=translated src=- shape=f15c331b vocab=069e3852
+-/
 theorem wayBelow_finite_support {ι : Type*} {E : ι → Type*} [∀ i, CompleteLattice (E i)]
     {a z : ∀ i, E i} (h : a ≪ z) : ∃ F : Finset ι, ∀ j ∉ F, a j = ⊥ := by
   classical
@@ -226,7 +238,9 @@ theorem wayBelow_finite_support {ι : Type*} {E : ι → Type*} [∀ i, Complete
 
 /-- **Scott 1972, Proposition 2.9(b).** For a family of continuous lattices, the
 Scott topology of
-the product coincides with the product of the Scott topologies of the factors. -/
+the product coincides with the product of the Scott topologies of the factors.
+@isnad1 id=eq.1h2v.s5.94b5d70c416d from=translated src=- shape=c2abee3c vocab=bf2f7e79
+-/
 theorem proposition_2_9_b {ι : Type*} (E : ι → Type*) [∀ i, CompleteLattice (E i)]
     (hE : ∀ i, IsContinuousLattice (E i)) :
     (scottTopologicalSpace : TopologicalSpace (∀ i, E i)) =
@@ -273,7 +287,9 @@ theorem proposition_2_9_b {ι : Type*} (E : ι → Type*) [∀ i, CompleteLattic
 continuous lattices
 is again a continuous lattice (`proposition_2_9_a`) whose Scott topology agrees
 with the product
-topology (`proposition_2_9_b`). -/
+topology (`proposition_2_9_b`).
+@isnad1 id=and.1h2v.s5.f70deb007700 from=translated src=- shape=fb7f7fa5 vocab=bf2f7e79
+-/
 theorem proposition_2_9 {ι : Type*} (E : ι → Type*) [∀ i, CompleteLattice (E i)]
     (hE : ∀ i, IsContinuousLattice (E i)) :
     IsContinuousLattice (∀ i, E i) ∧
@@ -303,6 +319,9 @@ def scottExtend (e : X → Y) (f : X → E) (y : Y) : E :=
   sSup {d | ∃ V : Set Y, IsOpen V ∧ y ∈ V ∧ d = sInf (f '' (e ⁻¹' V))}
 
 omit [TopologicalSpace X] in
+/--
+@isnad1 id=nonempty.0h6v.s6.2ca07b6f5cc5 from=translated src=- shape=d0c4691d vocab=0aafc1ac
+-/
 theorem scottExtend_aux_nonempty (e : X → Y) (f : X → E) (y : Y) :
     {d | ∃ V : Set Y, IsOpen V ∧ y ∈ V ∧ d = sInf (f '' (e ⁻¹' V))}.Nonempty :=
   ⟨_, Set.univ, isOpen_univ, Set.mem_univ y, rfl⟩
@@ -311,7 +330,9 @@ omit [TopologicalSpace X] in
 /-- The defining family of `scottExtend` is directed: open neighbourhoods are
 closed under
 intersection, and `⊓ f''(e⁻¹ ·)` is monotone in the neighbourhood (smaller set,
-larger inf). -/
+larger inf).
+@isnad1 id=directed.0h6v.s6.497c044a8984 from=translated src=- shape=cfed4c7c vocab=1522212d
+-/
 theorem scottExtend_aux_directed (e : X → Y) (f : X → E) (y : Y) :
     DirectedOn (· ≤ ·) {d | ∃ V : Set Y, IsOpen V ∧ y ∈ V ∧ d = sInf (f '' (e ⁻¹' V))} := by
   rintro _ ⟨V₁, hV₁o, hyV₁, rfl⟩ _ ⟨V₂, hV₂o, hyV₂, rfl⟩
@@ -325,7 +346,9 @@ immediate
 for each
 `a ≪ f x₀` the Scott-open `↟a` pulls back along the continuous `f` and, by the
 embedding, to an
-open `V ⊆ Y` on whose `e`-preimage `f ≥ a`, so `a ≤ ⊓ f''(e⁻¹V) ≤ g(e x₀)`. -/
+open `V ⊆ Y` on whose `e`-preimage `f ≥ a`, so `a ≤ ⊓ f''(e⁻¹V) ≤ g(e x₀)`.
+@isnad1 id=eq.3h6v.s5.540de670b073 from=translated src=- shape=fb06fd44 vocab=02a388c5
+-/
 theorem scottExtend_eq_of_continuous (hE : IsContinuousLattice E) (e : X → Y)
     (he : IsEmbedding e) (f : X → E) (hf : @Continuous X E _ scottTopologicalSpace f) (x₀ : X) :
     scottExtend e f (e x₀) = f x₀ := by
@@ -353,7 +376,9 @@ omit [TopologicalSpace X] in
 basis lemma gives `a ≪ g y₀` with `↟a ⊆ U`; since `g y₀` is a directed supremum,
 `a ≪ ⊓ f''(e⁻¹V)`
 for some open `V ∋ y₀`, and that value is `≤ g y'` for every `y' ∈ V`, so `V ⊆
-g⁻¹U`. -/
+g⁻¹U`.
+@isnad1 id=continuo.1h5v.s5.f1375dda8fd6 from=translated src=- shape=63eb04ef vocab=49ab0426
+-/
 theorem scottExtend_continuous (hE : IsContinuousLattice E) (e : X → Y) (f : X → E) :
     @Continuous Y E _ scottTopologicalSpace (scottExtend e f) := by
   let : TopologicalSpace E := scottTopologicalSpace
@@ -382,7 +407,9 @@ the meets
 Proposition 3.8:
 the `≤` direction interpolates from below using `f' y = ⊔ {a | a ≪ f' y}` and the
 openness of each
-`f'⁻¹(↟a)`; the `≥` direction is immediate since `f' y ∈ f''(U)` whenever `y ∈ U`. -/
+`f'⁻¹(↟a)`; the `≥` direction is immediate since `f' y ∈ f''(U)` whenever `y ∈ U`.
+@isnad1 id=eq.2h4v.s6.6cc29a381b15 from=translated src=- shape=a9ac8b7f vocab=d1150bf7
+-/
 theorem continuous_eq_sSup_openInfs (hE : IsContinuousLattice E) {f' : Y → E}
     (hf' : @Continuous Y E _ scottTopologicalSpace f') (y : Y) :
     f' y = sSup {d | ∃ U : Set Y, IsOpen U ∧ y ∈ U ∧ d = sInf (f' '' U)} := by
@@ -408,7 +435,9 @@ omit [TopologicalSpace X] in
 `continuous_eq_sSup_openInfs`, restrict each meet from `U` to the embedded
 subspace `e(X) ∩ U`
 (only enlarging the meet), and recognize the result as a defining term of
-`scottExtend`. -/
+`scottExtend`.
+@isnad1 id=le.3h7v.s6.01ce81005bba from=translated src=- shape=d5ffc091 vocab=a9fd01c0
+-/
 theorem scottExtend_maximal (hE : IsContinuousLattice E) (e : X → Y) {f : X → E} {f' : Y → E}
     (hf' : @Continuous Y E _ scottTopologicalSpace f') (h_ext : ∀ x, f' (e x) = f x) (y : Y) :
     f' y ≤ scottExtend e f y := by
@@ -427,7 +456,9 @@ omit [TopologicalSpace X] in
 continuous `f'` with `f' ∘ e ⊑ g` satisfies `f' ⊑ scottExtend e g`. Same proof as
 `scottExtend_maximal`, replacing the final equality `f' (e x) = f x` by the
 inequality
-`f' (e x) ≤ g x`. -/
+`f' (e x) ≤ g x`.
+@isnad1 id=le.3h7v.s6.a0e8a001d893 from=translated src=- shape=7500be4b vocab=a9fd01c0
+-/
 theorem scottExtend_maximal_le (hE : IsContinuousLattice E) (e : X → Y) {g : X → E} {f' : Y → E}
     (hf' : @Continuous Y E _ scottTopologicalSpace f') (h_le : ∀ x, f' (e x) ≤ g x) (y : Y) :
     f' y ≤ scottExtend e g y := by
@@ -447,7 +478,9 @@ e f` is the
 (`scottExtend_continuous`), it
 restricts to `f` along `e` (`scottExtend_eq_of_continuous`), and it dominates
 every continuous
-solution of `f' ∘ e = f` (`scottExtend_maximal`). -/
+solution of `f' ∘ e = f` (`scottExtend_maximal`).
+@isnad1 id=and.3h5v.s7.a63c150be14d from=translated src=- shape=e6af9d1e vocab=e433c303
+-/
 theorem proposition_3_8 (hE : IsContinuousLattice E) (e : X → Y) (he : IsEmbedding e)
     (f : X → E) (hf : @Continuous X E _ scottTopologicalSpace f) :
     @Continuous Y E _ scottTopologicalSpace (scottExtend e f)
@@ -465,7 +498,9 @@ space under its
 induced (Scott) topology. The witness is `scottExtend`, which extends any
 continuous `f` along
 any embedding `e` (`scottExtend_eq_of_continuous`) and is itself continuous
-(`scottExtend_continuous`). -/
+(`scottExtend_continuous`).
+@isnad1 id=isinject.1h1v.s3.25aee4c95f91 from=translated src=- shape=c612a321 vocab=950fbcee
+-/
 theorem proposition_2_11 {E : Type*} [CompleteLattice E] (hE : IsContinuousLattice E) :
     @IsInjectiveSpace E scottTopologicalSpace := by
   let : TopologicalSpace E := scottTopologicalSpace
@@ -475,7 +510,9 @@ theorem proposition_2_11 {E : Type*} [CompleteLattice E] (hE : IsContinuousLatti
 
 /-- The Sierpiński space `Prop` (Scott's `𝕆`) is a continuous lattice: it is a
 finite complete
-lattice, so Proposition 2.8 applies. -/
+lattice, so Proposition 2.8 applies.
+@isnad1 id=iscontin.0h0v.s1.12c5d1442273 from=translated src=- shape=b497039c vocab=5a2d0df1
+-/
 theorem isContinuousLattice_prop : IsContinuousLattice Prop :=
   proposition_2_8
 
@@ -485,7 +522,9 @@ Sierpiński topology
 `{True}`, `univ`,
 which are precisely the Sierpiński-open sets. This is the topological
 identification underlying
-Theorem 2.12: the building block `𝕆` carries its Scott topology. -/
+Theorem 2.12: the building block `𝕆` carries its Scott topology.
+@isnad1 id=eq.0h0v.s2.1025082f02c9 from=translated src=- shape=501d5a04 vocab=a4e9cacf
+-/
 theorem scottTopology_prop :
     (scottTopologicalSpace : TopologicalSpace Prop) = sierpinskiSpace := by
   apply le_antisymm
@@ -540,7 +579,9 @@ lattice (`isContinuousLattice_prop`) and products of continuous lattices are
 continuous
 (Proposition 2.9(a)). This is the order-theoretic content of "a Cartesian power of
 `𝕆` is a
-continuous lattice", the construction Theorem 2.12 retracts onto. -/
+continuous lattice", the construction Theorem 2.12 retracts onto.
+@isnad1 id=iscontin.0h1v.s3.a2fc50cfc9e6 from=translated src=- shape=b1adb586 vocab=5a2d0df1
+-/
 theorem sierpinskiPower_isContinuousLattice (ι : Type*) : IsContinuousLattice (ι → Prop) :=
   proposition_2_9_a (fun _ => Prop) (fun _ => isContinuousLattice_prop)
 
@@ -550,7 +591,9 @@ the product
 product is the
 product of the factors' Scott topologies) with `scottTopology_prop` (each factor's
 Scott topology
-is the Sierpiński topology). -/
+is the Sierpiński topology).
+@isnad1 id=eq.0h1v.s5.a051f05b32ed from=translated src=- shape=6884b7ef vocab=271b89ac
+-/
 theorem scottTopology_sierpinskiPower (ι : Type*) :
     (scottTopologicalSpace : TopologicalSpace (ι → Prop)) =
       (inferInstance : TopologicalSpace (ι → Prop)) := by
@@ -565,7 +608,9 @@ theorem scottTopology_sierpinskiPower (ι : Type*) :
 an injective
 space under its Scott topology. This is the substantial half of the equivalence
 "injective
-spaces = continuous lattices", and is exactly Proposition 2.11. -/
+spaces = continuous lattices", and is exactly Proposition 2.11.
+@isnad1 id=isinject.1h1v.s3.25aee4c95f91 from=translated src=- shape=c612a321 vocab=950fbcee
+-/
 theorem theorem_2_12_forward {E : Type*} [CompleteLattice E] (hE : IsContinuousLattice E) :
     @IsInjectiveSpace E scottTopologicalSpace :=
   proposition_2_11 hE
@@ -574,19 +619,25 @@ theorem theorem_2_12_forward {E : Type*} [CompleteLattice E] (hE : IsContinuousL
 continuous
 lattice (`isContinuousLattice_prop`), so its injectivity (Proposition 1.2) is an
 instance of the
-equivalence. -/
+equivalence.
+@isnad1 id=isinject.1h0v.s2.a45a2dc402ea from=translated src=- shape=77a96a61 vocab=2cdb5641
+-/
 theorem theorem_2_12_sierpinski_backward (_h : IsContinuousLattice Prop) : IsInjectiveSpace Prop :=
   proposition_1_2
 
 /-- **Scott 1972, Theorem 2.12 (injectivity half, unconditional).** `Prop` is
 injective
-(Sierpiński); the continuous-lattice half is now `isContinuousLattice_prop`. -/
+(Sierpiński); the continuous-lattice half is now `isContinuousLattice_prop`.
+@isnad1 id=isinject.0h0v.s1.3f9cc6e7a774 from=translated src=- shape=b497039c vocab=b114de80
+-/
 theorem theorem_2_12_injective_half : IsInjectiveSpace Prop :=
   proposition_1_2
 
 /-- The Sierpiński space `𝕆 = Prop` realizes the smallest case of Theorem 2.12: it
 is both
-injective (1.2) and a continuous lattice (2.8). -/
+injective (1.2) and a continuous lattice (2.8).
+@isnad1 id=and.0h0v.s2.6fbfbe54e503 from=translated src=- shape=3ff2270b vocab=2cdb5641
+-/
 theorem sierpinski_isInjective_and_isContinuousLattice :
     IsInjectiveSpace Prop ∧ IsContinuousLattice Prop :=
   ⟨proposition_1_2, isContinuousLattice_prop⟩

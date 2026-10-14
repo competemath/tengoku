@@ -59,7 +59,9 @@ def Bounded (X : Set V.Element) : Prop := ∃ y : V.Element, ∀ x ∈ X, x ≤ 
 def upperBounds (X : Set V.Element) : Set V.Element := {y | ∀ x ∈ X, x ≤ y}
 
 /-- If `X` is bounded then its upper-bound family is non-empty (it contains the
-witness). -/
+witness).
+@isnad1 id=nonempty.1h3v.s4.757b9c06c33b from=translated src=- shape=40f94eb2 vocab=a80c5821
+-/
 theorem upperBounds_nonempty {X : Set V.Element} (hX : V.Bounded X) :
     (V.upperBounds X).Nonempty :=
   hX.imp fun _ hy => hy
@@ -72,13 +74,17 @@ from Exercise
 def sSup (X : Set V.Element) (hX : V.Bounded X) : V.Element :=
   V.sInf (V.upperBounds X) (V.upperBounds_nonempty hX)
 
-/-- **Exercise 1.27 — `⊔X` is an upper bound.** Each `x ∈ X` satisfies `x ⊑ ⊔X`. -/
+/-- **Exercise 1.27 — `⊔X` is an upper bound.** Each `x ∈ X` satisfies `x ⊑ ⊔X`.
+@isnad1 id=le.2h4v.s5.c6204022285e from=translated src=- shape=606fee6a vocab=7f0b54ab
+-/
 theorem le_sSup (X : Set V.Element) (hX : V.Bounded X) {x : V.Element} (hx : x ∈ X) :
     x ≤ V.sSup X hX :=
   V.le_sInf (V.upperBounds X) (V.upperBounds_nonempty hX) x (fun _ hy => hy x hx)
 
 /-- **Exercise 1.27 — `⊔X` is least.** Any upper bound `z` of `X` satisfies `⊔X ⊑
-z`. -/
+z`.
+@isnad1 id=le.2h4v.s6.28f76436025c from=translated src=- shape=75cff76c vocab=7f0b54ab
+-/
 theorem sSup_le (X : Set V.Element) (hX : V.Bounded X) {z : V.Element}
     (hz : ∀ x ∈ X, x ≤ z) : V.sSup X hX ≤ z :=
   V.sInf_le (V.upperBounds X) (V.upperBounds_nonempty hX) hz
@@ -89,6 +95,9 @@ theorem sSup_le (X : Set V.Element) (hX : V.Bounded X) {z : V.Element}
 `Consistent`). -/
 def pairSeq (U W : Set α) : ℕ → Set α := fun i => if i = 0 then U else W
 
+/--
+@isnad1 id=eq.0h4v.s5.681cfa23e29a from=translated src=- shape=28201176 vocab=fe40440a
+-/
 theorem interUpTo_pairSeq (U W : Set α) :
     V.interUpTo (pairSeq U W) 2 = V.master ∩ U ∩ W := by
   simp only [interUpTo_succ, interUpTo_zero, pairSeq]
@@ -103,7 +112,9 @@ in `|𝒟|`.
 lies above both
 `↑U` and `↑W` (via `principal_le_iff`). `←` uses that any bound `y` contains both
 `U` and `W`,
-hence `U ∩ W ∈ y ⊆ 𝒟`, giving `U ∩ W` as the consistency witness. -/
+hence `U ∩ W ∈ y ⊆ 𝒟`, giving `U ∩ W` as the consistency witness.
+@isnad1 id=iff.2h4v.s6.fb3d2e2521c8 from=translated src=- shape=677e5637 vocab=cfee8cf9
+-/
 theorem consistent_pair_iff_bounded {U W : Set α} (hU : V.mem U) (hW : V.mem W) :
     V.Consistent (pairSeq U W) 2 ↔ V.Bounded {V.principal hU, V.principal hW} := by
   constructor
@@ -141,7 +152,9 @@ which form a finite subset, hence bounded — that bound's filter contains the w
 finite
 sequence, so its intersection lies in `𝒟`. The least filter `leastFilter C`
 (Exercise 1.18) is
-then an upper bound of `X`. -/
+then an upper bound of `X`.
+@isnad1 id=iff.0h3v.s5.7fb4407c6707 from=translated src=- shape=2b94583b vocab=3b45e8e7
+-/
 theorem bounded_iff_finite_bounded (X : Set V.Element) :
     V.Bounded X ↔ ∀ S : Set V.Element, S ⊆ X → S.Finite → V.Bounded S := by
   constructor

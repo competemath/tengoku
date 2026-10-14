@@ -56,7 +56,9 @@ private theorem normalizeAlong_snd_sub
   simp only [normalizeAlong]
   ring
 
-/-- The hand-rolled normalization is an exact Euclidean isometry. -/
+/-- The hand-rolled normalization is an exact Euclidean isometry.
+@isnad1 id=eq.1h4v.s5.1ad23e883316 from=translated src=- shape=ce164a7f vocab=9223781c
+-/
 theorem normalizeAlong_sqDist
     {a b : Point ℝ} (hab : a ≠ b) (p q : Point ℝ) :
     sqDist (normalizeAlong a b p) (normalizeAlong a b q) = sqDist p q := by
@@ -78,7 +80,9 @@ private theorem normalizeAlong_injective
   rw [normalizeAlong_sqDist hab] at hzero
   linarith
 
-/-- The chosen rotation preserves signed orientation. -/
+/-- The chosen rotation preserves signed orientation.
+@isnad1 id=eq.1h5v.s5.3057ac1df776 from=translated src=- shape=9f47b5c6 vocab=f78e78ab
+-/
 theorem normalizeAlong_turn
     {a b : Point ℝ} (hab : a ≠ b) (p q r : Point ℝ) :
     turn (normalizeAlong a b p) (normalizeAlong a b q)
@@ -119,7 +123,9 @@ private theorem normalizeAlong_second_coordinate
     (normalizeAlong a b p).2 = turn a b p / Real.sqrt (sqDist a b) := by
   simp only [normalizeAlong, turn]
 
-/-- Normalization preserves the executable degree in the top-three graph. -/
+/-- Normalization preserves the executable degree in the top-three graph.
+@isnad1 id=eq.1h8v.s5.83fbdfe2a126 from=translated src=- shape=04469c0f vocab=799c5290
+-/
 theorem normalizeAlong_vertexDegree
     {n : ℕ} {P : Fin n → Point ℝ} {a b : Point ℝ} (hab : a ≠ b)
     (d₁ d₂ d₃ : ℝ) (i : Fin n) :
@@ -131,7 +137,9 @@ theorem normalizeAlong_vertexDegree
   simp only [Finset.mem_filter, Finset.mem_erase, Finset.mem_univ, and_true]
   rw [normalizeAlong_sqDist hab]
 
-/-- The three distinguished squared-distance classes survive normalization. -/
+/-- The three distinguished squared-distance classes survive normalization.
+@isnad1 id=hastopth.2h7v.s5.69446bc9ce78 from=translated src=- shape=8b7fc061 vocab=b331e3bb
+-/
 theorem normalizeAlong_top_three_classes
     {n : ℕ} {P : Fin n → Point ℝ} {a b : Point ℝ} (hab : a ≠ b)
     {d₁ d₂ d₃ : ℝ} (hClasses : HasTopThreeDistanceClasses P d₁ d₂ d₃) :
@@ -788,7 +796,9 @@ private theorem row1_B32_central_distances
   · linarith [hrightED]
 
 /-- The row-1 terminal `B:3→2` word forces its displayed lower vertex to
-have degree at most six, derived only from its raw geometry. -/
+have degree at most six, derived only from its raw geometry.
+@isnad1 id=le.0h6v.s5.9a9c01e2e38e from=translated src=- shape=8286f2c7 vocab=fd00c8d3
+-/
 theorem row1_B32_realization_degree_le_six
     {n : ℕ} {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (G : Row1B32WordRealization P d₁ d₂ d₃) :
@@ -1152,7 +1162,9 @@ private theorem one_penultimate_tip_not_d₁
     ⟨hVpBounds.1, hVpBounds.2.1⟩ hfar (by linarith [hED, hVsRadius])
   exact hnot (euclideanDist_eq_sqrt_of_sqDist_eq hVs)
 
-/-- Every raw one-penultimate realization has displayed degree at most five. -/
+/-- Every raw one-penultimate realization has displayed degree at most five.
+@isnad1 id=le.0h6v.s5.8e046103276a from=translated src=- shape=8286f2c7 vocab=0aad30a8
+-/
 theorem one_penultimate_realization_degree_le_five
     {n : ℕ} {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (G : OnePenultimateWordGeometry P d₁ d₂ d₃) :
@@ -1647,7 +1659,9 @@ private theorem fourEdge_two_d1d1_impossible
     · exact G.secondSide
   exact G.first_ne_second (G.pointsInjective heq)
 
-/-- The row-4 `DD` cage closes by the exact long/short package split. -/
+/-- The row-4 `DD` cage closes by the exact long/short package split.
+@isnad1 id=le.0h6v.s7.0da5e3e148f4 from=translated src=- shape=d9bbb14c vocab=55dd2455
+-/
 theorem row4_DD_realization_min_degree_le_six
     {n : ℕ} {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (G : Row4DDWordRealization P d₁ d₂ d₃) :
@@ -1691,7 +1705,9 @@ theorem row4_DD_realization_min_degree_le_six
       · simpa [hSecondLeft, RealizesCageBand] using secondPackage.leftSpec
       · simpa [hSecondRight, RealizesCageBand] using secondPackage.rightSpec
 
-/-- Raw row-4 `DD` geometry supplies an actual vertex of degree at most six. -/
+/-- Raw row-4 `DD` geometry supplies an actual vertex of degree at most six.
+@isnad1 id=ex.0h6v.s5.81d81a2ed9ce from=translated src=- shape=7aa40652 vocab=b76c2cfd
+-/
 theorem row4_DD_realization_degree_le_six
     {n : ℕ} {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (G : Row4DDWordRealization P d₁ d₂ d₃) :
@@ -2378,7 +2394,9 @@ private theorem fullTwoRung_second_class_degree_le_six
   · exact fullTwoRung_second_class_long_degree_le_six G hVs hlong
   · exact (fullTwoRung_second_class_short_impossible G F hVs hshort).elim
 
-/-- The full two-rung insertion theorem derived from raw polygon geometry. -/
+/-- The full two-rung insertion theorem derived from raw polygon geometry.
+@isnad1 id=le.0h6v.s5.a7b28d823785 from=translated src=- shape=8286f2c7 vocab=2a7a409c
+-/
 theorem fullTwoRung_realization_degree_le_six
     {n : ℕ} {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (G : FullTwoRungGeometry P d₁ d₂ d₃) :

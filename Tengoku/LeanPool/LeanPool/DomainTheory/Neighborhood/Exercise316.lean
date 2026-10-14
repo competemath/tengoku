@@ -65,11 +65,20 @@ variable {α : Type*}
 /-- The `i`-th *fiber* of a set `W ⊆ ℕ × α`: the tokens appearing in copy `i`. -/
 def fiber (W : Set (ℕ × α)) (i : ℕ) : Set α := {a | (i, a) ∈ W}
 
+/--
+@isnad1 id=iff.0h4v.s5.c774f009dbae from=translated src=- shape=3fb9790b vocab=9a3cd981
+-/
 @[simp] theorem mem_fiber {W : Set (ℕ × α)} {i : ℕ} {a : α} : a ∈ fiber W i ↔ (i, a) ∈ W := Iff.rfl
 
+/--
+@isnad1 id=le.1h4v.s5.4144a1ac3c8c from=translated src=- shape=cc243de4 vocab=070a4b98
+-/
 theorem fiber_mono {W W' : Set (ℕ × α)} (h : W ⊆ W') (i : ℕ) : fiber W i ⊆ fiber W' i :=
   fun _ ha => h ha
 
+/--
+@isnad1 id=eq.0h4v.s5.381413ae9cbe from=translated src=- shape=e26d7d8b vocab=556843ce
+-/
 theorem fiber_inter (W W' : Set (ℕ × α)) (i : ℕ) :
     fiber (W ∩ W') i = fiber W i ∩ fiber W' i := rfl
 
@@ -77,6 +86,9 @@ theorem eq_of_fiber_eq {W W' : Set (ℕ × α)} (h : ∀ i, fiber W i = fiber W'
   ext ⟨i, a⟩
   exact Set.ext_iff.mp (h i) a
 
+/--
+@isnad1 id=le.1h3v.s5.faab9df57d1d from=translated src=- shape=64d1d3be vocab=070a4b98
+-/
 theorem subset_of_fiber_subset {W W' : Set (ℕ × α)} (h : ∀ i, fiber W i ⊆ fiber W' i) :
     W ⊆ W' := fun ⟨i, _⟩ ha => h i ha
 
@@ -92,12 +104,21 @@ def single (n : ℕ) (X : Set α) : Set (ℕ × α) :=
 
 variable {V}
 
+/--
+@isnad1 id=eq.0h4v.s4.2726aa8f8e45 from=translated src=- shape=cbf7bf2e vocab=f8c45ade
+-/
 @[simp] theorem fiber_single_self (n : ℕ) (X : Set α) : fiber (single V n X) n = X := by
   ext a; simp [fiber, single]
 
+/--
+@isnad1 id=eq.1h5v.s4.a7a87944c945 from=translated src=- shape=ca7c9ebf vocab=fe0aee23
+-/
 theorem fiber_single_ne {n i : ℕ} (h : i ≠ n) (X : Set α) : fiber (single V n X) i = V.master := by
   ext a; simp [fiber, single, h]
 
+/--
+@isnad1 id=le.1h5v.s5.43c2238232e2 from=translated src=- shape=fe13e89c vocab=1bb85021
+-/
 theorem single_mono {n : ℕ} {X X' : Set α} (h : X ⊆ X') : single V n X ⊆ single V n X' := by
   intro p hp
   simp only [single, Set.mem_ofPred_eq] at hp ⊢
@@ -105,6 +126,9 @@ theorem single_mono {n : ℕ} {X X' : Set α} (h : X ⊆ X') : single V n X ⊆ 
   · rw [ite_eq_left hc] at hp ⊢; exact h hp
   · rw [ite_eq_right hc] at hp ⊢; exact hp
 
+/--
+@isnad1 id=eq.0h5v.s5.07a684129cfe from=translated src=- shape=a353078e vocab=3eb00c0c
+-/
 theorem single_inter {n : ℕ} (X X' : Set α) :
     single V n X ∩ single V n X' = single V n (X ∩ X') := by
   apply eq_of_fiber_eq
@@ -134,14 +158,25 @@ def iterSys (V : NeighborhoodSystem α) : NeighborhoodSystem (ℕ × α) where
     rintro W ⟨hWf, _⟩ ⟨i, a⟩ ha
     exact V.sub_master (hWf i) ha
 
+/--
+@isnad1 id=eq.0h2v.s5.e4061d3f54e0 from=translated src=- shape=721c630d vocab=dbc0fce4
+-/
 @[simp] theorem iterSys_master : (iterSys V).master = {p : ℕ × α | p.2 ∈ V.master} := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.aceac277bfbe from=translated src=- shape=24b81b0b vocab=75742e62
+-/
 theorem fiber_iterSys_master (i : ℕ) : fiber ((iterSys V).master) i = V.master := rfl
 
+/--
+@isnad1 id=iff.0h3v.s5.9ae6e3e3fb62 from=translated src=- shape=f121b291 vocab=487c69d7
+-/
 @[simp] theorem mem_iterSys {W : Set (ℕ × α)} :
     (iterSys V).mem W ↔ (∀ i, V.mem (fiber W i)) ∧ ∃ N, ∀ i, N ≤ i → fiber W i = V.master := Iff.rfl
 
-/-- `single V n X` is a `𝒟^∞`-neighbourhood whenever `X ∈ 𝒟`. -/
+/-- `single V n X` is a `𝒟^∞`-neighbourhood whenever `X ∈ 𝒟`.
+@isnad1 id=mem.1h4v.s4.1628a1ce324a from=translated src=- shape=db20074f vocab=2594495f
+-/
 theorem single_mem {n : ℕ} {X : Set α} (hX : V.mem X) : (iterSys V).mem (single V n X) := by
   refine ⟨fun i => ?_, n + 1, fun i hi => ?_⟩
   · by_cases h : i = n
@@ -149,6 +184,9 @@ theorem single_mem {n : ℕ} {X : Set α} (hX : V.mem X) : (iterSys V).mem (sing
     · rw [fiber_single_ne h]; exact V.master_mem
   · exact fiber_single_ne (by omega : i ≠ n) X
 
+/--
+@isnad1 id=eq.0h3v.s4.2e61fbf73d3d from=translated src=- shape=dee613ef vocab=5fef4261
+-/
 theorem single_master (n : ℕ) : single V n V.master = (iterSys V).master := by
   apply eq_of_fiber_eq
   intro i
@@ -157,7 +195,9 @@ theorem single_master (n : ℕ) : single V n V.master = (iterSys V).master := by
   · subst h; rw [fiber_single_self]
   · rw [fiber_single_ne h]
 
-/-- Every `𝒟^∞`-neighbourhood is contained in the pinning of its own `i`-th fiber. -/
+/-- Every `𝒟^∞`-neighbourhood is contained in the pinning of its own `i`-th fiber.
+@isnad1 id=le.1h4v.s5.e730cfb9fa6c from=translated src=- shape=45ca3021 vocab=64db423e
+-/
 theorem subset_single {W : Set (ℕ × α)} (hW : (iterSys V).mem W) (i : ℕ) :
     W ⊆ single V i (fiber W i) := by
   rintro ⟨j, a⟩ ha
@@ -166,6 +206,9 @@ theorem subset_single {W : Set (ℕ × α)} (hW : (iterSys V).mem W) (i : ℕ) :
   · rw [ite_eq_left h]; subst h; exact ha
   · rw [ite_eq_right h]; exact V.sub_master (hW.1 j) ha
 
+/--
+@isnad1 id=le.0h4v.s5.04482524e5d5 from=translated src=- shape=c6991743 vocab=811d7e5e
+-/
 theorem interUpTo_subset_master (F : ℕ → Set (ℕ × α)) (N : ℕ) :
     (iterSys V).interUpTo F N ⊆ (iterSys V).master := by
   induction N with
@@ -174,7 +217,9 @@ theorem interUpTo_subset_master (F : ℕ → Set (ℕ × α)) (N : ℕ) :
 
 /-- The finite intersection `⋂_{i<N} single i (fiber W i)` reconstructs `W` from
 below, once `N`
-exceeds the cofinite-`Δ` bound of `W`. -/
+exceeds the cofinite-`Δ` bound of `W`.
+@isnad1 id=le.2h4v.s6.00451db31b7e from=translated src=- shape=36591100 vocab=5f42dd73
+-/
 theorem reconstruct_subset {W : Set (ℕ × α)} (_hW : (iterSys V).mem W) {N : ℕ}
     (hN : ∀ i, N ≤ i → fiber W i = V.master) :
     (iterSys V).interUpTo (fun i => single V i (fiber W i)) N ⊆ W := by
@@ -205,6 +250,9 @@ def component (z : (iterSys V).Element) (n : ℕ) : V.Element where
     rintro X X' ⟨_, hzX⟩ hX' hXX'
     exact ⟨hX', z.up_mem hzX (single_mem hX') (single_mono hXX')⟩
 
+/--
+@isnad1 id=iff.0h5v.s5.5cb8c21b09eb from=translated src=- shape=c8d6726f vocab=a5fa4cc4
+-/
 @[simp] theorem mem_component {z : (iterSys V).Element} {n : ℕ} {X : Set α} :
     (component z n).mem X ↔ V.mem X ∧ z.mem (single V n X) := Iff.rfl
 
@@ -230,9 +278,15 @@ def ofSeq (seq : ℕ → V.Element) : (iterSys V).Element where
     rintro W W' ⟨_, hWf⟩ hW' hWW'
     exact ⟨hW', fun i => (seq i).up_mem (hWf i) (hW'.1 i) (fiber_mono hWW' i)⟩
 
+/--
+@isnad1 id=iff.0h4v.s5.324c27030534 from=translated src=- shape=f9ced25f vocab=6f2abd65
+-/
 @[simp] theorem mem_ofSeq {seq : ℕ → V.Element} {W : Set (ℕ × α)} :
     (ofSeq seq).mem W ↔ (iterSys V).mem W ∧ ∀ i, (seq i).mem (fiber W i) := Iff.rfl
 
+/--
+@isnad1 id=le.1h4v.s6.719f83212290 from=translated src=- shape=9b764a13 vocab=36571282
+-/
 theorem ofSeq_mono {seq seq' : ℕ → V.Element} (h : ∀ n, seq n ≤ seq' n) :
     ofSeq seq ≤ ofSeq seq' := by
   rintro W ⟨hW, hf⟩
@@ -240,6 +294,9 @@ theorem ofSeq_mono {seq seq' : ℕ → V.Element} (h : ∀ n, seq n ≤ seq' n) 
 
 /-! ### The two round-trips. -/
 
+/--
+@isnad1 id=eq.0h4v.s4.7e3c9985b659 from=translated src=- shape=0a8d364d vocab=c1868720
+-/
 @[simp] theorem component_ofSeq (seq : ℕ → V.Element) (n : ℕ) :
     component (ofSeq seq) n = seq n := by
   apply Element.ext
@@ -253,6 +310,9 @@ theorem ofSeq_mono {seq seq' : ℕ → V.Element} (h : ∀ n, seq n ≤ seq' n) 
     · subst h; rw [fiber_single_self]; exact hX
     · rw [fiber_single_ne h]; exact (seq i).master_mem
 
+/--
+@isnad1 id=eq.0h3v.s5.adf08f930da7 from=translated src=- shape=78f74616 vocab=cb3be738
+-/
 @[simp] theorem ofSeq_component (z : (iterSys V).Element) :
     ofSeq (fun n => component z n) = z := by
   apply Element.ext
@@ -267,7 +327,9 @@ theorem ofSeq_mono {seq seq' : ℕ → V.Element} (h : ∀ n, seq n ≤ seq' n) 
     exact ⟨(z.sub hzW).1 i, z.up_mem hzW (single_mem ((z.sub hzW).1 i)) (
       subset_single (z.sub hzW) i)⟩
 
-/-- `z ⊑ z'` is detected component-wise. -/
+/-- `z ⊑ z'` is detected component-wise.
+@isnad1 id=le.1h4v.s6.02a77d794e98 from=translated src=- shape=64b49589 vocab=3093f75a
+-/
 theorem le_of_component_le {z z' : (iterSys V).Element}
     (h : ∀ n, component z n ≤ component z' n) : z ≤ z' := by
   have hmono := ofSeq_mono h
@@ -319,7 +381,9 @@ def iterProdIso (V : NeighborhoodSystem α) :
       (prodCongrOrderIso (OrderIso.refl V.Element) (iterSeqEquiv V).symm).trans
         (prodEquiv V (iterSys V)).symm
 
-/-- **Exercise 3.16 (Scott 1981, PRG-19).** `𝒟^∞ ≅ 𝒟 × 𝒟^∞`. -/
+/-- **Exercise 3.16 (Scott 1981, PRG-19).** `𝒟^∞ ≅ 𝒟 × 𝒟^∞`.
+@isnad1 id=isomorph.0h2v.s4.9be98b36f50b from=translated src=- shape=0f9b169a vocab=3301985c
+-/
 theorem iter_isomorphic (V : NeighborhoodSystem α) : iterSys V ≅ᴰ prod V (iterSys V) :=
   ⟨iterProdIso V⟩
 
@@ -342,10 +406,15 @@ def projN (V : NeighborhoodSystem α) (n : ℕ) : ApproximableMap (iterSys V) V 
     rintro W W₂ X X₂ ⟨_, _, hsub⟩ hW₂W hXX₂ hW₂ hX₂
     exact ⟨hW₂, hX₂, (fiber_mono hW₂W n).trans (hsub.trans hXX₂)⟩
 
+/--
+@isnad1 id=iff.0h5v.s5.70bede834dbe from=translated src=- shape=bb8d04d2 vocab=6bf95136
+-/
 @[simp] theorem projN_rel {n : ℕ} {W : Set (ℕ × α)} {X : Set α} :
     (projN V n).rel W X ↔ (iterSys V).mem W ∧ V.mem X ∧ fiber W n ⊆ X := Iff.rfl
 
-/-- `projN n` extracts the `n`-th component: `projN n (z) = component z n`. -/
+/-- `projN n` extracts the `n`-th component: `projN n (z) = component z n`.
+@isnad1 id=eq.0h4v.s5.de9f789c4b49 from=translated src=- shape=b158b925 vocab=403f2e31
+-/
 @[simp] theorem toElementMap_projN (z : (iterSys V).Element) (n : ℕ) :
     (projN V n).toElementMap z = component z n := by
   apply Element.ext

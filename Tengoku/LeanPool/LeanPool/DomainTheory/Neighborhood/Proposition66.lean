@@ -39,7 +39,9 @@ variable {Obj : Type u} [Category Obj] {T : Endofunctor Obj} {A B : TAlgebra T}
 /-- Composing the two unique homomorphisms `A → B → A` gives the identity
 homomorphism on the
 initial
-algebra `A`. -/
+algebra `A`.
+@isnad1 id=eq.0h6v.s6.cd7b24b098b4 from=translated src=- shape=4e983289 vocab=3fa6a0a3
+-/
 theorem comp_desc_eq_id (hA : IsInitial A) (hB : IsInitial B) :
     (hB.desc A).comp (hA.desc B) = AlgHom.id A := by
   rw [hA.uniq A ((hB.desc A).comp (hA.desc B)), hA.uniq A (AlgHom.id A)]
@@ -61,7 +63,9 @@ def initialIso (hA : IsInitial A) (hB : IsInitial B) : Iso A.carrier B.carrier w
 
 /-- The isomorphism of Proposition 6.6 is **unique**: the homomorphism `A → B`
 realising it is the
-only homomorphism between the two initial algebras. -/
+only homomorphism between the two initial algebras.
+@isnad1 id=eq.0h6v.s5.7cc414a17b78 from=translated src=- shape=96d73703 vocab=a5812226
+-/
 theorem iso_hom_unique (hA : IsInitial A) (h : AlgHom A B) : h = hA.desc B :=
   hA.uniq B h
 

@@ -93,13 +93,17 @@ X`. -/
 def IsGen (X : Set α) (Y : Set β) : Prop := i.rel X Y ∧ j.rel Y X
 
 /-- The masters generate each other: `IsGen Δ_D Δ_E` (from `i.master_rel`,
-`j.master_rel`). -/
+`j.master_rel`).
+@isnad1 id=isgen.0h6v.s5.3d02384150e3 from=translated src=- shape=3b65f664 vocab=b98a50cb
+-/
 theorem isGen_master : IsGen i j D.master E.master :=
   ⟨i.master_rel, j.master_rel⟩
 
 /-- **Generators exist** (uses `j ∘ i = I_D`). Every `D`-neighbourhood `X` has a
 generator: apply
-`j ∘ i = I_D` to the identity relation `X I_D X`. -/
+`j ∘ i = I_D` to the identity relation `X I_D X`.
+@isnad1 id=ex.2h7v.s6.280bbc4baf58 from=translated src=- shape=4f5e63a7 vocab=f01c64b7
+-/
 theorem isGen_exists (hji : j.comp i = idMap D) {X : Set α} (hX : D.mem X) :
     ∃ Y, IsGen i j X Y := by
   have hrel : (j.comp i).rel X X := by rw [hji]; exact ⟨hX, hX, subset_rfl⟩
@@ -110,7 +114,9 @@ theorem isGen_exists (hji : j.comp i = idMap D) {X : Set α} (hX : D.mem X) :
 generate `X, X'`
 and `Y ⊆ Y'`, then `X ⊆ X'`. (Widen `X i Y` to `X i Y'` by `mono`, compose with
 `Y' j X'`, and read
-off `X ⊆ X'` from `j ∘ i = I_D`.) -/
+off `X ⊆ X'` from `j ∘ i = I_D`.)
+@isnad1 id=le.4h10v.s6.83188f80553e from=translated src=- shape=c8611cb9 vocab=79216765
+-/
 theorem isGen_mono (hji : j.comp i = idMap D) {X X' : Set α} {Z W : Set β}
     (h : IsGen i j X Z) (h' : IsGen i j X' W) (hZW : Z ⊆ W) : X ⊆ X' := by
   obtain ⟨hiXZ, _⟩ := h
@@ -124,7 +130,9 @@ theorem isGen_mono (hji : j.comp i = idMap D) {X X' : Set α} {Z W : Set β}
 I_E`): if `Z, W`
 generate `X, X'` and `X ⊆ X'`, then `Z ⊆ W`. (Widen `Z j X` to `Z j X'` by `mono`,
 compose with
-`X' i W`, and read off `Z ⊆ W` from `i ∘ j ⊆ I_E`.) -/
+`X' i W`, and read off `Z ⊆ W` from `i ∘ j ⊆ I_E`.)
+@isnad1 id=le.4h10v.s6.3912436cd7a9 from=translated src=- shape=ac75306b vocab=79216765
+-/
 theorem isGen_mono' (hij : i.comp j ≤ idMap E) {X X' : Set α} {Z W : Set β}
     (h : IsGen i j X Z) (h' : IsGen i j X' W) (hXX' : X ⊆ X') : Z ⊆ W := by
   obtain ⟨_, hjZX⟩ := h
@@ -134,13 +142,17 @@ theorem isGen_mono' (hij : i.comp j ≤ idMap E) {X X' : Set α} {Z W : Set β}
   have hrel : (i.comp j).rel Z W := ⟨X', hjZX', hiX'W⟩
   exact (hij Z W hrel).2.2
 
-/-- Generators are unique in the first argument (`isGen_mono` both ways). -/
+/-- Generators are unique in the first argument (`isGen_mono` both ways).
+@isnad1 id=eq.3h9v.s6.f6a9aa4ea693 from=translated src=- shape=0532247d vocab=7048e269
+-/
 theorem isGen_fst_unique (hji : j.comp i = idMap D) {X X' : Set α} {Y : Set β}
     (h : IsGen i j X Y) (h' : IsGen i j X' Y) : X = X' :=
   Set.Subset.antisymm (isGen_mono i j hji h h' subset_rfl)
     (isGen_mono i j hji h' h subset_rfl)
 
-/-- Generators are unique in the second argument (`isGen_mono'` both ways). -/
+/-- Generators are unique in the second argument (`isGen_mono'` both ways).
+@isnad1 id=eq.3h9v.s6.6637b11dc931 from=translated src=- shape=5102c805 vocab=79216765
+-/
 theorem isGen_snd_unique (hij : i.comp j ≤ idMap E) {X : Set α} {Y Y' : Set β}
     (h : IsGen i j X Y) (h' : IsGen i j X Y') : Y = Y' :=
   Set.Subset.antisymm (isGen_mono' i j hij h h' subset_rfl)
@@ -150,7 +162,9 @@ theorem isGen_snd_unique (hij : i.comp j ≤ idMap E) {X : Set α} {Y Y' : Set �
 `Y ∩ Y' ∈ E`, then
 `Y ∩ Y'` generates `X ∩ X'`. Needs only `mono`/`inter_right` of `i` and `j` (the
 hypothesis
-`E.mem (Y ∩ Y')` is what licenses the `j.mono` steps). -/
+`E.mem (Y ∩ Y')` is what licenses the `j.mono` steps).
+@isnad1 id=isgen.3h10v.s6.82adb1d33475 from=translated src=- shape=2ae5d780 vocab=9a39a769
+-/
 theorem isGen_inter {X X' : Set α} {Y Y' : Set β}
     (h : IsGen i j X Y) (h' : IsGen i j X' Y') (hE : E.mem (Y ∩ Y')) :
     IsGen i j (X ∩ X') (Y ∩ Y') := by
@@ -187,11 +201,16 @@ def Dprime : NeighborhoodSystem β where
     rintro Y ⟨X, hg⟩
     exact E.sub_master (i.rel_cod hg.1)
 
+/--
+@isnad1 id=iff.0h7v.s5.609f04c74ac4 from=translated src=- shape=371f124a vocab=26a6bd68
+-/
 @[simp] theorem mem_Dprime {Y : Set β} : (Dprime i j).mem Y ↔ ∃ X, IsGen i j X Y := Iff.rfl
 
 /-- **`D' ◁ E`.** Same master (`rfl`); `D' ⊆ E` since a generator's `Y` is an
 `E`-neighbourhood; and
-the consistency clause `inter_closed` is exactly `isGen_inter`. -/
+the consistency clause `inter_closed` is exactly `isGen_inter`.
+@isnad1 id=subsyste.0h6v.s5.5f2948fd4487 from=translated src=- shape=7ecfe374 vocab=1652df07
+-/
 theorem Dprime_subsystem : Dprime i j ◁ E where
   master_eq := rfl
   sub := by rintro Y ⟨X, hg⟩; exact i.rel_cod hg.1
@@ -283,7 +302,9 @@ def dprimeEquiv (hji : j.comp i = idMap D) (hij : i.comp j ≤ idMap E) :
 D` with
 `j ∘ i = I_D` and `i ∘ j ⊆ I_E` exhibits `D` as a subdomain of `E`: `D ⊴ E`. This
 is the converse
-of Proposition 6.12 (`Subsystem.projectionPair`). -/
+of Proposition 6.12 (`Subsystem.projectionPair`).
+@isnad1 id=triangle.2h6v.s6.321ed6900bcb from=translated src=- shape=0080bfbc vocab=831ad55e
+-/
 theorem trianglelefteq_of_projectionPair (hji : j.comp i = idMap D)
     (hij : i.comp j ≤ idMap E) : D ⊴ E :=
   ⟨Dprime i j, Dprime_subsystem i j, ⟨dprimeEquiv i j hji hij⟩⟩
@@ -294,7 +315,9 @@ end ProjectionPair
 particular a
 witness of `D ⊴ E` (take `D' = D`). Together with
 `trianglelefteq_of_projectionPair`, this shows
-`D ⊴ E` holds **iff** there is a projection pair `D ⇄ E`. -/
+`D ⊴ E` holds **iff** there is a projection pair `D ⇄ E`.
+@isnad1 id=triangle.1h3v.s4.77d9a147ed9f from=translated src=- shape=a8694154 vocab=b77a33fb
+-/
 theorem Subsystem.trianglelefteq {D E : NeighborhoodSystem α} (h : D ◁ E) : D ⊴ E :=
   ⟨D, h, Isomorphic.refl D⟩
 

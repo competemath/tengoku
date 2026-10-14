@@ -117,7 +117,9 @@ def ScottSys.prod (A₀ A₁ : ScottSys) : ScottSys :=
 variable {A₀ A₁ B₀ B₁ C₀ C₁ : ScottSys}
 
 /-- A non-empty `b`-tagged copy can never sit inside a `b'`-tagged copy for `b ≠
-b'`. -/
+b'`.
+@isnad1 id=false.3h4v.s5.24bdc654af53 from=translated src=- shape=6ca2904f vocab=bf00448d
+-/
 theorem embBit_not_subset_cross {b b' : Bool} (h : b ≠ b') {X Y : Set Str} (hX : X.Nonempty)
     (hsub : embBit b X ⊆ embBit b' Y) : False := by
   obtain ⟨t, ht⟩ := hX
@@ -198,7 +200,9 @@ def sumMapTok (f₀ : ApproximableMap A₀.sys B₀.sys) (f₁ : ApproximableMap
 
 /-- **`sumMapTok` is strict** for *any* component maps: the master input `Λ` (the
 only neighbourhood
-containing the empty string) relates only to the output master. -/
+containing the empty string) relates only to the output master.
+@isnad1 id=isstrict.0h6v.s5.0facbe7e147f from=translated src=- shape=3664282c vocab=26bd162d
+-/
 theorem sumMapTok_isStrict (f₀ : ApproximableMap A₀.sys B₀.sys)
     (f₁ : ApproximableMap A₁.sys B₁.sys) : IsStrict (sumMapTok f₀ f₁) := by
   rintro Y (⟨-, rfl⟩ | ⟨X, X', -, heq, -⟩ | ⟨Y0, Y', -, heq, -⟩)
@@ -240,7 +244,9 @@ def prodMapTok (f₀ : ApproximableMap A₀.sys B₀.sys) (f₁ : ApproximableMa
     obtain ⟨hsX', hsY'⟩ := prodTokNbhd_subset_iff.mp hZZ'
     exact ⟨X₂, Y₂, X'₃, Y'₃, f₀.mono h0 hsX hsX' hX₂ hX'₃, f₁.mono h1 hsY hsY' hY₂ hY'₃, rfl, rfl⟩
 
-/-- **`prodMapTok` is strict** exactly when both components are strict. -/
+/-- **`prodMapTok` is strict** exactly when both components are strict.
+@isnad1 id=isstrict.2h6v.s5.036d8f6cf324 from=translated src=- shape=bed8b57e vocab=7de012b8
+-/
 theorem prodMapTok_isStrict {f₀ : ApproximableMap A₀.sys B₀.sys}
     {f₁ : ApproximableMap A₁.sys B₁.sys} (hf₀ : IsStrict f₀) (hf₁ : IsStrict f₁) :
     IsStrict (prodMapTok f₀ f₁) := by
@@ -251,7 +257,9 @@ theorem prodMapTok_isStrict {f₀ : ApproximableMap A₀.sys B₀.sys}
 
 /-! ## The bifunctor laws: identities and composition are preserved -/
 
-/-- **`(I_{𝒟₀} + I_{𝒟₁}) = I_{𝒟₀+𝒟₁}`.** -/
+/-- **`(I_{𝒟₀} + I_{𝒟₁}) = I_{𝒟₀+𝒟₁}`.**
+@isnad1 id=eq.0h2v.s5.460a112ee1d5 from=translated src=- shape=f6490af4 vocab=7084635c
+-/
 theorem sumMapTok_id :
     sumMapTok (idMap A₀.sys) (idMap A₁.sys) = idMap (A₀.sum A₁).sys := by
   apply ApproximableMap.ext
@@ -273,7 +281,9 @@ theorem sumMapTok_id :
       · exact absurd hsub (fun h => embBit_not_subset_cross (by decide) (A₀.ne X hX) h)
       · exact Or.inr (Or.inr ⟨Y, Y', ⟨hY, hY', embBit_subset.mp hsub⟩, rfl, rfl⟩)
 
-/-- **`(g₀ ∘ f₀) + (g₁ ∘ f₁) = (g₀ + g₁) ∘ (f₀ + f₁)`.** -/
+/-- **`(g₀ ∘ f₀) + (g₁ ∘ f₁) = (g₀ + g₁) ∘ (f₀ + f₁)`.**
+@isnad1 id=eq.0h10v.s6.9dd38cf3bb66 from=translated src=- shape=0ed4476a vocab=32525242
+-/
 theorem sumMapTok_comp (f₀ : ApproximableMap A₀.sys B₀.sys) (f₁ : ApproximableMap A₁.sys B₁.sys)
     (g₀ : ApproximableMap B₀.sys C₀.sys) (g₁ : ApproximableMap B₁.sys C₁.sys) :
     sumMapTok (g₀.comp f₀) (g₁.comp f₁) = (sumMapTok g₀ g₁).comp (sumMapTok f₀ f₁) := by
@@ -304,7 +314,9 @@ theorem sumMapTok_comp (f₀ : ApproximableMap A₀.sys B₀.sys) (f₁ : Approx
       · obtain rfl := embBit_injective heq
         exact Or.inr (Or.inr ⟨Y, Y'', ⟨Y', hf, hg⟩, rfl, rfl⟩)
 
-/-- **`(I_{𝒟₀} × I_{𝒟₁}) = I_{𝒟₀×𝒟₁}`.** -/
+/-- **`(I_{𝒟₀} × I_{𝒟₁}) = I_{𝒟₀×𝒟₁}`.**
+@isnad1 id=eq.0h2v.s5.a1b09e2748d8 from=translated src=- shape=f6490af4 vocab=7477686c
+-/
 theorem prodMapTok_id :
     prodMapTok (idMap A₀.sys) (idMap A₁.sys) = idMap (A₀.prod A₁).sys := by
   apply ApproximableMap.ext
@@ -317,7 +329,9 @@ theorem prodMapTok_id :
     obtain ⟨hsX, hsY⟩ := prodTokNbhd_subset_iff.mp hsub
     exact ⟨X, Y, X', Y', ⟨hX, hX', hsX⟩, ⟨hY, hY', hsY⟩, rfl, rfl⟩
 
-/-- **`(g₀ ∘ f₀) × (g₁ ∘ f₁) = (g₀ × g₁) ∘ (f₀ × f₁)`.** -/
+/-- **`(g₀ ∘ f₀) × (g₁ ∘ f₁) = (g₀ × g₁) ∘ (f₀ × f₁)`.**
+@isnad1 id=eq.0h10v.s6.b0cc3a82392b from=translated src=- shape=0ed4476a vocab=1d291488
+-/
 theorem prodMapTok_comp (f₀ : ApproximableMap A₀.sys B₀.sys) (f₁ : ApproximableMap A₁.sys B₁.sys)
     (g₀ : ApproximableMap B₀.sys C₀.sys) (g₁ : ApproximableMap B₁.sys C₁.sys) :
     prodMapTok (g₀.comp f₀) (g₁.comp f₁) = (prodMapTok g₀ g₁).comp (prodMapTok f₀ f₁) := by
@@ -371,7 +385,9 @@ def FExpr.map : (T : FExpr) → {X Y : ScottSys} → ApproximableMap X.sys Y.sys
 
 /-- **Every `T` preserves strictness** (so it restricts to Scott's category of
 strict maps): `T(f)`
-is strict whenever `f` is (and constants/sums are strict unconditionally). -/
+is strict whenever `f` is (and constants/sums are strict unconditionally).
+@isnad1 id=isstrict.1h4v.s5.42485e4eb1f4 from=translated src=- shape=63cadeba vocab=73c306d6
+-/
 theorem FExpr.map_isStrict : (T : FExpr) → {X Y : ScottSys} → (f : ApproximableMap X.sys Y.sys) →
     IsStrict f → IsStrict (T.map f)
   | .const _, _, _, _, _ => isStrict_idMap
@@ -381,7 +397,9 @@ theorem FExpr.map_isStrict : (T : FExpr) → {X Y : ScottSys} → (f : Approxima
       prodMapTok_isStrict (T₀.map_isStrict f hf) (T₁.map_isStrict f hf)
 
 /-- **Functor law 1 — `T(I_X) = I_{T(X)}`.** Every construct `T` preserves
-identities. -/
+identities.
+@isnad1 id=eq.0h2v.s4.48d1a5577bd9 from=translated src=- shape=9824d7a9 vocab=55184a3a
+-/
 theorem FExpr.map_id : (T : FExpr) → (X : ScottSys) → T.map (idMap X.sys) = idMap (T.obj X).sys
   | .const D, _ => rfl
   | .var, _ => rfl
@@ -397,7 +415,9 @@ theorem FExpr.map_id : (T : FExpr) → (X : ScottSys) → T.map (idMap X.sys) = 
 /-- **Functor law 2 — `T(g ∘ f) = T(g) ∘ T(f)`.** Every construct `T` preserves
 composition;
 together
-with `map_id` this shows *these are all functors*. -/
+with `map_id` this shows *these are all functors*.
+@isnad1 id=eq.0h6v.s6.7dacca6e8a4f from=translated src=- shape=da8eb60c vocab=2b3d3f5f
+-/
 theorem FExpr.map_comp : (T : FExpr) → {X Y Z : ScottSys} → (f : ApproximableMap X.sys Y.sys) →
     (g : ApproximableMap Y.sys Z.sys) → T.map (g.comp f) = (T.map g).comp (T.map f)
   | .const D, _, _, _, _, _ => (idMap_comp (idMap D.sys)).symm
@@ -419,7 +439,9 @@ function space; here we record its **monotonicity** (the order half of
 approximability — a sharper map
 yields a sharper image), proved compositionally from the bifunctor combinators. -/
 
-/-- `sumMapTok` is monotone in both arguments. -/
+/-- `sumMapTok` is monotone in both arguments.
+@isnad1 id=le.2h8v.s7.93264251879c from=translated src=- shape=75d3b575 vocab=d690db81
+-/
 theorem sumMapTok_mono {f₀ f₀' : ApproximableMap A₀.sys B₀.sys}
     {f₁ f₁' : ApproximableMap A₁.sys B₁.sys} (h0 : f₀ ≤ f₀') (h1 : f₁ ≤ f₁') :
     sumMapTok f₀ f₁ ≤ sumMapTok f₀' f₁' := by
@@ -429,7 +451,9 @@ theorem sumMapTok_mono {f₀ f₀' : ApproximableMap A₀.sys B₀.sys}
   · exact Or.inr (Or.inl ⟨X, X', h0 X X' hrel, rfl, rfl⟩)
   · exact Or.inr (Or.inr ⟨Y, Y', h1 Y Y' hrel, rfl, rfl⟩)
 
-/-- `prodMapTok` is monotone in both arguments. -/
+/-- `prodMapTok` is monotone in both arguments.
+@isnad1 id=le.2h8v.s7.45fcf0c051bb from=translated src=- shape=75d3b575 vocab=db094688
+-/
 theorem prodMapTok_mono {f₀ f₀' : ApproximableMap A₀.sys B₀.sys}
     {f₁ f₁' : ApproximableMap A₁.sys B₁.sys} (h0 : f₀ ≤ f₀') (h1 : f₁ ≤ f₁') :
     prodMapTok f₀ f₁ ≤ prodMapTok f₀' f₁' := by
@@ -439,7 +463,9 @@ theorem prodMapTok_mono {f₀ f₀' : ApproximableMap A₀.sys B₀.sys}
 
 /-- **`λf. T(f)` is monotone.** A sharper map `f ≤ f'` is sent to a sharper image
 `T(f) ≤ T(f')` —
-the monotonicity half of *continuous on maps*. -/
+the monotonicity half of *continuous on maps*.
+@isnad1 id=le.1h5v.s6.bcaf1bacebb8 from=translated src=- shape=e0181052 vocab=87877c6c
+-/
 theorem FExpr.map_mono : (T : FExpr) → {X Y : ScottSys} → {f f' : ApproximableMap X.sys Y.sys} →
     f ≤ f' → T.map f ≤ T.map f'
   | .const _, _, _, _, _, _ => le_rfl
@@ -459,7 +485,9 @@ componentwise. -/
 
 /-- The sum carries the subsystem relation componentwise: `𝒟₀ ◁ ℰ₀` and `𝒟₁ ◁ ℰ₁`
 give
-`𝒟₀+𝒟₁ ◁ ℰ₀+ℰ₁`. -/
+`𝒟₀+𝒟₁ ◁ ℰ₀+ℰ₁`.
+@isnad1 id=subsyste.2h4v.s5.1bdecd25a3dd from=translated src=- shape=8a504658 vocab=0009c4aa
+-/
 theorem sumTok_subsystem (h0 : A₀.sys ◁ B₀.sys) (h1 : A₁.sys ◁ B₁.sys) :
     (A₀.sum A₁).sys ◁ (B₀.sum B₁).sys := by
   have heqm : sumTokMaster A₀.sys A₁.sys = sumTokMaster B₀.sys B₁.sys := by
@@ -486,7 +514,9 @@ theorem sumTok_subsystem (h0 : A₀.sys ◁ B₀.sys) (h1 : A₁.sys ◁ B₁.sy
       exact Or.inr (Or.inr ⟨Y ∩ Y',
         h1.inter_closed hY hY' (sumTok_mem_embT_inv (h₀ := B₀.ne) (h₁ := B₁.ne) hInt), rfl⟩)
 
-/-- The product carries the subsystem relation componentwise. -/
+/-- The product carries the subsystem relation componentwise.
+@isnad1 id=subsyste.2h4v.s5.ff25505e39d7 from=translated src=- shape=8a504658 vocab=23d028b5
+-/
 theorem prodTok_subsystem (h0 : A₀.sys ◁ B₀.sys) (h1 : A₁.sys ◁ B₁.sys) :
     (A₀.prod A₁).sys ◁ (B₀.prod B₁).sys := by
   have heqm : prodTokNbhd A₀.sys.master A₁.sys.master
@@ -500,7 +530,9 @@ theorem prodTok_subsystem (h0 : A₀.sys ◁ B₀.sys) (h1 : A₁.sys ◁ B₁.s
     obtain ⟨rfl, rfl⟩ := prodTokNbhd_injective heq
     exact ⟨X ∩ X', Y ∩ Y', h0.inter_closed hX hX' hX'', h1.inter_closed hY hY' hY'', rfl⟩
 
-/-- **`λX. T(X)` is monotone on domains.** Whenever `X ◁ Y` we have `T(X) ◁ T(Y)`. -/
+/-- **`λX. T(X)` is monotone on domains.** Whenever `X ◁ Y` we have `T(X) ◁ T(Y)`.
+@isnad1 id=subsyste.1h3v.s4.83a349e894bb from=translated src=- shape=bcf571ee vocab=4c1994ac
+-/
 theorem FExpr.obj_subsystem : (T : FExpr) → {X Y : ScottSys} → X.sys ◁ Y.sys →
     (T.obj X).sys ◁ (T.obj Y).sys
   | .const D, _, _, _ => Subsystem.refl D.sys
@@ -522,7 +554,9 @@ witnesses into a single `D`. -/
 
 /-- Forward direction of continuity on domains: a neighbourhood of `T(U)` is a
 neighbourhood of some
-`T(D)` with `D ∈ ℱ`. -/
+`T(D)` with `D ∈ ℱ`.
+@isnad1 id=ex.5h4v.s6.0fb047cc5b47 from=translated src=- shape=7f951e4b vocab=97470400
+-/
 theorem FExpr.obj_continuous_mp : (T : FExpr) → {ℱ : Set ScottSys} → {U : ScottSys} →
     DirectedOn (fun a b => a.sys ◁ b.sys) ℱ → ℱ.Nonempty →
     (∀ D ∈ ℱ, D.sys ◁ U.sys) → (∀ X, U.sys.mem X ↔ ∃ D ∈ ℱ, D.sys.mem X) →
@@ -549,7 +583,9 @@ theorem FExpr.obj_continuous_mp : (T : FExpr) → {ℱ : Set ScottSys} → {U : 
 `ℱ` of
 subsystems of
 `U` whose union is `U`, the neighbourhood family of `T(U)` is the union of those
-of the `T(D)`. -/
+of the `T(D)`.
+@isnad1 id=iff.4h4v.s6.6d7940451e74 from=translated src=- shape=fac50a8f vocab=97470400
+-/
 theorem FExpr.obj_continuous (T : FExpr) {ℱ : Set ScottSys} {U : ScottSys}
     (hdir : DirectedOn (fun a b => a.sys ◁ b.sys) ℱ) (hne : ℱ.Nonempty)
     (hsub : ∀ D ∈ ℱ, D.sys ◁ U.sys) (hU : ∀ X, U.sys.mem X ↔ ∃ D ∈ ℱ, D.sys.mem X)
@@ -570,7 +606,9 @@ union of the
 
 /-- Forward direction of continuity on maps: a related pair of `T(f)` is already
 related by some
-`T(gᵢ)`. -/
+`T(gᵢ)`.
+@isnad1 id=ex.3h8v.s7.b97e662a7dd6 from=translated src=- shape=4e19c4d6 vocab=ca3a5eaf
+-/
 theorem FExpr.map_continuous_mp : (T : FExpr) → {I : Type} → {X Y : ScottSys} →
     {g : I → ApproximableMap X.sys Y.sys} → {f : ApproximableMap X.sys Y.sys} →
     [Nonempty I] → (∀ i j, ∃ k, g i ≤ g k ∧ g j ≤ g k) →
@@ -596,7 +634,9 @@ theorem FExpr.map_continuous_mp : (T : FExpr) → {I : Type} → {X Y : ScottSys
 /-- **`λf. T(f)` is continuous on maps.** For a non-empty directed family `gᵢ`
 with pointwise union
 `f`, the relation of `T(f)` is the union of those of the `T(gᵢ)` — `T(f)` is
-approximable. -/
+approximable.
+@isnad1 id=iff.2h8v.s7.3cb577a6d482 from=translated src=- shape=d976e1a3 vocab=ca3a5eaf
+-/
 theorem FExpr.map_continuous (T : FExpr) {I : Type} [Nonempty I] {X Y : ScottSys}
     (g : I → ApproximableMap X.sys Y.sys) (f : ApproximableMap X.sys Y.sys)
     (hdir : ∀ i j, ∃ k, g i ≤ g k ∧ g j ≤ g k)
@@ -675,7 +715,9 @@ def mFun : FExpr → Set Str → Set Str
   | .sum T₀ T₁, Γ => insert ([] : Str) (embBit false (mFun T₀ Γ) ∪ embBit true (mFun T₁ Γ))
   | .prod T₀ T₁, Γ => insert ([] : Str) (embBit false (mFun T₀ Γ) ∪ embBit true (mFun T₁ Γ))
 
-/-- `mFun T Γ` is exactly the token set `tok(T({Γ})) = (T.obj {Γ}).sys.master`. -/
+/-- `mFun T Γ` is exactly the token set `tok(T({Γ})) = (T.obj {Γ}).sys.master`.
+@isnad1 id=eq.1h2v.s4.d8f0b8219f20 from=translated src=- shape=9e6475a9 vocab=5b8d3236
+-/
 theorem mFun_eq_master : (T : FExpr) → {Γ : Set Str} → (h : Γ.Nonempty) →
     mFun T Γ = (T.obj (singletonSys Γ h)).sys.master
   | .const _, _, _ => rfl
@@ -693,7 +735,9 @@ theorem mFun_eq_master : (T : FExpr) → {Γ : Set Str} → (h : Γ.Nonempty) �
 
 /-! ### Monotone on the domain -/
 
-/-- Monotonicity of the tagged-union shape shared by sum and product. -/
+/-- Monotonicity of the tagged-union shape shared by sum and product.
+@isnad1 id=le.2h4v.s6.f0ccb560de33 from=translated src=- shape=87efdba5 vocab=3886b66a
+-/
 theorem insertTag_mono {p q p' q' : Set Str} (hp : p ⊆ p') (hq : q ⊆ q') :
     insert ([] : Str) (embBit false p ∪ embBit true q)
       ⊆ insert ([] : Str) (embBit false p' ∪ embBit true q') := by
@@ -704,7 +748,9 @@ theorem insertTag_mono {p q p' q' : Set Str} (hp : p ⊆ p') (hq : q ⊆ q') :
   · obtain ⟨w', rfl, hw'⟩ := hw
     exact Or.inr (Or.inr ⟨w', rfl, hq hw'⟩)
 
-/-- **`λΓ. tok(T({Γ}))` is monotone on the domain.** -/
+/-- **`λΓ. tok(T({Γ}))` is monotone on the domain.**
+@isnad1 id=le.1h3v.s4.78ab0072cd0f from=translated src=- shape=03c8cd90 vocab=9dcbd595
+-/
 theorem mFun_mono (T : FExpr) {Γ Γ' : Set Str} (h : Γ ⊆ Γ') : mFun T Γ ⊆ mFun T Γ' := by
   induction T with
   | const C => exact subset_rfl
@@ -715,7 +761,9 @@ theorem mFun_mono (T : FExpr) {Γ Γ' : Set Str} (h : Γ ⊆ Γ') : mFun T Γ �
 /-! ### Continuous on the domain -/
 
 /-- Continuity (full additivity) of the tagged-union shape shared by sum and
-product. -/
+product.
+@isnad1 id=iff.3h5v.s7.3f53982b208d from=translated src=- shape=c82c9f2d vocab=d83a539d
+-/
 theorem insertTag_continuous {ℱ : Set (Set Str)} {U : Set Str} (hne : ℱ.Nonempty)
     {p q : Set Str → Set Str}
     (hp : ∀ w, w ∈ p U ↔ ∃ Γ ∈ ℱ, w ∈ p Γ)
@@ -743,7 +791,9 @@ family `ℱ` with union `U`, the token set of `T({U})` is the union of those of 
 `T({Γ})`. (The
 proof in fact establishes full additivity — directedness is not needed for the
 master level — but the
-statement is the directed-sup form Scott calls *continuous*.) -/
+statement is the directed-sup form Scott calls *continuous*.)
+@isnad1 id=iff.3h4v.s6.e69fae9cfadf from=translated src=- shape=44dff229 vocab=812cd5e5
+-/
 theorem mFun_continuous (T : FExpr) {ℱ : Set (Set Str)} {U : Set Str}
     (_hdir : DirectedOn (· ⊆ ·) ℱ) (hne : ℱ.Nonempty)
     (hU : ∀ w, w ∈ U ↔ ∃ Γ ∈ ℱ, w ∈ Γ) :
@@ -770,7 +820,9 @@ def FExpr.RootedConst : FExpr → Prop
   | .prod a b => a.RootedConst ∧ b.RootedConst
 
 /-- If `Λ ∈ Γ` then `Λ ∈ tok(T({Γ}))` — so `λΓ. tok(T({Γ}))` is an endofunction of
-the domain. -/
+the domain.
+@isnad1 id=mem.2h2v.s4.ca76b3d5a2da from=translated src=- shape=a5c2b719 vocab=dd183b57
+-/
 theorem mFun_nil_mem : ∀ (T : FExpr), T.RootedConst → {Γ : Set Str} →
     ([] : Str) ∈ Γ → ([] : Str) ∈ mFun T Γ
   | .const _, hC, _, _ => hC
@@ -784,10 +836,16 @@ def mIter (T : FExpr) : ℕ → Set Str
   | 0 => {([] : Str)}
   | n + 1 => mFun T (mIter T n)
 
+/--
+@isnad1 id=mem.1h2v.s4.d01464b3a26c from=translated src=- shape=740787d8 vocab=d1f9cc2d
+-/
 theorem nil_mem_mIter (T : FExpr) (hT : T.RootedConst) : ∀ n, ([] : Str) ∈ mIter T n
   | 0 => rfl
   | n + 1 => mFun_nil_mem T hT (nil_mem_mIter T hT n)
 
+/--
+@isnad1 id=le.1h2v.s4.8d2a39293c73 from=translated src=- shape=d1d493e2 vocab=84a6b3ce
+-/
 theorem mIter_mono_step (T : FExpr) (hT : T.RootedConst) :
     ∀ n, mIter T n ⊆ mIter T (n + 1)
   | 0 => by
@@ -797,13 +855,18 @@ theorem mIter_mono_step (T : FExpr) (hT : T.RootedConst) :
       exact mFun_nil_mem T hT rfl
   | n + 1 => mFun_mono T (mIter_mono_step T hT n)
 
+/--
+@isnad1 id=le.2h3v.s4.5aa1448d7471 from=translated src=- shape=708e4447 vocab=4027136e
+-/
 theorem mIter_mono (T : FExpr) (hT : T.RootedConst) {m n : ℕ} (hmn : m ≤ n) :
     mIter T m ⊆ mIter T n := by
   induction hmn with
   | refl => exact subset_rfl
   | step _ ih => intro x hx; exact mIter_mono_step T hT _ (ih hx)
 
-/-- The Kleene union is a **fixed point** of `λΓ. tok(T({Γ}))`. -/
+/-- The Kleene union is a **fixed point** of `λΓ. tok(T({Γ}))`.
+@isnad1 id=eq.1h1v.s4.02e9626020d0 from=translated src=- shape=6d107179 vocab=f30ed47c
+-/
 theorem mFun_iter_fixed (T : FExpr) (hT : T.RootedConst) :
     mFun T (⋃ n, mIter T n) = ⋃ n, mIter T n := by
   have hstep := mIter_mono_step T hT
@@ -824,7 +887,9 @@ theorem mFun_iter_fixed (T : FExpr) (hT : T.RootedConst) :
 
 /-- **The conclusion of Exercise 6.20 (token level).** For any construct `T` whose
 constants contain
-`Λ`, there is a set `Γ` with `Λ ∈ Γ` and `Γ = tok(T({Γ}))`. -/
+`Λ`, there is a set `Γ` with `Λ ∈ Γ` and `Γ = tok(T({Γ}))`.
+@isnad1 id=ex.1h1v.s4.903a04182b3f from=translated src=- shape=a81e3e5d vocab=dd183b57
+-/
 theorem exists_tok_fixedPoint (T : FExpr) (hT : T.RootedConst) :
     ∃ Γ : Set Str, ([] : Str) ∈ Γ ∧ mFun T Γ = Γ :=
   ⟨⋃ n, mIter T n, Set.mem_iUnion.mpr ⟨0, nil_mem_mIter T hT 0⟩, mFun_iter_fixed T hT⟩
@@ -834,7 +899,9 @@ theorem exists_tok_fixedPoint (T : FExpr) (hT : T.RootedConst) :
 From the fixed point `Γ = tok(T({Γ}))`, the one-neighbourhood system `{Γ}` is a
 subsystem of
 `T({Γ})`: they share the master `Γ`, and `Γ` is a (the master) neighbourhood of
-`T({Γ})`. -/
+`T({Γ})`.
+@isnad1 id=ex.1h1v.s4.5ccdcc4e479d from=translated src=- shape=2cf09ad1 vocab=188888af
+-/
 theorem exists_singleton_subsystem (T : FExpr) (hT : T.RootedConst) :
     ∃ (Γ : Set Str) (h : Γ.Nonempty),
       (singletonSys Γ h).sys ◁ (T.obj (singletonSys Γ h)).sys := by

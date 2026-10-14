@@ -76,7 +76,9 @@ open Domain.Neighborhood.Exercise326 (cond)
 least element).
 Needed because `zeroMap_bot` lands in `T.bot` while `cond_bot` is phrased with
 `Example23.botElt`,
-and `bot` is not reducible. -/
+and `bot` is not reducible.
+@isnad1 id=eq.0h0v.s3.b950b6ded46c from=translated src=- shape=020eb140 vocab=80337705
+-/
 theorem T_bot_eq : (Example43.T).bot = Example23.botElt :=
   le_antisymm ((Example43.T).bot_le _) (Example23.botElt_le _)
 
@@ -87,6 +89,9 @@ theorem T_bot_eq : (Example43.T).bot = Example23.botElt :=
 def strictId : ApproximableMap N N :=
   (cond N).comp (paired zeroMap (paired (idMap N) (idMap N)))
 
+/--
+@isnad1 id=eq.0h1v.s4.7c7b069b44b7 from=translated src=- shape=d754f160 vocab=2e09d9cc
+-/
 theorem strictId_natElem (n : ℕ) : strictId.toElementMap (natElem n) = natElem n := by
   rw [strictId, toElementMap_comp]
   simp only [toElementMap_paired, toElementMap_idMap]
@@ -94,6 +99,9 @@ theorem strictId_natElem (n : ℕ) : strictId.toElementMap (natElem n) = natElem
   | zero => rw [zeroMap_natElem_zero, Exercise326.cond_true]
   | succ k => rw [zeroMap_natElem_succ, Exercise326.cond_false]
 
+/--
+@isnad1 id=eq.0h0v.s4.059f84798423 from=translated src=- shape=63faaba8 vocab=e2907960
+-/
 theorem strictId_bot : strictId.toElementMap N.bot = N.bot := by
   rw [strictId, toElementMap_comp]
   simp only [toElementMap_paired, toElementMap_idMap]
@@ -106,6 +114,9 @@ def strictProj₀ : ApproximableMap (prod N N) N :=
     (paired (zeroMap.comp (proj₁ N N))
       (paired (proj₀ N N) (proj₀ N N)))
 
+/--
+@isnad1 id=eq.0h2v.s6.3249f76f3c18 from=translated src=- shape=fa3ed928 vocab=a46204b7
+-/
 theorem strictProj₀_apply (x y : N.Element) :
     strictProj₀.toElementMap (pair x y) =
       (cond N).toElementMap (pair (zeroMap.toElementMap y) (pair x x)) := by
@@ -113,7 +124,9 @@ theorem strictProj₀_apply (x y : N.Element) :
   simp only [toElementMap_paired, toElementMap_comp, toElementMap_proj₀, toElementMap_proj₁,
     fst_pair, snd_pair]
 
-/-- `proj₀(n̂, m̂) = n̂`. -/
+/-- `proj₀(n̂, m̂) = n̂`.
+@isnad1 id=eq.0h2v.s4.3473258fe411 from=translated src=- shape=c6e49a8f vocab=f9ed5ced
+-/
 theorem strictProj₀_natElem (n m : ℕ) :
     strictProj₀.toElementMap (pair (natElem n) (natElem m)) = natElem n := by
   rw [strictProj₀_apply]
@@ -121,12 +134,16 @@ theorem strictProj₀_natElem (n m : ℕ) :
   | zero => rw [zeroMap_natElem_zero, Exercise326.cond_true]
   | succ k => rw [zeroMap_natElem_succ, Exercise326.cond_false]
 
-/-- Strict in the second argument: `proj₀(n̂, ⊥) = ⊥`. -/
+/-- Strict in the second argument: `proj₀(n̂, ⊥) = ⊥`.
+@isnad1 id=eq.0h1v.s4.36b91aa15ec0 from=translated src=- shape=36c5ccb9 vocab=c344e4b1
+-/
 theorem strictProj₀_bot_right (n : ℕ) :
     strictProj₀.toElementMap (pair (natElem n) N.bot) = N.bot := by
   rw [strictProj₀_apply, zeroMap_bot, T_bot_eq, Exercise326.cond_bot]
 
-/-- Strict in the first argument: `proj₀(⊥, m̂) = ⊥` (the output *is* `x₀ = ⊥`). -/
+/-- Strict in the first argument: `proj₀(⊥, m̂) = ⊥` (the output *is* `x₀ = ⊥`).
+@isnad1 id=eq.0h1v.s4.880a50e13c02 from=translated src=- shape=cdf97b6b vocab=c344e4b1
+-/
 theorem strictProj₀_bot_left (m : ℕ) :
     strictProj₀.toElementMap (pair N.bot (natElem m)) = N.bot := by
   rw [strictProj₀_apply]
@@ -179,6 +196,9 @@ def primBody : ApproximableMap (prod (funSpace (prod N N) N) (prod N N)) N :=
               ((evalMap (prod N N) N).comp
                 (paired kSel (paired (predMap.comp argX) argY))))))))
 
+/--
+@isnad1 id=eq.0h5v.s8.bde29e74e1f7 from=translated src=- shape=49f6166f vocab=64fdc6b6
+-/
 theorem primBody_apply (k : (funSpace (prod N N) N).Element) (x y : N.Element) :
     (primBody f g).toElementMap (pair k (pair x y)) =
       (cond N).toElementMap
@@ -201,7 +221,9 @@ def primOp : ApproximableMap (funSpace (prod N N) N) (funSpace (prod N N) N) :=
 /-- `primRec f g : N × N → N`, the least fixed point of `primOp`. -/
 def primRec : ApproximableMap (prod N N) N := toApproxMap (primOp f g).fixElement
 
-/-- The defining recursion of `primRec`. -/
+/-- The defining recursion of `primRec`.
+@isnad1 id=eq.0h4v.s7.3d75190e53d5 from=translated src=- shape=d9d24cf2 vocab=7cf59e17
+-/
 theorem primRec_rec (x y : N.Element) :
     (primRec f g).toElementMap (pair x y) =
       (cond N).toElementMap
@@ -217,12 +239,16 @@ theorem primRec_rec (x y : N.Element) :
   rw [← primOp, hfix] at hval
   rw [primRec, hval, primBody_apply]
 
-/-- **Primitive recursion, base case.** `hbar(0̂, m̂) = f(m̂)`. -/
+/-- **Primitive recursion, base case.** `hbar(0̂, m̂) = f(m̂)`.
+@isnad1 id=eq.0h3v.s6.2bc722c145a5 from=translated src=- shape=ed34e109 vocab=f9d8e404
+-/
 theorem primRec_zero (m : ℕ) :
     (primRec f g).toElementMap (pair (natElem 0) (natElem m)) = f.toElementMap (natElem m) := by
   rw [primRec_rec, zeroMap_natElem_zero, Exercise326.cond_true]
 
-/-- **Primitive recursion, step case.** `hbar((n+1)^, m̂) = g(n̂, m̂, hbar(n̂, m̂))`. -/
+/-- **Primitive recursion, step case.** `hbar((n+1)^, m̂) = g(n̂, m̂, hbar(n̂, m̂))`.
+@isnad1 id=eq.0h4v.s7.6d53b2c1b2d2 from=translated src=- shape=686d30e4 vocab=058baae4
+-/
 theorem primRec_succ (n m : ℕ) :
     (primRec f g).toElementMap (pair (natElem (n + 1)) (natElem m)) =
       g.toElementMap
@@ -230,7 +256,9 @@ theorem primRec_succ (n m : ℕ) :
           (pair (natElem m) ((primRec f g).toElementMap (pair (natElem n) (natElem m))))) := by
   rw [primRec_rec, zeroMap_natElem_succ, Exercise326.cond_false, predMap_natElem_succ]
 
-/-- **Primitive recursion is strict in the recursion argument.** `hbar(⊥, m̂) = ⊥`. -/
+/-- **Primitive recursion is strict in the recursion argument.** `hbar(⊥, m̂) = ⊥`.
+@isnad1 id=eq.0h3v.s5.13c0263be1f7 from=translated src=- shape=5dcf974d vocab=b272c41f
+-/
 theorem primRec_bot (m : ℕ) :
     (primRec f g).toElementMap (pair N.bot (natElem m)) = N.bot := by
   rw [primRec_rec, zeroMap_bot, T_bot_eq, Exercise326.cond_bot]
@@ -254,6 +282,9 @@ def muBody : ApproximableMap (prod (funSpace (prod N N) N) (prod N N)) N :=
         ((evalMap (prod N N) N).comp
           (paired kSel (paired (succMap.comp argX) argY)))))
 
+/--
+@isnad1 id=eq.0h4v.s7.e4c5c601fb2c from=translated src=- shape=d66b673d vocab=ae69235e
+-/
 theorem muBody_apply (k : (funSpace (prod N N) N).Element) (x y : N.Element) :
     (muBody f).toElementMap (pair k (pair x y)) =
       (cond N).toElementMap
@@ -275,7 +306,9 @@ search). -/
 def muMap : ApproximableMap N N := muRec f |>.comp (paired (constLiftN N (fun _ => zeroElt)) (
   idMap N))
 
-/-- The defining recursion of `muRec`. -/
+/-- The defining recursion of `muRec`.
+@isnad1 id=eq.0h3v.s7.c3a70ea64f1d from=translated src=- shape=dcb42d44 vocab=9c5f39a4
+-/
 theorem muRec_rec (x y : N.Element) :
     (muRec f).toElementMap (pair x y) =
       (cond N).toElementMap
@@ -287,27 +320,35 @@ theorem muRec_rec (x y : N.Element) :
   rw [← muOp, hfix] at hval
   rw [muRec, hval, muBody_apply]
 
-/-- **μ, found.** If `f(n̂, m̂) = 0̂`, the search stops and returns `n̂`. -/
+/-- **μ, found.** If `f(n̂, m̂) = 0̂`, the search stops and returns `n̂`.
+@isnad1 id=eq.1h3v.s6.bbba43a6725e from=translated src=- shape=858c1340 vocab=367a791c
+-/
 theorem muRec_found {n m : ℕ}
     (h : f.toElementMap (pair (natElem n) (natElem m)) = natElem 0) :
     (muRec f).toElementMap (pair (natElem n) (natElem m)) = natElem n := by
   rw [muRec_rec, h, zeroMap_natElem_zero, Exercise326.cond_true]
 
 /-- **μ, step.** If `f(n̂, m̂)` is a positive total `(j+1)^`, the search advances
-to `n+1`. -/
+to `n+1`.
+@isnad1 id=eq.1h4v.s6.5789ea21a152 from=translated src=- shape=da14b615 vocab=1e1368d2
+-/
 theorem muRec_step {n m j : ℕ}
     (h : f.toElementMap (pair (natElem n) (natElem m)) = natElem (j + 1)) :
     (muRec f).toElementMap (pair (natElem n) (natElem m)) =
       (muRec f).toElementMap (pair (natElem (n + 1)) (natElem m)) := by
   rw [muRec_rec, h, zeroMap_natElem_succ, Exercise326.cond_false, succMap_natElem]
 
-/-- **μ is strict in the test.** If `f(n̂, m̂) = ⊥`, the search diverges. -/
+/-- **μ is strict in the test.** If `f(n̂, m̂) = ⊥`, the search diverges.
+@isnad1 id=eq.1h3v.s6.cb7b3054b785 from=translated src=- shape=4b5fb732 vocab=6272b687
+-/
 theorem muRec_bot {n m : ℕ}
     (h : f.toElementMap (pair (natElem n) (natElem m)) = N.bot) :
     (muRec f).toElementMap (pair (natElem n) (natElem m)) = N.bot := by
   rw [muRec_rec, h, zeroMap_bot, T_bot_eq, Exercise326.cond_bot]
 
-/-- `μ(m̂) = gbar(0̂, m̂)`. -/
+/-- `μ(m̂) = gbar(0̂, m̂)`.
+@isnad1 id=eq.0h2v.s5.1d2a785f812c from=translated src=- shape=8b494cd2 vocab=e4d8c6e1
+-/
 theorem muMap_natElem (m : ℕ) :
     (muMap f).toElementMap (natElem m) = (muRec f).toElementMap (pair zeroElt (natElem m)) := by
   rw [muMap, toElementMap_comp, toElementMap_paired, toElementMap_idMap,
@@ -315,7 +356,9 @@ theorem muMap_natElem (m : ℕ) :
 
 /-- The search advances over a run of positive totals: if `f((n+i)^, m̂)` is a
 positive total for
-all `i < k`, then `gbar(n̂, m̂) = gbar((n+k)^, m̂)`. -/
+all `i < k`, then `gbar(n̂, m̂) = gbar((n+k)^, m̂)`.
+@isnad1 id=eq.1h4v.s7.bb84679f393a from=translated src=- shape=93ea8902 vocab=edf1dec4
+-/
 theorem muRec_climb (m : ℕ) :
     ∀ (k n : ℕ), (∀ i < k, ∃ j, f.toElementMap (pair (natElem (n +
       i)) (natElem m)) = natElem (j + 1)) →
@@ -336,7 +379,9 @@ theorem muRec_climb (m : ℕ) :
 /-- **Capstone (μ-scheme correctness).** If `n₀` is the *least* zero of `f(·, m̂)`
 — that is,
 `f(n̂₀, m̂) = 0̂` and `f(î, m̂)` is a positive total for every `i < n₀` — then
-`μ(m̂) = n̂₀`. -/
+`μ(m̂) = n̂₀`.
+@isnad1 id=eq.2h3v.s6.6c801b4cf46e from=translated src=- shape=c28170e5 vocab=8d73629e
+-/
 theorem muMap_eq_least {m n₀ : ℕ}
     (hzero : f.toElementMap (pair (natElem n₀) (natElem m)) = natElem 0)
     (hpos : ∀ i < n₀, ∃ j, f.toElementMap (pair (natElem i) (natElem m)) = natElem (j + 1)) :

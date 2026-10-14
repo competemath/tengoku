@@ -72,7 +72,9 @@ open Domain.Neighborhood.Exercise513
 
 /-- `num (n+1) b` strictly exceeds its second argument: this is what makes the
 decode recursion
-terminate. `num (n+1) b = T(n+1+b) + b ≥ (n+b+1) + b > b`. -/
+terminate. `num (n+1) b = T(n+1+b) + b ≥ (n+b+1) + b > b`.
+@isnad1 id=lt.0h2v.s4.385c93212c29 from=translated src=- shape=db52533e vocab=fbaa20a9
+-/
 theorem num_succ_left_gt (n b : ℕ) : b < num (n + 1) b := by
   unfold num
   have e : n + 1 + b = (n + b) + 1 := by omega
@@ -87,13 +89,21 @@ def tag : List ℕ → ℕ → ℕ
   | [], m => num 0 m
   | (n :: ns), m => num (n + 1) (tag ns m)
 
+/--
+@isnad1 id=eq.0h1v.s3.18f862173456 from=translated src=- shape=46e97437 vocab=0e64867e
+-/
 @[simp] theorem tag_nil (m : ℕ) : tag [] m = num 0 m := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.5ff8d235c99d from=translated src=- shape=ac1a7524 vocab=634341e4
+-/
 @[simp] theorem tag_cons (n : ℕ) (ns : List ℕ) (m : ℕ) :
     tag (n :: ns) m = num (n + 1) (tag ns m) := rfl
 
 /-- **The tag is one-one**, jointly in both arguments (induction on the list +
-`num_injective`). -/
+`num_injective`).
+@isnad1 id=and.1h4v.s4.0db0750420e0 from=translated src=- shape=226cd6bd vocab=982c82bb
+-/
 theorem tag_injective : ∀ {ns₁ ns₂ : List ℕ} {m₁ m₂ : ℕ},
     tag ns₁ m₁ = tag ns₂ m₂ → ns₁ = ns₂ ∧ m₁ = m₂ := by
   intro ns₁
@@ -125,7 +135,9 @@ theorem tag_injective : ∀ {ns₁ ns₂ : List ℕ} {m₁ m₂ : ℕ},
 
 /-- **The tag is onto**: every `c : ℕ` decodes as some `tag ns m`. Strong
 induction on `c`,
-decreasing via `num_succ_left_gt`. -/
+decreasing via `num_succ_left_gt`.
+@isnad1 id=ex.0h1v.s4.68a1ece1167f from=translated src=- shape=91154e3f vocab=982c82bb
+-/
 theorem tag_surjective (c : ℕ) : ∃ ns m, tag ns m = c := by
   induction c using Nat.strong_induction_on with
   | _ c ih =>
@@ -143,6 +155,9 @@ theorem tag_surjective (c : ℕ) : ∃ ns m, tag ns m = c := by
 /-- The finite set of entries of a list, as a subset of `ℕ`. -/
 def entries (ns : List ℕ) : Set ℕ := {n | n ∈ ns}
 
+/--
+@isnad1 id=iff.0h2v.s4.f0fda44f37af from=translated src=- shape=5a4bb582 vocab=e19858f1
+-/
 @[simp] theorem mem_entries {n : ℕ} {ns : List ℕ} : n ∈ entries ns ↔ n ∈ ns := Iff.rfl
 
 /-- `fun(u)(x)` — apply the "function coded by `u`" to argument `x`. -/
@@ -169,7 +184,9 @@ def IsApprox (f : Set ℕ → Set ℕ) : Prop :=
   (∀ ⦃x x' : Set ℕ⦄, x ⊆ x' → f x ⊆ f x') ∧
     ∀ x m, m ∈ f x → ∃ ns, (∀ n ∈ ns, n ∈ x) ∧ m ∈ f (entries ns)
 
-/-- **`fun ∘ graph = λf.f`** for continuous `f`: `Fun (Graph f) x = f x`. -/
+/-- **`fun ∘ graph = λf.f`** for continuous `f`: `Fun (Graph f) x = f x`.
+@isnad1 id=eq.1h2v.s4.77a7b66121ed from=translated src=- shape=97099131 vocab=3b872e88
+-/
 theorem Fun_Graph {f : Set ℕ → Set ℕ} (hf : IsApprox f) (x : Set ℕ) :
     Fun (Graph f) x = f x := by
   apply Set.Subset.antisymm
@@ -184,7 +201,9 @@ theorem Fun_Graph {f : Set ℕ → Set ℕ} (hf : IsApprox f) (x : Set ℕ) :
     obtain ⟨ns, hsub, hmem⟩ := hf.2 x m hm
     exact ⟨ns, hsub, ns, m, rfl, hmem⟩
 
-/-- **`graph ∘ fun ⊇ λx.x`**: `u ⊆ Graph (Fun u)`. -/
+/-- **`graph ∘ fun ⊇ λx.x`**: `u ⊆ Graph (Fun u)`.
+@isnad1 id=le.0h1v.s3.f5055806a67b from=translated src=- shape=feae3d10 vocab=dbc17067
+-/
 theorem id_le_Graph_Fun (u : Set ℕ) : u ⊆ Graph (Fun u) := by
   intro c hc
   obtain ⟨ns, m, hceq⟩ := tag_surjective c
@@ -192,7 +211,9 @@ theorem id_le_Graph_Fun (u : Set ℕ) : u ⊆ Graph (Fun u) := by
   exact ⟨ns, fun n hn => hn, by rw [hceq]; exact hc⟩
 
 /-- Every `Fun u` is itself approximable, so `fun` really lands in the continuous
-maps. -/
+maps.
+@isnad1 id=isapprox.0h1v.s2.db935f7cc919 from=translated src=- shape=94c7f951 vocab=e39aa336
+-/
 theorem Fun_isApprox (u : Set ℕ) : IsApprox (Fun u) := by
   refine ⟨?_, ?_⟩
   · intro x x' hxx' m hm

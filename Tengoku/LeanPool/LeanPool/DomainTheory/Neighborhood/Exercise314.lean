@@ -52,23 +52,33 @@ variable {α : Type*} (V : NeighborhoodSystem α)
 itself. -/
 def diag : ApproximableMap V (prod V V) := paired (idMap V) (idMap V)
 
+/--
+@isnad1 id=iff.0h4v.s6.7ccfedfcd88f from=translated src=- shape=0d71231b vocab=eeef80a4
+-/
 @[simp] theorem diag_rel {Z : Set α} {P : Set (α ⊕ α)} :
     (diag V).rel Z P ↔
       (prod V V).mem P ∧ (idMap V).rel Z (Sum.inl ⁻¹' P) ∧ (idMap V).rel Z (Sum.inr ⁻¹' P) :=
   Iff.rfl
 
 /-- **Exercise 3.14 (Scott 1981, PRG-19).** `diag(x) = ⟨x, x⟩` for every `x ∈
-|𝒟|`. -/
+|𝒟|`.
+@isnad1 id=eq.0h3v.s5.22efc4f7c432 from=translated src=- shape=974a453d vocab=1e07092e
+-/
 @[simp] theorem toElementMap_diag (x : V.Element) :
     (diag V).toElementMap x = pair x x := by
   rw [diag, toElementMap_paired, toElementMap_idMap]
 
 /-- **Exercise 3.14 (Scott 1981, PRG-19).** Post-composing the diagonal with the
 two projections
-returns the identity: `p₀ ∘ diag = I` and `p₁ ∘ diag = I`. -/
+returns the identity: `p₀ ∘ diag = I` and `p₁ ∘ diag = I`.
+@isnad1 id=eq.0h2v.s5.f9d581734a7b from=translated src=- shape=9d30ec85 vocab=c75938b7
+-/
 theorem proj₀_comp_diag : (proj₀ V V).comp (diag V) = idMap V :=
   proj₀_comp_paired (idMap V) (idMap V)
 
+/--
+@isnad1 id=eq.0h2v.s5.6fdf25854a64 from=translated src=- shape=9d30ec85 vocab=c30dd043
+-/
 theorem proj₁_comp_diag : (proj₁ V V).comp (diag V) = idMap V :=
   proj₁_comp_paired (idMap V) (idMap V)
 

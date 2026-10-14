@@ -48,6 +48,9 @@ def powerfulPart (m : ℕ) : ℕ :=
 def IsPowerful (m : ℕ) : Prop :=
   ∀ p : ℕ, p.Prime → p ∣ m → 2 ≤ m.factorization p
 
+/--
+@isnad1 id=eq.2h1v.s4.7cf1157a236b from=translated src=- shape=c808c871 vocab=df933cac
+-/
 lemma powerfulPart_of_powerful {m : ℕ} (hm : m ≠ 0)
     (h : IsPowerful m) : powerfulPart m = m := by
   unfold powerfulPart
@@ -58,6 +61,9 @@ lemma powerfulPart_of_powerful {m : ℕ} (hm : m ≠ 0)
   simp only [Nat.mem_primeFactors] at hp
   simp only [ge_iff_le, h p hp.1 hp.2.1, ite_true]
 
+/--
+@isnad1 id=ispowerf.1h1v.s4.4454f421b14e from=translated src=- shape=52f9bdb2 vocab=45d4ad6e
+-/
 lemma isPowerful_sq {k : ℕ} (hk : k ≠ 0) : IsPowerful (k ^ 2) := by
   intro p hp hd
   rw [Nat.factorization_pow, Finsupp.coe_nsmul, Pi.smul_apply, smul_eq_mul]
@@ -66,6 +72,9 @@ lemma isPowerful_sq {k : ℕ} (hk : k ≠ 0) : IsPowerful (k ^ 2) := by
     exact ⟨hp, hp.dvd_of_dvd_pow hd, hk⟩
   omega
 
+/--
+@isnad1 id=eq.1h1v.s5.51a0c76595a7 from=translated src=- shape=6e239ad6 vocab=e414f0ca
+-/
 lemma powerfulPart_sq {k : ℕ} (hk : k ≠ 0) : powerfulPart (k ^ 2) = k ^ 2 :=
   powerfulPart_of_powerful (by positivity) (isPowerful_sq hk)
 
@@ -75,6 +84,9 @@ private lemma eight_factorization_ne_two (p : ℕ) (hp2 : p ≠ 2) :
       Pi.smul_apply, smul_eq_mul, Nat.prime_two.factorization, Finsupp.single_apply,
       ite_eq_right (Ne.symm hp2), mul_zero]
 
+/--
+@isnad1 id=ispowerf.1h1v.s5.d6f40be3344d from=translated src=- shape=d78c3968 vocab=c3873bf4
+-/
 lemma isPowerful_eight_mul_sq {y : ℕ} (hy : y ≠ 0) : IsPowerful (8 * y ^ 2) := by
   intro p hp hd
   rw [Nat.factorization_mul (by norm_num) (by positivity : y ^ 2 ≠ 0),
@@ -102,12 +114,18 @@ lemma isPowerful_eight_mul_sq {y : ℕ} (hy : y ≠ 0) : IsPowerful (8 * y ^ 2) 
       exact ⟨hp, hpy, hy⟩
     omega
 
+/--
+@isnad1 id=eq.1h1v.s6.0e29b679815d from=translated src=- shape=46189ebf vocab=92adbd7e
+-/
 lemma powerfulPart_eight_mul_sq {y : ℕ} (hy : y ≠ 0) :
     powerfulPart (8 * y ^ 2) = 8 * y ^ 2 :=
   powerfulPart_of_powerful (by positivity) (isPowerful_eight_mul_sq hy)
 
 /-
 If `p` is prime and `p² ∣ m` (with `m ≠ 0`), then `p²` divides `powerfulPart m`.
+-/
+/--
+@isnad1 id=dvd.3h2v.s5.8b574a8c0131 from=translated src=- shape=f3216be9 vocab=4d957dac
 -/
 lemma powerfulPart_ge_of_prime_sq_dvd {m p : ℕ} (hm : m ≠ 0) (hp : p.Prime)
     (hd : p ^ 2 ∣ m) : p ^ 2 ∣ powerfulPart m := by
@@ -140,12 +158,24 @@ def pellX (j : ℕ) : ℤ := (pellXY j).1
 /-- Y component of Pell solutions for `x² - 8y² = 1`. -/
 def pellY (j : ℕ) : ℤ := (pellXY j).2
 
+/--
+@isnad1 id=eq.0h0v.s3.0fa2fe2104e8 from=translated src=- shape=1ac31801 vocab=544c7552
+-/
 @[simp] lemma pellX_zero : pellX 0 = 1 := rfl
+/--
+@isnad1 id=eq.0h0v.s3.ed3bd759eeb3 from=translated src=- shape=1ac31801 vocab=f74fb14e
+-/
 @[simp] lemma pellY_zero : pellY 0 = 0 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.ffaab9b7b27f from=translated src=- shape=032713f0 vocab=1cb7acc2
+-/
 @[simp] lemma pellX_succ (j : ℕ) : pellX (j + 1) = 3 * pellX j + 8 * pellY j := by
   simp [pellX, pellY, pellXY]
 
+/--
+@isnad1 id=eq.0h1v.s5.a1ccdd400f7c from=translated src=- shape=6d4aca40 vocab=1cb7acc2
+-/
 @[simp] lemma pellY_succ (j : ℕ) : pellY (j + 1) = pellX j + 3 * pellY j := by
   simp [pellX, pellY, pellXY]
 
@@ -155,21 +185,34 @@ private theorem pellXY_pos_nonneg (j : ℕ) : 0 < pellX j ∧ 0 ≤ pellY j := b
   | succ n ih =>
     exact ⟨by simp; linarith [ih.1, ih.2], by simp; linarith [ih.1, ih.2]⟩
 
+/--
+@isnad1 id=lt.0h1v.s3.f913dedfd418 from=translated src=- shape=b9369acb vocab=4bfa029d
+-/
 theorem pellX_pos (j : ℕ) : 0 < pellX j := (pellXY_pos_nonneg j).1
+/--
+@isnad1 id=le.0h1v.s3.8f90cab098d7 from=translated src=- shape=b9369acb vocab=16b873fa
+-/
 theorem pellY_nonneg (j : ℕ) : 0 ≤ pellY j := (pellXY_pos_nonneg j).2
 
+/--
+@isnad1 id=lt.1h1v.s4.85569173c0f6 from=translated src=- shape=7f2e781e vocab=ebaa5470
+-/
 theorem pellY_pos {j : ℕ} (hj : 0 < j) : 0 < pellY j := by
   cases j with
   | zero => omega
   | succ n => simp; linarith [pellX_pos n, pellY_nonneg n]
 
-/-- **Pell identity.** `X_j² - 8·Y_j² = 1`. -/
+/-- **Pell identity.** `X_j² - 8·Y_j² = 1`.
+@isnad1 id=eq.0h1v.s6.112e96e5cb57 from=translated src=- shape=9ac0097e vocab=bc811122
+-/
 theorem pell_identity (j : ℕ) : pellX j ^ 2 - 8 * pellY j ^ 2 = 1 := by
   induction j with
   | zero => simp
   | succ n ih => simp only [pellX_succ, pellY_succ]; nlinarith
 
-/-- `pellY j ≤ pellX j` for all `j`. -/
+/-- `pellY j ≤ pellX j` for all `j`.
+@isnad1 id=le.0h1v.s3.24cee160070a from=translated src=- shape=b70c6bb1 vocab=0ddeed05
+-/
 theorem pellY_le_pellX (j : ℕ) : pellY j ≤ pellX j := by
   induction j with
   | zero => simp
@@ -178,7 +221,9 @@ theorem pellY_le_pellX (j : ℕ) : pellY j ≤ pellX j := by
     linarith [pellY_nonneg n, pellX_pos n]
 
 /-- Lower bound: `j ≤ Y_j`. The Pell `Y`-sequence grows at least linearly, so the
-witness index `j` can be pushed arbitrarily large. -/
+witness index `j` can be pushed arbitrarily large.
+@isnad1 id=le.0h1v.s3.d18a0a63afcb from=translated src=- shape=1ed09587 vocab=7c75c29f
+-/
 theorem pellY_ge_self (j : ℕ) : (j : ℤ) ≤ pellY j := by
   induction j with
   | zero => simp
@@ -186,7 +231,9 @@ theorem pellY_ge_self (j : ℕ) : (j : ℤ) ≤ pellY j := by
     simp only [pellY_succ, Nat.cast_succ]
     linarith [pellX_pos n]
 
-/-- Upper bound: `pellX j ≤ 11 ^ j`. -/
+/-- Upper bound: `pellX j ≤ 11 ^ j`.
+@isnad1 id=le.0h1v.s4.5e6a24d8e186 from=translated src=- shape=b27f9154 vocab=ff03c7aa
+-/
 theorem pellX_le_pow (j : ℕ) : pellX j ≤ 11 ^ j := by
   induction j with
   | zero => simp
@@ -203,17 +250,25 @@ theorem pellX_le_pow (j : ℕ) : pellX j ≤ 11 ^ j := by
 /-- `n_j = 8 · Y_j²`, a powerful number for `j ≥ 1`. -/
 def pellN (j : ℕ) : ℕ := (8 * pellY j ^ 2).toNat
 
+/--
+@isnad1 id=eq.0h1v.s5.95747eab2fb9 from=translated src=- shape=b490034e vocab=da5e74e6
+-/
 lemma pellN_eq (j : ℕ) : (pellN j : ℤ) = 8 * pellY j ^ 2 := by
   unfold pellN
   rw [Int.toNat_of_nonneg]
   positivity [pellY_nonneg j]
 
+/--
+@isnad1 id=lt.1h1v.s4.07b15f9d2a55 from=translated src=- shape=35bd48ee vocab=0188328b
+-/
 lemma pellN_pos {j : ℕ} (hj : 0 < j) : 0 < pellN j := by
   have h : (0 : ℤ) < 8 * pellY j ^ 2 := by positivity [pellY_pos hj]
   have := pellN_eq j; omega
 
 /-- Lower bound: `j ≤ n_j`. Since `n_j = 8·Y_j²` and `j ≤ Y_j`, the witness `n_j`
-grows at least linearly, so it exceeds any prescribed threshold. -/
+grows at least linearly, so it exceeds any prescribed threshold.
+@isnad1 id=le.0h1v.s3.1e9a466fea52 from=translated src=- shape=e63234f4 vocab=2ac29bc0
+-/
 theorem pellN_ge_self (j : ℕ) : j ≤ pellN j := by
   have hY : (j : ℤ) ≤ pellY j := pellY_ge_self j
   have hYnn : (0 : ℤ) ≤ pellY j := pellY_nonneg j
@@ -221,14 +276,18 @@ theorem pellN_ge_self (j : ℕ) : j ≤ pellN j := by
   have : (j : ℤ) ≤ pellN j := by nlinarith [sq_nonneg ((pellY j) - j)]
   exact_mod_cast this
 
-/-- **L0.** `n_j + 1 = X_j²` (as natural numbers). -/
+/-- **L0.** `n_j + 1 = X_j²` (as natural numbers).
+@isnad1 id=eq.0h1v.s5.7716bbb5f0cc from=translated src=- shape=e47a3aa1 vocab=3b7e59f6
+-/
 theorem L0 (j : ℕ) : pellN j + 1 = (pellX j).toNat ^ 2 := by
   have hx := pellX_pos j
   zify
   rw [pellN_eq, Int.toNat_of_nonneg (le_of_lt hx)]
   linarith [pell_identity j]
 
-/-- **L1.** `B₂(n_j) = n_j` for `j ≥ 1`: `n_j = 8·Y_j²` is powerful. -/
+/-- **L1.** `B₂(n_j) = n_j` for `j ≥ 1`: `n_j = 8·Y_j²` is powerful.
+@isnad1 id=eq.1h1v.s4.2e94f78ca48a from=translated src=- shape=13dc2a3c vocab=9a8bdd48
+-/
 theorem L1 {j : ℕ} (hj : 0 < j) : powerfulPart (pellN j) = pellN j := by
   have hypos : (0 : ℤ) < pellY j := pellY_pos hj
   have heq : pellN j = 8 * (pellY j).toNat ^ 2 := by
@@ -238,16 +297,22 @@ theorem L1 {j : ℕ} (hj : 0 < j) : powerfulPart (pellN j) = pellN j := by
   rw [heq]
   exact powerfulPart_eight_mul_sq (by omega)
 
-/-- **L2.** `B₂(n_j + 1) = n_j + 1`: `n_j + 1 = X_j²` is a perfect square. -/
+/-- **L2.** `B₂(n_j + 1) = n_j + 1`: `n_j + 1 = X_j²` is a perfect square.
+@isnad1 id=eq.0h1v.s5.215f7ba53b0c from=translated src=- shape=7774d4eb vocab=131a9d68
+-/
 theorem L2 (j : ℕ) : powerfulPart (pellN j + 1) = pellN j + 1 := by
   rw [L0]
   exact powerfulPart_sq (by have := pellX_pos j; omega)
 
-/-- **L3.** `n_j + 2 = X_j² + 1`. -/
+/-- **L3.** `n_j + 2 = X_j² + 1`.
+@isnad1 id=eq.0h1v.s5.a0a4a405d9c8 from=translated src=- shape=1bb1451a vocab=3b7e59f6
+-/
 theorem L3 (j : ℕ) : pellN j + 2 = (pellX j).toNat ^ 2 + 1 := by
   have := L0 j; omega
 
-/-- For `j ≥ 1`, the triple product simplifies using L1 and L2. -/
+/-- For `j ≥ 1`, the triple product simplifies using L1 and L2.
+@isnad1 id=eq.1h1v.s6.06e23397d618 from=translated src=- shape=1f3f2e8d vocab=396f8bb9
+-/
 theorem product_lower_bound {j : ℕ} (hj : 0 < j) :
     powerfulPart (pellN j) * powerfulPart (pellN j + 1) * powerfulPart (pellN j + 2) =
     pellN j * (pellN j + 1) * powerfulPart (pellN j + 2) := by
@@ -266,6 +331,9 @@ Hensel lifting (via the structure of `(ℤ[√2]/p^a)×`) gives `α^{(p+1)/2·p}
 -/
 
 -- === Step 1: α^j = ⟨pellX j, 2 * pellY j⟩ in ℤ√2 ===
+/--
+@isnad1 id=eq.0h1v.s6.711c8bc39cb7 from=translated src=- shape=e1f1806d vocab=c5aeac15
+-/
 lemma alpha_pow (j : ℕ) : (⟨3, 2⟩ : ℤ√2) ^ j = ⟨pellX j, 2 * pellY j⟩ := by
   induction j with
   | zero => simp [pellX, pellY, pellXY]; rfl
@@ -275,10 +343,16 @@ lemma alpha_pow (j : ℕ) : (⟨3, 2⟩ : ℤ√2) ^ j = ⟨pellX j, 2 * pellY j
     ext <;> simp [pellX, pellY, pellXY, Zsqrtd.re_mul, Zsqrtd.im_mul] <;> ring
 
 -- === Step 2: ε² = α ===
+/--
+@isnad1 id=eq.0h0v.s6.b3ced5b55c7c from=translated src=- shape=41676dcb vocab=fad64a48
+-/
 lemma eps_sq : (⟨1, 1⟩ : ℤ√2) ^ 2 = (⟨3, 2⟩ : ℤ√2) := by decide
 
 /-
 === Step 3a: sqrtd^(2k+1) = ⟨0, 2^k⟩ ===
+-/
+/--
+@isnad1 id=eq.0h1v.s6.8b4c1424febb from=translated src=- shape=b504c0b9 vocab=f99cf28c
 -/
 lemma sqrtd_pow_odd (k : ℕ) :
     (Zsqrtd.sqrtd : ℤ√2) ^ (2 * k + 1) = ⟨0, (2 : ℤ) ^ k⟩ := by
@@ -289,6 +363,9 @@ lemma sqrtd_pow_odd (k : ℕ) :
 /-
 === Step 3b: Euler criterion for 2 mod p ===
 When p ≡ 5 (mod 8), 2 is a QNR, so 2^(p/2) ≡ -1 (mod p)
+-/
+/--
+@isnad1 id=dvd.2h1v.s6.27f1230f1eb2 from=translated src=- shape=6c8692cf vocab=60532eb7
 -/
 lemma euler_two_mod (p : ℕ) (hp : p.Prime) (hp5 : p % 8 = 5) :
     (p : ℤ) ∣ (2 : ℤ) ^ (p / 2) + 1 := by
@@ -310,6 +387,9 @@ lemma euler_two_mod (p : ℕ) (hp : p.Prime) (hp5 : p % 8 = 5) :
 === Step 4: Frobenius - ε^p ≡ ⟨1, -1⟩ (mod p) componentwise ===
 Uses freshman's dream: (1 + sqrtd)^p = 1 + sqrtd^p + p*(stuff)
 and sqrtd^p = ⟨0, 2^(p/2)⟩ for odd p, and 2^(p/2) ≡ -1 (mod p)
+-/
+/--
+@isnad1 id=and.2h1v.s7.8ab57c7558d9 from=translated src=- shape=c946a478 vocab=b9532b7b
 -/
 lemma frobenius_eps (p : ℕ) (hp : p.Prime) (hp5 : p % 8 = 5) :
     (p : ℤ) ∣ ((⟨1, 1⟩ : ℤ√2) ^ p).re - 1 ∧
@@ -337,6 +417,9 @@ lemma frobenius_eps (p : ℕ) (hp : p.Prime) (hp5 : p % 8 = 5) :
 === Step 5: ε^(p+1) ≡ ⟨-1, 0⟩ (mod p) ===
 ε^(p+1) = ε^p * ε, and ⟨1,-1⟩ * ⟨1,1⟩ = ⟨-1, 0⟩ in ℤ√2
 -/
+/--
+@isnad1 id=and.2h1v.s7.f2fedc3116c2 from=translated src=- shape=8f2808c0 vocab=6b304675
+-/
 lemma eps_succ_mod (p : ℕ) (hp : p.Prime) (hp5 : p % 8 = 5) :
     (p : ℤ) ∣ ((⟨1, 1⟩ : ℤ√2) ^ (p + 1)).re + 1 ∧
     (p : ℤ) ∣ ((⟨1, 1⟩ : ℤ√2) ^ (p + 1)).im := by
@@ -363,6 +446,9 @@ lemma eps_succ_mod (p : ℕ) (hp : p.Prime) (hp5 : p % 8 = 5) :
 If z ≡ -1 (mod p) in ℤ√2 componentwise, then z^p ≡ -1 (mod p²)
 Uses: z = -1 + (z+1), apply add_pow_prime_eq,
 (-1)^p = -1 for odd p, and (z+1)^p, p*(z+1)*stuff have components div by p²
+-/
+/--
+@isnad1 id=and.4h2v.s7.5c5e4f7c5a67 from=translated src=- shape=cfeefafa vocab=682a3f36
 -/
 lemma hensel_lift (p : ℕ) (hp : p.Prime) (hp2 : p ≠ 2) (z : ℤ√2)
     (hre : (p : ℤ) ∣ z.re + 1) (him : (p : ℤ) ∣ z.im) :
@@ -407,6 +493,9 @@ lemma hensel_lift (p : ℕ) (hp : p.Prime) (hp2 : p ≠ 2) (z : ℤ√2)
 /-
 === Main theorem ===
 -/
+/--
+@isnad1 id=other.2h1v.s6.f9f3f03ad749 from=translated src=- shape=52380216 vocab=d95865c7
+-/
 lemma pell_boost (p : ℕ) (hp : p.Prime) (hp5 : p % 8 = 5) :
     let L := (p + 1) / 2 * p
     (p : ℤ) ^ 2 ∣ pellX L + 1 ∧ (p : ℤ) ^ 2 ∣ pellY L := by
@@ -444,7 +533,9 @@ lemma pell_boost (p : ℕ) (hp : p.Prime) (hp5 : p % 8 = 5) :
 /-! ## From BOOST to divisibility of n_j + 2 -/
 
 /-- If `pellX L ≡ -1 (mod m)` and `pellY L ≡ 0 (mod m)` with `L` odd, then
-`m ∣ 4·((pellX ((L+1)/2))² + 1)`. This uses the doubling formula for Pell sequences. -/
+`m ∣ 4·((pellX ((L+1)/2))² + 1)`. This uses the doubling formula for Pell sequences.
+@isnad1 id=dvd.4h2v.s7.c67586b9f3cf from=translated src=- shape=a992ba2e vocab=729e4c91
+-/
 lemma pell_sq_plus_one_div (L : ℕ) (m : ℤ) (_hm : 0 < m)
     (hx : m ∣ pellX L + 1) (hy : m ∣ pellY L)
     (hL_odd : L % 2 = 1) :
@@ -477,6 +568,9 @@ lemma pell_sq_plus_one_div (L : ℕ) (m : ℤ) (_hm : 0 < m)
 /-
 For a prime `p ≡ 5 mod 8`, setting `j = ((p+1)/2·p + 1) / 2`, we have
 `p² ∣ pellN j + 2` (as integers).
+-/
+/--
+@isnad1 id=other.2h1v.s7.7cdd2958aed0 from=translated src=- shape=c81b5033 vocab=eaad8ff6
 -/
 lemma prime_sq_dvd_pellN_plus2 (p : ℕ) (hp : p.Prime) (hp5 : p % 8 = 5) :
     let L := (p + 1) / 2 * p
@@ -531,6 +625,9 @@ since each factor `2p/(p+1) > 1` and there are infinitely many such primes
 K1a: If `m ∣ z.re - 1` and `m ∣ z.im`, then for all `k`,
 `m ∣ (z ^ k).re - 1` and `m ∣ (z ^ k).im`.
 -/
+/--
+@isnad1 id=and.2h3v.s7.9b6bda31284f from=translated src=- shape=ce3b3e61 vocab=89ce4320
+-/
 lemma zsqrt2_pow_cong_one (m : ℤ) (z : ℤ√2) (k : ℕ)
     (hre : m ∣ z.re - 1) (him : m ∣ z.im) :
     m ∣ (z ^ k).re - 1 ∧ m ∣ (z ^ k).im := by
@@ -556,6 +653,9 @@ lemma zsqrt2_pow_cong_one (m : ℤ) (z : ℤ√2) (k : ℕ)
 /-
 K1b: If `m ∣ z.re + 1` and `m ∣ z.im` in `ℤ√2`,
 and `t` is odd, then `m ∣ (z ^ t).re + 1` and `m ∣ (z ^ t).im`.
+-/
+/--
+@isnad1 id=and.3h3v.s7.038632b1c6da from=translated src=- shape=43dd96f2 vocab=824a445a
 -/
 lemma zsqrt2_odd_pow_neg_one (m : ℤ) (z : ℤ√2) (t : ℕ)
     (hre : m ∣ z.re + 1) (him : m ∣ z.im) (ht : t % 2 = 1) :
@@ -590,6 +690,9 @@ lemma zsqrt2_odd_pow_neg_one (m : ℤ) (z : ℤ√2) (t : ℕ)
 /-
 Generalized boost: for prime `p ≡ 5 mod 8`, if `M_p ∣ L` and `L` is odd,
 then `p² ∣ pellN ((L+1)/2) + 2`.
+-/
+/--
+@isnad1 id=dvd.4h2v.s7.7175eb9bb8fd from=translated src=- shape=2d8ad7de vocab=b5842201
 -/
 lemma generalized_boost_pellN (p : ℕ) (hp : p.Prime) (hp5 : p % 8 = 5)
     (L : ℕ) (hL_dvd : (p + 1) / 2 * p ∣ L) (hL_odd : L % 2 = 1) :
@@ -636,7 +739,9 @@ lemma generalized_boost_pellN (p : ℕ) (hp : p.Prime) (hp5 : p % 8 = 5)
   rw [ ← Int.natCast_dvd_natCast ]; norm_num [ L3 ];
   rw [ max_eq_left ( pellX_pos _ |> le_of_lt ) ]
 
-/-- Infinitely many primes are ≡ 5 mod 8. -/
+/-- Infinitely many primes are ≡ 5 mod 8.
+@isnad1 id=infinite.0h0v.s4.79c644fd0814 from=translated src=- shape=93fec4b9 vocab=97d12efe
+-/
 lemma infinite_primes_5_mod_8 : Set.Infinite {p : ℕ | p.Prime ∧ p % 8 = 5} := by
   have hinf : Set.Infinite {p : ℕ | p.Prime ∧ (p : ZMod 8) = 5} :=
     Nat.infinite_setOfPred_prime_and_eq_mod (by decide)
@@ -650,12 +755,18 @@ lemma infinite_primes_5_mod_8 : Set.Infinite {p : ℕ | p.Prime ∧ p % 8 = 5} :
 /-
 From an infinite set, extract a finset of any desired cardinality.
 -/
+/--
+@isnad1 id=ex.1h3v.s5.8fed91374229 from=translated src=- shape=ce2cbfa5 vocab=25ad579e
+-/
 lemma exists_finset_of_infinite {α : Type*} {S : Set α} (hS : S.Infinite) (n : ℕ) :
     ∃ T : Finset α, n ≤ T.card ∧ ∀ x ∈ T, x ∈ S := by
   rcases hS.exists_subset_card_eq n with ⟨ T, hT ⟩; aesop
 
 /-
 For a finset of distinct primes, if each `p^2 ∣ m`, then `∏ p^2 ∣ m`.
+-/
+/--
+@isnad1 id=dvd.2h2v.s6.8b8b5ce04b2d from=translated src=- shape=ef793abe vocab=c85dcf33
 -/
 lemma finset_coprime_sq_dvd (S : Finset ℕ) (m : ℕ)
     (hS : ∀ p ∈ S, p.Prime) (hdvd : ∀ p ∈ S, p ^ 2 ∣ m) :
@@ -681,6 +792,9 @@ lemma finset_coprime_sq_dvd (S : Finset ℕ) (m : ℕ)
 /-
 Upper bound: `pellN j < 11 ^ (2 * j)` for `j ≥ 1`.
 -/
+/--
+@isnad1 id=lt.1h1v.s5.67d33fc99e78 from=translated src=- shape=c7b5c355 vocab=b7f7ba60
+-/
 lemma pellN_lt_eleven_pow (j : ℕ) (_hj : 0 < j) : pellN j < 11 ^ (2 * j) := by
   rw [ pow_mul' ];
   rw [ show pellN j = ( pellX j |> Int.toNat ) ^ 2 - 1 from ?_ ];
@@ -696,6 +810,9 @@ lemma pellN_lt_eleven_pow (j : ℕ) (_hj : 0 < j) : pellN j < 11 ^ (2 * j) := by
 /-
 Product of `(p+1)/2 * p` is odd when all `p ≡ 5 mod 8`.
 -/
+/--
+@isnad1 id=eq.1h1v.s6.27e7f29c8e21 from=translated src=- shape=bbcb0504 vocab=47210330
+-/
 lemma prod_Mp_odd (S : Finset ℕ) (hS : ∀ p ∈ S, p % 8 = 5) :
     S.prod (fun p => (p + 1) / 2 * p) % 2 = 1 := by
   rw [Finset.prod_nat_mod, Finset.prod_eq_one] <;> norm_num
@@ -707,6 +824,9 @@ lemma prod_Mp_odd (S : Finset ℕ) (hS : ∀ p ∈ S, p % 8 = 5) :
 /-
 Product of `(p+1)/2 * p` is positive when `S` is nonempty and elements are primes ≡ 5 mod 8.
 -/
+/--
+@isnad1 id=lt.2h1v.s6.ac593d5c50c4 from=translated src=- shape=b1212441 vocab=0bf256c9
+-/
 lemma prod_Mp_pos (S : Finset ℕ) (hS : ∀ p ∈ S, p.Prime ∧ p % 8 = 5) (_hne : S.Nonempty) :
     0 < S.prod (fun p => (p + 1) / 2 * p) := by
   exact Finset.prod_pos fun p hp =>
@@ -717,6 +837,9 @@ lemma prod_Mp_pos (S : Finset ℕ) (hS : ∀ p ∈ S, p.Prime ∧ p % 8 = 5) (_h
 /-
 For `p ≥ 5`, `3 * p ^ 2 ≥ 5 * ((p + 1) / 2 * p)`.
 -/
+/--
+@isnad1 id=le.2h1v.s6.707e456e6bb0 from=translated src=- shape=a351a7cf vocab=9f619da0
+-/
 lemma ratio_bound_per_prime (p : ℕ) (hp : 5 ≤ p) (_hp_odd : p % 2 = 1) :
     5 * ((p + 1) / 2 * p) ≤ 3 * p ^ 2 := by
   nlinarith [ Nat.div_mul_le_self ( p + 1 ) 2 ]
@@ -724,6 +847,9 @@ lemma ratio_bound_per_prime (p : ℕ) (hp : 5 ≤ p) (_hp_odd : p % 2 = 1) :
 /-
 Product ratio bound: `(5/3)^|S| * ∏ M_p ≤ ∏ p²` ∈ ℕ,
 or equivalently `5^|S| * ∏ M_p ≤ 3^|S| * ∏ p²`.
+-/
+/--
+@isnad1 id=le.1h1v.s7.d9e704d5c7b7 from=translated src=- shape=0d263527 vocab=b6023514
 -/
 lemma prod_ratio_bound_nat (S : Finset ℕ) (hS : ∀ p ∈ S, 5 ≤ p ∧ p % 2 = 1) :
     5 ^ S.card * S.prod (fun p => (p + 1) / 2 * p) ≤

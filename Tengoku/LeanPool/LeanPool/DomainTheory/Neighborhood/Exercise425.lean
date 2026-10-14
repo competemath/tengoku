@@ -71,11 +71,19 @@ of prepending a
 `1`). -/
 def shift (X : Set ℕ) : Set ℕ := {k | ∃ m ∈ X, k = m + 1}
 
+/--
+@isnad1 id=eq.0h0v.s3.cf1fc5e00550 from=translated src=- shape=99b6ce5a vocab=1b6d0428
+-/
 theorem tail_zero : tail 0 = Set.univ := by ext k; simp [tail]
 
+/--
+@isnad1 id=iff.0h2v.s4.a0062598ea89 from=translated src=- shape=27d62ace vocab=8e6c9d3e
+-/
 @[simp] theorem mem_tail {n k : ℕ} : k ∈ tail n ↔ n ≤ k := Iff.rfl
 
-/-- `1·(1ⁿ⊥) = 1ⁿ⁺¹⊥`: shifting a tail. -/
+/-- `1·(1ⁿ⊥) = 1ⁿ⁺¹⊥`: shifting a tail.
+@isnad1 id=eq.0h1v.s4.dcd394783375 from=translated src=- shape=d4d38716 vocab=0eeaf872
+-/
 theorem shift_tail (n : ℕ) : shift (tail n) = tail (n + 1) := by
   ext k
   simp only [shift, tail, Set.mem_ofPred_eq]
@@ -83,12 +91,17 @@ theorem shift_tail (n : ℕ) : shift (tail n) = tail (n + 1) := by
   · rintro ⟨m, hm, rfl⟩; omega
   · intro h; exact ⟨k - 1, by omega, by omega⟩
 
-/-- `1·{1ⁿ} = {1ⁿ⁺¹}`: shifting a singleton. -/
+/-- `1·{1ⁿ} = {1ⁿ⁺¹}`: shifting a singleton.
+@isnad1 id=eq.0h1v.s5.9a093fc3acea from=translated src=- shape=af9bd2a4 vocab=abd38277
+-/
 theorem shift_singleton (n : ℕ) : shift ({n} : Set ℕ) = {n + 1} := by
   ext k
   simp only [shift, Set.mem_singleton_iff, Set.mem_ofPred_eq]
   simp_all
 
+/--
+@isnad1 id=le.1h2v.s4.4d8346a0446e from=translated src=- shape=7606f839 vocab=90af7cf4
+-/
 theorem shift_mono {X X' : Set ℕ} (h : X' ⊆ X) : shift X' ⊆ shift X := by
   rintro k ⟨m, hm, rfl⟩; exact ⟨m, h hm, rfl⟩
 
@@ -97,27 +110,42 @@ theorem shift_mono {X X' : Set ℕ} (h : X' ⊆ X) : shift X' ⊆ shift X := by
 /-- Membership in `C₁`: a neighbourhood is a tail `tail n` or a singleton `{n}`. -/
 def memC1 (X : Set ℕ) : Prop := (∃ n, X = tail n) ∨ (∃ n, X = {n})
 
+/--
+@isnad1 id=memc1.0h1v.s2.fe4afb8ba894 from=translated src=- shape=76a08d12 vocab=93129850
+-/
 theorem memC1_tail (n : ℕ) : memC1 (tail n) := Or.inl ⟨n, rfl⟩
 
+/--
+@isnad1 id=memc1.0h1v.s3.51ac7225a0dd from=translated src=- shape=8e36a313 vocab=90ef3373
+-/
 theorem memC1_singleton (n : ℕ) : memC1 ({n} : Set ℕ) := Or.inr ⟨n, rfl⟩
 
+/--
+@isnad1 id=memc1.0h0v.s1.70500a91801a from=translated src=- shape=87ceb31f vocab=3c8f575d
+-/
 theorem memC1_univ : memC1 (Set.univ : Set ℕ) := Or.inl ⟨0, tail_zero.symm⟩
 
 /-- Shifting keeps us inside `C₁` (`shift (tail n) = tail (n+1)`, `shift {n} =
-{n+1}`). -/
+{n+1}`).
+@isnad1 id=memc1.1h1v.s3.81d9ea8a2c83 from=translated src=- shape=354f35de vocab=ccf2e5dd
+-/
 theorem memC1_shift {X : Set ℕ} (hX : memC1 X) : memC1 (shift X) := by
   rcases hX with ⟨n, rfl⟩ | ⟨n, rfl⟩
   · exact Or.inl ⟨n + 1, shift_tail n⟩
   · exact Or.inr ⟨n + 1, shift_singleton n⟩
 
-/-- A singleton and a tail are nested or disjoint. -/
+/-- A singleton and a tail are nested or disjoint.
+@isnad1 id=or.0h2v.s5.3169ef26eb35 from=translated src=- shape=19024960 vocab=df23afdc
+-/
 theorem singleton_tail_nd (n k : ℕ) :
     ({k} : Set ℕ) ⊆ tail n ∨ tail n ⊆ {k} ∨ ({k} : Set ℕ) ∩ tail n = ∅ := by
   by_cases h : n ≤ k
   · exact Or.inl (by intro x hx; rw [Set.mem_singleton_iff] at hx; subst hx; exact h)
   · simp_all
 
-/-- Any two neighbourhoods of `C₁` are nested or disjoint. -/
+/-- Any two neighbourhoods of `C₁` are nested or disjoint.
+@isnad1 id=nestedor.0h0v.s1.c15bc5943c50 from=translated src=- shape=25b03439 vocab=3a5e7c2e
+-/
 theorem nestedOrDisjoint : NestedOrDisjoint memC1 := by
   rintro X Y (⟨n, rfl⟩ | ⟨n, rfl⟩) (⟨m, rfl⟩ | ⟨m, rfl⟩)
   · rcases le_total n m with h | h
@@ -141,8 +169,14 @@ def C1 : NeighborhoodSystem ℕ :=
   NeighborhoodSystem.ofNestedOrDisjoint memC1 Set.univ memC1_univ nestedOrDisjoint
     (fun _ => Set.subset_univ _)
 
+/--
+@isnad1 id=iff.0h1v.s3.c5ff64755bd7 from=translated src=- shape=d213e086 vocab=2e921da8
+-/
 @[simp] theorem C1_mem {X : Set ℕ} : C1.mem X ↔ memC1 X := Iff.rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.8a460e24518a from=translated src=- shape=d672ce25 vocab=ebc0c241
+-/
 @[simp] theorem C1_master : C1.master = (Set.univ : Set ℕ) := rfl
 
 /-! ### Elements: `1ⁿ` (total) and `1ⁿ⊥` (partial). -/
@@ -172,7 +206,9 @@ def consMap : ApproximableMap C1 C1 where
     rintro X X' Y Y' ⟨hX, hY, hsub⟩ hX'X hYY' hX' hY'
     exact ⟨hX', hY', (shift_mono hX'X).trans (hsub.trans hYY')⟩
 
-/-- `1·(1ⁿ⊥) = 1ⁿ⁺¹⊥`. -/
+/-- `1·(1ⁿ⊥) = 1ⁿ⁺¹⊥`.
+@isnad1 id=eq.0h1v.s4.7168b40ad176 from=translated src=- shape=dc259ae7 vocab=35412a95
+-/
 theorem consMap_oneBot (n : ℕ) : consMap.toElementMap (oneBot n) = oneBot (n + 1) := by
   apply Element.ext
   intro Y
@@ -185,7 +221,9 @@ theorem consMap_oneBot (n : ℕ) : consMap.toElementMap (oneBot n) = oneBot (n +
     refine ⟨tail n, ⟨memC1_tail n, subset_rfl⟩, memC1_tail n, hY, ?_⟩
     rw [shift_tail]; exact hsub
 
-/-- `1·(1ⁿ) = 1ⁿ⁺¹`. -/
+/-- `1·(1ⁿ) = 1ⁿ⁺¹`.
+@isnad1 id=eq.0h1v.s4.8d65ade4e915 from=translated src=- shape=dc259ae7 vocab=1340fc3f
+-/
 theorem consMap_oneElem (n : ℕ) : consMap.toElementMap (oneElem n) = oneElem (n + 1) := by
   apply Element.ext
   intro Y
@@ -209,7 +247,9 @@ distinguishes the
 *non-flat* `C₁` (the true analogue of `C`) from `N`. -/
 def infElt : C1.Element := consMap.fixElement
 
-/-- `1^∞ = 1·1^∞`: the infinite sequence is fixed by the successor. -/
+/-- `1^∞ = 1·1^∞`: the infinite sequence is fixed by the successor.
+@isnad1 id=eq.0h0v.s3.619b858346d9 from=translated src=- shape=54cb60e5 vocab=2d11d8c6
+-/
 theorem infElt_eq : consMap.toElementMap infElt = infElt :=
   toElementMap_fixElement consMap
 
@@ -222,12 +262,16 @@ strict-lift
 combinator `constLiftN` of Example 4.3. -/
 def relateNToC1 : ApproximableMap Example43.N C1 := Example43.constLiftN C1 oneElem
 
-/-- `relateNToC1(n̂) = 1ⁿ`. -/
+/-- `relateNToC1(n̂) = 1ⁿ`.
+@isnad1 id=eq.0h1v.s4.1ea316eba341 from=translated src=- shape=b5b337fe vocab=4394414b
+-/
 theorem relateNToC1_natElem (n : ℕ) :
     relateNToC1.toElementMap (Example43.natElem n) = oneElem n :=
   Example43.constLiftN_natElem C1 oneElem n
 
-/-- `relateNToC1(⊥) = ⊥`. -/
+/-- `relateNToC1(⊥) = ⊥`.
+@isnad1 id=eq.0h0v.s4.116e01631396 from=translated src=- shape=574be568 vocab=0ba6c82c
+-/
 theorem relateNToC1_bot : relateNToC1.toElementMap Example43.N.bot = C1.bot :=
   Example43.constLiftN_bot C1 oneElem
 

@@ -126,7 +126,9 @@ def MonotoneOnDomains (T : Endofunctor DomainObj.{w}) : Prop :=
 
 /-- The **identity functor is monotone on domains**: it fixes objects and maps, so
 `T(D) ◁ T(E)` is
-just `D ◁ E` and the projection pair is unchanged. -/
+just `D ◁ E` and the projection pair is unchanged.
+@isnad1 id=monotone.0h0v.s2.a49ad2820002 from=translated src=- shape=87ceb31f vocab=6cc55c1c
+-/
 theorem monotoneOnDomains_id : MonotoneOnDomains (idEndofunctor DomainObj.{w}) := by
   intro α D E h
   exact ⟨rfl, h, HEq.rfl, HEq.rfl⟩
@@ -165,7 +167,9 @@ def ContinuousOnDomains (T : Endofunctor DomainObj.{w}) : Prop :=
 plain
 neighbourhood
 family, so directed-union preservation is exactly the hypothesis `hU` that `U` is
-the union. -/
+the union.
+@isnad1 id=continuo.0h0v.s2.9316abd8a2d5 from=translated src=- shape=87ceb31f vocab=209e31fa
+-/
 theorem continuousOnDomains_id : ContinuousOnDomains (idEndofunctor DomainObj.{w}) := by
   refine ⟨monotoneOnDomains_id, ?_⟩
   intro α E ℱ hℱ _hne _hdir U hUE hU

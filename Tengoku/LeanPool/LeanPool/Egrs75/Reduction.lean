@@ -93,7 +93,9 @@ are infinitely many `n` with `p ∤ C(2n,n)` and `q ∤ C(2n,n)`.
 This proof is SORRY-FREE: it uses ONLY the kernel-clean single-base bridge
 `not_dvd_centralBinom_iff_lowDigits` to rewrite the divisibility set as the joint
 low-digit set, then applies the crux hypothesis. `#print axioms` below confirms
-propext / Classical.choice / Quot.sound only (NO sorryAx) for this lemma. -/
+propext / Classical.choice / Quot.sound only (NO sorryAx) for this lemma.
+@isnad1 id=infinite.5h2v.s5.1a9e63d4b840 from=translated src=- shape=7ceb7146 vocab=da989c33
+-/
 theorem egrs_two_prime_of_crux {p q : ℕ} (hp : p.Prime) (hq : q.Prime)
     (hpo : Odd p) (hqo : Odd q) (hcrux : EgrsCrux p q) :
     {n : ℕ | ¬ p ∣ Nat.centralBinom n ∧ ¬ q ∣ Nat.centralBinom n}.Infinite := by

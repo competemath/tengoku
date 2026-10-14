@@ -73,19 +73,29 @@ def iterMap (f : ApproximableMap V V) : ℕ → ApproximableMap V V
   | 0 => idMap V
   | (n + 1) => f.comp (f.iterMap n)
 
+/--
+@isnad1 id=eq.0h3v.s4.f40aeb4dbbcd from=translated src=- shape=a51c3c46 vocab=476a151d
+-/
 @[simp] theorem iterMap_zero (f : ApproximableMap V V) : f.iterMap 0 = idMap V := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.973632ad356d from=translated src=- shape=15f9d214 vocab=aaa5c7d6
+-/
 @[simp] theorem iterMap_succ (f : ApproximableMap V V) (n : ℕ) :
     f.iterMap (n + 1) = f.comp (f.iterMap n) := rfl
 
-/-- Composition is monotone in both arguments. -/
+/-- Composition is monotone in both arguments.
+@isnad1 id=le.2h6v.s6.f42aedf80603 from=translated src=- shape=1eb0d46b vocab=79f8d10b
+-/
 theorem comp_mono {f g a b : ApproximableMap V V} (hfg : f ≤ g) (hab : a ≤ b) :
     f.comp a ≤ g.comp b := by
   intro X Z h
   obtain ⟨Y, hXY, hYZ⟩ := h
   exact ⟨Y, hab X Y hXY, hfg Y Z hYZ⟩
 
-/-- The iterate is monotone in the map: `f ⊑ g ⟹ fⁿ ⊑ gⁿ` (Scott's "`fⁿ ⊆ gⁿ`"). -/
+/-- The iterate is monotone in the map: `f ⊑ g ⟹ fⁿ ⊑ gⁿ` (Scott's "`fⁿ ⊆ gⁿ`").
+@isnad1 id=le.1h5v.s6.f01bc6eaba45 from=translated src=- shape=f07b0529 vocab=7e6de920
+-/
 theorem iterMap_mono_map {f g : ApproximableMap V V} (hfg : f ≤ g) (n : ℕ) :
     f.iterMap n ≤ g.iterMap n := by
   induction n with
@@ -94,7 +104,9 @@ theorem iterMap_mono_map {f g : ApproximableMap V V} (hfg : f ≤ g) (n : ℕ) :
 
 /-- `f` commutes with its own iterate: `f ∘ fⁿ = fⁿ ∘ f`. Proved by induction
 using associativity
-and the identity laws. -/
+and the identity laws.
+@isnad1 id=eq.0h4v.s5.468a8fb8044a from=translated src=- shape=0e0b9cc1 vocab=bab49c58
+-/
 theorem iter_comm (f : ApproximableMap V V) (n : ℕ) :
     f.comp (f.iterMap n) = (f.iterMap n).comp f := by
   induction n with
@@ -105,7 +117,9 @@ theorem iter_comm (f : ApproximableMap V V) (n : ℕ) :
 
 /-- Scott's "a sequence for an `X ∈ x` can always be extended": if `Δ fⁿ X`, then
 `Δ f^{n+1} X`
-(prepend a `Δ`-step, using `Δ f Δ`). -/
+(prepend a `Δ`-step, using `Δ f Δ`).
+@isnad1 id=rel.1h5v.s5.2910d1ecb6c0 from=translated src=- shape=8a072b3e vocab=52adf7ae
+-/
 theorem rel_master_succ (f : ApproximableMap V V) {n : ℕ} {X : Set α}
     (h : (f.iterMap n).rel V.master X) : (f.iterMap (n + 1)).rel V.master X := by
   have hcomm : f.iterMap (n + 1) = (f.iterMap n).comp f := iter_comm f n
@@ -114,7 +128,9 @@ theorem rel_master_succ (f : ApproximableMap V V) {n : ℕ} {X : Set α}
 
 /-- Monotonicity of the reachability relation in the number of steps: `n ≤ m` and
 `Δ fⁿ X` imply
-`Δ fᵐ X`. -/
+`Δ fᵐ X`.
+@isnad1 id=rel.2h6v.s5.0504a16f952a from=translated src=- shape=14409e26 vocab=ab54aa88
+-/
 theorem rel_master_mono (f : ApproximableMap V V) {n m : ℕ} (hnm : n ≤ m) {X : Set α}
     (h : (f.iterMap n).rel V.master X) : (f.iterMap m).rel V.master X := by
   induction hnm with
@@ -144,6 +160,9 @@ def fixElement (f : ApproximableMap V V) : V.Element where
     rintro X Y ⟨n, hn⟩ hYmem hXY
     exact ⟨n, (f.iterMap n).mono hn subset_rfl hXY V.master_mem hYmem⟩
 
+/--
+@isnad1 id=iff.0h4v.s5.13a4b1e27a24 from=translated src=- shape=f1bc4b0a vocab=fa2db6ef
+-/
 @[simp] theorem mem_fixElement (f : ApproximableMap V V) {X : Set α} :
     f.fixElement.mem X ↔ ∃ n, (f.iterMap n).rel V.master X := Iff.rfl
 
@@ -152,7 +171,9 @@ def fixElement (f : ApproximableMap V V) : V.Element where
 `f(x) ⊆ x` appends an `f`-step (`Δ f^{n+1} X` from `Δ fⁿ X' f X`); `x ⊆ f(x)`
 reads off the last
 step of the chain (the empty chain forces `X = Δ`, handled by
-`master_mem`/`master_rel`). -/
+`master_mem`/`master_rel`).
+@isnad1 id=eq.0h3v.s4.81995a32fd1b from=translated src=- shape=a2a4ddae vocab=f736b2db
+-/
 theorem toElementMap_fixElement (f : ApproximableMap V V) :
     f.toElementMap f.fixElement = f.fixElement := by
   apply Element.ext
@@ -176,7 +197,9 @@ point*: if
 `f(z) ⊆ z`, then `x ⊆ z`. (Scott's induction: `Δ ∈ z`, and `X ∈ z`, `X f Y` give
 `Y ∈ f(z) ⊆ z`,
 so `Δ fⁿ X` implies `X ∈ z`.) In particular `x` is the least element with `f(x) =
-x`. -/
+x`.
+@isnad1 id=le.1h4v.s5.f24aebe0b6f8 from=translated src=- shape=cf2412a1 vocab=e91cefb2
+-/
 theorem fixElement_le_of_toElementMap_le (f : ApproximableMap V V) {z : V.Element}
     (hz : f.toElementMap z ≤ z) : f.fixElement ≤ z := by
   have key : ∀ n X, (f.iterMap n).rel V.master X → z.mem X := by
@@ -197,7 +220,9 @@ theorem fixElement_le_of_toElementMap_le (f : ApproximableMap V V) {z : V.Elemen
 
 /-- The least fixed point is monotone in the map: `f ⊑ g ⟹ fix(f) ⊑ fix(g)`
 (immediate from
-`iterMap_mono_map`; underlies the approximability of `fix` in 4.2). -/
+`iterMap_mono_map`; underlies the approximability of `fix` in 4.2).
+@isnad1 id=le.1h4v.s6.6782b174fb65 from=translated src=- shape=fdfa1ca4 vocab=dbd6e8aa
+-/
 theorem fixElement_mono {f g : ApproximableMap V V} (hfg : f ≤ g) :
     f.fixElement ≤ g.fixElement := by
   rintro X ⟨n, hn⟩
@@ -210,7 +235,9 @@ def iterElem (f : ApproximableMap V V) (n : ℕ) : V.Element := (f.iterMap n).to
 
 /-- `Y ∈ fⁿ(⊥) ↔ Δ fⁿ Y`: the `n`-th approximant is the family of neighbourhoods
 reachable from
-`Δ` in exactly the `n` steps recorded by `fⁿ`. -/
+`Δ` in exactly the `n` steps recorded by `fⁿ`.
+@isnad1 id=iff.0h5v.s5.61f6859b0b9d from=translated src=- shape=68a328d9 vocab=d0d44b92
+-/
 theorem mem_iterElem (f : ApproximableMap V V) (n : ℕ) {X : Set α} :
     (f.iterElem n).mem X ↔ (f.iterMap n).rel V.master X := by
   constructor
@@ -218,7 +245,9 @@ theorem mem_iterElem (f : ApproximableMap V V) (n : ℕ) {X : Set α} :
     rw [mem_bot] at hW; subst hW; exact hWX
   · intro h; exact ⟨V.master, by rw [mem_bot], h⟩
 
-/-- The approximants form an increasing chain: `n ≤ m ⟹ fⁿ(⊥) ⊑ fᵐ(⊥)`. -/
+/-- The approximants form an increasing chain: `n ≤ m ⟹ fⁿ(⊥) ⊑ fᵐ(⊥)`.
+@isnad1 id=le.1h5v.s5.b587e08ff3e0 from=translated src=- shape=14814c5c vocab=4135cb8e
+-/
 theorem iterElem_mono (f : ApproximableMap V V) {n m : ℕ} (hnm : n ≤ m) :
     f.iterElem n ≤ f.iterElem m := by
   intro X hX
@@ -226,7 +255,9 @@ theorem iterElem_mono (f : ApproximableMap V V) {n m : ℕ} (hnm : n ≤ m) :
   exact rel_master_mono f hnm hX
 
 /-- `fⁿ(⊥)` agrees with the iterated elementwise function `(f(·))^[n] ⊥` — Scott's
-`fⁿ(⊥)`. -/
+`fⁿ(⊥)`.
+@isnad1 id=eq.0h4v.s5.17bd19a11221 from=translated src=- shape=23c7f17d vocab=80589507
+-/
 theorem iterElem_eq_iterate (f : ApproximableMap V V) (n : ℕ) :
     f.iterElem n = (f.toElementMap)^[n] V.bot := by
   induction n with
@@ -242,7 +273,9 @@ theorem iterElem_eq_iterate (f : ApproximableMap V V) (n : ℕ) :
 
 /-- **Theorem 4.2(iii) (Scott 1981, PRG-19).** `fix(f) = ⊔ₙ fⁿ(⊥)`, here as the
 directed union of
-the increasing chain of approximants. -/
+the increasing chain of approximants.
+@isnad1 id=eq.0h3v.s7.56f436ac070b from=translated src=- shape=a4cb4673 vocab=5f82baef
+-/
 theorem fixElement_eq_iSupDirected (f : ApproximableMap V V) :
     f.fixElement =
       NeighborhoodSystem.iSupDirected (f.iterElem)
@@ -279,7 +312,9 @@ def fixMap (V : NeighborhoodSystem α) : ApproximableMap (funSpace V V) V :=
 
 /-- On a finite element `↑F`, `fix` returns `fix(↑F)` (the least fixed point of
 the least map of
-`F`). -/
+`F`).
+@isnad1 id=eq.1h3v.s6.cd38a4fff02b from=translated src=- shape=df107c9a vocab=eabb9a29
+-/
 theorem fixMap_toElementMap_principal (V : NeighborhoodSystem α)
     {W : Set (ApproximableMap V V)} (hW : (funSpace V V).mem W) :
     (fixMap V).toElementMap ((funSpace V V).principal hW) =
@@ -294,7 +329,9 @@ neighbourhood `W ∈ φ` whose least map already realizes the same chain `Δ (�
 The witness `W`
 is accumulated as the intersection of the (finitely many) step-neighbourhoods used
 by the chain,
-which lies in `φ` because `φ` is a filter. -/
+which lies in `φ` because `φ` is a filter.
+@isnad1 id=ex.1h5v.s6.650ee2b5aa36 from=translated src=- shape=b36ca432 vocab=2a5828ba
+-/
 theorem exists_principal_iterMap (V : NeighborhoodSystem α) (φ : (funSpace V V).Element) :
     ∀ (n : ℕ) (X : Set α), ((toApproxMap φ).iterMap n).rel V.master X →
       ∃ (W : Set (ApproximableMap V V)) (hw : φ.mem W),
@@ -331,7 +368,9 @@ the least fixed point of the corresponding map: `fix.toElementMap φ =
 fix(toApproxMap φ)`. The
 forward inclusion (`⊆ x`) is `exists_principal_iterMap`; the reverse is
 monotonicity of `fix` along
-`↑W ⊑ toApproxMap φ`. -/
+`↑W ⊑ toApproxMap φ`.
+@isnad1 id=eq.0h3v.s5.05aef931b509 from=translated src=- shape=c05ebbc8 vocab=6b57d5a3
+-/
 theorem fixMap_toElementMap (V : NeighborhoodSystem α) (φ : (funSpace V V).Element) :
     (fixMap V).toElementMap φ = (toApproxMap φ).fixElement := by
   apply Element.ext
@@ -352,7 +391,9 @@ theorem fixMap_toElementMap (V : NeighborhoodSystem α) (φ : (funSpace V V).Ele
 /-- **Theorem 4.2(i) (Scott 1981, PRG-19).** `fix(f) = f(fix(f))`: the value of
 `fix` is a fixed
 point of the argument. (Equivalently `eval(f, fix(f)) = fix(f)` by
-`evalMap_apply`.) -/
+`evalMap_apply`.)
+@isnad1 id=eq.0h3v.s6.ad574d94917b from=translated src=- shape=7f050f52 vocab=ed888243
+-/
 theorem fixMap_fixed (V : NeighborhoodSystem α) (φ : (funSpace V V).Element) :
     (toApproxMap φ).toElementMap ((fixMap V).toElementMap φ) = (fixMap V).toElementMap φ := by
   rw [fixMap_toElementMap]
@@ -360,14 +401,18 @@ theorem fixMap_fixed (V : NeighborhoodSystem α) (φ : (funSpace V V).Element) :
 
 /-- **Theorem 4.2(ii) (Scott 1981, PRG-19).** `f(x) ⊆ x ⟹ fix(f) ⊆ x`: `fix` lands
 in the least
-pre-fixed point. -/
+pre-fixed point.
+@isnad1 id=le.1h4v.s6.a6ab360b0787 from=translated src=- shape=f2124cb5 vocab=8e3d20ba
+-/
 theorem fixMap_least (V : NeighborhoodSystem α) (φ : (funSpace V V).Element) {z : V.Element}
     (hz : (toApproxMap φ).toElementMap z ≤ z) : (fixMap V).toElementMap φ ≤ z := by
   rw [fixMap_toElementMap]
   exact fixElement_le_of_toElementMap_le (toApproxMap φ) hz
 
 /-- **Theorem 4.2(iii) (Scott 1981, PRG-19).** `fix(f) = ⊔ₙ fⁿ(⊥)` (as a directed
-union). -/
+union).
+@isnad1 id=eq.0h3v.s7.5d84e89c8f51 from=translated src=- shape=65d55718 vocab=a47a4d29
+-/
 theorem fixMap_eq_iSup (V : NeighborhoodSystem α) (φ : (funSpace V V).Element) :
     (fixMap V).toElementMap φ =
       NeighborhoodSystem.iSupDirected ((toApproxMap φ).iterElem)
@@ -380,7 +425,9 @@ theorem fixMap_eq_iSup (V : NeighborhoodSystem α) (φ : (funSpace V V).Element)
 fixed point of `f`.
 This is the bridge to the "for any `f : 𝒟 → 𝒟`" form of Theorem 4.2, using the
 Theorem 3.10
-isomorphism `toApproxMap (toFilter f) = f`. -/
+isomorphism `toApproxMap (toFilter f) = f`.
+@isnad1 id=eq.0h3v.s5.6e4c8b163946 from=translated src=- shape=f001d7e6 vocab=62e34de8
+-/
 theorem fixMap_toElementMap_toFilter (V : NeighborhoodSystem α) (f : ApproximableMap V V) :
     (fixMap V).toElementMap (toFilter f) = f.fixElement := by
   rw [fixMap_toElementMap]
@@ -393,7 +440,9 @@ theorem fixMap_toElementMap_toFilter (V : NeighborhoodSystem α) (f : Approximab
 `fax` satisfying
 (i) and (ii) coincides with `fix`. (Scott: from (i)(ii) one proves `fix(f) ⊆
 fax(f)` and
-`fax(f) ⊆ fix(f)`.) -/
+`fax(f) ⊆ fix(f)`.)
+@isnad1 id=eq.2h3v.s7.6a001d3522b0 from=translated src=- shape=a656035e vocab=8e3d20ba
+-/
 theorem fixMap_unique (V : NeighborhoodSystem α) (fax : ApproximableMap (funSpace V V) V)
     (h_fix : ∀ φ, (toApproxMap φ).toElementMap (fax.toElementMap φ) = fax.toElementMap φ)
     (h_least : ∀ (φ : (funSpace V V).Element) (z : V.Element),

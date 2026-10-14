@@ -62,6 +62,9 @@ approximable endomap of
 def section₂ (τ : ApproximableMap (prod V V) V) (x : V.Element) : ApproximableMap V V :=
   toApproxMap ((curry τ).toElementMap x)
 
+/--
+@isnad1 id=eq.0h5v.s5.ad0f4de9dfee from=translated src=- shape=bee6966c vocab=3c938396
+-/
 theorem section₂_apply (τ : ApproximableMap (prod V V) V) (x y : V.Element) :
     (section₂ τ x).toElementMap y = τ.toElementMap (pair x y) := by
   rw [section₂, toElementMap_curry_apply]
@@ -70,7 +73,9 @@ theorem section₂_apply (τ : ApproximableMap (prod V V) V) (x y : V.Element) :
 def pfix (τ : ApproximableMap (prod V V) V) : ApproximableMap V V :=
   (fixMap V).comp (curry τ)
 
-/-- `pfix τ (x) = !y. τ(x, y)`, the least fixed point of the section at `x`. -/
+/-- `pfix τ (x) = !y. τ(x, y)`, the least fixed point of the section at `x`.
+@isnad1 id=eq.0h4v.s5.501a4877e76c from=translated src=- shape=e9bf0632 vocab=5419f772
+-/
 theorem pfix_apply (τ : ApproximableMap (prod V V) V) (x : V.Element) :
     (pfix τ).toElementMap x = (section₂ τ x).fixElement := by
   rw [pfix, toElementMap_comp, fixMap_toElementMap, section₂]
@@ -81,7 +86,9 @@ function space `(𝒟 → 𝒟)`: `recOp τ := curry(τ ∘ ⟨p₁, eval⟩)`. 
 def recOp (τ : ApproximableMap (prod V V) V) : ApproximableMap (funSpace V V) (funSpace V V) :=
   curry (τ.comp (paired (proj₁ (funSpace V V) V) (evalMap V V)))
 
-/-- `recOp τ (g) (x) = τ(x, g(x))`. -/
+/-- `recOp τ (g) (x) = τ(x, g(x))`.
+@isnad1 id=eq.0h5v.s6.e6118c5ff6b3 from=translated src=- shape=9789998f vocab=03b134b5
+-/
 theorem recOp_apply (τ : ApproximableMap (prod V V) V) (φ : (funSpace V V).Element)
     (x : V.Element) :
     (toApproxMap ((recOp τ).toElementMap φ)).toElementMap x
@@ -90,13 +97,17 @@ theorem recOp_apply (τ : ApproximableMap (prod V V) V) (φ : (funSpace V V).Ele
     toElementMap_proj₁, snd_pair, evalMap_apply]
 
 /-- `pfix τ` is a fixed point of `recOp τ` (pointwise: `τ(x, pfix τ x) = pfix τ
-x`). -/
+x`).
+@isnad1 id=eq.0h4v.s5.0c16737b25b7 from=translated src=- shape=e8d515e2 vocab=fa78902a
+-/
 theorem pfix_isFixed (τ : ApproximableMap (prod V V) V) (x : V.Element) :
     τ.toElementMap (pair x ((pfix τ).toElementMap x)) = (pfix τ).toElementMap x := by
   rw [pfix_apply, ← section₂_apply, toElementMap_fixElement]
 
 /-- **Proposition 5.4 (Scott 1981, PRG-19).** `λx. !y. τ(x, y) = !g. λx. τ(x,
-g(x))`. -/
+g(x))`.
+@isnad1 id=eq.0h3v.s5.dfd256d29791 from=translated src=- shape=3b0386e7 vocab=f78084d1
+-/
 theorem pfix_eq_fixElement_recOp (τ : ApproximableMap (prod V V) V) :
     pfix τ = toApproxMap (recOp τ).fixElement := by
   set g₀ := (recOp τ).fixElement with hg₀

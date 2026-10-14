@@ -95,7 +95,9 @@ def gStepsOK (g : ApproximableMap V V) (P : ComputablePresentation V) : ℕ → 
 
 /-- **Soundness of a chain.** A valid `g`-chain from `a` realises the iterate
 relation
-`(gᵏ).rel (X_a) (X_{last})` with `k` the chain length. -/
+`(gᵏ).rel (X_a) (X_{last})` with `k` the chain length.
+@isnad1 id=rel.1h6v.s5.cf3b5ed781f1 from=translated src=- shape=ab6997d9 vocab=3bda7cf9
+-/
 theorem gStepsOK_sound (g : ApproximableMap V V) (P : ComputablePresentation V) :
     ∀ (full : List ℕ) (a : ℕ), gStepsOK g P a full →
       (g.iterMap full.length).rel (P.X a) (P.X (gLastOf a full)) := by
@@ -119,7 +121,9 @@ theorem gStepsOK_sound (g : ApproximableMap V V) (P : ComputablePresentation V) 
 `g`-chain from `a`
 whose final neighbourhood is contained in `X_ℓ`. (The intermediate neighbourhoods
 are named via
-`surj`; the relaxed final condition `X_{last} ⊆ X_ℓ` handles the `n = 0` base.) -/
+`surj`; the relaxed final condition `X_{last} ⊆ X_ℓ` handles the `n = 0` base.)
+@isnad1 id=ex.1h7v.s6.39883b02d1de from=translated src=- shape=77dbe35c vocab=d36fb73f
+-/
 theorem gStepsOK_complete (g : ApproximableMap V V) (P : ComputablePresentation V) :
     ∀ (n a ℓ : ℕ), (g.iterMap n).rel (P.X a) (P.X ℓ) →
       ∃ full, gStepsOK g P a full ∧ P.X (gLastOf a full) ⊆ P.X ℓ := by
@@ -145,7 +149,9 @@ is in `fix(g)`
 iff a
 valid `g`-chain (from a master index `a₀` with `X_{a₀} = Δ`) reaches a final
 neighbourhood inside
-`X_ℓ`. -/
+`X_ℓ`.
+@isnad1 id=iff.1h6v.s6.18156aed0167 from=translated src=- shape=2cfeb340 vocab=2160b690
+-/
 theorem fixElement_mem_iff_chain (g : ApproximableMap V V) (P : ComputablePresentation V)
     (a0 : ℕ) (ha0 : P.X a0 = V.master) (ℓ : ℕ) :
     g.fixElement.mem (P.X ℓ) ↔
@@ -170,7 +176,9 @@ variable (P : ComputablePresentation V)
 
 /-- `Xenum (codePair a b) = [X_a, X_b]` (a one-entry, always-consistent
 function-space
-neighbourhood); a thin wrapper around `Xenum_singleton`. -/
+neighbourhood); a thin wrapper around `Xenum_singleton`.
+@isnad1 id=eq.1h6v.s6.cd11eb834239 from=translated src=- shape=42c79b29 vocab=c5df78b9
+-/
 theorem Xenum_codePair (gN : ℕ → ℕ)
     (hgN : ∀ c, gN c = 1 ↔ (stepFun (funListOf P P (decodeList c))
       : Set (ApproximableMap V V)).Nonempty) (a b : ℕ) :
@@ -179,7 +187,9 @@ theorem Xenum_codePair (gN : ℕ → ℕ)
 
 /-- The least map `ĝ` of the function-space neighbourhood `Xenum c` relates `X_a`
 to `X_b` exactly
-when `Xenum c ⊆ [X_a, X_b]` (Scott's `⋂{X_{mᵢ} ∣ X_a ⊆ X_{nᵢ}} ⊆ X_b`). -/
+when `Xenum c ⊆ [X_a, X_b]` (Scott's `⋂{X_{mᵢ} ∣ X_a ⊆ X_{nᵢ}} ⊆ X_b`).
+@isnad1 id=iff.1h7v.s7.a043be64cd54 from=translated src=- shape=307393ba vocab=26457a9f
+-/
 theorem leastMap_Xenum_rel (gN : ℕ → ℕ)
     (hgN : ∀ c, gN c = 1 ↔ (stepFun (funListOf P P (decodeList c))
       : Set (ApproximableMap V V)).Nonempty) (c a b : ℕ) :
@@ -193,7 +203,9 @@ theorem leastMap_Xenum_rel (gN : ℕ → ℕ)
 there is
 a valid least-map chain from the master index reaching a neighbourhood inside
 `X_ℓ`. This is Scott's
-"`⋂[X_{nᵢ}, X_{mᵢ}] fix X_ℓ` iff for some finite sequence …". -/
+"`⋂[X_{nᵢ}, X_{mᵢ}] fix X_ℓ` iff for some finite sequence …".
+@isnad1 id=iff.1h6v.s7.33163312fd05 from=translated src=- shape=e020377a vocab=b11836a0
+-/
 theorem fixMap_rel_iff (gN : ℕ → ℕ)
     (hgN : ∀ c, gN c = 1 ↔ (stepFun (funListOf P P (decodeList c))
       : Set (ApproximableMap V V)).Nonempty) (c ℓ : ℕ) :
@@ -215,7 +227,9 @@ def chainDec (fincl : ℕ → ℕ) (c : ℕ) : ℕ → List ℕ → Prop
 
 /-- `chainDec` is equivalent to `gStepsOK` of the least map, via the inclusion
 char's spec and
-`Xenum (codePair a b) = [X_a, X_b]`. -/
+`Xenum (codePair a b) = [X_a, X_b]`.
+@isnad1 id=iff.2h8v.s7.297451ab3075 from=translated src=- shape=974125e2 vocab=0147366d
+-/
 theorem chainDec_iff_gStepsOK (gN : ℕ → ℕ)
     (hgN : ∀ c, gN c = 1 ↔ (stepFun (funListOf P P (decodeList c))
       : Set (ApproximableMap V V)).Nonempty) (fincl : ℕ → ℕ)
@@ -256,11 +270,17 @@ flag`, current element `x`). -/
 def fixPStep (fincl : ℕ → ℕ) (c acc x : ℕ) : ℕ :=
   Nat.pair x (selectFn acc.unpair.2 (isOne (fincl (Nat.pair c (codePair acc.unpair.1 x)))) 0)
 
+/--
+@isnad1 id=eq.0h4v.s4.a160bb4f8ced from=translated src=- shape=6a5d84a1 vocab=74c85d81
+-/
 theorem fixStp_eq (fincl : ℕ → ℕ) (c acc x : ℕ) :
     fixStp fincl (Nat.pair x (Nat.pair acc c)) = fixPStep fincl c acc x := by
   unfold fixStp fixPStep
   simp only [unpair_pair_fst, unpair_pair_snd]
 
+/--
+@isnad1 id=primrec.1h1v.s3.73c8961bb07b from=translated src=- shape=928bc03f vocab=f9e87ba1
+-/
 theorem primrec_fixStp (fincl : ℕ → ℕ) (hfinclp : Nat.Primrec fincl) :
     Nat.Primrec (fixStp fincl) := by
   have hx : Nat.Primrec (fun w : ℕ => w.unpair.1) := Nat.Primrec.left
@@ -286,6 +306,9 @@ coded by `i`. Returns `pair lastIdx flag`. -/
 def fixChainChar (fincl : ℕ → ℕ) (c i : ℕ) : ℕ :=
   foldCode (fixStp fincl) c (Nat.pair P.masterIdx 1) i
 
+/--
+@isnad1 id=eq.0h6v.s5.e9e975394af5 from=translated src=- shape=be82098d vocab=74709a0d
+-/
 theorem fixChainChar_eq (fincl : ℕ → ℕ) (c i : ℕ) :
     fixChainChar P fincl c i
       = List.foldl (fixPStep fincl c) (Nat.pair P.masterIdx 1) (decodeList i) := by
@@ -295,12 +318,17 @@ theorem fixChainChar_eq (fincl : ℕ → ℕ) (c i : ℕ) :
     funext acc x; exact fixStp_eq fincl c acc x
   rw [hstep]
 
+/--
+@isnad1 id=primrec.1h4v.s5.642471189316 from=translated src=- shape=5d4ef27f vocab=be481262
+-/
 theorem primrec_fixChainChar (fincl : ℕ → ℕ) (hfinclp : Nat.Primrec fincl) :
     Nat.Primrec (fun t => fixChainChar P fincl t.unpair.1 t.unpair.2) :=
   (primrec_foldCode (primrec_fixStp fincl hfinclp) Nat.Primrec.left
     (Nat.Primrec.const (Nat.pair P.masterIdx 1)) Nat.Primrec.right).of_eq (fun _ => rfl)
 
-/-- The `foldCode` tracks the last index reached. -/
+/-- The `foldCode` tracks the last index reached.
+@isnad1 id=eq.0h5v.s5.9c85dfd0c06c from=translated src=- shape=bef3e67e vocab=e6284b07
+-/
 theorem fixPStep_foldl_fst (fincl : ℕ → ℕ) (c : ℕ) :
     ∀ (full : List ℕ) (prev fl : ℕ),
       (List.foldl (fixPStep fincl c) (Nat.pair prev fl) full).unpair.1 = gLastOf prev full := by
@@ -320,7 +348,9 @@ theorem fixPStep_foldl_fst (fincl : ℕ → ℕ) (c : ℕ) :
     rfl
 
 /-- The `foldCode` flag is `1` iff the start flag is `1` and the whole chain is
-consistent. -/
+consistent.
+@isnad1 id=iff.1h5v.s5.0a9666bd9919 from=translated src=- shape=075a12ba vocab=4e803d5e
+-/
 theorem fixPStep_foldl_snd (fincl : ℕ → ℕ) (c : ℕ) :
     ∀ (full : List ℕ) (prev fl : ℕ), fl ≤ 1 →
       ((List.foldl (fixPStep fincl c) (Nat.pair prev fl) full).unpair.2 = 1 ↔
@@ -358,7 +388,9 @@ theorem fixPStep_foldl_snd (fincl : ℕ → ℕ) (c : ℕ) :
 
 /-- Read-off of the `foldCode`: its `.1` is the last index of `decodeList i`, and
 its `.2 = 1` iff
-the decoded chain is consistent. -/
+the decoded chain is consistent.
+@isnad1 id=and.0h6v.s6.c1d9999459b5 from=translated src=- shape=b1b7effd vocab=613070fe
+-/
 theorem fixChainChar_spec (fincl : ℕ → ℕ) (c i : ℕ) :
     (fixChainChar P fincl c i).unpair.1 = gLastOf P.masterIdx (decodeList i)
   ∧ ((fixChainChar P fincl c i).unpair.2 = 1 ↔ chainDec fincl c P.masterIdx (decodeList i)) := by
@@ -375,7 +407,9 @@ consistency/inclusion/equality chars of Theorem 7.5), the combinator `fix : (�
 𝒟) → 𝒟` is
 computable: its neighbourhood relation is the recursively-enumerable existential
 `∃ chain` over the
-decidable least-map step relation. -/
+decidable least-map step relation.
+@isnad1 id=iscomput.6h6v.s7.db05e779d240 from=translated src=- shape=c66448bf vocab=f01a80c3
+-/
 theorem fixMap_isComputable
     (gN incl eq : ℕ → ℕ)
     (hgN : ∀ c, gN c = 1 ↔ (stepFun (funListOf P P (decodeList c))

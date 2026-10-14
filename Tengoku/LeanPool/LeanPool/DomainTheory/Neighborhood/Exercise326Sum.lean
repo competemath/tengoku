@@ -68,6 +68,9 @@ def condSum (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β)
     ApproximableMap (prod TD (prod V₀ V₁)) (sum V₀ V₁ h₀ h₁) :=
   (cond (sum V₀ V₁ h₀ h₁)).comp (condSumEmb V₀ V₁ h₀ h₁)
 
+/--
+@isnad1 id=eq.2h7v.s8.2247605c1786 from=translated src=- shape=cad6c310 vocab=73b9b1f9
+-/
 theorem condSumEmb_toElementMap (t : TD.Element) (x : V₀.Element) (y : V₁.Element) :
     (condSumEmb V₀ V₁ h₀ h₁).toElementMap (pair t (pair x y))
       = pair t (pair ((inMap₀ (h₀ := h₀) (h₁ := h₁)).toElementMap x)
@@ -75,19 +78,25 @@ theorem condSumEmb_toElementMap (t : TD.Element) (x : V₀.Element) (y : V₁.El
   simp only [condSumEmb, toElementMap_paired, toElementMap_comp, toElementMap_proj₀,
     toElementMap_proj₁, fst_pair, snd_pair]
 
-/-- **Exercise 3.26.** `condSum(true, x, y) = in₀(x)`. -/
+/-- **Exercise 3.26.** `condSum(true, x, y) = in₀(x)`.
+@isnad1 id=eq.2h6v.s7.61eb3b0a11ee from=translated src=- shape=addafba7 vocab=ce29932c
+-/
 theorem condSum_true (x : V₀.Element) (y : V₁.Element) :
     (condSum V₀ V₁ h₀ h₁).toElementMap (pair Example23.trueElt (pair x y))
       = (inMap₀ (h₀ := h₀) (h₁ := h₁)).toElementMap x := by
   rw [condSum, toElementMap_comp, condSumEmb_toElementMap, cond_true]
 
-/-- **Exercise 3.26.** `condSum(false, x, y) = in₁(y)`. -/
+/-- **Exercise 3.26.** `condSum(false, x, y) = in₁(y)`.
+@isnad1 id=eq.2h6v.s7.af7ba8b94fc1 from=translated src=- shape=23d8be32 vocab=bb74f558
+-/
 theorem condSum_false (x : V₀.Element) (y : V₁.Element) :
     (condSum V₀ V₁ h₀ h₁).toElementMap (pair Example23.falseElt (pair x y))
       = (inMap₁ (h₀ := h₀) (h₁ := h₁)).toElementMap y := by
   rw [condSum, toElementMap_comp, condSumEmb_toElementMap, cond_false]
 
-/-- **Exercise 3.26.** `condSum(⊥, x, y) = ⊥`. -/
+/-- **Exercise 3.26.** `condSum(⊥, x, y) = ⊥`.
+@isnad1 id=eq.2h6v.s6.195297317f26 from=translated src=- shape=ef993174 vocab=aba57598
+-/
 theorem condSum_bot (x : V₀.Element) (y : V₁.Element) :
     (condSum V₀ V₁ h₀ h₁).toElementMap (pair Example23.botElt (pair x y)) =
       (sum V₀ V₁ h₀ h₁).bot := by
@@ -95,12 +104,16 @@ theorem condSum_bot (x : V₀.Element) (y : V₁.Element) :
 
 /-! ### The discriminator `which : D₀ + D₁ → T`. -/
 
-/-- A `T`-neighbourhood containing `Δ` is `Δ`. -/
+/-- A `T`-neighbourhood containing `Δ` is `Δ`.
+@isnad1 id=eq.2h1v.s4.1dbefa4dfd38 from=translated src=- shape=c64779a5 vocab=2ffbfbae
+-/
 theorem Tmem_ge_master {C : Set Example12.Token} (hC : Example12.mem C)
     (h : Example12.master ⊆ C) : C = Example12.master :=
   Set.Subset.antisymm (Example12.neighborhoodSystem.sub_master hC) h
 
-/-- A `T`-neighbourhood containing `{0}` is `{0}` or `Δ`. -/
+/-- A `T`-neighbourhood containing `{0}` is `{0}` or `Δ`.
+@isnad1 id=or.2h1v.s4.9f3fc90efd4c from=translated src=- shape=c743252c vocab=2664731c
+-/
 theorem Tmem_ge_zero {C : Set Example12.Token} (hC : Example12.mem C)
     (h : Example12.zero ⊆ C) : C = Example12.zero ∨ C = Example12.master := by
   rcases (Example12.mem_iff C).mp hC with rfl | rfl | rfl
@@ -109,7 +122,9 @@ theorem Tmem_ge_zero {C : Set Example12.Token} (hC : Example12.mem C)
   · exact absurd (h (by simp [Example12.zero] : (0 : Example12.Token) ∈ Example12.zero))
       (by simp [Example12.one])
 
-/-- A `T`-neighbourhood containing `{1}` is `{1}` or `Δ`. -/
+/-- A `T`-neighbourhood containing `{1}` is `{1}` or `Δ`.
+@isnad1 id=or.2h1v.s4.8d482514b407 from=translated src=- shape=c743252c vocab=6f0caca8
+-/
 theorem Tmem_ge_one {C : Set Example12.Token} (hC : Example12.mem C)
     (h : Example12.one ⊆ C) : C = Example12.one ∨ C = Example12.master := by
   rcases (Example12.mem_iff C).mp hC with rfl | rfl | rfl
@@ -118,6 +133,9 @@ theorem Tmem_ge_one {C : Set Example12.Token} (hC : Example12.mem C)
       (by simp [Example12.zero])
   · exact Or.inl rfl
 
+/--
+@isnad1 id=or.2h2v.s5.0bd6e9f6d107 from=translated src=- shape=acd1f1c6 vocab=cb1be639
+-/
 theorem inter_in_zeroset {C C' : Set Example12.Token} (hc : C = Example12.master ∨ C =
   Example12.zero)
     (hc' : C' = Example12.master ∨ C' = Example12.zero) :
@@ -128,6 +146,9 @@ theorem inter_in_zeroset {C C' : Set Example12.Token} (hc : C = Example12.master
   · exact Or.inr (Set.inter_univ _)
   · exact Or.inr (Set.inter_self _)
 
+/--
+@isnad1 id=or.2h2v.s5.562be31cfd44 from=translated src=- shape=acd1f1c6 vocab=37bd17ef
+-/
 theorem inter_in_oneset {C C' : Set Example12.Token} (hc : C = Example12.master ∨ C = Example12.one)
     (hc' : C' = Example12.master ∨ C' = Example12.one) :
     C ∩ C' = Example12.master ∨ C ∩ C' = Example12.one := by
@@ -146,6 +167,9 @@ def whichGuard (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β)
   ((∃ Y, V₁.mem Y ∧ W = inj₁ Y) ∧ (C = Example12.master ∨ C = Example12.one)) ∨
   (W = sumMaster V₀ V₁ ∧ C = Example12.master)
 
+/--
+@isnad1 id=or.3h7v.s5.3b6c5bbc7868 from=translated src=- shape=dcab8ea0 vocab=5071e5d9
+-/
 theorem whichGuard_left {W : Set (Option (α ⊕ β))} {C : Set Example12.Token} {X : Set α}
     (hg : whichGuard V₀ V₁ W C) (hW : W = inj₀ X) (hX : X.Nonempty) :
     C = Example12.master ∨ C = Example12.zero := by
@@ -155,6 +179,9 @@ theorem whichGuard_left {W : Set (Option (α ⊕ β))} {C : Set Example12.Token}
     intro h; exact not_inj₀_subset_inj₁ hX h.subset
   · simp_all
 
+/--
+@isnad1 id=or.3h7v.s5.046662d0ec1d from=translated src=- shape=97afdf07 vocab=885ec26c
+-/
 theorem whichGuard_right {W : Set (Option (α ⊕ β))} {C : Set Example12.Token} {Y : Set β}
     (hg : whichGuard V₀ V₁ W C) (hW : W = inj₁ Y) (hY : Y.Nonempty) :
     C = Example12.master ∨ C = Example12.one := by
@@ -164,6 +191,9 @@ theorem whichGuard_right {W : Set (Option (α ⊕ β))} {C : Set Example12.Token
   · exact hc
   · simp_all
 
+/--
+@isnad1 id=eq.2h6v.s5.8c0c52992f67 from=translated src=- shape=d4464816 vocab=07849cad
+-/
 theorem whichGuard_masterC {W : Set (Option (α ⊕ β))} {C : Set Example12.Token}
     (hg : whichGuard V₀ V₁ W C) (hW : W = sumMaster V₀ V₁) : C = Example12.master := by
   rcases hg with ⟨⟨X, _, hWX⟩, _⟩ | ⟨⟨Y, _, hWY⟩, _⟩ | ⟨_, hc⟩
@@ -220,7 +250,9 @@ def whichMap (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β)
 
 /-! ### Membership facts and the composite identity. -/
 
-/-- `∅` is never a sum-neighbourhood (every neighbourhood is non-empty). -/
+/-- `∅` is never a sum-neighbourhood (every neighbourhood is non-empty).
+@isnad1 id=not.2h4v.s5.20419c24cb21 from=translated src=- shape=63736f13 vocab=4f008774
+-/
 theorem not_sum_mem_empty : ¬ (sum V₀ V₁ h₀ h₁).mem ∅ := by
   rintro (h | ⟨X, hX, h⟩ | ⟨Y, hY, h⟩)
   · exact absurd (h.symm ▸ none_mem_sumMaster) (Set.notMem_empty _)
@@ -230,7 +262,9 @@ theorem not_sum_mem_empty : ¬ (sum V₀ V₁ h₀ h₁).mem ∅ := by
     exact absurd (h ▸ hb) (Set.notMem_empty _)
 
 /-- `which(x)` selects `true` (`{0} ∈ which x`) exactly when `x` reaches into the
-left copy. -/
+left copy.
+@isnad1 id=iff.2h5v.s6.9bf535fd187e from=translated src=- shape=4928e076 vocab=29ec8268
+-/
 theorem which_mem_zero {x : (sum V₀ V₁ h₀ h₁).Element} :
     ((whichMap V₀ V₁ h₀ h₁).toElementMap x).mem Example12.zero
       ↔ ∃ X, V₀.mem X ∧ x.mem (inj₀ X) := by
@@ -247,7 +281,9 @@ theorem which_mem_zero {x : (sum V₀ V₁ h₀ h₁).Element} :
       Or.inl ⟨⟨X, hX, rfl⟩, Or.inr rfl⟩⟩
 
 /-- `which(x)` selects `false` (`{1} ∈ which x`) exactly when `x` reaches into the
-right copy. -/
+right copy.
+@isnad1 id=iff.2h5v.s6.b397fecef479 from=translated src=- shape=9fef6664 vocab=5903dfd3
+-/
 theorem which_mem_one {x : (sum V₀ V₁ h₀ h₁).Element} :
     ((whichMap V₀ V₁ h₀ h₁).toElementMap x).mem Example12.one
       ↔ ∃ Y, V₁.mem Y ∧ x.mem (inj₁ Y) := by
@@ -265,7 +301,9 @@ theorem which_mem_one {x : (sum V₀ V₁ h₀ h₁).Element} :
 
 /-- On a "left" element (one reaching into the left copy), the round-trip `in₀ ∘
 out₀` is the
-identity. -/
+identity.
+@isnad1 id=eq.3h5v.s7.6e13f35562b7 from=translated src=- shape=1599d8ff vocab=91705bf1
+-/
 theorem inMap₀_outMap₀_eq_of_left {x : (sum V₀ V₁ h₀ h₁).Element}
     (hL : ∃ X, V₀.mem X ∧ x.mem (inj₀ X)) :
     (inMap₀ (h₀ := h₀) (h₁ := h₁)).toElementMap ((outMap₀ (h₀ := h₀) (
@@ -299,7 +337,9 @@ theorem inMap₀_outMap₀_eq_of_left {x : (sum V₀ V₁ h₀ h₁).Element}
       rw [inj₀_inter_inj₁] at this
       exact absurd (x.sub this) not_sum_mem_empty
 
-/-- On a "right" element, the round-trip `in₁ ∘ out₁` is the identity. -/
+/-- On a "right" element, the round-trip `in₁ ∘ out₁` is the identity.
+@isnad1 id=eq.3h5v.s7.7b7759b3c31e from=translated src=- shape=f89c565c vocab=8278dbc5
+-/
 theorem inMap₁_outMap₁_eq_of_right {x : (sum V₀ V₁ h₀ h₁).Element}
     (hR : ∃ Y, V₁.mem Y ∧ x.mem (inj₁ Y)) :
     (inMap₁ (h₀ := h₀) (h₁ := h₁)).toElementMap ((outMap₁ (h₀ := h₀) (
@@ -330,7 +370,9 @@ theorem inMap₁_outMap₁_eq_of_right {x : (sum V₀ V₁ h₀ h₁).Element}
         hY', Or.inr (Or.inr ⟨Y', hY', rfl⟩), subset_rfl⟩
 
 /-- Trichotomy for a sum-element: it reaches the left copy, or the right copy, or
-is `⊥`. -/
+is `⊥`.
+@isnad1 id=or.2h5v.s7.fe2ec2c959b9 from=translated src=- shape=4a096682 vocab=ced67049
+-/
 theorem sum_element_trichotomy (x : (sum V₀ V₁ h₀ h₁).Element) :
     (∃ X, V₀.mem X ∧ x.mem (inj₀ X)) ∨ (∃ Y, V₁.mem Y ∧ x.mem (inj₁ Y)) ∨
       (∀ W, x.mem W → W = (sum V₀ V₁ h₀ h₁).master) := by
@@ -347,7 +389,9 @@ theorem sum_element_trichotomy (x : (sum V₀ V₁ h₀ h₁).Element) :
 
 /-- **Exercise 3.26 (Scott 1981, PRG-19).** Scott's identity for the
 discriminator:
-`cond(which x, in₀(out₀ x), in₁(out₁ x)) = x` for every `x ∈ |D₀ + D₁|`. -/
+`cond(which x, in₀(out₀ x), in₁(out₁ x)) = x` for every `x ∈ |D₀ + D₁|`.
+@isnad1 id=eq.2h5v.s8.3350f0272f7b from=translated src=- shape=953d153d vocab=f6fc3ccc
+-/
 theorem cond_which (x : (sum V₀ V₁ h₀ h₁).Element) :
     (cond (sum V₀ V₁ h₀ h₁)).toElementMap
         (pair ((whichMap V₀ V₁ h₀ h₁).toElementMap x)

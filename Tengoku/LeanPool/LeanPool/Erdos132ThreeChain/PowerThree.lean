@@ -19,28 +19,48 @@ corresponding real equations and transfer them by `exact_mod_cast`.
 
 namespace Erdos132ThreeChain
 
+/--
+@isnad1 id=le.0h1v.s4.d2681628fb0a from=translated src=- shape=569d4514 vocab=df48d38c
+-/
 theorem one_le_pow3 (n : ℕ) : (1 : ℤ) ≤ 3 ^ n := one_le_pow₀ (by norm_num)
 
+/--
+@isnad1 id=lt.0h1v.s4.380ddda87e7d from=translated src=- shape=569d4514 vocab=e3eb8a37
+-/
 theorem pow3_pos (n : ℕ) : (0 : ℤ) < 3 ^ n := by positivity
 
+/--
+@isnad1 id=le.1h1v.s5.ba61239f08ff from=translated src=- shape=7749f964 vocab=df48d38c
+-/
 theorem three_le_pow3 {n : ℕ} (h : n ≠ 0) : (3 : ℤ) ≤ 3 ^ n := by
   obtain ⟨m, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by omega⟩
   have h3 : (3 : ℤ) ^ (m + 1) = 3 * 3 ^ m := by ring
   nlinarith [one_le_pow3 m]
 
+/--
+@isnad1 id=dvd.1h1v.s5.6ecbbfe91330 from=translated src=- shape=7749f964 vocab=a14728fb
+-/
 theorem three_dvd_pow3 {n : ℕ} (h : n ≠ 0) : (3 : ℤ) ∣ 3 ^ n := by
   obtain ⟨m, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by omega⟩
   exact ⟨3 ^ m, by ring⟩
 
+/--
+@isnad1 id=dvd.1h1v.s5.d036e5999b38 from=translated src=- shape=f33b0104 vocab=0a8622a4
+-/
 theorem nine_dvd_pow3 {n : ℕ} (h : 2 ≤ n) : (9 : ℤ) ∣ 3 ^ n := by
   obtain ⟨m, rfl⟩ : ∃ m, n = m + 2 := ⟨n - 2, by omega⟩
   exact ⟨3 ^ m, by ring⟩
 
+/--
+@isnad1 id=eq.1h2v.s5.f02e786bae06 from=translated src=- shape=5301c77e vocab=65e49ada
+-/
 theorem pow3_inj {m n : ℕ} (h : (3 : ℤ) ^ m = 3 ^ n) : m = n := by
   have : (3 : ℕ) ^ m = 3 ^ n := by exact_mod_cast h
   exact Nat.pow_right_injective (by norm_num) this
 
-/-- A power of three is `1`, is `3`, or is at least `9`. -/
+/-- A power of three is `1`, is `3`, or is at least `9`.
+@isnad1 id=or.0h1v.s6.60c49d6bb58a from=translated src=- shape=dc02f826 vocab=df48d38c
+-/
 theorem pow3_trichotomy (n : ℕ) : (3 : ℤ) ^ n = 1 ∨ (3 : ℤ) ^ n = 3 ∨ 9 ≤ (3 : ℤ) ^ n := by
   match n with
   | 0 => left; norm_num
@@ -50,7 +70,9 @@ theorem pow3_trichotomy (n : ℕ) : (3 : ℤ) ^ n = 1 ∨ (3 : ℤ) ^ n = 3 ∨ 
     have h : (3 : ℤ) ^ (m + 2) = 9 * 3 ^ m := by ring
     nlinarith [one_le_pow3 m]
 
-/-- `4 * 3 ^ j - 1` is a power of three only in the trivial instance `4 - 1 = 3`. -/
+/-- `4 * 3 ^ j - 1` is a power of three only in the trivial instance `4 - 1 = 3`.
+@isnad1 id=and.1h2v.s6.7a94603c2d62 from=translated src=- shape=e6bf95a6 vocab=64706f8b
+-/
 theorem pow3_eq_four_mul_pow3_sub_one {j l : ℕ} (h : (3 : ℤ) ^ l = 4 * 3 ^ j - 1) :
     j = 0 ∧ l = 1 := by
   have hj : j = 0 := by
@@ -65,13 +87,22 @@ theorem pow3_eq_four_mul_pow3_sub_one {j l : ℕ} (h : (3 : ℤ) ^ l = 4 * 3 ^ j
   have h3 : (3 : ℤ) ^ l = 3 ^ 1 := by simpa using h
   exact pow3_inj h3
 
+/--
+@isnad1 id=le.0h1v.s5.a6fad1d6ad42 from=translated src=- shape=569d4514 vocab=7ff6bede
+-/
 theorem one_le_pow3R (n : ℕ) : (1 : ℝ) ≤ 3 ^ n := one_le_pow₀ (by norm_num)
 
+/--
+@isnad1 id=le.1h1v.s5.05f01ebbcf18 from=translated src=- shape=7749f964 vocab=7ff6bede
+-/
 theorem three_le_pow3R {n : ℕ} (h : n ≠ 0) : (3 : ℝ) ≤ 3 ^ n := by
   obtain ⟨m, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by omega⟩
   have e : (3 : ℝ) ^ (m + 1) = 3 * 3 ^ m := by ring
   nlinarith [one_le_pow3R m]
 
+/--
+@isnad1 id=le.1h1v.s5.fc5c577e5c71 from=translated src=- shape=3c5d24e6 vocab=7ff6bede
+-/
 theorem nine_le_pow3R {n : ℕ} (h : 2 ≤ n) : (9 : ℝ) ≤ 3 ^ n := by
   obtain ⟨m, rfl⟩ : ∃ m, n = m + 2 := ⟨n - 2, by omega⟩
   have e : (3 : ℝ) ^ (m + 2) = 9 * 3 ^ m := by ring
@@ -79,7 +110,9 @@ theorem nine_le_pow3R {n : ℕ} (h : 2 ≤ n) : (9 : ℝ) ≤ 3 ^ n := by
 
 /-- **Exponent rigidity of a chain triangle.**  If a triangle has squared sides `c * 3 ^ p`,
 `c * 3 ^ q`, `c * 3 ^ r` with `p ≤ q ≤ r`, then either the two largest exponents agree, or the
-two smallest agree and the largest exceeds them by exactly one. -/
+two smallest agree and the largest exceeds them by exactly one.
+@isnad1 id=or.4h4v.s8.a082e5480760 from=translated src=- shape=52539cae vocab=d8e6b3e9
+-/
 theorem exp_tri {c : ℝ} (hc : 0 < c) {p q r : ℕ} (hpq : p ≤ q) (hqr : q ≤ r)
     (h : (c * 3 ^ r - c * 3 ^ p - c * 3 ^ q) ^ 2 ≤ 4 * (c * 3 ^ p) * (c * 3 ^ q)) :
     r = q ∨ (p = q ∧ r = p + 1) := by
@@ -115,7 +148,9 @@ theorem exp_tri {c : ℝ} (hc : 0 < c) {p q r : ℕ} (hpq : p ≤ q) (hqr : q �
     linarith
   right; omega
 
-/-- The four-point equation for two points equidistant from the ends of the shortest edge. -/
+/-- The four-point equation for two points equidistant from the ends of the shortest edge.
+@isnad1 id=and.3h3v.s8.d528360f41b7 from=translated src=- shape=dd5e691a vocab=35ae5b9f
+-/
 theorem isoceles_pair_solution {j k l : ℕ} (hjk : j ≤ k)
     (hcase : j = k ∨ (l = j ∧ k = j + 1) ∨ l = k)
     (heq : (3 : ℤ) ^ j * 3 ^ j + 3 ^ k * 3 ^ k + 3 ^ l * 3 ^ l - 2 * (3 ^ j * 3 ^ k)
@@ -148,7 +183,9 @@ theorem isoceles_pair_solution {j k l : ℕ} (hjk : j ≤ k)
       le_mul_of_one_le_left hkp.le hj1, mul_pos hjp hkp]
 
 /-- The four-point equation for one point equidistant from the ends of the shortest edge and one
-point spanning it. -/
+point spanning it.
+@isnad1 id=and.1h2v.s7.0b0ce31dd19d from=translated src=- shape=bdc71151 vocab=fb2191f5
+-/
 theorem mixed_pair_solution {j l : ℕ} (heq : ((3 : ℤ) ^ j - 3 ^ l) ^ 2 - 3 * 3 ^ l + 3 = 0) :
     j = 0 ∧ l = 0 := by
   rcases eq_or_ne j 0 with hj | hj
@@ -168,9 +205,15 @@ theorem mixed_pair_solution {j l : ℕ} (heq : ((3 : ℤ) ^ j - 3 ^ l) ^ 2 - 3 *
       have : (1 : ℤ) = 3 * (v - (u - v) * (u - v)) := by nlinarith [heq]
       omega
 
+/--
+@isnad1 id=ne.0h1v.s4.246a01a3017b from=translated src=- shape=476886e2 vocab=65e49ada
+-/
 theorem pow3_ne_four {l : ℕ} : (3 : ℤ) ^ l ≠ 4 := by
   rcases pow3_trichotomy l with h | h | h <;> omega
 
+/--
+@isnad1 id=ne.0h1v.s4.aeddd6ae4896 from=translated src=- shape=476886e2 vocab=65e49ada
+-/
 theorem pow3_ne_seven {l : ℕ} : (3 : ℤ) ^ l ≠ 7 := by
   rcases pow3_trichotomy l with h | h | h <;> omega
 

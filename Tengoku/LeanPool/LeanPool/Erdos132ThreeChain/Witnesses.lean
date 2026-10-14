@@ -24,7 +24,9 @@ namespace Erdos132ThreeChain
 
 /-- The rhombus of two equilateral triangles glued along an edge: five squared distances equal
 `1` and one equals `3`.  This is the first pattern of the four-point catalogue, and it witnesses
-that the hypotheses of `four_chain_adjacent` are satisfiable. -/
+that the hypotheses of `four_chain_adjacent` are satisfiable.
+@isnad1 id=ex.0h0v.s6.de89987c18c5 from=translated src=- shape=3f7b49d5 vocab=e869a1e0
+-/
 theorem rhombus_chain_config :
     ∃ A B C D : Point, A ≠ B ∧ A ≠ C ∧ A ≠ D ∧ B ≠ C ∧ B ≠ D ∧ C ≠ D ∧
       sqDist A B = 1 ∧ sqDist A C = 1 ∧ sqDist A D = 1 ∧ sqDist B C = 1 ∧ sqDist B D = 1 ∧
@@ -36,7 +38,9 @@ theorem rhombus_chain_config :
     simp only [sqDist, Prod.mk.injEq, ne_eq, not_and] <;> intros <;> nlinarith [h3, hpos]
 
 /-- The equilateral triangle together with its centroid: three squared distances equal `1` and
-three equal `3`.  This is the second pattern of the four-point catalogue. -/
+three equal `3`.  This is the second pattern of the four-point catalogue.
+@isnad1 id=ex.0h0v.s6.6c79ff16e575 from=translated src=- shape=3f7b49d5 vocab=e869a1e0
+-/
 theorem centroid_chain_config :
     ∃ A B C D : Point, A ≠ B ∧ A ≠ C ∧ A ≠ D ∧ B ≠ C ∧ B ≠ D ∧ C ≠ D ∧
       sqDist A B = 1 ∧ sqDist A C = 1 ∧ sqDist A D = 1 ∧ sqDist B C = 3 ∧ sqDist B D = 3 ∧
@@ -49,7 +53,9 @@ theorem centroid_chain_config :
 
 /-- Five points of the plane whose squared distances are `1`, `3` and `4`: the rhombus of two
 glued equilateral triangles together with the reflection of one vertex.  Its squared diameter is
-`4`, realised once, and both `1` and `3` occur as non-diameter squared distances. -/
+`4`, realised once, and both `1` and `3` occur as non-diameter squared distances.
+@isnad1 id=ex.0h0v.s7.2736196fa7af from=translated src=- shape=f986df7d vocab=e869a1e0
+-/
 theorem chainTwo_config :
     ∃ A B C E F : Point,
       A ≠ B ∧ A ≠ C ∧ A ≠ E ∧ A ≠ F ∧ B ≠ C ∧ B ≠ E ∧ B ≠ F ∧ C ≠ E ∧ C ≠ F ∧ E ≠ F ∧
@@ -66,7 +72,9 @@ theorem chainTwo_config :
 diameter is `4` and whose set of non-diameter squared distances is exactly the two-term
 geometric 3-chain `chain 1 2 = {1, 3}`.  Thus the configuration that
 `nonDiameterSqDists_ne_chain` forbids once `n ≥ 13` is realisable at `n = 5` with `h = 2`, so
-the headline is not vacuous in its own `h ≥ 2` regime. -/
+the headline is not vacuous in its own `h ≥ 2` regime.
+@isnad1 id=ex.0h0v.s5.8230c406a6a4 from=translated src=- shape=bac9022b vocab=450592b5
+-/
 theorem chainTwo_nonDiameter_support :
     ∃ X : Finset Point, X.card = 5 ∧ IsSqDiameter X 4 ∧ nonDiameterSqDists X 4 = chain 1 2 := by
   classical

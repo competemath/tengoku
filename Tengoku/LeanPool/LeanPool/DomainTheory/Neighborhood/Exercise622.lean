@@ -98,14 +98,18 @@ def Cnat : ScottSys where
   ne := by
     simp_all
 
-/-- `Λ ∈ tok(Cnat)`, so `Cnat` is a rooted constant. -/
+/-- `Λ ∈ tok(Cnat)`, so `Cnat` is a rooted constant.
+@isnad1 id=mem.0h0v.s3.d041e86c26c7 from=translated src=- shape=431ba7e0 vocab=d708f05b
+-/
 theorem nil_mem_Cnat : ([] : Str) ∈ Cnat.sys.master := Set.mem_insert_iff.mpr (Or.inr rfl)
 
 /-- **The one-point domain `{{Λ}} = 𝟙`** (the terminal object of Scott's
 category). -/
 def Cone : ScottSys := singletonSys ({([] : Str)} : Set Str) ⟨[], rfl⟩
 
-/-- `Λ ∈ tok(Cone)`. -/
+/-- `Λ ∈ tok(Cone)`.
+@isnad1 id=mem.0h0v.s3.bb461b31ee3f from=translated src=- shape=431ba7e0 vocab=c67416c4
+-/
 theorem nil_mem_Cone : ([] : Str) ∈ Cone.sys.master := rfl
 
 /-! ## The three domain equations as `GExpr` constructs -/
@@ -121,10 +125,19 @@ parametrised by the (rooted)
 datum domain `N`. -/
 def NStarExpr (N : ScottSys) : GExpr := .oplus (.const N) (.otimes (.const N) .var)
 
+/--
+@isnad1 id=rootedco.0h0v.s1.53b65cf2d3ac from=translated src=- shape=49959d42 vocab=66bd425d
+-/
 theorem NExpr_rooted : NExpr.RootedConst := ⟨nil_mem_Cnat, trivial⟩
 
+/--
+@isnad1 id=rootedco.0h0v.s1.4a7138f8d84a from=translated src=- shape=49959d42 vocab=d38bec76
+-/
 theorem MExpr_rooted : MExpr.RootedConst := ⟨nil_mem_Cone, trivial⟩
 
+/--
+@isnad1 id=rootedco.1h1v.s4.11b6da3df651 from=translated src=- shape=5e10ee9e vocab=061a47c0
+-/
 theorem NStarExpr_rooted {N : ScottSys} (hN : ([] : Str) ∈ N.sys.master) :
     (NStarExpr N).RootedConst := ⟨hN, hN, trivial⟩
 
@@ -133,13 +146,17 @@ applies) -/
 
 /-- **`N ≅ {{0},{0,Λ}} ⊕ N` has a solution.** There is `Γ` (the vertical naturals'
 token set) with
-`Γ = tok(NExpr({Γ}))`, so `{Γ} ◁ NExpr({Γ})` and Theorem 6.14 applies. -/
+`Γ = tok(NExpr({Γ}))`, so `{Γ} ◁ NExpr({Γ})` and Theorem 6.14 applies.
+@isnad1 id=ex.0h0v.s4.ce75ddb9c867 from=translated src=- shape=6f409281 vocab=b1ea9f89
+-/
 theorem N_eq_solution :
     ∃ (Γ : Set Str) (h : Γ.Nonempty),
       (singletonSys Γ h).sys ◁ (NExpr.obj (singletonSys Γ h)).sys :=
   gExists_singleton_subsystem NExpr NExpr_rooted
 
-/-- **`M ≅ {{Λ}} + M` has a solution** (the lazy naturals). -/
+/-- **`M ≅ {{Λ}} + M` has a solution** (the lazy naturals).
+@isnad1 id=ex.0h0v.s4.d788fcce1126 from=translated src=- shape=6f409281 vocab=d1c5b139
+-/
 theorem M_eq_solution :
     ∃ (Γ : Set Str) (h : Γ.Nonempty),
       (singletonSys Γ h).sys ◁ (MExpr.obj (singletonSys Γ h)).sys :=
@@ -147,7 +164,9 @@ theorem M_eq_solution :
 
 /-- **`N* ≅ N ⊕ (N ⊗ N*)` has a solution** for any rooted datum domain `N` (the
 strict streams over
-`N`). -/
+`N`).
+@isnad1 id=ex.1h1v.s5.45ceae571466 from=translated src=- shape=8dc8f48c vocab=b27b4b66
+-/
 theorem NStar_eq_solution (N : ScottSys) (hN : ([] : Str) ∈ N.sys.master) :
     ∃ (Γ : Set Str) (h : Γ.Nonempty),
       (singletonSys Γ h).sys ◁ ((NStarExpr N).obj (singletonSys Γ h)).sys :=
@@ -157,7 +176,9 @@ theorem NStar_eq_solution (N : ScottSys) (hN : ([] : Str) ∈ N.sys.master) :
 rooted domain
 (`Λ ∈ tok(N)`, since its token set is the fixed point `Γ₁ ∋ Λ`), so it is a
 legitimate datum domain
-for the third: `N*` exists *over the very `N` produced by* `N ≅ {{0},{0,Λ}} ⊕ N`. -/
+for the third: `N*` exists *over the very `N` produced by* `N ≅ {{0},{0,Λ}} ⊕ N`.
+@isnad1 id=ex.0h0v.s5.473b2d814dfe from=translated src=- shape=eee154c4 vocab=b27b4b66
+-/
 theorem NStar_over_N_exists :
     ∃ N : ScottSys, ([] : Str) ∈ N.sys.master ∧
       ∃ (Γ : Set Str) (h : Γ.Nonempty),

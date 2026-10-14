@@ -33,7 +33,9 @@ def InSharedDiameterLens (c H : ℝ) (v : Point ℝ) : Prop :=
 
 /-- **P5-1, explicit.** If a lower point's distance to the shared diameter
 tip is at most the diameter, then its abscissa lies strictly between the two
-centers.  The diameter hypothesis is load-bearing. -/
+centers.  The diameter hypothesis is load-bearing.
+@isnad1 id=and.4h4v.s7.ab33ba97d94f from=translated src=- shape=c60b097f vocab=636bba82
+-/
 theorem diameter_partner_abscissa
     {c H X Y : ℝ} (hc : 0 < c) (hH : 0 < H) (hY : Y < 0)
     (hdiameter : sqDist (X, Y) (c, H) ≤ c ^ 2 + H ^ 2) :
@@ -48,7 +50,9 @@ theorem diameter_partner_abscissa
   constructor <;> linarith only [hlower, hupper]
 
 /-- Every point of the shared-diameter lens has ordinate at most that of the
-upper tip `(c,H)`. -/
+upper tip `(c,H)`.
+@isnad1 id=le.2h4v.s5.1daaa4163c45 from=translated src=- shape=b2704dcd vocab=dfdcbb47
+-/
 theorem shared_diameter_lens_ordinate_le
     {c H x y : ℝ} (hH : 0 ≤ H)
     (hv : InSharedDiameterLens c H (x, y)) : y ≤ H := by
@@ -64,7 +68,9 @@ every other point of the shared-diameter lens is strictly closer to `P` than
 `s` is.
 
 This is the exact squared-distance form of draft (5.2), used in Section 6.
-The `hPdiameter` hypothesis is the formal repair of P5-1. -/
+The `hPdiameter` hypothesis is the formal repair of P5-1.
+@isnad1 id=lt.6h5v.s7.dc10bf7e4d67 from=translated src=- shape=2f69b788 vocab=fcdf1537
+-/
 theorem diameter_lens_unique_farthest
     {c H X Y : ℝ} (hc : 0 < c) (hH : 0 < H) (hY : Y < 0)
     (hPdiameter : sqDist (X, Y) (c, H) ≤ c ^ 2 + H ^ 2)

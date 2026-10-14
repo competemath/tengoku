@@ -46,13 +46,17 @@ private lemma six_lt_sqrt_thirty_nine : (6 : ℝ) < Real.sqrt 39 := by
   have hs0 := Real.sqrt_nonneg (39 : ℝ)
   nlinarith
 
-/-- First exact boundary constant in the short-sign regime. -/
+/-- First exact boundary constant in the short-sign regime.
+@isnad1 id=lt.0h0v.s6.e56dee065a43 from=translated src=- shape=4d3186e4 vocab=f8196b4b
+-/
 theorem first_hard_constant_pos :
     0 < (3 * Real.sqrt 3 - 5) / 4 := by
   have hs := five_thirds_lt_sqrt_three
   linarith
 
-/-- Second exact boundary constant in the long-sign regime. -/
+/-- Second exact boundary constant in the long-sign regime.
+@isnad1 id=lt.0h0v.s6.9e7dc3b2bd57 from=translated src=- shape=a00d0372 vocab=bd0eb148
+-/
 theorem second_hard_constant_gt_nine_eighths :
     (9 : ℝ) / 8 < (4 * Real.sqrt 3 + Real.sqrt 39) / 8 := by
   have h3 := three_halves_lt_sqrt_three
@@ -60,7 +64,9 @@ theorem second_hard_constant_gt_nine_eighths :
   linarith
 
 /-- Failure of the desired metric inequality gives the strict numerator
-comparison used by all three beta ranges. -/
+comparison used by all three beta ranges.
+@isnad1 id=lt.2h2v.s7.980a805a746c from=translated src=- shape=b2d5b4c2 vocab=5233fd79
+-/
 theorem metric_failure_numerator_lt_majorant
     {β γ : ℝ} (hγ : 0 < γ) (hfailure : 1 + γ < 2 * β) :
     1 + 2 * γ ^ 2 - 3 * β ^ 2 < (1 - β) * (3 - 5 * β) := by
@@ -71,7 +77,9 @@ theorem metric_failure_numerator_lt_majorant
   nlinarith
 
 /-- AM-GM in polynomial form.  In the first beta range the single identity
-`β²=1-4rp` already forces `2r+p>1`. -/
+`β²=1-4rp` already forces `2r+p>1`.
+@isnad1 id=lt.4h3v.s7.989b2afbb4d5 from=translated src=- shape=e83016e0 vocab=9a248496
+-/
 theorem amgm_two_r_add_p_gt_one
     {r p β : ℝ} (hr : 0 < r)
     (hβlo : (1 : ℝ) / 2 < β) (hβhi : β < (3 : ℝ) / 5)
@@ -81,7 +89,9 @@ theorem amgm_two_r_add_p_gt_one
     nlinarith [mul_pos (sub_pos.mpr hβhi) (by linarith : 0 < (3 : ℝ) / 5 + β)]
   nlinarith [sq_nonneg (r - (1 : ℝ) / 4)]
 
-/-- Exact rationalized inequality behind beta range `1/2<β<3/5`. -/
+/-- Exact rationalized inequality behind beta range `1/2<β<3/5`.
+@isnad1 id=lt.2h1v.s7.6a7ea5636a82 from=translated src=- shape=1e893e43 vocab=2cc20a5a
+-/
 theorem range_one_exact_radical_bound
     {β : ℝ} (hβlo : (1 : ℝ) / 2 < β) (hβhi : β < (3 : ℝ) / 5) :
     (3 - 5 * β) / (1 + β) < Real.sqrt 3 / 2 - β := by
@@ -110,7 +120,9 @@ private lemma normalized_height_lower
     mul_pos (sub_pos.mpr hhlt) (by positivity : 0 < Real.sqrt 3 / 2 + h)]
 
 /-- Beta range 1 (`1/2<β<3/5`).  The AM-GM consequence makes
-`δ>p/2`; the exact first radical constant then closes the sign inequality. -/
+`δ>p/2`; the exact first radical constant then closes the sign inequality.
+@isnad1 id=lt.13h7v.s8.8fde4bb354b1 from=translated src=- shape=4811f77a vocab=762a6581
+-/
 theorem metric_dichotomy_range_one
     {r p β γ h k δ : ℝ}
     (hr : 0 < r) (hrhi : r ≤ (1 : ℝ) / 2) (hp : 0 < p)
@@ -192,7 +204,9 @@ private lemma normalized_beta_lt_one
   nlinarith
 
 /-- Beta range 2 (`3/5≤β≤h`).  Here the majorant is nonpositive, so its
-strict numerator bound immediately has the required sign. -/
+strict numerator bound immediately has the required sign.
+@isnad1 id=lt.8h6v.s8.eb8b8ff86a77 from=translated src=- shape=8873bf8b vocab=762a6581
+-/
 theorem metric_dichotomy_range_two
     {r p β γ h δ : ℝ}
     (hr : 0 < r) (hp : 0 < p)
@@ -366,7 +380,9 @@ private lemma normalized_range_three_core
 
 /-- Beta range 3 (`h<β`).  The identity `β²-h²=r(r-4p)` gives `p<r/4`.
 The exact second radical constant proves `δ<p`; the remaining ratio estimate
-then reverses the negative majorant with room to spare. -/
+then reverses the negative majorant with room to spare.
+@isnad1 id=lt.13h7v.s8.07c882c486e6 from=translated src=- shape=b0239eb5 vocab=762a6581
+-/
 theorem metric_dichotomy_range_three
     {r p β γ h k δ : ℝ}
     (hr : 0 < r) (hrhi : r ≤ (1 : ℝ) / 2) (hp : 0 < p)
@@ -394,7 +410,9 @@ theorem metric_dichotomy_range_three
 Equality belongs to the length branch; only strict failure enters the three
 beta regimes.  Since no earlier cross-color hypothesis occurs, this one
 theorem applies unchanged to all four `AA`, `AB`, `BA`, and `BB` branches
-from draft (4.2). -/
+from draft (4.2).
+@isnad1 id=or.11h7v.s8.b9f23af1594b from=translated src=- shape=a7a8fee3 vocab=762a6581
+-/
 theorem metric_sign_dichotomy
     {r p β γ h k δ : ℝ}
     (hr : 0 < r) (hrhi : r ≤ (1 : ℝ) / 2) (hp : 0 < p)
@@ -419,14 +437,18 @@ theorem metric_sign_dichotomy
       · exact metric_dichotomy_range_three hr hrhi hp hβsq hγ hfailure
           hh hhsq hk hksq hδ hδdef (lt_of_not_ge hβh)
 
-/-- The equality boundary belongs to the non-strict long regime. -/
+/-- The equality boundary belongs to the non-strict long regime.
+@isnad1 id=le.1h3v.s5.710a5c7b353e from=translated src=- shape=d45de9a7 vocab=805e4ba8
+-/
 theorem metric_equality_routes_long
     {d₁ d₂ d₃ : ℝ} (heq : d₁ + d₃ = 2 * d₂) :
     2 * d₂ ≤ d₁ + d₃ := by
   linarith
 
 /-- The exact equality boundary is assigned to the long/counting regime:
-strict edge-diagonal separation then forces the second center beyond `d₂`. -/
+strict edge-diagonal separation then forces the second center beyond `d₂`.
+@isnad1 id=lt.2h4v.s5.2c317a40907a from=translated src=- shape=5e659595 vocab=4eff4c1a
+-/
 theorem metric_equality_forces_long_second_center
     {d₁ d₂ d₃ q : ℝ}
     (heq : d₁ + d₃ = 2 * d₂)

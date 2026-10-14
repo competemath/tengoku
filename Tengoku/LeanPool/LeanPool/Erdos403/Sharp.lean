@@ -31,7 +31,9 @@ namespace Erdos403
 open scoped Nat
 
 /-- `2^(2t+4) ≡ 16 (mod 24)` — the period-2 cycle `…,16,8,16,8,…` of `2^m mod 24` (`m ≥ 3`),
-on the even branch. -/
+on the even branch.
+@isnad1 id=eq.0h1v.s5.fbc6553362f8 from=translated src=- shape=4140c981 vocab=84e92033
+-/
 theorem two_pow_mod_24_even : ∀ t, 2 ^ (2 * t + 4) % 24 = 16 := by
   intro t
   induction t with
@@ -41,13 +43,17 @@ theorem two_pow_mod_24_even : ∀ t, 2 ^ (2 * t + 4) % 24 = 16 := by
     rw [he, pow_add, Nat.mul_mod, ih]
     decide
 
-/-- `2^m ≡ 16 (mod 24)` for even `m ≥ 4`. -/
+/-- `2^m ≡ 16 (mod 24)` for even `m ≥ 4`.
+@isnad1 id=eq.2h1v.s5.1908ccdc53bb from=translated src=- shape=a17f9583 vocab=9e98d804
+-/
 theorem two_pow_mod_24_of_even {m : ℕ} (he : Even m) (hm : 4 ≤ m) : 2 ^ m % 24 = 16 := by
   obtain ⟨r, rfl⟩ := he
   have hrw : r + r = 2 * (r - 2) + 4 := by omega
   rw [hrw]; exact two_pow_mod_24_even (r - 2)
 
-/-- For even `m ≥ 4`, the `3!`-digit of `2^m` is `2`. -/
+/-- For even `m ≥ 4`, the `3!`-digit of `2^m` is `2`.
+@isnad1 id=eq.2h1v.s5.0eccba618385 from=translated src=- shape=6e941818 vocab=c16a8a2e
+-/
 theorem factDigit_three_two_pow_even {m : ℕ} (he : Even m) (hm : 4 ≤ m) :
     factDigit 3 (2 ^ m) = 2 := by
   have h := two_pow_mod_24_of_even he hm
@@ -56,7 +62,9 @@ theorem factDigit_three_two_pow_even {m : ℕ} (he : Even m) (hm : 4 ≤ m) :
   rw [hq]; omega
 
 /-- For even `m ≥ 4`, the `3!`-digit of `2^m − 1` is also `2` (so the `0!` carry can't rescue
-it). -/
+it).
+@isnad1 id=eq.2h1v.s5.b43bc3594ae5 from=translated src=- shape=ad9a2f6b vocab=3bf37172
+-/
 theorem factDigit_three_two_pow_sub_one_even {m : ℕ} (he : Even m) (hm : 4 ≤ m) :
     factDigit 3 (2 ^ m - 1) = 2 := by
   have h := two_pow_mod_24_of_even he hm
@@ -64,7 +72,9 @@ theorem factDigit_three_two_pow_sub_one_even {m : ℕ} (he : Even m) (hm : 4 ≤
   change ((2 ^ m - 1) / 6) % 4 = 2
   rw [hq]; omega
 
-/-- **Phase B result.** No sum of distinct factorials equals `2^m` for even `m ≥ 4`. -/
+/-- **Phase B result.** No sum of distinct factorials equals `2^m` for even `m ≥ 4`.
+@isnad1 id=ne.2h2v.s5.39597d6ef965 from=translated src=- shape=72c3466e vocab=d3f9034f
+-/
 theorem factSum_ne_of_even {m : ℕ} (he : Even m) (hm : 4 ≤ m) (S : Finset ℕ) :
     factSum S ≠ 2 ^ m := by
   refine not_factSum_of_digits (2 ^ m) ⟨3, by omega, ?_⟩ ⟨3, by omega, ?_⟩ S
@@ -76,7 +86,9 @@ leading factorial `M!` without spilling into the next — then the top factorial
 `2^m` and `2^m − 1` is `≥ 2` (`2^m − 1` shares the same leading index and still clears `2·M!`,
 strictly, since `2^m` is a power of two). So `not_factSum_of_digits` fires. This bankable sub-case
 kills every odd `m ≥ 9` whose `2^m` lands in the upper half `[2·M!, (M+1)!)`; the residual nut is
-the lower half `[M!, 2·M!)`. -/
+the lower half `[M!, 2·M!)`.
+@isnad1 id=ne.2h3v.s6.a4b2075d600d from=translated src=- shape=b471dd4d vocab=7945b36c
+-/
 theorem factSum_ne_of_leading_two {m M : ℕ} (hM : 2 ^ m < (M + 1)!) (h2 : 2 * M ! < 2 ^ m)
     (S : Finset ℕ) : factSum S ≠ 2 ^ m := by
   -- `2·M! < 2^m < (M+1)! = (M+1)·M!` forces `M ≥ 2`, so `M` is a valid positive digit index.
@@ -100,7 +112,9 @@ and `2^m mod 12!` is periodic in `m` with period `1620` (`ord_{467775}(2) = 1620
 `12! = 1024 · 467775`). So the claim reduces to a finite check over one period, discharged by a
 kernel-pure `decide` over a residue fold (no `native_decide`). -/
 
-/-- `factDigit i n` depends only on `n` modulo `(i+1)!`. -/
+/-- `factDigit i n` depends only on `n` modulo `(i+1)!`.
+@isnad1 id=eq.0h2v.s5.89fb30ab18a1 from=translated src=- shape=46c64ec6 vocab=2c11857c
+-/
 theorem factDigit_mod (i n : ℕ) : factDigit i n = factDigit i (n % (i + 1)!) := by
   unfold factDigit
   set q := n / (i + 1)! with hq
@@ -111,7 +125,9 @@ theorem factDigit_mod (i n : ℕ) : factDigit i n = factDigit i (n % (i + 1)!) :
     rw [show (i + 1) * i ! * q = i ! * ((i + 1) * q) by ring, Nat.mul_add_div (Nat.factorial_pos i)]
   rw [hsplit, add_comm, Nat.add_mul_mod_self_left]
 
-/-- For `i ≤ 11`, `factDigit i n` depends only on `n` modulo `12!`. -/
+/-- For `i ≤ 11`, `factDigit i n` depends only on `n` modulo `12!`.
+@isnad1 id=eq.1h2v.s5.20b833015bd7 from=translated src=- shape=9ee79704 vocab=1a2a4d43
+-/
 theorem factDigit_mod_twelve {i : ℕ} (hi : i ≤ 11) (n : ℕ) :
     factDigit i n = factDigit i (n % (12)!) := by
   have hdvd : ((i + 1)! : ℕ) ∣ (12)! := Nat.factorial_dvd_factorial (by omega)
@@ -338,7 +354,9 @@ private theorem base_offending_sub :
   exact offendingB_to_exists rfl ho
 
 /-- **Fixed-modulus kill (heart of Phase C).** For every `m ≥ 8`, `2^m` carries a factorial-base
-digit `≥ 2` at some positive index — so `2^m` is not a sum of distinct factorials. -/
+digit `≥ 2` at some positive index — so `2^m` is not a sum of distinct factorials.
+@isnad1 id=ex.1h1v.s5.894108e7000c from=translated src=- shape=20283e94 vocab=0c694fa8
+-/
 theorem two_pow_offending {m : ℕ} (hm : 8 ≤ m) : ∃ i, 1 ≤ i ∧ 2 ≤ factDigit i (2 ^ m) := by
   rcases Nat.lt_or_ge m 10 with h9 | h10
   · interval_cases m
@@ -353,7 +371,9 @@ theorem two_pow_offending {m : ℕ} (hm : 8 ≤ m) : ∃ i, 1 ≤ i ∧ 2 ≤ fa
     rwa [factDigit_mod_twelve hi_mem.2 (2 ^ m), two_pow_reduce h10,
         ← factDigit_mod_twelve hi_mem.2 (2 ^ (10 + (m - 10) % 1620))]
 
-/-- The `2^m - 1` companion of `two_pow_offending`. -/
+/-- The `2^m - 1` companion of `two_pow_offending`.
+@isnad1 id=ex.1h1v.s6.3e63ee55d0b9 from=translated src=- shape=10c9d9d0 vocab=130c392a
+-/
 theorem two_pow_sub_one_offending {m : ℕ} (hm : 8 ≤ m) :
     ∃ i, 1 ≤ i ∧ 2 ≤ factDigit i (2 ^ m - 1) := by
   rcases Nat.lt_or_ge m 10 with h9 | h10
@@ -376,7 +396,9 @@ theorem two_pow_sub_one_offending {m : ℕ} (hm : 8 ≤ m) :
     rwa [factDigit_mod_twelve hi_mem.2 (2 ^ m - 1), key,
         ← factDigit_mod_twelve hi_mem.2 (2 ^ (10 + (m - 10) % 1620) - 1)]
 
-/-- **Phase C complete.** No sum of distinct factorials equals `2^m` for `m ≥ 8`. -/
+/-- **Phase C complete.** No sum of distinct factorials equals `2^m` for `m ≥ 8`.
+@isnad1 id=ne.1h2v.s5.ac02a2e03a39 from=translated src=- shape=7c0a9e66 vocab=bde50f41
+-/
 theorem factSum_ne_of_ge_eight {m : ℕ} (hm : 8 ≤ m) (S : Finset ℕ) : factSum S ≠ 2 ^ m :=
   not_factSum_of_digits (2 ^ m) (two_pow_offending hm) (two_pow_sub_one_offending hm) S
 
@@ -387,14 +409,18 @@ The fixed-modulus kill makes the entire 2-adic carry machinery (`cascade_*`, `ti
 `M! ≤ 2^m ≤ 2^7`. -/
 
 /-- **Erdős #403 (sharp form)** — the largest power of two that is a sum of distinct factorials is
-`2⁷ = 2! + 3! + 5! = 128`. Every solution has `m ≤ 7`. -/
+`2⁷ = 2! + 3! + 5! = 128`. Every solution has `m ≤ 7`.
+@isnad1 id=le.1h2v.s5.6d7e0cbccc51 from=translated src=- shape=2e879ddb vocab=bde50f41
+-/
 theorem erdos_403_sharp {S : Finset ℕ} {m : ℕ} (h : factSum S = 2 ^ m) : m ≤ 7 := by
   by_contra hc
   exact factSum_ne_of_ge_eight (by omega) S h
 
 /-- **Erdős #403 (finiteness)** — exactly what the problem asks: only finitely many sums of
 distinct factorials are powers of two. By `erdos_403_sharp`, every solution has `m ≤ 7`, so
-`M! ≤ 2^m ≤ 128` forces `max' S ≤ 5`; hence every solution lives in `(range 6).powerset`. -/
+`M! ≤ 2^m ≤ 128` forces `max' S ≤ 5`; hence every solution lives in `(range 6).powerset`.
+@isnad1 id=finite.0h0v.s5.e56cee037977 from=translated src=- shape=1ca78f5c vocab=dbb66eb8
+-/
 theorem erdos_403_finite :
     {S : Finset ℕ | ∃ m : ℕ, factSum S = 2 ^ m}.Finite := by
   apply Set.Finite.subset ((Finset.range 6).powerset : Finset (Finset ℕ)).finite_toSet

@@ -50,7 +50,9 @@ def F (k n : ℕ) : ℕ := ∏ i ∈ Finset.range k, (n + i)
 
 /-! ### Auxiliary lemmas -/
 
-/-- Every element of the factorization support is a prime. -/
+/-- Every element of the factorization support is a prime.
+@isnad1 id=prime.1h2v.s4.dab73c0b70c0 from=translated src=- shape=fc365083 vocab=4776634d
+-/
 lemma prime_of_mem_factorization_support {m p : ℕ} (hp : p ∈ m.factorization.support) :
     Nat.Prime p := by
   rw [Nat.support_factorization, Nat.mem_primeFactors] at hp
@@ -59,11 +61,17 @@ lemma prime_of_mem_factorization_support {m p : ℕ} (hp : p ∈ m.factorization
 /-
 rad(m) ≥ 1 for all m.
 -/
+/--
+@isnad1 id=le.0h1v.s3.5f78b9bf090a from=translated src=- shape=8a62b088 vocab=de3c3839
+-/
 lemma rad_pos (m : ℕ) : 1 ≤ rad m := by
   exact Finset.prod_pos fun p hp => Nat.Prime.pos ( prime_of_mem_factorization_support hp )
 
 /-
 F(k, n) ≥ 1 when n ≥ 1.
+-/
+/--
+@isnad1 id=le.1h2v.s4.72a5905be620 from=translated src=- shape=61bdc3e7 vocab=42c912ae
 -/
 lemma F_pos {k n : ℕ} (hn : 1 ≤ n) : 1 ≤ F k n := by
   exact Nat.one_le_iff_ne_zero.mpr <| Finset.prod_ne_zero_iff.mpr fun i hi => by linarith;
@@ -71,11 +79,17 @@ lemma F_pos {k n : ℕ} (hn : 1 ≤ n) : 1 ≤ F k n := by
 /-
 F(k, n) ≠ 0 when n ≥ 1.
 -/
+/--
+@isnad1 id=ne.1h2v.s4.5dc406bc9808 from=translated src=- shape=41cb78f6 vocab=42c912ae
+-/
 lemma F_ne_zero {k n : ℕ} (hn : 1 ≤ n) : F k n ≠ 0 := by
   exact Finset.prod_ne_zero_iff.mpr fun _ _ => by positivity;
 
 /-
 Each factor n + i ≤ k * n for i < k, when n ≥ 1 and k ≥ 1.
+-/
+/--
+@isnad1 id=le.3h3v.s5.05ef2c915f76 from=translated src=- shape=0f91ad8e vocab=923b6325
 -/
 lemma factor_le_mul {k n i : ℕ} (_hk : 1 ≤ k) (hn : 1 ≤ n) (hi : i < k) :
     n + i ≤ k * n := by
@@ -104,6 +118,9 @@ Cast of lemma_star to ℝ: B₂(m) ≤ m²/rad(m)².
 
 /-
 rad(m) cast to ℝ is positive for m ≠ 0. Actually rad is always ≥ 1.
+-/
+/--
+@isnad1 id=lt.0h1v.s4.cd4744e54487 from=translated src=- shape=2cbac45b vocab=eb01babd
 -/
 lemma rad_cast_pos (m : ℕ) : (0 : ℝ) < (rad m : ℝ) := by
   exact_mod_cast rad_pos m

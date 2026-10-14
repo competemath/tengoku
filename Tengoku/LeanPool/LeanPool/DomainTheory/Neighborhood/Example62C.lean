@@ -76,115 +76,196 @@ def j2 {α β γ : Type*} (Z : Set γ) : Set (Option (α ⊕ β ⊕ γ)) := {w |
 
 variable {α β γ : Type*}
 
+/--
+@isnad1 id=iff.0h5v.s5.385bf313d868 from=translated src=- shape=6020304e vocab=d37eb2ac
+-/
 @[simp] theorem t0_mem_j0 {X : Set α} {a : α} : (t0 a : Option (α ⊕ β ⊕ γ)) ∈ j0 X ↔ a ∈ X := by
   constructor
   · rintro ⟨a', heq, ha'⟩; simp only [t0, Option.some.injEq, Sum.inl.injEq] at heq; exact heq ▸ ha'
   · intro ha; exact ⟨a, rfl, ha⟩
 
+/--
+@isnad1 id=iff.0h5v.s5.97ad3722e9ca from=translated src=- shape=eb70caa6 vocab=c0cf41a4
+-/
 @[simp] theorem t1_mem_j1 {Y : Set β} {b : β} : (t1 b : Option (α ⊕ β ⊕ γ)) ∈ j1 Y ↔ b ∈ Y := by
   constructor
   · rintro ⟨b', heq, hb'⟩
     simp only [t1, Option.some.injEq, Sum.inr.injEq, Sum.inl.injEq] at heq; exact heq ▸ hb'
   · intro hb; exact ⟨b, rfl, hb⟩
 
+/--
+@isnad1 id=iff.0h5v.s5.a049d31874a4 from=translated src=- shape=7d214d1b vocab=a1c501de
+-/
 @[simp] theorem t2_mem_j2 {Z : Set γ} {c : γ} : (t2 c : Option (α ⊕ β ⊕ γ)) ∈ j2 Z ↔ c ∈ Z := by
   constructor
   · rintro ⟨c', heq, hc'⟩
     simp only [t2, Option.some.injEq, Sum.inr.injEq] at heq; exact heq ▸ hc'
   · intro hc; exact ⟨c, rfl, hc⟩
 
+/--
+@isnad1 id=not.0h4v.s5.c5e766c6a862 from=translated src=- shape=a646bae6 vocab=f3e153ca
+-/
 @[simp] theorem none_not_mem_j0 {X : Set α} : (none : Option (α ⊕ β ⊕ γ)) ∉ j0 X := by
   rintro ⟨a, heq, -⟩; exact absurd heq (by simp [t0])
 
+/--
+@isnad1 id=not.0h4v.s5.8773800e0153 from=translated src=- shape=9e47f2a6 vocab=ce705e85
+-/
 @[simp] theorem none_not_mem_j1 {Y : Set β} : (none : Option (α ⊕ β ⊕ γ)) ∉ j1 Y := by
   rintro ⟨b, heq, -⟩; exact absurd heq (by simp [t1])
 
+/--
+@isnad1 id=not.0h4v.s5.63c8d3217ab0 from=translated src=- shape=f3c58607 vocab=eb36a433
+-/
 @[simp] theorem none_not_mem_j2 {Z : Set γ} : (none : Option (α ⊕ β ⊕ γ)) ∉ j2 Z := by
   rintro ⟨c, heq, -⟩; exact absurd heq (by simp [t2])
 
+/--
+@isnad1 id=not.0h5v.s5.45658f0ebfe7 from=translated src=- shape=6183eba1 vocab=8de31557
+-/
 @[simp] theorem t1_not_mem_j0 {X : Set α} {b : β} : (t1 b : Option (α ⊕ β ⊕ γ)) ∉ j0 X := by
   rintro ⟨a, heq, -⟩; exact absurd heq (by simp [t0, t1])
 
+/--
+@isnad1 id=not.0h5v.s5.3edcbfc6fed1 from=translated src=- shape=7e149f20 vocab=0dd7d2a1
+-/
 @[simp] theorem t2_not_mem_j0 {X : Set α} {c : γ} : (t2 c : Option (α ⊕ β ⊕ γ)) ∉ j0 X := by
   rintro ⟨a, heq, -⟩; exact absurd heq (by simp [t0, t2])
 
+/--
+@isnad1 id=not.0h5v.s5.1dd72b83c676 from=translated src=- shape=f3c8689d vocab=d3a6aad2
+-/
 @[simp] theorem t0_not_mem_j1 {Y : Set β} {a : α} : (t0 a : Option (α ⊕ β ⊕ γ)) ∉ j1 Y := by
   rintro ⟨b, heq, -⟩; exact absurd heq (by simp [t0, t1])
 
+/--
+@isnad1 id=not.0h5v.s5.5ed1fc8841b4 from=translated src=- shape=b135fd84 vocab=7492589e
+-/
 @[simp] theorem t2_not_mem_j1 {Y : Set β} {c : γ} : (t2 c : Option (α ⊕ β ⊕ γ)) ∉ j1 Y := by
   rintro ⟨b, heq, -⟩; exact absurd heq (by simp [t1, t2])
 
+/--
+@isnad1 id=not.0h5v.s5.17f4218a53ad from=translated src=- shape=672c5b54 vocab=69192e8f
+-/
 @[simp] theorem t0_not_mem_j2 {Z : Set γ} {a : α} : (t0 a : Option (α ⊕ β ⊕ γ)) ∉ j2 Z := by
   rintro ⟨c, heq, -⟩; exact absurd heq (by simp [t0, t2])
 
+/--
+@isnad1 id=not.0h5v.s5.256d8dff65a3 from=translated src=- shape=6c178867 vocab=5d773d54
+-/
 @[simp] theorem t1_not_mem_j2 {Z : Set γ} {b : β} : (t1 b : Option (α ⊕ β ⊕ γ)) ∉ j2 Z := by
   rintro ⟨c, heq, -⟩; exact absurd heq (by simp [t1, t2])
 
+/--
+@isnad1 id=eq.0h5v.s5.25009f4ce933 from=translated src=- shape=8576db2d vocab=ff50a130
+-/
 theorem j0_inter_j0 (X X' : Set α) :
     (j0 X ∩ j0 X' : Set (Option (α ⊕ β ⊕ γ))) = j0 (X ∩ X') := by
   ext w; rcases w with _ | (a | b | c) <;>
     simp [j0, t0, Set.mem_inter_iff]
 
+/--
+@isnad1 id=eq.0h5v.s5.c407e4eae045 from=translated src=- shape=94d6c905 vocab=a1a6d858
+-/
 theorem j1_inter_j1 (Y Y' : Set β) :
     (j1 Y ∩ j1 Y' : Set (Option (α ⊕ β ⊕ γ))) = j1 (Y ∩ Y') := by
   ext w; rcases w with _ | (a | b | c) <;>
     simp [j1, t1, Set.mem_inter_iff]
 
+/--
+@isnad1 id=eq.0h5v.s5.8996053cfa83 from=translated src=- shape=d3b00ec9 vocab=13ba9ce6
+-/
 theorem j2_inter_j2 (Z Z' : Set γ) :
     (j2 Z ∩ j2 Z' : Set (Option (α ⊕ β ⊕ γ))) = j2 (Z ∩ Z') := by
   ext w; rcases w with _ | (a | b | c) <;>
     simp [j2, t2, Set.mem_inter_iff]
 
+/--
+@isnad1 id=eq.0h5v.s5.5d3c4bc3af72 from=translated src=- shape=fa6f891f vocab=251b6233
+-/
 theorem j0_inter_j1 (X : Set α) (Y : Set β) :
     (j0 X ∩ j1 Y : Set (Option (α ⊕ β ⊕ γ))) = ∅ := by
   ext w; rcases w with _ | (a | b | c) <;>
     simp [j0, j1, t0, t1, Set.mem_inter_iff]
 
+/--
+@isnad1 id=eq.0h5v.s5.39dc628f1a57 from=translated src=- shape=8ff1d16f vocab=8b54d5bd
+-/
 theorem j0_inter_j2 (X : Set α) (Z : Set γ) :
     (j0 X ∩ j2 Z : Set (Option (α ⊕ β ⊕ γ))) = ∅ := by
   ext w; rcases w with _ | (a | b | c) <;>
     simp [j0, j2, t0, t2, Set.mem_inter_iff]
 
+/--
+@isnad1 id=eq.0h5v.s5.dccedbc1b124 from=translated src=- shape=368e09d6 vocab=45eeb7af
+-/
 theorem j1_inter_j2 (Y : Set β) (Z : Set γ) :
     (j1 Y ∩ j2 Z : Set (Option (α ⊕ β ⊕ γ))) = ∅ := by
   ext w; rcases w with _ | (a | b | c) <;>
     simp [j1, j2, t1, t2, Set.mem_inter_iff]
 
+/--
+@isnad1 id=nonempty.1h4v.s4.cc0f31577e8a from=translated src=- shape=6b4484c3 vocab=ccc10df9
+-/
 theorem j0_nonempty {X : Set α} (hX : X.Nonempty) : (j0 X : Set (Option (α ⊕ β ⊕ γ))).Nonempty := by
   obtain ⟨a, ha⟩ := hX; exact ⟨t0 a, a, rfl, ha⟩
 
+/--
+@isnad1 id=nonempty.1h4v.s4.4ad66a4622a1 from=translated src=- shape=6621e958 vocab=0ea1c020
+-/
 theorem j1_nonempty {Y : Set β} (hY : Y.Nonempty) : (j1 Y : Set (Option (α ⊕ β ⊕ γ))).Nonempty := by
   obtain ⟨b, hb⟩ := hY; exact ⟨t1 b, b, rfl, hb⟩
 
+/--
+@isnad1 id=nonempty.1h4v.s4.c5bd015461b6 from=translated src=- shape=54f102a4 vocab=4b04ff3f
+-/
 theorem j2_nonempty {Z : Set γ} (hZ : Z.Nonempty) : (j2 Z : Set (Option (α ⊕ β ⊕ γ))).Nonempty := by
   obtain ⟨c, hc⟩ := hZ; exact ⟨t2 c, c, rfl, hc⟩
 
+/--
+@isnad1 id=iff.0h5v.s5.c97f8c7c0785 from=translated src=- shape=7a2316fb vocab=0d7e814b
+-/
 theorem j0_subset_j0 {X X' : Set α} :
     (j0 X : Set (Option (α ⊕ β ⊕ γ))) ⊆ j0 X' ↔ X ⊆ X' := by
   constructor
   · intro h a ha; exact t0_mem_j0.mp (h (t0_mem_j0.mpr ha))
   · rintro h w ⟨a, rfl, ha⟩; exact t0_mem_j0.mpr (h ha)
 
+/--
+@isnad1 id=iff.0h5v.s5.5b8bd6844209 from=translated src=- shape=b36f2258 vocab=2f1d28b5
+-/
 theorem j1_subset_j1 {Y Y' : Set β} :
     (j1 Y : Set (Option (α ⊕ β ⊕ γ))) ⊆ j1 Y' ↔ Y ⊆ Y' := by
   constructor
   · intro h b hb; exact t1_mem_j1.mp (h (t1_mem_j1.mpr hb))
   · rintro h w ⟨b, rfl, hb⟩; exact t1_mem_j1.mpr (h hb)
 
+/--
+@isnad1 id=iff.0h5v.s5.a3ed8b77ba53 from=translated src=- shape=9fec63da vocab=dd4dc693
+-/
 theorem j2_subset_j2 {Z Z' : Set γ} :
     (j2 Z : Set (Option (α ⊕ β ⊕ γ))) ⊆ j2 Z' ↔ Z ⊆ Z' := by
   constructor
   · intro h c hc; exact t2_mem_j2.mp (h (t2_mem_j2.mpr hc))
   · rintro h w ⟨c, rfl, hc⟩; exact t2_mem_j2.mpr (h hc)
 
+/--
+@isnad1 id=eq.1h5v.s5.8f3d1d3128c8 from=translated src=- shape=49af00fc vocab=66de146e
+-/
 theorem j0_injective {X X' : Set α}
     (h : (j0 X : Set (Option (α ⊕ β ⊕ γ))) = j0 X') : X = X' :=
   Set.Subset.antisymm (j0_subset_j0.mp h.subset) (j0_subset_j0.mp h.symm.subset)
 
+/--
+@isnad1 id=eq.1h5v.s5.59cf6c5b7842 from=translated src=- shape=49b40eaa vocab=ca0c3bb8
+-/
 theorem j1_injective {Y Y' : Set β}
     (h : (j1 Y : Set (Option (α ⊕ β ⊕ γ))) = j1 Y') : Y = Y' :=
   Set.Subset.antisymm (j1_subset_j1.mp h.subset) (j1_subset_j1.mp h.symm.subset)
 
+/--
+@isnad1 id=eq.1h5v.s5.27536bab6228 from=translated src=- shape=a151a43b vocab=612116aa
+-/
 theorem j2_injective {Z Z' : Set γ}
     (h : (j2 Z : Set (Option (α ⊕ β ⊕ γ))) = j2 Z') : Z = Z' :=
   Set.Subset.antisymm (j2_subset_j2.mp h.subset) (j2_subset_j2.mp h.symm.subset)
@@ -197,35 +278,56 @@ def master3 : Set (Option (α ⊕ β ⊕ γ)) :=
 
 variable {V₀ V₁ V₂}
 
+/--
+@isnad1 id=mem.0h6v.s5.211891491c87 from=translated src=- shape=034fad9b vocab=06c951f1
+-/
 @[simp] theorem none_mem_master3 : (none : Option (α ⊕ β ⊕ γ)) ∈ master3 V₀ V₁ V₂ :=
   Set.mem_insert _ _
 
+/--
+@isnad1 id=le.1h7v.s5.e4076df37030 from=translated src=- shape=96e68cf2 vocab=531bc300
+-/
 theorem j0_subset_master3 {X : Set α} (hX : V₀.mem X) :
     (j0 X : Set (Option (α ⊕ β ⊕ γ))) ⊆ master3 V₀ V₁ V₂ := by
   rintro w ⟨a, rfl, ha⟩
   exact Set.mem_insert_iff.mpr (Or.inr (Set.mem_union_left _
     (Set.mem_union_left _ (t0_mem_j0.mpr (V₀.sub_master hX ha)))))
 
+/--
+@isnad1 id=le.1h7v.s5.6e7ce0214fb6 from=translated src=- shape=82ce6237 vocab=f57cc4a1
+-/
 theorem j1_subset_master3 {Y : Set β} (hY : V₁.mem Y) :
     (j1 Y : Set (Option (α ⊕ β ⊕ γ))) ⊆ master3 V₀ V₁ V₂ := by
   rintro w ⟨b, rfl, hb⟩
   exact Set.mem_insert_iff.mpr (Or.inr (Set.mem_union_left _
     (Set.mem_union_right _ (t1_mem_j1.mpr (V₁.sub_master hY hb)))))
 
+/--
+@isnad1 id=le.1h7v.s5.e6c467d56550 from=translated src=- shape=9b39ee0c vocab=1e003d4f
+-/
 theorem j2_subset_master3 {Z : Set γ} (hZ : V₂.mem Z) :
     (j2 Z : Set (Option (α ⊕ β ⊕ γ))) ⊆ master3 V₀ V₁ V₂ := by
   rintro w ⟨c, rfl, hc⟩
   exact Set.mem_insert_iff.mpr
     (Or.inr (Set.mem_union_right _ (t2_mem_j2.mpr (V₂.sub_master hZ hc))))
 
+/--
+@isnad1 id=eq.1h7v.s5.9032416789f5 from=translated src=- shape=8f90b41d vocab=cd46a183
+-/
 theorem master3_inter_j0 {X : Set α} (hX : V₀.mem X) :
     (master3 V₀ V₁ V₂ ∩ j0 X : Set (Option (α ⊕ β ⊕ γ))) = j0 X :=
   Set.inter_eq_right.mpr (j0_subset_master3 hX)
 
+/--
+@isnad1 id=eq.1h7v.s5.8fde5e0392b8 from=translated src=- shape=02498448 vocab=9f3c7a36
+-/
 theorem master3_inter_j1 {Y : Set β} (hY : V₁.mem Y) :
     (master3 V₀ V₁ V₂ ∩ j1 Y : Set (Option (α ⊕ β ⊕ γ))) = j1 Y :=
   Set.inter_eq_right.mpr (j1_subset_master3 hY)
 
+/--
+@isnad1 id=eq.1h7v.s5.faf3c8c59641 from=translated src=- shape=4407f842 vocab=d5abf254
+-/
 theorem master3_inter_j2 {Z : Set γ} (hZ : V₂.mem Z) :
     (master3 V₀ V₁ V₂ ∩ j2 Z : Set (Option (α ⊕ β ⊕ γ))) = j2 Z :=
   Set.inter_eq_right.mpr (j2_subset_master3 hZ)
@@ -310,28 +412,38 @@ def sum3 (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β) (V₂ : N
 namespace Example62C
 
 /-- `𝟙` is positive: its single neighbourhood `univ` (over the inhabited `Unit`)
-is nonempty. -/
+is nonempty.
+@isnad1 id=nonempty.1h1v.s3.4e98bbbb9bac from=translated src=- shape=afedc36f vocab=7204e1be
+-/
 theorem unitSys_nonempty : ∀ X, unitSys.mem X → X.Nonempty := by
   rintro X rfl; exact Set.univ_nonempty
 
-/-- Scott's standing assumption `∅ ∉ C`: every neighbourhood of `C` is nonempty. -/
+/-- Scott's standing assumption `∅ ∉ C`: every neighbourhood of `C` is nonempty.
+@isnad1 id=nonempty.1h1v.s3.7a5bfe1f1c72 from=translated src=- shape=afedc36f vocab=b10e79e3
+-/
 theorem C_nonempty : ∀ X, C.mem X → X.Nonempty := by
   rintro X (⟨σ, rfl⟩ | ⟨σ, rfl⟩)
   · exact ⟨σ, List.prefix_rfl⟩
   · exact ⟨σ, rfl⟩
 
-/-- `b{σ} = {bσ}`: prepending a bit to a singleton. -/
+/-- `b{σ} = {bσ}`: prepending a bit to a singleton.
+@isnad1 id=eq.0h2v.s4.fa42ec36e690 from=translated src=- shape=8feb61a3 vocab=6f6e0b1a
+-/
 theorem embBit_singleton (b : Bool) (σ : Str) : embBit b ({σ} : Set Str) = {(b :: σ : Str)} := by
   rw [embBit_eq_prepend, Example44.prepend_singleton]; rfl
 
-/-- Prepending a bit lands back in `C`. -/
+/-- Prepending a bit lands back in `C`.
+@isnad1 id=mem.1h2v.s4.7671f00eb6db from=translated src=- shape=553a270b vocab=882daeea
+-/
 theorem memC_embBit (b : Bool) {X : Set Str} (hX : C.mem X) : C.mem (embBit b X) := by
   rw [embBit_eq_prepend]; exact Example44.memC_prepend [b] hX
 
 /-- **Example 6.2 — the shape of a `C`-neighbourhood.** Every neighbourhood of `C`
 is the master
 `Σ* = cone []`, the terminator `{Λ} = {[]}`, a `0`-copy `0X` with `X ∈ C`, or a
-`1`-copy `1X`. -/
+`1`-copy `1X`.
+@isnad1 id=or.1h1v.s6.9c3624b607f1 from=translated src=- shape=40098e4c vocab=d8232477
+-/
 theorem memC_cases {W : Set Str} (hW : C.mem W) :
     W = Set.univ ∨ W = ({[]} : Set Str)
       ∨ (∃ X, C.mem X ∧ W = embBit false X) ∨ (∃ Y, C.mem Y ∧ W = embBit true Y) := by
@@ -351,7 +463,9 @@ theorem memC_cases {W : Set Str} (hW : C.mem W) :
       | true =>
         exact Or.inr (Or.inr (Or.inr ⟨{σ'}, memC_singleton σ', (embBit_singleton true σ').symm⟩))
 
-/-- If `bW ∈ C` then `W ∈ C`. -/
+/-- If `bW ∈ C` then `W ∈ C`.
+@isnad1 id=mem.1h2v.s4.f9d9d5fa20f6 from=translated src=- shape=e4f6289d vocab=882daeea
+-/
 theorem memC_embBit_inv {b : Bool} {W : Set Str} (h : C.mem (embBit b W)) : C.mem W := by
   rcases h with ⟨σ, hσ⟩ | ⟨σ, hσ⟩
   · have hmem : σ ∈ embBit b W := hσ ▸ (show σ ∈ cone σ from List.prefix_rfl)
@@ -361,13 +475,22 @@ theorem memC_embBit_inv {b : Bool} {W : Set Str} (h : C.mem (embBit b W)) : C.me
     obtain ⟨w', rfl, -⟩ := hmem
     rw [← embBit_singleton] at hσ; rw [embBit_injective hσ]; exact memC_singleton w'
 
+/--
+@isnad1 id=eq.0h2v.s4.469af8571f92 from=translated src=- shape=409ed904 vocab=c151d8ab
+-/
 theorem singleton_nil_inter_embBit (b : Bool) (X : Set Str) :
     (({[]} : Set Str) ∩ embBit b X) = ∅ := by
   simp_all
 
+/--
+@isnad1 id=ne.0h0v.s3.ebf77ffb947c from=translated src=- shape=19927acf vocab=d244e8f5
+-/
 theorem singleton_nil_ne_univ : ({[]} : Set Str) ≠ Set.univ := by
   simp_all
 
+/--
+@isnad1 id=ne.0h2v.s4.d0973901b224 from=translated src=- shape=c2db94e0 vocab=73fb9c0f
+-/
 theorem singleton_nil_ne_embBit (b : Bool) (X : Set Str) : ({[]} : Set Str) ≠ embBit b X := by
   intro h
   exact nil_not_mem_embBit (h ▸ (Set.mem_singleton_iff.mpr rfl : ([] : Str) ∈ ({[]} : Set Str)))
@@ -376,6 +499,9 @@ theorem singleton_nil_ne_embBit (b : Bool) (X : Set Str) : ({[]} : Set Str) ≠ 
 abbrev CC : NeighborhoodSystem (Option (Unit ⊕ Str ⊕ Str)) :=
   sum3 unitSys C C unitSys_nonempty C_nonempty C_nonempty
 
+/--
+@isnad1 id=mem.1h1v.s4.56c869e82368 from=translated src=- shape=e50ea34b vocab=d78f90fe
+-/
 theorem sum3_mem_j1_inv {X : Set Str} (h : CC.mem (j1 X)) : C.mem X := by
   rcases h with h0 | ⟨U, hU, heq⟩ | ⟨Y, hY, heq⟩ | ⟨Z, hZ, heq⟩
   · exact absurd (h0 ▸ none_mem_master3) none_not_mem_j1
@@ -383,6 +509,9 @@ theorem sum3_mem_j1_inv {X : Set Str} (h : CC.mem (j1 X)) : C.mem X := by
   · rw [j1_injective heq]; exact hY
   · obtain ⟨c, hc⟩ := C_nonempty Z hZ; exact absurd (heq ▸ (t2_mem_j2.mpr hc)) t2_not_mem_j1
 
+/--
+@isnad1 id=mem.1h1v.s4.0ea1b4acd138 from=translated src=- shape=e50ea34b vocab=52dc8737
+-/
 theorem sum3_mem_j2_inv {Y : Set Str} (h : CC.mem (j2 Y)) : C.mem Y := by
   rcases h with h0 | ⟨U, hU, heq⟩ | ⟨Z, hZ, heq⟩ | ⟨Y', hY', heq⟩
   · exact absurd (h0 ▸ none_mem_master3) none_not_mem_j2
@@ -390,6 +519,9 @@ theorem sum3_mem_j2_inv {Y : Set Str} (h : CC.mem (j2 Y)) : C.mem Y := by
   · obtain ⟨c, hc⟩ := C_nonempty Z hZ; exact absurd (heq ▸ (t1_mem_j1.mpr hc)) t1_not_mem_j2
   · rw [j2_injective heq]; exact hY'
 
+/--
+@isnad1 id=nonempty.1h1v.s4.cb1047884de0 from=translated src=- shape=fa117999 vocab=f57383de
+-/
 theorem sum3_mem_nonempty {W : Set (Option (Unit ⊕ Str ⊕ Str))} (h : CC.mem W) : W.Nonempty := by
   rcases h with rfl | ⟨U, hU, rfl⟩ | ⟨Y, hY, rfl⟩ | ⟨Z, hZ, rfl⟩
   · exact ⟨none, none_mem_master3⟩
@@ -478,6 +610,9 @@ def toCC (x : C.Element) : CC.Element where
       · refine Or.inr (Or.inr (Or.inr ⟨Z', hZ', rfl, ?_⟩))
         exact x.up_mem hzT (memC_embBit true hZ') (embBit_subset.mpr (j2_subset_j2.mp hsub))
 
+/--
+@isnad1 id=iff.0h1v.s5.5226625c5702 from=translated src=- shape=130e5cb6 vocab=43cbc40a
+-/
 @[simp] theorem toCC_mem_j0 {x : C.Element} :
     (toCC x).mem (j0 (Set.univ : Set Unit)) ↔ x.mem ({[]} : Set Str) := by
   constructor
@@ -488,6 +623,9 @@ def toCC (x : C.Element) : CC.Element where
     · exact absurd (heq ▸ (t0_mem_j0.mpr (Set.mem_univ ()))) t0_not_mem_j2
   · intro hz; exact Or.inr (Or.inl ⟨rfl, hz⟩)
 
+/--
+@isnad1 id=iff.1h2v.s5.b31b8c42be57 from=translated src=- shape=aadf3ef5 vocab=67ae5523
+-/
 theorem toCC_mem_j1 {x : C.Element} {X : Set Str} (hX : C.mem X) :
     (toCC x).mem (j1 X) ↔ x.mem (embBit false X) := by
   constructor
@@ -500,6 +638,9 @@ theorem toCC_mem_j1 {x : C.Element} {X : Set Str} (hX : C.mem X) :
       exact absurd (heqj ▸ (t1_mem_j1.mpr hb)) t1_not_mem_j2
   · intro hz; exact Or.inr (Or.inr (Or.inl ⟨X, hX, rfl, hz⟩))
 
+/--
+@isnad1 id=iff.1h2v.s5.2093999fa9ae from=translated src=- shape=aadf3ef5 vocab=882a42c1
+-/
 theorem toCC_mem_j2 {x : C.Element} {Y : Set Str} (hY : C.mem Y) :
     (toCC x).mem (j2 Y) ↔ x.mem (embBit true Y) := by
   constructor
@@ -597,6 +738,9 @@ def fromCC (s : CC.Element) : C.Element where
         exact s.up_mem hsT (Or.inr (Or.inr (Or.inr ⟨Y', hY', rfl⟩)))
           (j2_subset_j2.mpr (embBit_subset.mp hsub))
 
+/--
+@isnad1 id=iff.0h1v.s5.ca3ef621705f from=translated src=- shape=92f28a51 vocab=f1d5bf43
+-/
 @[simp] theorem fromCC_mem_nil {s : CC.Element} :
     (fromCC s).mem ({[]} : Set Str) ↔ s.mem (j0 (Set.univ : Set Unit)) := by
   constructor
@@ -607,6 +751,9 @@ def fromCC (s : CC.Element) : C.Element where
     · exact absurd heq (singleton_nil_ne_embBit true Y')
   · intro hs; exact Or.inr (Or.inl ⟨rfl, hs⟩)
 
+/--
+@isnad1 id=iff.1h2v.s5.0f354914ab66 from=translated src=- shape=894bf77b vocab=b6bc57e4
+-/
 theorem fromCC_mem_embF {s : CC.Element} {X : Set Str} (hX : C.mem X) :
     (fromCC s).mem (embBit false X) ↔ s.mem (j1 X) := by
   constructor
@@ -617,6 +764,9 @@ theorem fromCC_mem_embF {s : CC.Element} {X : Set Str} (hX : C.mem X) :
     · exact absurd heqj (embBit_ne (show (false : Bool) ≠ true by decide) (C_nonempty X hX))
   · intro hs; exact Or.inr (Or.inr (Or.inl ⟨X, hX, rfl, hs⟩))
 
+/--
+@isnad1 id=iff.1h2v.s5.70cb474af03f from=translated src=- shape=894bf77b vocab=bfd675a7
+-/
 theorem fromCC_mem_embT {s : CC.Element} {Y : Set Str} (hY : C.mem Y) :
     (fromCC s).mem (embBit true Y) ↔ s.mem (j2 Y) := by
   constructor
@@ -629,6 +779,9 @@ theorem fromCC_mem_embT {s : CC.Element} {Y : Set Str} (hY : C.mem Y) :
 
 /-! ### The two halves are mutually inverse. -/
 
+/--
+@isnad1 id=eq.0h1v.s3.1b10d41d9452 from=translated src=- shape=ad4d4fb1 vocab=7f02d973
+-/
 theorem fromCC_toCC (x : C.Element) : fromCC (toCC x) = x := by
   apply NeighborhoodSystem.Element.ext
   intro W
@@ -645,6 +798,9 @@ theorem fromCC_toCC (x : C.Element) : fromCC (toCC x) = x := by
     · exact Or.inr (Or.inr (Or.inl ⟨X, hX, rfl, (toCC_mem_j1 hX).mpr hW⟩))
     · exact Or.inr (Or.inr (Or.inr ⟨Y, hY, rfl, (toCC_mem_j2 hY).mpr hW⟩))
 
+/--
+@isnad1 id=eq.0h1v.s4.316d58acadd5 from=translated src=- shape=9241d7e0 vocab=3727b413
+-/
 theorem toCC_fromCC (s : CC.Element) : toCC (fromCC s) = s := by
   apply NeighborhoodSystem.Element.ext
   intro W
@@ -692,7 +848,9 @@ C`.** Scott's domain
 three-way separated sum
 `𝟙 + C + C`: a sequence is bottom, the finished empty sequence `Λ` (the `𝟙`
 summand), or begins with
-`0` or `1` (the two `C` summands). -/
+`0` or `1` (the two `C` summands).
+@isnad1 id=isomorph.0h0v.s4.2205739c372c from=translated src=- shape=9eed784e vocab=b61a9423
+-/
 theorem C_domain_equation :
     C ≅ᴰ sum3 unitSys C C unitSys_nonempty C_nonempty C_nonempty :=
   ⟨ccEquiv⟩

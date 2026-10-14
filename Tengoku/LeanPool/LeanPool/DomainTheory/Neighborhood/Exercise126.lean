@@ -56,11 +56,16 @@ the finite sets `G`
 whose generated ideal contains `F`. -/
 def IFamily (F : Finset A) : Set (Finset A) := {G | (↑F : Set A) ⊆ Ideal.span (↑G : Set A)}
 
+/--
+@isnad1 id=iff.0h3v.s6.645e708e95d0 from=translated src=- shape=a8dee609 vocab=5a71ac7b
+-/
 @[simp] theorem mem_IFamily {F G : Finset A} :
     G ∈ IFamily F ↔ (↑F : Set A) ⊆ Ideal.span (↑G : Set A) := Iff.rfl
 
 /-- Inclusion of neighbourhoods reversed to ideal generation: `I(F₁) ⊆ I(F₂) ↔ F₂
-⊆ ⟨F₁⟩`. -/
+⊆ ⟨F₁⟩`.
+@isnad1 id=iff.0h3v.s6.a44eafdf5bb4 from=translated src=- shape=d7517b11 vocab=90e0a32c
+-/
 theorem IFamily_subset_iff (F₁ F₂ : Finset A) :
     IFamily F₁ ⊆ IFamily F₂ ↔ (↑F₂ : Set A) ⊆ Ideal.span (↑F₁ : Set A) := by
   constructor
@@ -71,6 +76,9 @@ theorem IFamily_subset_iff (F₁ F₂ : Finset A) :
     rw [mem_IFamily] at hG ⊢
     exact h.trans (SetLike.coe_subset_coe.mpr (Ideal.span_le.mpr hG))
 
+/--
+@isnad1 id=eq.1h3v.s5.9706b780cffa from=translated src=- shape=211d0811 vocab=cb21cd9f
+-/
 theorem span_eq_of_IFamily_eq {F₁ F₂ : Finset A} (h : IFamily F₁ = IFamily F₂) :
     Ideal.span (↑F₁ : Set A) = Ideal.span (↑F₂ : Set A) := by
   have h12 : (↑F₂ : Set A) ⊆ Ideal.span (↑F₁ : Set A) :=
@@ -79,6 +87,9 @@ theorem span_eq_of_IFamily_eq {F₁ F₂ : Finset A} (h : IFamily F₁ = IFamily
     (IFamily_subset_iff F₂ F₁).mp h.ge
   exact le_antisymm (Ideal.span_le.mpr h21) (Ideal.span_le.mpr h12)
 
+/--
+@isnad1 id=eq.1h3v.s5.15736ed6970a from=translated src=- shape=b2e7990c vocab=cb21cd9f
+-/
 theorem IFamily_eq_of_span_eq {F₁ F₂ : Finset A}
     (h : Ideal.span (↑F₁ : Set A) = Ideal.span (↑F₂ : Set A)) : IFamily F₁ = IFamily F₂ := by
   apply Set.Subset.antisymm
@@ -88,7 +99,9 @@ theorem IFamily_eq_of_span_eq {F₁ F₂ : Finset A}
 variable [DecidableEq A]
 
 /-- `I(F₁) ∩ I(F₂) = I(F₁ ∪ F₂)`: the system is closed under all binary
-intersections. -/
+intersections.
+@isnad1 id=eq.0h3v.s5.776bc0125227 from=translated src=- shape=2d12d5e4 vocab=eb34a760
+-/
 theorem IFamily_inter (F₁ F₂ : Finset A) :
     IFamily F₁ ∩ IFamily F₂ = IFamily (F₁ ∪ F₂) := by
   ext G
@@ -110,9 +123,15 @@ def ringSystem : NeighborhoodSystem (Finset A) where
     rintro X ⟨F, rfl⟩
     exact (IFamily_subset_iff F ∅).mpr (by rw [Finset.coe_empty]; exact Set.empty_subset _)
 
+/--
+@isnad1 id=iff.0h2v.s5.c872c3a94101 from=translated src=- shape=90997f31 vocab=47a3662b
+-/
 @[simp] theorem ringSystem_mem {S : Set (Finset A)} :
     (ringSystem (A := A)).mem S ↔ ∃ F, S = IFamily F := Iff.rfl
 
+/--
+@isnad1 id=mem.0h2v.s4.be6b684fef64 from=translated src=- shape=1428ee13 vocab=c371dcea
+-/
 theorem IFamily_mem (F : Finset A) : (ringSystem (A := A)).mem (IFamily F) := ⟨F, rfl⟩
 
 /-! ### From filters to ideals. -/
@@ -149,11 +168,16 @@ def idealOf (x : (ringSystem (A := A)).Element) : Ideal A where
     rw [Finset.coe_singleton, Set.singleton_subset_iff, Finset.coe_singleton]
     exact Submodule.smul_mem _ c (Ideal.subset_span (Set.mem_singleton a))
 
+/--
+@isnad1 id=iff.0h3v.s6.49f2d1aab4ef from=translated src=- shape=298cfb4e vocab=51200055
+-/
 @[simp] theorem mem_idealOf {x : (ringSystem (A := A)).Element} {a : A} :
     a ∈ idealOf x ↔ x.mem (IFamily {a}) := Iff.rfl
 
 /-- A filter contains `I(F)` whenever it contains `I({a})` for every `a ∈ F` (by
-`∩`-closure). -/
+`∩`-closure).
+@isnad1 id=mem.1h3v.s6.19851099d881 from=translated src=- shape=66ed2fee vocab=e18935ab
+-/
 theorem mem_IFamily_of_forall (x : (ringSystem (A := A)).Element) (F : Finset A)
     (h : ∀ a ∈ F, x.mem (IFamily {a})) : x.mem (IFamily F) := by
   classical
@@ -186,6 +210,9 @@ def ofIdeal (J : Ideal A) : (ringSystem (A := A)).Element where
     have hsub : (↑F' : Set A) ⊆ Ideal.span (↑F : Set A) := (IFamily_subset_iff F F').mp hXY
     exact (Ideal.span_le.mpr hsub).trans hF
 
+/--
+@isnad1 id=iff.0h3v.s6.b9bf4b779572 from=translated src=- shape=5b46a373 vocab=a58e7f15
+-/
 theorem mem_ofIdeal_IFamily (J : Ideal A) (F : Finset A) :
     (ofIdeal J).mem (IFamily F) ↔ Ideal.span (↑F : Set A) ≤ J := by
   constructor
@@ -197,11 +224,17 @@ theorem mem_ofIdeal_IFamily (J : Ideal A) (F : Finset A) :
 
 /-! ### The order isomorphism `|𝒟| ≅ (Ideals A, ⊆)`. -/
 
+/--
+@isnad1 id=eq.0h2v.s5.a25e970bf006 from=translated src=- shape=e17ccb0b vocab=34663adb
+-/
 theorem idealOf_ofIdeal (J : Ideal A) : idealOf (ofIdeal J) = J := by
   apply SetLike.ext
   intro a
   rw [mem_idealOf, mem_ofIdeal_IFamily, Finset.coe_singleton, Ideal.span_singleton_le_iff_mem]
 
+/--
+@isnad1 id=eq.0h2v.s5.bb5621b4cc6a from=translated src=- shape=27876d42 vocab=f09f7eb4
+-/
 theorem ofIdeal_idealOf (x : (ringSystem (A := A)).Element) : ofIdeal (idealOf x) = x := by
   apply NeighborhoodSystem.Element.ext
   intro S

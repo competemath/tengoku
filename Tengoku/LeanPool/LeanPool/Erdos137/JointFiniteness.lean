@@ -101,45 +101,65 @@ def overlap (k n p : ℕ) : ℕ := overlapg 3 k n p
 /-- The over-count `W k n`: the `g = 3` instance of the generic `Wg`. -/
 def W (k n : ℕ) : ℕ := Wg 3 k n
 
-/-- `B k n = F (3 * (k/3)) n`. The `g = 3` instance of `Bg_eq`. -/
+/-- `B k n = F (3 * (k/3)) n`. The `g = 3` instance of `Bg_eq`.
+@isnad1 id=eq.0h2v.s5.9a80e483a668 from=translated src=- shape=eade0ef1 vocab=69a2c4cd
+-/
 lemma B_eq (k n : ℕ) : B k n = F (3 * (k / 3)) n := Bg_eq (by norm_num) k n
 
-/-- `B k n` divides `F k n`. The `g = 3` instance of `Bg_dvd_F`. -/
+/-- `B k n` divides `F k n`. The `g = 3` instance of `Bg_dvd_F`.
+@isnad1 id=dvd.0h2v.s3.66699aa8d7fb from=translated src=- shape=6c8684e5 vocab=c48b92fd
+-/
 lemma B_dvd_F (k n : ℕ) : B k n ∣ F k n := Bg_dvd_F (by norm_num) k n
 
-/-- `B k n ≠ 0` for `n ≥ 1`. The `g = 3` instance of `Bg_ne_zero`. -/
+/-- `B k n ≠ 0` for `n ≥ 1`. The `g = 3` instance of `Bg_ne_zero`.
+@isnad1 id=ne.1h2v.s4.7bc6516184ee from=translated src=- shape=962a0625 vocab=4a6ffff2
+-/
 lemma B_ne_zero {n : ℕ} (hn : 1 ≤ n) (k : ℕ) : B k n ≠ 0 := Bg_ne_zero (by norm_num) hn k
 
-/-- For `n ≥ 1` each triple `F 3 (n + 3j)` is nonzero. The `g = 3` instance of `block_ne_zero`. -/
+/-- For `n ≥ 1` each triple `F 3 (n + 3j)` is nonzero. The `g = 3` instance of `block_ne_zero`.
+@isnad1 id=ne.1h2v.s5.372e35c5c4fa from=translated src=- shape=77371aa1 vocab=d01f733b
+-/
 lemma triple_ne_zero {n : ℕ} (hn : 1 ≤ n) (j : ℕ) : F 3 (n + 3 * j) ≠ 0 :=
   block_ne_zero hn 3 j
 
 /-- **Radical-of-product decomposition, exact form.**
-`∏_j rad (F 3 (n+3j)) = rad (B k n) * W k n`. The `g = 3` instance of `rad_blocksg_decomp`. -/
+`∏_j rad (F 3 (n+3j)) = rad (B k n) * W k n`. The `g = 3` instance of `rad_blocksg_decomp`.
+@isnad1 id=eq.1h2v.s6.64ab8b6d104c from=translated src=- shape=c16b7ae0 vocab=ba7ddccc
+-/
 theorem rad_triples_decomp {k n : ℕ} (hn : 1 ≤ n) :
     (∏ j ∈ Finset.range (k / 3), rad (F 3 (n + 3 * j))) = rad (B k n) * W k n :=
   rad_blocksg_decomp (by norm_num) hn
 
-/-- `rad (B k n) ∣ rad (F k n)`. The `g = 3` instance of `rad_Bg_dvd_rad_F`. -/
+/-- `rad (B k n) ∣ rad (F k n)`. The `g = 3` instance of `rad_Bg_dvd_rad_F`.
+@isnad1 id=dvd.1h2v.s4.12f14e0cc2d4 from=translated src=- shape=40085562 vocab=89db815e
+-/
 lemma rad_B_dvd_rad_F {k n : ℕ} (hn : 1 ≤ n) : rad (B k n) ∣ rad (F k n) :=
   rad_Bg_dvd_rad_F (by norm_num) hn
 
 /-- **Decomposition inequality (the usable form):**
-`∏_j rad (F 3 (n+3j)) ≤ rad (F k n) * W k n`. The `g = 3` instance of `rad_blocksg_le`. -/
+`∏_j rad (F 3 (n+3j)) ≤ rad (F k n) * W k n`. The `g = 3` instance of `rad_blocksg_le`.
+@isnad1 id=le.1h2v.s6.db685b5c1382 from=translated src=- shape=827a089b vocab=6169d82b
+-/
 theorem rad_triples_le {k n : ℕ} (hn : 1 ≤ n) :
     (∏ j ∈ Finset.range (k / 3), rad (F 3 (n + 3 * j))) ≤ rad (F k n) * W k n :=
   rad_blocksg_le (by norm_num) hn
 
 /-- **Overlap bound (combinatorial core).** `overlap k n p ≤ ⌊k/p⌋ + 1` for `n ≥ 1`.
-The `g = 3` instance of `overlapg_le`. -/
+The `g = 3` instance of `overlapg_le`.
+@isnad1 id=le.1h3v.s5.6f3558f0dea4 from=translated src=- shape=c463bf62 vocab=6d5729b1
+-/
 lemma overlap_le {k n p : ℕ} (hn : 1 ≤ n) : overlap k n p ≤ k / p + 1 :=
   overlapg_le (by norm_num) hn
 
-/-- **Overlap product divides `k!`.** `W k n ∣ k!`. The `g = 3` instance of `Wg_dvd_factorial`. -/
+/-- **Overlap product divides `k!`.** `W k n ∣ k!`. The `g = 3` instance of `Wg_dvd_factorial`.
+@isnad1 id=dvd.1h2v.s4.e863b15094e3 from=translated src=- shape=c45dab53 vocab=c431d3e9
+-/
 theorem W_dvd_factorial {k n : ℕ} (hn : 1 ≤ n) : W k n ∣ Nat.factorial k :=
   Wg_dvd_factorial (by norm_num) hn
 
-/-- **Overlap bound: `W k n ≤ k^k`.** The `g = 3` instance of `Wg_le_pow`. -/
+/-- **Overlap bound: `W k n ≤ k^k`.** The `g = 3` instance of `Wg_le_pow`.
+@isnad1 id=le.1h2v.s5.79a64a5f8c3e from=translated src=- shape=1d93e500 vocab=57ddd431
+-/
 theorem W_le_pow {k n : ℕ} (hn : 1 ≤ n) : W k n ≤ k ^ k :=
   Wg_le_pow (by norm_num) hn
 
@@ -156,7 +176,9 @@ def BlockRadLB : Prop :=
       ((∏ j ∈ Finset.range (k / 3), rad (F 3 (n + 3 * j)) : ℕ) : ℝ)
 
 /-- `BlockRadLB` is exactly the `g = 3` instance of the generic `BlockRadLBg` (the exponents
-`2/3` and `(3-1)/3` agree, and the guard `3 ≤ k` matches `g ≤ k`). -/
+`2/3` and `(3-1)/3` agree, and the guard `3 ≤ k` matches `g ≤ k`).
+@isnad1 id=iff.0h0v.s3.ed172d41dcb5 from=translated src=- shape=9ae76a30 vocab=505c2bcf
+-/
 lemma blockRadLB_iff : BlockRadLB ↔ BlockRadLBg 3 := by
   unfold BlockRadLB BlockRadLBg
   constructor

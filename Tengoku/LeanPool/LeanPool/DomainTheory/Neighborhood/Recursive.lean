@@ -60,7 +60,9 @@ correctness, but they use `grind` / `lia` (classical). We reprove them with
 
 /-- **AM–GM for naturals (choice-free).** `4 a b ≤ (a+b)²`. Faithful port of
 mathlib's `private`
-`Nat.AM_GM` (no classical tactics). -/
+`Nat.AM_GM` (no classical tactics).
+@isnad1 id=le.0h2v.s5.262a87a6124d from=translated src=- shape=406007b3 vocab=ebd7a482
+-/
 theorem amGM : ∀ {a b : ℕ}, 4 * a * b ≤ (a + b) * (a + b)
   | 0, _ => by rw [Nat.mul_zero, Nat.zero_mul]; exact Nat.zero_le _
   | _, 0 => by rw [Nat.mul_zero]; exact Nat.zero_le _
@@ -71,7 +73,9 @@ theorem amGM : ∀ {a b : ℕ}, 4 * a * b ≤ (a + b) * (a + b)
 
 /-- **Choice-free `sqrt.iter` lower bound.** `iter n guess ² ≤ n`. Faithful port
 of
-`Nat.sqrt.iter_sq_le`, with `grind` replaced by `omega`. -/
+`Nat.sqrt.iter_sq_le`, with `grind` replaced by `omega`.
+@isnad1 id=le.0h2v.s4.4bfcc792bf12 from=translated src=- shape=31dd4b17 vocab=81404552
+-/
 theorem iter_sq_le (n guess : ℕ) : Nat.sqrt.iter n guess * Nat.sqrt.iter n guess ≤ n := by
   unfold Nat.sqrt.iter
   if h : (guess + n / guess) / 2 < guess then
@@ -87,7 +91,9 @@ theorem iter_sq_le (n guess : ℕ) : Nat.sqrt.iter n guess * Nat.sqrt.iter n gue
 /-- Choice-free left-cancellation for `<` under `*` (mathlib's
 `Nat.lt_of_mul_lt_mul_left` is
 classical). From `a*b < a*c` deduce `b < c`, by the contrapositive `c ≤ b → a*c ≤
-a*b`. -/
+a*b`.
+@isnad1 id=lt.1h3v.s5.5475309918ad from=translated src=- shape=e9e79b9e vocab=315d0e5a
+-/
 theorem lt_of_mul_lt_mul_left' {a b c : ℕ} (h : a * b < a * c) : b < c := by
   rcases Nat.lt_or_ge b c with hbc | hbc
   · exact hbc
@@ -95,7 +101,9 @@ theorem lt_of_mul_lt_mul_left' {a b c : ℕ} (h : a * b < a * c) : b < c := by
 
 /-- **Choice-free `sqrt.iter` upper bound.** If `n < (guess+1)²` then `n < (iter n
 guess + 1)²`.
-Faithful port of `Nat.sqrt.lt_iter_succ_sq`, with `lia` replaced by `omega`. -/
+Faithful port of `Nat.sqrt.lt_iter_succ_sq`, with `lia` replaced by `omega`.
+@isnad1 id=lt.1h2v.s6.4ddee0600a80 from=translated src=- shape=ddbedc51 vocab=cc489100
+-/
 theorem lt_iter_succ_sq (n guess : ℕ) (hn : n < (guess + 1) * (guess + 1)) :
     n < (Nat.sqrt.iter n guess + 1) * (Nat.sqrt.iter n guess + 1) := by
   unfold Nat.sqrt.iter
@@ -121,7 +129,9 @@ theorem lt_iter_succ_sq (n guess : ℕ) (hn : n < (guess + 1) * (guess + 1)) :
   termination_by guess
   decreasing_by exact h
 
-/-- `sqrt n` squared is `≤ n` (choice-free; mathlib's `Nat.sqrt_le` is classical). -/
+/-- `sqrt n` squared is `≤ n` (choice-free; mathlib's `Nat.sqrt_le` is classical).
+@isnad1 id=le.0h1v.s4.7834b5e4d844 from=translated src=- shape=b690c24f vocab=d5410f86
+-/
 theorem sqrt_le (n : ℕ) : Nat.sqrt n * Nat.sqrt n ≤ n := by
   rcases Nat.lt_or_ge 1 n with h | h
   · rw [Nat.sqrt, ite_eq_right (Nat.not_le.mpr h)]
@@ -132,7 +142,9 @@ theorem sqrt_le (n : ℕ) : Nat.sqrt n * Nat.sqrt n ≤ n := by
 
 /-- `n < (sqrt n + 1)²` (choice-free; mathlib's `Nat.lt_succ_sqrt` is classical).
 The initial guess
-`2 ^ (log₂ n / 2 + 1)` over-shoots `√n`, which feeds `lt_iter_succ_sq`. -/
+`2 ^ (log₂ n / 2 + 1)` over-shoots `√n`, which feeds `lt_iter_succ_sq`.
+@isnad1 id=lt.0h1v.s5.0e8ecf657428 from=translated src=- shape=85522515 vocab=bc204005
+-/
 theorem lt_succ_sqrt (n : ℕ) : n < (Nat.sqrt n + 1) * (Nat.sqrt n + 1) := by
   rcases Nat.lt_or_ge 1 n with h | h
   · rw [Nat.sqrt, ite_eq_right (Nat.not_le.mpr h)]
@@ -151,7 +163,9 @@ theorem lt_succ_sqrt (n : ℕ) : n < (Nat.sqrt n + 1) * (Nat.sqrt n + 1) := by
 
 /-- **The square-root characterization (choice-free).** If `q² ≤ m < (q+1)²` then
 `sqrt m = q`. The
-uniqueness step is `omega` from the two bounds plus `sqrt_le`/`lt_succ_sqrt`. -/
+uniqueness step is `omega` from the two bounds plus `sqrt_le`/`lt_succ_sqrt`.
+@isnad1 id=eq.2h2v.s5.716991c21416 from=translated src=- shape=98783d7f vocab=00f6503b
+-/
 theorem sqrt_eq_of {m q : ℕ} (h1 : q * q ≤ m) (h2 : m < (q + 1) * (q + 1)) : Nat.sqrt m = q := by
   have hle := sqrt_le m
   have hlt := lt_succ_sqrt m
@@ -173,7 +187,9 @@ theorem sqrt_eq_of {m q : ℕ} (h1 : q * q ≤ m) (h2 : m < (q + 1) * (q + 1)) :
 
 /-- `sqrt (q² + a) = q` whenever `a ≤ 2q` (choice-free; mathlib's
 `Nat.sqrt_add_eq` is
-classical). -/
+classical).
+@isnad1 id=eq.1h2v.s5.f8eda733a8f5 from=translated src=- shape=3cd3069c vocab=ef351644
+-/
 theorem sqrt_add_eq (q a : ℕ) (h : a ≤ q + q) : Nat.sqrt (q * q + a) = q := by
   refine sqrt_eq_of (Nat.le_add_right _ _) ?_
   have expand : (q + 1) * (q + 1) = q * q + q + q + 1 := Nat.succ_mul_succ q q
@@ -186,24 +202,34 @@ theorem sqrt_add_eq (q a : ℕ) (h : a ≤ q + q) : Nat.sqrt (q * q + a) = q := 
 *lemma* (via `sqrt_add_eq`) is classical. We reprove the round-trip on our
 choice-free `sqrt`. -/
 
-/-- **`unpair ∘ pair = id` (choice-free).** Mirrors `Nat.unpair_pair`. -/
+/-- **`unpair ∘ pair = id` (choice-free).** Mirrors `Nat.unpair_pair`.
+@isnad1 id=eq.0h2v.s4.3a465e020cf9 from=translated src=- shape=139ab35a vocab=2a18f243
+-/
 theorem unpair_pair (a b : ℕ) : Nat.unpair (Nat.pair a b) = (a, b) := by
   simp_all
 
-/-- First projection of the pairing round-trip. -/
+/-- First projection of the pairing round-trip.
+@isnad1 id=eq.0h2v.s3.8ed512e30c07 from=translated src=- shape=1c984788 vocab=668da6dc
+-/
 theorem unpair_pair_fst (a b : ℕ) : (Nat.pair a b).unpair.1 = a := by rw [unpair_pair]
 
-/-- Second projection of the pairing round-trip. -/
+/-- Second projection of the pairing round-trip.
+@isnad1 id=eq.0h2v.s3.d05e6433f89f from=translated src=- shape=0a111e9f vocab=c07ad6d7
+-/
 theorem unpair_pair_snd (a b : ℕ) : (Nat.pair a b).unpair.2 = b := by rw [unpair_pair]
 
-/-- `n ≤ (sqrt n)² + 2·sqrt n` (choice-free; needed for `pair_unpair`). -/
+/-- `n ≤ (sqrt n)² + 2·sqrt n` (choice-free; needed for `pair_unpair`).
+@isnad1 id=le.0h1v.s5.d68329f63d09 from=translated src=- shape=de8768b7 vocab=ef351644
+-/
 theorem sqrt_le_add (n : ℕ) : n ≤ Nat.sqrt n * Nat.sqrt n + Nat.sqrt n + Nat.sqrt n := by
   have h := lt_succ_sqrt n
   have e : (Nat.sqrt n + 1) * (Nat.sqrt n + 1)
       = Nat.sqrt n * Nat.sqrt n + Nat.sqrt n + Nat.sqrt n + 1 := Nat.succ_mul_succ _ _
   omega
 
-/-- **`pair ∘ unpair = id` (choice-free).** Mirrors `Nat.pair_unpair`. -/
+/-- **`pair ∘ unpair = id` (choice-free).** Mirrors `Nat.pair_unpair`.
+@isnad1 id=eq.0h1v.s4.8260fe6f7313 from=translated src=- shape=b4020f1c vocab=aa9be476
+-/
 theorem pair_unpair (n : ℕ) : Nat.pair (Nat.unpair n).1 (Nat.unpair n).2 = n := by
   simp_all
 
@@ -216,7 +242,9 @@ few we need using
 the choice-free round-trips above. The *constructors* of `Nat.Primrec`
 (`zero/succ/left/right/pair/comp/prec`) are choice-free and used directly. -/
 
-/-- `id` is primitive recursive (choice-free). -/
+/-- `id` is primitive recursive (choice-free).
+@isnad1 id=primrec.0h0v.s1.8b1eea0fbe28 from=translated src=- shape=87ceb31f vocab=7636d61b
+-/
 theorem primrec_id : Nat.Primrec id :=
   (Nat.Primrec.left.pair Nat.Primrec.right).of_eq fun n => pair_unpair n
 
@@ -234,14 +262,18 @@ private theorem rec_mul (a b : ℕ) : Nat.rec 0 (fun _ IH => a + IH) b = a * b :
     change a + Nat.rec 0 (fun _ IH => a + IH) k = a * (k + 1)
     rw [Nat.mul_succ]; omega
 
-/-- Addition is primitive recursive (choice-free). -/
+/-- Addition is primitive recursive (choice-free).
+@isnad1 id=primrec.0h0v.s4.42bf28db5d06 from=translated src=- shape=3cc5c468 vocab=9d6e18c9
+-/
 theorem primrec_add : Nat.Primrec (Nat.unpaired (· + ·)) :=
   (Nat.Primrec.prec primrec_id
       ((Nat.Primrec.succ.comp Nat.Primrec.right).comp Nat.Primrec.right)).of_eq fun p => by
     simp only [unpair_pair_snd, id_eq]
     exact rec_add _ _
 
-/-- Multiplication is primitive recursive (choice-free). -/
+/-- Multiplication is primitive recursive (choice-free).
+@isnad1 id=primrec.0h0v.s4.a2a64580d825 from=translated src=- shape=3cc5c468 vocab=dcaea730
+-/
 theorem primrec_mul : Nat.Primrec (Nat.unpaired (· * ·)) :=
   (Nat.Primrec.prec Nat.Primrec.zero
       (primrec_add.comp (Nat.Primrec.pair Nat.Primrec.left
@@ -257,7 +289,9 @@ private theorem rec_pred (n : ℕ) : Nat.rec 0 (fun y _ => y) n = n - 1 := by
 
 /-- Predecessor `n ↦ n - 1` is primitive recursive (choice-free; mathlib's
 `Nat.Primrec.pred` is
-classical). -/
+classical).
+@isnad1 id=primrec.0h0v.s4.8c2acfb722de from=translated src=- shape=585bfb7d vocab=7101e84f
+-/
 theorem primrec_pred : Nat.Primrec (fun n => n - 1) :=
   ((Nat.Primrec.prec Nat.Primrec.zero (Nat.Primrec.left.comp Nat.Primrec.right)).comp
     (primrec_id.pair primrec_id)).of_eq fun n => by
@@ -272,7 +306,9 @@ private theorem rec_sub (a b : ℕ) : Nat.rec a (fun _ IH => IH - 1) b = a - b :
 
 /-- Truncated subtraction is primitive recursive (choice-free; mathlib's
 `Nat.Primrec.sub` is
-classical). -/
+classical).
+@isnad1 id=primrec.0h0v.s4.8debde6d7b4e from=translated src=- shape=3cc5c468 vocab=44676066
+-/
 theorem primrec_sub : Nat.Primrec (Nat.unpaired (· - ·)) :=
   (Nat.Primrec.prec primrec_id
     ((primrec_pred.comp Nat.Primrec.right).comp Nat.Primrec.right)).of_eq fun p => by
@@ -281,7 +317,9 @@ theorem primrec_sub : Nat.Primrec (Nat.unpaired (· - ·)) :=
 
 /-- `a * b = 1 ↔ a = 1 ∧ b = 1` over `ℕ` (choice-free; avoids the classical
 generic
-`mul_eq_one`). -/
+`mul_eq_one`).
+@isnad1 id=iff.0h2v.s5.3c09782d23dc from=translated src=- shape=16f063c0 vocab=662b3218
+-/
 theorem nat_mul_eq_one {a b : ℕ} : a * b = 1 ↔ a = 1 ∧ b = 1 := by
   refine ⟨fun h => ⟨Nat.dvd_one.mp ⟨b, h.symm⟩, Nat.dvd_one.mp ⟨a, ?_⟩⟩, fun h => by rw [h.1, h.2]⟩
   rw [Nat.mul_comm] at h; exact h.symm
@@ -296,19 +334,25 @@ These cut the `Nat.pair`/`unpair` plumbing in larger constructions (sum's
 intersection function and
 the list-fold engine). All choice-free. -/
 
-/-- `fun n => f n + g n` is primitive recursive. -/
+/-- `fun n => f n + g n` is primitive recursive.
+@isnad1 id=primrec.2h2v.s4.5f72de0e3cfa from=translated src=- shape=b27ebcba vocab=3b2a01eb
+-/
 theorem primrec_add₂ {f g : ℕ → ℕ} (hf : Nat.Primrec f) (hg : Nat.Primrec g) :
     Nat.Primrec (fun n => f n + g n) :=
   (primrec_add.comp (hf.pair hg)).of_eq fun n => by
     simp only [Nat.unpaired, unpair_pair_fst, unpair_pair_snd]
 
-/-- `fun n => f n * g n` is primitive recursive. -/
+/-- `fun n => f n * g n` is primitive recursive.
+@isnad1 id=primrec.2h2v.s4.816ef409d89a from=translated src=- shape=b27ebcba vocab=e922e072
+-/
 theorem primrec_mul₂ {f g : ℕ → ℕ} (hf : Nat.Primrec f) (hg : Nat.Primrec g) :
     Nat.Primrec (fun n => f n * g n) :=
   (primrec_mul.comp (hf.pair hg)).of_eq fun n => by
     simp only [Nat.unpaired, unpair_pair_fst, unpair_pair_snd]
 
-/-- `fun n => f n - g n` (truncated) is primitive recursive. -/
+/-- `fun n => f n - g n` (truncated) is primitive recursive.
+@isnad1 id=primrec.2h2v.s4.99f6cf5fc1ef from=translated src=- shape=b27ebcba vocab=7101e84f
+-/
 theorem primrec_sub₂ {f g : ℕ → ℕ} (hf : Nat.Primrec f) (hg : Nat.Primrec g) :
     Nat.Primrec (fun n => f n - g n) :=
   (primrec_sub.comp (hf.pair hg)).of_eq fun n => by
@@ -319,25 +363,39 @@ theorem primrec_sub₂ {f g : ℕ → ℕ} (hf : Nat.Primrec f) (hg : Nat.Primre
 (for a `{0,1}`-valued `c`), via `c * a + (1 - c) * b`. -/
 def selectFn (c a b : ℕ) : ℕ := c * a + (1 - c) * b
 
+/--
+@isnad1 id=eq.0h2v.s3.db6f37408296 from=translated src=- shape=408c108e vocab=8785b461
+-/
 @[simp] theorem selectFn_one (a b : ℕ) : selectFn 1 a b = a := by simp [selectFn]
 
+/--
+@isnad1 id=eq.0h2v.s3.97aaadc68be8 from=translated src=- shape=6d186b5f vocab=8785b461
+-/
 @[simp] theorem selectFn_zero (a b : ℕ) : selectFn 0 a b = b := by simp [selectFn]
 
-/-- `selectFn` of primitive-recursive `c, a, b` is primitive recursive. -/
+/-- `selectFn` of primitive-recursive `c, a, b` is primitive recursive.
+@isnad1 id=primrec.3h3v.s5.45940ecb5a85 from=translated src=- shape=c2681ad5 vocab=fba92627
+-/
 theorem primrec_selectFn {c a b : ℕ → ℕ} (hc : Nat.Primrec c) (ha : Nat.Primrec a)
     (hb : Nat.Primrec b) : Nat.Primrec (fun n => selectFn (c n) (a n) (b n)) :=
   primrec_add₂ (primrec_mul₂ hc ha) (primrec_mul₂ (primrec_sub₂ (Nat.Primrec.const 1) hc) hb)
 
 /-- `selectFn` driven by a decidable test through its `{0,1}` indicator is an
-`if`-then-else. -/
+`if`-then-else.
+@isnad1 id=eq.0h3v.s5.6fae40e00ef2 from=translated src=- shape=eda1722f vocab=bf100c10
+-/
 @[simp] theorem selectFn_ite {c : Prop} [Decidable c] (a b : ℕ) :
     selectFn (if c then 1 else 0) a b = if c then a else b := by
   split <;> simp [selectFn]
 
-/-- The `{0,1}` indicator of `2 ≤ a`, written via truncated subtraction. -/
+/-- The `{0,1}` indicator of `2 ≤ a`, written via truncated subtraction.
+@isnad1 id=eq.0h1v.s5.bbde856ea36b from=translated src=- shape=4a9d8170 vocab=71746837
+-/
 theorem geTwo_bit (a : ℕ) : 1 - (2 - a) = if 2 ≤ a then 1 else 0 := by split <;> omega
 
-/-- The `{0,1}` indicator of `a = 0`, written via truncated subtraction. -/
+/-- The `{0,1}` indicator of `a = 0`, written via truncated subtraction.
+@isnad1 id=eq.0h1v.s5.d39ea9284a6a from=translated src=- shape=07ba2fb5 vocab=cda0139f
+-/
 theorem eqZero_bit (a : ℕ) : 1 - a = if a = 0 then 1 else 0 := by split <;> omega
 
 /-! ## "Recursively decidable" predicates (Scott's notion, Definition 7.1)
@@ -364,7 +422,9 @@ is. -/
 def RecDecidable₃ (r : ℕ → ℕ → ℕ → Prop) : Prop :=
   RecDecidable fun t => r t.unpair.1 t.unpair.2.unpair.1 t.unpair.2.unpair.2
 
-/-- Recursive decidability transfers across a pointwise logical equivalence. -/
+/-- Recursive decidability transfers across a pointwise logical equivalence.
+@isnad1 id=recdecid.2h2v.s4.2b6ff0d94a75 from=translated src=- shape=b892c690 vocab=afa90005
+-/
 theorem RecDecidable.of_iff {p q : ℕ → Prop} (h : ∀ n, q n ↔ p n) (hp : RecDecidable p) :
     RecDecidable q := by
   obtain ⟨f, hf, hfe⟩ := hp
@@ -372,14 +432,18 @@ theorem RecDecidable.of_iff {p q : ℕ → Prop} (h : ∀ n, q n ↔ p n) (hp : 
 
 /-- **Reindexing.** If `p` is recursively decidable and `g` is primitive
 recursive, then
-`fun n => p (g n)` is recursively decidable. -/
+`fun n => p (g n)` is recursively decidable.
+@isnad1 id=recdecid.2h2v.s4.dc0e8b98b4bb from=translated src=- shape=25c2b956 vocab=305b6043
+-/
 theorem RecDecidable.comp {p : ℕ → Prop} (hp : RecDecidable p) {g : ℕ → ℕ}
     (hg : Nat.Primrec g) : RecDecidable (fun n => p (g n)) := by
   obtain ⟨f, hf, hfe⟩ := hp
   exact ⟨fun n => f (g n), hf.comp hg, fun n => hfe (g n)⟩
 
 /-- **Conjunction.** Recursive decidability is closed under `∧` (multiply the
-`{0,1}` deciders). -/
+`{0,1}` deciders).
+@isnad1 id=recdecid.2h2v.s4.83de4ad425cb from=translated src=- shape=397116e5 vocab=afa90005
+-/
 theorem RecDecidable.and {p q : ℕ → Prop} (hp : RecDecidable p) (hq : RecDecidable q) :
     RecDecidable (fun n => p n ∧ q n) := by
   obtain ⟨f, hf, hfe⟩ := hp
@@ -389,7 +453,9 @@ theorem RecDecidable.and {p q : ℕ → Prop} (hp : RecDecidable p) (hq : RecDec
       simp only [Nat.unpaired, unpair_pair_fst, unpair_pair_snd]
   · rw [nat_mul_eq_one]; exact and_congr (hfe n) (hge n)
 
-/-- An always-true predicate is recursively decidable (constant decider `1`). -/
+/-- An always-true predicate is recursively decidable (constant decider `1`).
+@isnad1 id=recdecid.0h2v.s3.2c032f823bec from=translated src=- shape=30beda4e vocab=afa90005
+-/
 theorem recDecidable_of_forall {p : ℕ → Prop} (h : ∀ n, p n) : RecDecidable p :=
   ⟨fun _ => 1, Nat.Primrec.const 1, fun n => ⟨fun _ => rfl, fun _ => h n⟩⟩
 
@@ -399,7 +465,9 @@ characteristic function is `1 - ((a t - b t) + (b t - a t))` (truncated
 subtraction), which is `1`
 exactly when `a t = b t`; primitive recursive via `primrec_sub`/`primrec_add`, and
 the biconditional
-is `omega` (which understands truncated subtraction). -/
+is `omega` (which understands truncated subtraction).
+@isnad1 id=recdecid.2h2v.s4.ec844356ca5c from=translated src=- shape=80d2501d vocab=305b6043
+-/
 theorem RecDecidable.natEq {a b : ℕ → ℕ} (ha : Nat.Primrec a) (hb : Nat.Primrec b) :
     RecDecidable (fun t => a t = b t) := by
   refine ⟨fun t => Nat.unpaired (· - ·) (Nat.pair 1 (Nat.unpaired (· + ·)
@@ -411,7 +479,9 @@ theorem RecDecidable.natEq {a b : ℕ → ℕ} (ha : Nat.Primrec a) (hb : Nat.Pr
     constructor <;> intro h <;> omega
 
 /-- **Negation.** Recursive decidability is closed under `¬` (negate the `{0,1}`
-decider). -/
+decider).
+@isnad1 id=recdecid.1h1v.s3.1fe9d80f8896 from=translated src=- shape=9bcc3269 vocab=afa90005
+-/
 theorem RecDecidable.not {p : ℕ → Prop} (hp : RecDecidable p) : RecDecidable (fun n => ¬ p n) := by
   obtain ⟨f, hf, hfe⟩ := hp
   refine ⟨fun n => Nat.unpaired (· - ·) (Nat.pair 1 (Nat.unpaired (· - ·) (Nat.pair 1
@@ -428,7 +498,9 @@ theorem RecDecidable.not {p : ℕ → Prop} (hp : RecDecidable p) : RecDecidable
 
 /-- Every recursively decidable predicate is **decidable** (the decider is `f n =
 1`, decidable
-equality on `ℕ`); useful for choice-free De Morgan. -/
+equality on `ℕ`); useful for choice-free De Morgan.
+@isnad1 id=or.1h2v.s4.682c4ac6f6dd from=translated src=- shape=f1cb443b vocab=afa90005
+-/
 theorem RecDecidable.em {p : ℕ → Prop} (hp : RecDecidable p) (n : ℕ) : p n ∨ ¬ p n := by
   obtain ⟨f, _, hfe⟩ := hp
   rcases Nat.decEq (f n) 1 with h | h
@@ -437,7 +509,9 @@ theorem RecDecidable.em {p : ℕ → Prop} (hp : RecDecidable p) (n : ℕ) : p n
 
 /-- **Disjunction.** Recursive decidability is closed under `∨`, via choice-free
 De Morgan
-`p ∨ q ↔ ¬(¬p ∧ ¬q)` (the non-constructive direction uses `RecDecidable.em`). -/
+`p ∨ q ↔ ¬(¬p ∧ ¬q)` (the non-constructive direction uses `RecDecidable.em`).
+@isnad1 id=recdecid.2h2v.s4.cee77b80f202 from=translated src=- shape=397116e5 vocab=afa90005
+-/
 theorem RecDecidable.or {p q : ℕ → Prop} (hp : RecDecidable p) (hq : RecDecidable q) :
     RecDecidable (fun n => p n ∨ q n) := by
   refine RecDecidable.of_iff (fun n => ?_) (hp.not.and hq.not).not
@@ -483,21 +557,29 @@ def REPred₂ (r : ℕ → ℕ → Prop) : Prop :=
 decider as the
 relation `q ⟨i, n⟩ := p n` (a reindex of `p` along `unpair.2`, dropping the search
 variable `i`); the
-witness `i = 0` makes the projection trivial. -/
+witness `i = 0` makes the projection trivial.
+@isnad1 id=repred.1h1v.s3.c20b2fa7b2b0 from=translated src=- shape=173db8cd vocab=dd70722d
+-/
 theorem RecDecidable.re {p : ℕ → Prop} (hp : RecDecidable p) : REPred p := by
   refine ⟨fun t => p t.unpair.2, hp.comp Nat.Primrec.right, fun n => ?_⟩
   simp_all
 
-/-- A recursively decidable binary relation is recursively enumerable. -/
+/-- A recursively decidable binary relation is recursively enumerable.
+@isnad1 id=repred.1h1v.s3.7aaa49d75c3e from=translated src=- shape=05214844 vocab=b4ef5b57
+-/
 theorem RecDecidable₂.re {r : ℕ → ℕ → Prop} (hr : RecDecidable₂ r) : REPred₂ r :=
   RecDecidable.re hr
 
-/-- Recursive enumerability transfers across a pointwise logical equivalence. -/
+/-- Recursive enumerability transfers across a pointwise logical equivalence.
+@isnad1 id=repred.2h2v.s4.373fe0c74801 from=translated src=- shape=b892c690 vocab=b15c98d7
+-/
 theorem REPred.of_iff {p q : ℕ → Prop} (h : ∀ n, q n ↔ p n) (hp : REPred p) : REPred q := by
   obtain ⟨r, hr, hre⟩ := hp
   exact ⟨r, hr, fun n => (h n).trans (hre n)⟩
 
-/-- An always-true predicate is recursively enumerable. -/
+/-- An always-true predicate is recursively enumerable.
+@isnad1 id=repred.0h2v.s3.a635d853dd66 from=translated src=- shape=30beda4e vocab=b15c98d7
+-/
 theorem rePred_of_forall {p : ℕ → Prop} (h : ∀ n, p n) : REPred p :=
   (recDecidable_of_forall h).re
 
@@ -515,7 +597,9 @@ f Y ∧ Y g Z`. -/
 
 /-- **Reindexing.** If `p` is r.e. and `g` is primitive recursive, then `fun n =>
 p (g n)` is r.e.
-(absorb `g` into the decidable relation along `unpair.2`). -/
+(absorb `g` into the decidable relation along `unpair.2`).
+@isnad1 id=repred.2h2v.s4.0016f9dd98c9 from=translated src=- shape=25c2b956 vocab=4d8c46a5
+-/
 theorem REPred.comp {p : ℕ → Prop} (hp : REPred p) {g : ℕ → ℕ} (hg : Nat.Primrec g) :
     REPred (fun n => p (g n)) := by
   obtain ⟨q, hq, hqe⟩ := hp
@@ -527,7 +611,9 @@ theorem REPred.comp {p : ℕ → Prop} (hp : REPred p) {g : ℕ → ℕ} (hg : N
 decidable
 relations
 and run the two searches in parallel (pairing the search variables `i, j` into a
-single `w`). -/
+single `w`).
+@isnad1 id=repred.2h2v.s4.ae5bf2726751 from=translated src=- shape=397116e5 vocab=b15c98d7
+-/
 theorem REPred.and {p q : ℕ → Prop} (hp : REPred p) (hq : REPred q) :
     REPred (fun n => p n ∧ q n) := by
   obtain ⟨a, ha, hae⟩ := hp
@@ -548,7 +634,9 @@ theorem REPred.and {p q : ℕ → Prop} (hp : REPred p) (hq : REPred q) :
 n⟩`: fold the new
 existential variable `i` into the search variable (pairing it with the decidable
 relation's own
-search variable `j`). -/
+search variable `j`).
+@isnad1 id=repred.1h1v.s4.1d2554c699c9 from=translated src=- shape=25814ffe vocab=5120a22e
+-/
 theorem REPred.proj {p : ℕ → Prop} (hp : REPred p) :
     REPred (fun n => ∃ i, p (Nat.pair i n)) := by
   obtain ⟨q, hq, hqe⟩ := hp
@@ -571,7 +659,9 @@ theorem REPred.proj {p : ℕ → Prop} (hp : REPred p) :
 which disjunct's search index `w.2` to use; the underlying relation is recursively
 decidable by
 `RecDecidable.or`/`.and`/`.natEq`. (Used for the sum-mapping `f + g` of Theorem
-7.4.) -/
+7.4.)
+@isnad1 id=repred.2h2v.s4.a012bd5c6694 from=translated src=- shape=397116e5 vocab=b15c98d7
+-/
 theorem REPred.or {p q : ℕ → Prop} (hp : REPred p) (hq : REPred q) :
     REPred (fun n => p n ∨ q n) := by
   obtain ⟨a, ha, hae⟩ := hp
@@ -623,7 +713,9 @@ empty remaining code
 
 /-- `b ≤ pair a b` (choice-free; avoids mathlib's `Nat.right_le_pair` to keep the
 axiom set
-clean). -/
+clean).
+@isnad1 id=le.0h2v.s3.d40acc0ce1be from=translated src=- shape=86c6c8ca vocab=92a7f352
+-/
 theorem le_pair_right (a b : ℕ) : b ≤ Nat.pair a b := by
   have hbb : b ≤ b * b := by
     rcases Nat.eq_zero_or_pos b with h | h
@@ -641,7 +733,9 @@ def encodeList : List ℕ → ℕ
 
 /-- The length of a list is bounded by its code; this is the fuel bound that lets
 a `c`-fold iterate
-enough times to consume the whole list coded by `c`. -/
+enough times to consume the whole list coded by `c`.
+@isnad1 id=le.0h1v.s3.02856cc69aa6 from=translated src=- shape=02ea093a vocab=35d93d46
+-/
 theorem encodeList_length_le : ∀ l : List ℕ, l.length ≤ encodeList l
   | [] => Nat.le_refl 0
   | a :: l => by
@@ -661,14 +755,18 @@ def foldStep (stp : ℕ → ℕ) (params s : ℕ) : ℕ :=
     (Nat.pair (s.unpair.1 - 1).unpair.2
       (stp (Nat.pair (s.unpair.1 - 1).unpair.1 (Nat.pair s.unpair.2 params))))
 
-/-- Empty remaining code: the fold state is unchanged. -/
+/-- Empty remaining code: the fold state is unchanged.
+@isnad1 id=eq.0h3v.s4.a1b5c55d39c0 from=translated src=- shape=6d1f844f vocab=016dbd74
+-/
 theorem foldStep_zero (stp : ℕ → ℕ) (params acc : ℕ) :
     foldStep stp params (Nat.pair 0 acc) = Nat.pair 0 acc := by
   unfold foldStep
   simp only [unpair_pair_fst, unpair_pair_snd, Nat.sub_zero, selectFn_one]
 
 /-- Nonempty remaining code `pair a t + 1`: pop `a`, recurse on `t`, update the
-accumulator. -/
+accumulator.
+@isnad1 id=eq.0h5v.s5.82c3db7a4d9f from=translated src=- shape=8dbe0b6b vocab=3f08f6c5
+-/
 theorem foldStep_pos (stp : ℕ → ℕ) (params a t acc : ℕ) :
     foldStep stp params (Nat.pair (Nat.pair a t + 1) acc)
       = Nat.pair t (stp (Nat.pair a (Nat.pair acc params))) := by
@@ -685,7 +783,9 @@ def foldCode (stp : ℕ → ℕ) (params z c : ℕ) : ℕ :=
 /-- `Nat.rec` with a counter-independent step is just function iteration
 (choice-free). Needed to
 bridge the `Nat.Primrec.prec` form (a `Nat.rec`) with `foldCode`'s
-`Function.iterate` form. -/
+`Function.iterate` form.
+@isnad1 id=eq.0h3v.s4.ed794135e9ca from=translated src=- shape=3562b9e7 vocab=c7a0dc07
+-/
 theorem rec_const_iterate (f : ℕ → ℕ) (s : ℕ) :
     ∀ k : ℕ, Nat.rec (motive := fun _ => ℕ) s (fun _ ih => f ih) k = f^[k] s
   | 0 => rfl
@@ -695,7 +795,9 @@ theorem rec_const_iterate (f : ℕ → ℕ) (s : ℕ) :
 
 /-- Core correctness of the iteration: starting from `pair (encodeList l) acc`,
 after at least
-`l.length` steps the accumulator equals the `List.foldl` of the step over `l`. -/
+`l.length` steps the accumulator equals the `List.foldl` of the step over `l`.
+@isnad1 id=eq.1h5v.s5.2149b701896c from=translated src=- shape=f858c89a vocab=6b5d2f3e
+-/
 theorem foldStep_iterate (stp : ℕ → ℕ) (params : ℕ) :
     ∀ (k : ℕ) (l : List ℕ) (acc : ℕ), l.length ≤ k →
       ((foldStep stp params)^[k] (Nat.pair (encodeList l) acc)).unpair.2
@@ -717,14 +819,18 @@ theorem foldStep_iterate (stp : ℕ → ℕ) (params : ℕ) :
         ih l' (stp (Nat.pair a (Nat.pair acc params))) hlen', List.foldl_cons]
 
 /-- **Correctness of `foldCode`.** Folding the code of `l` equals the
-corresponding `List.foldl`. -/
+corresponding `List.foldl`.
+@isnad1 id=eq.0h4v.s5.3c63a3ec1d39 from=translated src=- shape=67782da0 vocab=9b0b1f3d
+-/
 theorem foldCode_eq (stp : ℕ → ℕ) (params z : ℕ) (l : List ℕ) :
     foldCode stp params z (encodeList l)
       = List.foldl (fun acc x => stp (Nat.pair x (Nat.pair acc params))) z l := by
   unfold foldCode
   exact foldStep_iterate stp params (encodeList l) l z (encodeList_length_le l)
 
-/-- `n.unpair.2 ≤ n` (choice-free); the decreasing measure for `decodeList`. -/
+/-- `n.unpair.2 ≤ n` (choice-free); the decreasing measure for `decodeList`.
+@isnad1 id=le.0h1v.s3.24058a61a907 from=translated src=- shape=e753c962 vocab=ba1e0d7a
+-/
 theorem unpair_snd_le (n : ℕ) : n.unpair.2 ≤ n := by
   have h := le_pair_right n.unpair.1 n.unpair.2
   rwa [pair_unpair] at h
@@ -737,13 +843,21 @@ def decodeList : ℕ → List ℕ
   | (c + 1) => c.unpair.1 :: decodeList c.unpair.2
 decreasing_by exact Nat.lt_succ_of_le (unpair_snd_le c)
 
+/--
+@isnad1 id=eq.0h0v.s3.d3ded4503fd6 from=translated src=- shape=99b6ce5a vocab=a23ef706
+-/
 theorem decodeList_zero : decodeList 0 = [] := by rw [decodeList]
 
+/--
+@isnad1 id=eq.0h1v.s5.83b8efe96b58 from=translated src=- shape=a8aced37 vocab=ecc1531d
+-/
 theorem decodeList_succ (c : ℕ) :
     decodeList (c + 1) = c.unpair.1 :: decodeList c.unpair.2 := by
   rw [decodeList]
 
-/-- `encodeList ∘ decodeList = id`: every natural is the code of its decoded list. -/
+/-- `encodeList ∘ decodeList = id`: every natural is the code of its decoded list.
+@isnad1 id=eq.0h1v.s3.b67f9745720b from=translated src=- shape=47dcad53 vocab=ba28505d
+-/
 theorem encodeList_decodeList (c : ℕ) : encodeList (decodeList c) = c := by
   induction c using Nat.strong_induction_on with
   | _ c ih =>
@@ -753,7 +867,9 @@ theorem encodeList_decodeList (c : ℕ) : encodeList (decodeList c) = c := by
       rw [decodeList_succ, encodeList, ih d.unpair.2 (Nat.lt_succ_of_le (unpair_snd_le d)),
         pair_unpair]
 
-/-- The decoded list is no longer than its code. -/
+/-- The decoded list is no longer than its code.
+@isnad1 id=le.0h1v.s3.c769a1d049d1 from=translated src=- shape=9baae94e vocab=502d5e16
+-/
 theorem decodeList_length_le (c : ℕ) : (decodeList c).length ≤ c := by
   induction c using Nat.strong_induction_on with
   | _ c ih =>
@@ -767,7 +883,9 @@ theorem decodeList_length_le (c : ℕ) : (decodeList c).length ≤ c := by
 
 /-- **Correctness of `foldCode` on an arbitrary code.** `foldCode` over any
 natural `c` equals the
-`List.foldl` over the list `c` decodes to. -/
+`List.foldl` over the list `c` decodes to.
+@isnad1 id=eq.0h4v.s5.78f4771cda42 from=translated src=- shape=25d1f226 vocab=34183ec1
+-/
 theorem foldCode_eq' (stp : ℕ → ℕ) (params z c : ℕ) :
     foldCode stp params z c
       = List.foldl (fun acc x => stp (Nat.pair x (Nat.pair acc params))) z (decodeList c) := by
@@ -777,7 +895,9 @@ theorem foldCode_eq' (stp : ℕ → ℕ) (params z c : ℕ) :
 /-- `foldStep` (with the parameter packed into the state as `pair params state`)
 is primitive
 recursive whenever the step `stp` is. This is the workhorse for
-`primrec_foldCode`. -/
+`primrec_foldCode`.
+@isnad1 id=primrec.1h1v.s4.241c5d39790b from=translated src=- shape=0dc1c703 vocab=dae266d4
+-/
 theorem primrec_foldStepPacked {stp : ℕ → ℕ} (hstp : Nat.Primrec stp) :
     Nat.Primrec (fun w => foldStep stp w.unpair.1 w.unpair.2) := by
   have hparams : Nat.Primrec (fun w => w.unpair.1) := Nat.Primrec.left
@@ -806,7 +926,9 @@ theorem primrec_foldStepPacked {stp : ℕ → ℕ} (hstp : Nat.Primrec stp) :
   exact (primrec_selectFn hcond hstate helse).of_eq fun _ => rfl
 
 /-- **`foldCode` is primitive recursive** in all of its (primitive-recursive)
-inputs. -/
+inputs.
+@isnad1 id=primrec.4h4v.s5.58a5d69e2d5c from=translated src=- shape=4f30d817 vocab=59646074
+-/
 theorem primrec_foldCode {stp : ℕ → ℕ} (hstp : Nat.Primrec stp)
     {params z c : ℕ → ℕ} (hp : Nat.Primrec params) (hz : Nat.Primrec z) (hc : Nat.Primrec c) :
     Nat.Primrec (fun n => foldCode stp (params n) (z n) (c n)) := by
@@ -831,14 +953,18 @@ needs `2^q` as a primitive-recursive bound. Choice-free (mathlib's `Nat.Primrec`
 lemmas for `^` route
 through classical `simp`). -/
 
-/-- `Nat.rec 1 (· * b)` computes `b ^ e` (choice-free). -/
+/-- `Nat.rec 1 (· * b)` computes `b ^ e` (choice-free).
+@isnad1 id=eq.0h2v.s5.edffdf87cc27 from=translated src=- shape=b1d581a1 vocab=2ff9d2a0
+-/
 theorem recPow_eq (b : ℕ) :
     ∀ e, Nat.rec (motive := fun _ => ℕ) 1 (fun _ ih => ih * b) e = b ^ e
   | 0 => (pow_zero b).symm
   | e + 1 => by rw [pow_succ]; exact congrArg (· * b) (recPow_eq b e)
 
 /-- **Exponentiation is primitive recursive** (`unpaired (b, e) ↦ b ^ e`),
-choice-free. -/
+choice-free.
+@isnad1 id=primrec.0h0v.s4.6e77e5c39905 from=translated src=- shape=3cc5c468 vocab=45aef7bd
+-/
 theorem primrec_pow : Nat.Primrec (Nat.unpaired fun b e => b ^ e) := by
   have hg : Nat.Primrec (fun w => w.unpair.2.unpair.2 * w.unpair.1) :=
     primrec_mul₂ (Nat.Primrec.right.comp Nat.Primrec.right) Nat.Primrec.left
@@ -846,7 +972,9 @@ theorem primrec_pow : Nat.Primrec (Nat.unpaired fun b e => b ^ e) := by
   simp only [Nat.unpaired, unpair_pair_fst, unpair_pair_snd]
   exact recPow_eq p.unpair.1 p.unpair.2
 
-/-- `n ↦ 2 ^ g n` is primitive recursive when `g` is. -/
+/-- `n ↦ 2 ^ g n` is primitive recursive when `g` is.
+@isnad1 id=primrec.1h1v.s4.39bee1662bd7 from=translated src=- shape=83636985 vocab=922e5fd6
+-/
 theorem primrec_two_pow {g : ℕ → ℕ} (hg : Nat.Primrec g) : Nat.Primrec (fun n => 2 ^ g n) :=
   (primrec_pow.comp ((Nat.Primrec.const 2).pair hg)).of_eq fun n => by
     simp only [Nat.unpaired, unpair_pair_fst, unpair_pair_snd]
@@ -869,6 +997,9 @@ def halfParity (n : ℕ) : ℕ :=
   Nat.rec (motive := fun _ => ℕ) 0
     (fun _ ih => Nat.pair (ih.unpair.1 + ih.unpair.2) (1 - ih.unpair.2)) n
 
+/--
+@isnad1 id=eq.0h1v.s5.5e0bcd064dab from=translated src=- shape=5a896d85 vocab=09bd832b
+-/
 theorem halfParity_spec (n : ℕ) : halfParity n = Nat.pair (n / 2) (n % 2) := by
   induction n with
   | zero => rfl
@@ -879,6 +1010,9 @@ theorem halfParity_spec (n : ℕ) : halfParity n = Nat.pair (n / 2) (n % 2) := b
     rw [ih, unpair_pair_fst, unpair_pair_snd]
     congr 1 <;> omega
 
+/--
+@isnad1 id=primrec.0h0v.s1.7e1374711ab9 from=translated src=- shape=49959d42 vocab=998873de
+-/
 theorem primrec_halfParity : Nat.Primrec halfParity := by
   have hIH : Nat.Primrec (fun w => w.unpair.2.unpair.2) := Nat.Primrec.right.comp Nat.Primrec.right
   have hstep : Nat.Primrec (fun w => Nat.pair (w.unpair.2.unpair.2.unpair.1 +
@@ -891,10 +1025,16 @@ theorem primrec_halfParity : Nat.Primrec halfParity := by
   simp only [Nat.unpaired, unpair_pair_fst, unpair_pair_snd, id_eq]
   rfl
 
+/--
+@isnad1 id=primrec.0h0v.s4.16b047a89f1c from=translated src=- shape=585bfb7d vocab=ba4f52b5
+-/
 theorem primrec_div2 : Nat.Primrec (fun n => n / 2) :=
   (Nat.Primrec.left.comp primrec_halfParity).of_eq fun n => by
     rw [halfParity_spec, unpair_pair_fst]
 
+/--
+@isnad1 id=primrec.0h0v.s4.d955671e23e1 from=translated src=- shape=585bfb7d vocab=0dde1666
+-/
 theorem primrec_mod2 : Nat.Primrec (fun n => n % 2) :=
   (Nat.Primrec.right.comp primrec_halfParity).of_eq fun n => by
     rw [halfParity_spec, unpair_pair_snd]
@@ -912,11 +1052,20 @@ choice-free, via an explicit `Nat.rec` fold of the `{0,1}` indicator. -/
 /-- Indicator of `v = 1`, as a `{0,1}`-valued primitive-recursive function. -/
 def isOne (v : ℕ) : ℕ := 1 - ((v - 1) + (1 - v))
 
+/--
+@isnad1 id=le.0h1v.s3.65f205345d2a from=translated src=- shape=b14ee516 vocab=c4fc5033
+-/
 theorem isOne_le_one (v : ℕ) : isOne v ≤ 1 := by unfold isOne; omega
 
+/--
+@isnad1 id=iff.0h1v.s4.ee14e2fb750a from=translated src=- shape=1317a4e0 vocab=3ff0463f
+-/
 theorem isOne_eq_one_iff (v : ℕ) : isOne v = 1 ↔ v = 1 := by
   unfold isOne; constructor <;> (intro h; omega)
 
+/--
+@isnad1 id=primrec.0h0v.s1.e1917102db00 from=translated src=- shape=49959d42 vocab=d7f92b3a
+-/
 theorem primrec_isOne : Nat.Primrec isOne :=
   primrec_sub₂ (Nat.Primrec.const 1)
     (primrec_add₂ (primrec_sub₂ primrec_id (Nat.Primrec.const 1))
@@ -928,6 +1077,9 @@ right-to-left with `selectFn` so the result stays in `{0,1}`. -/
 def bForallFn (g : ℕ → ℕ) (n N : ℕ) : ℕ :=
   Nat.rec (motive := fun _ => ℕ) 1 (fun i ih => selectFn ih (isOne (g (Nat.pair i n))) 0) N
 
+/--
+@isnad1 id=le.0h3v.s4.c36e63830d04 from=translated src=- shape=19ee0d66 vocab=fa2715ea
+-/
 theorem bForallFn_le_one (g : ℕ → ℕ) (n N : ℕ) : bForallFn g n N ≤ 1 := by
   induction N with
   | zero => exact Nat.le_refl 1
@@ -937,6 +1089,9 @@ theorem bForallFn_le_one (g : ℕ → ℕ) (n N : ℕ) : bForallFn g n N ≤ 1 :
     · rw [h, selectFn_zero]; exact Nat.zero_le 1
     · rw [h, selectFn_one]; exact isOne_le_one _
 
+/--
+@isnad1 id=iff.0h3v.s5.817af60eb4df from=translated src=- shape=37399185 vocab=72210d1b
+-/
 theorem bForallFn_eq_one_iff (g : ℕ → ℕ) (n N : ℕ) :
     bForallFn g n N = 1 ↔ ∀ i, i < N → g (Nat.pair i n) = 1 := by
   induction N with
@@ -969,7 +1124,9 @@ recursively
 decidable
 and `bound` is primitive recursive, then `fun n => ∀ i < bound n, p (pair i n)` is
 recursively
-decidable (choice-free). -/
+decidable (choice-free).
+@isnad1 id=recdecid.2h2v.s5.2d07def8fbb8 from=translated src=- shape=f0dd4745 vocab=718816b7
+-/
 theorem RecDecidable.bForall {p : ℕ → Prop} (hp : RecDecidable p) {bound : ℕ → ℕ}
     (hb : Nat.Primrec bound) :
     RecDecidable (fun n => ∀ i, i < bound n → p (Nat.pair i n)) := by
@@ -991,7 +1148,9 @@ theorem RecDecidable.bForall {p : ℕ → Prop} (hp : RecDecidable p) {bound : �
     exact ⟨fun h i hi => (hfspec _).mp (h i hi), fun h i hi => (hfspec _).mpr (h i hi)⟩
 
 /-- `decodeList ∘ encodeList = id` (the round-trip the other way from
-`encodeList_decodeList`). -/
+`encodeList_decodeList`).
+@isnad1 id=eq.0h1v.s3.a2693abb1b4e from=translated src=- shape=e9e6e124 vocab=8adea823
+-/
 theorem decodeList_encodeList : ∀ l : List ℕ, decodeList (encodeList l) = l
   | [] => by rw [encodeList, decodeList_zero]
   | a :: l => by
@@ -1031,11 +1190,17 @@ by `c`. -/
 def reForallChar (qc : ℕ → ℕ) (w c : ℕ) : ℕ :=
   (foldCode (reForallStp qc) 0 (Nat.pair w 1) c).unpair.2
 
+/--
+@isnad1 id=eq.0h3v.s4.b0974748629c from=translated src=- shape=2f34907c vocab=e14453c1
+-/
 theorem reForallStp_eq (qc : ℕ → ℕ) (acc x : ℕ) :
     reForallStp qc (Nat.pair x (Nat.pair acc 0)) = reForallF qc acc x := by
   unfold reForallStp reForallF
   simp only [unpair_pair_fst, unpair_pair_snd]
 
+/--
+@isnad1 id=eq.0h3v.s5.c76012fe8f8a from=translated src=- shape=bc8a52a4 vocab=0341c56b
+-/
 theorem reForallChar_eq (qc : ℕ → ℕ) (w c : ℕ) :
     reForallChar qc w c
       = (List.foldl (reForallF qc) (Nat.pair w 1) (decodeList c)).unpair.2 := by
@@ -1047,7 +1212,9 @@ theorem reForallChar_eq (qc : ℕ → ℕ) (w c : ℕ) :
 /-- **Core induction.** Threading witness code `w` through `l`, the final flag is
 `1` iff the start
 flag was `1` and, position by position, the `k`-th witness of `decodeList w`
-satisfies `qc`. -/
+satisfies `qc`.
+@isnad1 id=iff.1h4v.s6.542e1650beb7 from=translated src=- shape=c6c92d32 vocab=cc720f49
+-/
 theorem reForallF_foldl_eq_one_iff (qc : ℕ → ℕ) :
     ∀ (l : List ℕ) (w flag : ℕ), flag ≤ 1 →
       ((List.foldl (reForallF qc) (Nat.pair w flag) l).unpair.2 = 1 ↔
@@ -1109,6 +1276,9 @@ theorem reForallF_foldl_eq_one_iff (qc : ℕ → ℕ) :
       · have := hall (k + 1) (by simp only [List.length_cons]; omega)
         rwa [List.getD_cons_succ, htail] at this
 
+/--
+@isnad1 id=iff.0h3v.s5.f0760e40f8df from=translated src=- shape=05a5e978 vocab=b2a793a7
+-/
 theorem reForallChar_eq_one_iff (qc : ℕ → ℕ) (w c : ℕ) :
     reForallChar qc w c = 1 ↔
       ∀ k, k < (decodeList c).length →
@@ -1116,6 +1286,9 @@ theorem reForallChar_eq_one_iff (qc : ℕ → ℕ) (w c : ℕ) :
   rw [reForallChar_eq, reForallF_foldl_eq_one_iff qc (decodeList c) w 1 (Nat.le_refl 1)]
   simp only [true_and]
 
+/--
+@isnad1 id=primrec.1h1v.s3.310db122695c from=translated src=- shape=928bc03f vocab=f5aeb08b
+-/
 theorem primrec_reForallStp {qc : ℕ → ℕ} (hqc : Nat.Primrec qc) :
     Nat.Primrec (reForallStp qc) := by
   have hx : Nat.Primrec (fun w : ℕ => w.unpair.1) := Nat.Primrec.left
@@ -1140,6 +1313,9 @@ theorem primrec_reForallStp {qc : ℕ → ℕ} (hqc : Nat.Primrec qc) :
     primrec_selectFn hflag (primrec_isOne.comp hcall) (Nat.Primrec.const 0)
   exact (hrw'.pair hB).of_eq (fun _ => rfl)
 
+/--
+@isnad1 id=primrec.1h1v.s4.c85f504f3096 from=translated src=- shape=0dc1c703 vocab=4c0e5ccc
+-/
 theorem primrec_reForallChar {qc : ℕ → ℕ} (hqc : Nat.Primrec qc) :
     Nat.Primrec (fun t => reForallChar qc t.unpair.1 t.unpair.2) := by
   have hfold := primrec_foldCode (primrec_reForallStp hqc) (Nat.Primrec.const 0)
@@ -1151,7 +1327,9 @@ r.e. then so is
 `fun c => ∀ e ∈ decodeList c, p e`: the finite tuple of per-entry witnesses is
 packed into a single
 search code `w`, and the `{0,1}` flag `reForallChar` makes the body recursively
-decidable. -/
+decidable.
+@isnad1 id=repred.1h1v.s4.6064fe2eb5e5 from=translated src=- shape=2b404c8a vocab=c9c90ce7
+-/
 theorem REPred.forall_mem_decodeList {p : ℕ → Prop} (hp : REPred p) :
     REPred (fun c => ∀ e ∈ decodeList c, p e) := by
   obtain ⟨q, hq, hqe⟩ := hp
@@ -1223,14 +1401,23 @@ def mapPairStep (n acc x : ℕ) : ℕ := Nat.pair (Nat.pair n x) acc + 1
 def mapPairStp (w : ℕ) : ℕ :=
   mapPairStep w.unpair.2.unpair.2 w.unpair.2.unpair.1 w.unpair.1
 
+/--
+@isnad1 id=eq.0h3v.s4.4435bc85c360 from=translated src=- shape=a28e3bfd vocab=5961316d
+-/
 theorem mapPairStp_eq (n acc x : ℕ) :
     mapPairStp (Nat.pair x (Nat.pair acc n)) = mapPairStep n acc x := by
   unfold mapPairStp; simp only [unpair_pair_fst, unpair_pair_snd]
 
+/--
+@isnad1 id=eq.0h3v.s4.4b640df6e2a3 from=translated src=- shape=1ebf5982 vocab=98857360
+-/
 theorem decodeList_mapPairStep (n acc x : ℕ) :
     decodeList (mapPairStep n acc x) = Nat.pair n x :: decodeList acc := by
   unfold mapPairStep; rw [decodeList_succ, unpair_pair_fst, unpair_pair_snd]
 
+/--
+@isnad1 id=eq.0h3v.s5.2b54ba934183 from=translated src=- shape=e74dd34c vocab=3ea6990a
+-/
 theorem decodeList_foldl_mapPairStp (n : ℕ) (el : List ℕ) (acc : ℕ) :
     decodeList (List.foldl (fun acc x => mapPairStp (Nat.pair x (Nat.pair acc n))) acc el)
       = (el.map (Nat.pair n ·)).reverse ++ decodeList acc := by
@@ -1243,6 +1430,9 @@ theorem decodeList_foldl_mapPairStp (n : ℕ) (el : List ℕ) (acc : ℕ) :
 /-- **`mapPairCode n c`** codes the list `(decodeList c).map ⟨n, ·⟩` (reversed). -/
 def mapPairCode (n c : ℕ) : ℕ := foldCode mapPairStp n 0 c
 
+/--
+@isnad1 id=eq.0h2v.s4.7e0e7a59ca7d from=translated src=- shape=842d4797 vocab=2bbccb6f
+-/
 theorem decodeList_mapPairCode (n c : ℕ) :
     decodeList (mapPairCode n c) = ((decodeList c).map (Nat.pair n ·)).reverse := by
   unfold mapPairCode
@@ -1250,6 +1440,9 @@ theorem decodeList_mapPairCode (n c : ℕ) :
   have h := decodeList_foldl_mapPairStp n (decodeList c) 0
   rwa [decodeList_zero, List.append_nil] at h
 
+/--
+@isnad1 id=primrec.0h0v.s1.82960f6ad1b3 from=translated src=- shape=49959d42 vocab=f8f33fa9
+-/
 theorem primrec_mapPairStp : Nat.Primrec mapPairStp := by
   have h1 : Nat.Primrec (fun w : ℕ => w.unpair.1) := Nat.Primrec.left
   have h21 : Nat.Primrec (fun w : ℕ => w.unpair.2.unpair.1) :=
@@ -1258,6 +1451,9 @@ theorem primrec_mapPairStp : Nat.Primrec mapPairStp := by
     Nat.Primrec.right.comp Nat.Primrec.right
   exact (Nat.Primrec.succ.comp ((h22.pair h1).pair h21)).of_eq (fun _ => rfl)
 
+/--
+@isnad1 id=primrec.0h0v.s3.29c84b70283d from=translated src=- shape=4f840463 vocab=f78ab962
+-/
 theorem primrec_mapPairCode : Nat.Primrec (fun t => mapPairCode t.unpair.1 t.unpair.2) :=
   (primrec_foldCode primrec_mapPairStp Nat.Primrec.left (Nat.Primrec.const 0)
     Nat.Primrec.right).of_eq (fun _ => rfl)
@@ -1267,7 +1463,9 @@ enumerability.** If `p` is an
 r.e. binary relation then `fun t => ∀ e ∈ decodeList t.2, p t.1 e` is r.e.:
 re-code the list into the
 pairs `⟨t.1, e⟩` (`mapPairCode`) and apply the unparameterised
-`forall_mem_decodeList`. -/
+`forall_mem_decodeList`.
+@isnad1 id=repred.1h1v.s5.a8fd024c2607 from=translated src=- shape=2aaa039a vocab=df48dd1b
+-/
 theorem REPred.forall_mem_decodeList₂ {p : ℕ → ℕ → Prop} (hp : REPred₂ p) :
     REPred (fun t => ∀ e ∈ decodeList t.unpair.2, p t.unpair.1 e) := by
   have hp' : REPred (fun s => p s.unpair.1 s.unpair.2) := hp

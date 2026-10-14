@@ -60,9 +60,15 @@ variable {α β : Type*} {V₀ : NeighborhoodSystem α} {V₁ : NeighborhoodSyst
 /-- The **graph** of an approximable map, as a set of neighbourhood pairs. -/
 def graph (f : ApproximableMap V₀ V₁) : Set (Set α × Set β) := {p | f.rel p.1 p.2}
 
+/--
+@isnad1 id=iff.0h6v.s6.7d05b40791ba from=translated src=- shape=537ac4d3 vocab=f45e9625
+-/
 @[simp] theorem mem_graph {f : ApproximableMap V₀ V₁} {p : Set α × Set β} :
     p ∈ graph f ↔ f.rel p.1 p.2 := Iff.rfl
 
+/--
+@isnad1 id=injectiv.0h4v.s4.999b356baf7f from=translated src=- shape=f9d88b65 vocab=6be32c76
+-/
 theorem graph_injective : Function.Injective (graph (V₀ := V₀) (V₁ := V₁)) :=
   fun _ _ h => ApproximableMap.ext fun X Y => Set.ext_iff.mp h (X, Y)
 
@@ -70,6 +76,9 @@ theorem graph_injective : Function.Injective (graph (V₀ := V₀) (V₁ := V₁
 def C (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β) : Set (Set (Set α × Set β)) :=
   Set.range (graph (V₀ := V₀) (V₁ := V₁))
 
+/--
+@isnad1 id=nonempty.0h4v.s4.712e1a8f10e8 from=translated src=- shape=c745e6c5 vocab=8fa650ae
+-/
 theorem C_nonempty : (C V₀ V₁).Nonempty :=
   ⟨graph (constMap V₀ V₁.bot), constMap V₀ V₁.bot, rfl⟩
 
@@ -100,13 +109,18 @@ def meetMap (𝒮 : Set (Set (Set α × Set β))) (h𝒮 : 𝒮 ⊆ C V₀ V₁)
     obtain ⟨f, rfl⟩ := h𝒮 hS
     exact f.mono (h _ hS) hX'X hYY' hX' hY'
 
+/--
+@isnad1 id=eq.2h5v.s6.51cf57247814 from=translated src=- shape=b715e5cd vocab=1b03d122
+-/
 theorem sInter_eq_graph_meetMap (𝒮 : Set (Set (Set α × Set β))) (h𝒮 : 𝒮 ⊆ C V₀ V₁)
     (hne : 𝒮.Nonempty) : ⋂₀ 𝒮 = graph (meetMap 𝒮 h𝒮 hne) := by
   ext p
   simp only [Set.mem_sInter, mem_graph]
   exact ⟨fun h S hS => h S hS, fun h S hS => h S hS⟩
 
-/-- **Exercise 2.22 hypothesis (i).** `C` is closed under non-empty intersections. -/
+/-- **Exercise 2.22 hypothesis (i).** `C` is closed under non-empty intersections.
+@isnad1 id=mem.2h5v.s6.35670ed5e52f from=translated src=- shape=c51684a0 vocab=3dfeeb38
+-/
 theorem C_inter : ∀ 𝒮 : Set (Set (Set α × Set β)), 𝒮.Nonempty → 𝒮 ⊆ C V₀ V₁ → ⋂₀ 𝒮 ∈ C V₀ V₁ := by
   intro 𝒮 hne h𝒮
   rw [sInter_eq_graph_meetMap 𝒮 h𝒮 hne]
@@ -135,6 +149,9 @@ def joinMap (𝒮 : Set (Set (Set α × Set β))) (h𝒮 : 𝒮 ⊆ C V₀ V₁)
     obtain ⟨f, rfl⟩ := h𝒮 hS
     exact ⟨graph f, hS, f.mono hp hX'X hYY' hX' hY'⟩
 
+/--
+@isnad1 id=eq.3h5v.s6.af3bc73802b6 from=translated src=- shape=cef35523 vocab=7d48cb4d
+-/
 theorem sUnion_eq_graph_joinMap (𝒮 : Set (Set (Set α × Set β))) (h𝒮 : 𝒮 ⊆ C V₀ V₁)
     (hne : 𝒮.Nonempty) (hdir : DirectedOn (· ⊆ ·) 𝒮) :
     ⋃₀ 𝒮 = graph (joinMap 𝒮 h𝒮 hne hdir) := by
@@ -142,7 +159,9 @@ theorem sUnion_eq_graph_joinMap (𝒮 : Set (Set (Set α × Set β))) (h𝒮 : �
   simp only [Set.mem_sUnion, mem_graph]
   exact ⟨fun ⟨S, hS, hp⟩ => ⟨S, hS, hp⟩, fun ⟨S, hS, hp⟩ => ⟨S, hS, hp⟩⟩
 
-/-- **Exercise 2.22 hypothesis (ii).** `C` is closed under directed unions. -/
+/-- **Exercise 2.22 hypothesis (ii).** `C` is closed under directed unions.
+@isnad1 id=mem.3h5v.s6.1bb15a9408b5 from=translated src=- shape=3e8c34f7 vocab=f59ecd82
+-/
 theorem C_dir : ∀ 𝒮 : Set (Set (Set α × Set β)), 𝒮.Nonempty → 𝒮 ⊆ C V₀ V₁ →
     DirectedOn (· ⊆ ·) 𝒮 → ⋃₀ 𝒮 ∈ C V₀ V₁ := by
   intro 𝒮 hne h𝒮 hdir

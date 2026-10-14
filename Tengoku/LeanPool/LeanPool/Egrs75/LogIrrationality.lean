@@ -72,7 +72,9 @@ NATURAL-number identity `p^n = q^m`; then `p ∣ q^m ⟹ p ∣ q ⟹ p = q`, con
 
 /-- **Core arithmetic obstruction.** For distinct primes `p q` there are no
 positive naturals `n m` with `(p:ℝ)^n = (q:ℝ)^m`. (Equivalently `p^n = q^m` in `ℕ`
-is impossible.) This is the unique-factorisation fact behind `log p / log q ∉ ℚ`. -/
+is impossible.) This is the unique-factorisation fact behind `log p / log q ∉ ℚ`.
+@isnad1 id=ne.4h4v.s6.dacd163725c2 from=translated src=- shape=93fcc949 vocab=9e17fd22
+-/
 lemma no_pow_eq {p q : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q)
     {n m : ℕ} (hn : 1 ≤ n) : (p : ℝ) ^ n ≠ (q : ℝ) ^ m := by
   intro hreal
@@ -88,7 +90,9 @@ lemma no_pow_eq {p q : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q)
 
 /-- **(A) — irrationality of `log p / log q`** for distinct primes `p q`.
 KERNEL-CLEAN. This is the Mathlib-missing fact; everything in the dense-orbit
-route hangs off it. -/
+route hangs off it.
+@isnad1 id=irration.3h2v.s5.fe95102c8dcb from=translated src=- shape=a19cdad8 vocab=e732e4a0
+-/
 theorem irrational_log_div_log {p q : ℕ} (hp : p.Prime) (hq : q.Prime)
     (hpq : p ≠ q) : Irrational (Real.log p / Real.log q) := by
   have hp1 : (1 : ℝ) < p := by exact_mod_cast hp.one_lt
@@ -145,7 +149,9 @@ visits every window. -/
 
 /-- **(B) — the dense orbit** `{k · log p mod log q}` for distinct primes `p q`.
 KERNEL-CLEAN. `AddCircle.denseRange_zsmul_coe_iff` ∘ (A). The base-`q` top block of
-`p^k` can be steered into any window for arbitrarily large `k`. -/
+`p^k` can be steered into any window for arbitrarily large `k`.
+@isnad1 id=denseran.3h2v.s7.09e5c16bf28e from=translated src=- shape=3132dc9c vocab=74f8d71a
+-/
 theorem denseRange_log_zsmul {p q : ℕ} (hp : p.Prime) (hq : q.Prime)
     (hpq : p ≠ q) :
     DenseRange (· • Real.log p : ℤ → AddCircle (Real.log q)) := by

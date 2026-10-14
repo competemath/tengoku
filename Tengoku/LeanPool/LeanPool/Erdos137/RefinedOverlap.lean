@@ -85,7 +85,9 @@ noncomputable section
 
 /-- **Number-of-blocks overlap bound.** `overlapg g k n p ≤ ⌊k/g⌋`: the overlap is a sum of `0/1`
 indicators over the `⌊k/g⌋` blocks, so it is at most the number of blocks. This is the easy
-companion to `overlapg_le` (`overlapg ≤ ⌊k/p⌋ + 1`); their `min` powers the refined cap. -/
+companion to `overlapg_le` (`overlapg ≤ ⌊k/p⌋ + 1`); their `min` powers the refined cap.
+@isnad1 id=le.0h4v.s4.057c7efaac20 from=translated src=- shape=7a7860de vocab=934523ee
+-/
 lemma overlapg_le_numBlocks (g k n p : ℕ) : overlapg g k n p ≤ k / g := by
   unfold overlapg
   calc ∑ j ∈ Finset.range (k / g), (if p ∈ (F g (n + g * j)).primeFactors then 1 else 0)
@@ -105,16 +107,23 @@ heuristic logarithm `k log(k/g) + O(k)` is unchanged by the single extra prime. 
 def WgRefinedCap (g k : ℕ) : ℕ := ∏ p ∈ Nat.primesBelow (k + 1), p ^ min (k / p) (k / g)
 
 /-- `1 ≤ WgRefinedCap g k` (empty/prime-power factors are all `≥ 1`).
-Mirrors `smoothCapacity_pos`. -/
+Mirrors `smoothCapacity_pos`.
+@isnad1 id=le.0h2v.s3.4db8603d9c60 from=translated src=- shape=a120b2a8 vocab=82f083e7
+-/
 lemma wgRefinedCap_pos (g k : ℕ) : 1 ≤ WgRefinedCap g k :=
   Finset.one_le_prod fun _p hp => Nat.one_le_pow _ _ (Nat.prime_of_mem_primesBelow hp).pos
 
+/--
+@isnad1 id=ne.0h2v.s3.70b894cf9631 from=translated src=- shape=aa052b1b vocab=9c897510
+-/
 lemma wgRefinedCap_ne_zero (g k : ℕ) : WgRefinedCap g k ≠ 0 :=
   Nat.one_le_iff_ne_zero.mp (wgRefinedCap_pos g k)
 
 /-- **Factorization of the refined capacity.** For prime `p ≤ k`, `v_p(WgRefinedCap g k) =
 min(⌊k/p⌋, ⌊k/g⌋)`; for `p ∉ primesBelow (k+1)`, it is `0`.
-Mirrors `smoothCapacity_factorization`. -/
+Mirrors `smoothCapacity_factorization`.
+@isnad1 id=eq.0h3v.s6.377f30a333ad from=translated src=- shape=a288f66c vocab=af3c84e5
+-/
 lemma wgRefinedCap_factorization (g k p : ℕ) :
     (WgRefinedCap g k).factorization p
       = if p ∈ Nat.primesBelow (k + 1) then min (k / p) (k / g) else 0 := by
@@ -145,7 +154,9 @@ factorizations: at a prime `p ≤ k`, `v_p(Wg) = overlapg - 1 ≤ min(⌊k/p⌋,
 `overlapg_le` (`≤ ⌊k/p⌋ + 1`) and `overlapg_le_numBlocks` (`≤ ⌊k/g⌋`); at any other prime, `Wg`'s
 support (its prime factors) and the count `overlapg ≤ ⌊k/p⌋ + 1` (which is `1` when `p > k`) force
 `v_p(Wg) = 0`. This refines `Wg_dvd_factorial` (`Wg ∣ k!`) by also capping each exponent at
-`⌊k/g⌋`. -/
+`⌊k/g⌋`.
+@isnad1 id=dvd.2h3v.s5.a63c87245710 from=translated src=- shape=9ac84904 vocab=461862f5
+-/
 theorem Wg_dvd_refinedCap (hg : 1 ≤ g) {k n : ℕ} (hn : 1 ≤ n) :
     Wg g k n ∣ WgRefinedCap g k := by
   have hWne : Wg g k n ≠ 0 := by
@@ -185,7 +196,9 @@ theorem Wg_dvd_refinedCap (hg : 1 ≤ g) {k n : ℕ} (hn : 1 ≤ n) :
 
 /-- **Size form of the refined overlap bound.** `Wg g k n ≤ WgRefinedCap g k`, immediate from the
 divisibility `Wg_dvd_refinedCap` via `Nat.le_of_dvd`. The deterministic improvement of
-`Wg ≤ k^k`. -/
+`Wg ≤ k^k`.
+@isnad1 id=le.2h3v.s5.447b82ca62c2 from=translated src=- shape=0d697a82 vocab=f0cc469f
+-/
 theorem Wg_le_refinedCap (hg : 1 ≤ g) {k n : ℕ} (hn : 1 ≤ n) :
     Wg g k n ≤ WgRefinedCap g k :=
   Nat.le_of_dvd (wgRefinedCap_pos g k) (Wg_dvd_refinedCap hg hn)
@@ -195,7 +208,9 @@ theorem Wg_le_refinedCap (hg : 1 ≤ g) {k n : ℕ} (hn : 1 ≤ n) :
 /-- **Refined decomposition inequality.** `∏_j rad (F g (n+g·j)) ≤ rad (F k n) · WgRefinedCap g k`.
 The refined analogue of `rad_blocksg_le`: from the exact decomposition `∏ rad = rad(Bg)·Wg`
 (`rad_blocksg_decomp`), `rad(Bg) ∣ rad(F k n)` (`rad_Bg_dvd_rad_F`), and `Wg ≤ WgRefinedCap`
-(`Wg_le_refinedCap`). -/
+(`Wg_le_refinedCap`).
+@isnad1 id=le.2h3v.s6.a12bbf33a425 from=translated src=- shape=56d87bb4 vocab=9e9af5ae
+-/
 theorem rad_blocksg_le_refined (hg : 1 ≤ g) {k n : ℕ} (hn : 1 ≤ n) :
     (∏ j ∈ Finset.range (k / g), rad (F g (n + g * j))) ≤ rad (F k n) * WgRefinedCap g k := by
   rw [rad_blocksg_decomp hg hn]

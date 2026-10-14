@@ -67,6 +67,9 @@ def leastCompleteThreshold
     classical
     exact Nat.find hcomplete
 
+/--
+@isnad1 id=mem.2h3v.s5.2761a694fc5c from=translated src=- shape=d0e0ab4f vocab=53b177e2
+-/
 lemma leastCompleteThreshold_spec
     {a : ℕ → ℕ} {I : Set ℕ} (hcomplete : IsCompleteOn a I) :
     ∀ t : ℕ, leastCompleteThreshold a I hcomplete ≤ t →
@@ -75,6 +78,9 @@ lemma leastCompleteThreshold_spec
   unfold leastCompleteThreshold
   exact Nat.find_spec hcomplete
 
+/--
+@isnad1 id=le.2h3v.s5.69f6e40621e2 from=translated src=- shape=345f2758 vocab=53b177e2
+-/
 lemma leastCompleteThreshold_le_of_complete_from
     {a : ℕ → ℕ} {I : Set ℕ} (hcomplete : IsCompleteOn a I) {H : ℕ}
     (hH : ∀ t : ℕ, H ≤ t → t ∈ subsetSums a I) :
@@ -85,6 +91,9 @@ lemma leastCompleteThreshold_le_of_complete_from
   have hlt : H < Nat.find hcomplete := Nat.lt_of_not_ge hnot
   exact (Nat.find_min hcomplete hlt) hH
 
+/--
+@isnad1 id=ex.2h3v.s5.c36adbce61eb from=translated src=- shape=b37ceb89 vocab=8882af31
+-/
 lemma exists_hole_of_lt_leastCompleteThreshold
     {a : ℕ → ℕ} {I : Set ℕ} (hcomplete : IsCompleteOn a I) {B : ℕ}
     (hB : B < leastCompleteThreshold a I hcomplete) :
@@ -99,6 +108,9 @@ lemma exists_hole_of_lt_leastCompleteThreshold
     leastCompleteThreshold_le_of_complete_from hcomplete hfromB
   omega
 
+/--
+@isnad1 id=lt.2h3v.s5.9238c134c8cc from=translated src=- shape=6675bff3 vocab=8882af31
+-/
 lemma lt_leastCompleteThreshold_of_exists_hole
     {a : ℕ → ℕ} {I : Set ℕ} (hcomplete : IsCompleteOn a I) {B : ℕ}
     (hhole : ∃ t : ℕ, B ≤ t ∧ t ∉ subsetSums a I) :
@@ -108,6 +120,9 @@ lemma lt_leastCompleteThreshold_of_exists_hole
   obtain ⟨t, hBt, htmiss⟩ := hhole
   exact htmiss (leastCompleteThreshold_spec hcomplete t (le_trans hle hBt))
 
+/--
+@isnad1 id=iff.1h3v.s5.8b75238a47a3 from=translated src=- shape=248aff68 vocab=8882af31
+-/
 theorem lt_leastCompleteThreshold_iff_exists_hole
     {a : ℕ → ℕ} {I : Set ℕ} (hcomplete : IsCompleteOn a I) {B : ℕ} :
     B < leastCompleteThreshold a I hcomplete ↔
@@ -115,6 +130,9 @@ theorem lt_leastCompleteThreshold_iff_exists_hole
   ⟨exists_hole_of_lt_leastCompleteThreshold hcomplete,
     lt_leastCompleteThreshold_of_exists_hole hcomplete⟩
 
+/--
+@isnad1 id=not.2h2v.s5.c1478fa900bc from=translated src=- shape=84ca4659 vocab=c7bb9204
+-/
 lemma pred_leastCompleteThreshold_not_mem
     {a : ℕ → ℕ} {I : Set ℕ} (hcomplete : IsCompleteOn a I)
     (hpos : 0 < leastCompleteThreshold a I hcomplete) :
@@ -134,6 +152,9 @@ lemma pred_leastCompleteThreshold_not_mem
         (a := a) (I := I) hcomplete hfromPred)
   omega
 
+/--
+@isnad1 id=ex.2h2v.s5.b3d303a32b9a from=translated src=- shape=a8e2d411 vocab=c7bb9204
+-/
 lemma exists_hole_at_pred_leastCompleteThreshold
     {a : ℕ → ℕ} {I : Set ℕ} (hcomplete : IsCompleteOn a I)
     (hpos : 0 < leastCompleteThreshold a I hcomplete) :
@@ -150,6 +171,9 @@ def prefixSubsetSums (a : ℕ → ℕ) (I : Set ℕ) (n : ℕ) : Set ℕ :=
 def CoversInterval (a : ℕ → ℕ) (I : Set ℕ) (n H T : ℕ) : Prop :=
   ∀ t : ℕ, H ≤ t → t ≤ T → t ∈ prefixSubsetSums a I n
 
+/--
+@isnad1 id=ex.0h4v.s4.ca9c78906338 from=translated src=- shape=5808fbc4 vocab=a3506b01
+-/
 lemma exists_prefixCoverThreshold_vacuous
     {a : ℕ → ℕ} {I : Set ℕ} {n T : ℕ} :
     ∃ H : ℕ, CoversInterval a I n H T := by
@@ -164,7 +188,9 @@ def leastPrefixCoverThreshold (a : ℕ → ℕ) (I : Set ℕ) (n T : ℕ) : ℕ 
     classical
     exact Nat.find (exists_prefixCoverThreshold_vacuous (a := a) (I := I) (n := n) (T := T))
 
-/-- The least prefix-cover threshold really covers from itself. -/
+/-- The least prefix-cover threshold really covers from itself.
+@isnad1 id=coversin.0h4v.s4.afb5154e2ff0 from=translated src=- shape=ce39d17d vocab=b5a5a0e1
+-/
 lemma leastPrefixCoverThreshold_cover
     {a : ℕ → ℕ} {I : Set ℕ} {n T : ℕ} :
     CoversInterval a I n (leastPrefixCoverThreshold a I n T) T := by
@@ -172,7 +198,9 @@ lemma leastPrefixCoverThreshold_cover
   unfold leastPrefixCoverThreshold
   exact Nat.find_spec (exists_prefixCoverThreshold_vacuous (a := a) (I := I) (n := n) (T := T))
 
-/-- Any prefix-cover threshold bounds the least such threshold. -/
+/-- Any prefix-cover threshold bounds the least such threshold.
+@isnad1 id=le.1h5v.s4.376aea62b8f1 from=translated src=- shape=86358b67 vocab=ac19ce4f
+-/
 lemma leastPrefixCoverThreshold_le_of_cover
     {a : ℕ → ℕ} {I : Set ℕ} {n T H : ℕ}
     (hcover : CoversInterval a I n H T) :
@@ -188,6 +216,9 @@ lemma leastPrefixCoverThreshold_le_of_cover
     (exists_prefixCoverThreshold_vacuous (a := a) (I := I) (n := n) (T := T))
     hlt) hcover
 
+/--
+@isnad1 id=coversin.2h6v.s5.1e2aa3357b8c from=translated src=- shape=1ae34882 vocab=20aaa8dd
+-/
 lemma CoversInterval.mono_lower
     {a : ℕ → ℕ} {I : Set ℕ} {n H H' T : ℕ}
     (hcover : CoversInterval a I n H T) (hHH' : H ≤ H') :
@@ -195,6 +226,9 @@ lemma CoversInterval.mono_lower
   intro t htH' htT
   exact hcover t (le_trans hHH' htH') htT
 
+/--
+@isnad1 id=iff.0h5v.s5.1505e89aeccc from=translated src=- shape=b8223260 vocab=aea16598
+-/
 lemma not_coversInterval_iff_exists_prefix_hole
     {a : ℕ → ℕ} {I : Set ℕ} {n H T : ℕ} :
     ¬ CoversInterval a I n H T ↔
@@ -202,6 +236,9 @@ lemma not_coversInterval_iff_exists_prefix_hole
   classical
   simp [CoversInterval]
 
+/--
+@isnad1 id=ex.1h5v.s5.ec77bf2b61a8 from=translated src=- shape=1b30f95e vocab=bf910b3f
+-/
 lemma exists_prefix_hole_of_lt_leastPrefixCoverThreshold
     {a : ℕ → ℕ} {I : Set ℕ} {n T B : ℕ}
     (hB : B < leastPrefixCoverThreshold a I n T) :
@@ -214,6 +251,9 @@ lemma exists_prefix_hole_of_lt_leastPrefixCoverThreshold
       hB
   exact not_coversInterval_iff_exists_prefix_hole.mp hnot
 
+/--
+@isnad1 id=lt.1h5v.s5.3ce2a693d191 from=translated src=- shape=05c4ae86 vocab=bf910b3f
+-/
 lemma lt_leastPrefixCoverThreshold_of_exists_prefix_hole
     {a : ℕ → ℕ} {I : Set ℕ} {n T B : ℕ}
     (hhole : ∃ t : ℕ, B ≤ t ∧ t ≤ T ∧ t ∉ prefixSubsetSums a I n) :
@@ -225,6 +265,9 @@ lemma lt_leastPrefixCoverThreshold_of_exists_prefix_hole
     CoversInterval.mono_lower leastPrefixCoverThreshold_cover hleast_le
   exact htmiss (hcoverB t hBt htT)
 
+/--
+@isnad1 id=iff.0h5v.s5.81a53a8b90bc from=translated src=- shape=d021ee3c vocab=bf910b3f
+-/
 theorem lt_leastPrefixCoverThreshold_iff_exists_prefix_hole
     {a : ℕ → ℕ} {I : Set ℕ} {n T B : ℕ} :
     B < leastPrefixCoverThreshold a I n T ↔
@@ -240,6 +283,9 @@ def nextSeedMargin (a : ℕ → ℕ) (M : ℕ) : ℕ :=
 def pairSeedMargin (a : ℕ → ℕ) (M : ℕ) : ℕ :=
   a (M + 1) + a (M + 2) - a (M + 3)
 
+/--
+@isnad1 id=lt.2h3v.s7.baa3c3437e16 from=translated src=- shape=3f77f8b0 vocab=ffcd7a58
+-/
 lemma nextSeedMargin_lt_least_of_not_seed_keep
     {a : ℕ → ℕ} {I : Set ℕ} {M : ℕ}
     (hnext : a (M + 1) ≤ a (M + 2))
@@ -251,6 +297,9 @@ lemma nextSeedMargin_lt_least_of_not_seed_keep
   dsimp [nextSeedMargin]
   omega
 
+/--
+@isnad1 id=lt.2h3v.s7.198c96e16f04 from=translated src=- shape=db78f3ff vocab=cedf3a91
+-/
 lemma pairSeedMargin_lt_least_of_not_seed_margin
     {a : ℕ → ℕ} {I : Set ℕ} {M : ℕ}
     (hpair : a (M + 3) ≤ a (M + 1) + a (M + 2))
@@ -262,6 +311,9 @@ lemma pairSeedMargin_lt_least_of_not_seed_margin
   dsimp [pairSeedMargin]
   omega
 
+/--
+@isnad1 id=ex.2h3v.s7.dba750e83134 from=translated src=- shape=9d75122d vocab=31fdb0c6
+-/
 lemma exists_prefix_hole_of_not_seed_keep
     {a : ℕ → ℕ} {I : Set ℕ} {M : ℕ}
     (hnext : a (M + 1) ≤ a (M + 2))
@@ -274,6 +326,9 @@ lemma exists_prefix_hole_of_not_seed_keep
   exists_prefix_hole_of_lt_leastPrefixCoverThreshold
     (nextSeedMargin_lt_least_of_not_seed_keep hnext hnot)
 
+/--
+@isnad1 id=ex.2h3v.s7.442cd0aac825 from=translated src=- shape=bc5a0459 vocab=b10eec63
+-/
 lemma exists_prefix_hole_of_not_seed_margin
     {a : ℕ → ℕ} {I : Set ℕ} {M : ℕ}
     (hpair : a (M + 3) ≤ a (M + 1) + a (M + 2))
@@ -317,10 +372,16 @@ def deletedPrefixSum (a : ℕ → ℕ) (D : Set ℕ) (n : ℕ) : ℕ :=
 def indexedDeletedSum (a b : ℕ → ℕ) (k : ℕ) : ℕ :=
   ∑ j ∈ Finset.range k, a (b j)
 
+/--
+@isnad1 id=eq.0h2v.s4.65607b9fabb8 from=translated src=- shape=7bebf134 vocab=c5b58c7e
+-/
 lemma indexedDeletedSum_zero {a b : ℕ → ℕ} :
     indexedDeletedSum a b 0 = 0 := by
   simp [indexedDeletedSum]
 
+/--
+@isnad1 id=eq.0h3v.s5.39bfeecce1b7 from=translated src=- shape=cbab542a vocab=627f4a5a
+-/
 lemma indexedDeletedSum_succ {a b : ℕ → ℕ} {k : ℕ} :
     indexedDeletedSum a b (k + 1) = indexedDeletedSum a b k + a (b k) := by
   simp [indexedDeletedSum, Finset.sum_range_succ]
@@ -341,11 +402,17 @@ def recursiveBudgetSeq
     (a : ℕ → ℕ) (threshold : ℕ → ℕ) (C start : ℕ) (k : ℕ) : ℕ :=
   (recursiveBudgetState a threshold C start k).1
 
+/--
+@isnad1 id=eq.0h4v.s4.d2939f4a4c2b from=translated src=- shape=92564417 vocab=46212dd0
+-/
 lemma recursiveBudgetSeq_zero
     {a : ℕ → ℕ} {threshold : ℕ → ℕ} {C start : ℕ} :
     recursiveBudgetSeq a threshold C start 0 = start := by
   simp [recursiveBudgetSeq, recursiveBudgetState]
 
+/--
+@isnad1 id=eq.0h5v.s5.0df536dd9f92 from=translated src=- shape=f22e2163 vocab=1affb25f
+-/
 lemma recursiveBudgetState_sum
     {a : ℕ → ℕ} {threshold : ℕ → ℕ} {C start : ℕ} :
     ∀ k : ℕ,
@@ -358,6 +425,9 @@ lemma recursiveBudgetState_sum
         (C := C) (start := start) k
       simp [recursiveBudgetSeq, recursiveBudgetState, indexedDeletedSum_succ, ih]
 
+/--
+@isnad1 id=eq.0h5v.s6.43c699da9576 from=translated src=- shape=3b01d5ad vocab=d869691e
+-/
 lemma recursiveBudgetSeq_succ
     {a : ℕ → ℕ} {threshold : ℕ → ℕ} {C start k : ℕ} :
     recursiveBudgetSeq a threshold C start (k + 1) =
@@ -366,6 +436,9 @@ lemma recursiveBudgetSeq_succ
           (C + indexedDeletedSum a (recursiveBudgetSeq a threshold C start) (k + 1))) := by
   simp [recursiveBudgetSeq, recursiveBudgetState, recursiveBudgetState_sum]
 
+/--
+@isnad1 id=lt.0h5v.s5.d1fe4fddcef8 from=translated src=- shape=a2bf6320 vocab=8328b71d
+-/
 lemma recursiveBudgetSeq_gap
     {a : ℕ → ℕ} {threshold : ℕ → ℕ} {C start : ℕ} :
     ∀ k : ℕ,
@@ -376,6 +449,9 @@ lemma recursiveBudgetSeq_gap
   exact lt_of_lt_of_le (by omega)
     (le_max_left _ _)
 
+/--
+@isnad1 id=le.0h5v.s6.5a841402d27f from=translated src=- shape=cd3a04ca vocab=434f7179
+-/
 lemma recursiveBudgetSeq_threshold_le_succ
     {a : ℕ → ℕ} {threshold : ℕ → ℕ} {C start k : ℕ} :
     threshold
@@ -414,6 +490,9 @@ surplus property used to force completeness. -/
 def FixedLengthBlockSurplusFrom (a : ℕ → ℕ) (m N : ℕ) : Prop :=
   ∀ n : ℕ, N ≤ n → m ≤ n → a (n + 1) < previousBlockSum a m n
 
+/--
+@isnad1 id=fixedlen.2h4v.s4.254ee2d67c79 from=translated src=- shape=59ba66bf vocab=de43014a
+-/
 lemma FixedLengthBlockSurplusFrom.mono
     {a : ℕ → ℕ} {m N N' : ℕ}
     (hsurplus : FixedLengthBlockSurplusFrom a m N)
@@ -429,12 +508,18 @@ def GeometricBlockSurplus (ρ : ℝ) (m : ℕ) : Prop :=
   ∀ n : ℕ, m ≤ n →
     1 < ∑ i ∈ Finset.Icc (n - m) (n - 1), (ρ ^ (n + 1 - i))⁻¹
 
+/--
+@isnad1 id=eq.0h3v.s5.fd33813938c7 from=translated src=- shape=a87e9b82 vocab=68279c9c
+-/
 lemma periodicDeletionSeq_succ
     {start period k : ℕ} :
     periodicDeletionSeq start period (k + 1) =
       periodicDeletionSeq start period k + period := by
   simp [periodicDeletionSeq, Nat.succ_mul, Nat.add_comm, Nat.add_left_comm]
 
+/--
+@isnad1 id=lt.1h3v.s5.1fe0af94898e from=translated src=- shape=29b7cab0 vocab=70d53510
+-/
 lemma periodicDeletionSeq_gap_of_two_le_period
     {start period : ℕ} (hperiod : 2 ≤ period) :
     ∀ k : ℕ,
@@ -444,6 +529,9 @@ lemma periodicDeletionSeq_gap_of_two_le_period
   rw [periodicDeletionSeq_succ]
   omega
 
+/--
+@isnad1 id=strictmo.1h2v.s4.0eca96f71cc5 from=translated src=- shape=a3c7cfeb vocab=6d1b0fde
+-/
 lemma strictMono_periodicDeletionSeq_of_pos
     {start period : ℕ} (hperiod : 0 < period) :
     StrictMono (periodicDeletionSeq start period) := by
@@ -451,6 +539,9 @@ lemma strictMono_periodicDeletionSeq_of_pos
   dsimp [periodicDeletionSeq]
   exact Nat.add_lt_add_left (Nat.mul_lt_mul_of_pos_right hij hperiod) start
 
+/--
+@isnad1 id=infinite.1h2v.s4.aefddf565a53 from=translated src=- shape=24da0823 vocab=97735421
+-/
 lemma periodicDeletionSet_infinite
     {start period : ℕ} (hperiod : 0 < period) :
     (periodicDeletionSet start period).Infinite := by
@@ -458,6 +549,9 @@ lemma periodicDeletionSet_infinite
   exact Set.infinite_range_of_injective
     (strictMono_periodicDeletionSeq_of_pos (start := start) hperiod).injective
 
+/--
+@isnad1 id=infinite.1h2v.s4.6eafa55e3d07 from=translated src=- shape=007c4cc1 vocab=056a17fa
+-/
 lemma periodicDeletionSet_coinfinite_of_two_le_period
     {start period : ℕ} (hperiod : 2 ≤ period) :
     (periodicDeletionSet start period)ᶜ.Infinite := by
@@ -493,6 +587,9 @@ lemma periodicDeletionSet_coinfinite_of_two_le_period
     have hgapk := hgap k
     omega
 
+/--
+@isnad1 id=le.1h3v.s4.7ff54ed60394 from=translated src=- shape=ab934626 vocab=e1107c83
+-/
 lemma periodicDeletionSet_avoids_initial
     {M start period : ℕ} (hMstart : M < start) :
     Set.Iic M ⊆ (periodicDeletionSet start period)ᶜ := by
@@ -508,6 +605,9 @@ lemma periodicDeletionSet_avoids_initial
     simpa [hk] using hMi_seq
   omega
 
+/--
+@isnad1 id=le.2h4v.s5.28655488f91c from=translated src=- shape=e06d17be vocab=70d53510
+-/
 lemma periodicDeletionSeq_add_period_le_of_lt
     {start period j k : ℕ} (hperiod : 0 < period) (hjk : j < k) :
     periodicDeletionSeq start period j + period ≤
@@ -518,6 +618,9 @@ lemma periodicDeletionSeq_add_period_le_of_lt
   rw [← periodicDeletionSeq_succ (start := start) (period := period) (k := j)]
   exact hmono.monotone hsucc_le
 
+/--
+@isnad1 id=not.3h4v.s5.5c21fcd5101b from=translated src=- shape=9ae5ed55 vocab=5f5408b4
+-/
 lemma periodicDeletionSet_not_mem_of_current_window
     {start period k i : ℕ} (hperiod : 0 < period)
     (hleft : periodicDeletionSeq start period k < i + period)
@@ -541,6 +644,9 @@ lemma periodicDeletionSet_not_mem_of_current_window
       hmono.monotone hkj
     omega
 
+/--
+@isnad1 id=not.4h4v.s6.7f8fff6dc08f from=translated src=- shape=6133d939 vocab=44ec4b7f
+-/
 lemma periodicDeletionSet_not_mem_previousBlock_of_period_m_add_two
     {start m k i : ℕ}
     (hmpos : 0 < m)
@@ -553,6 +659,9 @@ lemma periodicDeletionSet_not_mem_previousBlock_of_period_m_add_two
     (start := start) (period := m + 2) (k := k) (i := i)
     hperiod (by omega) (by omega)
 
+/--
+@isnad1 id=not.5h4v.s6.875814ef64ff from=translated src=- shape=d8172ab4 vocab=d29417f1
+-/
 lemma periodicDeletionSet_not_mem_previousBlock_of_mem_period_m_add_two
     {start m d i : ℕ}
     (hmpos : 0 < m)
@@ -566,6 +675,9 @@ lemma periodicDeletionSet_not_mem_previousBlock_of_mem_period_m_add_two
     (start := start) (m := m) (k := k) (i := i)
     hmpos hmd hlo hhi
 
+/--
+@isnad1 id=le.1h3v.s4.a700d866bf94 from=translated src=- shape=5e80f9d4 vocab=a3b9488c
+-/
 lemma periodicDeletionSet_start_le_of_mem
     {start period d : ℕ}
     (hmem : d ∈ periodicDeletionSet start period) :
@@ -574,6 +686,9 @@ lemma periodicDeletionSet_start_le_of_mem
   dsimp [periodicDeletionSeq]
   omega
 
+/--
+@isnad1 id=and.1h3v.s6.60ece0a384f3 from=translated src=- shape=43da7849 vocab=d29417f1
+-/
 lemma periodicDeletionSet_mem_period_m_add_two_bounds
     {M m d : ℕ}
     (hmem : d ∈ periodicDeletionSet (M + m + 1) (m + 2)) :
@@ -727,6 +842,9 @@ def ValueInfiniteDeletionIncomplete (a : ℕ → ℕ) : Prop :=
   ∀ B : Set ℕ, B.Infinite → B ⊆ Set.range a →
     ¬ IsCompleteAfterDeletingValues a B
 
+/--
+@isnad1 id=eq.1h2v.s5.2ee290643a55 from=translated src=- shape=762e51e0 vocab=477cfc33
+-/
 lemma index_compl_eq_value_kept_image {a : ℕ → ℕ}
     (hmono : StrictMono a) (D : Set ℕ) :
     Dᶜ = {i : ℕ | a i ∉ a '' D} := by
@@ -739,6 +857,9 @@ lemma index_compl_eq_value_kept_image {a : ℕ → ℕ}
   · intro hi hD
     exact hi ⟨i, hD, rfl⟩
 
+/--
+@isnad1 id=finitede.2h1v.s4.62ffcddf9bf3 from=translated src=- shape=a179fb98 vocab=25cc0509
+-/
 lemma finiteDeletionComplete_of_valueFiniteDeletionComplete {a : ℕ → ℕ}
     (hmono : StrictMono a)
     (hvalue : ValueFiniteDeletionComplete a) :
@@ -749,6 +870,9 @@ lemma finiteDeletionComplete_of_valueFiniteDeletionComplete {a : ℕ → ℕ}
   rw [index_compl_eq_value_kept_image hmono D]
   simpa [IsCompleteAfterDeletingValues] using hcomplete
 
+/--
+@isnad1 id=valuefin.2h1v.s4.b2942e49108b from=translated src=- shape=a179fb98 vocab=25cc0509
+-/
 lemma valueFiniteDeletionComplete_of_finiteDeletionComplete {a : ℕ → ℕ}
     (hmono : StrictMono a)
     (hindex : FiniteDeletionComplete a) :
@@ -764,12 +888,18 @@ lemma valueFiniteDeletionComplete_of_finiteDeletionComplete {a : ℕ → ℕ}
   rw [hkept] at hcomplete
   simpa [IsCompleteAfterDeletingValues] using hcomplete
 
+/--
+@isnad1 id=iff.1h1v.s4.42546ead6126 from=translated src=- shape=56ee72ef vocab=25cc0509
+-/
 lemma finiteDeletionComplete_iff_valueFiniteDeletionComplete {a : ℕ → ℕ}
     (hmono : StrictMono a) :
     FiniteDeletionComplete a ↔ ValueFiniteDeletionComplete a :=
   ⟨valueFiniteDeletionComplete_of_finiteDeletionComplete hmono,
     finiteDeletionComplete_of_valueFiniteDeletionComplete hmono⟩
 
+/--
+@isnad1 id=infinite.2h1v.s4.6501747e8396 from=translated src=- shape=a179fb98 vocab=a2d847e6
+-/
 lemma infiniteDeletionIncomplete_of_valueInfiniteDeletionIncomplete {a : ℕ → ℕ}
     (hmono : StrictMono a)
     (hvalue : ValueInfiniteDeletionIncomplete a) :
@@ -786,6 +916,9 @@ lemma infiniteDeletionIncomplete_of_valueInfiniteDeletionIncomplete {a : ℕ →
       rw [← index_compl_eq_value_kept_image hmono D]
       exact hcomplete)
 
+/--
+@isnad1 id=valueinf.1h1v.s3.b76117c019d5 from=translated src=- shape=c3984ded vocab=831e687c
+-/
 lemma valueInfiniteDeletionIncomplete_of_infiniteDeletionIncomplete {a : ℕ → ℕ}
     (hindex : InfiniteDeletionIncomplete a) :
     ValueInfiniteDeletionIncomplete a := by
@@ -800,12 +933,18 @@ lemma valueInfiniteDeletionIncomplete_of_infiniteDeletionIncomplete {a : ℕ →
   rw [hkept] at hcomplete
   simpa [IsCompleteAfterDeletingValues] using hcomplete
 
+/--
+@isnad1 id=iff.1h1v.s4.506215b150af from=translated src=- shape=56ee72ef vocab=a2d847e6
+-/
 lemma infiniteDeletionIncomplete_iff_valueInfiniteDeletionIncomplete {a : ℕ → ℕ}
     (hmono : StrictMono a) :
     InfiniteDeletionIncomplete a ↔ ValueInfiniteDeletionIncomplete a :=
   ⟨valueInfiniteDeletionIncomplete_of_infiniteDeletionIncomplete,
     infiniteDeletionIncomplete_of_valueInfiniteDeletionIncomplete hmono⟩
 
+/--
+@isnad1 id=le.2h2v.s5.01b65deacd67 from=translated src=- shape=89570f54 vocab=62a954ba
+-/
 lemma term_ge_succ_of_strictMono_pos {a : ℕ → ℕ}
     (hmono : StrictMono a) (hpos : ∀ n : ℕ, 0 < a n) :
     ∀ n : ℕ, n + 1 ≤ a n := by
@@ -817,6 +956,9 @@ lemma term_ge_succ_of_strictMono_pos {a : ℕ → ℕ}
       have hlt : a n < a (n + 1) := hmono (Nat.lt_succ_self n)
       omega
 
+/--
+@isnad1 id=eventual.3h2v.s6.9515b5c72a8d from=translated src=- shape=a9dc160e vocab=f7e597c2
+-/
 lemma evt_const_add_self_le_next_of_uniformRatioGap {a : ℕ → ℕ}
     (hmono : StrictMono a)
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -847,6 +989,9 @@ lemma evt_const_add_self_le_next_of_uniformRatioGap {a : ℕ → ℕ}
     nlinarith
   exact_mod_cast hreal
 
+/--
+@isnad1 id=eventual.3h2v.s6.7dcc19c4f622 from=translated src=- shape=2067e9a9 vocab=f7e597c2
+-/
 lemma evt_const_add_next_le_next_next_of_uniformRatioGap {a : ℕ → ℕ}
     (hmono : StrictMono a)
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -859,18 +1004,27 @@ lemma evt_const_add_next_le_next_next_of_uniformRatioGap {a : ℕ → ℕ}
   intro M hM
   exact hN (M + 1) (le_trans hM (Nat.le_succ M))
 
+/--
+@isnad1 id=iscomple.1h1v.s3.ae1a9a7d790d from=translated src=- shape=a15f29bb vocab=2dd16f1d
+-/
 lemma complete_univ_of_finiteDeletionComplete {a : ℕ → ℕ}
     (hfinite : FiniteDeletionComplete a) :
     IsCompleteOn a Set.univ := by
   have h := hfinite (∅ : Set ℕ) Set.finite_empty
   simpa using h
 
+/--
+@isnad1 id=iscomple.1h2v.s3.e12ee57c518c from=translated src=- shape=b0f4ee11 vocab=0a886c87
+-/
 lemma tail_complete_of_finiteDeletionComplete {a : ℕ → ℕ}
     (hfinite : FiniteDeletionComplete a) (N : ℕ) :
     IsCompleteOn a (Set.Ici N) := by
   have h := hfinite (Set.Iio N) (Set.finite_Iio N)
   simpa [Set.compl_Iio] using h
 
+/--
+@isnad1 id=iscomple.2h3v.s5.8df17ec7fb2b from=translated src=- shape=596b2e91 vocab=800efce2
+-/
 lemma finite_singleton_complete_of_finiteDeletionComplete
     {a : ℕ → ℕ} {F : Set ℕ} (hfinite : FiniteDeletionComplete a)
     (hF : F.Finite) (M : ℕ) :
@@ -886,6 +1040,9 @@ def finSingletonCompleteThreshold
   leastCompleteThreshold a (F ∪ ({M + 1} : Set ℕ))ᶜ
     (finite_singleton_complete_of_finiteDeletionComplete hfinite hF M)
 
+/--
+@isnad1 id=mem.3h4v.s6.57979e31182d from=translated src=- shape=ca26c161 vocab=952c1578
+-/
 lemma finSingletonCompleteThreshold_spec
     {a : ℕ → ℕ} (hfinite : FiniteDeletionComplete a)
     {F : Set ℕ} (hF : F.Finite) {M t : ℕ}
@@ -894,6 +1051,9 @@ lemma finSingletonCompleteThreshold_spec
   leastCompleteThreshold_spec
     (finite_singleton_complete_of_finiteDeletionComplete hfinite hF M) t ht
 
+/--
+@isnad1 id=le.3h4v.s6.aaec6861ff44 from=translated src=- shape=6d6076e7 vocab=952c1578
+-/
 lemma finSingletonCompleteThreshold_le_of_complete_from
     {a : ℕ → ℕ} (hfinite : FiniteDeletionComplete a)
     {F : Set ℕ} (hF : F.Finite) {M H : ℕ}
@@ -903,6 +1063,9 @@ lemma finSingletonCompleteThreshold_le_of_complete_from
   leastCompleteThreshold_le_of_complete_from
     (finite_singleton_complete_of_finiteDeletionComplete hfinite hF M) hH
 
+/--
+@isnad1 id=iff.2h3v.s5.0febb9730f12 from=translated src=- shape=e55a0585 vocab=7593a7cd
+-/
 lemma finSingletonCompleteBelowPrev_iff_threshold_le
     {a : ℕ → ℕ} (hfinite : FiniteDeletionComplete a)
     {F : Set ℕ} (hF : F.Finite) {M : ℕ} :
@@ -920,6 +1083,9 @@ lemma finSingletonCompleteBelowPrev_iff_threshold_le
       fun t ht =>
         finSingletonCompleteThreshold_spec hfinite hF ht⟩
 
+/--
+@isnad1 id=iff.2h3v.s5.8537c63c141f from=translated src=- shape=ab9fdfe9 vocab=8a05b856
+-/
 lemma not_finSingletonCompleteBelowPrev_iff_prev_lt_threshold
     {a : ℕ → ℕ} (hfinite : FiniteDeletionComplete a)
     {F : Set ℕ} (hF : F.Finite) {M : ℕ} :
@@ -937,6 +1103,9 @@ lemma not_finSingletonCompleteBelowPrev_iff_prev_lt_threshold
       (finSingletonCompleteBelowPrev_iff_threshold_le hfinite hF).mp hbelow
     omega
 
+/--
+@isnad1 id=ex.3h3v.s6.918d8ec8d136 from=translated src=- shape=3f9e2f55 vocab=69ff60d8
+-/
 lemma exists_finSingletonCompleteThreshold_hole_of_prev_lt
     {a : ℕ → ℕ} (hfinite : FiniteDeletionComplete a)
     {F : Set ℕ} (hF : F.Finite) {M : ℕ}
@@ -946,6 +1115,9 @@ lemma exists_finSingletonCompleteThreshold_hole_of_prev_lt
   exists_hole_of_lt_leastCompleteThreshold
     (finite_singleton_complete_of_finiteDeletionComplete hfinite hF M) hlt
 
+/--
+@isnad1 id=not.3h3v.s6.f88282bd0323 from=translated src=- shape=4703969b vocab=c9740872
+-/
 lemma pred_finSingletonCompleteThreshold_hole_of_prev_lt
     {a : ℕ → ℕ} (hfinite : FiniteDeletionComplete a)
     {F : Set ℕ} (hF : F.Finite) {M : ℕ}
@@ -963,6 +1135,9 @@ lemma pred_finSingletonCompleteThreshold_hole_of_prev_lt
     pred_leastCompleteThreshold_not_mem
       (finite_singleton_complete_of_finiteDeletionComplete hfinite hF M) hpos
 
+/--
+@isnad1 id=le.3h3v.s6.9c6315f64b7d from=translated src=- shape=a04ab923 vocab=f4095d91
+-/
 lemma pred_finSingletonCompleteThreshold_ge_prev_of_prev_lt
     {a : ℕ → ℕ} (hfinite : FiniteDeletionComplete a)
     {F : Set ℕ} (hF : F.Finite) {M : ℕ}
@@ -970,6 +1145,9 @@ lemma pred_finSingletonCompleteThreshold_ge_prev_of_prev_lt
     a (M + 1) ≤ finSingletonCompleteThreshold a hfinite hF M - 1 := by
   omega
 
+/--
+@isnad1 id=ex.3h3v.s6.c9701f22b843 from=translated src=- shape=ab33c244 vocab=1b2b784d
+-/
 lemma exists_pred_finSingletonCompleteThreshold_hole_of_prev_lt
     {a : ℕ → ℕ} (hfinite : FiniteDeletionComplete a)
     {F : Set ℕ} (hF : F.Finite) {M : ℕ}
@@ -982,6 +1160,9 @@ lemma exists_pred_finSingletonCompleteThreshold_hole_of_prev_lt
     pred_finSingletonCompleteThreshold_ge_prev_of_prev_lt hfinite hF hlt,
     pred_finSingletonCompleteThreshold_hole_of_prev_lt hfinite hF hlt⟩
 
+/--
+@isnad1 id=iff.1h1v.s6.669d4ae9b9aa from=translated src=- shape=d23423b2 vocab=7cad0d30
+-/
 theorem arbLargeFinSingletonCompleteBelowPrev_iff_threshold_le
     {a : ℕ → ℕ} (hfinite : FiniteDeletionComplete a) :
     ArbitrarilyLargeFinSingletonCompleteBelowPrev a ↔
@@ -1004,6 +1185,9 @@ theorem arbLargeFinSingletonCompleteBelowPrev_iff_threshold_le
       (finSingletonCompleteBelowPrev_iff_threshold_le
         hfinite hFfinite).mpr hleM⟩
 
+/--
+@isnad1 id=uniformf.1h1v.s5.20bb65cea572 from=translated src=- shape=266a6b12 vocab=12742b20
+-/
 lemma uniformFinSingletonComplete_of_eventual_singleton_complete
     {a : ℕ → ℕ}
     (hsingleton :
@@ -1015,6 +1199,9 @@ lemma uniformFinSingletonComplete_of_eventual_singleton_complete
   filter_upwards [hH] with M hM t ht
   simpa using hM t ht
 
+/--
+@isnad1 id=lt.2h2v.s5.3fb9525c5823 from=translated src=- shape=9c185559 vocab=dabe8ec8
+-/
 lemma one_add_lt_mul_of_goldenRatio_lt {x y : ℝ}
     (hx : Real.goldenRatio < x) (hy : Real.goldenRatio < y) :
     1 + x < x * y := by
@@ -1035,6 +1222,9 @@ lemma one_add_lt_mul_of_goldenRatio_lt {x y : ℝ}
     mul_lt_mul_of_pos_left hy hxpos
   linarith
 
+/--
+@isnad1 id=lt.3h2v.s6.e31ce18f2a5a from=translated src=- shape=d72d11e8 vocab=38d957f3
+-/
 lemma two_step_gap_of_quotient_gt_goldenRatio {a : ℕ → ℕ} {n : ℕ}
     (hpos : ∀ n : ℕ, 0 < a n)
     (hn : Real.goldenRatio < quotient a n)
@@ -1066,14 +1256,23 @@ lemma two_step_gap_of_quotient_gt_goldenRatio {a : ℕ → ℕ} {n : ℕ}
       using hmul'
   exact_mod_cast hreal
 
+/--
+@isnad1 id=lt.0h0v.s3.8cf0ff5a61a8 from=translated src=- shape=ffdda526 vocab=290a9c1e
+-/
 lemma goldenRatio_lt_two : Real.goldenRatio < 2 := by
   nlinarith [Real.goldenRatio_sq, Real.one_lt_goldenRatio]
 
+/--
+@isnad1 id=lt.2h1v.s5.7301b61df79f from=translated src=- shape=5a5c5ecc vocab=f39162d8
+-/
 lemma rho_mul_sub_one_lt_one {ρ : ℝ}
     (hρ1 : 1 < ρ) (hρφ : ρ < Real.goldenRatio) :
     ρ * (ρ - 1) < 1 := by
   nlinarith [Real.goldenRatio_sq, Real.one_lt_goldenRatio]
 
+/--
+@isnad1 id=ex.2h1v.s6.3bedee8c1e25 from=translated src=- shape=cbafe106 vocab=06116422
+-/
 lemma exists_range_geometricBlockWeightSum_gt_one {ρ : ℝ}
     (hρ1 : 1 < ρ) (hρφ : ρ < Real.goldenRatio) :
     ∃ m : ℕ, 0 < m ∧
@@ -1124,6 +1323,9 @@ lemma exists_range_geometricBlockWeightSum_gt_one {ρ : ℝ}
   refine ⟨max 1 M, by omega, ?_⟩
   exact hM (max 1 M) (le_max_right 1 M)
 
+/--
+@isnad1 id=geometri.2h2v.s6.17499f3c8c5c from=translated src=- shape=59845a01 vocab=ec589f83
+-/
 lemma geometricBlockSurplus_of_range_geometricBlockWeightSum_gt_one
     {ρ : ℝ} {m : ℕ}
     (hmpos : 0 < m)
@@ -1155,6 +1357,9 @@ lemma geometricBlockSurplus_of_range_geometricBlockWeightSum_gt_one
   rw [hIccIco, hreflect]
   simpa [hshift] using hrange
 
+/--
+@isnad1 id=ex.2h1v.s5.f13da4c11e8c from=translated src=- shape=91606ddc vocab=b033a2c8
+-/
 lemma exists_geometricBlockSurplus_of_lt_goldenRatio {ρ : ℝ}
     (hρ1 : 1 < ρ) (hρφ : ρ < Real.goldenRatio) :
     ∃ m : ℕ, 0 < m ∧ GeometricBlockSurplus ρ m := by
@@ -1163,6 +1368,9 @@ lemma exists_geometricBlockSurplus_of_lt_goldenRatio {ρ : ℝ}
   exact ⟨m, hmpos,
     geometricBlockSurplus_of_range_geometricBlockWeightSum_gt_one hmpos hrange⟩
 
+/--
+@isnad1 id=lt.2h2v.s6.439f502a8a6b from=translated src=- shape=230e8b04 vocab=6e2829da
+-/
 lemma two_mul_of_quotient_succ_lt_two {a : ℕ → ℕ} {n : ℕ}
     (hpos : ∀ n : ℕ, 0 < a n)
     (h : quotient a (n + 1) < (2 : ℝ)) :
@@ -1173,6 +1381,9 @@ lemma two_mul_of_quotient_succ_lt_two {a : ℕ → ℕ} {n : ℕ}
     simpa [quotient, Nat.add_assoc, mul_comm, mul_left_comm, mul_assoc] using h'
   exact_mod_cast hreal
 
+/--
+@isnad1 id=eventual.3h2v.s6.7eb3ddf79943 from=translated src=- shape=7f816e67 vocab=bc608f53
+-/
 lemma evt_two_mul_of_eventual_quotient_lt_of_lt_two
     {a : ℕ → ℕ} {ρ : ℝ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -1187,6 +1398,9 @@ lemma evt_two_mul_of_eventual_quotient_lt_of_lt_two
   filter_upwards [hsucc] with n hn
   exact two_mul_of_quotient_succ_lt_two hpos (lt_trans hn hρ2)
 
+/--
+@isnad1 id=lt.5h3v.s6.af197a0788dd from=translated src=- shape=15702b28 vocab=38d957f3
+-/
 lemma two_step_sum_gt_of_quotient_lt_rho {a : ℕ → ℕ} {ρ : ℝ} {n : ℕ}
     (hpos : ∀ n : ℕ, 0 < a n)
     (hρ1 : 1 < ρ) (hρφ : ρ < Real.goldenRatio)
@@ -1213,6 +1427,9 @@ lemma two_step_sum_gt_of_quotient_lt_rho {a : ℕ → ℕ} {ρ : ℝ} {n : ℕ}
     nlinarith
   exact_mod_cast hreal
 
+/--
+@isnad1 id=eventual.4h2v.s6.697f43a079f2 from=translated src=- shape=0663ffdb vocab=c8306cc9
+-/
 lemma evt_two_step_sum_gt_of_eventual_quotient_lt_rho
     {a : ℕ → ℕ} {ρ : ℝ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -1227,6 +1444,9 @@ lemma evt_two_step_sum_gt_of_eventual_quotient_lt_rho
   filter_upwards [hupper, hsucc] with n hn hn1
   exact two_step_sum_gt_of_quotient_lt_rho hpos hρ1 hρφ hn hn1
 
+/--
+@isnad1 id=eventual.4h2v.s6.df12dad2d606 from=translated src=- shape=fedbda74 vocab=c57b190a
+-/
 lemma evt_two_step_le_of_eventual_quotient_lt_rho
     {a : ℕ → ℕ} {ρ : ℝ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -1238,6 +1458,9 @@ lemma evt_two_step_le_of_eventual_quotient_lt_rho
       hpos hρ1 hρφ hupper] with n hn
   omega
 
+/--
+@isnad1 id=le.5h4v.s7.05efba1e1eaa from=translated src=- shape=c301796f vocab=16b77186
+-/
 lemma const_add_two_step_le_of_quotient_lt_rho_of_const_le
     {a : ℕ → ℕ} {ρ : ℝ} {C n : ℕ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -1275,6 +1498,9 @@ lemma const_add_two_step_le_of_quotient_lt_rho_of_const_le
     exact_mod_cast hreal
   exact hnat.le
 
+/--
+@isnad1 id=eventual.5h3v.s6.a5095b1f3471 from=translated src=- shape=f30bf561 vocab=f974406b
+-/
 lemma evt_const_add_two_step_le_of_eventual_quotient_lt_rho
     {a : ℕ → ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -1311,6 +1537,9 @@ lemma evt_const_add_two_step_le_of_eventual_quotient_lt_rho
   exact const_add_two_step_le_of_quotient_lt_rho_of_const_le
     hpos hρ1 (by simpa [δ] using hC) hn hn1
 
+/--
+@isnad1 id=le.3h4v.s6.384d591e6cbf from=translated src=- shape=31420e7e vocab=df9e1d65
+-/
 lemma term_le_pow_mul_of_quotient_lt_on_range
     {a : ℕ → ℕ} {ρ : ℝ} {s k : ℕ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -1339,6 +1568,9 @@ lemma term_le_pow_mul_of_quotient_lt_on_range
         _ = ρ ^ (k + 1) * a s := by
             ring
 
+/--
+@isnad1 id=le.4h4v.s7.3712df24cb06 from=translated src=- shape=d929833a vocab=a5823319
+-/
 lemma term_div_pow_le_of_quotient_lt_between
     {a : ℕ → ℕ} {ρ : ℝ} {i n : ℕ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -1370,6 +1602,9 @@ lemma term_div_pow_le_of_quotient_lt_between
     simpa [mul_comm, mul_left_comm, mul_assoc] using htarget
   simpa [k] using hdiv
 
+/--
+@isnad1 id=ex.4h3v.s5.a01f16f01e4f from=translated src=- shape=8a775a16 vocab=a8a9dfd7
+-/
 lemma fixedLengthBlockSurplusFrom_of_geometricBlockSurplus_of_eventual_quotient_lt
     {a : ℕ → ℕ} {ρ : ℝ} {m : ℕ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -1422,6 +1657,9 @@ def propagatedGap (a : ℕ → ℕ) (N : ℕ) : ℕ → ℕ
   | 0 => a N - 1
   | k + 1 => propagatedGap a N k + a (N + 2 * k + 1)
 
+/--
+@isnad1 id=le.2h4v.s6.de39c9afbea7 from=translated src=- shape=d6d21961 vocab=9ca2a317
+-/
 lemma finset_sum_le_Icc_sum_of_subset_Ici_of_forall_le
     {a : ℕ → ℕ} {F : Finset ℕ} {N m : ℕ}
     (hFN : ↑F ⊆ Set.Ici N)
@@ -1434,6 +1672,9 @@ lemma finset_sum_le_Icc_sum_of_subset_Ici_of_forall_le
   · intro i hi _
     exact Nat.zero_le (a i)
 
+/--
+@isnad1 id=le.1h3v.s4.bdc08203bcdc from=translated src=- shape=f5012c92 vocab=708c6e20
+-/
 lemma propagatedGap_ge_self {a : ℕ → ℕ} {N : ℕ}
     (hpos : ∀ n : ℕ, 0 < a n) :
     ∀ k : ℕ, k ≤ propagatedGap a N k := by
@@ -1446,6 +1687,9 @@ lemma propagatedGap_ge_self {a : ℕ → ℕ} {N : ℕ}
       simp [propagatedGap]
       omega
 
+/--
+@isnad1 id=le.1h4v.s4.ecb4244fc34e from=translated src=- shape=f8d4fb85 vocab=4324769d
+-/
 lemma prefixSubsetSums_mono_index {a : ℕ → ℕ} {I : Set ℕ} {m n : ℕ}
     (hmn : m ≤ n) :
     prefixSubsetSums a I m ⊆ prefixSubsetSums a I n := by
@@ -1455,12 +1699,18 @@ lemma prefixSubsetSums_mono_index {a : ℕ → ℕ} {I : Set ℕ} {m n : ℕ}
   intro i hi
   exact ⟨hFI hi |>.1, le_trans (hFI hi |>.2) hmn⟩
 
+/--
+@isnad1 id=le.0h3v.s4.9d64a076fe3a from=translated src=- shape=5411335f vocab=97f47048
+-/
 lemma prefixSubsetSums_subset {a : ℕ → ℕ} {I : Set ℕ} {n : ℕ} :
     prefixSubsetSums a I n ⊆ subsetSums a I := by
   intro t ht
   rcases ht with ⟨F, hFI, hsum⟩
   exact ⟨F, fun i hi => (hFI hi).1, hsum⟩
 
+/--
+@isnad1 id=iff.0h4v.s6.b689a900c30c from=translated src=- shape=79b39dd4 vocab=f4eeb7ea
+-/
 lemma prefixSubsetSums_succ_iff
     {a : ℕ → ℕ} {I : Set ℕ} {M t : ℕ} :
     t ∈ prefixSubsetSums a I (M + 1) ↔
@@ -1519,12 +1769,18 @@ lemma prefixSubsetSums_succ_iff
         rw [hsum_insert, hsum]
         omega
 
+/--
+@isnad1 id=coversin.2h6v.s5.b5445fc46a30 from=translated src=- shape=264b715a vocab=20aaa8dd
+-/
 lemma CoversInterval.mono_index {a : ℕ → ℕ} {I : Set ℕ} {m n H T : ℕ}
     (hcover : CoversInterval a I m H T) (hmn : m ≤ n) :
     CoversInterval a I n H T := by
   intro t htH htT
   exact prefixSubsetSums_mono_index hmn (hcover t htH htT)
 
+/--
+@isnad1 id=coversin.2h6v.s5.3934ea0ae65e from=translated src=- shape=14eeeeff vocab=c3925dd4
+-/
 lemma CoversInterval.mono_set {a : ℕ → ℕ} {I J : Set ℕ} {n H T : ℕ}
     (hcover : CoversInterval a I n H T) (hIJ : I ∩ Set.Iic n ⊆ J ∩ Set.Iic n) :
     CoversInterval a J n H T := by
@@ -1532,6 +1788,9 @@ lemma CoversInterval.mono_set {a : ℕ → ℕ} {I J : Set ℕ} {n H T : ℕ}
   rcases hcover t htH htT with ⟨F, hFI, hsum⟩
   exact ⟨F, fun i hi => hIJ (hFI hi), hsum⟩
 
+/--
+@isnad1 id=coversin.2h5v.s5.b556031adc9e from=translated src=- shape=aeb6a3db vocab=1400d330
+-/
 lemma cover_compl_of_cover_univ_of_avoid {a : ℕ → ℕ} {D : Set ℕ} {n H T : ℕ}
     (hcover : CoversInterval a Set.univ n H T)
     (havoid : Set.Iic n ⊆ Dᶜ) :
@@ -1540,6 +1799,9 @@ lemma cover_compl_of_cover_univ_of_avoid {a : ℕ → ℕ} {D : Set ℕ} {n H T 
   intro i hi
   exact ⟨havoid hi.2, hi.2⟩
 
+/--
+@isnad1 id=le.1h4v.s4.3529556c9a75 from=translated src=- shape=7f82b3b8 vocab=d3e2455a
+-/
 lemma prefixSubsetSum_le_fullPrefixSum
     {a : ℕ → ℕ} {I : Set ℕ} {n t : ℕ}
     (ht : t ∈ prefixSubsetSums a I n) :
@@ -1559,6 +1821,9 @@ lemma prefixSubsetSum_le_fullPrefixSum
     simpa [fullPrefixSum] using hsum_le
   omega
 
+/--
+@isnad1 id=eq.3h4v.s5.f9374280d9d5 from=translated src=- shape=8761dd8a vocab=6c2fa6f1
+-/
 lemma wide_prefix_cover_forces_zero_left
     {a : ℕ → ℕ} {M H T : ℕ}
     (hcover : CoversInterval a Set.univ M H T)
@@ -1570,6 +1835,9 @@ lemma wide_prefix_cover_forces_zero_left
     prefixSubsetSum_le_fullPrefixSum hTmem
   omega
 
+/--
+@isnad1 id=ex.1h1v.s5.c2d0c8f1a411 from=translated src=- shape=683cd188 vocab=faa38b55
+-/
 lemma exists_prefix_cover_univ_of_complete
     {a : ℕ → ℕ}
     (hcomplete : IsCompleteOn a Set.univ) :
@@ -1594,6 +1862,9 @@ lemma exists_prefix_cover_univ_of_complete
   · have hsum := (Classical.choose_spec (hH t htH)).2
     simpa [rep, htH] using hsum
 
+/--
+@isnad1 id=ex.1h2v.s5.810c47bf11ba from=translated src=- shape=503f2dd7 vocab=c3ee45d3
+-/
 lemma exists_prefix_cover_of_complete
     {a : ℕ → ℕ} {I : Set ℕ}
     (hcomplete : IsCompleteOn a I) :
@@ -1621,10 +1892,16 @@ lemma exists_prefix_cover_of_complete
   · have hsum := (Classical.choose_spec (hH t htH)).2
     simpa [rep, htH] using hsum
 
+/--
+@isnad1 id=ex.1h1v.s4.a6f76110fe7b from=translated src=- shape=66f69dd7 vocab=9c57ec9a
+-/
 lemma finite_subset_iic {F : Set ℕ} (hF : F.Finite) :
     ∃ M : ℕ, F ⊆ Set.Iic M := by
   exact hF.bddAbove
 
+/--
+@isnad1 id=ex.2h2v.s5.ded8a581951d from=translated src=- shape=1c84d111 vocab=99cc13bd
+-/
 lemma exists_prefix_cover_compl_of_finiteDeletionComplete
     {a : ℕ → ℕ} {F : Set ℕ}
     (hfinite : FiniteDeletionComplete a)
@@ -1642,12 +1919,18 @@ lemma exists_prefix_cover_compl_of_finiteDeletionComplete
     exact le_trans (hB hi) (le_max_left B M0)
   · exact hcover0.mono_index (le_max_right B M0)
 
+/--
+@isnad1 id=le.1h3v.s5.ec5395c02962 from=translated src=- shape=ae5ec80c vocab=596cd604
+-/
 lemma finset_term_le_sum_of_mem {a : ℕ → ℕ} {F : Finset ℕ} {i : ℕ}
     (hi : i ∈ F) :
     a i ≤ ∑ j ∈ F, a j := by
   have hsum := Finset.sum_erase_add (s := F) (f := a) hi
   omega
 
+/--
+@isnad1 id=le.3h4v.s6.99f8acf029da from=translated src=- shape=46ddaa30 vocab=625a3e77
+-/
 lemma subset_sum_eq_lt_next_uses_only_prefix
     {a : ℕ → ℕ} {F : Finset ℕ} {n t : ℕ}
     (hmono : StrictMono a)
@@ -1661,6 +1944,9 @@ lemma subset_sum_eq_lt_next_uses_only_prefix
   have haisum : a i ≤ ∑ j ∈ F, a j := finset_term_le_sum_of_mem hi
   omega
 
+/--
+@isnad1 id=mem.3h4v.s5.49ffd1e5206b from=translated src=- shape=12568fe3 vocab=7e195f19
+-/
 lemma subsetSums_lt_next_subset_prefixSubsetSums
     {a : ℕ → ℕ} {I : Set ℕ} {n t : ℕ}
     (hmono : StrictMono a)
@@ -1672,6 +1958,9 @@ lemma subsetSums_lt_next_subset_prefixSubsetSums
     subset_sum_eq_lt_next_uses_only_prefix hmono hsum hlt
   exact ⟨F, fun i hi => ⟨hFI hi, hprefix hi⟩, hsum⟩
 
+/--
+@isnad1 id=coversin.4h3v.s7.81cef594d8e4 from=translated src=- shape=3d6ed093 vocab=c7021a51
+-/
 lemma complete_prefix_cover_two_mul_sub_one
     {a : ℕ → ℕ} {H q : ℕ}
     (hmono : StrictMono a)
@@ -1714,6 +2003,9 @@ lemma complete_prefix_cover_two_mul_sub_one
         exact Or.inr ⟨by simp, by omega, by simpa [ht_eq] using hyPrefix⟩
       exact hsucc
 
+/--
+@isnad1 id=ex.7h2v.s7.5e3a71af065a from=translated src=- shape=187c299c vocab=0b009d6c
+-/
 lemma exists_initial_global_budget_seed_of_complete_of_evtQuotientLtGold
     {a : ℕ → ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -1755,6 +2047,9 @@ lemma exists_initial_global_budget_seed_of_complete_of_evtQuotientLtGold
     hmono (hpos (q + 1)) hcompleteH
     (by simpa [Nat.add_comm] using hqdata.1)
 
+/--
+@isnad1 id=ex.7h3v.s7.e46f6184f0c0 from=translated src=- shape=e5d01c9b vocab=0b009d6c
+-/
 lemma exists_initial_global_budget_seed_after_of_complete_of_evtQuotientLtGold
     {a : ℕ → ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -1800,6 +2095,9 @@ lemma exists_initial_global_budget_seed_after_of_complete_of_evtQuotientLtGold
     hmono (hpos (q + 1)) hcompleteH
     (by simpa [Nat.add_comm] using hqdata.1)
 
+/--
+@isnad1 id=not.3h4v.s5.f9a9623dacc5 from=translated src=- shape=414bb954 vocab=7e195f19
+-/
 lemma not_subsetSums_of_not_prefixSubsetSums_of_lt_next
     {a : ℕ → ℕ} {I : Set ℕ} {n t : ℕ}
     (hmono : StrictMono a)
@@ -1809,6 +2107,9 @@ lemma not_subsetSums_of_not_prefixSubsetSums_of_lt_next
   intro ht
   exact hmiss (subsetSums_lt_next_subset_prefixSubsetSums hmono ht hlt)
 
+/--
+@isnad1 id=mem.3h4v.s6.a446d0996dee from=translated src=- shape=de3542da vocab=933161cd
+-/
 lemma subsetSums_avoiding_finite_singleton_lt_next_next_subset_prefix
     {a : ℕ → ℕ} {F : Set ℕ} {M t : ℕ}
     (hmono : StrictMono a)
@@ -1831,6 +2132,9 @@ lemma subsetSums_avoiding_finite_singleton_lt_next_next_subset_prefix
     change i ≤ M
     omega
 
+/--
+@isnad1 id=mem.1h4v.s6.af843fb86cfe from=translated src=- shape=f7e2d8e2 vocab=9c76edbf
+-/
 lemma prefixSubsetSums_subset_subsetSums_avoiding_finite_singleton
     {a : ℕ → ℕ} {F : Set ℕ} {M t : ℕ}
     (ht : t ∈ prefixSubsetSums a Fᶜ M) :
@@ -1846,6 +2150,9 @@ lemma prefixSubsetSums_subset_subsetSums_avoiding_finite_singleton
     change i ≤ M at hiM
     omega
 
+/--
+@isnad1 id=iff.2h4v.s6.b86bf7bc2258 from=translated src=- shape=a4e32818 vocab=933161cd
+-/
 theorem subsetSums_avoiding_finite_singleton_lt_next_next_iff_prefix
     {a : ℕ → ℕ} {F : Set ℕ} {M t : ℕ}
     (hmono : StrictMono a)
@@ -1856,6 +2163,9 @@ theorem subsetSums_avoiding_finite_singleton_lt_next_next_iff_prefix
       hmono ht hlt,
     prefixSubsetSums_subset_subsetSums_avoiding_finite_singleton⟩
 
+/--
+@isnad1 id=not.1h4v.s6.10e135ef1d54 from=translated src=- shape=946f55d8 vocab=9c76edbf
+-/
 lemma not_prefixSubsetSums_of_not_subsetSums_avoiding_finite_singleton
     {a : ℕ → ℕ} {F : Set ℕ} {M t : ℕ}
     (hmiss : t ∉ subsetSums a (F ∪ ({M + 1} : Set ℕ))ᶜ) :
@@ -1863,6 +2173,9 @@ lemma not_prefixSubsetSums_of_not_subsetSums_avoiding_finite_singleton
   intro ht
   exact hmiss (prefixSubsetSums_subset_subsetSums_avoiding_finite_singleton ht)
 
+/--
+@isnad1 id=not.3h4v.s6.ef8a0d18d7e0 from=translated src=- shape=b71b56d5 vocab=933161cd
+-/
 lemma not_subsetSums_avoiding_finite_singleton_of_prefix_hole
     {a : ℕ → ℕ} {F : Set ℕ} {M t : ℕ}
     (hmono : StrictMono a)
@@ -1873,6 +2186,9 @@ lemma not_subsetSums_avoiding_finite_singleton_of_prefix_hole
   exact hmiss
     (subsetSums_avoiding_finite_singleton_lt_next_next_subset_prefix hmono ht hlt)
 
+/--
+@isnad1 id=ex.5h3v.s8.6f627899c029 from=translated src=- shape=6d0efd42 vocab=6e6ad94a
+-/
 lemma exists_finite_singleton_hole_of_not_seed_margins
     {a : ℕ → ℕ} {F : Set ℕ} {M : ℕ}
     (hmono : StrictMono a)
@@ -1916,6 +2232,9 @@ lemma exists_finite_singleton_hole_of_not_seed_margins
       not_subsetSums_avoiding_finite_singleton_of_prefix_hole hmono hmiss hlt,
       Or.inl hlow⟩
 
+/--
+@isnad1 id=and.5h5v.s7.ef2dfd55a37f from=translated src=- shape=128766ee vocab=d62f002b
+-/
 lemma finite_singleton_hole_mem_base_compl_forces_shifted_prefix
     {a : ℕ → ℕ} {F : Set ℕ} {H M t : ℕ}
     (hmono : StrictMono a)
@@ -1960,6 +2279,9 @@ lemma finite_singleton_hole_mem_base_compl_forces_shifted_prefix
     omega
   exact ⟨ha_le_t, ⟨G.erase (M + 1), hEraseSubset, hEraseSum⟩⟩
 
+/--
+@isnad1 id=and.5h6v.s7.c48ea149a41d from=translated src=- shape=583373a7 vocab=d62f002b
+-/
 lemma finite_singleton_hole_lt_next_forces_shifted_prefix
     {a : ℕ → ℕ} {F : Set ℕ} {H M R t : ℕ}
     (hmono : StrictMono a)
@@ -2007,6 +2329,9 @@ lemma finite_singleton_hole_lt_next_forces_shifted_prefix
     omega
   exact ⟨ha_le_t, ⟨G.erase (M + 1), hEraseSubset, hEraseSum⟩⟩
 
+/--
+@isnad1 id=and.5h5v.s7.f6f2158b5eff from=translated src=- shape=876abbe2 vocab=d62f002b
+-/
 lemma finite_singleton_hole_lt_next3_forces_shifted_prefix
     {a : ℕ → ℕ} {F : Set ℕ} {H M t : ℕ}
     (hmono : StrictMono a)
@@ -2055,6 +2380,9 @@ lemma finite_singleton_hole_lt_next3_forces_shifted_prefix
     omega
   exact ⟨ha_le_t, ⟨G.erase (M + 1), hEraseSubset, hEraseSum⟩⟩
 
+/--
+@isnad1 id=ex.3h2v.s7.e6c6f790bc09 from=translated src=- shape=0a9c4bb4 vocab=f0be9120
+-/
 lemma finite_singleton_hole_ge_base_threshold_forces_shifted_prefix_of_finiteDeletionComplete
     {a : ℕ → ℕ} {F : Set ℕ}
     (hmono : StrictMono a)
@@ -2070,6 +2398,9 @@ lemma finite_singleton_hole_ge_base_threshold_forces_shifted_prefix_of_finiteDel
     finite_singleton_hole_mem_base_compl_forces_shifted_prefix
       hmono hH hHt hmiss hlt⟩
 
+/--
+@isnad1 id=lt.2h3v.s6.1d2b58f30b98 from=translated src=- shape=7d44f04a vocab=3d2b9263
+-/
 lemma shifted_prefix_source_lt_nextSeedMargin
     {a : ℕ → ℕ} {M t : ℕ}
     (ha : a (M + 1) ≤ t)
@@ -2078,6 +2409,9 @@ lemma shifted_prefix_source_lt_nextSeedMargin
   dsimp [nextSeedMargin]
   omega
 
+/--
+@isnad1 id=ex.4h4v.s7.5cbde31fe30f from=translated src=- shape=c23deb35 vocab=55476f64
+-/
 lemma shifted_prefix_hole_gives_prefix_shift_gap
     {a : ℕ → ℕ} {F : Set ℕ} {M t : ℕ}
     (ha : a (M + 1) ≤ t)
@@ -2100,6 +2434,9 @@ lemma shifted_prefix_hole_gives_prefix_shift_gap
   · intro hs
     exact hnotPrefix (by simpa [hadd] using hs)
 
+/--
+@isnad1 id=ex.7h4v.s7.82c87943d6c3 from=translated src=- shape=a20b329a vocab=7c80366c
+-/
 lemma pred_finSingletonCompleteThreshold_small_forces_prefix_shift_gap
     {a : ℕ → ℕ} (hfinite : FiniteDeletionComplete a)
     {F : Set ℕ} (hF : F.Finite) {H M : ℕ}
@@ -2134,6 +2471,9 @@ lemma pred_finSingletonCompleteThreshold_small_forces_prefix_shift_gap
   exact shifted_prefix_hole_gives_prefix_shift_gap
     hshifted.1 hshifted.2 hmiss htlt
 
+/--
+@isnad1 id=ex.8h5v.s8.ade81546b2c8 from=translated src=- shape=8d34313c vocab=23d61191
+-/
 lemma pred_finSingletonCompleteThreshold_next_forces_shifted_prefix
     {a : ℕ → ℕ} (hfinite : FiniteDeletionComplete a)
     {F : Set ℕ} (hF : F.Finite) {H M R : ℕ}
@@ -2173,6 +2513,9 @@ lemma pred_finSingletonCompleteThreshold_next_forces_shifted_prefix
       hmono hcompleteF hHt hmiss htlt
   exact ⟨t, t - a (M + 1), rfl, hR_le_t, htlt, hmiss, rfl, hshifted.2⟩
 
+/--
+@isnad1 id=ex.7h4v.s8.b1795c6b2a2f from=translated src=- shape=55077758 vocab=23d61191
+-/
 lemma pred_finSingletonCompleteThreshold_next3_forces_shifted_prefix
     {a : ℕ → ℕ} (hfinite : FiniteDeletionComplete a)
     {F : Set ℕ} (hF : F.Finite) {H M : ℕ}
@@ -2193,6 +2536,9 @@ lemma pred_finSingletonCompleteThreshold_next3_forces_shifted_prefix
       (by omega) hHnext hnextlt
       (by simpa [Nat.add_assoc] using hthreshold_le))
 
+/--
+@isnad1 id=coversin.3h3v.s7.a367b0819851 from=translated src=- shape=bfbf2302 vocab=f0b150b9
+-/
 lemma first_prefix_cover_of_succ_cover_and_shiftClosed
     {a : ℕ → ℕ} {F : Set ℕ} {M : ℕ}
     (hpos : 0 < a (M + 2))
@@ -2214,6 +2560,9 @@ lemma first_prefix_cover_of_succ_cover_and_shiftClosed
     have hadd : a (M + 1) + (t - a (M + 1)) = t := by omega
     simpa [hadd] using hshift
 
+/--
+@isnad1 id=firstwin.2h3v.s6.714aae3aff12 from=translated src=- shape=8e4b29e5 vocab=1d6f4fee
+-/
 lemma firstWindowShiftClosed_of_first_prefix_cover_of_nextSeedMargin_le_prev
     {a : ℕ → ℕ} {F : Set ℕ} {M : ℕ}
     (hnext_le : nextSeedMargin a M ≤ a (M + 1))
@@ -2230,6 +2579,9 @@ lemma firstWindowShiftClosed_of_first_prefix_cover_of_nextSeedMargin_le_prev
     omega
   exact hcover (a (M + 1) + s) hlow hupper
 
+/--
+@isnad1 id=firstwin.2h3v.s4.d64e675f772c from=translated src=- shape=ef0cd0a5 vocab=3a4a9a1a
+-/
 lemma firstWindowShiftClosed_of_finSingletonCompleteBelowPrev
     {a : ℕ → ℕ} {F : Set ℕ} {M : ℕ}
     (hmono : StrictMono a)
@@ -2252,6 +2604,9 @@ lemma firstWindowShiftClosed_of_finSingletonCompleteBelowPrev
       (a := a) (F := F) (M := M) (t := a (M + 1) + s)
       hmono hlt).mp hsum
 
+/--
+@isnad1 id=lt.2h4v.s7.74ba50598c8c from=translated src=- shape=15513bd4 vocab=01980083
+-/
 lemma prefix_shift_gap_forces_nextSeedMargin_lt_least
     {a : ℕ → ℕ} {F : Set ℕ} {M s : ℕ}
     (hnext_le : nextSeedMargin a M ≤ a (M + 1))
@@ -2267,6 +2622,9 @@ lemma prefix_shift_gap_forces_nextSeedMargin_lt_least
   · exact le_trans hnext_le (Nat.le_add_right _ _)
   · omega
 
+/--
+@isnad1 id=le.3h3v.s6.fe181a9e447b from=translated src=- shape=a4acfd28 vocab=b469d27a
+-/
 lemma complete_forces_next_le_fullPrefixSum_add_one
     {a : ℕ → ℕ} {H n : ℕ}
     (hmono : StrictMono a)
@@ -2291,6 +2649,9 @@ lemma complete_forces_next_le_fullPrefixSum_add_one
     simpa [fullPrefixSum] using hsum_le
   omega
 
+/--
+@isnad1 id=coversin.3h4v.s6.8e3cbd4ad445 from=translated src=- shape=97ad42ed vocab=f7f21e47
+-/
 lemma complete_prefix_cover_of_lt_next
     {a : ℕ → ℕ} {H n T : ℕ}
     (hmono : StrictMono a)
@@ -2304,6 +2665,9 @@ lemma complete_prefix_cover_of_lt_next
     subset_sum_eq_lt_next_uses_only_prefix hmono hsum htlt
   exact ⟨F, fun i hi => ⟨by simp, hprefix hi⟩, hsum⟩
 
+/--
+@isnad1 id=coversin.3h5v.s6.51c4e6179b4f from=translated src=- shape=2af25f21 vocab=ca48f0b6
+-/
 lemma complete_prefix_cover_of_lt_next_on
     {a : ℕ → ℕ} {I : Set ℕ} {H n T : ℕ}
     (hmono : StrictMono a)
@@ -2317,6 +2681,9 @@ lemma complete_prefix_cover_of_lt_next_on
     subset_sum_eq_lt_next_uses_only_prefix hmono hsum htlt
   exact ⟨F, fun i hi => ⟨hF hi, hprefix hi⟩, hsum⟩
 
+/--
+@isnad1 id=ex.3h2v.s5.d0e66565d40a from=translated src=- shape=098ee314 vocab=b313e0f3
+-/
 lemma exists_prefix_cover_compl_lt_next_of_finiteDeletionComplete
     {a : ℕ → ℕ} {F : Set ℕ}
     (hmono : StrictMono a)
@@ -2328,6 +2695,9 @@ lemma exists_prefix_cover_compl_lt_next_of_finiteDeletionComplete
   exact ⟨H, fun n T hTlt =>
     complete_prefix_cover_of_lt_next_on hmono hH hTlt⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.1aef291d2ca4 from=translated src=- shape=cfbadbc0 vocab=124b910a
+-/
 lemma keptPrefixSum_add_deletedPrefixSum
     {a : ℕ → ℕ} {D : Set ℕ} {n : ℕ} :
     keptPrefixSum a D n + deletedPrefixSum a D n = fullPrefixSum a n := by
@@ -2336,12 +2706,18 @@ lemma keptPrefixSum_add_deletedPrefixSum
     (Finset.sum_filter_add_sum_filter_not (s := Finset.range (n + 1))
       (p := fun i => i ∈ D) (f := a))
 
+/--
+@isnad1 id=eq.0h3v.s4.664366b7a8d9 from=translated src=- shape=cd039de2 vocab=85dbdc9b
+-/
 lemma keptPrefixSum_eq_fullPrefixSum_sub_deletedPrefixSum
     {a : ℕ → ℕ} {D : Set ℕ} {n : ℕ} :
     keptPrefixSum a D n = fullPrefixSum a n - deletedPrefixSum a D n := by
   have hsum := keptPrefixSum_add_deletedPrefixSum (a := a) (D := D) (n := n)
   omega
 
+/--
+@isnad1 id=eq.1h3v.s5.581dba149b89 from=translated src=- shape=f2ee1d87 vocab=75f5fb63
+-/
 lemma deletedPrefixSum_eq_zero_of_avoid
     {a : ℕ → ℕ} {D : Set ℕ} {n : ℕ}
     (havoid : Set.Iic n ⊆ Dᶜ) :
@@ -2354,6 +2730,9 @@ lemma deletedPrefixSum_eq_zero_of_avoid
   have hinitial : i ∈ Set.Iic n := Nat.lt_succ_iff.mp (Finset.mem_range.mp hirange)
   exact False.elim ((havoid hinitial) hiD)
 
+/--
+@isnad1 id=le.1h4v.s5.0137b34b5e01 from=translated src=- shape=76e13fce vocab=2b0598fc
+-/
 lemma deletedPrefixSum_mono_set
     {a : ℕ → ℕ} {D E : Set ℕ} {n : ℕ}
     (hDE : D ∩ Set.Iic n ⊆ E ∩ Set.Iic n) :
@@ -2369,6 +2748,9 @@ lemma deletedPrefixSum_mono_set
   · intro i hiE hiD
     exact Nat.zero_le (a i)
 
+/--
+@isnad1 id=le.0h3v.s5.9f026d7b467d from=translated src=- shape=13fd6189 vocab=7d47fa4f
+-/
 lemma finset_sum_union_le_add
     {a : ℕ → ℕ} {s t : Finset ℕ} :
     ∑ i ∈ s ∪ t, a i ≤ (∑ i ∈ s, a i) + ∑ i ∈ t, a i := by
@@ -2395,10 +2777,16 @@ lemma finset_sum_union_le_add
   rw [← hunion, hsum_union]
   omega
 
+/--
+@isnad1 id=eq.0h2v.s5.23eb3922a804 from=translated src=- shape=81e63b48 vocab=37abb887
+-/
 lemma fullPrefixSum_succ {a : ℕ → ℕ} {n : ℕ} :
     fullPrefixSum a (n + 1) = fullPrefixSum a n + a (n + 1) := by
   simp [fullPrefixSum, Finset.sum_range_succ, Nat.add_assoc]
 
+/--
+@isnad1 id=monotone.0h1v.s3.0c0c915316f8 from=translated src=- shape=6e7f11e6 vocab=8bbe4156
+-/
 lemma fullPrefixSum_mono {a : ℕ → ℕ} :
     Monotone (fullPrefixSum a) := by
   intro m n hmn
@@ -2409,6 +2797,9 @@ lemma fullPrefixSum_mono {a : ℕ → ℕ} :
       rw [fullPrefixSum_succ]
       exact le_trans ih (Nat.le_add_right _ _)
 
+/--
+@isnad1 id=le.1h2v.s5.188e156ca1ae from=translated src=- shape=002d293b vocab=e1a63b55
+-/
 lemma succ_le_fullPrefixSum_of_pos {a : ℕ → ℕ}
     (hpos : ∀ n : ℕ, 0 < a n) :
     ∀ n : ℕ, n + 1 ≤ fullPrefixSum a n := by
@@ -2422,6 +2813,9 @@ lemma succ_le_fullPrefixSum_of_pos {a : ℕ → ℕ}
       have hterm : 1 ≤ a (n + 1) := hpos (n + 1)
       omega
 
+/--
+@isnad1 id=eventual.3h1v.s6.d22d6d3b20cd from=translated src=- shape=e1241b87 vocab=394155e1
+-/
 theorem evt_next_le_fullPrefixSum_add_one_of_complete
     {a : ℕ → ℕ}
     (hmono : StrictMono a)
@@ -2436,6 +2830,9 @@ theorem evt_next_le_fullPrefixSum_add_one_of_complete
     omega
   exact complete_forces_next_le_fullPrefixSum_add_one hmono hH htarget
 
+/--
+@isnad1 id=le.1h3v.s7.908f9d5564c7 from=translated src=- shape=1d1a12dd vocab=a894d9af
+-/
 lemma next_add_fullPrefixSum_ge_add_next_of_evt_two_mul_aux
     {a : ℕ → ℕ} {N : ℕ}
     (hsmall : ∀ n : ℕ, N ≤ n → a (n + 2) < 2 * a (n + 1)) :
@@ -2453,6 +2850,9 @@ lemma next_add_fullPrefixSum_ge_add_next_of_evt_two_mul_aux
         a (N + 1) + (fullPrefixSum a (N + k) + a (N + k + 1))
       omega
 
+/--
+@isnad1 id=eventual.1h2v.s6.37072055a1ad from=translated src=- shape=06ea6ba1 vocab=35e0f7db
+-/
 lemma evt_const_add_next_le_fullPrefixSum_of_evt_two_mul
     {a : ℕ → ℕ}
     (hsmall : ∀ᶠ n in atTop, a (n + 2) < 2 * a (n + 1)) :
@@ -2469,6 +2869,9 @@ lemma evt_const_add_next_le_fullPrefixSum_of_evt_two_mul
     (a := a) (N := N) hN k
   omega
 
+/--
+@isnad1 id=le.1h3v.s7.6ec8ba420f19 from=translated src=- shape=ce43754c vocab=ac89dfd7
+-/
 lemma two_initial_add_fullPrefixSum_ge_add_pair_aux
     {a : ℕ → ℕ} {N : ℕ}
     (hsmall : ∀ n : ℕ, N ≤ n → a (n + 2) < a n + a (n + 1)) :
@@ -2487,6 +2890,9 @@ lemma two_initial_add_fullPrefixSum_ge_add_pair_aux
         a N + a (N + 1) + (fullPrefixSum a (N + k) + a (N + k + 1))
       omega
 
+/--
+@isnad1 id=eventual.1h2v.s6.af8429f02d0d from=translated src=- shape=da6be37c vocab=051fe2dd
+-/
 lemma evt_const_add_pair_le_fullPrefixSum_of_evt_pair_gap
     {a : ℕ → ℕ}
     (hsmall : ∀ᶠ n in atTop, a (n + 2) < a n + a (n + 1)) :
@@ -2503,6 +2909,9 @@ lemma evt_const_add_pair_le_fullPrefixSum_of_evt_pair_gap
     (a := a) (N := N) hN k
   omega
 
+/--
+@isnad1 id=eventual.4h3v.s6.acf7f25f0e17 from=translated src=- shape=574a7ce4 vocab=148dbc59
+-/
 lemma evt_pair_prefix_surplus_of_evtQuotientLtGold
     {a : ℕ → ℕ} {ρ : ℝ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -2512,6 +2921,9 @@ lemma evt_pair_prefix_surplus_of_evtQuotientLtGold
   exact evt_const_add_pair_le_fullPrefixSum_of_evt_pair_gap
     (evt_two_step_sum_gt_of_eventual_quotient_lt_rho hpos hρ1 hρφ hupper)
 
+/--
+@isnad1 id=eventual.4h2v.s7.94b6c86c5337 from=translated src=- shape=e55b82e3 vocab=148dbc59
+-/
 lemma evt_next_next_seed_tail_conditions_of_evtQuotientLtGold
     {a : ℕ → ℕ} {ρ : ℝ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -2533,6 +2945,9 @@ lemma evt_next_next_seed_tail_conditions_of_evtQuotientLtGold
   · intro n hn
     exact hNstep n (by omega)
 
+/--
+@isnad1 id=eventual.6h3v.s7.528ac0b7c823 from=translated src=- shape=606e8d19 vocab=81c740d2
+-/
 lemma evt_next_next_seed_numeric_conditions
     {a : ℕ → ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -2552,6 +2967,9 @@ lemma evt_next_next_seed_numeric_conditions
       hpos hρ1 hρφ hupper] with M hkeep htail
   exact ⟨hkeep, htail.1, htail.2⟩
 
+/--
+@isnad1 id=eventual.6h3v.s8.027bbaa2a2bd from=translated src=- shape=79215385 vocab=81c740d2
+-/
 lemma evt_next_next_seed_numeric_conditions_with_margin
     {a : ℕ → ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -2580,10 +2998,16 @@ lemma evt_next_next_seed_numeric_conditions_with_margin
      hmarginEv] with M hnum hmargin
   exact ⟨hnum.1, hnum.2.1, hmargin, hnum.2.2⟩
 
+/--
+@isnad1 id=infinite.1h1v.s4.25330ed6d07d from=translated src=- shape=0d5647d7 vocab=f4c4f5ef
+-/
 lemma range_infinite_of_strictMono_nat {b : ℕ → ℕ} (hb : StrictMono b) :
     (Set.range b).Infinite := by
   exact Set.infinite_range_of_injective hb.injective
 
+/--
+@isnad1 id=le.1h2v.s5.324dacccca85 from=translated src=- shape=7069df7f vocab=0e5760bd
+-/
 lemma strictMono_nat_add_le {b : ℕ → ℕ} (hb : StrictMono b) :
     ∀ k : ℕ, b 0 + k ≤ b k := by
   intro k
@@ -2594,12 +3018,18 @@ lemma strictMono_nat_add_le {b : ℕ → ℕ} (hb : StrictMono b) :
       have hstep : b k < b (k + 1) := hb (Nat.lt_succ_self k)
       omega
 
+/--
+@isnad1 id=strictmo.1h1v.s5.d13a7f5f11cf from=translated src=- shape=d170cec4 vocab=048bf416
+-/
 lemma strictMono_of_gap_one {b : ℕ → ℕ}
     (hgap : ∀ k : ℕ, b k + 1 < b (k + 1)) :
     StrictMono b := by
   exact strictMono_nat_of_lt_succ
     (fun k => lt_trans (Nat.lt_succ_self (b k)) (hgap k))
 
+/--
+@isnad1 id=le.2h4v.s5.fb07bd92c91e from=translated src=- shape=3a5bdd1d vocab=78b946de
+-/
 lemma deletedPrefixSum_range_le_indexedDeletedSum_of_lt
     {a b : ℕ → ℕ} {n k : ℕ}
     (hb : StrictMono b) (hnk : n < b k) :
@@ -2632,12 +3062,18 @@ lemma deletedPrefixSum_range_le_indexedDeletedSum_of_lt
     exact hb.injective hxy
   exact le_trans hsum_le (le_of_eq hsum_image)
 
+/--
+@isnad1 id=le.3h4v.s6.438e96b489e6 from=translated src=- shape=49c42d70 vocab=4cb120a3
+-/
 lemma deletedPrefixSum_range_le_indexedDeletedSum_between
     {a b : ℕ → ℕ} {n k : ℕ}
     (hb : StrictMono b) (_hleft : b k ≤ n) (hright : n < b (k + 1)) :
     deletedPrefixSum a (Set.range b) n ≤ indexedDeletedSum a b (k + 1) := by
   exact deletedPrefixSum_range_le_indexedDeletedSum_of_lt hb hright
 
+/--
+@isnad1 id=le.1h5v.s5.27c2dcc6fe45 from=translated src=- shape=c03d0b83 vocab=0c4f1139
+-/
 lemma deletedPrefixSum_initialTail_le_initial_add_range
     {a b : ℕ → ℕ} {F : Set ℕ} {M n : ℕ}
     (hF : F ⊆ Set.Iic M) :
@@ -2671,6 +3107,9 @@ lemma deletedPrefixSum_initialTail_le_initial_add_range
     finset_sum_union_le_add
   exact le_trans hsum_le hunion_le
 
+/--
+@isnad1 id=le.3h6v.s6.00f19c6259ac from=translated src=- shape=e9898d57 vocab=a86377bd
+-/
 lemma deletedPrefixSum_initialTail_le_initial_add_indexedDeletedSum_of_lt
     {a b : ℕ → ℕ} {F : Set ℕ} {M n k : ℕ}
     (hF : F ⊆ Set.Iic M) (hb : StrictMono b) (hnk : n < b k) :
@@ -2685,6 +3124,9 @@ lemma deletedPrefixSum_initialTail_le_initial_add_indexedDeletedSum_of_lt
       (a := a) (b := b) (n := n) (k := k) hb hnk
   omega
 
+/--
+@isnad1 id=le.3h5v.s5.ac85e34749eb from=translated src=- shape=cd97efe2 vocab=c175298d
+-/
 lemma deletedPrefixSum_initialTail_le_initial_of_lt_first
     {a b : ℕ → ℕ} {F : Set ℕ} {M n : ℕ}
     (hF : F ⊆ Set.Iic M) (hb : StrictMono b) (hn : n < b 0) :
@@ -2708,6 +3150,9 @@ lemma deletedPrefixSum_initialTail_le_initial_of_lt_first
   · intro i hiM hiN
     exact Nat.zero_le (a i)
 
+/--
+@isnad1 id=le.1h1v.s6.bf7c87da12c3 from=translated src=- shape=b34919f0 vocab=17b5fee6
+-/
 lemma succ_range_subset_compl_of_gap {b : ℕ → ℕ}
     (hgap : ∀ k : ℕ, b k + 1 < b (k + 1)) :
     Set.range (fun k => b k + 1) ⊆ (Set.range b)ᶜ := by
@@ -2722,6 +3167,9 @@ lemma succ_range_subset_compl_of_gap {b : ℕ → ℕ}
     have hgapk := hgap k
     omega
 
+/--
+@isnad1 id=infinite.1h1v.s5.b9767774d1c9 from=translated src=- shape=3fc2e7ff vocab=b7d7016c
+-/
 lemma range_succ_infinite_of_gap {b : ℕ → ℕ}
     (hgap : ∀ k : ℕ, b k + 1 < b (k + 1)) :
     (Set.range (fun k => b k + 1)).Infinite := by
@@ -2730,11 +3178,17 @@ lemma range_succ_infinite_of_gap {b : ℕ → ℕ}
   intro i j hij
   exact hbmono.injective (Nat.succ.inj hij)
 
+/--
+@isnad1 id=infinite.1h1v.s5.b1ab8eb38776 from=translated src=- shape=2aac2e20 vocab=537c455f
+-/
 lemma coinfinite_range_of_gap {b : ℕ → ℕ}
     (hgap : ∀ k : ℕ, b k + 1 < b (k + 1)) :
     (Set.range b)ᶜ.Infinite := by
   exact (range_succ_infinite_of_gap hgap).mono (succ_range_subset_compl_of_gap hgap)
 
+/--
+@isnad1 id=infinite.1h2v.s5.68810bbd7dfc from=translated src=- shape=6b88bd67 vocab=daf7579d
+-/
 lemma initialTailDeletionSet_infinite
     {F : Set ℕ} {b : ℕ → ℕ}
     (hgap : ∀ k : ℕ, b k + 1 < b (k + 1)) :
@@ -2744,6 +3198,9 @@ lemma initialTailDeletionSet_infinite
     rintro x ⟨k, rfl⟩
     exact Or.inr ⟨k, rfl⟩)
 
+/--
+@isnad1 id=le.3h3v.s6.b167a1d22561 from=translated src=- shape=337fc0c5 vocab=c02f88b9
+-/
 lemma gap_points_subset_compl_initialTailDeletionSet
     {F : Set ℕ} {b : ℕ → ℕ} {M : ℕ}
     (hF : F ⊆ Set.Iic M)
@@ -2758,6 +3215,9 @@ lemma gap_points_subset_compl_initialTailDeletionSet
     omega
   · exact hnot_tail ⟨k, rfl⟩ hxTail
 
+/--
+@isnad1 id=infinite.3h3v.s6.e65894f84296 from=translated src=- shape=838436f7 vocab=a6270599
+-/
 lemma initialTailDeletionSet_coinfinite
     {F : Set ℕ} {b : ℕ → ℕ} {M : ℕ}
     (hF : F ⊆ Set.Iic M)
@@ -2767,6 +3227,9 @@ lemma initialTailDeletionSet_coinfinite
   exact (range_succ_infinite_of_gap hgap).mono
     (gap_points_subset_compl_initialTailDeletionSet hF hgap havoid)
 
+/--
+@isnad1 id=coversin.2h6v.s5.182e72e6239a from=translated src=- shape=5ca5a6a1 vocab=09c6ba74
+-/
 lemma cover_initialTailDeletionSet_of_cover_initial
     {a : ℕ → ℕ} {F : Set ℕ} {b : ℕ → ℕ} {H M T : ℕ}
     (hcover : CoversInterval a Fᶜ M H T)
@@ -2785,6 +3248,9 @@ lemma cover_initialTailDeletionSet_of_cover_initial
       exact (not_le_of_gt hMi) hiM
   · exact hiM
 
+/--
+@isnad1 id=strictmo.2h2v.s5.a1ec7e7a356a from=translated src=- shape=a25f1d3b vocab=62a954ba
+-/
 lemma strictMono_block_left
     {b e : ℕ → ℕ}
     (hnonempty : ∀ k : ℕ, b k ≤ e k)
@@ -2795,6 +3261,9 @@ lemma strictMono_block_left
     have hg := hgap k
     omega)
 
+/--
+@isnad1 id=strictmo.2h2v.s5.85fbf063c13f from=translated src=- shape=3dcd8a7f vocab=62a954ba
+-/
 lemma strictMono_block_right
     {b e : ℕ → ℕ}
     (hnonempty : ∀ k : ℕ, b k ≤ e k)
@@ -2805,6 +3274,9 @@ lemma strictMono_block_right
     have hg := hgap k
     omega)
 
+/--
+@isnad1 id=infinite.2h2v.s5.3d0cda08884e from=translated src=- shape=5627976b vocab=2c4488fe
+-/
 lemma blockDeletionSet_infinite
     {b e : ℕ → ℕ}
     (hnonempty : ∀ k : ℕ, b k ≤ e k)
@@ -2815,6 +3287,9 @@ lemma blockDeletionSet_infinite
     rintro x ⟨k, rfl⟩
     exact ⟨k, le_rfl, hnonempty k⟩)
 
+/--
+@isnad1 id=le.2h2v.s6.a686034ed27a from=translated src=- shape=be8fb19d vocab=eebe15ea
+-/
 lemma block_gap_points_subset_compl
     {b e : ℕ → ℕ}
     (hnonempty : ∀ k : ℕ, b k ≤ e k)
@@ -2833,6 +3308,9 @@ lemma block_gap_points_subset_compl
     have hg := hgap k
     omega
 
+/--
+@isnad1 id=infinite.2h2v.s6.bcf343dceaa6 from=translated src=- shape=a0deb759 vocab=d0c53f03
+-/
 lemma block_gap_points_infinite
     {b e : ℕ → ℕ}
     (hnonempty : ∀ k : ℕ, b k ≤ e k)
@@ -2843,6 +3321,9 @@ lemma block_gap_points_infinite
   intro i j hij
   exact hemono.injective (Nat.succ.inj hij)
 
+/--
+@isnad1 id=infinite.2h2v.s6.46b3dbc91849 from=translated src=- shape=0e5af8b5 vocab=ea5de26d
+-/
 lemma blockDeletionSet_coinfinite
     {b e : ℕ → ℕ}
     (hnonempty : ∀ k : ℕ, b k ≤ e k)
@@ -2851,6 +3332,9 @@ lemma blockDeletionSet_coinfinite
   exact (block_gap_points_infinite hnonempty hgap).mono
     (block_gap_points_subset_compl hnonempty hgap)
 
+/--
+@isnad1 id=eq.1h3v.s5.c1782840f3dc from=translated src=- shape=f03a3ea9 vocab=9651dddc
+-/
 lemma keptPrefixSum_succ_of_mem {a : ℕ → ℕ} {D : Set ℕ} {n : ℕ}
     (hmem : n + 1 ∈ D) :
     keptPrefixSum a D (n + 1) = keptPrefixSum a D n := by
@@ -2859,6 +3343,9 @@ lemma keptPrefixSum_succ_of_mem {a : ℕ → ℕ} {D : Set ℕ} {n : ℕ}
   conv_lhs => rw [Finset.range_add_one, Finset.filter_insert]
   simp [hmem]
 
+/--
+@isnad1 id=eq.1h3v.s6.2b748293166b from=translated src=- shape=ce328ea3 vocab=9651dddc
+-/
 lemma keptPrefixSum_succ_of_not_mem {a : ℕ → ℕ} {D : Set ℕ} {n : ℕ}
     (hmem : n + 1 ∉ D) :
     keptPrefixSum a D (n + 1) = keptPrefixSum a D n + a (n + 1) := by
@@ -2867,6 +3354,9 @@ lemma keptPrefixSum_succ_of_not_mem {a : ℕ → ℕ} {D : Set ℕ} {n : ℕ}
   conv_lhs => rw [Finset.range_add_one, Finset.filter_insert]
   simp [hmem, add_comm]
 
+/--
+@isnad1 id=monotone.0h2v.s3.4c9de2899e85 from=translated src=- shape=8366a66f vocab=a61cacb7
+-/
 lemma keptPrefixSum_mono {a : ℕ → ℕ} {D : Set ℕ} :
     Monotone (keptPrefixSum a D) := by
   intro m n hmn
@@ -2879,6 +3369,9 @@ lemma keptPrefixSum_mono {a : ℕ → ℕ} {D : Set ℕ} :
       · rw [keptPrefixSum_succ_of_not_mem hdel]
         exact le_trans ih (Nat.le_add_right _ _)
 
+/--
+@isnad1 id=le.2h4v.s5.73f80fbf092f from=translated src=- shape=3e3ff836 vocab=debab7b9
+-/
 lemma keptPrefixSum_add_term_le_of_lt_of_not_mem
     {a : ℕ → ℕ} {D : Set ℕ} {n m : ℕ}
     (hnm : n < m) (hm : m ∉ D) :
@@ -2890,6 +3383,9 @@ lemma keptPrefixSum_add_term_le_of_lt_of_not_mem
   rw [keptPrefixSum_succ_of_not_mem hm]
   exact Nat.add_le_add_right hmono _
 
+/--
+@isnad1 id=le.2h6v.s5.f03971e163e9 from=translated src=- shape=f1bfd360 vocab=38922852
+-/
 lemma brown_tail_budget_nonempty_of_initial
     {a : ℕ → ℕ} {D : Set ℕ} {H M T n : ℕ}
     (hMn : M ≤ n)
@@ -2899,6 +3395,9 @@ lemma brown_tail_budget_nonempty_of_initial
     keptPrefixSum_mono hMn
   omega
 
+/--
+@isnad1 id=le.5h6v.s7.538be1009d51 from=translated src=- shape=795c2137 vocab=fe5278a8
+-/
 lemma brown_tail_budget_propagates_of_two_mul
     {a : ℕ → ℕ} {D : Set ℕ} {H M T n : ℕ}
     (hMn : M ≤ n)
@@ -2925,6 +3424,9 @@ lemma brown_tail_budget_propagates_of_two_mul
           a (n + 1) := by
         omega
 
+/--
+@isnad1 id=eq.1h6v.s7.32dade7b6ee5 from=translated src=- shape=7639442a vocab=b7eed420
+-/
 lemma brown_tail_budget_unchanged_of_deleted
     {a : ℕ → ℕ} {D : Set ℕ} {H M T n : ℕ}
     (hdel : n + 1 ∈ D) :
@@ -2932,6 +3434,9 @@ lemma brown_tail_budget_unchanged_of_deleted
       T + (keptPrefixSum a D n - keptPrefixSum a D M) - H + 1 := by
   rw [keptPrefixSum_succ_of_mem hdel]
 
+/--
+@isnad1 id=le.3h5v.s6.e5ffebce671d from=translated src=- shape=c873490c vocab=8f99030a
+-/
 lemma keptPrefixSum_add_sum_Icc_le_of_not_mem
     {a : ℕ → ℕ} {D : Set ℕ} {M lo hi : ℕ}
     (hMlo : M < lo)
@@ -2972,6 +3477,9 @@ lemma keptPrefixSum_add_sum_Icc_le_of_not_mem
             Nat.add_le_add_right ih' _
         _ ≤ keptPrefixSum a D (hi + 1) := hkept_succ
 
+/--
+@isnad1 id=le.5h7v.s7.2a5c6af00975 from=translated src=- shape=f696cf19 vocab=e1547e9d
+-/
 lemma previousBlockSum_le_brown_tail_budget_of_not_mem
     {a : ℕ → ℕ} {D : Set ℕ} {H M T m n : ℕ}
     (hnonempty : H ≤ T)
@@ -2991,6 +3499,9 @@ lemma previousBlockSum_le_brown_tail_budget_of_not_mem
         hMlo hlohi hkeep)
   omega
 
+/--
+@isnad1 id=le.7h7v.s7.734f7d61dd65 from=translated src=- shape=a302e854 vocab=e1547e9d
+-/
 lemma brown_tail_budget_after_deleted_of_previousBlockSurplus
     {a : ℕ → ℕ} {D : Set ℕ} {H M T m d : ℕ}
     (hnonempty : H ≤ T)
@@ -3021,6 +3532,9 @@ lemma brown_tail_budget_after_deleted_of_previousBlockSurplus
   rw [hbudget_eq]
   exact le_trans (Nat.le_of_lt hsurplus) hprev
 
+/--
+@isnad1 id=le.7h6v.s8.f28dfca98f51 from=translated src=- shape=ff339826 vocab=ba96417f
+-/
 lemma periodicDeletion_step_of_fixedBlockSurplus
     {a : ℕ → ℕ} {H M T m : ℕ}
     (hmpos : 0 < m)
@@ -3075,6 +3589,9 @@ lemma periodicDeletion_step_of_fixedBlockSurplus
           (a := a) (D := D) (H := H) (M := M) (T := T) (n := n)
           hn htop_nonempty hdel hcurrent (htwo n hn)
 
+/--
+@isnad1 id=ex.2h4v.s5.014bb6503887 from=translated src=- shape=50de7c0e vocab=64ddffbc
+-/
 lemma exists_keptPrefixSum_ge_of_infinite_compl
     {a : ℕ → ℕ} {D : Set ℕ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -3099,6 +3616,9 @@ lemma exists_keptPrefixSum_ge_of_infinite_compl
       refine ⟨m, le_trans hstartn hnm.le, ?_⟩
       omega
 
+/--
+@isnad1 id=coversin.4h5v.s7.73463d53c2ba from=translated src=- shape=73a0f1d7 vocab=6ed1a66c
+-/
 lemma coversInterval_step_of_kept {a : ℕ → ℕ} {D : Set ℕ} {n H T : ℕ}
     (hcover : CoversInterval a Dᶜ n H T)
     (hHT : H ≤ T)
@@ -3315,6 +3835,9 @@ structure IndexedInitialTailSeed
     ∀ n : ℕ, M ≤ n → n < start → n + 1 ≠ start →
       a (n + 1) + fullPrefixSum a M + H ≤ T + fullPrefixSum a n + 1
 
+/--
+@isnad1 id=indexedp.6h5v.s7.23db6b39288d from=translated src=- shape=9c6d0c6a vocab=bda0610f
+-/
 theorem indexedPartialBudgetSeed_of_wide_prefix_cover
     {a : ℕ → ℕ} {H M T start : ℕ}
     (hcover : CoversInterval a Set.univ M H T)
@@ -3341,6 +3864,9 @@ theorem indexedPartialBudgetSeed_of_wide_prefix_cover
     have hnextn := hnext n hn
     omega
 
+/--
+@isnad1 id=indexedp.3h4v.s6.ac4e89a8350a from=translated src=- shape=1abd0da3 vocab=690c2247
+-/
 theorem indexedPartialBudgetSeed_of_prefix_cover_and_tail_surplus
     {a : ℕ → ℕ} {H M T : ℕ}
     (hcover : CoversInterval a Set.univ M H T)
@@ -3357,6 +3883,9 @@ theorem indexedPartialBudgetSeed_of_prefix_cover_and_tail_surplus
     intro n hn hnlt hne
     omega
 
+/--
+@isnad1 id=le.5h6v.s6.05337dd0e3f4 from=translated src=- shape=857e36d9 vocab=4cb9a35c
+-/
 lemma before_budget_of_large_T
     {a : ℕ → ℕ} {H M T start : ℕ}
     (hmono : StrictMono a)
@@ -3370,6 +3899,9 @@ lemma before_budget_of_large_T
     hmono.monotone (Nat.le_of_lt hsucc_lt)
   omega
 
+/--
+@isnad1 id=le.1h4v.s5.5ba9e4ebfb62 from=translated src=- shape=33a9d563 vocab=4226d4e9
+-/
 lemma beforeBudgetNeed_ge
     {a : ℕ → ℕ} {H start n : ℕ}
     (hnstart : n < start) :
@@ -3378,6 +3910,9 @@ lemma beforeBudgetNeed_ge
   exact Finset.le_sup (f := fun n => H + a (n + 1))
     (Finset.mem_range.mpr hnstart)
 
+/--
+@isnad1 id=le.4h6v.s6.265f0716a842 from=translated src=- shape=2e0d0386 vocab=472b00cf
+-/
 lemma before_budget_of_T_ge_beforeBudgetNeed
     {a : ℕ → ℕ} {H M T start : ℕ}
     (hT : beforeBudgetNeed a H start ≤ T) :
@@ -3390,6 +3925,9 @@ lemma before_budget_of_T_ge_beforeBudgetNeed
     fullPrefixSum_mono hn
   omega
 
+/--
+@isnad1 id=indexedi.6h6v.s6.6cd7ff850f88 from=translated src=- shape=a04fe4fd vocab=6a6821e0
+-/
 theorem indexedInitialTailSeed_of_cover_ge_beforeBudgetNeed_and_tail_surplus
     {a : ℕ → ℕ} {F : Set ℕ} {H M T start : ℕ}
     (hF : F ⊆ Set.Iic M)
@@ -3414,6 +3952,9 @@ theorem indexedInitialTailSeed_of_cover_ge_beforeBudgetNeed_and_tail_surplus
       fullPrefixSum_mono hn
     omega
 
+/--
+@isnad1 id=indexedp.6h5v.s6.6d64b8f8bee6 from=translated src=- shape=1760b780 vocab=89d29f2f
+-/
 theorem indexedPartialBudgetSeed_of_large_cover_and_tail_surplus
     {a : ℕ → ℕ} {H M T start : ℕ}
     (hmono : StrictMono a)
@@ -3431,6 +3972,9 @@ theorem indexedPartialBudgetSeed_of_large_cover_and_tail_surplus
   surplus_from := hsurplus_from
   budget_before := before_budget_of_large_T hmono hTlarge
 
+/--
+@isnad1 id=indexedp.5h5v.s6.0aa83fea3afd from=translated src=- shape=afb6d80b vocab=69323af7
+-/
 theorem indexedPartialBudgetSeed_of_cover_ge_beforeBudgetNeed_and_tail_surplus
     {a : ℕ → ℕ} {H M T start : ℕ}
     (hcover : CoversInterval a Set.univ M H T)
@@ -3447,6 +3991,9 @@ theorem indexedPartialBudgetSeed_of_cover_ge_beforeBudgetNeed_and_tail_surplus
   surplus_from := hsurplus_from
   budget_before := before_budget_of_T_ge_beforeBudgetNeed hT
 
+/--
+@isnad1 id=coversin.3h4v.s6.babd1ea16027 from=translated src=- shape=c68995b7 vocab=c22bbcc2
+-/
 lemma prefix_cover_of_complete_avoiding_singleton_of_lt_next_next
     {a : ℕ → ℕ} {H M T : ℕ}
     (hmono : StrictMono a)
@@ -3471,6 +4018,9 @@ lemma prefix_cover_of_complete_avoiding_singleton_of_lt_next_next
     have hai_sum : a i ≤ ∑ j ∈ F, a j := finset_term_le_sum_of_mem hi
     omega
 
+/--
+@isnad1 id=ex.2h2v.s5.576949f6c964 from=translated src=- shape=6e976c50 vocab=2ef91b84
+-/
 lemma exists_prefix_cover_of_finiteDeletionComplete_avoiding_singleton
     {a : ℕ → ℕ}
     (hmono : StrictMono a)
@@ -3484,6 +4034,9 @@ lemma exists_prefix_cover_of_finiteDeletionComplete_avoiding_singleton
     prefix_cover_of_complete_avoiding_singleton_of_lt_next_next
       hmono hH hTlt⟩
 
+/--
+@isnad1 id=le.3h4v.s7.e8b68888fff2 from=translated src=- shape=fbe2302b vocab=3586df8e
+-/
 lemma tail_pair_surplus_of_initial_and_two_step_le
     {a : ℕ → ℕ} {C start : ℕ}
     (hinit : C + a start + a (start + 1) ≤ fullPrefixSum a start)
@@ -3502,6 +4055,9 @@ lemma tail_pair_surplus_of_initial_and_two_step_le
       simpa [Nat.add_assoc] using (by omega : C + a (start + k + 1) +
         a (start + k + 2) ≤ fullPrefixSum a (start + k) + a (start + k + 1))
 
+/--
+@isnad1 id=indexedp.4h3v.s7.6344cfabaa70 from=translated src=- shape=0fa6eba5 vocab=af20fecb
+-/
 theorem indexedPartialBudgetSeed_of_next_next_cover
     {a : ℕ → ℕ} {H M : ℕ}
     (hcover : CoversInterval a Set.univ M H (a (M + 2) - 1))
@@ -3526,6 +4082,9 @@ theorem indexedPartialBudgetSeed_of_next_next_cover
     rw [hdiff]
     omega
 
+/--
+@isnad1 id=indexedp.5h3v.s8.ef3510ac6102 from=translated src=- shape=e5868dbd vocab=af20fecb
+-/
 theorem indexedPartialBudgetSeed_of_next_next_cover_and_two_step_tail
     {a : ℕ → ℕ} {H M : ℕ}
     (hcover : CoversInterval a Set.univ M H (a (M + 2) - 1))
@@ -3539,6 +4098,9 @@ theorem indexedPartialBudgetSeed_of_next_next_cover_and_two_step_tail
   indexedPartialBudgetSeed_of_next_next_cover hcover hHT hkeep
     (tail_pair_surplus_of_initial_and_two_step_le hinit hstep)
 
+/--
+@isnad1 id=le.3h3v.s7.e16e6ef6bdf7 from=translated src=- shape=ffbd68a3 vocab=137c8112
+-/
 lemma budgetBase_next_next_initial_surplus_of_pair_and_margin
     {a : ℕ → ℕ} {H M : ℕ}
     (hA2pos : 0 < a (M + 2))
@@ -3569,6 +4131,9 @@ lemma budgetBase_next_next_initial_surplus_of_pair_and_margin
     rw [hsub]
     omega
 
+/--
+@isnad1 id=indexedp.7h3v.s8.5189fe833b36 from=translated src=- shape=a051eea4 vocab=30e281fc
+-/
 theorem indexedPartialBudgetSeed_of_next_next_cover_and_margin_tail
     {a : ℕ → ℕ} {H M : ℕ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -3585,6 +4150,9 @@ theorem indexedPartialBudgetSeed_of_next_next_cover_and_margin_tail
       (hpos (M + 2)) hpair hmargin)
     hstep
 
+/--
+@isnad1 id=indexedp.4h3v.s8.5d88119cc72a from=translated src=- shape=26fa26e8 vocab=30e281fc
+-/
 theorem indexedPartialBudgetSeed_of_next_next_cover_and_numeric_conditions
     {a : ℕ → ℕ} {H M : ℕ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -3599,6 +4167,9 @@ theorem indexedPartialBudgetSeed_of_next_next_cover_and_numeric_conditions
   indexedPartialBudgetSeed_of_next_next_cover_and_margin_tail
     hpos hcover hHT hnum.1 hnum.2.1 hnum.2.2.1 hnum.2.2.2
 
+/--
+@isnad1 id=indexedi.5h4v.s8.08c38a83b69a from=translated src=- shape=585f5269 vocab=7ac5f279
+-/
 theorem indexedInitialTailSeed_of_next_next_cover
     {a : ℕ → ℕ} {F : Set ℕ} {H M : ℕ}
     (hF : F ⊆ Set.Iic M)
@@ -3621,6 +4192,9 @@ theorem indexedInitialTailSeed_of_next_next_cover
     subst n
     omega
 
+/--
+@isnad1 id=indexedi.6h4v.s8.e1a664ba2e15 from=translated src=- shape=f46f8c47 vocab=7ac5f279
+-/
 theorem indexedInitialTailSeed_of_next_next_cover_and_two_step_tail
     {a : ℕ → ℕ} {F : Set ℕ} {H M : ℕ}
     (hF : F ⊆ Set.Iic M)
@@ -3635,6 +4209,9 @@ theorem indexedInitialTailSeed_of_next_next_cover_and_two_step_tail
   indexedInitialTailSeed_of_next_next_cover hF hcover hHT hkeep
     (tail_pair_surplus_of_initial_and_two_step_le hinit hstep)
 
+/--
+@isnad1 id=indexedi.8h4v.s8.9029dd238cbb from=translated src=- shape=9feeed06 vocab=8d0eafde
+-/
 theorem indexedInitialTailSeed_of_next_next_cover_and_margin_tail
     {a : ℕ → ℕ} {F : Set ℕ} {H M : ℕ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -3652,6 +4229,9 @@ theorem indexedInitialTailSeed_of_next_next_cover_and_margin_tail
       (hpos (M + 2)) hpair hmargin)
     hstep
 
+/--
+@isnad1 id=indexedi.5h4v.s8.5de40044504f from=translated src=- shape=d95eccf9 vocab=8d0eafde
+-/
 theorem indexedInitialTailSeed_of_next_next_cover_and_numeric_conditions
     {a : ℕ → ℕ} {F : Set ℕ} {H M : ℕ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -3667,6 +4247,9 @@ theorem indexedInitialTailSeed_of_next_next_cover_and_numeric_conditions
   indexedInitialTailSeed_of_next_next_cover_and_margin_tail
     hpos hF hcover hHT hnum.1 hnum.2.1 hnum.2.2.1 hnum.2.2.2
 
+/--
+@isnad1 id=coversin.3h5v.s6.ee9e59756b00 from=translated src=- shape=9707b8e5 vocab=09e88f39
+-/
 lemma prefix_cover_of_complete_avoiding_finite_singleton_of_lt_next_next
     {a : ℕ → ℕ} {F : Set ℕ} {H M T : ℕ}
     (hmono : StrictMono a)
@@ -3693,6 +4276,9 @@ lemma prefix_cover_of_complete_avoiding_finite_singleton_of_lt_next_next
     have hai_sum : a i ≤ ∑ j ∈ G, a j := finset_term_le_sum_of_mem hi
     omega
 
+/--
+@isnad1 id=indexedi.5h4v.s8.4b33b0aaf61f from=translated src=- shape=919bca31 vocab=cb8f9c5b
+-/
 theorem indexedInitialTailSeed_of_finite_singleton_complete_and_numeric_conditions
     {a : ℕ → ℕ} {F : Set ℕ} {H M : ℕ}
     (hmono : StrictMono a)
@@ -3721,6 +4307,9 @@ theorem indexedInitialTailSeed_of_finite_singleton_complete_and_numeric_conditio
   exact indexedInitialTailSeed_of_next_next_cover_and_numeric_conditions
     hpos hF hcover hHT hnum
 
+/--
+@isnad1 id=uniformf.3h1v.s4.5f4dccf0812b from=translated src=- shape=e433aeb8 vocab=74a5f575
+-/
 lemma uniformFinSingletonPrefixCover_of_uniformFinSingletonComplete
     {a : ℕ → ℕ}
     (hmono : StrictMono a)
@@ -3742,6 +4331,9 @@ lemma uniformFinSingletonPrefixCover_of_uniformFinSingletonComplete
     prefix_cover_of_complete_avoiding_finite_singleton_of_lt_next_next
       hmono hcompleteM hTlt⟩
 
+/--
+@isnad1 id=ex.4h3v.s6.611b4b65bc9d from=translated src=- shape=c793425c vocab=ff4f88bc
+-/
 lemma exists_prefix_cover_avoiding_finite_singleton_of_finiteDeletionComplete
     {a : ℕ → ℕ} {F : Set ℕ}
     (hmono : StrictMono a)
@@ -3759,6 +4351,9 @@ lemma exists_prefix_cover_avoiding_finite_singleton_of_finiteDeletionComplete
   exact prefix_cover_of_complete_avoiding_finite_singleton_of_lt_next_next
     hmono hH hTlt
 
+/--
+@isnad1 id=eventual.7h2v.s6.098228907929 from=translated src=- shape=873ebc86 vocab=ad17e426
+-/
 lemma eventualFinSingletonSmallPrefixCover_of_uniformFinSingletonPrefixCover
     {a : ℕ → ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -3781,6 +4376,9 @@ lemma eventualFinSingletonSmallPrefixCover_of_uniformFinSingletonPrefixCover
   filter_upwards [hcoverH, hnum] with M hcoverM hnumM
   exact ⟨H, hcoverM.1, hcoverM.2, hnumM.1, hnumM.2.2.1⟩
 
+/--
+@isnad1 id=eventual.1h1v.s3.81a1c794b460 from=translated src=- shape=c3984ded vocab=6f1b6e82
+-/
 lemma eventualFinSingletonSmallPrefixCover_of_leastSmall
     {a : ℕ → ℕ}
     (hleast : EventualFinSingletonLeastSmallPrefixCover a) :
@@ -3791,6 +4389,9 @@ lemma eventualFinSingletonSmallPrefixCover_of_leastSmall
   let H := leastPrefixCoverThreshold a Fᶜ M (a (M + 2) - 1)
   exact ⟨H, hM.1, leastPrefixCoverThreshold_cover, hM.2.1, hM.2.2⟩
 
+/--
+@isnad1 id=eventual.1h1v.s3.e49d3f6eadbc from=translated src=- shape=c3984ded vocab=6f1b6e82
+-/
 lemma leastSmall_of_eventualFinSingletonSmallPrefixCover
     {a : ℕ → ℕ}
     (hsmall : EventualFinSingletonSmallPrefixCover a) :
@@ -3804,6 +4405,9 @@ lemma leastSmall_of_eventualFinSingletonSmallPrefixCover
     leastPrefixCoverThreshold_le_of_cover hcover
   exact ⟨hFM, by omega, by omega⟩
 
+/--
+@isnad1 id=iff.0h1v.s3.573d51bca549 from=translated src=- shape=a7f9f7aa vocab=6f1b6e82
+-/
 theorem eventualFinSingletonSmallPrefixCover_iff_leastSmall
     {a : ℕ → ℕ} :
     EventualFinSingletonSmallPrefixCover a ↔
@@ -3811,6 +4415,9 @@ theorem eventualFinSingletonSmallPrefixCover_iff_leastSmall
   ⟨leastSmall_of_eventualFinSingletonSmallPrefixCover,
     eventualFinSingletonSmallPrefixCover_of_leastSmall⟩
 
+/--
+@isnad1 id=arbitrar.1h1v.s3.f4587eec4e2e from=translated src=- shape=c3984ded vocab=4056167b
+-/
 lemma arbLargeFinSingletonSmallPrefixCover_of_eventual
     {a : ℕ → ℕ}
     (hsmall : EventualFinSingletonSmallPrefixCover a) :
@@ -3822,6 +4429,9 @@ lemma arbLargeFinSingletonSmallPrefixCover_of_eventual
   refine ⟨max N B, le_max_left N B, ?_⟩
   exact hB (max N B) (le_max_right N B)
 
+/--
+@isnad1 id=arbitrar.1h1v.s3.1107f1a1f228 from=translated src=- shape=c3984ded vocab=a3984f7c
+-/
 lemma arbLargeFinSingletonSmallPrefixCover_of_leastLarge
     {a : ℕ → ℕ}
     (hleast : ArbitrarilyLargeFinSingletonLeastSmallPrefixCover a) :
@@ -3833,6 +4443,9 @@ lemma arbLargeFinSingletonSmallPrefixCover_of_leastLarge
   let H := leastPrefixCoverThreshold a Fᶜ M (a (M + 2) - 1)
   exact ⟨M, hNM, H, hM.1, leastPrefixCoverThreshold_cover, hM.2.1, hM.2.2⟩
 
+/--
+@isnad1 id=arbitrar.1h1v.s3.feb71f377ce6 from=translated src=- shape=c3984ded vocab=a3984f7c
+-/
 lemma leastLarge_of_arbLargeFinSingletonSmallPrefixCover
     {a : ℕ → ℕ}
     (hsmall : ArbitrarilyLargeFinSingletonSmallPrefixCover a) :
@@ -3846,6 +4459,9 @@ lemma leastLarge_of_arbLargeFinSingletonSmallPrefixCover
     leastPrefixCoverThreshold_le_of_cover hcover
   exact ⟨M, hNM, hFM, by omega, by omega⟩
 
+/--
+@isnad1 id=iff.0h1v.s3.e98ba5685610 from=translated src=- shape=a7f9f7aa vocab=a3984f7c
+-/
 theorem arbLargeFinSingletonSmallPrefixCover_iff_leastLarge
     {a : ℕ → ℕ} :
     ArbitrarilyLargeFinSingletonSmallPrefixCover a ↔
@@ -3853,6 +4469,9 @@ theorem arbLargeFinSingletonSmallPrefixCover_iff_leastLarge
   ⟨leastLarge_of_arbLargeFinSingletonSmallPrefixCover,
     arbLargeFinSingletonSmallPrefixCover_of_leastLarge⟩
 
+/--
+@isnad1 id=iff.1h3v.s7.fe2fcc7f8f9b from=translated src=- shape=edd3966e vocab=a77811d6
+-/
 lemma first_seed_keep_iff_leastPrefixCoverThreshold_le_nextSeedMargin
     {a : ℕ → ℕ} {I : Set ℕ} {M : ℕ}
     (hnext : a (M + 1) ≤ a (M + 2)) :
@@ -3863,6 +4482,9 @@ lemma first_seed_keep_iff_leastPrefixCoverThreshold_le_nextSeedMargin
   dsimp [nextSeedMargin]
   omega
 
+/--
+@isnad1 id=coversin.2h3v.s7.827f196a3cce from=translated src=- shape=dbabb6c1 vocab=9b1c016e
+-/
 lemma first_prefix_cover_of_first_seed_keep
     {a : ℕ → ℕ} {I : Set ℕ} {M : ℕ}
     (hnext : a (M + 1) ≤ a (M + 2))
@@ -3880,6 +4502,9 @@ lemma first_prefix_cover_of_first_seed_keep
       (T := a (M + 2) - 1))
     hleast_le
 
+/--
+@isnad1 id=le.2h3v.s7.1a2c67c20816 from=translated src=- shape=d8759131 vocab=9b1c016e
+-/
 lemma first_seed_keep_of_first_prefix_cover
     {a : ℕ → ℕ} {I : Set ℕ} {M : ℕ}
     (hnext : a (M + 1) ≤ a (M + 2))
@@ -3894,6 +4519,9 @@ lemma first_seed_keep_of_first_prefix_cover
     (first_seed_keep_iff_leastPrefixCoverThreshold_le_nextSeedMargin hnext).mpr
       hleast_le
 
+/--
+@isnad1 id=arbitrar.2h1v.s4.50c0d6ebaae8 from=translated src=- shape=a179fb98 vocab=2932bfde
+-/
 lemma arbLargeFinSingletonFirstPrefixCover_of_firstSmall
     {a : ℕ → ℕ}
     (hmono : StrictMono a)
@@ -3907,6 +4535,9 @@ lemma arbLargeFinSingletonFirstPrefixCover_of_firstSmall
   exact first_prefix_cover_of_first_seed_keep
     ((hmono (by omega : M + 1 < M + 2)).le) hkeep
 
+/--
+@isnad1 id=arbitrar.2h1v.s4.223a1be1ff46 from=translated src=- shape=a179fb98 vocab=2932bfde
+-/
 lemma arbLargeFinSingletonFirstSmallPrefixCover_of_firstPrefixCover
     {a : ℕ → ℕ}
     (hmono : StrictMono a)
@@ -3920,6 +4551,9 @@ lemma arbLargeFinSingletonFirstSmallPrefixCover_of_firstPrefixCover
   exact first_seed_keep_of_first_prefix_cover
     ((hmono (by omega : M + 1 < M + 2)).le) hcoverM
 
+/--
+@isnad1 id=iff.1h1v.s4.2b6bdbafce5a from=translated src=- shape=56ee72ef vocab=2932bfde
+-/
 theorem arbLargeFinSingletonFirstPrefixCover_iff_firstSmall
     {a : ℕ → ℕ}
     (hmono : StrictMono a) :
@@ -3928,6 +4562,9 @@ theorem arbLargeFinSingletonFirstPrefixCover_iff_firstSmall
   ⟨arbLargeFinSingletonFirstSmallPrefixCover_of_firstPrefixCover hmono,
     arbLargeFinSingletonFirstPrefixCover_of_firstSmall hmono⟩
 
+/--
+@isnad1 id=ex.1h2v.s7.1912ba930401 from=translated src=- shape=35a33e83 vocab=6bce3a41
+-/
 lemma eventual_first_prefix_cover_failure_of_not_arbLarge_fixedBase
     {a : ℕ → ℕ} {F : Set ℕ}
     (hnot :
@@ -3940,6 +4577,9 @@ lemma eventual_first_prefix_cover_failure_of_not_arbLarge_fixedBase
   push Not at hno
   exact hnot hno
 
+/--
+@isnad1 id=eventual.2h2v.s7.9b67d95daac0 from=translated src=- shape=2882c213 vocab=0710ddee
+-/
 lemma evt_prefix_holes_of_not_arbLargeFirstPrefixCover_fixedBase
     {a : ℕ → ℕ} {F : Set ℕ}
     (hFfinite : F.Finite)
@@ -3963,6 +4603,9 @@ lemma evt_prefix_holes_of_not_arbLargeFirstPrefixCover_fixedBase
   exact not_coversInterval_iff_exists_prefix_hole.mp
     (hbad M hNbadM hFM)
 
+/--
+@isnad1 id=eventual.4h2v.s7.12c5b5bfa474 from=translated src=- shape=20a78a58 vocab=0d0de2e6
+-/
 lemma evt_finite_singleton_holes_of_not_arbLargeFirstPrefixCover_fixedBase
     {a : ℕ → ℕ} {F : Set ℕ}
     (hmono : StrictMono a)
@@ -3990,6 +4633,9 @@ lemma evt_finite_singleton_holes_of_not_arbLargeFirstPrefixCover_fixedBase
     not_subsetSums_avoiding_finite_singleton_of_prefix_hole hmono hmiss hlt,
     hlow⟩
 
+/--
+@isnad1 id=arbitrar.2h1v.s4.04ad601988cb from=translated src=- shape=a179fb98 vocab=4a64c93d
+-/
 lemma arbLargeFinSingletonFirstPrefixCover_of_arbLargeFinSingletonSmallPrefixCover
     {a : ℕ → ℕ}
     (hmono : StrictMono a)
@@ -4010,6 +4656,9 @@ lemma arbLargeFinSingletonFirstPrefixCover_of_arbLargeFinSingletonSmallPrefixCov
   exact first_prefix_cover_of_first_seed_keep
     ((hmono (by omega : M + 1 < M + 2)).le) hfirst
 
+/--
+@isnad1 id=arbitrar.4h1v.s5.a8f41731a155 from=translated src=- shape=3a8ea184 vocab=d1c5593d
+-/
 lemma arbLargeFinSingletonFirstPrefixCover_of_uniformFinSingletonPrefixCover
     {a : ℕ → ℕ}
     (hmono : StrictMono a)
@@ -4037,6 +4686,9 @@ lemma arbLargeFinSingletonFirstPrefixCover_of_uniformFinSingletonPrefixCover
   refine ⟨max N B, le_max_left N B, ?_⟩
   exact hB (max N B) (le_max_right N B)
 
+/--
+@isnad1 id=arbitrar.5h1v.s5.a01df9c2bd67 from=translated src=- shape=5d1f4354 vocab=faa21f81
+-/
 lemma arbLargeFinSingletonFirstPrefixCover_of_firstWindowShiftClosed
     {a : ℕ → ℕ}
     (hmono : StrictMono a)
@@ -4076,6 +4728,9 @@ lemma arbLargeFinSingletonFirstPrefixCover_of_firstWindowShiftClosed
     first_prefix_cover_of_succ_cover_and_shiftClosed
       (hpos (M + 2)) hcoverSucc hclosedM⟩
 
+/--
+@isnad1 id=eventual.4h2v.s6.74a566a2fe19 from=translated src=- shape=5b81708c vocab=c57b190a
+-/
 lemma evt_pair_seed_margin_of_evtQuotientLtGold
     {a : ℕ → ℕ} {ρ : ℝ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -4088,6 +4743,9 @@ lemma evt_pair_seed_margin_of_evtQuotientLtGold
   intro M hM
   simpa [Nat.add_assoc] using hN (M + 1) (le_trans hM (Nat.le_succ M))
 
+/--
+@isnad1 id=eventual.3h2v.s5.c0e2f03318cc from=translated src=- shape=d37098bb vocab=34cfc8e1
+-/
 lemma evt_nextSeedMargin_ge_of_uniformRatioGap
     {a : ℕ → ℕ}
     (hmono : StrictMono a)
@@ -4101,6 +4759,9 @@ lemma evt_nextSeedMargin_ge_of_uniformRatioGap
   dsimp [nextSeedMargin]
   omega
 
+/--
+@isnad1 id=eventual.5h3v.s6.f3bda8c03e89 from=translated src=- shape=aa0afd0b vocab=1d71c8fd
+-/
 lemma evt_pairSeedMargin_ge_of_evtQuotientLtGold
     {a : ℕ → ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -4119,6 +4780,9 @@ lemma evt_pairSeedMargin_ge_of_evtQuotientLtGold
   dsimp [pairSeedMargin]
   omega
 
+/--
+@isnad1 id=eventual.6h2v.s7.d00aad06dbcc from=translated src=- shape=881efcd4 vocab=7f8a5e4f
+-/
 lemma evt_prefix_shift_gaps_of_not_arbLargeFirstPrefixCover_fixedBase
     {a : ℕ → ℕ} {F : Set ℕ}
     (hmono : StrictMono a)
@@ -4154,6 +4818,9 @@ lemma evt_prefix_shift_gaps_of_not_arbLargeFirstPrefixCover_fixedBase
   exact shifted_prefix_hole_gives_prefix_shift_gap
     hshifted.1 hshifted.2 hmiss hlt
 
+/--
+@isnad1 id=eventual.6h2v.s6.033d6381bdcc from=translated src=- shape=7519fca6 vocab=2233c287
+-/
 lemma evt_not_firstWindowShiftClosed_of_not_arbLargeFirstPrefixCover_fixedBase
     {a : ℕ → ℕ} {F : Set ℕ}
     (hmono : StrictMono a)
@@ -4177,6 +4844,9 @@ lemma evt_not_firstWindowShiftClosed_of_not_arbLargeFirstPrefixCover_fixedBase
   rcases hM with ⟨s, hs, hslt, _hshift_lt, hshift_miss⟩
   exact hshift_miss (hclosed s hs hslt)
 
+/--
+@isnad1 id=eventual.6h2v.s6.981b7a0ed196 from=translated src=- shape=7519fca6 vocab=2e79829e
+-/
 lemma evt_not_finSingletonCompleteBelowPrev_of_not_arbLargeFirstPrefixCover_fixedBase
     {a : ℕ → ℕ} {F : Set ℕ}
     (hmono : StrictMono a)
@@ -4196,6 +4866,9 @@ lemma evt_not_finSingletonCompleteBelowPrev_of_not_arbLargeFirstPrefixCover_fixe
   exact hnotClosed
     (firstWindowShiftClosed_of_finSingletonCompleteBelowPrev hmono hbelow)
 
+/--
+@isnad1 id=eventual.6h2v.s7.1bfdff66a73a from=translated src=- shape=488ebabd vocab=d9691fc1
+-/
 lemma evt_prev_lt_finSingletonCompleteThreshold_of_not_arbLargeFirstPrefixCover_fixedBase
     {a : ℕ → ℕ} {F : Set ℕ}
     (hmono : StrictMono a)
@@ -4217,6 +4890,9 @@ lemma evt_prev_lt_finSingletonCompleteThreshold_of_not_arbLargeFirstPrefixCover_
     (not_finSingletonCompleteBelowPrev_iff_prev_lt_threshold
       hfinite hFfinite).mp hnotM
 
+/--
+@isnad1 id=eventual.6h2v.s7.dff1e26ef4cb from=translated src=- shape=92335ffc vocab=5fb92a5d
+-/
 lemma evt_finSingletonCompleteThreshold_holes_of_not_arbLargeFirstPrefixCover_fixedBase
     {a : ℕ → ℕ} {F : Set ℕ}
     (hmono : StrictMono a)
@@ -4238,6 +4914,9 @@ lemma evt_finSingletonCompleteThreshold_holes_of_not_arbLargeFirstPrefixCover_fi
   exact exists_finSingletonCompleteThreshold_hole_of_prev_lt
     hfinite hFfinite hlt
 
+/--
+@isnad1 id=eventual.6h2v.s7.da9de199d533 from=translated src=- shape=147613eb vocab=f3dab420
+-/
 lemma evt_pred_finSingletonCompleteThreshold_holes_of_not_arbLargeFirstPrefixCover_fixedBase
     {a : ℕ → ℕ} {F : Set ℕ}
     (hmono : StrictMono a)
@@ -4261,6 +4940,9 @@ lemma evt_pred_finSingletonCompleteThreshold_holes_of_not_arbLargeFirstPrefixCov
   exact exists_pred_finSingletonCompleteThreshold_hole_of_prev_lt
     hfinite hFfinite hlt
 
+/--
+@isnad1 id=eventual.6h2v.s7.6d564311213a from=translated src=- shape=ffe677b1 vocab=6d4e8ac2
+-/
 lemma evt_predThreshold_small_forces_prefix_shift_gap_of_not_arbLargeFirstPrefixCover_fixedBase
     {a : ℕ → ℕ} {F : Set ℕ}
     (hmono : StrictMono a)
@@ -4294,6 +4976,9 @@ lemma evt_predThreshold_small_forces_prefix_shift_gap_of_not_arbLargeFirstPrefix
     pred_finSingletonCompleteThreshold_small_forces_prefix_shift_gap
       hfinite hFfinite hmono hcompleteF hHM hprevlt hthreshold_le
 
+/--
+@isnad1 id=eventual.6h2v.s7.e35c59a992d3 from=translated src=- shape=b1296cc2 vocab=6d4e8ac2
+-/
 lemma evt_threshold_large_or_prefix_shift_gap_of_not_arbLargeFirstPrefixCover_fixedBase
     {a : ℕ → ℕ} {F : Set ℕ}
     (hmono : StrictMono a)
@@ -4327,6 +5012,9 @@ lemma evt_threshold_large_or_prefix_shift_gap_of_not_arbLargeFirstPrefixCover_fi
   · exact Or.inr (hcondM hle)
   · exact Or.inl (Nat.lt_of_not_ge hle)
 
+/--
+@isnad1 id=eventual.6h3v.s8.81f49ad5a64e from=translated src=- shape=54551bcb vocab=a57b8873
+-/
 lemma evt_offset_threshold_or_shifted_prefix_of_threshold_escape
     {a : ℕ → ℕ} {F : Set ℕ}
     (hmono : StrictMono a)
@@ -4360,6 +5048,9 @@ lemma evt_offset_threshold_or_shifted_prefix_of_threshold_escape
         (by omega) hHM hoffsetlt (by simpa [Nat.add_assoc] using hle))
   · exact Or.inl (Nat.lt_of_not_ge hle)
 
+/--
+@isnad1 id=eventual.5h2v.s8.d14af7681e4c from=translated src=- shape=02ae6288 vocab=a57b8873
+-/
 lemma evt_next3_threshold_or_shifted_prefix_of_threshold_escape
     {a : ℕ → ℕ} {F : Set ℕ}
     (hmono : StrictMono a)
@@ -4391,6 +5082,9 @@ lemma evt_next3_threshold_or_shifted_prefix_of_threshold_escape
         hfinite hFfinite hmono hcompleteF hHM hnextlt hle)
   · exact Or.inl (Nat.lt_of_not_ge hle)
 
+/--
+@isnad1 id=not.6h2v.s7.8b1593cc58cc from=translated src=- shape=a630318b vocab=0fbefbb9
+-/
 lemma not_arbLargeFinSingletonCompleteBelowPrev_fixedBase_of_not_arbLargeFirstPrefixCover_fixedBase
     {a : ℕ → ℕ} {F : Set ℕ}
     (hmono : StrictMono a)
@@ -4410,6 +5104,9 @@ lemma not_arbLargeFinSingletonCompleteBelowPrev_fixedBase_of_not_arbLargeFirstPr
   obtain ⟨M, hBM, _hFM, hbelowM⟩ := hlargeBelow B
   exact hB M hBM hbelowM
 
+/--
+@isnad1 id=le.2h2v.s6.919886ba06b3 from=translated src=- shape=db3982e4 vocab=676abfdf
+-/
 lemma nextSeedMargin_le_prev_of_two_step_le
     {a : ℕ → ℕ} {M : ℕ}
     (hmono : StrictMono a)
@@ -4419,6 +5116,9 @@ lemma nextSeedMargin_le_prev_of_two_step_le
   dsimp [nextSeedMargin]
   omega
 
+/--
+@isnad1 id=eventual.5h2v.s6.1c0918dc6988 from=translated src=- shape=0f30dd85 vocab=97cf2600
+-/
 lemma evt_nextSeedMargin_le_prev_of_evtQuotientLtGold
     {a : ℕ → ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -4431,6 +5131,9 @@ lemma evt_nextSeedMargin_le_prev_of_evtQuotientLtGold
       hpos hρ1 hρφ hupper] with M htwo
   exact nextSeedMargin_le_prev_of_two_step_le hmono htwo
 
+/--
+@isnad1 id=arbitrar.6h2v.s6.1c635a9eb507 from=translated src=- shape=358d172c vocab=af7303a6
+-/
 lemma arbLargeFinSingletonFirstWindowShiftClosed_of_firstPrefixCover_of_evtQuotientLtGold
     {a : ℕ → ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -4454,6 +5157,9 @@ lemma arbLargeFinSingletonFirstWindowShiftClosed_of_firstPrefixCover_of_evtQuoti
     firstWindowShiftClosed_of_first_prefix_cover_of_nextSeedMargin_le_prev
       (hB M hBM) hcoverM⟩
 
+/--
+@isnad1 id=iff.7h2v.s6.daf2044e618c from=translated src=- shape=c291eee4 vocab=7773fd02
+-/
 theorem arbLargeFinSingletonFirstPrefixCover_iff_firstWindowShiftClosed_of_evtQuotientLtGold
     {a : ℕ → ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -4469,6 +5175,9 @@ theorem arbLargeFinSingletonFirstPrefixCover_iff_firstWindowShiftClosed_of_evtQu
     arbLargeFinSingletonFirstPrefixCover_of_firstWindowShiftClosed
       hmono hpos hgap hfinite⟩
 
+/--
+@isnad1 id=arbitrar.2h1v.s4.dbbb618810bc from=translated src=- shape=a179fb98 vocab=308df4c6
+-/
 lemma arbLargeFinSingletonFirstWindowShiftClosed_of_completeBelowPrev
     {a : ℕ → ℕ}
     (hmono : StrictMono a)
@@ -4481,6 +5190,9 @@ lemma arbLargeFinSingletonFirstWindowShiftClosed_of_completeBelowPrev
   exact ⟨M, hNM, hFM,
     firstWindowShiftClosed_of_finSingletonCompleteBelowPrev hmono hbelowM⟩
 
+/--
+@isnad1 id=arbitrar.5h1v.s5.867a73d84ce8 from=translated src=- shape=5d1f4354 vocab=0f26085f
+-/
 lemma arbLargeFinSingletonFirstPrefixCover_of_completeBelowPrev
     {a : ℕ → ℕ}
     (hmono : StrictMono a)
@@ -4494,6 +5206,9 @@ lemma arbLargeFinSingletonFirstPrefixCover_of_completeBelowPrev
     (arbLargeFinSingletonFirstWindowShiftClosed_of_completeBelowPrev
       hmono hbelow)
 
+/--
+@isnad1 id=not.2h3v.s7.e7caf6002ad2 from=translated src=- shape=ff27e627 vocab=ba0c116b
+-/
 lemma not_seed_keep_of_nextSeedMargin_lt_least
     {a : ℕ → ℕ} {F : Set ℕ} {M : ℕ}
     (hnext : a (M + 1) ≤ a (M + 2))
@@ -4505,6 +5220,9 @@ lemma not_seed_keep_of_nextSeedMargin_lt_least
   dsimp [nextSeedMargin] at hlt
   omega
 
+/--
+@isnad1 id=eventual.6h2v.s8.f1f36c2842b1 from=translated src=- shape=15ddb497 vocab=f543c73a
+-/
 lemma evt_finite_singleton_holes_of_eventual_seed_margin_failure
     {a : ℕ → ℕ} {F : Set ℕ}
     (hmono : StrictMono a)
@@ -4537,6 +5255,9 @@ lemma evt_finite_singleton_holes_of_eventual_seed_margin_failure
   exact exists_finite_singleton_hole_of_not_seed_margins
     hmono hpos (hNnext M (by omega)) (hNpair M (by omega)) hnot
 
+/--
+@isnad1 id=eventual.7h3v.s8.ff2d73154e08 from=translated src=- shape=021872c0 vocab=83f2bbb8
+-/
 lemma evt_finite_singleton_holes_of_eventual_seed_margin_failure_of_evtQuotientLtGold
     {a : ℕ → ℕ} {F : Set ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -4561,6 +5282,9 @@ lemma evt_finite_singleton_holes_of_eventual_seed_margin_failure_of_evtQuotientL
     (evt_pair_seed_margin_of_evtQuotientLtGold
       hpos hρ1 hρφ hupper)
 
+/--
+@isnad1 id=ex.1h2v.s8.9b65e52b2409 from=translated src=- shape=64ce9125 vocab=3fc2b9d4
+-/
 lemma eventual_seed_margin_failure_of_not_arbLargeLeastSmall_fixedBase
     {a : ℕ → ℕ} {F : Set ℕ}
     (hnot :
@@ -4581,6 +5305,9 @@ lemma eventual_seed_margin_failure_of_not_arbLargeLeastSmall_fixedBase
   intro M hNM hFM hboth
   exact (not_le_of_gt (hN M hNM hFM hboth.1)) hboth.2
 
+/--
+@isnad1 id=eventual.7h3v.s8.4f333e3f0640 from=translated src=- shape=b0c56276 vocab=83f2bbb8
+-/
 lemma evt_finite_singleton_holes_of_not_arbLargeLeastSmall_fixedBase_of_evtQuotientLtGold
     {a : ℕ → ℕ} {F : Set ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -4602,6 +5329,9 @@ lemma evt_finite_singleton_holes_of_not_arbLargeLeastSmall_fixedBase_of_evtQuoti
     hmono hpos hFfinite hρ1 hρφ hupper
     (eventual_seed_margin_failure_of_not_arbLargeLeastSmall_fixedBase hnot)
 
+/--
+@isnad1 id=eventual.9h3v.s8.d356239838d3 from=translated src=- shape=5855a910 vocab=dd7fc35d
+-/
 lemma evt_shifted_prefix_holes_of_not_arbLargeLeastSmall_fixedBase
     {a : ℕ → ℕ} {F : Set ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -4647,6 +5377,9 @@ lemma evt_shifted_prefix_holes_of_not_arbLargeLeastSmall_fixedBase
   have hshifted := hshift M t hHt hmiss hlt
   exact ⟨t, htT, hlt, hmiss, hshifted.1, hshifted.2, hlow⟩
 
+/--
+@isnad1 id=eventual.9h3v.s8.6b0dab5b89d3 from=translated src=- shape=893cb755 vocab=349d5530
+-/
 lemma evt_prefix_shift_gaps_of_not_arbLargeLeastSmall_fixedBase
     {a : ℕ → ℕ} {F : Set ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -4680,6 +5413,9 @@ lemma evt_prefix_shift_gaps_of_not_arbLargeLeastSmall_fixedBase
   rcases hM with ⟨t, _htT, hlt, hmiss, ha, hsource, _hlow⟩
   exact shifted_prefix_hole_gives_prefix_shift_gap ha hsource hmiss hlt
 
+/--
+@isnad1 id=eventual.9h3v.s8.98e0f358146a from=translated src=- shape=3c701c17 vocab=24af169b
+-/
 lemma evt_nextSeedMargin_lt_least_of_not_arbLargeLeastSmall_fixedBase
     {a : ℕ → ℕ} {F : Set ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -4714,6 +5450,9 @@ lemma evt_nextSeedMargin_lt_least_of_not_arbLargeLeastSmall_fixedBase
   rcases hM with ⟨s, hs⟩
   exact prefix_shift_gap_forces_nextSeedMargin_lt_least hnextM hs
 
+/--
+@isnad1 id=eventual.9h3v.s8.00cdcfaa017b from=translated src=- shape=07833bca vocab=590cefa1
+-/
 lemma evt_not_seed_keep_of_not_arbLargeLeastSmall_fixedBase
     {a : ℕ → ℕ} {F : Set ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -4742,6 +5481,9 @@ lemma evt_not_seed_keep_of_not_arbLargeLeastSmall_fixedBase
   exact not_seed_keep_of_nextSeedMargin_lt_least
     ((hmono (by omega : M + 1 < M + 2)).le) hltM
 
+/--
+@isnad1 id=arbitrar.8h2v.s6.c53b187a53e1 from=translated src=- shape=cb2c6972 vocab=0ce8d085
+-/
 lemma arbLargeLeastSmall_of_firstSmall_of_evtQuotientLtGold
     {a : ℕ → ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -4765,6 +5507,9 @@ lemma arbLargeLeastSmall_of_firstSmall_of_evtQuotientLtGold
   obtain ⟨M, hNM, _hFM, hkeep⟩ := hfirstF N
   exact (hN M hNM) hkeep
 
+/--
+@isnad1 id=indexedp.4h3v.s8.40d7fb22a413 from=translated src=- shape=ed7bc5e0 vocab=0d8d989e
+-/
 theorem indexedPartialBudgetSeed_of_singleton_complete_and_numeric_conditions
     {a : ℕ → ℕ} {H M : ℕ}
     (hmono : StrictMono a)
@@ -4791,6 +5536,9 @@ theorem indexedPartialBudgetSeed_of_singleton_complete_and_numeric_conditions
   exact indexedPartialBudgetSeed_of_next_next_cover_and_numeric_conditions
     hpos hcover hHT hnum
 
+/--
+@isnad1 id=ex.7h2v.s7.24d36133e7f3 from=translated src=- shape=6e7dde59 vocab=c2cc991d
+-/
 theorem exists_indexedPartialBudgetSeed_of_eventual_singleton_complete
     {a : ℕ → ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -4825,6 +5573,9 @@ theorem exists_indexedPartialBudgetSeed_of_eventual_singleton_complete
   exact indexedPartialBudgetSeed_of_singleton_complete_and_numeric_conditions
     hmono hpos (hM M le_rfl).1 (hM M le_rfl).2
 
+/--
+@isnad1 id=ex.8h3v.s7.45250c9faa49 from=translated src=- shape=9284e550 vocab=a2e526ea
+-/
 theorem exists_indexedInitialTailSeed_of_eventual_finite_singleton_complete
     {a : ℕ → ℕ} {ρ : ℝ} {F : Set ℕ}
     (hmono : StrictMono a)
@@ -4868,6 +5619,9 @@ theorem exists_indexedInitialTailSeed_of_eventual_finite_singleton_complete
   exact indexedInitialTailSeed_of_finite_singleton_complete_and_numeric_conditions
     hmono hpos (hM M le_rfl).1 (hM M le_rfl).2.1 (hM M le_rfl).2.2
 
+/--
+@isnad1 id=ex.7h2v.s6.abcd5b877817 from=translated src=- shape=567ff7b6 vocab=f78f8301
+-/
 theorem exists_indexedInitialTailSeed_of_uniformFinSingletonPrefixCover
     {a : ℕ → ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -4905,6 +5659,9 @@ theorem exists_indexedInitialTailSeed_of_uniformFinSingletonPrefixCover
   exact indexedInitialTailSeed_of_next_next_cover_and_numeric_conditions
     hpos hdata.1.1 hdata.1.2 hHT hdata.2
 
+/--
+@isnad1 id=ex.5h2v.s6.ebd5038e9bf8 from=translated src=- shape=fadad1dd vocab=e667a93d
+-/
 theorem exists_indexedInitialTailSeed_of_arbLargeFinSingletonSmallPrefixCover
     {a : ℕ → ℕ} {ρ : ℝ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -4929,6 +5686,9 @@ theorem exists_indexedInitialTailSeed_of_arbLargeFinSingletonSmallPrefixCover
   exact indexedInitialTailSeed_of_next_next_cover_and_numeric_conditions
     hpos hFM hcover hHT ⟨hkeep, htailM.1, hmargin, htailM.2⟩
 
+/--
+@isnad1 id=ex.5h2v.s6.3381e5f0a89c from=translated src=- shape=fadad1dd vocab=d84eda2c
+-/
 theorem exists_indexedInitialTailSeed_of_eventualFinSingletonSmallPrefixCover
     {a : ℕ → ℕ} {ρ : ℝ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -4963,6 +5723,9 @@ theorem exists_indexedInitialTailSeed_of_eventualFinSingletonSmallPrefixCover
   exact indexedInitialTailSeed_of_next_next_cover_and_numeric_conditions
     hpos hFM hcover hHT ⟨hkeep, htailM.1, hmargin, htailM.2⟩
 
+/--
+@isnad1 id=eq.2h3v.s6.7c92506b46a2 from=translated src=- shape=0dbd0458 vocab=137c8112
+-/
 lemma budgetBase_next_next_eq_zero_of_le
     {a : ℕ → ℕ} {H M : ℕ}
     (hpos : 0 < a (M + 2))
@@ -4971,6 +5734,9 @@ lemma budgetBase_next_next_eq_zero_of_le
   dsimp [budgetBase]
   omega
 
+/--
+@isnad1 id=indexedp.7h3v.s8.bcb9651a4ddf from=translated src=- shape=60f8e1bf vocab=30e281fc
+-/
 theorem indexedPartialBudgetSeed_of_next_next_cover_and_zero_base_tail
     {a : ℕ → ℕ} {H M : ℕ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -5004,6 +5770,9 @@ structure IndexedPartialBudgetSeedParameters
     ∀ n : ℕ, start ≤ n →
       budgetBase a H M T + a n + a (n + 1) ≤ fullPrefixSum a n
 
+/--
+@isnad1 id=indexedp.1h5v.s4.7ca574697957 from=translated src=- shape=cbe96968 vocab=f22ff9e2
+-/
 theorem indexedPartialBudgetSeed_of_parameters
     {a : ℕ → ℕ} {H M T start : ℕ}
     (hparams : IndexedPartialBudgetSeedParameters a H M T start) :
@@ -5012,6 +5781,9 @@ theorem indexedPartialBudgetSeed_of_parameters
     hparams.cover hparams.nonempty hparams.start_after hparams.before_bound
     hparams.tail_surplus
 
+/--
+@isnad1 id=le.1h5v.s4.e583a4ff6b46 from=translated src=- shape=ef6bd10d vocab=7c5fa8fc
+-/
 lemma indexedPartialBudgetSeedParameters_upper_le_fullPrefixSum
     {a : ℕ → ℕ} {H M T start : ℕ}
     (hparams : IndexedPartialBudgetSeedParameters a H M T start) :
@@ -5020,6 +5792,9 @@ lemma indexedPartialBudgetSeedParameters_upper_le_fullPrefixSum
     hparams.cover T hparams.nonempty le_rfl
   exact prefixSubsetSum_le_fullPrefixSum hTmem
 
+/--
+@isnad1 id=le.1h5v.s4.e9765ca8ee2b from=translated src=- shape=11300c62 vocab=680c137c
+-/
 lemma indexedPartialBudgetSeedParameters_need_le_fullPrefixSum
     {a : ℕ → ℕ} {H M T start : ℕ}
     (hparams : IndexedPartialBudgetSeedParameters a H M T start) :
@@ -5027,6 +5802,9 @@ lemma indexedPartialBudgetSeedParameters_need_le_fullPrefixSum
   exact le_trans hparams.before_bound
     (indexedPartialBudgetSeedParameters_upper_le_fullPrefixSum hparams)
 
+/--
+@isnad1 id=ex.3h5v.s6.4bdc7afa7635 from=translated src=- shape=4c53c1dc vocab=d5979ebd
+-/
 theorem exists_indexedPartialBudgetData_of_seed
     {a : ℕ → ℕ} {H M T start : ℕ}
     (hmono : StrictMono a)
@@ -5114,6 +5892,9 @@ theorem exists_indexedPartialBudgetData_of_seed
       omega
     omega
 
+/--
+@isnad1 id=ex.3h6v.s6.9c793d7272a8 from=translated src=- shape=c928d183 vocab=7982a8db
+-/
 theorem exists_indexedPartialBudgetInitialTailData_of_seed
     {a : ℕ → ℕ} {F : Set ℕ} {H M T start : ℕ}
     (hmono : StrictMono a)
@@ -5202,6 +5983,9 @@ theorem exists_indexedPartialBudgetInitialTailData_of_seed
       omega
     omega
 
+/--
+@isnad1 id=indexedb.1h5v.s4.3ef77244f78a from=translated src=- shape=acd7dd0f vocab=50118357
+-/
 lemma indexedBudgetData_of_indexedPartialBudgetData
     {a b : ℕ → ℕ} {H M T : ℕ}
     (hdata : IndexedPartialBudgetData a b H M T) :
@@ -5242,6 +6026,9 @@ lemma indexedBudgetData_of_indexedPartialBudgetData
       have hbetween := hdata.budget_between k n hbk_le hKsucc hkeep
       omega
 
+/--
+@isnad1 id=indexedb.1h6v.s5.8cf9d0d60593 from=translated src=- shape=ee59a3f8 vocab=af3d3fef
+-/
 lemma indexedBudgetInitialTailData_of_indexedPartialBudgetInitialTailData
     {a b : ℕ → ℕ} {F : Set ℕ} {H M T : ℕ}
     (hdata : IndexedPartialBudgetInitialTailData a F b H M T) :
@@ -5283,6 +6070,9 @@ lemma indexedBudgetInitialTailData_of_indexedPartialBudgetInitialTailData
       have hbetween := hdata.budget_between k n hbk_le hKsucc hkeep
       omega
 
+/--
+@isnad1 id=brownbud.1h5v.s4.6216962dc1bb from=translated src=- shape=36689874 vocab=fc3ba3d4
+-/
 lemma brownBudgetData_of_indexedBudgetData
     {a b : ℕ → ℕ} {H M T : ℕ}
     (hdata : IndexedBudgetData a b H M T) :
@@ -5299,6 +6089,9 @@ lemma brownBudgetData_of_indexedBudgetData
   initial_nonempty := hdata.initial_nonempty
   budget := hdata.budget
 
+/--
+@isnad1 id=brownbud.1h6v.s5.6befddb3ac80 from=translated src=- shape=cbe5f5d6 vocab=e6d248ba
+-/
 lemma brownBudgetCoverData_of_indexedBudgetInitialTailData
     {a b : ℕ → ℕ} {F : Set ℕ} {H M T : ℕ}
     (hdata : IndexedBudgetInitialTailData a F b H M T) :
@@ -5327,6 +6120,9 @@ structure IndexedBlockControlData
     ∀ n : ℕ, M ≤ n → n + 1 ∉ blockDeletionSet b e →
       deletedPrefixSum a (blockDeletionSet b e) n ≤ a n
 
+/--
+@isnad1 id=le.5h5v.s6.0127b57e4397 from=translated src=- shape=6148f290 vocab=5e74b4e4
+-/
 lemma deletedPrefixSum_ge_add_of_two_mem
     {a : ℕ → ℕ} {D : Set ℕ} {n i j : ℕ}
     (hi_le : i ≤ n) (hj_le : j ≤ n) (hij : i ≠ j)
@@ -5356,7 +6152,9 @@ lemma deletedPrefixSum_ge_add_of_two_mem
 
 /-- The earlier block-control condition is too strong: at the end of the
 second deleted block the deleted prefix already contains a positive earlier
-deleted term plus the current block endpoint. -/
+deleted term plus the current block endpoint.
+@isnad1 id=not.1h7v.s5.55f1033cc3e7 from=translated src=- shape=7fa1cdcc vocab=07d1cfbb
+-/
 theorem not_indexedBlockControlData_of_pos
     {a b e : ℕ → ℕ} {H M T C : ℕ}
     (hpos : ∀ n : ℕ, 0 < a n) :
@@ -5388,6 +6186,9 @@ theorem not_indexedBlockControlData_of_pos
   have hb0pos : 0 < a (b 0) := hpos (b 0)
   omega
 
+/--
+@isnad1 id=brownbud.1h7v.s5.aef342ee4e22 from=translated src=- shape=abcd71a4 vocab=4ba27762
+-/
 lemma brownBudgetData_of_indexedBlockControlData
     {a b e : ℕ → ℕ} {H M T C : ℕ}
     (hdata : IndexedBlockControlData a b e H M T C) :
@@ -5420,6 +6221,9 @@ lemma brownBudgetData_of_indexedBlockControlData
       omega
     omega
 
+/--
+@isnad1 id=browntai.1h5v.s4.889b6e620192 from=translated src=- shape=5cc3e701 vocab=d561544e
+-/
 lemma brownTailData_of_brownBudgetData
     {a : ℕ → ℕ} {D : Set ℕ} {H M T : ℕ}
     (hdata : BrownBudgetData a D H M T) :
@@ -5443,6 +6247,9 @@ lemma brownTailData_of_brownBudgetData
     have hbudget := hdata.budget n hn hkeep
     omega
 
+/--
+@isnad1 id=browntai.1h5v.s4.acdc75353638 from=translated src=- shape=5cc3e701 vocab=00db673c
+-/
 lemma brownTailCoverData_of_brownBudgetCoverData
     {a : ℕ → ℕ} {D : Set ℕ} {H M T : ℕ}
     (hdata : BrownBudgetCoverData a D H M T) :
@@ -5468,6 +6275,9 @@ lemma brownTailCoverData_of_brownBudgetCoverData
       omega
     omega
 
+/--
+@isnad1 id=browndel.2h4v.s5.8ff017240f40 from=translated src=- shape=bbe87f68 vocab=27b1f841
+-/
 lemma brownDeletionData_of_brownStepData
     {a : ℕ → ℕ} {D : Set ℕ} {H M : ℕ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -5481,6 +6291,9 @@ lemma brownDeletionData_of_brownStepData
     intro t ht
     exact exists_keptPrefixSum_ge_of_infinite_compl hpos hdata.coinfinite t M
 
+/--
+@isnad1 id=and.2h5v.s5.58ec3f485f4d from=translated src=- shape=2b8939ee vocab=8156f418
+-/
 lemma coversInterval_keptPrefixSum_of_brown
     {a : ℕ → ℕ} {D : Set ℕ} {H M n : ℕ}
     (hdata : BrownDeletionData a D H M) (hn : M ≤ n) :
@@ -5508,6 +6321,9 @@ lemma coversInterval_keptPrefixSum_of_brown
         · rw [hsum]
           omega
 
+/--
+@isnad1 id=and.1h4v.s4.82e84fd83014 from=translated src=- shape=dbde9a74 vocab=ff7189d0
+-/
 theorem complete_of_brownDeletionData
     {a : ℕ → ℕ} {D : Set ℕ} {H M : ℕ}
     (hdata : BrownDeletionData a D H M) :
@@ -5517,6 +6333,9 @@ theorem complete_of_brownDeletionData
   obtain ⟨n, hnM, htn⟩ := hdata.unbounded t ht
   exact prefixSubsetSums_subset ((coversInterval_keptPrefixSum_of_brown hdata hnM).1 t ht htn)
 
+/--
+@isnad1 id=and.2h6v.s6.6677fd7787d7 from=translated src=- shape=bed0a163 vocab=574c0954
+-/
 lemma coversInterval_seedBound_of_brownSeed
     {a : ℕ → ℕ} {D : Set ℕ} {H M C n : ℕ}
     (hdata : BrownSeedData a D H M C) (hn : M ≤ n) :
@@ -5545,6 +6364,9 @@ lemma coversInterval_seedBound_of_brownSeed
         · rw [hsum]
           omega
 
+/--
+@isnad1 id=and.2h5v.s5.ec38c09f48d8 from=translated src=- shape=d84df77f vocab=3cd4f0da
+-/
 theorem complete_of_brownSeedData
     {a : ℕ → ℕ} {D : Set ℕ} {H M C : ℕ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -5557,6 +6379,9 @@ theorem complete_of_brownSeedData
   exact prefixSubsetSums_subset
     ((coversInterval_seedBound_of_brownSeed hdata hnM).1 t ht (by omega))
 
+/--
+@isnad1 id=and.3h6v.s6.3c8c50f8dfb7 from=translated src=- shape=89a9e6e1 vocab=2f26eb51
+-/
 lemma coversInterval_tailBound_of_brownTail
     {a : ℕ → ℕ} {D : Set ℕ} {H M T n : ℕ}
     (hcover0 : CoversInterval a Set.univ M H T)
@@ -5596,6 +6421,9 @@ lemma coversInterval_tailBound_of_brownTail
         · rw [hsum, htop]
           omega
 
+/--
+@isnad1 id=and.3h5v.s5.72abb52124e8 from=translated src=- shape=38e4edf2 vocab=029d1a4a
+-/
 theorem complete_of_brownTailData
     {a : ℕ → ℕ} {D : Set ℕ} {H M T : ℕ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -5610,6 +6438,9 @@ theorem complete_of_brownTailData
   exact prefixSubsetSums_subset
     ((coversInterval_tailBound_of_brownTail hcover0 hdata hnM).1 t ht (by omega))
 
+/--
+@isnad1 id=and.2h6v.s6.92f59276eda0 from=translated src=- shape=08dfef01 vocab=e597e1cf
+-/
 lemma coversInterval_tailBound_of_brownTailCover
     {a : ℕ → ℕ} {D : Set ℕ} {H M T n : ℕ}
     (hdata : BrownTailCoverData a D H M T) (hn : M ≤ n) :
@@ -5646,6 +6477,9 @@ lemma coversInterval_tailBound_of_brownTailCover
         · rw [hsum, htop]
           omega
 
+/--
+@isnad1 id=and.2h5v.s5.d454b24c6360 from=translated src=- shape=d84df77f vocab=1ff7f478
+-/
 theorem complete_of_brownTailCoverData
     {a : ℕ → ℕ} {D : Set ℕ} {H M T : ℕ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -5659,6 +6493,9 @@ theorem complete_of_brownTailCoverData
   exact prefixSubsetSums_subset
     ((coversInterval_tailBound_of_brownTailCover hdata hnM).1 t ht (by omega))
 
+/--
+@isnad1 id=and.2h5v.s5.8c8398690db0 from=translated src=- shape=d84df77f vocab=542018c0
+-/
 theorem complete_of_brownBudgetCoverData
     {a : ℕ → ℕ} {D : Set ℕ} {H M T : ℕ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -5667,6 +6504,9 @@ theorem complete_of_brownBudgetCoverData
   complete_of_brownTailCoverData hpos
     (brownTailCoverData_of_brownBudgetCoverData hdata)
 
+/--
+@isnad1 id=ex.6h6v.s7.0d4b64077802 from=translated src=- shape=86904d3f vocab=240c44ba
+-/
 theorem complete_of_periodicDeletion_budget
     {a : ℕ → ℕ} {H M T start period : ℕ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -5699,6 +6539,9 @@ theorem complete_of_periodicDeletion_budget
   exact ⟨periodicDeletionSet start period, complete_of_brownTailData hpos hcover
     (brownTailData_of_brownBudgetData hdata)⟩
 
+/--
+@isnad1 id=ex.6h6v.s7.fbd5c1c36c06 from=translated src=- shape=e7d53744 vocab=8d7cbba7
+-/
 theorem complete_of_periodicDeletion_step
     {a : ℕ → ℕ} {H M T start period : ℕ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -5731,6 +6574,9 @@ theorem complete_of_periodicDeletion_step
   exact ⟨periodicDeletionSet start period,
     complete_of_brownTailData hpos hcover hdata⟩
 
+/--
+@isnad1 id=ex.7h5v.s7.f91d7fca304a from=translated src=- shape=f13122f7 vocab=e6d98a10
+-/
 theorem complete_of_periodicDeletion_fixedBlockSurplus
     {a : ℕ → ℕ} {H M T m : ℕ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -5749,6 +6595,9 @@ theorem complete_of_periodicDeletion_fixedBlockSurplus
       (a := a) (H := H) (M := M) (T := T) (m := m)
       hmpos hnonempty hbase htwo hsurplus)
 
+/--
+@isnad1 id=ex.9h3v.s6.ab52dcac00fb from=translated src=- shape=f28da8c1 vocab=96909588
+-/
 theorem infCompleteDeletion_of_evtRatioLtGold_of_geometricBlockSurplus
     {a : ℕ → ℕ} {ρ : ℝ} {m : ℕ}
     (hmono : StrictMono a)
@@ -5806,6 +6655,9 @@ theorem infCompleteDeletion_of_evtRatioLtGold_of_geometricBlockSurplus
     (a := a) (H := H) (M := M) (T := T) (m := m)
     hpos hmpos hnonempty hcoverM hbase htwo hsurplusM
 
+/--
+@isnad1 id=and.2h6v.s5.7b0b913a70b3 from=translated src=- shape=8ea5be63 vocab=88761503
+-/
 theorem complete_of_indexedBudgetInitialTailData
     {a b : ℕ → ℕ} {F : Set ℕ} {H M T : ℕ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -5815,6 +6667,9 @@ theorem complete_of_indexedBudgetInitialTailData
   complete_of_brownBudgetCoverData hpos
     (brownBudgetCoverData_of_indexedBudgetInitialTailData hdata)
 
+/--
+@isnad1 id=and.2h6v.s5.528f02c0165d from=translated src=- shape=8ea5be63 vocab=854d688c
+-/
 theorem complete_of_indexedPartialBudgetInitialTailData
     {a b : ℕ → ℕ} {F : Set ℕ} {H M T : ℕ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -5824,6 +6679,9 @@ theorem complete_of_indexedPartialBudgetInitialTailData
   complete_of_indexedBudgetInitialTailData hpos
     (indexedBudgetInitialTailData_of_indexedPartialBudgetInitialTailData hdata)
 
+/--
+@isnad1 id=ex.4h6v.s6.d7efb8ef4fb4 from=translated src=- shape=d51eeb0e vocab=b4c9adc0
+-/
 theorem complete_of_indexedInitialTailSeed
     {a : ℕ → ℕ} {F : Set ℕ} {H M T start : ℕ}
     (hmono : StrictMono a)
@@ -5837,6 +6695,9 @@ theorem complete_of_indexedInitialTailSeed
   exact ⟨initialTailDeletionSet F b,
     complete_of_indexedPartialBudgetInitialTailData hpos hdata⟩
 
+/--
+@isnad1 id=not.5h4v.s7.c0ec801cf7f0 from=translated src=- shape=ee4439c9 vocab=699f2cf1
+-/
 lemma propagated_hole_step {a : ℕ → ℕ} {N m y : ℕ}
     (hmono : StrictMono a)
     (hgap : a m + a (m + 1) < a (m + 2))
@@ -5877,6 +6738,9 @@ lemma propagated_hole_step {a : ℕ → ℕ} {N m y : ℕ}
       finset_sum_le_Icc_sum_of_subset_Ici_of_forall_le hFI hm_le
     omega
 
+/--
+@isnad1 id=and.3h3v.s7.592d7ad27491 from=translated src=- shape=e4ae638c vocab=372c59c4
+-/
 lemma propagatedGap_invariants {a : ℕ → ℕ} {N : ℕ}
     (hmono : StrictMono a)
     (hgap : ∀ n : ℕ, N ≤ n → a n + a (n + 1) < a (n + 2))
@@ -5980,7 +6844,9 @@ construction.
 -/
 
 /-- If the ratio limit is larger than the golden ratio, then eventually there is
-a two-step gap. -/
+a two-step gap.
+@isnad1 id=eventual.3h2v.s6.d03781ba1059 from=translated src=- shape=f255dd72 vocab=ccf4f569
+-/
 theorem evt_two_step_gap_of_goldenRatio_lt_limit
     {a : ℕ → ℕ} {L : ℝ}
     (hpos : ∀ n : ℕ, 0 < a n)
@@ -5997,7 +6863,9 @@ theorem evt_two_step_gap_of_goldenRatio_lt_limit
   filter_upwards [hq, hq_succ] with n hn hn1
   exact two_step_gap_of_quotient_gt_goldenRatio hpos hn hn1
 
-/-- A tail satisfying the eventual two-step gap cannot be complete. -/
+/-- A tail satisfying the eventual two-step gap cannot be complete.
+@isnad1 id=ex.3h1v.s6.e76f063a29ee from=translated src=- shape=dbd600c2 vocab=c322080f
+-/
 theorem noncomplete_tail_of_evt_two_step_gap
     {a : ℕ → ℕ}
     (hmono : StrictMono a)
@@ -6031,6 +6899,9 @@ theorem noncomplete_tail_of_evt_two_step_gap
     exact (propagatedGap_invariants hmono hgapN hNgt H).1
   exact hynot (hH y hy_large)
 
+/--
+@isnad1 id=ex.7h2v.s7.799c8c9b92ea from=translated src=- shape=f4599f81 vocab=51ab571f
+-/
 theorem exists_indexedBudgetData_of_eventual_singleton_complete
     {a : ℕ → ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -6054,6 +6925,9 @@ theorem exists_indexedBudgetData_of_eventual_singleton_complete
   exact ⟨b, H, M, T, hcover,
     indexedBudgetData_of_indexedPartialBudgetData hpartial⟩
 
+/--
+@isnad1 id=ex.7h2v.s7.ee1270da067f from=translated src=- shape=c4eae38d vocab=82c9d3c9
+-/
 theorem exists_brownBudgetData_of_evtRatioLtGold_of_eventual_singleton_complete
     {a : ℕ → ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -6074,7 +6948,9 @@ theorem exists_brownBudgetData_of_evtRatioLtGold_of_eventual_singleton_complete
     brownBudgetData_of_indexedBudgetData hdata⟩
 
 /-- The Brown-style sparse deletion data gives the lower-bound deletion
-counterexample needed in the main proof. -/
+counterexample needed in the main proof.
+@isnad1 id=ex.7h2v.s6.007c2996ebd2 from=translated src=- shape=bba9bdd2 vocab=4422a04f
+-/
 theorem infCompleteDeletion_of_evtRatioLtGold
     {a : ℕ → ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -6091,6 +6967,9 @@ theorem infCompleteDeletion_of_evtRatioLtGold
     infCompleteDeletion_of_evtRatioLtGold_of_geometricBlockSurplus
       hmono hpos hgap hcomplete hmpos hρ1 hρφ hgeom hupper
 
+/--
+@isnad1 id=ex.7h2v.s7.cfc45f9f05d9 from=translated src=- shape=9dd32c6e vocab=a5f2da3a
+-/
 theorem infCompleteDeletion_of_evtRatioLtGold_of_eventual_singleton_complete
     {a : ℕ → ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -6109,6 +6988,9 @@ theorem infCompleteDeletion_of_evtRatioLtGold_of_eventual_singleton_complete
   exact ⟨D, complete_of_brownTailData hpos hcover0
     (brownTailData_of_brownBudgetData hdata)⟩
 
+/--
+@isnad1 id=ex.8h3v.s7.9a6066f610ab from=translated src=- shape=18fb3617 vocab=ecada9cd
+-/
 theorem infCompleteDeletion_of_evtRatioLtGold_of_eventual_finite_singleton_complete
     {a : ℕ → ℕ} {ρ : ℝ} {F : Set ℕ}
     (hmono : StrictMono a)
@@ -6131,6 +7013,9 @@ theorem infCompleteDeletion_of_evtRatioLtGold_of_eventual_finite_singleton_compl
       hpos hρ1 hρφ hupper)
     hseed
 
+/--
+@isnad1 id=ex.7h2v.s6.a8c45013aed1 from=translated src=- shape=0e83d083 vocab=8ec20500
+-/
 theorem infCompleteDeletion_of_evtRatioLtGold_of_uniformFinSingletonPrefixCover
     {a : ℕ → ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -6149,6 +7034,9 @@ theorem infCompleteDeletion_of_evtRatioLtGold_of_uniformFinSingletonPrefixCover
       hpos hρ1 hρφ hupper)
     hseed
 
+/--
+@isnad1 id=ex.6h2v.s6.26d98cf63fd7 from=translated src=- shape=22ce2f1a vocab=6ec4dabc
+-/
 theorem infCompleteDeletion_of_evtRatioLtGold_of_eventualFinSingletonSmallPrefixCover
     {a : ℕ → ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -6166,6 +7054,9 @@ theorem infCompleteDeletion_of_evtRatioLtGold_of_eventualFinSingletonSmallPrefix
       hpos hρ1 hρφ hupper)
     hseed
 
+/--
+@isnad1 id=ex.6h2v.s6.5d5668709cdd from=translated src=- shape=22ce2f1a vocab=c681d1f3
+-/
 theorem infCompleteDeletion_of_evtRatioLtGold_of_arbLargeFinSingletonSmallPrefixCover
     {a : ℕ → ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -6183,6 +7074,9 @@ theorem infCompleteDeletion_of_evtRatioLtGold_of_arbLargeFinSingletonSmallPrefix
       hpos hρ1 hρφ hupper)
     hseed
 
+/--
+@isnad1 id=ex.8h2v.s6.9899ffef671a from=translated src=- shape=9b87f43e vocab=53cc5231
+-/
 theorem infCompleteDeletion_of_evtRatioLtGold_of_arbLargeFinSingletonFirstSmallPrefixCover
     {a : ℕ → ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -6203,6 +7097,9 @@ theorem infCompleteDeletion_of_evtRatioLtGold_of_arbLargeFinSingletonFirstSmallP
       hmono hpos hρ1 hρφ hupper
       (arbLargeFinSingletonSmallPrefixCover_of_leastLarge hleast)
 
+/--
+@isnad1 id=ex.8h2v.s6.434d999ec1a0 from=translated src=- shape=9b87f43e vocab=96edefe9
+-/
 theorem infCompleteDeletion_of_evtRatioLtGold_of_arbLargeFinSingletonFirstPrefixCover
     {a : ℕ → ℕ} {ρ : ℝ}
     (hmono : StrictMono a)
@@ -6219,6 +7116,9 @@ theorem infCompleteDeletion_of_evtRatioLtGold_of_arbLargeFinSingletonFirstPrefix
     (arbLargeFinSingletonFirstSmallPrefixCover_of_firstPrefixCover
       hmono hcover)
 
+/--
+@isnad1 id=ex.8h3v.s7.eeeeb33957e3 from=translated src=- shape=93b29fd5 vocab=a9d882a0
+-/
 theorem infCompleteDeletion_of_limit_lt_goldenRatio_of_eventual_finite_singleton_complete
     {a : ℕ → ℕ} {L : ℝ} {F : Set ℕ}
     (hmono : StrictMono a)
@@ -6249,6 +7149,9 @@ theorem infCompleteDeletion_of_limit_lt_goldenRatio_of_eventual_finite_singleton
     infCompleteDeletion_of_evtRatioLtGold_of_eventual_finite_singleton_complete
       hmono hpos hratioGap hρ1 hρφ hupper hFfinite hfiniteSingleton
 
+/--
+@isnad1 id=ex.7h2v.s6.dec63c3aeee1 from=translated src=- shape=311d0ff0 vocab=146241bf
+-/
 theorem infCompleteDeletion_of_limit_lt_goldenRatio_of_uniformFinSingletonPrefixCover
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6275,6 +7178,9 @@ theorem infCompleteDeletion_of_limit_lt_goldenRatio_of_uniformFinSingletonPrefix
     infCompleteDeletion_of_evtRatioLtGold_of_uniformFinSingletonPrefixCover
       hmono hpos hratioGap hρ1 hρφ hupper hprefix
 
+/--
+@isnad1 id=ex.6h2v.s6.75559033c5d9 from=translated src=- shape=d3ac51ad vocab=b4c7e4e6
+-/
 theorem infCompleteDeletion_of_limit_lt_goldenRatio_of_eventualFinSingletonSmallPrefixCover
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6300,6 +7206,9 @@ theorem infCompleteDeletion_of_limit_lt_goldenRatio_of_eventualFinSingletonSmall
     infCompleteDeletion_of_evtRatioLtGold_of_eventualFinSingletonSmallPrefixCover
       hmono hpos hρ1 hρφ hupper hsmall
 
+/--
+@isnad1 id=ex.6h2v.s6.d31b60ffdcd0 from=translated src=- shape=d3ac51ad vocab=76ef1d11
+-/
 theorem infCompleteDeletion_of_limit_lt_goldenRatio_of_arbLargeFinSingletonSmallPrefixCover
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6325,6 +7234,9 @@ theorem infCompleteDeletion_of_limit_lt_goldenRatio_of_arbLargeFinSingletonSmall
     infCompleteDeletion_of_evtRatioLtGold_of_arbLargeFinSingletonSmallPrefixCover
       hmono hpos hρ1 hρφ hupper hsmall
 
+/--
+@isnad1 id=ex.8h2v.s6.0dc537754386 from=translated src=- shape=a505f762 vocab=49c2603b
+-/
 theorem infCompleteDeletion_of_limit_lt_goldenRatio_of_arbLargeFinSingletonFirstSmallPrefixCover
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6352,6 +7264,9 @@ theorem infCompleteDeletion_of_limit_lt_goldenRatio_of_arbLargeFinSingletonFirst
     infCompleteDeletion_of_evtRatioLtGold_of_arbLargeFinSingletonFirstSmallPrefixCover
       hmono hpos hgap hfinite hρ1 hρφ hupper hfirst
 
+/--
+@isnad1 id=ex.8h2v.s6.f40f5dbea313 from=translated src=- shape=a505f762 vocab=ec759a5e
+-/
 theorem infCompleteDeletion_of_limit_lt_goldenRatio_of_arbLargeFinSingletonFirstPrefixCover
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6382,7 +7297,9 @@ theorem infCompleteDeletion_of_limit_lt_goldenRatio_of_arbLargeFinSingletonFirst
 /-- If the ratio limit lies strictly between `1` and `φ`, then one can delete
 an infinite, sufficiently sparse set of indices and still remain complete.  The
 limit-to-eventual-bound part is proved here; the remaining sparse-deletion
-construction is isolated above. -/
+construction is isolated above.
+@isnad1 id=ex.7h2v.s6.499b324d0671 from=translated src=- shape=7015980f vocab=6eeaff0e
+-/
 theorem infCompleteDeletion_of_limit_lt_goldenRatio
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6412,6 +7329,9 @@ theorem infCompleteDeletion_of_limit_lt_goldenRatio
 ## Consequences of the inputs
 -/
 
+/--
+@isnad1 id=le.4h2v.s5.90dc9ca13fdf from=translated src=- shape=ec92e33a vocab=2079db04
+-/
 theorem limit_le_goldenRatio
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6427,6 +7347,9 @@ theorem limit_le_goldenRatio
   obtain ⟨N, hbad⟩ := noncomplete_tail_of_evt_two_step_gap hmono hpos hgap
   exact hbad (tail_complete_of_finiteDeletionComplete hfinite N)
 
+/--
+@isnad1 id=le.7h2v.s7.59b720d77de0 from=translated src=- shape=da8edb21 vocab=1b6d7c12
+-/
 theorem goldenRatio_le_limit_of_eventual_finite_singleton_complete
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6449,6 +7372,9 @@ theorem goldenRatio_le_limit_of_eventual_finite_singleton_complete
       hmono hpos hratioGap hlim hL1 hlt hFfinite hFS
   exact (hinfinite D hDinf) hDcomplete
 
+/--
+@isnad1 id=le.7h2v.s6.f8940439dae0 from=translated src=- shape=f2195ba9 vocab=e4820881
+-/
 theorem goldenRatio_le_limit_of_uniformFinSingletonPrefixCover
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6466,6 +7392,9 @@ theorem goldenRatio_le_limit_of_uniformFinSingletonPrefixCover
       hmono hpos hratioGap hlim hL1 hlt hprefix
   exact (hinfinite D hDinf) hDcomplete
 
+/--
+@isnad1 id=le.6h2v.s6.5986527fa84d from=translated src=- shape=5b35e0b6 vocab=15126905
+-/
 theorem goldenRatio_le_limit_of_eventualFinSingletonSmallPrefixCover
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6482,6 +7411,9 @@ theorem goldenRatio_le_limit_of_eventualFinSingletonSmallPrefixCover
       hmono hpos hlim hL1 hlt hsmall
   exact (hinfinite D hDinf) hDcomplete
 
+/--
+@isnad1 id=le.6h2v.s6.ccb2d11e1e8d from=translated src=- shape=5b35e0b6 vocab=5f94902c
+-/
 theorem goldenRatio_le_limit_of_arbLargeFinSingletonSmallPrefixCover
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6498,6 +7430,9 @@ theorem goldenRatio_le_limit_of_arbLargeFinSingletonSmallPrefixCover
       hmono hpos hlim hL1 hlt hsmall
   exact (hinfinite D hDinf) hDcomplete
 
+/--
+@isnad1 id=le.8h2v.s6.c3e449c869b3 from=translated src=- shape=19c845a7 vocab=7eb5828f
+-/
 theorem goldenRatio_le_limit_of_arbLargeFinSingletonFirstSmallPrefixCover
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6516,6 +7451,9 @@ theorem goldenRatio_le_limit_of_arbLargeFinSingletonFirstSmallPrefixCover
       hmono hpos hgap hfinite hlim hL1 hlt hfirst
   exact (hinfinite D hDinf) hDcomplete
 
+/--
+@isnad1 id=le.8h2v.s6.49e13ab0576b from=translated src=- shape=19c845a7 vocab=4d71a342
+-/
 theorem goldenRatio_le_limit_of_arbLargeFinSingletonFirstPrefixCover
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6534,6 +7472,9 @@ theorem goldenRatio_le_limit_of_arbLargeFinSingletonFirstPrefixCover
       hmono hpos hgap hfinite hlim hL1 hlt hcover
   exact (hinfinite D hDinf) hDcomplete
 
+/--
+@isnad1 id=le.7h2v.s6.f4168896c586 from=translated src=- shape=f2195ba9 vocab=cd7bf1a5
+-/
 theorem goldenRatio_le_limit_of_uniformFinSingletonComplete
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6547,6 +7488,9 @@ theorem goldenRatio_le_limit_of_uniformFinSingletonComplete
   goldenRatio_le_limit_of_eventual_finite_singleton_complete
     hmono hpos hratioGap hinfinite hlim hL1 huniform
 
+/--
+@isnad1 id=le.7h2v.s6.d83cfc020d85 from=translated src=- shape=1a844b79 vocab=16c89239
+-/
 theorem goldenRatio_le_limit
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6566,7 +7510,9 @@ theorem goldenRatio_le_limit
   exact (hinfinite D hDinf) hDcomplete
 
 /-- Conditional value theorem for the interpretation where the ratio limit is
-assumed to exist and to be greater than one. -/
+assumed to exist and to be greater than one.
+@isnad1 id=eq.7h2v.s6.feedcdd44f57 from=translated src=- shape=b2ae1d51 vocab=aca673e3
+-/
 theorem ratio_limit_eq_goldenRatio
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6584,7 +7530,9 @@ theorem ratio_limit_eq_goldenRatio
 /-- Legacy conditional value theorem under the explicit uniform finite-base
 singleton completeness condition.  The main theorem no longer needs this route,
 but it remains as a named sufficient condition for the older singleton-threshold
-approach. -/
+approach.
+@isnad1 id=eq.8h2v.s6.9c939c499c90 from=translated src=- shape=1654128f vocab=40febae1
+-/
 theorem ratio_limit_eq_goldenRatio_of_uniformFinSingletonComplete
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6602,7 +7550,9 @@ theorem ratio_limit_eq_goldenRatio_of_uniformFinSingletonComplete
       hmono hpos hratioGap hinfinite hlim hL1 huniform)
 
 /-- A fully proved variant of the value theorem under the weaker uniform prefix
-cover condition used by the finite-initial-tail seed. -/
+cover condition used by the finite-initial-tail seed.
+@isnad1 id=eq.8h2v.s6.4c5c0ac0b420 from=translated src=- shape=1654128f vocab=cc3f5d00
+-/
 theorem ratio_limit_eq_goldenRatio_of_uniformFinSingletonPrefixCover
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6621,7 +7571,9 @@ theorem ratio_limit_eq_goldenRatio_of_uniformFinSingletonPrefixCover
 
 /-- Value theorem under the small, `M`-dependent prefix-cover window condition.
 This is weaker than the uniform prefix-cover condition: the threshold can vary
-with `M`, provided it is small enough for that `M`. -/
+with `M`, provided it is small enough for that `M`.
+@isnad1 id=eq.7h2v.s6.fb868affd809 from=translated src=- shape=b2ae1d51 vocab=706f6a22
+-/
 theorem ratio_limit_eq_goldenRatio_of_eventualFinSingletonSmallPrefixCover
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6638,7 +7590,9 @@ theorem ratio_limit_eq_goldenRatio_of_eventualFinSingletonSmallPrefixCover
       hmono hpos hinfinite hlim hL1 hsmall)
 
 /-- Value theorem under the still weaker condition that suitable small
-finite-singleton windows occur arbitrarily far out. -/
+finite-singleton windows occur arbitrarily far out.
+@isnad1 id=eq.7h2v.s6.1ac74499a642 from=translated src=- shape=b2ae1d51 vocab=1cef0e98
+-/
 theorem ratio_limit_eq_goldenRatio_of_arbLargeFinSingletonSmallPrefixCover
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6655,7 +7609,9 @@ theorem ratio_limit_eq_goldenRatio_of_arbLargeFinSingletonSmallPrefixCover
       hmono hpos hinfinite hlim hL1 hsmall)
 
 /-- Value theorem under the current weakest finite-window condition: arbitrarily
-far out, only the first seed inequality is assumed. -/
+far out, only the first seed inequality is assumed.
+@isnad1 id=eq.8h2v.s6.ee212fc97f7c from=translated src=- shape=1654128f vocab=679b874b
+-/
 theorem ratio_limit_eq_goldenRatio_of_arbLargeFinSingletonFirstSmallPrefixCover
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6673,7 +7629,9 @@ theorem ratio_limit_eq_goldenRatio_of_arbLargeFinSingletonFirstSmallPrefixCover
       hmono hpos hgap hfinite hinfinite hlim hL1 hfirst)
 
 /-- Value theorem under the equivalent direct-cover form of the current weakest
-finite-window condition. -/
+finite-window condition.
+@isnad1 id=eq.8h2v.s6.42da14647b12 from=translated src=- shape=1654128f vocab=4b893c47
+-/
 theorem ratio_limit_eq_goldenRatio_of_arbLargeFinSingletonFirstPrefixCover
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6690,7 +7648,9 @@ theorem ratio_limit_eq_goldenRatio_of_arbLargeFinSingletonFirstPrefixCover
     (goldenRatio_le_limit_of_arbLargeFinSingletonFirstPrefixCover
       hmono hpos hgap hfinite hinfinite hlim hL1 hcover)
 
-/-- Same theorem phrased as convergence to the golden ratio. -/
+/-- Same theorem phrased as convergence to the golden ratio.
+@isnad1 id=tendsto.7h2v.s6.38594635bebd from=translated src=- shape=a2c22e0c vocab=aca673e3
+-/
 theorem ratio_tendsto_goldenRatio_of_limit_exists
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6707,7 +7667,9 @@ theorem ratio_tendsto_goldenRatio_of_limit_exists
   simpa [hEq] using hlim
 
 /-- Convergence form of
-`ratio_limit_eq_goldenRatio_of_uniformFinSingletonComplete`. -/
+`ratio_limit_eq_goldenRatio_of_uniformFinSingletonComplete`.
+@isnad1 id=tendsto.8h2v.s6.204ff2f6f20c from=translated src=- shape=39a80215 vocab=40febae1
+-/
 theorem ratio_tendsto_goldenRatio_of_limit_exists_of_uniformFinSingletonComplete
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6725,7 +7687,9 @@ theorem ratio_tendsto_goldenRatio_of_limit_exists_of_uniformFinSingletonComplete
   simpa [hEq] using hlim
 
 /-- Convergence form of
-`ratio_limit_eq_goldenRatio_of_uniformFinSingletonPrefixCover`. -/
+`ratio_limit_eq_goldenRatio_of_uniformFinSingletonPrefixCover`.
+@isnad1 id=tendsto.8h2v.s6.8a8651cd5d12 from=translated src=- shape=39a80215 vocab=cc3f5d00
+-/
 theorem ratio_tendsto_goldenRatio_of_limit_exists_of_uniformFinSingletonPrefixCover
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6743,7 +7707,9 @@ theorem ratio_tendsto_goldenRatio_of_limit_exists_of_uniformFinSingletonPrefixCo
   simpa [hEq] using hlim
 
 /-- Convergence form of
-`ratio_limit_eq_goldenRatio_of_eventualFinSingletonSmallPrefixCover`. -/
+`ratio_limit_eq_goldenRatio_of_eventualFinSingletonSmallPrefixCover`.
+@isnad1 id=tendsto.7h2v.s6.d3354e601f60 from=translated src=- shape=a2c22e0c vocab=706f6a22
+-/
 theorem ratio_tendsto_goldenRatio_of_limit_exists_of_eventualFinSingletonSmallPrefixCover
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6760,7 +7726,9 @@ theorem ratio_tendsto_goldenRatio_of_limit_exists_of_eventualFinSingletonSmallPr
   simpa [hEq] using hlim
 
 /-- Convergence form of
-`ratio_limit_eq_goldenRatio_of_arbLargeFinSingletonSmallPrefixCover`. -/
+`ratio_limit_eq_goldenRatio_of_arbLargeFinSingletonSmallPrefixCover`.
+@isnad1 id=tendsto.7h2v.s6.29a5a2a8e964 from=translated src=- shape=a2c22e0c vocab=1cef0e98
+-/
 theorem ratio_tendsto_goldenRatio_of_limit_exists_of_arbLargeFinSingletonSmallPrefixCover
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6777,7 +7745,9 @@ theorem ratio_tendsto_goldenRatio_of_limit_exists_of_arbLargeFinSingletonSmallPr
   simpa [hEq] using hlim
 
 /-- Convergence form of
-`ratio_limit_eq_goldenRatio_of_arbLargeFinSingletonFirstSmallPrefixCover`. -/
+`ratio_limit_eq_goldenRatio_of_arbLargeFinSingletonFirstSmallPrefixCover`.
+@isnad1 id=tendsto.8h2v.s6.5fd7b42fdd77 from=translated src=- shape=39a80215 vocab=679b874b
+-/
 theorem ratio_tendsto_goldenRatio_of_limit_exists_of_arbLargeFinSingletonFirstSmallPrefixCover
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6795,7 +7765,9 @@ theorem ratio_tendsto_goldenRatio_of_limit_exists_of_arbLargeFinSingletonFirstSm
   simpa [hEq] using hlim
 
 /-- Convergence form of
-`ratio_limit_eq_goldenRatio_of_arbLargeFinSingletonFirstPrefixCover`. -/
+`ratio_limit_eq_goldenRatio_of_arbLargeFinSingletonFirstPrefixCover`.
+@isnad1 id=tendsto.8h2v.s6.4dcd19b0eb46 from=translated src=- shape=39a80215 vocab=4b893c47
+-/
 theorem ratio_tendsto_goldenRatio_of_limit_exists_of_arbLargeFinSingletonFirstPrefixCover
     {a : ℕ → ℕ} {L : ℝ}
     (hmono : StrictMono a)
@@ -6812,7 +7784,9 @@ theorem ratio_tendsto_goldenRatio_of_limit_exists_of_arbLargeFinSingletonFirstPr
       hmono hpos hgap hfinite hinfinite hcover hlim hL1
   simpa [hEq] using hlim
 
-/-- Compact formulation: if a ratio limit `L > 1` exists, then it is `φ`. -/
+/-- Compact formulation: if a ratio limit `L > 1` exists, then it is `φ`.
+@isnad1 id=tendsto.6h1v.s6.93ccfd5c2a1c from=translated src=- shape=784408a6 vocab=aca673e3
+-/
 theorem intended_problem_if_limit_exists
     {a : ℕ → ℕ}
     (hmono : StrictMono a)
@@ -6827,7 +7801,9 @@ theorem intended_problem_if_limit_exists
     hmono hpos hratioGap hfinite hinfinite hlim hL1
 
 /-- Compact formulation of the axiom-free conditional route using the explicit
-uniform finite-base singleton completeness hypothesis. -/
+uniform finite-base singleton completeness hypothesis.
+@isnad1 id=tendsto.7h1v.s6.10ec819a5cec from=translated src=- shape=19a830a5 vocab=40febae1
+-/
 theorem intended_problem_if_limit_exists_of_uniformFinSingletonComplete
     {a : ℕ → ℕ}
     (hmono : StrictMono a)
@@ -6843,7 +7819,9 @@ theorem intended_problem_if_limit_exists_of_uniformFinSingletonComplete
     hmono hpos hratioGap hfinite hinfinite huniform hlim hL1
 
 /-- Compact formulation of the axiom-free conditional route using only the
-weaker uniform finite-base prefix-cover hypothesis. -/
+weaker uniform finite-base prefix-cover hypothesis.
+@isnad1 id=tendsto.7h1v.s6.e09ee8007b85 from=translated src=- shape=19a830a5 vocab=cc3f5d00
+-/
 theorem intended_problem_if_limit_exists_of_uniformFinSingletonPrefixCover
     {a : ℕ → ℕ}
     (hmono : StrictMono a)
@@ -6859,7 +7837,9 @@ theorem intended_problem_if_limit_exists_of_uniformFinSingletonPrefixCover
     hmono hpos hratioGap hfinite hinfinite hprefix hlim hL1
 
 /-- Compact formulation of the axiom-free conditional route using the
-`M`-dependent small prefix-cover window condition. -/
+`M`-dependent small prefix-cover window condition.
+@isnad1 id=tendsto.6h1v.s6.27ccd0500615 from=translated src=- shape=784408a6 vocab=706f6a22
+-/
 theorem intended_problem_if_limit_exists_of_eventualFinSingletonSmallPrefixCover
     {a : ℕ → ℕ}
     (hmono : StrictMono a)
@@ -6874,7 +7854,9 @@ theorem intended_problem_if_limit_exists_of_eventualFinSingletonSmallPrefixCover
     hmono hpos hfinite hinfinite hsmall hlim hL1
 
 /-- Compact formulation using only arbitrarily late good finite-singleton
-prefix-cover windows. -/
+prefix-cover windows.
+@isnad1 id=tendsto.6h1v.s6.bf96e12e4bd2 from=translated src=- shape=784408a6 vocab=1cef0e98
+-/
 theorem intended_problem_if_limit_exists_of_arbLargeFinSingletonSmallPrefixCover
     {a : ℕ → ℕ}
     (hmono : StrictMono a)
@@ -6888,7 +7870,9 @@ theorem intended_problem_if_limit_exists_of_arbLargeFinSingletonSmallPrefixCover
   exact ratio_tendsto_goldenRatio_of_limit_exists_of_arbLargeFinSingletonSmallPrefixCover
     hmono hpos hfinite hinfinite hsmall hlim hL1
 
-/-- Compact formulation using only arbitrarily late first seed inequalities. -/
+/-- Compact formulation using only arbitrarily late first seed inequalities.
+@isnad1 id=tendsto.7h1v.s6.f56a88835710 from=translated src=- shape=19a830a5 vocab=679b874b
+-/
 theorem intended_problem_if_limit_exists_of_arbLargeFinSingletonFirstSmallPrefixCover
     {a : ℕ → ℕ}
     (hmono : StrictMono a)
@@ -6904,7 +7888,9 @@ theorem intended_problem_if_limit_exists_of_arbLargeFinSingletonFirstSmallPrefix
     hmono hpos hgap hfinite hinfinite hfirst hlim hL1
 
 /-- Compact formulation using the direct finite-prefix cover of the first seed
-window `[nextSeedMargin a M, a (M + 2) - 1]`. -/
+window `[nextSeedMargin a M, a (M + 2) - 1]`.
+@isnad1 id=tendsto.7h1v.s6.dce73c260241 from=translated src=- shape=19a830a5 vocab=4b893c47
+-/
 theorem intended_problem_if_limit_exists_of_arbLargeFinSingletonFirstPrefixCover
     {a : ℕ → ℕ}
     (hmono : StrictMono a)
@@ -6922,7 +7908,9 @@ theorem intended_problem_if_limit_exists_of_arbLargeFinSingletonFirstPrefixCover
 /-- Compact formulation using the local first-window shift-closure condition.
 Finite-deletion completeness supplies the prefix cover through `M + 1`; the
 shift-closure condition is exactly what lowers that cover to the prefix through
-`M`. -/
+`M`.
+@isnad1 id=tendsto.7h1v.s6.d874378a4d52 from=translated src=- shape=19a830a5 vocab=725c015f
+-/
 theorem intended_problem_if_limit_exists_of_arbLargeFinSingletonFirstWindowShiftClosed
     {a : ℕ → ℕ}
     (hmono : StrictMono a)
@@ -6941,7 +7929,9 @@ theorem intended_problem_if_limit_exists_of_arbLargeFinSingletonFirstWindowShift
 
 /-- Compact formulation using the moving singleton-deletion threshold condition:
 arbitrarily far out, after deleting `F ∪ {M + 1}`, completeness starts no later
-than `a (M + 1)`. -/
+than `a (M + 1)`.
+@isnad1 id=tendsto.7h1v.s6.3190826bbf6d from=translated src=- shape=19a830a5 vocab=71c75b59
+-/
 theorem intended_problem_if_limit_exists_of_arbLargeFinSingletonCompleteBelowPrev
     {a : ℕ → ℕ}
     (hmono : StrictMono a)
@@ -6959,7 +7949,9 @@ theorem intended_problem_if_limit_exists_of_arbLargeFinSingletonCompleteBelowPre
     hexists
 
 /-- Compact formulation using the least-threshold phrasing of the small
-finite-window condition. -/
+finite-window condition.
+@isnad1 id=tendsto.6h1v.s6.6ef7bddf41fa from=translated src=- shape=784408a6 vocab=a9234ea5
+-/
 theorem intended_problem_if_limit_exists_of_eventualFinSingletonLeastSmallPrefixCover
     {a : ℕ → ℕ}
     (hmono : StrictMono a)
@@ -6974,7 +7966,9 @@ theorem intended_problem_if_limit_exists_of_eventualFinSingletonLeastSmallPrefix
     (eventualFinSingletonSmallPrefixCover_of_leastSmall hleast) hexists
 
 /-- Compact formulation using the least-threshold phrasing of the arbitrarily
-late small finite-window condition. -/
+late small finite-window condition.
+@isnad1 id=tendsto.6h1v.s6.d5a6ad41d675 from=translated src=- shape=784408a6 vocab=620f0260
+-/
 theorem intended_problem_if_limit_exists_of_arbLargeFinSingletonLeastSmallPrefixCover
     {a : ℕ → ℕ}
     (hmono : StrictMono a)
@@ -6988,7 +7982,9 @@ theorem intended_problem_if_limit_exists_of_arbLargeFinSingletonLeastSmallPrefix
     hmono hpos hfinite hinfinite
     (arbLargeFinSingletonSmallPrefixCover_of_leastLarge hleast) hexists
 
-/-- Short public-facing name for the main theorem. -/
+/-- Short public-facing name for the main theorem.
+@isnad1 id=tendsto.6h1v.s6.93ccfd5c2a1c from=translated src=- shape=784408a6 vocab=aca673e3
+-/
 theorem main
     {a : ℕ → ℕ}
     (hmono : StrictMono a)
@@ -7005,7 +8001,9 @@ theorem main
 
 This is definitionally the same theorem as `main`, but the three compact
 hypotheses `HasUniformRatioGap`, `FiniteDeletionComplete`, and
-`InfiniteDeletionIncomplete` are expanded in the theorem statement. -/
+`InfiniteDeletionIncomplete` are expanded in the theorem statement.
+@isnad1 id=tendsto.6h1v.s7.aff0f65beab8 from=translated src=- shape=b853e6dd vocab=1725a3f7
+-/
 theorem main_expanded
     {a : ℕ → ℕ}
     (hmono : StrictMono a)
@@ -7027,7 +8025,9 @@ theorem main_expanded
 
 /-- Public-facing theorem using value deletion rather than index deletion.
 Finite and infinite deletion hypotheses are stated for sets `B : Set ℕ` of
-sequence values. -/
+sequence values.
+@isnad1 id=tendsto.6h1v.s6.7493a0d3c3d4 from=translated src=- shape=784408a6 vocab=41f47f82
+-/
 theorem main_valueDeletion
     {a : ℕ → ℕ}
     (hmono : StrictMono a)
@@ -7042,7 +8042,9 @@ theorem main_valueDeletion
     (infiniteDeletionIncomplete_of_valueInfiniteDeletionIncomplete hmono hinfinite)
     hexists
 
-/-- Expanded value-deletion statement for human inspection. -/
+/-- Expanded value-deletion statement for human inspection.
+@isnad1 id=tendsto.6h1v.s7.b3a1e97cc34c from=translated src=- shape=02ebeb24 vocab=79f744da
+-/
 theorem main_valueDeletion_expanded
     {a : ℕ → ℕ}
     (hmono : StrictMono a)

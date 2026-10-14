@@ -65,6 +65,9 @@ open Domain.Neighborhood.Exercise414
 def leOp (u : Set (ℕ × ℕ)) : Set (ℕ × ℕ) :=
   {p | p.1 = p.2} ∪ {p | ∃ m, (p.1, m) ∈ u ∧ p.2 = m + 1}
 
+/--
+@isnad1 id=monotone.0h0v.s6.7fd10b12e33d from=translated src=- shape=dd33fe85 vocab=04fc2d3a
+-/
 theorem leOp_monotone : Monotone leOp := by
   intro u v huv p hp
   rcases hp with hp | ⟨m, hm, hpm⟩
@@ -75,7 +78,9 @@ theorem leOp_monotone : Monotone leOp := by
 def leRel : Set (ℕ × ℕ) := {p | p.1 ≤ p.2}
 
 /-- **Exercise 4.21 (Scott 1981, PRG-19).** `≤` solves Scott's fixed-point
-equation. -/
+equation.
+@isnad1 id=eq.0h0v.s3.e2d544fc4eea from=translated src=- shape=49465a69 vocab=64b8da01
+-/
 theorem leRel_isFixed : leOp leRel = leRel := by
   apply Set.Subset.antisymm
   · rintro ⟨n, m⟩ (h | ⟨k, hk, rfl⟩)
@@ -92,7 +97,9 @@ theorem leRel_isFixed : leOp leRel = leRel := by
 pointwise.
 By induction on the second coordinate `m`; the base case `m = 0` uses that the
 successor clause
-cannot produce a `0` on the right. -/
+cannot produce a `0` on the right.
+@isnad1 id=iff.1h3v.s5.937c0cfcd170 from=translated src=- shape=c6fbf1c8 vocab=08b345d0
+-/
 theorem mem_fixedPoint_iff {u : Set (ℕ × ℕ)} (hu : leOp u = u) (n m : ℕ) :
     (n, m) ∈ u ↔ n ≤ m := by
   induction m with
@@ -119,7 +126,9 @@ theorem mem_fixedPoint_iff {u : Set (ℕ × ℕ)} (hu : leOp u = u) (n m : ℕ) 
 
 /-- **Exercise 4.21 (Scott 1981, PRG-19).** The order relation `≤` is the
 **unique** fixed point of
-Scott's equation: any `u` with `leOp u = u` equals `leRel`. -/
+Scott's equation: any `u` with `leOp u = u` equals `leRel`.
+@isnad1 id=eq.1h1v.s4.3139a1989710 from=translated src=- shape=4517085f vocab=64b8da01
+-/
 theorem leOp_unique {u : Set (ℕ × ℕ)} (hu : leOp u = u) : u = leRel := by
   ext ⟨n, m⟩
   rw [mem_fixedPoint_iff hu]
@@ -134,11 +143,15 @@ def succImage (x : Set ℕ) : Set ℕ := {k | ∃ j ∈ x, k = j + 1}
 4.13(3). -/
 def upSet (m : ℕ) : Set ℕ := {k | m ≤ k}
 
-/-- `[0] = ℕ`: the recursion base of 4.13(3). -/
+/-- `[0] = ℕ`: the recursion base of 4.13(3).
+@isnad1 id=eq.0h0v.s3.7dcd8be970c6 from=translated src=- shape=99b6ce5a vocab=47ed01cb
+-/
 theorem upSet_zero : upSet 0 = Set.univ := by
   ext k; simp [upSet]
 
-/-- `[m⁺] = [m]⁺`: the recursion step of 4.13(3). -/
+/-- `[m⁺] = [m]⁺`: the recursion step of 4.13(3).
+@isnad1 id=eq.0h1v.s4.3fd878fd2701 from=translated src=- shape=9aec410c vocab=1e0ae4da
+-/
 theorem upSet_succ (m : ℕ) : upSet (m + 1) = succImage (upSet m) := by
   ext k
   simp only [upSet, succImage, Set.mem_ofPred_eq]
@@ -149,7 +162,9 @@ theorem upSet_succ (m : ℕ) : upSet (m + 1) = succImage (upSet m) := by
 
 /-- **Exercise 4.21 / 4.13(3) (Scott 1981, PRG-19).** `[·] = upSet` is the
 *unique* function with
-`[0] = ℕ` and `[m⁺] = [m]⁺`. -/
+`[0] = ℕ` and `[m⁺] = [m]⁺`.
+@isnad1 id=eq.2h1v.s5.538269e03205 from=translated src=- shape=36b30af8 vocab=443254a1
+-/
 theorem upSet_unique (s : ℕ → Set ℕ) (h0 : s 0 = Set.univ)
     (hsucc : ∀ m, s (m + 1) = succImage (s m)) : s = upSet := by
   funext m
@@ -173,13 +188,19 @@ def addIso (m : ℕ) : ℕ ≃ {k : ℕ // k ∈ upSet m} where
     have : m ≤ k := hk
     simp_all
 
-/-- The isomorphism is given by addition: `addIso m n = m + n`. -/
+/-- The isomorphism is given by addition: `addIso m n = m + n`.
+@isnad1 id=eq.0h2v.s6.79a41f8dbaf3 from=translated src=- shape=cd022639 vocab=ea4a8753
+-/
 theorem addIso_apply (m n : ℕ) : (addIso m n : ℕ) = m + n := rfl
 
-/-- The isomorphism sends `0` to the distinguished element `m` of `[m]`. -/
+/-- The isomorphism sends `0` to the distinguished element `m` of `[m]`.
+@isnad1 id=eq.0h1v.s6.af362f04315a from=translated src=- shape=1653ca1a vocab=c1466ef3
+-/
 theorem addIso_zero (m : ℕ) : (addIso m 0 : ℕ) = m := by simp [addIso]
 
-/-- The isomorphism preserves the successor: `addIso m (n⁺) = (addIso m n)⁺`. -/
+/-- The isomorphism preserves the successor: `addIso m (n⁺) = (addIso m n)⁺`.
+@isnad1 id=eq.0h2v.s7.18001faba0d5 from=translated src=- shape=e7c31a94 vocab=ea4a8753
+-/
 theorem addIso_succ (m n : ℕ) : (addIso m (n + 1) : ℕ) = (addIso m n : ℕ) + 1 := by
   simp only [addIso_apply]; omega
 
@@ -189,6 +210,9 @@ theorem addIso_succ (m n : ℕ) : (addIso m (n + 1) : ℕ) = (addIso m n : ℕ) 
 `n`). -/
 def mulOp (n : ℕ) (u : Set ℕ) : Set ℕ := {0} ∪ {k | ∃ m ∈ u, k = n + m}
 
+/--
+@isnad1 id=monotone.0h1v.s5.175045b239ee from=translated src=- shape=5fb1daf8 vocab=284873da
+-/
 theorem mulOp_monotone (n : ℕ) : Monotone (mulOp n) := by
   rintro u v huv k (hk | ⟨m, hm, rfl⟩)
   · exact Or.inl hk
@@ -196,7 +220,9 @@ theorem mulOp_monotone (n : ℕ) : Monotone (mulOp n) := by
 
 /-- **Exercise 4.21 (Scott 1981, PRG-19).** The least solution of the
 multiplication equation
-`n·ℕ = {0} ∪ {n + m ∣ m ∈ n·ℕ}` is exactly the set of **multiples of `n`**. -/
+`n·ℕ = {0} ∪ {n + m ∣ m ∈ n·ℕ}` is exactly the set of **multiples of `n`**.
+@isnad1 id=eq.0h1v.s4.a5e43212ed42 from=translated src=- shape=829eceb2 vocab=06430d29
+-/
 theorem mulOp_lfp_eq_multiples (n : ℕ) :
     lfpSet (mulOp n) = {k | ∃ i, k = n * i} := by
   apply Set.Subset.antisymm

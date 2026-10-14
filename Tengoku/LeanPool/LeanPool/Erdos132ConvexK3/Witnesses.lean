@@ -124,12 +124,16 @@ private def terminalWordGeometry :
   ts := by norm_num [terminalWordPoints, sqDist]
 }
 
-/-- The terminal pentagon inhabits the row-1 `B:3→2` realization. -/
+/-- The terminal pentagon inhabits the row-1 `B:3→2` realization.
+@isnad1 id=wordreal.0h0v.s5.85900470e8ba from=translated src=- shape=d34eb3a9 vocab=b9eaa16d
+-/
 theorem row1_B32_realization_nonempty :
     WordRealization .row1_B32 terminalWordPoints 13140625 8935625 8790625 :=
   ⟨terminalWordGeometry⟩
 
-/-- The terminal pentagon also inhabits the reflected row-4 `D:3→2` tag. -/
+/-- The terminal pentagon also inhabits the reflected row-4 `D:3→2` tag.
+@isnad1 id=wordreal.0h0v.s5.aa7cd7c7a399 from=translated src=- shape=d34eb3a9 vocab=a414fa43
+-/
 theorem row4_D32_realization_nonempty :
     WordRealization .row4_D32 terminalWordPoints 13140625 8935625 8790625 :=
   ⟨terminalWordGeometry⟩
@@ -232,22 +236,30 @@ private def onePenultimateGeometry :
   tp := by norm_num [sharedTipPoints, sqDist]
 }
 
-/-- The shared-tip hexagon inhabits the row-1 `B:3→1` realization. -/
+/-- The shared-tip hexagon inhabits the row-1 `B:3→1` realization.
+@isnad1 id=wordreal.0h0v.s5.f0c47df6b234 from=translated src=- shape=d34eb3a9 vocab=213a3090
+-/
 theorem row1_B31_realization_nonempty :
     WordRealization .row1_B31 sharedTipPoints 2112500 1748500 1732250 :=
   ⟨onePenultimateGeometry⟩
 
-/-- The shared-tip hexagon inhabits the row-2 `BA` realization. -/
+/-- The shared-tip hexagon inhabits the row-2 `BA` realization.
+@isnad1 id=wordreal.0h0v.s5.e11d366d7ab6 from=translated src=- shape=d34eb3a9 vocab=2fe352d0
+-/
 theorem row2_BA_realization_nonempty :
     WordRealization .row2_BA sharedTipPoints 2112500 1748500 1732250 :=
   ⟨onePenultimateGeometry⟩
 
-/-- The shared-tip hexagon inhabits the row-4 `D:3→1` realization. -/
+/-- The shared-tip hexagon inhabits the row-4 `D:3→1` realization.
+@isnad1 id=wordreal.0h0v.s5.072c18e6622f from=translated src=- shape=d34eb3a9 vocab=95f483f0
+-/
 theorem row4_D31_realization_nonempty :
     WordRealization .row4_D31 sharedTipPoints 2112500 1748500 1732250 :=
   ⟨onePenultimateGeometry⟩
 
-/-- The shared-tip hexagon inhabits the row-4 `DC` realization. -/
+/-- The shared-tip hexagon inhabits the row-4 `DC` realization.
+@isnad1 id=wordreal.0h0v.s5.b89b4fa29915 from=translated src=- shape=d34eb3a9 vocab=851bf47e
+-/
 theorem row4_DC_realization_nonempty :
     WordRealization .row4_DC sharedTipPoints 2112500 1748500 1732250 :=
   ⟨onePenultimateGeometry⟩
@@ -339,32 +351,44 @@ private def fullTwoRungGeometry :
     all_goals norm_num [sharedTipPoints, StrictConvexQuad, turn]
 }
 
-/-- The two-rung hexagon inhabits the row-1 `B:2→1` realization. -/
+/-- The two-rung hexagon inhabits the row-1 `B:2→1` realization.
+@isnad1 id=wordreal.0h0v.s5.5373444b6deb from=translated src=- shape=d34eb3a9 vocab=17abbb64
+-/
 theorem row1_B21_realization_nonempty :
     WordRealization .row1_B21 sharedTipPoints 2112500 1748500 1732250 :=
   ⟨fullTwoRungGeometry⟩
 
-/-- The two-rung hexagon inhabits the row-2 `AB` realization. -/
+/-- The two-rung hexagon inhabits the row-2 `AB` realization.
+@isnad1 id=wordreal.0h0v.s5.9e8c53e2fc13 from=translated src=- shape=d34eb3a9 vocab=6f0e7d20
+-/
 theorem row2_AB_realization_nonempty :
     WordRealization .row2_AB sharedTipPoints 2112500 1748500 1732250 :=
   ⟨fullTwoRungGeometry⟩
 
-/-- The two-rung hexagon inhabits the row-3 `BB×DD` realization. -/
+/-- The two-rung hexagon inhabits the row-3 `BB×DD` realization.
+@isnad1 id=wordreal.0h0v.s5.24ac6cfe8a54 from=translated src=- shape=d34eb3a9 vocab=c230af4b
+-/
 theorem row3_BB_DD_realization_nonempty :
     WordRealization .row3_BB_DD sharedTipPoints 2112500 1748500 1732250 :=
   ⟨fullTwoRungGeometry⟩
 
-/-- The two-rung hexagon inhabits the row-4 `D:2→1` realization. -/
+/-- The two-rung hexagon inhabits the row-4 `D:2→1` realization.
+@isnad1 id=wordreal.0h0v.s5.cc3182343bad from=translated src=- shape=d34eb3a9 vocab=3285be45
+-/
 theorem row4_D21_realization_nonempty :
     WordRealization .row4_D21 sharedTipPoints 2112500 1748500 1732250 :=
   ⟨fullTwoRungGeometry⟩
 
-/-- The two-rung hexagon inhabits the row-4 `CD` realization. -/
+/-- The two-rung hexagon inhabits the row-4 `CD` realization.
+@isnad1 id=wordreal.0h0v.s5.316cca141083 from=translated src=- shape=d34eb3a9 vocab=a29df87f
+-/
 theorem row4_CD_realization_nonempty :
     WordRealization .row4_CD sharedTipPoints 2112500 1748500 1732250 :=
   ⟨fullTwoRungGeometry⟩
 
-/-- The two-rung hexagon inhabits the row-5 `BB×DD` realization. -/
+/-- The two-rung hexagon inhabits the row-5 `BB×DD` realization.
+@isnad1 id=wordreal.0h0v.s5.83cdfc9eaed8 from=translated src=- shape=d34eb3a9 vocab=4acfcd2d
+-/
 theorem row5_BB_DD_realization_nonempty :
     WordRealization .row5_BB_DD sharedTipPoints 2112500 1748500 1732250 :=
   ⟨fullTwoRungGeometry⟩
@@ -536,7 +560,9 @@ private def fourEdgeWordGeometry :
   ts := by norm_num [fourEdgePoints, sqDist]
 }
 
-/-- The explicit four-edge cage inhabits the row-4 `DD` realization. -/
+/-- The explicit four-edge cage inhabits the row-4 `DD` realization.
+@isnad1 id=wordreal.0h0v.s5.851b14df3781 from=translated src=- shape=d34eb3a9 vocab=532fb87e
+-/
 theorem row4_DD_realization_nonempty :
     WordRealization .row4_DD fourEdgePoints 2112500 1748500 1690000 :=
   ⟨fourEdgeWordGeometry⟩

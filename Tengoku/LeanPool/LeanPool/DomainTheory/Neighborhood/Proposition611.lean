@@ -91,7 +91,9 @@ def subFam (E : NeighborhoodSystem α) : Set (Set (Set α)) :=
 
 /-- The master `Δ = E.master` belongs to the neighbourhood-set of any subdomain (a
 subsystem shares
-`E`'s master and contains it). -/
+`E`'s master and contains it).
+@isnad1 id=mem.1h3v.s5.f9485f7b5256 from=translated src=- shape=87220944 vocab=05559139
+-/
 theorem subFam_master_mem (E : NeighborhoodSystem α) {𝒮 : Set (Set α)}
     (h : 𝒮 ∈ subFam E) : E.master ∈ 𝒮 := by
   obtain ⟨D, hD, rfl⟩ := h
@@ -99,7 +101,9 @@ theorem subFam_master_mem (E : NeighborhoodSystem α) {𝒮 : Set (Set α)}
   exact D.master_mem
 
 /-- Every member of a subdomain's neighbourhood-set is an `E`-neighbourhood (`D ⊆
-E`). -/
+E`).
+@isnad1 id=mem.2h4v.s5.800b43b3b3c3 from=translated src=- shape=c43f5939 vocab=12ed5501
+-/
 theorem subFam_mem_E (E : NeighborhoodSystem α) {𝒮 : Set (Set α)} {X : Set α}
     (h : 𝒮 ∈ subFam E) (hX : X ∈ 𝒮) : E.mem X := by
   obtain ⟨D, hD, rfl⟩ := h
@@ -107,7 +111,9 @@ theorem subFam_mem_E (E : NeighborhoodSystem α) {𝒮 : Set (Set α)} {X : Set 
 
 /-- Consistency is inherited from `E` (Definition 6.10's essential clause): if `X,
 Y` lie in a
-subdomain's neighbourhood-set and `X ∩ Y ∈ E`, then `X ∩ Y` lies in it too. -/
+subdomain's neighbourhood-set and `X ∩ Y ∈ E`, then `X ∩ Y` lies in it too.
+@isnad1 id=mem.4h5v.s6.9bd9fdc6479f from=translated src=- shape=4bc424ef vocab=2cb873ae
+-/
 theorem subFam_inter_closed (E : NeighborhoodSystem α) {𝒮 : Set (Set α)} {X Y : Set α}
     (h : 𝒮 ∈ subFam E) (hX : X ∈ 𝒮) (hY : Y ∈ 𝒮) (hXY : E.mem (X ∩ Y)) : X ∩ Y ∈ 𝒮 := by
   obtain ⟨D, hD, rfl⟩ := h
@@ -115,7 +121,9 @@ theorem subFam_inter_closed (E : NeighborhoodSystem α) {𝒮 : Set (Set α)} {X
 
 /-- `subFam E` is non-empty: `E` itself is a subsystem (`Subsystem.refl`), so its
 own
-neighbourhood-set `{X ∣ E.mem X}` is a member. -/
+neighbourhood-set `{X ∣ E.mem X}` is a member.
+@isnad1 id=nonempty.0h2v.s3.02a0b045e316 from=translated src=- shape=736a821b vocab=c204a04a
+-/
 theorem subFam_nonempty (E : NeighborhoodSystem α) : (subFam E).Nonempty :=
   ⟨{X | E.mem X}, E, Subsystem.refl E, rfl⟩
 
@@ -140,7 +148,9 @@ def interSys (E : NeighborhoodSystem α) (ℱ : Set (Set (Set α)))
     obtain ⟨𝒮, h𝒮⟩ := hne
     exact E.sub_master (subFam_mem_E E (hℱ h𝒮) (hX 𝒮 h𝒮))
 
-/-- The intersection subdomain is a subsystem of `E`. -/
+/-- The intersection subdomain is a subsystem of `E`.
+@isnad1 id=subsyste.2h3v.s5.4f582e64bbe2 from=translated src=- shape=c516dd80 vocab=3e141280
+-/
 theorem interSys_subsystem (E : NeighborhoodSystem α) (ℱ : Set (Set (Set α)))
     (hne : ℱ.Nonempty) (hℱ : ℱ ⊆ subFam E) : interSys E ℱ hne hℱ ◁ E where
   master_eq := rfl
@@ -152,14 +162,18 @@ theorem interSys_subsystem (E : NeighborhoodSystem α) (ℱ : Set (Set (Set α))
     intro X Y hX hY hEXY 𝒮 h𝒮
     exact subFam_inter_closed E (hℱ h𝒮) (hX 𝒮 h𝒮) (hY 𝒮 h𝒮) hEXY
 
-/-- The neighbourhood-set of the intersection subdomain is exactly `⋂₀ ℱ`. -/
+/-- The neighbourhood-set of the intersection subdomain is exactly `⋂₀ ℱ`.
+@isnad1 id=eq.2h3v.s5.4e7171345581 from=translated src=- shape=36a472f0 vocab=70574ce1
+-/
 theorem interSys_nbset (E : NeighborhoodSystem α) (ℱ : Set (Set (Set α)))
     (hne : ℱ.Nonempty) (hℱ : ℱ ⊆ subFam E) :
     {X | (interSys E ℱ hne hℱ).mem X} = ⋂₀ ℱ := by
   ext X
   exact Set.mem_sInter.symm
 
-/-- **Closure under non-empty intersection** (Exercise 2.22's hypothesis (i)). -/
+/-- **Closure under non-empty intersection** (Exercise 2.22's hypothesis (i)).
+@isnad1 id=mem.2h3v.s5.4f6c1020a421 from=translated src=- shape=48642849 vocab=4ec5fa56
+-/
 theorem subFam_sInter_mem (E : NeighborhoodSystem α) (ℱ : Set (Set (Set α)))
     (hne : ℱ.Nonempty) (hℱ : ℱ ⊆ subFam E) : ⋂₀ ℱ ∈ subFam E :=
   ⟨interSys E ℱ hne hℱ, interSys_subsystem E ℱ hne hℱ, (interSys_nbset E ℱ hne hℱ).symm⟩
@@ -198,7 +212,9 @@ def unionSys (E : NeighborhoodSystem α) (ℱ : Set (Set (Set α)))
 
 /-- The union subdomain is a subsystem of `E` (Scott's remark: the directed union
 of subdomains is
-again a subdomain). -/
+again a subdomain).
+@isnad1 id=subsyste.3h3v.s5.e27330ac4829 from=translated src=- shape=3b84efda vocab=8d766427
+-/
 theorem unionSys_subsystem (E : NeighborhoodSystem α) (ℱ : Set (Set (Set α)))
     (hne : ℱ.Nonempty) (hℱ : ℱ ⊆ subFam E) (hdir : DirectedOn (· ⊆ ·) ℱ) :
     unionSys E ℱ hne hℱ hdir ◁ E where
@@ -214,7 +230,9 @@ theorem unionSys_subsystem (E : NeighborhoodSystem α) (ℱ : Set (Set (Set α))
     obtain ⟨𝒮s, h𝒮s, hxs, hys⟩ := hdir 𝒮x h𝒮x 𝒮y h𝒮y
     exact ⟨𝒮s, h𝒮s, subFam_inter_closed E (hℱ h𝒮s) (hxs hXx) (hys hYy) hEXY⟩
 
-/-- The neighbourhood-set of the union subdomain is exactly `⋃₀ ℱ`. -/
+/-- The neighbourhood-set of the union subdomain is exactly `⋃₀ ℱ`.
+@isnad1 id=eq.3h3v.s6.5b2cedd40ff6 from=translated src=- shape=967f9116 vocab=d027cfb1
+-/
 theorem unionSys_nbset (E : NeighborhoodSystem α) (ℱ : Set (Set (Set α)))
     (hne : ℱ.Nonempty) (hℱ : ℱ ⊆ subFam E) (hdir : DirectedOn (· ⊆ ·) ℱ) :
     {X | (unionSys E ℱ hne hℱ hdir).mem X} = ⋃₀ ℱ := by
@@ -222,7 +240,9 @@ theorem unionSys_nbset (E : NeighborhoodSystem α) (ℱ : Set (Set (Set α)))
   exact Set.mem_sUnion.symm
 
 /-- **Closure under directed union** (Exercise 2.22's hypothesis (ii)) — Scott's
-remark. -/
+remark.
+@isnad1 id=mem.3h3v.s6.1664f1743649 from=translated src=- shape=5c333f3a vocab=eabe0756
+-/
 theorem subFam_sUnion_mem (E : NeighborhoodSystem α) (ℱ : Set (Set (Set α)))
     (hne : ℱ.Nonempty) (hℱ : ℱ ⊆ subFam E) (hdir : DirectedOn (· ⊆ ·) ℱ) :
     ⋃₀ ℱ ∈ subFam E :=
@@ -257,7 +277,9 @@ def ofMem (E : NeighborhoodSystem α) (𝒮 : Set (Set α)) (h : 𝒮 ∈ subFam
       (E.inter_mem (subFam_mem_E E h hX) (subFam_mem_E E h hY) (subFam_mem_E E h hZ) hsub)
   sub_master := fun hX => E.sub_master (subFam_mem_E E h hX)
 
-/-- `ofMem` lands in the subsystems of `E`. -/
+/-- `ofMem` lands in the subsystems of `E`.
+@isnad1 id=subsyste.1h3v.s5.5dc852ec7226 from=translated src=- shape=91652080 vocab=c192d95c
+-/
 theorem ofMem_subsystem (E : NeighborhoodSystem α) (𝒮 : Set (Set α)) (h : 𝒮 ∈ subFam E) :
     ofMem E 𝒮 h ◁ E where
   master_eq := rfl

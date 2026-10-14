@@ -71,6 +71,9 @@ product's
 neighbourhoods. The consistency clause is inherited because intersections stay off
 the boundary. -/
 
+/--
+@isnad1 id=subsyste.0h2v.s3.67cb45554306 from=translated src=- shape=1ac629b0 vocab=92703eac
+-/
 theorem otimesTok_subsystem_prodTok (D₀ D₁ : NeighborhoodSystem Str) :
     otimesTok D₀ D₁ ◁ prodTok D₀ D₁ where
   master_eq := rfl
@@ -95,7 +98,9 @@ theorem otimesTok_subsystem_prodTok (D₀ D₁ : NeighborhoodSystem Str) :
         inter_ne_of_ne_left (D₀.sub_master hX) hXne,
         inter_ne_of_ne_left (D₁.sub_master hY) hYne, rfl⟩
 
-/-- **Exercise 6.27 (1).** `(𝒟 ⊗ ℰ) ⊴ (𝒟 × ℰ)`. -/
+/-- **Exercise 6.27 (1).** `(𝒟 ⊗ ℰ) ⊴ (𝒟 × ℰ)`.
+@isnad1 id=triangle.0h2v.s3.a0f36b24bc53 from=translated src=- shape=54d92ef0 vocab=36390096
+-/
 theorem otimes_trianglelefteq_prod (D₀ D₁ : NeighborhoodSystem Str) :
     otimesTok D₀ D₁ ⊴ prodTok D₀ D₁ :=
   (otimesTok_subsystem_prodTok D₀ D₁).trianglelefteq
@@ -142,6 +147,9 @@ def fstProj (D₀ D₁ : NeighborhoodSystem Str) : ApproximableMap (prodTok D₀
     rintro W W' X X' ⟨_, _, hsub⟩ hW'W hXX' hW' hX'
     exact ⟨hW', hX', hW'W.trans (hsub.trans (prodTokNbhd_subset_iff.mpr ⟨hXX', subset_rfl⟩))⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.9bdc518263b8 from=translated src=- shape=e2e2ddf6 vocab=5db6d2ce
+-/
 theorem fstProj_comp_fstInj (D₀ D₁ : NeighborhoodSystem Str) :
     (fstProj D₀ D₁).comp (fstInj D₀ D₁) = idMap D₀ := by
   apply ApproximableMap.ext
@@ -156,13 +164,18 @@ theorem fstProj_comp_fstInj (D₀ D₁ : NeighborhoodSystem Str) :
         prodTokNbhd_subset_iff.mpr ⟨hXZ, subset_rfl⟩⟩,
       prodTok_mem_prodTokNbhd hZ D₁.master_mem, hZ, subset_rfl⟩
 
+/--
+@isnad1 id=le.0h2v.s6.e3c5ec0f816a from=translated src=- shape=d9044c83 vocab=1399cd25
+-/
 theorem fstInj_comp_fstProj_le (D₀ D₁ : NeighborhoodSystem Str) :
     (fstInj D₀ D₁).comp (fstProj D₀ D₁) ≤ idMap (prodTok D₀ D₁) := by
   intro W W' hr
   obtain ⟨X, ⟨hW, _, hsub⟩, _, hW', hsub'⟩ := hr
   exact ⟨hW, hW', hsub.trans hsub'⟩
 
-/-- **Exercise 6.27 (2).** `𝒟 ⊴ 𝒟 × ℰ`. -/
+/-- **Exercise 6.27 (2).** `𝒟 ⊴ 𝒟 × ℰ`.
+@isnad1 id=triangle.0h2v.s3.be3e4da8a482 from=translated src=- shape=0c4a34fb vocab=8cd2b616
+-/
 theorem fst_trianglelefteq_prod (D₀ D₁ : NeighborhoodSystem Str) :
     D₀ ⊴ prodTok D₀ D₁ :=
   trianglelefteq_of_projectionPair (fstInj D₀ D₁) (fstProj D₀ D₁)
@@ -178,6 +191,9 @@ consistency is inherited (cross-tag intersections are empty, hence not
 
 variable {h₀ : ∀ X, D₀.mem X → X.Nonempty} {h₁ : ∀ Y, D₁.mem Y → Y.Nonempty}
 
+/--
+@isnad1 id=subsyste.2h2v.s5.ff85601c27db from=translated src=- shape=42fc92ba vocab=71bf1189
+-/
 theorem oplusTok_subsystem_sumTok (h₀ : ∀ X, D₀.mem X → X.Nonempty)
     (h₁ : ∀ Y, D₁.mem Y → Y.Nonempty) :
     oplusTok D₀ D₁ h₀ h₁ ◁ sumTok D₀ D₁ h₀ h₁ where
@@ -206,7 +222,9 @@ theorem oplusTok_subsystem_sumTok (h₀ : ∀ X, D₀.mem X → X.Nonempty)
       exact oplusTok_mem_embT (sumTok_mem_embT_inv hInt)
         (inter_ne_of_ne_left (D₁.sub_master hY) hYne)
 
-/-- **Exercise 6.27 (3).** `(𝒟 ⊕ ℰ) ⊴ (𝒟 + ℰ)`. -/
+/-- **Exercise 6.27 (3).** `(𝒟 ⊕ ℰ) ⊴ (𝒟 + ℰ)`.
+@isnad1 id=triangle.2h2v.s5.fd8269c56d56 from=translated src=- shape=217fdff9 vocab=f2309b36
+-/
 theorem oplus_trianglelefteq_sum (h₀ : ∀ X, D₀.mem X → X.Nonempty)
     (h₁ : ∀ Y, D₁.mem Y → Y.Nonempty) :
     oplusTok D₀ D₁ h₀ h₁ ⊴ sumTok D₀ D₁ h₀ h₁ :=
@@ -237,9 +255,15 @@ set-builder `{w ∣ w ∈ sumTokMaster ∧ X = Δ₀}` keeps the *definition* ch
 def leftN (D₀ D₁ : NeighborhoodSystem Str) (X : Set Str) : Set Str :=
   embBit false X ∪ {w | w ∈ sumTokMaster D₀ D₁ ∧ X = D₀.master}
 
+/--
+@isnad1 id=le.0h3v.s4.bf70c1c07950 from=translated src=- shape=933679af vocab=c28c393e
+-/
 theorem embF_subset_leftN {X : Set Str} : embBit false X ⊆ leftN D₀ D₁ X :=
   Set.subset_union_left
 
+/--
+@isnad1 id=eq.0h2v.s4.2ae30df1feac from=translated src=- shape=3808c55d vocab=d92ecce6
+-/
 theorem leftN_master : leftN D₀ D₁ D₀.master = sumTokMaster D₀ D₁ := by
   apply Set.eq_of_subset_of_subset
   · rintro w (hw | ⟨hw, -⟩)
@@ -247,6 +271,9 @@ theorem leftN_master : leftN D₀ D₁ D₀.master = sumTokMaster D₀ D₁ := b
     · exact hw
   · exact fun w hw => Or.inr ⟨hw, rfl⟩
 
+/--
+@isnad1 id=eq.1h3v.s4.d87160220be5 from=translated src=- shape=b2bbeb6b vocab=9c45f452
+-/
 theorem leftN_proper {X : Set Str} (hne : X ≠ D₀.master) : leftN D₀ D₁ X = embBit false X := by
   apply Set.eq_of_subset_of_subset
   · rintro w (hw | ⟨-, hXm⟩)
@@ -254,12 +281,18 @@ theorem leftN_proper {X : Set Str} (hne : X ≠ D₀.master) : leftN D₀ D₁ X
     · exact absurd hXm hne
   · exact embF_subset_leftN
 
+/--
+@isnad1 id=eq.1h3v.s4.3ffd51f55b1b from=translated src=- shape=789202be vocab=7f50d147
+-/
 theorem X_eq_master_of_nil_mem_leftN {X : Set Str} (h : ([] : Str) ∈ leftN D₀ D₁ X) :
     X = D₀.master := by
   rcases h with h | ⟨-, h⟩
   · exact absurd h nil_not_mem_embBit
   · exact h
 
+/--
+@isnad1 id=le.2h4v.s5.25d28167cc8f from=translated src=- shape=f72f793d vocab=4753b541
+-/
 theorem subset_of_embF_subset_leftN {A X : Set Str} (hA : A ⊆ D₀.master)
     (h : embBit false A ⊆ leftN D₀ D₁ X) : A ⊆ X := by
   intro σ hσ
@@ -267,6 +300,9 @@ theorem subset_of_embF_subset_leftN {A X : Set Str} (hA : A ⊆ D₀.master)
   · rw [List.cons.injEq] at hw'; rw [hw'.2]; exact hw'X
   · rw [hXm]; exact hA hσ
 
+/--
+@isnad1 id=eq.2h4v.s5.501e73856fd9 from=translated src=- shape=67910553 vocab=c4aa6399
+-/
 theorem X_eq_master_of_embT_subset_leftN {B X : Set Str} (hB : B.Nonempty)
     (h : embBit true B ⊆ leftN D₀ D₁ X) : X = D₀.master := by
   obtain ⟨σ, hσ⟩ := hB
@@ -274,6 +310,9 @@ theorem X_eq_master_of_embT_subset_leftN {B X : Set Str} (hB : B.Nonempty)
   · rw [List.cons.injEq] at hw'; exact absurd hw'.1 (by decide)
   · exact hXm
 
+/--
+@isnad1 id=iff.2h4v.s5.c1e04211dbc9 from=translated src=- shape=c8231764 vocab=cd7e89a4
+-/
 theorem leftN_subset_iff {X X' : Set Str} (hX : D₀.mem X) (hX' : D₀.mem X') :
     leftN D₀ D₁ X ⊆ leftN D₀ D₁ X' ↔ X ⊆ X' := by
   constructor
@@ -286,7 +325,9 @@ theorem leftN_subset_iff {X X' : Set Str} (hX : D₀.mem X) (hX' : D₀.mem X') 
 
 /-- The **only** classical step in Exercise 6.27: `leftN X` is an `𝒟 ⊕
 ℰ`-neighbourhood. The proof
-splits on the (undecidable for arbitrary `X`) test `X = Δ₀`. -/
+splits on the (undecidable for arbitrary `X`) test `X = Δ₀`.
+@isnad1 id=mem.3h3v.s5.f7323e5d4658 from=translated src=- shape=39b8348d vocab=fac5c395
+-/
 theorem oplus_mem_leftN {X : Set Str} (hX : D₀.mem X) :
     (oplusTok D₀ D₁ h₀ h₁).mem (leftN D₀ D₁ X) := by
   by_cases h : X = D₀.master
@@ -330,6 +371,9 @@ def inlProj : ApproximableMap (oplusTok D₀ D₁ h₀ h₁) D₀ where
     rintro W W' X X' ⟨_, hX, hsub⟩ hW'W hXX' hW' hX'
     exact ⟨hW', hX', hW'W.trans (hsub.trans ((leftN_subset_iff hX hX').mpr hXX'))⟩
 
+/--
+@isnad1 id=eq.2h2v.s5.713c8133d4db from=translated src=- shape=d1ff0ad7 vocab=ddb0408e
+-/
 theorem inlProj_comp_inlInj :
     (inlProj (D₀ := D₀) (D₁ := D₁) (h₀ := h₀) (h₁ := h₁)).comp inlInj = idMap D₀ := by
   apply ApproximableMap.ext
@@ -342,6 +386,9 @@ theorem inlProj_comp_inlInj :
     exact ⟨leftN D₀ D₁ X, ⟨hX, oplus_mem_leftN hX, subset_rfl⟩,
       oplus_mem_leftN hX, hZ, (leftN_subset_iff hX hZ).mpr hXZ⟩
 
+/--
+@isnad1 id=le.2h2v.s6.8b73b6fbe3fc from=translated src=- shape=b2d547c7 vocab=4db7dd16
+-/
 theorem inlInj_comp_inlProj_le :
     (inlInj (D₀ := D₀) (D₁ := D₁) (h₀ := h₀) (h₁ := h₁)).comp inlProj
       ≤ idMap (oplusTok D₀ D₁ h₀ h₁) := by
@@ -350,7 +397,9 @@ theorem inlInj_comp_inlProj_le :
   exact ⟨hW, hW', hsub.trans hsub'⟩
 
 /-- **Exercise 6.27 (4).** `𝒟 ⊴ 𝒟 ⊕ ℰ`. (Uses `Classical.choice` via
-`oplus_mem_leftN`.) -/
+`oplus_mem_leftN`.)
+@isnad1 id=triangle.2h2v.s5.187f0953ce09 from=translated src=- shape=3bc70979 vocab=ba687d03
+-/
 theorem inl_trianglelefteq_oplus :
     D₀ ⊴ oplusTok D₀ D₁ h₀ h₁ :=
   trianglelefteq_of_projectionPair inlInj inlProj inlProj_comp_inlInj inlInj_comp_inlProj_le
@@ -394,11 +443,20 @@ def strictifyMap (g : ApproximableMap V₀ V₁) : ApproximableMap V₀ V₁ whe
     have hXm : X = V₀.master := Set.Subset.antisymm (V₀.sub_master hX) (hX'm ▸ hX'X)
     exact Set.Subset.antisymm (V₁.sub_master hY') ((hs hXm) ▸ hYY')
 
+/--
+@isnad1 id=isstrict.0h5v.s4.7ad921453f8f from=translated src=- shape=8613c0ce vocab=465ac1a1
+-/
 theorem strictifyMap_isStrict (g : ApproximableMap V₀ V₁) : IsStrict (strictifyMap g) :=
   fun _ h => h.2 rfl
 
+/--
+@isnad1 id=le.0h5v.s5.517e98eb1f2d from=translated src=- shape=f4f91bd0 vocab=a4353f30
+-/
 theorem strictifyMap_le (g : ApproximableMap V₀ V₁) : strictifyMap g ≤ g := fun _ _ h => h.1
 
+/--
+@isnad1 id=eq.1h5v.s5.3ab5dfaf86eb from=translated src=- shape=d792d362 vocab=465ac1a1
+-/
 theorem strictifyMap_of_isStrict {f : ApproximableMap V₀ V₁} (hf : IsStrict f) :
     strictifyMap f = f := by
   apply ApproximableMap.ext
@@ -410,16 +468,27 @@ def strictify (g : ApproximableMap V₀ V₁) :
   StrictMap V₀ V₁ := ⟨strictifyMap g, strictifyMap_isStrict g⟩
 
 /-- The four inverse identities of the two representation equivalences (defeq
-unfoldings). -/
+unfoldings).
+@isnad1 id=eq.0h5v.s5.d3442cb39ef4 from=translated src=- shape=b40cf5f3 vocab=d2413231
+-/
 theorem toApproxMap_toFilter (g : ApproximableMap V₀ V₁) : toApproxMap (toFilter g) = g :=
   (funSpaceEquiv V₀ V₁).apply_symm_apply g
 
+/--
+@isnad1 id=eq.0h5v.s5.7d5d7a77b390 from=translated src=- shape=5247001a vocab=1ac1af34
+-/
 theorem toFilter_toApproxMap (ψ : (funSpace V₀ V₁).Element) : toFilter (toApproxMap ψ) = ψ :=
   (funSpaceEquiv V₀ V₁).symm_apply_apply ψ
 
+/--
+@isnad1 id=eq.0h5v.s5.76c26072f65a from=translated src=- shape=b40cf5f3 vocab=5e7f8444
+-/
 theorem toStrictMap_toStrictFilter (g : StrictMap V₀ V₁) : toStrictMap (toStrictFilter g) = g :=
   (strictFunEquiv V₀ V₁).apply_symm_apply g
 
+/--
+@isnad1 id=eq.0h5v.s5.14e29af82d2f from=translated src=- shape=5247001a vocab=e4d34953
+-/
 theorem toStrictFilter_toStrictMap (φ : (strictFun V₀ V₁).Element) :
     toStrictFilter (toStrictMap φ) = φ :=
   (strictFunEquiv V₀ V₁).symm_apply_apply φ
@@ -432,6 +501,9 @@ def incl (φ : (strictFun V₀ V₁).Element) : (funSpace V₀ V₁).Element :=
 def strct (ψ : (funSpace V₀ V₁).Element) : (strictFun V₀ V₁).Element :=
   toStrictFilter (strictify (toApproxMap ψ))
 
+/--
+@isnad1 id=monotone.0h4v.s6.15588cdc52a2 from=translated src=- shape=ccbe0aad vocab=129f084b
+-/
 theorem incl_mono : Monotone (incl (V₀ := V₀) (V₁ := V₁)) := by
   intro a b hab M hM
   obtain ⟨hMmem, haM⟩ := hM
@@ -441,6 +513,9 @@ theorem incl_mono : Monotone (incl (V₀ := V₀) (V₁ := V₁)) := by
   have hle : (toStrictMap a).1 ≤ (toStrictMap b).1 := (strictFunEquiv V₀ V₁).monotone hab
   exact hle p.1 p.2 (haM p hp)
 
+/--
+@isnad1 id=monotone.0h4v.s6.32cb7b63e6ef from=translated src=- shape=ccbe0aad vocab=8480fe50
+-/
 theorem strct_mono : Monotone (strct (V₀ := V₀) (V₁ := V₁)) := by
   intro a b hab W hW
   obtain ⟨hWmem, haW⟩ := hW
@@ -460,6 +535,9 @@ def strctMap : ApproximableMap (funSpace V₀ V₁) (strictFun V₀ V₁) :=
   ofMono (fun _ hM => strct ((funSpace V₀ V₁).principal hM))
     (fun _ _ hM hM' hM'M => strct_mono (((funSpace V₀ V₁).principal_le_iff hM hM').mpr hM'M))
 
+/--
+@isnad1 id=eq.0h5v.s6.49cd387a8d1a from=translated src=- shape=14460043 vocab=e07a404f
+-/
 theorem toElementMap_inclMap (φ : (strictFun V₀ V₁).Element) :
     inclMap.toElementMap φ = incl φ := by
   apply Element.ext
@@ -480,6 +558,9 @@ theorem toElementMap_inclMap (φ : (strictFun V₀ V₁).Element) :
     intro p hp
     exact ⟨φ.sub (toStrictMap_rel.mp (hgφ p hp)), fun f hf => hf p hp⟩
 
+/--
+@isnad1 id=eq.0h5v.s6.a5874d0dc0d7 from=translated src=- shape=14460043 vocab=c6dc2d6c
+-/
 theorem toElementMap_strctMap (ψ : (funSpace V₀ V₁).Element) :
     strctMap.toElementMap ψ = strct ψ := by
   apply Element.ext
@@ -500,6 +581,9 @@ theorem toElementMap_strctMap (ψ : (funSpace V₀ V₁).Element) :
     intro p hp
     exact ⟨⟨ψ.sub (hgψ p hp).1, fun f hf => hf p hp⟩, (hgψ p hp).2⟩
 
+/--
+@isnad1 id=eq.0h5v.s5.e9fe6189edca from=translated src=- shape=5247001a vocab=abcee865
+-/
 theorem strct_incl (φ : (strictFun V₀ V₁).Element) : strct (incl φ) = φ := by
   change toStrictFilter (strictify (toApproxMap (toFilter (toStrictMap φ).1))) = φ
   rw [toApproxMap_toFilter,
@@ -507,6 +591,9 @@ theorem strct_incl (φ : (strictFun V₀ V₁).Element) : strct (incl φ) = φ :
       Subtype.ext (strictifyMap_of_isStrict (toStrictMap φ).2)]
   exact toStrictFilter_toStrictMap φ
 
+/--
+@isnad1 id=le.0h5v.s6.7bdc495c424d from=translated src=- shape=5247001a vocab=5bf2e0fc
+-/
 theorem incl_strct_le (ψ : (funSpace V₀ V₁).Element) : incl (strct ψ) ≤ ψ := by
   have key : incl (strct ψ) = toFilter (strictifyMap (toApproxMap ψ)) := by
     change toFilter (toStrictMap (strct ψ)).1 = toFilter (strictifyMap (toApproxMap ψ))
@@ -520,7 +607,9 @@ theorem incl_strct_le (ψ : (funSpace V₀ V₁).Element) : incl (strct ψ) ≤ 
 `ext_of_toElementMap`
 (which splits on the undecidable `V₀.mem X`), both sides of the relation carry
 domain membership via
-`rel_dom`, so no case analysis — and hence no `Classical.choice` — is needed. -/
+`rel_dom`, so no case analysis — and hence no `Classical.choice` — is needed.
+@isnad1 id=eq.1h6v.s6.1488ec44a028 from=translated src=- shape=7974f26e vocab=3a71a34d
+-/
 theorem ext_of_principal {γ δ : Type*} {W₀ : NeighborhoodSystem γ} {W₁ : NeighborhoodSystem δ}
     {f g : ApproximableMap W₀ W₁}
     (h : ∀ (X : Set γ) (hX : W₀.mem X),
@@ -535,6 +624,9 @@ theorem ext_of_principal {γ δ : Type*} {W₀ : NeighborhoodSystem γ} {W₁ : 
     have hX := g.rel_dom hr
     rw [f.rel_iff_mem_principal hX, h X hX, ← g.rel_iff_mem_principal hX]; exact hr
 
+/--
+@isnad1 id=eq.0h4v.s6.59bc5cd8431b from=translated src=- shape=9f770ad5 vocab=c7c6c5e4
+-/
 theorem strctMap_comp_inclMap :
     (strctMap (V₀ := V₀) (V₁ := V₁)).comp inclMap = idMap (strictFun V₀ V₁) := by
   apply ext_of_principal
@@ -542,6 +634,9 @@ theorem strctMap_comp_inclMap :
   rw [toElementMap_comp, toElementMap_inclMap, toElementMap_strctMap, strct_incl,
     toElementMap_idMap]
 
+/--
+@isnad1 id=le.0h4v.s7.020e872fe363 from=translated src=- shape=af21460e vocab=0b7872b8
+-/
 theorem inclMap_comp_strctMap_le :
     (inclMap (V₀ := V₀) (V₁ := V₁)).comp strctMap ≤ idMap (funSpace V₀ V₁) := by
   rw [le_iff_toElementMap_le]
@@ -549,7 +644,9 @@ theorem inclMap_comp_strctMap_le :
   rw [toElementMap_comp, toElementMap_strctMap, toElementMap_inclMap, toElementMap_idMap]
   exact incl_strct_le ψ
 
-/-- **Exercise 6.27 (5).** `(𝒟 →⊥ ℰ) ⊴ (𝒟 → ℰ)` for all `𝒟, ℰ` (choice-free). -/
+/-- **Exercise 6.27 (5).** `(𝒟 →⊥ ℰ) ⊴ (𝒟 → ℰ)` for all `𝒟, ℰ` (choice-free).
+@isnad1 id=triangle.0h4v.s4.16436d64d5f3 from=translated src=- shape=60c11a43 vocab=538d8509
+-/
 theorem strictFun_trianglelefteq_funSpace (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β) :
     strictFun V₀ V₁ ⊴ funSpace V₀ V₁ :=
   trianglelefteq_of_projectionPair inclMap strctMap strctMap_comp_inclMap inclMap_comp_strctMap_le
@@ -568,7 +665,9 @@ element lattice; a
 claim. -/
 
 /-- If a system's only neighbourhood is its master, its element lattice is a
-single point (`⊥`). -/
+single point (`⊥`).
+@isnad1 id=subsingl.1h2v.s4.bf9ce94f038f from=translated src=- shape=8e685d07 vocab=f936ab33
+-/
 theorem subsingleton_element_of_only_master {γ : Type*} {V : NeighborhoodSystem γ}
     (h : ∀ X, V.mem X → X = V.master) : Subsingleton V.Element := by
   refine ⟨fun x y => ?_⟩
@@ -596,7 +695,9 @@ def twoPt : NeighborhoodSystem Str where
 /-- The one-point unit domain `𝟙` over `{0,1}*` (only neighbourhood `{[]}`). -/
 def unitPt : NeighborhoodSystem Str := (singletonSys ({[]} : Set Str) ⟨[], rfl⟩).sys
 
-/-- With the unit second factor, the smash `twoPt ⊗ 𝟙` collapses to its master. -/
+/-- With the unit second factor, the smash `twoPt ⊗ 𝟙` collapses to its master.
+@isnad1 id=eq.1h1v.s4.fe5f919bbfbe from=translated src=- shape=4e29a333 vocab=13b4d6fa
+-/
 theorem otimes_unitPt_collapse :
     ∀ W, (otimesTok twoPt unitPt).mem W → W = (otimesTok twoPt unitPt).master := by
   rintro W (rfl | ⟨X, Y, _, hY, _, hYne, rfl⟩)
@@ -607,7 +708,9 @@ theorem otimes_unitPt_collapse :
 two-point and
 `ℰ = 𝟙`. Then `𝒟 ⊗ 𝟙` has a one-point element lattice while `𝒟` has two, so no
 isomorphism onto a
-subsystem can exist. -/
+subsystem can exist.
+@isnad1 id=not.0h0v.s3.1c7ec78fae28 from=translated src=- shape=1ab3749e vocab=8a6083e7
+-/
 theorem not_trianglelefteq_otimes :
     ¬ (twoPt ⊴ otimesTok twoPt unitPt) := by
   rintro ⟨D', hsub, ⟨e⟩⟩

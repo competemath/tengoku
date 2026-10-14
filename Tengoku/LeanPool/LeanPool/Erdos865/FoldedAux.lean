@@ -27,6 +27,9 @@ namespace Erdos865
 /-
 Inclusion–exclusion upper bound for four finite sets.
 -/
+/--
+@isnad1 id=le.0h5v.s7.20ec12e49285 from=translated src=- shape=a53c8514 vocab=51bcde14
+-/
 theorem four_card_le {X : Type*} [DecidableEq X] (s1 s2 s3 s4 : Finset X) :
     s1.card + s2.card + s3.card + s4.card ≤
       (s1 ∪ s2 ∪ s3 ∪ s4).card +
@@ -42,6 +45,9 @@ theorem four_card_le {X : Type*} [DecidableEq X] (s1 s2 s3 s4 : Finset X) :
 
 /-
 In `ZMod m` the equation `2 * x = c` has at most two solutions.
+-/
+/--
+@isnad1 id=le.0h2v.s7.322a46937bf9 from=translated src=- shape=13ea1086 vocab=9c770f69
 -/
 theorem card_two_sol (m : ℕ) [NeZero m] (c : ZMod m) :
     (Finset.univ.filter (fun x : ZMod m => 2 * x = c)).card ≤ 2 := by
@@ -88,6 +94,9 @@ def T4 (m : ℕ) (B : Finset ℕ) (β : ℕ) : Finset (ZMod m) :=
 /-
 The cast `ℕ → ZMod m` is injective on `B` when `B ⊆ {1,…,m-1}`.
 -/
+/--
+@isnad1 id=injon.1h2v.s5.3a31effde6fb from=translated src=- shape=0c3f7f52 vocab=9497d103
+-/
 theorem cast_injOn {m : ℕ} {B : Finset ℕ} (hB : FoldedOK m B) :
     Set.InjOn (fun b : ℕ => (b : ZMod m)) (B : Set ℕ) := by
   intro x hx y hy; have := hB.1 x hx; have := hB.1 y hy;
@@ -95,13 +104,22 @@ theorem cast_injOn {m : ℕ} {B : Finset ℕ} (hB : FoldedOK m B) :
   exact fun h =>
     Nat.mod_eq_of_lt ( by linarith : x < m ) ▸ Nat.mod_eq_of_lt ( by linarith : y < m ) ▸ h
 
+/--
+@isnad1 id=eq.1h2v.s4.ba6048133822 from=translated src=- shape=a0338803 vocab=7d3ddd56
+-/
 theorem card_T1 {m : ℕ} {B : Finset ℕ} (hB : FoldedOK m B) : (T1 m B).card = B.card := by
   exact Finset.card_image_of_injOn (cast_injOn hB)
 
+/--
+@isnad1 id=eq.1h2v.s4.1961226d3318 from=translated src=- shape=a0338803 vocab=34bbbdfa
+-/
 theorem card_T2 {m : ℕ} {B : Finset ℕ} (hB : FoldedOK m B) : (T2 m B).card = B.card := by
   apply Finset.card_image_of_injOn;
   intro x hx y hy; have := cast_injOn hB; aesop;
 
+/--
+@isnad1 id=eq.2h3v.s5.280e95e4c18b from=translated src=- shape=5ee4d3c5 vocab=1881b8c3
+-/
 theorem card_T3 {m : ℕ} {B : Finset ℕ} (hB : FoldedOK m B) {α : ℕ} (hα : α ∈ B) :
     (T3 m B α).card = B.card - 1 := by
   rw [ Erdos865.T3, Finset.card_erase_of_mem ];
@@ -113,6 +131,9 @@ theorem card_T3 {m : ℕ} {B : Finset ℕ} (hB : FoldedOK m B) {α : ℕ} (hα :
         by simpa [ ZMod.natCast_eq_natCast_iff' ] using h;
   · aesop
 
+/--
+@isnad1 id=eq.2h3v.s5.95c8fba48d90 from=translated src=- shape=5ee4d3c5 vocab=989f5e28
+-/
 theorem card_T4 {m : ℕ} {B : Finset ℕ} (hB : FoldedOK m B) {β : ℕ} (hβ : β ∈ B) :
     (T4 m B β).card = B.card - 1 := by
   have h_inj : Set.InjOn (fun b : ℕ => (β : ZMod m) - (b : ZMod m)) (B : Set ℕ) := by
@@ -126,6 +147,9 @@ theorem card_T4 {m : ℕ} {B : Finset ℕ} (hB : FoldedOK m B) {β : ℕ} (hβ :
 
 /-
 None of the four sets contain `0`, so their union misses `0`.
+-/
+/--
+@isnad1 id=le.2h4v.s6.cb4ddc994365 from=translated src=- shape=7ffbe860 vocab=7ae9b09f
 -/
 theorem union_card_le {m : ℕ} (hm : 2 ≤ m) {B : Finset ℕ} (hB : FoldedOK m B) (α β : ℕ) :
     haveI : NeZero m := ⟨by omega⟩
@@ -154,6 +178,9 @@ theorem union_card_le {m : ℕ} (hm : 2 ≤ m) {B : Finset ℕ} (hB : FoldedOK m
 
 /-! ### The pairwise intersection bounds -/
 
+/--
+@isnad1 id=le.1h2v.s5.9a34dfc40bd3 from=translated src=- shape=2a0a4417 vocab=b59895e2
+-/
 theorem inter_T1_T2_le {m : ℕ} {B : Finset ℕ} (hB : FoldedOK m B) :
     (T1 m B ∩ T2 m B).card ≤ 1 := by
   -- Take an arbitrary element z ∈ T1 m B ∩ T2 m B.
@@ -174,6 +201,9 @@ theorem inter_T1_T2_le {m : ℕ} {B : Finset ℕ} (hB : FoldedOK m B) :
   exact Finset.card_le_one.mpr fun x hx y hy => by
     obtain ⟨ b₁, hb₁, rfl, hb₁' ⟩ := h_eq x hx; obtain ⟨ b₂, hb₂, rfl, hb₂' ⟩ := h_eq y hy; aesop;
 
+/--
+@isnad1 id=eq.2h2v.s5.08d29705cc95 from=translated src=- shape=973b9706 vocab=f0caa255
+-/
 theorem inter_T1_T2_odd {m : ℕ} (hodd : ¬ 2 ∣ m) {B : Finset ℕ} (hB : FoldedOK m B) :
     T1 m B ∩ T2 m B = ∅ := by
   simp +decide only [Nat.two_dvd_ne_zero, T1, T2, Finset.ext_iff, mem_inter, mem_image,
@@ -192,6 +222,9 @@ theorem inter_T1_T2_odd {m : ℕ} (hodd : ¬ 2 ∣ m) {B : Finset ℕ} (hB : Fol
     exact hB.2 a ha b hb h_contra' |>.1
   contradiction
 
+/--
+@isnad1 id=le.2h3v.s5.a1ffc69c298d from=translated src=- shape=76338928 vocab=f64158cd
+-/
 theorem inter_T1_T3_le {m : ℕ} {B : Finset ℕ} (hB : FoldedOK m B) {α : ℕ} (hα : α ∈ B) :
     (T1 m B ∩ T3 m B α).card ≤ 1 := by
   by_contra h_contra;
@@ -209,6 +242,9 @@ theorem inter_T1_T3_le {m : ℕ} {B : Finset ℕ} (hB : FoldedOK m B) {α : ℕ}
   exact this ( by aesop ) |>.2
     ( by simpa [ Nat.mod_eq_of_lt ( show c < m from hB.1 c hc |>.2 ) ] using hc )
 
+/--
+@isnad1 id=le.3h3v.s6.eec4baf4dfdc from=translated src=- shape=a0574a32 vocab=8db552d9
+-/
 theorem inter_T2_T3_le {m : ℕ} {B : Finset ℕ} (hB : FoldedOK m B) {α : ℕ} (hα : α ∈ B)
     (hmin : ∀ x ∈ B, α ≤ x) : (T2 m B ∩ T3 m B α).card ≤ 1 := by
   -- Since $z \in T2 \cap T3$, we have $z = -(u : ZMod m)$ and $u \in B$, and
@@ -248,6 +284,9 @@ theorem inter_T2_T3_le {m : ℕ} {B : Finset ℕ} (hB : FoldedOK m B) {α : ℕ}
     grind;
   exact Finset.card_le_one.mpr h_unique
 
+/--
+@isnad1 id=le.2h3v.s5.09df1a20c537 from=translated src=- shape=76338928 vocab=60791ecd
+-/
 theorem inter_T2_T4_le {m : ℕ} {B : Finset ℕ} (hB : FoldedOK m B) {β : ℕ} (hβ : β ∈ B) :
     (T2 m B ∩ T4 m B β).card ≤ 1 := by
   rw [ Finset.card_le_one_iff ];
@@ -267,6 +306,9 @@ theorem inter_T2_T4_le {m : ℕ} {B : Finset ℕ} (hB : FoldedOK m B) {β : ℕ}
     have := hB.2 β hβ u hu.1; simp_all +decide ;
   rw [ h_eq a ha, h_eq b hb ]
 
+/--
+@isnad1 id=le.3h3v.s5.8effd92b23a6 from=translated src=- shape=7812c587 vocab=8681e556
+-/
 theorem inter_T1_T4_le {m : ℕ} (hm : 2 ≤ m) {B : Finset ℕ} (hB : FoldedOK m B) {β : ℕ}
     (hβ : β ∈ B) : (T1 m B ∩ T4 m B β).card ≤ 2 := by
   have := @card_two_sol m ⟨ by omega ⟩ ( β : ZMod m );
@@ -278,6 +320,9 @@ theorem inter_T1_T4_le {m : ℕ} (hm : 2 ≤ m) {B : Finset ℕ} (hB : FoldedOK 
   have := hB.1 β hβ; simp_all +decide [ ZMod.natCast_eq_zero_iff ] ;
   have := Nat.mod_eq_of_lt this.2; simp_all +decide [ ← ZMod.val_natCast ] ;
 
+/--
+@isnad1 id=le.8h4v.s7.86dbbb9053ac from=translated src=- shape=a802600b vocab=8ea2eb43
+-/
 theorem inter_T3_T4_le {m : ℕ} {B : Finset ℕ} (hB : FoldedOK m B) {α β : ℕ}
     (hα : α ∈ B) (hβ : β ∈ B) (hαβ : α < β) (hmin : ∀ x ∈ B, α ≤ x)
     (hmin2 : ∀ x ∈ B, x ≠ α → β ≤ x) (hsum : α + β < m)
@@ -328,6 +373,9 @@ theorem inter_T3_T4_le {m : ℕ} {B : Finset ℕ} (hB : FoldedOK m B) {α β : �
 
 /-
 The four-set union bound of Case 2 of the folded additive lemma.
+-/
+/--
+@isnad1 id=le.9h4v.s7.c68e86731eb4 from=translated src=- shape=34e7e808 vocab=1694f93d
 -/
 theorem case2_bound {m : ℕ} (hm : 2 ≤ m) {B : Finset ℕ} (hB : FoldedOK m B) {α β : ℕ}
     (hα : α ∈ B) (hβ : β ∈ B) (hαβ : α < β) (hmin : ∀ x ∈ B, α ≤ x)

@@ -82,7 +82,9 @@ namespace Domain.Neighborhood.Exercise513
 /-- The `k`-th triangular number `T(k) = k(k+1)/2`. -/
 def tri (k : ℕ) : ℕ := k * (k + 1) / 2
 
-/-- `k(k+1)` is even (choice-free, by induction). -/
+/-- `k(k+1)` is even (choice-free, by induction).
+@isnad1 id=dvd.0h1v.s4.ae62efd9ab39 from=translated src=- shape=bd967a0d vocab=e4d01d9c
+-/
 theorem two_dvd_mul_succ (k : ℕ) : 2 ∣ k * (k + 1) := by
   induction k with
   | zero => exact ⟨0, by ring⟩
@@ -94,12 +96,16 @@ theorem two_dvd_mul_succ (k : ℕ) : 2 ∣ k * (k + 1) := by
 
 /-- The defining doubling identity `2·T(k) = k(k+1)` — the division is exact
 because `k(k+1)` is
-even. -/
+even.
+@isnad1 id=eq.0h1v.s5.c688fe1a3401 from=translated src=- shape=a79405cd vocab=cfcfd04a
+-/
 theorem tri_mul_two (k : ℕ) : tri k * 2 = k * (k + 1) := by
   unfold tri
   exact Nat.div_mul_cancel (two_dvd_mul_succ k)
 
-/-- The triangular recurrence `T(k+1) = T(k) + (k+1)`. -/
+/-- The triangular recurrence `T(k+1) = T(k) + (k+1)`.
+@isnad1 id=eq.0h1v.s5.78adecb2f256 from=translated src=- shape=50954a66 vocab=a776a5f1
+-/
 theorem tri_succ (k : ℕ) : tri (k + 1) = tri k + (k + 1) := by
   have e1 : tri k * 2 = k * (k + 1) := tri_mul_two k
   have e2 : tri (k + 1) * 2 = (k + 1) * (k + 1 + 1) := tri_mul_two (k + 1)
@@ -108,10 +114,15 @@ theorem tri_succ (k : ℕ) : tri (k + 1) = tri k + (k + 1) := by
     rw [hexp, e1, e2]; ring
   exact Nat.eq_of_mul_eq_mul_right (by norm_num) key
 
+/--
+@isnad1 id=le.0h1v.s4.8ab715fa03d5 from=translated src=- shape=0dd30c50 vocab=4591a56d
+-/
 theorem tri_le_succ (k : ℕ) : tri k ≤ tri (k + 1) := by
   rw [tri_succ]; omega
 
-/-- `T` is monotone (proved by hand on `≤` to stay choice-free). -/
+/-- `T` is monotone (proved by hand on `≤` to stay choice-free).
+@isnad1 id=le.1h2v.s4.24b41ad4e7ca from=translated src=- shape=6bee9d27 vocab=4bd69317
+-/
 theorem tri_mono {a b : ℕ} (h : a ≤ b) : tri a ≤ tri b := by
   induction h with
   | refl => exact le_refl _
@@ -126,13 +137,22 @@ def num (n m : ℕ) : ℕ := tri (n + m) + m
 /-- Its uncurried form, the actual `N × N → N` of the exercise. -/
 def numP (p : ℕ × ℕ) : ℕ := num p.1 p.2
 
+/--
+@isnad1 id=eq.0h0v.s4.03a5d2ecbf72 from=translated src=- shape=7226d0ee vocab=1be44116
+-/
 theorem num_zero_zero : num 0 0 = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.1e61a64f2b8b from=translated src=- shape=1bedfaf6 vocab=545686a1
+-/
 theorem num_succ_right (n m : ℕ) : num n (m + 1) = num (n + 1) m + 1 := by
   unfold num
   have h : n + (m + 1) = (n + 1) + m := by omega
   rw [h]; omega
 
+/--
+@isnad1 id=eq.0h1v.s5.729665bf543b from=translated src=- shape=0918f706 vocab=545686a1
+-/
 theorem num_succ_left (n : ℕ) : num (n + 1) 0 = num 0 n + 1 := by
   unfold num
   have h0 : (n + 1) + 0 = n + 1 := by omega
@@ -141,13 +161,17 @@ theorem num_succ_left (n : ℕ) : num (n + 1) 0 = num 0 n + 1 := by
 
 /-- The value `num n m` sits in the half-open diagonal block `[T(n+m), T(n+m+1))`:
 the upper
-bound. -/
+bound.
+@isnad1 id=lt.0h2v.s5.53a426abb000 from=translated src=- shape=3f47832f vocab=5e0efb13
+-/
 theorem num_lt_tri_succ (n m : ℕ) : num n m < tri (n + m + 1) := by
   rw [tri_succ]; unfold num; omega
 
 /-- **The function is one-one.** The diagonal `s = n+m` is recovered as the unique
 `s` with
-`T(s) ≤ num n m < T(s+1)`; then `m` is the offset and `n = s - m`. -/
+`T(s) ≤ num n m < T(s+1)`; then `m` is the offset and `n = s - m`.
+@isnad1 id=injectiv.0h0v.s2.de97c3fe3cf4 from=translated src=- shape=8e22ceaf vocab=692ad954
+-/
 theorem num_injective : Function.Injective numP := by
   rintro ⟨n₁, m₁⟩ ⟨n₂, m₂⟩ h
   have h' : num n₁ m₁ = num n₂ m₂ := h
@@ -176,6 +200,9 @@ def nextCell : ℕ × ℕ → ℕ × ℕ
   | (n + 1, m) => (n, m + 1)
   | (0, m) => (m + 1, 0)
 
+/--
+@isnad1 id=eq.0h1v.s4.af6a47501e85 from=translated src=- shape=427ffbe0 vocab=c63657df
+-/
 theorem numP_nextCell (c : ℕ × ℕ) : numP (nextCell c) = numP c + 1 := by
   obtain ⟨n, m⟩ := c
   cases n with
@@ -187,6 +214,9 @@ def unnum : ℕ → ℕ × ℕ
   | 0 => (0, 0)
   | v + 1 => nextCell (unnum v)
 
+/--
+@isnad1 id=eq.0h1v.s3.5a813743eb53 from=translated src=- shape=47dcad53 vocab=62b61ed5
+-/
 theorem numP_unnum (v : ℕ) : numP (unnum v) = v := by
   induction v with
   | zero => exact num_zero_zero
@@ -194,6 +224,9 @@ theorem numP_unnum (v : ℕ) : numP (unnum v) = v := by
       change numP (nextCell (unnum k)) = k + 1
       rw [numP_nextCell, ih]
 
+/--
+@isnad1 id=eq.0h1v.s3.237818292e28 from=translated src=- shape=55dc2d38 vocab=86a41679
+-/
 theorem unnum_numP (c : ℕ × ℕ) : unnum (numP c) = c :=
   num_injective (by rw [numP_unnum])
 
@@ -207,6 +240,9 @@ def numEquiv : ℕ × ℕ ≃ ℕ where
   left_inv := unnum_numP
   right_inv := numP_unnum
 
+/--
+@isnad1 id=eq.0h1v.s5.43b05d1c9381 from=translated src=- shape=becc8afc vocab=f7d5839d
+-/
 @[simp] theorem numEquiv_apply (p : ℕ × ℕ) : numEquiv p = num p.1 p.2 := rfl
 
 /-! ### The domain isomorphisms

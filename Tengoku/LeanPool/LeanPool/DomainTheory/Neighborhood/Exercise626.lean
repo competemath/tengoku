@@ -70,16 +70,28 @@ variable {D : NeighborhoodSystem Str}
 /-- The master neighbourhood `{Λ} ∪ 0Δ` of the lift. -/
 def liftTokMaster (D : NeighborhoodSystem Str) : Set Str := insert [] (embBit false D.master)
 
+/--
+@isnad1 id=mem.0h1v.s3.3320f1085cf6 from=translated src=- shape=90f84f6f vocab=e50aa17a
+-/
 theorem nil_mem_liftTokMaster : ([] : Str) ∈ liftTokMaster D := Set.mem_insert _ _
 
+/--
+@isnad1 id=le.1h2v.s4.651c1d7cec66 from=translated src=- shape=b8e7e374 vocab=9c7625a8
+-/
 theorem embF_subset_liftTokMaster {X : Set Str} (hX : D.mem X) :
     embBit false X ⊆ liftTokMaster D :=
   (embBit_subset.mpr (D.sub_master hX)).trans (Set.subset_insert _ _)
 
+/--
+@isnad1 id=eq.1h2v.s4.bc634c881b62 from=translated src=- shape=ae59283c vocab=8dec1f50
+-/
 theorem liftTokMaster_inter_embF {X : Set Str} (hX : D.mem X) :
     liftTokMaster D ∩ embBit false X = embBit false X :=
   Set.inter_eq_right.mpr (embF_subset_liftTokMaster hX)
 
+/--
+@isnad1 id=ne.0h2v.s3.200a85a6f05a from=translated src=- shape=bc6a0fe5 vocab=460d5d80
+-/
 theorem embF_ne_liftTokMaster {X : Set Str} : embBit false X ≠ liftTokMaster D := fun h =>
   nil_not_mem_embBit (h.symm ▸ nil_mem_liftTokMaster)
 
@@ -109,6 +121,9 @@ def liftTok (D : NeighborhoodSystem Str) :
         · exact absurd (hZsub nil_mem_liftTokMaster) nil_not_mem_embBit
         · exact Or.inr ⟨X ∩ X', D.inter_mem hX hX' hZ' (embBit_subset.mp hZsub), rfl⟩
 
+/--
+@isnad1 id=nonempty.2h2v.s4.3acd0b98d993 from=translated src=- shape=0fb771a5 vocab=8ae46ca5
+-/
 theorem liftTok_nonempty (hD : ∀ X, D.mem X → X.Nonempty) :
     ∀ W, (liftTok D).mem W → W.Nonempty := by
   rintro W (rfl | ⟨X, hX, rfl⟩)
@@ -118,11 +133,20 @@ theorem liftTok_nonempty (hD : ∀ X, D.mem X → X.Nonempty) :
 /-- The **lift object** `𝒟_⊥` of Scott's category. -/
 def ScottSys.lift (A : ScottSys) : ScottSys := ⟨liftTok A.sys, liftTok_nonempty A.ne⟩
 
+/--
+@isnad1 id=mem.0h1v.s3.26740928e471 from=translated src=- shape=44e33ebc vocab=5980be6e
+-/
 theorem liftTok_mem_master : (liftTok D).mem (liftTokMaster D) := Or.inl rfl
 
+/--
+@isnad1 id=mem.1h2v.s4.2329d8b7126f from=translated src=- shape=b5e6f1c5 vocab=e43c1982
+-/
 theorem liftTok_mem_embF {X : Set Str} (hX : D.mem X) :
     (liftTok D).mem (embBit false X) := Or.inr ⟨X, hX, rfl⟩
 
+/--
+@isnad1 id=mem.1h2v.s4.f99dcd0913e1 from=translated src=- shape=2b07624f vocab=e43c1982
+-/
 theorem liftTok_mem_embF_inv {W : Set Str} (h : (liftTok D).mem (embBit false W)) : D.mem W := by
   rcases h with h0 | ⟨X, hX, heq⟩
   · exact absurd (h0.symm ▸ nil_mem_liftTokMaster) nil_not_mem_embBit
@@ -164,16 +188,26 @@ def liftUp {D : NeighborhoodSystem Str} (x : D.Element) : (liftTok D).Element wh
       · exact Or.inl rfl
       · exact Or.inr ⟨X', x.up_mem hX hX' (embBit_subset.mp hsub), rfl⟩
 
+/--
+@isnad1 id=iff.0h2v.s4.a731c941290c from=translated src=- shape=46bf1426 vocab=c7d0ff6c
+-/
 @[simp] theorem mem_liftBot {W : Set Str} : (liftBot D).mem W ↔ W = liftTokMaster D := Iff.rfl
 
+/--
+@isnad1 id=iff.0h3v.s5.e4f8295da919 from=translated src=- shape=2d826832 vocab=48132b4e
+-/
 @[simp] theorem mem_liftUp {x : D.Element} {W : Set Str} :
     (liftUp x).mem W ↔ W = liftTokMaster D ∨ ∃ X, x.mem X ∧ W = embBit false X := Iff.rfl
 
-/-- `liftBot` is the least element of `𝒟_⊥`. -/
+/-- `liftBot` is the least element of `𝒟_⊥`.
+@isnad1 id=le.0h2v.s4.a79f173b46a1 from=translated src=- shape=6a1c3661 vocab=3030137e
+-/
 theorem liftBot_le (z : (liftTok D).Element) : liftBot D ≤ z := by
   rintro W rfl; exact z.master_mem
 
-/-- `liftUp` is an order embedding: `liftUp x ⊑ liftUp y ↔ x ⊑ y`. -/
+/-- `liftUp` is an order embedding: `liftUp x ⊑ liftUp y ↔ x ⊑ y`.
+@isnad1 id=iff.0h3v.s5.ed72e2e288b6 from=translated src=- shape=84d056a9 vocab=41e0ce21
+-/
 theorem liftUp_le_liftUp_iff {x y : D.Element} :
     liftUp x ≤ liftUp y ↔ x ≤ y := by
   constructor
@@ -186,7 +220,9 @@ theorem liftUp_le_liftUp_iff {x y : D.Element} :
     · exact Or.inl rfl
     · exact Or.inr ⟨X, h X hX, rfl⟩
 
-/-- The fresh bottom is *strictly* below every lifted element. -/
+/-- The fresh bottom is *strictly* below every lifted element.
+@isnad1 id=lt.0h2v.s4.28634cd04f47 from=translated src=- shape=894f95c8 vocab=113123b0
+-/
 theorem liftBot_lt_liftUp (x : D.Element) : liftBot D < liftUp x := by
   refine lt_of_le_of_ne (liftBot_le _) (fun heq => ?_)
   have hmem : (liftBot D).mem (embBit false D.master) := by
@@ -208,6 +244,9 @@ def unlift (z : (liftTok D).Element) (hz : z.mem (embBit false D.master)) : D.El
     intro X Y hX hY hXY
     exact z.up_mem hX (liftTok_mem_embF hY) (embBit_subset.mpr hXY)
 
+/--
+@isnad1 id=eq.1h2v.s4.4c4ffe3c07e8 from=translated src=- shape=d26ad2af vocab=8b497608
+-/
 theorem liftUp_unlift (z : (liftTok D).Element) (hz : z.mem (embBit false D.master)) :
     liftUp (unlift z hz) = z := by
   apply NeighborhoodSystem.Element.ext
@@ -285,7 +324,9 @@ def liftMapTok (f : ApproximableMap A.sys B.sys) :
             f.mono hrel (embBit_subset.mp hWW) (embBit_subset.mp hZZ') hX₂ hX₃, rfl, rfl⟩
 
 /-- **`f_⊥` is strict** for *any* `f`: the master `Λ`-bearing input relates only
-to the master. -/
+to the master.
+@isnad1 id=isstrict.0h3v.s4.74855d9c09dc from=translated src=- shape=25a58cff vocab=022d09fd
+-/
 theorem liftMapTok_isStrict (f : ApproximableMap A.sys B.sys) : IsStrict (liftMapTok f) := by
   rintro Y (⟨-, rfl⟩ | ⟨X, X', -, heq, -⟩)
   · rfl
@@ -293,7 +334,9 @@ theorem liftMapTok_isStrict (f : ApproximableMap A.sys B.sys) : IsStrict (liftMa
       rw [← heq]; exact nil_mem_liftTokMaster
     exact absurd hnil nil_not_mem_embBit
 
-/-- **`(I_𝒟)_⊥ = I_{𝒟_⊥}`.** -/
+/-- **`(I_𝒟)_⊥ = I_{𝒟_⊥}`.**
+@isnad1 id=eq.0h1v.s4.5b2234747c81 from=translated src=- shape=e6e7aa24 vocab=f76cc4e3
+-/
 theorem liftMapTok_id : liftMapTok (idMap A.sys) = idMap (ScottSys.lift A).sys := by
   apply ApproximableMap.ext
   intro W W'
@@ -309,7 +352,9 @@ theorem liftMapTok_id : liftMapTok (idMap A.sys) = idMap (ScottSys.lift A).sys :
       · exact absurd (hsub nil_mem_liftTokMaster) nil_not_mem_embBit
       · exact Or.inr ⟨X, X', ⟨hX, hX', embBit_subset.mp hsub⟩, rfl, rfl⟩
 
-/-- **`(g ∘ f)_⊥ = g_⊥ ∘ f_⊥`.** -/
+/-- **`(g ∘ f)_⊥ = g_⊥ ∘ f_⊥`.**
+@isnad1 id=eq.0h5v.s6.d27c026e0832 from=translated src=- shape=87871c65 vocab=e3b7dd89
+-/
 theorem liftMapTok_comp (f : ApproximableMap A.sys B.sys) (g : ApproximableMap B.sys C.sys) :
     liftMapTok (g.comp f) = (liftMapTok g).comp (liftMapTok f) := by
   apply ApproximableMap.ext
@@ -341,22 +386,34 @@ intersections vanish
 
 variable {D E : ScottSys}
 
+/--
+@isnad1 id=mem.1h3v.s4.e6baeb55baf8 from=translated src=- shape=b4df8822 vocab=8a3e31aa
+-/
 theorem o_mem_embFF {X' : Set Str} (hX' : D.sys.mem X') :
     (D.lift.oplus E.lift).sys.mem (embBit false (embBit false X')) :=
   oplusTok_mem_embF (h₀ := D.lift.ne) (h₁ := E.lift.ne)
     (liftTok_mem_embF hX') (embF_ne_liftTokMaster (D := D.sys))
 
+/--
+@isnad1 id=mem.1h3v.s4.f310182b8471 from=translated src=- shape=c6770a5b vocab=9205d210
+-/
 theorem o_mem_embTF {Y' : Set Str} (hY' : E.sys.mem Y') :
     (D.lift.oplus E.lift).sys.mem (embBit true (embBit false Y')) :=
   oplusTok_mem_embT (h₀ := D.lift.ne) (h₁ := E.lift.ne)
     (liftTok_mem_embF hY') (embF_ne_liftTokMaster (D := E.sys))
 
+/--
+@isnad1 id=mem.1h3v.s4.f4d599426784 from=translated src=- shape=fe57b817 vocab=8a3e31aa
+-/
 theorem o_embFF_inv {W : Set Str}
     (h : (D.lift.oplus E.lift).sys.mem (embBit false (embBit false W))) : D.sys.mem W :=
   liftTok_mem_embF_inv
     (oplusTok_mem_embF_inv (D₀ := D.lift.sys) (D₁ := E.lift.sys)
       (h₀ := D.lift.ne) (h₁ := E.lift.ne) h)
 
+/--
+@isnad1 id=mem.1h3v.s4.183174312266 from=translated src=- shape=a7cecff9 vocab=9205d210
+-/
 theorem o_embTF_inv {W : Set Str}
     (h : (D.lift.oplus E.lift).sys.mem (embBit true (embBit false W))) : E.sys.mem W :=
   liftTok_mem_embF_inv
@@ -416,6 +473,9 @@ def toSumLift (z : (D.lift.oplus E.lift).sys.Element) : (D.sum E).sys.Element wh
         exact z.up_mem hzY (o_mem_embTF hY'')
           (embBit_subset.mpr (embBit_subset.mpr (embBit_subset.mp hsub)))
 
+/--
+@isnad1 id=iff.1h4v.s5.35c3fa29b8ff from=translated src=- shape=0573d36a vocab=25faa792
+-/
 @[simp] theorem toSumLift_mem_embF {z : (D.lift.oplus E.lift).sys.Element} {X : Set Str}
     (hX : D.sys.mem X) :
     (toSumLift z).mem (embBit false X) ↔ z.mem (embBit false (embBit false X)) := by
@@ -426,6 +486,9 @@ def toSumLift (z : (D.lift.oplus E.lift).sys.Element) : (D.sum E).sys.Element wh
     · exact absurd heq (embBit_ne (show (false : Bool) ≠ true by decide) (D.ne X hX))
   · intro hz; exact Or.inr (Or.inl ⟨X, hX, rfl, hz⟩)
 
+/--
+@isnad1 id=iff.1h4v.s5.d1e549defccc from=translated src=- shape=96526ebe vocab=2a5adce2
+-/
 @[simp] theorem toSumLift_mem_embT {z : (D.lift.oplus E.lift).sys.Element} {Y : Set Str}
     (hY : E.sys.mem Y) :
     (toSumLift z).mem (embBit true Y) ↔ z.mem (embBit true (embBit false Y)) := by
@@ -505,6 +568,9 @@ def fromSumLift (s : (D.sum E).sys.Element) : (D.lift.oplus E.lift).sys.Element 
           exact s.up_mem hsY (sumTok_mem_embT (h₀ := D.ne) (h₁ := E.ne) hY''E)
             (embBit_subset.mpr (embBit_subset.mp (embBit_subset.mp hsub)))
 
+/--
+@isnad1 id=iff.1h4v.s5.99fc1304193d from=translated src=- shape=524768cc vocab=caa44ab5
+-/
 @[simp] theorem fromSumLift_mem_embFF {s : (D.sum E).sys.Element} {X : Set Str} (hX : D.sys.mem X) :
     (fromSumLift s).mem (embBit false (embBit false X)) ↔ s.mem (embBit false X) := by
   constructor
@@ -515,6 +581,9 @@ def fromSumLift (s : (D.sum E).sys.Element) : (D.lift.oplus E.lift).sys.Element 
         (embBit_nonempty (D.ne X hX)))
   · intro hs; exact Or.inr (Or.inl ⟨X, hX, rfl, hs⟩)
 
+/--
+@isnad1 id=iff.1h4v.s5.7b3bb30b8e80 from=translated src=- shape=ca68869a vocab=9e90ed9c
+-/
 @[simp] theorem fromSumLift_mem_embTF {s : (D.sum E).sys.Element} {Y : Set Str} (hY : E.sys.mem Y) :
     (fromSumLift s).mem (embBit true (embBit false Y)) ↔ s.mem (embBit true Y) := by
   constructor
@@ -525,6 +594,9 @@ def fromSumLift (s : (D.sum E).sys.Element) : (D.lift.oplus E.lift).sys.Element 
     · rwa [embBit_injective (embBit_injective heq)]
   · intro hs; exact Or.inr (Or.inr ⟨Y, hY, rfl, hs⟩)
 
+/--
+@isnad1 id=eq.0h3v.s4.f7161a50a668 from=translated src=- shape=976d0547 vocab=cbeed943
+-/
 theorem fromSumLift_toSumLift (z : (D.lift.oplus E.lift).sys.Element) :
     fromSumLift (toSumLift z) = z := by
   apply NeighborhoodSystem.Element.ext
@@ -544,6 +616,9 @@ theorem fromSumLift_toSumLift (z : (D.lift.oplus E.lift).sys.Element) :
       · exact absurd rfl hYne
       · exact Or.inr (Or.inr ⟨Y', hY'E, rfl, (toSumLift_mem_embT hY'E).mpr hW⟩)
 
+/--
+@isnad1 id=eq.0h3v.s4.6c47bc826eab from=translated src=- shape=6e0d85ae vocab=eced90c2
+-/
 theorem toSumLift_fromSumLift (s : (D.sum E).sys.Element) :
     toSumLift (fromSumLift s) = s := by
   apply NeighborhoodSystem.Element.ext
@@ -585,7 +660,9 @@ def sumLiftEquiv : (D.lift.oplus E.lift).sys.Element ≃o (D.sum E).sys.Element 
 
 /-- **Exercise 6.26 — `𝒟_⊥ ⊕ ℰ_⊥ ≅ 𝒟 + ℰ`.** Coalescing the fresh bottoms of the
 two lifts
-reproduces the separated sum. -/
+reproduces the separated sum.
+@isnad1 id=isomorph.0h2v.s4.c379506d04f8 from=translated src=- shape=49ae4480 vocab=b7b8757d
+-/
 theorem lift_oplus_lift_iso_sum :
     (D.lift.oplus E.lift).sys ≅ᴰ (D.sum E).sys := ⟨sumLiftEquiv⟩
 
@@ -599,11 +676,17 @@ presentation to the
 other. Unlike the sum there are *no* cross-tag intersections, so the proof is
 purely "rectangular". -/
 
+/--
+@isnad1 id=mem.2h4v.s5.3e0a6427850a from=translated src=- shape=78b6d2bd vocab=0a4ae5b5
+-/
 theorem ot_mem_prod {X' Y' : Set Str} (hX' : D.sys.mem X') (hY' : E.sys.mem Y') :
     (D.lift.otimes E.lift).sys.mem (prodTokNbhd (embBit false X') (embBit false Y')) :=
   otimesTok_mem_prod (liftTok_mem_embF hX') (liftTok_mem_embF hY')
     (embF_ne_liftTokMaster (D := D.sys)) (embF_ne_liftTokMaster (D := E.sys))
 
+/--
+@isnad1 id=and.1h4v.s5.a606953e73f0 from=translated src=- shape=972c055c vocab=0a4ae5b5
+-/
 theorem ot_mem_prod_inv {X' Y' : Set Str}
     (h : (D.lift.otimes E.lift).sys.mem (prodTokNbhd (embBit false X') (embBit false Y'))) :
     D.sys.mem X' ∧ E.sys.mem Y' := by
@@ -611,10 +694,16 @@ theorem ot_mem_prod_inv {X' Y' : Set Str}
     (embF_ne_liftTokMaster (D := D.sys))
   exact ⟨liftTok_mem_embF_inv h1, liftTok_mem_embF_inv h2⟩
 
+/--
+@isnad1 id=mem.2h4v.s5.c53257313005 from=translated src=- shape=6fcd7a63 vocab=04c8f8f7
+-/
 theorem lp_mem_embF {X' Y' : Set Str} (hX' : D.sys.mem X') (hY' : E.sys.mem Y') :
     (D.prod E).lift.sys.mem (embBit false (prodTokNbhd X' Y')) :=
   liftTok_mem_embF (prodTok_mem_prodTokNbhd hX' hY')
 
+/--
+@isnad1 id=and.1h4v.s5.b0d58302ac40 from=translated src=- shape=585dff98 vocab=04c8f8f7
+-/
 theorem lp_prod_inv {X' Y' : Set Str}
     (h : (D.prod E).lift.sys.mem (embBit false (prodTokNbhd X' Y'))) :
     D.sys.mem X' ∧ E.sys.mem Y' := by
@@ -655,6 +744,9 @@ def toLiftProd (z : (D.lift.otimes E.lift).sys.Element) : (D.prod E).lift.sys.El
         exact z.up_mem hzXY (ot_mem_prod hX'' hY'')
           (prodTokNbhd_subset_iff.mpr ⟨embBit_subset.mpr hsX, embBit_subset.mpr hsY⟩)
 
+/--
+@isnad1 id=iff.2h5v.s6.e809ff20f678 from=translated src=- shape=af0878bb vocab=44bc4f45
+-/
 @[simp] theorem toLiftProd_mem_embF {z : (D.lift.otimes E.lift).sys.Element} {X Y : Set Str}
     (hX : D.sys.mem X) (hY : E.sys.mem Y) :
     (toLiftProd z).mem (embBit false (prodTokNbhd X Y)) ↔
@@ -703,6 +795,9 @@ def fromLiftProd (s : (D.prod E).lift.sys.Element) : (D.lift.otimes E.lift).sys.
               (embBit_subset.mpr (prodTokNbhd_subset_iff.mpr
                 ⟨embBit_subset.mp hsX, embBit_subset.mp hsY⟩))
 
+/--
+@isnad1 id=iff.2h5v.s5.e3c8a24eedf5 from=translated src=- shape=eeeb30a0 vocab=7395bd66
+-/
 @[simp] theorem fromLiftProd_mem_prod {s : (D.prod E).lift.sys.Element} {X Y : Set Str}
     (hX : D.sys.mem X) (hY : E.sys.mem Y) :
     (fromLiftProd s).mem (prodTokNbhd (embBit false X) (embBit false Y)) ↔
@@ -715,6 +810,9 @@ def fromLiftProd (s : (D.prod E).lift.sys.Element) : (D.lift.otimes E.lift).sys.
       rw [embBit_injective hXe, embBit_injective hYe]; exact hs
   · intro hs; exact Or.inr ⟨X, Y, hX, hY, rfl, hs⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.8c6b77c68a40 from=translated src=- shape=976d0547 vocab=0862c08c
+-/
 theorem fromLiftProd_toLiftProd (z : (D.lift.otimes E.lift).sys.Element) :
     fromLiftProd (toLiftProd z) = z := by
   apply NeighborhoodSystem.Element.ext
@@ -732,6 +830,9 @@ theorem fromLiftProd_toLiftProd (z : (D.lift.otimes E.lift).sys.Element) :
         · exact absurd rfl hYne
         · exact Or.inr ⟨X'', Y'', hX''D, hY''E, rfl, (toLiftProd_mem_embF hX''D hY''E).mpr hW⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.ded3f3105b49 from=translated src=- shape=07c5865b vocab=4beafbd6
+-/
 theorem toLiftProd_fromLiftProd (s : (D.prod E).lift.sys.Element) :
     toLiftProd (fromLiftProd s) = s := by
   apply NeighborhoodSystem.Element.ext
@@ -771,7 +872,9 @@ def liftProdEquiv : (D.lift.otimes E.lift).sys.Element ≃o (D.prod E).lift.sys.
 
 /-- **Exercise 6.26 — `𝒟_⊥ ⊗ ℰ_⊥ ≅ (𝒟 × ℰ)_⊥`** (the answer to Scott's `??`). The
 smash product of
-two lifts is the lift of the product. -/
+two lifts is the lift of the product.
+@isnad1 id=isomorph.0h2v.s4.6d7ddc67d01c from=translated src=- shape=366781ab vocab=b2eba794
+-/
 theorem lift_otimes_lift_iso_lift_prod :
     (D.lift.otimes E.lift).sys ≅ᴰ (D.prod E).lift.sys := ⟨liftProdEquiv⟩
 

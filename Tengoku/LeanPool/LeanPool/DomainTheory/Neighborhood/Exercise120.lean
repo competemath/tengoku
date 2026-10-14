@@ -49,16 +49,23 @@ variable {α : Type*} (V : NeighborhoodSystem α)
 /-- Exercise 1.20's `↑X = {Y ∈ 𝒟 ∣ Y ⊆ X}` (the up-set of `X` *inside* `𝒟`). -/
 def upSet (X : Set α) : Set (Set α) := {Y | V.mem Y ∧ Y ⊆ X}
 
+/--
+@isnad1 id=iff.0h4v.s5.847ea3835c37 from=translated src=- shape=ccbb99ec vocab=b439cc5d
+-/
 @[simp] theorem mem_upSet {X Y : Set α} : Y ∈ V.upSet X ↔ V.mem Y ∧ Y ⊆ X := Iff.rfl
 
-/-- `↑X ∩ ↑Y = ↑(X ∩ Y)` — a set identity (no membership hypotheses). -/
+/-- `↑X ∩ ↑Y = ↑(X ∩ Y)` — a set identity (no membership hypotheses).
+@isnad1 id=eq.0h4v.s5.816a70664775 from=translated src=- shape=b172ec55 vocab=1d4815b9
+-/
 theorem upSet_inter (X Y : Set α) : V.upSet X ∩ V.upSet Y = V.upSet (X ∩ Y) := by
   ext Z
   simp only [Set.mem_inter_iff, mem_upSet, Set.subset_inter_iff]
   tauto
 
 /-- `X ↦ ↑X` is inclusion-**preserving**: `↑X ⊆ ↑Y ↔ X ⊆ Y` (for `X ∈ 𝒟`).
-`→` tests at `X ∈ ↑X`; `←` is transitivity of `⊆`. -/
+`→` tests at `X ∈ ↑X`; `←` is transitivity of `⊆`.
+@isnad1 id=iff.1h4v.s5.c5e370ceca63 from=translated src=- shape=c4751a2c vocab=8f201acc
+-/
 theorem upSet_subset_iff {X Y : Set α} (hX : V.mem X) : V.upSet X ⊆ V.upSet Y ↔ X ⊆ Y := by
   constructor
   · intro h
@@ -66,7 +73,9 @@ theorem upSet_subset_iff {X Y : Set α} (hX : V.mem X) : V.upSet X ⊆ V.upSet Y
   · intro hXY Z hZ
     exact ⟨hZ.1, hZ.2.trans hXY⟩
 
-/-- `X ↦ ↑X` is one-one on `𝒟`. -/
+/-- `X ↦ ↑X` is one-one on `𝒟`.
+@isnad1 id=eq.3h4v.s5.c4048282d659 from=translated src=- shape=f7077288 vocab=2823fff5
+-/
 theorem upSet_injective {X Y : Set α} (hX : V.mem X) (hY : V.mem Y)
     (h : V.upSet X = V.upSet Y) : X = Y :=
   Set.Subset.antisymm ((V.upSet_subset_iff hX).mp h.subset)
@@ -92,13 +101,18 @@ def powerSystem : NeighborhoodSystem (Set α) where
     obtain ⟨X, hX, rfl⟩ := hS
     exact (V.upSet_subset_iff hX).mpr (V.sub_master hX)
 
+/--
+@isnad1 id=iff.0h3v.s5.ed41886bc239 from=translated src=- shape=7b0bf5a0 vocab=7fe2a4a2
+-/
 @[simp] theorem powerSystem_mem {S : Set (Set α)} :
     V.powerSystem.mem S ↔ ∃ X, V.mem X ∧ S = V.upSet X := Iff.rfl
 
 /-- **Exercise 1.20 — `𝒟'` is positive.** `↑X ∩ ↑Y = ↑(X∩Y)` is a neighbourhood
 iff it is
 non-empty: a witness `Z ⊆ X ∩ Y` gives `X ∩ Y ∈ 𝒟`; conversely `↑W` always
-contains `W`. -/
+contains `W`.
+@isnad1 id=ispositi.0h2v.s3.5ab421434f21 from=translated src=- shape=80be9dfb vocab=281baa3f
+-/
 theorem powerSystem_isPositive : V.powerSystem.IsPositive := by
   rintro S T ⟨X, hX, rfl⟩ ⟨Y, hY, rfl⟩
   rw [V.upSet_inter]
@@ -176,7 +190,9 @@ def powerIso : V.Element ≃o V.powerSystem.Element where
       obtain ⟨W, hW, rfl⟩ := hS
       exact ⟨W, h W hW, rfl⟩
 
-/-- **Exercise 1.20 (statement).** `𝒟` and its power system `𝒟'` are isomorphic. -/
+/-- **Exercise 1.20 (statement).** `𝒟` and its power system `𝒟'` are isomorphic.
+@isnad1 id=isomorph.0h2v.s3.d088f3a7471b from=translated src=- shape=539cb227 vocab=5354d75a
+-/
 theorem isomorphic_powerSystem : V ≅ᴰ V.powerSystem := ⟨V.powerIso⟩
 
 /-- **Exercise 1.20 — tokens ↔ finite elements.** The iso carries the finite
@@ -185,7 +201,9 @@ element `↑X` of
 the principal
 filter of `↑X` in `𝒟'`. Since `X ↦ ↑X` is one-one (`upSet_injective`), tokens of
 `𝒟'` and its
-finite elements are in one-one correspondence. -/
+finite elements are in one-one correspondence.
+@isnad1 id=eq.1h3v.s6.2bbbcb1a1b1d from=translated src=- shape=023accfb vocab=255fffac
+-/
 theorem toPower_principal {X : Set α} (hX : V.mem X) :
     V.toPower (V.principal hX) = V.powerSystem.principal ⟨X, hX, rfl⟩ := by
   apply Element.ext

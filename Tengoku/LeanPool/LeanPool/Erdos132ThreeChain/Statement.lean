@@ -46,7 +46,9 @@ open Finset
 /-- **The 3-chain support theorem.**  Let `n ≥ 13` and `a > 0`, and let `X` be a set of `n`
 points of the plane with squared diameter `D`.  Then the set of squared distances realised by
 distinct points of `X` other than `D` is never the geometric 3-chain `{a * 3 ^ j | j < h}`, for
-any chain length `h`. -/
+any chain length `h`.
+@isnad1 id=ne.4h5v.s5.466d86a32d3d from=translated src=- shape=b4173e76 vocab=2b3eb519
+-/
 theorem nonDiameterSqDists_ne_chain {X : Finset Point} {D a : ℝ} {n h : ℕ}
     (hn : 13 ≤ n) (ha : 0 < a) (hcard : X.card = n) (hD : IsSqDiameter X D) :
     nonDiameterSqDists X D ≠ chain a h := by
@@ -65,7 +67,9 @@ theorem nonDiameterSqDists_ne_chain {X : Finset Point} {D a : ℝ} {n h : ℕ}
 /-- The `h ≥ 2` reading of the support theorem, kept so that a statement matching the informal
 phrasing "a geometric 3-chain of length at least two" is available directly.  It is a wrapper
 around `nonDiameterSqDists_ne_chain`, which needs no bound on `h` at all; `_hh` is therefore
-unused. -/
+unused.
+@isnad1 id=false.6h5v.s6.f70ab3d4dedd from=translated src=- shape=e551583c vocab=2b3eb519
+-/
 theorem threeChain_support_empty {X : Finset Point} {D a : ℝ} {n h : ℕ}
     (hn : 13 ≤ n) (_hh : 2 ≤ h) (ha : 0 < a) (hcard : X.card = n)
     (hD : IsSqDiameter X D)

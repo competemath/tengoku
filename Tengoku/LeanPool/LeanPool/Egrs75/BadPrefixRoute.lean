@@ -94,7 +94,9 @@ open Egrs75.Probe
 agree for every `i`: out-of-range indices are neither in the set nor `BadAt` (digit
 reads as `0`). -/
 
-/-- `i ∈ badIndexSet q n ↔ BadAt q i n`, for all `i` (KERNEL-CLEAN). -/
+/-- `i ∈ badIndexSet q n ↔ BadAt q i n`, for all `i` (KERNEL-CLEAN).
+@isnad1 id=iff.1h3v.s5.d69c2fa6bc23 from=translated src=- shape=bb449d4d vocab=e6f3adaf
+-/
 theorem mem_badIndexSet_iff {q n i : ℕ} (hq : 1 < q) :
     i ∈ badIndexSet q n ↔ BadAt q i n := by
   unfold BadAt digitAt badIndexSet
@@ -113,7 +115,9 @@ theorem mem_badIndexSet_iff {q n i : ℕ} (hq : 1 < q) :
     refine ⟨hlen, ?_⟩
     rwa [getD_digits n i (by omega)]
 
-/-- Above the top bad index, nothing is `BadAt` (KERNEL-CLEAN, from `digit_good_above_top`). -/
+/-- Above the top bad index, nothing is `BadAt` (KERNEL-CLEAN, from `digit_good_above_top`).
+@isnad1 id=not.3h3v.s5.764a6a638698 from=translated src=- shape=772240a7 vocab=5a425881
+-/
 theorem not_badAt_above_top {q n i : ℕ} (hq : 1 < q) (hbad : 0 < badCountQ q n)
     (hi : topBadIndex q n < i) : ¬ BadAt q i n := by
   unfold BadAt digitAt
@@ -133,7 +137,9 @@ noncomputable def badPrefix (q n : ℕ) : ℕ := ∑ i ∈ badIndexSet q n, 2 ^ 
 
 /-- **Base case (KERNEL-CLEAN).**  `badPrefix q n = 0 ↔ LowDigits q n`.  The bitmask
 vanishes iff there are no bad base-`q` digits, i.e. `badIndexSet` is empty, i.e.
-`badCountQ q n = 0`, i.e. `LowDigits q n`. -/
+`badCountQ q n = 0`, i.e. `LowDigits q n`.
+@isnad1 id=iff.1h2v.s4.a8086b857d06 from=translated src=- shape=f8a488b0 vocab=3941f77f
+-/
 theorem badPrefix_eq_zero_iff_lowDigits {q n : ℕ} (hq : 1 < q) :
     badPrefix q n = 0 ↔ LowDigits q n := by
   rw [← badCountQ_eq_zero_iff_lowDigits]
@@ -156,13 +162,17 @@ theorem badPrefix_eq_zero_iff_lowDigits {q n : ℕ} (hq : 1 < q) :
     have := h0 i
     omega
 
-/-- The top bad index lies in `badIndexSet` (KERNEL-CLEAN; restated via membership). -/
+/-- The top bad index lies in `badIndexSet` (KERNEL-CLEAN; restated via membership).
+@isnad1 id=mem.2h2v.s5.16c5bd9aa810 from=translated src=- shape=1d99850c vocab=d1971f37
+-/
 theorem topBadIndex_mem_set {q n : ℕ} (hq : 1 < q) (hbad : 0 < badCountQ q n) :
     topBadIndex q n ∈ badIndexSet q n :=
   topBadIndex_mem hq hbad
 
 /-- **Lower bound (KERNEL-CLEAN).**  `2 ^ (topBadIndex q n) ≤ badPrefix q n`: the
-top bad bit is one of the summands. -/
+top bad bit is one of the summands.
+@isnad1 id=le.2h2v.s5.e4ab625f6272 from=translated src=- shape=884a1658 vocab=9081100f
+-/
 theorem two_pow_top_le_badPrefix {q n : ℕ} (hq : 1 < q) (hbad : 0 < badCountQ q n) :
     2 ^ (topBadIndex q n) ≤ badPrefix q n := by
   unfold badPrefix
@@ -183,7 +193,9 @@ having a bad digit).  If `n'` has no bad base-`q` digit at any index `≥ j`, th
 
 Proof: all bad indices of `n'` are `< j`, so by `Nat.geomSum_lt`,
 `badPrefix q n' = ∑_{i ∈ badIndexSet q n'} 2^i < 2^j`; and `2^j ≤ badPrefix q n`
-since `j` is itself a bad index of `n`. -/
+since `j` is itself a bad index of `n`.
+@isnad1 id=lt.3h3v.s5.ef5f80df5ef8 from=translated src=- shape=8762420b vocab=73b29ab3
+-/
 theorem badPrefix_drop_of_top_cleared {q n n' : ℕ} (hq : 1 < q)
     (hbad : 0 < badCountQ q n)
     (hcleared : ∀ i, topBadIndex q n ≤ i → ¬ BadAt q i n') :
@@ -221,7 +233,9 @@ KERNEL-CLEAN (no `sorry`, no axioms beyond propext/Classical.choice/Quot.sound).
 
 The repair hypothesis `hrepair_lex` is given the running magnitude `N < n` (the
 induction carries it as an invariant and threads it in), so the EGRS step's `N < n'`
-guarantee — needed to keep the result above the floor — is honored at every step. -/
+guarantee — needed to keep the result above the floor — is honored at every step.
+@isnad1 id=ex.3h4v.s6.eefc5d3834c0 from=translated src=- shape=77cf9e08 vocab=399a4e02
+-/
 theorem align_lex {p q : ℕ} (N : ℕ)
     (hrepair_lex : ∀ {n : ℕ}, LowDigits p n → N < n → 0 < badCountQ q n →
       ∃ n', LowDigits p n' ∧ N < n' ∧ badPrefix q n' < badPrefix q n)
@@ -311,7 +325,9 @@ exactly this to [EGRS75]; Mathlib packages neither the elementary carry argument
 the effective equidistribution an analytic proof needs.
 
 Stated in the same lex coordinates as `egrs_clearing` so the drop stays mechanized
-(`badPrefix_drop_of_top_cleared`) — no false count-drop is hidden under the sorry. -/
+(`badPrefix_drop_of_top_cleared`) — no false count-drop is hidden under the sorry.
+@isnad1 id=ex.9h4v.s6.c727147e3b6a from=translated src=- shape=724c77d1 vocab=e2231760
+-/
 theorem egrs_clearing_low {p q : ℕ} (hp : p.Prime) (hq : q.Prime)
     (hpo : Odd p) (hqo : Odd q) (hpq : p ≠ q) (N : ℕ)
     {n : ℕ} (hpn : LowDigits p n) (hNn : N < n) (hbad : 0 < badCountQ q n)
@@ -337,7 +353,9 @@ Dispatched on the position of the top oversized index relative to the floor scal
 
 So `egrs_clearing` inherits EXACTLY the one `egrs_clearing_low` `sorryAx`, now precisely
 isolated to the low case.  Stated in the lex coordinates so the drop is mechanized
-(`badPrefix_drop_of_top_cleared`) — no false count-drop is hidden. -/
+(`badPrefix_drop_of_top_cleared`) — no false count-drop is hidden.
+@isnad1 id=ex.8h4v.s6.dfc9b83a5dc9 from=translated src=- shape=bf9c28c3 vocab=8e6edbad
+-/
 theorem egrs_clearing {p q : ℕ} (hp : p.Prime) (hq : q.Prime)
     (hpo : Odd p) (hqo : Odd q) (hpq : p ≠ q) (N : ℕ)
     {n : ℕ} (hpn : LowDigits p n) (hNn : N < n) (hbad : 0 < badCountQ q n) :
@@ -368,7 +386,9 @@ CRITICAL: there is NO `n < n'` clause (the architectural fix — the paper's SUB
 branch legitimately yields `n' < n`); the measure clause is the lex `badPrefix`, NOT
 `badCountQ`; and `N < n'` threads the magnitude so the final crux gets `n > N`.
 Assembled kernel-clean from the clearing residual `egrs_clearing` via the proven drop
-lemma; inherits EXACTLY that one `sorryAx`. -/
+lemma; inherits EXACTLY that one `sorryAx`.
+@isnad1 id=ex.8h4v.s6.4fb2e7328c65 from=translated src=- shape=16b811a3 vocab=1410513d
+-/
 theorem repair_step_lex {p q : ℕ} (hp : p.Prime) (hq : q.Prime)
     (hpo : Odd p) (hqo : Odd q) (hpq : p ≠ q) (N : ℕ)
     {n : ℕ} (hpn : LowDigits p n) (hNn : N < n) (hbad : 0 < badCountQ q n) :
@@ -389,7 +409,9 @@ so the magnitude floor is honored throughout and the output is `> N`, `LowDigits
 `LeafInduction.align_induction`: for distinct odd primes `p q` and every `N`, there is
 `n > N` that is `LowDigits p` and `LowDigits q`.  Obtained by the kernel-clean lex
 induction `align_lex` seeded with `p^(N+1)`, discharging `repair_step_lex` (which
-carries the single `egrs_clearing` `sorry`).  Inherits EXACTLY that one `sorryAx`. -/
+carries the single `egrs_clearing` `sorry`).  Inherits EXACTLY that one `sorryAx`.
+@isnad1 id=ex.5h3v.s5.d39a601ee0ec from=translated src=- shape=465193de vocab=b82c62e4
+-/
 theorem align_finish {p q : ℕ} (hp : p.Prime) (hq : q.Prime)
     (hpo : Odd p) (hqo : Odd q) (hpq : p ≠ q) :
     ∀ N, ∃ n, N < n ∧ LowDigits p n ∧ LowDigits q n := by
@@ -410,7 +432,9 @@ divisibility target.  Both are clean, so `egrs_two_prime_finish` carries EXACTLY
 single `egrs_clearing` `sorryAx`. -/
 
 /-- ALIGN ⟹ crux (KERNEL-CLEAN; = `CruxClose.align_imp_crux` / `FinalAsm.align_to_crux`,
-inlined to avoid the hyphenated-module / `Equidist_fromscratch`-`sorry` import). -/
+inlined to avoid the hyphenated-module / `Equidist_fromscratch`-`sorry` import).
+@isnad1 id=infinite.1h2v.s5.0ae428a4004c from=translated src=- shape=b30f7ffe vocab=6b686e45
+-/
 theorem align_to_crux {p q : ℕ}
     (halign : ∀ N, ∃ n, N < n ∧ LowDigits p n ∧ LowDigits q n) :
     {n : ℕ | LowDigits p n ∧ LowDigits q n}.Infinite := by
@@ -426,7 +450,9 @@ Assembled through the lex measure: `align_finish` (lex induction, single
 `egrs_clearing` `sorry`) → `align_to_crux` (clean) → `egrs_two_prime_of_crux` (clean,
 `EgrsAll`).  Inherits EXACTLY the one `egrs_clearing` `sorryAx` — the EGRS75
 condition-(3) carry-control residual — under the CORRECT lex interface (no false
-count-drop hidden).  No `native_decide`, no extra axioms. -/
+count-drop hidden).  No `native_decide`, no extra axioms.
+@isnad1 id=infinite.5h2v.s5.0a63abe51af3 from=translated src=- shape=4a0bb7a7 vocab=8b4bdf93
+-/
 theorem egrs_two_prime_finish {p q : ℕ} (hp : p.Prime) (hq : q.Prime)
     (hpo : Odd p) (hqo : Odd q) (hpq : p ≠ q) :
     {n : ℕ | ¬ p ∣ Nat.centralBinom n ∧ ¬ q ∣ Nat.centralBinom n}.Infinite :=

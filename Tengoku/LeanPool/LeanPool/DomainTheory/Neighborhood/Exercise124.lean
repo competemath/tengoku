@@ -69,7 +69,9 @@ def chainUnion (C : Set V.Element) (hne : C.Nonempty) (hchain : IsChain (· ≤ 
     rintro X Y ⟨x, hxC, hxX⟩ hY hXY
     exact ⟨x, hxC, x.up_mem hxX hY hXY⟩
 
-/-- Every member of the chain approximates the union `⋃ C`. -/
+/-- Every member of the chain approximates the union `⋃ C`.
+@isnad1 id=le.3h4v.s6.ebad36859b8f from=translated src=- shape=ab19390d vocab=eebe957f
+-/
 theorem le_chainUnion (C : Set V.Element) (hne : C.Nonempty) (hchain : IsChain (· ≤ ·) C)
     {x : V.Element} (hx : x ∈ C) : x ≤ V.chainUnion C hne hchain :=
   fun _ hX => ⟨x, hx, hX⟩
@@ -80,7 +82,9 @@ element `x` admits a *total* element `t` with `x ⊑ t`. The upper bound of any
 non-empty chain in
 `Ici x` is its `chainUnion`, so a maximal element exists; maximality is exactly
 totality
-(`IsMax = IsTotal`). -/
+(`IsMax = IsTotal`).
+@isnad1 id=ex.0h3v.s5.4a2238b5796c from=translated src=- shape=3139b6ea vocab=5b43bbb5
+-/
 theorem exists_total_ge (x : V.Element) : ∃ t, V.IsTotal t ∧ x ≤ t := by
   obtain ⟨m, hxm, hmax⟩ :=
     zorn_le_nonempty_Ici₀ x

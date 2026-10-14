@@ -64,24 +64,36 @@ private lemma familyEdges_disjoint_diagSet (P : Finset (Finset V)) :
   obtain ⟨t, -, het⟩ := Finset.mem_familyEdges.1 he
   exact (Finset.mem_innerEdges.1 het).2 hdiag
 
+/--
+@isnad1 id=eq.0h2v.s4.d5fb6250a16c from=translated src=- shape=9c0a2bcb vocab=55bd615d
+-/
 @[simp]
 lemma edgeSet_triangleGraph (t : Finset V) :
     (triangleGraph t).edgeSet = t.innerEdges := by
   rw [triangleGraph, SimpleGraph.edgeSet_fromEdgeSet, sdiff_eq_left]
   exact innerEdges_disjoint_diagSet t
 
+/--
+@isnad1 id=eq.0h2v.s5.ed9b2c865a3b from=translated src=- shape=5284d4f1 vocab=d67dd937
+-/
 @[simp]
 lemma edgeSet_packingGraph (P : Finset (Finset V)) :
     (packingGraph P).edgeSet = familyEdges P := by
   rw [packingGraph, SimpleGraph.edgeSet_fromEdgeSet, sdiff_eq_left]
   exact familyEdges_disjoint_diagSet P
 
+/--
+@isnad1 id=eq.0h2v.s4.90227bb1042e from=translated src=- shape=8fb3f4f0 vocab=b840f124
+-/
 @[simp]
 lemma edgeFinset_triangleGraph (t : Finset V) :
     (triangleGraph t).edgeFinset = t.innerEdges := by
   ext e
   simp
 
+/--
+@isnad1 id=eq.0h2v.s4.3f79868aeda7 from=translated src=- shape=2b9d6e79 vocab=31cc895a
+-/
 @[simp]
 lemma edgeFinset_packingGraph (P : Finset (Finset V)) :
     (packingGraph P).edgeFinset = familyEdges P := by
@@ -89,7 +101,9 @@ lemma edgeFinset_packingGraph (P : Finset (Finset V)) :
   simp
 
 /-- Every finite complete graph has a packing by edge-disjoint triangles whose uncovered graph has
-maximum degree at most three. -/
+maximum degree at most three.
+@isnad1 id=ex.0h1v.s8.c0a7303c5f2b from=translated src=- shape=148dc3ea vocab=92aae363
+-/
 theorem exists_simpleGraph_triangle_packing [Fintype V] :
     ∃ P : Finset (Finset V),
       (∀ t ∈ P, (⊤ : SimpleGraph V).IsNClique 3 t) ∧

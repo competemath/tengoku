@@ -25,6 +25,9 @@ namespace Erdos132ThreeChain
 
 open Finset
 
+/--
+@isnad1 id=ischainv.4h5v.s6.022ea57b0b40 from=translated src=- shape=c57ad473 vocab=bed7b4a4
+-/
 theorem isChainValue_of_le {a c x : ℝ} (ha : 0 < a) {j₀ j : ℕ} (hc : c = a * 3 ^ j₀)
     (hx : x = a * 3 ^ j) (hle : c ≤ x) : IsChainValue c x := by
   have hj : j₀ ≤ j := by
@@ -40,7 +43,9 @@ theorem isChainValue_of_le {a c x : ℝ} (ha : 0 < a) {j₀ j : ℕ} (hc : c = a
   omega
 
 /-- Inside a set whose pairwise squared distances lie in a geometric 3-chain, a shortest edge
-rescales the chain: every squared distance is the shortest one times a power of three. -/
+rescales the chain: every squared distance is the shortest one times a power of three.
+@isnad1 id=ex.3h2v.s7.279c6d24c1da from=translated src=- shape=f4c2bfce vocab=4cd8454c
+-/
 theorem exists_min_edge {S : Finset Point} {a : ℝ} (ha : 0 < a) (hcard : 2 ≤ S.card)
     (hch : ∀ p ∈ S, ∀ q ∈ S, p ≠ q → ∃ j : ℕ, sqDist p q = a * 3 ^ j) :
     ∃ A ∈ S, ∃ B ∈ S, A ≠ B ∧
@@ -63,7 +68,9 @@ theorem exists_min_edge {S : Finset Point} {a : ℝ} (ha : 0 < a) (hcard : 2 ≤
 /-- **The chain-quadruple theorem.**  No planar chain quadruple spans two chain steps: if the
 six pairwise squared distances of a four-element set of plane points lie in a geometric 3-chain
 with positive base, then they all lie in a single adjacent pair `{r, 3 * r}` of that chain, and
-`r` is itself a member of the chain. -/
+`r` is itself a member of the chain.
+@isnad1 id=ex.3h2v.s7.438ad996a0f7 from=translated src=- shape=62032cb4 vocab=b4a6f7a5
+-/
 theorem four_chain_adjacent {S : Finset Point} {a : ℝ} (ha : 0 < a) (hcard : S.card = 4)
     (hch : ∀ p ∈ S, ∀ q ∈ S, p ≠ q → ∃ j : ℕ, sqDist p q = a * 3 ^ j) :
     ∃ r : ℝ, 0 < r ∧ (∃ j : ℕ, r = a * 3 ^ j) ∧
@@ -123,7 +130,9 @@ theorem four_chain_adjacent {S : Finset Point} {a : ℝ} (ha : 0 < a) (hcard : S
       | assumption
 
 /-- **The five-point obstruction for five-element sets.**  No five-element set of plane points
-has all ten of its pairwise squared distances inside a geometric 3-chain with positive base. -/
+has all ten of its pairwise squared distances inside a geometric 3-chain with positive base.
+@isnad1 id=false.3h2v.s6.8d474620b449 from=translated src=- shape=5748694a vocab=b4a6f7a5
+-/
 theorem no_five_chain_finset {S : Finset Point} {a : ℝ} (ha : 0 < a) (hcard : S.card = 5)
     (hch : ∀ p ∈ S, ∀ q ∈ S, p ≠ q → ∃ j : ℕ, sqDist p q = a * 3 ^ j) : False := by
   classical

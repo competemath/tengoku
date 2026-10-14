@@ -77,7 +77,9 @@ def conflictCovers12 : Array ConflictCover :=
   ⟨7, 137976352776, 34326134259, [3, 12, 19, 29, 37]⟩,
   ⟨6, 137976353804, 34359737855, [2, 3, 10, 12, 19, 29, 37]⟩]
 
-/-- Every entry in conflict-cover group 12 passes its audit. -/
+/-- Every entry in conflict-cover group 12 passes its audit.
+@isnad1 id=eq.0h0v.s3.75d382e56c2c from=translated src=- shape=0547e772 vocab=901ef1c7
+-/
 theorem conflictCovers12_valid :
     conflictCovers12.toList.all ConflictCover.validB = true := by
   decide
@@ -148,7 +150,9 @@ def conflictCovers13 : Array ConflictCover :=
   ⟨6, 140737758363684, 34359738047, [2, 5, 19, 20, 28, 47]⟩,
   ⟨6, 808976388, 33822342207, [2, 19, 20, 21, 28, 29]⟩]
 
-/-- Every entry in conflict-cover group 13 passes its audit. -/
+/-- Every entry in conflict-cover group 13 passes its audit.
+@isnad1 id=eq.0h0v.s3.05efbec34f7b from=translated src=- shape=0547e772 vocab=71d9b3ee
+-/
 theorem conflictCovers13_valid :
     conflictCovers13.toList.all ConflictCover.validB = true := by
   decide
@@ -218,7 +222,9 @@ def conflictCovers14 : Array ConflictCover :=
   ⟨6, 138244264964, 34359737791, [2, 10, 12, 28, 29, 37]⟩,
   ⟨5, 275150585860, 34359476223, [2, 14, 15, 22, 28, 38]⟩]
 
-/-- Every entry in conflict-cover group 14 passes its audit. -/
+/-- Every entry in conflict-cover group 14 passes its audit.
+@isnad1 id=eq.0h0v.s3.78070bb188a5 from=translated src=- shape=0547e772 vocab=740bde3d
+-/
 theorem conflictCovers14_valid :
     conflictCovers14.toList.all ConflictCover.validB = true := by
   decide
@@ -288,7 +294,9 @@ def conflictCovers15 : Array ConflictCover :=
   ⟨7, 275148968960, 34091040159, [10, 12, 19, 21, 28, 38]⟩,
   ⟨6, 807943168, 34359197695, [10, 11, 12, 13, 19, 21, 28, 29]⟩]
 
-/-- Every entry in conflict-cover group 15 passes its audit. -/
+/-- Every entry in conflict-cover group 15 passes its audit.
+@isnad1 id=eq.0h0v.s3.2fd5be3870f5 from=translated src=- shape=0547e772 vocab=1f553248
+-/
 theorem conflictCovers15_valid :
     conflictCovers15.toList.all ConflictCover.validB = true := by
   decide

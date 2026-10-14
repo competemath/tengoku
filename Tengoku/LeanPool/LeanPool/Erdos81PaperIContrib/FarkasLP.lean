@@ -41,15 +41,23 @@ variable {ι κ : Type*}
 noncomputable def toE (f : ι → ℝ) : EuclideanSpace ℝ ι :=
   (WithLp.equiv 2 (ι → ℝ)).symm f
 
+/--
+@isnad1 id=eq.0h3v.s5.3433f1ab917a from=translated src=- shape=d9f4e42a vocab=02b619d1
+-/
 @[simp] lemma toE_apply (f : ι → ℝ) (i : ι) : toE f i = f i := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.1e480b17144a from=translated src=- shape=edaec2cb vocab=cd887c79
+-/
 lemma inner_toE [Fintype ι] (f : ι → ℝ) (y : EuclideanSpace ℝ ι) :
     (inner ℝ (toE f) y) = ∑ i, f i * y i := by
   rw [EuclideanSpace.inner_eq_star_dotProduct]
   simp [dotProduct, toE, mul_comm]
 
 /-- **Finite Farkas lemma (inequality form).** If the primal system `x ≥ 0, N x ≥ c` is
-infeasible, then there is a Farkas certificate `y ≥ 0` with `Nᵀ y ≤ 0` and `⟨c, y⟩ > 0`. -/
+infeasible, then there is a Farkas certificate `y ≥ 0` with `Nᵀ y ≤ 0` and `⟨c, y⟩ > 0`.
+@isnad1 id=ex.1h4v.s7.cf752524df98 from=translated src=- shape=df42fda7 vocab=83c990ad
+-/
 theorem farkas_ge [Fintype ι] [Fintype κ]
     (N : ι → κ → ℝ) (c : ι → ℝ)
     (hinfeas : ¬ ∃ x : κ → ℝ, (∀ j, 0 ≤ x j) ∧ (∀ i, c i ≤ ∑ j, N i j * x j)) :
@@ -125,7 +133,9 @@ theorem farkas_ge [Fintype ι] [Fintype κ]
 /-- **Finite LP duality (covering/packing).** For a nonnegative incidence matrix `A` with
 nonnegative capacities `r`, in which every column has a positive entry, there is a maximum
 packing `w` whose unit-objective value equals the infimum cost of nonnegative coverings with
-unit demand. This conclusion does not assert that the covering infimum is attained. -/
+unit demand. This conclusion does not assert that the covering infimum is attained.
+@isnad1 id=ex.3h4v.s7.28c4a2e0d480 from=translated src=- shape=483d917b vocab=115f7048
+-/
 theorem covering_packing_duality [Fintype ι] [Fintype κ]
     (A : ι → κ → ℝ) (r : ι → ℝ)
     (hA : ∀ e t, 0 ≤ A e t) (hr : ∀ e, 0 ≤ r e)

@@ -33,15 +33,27 @@ abbrev Point : Type := ℝ × ℝ
 /-- The squared Euclidean distance between two points of the plane. -/
 def sqDist (p q : Point) : ℝ := (p.1 - q.1) ^ 2 + (p.2 - q.2) ^ 2
 
+/--
+@isnad1 id=eq.0h1v.s3.9c4a95330985 from=translated src=- shape=34c957ae vocab=ab7cf4cd
+-/
 @[simp]
 theorem sqDist_self (p : Point) : sqDist p p = 0 := by simp [sqDist]
 
+/--
+@isnad1 id=eq.0h2v.s3.d9db4fb95473 from=translated src=- shape=ab795eaa vocab=ab7cf4cd
+-/
 theorem sqDist_comm (p q : Point) : sqDist p q = sqDist q p := by
   simp only [sqDist]; ring
 
+/--
+@isnad1 id=le.0h2v.s4.8db2c0417551 from=translated src=- shape=5ffe46ab vocab=903ad38c
+-/
 theorem sqDist_nonneg (p q : Point) : 0 ≤ sqDist p q := by
   simp only [sqDist]; positivity
 
+/--
+@isnad1 id=iff.0h2v.s4.143f068a8a42 from=translated src=- shape=51acfd4e vocab=ab7cf4cd
+-/
 theorem sqDist_eq_zero_iff {p q : Point} : sqDist p q = 0 ↔ p = q := by
   simp only [sqDist]
   refine ⟨fun h => ?_, fun h => by rw [h]; ring⟩
@@ -55,6 +67,9 @@ theorem sqDist_eq_zero_iff {p q : Point} : sqDist p q = 0 ↔ p = q := by
     linarith
   exact Prod.ext e1 e2
 
+/--
+@isnad1 id=lt.1h2v.s4.5f8f77aee47d from=translated src=- shape=763738c9 vocab=d407f70a
+-/
 theorem sqDist_pos {p q : Point} (h : p ≠ q) : 0 < sqDist p q :=
   lt_of_le_of_ne (sqDist_nonneg p q) fun hc => h (sqDist_eq_zero_iff.mp hc.symm)
 
@@ -66,11 +81,20 @@ def IsSqDiameter (X : Finset Point) (D : ℝ) : Prop :=
 /-- The geometric 3-chain of length `h` and base `a`: the set `{a * 3 ^ j | j < h}`. -/
 def chain (a : ℝ) (h : ℕ) : Set ℝ := {x : ℝ | ∃ j < h, x = a * 3 ^ j}
 
+/--
+@isnad1 id=iff.0h3v.s5.b55bd73cd06c from=translated src=- shape=12b613b6 vocab=a4313376
+-/
 theorem mem_chain_iff {a x : ℝ} {h : ℕ} : x ∈ chain a h ↔ ∃ j < h, x = a * 3 ^ j := Iff.rfl
 
+/--
+@isnad1 id=mem.1h2v.s4.0a07b3186e1e from=translated src=- shape=0ed9cdf3 vocab=65d6c103
+-/
 theorem base_mem_chain {a : ℝ} {h : ℕ} (hh : 0 < h) : a ∈ chain a h :=
   ⟨0, hh, by simp⟩
 
+/--
+@isnad1 id=mem.1h2v.s5.0c26b628d0f2 from=translated src=- shape=0c3f85b2 vocab=3544bc66
+-/
 theorem triple_base_mem_chain {a : ℝ} {h : ℕ} (hh : 2 ≤ h) : a * 3 ∈ chain a h :=
   ⟨1, hh, by norm_num⟩
 
@@ -84,6 +108,9 @@ scale-free shadow of `chain`: if `c` is the smallest value of a chain that `x` b
 then `x = c * 3 ^ j` for some `j : ℕ`. -/
 def IsChainValue (c x : ℝ) : Prop := ∃ j : ℕ, x = c * 3 ^ j
 
+/--
+@isnad1 id=lt.2h2v.s4.0c63efbcc7f8 from=translated src=- shape=7b6d71ca vocab=f828b01a
+-/
 theorem IsChainValue.pos {c x : ℝ} (hc : 0 < c) (h : IsChainValue c x) : 0 < x := by
   obtain ⟨j, rfl⟩ := h
   positivity

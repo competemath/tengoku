@@ -62,10 +62,15 @@ namespace Example62
 `b = false` and `1X` for `b = true`). -/
 def embBit (b : Bool) (X : Set Str) : Set Str := {w | ∃ w', w = b :: w' ∧ w' ∈ X}
 
+/--
+@isnad1 id=iff.0h3v.s5.521bb1fbe235 from=translated src=- shape=3ee5bb80 vocab=2ccba758
+-/
 @[simp] theorem mem_embBit {b : Bool} {X : Set Str} {w : Str} :
     w ∈ embBit b X ↔ ∃ w', w = b :: w' ∧ w' ∈ X := Iff.rfl
 
-/-- `bX = b·X` is exactly the single-bit prepend of Example 1.B. -/
+/-- `bX = b·X` is exactly the single-bit prepend of Example 1.B.
+@isnad1 id=eq.0h2v.s4.96175d64f214 from=translated src=- shape=f995fff2 vocab=7f43ea70
+-/
 theorem embBit_eq_prepend (b : Bool) (X : Set Str) : embBit b X = prepend [b] X := by
   ext w
   simp only [mem_embBit, mem_prepend]
@@ -74,20 +79,33 @@ theorem embBit_eq_prepend (b : Bool) (X : Set Str) : embBit b X = prepend [b] X 
   · rintro ⟨τ, hX, rfl⟩; exact ⟨τ, rfl, hX⟩
 
 /-- `b(σΣ*) = (bσ)Σ*`: prepending a bit to a cone gives the cone of the longer
-prefix. -/
+prefix.
+@isnad1 id=eq.0h2v.s4.f41e5f634650 from=translated src=- shape=f8ffa583 vocab=9173db98
+-/
 theorem embBit_cone (b : Bool) (σ : Str) : embBit b (cone σ) = cone (b :: σ) := by
   rw [embBit_eq_prepend, prepend_cone]; rfl
 
-/-- Prepending a bit lands back in `B`. -/
+/-- Prepending a bit lands back in `B`.
+@isnad1 id=mem.1h2v.s4.8911aa5bbd93 from=translated src=- shape=553a270b vocab=80699077
+-/
 theorem memB_embBit (b : Bool) {X : Set Str} (hX : B.mem X) : B.mem (embBit b X) := by
   rw [embBit_eq_prepend]; exact memB_prepend [b] hX
 
+/--
+@isnad1 id=not.0h2v.s4.e8261ab84680 from=translated src=- shape=0faa0578 vocab=512244ca
+-/
 theorem nil_not_mem_embBit {b : Bool} {X : Set Str} : ([] : Str) ∉ embBit b X := by
   rintro ⟨w', heq, -⟩; exact absurd heq (by simp)
 
+/--
+@isnad1 id=ne.0h2v.s3.28d2a730f79b from=translated src=- shape=119f20e8 vocab=a1997672
+-/
 theorem embBit_ne_univ (b : Bool) (X : Set Str) : embBit b X ≠ Set.univ := by
   intro h; exact nil_not_mem_embBit (X := X) (b := b) (by rw [h]; trivial)
 
+/--
+@isnad1 id=eq.0h3v.s4.dfa86026e6a1 from=translated src=- shape=3054a7dd vocab=488b4aaf
+-/
 theorem embBit_inter (b : Bool) (X X' : Set Str) :
     embBit b X ∩ embBit b X' = embBit b (X ∩ X') := by
   ext w
@@ -96,11 +114,17 @@ theorem embBit_inter (b : Bool) (X X' : Set Str) :
   · simp_all
   · simp_all
 
+/--
+@isnad1 id=eq.1h4v.s5.385f4e99691c from=translated src=- shape=15f3ddb2 vocab=00f85c75
+-/
 theorem embBit_inter_ne {b b' : Bool} (h : b ≠ b') (X Y : Set Str) :
     embBit b X ∩ embBit b' Y = ∅ := by
   ext w
   simp_all
 
+/--
+@isnad1 id=iff.0h3v.s4.60386d92b1c1 from=translated src=- shape=acb3b804 vocab=7746d539
+-/
 theorem embBit_subset {b : Bool} {X X' : Set Str} :
     embBit b X ⊆ embBit b X' ↔ X ⊆ X' := by
   constructor
@@ -110,15 +134,23 @@ theorem embBit_subset {b : Bool} {X X' : Set Str} :
   · rintro h w ⟨w', rfl, hX⟩
     exact ⟨w', rfl, h hX⟩
 
+/--
+@isnad1 id=eq.1h3v.s4.e97312750467 from=translated src=- shape=4a56e46d vocab=7dbd68bd
+-/
 theorem embBit_injective {b : Bool} {X X' : Set Str} (h : embBit b X = embBit b X') : X = X' :=
   Set.Subset.antisymm (embBit_subset.mp h.subset) (embBit_subset.mp h.symm.subset)
 
+/--
+@isnad1 id=nonempty.1h2v.s3.2d1a4d9fb55a from=translated src=- shape=87feec25 vocab=93facca9
+-/
 theorem embBit_nonempty {b : Bool} {X : Set Str} (hX : X.Nonempty) : (embBit b X).Nonempty := by
   obtain ⟨w', hw'⟩ := hX; exact ⟨b :: w', w', rfl, hw'⟩
 
 /-- If `bW ∈ B` then `W ∈ B`: a `b`-prefixed neighbourhood that lands in `B` must
 be `b·(cone w')`,
-so `W = cone w'`. -/
+so `W = cone w'`.
+@isnad1 id=mem.1h2v.s4.963eba2aa91e from=translated src=- shape=e4f6289d vocab=80699077
+-/
 theorem memB_embBit_inv {b : Bool} {W : Set Str} (h : B.mem (embBit b W)) : B.mem W := by
   obtain ⟨σ, hσ⟩ := h
   have hmem : σ ∈ embBit b W := hσ ▸ (show σ ∈ cone σ from List.prefix_rfl)
@@ -127,6 +159,9 @@ theorem memB_embBit_inv {b : Bool} {W : Set Str} (h : B.mem (embBit b W)) : B.me
   rw [embBit_injective hσ]
   exact memB_cone w'
 
+/--
+@isnad1 id=ne.2h4v.s4.f7d45d677b42 from=translated src=- shape=d16d0710 vocab=93facca9
+-/
 theorem embBit_ne {b b' : Bool} (h : b ≠ b') {X Y : Set Str} (hX : X.Nonempty) :
     embBit b X ≠ embBit b' Y := by
   intro heq
@@ -139,14 +174,18 @@ classification. -/
 
 /-- Scott's standing assumption `∅ ∉ B`: every neighbourhood of `B` is nonempty
 (cones contain their
-generating prefix). -/
+generating prefix).
+@isnad1 id=nonempty.1h1v.s3.08ccaa2a5374 from=translated src=- shape=afedc36f vocab=6c4c4b95
+-/
 theorem B_nonempty : ∀ X, B.mem X → X.Nonempty := by
   rintro X ⟨σ, rfl⟩; exact ⟨σ, List.prefix_rfl⟩
 
 /-- **Example 6.2 — the shape of a `B`-neighbourhood.** Every neighbourhood of `B`
 is either the
 master `Σ* = cone []`, a `0`-copy `0X` with `X ∈ B`, or a `1`-copy `1X` with `X ∈
-B`. -/
+B`.
+@isnad1 id=or.1h1v.s5.f99237f580eb from=translated src=- shape=23c2f679 vocab=cdb091b1
+-/
 theorem memB_cases {W : Set Str} (hW : B.mem W) :
     W = Set.univ ∨ (∃ X, B.mem X ∧ W = embBit false X) ∨ (∃ Y, B.mem Y ∧ W = embBit true Y) := by
   obtain ⟨σ, rfl⟩ := hW
@@ -163,6 +202,9 @@ theorem memB_cases {W : Set Str} (hW : B.mem W) :
 (Exercise 3.18). -/
 abbrev BB : NeighborhoodSystem (Option (Str ⊕ Str)) := sum B B B_nonempty B_nonempty
 
+/--
+@isnad1 id=mem.1h1v.s4.a9677299468c from=translated src=- shape=bbfbb90b vocab=9e115b91
+-/
 theorem sum_mem_inj₀_inv {X : Set Str} (h : BB.mem (inj₀ X)) : B.mem X := by
   rcases h with h0 | ⟨X', hX', heq⟩ | ⟨Y', hY', heq⟩
   · exact absurd (h0 ▸ none_mem_sumMaster) none_mem_inj₀
@@ -170,6 +212,9 @@ theorem sum_mem_inj₀_inv {X : Set Str} (h : BB.mem (inj₀ X)) : B.mem X := by
   · obtain ⟨b, hb⟩ := B_nonempty Y' hY'
     exact absurd (heq ▸ ir_mem_inj₁.mpr hb) ir_mem_inj₀
 
+/--
+@isnad1 id=mem.1h1v.s4.895bb4f0c914 from=translated src=- shape=bbfbb90b vocab=059e8b54
+-/
 theorem sum_mem_inj₁_inv {Y : Set Str} (h : BB.mem (inj₁ Y)) : B.mem Y := by
   rcases h with h0 | ⟨X', hX', heq⟩ | ⟨Y', hY', heq⟩
   · exact absurd (h0 ▸ none_mem_sumMaster) none_mem_inj₁
@@ -177,6 +222,9 @@ theorem sum_mem_inj₁_inv {Y : Set Str} (h : BB.mem (inj₁ Y)) : B.mem Y := by
     exact absurd (heq ▸ il_mem_inj₀.mpr ha) il_mem_inj₁
   · rw [inj₁_injective heq]; exact hY'
 
+/--
+@isnad1 id=nonempty.1h1v.s4.2b8c5712c3ea from=translated src=- shape=0031d09a vocab=5ba96c9f
+-/
 theorem sum_mem_nonempty {W : Set (Option (Str ⊕ Str))} (h : BB.mem W) : W.Nonempty := by
   rcases h with rfl | ⟨X, hX, rfl⟩ | ⟨Y, hY, rfl⟩
   · exact ⟨none, none_mem_sumMaster⟩
@@ -240,6 +288,9 @@ def toBB (x : B.Element) : BB.Element where
       · refine Or.inr (Or.inr ⟨Y', hY', rfl, ?_⟩)
         exact x.up_mem hzY (memB_embBit true hY') (embBit_subset.mpr (inj₁_subset_inj₁.mp hsub))
 
+/--
+@isnad1 id=iff.1h2v.s5.642e00c513de from=translated src=- shape=c38e100a vocab=a78983b9
+-/
 theorem toBB_mem_inj₀ {x : B.Element} {X : Set Str} (hX : B.mem X) :
     (toBB x).mem (inj₀ X) ↔ x.mem (embBit false X) := by
   constructor
@@ -250,6 +301,9 @@ theorem toBB_mem_inj₀ {x : B.Element} {X : Set Str} (hX : B.mem X) :
       exact absurd (heq ▸ il_mem_inj₀.mpr ha) il_mem_inj₁
   · intro hz; exact Or.inr (Or.inl ⟨X, hX, rfl, hz⟩)
 
+/--
+@isnad1 id=iff.1h2v.s5.3a4fd5c55a42 from=translated src=- shape=c38e100a vocab=53e78e1e
+-/
 theorem toBB_mem_inj₁ {x : B.Element} {Y : Set Str} (hY : B.mem Y) :
     (toBB x).mem (inj₁ Y) ↔ x.mem (embBit true Y) := by
   constructor
@@ -317,6 +371,9 @@ def fromBB (s : BB.Element) : B.Element where
         exact s.up_mem hsY (Or.inr (Or.inr ⟨Y', hY', rfl⟩))
           (inj₁_subset_inj₁.mpr (embBit_subset.mp hsub))
 
+/--
+@isnad1 id=iff.1h2v.s5.64554fc6e5c2 from=translated src=- shape=57b52e40 vocab=11aff8fa
+-/
 theorem fromBB_mem_embF {s : BB.Element} {X : Set Str} (hX : B.mem X) :
     (fromBB s).mem (embBit false X) ↔ s.mem (inj₀ X) := by
   constructor
@@ -326,6 +383,9 @@ theorem fromBB_mem_embF {s : BB.Element} {X : Set Str} (hX : B.mem X) :
     · exact absurd heq (embBit_ne (show (false : Bool) ≠ true by decide) (B_nonempty X hX))
   · intro hs; exact Or.inr (Or.inl ⟨X, hX, rfl, hs⟩)
 
+/--
+@isnad1 id=iff.1h2v.s5.4f9b9e180e30 from=translated src=- shape=57b52e40 vocab=c19c8ad4
+-/
 theorem fromBB_mem_embT {s : BB.Element} {Y : Set Str} (hY : B.mem Y) :
     (fromBB s).mem (embBit true Y) ↔ s.mem (inj₁ Y) := by
   constructor
@@ -337,6 +397,9 @@ theorem fromBB_mem_embT {s : BB.Element} {Y : Set Str} (hY : B.mem Y) :
 
 /-! ### The two halves are mutually inverse. -/
 
+/--
+@isnad1 id=eq.0h1v.s3.e97f8328fa64 from=translated src=- shape=ad4d4fb1 vocab=c3080338
+-/
 theorem fromBB_toBB (x : B.Element) : fromBB (toBB x) = x := by
   apply NeighborhoodSystem.Element.ext
   intro W
@@ -351,6 +414,9 @@ theorem fromBB_toBB (x : B.Element) : fromBB (toBB x) = x := by
     · exact Or.inr (Or.inl ⟨X, hX, rfl, (toBB_mem_inj₀ hX).mpr hW⟩)
     · exact Or.inr (Or.inr ⟨Y, hY, rfl, (toBB_mem_inj₁ hY).mpr hW⟩)
 
+/--
+@isnad1 id=eq.0h1v.s4.a155aa0cd598 from=translated src=- shape=7a7db6ba vocab=27eb2892
+-/
 theorem toBB_fromBB (s : BB.Element) : toBB (fromBB s) = s := by
   apply NeighborhoodSystem.Element.ext
   intro W
@@ -391,7 +457,9 @@ def bbEquiv : B.Element ≃o BB.Element where
 Scott's binary-sequence
 domain `B` is, as a domain, isomorphic to `B + B`: a sequence is bottom, or begins
 with `0`, or begins
-with `1`, the two non-bottom cases giving the two summands. -/
+with `1`, the two non-bottom cases giving the two summands.
+@isnad1 id=isomorph.0h0v.s3.fe61da61d67d from=translated src=- shape=e799e3cc vocab=2381c199
+-/
 theorem B_domain_equation : B ≅ᴰ sum B B B_nonempty B_nonempty :=
   ⟨bbEquiv⟩
 

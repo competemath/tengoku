@@ -113,12 +113,17 @@ def copair (a : ApproximableMap V₀ V₂) (b : ApproximableMap V₁ V₂) :
     · obtain ⟨Y₂, hY₂, rfl⟩ := mem_subset_inj₁ hW₂ hW₂W
       exact Or.inr (Or.inr ⟨Y₂, rfl, b.mono hg (inj₁_subset_inj₁.mp hW₂W) hZZ' hY₂ hZ'⟩)
 
+/--
+@isnad1 id=iff.2h10v.s7.1512b168b4d7 from=translated src=- shape=eaee22f2 vocab=6962b503
+-/
 @[simp] theorem copair_rel {a : ApproximableMap V₀ V₂} {b : ApproximableMap V₁ V₂}
     {W : Set (Option (α ⊕ β))} {Z : Set γ} :
     (copair (h₀ := h₀) (h₁ := h₁) a b).rel W Z ↔ (sum V₀ V₁ h₀ h₁).mem W ∧ V₂.mem Z ∧
       (Z = V₂.master ∨ (∃ X, W = inj₀ X ∧ a.rel X Z) ∨ (∃ Y, W = inj₁ Y ∧ b.rel Y Z)) := Iff.rfl
 
-/-- **Exercise 3.24(iv) (Scott 1981, PRG-19).** `[a, b] ∘ in₀ = a`. -/
+/-- **Exercise 3.24(iv) (Scott 1981, PRG-19).** `[a, b] ∘ in₀ = a`.
+@isnad1 id=eq.2h8v.s6.d5b0752d4a95 from=translated src=- shape=78a8fe7c vocab=a34cd0dd
+-/
 theorem copair_comp_inMap₀ (a : ApproximableMap V₀ V₂) (b : ApproximableMap V₁ V₂) :
     (copair (h₀ := h₀) (h₁ := h₁) a b).comp inMap₀ = a := by
   apply ApproximableMap.ext
@@ -134,7 +139,9 @@ theorem copair_comp_inMap₀ (a : ApproximableMap V₀ V₂) (b : ApproximableMa
       Or.inr (Or.inl ⟨X, a.rel_dom hf, rfl⟩), a.rel_cod hf,
       Or.inr (Or.inl ⟨X, rfl, hf⟩)⟩
 
-/-- **Exercise 3.24(iv) (Scott 1981, PRG-19).** `[a, b] ∘ in₁ = b`. -/
+/-- **Exercise 3.24(iv) (Scott 1981, PRG-19).** `[a, b] ∘ in₁ = b`.
+@isnad1 id=eq.2h8v.s6.3f9defd0a7d1 from=translated src=- shape=e9e7143e vocab=536b31f5
+-/
 theorem copair_comp_inMap₁ (a : ApproximableMap V₀ V₂) (b : ApproximableMap V₁ V₂) :
     (copair (h₀ := h₀) (h₁ := h₁) a b).comp inMap₁ = b := by
   apply ApproximableMap.ext
@@ -161,7 +168,9 @@ def copairProj (h : ApproximableMap (sum V₀ V₁ h₀ h₁) V₂) :
 `(𝒟₀+𝒟₁) → 𝒟₂`: the copairing is a section of `h ↦ (h∘in₀, h∘in₁)`. (It is *not*
 an isomorphism: the
 value of a map on the basepoint `Λ` is not recoverable from its restrictions to
-the two copies.) -/
+the two copies.)
+@isnad1 id=eq.2h8v.s6.12554922f721 from=translated src=- shape=91817756 vocab=21f4575d
+-/
 theorem copairProj_copair (a : ApproximableMap V₀ V₂) (b : ApproximableMap V₁ V₂) :
     copairProj (h₀ := h₀) (h₁ := h₁) (copair a b) = (a, b) := by
   change ((copair (h₀ := h₀) (h₁ := h₁) a b).comp inMap₀,
@@ -170,7 +179,9 @@ theorem copairProj_copair (a : ApproximableMap V₀ V₂) (b : ApproximableMap V
 
 /-! ### (iii) — the canonical distribution map. -/
 
-/-- A product neighbourhood over non-empty factors is non-empty. -/
+/-- A product neighbourhood over non-empty factors is non-empty.
+@isnad1 id=nonempty.3h5v.s5.6d93786ed6a2 from=translated src=- shape=7bc51b04 vocab=62b07fa7
+-/
 theorem prod_mem_nonempty (hn₀ : ∀ X, V₀.mem X → X.Nonempty) (_hn₁ : ∀ Y, V₁.mem Y → Y.Nonempty)
     (W : Set (α ⊕ β)) (hW : (prod V₀ V₁).mem W) : W.Nonempty := by
   obtain ⟨X, Y, hX, _, rfl⟩ := hW

@@ -98,11 +98,15 @@ def WordClosureRoute.degreeBound : WordClosureRoute → ℕ
   | .antiSaturation => 5
   | .fullTwoRung | .terminalCage | .fourEdgeCage => 6
 
-/-- Transparent finite check that the audit datatype has exactly 13 words. -/
+/-- Transparent finite check that the audit datatype has exactly 13 words.
+@isnad1 id=eq.0h0v.s3.e9e8f7a090ad from=translated src=- shape=b0ae1d2b vocab=0dbc5d94
+-/
 theorem thirteen_word_count : Fintype.card ExceptionalCoverWord = 13 := by
   decide
 
-/-- Kernel rendering of every row and destination in the Section 7 table. -/
+/-- Kernel rendering of every row and destination in the Section 7 table.
+@isnad1 id=and.0h0v.s7.d18f9be663aa from=translated src=- shape=7c54301f vocab=c9ca9755
+-/
 theorem thirteen_word_route_table :
     ExceptionalCoverWord.row1_B32.row = .row1 ∧
     ExceptionalCoverWord.row1_B32.route = .terminalCage ∧
@@ -133,7 +137,9 @@ theorem thirteen_word_route_table :
   decide
 
 /-- Logical closure of the shared-tip `F_s=A/B/≤C` split after the
-reflection and metric/sign sublemmas have discharged their branches. -/
+reflection and metric/sign sublemmas have discharged their branches.
+@isnad1 id=le.4h5v.s6.6da82f055282 from=translated src=- shape=032688df vocab=eb3a0309
+-/
 theorem full_two_rung_shared_tip_degree_le_six
     {degree : ℕ} {F_s A B C : ℝ}
     (hSplit : F_s = A ∨ F_s = B ∨ F_s ≤ C)
@@ -161,7 +167,9 @@ def WordRealization
     (P : Fin n → Point ℝ) (d₁ d₂ d₃ : ℝ) : Prop :=
   WordClosureRealization word.route P d₁ d₂ d₃
 
-/-- One transport theorem closes each of the four shared realization routes. -/
+/-- One transport theorem closes each of the four shared realization routes.
+@isnad1 id=ex.1h6v.s5.1cb3797ad34b from=translated src=- shape=7026036b vocab=aca91d16
+-/
 theorem realization_degree_bound
     {n : ℕ} {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (route : WordClosureRoute) (hRealizes : WordClosureRealization route P d₁ d₂ d₃) :
@@ -200,7 +208,9 @@ structure DraftWordClosureInterface
     ∃ v, degree v ≤ 6
 
 /-- All thirteen tags close unconditionally through the four shared geometric
-realization predicates. -/
+realization predicates.
+@isnad1 id=draftwor.0h5v.s4.a2fe81de274c from=translated src=- shape=232c6cd3 vocab=b30f1976
+-/
 theorem concrete_word_closures
     {n : ℕ} (P : Fin n → Point ℝ) (d₁ d₂ d₃ : ℝ) :
     DraftWordClosureInterface (vertexDegree P d₁ d₂ d₃)
@@ -226,7 +236,9 @@ def HasThirteenWordReduction
 
 /-- Exact thirteen-word logical assembly.  Every constructor is routed by
 `ExceptionalCoverWord.route`, with anti-saturation's stronger bound weakened
-from five to six only at the final interface. -/
+from five to six only at the final interface.
+@isnad1 id=ex.2h3v.s5.286a23157169 from=translated src=- shape=d40230f9 vocab=11ae5fa1
+-/
 theorem thirteen_word_assembly
     {n : ℕ} {degree : Fin n → ℕ} {Realizes : ExceptionalCoverWord → Prop}
     (hReduction : HasThirteenWordReduction degree Realizes)
@@ -251,7 +263,9 @@ def HasConvexK3DraftReduction
       Nonempty (DraftWordClosureInterface (vertexDegree P d₁ d₂ d₃) Realizes)
 
 /-- A global reduction package and its thirteen kernel routes produce a
-vertex of degree at most six. -/
+vertex of degree at most six.
+@isnad1 id=ex.1h5v.s5.788679914d73 from=translated src=- shape=e98772a3 vocab=134934da
+-/
 theorem convex_top_three_min_degree_le_six_of_draft_reduction
     {n : ℕ} [_nonzero : NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hReduction : HasConvexK3DraftReduction P d₁ d₂ d₃) :
@@ -273,7 +287,9 @@ def ConvexTopThreeDraftReductionComplete : Prop :=
     CyclicStrictConvex P → HasTopThreeDistanceClasses P d₁ d₂ d₃ →
       HasConvexK3DraftReduction P d₁ d₂ d₃
 
-/-- The named global bridge implies the convex degree-six statement. -/
+/-- The named global bridge implies the convex degree-six statement.
+@isnad1 id=convexto.1h0v.s1.b2ce83411379 from=translated src=- shape=1d48f1ac vocab=93e7daca
+-/
 theorem convex_top_three_degree_six_of_reduction_complete
     (hComplete : ConvexTopThreeDraftReductionComplete) :
     ConvexTopThreeDegreeSixStatement := by
@@ -282,7 +298,9 @@ theorem convex_top_three_degree_six_of_reduction_complete
     (hComplete P d₁ d₂ d₃ hConvex hClasses)
 
 /-- Abstract entry point from a complete reduction bridge to the convex
-degree-six statement. -/
+degree-six statement.
+@isnad1 id=convexto.1h0v.s1.b2ce83411379 from=translated src=- shape=1d48f1ac vocab=93e7daca
+-/
 theorem convex_k3_degree_six_of_reduction
     (hComplete : ConvexTopThreeDraftReductionComplete) :
     ConvexTopThreeDegreeSixStatement :=

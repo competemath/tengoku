@@ -87,7 +87,9 @@ and exceeds any `N` for `a = N+1`.  Both facts are elementary; we prove them her
 so this file imports only kernel-clean material. -/
 
 /-- Every power `p^k` is `LowDigits p` (for `p ≥ 3`): its base-`p` digit list is
-`[0,…,0,1]`, all entries `≤ (p-1)/2`.  KERNEL-CLEAN. -/
+`[0,…,0,1]`, all entries `≤ (p-1)/2`.  KERNEL-CLEAN.
+@isnad1 id=lowdigit.1h2v.s4.ae79b7ec5cd4 from=translated src=- shape=a880fcd1 vocab=14f2c217
+-/
 theorem seed_lowDigits_pow {p : ℕ} (hp : 3 ≤ p) (k : ℕ) : LowDigits p (p ^ k) := by
   have hp1 : 1 < p := by omega
   unfold LowDigits
@@ -106,7 +108,9 @@ theorem seed_lowDigits_pow {p : ℕ} (hp : 3 ≤ p) (k : ℕ) : LowDigits p (p ^
     calc (1 : ℕ) = 2 / 2 := by norm_num
       _ ≤ (p - 1) / 2 := Nat.div_le_div_right this
 
-/-- `N < p^(N+1)` for `p ≥ 2`, via `N < 2^N ≤ 2^(N+1) ≤ p^(N+1)`.  KERNEL-CLEAN. -/
+/-- `N < p^(N+1)` for `p ≥ 2`, via `N < 2^N ≤ 2^(N+1) ≤ p^(N+1)`.  KERNEL-CLEAN.
+@isnad1 id=lt.1h2v.s5.5be03744640f from=translated src=- shape=785f6990 vocab=cc49959f
+-/
 theorem seed_lt_pow_succ {p : ℕ} (hp : 2 ≤ p) (N : ℕ) : N < p ^ (N + 1) := by
   have h2 : (2 : ℕ) ^ (N + 1) ≤ p ^ (N + 1) := Nat.pow_le_pow_left hp _
   have hN : N < 2 ^ (N + 1) :=
@@ -129,7 +133,9 @@ def badCountQ (q n : ℕ) : ℕ := (badDigitsQ q n).length
 
 /-- **Base case of the induction (KERNEL-CLEAN).**  The potential vanishes exactly
 when every base-`q` digit is `≤ (q-1)/2`, i.e. when `n` is `LowDigits q`.  So a
-number with potential `0` is already low in base `q`. -/
+number with potential `0` is already low in base `q`.
+@isnad1 id=iff.0h2v.s4.de50e3f3e1ea from=translated src=- shape=1e870c3c vocab=3b1fb7ca
+-/
 theorem badCountQ_eq_zero_iff_lowDigits {q n : ℕ} :
     badCountQ q n = 0 ↔ LowDigits q n := by
   unfold badCountQ badDigitsQ LowDigits
@@ -153,7 +159,9 @@ From a `LowDigits p` seed strictly above `N`, repeatedly applying `hrepair` driv
 base-`q` potential to `0`, yielding a number that is `> N`, `LowDigits p`, and
 `LowDigits q`.  Strong induction on the potential `badCountQ q` of the running number.
 KERNEL-CLEAN (no `sorry`, no axioms beyond propext/Classical.choice/Quot.sound);
-`align_induction` supplies the concrete `hrepair := repair_step` (the one `sorry`). -/
+`align_induction` supplies the concrete `hrepair := repair_step` (the one `sorry`).
+@isnad1 id=ex.3h4v.s6.0ac2b5d13a2a from=translated src=- shape=cf2aaeb5 vocab=ff9b636e
+-/
 theorem align_of_repair {p q : ℕ} (N : ℕ)
     (hrepair : ∀ {n : ℕ}, LowDigits p n → 0 < badCountQ q n →
       ∃ n', n < n' ∧ LowDigits p n' ∧ badCountQ q n' < badCountQ q n)

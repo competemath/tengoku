@@ -113,7 +113,9 @@ def ErLVAtVertexCase22Impossible : Prop :=
     ∀ S : ErLVAtVertexUseSite P d₁ d₂ d₃, S.Case22 → False
 
 /-- The at-use-site obligation is exactly the conjunction of the three rigid
-branches and nothing stronger. -/
+branches and nothing stronger.
+@isnad1 id=iff.0h0v.s2.ea07d0c51b3b from=translated src=- shape=0f9f6743 vocab=86201700
+-/
 theorem erlv_at_vertex_exceptional_branches_impossible_iff_cases :
     ErLVAtVertexExceptionalBranchesImpossible ↔
       ErLVAtVertexCase12Impossible ∧ ErLVAtVertexCase21Impossible ∧
@@ -143,7 +145,9 @@ theorem erlv_at_vertex_exceptional_branches_impossible_iff_cases :
     · exact h22Close P d₁ d₂ d₃ S h22
 
 /-- The old exchange statement implies the narrowed use-site statement, so
-the pivot weakens the missing obligation rather than changing the theorem. -/
+the pivot weakens the missing obligation rather than changing the theorem.
+@isnad1 id=erlvatve.1h0v.s1.d2812b07cbdb from=translated src=- shape=1d48f1ac vocab=b5371e0d
+-/
 theorem erlv_at_vertex_exceptional_branches_impossible_of_exchange
     (hExchange : ErLVCoordinatedMajorantExchangeComplete) :
     ErLVAtVertexExceptionalBranchesImpossible := by
@@ -155,7 +159,9 @@ theorem erlv_at_vertex_exceptional_branches_impossible_of_exchange
   omega
 
 /-- Killing the three branches directly at the use site supplies the strict
-inner-endpoint order required by the already-proved nesting geometry. -/
+inner-endpoint order required by the already-proved nesting geometry.
+@isnad1 id=erlvinne.1h0v.s1.cd5f0e417ed8 from=translated src=- shape=1d48f1ac vocab=3d2d5022
+-/
 theorem erlv_inner_endpoint_separation_complete_of_at_vertex_closure
     (hClose : ErLVAtVertexExceptionalBranchesImpossible) :
     ErLVInnerEndpointSeparationComplete := by
@@ -187,7 +193,9 @@ theorem erlv_inner_endpoint_separation_complete_of_at_vertex_closure
   simpa [S, erlvAtVertexUseSiteOfHighDegree] using hExceptional
 
 /-- Use-site branch closure therefore reaches the existing source-facing
-arc-nesting interface. -/
+arc-nesting interface.
+@isnad1 id=erlvmajo.1h0v.s1.2279fc784720 from=translated src=- shape=1d48f1ac vocab=51a672c2
+-/
 theorem erlv_majorant_arc_nesting_complete_of_at_vertex_closure
     (hClose : ErLVAtVertexExceptionalBranchesImpossible) :
     ErLVMajorantArcNestingComplete :=
@@ -197,7 +205,9 @@ theorem erlv_majorant_arc_nesting_complete_of_at_vertex_closure
 namespace K3CoverSequence
 
 /-- Every cover sequence weakly increases squared distance from its starting
-edge to its terminal edge. -/
+edge to its terminal edge.
+@isnad1 id=le.1h6v.s5.d86c88590468 from=translated src=- shape=7fbe0a4a vocab=646d5f13
+-/
 theorem sqDist_le_terminal
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {i j : Fin n}
     {leftMoves rightMoves : ℕ}
@@ -214,7 +224,9 @@ theorem sqDist_le_terminal
       have h := le_trans (le_of_lt hCover) ih
       simpa only [cyclicAdvance_add, Nat.add_comm] using h
 
-/-- A nonempty cover sequence strictly increases squared distance. -/
+/-- A nonempty cover sequence strictly increases squared distance.
+@isnad1 id=lt.2h6v.s6.e10181684d1d from=translated src=- shape=80246b95 vocab=ce4afb9d
+-/
 theorem sqDist_lt_terminal_of_positive
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {i j : Fin n}
     {leftMoves rightMoves : ℕ}
@@ -236,7 +248,9 @@ end K3CoverSequence
 
 /-- A positive-length majorant path cannot terminate in the smallest of the
 three graph ranks.  Its terminal edge is `d₁` or `d₂`, but one move alone
-does not determine which. -/
+does not determine which.
+@isnad1 id=or.3h8v.s7.c73b5869340d from=translated src=- shape=842f4eac vocab=70e48a34
+-/
 theorem K3MajorantWitness.terminal_rank_top_two_of_positive
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hClasses : HasTopThreeDistanceClasses P d₁ d₂ d₃)
@@ -255,6 +269,9 @@ theorem K3MajorantWitness.terminal_rank_top_two_of_positive
       have hd₃d₂ := hClasses.1 <;>
       have hd₂d₁ := hClasses.2.1 <;> linarith
 
+/--
+@isnad1 id=topthree.0h6v.s5.3ee26060ced5 from=translated src=- shape=59e00297 vocab=9e37c1d1
+-/
 theorem ErLVAtVertexUseSite.first_start_adjacent
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (S : ErLVAtVertexUseSite P d₁ d₂ d₃) :
@@ -265,6 +282,9 @@ theorem ErLVAtVertexUseSite.first_start_adjacent
   have := S.highDegree S.x
   omega
 
+/--
+@isnad1 id=topthree.0h6v.s6.e6dddddb4247 from=translated src=- shape=af4bc38a vocab=77627fb5
+-/
 theorem ErLVAtVertexUseSite.second_start_adjacent
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (S : ErLVAtVertexUseSite P d₁ d₂ d₃) :
@@ -279,7 +299,9 @@ theorem ErLVAtVertexUseSite.second_start_adjacent
 `d₂` rung at `x+2` and a `d₁` terminal at the common tip `x+1`.  The other
 edge incident to that tip is only forced into `d₁ ∨ d₂`; its color is not
 fixed.  Thus the rigid branch does not itself supply the claimed forced
-`d₂+d₁` pair at the common vertex. -/
+`d₂+d₁` pair at the common vertex.
+@isnad1 id=other.1h6v.s8.07b25a71afb8 from=translated src=- shape=7358fe93 vocab=67ec1c46
+-/
 theorem erlv_case12_shared_tip_rank_data
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (S : ErLVAtVertexUseSite P d₁ d₂ d₃) (h12 : S.Case12) :
@@ -324,7 +346,9 @@ theorem erlv_case12_shared_tip_rank_data
 
 /-- Mirror shared-tip data in case `(2,1)`.  Again one incident terminal is
 `d₁`, while the other is only `d₁ ∨ d₂`; the forced `d₂` rung is based at
-the adjacent vertex `x+1`, not at the common tip `x+2`. -/
+the adjacent vertex `x+1`, not at the common tip `x+2`.
+@isnad1 id=other.1h6v.s8.aeb7d5a10e7e from=translated src=- shape=7a8ca4ac vocab=7a05dc1e
+-/
 theorem erlv_case21_shared_tip_rank_data
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (S : ErLVAtVertexUseSite P d₁ d₂ d₃) (h21 : S.Case21) :
@@ -363,7 +387,9 @@ theorem erlv_case21_shared_tip_rank_data
   exact ⟨hFirstRanks.2.2, hSecondTopTwo, hFirstRanks.2.1⟩
 
 /-- Strict ED on two equal `d₃` avoiding sides forces one cross edge into
-the top two classes, not merely into the top-three graph. -/
+the top two classes, not merely into the top-three graph.
+@isnad1 id=or.6h9v.s7.912f53421f84 from=translated src=- shape=f9ec05b7 vocab=d5b816cc
+-/
 theorem equal_d3_avoiding_edges_force_cross_top_two
     {n : ℕ} {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hClasses : HasTopThreeDistanceClasses P d₁ d₂ d₃)
@@ -409,7 +435,9 @@ theorem equal_d3_avoiding_edges_force_cross_top_two
 
 /-- Exact ED output in case `(2,2)`: the inserted cross edge is `d₁ ∨ d₂`.
 The kernel does not force the `d₂` color required to enter the terminal
-`d₂`-cage directly. -/
+`d₂`-cage directly.
+@isnad1 id=other.1h6v.s7.49c67f98e10f from=translated src=- shape=82897f74 vocab=7456f1ff
+-/
 theorem erlv_case22_cross_top_two_rank_data
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (S : ErLVAtVertexUseSite P d₁ d₂ d₃) (h22 : S.Case22) :
@@ -448,7 +476,9 @@ theorem erlv_case22_cross_top_two_rank_data
 
 /-- Once an exceptional inner-count branch has the missing outer
 localization, its arithmetic is already in the direct short-arc branch.  It
-does not produce one of the five exceptional rows. -/
+does not produce one of the five exceptional rows.
+@isnad1 id=other.2h7v.s9.1e835e1713ee from=translated src=- shape=79b97c8c vocab=2e50667e
+-/
 theorem erlv_exceptional_use_site_localization_short_arc
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (S : ErLVAtVertexUseSite P d₁ d₂ d₃)
@@ -483,7 +513,9 @@ theorem erlv_exceptional_use_site_localization_short_arc
 
 /-- Kernel check against the five-row enumeration: after outer localization,
 none of the rigid `(1,2)/(2,1)/(2,2)` inner-count cases realizes a table row.
-The two partitions concern different variables. -/
+The two partitions concern different variables.
+@isnad1 id=other.2h7v.s9.77d617863d08 from=translated src=- shape=c6ef7433 vocab=a096b4cc
+-/
 theorem erlv_exceptional_use_site_localization_avoids_five_rows
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (S : ErLVAtVertexUseSite P d₁ d₂ d₃)
@@ -524,7 +556,9 @@ def ErLVAtVertexCase12OtherD2Impossible : Prop :=
           S.pair.first.leftMoves))
         (P (cyclicAdvance S.x 1)) = d₂ → False
 
-/-- Closing both actual terminal colors would close the `(1,2)` branch. -/
+/-- Closing both actual terminal colors would close the `(1,2)` branch.
+@isnad1 id=erlvatve.2h0v.s2.fe87d3249d8f from=translated src=- shape=f443e7c7 vocab=0db6566b
+-/
 theorem erlv_at_vertex_case12_impossible_of_terminal_colors
     (hD1 : ErLVAtVertexCase12OtherD1Impossible)
     (hD2 : ErLVAtVertexCase12OtherD2Impossible) :
@@ -553,7 +587,9 @@ def ErLVAtVertexCase21OtherD2Impossible : Prop :=
           (firstCounterclockwiseNeighbor P d₁ d₂ d₃ (cyclicAdvance S.x 3))
           S.pair.second.rightMoves)) = d₂ → False
 
-/-- Closing both actual terminal colors would close the `(2,1)` branch. -/
+/-- Closing both actual terminal colors would close the `(2,1)` branch.
+@isnad1 id=erlvatve.2h0v.s2.ea14b459402d from=translated src=- shape=f443e7c7 vocab=81e2c48c
+-/
 theorem erlv_at_vertex_case21_impossible_of_terminal_colors
     (hD1 : ErLVAtVertexCase21OtherD1Impossible)
     (hD2 : ErLVAtVertexCase21OtherD2Impossible) :
@@ -597,7 +633,9 @@ def ErLVAtVertexCase22XUD2Impossible : Prop :=
           (cyclicAdvance S.x 3))) = d₂ → False
 
 /-- The strengthened ED theorem reduces `(2,2)` exactly to the four named
-cross-edge/color obligations. -/
+cross-edge/color obligations.
+@isnad1 id=erlvatve.4h0v.s3.da7fe355c488 from=translated src=- shape=1dd7a8ea vocab=03509120
+-/
 theorem erlv_at_vertex_case22_impossible_of_cross_colors
     (hZTD1 : ErLVAtVertexCase22ZTD1Impossible)
     (hZTD2 : ErLVAtVertexCase22ZTD2Impossible)
@@ -616,7 +654,9 @@ theorem erlv_at_vertex_case22_impossible_of_cross_colors
 /-- The exact remaining use-site boundary after the rigid branch analysis:
 two terminal colors in each shared-tip branch and four cross-edge/color
 possibilities in the `(2,2)` branch.  Discharging these eight propositions is
-sufficient for the at-the-vertex replacement of the abstract exchange. -/
+sufficient for the at-the-vertex replacement of the abstract exchange.
+@isnad1 id=erlvatve.8h0v.s4.e5a1f79c91c0 from=translated src=- shape=823f8fd7 vocab=7e901ed5
+-/
 theorem erlv_at_vertex_exceptional_branches_impossible_of_color_cases
     (h12D1 : ErLVAtVertexCase12OtherD1Impossible)
     (h12D2 : ErLVAtVertexCase12OtherD2Impossible)
@@ -635,7 +675,9 @@ theorem erlv_at_vertex_exceptional_branches_impossible_of_color_cases
         h22ZTD1 h22ZTD2 h22XUD1 h22XUD2⟩
 
 /-- The same exact eight-subcase boundary, connected all the way to the
-source-facing nesting interface used by the global reduction. -/
+source-facing nesting interface used by the global reduction.
+@isnad1 id=erlvmajo.8h0v.s4.839280522566 from=translated src=- shape=823f8fd7 vocab=35f1f113
+-/
 theorem erlv_majorant_arc_nesting_complete_of_at_vertex_color_cases
     (h12D1 : ErLVAtVertexCase12OtherD1Impossible)
     (h12D2 : ErLVAtVertexCase12OtherD2Impossible)

@@ -69,7 +69,9 @@ For an open `U` and `x` with `f(x) ∈ U`, openness gives `Y` with `Y ∈ f(x)` 
 `[Y] ⊆ U`; unfolding
 `Y ∈ f(x)` produces `X ∈ x` with `X f Y`; then `[X] ⊆ f⁻¹U`, since any `x' ∈ [X]`
 has `Y ∈ f(x')`
-(via `X f Y`). -/
+(via `X f Y`).
+@isnad1 id=continuo.0h5v.s5.02ea72e7f438 from=translated src=- shape=a4b7296f vocab=6adefb83
+-/
 theorem continuous_toElementMap (f : ApproximableMap V₀ V₁) :
     Continuous (fun x => f.toElementMap x) := by
   rw [continuous_def]
@@ -88,7 +90,9 @@ namespace NeighborhoodSystem
 `⊑`: this is
 because `⊑` is recoverable from the topology (`le_iff_isOpen_imp`) and continuous
 preimages of opens
-are open and upward closed (`isOpen_isUpperSet`). -/
+are open and upward closed (`isOpen_isUpperSet`).
+@isnad1 id=monotone.1h5v.s5.8b248ebc96d4 from=translated src=- shape=3d2a47e1 vocab=828b725d
+-/
 theorem continuous_monotone {c : V₀.Element → V₁.Element} (hc : Continuous c) : Monotone c := by
   intro x y hxy
   rw [V₁.le_iff_isOpen_imp]
@@ -103,7 +107,9 @@ theorem continuous_monotone {c : V₀.Element → V₁.Element} (hc : Continuous
 `[X]` with `X ∈ x`;
   since `↑X ∈ [X]`, `Y ∈ c(↑X)`.
 * `←` : `↑X ⊑ x` and `c` monotone (`continuous_monotone`) give `c(↑X) ⊑ c(x)`,
-transporting `Y`. -/
+transporting `Y`.
+@isnad1 id=iff.1h7v.s6.4715321a7704 from=translated src=- shape=2760503c vocab=1b9cc122
+-/
 theorem mem_iff_principal_of_continuous {c : V₀.Element → V₁.Element} (hc : Continuous c)
     (x : V₀.Element) {Y : Set β} :
     (c x).mem Y ↔ ∃ (X : Set α) (hx : x.mem X), (c (V₀.principal (x.sub hx))).mem Y := by
@@ -139,7 +145,9 @@ def ofContinuous (c : V₀.Element → V₁.Element) (hc : Continuous c) : Appro
 union over finite
 approximants `↑X` (`X ∈ x`), where `ofMono` evaluates to `c(↑X)`; the union
 formula
-`mem_iff_principal_of_continuous` then re-assembles `c(x)`. -/
+`mem_iff_principal_of_continuous` then re-assembles `c(x)`.
+@isnad1 id=eq.1h6v.s5.b9ede3026df3 from=translated src=- shape=0cd188b0 vocab=e6d1d672
+-/
 theorem toElementMap_ofContinuous (c : V₀.Element → V₁.Element) (hc : Continuous c)
     (x : V₀.Element) : (ofContinuous c hc).toElementMap x = c x := by
   apply Element.ext

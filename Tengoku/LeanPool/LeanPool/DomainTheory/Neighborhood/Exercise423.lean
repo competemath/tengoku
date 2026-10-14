@@ -66,7 +66,9 @@ namespace ApproximableMap
 (pointwise `IsLUB`),
 (iv) `aₙ₊₁ ∘ f = aₙ₊₁ ∘ f ∘ aₙ` — then `f` has a **unique** fixed point.
 
-The unique fixed point is `fix f` (Theorem 4.1). -/
+The unique fixed point is `fix f` (Theorem 4.1).
+@isnad1 id=existsun.3h4v.s7.7c9caa18dc75 from=translated src=- shape=e71ee700 vocab=34686456
+-/
 theorem f_unique_fixedPoint (f : ApproximableMap V V) (a : ℕ → ApproximableMap V V)
     (ha0 : ∀ x, (a 0).toElementMap x = V.bot)
     (hlub : ∀ x, IsLUB {y | ∃ n, y = (a n).toElementMap x} x)

@@ -111,7 +111,9 @@ private theorem conflictCoverGroup_valid
   · simpa [conflictCoverGroups] using conflictCovers86_valid
   · simpa [conflictCoverGroups] using conflictCovers87_valid
 
-/-- Every entry in the complete generated conflict-cover table is valid. -/
+/-- Every entry in the complete generated conflict-cover table is valid.
+@isnad1 id=eq.2h2v.s4.b44ca7feeb54 from=translated src=- shape=76d411ca vocab=e64bea01
+-/
 theorem conflictCoverGroups_entry_valid
     (group : Array ConflictCover) (hgroup : group ∈ conflictCoverGroups)
     (cover : ConflictCover) (hcover : cover ∈ group) :
@@ -121,7 +123,9 @@ theorem conflictCoverGroups_entry_valid
   obtain ⟨index, hindex, rfl⟩ := hcover
   exact Array.getElem_mem_toList hindex
 
-/-- Every successful generated conflict-cover lookup is semantically sound. -/
+/-- Every successful generated conflict-cover lookup is semantically sound.
+@isnad1 id=valid.1h2v.s3.a87665e7094f from=translated src=- shape=c17b0416 vocab=9a82b692
+-/
 theorem conflictCoverLookup_valid
     {identifier : Nat} {cover : ConflictCover}
     (hlookup : conflictCoverLookup identifier = some cover) : cover.Valid :=

@@ -84,6 +84,9 @@ def inj (h : D ◁ E) : ApproximableMap D E where
     rintro X X' Y Y' ⟨_, _, hXY⟩ hX'X hYY' hX' hY'
     exact ⟨hX', hY', (hX'X.trans hXY).trans hYY'⟩
 
+/--
+@isnad1 id=iff.1h5v.s5.c9e7928d5845 from=translated src=- shape=74f9ffae vocab=82b388f2
+-/
 @[simp] theorem inj_rel (h : D ◁ E) {X Y : Set α} :
     (h.inj).rel X Y ↔ D.mem X ∧ E.mem Y ∧ X ⊆ Y := Iff.rfl
 
@@ -108,11 +111,16 @@ def proj (h : D ◁ E) : ApproximableMap E D where
     rintro Y Y' X X' ⟨_, _, hYX⟩ hY'Y hXX' hY' hX'
     exact ⟨hY', hX', (hY'Y.trans hYX).trans hXX'⟩
 
+/--
+@isnad1 id=iff.1h5v.s5.84f43c5dd70f from=translated src=- shape=839cfdec vocab=67ab195a
+-/
 @[simp] theorem proj_rel (h : D ◁ E) {Y X : Set α} :
     (h.proj).rel Y X ↔ E.mem Y ∧ D.mem X ∧ Y ⊆ X := Iff.rfl
 
 /-- **Element-wise description of `i` (Scott's equation).** `i(x) = {Y ∈ E ∣ ∃ X ∈
-x, X ⊆ Y}`. -/
+x, X ⊆ Y}`.
+@isnad1 id=iff.1h5v.s5.71a342a306cc from=translated src=- shape=ac504f74 vocab=7df7f7b2
+-/
 theorem toElementMap_inj (h : D ◁ E) (x : D.Element) {Y : Set α} :
     (h.inj.toElementMap x).mem Y ↔ E.mem Y ∧ ∃ X, x.mem X ∧ X ⊆ Y := by
   constructor
@@ -123,7 +131,9 @@ theorem toElementMap_inj (h : D ◁ E) (x : D.Element) {Y : Set α} :
 
 /-- **Element-wise description of `j` (Scott's equation).** `j(y) = y ∩ D`: the
 neighbourhoods of
-`j(y)` are exactly the `D`-neighbourhoods that already belong to `y`. -/
+`j(y)` are exactly the `D`-neighbourhoods that already belong to `y`.
+@isnad1 id=iff.1h5v.s5.faae7da08bb9 from=translated src=- shape=7c58b7fe vocab=0c3293db
+-/
 theorem toElementMap_proj (h : D ◁ E) (y : E.Element) {X : Set α} :
     (h.proj.toElementMap y).mem X ↔ y.mem X ∧ D.mem X := by
   constructor
@@ -138,7 +148,9 @@ exactly when
 collapses to
 `X ⊆ Z` (forward), and `X ⊆ Z` factors through `Y = Z` (backward). Proved
 relationally, so
-**choice-free**. -/
+**choice-free**.
+@isnad1 id=eq.1h3v.s5.47773e1261ae from=translated src=- shape=83eb8320 vocab=7cfdc978
+-/
 theorem proj_comp_inj (h : D ◁ E) : h.proj.comp h.inj = idMap D := by
   apply ApproximableMap.ext
   intro X Z
@@ -154,7 +166,9 @@ through a common
 `D`-neighbourhood `X` is in particular `Y ⊆ Y'` on `E`. The reverse inclusion
 fails (not every
 consistent `E`-pair factors through `D`), so this is an inclusion of relations,
-not an equality. -/
+not an equality.
+@isnad1 id=le.1h3v.s5.175b6d73245f from=translated src=- shape=ceb0016d vocab=cdb0fa96
+-/
 theorem inj_comp_proj_le (h : D ◁ E) : h.inj.comp h.proj ≤ idMap E := by
   intro Y Y' hr
   obtain ⟨X, ⟨hEY, _, hYX⟩, _, hEY', hXY'⟩ := hr
