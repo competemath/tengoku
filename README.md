@@ -7,20 +7,24 @@
 </p>
 
 ## About
-Formal mathematics is mathematics a computer can check, step by step. It is scattered across hundreds of separate
-projects, written for different versions of the language, Lean. Tengoku brings them together in one verified library
+Formal mathematics is mathematics that a computer can check, step by step. It is scattered across hundreds of separate
+projects, written for different versions of the language, Lean 4. Tengoku brings them together in one verified library
 on one version, so that agentic theorem provers can use all of it at once.
 
-Tengoku aims to provide continuously improving, reliable context for automated theorem provers. By reliable, we mean
-that our systems are designed to be exceptionally cynical of all dependencies, even the Lean 4 kernel and elaboration
-ecosystem. [Why](docs/why-cynical.md) and [how](docs/reliability.md) we do that.
+One of the things we would like to see, is that Tengoku significantly improves proving capacity of an [ATP](https://en.wikipedia.org/wiki/Automated_theorem_proving), compared
+to when it uses Mathlib. We also hope that the unification of many disparate libraries makes it easier for ATPs to bridge
+seemingly unrelated mathematics, and the discovery of new mathematics. Finally, we hope Tengoku acts as a continuously improving, 
+reliable context for automated theorem provers. By reliable, we mean a system designed to be exceptionally cynical of all dependencies, even the Lean 4 kernel and elaboration ecosystem - [why](docs/why-cynical.md) and [how](docs/reliability.md) we do that.
+
+(Tengoku can be interpreted to mean sky kingdom, or heavenly abode. This represents our ambition for the useful knowledge in this repository to reach the skies.)
 
 ## Try it
 [Leak](https://competemath.com/about/leak) is the intended interface to Tengoku.
 
 - **Add the MCP tools to your agent** (free, no sign-up): [Leak I](https://github.com/mikael-bashir/leak-i) searches
-  (Loogle + Moogle + ChromaDB), [Leak II](https://github.com/mikael-bashir/leak-ii) steps through proofs (Pantograph),
-  [Leak IV](https://github.com/mikael-bashir/leak-iv) verifies a script (Lean kernel).
+  (Loogle + Moogle + ChromaDB), [Leak II](https://github.com/mikael-bashir/leak-ii) steps through proofs (Pantograph service with efficient proof state switching),
+  [Leak IV](https://github.com/mikael-bashir/leak-iv) verifies a script (Lean kernel daemon). All of these services use the Tengoku
+  environment, and are provided like this to make it easy for the community to experiment - no SLA or uptime guarantee is provided.
   <details><summary>Connection URLs</summary>
 
   ```
@@ -36,13 +40,24 @@ ecosystem. [Why](docs/why-cynical.md) and [how](docs/reliability.md) we do that.
 - **Download it:** clone this repository and run `scripts/cache.sh get` to download the compiled library.
 
 ## Contributors
-Anyone can contribute, by hand or with AI. Every theorem keeps its author's credit: put a docstring above it with one
-line starting `Author:` that names you, and any AI you used. [How credit works](docs/credit.md) ·
-[Contributing](CONTRIBUTING.md) · [How a theorem gets in](docs/how-a-pr-flows.md) · [What we would like next](GOALS.md) ·
-[Code of Ethics](https://github.com/competemath/.github/blob/main/CODE_OF_ETHICS.md) · [Posting guidelines](https://github.com/competemath/.github/blob/main/POSTING.md)
+Anyone can contribute, by hand or with AI. Because of the nature of this project, there are many indirect ways 
+to contribute and support. Interacting with and providing feedback for the main [site](https://competemath.com), as
+well as using and improving the [Leak](https://github.com/mikael-bashir/leak-services) services, all support Tengoku indirectly. 
 
-Found a bug, or have an idea? [Open an issue](https://github.com/competemath/tengoku/issues/new). Security problems go
-through [SECURITY.md](SECURITY.md), never a public issue.
+We expect that realistic contributions directly to the project via pull requests will require AI assistance. This is because 
+parts of the repository change before a human can fully understand it. We understand that this creates a barrier to entry for 
+contributors due to factors beyond their control. We are not really in a position to solve this issue; if you
+want to contribute directly, or want to learn about something that interests you, but can't because you don't 
+have access to AI tools, get in [touch](mailto:bashir.mikael@outlook.com?subject=Tengoku) - we will try to help if we have the availability. 
+
+For every other prospective contributor, you may work on whatever you wish, even if it initially doesn't
+seem like it is related to Tengoku (if you have an odd idea or need particular permissions, get in touch with the link above).
+However you contribute, it would be useful to make mention of what you are working on, or would like work to be directed 
+at, in the [goals](GOALS.md) file.
+
+[How credit works](docs/credit.md) · [Contributing](CONTRIBUTING.md) · [How a theorem gets in](docs/how-a-pr-flows.md) · [Code of Ethics](https://github.com/competemath/.github/blob/main/CODE_OF_ETHICS.md) · [Posting guidelines](https://github.com/competemath/.github/blob/main/POSTING.md) · [Found an issue, or have an idea?](https://github.com/competemath/tengoku/issues/new) · [Found a security problem?](SECURITY.md). 
+
+If you are unsure if an issue is a security problem, assume it is and raise it via the formal procedure above anyway.
 
 ## Learn more
 - [Why Tengoku does not trust the toolchain](docs/why-cynical.md): case studies of Lean 4 failures
@@ -55,13 +70,13 @@ through [SECURITY.md](SECURITY.md), never a public issue.
 - Cite it: [10.5281/zenodo.23050400](https://doi.org/10.5281/zenodo.23050400), or the *Cite this repository* button
 
 ## Thanks
-Tengoku stands on Lean, Mathlib and the authors of every library in it. Thank you.
+Tengoku makes extensive use of the Lean and Mathlib ecosystem - to the authors who make Tengoku possible, thank you.
 
-<a href="https://snyk.io"><img src="https://cdn.simpleicons.org/snyk" height="18" alt="Snyk"></a>&nbsp;**Security, with [Snyk](https://snyk.io).** Tengoku is a proud member of Snyk's [Secure Developer Program](https://snyk.io/open-source/), which equips open-source maintainers with its developer-security platform.
+<a href="https://snyk.io"><img src="https://cdn.simpleicons.org/snyk" height="18" alt="Snyk"></a>&nbsp;**Security, with [Snyk](https://snyk.io).** Tengoku is proud to be a member of Snyk's [Secure Developer Program](https://snyk.io/open-source/), which arms open-source maintainers with its advanced developer-security platform.
 
 ## Funding and affiliation
 
-Tengoku is one of the services of [CompeteMath](https://competemath.com/about), founded by a single individual. CompeteMath has no intention of generating income with any of its projects. CompeteMath is not affiliated with, nor does it support, any particular organization, corporate entity, or political group. Anyone considering donating or partnering with us should know that Tengoku will not allow any influence over the governance of this repository, nor its accessibility, the integrity of its contents, or [Tengoku's goals](GOALS.md).
+Tengoku is one of the services of [CompeteMath](https://competemath.com/about). CompeteMath has no intention of generating income with any of its projects. CompeteMath is not affiliated with, nor does it support, any particular organization, corporate entity, or political group. Anyone considering donating or partnering with us should know that Tengoku will not allow any influence over the governance of this repository, nor its accessibility, the integrity of its contents, or [Tengoku's goals](GOALS.md).
 
 ## Badges
 
