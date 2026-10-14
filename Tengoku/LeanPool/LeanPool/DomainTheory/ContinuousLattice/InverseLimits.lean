@@ -61,7 +61,9 @@ variable (P : ∀ n, IsContinuousLatticeProjection (D n) (D (n + 1)))
 jₙ`: from
 `jₙ ∘ iₙ = id` and `iₙ ∘ jₙ ⊑ id` we get `iₙ x ⊑ y ↔ x ⊑ jₙ y`. In particular `jₙ`
 (the upper
-adjoint) preserves arbitrary infima. -/
+adjoint) preserves arbitrary infima.
+@isnad1 id=galoisco.0h3v.s8.574fc983827b from=translated src=- shape=be13c50e vocab=f0b1f38b
+-/
 theorem projection_galoisConnection (n : ℕ) :
     GaloisConnection ((P n).incl : D n → D (n + 1)) ((P n).retr : D (n + 1) → D n) := by
   intro x y
@@ -79,12 +81,16 @@ def Compatible (x : ∀ n, D n) : Prop := ∀ n, (P n).retr (x (n + 1)) = x n
 sequences. -/
 abbrev InverseLimit : Type u := {x : ∀ n, D n // Compatible D P x}
 
-/-- `jₙ` preserves arbitrary infima (it is the upper adjoint of `iₙ`). -/
+/-- `jₙ` preserves arbitrary infima (it is the upper adjoint of `iₙ`).
+@isnad1 id=eq.0h4v.s9.35795df4dd2a from=translated src=- shape=68acd4ba vocab=22c62232
+-/
 theorem retr_sInf (n : ℕ) (A : Set (D (n + 1))) :
     (P n).retr (sInf A) = sInf ((P n).retr '' A) := by
   rw [(projection_galoisConnection D P n).u_sInf, sInf_image]
 
-/-- The pointwise infimum of compatible sequences is compatible. -/
+/-- The pointwise infimum of compatible sequences is compatible.
+@isnad1 id=compatib.0h3v.s7.cde3888289b3 from=translated src=- shape=52d79625 vocab=611b5179
+-/
 theorem compatible_sInf (S : Set (InverseLimit D P)) :
     Compatible D P (sInf (Subtype.val '' S)) := by
   intro n
@@ -96,9 +102,15 @@ theorem compatible_sInf (S : Set (InverseLimit D P)) :
 noncomputable instance : InfSet (InverseLimit D P) :=
   ⟨fun S => ⟨sInf (Subtype.val '' S), compatible_sInf D P S⟩⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.4821c60bf5db from=translated src=- shape=fd171601 vocab=611b5179
+-/
 theorem coe_sInf (S : Set (InverseLimit D P)) :
     ((sInf S : InverseLimit D P) : ∀ n, D n) = sInf (Subtype.val '' S) := rfl
 
+/--
+@isnad1 id=isglb.0h3v.s6.f961b07fa4d6 from=translated src=- shape=1ca517e2 vocab=5eefc8e8
+-/
 theorem isGLB_sInf' (S : Set (InverseLimit D P)) : IsGLB S (sInf S) := by
   constructor
   · intro x hx
@@ -119,7 +131,9 @@ noncomputable instance instCompleteLattice : CompleteLattice (InverseLimit D P) 
 pointwise (each `jₙ`
 is Scott-continuous, so the pointwise sup of compatible sequences is compatible
 and is the least
-upper bound in `D_∞`). -/
+upper bound in `D_∞`).
+@isnad1 id=eq.2h3v.s7.474937f8e037 from=translated src=- shape=772ac950 vocab=554de737
+-/
 theorem coe_sSup_of_directed (S : Set (InverseLimit D P)) (hSne : S.Nonempty)
     (hSdir : DirectedOn (· ≤ ·) S) :
     ((sSup S : InverseLimit D P) : ∀ n, D n) = sSup (Subtype.val '' S) := by
@@ -149,7 +163,9 @@ theorem coe_sSup_of_directed (S : Set (InverseLimit D P)) (hSne : S.Nonempty)
       exact Subtype.coe_le_coe.mpr (hb hx)
   rw [(isLUB_sSup S).unique hlub]
 
-/-- The inclusion `D_∞ ↪ ∏ Dₙ` preserves directed suprema. -/
+/-- The inclusion `D_∞ ↪ ∏ Dₙ` preserves directed suprema.
+@isnad1 id=preserve.0h2v.s6.9112e8f54f84 from=translated src=- shape=706b1e66 vocab=07774a7a
+-/
 theorem incl_preservesDirectedSup :
     PreservesDirectedSup (Subtype.val : InverseLimit D P → ∀ n, D n) := by
   intro S hSne hSdir
@@ -161,11 +177,16 @@ inclusion:
 noncomputable def invLimRetr (y : ∀ n, D n) : InverseLimit D P :=
   sInf {x : InverseLimit D P | y ≤ x.1}
 
+/--
+@isnad1 id=le.0h3v.s6.ec4dae646cdb from=translated src=- shape=c8d75d73 vocab=8df784d3
+-/
 theorem le_coe_invLimRetr (y : ∀ n, D n) : y ≤ (invLimRetr D P y).1 := by
   rw [invLimRetr, coe_sInf]
   simp_all
 
-/-- `r ⊣ incl`: the retraction is left adjoint to the inclusion. -/
+/-- `r ⊣ incl`: the retraction is left adjoint to the inclusion.
+@isnad1 id=galoisco.0h2v.s7.2a56fbd64b2f from=translated src=- shape=0c5e6e91 vocab=82acdb15
+-/
 theorem invLimRetr_galoisConnection :
     GaloisConnection (invLimRetr D P) (Subtype.val : InverseLimit D P → ∀ n, D n) := by
   intro y x
@@ -176,13 +197,17 @@ theorem invLimRetr_galoisConnection :
     exact sInf_le (show x ∈ {x' : InverseLimit D P | y ≤ x'.1} from h)
 
 /-- The retraction preserves directed suprema (a left adjoint preserves all
-suprema). -/
+suprema).
+@isnad1 id=preserve.0h2v.s6.632e2f4f9fb7 from=translated src=- shape=67cb9388 vocab=a928c81b
+-/
 theorem invLimRetr_preservesDirectedSup :
     PreservesDirectedSup (invLimRetr D P) := by
   intro S _ _
   rw [(invLimRetr_galoisConnection D P).l_sSup, sSup_image]
 
-/-- `r ∘ incl = id`: the retraction fixes `D_∞`. -/
+/-- `r ∘ incl = id`: the retraction fixes `D_∞`.
+@isnad1 id=eq.0h3v.s6.a70e0309a9bb from=translated src=- shape=a88918f7 vocab=2924ce5c
+-/
 theorem invLimRetr_incl (x : InverseLimit D P) : invLimRetr D P x.1 = x := by
   refine le_antisymm ?_ ?_
   · exact sInf_le (show x ∈ {x' : InverseLimit D P | (x.1 : ∀ n, D n) ≤ x'.1} from le_refl x.1)
@@ -201,7 +226,9 @@ continuous lattices
 with projection bonding maps is itself a continuous lattice. The product `∏ Dₙ` is
 a continuous
 lattice (Prop 2.9a) and `D_∞` is a retract of it (`inverseLimitRetraction`), so
-Prop 2.10a applies. -/
+Prop 2.10a applies.
+@isnad1 id=iscontin.1h2v.s6.d03d62b10da2 from=translated src=- shape=bb3d7887 vocab=cad715b4
+-/
 theorem proposition_4_1 (hD : ∀ n, IsContinuousLattice (D n)) :
     IsContinuousLattice (InverseLimit D P) :=
   proposition_2_10_a (inverseLimitRetraction D P) (proposition_2_9_a D hD)
@@ -221,19 +248,31 @@ D_m`. -/
 def embLE {n m : ℕ} (h : n ≤ m) (x : D n) : D m :=
   Nat.leRecOn h (fun {k} (y : D k) => (P k).incl y) x
 
+/--
+@isnad1 id=eq.1h4v.s6.49ccfb612958 from=translated src=- shape=1f24e375 vocab=4f538d94
+-/
 theorem embLE_self {n : ℕ} (h : n ≤ n) (x : D n) : embLE D P h x = x := by
   simp only [embLE, Nat.leRecOn_self]
 
+/--
+@isnad1 id=eq.2h5v.s8.18d4a031faca from=translated src=- shape=8b0e9c77 vocab=29edc4fd
+-/
 theorem embLE_succ {n m : ℕ} (h1 : n ≤ m) (h2 : n ≤ m + 1) (x : D n) :
     embLE D P h2 x = (P m).incl (embLE D P h1 x) := by
   simp only [embLE]
   rw [Nat.leRecOn_succ h1]
 
+/--
+@isnad1 id=eq.2h5v.s8.a48ffefbe47c from=translated src=- shape=206bd58d vocab=29edc4fd
+-/
 theorem embLE_succ_left {n m : ℕ} (h1 : n ≤ m) (h2 : n + 1 ≤ m) (x : D n) :
     embLE D P h2 ((P n).incl x) = embLE D P h1 x := by
   simp only [embLE]
   exact Nat.leRecOn_succ_left x h1 h2
 
+/--
+@isnad1 id=le.2h6v.s7.6caf5ce1c69b from=translated src=- shape=cfe77e8a vocab=4f538d94
+-/
 theorem embLE_mono {n m : ℕ} (h : n ≤ m) {x y : D n} (hxy : x ≤ y) :
     embLE D P h x ≤ embLE D P h y := by
   induction m, h using Nat.le_induction with
@@ -250,14 +289,23 @@ def projLE {m n : ℕ} (h : m ≤ n) (x : D n) : D m :=
   Nat.leRecOn (C := fun k => D k → D m) h
     (fun {k} (g : D k → D m) (w : D (k + 1)) => g ((P k).retr w)) id x
 
+/--
+@isnad1 id=eq.1h4v.s6.54fed43b3947 from=translated src=- shape=1f24e375 vocab=cec2d909
+-/
 theorem projLE_self {m : ℕ} (h : m ≤ m) (x : D m) : projLE D P h x = x := by
   simp only [projLE, Nat.leRecOn_self, id_eq]
 
+/--
+@isnad1 id=eq.2h5v.s8.0129b0d3ed65 from=translated src=- shape=ef583ab7 vocab=a2d6d09a
+-/
 theorem projLE_succ {m n : ℕ} (h1 : m ≤ n) (h2 : m ≤ n + 1) (z : D (n + 1)) :
     projLE D P h2 z = projLE D P h1 ((P n).retr z) := by
   simp only [projLE]
   rw [Nat.leRecOn_succ (C := fun k => D k → D m) h1]
 
+/--
+@isnad1 id=le.2h6v.s7.cbca36204d11 from=translated src=- shape=ae4534b5 vocab=cec2d909
+-/
 theorem projLE_mono {m n : ℕ} (h : m ≤ n) {x y : D n} (hxy : x ≤ y) :
     projLE D P h x ≤ projLE D P h y := by
   induction n, h using Nat.le_induction with
@@ -268,7 +316,9 @@ theorem projLE_mono {m n : ℕ} (h : m ≤ n) {x y : D n} (hxy : x ≤ y) :
       rw [projLE_succ D P hk (Nat.le_succ_of_le hk), projLE_succ D P hk (Nat.le_succ_of_le hk)]
       exact ih ((P k).retr.monotone hxy)
 
-/-- Peeling the last projection: `(P m).retr ∘ projLE (m+1 ≤ n) = projLE (m ≤ n)`. -/
+/-- Peeling the last projection: `(P m).retr ∘ projLE (m+1 ≤ n) = projLE (m ≤ n)`.
+@isnad1 id=eq.1h5v.s8.0a1109460594 from=translated src=- shape=a98a7aa1 vocab=33f23a4d
+-/
 theorem projLE_retr {m : ℕ} : ∀ {n : ℕ} (h : m + 1 ≤ n) (x : D n),
     (P m).retr (projLE D P h x) = projLE D P (Nat.le_of_succ_le h) x := by
   intro n h
@@ -287,17 +337,28 @@ n`. -/
 def iComp (n : ℕ) (x : D n) (m : ℕ) : D m :=
   if h : n ≤ m then embLE D P h x else projLE D P (le_of_lt (not_le.mp h)) x
 
+/--
+@isnad1 id=eq.1h5v.s6.287c090924c4 from=translated src=- shape=741852a9 vocab=dc4f793d
+-/
 theorem iComp_of_le {n m : ℕ} (h : n ≤ m) (x : D n) : iComp D P n x m = embLE D P h x :=
   dite_eq_left h
 
+/--
+@isnad1 id=eq.1h5v.s6.b73ae8fb9e67 from=translated src=- shape=df0799a2 vocab=d55f2d16
+-/
 theorem iComp_of_ge {n m : ℕ} (h : ¬ n ≤ m) (x : D n) :
     iComp D P n x m = projLE D P (le_of_lt (not_le.mp h)) x :=
   dite_eq_right h
 
+/--
+@isnad1 id=eq.0h4v.s6.480b20712b08 from=translated src=- shape=fbe0c9ad vocab=5c565f07
+-/
 theorem iComp_self (n : ℕ) (x : D n) : iComp D P n x n = x := by
   rw [iComp_of_le D P (le_refl n), embLE_self]
 
-/-- The sequence `i_{n∞}(x)` is compatible, hence a genuine point of `D_∞`. -/
+/-- The sequence `i_{n∞}(x)` is compatible, hence a genuine point of `D_∞`.
+@isnad1 id=compatib.0h4v.s6.30c49e2ff49e from=translated src=- shape=11564ee0 vocab=8a646d2c
+-/
 theorem iComp_compatible (n : ℕ) (x : D n) : Compatible D P (iComp D P n x) := by
   intro m
   by_cases h1 : n ≤ m
@@ -312,7 +373,9 @@ theorem iComp_compatible (n : ℕ) (x : D n) : Compatible D P (iComp D P n x) :=
         projLE_retr D P (le_of_lt (not_le.mp h2)) x]
 
 /-- For a compatible sequence `y`, descending from level `n` to `m ≤ n` recovers
-`yₘ`. -/
+`yₘ`.
+@isnad1 id=eq.1h5v.s6.f16de08d428d from=translated src=- shape=3298eeac vocab=25d33443
+-/
 theorem projLE_compatible {m : ℕ} (y : InverseLimit D P) :
     ∀ {n : ℕ} (h : m ≤ n), projLE D P h (y.1 n) = y.1 m := by
   intro n h
@@ -321,7 +384,9 @@ theorem projLE_compatible {m : ℕ} (y : InverseLimit D P) :
   | succ k hk ih => rw [projLE_succ D P hk (Nat.le_succ_of_le hk), y.2 k, ih]
 
 /-- For a compatible sequence `y`, climbing `yₙ` up to level `m ≥ n` stays below
-`yₘ`. -/
+`yₘ`.
+@isnad1 id=le.1h5v.s7.c0c7f84439b5 from=translated src=- shape=c41ce48a vocab=8eed2c78
+-/
 theorem embLE_le {n : ℕ} (y : InverseLimit D P) {m : ℕ} (h : n ≤ m) :
     embLE D P h (y.1 n) ≤ y.1 m := by
   induction m, h using Nat.le_induction with
@@ -333,7 +398,9 @@ theorem embLE_le {n : ℕ} (y : InverseLimit D P) {m : ℕ} (h : n ≤ m) :
         _ = (P k).incl ((P k).retr (y.1 (k + 1))) := by rw [y.2 k]
         _ ≤ y.1 (k + 1) := (P k).incl_retr_le _
 
-/-- `i_{n∞}(yₙ) ⊑ y` coordinatewise (the heart of `incl_retr_le` for `j_{∞n}`). -/
+/-- `i_{n∞}(yₙ) ⊑ y` coordinatewise (the heart of `incl_retr_le` for `j_{∞n}`).
+@isnad1 id=le.0h5v.s6.d0693697d3dc from=translated src=- shape=85ec6795 vocab=11dda9a5
+-/
 theorem iComp_incl_le (n : ℕ) (y : InverseLimit D P) (m : ℕ) :
     iComp D P n (y.1 n) m ≤ y.1 m := by
   by_cases h : n ≤ m
@@ -341,7 +408,9 @@ theorem iComp_incl_le (n : ℕ) (y : InverseLimit D P) (m : ℕ) :
   · rw [iComp_of_ge D P h]
     exact le_of_eq (projLE_compatible D P y (le_of_lt (not_le.mp h)))
 
-/-- The tower of embeddings is Scott-continuous (a composite of the `iₖ`). -/
+/-- The tower of embeddings is Scott-continuous (a composite of the `iₖ`).
+@isnad1 id=preserve.1h4v.s6.1f6d288f9c5f from=translated src=- shape=35968436 vocab=cb31b282
+-/
 theorem embLE_preservesDirectedSup {n m : ℕ} (h : n ≤ m) :
     PreservesDirectedSup (embLE D P h) := by
   induction m, h using Nat.le_induction with
@@ -356,7 +425,9 @@ theorem embLE_preservesDirectedSup {n m : ℕ} (h : n ≤ m) :
       exact ScottMap.preservesDirectedSup_comp
         (fun S hS hd => (P k).incl.preservesDirectedSup_coe S hS hd) ih
 
-/-- The tower of projections is Scott-continuous (a composite of the `jₖ`). -/
+/-- The tower of projections is Scott-continuous (a composite of the `jₖ`).
+@isnad1 id=preserve.1h4v.s6.502476f0dbb7 from=translated src=- shape=440790e4 vocab=996187a3
+-/
 theorem projLE_preservesDirectedSup {m n : ℕ} (h : m ≤ n) :
     PreservesDirectedSup (projLE D P h) := by
   induction n, h using Nat.le_induction with
@@ -371,6 +442,9 @@ theorem projLE_preservesDirectedSup {m n : ℕ} (h : m ≤ n) :
       exact ScottMap.preservesDirectedSup_comp ih
         (fun S hS hd => (P k).retr.preservesDirectedSup_coe S hS hd)
 
+/--
+@isnad1 id=preserve.0h4v.s6.8fb2fe0d85b6 from=translated src=- shape=66c716b7 vocab=ee251f53
+-/
 theorem iComp_preservesDirectedSup (n m : ℕ) :
     PreservesDirectedSup (fun x : D n => iComp D P n x m) := by
   by_cases h : n ≤ m
@@ -381,20 +455,32 @@ theorem iComp_preservesDirectedSup (n m : ℕ) :
       funext (fun x => iComp_of_ge D P h x)
     rw [hfun]; exact projLE_preservesDirectedSup D P _
 
+/--
+@isnad1 id=monotone.0h4v.s6.f61fdc7c72c8 from=translated src=- shape=66c716b7 vocab=9d6f5731
+-/
 theorem iComp_monotone (n m : ℕ) : Monotone (fun x : D n => iComp D P n x m) :=
   preservesDirectedSup_monotone (iComp_preservesDirectedSup D P n m)
 
 /-- The embedding `i_{n∞} : Dₙ → D_∞` as a bare function into the inverse limit. -/
 def embInfFun (n : ℕ) (x : D n) : InverseLimit D P := ⟨iComp D P n x, iComp_compatible D P n x⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.cd2cebf085ff from=translated src=- shape=bffa68e0 vocab=60e71b2e
+-/
 @[simp] theorem embInfFun_coe (n : ℕ) (x : D n) : (embInfFun D P n x).1 = iComp D P n x := rfl
 
+/--
+@isnad1 id=monotone.0h3v.s6.c1beaeb28c47 from=translated src=- shape=685f469b vocab=b4f08498
+-/
 theorem embInf_monotone (n : ℕ) : Monotone (embInfFun D P n) := by
   intro x x' hxx
   rw [← Subtype.coe_le_coe]
   intro m
   exact iComp_monotone D P n m hxx
 
+/--
+@isnad1 id=preserve.0h3v.s6.e9edd4c58936 from=translated src=- shape=685f469b vocab=da026d36
+-/
 theorem embInf_preservesDirectedSup (n : ℕ) : PreservesDirectedSup (embInfFun D P n) := by
   intro S hS hSdir
   have hTne : (embInfFun D P n '' S).Nonempty := hS.image _
@@ -415,6 +501,9 @@ theorem embInf_preservesDirectedSup (n : ℕ) : PreservesDirectedSup (embInfFun 
 /-- The projection `j_{∞n} : D_∞ → Dₙ` as a bare function. -/
 def projInfFun (n : ℕ) (y : InverseLimit D P) : D n := y.1 n
 
+/--
+@isnad1 id=preserve.0h3v.s6.b97a84157fde from=translated src=- shape=a2efe975 vocab=971f55bc
+-/
 theorem eval_preservesDirectedSup (n : ℕ) : PreservesDirectedSup (projInfFun D P n) := by
   intro S hS hSdir
   have hL : (sSup S : InverseLimit D P).1 n = sSup ((fun y : InverseLimit D P => y.1 n) '' S) := by
@@ -444,7 +533,9 @@ noncomputable def proposition_4_2 (n : ℕ) :
     intro m
     exact iComp_incl_le D P n y m
 
-/-- **Scott 1972, §4 (recursion equation).** `i_{n∞} = i_{(n+1)∞} ∘ iₙ`. -/
+/-- **Scott 1972, §4 (recursion equation).** `i_{n∞} = i_{(n+1)∞} ∘ iₙ`.
+@isnad1 id=eq.0h4v.s8.111e10c282c2 from=translated src=- shape=5fcd49cb vocab=0db83a37
+-/
 theorem embInf_succ (n : ℕ) (x : D n) :
     embInf D P (n + 1) ((P n).incl x) = embInf D P n x := by
   apply Subtype.ext
@@ -463,7 +554,9 @@ theorem embInf_succ (n : ℕ) (x : D n) :
       projLE_succ D P (le_of_lt (not_le.mp h1)) (le_of_lt (not_le.mp h2)) ((P n).incl x),
       (P n).retr_incl]
 
-/-- The family `n ↦ i_{n∞}(xₙ)` is monotone (the lub defining `x` is monotone). -/
+/-- The family `n ↦ i_{n∞}(xₙ)` is monotone (the lub defining `x` is monotone).
+@isnad1 id=le.0h4v.s8.37aa5f9d0bfc from=translated src=- shape=057e78b7 vocab=b5ac7edb
+-/
 theorem embInf_le_succ (x : InverseLimit D P) (n : ℕ) :
     embInf D P n (x.1 n) ≤ embInf D P (n + 1) (x.1 (n + 1)) := by
   rw [← embInf_succ D P n (x.1 n)]
@@ -471,12 +564,17 @@ theorem embInf_le_succ (x : InverseLimit D P) (n : ℕ) :
     (by calc (P n).incl (x.1 n) = (P n).incl ((P n).retr (x.1 (n + 1))) := by rw [x.2 n]
           _ ≤ x.1 (n + 1) := (P n).incl_retr_le _)
 
+/--
+@isnad1 id=directed.0h3v.s7.acf263cbf98f from=translated src=- shape=dc6a135d vocab=1a0d8dcb
+-/
 theorem embInf_family_directed (x : InverseLimit D P) :
     DirectedOn (· ≤ ·) (Set.range (fun n => embInf D P n (x.1 n))) :=
   directedOn_range.2 (monotone_nat_of_le_succ (embInf_le_succ D P x)).directed_le
 
 /-- **Scott 1972, §4.** Each `x ∈ D_∞` is the (monotone) lub of its projections:
-`x = ⨆ₙ i_{n∞}(xₙ)`. -/
+`x = ⨆ₙ i_{n∞}(xₙ)`.
+@isnad1 id=eq.0h3v.s7.1a6e90c7fff3 from=translated src=- shape=10b78fd7 vocab=c4a9c07d
+-/
 theorem inverseLimit_eq_iSup (x : InverseLimit D P) :
     x = ⨆ n, embInf D P n (x.1 n) := by
   have hdir := embInf_family_directed D P x
@@ -501,7 +599,9 @@ theorem inverseLimit_eq_iSup (x : InverseLimit D P) :
 identity of `D_∞` is
 the directed lub of the approximating projections `rₙ = i_{n∞} ∘ j_{∞n}`:
 `id = ⨆ₙ i_{n∞} ∘ j_{∞n}`. This is the algebraic identity at the heart of Theorem
-4.4. -/
+4.4.
+@isnad1 id=eq.0h2v.s7.e55d96dfa75f from=translated src=- shape=992dbc0e vocab=b4c7bba5
+-/
 theorem idInf_eq_iSup :
     (ScottMap.idMap : ScottMap (InverseLimit D P) (InverseLimit D P))
       = ⨆ n, (embInf D P n).comp (projInf D P n) := by
@@ -524,7 +624,9 @@ point of `D_∞`, and since the family `k ↦ i_{k∞}(w_k)` is monotone, droppi
 `0`-th term does
 not change the lub (`Monotone.iSup_nat_add`), so `u_∞ = ⨆ₖ i_{k∞}(w_k) = w` by
 `inverseLimit_eq_iSup`.
-Hence `j_{∞(n+1)}(u_∞) = w_{n+1} = uₙ`. -/
+Hence `j_{∞(n+1)}(u_∞) = w_{n+1} = uₙ`.
+@isnad1 id=eq.1h4v.s9.9525c052539b from=translated src=- shape=cb6fdd5b vocab=f8ff3743
+-/
 theorem lemma_4_5 (u : ∀ n, D (n + 1))
     (hu : ∀ n, (P (n + 1)).retr (u (n + 1)) = u n) (n : ℕ) :
     (⨆ k, embInf D P (k + 1) (u k) : InverseLimit D P).1 (n + 1) = u n := by
@@ -556,10 +658,15 @@ variable {D' : Type*} [CompleteLattice D']
 def coconeInf (f : ∀ n, ScottMap (D n) D') (x : InverseLimit D P) : D' :=
   ⨆ n, f n (x.1 n)
 
+/--
+@isnad1 id=eq.0h5v.s7.dca21d24b1eb from=translated src=- shape=20832484 vocab=db4d800b
+-/
 theorem coconeInf_apply (f : ∀ n, ScottMap (D n) D') (x : InverseLimit D P) :
     coconeInf D P f x = ⨆ n, f n (x.1 n) := rfl
 
-/-- Climbing then applying `f` is constant: `f_m(i_{m-1}…iₙ x) = fₙ(x)`. -/
+/-- Climbing then applying `f` is constant: `f_m(i_{m-1}…iₙ x) = fₙ(x)`.
+@isnad1 id=eq.2h7v.s8.405aee804a55 from=translated src=- shape=627485b0 vocab=66bd26c0
+-/
 theorem coconeInf_climb (f : ∀ n, ScottMap (D n) D')
     (hf : ∀ n x, f n x = f (n + 1) ((P n).incl x)) {n : ℕ} (x : D n) :
     ∀ {m : ℕ} (h : n ≤ m), f m (embLE D P h x) = f n x := by
@@ -568,7 +675,9 @@ theorem coconeInf_climb (f : ∀ n, ScottMap (D n) D')
   | base => rw [embLE_self]
   | succ k hk ih => rw [embLE_succ D P hk (Nat.le_succ_of_le hk), ← hf k, ih]
 
-/-- Descending then applying `f` only decreases: `f_m(j_m…j_{n-1} x) ⊑ fₙ(x)`. -/
+/-- Descending then applying `f` only decreases: `f_m(j_m…j_{n-1} x) ⊑ fₙ(x)`.
+@isnad1 id=le.2h7v.s8.2361beb398d7 from=translated src=- shape=07937b08 vocab=c611776e
+-/
 theorem coconeInf_descend (f : ∀ n, ScottMap (D n) D')
     (hf : ∀ n x, f n x = f (n + 1) ((P n).incl x)) {m : ℕ} :
     ∀ {n : ℕ} (h : m ≤ n) (x : D n), f m (projLE D P h x) ≤ f n x := by
@@ -582,7 +691,9 @@ theorem coconeInf_descend (f : ∀ n, ScottMap (D n) D')
         _ = f (k + 1) ((P k).incl ((P k).retr x)) := hf k _
         _ ≤ f (k + 1) x := (f (k + 1)).monotone ((P k).incl_retr_le x)
 
-/-- **Scott 1972, Corollary 4.3 (factorization).** `fₙ = f∞ ∘ i_{n∞}`. -/
+/-- **Scott 1972, Corollary 4.3 (factorization).** `fₙ = f∞ ∘ i_{n∞}`.
+@isnad1 id=eq.1h6v.s8.2028347c5e4b from=translated src=- shape=39fca9a8 vocab=6fa92a79
+-/
 theorem coconeInf_comp_embInf (f : ∀ n, ScottMap (D n) D')
     (hf : ∀ n x, f n x = f (n + 1) ((P n).incl x)) (n : ℕ) (x : D n) :
     coconeInf D P f (embInf D P n x) = f n x := by
@@ -598,7 +709,9 @@ theorem coconeInf_comp_embInf (f : ∀ n, ScottMap (D n) D')
 
 /-- `f∞` is Scott-continuous: `f∞(⊔S) = ⊔ f∞(S)` for directed `S` (each `fₙ` is
 continuous and a
-double `⨆` over `ℕ × S` commutes). -/
+double `⨆` over `ℕ × S` commutes).
+@isnad1 id=preserve.0h4v.s6.cd9103cacdb4 from=translated src=- shape=78f778c7 vocab=4013bf34
+-/
 theorem coconeInf_preservesDirectedSup (f : ∀ n, ScottMap (D n) D') :
     PreservesDirectedSup (coconeInf D P f) := by
   intro S hS hSdir
@@ -622,7 +735,9 @@ the `Dₙ` along the embeddings `iₙ`: for every compatible cocone `fₙ : Dₙ
 (continuous, with
 `fₙ = f_{n+1} ∘ iₙ`) there is a **unique** continuous `f∞ : D_∞ → D'` with `fₙ =
 f∞ ∘ i_{n∞}`,
-namely `f∞(x) = ⨆ₙ fₙ(xₙ)`. -/
+namely `f∞(x) = ⨆ₙ fₙ(xₙ)`.
+@isnad1 id=existsun.1h4v.s9.e2c9bdb37761 from=translated src=- shape=f46e816d vocab=8e0973cf
+-/
 theorem corollary_4_3 (f : ∀ n, ScottMap (D n) D')
     (hf : ∀ n x, f n x = f (n + 1) ((P n).incl x)) :
     ∃! g : ScottMap (InverseLimit D P) D', ∀ n x, f n x = g (embInf D P n x) := by

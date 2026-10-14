@@ -27,6 +27,9 @@ noncomputable def primesBelow' (n : ℕ) : Finset Nat.Primes :=
 noncomputable def relevantNotInS (b X : ℕ) (S : Finset Nat.Primes) : Finset Nat.Primes :=
   (primesBelow' (Nat.sqrt (b * X + b) + 1)).filter (· ∉ S)
 
+/--
+@isnad1 id=le.0h1v.s4.52c485f50725 from=translated src=- shape=69c2d2f2 vocab=85dfeb18
+-/
 lemma primesBelow_succ_card_le (k : ℕ) : (k + 1).primesBelow.card ≤ k := by
   have h₂ : (k + 1).primesBelow ⊆ Finset.Icc 2 k := by
     intro p hp
@@ -36,12 +39,18 @@ lemma primesBelow_succ_card_le (k : ℕ) : (k + 1).primesBelow.card ≤ k := by
   rw [Nat.card_Icc] at h₃
   omega
 
+/--
+@isnad1 id=eq.0h1v.s3.ac0352a0b3f9 from=translated src=- shape=bd8bbd46 vocab=2c60d015
+-/
 lemma primesBelow'_card (n : ℕ) : (primesBelow' n).card = n.primesBelow.card := by
   have h3 : n.primesBelow.filter Nat.Prime = n.primesBelow :=
     Finset.filter_true_of_mem fun p hp => (Nat.mem_primesBelow.mp hp).2
   change ((n.primesBelow).subtype Nat.Prime).card = n.primesBelow.card
   rw [Finset.card_subtype, h3]
 
+/--
+@isnad1 id=le.0h3v.s5.12d54469592b from=translated src=- shape=7aae052c vocab=c4cf8757
+-/
 lemma relevantNotInS_card_le (b X : ℕ) (S : Finset Nat.Primes) :
     (relevantNotInS b X S).card ≤ Nat.sqrt (b * X + b) := by
   calc (relevantNotInS b X S).card
@@ -50,11 +59,17 @@ lemma relevantNotInS_card_le (b X : ℕ) (S : Finset Nat.Primes) :
     _ = (Nat.sqrt (b * X + b) + 1).primesBelow.card := primesBelow'_card _
     _ ≤ Nat.sqrt (b * X + b) := primesBelow_succ_card_le _
 
+/--
+@isnad1 id=lt.2h3v.s5.5179ff7d6bcf from=translated src=- shape=f32c64db vocab=984e6def
+-/
 lemma not_in_S_implies_gt_y (S : Finset Nat.Primes) (y : ℕ)
     (hy : ∀ p : Nat.Primes, (p : ℕ) ≤ y → p ∈ S) (q : Nat.Primes) (hq : q ∉ S) :
     (q : ℕ) > y :=
   not_le.mp (fun h => hq (hy q h))
 
+/--
+@isnad1 id=lt.2h5v.s6.3736f57b2e68 from=translated src=- shape=c0111b3b vocab=0e787f6d
+-/
 lemma relevantNotInS_gt_y (b X : ℕ) (S : Finset Nat.Primes) (y : ℕ)
     (hy : ∀ p : Nat.Primes, (p : ℕ) ≤ y → p ∈ S) (q : Nat.Primes)
     (hq : q ∈ relevantNotInS b X S) :
@@ -64,6 +79,9 @@ lemma relevantNotInS_gt_y (b X : ℕ) (S : Finset Nat.Primes) (y : ℕ)
   have h₃ : q ∉ S := (Finset.mem_filter.mp hq).2
   exact h₃ (hy q h₁)
 
+/--
+@isnad1 id=lt.3h5v.s6.ad67922272f9 from=translated src=- shape=5b0e82bc vocab=d423110f
+-/
 lemma relevantNotInS_gt_b (b X : ℕ) (S : Finset Nat.Primes) (y : ℕ)
     (hy : ∀ p : Nat.Primes, (p : ℕ) ≤ y → p ∈ S) (hyb : y ≥ b) (q : Nat.Primes)
     (hq : q ∈ relevantNotInS b X S) :
@@ -75,6 +93,9 @@ lemma relevantNotInS_gt_b (b X : ℕ) (S : Finset Nat.Primes) (y : ℕ)
   · exact absurd (hy q hqy) hq_not_in_S
   · omega
 
+/--
+@isnad1 id=lt.3h4v.s6.7558a60f52e5 from=translated src=- shape=e45466aa vocab=8c237fc2
+-/
 lemma prime_sq_bound_from_N_dvd (b X N : ℕ) (hb : 2 ≤ b) (q : Nat.Primes)
     (hN : N ∈ Finset.Icc 1 X) (hdvd : (q : ℕ) ^ 2 ∣ N) : (q : ℕ) < Nat.sqrt (b * X + b) + 1 := by
   have hN' : N ≤ X := (Finset.mem_Icc.mp hN).2
@@ -84,6 +105,9 @@ lemma prime_sq_bound_from_N_dvd (b X N : ℕ) (hb : 2 ≤ b) (q : Nat.Primes)
   have h₂ : Nat.sqrt (b * X + b) ≥ q := Nat.le_sqrt.mpr (by nlinarith [Nat.Prime.two_le q.prop])
   omega
 
+/--
+@isnad1 id=lt.4h5v.s7.2063d8ac88e2 from=translated src=- shape=dde7e347 vocab=395b3248
+-/
 theorem prime_sq_bound_from_shifted_dvd (b X N d : ℕ) (hb : 2 ≤ b) (q : Nat.Primes)
     (hN : N ∈ Finset.Icc 1 X) (hd : d ∈ Finset.range b) (hdvd : (q : ℕ) ^ 2 ∣ b * N + d) :
     (q : ℕ) < Nat.sqrt (b * X + b) + 1 := by
@@ -94,6 +118,9 @@ theorem prime_sq_bound_from_shifted_dvd (b X N d : ℕ) (hb : 2 ≤ b) (q : Nat.
   have h₉₂ : (q : ℕ) ≤ Nat.sqrt (b * X + b) := Nat.le_sqrt.mpr (by nlinarith)
   omega
 
+/--
+@isnad1 id=le.2h4v.s8.54ca2658be83 from=translated src=- shape=56f11951 vocab=10502dae
+-/
 lemma violation_subset_biUnion (b : ℕ) (hb : 2 ≤ b) (T : Finset ℕ) (hT : T ⊆ Finset.range b)
     (S : Finset Nat.Primes) (X : ℕ) :
     (Finset.Icc 1 X).filter (fun N => ∃ q : Nat.Primes, q ∉ S ∧ ((q : ℕ) ^ 2 ∣ N ∨ ∃ d ∈ T, (
@@ -115,7 +142,9 @@ lemma violation_subset_biUnion (b : ℕ) (hb : 2 ≤ b) (T : Finset ℕ) (hT : T
 
 /-- Union bound: card(V) ≤ ∑_{q ∈ relevantNotInS} card(V_q).
     Combines violation_subset_biUnion with Finset.card_le_card and Finset.card_biUnion_le.
-    Uses `Finset.card_biUnion_le : (s.biUnion t).card ≤ ∑ a ∈ s, (t a).card`. -/
+    Uses `Finset.card_biUnion_le : (s.biUnion t).card ≤ ∑ a ∈ s, (t a).card`.
+@isnad1 id=le.4h5v.s8.ec23e4232c8f from=translated src=- shape=40ad6f2d vocab=2397f725
+-/
 lemma union_card_bound (b : ℕ) (hb : 2 ≤ b) (T : Finset ℕ) (hT : T ⊆ Finset.range b)
     (S : Finset Nat.Primes) (y : ℕ) (hy : ∀ p : Nat.Primes, (p : ℕ) ≤ y → p ∈ S) (hyb : y ≥ b) (
         X : ℕ) :
@@ -145,7 +174,9 @@ lemma union_card_bound (b : ℕ) (hb : 2 ≤ b) (T : Finset ℕ) (hT : T ⊆ Fin
     Since 1/q² ≥ 0 for all primes q, and the sum over primes converges,
     the finite partial sum is bounded by the full tail sum.
     Uses `Summable.sum_le_tsum : ∀ {ι : Type*} {f : ι → ℝ} (s : Finset ι),
-      (∀ i ∉ s, 0 ≤ f i) → Summable f → ∑ i ∈ s, f i ≤ ∑' i, f i`. -/
+      (∀ i ∉ s, 0 ≤ f i) → Summable f → ∑ i ∈ s, f i ≤ ∑' i, f i`.
+@isnad1 id=le.1h2v.s7.6d0d24b5723f from=translated src=- shape=2c99386a vocab=2bb8d7d9
+-/
 lemma finsum_le_tsum_tail (y : ℕ) (Q : Finset Nat.Primes) (hQ : ∀ q ∈ Q, (q : ℕ) > y) :
     (∑ q ∈ Q, 1 / (((q : ℕ) : ℝ) ^ 2))
     ≤ (∑' (p : {q : Nat.Primes // (q : ℕ) > y}), 1 / (((p : Nat.Primes) : ℕ) : ℝ) ^ 2) := by
@@ -165,6 +196,9 @@ lemma finsum_le_tsum_tail (y : ℕ) (Q : Finset Nat.Primes) (hQ : ∀ q ∈ Q, (
   rw [h_sum_eq]
   exact hf_summable.sum_le_tsum Q_S (fun _ _ => hf_nonneg _)
 
+/--
+@isnad1 id=eq.0h3v.s7.213ba06ab1d6 from=translated src=- shape=908a8acf vocab=5c1f790e
+-/
 lemma sum_expand (c : ℝ) (X : ℕ) (Q : Finset Nat.Primes) :
     (∑ q ∈ Q, (c * ((X : ℝ) / ((q : ℕ) : ℝ) ^ 2 + 1)))
     = c * X * (∑ q ∈ Q, 1 / (((q : ℕ) : ℝ) ^ 2)) + c * Q.card := by
@@ -176,6 +210,9 @@ lemma sum_expand (c : ℝ) (X : ℕ) (Q : Finset Nat.Primes) :
   rw [hsplit, Finset.sum_add_distrib, ← Finset.mul_sum, Finset.sum_const, nsmul_eq_mul]
   ring
 
+/--
+@isnad1 id=le.1h4v.s8.c68b01d33b79 from=translated src=- shape=81840d80 vocab=18ba67a7
+-/
 lemma sum_bound_real (T : Finset ℕ) (y : ℕ) (X : ℕ)
     (Q : Finset Nat.Primes) (hQ : ∀ q ∈ Q, (q : ℕ) > y) :
     (∑ q ∈ Q, ((T.card + 1 : ℝ) * ((X : ℝ) / ((q : ℕ) : ℝ) ^ 2 + 1)))
@@ -187,6 +224,9 @@ lemma sum_bound_real (T : Finset ℕ) (y : ℕ) (X : ℕ)
   have hc : (0 : ℝ) ≤ (T.card + 1 : ℝ) * X := by positivity
   gcongr
 
+/--
+@isnad1 id=le.0h2v.s6.cbc73612d974 from=translated src=- shape=1ee40189 vocab=acd45453
+-/
 lemma nat_div_floor_le_real_div (X : ℕ) (q : Nat.Primes) :
     ((X / (q : ℕ) ^ 2 : ℕ) : ℝ) ≤ (X : ℝ) / ((q : ℕ) ^ 2 : ℝ) := by
   have h₁ : ((X / (q : ℕ) ^ 2 : ℕ) : ℝ) * ((q : ℕ) ^ 2 : ℝ) ≤ (X : ℝ) := by
@@ -197,6 +237,9 @@ lemma nat_div_floor_le_real_div (X : ℕ) (q : Nat.Primes) :
   rw [le_div_iff₀ h₆]
   exact h₁
 
+/--
+@isnad1 id=le.0h3v.s7.c5b1383ed300 from=translated src=- shape=00856e16 vocab=bb872974
+-/
 lemma nat_sum_le_real_sum (T : Finset ℕ) (X : ℕ) (Q : Finset Nat.Primes) :
     ((∑ q ∈ Q, (T.card + 1) * (X / (q : ℕ) ^ 2 + 1) : ℕ) : ℝ)
     ≤ ∑ q ∈ Q, ((T.card + 1 : ℝ) * ((X : ℝ) / ((q : ℕ) : ℝ) ^ 2 + 1)) := by
@@ -209,7 +252,9 @@ lemma nat_sum_le_real_sum (T : Finset ℕ) (X : ℕ) (Q : Finset Nat.Primes) :
     linarith
   · linarith [T.card.cast_nonneg (α := ℝ)]
 
-/-- Violation count is bounded by the prime-square tail term plus a square-root count term. -/
+/-- Violation count is bounded by the prime-square tail term plus a square-root count term.
+@isnad1 id=le.4h5v.s8.13a428f5c370 from=translated src=- shape=2057771b vocab=9176041d
+-/
 lemma violation_count_bound (b : ℕ) (hb : 2 ≤ b) (T : Finset ℕ) (hT : T ⊆ Finset.range b)
     (S : Finset Nat.Primes) (y : ℕ) (hy : ∀ p : Nat.Primes, (p : ℕ) ≤ y → p ∈ S) (hyb : y ≥ b) (
         X : ℕ) :

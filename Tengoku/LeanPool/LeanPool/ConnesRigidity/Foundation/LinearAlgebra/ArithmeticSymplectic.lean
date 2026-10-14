@@ -83,7 +83,9 @@ def reduceVector : IntegralLattice →+ ModTwoSpace where
     funext i
     simp
 
-/-- Evaluation of coordinatewise reduction. Paper: §2. -/
+/-- Evaluation of coordinatewise reduction. Paper: §2.
+@isnad1 id=eq.0h2v.s7.dd21fdced844 from=translated src=- shape=d423e3cd vocab=09b79e4b
+-/
 @[simp] theorem reduceVector_apply (v : IntegralLattice) (i : SymplecticIndex) :
     reduceVector v i = (v i : ZMod 2) := rfl
 
@@ -95,7 +97,9 @@ The `liftVector` construction used in the Connes rigidity formalization.
 def liftVector (w : ModTwoSpace) : IntegralLattice :=
   fun i ↦ ZMod.cast (w i)
 
-/-- Reduction recovers the canonical lift. Paper: §2. -/
+/-- Reduction recovers the canonical lift. Paper: §2.
+@isnad1 id=eq.0h1v.s7.008eb522c9a8 from=translated src=- shape=8f2957ed vocab=d6783958
+-/
 @[simp] theorem reduceVector_liftVector (w : ModTwoSpace) :
     reduceVector (liftVector w) = w := by
   funext i
@@ -103,17 +107,26 @@ def liftVector (w : ModTwoSpace) : IntegralLattice :=
   exact ZMod.intCast_zmod_cast _
 
 /- The lift of zero is zero. Paper: §2. -/
+/--
+@isnad1 id=eq.0h0v.s6.ce50bd562b0f from=translated src=- shape=1ac31801 vocab=5b5a4c09
+-/
 @[simp] theorem liftVector_zero : liftVector (0 : ModTwoSpace) = 0 := by
   funext i
   simp [liftVector]
 
 /- Reduction commutes with the symplectic action. Paper: §2. -/
+/--
+@isnad1 id=eq.0h2v.s12.ebe34fbbd8a9 from=translated src=- shape=be5c135f vocab=f41d408c
+-/
 theorem reduceVector_smul (g : IntegralSymplecticGroup) (v : IntegralLattice) :
     reduceVector (g • v) = g • reduceVector v := by
   funext i
   exact RingHom.map_mulVec (Int.castRingHom (ZMod 2)) g.1 v i
 
 /- The mod-two carrier has exponent two. Paper: §2. -/
+/--
+@isnad1 id=eq.0h1v.s7.ed27f988b7ec from=translated src=- shape=bf10fe2b vocab=972a5784
+-/
 theorem modTwoSpace_exponent_two (w : ModTwoSpace) :
     (2 : ℕ) • w = 0 := by
   funext i
@@ -122,6 +135,9 @@ theorem modTwoSpace_exponent_two (w : ModTwoSpace) :
   exact CharTwo.add_self_eq_zero _
 
 /- Vanishing reduction admits an integral half. Paper: §2. -/
+/--
+@isnad1 id=ex.1h1v.s8.3d961451a275 from=translated src=- shape=a46dcbf6 vocab=03e500eb
+-/
 theorem exists_half_of_reduceVector_eq_zero
     (v : IntegralLattice) (hv : reduceVector v = 0) :
     ∃ u : IntegralLattice, (2 : ℕ) • u = v := by
@@ -137,6 +153,9 @@ theorem exists_half_of_reduceVector_eq_zero
   simpa [nsmul_eq_mul] using (hu i).symm
 
 /- Doubling is injective on the integral lattice. Paper: §2. -/
+/--
+@isnad1 id=injectiv.0h0v.s4.0c9bcd49cc92 from=translated src=- shape=3f78d173 vocab=7b5e06ca
+-/
 theorem two_nsmul_integralLattice_injective :
     Function.Injective (fun v : IntegralLattice ↦ (2 : ℕ) • v) := by
   exact nsmul_right_injective (by norm_num : (2 : ℕ) ≠ 0)
@@ -156,6 +175,9 @@ def standardQuadraticForm (x : ModTwoSpace) : ZMod 2 :=
   ∑ i : Fin 2, x (Sum.inl i) * x (Sum.inr i)
 
 /- Polarization of the standard quadratic refinement. Paper: §2. -/
+/--
+@isnad1 id=eq.0h2v.s7.d6c65e085ac3 from=translated src=- shape=d1812a6d vocab=4160beab
+-/
 theorem standardQuadraticForm_add (x y : ModTwoSpace) :
     standardQuadraticForm (x + y) =
       standardQuadraticForm x + standardQuadraticForm y + modTwoSymplecticForm x y := by

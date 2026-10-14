@@ -60,6 +60,9 @@ noncomputable def convexCombination (μ ν : ProbabilityMeasure Ω) (t : NNReal)
             have h : t + (1 - t) = (1 : NNReal) := add_tsub_cancel_of_le ht
             exact_mod_cast h⟩
 
+/--
+@isnad1 id=eq.1h4v.s7.a21101a95cc2 from=translated src=- shape=1dfdd4ba vocab=f25d0885
+-/
 @[simp]
 lemma convexCombination_toMeasure (μ ν : ProbabilityMeasure Ω) (t : NNReal)
     (ht : t ≤ (1 : NNReal)) :
@@ -67,6 +70,9 @@ lemma convexCombination_toMeasure (μ ν : ProbabilityMeasure Ω) (t : NNReal)
       t • μ.toMeasure + ((1 : NNReal) - t) • ν.toMeasure :=
   rfl
 
+/--
+@isnad1 id=eq.2h5v.s7.510d5fd7bfcd from=translated src=- shape=da83911c vocab=287fe89f
+-/
 lemma convexCombination_apply (μ ν : ProbabilityMeasure Ω) (t : NNReal)
     (ht : t ≤ (1 : NNReal))
     {s : Set Ω} (_hs : MeasurableSet s) :
@@ -85,6 +91,9 @@ noncomputable def outputPrior (k : Kernel α β) [IsMarkovKernel k] (p : Probabi
     ProbabilityMeasure β :=
   ⟨k ∘ₘ p.toMeasure, by infer_instance⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.61d90803a0f3 from=translated src=- shape=b0188367 vocab=e93115dd
+-/
 @[simp]
 lemma outputPrior_toMeasure (k : Kernel α β) [IsMarkovKernel k] (p : ProbabilityMeasure α) :
     (outputPrior k p).toMeasure = k ∘ₘ p.toMeasure :=
@@ -95,6 +104,9 @@ noncomputable def jointLaw (k : Kernel α β) [IsMarkovKernel k] (p : Probabilit
     ProbabilityMeasure (α × β) :=
   ⟨p.toMeasure ⊗ₘ k, by infer_instance⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.cbbaf9689146 from=translated src=- shape=7a5d5043 vocab=07d1b402
+-/
 @[simp]
 lemma jointLaw_toMeasure (k : Kernel α β) [IsMarkovKernel k] (p : ProbabilityMeasure α) :
     (jointLaw k p).toMeasure = p.toMeasure ⊗ₘ k :=
@@ -106,6 +118,9 @@ noncomputable def independentJointLaw (k : Kernel α β) [IsMarkovKernel k]
   let q := outputPrior k p
   ⟨p.toMeasure ⊗ₘ Kernel.const α q.toMeasure, by infer_instance⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.3c75da08f3a2 from=translated src=- shape=f5a286ad vocab=749ddfc8
+-/
 @[simp]
 lemma independentJointLaw_toMeasure (k : Kernel α β) [IsMarkovKernel k]
     (p : ProbabilityMeasure α) :

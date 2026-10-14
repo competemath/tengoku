@@ -31,7 +31,9 @@ namespace ClassificationOfSurfaces
 
 namespace SurfaceCellComplex
 
-/-- Counting boundary positions by edge name agrees with counting the edge names in the word. -/
+/-- Counting boundary positions by edge name agrees with counting the edge names in the word.
+@isnad1 id=eq.0h3v.s5.6703e6864464 from=translated src=- shape=f76d9e70 vocab=d89e3bc1
+-/
 theorem wordEdgeOccurrences_card_eq_count_edgeName
     {Edge : Type} [DecidableEq Edge]
     (word : List (SignedDart Edge)) (e : Edge) :
@@ -94,11 +96,17 @@ def nonOrientableBoundaryWord (p n : ℕ) :
   (List.ofFn (fun i : Fin p ↦ nonOrientableCrosscapBlock (n := n) i)).flatten ++
     (List.ofFn (fun i : Fin n ↦ nonOrientableBoundaryBlock (p := p) i)).flatten
 
+/--
+@isnad1 id=eq.0h2v.s5.a78897fa16ad from=translated src=- shape=0602b253 vocab=d63a19fc
+-/
 theorem orientableBoundaryWord_length (p n : ℕ) :
     (orientableBoundaryWord p n).length = 4 * p + 3 * n := by
   simp [orientableBoundaryWord, orientableHandleBlock, orientableBoundaryBlock, List.sum_ofFn,
     Nat.mul_comm]
 
+/--
+@isnad1 id=eq.0h2v.s5.bde301cad551 from=translated src=- shape=0602b253 vocab=6ac37c90
+-/
 theorem nonOrientableBoundaryWord_length (p n : ℕ) :
     (nonOrientableBoundaryWord p n).length = 2 * p + 3 * n := by
   simp [nonOrientableBoundaryWord, nonOrientableCrosscapBlock, nonOrientableBoundaryBlock,
@@ -158,15 +166,24 @@ def orientableBoundaryPosition (p n : ℕ) (j : Fin n) (k : Fin 3) :
     rw [orientableBoundaryWord_length]
     omega⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.56ee44a93e20 from=translated src=- shape=c2f1c89f vocab=5dbaac4c
+-/
 theorem orientableHandlePosition_val (p n : ℕ) (i : Fin p) (k : Fin 4) :
     (orientableHandlePosition p n i k).val = i.val * 4 + k.val :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.69c2ff666bc4 from=translated src=- shape=1e9d374c vocab=a3339daf
+-/
 @[simp]
 theorem orientableBoundaryPosition_val (p n : ℕ) (j : Fin n) (k : Fin 3) :
     (orientableBoundaryPosition p n j k).val = 4 * p + j.val * 3 + k.val :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.3233c1170b50 from=translated src=- shape=0d6574a2 vocab=85be83e6
+-/
 theorem orientableBoundaryWord_get_handle_block (p n : ℕ) (i : Fin p) (k : Fin 4) :
     (orientableBoundaryWord p n).get (orientableHandlePosition p n i k) =
       (orientableHandleBlock (n := n) i).get k := by
@@ -183,6 +200,9 @@ theorem orientableBoundaryWord_get_handle_block (p n : ℕ) (i : Fin p) (k : Fin
   simp only [hopt]
   exact Option.get_some _ _
 
+/--
+@isnad1 id=eq.0h4v.s5.f90390e58200 from=translated src=- shape=b31bbb07 vocab=15e24027
+-/
 theorem orientableBoundaryWord_get_boundary_block (p n : ℕ) (j : Fin n) (k : Fin 3) :
     (orientableBoundaryWord p n).get (orientableBoundaryPosition p n j k) =
       (orientableBoundaryBlock (p := p) j).get k := by
@@ -203,42 +223,63 @@ theorem orientableBoundaryWord_get_boundary_block (p n : ℕ) (j : Fin n) (k : F
   simp only [hopt]
   exact Option.get_some _ _
 
+/--
+@isnad1 id=eq.0h3v.s5.d6d8fdc4ce45 from=translated src=- shape=875eefed vocab=848bc917
+-/
 theorem orientableBoundaryWord_get_handle_a_pos (p n : ℕ) (i : Fin p) :
     (orientableBoundaryWord p n).get (orientableHandlePosition p n i 0) =
       .pos (.a i) := by
   simpa [orientableHandleBlock] using
     orientableBoundaryWord_get_handle_block p n i (0 : Fin 4)
 
+/--
+@isnad1 id=eq.0h3v.s5.d52713c9a5c2 from=translated src=- shape=875eefed vocab=e8d10c3a
+-/
 theorem orientableBoundaryWord_get_handle_b_pos (p n : ℕ) (i : Fin p) :
     (orientableBoundaryWord p n).get (orientableHandlePosition p n i 1) =
       .pos (.b i) := by
   simpa [orientableHandleBlock] using
     orientableBoundaryWord_get_handle_block p n i (1 : Fin 4)
 
+/--
+@isnad1 id=eq.0h3v.s5.aa210508a276 from=translated src=- shape=875eefed vocab=4a260994
+-/
 theorem orientableBoundaryWord_get_handle_a_neg (p n : ℕ) (i : Fin p) :
     (orientableBoundaryWord p n).get (orientableHandlePosition p n i 2) =
       .neg (.a i) := by
   simpa [orientableHandleBlock] using
     orientableBoundaryWord_get_handle_block p n i (2 : Fin 4)
 
+/--
+@isnad1 id=eq.0h3v.s5.8fa6a3769c26 from=translated src=- shape=875eefed vocab=2323cf4a
+-/
 theorem orientableBoundaryWord_get_handle_b_neg (p n : ℕ) (i : Fin p) :
     (orientableBoundaryWord p n).get (orientableHandlePosition p n i 3) =
       .neg (.b i) := by
   simpa [orientableHandleBlock] using
     orientableBoundaryWord_get_handle_block p n i (3 : Fin 4)
 
+/--
+@isnad1 id=eq.0h3v.s5.d3cd9b4867a4 from=translated src=- shape=dda625ee vocab=d26a4644
+-/
 theorem orientableBoundaryWord_get_boundary_c_pos (p n : ℕ) (j : Fin n) :
     (orientableBoundaryWord p n).get (orientableBoundaryPosition p n j 0) =
       .pos (.c j) := by
   simpa [orientableBoundaryBlock] using
     orientableBoundaryWord_get_boundary_block p n j (0 : Fin 3)
 
+/--
+@isnad1 id=eq.0h3v.s5.16e9fc8df5b5 from=translated src=- shape=dda625ee vocab=12c86738
+-/
 theorem orientableBoundaryWord_get_boundary_h_pos (p n : ℕ) (j : Fin n) :
     (orientableBoundaryWord p n).get (orientableBoundaryPosition p n j 1) =
       .pos (.h j) := by
   simpa [orientableBoundaryBlock] using
     orientableBoundaryWord_get_boundary_block p n j (1 : Fin 3)
 
+/--
+@isnad1 id=eq.0h3v.s5.e4ab73f877a0 from=translated src=- shape=dda625ee vocab=ba3738c0
+-/
 theorem orientableBoundaryWord_get_boundary_c_neg (p n : ℕ) (j : Fin n) :
     (orientableBoundaryWord p n).get (orientableBoundaryPosition p n j 2) =
       .neg (.c j) := by
@@ -283,16 +324,25 @@ def nonOrientableBoundaryPosition (p n : ℕ) (j : Fin n) (k : Fin 3) :
     rw [nonOrientableBoundaryWord_length]
     omega⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.c5c248000b65 from=translated src=- shape=c2f1c89f vocab=10aa578a
+-/
 @[simp]
 theorem nonOrientableCrosscapPosition_val (p n : ℕ) (i : Fin p) (k : Fin 2) :
     (nonOrientableCrosscapPosition p n i k).val = i.val * 2 + k.val :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.51e7df5bbc24 from=translated src=- shape=1e9d374c vocab=3aca7b96
+-/
 @[simp]
 theorem nonOrientableBoundaryPosition_val (p n : ℕ) (j : Fin n) (k : Fin 3) :
     (nonOrientableBoundaryPosition p n j k).val = 2 * p + j.val * 3 + k.val :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.95a618700820 from=translated src=- shape=0d6574a2 vocab=b89f3258
+-/
 theorem nonOrientableBoundaryWord_get_crosscap_block
     (p n : ℕ) (i : Fin p) (k : Fin 2) :
     (nonOrientableBoundaryWord p n).get (nonOrientableCrosscapPosition p n i k) =
@@ -311,6 +361,9 @@ theorem nonOrientableBoundaryWord_get_crosscap_block
   simp only [hopt]
   exact Option.get_some _ _
 
+/--
+@isnad1 id=eq.0h4v.s5.e58f1da72a64 from=translated src=- shape=b31bbb07 vocab=31071bbc
+-/
 theorem nonOrientableBoundaryWord_get_boundary_block
     (p n : ℕ) (j : Fin n) (k : Fin 3) :
     (nonOrientableBoundaryWord p n).get (nonOrientableBoundaryPosition p n j k) =
@@ -333,36 +386,54 @@ theorem nonOrientableBoundaryWord_get_boundary_block
   simp only [hopt]
   exact Option.get_some _ _
 
+/--
+@isnad1 id=eq.0h3v.s5.a0bd2bf57949 from=translated src=- shape=875eefed vocab=54e7f81e
+-/
 theorem nonOrientableBoundaryWord_get_crosscap_a_first (p n : ℕ) (i : Fin p) :
     (nonOrientableBoundaryWord p n).get (nonOrientableCrosscapPosition p n i 0) =
       .pos (.a i) := by
   simpa [nonOrientableCrosscapBlock] using
     nonOrientableBoundaryWord_get_crosscap_block p n i (0 : Fin 2)
 
+/--
+@isnad1 id=eq.0h3v.s5.21af330af1e3 from=translated src=- shape=875eefed vocab=54e7f81e
+-/
 theorem nonOrientableBoundaryWord_get_crosscap_a_second (p n : ℕ) (i : Fin p) :
     (nonOrientableBoundaryWord p n).get (nonOrientableCrosscapPosition p n i 1) =
       .pos (.a i) := by
   simpa [nonOrientableCrosscapBlock] using
     nonOrientableBoundaryWord_get_crosscap_block p n i (1 : Fin 2)
 
+/--
+@isnad1 id=eq.0h3v.s5.b2af705f9691 from=translated src=- shape=dda625ee vocab=fa756bdb
+-/
 theorem nonOrientableBoundaryWord_get_boundary_c_pos (p n : ℕ) (j : Fin n) :
     (nonOrientableBoundaryWord p n).get (nonOrientableBoundaryPosition p n j 0) =
       .pos (.c j) := by
   simpa [nonOrientableBoundaryBlock] using
     nonOrientableBoundaryWord_get_boundary_block p n j (0 : Fin 3)
 
+/--
+@isnad1 id=eq.0h3v.s5.7202b808a008 from=translated src=- shape=dda625ee vocab=9425e7d6
+-/
 theorem nonOrientableBoundaryWord_get_boundary_h_pos (p n : ℕ) (j : Fin n) :
     (nonOrientableBoundaryWord p n).get (nonOrientableBoundaryPosition p n j 1) =
       .pos (.h j) := by
   simpa [nonOrientableBoundaryBlock] using
     nonOrientableBoundaryWord_get_boundary_block p n j (1 : Fin 3)
 
+/--
+@isnad1 id=eq.0h3v.s5.bd68937f332d from=translated src=- shape=dda625ee vocab=c5354387
+-/
 theorem nonOrientableBoundaryWord_get_boundary_c_neg (p n : ℕ) (j : Fin n) :
     (nonOrientableBoundaryWord p n).get (nonOrientableBoundaryPosition p n j 2) =
       .neg (.c j) := by
   simpa [nonOrientableBoundaryBlock] using
     nonOrientableBoundaryWord_get_boundary_block p n j (2 : Fin 3)
 
+/--
+@isnad1 id=eq.0h3v.s6.57553e1bf6f4 from=translated src=- shape=d231ab55 vocab=eb4fc873
+-/
 theorem orientableBoundaryWord_edge_occurrences (p n : ℕ) (e : OrientableEdge p n) :
     (wordEdgeOccurrences (orientableBoundaryWord p n) e).card =
       match e with
@@ -376,6 +447,9 @@ theorem orientableBoundaryWord_edge_occurrences (p n : ℕ) (e : OrientableEdge 
       SignedDart.edgeName, List.count_flatten, List.sum_ofFn, List.count_cons,
       List.count_nil, beq_iff_eq, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h3v.s6.93ed27f896ef from=translated src=- shape=a2c7f948 vocab=e635fbb3
+-/
 theorem nonOrientableBoundaryWord_edge_occurrences (p n : ℕ)
     (e : NonOrientableEdge p n) :
     (wordEdgeOccurrences (nonOrientableBoundaryWord p n) e).card =
@@ -397,33 +471,54 @@ abbrev orientableCellComplex (p n : ℕ) : SurfaceCellComplex :=
 abbrev nonOrientableCellComplex (p n : ℕ) : SurfaceCellComplex :=
   oneFacePresentation (NonOrientableEdge p n) (nonOrientableBoundaryWord p n)
 
+/--
+@isnad1 id=eq.0h2v.s4.f65fc1060deb from=translated src=- shape=84fe26bf vocab=cb98d920
+-/
 @[simp]
 theorem orientableCellComplex_boundary (p n : ℕ) :
     (orientableCellComplex p n).boundary PUnit.unit = orientableBoundaryWord p n := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.e31e1e2b03bf from=translated src=- shape=84fe26bf vocab=f0c503e0
+-/
 @[simp]
 theorem nonOrientableCellComplex_boundary (p n : ℕ) :
     (nonOrientableCellComplex p n).boundary PUnit.unit =
       nonOrientableBoundaryWord p n := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.bb53a083b017 from=translated src=- shape=a5398645 vocab=9bf78f91
+-/
 @[simp]
 theorem orientableCellComplex_faceBoundaryLength (p n : ℕ) :
     (orientableCellComplex p n).faceBoundaryLength PUnit.unit = 4 * p + 3 * n :=
   orientableBoundaryWord_length p n
 
+/--
+@isnad1 id=eq.0h2v.s5.99b495de12b1 from=translated src=- shape=a5398645 vocab=7b7ef7ce
+-/
 @[simp]
 theorem nonOrientableCellComplex_faceBoundaryLength (p n : ℕ) :
     (nonOrientableCellComplex p n).faceBoundaryLength PUnit.unit = 2 * p + 3 * n :=
   nonOrientableBoundaryWord_length p n
 
+/--
+@isnad1 id=isconnec.0h2v.s3.27d6d98af674 from=translated src=- shape=b794339c vocab=6067dc60
+-/
 theorem orientableCellComplex_isConnected (p n : ℕ) :
     (orientableCellComplex p n).IsConnected :=
   oneFacePresentation_isConnected _ _
 
+/--
+@isnad1 id=isconnec.0h2v.s3.e782447a9ea1 from=translated src=- shape=b794339c vocab=98fcdfdd
+-/
 theorem nonOrientableCellComplex_isConnected (p n : ℕ) :
     (nonOrientableCellComplex p n).IsConnected :=
   oneFacePresentation_isConnected _ _
 
+/--
+@isnad1 id=issurfac.0h2v.s3.ab6b078df552 from=translated src=- shape=b794339c vocab=0e83a481
+-/
 theorem orientableCellComplex_isSurfaceValid (p n : ℕ) :
     (orientableCellComplex p n).IsSurfaceValid := by
   apply oneFacePresentation_isSurfaceValid
@@ -431,6 +526,9 @@ theorem orientableCellComplex_isSurfaceValid (p n : ℕ) :
   rw [orientableBoundaryWord_edge_occurrences]
   cases e <;> simp
 
+/--
+@isnad1 id=issurfac.0h2v.s3.f76e1d51dd29 from=translated src=- shape=b794339c vocab=257cdad7
+-/
 theorem nonOrientableCellComplex_isSurfaceValid (p n : ℕ) :
     (nonOrientableCellComplex p n).IsSurfaceValid := by
   apply oneFacePresentation_isSurfaceValid
@@ -438,6 +536,9 @@ theorem nonOrientableCellComplex_isSurfaceValid (p n : ℕ) :
   rw [nonOrientableBoundaryWord_edge_occurrences]
   cases e <;> simp
 
+/--
+@isnad1 id=ne.1h2v.s5.953e90d6b7ca from=translated src=- shape=096044c8 vocab=4add2947
+-/
 theorem orientableBoundaryWord_ne_nil {p n : ℕ} (h : 1 ≤ p ∨ 1 ≤ n) :
     orientableBoundaryWord p n ≠ [] := by
   intro hnil
@@ -446,6 +547,9 @@ theorem orientableBoundaryWord_ne_nil {p n : ℕ} (h : 1 ≤ p ∨ 1 ≤ n) :
   simp only [List.length_nil] at hlength
   omega
 
+/--
+@isnad1 id=ne.1h2v.s4.c0e270f988ab from=translated src=- shape=631384e5 vocab=b5c326ba
+-/
 theorem nonOrientableBoundaryWord_ne_nil {p n : ℕ} (h : 1 ≤ p) :
     nonOrientableBoundaryWord p n ≠ [] := by
   intro hnil
@@ -454,6 +558,9 @@ theorem nonOrientableBoundaryWord_ne_nil {p n : ℕ} (h : 1 ≤ p) :
   simp only [List.length_nil] at hlength
   omega
 
+/--
+@isnad1 id=occurren.1h2v.s4.a2ead1aca91c from=translated src=- shape=46fa10a7 vocab=c6bbb272
+-/
 theorem orientableCellComplex_occurrencePairingValid {p n : ℕ}
     (h : 1 ≤ p ∨ 1 ≤ n) :
     (orientableCellComplex p n).OccurrencePairingValid := by
@@ -463,6 +570,9 @@ theorem orientableCellComplex_occurrencePairingValid {p n : ℕ}
     rw [orientableBoundaryWord_edge_occurrences]
     cases e <;> simp
 
+/--
+@isnad1 id=occurren.1h2v.s4.cdfb300d9cbe from=translated src=- shape=5555e3ac vocab=53753bbb
+-/
 theorem nonOrientableCellComplex_occurrencePairingValid {p n : ℕ}
     (h : 1 ≤ p) :
     (nonOrientableCellComplex p n).OccurrencePairingValid := by
@@ -478,6 +588,9 @@ def canonicalCellComplex : NormalForm → SurfaceCellComplex
   | .orientable p n => orientableCellComplex p n
   | .nonOrientable p n => nonOrientableCellComplex p n
 
+/--
+@isnad1 id=issurfac.0h1v.s2.174590575588 from=translated src=- shape=76a08d12 vocab=13d4b664
+-/
 theorem canonicalCellComplex_isSurfaceValid (N : NormalForm) :
     N.canonicalCellComplex.IsSurfaceValid := by
   cases N with
@@ -485,6 +598,9 @@ theorem canonicalCellComplex_isSurfaceValid (N : NormalForm) :
   | orientable p n => exact orientableCellComplex_isSurfaceValid p n
   | nonOrientable p n => exact nonOrientableCellComplex_isSurfaceValid p n
 
+/--
+@isnad1 id=isconnec.0h1v.s2.9b7bba7987bc from=translated src=- shape=76a08d12 vocab=4002fff2
+-/
 theorem canonicalCellComplex_isConnected (N : NormalForm) :
     N.canonicalCellComplex.IsConnected := by
   cases N with

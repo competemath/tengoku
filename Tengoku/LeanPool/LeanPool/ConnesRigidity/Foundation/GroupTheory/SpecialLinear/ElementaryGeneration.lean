@@ -386,7 +386,9 @@ private theorem all_mem_elementarySubgroup (A : SL3) : A ∈ elementarySubgroup 
 
 end ElementaryGenerationProof
 
-/-- The elementary subgroup is all of `SL₃(R)`. Paper: §4, Proposition 4.1(a). -/
+/-- The elementary subgroup is all of `SL₃(R)`. Paper: §4, Proposition 4.1(a).
+@isnad1 id=eq.0h0v.s6.5fed86cd0ab9 from=translated src=- shape=e0b023cc vocab=87b85dd8
+-/
 theorem elementarySubgroup_eq_top : elementarySubgroup = ⊤ :=
   (Subgroup.eq_top_iff' _).2 ElementaryGenerationProof.all_mem_elementarySubgroup
 

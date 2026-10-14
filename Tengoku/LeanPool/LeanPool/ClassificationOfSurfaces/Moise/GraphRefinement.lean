@@ -52,6 +52,9 @@ noncomputable def markedEdgeChain (point : P → Plane) :
     vertex := vertex
     segment_subset := fun _ _ _ => Set.mem_univ _ }
 
+/--
+@isnad1 id=eq.0h4v.s6.d41f51943b35 from=translated src=- shape=51969b2c vocab=ff9fae9a
+-/
 theorem markedEdgeChain_vertex_even (point : P → Plane)
     (i : Fin (Fintype.card K.EdgeFace)) :
     (K.markedEdgeChain point).vertex ⟨2 * i.val, by
@@ -67,6 +70,9 @@ theorem markedEdgeChain_vertex_even (point : P → Plane)
   congr 2
   exact Fin.ext hdiv
 
+/--
+@isnad1 id=eq.0h4v.s6.763022997f4f from=translated src=- shape=1e919c49 vocab=ed9cfc30
+-/
 theorem markedEdgeChain_vertex_odd (point : P → Plane)
     (i : Fin (Fintype.card K.EdgeFace)) :
     (K.markedEdgeChain point).vertex ⟨2 * i.val + 1, by
@@ -82,6 +88,9 @@ theorem markedEdgeChain_vertex_odd (point : P → Plane)
   congr 2
   exact Fin.ext hdiv
 
+/--
+@isnad1 id=eq.0h4v.s6.02fdf7c3052e from=translated src=- shape=d274ec6f vocab=30fba447
+-/
 theorem markedEdgeChain_vertex_mark (point : P → Plane) (p : P) :
     (K.markedEdgeChain point).vertex
       ⟨2 * Fintype.card K.EdgeFace + (markEquiv p).val, by
@@ -99,6 +108,9 @@ theorem markedEdgeChain_vertex_mark (point : P → Plane) (p : P) :
     Fin.ext hsub
   rw [hfin, Equiv.symm_apply_apply]
 
+/--
+@isnad1 id=eq.0h4v.s6.18dfa280d027 from=translated src=- shape=ad5c3285 vocab=56f2220f
+-/
 theorem markedEdgeChain_vertex_original (point : P → Plane)
     (i : Fin (Fintype.card K.Vertex)) :
     (K.markedEdgeChain point).vertex
@@ -123,6 +135,9 @@ noncomputable def markedEdgeChainIndex (point : P → Plane)
     have hm : 0 < Fintype.card K.EdgeFace := Fintype.card_pos_iff.mpr ⟨K.edgeAt i⟩
     omega⟩
 
+/--
+@isnad1 id=eq.0h4v.s7.5081de5c363d from=translated src=- shape=d89ae6a1 vocab=7aabc7f3
+-/
 theorem markedEdgeChain_segment (point : P → Plane)
     (i : Fin (Fintype.card K.EdgeFace)) :
     segment ℝ
@@ -156,6 +171,9 @@ noncomputable def markedEdgeArrangement (point : P → Plane) : PlaneComplex :=
 noncomputable def markedEdgeSubdivision (point : P → Plane) : PlaneComplex :=
   (K.markedEdgeArrangement point).subordinateTo K
 
+/--
+@isnad1 id=eq.1h3v.s5.24f4d3b8dac9 from=translated src=- shape=d8d1bb30 vocab=46d95341
+-/
 theorem markedEdgeSubdivision_support_eq (point : P → Plane)
     (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2) :
     (K.markedEdgeSubdivision point).support = K.support := by
@@ -240,7 +258,9 @@ theorem markedEdgeSubdivision_support_eq (point : P → Plane)
       · exact convex_segment _ _
 
 /-- Every point of an original graph face is covered by a marked-subdivision face lying in that
-same original face. -/
+same original face.
+@isnad1 id=ex.3h5v.s7.ad3cd5d0f4df from=translated src=- shape=a54db3f7 vocab=d91b3e93
+-/
 theorem exists_markedEdgeSubdivision_face_at (point : P → Plane)
     (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2)
     {s : Finset K.Vertex} (hs : s ∈ K.simplexes) {x : Plane}
@@ -348,7 +368,9 @@ theorem exists_markedEdgeSubdivision_face_at (point : P → Plane)
     exact huCarrier
 
 /-- Restricting a marked edge subdivision to a union of original graph faces preserves exactly
-that union. -/
+that union.
+@isnad1 id=eq.2h4v.s7.d5fd838e8c3b from=translated src=- shape=4c3130af vocab=2c1cb706
+-/
 theorem markedEdgeSubdivision_restrictToSet_support_eq (point : P → Plane)
     (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2) (A : Set Plane)
     (hA : ∀ x ∈ A, ∃ s ∈ K.simplexes,
@@ -365,6 +387,9 @@ theorem markedEdgeSubdivision_restrictToSet_support_eq (point : P → Plane)
     exact ⟨u, (K.markedEdgeSubdivision point).mem_restrictToSet_simplexes_iff A |>.mpr
       ⟨hu, huSub.trans hsA⟩, hxu⟩
 
+/--
+@isnad1 id=subdivid.1h3v.s5.c5b928916bdf from=translated src=- shape=752051db vocab=40c5c46a
+-/
 theorem markedEdgeSubdivision_subdivides (point : P → Plane)
     (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2) :
     (K.markedEdgeSubdivision point).Subdivides K :=
@@ -379,6 +404,9 @@ noncomputable def markedEdgeChainMarkIndex (point : P → Plane) (p : P) :
       2 * Fintype.card K.EdgeFace + Fintype.card P + Fintype.card K.Vertex + 1
     omega⟩
 
+/--
+@isnad1 id=ismonoch.0h4v.s4.d531e7ecc075 from=translated src=- shape=61c73b7a vocab=a8943e26
+-/
 theorem markedEdgeArrangement_monochromatic_vertical (point : P → Plane) (p : P) :
     (K.markedEdgeChain point).arrangementMesh.IsMonochromatic
       (BrokenLineData.verticalLine (point p)) := by
@@ -388,6 +416,9 @@ theorem markedEdgeArrangement_monochromatic_vertical (point : P → Plane) (p : 
       point p := K.markedEdgeChain_vertex_mark point p
   rwa [hj] at h
 
+/--
+@isnad1 id=ismonoch.0h4v.s4.dd38bd2ba94a from=translated src=- shape=61c73b7a vocab=90468885
+-/
 theorem markedEdgeArrangement_monochromatic_horizontal (point : P → Plane) (p : P) :
     (K.markedEdgeChain point).arrangementMesh.IsMonochromatic
       (BrokenLineData.horizontalLine (point p)) := by
@@ -397,7 +428,9 @@ theorem markedEdgeArrangement_monochromatic_horizontal (point : P → Plane) (p 
       point p := K.markedEdgeChain_vertex_mark point p
   rwa [hj] at h
 
-/-- Every arrangement face lies on one side of a marked affine parameter on an original edge. -/
+/-- Every arrangement face lies on one side of a marked affine parameter on an original edge.
+@isnad1 id=or.2h7v.s11.412c887a7d44 from=translated src=- shape=9fe586bf vocab=b51fc088
+-/
 theorem markedFace_parameter_side (point : P → Plane) (p : P)
     (i : Fin (Fintype.card K.EdgeFace)) (r : ℝ)
     (hpoint : point p = AffineMap.lineMap (K.position (K.edgeFirst i))
@@ -489,6 +522,9 @@ theorem markedFace_parameter_side (point : P → Plane) (p : P)
         rw [hpoint] at hline
         simpa [M, AffineMap.lineMap_apply_module] using hline
 
+/--
+@isnad1 id=or.2h7v.s11.05c3860f6a28 from=translated src=- shape=81663b58 vocab=04572ee3
+-/
 theorem markedFaceCarrier_parameter_side (point : P → Plane) (p : P)
     (i : Fin (Fintype.card K.EdgeFace)) (r : ℝ)
     (hpoint : point p = AffineMap.lineMap (K.position (K.edgeFirst i))
@@ -512,7 +548,9 @@ theorem markedFaceCarrier_parameter_side (point : P → Plane) (p : P)
     exact hge v hv
 
 /-- In a finite complex covering an axis segment, a subsegment with no complex vertex in its
-relative interior is contained in one face. -/
+relative interior is contained in one face.
+@isnad1 id=ex.7h4v.s8.1bf399ebbcd9 from=translated src=- shape=a56c0c8c vocab=2f89ecf9
+-/
 theorem exists_face_containing_axis_segment_of_no_vertex
     (L : PlaneComplex) {n a b : ℝ}
     (hn : 0 ≤ n) (hab : a ≤ b) (ha : 0 ≤ a) (hb : b ≤ n)
@@ -635,7 +673,9 @@ theorem exists_face_containing_axis_segment_of_no_vertex
     dsimp [q] at hbq
     linarith
 
-/-- A genuine simplex contained in a graph face has at most two vertices. -/
+/-- A genuine simplex contained in a graph face has at most two vertices.
+@isnad1 id=le.4h4v.s6.b07081a85263 from=translated src=- shape=998c6c9a vocab=d67c0e7d
+-/
 theorem card_le_two_of_cellCarrier_subset_face
     {L K : PlaneComplex} {u : Finset L.Vertex} (hu : u ∈ L.simplexes)
     {t : Finset K.Vertex} (ht : t ∈ K.simplexes) (htcard : t.card ≤ 2)
@@ -667,7 +707,9 @@ theorem card_le_two_of_cellCarrier_subset_face
   have : t.card = 3 := by simpa [Plane] using htthree
   omega
 
-/-- Every prescribed mark in the graph support becomes a zero-face of the marked subdivision. -/
+/-- Every prescribed mark in the graph support becomes a zero-face of the marked subdivision.
+@isnad1 id=ex.1h4v.s6.9793051287a8 from=translated src=- shape=64a3ca7d vocab=cf0d6a62
+-/
 theorem exists_markedEdgeSubdivision_vertex (point : P → Plane) (p : P)
     (hp : point p ∈ K.support) :
     ∃ w : (K.markedEdgeSubdivision point).Vertex,

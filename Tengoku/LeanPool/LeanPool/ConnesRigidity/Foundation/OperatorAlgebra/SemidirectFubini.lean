@@ -120,10 +120,16 @@ def l2Curry (ι : Type u) (κ : Type v) :
     rw [lp.norm_rpow_eq_tsum (by norm_num : 0 < (2 : ℝ≥0∞).toReal)]
     rfl
 
+/--
+@isnad1 id=eq.0h5v.s14.d733197967cb from=translated src=- shape=cb6ca732 vocab=1a82006e
+-/
 @[simp] theorem l2Curry_apply {ι : Type u} {κ : Type v}
     (ξ : GroupL2 (ι × κ)) (i : ι) (k : κ) :
     l2Curry ι κ ξ i k = ξ (i, k) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s14.297f60845f2c from=translated src=- shape=2334b90c vocab=71424c3c
+-/
 @[simp] theorem l2Curry_symm_apply {ι : Type u} {κ : Type v}
     (ξ : lp (fun _ : ι => GroupL2 κ) 2) (i : ι) (k : κ) :
     (l2Curry ι κ).symm ξ (i, k) = ξ i k := rfl
@@ -137,6 +143,9 @@ def semidirectFubiniCoordinates (φ : K →* MulAut A) :
     SemidirectProduct A K φ ≃ K × A :=
   SemidirectProduct.equivProd.trans (Equiv.prodComm A K)
 
+/--
+@isnad1 id=eq.0h4v.s7.d80ee6b0d146 from=translated src=- shape=c59e230b vocab=6aa4d443
+-/
 @[simp] theorem semidirectFubiniCoordinates_apply
     (φ : K →* MulAut A) (g : SemidirectProduct A K φ) :
     semidirectFubiniCoordinates φ g = (g.right, g.left) := rfl
@@ -149,12 +158,18 @@ def semidirectFubini (φ : K →* MulAut A) :
       lp (fun _ : K => GroupL2 A) 2 :=
   (l2Reindex (semidirectFubiniCoordinates φ)).trans (l2Curry K A)
 
+/--
+@isnad1 id=eq.0h6v.s14.fde18209e777 from=translated src=- shape=c811e9f8 vocab=b42d7827
+-/
 @[simp] theorem semidirectFubini_apply
     (φ : K →* MulAut A)
     (ξ : GroupL2 (SemidirectProduct A K φ)) (k : K) (a : A) :
     semidirectFubini φ ξ k a =
       ξ (⟨a, k⟩ : SemidirectProduct A K φ) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s14.0e47b7999746 from=translated src=- shape=aa54a96b vocab=ca9b4727
+-/
 @[simp] theorem semidirectFubini_symm_apply
     (φ : K →* MulAut A)
     (ξ : lp (fun _ : K => GroupL2 A) 2)
@@ -164,6 +179,9 @@ def semidirectFubini (φ : K →* MulAut A) :
 
 /- Regular translation in fibre coordinates.  This is the key carrier bridge
 for the inl and inr generator calculations.  Paper: §3. -/
+/--
+@isnad1 id=eq.0h7v.s16.2464b2bbbd9c from=translated src=- shape=c3cedd97 vocab=4bc92f2f
+-/
 theorem semidirectFubini_leftRegular_apply
     (φ : K →* MulAut A)
     (g : SemidirectProduct A K φ)
@@ -180,6 +198,9 @@ theorem semidirectFubini_leftRegular_apply
     g.right⁻¹ * k⟩
   rw [map_mul]
 
+/--
+@isnad1 id=eq.0h7v.s16.7a2b7ab027fa from=translated src=- shape=c794aa94 vocab=3e95aa0a
+-/
 theorem semidirectFubini_leftRegular_inl_apply
     (φ : K →* MulAut A) (b : A)
     (ξ : GroupL2 (SemidirectProduct A K φ))
@@ -196,6 +217,9 @@ theorem semidirectFubini_leftRegular_inl_apply
     map_one, MulAut.one_apply] using semidirectFubini_leftRegular_apply φ
     (SemidirectProduct.inl b) ξ k a
 
+/--
+@isnad1 id=eq.0h7v.s16.0318dc872d0e from=translated src=- shape=4a9d73ed vocab=02a883f0
+-/
 theorem semidirectFubini_leftRegular_inr_apply
     (φ : K →* MulAut A) (h : K)
     (ξ : GroupL2 (SemidirectProduct A K φ))

@@ -48,7 +48,9 @@ def PlaneGraphRealization.UniformFrontierControl (G : K.PlaneGraphRealization)
       phi p ≤ Metric.infDist (G.map p) G.regionᶜ / 4
 
 omit [T2Space S] in
-/-- Frontier control keeps each selected polygonal disk inside the permitted open region. -/
+/-- Frontier control keeps each selected polygonal disk inside the permitted open region.
+@isnad1 id=le.2h5v.s5.ace48e63cfe2 from=translated src=- shape=139460aa vocab=34f7f176
+-/
 theorem closedRegions_mem_region_of_uniformFrontierControl
     (G : K.PlaneGraphRealization) {phi : K.support → ℝ}
     (hcontrol : FaceBoundariesControlled G phi)
@@ -85,7 +87,9 @@ theorem closedRegions_mem_region_of_uniformFrontierControl
 omit [T2Space S] in
 /-- The filled polygonal disks of a uniformly frontier-controlled replacement are locally
 finite in the open perturbation region.  The proof confines any disk meeting a small ball to
-an original face meeting a fixed compact ball, then uses relative closed-embedding transport. -/
+an original face meeting a fixed compact ball, then uses relative closed-embedding transport.
+@isnad1 id=locallyf.2h4v.s7.d2962729708f from=translated src=- shape=534edfcf vocab=0f92c13e
+-/
 theorem locallyFinite_closedRegions_of_uniformFrontierControl
     (G : K.PlaneGraphRealization) {phi : K.support → ℝ}
     (hcontrol : FaceBoundariesControlled G phi)
@@ -189,7 +193,9 @@ theorem locallyFinite_closedRegions_of_uniformFrontierControl
 omit [T2Space S] in
 /-- Convex target regions are preserved by the simultaneous polygonal replacement of the
 one-skeleton.  The construction chooses each central broken line in the convex hull of its
-original embedded edge. -/
+original embedded edge.
+@isnad1 id=le.2h4v.s7.a37426767973 from=translated src=- shape=79060e7d vocab=8bd15369
+-/
 theorem range_graphReplacementMap_subset_of_convex
     (G : K.PlaneGraphRealization) {C : Set Plane} (hC : Convex ℝ C)
     (hmap : Set.range G.map ⊆ C) :
@@ -203,7 +209,9 @@ theorem range_graphReplacementMap_subset_of_convex
   exact hmap (Set.mem_range_self p)
 
 omit [T2Space S] in
-/-- A source realization in the model half-plane has a replacement graph in that half-plane. -/
+/-- A source realization in the model half-plane has a replacement graph in that half-plane.
+@isnad1 id=le.1h3v.s5.de46974d0611 from=translated src=- shape=9e8a3ce9 vocab=16957635
+-/
 theorem range_graphReplacementMap_subset_halfPlane
     (G : K.PlaneGraphRealization) (hmap : Set.range G.map ⊆ HalfPlaneSet) :
     Set.range G.graphReplacementMap ⊆ HalfPlaneSet :=
@@ -212,7 +220,9 @@ theorem range_graphReplacementMap_subset_halfPlane
 omit [T2Space S] in
 /-- A zero-normal point of a complete replacement arc is supported by zero-normal points of the
 old embedded edge.  This is the exact supporting-face statement behind boundary preservation;
-mere half-plane containment would only give one implication. -/
+mere half-plane containment would only give one implication.
+@isnad1 id=mem.3h6v.s9.118cabb209df from=translated src=- shape=ca26842d vocab=251ea482
+-/
 theorem PlaneGraphRealization.CentralPolygonalArc.mem_convexHull_edgeImage_coordZero
     (G : K.PlaneGraphRealization) {e : K.Edge}
     (A : G.CentralPolygonalArc e)
@@ -229,7 +239,9 @@ theorem PlaneGraphRealization.CentralPolygonalArc.mem_convexHull_edgeImage_coord
 
 omit [T2Space S] in
 /-- On the source one-skeleton, the assembled cellwise replacement is exactly the previously
-constructed global graph replacement. -/
+constructed global graph replacement.
+@isnad1 id=eq.1h4v.s7.29671f60a1c7 from=translated src=- shape=38ffd01a vocab=67dce789
+-/
 theorem polygonalReplacementMap_eq_graphReplacementMap
     (G : K.PlaneGraphRealization) (H : K.CellwiseCompatibility G)
     (p : oneSkeletonInSupport (K := K)) :
@@ -308,7 +320,9 @@ def PlaneGraphRealization.FacewiseCoordZeroExposed
           ∀ v : {v // v ∈ K.faceVertices f}, v.1 ∉ b → x v = 0
 
 omit [T2Space S] in
-/-- A facewise exposed zero locus is necessarily carried by the source one-skeleton. -/
+/-- A facewise exposed zero locus is necessarily carried by the source one-skeleton.
+@isnad1 id=sourceco.1h3v.s4.09ba66c27625 from=translated src=- shape=b3bf46a4 vocab=f6fe2ab0
+-/
 theorem sourceCoordZeroCarriedByOneSkeleton_of_facewiseCoordZeroExposed
     (G : K.PlaneGraphRealization) (hface : G.FacewiseCoordZeroExposed) :
     G.SourceCoordZeroCarriedByOneSkeleton := by
@@ -402,7 +416,9 @@ private theorem edgeSimplexInFace_supportedOn_iff
     · exact K.edgeSimplexInFace_supported f e hef z v hve
 
 omit [T2Space S] in
-/-- A facewise exposed zero locus gives the edgewise full/singleton/empty alternatives. -/
+/-- A facewise exposed zero locus gives the edgewise full/singleton/empty alternatives.
+@isnad1 id=edgecoor.1h3v.s4.37d86630b18b from=translated src=- shape=b3bf46a4 vocab=62e00d07
+-/
 theorem edgeCoordZeroTrichotomy_of_facewiseCoordZeroExposed
     (G : K.PlaneGraphRealization) (hface : G.FacewiseCoordZeroExposed) :
     G.EdgeCoordZeroTrichotomy := by
@@ -600,7 +616,9 @@ theorem edgeCoordZeroTrichotomy_of_facewiseCoordZeroExposed
 omit [T2Space S] in
 /-- The edgewise zero-locus trichotomy makes the simultaneous graph replacement preserve the
 supporting boundary line exactly.  The forward direction uses the supporting-face theorem for
-the replacement convex hull; the reverse direction uses vertex fixing in the singleton case. -/
+the replacement convex hull; the reverse direction uses vertex fixing in the singleton case.
+@isnad1 id=graphrep.2h3v.s5.cfde19156b41 from=translated src=- shape=0abb38a7 vocab=02bb6441
+-/
 theorem graphReplacementPreservesCoordZero_of_edgeCoordZeroTrichotomy
     (G : K.PlaneGraphRealization)
     (hhalf : Set.range G.map ⊆ HalfPlaneSet)
@@ -719,7 +737,9 @@ theorem graphReplacementPreservesCoordZero_of_edgeCoordZeroTrichotomy
 
 omit [T2Space S] in
 /-- The facewise exposed-face invariant is the single source-side hypothesis needed for exact
-zero-coordinate preservation by the simultaneous graph replacement. -/
+zero-coordinate preservation by the simultaneous graph replacement.
+@isnad1 id=graphrep.2h3v.s5.7067dec02b02 from=translated src=- shape=0abb38a7 vocab=588e2ad8
+-/
 theorem graphReplacementPreservesCoordZero_of_facewiseCoordZeroExposed
     (G : K.PlaneGraphRealization)
     (hhalf : Set.range G.map ⊆ HalfPlaneSet)
@@ -730,7 +750,9 @@ theorem graphReplacementPreservesCoordZero_of_facewiseCoordZeroExposed
 
 /-- Once exact zero-coordinate preservation is known on the replacement graph, the polygonal
 Schoenflies fillings preserve it on every filled face.  No filled-face interior can reach the
-supporting line, so the two-dimensional statement reduces completely to the one-skeleton. -/
+supporting line, so the two-dimensional statement reduces completely to the one-skeleton.
+@isnad1 id=iff.4h4v.s10.c02f09daf5e5 from=translated src=- shape=c81cb076 vocab=36095a26
+-/
 theorem polygonalReplacementHomeomorph_coordZero_iff
     (G : K.PlaneGraphRealization) (H : K.CellwiseCompatibility G)
     (hhalf : Set.range G.map ⊆ HalfPlaneSet)
@@ -791,7 +813,9 @@ theorem polygonalReplacementHomeomorph_coordZero_iff
     exact hqZero
 
 /-- Exact preservation on filled faces, stated directly from the facewise exposed-face
-invariant. -/
+invariant.
+@isnad1 id=iff.3h4v.s10.74e1b7fb7b44 from=translated src=- shape=148e9805 vocab=27c9bdac
+-/
 theorem polygonalReplacementHomeomorph_coordZero_iff_of_facewiseCoordZeroExposed
     (G : K.PlaneGraphRealization) (H : K.CellwiseCompatibility G)
     (hhalf : Set.range G.map ⊆ HalfPlaneSet)
@@ -803,7 +827,9 @@ theorem polygonalReplacementHomeomorph_coordZero_iff_of_facewiseCoordZeroExposed
     (graphReplacementPreservesCoordZero_of_facewiseCoordZeroExposed G hhalf hface) p
 
 omit [T2Space S] in
-/-- A controlled compatible cellwise replacement lands in the permitted perturbation region. -/
+/-- A controlled compatible cellwise replacement lands in the permitted perturbation region.
+@isnad1 id=mem.3h5v.s7.456e542c7b2d from=translated src=- shape=4384d518 vocab=dd8f5982
+-/
 theorem polygonalReplacementMap_mem_region (G : K.PlaneGraphRealization)
     (H : K.CellwiseCompatibility G) {phi : K.support → ℝ}
     (_ : FaceBoundariesControlled G phi)
@@ -811,7 +837,9 @@ theorem polygonalReplacementMap_mem_region (G : K.PlaneGraphRealization)
     (K.polygonalReplacementMap H p).1.1 ∈ G.region :=
   (K.polygonalReplacementMap H p).1.2
 
-/-- The full locally finite Chapter 6 output from its quantitative graph hypotheses. -/
+/-- The full locally finite Chapter 6 output from its quantitative graph hypotheses.
+@isnad1 id=ex.5h4v.s10.35f631641b50 from=translated src=- shape=398507d4 vocab=d497fcb8
+-/
 theorem exists_controlled_polygonalReplacement (G : K.PlaneGraphRealization)
     (hfaces : Function.Injective K.faceVertices) {phi : K.support → ℝ}
     (hcontrol : FaceBoundariesControlled G phi)
@@ -828,7 +856,9 @@ theorem exists_controlled_polygonalReplacement (G : K.PlaneGraphRealization)
   exact ⟨H, fun p ↦ polygonalReplacementMap_dist_le H hcontrol p⟩
 
 /-- The complete locally finite Chapter 6 output in Moise's facewise side-control form.
-Uniform frontier control supplies target containment and local finiteness automatically. -/
+Uniform frontier control supplies target containment and local finiteness automatically.
+@isnad1 id=ex.4h4v.s10.8909a9ad4dbb from=translated src=- shape=fa6ee71b vocab=c0eb4714
+-/
 theorem exists_controlled_polygonalReplacement_of_facewise_close
     (G : K.PlaneGraphRealization)
     (hfaces : Function.Injective K.faceVertices) {phi : K.support → ℝ}
@@ -845,7 +875,9 @@ theorem exists_controlled_polygonalReplacement_of_facewise_close
 
 /-- The Chapter 6 cellwise approximation from the exact edge-mesh condition supplied by an
 internal edge subdivision.  No independent side hypothesis remains: the incident-face minimum
-turns edgewise diameter control into the required facewise closeness. -/
+turns edgewise diameter control into the required facewise closeness.
+@isnad1 id=ex.4h4v.s10.50ef8476cb49 from=translated src=- shape=fc71d438 vocab=d5a359ae
+-/
 theorem exists_controlled_polygonalReplacement_of_edgeMesh
     (G : K.PlaneGraphRealization)
     (hfaces : Function.Injective K.faceVertices) {phi : K.support → ℝ}
@@ -861,7 +893,9 @@ theorem exists_controlled_polygonalReplacement_of_edgeMesh
 
 omit [T2Space S] in
 /-- If the replacement graph lies in the closed right half-plane, every selected polygonal face
-disk lies there too. -/
+disk lies there too.
+@isnad1 id=le.1h4v.s5.c10bf3be9658 from=translated src=- shape=018ce335 vocab=6d093ac4
+-/
 theorem facePolygonalCircle_closedRegion_subset_halfPlane
     (G : K.PlaneGraphRealization)
     (hgraph : Set.range G.graphReplacementMap ⊆ HalfPlaneSet)
@@ -872,7 +906,9 @@ theorem facePolygonalCircle_closedRegion_subset_halfPlane
 
 omit [T2Space S] in
 /-- Consequently the entire assembled locally finite replacement complex stays in the closed
-right half-plane. -/
+right half-plane.
+@isnad1 id=le.2h3v.s7.61e8253ff6a1 from=translated src=- shape=42edd1d0 vocab=8f5ac5f8
+-/
 theorem polygonalReplacementComplex_support_subset_halfPlane
     (G : K.PlaneGraphRealization) (H : K.CellwiseCompatibility G)
     (hgraph : Set.range G.graphReplacementMap ⊆ HalfPlaneSet) :
@@ -883,7 +919,9 @@ theorem polygonalReplacementComplex_support_subset_halfPlane
   rw [K.polygonalReplacementComplex_faceCarrier H f] at hpf
   exact facePolygonalCircle_closedRegion_subset_halfPlane G hgraph f hpf
 
-/-- Pointwise half-plane preservation for the assembled replacement homeomorphism. -/
+/-- Pointwise half-plane preservation for the assembled replacement homeomorphism.
+@isnad1 id=mem.2h4v.s10.4d001ac53e67 from=translated src=- shape=2872094a vocab=b37f808a
+-/
 theorem polygonalReplacementHomeomorph_mem_halfPlane
     (G : K.PlaneGraphRealization) (H : K.CellwiseCompatibility G)
     (hgraph : Set.range G.graphReplacementMap ⊆ HalfPlaneSet)

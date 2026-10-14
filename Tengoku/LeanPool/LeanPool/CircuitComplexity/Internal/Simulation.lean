@@ -52,38 +52,58 @@ def AONOp.binOp : AONOp → Bool → Bool → Bool
   | .and => (· && ·)
   | .or => (· || ·)
 
+/--
+@isnad1 id=eq.0h3v.s4.32f0ad07ed27 from=translated src=- shape=7915fbf4 vocab=a859d5a6
+-/
 lemma AONOp.eval_eq_foldl (op : AONOp) (n : Nat) (v : BitString n) :
     op.eval n v = Fin.foldl n (fun acc i => op.binOp acc (v i)) op.identity := by
   cases op <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.5e33e14a0294 from=translated src=- shape=a6d2da5b vocab=fa2f9579
+-/
 lemma AONOp.identity_binOp (op : AONOp) (b : Bool) : op.binOp op.identity b = b := by
   cases op <;> simp [AONOp.binOp, AONOp.identity]
 
+/--
+@isnad1 id=eq.0h2v.s3.6702cd88106b from=translated src=- shape=7efc9de7 vocab=d403eb2c
+-/
 lemma AONOp.binOp_self (op : AONOp) (b : Bool) : op.binOp b b = b := by
   cases op <;> cases b <;> rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.4c251f0a8eec from=translated src=- shape=615ceac8 vocab=d403eb2c
+-/
 lemma AONOp.binOp_assoc (op : AONOp) (a b c : Bool) :
     op.binOp (op.binOp a b) c = op.binOp a (op.binOp b c) := by
   cases op <;> simp [AONOp.binOp, Bool.and_assoc, Bool.or_assoc]
 
-/-- The dual-op trick for constants: `OR(b, ¬b) = true`, `AND(b, ¬b) = false`. -/
+/-- The dual-op trick for constants: `OR(b, ¬b) = true`, `AND(b, ¬b) = false`.
+@isnad1 id=eq.0h2v.s5.a118f20a6ca4 from=translated src=- shape=c7714c43 vocab=6cc5e762
+-/
 lemma AONOp.dual_const (op : AONOp) (b : Bool) :
     op.dual.eval 2 (fun i => (if i.val = 0 then false else true).xor b) =
     op.identity := by
   cases op <;> cases b <;>
     simp [AONOp.dual, AONOp.identity, AONOp.eval, Fin.foldl_succ_last, Fin.foldl_zero]
 
-/-- A passthrough evaluates to the input value. -/
+/-- A passthrough evaluates to the input value.
+@isnad1 id=eq.0h2v.s4.941e8474943a from=translated src=- shape=e1624e69 vocab=54e53c2d
+-/
 lemma AONOp.passthrough_eq (op : AONOp) (v : Bool) :
     op.eval 2 (fun _ => v) = v := by
   cases op <;> cases v <;>
     simp [AONOp.eval, Fin.foldl_succ_last, Fin.foldl_zero]
 
-/-- `eval` on 0 inputs gives the identity. -/
+/-- `eval` on 0 inputs gives the identity.
+@isnad1 id=eq.0h1v.s3.d72982f40cd0 from=translated src=- shape=600a10ec vocab=d1485e40
+-/
 lemma AONOp.eval_zero (op : AONOp) : op.eval 0 Fin.elim0 = op.identity := by
   cases op <;> simp [AONOp.eval, AONOp.identity, Fin.foldl_zero]
 
-/-- `eval` on 1 input gives `identity op input`. -/
+/-- `eval` on 1 input gives `identity op input`.
+@isnad1 id=eq.0h2v.s5.90a9a654df23 from=translated src=- shape=d2f7352d vocab=d321219b
+-/
 lemma AONOp.eval_one (op : AONOp) (v : Fin 1 → Bool) :
     op.eval 1 v = op.binOp op.identity (v 0) := by
   cases op <;> simp [AONOp.eval, AONOp.binOp, AONOp.identity, Fin.foldl_succ_last, Fin.foldl_zero]
@@ -95,12 +115,24 @@ namespace CompileAON
 /-- Number of fan-in-2 gates needed to simulate one gate with `k` inputs. -/
 def chainLen (k : Nat) : Nat := if k ≤ 1 then 1 else k - 1
 
+/--
+@isnad1 id=eq.0h0v.s3.d3aceab84f4b from=translated src=- shape=3c26ae4f vocab=d4b9ade4
+-/
 @[simp] lemma chainLen_zero : chainLen 0 = 1 := rfl
+/--
+@isnad1 id=eq.0h0v.s3.cd011ccca8a4 from=translated src=- shape=3c26ae4f vocab=d4b9ade4
+-/
 @[simp] lemma chainLen_one : chainLen 1 = 1 := rfl
 
+/--
+@isnad1 id=lt.0h1v.s3.f1b84e1a039a from=translated src=- shape=8a62b088 vocab=30de3bea
+-/
 lemma chainLen_pos (k : Nat) : 0 < chainLen k := by
   unfold chainLen; split <;> omega
 
+/--
+@isnad1 id=eq.1h1v.s4.8a866c770d25 from=translated src=- shape=e0c4802e vocab=66032e27
+-/
 lemma chainLen_of_ge_two {k : Nat} (hk : 2 ≤ k) : chainLen k = k - 1 := by
   rw [chainLen, ite_eq_right (by omega)]
 
@@ -109,11 +141,20 @@ def prefixSum (f : Nat → Nat) : Nat → Nat
   | 0 => 0
   | n + 1 => prefixSum f n + f n
 
+/--
+@isnad1 id=eq.0h1v.s4.97984e9658f6 from=translated src=- shape=b298c1f9 vocab=edea51a7
+-/
 @[simp] lemma prefixSum_zero' (f : Nat → Nat) : prefixSum f 0 = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.1dc054b330a3 from=translated src=- shape=6d1f17e2 vocab=3c70b568
+-/
 lemma prefixSum_succ (f : Nat → Nat) (n : Nat) :
     prefixSum f (n + 1) = prefixSum f n + f n := rfl
 
+/--
+@isnad1 id=le.1h3v.s4.796502b2ce97 from=translated src=- shape=ce0fd851 vocab=8bb6331f
+-/
 lemma prefixSum_mono (f : Nat → Nat) {i j : Nat} (h : i ≤ j) :
     prefixSum f i ≤ prefixSum f j := by
   induction h with
@@ -131,6 +172,9 @@ def segLookup (n : Nat) (f : Nat → Nat) (idx : Nat) (h : idx < prefixSum f n) 
     if hlt : idx < prefixSum f n then segLookup n f idx hlt
     else (n, idx - prefixSum f n)
 
+/--
+@isnad1 id=lt.1h3v.s4.c709547457fa from=translated src=- shape=eb5c0e33 vocab=cc52b52e
+-/
 lemma segLookup_fst_lt (n : Nat) (f : Nat → Nat) (idx : Nat) (h : idx < prefixSum f n) :
     (segLookup n f idx h).1 < n := by
   induction n with
@@ -141,6 +185,9 @@ lemma segLookup_fst_lt (n : Nat) (f : Nat → Nat) (idx : Nat) (h : idx < prefix
     · exact Nat.lt_succ_of_lt (ih _)
     · exact Nat.lt_succ_of_le (Nat.le_refl n)
 
+/--
+@isnad1 id=lt.1h3v.s5.ad733c4829be from=translated src=- shape=3f42b9a5 vocab=26b52fb6
+-/
 lemma segLookup_snd_lt (n : Nat) (f : Nat → Nat) (idx : Nat) (h : idx < prefixSum f n) :
     (segLookup n f idx h).2 < f (segLookup n f idx h).1 := by
   induction n with
@@ -152,6 +199,9 @@ lemma segLookup_snd_lt (n : Nat) (f : Nat → Nat) (idx : Nat) (h : idx < prefix
     · dsimp only
       rw [prefixSum_succ] at h; omega
 
+/--
+@isnad1 id=eq.1h3v.s5.163bd9d183ed from=translated src=- shape=9f8b5f2d vocab=fe560124
+-/
 lemma segLookup_sum (n : Nat) (f : Nat → Nat) (idx : Nat) (h : idx < prefixSum f n) :
     prefixSum f (segLookup n f idx h).1 + (segLookup n f idx h).2 = idx := by
   induction n with
@@ -190,20 +240,35 @@ def iOffset (c : Circuit Basis.unboundedAON N M G) (i : Nat) : Nat :=
 def oOffset (c : Circuit Basis.unboundedAON N M G) (j : Nat) : Nat :=
   iTotal c + prefixSum (oChainF c) j
 
+/--
+@isnad1 id=eq.1h5v.s6.b8bd217cd296 from=translated src=- shape=f92d32d8 vocab=b587aa43
+-/
 lemma iChainF_eq (c : Circuit Basis.unboundedAON N M G) {i : Nat} (hi : i < G) :
     iChainF c i = chainLen (c.gates ⟨i, hi⟩).fanIn := by simp [iChainF, hi]
 
+/--
+@isnad1 id=eq.1h5v.s6.0564e1ffc1bc from=translated src=- shape=ae5abc31 vocab=d3d764a3
+-/
 lemma oChainF_eq (c : Circuit Basis.unboundedAON N M G) {j : Nat} (hj : j < M) :
     oChainF c j = chainLen (c.outputs ⟨j, hj⟩).fanIn := by simp [oChainF, hj]
 
+/--
+@isnad1 id=eq.1h5v.s6.1b9c95697890 from=translated src=- shape=46f447ca vocab=3faff6b3
+-/
 lemma iOffset_succ (c : Circuit Basis.unboundedAON N M G) {i : Nat} (hi : i < G) :
     iOffset c (i + 1) = iOffset c i + chainLen (c.gates ⟨i, hi⟩).fanIn := by
   simp [iOffset, prefixSum_succ, iChainF, hi]
 
+/--
+@isnad1 id=le.1h5v.s6.24b8d42d4cac from=translated src=- shape=948240ac vocab=487be480
+-/
 lemma iOffset_chain_le_iTotal (c : Circuit Basis.unboundedAON N M G) {i : Nat} (hi : i < G) :
     iOffset c i + chainLen (c.gates ⟨i, hi⟩).fanIn ≤ iTotal c := by
   rw [← iOffset_succ c hi]; exact prefixSum_mono _ (by omega)
 
+/--
+@isnad1 id=le.1h5v.s6.f97e80652777 from=translated src=- shape=00eff299 vocab=9a5e6173
+-/
 lemma oOffset_chain_le_G' (c : Circuit Basis.unboundedAON N M G) {j : Nat} (hj : j < M) :
     oOffset c j + chainLen (c.outputs ⟨j, hj⟩).fanIn ≤ G' c := by
   suffices h : prefixSum (oChainF c) j + chainLen (c.outputs ⟨j, hj⟩).fanIn
@@ -225,7 +290,9 @@ def remapWire (c : Circuit Basis.unboundedAON N M G) (w : Fin (N + G)) :
     ⟨N + iOffset c (w.val - N) + chainLen (c.gates ⟨w.val - N, hi⟩).fanIn - 1, by
       unfold G'; omega⟩
 
-/-- If `w < N + i` in the old circuit, `remapWire w < N + iOffset i` in the new. -/
+/-- If `w < N + i` in the old circuit, `remapWire w < N + iOffset i` in the new.
+@isnad1 id=lt.2h6v.s6.df77e35c67f2 from=translated src=- shape=a5de4476 vocab=fb78f5ee
+-/
 lemma remapWire_lt_of_lt (c : Circuit Basis.unboundedAON N M G) (w : Fin (N + G))
     {i : Nat} (hi : i ≤ G) (hw : w.val < N + i) :
     (remapWire c w).val < N + iOffset c i := by
@@ -243,7 +310,9 @@ lemma remapWire_lt_of_lt (c : Circuit Basis.unboundedAON N M G) (w : Fin (N + G)
     have := chainLen_pos (c.gates ⟨w.val - N, by omega⟩).fanIn
     omega
 
-/-- `remapWire` maps to a wire that comes before any output chain. -/
+/-- `remapWire` maps to a wire that comes before any output chain.
+@isnad1 id=lt.0h6v.s6.73a2d8f9486e from=translated src=- shape=796e9bc4 vocab=30151ce5
+-/
 lemma remapWire_lt_oOffset (c : Circuit Basis.unboundedAON N M G) (w : Fin (N + G))
     (j : Nat) : (remapWire c w).val < N + oOffset c j := by
   have h := remapWire_lt_of_lt c w (Nat.le.refl) w.isLt
@@ -255,7 +324,13 @@ lemma remapWire_lt_oOffset (c : Circuit Basis.unboundedAON N M G) (w : Fin (N + 
 /-- Helper: construct a function `Fin 2 → α` from two values. -/
 def fin2 (a b : α) : Fin 2 → α := fun i => if i.val = 0 then a else b
 
+/--
+@isnad1 id=eq.0h3v.s4.8d15bda01052 from=translated src=- shape=b08fdde3 vocab=4124276b
+-/
 @[simp] lemma fin2_zero (a b : α) : fin2 a b 0 = a := rfl
+/--
+@isnad1 id=eq.0h3v.s4.3e3abe04eac1 from=translated src=- shape=9ac2d65f vocab=4124276b
+-/
 @[simp] lemma fin2_one (a b : α) : fin2 a b 1 = b := rfl
 
 /-- Operation for the chain gate: dual-op for constants, same op otherwise. -/
@@ -444,7 +519,9 @@ def compileFn (c : Circuit Basis.unboundedAON N M G) : Circuit Basis.andOr2 N M 
 /-! ## Eval equivalence -/
 
 /-- `segLookup` inverts `prefixSum`: if `idx = prefixSum f i + j` and `j < f i`,
-    then `segLookup` returns `(i, j)`. -/
+    then `segLookup` returns `(i, j)`.
+@isnad1 id=eq.3h4v.s6.1d0dbe314280 from=translated src=- shape=46db347e vocab=477b4aaf
+-/
 lemma segLookup_of_prefixSum (n : Nat) (f : Nat → Nat) (i j : Nat)
     (hi : i < n) (hj : j < f i)
     (h : prefixSum f i + j < prefixSum f n) :

@@ -25,13 +25,17 @@ namespace Topology
 namespace ClassificationOfSurfaces
 namespace Moise
 
-/-- The model closed half-plane is convex. -/
+/-- The model closed half-plane is convex.
+@isnad1 id=convex.0h0v.s6.ab04ad55a5d6 from=translated src=- shape=54c8eceb vocab=6ebc39a5
+-/
 theorem convex_halfPlaneSet : Convex ℝ HalfPlaneSet := by
   have hlinear : IsLinearMap ℝ (fun v : Plane ↦ v 0) :=
     .mk (fun _ _ ↦ rfl) (fun _ _ ↦ rfl)
   simpa [HalfPlaneSet] using convex_halfSpace_ge hlinear (0 : ℝ)
 
-/-- A polygonal circle carried by the closed right half-plane bounds its disk there. -/
+/-- A polygonal circle carried by the closed right half-plane bounds its disk there.
+@isnad1 id=le.1h1v.s4.d11a6a6e19b7 from=translated src=- shape=c73f2eeb vocab=42c2a55d
+-/
 theorem PolygonalCircle.closedRegion_subset_halfPlane (J : PolygonalCircle)
     (hcarrier : J.carrier ⊆ HalfPlaneSet) :
     J.closedRegion ⊆ HalfPlaneSet := by
@@ -91,7 +95,9 @@ theorem PolygonalCircle.closedRegion_subset_halfPlane (J : PolygonalCircle)
   exact Set.union_subset hinterior hcarrier
 
 /-- A plane-open subset of the closed half-plane cannot contain a point of its supporting
-boundary line. -/
+boundary line.
+@isnad1 id=lt.3h2v.s7.691b3b14494d from=translated src=- shape=07cfff02 vocab=ac13dd66
+-/
 theorem coordZero_pos_of_mem_open_subset_halfPlane {O : Set Plane}
     (hO : IsOpen O) (hOH : O ⊆ HalfPlaneSet) {x : Plane} (hx : x ∈ O) :
     0 < x 0 := by
@@ -117,7 +123,9 @@ theorem coordZero_pos_of_mem_open_subset_halfPlane {O : Set Plane}
   rw [hyCoord, hxZero] at hyNonneg
   linarith
 
-/-- The supporting line meets the filled polygonal disk only on its polygonal boundary. -/
+/-- The supporting line meets the filled polygonal disk only on its polygonal boundary.
+@isnad1 id=mem.3h2v.s7.d216d276c570 from=translated src=- shape=d2836373 vocab=3cbe06df
+-/
 theorem PolygonalCircle.mem_carrier_of_mem_closedRegion_coordZero
     (J : PolygonalCircle) (hcarrier : J.carrier ⊆ HalfPlaneSet)
     {x : Plane} (hx : x ∈ J.closedRegion) (hxZero : x 0 = 0) :

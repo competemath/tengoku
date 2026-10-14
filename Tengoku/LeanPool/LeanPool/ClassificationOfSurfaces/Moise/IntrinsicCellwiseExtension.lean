@@ -41,6 +41,9 @@ noncomputable def intrinsicMap {t : K.Face} (F : K.FacePLFilling
     K.ClosedFace t → Plane :=
   fun x ↦ F.map (K.facePlaneHomeomorph t x).1
 
+/--
+@isnad1 id=continuo.2h6v.s8.306e5422cdce from=translated src=- shape=de370958 vocab=a125ad5b
+-/
 theorem continuous_intrinsicMap {t : K.Face} (F : K.FacePLFilling
     (hcont := hcont) (hinj := hinj) (D := D) (C := C) t) :
     Continuous F.intrinsicMap := by
@@ -48,6 +51,9 @@ theorem continuous_intrinsicMap {t : K.Face} (F : K.FacePLFilling
     continuousOn_iff_continuous_domRestrict.mp F.continuousOn
   exact hF.comp (K.facePlaneHomeomorph t).continuous
 
+/--
+@isnad1 id=injectiv.2h6v.s7.f5d73fed1906 from=translated src=- shape=2c927bd5 vocab=0d2ba5ad
+-/
 theorem injective_intrinsicMap {t : K.Face} (F : K.FacePLFilling
     (hcont := hcont) (hinj := hinj) (D := D) (C := C) t) :
     Function.Injective F.intrinsicMap := by
@@ -57,6 +63,9 @@ theorem injective_intrinsicMap {t : K.Face} (F : K.FacePLFilling
   apply F.injectiveOn (K.facePlaneHomeomorph t x).2 (K.facePlaneHomeomorph t y).2
   exact hxy
 
+/--
+@isnad1 id=eq.2h6v.s7.be35c8f9572a from=translated src=- shape=b2643eb7 vocab=9d44db81
+-/
 theorem range_intrinsicMap {t : K.Face} (F : K.FacePLFilling
     (hcont := hcont) (hinj := hinj) (D := D) (C := C) t) :
     Set.range F.intrinsicMap =
@@ -73,7 +82,9 @@ theorem range_intrinsicMap {t : K.Face} (F : K.FacePLFilling
       change F.map (K.facePlaneHomeomorph t ((K.facePlaneHomeomorph t).symm q)).1 = F.map p
       rw [(K.facePlaneHomeomorph t).apply_symm_apply]⟩
 
-/-- The relative interior of a filled intrinsic face maps to the bounded complementary region. -/
+/-- The relative interior of a filled intrinsic face maps to the bounded complementary region.
+@isnad1 id=mapsto.2h6v.s7.3c37debd6d44 from=translated src=- shape=553e7180 vocab=78b71a5c
+-/
 theorem mapsTo_interiorRegion {t : K.Face} (F : K.FacePLFilling
     (hcont := hcont) (hinj := hinj) (D := D) (C := C) t) :
     Set.MapsTo F.map (interior standardFaceRegion)
@@ -133,7 +144,9 @@ private theorem exists_edge_between_small_carriers
   exact hvE (hInterE hvInter)
 
 /-- A point of a face which is also carried by a set of at most two vertices lies on one of
-that face's three intrinsic edges. -/
+that face's three intrinsic edges.
+@isnad1 id=ex.3h4v.s7.2a9163265907 from=translated src=- shape=aa78a49f vocab=bb10a6c1
+-/
 theorem exists_faceEdge_of_mem_small_carrier
     (t : K.Face) {s : Finset K.Vertex} (hsCard : s.card ≤ 2)
     {x : K.realization} (hxt : x ∈ K.faceCarrier t.1)
@@ -160,7 +173,9 @@ private theorem faceChart_mem_frontier_of_mem_small_carrier
   simpa only [standardFaceRegion, standardTrianglePlaneComplex_support] using hpCarrier
 
 /-- The standard coordinate of a point shared by two distinct faces lies on the standard
-triangle frontier. -/
+triangle frontier.
+@isnad1 id=mem.3h4v.s9.c7d49c055578 from=translated src=- shape=3c5a6b98 vocab=6729409e
+-/
 theorem faceChart_mem_frontier_of_mem_distinct_faces
     {t u : K.Face} (htu : t ≠ u) {x : K.realization}
     (hxt : x ∈ K.faceCarrier t.1) (hxu : x ∈ K.faceCarrier u.1) :
@@ -188,7 +203,9 @@ theorem faceChart_mem_frontier_of_mem_distinct_faces
     exact ⟨hxt, hxu⟩
   exact K.faceChart_mem_frontier_of_mem_small_carrier t hInterCard hxt hxInter
 
-/-- A point shared by distinct maximal intrinsic faces belongs to the global one-skeleton. -/
+/-- A point shared by distinct maximal intrinsic faces belongs to the global one-skeleton.
+@isnad1 id=mem.3h4v.s6.1f06af7e8bae from=translated src=- shape=c4442c28 vocab=013934a1
+-/
 theorem mem_oneSkeleton_of_mem_distinct_faces
     {t u : K.Face} (htu : t ≠ u) {x : K.realization}
     (hxt : x ∈ K.faceCarrier t.1) (hxu : x ∈ K.faceCarrier u.1) :
@@ -209,7 +226,9 @@ theorem mem_oneSkeleton_of_mem_distinct_faces
       (K.facePlaneHomeomorph t).symm_apply_apply]
   exact ⟨K.faceEdge t i, by simpa only [heq] using hxi⟩
 
-/-- Lifting the standard coordinate of an intrinsic boundary point recovers that point. -/
+/-- Lifting the standard coordinate of an intrinsic boundary point recovers that point.
+@isnad1 id=eq.2h3v.s10.8246be6a130e from=translated src=- shape=0457bc14 vocab=faf52962
+-/
 theorem faceBoundaryLift_facePlaneHomeomorph
     (t : K.Face) {x : K.realization} (hxt : x ∈ K.faceCarrier t.1)
     (hp : (K.facePlaneHomeomorph t ⟨x, hxt⟩).1 ∈ frontier standardFaceRegion) :
@@ -225,6 +244,9 @@ theorem faceBoundaryLift_facePlaneHomeomorph
     rfl
   rw [hsubtype, (K.facePlaneHomeomorph t).symm_apply_apply]
 
+/--
+@isnad1 id=mem.0h3v.s6.e7d82d33c10d from=translated src=- shape=1254ed19 vocab=316dc216
+-/
 theorem faceBoundaryLift_mem_faceCarrier (t : K.Face) (p : StandardFaceBoundary) :
     (K.faceBoundaryLift t p).1 ∈ K.faceCarrier t.1 := by
   change ((K.facePlaneHomeomorph t).symm
@@ -232,7 +254,9 @@ theorem faceBoundaryLift_mem_faceCarrier (t : K.Face) (p : StandardFaceBoundary)
   exact ((K.facePlaneHomeomorph t).symm
     ⟨p.1, standardFaceBoundary_mem_region p⟩).2
 
-/-- The transported fillings of two faces agree at every point of their overlap. -/
+/-- The transported fillings of two faces agree at every point of their overlap.
+@isnad1 id=eq.4h7v.s8.fd0ce4d1e374 from=translated src=- shape=90b693b9 vocab=4f3f16d4
+-/
 theorem facePLFilling_intrinsicMap_eq
     (t u : K.Face) {x : K.realization}
     (hxt : x ∈ K.faceCarrier t.1) (hxu : x ∈ K.faceCarrier u.1) :
@@ -257,6 +281,9 @@ theorem facePLFilling_intrinsicMap_eq
 noncomputable def containingFace (x : K.realization) : K.Face :=
   ⟨Classical.choose x.2.2, (Classical.choose_spec x.2.2).1⟩
 
+/--
+@isnad1 id=mem.0h2v.s5.5b8a1011b8e2 from=translated src=- shape=781eb7a4 vocab=02b51d85
+-/
 theorem mem_faceCarrier_containingFace (x : K.realization) :
     x ∈ K.faceCarrier (K.containingFace x).1 :=
   (Classical.choose_spec x.2.2).2
@@ -267,7 +294,9 @@ noncomputable def cellwisePLFillingMap (x : K.realization) : Plane :=
       (hcont := hcont) (hinj := hinj) (D := D) (C := C) (K.containingFace x)).intrinsicMap
     ⟨x, K.mem_faceCarrier_containingFace x⟩
 
-/-- The glued map restricts to the chosen certified filling on every maximal face. -/
+/-- The glued map restricts to the chosen certified filling on every maximal face.
+@isnad1 id=eq.3h6v.s7.de68a29f279a from=translated src=- shape=6955c1bd vocab=a5309966
+-/
 theorem cellwisePLFillingMap_eqOn_face (t : K.Face) (x : K.realization)
     (hxt : x ∈ K.faceCarrier t.1) :
     K.cellwisePLFillingMap (hcont := hcont) (hinj := hinj) (D := D) (C := C) x =
@@ -276,7 +305,9 @@ theorem cellwisePLFillingMap_eqOn_face (t : K.Face) (x : K.realization)
   exact K.facePLFilling_intrinsicMap_eq (K.containingFace x) t
     (K.mem_faceCarrier_containingFace x) hxt
 
-/-- The finite cellwise filling is continuous on the whole intrinsic realization. -/
+/-- The finite cellwise filling is continuous on the whole intrinsic realization.
+@isnad1 id=continuo.2h4v.s7.0540af69932e from=translated src=- shape=2eb38c03 vocab=3f55fba2
+-/
 theorem continuous_cellwisePLFillingMap :
     Continuous (K.cellwisePLFillingMap
       (hcont := hcont) (hinj := hinj) (D := D) (C := C)) := by
@@ -296,7 +327,9 @@ theorem continuous_cellwisePLFillingMap :
   exact hfinite.continuous K.realization_eq_iUnion_faceCarrier.symm hclosed hlocal
 
 /-- On the global intrinsic one-skeleton, the cellwise filling is exactly the previously
-constructed simultaneous graph replacement. -/
+constructed simultaneous graph replacement.
+@isnad1 id=eq.3h5v.s7.fbda0394aa42 from=translated src=- shape=5b29a12b vocab=c5a4fd3b
+-/
 theorem cellwisePLFillingMap_eq_graphReplacement
     {x : K.realization} (hx : x ∈ K.oneSkeleton) :
     K.cellwisePLFillingMap (hcont := hcont) (hinj := hinj) (D := D) (C := C) x =
@@ -321,11 +354,17 @@ noncomputable def faceOriginalMap (t : K.Face) (p : Plane) : Plane := by
     h ((K.facePlaneHomeomorph t).symm ⟨p, hp⟩).1
   else 0
 
+/--
+@isnad1 id=eq.0h4v.s9.40806123d74f from=translated src=- shape=42d0099a vocab=5866b5eb
+-/
 @[simp] theorem faceOriginalMap_apply (t : K.Face) (p : standardFaceRegion) :
     K.faceOriginalMap (h := h) t p.1 =
       h ((K.facePlaneHomeomorph t).symm p).1 := by
   simp [faceOriginalMap, p.2]
 
+/--
+@isnad1 id=continuo.1h3v.s7.96e27b00860e from=translated src=- shape=3637c440 vocab=7659ea4c
+-/
 theorem continuousOn_faceOriginalMap (hcont : Continuous h) (t : K.Face) :
     ContinuousOn (K.faceOriginalMap (h := h) t) standardFaceRegion := by
   rw [continuousOn_iff_continuous_domRestrict]
@@ -334,13 +373,18 @@ theorem continuousOn_faceOriginalMap (hcont : Continuous h) (t : K.Face) :
   funext p
   exact K.faceOriginalMap_apply t p
 
+/--
+@isnad1 id=mem.0h4v.s6.75c0247ff8cb from=translated src=- shape=9099f6c9 vocab=ba3dbd12
+-/
 theorem faceOriginalMap_mem_face_image (t : K.Face) (p : standardFaceRegion) :
     K.faceOriginalMap (h := h) t p.1 ∈ h '' K.faceCarrier t.1 := by
   refine ⟨((K.facePlaneHomeomorph t).symm p).1,
     ((K.facePlaneHomeomorph t).symm p).2, ?_⟩
   exact (K.faceOriginalMap_apply t p).symm
 
-/-- A one-skeleton point lying in a face has a standard coordinate on that face's frontier. -/
+/-- A one-skeleton point lying in a face has a standard coordinate on that face's frontier.
+@isnad1 id=mem.2h3v.s9.89de763a66b1 from=translated src=- shape=f637f59e vocab=30ae1720
+-/
 theorem faceChart_mem_frontier_of_mem_oneSkeleton
     (t : K.Face) {x : K.realization} (hxt : x ∈ K.faceCarrier t.1)
     (hx : x ∈ K.oneSkeleton) :
@@ -350,7 +394,9 @@ theorem faceChart_mem_frontier_of_mem_oneSkeleton
     (by rw [K.card_of_mem_edges e.2]) hxt hxe
 
 /-- Conversely, the inverse face chart takes the standard frontier into the global
-one-skeleton. -/
+one-skeleton.
+@isnad1 id=mem.2h3v.s9.044b20320644 from=translated src=- shape=03378605 vocab=30ae1720
+-/
 theorem mem_oneSkeleton_of_faceChart_mem_frontier
     (t : K.Face) {x : K.realization} (hxt : x ∈ K.faceCarrier t.1)
     (hp : (K.facePlaneHomeomorph t ⟨x, hxt⟩).1 ∈ frontier standardFaceRegion) :
@@ -377,7 +423,9 @@ def FaceFillingsVerticesAvoidClosedRegions : Prop :=
         (hcont := hcont) (hinj := hinj) (D := D) (C := C) t).closedRegion
 
 /-- A finite embedded intrinsic two-complex has one positive separation radius for every
-maximal face and every used vertex not belonging to that face. -/
+maximal face and every used vertex not belonging to that face.
+@isnad1 id=ex.2h2v.s8.42f722251030 from=translated src=- shape=1b5acefd vocab=1330ddf0
+-/
 theorem exists_uniform_vertex_face_separation
     (hcont : Continuous h) (hinj : Function.Injective h) :
     ∃ r : ℝ, 0 < r ∧
@@ -426,7 +474,9 @@ theorem exists_uniform_vertex_face_separation
   · exact hdis
 
 /-- Quantitative closeness and vertex-to-face separation put every nonincident vertex on the
-unbounded side of every replacement polygon. -/
+unbounded side of every replacement polygon.
+@isnad1 id=facefill.5h5v.s8.71e407407bb8 from=translated src=- shape=db9afaf9 vocab=559d4a66
+-/
 theorem faceFillingsVerticesAvoidClosedRegions_of_close
     {r : ℝ} (hr : 0 < r)
     (hsep : ∀ (t : K.Face) (v : K.UsedVertex), v.1 ∉ t.1 →
@@ -484,7 +534,9 @@ theorem faceFillingsVerticesAvoidClosedRegions_of_close
   exact Set.disjoint_left.mp
     (K.facePolygonalCircle t).disjoint_closedRegion_exteriorRegion hvClosed hvExterior
 
-/-- Every filled face boundary is part of the single global replacement graph. -/
+/-- Every filled face boundary is part of the single global replacement graph.
+@isnad1 id=le.2h5v.s7.bf505b5c70f8 from=translated src=- shape=11c9dd42 vocab=7861d26b
+-/
 theorem facePolygonalCircle_carrier_subset_graphReplacement (t : K.Face) :
     (K.facePolygonalCircle
       (hcont := hcont) (hinj := hinj) (D := D) (C := C) t).carrier ⊆
@@ -498,7 +550,9 @@ theorem facePolygonalCircle_carrier_subset_graphReplacement (t : K.Face) :
 
 /-- A replacement-graph point can lie on the polygon of a face only when its intrinsic source
 lies in that face.  This is the exact-carrier consequence of boundary coherence and injectivity
-of the simultaneous graph replacement. -/
+of the simultaneous graph replacement.
+@isnad1 id=mem.4h6v.s7.9182fa3c92ee from=translated src=- shape=d6db8163 vocab=66c32db9
+-/
 theorem mem_faceCarrier_of_graphReplacement_mem_facePolygonalCircle
     (t : K.Face) {x : K.realization} (hx : x ∈ K.oneSkeleton)
     (himage : K.graphReplacementMap hcont hinj D C x ∈
@@ -517,7 +571,9 @@ theorem mem_faceCarrier_of_graphReplacement_mem_facePolygonalCircle
   rw [hxEq]
   exact K.faceBoundaryLift_mem_faceCarrier t q
 
-/-- A point of a face which lies on the one-skeleton maps to that face's polygonal boundary. -/
+/-- A point of a face which lies on the one-skeleton maps to that face's polygonal boundary.
+@isnad1 id=mem.4h6v.s7.ab3c5f465fd3 from=translated src=- shape=ea0e46bf vocab=66c32db9
+-/
 theorem graphReplacement_mem_facePolygonalCircle
     (t : K.Face) {x : K.realization} (hxt : x ∈ K.faceCarrier t.1)
     (hx : x ∈ K.oneSkeleton) :
@@ -532,7 +588,9 @@ theorem graphReplacement_mem_facePolygonalCircle
     K.faceBoundaryLift_facePlaneHomeomorph t hxt hp]
 
 /-- Vertex avoidance places every vertex not incident to a face in the unbounded component of
-that face's replacement polygon. -/
+that face's replacement polygon.
+@isnad1 id=mem.4h6v.s8.9c1920defb30 from=translated src=- shape=6dfef55d vocab=eeb394eb
+-/
 theorem graphReplacement_vertex_mem_exterior
     (hvertices : K.FaceFillingsVerticesAvoidClosedRegions
       (hcont := hcont) (hinj := hinj) (D := D) (C := C))
@@ -559,7 +617,9 @@ theorem graphReplacement_vertex_mem_exterior
   exact hoff.resolve_left hnotInterior
 
 /-- Moise's finite vertex condition propagates along every intrinsic edge.  Thus the whole
-simultaneous replacement graph avoids the bounded polygonal region selected for each face. -/
+simultaneous replacement graph avoids the bounded polygonal region selected for each face.
+@isnad1 id=facefill.3h4v.s7.771b6d9d8a9e from=translated src=- shape=88cdad81 vocab=8c6fa775
+-/
 theorem faceFillingsGraphAvoidInteriors_of_verticesAvoid
     (hvertices : K.FaceFillingsVerticesAvoidClosedRegions
       (hcont := hcont) (hinj := hinj) (D := D) (C := C)) :
@@ -708,7 +768,9 @@ theorem faceFillingsGraphAvoidInteriors_of_verticesAvoid
 
 /-- Quantitative control of the cellwise filling.  If the original map oscillates by less than
 `η` on every face and its replacement graph is `ρ`-close, the whole filled face is contained in
-the closed ball of radius `η + ρ` about the original value. -/
+the closed ball of radius `η + ρ` about the original value.
+@isnad1 id=le.4h7v.s8.e4ed0bd5b27b from=translated src=- shape=bf11a9e0 vocab=a571a025
+-/
 theorem cellwisePLFillingMap_dist_le
     {η ρ : ℝ}
     (hsmall : ∀ t : K.Face, ∀ x ∈ K.faceCarrier t.1,
@@ -752,7 +814,9 @@ theorem cellwisePLFillingMap_dist_le
     (J.closedRegion_subset_closedBall_of_carrier_subset hcarrierBall hmapClosed)
 
 /-- Under graph-side compatibility, bounded interiors selected for distinct intrinsic faces are
-disjoint. -/
+disjoint.
+@isnad1 id=disjoint.4h6v.s7.8e779dcd33f0 from=translated src=- shape=29e05b24 vocab=26c27f0a
+-/
 theorem disjoint_facePolygonalCircle_interiors
     (hside : K.FaceFillingsGraphAvoidInteriors
       (hcont := hcont) (hinj := hinj) (D := D) (C := C))
@@ -813,7 +877,9 @@ theorem disjoint_facePolygonalCircle_interiors
   · exact ⟨K.graphReplacementMap hcont hinj D C x, hpU, hpNotT⟩
 
 /-- Once the global replacement graph avoids every selected face interior, the coherent
-cellwise filling is injective. -/
+cellwise filling is injective.
+@isnad1 id=injectiv.3h4v.s7.57d328c9cc39 from=translated src=- shape=bddc13fa vocab=44659ac4
+-/
 theorem injective_cellwisePLFillingMap
     (hside : K.FaceFillingsGraphAvoidInteriors
       (hcont := hcont) (hinj := hinj) (D := D) (C := C)) :
@@ -907,7 +973,9 @@ theorem injective_cellwisePLFillingMap
       exact hxy
 
 /-- Vertex-side compatibility is sufficient to make the coherent cellwise filling a genuine
-topological embedding of the compact intrinsic realization into the plane. -/
+topological embedding of the compact intrinsic realization into the plane.
+@isnad1 id=isembedd.3h4v.s7.aa62698de26e from=translated src=- shape=c3036a39 vocab=8cedd37d
+-/
 theorem cellwisePLFillingMap_isEmbedding
     (hvertices : K.FaceFillingsVerticesAvoidClosedRegions
       (hcont := hcont) (hinj := hinj) (D := D) (C := C)) :
@@ -920,7 +988,9 @@ theorem cellwisePLFillingMap_isEmbedding
       (K.faceFillingsGraphAvoidInteriors_of_verticesAvoid hvertices)
 
 /-- The image of the coherent cellwise filling is exactly the finite union of its polygonal
-closed face regions. -/
+closed face regions.
+@isnad1 id=eq.2h4v.s7.fd0792e2499d from=translated src=- shape=867637a6 vocab=e6283b60
+-/
 theorem range_cellwisePLFillingMap :
     Set.range (K.cellwisePLFillingMap
       (hcont := hcont) (hinj := hinj) (D := D) (C := C)) =
@@ -948,7 +1018,9 @@ theorem range_cellwisePLFillingMap :
 
 /-- The exact image of the coherent cellwise filling carries one conforming pure finite plane
 complex.  The complex is built from a common arrangement of all face-polygon edge lines, rather
-than by taking a nonconforming union of the independently certified face meshes. -/
+than by taking a nonconforming union of the independently certified face meshes.
+@isnad1 id=ex.2h4v.s7.304c5cb5afce from=translated src=- shape=8938f3e5 vocab=98f662dd
+-/
 theorem exists_cellwisePLFilling_targetComplex :
     ∃ L : PlaneComplex,
       L.support = Set.range (K.cellwisePLFillingMap
@@ -963,7 +1035,9 @@ theorem exists_cellwisePLFilling_targetComplex :
 
 /-- A compatible cellwise filling gives a finite plane triangulation of the intrinsic source,
 with the plane support coordinate equal to the filling map.  This is the concrete output needed
-when a Radó chart replaces an abstract old patch by a polygonal patch in chart coordinates. -/
+when a Radó chart replaces an abstract old patch by a polygonal patch in chart coordinates.
+@isnad1 id=ex.3h4v.s9.b43df8ca565c from=translated src=- shape=3f2a65e3 vocab=7f79e7c4
+-/
 theorem exists_cellwisePLFilling_retriangulation
     (hvertices : K.FaceFillingsVerticesAvoidClosedRegions
       (hcont := hcont) (hinj := hinj) (D := D) (C := C)) :

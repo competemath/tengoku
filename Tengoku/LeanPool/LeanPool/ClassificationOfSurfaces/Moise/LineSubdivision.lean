@@ -40,6 +40,9 @@ noncomputable def triangleAffineEquiv (p q : Fin 3 → Plane)
   AffineEquiv.ofLinearEquiv
     ((bp.basisOf 0).equiv (bq.basisOf 0) (Equiv.refl _)) (p 0) (q 0)
 
+/--
+@isnad1 id=eq.2h3v.s11.4cce03b587e7 from=translated src=- shape=dc598c59 vocab=e2b1d328
+-/
 @[simp] theorem triangleAffineEquiv_apply (p q : Fin 3 → Plane)
     (hp : AffineIndependent ℝ p) (hq : AffineIndependent ℝ q) (i : Fin 3) :
     triangleAffineEquiv p q hp hq (p i) = q i := by
@@ -88,6 +91,9 @@ noncomputable def triangleAffineEquiv (p q : Fin 3 → Plane)
     rw [hqvec]
     abel
 
+/--
+@isnad1 id=eq.2h2v.s11.4f560796dca7 from=translated src=- shape=249863d2 vocab=31e1f88c
+-/
 theorem triangleAffineEquiv_image_convexHull (p q : Fin 3 → Plane)
     (hp : AffineIndependent ℝ p) (hq : AffineIndependent ℝ q) :
     triangleAffineEquiv p q hp hq '' convexHull ℝ (Set.range p) =
@@ -104,7 +110,9 @@ theorem triangleAffineEquiv_image_convexHull (p q : Fin 3 → Plane)
     exact ⟨p i, ⟨i, rfl⟩, triangleAffineEquiv_apply p q hp hq i⟩
 
 /-- The affine equivalence between ordered triangles carries corresponding line-map points to
-corresponding line-map points. -/
+corresponding line-map points.
+@isnad1 id=eq.2h5v.s12.cb2b53ede739 from=translated src=- shape=3e348843 vocab=17d77dc9
+-/
 theorem triangleAffineEquiv_apply_lineMap (p q : Fin 3 → Plane)
     (hp : AffineIndependent ℝ p) (hq : AffineIndependent ℝ q)
     (i j : Fin 3) (c : ℝ) :
@@ -116,7 +124,9 @@ theorem triangleAffineEquiv_apply_lineMap (p q : Fin 3 → Plane)
     AffineMap.lineMap (e (p i)) (e (p j)) c at h
   rw [h, triangleAffineEquiv_apply, triangleAffineEquiv_apply]
 
-/-- The determinant criterion for three points in the Euclidean plane. -/
+/-- The determinant criterion for three points in the Euclidean plane.
+@isnad1 id=affinein.1h3v.s10.0795ec934716 from=translated src=- shape=d801f165 vocab=83493285
+-/
 theorem affineIndependent_plane_triple_of_det_ne_zero {p₀ p₁ p₂ : Plane}
     (hdet : (p₁ - p₀) 0 * (p₂ - p₀) 1 - (p₁ - p₀) 1 * (p₂ - p₀) 0 ≠ 0) :
     AffineIndependent ℝ ![p₀, p₁, p₂] := by
@@ -136,7 +146,9 @@ theorem affineIndependent_plane_triple_of_det_ne_zero {p₀ p₁ p₂ : Plane}
   ring
 
 /-- An affine supporting hyperplane cuts a finite convex hull in precisely the hull of the
-vertices lying on that hyperplane. -/
+vertices lying on that hyperplane.
+@isnad1 id=eq.1h2v.s11.6c16facdf4c2 from=translated src=- shape=20e02b8e vocab=b4464701
+-/
 theorem convexHull_inter_affine_zero_of_nonneg (s : Finset Plane) (f : Plane →ᵃ[ℝ] ℝ)
     (hf : ∀ x ∈ s, 0 ≤ f x) :
     convexHull ℝ (s : Set Plane) ∩ {x | f x = 0} =
@@ -193,7 +205,9 @@ theorem convexHull_inter_affine_zero_of_nonneg (s : Finset Plane) (f : Plane →
         ((convex_singleton (0 : ℝ)).affine_preimage f)
 
 /-- Set-valued version of the supporting-hyperplane face formula.  Convex-hull membership uses
-only finitely many points, so the finite formula above applies to each witness. -/
+only finitely many points, so the finite formula above applies to each witness.
+@isnad1 id=eq.1h2v.s11.09b0f66653b0 from=translated src=- shape=479107aa vocab=e69adf3a
+-/
 theorem convexHull_inter_affine_zero_of_nonneg_set (s : Set Plane)
     (f : Plane →ᵃ[ℝ] ℝ) (hf : ∀ x ∈ s, 0 ≤ f x) :
     convexHull ℝ s ∩ {x | f x = 0} =
@@ -229,7 +243,9 @@ theorem convexHull_inter_affine_zero_of_nonneg_set (s : Set Plane)
         ((convex_singleton (0 : ℝ)).affine_preimage f)
 
 /-- Two finite convex hulls lying on opposite sides of an affine hyperplane intersect in their
-common zero face. -/
+common zero face.
+@isnad1 id=eq.4h4v.s12.550c7f85869b from=translated src=- shape=11836918 vocab=bfe8a9c4
+-/
 theorem convexHull_inter_of_affine_separation (s t u : Finset Plane)
     (f : Plane →ᵃ[ℝ] ℝ) (hs : ∀ x ∈ s, 0 ≤ f x) (ht : ∀ x ∈ t, f x ≤ 0)
     (hszero : s.filter (fun x => f x = 0) = u)
@@ -271,7 +287,9 @@ theorem convexHull_inter_of_affine_separation (s t u : Finset Plane)
     exact ⟨hxs, hxt⟩
 
 /-- Vertex-indexed form of `convexHull_inter_of_affine_separation`.  This is the form used when
-checking the maximal triangles of a mesh. -/
+checking the maximal triangles of a mesh.
+@isnad1 id=eq.5h5v.s11.19baf7901da9 from=translated src=- shape=07683730 vocab=6977c65b
+-/
 theorem convexHull_image_inter_of_affine_separation {V : Type*} [DecidableEq V]
     (position : V → Plane) (_ : Function.Injective position) (s t : Finset V)
     (f : Plane →ᵃ[ℝ] ℝ) (hs : ∀ v ∈ s, 0 ≤ f (position v))
@@ -314,7 +332,13 @@ theorem convexHull_image_inter_of_affine_separation {V : Type*} [DecidableEq V]
 def planePoint (x y : ℝ) : Plane :=
   WithLp.toLp 2 ![x, y]
 
+/--
+@isnad1 id=eq.0h2v.s6.b8d2d58fb6e4 from=translated src=- shape=02f1c7bf vocab=0f28dfb6
+-/
 @[simp] theorem planePoint_apply_zero (x y : ℝ) : planePoint x y 0 = x := rfl
+/--
+@isnad1 id=eq.0h2v.s6.e325b1c9f54a from=translated src=- shape=6e7fa9ed vocab=0f28dfb6
+-/
 @[simp] theorem planePoint_apply_one (x y : ℝ) : planePoint x y 1 = y := rfl
 
 /-- Vertices of the reference line split: the standard triangle vertices followed by one point
@@ -326,6 +350,9 @@ def referenceSplitPosition (a b : ℝ) : Fin 5 → Plane :=
 def referenceSplitTriangles : Finset (Finset (Fin 5)) :=
   {{0, 3, 4}, {1, 2, 3}, {2, 3, 4}}
 
+/--
+@isnad1 id=injectiv.4h2v.s5.e9d80bfed5b6 from=translated src=- shape=0adde3ef vocab=af8e13af
+-/
 theorem referenceSplitPosition_injective {a b : ℝ} (ha0 : 0 < a) (ha1 : a < 1)
     (hb0 : 0 < b) (hb1 : b < 1) : Function.Injective (referenceSplitPosition a b) := by
   intro i j hij
@@ -340,6 +367,9 @@ theorem referenceSplitPosition_injective {a b : ℝ} (ha0 : 0 < a) (ha1 : a < 1)
     simp only [planePoint_apply_one] at h1
     linarith
 
+/--
+@isnad1 id=affinein.2h2v.s8.3b016ca62f32 from=translated src=- shape=2f5e3dbf vocab=6b6cc110
+-/
 theorem referenceSplit_triangle0_affineIndependent {a b : ℝ} (ha0 : 0 < a)
     (hb0 : 0 < b) :
     AffineIndependent ℝ ![planePoint 0 0, planePoint a 0, planePoint 0 b] := by
@@ -347,12 +377,18 @@ theorem referenceSplit_triangle0_affineIndependent {a b : ℝ} (ha0 : 0 < a)
   simp only [planePoint_apply_zero, planePoint_apply_one, PiLp.sub_apply]
   nlinarith
 
+/--
+@isnad1 id=affinein.1h1v.s8.e9f8f0b747e1 from=translated src=- shape=9c5dbee0 vocab=6b6cc110
+-/
 theorem referenceSplit_triangle1_affineIndependent {a : ℝ} (ha1 : a < 1) :
     AffineIndependent ℝ ![planePoint a 0, planePoint 1 0, planePoint 0 1] := by
   apply affineIndependent_plane_triple_of_det_ne_zero
   simp only [planePoint_apply_zero, planePoint_apply_one, PiLp.sub_apply]
   nlinarith
 
+/--
+@isnad1 id=affinein.2h2v.s8.ca460201e30a from=translated src=- shape=48413c35 vocab=6b6cc110
+-/
 theorem referenceSplit_triangle2_affineIndependent {a b : ℝ} (ha0 : 0 < a)
     (hb1 : b < 1) :
     AffineIndependent ℝ ![planePoint a 0, planePoint 0 1, planePoint 0 b] := by
@@ -370,7 +406,13 @@ noncomputable def cartesianY : Plane →ᵃ[ℝ] ℝ :=
   ((LinearMap.proj (R := ℝ) (φ := fun _ : Fin 2 => ℝ) 1).comp
     (WithLp.linearEquiv 2 ℝ (Fin 2 → ℝ)).toLinearMap).toAffineMap
 
+/--
+@isnad1 id=eq.0h1v.s9.09727cff3b83 from=translated src=- shape=b97d241e vocab=49638a66
+-/
 @[simp] theorem cartesianX_apply (p : Plane) : cartesianX p = p 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s9.201416559a68 from=translated src=- shape=b97d241e vocab=3560ce3f
+-/
 @[simp] theorem cartesianY_apply (p : Plane) : cartesianY p = p 1 := rfl
 
 /-- The affine line through the two new edge points in the reference split. -/
@@ -386,12 +428,21 @@ Its second coefficient is chosen between `a` and `a / b`. -/
 noncomputable def referenceVertexAffine (a b : ℝ) : Plane →ᵃ[ℝ] ℝ :=
   cartesianX + (a * (1 + b) / (2 * b)) • cartesianY - AffineMap.const ℝ Plane a
 
+/--
+@isnad1 id=eq.0h4v.s9.834eefaf4968 from=translated src=- shape=dcc0dd87 vocab=b8e9602d
+-/
 @[simp] theorem referenceOuterAffine_planePoint (a b x y : ℝ) :
     referenceOuterAffine a b (planePoint x y) = a⁻¹ * x + b⁻¹ * y - 1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.68705b4f0adb from=translated src=- shape=64d2fe92 vocab=f67bfd59
+-/
 @[simp] theorem referenceDiagonalAffine_planePoint (a x y : ℝ) :
     referenceDiagonalAffine a (planePoint x y) = x + a * y - a := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.987bbd2c3e2d from=translated src=- shape=2817f977 vocab=6372d057
+-/
 @[simp] theorem referenceVertexAffine_planePoint (a b x y : ℝ) :
     referenceVertexAffine a b (planePoint x y) =
       x + (a * (1 + b) / (2 * b)) * y - a := rfl
@@ -620,7 +671,9 @@ noncomputable def referenceSplitMesh (a b : ℝ) (ha0 : 0 < a) (ha1 : a < 1)
           nlinarith
     · simp
 
-/-- A three-term nonnegative affine combination belongs to the corresponding triangle. -/
+/-- A three-term nonnegative affine combination belongs to the corresponding triangle.
+@isnad1 id=mem.3h3v.s9.937d2b8f09a9 from=translated src=- shape=0659743d vocab=9b839465
+-/
 theorem mem_convexHull_range_fin3_of_weights (p : Fin 3 → Plane) (x : Plane)
     (w : Fin 3 → ℝ) (hw : ∀ i, 0 ≤ w i) (hsum : w 0 + w 1 + w 2 = 1)
     (hx : w 0 • p 0 + w 1 • p 1 + w 2 • p 2 = x) :
@@ -632,7 +685,9 @@ theorem mem_convexHull_range_fin3_of_weights (p : Fin 3 → Plane) (x : Plane)
     · simpa [Fin.sum_univ_succ, add_assoc] using hx
     · simpa [Fin.sum_univ_succ, add_assoc] using hsum
 
-/-- Cartesian membership criterion for the standard closed triangle. -/
+/-- Cartesian membership criterion for the standard closed triangle.
+@isnad1 id=iff.0h1v.s9.8143b880fff9 from=translated src=- shape=ca544a62 vocab=947419f8
+-/
 theorem mem_standardTriangle_iff (x : Plane) :
     x ∈ convexHull ℝ (Set.range ![planePoint 0 0, planePoint 1 0, planePoint 0 1]) ↔
       0 ≤ x 0 ∧ 0 ≤ x 1 ∧ x 0 + x 1 ≤ 1 := by
@@ -680,7 +735,9 @@ private theorem referenceTriangle2_carrier (a b : ℝ) :
   simp [referenceSplitPosition]
   tauto
 
-/-- The three reference triangles cover exactly the standard triangle. -/
+/-- The three reference triangles cover exactly the standard triangle.
+@isnad1 id=eq.4h2v.s9.7ed54086aab9 from=translated src=- shape=3306b662 vocab=68940f4b
+-/
 theorem referenceSplit_union (a b : ℝ) (ha0 : 0 < a) (ha1 : a < 1)
     (hb0 : 0 < b) (hb1 : b < 1) :
     (⋃ t ∈ referenceSplitTriangles,
@@ -779,7 +836,9 @@ theorem referenceSplit_union (a b : ℝ) (ha0 : 0 < a) (ha1 : a < 1)
           fin_cases i <;> simp [planePoint] <;>
             field_simp [h1b, ha0.ne']; ring
 
-/-- The reference line split preserves the support of the standard triangle. -/
+/-- The reference line split preserves the support of the standard triangle.
+@isnad1 id=eq.4h2v.s8.e297c731d965 from=translated src=- shape=66c9f7fe vocab=d7c9f3c6
+-/
 theorem referenceSplitMesh_support (a b : ℝ) (ha0 : 0 < a) (ha1 : a < 1)
     (hb0 : 0 < b) (hb1 : b < 1) :
     (referenceSplitMesh a b ha0 ha1 hb0 hb1).toPlaneComplex.support =
@@ -799,6 +858,9 @@ def referenceEdgeSplitPosition (c : ℝ) : Fin 4 → Plane :=
 def referenceEdgeSplitTriangles : Finset (Finset (Fin 4)) :=
   {{0, 2, 3}, {1, 2, 3}}
 
+/--
+@isnad1 id=injectiv.2h1v.s5.bc19bdc4b14b from=translated src=- shape=0d37cf6e vocab=ddba3589
+-/
 theorem referenceEdgeSplitPosition_injective {c : ℝ} (hc0 : 0 < c) (hc1 : c < 1) :
     Function.Injective (referenceEdgeSplitPosition c) := by
   intro i j hij
@@ -922,6 +984,9 @@ private theorem referenceEdgeTriangle1_carrier (c : ℝ) :
   simp [referenceEdgeSplitPosition]
   tauto
 
+/--
+@isnad1 id=eq.2h1v.s9.d3561344f5c9 from=translated src=- shape=843d752c vocab=0ddf4b6b
+-/
 theorem referenceEdgeSplit_union (c : ℝ) (hc0 : 0 < c) (hc1 : c < 1) :
     (⋃ t ∈ referenceEdgeSplitTriangles,
       convexHull ℝ (referenceEdgeSplitPosition c '' (t : Set (Fin 4)))) =
@@ -983,6 +1048,9 @@ theorem referenceEdgeSplit_union (c : ℝ) (hc0 : 0 < c) (hc1 : c < 1) :
       · ext i
         fin_cases i <;> simp [planePoint] ; field_simp [h1c] ; ring
 
+/--
+@isnad1 id=eq.2h1v.s8.57696d4154a3 from=translated src=- shape=403db541 vocab=052c42ee
+-/
 theorem referenceEdgeSplitMesh_support (c : ℝ) (hc0 : 0 < c) (hc1 : c < 1) :
     (referenceEdgeSplitMesh c hc0 hc1).toPlaneComplex.support =
       convexHull ℝ (Set.range ![planePoint 0 0, planePoint 1 0, planePoint 0 1]) := by
@@ -1000,24 +1068,39 @@ namespace affineCutPoint
 
 variable (f : Plane →ᵃ[ℝ] ℝ) (p q : Plane)
 
+/--
+@isnad1 id=lt.2h3v.s11.82370ca20d45 from=translated src=- shape=a61e0b2d vocab=65bf8dd2
+-/
 theorem parameter_pos (hp : 0 < f p) (hq : f q < 0) :
     0 < f p / (f p - f q) := by
   exact div_pos hp (by linarith)
 
+/--
+@isnad1 id=lt.2h3v.s11.826b44739000 from=translated src=- shape=8be23790 vocab=65bf8dd2
+-/
 theorem parameter_lt_one (hp : 0 < f p) (hq : f q < 0) :
     f p / (f p - f q) < 1 := by
   apply (div_lt_one (by linarith : 0 < f p - f q)).mpr
   linarith
 
+/--
+@isnad1 id=mem.2h3v.s11.c60ed556ba3b from=translated src=- shape=4e217289 vocab=07df2f6a
+-/
 theorem parameter_mem_Icc (hp : 0 < f p) (hq : f q < 0) :
     f p / (f p - f q) ∈ Set.Icc (0 : ℝ) 1 :=
   ⟨(parameter_pos f p q hp hq).le, (parameter_lt_one f p q hp hq).le⟩
 
+/--
+@isnad1 id=mem.2h3v.s10.9c127bf9113e from=translated src=- shape=22326085 vocab=c73f75f3
+-/
 theorem mem_segment (hp : 0 < f p) (hq : f q < 0) :
     affineCutPoint f p q ∈ segment ℝ p q := by
   rw [segment_eq_image_lineMap]
   exact ⟨f p / (f p - f q), parameter_mem_Icc f p q hp hq, rfl⟩
 
+/--
+@isnad1 id=eq.2h3v.s11.a477c7968e8d from=translated src=- shape=70fad4a7 vocab=44c250e1
+-/
 @[simp] theorem apply_eq_zero (hp : 0 < f p) (hq : f q < 0) :
     f (affineCutPoint f p q) = 0 := by
   rw [affineCutPoint, f.apply_lineMap, AffineMap.lineMap_apply_module]
@@ -1025,12 +1108,18 @@ theorem mem_segment (hp : 0 < f p) (hq : f q < 0) :
   field_simp [hden]
   ring
 
+/--
+@isnad1 id=ne.2h3v.s10.8ebb913bf152 from=translated src=- shape=35b66d6f vocab=44c250e1
+-/
 theorem ne_left (hp : 0 < f p) (hq : f q < 0) : affineCutPoint f p q ≠ p := by
   intro h
   have := congrArg f h
   rw [apply_eq_zero f p q hp hq] at this
   linarith
 
+/--
+@isnad1 id=ne.2h3v.s10.7058afdb4d66 from=translated src=- shape=dc0703f1 vocab=44c250e1
+-/
 theorem ne_right (hp : 0 < f p) (hq : f q < 0) : affineCutPoint f p q ≠ q := by
   intro h
   have := congrArg f h
@@ -1061,7 +1150,9 @@ theorem eq_of_mem_segment_of_apply_eq_zero (hp : 0 < f p) (hq : f q < 0)
   simp only [smul_eq_mul] at hfx
   linarith
 
-/-- Negating the affine functional does not change its geometric cut point. -/
+/-- Negating the affine functional does not change its geometric cut point.
+@isnad1 id=eq.0h3v.s9.79ba81472b26 from=translated src=- shape=c849501b vocab=97c916ec
+-/
 theorem neg (f : Plane →ᵃ[ℝ] ℝ) (p q : Plane) :
     affineCutPoint (-f) p q = affineCutPoint f p q := by
   unfold affineCutPoint
@@ -1086,6 +1177,9 @@ end affineCutPoint
 def standardTrianglePosition : Fin 3 → Plane :=
   ![planePoint 0 0, planePoint 1 0, planePoint 0 1]
 
+/--
+@isnad1 id=affinein.0h0v.s8.6290457d9e54 from=translated src=- shape=7e71be5a vocab=4a05ef27
+-/
 theorem standardTrianglePosition_affineIndependent :
     AffineIndependent ℝ standardTrianglePosition := by
   apply affineIndependent_plane_triple_of_det_ne_zero
@@ -1111,7 +1205,9 @@ noncomputable def triangleLineSplitMesh (p : Fin 3 → Plane) (hp : AffineIndepe
     (triangleAffineEquiv standardTrianglePosition p
       standardTrianglePosition_affineIndependent hp)
 
-/-- Splitting a triangle along an affine line preserves its support. -/
+/-- Splitting a triangle along an affine line preserves its support.
+@isnad1 id=eq.4h2v.s11.225c5317ac23 from=translated src=- shape=4e220d11 vocab=2212c954
+-/
 theorem triangleLineSplitMesh_support (p : Fin 3 → Plane) (hp : AffineIndependent ℝ p)
     (f : Plane →ᵃ[ℝ] ℝ) (hp0 : 0 < f (p 0)) (hp1 : f (p 1) < 0)
     (hp2 : f (p 2) < 0) :
@@ -1149,11 +1245,17 @@ noncomputable def triangleEquiv (t : M.Triangle) : t.1 ≃ Fin 3 :=
 noncomputable def orderedVertex (t : M.Triangle) : Fin 3 → M.Vertex :=
   fun i => ((M.triangleEquiv t).symm i).1
 
+/--
+@isnad1 id=injectiv.0h2v.s4.53a2253e83e6 from=translated src=- shape=52fbbae4 vocab=b12d4d4c
+-/
 theorem orderedVertex_injective (t : M.Triangle) :
     Function.Injective (M.orderedVertex t) := by
   intro i j hij
   exact (M.triangleEquiv t).symm.injective (Subtype.ext hij)
 
+/--
+@isnad1 id=eq.0h2v.s5.cd6650872888 from=translated src=- shape=10be3391 vocab=7a1fb412
+-/
 theorem range_orderedVertex (t : M.Triangle) :
     Set.range (M.orderedVertex t) = (t.1 : Set M.Vertex) := by
   ext v
@@ -1165,10 +1267,16 @@ theorem range_orderedVertex (t : M.Triangle) :
     exact ⟨M.triangleEquiv t vt, by
       simp only [orderedVertex, Equiv.symm_apply_apply, vt]⟩
 
+/--
+@isnad1 id=mem.0h3v.s5.84e47496b516 from=translated src=- shape=0914aa71 vocab=51354723
+-/
 theorem orderedVertex_mem (t : M.Triangle) (i : Fin 3) : M.orderedVertex t i ∈ t.1 := by
   have h : M.orderedVertex t i ∈ Set.range (M.orderedVertex t) := Set.mem_range_self i
   rwa [M.range_orderedVertex t] at h
 
+/--
+@isnad1 id=affinein.0h2v.s8.18bb6b47a1ea from=translated src=- shape=bdf1cd56 vocab=f3d81549
+-/
 theorem orderedVertex_affineIndependent (t : M.Triangle) :
     AffineIndependent ℝ (M.position ∘ M.orderedVertex t) := by
   let e : Fin 3 ≃ t.1 := (M.triangleEquiv t).symm
@@ -1217,13 +1325,22 @@ noncomputable def cutRefinedVertex (u v : M.Vertex)
     exact ⟨(u, v), Finset.mem_filter.mpr
       ⟨Finset.mem_product.mpr ⟨Finset.mem_univ _, Finset.mem_univ _⟩, huv⟩, rfl⟩⟩
 
+/--
+@isnad1 id=eq.0h3v.s8.0ae95624c158 from=translated src=- shape=93d5dbe0 vocab=864b8f0f
+-/
 @[simp] theorem oldRefinedVertex_val (v : M.Vertex) :
     (M.oldRefinedVertex f v : Plane) = M.position v := rfl
 
+/--
+@isnad1 id=eq.1h4v.s10.6d9301bd8463 from=translated src=- shape=25660153 vocab=325ea7cc
+-/
 @[simp] theorem cutRefinedVertex_val (u v : M.Vertex)
     (huv : f (M.position u) * f (M.position v) < 0) :
     (M.cutRefinedVertex f u v huv : Plane) = M.pairCutPosition f u v := rfl
 
+/--
+@isnad1 id=eq.1h4v.s10.0337000c9246 from=translated src=- shape=d31518cb vocab=b194a5ab
+-/
 theorem pairCutPosition_eq_reverse (u v : M.Vertex)
     (huv : f (M.position u) * f (M.position v) < 0) :
     M.pairCutPosition f u v = M.pairCutPosition f v u := by
@@ -1231,6 +1348,9 @@ theorem pairCutPosition_eq_reverse (u v : M.Vertex)
   · exact affineCutPoint.eq_reverse f (M.position u) (M.position v) huv.1 huv.2
   · exact (affineCutPoint.eq_reverse f (M.position v) (M.position u) huv.2 huv.1).symm
 
+/--
+@isnad1 id=eq.1h4v.s11.f5c6fb9e3425 from=translated src=- shape=8d563151 vocab=b194a5ab
+-/
 theorem pairCutPosition_apply_eq_zero (u v : M.Vertex)
     (huv : f (M.position u) * f (M.position v) < 0) :
     f (M.pairCutPosition f u v) = 0 := by
@@ -1239,6 +1359,9 @@ theorem pairCutPosition_apply_eq_zero (u v : M.Vertex)
   · rw [M.pairCutPosition_eq_reverse f u v (mul_neg_iff.mpr (Or.inr huv))]
     exact affineCutPoint.apply_eq_zero f (M.position v) (M.position u) huv.2 huv.1
 
+/--
+@isnad1 id=eq.0h2v.s9.70b05bb3afbb from=translated src=- shape=10238c24 vocab=09ffed73
+-/
 theorem crossingPairs_neg : M.crossingPairs (-f) = M.crossingPairs f := by
   classical
   unfold crossingPairs
@@ -1247,6 +1370,9 @@ theorem crossingPairs_neg : M.crossingPairs (-f) = M.crossingPairs f := by
   simp only [AffineMap.coe_neg, Pi.neg_apply]
   ring_nf
 
+/--
+@isnad1 id=eq.0h2v.s9.5226bb76d6a1 from=translated src=- shape=2823a47f vocab=5b69497c
+-/
 theorem refinementPoints_neg : M.refinementPoints (-f) = M.refinementPoints f := by
   classical
   unfold refinementPoints pairCutPosition
@@ -1263,6 +1389,9 @@ noncomputable def refinedVertexNegEquiv : M.RefinedVertex (-f) ≃ M.RefinedVert
   left_inv v := Subtype.ext rfl
   right_inv v := Subtype.ext rfl
 
+/--
+@isnad1 id=eq.0h3v.s12.1f98a22e94ef from=translated src=- shape=e1b97760 vocab=f3ba3b05
+-/
 @[simp] theorem refinedVertexNegEquiv_val (v : M.RefinedVertex (-f)) :
     (M.refinedVertexNegEquiv f v : Plane) = v := rfl
 
@@ -1283,6 +1412,9 @@ noncomputable def strictModelVertex (t : M.Triangle)
 noncomputable def strictModelPosition (p : Fin 3 → Plane) (f : Plane →ᵃ[ℝ] ℝ) : Fin 5 → Plane :=
   ![p 0, p 1, p 2, affineCutPoint f (p 0) (p 1), affineCutPoint f (p 0) (p 2)]
 
+/--
+@isnad1 id=eq.3h4v.s11.8b8ae17f7288 from=translated src=- shape=f732c5a9 vocab=af67a6e3
+-/
 theorem strictModelVertex_val (t : M.Triangle)
     (h0 : 0 < f (M.position (M.orderedVertex t 0)))
     (h1 : f (M.position (M.orderedVertex t 1)) < 0)
@@ -1292,7 +1424,9 @@ theorem strictModelVertex_val (t : M.Triangle)
   fin_cases i <;> rfl
 
 /-- Geometric identification of the strict five-point list with the affine image of the reference
-split. -/
+split.
+@isnad1 id=eq.4h3v.s12.0150b58ed080 from=translated src=- shape=15c6a43c vocab=8aa5daaf
+-/
 theorem strictModelPosition_eq_affineReference (p : Fin 3 → Plane)
     (hp : AffineIndependent ℝ p) (_ : 0 < f (p 0)) (_ : f (p 1) < 0)
     (_ : f (p 2) < 0) (i : Fin 5) :
@@ -1386,6 +1520,9 @@ noncomputable def strictLocalMesh (t : M.Triangle)
             h0 h1 h2 i
         _ = (R.mapAffineEquiv e).position i := rfl)
 
+/--
+@isnad1 id=eq.3h3v.s11.434f5c00fcfe from=translated src=- shape=7555fa3f vocab=e100879a
+-/
 theorem strictLocalMesh_support (t : M.Triangle)
     (h0 : 0 < f (M.position (M.orderedVertex t 0)))
     (h1 : f (M.position (M.orderedVertex t 1)) < 0)
@@ -1441,6 +1578,9 @@ noncomputable def strictNegativeLocalMesh (t : M.Triangle)
   N.reindex ((↑) : M.RefinedVertex f → Plane) Subtype.val_injective
     (M.refinedVertexNegEquiv f).toEmbedding (fun _ => rfl)
 
+/--
+@isnad1 id=eq.3h3v.s11.ff61963c88ff from=translated src=- shape=810dcfdb vocab=f7ba7fd9
+-/
 theorem strictNegativeLocalMesh_support (t : M.Triangle)
     (h0 : f (M.position (M.orderedVertex t 0)) < 0)
     (h1 : 0 < f (M.position (M.orderedVertex t 1)))
@@ -1467,6 +1607,9 @@ noncomputable def strictVertices (v : Fin 3 → M.Vertex)
     M.cutRefinedVertex f (v 0) (v 1) (mul_neg_iff.mpr (Or.inl ⟨h0, h1⟩)),
     M.cutRefinedVertex f (v 0) (v 2) (mul_neg_iff.mpr (Or.inl ⟨h0, h2⟩))]
 
+/--
+@isnad1 id=eq.3h4v.s11.6da6c1cb745c from=translated src=- shape=0317eec6 vocab=a1eca3fa
+-/
 theorem strictVertices_val (v : Fin 3 → M.Vertex)
     (h0 : 0 < f (M.position (v 0))) (h1 : f (M.position (v 1)) < 0)
     (h2 : f (M.position (v 2)) < 0) (i : Fin 5) :
@@ -1517,6 +1660,9 @@ noncomputable def strictMeshFor (v : Fin 3 → M.Vertex)
           strictModelPosition_eq_affineReference f _ hv h0 h1 h2 i
         _ = (R.mapAffineEquiv e).position i := rfl)
 
+/--
+@isnad1 id=eq.4h3v.s11.cbbd6d5fa663 from=translated src=- shape=4688694a vocab=e353ccd2
+-/
 theorem strictMeshFor_support (v : Fin 3 → M.Vertex)
     (hv : AffineIndependent ℝ (M.position ∘ v))
     (h0 : 0 < f (M.position (v 0))) (h1 : f (M.position (v 1)) < 0)
@@ -1563,6 +1709,9 @@ noncomputable def strictNegativeMeshFor (v : Fin 3 → M.Vertex)
   N.reindex ((↑) : M.RefinedVertex f → Plane) Subtype.val_injective
     (M.refinedVertexNegEquiv f).toEmbedding (fun _ => rfl)
 
+/--
+@isnad1 id=eq.4h3v.s11.a7c61ca88aa7 from=translated src=- shape=13f4ca68 vocab=bcd88028
+-/
 theorem strictNegativeMeshFor_support (v : Fin 3 → M.Vertex)
     (hv : AffineIndependent ℝ (M.position ∘ v))
     (h0 : f (M.position (v 0)) < 0) (h1 : 0 < f (M.position (v 1)))
@@ -1585,6 +1734,9 @@ theorem strictNegativeMeshFor_support (v : Fin 3 → M.Vertex)
 noncomputable def edgeModelPosition (p : Fin 3 → Plane) (f : Plane →ᵃ[ℝ] ℝ) : Fin 4 → Plane :=
   ![p 0, p 1, p 2, affineCutPoint f (p 0) (p 1)]
 
+/--
+@isnad1 id=eq.3h3v.s11.2ee2b21f29d8 from=translated src=- shape=8576efb1 vocab=33175427
+-/
 theorem edgeModelPosition_eq_affineReference (p : Fin 3 → Plane)
     (hp : AffineIndependent ℝ p) (_ : 0 < f (p 0)) (_ : f (p 1) < 0)
     (i : Fin 4) :
@@ -1622,6 +1774,9 @@ noncomputable def edgeVertices (v : Fin 3 → M.Vertex)
   ![M.oldRefinedVertex f (v 0), M.oldRefinedVertex f (v 1), M.oldRefinedVertex f (v 2),
     M.cutRefinedVertex f (v 0) (v 1) (mul_neg_iff.mpr (Or.inl ⟨h0, h1⟩))]
 
+/--
+@isnad1 id=eq.2h4v.s10.b0265206053c from=translated src=- shape=32670e44 vocab=99a948ea
+-/
 theorem edgeVertices_val (v : Fin 3 → M.Vertex)
     (h0 : 0 < f (M.position (v 0))) (h1 : f (M.position (v 1)) < 0) (i : Fin 4) :
     (M.edgeVertices f v h0 h1 i : Plane) = edgeModelPosition (M.position ∘ v) f i := by
@@ -1665,6 +1820,9 @@ noncomputable def edgeMeshFor (v : Fin 3 → M.Vertex)
           edgeModelPosition_eq_affineReference f _ hv h0 h1 i
         _ = (R.mapAffineEquiv e).position i := rfl)
 
+/--
+@isnad1 id=eq.3h3v.s11.9317cbed9ad2 from=translated src=- shape=d60bec63 vocab=77766c0b
+-/
 theorem edgeMeshFor_support (v : Fin 3 → M.Vertex)
     (hv : AffineIndependent ℝ (M.position ∘ v))
     (h0 : 0 < f (M.position (v 0))) (h1 : f (M.position (v 1)) < 0) :
@@ -1705,6 +1863,9 @@ noncomputable def edgeNegativeMeshFor (v : Fin 3 → M.Vertex)
   N.reindex ((↑) : M.RefinedVertex f → Plane) Subtype.val_injective
     (M.refinedVertexNegEquiv f).toEmbedding (fun _ => rfl)
 
+/--
+@isnad1 id=eq.3h3v.s11.959367c0408c from=translated src=- shape=15b5b182 vocab=c77df4a9
+-/
 theorem edgeNegativeMeshFor_support (v : Fin 3 → M.Vertex)
     (hv : AffineIndependent ℝ (M.position ∘ v))
     (h0 : f (M.position (v 0)) < 0) (h1 : 0 < f (M.position (v 1))) :
@@ -1722,10 +1883,16 @@ theorem edgeNegativeMeshFor_support (v : Fin 3 → M.Vertex)
 
 /-! ## Choosing the local model from the signs -/
 
+/--
+@isnad1 id=affinein.0h3v.s8.dd62bdb4e3e4 from=translated src=- shape=2fe05039 vocab=b4d1362e
+-/
 theorem orderedVertex_perm_affineIndependent (t : M.Triangle) (σ : Equiv.Perm (Fin 3)) :
     AffineIndependent ℝ (M.position ∘ M.orderedVertex t ∘ σ) := by
   exact (M.orderedVertex_affineIndependent t).comp_embedding σ.toEmbedding
 
+/--
+@isnad1 id=eq.0h3v.s7.b6836cb5c9d0 from=translated src=- shape=497351cd vocab=2ee58ecc
+-/
 theorem range_orderedVertex_perm (t : M.Triangle) (σ : Equiv.Perm (Fin 3)) :
     Set.range (M.position ∘ M.orderedVertex t ∘ σ) =
       M.position '' (t.1 : Set M.Vertex) := by
@@ -1792,6 +1959,9 @@ noncomputable def unchangedMeshFor (v : Fin 3 → M.Vertex)
     ((↑) : M.RefinedVertex f → Plane) Subtype.val_injective
       (M.oldVerticesEmbedding f v hv) (fun _ => rfl)
 
+/--
+@isnad1 id=eq.1h3v.s9.f84eb02307c6 from=translated src=- shape=8b74a701 vocab=3f31bc82
+-/
 theorem unchangedMeshFor_support (v : Fin 3 → M.Vertex)
     (hv : AffineIndependent ℝ (M.position ∘ v)) :
     (M.unchangedMeshFor f v hv).toPlaneComplex.support =
@@ -1829,6 +1999,9 @@ noncomputable def localRefinementMesh (t : M.Triangle) : TriangleMesh := by
   else
     M.unchangedMeshFor f (M.orderedVertex t) (M.orderedVertex_affineIndependent t)
 
+/--
+@isnad1 id=eq.0h3v.s9.9bf4d5cd74d7 from=translated src=- shape=236f1f67 vocab=2205cbd1
+-/
 theorem localRefinementMesh_support (t : M.Triangle) :
     (M.localRefinementMesh f t).toPlaneComplex.support =
       convexHull ℝ (M.position '' (t.1 : Set M.Vertex)) := by
@@ -1856,6 +2029,9 @@ def IsMonochromatic (N : TriangleMesh) (f : Plane →ᵃ[ℝ] ℝ) : Prop :=
   ∀ s ∈ N.triangles,
     (∀ v ∈ s, 0 ≤ f (N.position v)) ∨ (∀ v ∈ s, f (N.position v) ≤ 0)
 
+/--
+@isnad1 id=ismonoch.1h2v.s9.e03ee30b2201 from=translated src=- shape=c0f12918 vocab=60573f91
+-/
 theorem IsMonochromatic.of_neg {N : TriangleMesh}
     (hN : N.IsMonochromatic (-f)) : N.IsMonochromatic f := by
   intro s hs
@@ -1867,6 +2043,9 @@ theorem IsMonochromatic.of_neg {N : TriangleMesh}
     intro v hv
     simpa using h v hv
 
+/--
+@isnad1 id=ismonoch.3h5v.s8.0a3333002767 from=translated src=- shape=8ecb21e9 vocab=fcc96f08
+-/
 theorem IsMonochromatic.reindex {N : TriangleMesh} {V' : Type} [Fintype V']
     [DecidableEq V'] (position' : V' → Plane) (hposition_injective : Function.Injective position')
     (e : N.Vertex ↪ V') (hposition : ∀ v, position' (e v) = N.position v)
@@ -1888,6 +2067,9 @@ theorem IsMonochromatic.reindex {N : TriangleMesh} {V' : Type} [Fintype V']
     rw [hposition]
     exact h w hw
 
+/--
+@isnad1 id=eq.3h4v.s12.643fc7dbe1b7 from=translated src=- shape=0ca49a0d vocab=9252c83b
+-/
 theorem strictVertices_f (v : Fin 3 → M.Vertex)
     (h0 : 0 < f (M.position (v 0))) (h1 : f (M.position (v 1)) < 0)
     (h2 : f (M.position (v 2)) < 0) (i : Fin 5) :
@@ -1902,6 +2084,9 @@ theorem strictVertices_f (v : Fin 3 → M.Vertex)
   · exact M.pairCutPosition_apply_eq_zero f (v 0) (v 2)
       (mul_neg_iff.mpr (Or.inl ⟨h0, h2⟩))
 
+/--
+@isnad1 id=eq.3h4v.s12.100ad6583779 from=translated src=- shape=7b4ae12e vocab=58c69704
+-/
 theorem edgeVertices_f (v : Fin 3 → M.Vertex)
     (h0 : 0 < f (M.position (v 0))) (h1 : f (M.position (v 1)) < 0)
     (hzero : f (M.position (v 2)) = 0) (i : Fin 4) :
@@ -1919,6 +2104,9 @@ def RefinedTrianglesMonochromatic (T : Finset (Finset (M.RefinedVertex f))) : Pr
   ∀ s ∈ T,
     (∀ x ∈ s, 0 ≤ f (x : Plane)) ∨ (∀ x ∈ s, f (x : Plane) ≤ 0)
 
+/--
+@isnad1 id=refinedt.4h3v.s11.a672e3c05a90 from=translated src=- shape=9298a0e8 vocab=ece8784e
+-/
 theorem strictTriangles_monochromatic (v : Fin 3 → M.Vertex)
     (hv : AffineIndependent ℝ (M.position ∘ v))
     (h0 : 0 < f (M.position (v 0))) (h1 : f (M.position (v 1)) < 0)
@@ -1971,6 +2159,9 @@ theorem strictTriangles_monochromatic (v : Fin 3 → M.Vertex)
       change (0 : ℝ) ≤ 0
       norm_num
 
+/--
+@isnad1 id=refinedt.4h3v.s11.1fd9fc9f54ff from=translated src=- shape=fed88029 vocab=13ddd40d
+-/
 theorem edgeTriangles_monochromatic (v : Fin 3 → M.Vertex)
     (hv : AffineIndependent ℝ (M.position ∘ v))
     (h0 : 0 < f (M.position (v 0))) (h1 : f (M.position (v 1)) < 0)
@@ -2023,6 +2214,9 @@ def edgePatternTriangles {V : Type*} [DecidableEq V] (z : Fin 4 → V) :
     Finset (Finset V) :=
   {{z 0, z 2, z 3}, {z 1, z 2, z 3}}
 
+/--
+@isnad1 id=ex.2h4v.s6.28ef10c193bf from=translated src=- shape=0b3045d0 vocab=c1012b68
+-/
 theorem exists_index_of_mem_strictPattern {V : Type*} [DecidableEq V]
     (z : Fin 5 → V) {s : Finset V} (hs : s ∈ strictPatternTriangles z)
     {x : V} (hx : x ∈ s) : ∃ i, x = z i := by
@@ -2041,6 +2235,9 @@ theorem exists_index_of_mem_strictPattern {V : Type*} [DecidableEq V]
   · exact ⟨3, rfl⟩
   · exact ⟨4, rfl⟩
 
+/--
+@isnad1 id=ex.2h4v.s6.816aa3725f16 from=translated src=- shape=0b3045d0 vocab=0d73c2cb
+-/
 theorem exists_index_of_mem_edgePattern {V : Type*} [DecidableEq V]
     (z : Fin 4 → V) {s : Finset V} (hs : s ∈ edgePatternTriangles z)
     {x : V} (hx : x ∈ s) : ∃ i, x = z i := by
@@ -2056,6 +2253,9 @@ theorem exists_index_of_mem_edgePattern {V : Type*} [DecidableEq V]
   · exact ⟨2, rfl⟩
   · exact ⟨3, rfl⟩
 
+/--
+@isnad1 id=eq.4h3v.s11.51a00fcd6a7d from=translated src=- shape=2d82afe9 vocab=082d36dd
+-/
 theorem strictMeshFor_triangles (v : Fin 3 → M.Vertex)
     (hv : AffineIndependent ℝ (M.position ∘ v))
     (h0 : 0 < f (M.position (v 0))) (h1 : f (M.position (v 1)) < 0)
@@ -2067,6 +2267,9 @@ theorem strictMeshFor_triangles (v : Fin 3 → M.Vertex)
     referenceSplitTriangles, TriangleMesh.reindex, TriangleMesh.mapAffineEquiv,
     strictVerticesEmbedding]
 
+/--
+@isnad1 id=eq.3h3v.s11.5202289bdd37 from=translated src=- shape=5046c59c vocab=0710c0ed
+-/
 theorem edgeMeshFor_triangles (v : Fin 3 → M.Vertex)
     (hv : AffineIndependent ℝ (M.position ∘ v))
     (h0 : 0 < f (M.position (v 0))) (h1 : f (M.position (v 1)) < 0) :
@@ -2076,6 +2279,9 @@ theorem edgeMeshFor_triangles (v : Fin 3 → M.Vertex)
     referenceEdgeSplitTriangles, TriangleMesh.reindex, TriangleMesh.mapAffineEquiv,
     edgeVerticesEmbedding]
 
+/--
+@isnad1 id=refinedt.4h3v.s11.4cb4c63dae0a from=translated src=- shape=4a8beff7 vocab=20ee97be
+-/
 theorem strictNegativeMeshFor_monochromatic (v : Fin 3 → M.Vertex)
     (hv : AffineIndependent ℝ (M.position ∘ v))
     (h0 : f (M.position (v 0)) < 0) (h1 : 0 < f (M.position (v 1)))
@@ -2102,6 +2308,9 @@ theorem strictNegativeMeshFor_monochromatic (v : Fin 3 → M.Vertex)
     simpa only [strictMeshFor, TriangleMesh.reindex, AffineMap.coe_neg, Pi.neg_apply,
       neg_nonpos] using hm y hy
 
+/--
+@isnad1 id=refinedt.4h3v.s11.b2f2d0342ee2 from=translated src=- shape=ea239238 vocab=70fda6b3
+-/
 theorem edgeNegativeMeshFor_monochromatic (v : Fin 3 → M.Vertex)
     (hv : AffineIndependent ℝ (M.position ∘ v))
     (h0 : f (M.position (v 0)) < 0) (h1 : 0 < f (M.position (v 1)))
@@ -2128,6 +2337,9 @@ theorem edgeNegativeMeshFor_monochromatic (v : Fin 3 → M.Vertex)
     simpa only [edgeMeshFor, TriangleMesh.reindex, AffineMap.coe_neg, Pi.neg_apply,
       neg_nonpos] using hm y hy
 
+/--
+@isnad1 id=refinedt.5h3v.s12.ff3809f7363f from=translated src=- shape=761e01ec vocab=b7e456f7
+-/
 theorem strictPattern_monochromatic_positive (z : Fin 5 → M.RefinedVertex f)
     (h0 : 0 ≤ f (z 0 : Plane)) (h1 : f (z 1 : Plane) ≤ 0)
     (h2 : f (z 2 : Plane) ≤ 0) (h3 : f (z 3 : Plane) = 0)
@@ -2149,6 +2361,9 @@ theorem strictPattern_monochromatic_positive (z : Fin 5 → M.RefinedVertex f)
     simp only [Finset.mem_insert, Finset.mem_singleton] at hx
     rcases hx with rfl | rfl | rfl <;> linarith
 
+/--
+@isnad1 id=refinedt.5h3v.s12.ee62c83632eb from=translated src=- shape=58be8ce1 vocab=b7e456f7
+-/
 theorem strictPattern_monochromatic_negative (z : Fin 5 → M.RefinedVertex f)
     (h0 : f (z 0 : Plane) ≤ 0) (h1 : 0 ≤ f (z 1 : Plane))
     (h2 : 0 ≤ f (z 2 : Plane)) (h3 : f (z 3 : Plane) = 0)
@@ -2170,6 +2385,9 @@ theorem strictPattern_monochromatic_negative (z : Fin 5 → M.RefinedVertex f)
     simp only [Finset.mem_insert, Finset.mem_singleton] at hx
     rcases hx with rfl | rfl | rfl <;> linarith
 
+/--
+@isnad1 id=refinedt.4h3v.s11.ab9e86641276 from=translated src=- shape=4ebee46f vocab=24c83c1d
+-/
 theorem edgePattern_monochromatic_positive (z : Fin 4 → M.RefinedVertex f)
     (h0 : 0 ≤ f (z 0 : Plane)) (h1 : f (z 1 : Plane) ≤ 0)
     (h2 : f (z 2 : Plane) = 0) (h3 : f (z 3 : Plane) = 0) :
@@ -2186,6 +2404,9 @@ theorem edgePattern_monochromatic_positive (z : Fin 4 → M.RefinedVertex f)
     simp only [Finset.mem_insert, Finset.mem_singleton] at hx
     rcases hx with rfl | rfl | rfl <;> linarith
 
+/--
+@isnad1 id=refinedt.4h3v.s11.cef959844765 from=translated src=- shape=86a6911d vocab=24c83c1d
+-/
 theorem edgePattern_monochromatic_negative (z : Fin 4 → M.RefinedVertex f)
     (h0 : f (z 0 : Plane) ≤ 0) (h1 : 0 ≤ f (z 1 : Plane))
     (h2 : f (z 2 : Plane) = 0) (h3 : f (z 3 : Plane) = 0) :
@@ -2264,9 +2485,15 @@ noncomputable def localCutVertex (t : M.Triangle) (i j : Fin 3)
       f (M.position (M.orderedVertex t j)) < 0) : M.RefinedVertex f :=
   M.cutRefinedVertex f (M.orderedVertex t i) (M.orderedVertex t j) hij
 
+/--
+@isnad1 id=eq.0h4v.s8.fcfcd115ff97 from=translated src=- shape=a2d8b1c0 vocab=748d321e
+-/
 @[simp] theorem localOldVertex_val (t : M.Triangle) (i : Fin 3) :
     (M.localOldVertex f t i : Plane) = M.position (M.orderedVertex t i) := rfl
 
+/--
+@isnad1 id=eq.1h5v.s11.cdc9f8a3a9bd from=translated src=- shape=a84f4413 vocab=36e83c9f
+-/
 theorem localCutVertex_apply_eq_zero (t : M.Triangle) (i j : Fin 3)
     (hij : f (M.position (M.orderedVertex t i)) *
       f (M.position (M.orderedVertex t j)) < 0) :
@@ -2405,7 +2632,9 @@ noncomputable def localRefinementTriangles (t : M.Triangle) :
     exact {{o 0, o 1, o 2}}
 
 /-- Cutting one old triangle by an affine line produces triangles contained in the two closed
-half-planes. -/
+half-planes.
+@isnad1 id=refinedt.0h3v.s8.3a65831c1b1f from=translated src=- shape=fd4d1510 vocab=6d89a6f8
+-/
 theorem localRefinementTriangles_monochromatic (t : M.Triangle) :
     M.RefinedTrianglesMonochromatic f (M.localRefinementTriangles f t) := by
   classical
@@ -2588,6 +2817,9 @@ noncomputable def localMeshTriangles (t : M.Triangle) :
   · exact negativeEdge (Classical.choice hen)
   · exact unchanged hp hn hep hen
 
+/--
+@isnad1 id=eq.1h4v.s8.3c0f2e45b082 from=translated src=- shape=6d17c3a6 vocab=0b6d9889
+-/
 theorem card_of_mem_localMeshTriangles (t : M.Triangle)
     {s : Finset (M.RefinedVertex f)} (hs : s ∈ M.localMeshTriangles f t) : s.card = 3 := by
   revert hs
@@ -2603,6 +2835,9 @@ theorem card_of_mem_localMeshTriangles (t : M.Triangle)
   · intro _ _ _ _ hs
     exact (M.unchangedMeshFor f _ _).card_triangle s hs
 
+/--
+@isnad1 id=affinein.1h4v.s9.a4b966548bfb from=translated src=- shape=13ec2a87 vocab=d4c4bc75
+-/
 theorem affineIndependent_of_mem_localMeshTriangles (t : M.Triangle)
     {s : Finset (M.RefinedVertex f)} (hs : s ∈ M.localMeshTriangles f t) :
     AffineIndependent ℝ fun v : s => (v.1 : Plane) := by
@@ -2619,6 +2854,9 @@ theorem affineIndependent_of_mem_localMeshTriangles (t : M.Triangle)
   · intro _ _ _ _ hs
     exact (M.unchangedMeshFor f _ _).affineIndependent_triangle s hs
 
+/--
+@isnad1 id=refinedt.0h3v.s8.b05cc453c4f9 from=translated src=- shape=fd4d1510 vocab=899c49b1
+-/
 theorem localMeshTriangles_monochromatic (t : M.Triangle) :
     M.RefinedTrianglesMonochromatic f (M.localMeshTriangles f t) := by
   classical
@@ -2672,7 +2910,9 @@ theorem localMeshTriangles_monochromatic (t : M.Triangle) :
       · change f (M.position (M.orderedVertex t 2)) ≤ 0; exact h.2.2
 
 /-- A vertex used by a local line refinement is either an old vertex of its parent triangle or
-lies on the cutting line. -/
+lies on the cutting line.
+@isnad1 id=or.2h5v.s10.b249b595cd93 from=translated src=- shape=ad1f052a vocab=3401d131
+-/
 theorem local_child_vertex_old_or_zero (t : M.Triangle)
     {s : Finset (M.RefinedVertex f)} (hs : s ∈ M.localMeshTriangles f t)
     {x : M.RefinedVertex f} (hx : x ∈ s) :
@@ -2754,6 +2994,9 @@ theorem local_child_vertex_old_or_zero (t : M.Triangle)
     left
     exact ⟨_, M.orderedVertex_mem t i, rfl⟩
 
+/--
+@isnad1 id=eq.0h3v.s9.9bf2158d1095 from=translated src=- shape=833580f9 vocab=a60f4d27
+-/
 theorem localMeshTriangles_support (t : M.Triangle) :
     (⋃ s ∈ M.localMeshTriangles f t,
       convexHull ℝ (((↑) : M.RefinedVertex f → Plane) '' (s : Set (M.RefinedVertex f)))) =
@@ -2799,6 +3042,9 @@ theorem localMeshTriangles_support (t : M.Triangle) :
     rw [Set.range_comp, M.range_orderedVertex t] at h
     exact h
 
+/--
+@isnad1 id=eq.2h5v.s10.3d12018b0db9 from=translated src=- shape=fcc1c919 vocab=1d8f8cc6
+-/
 theorem localMeshTriangles_inter (t : M.Triangle)
     {s u : Finset (M.RefinedVertex f)} (hs : s ∈ M.localMeshTriangles f t)
     (hu : u ∈ M.localMeshTriangles f t) :
@@ -2819,6 +3065,9 @@ theorem localMeshTriangles_inter (t : M.Triangle)
   · intro _ _ _ _ hs hu
     exact (M.unchangedMeshFor f _ _).triangle_inter s hs u hu
 
+/--
+@isnad1 id=le.1h4v.s9.8ae061e4ece6 from=translated src=- shape=7145261c vocab=215e42db
+-/
 theorem convexHull_child_subset_parent (t : M.Triangle)
     {s : Finset (M.RefinedVertex f)} (hs : s ∈ M.localMeshTriangles f t) :
     convexHull ℝ (((↑) : M.RefinedVertex f → Plane) '' (s : Set (M.RefinedVertex f))) ⊆
@@ -2827,6 +3076,9 @@ theorem convexHull_child_subset_parent (t : M.Triangle)
   exact Set.subset_iUnion_of_subset s
     (Set.subset_iUnion_of_subset hs subset_rfl)
 
+/--
+@isnad1 id=mem.2h5v.s9.25374719f470 from=translated src=- shape=05fac2f7 vocab=9d1f5c94
+-/
 theorem child_vertex_mem_parent (t : M.Triangle)
     {s : Finset (M.RefinedVertex f)} (hs : s ∈ M.localMeshTriangles f t)
     {v : M.RefinedVertex f} (hv : v ∈ s) :
@@ -2841,6 +3093,9 @@ noncomputable def oppositeCoord (t : M.Triangle) (k : Fin 3) : Plane →ᵃ[ℝ]
   (affineBasisOfTriangle (M.position ∘ M.orderedVertex t)
     (M.orderedVertex_affineIndependent t)).coord k
 
+/--
+@isnad1 id=eq.0h4v.s9.462cbf8c8fb4 from=translated src=- shape=29afc6cd vocab=bd223639
+-/
 @[simp] theorem oppositeCoord_vertex (t : M.Triangle) (k i : Fin 3) :
     M.oppositeCoord t k (M.position (M.orderedVertex t i)) = if k = i then 1 else 0 := by
   exact AffineBasis.coord_apply _ _ _
@@ -2849,10 +3104,16 @@ noncomputable def oppositeCoord (t : M.Triangle) (k : Fin 3) : Plane →ᵃ[ℝ]
 noncomputable def oppositeEdgePoints (t : M.Triangle) (k : Fin 3) : Finset Plane :=
   (Finset.univ.erase k).image (M.position ∘ M.orderedVertex t)
 
+/--
+@isnad1 id=le.0h3v.s7.77e6ff3f8f55 from=translated src=- shape=e06d3e26 vocab=10bb23db
+-/
 theorem oppositeEdgePoints_subset_parentPoints (t : M.Triangle) (k : Fin 3) :
     M.oppositeEdgePoints t k ⊆ Finset.univ.image (M.position ∘ M.orderedVertex t) := by
   exact Finset.image_subset_image (Finset.erase_subset _ _)
 
+/--
+@isnad1 id=le.1h4v.s9.43cb15168c69 from=translated src=- shape=dbdac855 vocab=a87be478
+-/
 theorem oppositeCoord_nonneg_of_mem_parent (t : M.Triangle) (k : Fin 3)
     {x : Plane} (hx : x ∈ convexHull ℝ (M.position '' (t.1 : Set M.Vertex))) :
     0 ≤ M.oppositeCoord t k x := by
@@ -2866,6 +3127,9 @@ theorem oppositeCoord_nonneg_of_mem_parent (t : M.Triangle) (k : Fin 3)
   rw [M.oppositeCoord_vertex]
   split_ifs <;> norm_num
 
+/--
+@isnad1 id=eq.0h3v.s10.a6b235e8f1d0 from=translated src=- shape=85ecc7b2 vocab=d3494ddc
+-/
 theorem parent_inter_oppositeCoord_zero (t : M.Triangle) (k : Fin 3) :
     convexHull ℝ (M.position '' (t.1 : Set M.Vertex)) ∩
         {x | M.oppositeCoord t k x = 0} =
@@ -2913,6 +3177,9 @@ noncomputable def childEdgeTrace (t : M.Triangle) (k : Fin 3)
     (s : Finset (M.RefinedVertex f)) : Finset (M.RefinedVertex f) :=
   s.filter fun v => M.oppositeCoord t k (v : Plane) = 0
 
+/--
+@isnad1 id=eq.1h5v.s10.2ce73e548305 from=translated src=- shape=2bc25b10 vocab=6564fe48
+-/
 theorem child_inter_oppositeEdge (t : M.Triangle) (k : Fin 3)
     {s : Finset (M.RefinedVertex f)} (hs : s ∈ M.localMeshTriangles f t) :
     convexHull ℝ (((↑) : M.RefinedVertex f → Plane) '' (s : Set (M.RefinedVertex f))) ∩
@@ -2954,6 +3221,9 @@ theorem child_inter_oppositeEdge (t : M.Triangle) (k : Fin 3)
     exact M.oppositeCoord_nonneg_of_mem_parent t k
       (M.child_vertex_mem_parent f t hs hv)
 
+/--
+@isnad1 id=ex.2h3v.s7.a73bcfe4962d from=translated src=- shape=5ea583ae vocab=a3148f01
+-/
 theorem exists_oppositeEdgePoints_eq (t : M.Triangle) {e : Finset M.Vertex}
     (het : e ⊆ t.1) (hecard : e.card = 2) :
     ∃ k : Fin 3, M.oppositeEdgePoints t k = e.image M.position := by
@@ -2998,7 +3268,9 @@ theorem exists_oppositeEdgePoints_eq (t : M.Triangle) {e : Finset M.Vertex}
     simpa [hwk] using hve
 
 /-- An affine functional taking different values at the endpoints of a segment is injective on
-that segment. -/
+that segment.
+@isnad1 id=injon.1h3v.s11.c447985eb072 from=translated src=- shape=7505f726 vocab=e670f2a1
+-/
 theorem affine_apply_injectiveOn_segment {g : Plane →ᵃ[ℝ] ℝ} {p q : Plane}
     (hpq : g p ≠ g q) : Set.InjOn g (segment ℝ p q) := by
   intro x hx y hy hxy
@@ -3046,6 +3318,9 @@ theorem eq_endpoint_of_mem_segment_apply_zero_of_mul_nonneg
         nlinarith [mul_nonneg (sub_nonneg.mpr ht1) (neg_nonneg.mpr hsign.1.le),
           mul_nonneg ht0 (neg_nonneg.mpr hsign.2.le)]
 
+/--
+@isnad1 id=affinein.2h3v.s8.ba2408bc4226 from=translated src=- shape=e09150ea vocab=d8eda7e3
+-/
 theorem affineIndependent_subset_pair {p q : Plane} (hpq : p ≠ q)
     {s : Set Plane} (hs : s ⊆ {p, q}) :
     AffineIndependent ℝ ((↑) : s → Plane) := by
@@ -3053,6 +3328,9 @@ theorem affineIndependent_subset_pair {p q : Plane} (hpq : p ≠ q)
   apply h.mono
   simpa [Set.pair_comm] using hs
 
+/--
+@isnad1 id=mem.3h5v.s9.3cef1060613e from=translated src=- shape=60b8fe5b vocab=13cfc7b7
+-/
 theorem old_vertex_mem_of_oppositeCoord_zero (t : M.Triangle) (k : Fin 3)
     {e : Finset M.Vertex} (hedge : M.oppositeEdgePoints t k = e.image M.position)
     {v : M.Vertex} (hvt : v ∈ t.1)
@@ -3073,6 +3351,9 @@ theorem old_vertex_mem_of_oppositeCoord_zero (t : M.Triangle) (k : Fin 3)
   obtain ⟨w, hwe, hw⟩ := Finset.mem_image.mp hp
   exact M.position_injective hw |>.symm ▸ hwe
 
+/--
+@isnad1 id=or.3h7v.s10.19fd076c0d46 from=translated src=- shape=e14ca54a vocab=5294063e
+-/
 theorem trace_vertex_old_edge_or_zero (t : M.Triangle) (k : Fin 3)
     {e : Finset M.Vertex} (hedge : M.oppositeEdgePoints t k = e.image M.position)
     {s : Finset (M.RefinedVertex f)} (hs : s ∈ M.localMeshTriangles f t)
@@ -3088,6 +3369,9 @@ theorem trace_vertex_old_edge_or_zero (t : M.Triangle) (k : Fin 3)
     exact hxcoord
   · exact Or.inr hzero
 
+/--
+@isnad1 id=mem.2h6v.s9.a0939c7b800c from=translated src=- shape=5d38f1d3 vocab=1e876b95
+-/
 theorem trace_vertex_mem_oppositeEdgeHull (t : M.Triangle) (k : Fin 3)
     {s : Finset (M.RefinedVertex f)} (hs : s ∈ M.localMeshTriangles f t)
     {x : M.RefinedVertex f} (hx : x ∈ M.childEdgeTrace f t k s) :
@@ -3096,6 +3380,9 @@ theorem trace_vertex_mem_oppositeEdgeHull (t : M.Triangle) (k : Fin 3)
   exact ⟨M.child_vertex_mem_parent f t hs (Finset.mem_filter.mp hx).1,
     (Finset.mem_filter.mp hx).2⟩
 
+/--
+@isnad1 id=or.6h8v.s10.e50905ccf337 from=translated src=- shape=f6917805 vocab=b8d2c831
+-/
 theorem trace_vertex_eq_endpoint_or_cut (t : M.Triangle) (k : Fin 3)
     {a b : M.Vertex} (hab : a ≠ b)
     (hedge : M.oppositeEdgePoints t k = ({a, b} : Finset M.Vertex).image M.position)
@@ -3121,6 +3408,9 @@ theorem trace_vertex_eq_endpoint_or_cut (t : M.Triangle) (k : Fin 3)
       rwa [convexHull_pair] at hxedge
     · exact hzero
 
+/--
+@isnad1 id=or.6h8v.s11.e07d4e166a27 from=translated src=- shape=dd7fa2a9 vocab=9a79491a
+-/
 theorem trace_vertex_eq_endpoint_of_mul_nonneg (t : M.Triangle) (k : Fin 3)
     {a b : M.Vertex} (hab : a ≠ b)
     (hedge : M.oppositeEdgePoints t k = ({a, b} : Finset M.Vertex).image M.position)
@@ -3145,6 +3435,9 @@ theorem trace_vertex_eq_endpoint_of_mul_nonneg (t : M.Triangle) (k : Fin 3)
     · exact Or.inl (Subtype.ext hxa)
     · exact Or.inr (Subtype.ext hxb)
 
+/--
+@isnad1 id=or.2h6v.s7.59a96894dc78 from=translated src=- shape=0ee33e0e vocab=41c2f974
+-/
 theorem orderedVertex_eq_endpoint_of_ne_opposite (t : M.Triangle) (k j : Fin 3)
     {a b : M.Vertex}
     (hedge : M.oppositeEdgePoints t k = ({a, b} : Finset M.Vertex).image M.position)
@@ -3160,6 +3453,9 @@ theorem orderedVertex_eq_endpoint_of_ne_opposite (t : M.Triangle) (k j : Fin 3)
   · exact Or.inl hvj.symm
   · exact Or.inr hvj.symm
 
+/--
+@isnad1 id=or.6h8v.s10.69e4a245b4ec from=translated src=- shape=985bffd9 vocab=f15393f2
+-/
 theorem trace_vertex_eq_endpoint_of_edge_in_line (t : M.Triangle) (k : Fin 3)
     {a b : M.Vertex} (_ : a ≠ b)
     (hedge : M.oppositeEdgePoints t k = ({a, b} : Finset M.Vertex).image M.position)
@@ -3226,6 +3522,9 @@ theorem trace_vertex_eq_endpoint_of_edge_in_line (t : M.Triangle) (k : Fin 3)
     change M.oldRefinedVertex f (M.orderedVertex t j) = M.oldRefinedVertex f b
     rw [hj]
 
+/--
+@isnad1 id=or.1h5v.s10.571c1610b079 from=translated src=- shape=a5e3f7d5 vocab=cbd0d77c
+-/
 theorem childEdgeTrace_monochromatic (t : M.Triangle) (k : Fin 3)
     {s : Finset (M.RefinedVertex f)} (hs : s ∈ M.localMeshTriangles f t) :
     (∀ x ∈ M.childEdgeTrace f t k s, 0 ≤ f (x : Plane)) ∨
@@ -3396,7 +3695,9 @@ private theorem convexHull_inter_of_opposite_three_point_subsets
     rw [hleft, hCD]
     simp
 
-/-- The finite one-dimensional calculation behind compatibility on a cut edge. -/
+/-- The finite one-dimensional calculation behind compatibility on a cut edge.
+@isnad1 id=eq.7h7v.s12.b607adfef487 from=translated src=- shape=a618fd95 vocab=1f90e598
+-/
 theorem convexHull_inter_of_signed_three_point_subsets
     {a b z : M.RefinedVertex f}
     (ha : 0 < f (a : Plane)) (hb : f (b : Plane) < 0) (hz : f (z : Plane) = 0)
@@ -3508,6 +3809,9 @@ theorem convexHull_inter_of_signed_three_point_subsets
   · exact (sameSideNeg hA hB).trans (congrArg (fun S : Set Plane => convexHull ℝ S)
       (by simpa only [Finset.coe_inj] using himageInter.symm))
 
+/--
+@isnad1 id=eq.3h6v.s10.0e1bc9b263d5 from=translated src=- shape=3890dba8 vocab=b801204e
+-/
 theorem convexHull_inter_of_two_point_subsets
     {a b : M.RefinedVertex f} (hab : (a : Plane) ≠ (b : Plane))
     {A B : Finset (M.RefinedVertex f)}
@@ -3545,6 +3849,9 @@ def TransverseToEdges : Prop :=
     ¬ (f (M.position (M.orderedVertex t i)) = 0 ∧
       f (M.position (M.orderedVertex t j)) = 0)
 
+/--
+@isnad1 id=eq.3h6v.s10.7874b0d269b0 from=translated src=- shape=5e332e46 vocab=793deeb7
+-/
 theorem lineRefinementTriangles_inter_of_parent_inter_card_two
     (T U : M.Triangle)
     (hcard : (T.1 ∩ U.1).card = 2)
@@ -3681,6 +3988,9 @@ theorem lineRefinementTriangles_inter_of_parent_inter_card_two
 noncomputable def vertexSupportCoord (t : M.Triangle) (i : Fin 3) : Plane →ᵃ[ℝ] ℝ :=
   AffineMap.const ℝ Plane 1 - M.oppositeCoord t i
 
+/--
+@isnad1 id=eq.0h4v.s9.09281825a95a from=translated src=- shape=29afc6cd vocab=30418a8f
+-/
 @[simp] theorem vertexSupportCoord_vertex (t : M.Triangle) (i j : Fin 3) :
     M.vertexSupportCoord t i (M.position (M.orderedVertex t j)) =
       if i = j then 0 else 1 := by
@@ -3688,6 +3998,9 @@ noncomputable def vertexSupportCoord (t : M.Triangle) (i : Fin 3) : Plane →ᵃ
   rw [M.oppositeCoord_vertex]
   split_ifs <;> ring
 
+/--
+@isnad1 id=le.1h4v.s9.8665a710a60f from=translated src=- shape=dbdac855 vocab=c2666b06
+-/
 theorem vertexSupportCoord_nonneg_of_mem_parent (t : M.Triangle) (i : Fin 3)
     {x : Plane} (hx : x ∈ convexHull ℝ (M.position '' (t.1 : Set M.Vertex))) :
     0 ≤ M.vertexSupportCoord t i x := by
@@ -3702,6 +4015,9 @@ theorem vertexSupportCoord_nonneg_of_mem_parent (t : M.Triangle) (i : Fin 3)
   rw [M.vertexSupportCoord_vertex]
   split_ifs <;> norm_num
 
+/--
+@isnad1 id=eq.0h3v.s9.47a83e182025 from=translated src=- shape=67eb8ad4 vocab=42a6963c
+-/
 theorem parent_inter_vertexSupportCoord_zero (t : M.Triangle) (i : Fin 3) :
     convexHull ℝ (M.position '' (t.1 : Set M.Vertex)) ∩
         {x | M.vertexSupportCoord t i x = 0} =
@@ -3744,6 +4060,9 @@ theorem parent_inter_vertexSupportCoord_zero (t : M.Triangle) (i : Fin 3) :
     rw [M.vertexSupportCoord_vertex]
     split_ifs <;> norm_num
 
+/--
+@isnad1 id=mem.2h5v.s9.01d601b3ff6e from=translated src=- shape=5b7ae419 vocab=966f10c4
+-/
 theorem old_vertex_mem_child_of_position_mem (t : M.Triangle) (i : Fin 3)
     {s : Finset (M.RefinedVertex f)} (hs : s ∈ M.localMeshTriangles f t)
     (hmem : M.position (M.orderedVertex t i) ∈
@@ -3788,6 +4107,9 @@ theorem old_vertex_mem_child_of_position_mem (t : M.Triangle) (i : Fin 3)
   have hvEq : v = M.oldRefinedVertex f (M.orderedVertex t i) := Subtype.ext hvcorner
   rwa [← hvEq]
 
+/--
+@isnad1 id=eq.3h6v.s10.b80593c50357 from=translated src=- shape=5e332e46 vocab=793deeb7
+-/
 theorem lineRefinementTriangles_inter_of_parent_inter_card_zero
     (T U : M.Triangle) (hcard : (T.1 ∩ U.1).card = 0)
     {s q : Finset (M.RefinedVertex f)} (hs : s ∈ M.localMeshTriangles f T)
@@ -3829,6 +4151,9 @@ theorem lineRefinementTriangles_inter_of_parent_inter_card_zero
   rw [hinter, hsq]
   simp
 
+/--
+@isnad1 id=eq.3h6v.s10.932644bc6eb6 from=translated src=- shape=5e332e46 vocab=793deeb7
+-/
 theorem lineRefinementTriangles_inter_of_parent_inter_card_one
     (T U : M.Triangle) (hcard : (T.1 ∩ U.1).card = 1)
     {s q : Finset (M.RefinedVertex f)} (hs : s ∈ M.localMeshTriangles f T)
@@ -3879,6 +4204,9 @@ theorem lineRefinementTriangles_inter_of_parent_inter_card_one
 noncomputable def lineRefinementTriangles : Finset (Finset (M.RefinedVertex f)) :=
   Finset.univ.biUnion fun t : M.Triangle => M.localMeshTriangles f t
 
+/--
+@isnad1 id=iff.0h3v.s8.b78bd535b5dd from=translated src=- shape=adc9e125 vocab=df4849cf
+-/
 theorem mem_lineRefinementTriangles_iff {s : Finset (M.RefinedVertex f)} :
     s ∈ M.lineRefinementTriangles f ↔
       ∃ t : M.Triangle, s ∈ M.localMeshTriangles f t := by
@@ -3889,17 +4217,26 @@ theorem mem_lineRefinementTriangles_iff {s : Finset (M.RefinedVertex f)} :
   · rintro ⟨t, ht⟩
     exact Finset.mem_biUnion.mpr ⟨t, Finset.mem_univ _, ht⟩
 
+/--
+@isnad1 id=eq.1h3v.s8.fee254d92b0a from=translated src=- shape=6d9eb055 vocab=cddbb2a6
+-/
 theorem card_of_mem_lineRefinementTriangles {s : Finset (M.RefinedVertex f)}
     (hs : s ∈ M.lineRefinementTriangles f) : s.card = 3 := by
   obtain ⟨t, ht⟩ := M.mem_lineRefinementTriangles_iff f |>.mp hs
   exact M.card_of_mem_localMeshTriangles f t ht
 
+/--
+@isnad1 id=affinein.1h3v.s9.f8d45616b52f from=translated src=- shape=d4009b89 vocab=a14fbfa2
+-/
 theorem affineIndependent_of_mem_lineRefinementTriangles
     {s : Finset (M.RefinedVertex f)} (hs : s ∈ M.lineRefinementTriangles f) :
     AffineIndependent ℝ fun v : s => (v.1 : Plane) := by
   obtain ⟨t, ht⟩ := M.mem_lineRefinementTriangles_iff f |>.mp hs
   exact M.affineIndependent_of_mem_localMeshTriangles f t ht
 
+/--
+@isnad1 id=eq.0h2v.s9.8039587d413a from=translated src=- shape=f8ca40eb vocab=88112c1e
+-/
 theorem lineRefinementTriangles_support :
     (⋃ s ∈ M.lineRefinementTriangles f,
       convexHull ℝ (((↑) : M.RefinedVertex f → Plane) '' (s : Set (M.RefinedVertex f)))) =
@@ -3920,6 +4257,9 @@ theorem lineRefinementTriangles_support :
     obtain ⟨hs, hxs⟩ := Set.mem_iUnion.mp hxt
     exact ⟨s, M.mem_lineRefinementTriangles_iff f |>.mpr ⟨T, hs⟩, hxs⟩
 
+/--
+@isnad1 id=eq.2h4v.s10.3ced941ae4e8 from=translated src=- shape=386dbf2f vocab=82d4029f
+-/
 theorem lineRefinementTriangles_inter
     {s q : Finset (M.RefinedVertex f)} (hs : s ∈ M.lineRefinementTriangles f)
     (hq : q ∈ M.lineRefinementTriangles f) :
@@ -3963,13 +4303,18 @@ noncomputable def lineRefinementMesh : TriangleMesh where
     M.affineIndependent_of_mem_lineRefinementTriangles f hs
   triangle_inter := fun _ hs _ hq => M.lineRefinementTriangles_inter f hs hq
 
+/--
+@isnad1 id=eq.0h2v.s8.cbdd955c6b8a from=translated src=- shape=75ab1d05 vocab=ad721b75
+-/
 theorem lineRefinementMesh_support :
     (M.lineRefinementMesh f).toPlaneComplex.support = M.toPlaneComplex.support := by
   rw [TriangleMesh.toPlaneComplex_support]
   exact M.lineRefinementTriangles_support f
 
 /-- Cutting every triangle of a mesh by one affine line gives a subdivision of the original
-plane complex. -/
+plane complex.
+@isnad1 id=subdivid.0h2v.s8.f90c8db5b92e from=translated src=- shape=a0ba4e08 vocab=5f5054fa
+-/
 theorem lineRefinementMesh_subdivides :
     (M.lineRefinementMesh f).toPlaneComplex.Subdivides M.toPlaneComplex := by
   constructor
@@ -3983,12 +4328,18 @@ theorem lineRefinementMesh_subdivides :
     · exact (convexHull_mono (Set.image_mono hsu)).trans
         (M.convexHull_child_subset_parent f t hut)
 
+/--
+@isnad1 id=ismonoch.0h2v.s8.7ad44a175602 from=translated src=- shape=f9e7cd29 vocab=db050cf8
+-/
 theorem lineRefinementMesh_isMonochromatic :
     (M.lineRefinementMesh f).IsMonochromatic f := by
   intro s hs
   obtain ⟨t, hst⟩ := M.mem_lineRefinementTriangles_iff f |>.mp hs
   exact M.localMeshTriangles_monochromatic f t s hst
 
+/--
+@isnad1 id=ismonoch.1h3v.s9.a602bd61bc3b from=translated src=- shape=84d36910 vocab=db050cf8
+-/
 theorem lineRefinementMesh_preserves_monochromatic (g : Plane →ᵃ[ℝ] ℝ)
     (hM : M.IsMonochromatic g) : (M.lineRefinementMesh f).IsMonochromatic g := by
   intro s hs
@@ -4012,6 +4363,9 @@ noncomputable def refineByLines : TriangleMesh → List (Plane →ᵃ[ℝ] ℝ) 
   | M, [] => M
   | M, g :: gs => refineByLines (M.lineRefinementMesh g) gs
 
+/--
+@isnad1 id=eq.0h2v.s8.a671205d630b from=translated src=- shape=d562e11d vocab=c563cac7
+-/
 theorem refineByLines_support (lines : List (Plane →ᵃ[ℝ] ℝ)) :
     (M.refineByLines lines).toPlaneComplex.support = M.toPlaneComplex.support := by
   induction lines generalizing M with
@@ -4019,7 +4373,9 @@ theorem refineByLines_support (lines : List (Plane →ᵃ[ℝ] ℝ)) :
   | cons g gs ih =>
       rw [refineByLines, ih, lineRefinementMesh_support]
 
-/-- Successive line cuts remain a subdivision of the original mesh. -/
+/-- Successive line cuts remain a subdivision of the original mesh.
+@isnad1 id=subdivid.0h2v.s8.4153fdba0e26 from=translated src=- shape=eccddf0b vocab=fea4d2c8
+-/
 theorem refineByLines_subdivides (lines : List (Plane →ᵃ[ℝ] ℝ)) :
     (M.refineByLines lines).toPlaneComplex.Subdivides M.toPlaneComplex := by
   induction lines generalizing M with
@@ -4029,6 +4385,9 @@ theorem refineByLines_subdivides (lines : List (Plane →ᵃ[ℝ] ℝ)) :
         M.toPlaneComplex
       exact (ih (M := M.lineRefinementMesh g)).trans (M.lineRefinementMesh_subdivides g)
 
+/--
+@isnad1 id=ismonoch.1h3v.s9.19c60aed944a from=translated src=- shape=527a71c1 vocab=b2b42a15
+-/
 theorem refineByLines_preserves_monochromatic
     (lines : List (Plane →ᵃ[ℝ] ℝ)) (g : Plane →ᵃ[ℝ] ℝ)
     (hM : M.IsMonochromatic g) : (M.refineByLines lines).IsMonochromatic g := by
@@ -4038,6 +4397,9 @@ theorem refineByLines_preserves_monochromatic
       exact ih (M := M.lineRefinementMesh f)
         (M.lineRefinementMesh_preserves_monochromatic f g hM)
 
+/--
+@isnad1 id=ismonoch.1h3v.s10.80d041e9e57b from=translated src=- shape=948c30cd vocab=6189a2b5
+-/
 theorem refineByLines_isMonochromatic_of_mem
     (lines : List (Plane →ᵃ[ℝ] ℝ)) {g : Plane →ᵃ[ℝ] ℝ} (hg : g ∈ lines) :
     (M.refineByLines lines).IsMonochromatic g := by

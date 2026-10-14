@@ -25,6 +25,9 @@ namespace Topology
 namespace ClassificationOfSurfaces
 namespace Moise
 
+/--
+@isnad1 id=ex.1h2v.s6.3ce6e2006f97 from=translated src=- shape=0e7068ff vocab=b02e2fad
+-/
 theorem exists_pos_uniform_fintype' {I : Type*} [Finite I] [Nonempty I]
     (P : I → ℝ → Prop)
     (hP : ∀ i, ∃ ε : ℝ, 0 < ε ∧ ∀ δ : ℝ, 0 < δ → δ < ε → P i δ) :
@@ -59,6 +62,9 @@ structure LastExitData (γ : ℝ → Plane) (center : Plane) (radius : ℝ) wher
   after_exit : ∀ t ∈ Set.Icc (0 : ℝ) 1, parameter < t →
     γ t ∉ Metric.closedBall center radius
 
+/--
+@isnad1 id=nonempty.4h3v.s7.80d9119a7cf7 from=translated src=- shape=eaca635f vocab=31370e33
+-/
 theorem exists_lastExitData {γ : ℝ → Plane} {center : Plane} {radius : ℝ}
     (hradius : 0 < radius) (hcont : ContinuousOn γ (Set.Icc (0 : ℝ) 1))
     (hstart : γ 0 = center) (hfinish : γ 1 ∉ Metric.closedBall center radius) :
@@ -162,6 +168,9 @@ structure WeakLastExitData (γ : ℝ → Plane) (center : Plane) (radius : ℝ) 
   after_exit : ∀ t ∈ Set.Icc (0 : ℝ) 1, parameter < t →
     γ t ∉ Metric.closedBall center radius
 
+/--
+@isnad1 id=nonempty.4h3v.s7.b2e0a96c05c8 from=translated src=- shape=4d9d62fe vocab=aa7c08b0
+-/
 theorem exists_weakLastExitData {γ : ℝ → Plane} {center : Plane} {radius : ℝ}
     (_ : 0 < radius) (hcont : ContinuousOn γ (Set.Icc (0 : ℝ) 1))
     (hstart : dist (γ 0) center = radius)
@@ -249,6 +258,9 @@ structure TwoSidedExitData (γ : ℝ → Plane) (first second : Plane) (radius :
   before_right : ∀ t ∈ Set.Icc (0 : ℝ) 1, left < t → t < right →
     γ t ∉ Metric.closedBall second radius
 
+/--
+@isnad1 id=nonempty.5h4v.s7.068849ed0fdf from=translated src=- shape=0ad90c1c vocab=8851c186
+-/
 theorem exists_twoSidedExitData {γ : ℝ → Plane} {first second : Plane} {radius : ℝ}
     (hradius : 0 < radius) (hcont : ContinuousOn γ (Set.Icc (0 : ℝ) 1))
     (hstart : γ 0 = first) (hfinish : γ 1 = second)
@@ -343,6 +355,9 @@ structure BoundaryExitData (γ : ℝ → Plane) (first second : Plane) (radius :
   before_right : ∀ t ∈ Set.Icc (0 : ℝ) 1, left < t → t < right →
     γ t ∉ Metric.closedBall second radius
 
+/--
+@isnad1 id=nonempty.5h4v.s8.d5ce54c44c74 from=translated src=- shape=6e19e9e8 vocab=5c979e63
+-/
 theorem exists_boundaryExitData {γ : ℝ → Plane} {first second : Plane} {radius : ℝ}
     (hradius : 0 < radius) (hcont : ContinuousOn γ (Set.Icc (0 : ℝ) 1))
     (hstart : dist (γ 0) first = radius) (hfinish : dist (γ 1) second = radius)
@@ -414,7 +429,9 @@ theorem exists_boundaryExitData {γ : ℝ → Plane} {first second : Plane} {rad
   rw [← hρs]
   exact R.after_exit s hs hRs
 
-/-- Radial segments to two distinct points on the same circle meet only at their center. -/
+/-- Radial segments to two distinct points on the same circle meet only at their center.
+@isnad1 id=eq.4h4v.s8.fbd455b637f3 from=translated src=- shape=091f1abd vocab=b3af60e6
+-/
 theorem radial_segments_inter {center p q : Plane} {radius : ℝ}
     (hradius : 0 < radius) (hp : dist p center = radius)
     (hq : dist q center = radius) (hpq : p ≠ q) :
@@ -461,6 +478,9 @@ theorem eq_endpoint_of_mem_radial_segment {center p x : Plane} {radius : ℝ}
   have ht1 : t = 1 := by nlinarith
   simp [ht1]
 
+/--
+@isnad1 id=disjoint.4h4v.s8.991db08417d8 from=translated src=- shape=21ba051c vocab=01bc69f4
+-/
 theorem disjoint_radial_segments_away_center {center p q : Plane} {radius : ℝ}
     (hradius : 0 < radius) (hp : dist p center = radius)
     (hq : dist q center = radius) (hpq : p ≠ q) :
@@ -472,7 +492,9 @@ theorem disjoint_radial_segments_away_center {center p q : Plane} {radius : ℝ}
     exact ⟨hxp, hxq⟩
   exact hxc hx
 
-/-- Concatenating two simple paths whose ranges meet only at their common endpoint is simple. -/
+/-- Concatenating two simple paths whose ranges meet only at their common endpoint is simple.
+@isnad1 id=injectiv.3h6v.s7.673b8b7d6016 from=translated src=- shape=099b040d vocab=46d6225b
+-/
 theorem Path.trans_injective_of_range_inter {X : Type*} [TopologicalSpace X]
     {x y z : X} (γ : Path x y) (δ : Path y z)
     (hγ : Function.Injective γ) (hδ : Function.Injective δ)
@@ -586,6 +608,9 @@ noncomputable def edgeCurve (h : Plane → Plane)
     (i : Fin (Fintype.card K.EdgeFace)) (t : ℝ) : Plane :=
   h (AffineMap.lineMap (K.position (K.edgeFirst i)) (K.position (K.edgeSecond i)) t)
 
+/--
+@isnad1 id=mem.1h3v.s9.832900ce545c from=translated src=- shape=c642469e vocab=bdf7f91c
+-/
 theorem edge_lineMap_mem_support (i : Fin (Fintype.card K.EdgeFace)) {t : ℝ}
     (ht : t ∈ Set.Icc (0 : ℝ) 1) :
     AffineMap.lineMap (K.position (K.edgeFirst i)) (K.position (K.edgeSecond i)) t ∈
@@ -600,6 +625,9 @@ theorem edge_lineMap_mem_support (i : Fin (Fintype.card K.EdgeFace)) {t : ℝ}
   rw [himage, convexHull_pair]
   exact lineMap_mem_segment ℝ _ _ ht
 
+/--
+@isnad1 id=continuo.1h3v.s7.9b5e50f98e4a from=translated src=- shape=778e282b vocab=ff2d3517
+-/
 theorem edgeCurve_continuousOn {h : Plane → Plane} (hcont : ContinuousOn h K.support)
     (i : Fin (Fintype.card K.EdgeFace)) :
     ContinuousOn (K.edgeCurve h i) (Set.Icc (0 : ℝ) 1) := by
@@ -607,11 +635,17 @@ theorem edgeCurve_continuousOn {h : Plane → Plane} (hcont : ContinuousOn h K.s
   intro t ht
   exact K.edge_lineMap_mem_support i ht
 
+/--
+@isnad1 id=eq.0h3v.s5.1117787f12ce from=translated src=- shape=26709c31 vocab=5f25655a
+-/
 @[simp] theorem edgeCurve_zero (h : Plane → Plane)
     (i : Fin (Fintype.card K.EdgeFace)) :
     K.edgeCurve h i 0 = h (K.position (K.edgeFirst i)) := by
   simp [edgeCurve]
 
+/--
+@isnad1 id=eq.0h3v.s5.d8eb0eeb174f from=translated src=- shape=26709c31 vocab=65e773c9
+-/
 @[simp] theorem edgeCurve_one (h : Plane → Plane)
     (i : Fin (Fintype.card K.EdgeFace)) :
     K.edgeCurve h i 1 = h (K.position (K.edgeSecond i)) := by
@@ -634,7 +668,9 @@ structure EdgeTrimData (h : Plane → Plane) (D : K.VertexDiskControl h)
   before_right : ∀ t ∈ Set.Icc (0 : ℝ) 1, left < t → t < right →
     K.edgeCurve h i t ∉ Metric.closedBall (h (K.position (K.edgeSecond i))) D.radius
 
-/-- The vertex-disk choice in Moise 6.2, Figure 6.1. -/
+/-- The vertex-disk choice in Moise 6.2, Figure 6.1.
+@isnad1 id=nonempty.3h2v.s7.1758ad3bf8ff from=translated src=- shape=911e822e vocab=75c3e05d
+-/
 theorem exists_vertexDiskControl
     (hvertex : ∀ v : K.Vertex, ({v} : Finset K.Vertex) ∈ K.simplexes)
     {h : Plane → Plane} (hcont : ContinuousOn h K.support)
@@ -722,6 +758,9 @@ def shrink {h : Plane → Plane} (D : K.VertexDiskControl h) (r : ℝ)
 
 end VertexDiskControl
 
+/--
+@isnad1 id=ex.4h3v.s7.02bb81cae50a from=translated src=- shape=e0789d99 vocab=d4971f69
+-/
 theorem exists_vertexDiskControl_lt
     (hvertex : ∀ v : K.Vertex, ({v} : Finset K.Vertex) ∈ K.simplexes)
     {h : Plane → Plane} (hcont : ContinuousOn h K.support)
@@ -735,6 +774,9 @@ theorem exists_vertexDiskControl_lt
   refine ⟨VertexDiskControl.shrink K D r hr hrD, ?_⟩
   exact (min_le_right _ _).trans_lt (half_lt_self hη)
 
+/--
+@isnad1 id=nonempty.1h4v.s6.14cbf324e01e from=translated src=- shape=16929272 vocab=8489ae52
+-/
 theorem exists_edgeTrimData
     {h : Plane → Plane} (hcont : ContinuousOn h K.support)
     (D : K.VertexDiskControl h) (i : Fin (Fintype.card K.EdgeFace)) :
@@ -834,6 +876,9 @@ theorem exists_edgeTrimData
   rw [← hρs]
   exact R.after_exit s hs hRs
 
+/--
+@isnad1 id=disjoint.1h3v.s8.72e9b26dd2d0 from=translated src=- shape=a4f33cce vocab=8736faa1
+-/
 theorem openSegments_disjoint_of_ne
     {i j : Fin (Fintype.card K.EdgeFace)} (hij : i ≠ j) :
     Disjoint
@@ -940,12 +985,18 @@ variable {K : PlaneComplex} {h : Plane → Plane}
 def centralCarrier (T : K.EdgeTrimData h D i) : Set Plane :=
   K.edgeCurve h i '' Set.Icc T.left T.right
 
+/--
+@isnad1 id=iscompac.1h5v.s7.c420f26dabaf from=translated src=- shape=2cbc127f vocab=cf116df7
+-/
 theorem isCompact_centralCarrier (T : K.EdgeTrimData h D i)
     (hcont : ContinuousOn h K.support) : IsCompact T.centralCarrier := by
   apply (isCompact_Icc.image_of_continuousOn)
   exact (K.edgeCurve_continuousOn hcont i).mono fun t ht =>
     ⟨T.left_pos.le.trans ht.1, ht.2.trans T.right_lt_one.le⟩
 
+/--
+@isnad1 id=le.0h5v.s7.ab2119c40a3d from=translated src=- shape=2cef030a vocab=38315d74
+-/
 theorem centralCarrier_subset_image_openSegment (T : K.EdgeTrimData h D i) :
     T.centralCarrier ⊆ h ''
       openSegment ℝ (K.position (K.edgeFirst i)) (K.position (K.edgeSecond i)) := by
@@ -955,6 +1006,9 @@ theorem centralCarrier_subset_image_openSegment (T : K.EdgeTrimData h D i) :
   exact lineMap_mem_openSegment ℝ _ _ ⟨T.left_pos.trans_le ht.1,
     ht.2.trans_lt T.right_lt_one⟩
 
+/--
+@isnad1 id=disjoint.2h7v.s6.89b876f0d554 from=translated src=- shape=8e4273b5 vocab=b99409c5
+-/
 theorem disjoint_centralCarrier {j : Fin (Fintype.card K.EdgeFace)}
     {T' : K.EdgeTrimData h D j} (T : K.EdgeTrimData h D i)
     (hinj : Set.InjOn h K.support) (hij : i ≠ j) :
@@ -1006,6 +1060,9 @@ structure CentralTubeControl {h : Plane → Plane} (hcont : ContinuousOn h K.sup
       (Metric.cthickening radius (K.edgeTrim hcont D i).centralCarrier)
       (Metric.cthickening radius (K.edgeTrim hcont D j).centralCarrier)
 
+/--
+@isnad1 id=nonempty.2h3v.s6.56b3e23ec1d3 from=translated src=- shape=1c15b6f0 vocab=157b0cbd
+-/
 theorem exists_centralTubeControl {h : Plane → Plane}
     (hcont : ContinuousOn h K.support) (hinj : Set.InjOn h K.support)
     (D : K.VertexDiskControl h) : Nonempty (K.CentralTubeControl hcont D) := by
@@ -1051,6 +1108,9 @@ theorem exists_centralTubeControl {h : Plane → Plane}
 
 namespace EdgeTrimData
 
+/--
+@isnad1 id=isprecon.1h4v.s7.5dd00df809d0 from=translated src=- shape=c7674918 vocab=1336617b
+-/
 theorem isPreconnected_centralCarrier {h : Plane → Plane}
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
     (i : Fin (Fintype.card K.EdgeFace)) :
@@ -1060,6 +1120,9 @@ theorem isPreconnected_centralCarrier {h : Plane → Plane}
     ⟨(K.edgeTrim hcont D i).left_pos.le.trans ht.1,
       ht.2.trans (K.edgeTrim hcont D i).right_lt_one.le⟩
 
+/--
+@isnad1 id=mem.1h4v.s7.4e6da3506409 from=translated src=- shape=9bed8606 vocab=5ec9c566
+-/
 theorem left_mem_centralCarrier {h : Plane → Plane}
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
     (i : Fin (Fintype.card K.EdgeFace)) :
@@ -1067,6 +1130,9 @@ theorem left_mem_centralCarrier {h : Plane → Plane}
       (K.edgeTrim hcont D i).centralCarrier :=
   ⟨_, ⟨le_rfl, (K.edgeTrim hcont D i).left_lt_right.le⟩, rfl⟩
 
+/--
+@isnad1 id=mem.1h4v.s7.33557de23395 from=translated src=- shape=9bed8606 vocab=1704e6cb
+-/
 theorem right_mem_centralCarrier {h : Plane → Plane}
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
     (i : Fin (Fintype.card K.EdgeFace)) :
@@ -1087,6 +1153,9 @@ structure CentralPolygonalArc {h : Plane → Plane} (hcont : ContinuousOn h K.su
   start_eq : data.start = K.edgeCurve h i (K.edgeTrim hcont D i).left
   finish_eq : data.finish = K.edgeCurve h i (K.edgeTrim hcont D i).right
 
+/--
+@isnad1 id=nonempty.1h5v.s6.55323ed15fe4 from=translated src=- shape=70ff9ab8 vocab=52cbd2f7
+-/
 theorem exists_centralPolygonalArc {h : Plane → Plane}
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
     (C : K.CentralTubeControl hcont D) (i : Fin (Fintype.card K.EdgeFace)) :
@@ -1137,6 +1206,9 @@ variable {K : PlaneComplex} {h : Plane → Plane} {hcont : ContinuousOn h K.supp
   {D : K.VertexDiskControl h} {C : K.CentralTubeControl hcont D}
   {i : Fin (Fintype.card K.EdgeFace)}
 
+/--
+@isnad1 id=le.1h6v.s8.f4bacbf0c75e from=translated src=- shape=15ecca63 vocab=60724e69
+-/
 theorem resolvedCarrier_subset_tube (A : K.CentralPolygonalArc hcont D C i) :
     A.data.resolvedCarrier ⊆
       Metric.thickening C.radius (K.edgeTrim hcont D i).centralCarrier := by
@@ -1160,7 +1232,9 @@ theorem resolvedCarrier_subset_tube (A : K.CentralPolygonalArc hcont D C i) :
       (K.edgeTrim hcont D i).left_lt_right.le.trans
         (K.edgeTrim hcont D i).right_lt_one.le⟩
 
-/-- The loop-resolved middle remains in the convex hull of the original target edge. -/
+/-- The loop-resolved middle remains in the convex hull of the original target edge.
+@isnad1 id=le.1h6v.s9.0bb2342f2e23 from=translated src=- shape=076c0854 vocab=60724e69
+-/
 theorem resolvedCarrier_subset_edgeConvexHull
     (A : K.CentralPolygonalArc hcont D C i) :
     A.data.resolvedCarrier ⊆
@@ -1185,6 +1259,9 @@ theorem resolvedCarrier_subset_edgeConvexHull
       (K.edgeTrim hcont D i).left_lt_right.le.trans
         (K.edgeTrim hcont D i).right_lt_one.le⟩
 
+/--
+@isnad1 id=disjoint.2h8v.s9.bc0c860157bd from=translated src=- shape=f2a150b7 vocab=9d321c98
+-/
 theorem disjoint_resolvedCarrier {j : Fin (Fintype.card K.EdgeFace)}
     {A' : K.CentralPolygonalArc hcont D C j}
     (A : K.CentralPolygonalArc hcont D C i) (hij : i ≠ j) :
@@ -1214,6 +1291,9 @@ structure Parameterization (A : K.CentralPolygonalArc hcont D C i) where
   start_eq : curve 0 = A.data.start
   finish_eq : curve 1 = A.data.finish
 
+/--
+@isnad1 id=ne.1h6v.s9.bbcb0c682a48 from=translated src=- shape=324ab21b vocab=0df206cc
+-/
 theorem start_ne_finish (A : K.CentralPolygonalArc hcont D C i) :
     A.data.start ≠ A.data.finish := by
   have hleft : K.edgeCurve h i (K.edgeTrim hcont D i).left ∈
@@ -1229,6 +1309,9 @@ theorem start_ne_finish (A : K.CentralPolygonalArc hcont D C i) :
   exact Set.disjoint_left.mp
     (D.vertices_disjoint _ _ (K.edgeFirst_ne_edgeSecond i)) hleft (heq ▸ hright)
 
+/--
+@isnad1 id=lt.1h6v.s11.535e9487a1dd from=translated src=- shape=5f05c7ee vocab=c8da336f
+-/
 theorem resolvedWalk_length_pos (A : K.CentralPolygonalArc hcont D C i) :
     0 < A.data.resolvedWalk.length := by
   by_contra hnot
@@ -1239,7 +1322,9 @@ theorem resolvedWalk_length_pos (A : K.CentralPolygonalArc hcont D C i) :
   exact Fin.ext (by simp [hzero])
 
 /-- The polygonal arc model from Chapter 6.1 gives a continuous injective unit-interval
-parameterization. -/
+parameterization.
+@isnad1 id=nonempty.1h6v.s7.0878d4136207 from=translated src=- shape=5ad88c69 vocab=793c0bfb
+-/
 theorem exists_parameterization (A : K.CentralPolygonalArc hcont D C i) :
     Nonempty A.Parameterization := by
   obtain ⟨S, F, hSsupport, hpl, hSgraph, hinj, himage, hstart, hfinish⟩ :=
@@ -1333,6 +1418,9 @@ noncomputable def exitData (A : K.CentralPolygonalArc hcont D C i) :
 def trimmedCarrier (A : K.CentralPolygonalArc hcont D C i) : Set Plane :=
   A.parameterization.curve '' Set.Icc A.exitData.left A.exitData.right
 
+/--
+@isnad1 id=le.1h6v.s8.b4494a2c6b08 from=translated src=- shape=94218b00 vocab=56b8e1ff
+-/
 theorem trimmedCarrier_subset_resolvedCarrier
     (A : K.CentralPolygonalArc hcont D C i) :
     A.trimmedCarrier ⊆ A.data.resolvedCarrier := by
@@ -1340,6 +1428,9 @@ theorem trimmedCarrier_subset_resolvedCarrier
   exact Set.image_mono fun t ht =>
     ⟨A.exitData.left_nonneg.trans ht.1, ht.2.trans A.exitData.right_le_one⟩
 
+/--
+@isnad1 id=not.3h7v.s8.23fc8e7d56a5 from=translated src=- shape=050ae0c5 vocab=62fe68b5
+-/
 theorem trimmedCarrier_avoids_first
     (A : K.CentralPolygonalArc hcont D C i) {x : Plane}
     (hx : x ∈ A.trimmedCarrier)
@@ -1354,6 +1445,9 @@ theorem trimmedCarrier_avoids_first
     apply hxleft
     rw [heq]
 
+/--
+@isnad1 id=not.3h7v.s8.978c5296de79 from=translated src=- shape=0d3aa31a vocab=f1abf0de
+-/
 theorem trimmedCarrier_avoids_second
     (A : K.CentralPolygonalArc hcont D C i) {x : Plane}
     (hx : x ∈ A.trimmedCarrier)
@@ -1375,6 +1469,9 @@ theorem trimmedCarrier_avoids_second
       apply hxright
       rw [heq]
 
+/--
+@isnad1 id=disjoint.2h7v.s8.524ffbf97dcd from=translated src=- shape=41c71b4b vocab=5095ba69
+-/
 theorem trimmedCarrier_avoids_nonincident
     (A : K.CentralPolygonalArc hcont D C i) (v : K.Vertex)
     (hv : v ∉ (K.edgeAt i).1) :
@@ -1419,7 +1516,9 @@ noncomputable def completeCarrier (A : K.CentralPolygonalArc hcont D C i) : Set 
 
 /-- Every complete finite replacement edge stays in the convex hull of its original target
 edge.  In particular, simultaneous finite graph approximation preserves any convex target such
-as the model half-plane. -/
+as the model half-plane.
+@isnad1 id=le.1h6v.s8.7026f6038d6b from=translated src=- shape=2a7b22f8 vocab=47ca310c
+-/
 theorem completeCarrier_subset_edgeConvexHull
     (A : K.CentralPolygonalArc hcont D C i) :
     A.completeCarrier ⊆ convexHull ℝ (h '' K.cellCarrier (K.edgeAt i).1) := by
@@ -1467,18 +1566,30 @@ noncomputable def rightOpenSpoke (A : K.CentralPolygonalArc hcont D C i) : Set P
 noncomputable def interiorCarrier (A : K.CentralPolygonalArc hcont D C i) : Set Plane :=
   A.leftOpenSpoke ∪ A.trimmedCarrier ∪ A.rightOpenSpoke
 
+/--
+@isnad1 id=mem.1h6v.s7.4c22f912909e from=translated src=- shape=75156a7f vocab=a166d238
+-/
 theorem leftEndpoint_mem_trimmedCarrier (A : K.CentralPolygonalArc hcont D C i) :
     A.leftEndpoint ∈ A.trimmedCarrier :=
   ⟨A.exitData.left, ⟨le_rfl, A.exitData.left_lt_right.le⟩, rfl⟩
 
+/--
+@isnad1 id=mem.1h6v.s7.d92ce135e16b from=translated src=- shape=75156a7f vocab=fbb6bf7d
+-/
 theorem rightEndpoint_mem_trimmedCarrier (A : K.CentralPolygonalArc hcont D C i) :
     A.rightEndpoint ∈ A.trimmedCarrier :=
   ⟨A.exitData.right, ⟨A.exitData.left_lt_right.le, le_rfl⟩, rfl⟩
 
+/--
+@isnad1 id=eq.1h6v.s7.1ed39b8dc14f from=translated src=- shape=819c0a35 vocab=c2d0ee89
+-/
 theorem leftEndpoint_on_sphere (A : K.CentralPolygonalArc hcont D C i) :
     dist A.leftEndpoint (h (K.position (K.edgeFirst i))) = D.radius :=
   A.exitData.left_on_sphere
 
+/--
+@isnad1 id=eq.1h6v.s7.350ba04d9ba0 from=translated src=- shape=819c0a35 vocab=0e068d56
+-/
 theorem rightEndpoint_on_sphere (A : K.CentralPolygonalArc hcont D C i) :
     dist A.rightEndpoint (h (K.position (K.edgeSecond i))) = D.radius :=
   A.exitData.right_on_sphere
@@ -1501,6 +1612,9 @@ noncomputable def middlePath (A : K.CentralPolygonalArc hcont D C i) :
   source' := by simp [leftEndpoint]
   target' := by simp [rightEndpoint]
 
+/--
+@isnad1 id=eq.1h6v.s8.a3c095e0aa2d from=translated src=- shape=094be7cd vocab=373c5650
+-/
 theorem range_middlePath (A : K.CentralPolygonalArc hcont D C i) :
     Set.range A.middlePath = A.trimmedCarrier := by
   rw [trimmedCarrier]
@@ -1524,12 +1638,18 @@ noncomputable def completePath (A : K.CentralPolygonalArc hcont D C i) :
     (A.middlePath.trans
       (Path.segment A.rightEndpoint (h (K.position (K.edgeSecond i)))))
 
+/--
+@isnad1 id=eq.1h6v.s8.51d6502d47fc from=translated src=- shape=bd09ca5c vocab=90695038
+-/
 theorem range_completePath (A : K.CentralPolygonalArc hcont D C i) :
     Set.range A.completePath = A.completeCarrier := by
   rw [completePath, Path.trans_range, Path.trans_range, Path.range_segment,
     Path.range_segment, A.range_middlePath]
   simp [completeCarrier, leftSpoke, rightSpoke, Set.union_assoc]
 
+/--
+@isnad1 id=injectiv.1h6v.s8.fcafb2ce9cc0 from=translated src=- shape=96da21ba vocab=6182379e
+-/
 theorem middlePath_injective (A : K.CentralPolygonalArc hcont D C i) :
     Function.Injective A.middlePath := by
   intro s t hst
@@ -1546,6 +1666,9 @@ theorem middlePath_injective (A : K.CentralPolygonalArc hcont D C i) :
     ⟨A.exitData.left_nonneg.trans ht.1, ht.2.trans A.exitData.right_le_one⟩ hst
   exact Path.segment_injective_of_ne A.exitData.left_lt_right.ne hparam
 
+/--
+@isnad1 id=disjoint.2h8v.s7.9ff2d55e2e3d from=translated src=- shape=067c341d vocab=dc53fb51
+-/
 theorem disjoint_trimmedCarrier {j : Fin (Fintype.card K.EdgeFace)}
     {A' : K.CentralPolygonalArc hcont D C j}
     (A : K.CentralPolygonalArc hcont D C i) (hij : i ≠ j) :
@@ -1554,6 +1677,9 @@ theorem disjoint_trimmedCarrier {j : Fin (Fintype.card K.EdgeFace)}
     A.trimmedCarrier_subset_resolvedCarrier
     A'.trimmedCarrier_subset_resolvedCarrier
 
+/--
+@isnad1 id=ne.2h8v.s7.aa290b6bcdd8 from=translated src=- shape=59607b17 vocab=a26fa36e
+-/
 theorem leftEndpoint_ne_leftEndpoint {j : Fin (Fintype.card K.EdgeFace)}
     {A' : K.CentralPolygonalArc hcont D C j}
     (A : K.CentralPolygonalArc hcont D C i) (hij : i ≠ j) :
@@ -1566,6 +1692,9 @@ theorem leftEndpoint_ne_leftEndpoint {j : Fin (Fintype.card K.EdgeFace)}
     (CentralPolygonalArc.disjoint_trimmedCarrier (A' := A') A hij)
     A.leftEndpoint_mem_trimmedCarrier hmem
 
+/--
+@isnad1 id=ne.2h8v.s7.1f8cc00feb67 from=translated src=- shape=59607b17 vocab=0f49dc5b
+-/
 theorem leftEndpoint_ne_rightEndpoint {j : Fin (Fintype.card K.EdgeFace)}
     {A' : K.CentralPolygonalArc hcont D C j}
     (A : K.CentralPolygonalArc hcont D C i) (hij : i ≠ j) :
@@ -1578,6 +1707,9 @@ theorem leftEndpoint_ne_rightEndpoint {j : Fin (Fintype.card K.EdgeFace)}
     (CentralPolygonalArc.disjoint_trimmedCarrier (A' := A') A hij)
     A.leftEndpoint_mem_trimmedCarrier hmem
 
+/--
+@isnad1 id=ne.2h8v.s7.8245db36dd76 from=translated src=- shape=59607b17 vocab=0f49dc5b
+-/
 theorem rightEndpoint_ne_leftEndpoint {j : Fin (Fintype.card K.EdgeFace)}
     {A' : K.CentralPolygonalArc hcont D C j}
     (A : K.CentralPolygonalArc hcont D C i) (hij : i ≠ j) :
@@ -1590,6 +1722,9 @@ theorem rightEndpoint_ne_leftEndpoint {j : Fin (Fintype.card K.EdgeFace)}
     (CentralPolygonalArc.disjoint_trimmedCarrier (A' := A') A hij)
     A.rightEndpoint_mem_trimmedCarrier hmem
 
+/--
+@isnad1 id=ne.2h8v.s7.3b2a518d9a7d from=translated src=- shape=59607b17 vocab=c630725d
+-/
 theorem rightEndpoint_ne_rightEndpoint {j : Fin (Fintype.card K.EdgeFace)}
     {A' : K.CentralPolygonalArc hcont D C j}
     (A : K.CentralPolygonalArc hcont D C i) (hij : i ≠ j) :
@@ -1602,6 +1737,9 @@ theorem rightEndpoint_ne_rightEndpoint {j : Fin (Fintype.card K.EdgeFace)}
     (CentralPolygonalArc.disjoint_trimmedCarrier (A' := A') A hij)
     A.rightEndpoint_mem_trimmedCarrier hmem
 
+/--
+@isnad1 id=le.1h6v.s7.28ac052c690d from=translated src=- shape=d6f4897c vocab=383845bd
+-/
 theorem leftSpoke_subset_disk (A : K.CentralPolygonalArc hcont D C i) :
     A.leftSpoke ⊆ Metric.closedBall (h (K.position (K.edgeFirst i))) D.radius := by
   apply (convex_closedBall _ _).segment_subset
@@ -1609,6 +1747,9 @@ theorem leftSpoke_subset_disk (A : K.CentralPolygonalArc hcont D C i) :
   · rw [Metric.mem_closedBall]
     simpa [dist_comm] using A.leftEndpoint_on_sphere.le
 
+/--
+@isnad1 id=le.1h6v.s7.21aebf54bc16 from=translated src=- shape=d6f4897c vocab=3ec51f53
+-/
 theorem rightSpoke_subset_disk (A : K.CentralPolygonalArc hcont D C i) :
     A.rightSpoke ⊆ Metric.closedBall (h (K.position (K.edgeSecond i))) D.radius := by
   apply (convex_closedBall _ _).segment_subset
@@ -1616,6 +1757,9 @@ theorem rightSpoke_subset_disk (A : K.CentralPolygonalArc hcont D C i) :
     exact A.rightEndpoint_on_sphere.le
   · exact Metric.mem_closedBall_self D.radius_pos.le
 
+/--
+@isnad1 id=eq.1h6v.s7.0488808e576d from=translated src=- shape=ed5cf90e vocab=4a5af627
+-/
 theorem leftSpoke_inter_trimmedCarrier (A : K.CentralPolygonalArc hcont D C i) :
     A.leftSpoke ∩ A.trimmedCarrier = {A.leftEndpoint} := by
   apply Set.Subset.antisymm
@@ -1625,6 +1769,9 @@ theorem leftSpoke_inter_trimmedCarrier (A : K.CentralPolygonalArc hcont D C i) :
   · rintro x rfl
     exact ⟨right_mem_segment ℝ _ _, A.leftEndpoint_mem_trimmedCarrier⟩
 
+/--
+@isnad1 id=eq.1h6v.s7.c6d1928977e7 from=translated src=- shape=ed5cf90e vocab=b3b1d1d6
+-/
 theorem rightSpoke_inter_trimmedCarrier (A : K.CentralPolygonalArc hcont D C i) :
     A.rightSpoke ∩ A.trimmedCarrier = {A.rightEndpoint} := by
   apply Set.Subset.antisymm
@@ -1634,12 +1781,17 @@ theorem rightSpoke_inter_trimmedCarrier (A : K.CentralPolygonalArc hcont D C i) 
   · rintro x rfl
     exact ⟨left_mem_segment ℝ _ _, A.rightEndpoint_mem_trimmedCarrier⟩
 
+/--
+@isnad1 id=disjoint.1h6v.s7.8194e6d24de5 from=translated src=- shape=f55b34be vocab=76e95228
+-/
 theorem leftSpoke_disjoint_rightSpoke (A : K.CentralPolygonalArc hcont D C i) :
     Disjoint A.leftSpoke A.rightSpoke :=
   (D.vertices_disjoint _ _ (K.edgeFirst_ne_edgeSecond i)).mono
     A.leftSpoke_subset_disk A.rightSpoke_subset_disk
 
-/-- Every complete replacement edge is a simple path. -/
+/-- Every complete replacement edge is a simple path.
+@isnad1 id=injectiv.1h6v.s7.f78436082242 from=translated src=- shape=999ba8ee vocab=9819ba8a
+-/
 theorem completePath_injective (A : K.CentralPolygonalArc hcont D C i) :
     Function.Injective A.completePath := by
   let first := Path.segment (h (K.position (K.edgeFirst i))) A.leftEndpoint
@@ -1676,6 +1828,9 @@ theorem completePath_injective (A : K.CentralPolygonalArc hcont D C i) :
   exact Path.trans_injective_of_range_inter first (A.middlePath.trans last)
     hfirstInj htailInj hfirstTailInter
 
+/--
+@isnad1 id=not.1h6v.s7.56cffad62fbd from=translated src=- shape=0ae5d4c7 vocab=1477b634
+-/
 theorem firstCenter_not_mem_trimmedCarrier (A : K.CentralPolygonalArc hcont D C i) :
     h (K.position (K.edgeFirst i)) ∉ A.trimmedCarrier := by
   intro hx
@@ -1688,6 +1843,9 @@ theorem firstCenter_not_mem_trimmedCarrier (A : K.CentralPolygonalArc hcont D C 
     linarith [D.radius_pos]
   · exact Metric.mem_closedBall_self D.radius_pos.le
 
+/--
+@isnad1 id=not.1h6v.s7.e61c57ff7453 from=translated src=- shape=0ae5d4c7 vocab=dd88393a
+-/
 theorem secondCenter_not_mem_trimmedCarrier (A : K.CentralPolygonalArc hcont D C i) :
     h (K.position (K.edgeSecond i)) ∉ A.trimmedCarrier := by
   intro hx
@@ -1700,18 +1858,27 @@ theorem secondCenter_not_mem_trimmedCarrier (A : K.CentralPolygonalArc hcont D C
     linarith [D.radius_pos]
   · exact Metric.mem_closedBall_self D.radius_pos.le
 
+/--
+@isnad1 id=not.1h6v.s7.95b88481399b from=translated src=- shape=0ae5d4c7 vocab=ad939a8f
+-/
 theorem firstCenter_not_mem_rightSpoke (A : K.CentralPolygonalArc hcont D C i) :
     h (K.position (K.edgeFirst i)) ∉ A.rightSpoke := by
   intro hx
   exact Set.disjoint_left.mp (D.vertices_disjoint _ _ (K.edgeFirst_ne_edgeSecond i))
     (Metric.mem_closedBall_self D.radius_pos.le) (A.rightSpoke_subset_disk hx)
 
+/--
+@isnad1 id=not.1h6v.s7.50519f14078e from=translated src=- shape=0ae5d4c7 vocab=59506422
+-/
 theorem secondCenter_not_mem_leftSpoke (A : K.CentralPolygonalArc hcont D C i) :
     h (K.position (K.edgeSecond i)) ∉ A.leftSpoke := by
   intro hx
   exact Set.disjoint_left.mp (D.vertices_disjoint _ _ (K.edgeFirst_ne_edgeSecond i))
     (A.leftSpoke_subset_disk hx) (Metric.mem_closedBall_self D.radius_pos.le)
 
+/--
+@isnad1 id=eq.1h6v.s7.000b0d8547a5 from=translated src=- shape=15cbefd0 vocab=096b587b
+-/
 theorem completeCarrier_sdiff_endpoints (A : K.CentralPolygonalArc hcont D C i) :
     A.completeCarrier \
         {h (K.position (K.edgeFirst i)), h (K.position (K.edgeSecond i))} =
@@ -1738,6 +1905,9 @@ theorem completeCarrier_sdiff_endpoints (A : K.CentralPolygonalArc hcont D C i) 
       · exact A.firstCenter_not_mem_rightSpoke (hx ▸ hR)
       · exact hx1 hx
 
+/--
+@isnad1 id=disjoint.2h8v.s7.95c91106e6e2 from=translated src=- shape=067c341d vocab=4c7c2e82
+-/
 theorem disjoint_leftSpoke_trimmedCarrier {j : Fin (Fintype.card K.EdgeFace)}
     {A' : K.CentralPolygonalArc hcont D C j}
     (A : K.CentralPolygonalArc hcont D C i) (hij : i ≠ j) :
@@ -1776,6 +1946,9 @@ theorem disjoint_leftSpoke_trimmedCarrier {j : Fin (Fintype.card K.EdgeFace)}
   · exact Set.disjoint_left.mp (A'.trimmedCarrier_avoids_nonincident (K.edgeFirst i) hv)
       hxBall hxTrim
 
+/--
+@isnad1 id=disjoint.2h8v.s7.fc5bdeab2bf9 from=translated src=- shape=067c341d vocab=41f0ee85
+-/
 theorem disjoint_rightSpoke_trimmedCarrier {j : Fin (Fintype.card K.EdgeFace)}
     {A' : K.CentralPolygonalArc hcont D C j}
     (A : K.CentralPolygonalArc hcont D C i) (hij : i ≠ j) :
@@ -1816,6 +1989,9 @@ theorem disjoint_rightSpoke_trimmedCarrier {j : Fin (Fintype.card K.EdgeFace)}
   · exact Set.disjoint_left.mp (A'.trimmedCarrier_avoids_nonincident (K.edgeSecond i) hv)
       hxBall hxTrim
 
+/--
+@isnad1 id=disjoint.2h8v.s7.ce4789dd5fe8 from=translated src=- shape=067c341d vocab=6dcf9dd7
+-/
 theorem disjoint_leftOpenSpoke_leftOpenSpoke {j : Fin (Fintype.card K.EdgeFace)}
     {A' : K.CentralPolygonalArc hcont D C j}
     (A : K.CentralPolygonalArc hcont D C i) (hij : i ≠ j) :
@@ -1829,6 +2005,9 @@ theorem disjoint_leftOpenSpoke_leftOpenSpoke {j : Fin (Fintype.card K.EdgeFace)}
       (Set.sdiff_subset.trans A.leftSpoke_subset_disk)
       (Set.sdiff_subset.trans A'.leftSpoke_subset_disk)
 
+/--
+@isnad1 id=disjoint.2h8v.s7.98f1dd4fdc1e from=translated src=- shape=067c341d vocab=44859f66
+-/
 theorem disjoint_leftOpenSpoke_rightOpenSpoke {j : Fin (Fintype.card K.EdgeFace)}
     {A' : K.CentralPolygonalArc hcont D C j}
     (A : K.CentralPolygonalArc hcont D C i) (hij : i ≠ j) :
@@ -1842,6 +2021,9 @@ theorem disjoint_leftOpenSpoke_rightOpenSpoke {j : Fin (Fintype.card K.EdgeFace)
       (Set.sdiff_subset.trans A.leftSpoke_subset_disk)
       (Set.sdiff_subset.trans A'.rightSpoke_subset_disk)
 
+/--
+@isnad1 id=disjoint.2h8v.s7.6b23e8acbb55 from=translated src=- shape=067c341d vocab=44859f66
+-/
 theorem disjoint_rightOpenSpoke_leftOpenSpoke {j : Fin (Fintype.card K.EdgeFace)}
     {A' : K.CentralPolygonalArc hcont D C j}
     (A : K.CentralPolygonalArc hcont D C i) (hij : i ≠ j) :
@@ -1855,6 +2037,9 @@ theorem disjoint_rightOpenSpoke_leftOpenSpoke {j : Fin (Fintype.card K.EdgeFace)
       (Set.sdiff_subset.trans A.rightSpoke_subset_disk)
       (Set.sdiff_subset.trans A'.leftSpoke_subset_disk)
 
+/--
+@isnad1 id=disjoint.2h8v.s7.c6002e12e323 from=translated src=- shape=067c341d vocab=4bc47a1a
+-/
 theorem disjoint_rightOpenSpoke_rightOpenSpoke {j : Fin (Fintype.card K.EdgeFace)}
     {A' : K.CentralPolygonalArc hcont D C j}
     (A : K.CentralPolygonalArc hcont D C i) (hij : i ≠ j) :
@@ -1868,7 +2053,9 @@ theorem disjoint_rightOpenSpoke_rightOpenSpoke {j : Fin (Fintype.card K.EdgeFace
       (Set.sdiff_subset.trans A.rightSpoke_subset_disk)
       (Set.sdiff_subset.trans A'.rightSpoke_subset_disk)
 
-/-- Distinct replacement edges have disjoint relative interiors. -/
+/-- Distinct replacement edges have disjoint relative interiors.
+@isnad1 id=disjoint.2h8v.s7.6c7e10739b3f from=translated src=- shape=067c341d vocab=afd5356b
+-/
 theorem disjoint_interiorCarrier {j : Fin (Fintype.card K.EdgeFace)}
     {A' : K.CentralPolygonalArc hcont D C j}
     (A : K.CentralPolygonalArc hcont D C i) (hij : i ≠ j) :
@@ -1905,6 +2092,9 @@ theorem disjoint_interiorCarrier {j : Fin (Fintype.card K.EdgeFace)}
   · exact Set.disjoint_left.mp
       (CentralPolygonalArc.disjoint_rightOpenSpoke_rightOpenSpoke (A' := A') A hij) hR hR'
 
+/--
+@isnad1 id=disjoint.2h7v.s8.749272eefba1 from=translated src=- shape=41c71b4b vocab=cc6715fb
+-/
 theorem completeCarrier_avoids_nonincident
     (A : K.CentralPolygonalArc hcont D C i) (v : K.Vertex)
     (hv : v ∉ (K.edgeAt i).1) :
@@ -1963,6 +2153,9 @@ noncomputable def middleSourceMap
     (A : K.CentralPolygonalArc hcont D C i) : Plane →ᵃ[ℝ] Plane :=
   BrokenLineData.realAxisAffine.comp (middleSourceScalarMap K A)
 
+/--
+@isnad1 id=eq.1h7v.s12.e23d20c479f0 from=translated src=- shape=edee93f6 vocab=4a3ae6ad
+-/
 @[simp] theorem middleSourceMap_apply
     {h : Plane → Plane} {hcont : ContinuousOn h K.support}
     {D : K.VertexDiskControl h} {C : K.CentralTubeControl hcont D}
@@ -1982,6 +2175,9 @@ noncomputable def middleBreakpoint
     (A : K.CentralPolygonalArc hcont D C i) (v : A.parameterization.source.Vertex) : ℝ :=
   max (1 / 2 : ℝ) (min (3 / 4 : ℝ) (rawMiddleBreakpoint K A v))
 
+/--
+@isnad1 id=mem.1h7v.s7.a0e592e31ee1 from=translated src=- shape=8580d743 vocab=a6b01571
+-/
 theorem middleBreakpoint_mem
     {h : Plane → Plane} {hcont : ContinuousOn h K.support}
     {D : K.VertexDiskControl h} {C : K.CentralTubeControl hcont D}
@@ -1992,6 +2188,9 @@ theorem middleBreakpoint_mem
   · exact le_max_left _ _
   · exact max_le (by norm_num) (min_le_left _ _)
 
+/--
+@isnad1 id=eq.3h7v.s12.763f54ec5906 from=translated src=- shape=e44d73df vocab=bdec7fce
+-/
 theorem middleBreakpoint_eq_raw_of_mem
     {h : Plane → Plane} {hcont : ContinuousOn h K.support}
     {D : K.VertexDiskControl h} {C : K.CentralTubeControl hcont D}
@@ -2021,6 +2220,9 @@ theorem middleBreakpoint_eq_raw_of_mem
     linarith
   rw [middleBreakpoint, min_eq_right hraw1, max_eq_right hraw0]
 
+/--
+@isnad1 id=eq.3h7v.s13.36ceae27af6e from=translated src=- shape=a2c2a402 vocab=da5f00ae
+-/
 theorem middleSourceScalar_breakpoint
     {h : Plane → Plane} {hcont : ContinuousOn h K.support}
     {D : K.VertexDiskControl h} {C : K.CentralTubeControl hcont D}
@@ -2059,6 +2261,9 @@ noncomputable def graphBreakpointParameter {h : Plane → Plane}
   | some none => 3 / 4
   | some (some v) => middleBreakpoint K (K.replacementArc hcont D C b.1) v
 
+/--
+@isnad1 id=mem.1h5v.s7.8b4021fc0da7 from=translated src=- shape=219e3c66 vocab=a0bb5d8f
+-/
 theorem graphBreakpointParameter_mem {h : Plane → Plane}
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
     (C : K.CentralTubeControl hcont D) (b : K.GraphBreakpoint hcont D C) :
@@ -2077,6 +2282,9 @@ noncomputable def graphBreakpointPoint {h : Plane → Plane}
   AffineMap.lineMap (K.position (K.edgeFirst b.1)) (K.position (K.edgeSecond b.1))
     (K.graphBreakpointParameter hcont D C b)
 
+/--
+@isnad1 id=mem.1h5v.s6.5fd6c9843437 from=translated src=- shape=a4066df6 vocab=3ea21233
+-/
 theorem graphBreakpointPoint_mem_support {h : Plane → Plane}
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
     (C : K.CentralTubeControl hcont D) (b : K.GraphBreakpoint hcont D C) :
@@ -2089,6 +2297,9 @@ noncomputable def graphReplacementSubdivision {h : Plane → Plane}
     (C : K.CentralTubeControl hcont D) : PlaneComplex :=
   K.markedEdgeSubdivision (K.graphBreakpointPoint hcont D C)
 
+/--
+@isnad1 id=subdivid.2h4v.s7.b013e11512ad from=translated src=- shape=c6838286 vocab=7c9b3194
+-/
 theorem graphReplacementSubdivision_subdivides {h : Plane → Plane}
     (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2)
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
@@ -2096,6 +2307,9 @@ theorem graphReplacementSubdivision_subdivides {h : Plane → Plane}
     (K.graphReplacementSubdivision hcont D C).Subdivides K :=
   K.markedEdgeSubdivision_subdivides (K.graphBreakpointPoint hcont D C) hgraph
 
+/--
+@isnad1 id=ex.1h5v.s7.beb74626d801 from=translated src=- shape=ec5a7811 vocab=55bd54a4
+-/
 theorem exists_graphReplacementSubdivision_vertex {h : Plane → Plane}
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
     (C : K.CentralTubeControl hcont D) (b : K.GraphBreakpoint hcont D C) :
@@ -2107,6 +2321,9 @@ theorem exists_graphReplacementSubdivision_vertex {h : Plane → Plane}
   K.exists_markedEdgeSubdivision_vertex (K.graphBreakpointPoint hcont D C) b
     (K.graphBreakpointPoint_mem_support hcont D C b)
 
+/--
+@isnad1 id=or.2h7v.s10.55f46a771857 from=translated src=- shape=6dbf27c7 vocab=f2e9ae93
+-/
 theorem graphReplacementFace_parameter_side {h : Plane → Plane}
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
     (C : K.CentralTubeControl hcont D)
@@ -2126,6 +2343,9 @@ theorem graphReplacementFace_parameter_side {h : Plane → Plane}
   exact ((K.markedEdgeChain (K.graphBreakpointPoint hcont D C)).arrangementMesh.toPlaneComplex
     |>.subordinateTo_cellCarrier K u).symm ▸ hside
 
+/--
+@isnad1 id=or.2h6v.s11.f8e50d43e3cf from=translated src=- shape=daabd5b0 vocab=8a7a9c1b
+-/
 theorem graphReplacementFace_piece {h : Plane → Plane}
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
     (C : K.CentralTubeControl hcont D)
@@ -2158,6 +2378,9 @@ noncomputable def edgeReplacementMap {h : Plane → Plane} (hcont : ContinuousOn
     (i : Fin (Fintype.card K.EdgeFace)) (x : Plane) : Plane :=
   (K.replacementArc hcont D C i).completePath.extend (K.edgeParameter i x)
 
+/--
+@isnad1 id=continuo.1h5v.s7.964e5a91c620 from=translated src=- shape=a2187700 vocab=3ec7acfb
+-/
 theorem edgeReplacementMap_continuous {h : Plane → Plane}
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
     (C : K.CentralTubeControl hcont D) (i : Fin (Fintype.card K.EdgeFace)) :
@@ -2165,6 +2388,9 @@ theorem edgeReplacementMap_continuous {h : Plane → Plane}
   exact (K.replacementArc hcont D C i).completePath.continuous_extend.comp
     (K.edgeParameter i).continuous_of_finiteDimensional
 
+/--
+@isnad1 id=eq.1h5v.s7.bae64a032197 from=translated src=- shape=290b2c0c vocab=bb304fb8
+-/
 @[simp] theorem edgeReplacementMap_first {h : Plane → Plane}
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
     (C : K.CentralTubeControl hcont D) (i : Fin (Fintype.card K.EdgeFace)) :
@@ -2172,6 +2398,9 @@ theorem edgeReplacementMap_continuous {h : Plane → Plane}
       h (K.position (K.edgeFirst i)) := by
   simp [edgeReplacementMap, K.edgeParameter_apply_first]
 
+/--
+@isnad1 id=eq.1h5v.s7.cb6dfb5ba1e7 from=translated src=- shape=290b2c0c vocab=ceac8ca2
+-/
 @[simp] theorem edgeReplacementMap_second {h : Plane → Plane}
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
     (C : K.CentralTubeControl hcont D) (i : Fin (Fintype.card K.EdgeFace)) :
@@ -2179,6 +2408,9 @@ theorem edgeReplacementMap_continuous {h : Plane → Plane}
       h (K.position (K.edgeSecond i)) := by
   simp [edgeReplacementMap, K.edgeParameter_apply_second]
 
+/--
+@isnad1 id=eq.1h5v.s7.4f06ef189633 from=translated src=- shape=a9597dfe vocab=1e4207cd
+-/
 theorem edgeReplacementMap_image_cellCarrier {h : Plane → Plane}
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
     (C : K.CentralTubeControl hcont D) (i : Fin (Fintype.card K.EdgeFace)) :
@@ -2222,6 +2454,9 @@ noncomputable def edgeIndexAt (x : Plane)
     Fin (Fintype.card K.EdgeFace) :=
   Classical.choose hx
 
+/--
+@isnad1 id=mem.1h2v.s6.63e47801c6f0 from=translated src=- shape=7bf08ea2 vocab=59d7530a
+-/
 theorem edgeIndexAt_spec (x : Plane)
     (hx : ∃ i : Fin (Fintype.card K.EdgeFace), x ∈ K.cellCarrier (K.edgeAt i).1) :
     x ∈ K.cellCarrier (K.edgeAt (K.edgeIndexAt x hx)).1 :=
@@ -2240,6 +2475,9 @@ noncomputable def graphReplacementMap {h : Plane → Plane}
         K.edgeReplacementMap hcont D C (K.edgeIndexAt x hx) x
       else h x
 
+/--
+@isnad1 id=eq.2h5v.s7.f6d59e6b2549 from=translated src=- shape=2bc30395 vocab=7a966227
+-/
 theorem graphReplacementMap_vertex {h : Plane → Plane}
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
     (C : K.CentralTubeControl hcont D) {v : K.Vertex}
@@ -2272,6 +2510,9 @@ private theorem mem_openSegment_of_mem_edge_not_vertex
       simp
     rwa [himage] at hx
 
+/--
+@isnad1 id=eq.3h3v.s7.9db01aa6e44f from=translated src=- shape=7742bbcd vocab=80c73156
+-/
 theorem edgeIndexAt_eq_of_not_vertex {x : Plane}
     (hnv : ¬K.IsGraphVertexPoint x)
     (hx : ∃ i : Fin (Fintype.card K.EdgeFace), x ∈ K.cellCarrier (K.edgeAt i).1)
@@ -2282,6 +2523,9 @@ theorem edgeIndexAt_eq_of_not_vertex {x : Plane}
     (K.mem_openSegment_of_mem_edge_not_vertex _ (K.edgeIndexAt_spec x hx) hnv)
     (K.mem_openSegment_of_mem_edge_not_vertex i hxi hnv)
 
+/--
+@isnad1 id=eq.3h6v.s7.736042d3b7c3 from=translated src=- shape=51a41fe8 vocab=72be409a
+-/
 theorem graphReplacementMap_eq_edge {h : Plane → Plane}
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
     (C : K.CentralTubeControl hcont D) {x : Plane}
@@ -2293,6 +2537,9 @@ theorem graphReplacementMap_eq_edge {h : Plane → Plane}
   rw [graphReplacementMap, ite_eq_right hnv, dite_eq_left hx,
     K.edgeIndexAt_eq_of_not_vertex hnv hx i hxi]
 
+/--
+@isnad1 id=eqon.1h5v.s7.e6050a1436cd from=translated src=- shape=9ef27f8a vocab=15cb45eb
+-/
 theorem graphReplacementMap_eq_edge_on_cellCarrier {h : Plane → Plane}
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
     (C : K.CentralTubeControl hcont D) (i : Fin (Fintype.card K.EdgeFace)) :
@@ -2330,6 +2577,9 @@ theorem graphReplacementMap_eq_edge_on_cellCarrier {h : Plane → Plane}
     · rw [K.graphReplacementMap_vertex hcont D C hvface,
         K.edgeReplacementMap_second]
 
+/--
+@isnad1 id=or.2h2v.s6.cfb8a1cf437a from=translated src=- shape=b5a3e6ce vocab=7c669d18
+-/
 theorem vertexPoint_or_exists_edge_of_mem_support
     (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2) {x : Plane} (hx : x ∈ K.support) :
     K.IsGraphVertexPoint x ∨
@@ -2353,7 +2603,9 @@ theorem vertexPoint_or_exists_edge_of_mem_support
     exact hxs
 
 /-- The finite simultaneous graph replacement remains in the convex hull of the original
-target graph. -/
+target graph.
+@isnad1 id=mem.3h5v.s8.d02b24b5d422 from=translated src=- shape=188c26e6 vocab=44eff1eb
+-/
 theorem graphReplacementMap_mem_targetConvexHull
     (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2)
     {h : Plane → Plane} (hcont : ContinuousOn h K.support)
@@ -2375,6 +2627,9 @@ theorem graphReplacementMap_mem_targetConvexHull
       (Set.image_mono (K.cellCarrier_subset_support (K.edgeAt_mem_simplexes i)))
     exact (K.replacementArc hcont D C i).completeCarrier_subset_edgeConvexHull himage
 
+/--
+@isnad1 id=eq.2h6v.s9.bf79d91b5f17 from=translated src=- shape=39aaa835 vocab=9555682e
+-/
 theorem edgeReplacementMap_eq_path {h : Plane → Plane}
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
     (C : K.CentralTubeControl hcont D) (i : Fin (Fintype.card K.EdgeFace))
@@ -2384,6 +2639,9 @@ theorem edgeReplacementMap_eq_path {h : Plane → Plane}
         ⟨K.edgeParameter i x, K.edgeParameter_mem_Icc i hx⟩ := by
   exact Path.extend_apply _ (K.edgeParameter_mem_Icc i hx)
 
+/--
+@isnad1 id=eq.3h6v.s11.5fcf08858fa5 from=translated src=- shape=44ea943a vocab=605dc488
+-/
 theorem edgeReplacementMap_eq_left {h : Plane → Plane}
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
     (C : K.CentralTubeControl hcont D) (i : Fin (Fintype.card K.EdgeFace))
@@ -2404,6 +2662,9 @@ theorem edgeReplacementMap_eq_left {h : Plane → Plane}
   rw [Path.extend_apply first h2t]
   rfl
 
+/--
+@isnad1 id=eq.4h6v.s12.f60f16283655 from=translated src=- shape=39042979 vocab=6d8564a3
+-/
 theorem edgeReplacementMap_eq_middle {h : Plane → Plane}
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
     (C : K.CentralTubeControl hcont D) (i : Fin (Fintype.card K.EdgeFace))
@@ -2438,6 +2699,9 @@ theorem edgeReplacementMap_eq_middle {h : Plane → Plane}
   simp [Path.segment_apply, AffineMap.lineMap_apply_module]
   ring
 
+/--
+@isnad1 id=eq.3h6v.s11.30faeac77e7c from=translated src=- shape=434210f4 vocab=ecb5ce98
+-/
 theorem edgeReplacementMap_eq_right {h : Plane → Plane}
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
     (C : K.CentralTubeControl hcont D) (i : Fin (Fintype.card K.EdgeFace))
@@ -2463,6 +2727,9 @@ theorem edgeReplacementMap_eq_right {h : Plane → Plane}
   congr 1
   ring
 
+/--
+@isnad1 id=isaffine.3h6v.s9.2d36b3973998 from=translated src=- shape=2cf9c808 vocab=fa3c242f
+-/
 theorem graphReplacementMap_affineOn_left {h : Plane → Plane}
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
     (C : K.CentralTubeControl hcont D) (i : Fin (Fintype.card K.EdgeFace))
@@ -2479,6 +2746,9 @@ theorem graphReplacementMap_affineOn_left {h : Plane → Plane}
     K.edgeReplacementMap_eq_left hcont D C i (hE hx) (hle x hx)]
   rfl
 
+/--
+@isnad1 id=isaffine.3h6v.s9.66e599cc3bb1 from=translated src=- shape=d04271fd vocab=fa3c242f
+-/
 theorem graphReplacementMap_affineOn_right {h : Plane → Plane}
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
     (C : K.CentralTubeControl hcont D) (i : Fin (Fintype.card K.EdgeFace))
@@ -2496,6 +2766,9 @@ theorem graphReplacementMap_affineOn_right {h : Plane → Plane}
     K.edgeReplacementMap_eq_right hcont D C i (hE hx) (hge x hx)]
   rfl
 
+/--
+@isnad1 id=isaffine.5h6v.s10.44826e0cf0f9 from=translated src=- shape=9c58ae7e vocab=ec6b2de1
+-/
 theorem graphReplacementMap_affineOn_middle {h : Plane → Plane}
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
     (C : K.CentralTubeControl hcont D) (i : Fin (Fintype.card K.EdgeFace))
@@ -2671,7 +2944,9 @@ theorem graphReplacementMap_affineOn_middle {h : Plane → Plane}
     exact hg hxSource
 
 /-- The simultaneous edge replacement is affine on every face of its named common source
-subdivision. -/
+subdivision.
+@isnad1 id=isaffine.3h5v.s7.bcad83dac9ae from=translated src=- shape=c779b720 vocab=20028d2b
+-/
 theorem graphReplacementMap_affineOn_subdivision {h : Plane → Plane}
     (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2)
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
@@ -2708,7 +2983,9 @@ theorem graphReplacementMap_affineOn_subdivision {h : Plane → Plane}
     · exact K.graphReplacementMap_affineOn_right hcont D C i hut hright
 
 /-- The simultaneous edge replacement is PL on the original graph.  All breakpoints of all
-polygonal middle arcs occur as vertices of one common finite subdivision. -/
+polygonal middle arcs occur as vertices of one common finite subdivision.
+@isnad1 id=isplon.2h4v.s7.16494b48579a from=translated src=- shape=d64f2ea7 vocab=4f2514a2
+-/
 theorem graphReplacementMap_isPL {h : Plane → Plane}
     (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2)
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
@@ -2718,6 +2995,9 @@ theorem graphReplacementMap_isPL {h : Plane → Plane}
     K.graphReplacementSubdivision_subdivides hgraph hcont D C,
     K.graphReplacementMap_affineOn_subdivision hgraph hcont D C⟩
 
+/--
+@isnad1 id=mem.3h6v.s7.fb8bc34f67d3 from=translated src=- shape=3b9f491e vocab=bc944adf
+-/
 theorem edgeReplacementMap_mem_interiorCarrier {h : Plane → Plane}
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
     (C : K.CentralTubeControl hcont D) (i : Fin (Fintype.card K.EdgeFace))
@@ -2768,6 +3048,9 @@ theorem edgeReplacementMap_mem_interiorCarrier {h : Plane → Plane}
           (K.lineMap_edgeParameter_eq i hx).symm
         _ = K.position (K.edgeSecond i) := by simp [hparam]
 
+/--
+@isnad1 id=ne.3h7v.s7.8a866ebe6bc4 from=translated src=- shape=613c9612 vocab=aeaebcc2
+-/
 theorem vertex_image_ne_edgeReplacementMap {h : Plane → Plane}
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
     (C : K.CentralTubeControl hcont D) (v : K.Vertex)
@@ -2792,6 +3075,9 @@ theorem vertex_image_ne_edgeReplacementMap {h : Plane → Plane}
     exact Set.disjoint_left.mp (A.completeCarrier_avoids_nonincident v hv)
       (Metric.mem_closedBall_self D.radius_pos.le) (heq ▸ hxCarrier)
 
+/--
+@isnad1 id=injon.3h4v.s7.03100029ee91 from=translated src=- shape=8c10f2a8 vocab=a4a0e017
+-/
 theorem graphReplacementMap_injectiveOn {h : Plane → Plane}
     (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2)
     (hcont : ContinuousOn h K.support) (hinj : Set.InjOn h K.support)
@@ -2851,7 +3137,9 @@ theorem graphReplacementMap_injectiveOn {h : Plane → Plane}
                 (K.replacementArc hcont D C i) hij) hxInt (hxy ▸ hyInt)).elim
 
 /-- Moise's simultaneous polygonal replacement gives a PL embedding of the finite source
-graph, before imposing a quantitative approximation bound. -/
+graph, before imposing a quantitative approximation bound.
+@isnad1 id=isplembe.3h4v.s7.5c4bd6944499 from=translated src=- shape=b854b1c3 vocab=acc44aef
+-/
 theorem graphReplacementMap_isPLEmbeddingOn {h : Plane → Plane}
     (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2)
     (hcont : ContinuousOn h K.support) (hinj : Set.InjOn h K.support)
@@ -2862,7 +3150,9 @@ theorem graphReplacementMap_isPLEmbeddingOn {h : Plane → Plane}
 
 /-- If the image of every source face has diameter below `η`, and both geometric controls are
 smaller than `η`, then simultaneous polygonal replacement moves every graph point by less than
-`2 * η`. -/
+`2 * η`.
+@isnad1 id=lt.5h6v.s8.742949c33e3b from=translated src=- shape=e1105fa4 vocab=e1e78aa8
+-/
 theorem graphReplacementMap_dist_lt_two_mul {h : Plane → Plane}
     (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2)
     (hcont : ContinuousOn h K.support) (D : K.VertexDiskControl h)
@@ -2941,7 +3231,9 @@ theorem graphReplacementMap_dist_lt_two_mul {h : Plane → Plane}
 
 /-- Moise Chapter 6, Theorem 2 for finite plane complexes: after first sampling the source
 graph finely, simultaneous polygonal replacement gives an arbitrarily close PL embedding and
-preserves every original vertex value. -/
+preserves every original vertex value.
+@isnad1 id=ex.4h3v.s9.e211a79a089b from=translated src=- shape=e610bb80 vocab=97bd1d68
+-/
 theorem exists_graph_PL_approximation_facewise (K : PlaneComplex)
     (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2)
     {h : Plane → Plane} (hcont : ContinuousOn h K.support)
@@ -3051,7 +3343,9 @@ theorem exists_graph_PL_approximation_facewise (K : PlaneComplex)
     exact (R.restrictToSet_cellCarrier A u).symm ▸
       L.graphReplacementMap_affineOn_subdivision hgraphL hcontL D C u huR
 
-/-- Moise Chapter 6, Theorem 2 in its conventional interface. -/
+/-- Moise Chapter 6, Theorem 2 in its conventional interface.
+@isnad1 id=ex.4h3v.s7.559106da3755 from=translated src=- shape=b7b2c092 vocab=1c8c3762
+-/
 theorem exists_graph_PL_approximation (K : PlaneComplex)
     (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2)
     {h : Plane → Plane} (hcont : ContinuousOn h K.support)

@@ -45,21 +45,29 @@ open scoped ENNReal
 
 namespace LeanPool.CenteredMaximal
 
-/-- `1.685 < Φ`. -/
+/-- `1.685 < Φ`.
+@isnad1 id=lt.0h0v.s4.3ccebee766c7 from=translated src=- shape=5ccaf027 vocab=576e4722
+-/
 theorem lt_phi : (1685 / 1000 : ℝ) < phi :=
   phi_mem_Ioo.1
 
-/-- `Φ < 1.686`. -/
+/-- `Φ < 1.686`.
+@isnad1 id=lt.0h0v.s4.d61f472f7865 from=translated src=- shape=0efb1284 vocab=576e4722
+-/
 theorem phi_lt : phi < 1686 / 1000 :=
   phi_mem_Ioo.2
 
 /-- **Upper bound.** In every dimension `d`, `c_d ≤ 2ᵈ`: the Vitali covering argument, which for
-centred cubes only needs to cover the centres, gives the factor `2ᵈ` instead of `3ᵈ`. -/
+centred cubes only needs to cover the centres, gives the factor `2ᵈ` instead of `3ᵈ`.
+@isnad1 id=le.0h1v.s5.d88400d5acb9 from=translated src=- shape=b27f9154 vocab=30c6c2c6
+-/
 theorem weakTypeConstant_le_two_pow (d : ℕ) : weakTypeConstant d ≤ 2 ^ d :=
   weakTypeConstant_le (isWeakTypeBound_two_pow d)
 
 /-- **Lower bound.** `Φ ≤ c₂`. The previously published lower bound was
-`c₂ ≥ 3/4 - √2/4 + √6/2 = 1.62119…` (Aldaz, 2000, Proposition 1.4 with `n = 2`). -/
+`c₂ ≥ 3/4 - √2/4 + √6/2 = 1.62119…` (Aldaz, 2000, Proposition 1.4 with `n = 2`).
+@isnad1 id=le.0h0v.s3.f29026c52efb from=translated src=- shape=18d680bf vocab=6834b986
+-/
 theorem ofReal_phi_le_weakTypeConstant_two : ENNReal.ofReal phi ≤ weakTypeConstant 2 :=
   le_weakTypeConstant fun _ hC => Lattice.ofReal_phi_le hC
 

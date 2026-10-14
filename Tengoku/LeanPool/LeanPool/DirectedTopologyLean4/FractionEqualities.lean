@@ -15,21 +15,36 @@ public import Tengoku.LeanPool.LeanPool.DirectedTopologyLean4.Fraction
 
 namespace FractionEqualities
 
+/--
+@isnad1 id=eq.1h1v.s6.91eb0b247471 from=translated src=- shape=cc562968 vocab=9fab2109
+-/
 lemma one_sub_inverse_of_add_one {n : ℝ} (hn : n + 1 ≠ 0) :
     1 - 1 / (n + 1) = n / (n + 1) := by
   field_simp
   ring
 
+/--
+@isnad1 id=eq.1h3v.s5.11d058e870e0 from=translated src=- shape=691bd06d vocab=525158d4
+-/
 lemma frac_cancel {a b c : ℝ} (hb : b ≠ 0) : (a / b) * (b / c) = a / c := by
   field_simp
 
+/--
+@isnad1 id=eq.1h3v.s5.df892a632a40 from=translated src=- shape=4a4820c7 vocab=525158d4
+-/
 lemma frac_cancel' {a b c : ℝ} (hb : b ≠ 0) : (b / a) * (c / b) = c / a := by
   simp_all
 
+/--
+@isnad1 id=eq.1h2v.s6.c6885bd30129 from=translated src=- shape=64a7b261 vocab=9fab2109
+-/
 lemma one_sub_frac {a b : ℝ} (hb : b + 1 ≠ 0) : (1 - (a + 1)/(b+1)) = (b - a) / (b + 1) := by
   field_simp
   ring
 
+/--
+@isnad1 id=eq.2h3v.s7.ff807cbb74b8 from=translated src=- shape=dfaecb60 vocab=335f4d48
+-/
 lemma frac_special {a b c : ℝ} (hbc : b ≠ c) (hc : c + 1 ≠ 0) :
     (a + (b + 1)) / (c + 1) = (1 - (b + 1) / (c + 1)) * (a / (c - b)) + (b + 1) / (c + 1) := by
   have hcb : c - b ≠ 0 := sub_ne_zero_of_ne hbc.symm
@@ -37,7 +52,9 @@ lemma frac_special {a b c : ℝ} (hbc : b ≠ c) (hc : c + 1 ≠ 0) :
   ring
 
 /-- For any `i n : ℕ` with `i > 0` and `i ≤ (n + 1) * i`,
-we have that `1 / (n + 1) = i / ((n + 1) * i)`. -/
+we have that `1 / (n + 1) = i / ((n + 1) * i)`.
+@isnad1 id=eq.2h2v.s6.5ba125880385 from=translated src=- shape=6ba7250f vocab=206e0e00
+-/
 lemma cancel_common_factor {i n : ℕ} (i_pos : 0 < i)
     (hi_n : (i - 1).succ ≤ ((n + 1) * i - 1).succ) :
     Fraction.ofPos (Nat.succ_pos n) = Fraction (Nat.succ_pos _) hi_n := by

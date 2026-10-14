@@ -69,7 +69,9 @@ def QuadraticData.eval {ι : Type*} [Fintype ι]
 def IsQuadratic {ι : Type*} [Fintype ι] (P : PolynomialOn ι) : Prop :=
   ∃ q : QuadraticData ι, ∀ x, q.eval x = P x
 
-/-- Four-point support cover for quadratic functions. Paper: §4. -/
+/-- Four-point support cover for quadratic functions. Paper: §4.
+@isnad1 id=le.3h3v.s8.914d5bb1e8ad from=translated src=- shape=cee9922a vocab=f9e6156f
+-/
 theorem quadratic_support_quarter
     {W : Type*} [AddCommGroup W] [Module F W] [Fintype W]
     (f : W → F) (b : W → W → F)
@@ -183,7 +185,9 @@ theorem quadratic_support_quarter
       rw [hsupport, Finset.card_univ]
       omega
 
-/-- Low-degree support estimate on arbitrary finite Boolean coordinates. Paper: §4. -/
+/-- Low-degree support estimate on arbitrary finite Boolean coordinates. Paper: §4.
+@isnad1 id=le.2h2v.s6.e89aacc8da37 from=translated src=- shape=e8efab2a vocab=1c693b95
+-/
 theorem quadratic_weight_lower_bound
     {ι : Type*} [Fintype ι] (P : PolynomialOn ι)
     (hdeg : IsQuadratic P) (hP : P ≠ 0) :

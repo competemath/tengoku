@@ -39,6 +39,9 @@ def FaceReachable (faces : Finset (Finset Vertex)) (root : Face faces)
     Relation.ReflTransGen (FaceAdjacent faces) root ⟨t, ht⟩
 
 omit [DecidableEq Vertex] in
+/--
+@isnad1 id=iff.0h4v.s5.97af0568148d from=translated src=- shape=0a266822 vocab=601a3114
+-/
 theorem faceReachable_iff
     {faces : Finset (Finset Vertex)} (root f : Face faces) :
     FaceReachable faces root f.1 ↔
@@ -50,13 +53,18 @@ theorem faceReachable_iff
     exact ⟨f.2, hpath⟩
 
 omit [DecidableEq Vertex] in
+/--
+@isnad1 id=facereac.0h3v.s5.0589818865b4 from=translated src=- shape=bd40a5b9 vocab=a6aa4d85
+-/
 theorem faceReachable_root
     {faces : Finset (Finset Vertex)} (root : Face faces) :
     FaceReachable faces root root.1 :=
   (faceReachable_iff root root).2 Relation.ReflTransGen.refl
 
 omit [DecidableEq Vertex] in
-/-- A face outside the component of `root` cannot share an edge with a face inside it. -/
+/-- A face outside the component of `root` cannot share an edge with a face inside it.
+@isnad1 id=not.2h5v.s6.3e1c04934805 from=translated src=- shape=a9044211 vocab=7e52979c
+-/
 theorem not_faceAdjacent_of_faceReachable_of_not
     {faces : Finset (Finset Vertex)} (root f g : Face faces)
     (hf : FaceReachable faces root f.1)
@@ -78,7 +86,9 @@ namespace PartialTriangulation
 
 variable {S : Type*} [TopologicalSpace S] (T : PartialTriangulation S)
 
-/-- A finite partial triangulation which covers a connected surface has connected dual graph. -/
+/-- A finite partial triangulation which covers a connected surface has connected dual graph.
+@isnad1 id=isdualco.1h2v.s5.1f062e239b35 from=translated src=- shape=dfb1e733 vocab=aec3a5c9
+-/
 theorem isDualConnected_of_support_eq_univ
     [T2Space S] [ConnectedSpace S]
     [ChartedSpace (EuclideanHalfSpace 2) S]
@@ -219,7 +229,9 @@ namespace GeometricTriangulation
 
 variable {S : Type*} [TopologicalSpace S] (T : GeometricTriangulation S)
 
-/-- Every finite geometric triangulation of a connected surface has connected dual graph. -/
+/-- Every finite geometric triangulation of a connected surface has connected dual graph.
+@isnad1 id=isdualco.0h2v.s5.b2c4cc546972 from=translated src=- shape=c5e45028 vocab=120dd8e5
+-/
 theorem faces_isDualConnected
     [ConnectedSpace S] [ChartedSpace (EuclideanHalfSpace 2) S] :
     TriangleFamily.IsDualConnected T.faces := by
@@ -235,7 +247,9 @@ theorem faces_isDualConnected
   exact P.isDualConnected_of_support_eq_univ hsupport
 
 /-- A finite geometric triangulation of a connected surface carries the complete incidence
-certificate needed by the cell-complex bridge. -/
+certificate needed by the cell-complex bridge.
+@isnad1 id=surfacei.0h2v.s5.18ec3d54f9a7 from=translated src=- shape=5a1c77a8 vocab=b754c1b6
+-/
 theorem surfaceIncidence
     [ConnectedSpace S] [ChartedSpace (EuclideanHalfSpace 2) S] :
     T.SurfaceIncidence := by

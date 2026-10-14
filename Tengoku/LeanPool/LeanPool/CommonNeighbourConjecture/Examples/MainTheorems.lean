@@ -23,7 +23,9 @@ namespace SaxlCounterexamples.MainTheorems
 
 /-- For every base size `B ≥ 2` and every prescribed bound there is a primitive
 permutation group of degree at least that bound and base size `B` whose
-generalised Saxl graph has two nonadjacent vertices with no common neighbour. -/
+generalised Saxl graph has two nonadjacent vertices with no common neighbour.
+@isnad1 id=ex.1h2v.s6.da57fe2e1538 from=translated src=- shape=12b69e4f vocab=c47837fe
+-/
 theorem mainTheorem (B degreeBound : Nat) (hB : 2 ≤ B) :
     ∃ P : FinitePermutationGroup,
       degreeBound ≤ Nat.card P.Point ∧

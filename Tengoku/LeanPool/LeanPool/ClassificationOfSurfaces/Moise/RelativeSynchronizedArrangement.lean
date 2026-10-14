@@ -33,6 +33,9 @@ noncomputable def relativeSynchronizedArrangement (N : TriangleMesh)
     (lines : List (Plane →ᵃ[ℝ] ℝ)) : TriangleMesh :=
   (arrangementMesh J).refineByLines (N.coordinateLines ++ lines)
 
+/--
+@isnad1 id=eq.0h4v.s8.1e22a3c68b09 from=translated src=- shape=1788cfa4 vocab=5de61504
+-/
 theorem relativeSynchronizedArrangement_support (N : TriangleMesh)
     (lines : List (Plane →ᵃ[ℝ] ℝ)) :
     (relativeSynchronizedArrangement J N lines).toPlaneComplex.support =
@@ -69,6 +72,9 @@ noncomputable def targetRelativeSynchronizedMesh (N : TriangleMesh)
   exact (relativeSynchronizedArrangement J N lines).restrictTriangles
     (IsTargetRelativeSynchronizedTriangle J N lines)
 
+/--
+@isnad1 id=iff.0h6v.s8.0d6e46df306c from=translated src=- shape=52f80c7a vocab=40e6eee6
+-/
 theorem selectedRelativeSynchronizedMesh_triangle_mem
     (N : TriangleMesh) (lines : List (Plane →ᵃ[ℝ] ℝ)) (p : ι → Prop)
     {t : Finset (selectedRelativeSynchronizedMesh J N lines p).Vertex} :
@@ -78,6 +84,9 @@ theorem selectedRelativeSynchronizedMesh_triangle_mem
   classical
   exact (relativeSynchronizedArrangement J N lines).mem_restrictTriangles_triangles _
 
+/--
+@isnad1 id=iff.0h5v.s8.c4ccebff6921 from=translated src=- shape=22d9634c vocab=105ad02e
+-/
 theorem targetRelativeSynchronizedMesh_triangle_mem
     (N : TriangleMesh) (lines : List (Plane →ᵃ[ℝ] ℝ))
     {t : Finset (targetRelativeSynchronizedMesh J N lines).Vertex} :
@@ -88,7 +97,9 @@ theorem targetRelativeSynchronizedMesh_triangle_mem
   exact (relativeSynchronizedArrangement J N lines).mem_restrictTriangles_triangles _
 
 /-- Every chamber after the extra cuts remains inside an original polygon-family arrangement
-triangle. -/
+triangle.
+@isnad1 id=ex.1h5v.s8.0ae9ae2e9e82 from=translated src=- shape=b41d5215 vocab=b7b3992f
+-/
 theorem exists_arrangementTriangle_of_relativeSynchronized
     {N : TriangleMesh} {lines : List (Plane →ᵃ[ℝ] ℝ)}
     {t : Finset (relativeSynchronizedArrangement J N lines).Vertex}
@@ -109,7 +120,9 @@ theorem exists_arrangementTriangle_of_relativeSynchronized
   exact hts.trans (convexHull_mono (Set.image_mono hsu))
 
 /-- Extra cuts preserve the one-sidedness of every chamber with respect to every polygon in
-the family. -/
+the family.
+@isnad1 id=or.1h6v.s9.9177bf9af70c from=translated src=- shape=666a71ce vocab=77b06038
+-/
 theorem relativeSynchronizedTriangle_interior_side
     (N : TriangleMesh) (lines : List (Plane →ᵃ[ℝ] ℝ)) (i : ι)
     {t : Finset (relativeSynchronizedArrangement J N lines).Vertex}
@@ -125,7 +138,9 @@ theorem relativeSynchronizedTriangle_interior_side
   · exact Or.inl (hint.trans hin)
   · exact Or.inr (hint.trans hout)
 
-/-- Additional cuts do not alter the selected polygonal support. -/
+/-- Additional cuts do not alter the selected polygonal support.
+@isnad1 id=eq.0h5v.s8.694ed4c1fbf4 from=translated src=- shape=5d841770 vocab=e1e7ec0e
+-/
 theorem selectedRelativeSynchronizedMesh_support
     (N : TriangleMesh) (lines : List (Plane →ᵃ[ℝ] ℝ)) (p : ι → Prop) :
     (selectedRelativeSynchronizedMesh J N lines p).toPlaneComplex.support =
@@ -185,7 +200,9 @@ theorem selectedRelativeSynchronizedMesh_support
       ⟨(selectedRelativeSynchronizedMesh_triangle_mem J N lines p).mpr
         ⟨ht, i, hpi, htInside⟩, hyt⟩⟩
 
-/-- Every retained target chamber lies in a triangle of the prescribed target mesh. -/
+/-- Every retained target chamber lies in a triangle of the prescribed target mesh.
+@isnad1 id=ex.1h5v.s8.69aef727aef8 from=translated src=- shape=23d08463 vocab=62872a82
+-/
 theorem exists_targetTriangle_of_targetRelativeSynchronized
     (N : TriangleMesh) (lines : List (Plane →ᵃ[ℝ] ℝ))
     {t : Finset (targetRelativeSynchronizedMesh J N lines).Vertex}
@@ -204,7 +221,9 @@ theorem exists_targetTriangle_of_targetRelativeSynchronized
   exact ⟨U.1, U.2, hTU⟩
 
 /-- If the target lies in the polygon-family arrangement, its relative synchronized member has
-exactly the prescribed support. -/
+exactly the prescribed support.
+@isnad1 id=eq.1h4v.s8.1afaf9e8e19a from=translated src=- shape=22590d39 vocab=786dfb8d
+-/
 theorem targetRelativeSynchronizedMesh_support
     (N : TriangleMesh) (lines : List (Plane →ᵃ[ℝ] ℝ))
     (hsub : N.toPlaneComplex.support ⊆
@@ -262,7 +281,9 @@ theorem targetRelativeSynchronizedMesh_support
     rw [← N.closure_interior_triangleCarrier U] at hxu
     exact closure_minimal hinterior L.toPlaneComplex.isCompact_support.isClosed hxu
 
-/-- The selected and target members inherit the ambient planar edge-incidence bound. -/
+/-- The selected and target members inherit the ambient planar edge-incidence bound.
+@isnad1 id=le.1h6v.s9.984cdf1ad61c from=translated src=- shape=b9398cb1 vocab=a2dcd2c5
+-/
 theorem relativeSynchronizedMeshes_joint_edge_valence
     (N : TriangleMesh) (lines : List (Plane →ᵃ[ℝ] ℝ)) (p : ι → Prop)
     (e : Finset (relativeSynchronizedArrangement J N lines).Vertex)

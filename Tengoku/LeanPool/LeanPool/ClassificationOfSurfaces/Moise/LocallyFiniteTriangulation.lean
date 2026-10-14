@@ -39,16 +39,25 @@ def extendFaceCoordinates {V : Type*} [DecidableEq V] (t : Finset V)
     (x : stdSimplex ℝ {v // v ∈ t}) : V → ℝ :=
   fun v ↦ if hv : v ∈ t then x ⟨v, hv⟩ else 0
 
+/--
+@isnad1 id=eq.1h4v.s7.b21a4c4820f0 from=translated src=- shape=269b7991 vocab=43d25616
+-/
 @[simp] theorem extendFaceCoordinates_of_mem {V : Type*} [DecidableEq V]
     (t : Finset V) (x : stdSimplex ℝ {v // v ∈ t}) {v : V} (hv : v ∈ t) :
     extendFaceCoordinates t x v = x ⟨v, hv⟩ := by
   simp [extendFaceCoordinates, hv]
 
+/--
+@isnad1 id=eq.1h4v.s6.205874a32c60 from=translated src=- shape=754ea357 vocab=e65b98ac
+-/
 @[simp] theorem extendFaceCoordinates_of_notMem {V : Type*} [DecidableEq V]
     (t : Finset V) (x : stdSimplex ℝ {v // v ∈ t}) {v : V} (hv : v ∉ t) :
     extendFaceCoordinates t x v = 0 := by
   simp [extendFaceCoordinates, hv]
 
+/--
+@isnad1 id=eq.0h3v.s6.c3b284dcfc4e from=translated src=- shape=d201097a vocab=c8e04522
+-/
 theorem stdSimplex_map_subtypeVal_eq_extendFaceCoordinates
     {V : Type*} [Fintype V] [DecidableEq V] (t : Finset V)
     (x : stdSimplex ℝ {v // v ∈ t}) :
@@ -76,6 +85,9 @@ theorem stdSimplex_map_subtypeVal_eq_extendFaceCoordinates
     rw [hempty]
     simp
 
+/--
+@isnad1 id=eq.1h4v.s7.ffd3f68858b5 from=translated src=- shape=a86c75bc vocab=d2b8e1df
+-/
 theorem extendFaceCoordinates_map_subset
     {V : Type*} [DecidableEq V] {e t : Finset V}
     (het : e ⊆ t) (x : stdSimplex ℝ {v // v ∈ e}) :
@@ -144,6 +156,9 @@ noncomputable def finsetMapSubtypeEquiv
     apply Subtype.ext
     exact hab
 
+/--
+@isnad1 id=eq.0h5v.s8.c6c51395ab85 from=translated src=- shape=693c7104 vocab=704e6992
+-/
 @[simp] theorem finsetMapSubtypeEquiv_apply_val
     {A B : Type*}
     (e : A ↪ B) (t : Finset A) (a : {a // a ∈ t}) :
@@ -157,7 +172,9 @@ noncomputable def relabelFaceSimplex
     stdSimplex ℝ {a // a ∈ t} :=
   stdSimplex.map (finsetMapSubtypeEquiv e t).symm x
 
-/-- Face relabeling along an embedding is onto. -/
+/-- Face relabeling along an embedding is onto.
+@isnad1 id=surjecti.0h4v.s6.a91e8f5e85a6 from=translated src=- shape=faab7849 vocab=e8b5d7ce
+-/
 theorem relabelFaceSimplex_surjective
     {A B : Type*}
     (e : A ↪ B) (t : Finset A) :
@@ -175,7 +192,9 @@ theorem relabelFaceSimplex_surjective
   rw [hcomp, stdSimplex.map_id_apply]
 
 /-- Pulling coordinates back along a face relabeling preserves the coordinate at every
-original vertex. -/
+original vertex.
+@isnad1 id=eq.0h6v.s6.521aab987403 from=translated src=- shape=6ffd35c0 vocab=5ed46c47
+-/
 theorem relabelFaceSimplex_extended_apply
     {A B : Type*}
     [DecidableEq A] [DecidableEq B]
@@ -226,7 +245,9 @@ theorem relabelFaceSimplex_extended_apply
       extendFaceCoordinates_of_notMem (t.map e) _ hea]
 
 /-- Relabeling two faces by the same embedding preserves equality of their global
-zero-extended coordinate functions. -/
+zero-extended coordinate functions.
+@isnad1 id=iff.0h7v.s7.2f2073b17508 from=translated src=- shape=317a364b vocab=fd5dbed3
+-/
 theorem relabelFaceSimplex_extended_eq_iff
     {A B : Type*} [DecidableEq A] [DecidableEq B]
     (e : A ↪ B) {s t : Finset A}
@@ -260,7 +281,9 @@ theorem relabelFaceSimplex_extended_eq_iff
       relabelFaceSimplex_extended_apply e t y a,
       congrFun h (e a)]
 
-/-- Relabeling does not change a weighted evaluation of the zero-extended coordinates. -/
+/-- Relabeling does not change a weighted evaluation of the zero-extended coordinates.
+@isnad1 id=eq.0h6v.s7.32d3ecbb0d75 from=translated src=- shape=9062af08 vocab=115b9bbc
+-/
 theorem sum_extendFaceCoordinates_relabelFaceSimplex
     {A B : Type*} [Fintype A] [Fintype B]
     [DecidableEq A] [DecidableEq B]
@@ -316,7 +339,9 @@ noncomputable def relabelUnivSimplex
   stdSimplex.map (univMapSubtypeEquiv e) x
 
 /-- Pullback along an embedded whole finite vertex type is onto: its inverse simply pushes
-coordinates forward along the inverse equivalence onto the image. -/
+coordinates forward along the inverse equivalence onto the image.
+@isnad1 id=surjecti.0h3v.s6.e33b55724028 from=translated src=- shape=94ea48a9 vocab=2e145d75
+-/
 theorem relabelUnivSimplex_surjective
     {A B : Type*} [Fintype A]
     (e : A ↪ B) :
@@ -333,7 +358,9 @@ theorem relabelUnivSimplex_surjective
     exact (univMapSubtypeEquiv e).apply_symm_apply a
   rw [hcomp, stdSimplex.map_id_apply]
 
-/-- The whole-type relabeling preserves the coordinate of every embedded source vertex. -/
+/-- The whole-type relabeling preserves the coordinate of every embedded source vertex.
+@isnad1 id=eq.0h5v.s7.00427943f473 from=translated src=- shape=3b0ba923 vocab=ec2719e5
+-/
 theorem relabelUnivSimplex_apply
     {A B : Type*} [Fintype A]
     [DecidableEq B]
@@ -375,7 +402,9 @@ theorem relabelUnivSimplex_apply
   rw [hfilter]
   simp [ea]
 
-/-- An injective vertex map preserves the coordinate at each source vertex. -/
+/-- An injective vertex map preserves the coordinate at each source vertex.
+@isnad1 id=eq.0h5v.s6.6d5708b6a3b1 from=translated src=- shape=d8479f39 vocab=10ad6253
+-/
 theorem stdSimplex_map_embedding_apply
     {A B : Type*} [Fintype A] [Fintype B]
     (e : A ↪ B) (x : stdSimplex ℝ A) (a : A) :
@@ -391,7 +420,9 @@ theorem stdSimplex_map_embedding_apply
   rw [hfilter]
   simp
 
-/-- An injective vertex map has zero coordinate away from its image. -/
+/-- An injective vertex map has zero coordinate away from its image.
+@isnad1 id=eq.1h5v.s6.764f33444028 from=translated src=- shape=71164998 vocab=49280b1d
+-/
 theorem stdSimplex_map_embedding_apply_of_notMem_range
     {A B : Type*} [Fintype A] [Fintype B]
     (e : A ↪ B) (x : stdSimplex ℝ A) {b : B}
@@ -427,12 +458,17 @@ def faceOfRelabel (e : A ↪ B) {faces : Finset (Finset A)} :
   fun f => ⟨f.1.map e, Finset.mem_image.mpr ⟨f.1, f.2, rfl⟩⟩
 
 omit [DecidableEq A] in
+/--
+@isnad1 id=eq.0h5v.s6.841540280742 from=translated src=- shape=9434dfa5 vocab=40b0feff
+-/
 theorem faceOfRelabel_val (e : A ↪ B) {faces : Finset (Finset A)}
     (f : Face faces) : (faceOfRelabel e f).1 = f.1.map e :=
   rfl
 
 omit [DecidableEq A] in
-/-- Injective vertex relabeling preserves dual adjacency of listed faces. -/
+/-- Injective vertex relabeling preserves dual adjacency of listed faces.
+@isnad1 id=faceadja.1h6v.s5.439fb1bccc60 from=translated src=- shape=affc94db vocab=fab3cbcd
+-/
 theorem faceAdjacent_faceOfRelabel (e : A ↪ B) {faces : Finset (Finset A)}
     {f g : Face faces} (hfg : FaceAdjacent faces f g) :
     FaceAdjacent (Moise.relabelFaceFamily e faces)
@@ -444,7 +480,9 @@ theorem faceAdjacent_faceOfRelabel (e : A ↪ B) {faces : Finset (Finset A)}
   · exact Finset.map_subset_map.mpr hedgeRight
 
 omit [DecidableEq A] in
-/-- Injective vertex relabeling carries a finite dual path to the relabeled family. -/
+/-- Injective vertex relabeling carries a finite dual path to the relabeled family.
+@isnad1 id=refltran.1h6v.s6.16b8a6935b0b from=translated src=- shape=e4e2175a vocab=259b9056
+-/
 theorem reflTransGen_faceAdjacent_faceOfRelabel (e : A ↪ B)
     {faces : Finset (Finset A)} {f g : Face faces}
     (hfg : Relation.ReflTransGen (FaceAdjacent faces) f g) :
@@ -456,7 +494,9 @@ theorem reflTransGen_faceAdjacent_faceOfRelabel (e : A ↪ B)
       exact ih.tail (faceAdjacent_faceOfRelabel e hbc)
 
 omit [DecidableEq A] in
-/-- Dual connectivity is preserved by an injective relabeling of the vertex type. -/
+/-- Dual connectivity is preserved by an injective relabeling of the vertex type.
+@isnad1 id=isdualco.1h4v.s4.e3d935a3f665 from=translated src=- shape=8400ded4 vocab=def8db5a
+-/
 theorem isDualConnected_relabel (e : A ↪ B) {faces : Finset (Finset A)}
     (hfaces : IsDualConnected faces) :
     IsDualConnected (Moise.relabelFaceFamily e faces) := by
@@ -480,7 +520,9 @@ theorem isDualConnected_relabel (e : A ↪ B) {faces : Finset (Finset A)}
 
 omit [DecidableEq A] [DecidableEq B] in
 /-- Faces relabeled from different vertex types share an edge when the two source edges have the
-same relabeled image. -/
+same relabeled image.
+@isnad1 id=hascross.4h11v.s7.6b44c9c53a4c from=translated src=- shape=ff764148 vocab=7445aeeb
+-/
 theorem hasCrossEdge_relabel_of_mapped_edge_eq
     {C : Type*} [DecidableEq C]
     (eleft : A ↪ C) (eright : B ↪ C)
@@ -501,7 +543,9 @@ theorem hasCrossEdge_relabel_of_mapped_edge_eq
   · rw [hmap]
     exact Finset.map_subset_map.mpr hedgeRight
 
-/-- A shared edge remains a shared edge when both families are injectively relabeled. -/
+/-- A shared edge remains a shared edge when both families are injectively relabeled.
+@isnad1 id=hascross.1h5v.s5.233386ef0653 from=translated src=- shape=5fc2f967 vocab=f82731ee
+-/
 theorem hasCrossEdge_relabel (e : A ↪ B)
     {left right : Finset (Finset A)} (hcross : HasCrossEdge left right) :
     HasCrossEdge (Moise.relabelFaceFamily e left)
@@ -582,6 +626,9 @@ noncomputable def pullGeometricRealization
   obtain ⟨b, hb, hba⟩ := Finset.mem_map.mp hea
   exact ha (e.injective hba ▸ hb)
 
+/--
+@isnad1 id=eq.0h5v.s7.e2724825300d from=translated src=- shape=f3a5ef56 vocab=06f54198
+-/
 @[simp] theorem pushGeometricRealization_val
     {A B : Type*} [Fintype A] [Fintype B]
     [DecidableEq B]
@@ -590,6 +637,9 @@ noncomputable def pullGeometricRealization
     (pushGeometricRealization e F x).1 =
       stdSimplex.map e ⟨x.1, x.2.1⟩ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.5bfeff71a90e from=translated src=- shape=0e8be716 vocab=7ff91bad
+-/
 @[simp] theorem pushGeometricRealization_apply_embedding
     {A B : Type*} [Fintype A] [Fintype B]
     [DecidableEq B]
@@ -600,6 +650,9 @@ noncomputable def pullGeometricRealization
     stdSimplex_map_embedding_apply]
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s6.2bae8729905c from=translated src=- shape=686fc72e vocab=494e27f7
+-/
 theorem pushGeometricRealization_apply_of_notMem_range
     {A B : Type*} [Fintype A] [Fintype B]
     [DecidableEq B]
@@ -610,6 +663,9 @@ theorem pushGeometricRealization_apply_of_notMem_range
   rw [pushGeometricRealization_val]
   exact stdSimplex_map_embedding_apply_of_notMem_range e _ hb
 
+/--
+@isnad1 id=eq.1h7v.s7.7036ec9fc75e from=translated src=- shape=bb042d27 vocab=fcb7f6ac
+-/
 theorem pushGeometricRealization_val_eq_of_val_eq
     {A B : Type*} [Fintype A] [Fintype B]
     [DecidableEq B]
@@ -627,6 +683,9 @@ theorem pushGeometricRealization_val_eq_of_val_eq
   · rw [pushGeometricRealization_apply_of_notMem_range e F x hb,
       pushGeometricRealization_apply_of_notMem_range e G y hb]
 
+/--
+@isnad1 id=eq.0h6v.s6.123b4dd8a0a2 from=translated src=- shape=37e958b5 vocab=b386236a
+-/
 @[simp] theorem pullGeometricRealization_apply
     {A B : Type*} [Fintype A] [Fintype B]
     [DecidableEq B]
@@ -635,6 +694,9 @@ theorem pushGeometricRealization_val_eq_of_val_eq
     (pullGeometricRealization e F y).1 a = y.1 (e a) := by
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.ac389cbaadfb from=translated src=- shape=55095d5d vocab=a4b10319
+-/
 @[simp] theorem pull_pushGeometricRealization
     {A B : Type*} [Fintype A] [Fintype B]
     [DecidableEq B]
@@ -646,6 +708,9 @@ theorem pushGeometricRealization_val_eq_of_val_eq
   rw [pullGeometricRealization_apply, pushGeometricRealization_val]
   exact stdSimplex_map_embedding_apply e ⟨x.1, x.2.1⟩ a
 
+/--
+@isnad1 id=eq.0h5v.s6.fbdbce24e0f9 from=translated src=- shape=6c924435 vocab=256b91e6
+-/
 @[simp] theorem push_pullGeometricRealization
     {A B : Type*} [Fintype A] [Fintype B]
     [DecidableEq B]
@@ -670,6 +735,9 @@ theorem pushGeometricRealization_val_eq_of_val_eq
     obtain ⟨a, -, hab⟩ := Finset.mem_map.mp hb
     exact hbrange ⟨a, hab⟩
 
+/--
+@isnad1 id=continuo.0h4v.s7.ad52f38a5d5c from=translated src=- shape=23ef021f vocab=030871bc
+-/
 theorem continuous_pushGeometricRealization
     {A B : Type*} [Fintype A] [Fintype B]
     [DecidableEq B]
@@ -684,6 +752,9 @@ theorem continuous_pushGeometricRealization
   exact continuous_subtype_val.comp
     ((stdSimplex.continuous_map e).comp hin)
 
+/--
+@isnad1 id=continuo.0h4v.s7.effbb14406af from=translated src=- shape=c01bfa9c vocab=e9ca97de
+-/
 theorem continuous_pullGeometricRealization
     {A B : Type*} [Fintype A] [Fintype B]
     [DecidableEq B]
@@ -710,7 +781,9 @@ noncomputable def relabelGeometricRealizationHomeomorph
   continuous_toFun := continuous_pushGeometricRealization e F
   continuous_invFun := continuous_pullGeometricRealization e F
 
-/-- Weighted evaluation is unchanged by whole-type relabeling. -/
+/-- Weighted evaluation is unchanged by whole-type relabeling.
+@isnad1 id=eq.0h5v.s7.9711c6863e13 from=translated src=- shape=88e1ac89 vocab=5074bc91
+-/
 theorem sum_extendFaceCoordinates_relabelUnivSimplex
     {A B : Type*} [Fintype A] [Fintype B]
     [DecidableEq B]
@@ -745,7 +818,9 @@ theorem sum_extendFaceCoordinates_relabelUnivSimplex
       rw [relabelUnivSimplex_apply]
 
 /-- A sum over the subtype of a finite face is the corresponding sum of its zero-extended
-coordinates over the underlying vertex set. -/
+coordinates over the underlying vertex set.
+@isnad1 id=eq.0h4v.s8.18e7b678edac from=translated src=- shape=48531d76 vocab=6bce9c0a
+-/
 theorem sum_attach_mul_eq_sum_extendFaceCoordinates
     {V : Type*} [DecidableEq V] (t : Finset V)
   (x : stdSimplex ℝ {v // v ∈ t}) (F : V → ℝ) :
@@ -762,7 +837,9 @@ theorem sum_attach_mul_eq_sum_extendFaceCoordinates
       Finset.sum_attach t fun v ↦ extendFaceCoordinates t x v * F v
 
 /-- Equal zero-extended coordinates give equal weighted sums against any scalar-valued
-function on the global vertex type. -/
+function on the global vertex type.
+@isnad1 id=eq.1h6v.s8.eeb17d1ea230 from=translated src=- shape=76f406be vocab=6bce9c0a
+-/
 theorem sum_extendFaceCoordinates_eq_of_eq
     {V : Type*} [DecidableEq V] {s t : Finset V}
     (x : stdSimplex ℝ {v // v ∈ s}) (y : stdSimplex ℝ {v // v ∈ t})
@@ -836,6 +913,9 @@ def faceCarrier (f : K.Face) : Set S :=
 def support : Set S :=
   ⋃ f, K.faceCarrier f
 
+/--
+@isnad1 id=nonempty.0h3v.s4.44cb04573bc3 from=translated src=- shape=06ce6b1b vocab=c5981cf7
+-/
 theorem faceCarrier_nonempty (f : K.Face) : (K.faceCarrier f).Nonempty := by
   have hne : (K.faceVertices f).Nonempty := by
     rw [Finset.nonempty_iff_ne_empty]
@@ -846,6 +926,9 @@ theorem faceCarrier_nonempty (f : K.Face) : (K.faceCarrier f).Nonempty := by
   let v : {v // v ∈ K.faceVertices f} := ⟨hne.choose, hne.choose_spec⟩
   exact ⟨K.faceMap f (stdSimplex.vertex v), Set.mem_range_self _⟩
 
+/--
+@isnad1 id=injectiv.0h3v.s6.e3be7f9edffb from=translated src=- shape=1667f0c0 vocab=79bb492e
+-/
 theorem faceMap_injective (f : K.Face) : Function.Injective (K.faceMap f) := by
   intro x y hxy
   have hcoords := K.faceMap_eq_iff.mp hxy
@@ -855,19 +938,34 @@ theorem faceMap_injective (f : K.Face) : Function.Injective (K.faceMap f) := by
   simpa only [extendFaceCoordinates_of_mem (K.faceVertices f) x v.2,
     extendFaceCoordinates_of_mem (K.faceVertices f) y v.2] using hv
 
+/--
+@isnad1 id=isembedd.0h3v.s9.5731e109faf5 from=translated src=- shape=66555b8a vocab=5b47bd1b
+-/
 theorem isEmbedding_faceMap [T2Space S] (f : K.Face) :
     _root_.Topology.IsEmbedding (K.faceMap f) :=
   ((K.faceMap_continuous f).isClosedEmbedding (K.faceMap_injective f)).isEmbedding
 
+/--
+@isnad1 id=iscompac.0h3v.s4.85c58b5547e5 from=translated src=- shape=06ce6b1b vocab=86423cb2
+-/
 theorem isCompact_faceCarrier (f : K.Face) : IsCompact (K.faceCarrier f) :=
   isCompact_range (K.faceMap_continuous f)
 
+/--
+@isnad1 id=isclosed.0h3v.s4.3fb0925e199b from=translated src=- shape=aeda157e vocab=3b99fe28
+-/
 theorem isClosed_faceCarrier [T2Space S] (f : K.Face) : IsClosed (K.faceCarrier f) :=
   (K.isCompact_faceCarrier f).isClosed
 
+/--
+@isnad1 id=isclosed.0h2v.s4.318d7746de70 from=translated src=- shape=085fd085 vocab=29409c66
+-/
 theorem isClosed_support [T2Space S] : IsClosed K.support :=
   K.locallyFinite.isClosed_iUnion K.isClosed_faceCarrier
 
+/--
+@isnad1 id=eq.1h4v.s8.732b2f95ea14 from=translated src=- shape=cf7783ec vocab=cc2cfed6
+-/
 theorem extendFaceCoordinates_vertex (f : K.Face) {v : K.Vertex}
     (hv : v ∈ K.faceVertices f) :
     extendFaceCoordinates (K.faceVertices f)
@@ -886,6 +984,9 @@ theorem extendFaceCoordinates_vertex (f : K.Face) {v : K.Vertex}
 noncomputable def incidentFace (v : K.Vertex) : K.Face :=
   Classical.choose (K.vertex_used v)
 
+/--
+@isnad1 id=mem.0h3v.s5.bf0bd59b7183 from=translated src=- shape=34bc5a38 vocab=ba721d90
+-/
 theorem mem_faceVertices_incidentFace (v : K.Vertex) :
     v ∈ K.faceVertices (K.incidentFace v) :=
   Classical.choose_spec (K.vertex_used v)
@@ -896,7 +997,9 @@ noncomputable def vertexPoint (v : K.Vertex) : S :=
     (stdSimplex.vertex ⟨v, K.mem_faceVertices_incidentFace v⟩)
 
 /-- Every incident face parametrization sends a shared abstract vertex to the same ambient
-point. -/
+point.
+@isnad1 id=eq.1h4v.s8.d047e75386b0 from=translated src=- shape=1e1aa9f1 vocab=18966dea
+-/
 theorem faceMap_vertex_eq_vertexPoint (f : K.Face) {v : K.Vertex}
     (hv : v ∈ K.faceVertices f) :
     K.faceMap f (stdSimplex.vertex ⟨v, hv⟩) = K.vertexPoint v := by
@@ -905,10 +1008,16 @@ theorem faceMap_vertex_eq_vertexPoint (f : K.Face) {v : K.Vertex}
     K.extendFaceCoordinates_vertex (K.incidentFace v)
       (K.mem_faceVertices_incidentFace v)]
 
+/--
+@isnad1 id=mem.1h4v.s6.eacac2fe18b3 from=translated src=- shape=006f507b vocab=cb1a5953
+-/
 theorem vertexPoint_in_faceCarrier (f : K.Face) {v : K.Vertex}
     (hv : v ∈ K.faceVertices f) : K.vertexPoint v ∈ K.faceCarrier f :=
   ⟨stdSimplex.vertex ⟨v, hv⟩, K.faceMap_vertex_eq_vertexPoint f hv⟩
 
+/--
+@isnad1 id=injectiv.0h2v.s4.700e03e2dc49 from=translated src=- shape=0316cfbf vocab=a6cde272
+-/
 theorem vertexPoint_injective : Function.Injective K.vertexPoint := by
   intro v w hvw
   have hcoords := K.faceMap_eq_iff.mp hvw
@@ -920,7 +1029,9 @@ theorem vertexPoint_injective : Function.Injective K.vertexPoint := by
   have h := congrFun hcoords v
   simp [hvw'] at h
 
-/-- Singleton carriers of the global vertices form a locally finite family. -/
+/-- Singleton carriers of the global vertices form a locally finite family.
+@isnad1 id=locallyf.0h2v.s5.e22b5386c293 from=translated src=- shape=1bb34cb9 vocab=d174e6ac
+-/
 theorem locallyFinite_vertexPoints :
     LocallyFinite fun v : K.Vertex ↦ ({K.vertexPoint v} : Set S) := by
   intro x
@@ -952,16 +1063,25 @@ noncomputable def faceVertexEquiv (f : K.Face) : Fin 3 ≃ {v // v ∈ K.faceVer
 noncomputable def faceVertex (f : K.Face) (i : ZMod 3) : K.Vertex :=
   (K.faceVertexEquiv f ((ZMod.finEquiv 3).symm i)).1
 
+/--
+@isnad1 id=mem.0h4v.s5.5da1b0d8efca from=translated src=- shape=ec5a6eb8 vocab=45816a9f
+-/
 theorem faceVertex_mem (f : K.Face) (i : ZMod 3) :
     K.faceVertex f i ∈ K.faceVertices f :=
   (K.faceVertexEquiv f ((ZMod.finEquiv 3).symm i)).2
 
+/--
+@isnad1 id=injectiv.0h3v.s4.d74080c02ca8 from=translated src=- shape=8f75d65e vocab=19d9c502
+-/
 theorem faceVertex_injective (f : K.Face) : Function.Injective (K.faceVertex f) := by
   intro i j hij
   apply (ZMod.finEquiv 3).symm.injective
   apply (K.faceVertexEquiv f).injective
   exact Subtype.ext hij
 
+/--
+@isnad1 id=ne.0h4v.s7.72b01d629cec from=translated src=- shape=d43991c5 vocab=2ca6902a
+-/
 theorem faceVertex_ne_next (f : K.Face) (i : ZMod 3) :
     K.faceVertex f i ≠ K.faceVertex f (i + 1) := by
   intro h
@@ -973,6 +1093,9 @@ theorem faceVertex_ne_next (f : K.Face) (i : ZMod 3) :
       _ = 1 := by abel
   exact (by decide : (0 : ZMod 3) ≠ 1) hone
 
+/--
+@isnad1 id=ne.0h4v.s7.c92a2f9575ae from=translated src=- shape=d43991c5 vocab=2ca6902a
+-/
 theorem faceVertex_ne_add_two (f : K.Face) (i : ZMod 3) :
     K.faceVertex f i ≠ K.faceVertex f (i + 2) := by
   intro h
@@ -1001,18 +1124,30 @@ noncomputable def edgeFirst (e : K.Edge) : K.Vertex :=
 noncomputable def edgeSecond (e : K.Edge) : K.Vertex :=
   (Finset.card_eq_two.mp e.2.1).choose_spec.choose
 
+/--
+@isnad1 id=ne.0h3v.s4.18f45c0aa393 from=translated src=- shape=d3ce82ca vocab=5e3a0604
+-/
 theorem edgeFirst_ne_edgeSecond (e : K.Edge) :
     K.edgeFirst e ≠ K.edgeSecond e :=
   (Finset.card_eq_two.mp e.2.1).choose_spec.choose_spec.1
 
+/--
+@isnad1 id=eq.0h3v.s6.08c736a9d3b9 from=translated src=- shape=ad6034ce vocab=f6179c8b
+-/
 theorem edge_eq_pair (e : K.Edge) :
     e.1 = {K.edgeFirst e, K.edgeSecond e} :=
   (Finset.card_eq_two.mp e.2.1).choose_spec.choose_spec.2
 
+/--
+@isnad1 id=mem.0h3v.s5.a957fe836560 from=translated src=- shape=3a653e19 vocab=e6a75084
+-/
 theorem edgeFirst_mem (e : K.Edge) : K.edgeFirst e ∈ e.1 := by
   rw [K.edge_eq_pair e]
   simp
 
+/--
+@isnad1 id=mem.0h3v.s5.ea2cfc9b177f from=translated src=- shape=3a653e19 vocab=9e46e787
+-/
 theorem edgeSecond_mem (e : K.Edge) : K.edgeSecond e ∈ e.1 := by
   rw [K.edge_eq_pair e]
   simp
@@ -1028,10 +1163,15 @@ noncomputable def faceEdge (f : K.Face) (i : ZMod 3) : K.Edge := by
     · exact K.faceVertex_mem f i
     · exact K.faceVertex_mem f (i + 1)
 
+/--
+@isnad1 id=eq.0h4v.s7.a06140c22c33 from=translated src=- shape=467cedd0 vocab=f6537436
+-/
 @[simp] theorem faceEdge_val (f : K.Face) (i : ZMod 3) :
     (K.faceEdge f i).1 = {K.faceVertex f i, K.faceVertex f (i + 1)} := rfl
 
-/-- Consecutive face edges share exactly their common cyclic vertex. -/
+/-- Consecutive face edges share exactly their common cyclic vertex.
+@isnad1 id=eq.0h4v.s8.787b7a70c935 from=translated src=- shape=07a630d5 vocab=4cc48430
+-/
 theorem faceEdge_inter_next (f : K.Face) (i : ZMod 3) :
     (K.faceEdge f i).1 ∩ (K.faceEdge f (i + 1)).1 =
       {K.faceVertex f (i + 1)} := by
@@ -1047,6 +1187,9 @@ theorem faceEdge_inter_next (f : K.Face) (i : ZMod 3) :
   · intro hv
     exact ⟨Or.inr hv, Or.inl hv⟩
 
+/--
+@isnad1 id=ne.0h4v.s7.07cd5e5ffd60 from=translated src=- shape=d43991c5 vocab=60df6c64
+-/
 theorem faceEdge_ne_next (f : K.Face) (i : ZMod 3) :
     K.faceEdge f i ≠ K.faceEdge f (i + 1) := by
   intro h
@@ -1067,7 +1210,9 @@ theorem faceEdge_ne_next (f : K.Face) (i : ZMod 3) :
     exact (by decide : (0 : ZMod 3) ≠ 2) htwo
 
 /-- The arbitrary endpoint ordering of a cyclic face edge is one of its two cyclic
-orientations. -/
+orientations.
+@isnad1 id=or.0h4v.s8.4f80feb43174 from=translated src=- shape=c0d1bd99 vocab=39f51c6e
+-/
 theorem faceEdge_endpoint_order (f : K.Face) (i : ZMod 3) :
     (K.edgeFirst (K.faceEdge f i) = K.faceVertex f i ∧
         K.edgeSecond (K.faceEdge f i) = K.faceVertex f (i + 1)) ∨
@@ -1095,6 +1240,9 @@ noncomputable def edgeSimplexPath (e : K.Edge) (r : Set.Icc (0 : ℝ) 1) :
   exact ⟨x, (convex_stdSimplex ℝ {v // v ∈ e.1}).lineMap_mem
     (stdSimplex.vertex a).2 (stdSimplex.vertex b).2 r.2⟩
 
+/--
+@isnad1 id=continuo.0h3v.s9.22e986cf96c2 from=translated src=- shape=955f3ebe vocab=7251b7b3
+-/
 theorem continuous_edgeSimplexPath (e : K.Edge) :
     Continuous (K.edgeSimplexPath e) := by
   apply Continuous.subtype_mk
@@ -1106,6 +1254,9 @@ theorem continuous_edgeSimplexPath (e : K.Edge) :
       (⟨K.edgeSecond e, K.edgeSecond_mem e⟩ : {v // v ∈ e.1}) :
         {v // v ∈ e.1} → ℝ)).continuous_of_finiteDimensional.comp continuous_subtype_val
 
+/--
+@isnad1 id=eq.0h4v.s8.2d1589c97a1c from=translated src=- shape=0ccb6b03 vocab=ddb32aec
+-/
 @[simp] theorem edgeSimplexPath_apply_first (e : K.Edge)
     (r : Set.Icc (0 : ℝ) 1) :
     K.edgeSimplexPath e r ⟨K.edgeFirst e, K.edgeFirst_mem e⟩ = 1 - r.1 := by
@@ -1120,6 +1271,9 @@ theorem continuous_edgeSimplexPath (e : K.Edge) :
   dsimp only [a, b] at hab ⊢
   simp [hab]
 
+/--
+@isnad1 id=eq.0h4v.s8.2d44897b59b3 from=translated src=- shape=edbb045f vocab=884b556b
+-/
 @[simp] theorem edgeSimplexPath_apply_second (e : K.Edge)
     (r : Set.Icc (0 : ℝ) 1) :
     K.edgeSimplexPath e r ⟨K.edgeSecond e, K.edgeSecond_mem e⟩ = r.1 := by
@@ -1134,6 +1288,9 @@ theorem continuous_edgeSimplexPath (e : K.Edge) :
   dsimp only [a, b] at hab ⊢
   simp [hab]
 
+/--
+@isnad1 id=injectiv.0h3v.s7.1763779d4d5d from=translated src=- shape=955f3ebe vocab=77feced3
+-/
 theorem edgeSimplexPath_injective (e : K.Edge) :
     Function.Injective (K.edgeSimplexPath e) := by
   intro r s hrs
@@ -1147,6 +1304,9 @@ theorem edgeSimplexPath_injective (e : K.Edge) :
 noncomputable def edgeFace (e : K.Edge) : K.Face :=
   Classical.choose e.2.2
 
+/--
+@isnad1 id=le.0h3v.s6.2f60b7693f8d from=translated src=- shape=b10fe8b7 vocab=b3de6531
+-/
 theorem edge_subset_faceVertices (e : K.Edge) :
     e.1 ⊆ K.faceVertices (K.edgeFace e) :=
   Classical.choose_spec e.2.2
@@ -1156,6 +1316,9 @@ def edgeVertexToFace (e : K.Edge) :
     {v // v ∈ e.1} → {v // v ∈ K.faceVertices (K.edgeFace e)} :=
   fun v ↦ ⟨v.1, K.edge_subset_faceVertices e v.2⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.bc99df14f12d from=translated src=- shape=25f26c97 vocab=0e93259f
+-/
 theorem extendFaceCoordinates_map_edgeVertexToFace (e : K.Edge)
     (x : stdSimplex ℝ {v // v ∈ e.1}) :
     extendFaceCoordinates (K.faceVertices (K.edgeFace e))
@@ -1172,6 +1335,9 @@ noncomputable def edgeMap (e : K.Edge) (x : stdSimplex ℝ {v // v ∈ e.1}) : S
 noncomputable def edgePath (e : K.Edge) (r : Set.Icc (0 : ℝ) 1) : S :=
   K.edgeMap e (K.edgeSimplexPath e r)
 
+/--
+@isnad1 id=eq.1h5v.s9.d993c2cffd78 from=translated src=- shape=b8280e83 vocab=ba93de10
+-/
 theorem edgeMap_eq_faceMap (e : K.Edge) (f : K.Face)
     (hef : e.1 ⊆ K.faceVertices f) (x : stdSimplex ℝ {v // v ∈ e.1}) :
     K.edgeMap e x = K.faceMap f
@@ -1186,13 +1352,22 @@ theorem edgeMap_eq_faceMap (e : K.Edge) (f : K.Face)
         (stdSimplex.map (fun v : {v // v ∈ e.1} ↦ ⟨v.1, hef v.2⟩) x) :=
       (extendFaceCoordinates_map_subset hef x).symm
 
+/--
+@isnad1 id=continuo.0h3v.s9.94b961e938cb from=translated src=- shape=af68bf37 vocab=f569f543
+-/
 theorem continuous_edgeMap (e : K.Edge) : Continuous (K.edgeMap e) :=
   (K.faceMap_continuous (K.edgeFace e)).comp
     (stdSimplex.continuous_map (K.edgeVertexToFace e))
 
+/--
+@isnad1 id=continuo.0h3v.s6.1e1b27b79dfc from=translated src=- shape=dac2df2a vocab=87436131
+-/
 theorem continuous_edgePath (e : K.Edge) : Continuous (K.edgePath e) :=
   (K.continuous_edgeMap e).comp (K.continuous_edgeSimplexPath e)
 
+/--
+@isnad1 id=injectiv.0h3v.s7.439aa7acf003 from=translated src=- shape=af68bf37 vocab=a51c730f
+-/
 theorem edgeMap_injective (e : K.Edge) : Function.Injective (K.edgeMap e) := by
   intro x y hxy
   have hcoords := K.faceMap_eq_iff.mp hxy
@@ -1212,9 +1387,15 @@ theorem edgeMap_injective (e : K.Edge) : Function.Injective (K.edgeMap e) := by
   simpa only [extendFaceCoordinates_of_mem e.1 x v.2,
     extendFaceCoordinates_of_mem e.1 y v.2] using h
 
+/--
+@isnad1 id=injectiv.0h3v.s5.e38555c14c09 from=translated src=- shape=dac2df2a vocab=8f323b4b
+-/
 theorem edgePath_injective (e : K.Edge) : Function.Injective (K.edgePath e) :=
   (K.edgeMap_injective e).comp (K.edgeSimplexPath_injective e)
 
+/--
+@isnad1 id=eq.0h3v.s8.97fd29037f2c from=translated src=- shape=9cff8c13 vocab=6f4c4ca6
+-/
 theorem range_edgeSimplexPath (e : K.Edge) :
     Set.range (K.edgeSimplexPath e) = Set.univ := by
   apply Set.eq_univ_of_forall
@@ -1269,6 +1450,9 @@ theorem range_edgeSimplexPath (e : K.Edge) :
 def edgeCarrier (e : K.Edge) : Set S :=
   Set.range (K.edgeMap e)
 
+/--
+@isnad1 id=eq.0h3v.s5.b2d0410a5f66 from=translated src=- shape=329f97ed vocab=481934fd
+-/
 theorem range_edgePath (e : K.Edge) :
     Set.range (K.edgePath e) = K.edgeCarrier e := by
   apply Set.Subset.antisymm
@@ -1281,13 +1465,18 @@ theorem range_edgePath (e : K.Edge) :
     obtain ⟨r, rfl⟩ := hx
     exact ⟨r, rfl⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.b281fc620d25 from=translated src=- shape=a24c8b74 vocab=f4448ba9
+-/
 theorem edgeMap_vertex_eq_vertexPoint (e : K.Edge) (v : {v // v ∈ e.1}) :
     K.edgeMap e (stdSimplex.vertex v) = K.vertexPoint v.1 := by
   rw [edgeMap, stdSimplex.map_vertex]
   exact K.faceMap_vertex_eq_vertexPoint (K.edgeFace e)
     (K.edge_subset_faceVertices e v.2)
 
-/-- Distinct edge carriers meet only at points represented by their shared abstract vertices. -/
+/-- Distinct edge carriers meet only at points represented by their shared abstract vertices.
+@isnad1 id=le.1h4v.s7.265b2419381f from=translated src=- shape=59d3b0de vocab=6be5dcb1
+-/
 theorem edgeCarrier_inter_subset_sharedVertices {e d : K.Edge} (hed : e ≠ d) :
     K.edgeCarrier e ∩ K.edgeCarrier d ⊆
       {p | ∃ v : K.Vertex, v ∈ e.1 ∧ v ∈ d.1 ∧ p = K.vertexPoint v} := by
@@ -1373,6 +1562,9 @@ theorem edgeCarrier_inter_subset_sharedVertices {e d : K.Edge} (hed : e ≠ d) :
   rw [← hxp, hxvertex]
   exact K.edgeMap_vertex_eq_vertexPoint e v
 
+/--
+@isnad1 id=eq.1h4v.s7.a86ea9bd722e from=translated src=- shape=9fbe638e vocab=f7c53920
+-/
 theorem edgeCarrier_inter_eq_sharedVertices {e d : K.Edge} (hed : e ≠ d) :
     K.edgeCarrier e ∩ K.edgeCarrier d =
       {p | ∃ v : K.Vertex, v ∈ e.1 ∧ v ∈ d.1 ∧ p = K.vertexPoint v} := by
@@ -1383,15 +1575,23 @@ theorem edgeCarrier_inter_eq_sharedVertices {e d : K.Edge} (hed : e ≠ d) :
   exact ⟨⟨stdSimplex.vertex ve, K.edgeMap_vertex_eq_vertexPoint e ve⟩,
     ⟨stdSimplex.vertex vd, K.edgeMap_vertex_eq_vertexPoint d vd⟩⟩
 
+/--
+@isnad1 id=iscompac.0h3v.s4.0d8c8a3bc40a from=translated src=- shape=06ce6b1b vocab=76536f3d
+-/
 theorem isCompact_edgeCarrier (e : K.Edge) : IsCompact (K.edgeCarrier e) :=
   isCompact_range (K.continuous_edgeMap e)
 
+/--
+@isnad1 id=le.0h3v.s5.a23e7d065ca4 from=translated src=- shape=92142aa7 vocab=0f923745
+-/
 theorem edgeCarrier_subset_faceCarrier (e : K.Edge) :
     K.edgeCarrier e ⊆ K.faceCarrier (K.edgeFace e) := by
   rintro y ⟨x, rfl⟩
   exact ⟨stdSimplex.map (K.edgeVertexToFace e) x, rfl⟩
 
-/-- Edge carriers inherit local finiteness from the maximal-face carriers. -/
+/-- Edge carriers inherit local finiteness from the maximal-face carriers.
+@isnad1 id=locallyf.0h2v.s4.05bf98b4ecc0 from=translated src=- shape=0316cfbf vocab=91f51029
+-/
 theorem locallyFinite_edgeCarriers : LocallyFinite K.edgeCarrier := by
   intro x
   obtain ⟨U, hUx, hfinite⟩ := K.locallyFinite x
@@ -1415,6 +1615,9 @@ theorem locallyFinite_edgeCarriers : LocallyFinite K.edgeCarrier := by
   · exact Finset.mem_powersetCard.mpr
       ⟨K.edge_subset_faceVertices e, e.2.1⟩
 
+/--
+@isnad1 id=eq.0h3v.s8.e791c6edef60 from=translated src=- shape=69221561 vocab=a83eb57d
+-/
 theorem edgeSimplexPath_zero (e : K.Edge) :
     K.edgeSimplexPath e ⟨0, by simp⟩ =
       stdSimplex.vertex ⟨K.edgeFirst e, K.edgeFirst_mem e⟩ := by
@@ -1425,6 +1628,9 @@ theorem edgeSimplexPath_zero (e : K.Edge) :
     (stdSimplex.vertex b : {v // v ∈ e.1} → ℝ) 0 = stdSimplex.vertex a
   simp [AffineMap.lineMap_apply_module]
 
+/--
+@isnad1 id=eq.0h3v.s8.e3f318e10b7e from=translated src=- shape=69221561 vocab=dc4dd81a
+-/
 theorem edgeSimplexPath_one (e : K.Edge) :
     K.edgeSimplexPath e ⟨1, by simp⟩ =
       stdSimplex.vertex ⟨K.edgeSecond e, K.edgeSecond_mem e⟩ := by
@@ -1435,11 +1641,17 @@ theorem edgeSimplexPath_one (e : K.Edge) :
     (stdSimplex.vertex b : {v // v ∈ e.1} → ℝ) 1 = stdSimplex.vertex b
   simp [AffineMap.lineMap_apply_module]
 
+/--
+@isnad1 id=eq.0h3v.s5.ca2c37021ad2 from=translated src=- shape=24971d53 vocab=8d44d5fa
+-/
 theorem edgePath_zero (e : K.Edge) :
     K.edgePath e ⟨0, by simp⟩ = K.vertexPoint (K.edgeFirst e) := by
   rw [edgePath, K.edgeSimplexPath_zero e,
     K.edgeMap_vertex_eq_vertexPoint e]
 
+/--
+@isnad1 id=eq.0h3v.s5.2dc3eb65a36a from=translated src=- shape=24971d53 vocab=cca23f66
+-/
 theorem edgePath_one (e : K.Edge) :
     K.edgePath e ⟨1, by simp⟩ = K.vertexPoint (K.edgeSecond e) := by
   rw [edgePath, K.edgeSimplexPath_one e,
@@ -1449,10 +1661,16 @@ theorem edgePath_one (e : K.Edge) :
 def oneSkeleton : Set S :=
   ⋃ e : K.Edge, K.edgeCarrier e
 
+/--
+@isnad1 id=le.0h3v.s4.6b1258ca994d from=translated src=- shape=351b9678 vocab=0ea132d0
+-/
 theorem edgeCarrier_subset_oneSkeleton (e : K.Edge) :
     K.edgeCarrier e ⊆ K.oneSkeleton :=
   Set.subset_iUnion (fun d : K.Edge ↦ K.edgeCarrier d) e
 
+/--
+@isnad1 id=locallyf.0h2v.s4.05bf98b4ecc0 from=translated src=- shape=0316cfbf vocab=91f51029
+-/
 theorem locallyFinite_oneSkeleton_cover : LocallyFinite K.edgeCarrier :=
   K.locallyFinite_edgeCarriers
 
@@ -1462,17 +1680,26 @@ noncomputable def edgeParameter (e : K.Edge) (p : S) (hp : p ∈ K.edgeCarrier e
   Classical.choose (show ∃ r, K.edgePath e r = p from by
     rw [← K.range_edgePath e] at hp; exact hp)
 
+/--
+@isnad1 id=eq.1h4v.s5.0399e4297afc from=translated src=- shape=41c6e244 vocab=2e049777
+-/
 theorem edgePath_edgeParameter (e : K.Edge) (p : S) (hp : p ∈ K.edgeCarrier e) :
     K.edgePath e (K.edgeParameter e p hp) = p :=
   Classical.choose_spec (show ∃ r, K.edgePath e r = p from by
     rw [← K.range_edgePath e] at hp; exact hp)
 
+/--
+@isnad1 id=eq.2h5v.s6.300faba56866 from=translated src=- shape=08c339c8 vocab=bdd0a252
+-/
 theorem edgeParameter_unique (e : K.Edge) (p : S) (hp : p ∈ K.edgeCarrier e)
     (r : Set.Icc (0 : ℝ) 1) (hr : K.edgePath e r = p) :
     K.edgeParameter e p hp = r := by
   apply K.edgePath_injective e
   rw [K.edgePath_edgeParameter e p hp, hr]
 
+/--
+@isnad1 id=iff.0h4v.s6.9b61cd4eb15a from=translated src=- shape=2e6d4338 vocab=f7664daa
+-/
 theorem vertexPoint_mem_edgeCarrier_iff (v : K.Vertex) (e : K.Edge) :
     K.vertexPoint v ∈ K.edgeCarrier e ↔ v ∈ e.1 := by
   constructor
@@ -1488,6 +1715,9 @@ theorem vertexPoint_mem_edgeCarrier_iff (v : K.Vertex) (e : K.Edge) :
     let w : {w // w ∈ e.1} := ⟨v, hve⟩
     exact ⟨stdSimplex.vertex w, K.edgeMap_vertex_eq_vertexPoint e w⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.d25878585e00 from=translated src=- shape=e6aa06e2 vocab=e419ccdd
+-/
 @[simp] theorem edgeParameter_vertexPoint_first (e : K.Edge) :
     K.edgeParameter e (K.vertexPoint (K.edgeFirst e))
       ((K.vertexPoint_mem_edgeCarrier_iff (K.edgeFirst e) e).mpr (K.edgeFirst_mem e)) =
@@ -1495,6 +1725,9 @@ theorem vertexPoint_mem_edgeCarrier_iff (v : K.Vertex) (e : K.Edge) :
   apply K.edgeParameter_unique
   exact K.edgePath_zero e
 
+/--
+@isnad1 id=eq.0h3v.s6.4b2ed2f035fd from=translated src=- shape=e6aa06e2 vocab=700e4bd7
+-/
 @[simp] theorem edgeParameter_vertexPoint_second (e : K.Edge) :
     K.edgeParameter e (K.vertexPoint (K.edgeSecond e))
       ((K.vertexPoint_mem_edgeCarrier_iff (K.edgeSecond e) e).mpr (K.edgeSecond_mem e)) =
@@ -1502,11 +1735,17 @@ theorem vertexPoint_mem_edgeCarrier_iff (v : K.Vertex) (e : K.Edge) :
   apply K.edgeParameter_unique
   exact K.edgePath_one e
 
+/--
+@isnad1 id=disjoint.1h4v.s6.a5864da57cb0 from=translated src=- shape=86577ac9 vocab=71e98ed2
+-/
 theorem disjoint_vertexPoint_edgeCarrier {v : K.Vertex} {e : K.Edge}
     (hve : v ∉ e.1) : Disjoint ({K.vertexPoint v} : Set S) (K.edgeCarrier e) := by
   rw [Set.disjoint_singleton_left]
   exact fun h ↦ hve ((K.vertexPoint_mem_edgeCarrier_iff v e).mp h)
 
+/--
+@isnad1 id=isclosed.0h3v.s4.1ba2ca8e8847 from=translated src=- shape=aeda157e vocab=ef46f891
+-/
 theorem isClosed_edgeCarrier [T2Space S] (e : K.Edge) : IsClosed (K.edgeCarrier e) :=
   (K.isCompact_edgeCarrier e).isClosed
 
@@ -1515,17 +1754,26 @@ noncomputable def edgePathToCarrier (e : K.Edge) :
     Set.Icc (0 : ℝ) 1 → K.edgeCarrier e :=
   fun r ↦ ⟨K.edgePath e r, by rw [← K.range_edgePath e]; exact Set.mem_range_self r⟩
 
+/--
+@isnad1 id=continuo.0h3v.s6.1a7aa59a730e from=translated src=- shape=69dba179 vocab=7b788e1b
+-/
 theorem continuous_edgePathToCarrier (e : K.Edge) :
     Continuous (K.edgePathToCarrier e) := by
   apply Continuous.subtype_mk
   exact K.continuous_edgePath e
 
+/--
+@isnad1 id=injectiv.0h3v.s5.82522e4b68aa from=translated src=- shape=69dba179 vocab=d9f92c7a
+-/
 theorem edgePathToCarrier_injective (e : K.Edge) :
     Function.Injective (K.edgePathToCarrier e) := by
   intro r s hrs
   apply K.edgePath_injective e
   exact congrArg Subtype.val hrs
 
+/--
+@isnad1 id=surjecti.0h3v.s5.1f6c26c0060f from=translated src=- shape=69dba179 vocab=4d98f1cd
+-/
 theorem edgePathToCarrier_surjective (e : K.Edge) :
     Function.Surjective (K.edgePathToCarrier e) := by
   rintro ⟨p, hp⟩
@@ -1540,22 +1788,33 @@ noncomputable def edgePathHomeomorph [T2Space S] (e : K.Edge) :
     (K.edgePathToCarrier_injective e)).isEmbedding.toHomeomorphOfSurjective
       (K.edgePathToCarrier_surjective e)
 
+/--
+@isnad1 id=eq.0h4v.s8.558de2cf1608 from=translated src=- shape=b83d070b vocab=a145d967
+-/
 @[simp] theorem edgePathHomeomorph_apply [T2Space S] (e : K.Edge)
     (r : Set.Icc (0 : ℝ) 1) :
     (K.edgePathHomeomorph e r).1 = K.edgePath e r := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.b3c543ce49af from=translated src=- shape=65e16c9e vocab=ce9ddcac
+-/
 theorem edgePathHomeomorph_symm_val [T2Space S] (e : K.Edge)
     (p : K.edgeCarrier e) :
     K.edgePath e ((K.edgePathHomeomorph e).symm p) = p.1 := by
   exact congrArg Subtype.val ((K.edgePathHomeomorph e).apply_symm_apply p)
 
-/-- The union of all edges not incident to a fixed vertex is closed. -/
+/-- The union of all edges not incident to a fixed vertex is closed.
+@isnad1 id=isclosed.0h3v.s7.ccf3455a146d from=translated src=- shape=8bbed1b3 vocab=7745de59
+-/
 theorem isClosed_iUnion_edgeCarrier_notMem [T2Space S] (v : K.Vertex) :
     IsClosed (⋃ e : {e : K.Edge // v ∉ e.1}, K.edgeCarrier e.1) := by
   apply (K.locallyFinite_edgeCarriers.comp_injective Subtype.val_injective).isClosed_iUnion
   intro e
   exact K.isClosed_edgeCarrier e.1
 
+/--
+@isnad1 id=not.0h3v.s7.f33a11e8f9b7 from=translated src=- shape=6f981a6f vocab=493d9054
+-/
 theorem vertexPoint_not_mem_iUnion_edgeCarrier_notMem (v : K.Vertex) :
     K.vertexPoint v ∉ ⋃ e : {e : K.Edge // v ∉ e.1}, K.edgeCarrier e.1 := by
   intro hv
@@ -1566,7 +1825,9 @@ theorem vertexPoint_not_mem_iUnion_edgeCarrier_notMem (v : K.Vertex) :
 @[implicit_reducible] noncomputable def faceFintype [CompactSpace S] : Fintype K.Face :=
   K.locallyFinite.fintypeOfCompact K.faceCarrier_nonempty
 
-/-- If the face type is finite and every vertex is used, then the global vertex type is finite. -/
+/-- If the face type is finite and every vertex is used, then the global vertex type is finite.
+@isnad1 id=finite.0h2v.s4.92d5107de1c9 from=translated src=- shape=a15441bd vocab=d28ba8d1
+-/
 theorem finite_vertex [Finite K.Face] : Finite K.Vertex := by
   apply Finite.of_finite_univ
   have hrepr : (Set.univ : Set K.Vertex) = ⋃ f : K.Face, (K.faceVertices f : Set K.Vertex) := by
@@ -1602,11 +1863,17 @@ noncomputable def compactIntrinsic [CompactSpace S] : IntrinsicTwoComplex := by
         obtain ⟨f, -, rfl⟩ := Finset.mem_image.mp ht
         exact K.faceVertices_card f }
 
+/--
+@isnad1 id=eq.0h2v.s6.009a85279744 from=translated src=- shape=98453a81 vocab=2055b7bb
+-/
 @[simp] theorem compactIntrinsic_faces [CompactSpace S] :
     K.compactIntrinsic.faces = by
       letI : Fintype K.Face := K.faceFintype
       exact Finset.univ.image K.faceVertices := rfl
 
+/--
+@isnad1 id=mem.0h3v.s6.19b7700313eb from=translated src=- shape=bffbefe5 vocab=1848de2e
+-/
 theorem compactIntrinsic_face_mem [CompactSpace S] (f : K.Face) :
     K.faceVertices f ∈ K.compactIntrinsic.faces := by
   let : Fintype K.Face := K.faceFintype
@@ -1627,6 +1894,9 @@ noncomputable def restrictToFace [Fintype K.Vertex] (t : Finset K.Vertex)
       exact hx v hv
     _ = 1 := x.2.2
 
+/--
+@isnad1 id=eq.1h4v.s7.c3ff437f8a7e from=translated src=- shape=8854c42d vocab=e71f243a
+-/
 theorem extendFaceCoordinates_restrictToFace [Fintype K.Vertex]
     (t : Finset K.Vertex) (x : stdSimplex ℝ K.Vertex)
     (hx : ∀ v ∉ t, x v = 0) :
@@ -1637,7 +1907,9 @@ theorem extendFaceCoordinates_restrictToFace [Fintype K.Vertex]
     rfl
   · simp [extendFaceCoordinates, hv, hx v hv]
 
-/-- Every point of the compact realization is supported on one of the original maximal faces. -/
+/-- Every point of the compact realization is supported on one of the original maximal faces.
+@isnad1 id=ex.0h3v.s7.98cfb17a9709 from=translated src=- shape=68f135e6 vocab=aab881d6
+-/
 theorem exists_containingFace [CompactSpace S]
     (x : K.compactIntrinsic.realization) :
     ∃ f : K.Face, ∀ v ∉ K.faceVertices f, x.1 v = 0 := by
@@ -1653,6 +1925,9 @@ noncomputable def containingFace [CompactSpace S]
     (x : K.compactIntrinsic.realization) : K.Face :=
   Classical.choose (K.exists_containingFace x)
 
+/--
+@isnad1 id=eq.1h4v.s7.a7f698e33f22 from=translated src=- shape=4fa6e41f vocab=29cbcd86
+-/
 theorem supported_on_containingFace [CompactSpace S]
     (x : K.compactIntrinsic.realization) :
     ∀ v ∉ K.faceVertices (K.containingFace x), x.1 v = 0 := by
@@ -1666,6 +1941,9 @@ noncomputable def compactEval [CompactSpace S]
   exact K.faceMap (K.containingFace x)
     (K.restrictToFace _ ⟨x.1, x.2.1⟩ (K.supported_on_containingFace x))
 
+/--
+@isnad1 id=eq.1h4v.s8.b8a1a4da3864 from=translated src=- shape=9b8a8818 vocab=7bfc4857
+-/
 theorem compactEval_eq_faceMap [CompactSpace S]
     (f : K.Face) (x : K.compactIntrinsic.realization)
     (hx : ∀ v ∉ K.faceVertices f, x.1 v = 0) :
@@ -1693,6 +1971,9 @@ private theorem continuous_faceRestriction [CompactSpace S] (f : K.Face) :
     continuous_subtype_val
   exact continuous_pi fun v ↦ (continuous_apply v.1).comp (hinner.comp houter)
 
+/--
+@isnad1 id=continuo.0h2v.s6.70a875280a90 from=translated src=- shape=cdaab4e5 vocab=ec3cdd36
+-/
 theorem continuous_compactEval [CompactSpace S] : Continuous K.compactEval := by
   let : Fintype K.Face := K.faceFintype
   let : Fintype K.Vertex := K.vertexFintype
@@ -1720,6 +2001,9 @@ theorem continuous_compactEval [CompactSpace S] : Continuous K.compactEval := by
     exact K.compactEval_eq_faceMap f x.1 x.2
   exact (locallyFinite_of_finite carriers).continuous hcover.symm hclosed hlocal
 
+/--
+@isnad1 id=injectiv.0h2v.s4.255a23c45826 from=translated src=- shape=cdaab4e5 vocab=0f37bb94
+-/
 theorem injective_compactEval [CompactSpace S] : Function.Injective K.compactEval := by
   let : Fintype K.Face := K.faceFintype
   let : Fintype K.Vertex := K.vertexFintype
@@ -1730,7 +2014,9 @@ theorem injective_compactEval [CompactSpace S] : Function.Injective K.compactEva
   exact Subtype.ext hcoeff
 
 /-- The compact evaluation has exactly the ambient support of the locally finite complex as its
-range. -/
+range.
+@isnad1 id=eq.0h2v.s5.77f92c087f7d from=translated src=- shape=a421c965 vocab=3d171e08
+-/
 theorem range_compactEval [CompactSpace S] : Set.range K.compactEval = K.support := by
   let : Fintype K.Face := K.faceFintype
   let : Fintype K.Vertex := K.vertexFintype
@@ -1811,14 +2097,22 @@ noncomputable def onSupport [Finite K.Face] :
     exact K.faceMap_eq_iff
   locallyFinite := locallyFinite_of_finite _
 
+/--
+@isnad1 id=eq.0h3v.s6.14e5d819e8b2 from=translated src=- shape=b50ce7f9 vocab=d18a01e6
+-/
 @[simp] theorem onSupport_faceVertices [Finite K.Face] (f : K.Face) :
     K.onSupport.faceVertices f = K.faceVertices f := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.02ab788f5f60 from=translated src=- shape=190240be vocab=90eb9b83
+-/
 @[simp] theorem onSupport_faceMap_val [Finite K.Face] (f : K.Face)
     (x : stdSimplex ℝ {v // v ∈ K.faceVertices f}) :
     (K.onSupport.faceMap f x).1 = K.faceMap f x := rfl
 
-/-- The support-restricted complex covers its ambient support subtype. -/
+/-- The support-restricted complex covers its ambient support subtype.
+@isnad1 id=eq.0h2v.s5.43f5042602c2 from=translated src=- shape=cbbb02b9 vocab=afbd802b
+-/
 theorem onSupport_support [Finite K.Face] : K.onSupport.support = Set.univ := by
   apply Set.eq_univ_of_forall
   rintro ⟨p, hp⟩
@@ -1827,7 +2121,9 @@ theorem onSupport_support [Finite K.Face] : K.onSupport.support = Set.univ := by
   exact Set.mem_iUnion.mpr ⟨f, ⟨x, rfl⟩⟩
 
 /-- A finite ambient triangle complex has compact support, independently of compactness of the
-ambient space. -/
+ambient space.
+@isnad1 id=iscompac.0h2v.s4.4f8f6b905a30 from=translated src=- shape=46bd7be5 vocab=b3dc97bd
+-/
 theorem isCompact_support_of_finite [Finite K.Face] : IsCompact K.support := by
   let : Fintype K.Face := Fintype.ofFinite K.Face
   exact isCompact_iUnion fun f => K.isCompact_faceCarrier f
@@ -1877,6 +2173,9 @@ noncomputable def restrictToFaceSimplex (t : K.Face) (x : K.realization)
       exact hx v hv
     _ = 1 := x.2.1.2
 
+/--
+@isnad1 id=eq.0h3v.s7.0872ce7fac63 from=translated src=- shape=c81ec89c vocab=5693ef97
+-/
 theorem faceStandardMap_val (t : K.Face)
     (x : stdSimplex ℝ {v // v ∈ t.1}) :
     (K.faceStandardMap t x).1 = extendFaceCoordinates t.1 x := by
@@ -1907,6 +2206,9 @@ theorem faceStandardMap_val (t : K.Face)
     rw [hempty]
     simp
 
+/--
+@isnad1 id=eq.1h3v.s6.57a367450244 from=translated src=- shape=77c44685 vocab=a3b08a1e
+-/
 theorem faceStandardMap_restrictToFaceSimplex (t : K.Face) (x : K.realization)
     (hx : ∀ v ∉ t.1, x.1 v = 0) :
     K.faceStandardMap t (K.restrictToFaceSimplex t x hx) = x := by
@@ -1918,6 +2220,9 @@ theorem faceStandardMap_restrictToFaceSimplex (t : K.Face) (x : K.realization)
     rfl
   · rw [extendFaceCoordinates_of_notMem _ _ hv, hx v hv]
 
+/--
+@isnad1 id=continuo.0h2v.s9.1932d109ddec from=translated src=- shape=aacf7ef8 vocab=08f2db83
+-/
 theorem continuous_faceStandardMap (t : K.Face) : Continuous (K.faceStandardMap t) := by
   apply Continuous.subtype_mk
   exact continuous_subtype_val.comp (stdSimplex.continuous_map Subtype.val)

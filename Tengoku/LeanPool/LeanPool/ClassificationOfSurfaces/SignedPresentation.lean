@@ -45,16 +45,25 @@ def mapEquiv {α β : Type*} (e : α ≃ β) : SignedDart α ≃ SignedDart β w
     intro d
     cases d <;> simp
 
+/--
+@isnad1 id=eq.0h4v.s6.4967cebcf9d2 from=translated src=- shape=311c72da vocab=d8f46b9f
+-/
 @[simp]
 theorem mapEquiv_pos {α β : Type*} (e : α ≃ β) (a : α) :
     mapEquiv e (.pos a) = .pos (e a) :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.866842d63f43 from=translated src=- shape=311c72da vocab=b724bfa8
+-/
 @[simp]
 theorem mapEquiv_neg {α β : Type*} (e : α ≃ β) (a : α) :
     mapEquiv e (.neg a) = .neg (e a) :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.716c772ffceb from=translated src=- shape=35b1124d vocab=c234c75f
+-/
 @[simp]
 theorem mapEquiv_flip {α β : Type*} (e : α ≃ β) (d : SignedDart α) :
     mapEquiv e d.flip = (mapEquiv e d).flip := by
@@ -91,11 +100,17 @@ abbrev EdgeOrbit (K : SurfaceCellComplex) :=
 def edgeOrbit (K : SurfaceCellComplex) (d : K.Dart) : K.EdgeOrbit :=
   Quotient.mk K.edgeSetoid d
 
+/--
+@isnad1 id=iff.0h3v.s4.79424e6757e1 from=translated src=- shape=13199de6 vocab=e6c36e28
+-/
 @[simp]
 theorem edgeOrbit_eq_iff (K : SurfaceCellComplex) (d e : K.Dart) :
     K.edgeOrbit d = K.edgeOrbit e ↔ K.SameEdge d e :=
   @Quotient.eq _ K.edgeSetoid d e
 
+/--
+@isnad1 id=eq.0h2v.s5.6cdb6a3f88d0 from=translated src=- shape=ea2840b0 vocab=7b79231e
+-/
 @[simp]
 theorem edgeOrbit_inv (K : SurfaceCellComplex) (d : K.Dart) :
     K.edgeOrbit (K.inv d) = K.edgeOrbit d := by
@@ -187,6 +202,9 @@ noncomputable def signedDartEquiv
   Equiv.ofBijective K.signedDartToDart
     (by exact ⟨K.signedDartToDart_injective hinv, K.signedDartToDart_surjective⟩)
 
+/--
+@isnad1 id=eq.1h2v.s7.f7bb7f2c0beb from=translated src=- shape=19f915fa vocab=b7504b75
+-/
 @[simp]
 theorem signedDartEquiv_symm_inv
     (K : SurfaceCellComplex) (hinv : ∀ d, K.inv d ≠ d) (d : K.Dart) :
@@ -209,6 +227,9 @@ noncomputable def finSignedDartEquiv
   (K.signedDartEquiv hinv).symm.trans
     (SignedDart.mapEquiv (Fintype.equivFin K.EdgeOrbit))
 
+/--
+@isnad1 id=eq.1h2v.s7.0a6fb5d8c136 from=translated src=- shape=7732effd vocab=521027bb
+-/
 @[simp]
 theorem finSignedDartEquiv_inv
     (K : SurfaceCellComplex) (hinv : ∀ d, K.inv d ≠ d) (d : K.Dart) :
@@ -224,13 +245,18 @@ noncomputable def normalizedBoundary
     List (SignedDart (Fin K.numEdgeOrbits)) :=
   (K.boundary f).map (K.finSignedDartEquiv hinv)
 
+/--
+@isnad1 id=eq.1h2v.s5.dec4a67330f2 from=translated src=- shape=50a69b8f vocab=5d55fa12
+-/
 @[simp]
 theorem normalizedBoundary_length
     (K : SurfaceCellComplex) (hinv : ∀ d, K.inv d ≠ d) (f : K.Face) :
     (K.normalizedBoundary hinv f).length = K.faceBoundaryLength f := by
   simp [normalizedBoundary, faceBoundaryLength]
 
-/-- Finite relabeling loses no information from a face boundary. -/
+/-- Finite relabeling loses no information from a face boundary.
+@isnad1 id=eq.1h2v.s6.f32133d8ce64 from=translated src=- shape=fcb3103c vocab=9992926e
+-/
 theorem normalizedBoundary_map_symm
     (K : SurfaceCellComplex) (hinv : ∀ d, K.inv d ≠ d) (f : K.Face) :
     (K.normalizedBoundary hinv f).map (K.finSignedDartEquiv hinv).symm =

@@ -128,6 +128,9 @@ private lemma sigma_involutive {S : Set ℤ} (hS : NoConsecutive S) :
   rw [Function.rightInverse_invFun (sigma S hS).surjective n]
   exact Eq.symm <| sigma_involutive hS n
 
+/--
+@isnad1 id=eq.1h1v.s4.ea55f61e7248 from=translated src=- shape=64a2c227 vocab=719b1cce
+-/
 @[simp] lemma sigma_chi (S : Set ℤ) (hS : NoConsecutive S) :
     (sigma S hS).χ = 0 := by
   -- Proof written by GPT 5.5.
@@ -424,7 +427,9 @@ private lemma lres_step_max_eq_oneIf (s : SlipFace) (a b : ℤ) :
 The expression `Utils.oneIf P` is the indicator $\delta(P)$ in
 [An extended Demazure product](https://arxiv.org/abs/2206.14227).
 *Lemma 3.17 (`lem:starTrans`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 3/6.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 3/6.*
+@isnad1 id=eq.1h4v.s6.b4142038f334 from=translated src=- shape=45858ff6 vocab=4e938d12
+-/
 theorem sf_star_sigma (S : Set ℤ) (hS : NoConsecutive S) (s : SlipFace) (a b : ℤ) :
     (s ⋆ (sigma S hS).s) a b =
         s a b
@@ -471,7 +476,9 @@ theorem sf_star_sigma (S : Set ℤ) (hS : NoConsecutive S) (s : SlipFace) (a b :
 
 /-- A formula for $s_\alpha \star \sigma_S$, specializing the more general `sf_star_sigma`.
 *Lemma 3.17 (`lem:starTrans`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 4/6.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 4/6.*
+@isnad1 id=eq.1h4v.s6.9289f2aa2979 from=translated src=- shape=6e566d92 vocab=4955e2b6
+-/
 theorem asp_star_sigma_sf (S : Set ℤ) (hS : NoConsecutive S) (α : AspPerm) (a b : ℤ) :
     (α.s ⋆ (sigma S hS).s) a b =
       α.s a b + Utils.oneIf (b - 1 ∈ S ∧ α (b - 1) < a ∧ a ≤ α b) := by
@@ -496,7 +503,9 @@ theorem asp_star_sigma_sf (S : Set ℤ) (hS : NoConsecutive S) (α : AspPerm) (a
 The expression `Utils.oneIf P` is the indicator $\delta(P)$ in
 [An extended Demazure product](https://arxiv.org/abs/2206.14227).
 *Lemma 3.17 (`lem:starTrans`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 5/6.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 5/6.*
+@isnad1 id=eq.1h4v.s6.c0a7363870a2 from=translated src=- shape=a85eb06a vocab=4eff6ad7
+-/
 theorem sf_lres_sigma (S : Set ℤ) (hS : NoConsecutive S)
     (s : SlipFace) (a b : ℤ) :
     (s ◃ (sigma S hS).s) a b =
@@ -550,7 +559,9 @@ theorem sf_lres_sigma (S : Set ℤ) (hS : NoConsecutive S)
 
 /-- A formula for $s_\alpha \triangleleft \sigma_S$. This is the ASP specialization of
 `sf_residual_sigma`. *Lemma 3.17 (`lem:starTrans`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 6/6.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 6/6.*
+@isnad1 id=eq.1h4v.s6.e5d262731673 from=translated src=- shape=a8db36e9 vocab=db72f19e
+-/
 theorem asp_residual_sigma_sf (S : Set ℤ) (hS : NoConsecutive S)
     (α : AspPerm) (a b : ℤ) :
     (α.s ◃ (sigma S hS).s) a b =

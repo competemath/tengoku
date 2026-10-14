@@ -45,7 +45,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [MeasurableSpace
   [BorelSpace E] [SecondCountableTopology E] [CompleteSpace E]
 
 /-- Finite measures on a real Banach space are determined by their one-dimensional
-continuous-linear projections. -/
+continuous-linear projections.
+@isnad1 id=eq.1h3v.s8.c2c9afc55e3c from=translated src=- shape=38cc025a vocab=d591a5e7
+-/
 theorem measure_eq_of_forall_dual_map_eq {μ ν : Measure E} [IsFiniteMeasure μ]
     [IsFiniteMeasure ν] (h : ∀ L : StrongDual ℝ E, μ.map L = ν.map L) :
     μ = ν := by
@@ -53,7 +55,9 @@ theorem measure_eq_of_forall_dual_map_eq {μ ν : Measure E} [IsFiniteMeasure μ
   ext L
   rw [charFunDual_eq_charFun_map_one, h L, charFunDual_eq_charFun_map_one]
 
-/-- Cramer-Wold as an extensionality criterion for finite measures, in continuous-dual form. -/
+/-- Cramer-Wold as an extensionality criterion for finite measures, in continuous-dual form.
+@isnad1 id=iff.0h3v.s8.af3765d352f3 from=translated src=- shape=a64ba542 vocab=d591a5e7
+-/
 theorem measure_eq_iff_forall_dual_map_eq {μ ν : Measure E} [IsFiniteMeasure μ]
     [IsFiniteMeasure ν] :
     μ = ν ↔ ∀ L : StrongDual ℝ E, μ.map L = ν.map L := by
@@ -62,14 +66,18 @@ theorem measure_eq_iff_forall_dual_map_eq {μ ν : Measure E} [IsFiniteMeasure �
   · exact measure_eq_of_forall_dual_map_eq
 
 /-- Probability measures on a real Banach space are determined by all continuous-linear
-one-dimensional projections. -/
+one-dimensional projections.
+@isnad1 id=eq.1h3v.s8.ee7792e00cbd from=translated src=- shape=5ec19933 vocab=3a0dc2de
+-/
 theorem probabilityMeasure_eq_of_forall_dual_map_eq (μ ν : ProbabilityMeasure E)
     (h : ∀ L : StrongDual ℝ E, (μ : Measure E).map L = (ν : Measure E).map L) :
     μ = ν := by
   apply ProbabilityMeasure.toMeasure_injective
   exact measure_eq_of_forall_dual_map_eq h
 
-/-- Cramer-Wold as an extensionality criterion for probability measures, in continuous-dual form. -/
+/-- Cramer-Wold as an extensionality criterion for probability measures, in continuous-dual form.
+@isnad1 id=iff.0h3v.s8.3d30be86b832 from=translated src=- shape=393d038f vocab=3a0dc2de
+-/
 theorem probabilityMeasure_eq_iff_forall_dual_map_eq (μ ν : ProbabilityMeasure E) :
     μ = ν ↔ ∀ L : StrongDual ℝ E, (μ : Measure E).map L = (ν : Measure E).map L := by
   constructor
@@ -84,7 +92,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [Measurabl
   [BorelSpace E]
 
 /-- The characteristic function at `t` is the real characteristic function of the scalar projection
-`x ↦ ⟪t, x⟫_ℝ` at `1`. -/
+`x ↦ ⟪t, x⟫_ℝ` at `1`.
+@isnad1 id=eq.0h3v.s6.9cef06e0b37f from=translated src=- shape=8b9f8a5d vocab=8e5602e8
+-/
 lemma charFun_eq_charFun_map_inner_one (μ : Measure E) (t : E) :
     charFun μ t = charFun (μ.map (fun x : E => ⟪t, x⟫_ℝ)) 1 := by
   rw [charFun_eq_charFunDual_toDualMap, charFunDual_eq_charFun_map_one]
@@ -96,7 +106,9 @@ lemma charFun_eq_charFun_map_inner_one (μ : Measure E) (t : E) :
 
 variable [SecondCountableTopology E] [CompleteSpace E]
 
-/-- Finite measures on a real Hilbert space are determined by scalar inner-product projections. -/
+/-- Finite measures on a real Hilbert space are determined by scalar inner-product projections.
+@isnad1 id=eq.1h3v.s6.a9e145840340 from=translated src=- shape=be42ebd4 vocab=541315f3
+-/
 theorem measure_eq_of_forall_inner_map_eq {μ ν : Measure E} [IsFiniteMeasure μ]
     [IsFiniteMeasure ν]
     (h :
@@ -108,7 +120,9 @@ theorem measure_eq_of_forall_inner_map_eq {μ ν : Measure E} [IsFiniteMeasure �
   ext t
   rw [charFun_eq_charFun_map_inner_one μ t, charFun_eq_charFun_map_inner_one ν t, h t]
 
-/-- Cramer-Wold as an extensionality criterion for finite measures on a real Hilbert space. -/
+/-- Cramer-Wold as an extensionality criterion for finite measures on a real Hilbert space.
+@isnad1 id=iff.0h3v.s6.1f4e269a7cb6 from=translated src=- shape=ba47dd1a vocab=541315f3
+-/
 theorem measure_eq_iff_forall_inner_map_eq {μ ν : Measure E} [IsFiniteMeasure μ]
     [IsFiniteMeasure ν] :
     μ = ν ↔
@@ -120,7 +134,9 @@ theorem measure_eq_iff_forall_inner_map_eq {μ ν : Measure E} [IsFiniteMeasure 
   · exact measure_eq_of_forall_inner_map_eq
 
 /-- Probability measures on a real Hilbert space are determined by scalar inner-product
-projections. -/
+projections.
+@isnad1 id=eq.1h3v.s6.19b4f38af914 from=translated src=- shape=3033cd72 vocab=f93d586a
+-/
 theorem probabilityMeasure_eq_of_forall_inner_map_eq (μ ν : ProbabilityMeasure E)
     (h :
       ∀ t : E,
@@ -130,7 +146,9 @@ theorem probabilityMeasure_eq_of_forall_inner_map_eq (μ ν : ProbabilityMeasure
   apply ProbabilityMeasure.toMeasure_injective
   exact measure_eq_of_forall_inner_map_eq h
 
-/-- Cramer-Wold as an extensionality criterion for probability measures on a real Hilbert space. -/
+/-- Cramer-Wold as an extensionality criterion for probability measures on a real Hilbert space.
+@isnad1 id=iff.0h3v.s6.259200f5f7be from=translated src=- shape=444bfdc2 vocab=f93d586a
+-/
 theorem probabilityMeasure_eq_iff_forall_inner_map_eq (μ ν : ProbabilityMeasure E) :
     μ = ν ↔
       ∀ t : E,
@@ -147,7 +165,9 @@ section EuclideanMeasures
 variable {n : ℕ}
 
 /-- The classical finite-dimensional Cramer-Wold theorem for finite measures on `ℝ^n`,
-represented by `EuclideanSpace ℝ (Fin n)`. -/
+represented by `EuclideanSpace ℝ (Fin n)`.
+@isnad1 id=eq.1h3v.s8.5a85ac998e8f from=translated src=- shape=6e526c56 vocab=65948ee1
+-/
 theorem euclideanSpace_measure_eq_of_forall_inner_map_eq
     {μ ν : Measure (EuclideanSpace ℝ (Fin n))} [IsFiniteMeasure μ] [IsFiniteMeasure ν]
     (h :
@@ -158,7 +178,9 @@ theorem euclideanSpace_measure_eq_of_forall_inner_map_eq
   measure_eq_of_forall_inner_map_eq h
 
 /-- Cramer-Wold as an extensionality criterion for finite measures on `ℝ^n`, represented by
-`EuclideanSpace ℝ (Fin n)`. -/
+`EuclideanSpace ℝ (Fin n)`.
+@isnad1 id=iff.0h3v.s8.55bc006607f4 from=translated src=- shape=d480d33a vocab=65948ee1
+-/
 theorem euclideanSpace_measure_eq_iff_forall_inner_map_eq
     {μ ν : Measure (EuclideanSpace ℝ (Fin n))} [IsFiniteMeasure μ] [IsFiniteMeasure ν] :
     μ = ν ↔
@@ -168,7 +190,9 @@ theorem euclideanSpace_measure_eq_iff_forall_inner_map_eq
   measure_eq_iff_forall_inner_map_eq
 
 /-- Probability measures on `ℝ^n`, represented by `EuclideanSpace ℝ (Fin n)`, are determined by
-all scalar projections. -/
+all scalar projections.
+@isnad1 id=eq.1h3v.s8.9062e371c034 from=translated src=- shape=f0642355 vocab=636db551
+-/
 theorem euclideanSpace_probabilityMeasure_eq_of_forall_inner_map_eq
     (μ ν : ProbabilityMeasure (EuclideanSpace ℝ (Fin n)))
     (h :
@@ -181,7 +205,9 @@ theorem euclideanSpace_probabilityMeasure_eq_of_forall_inner_map_eq
   probabilityMeasure_eq_of_forall_inner_map_eq μ ν h
 
 /-- Cramer-Wold as an extensionality criterion for probability measures on `ℝ^n`, represented by
-`EuclideanSpace ℝ (Fin n)`. -/
+`EuclideanSpace ℝ (Fin n)`.
+@isnad1 id=iff.0h3v.s8.bc1c9ec284c5 from=translated src=- shape=c9136037 vocab=636db551
+-/
 theorem euclideanSpace_probabilityMeasure_eq_iff_forall_inner_map_eq
     (μ ν : ProbabilityMeasure (EuclideanSpace ℝ (Fin n))) :
     μ = ν ↔
@@ -203,7 +229,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [MeasurableSpace
   [IsFiniteMeasure P] [IsFiniteMeasure Q]
 
 /-- If all continuous-linear real projections of two random variables are identically distributed,
-then the random variables themselves are identically distributed. -/
+then the random variables themselves are identically distributed.
+@isnad1 id=identdis.3h7v.s8.2f5f87193dde from=translated src=- shape=058a4e87 vocab=d634e68a
+-/
 theorem identDistrib_of_forall_dual_comp_identDistrib
     (hX : AEMeasurable X P) (hY : AEMeasurable Y Q)
     (h :
@@ -220,7 +248,9 @@ theorem identDistrib_of_forall_dual_comp_identDistrib
   exact (h L).map_eq
 
 /-- Identical distribution is equivalent to identical distribution of every continuous-linear
-real projection. -/
+real projection.
+@isnad1 id=iff.2h7v.s8.c6b5f5693720 from=translated src=- shape=e4870592 vocab=d634e68a
+-/
 theorem identDistrib_iff_forall_dual_comp_identDistrib
     (hX : AEMeasurable X P) (hY : AEMeasurable Y Q) :
     IdentDistrib X Y P Q ↔
@@ -232,7 +262,9 @@ theorem identDistrib_iff_forall_dual_comp_identDistrib
   · exact identDistrib_of_forall_dual_comp_identDistrib hX hY
 
 /-- Equality of laws follows from identical distribution of all continuous-linear real
-projections of random variables with those laws. -/
+projections of random variables with those laws.
+@isnad1 id=eq.3h9v.s8.aabf4d1d8c0f from=translated src=- shape=ab6bde14 vocab=0601c1a8
+-/
 theorem law_eq_of_forall_dual_comp_identDistrib {μ ν : Measure E}
     (hX : HasLaw X μ P) (hY : HasLaw Y ν Q)
     (h :
@@ -256,7 +288,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [Measurabl
   [IsFiniteMeasure P] [IsFiniteMeasure Q]
 
 /-- If all scalar inner-product projections of two random variables are identically distributed,
-then the random variables themselves are identically distributed. -/
+then the random variables themselves are identically distributed.
+@isnad1 id=identdis.3h7v.s7.94cd251df879 from=translated src=- shape=c86084b5 vocab=992de8b6
+-/
 theorem identDistrib_of_forall_inner_comp_identDistrib
     (hX : AEMeasurable X P) (hY : AEMeasurable Y Q)
     (h :
@@ -273,7 +307,9 @@ theorem identDistrib_of_forall_inner_comp_identDistrib
   exact (h t).map_eq
 
 /-- Identical distribution is equivalent to identical distribution of every scalar inner-product
-projection. -/
+projection.
+@isnad1 id=iff.2h7v.s7.8768a179a809 from=translated src=- shape=120c7ac8 vocab=992de8b6
+-/
 theorem identDistrib_iff_forall_inner_comp_identDistrib
     (hX : AEMeasurable X P) (hY : AEMeasurable Y Q) :
     IdentDistrib X Y P Q ↔
@@ -285,7 +321,9 @@ theorem identDistrib_iff_forall_inner_comp_identDistrib
   · exact identDistrib_of_forall_inner_comp_identDistrib hX hY
 
 /-- Equality of laws follows from identical distribution of all scalar inner-product projections
-of random variables with those laws. -/
+of random variables with those laws.
+@isnad1 id=eq.3h9v.s7.071fa8a7b7e0 from=translated src=- shape=bde2864a vocab=00d84677
+-/
 theorem law_eq_of_forall_inner_comp_identDistrib {μ ν : Measure E}
     (hX : HasLaw X μ P) (hY : HasLaw Y ν Q)
     (h :
@@ -308,7 +346,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [MeasurableSpace
   {μ : Measure E} [IsFiniteMeasure P] [IsFiniteMeasure μ]
 
 /-- A random variable has law `μ` if all of its continuous-linear real projections have the
-corresponding projected laws of `μ`. -/
+corresponding projected laws of `μ`.
+@isnad1 id=haslaw.2h5v.s8.0a1baa311239 from=translated src=- shape=c4cbc0be vocab=7701e611
+-/
 theorem hasLaw_of_forall_dual_comp_hasLaw
     (hX : AEMeasurable X P)
     (h : ∀ L : StrongDual ℝ E, HasLaw (fun ω => L (X ω)) (μ.map L) P) :
@@ -322,7 +362,9 @@ theorem hasLaw_of_forall_dual_comp_hasLaw
     exact (h L).map_eq
 
 /-- A random variable has law `μ` iff every continuous-linear real projection has the projected
-law of `μ`. -/
+law of `μ`.
+@isnad1 id=iff.1h5v.s8.1651dae5b7ad from=translated src=- shape=d725d4af vocab=7701e611
+-/
 theorem hasLaw_iff_forall_dual_comp_hasLaw (hX : AEMeasurable X P) :
     HasLaw X μ P ↔
       ∀ L : StrongDual ℝ E, HasLaw (fun ω => L (X ω)) (μ.map L) P := by
@@ -342,7 +384,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [Measurabl
   {μ : Measure E} [IsFiniteMeasure P] [IsFiniteMeasure μ]
 
 /-- A random variable has law `μ` if all of its scalar inner-product projections have the
-corresponding projected laws of `μ`. -/
+corresponding projected laws of `μ`.
+@isnad1 id=haslaw.2h5v.s7.750cf1d515a4 from=translated src=- shape=a390c2ea vocab=9fe69f68
+-/
 theorem hasLaw_of_forall_inner_comp_hasLaw
     (hX : AEMeasurable X P)
     (h :
@@ -358,7 +402,9 @@ theorem hasLaw_of_forall_inner_comp_hasLaw
     exact (h t).map_eq
 
 /-- A random variable has law `μ` iff every scalar inner-product projection has the projected
-law of `μ`. -/
+law of `μ`.
+@isnad1 id=iff.1h5v.s7.afde50e812c0 from=translated src=- shape=54a9fe90 vocab=9fe69f68
+-/
 theorem hasLaw_iff_forall_inner_comp_hasLaw (hX : AEMeasurable X P) :
     HasLaw X μ P ↔
       ∀ t : E,

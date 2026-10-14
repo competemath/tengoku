@@ -73,19 +73,27 @@ def cayleyMenger (D : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ) :
     Matrix (Fin (n + 2)) (Fin (n + 2)) ℝ :=
   Matrix.of (Fin.cons (Fin.cons 0 (fun _ => 1)) (fun i => Fin.cons 1 (D i)))
 
-/-- The top-left entry of the Cayley–Menger matrix is `0`. -/
+/-- The top-left entry of the Cayley–Menger matrix is `0`.
+@isnad1 id=eq.0h2v.s6.fac3ca23bcc2 from=translated src=- shape=9ef40146 vocab=c8fd1527
+-/
 @[simp] theorem cayleyMenger_zero_zero (D : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ) :
     cayleyMenger D 0 0 = 0 := rfl
 
-/-- Off the corner, the first row of the Cayley–Menger matrix is all `1`s. -/
+/-- Off the corner, the first row of the Cayley–Menger matrix is all `1`s.
+@isnad1 id=eq.0h3v.s6.77e45aeadc41 from=translated src=- shape=f594c468 vocab=1d2ae6ae
+-/
 @[simp] theorem cayleyMenger_zero_succ (D : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ)
     (j : Fin (n + 1)) : cayleyMenger D 0 j.succ = 1 := rfl
 
-/-- Off the corner, the first column of the Cayley–Menger matrix is all `1`s. -/
+/-- Off the corner, the first column of the Cayley–Menger matrix is all `1`s.
+@isnad1 id=eq.0h3v.s6.311e23dc4d14 from=translated src=- shape=dc05a0fe vocab=1d2ae6ae
+-/
 @[simp] theorem cayleyMenger_succ_zero (D : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ)
     (i : Fin (n + 1)) : cayleyMenger D i.succ 0 = 1 := rfl
 
-/-- The lower-right block of the Cayley–Menger matrix is `D`. -/
+/-- The lower-right block of the Cayley–Menger matrix is `D`.
+@isnad1 id=eq.0h4v.s6.3cd7cace2762 from=translated src=- shape=fed44fdf vocab=1d2ae6ae
+-/
 @[simp] theorem cayleyMenger_succ_succ (D : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ)
     (i j : Fin (n + 1)) : cayleyMenger D i.succ j.succ = D i j := rfl
 
@@ -117,7 +125,9 @@ private theorem det_fin_four {R : Type*} [CommRing R] (M : Matrix (Fin 4) (Fin 4
 /-- The segment case (`n = 1`) of Cayley–Menger. For two points with squared distance
 `ℓ² = D 0 1`, the `3×3` Cayley–Menger determinant is `2·ℓ²` (the general sign is
 `(-1)^(n+1)·2^n·det G`, here `(-1)²·2¹ = +2` and the `1×1` edge-Gram is `[ℓ²]`). With
-`D` hollow this reads `det CM = 2 · D 0 1`. -/
+`D` hollow this reads `det CM = 2 · D 0 1`.
+@isnad1 id=eq.3h1v.s8.cec13aa19623 from=translated src=- shape=567a2635 vocab=165c8f64
+-/
 theorem cayleyMenger_det_segment (D : Matrix (Fin 2) (Fin 2) ℝ)
     (h00 : D 0 0 = 0) (h11 : D 1 1 = 0) (s01 : D 1 0 = D 0 1) :
     (cayleyMenger D).det = 2 * D 0 1 := by
@@ -139,7 +149,9 @@ determinant equals `-4` times the determinant of the `2×2` edge-Gram block
 `     [(D 0 1 + D 0 2 - D 1 2)/2, D 0 2]]`
 
 i.e. `det CM = -4 · (D 0 1 · D 0 2 - ((D 0 1 + D 0 2 - D 1 2)/2)²)`. This is a pure
-algebraic identity in the entries of `D`; no geometry is used. -/
+algebraic identity in the entries of `D`; no geometry is used.
+@isnad1 id=eq.6h1v.s9.d56e32f3bfeb from=translated src=- shape=b797d66b vocab=c9c87f8a
+-/
 theorem cayleyMenger_det_triangle (D : Matrix (Fin 3) (Fin 3) ℝ)
     (h00 : D 0 0 = 0) (h11 : D 1 1 = 0) (h22 : D 2 2 = 0)
     (s01 : D 1 0 = D 0 1) (s02 : D 2 0 = D 0 2) (s12 : D 2 1 = D 1 2) :
@@ -166,7 +178,9 @@ off-diagonal is `centeredGram D 1 2`. Hence
 
 `det CM = -4 · (centeredGram D 1 1 · centeredGram D 2 2 - (centeredGram D 1 2)²)`.
 
-This is the bridge from the Cayley–Menger determinant to the Schoenberg core. -/
+This is the bridge from the Cayley–Menger determinant to the Schoenberg core.
+@isnad1 id=eq.6h1v.s9.f2acfafb8b5c from=translated src=- shape=7cc3753d vocab=5370f7c7
+-/
 theorem cayleyMenger_det_triangle_centeredGram (D : Matrix (Fin 3) (Fin 3) ℝ)
     (h00 : D 0 0 = 0) (h11 : D 1 1 = 0) (h22 : D 2 2 = 0)
     (s01 : D 1 0 = D 0 1) (s02 : D 2 0 = D 0 2) (s12 : D 2 1 = D 1 2) :
@@ -202,7 +216,9 @@ noncomputable def triangleArea (x : Fin 3 → EuclideanSpace ℝ (Fin 2)) : ℝ 
 /-- The Gram–volume identity for `n = 2`. The determinant of the `2×2` edge-Gram block
 of the basepoint-centered matrix `centeredGram D` (indices `{1, 2}`) equals the square of the
 edge-coordinate determinant `det E`, where `E = [x 1 - x 0; x 2 - x 0]`. This is the
-`n = 2` case of `det G = (n!·Vol)²` (here `det G = (2·area)²`). -/
+`n = 2` case of `det G = (n!·Vol)²` (here `det G = (2·area)²`).
+@isnad1 id=eq.1h2v.s10.382687b6c791 from=translated src=- shape=a8765745 vocab=fa723ea2
+-/
 theorem det_centeredGram_block_eq_sq
     {D : Matrix (Fin 3) (Fin 3) ℝ} {x : Fin 3 → EuclideanSpace ℝ (Fin 2)}
     (hD : IsSqDistMatrix D x) :
@@ -220,7 +236,9 @@ Cayley–Menger determinant equals `-16` times the squared area:
 
 After expansion and factorization in the three side lengths, this identity is equivalent
 to Heron's formula `16·area² = (a+b+c)(-a+b+c)(a-b+c)(a+b-c)`. This file does not
-state that factorized formula as a separate theorem. -/
+state that factorized formula as a separate theorem.
+@isnad1 id=eq.1h2v.s7.f580e5fed8f1 from=translated src=- shape=dcef0f64 vocab=74255106
+-/
 theorem cayleyMenger_det_heron
     {D : Matrix (Fin 3) (Fin 3) ℝ} {x : Fin 3 → EuclideanSpace ℝ (Fin 2)}
     (hD : IsSqDistMatrix D x) :

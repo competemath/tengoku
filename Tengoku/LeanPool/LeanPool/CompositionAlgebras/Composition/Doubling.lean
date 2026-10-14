@@ -65,7 +65,9 @@ variable {C : Type u} [NonAssocRing C] [Module ℝ C]
 /-! ### The two Kirmse identities and their polarisations -/
 
 omit [Nontrivial C] in
-/-- `x* (x y) = N x • y`. Immediate from left alternativity and `sq_eq`. -/
+/-- `x* (x y) = N x • y`. Immediate from left alternativity and `sq_eq`.
+@isnad1 id=eq.0h3v.s8.7496ac419bbf from=translated src=- shape=b26be0b9 vocab=604c4521
+-/
 theorem cstar_mul_mul (x y : C) : cstar x * (x * y) = (nf x) • y := by
   have h : cstar x * (x * y) = (2 * ip x 1) • (x * y) - x * (x * y) := by
     simp [cstar_apply, sub_mul, smul_mul_assoc]
@@ -74,7 +76,9 @@ theorem cstar_mul_mul (x y : C) : cstar x * (x * y) = (nf x) • y := by
   module
 
 omit [Nontrivial C] in
-/-- `(y x) x* = N x • y`. Immediate from right alternativity and `sq_eq`. -/
+/-- `(y x) x* = N x • y`. Immediate from right alternativity and `sq_eq`.
+@isnad1 id=eq.0h3v.s8.ef2b7dc813fe from=translated src=- shape=4375ac09 vocab=604c4521
+-/
 theorem mul_mul_cstar (x y : C) : (y * x) * cstar x = (nf x) • y := by
   have h : (y * x) * cstar x = (2 * ip x 1) • (y * x) - (y * x) * x := by
     simp [cstar_apply, mul_sub, mul_smul_comm]
@@ -83,7 +87,9 @@ theorem mul_mul_cstar (x y : C) : (y * x) * cstar x = (nf x) • y := by
   module
 
 omit [Nontrivial C] in
-/-- Polarisation of `cstar_mul_mul`: `x* (w y) + w* (x y) = 2⟪x,w⟫ • y`. -/
+/-- Polarisation of `cstar_mul_mul`: `x* (w y) + w* (x y) = 2⟪x,w⟫ • y`.
+@isnad1 id=eq.0h4v.s8.0749b40f30ba from=translated src=- shape=c3746719 vocab=971b39f3
+-/
 theorem cstar_mul_mul_polar (x w y : C) :
     cstar x * (w * y) + cstar w * (x * y) = (2 * ip x w) • y := by
   have h := cstar_mul_mul (x + w) y
@@ -94,7 +100,9 @@ theorem cstar_mul_mul_polar (x w y : C) :
   linear_combination (norm := module) h
 
 omit [Nontrivial C] in
-/-- Polarisation of `mul_mul_cstar`: `(y x) w* + (y w) x* = 2⟪x,w⟫ • y`. -/
+/-- Polarisation of `mul_mul_cstar`: `(y x) w* + (y w) x* = 2⟪x,w⟫ • y`.
+@isnad1 id=eq.0h4v.s8.a8a188dc93b1 from=translated src=- shape=46764e68 vocab=971b39f3
+-/
 theorem mul_mul_cstar_polar (x w y : C) :
     (y * x) * cstar w + (y * w) * cstar x = (2 * ip x w) • y := by
   have h := mul_mul_cstar (x + w) y
@@ -124,7 +132,9 @@ variable {A : Submodule ℝ C} (hA : IsCompSubalgebra A) {u : C}
 include hA hu
 
 omit [Nontrivial C] in
-/-- The doubling vector is imaginary: it is orthogonal to `1 ∈ A`. -/
+/-- The doubling vector is imaginary: it is orthogonal to `1 ∈ A`.
+@isnad1 id=ispure.2h3v.s8.8e0ea4439930 from=translated src=- shape=df26a6ca vocab=12c81eb3
+-/
 theorem isPure_unit : IsPure u := by
   have := hu 1 hA.one_mem
   simpa [IsPure, ip_symm u 1] using this
@@ -132,7 +142,9 @@ theorem isPure_unit : IsPure u := by
 include hnu
 
 omit [Nontrivial C] in
-/-- `u * u = -1`. -/
+/-- `u * u = -1`.
+@isnad1 id=eq.3h3v.s8.67e30a8e1b43 from=translated src=- shape=9129003f vocab=c94ac7ee
+-/
 theorem unit_sq : u * u = -(1 : C) := by
   have := sq_of_pure (hA.isPure_unit hu)
   rw [hnu] at this
@@ -142,18 +154,24 @@ omit hnu
 
 omit [Nontrivial C] in
 /-- `A ⊥ A u`: the doubled part is orthogonal to the original. This is what makes the sum
-`A ⊕ A u` direct. -/
+`A ⊕ A u` direct.
+@isnad1 id=eq.4h5v.s8.4b7e326e56e7 from=translated src=- shape=00df0b32 vocab=2dac2c6c
+-/
 theorem ip_mul_unit {a : C} (ha : a ∈ A) {b : C} (hb : b ∈ A) : ip (a * u) b = 0 := by
   rw [ip_mul_adj_left]
   exact hu _ (hA.mul_mem (hA.cstar_mem ha) hb)
 
 omit [Nontrivial C] in
-/-- Every element of `A u` is imaginary. -/
+/-- Every element of `A u` is imaginary.
+@isnad1 id=ispure.3h4v.s8.01efbff6be67 from=translated src=- shape=75591d46 vocab=b05e495e
+-/
 theorem isPure_mul_unit {a : C} (ha : a ∈ A) : IsPure (a * u) :=
   hA.ip_mul_unit hu ha hA.one_mem
 
 omit [Nontrivial C] in
-/-- `a u = u a*` for `a ∈ A`: the doubling vector conjugates `A`. -/
+/-- `a u = u a*` for `a ∈ A`: the doubling vector conjugates `A`.
+@isnad1 id=eq.3h4v.s8.c12c273cc5e5 from=translated src=- shape=21ade80f vocab=57d92c22
+-/
 theorem unit_comm {a : C} (ha : a ∈ A) : a * u = u * cstar a := by
   have h := mul_mul_cstar_polar (C := C) u a 1
   rw [one_mul, one_mul, hu a ha] at h
@@ -161,7 +179,9 @@ theorem unit_comm {a : C} (ha : a ∈ A) : a * u = u * cstar a := by
   simp only [mul_neg] at h
   linear_combination (norm := module) -h
 
-/-- `u (a* y) = a (u y)` for `a ∈ A`: moving `A` across the doubling vector on the left. -/
+/-- `u (a* y) = a (u y)` for `a ∈ A`: moving `A` across the doubling vector on the left.
+@isnad1 id=eq.3h5v.s8.f36e75778989 from=translated src=- shape=88fb7b55 vocab=0f54a857
+-/
 theorem unit_mul_left {a : C} (ha : a ∈ A) (y : C) :
     u * (cstar a * y) = a * (u * y) := by
   have h := cstar_mul_mul_polar (C := C) u (cstar a) y
@@ -170,14 +190,18 @@ theorem unit_mul_left {a : C} (ha : a ∈ A) (y : C) :
   simp only [neg_mul] at h
   linear_combination (norm := module) -h
 
-/-- **First Cayley–Dickson rule**: `a (b u) = (b a) u`. -/
+/-- **First Cayley–Dickson rule**: `a (b u) = (b a) u`.
+@isnad1 id=eq.4h5v.s8.67f9dd08dc87 from=translated src=- shape=aa48ac3b vocab=37a360f5
+-/
 theorem mul_mul_unit {a : C} (ha : a ∈ A) {b : C} (hb : b ∈ A) :
     a * (b * u) = (b * a) * u := by
   rw [hA.unit_comm hu hb, ← hA.unit_mul_left hu ha (cstar b), ← cstar_mul,
     ← hA.unit_comm hu (hA.mul_mem hb ha)]
 
 /-- **Second Cayley–Dickson rule**: `(a u) b = (a b*) u`. Note `a` is arbitrary: only
-`b ∈ A` is used. -/
+`b ∈ A` is used.
+@isnad1 id=eq.3h5v.s8.2e8a5c67e7a8 from=translated src=- shape=dea4c74f vocab=0f54a857
+-/
 theorem unit_mul_mul (a : C) {b : C} (hb : b ∈ A) :
     (a * u) * b = (a * cstar b) * u := by
   have h := mul_mul_cstar_polar (C := C) u (cstar b) a
@@ -189,14 +213,18 @@ theorem unit_mul_mul (a : C) {b : C} (hb : b ∈ A) :
 include hnu
 
 omit [Nontrivial C] hA hu in
-/-- `⟪u, b u⟫ = ⟪1, b⟫`. -/
+/-- `⟪u, b u⟫ = ⟪1, b⟫`.
+@isnad1 id=eq.1h3v.s8.8369f09a46a6 from=translated src=- shape=032a4d50 vocab=3126a09b
+-/
 theorem ip_unit_mul_unit (b : C) : ip u (b * u) = ip 1 b := by
   have h := ip_exchange (C := C) 1 u b u
   simp only [one_mul] at h
   rw [ip_symm (b * u) u, ← nf_eq_ip, hnu] at h
   linarith
 
-/-- **Third Cayley–Dickson rule**: `(a u)(b u) = -(b* a)`. -/
+/-- **Third Cayley–Dickson rule**: `(a u)(b u) = -(b* a)`.
+@isnad1 id=eq.5h5v.s9.d593e080e646 from=translated src=- shape=6fc92adb vocab=2dadc16f
+-/
 theorem unit_mul_unit {a : C} (ha : a ∈ A) {b : C} (hb : b ∈ A) :
     (a * u) * (b * u) = -(cstar b * a) := by
   have h := mul_mul_cstar_polar (C := C) u (b * u) a

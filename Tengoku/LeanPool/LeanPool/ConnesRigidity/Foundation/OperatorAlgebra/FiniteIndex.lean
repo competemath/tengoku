@@ -55,26 +55,34 @@ noncomputable def correction (g : G) (q : G ⧸ S) : S :=
       simpa only [mul_assoc] using
         (QuotientGroup.leftRel_apply (s := S)).mp hrel)⟩
 
-/-- Pointwise formula for the correction element. Paper: §4. -/
+/-- Pointwise formula for the correction element. Paper: §4.
+@isnad1 id=eq.0h4v.s7.a6d64197536b from=translated src=- shape=1aae73b6 vocab=88d99f1b
+-/
 @[simp] theorem correction_coe (g : G) (q : G ⧸ S) :
     (correction S g q : G) =
       (Quotient.out (g • q))⁻¹ * g * Quotient.out q :=
   rfl
 
-/-- Multiplicativity of the correction cocycle. Paper: §4. -/
+/-- Multiplicativity of the correction cocycle. Paper: §4.
+@isnad1 id=eq.0h5v.s7.b71b11bd8cb8 from=translated src=- shape=886bf0df vocab=05e963b6
+-/
 theorem correction_mul (g h : G) (q : G ⧸ S) :
     correction S (g * h) q =
       correction S g (h • q) * correction S h q := by
   apply Subtype.ext
   simp only [correction, mul_smul, mul_assoc, MulMemClass.mk_mul_mk, mul_inv_cancel_left]
 
-/-- Unit value of the correction cocycle. Paper: §4. -/
+/-- Unit value of the correction cocycle. Paper: §4.
+@isnad1 id=eq.0h3v.s6.26bba89daa36 from=translated src=- shape=748fe099 vocab=29eadc31
+-/
 @[simp] theorem correction_one (q : G ⧸ S) :
     correction S 1 q = 1 := by
   apply Subtype.ext
   simp only [correction, one_smul, mul_one, inv_mul_cancel, OneMemClass.coe_one]
 
-/-- The subgroup fixes the base coset. Paper: §4. -/
+/-- The subgroup fixes the base coset. Paper: §4.
+@isnad1 id=eq.0h3v.s7.2c6e85a69fb7 from=translated src=- shape=fd2b254b vocab=bb23350a
+-/
 theorem subgroup_smul_baseCoset (s : S) :
     (s : G) • (QuotientGroup.mk 1 : G ⧸ S) =
       QuotientGroup.mk 1 := by
@@ -83,7 +91,9 @@ theorem subgroup_smul_baseCoset (s : S) :
   rw [QuotientGroup.leftRel_apply]
   simp only [mul_one, inv_mem_iff, SetLike.coe_mem]
 
-/-- The chosen representative of the base coset lies in the subgroup. Paper: §4. -/
+/-- The chosen representative of the base coset lies in the subgroup. Paper: §4.
+@isnad1 id=mem.0h2v.s5.f2c5f4b9469f from=translated src=- shape=c4c204a8 vocab=e5a77c94
+-/
 theorem quotientOut_baseCoset_mem :
     Quotient.out (QuotientGroup.mk 1 : G ⧸ S) ∈ S := by
   let q₀ : G ⧸ S := QuotientGroup.mk 1
@@ -120,7 +130,9 @@ noncomputable def inducedLinearIsometryEquiv
         (fun q ↦ Unitary.linearIsometryEquiv
           (π (correction S g (g⁻¹ • q)))))
 
-/-- Pointwise formula for the induced linear isometry. Paper: §4. -/
+/-- Pointwise formula for the induced linear isometry. Paper: §4.
+@isnad1 id=eq.0h7v.s12.476eb30e4d67 from=translated src=- shape=67ea81bb vocab=efb27d3d
+-/
 @[simp] theorem inducedLinearIsometryEquiv_apply
     (π : UnitaryRepresentation S H) (g : G)
     (ξ : InducedSpace (H := H) S) (q : G ⧸ S) :
@@ -135,7 +147,9 @@ noncomputable def inducedUnitary
     unitary (InducedSpace (H := H) S →L[ℂ] InducedSpace (H := H) S) :=
   Unitary.linearIsometryEquiv.symm (inducedLinearIsometryEquiv S π g)
 
-/-- Pointwise formula for the induced unitary. Paper: §4. -/
+/-- Pointwise formula for the induced unitary. Paper: §4.
+@isnad1 id=eq.0h7v.s13.04231c470b72 from=translated src=- shape=bdd01980 vocab=67e34d70
+-/
 @[simp] theorem inducedUnitary_apply
     (π : UnitaryRepresentation S H) (g : G)
     (ξ : InducedSpace (H := H) S) (q : G ⧸ S) :
@@ -162,7 +176,9 @@ noncomputable def inducedRepresentation
     rw [correction_mul]
     simp only [mul_inv_rev, mul_smul, smul_inv_smul, map_mul, Submonoid.coe_mul, mul_apply_eq_comp]
 
-/-- Pointwise formula for the induced representation. Paper: §4. -/
+/-- Pointwise formula for the induced representation. Paper: §4.
+@isnad1 id=eq.0h7v.s15.96a042904f4c from=translated src=- shape=115e1774 vocab=d2d39eed
+-/
 @[simp] theorem inducedRepresentation_apply
     (π : UnitaryRepresentation S H) (g : G)
     (ξ : InducedSpace (H := H) S) (q : G ⧸ S) :
@@ -173,7 +189,9 @@ noncomputable def inducedRepresentation
   rfl
 
 omit [InnerProductSpace ℂ H] [CompleteSpace H] in
-/-- Sum-of-coordinate norm bound for the induced space. Paper: §4. -/
+/-- Sum-of-coordinate norm bound for the induced space. Paper: §4.
+@isnad1 id=le.0h4v.s7.e8ecf2cb510a from=translated src=- shape=b85bc830 vocab=9a2b4756
+-/
 theorem inducedSpace_norm_le_sum_norm_apply
     (ξ : InducedSpace (H := H) S) :
     ‖ξ‖ ≤ ∑ q : G ⧸ S, ‖ξ q‖ := by
@@ -191,7 +209,9 @@ theorem inducedSpace_norm_le_sum_norm_apply
         (norm_sum_le Finset.univ
           (fun q : G ⧸ S ↦ PiLp.single 2 q (ξ q)))
 
-/-- Almost-invariant vectors lift through finite-index induction. Paper: §4. -/
+/-- Almost-invariant vectors lift through finite-index induction. Paper: §4.
+@isnad1 id=hasalmos.1h4v.s7.e661ffbf47a3 from=translated src=- shape=aadd4156 vocab=89d75067
+-/
 theorem inducedRepresentation_hasAlmostInvariantUnitVectors
     (π : UnitaryRepresentation S H)
     (hπ : π.HasAlmostInvariantUnitVectors) :
@@ -269,7 +289,9 @@ theorem inducedRepresentation_hasAlmostInvariantUnitVectors
       rw [show n * (ε / (n + 1)) = (n * ε) / (n + 1) by ring]
       exact (div_lt_iff₀ hden).2 (by linarith)
 
-/-- A nonzero invariant induced vector is nonzero at the base coset. Paper: §4. -/
+/-- A nonzero invariant induced vector is nonzero at the base coset. Paper: §4.
+@isnad1 id=ne.2h5v.s9.1430150de1d2 from=translated src=- shape=eebf6430 vocab=80bbcc2c
+-/
 theorem inducedInvariant_baseCoset_ne_zero
     (π : UnitaryRepresentation S H)
     (η : InducedSpace (H := H) S)
@@ -308,7 +330,9 @@ theorem inducedInvariant_baseCoset_ne_zero
   rw [← heval', hzero, map_zero]
 
 omit [S.FiniteIndex] in
-/-- Correction conjugacy at the base coset. Paper: §4. -/
+/-- Correction conjugacy at the base coset. Paper: §4.
+@isnad1 id=other.0h3v.s8.142c7cc77edc from=translated src=- shape=a083059a vocab=0aef7def
+-/
 theorem correction_conjugate_at_baseCoset
     (s : S) :
     let r : S :=
@@ -323,7 +347,9 @@ theorem correction_conjugate_at_baseCoset
   simp only [mul_assoc, Subgroup.coe_mul, InvMemClass.coe_inv, inv_mul_cancel_left, inv_mul_cancel,
     mul_one]
 
-/-- Invariant induced vectors restrict to invariant subgroup vectors. Paper: §4. -/
+/-- Invariant induced vectors restrict to invariant subgroup vectors. Paper: §4.
+@isnad1 id=isinvari.1h5v.s8.79ee74eaaeb7 from=translated src=- shape=6a3a5a15 vocab=80bbcc2c
+-/
 theorem inducedInvariant_baseCoset_isInvariant
     (π : UnitaryRepresentation S H)
     (η : InducedSpace (H := H) S)
@@ -348,7 +374,9 @@ end Induced
 
 end FiniteIndex
 
-/-- Property-(T) descends to a finite-index subgroup. Paper: §4. -/
+/-- Property-(T) descends to a finite-index subgroup. Paper: §4.
+@isnad1 id=haskazhd.1h2v.s4.424c7f34c831 from=translated src=- shape=e1b9bf4c vocab=0a3a7020
+-/
 theorem hasKazhdanPropertyT_subgroup_of_finiteIndex
     (G : CountableDiscreteGroup.{u}) (S : Subgroup G)
     [S.FiniteIndex]

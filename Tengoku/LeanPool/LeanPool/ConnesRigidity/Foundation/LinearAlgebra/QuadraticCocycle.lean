@@ -63,7 +63,9 @@ def reducedSymplecticHom :
     ext i j
     simp [Matrix.mul_apply]
 
-/-- Evaluation of matrix reduction. Paper: §2. -/
+/-- Evaluation of matrix reduction. Paper: §2.
+@isnad1 id=eq.0h1v.s13.24d17ae2ee3e from=translated src=- shape=1031daba vocab=0d751059
+-/
 @[simp] theorem reducedSymplecticHom_coe (g : IntegralSymplecticGroup) :
     (reducedSymplecticHom g : Matrix SymplecticIndex SymplecticIndex (ZMod 2)) =
       reducedMatrixHom g := rfl
@@ -90,7 +92,9 @@ def finiteQuadraticCocycle (g : ModTwoSymplecticGroup) : ModTwoSpace
       standardQuadraticForm (g⁻¹ • modTwoBasis (Sum.inl i)) +
         standardQuadraticForm (modTwoBasis (Sum.inl i))
 
-/-- Dot-product form of the alternating pairing. Paper: §2. -/
+/-- Dot-product form of the alternating pairing. Paper: §2.
+@isnad1 id=eq.0h2v.s7.a3800c52aa83 from=translated src=- shape=604b0f95 vocab=8a83e557
+-/
 theorem modTwoSymplecticForm_eq_dotProduct (x y : ModTwoSpace) :
     modTwoSymplecticForm x y =
       dotProduct x ((Matrix.J (Fin 2) (ZMod 2)).mulVec y) := by
@@ -98,6 +102,9 @@ theorem modTwoSymplecticForm_eq_dotProduct (x y : ModTwoSpace) :
   abel
 
 /- Symplectic invariance of the alternating pairing. Paper: §2. -/
+/--
+@isnad1 id=eq.0h3v.s12.9f6ce0b73916 from=translated src=- shape=7b79625e vocab=154c7608
+-/
 theorem modTwoSymplecticForm_smul
     (g : ModTwoSymplecticGroup) (x y : ModTwoSpace) :
     modTwoSymplecticForm (g • x) (g • y) = modTwoSymplecticForm x y := by
@@ -111,6 +118,9 @@ theorem modTwoSymplecticForm_smul
   rw [← Matrix.dotProduct_mulVec]
 
 /- Additivity in the second argument. Paper: §2. -/
+/--
+@isnad1 id=eq.0h3v.s7.fec912f9ea1f from=translated src=- shape=1f2d97f4 vocab=64be2653
+-/
 theorem modTwoSymplecticForm_add_right (x y z : ModTwoSpace) :
     modTwoSymplecticForm x (y + z) =
       modTwoSymplecticForm x y + modTwoSymplecticForm x z := by
@@ -172,7 +182,9 @@ def symplecticFunctional (d : ModTwoSpace) :
     simp [modTwoSymplecticForm]
     ring
 
-/-- The quadratic defect is represented by its source cocycle. Paper: §2. -/
+/-- The quadratic defect is represented by its source cocycle. Paper: §2.
+@isnad1 id=eq.0h2v.s12.4dec1c940899 from=translated src=- shape=ff7f44ec vocab=2e171e02
+-/
 theorem finiteQuadraticCocycle_defining_identity
     (g : ModTwoSymplecticGroup) (w : ModTwoSpace) :
     standardQuadraticForm (g⁻¹ • w) + standardQuadraticForm w =
@@ -192,6 +204,9 @@ theorem finiteQuadraticCocycle_defining_identity
   exact LinearMap.congr_fun heq w
 
 /- Nondegeneracy of the coordinate pairing. Paper: §2. -/
+/--
+@isnad1 id=eq.1h2v.s4.5b98638fb909 from=translated src=- shape=0ccae21c vocab=30b6b300
+-/
 theorem modTwoSymplecticForm_nondegenerate {x y : ModTwoSpace}
     (h : ∀ w, modTwoSymplecticForm x w = modTwoSymplecticForm y w) :
     x = y := by
@@ -209,6 +224,9 @@ theorem modTwoSymplecticForm_nondegenerate {x y : ModTwoSpace}
         h (modTwoBasis (Sum.inl 1))
 
 /- Additivity in the first argument. Paper: §2. -/
+/--
+@isnad1 id=eq.0h3v.s7.71b26b7f7535 from=translated src=- shape=0cd70a10 vocab=64be2653
+-/
 theorem modTwoSymplecticForm_add_left (x y z : ModTwoSpace) :
     modTwoSymplecticForm (x + y) z =
       modTwoSymplecticForm x z + modTwoSymplecticForm y z := by
@@ -216,6 +234,9 @@ theorem modTwoSymplecticForm_add_left (x y z : ModTwoSpace) :
   abel
 
 /- Moving an action across the pairing. Paper: §2. -/
+/--
+@isnad1 id=eq.0h3v.s12.b405cb30f336 from=translated src=- shape=72202017 vocab=73da4276
+-/
 theorem modTwoSymplecticForm_smul_left
     (g : ModTwoSymplecticGroup) (x y : ModTwoSpace) :
     modTwoSymplecticForm (g • x) y =
@@ -224,6 +245,9 @@ theorem modTwoSymplecticForm_smul_left
   simp
 
 /- The finite quadratic map satisfies the cocycle law. Paper: §2. -/
+/--
+@isnad1 id=iscocycl.0h0v.s11.62e1f10853ad from=translated src=- shape=15cce6a8 vocab=376ca962
+-/
 theorem finiteQuadraticCocycle_isCocycle :
     groupCohomology.IsCocycle₁ finiteQuadraticCocycle := by
   intro g h
@@ -252,11 +276,17 @@ def integralQuadraticCocycle (g : IntegralSymplecticGroup) : ModTwoSpace :=
   finiteQuadraticCocycle (reducedSymplecticHom g)
 
 /- Reduction and integral actions agree on the finite carrier. Paper: §2. -/
+/--
+@isnad1 id=eq.0h2v.s13.c161cded2df7 from=translated src=- shape=390a236c vocab=2df1dbc8
+-/
 theorem reducedSymplecticHom_smul
     (g : IntegralSymplecticGroup) (w : ModTwoSpace) :
     reducedSymplecticHom g • w = g • w := rfl
 
 /- The integral cocycle has the quadratic defining identity. Paper: §2. -/
+/--
+@isnad1 id=eq.0h2v.s12.7f289d855e68 from=translated src=- shape=2344782a vocab=a288f5fe
+-/
 theorem integralQuadraticCocycle_defining_identity
     (g : IntegralSymplecticGroup) (w : ModTwoSpace) :
     standardQuadraticForm (g⁻¹ • w) + standardQuadraticForm w =
@@ -265,6 +295,9 @@ theorem integralQuadraticCocycle_defining_identity
   exact finiteQuadraticCocycle_defining_identity (reducedSymplecticHom g) w
 
 /- The integral reduction also satisfies the cocycle law. Paper: §2. -/
+/--
+@isnad1 id=iscocycl.0h0v.s11.00e07e933b49 from=translated src=- shape=421c9364 vocab=224577bb
+-/
 theorem integralQuadraticCocycle_isCocycle :
     groupCohomology.IsCocycle₁ integralQuadraticCocycle := by
   intro g h

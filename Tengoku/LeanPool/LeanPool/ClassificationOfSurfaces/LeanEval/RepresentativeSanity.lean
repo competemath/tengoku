@@ -20,7 +20,9 @@ families and distinguishes the disk center from its boundary.
 
 namespace Complex
 
-/-- Every point produced by `bdyPtOfReal` lies on the unit circle. -/
+/-- Every point produced by `bdyPtOfReal` lies on the unit circle.
+@isnad1 id=eq.0h1v.s5.d02774a0321a from=translated src=- shape=03651bef vocab=02214c1e
+-/
 @[simp]
 theorem ClosedUnitDisc.norm_bdyPtOfReal (r : ℝ) :
     ‖(ClosedUnitDisc.bdyPtOfReal r : ℂ)‖ = 1 := by
@@ -49,7 +51,9 @@ noncomputable def nonOrientableQuotRadius (p n : ℕ) :
     cases hab <;> simp)
 
 /-- No orientable representative collapses to a point: the disk center and boundary have
-different radii in the quotient. -/
+different radii in the quotient.
+@isnad1 id=not.0h2v.s3.a72220611cda from=translated src=- shape=5af7cb3c vocab=480d9919
+-/
 theorem not_subsingleton_orientableQuot (p n : ℕ) :
     ¬Subsingleton (Quot (OrientableRel p n)) := by
   intro h
@@ -60,7 +64,9 @@ theorem not_subsingleton_orientableQuot (p n : ℕ) :
   have hradius := congrArg (orientableQuotRadius p n) hcollapse
   norm_num [orientableQuotRadius] at hradius
 
-/-- No non-orientable representative collapses to a point. -/
+/-- No non-orientable representative collapses to a point.
+@isnad1 id=not.0h2v.s3.9022f2a4893c from=translated src=- shape=5af7cb3c vocab=acd1f04a
+-/
 theorem not_subsingleton_nonOrientableQuot (p n : ℕ) :
     ¬Subsingleton (Quot (NonOrientableRel p n)) := by
   intro h

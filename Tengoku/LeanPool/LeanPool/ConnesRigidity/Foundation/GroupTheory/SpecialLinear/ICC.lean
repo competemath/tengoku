@@ -23,7 +23,9 @@ public import Tengoku.LeanPool.LeanPool.ConnesRigidity.Foundation.GroupTheory.Sp
 namespace Connes
 namespace SpecialLinear
 
-/-- Conjugacy equality is equivalent to commuting with a quotient conjugator. Paper: §5. -/
+/-- Conjugacy equality is equivalent to commuting with a quotient conjugator. Paper: §5.
+@isnad1 id=iff.0h4v.s7.a8c63009ceb9 from=translated src=- shape=717501a7 vocab=790c52b2
+-/
 theorem conjugates_eq_iff_quotient_commutes
     {G : Type*} [Group G] (u v g : G) :
     u * g * u⁻¹ = v * g * v⁻¹ ↔ Commute (v⁻¹ * u) g := by
@@ -41,7 +43,9 @@ theorem conjugates_eq_iff_quotient_commutes
       _ = v * (g * (v⁻¹ * u)) * u⁻¹ := by rw [h]
       _ = v * g * v⁻¹ := by group
 
-/-- Transvection conjugacy equality is equivalent to a commuting relation. Paper: §5. -/
+/-- Transvection conjugacy equality is equivalent to a commuting relation. Paper: §5.
+@isnad1 id=iff.1h7v.s8.bc27a8014a58 from=translated src=- shape=0b69665d vocab=6612a4fa
+-/
 theorem transvection_conjugates_eq_iff_commutes
     {ι A : Type*} [Fintype ι] [DecidableEq ι] [CommRing A]
     {i j : ι} (hij : i ≠ j) (a b : A)
@@ -56,7 +60,9 @@ theorem transvection_conjugates_eq_iff_commutes
     ← Matrix.SpecialLinearGroup.transvection_add]
   simp only [add_comm, sub_eq_add_neg]
 
-/-- A nonzero commuting transvection forces its matrix unit to commute. Paper: §5. -/
+/-- A nonzero commuting transvection forces its matrix unit to commute. Paper: §5.
+@isnad1 id=commute.3h6v.s7.038d6943bbba from=translated src=- shape=10a29fe3 vocab=55888fbc
+-/
 theorem commute_matrixUnit_of_commute_nonzero_transvection
     {ι A : Type*} [Fintype ι] [DecidableEq ι] [CommRing A] [IsDomain A]
     {i j : ι} (hij : i ≠ j) (a : A) (ha : a ≠ 0)
@@ -81,7 +87,9 @@ theorem commute_matrixUnit_of_commute_nonzero_transvection
   simpa only [Matrix.smul_apply, smul_eq_mul] using
     (mul_left_cancel₀ ha hentry)
 
-/-- Noncommuting matrix units make transvection conjugation injective. Paper: §5. -/
+/-- Noncommuting matrix units make transvection conjugation injective. Paper: §5.
+@isnad1 id=injectiv.2h5v.s7.a0d8b07d000e from=translated src=- shape=9e64d30e vocab=12aa7184
+-/
 theorem transvection_conjugates_injective_of_not_commute_matrixUnit
     {ι A : Type*} [Fintype ι] [DecidableEq ι] [CommRing A] [IsDomain A]
     {i j : ι} (hij : i ≠ j)
@@ -137,7 +145,9 @@ private theorem sl3_scalar_eq_one
   rw [← ha, haC, hcoeff]
   simp
 
-/-- ICC boundary for the special-linear group. Paper: §5. -/
+/-- ICC boundary for the special-linear group. Paper: §5.
+@isnad1 id=isicc.0h0v.s1.de47cdcd6273 from=translated src=- shape=49959d42 vocab=c962c68d
+-/
 theorem sl3_isICC : IsICC sl3Group := by
   let transvection : R → SL3 :=
     Matrix.SpecialLinearGroup.transvection (i := 0) (j := 1) (by decide)

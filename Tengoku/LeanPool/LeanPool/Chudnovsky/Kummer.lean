@@ -67,7 +67,9 @@ def kummerB (z : ℂ) : ℂ :=
   z ^ (-(1 / 4) : ℂ) * (1 - z) ^ ((1 / 4) : ℂ) * hyp2F1 z⁻¹
 
 /-- On `Region`, the argument `1/J(τ)` of the hypergeometric function lies in the open unit
-disc (via `Estimates.lean`'s `one_lt_norm_J`). -/
+disc (via `Estimates.lean`'s `one_lt_norm_J`).
+@isnad1 id=lt.1h1v.s4.60cf969d9ad6 from=translated src=- shape=119fd7b1 vocab=ce867bee
+-/
 theorem norm_inv_J_lt_one {τ : ℍ} (hτ : τ ∈ Region) : ‖(J τ)⁻¹‖ < 1 := by
   rw [norm_inv]
   exact inv_lt_one_of_one_lt₀ (one_lt_norm_J hτ)

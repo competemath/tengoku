@@ -25,6 +25,9 @@ namespace PushoutAlternative
 
 variable {X X₁ X₂ X₀ : Cat.{u, u}} {i₁ : X₀ ⟶ X₁} {i₂ : X₀ ⟶ X₂} {j₁ : X₁ ⟶ X} {j₂ : X₂ ⟶ X}
 
+/--
+@isnad1 id=ispushou.2h8v.s7.126b99148548 from=translated src=- shape=5521cf79 vocab=47edd2e8
+-/
 lemma isPushout_alternative (h_comm : i₁ ≫ j₁ = i₂ ≫ j₂)
     (h_uniq : ∀ (C : Cat.{u, u}) (F₁ : X₁ ⟶ C) (F₂ : X₂ ⟶ C) (_ : i₁ ≫ F₁ = i₂ ≫ F₂),
       ∃! (F : X ⟶ C), j₁ ≫ F = F₁ ∧ j₂ ≫ F = F₂) :

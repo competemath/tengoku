@@ -47,7 +47,9 @@ namespace CircuitComplexity
 
 /-- **Shannon lower bound in terms of `sizeComplexity`**: for `N ≥ 6`,
     there exists a Boolean function whose fan-in-2 AND/OR circuit complexity
-    exceeds `2^N / (5N)`. -/
+    exceeds `2^N / (5N)`.
+@isnad1 id=ex.1h1v.s6.24f674f84432 from=translated src=- shape=e976ae26 vocab=23d6f4a6
+-/
 theorem shannon_size_complexity (N : Nat) [NeZero N] (hN : 6 ≤ N)
     [CompleteBasis Basis.andOr2] :
     ∃ f : BitString N → Bool,
@@ -66,7 +68,9 @@ theorem shannon_size_complexity (N : Nat) [NeZero N] (hN : 6 ≤ N)
 
     This is the full-column-library variant (C = 18). The tighter
     `(1 + o(1)) · 2^N / N` bound due to Lupanov (1958) uses column
-    grouping and is not yet formalized. -/
+    grouping and is not yet formalized.
+@isnad1 id=le.1h2v.s6.c2926df8bdef from=translated src=- shape=996c2a07 vocab=81fa899d
+-/
 theorem shannon_upper_bound
     (N : Nat) (hN : 16 ≤ N) [NeZero N]
     (f : BitString N → Bool) :

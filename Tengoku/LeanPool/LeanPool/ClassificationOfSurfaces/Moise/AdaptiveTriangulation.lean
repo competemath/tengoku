@@ -50,6 +50,9 @@ noncomputable def adaptiveGlobalFanFaceVertices (hU : IsOpen U)
   (K.adaptiveFanFaceVertices U hU f).attach.map
     (K.adaptiveFanVertexEmbedding U hU f)
 
+/--
+@isnad1 id=iff.1h4v.s7.18295d661501 from=translated src=- shape=97018dc6 vocab=9a29197a
+-/
 theorem mem_adaptiveGlobalFanFaceVertices_iff (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) (v : K.AdaptiveFanVertex U hU) :
     v ∈ K.adaptiveGlobalFanFaceVertices U hU f ↔
@@ -84,6 +87,9 @@ noncomputable def adaptiveFanFaceVertexEquiv (hU : IsOpen U)
     apply Subtype.ext
     rfl
 
+/--
+@isnad1 id=eq.1h4v.s9.c6ad1757efef from=translated src=- shape=f9065def vocab=10f2ad2f
+-/
 @[simp] theorem adaptiveFanFaceVertexEquiv_apply_val (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU)
     (v : {v // v ∈ K.adaptiveGlobalFanFaceVertices U hU f}) :
@@ -96,7 +102,9 @@ noncomputable def adaptiveFanRelabelSimplex (hU : IsOpen U)
     stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f} :=
   stdSimplex.map (K.adaptiveFanFaceVertexEquiv U hU f) x
 
-/-- Relabeling preserves the zero-extended coordinate at every global used vertex. -/
+/-- Relabeling preserves the zero-extended coordinate at every global used vertex.
+@isnad1 id=eq.1h5v.s8.ea9964a9ea2c from=translated src=- shape=1222424d vocab=7a3739b2
+-/
 theorem adaptiveFanRelabel_extended_apply (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ {v // v ∈ K.adaptiveGlobalFanFaceVertices U hU f})
@@ -136,7 +144,9 @@ theorem adaptiveFanRelabel_extended_apply (hU : IsOpen U)
     rw [extendFaceCoordinates_of_notMem _ _ hp,
       extendFaceCoordinates_of_notMem _ _ hv]
 
-/-- Equality of coordinates is invariant under relabeling a pair of adaptive fan faces. -/
+/-- Equality of coordinates is invariant under relabeling a pair of adaptive fan faces.
+@isnad1 id=iff.1h6v.s9.0051267b3676 from=translated src=- shape=570658e3 vocab=c64278a2
+-/
 theorem adaptiveFanRelabel_extended_eq_iff (hU : IsOpen U)
     {f g : K.AdaptiveFanFace U hU}
     {x : stdSimplex ℝ {v // v ∈ K.adaptiveGlobalFanFaceVertices U hU f}}
@@ -176,13 +186,18 @@ noncomputable def adaptiveGlobalFanFaceMap (hU : IsOpen U)
     stdSimplex ℝ {v // v ∈ K.adaptiveGlobalFanFaceVertices U hU f} → U :=
   fun x ↦ K.adaptiveFanFaceMap U hU f (K.adaptiveFanRelabelSimplex U hU f x)
 
+/--
+@isnad1 id=continuo.1h3v.s9.f162b062ef44 from=translated src=- shape=e65e4206 vocab=d2c641b5
+-/
 theorem continuous_adaptiveGlobalFanFaceMap (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) :
     Continuous (K.adaptiveGlobalFanFaceMap U hU f) :=
   (K.continuous_adaptiveFanFaceMap U hU f).comp
     (stdSimplex.continuous_map (K.adaptiveFanFaceVertexEquiv U hU f))
 
-/-- Relabeling a fan face by global vertices does not change its geometric range. -/
+/-- Relabeling a fan face by global vertices does not change its geometric range.
+@isnad1 id=eq.1h3v.s8.5f924a39da5a from=translated src=- shape=5d48d2c7 vocab=6c4b2e35
+-/
 theorem range_adaptiveGlobalFanFaceMap (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) :
     Set.range (K.adaptiveGlobalFanFaceMap U hU f) =
@@ -204,6 +219,9 @@ theorem range_adaptiveGlobalFanFaceMap (hU : IsOpen U)
 
 /- Combining relabeling with the geometric overlap theorem is expensive because all four local
 simplex index types are dependent.  Isolating it keeps construction of the complex inexpensive. -/
+/--
+@isnad1 id=iff.1h6v.s9.ea5d6639105c from=translated src=- shape=7482c2a0 vocab=c40a5cc2
+-/
 theorem adaptiveFanRelabeledFaceMap_eq_iff (hU : IsOpen U)
     {f g : K.AdaptiveFanFace U hU}
     {x : stdSimplex ℝ {v // v ∈ K.adaptiveGlobalFanFaceVertices U hU f}}
@@ -223,7 +241,9 @@ theorem adaptiveFanRelabeledFaceMap_eq_iff (hU : IsOpen U)
 /-- Distinct adaptive fan triangles have distinct global three-vertex sets.  Equality first
 identifies the adaptive tile by its interior center.  After erasing that center, the two base
 endpoint pairs agree; their common midpoint then identifies both the cyclic tile edge and the
-consecutive interval in its ordered boundary-vertex list. -/
+consecutive interval in its ordered boundary-vertex list.
+@isnad1 id=injectiv.1h2v.s6.e7989f483a8b from=translated src=- shape=129617d8 vocab=ee579442
+-/
 theorem adaptiveGlobalFanFaceVertices_injective (hU : IsOpen U) :
     Function.Injective (K.adaptiveGlobalFanFaceVertices U hU) := by
   classical
@@ -403,7 +423,9 @@ noncomputable abbrev adaptiveLocallyFiniteTriangleComplex (hU : IsOpen U) :
     simpa only [K.range_adaptiveGlobalFanFaceMap U hU] using
       K.locallyFinite_adaptiveFanFaceMap U hU
 
-/-- The global adaptive fan complex covers the entire open subspace. -/
+/-- The global adaptive fan complex covers the entire open subspace.
+@isnad1 id=eq.1h2v.s7.bc3f3d3622a2 from=translated src=- shape=b63853cb vocab=ce1cbf48
+-/
 theorem adaptiveLocallyFiniteTriangleComplex_support (hU : IsOpen U) :
     (K.adaptiveLocallyFiniteTriangleComplex U hU).support = Set.univ := by
   apply Set.eq_univ_of_forall

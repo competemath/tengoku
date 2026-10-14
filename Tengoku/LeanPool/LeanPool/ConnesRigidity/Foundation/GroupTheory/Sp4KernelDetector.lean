@@ -115,7 +115,9 @@ def boolSymplecticB (x : BMatrix) : Bool :=
   !(boolPairing (x 0) (x 1)) && !(boolPairing (x 0) (x 3)) &&
   !(boolPairing (x 1) (x 2)) && !(boolPairing (x 2) (x 3))
 
-/-- The six-pairing test agrees with the full symplectic matrix equation. -/
+/-- The six-pairing test agrees with the full symplectic matrix equation.
+@isnad1 id=eq.0h1v.s3.e63aa4b1336e from=translated src=- shape=7a3d64b3 vocab=afb196fa
+-/
 theorem boolSymplecticB_eq (x : BMatrix) :
     boolSymplecticB x = boolMatrixEqB (boolMul (boolMul x boolJ) (boolTranspose x)) boolJ := by
   simp only [boolMatrixEqB, boolMul_symplectic_apply, boolPairing_self]
@@ -330,7 +332,9 @@ private theorem conjugacy_detector
     exact congrArg Subtype.val hcomm
 
 /-- A complete detector certificate implies that the finite symplectic factor has no
-nontrivial normal abelian subgroup. -/
+nontrivial normal abelian subgroup.
+@isnad1 id=eq.3h1v.s15.c626b23b7ca3 from=translated src=- shape=8bf91351 vocab=88a01180
+-/
 theorem no_nontrivial_normal_abelian_subgroup_of_kernelDetector
     (hcertificate : ∀ x : BitVec 16, kernelDetectorCheck x = true)
     (N : Subgroup Group) (hnormal : N.Normal)

@@ -48,10 +48,16 @@ namespace Simplex
 
 variable (p : Simplex α)
 
+/--
+@isnad1 id=eq.1h3v.s5.1278ce7fae57 from=translated src=- shape=a80bbef2 vocab=942ef51a
+-/
 @[ext] lemma ext {p q : Simplex α} (h : p.p = q.p) : p = q := by
   cases p
   simp_all
 
+/--
+@isnad1 id=ne.0h3v.s4.20509b6d4988 from=translated src=- shape=4ffa2354 vocab=942ef51a
+-/
 lemma p_ne_zero (a : α) : p.p a ≠ 0 :=
   ne_of_gt (p.pos a)
 
@@ -81,6 +87,9 @@ namespace tangentSpace
 
 variable (α)
 
+/--
+@isnad1 id=iff.0h2v.s6.ad247e318817 from=translated src=- shape=e7c9b847 vocab=449978b6
+-/
 lemma mem_iff {u : α → ℝ} :
     u ∈ tangentSpace (α := α) ↔ (∑ a, u a) = 0 := by
   simp [tangentSpace, sumLinearMap]
@@ -115,15 +124,24 @@ namespace fisherBilin
 
 variable (p : Simplex α)
 
+/--
+@isnad1 id=eq.0h4v.s11.323533e5cca2 from=translated src=- shape=959477af vocab=584858bf
+-/
 @[simp] lemma apply (u v : tangentSpace (α := α)) :
     fisherBilin p u v = ∑ a, ((u : α → ℝ) a) * ((v : α → ℝ) a) / p.p a := by
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.dc75fcc9437f from=translated src=- shape=43b89806 vocab=aeacceef
+-/
 lemma comm (u v : tangentSpace (α := α)) :
     fisherBilin p u v = fisherBilin p v u := by
   classical
   simp [fisherBilin.apply, mul_comm]
 
+/--
+@isnad1 id=lt.1h3v.s11.cc2b30392390 from=translated src=- shape=87528e53 vocab=89d44f9a
+-/
 lemma pos (u : tangentSpace (α := α)) (hu : u ≠ 0) :
     0 < fisherBilin p u u := by
   classical

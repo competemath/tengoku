@@ -35,6 +35,9 @@ private theorem int_sqrt_mul_eq_zero {a p : ℤ} (ha : a ≤ 0) (hp : 0 ≤ p) :
   rw [Int.sqrt.eq_1, Int.ofNat_eq_zero, Nat.sqrt_eq_zero, Int.toNat_eq_zero]
   exact Int.mul_nonpos_of_nonpos_of_nonneg ha hp
 
+/--
+@isnad1 id=le.1h3v.s6.f695715c349a from=translated src=- shape=03dc261d vocab=6f46480f
+-/
 theorem boundedSqrt_le_rsqrt (y : ℚ) (n : ℕ) (b : ℕ) (hb : 0 < b) :
     mkRat (Int.sqrt (y.num * b^n)) ((y.den * b^n).sqrt + 1) ≤ Real.sqrt y := by
   simp only [Rat.mkRat_eq_div, Nat.cast_add, Nat.cast_one]
@@ -68,6 +71,9 @@ theorem boundedSqrt_le_rsqrt (y : ℚ) (n : ℕ) (b : ℕ) (hb : 0 < b) :
     positivity
   · exact Real.real_sqrt_le_nat_sqrt_succ
 
+/--
+@isnad1 id=le.1h3v.s6.09ecbb24e9a6 from=translated src=- shape=e1155317 vocab=6f46480f
+-/
 theorem rsqrt_le_boundedSqrt (y : ℚ) (n : ℕ) (b : ℕ) (hb : 0 < b) :
     Real.sqrt y ≤ mkRat (Int.sqrt (y.num * b^n) + 1) (y.den * b^n).sqrt := by
   simp only [Rat.mkRat_eq_div, Int.cast_add, Int.cast_one]
@@ -133,18 +139,27 @@ def sqrtq (x : ℚInterval) (n : ℕ) : ℚInterval :=
   --shortcut with an if to slightly speed things up
   if x.snd ≤ 0 then 0 else boundedSqrt x n 4 (by norm_num)
 
+/--
+@isnad1 id=eq.0h2v.s7.bd1c1be04312 from=translated src=- shape=f5076a46 vocab=a4c12aa8
+-/
 theorem sqrt_lb_def (q : ℚInterval) (n : ℕ) :
     (sqrtq q n).fst = if q.snd ≤ 0 then 0 else
       mkRat (Int.sqrt (q.fst.num * 4^n)) ((q.fst.den * 4^n).sqrt + 1) := by
   rw [sqrtq, apply_ite (fun (x : ℚInterval) ↦ x.fst)]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.4ea929e91004 from=translated src=- shape=aec9a7b9 vocab=67b28c88
+-/
 theorem sqrt_ub_def (q : ℚInterval) (n : ℕ) :
     (sqrtq q n).snd = if q.snd ≤ 0 then 0 else
        mkRat (Int.sqrt (q.snd.num * 4 ^ n) + 1) (q.snd.den * 4 ^ n).sqrt := by
   rw [sqrtq, apply_ite (fun (x : ℚInterval) ↦ x.snd)]
   rfl
 
+/--
+@isnad1 id=le.0h2v.s4.db08dbd7c693 from=translated src=- shape=4eb2b4d9 vocab=1d4e0af0
+-/
 theorem sqrtq_nonneg (q : ℚInterval) (n : ℕ) : 0 ≤ (sqrtq q n).fst := by
   rw [sqrt_lb_def]
   split_ifs
@@ -153,6 +168,9 @@ theorem sqrtq_nonneg (q : ℚInterval) (n : ℕ) : 0 ≤ (sqrtq q n).fst := by
     have := Int.sqrt_nonneg (q.toProd.1.num * 4 ^ n)
     positivity
 
+/--
+@isnad1 id=le.0h2v.s5.906534217856 from=translated src=- shape=ee344fde vocab=ca71b5c2
+-/
 theorem lb_le_sqrt_lb (q : ℚInterval) (n : ℕ) : (sqrtq q n).fst ≤ Real.sqrt q.fst := by
   rw [sqrtq]
   split_ifs with h
@@ -160,6 +178,9 @@ theorem lb_le_sqrt_lb (q : ℚInterval) (n : ℕ) : (sqrtq q n).fst ≤ Real.sqr
   · apply boundedSqrt_le_rsqrt q.toProd.1
     norm_num
 
+/--
+@isnad1 id=le.0h2v.s5.7e9db04bb52f from=translated src=- shape=73faaef9 vocab=962e4fc6
+-/
 theorem sqrt_ub_le_ub (q : ℚInterval) (n : ℕ) : Real.sqrt q.snd ≤ (sqrtq q n).snd := by
   rw [sqrtq]
   split_ifs with h
@@ -170,12 +191,17 @@ theorem sqrt_ub_le_ub (q : ℚInterval) (n : ℕ) : Real.sqrt q.snd ≤ (sqrtq q
 
 /-- This equality is a generally true way to "split a denominator", but is particularly useful
 as an approximation when ε is small compared to y, and we wish to approximate
-`x / (y + ε)` with `x / y`. -/
+`x / (y + ε)` with `x / y`.
+@isnad1 id=eq.2h3v.s6.21868fc179e1 from=translated src=- shape=fb2876b7 vocab=335f4d48
+-/
 lemma denom_err (x y ε : ℝ) (hy : y ≠ 0) (hyε : y + ε ≠ 0) :
     x / (y + ε) = x / y - (x / y) * ε / (y + ε) := by
   field_simp
   ring_nf
 
+/--
+@isnad1 id=le.0h2v.s7.937f458578f6 from=translated src=- shape=b322d299 vocab=5918a1ce
+-/
 theorem sqrt_le_mkRat_add (q : ℚ) (n : ℕ) :
     Real.sqrt q ≤ mkRat (Int.sqrt (q.num * 4^n)) ((q.den * 4^n).sqrt + 1) + 2 * Real.sqrt q / 2^n
       := by
@@ -250,6 +276,9 @@ theorem sqrt_le_mkRat_add (q : ℚ) (n : ℕ) :
       · positivity
       · exact le_add_of_nonneg_right h₄.le
 
+/--
+@isnad1 id=le.0h2v.s7.073acb1847f6 from=translated src=- shape=7472a5bf vocab=718b27b8
+-/
 theorem mkRat_sub_le_sqrt (q : ℚ) (n : ℕ) :
     (if q ≤ 0 then 0 else
       mkRat (Int.sqrt (q.num * 4 ^ n) + 1) (q.den * 4 ^ n).sqrt
@@ -360,7 +389,9 @@ theorem mkRat_sub_le_sqrt (q : ℚ) (n : ℕ) :
 
 /-- The square root lower bound has an error that can be composed into one part `2 * √r / 2^n`
 that decays with n, but depends on the value; and one part `(x.snd - x.fst) / √r`, that
-is proportional to width of the input interval. -/
+is proportional to width of the input interval.
+@isnad1 id=le.2h3v.s7.c7dcbac1e230 from=translated src=- shape=4fcdb01c vocab=ba0939e1
+-/
 theorem sqrt_le_sqrtq_add (r : ℝ) (x : ℚInterval) (n : ℕ) (hq : x.fst ≤ r ∧ r ≤ x.snd) (hx : 0 <
   x.fst) :
     √r ≤ (sqrtq x n).fst + 2 * √r / 2^n + (x.snd - x.fst) / (2 * √x.fst) := by
@@ -405,7 +436,9 @@ theorem sqrt_le_sqrtq_add (r : ℝ) (x : ℚInterval) (n : ℕ) (hq : x.fst ≤ 
     · rw [tsub_le_iff_right, le_add_iff_nonneg_right]
       positivity
 
-/-- Similar to `sqrt_le_sqrtq_add`, but doesn't require `0 < x.fst`. -/
+/-- Similar to `sqrt_le_sqrtq_add`, but doesn't require `0 < x.fst`.
+@isnad1 id=le.2h3v.s7.d909b087396f from=translated src=- shape=0fe07712 vocab=ba0939e1
+-/
 theorem sqrt_le_sqrtq_add' (r : ℝ) (x : ℚInterval) (n : ℕ) (hq : x.fst ≤ r ∧ r ≤ x.snd) (hr : 0 <
   r) :
     √r ≤ (sqrtq x n).fst + 2 * √r / 2^n + (x.snd - x.fst) / √r := by
@@ -454,6 +487,9 @@ theorem sqrt_le_sqrtq_add' (r : ℝ) (x : ℚInterval) (n : ℕ) (hq : x.fst ≤
     · rw [tsub_le_iff_right, le_add_iff_nonneg_right]
       positivity
 
+/--
+@isnad1 id=le.3h3v.s7.2ac17170f251 from=translated src=- shape=3c92ebef vocab=9bee88ff
+-/
 theorem sqrtq_sub_le_sqrt (r : ℝ) (x : ℚInterval) (n : ℕ) (hq : x.fst ≤ r ∧ r ≤ x.snd) (hx : 0 <
   x.fst)
     (hn : 3 ≤ n) : (sqrtq x n).snd - (7 * √r / 2^n) - (x.snd - x.fst) / √x.fst ≤ √r := by
@@ -496,6 +532,9 @@ theorem sqrtq_sub_le_sqrt (r : ℝ) (x : ℚInterval) (n : ℕ) (hq : x.fst ≤ 
         exact this
       linarith
 
+/--
+@isnad1 id=le.3h3v.s7.df8d9f31ad8f from=translated src=- shape=ce77afd6 vocab=9bee88ff
+-/
 theorem sqrtq_sub_le_sqrt' (r : ℝ) (x : ℚInterval) (n : ℕ) (hq : x.fst ≤ r ∧ r ≤ x.snd) (hr : 0 < r)
     (hn : 3 ≤ n) : (sqrtq x n).snd - (7 * √r / 2^n) - (x.snd - x.fst) / √r ≤ √r := by
   have hx₂ : 0 < x.snd := by rify; linarith
@@ -535,6 +574,9 @@ theorem sqrtq_sub_le_sqrt' (r : ℝ) (x : ℚInterval) (n : ℕ) (hq : x.fst ≤
         exact this
       linarith
 
+/--
+@isnad1 id=tendstol.0h0v.s6.de6cf05d1661 from=translated src=- shape=41006d0d vocab=e86eb5c9
+-/
 theorem TLUW_lower : TendstoLocallyUniformlyWithout
     (fun n (x : ℚ) => ↑((fun n q =>
       mkRat (Int.sqrt (q.num * 4 ^ n)) ((q.den * 4 ^ n).sqrt + 1)) n x))
@@ -583,6 +625,9 @@ theorem TLUW_lower : TendstoLocallyUniformlyWithout
     rw [div_lt_iff₀ (by positivity), _root_.mul_comm ε]
     linarith
 
+/--
+@isnad1 id=tendstol.0h0v.s6.c1cd135f73b1 from=translated src=- shape=348170c2 vocab=84fa850e
+-/
 theorem TLUW_upper : TendstoLocallyUniformlyWithout
     (fun n (x : ℚ) => ↑((fun n q =>
       if q ≤ 0 then 0 else mkRat (Int.sqrt (q.num * 4 ^ n) + 1) (q.den * 4 ^ n).sqrt) n x))

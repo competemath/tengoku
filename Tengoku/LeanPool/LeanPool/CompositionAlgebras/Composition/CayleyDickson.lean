@@ -87,43 +87,82 @@ def fst (x : CD D) : D := Prod.fst (α := D) (β := D) x
 def snd (x : CD D) : D := Prod.snd (α := D) (β := D) x
 
 omit [NonAssocRing D] [Module ℝ D] [IsScalarTower ℝ D D] [SMulCommClass ℝ D D] in
+/--
+@isnad1 id=eq.0h3v.s3.4049c107c6b1 from=translated src=- shape=bb87f601 vocab=bac8b8d5
+-/
 @[simp] theorem fst_mk (a b : D) : (mk a b).fst = a := rfl
 
 omit [NonAssocRing D] [Module ℝ D] [IsScalarTower ℝ D D] [SMulCommClass ℝ D D] in
+/--
+@isnad1 id=eq.0h3v.s3.5dd482930925 from=translated src=- shape=25a5fd41 vocab=a8b7d179
+-/
 @[simp] theorem snd_mk (a b : D) : (mk a b).snd = b := rfl
 
 omit [NonAssocRing D] [Module ℝ D] [IsScalarTower ℝ D D] [SMulCommClass ℝ D D] in
+/--
+@isnad1 id=eq.2h3v.s4.ca8f0cf7947c from=translated src=- shape=46590be3 vocab=6d7d2e18
+-/
 @[ext] theorem ext {x y : CD D} (h1 : x.fst = y.fst) (h2 : x.snd = y.snd) : x = y :=
   Prod.ext (α := D) (β := D) h1 h2
 
 omit [Module ℝ D] [IsScalarTower ℝ D D] [SMulCommClass ℝ D D] in
+/--
+@isnad1 id=eq.0h1v.s5.d4d0fa370632 from=translated src=- shape=c6b7a0b8 vocab=c1e12d7d
+-/
 @[simp] theorem fst_zero : (0 : CD D).fst = 0 := rfl
 
 omit [Module ℝ D] [IsScalarTower ℝ D D] [SMulCommClass ℝ D D] in
+/--
+@isnad1 id=eq.0h1v.s5.6c644bf55514 from=translated src=- shape=c6b7a0b8 vocab=476a0324
+-/
 @[simp] theorem snd_zero : (0 : CD D).snd = 0 := rfl
 
 omit [Module ℝ D] [IsScalarTower ℝ D D] [SMulCommClass ℝ D D] in
+/--
+@isnad1 id=eq.0h3v.s5.9c7087c38f16 from=translated src=- shape=0090f101 vocab=0101f82d
+-/
 @[simp] theorem fst_add (x y : CD D) : (x + y).fst = x.fst + y.fst := rfl
 
 omit [Module ℝ D] [IsScalarTower ℝ D D] [SMulCommClass ℝ D D] in
+/--
+@isnad1 id=eq.0h3v.s5.be534fc8f8a1 from=translated src=- shape=0090f101 vocab=fa7f51e2
+-/
 @[simp] theorem snd_add (x y : CD D) : (x + y).snd = x.snd + y.snd := rfl
 
 omit [Module ℝ D] [IsScalarTower ℝ D D] [SMulCommClass ℝ D D] in
+/--
+@isnad1 id=eq.0h2v.s5.512861b03496 from=translated src=- shape=58efbbcf vocab=7440d37b
+-/
 @[simp] theorem fst_neg (x : CD D) : (-x).fst = -x.fst := rfl
 
 omit [Module ℝ D] [IsScalarTower ℝ D D] [SMulCommClass ℝ D D] in
+/--
+@isnad1 id=eq.0h2v.s5.05a82f403035 from=translated src=- shape=58efbbcf vocab=2fe639c5
+-/
 @[simp] theorem snd_neg (x : CD D) : (-x).snd = -x.snd := rfl
 
 omit [Module ℝ D] [IsScalarTower ℝ D D] [SMulCommClass ℝ D D] in
+/--
+@isnad1 id=eq.0h3v.s5.707e17939872 from=translated src=- shape=0090f101 vocab=0531c07b
+-/
 @[simp] theorem fst_sub (x y : CD D) : (x - y).fst = x.fst - y.fst := rfl
 
 omit [Module ℝ D] [IsScalarTower ℝ D D] [SMulCommClass ℝ D D] in
+/--
+@isnad1 id=eq.0h3v.s5.56c6f78be3df from=translated src=- shape=0090f101 vocab=f9464437
+-/
 @[simp] theorem snd_sub (x y : CD D) : (x - y).snd = x.snd - y.snd := rfl
 
 omit [IsScalarTower ℝ D D] [SMulCommClass ℝ D D] in
+/--
+@isnad1 id=eq.0h3v.s7.82ec707b4839 from=translated src=- shape=8ed60837 vocab=5e455858
+-/
 @[simp] theorem fst_smul (r : ℝ) (x : CD D) : (r • x).fst = r • x.fst := rfl
 
 omit [IsScalarTower ℝ D D] [SMulCommClass ℝ D D] in
+/--
+@isnad1 id=eq.0h3v.s7.1d6349b72549 from=translated src=- shape=8ed60837 vocab=3d652a55
+-/
 @[simp] theorem snd_smul (r : ℝ) (x : CD D) : (r • x).snd = r • x.snd := rfl
 
 variable [CompositionAlgebra D]
@@ -131,20 +170,35 @@ variable [CompositionAlgebra D]
 instance instOne : One (CD D) := ⟨mk 1 0⟩
 
 omit [Module ℝ D] [IsScalarTower ℝ D D] [SMulCommClass ℝ D D] [CompositionAlgebra D] in
+/--
+@isnad1 id=eq.0h1v.s5.49ff566cc6ba from=translated src=- shape=c6b7a0b8 vocab=c1e12d7d
+-/
 @[simp] theorem fst_one : (1 : CD D).fst = 1 := rfl
 
 omit [Module ℝ D] [IsScalarTower ℝ D D] [SMulCommClass ℝ D D] [CompositionAlgebra D] in
+/--
+@isnad1 id=eq.0h1v.s5.98fe8d961182 from=translated src=- shape=c6b7a0b8 vocab=476a0324
+-/
 @[simp] theorem snd_one : (1 : CD D).snd = 0 := rfl
 
 instance instMul : Mul (CD D) :=
   ⟨fun x y => mk (x.fst * y.fst - cstar y.snd * x.snd) (y.snd * x.fst + x.snd * cstar y.fst)⟩
 
+/--
+@isnad1 id=eq.0h3v.s8.13f5c01e43d7 from=translated src=- shape=ceb38962 vocab=6535c3c1
+-/
 @[simp] theorem fst_mul (x y : CD D) :
     (x * y).fst = x.fst * y.fst - cstar y.snd * x.snd := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.fa55650e80d2 from=translated src=- shape=775ee312 vocab=a587a845
+-/
 @[simp] theorem snd_mul (x y : CD D) :
     (x * y).snd = y.snd * x.fst + x.snd * cstar y.fst := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.e2f710c6c858 from=translated src=- shape=5d249e54 vocab=edd61d2e
+-/
 theorem mul_def (a b c d : D) :
     mk a b * mk c d = mk (a * c - cstar d * b) (d * a + b * cstar c) := rfl
 
@@ -167,10 +221,16 @@ instance instNonAssocRing : NonAssocRing (CD D) :=
     one_mul := by intro x; ext <;> simp
     mul_one := by intro x; ext <;> simp [cstar_zero] }
 
+/--
+@isnad1 id=isscalar.0h1v.s8.e4b873ee1568 from=translated src=- shape=3a496db4 vocab=433d4f07
+-/
 instance instIsScalarTower : IsScalarTower ℝ (CD D) (CD D) where
   smul_assoc r x y := by
     ext <;> simp [smul_mul_assoc, mul_smul_comm, smul_sub, smul_add]
 
+/--
+@isnad1 id=smulcomm.0h1v.s8.e92238733bd9 from=translated src=- shape=3163aaf1 vocab=433d4f07
+-/
 instance instSMulCommClass : SMulCommClass ℝ (CD D) (CD D) where
   smul_comm r x y := by
     ext <;> simp [cstar_smul, smul_mul_assoc, mul_smul_comm, smul_sub, smul_add]
@@ -185,6 +245,9 @@ def bilin : CD D →ₗ[ℝ] CD D →ₗ[ℝ] ℝ :=
     (by intro x y z; simp; ring)
     (by intro c x y; simp; ring)
 
+/--
+@isnad1 id=eq.0h3v.s9.95b0f72dc70a from=translated src=- shape=84600ae6 vocab=6abcd98b
+-/
 @[simp] theorem bilin_apply (x y : CD D) :
     bilin x y = ip x.fst y.fst + ip x.snd y.snd := rfl
 
@@ -195,7 +258,9 @@ Associativity of `D` enters exactly here, and exactly once: in `cross`. -/
 omit [Nontrivial D] in
 /-- The cross term of the composition law. This is the *only* step of
 `compositionAlgebraOfAssoc` that uses associativity of `D`, and it is the same identity that
-`IsCompSubalgebra.forced_assoc` reads in the opposite direction. -/
+`IsCompSubalgebra.forced_assoc` reads in the opposite direction.
+@isnad1 id=eq.1h5v.s8.99fe209d98d2 from=translated src=- shape=63c27ebf vocab=b863bdb7
+-/
 theorem cross (hassoc : ∀ p q r : D, (p * q) * r = p * (q * r)) (a b c d : D) :
     ip (d * a) (b * cstar c) = ip (a * c) (cstar d * b) := by
   rw [ip_mul_adj_left, ip_mul_adj_right, hassoc]
@@ -235,8 +300,14 @@ variable {D : Type u} [Ring D] [Module ℝ D] [IsScalarTower ℝ D D] [SMulCommC
 instance CD.instCompositionAlgebra : CompositionAlgebra (CD D) :=
   CD.compositionAlgebraOfAssoc (fun p q r => mul_assoc p q r)
 
+/--
+@isnad1 id=eq.0h2v.s8.ae5afdb71a46 from=translated src=- shape=f27cadbd vocab=7abab7dd
+-/
 @[simp] theorem CD.nf_eq (x : CD D) : nf x = nf x.fst + nf x.snd := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.5bac61d894c5 from=translated src=- shape=d6dc95cf vocab=5a468cec
+-/
 @[simp] theorem CD.ip_eq (x y : CD D) : ip x y = ip x.fst y.fst + ip x.snd y.snd := rfl
 
 end Assoc

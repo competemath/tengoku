@@ -53,6 +53,9 @@ noncomputable def boundaryParam (x : ℝ) : Moise.Plane :=
     AffineMap.lineMap (k := ℝ)
       (Moise.standardTriangleVertex 2) (Moise.standardTriangleVertex 0) (x - 2)
 
+/--
+@isnad1 id=continuo.0h0v.s5.a324f1e8e500 from=translated src=- shape=54c8eceb vocab=6a235b53
+-/
 theorem continuous_boundaryParam : Continuous boundaryParam := by
   unfold boundaryParam
   apply Continuous.if_le
@@ -70,26 +73,41 @@ theorem continuous_boundaryParam : Continuous boundaryParam := by
   subst x
   norm_num [AffineMap.lineMap_apply_module]
 
+/--
+@isnad1 id=eq.0h0v.s4.44521749c0b5 from=translated src=- shape=6edc84e8 vocab=de656ba9
+-/
 @[simp]
 theorem boundaryParam_zero :
     boundaryParam 0 = Moise.standardTriangleVertex 0 := by
   simp [boundaryParam]
 
+/--
+@isnad1 id=eq.0h0v.s4.e0fa5193cedd from=translated src=- shape=6edc84e8 vocab=de656ba9
+-/
 @[simp]
 theorem boundaryParam_one :
     boundaryParam 1 = Moise.standardTriangleVertex 1 := by
   simp [boundaryParam]
 
+/--
+@isnad1 id=eq.0h0v.s4.a872254fa402 from=translated src=- shape=6edc84e8 vocab=de656ba9
+-/
 @[simp]
 theorem boundaryParam_two :
     boundaryParam 2 = Moise.standardTriangleVertex 2 := by
   norm_num [boundaryParam]
 
+/--
+@isnad1 id=eq.0h0v.s4.627c0ed6eda7 from=translated src=- shape=6edc84e8 vocab=de656ba9
+-/
 @[simp]
 theorem boundaryParam_three :
     boundaryParam 3 = Moise.standardTriangleVertex 0 := by
   norm_num [boundaryParam]
 
+/--
+@isnad1 id=mem.1h1v.s5.9d4bbeb1f473 from=translated src=- shape=f9e3d42a vocab=9afa5ac2
+-/
 theorem boundaryParam_mem_frontier {x : ℝ} (hx : x ∈ Set.Icc (0 : ℝ) 3) :
     boundaryParam x ∈ StandardTriangleBoundary := by
   change boundaryParam x ∈
@@ -139,10 +157,16 @@ noncomputable def boundaryParamIcc (x : Set.Icc (0 : ℝ) (0 + 3)) :
     StandardTriangleBoundary :=
   ⟨boundaryParam x, boundaryParam_mem_frontier (by simpa only [zero_add] using x.2)⟩
 
+/--
+@isnad1 id=continuo.0h0v.s7.9e59741bb56a from=translated src=- shape=038e756e vocab=a5a85e17
+-/
 theorem continuous_boundaryParamIcc : Continuous boundaryParamIcc := by
   apply Continuous.subtype_mk
   exact continuous_boundaryParam.comp continuous_subtype_val
 
+/--
+@isnad1 id=eq.0h0v.s6.82699e9fe1a6 from=translated src=- shape=9622a817 vocab=0f624f6c
+-/
 theorem boundaryParamIcc_zero_eq_three :
     boundaryParamIcc ⟨0, by norm_num⟩ =
       boundaryParamIcc ⟨3, by norm_num⟩ := by
@@ -231,9 +255,15 @@ noncomputable def boundaryQuotMap :
     rintro _ _ ⟨_⟩
     simpa only [zero_add] using boundaryParamIcc_zero_eq_three)
 
+/--
+@isnad1 id=continuo.0h0v.s8.3c5d5913d0bc from=translated src=- shape=77cc599e vocab=8574e1e5
+-/
 theorem continuous_boundaryQuotMap : Continuous boundaryQuotMap := by
   exact continuous_quot_lift _ continuous_boundaryParamIcc
 
+/--
+@isnad1 id=injectiv.0h0v.s6.7a5ad689dfd2 from=translated src=- shape=77cc599e vocab=791f54e2
+-/
 theorem injective_boundaryQuotMap : Function.Injective boundaryQuotMap := by
   intro q r
   induction q using Quot.inductionOn with
@@ -260,6 +290,9 @@ theorem injective_boundaryQuotMap : Function.Injective boundaryQuotMap := by
               AddCircle.EndpointIdent.mk
             simpa only [zero_add] using (Quot.sound hend).symm
 
+/--
+@isnad1 id=surjecti.0h0v.s6.14d4ce1741cf from=translated src=- shape=77cc599e vocab=7d44bb71
+-/
 theorem surjective_boundaryQuotMap : Function.Surjective boundaryQuotMap := by
   intro p
   have hpCarrier : p.1 ∈ Moise.standardTriangleCircle.carrier := by
@@ -377,6 +410,9 @@ private theorem addCircleBoundaryHomeomorph_coe_Icc
       rw [he]]
     rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.b54aab39bed1 from=translated src=- shape=56d40c0b vocab=785c761b
+-/
 theorem circleBoundaryHomeomorph_side
     (i : Fin 3) (t : unitInterval) :
     circleBoundaryHomeomorph
@@ -465,7 +501,9 @@ theorem circleBoundaryHomeomorph_side
       congr 2
       ring
 
-/-- An ambient straightening of the standard triangle to the Euclidean closed unit disk. -/
+/-- An ambient straightening of the standard triangle to the Euclidean closed unit disk.
+@isnad1 id=ex.0h0v.s9.ff05785e0f2e from=translated src=- shape=d13851d1 vocab=8584e74d
+-/
 theorem exists_triangleAmbientHomeomorph :
     ∃ h : Moise.Plane ≃ₜ ℂ,
       h '' Moise.standardTrianglePlaneComplex.support = Metric.closedBall 0 1 ∧
@@ -527,11 +565,17 @@ theorem exists_triangleAmbientHomeomorph :
 noncomputable def triangleAmbientHomeomorph : Moise.Plane ≃ₜ ℂ :=
   Classical.choose exists_triangleAmbientHomeomorph
 
+/--
+@isnad1 id=eq.0h0v.s7.f38a16601c3d from=translated src=- shape=6b664614 vocab=a89afe4f
+-/
 theorem triangleAmbientHomeomorph_image_triangle :
     triangleAmbientHomeomorph '' Moise.standardTrianglePlaneComplex.support =
       Metric.closedBall 0 1 :=
   (Classical.choose_spec exists_triangleAmbientHomeomorph).1
 
+/--
+@isnad1 id=eq.0h0v.s7.dbdf9f684eeb from=translated src=- shape=05e7ee39 vocab=0606901b
+-/
 theorem triangleAmbientHomeomorph_image_boundary :
     triangleAmbientHomeomorph ''
         frontier Moise.standardTrianglePlaneComplex.support =
@@ -613,6 +657,9 @@ def boundaryInclusion : C(StandardTriangleBoundary, StandardTriangle) where
     ⟨z.1, Moise.standardTrianglePlaneComplex.isCompact_support.isClosed.frontier_subset z.2⟩
   continuous_toFun := continuous_induced_rng.2 continuous_subtype_val
 
+/--
+@isnad1 id=eq.0h1v.s9.ffde1413e9c0 from=translated src=- shape=a3397943 vocab=cc3021da
+-/
 @[simp]
 theorem triangleDiskHomeomorph_boundary (z : StandardTriangleBoundary) :
     triangleDiskHomeomorph (boundaryInclusion z) =
@@ -626,6 +673,9 @@ noncomputable def cellHomeomorph : PolygonCell 3 ≃ₜ StandardTriangle :=
       (circleBoundaryHomeomorph.trans boundaryCircleHomeomorph)).trans
     triangleDiskHomeomorph.symm
 
+/--
+@isnad1 id=eq.0h1v.s9.1278c49c9f28 from=translated src=- shape=9bc2f092 vocab=67c60ca5
+-/
 @[simp]
 theorem cellHomeomorph_ofCircle (z : Circle) :
     cellHomeomorph (PolygonCell.ofCircle 3 z) =
@@ -636,6 +686,9 @@ theorem cellHomeomorph_ofCircle (z : Circle) :
     triangleDiskHomeomorph_boundary]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.fd6f1d839de3 from=translated src=- shape=8ce1180d vocab=ba0375a4
+-/
 theorem cellHomeomorph_side (i : Fin 3) (t : unitInterval) :
     cellHomeomorph (PolygonCell.side i t) =
       ⟨AffineMap.lineMap (k := ℝ)

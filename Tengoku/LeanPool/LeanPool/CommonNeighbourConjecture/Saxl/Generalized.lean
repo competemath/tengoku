@@ -24,7 +24,9 @@ namespace Saxl
 variable (G Ω : Type*) [Group G] [MulAction G Ω]
 
 /-- Two vertices are generalized-adjacent exactly when they are distinct
-members of a common base of size `tail + 2`. -/
+members of a common base of size `tail + 2`.
+@isnad1 id=iff.0h5v.s7.9e6bb1847b91 from=translated src=- shape=ae2504c7 vocab=a0663e39
+-/
 theorem generalizedAdjacent_iff_mem_base (tail : Nat) (x y : Ω) :
     GeneralizedAdjacent G Ω tail x y ↔
       x ≠ y ∧ ∃ b : Fin (tail + 2) → Ω,

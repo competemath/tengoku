@@ -116,20 +116,26 @@ def IsSurfaceValid (K : SurfaceCellComplex) : Prop :=
     (∀ d, K.inv d ≠ d) ∧
     ∀ d, K.OccursExactlyOnce d ∨ K.OccursExactlyTwice d
 
-/-- Inverting the chosen representative does not change its unoriented edge. -/
+/-- Inverting the chosen representative does not change its unoriented edge.
+@isnad1 id=iff.0h3v.s5.554364576ec2 from=translated src=- shape=754104d0 vocab=753300b4
+-/
 @[simp]
 theorem sameEdge_inv_left_iff (K : SurfaceCellComplex) (d e : K.Dart) :
     K.SameEdge (K.inv d) e ↔ K.SameEdge d e := by
   simp only [SameEdge, K.inv_involutive]
   exact or_comm
 
-/-- Inverting the chosen representative does not change which boundary positions it occupies. -/
+/-- Inverting the chosen representative does not change which boundary positions it occupies.
+@isnad1 id=iff.0h3v.s5.46f5f64ba060 from=translated src=- shape=bc712a6b vocab=edf7dd64
+-/
 @[simp]
 theorem occurs_inv_iff (K : SurfaceCellComplex) (d : K.Dart) (o : K.BoundaryOccurrence) :
     K.Occurs (K.inv d) o ↔ K.Occurs d o :=
   K.sameEdge_inv_left_iff d o.dart
 
-/-- Boundary status is invariant under reversing the representative dart. -/
+/-- Boundary status is invariant under reversing the representative dart.
+@isnad1 id=iff.0h2v.s5.69d51f326ccd from=translated src=- shape=083275c8 vocab=4d1dca9d
+-/
 @[simp]
 theorem isBoundaryDart_inv_iff (K : SurfaceCellComplex) (d : K.Dart) :
     K.IsBoundaryDart (K.inv d) ↔ K.IsBoundaryDart d := by
@@ -137,12 +143,16 @@ theorem isBoundaryDart_inv_iff (K : SurfaceCellComplex) (d : K.Dart) :
 
 namespace IsSurfaceValid
 
-/-- Inverse darts in a valid incidence system are distinct. -/
+/-- Inverse darts in a valid incidence system are distinct.
+@isnad1 id=ne.1h2v.s5.7b6192060578 from=translated src=- shape=2cfc37c2 vocab=60df777c
+-/
 theorem inv_ne {K : SurfaceCellComplex} (h : K.IsSurfaceValid) (d : K.Dart) :
     K.inv d ≠ d :=
   h.2.2.1 d
 
-/-- A non-boundary edge in a valid incidence system occurs exactly twice. -/
+/-- A non-boundary edge in a valid incidence system occurs exactly twice.
+@isnad1 id=occursex.2h2v.s4.2a27c603647d from=translated src=- shape=48420360 vocab=452cd09b
+-/
 theorem occurs_twice_of_not_boundary {K : SurfaceCellComplex} (h : K.IsSurfaceValid)
     {d : K.Dart} (hd : ¬K.IsBoundaryDart d) : K.OccursExactlyTwice d :=
   (h.2.2.2 d).resolve_left hd
@@ -175,9 +185,15 @@ def flip {α : Type*} : SignedDart α → SignedDart α
   | pos a => neg a
   | neg a => pos a
 
+/--
+@isnad1 id=eq.0h2v.s3.25475bc92023 from=translated src=- shape=4f3f71b4 vocab=e6b3fa79
+-/
 @[simp] theorem edge_flip {α : Type*} (d : SignedDart α) : (flip d).edge = d.edge := by
   cases d <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.46fa3eaac5dc from=translated src=- shape=efbf31f7 vocab=d698f587
+-/
 @[simp] theorem flip_flip {α : Type*} (d : SignedDart α) : flip (flip d) = d := by
   cases d <;> rfl
 
@@ -188,6 +204,9 @@ def flipEquiv (α : Type*) : SignedDart α ≃ SignedDart α where
   left_inv := flip_flip
   right_inv := flip_flip
 
+/--
+@isnad1 id=eq.0h2v.s5.cba0fcb93c95 from=translated src=- shape=eeed1803 vocab=af55f984
+-/
 @[simp]
 theorem flipEquiv_apply {α : Type*} (d : SignedDart α) : flipEquiv α d = flip d :=
   rfl
@@ -219,7 +238,9 @@ abbrev oneFacePresentation (Edge : Type) [Fintype Edge]
     intro d
     rfl
 
-/-- Every one-face presentation is connected in the face-edge incidence sense. -/
+/-- Every one-face presentation is connected in the face-edge incidence sense.
+@isnad1 id=isconnec.0h2v.s3.7678c486d7af from=translated src=- shape=a0ac7c8d vocab=495dfd52
+-/
 theorem oneFacePresentation_isConnected (Edge : Type) [Fintype Edge]
     (word : List (SignedDart Edge)) :
     (oneFacePresentation Edge word).IsConnected := by
@@ -235,12 +256,18 @@ def signedDartOfOrientedEdge {Edge : Type*} :
   | OrientedEdge.pos e => SignedDart.pos e
   | OrientedEdge.neg e => SignedDart.neg e
 
+/--
+@isnad1 id=injectiv.0h1v.s3.8041347fe7c7 from=translated src=- shape=fc766b23 vocab=0530f89c
+-/
 theorem signedDartOfOrientedEdge_injective {Edge : Type*} :
     Function.Injective
       (signedDartOfOrientedEdge : OrientedEdge Edge → SignedDart Edge) := by
   intro d e h
   cases d <;> cases e <;> simp_all [signedDartOfOrientedEdge]
 
+/--
+@isnad1 id=eq.0h2v.s3.96f8a431d711 from=translated src=- shape=fd8cce4c vocab=08b16aa8
+-/
 @[simp]
 theorem signedDartOfOrientedEdge_edge {Edge : Type*} (d : OrientedEdge Edge) :
     (signedDartOfOrientedEdge d).edge = d.edge := by
@@ -271,7 +298,9 @@ def sphere : SurfaceCellComplex where
     intro d
     rfl
 
-/-- The two-monogon presentation of the sphere has valid incidence data. -/
+/-- The two-monogon presentation of the sphere has valid incidence data.
+@isnad1 id=issurfac.0h0v.s1.a70bdc8137ee from=translated src=- shape=49959d42 vocab=f4717b8b
+-/
 theorem sphere_isSurfaceValid : sphere.IsSurfaceValid := by
   refine ⟨⟨false⟩, ?_, ?_, ?_⟩
   · intro f g hfg
@@ -319,7 +348,9 @@ theorem sphere_isSurfaceValid : sphere.IsSurfaceValid := by
         subst i
         rfl
 
-/-- The two faces of the sphere presentation are connected through their common edge. -/
+/-- The two faces of the sphere presentation are connected through their common edge.
+@isnad1 id=isconnec.0h0v.s1.285672c9f1b1 from=translated src=- shape=49959d42 vocab=ec59c4e8
+-/
 theorem sphere_isConnected : sphere.IsConnected := by
   refine ⟨⟨false⟩, ?_⟩
   intro f g
@@ -366,6 +397,9 @@ abbrev FiniteSurfaceTriangulation.toCellComplex {S : Type*} [TopologicalSpace S]
     intro d
     cases d <;> rfl
 
+/--
+@isnad1 id=iff.0h4v.s5.6665ceeb5524 from=translated src=- shape=2c1aeb61 vocab=bb4f0a75
+-/
 @[simp]
 theorem FiniteSurfaceTriangulation.toCellComplex_sameEdge_iff
     {S : Type*} [TopologicalSpace S] (T : FiniteSurfaceTriangulation S)
@@ -394,30 +428,45 @@ def boundaryPositionEquivCellOccurrence (T : FiniteSurfaceTriangulation S) :
   Equiv.sigmaCongrRight fun _ =>
     (Fin.castOrderIso (by simp [toCellComplex])).toEquiv
 
+/--
+@isnad1 id=eq.0h3v.s7.7e456bea6931 from=translated src=- shape=35a3379f vocab=762aa801
+-/
 @[simp]
 theorem boundaryPositionEquivCellOccurrence_apply_fst
     (T : FiniteSurfaceTriangulation S) (o : T.BoundaryPosition) :
     (T.boundaryPositionEquivCellOccurrence o).1 = o.1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.6d2aa2596ca1 from=translated src=- shape=58cd7465 vocab=13562423
+-/
 @[simp]
 theorem boundaryPositionEquivCellOccurrence_apply_val
     (T : FiniteSurfaceTriangulation S) (o : T.BoundaryPosition) :
     (T.boundaryPositionEquivCellOccurrence o).2.val = o.2.val :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.c933c0885c3b from=translated src=- shape=538c7c31 vocab=e4f209ea
+-/
 @[simp]
 theorem boundaryPositionEquivCellOccurrence_symm_apply_fst
     (T : FiniteSurfaceTriangulation S) (o : T.toCellComplex.BoundaryOccurrence) :
     (T.boundaryPositionEquivCellOccurrence.symm o).1 = o.1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.6cdc230cf3d3 from=translated src=- shape=cb0920d1 vocab=bb949827
+-/
 @[simp]
 theorem boundaryPositionEquivCellOccurrence_symm_apply_val
     (T : FiniteSurfaceTriangulation S) (o : T.toCellComplex.BoundaryOccurrence) :
     (T.boundaryPositionEquivCellOccurrence.symm o).2.val = o.2.val :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.321104287cd7 from=translated src=- shape=4935ad51 vocab=0266964e
+-/
 @[simp]
 theorem boundaryPositionEquivCellOccurrence_dart
     (T : FiniteSurfaceTriangulation S) (o : T.BoundaryPosition) :
@@ -431,6 +480,9 @@ theorem boundaryPositionEquivCellOccurrence_dart
         ((T.triangleBoundary o.1).get o.2)
   simp
 
+/--
+@isnad1 id=iff.0h4v.s6.176bb2698b66 from=translated src=- shape=b5fff680 vocab=7a0eb3cb
+-/
 theorem sameEdge_boundaryPositionEquivCellOccurrence_iff
     (T : FiniteSurfaceTriangulation S)
     (d : T.toCellComplex.Dart) (o : T.BoundaryPosition) :
@@ -486,7 +538,9 @@ private theorem occurs_once_or_twice_of_incidenceCertificate
       · right
         simpa [o₂] using congrArg T.boundaryPositionEquivCellOccurrence h12.symm
 
-/-- An incidence-certified finite triangulation produces valid cell-complex incidence data. -/
+/-- An incidence-certified finite triangulation produces valid cell-complex incidence data.
+@isnad1 id=issurfac.1h2v.s4.378fb8f02432 from=translated src=- shape=e626c163 vocab=e3975cad
+-/
 theorem toCellComplex_isSurfaceValid_of_incidenceCertificate
     (T : FiniteSurfaceTriangulation S) (h : T.IncidenceCertificate) :
     T.toCellComplex.IsSurfaceValid := by
@@ -512,7 +566,9 @@ private theorem triangleAdjacent_to_faceAdjacent
   · rw [FiniteSurfaceTriangulation.toCellComplex_sameEdge_iff]
     simpa using hedge.symm
 
-/-- Dual connectivity of a certified triangulation gives cell-complex face connectivity. -/
+/-- Dual connectivity of a certified triangulation gives cell-complex face connectivity.
+@isnad1 id=isconnec.1h2v.s4.b4bb18767ef1 from=translated src=- shape=e626c163 vocab=c4e49262
+-/
 theorem toCellComplex_isConnected_of_incidenceCertificate
     (T : FiniteSurfaceTriangulation S) (h : T.IncidenceCertificate) :
     T.toCellComplex.IsConnected := by

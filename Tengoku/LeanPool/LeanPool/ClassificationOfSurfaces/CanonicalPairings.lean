@@ -88,6 +88,9 @@ private theorem identification_eq_of_source_target_direction
   cases second
   simp_all
 
+/--
+@isnad1 id=ne.0h3v.s5.ec773a234a86 from=translated src=- shape=9940f11d vocab=e77ff8a1
+-/
 theorem nonOrientableCrosscapPosition_zero_ne_one
     {p n : ℕ} (i : Fin p) :
     nonOrientableCrosscapPosition p n i 0 ≠
@@ -97,6 +100,9 @@ theorem nonOrientableCrosscapPosition_zero_ne_one
   simp only [nonOrientableCrosscapPosition_val] at hval
   omega
 
+/--
+@isnad1 id=ne.0h3v.s5.153b0849bdbe from=translated src=- shape=c4fd647f vocab=0f73e9a8
+-/
 theorem nonOrientableBoundaryPosition_zero_ne_two
     {p n : ℕ} (j : Fin n) :
     nonOrientableBoundaryPosition p n j 0 ≠
@@ -106,6 +112,9 @@ theorem nonOrientableBoundaryPosition_zero_ne_two
   simp only [nonOrientableBoundaryPosition_val] at hval
   omega
 
+/--
+@isnad1 id=eq.0h3v.s7.27cb40ce30aa from=translated src=- shape=13aae603 vocab=53fd8290
+-/
 theorem nonOrientableBoundaryWord_edgeOccurrences_a {p n : ℕ} (i : Fin p) :
     wordEdgeOccurrences (nonOrientableBoundaryWord p n) (.a i) =
       {nonOrientableCrosscapPosition p n i 0,
@@ -122,6 +131,9 @@ theorem nonOrientableBoundaryWord_edgeOccurrences_a {p n : ℕ} (i : Fin p) :
   · rw [nonOrientableBoundaryWord_edge_occurrences]
     simp [nonOrientableCrosscapPosition_zero_ne_one (n := n) i]
 
+/--
+@isnad1 id=eq.0h3v.s7.c11f84243abc from=translated src=- shape=740d218b vocab=d912e858
+-/
 theorem nonOrientableBoundaryWord_edgeOccurrences_c {p n : ℕ} (j : Fin n) :
     wordEdgeOccurrences (nonOrientableBoundaryWord p n) (.c j) =
       {nonOrientableBoundaryPosition p n j 0,
@@ -138,6 +150,9 @@ theorem nonOrientableBoundaryWord_edgeOccurrences_c {p n : ℕ} (j : Fin n) :
   · rw [nonOrientableBoundaryWord_edge_occurrences]
     simp [nonOrientableBoundaryPosition_zero_ne_two (p := p) j]
 
+/--
+@isnad1 id=eq.0h3v.s6.00a9659b5970 from=translated src=- shape=624d7216 vocab=e1a51f62
+-/
 theorem nonOrientableBoundaryWord_edgeOccurrences_h {p n : ℕ} (j : Fin n) :
     wordEdgeOccurrences (nonOrientableBoundaryWord p n) (.h j) =
       {nonOrientableBoundaryPosition p n j 1} := by
@@ -151,6 +166,9 @@ theorem nonOrientableBoundaryWord_edgeOccurrences_h {p n : ℕ} (j : Fin n) :
   · rw [nonOrientableBoundaryWord_edge_occurrences]
     simp
 
+/--
+@isnad1 id=mem.1h3v.s5.0a3875c5a2ec from=translated src=- shape=462af53f vocab=c817a763
+-/
 theorem nonOrientableCrosscapIdentification_mem
     {p n : ℕ} (hp : 1 ≤ p) (i : Fin p) :
     nonOrientableCrosscapIdentification (n := n) i ∈
@@ -195,6 +213,9 @@ theorem nonOrientableCrosscapIdentification_mem
     rw [nonOrientableBoundaryWord_get_crosscap_a_second,
       nonOrientableBoundaryWord_get_crosscap_a_first]
 
+/--
+@isnad1 id=mem.1h3v.s5.f68a941a4737 from=translated src=- shape=e5627764 vocab=6f756032
+-/
 theorem nonOrientableBoundaryIdentification_mem
     {p n : ℕ} (hp : 1 ≤ p) (j : Fin n) :
     nonOrientableBoundaryIdentification (p := p) j ∈
@@ -247,6 +268,9 @@ theorem nonOrientableBoundaryIdentification_mem
       nonOrientableBoundaryWord_get_boundary_c_pos]
     rfl
 
+/--
+@isnad1 id=mem.1h3v.s5.8142d0915515 from=translated src=- shape=462af53f vocab=2c0ea04a
+-/
 theorem nonOrientableCrosscapIdentificationReverse_mem
     {p n : ℕ} (hp : 1 ≤ p) (i : Fin p) :
     nonOrientableCrosscapIdentificationReverse (n := n) i ∈
@@ -259,6 +283,9 @@ theorem nonOrientableCrosscapIdentificationReverse_mem
       (nonOrientableCellComplex_occurrencePairingValid hp)
       (nonOrientableCrosscapIdentification_mem (n := n) hp i))
 
+/--
+@isnad1 id=mem.1h3v.s5.e0f0409d3923 from=translated src=- shape=e5627764 vocab=233e2c1c
+-/
 theorem nonOrientableBoundaryIdentificationReverse_mem
     {p n : ℕ} (hp : 1 ≤ p) (j : Fin n) :
     nonOrientableBoundaryIdentificationReverse (p := p) j ∈
@@ -272,7 +299,9 @@ theorem nonOrientableBoundaryIdentificationReverse_mem
       (nonOrientableBoundaryIdentification_mem (p := p) hp j))
 
 /-- Every directed polygonal identification in the canonical nonorientable word is one of the
-two ordered directions of an `aᵢ` or `cⱼ` generator. -/
+two ordered directions of an `aᵢ` or `cⱼ` generator.
+@isnad1 id=iff.1h3v.s7.7c945d4cee78 from=translated src=- shape=0cc77e54 vocab=e2c1e68a
+-/
 theorem mem_nonOrientable_polygonalIdentifications_iff
     {p n : ℕ} (hp : 1 ≤ p)
     (identification :
@@ -419,6 +448,9 @@ theorem mem_nonOrientable_polygonalIdentifications_iff
 
 /-! ## Orientable pairing instructions -/
 
+/--
+@isnad1 id=ne.0h3v.s5.d5a3a2864706 from=translated src=- shape=9940f11d vocab=01381800
+-/
 theorem orientableHandlePosition_zero_ne_two
     {p n : ℕ} (i : Fin p) :
     orientableHandlePosition p n i 0 ≠
@@ -428,6 +460,9 @@ theorem orientableHandlePosition_zero_ne_two
   simp only [orientableHandlePosition_val] at hval
   omega
 
+/--
+@isnad1 id=ne.0h3v.s5.06e6041dce3d from=translated src=- shape=9940f11d vocab=01381800
+-/
 theorem orientableHandlePosition_one_ne_three
     {p n : ℕ} (i : Fin p) :
     orientableHandlePosition p n i 1 ≠
@@ -437,6 +472,9 @@ theorem orientableHandlePosition_one_ne_three
   simp only [orientableHandlePosition_val] at hval
   omega
 
+/--
+@isnad1 id=ne.0h3v.s5.c31373c70b7c from=translated src=- shape=c4fd647f vocab=50820521
+-/
 theorem orientableBoundaryPosition_zero_ne_two
     {p n : ℕ} (j : Fin n) :
     orientableBoundaryPosition p n j 0 ≠
@@ -446,6 +484,9 @@ theorem orientableBoundaryPosition_zero_ne_two
   simp only [orientableBoundaryPosition_val] at hval
   omega
 
+/--
+@isnad1 id=eq.0h3v.s7.d383214f26e4 from=translated src=- shape=13aae603 vocab=1edf3a27
+-/
 theorem orientableBoundaryWord_edgeOccurrences_a {p n : ℕ} (i : Fin p) :
     wordEdgeOccurrences (orientableBoundaryWord p n) (.a i) =
       {orientableHandlePosition p n i 0,
@@ -462,6 +503,9 @@ theorem orientableBoundaryWord_edgeOccurrences_a {p n : ℕ} (i : Fin p) :
   · rw [orientableBoundaryWord_edge_occurrences]
     simp [orientableHandlePosition_zero_ne_two (n := n) i]
 
+/--
+@isnad1 id=eq.0h3v.s7.7435646daa56 from=translated src=- shape=13aae603 vocab=d8cc016c
+-/
 theorem orientableBoundaryWord_edgeOccurrences_b {p n : ℕ} (i : Fin p) :
     wordEdgeOccurrences (orientableBoundaryWord p n) (.b i) =
       {orientableHandlePosition p n i 1,
@@ -478,6 +522,9 @@ theorem orientableBoundaryWord_edgeOccurrences_b {p n : ℕ} (i : Fin p) :
   · rw [orientableBoundaryWord_edge_occurrences]
     simp [orientableHandlePosition_one_ne_three (n := n) i]
 
+/--
+@isnad1 id=eq.0h3v.s7.3b26fc8d6973 from=translated src=- shape=740d218b vocab=8e96e541
+-/
 theorem orientableBoundaryWord_edgeOccurrences_c {p n : ℕ} (j : Fin n) :
     wordEdgeOccurrences (orientableBoundaryWord p n) (.c j) =
       {orientableBoundaryPosition p n j 0,
@@ -494,6 +541,9 @@ theorem orientableBoundaryWord_edgeOccurrences_c {p n : ℕ} (j : Fin n) :
   · rw [orientableBoundaryWord_edge_occurrences]
     simp [orientableBoundaryPosition_zero_ne_two (p := p) j]
 
+/--
+@isnad1 id=eq.0h3v.s6.3eacc356d082 from=translated src=- shape=624d7216 vocab=69799698
+-/
 theorem orientableBoundaryWord_edgeOccurrences_h {p n : ℕ} (j : Fin n) :
     wordEdgeOccurrences (orientableBoundaryWord p n) (.h j) =
       {orientableBoundaryPosition p n j 1} := by
@@ -579,6 +629,9 @@ def orientableBoundaryIdentificationReverse {p n : ℕ} (j : Fin n) :
       (oneFaceOccurrence (orientableBoundaryWord p n)
         (orientableBoundaryPosition p n j 0)))
 
+/--
+@isnad1 id=mem.1h3v.s6.45ed0d8c7a33 from=translated src=- shape=46dd3a36 vocab=f2437820
+-/
 theorem orientableHandleAIdentification_mem
     {p n : ℕ} (hvalid : 1 ≤ p ∨ 1 ≤ n) (i : Fin p) :
     orientableHandleAIdentification (n := n) i ∈
@@ -592,6 +645,9 @@ theorem orientableHandleAIdentification_mem
     (orientableBoundaryWord_get_handle_a_pos p n i)
     (orientableBoundaryWord_get_handle_a_neg p n i)
 
+/--
+@isnad1 id=mem.1h3v.s6.d1c7d92323d5 from=translated src=- shape=46dd3a36 vocab=99f08211
+-/
 theorem orientableHandleBIdentification_mem
     {p n : ℕ} (hvalid : 1 ≤ p ∨ 1 ≤ n) (i : Fin p) :
     orientableHandleBIdentification (n := n) i ∈
@@ -605,6 +661,9 @@ theorem orientableHandleBIdentification_mem
     (orientableBoundaryWord_get_handle_b_pos p n i)
     (orientableBoundaryWord_get_handle_b_neg p n i)
 
+/--
+@isnad1 id=mem.1h3v.s6.6457f2ba6695 from=translated src=- shape=acad91ee vocab=f36054a4
+-/
 theorem orientableBoundaryIdentification_mem
     {p n : ℕ} (hvalid : 1 ≤ p ∨ 1 ≤ n) (j : Fin n) :
     orientableBoundaryIdentification (p := p) j ∈
@@ -618,6 +677,9 @@ theorem orientableBoundaryIdentification_mem
     (orientableBoundaryWord_get_boundary_c_pos p n j)
     (orientableBoundaryWord_get_boundary_c_neg p n j)
 
+/--
+@isnad1 id=mem.1h3v.s6.ad31558d69e2 from=translated src=- shape=46dd3a36 vocab=4e2e76b0
+-/
 theorem orientableHandleAIdentificationReverse_mem
     {p n : ℕ} (hvalid : 1 ≤ p ∨ 1 ≤ n) (i : Fin p) :
     orientableHandleAIdentificationReverse (n := n) i ∈
@@ -630,6 +692,9 @@ theorem orientableHandleAIdentificationReverse_mem
       (orientableCellComplex_occurrencePairingValid hvalid)
       (orientableHandleAIdentification_mem (n := n) hvalid i))
 
+/--
+@isnad1 id=mem.1h3v.s6.be72a6d26c4b from=translated src=- shape=46dd3a36 vocab=f7545df8
+-/
 theorem orientableHandleBIdentificationReverse_mem
     {p n : ℕ} (hvalid : 1 ≤ p ∨ 1 ≤ n) (i : Fin p) :
     orientableHandleBIdentificationReverse (n := n) i ∈
@@ -642,6 +707,9 @@ theorem orientableHandleBIdentificationReverse_mem
       (orientableCellComplex_occurrencePairingValid hvalid)
       (orientableHandleBIdentification_mem (n := n) hvalid i))
 
+/--
+@isnad1 id=mem.1h3v.s6.74e6ee1b5abf from=translated src=- shape=acad91ee vocab=be72d053
+-/
 theorem orientableBoundaryIdentificationReverse_mem
     {p n : ℕ} (hvalid : 1 ≤ p ∨ 1 ≤ n) (j : Fin n) :
     orientableBoundaryIdentificationReverse (p := p) j ∈
@@ -655,7 +723,9 @@ theorem orientableBoundaryIdentificationReverse_mem
       (orientableBoundaryIdentification_mem (p := p) hvalid j))
 
 /-- Every directed polygonal identification in the canonical orientable word is one of the
-two ordered directions of an `aᵢ`, `bᵢ`, or `cⱼ` generator. -/
+two ordered directions of an `aᵢ`, `bᵢ`, or `cⱼ` generator.
+@isnad1 id=iff.1h3v.s7.6762597d9b8c from=translated src=- shape=ac751bfb vocab=c6cd11a9
+-/
 theorem mem_orientable_polygonalIdentifications_iff
     {p n : ℕ} (hvalid : 1 ≤ p ∨ 1 ≤ n)
     (identification :

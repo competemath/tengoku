@@ -53,6 +53,9 @@ noncomputable def finiteCyclicDartEquiv (T : FiniteSurfaceTriangulation S) :
   SurfaceCellComplex.orientedEdgeSignedDartEquiv.trans
     (SignedDart.mapEquiv (Fintype.equivFin T.Edge))
 
+/--
+@isnad1 id=eq.0h3v.s7.7f998087db8c from=translated src=- shape=41775977 vocab=9e26c3c2
+-/
 @[simp]
 theorem edgeOfDart_finiteCyclicDartEquiv
     (T : FiniteSurfaceTriangulation S) (d : OrientedEdge T.Edge) :
@@ -71,6 +74,9 @@ noncomputable def toFiniteCyclicPresentation (T : FiniteSurfaceTriangulation S) 
       (T.triangleBoundary ((Fintype.equivFin T.Triangle).symm f)).map
         T.finiteCyclicDartEquiv
 
+/--
+@isnad1 id=eq.0h2v.s5.e2f98160a69d from=translated src=- shape=0bc31194 vocab=affcb801
+-/
 theorem toFiniteCyclicPresentation_faces_length (T : FiniteSurfaceTriangulation S) :
     T.toFiniteCyclicPresentation.faces.length = Fintype.card T.Triangle := by
   simp [toFiniteCyclicPresentation]
@@ -81,6 +87,9 @@ noncomputable def finiteCyclicEdgeEquiv (T : FiniteSurfaceTriangulation S) :
   change T.Edge ≃ Fin (Fintype.card T.Edge)
   exact Fintype.equivFin T.Edge
 
+/--
+@isnad1 id=eq.0h3v.s7.821c83b5c426 from=translated src=- shape=ebee0f44 vocab=b2525f3e
+-/
 theorem edgeOfDart_finiteCyclicDartEquiv_eq_edgeEquiv
     (T : FiniteSurfaceTriangulation S) (d : OrientedEdge T.Edge) :
     FiniteCyclicPresentation.edgeOfDart (T.finiteCyclicDartEquiv d) =
@@ -95,19 +104,27 @@ noncomputable def finiteCyclicFaceEquiv (T : FiniteSurfaceTriangulation S) :
   (Fintype.equivFin T.Triangle).trans
     (Fin.castOrderIso T.toFiniteCyclicPresentation_faces_length.symm).toEquiv
 
+/--
+@isnad1 id=eq.0h3v.s7.0b0e5699aed8 from=translated src=- shape=04dc43a6 vocab=d34c6645
+-/
 @[simp]
 theorem finiteCyclicFaceEquiv_apply_val (T : FiniteSurfaceTriangulation S)
     (f : T.Triangle) :
     (T.finiteCyclicFaceEquiv f).val = (Fintype.equivFin T.Triangle f).val :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.95d7246abc6f from=translated src=- shape=8899a0a1 vocab=3e2c0011
+-/
 @[simp]
 theorem finiteCyclicFaceEquiv_symm_apply_val (T : FiniteSurfaceTriangulation S)
     (f : T.toFiniteCyclicPresentation.Face) :
     (Fintype.equivFin T.Triangle (T.finiteCyclicFaceEquiv.symm f)).val = f.val := by
   simp [finiteCyclicFaceEquiv]
 
-/-- Reading an enumerated face gives exactly the relabeled original triangle boundary. -/
+/-- Reading an enumerated face gives exactly the relabeled original triangle boundary.
+@isnad1 id=eq.0h3v.s7.3637c32bfecc from=translated src=- shape=9503b5f4 vocab=85ab6b35
+-/
 theorem toFiniteCyclicPresentation_boundary_faceEquiv
     (T : FiniteSurfaceTriangulation S) (f : T.Triangle) :
     T.toFiniteCyclicPresentation.boundary (T.finiteCyclicFaceEquiv f) =
@@ -115,6 +132,9 @@ theorem toFiniteCyclicPresentation_boundary_faceEquiv
   simp [FiniteCyclicPresentation.boundary, toFiniteCyclicPresentation,
     finiteCyclicFaceEquiv]
 
+/--
+@isnad1 id=eq.0h3v.s6.9d97295f28dd from=translated src=- shape=14f60a79 vocab=16301b0f
+-/
 theorem toFiniteCyclicPresentation_boundary_faceEquiv_length
     (T : FiniteSurfaceTriangulation S) (f : T.Triangle) :
     (T.toFiniteCyclicPresentation.boundary (T.finiteCyclicFaceEquiv f)).length =
@@ -123,7 +143,9 @@ theorem toFiniteCyclicPresentation_boundary_faceEquiv_length
   simp
 
 /-- Reading a position in an enumerated boundary is the same as reading the corresponding
-position before relabeling and then relabeling its dart. -/
+position before relabeling and then relabeling its dart.
+@isnad1 id=eq.0h4v.s8.fe3487b01f01 from=translated src=- shape=e6e8048c vocab=348f38b5
+-/
 theorem toFiniteCyclicPresentation_boundary_faceEquiv_get
     (T : FiniteSurfaceTriangulation S) (f : T.Triangle)
     (i : Fin
@@ -164,17 +186,26 @@ noncomputable def finiteCyclicOccurrenceEquiv (T : FiniteSurfaceTriangulation S)
     (Fin.castOrderIso
       (T.toFiniteCyclicPresentation_boundary_faceEquiv_length f).symm).toEquiv
 
+/--
+@isnad1 id=eq.0h3v.s8.e963db38d73e from=translated src=- shape=5146a9e1 vocab=3571cb37
+-/
 @[simp]
 theorem finiteCyclicOccurrenceEquiv_apply_fst
     (T : FiniteSurfaceTriangulation S) (o : T.BoundaryPosition) :
     (T.finiteCyclicOccurrenceEquiv o).1 = T.finiteCyclicFaceEquiv o.1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.86c00614f6d6 from=translated src=- shape=89c2f135 vocab=680682e2
+-/
 theorem finiteCyclicOccurrenceEquiv_apply_val
     (T : FiniteSurfaceTriangulation S) (o : T.BoundaryPosition) :
     (T.finiteCyclicOccurrenceEquiv o).2.val = o.2.val :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.d803fb384ecb from=translated src=- shape=f948f947 vocab=46f5ac7b
+-/
 theorem finiteCyclicOccurrenceEquiv_dart
     (T : FiniteSurfaceTriangulation S) (o : T.BoundaryPosition) :
     (T.toFiniteCyclicPresentation.boundary
@@ -209,7 +240,9 @@ private noncomputable def boundaryIndexCount
     fun i => ((T.triangleBoundary f).get i).edge = e).card
 
 /-- Relabeling a face and an edge does not change the number of times that edge occurs in the
-face boundary. -/
+face boundary.
+@isnad1 id=eq.0h4v.s7.20f7d078d132 from=translated src=- shape=46eb68c8 vocab=fedaef6a
+-/
 @[simp]
 theorem toFiniteCyclicPresentation_faceEdgeMultiplicity
     (T : FiniteSurfaceTriangulation S) (f : T.Triangle) (e : T.Edge) :
@@ -281,7 +314,9 @@ private theorem sum_boundaryEdgeCount_eq_edgeOccurrenceCount
       rw [hall]
 
 /-- The total multiplicity of an enumerated edge is the cardinality of its original boundary
-position fiber. -/
+position fiber.
+@isnad1 id=eq.0h3v.s6.befe056b76ab from=translated src=- shape=5818b340 vocab=fad51957
+-/
 theorem toFiniteCyclicPresentation_edgeMultiplicity
     (T : FiniteSurfaceTriangulation S) (e : T.Edge) :
     T.toFiniteCyclicPresentation.edgeMultiplicity (T.finiteCyclicEdgeEquiv e) =
@@ -352,7 +387,9 @@ private theorem triangleAdjacent_to_finiteCyclicFaceAdjacent
 
 /-- An incidence certificate and nonempty stored face boundaries give a valid finite cyclic
 presentation. The boundary hypothesis is separate because the legacy certificate permits an
-otherwise vacuous empty boundary. -/
+otherwise vacuous empty boundary.
+@isnad1 id=issurfac.2h2v.s5.4592ee999c71 from=translated src=- shape=ecff3651 vocab=b51a4647
+-/
 theorem toFiniteCyclicPresentation_isSurfaceValid
     (T : FiniteSurfaceTriangulation S) (h : T.IncidenceCertificate)
     (hboundary : ∀ f, T.triangleBoundary f ≠ []) :
@@ -395,7 +432,9 @@ theorem toFiniteCyclicPresentation_isSurfaceValid
     exact hmultiplicity.symm ▸ hcard
 
 /-- A dual-connected incidence certificate gives connectivity of the enumerated finite cyclic
-presentation. -/
+presentation.
+@isnad1 id=isconnec.1h2v.s4.0009f12c778b from=translated src=- shape=e626c163 vocab=99be3a46
+-/
 theorem toFiniteCyclicPresentation_isConnected
     (T : FiniteSurfaceTriangulation S) (h : T.IncidenceCertificate) :
     T.toFiniteCyclicPresentation.IsConnected := by
@@ -423,7 +462,9 @@ variable {S : Type*} [TopologicalSpace S]
     FiniteCyclicPresentation :=
   T.toFiniteSurfaceTriangulation.toFiniteCyclicPresentation
 
-/-- Surface incidence makes the cyclic presentation of a geometric triangulation valid. -/
+/-- Surface incidence makes the cyclic presentation of a geometric triangulation valid.
+@isnad1 id=issurfac.1h2v.s4.9b6d55266238 from=translated src=- shape=e626c163 vocab=f112ccdf
+-/
 theorem toFiniteCyclicPresentation_isSurfaceValid
     (T : GeometricTriangulation S) (h : T.SurfaceIncidence) :
     T.toFiniteCyclicPresentation.IsSurfaceValid := by
@@ -434,7 +475,9 @@ theorem toFiniteCyclicPresentation_isSurfaceValid
   change T.triangleBoundary f ≠ []
   exact List.ne_nil_of_length_pos (by rw [T.triangleBoundary_length]; decide)
 
-/-- Surface incidence makes the cyclic presentation of a geometric triangulation connected. -/
+/-- Surface incidence makes the cyclic presentation of a geometric triangulation connected.
+@isnad1 id=isconnec.1h2v.s4.e7bfa2c3a101 from=translated src=- shape=e626c163 vocab=decbd94a
+-/
 theorem toFiniteCyclicPresentation_isConnected
     (T : GeometricTriangulation S) (h : T.SurfaceIncidence) :
     T.toFiniteCyclicPresentation.IsConnected :=
@@ -442,7 +485,9 @@ theorem toFiniteCyclicPresentation_isConnected
     (T.incidenceCertificate_of_surfaceIncidence h)
 
 /-- A geometric surface triangulation therefore supplies the valid, connected finite signed
-cyclic presentation needed by the normal-form lane. -/
+cyclic presentation needed by the normal-form lane.
+@isnad1 id=and.1h2v.s4.c3d56dcec9eb from=translated src=- shape=5bc262a7 vocab=1938bd5b
+-/
 theorem toFiniteCyclicPresentation_valid_and_connected
     (T : GeometricTriangulation S) (h : T.SurfaceIncidence) :
     T.toFiniteCyclicPresentation.IsSurfaceValid ∧

@@ -87,6 +87,9 @@ def tensorFunctional (f g : A →ₗ[k] k) : TensorAA →ₗ[k] k :=
 def tensorFunctionalOnC (f g : A →ₗ[k] k) : C →ₗ[k] k :=
   (tensorFunctional f g).domRestrict C
 
+/--
+@isnad1 id=eq.0h3v.s13.79dacd0c942c from=translated src=- shape=d1075179 vocab=92d11e64
+-/
 @[simp] theorem tensorFunctionalOnC_diagonal
     (f g : A →ₗ[k] k) (a : A) :
     tensorFunctionalOnC f g (Construction.PaperKernel.diagonal a) =
@@ -99,6 +102,9 @@ def quadraticMap (z : A →ₗ[k] PaperV) : C →ₗ[k] k :=
   tensorFunctionalOnC (coordinate z (Sum.inl 0)) (coordinate z (Sum.inr 0)) +
     tensorFunctionalOnC (coordinate z (Sum.inl 1)) (coordinate z (Sum.inr 1))
 
+/--
+@isnad1 id=eq.0h2v.s13.4e55fbf8b5c7 from=translated src=- shape=ed1a75ed vocab=f69e6f7d
+-/
 @[simp] theorem quadraticMap_diagonal (z : A →ₗ[k] PaperV) (a : A) :
     quadraticMap z (Construction.PaperKernel.diagonal a) =
       OpenAIPort.standardQuadraticForm (z a) := by
@@ -108,7 +114,9 @@ def quadraticMap (z : A →ₗ[k] PaperV) : C →ₗ[k] k :=
 def fiberShear : DualCoordinates → DualCoordinates := fun p =>
   (p.1, p.2 + quadraticMap p.1)
 
-/-- The characteristic-two cancellation behind the fiber shear. Paper: §3. -/
+/-- The characteristic-two cancellation behind the fiber shear. Paper: §3.
+@isnad1 id=eq.0h1v.s3.b6a303506c25 from=translated src=- shape=47dcad53 vocab=21cd19ed
+-/
 theorem fiberShear_involutive (p : DualCoordinates) :
     fiberShear (fiberShear p) = p := by
   apply Prod.ext

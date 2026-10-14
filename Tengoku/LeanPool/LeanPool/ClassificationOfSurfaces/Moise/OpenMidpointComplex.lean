@@ -55,6 +55,9 @@ noncomputable def safeStageInclusion (n : ℕ) :
     (K.safeSubdivision n).refined.restrictFacesInclusion
       (fun t ↦ t ∈ K.safeFaces U n)
 
+/--
+@isnad1 id=isembedd.0h3v.s7.411b01d71bd3 from=translated src=- shape=0bfb0fb2 vocab=a63a88a7
+-/
 theorem isEmbedding_safeStageInclusion (n : ℕ) :
     _root_.Topology.IsEmbedding (K.safeStageInclusion U n) :=
   (K.safeSubdivision n).homeo.isEmbedding.comp
@@ -65,10 +68,16 @@ theorem isEmbedding_safeStageInclusion (n : ℕ) :
 noncomputable def safeStageSupport (n : ℕ) : Set K.realization :=
   Set.range (K.safeStageInclusion U n)
 
+/--
+@isnad1 id=iscompac.0h3v.s5.329ea02135ee from=translated src=- shape=6fcc2557 vocab=1f90ed3e
+-/
 theorem isCompact_safeStageSupport (n : ℕ) :
     IsCompact (K.safeStageSupport U n) :=
   isCompact_range (K.isEmbedding_safeStageInclusion U n).continuous
 
+/--
+@isnad1 id=le.0h3v.s4.07f16b78ecf9 from=translated src=- shape=db5f5255 vocab=66dd4d17
+-/
 theorem safeStageSupport_subset (n : ℕ) : K.safeStageSupport U n ⊆ U := by
   classical
   rintro z ⟨x, rfl⟩
@@ -81,7 +90,9 @@ theorem safeStageSupport_subset (n : ℕ) : K.safeStageSupport U n ⊆ U := by
       (fun s ↦ s ∈ K.safeFaces U n) x) hxt
 
 /-- Every point of a retained old triangle is carried by a retained child at the next midpoint
-level. -/
+level.
+@isnad1 id=le.0h3v.s5.35d399c3ee55 from=translated src=- shape=32cb6f65 vocab=d154fba1
+-/
 theorem safeStageSupport_mono (n : ℕ) :
     K.safeStageSupport U n ⊆ K.safeStageSupport U (n + 1) := by
   classical
@@ -128,14 +139,18 @@ theorem safeStageSupport_mono (n : ℕ) :
       R.refined.midpointEval_val] using heval
   exact congrArg (fun w : K.realization ↦ w.1) (congrArg R.homeo harg)
 
-/-- Safe-stage supports are monotone in the subdivision level. -/
+/-- Safe-stage supports are monotone in the subdivision level.
+@isnad1 id=le.1h4v.s4.495684a8b01a from=translated src=- shape=20fb505c vocab=66dd4d17
+-/
 theorem safeStageSupport_mono_of_le {n m : ℕ} (hnm : n ≤ m) :
     K.safeStageSupport U n ⊆ K.safeStageSupport U m := by
   induction m, hnm using Nat.le_induction with
   | base => exact Set.Subset.rfl
   | succ m _ ih => exact ih.trans (K.safeStageSupport_mono U m)
 
-/-- A point of an open set is eventually carried by a safe midpoint triangle. -/
+/-- A point of an open set is eventually carried by a safe midpoint triangle.
+@isnad1 id=ex.2h3v.s6.b248f420ce3b from=translated src=- shape=0b18a959 vocab=0bc0b308
+-/
 theorem mem_safeStageSupport_of_mem (hU : IsOpen U) {p : K.realization} (hp : p ∈ U) :
     ∃ n : ℕ, p ∈ K.safeStageSupport U n := by
   classical
@@ -165,7 +180,9 @@ theorem mem_safeStageSupport_of_mem (hU : IsOpen U) {p : K.realization} (hp : p 
 
 /-- Every point of an open set eventually lies in the ambient interior of a finite safe stage.
 This is stronger than mere exhaustion and is the compact-control input for the locally finite
-shell construction. -/
+shell construction.
+@isnad1 id=ex.2h3v.s7.21a6ec8677cd from=translated src=- shape=73da6bce vocab=ff5469ee
+-/
 theorem mem_interior_safeStageSupport_of_mem (hU : IsOpen U)
     {p : K.realization} (hp : p ∈ U) :
     ∃ n : ℕ, p ∈ interior (K.safeStageSupport U n) := by
@@ -202,7 +219,9 @@ theorem mem_interior_safeStageSupport_of_mem (hU : IsOpen U)
   exact Metric.mem_ball_self hε2
 
 /-- A compact subset of an open polyhedron is eventually contained in the interior of one
-finite safe stage. -/
+finite safe stage.
+@isnad1 id=ex.3h3v.s7.c611b9d7200c from=translated src=- shape=59f7ed30 vocab=c219c6ff
+-/
 theorem exists_safeStageSupport_interior_of_compact
     {C : Set K.realization} (hC : IsCompact C) (hU : IsOpen U) (hCU : C ⊆ U) :
     ∃ n : ℕ, C ⊆ interior (K.safeStageSupport U n) := by
@@ -231,9 +250,15 @@ noncomputable def nextSafeStage (n : ℕ) : ℕ :=
   max (Classical.choose (K.exists_safeStageSupport_interior_of_compact U
     (K.isCompact_safeStageSupport U n) hU (K.safeStageSupport_subset U n))) (n + 1)
 
+/--
+@isnad1 id=lt.1h3v.s6.bcd307ca5e54 from=translated src=- shape=f15eba4f vocab=e617759f
+-/
 theorem lt_nextSafeStage (n : ℕ) : n < K.nextSafeStage U hU n := by
   exact lt_of_lt_of_le (Nat.lt_succ_self n) (Nat.le_max_right _ _)
 
+/--
+@isnad1 id=le.1h3v.s7.0e847f7b2d4d from=translated src=- shape=b228fa76 vocab=3c4c9caa
+-/
 theorem safeStageSupport_subset_interior_next (n : ℕ) :
     K.safeStageSupport U n ⊆ interior (K.safeStageSupport U (K.nextSafeStage U hU n)) := by
   let m := Classical.choose (K.exists_safeStageSupport_interior_of_compact U
@@ -248,23 +273,38 @@ noncomputable def safeExhaustionIndex : ℕ → ℕ
   | 0 => 0
   | n + 1 => K.nextSafeStage U hU (safeExhaustionIndex n)
 
+/--
+@isnad1 id=eq.1h2v.s6.c215b1208552 from=translated src=- shape=92ea3707 vocab=a24b1a74
+-/
 @[simp] theorem safeExhaustionIndex_zero : K.safeExhaustionIndex U hU 0 = 0 := rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.889c43e69b69 from=translated src=- shape=b7e62cee vocab=9db3d19a
+-/
 @[simp] theorem safeExhaustionIndex_succ (n : ℕ) :
     K.safeExhaustionIndex U hU (n + 1) =
       K.nextSafeStage U hU (K.safeExhaustionIndex U hU n) := rfl
 
+/--
+@isnad1 id=lt.1h3v.s6.ffc164e3fe89 from=translated src=- shape=cc369953 vocab=6e4f784c
+-/
 theorem safeExhaustionIndex_lt_succ (n : ℕ) :
     K.safeExhaustionIndex U hU n < K.safeExhaustionIndex U hU (n + 1) := by
   rw [K.safeExhaustionIndex_succ U hU n]
   exact K.lt_nextSafeStage U hU _
 
+/--
+@isnad1 id=le.1h3v.s6.b9894a1a64bf from=translated src=- shape=f15eba4f vocab=9b21c995
+-/
 theorem id_le_safeExhaustionIndex (n : ℕ) : n ≤ K.safeExhaustionIndex U hU n := by
   induction n with
   | zero => simp
   | succ n ih =>
       exact Nat.succ_le_of_lt (ih.trans_lt (K.safeExhaustionIndex_lt_succ U hU n))
 
+/--
+@isnad1 id=le.2h4v.s6.491ecb064b49 from=translated src=- shape=9fd1c2d5 vocab=9b21c995
+-/
 theorem safeExhaustionIndex_mono {n m : ℕ} (hnm : n ≤ m) :
     K.safeExhaustionIndex U hU n ≤ K.safeExhaustionIndex U hU m := by
   induction m, hnm using Nat.le_induction with
@@ -275,25 +315,43 @@ theorem safeExhaustionIndex_mono {n m : ℕ} (hnm : n ≤ m) :
 noncomputable def safeExhaustion (n : ℕ) : Set K.realization :=
   K.safeStageSupport U (K.safeExhaustionIndex U hU n)
 
+/--
+@isnad1 id=iscompac.1h3v.s6.4fb45fcab1e7 from=translated src=- shape=4ca0b5ab vocab=e43e886b
+-/
 theorem isCompact_safeExhaustion (n : ℕ) : IsCompact (K.safeExhaustion U hU n) :=
   K.isCompact_safeStageSupport U _
 
+/--
+@isnad1 id=le.1h3v.s6.d489860ef8af from=translated src=- shape=dc120e49 vocab=124114aa
+-/
 theorem safeExhaustion_subset (n : ℕ) : K.safeExhaustion U hU n ⊆ U :=
   K.safeStageSupport_subset U _
 
+/--
+@isnad1 id=le.1h3v.s7.fa1dbebfa4ea from=translated src=- shape=1c719272 vocab=366267b0
+-/
 theorem safeExhaustion_subset_interior_succ (n : ℕ) :
     K.safeExhaustion U hU n ⊆ interior (K.safeExhaustion U hU (n + 1)) := by
   exact K.safeStageSupport_subset_interior_next U hU _
 
+/--
+@isnad1 id=le.1h3v.s6.a3c49c2a34ba from=translated src=- shape=929ae211 vocab=8bf55435
+-/
 theorem safeExhaustion_mono (n : ℕ) :
     K.safeExhaustion U hU n ⊆ K.safeExhaustion U hU (n + 1) :=
   (K.safeExhaustion_subset_interior_succ U hU n).trans interior_subset
 
+/--
+@isnad1 id=le.2h4v.s6.85b0f92054ee from=translated src=- shape=a7e0122a vocab=124114aa
+-/
 theorem safeExhaustion_mono_of_le {n m : ℕ} (hnm : n ≤ m) :
     K.safeExhaustion U hU n ⊆ K.safeExhaustion U hU m := by
   exact K.safeStageSupport_mono_of_le U
     (K.safeExhaustionIndex_mono U hU hnm)
 
+/--
+@isnad1 id=eq.1h2v.s6.605af61d2157 from=translated src=- shape=1226c96d vocab=190b5168
+-/
 theorem iUnion_safeExhaustion : (⋃ n : ℕ, K.safeExhaustion U hU n) = U := by
   apply Set.Subset.antisymm
   · intro p hp
@@ -304,6 +362,9 @@ theorem iUnion_safeExhaustion : (⋃ n : ℕ, K.safeExhaustion U hU n) = U := by
     apply Set.mem_iUnion.mpr
     refine ⟨n, K.safeStageSupport_mono_of_le U (K.id_le_safeExhaustionIndex U hU n) hn⟩
 
+/--
+@isnad1 id=eq.1h2v.s6.54572a73857d from=translated src=- shape=5183c1f0 vocab=2aa3c997
+-/
 theorem iUnion_interior_safeExhaustion :
     (⋃ n : ℕ, interior (K.safeExhaustion U hU n)) = U := by
   apply Set.Subset.antisymm
@@ -326,7 +387,9 @@ noncomputable def safeShell : ℕ → Set U
 
 /-- The exhaustion shells are locally finite in `U`.  They may accumulate at the frontier in
 the original compact realization, which is precisely why the ambient space here is the open
-subspace. -/
+subspace.
+@isnad1 id=locallyf.1h2v.s7.564e528e5ae2 from=translated src=- shape=a33a624d vocab=e32e99bd
+-/
 theorem locallyFinite_safeShell : LocallyFinite (K.safeShell U hU) := by
   intro x
   have hxUnion : x.1 ∈ ⋃ n : ℕ, interior (K.safeExhaustion U hU n) := by
@@ -350,7 +413,9 @@ theorem locallyFinite_safeShell : LocallyFinite (K.safeShell U hU) := by
 
 end SafeExhaustion
 
-/-- The nested finite safe stages cover exactly the prescribed open set. -/
+/-- The nested finite safe stages cover exactly the prescribed open set.
+@isnad1 id=eq.1h2v.s6.ea079d590b97 from=translated src=- shape=bfc22c2b vocab=84667b12
+-/
 theorem iUnion_safeStageSupport (hU : IsOpen U) :
     (⋃ n : ℕ, K.safeStageSupport U n) = U := by
   apply Set.Subset.antisymm

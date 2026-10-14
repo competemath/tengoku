@@ -47,14 +47,18 @@ from Theorem 1.4 of Chang–Liu–Liu, arXiv:2609.19123v1. Real division in Lean
 
 namespace Chvatal
 
-/-- Section 3.3: completing the square in the parameter of Theorem 1.4. -/
+/-- Section 3.3: completing the square in the parameter of Theorem 1.4.
+@isnad1 id=eq.1h3v.s7.9423b2fe5f1c from=translated src=- shape=c2b61a03 vocab=4d09f77c
+-/
 theorem quadratic_covariance_identity (a b t : ℝ) (hab : a + b ≠ 0) :
     t ^ 2 * a + (1 - t) ^ 2 * b =
       a * b / (a + b) + (a + b) * (t - b / (a + b)) ^ 2 := by
   field_simp
   ring
 
-/-- Section 3.3: the optimal parameter is `b / (a + b)` when the denominator is nonzero. -/
+/-- Section 3.3: the optimal parameter is `b / (a + b)` when the denominator is nonzero.
+@isnad1 id=eq.1h2v.s7.ebf361523d38 from=translated src=- shape=90e75213 vocab=4d09f77c
+-/
 theorem quadratic_covariance_minimizer (a b : ℝ) (hab : a + b ≠ 0) :
     (b / (a + b)) ^ 2 * a + (1 - b / (a + b)) ^ 2 * b = a * b / (a + b) := by
   rw [quadratic_covariance_identity a b _ hab]
@@ -63,7 +67,9 @@ theorem quadratic_covariance_minimizer (a b : ℝ) (hab : a + b ≠ 0) :
 /-- Section 3.3: optimize the bound for every parameter, including the zero-denominator case.
 
 In the application, `a` and `b` are the two covariances and `c` is twice the sum over
-pairs of Fourier indices with odd intersection in Theorem 1.4. -/
+pairs of Fourier indices with odd intersection in Theorem 1.4.
+@isnad1 id=le.3h3v.s7.22d118d2492b from=translated src=- shape=32b6ab58 vocab=5df71cf7
+-/
 theorem le_harmonic_half_of_quadratic_bound {a b c : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b)
     (h : ∀ t : ℝ, c ≤ t ^ 2 * a + (1 - t) ^ 2 * b) :
     c ≤ a * b / (a + b) := by
@@ -73,7 +79,9 @@ theorem le_harmonic_half_of_quadratic_bound {a b c : ℝ} (ha : 0 ≤ a) (hb : 0
     simpa [ha0, hb0] using h 0
   · simpa [quadratic_covariance_minimizer a b hab] using h (b / (a + b))
 
-/-- The algebraic last step of Theorem 1.2: combine (16) with the optimized Theorem 1.4. -/
+/-- The algebraic last step of Theorem 1.2: combine (16) with the optimized Theorem 1.4.
+@isnad1 id=le.4h4v.s7.70fa27acb8e7 from=translated src=- shape=5cf2a48c vocab=5df71cf7
+-/
 theorem le_harmonic_of_spectral_bound {a b c w : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b)
     (hw : w ≤ 2 * c) (h : ∀ t : ℝ, c ≤ t ^ 2 * a + (1 - t) ^ 2 * b) :
     w ≤ 2 * a * b / (a + b) := by
@@ -83,7 +91,9 @@ theorem le_harmonic_of_spectral_bound {a b c w : ℝ} (ha : 0 ≤ a) (hb : 0 ≤
     _ ≤ 2 * (a * b / (a + b)) := mul_le_mul_of_nonneg_left hc (by norm_num)
     _ = 2 * a * b / (a + b) := by ring
 
-/-- Corollary 1.3: the harmonic mean of two equal nonnegative covariances is that covariance. -/
+/-- Corollary 1.3: the harmonic mean of two equal nonnegative covariances is that covariance.
+@isnad1 id=eq.0h1v.s5.1e272ff50082 from=translated src=- shape=77345ef4 vocab=d0c4925a
+-/
 theorem harmonic_self (a : ℝ) : 2 * a * a / (a + a) = a := by
   by_cases ha : a = 0
   · simp [ha]

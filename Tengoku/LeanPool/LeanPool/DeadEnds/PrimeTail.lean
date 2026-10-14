@@ -16,12 +16,18 @@ Prime-tail and single-prime divisibility estimates.
 
 namespace LeanPool.DeadEnds
 
+/--
+@isnad1 id=not.1h2v.s5.2a5e67643f16 from=translated src=- shape=a091fda4 vocab=754e9546
+-/
 lemma gt_sup_imp_not_mem (s : Finset Nat.Primes) (q : Nat.Primes) (hq : (q : ℕ) > s.sup (·.val)) :
     q ∉ s := by
   intro hq_mem
   have h := Finset.le_sup (f := fun x : Nat.Primes => (x : ℕ)) hq_mem
   omega
 
+/--
+@isnad1 id=le.2h2v.s8.0f5172e58ee4 from=translated src=- shape=6dc2bf7f vocab=b29a24bb
+-/
 lemma tsum_primes_gt_le_tsum_compl (f : Nat.Primes → ℝ) (hf : ∀ p, 0 ≤ f p) (hsum : Summable f)
     (s : Finset Nat.Primes) :
     ∑' (p : {q : Nat.Primes // (q : ℕ) > s.sup (·.val)}), f p ≤
@@ -38,6 +44,9 @@ lemma tsum_primes_gt_le_tsum_compl (f : Nat.Primes → ℝ) (hf : ∀ p, 0 ≤ f
   · exact hsum.subtype _
   · exact hsum.subtype _
 
+/--
+@isnad1 id=ex.3h2v.s7.f2372413374c from=translated src=- shape=0bbaea46 vocab=0a4701fd
+-/
 lemma exists_finset_tsum_compl_lt (f : Nat.Primes → ℝ) (_hf : ∀ p, 0 ≤ f p) (_hsum : Summable f)
     (ε : ℝ) (hε : 0 < ε) :
     ∃ s : Finset Nat.Primes, ∑' (p : {q : Nat.Primes // q ∉ s}), f p < ε := by
@@ -51,6 +60,9 @@ lemma exists_finset_tsum_compl_lt (f : Nat.Primes → ℝ) (_hf : ∀ p, 0 ≤ f
   rw [Real.dist_eq] at hs_self
   linarith [(abs_lt.mp hs_self).2]
 
+/--
+@isnad1 id=ex.1h1v.s7.21f28c3d1a97 from=translated src=- shape=db8c86c7 vocab=8fa5340b
+-/
 lemma prime_tail_sum_small (ε : ℝ) (hε : 0 < ε) :
     ∃ y : ℕ, ∑' (p : {q : Nat.Primes // (q : ℕ) > y}), 1 / (((p : Nat.Primes) : ℕ) : ℝ) ^ 2 < ε :=
         by
@@ -64,6 +76,9 @@ lemma prime_tail_sum_small (ε : ℝ) (hε : 0 < ε) :
   simp only [hf] at h1 hs
   exact lt_of_le_of_lt h1 hs
 
+/--
+@isnad1 id=le.0h1v.s3.6325cf136b05 from=translated src=- shape=c93c46cc vocab=65840ffa
+-/
 lemma prime_count_le_sqrt (M : ℕ) :
     (M.sqrt.primesBelow).card ≤ Nat.sqrt M := by
   calc (M.sqrt.primesBelow).card ≤ (Finset.range (M.sqrt)).card := by
@@ -72,6 +87,9 @@ lemma prime_count_le_sqrt (M : ℕ) :
         exact Finset.mem_range.mpr (Nat.lt_of_mem_primesBelow hp)
     _ = M.sqrt := Finset.card_range _
 
+/--
+@isnad1 id=ex.1h1v.s5.114fcce1590c from=translated src=- shape=e3aae516 vocab=0c982b01
+-/
 lemma sqrt_div_X_small (ε : ℝ) (hε : 0 < ε) :
     ∃ X₀ : ℕ, ∀ X ≥ X₀, (Nat.sqrt X : ℝ) / X < ε := by
   obtain ⟨X₀, hX₀⟩ := exists_nat_gt ((1 / ε : ℝ) ^ 2)
@@ -102,6 +120,9 @@ lemma sqrt_div_X_small (ε : ℝ) (hε : 0 < ε) :
         nlinarith [Real.sq_sqrt (le_of_lt hXpos)]
     _ < ε := h8
 
+/--
+@isnad1 id=le.0h2v.s6.e869fcc03e39 from=translated src=- shape=7c9e264a vocab=d124daa4
+-/
 lemma card_multiples_Icc (q : ℕ) (X : ℕ) :
     ((Finset.Icc 1 X).filter fun N => q ^ 2 ∣ N).card ≤ X / q ^ 2 := by
   have h_subset : ((Finset.Icc 1 X).filter fun N => q ^ 2 ∣ N) ⊆ (Finset.range (X + 1)).filter (
@@ -118,7 +139,9 @@ lemma card_multiples_Icc (q : ℕ) (X : ℕ) :
     For a = 0, b = X, the count equals max(⌊(X - v)/r⌋ - ⌊-v/r⌋, 0).
     By `floor_diff_bound`, the expression ⌊(X - v)/r⌋ - ⌊-v/r⌋ ≤ ⌊X/r⌋ + 1.
     Since X, r are naturals, ⌊(X : ℝ)/r⌋ = X / r (integer division).
-    The nonnegative floor difference is at most the upper bound, giving count ≤ X / r + 1. -/
+    The nonnegative floor difference is at most the upper bound, giving count ≤ X / r + 1.
+@isnad1 id=le.1h3v.s6.d845376dff0d from=translated src=- shape=37ee74da vocab=404aea32
+-/
 lemma floor_diff_bound_rat (X v r : ℕ) (hr : 0 < r) :
     ⌊((X : ℚ) - v) / r⌋ - ⌊(-(v : ℚ)) / r⌋ ≤ ⌊(X : ℚ) / r⌋ + 1 := by
   have floor_sub_floor_le : ∀ (a b : ℚ), ⌊a⌋ - ⌊b⌋ ≤ ⌊a - b⌋ + 1 := by
@@ -137,6 +160,9 @@ lemma floor_diff_bound_rat (X v r : ℕ) (hr : 0 < r) :
   rw [heq] at h
   exact h
 
+/--
+@isnad1 id=le.1h3v.s6.1fd1b2078166 from=translated src=- shape=8b0dc23b vocab=94b79eb3
+-/
 lemma card_modEq_Icc_bound (v r X : ℕ) (hr : 0 < r) :
     ((Finset.Ioc 0 X).filter fun N => N ≡ v [MOD r]).card ≤ X / r + 1 := by
   have h := Nat.Ioc_filter_modEq_card 0 X hr v
@@ -156,14 +182,22 @@ lemma card_modEq_Icc_bound (v r X : ℕ) (hr : 0 < r) :
   rw [hcard]
   omega
 
+/--
+@isnad1 id=eq.3h2v.s5.f08fed0e0a17 from=translated src=- shape=8088fef6 vocab=93bed97e
+-/
 lemma gcd_psq_b_eq_one (p : ℕ) (hp : Nat.Prime p) (b : ℕ) (hb : 2 ≤ b) (hbp : b < p) :
     (p ^ 2).gcd b = 1 :=
   (b_coprime_p_sq p hp b hb hbp).symm
 
-/-- p² > 0 when p is prime. -/
+/-- p² > 0 when p is prime.
+@isnad1 id=lt.1h1v.s4.c484765f502e from=translated src=- shape=74015248 vocab=1a184142
+-/
 lemma prime_sq_pos (p : ℕ) (hp : Nat.Prime p) : 0 < p ^ 2 :=
   Nat.pow_pos hp.pos
 
+/--
+@isnad1 id=eq.2h3v.s7.5963ddb79b68 from=translated src=- shape=1a27f4fb vocab=9ae2f3cf
+-/
 lemma zmod_mul_inv_add_eq_zero (n b d : ℕ) (_hn : 0 < n) (hb : b.Coprime n) :
     (↑b : ZMod n) * ((-↑d : ZMod n) * (↑b : ZMod n)⁻¹) + ↑d = 0 := by
   have h_unit : IsUnit (↑b : ZMod n) := (ZMod.isUnit_iff_coprime b n).mpr hb
@@ -172,7 +206,9 @@ lemma zmod_mul_inv_add_eq_zero (n b d : ℕ) (_hn : 0 < n) (hb : b.Coprime n) :
 
 /-- Constructs a unique residue v such that b*v ≡ -d (mod p²) for prime p > b ≥ 2.
     In ZMod (p²), since b is a unit (coprime to p²), we can define v = b⁻¹ * (-d).
-    The result is a natural number v < p² such that p² | b*v + d. -/
+    The result is a natural number v < p² such that p² | b*v + d.
+@isnad1 id=ex.3h3v.s6.10381b8b0814 from=translated src=- shape=6929a5a7 vocab=a160be3f
+-/
 lemma exists_inverse_residue (p : ℕ) (hp : Nat.Prime p) (b : ℕ) (hb : 2 ≤ b) (hbp : b < p) (d : ℕ) :
     ∃ v : ℕ, v < p ^ 2 ∧ (p ^ 2) ∣ (b * v + d) := by
   have hcop : b.Coprime (p ^ 2) := b_coprime_p_sq p hp b hb hbp
@@ -184,6 +220,9 @@ lemma exists_inverse_residue (p : ℕ) (hp : Nat.Prime p) (b : ℕ) (hb : 2 ≤ 
   push_cast [ZMod.natCast_zmod_val v_zmod]
   exact zmod_mul_inv_add_eq_zero (p ^ 2) b d hp2_pos hcop
 
+/--
+@isnad1 id=iff.2h5v.s7.dfc4ecbbf8a6 from=translated src=- shape=b21f5b77 vocab=3ed7eac7
+-/
 lemma dvd_iff_modEq_of_coprime (p b v d N : ℕ) (hcop : (p ^ 2).gcd b = 1)
     (hdvd_v : (p ^ 2) ∣ (b * v + d)) :
     (p ^ 2) ∣ (b * N + d) ↔ N ≡ v [MOD (p ^ 2)] := by
@@ -200,6 +239,9 @@ lemma dvd_iff_modEq_of_coprime (p b v d N : ℕ) (hcop : (p ^ 2).gcd b = 1)
     have h_zero : (b * N + d) ≡ 0 [MOD (p ^ 2)] := h_add.trans h_v_mod
     exact Nat.modEq_zero_iff_dvd.mp h_zero
 
+/--
+@isnad1 id=ex.2h3v.s6.f55d18b5f670 from=translated src=- shape=def362be vocab=6e8d0561
+-/
 lemma dvd_shift_iff_modEq_unique (b : ℕ) (hb : 2 ≤ b) (q : Nat.Primes) (hq : (q : ℕ) > b) (d : ℕ) :
     ∃ v : ℕ, ∀ N : ℕ, (q : ℕ) ^ 2 ∣ b * N + d ↔ N ≡ v [MOD (q : ℕ) ^ 2] := by
   let p := (q : ℕ)
@@ -209,6 +251,9 @@ lemma dvd_shift_iff_modEq_unique (b : ℕ) (hb : 2 ≤ b) (q : Nat.Primes) (hq :
   obtain ⟨v, _, hdvd_v⟩ := exists_inverse_residue p hp b hb hbp d
   exact ⟨v, fun N => dvd_iff_modEq_of_coprime p b v d N hcop hdvd_v⟩
 
+/--
+@isnad1 id=ex.2h4v.s7.b1be782291f3 from=translated src=- shape=3b167ae8 vocab=a3baf953
+-/
 lemma filter_shifted_dvd_eq_filter_modEq (b : ℕ) (hb : 2 ≤ b) (q : Nat.Primes) (hq : (q : ℕ) > b)
     (d : ℕ) (S : Finset ℕ) :
     ∃ v : ℕ, (S.filter fun N => (q : ℕ) ^ 2 ∣ b * N + d) =
@@ -219,7 +264,9 @@ lemma filter_shifted_dvd_eq_filter_modEq (b : ℕ) (hb : 2 ≤ b) (q : Nat.Prime
 /-- For a fixed d, the count of N in [1,X] with q²|(bN+d) is at most X/q² + 1.
     Since q > b and q is prime, gcd(b,q²) = 1, so the congruence bN ≡ -d (mod q²) has
     a unique solution mod q². The solutions form an arithmetic progression with common
-    difference q², so there are at most ⌊X/q²⌋ + 1 solutions in [1,X]. -/
+    difference q², so there are at most ⌊X/q²⌋ + 1 solutions in [1,X].
+@isnad1 id=le.2h4v.s7.387a2dfd88c8 from=translated src=- shape=6abe4f8a vocab=776d1890
+-/
 lemma card_shifted_divisible_bound (b : ℕ) (hb : 2 ≤ b) (q : Nat.Primes) (hq : (q : ℕ) > b)
     (d : ℕ) (X : ℕ) :
     ((Finset.Icc 1 X).filter fun N => (q : ℕ) ^ 2 ∣ b * N + d).card ≤ X / (q : ℕ) ^ 2 + 1 := by
@@ -230,7 +277,9 @@ lemma card_shifted_divisible_bound (b : ℕ) (hb : 2 ≤ b) (q : Nat.Primes) (hq
 /-- The count of N in [1,X] with ∃d∈T, q²|(bN+d) is at most |T|*(X/q² + 1).
     This follows from the union bound over T applied to card_shifted_divisible_bound.
     Uses `Finset.card_biUnion_le_card_mul : ∀ (s : Finset ι) (f : ι → Finset β) (n : ℕ),
-    (∀ a ∈ s, (f a).card ≤ n) → (s.biUnion f).card ≤ s.card * n`. -/
+    (∀ a ∈ s, (f a).card ≤ n) → (s.biUnion f).card ≤ s.card * n`.
+@isnad1 id=le.3h4v.s8.e8bcf7cc28d3 from=translated src=- shape=7c5946a7 vocab=c8484828
+-/
 lemma card_union_shifted_bound (b : ℕ) (hb : 2 ≤ b) (T : Finset ℕ) (_hT : T ⊆ Finset.range b)
     (q : Nat.Primes) (hq : (q : ℕ) > b) (X : ℕ) :
     ((Finset.Icc 1 X).filter fun N => ∃ d ∈ T, (q : ℕ) ^ 2 ∣ b * N + d).card ≤
@@ -249,11 +298,17 @@ lemma card_union_shifted_bound (b : ℕ) (hb : 2 ≤ b) (T : Finset ℕ) (_hT : 
   intro d _
   exact card_shifted_divisible_bound b hb q hq d X
 
+/--
+@isnad1 id=le.0h3v.s6.f88d04cdf8f0 from=translated src=- shape=cc1884d5 vocab=275c8488
+-/
 lemma combined_bound_aux (T : Finset ℕ) (X q_sq : ℕ) :
     X / q_sq + T.card * (X / q_sq + 1) ≤ (T.card + 1) * (X / q_sq + 1) := by
   rw [add_mul, one_mul]
   omega
 
+/--
+@isnad1 id=le.3h4v.s8.a3a8e262cba6 from=translated src=- shape=28fe72f9 vocab=c8484828
+-/
 lemma single_prime_violation_bound (b : ℕ) (hb : 2 ≤ b) (T : Finset ℕ) (hT : T ⊆ Finset.range b)
     (q : Nat.Primes) (hq : (q : ℕ) > b) (X : ℕ) :
     ((Finset.Icc 1 X).filter fun N =>

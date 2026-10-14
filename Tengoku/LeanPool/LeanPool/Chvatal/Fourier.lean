@@ -71,53 +71,71 @@ def covariance (f g : Finset ι → ℝ) : ℝ :=
 def dual (f : Finset ι → ℝ) (x : Finset ι) : ℝ := 1 - f xᶜ
 
 omit [DecidableEq ι] in
-/-- The cube has positive cardinality, including when its coordinate set is empty. -/
+/-- The cube has positive cardinality, including when its coordinate set is empty.
+@isnad1 id=lt.0h1v.s4.b10e81596e80 from=translated src=- shape=bf92926f vocab=72764efb
+-/
 theorem cube_card_pos : (0 : ℝ) < Fintype.card (Finset ι) := by
   exact_mod_cast Fintype.card_pos
 
 omit [DecidableEq ι] in
-/-- Uniform expectation preserves constants; this fixes the normalization in Section 2. -/
+/-- Uniform expectation preserves constants; this fixes the normalization in Section 2.
+@isnad1 id=eq.0h2v.s4.6e80758eceb0 from=translated src=- shape=2759587c vocab=9a55c906
+-/
 @[simp] theorem cubeMean_const (c : ℝ) : cubeMean (fun _ : Finset ι => c) = c := by
   simp [cubeMean]
 
 omit [DecidableEq ι] in
-/-- Additivity of the expectation used throughout the Fourier calculations. -/
+/-- Additivity of the expectation used throughout the Fourier calculations.
+@isnad1 id=eq.0h3v.s5.85613a86e4dd from=translated src=- shape=38e82939 vocab=ab86761f
+-/
 theorem cubeMean_add (f g : Finset ι → ℝ) :
     cubeMean (fun x => f x + g x) = cubeMean f + cubeMean g := by
   simp [cubeMean, Finset.sum_add_distrib, add_div]
 
 omit [DecidableEq ι] in
-/-- Subtractivity of the expectation used throughout the Fourier calculations. -/
+/-- Subtractivity of the expectation used throughout the Fourier calculations.
+@isnad1 id=eq.0h3v.s5.430b1e969f74 from=translated src=- shape=38e82939 vocab=0fa1950b
+-/
 theorem cubeMean_sub (f g : Finset ι → ℝ) :
     cubeMean (fun x => f x - g x) = cubeMean f - cubeMean g := by
   simp [cubeMean, Finset.sum_sub_distrib, sub_div]
 
 omit [DecidableEq ι] in
-/-- Scalar linearity of expectation, used for the Fourier identities in Section 2. -/
+/-- Scalar linearity of expectation, used for the Fourier identities in Section 2.
+@isnad1 id=eq.0h3v.s5.379c804b1ba8 from=translated src=- shape=c5068f63 vocab=b4209273
+-/
 theorem cubeMean_mul_left (c : ℝ) (f : Finset ι → ℝ) :
     cubeMean (fun x => c * f x) = c * cubeMean f := by
   simp [cubeMean, ← Finset.mul_sum, mul_div_assoc]
 
 omit [DecidableEq ι] in
-/-- Right scalar linearity of expectation, a companion to `cubeMean_mul_left`. -/
+/-- Right scalar linearity of expectation, a companion to `cubeMean_mul_left`.
+@isnad1 id=eq.0h3v.s5.8ea3a43924cb from=translated src=- shape=464b49ad vocab=b4209273
+-/
 theorem cubeMean_mul_right (f : Finset ι → ℝ) (c : ℝ) :
     cubeMean (fun x => f x * c) = cubeMean f * c := by
   simpa [mul_comm] using cubeMean_mul_left c f
 
 omit [DecidableEq ι] in
-/-- Negation commutes with expectation, as used in Fourier coefficient calculations. -/
+/-- Negation commutes with expectation, as used in Fourier coefficient calculations.
+@isnad1 id=eq.0h2v.s4.bff13f6ad851 from=translated src=- shape=21597ddf vocab=0aa99982
+-/
 @[simp] theorem cubeMean_neg (f : Finset ι → ℝ) :
     cubeMean (fun x => -f x) = -cubeMean f := by
   simpa using cubeMean_mul_left (-1) f
 
 omit [DecidableEq ι] in
-/-- Expectation commutes with finite sums; this is used in Fourier inversion. -/
+/-- Expectation commutes with finite sums; this is used in Fourier inversion.
+@isnad1 id=eq.0h4v.s5.88421fb9ef01 from=translated src=- shape=f4804d02 vocab=4fc8ab63
+-/
 theorem cubeMean_sum {κ : Type*} (s : Finset κ) (f : κ → Finset ι → ℝ) :
     cubeMean (fun x => ∑ k ∈ s, f k x) = ∑ k ∈ s, cubeMean (f k) := by
   simp only [cubeMean, Finset.sum_div]
   exact Finset.sum_comm
 
-/-- The uniform cube distribution is invariant under translation by symmetric difference. -/
+/-- The uniform cube distribution is invariant under translation by symmetric difference.
+@isnad1 id=eq.0h3v.s5.d6f469045ed4 from=translated src=- shape=4c4906df vocab=7ad73331
+-/
 theorem cubeMean_symmDiff (f : Finset ι → ℝ) (S : Finset ι) :
     cubeMean (fun x => f (x ∆ S)) = cubeMean f := by
   unfold cubeMean
@@ -126,38 +144,52 @@ theorem cubeMean_symmDiff (f : Finset ι → ℝ) (S : Finset ι) :
   exact (show Function.Involutive (fun x : Finset ι => x ∆ S) from
     fun x => symmDiff_symmDiff_cancel_right S x).bijective
 
-/-- Complementation preserves uniform expectation; used in the duality identities. -/
+/-- Complementation preserves uniform expectation; used in the duality identities.
+@isnad1 id=eq.0h2v.s5.89c1e3558992 from=translated src=- shape=8271d006 vocab=f2809e54
+-/
 theorem cubeMean_compl (f : Finset ι → ℝ) :
     cubeMean (fun x => f xᶜ) = cubeMean f := by
   unfold cubeMean
   congr 1
   exact (show Function.Involutive (fun x : Finset ι => xᶜ) from compl_compl).bijective.sum_comp f
 
-/-- The mean of the dual function, recorded in the paper's preliminaries. -/
+/-- The mean of the dual function, recorded in the paper's preliminaries.
+@isnad1 id=eq.0h2v.s5.bd1cd6f1e268 from=translated src=- shape=8c46ef27 vocab=53f8afc4
+-/
 @[simp] theorem cubeMean_dual (f : Finset ι → ℝ) :
     cubeMean (dual f) = 1 - cubeMean f := by
   unfold dual
   rw [cubeMean_sub, cubeMean_const, cubeMean_compl]
 
 omit [Fintype ι] in
-/-- The empty Walsh character is the constant one function (Section 2). -/
+/-- The empty Walsh character is the constant one function (Section 2).
+@isnad1 id=eq.0h2v.s4.37e576d2fa9f from=translated src=- shape=cbc7c0d1 vocab=0f00ac42
+-/
 @[simp] theorem walsh_empty (x : Finset ι) : walsh ∅ x = 1 := by simp [walsh]
 
 omit [Fintype ι] in
-/-- Evaluating a character at the origin gives one (Section 2). -/
+/-- Evaluating a character at the origin gives one (Section 2).
+@isnad1 id=eq.0h2v.s4.3f3b2faf4553 from=translated src=- shape=37af6b3c vocab=0f00ac42
+-/
 @[simp] theorem walsh_apply_empty (S : Finset ι) : walsh S ∅ = 1 := by simp [walsh]
 
 omit [Fintype ι] in
-/-- The symmetry of the Walsh kernel allows inversion to use the same transform. -/
+/-- The symmetry of the Walsh kernel allows inversion to use the same transform.
+@isnad1 id=eq.0h3v.s4.6846982958c4 from=translated src=- shape=04554202 vocab=7b687e6e
+-/
 theorem walsh_comm (S x : Finset ι) : walsh S x = walsh x S := by
   simp [walsh, Finset.inter_comm]
 
-/-- The empty Fourier coefficient is the uniform mean, in the convention of Section 2. -/
+/-- The empty Fourier coefficient is the uniform mean, in the convention of Section 2.
+@isnad1 id=eq.0h2v.s4.16cce4bad7da from=translated src=- shape=56d20d38 vocab=a0b550ec
+-/
 @[simp] theorem fourier_empty (f : Finset ι → ℝ) : fourier f ∅ = cubeMean f := by
   simp [fourier]
 
 omit [Fintype ι] in
-/-- Inserting a coordinate multiplies a Walsh character by that coordinate's sign. -/
+/-- Inserting a coordinate multiplies a Walsh character by that coordinate's sign.
+@isnad1 id=eq.1h4v.s6.d83a1ffcadf3 from=translated src=- shape=dfc556ca vocab=895eb4f3
+-/
 theorem walsh_insert {i : ι} {S : Finset ι} (hi : i ∉ S) (x : Finset ι) :
     walsh (insert i S) x = (if i ∈ x then -1 else 1) * walsh S x := by
   by_cases hx : i ∈ x
@@ -166,7 +198,9 @@ theorem walsh_insert {i : ι} {S : Finset ι} (hi : i ∉ S) (x : Finset ι) :
   · simp [walsh, Finset.insert_inter_of_notMem hx, hx]
 
 omit [Fintype ι] in
-/-- The character multiplication law in the cube variable, used in Section 2. -/
+/-- The character multiplication law in the cube variable, used in Section 2.
+@isnad1 id=eq.0h4v.s5.dd863cf7e3e0 from=translated src=- shape=fbc59822 vocab=079c76e5
+-/
 theorem walsh_symmDiff_right (S x y : Finset ι) :
     walsh S (x ∆ y) = walsh S x * walsh S y := by
   induction S using Finset.induction_on with
@@ -177,31 +211,41 @@ theorem walsh_symmDiff_right (S x y : Finset ι) :
       simp [Finset.mem_symmDiff, hx, hy]
 
 omit [Fintype ι] in
-/-- The product of characters is indexed by symmetric difference, as in Section 2. -/
+/-- The product of characters is indexed by symmetric difference, as in Section 2.
+@isnad1 id=eq.0h4v.s5.c65d1c3d6402 from=translated src=- shape=dc5a033a vocab=079c76e5
+-/
 theorem walsh_symmDiff_left (S T x : Finset ι) :
     walsh (S ∆ T) x = walsh S x * walsh T x := by
   simpa only [walsh_comm] using walsh_symmDiff_right x S T
 
 omit [Fintype ι] in
-/-- Every Walsh character has square one, as needed for Parseval's identity. -/
+/-- Every Walsh character has square one, as needed for Parseval's identity.
+@isnad1 id=eq.0h3v.s5.990ea3f6d0be from=translated src=- shape=32e0bdfb vocab=6f523180
+-/
 @[simp] theorem walsh_sq (S x : Finset ι) : walsh S x ^ 2 = 1 := by
   rw [pow_two, ← walsh_symmDiff_left]
   simp
 
 omit [Fintype ι] in
-/-- A singleton character is the sign of its single cube coordinate. -/
+/-- A singleton character is the sign of its single cube coordinate.
+@isnad1 id=eq.0h3v.s5.ca48e148861a from=translated src=- shape=85e8b58a vocab=14e1a0b8
+-/
 theorem walsh_singleton (i : ι) (x : Finset ι) :
     walsh {i} x = if i ∈ x then -1 else 1 := by
   simpa using walsh_insert (S := ∅) (by simp) x
 
 omit [Fintype ι] in
-/-- Toggling a coordinate in a character's support reverses its sign. -/
+/-- Toggling a coordinate in a character's support reverses its sign.
+@isnad1 id=eq.1h4v.s5.26c689ece948 from=translated src=- shape=183646ee vocab=730768e4
+-/
 theorem walsh_toggle {S : Finset ι} {i : ι} (hi : i ∈ S) (x : Finset ι) :
     walsh S (x ∆ {i}) = -walsh S x := by
   rw [walsh_symmDiff_right, walsh_comm S {i}, walsh_singleton]
   simp [hi]
 
-/-- Every nonconstant Walsh character has mean zero, the orthogonality input of Section 2. -/
+/-- Every nonconstant Walsh character has mean zero, the orthogonality input of Section 2.
+@isnad1 id=eq.1h2v.s4.24da4fb2c83f from=translated src=- shape=4f85c862 vocab=8f4cf931
+-/
 theorem cubeMean_walsh_of_nonempty {S : Finset ι} (hS : S.Nonempty) :
     cubeMean (walsh S) = 0 := by
   obtain ⟨i, hi⟩ := hS
@@ -209,14 +253,18 @@ theorem cubeMean_walsh_of_nonempty {S : Finset ι} (hS : S.Nonempty) :
   simp only [walsh_toggle hi, cubeMean_neg] at h
   linarith
 
-/-- The uniform mean of a Walsh character is the Kronecker delta at the empty set. -/
+/-- The uniform mean of a Walsh character is the Kronecker delta at the empty set.
+@isnad1 id=eq.0h2v.s5.11a0956356a1 from=translated src=- shape=2361da68 vocab=b4d9da95
+-/
 theorem cubeMean_walsh (S : Finset ι) :
     cubeMean (walsh S) = if S = ∅ then 1 else 0 := by
   by_cases hS : S = ∅
   · subst S; simp [cubeMean, walsh]
   · simp [hS, cubeMean_walsh_of_nonempty (Finset.nonempty_iff_ne_empty.mpr hS)]
 
-/-- Orthogonality of the Walsh basis, stated in the paper's normalized inner product. -/
+/-- Orthogonality of the Walsh basis, stated in the paper's normalized inner product.
+@isnad1 id=eq.0h3v.s5.6a0de2f368cb from=translated src=- shape=a1257fa4 vocab=6288d30b
+-/
 theorem walsh_orthogonality (S T : Finset ι) :
     cubeMean (fun x => walsh S x * walsh T x) = if S = T then 1 else 0 := by
   simp_rw [← walsh_symmDiff_left]
@@ -224,7 +272,9 @@ theorem walsh_orthogonality (S T : Finset ι) :
   have h : S ∆ T = ∅ ↔ S = T := symmDiff_eq_bot
   simp only [h]
 
-/-- Multiplying by a character shifts the Fourier index, as used in Lemma 2.2. -/
+/-- Multiplying by a character shifts the Fourier index, as used in Lemma 2.2.
+@isnad1 id=eq.0h4v.s6.4a112ac57468 from=translated src=- shape=dba54eee vocab=51a75729
+-/
 theorem fourier_mul_walsh (f : Finset ι → ℝ) (S T : Finset ι) :
     fourier (fun x => f x * walsh T x) S = fourier f (S ∆ T) := by
   unfold fourier
@@ -234,7 +284,9 @@ theorem fourier_mul_walsh (f : Finset ι → ℝ) (S T : Finset ι) :
   ring
 
 /-- A function independent of coordinate `i` has no Fourier coefficient containing `i`.
-This is the support argument for the monomials in Lemma 2.2. -/
+This is the support argument for the monomials in Lemma 2.2.
+@isnad1 id=eq.2h4v.s6.f6a6d46840b9 from=translated src=- shape=e444271c vocab=2aa7d9a5
+-/
 theorem fourier_eq_zero_of_invariant (f : Finset ι → ℝ) {S : Finset ι} {i : ι}
     (hi : i ∈ S) (hf : ∀ x, f (x ∆ {i}) = f x) : fourier f S = 0 := by
   have h := cubeMean_symmDiff (fun x => f x * walsh S x) {i}
@@ -242,7 +294,9 @@ theorem fourier_eq_zero_of_invariant (f : Finset ι → ℝ) {S : Finset ι} {i 
   unfold fourier
   linarith
 
-/-- Summing the Walsh kernel gives a scaled Kronecker delta, the inversion kernel. -/
+/-- Summing the Walsh kernel gives a scaled Kronecker delta, the inversion kernel.
+@isnad1 id=eq.0h3v.s6.14549ae4a93e from=translated src=- shape=f7815d28 vocab=6bdb0cdf
+-/
 theorem sum_walsh_kernel (x y : Finset ι) :
     (∑ S, walsh S x * walsh S y) =
       if x = y then (Fintype.card (Finset ι) : ℝ) else 0 := by
@@ -251,7 +305,9 @@ theorem sum_walsh_kernel (x y : Finset ι) :
   rw [div_eq_iff (ne_of_gt (cube_card_pos (ι := ι)))] at h
   simpa only [walsh_comm, ite_mul, one_mul, zero_mul] using h
 
-/-- Fourier inversion on the Boolean cube, the expansion used throughout Section 2. -/
+/-- Fourier inversion on the Boolean cube, the expansion used throughout Section 2.
+@isnad1 id=eq.0h3v.s5.d0a3971ca51b from=translated src=- shape=ae3aa506 vocab=9e5acaac
+-/
 theorem fourier_inversion (f : Finset ι → ℝ) (x : Finset ι) :
     (∑ S, fourier f S * walsh S x) = f x := by
   calc
@@ -270,7 +326,9 @@ theorem fourier_inversion (f : Finset ι → ℝ) (x : Finset ι) :
       simp_rw [sum_walsh_kernel]
       simp [mul_ite]
 
-/-- Parseval's identity for two real cube functions, as recalled in Section 2. -/
+/-- Parseval's identity for two real cube functions, as recalled in Section 2.
+@isnad1 id=eq.0h3v.s6.85050ade2327 from=translated src=- shape=ce6c1435 vocab=df87281a
+-/
 theorem parseval_inner (f g : Finset ι → ℝ) :
     cubeMean (fun x => f x * g x) = ∑ S, fourier f S * fourier g S := by
   calc
@@ -289,28 +347,38 @@ theorem parseval_inner (f g : Finset ι → ℝ) :
       rw [cubeMean_mul_left]
       exact mul_comm (fourier g S) (fourier f S)
 
-/-- The sum-of-squares form of Parseval's identity in Section 2. -/
+/-- The sum-of-squares form of Parseval's identity in Section 2.
+@isnad1 id=eq.0h2v.s6.c3f91db76736 from=translated src=- shape=6f010eed vocab=b077e1ea
+-/
 theorem parseval (f : Finset ι → ℝ) :
     cubeMean (fun x => f x ^ 2) = ∑ S, fourier f S ^ 2 := by
   simpa only [pow_two] using parseval_inner f f
 
-/-- The transform preserves addition, used in the constant-coefficient adjustment. -/
+/-- The transform preserves addition, used in the constant-coefficient adjustment.
+@isnad1 id=eq.0h4v.s5.faa62c5f61b5 from=translated src=- shape=98ac0122 vocab=73c0d922
+-/
 theorem fourier_add (f g : Finset ι → ℝ) (S : Finset ι) :
     fourier (fun x => f x + g x) S = fourier f S + fourier g S := by
   simp only [fourier, add_mul, cubeMean_add]
 
-/-- The transform preserves subtraction, used in the constant-coefficient adjustment. -/
+/-- The transform preserves subtraction, used in the constant-coefficient adjustment.
+@isnad1 id=eq.0h4v.s5.3b71ada8daff from=translated src=- shape=98ac0122 vocab=22a04d89
+-/
 theorem fourier_sub (f g : Finset ι → ℝ) (S : Finset ι) :
     fourier (fun x => f x - g x) S = fourier f S - fourier g S := by
   simp only [fourier, sub_mul, cubeMean_sub]
 
-/-- A constant has only its empty Fourier coefficient, as in the Section 2 convention. -/
+/-- A constant has only its empty Fourier coefficient, as in the Section 2 convention.
+@isnad1 id=eq.0h3v.s5.e20c25b18f3e from=translated src=- shape=6912f175 vocab=7cb860f3
+-/
 theorem fourier_const (c : ℝ) (S : Finset ι) :
     fourier (fun _ : Finset ι => c) S = if S = ∅ then c else 0 := by
   rw [fourier, cubeMean_mul_left, cubeMean_walsh]
   split_ifs <;> simp
 
-/-- Subtracting the mean removes exactly the constant Fourier coefficient. -/
+/-- Subtracting the mean removes exactly the constant Fourier coefficient.
+@isnad1 id=eq.0h3v.s6.e6f6a5e36c87 from=translated src=- shape=b06b684c vocab=f75cd512
+-/
 theorem fourier_sub_mean (f : Finset ι → ℝ) (S : Finset ι) :
     fourier (fun x => f x - cubeMean f) S =
       if S = ∅ then 0 else fourier f S := by
@@ -319,13 +387,17 @@ theorem fourier_sub_mean (f : Finset ι → ℝ) (S : Finset ι) :
   · subst S; simp
   · simp
 
-/-- The Fourier transform is injective, a direct consequence of the inversion formula. -/
+/-- The Fourier transform is injective, a direct consequence of the inversion formula.
+@isnad1 id=injectiv.0h1v.s4.1e2e39135031 from=translated src=- shape=6786854d vocab=8930d457
+-/
 theorem fourier_injective : Function.Injective (fourier (ι := ι)) := by
   intro f g h
   funext x
   rw [← fourier_inversion f x, ← fourier_inversion g x, h]
 
-/-- Complementation multiplies a Walsh character by the parity of its index. -/
+/-- Complementation multiplies a Walsh character by the parity of its index.
+@isnad1 id=eq.0h3v.s6.5902370517b5 from=translated src=- shape=13564817 vocab=b01156b0
+-/
 theorem walsh_compl (S x : Finset ι) :
     walsh S xᶜ = (-1 : ℝ) ^ S.card * walsh S x := by
   have hx : xᶜ = x ∆ Finset.univ := by
@@ -334,7 +406,9 @@ theorem walsh_compl (S x : Finset ι) :
   rw [hx, walsh_symmDiff_right]
   simp [walsh, mul_comm]
 
-/-- Complementing the argument multiplies Fourier coefficients by index parity. -/
+/-- Complementing the argument multiplies Fourier coefficients by index parity.
+@isnad1 id=eq.0h3v.s6.dd6ac4b77248 from=translated src=- shape=7f4d7ca9 vocab=38c15029
+-/
 theorem fourier_compl (f : Finset ι → ℝ) (S : Finset ι) :
     fourier (fun x => f xᶜ) S = (-1 : ℝ) ^ S.card * fourier f S := by
   have h := cubeMean_compl (fun x => f x * walsh S xᶜ)
@@ -345,7 +419,9 @@ theorem fourier_compl (f : Finset ι → ℝ) (S : Finset ι) :
   rw [cubeMean_mul_left]
   simp [mul_comm]
 
-/-- The nonconstant Fourier coefficients of the dual, recalled in Section 2. -/
+/-- The nonconstant Fourier coefficients of the dual, recalled in Section 2.
+@isnad1 id=eq.1h3v.s6.f827be110744 from=translated src=- shape=9ca52a34 vocab=16bf587d
+-/
 theorem fourier_dual_of_nonempty (f : Finset ι → ℝ) {S : Finset ι}
     (hS : S.Nonempty) :
     fourier (dual f) S = -((-1 : ℝ) ^ S.card * fourier f S) := by
@@ -353,7 +429,9 @@ theorem fourier_dual_of_nonempty (f : Finset ι → ℝ) {S : Finset ι}
   rw [fourier_sub, fourier_const, fourier_compl]
   simp [hS.ne_empty]
 
-/-- Covariance is the sum of the products of the nonconstant Fourier coefficients. -/
+/-- Covariance is the sum of the products of the nonconstant Fourier coefficients.
+@isnad1 id=eq.0h3v.s6.17276043f183 from=translated src=- shape=f1114343 vocab=2fbf1c8e
+-/
 theorem covariance_fourier (f g : Finset ι → ℝ) :
     covariance f g = ∑ S ∈ Finset.univ.erase ∅, fourier f S * fourier g S := by
   rw [covariance, parseval_inner]
@@ -362,7 +440,9 @@ theorem covariance_fourier (f g : Finset ι → ℝ) :
   simp only [fourier_empty] at h
   linarith
 
-/-- The alternating Fourier expression for covariance with the dual, used in Theorem 1.2. -/
+/-- The alternating Fourier expression for covariance with the dual, used in Theorem 1.2.
+@isnad1 id=eq.0h2v.s6.c10e6ec8c763 from=translated src=- shape=96dc0748 vocab=a04721bb
+-/
 theorem covariance_dual_fourier (f : Finset ι → ℝ) :
     covariance f (dual f) = ∑ S ∈ Finset.univ.erase ∅,
       -(-1 : ℝ) ^ S.card * fourier f S ^ 2 := by
@@ -374,21 +454,27 @@ theorem covariance_dual_fourier (f : Finset ι → ℝ) :
   ring
 
 omit [DecidableEq ι] in
-/-- Pointwise nonnegativity implies nonnegative uniform expectation. -/
+/-- Pointwise nonnegativity implies nonnegative uniform expectation.
+@isnad1 id=le.1h2v.s5.90b9bb343c3c from=translated src=- shape=02b634bd vocab=32010320
+-/
 theorem cubeMean_nonneg {f : Finset ι → ℝ} (hf : ∀ x, 0 ≤ f x) :
     0 ≤ cubeMean f := by
   exact div_nonneg (Finset.sum_nonneg fun x _ => hf x)
     (le_of_lt (cube_card_pos (ι := ι)))
 
 omit [DecidableEq ι] in
-/-- Pointwise comparison implies comparison of uniform expectations. -/
+/-- Pointwise comparison implies comparison of uniform expectations.
+@isnad1 id=le.1h3v.s5.7f43c2a78046 from=translated src=- shape=d93c500a vocab=32010320
+-/
 theorem cubeMean_mono {f g : Finset ι → ℝ} (h : ∀ x, f x ≤ g x) :
     cubeMean f ≤ cubeMean g := by
   exact div_le_div_of_nonneg_right (Finset.sum_le_sum fun x _ => h x)
     (le_of_lt (cube_card_pos (ι := ι)))
 
 /-- Translating a cube function multiplies each Fourier coefficient by the character
-of the translation vector; this is the spectral step in equation (10). -/
+of the translation vector; this is the spectral step in equation (10).
+@isnad1 id=eq.0h4v.s6.9486dba1e5f7 from=translated src=- shape=6f178a80 vocab=51a75729
+-/
 theorem fourier_symmDiff (f : Finset ι → ℝ) (S T : Finset ι) :
     fourier (fun x => f (x ∆ T)) S = walsh S T * fourier f S := by
   have h := cubeMean_symmDiff (fun x => f x * walsh S (x ∆ T)) T
@@ -400,7 +486,9 @@ theorem fourier_symmDiff (f : Finset ι → ℝ) (S T : Finset ι) :
   ring
 
 /-- Equation (10), first equality: the energy of a simultaneous coordinate flip
-is the Fourier energy weighted by the squared character difference. -/
+is the Fourier energy weighted by the squared character difference.
+@isnad1 id=eq.0h3v.s7.9316febc2190 from=translated src=- shape=1d4236f4 vocab=c26d44ed
+-/
 theorem flip_energy_fourier (f : Finset ι → ℝ) (T : Finset ι) :
     cubeMean (fun x => (f x - f (x ∆ T)) ^ 2) =
       ∑ S, (1 - walsh S T) ^ 2 * fourier f S ^ 2 := by
@@ -411,7 +499,9 @@ theorem flip_energy_fourier (f : Finset ι → ℝ) (T : Finset ι) :
   ring
 
 omit [Fintype ι] in
-/-- The elementary parity computation behind equation (10). -/
+/-- The elementary parity computation behind equation (10).
+@isnad1 id=eq.0h3v.s6.073284764b57 from=translated src=- shape=021b8604 vocab=66265d9e
+-/
 theorem walsh_flip_factor (S T : Finset ι) :
     (1 - walsh S T) ^ 2 = if Odd (S ∩ T).card then 4 else 0 := by
   unfold walsh
@@ -421,7 +511,9 @@ theorem walsh_flip_factor (S T : Finset ι) :
     simp [h, he.neg_one_pow]
 
 /-- Equation (10), second equality: only Fourier sets meeting the flipped set
-in an odd number of coordinates contribute to the flip energy. -/
+in an odd number of coordinates contribute to the flip energy.
+@isnad1 id=eq.0h3v.s7.5922ffd12c4d from=translated src=- shape=09f9e4b2 vocab=9a449136
+-/
 theorem flip_energy_odd (f : Finset ι → ℝ) (T : Finset ι) :
     cubeMean (fun x => (f x - f (x ∆ T)) ^ 2) =
       4 * ∑ S ∈ Finset.univ.filter (fun S : Finset ι => Odd (S ∩ T).card),
@@ -430,7 +522,9 @@ theorem flip_energy_odd (f : Finset ι → ℝ) (T : Finset ι) :
   simp_rw [walsh_flip_factor, Finset.sum_filter, ite_mul, zero_mul]
 
 /-- The change of variables `y = x ∆ T` in equation (11), before specializing
-`f` to an indicator. Both sides retain the paper's factor of one half. -/
+`f` to an indicator. Both sides retain the paper's factor of one half.
+@isnad1 id=eq.0h3v.s8.80bd9ec068e4 from=translated src=- shape=153c8951 vocab=fc514231
+-/
 theorem weighted_flip_energy (f g : Finset ι → ℝ) :
     (1 / 2 : ℝ) * ∑ T, fourier g T ^ 2 *
       cubeMean (fun x => (f x - f (x ∆ T)) ^ 2) =

@@ -33,6 +33,9 @@ noncomputable def coordinateEmbed (M : TriangleMesh) :
     GeometricRealization M.Vertex M.triangles → Plane :=
   fun x ↦ M.toPlaneComplex.baryEval x.1
 
+/--
+@isnad1 id=isembedd.0h1v.s6.04de4716cfe8 from=translated src=- shape=c9c7a6e8 vocab=ee18c01f
+-/
 theorem isEmbedding_coordinateEmbed (M : TriangleMesh) :
     _root_.Topology.IsEmbedding M.coordinateEmbed := by
   have hfaces : GeometricRealization M.Vertex M.triangles =
@@ -50,6 +53,9 @@ theorem isEmbedding_coordinateEmbed (M : TriangleMesh) :
   rw [heq] at h
   exact h
 
+/--
+@isnad1 id=eq.0h1v.s4.266e18cacfdc from=translated src=- shape=3c576536 vocab=46a24153
+-/
 theorem range_coordinateEmbed (M : TriangleMesh) :
     Set.range M.coordinateEmbed = M.toPlaneComplex.support := by
   have hfaces : GeometricRealization M.Vertex M.triangles =
@@ -78,6 +84,9 @@ noncomputable def coordinateEmbedInto (M : TriangleMesh) (W : Set Plane)
     rw [← M.range_coordinateEmbed]
     exact Set.mem_range_self x)⟩
 
+/--
+@isnad1 id=isembedd.1h2v.s7.298c2aa31e9f from=translated src=- shape=cdbb5f33 vocab=8935f259
+-/
 theorem isEmbedding_coordinateEmbedInto (M : TriangleMesh) (W : Set Plane)
     (hW : M.toPlaneComplex.support ⊆ W) :
     _root_.Topology.IsEmbedding (M.coordinateEmbedInto W hW) :=
@@ -94,6 +103,9 @@ def closedRegion : Set Plane :=
   ⋃ i, (J i).closedRegion
 
 omit [Fintype ι] in
+/--
+@isnad1 id=iscompac.0h2v.s5.5907a04288b4 from=translated src=- shape=d0ac1461 vocab=af37698e
+-/
 theorem isCompact_closedRegion [Finite ι] : IsCompact (closedRegion J) := by
   let := Fintype.ofFinite ι
   exact isCompact_iUnion fun i ↦ (J i).isCompact_closedRegion
@@ -102,9 +114,15 @@ theorem isCompact_closedRegion [Finite ι] : IsCompact (closedRegion J) := by
 noncomputable def enclosingRadius : ℝ :=
   max ((isCompact_closedRegion J).isBounded.subset_closedBall (0 : Plane)).choose 1
 
+/--
+@isnad1 id=lt.0h2v.s4.21a062448caa from=translated src=- shape=59aa0618 vocab=0ae64e31
+-/
 theorem enclosingRadius_pos : 0 < enclosingRadius J :=
   lt_of_lt_of_le zero_lt_one (le_max_right _ _)
 
+/--
+@isnad1 id=le.0h2v.s7.3b01fbe3b136 from=translated src=- shape=ef21e8a5 vocab=ce51efcd
+-/
 theorem closedRegion_subset_enclosingBall :
     closedRegion J ⊆ Metric.closedBall (0 : Plane) (enclosingRadius J) := by
   intro x hx
@@ -117,6 +135,9 @@ noncomputable def enclosingMesh : TriangleMesh :=
   TriangleMesh.single (PolygonalCircle.enclosingTriangleVertices (enclosingRadius J))
     (PolygonalCircle.enclosingTriangleVertices_affineIndependent (enclosingRadius_pos J))
 
+/--
+@isnad1 id=le.0h2v.s4.a0f23f39ab0b from=translated src=- shape=5607176b vocab=0296921a
+-/
 theorem closedRegion_subset_enclosingMesh_support :
     closedRegion J ⊆ (enclosingMesh J).toPlaneComplex.support := by
   rw [enclosingMesh, TriangleMesh.single_support]
@@ -127,6 +148,9 @@ theorem closedRegion_subset_enclosingMesh_support :
 noncomputable def edgeLines : List (Plane →ᵃ[ℝ] ℝ) :=
   (Finset.univ : Finset ι).toList.flatMap fun i ↦ (J i).edgeLines
 
+/--
+@isnad1 id=mem.0h4v.s10.50191aeae6d0 from=translated src=- shape=5ddc5ed2 vocab=1bcbe9f1
+-/
 theorem edgeLine_mem_edgeLines (i : ι) (k : ZMod (J i).n) :
     (J i).edgeLine k ∈ edgeLines J := by
   rw [edgeLines, List.mem_flatMap]
@@ -136,16 +160,25 @@ theorem edgeLine_mem_edgeLines (i : ι) (k : ZMod (J i).n) :
 noncomputable def arrangementMesh : TriangleMesh :=
   (enclosingMesh J).refineByLines (edgeLines J)
 
+/--
+@isnad1 id=eq.0h2v.s4.6d504028239e from=translated src=- shape=505a2f97 vocab=9418d0f4
+-/
 theorem arrangementMesh_support :
     (arrangementMesh J).toPlaneComplex.support =
       (enclosingMesh J).toPlaneComplex.support :=
   (enclosingMesh J).refineByLines_support (edgeLines J)
 
+/--
+@isnad1 id=le.0h2v.s4.724cd21ecdc2 from=translated src=- shape=5607176b vocab=3db1ab2d
+-/
 theorem closedRegion_subset_arrangementMesh_support :
     closedRegion J ⊆ (arrangementMesh J).toPlaneComplex.support := by
   rw [arrangementMesh_support]
   exact closedRegion_subset_enclosingMesh_support J
 
+/--
+@isnad1 id=ismonoch.0h4v.s4.35582d3bf5e8 from=translated src=- shape=a458090c vocab=ffb9eb2e
+-/
 theorem arrangementMesh_isMonochromatic (i : ι) (k : ZMod (J i).n) :
     (arrangementMesh J).IsMonochromatic ((J i).edgeLine k) :=
   (enclosingMesh J).refineByLines_isMonochromatic_of_mem
@@ -155,16 +188,25 @@ theorem arrangementMesh_isMonochromatic (i : ι) (k : ZMod (J i).n) :
 def arrangementTriangleCarrier (t : Finset (arrangementMesh J).Vertex) : Set Plane :=
   convexHull ℝ ((arrangementMesh J).position '' (t : Set _))
 
+/--
+@isnad1 id=convex.0h3v.s6.a21a4d836dd0 from=translated src=- shape=0640bc25 vocab=5efae115
+-/
 theorem convex_arrangementTriangleCarrier
     (t : Finset (arrangementMesh J).Vertex) :
     Convex ℝ (arrangementTriangleCarrier J t) :=
   convex_convexHull ℝ _
 
+/--
+@isnad1 id=isclosed.0h3v.s5.c4e54a943c00 from=translated src=- shape=983c7792 vocab=e9fc8420
+-/
 theorem isClosed_arrangementTriangleCarrier
     (t : Finset (arrangementMesh J).Vertex) :
     IsClosed (arrangementTriangleCarrier J t) :=
   (t.finite_toSet.image (arrangementMesh J).position).isClosed_convexHull ℝ
 
+/--
+@isnad1 id=nonempty.1h3v.s6.56bb174b102e from=translated src=- shape=095a5242 vocab=14def36e
+-/
 theorem arrangementTriangleCarrier_interior_nonempty
     {t : Finset (arrangementMesh J).Vertex} (ht : t ∈ (arrangementMesh J).triangles) :
     (interior (arrangementTriangleCarrier J t)).Nonempty := by
@@ -181,6 +223,9 @@ theorem arrangementTriangleCarrier_interior_nonempty
   rw [Fintype.card_coe, (arrangementMesh J).card_triangle t ht]
   simp [Plane]
 
+/--
+@isnad1 id=eq.1h3v.s7.830e4075c65c from=translated src=- shape=0fd7d6d6 vocab=bc78d0dc
+-/
 theorem closure_interior_arrangementTriangleCarrier
     {t : Finset (arrangementMesh J).Vertex} (ht : t ∈ (arrangementMesh J).triangles) :
     closure (interior (arrangementTriangleCarrier J t)) =
@@ -193,7 +238,9 @@ theorem closure_interior_arrangementTriangleCarrier
     _ = arrangementTriangleCarrier J t :=
       (isClosed_arrangementTriangleCarrier J t).closure_eq
 
-/-- Every open arrangement chamber misses every polygon boundary in the family. -/
+/-- Every open arrangement chamber misses every polygon boundary in the family.
+@isnad1 id=disjoint.1h4v.s7.ee893a4ddea0 from=translated src=- shape=ff95ddb1 vocab=3a75dae8
+-/
 theorem arrangementTriangle_interior_disjoint_carrier
     (i : ι) {t : Finset (arrangementMesh J).Vertex}
     (ht : t ∈ (arrangementMesh J).triangles) :
@@ -227,6 +274,9 @@ theorem arrangementTriangle_interior_disjoint_carrier
     change (J i).edgeLine k x < 0 at hxstrict
     linarith
 
+/--
+@isnad1 id=or.1h4v.s7.a05a5b0343b0 from=translated src=- shape=e9629b91 vocab=6aeb90da
+-/
 theorem arrangementTriangle_interior_side
     (i : ι) {t : Finset (arrangementMesh J).Vertex}
     (ht : t ∈ (arrangementMesh J).triangles) :
@@ -261,6 +311,9 @@ noncomputable def closedRegionMesh : TriangleMesh := by
   classical
   exact (arrangementMesh J).restrictTriangles (IsInteriorArrangementTriangle J)
 
+/--
+@isnad1 id=iff.0h3v.s6.dca20428898f from=translated src=- shape=15042c86 vocab=78158b9a
+-/
 theorem closedRegionMesh_triangle_mem
     {t : Finset (closedRegionMesh J).Vertex} :
     t ∈ (closedRegionMesh J).triangles ↔
@@ -269,6 +322,9 @@ theorem closedRegionMesh_triangle_mem
   exact (arrangementMesh J).mem_restrictTriangles_triangles
     (IsInteriorArrangementTriangle J)
 
+/--
+@isnad1 id=le.2h3v.s6.e386da160544 from=translated src=- shape=a992a10d vocab=6f7555bf
+-/
 theorem arrangementTriangleCarrier_subset_closedRegion
     {t : Finset (arrangementMesh J).Vertex} (ht : t ∈ (arrangementMesh J).triangles)
     (hinside : IsInteriorArrangementTriangle J t) :
@@ -278,6 +334,9 @@ theorem arrangementTriangleCarrier_subset_closedRegion
   exact (closure_mono hi).trans fun x hx ↦ Set.mem_iUnion.mpr
     ⟨i, by simpa only [PolygonalCircle.closedRegion] using hx⟩
 
+/--
+@isnad1 id=le.0h2v.s4.93b3a15548c0 from=translated src=- shape=dd476a0a vocab=f8325621
+-/
 theorem closedRegionMesh_support_subset :
     (closedRegionMesh J).toPlaneComplex.support ⊆ closedRegion J := by
   rw [TriangleMesh.toPlaneComplex_support]
@@ -287,6 +346,9 @@ theorem closedRegionMesh_support_subset :
   obtain ⟨htarr, htinside⟩ := (closedRegionMesh_triangle_mem J).mp ht
   exact arrangementTriangleCarrier_subset_closedRegion J htarr htinside hxt
 
+/--
+@isnad1 id=le.0h3v.s4.e4a1d48869a8 from=translated src=- shape=eaa6b5e6 vocab=1fcbc980
+-/
 theorem interiorRegion_subset_closedRegionMesh_support (i : ι) :
     (J i).interiorRegion ⊆ (closedRegionMesh J).toPlaneComplex.support := by
   intro x hxinside
@@ -314,6 +376,9 @@ theorem interiorRegion_subset_closedRegionMesh_support (i : ι) :
   exact ⟨t, (closedRegionMesh_triangle_mem J).mpr
     ⟨ht, ⟨i, htinside⟩⟩, hxt⟩
 
+/--
+@isnad1 id=le.0h2v.s4.257b5368e648 from=translated src=- shape=5607176b vocab=f8325621
+-/
 theorem closedRegion_subset_closedRegionMesh_support :
     closedRegion J ⊆ (closedRegionMesh J).toPlaneComplex.support := by
   intro x hx
@@ -322,7 +387,9 @@ theorem closedRegion_subset_closedRegionMesh_support :
   exact closure_minimal (interiorRegion_subset_closedRegionMesh_support J i)
     (closedRegionMesh J).toPlaneComplex.isCompact_support.isClosed hxi
 
-/-- Exact support of the common family mesh. -/
+/-- Exact support of the common family mesh.
+@isnad1 id=eq.0h2v.s4.4ae88640dbde from=translated src=- shape=dd476a0a vocab=f4a5519f
+-/
 theorem closedRegionMesh_support :
     (closedRegionMesh J).toPlaneComplex.support = closedRegion J :=
   Set.Subset.antisymm (closedRegionMesh_support_subset J)
@@ -348,6 +415,9 @@ noncomputable def selectedClosedRegionMesh (p : ι → Prop) : TriangleMesh := b
   exact (arrangementMesh J).restrictTriangles
     (IsSelectedInteriorArrangementTriangle J p)
 
+/--
+@isnad1 id=iff.0h4v.s6.5b7348acc230 from=translated src=- shape=0e11ca16 vocab=61d26c58
+-/
 theorem selectedClosedRegionMesh_triangle_mem (p : ι → Prop)
     {t : Finset (selectedClosedRegionMesh J p).Vertex} :
     t ∈ (selectedClosedRegionMesh J p).triangles ↔
@@ -357,6 +427,9 @@ theorem selectedClosedRegionMesh_triangle_mem (p : ι → Prop)
   exact (arrangementMesh J).mem_restrictTriangles_triangles
     (IsSelectedInteriorArrangementTriangle J p)
 
+/--
+@isnad1 id=le.2h4v.s6.5f142cd71b6f from=translated src=- shape=1f90d079 vocab=5d57d0b1
+-/
 theorem arrangementTriangleCarrier_subset_selectedClosedRegion
     (p : ι → Prop) {t : Finset (arrangementMesh J).Vertex}
     (ht : t ∈ (arrangementMesh J).triangles)
@@ -368,6 +441,9 @@ theorem arrangementTriangleCarrier_subset_selectedClosedRegion
     ⟨i, Set.mem_iUnion.mpr
       ⟨hpi, by simpa only [PolygonalCircle.closedRegion] using hx⟩⟩
 
+/--
+@isnad1 id=le.0h3v.s4.f9c1856d3747 from=translated src=- shape=b1a2ecdf vocab=23a56577
+-/
 theorem selectedClosedRegionMesh_support_subset (p : ι → Prop) :
     (selectedClosedRegionMesh J p).toPlaneComplex.support ⊆
       selectedClosedRegion J p := by
@@ -380,6 +456,9 @@ theorem selectedClosedRegionMesh_support_subset (p : ι → Prop) :
   exact arrangementTriangleCarrier_subset_selectedClosedRegion
     J p htarr htinside hxt
 
+/--
+@isnad1 id=le.0h5v.s5.f84cd462add0 from=translated src=- shape=e1a08d1d vocab=2c17878b
+-/
 theorem interiorRegion_subset_selectedClosedRegionMesh_support
     (p : ι → Prop) (i : ι) (hpi : p i) :
     (J i).interiorRegion ⊆
@@ -417,6 +496,9 @@ theorem interiorRegion_subset_selectedClosedRegionMesh_support
   exact ⟨t, (selectedClosedRegionMesh_triangle_mem J p).mpr
     ⟨ht, ⟨i, hpi, htinside⟩⟩, hxt⟩
 
+/--
+@isnad1 id=le.0h3v.s4.b2a01c7be242 from=translated src=- shape=8b9df748 vocab=23a56577
+-/
 theorem selectedClosedRegion_subset_selectedClosedRegionMesh_support
     (p : ι → Prop) :
     selectedClosedRegion J p ⊆
@@ -429,7 +511,9 @@ theorem selectedClosedRegion_subset_selectedClosedRegionMesh_support
     (selectedClosedRegionMesh J p).toPlaneComplex.isCompact_support.isClosed hxi
 
 /-- Every selected subfamily is recovered exactly as a face restriction of the one common
-arrangement.  This is the conforming old/new submesh interface used by the Radó weld. -/
+arrangement.  This is the conforming old/new submesh interface used by the Radó weld.
+@isnad1 id=eq.0h3v.s4.68ac7a04c119 from=translated src=- shape=b1a2ecdf vocab=926f1998
+-/
 theorem selectedClosedRegionMesh_support (p : ι → Prop) :
     (selectedClosedRegionMesh J p).toPlaneComplex.support =
       selectedClosedRegion J p :=
@@ -437,7 +521,9 @@ theorem selectedClosedRegionMesh_support (p : ι → Prop) :
     (selectedClosedRegion_subset_selectedClosedRegionMesh_support J p)
 
 /-- Taking the union of two selected submeshes is literally the selection by the disjunction
-of the two predicates.  All three meshes use the same ambient arrangement vertex type. -/
+of the two predicates.  All three meshes use the same ambient arrangement vertex type.
+@isnad1 id=eq.0h4v.s6.268799c83d66 from=translated src=- shape=0593aaba vocab=1e779864
+-/
 theorem selectedClosedRegionMesh_triangles_union (p q : ι → Prop) :
     (selectedClosedRegionMesh J p).triangles ∪
         (selectedClosedRegionMesh J q).triangles =
@@ -462,7 +548,9 @@ theorem selectedClosedRegionMesh_triangles_union (p q : ι → Prop) :
 
 /-- The two synchronized selected submeshes jointly retain the planar surface incidence bound:
 every two-vertex edge belongs to at most two triangles.  This is inherited from the single
-ambient arrangement, not proved separately for the two selections. -/
+ambient arrangement, not proved separately for the two selections.
+@isnad1 id=le.1h5v.s7.509413ae1409 from=translated src=- shape=85386aa7 vocab=b1b81407
+-/
 theorem selectedClosedRegionMeshes_joint_edge_valence (p q : ι → Prop)
     (e : Finset (arrangementMesh J).Vertex) (he : e.card = 2) :
     (((selectedClosedRegionMesh J p).triangles ∪
@@ -502,6 +590,9 @@ noncomputable def targetSynchronizedMesh (N : TriangleMesh) : TriangleMesh := by
   exact (synchronizedArrangement J N).restrictTriangles
     (IsTargetSynchronizedTriangle J N)
 
+/--
+@isnad1 id=iff.0h5v.s7.6f0d5d6bd796 from=translated src=- shape=0711fdd3 vocab=1ab97b57
+-/
 theorem selectedSynchronizedMesh_triangle_mem (N : TriangleMesh) (p : ι → Prop)
     {t : Finset (selectedSynchronizedMesh J N p).Vertex} :
     t ∈ (selectedSynchronizedMesh J N p).triangles ↔
@@ -510,6 +601,9 @@ theorem selectedSynchronizedMesh_triangle_mem (N : TriangleMesh) (p : ι → Pro
   classical
   exact (synchronizedArrangement J N).mem_restrictTriangles_triangles _
 
+/--
+@isnad1 id=iff.0h4v.s6.828552d10a16 from=translated src=- shape=6a1041aa vocab=f3b59b82
+-/
 theorem targetSynchronizedMesh_triangle_mem (N : TriangleMesh)
     {t : Finset (targetSynchronizedMesh J N).Vertex} :
     t ∈ (targetSynchronizedMesh J N).triangles ↔
@@ -519,7 +613,9 @@ theorem targetSynchronizedMesh_triangle_mem (N : TriangleMesh)
   exact (synchronizedArrangement J N).mem_restrictTriangles_triangles _
 
 /-- Every synchronized chamber is contained in one chamber of the original polygon-family
-arrangement. -/
+arrangement.
+@isnad1 id=ex.1h4v.s7.6d6ae3a1ef70 from=translated src=- shape=ccc7383d vocab=0e222b3a
+-/
 theorem exists_arrangementTriangle_of_synchronized {N : TriangleMesh}
     {t : Finset (synchronizedArrangement J N).Vertex}
     (ht : t ∈ (synchronizedArrangement J N).triangles) :
@@ -537,7 +633,9 @@ theorem exists_arrangementTriangle_of_synchronized {N : TriangleMesh}
   refine ⟨u, hu, ?_⟩
   exact hts.trans (convexHull_mono (Set.image_mono hsu))
 
-/-- Synchronized chambers still lie wholly on one side of every family polygon. -/
+/-- Synchronized chambers still lie wholly on one side of every family polygon.
+@isnad1 id=or.1h5v.s7.5660e63b2532 from=translated src=- shape=2bdb28a8 vocab=2568d92e
+-/
 theorem synchronizedTriangle_interior_side (N : TriangleMesh) (i : ι)
     {t : Finset (synchronizedArrangement J N).Vertex}
     (ht : t ∈ (synchronizedArrangement J N).triangles) :
@@ -551,7 +649,9 @@ theorem synchronizedTriangle_interior_side (N : TriangleMesh) (i : ι)
   · exact Or.inl (hint.trans hin)
   · exact Or.inr (hint.trans hout)
 
-/-- Further cutting by the target mesh does not change the selected polygonal support. -/
+/-- Further cutting by the target mesh does not change the selected polygonal support.
+@isnad1 id=eq.0h4v.s4.dea3b2020d19 from=translated src=- shape=5dabcebe vocab=5b3449f7
+-/
 theorem selectedSynchronizedMesh_support (N : TriangleMesh) (p : ι → Prop) :
     (selectedSynchronizedMesh J N p).toPlaneComplex.support =
       selectedClosedRegion J p := by
@@ -610,7 +710,9 @@ theorem selectedSynchronizedMesh_support (N : TriangleMesh) (p : ι → Prop) :
         ⟨ht, i, hpi, htInside⟩, hyt⟩⟩
 
 /-- When the target support lies in the family arrangement's enclosing triangle, the target
-side of the synchronized arrangement recovers it exactly. -/
+side of the synchronized arrangement recovers it exactly.
+@isnad1 id=eq.1h3v.s5.f78c55518d37 from=translated src=- shape=0475812a vocab=92c9b1ab
+-/
 theorem targetSynchronizedMesh_support (N : TriangleMesh)
     (hsub : N.toPlaneComplex.support ⊆
       (arrangementMesh J).toPlaneComplex.support) :
@@ -620,7 +722,9 @@ theorem targetSynchronizedMesh_support (N : TriangleMesh)
     N.toPlaneComplex.support
   exact (arrangementMesh J).refineToSupport_support N hsub
 
-/-- The synchronized old and target submeshes jointly satisfy the planar edge-incidence bound. -/
+/-- The synchronized old and target submeshes jointly satisfy the planar edge-incidence bound.
+@isnad1 id=le.1h5v.s7.e19b260a6409 from=translated src=- shape=3b2c3378 vocab=d16273fa
+-/
 theorem synchronizedMeshes_joint_edge_valence (N : TriangleMesh) (p : ι → Prop)
     (e : Finset (synchronizedArrangement J N).Vertex) (he : e.card = 2) :
     (((selectedSynchronizedMesh J N p).triangles ∪
@@ -636,7 +740,9 @@ theorem synchronizedMeshes_joint_edge_valence (N : TriangleMesh) (p : ι → Pro
   · exact (targetSynchronizedMesh_triangle_mem J N).mp htTarget |>.1
 
 omit [Fintype ι] in
-/-- A finite union of polygonal closed disks is a finite pure plane polyhedron. -/
+/-- A finite union of polygonal closed disks is a finite pure plane polyhedron.
+@isnad1 id=ex.0h2v.s4.cfb04bf62046 from=translated src=- shape=9760048e vocab=a1b9f109
+-/
 theorem closedRegion_is_polyhedron [Finite ι] :
     ∃ K : PlaneComplex, K.support = closedRegion J ∧ K.IsPure2 := by
   let := Fintype.ofFinite ι

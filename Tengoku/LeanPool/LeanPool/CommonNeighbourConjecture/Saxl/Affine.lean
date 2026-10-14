@@ -32,7 +32,9 @@ def IsRegularVector (v : V) : Prop :=
 def regularVectors : Set V := {v | IsRegularVector H V v}
 
 /-- If the complement of the two-fold sumset is smaller than the original
-set in a finite additive group, then every element is a three-fold sum. -/
+set in a finite additive group, then every element is a three-fold sum.
+@isnad1 id=eq.1h2v.s6.1ebd07515b71 from=translated src=- shape=d8101be1 vocab=f35f56ee
+-/
 theorem threefold_add_eq_univ_of_card_compl_twofold_lt
     {A : Type*} [AddCommGroup A] [Finite A] (R : Set A)
     (hcard : (R + R)ᶜ.ncard < R.ncard) :
@@ -69,6 +71,9 @@ def affineLinearAut : H →* MulAut (Multiplicative V) :=
 /-- The affine semidirect product `V ⋊ H`. -/
 abbrev AffineGroup := Multiplicative V ⋊[affineLinearAut H V] H
 
+/--
+@isnad1 id=eq.0h4v.s8.b8cb4684e10c from=translated src=- shape=f18d9e58 vocab=e789f2bb
+-/
 @[simp]
 theorem affineLinearAut_apply (h : H) (v : Multiplicative V) :
     (affineLinearAut H V h v).toAdd = h • v.toAdd := rfl
@@ -86,12 +91,17 @@ instance affineMulAction : MulAction (AffineGroup H V) V where
     simp only [toAdd_mul, affineLinearAut_apply, mul_smul, smul_add]
     abel
 
+/--
+@isnad1 id=eq.0h4v.s8.efa61c8ecc03 from=translated src=- shape=13023134 vocab=ab0c4be3
+-/
 @[simp]
 theorem affine_smul_def (g : AffineGroup H V) (x : V) :
     g • x = g.left.toAdd + g.right • x := rfl
 
 /-- After translating the first point to zero, an affine tuple is a base
-exactly when its difference tuple has trivial kernel in the linear group. -/
+exactly when its difference tuple has trivial kernel in the linear group.
+@isnad1 id=iff.0h5v.s7.11df6b66d3ed from=translated src=- shape=48a3ddf0 vocab=99d05e60
+-/
 theorem affine_isBaseTuple_cons_iff {n : Nat} (x : V) (w : Fin n → V) :
     IsBaseTuple (AffineGroup H V) V (Fin.cons x w) ↔
       IsBaseTuple H V (fun i ↦ w i - x) := by
@@ -151,7 +161,9 @@ def generalizedAffineKernelSet (tail : Nat) : Set V :=
 
 /-- Generalized affine adjacency depends only on the difference of the two
 displayed vertices, and the condition is entirely a kernel condition for the
-linear group after translation to zero. -/
+linear group after translation to zero.
+@isnad1 id=iff.0h5v.s6.47b82d536dd9 from=translated src=- shape=3ccd1a84 vocab=d296595e
+-/
 theorem generalizedAffineAdjacent_iff_mem_kernelSet (tail : Nat) (x y : V) :
     GeneralizedAdjacent (AffineGroup H V) V tail x y ↔
       y - x ∈ generalizedAffineKernelSet H V tail := by
@@ -187,7 +199,9 @@ theorem generalizedAffineAdjacent_iff_mem_kernelSet (tail : Nat) (x y : V) :
     | succ i => simp
 
 /-- The generalized affine common-neighbour criterion: a target is covered
-precisely by the two-fold sum of the kernel-only zero-neighbourhood. -/
+precisely by the two-fold sum of the kernel-only zero-neighbourhood.
+@isnad1 id=iff.0h4v.s7.89ac58117435 from=translated src=- shape=aa84a7d1 vocab=12d6ed68
+-/
 theorem generalizedAffine_hasCommonNeighbour_zero_iff (tail : Nat) (v : V) :
     HasCommonNeighbour V
         (GeneralizedAdjacent (AffineGroup H V) V tail) 0 v ↔
@@ -210,7 +224,9 @@ theorem generalizedAffine_hasCommonNeighbour_zero_iff (tail : Nat) (v : V) :
         (generalizedAffineAdjacent_iff_mem_kernelSet H V tail r₁ (r₁ + r₂)).mpr
           (by simpa using hr₂)
 
-/-- Pointwise-set form of the generalized affine sumset criterion. -/
+/-- Pointwise-set form of the generalized affine sumset criterion.
+@isnad1 id=iff.0h4v.s6.db86221bec06 from=translated src=- shape=e2f56da1 vocab=85ed9faf
+-/
 theorem generalizedAffine_hasCommonNeighbour_zero_iff_mem_add
     (tail : Nat) (v : V) :
     HasCommonNeighbour V
@@ -225,7 +241,9 @@ theorem generalizedAffine_hasCommonNeighbour_zero_iff_mem_add
     obtain ⟨r₁, hr₁, r₂, hr₂, hsum⟩ := Set.mem_add.mp hv
     exact ⟨r₁, r₂, hr₁, hr₂, hsum.symm⟩
 
-/-- Translation reduces an affine ordered pair to a regular difference. -/
+/-- Translation reduces an affine ordered pair to a regular difference.
+@isnad1 id=iff.0h4v.s6.daad274d7b18 from=translated src=- shape=7dc92f38 vocab=654fa672
+-/
 theorem affine_pairBase_iff_regular_sub (x y : V) :
     Adjacent (AffineGroup H V) V x y ↔ IsRegularVector H V (y - x) := by
   constructor
@@ -270,7 +288,9 @@ theorem affine_pairBase_iff_regular_sub (x y : V) :
       simpa [hright] using hgx
     · exact hright
 
-/-- A regular vector is nonzero when the linear group is nontrivial. -/
+/-- A regular vector is nonzero when the linear group is nontrivial.
+@isnad1 id=ne.1h3v.s5.69c9968268c9 from=translated src=- shape=47b882e6 vocab=8a65183d
+-/
 theorem isRegularVector_ne_zero [Nontrivial H] {v : V}
     (hv : IsRegularVector H V v) : v ≠ 0 := by
   intro hvzero
@@ -280,7 +300,9 @@ theorem isRegularVector_ne_zero [Nontrivial H] {v : V}
   simp [hvzero]
 
 /-- A nontrivial affine action has exact base size two as soon as its linear
-group has a regular vector. -/
+group has a regular vector.
+@isnad1 id=exactbas.1h2v.s6.003291c5284a from=translated src=- shape=c20910fd vocab=69759544
+-/
 theorem affine_exactBaseSize_two [Nontrivial H]
     (hregular : ∃ v, IsRegularVector H V v) :
     ExactBaseSize (AffineGroup H V) V 2 := by
@@ -304,7 +326,9 @@ theorem affine_exactBaseSize_two [Nontrivial H]
     exact congrArg SemidirectProduct.right gone
 
 /-- At generalized tail zero, the kernel-only zero-neighbourhood is exactly
-the ordinary regular-vector set (for a nontrivial linear group). -/
+the ordinary regular-vector set (for a nontrivial linear group).
+@isnad1 id=eq.0h2v.s5.dee18bd283da from=translated src=- shape=223da71c vocab=5833f1ce
+-/
 theorem generalizedAffineKernelSet_zero [Nontrivial H] :
     generalizedAffineKernelSet H V 0 = regularVectors H V := by
   ext v
@@ -325,7 +349,9 @@ theorem generalizedAffineKernelSet_zero [Nontrivial H] :
     · simpa [IsBaseTuple, IsRegularVector] using hv
 
 /-- For a nontrivial affine linear group, generalized adjacency at exact
-base-size parameter two (`tail = 0`) recovers ordinary Saxl adjacency. -/
+base-size parameter two (`tail = 0`) recovers ordinary Saxl adjacency.
+@isnad1 id=iff.0h4v.s6.0d75cae48b2a from=translated src=- shape=28fbfc63 vocab=2fcd463c
+-/
 theorem generalizedAffineAdjacent_zero_iff_adjacent [Nontrivial H] (x y : V) :
     GeneralizedAdjacent (AffineGroup H V) V 0 x y ↔
       Adjacent (AffineGroup H V) V x y := by
@@ -333,7 +359,9 @@ theorem generalizedAffineAdjacent_zero_iff_adjacent [Nontrivial H] (x y : V) :
     generalizedAffineKernelSet_zero H V]
   exact (affine_pairBase_iff_regular_sub H V x y).symm
 
-/-- The affine common-neighbour criterion in sumset form. -/
+/-- The affine common-neighbour criterion in sumset form.
+@isnad1 id=iff.0h3v.s6.100cc4a7e934 from=translated src=- shape=3ab35d37 vocab=d7f38982
+-/
 theorem affine_hasCommonNeighbour_zero_iff (v : V) :
     HasCommonNeighbour V (Adjacent (AffineGroup H V) V) 0 v ↔
       ∃ r₁ r₂,
@@ -350,7 +378,9 @@ theorem affine_hasCommonNeighbour_zero_iff (v : V) :
     · exact (affine_pairBase_iff_regular_sub H V r₁ (r₁ + r₂)).mpr (by
         simpa using hr₂)
 
-/-- Pointwise-set form of the ordinary affine sumset criterion. -/
+/-- Pointwise-set form of the ordinary affine sumset criterion.
+@isnad1 id=iff.0h3v.s6.0b635fd689f8 from=translated src=- shape=52bcf71e vocab=399cd713
+-/
 theorem affine_hasCommonNeighbour_zero_iff_mem_add (v : V) :
     HasCommonNeighbour V (Adjacent (AffineGroup H V) V) 0 v ↔
       v ∈ regularVectors H V + regularVectors H V := by
@@ -362,7 +392,9 @@ theorem affine_hasCommonNeighbour_zero_iff_mem_add (v : V) :
     obtain ⟨r₁, hr₁, r₂, hr₂, hsum⟩ := Set.mem_add.mp hv
     exact ⟨r₁, r₂, hr₁, hr₂, hsum.symm⟩
 
-/-- A direct obstruction theorem for affine common neighbours. -/
+/-- A direct obstruction theorem for affine common neighbours.
+@isnad1 id=and.3h3v.s7.61a4dbf0b58c from=translated src=- shape=d7de722f vocab=6c8c7389
+-/
 theorem affine_core_counterexample (v : V)
     (hbase : ∃ r, IsRegularVector H V r)
     (hv : ¬ IsRegularVector H V v)
@@ -385,7 +417,9 @@ theorem affine_core_counterexample (v : V)
     · apply hnr₂
       simpa [hvsum, add_comm] using hr₂
 
-/-- If the linear action is faithful, then the induced affine action is faithful. -/
+/-- If the linear action is faithful, then the induced affine action is faithful.
+@isnad1 id=faithful.0h2v.s7.c5400c6152b5 from=translated src=- shape=3bd29fe0 vocab=18abbba8
+-/
 theorem affine_faithful_of_linear_faithful [FaithfulSMul H V] :
     FaithfulSMul (AffineGroup H V) V := by
   constructor
@@ -404,7 +438,9 @@ theorem affine_faithful_of_linear_faithful [FaithfulSMul H V] :
     simpa using hzero
   · exact hright
 
-/-- An irreducible linear group over a prime field has a preprimitive affine action. -/
+/-- An irreducible linear group over a prime field has a preprimitive affine action.
+@isnad1 id=isprepri.0h3v.s8.d91b5097a111 from=translated src=- shape=14983661 vocab=598c9848
+-/
 theorem affine_primitive_of_irreducible
     (p : ℕ) [Fact p.Prime] [Module (ZMod p) V]
     [SMulCommClass H (ZMod p) V]

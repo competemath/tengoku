@@ -30,6 +30,9 @@ namespace FiniteCyclicPresentation
 
 variable {Edge : Type} [Fintype Edge]
 
+/--
+@isnad1 id=eq.0h3v.s5.aa03b21f9fcb from=translated src=- shape=d8c42a56 vocab=2cb5e274
+-/
 theorem ofOneFaceWord_boundary_length
     (word : List (SignedDart Edge)) (f : (ofOneFaceWord word).Face) :
     ((ofOneFaceWord word).boundary f).length = word.length := by
@@ -66,6 +69,9 @@ noncomputable def ofOneFaceWordPreHomeomorph
     (Sigma.map (ofOneFaceWordFaceEquiv word)
       fun f => ofOneFaceWordFaceHomeomorph word f)
 
+/--
+@isnad1 id=eq.0h3v.s8.97e2b9b93014 from=translated src=- shape=809dc629 vocab=c9b19158
+-/
 @[simp]
 theorem ofOneFaceWordPreHomeomorph_apply_fst
     (word : List (SignedDart Edge))
@@ -73,6 +79,9 @@ theorem ofOneFaceWordPreHomeomorph_apply_fst
     (ofOneFaceWordPreHomeomorph word x).1 = PUnit.unit :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.948c9d9c8982 from=translated src=- shape=d4827605 vocab=bb407e3d
+-/
 @[simp]
 theorem ofOneFaceWordPreHomeomorph_apply_snd
     (word : List (SignedDart Edge))
@@ -90,6 +99,9 @@ noncomputable def ofOneFaceWordMapOccurrence
   | ⟨f, i⟩ =>
       ⟨PUnit.unit, Fin.cast (ofOneFaceWord_boundary_length word f) i⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.04e0475237d6 from=translated src=- shape=b9624c6d vocab=677ae0fd
+-/
 @[simp]
 theorem ofOneFaceWordMapOccurrence_fst
     (word : List (SignedDart Edge))
@@ -97,6 +109,9 @@ theorem ofOneFaceWordMapOccurrence_fst
     (ofOneFaceWordMapOccurrence word o).1 = PUnit.unit :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.4d2705d0447a from=translated src=- shape=d75d6dfe vocab=0d377ab5
+-/
 @[simp]
 theorem ofOneFaceWordMapOccurrence_snd_val
     (word : List (SignedDart Edge))
@@ -104,7 +119,9 @@ theorem ofOneFaceWordMapOccurrence_snd_val
     (ofOneFaceWordMapOccurrence word o).2.val = o.2.val :=
   rfl
 
-/-- The pre-realization homeomorphism is parameter-exact on every labelled side. -/
+/-- The pre-realization homeomorphism is parameter-exact on every labelled side.
+@isnad1 id=eq.0h4v.s8.35e3dacabf7e from=translated src=- shape=59c4c552 vocab=dce9e11c
+-/
 theorem ofOneFaceWordPreHomeomorph_occurrenceSide_point
     (word : List (SignedDart Edge))
     (o : (ofOneFaceWord word).BoundaryOccurrence) (t : unitInterval) :
@@ -136,7 +153,9 @@ theorem ofOneFaceWordPreHomeomorph_occurrenceSide_point
     exact Nat.mod_eq_of_lt (by
       simpa only [ofOneFaceWord_boundary_length] using i.isLt)
 
-/-- Relabeling the original dart at a mapped position recovers the enumerated dart exactly. -/
+/-- Relabeling the original dart at a mapped position recovers the enumerated dart exactly.
+@isnad1 id=eq.0h3v.s6.5741089024e1 from=translated src=- shape=3d654678 vocab=e6464b5f
+-/
 theorem ofOneFaceWordMapOccurrence_dart
     (word : List (SignedDart Edge))
     (o : (ofOneFaceWord word).BoundaryOccurrence) :
@@ -190,6 +209,9 @@ noncomputable def ofOneFaceWordOccurrenceEquiv
       apply Fin.ext
       rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.8500172cbbee from=translated src=- shape=02dd25e9 vocab=139f4885
+-/
 @[simp]
 theorem ofOneFaceWordOccurrenceEquiv_apply
     (word : List (SignedDart Edge))
@@ -198,6 +220,9 @@ theorem ofOneFaceWordOccurrenceEquiv_apply
       ofOneFaceWordMapOccurrence word o :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.f57c627e8b49 from=translated src=- shape=cc5e3c27 vocab=d59b2583
+-/
 @[simp]
 theorem ofOneFaceWordMapOccurrence_comap
     (word : List (SignedDart Edge))
@@ -206,6 +231,9 @@ theorem ofOneFaceWordMapOccurrence_comap
         ((ofOneFaceWordOccurrenceEquiv word).symm o) = o :=
   (ofOneFaceWordOccurrenceEquiv word).apply_symm_apply o
 
+/--
+@isnad1 id=eq.0h3v.s7.a02de8f74550 from=translated src=- shape=72af4fad vocab=8bfdd551
+-/
 theorem ofOneFaceWordComapOccurrence_dart
     (word : List (SignedDart Edge))
     (o : (oneFacePresentation Edge word).BoundaryOccurrence) :
@@ -217,7 +245,9 @@ theorem ofOneFaceWordComapOccurrence_dart
     ((ofOneFaceWordOccurrenceEquiv word).symm o)]
   rw [ofOneFaceWordMapOccurrence_comap]
 
-/-- Two distinct occurrences of one finite-cyclic edge force that edge to be internal. -/
+/-- Two distinct occurrences of one finite-cyclic edge force that edge to be internal.
+@isnad1 id=not.3h3v.s5.5ebafa32e36e from=translated src=- shape=83f4ab87 vocab=85ea7d87
+-/
 theorem IsSurfaceValid.not_isBoundaryEdge_of_distinct_occurrences
     {P : FiniteCyclicPresentation} (_valid : P.IsSurfaceValid)
     (source target : P.BoundaryOccurrence) (hne : source ≠ target)
@@ -394,6 +424,9 @@ noncomputable def ofOneFaceWordComapPairing
       direction := pairing.direction
       compatible := hcompatible }
 
+/--
+@isnad1 id=eq.0h3v.s5.74ab1366c46a from=translated src=- shape=add78b93 vocab=8cc81af2
+-/
 @[simp]
 theorem ofOneFaceWordMapPairing_source
     (word : List (SignedDart Edge))
@@ -402,6 +435,9 @@ theorem ofOneFaceWordMapPairing_source
       ofOneFaceWordMapOccurrence word pairing.source :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.f762b8674f93 from=translated src=- shape=add78b93 vocab=b36bd425
+-/
 @[simp]
 theorem ofOneFaceWordMapPairing_target
     (word : List (SignedDart Edge))
@@ -410,6 +446,9 @@ theorem ofOneFaceWordMapPairing_target
       ofOneFaceWordMapOccurrence word pairing.target :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.20debfc09aa5 from=translated src=- shape=22185944 vocab=8eafb02d
+-/
 @[simp]
 theorem ofOneFaceWordMapPairing_direction
     (word : List (SignedDart Edge))
@@ -417,6 +456,9 @@ theorem ofOneFaceWordMapPairing_direction
     (ofOneFaceWordMapPairing word pairing).direction = pairing.direction :=
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.a52624bdd075 from=translated src=- shape=dd5ef2b9 vocab=8300d51c
+-/
 @[simp]
 theorem ofOneFaceWordComapPairing_source
     (word : List (SignedDart Edge))
@@ -426,6 +468,9 @@ theorem ofOneFaceWordComapPairing_source
       (ofOneFaceWordOccurrenceEquiv word).symm pairing.source :=
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.7e4ba80a0ef1 from=translated src=- shape=dd5ef2b9 vocab=d0ae60d3
+-/
 @[simp]
 theorem ofOneFaceWordComapPairing_target
     (word : List (SignedDart Edge))
@@ -435,6 +480,9 @@ theorem ofOneFaceWordComapPairing_target
       (ofOneFaceWordOccurrenceEquiv word).symm pairing.target :=
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.41846d60cdae from=translated src=- shape=a3e65c48 vocab=f329982a
+-/
 @[simp]
 theorem ofOneFaceWordComapPairing_direction
     (word : List (SignedDart Edge))
@@ -444,6 +492,9 @@ theorem ofOneFaceWordComapPairing_direction
       pairing.direction :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.26455c294a76 from=translated src=- shape=f83bdb2f vocab=95439a99
+-/
 theorem ofOneFaceWordPreHomeomorph_pairing_source_point
     (word : List (SignedDart Edge))
     (pairing : (ofOneFaceWord word).BoundaryPairing) (t : unitInterval) :
@@ -453,6 +504,9 @@ theorem ofOneFaceWordPreHomeomorph_pairing_source_point
   exact ofOneFaceWordPreHomeomorph_occurrenceSide_point
     word pairing.source t
 
+/--
+@isnad1 id=eq.0h4v.s8.084aeb5f6c17 from=translated src=- shape=f83bdb2f vocab=263e1e29
+-/
 theorem ofOneFaceWordPreHomeomorph_pairing_target_point
     (word : List (SignedDart Edge))
     (pairing : (ofOneFaceWord word).BoundaryPairing) (t : unitInterval) :
@@ -462,6 +516,9 @@ theorem ofOneFaceWordPreHomeomorph_pairing_target_point
   exact ofOneFaceWordPreHomeomorph_occurrenceSide_point
     word pairing.target t
 
+/--
+@isnad1 id=eq.0h4v.s9.4cc84e74c405 from=translated src=- shape=e06b94f3 vocab=4cde5315
+-/
 theorem ofOneFaceWordPreHomeomorph_pairing_parameter_point
     (word : List (SignedDart Edge))
     (pairing : (ofOneFaceWord word).BoundaryPairing) (t : unitInterval) :
@@ -473,6 +530,9 @@ theorem ofOneFaceWordPreHomeomorph_pairing_parameter_point
   rw [ofOneFaceWordPreHomeomorph_pairing_target_point]
   rfl
 
+/--
+@isnad1 id=r.2h4v.s9.a8b035ecb80e from=translated src=- shape=6c48e8b0 vocab=3a8ab069
+-/
 theorem ofOneFaceWordPreHomeomorph_generator_related
     (word : List (SignedDart Edge))
     (_validFinite : (ofOneFaceWord word).IsSurfaceValid)
@@ -494,7 +554,9 @@ theorem ofOneFaceWordPreHomeomorph_generator_related
       (ofOneFaceWordMapPairing word pairing)) t
 
 /-- The enumeration pre-homeomorphism maps the complete finite-cyclic gluing relation into the
-typed one-face gluing relation. -/
+typed one-face gluing relation.
+@isnad1 id=r.3h4v.s9.a8244d5976b7 from=translated src=- shape=7936b064 vocab=82ce78f1
+-/
 theorem ofOneFaceWordPreHomeomorph_related
     (word : List (SignedDart Edge))
     (validFinite : (ofOneFaceWord word).IsSurfaceValid)
@@ -523,6 +585,9 @@ theorem ofOneFaceWordPreHomeomorph_related
   | trans _ _ _ _ _ ih₁ ih₂ =>
       exact Relation.EqvGen.trans _ _ _ ih₁ ih₂
 
+/--
+@isnad1 id=eq.0h4v.s9.7ade1601ff9f from=translated src=- shape=2d57e8c7 vocab=22913c09
+-/
 theorem ofOneFaceWordPreHomeomorph_symm_occurrenceSide_point
     (word : List (SignedDart Edge))
     (o : (oneFacePresentation Edge word).BoundaryOccurrence)
@@ -536,6 +601,9 @@ theorem ofOneFaceWordPreHomeomorph_symm_occurrenceSide_point
   rw [ofOneFaceWordPreHomeomorph_occurrenceSide_point]
   rw [ofOneFaceWordMapOccurrence_comap]
 
+/--
+@isnad1 id=eq.1h4v.s9.6bc147452c52 from=translated src=- shape=122a87e9 vocab=095eb5c7
+-/
 theorem ofOneFaceWordPreHomeomorph_symm_pairing_source_point
     (word : List (SignedDart Edge))
     (validFinite : (ofOneFaceWord word).IsSurfaceValid)
@@ -547,6 +615,9 @@ theorem ofOneFaceWordPreHomeomorph_symm_pairing_source_point
   exact ofOneFaceWordPreHomeomorph_symm_occurrenceSide_point
     word pairing.source t
 
+/--
+@isnad1 id=eq.1h4v.s9.2f933a8d16ce from=translated src=- shape=122a87e9 vocab=d6e3405f
+-/
 theorem ofOneFaceWordPreHomeomorph_symm_pairing_target_point
     (word : List (SignedDart Edge))
     (validFinite : (ofOneFaceWord word).IsSurfaceValid)
@@ -558,6 +629,9 @@ theorem ofOneFaceWordPreHomeomorph_symm_pairing_target_point
   exact ofOneFaceWordPreHomeomorph_symm_occurrenceSide_point
     word pairing.target t
 
+/--
+@isnad1 id=eq.1h4v.s9.104f3772a64c from=translated src=- shape=475ce2db vocab=c45eebe0
+-/
 theorem ofOneFaceWordPreHomeomorph_symm_pairing_parameter_point
     (word : List (SignedDart Edge))
     (validFinite : (ofOneFaceWord word).IsSurfaceValid)
@@ -571,6 +645,9 @@ theorem ofOneFaceWordPreHomeomorph_symm_pairing_parameter_point
   rw [ofOneFaceWordPreHomeomorph_symm_pairing_target_point]
   rfl
 
+/--
+@isnad1 id=r.2h4v.s10.f2ff315447ed from=translated src=- shape=7afe897f vocab=91233eff
+-/
 theorem ofOneFaceWordPreHomeomorph_symm_generator_related
     (word : List (SignedDart Edge))
     (validFinite : (ofOneFaceWord word).IsSurfaceValid)
@@ -592,7 +669,9 @@ theorem ofOneFaceWordPreHomeomorph_symm_generator_related
       (ofOneFaceWordComapPairing word validFinite pairing)) t
 
 /-- The inverse enumeration pre-homeomorphism maps the complete typed gluing relation back into
-the finite-cyclic gluing relation. -/
+the finite-cyclic gluing relation.
+@isnad1 id=r.3h4v.s9.1c59f0ccb230 from=translated src=- shape=83c591f8 vocab=3696c1a4
+-/
 theorem ofOneFaceWordPreHomeomorph_symm_related
     (word : List (SignedDart Edge))
     (validFinite : (ofOneFaceWord word).IsSurfaceValid)
@@ -621,6 +700,9 @@ theorem ofOneFaceWordPreHomeomorph_symm_related
   | trans _ _ _ _ _ ih₁ ih₂ =>
       exact Relation.EqvGen.trans _ _ _ ih₁ ih₂
 
+/--
+@isnad1 id=iff.2h4v.s9.6a3585b68e78 from=translated src=- shape=f32229d9 vocab=82ce78f1
+-/
 theorem ofOneFaceWordPreHomeomorph_related_iff
     (word : List (SignedDart Edge))
     (validFinite : (ofOneFaceWord word).IsSurfaceValid)

@@ -50,6 +50,9 @@ def acceptedSet : Set (ℤ × ℤ) := {z | sInternal a z ∈ W a ω}
 
 /-! ### Section B. Step 1: `tildeP` is injective on `ℤ²` -/
 
+/--
+@isnad1 id=injectiv.1h1v.s3.1545d18d8d4e from=translated src=- shape=4541721d vocab=d6889658
+-/
 theorem tildeP_injective (ha : Irrational a) :
     Function.Injective (tildeP a) := by
   rintro ⟨x₁, y₁⟩ ⟨x₂, y₂⟩ h
@@ -81,7 +84,9 @@ theorem tildeP_injective (ha : Irrational a) :
 
 /-! ### Section C. Kronecker density of `ℤ + a·ℤ` -/
 
-/-- For irrational `a`, the set `{n - a*m : m, n ∈ ℤ}` is dense in `ℝ`. -/
+/-- For irrational `a`, the set `{n - a*m : m, n ∈ ℤ}` is dense in `ℝ`.
+@isnad1 id=dense.1h1v.s4.191c3452cf42 from=translated src=- shape=70c0006f vocab=1b41cbd1
+-/
 theorem dense_internal_image (ha : Irrational a) :
     Dense (Set.range (sInternal a)) := by
   -- Step 1: the range equals the closure of {-a, 1} as a subgroup of ℝ
@@ -108,7 +113,9 @@ Proof sketch.  For `(x, y)` in the set we have
 `s := y - a*x ∈ [-a*ω, ω]` and `p := x + a*y ∈ [b₁, b₂]`.  Inverting the
 linear system gives `x = (p - a*s)/(1+a²)` and `y = (a*p + s)/(1+a²)`,
 so both `x` and `y` are bounded by an explicit real constant.  Since
-`x, y : ℤ` lie in a bounded subset of `ℝ`, they lie in a finite box. -/
+`x, y : ℤ` lie in a bounded subset of `ℝ`, they lie in a finite box.
+@isnad1 id=finite.1h4v.s5.2cc5cd558d59 from=translated src=- shape=e937e9a1 vocab=b51ad724
+-/
 theorem accepted_preimage_finite
     (hω : 0 < ω) (b₁ b₂ : ℝ) :
     Set.Finite {z ∈ acceptedSet a ω | tildeP a z ∈ Set.Icc b₁ b₂} := by
@@ -471,7 +478,9 @@ private lemma exists_scaled_witness
   rw [show |sInternal a (p₀, q₀)| = s₀ from rfl]
   exact hK_s_le
 
-/-- The unboundedness-above main theorem. -/
+/-- The unboundedness-above main theorem.
+@isnad1 id=ex.3h3v.s5.5efcd25a9165 from=translated src=- shape=ef8cb07f vocab=20ab0a5b
+-/
 theorem tildeP_image_unbounded_above
     (ha : Irrational a) (ha_pos : 0 < a) (hω : 0 < ω) (M : ℝ) :
     ∃ z ∈ acceptedSet a ω, M < tildeP a z := by
@@ -495,7 +504,9 @@ theorem tildeP_image_unbounded_above
       simp only [tildeP]; push_cast; ring
     rw [h_P_eq]; exact hK_c_gt
 
-/-- The unboundedness-below main theorem. -/
+/-- The unboundedness-below main theorem.
+@isnad1 id=ex.3h3v.s5.efeda2402301 from=translated src=- shape=c4a9c222 vocab=20ab0a5b
+-/
 theorem tildeP_image_unbounded_below
     (ha : Irrational a) (ha_pos : 0 < a) (hω : 0 < ω) (M : ℝ) :
     ∃ z ∈ acceptedSet a ω, tildeP a z < M := by
@@ -524,19 +535,31 @@ theorem tildeP_image_unbounded_below
 
 /-! API lemmas for unfolding the Section A definitions. -/
 
+/--
+@isnad1 id=eq.0h3v.s5.1a360678df61 from=translated src=- shape=25f5e1b2 vocab=6e65c145
+-/
 @[simp]
 lemma tildeP_apply (m n : ℤ) :
     tildeP a (m, n) = (m : ℝ) + a * (n : ℝ) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.f8726707fe36 from=translated src=- shape=a8f88613 vocab=b29f2ef4
+-/
 @[simp]
 lemma sInternal_apply (m n : ℤ) :
     sInternal a (m, n) = (n : ℝ) - a * (m : ℝ) := rfl
 
+/--
+@isnad1 id=iff.0h3v.s5.595bd6dddc01 from=translated src=- shape=656e8ff0 vocab=c58cb86a
+-/
 @[simp]
 lemma mem_W_iff (x : ℝ) :
     x ∈ W a ω ↔ -(a * ω) ≤ x ∧ x ≤ ω := by
   simp [W, Set.mem_Icc]
 
+/--
+@isnad1 id=iff.0h3v.s5.fbabad45a0b9 from=translated src=- shape=b81896e9 vocab=2119c130
+-/
 @[simp]
 lemma mem_acceptedSet_iff (z : ℤ × ℤ) :
     z ∈ acceptedSet a ω ↔ sInternal a z ∈ W a ω := Iff.rfl
@@ -612,14 +635,18 @@ noncomputable def gap (ha : Irrational a) (ha_pos : 0 < a) (hω : 0 < ω) (i : �
 def IsGapPeriod (ha : Irrational a) (ha_pos : 0 < a) (hω : 0 < ω) (lam : ℕ) : Prop :=
   0 < lam ∧ ∀ i : ℤ, gap a ω ha ha_pos hω (i + lam) = gap a ω ha ha_pos hω i
 
-/-- The enumeration is strictly monotone, so ℓ is strictly increasing. -/
+/-- The enumeration is strictly monotone, so ℓ is strictly increasing.
+@isnad1 id=strictmo.3h2v.s5.7443b826d157 from=translated src=- shape=b6ebac30 vocab=0cf22055
+-/
 lemma ell_strictMono (ha : Irrational a) (ha_pos : 0 < a) (hω : 0 < ω) :
     StrictMono (ell a ω ha ha_pos hω) := by
   intro i j hij
   have := (enumerate a ω ha ha_pos hω).strictMono hij
   exact this
 
-/-- Each gap is strictly positive. -/
+/-- Each gap is strictly positive.
+@isnad1 id=lt.3h3v.s5.9662e0b90ad8 from=translated src=- shape=e1735c8d vocab=cd46b61e
+-/
 lemma gap_pos (ha : Irrational a) (ha_pos : 0 < a) (hω : 0 < ω) (i : ℤ) :
     0 < gap a ω ha ha_pos hω i := by
   unfold gap
@@ -710,7 +737,9 @@ private lemma ell_mem_projectedSet
   ((enumerate a ω ha ha_pos hω) i).property
 
 /-- **Step 2 of Proposition 1.** If the gap sequence has finite period λ, there is a
-non-zero lattice translation `v` with `tildeP v > 0` that preserves `acceptedSet`. -/
+non-zero lattice translation `v` with `tildeP v > 0` that preserves `acceptedSet`.
+@isnad1 id=ex.4h3v.s7.4a4a3a171be6 from=translated src=- shape=0eaca94e vocab=5b3122b6
+-/
 theorem period_lifts_to_lattice_translation
     (ha : Irrational a) (ha_pos : 0 < a) (hω : 0 < ω)
     (lam : ℕ) (hp : IsGapPeriod a ω ha ha_pos hω lam) :
@@ -795,7 +824,9 @@ private lemma sInternal_add (z w : ℤ × ℤ) :
   ring
 
 /-- **Step 3 of Proposition 1.** If `v ∈ ℤ²` preserves `acceptedSet` under
-addition, then `v = 0`. -/
+addition, then `v = 0`.
+@isnad1 id=eq.4h3v.s6.275a3f61543e from=translated src=- shape=f716ec44 vocab=70cef61b
+-/
 theorem lattice_translation_must_be_zero
     (ha : Irrational a) (ha_pos : 0 < a) (hω : 0 < ω) (v : ℤ × ℤ)
     (hv_inv : ∀ z ∈ acceptedSet a ω, z + v ∈ acceptedSet a ω) :
@@ -876,7 +907,9 @@ theorem lattice_translation_must_be_zero
 
 /-- **Aperiodicity (paper: `prop:irrational`, Section "The Irrational Case").**
 For `a ∈ ℝ_{>0} ∖ ℚ` and `ω > 0`, the projected gap sequence has
-no finite period. -/
+no finite period.
+@isnad1 id=not.3h2v.s5.cda6740175a1 from=translated src=- shape=97f73199 vocab=48a92811
+-/
 theorem prop_irrational
     (ha : Irrational a) (ha_pos : 0 < a) (hω : 0 < ω) :
     ¬ ∃ lam : ℕ, IsGapPeriod a ω ha ha_pos hω lam := by
@@ -889,7 +922,9 @@ theorem prop_irrational
 `ℤ²` (Step 1, `tildeP_injective`), it is in particular injective when
 restricted to `acceptedSet`.  This formalizes the paper's remark that
 "the multiset and set conventions coincide" in the irrational case:
-the projected accepted points have no duplicates. -/
+the projected accepted points have no duplicates.
+@isnad1 id=injon.1h2v.s4.a88bef43a1b3 from=translated src=- shape=c62fba46 vocab=667eb2b6
+-/
 theorem tildeP_injOn_acceptedSet (ha : Irrational a) :
     Set.InjOn (tildeP a) (acceptedSet a ω) :=
   (tildeP_injective a ha).injOn

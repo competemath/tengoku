@@ -72,6 +72,9 @@ instance DirectedSubspace {α : Type u} {p : α → Prop} [DirectedSpace α] :
 
 section subtype
 
+/--
+@isnad1 id=directed.0h3v.s5.b2efc0af592f from=translated src=- shape=76c0fca8 vocab=b29ba922
+-/
 lemma directed_induced {α : Type u} {β : Type v} [TopologicalSpace α] [hβ : DirectedSpace β]
   (f : C(α, β)) :
   @DirectedMap.Directed α β (DirectedSpace.Induced f.continuous_toFun) hβ f := fun _ _ _ hγ => hγ
@@ -150,6 +153,9 @@ protected def DirectedMap.prodMapMk' (f : D(α,γ)) (g : D(β,δ)) : D(α × β,
 def DirectedMap.prodConstFst (F : D(α × β,γ)) (a : α) : D(β,γ) :=
   F.comp (DirectedMap.prodMapMk (DirectedMap.const β a) (DirectedMap.id β))
 
+/--
+@isnad1 id=eq.0h6v.s6.e940f6165924 from=translated src=- shape=fcb1f546 vocab=dce5b348
+-/
 @[simp] lemma DirectedMap.prod_const_fst_apply (F : D(α × β,γ)) (a : α) (b : β) :
   DirectedMap.prodConstFst F a b = F (a, b) := rfl
 
@@ -159,6 +165,9 @@ def DirectedMap.prodConstFst (F : D(α × β,γ)) (a : α) : D(β,γ) :=
 def DirectedMap.prodConstSnd (F : D(α × β,γ)) (t : β) : D(α,γ) :=
   F.comp (DirectedMap.prodMapMk (DirectedMap.id α) (DirectedMap.const α t))
 
+/--
+@isnad1 id=eq.0h6v.s6.c3f75899741d from=translated src=- shape=9225af33 vocab=7848101f
+-/
 @[simp] lemma DirectedMap.prod_const_snd_apply (F : D(α × β,γ)) (b : β) (a : α) :
   DirectedMap.prodConstSnd F b a = F (a, b) := rfl
 

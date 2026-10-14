@@ -36,6 +36,9 @@ binder, so we must provide the `Fintype` instance unconditionally. When `d*m ≠
 `NeZero`; in the degenerate case `d*m = 0` the predicate forces every `S = ∅` (a singleton),
 so the subtype is still finite. -/
 
+/--
+@isnad1 id=finite.0h2v.s5.3f470f43de28 from=translated src=- shape=3e4ef067 vocab=7f1014b0
+-/
 instance instFiniteCanonical (d m : ℕ) :
     Finite {S : Finset (ZMod (d * m)) // S.card = d - 1 ∧ LevelCanonical d m S} := by
   rcases Nat.eq_zero_or_pos (d * m) with h0 | hpos
@@ -63,7 +66,9 @@ noncomputable instance instFintypeCanonical (d m : ℕ) :
 
 /-! ## Part 1: level arithmetic. -/
 
-/-- Every level is `< d` (when `N = d*m`, `m > 0`). -/
+/-- Every level is `< d` (when `N = d*m`, `m > 0`).
+@isnad1 id=lt.2h3v.s5.de711c49c63c from=translated src=- shape=f542c426 vocab=68f5f6dc
+-/
 lemma level_lt {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (i : ZMod (d * m)) :
     i.val / m < d := by
   have : NeZero (d * m) := ⟨by positivity⟩
@@ -71,20 +76,26 @@ lemma level_lt {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (i : ZMod (d * m)) :
   have hi' : i.val < m * d := by rw [Nat.mul_comm m d]; exact hi
   exact Nat.div_lt_of_lt_mul hi'
 
-/-- The shift element `t*m` reduces to `(t%d)*m` in `ZMod (d*m)`. -/
+/-- The shift element `t*m` reduces to `(t%d)*m` in `ZMod (d*m)`.
+@isnad1 id=eq.0h3v.s7.47fb3a757a14 from=translated src=- shape=f8d663da vocab=ff45fdb3
+-/
 lemma shift_cast {d m : ℕ} (t : ℕ) :
     ((t * m : ℕ) : ZMod (d * m)) = (((t % d) * m : ℕ) : ZMod (d * m)) := by
   rw [ZMod.natCast_eq_natCast_iff, Nat.ModEq]
   rw [Nat.mul_mod_mul_right m t d, Nat.mul_mod_mul_right m (t % d) d, Nat.mod_mod_of_dvd t dvd_rfl]
 
-/-- `(t%d)*m < d*m`, so its `val` is itself. -/
+/-- `(t%d)*m < d*m`, so its `val` is itself.
+@isnad1 id=lt.2h3v.s5.2e89ae79d1d1 from=translated src=- shape=fc8c303b vocab=8eb531db
+-/
 lemma shift_val_lt {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (t : ℕ) :
     (t % d) * m < d * m := by
   have h : t % d < d := Nat.mod_lt _ hd
   exact (Nat.mul_lt_mul_right hm).mpr h
 
 /-- The fundamental level-shift identity: translating by `+(t*m)` adds `t` to the level
-    cyclically. -/
+    cyclically.
+@isnad1 id=eq.2h4v.s8.390877b29b01 from=translated src=- shape=0cc2b92a vocab=0f7fcc76
+-/
 lemma level_add {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (t : ℕ) (i : ZMod (d * m)) :
     (i + ((t * m : ℕ) : ZMod (d * m))).val / m = (i.val / m + t % d) % d := by
   have : NeZero (d * m) := ⟨by positivity⟩
@@ -128,7 +139,9 @@ lemma level_add {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (t : ℕ) (i : ZMod (d * m
 def cnt {d m : ℕ} (S : Finset (ZMod (d * m))) (j : ℕ) : ℕ :=
   (S.filter (fun i => i.val / m = j)).card
 
-/-- `S` is partitioned by level into `range d`: total count is `S.card`. -/
+/-- `S` is partitioned by level into `range d`: total count is `S.card`.
+@isnad1 id=eq.2h3v.s5.f56ba86d7ffd from=translated src=- shape=381b105b vocab=a81b5675
+-/
 lemma sum_cnt {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (S : Finset (ZMod (d * m))) :
     ∑ j ∈ Finset.range d, cnt S j = S.card := by
   classical
@@ -137,7 +150,9 @@ lemma sum_cnt {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (S : Finset (ZMod (d * m))) 
     (f := fun i => i.val / m) (s := S) (t := Finset.range d)
     (by intro i _; exact Finset.mem_range.mpr (level_lt hd hm i))]
 
-/-- Prefix count: `#{i ∈ S : level i ≤ j} = ∑_{l ≤ j} cnt S l`. -/
+/-- Prefix count: `#{i ∈ S : level i ≤ j} = ∑_{l ≤ j} cnt S l`.
+@isnad1 id=eq.0h4v.s7.ea0cebc8bfe9 from=translated src=- shape=bf9249a0 vocab=c620a7f3
+-/
 lemma prefix_cnt {d m : ℕ} (S : Finset (ZMod (d * m))) (j : ℕ) :
     (S.filter (fun i => i.val / m ≤ j)).card = ∑ l ∈ Finset.range (j + 1), cnt S l := by
   classical
@@ -156,7 +171,9 @@ lemma prefix_cnt {d m : ℕ} (S : Finset (ZMod (d * m))) (j : ℕ) :
 
 /-! ## Part 3: the rotation `rhoPow` and the count-shift. -/
 
-/-- Cyclic round-trip: for `a, b < d`, `(((a + (d-b)) % d) + b) % d = a`. -/
+/-- Cyclic round-trip: for `a, b < d`, `(((a + (d-b)) % d) + b) % d = a`.
+@isnad1 id=eq.3h3v.s6.9658b9d15453 from=translated src=- shape=cc1eaf1a vocab=3d942bf6
+-/
 lemma cyc_round (a b d : ℕ) (_hd : 0 < d) (ha : a < d) (hb : b < d) :
     (((a + (d - b)) % d) + b) % d = a := by
   have h1 : (((a + (d - b)) % d) + b) ≡ (a + (d - b) + b) [MOD d] :=
@@ -169,7 +186,9 @@ lemma cyc_round (a b d : ℕ) (_hd : 0 < d) (ha : a < d) (hb : b < d) :
   rw [Nat.mod_eq_of_lt ha] at hlt
   exact hlt
 
-/-- The inverse cyclic relation. -/
+/-- The inverse cyclic relation.
+@isnad1 id=eq.5h4v.s6.27f2b87fe881 from=translated src=- shape=5371aa5e vocab=3d942bf6
+-/
 lemma cyc_inv (a b c d : ℕ) (_hd : 0 < d) (ha : a < d) (hb : b < d) (_hc : c < d)
     (h : c = (a + b) % d) : a = (c + (d - b)) % d := by
   have h1 : (c + (d - b)) ≡ ((a + b) + (d - b)) [MOD d] := by
@@ -185,17 +204,25 @@ lemma cyc_inv (a b c d : ℕ) (_hd : 0 < d) (ha : a < d) (hb : b < d) (_hc : c <
 def rhoPow {d m : ℕ} (t : ℕ) (S : Finset (ZMod (d * m))) : Finset (ZMod (d * m)) :=
   S.map (Equiv.addRight (((t * m : ℕ) : ZMod (d * m)))).toEmbedding
 
+/--
+@isnad1 id=eq.0h4v.s5.c4cd65f88f5b from=translated src=- shape=8a25da70 vocab=801afd65
+-/
 @[simp] lemma card_rhoPow {d m : ℕ} (t : ℕ) (S : Finset (ZMod (d * m))) :
     (rhoPow t S).card = S.card := by
   unfold rhoPow; rw [Finset.card_map]
 
+/--
+@isnad1 id=iff.0h5v.s8.7f2a8c74255c from=translated src=- shape=3c0d7df3 vocab=58854da7
+-/
 lemma mem_rhoPow {d m : ℕ} (t : ℕ) (S : Finset (ZMod (d * m))) (x : ZMod (d * m)) :
     x ∈ rhoPow t S ↔ ∃ y ∈ S, y + ((t * m : ℕ) : ZMod (d * m)) = x := by
   unfold rhoPow
   rw [Finset.mem_map]
   simp_all
 
-/-- Composing rotations: `rhoPow t (rhoPow u S) = rhoPow (t + u) S`. -/
+/-- Composing rotations: `rhoPow t (rhoPow u S) = rhoPow (t + u) S`.
+@isnad1 id=eq.0h5v.s5.39be893cec1f from=translated src=- shape=f301aa72 vocab=6b714076
+-/
 lemma rhoPow_add {d m : ℕ} (t u : ℕ) (S : Finset (ZMod (d * m))) :
     rhoPow t (rhoPow u S) = rhoPow (t + u) S := by
   unfold rhoPow
@@ -208,14 +235,18 @@ lemma rhoPow_add {d m : ℕ} (t u : ℕ) (S : Finset (ZMod (d * m))) :
   push_cast
   ring
 
-/-- `rhoPow 0 S = S`. -/
+/-- `rhoPow 0 S = S`.
+@isnad1 id=eq.0h3v.s5.94034679205f from=translated src=- shape=a8592d33 vocab=036fbbcb
+-/
 @[simp] lemma rhoPow_zero {d m : ℕ} (S : Finset (ZMod (d * m))) : rhoPow 0 S = S := by
   unfold rhoPow
   simp only [Nat.zero_mul, Nat.cast_zero]
   rw [show (Equiv.addRight (0 : ZMod (d * m))) = Equiv.refl _ from by ext x; simp]
   simp
 
-/-- `rhoPow d S = S` (a full cycle is the identity). -/
+/-- `rhoPow d S = S` (a full cycle is the identity).
+@isnad1 id=eq.0h3v.s5.b5eb789dee50 from=translated src=- shape=c45a8af4 vocab=036fbbcb
+-/
 lemma rhoPow_period {d m : ℕ} (S : Finset (ZMod (d * m))) : rhoPow d S = S := by
   unfold rhoPow
   have : ((d * m : ℕ) : ZMod (d * m)) = 0 := by rw [ZMod.natCast_self]
@@ -223,7 +254,9 @@ lemma rhoPow_period {d m : ℕ} (S : Finset (ZMod (d * m))) : rhoPow d S = S := 
   rw [show (Equiv.addRight (0 : ZMod (d * m))) = Equiv.refl _ from by ext x; simp]
   simp
 
-/-- `rhoPow` only depends on `t % d`. -/
+/-- `rhoPow` only depends on `t % d`.
+@isnad1 id=eq.0h4v.s5.ae907e68d947 from=translated src=- shape=af953f74 vocab=1c606535
+-/
 lemma rhoPow_mod {d m : ℕ} (t : ℕ) (S : Finset (ZMod (d * m))) :
     rhoPow (t % d) S = rhoPow t S := by
   unfold rhoPow
@@ -231,7 +264,9 @@ lemma rhoPow_mod {d m : ℕ} (t : ℕ) (S : Finset (ZMod (d * m))) :
 
 /-- The count-shift: rotating by `t` shifts the level-count vector cyclically.
     For `j < d`, the elements of `rhoPow t S` at level `j` biject (via `+t'*m`) with the
-    elements of `S` at level `(j + (d - t%d)) % d`. -/
+    elements of `S` at level `(j + (d - t%d)) % d`.
+@isnad1 id=eq.3h5v.s6.d8a46099ea60 from=translated src=- shape=e10daa08 vocab=6cef3f1f
+-/
 lemma cnt_rhoPow {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (t : ℕ) (S : Finset (ZMod (d * m)))
     (j : ℕ) (hj : j < d) :
     cnt (rhoPow t S) j = cnt S ((j + (d - t % d)) % d) := by
@@ -299,14 +334,22 @@ def aP {d m : ℕ} (S : Finset (ZMod (d * m))) (l : ℕ) : ℕ := cnt S (l % d)
     `bSeq S l = 1 - (aP S l : ℤ)`. -/
 def bSeq {d m : ℕ} (S : Finset (ZMod (d * m))) (l : ℕ) : ℤ := 1 - (aP S l : ℤ)
 
+/--
+@isnad1 id=eq.1h4v.s5.ea109144d82b from=translated src=- shape=133096e4 vocab=70e9e9ed
+-/
 lemma aP_lt {d m : ℕ} (S : Finset (ZMod (d * m))) {l : ℕ} (hl : l < d) :
     aP S l = cnt S l := by unfold aP; rw [Nat.mod_eq_of_lt hl]
 
+/--
+@isnad1 id=eq.0h4v.s5.c41711adb8b2 from=translated src=- shape=02c5473b vocab=f5480f16
+-/
 lemma bSeq_periodic {d m : ℕ} (S : Finset (ZMod (d * m))) (k : ℕ) :
     bSeq S (k + d) = bSeq S k := by
   unfold bSeq aP; rw [Nat.add_mod_right]
 
-/-- Period sum of `aP` is `S.card`. -/
+/-- Period sum of `aP` is `S.card`.
+@isnad1 id=eq.2h3v.s6.a269cdcc3e20 from=translated src=- shape=a09d7868 vocab=4a81c28f
+-/
 lemma sum_aP {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (S : Finset (ZMod (d * m))) :
     ∑ l ∈ Finset.range d, (aP S l : ℤ) = (S.card : ℤ) := by
   rw [← Nat.cast_sum]
@@ -317,26 +360,34 @@ lemma sum_aP {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (S : Finset (ZMod (d * m))) :
   rw [Finset.mem_range] at hl
   exact aP_lt S hl
 
-/-- Period sum of `bSeq` over `range d` is `d - S.card`. -/
+/-- Period sum of `bSeq` over `range d` is `d - S.card`.
+@isnad1 id=eq.2h3v.s6.f14dc1aaae4f from=translated src=- shape=35279d37 vocab=dd033080
+-/
 lemma Q_bSeq_d {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (S : Finset (ZMod (d * m))) :
     Q (bSeq S) d = (d : ℤ) - (S.card : ℤ) := by
   unfold Q bSeq
   rw [Finset.sum_sub_distrib, Finset.sum_const, Finset.card_range, nsmul_eq_mul, mul_one,
       sum_aP hd hm S]
 
-/-- For a `(d-1)`-subset, the period sum of `bSeq` is exactly `1`. -/
+/-- For a `(d-1)`-subset, the period sum of `bSeq` is exactly `1`.
+@isnad1 id=eq.3h3v.s6.08b996a4ac06 from=translated src=- shape=a8eda967 vocab=d21244aa
+-/
 lemma Q_bSeq_d_one {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (S : Finset (ZMod (d * m)))
     (hcard : S.card = d - 1) : Q (bSeq S) d = 1 := by
   rw [Q_bSeq_d hd hm S, hcard]
   simp_all
 
-/-- The integer partial sum `Q (bSeq S) k = k - (∑_{l<k} aP S l)`. -/
+/-- The integer partial sum `Q (bSeq S) k = k - (∑_{l<k} aP S l)`.
+@isnad1 id=eq.0h4v.s5.c683027cf7e8 from=translated src=- shape=4eb2b811 vocab=7e424c17
+-/
 lemma Q_bSeq_eq {d m : ℕ} (S : Finset (ZMod (d * m))) (k : ℕ) :
     Q (bSeq S) k = (k : ℤ) - ∑ l ∈ Finset.range k, (aP S l : ℤ) := by
   unfold Q bSeq
   rw [Finset.sum_sub_distrib, Finset.sum_const, Finset.card_range, nsmul_eq_mul, mul_one]
 
-/-- Periodicity of the partial sums of `bSeq` for a `(d-1)`-subset. -/
+/-- Periodicity of the partial sums of `bSeq` for a `(d-1)`-subset.
+@isnad1 id=eq.3h4v.s6.194f8c30eb51 from=translated src=- shape=95fd5511 vocab=18a54a90
+-/
 lemma Q_bSeq_period {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (S : Finset (ZMod (d * m)))
     (hcard : S.card = d - 1) (k : ℕ) : Q (bSeq S) (k + d) = Q (bSeq S) k + 1 := by
   have hper : ∀ j, bSeq S (j + d) = bSeq S j := bSeq_periodic S
@@ -346,7 +397,9 @@ lemma Q_bSeq_period {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (S : Finset (ZMod (d *
 /-! ## Part 5: the core equivalence `LevelCanonical ↔ Good`. -/
 
 /-- The prefix sum of the rotated count is a shifted window of `aP`.
-    For `t < d` and `j < d`, with `e = d - t`. -/
+    For `t < d` and `j < d`, with `e = d - t`.
+@isnad1 id=eq.4h5v.s7.883c3028a2a8 from=translated src=- shape=b6246fcb vocab=2bdfa263
+-/
 lemma prefix_rhoPow {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (t : ℕ) (ht : t < d)
     (S : Finset (ZMod (d * m))) (j : ℕ) (hj : j < d) :
     ∑ l ∈ Finset.range (j + 1), ((cnt (rhoPow t S) l : ℤ))
@@ -362,7 +415,9 @@ lemma prefix_rhoPow {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (t : ℕ) (ht : t < d)
     rw [hkey]; rfl
   rw [heq]
 
-/-- Reindex: `∑_{l<j+1} f (l + e) = (∑_{l<e+j+1} f) - (∑_{l<e} f)`. -/
+/-- Reindex: `∑_{l<j+1} f (l + e) = (∑_{l<e+j+1} f) - (∑_{l<e} f)`.
+@isnad1 id=eq.0h3v.s6.539f70a2eff2 from=translated src=- shape=a7265c27 vocab=59f316b8
+-/
 lemma sum_shift_window (f : ℕ → ℤ) (e j : ℕ) :
     ∑ l ∈ Finset.range (j + 1), f (l + e)
       = (∑ l ∈ Finset.range (e + (j + 1)), f l) - (∑ l ∈ Finset.range e, f l) := by
@@ -379,7 +434,9 @@ lemma sum_shift_window (f : ℕ → ℤ) (e j : ℕ) :
 
 /-- The LC prefix inequality (index `j`) for `rhoPow t S`, recast via partial sums of `bSeq`.
     For `t < d`, `j < d`, with `e = d - t`:
-    `(#{i ∈ rhoPow t S : level i ≤ j} ≤ j)  ↔  Q b e < Q b (e + (j+1))`. -/
+    `(#{i ∈ rhoPow t S : level i ≤ j} ≤ j)  ↔  Q b e < Q b (e + (j+1))`.
+@isnad1 id=iff.4h5v.s7.8ec6bd2f42ce from=translated src=- shape=e7216e15 vocab=7a160420
+-/
 lemma lc_index_iff {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (t : ℕ) (ht : t < d)
     (S : Finset (ZMod (d * m))) (j : ℕ) (hj : j < d) :
     (((rhoPow t S).filter (fun i => i.val / m ≤ j)).card ≤ j)
@@ -406,7 +463,9 @@ lemma lc_index_iff {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (t : ℕ) (ht : t < d)
   constructor <;> intro h <;> linarith
 
 /-- Cross-equality relating `Q b e` to `Q b c` where `c = e % d` and `e ≤ d`
-    (so `e = c`, or `e = d` with `c = 0`). -/
+    (so `e = c`, or `e = d` with `c = 0`).
+@isnad1 id=eq.4h5v.s7.61d316030690 from=translated src=- shape=35388a57 vocab=1f6d4c94
+-/
 lemma Q_e_c_cross {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (S : Finset (ZMod (d * m)))
     (hcard : S.card = d - 1) (t : ℕ) (ht : t < d) (x : ℕ) :
     Q (bSeq S) (d - t) + Q (bSeq S) ((d - t) % d + x)
@@ -428,7 +487,9 @@ lemma Q_e_c_cross {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (S : Finset (ZMod (d * m
     rw [Nat.mod_eq_of_lt helt]
 
 /-- **The cycle-lemma bridge (single rotation).** For `t < d` and a `(d-1)`-subset `S`,
-    `LevelCanonical d m (rhoPow t S) ↔ Good d (bSeq S) ((d - t) % d)`. -/
+    `LevelCanonical d m (rhoPow t S) ↔ Good d (bSeq S) ((d - t) % d)`.
+@isnad1 id=iff.4h4v.s6.48f635ebaa90 from=translated src=- shape=0ea50fa8 vocab=0fce94c8
+-/
 lemma lc_iff_good {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (S : Finset (ZMod (d * m)))
     (hcard : S.card = d - 1) (t : ℕ) (ht : t < d) :
     LevelCanonical d m (rhoPow t S) ↔ Good d (bSeq S) ((d - t) % d) := by
@@ -480,10 +541,14 @@ lemma lc_iff_good {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (S : Finset (ZMod (d * m
 
 /-! ## Part 7: the unique canonical rotation index. -/
 
-/-- `σ t = (d - t) % d` is `< d`. -/
+/-- `σ t = (d - t) % d` is `< d`.
+@isnad1 id=lt.1h2v.s5.8cfc0ea5093c from=translated src=- shape=2abc4e40 vocab=25965f7e
+-/
 lemma sigma_lt {d : ℕ} (hd : 0 < d) (t : ℕ) : (d - t) % d < d := Nat.mod_lt _ hd
 
-/-- `σ` is an involution on `[0, d)`: `(d - ((d - t) % d)) % d = t` for `t < d`. -/
+/-- `σ` is an involution on `[0, d)`: `(d - ((d - t) % d)) % d = t` for `t < d`.
+@isnad1 id=eq.2h2v.s5.3d2b7f230064 from=translated src=- shape=2846baa8 vocab=25965f7e
+-/
 lemma sigma_invol {d : ℕ} (_hd : 0 < d) {t : ℕ} (ht : t < d) :
     (d - ((d - t) % d)) % d = t := by
   rcases Nat.eq_zero_or_pos t with ht0 | htpos
@@ -494,7 +559,9 @@ lemma sigma_invol {d : ℕ} (_hd : 0 < d) {t : ℕ} (ht : t < d) :
     rw [h2, Nat.mod_eq_of_lt ht]
 
 /-- **The unique canonical rotation.** For a `(d-1)`-subset `S`, exactly one `t ∈ [0,d)`
-    makes `rhoPow t S` level-canonical. -/
+    makes `rhoPow t S` level-canonical.
+@isnad1 id=existsun.3h3v.s6.d88da05d0001 from=translated src=- shape=4b401b76 vocab=4b72fb7e
+-/
 theorem canonical_unique {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (S : Finset (ZMod (d * m)))
     (hcard : S.card = d - 1) :
     ∃! t, t < d ∧ LevelCanonical d m (rhoPow t S) := by
@@ -523,6 +590,9 @@ open Classical in
 noncomputable def canIdx {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (S : Finset (ZMod (d * m))) : ℕ :=
   if h : S.card = d - 1 then (canonical_unique hd hm S h).choose else 0
 
+/--
+@isnad1 id=and.3h3v.s6.d58d16d983d3 from=translated src=- shape=164ea457 vocab=82c3733e
+-/
 lemma canIdx_spec {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (S : Finset (ZMod (d * m)))
     (hcard : S.card = d - 1) :
     canIdx hd hm S < d ∧ LevelCanonical d m (rhoPow (canIdx hd hm S) S) := by
@@ -530,7 +600,9 @@ lemma canIdx_spec {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (S : Finset (ZMod (d * m
   rw [dite_eq_left hcard]
   exact (canonical_unique hd hm S hcard).choose_spec.1
 
-/-- Uniqueness characterization of `canIdx`. -/
+/-- Uniqueness characterization of `canIdx`.
+@isnad1 id=eq.5h4v.s6.9ca61f05bd91 from=translated src=- shape=13145437 vocab=82c3733e
+-/
 lemma canIdx_eq {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (S : Finset (ZMod (d * m)))
     (hcard : S.card = d - 1) {t : ℕ} (htd : t < d) (htLC : LevelCanonical d m (rhoPow t S)) :
     t = canIdx hd hm S := by
@@ -538,14 +610,18 @@ lemma canIdx_eq {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (S : Finset (ZMod (d * m))
   rw [dite_eq_left hcard]
   exact (canonical_unique hd hm S hcard).choose_spec.2 t ⟨htd, htLC⟩
 
-/-- For a canonical `(d-1)`-subset, the canonical index is `0`. -/
+/-- For a canonical `(d-1)`-subset, the canonical index is `0`.
+@isnad1 id=eq.4h3v.s6.6d2d1ceeb2bf from=translated src=- shape=82482bc8 vocab=4e251ed6
+-/
 lemma canIdx_of_canonical {d m : ℕ} (hd : 0 < d) (hm : 0 < m) (c : Finset (ZMod (d * m)))
     (hcard : c.card = d - 1) (hLC : LevelCanonical d m c) : canIdx hd hm c = 0 := by
   symm
   apply canIdx_eq hd hm c hcard hd
   rw [rhoPow_zero]; exact hLC
 
-/-- `rhoPow` is "mod-d periodic with the round-trip cancelling to identity". -/
+/-- `rhoPow` is "mod-d periodic with the round-trip cancelling to identity".
+@isnad1 id=eq.1h4v.s5.3f9637ae0a90 from=translated src=- shape=0675a01b vocab=649962eb
+-/
 lemma rhoPow_round {d m : ℕ} (t : ℕ) (ht : t < d) (S : Finset (ZMod (d * m))) :
     rhoPow ((d - t) % d) (rhoPow t S) = S := by
   rw [rhoPow_add, ← rhoPow_mod]
@@ -622,7 +698,9 @@ noncomputable def equivCanFin (hd : 0 < d) (hm : 0 < m) : Asub d m ≃ Csub d m 
 
 /-! ## Part 9: the final count. -/
 
-/-- **PRIMARY.** `d · #{canonical (d-1)-subsets} = C(d*m, d-1)`. -/
+/-- **PRIMARY.** `d · #{canonical (d-1)-subsets} = C(d*m, d-1)`.
+@isnad1 id=eq.2h2v.s6.4c0dc5e17763 from=translated src=- shape=fafae7f4 vocab=8bef2fcb
+-/
 theorem card_levelCanonical_mul (d m : ℕ) (hd : 0 < d) (hm : 0 < m) :
     d * Fintype.card {S : Finset (ZMod (d * m)) // S.card = d - 1 ∧ LevelCanonical d m S}
       = (d * m).choose (d - 1) := by
@@ -640,7 +718,9 @@ theorem card_levelCanonical_mul (d m : ℕ) (hd : 0 < d) (hm : 0 < m) :
   rw [Nat.mul_comm d _]
   exact hbij.symm
 
-/-- **COROLLARY.** `#{canonical (d-1)-subsets} = C(d*m, d-1) / d`. -/
+/-- **COROLLARY.** `#{canonical (d-1)-subsets} = C(d*m, d-1) / d`.
+@isnad1 id=eq.2h2v.s6.151e5a232962 from=translated src=- shape=26aaf83c vocab=9a2ec94f
+-/
 theorem card_levelCanonical (d m : ℕ) (hd : 0 < d) (hm : 0 < m) :
     Fintype.card {S : Finset (ZMod (d * m)) // S.card = d - 1 ∧ LevelCanonical d m S}
       = (d * m).choose (d - 1) / d :=

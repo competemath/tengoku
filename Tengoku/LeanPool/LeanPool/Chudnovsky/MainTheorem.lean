@@ -90,7 +90,9 @@ private theorem factorial_ratio_succ (n : ℕ) :
     _ = (6 * n)! * ((3 * (n + 1))! * ((n + 1)!) ^ 3 * 1728 ^ (n + 1)) := by
         rw [e3, e1, pow_succ]; ring
 
-/-- The factorial quotient `(6n)!/((3n)!(n!)³)` is bounded by `1728ⁿ`. -/
+/-- The factorial quotient `(6n)!/((3n)!(n!)³)` is bounded by `1728ⁿ`.
+@isnad1 id=le.0h1v.s6.272622ba7705 from=translated src=- shape=5f71a8d7 vocab=bf88f0e0
+-/
 theorem factorial_ratio_le (n : ℕ) :
     (6 * n)! ≤ 1728 ^ n * ((3 * n)! * (n !) ^ 3) := by
   induction n with
@@ -107,7 +109,9 @@ theorem factorial_ratio_le (n : ℕ) :
           * ((3 * n)! * (n !) ^ 3 * 1728 ^ n) := by ring
 
 /-- The Main Theorem's series converges absolutely on the region `Im τ > 1.25`
-(ratio test: `(6n)!/((3n)!(n!)³) ≤ 1728ⁿ` and `‖1728·J‖ > 1728` on the region). -/
+(ratio test: `(6n)!/((3n)!(n!)³) ≤ 1728ⁿ` and `‖1728·J‖ > 1728` on the region).
+@isnad1 id=summable.1h1v.s5.7b0048e7b1d1 from=translated src=- shape=646e125a vocab=bd69b98b
+-/
 theorem summable_mainSummand {τ : ℍ} (hτ : τ ∈ Region) :
     Summable (mainSummand τ) := by
   set M : ℝ := ‖(1728 : ℂ) * J τ‖ with hMdef
@@ -154,7 +158,9 @@ theorem summable_mainSummand {τ : ℍ} (hτ : τ ∈ Region) :
 
 /-- The branch-resolution workhorse (PLAN A8): two continuous functions on a
 preconnected set whose squares agree, the second nonvanishing, agreeing at one
-point, agree everywhere. -/
+point, agree everywhere.
+@isnad1 id=eq.8h6v.s7.0f2a74ba7aa8 from=translated src=- shape=9febe914 vocab=da229f3c
+-/
 theorem sq_eq_on_preconnected_eq {X : Type*} [TopologicalSpace X] {s : Set X}
     (hs : IsPreconnected s) {f g : X → ℂ}
     (hf : ContinuousOn f s) (hg : ContinuousOn g s)
@@ -205,7 +211,9 @@ theorem sq_eq_on_preconnected_eq {X : Type*} [TopologicalSpace X] {s : Set X}
   have : (⟨x, hx⟩ : s) ∈ A := hAuniv ▸ Set.mem_univ _
   simpa [hA] using this
 
-/-- The region `Im τ > 1.25` is preconnected. -/
+/-- The region `Im τ > 1.25` is preconnected.
+@isnad1 id=isprecon.0h0v.s2.6763ec2f419a from=translated src=- shape=25b03439 vocab=00cad500
+-/
 theorem isPreconnected_Region : IsPreconnected (Region : Set ℍ) := by
   rw [← (UpperHalfPlane.isEmbedding_coe.toIsInducing).isPreconnected_image]
   have himg : ((↑) : ℍ → ℂ) '' Region = {z : ℂ | (5 : ℝ) / 4 < z.im} := by

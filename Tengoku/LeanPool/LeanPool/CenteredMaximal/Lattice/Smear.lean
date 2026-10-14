@@ -42,29 +42,42 @@ def atomBox (N : ℕ) : Finset (ℤ × ℤ) :=
 def smeared (N : ℕ) (ε : ℝ) (z : Fin 2 → ℝ) : ℝ :=
   ∑ p ∈ atomBox N, colWeight p.1 / ε ^ 2 * (closedBall (atom p) (ε / 2)).indicator 1 z
 
+/--
+@isnad1 id=lt.0h1v.s3.3e51e619363d from=translated src=- shape=b9369acb vocab=2f247585
+-/
 theorem colWeight_pos (c : ℤ) : 0 < colWeight c := by
   unfold colWeight
   split_ifs
   exacts [one_pos, heavy_pos]
 
+/--
+@isnad1 id=le.0h3v.s4.619f210325d7 from=translated src=- shape=99a5e74a vocab=5eef1ba0
+-/
 theorem smeared_nonneg (N : ℕ) (ε : ℝ) (z : Fin 2 → ℝ) : 0 ≤ smeared N ε z :=
   Finset.sum_nonneg fun _ _ => mul_nonneg (div_nonneg (colWeight_pos _).le (sq_nonneg _))
     (Set.indicator_nonneg (fun _ _ => zero_le_one) _)
 
+/--
+@isnad1 id=integrab.0h2v.s6.689ac533098f from=translated src=- shape=6734836d vocab=76602367
+-/
 theorem integrable_smeared (N : ℕ) (ε : ℝ) : Integrable (smeared N ε) := by
   refine integrable_finsetSum _ fun p _ => Integrable.const_mul ?_ _
   exact (integrable_indicator_iff measurableSet_closedBall).2
     (integrableOn_const measure_closedBall_lt_top.ne)
 
 /-- Consecutive columns `0, …, 2m` carry mass `(m + 1) + m · heavy`: the `m + 1` even columns
-have mass `1` and the `m` odd columns have mass `heavy`. -/
+have mass `1` and the `m` odd columns have mass `heavy`.
+@isnad1 id=eq.0h1v.s6.2b51302de81b from=translated src=- shape=c330340c vocab=3b4bbcc9
+-/
 theorem sum_range_colWeight (m : ℕ) :
     ∑ n ∈ Finset.range (2 * m + 1), colWeight n = (m + 1) + m * heavy := by
   -- each step adds the odd column `2m + 1` (mass `heavy`) and the even column `2m + 2` (mass `1`)
   induction m <;> grind [colWeight, Finset.sum_range_succ, Finset.sum_range_zero]
 
 /-- The columns `-2N - 2, …, 2N + 2` of `atomBox N` carry total mass `(2N + 3) + (2N + 2) · heavy`:
-the `2N + 3` even columns have mass `1` and the `2N + 2` odd columns have mass `heavy`. -/
+the `2N + 3` even columns have mass `1` and the `2N + 2` odd columns have mass `heavy`.
+@isnad1 id=eq.0h1v.s7.1c88500ac409 from=translated src=- shape=acc48b0c vocab=e03bef77
+-/
 theorem sum_colWeight_Icc (N : ℕ) :
     ∑ c ∈ Icc (-2 * (N : ℤ) - 2) (2 * N + 2), colWeight c = (2 * N + 3) + (2 * N + 2) * heavy := by
   -- `colWeight` is even, so the sum is twice the sum over `0, …, 2N + 2` minus the middle column
@@ -73,7 +86,9 @@ theorem sum_colWeight_Icc (N : ℕ) :
 
 /-- The atoms of `atomBox N` carry total mass `(2N + 3) · ((2N + 3) + (2N + 2) · heavy)`: each of
 its `2N + 3` rows carries the column mass of `sum_colWeight_Icc`. See `sum_colWeight_atomBox_le`
-for the cruder bound `(2N + 3)² · (1 + heavy)`. -/
+for the cruder bound `(2N + 3)² · (1 + heavy)`.
+@isnad1 id=eq.0h1v.s7.f6c2d264d549 from=translated src=- shape=3449cb4b vocab=590a07c6
+-/
 theorem sum_colWeight_atomBox (N : ℕ) :
     ∑ p ∈ atomBox N, colWeight p.1 = (2 * N + 3) * ((2 * N + 3) + (2 * N + 2) * heavy) := by
   -- sum each row over the columns (`sum_colWeight_Icc`), then over the `2N + 3` rows
@@ -81,15 +96,24 @@ theorem sum_colWeight_atomBox (N : ℕ) :
   simp only [atomBox, sum_product_right, sum_colWeight_Icc, sum_const, hcard, nsmul_eq_mul]
   norm_cast
 
+/--
+@isnad1 id=le.0h1v.s6.093905c499f6 from=translated src=- shape=b69f97ad vocab=738a6e47
+-/
 theorem sum_colWeight_atomBox_le (N : ℕ) :
     ∑ p ∈ atomBox N, colWeight p.1 ≤ (2 * N + 3) ^ 2 * (1 + heavy) := by
   rw [sum_colWeight_atomBox]
   nlinarith [heavy_pos, (Nat.cast_nonneg N : (0 : ℝ) ≤ N)]
 
+/--
+@isnad1 id=eq.0h3v.s6.1c0167afdb3b from=translated src=- shape=5c859588 vocab=273ea13e
+-/
 theorem ofReal_mul_indicator_one {s : Set (Fin 2 → ℝ)} (a : ℝ) (z : Fin 2 → ℝ) :
     ENNReal.ofReal (a * s.indicator 1 z) = s.indicator (fun _ => ENNReal.ofReal a) z := by
   by_cases hz : z ∈ s <;> simp [hz]
 
+/--
+@isnad1 id=eq.0h3v.s7.6542d4d61395 from=translated src=- shape=495b933f vocab=422bfb1e
+-/
 theorem enorm_smeared (N : ℕ) (ε : ℝ) (z : Fin 2 → ℝ) :
     ‖smeared N ε z‖ₑ = ∑ p ∈ atomBox N, (closedBall (atom p) (ε / 2)).indicator
       (fun _ => ENNReal.ofReal (colWeight p.1 / ε ^ 2)) z := by
@@ -98,7 +122,9 @@ theorem enorm_smeared (N : ℕ) (ε : ℝ) (z : Fin 2 → ℝ) :
   · exact fun _ _ => mul_nonneg (div_nonneg (colWeight_pos _).le (sq_nonneg _))
       (Set.indicator_nonneg (fun _ _ => zero_le_one) _)
 
-/-- A smeared atom has integral equal to its mass. -/
+/-- A smeared atom has integral equal to its mass.
+@isnad1 id=eq.1h2v.s8.bd6217b01cee from=translated src=- shape=4f1db873 vocab=e0ae7833
+-/
 theorem ofReal_div_sq_mul_volume {ε : ℝ} (hε : 0 < ε) (p : ℤ × ℤ) :
     ENNReal.ofReal (colWeight p.1 / ε ^ 2) * volume (closedBall (atom p) (ε / 2)) =
       ENNReal.ofReal (colWeight p.1) := by
@@ -107,6 +133,9 @@ theorem ofReal_div_sq_mul_volume {ε : ℝ} (hε : 0 < ε) (p : ℤ × ℤ) :
   congr 1
   field_simp
 
+/--
+@isnad1 id=eq.1h2v.s7.8b020e8e00e8 from=translated src=- shape=fba8e2d3 vocab=505926a5
+-/
 theorem lintegral_smeared (N : ℕ) {ε : ℝ} (hε : 0 < ε) :
     ∫⁻ z, ‖smeared N ε z‖ₑ = ENNReal.ofReal (∑ p ∈ atomBox N, colWeight p.1) := by
   simp_rw [enorm_smeared]
@@ -127,7 +156,9 @@ private theorem IsWitness.closedBall_atom_subset_closedBall {z : Fin 2 → ℝ} 
 /-- If `(L, A)` witnesses level one at `z` and `atomBox N` keeps every atom of `A`, then the closed
 square of side `L + ε` centred at `z` (a `closedBall` in the sup metric) carries smeared mass at
 least `L ^ 2`. Unlike `lintegral_smeared`, which integrates over the whole plane, this bounds the
-mass inside a single square, as `lt_maximalFunction_smeared` needs. -/
+mass inside a single square, as `lt_maximalFunction_smeared` needs.
+@isnad1 id=le.3h5v.s8.f3a7032585cb from=translated src=- shape=d4c4944f vocab=7fa00ba4
+-/
 theorem ofReal_sq_le_setLIntegral_smeared {N : ℕ} {ε : ℝ} (hε : 0 < ε) {z : Fin 2 → ℝ} {L : ℝ}
     {A : Finset (ℤ × ℤ)} (hA : A ⊆ atomBox N) (hw : IsWitness (z 0) (z 1) L A) :
     ENNReal.ofReal (L ^ 2) ≤ ∫⁻ y in closedBall z ((L + ε) / 2), ‖smeared N ε y‖ₑ :=
@@ -148,7 +179,9 @@ theorem ofReal_sq_le_setLIntegral_smeared {N : ℕ} {ε : ℝ} (hε : 0 < ε) {z
 function of `smeared N ε` at `z` exceeds `1 - 2ε`. The bound is uniform in `N` and in the witness,
 so it holds at every point that has some witness inside `atomBox N`. Compare
 `ofReal_sq_le_setLIntegral_smeared`, which bounds the mass of the square of side `L + ε` rather than
-the maximal function. -/
+the maximal function.
+@isnad1 id=lt.3h5v.s7.527d79ca0bae from=translated src=- shape=85dbba88 vocab=3beb7756
+-/
 theorem lt_maximalFunction_smeared {N : ℕ} {ε : ℝ} (hε : 0 < ε) {z : Fin 2 → ℝ} {L : ℝ}
     {A : Finset (ℤ × ℤ)} (hA : A ⊆ atomBox N) (hw : IsWitness (z 0) (z 1) L A) :
     ENNReal.ofReal (1 - 2 * ε) < maximalFunction (smeared N ε) z := by

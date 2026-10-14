@@ -59,6 +59,9 @@ noncomputable def sqDistMatrix (x : Fin n → EuclideanSpace ℝ (Fin k)) :
     Matrix (Fin n) (Fin n) ℝ :=
   .of fun i j => dist (x i) (x j) ^ 2
 
+/--
+@isnad1 id=eq.0h5v.s6.542182e7cc68 from=translated src=- shape=036dfee3 vocab=f9852275
+-/
 @[simp]
 theorem sqDistMatrix_apply (x : Fin n → EuclideanSpace ℝ (Fin k)) (i j : Fin n) :
     sqDistMatrix x i j = dist (x i) (x j) ^ 2 := rfl
@@ -74,13 +77,17 @@ theorem IsSqDistMatrix.eq_sqDistMatrix {D : Matrix (Fin n) (Fin n) ℝ}
     D = sqDistMatrix x :=
   Matrix.ext hD
 
-/-- A squared-distance matrix is symmetric: `D i j = D j i`. -/
+/-- A squared-distance matrix is symmetric: `D i j = D j i`.
+@isnad1 id=eq.1h6v.s5.ab23939d08dc from=translated src=- shape=819b8068 vocab=b52a3844
+-/
 theorem IsSqDistMatrix.symm {D : Matrix (Fin n) (Fin n) ℝ}
     {x : Fin n → EuclideanSpace ℝ (Fin k)} (hD : IsSqDistMatrix D x) (i j : Fin n) :
     D i j = D j i := by
   rw [hD i j, hD j i, dist_comm]
 
-/-- A squared-distance matrix is hollow: its diagonal vanishes. -/
+/-- A squared-distance matrix is hollow: its diagonal vanishes.
+@isnad1 id=eq.1h5v.s5.baaf4831c2dd from=translated src=- shape=1aa53dca vocab=b52a3844
+-/
 theorem IsSqDistMatrix.hollow {D : Matrix (Fin n) (Fin n) ℝ}
     {x : Fin n → EuclideanSpace ℝ (Fin k)} (hD : IsSqDistMatrix D x) (i : Fin n) :
     D i i = 0 := by
@@ -98,15 +105,21 @@ direction of Schoenberg's theorem. -/
 def IsPreDistMatrix (D : Matrix (Fin n) (Fin n) ℝ) : Prop :=
   (∀ i j, D i j = D j i) ∧ (∀ i, D i i = 0)
 
-/-- A matrix satisfying `IsPreDistMatrix` is symmetric. -/
+/-- A matrix satisfying `IsPreDistMatrix` is symmetric.
+@isnad1 id=eq.1h4v.s4.430c853abbb9 from=translated src=- shape=ead90581 vocab=b8efe25a
+-/
 theorem IsPreDistMatrix.symm {D : Matrix (Fin n) (Fin n) ℝ} (hD : IsPreDistMatrix D)
     (i j : Fin n) : D i j = D j i := hD.1 i j
 
-/-- A matrix satisfying `IsPreDistMatrix` is hollow. -/
+/-- A matrix satisfying `IsPreDistMatrix` is hollow.
+@isnad1 id=eq.1h3v.s4.a884a1595fc8 from=translated src=- shape=31eb671e vocab=b8efe25a
+-/
 theorem IsPreDistMatrix.hollow {D : Matrix (Fin n) (Fin n) ℝ} (hD : IsPreDistMatrix D)
     (i : Fin n) : D i i = 0 := hD.2 i
 
-/-- Every squared-distance matrix satisfies `IsPreDistMatrix`. -/
+/-- Every squared-distance matrix satisfies `IsPreDistMatrix`.
+@isnad1 id=ispredis.1h4v.s4.67124971b57e from=translated src=- shape=c13330b5 vocab=b0cde90d
+-/
 theorem IsSqDistMatrix.isPreDistMatrix {D : Matrix (Fin n) (Fin n) ℝ}
     {x : Fin n → EuclideanSpace ℝ (Fin k)} (hD : IsSqDistMatrix D x) :
     IsPreDistMatrix D :=
@@ -121,11 +134,16 @@ noncomputable def centeredGram [NeZero n] (D : Matrix (Fin n) (Fin n) ℝ) :
     Matrix (Fin n) (Fin n) ℝ :=
   .of fun i j => (D 0 i + D 0 j - D i j) / 2
 
+/--
+@isnad1 id=eq.0h4v.s6.971e4af2be2d from=translated src=- shape=007da7cc vocab=a36ee1ca
+-/
 @[simp]
 theorem centeredGram_apply [NeZero n] (D : Matrix (Fin n) (Fin n) ℝ) (i j : Fin n) :
     centeredGram D i j = (D 0 i + D 0 j - D i j) / 2 := rfl
 
-/-- The basepoint-centered Gram matrix of a symmetric matrix is symmetric. -/
+/-- The basepoint-centered Gram matrix of a symmetric matrix is symmetric.
+@isnad1 id=eq.1h4v.s5.2592c115bf68 from=translated src=- shape=5fe0ef70 vocab=dc12579e
+-/
 theorem centeredGram_symm [NeZero n] {D : Matrix (Fin n) (Fin n) ℝ}
     (hsymm : ∀ i j, D i j = D j i) (i j : Fin n) :
     centeredGram D i j = centeredGram D j i := by

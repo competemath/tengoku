@@ -27,7 +27,9 @@ namespace Moise
 open Filter
 open scoped Pointwise _root_.Topology
 
-/-- A nondegenerate plane triangle has infinitely many interior points. -/
+/-- A nondegenerate plane triangle has infinitely many interior points.
+@isnad1 id=infinite.1h1v.s5.c81a43f5202f from=translated src=- shape=a62af213 vocab=e9c25dc6
+-/
 theorem IsTriangle.infinite_interior {C : Set Plane} (hC : IsTriangle C) :
     (interior C).Infinite := by
   obtain ⟨p, hp, rfl⟩ := hC
@@ -61,14 +63,23 @@ theorem IsTriangle.infinite_interior {C : Set Plane} (hC : IsTriangle C) :
   exact (convex_convexHull ℝ (Set.range p)).interior.isPreconnected.infinite_of_nontrivial
     ⟨c, hc, m, hm, fun h => hmc h.symm⟩
 
+/--
+@isnad1 id=convex.1h1v.s6.dd670dcae60d from=translated src=- shape=de49776a vocab=4ce23775
+-/
 theorem IsTriangle.convex {C : Set Plane} (hC : IsTriangle C) : Convex ℝ C := by
   obtain ⟨p, -, rfl⟩ := hC
   exact convex_convexHull ℝ (Set.range p)
 
+/--
+@isnad1 id=iscompac.1h1v.s5.c8626af3592d from=translated src=- shape=f3db9897 vocab=2f6b61af
+-/
 theorem IsTriangle.isCompact {C : Set Plane} (hC : IsTriangle C) : IsCompact C := by
   obtain ⟨p, -, rfl⟩ := hC
   exact (Set.finite_range p).isCompact_convexHull (𝕜 := ℝ)
 
+/--
+@isnad1 id=nonempty.1h1v.s5.e88160ddf984 from=translated src=- shape=a62af213 vocab=d371b30c
+-/
 theorem IsTriangle.frontier_nonempty {C : Set Plane} (hC : IsTriangle C) :
     (frontier C).Nonempty := by
   obtain ⟨p, -, rfl⟩ := hC
@@ -80,14 +91,18 @@ theorem IsTriangle.frontier_nonempty {C : Set Plane} (hC : IsTriangle C) :
     rw [h] at hb
     exact NormedSpace.unbounded_univ ℝ Plane hb
 
-/-- An interior cone point can be chosen away from any prescribed finite family of points. -/
+/-- An interior cone point can be chosen away from any prescribed finite family of points.
+@isnad1 id=ex.1h3v.s6.920ecc8e9ed5 from=translated src=- shape=81fd4b3a vocab=ae5f9ae8
+-/
 theorem IsTriangle.exists_interior_not_mem_range {C : Set Plane} (hC : IsTriangle C)
     {ι : Type*} [Finite ι] (p : ι → Plane) :
     ∃ c ∈ interior C, c ∉ Set.range p := by
   exact hC.infinite_interior.exists_notMem_finite (Set.toFinite (Set.range p))
 
 /-- Every point of a compact convex body lies on a radial segment from an interior point to the
-frontier. -/
+frontier.
+@isnad1 id=ex.5h3v.s8.56e29be21e0d from=translated src=- shape=50af2677 vocab=69ad8c79
+-/
 theorem exists_frontier_endpoint {S : Set Plane} (hS : Convex ℝ S) (hcompact : IsCompact S)
     {c x : Plane} (hc : c ∈ interior S) (hx : x ∈ S)
     (hfrontier : (frontier S).Nonempty) :
@@ -181,7 +196,9 @@ theorem eq_of_mem_segment_interior_frontier {S : Set Plane} (hS : Convex ℝ S)
     exact (disjoint_interior_frontier (s := S)).le_bot ⟨hyint, hy⟩
 
 /-- Coning preserves a face-to-face intersection when the base faces lie in the frontier of a
-convex set and the cone point lies in its interior. -/
+convex set and the cone point lies in its interior.
+@isnad1 id=eq.7h4v.s10.88f4c2fdcc45 from=translated src=- shape=034d72e6 vocab=b2ad67fa
+-/
 theorem convexHull_insert_inter_convexHull_insert {S A B : Set Plane}
     (hS : Convex ℝ S) (hA : A.Nonempty) (hB : B.Nonempty) {c : Plane}
     (hc : c ∈ interior S) (hAS : convexHull ℝ A ⊆ frontier S)
@@ -218,7 +235,9 @@ theorem convexHull_insert_inter_convexHull_insert {S A B : Set Plane}
       · exact Set.mem_insert_of_mem _ hx
     exact ⟨convexHull_mono hleft hz, convexHull_mono hright hz⟩
 
-/-- The mixed cone/base face intersection used when exactly one face contains the cone point. -/
+/-- The mixed cone/base face intersection used when exactly one face contains the cone point.
+@isnad1 id=eq.6h4v.s10.c683ba96974a from=translated src=- shape=1b3bb6b2 vocab=b2ad67fa
+-/
 theorem convexHull_insert_inter_convexHull {S A B : Set Plane}
     (hS : Convex ℝ S) (hA : A.Nonempty) {c : Plane}
     (hc : c ∈ interior S) (hAS : convexHull ℝ A ⊆ frontier S)
@@ -244,7 +263,9 @@ theorem convexHull_insert_inter_convexHull {S A B : Set Plane}
     have hzB : z ∈ convexHull ℝ B := convexHull_mono Set.inter_subset_right hz
     exact ⟨convexHull_mono (Set.subset_insert c A) hzA, hzB⟩
 
-/-- Cone/cone intersection, including the degenerate case where one base face is empty. -/
+/-- Cone/cone intersection, including the degenerate case where one base face is empty.
+@isnad1 id=eq.5h4v.s10.c21bf095206e from=translated src=- shape=98c17173 vocab=a031babc
+-/
 theorem convexHull_insert_inter_convexHull_insert' {S A B : Set Plane}
     (hS : Convex ℝ S) {c : Plane} (hc : c ∈ interior S)
     (hAS : convexHull ℝ A ⊆ frontier S) (hBS : convexHull ℝ B ⊆ frontier S)
@@ -273,7 +294,9 @@ theorem convexHull_insert_inter_convexHull_insert' {S A B : Set Plane}
       exact ⟨subset_convexHull ℝ _ (Set.mem_insert _ _), rfl⟩
   exact convexHull_insert_inter_convexHull_insert hS hA hB hc hAS hBS hface
 
-/-- Cone/base intersection, including an empty cone base. -/
+/-- Cone/base intersection, including an empty cone base.
+@isnad1 id=eq.5h4v.s10.b45d519ba62c from=translated src=- shape=6c5e2b40 vocab=a031babc
+-/
 theorem convexHull_insert_inter_convexHull' {S A B : Set Plane}
     (hS : Convex ℝ S) {c : Plane} (hc : c ∈ interior S)
     (hAS : convexHull ℝ A ⊆ frontier S) (hBS : convexHull ℝ B ⊆ frontier S)
@@ -292,7 +315,9 @@ theorem convexHull_insert_inter_convexHull' {S A B : Set Plane}
     · simp
   exact convexHull_insert_inter_convexHull hS hA hc hAS hBS hface
 
-/-- An interior point and the endpoints of a nondegenerate frontier segment are not collinear. -/
+/-- An interior point and the endpoints of a nondegenerate frontier segment are not collinear.
+@isnad1 id=not.6h4v.s9.7190529b35d5 from=translated src=- shape=15debaec vocab=6b812cd1
+-/
 theorem not_collinear_interior_frontier_segment {S : Set Plane} (hS : Convex ℝ S)
     {c a b : Plane} (hc : c ∈ interior S) (ha : a ∈ frontier S)
     (hb : b ∈ frontier S) (hab : a ≠ b) (hsegment : segment ℝ a b ⊆ frontier S) :
@@ -326,7 +351,9 @@ theorem not_collinear_interior_frontier_segment {S : Set Plane} (hS : Convex ℝ
     exact (disjoint_interior_frontier (s := S)).le_bot ⟨hc, hcFrontier⟩
 
 /-- Adding an interior cone point to at most two affinely independent frontier vertices preserves
-affine independence. -/
+affine independence.
+@isnad1 id=affinein.5h3v.s10.d19e4e525a0b from=translated src=- shape=22951793 vocab=bd5b1bbe
+-/
 theorem affineIndependent_insert_interior_of_card_le_two {S : Set Plane} (hS : Convex ℝ S)
     {A : Finset Plane} (hAcard : A.card ≤ 2)
     (hAI : AffineIndependent ℝ ((↑) : A → Plane))
@@ -391,10 +418,16 @@ def activeEmbedding : K.ActiveVertex ↪ K.Vertex := Function.Embedding.subtype 
 noncomputable def activeSimplexes : Finset (Finset K.ActiveVertex) :=
   Finset.univ.filter fun s => s.map K.activeEmbedding ∈ K.simplexes
 
+/--
+@isnad1 id=iff.0h2v.s5.9d459f8ce657 from=translated src=- shape=3f708793 vocab=af974061
+-/
 @[simp] theorem mem_activeSimplexes {s : Finset K.ActiveVertex} :
     s ∈ K.activeSimplexes ↔ s.map K.activeEmbedding ∈ K.simplexes := by
   simp [activeSimplexes]
 
+/--
+@isnad1 id=eq.0h2v.s6.3d9b346435b1 from=translated src=- shape=d2241678 vocab=a622cb84
+-/
 theorem active_position_image (s : Finset K.ActiveVertex) :
     (fun v : K.ActiveVertex => K.position v.1) '' (s : Set K.ActiveVertex) =
       K.position '' ((s.map K.activeEmbedding : Finset K.Vertex) : Set K.Vertex) := by
@@ -439,10 +472,16 @@ noncomputable def active : PlaneComplex where
     rw [← Finset.map_inter] at h
     simpa only [K.active_position_image] using h
 
+/--
+@isnad1 id=eq.0h2v.s4.0ff50cca6f79 from=translated src=- shape=bb3dc367 vocab=020f9c4e
+-/
 theorem active_cellCarrier (s : Finset K.ActiveVertex) :
     (active K).cellCarrier s = K.cellCarrier (s.map K.activeEmbedding) := by
   exact congrArg (convexHull ℝ) (K.active_position_image s)
 
+/--
+@isnad1 id=eq.0h1v.s3.a43efd5e1321 from=translated src=- shape=f589419e vocab=78e6ef44
+-/
 theorem active_support : (active K).support = K.support := by
   apply Set.Subset.antisymm
   · intro x hx
@@ -471,7 +510,9 @@ theorem active_support : (active K).support = K.support := by
     rw [K.active_cellCarrier, hmap]
     exact hxs
 
-/-- Removing unused vertices preserves purity of a two-dimensional complex. -/
+/-- Removing unused vertices preserves purity of a two-dimensional complex.
+@isnad1 id=ispure2.1h1v.s3.73a1432d8a17 from=translated src=- shape=2c86d966 vocab=0190946e
+-/
 theorem IsPure2.active (hpure : K.IsPure2) : (active K).IsPure2 := by
   intro s hs
   obtain ⟨t, ht, hst, htcard⟩ := hpure (s.map K.activeEmbedding)
@@ -498,7 +539,9 @@ theorem IsPure2.active (hpure : K.IsPure2) : (active K).IsPure2 := by
     rw [hmap, htcard] at hcardmap
     exact hcardmap.symm
 
-/-- A plane complex supported on the frontier of a closed set has no two-dimensional face. -/
+/-- A plane complex supported on the frontier of a closed set has no two-dimensional face.
+@isnad1 id=le.3h3v.s7.30bca17b586a from=translated src=- shape=af3c6d49 vocab=163b45a3
+-/
 theorem card_le_two_of_support_eq_frontier {S : Set Plane} (hSclosed : IsClosed S)
     (hsupport : K.support = frontier S) {s : Finset K.Vertex} (hs : s ∈ K.simplexes) :
     s.card ≤ 2 := by
@@ -522,6 +565,9 @@ theorem card_le_two_of_support_eq_frontier {S : Set Plane} (hSclosed : IsClosed 
   rw [interior_frontier hSclosed] at hsubset
   exact hne.not_subset_empty hsubset
 
+/--
+@isnad1 id=subdivid.1h2v.s3.61960e672d7b from=translated src=- shape=6ab97f4e vocab=853c6f28
+-/
 theorem active_subdivides_left {L K : PlaneComplex} (h : L.Subdivides K) :
     (active L).Subdivides K := by
   constructor
@@ -543,10 +589,16 @@ def usedEmbedding : K.UsedVertex ↪ K.Vertex := Function.Embedding.subtype _
 noncomputable def usedSimplexes : Finset (Finset K.UsedVertex) :=
   Finset.univ.filter fun s => s.map K.usedEmbedding ∈ K.simplexes
 
+/--
+@isnad1 id=iff.0h2v.s5.36dfd5404bb7 from=translated src=- shape=3f708793 vocab=fcca50b8
+-/
 @[simp] theorem mem_usedSimplexes {s : Finset K.UsedVertex} :
     s ∈ K.usedSimplexes ↔ s.map K.usedEmbedding ∈ K.simplexes := by
   simp [usedSimplexes]
 
+/--
+@isnad1 id=eq.0h2v.s6.faf7f83043d5 from=translated src=- shape=b7e2f872 vocab=73348fb9
+-/
 theorem used_position_image (s : Finset K.UsedVertex) :
     (fun v : K.UsedVertex => K.position v.1) '' (s : Set K.UsedVertex) =
       K.position '' ((s.map K.usedEmbedding : Finset K.Vertex) : Set K.Vertex) := by
@@ -590,10 +642,16 @@ noncomputable def used : PlaneComplex where
     rw [← Finset.map_inter] at h
     simpa only [K.used_position_image] using h
 
+/--
+@isnad1 id=eq.0h2v.s4.97e251df5864 from=translated src=- shape=bb3dc367 vocab=d5385b41
+-/
 theorem used_cellCarrier (s : Finset K.UsedVertex) :
     (used K).cellCarrier s = K.cellCarrier (s.map K.usedEmbedding) := by
   exact congrArg (convexHull ℝ) (K.used_position_image s)
 
+/--
+@isnad1 id=eq.0h1v.s3.754affcfcd61 from=translated src=- shape=f589419e vocab=06dc3571
+-/
 theorem used_support : (used K).support = K.support := by
   apply Set.Subset.antisymm
   · intro x hx
@@ -621,6 +679,9 @@ theorem used_support : (used K).support = K.support := by
     rw [K.used_cellCarrier, hmap]
     exact hxs
 
+/--
+@isnad1 id=mem.0h2v.s5.4c44290ad622 from=translated src=- shape=2d3ec246 vocab=4a79dff8
+-/
 theorem used_vertex_face (v : K.UsedVertex) :
     ({v} : Finset (used K).Vertex) ∈ (used K).simplexes := by
   apply K.mem_usedSimplexes.mpr
@@ -630,7 +691,9 @@ theorem used_vertex_face (v : K.UsedVertex) :
   · exact Finset.singleton_nonempty _
 
 /-- Every face of a complex is represented by an identical geometric face after unused vertices
-are removed. -/
+are removed.
+@isnad1 id=ex.1h2v.s6.f4c1ef054892 from=translated src=- shape=b3620198 vocab=0000e3a0
+-/
 theorem exists_used_face_eq (s : Finset K.Vertex) (hs : s ∈ K.simplexes) :
     ∃ t : Finset (used K).Vertex, t ∈ (used K).simplexes ∧
       t.map K.usedEmbedding = s ∧ (used K).cellCarrier t = K.cellCarrier s := by
@@ -648,7 +711,9 @@ theorem exists_used_face_eq (s : Finset K.Vertex) (hs : s ∈ K.simplexes) :
   refine ⟨t, K.mem_usedSimplexes.mpr (hmap ▸ hs), hmap, ?_⟩
   rw [K.used_cellCarrier, hmap]
 
-/-- Removing vertices unused by every face preserves two-dimensional purity. -/
+/-- Removing vertices unused by every face preserves two-dimensional purity.
+@isnad1 id=ispure2.1h1v.s3.542c14539292 from=translated src=- shape=2c86d966 vocab=3591306b
+-/
 theorem IsPure2.used (hpure : K.IsPure2) : (used K).IsPure2 := by
   intro s hs
   obtain ⟨t, ht, hst, htcard⟩ := hpure (s.map K.usedEmbedding)
@@ -673,6 +738,9 @@ theorem IsPure2.used (hpure : K.IsPure2) : (used K).IsPure2 := by
     rw [hmap, htcard] at hcardmap
     exact hcardmap.symm
 
+/--
+@isnad1 id=subdivid.1h2v.s3.9db94a12b1e3 from=translated src=- shape=6ab97f4e vocab=47c94f50
+-/
 theorem used_subdivides_left {L K : PlaneComplex} (h : L.Subdivides K) :
     (used L).Subdivides K := by
   constructor
@@ -681,7 +749,9 @@ theorem used_subdivides_left {L K : PlaneComplex} (h : L.Subdivides K) :
     obtain ⟨t, ht, hst⟩ := h.2 (s.map L.usedEmbedding) (L.mem_usedSimplexes.mp hs)
     exact ⟨t, ht, (L.used_cellCarrier s).symm ▸ hst⟩
 
-/-- Values prescribed on an affinely independent family extend to an affine map of the plane. -/
+/-- Values prescribed on an affinely independent family extend to an affine map of the plane.
+@isnad1 id=ex.1h3v.s11.32fe5064e693 from=translated src=- shape=03a324e1 vocab=a726781d
+-/
 theorem exists_affineMap_eqOn_affineIndependent {ι : Type*} [Nonempty ι]
     (p q : ι → Plane) (hp : AffineIndependent ℝ p) :
     ∃ g : Plane →ᵃ[ℝ] Plane, ∀ i, g (p i) = q i := by
@@ -788,6 +858,9 @@ noncomputable def mapGraph (f : Plane → Plane)
     · have hempty : s ∩ t = ∅ := Finset.not_nonempty_iff_eq_empty.mp hne
       simp [hempty, PlaneComplex.cellCarrier]
 
+/--
+@isnad1 id=eq.5h3v.s7.fe0796fb8f60 from=translated src=- shape=f874617c vocab=67d1a802
+-/
 theorem mapGraph_cellCarrier (f : Plane → Plane)
     (hvertex : ∀ v, K.position v ∈ K.support) (hinj : Set.InjOn f K.support)
     (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2)
@@ -798,6 +871,9 @@ theorem mapGraph_cellCarrier (f : Plane → Plane)
   rw [Set.image_comp]
   exact IsAffineOn.image_convexHull (haffine s hs)
 
+/--
+@isnad1 id=eq.4h2v.s6.89533ec5487a from=translated src=- shape=a2597306 vocab=67d1a802
+-/
 theorem mapGraph_support (f : Plane → Plane)
     (hvertex : ∀ v, K.position v ∈ K.support) (hinj : Set.InjOn f K.support)
     (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2)
@@ -816,6 +892,9 @@ theorem mapGraph_support (f : Plane → Plane)
     rw [K.mapGraph_cellCarrier f hvertex hinj hgraph haffine hs]
     exact ⟨y, hy, rfl⟩
 
+/--
+@isnad1 id=eq.8h4v.s7.acc209fd1fd8 from=translated src=- shape=ee8a4278 vocab=dfd602a8
+-/
 theorem mapGraph_baryEval_eq (f : Plane → Plane)
     (hvertex : ∀ v, K.position v ∈ K.support) (hinj : Set.InjOn f K.support)
     (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2)
@@ -896,6 +975,9 @@ noncomputable def realizationHomeomorphAll :
   exact Continuous.homeoOfEquivCompactToT2
     (f := Equiv.ofBijective phi ⟨hinj, hsurj⟩) hcont
 
+/--
+@isnad1 id=eq.0h2v.s8.64d878be5f00 from=translated src=- shape=32c67865 vocab=1e14fa39
+-/
 @[simp] theorem realizationHomeomorphAll_apply
     (x : GeometricRealization K.Vertex K.simplexes) :
     (K.realizationHomeomorphAll x).1 = K.baryEval x.1 := rfl
@@ -947,6 +1029,9 @@ noncomputable def repositionMap (position' : K.Vertex → Plane)
       (K.repositionHomeomorphAll position' hinj haff hface ⟨x, hx⟩).1
     else 0
 
+/--
+@isnad1 id=eq.3h3v.s10.30e2b3318ba4 from=translated src=- shape=0c752b20 vocab=0210a713
+-/
 theorem repositionMap_apply_realization (position' : K.Vertex → Plane)
     (hinj : Function.Injective position')
     (haff : ∀ s ∈ K.simplexes, AffineIndependent ℝ fun v : s => position' v)
@@ -970,7 +1055,9 @@ theorem repositionMap_apply_realization (position' : K.Vertex → Plane)
   rfl
 
 /-- Barycentric repositioning sends every vertex which occurs as a zero-face to its prescribed
-new position. -/
+new position.
+@isnad1 id=eq.4h3v.s10.10ad8d32aa80 from=translated src=- shape=04af4d70 vocab=0d136128
+-/
 theorem repositionMap_position (position' : K.Vertex → Plane)
     (hinj : Function.Injective position')
     (haff : ∀ s ∈ K.simplexes, AffineIndependent ℝ fun v : s => position' v)
@@ -1001,7 +1088,9 @@ theorem repositionMap_position (position' : K.Vertex → Plane)
   rw [← hsource, K.repositionMap_apply_realization position' hinj haff hface x,
     htarget]
 
-/-- Barycentric repositioning is affine on each original face. -/
+/-- Barycentric repositioning is affine on each original face.
+@isnad1 id=isaffine.4h3v.s10.bc3a6e157cfc from=translated src=- shape=e66eed6b vocab=190b6373
+-/
 theorem repositionMap_affineOn_face (position' : K.Vertex → Plane)
     (hinj : Function.Injective position')
     (haff : ∀ s ∈ K.simplexes, AffineIndependent ℝ fun v : s => position' v)
@@ -1046,7 +1135,9 @@ theorem repositionMap_affineOn_face (position' : K.Vertex → Plane)
   intro v hv
   exact (hg ⟨v, hv⟩).symm
 
-/-- Barycentric repositioning is PL on the original complex. -/
+/-- Barycentric repositioning is PL on the original complex.
+@isnad1 id=isplon.3h2v.s10.d1a4fb4e12a1 from=translated src=- shape=b43a52ad vocab=d52098f1
+-/
 theorem repositionMap_isPL (position' : K.Vertex → Plane)
     (hinj : Function.Injective position')
     (haff : ∀ s ∈ K.simplexes, AffineIndependent ℝ fun v : s => position' v)
@@ -1069,11 +1160,20 @@ def coneWeights (z : K.Vertex → ℝ) : Option K.Vertex → ℝ
   | none => 0
   | some v => z v
 
+/--
+@isnad1 id=eq.0h2v.s4.cf5cc3b802b6 from=translated src=- shape=1ae1ad6e vocab=37882cf4
+-/
 @[simp] theorem coneWeights_none (z : K.Vertex → ℝ) : K.coneWeights z none = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.95cbe4a495f2 from=translated src=- shape=b3b132ce vocab=46991207
+-/
 @[simp] theorem coneWeights_some (z : K.Vertex → ℝ) (v : K.Vertex) :
     K.coneWeights z (some v) = z v := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.8be558a5db6b from=translated src=- shape=29f82b15 vocab=937b6067
+-/
 theorem sum_coneWeights (z : K.Vertex → ℝ) :
     ∑ v, K.coneWeights z v = ∑ v, z v := by
   simp
@@ -1088,25 +1188,40 @@ def baseFace (t : Finset (Option K.Vertex)) : Finset K.Vertex :=
     intro a a' b ha ha'
     simpa only [id_eq, Option.mem_def] using ha.trans ha'.symm)
 
+/--
+@isnad1 id=iff.0h3v.s5.c00a1ec03e6e from=translated src=- shape=c1e12dbc vocab=4d6d6721
+-/
 @[simp] theorem mem_baseFace {t : Finset (Option K.Vertex)} {v : K.Vertex} :
     v ∈ K.baseFace t ↔ some v ∈ t := by
   simp [baseFace]
 
+/--
+@isnad1 id=eq.0h2v.s4.e7659f00bf83 from=translated src=- shape=60f8d03b vocab=a022a6f3
+-/
 @[simp] theorem baseFace_liftFace (s : Finset K.Vertex) :
     K.baseFace (K.liftFace s) = s := by
   ext v
   simp [liftFace]
 
+/--
+@isnad1 id=eq.0h3v.s5.9c7280387ec6 from=translated src=- shape=76a90922 vocab=cd0cbd2d
+-/
 @[simp] theorem baseFace_inter (t u : Finset (Option K.Vertex)) :
     K.baseFace (t ∩ u) = K.baseFace t ∩ K.baseFace u := by
   ext v
   simp
 
+/--
+@isnad1 id=eq.0h3v.s6.4c77339d033e from=translated src=- shape=7134885d vocab=c6677b04
+-/
 theorem position_image_inter (s t : Finset K.Vertex) :
     K.position '' (s : Set K.Vertex) ∩ K.position '' (t : Set K.Vertex) =
       K.position '' ((s ∩ t : Finset K.Vertex) : Set K.Vertex) := by
   rw [← Set.image_inter K.position_injective, ← Finset.coe_inter]
 
+/--
+@isnad1 id=eq.1h3v.s6.36e5f5028849 from=translated src=- shape=d9a1f3ec vocab=60003968
+-/
 theorem conePosition_image_eq_of_not_mem_none {c : Plane}
     {t : Finset (Option K.Vertex)} (ht : none ∉ t) :
     K.conePosition c '' (t : Set (Option K.Vertex)) =
@@ -1121,6 +1236,9 @@ theorem conePosition_image_eq_of_not_mem_none {c : Plane}
   · rintro ⟨v, hv, rfl⟩
     exact ⟨some v, hv, rfl⟩
 
+/--
+@isnad1 id=eq.1h3v.s6.e8839c9b58b2 from=translated src=- shape=a5505a22 vocab=052060ce
+-/
 theorem conePosition_image_eq_of_mem_none {c : Plane}
     {t : Finset (Option K.Vertex)} (ht : none ∈ t) :
     K.conePosition c '' (t : Set (Option K.Vertex)) =
@@ -1136,6 +1254,9 @@ theorem conePosition_image_eq_of_mem_none {c : Plane}
     · exact ⟨none, ht, rfl⟩
     · exact ⟨some v, hv, rfl⟩
 
+/--
+@isnad1 id=injectiv.1h2v.s4.272534a9bf89 from=translated src=- shape=b7e59b92 vocab=009e6924
+-/
 theorem conePosition_injective {c : Plane} (hc : c ∉ Set.range K.position) :
     Function.Injective (K.conePosition c) := by
   intro v w h
@@ -1156,6 +1277,9 @@ def coneSimplexes : Finset (Finset (Option K.Vertex)) :=
   K.simplexes.biUnion fun s =>
     (insert none (K.liftFace s)).powerset.filter (·.Nonempty)
 
+/--
+@isnad1 id=iff.0h2v.s6.6513ef7fb66a from=translated src=- shape=4c53c259 vocab=02b968f6
+-/
 theorem mem_coneSimplexes_iff {t : Finset (Option K.Vertex)} :
     t ∈ K.coneSimplexes ↔
       t.Nonempty ∧ ∃ s ∈ K.simplexes, t ⊆ insert none (K.liftFace s) := by
@@ -1163,6 +1287,9 @@ theorem mem_coneSimplexes_iff {t : Finset (Option K.Vertex)} :
     Finset.mem_powerset]
   aesop
 
+/--
+@isnad1 id=le.1h3v.s6.18296b0bc47a from=translated src=- shape=60a69dae vocab=0aa0990f
+-/
 theorem baseFace_subset_of_subset_cone {s : Finset K.Vertex}
     {t : Finset (Option K.Vertex)} (ht : t ⊆ insert none (K.liftFace s)) :
     K.baseFace t ⊆ s := by
@@ -1170,12 +1297,18 @@ theorem baseFace_subset_of_subset_cone {s : Finset K.Vertex}
   have hsv := ht (K.mem_baseFace.mp hv)
   simpa [liftFace] using hsv
 
+/--
+@isnad1 id=mem.2h2v.s6.866a780cee64 from=translated src=- shape=df9feb7f vocab=9f033c28
+-/
 theorem baseFace_mem_of_nonempty {t : Finset (Option K.Vertex)}
     (ht : t ∈ K.coneSimplexes) (hne : (K.baseFace t).Nonempty) :
     K.baseFace t ∈ K.simplexes := by
   obtain ⟨-, s, hs, hts⟩ := K.mem_coneSimplexes_iff.mp ht
   exact K.down_closed s hs (K.baseFace t) (K.baseFace_subset_of_subset_cone hts) hne
 
+/--
+@isnad1 id=le.1h2v.s7.3c155030d922 from=translated src=- shape=a9e0a3c9 vocab=f4a32d51
+-/
 theorem baseCarrier_subset_support {t : Finset (Option K.Vertex)}
     (ht : t ∈ K.coneSimplexes) :
     convexHull ℝ (K.position '' (K.baseFace t : Set K.Vertex)) ⊆ K.support := by
@@ -1185,6 +1318,9 @@ theorem baseCarrier_subset_support {t : Finset (Option K.Vertex)}
   · simpa [PlaneComplex.cellCarrier] using
       K.cellCarrier_subset_support (K.baseFace_mem_of_nonempty ht h)
 
+/--
+@isnad1 id=eq.2h3v.s9.82ec69fef5c1 from=translated src=- shape=a74ac082 vocab=4e7434cf
+-/
 theorem baseCarrier_inter {t u : Finset (Option K.Vertex)}
     (ht : t ∈ K.coneSimplexes) (hu : u ∈ K.coneSimplexes) :
     convexHull ℝ (K.position '' (K.baseFace t : Set K.Vertex)) ∩
@@ -1304,6 +1440,9 @@ noncomputable def cone (S : Set Plane) (hS : Convex ℝ S) (c : Plane)
         rw [K.conePosition_image_eq_of_not_mem_none htu0, K.baseFace_inter]
         exact hinter
 
+/--
+@isnad1 id=eq.5h4v.s8.2acd3f0d2570 from=translated src=- shape=df8641a1 vocab=7021e13f
+-/
 theorem cone_baryEval_coneWeights (S : Set Plane) (hS : Convex ℝ S) (c : Plane)
     (hc : c ∈ interior S) (havoid : c ∉ Set.range K.position)
     (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2)
@@ -1316,6 +1455,9 @@ theorem cone_baryEval_coneWeights (S : Set Plane) (hS : Convex ℝ S) (c : Plane
   rw [Fintype.sum_option]
   simp [coneWeights, conePosition]
 
+/--
+@isnad1 id=eq.7h3v.s8.bc7bc505c103 from=translated src=- shape=ae4cd7da vocab=ec0e3afe
+-/
 theorem cone_support_eq (S : Set Plane) (hS : Convex ℝ S) (hcompact : IsCompact S)
     (c : Plane) (hc : c ∈ interior S) (havoid : c ∉ Set.range K.position)
     (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2)

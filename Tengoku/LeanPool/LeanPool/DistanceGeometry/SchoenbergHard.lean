@@ -142,7 +142,9 @@ variable {G : Matrix (Fin n) (Fin n) ℝ}
 /-- A positive semidefinite matrix `G` with `G.rank ≤ k` factors as `Mᴴ * M` for
 some matrix `M : Matrix (Fin k) (Fin n) ℝ`. This rank-controlled Cholesky-type
 factorization realizes `G` in ambient dimension `k` and uses only `G.rank` active
-directions. -/
+directions.
+@isnad1 id=ex.2h3v.s6.af3cd6a0672f from=translated src=- shape=9ca4a372 vocab=6025dd37
+-/
 theorem exists_conjTranspose_mul_self_of_rank_le (hG : G.PosSemidef) (hrank : G.rank ≤ k) :
     ∃ M : Matrix (Fin k) (Fin n) ℝ, Mᴴ * M = G := by
   classical
@@ -206,7 +208,9 @@ matrix of some configuration in
 `EuclideanSpace ℝ (Fin k)`.
 
 This is the converse of `schoenberg_easy`: it reconstructs the point configuration
-from the Gram data. -/
+from the Gram data.
+@isnad1 id=embedsin.3h3v.s5.5bd5e3302578 from=translated src=- shape=c25347f2 vocab=f1ec4c5f
+-/
 theorem schoenberg_hard
     {D : Matrix (Fin n) (Fin n) ℝ}
     (hD : IsPreDistMatrix D)
@@ -244,7 +248,9 @@ theorem schoenberg_hard
 /-- Schoenberg's characterization of Euclidean squared-distance matrices. A matrix
 `D` satisfying this project's `IsPreDistMatrix` predicate (symmetric and hollow)
 embeds as a squared-distance matrix in `EuclideanSpace ℝ (Fin k)` if and only if its
-basepoint-centered Gram matrix is positive semidefinite and has rank at most `k`. -/
+basepoint-centered Gram matrix is positive semidefinite and has rank at most `k`.
+@isnad1 id=iff.1h3v.s5.7cc5bbc6dee8 from=translated src=- shape=04324413 vocab=f1ec4c5f
+-/
 theorem schoenberg {D : Matrix (Fin n) (Fin n) ℝ} (hD : IsPreDistMatrix D) :
     EmbedsIn D k ↔ (centeredGram D).PosSemidef ∧ (centeredGram D).rank ≤ k := by
   constructor

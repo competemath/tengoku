@@ -34,6 +34,9 @@ def IsCapacityAchievingPrior (k : Kernel α β) [IsMarkovKernel k]
     (p : ProbabilityMeasure α) : Prop :=
   mutualInformation p k = channelCapacity k
 
+/--
+@isnad1 id=eq.1h4v.s6.af191f34c489 from=translated src=- shape=e26184b3 vocab=0c0fc37f
+-/
 lemma channelCapacity_eq_of_isMaxOn_univ (k : Kernel α β) [IsMarkovKernel k]
     {p : ProbabilityMeasure α}
     (hp : IsMaxOn (fun q => mutualInformation q k) Set.univ p) :
@@ -53,6 +56,9 @@ lemma channelCapacity_eq_of_isMaxOn_univ (k : Kernel α β) [IsMarkovKernel k]
   · refine le_csSup hsBdd ?_
     exact ⟨p, rfl⟩
 
+/--
+@isnad1 id=ex.3h3v.s6.44fd877d3737 from=translated src=- shape=fb3c9090 vocab=22d9998d
+-/
 lemma exists_isMaxOn_mutualInformation (k : Kernel α β) [IsMarkovKernel k]
     [TopologicalSpace (ProbabilityMeasure α)]
     (hNonempty : (Set.univ : Set (ProbabilityMeasure α)).Nonempty)
@@ -66,6 +72,9 @@ lemma exists_isMaxOn_mutualInformation (k : Kernel α β) [IsMarkovKernel k]
       hNonempty hCompact (hUsc.upperSemicontinuousOn _) with ⟨p, _hp, hp⟩
   exact ⟨p, hp⟩
 
+/--
+@isnad1 id=ex.3h3v.s6.a76d6d6f7531 from=translated src=- shape=fee634d4 vocab=e3be369c
+-/
 theorem exists_capacity_achieving_prior (k : Kernel α β) [IsMarkovKernel k]
     [TopologicalSpace (ProbabilityMeasure α)]
     (hNonempty : (Set.univ : Set (ProbabilityMeasure α)).Nonempty)
@@ -75,6 +84,9 @@ theorem exists_capacity_achieving_prior (k : Kernel α β) [IsMarkovKernel k]
   rcases exists_isMaxOn_mutualInformation k hNonempty hCompact hUsc with ⟨p, hp⟩
   exact ⟨p, (channelCapacity_eq_of_isMaxOn_univ k hp).symm⟩
 
+/--
+@isnad1 id=existsun.5h3v.s6.d7d56557c8b9 from=translated src=- shape=a61790f5 vocab=0a7735e6
+-/
 theorem exists_unique_capacity_achieving_prior
     {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
     [MeasurableSpace.CountableOrCountablyGenerated α β]

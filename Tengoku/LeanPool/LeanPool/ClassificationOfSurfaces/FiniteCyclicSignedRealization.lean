@@ -63,6 +63,9 @@ noncomputable def rotateHomeomorph {n m : ℕ} (h : n = m) (k : ℕ) :
         apply continuous_induced_rng.2
         fun_prop }
 
+/--
+@isnad1 id=eq.1h4v.s7.e0b3a9c82976 from=translated src=- shape=5fd2484d vocab=3956888a
+-/
 @[simp]
 theorem rotateHomeomorph_apply_val {n m : ℕ} (h : n = m) (k : ℕ)
     (z : PolygonCell n) :
@@ -75,11 +78,17 @@ theorem rotateHomeomorph_apply_val {n m : ℕ} (h : n = m) (k : ℕ)
 def rotateIndex {n : ℕ} (hn : 0 < n) (k : ℕ) (i : Fin n) : Fin n :=
   ⟨(i.val + k) % n, Nat.mod_lt _ hn⟩
 
+/--
+@isnad1 id=eq.1h3v.s5.ab1dd342bb17 from=translated src=- shape=e4d922bf vocab=66a0b8b0
+-/
 @[simp]
 theorem rotateIndex_val {n : ℕ} (hn : 0 < n) (k : ℕ) (i : Fin n) :
     (rotateIndex hn k i).val = (i.val + k) % n :=
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.7138be24e87f from=translated src=- shape=2ccf4c95 vocab=e8cf2ecc
+-/
 theorem rotateHomeomorph_side {n : ℕ} (hn : 0 < n) (k : ℕ)
     (i : Fin n) (t : unitInterval) :
     rotateHomeomorph (Eq.refl n) k (side i t) =
@@ -106,7 +115,9 @@ theorem rotateHomeomorph_side {n : ℕ} (hn : 0 < n) (k : ℕ)
   nlinarith [hdecompR]
 
 /-- Rotation sends a side to the correspondingly shifted side after changing only the phantom
-side-count index. -/
+side-count index.
+@isnad1 id=eq.2h5v.s7.29633fcddf19 from=translated src=- shape=9fa19f0f vocab=34ef9020
+-/
 theorem rotateHomeomorph_side_of_eq {n m : ℕ} (h : n = m) (hm : 0 < m) (k : ℕ)
     (i : Fin n) (t : unitInterval) :
     rotateHomeomorph h k (side i t) =
@@ -127,6 +138,9 @@ variable {P Q : FiniteCyclicPresentation}
 noncomputable def faceRotation (e : SignedPresentationIso P Q) (f : P.Face) : ℕ :=
   Classical.choose (e.boundary_rotated f).symm
 
+/--
+@isnad1 id=eq.0h4v.s6.41475b3c7cc7 from=translated src=- shape=816d61e6 vocab=47917b39
+-/
 theorem rotate_target_boundary (e : SignedPresentationIso P Q) (f : P.Face) :
     (Q.boundary (e.faceEquiv f)).rotate (e.faceRotation f) =
       (P.boundary f).map e.edgeRelabeling.mapDart :=
@@ -142,6 +156,9 @@ noncomputable def sideIndex (e : SignedPresentationIso P Q)
   exact ⟨(i.val + e.faceRotation f) %
     (Q.boundary (e.faceEquiv f)).length, Nat.mod_lt _ hpos⟩
 
+/--
+@isnad1 id=eq.1h5v.s7.f0257be9da03 from=translated src=- shape=7ebe6ee9 vocab=67268f9e
+-/
 @[simp]
 theorem sideIndex_val (e : SignedPresentationIso P Q)
     (validQ : Q.IsSurfaceValid) (f : P.Face)
@@ -151,7 +168,9 @@ theorem sideIndex_val (e : SignedPresentationIso P Q)
         (Q.boundary (e.faceEquiv f)).length :=
   rfl
 
-/-- The rotated target side carries exactly the relabeled source dart. -/
+/-- The rotated target side carries exactly the relabeled source dart.
+@isnad1 id=eq.1h5v.s6.fe0978266acd from=translated src=- shape=66c1bfb0 vocab=2f125374
+-/
 theorem boundary_get_sideIndex (e : SignedPresentationIso P Q)
     (validQ : Q.IsSurfaceValid) (f : P.Face)
     (i : Fin (P.boundary f).length) :
@@ -199,19 +218,27 @@ noncomputable def preHomeomorph (e : SignedPresentationIso P Q) :
       (fun f => (e.faceHomeomorph f).isHomeomorph)).homeomorph
     (Sigma.map e.faceEquiv fun f => e.faceHomeomorph f)
 
+/--
+@isnad1 id=eq.0h4v.s8.fa373bcf5088 from=translated src=- shape=5d37b520 vocab=d1ffe1f3
+-/
 @[simp]
 theorem preHomeomorph_apply_fst (e : SignedPresentationIso P Q)
     (x : P.PolygonalPreRealization) :
     (e.preHomeomorph x).1 = e.faceEquiv x.1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.af920617ba55 from=translated src=- shape=615e0455 vocab=0421bbea
+-/
 @[simp]
 theorem preHomeomorph_apply_snd (e : SignedPresentationIso P Q)
     (x : P.PolygonalPreRealization) :
     (e.preHomeomorph x).2 = e.faceHomeomorph x.1 x.2 :=
   rfl
 
-/-- On a labelled side, the pre-realization homeomorphism is exactly the selected cyclic shift. -/
+/-- On a labelled side, the pre-realization homeomorphism is exactly the selected cyclic shift.
+@isnad1 id=eq.1h6v.s9.539595fe4cc6 from=translated src=- shape=1609b086 vocab=c9a729bd
+-/
 theorem preHomeomorph_side (e : SignedPresentationIso P Q)
     (validQ : Q.IsSurfaceValid) (f : P.Face)
     (i : Fin (P.boundary f).length) (t : unitInterval) :
@@ -232,6 +259,9 @@ noncomputable def mapOccurrence (e : SignedPresentationIso P Q)
     P.BoundaryOccurrence → Q.BoundaryOccurrence
   | ⟨f, i⟩ => ⟨e.faceEquiv f, e.sideIndex validQ f i⟩
 
+/--
+@isnad1 id=eq.1h4v.s6.4a97ba365671 from=translated src=- shape=dbbf7090 vocab=f3c92b92
+-/
 @[simp]
 theorem mapOccurrence_fst (e : SignedPresentationIso P Q)
     (validQ : Q.IsSurfaceValid) (o : P.BoundaryOccurrence) :
@@ -239,6 +269,9 @@ theorem mapOccurrence_fst (e : SignedPresentationIso P Q)
   cases o
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.83145e51c3d0 from=translated src=- shape=ee9aeb1f vocab=c2bf95ef
+-/
 @[simp]
 theorem mapOccurrence_snd_val (e : SignedPresentationIso P Q)
     (validQ : Q.IsSurfaceValid) (o : P.BoundaryOccurrence) :
@@ -248,7 +281,9 @@ theorem mapOccurrence_snd_val (e : SignedPresentationIso P Q)
   cases o
   rfl
 
-/-- The transported occurrence carries the signed relabeling of the source dart. -/
+/-- The transported occurrence carries the signed relabeling of the source dart.
+@isnad1 id=eq.1h4v.s5.4e410f6330cf from=translated src=- shape=af7b753c vocab=8cdf8c73
+-/
 theorem mapOccurrence_dart (e : SignedPresentationIso P Q)
     (validQ : Q.IsSurfaceValid) (o : P.BoundaryOccurrence) :
     (e.mapOccurrence validQ o).dart =
@@ -274,7 +309,9 @@ private theorem sideIndex_injective (e : SignedPresentationIso P Q)
   rw [← hlen, Nat.mod_eq_of_lt i.isLt, Nat.mod_eq_of_lt j.isLt] at hcancel
   exact hcancel
 
-/-- Transport of boundary occurrences is injective. -/
+/-- Transport of boundary occurrences is injective.
+@isnad1 id=injectiv.1h3v.s4.b8ca21794510 from=translated src=- shape=c7d7d62f vocab=62affc37
+-/
 theorem mapOccurrence_injective (e : SignedPresentationIso P Q)
     (validQ : Q.IsSurfaceValid) :
     Function.Injective (e.mapOccurrence validQ) := by
@@ -289,6 +326,9 @@ theorem mapOccurrence_injective (e : SignedPresentationIso P Q)
   subst j
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.06444620efd2 from=translated src=- shape=c1a853b6 vocab=849da1d1
+-/
 @[simp]
 theorem mapOccurrence_edge (e : SignedPresentationIso P Q)
     (validQ : Q.IsSurfaceValid) (o : P.BoundaryOccurrence) :
@@ -324,12 +364,18 @@ noncomputable def mapPairing (e : SignedPresentationIso P Q)
       rw [e.mapOccurrence_dart, e.mapOccurrence_dart, hcompatible,
         EdgeRelabeling.mapDart_flip]
 
+/--
+@isnad1 id=eq.1h4v.s4.b808af92b01c from=translated src=- shape=ed806b78 vocab=e59ef7e3
+-/
 @[simp]
 theorem mapPairing_direction (e : SignedPresentationIso P Q)
     (validQ : Q.IsSurfaceValid) (pairing : P.BoundaryPairing) :
     (e.mapPairing validQ pairing).direction = pairing.direction :=
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.2397ad5cd7c1 from=translated src=- shape=79244f45 vocab=93ea1a1d
+-/
 @[simp]
 theorem mapPairing_source (e : SignedPresentationIso P Q)
     (validQ : Q.IsSurfaceValid) (pairing : P.BoundaryPairing) :
@@ -337,6 +383,9 @@ theorem mapPairing_source (e : SignedPresentationIso P Q)
       e.mapOccurrence validQ pairing.source :=
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.c885e6f5bc33 from=translated src=- shape=79244f45 vocab=c124f04d
+-/
 @[simp]
 theorem mapPairing_target (e : SignedPresentationIso P Q)
     (validQ : Q.IsSurfaceValid) (pairing : P.BoundaryPairing) :
@@ -344,7 +393,9 @@ theorem mapPairing_target (e : SignedPresentationIso P Q)
       e.mapOccurrence validQ pairing.target :=
   rfl
 
-/-- The pre-realization homeomorphism maps an occurrence-side point to its transported side. -/
+/-- The pre-realization homeomorphism maps an occurrence-side point to its transported side.
+@isnad1 id=eq.1h5v.s8.ffdaeeb3fff8 from=translated src=- shape=55e72094 vocab=5375527c
+-/
 theorem preHomeomorph_occurrenceSide_point
     (e : SignedPresentationIso P Q) (validQ : Q.IsSurfaceValid)
     (o : P.BoundaryOccurrence) (t : unitInterval) :
@@ -368,12 +419,18 @@ noncomputable def occurrenceEquiv (e : SignedPresentationIso P Q)
       ⟨e.mapOccurrence_injective validQ,
         Fintype.card_congr e.rawOccurrenceEquiv⟩)
 
+/--
+@isnad1 id=eq.1h4v.s5.48d6fde70e43 from=translated src=- shape=2f6968ac vocab=6670469f
+-/
 @[simp]
 theorem occurrenceEquiv_apply (e : SignedPresentationIso P Q)
     (validQ : Q.IsSurfaceValid) (o : P.BoundaryOccurrence) :
     e.occurrenceEquiv validQ o = e.mapOccurrence validQ o :=
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.f03de2a58cd9 from=translated src=- shape=e5ca91f0 vocab=f5a12a2d
+-/
 @[simp]
 theorem mapOccurrence_occurrenceEquiv_symm
     (e : SignedPresentationIso P Q) (validQ : Q.IsSurfaceValid)
@@ -381,6 +438,9 @@ theorem mapOccurrence_occurrenceEquiv_symm
     e.mapOccurrence validQ ((e.occurrenceEquiv validQ).symm o) = o :=
   (e.occurrenceEquiv validQ).apply_symm_apply o
 
+/--
+@isnad1 id=eq.1h5v.s8.a15e8ea4fd26 from=translated src=- shape=b7ad2206 vocab=7c3d74ac
+-/
 theorem preHomeomorph_symm_occurrenceSide_point
     (e : SignedPresentationIso P Q) (validQ : Q.IsSurfaceValid)
     (o : Q.BoundaryOccurrence) (t : unitInterval) :
@@ -391,6 +451,9 @@ theorem preHomeomorph_symm_occurrenceSide_point
   rw [e.preHomeomorph_occurrenceSide_point validQ]
   rw [e.mapOccurrence_occurrenceEquiv_symm validQ]
 
+/--
+@isnad1 id=eq.1h4v.s6.9aa53bf3d90f from=translated src=- shape=5112459f vocab=50860b86
+-/
 theorem occurrenceEquiv_symm_dart
     (e : SignedPresentationIso P Q) (validQ : Q.IsSurfaceValid)
     (o : Q.BoundaryOccurrence) :
@@ -399,6 +462,9 @@ theorem occurrenceEquiv_symm_dart
   rw [← e.mapOccurrence_dart validQ]
   rw [e.mapOccurrence_occurrenceEquiv_symm validQ]
 
+/--
+@isnad1 id=eq.1h4v.s6.d5a4bd81cd1c from=translated src=- shape=5e680689 vocab=aa73b7ff
+-/
 theorem occurrenceEquiv_symm_edge
     (e : SignedPresentationIso P Q) (validQ : Q.IsSurfaceValid)
     (o : Q.BoundaryOccurrence) :
@@ -440,12 +506,18 @@ noncomputable def comapPairing (e : SignedPresentationIso P Q)
         e.occurrenceEquiv_symm_dart]
       exact hcompatible
 
+/--
+@isnad1 id=eq.1h4v.s4.1fa8126458e4 from=translated src=- shape=33bbe75b vocab=41cd4fbe
+-/
 @[simp]
 theorem comapPairing_direction (e : SignedPresentationIso P Q)
     (validQ : Q.IsSurfaceValid) (pairing : Q.BoundaryPairing) :
     (e.comapPairing validQ pairing).direction = pairing.direction :=
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s8.09c6aa228530 from=translated src=- shape=ca5cbb35 vocab=2bff6848
+-/
 theorem preHomeomorph_pairing_source_point
     (e : SignedPresentationIso P Q) (validQ : Q.IsSurfaceValid)
     (pairing : P.BoundaryPairing) (t : unitInterval) :
@@ -453,6 +525,9 @@ theorem preHomeomorph_pairing_source_point
       ((e.mapPairing validQ pairing).identification.source.point t) := by
   exact e.preHomeomorph_occurrenceSide_point validQ pairing.source t
 
+/--
+@isnad1 id=eq.1h5v.s8.fbe086a8f40e from=translated src=- shape=ca5cbb35 vocab=d1cbcf86
+-/
 theorem preHomeomorph_pairing_target_point
     (e : SignedPresentationIso P Q) (validQ : Q.IsSurfaceValid)
     (pairing : P.BoundaryPairing) (t : unitInterval) :
@@ -460,6 +535,9 @@ theorem preHomeomorph_pairing_target_point
       ((e.mapPairing validQ pairing).identification.target.point t) := by
   exact e.preHomeomorph_occurrenceSide_point validQ pairing.target t
 
+/--
+@isnad1 id=eq.1h5v.s9.5696aa91357f from=translated src=- shape=c349a10c vocab=b4993e0d
+-/
 theorem preHomeomorph_pairing_parameter_point
     (e : SignedPresentationIso P Q) (validQ : Q.IsSurfaceValid)
     (pairing : P.BoundaryPairing) (t : unitInterval) :
@@ -472,7 +550,9 @@ theorem preHomeomorph_pairing_parameter_point
   rfl
 
 /-- The facewise homeomorphism sends every source gluing generator into the target generated
-relation. -/
+relation.
+@isnad1 id=r.2h5v.s9.c08b3b4f32b5 from=translated src=- shape=b3a9b09c vocab=1a57af4a
+-/
 theorem preHomeomorph_generator_related
     (e : SignedPresentationIso P Q) (_validP : P.IsSurfaceValid)
     (validQ : Q.IsSurfaceValid) (pairing : P.BoundaryPairing)
@@ -488,7 +568,9 @@ theorem preHomeomorph_generator_related
     (e.mapPairing validQ pairing).identification
     (pairing_identification_mem validQ (e.mapPairing validQ pairing)) t
 
-/-- The facewise homeomorphism preserves the complete generated gluing relation. -/
+/-- The facewise homeomorphism preserves the complete generated gluing relation.
+@isnad1 id=r.3h5v.s8.58a1ebd565c0 from=translated src=- shape=120ddb97 vocab=108effbc
+-/
 theorem preHomeomorph_related
     (e : SignedPresentationIso P Q) (validP : P.IsSurfaceValid)
     (validQ : Q.IsSurfaceValid) {x y : P.PolygonalPreRealization}
@@ -509,6 +591,9 @@ theorem preHomeomorph_related
   | trans _ _ _ _ _ ih₁ ih₂ =>
       exact Relation.EqvGen.trans _ _ _ ih₁ ih₂
 
+/--
+@isnad1 id=eq.1h5v.s8.2bf2ee7ea502 from=translated src=- shape=1bee184e vocab=717617f5
+-/
 theorem preHomeomorph_symm_pairing_source_point
     (e : SignedPresentationIso P Q) (validQ : Q.IsSurfaceValid)
     (pairing : Q.BoundaryPairing) (t : unitInterval) :
@@ -516,6 +601,9 @@ theorem preHomeomorph_symm_pairing_source_point
       ((e.comapPairing validQ pairing).identification.source.point t) := by
   exact e.preHomeomorph_symm_occurrenceSide_point validQ pairing.source t
 
+/--
+@isnad1 id=eq.1h5v.s8.0726b4f21b97 from=translated src=- shape=1bee184e vocab=6b9bce2a
+-/
 theorem preHomeomorph_symm_pairing_target_point
     (e : SignedPresentationIso P Q) (validQ : Q.IsSurfaceValid)
     (pairing : Q.BoundaryPairing) (t : unitInterval) :
@@ -523,6 +611,9 @@ theorem preHomeomorph_symm_pairing_target_point
       ((e.comapPairing validQ pairing).identification.target.point t) := by
   exact e.preHomeomorph_symm_occurrenceSide_point validQ pairing.target t
 
+/--
+@isnad1 id=eq.1h5v.s9.2c3501f60957 from=translated src=- shape=ea627bb9 vocab=af07cccc
+-/
 theorem preHomeomorph_symm_pairing_parameter_point
     (e : SignedPresentationIso P Q) (validQ : Q.IsSurfaceValid)
     (pairing : Q.BoundaryPairing) (t : unitInterval) :
@@ -534,7 +625,9 @@ theorem preHomeomorph_symm_pairing_parameter_point
   rw [e.preHomeomorph_symm_pairing_target_point]
   rfl
 
-/-- The inverse facewise homeomorphism sends every target generator into the source relation. -/
+/-- The inverse facewise homeomorphism sends every target generator into the source relation.
+@isnad1 id=r.2h5v.s9.5b32e5c5ca00 from=translated src=- shape=998e8862 vocab=841723bd
+-/
 theorem preHomeomorph_symm_generator_related
     (e : SignedPresentationIso P Q) (validP : P.IsSurfaceValid)
     (validQ : Q.IsSurfaceValid) (pairing : Q.BoundaryPairing)
@@ -550,7 +643,9 @@ theorem preHomeomorph_symm_generator_related
     (e.comapPairing validQ pairing).identification
     (pairing_identification_mem validP (e.comapPairing validQ pairing)) t
 
-/-- The inverse facewise homeomorphism preserves the complete generated relation. -/
+/-- The inverse facewise homeomorphism preserves the complete generated relation.
+@isnad1 id=r.3h5v.s9.7f51d6c6bd83 from=translated src=- shape=e1628ed6 vocab=0c30d528
+-/
 theorem preHomeomorph_symm_related
     (e : SignedPresentationIso P Q) (validP : P.IsSurfaceValid)
     (validQ : Q.IsSurfaceValid) {x y : Q.PolygonalPreRealization}
@@ -572,7 +667,9 @@ theorem preHomeomorph_symm_related
   | trans _ _ _ _ _ ih₁ ih₂ =>
       exact Relation.EqvGen.trans _ _ _ ih₁ ih₂
 
-/-- The selected pre-realization homeomorphism identifies the two generated gluing relations. -/
+/-- The selected pre-realization homeomorphism identifies the two generated gluing relations.
+@isnad1 id=iff.2h5v.s8.5a0781a65377 from=translated src=- shape=d4595119 vocab=108effbc
+-/
 theorem preHomeomorph_related_iff
     (e : SignedPresentationIso P Q) (validP : P.IsSurfaceValid)
     (validQ : Q.IsSurfaceValid) (x y : P.PolygonalPreRealization) :
@@ -593,7 +690,9 @@ noncomputable def realizationHomeomorph
   PolygonGluing.realizationCongr e.preHomeomorph
     (e.preHomeomorph_related_iff validP validQ)
 
-/-- Propositional realization-invariance form used by elementary-move closures. -/
+/-- Propositional realization-invariance form used by elementary-move closures.
+@isnad1 id=polygona.2h3v.s4.0cabf15043c4 from=translated src=- shape=5ee3f51a vocab=b0c230dd
+-/
 theorem polygonallyEquivalent
     (e : SignedPresentationIso P Q) (validP : P.IsSurfaceValid)
     (validQ : Q.IsSurfaceValid) :

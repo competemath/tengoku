@@ -78,24 +78,40 @@ def Acol (m : ℕ) [NeZero m] (b : ℤ) : GL (Fin 2) ℝ :=
   .mkOfDetNeZero !![1, (b : ℝ); 0, (m : ℝ)] (by
     simp [Matrix.det_fin_two_of, Nat.cast_ne_zero.mpr (NeZero.ne m)])
 
+/--
+@isnad1 id=eq.0h1v.s8.9147fd820a61 from=translated src=- shape=a75cd384 vocab=499f0579
+-/
 @[simp] lemma val_AInf [NeZero m] : (AInf m).val = !![(m : ℝ), 0; 0, 1] := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.9cc78680dedb from=translated src=- shape=7e7bef14 vocab=49581ef5
+-/
 @[simp] lemma val_Acol [NeZero m] (b : ℤ) : (Acol m b).val = !![1, (b : ℝ); 0, (m : ℝ)] := rfl
 
+/--
+@isnad1 id=lt.0h1v.s8.9b376edddd5d from=translated src=- shape=e86674f2 vocab=a2c3e38d
+-/
 lemma det_AInf_pos [NeZero m] : 0 < (AInf m).det.val := by
   rw [Matrix.GeneralLinearGroup.val_det_apply, val_AInf, Matrix.det_fin_two_of]
   simpa using (Nat.cast_pos.mpr (Nat.pos_of_ne_zero (NeZero.ne m)) : (0 : ℝ) < m)
 
+/--
+@isnad1 id=lt.0h2v.s8.af38d3427b71 from=translated src=- shape=5bc0bc7d vocab=97eb1e67
+-/
 lemma det_Acol_pos [NeZero m] (b : ℤ) : 0 < (Acol m b).det.val := by
   rw [Matrix.GeneralLinearGroup.val_det_apply, val_Acol, Matrix.det_fin_two_of]
   simpa using (Nat.cast_pos.mpr (Nat.pos_of_ne_zero (NeZero.ne m)) : (0 : ℝ) < m)
 
-/-- The `∞`-coset point: `AInf m • τ = m·τ`. -/
+/-- The `∞`-coset point: `AInf m • τ = m·τ`.
+@isnad1 id=eq.0h2v.s7.7fb4dddcd621 from=translated src=- shape=73952590 vocab=5c0cc9de
+-/
 lemma coe_AInf_smul [NeZero m] (τ : ℍ) : (↑(AInf m • τ) : ℂ) = m * τ := by
   rw [coe_smul_of_det_pos det_AInf_pos τ, num, denom, val_AInf]
   simp
 
-/-- The `b`-coset point: `Acol m b • τ = (τ + b)/m`. -/
+/-- The `b`-coset point: `Acol m b • τ = (τ + b)/m`.
+@isnad1 id=eq.0h3v.s8.9df3c34de642 from=translated src=- shape=34a8d6d4 vocab=cc87d6eb
+-/
 lemma coe_Acol_smul [NeZero m] (b : ℤ) (τ : ℍ) :
     (↑(Acol m b • τ) : ℂ) = (↑τ + b) / m := by
   rw [coe_smul_of_det_pos (det_Acol_pos b) τ, num, denom, val_Acol]
@@ -109,12 +125,20 @@ def f (m : ℕ) [NeZero m] : Option (ZMod m) → ℍ → ℂ
   | none, τ => j (AInf m • τ)
   | some b, τ => j (Acol m b.val • τ)
 
+/--
+@isnad1 id=eq.0h2v.s7.53c6ab14b05c from=translated src=- shape=eb468c95 vocab=6f657e2e
+-/
 @[simp] lemma f_none [NeZero m] (τ : ℍ) : f m none τ = j (AInf m • τ) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.75c60866a921 from=translated src=- shape=75337a95 vocab=ff426a77
+-/
 @[simp] lemma f_some [NeZero m] (b : ZMod m) (τ : ℍ) :
     f m (some b) τ = j (Acol m b.val • τ) := rfl
 
-/-- Each orbit function is holomorphic on `ℍ`. -/
+/-- Each orbit function is holomorphic on `ℍ`.
+@isnad1 id=mdiffere.0h2v.s7.109bf1308288 from=translated src=- shape=4f2a65a9 vocab=c83dc015
+-/
 lemma mdifferentiable_f [NeZero m] (i : Option (ZMod m)) : MDiff (f m i) := by
   cases i with
   | none => exact mdifferentiable_j.comp (mdifferentiable_smul det_AInf_pos)
@@ -122,13 +146,17 @@ lemma mdifferentiable_f [NeZero m] (i : Option (ZMod m)) : MDiff (f m i) := by
 
 /-! ## `j` under integer translation and well-definedness of the `b`-cosets mod `m` -/
 
-/-- `j` is invariant under translation by any integer: `j (n +ᵥ τ) = j τ`. -/
+/-- `j` is invariant under translation by any integer: `j (n +ᵥ τ) = j τ`.
+@isnad1 id=eq.0h2v.s5.2d12de90eded from=translated src=- shape=98637db9 vocab=d09e186b
+-/
 lemma j_vadd_int (n : ℤ) (τ : ℍ) : j ((n : ℝ) +ᵥ τ) = j τ := by
   rw [← modular_T_zpow_smul, j_smul]
 
 /-- The `b`-coset function depends only on `b mod m`: if `m ∣ a' - a` then
 `j ((τ+a')/m) = j ((τ+a)/m)` (adding `m` to the offset shifts the point by an integer,
-which `j` absorbs). -/
+which `j` absorbs).
+@isnad1 id=eq.1h4v.s8.3766bc237f3c from=translated src=- shape=ba4af5fe vocab=6cbca8f2
+-/
 lemma j_Acol_smul_congr [NeZero m] {a a' : ℤ} (h : (m : ℤ) ∣ a' - a) (τ : ℍ) :
     j (Acol m a' • τ) = j (Acol m a • τ) := by
   obtain ⟨k, hk⟩ := h
@@ -157,10 +185,18 @@ private lemma dvd_val_add [NeZero m] (b : ZMod m) (c : ℤ) :
 /-- The permutation of the orbit induced by `T`: rotation `some b ↦ some (b+1)`, `none` fixed. -/
 def σT (m : ℕ) : Equiv.Perm (Option (ZMod m)) := Equiv.optionCongr (Equiv.addRight (1 : ZMod m))
 
+/--
+@isnad1 id=eq.0h1v.s5.c49fd54cc4fc from=translated src=- shape=c67b938a vocab=399c5cc0
+-/
 @[simp] lemma σT_none : σT m none = none := rfl
+/--
+@isnad1 id=eq.0h2v.s6.dff1609fea4e from=translated src=- shape=f46cc5cd vocab=5315ac01
+-/
 @[simp] lemma σT_some (b : ZMod m) : σT m (some b) = some (b + 1) := rfl
 
-/-- **`T`-permutation**: `f i (T • τ) = f (σT i) τ`, i.e. `f i (τ + 1) = f (σT i) τ`. -/
+/-- **`T`-permutation**: `f i (T • τ) = f (σT i) τ`, i.e. `f i (τ + 1) = f (σT i) τ`.
+@isnad1 id=eq.0h3v.s6.09d0251060a2 from=translated src=- shape=708aab06 vocab=d8988120
+-/
 lemma f_T_smul [NeZero m] (i : Option (ZMod m)) (τ : ℍ) :
     f m i ((1 : ℝ) +ᵥ τ) = f m (σT m i) τ := by
   cases i with
@@ -190,7 +226,9 @@ lemma f_T_smul [NeZero m] (i : Option (ZMod m)) (τ : ℍ) :
 `j_smul`). All `S`-orbit identities are instances of a single matrix identity
 `coset i · S = γ' · coset (σS i)`. -/
 
-/-- Absorb an `SL(2,ℤ)` left factor of a `GL`-matrix into `j`-invariance. -/
+/-- Absorb an `SL(2,ℤ)` left factor of a `GL`-matrix into `j`-invariance.
+@isnad1 id=eq.1h4v.s10.922edda04326 from=translated src=- shape=8a1c3f24 vocab=53a5a035
+-/
 lemma j_matrix_transfer (γ : SL(2, ℤ)) (A B : GL (Fin 2) ℝ) (τ : ℍ)
     (h : A = (γ : GL (Fin 2) ℝ) * B) : j (A • τ) = j (B • τ) := by
   rw [h, mul_smul, ← ModularGroup.sl_moeb]
@@ -207,6 +245,9 @@ def sSfun (m : ℕ) [Fact m.Prime] : Option (ZMod m) → Option (ZMod m)
   | none => some 0
   | some b => if b = 0 then none else some (-b⁻¹)
 
+/--
+@isnad1 id=involuti.0h1v.s3.e1c04e1a9c5f from=translated src=- shape=1c12c57d vocab=fc74079d
+-/
 lemma sSfun_involutive [Fact m.Prime] : Function.Involutive (sSfun m) := by
   intro i
   cases i with
@@ -220,10 +261,15 @@ lemma sSfun_involutive [Fact m.Prime] : Function.Involutive (sSfun m) := by
 /-- The `S`-permutation as an `Equiv.Perm`. -/
 def σS (m : ℕ) [Fact m.Prime] : Equiv.Perm (Option (ZMod m)) := sSfun_involutive.toPerm
 
+/--
+@isnad1 id=eq.0h2v.s5.3114a74cec67 from=translated src=- shape=029d7b49 vocab=98e420f7
+-/
 @[simp] lemma σS_apply [Fact m.Prime] (i : Option (ZMod m)) : σS m i = sSfun m i := rfl
 
 /-- **`S`-permutation**: `f i (S • τ) = f (σS i) τ`, i.e. `f i (-1/τ) = f (σS i) τ`.
-This is what makes the elementary symmetric functions of the orbit `SL(2,ℤ)`-invariant. -/
+This is what makes the elementary symmetric functions of the orbit `SL(2,ℤ)`-invariant.
+@isnad1 id=eq.0h3v.s7.0e930f1a98aa from=translated src=- shape=5d788df0 vocab=d8b0b8e9
+-/
 lemma f_S_smul [Fact m.Prime] (i : Option (ZMod m)) (τ : ℍ) :
     f m i (ModularGroup.S • τ) = f m (σS m i) τ := by
   have : NeZero m := ⟨(Fact.out : m.Prime).ne_zero⟩
@@ -285,25 +331,37 @@ def wParam (m : ℕ) (τ : ℍ) : ℂ := Complex.exp (2 * π * Complex.I * (τ :
 /-- The `m`-th root of unity `ζ = exp(2πi/m)`. -/
 def zetaM (m : ℕ) : ℂ := Complex.exp (2 * π * Complex.I / m)
 
+/--
+@isnad1 id=ne.0h2v.s3.999460c817fa from=translated src=- shape=90ed236d vocab=b03ab30d
+-/
 lemma wParam_ne_zero (τ : ℍ) : wParam m τ ≠ 0 := Complex.exp_ne_zero _
 
+/--
+@isnad1 id=ne.0h1v.s3.a612b337d857 from=translated src=- shape=a311c14d vocab=29205b4a
+-/
 lemma zetaM_ne_zero : zetaM m ≠ 0 := Complex.exp_ne_zero _
 
-/-- `w^m = q τ`: raising the base variable to the `m`-th power recovers the ordinary nome. -/
+/-- `w^m = q τ`: raising the base variable to the `m`-th power recovers the ordinary nome.
+@isnad1 id=eq.0h2v.s5.0a8c5d0cde7d from=translated src=- shape=0e9aedd5 vocab=c66dddbc
+-/
 lemma wParam_pow_m [NeZero m] (τ : ℍ) : wParam m τ ^ m = q τ := by
   have hm : (m : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr (NeZero.ne m)
   rw [wParam, q_eq, ← Complex.exp_nat_mul]
   congr 1
   field_simp
 
-/-- `ζ^m = 1`. -/
+/-- `ζ^m = 1`.
+@isnad1 id=eq.0h1v.s5.8b22aab9d168 from=translated src=- shape=19bf52af vocab=a730d99a
+-/
 lemma zetaM_pow_m [NeZero m] : zetaM m ^ m = 1 := by
   rw [zetaM, ← Complex.exp_nat_mul]
   have hm : (m : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr (NeZero.ne m)
   rw [show (m : ℂ) * (2 * π * Complex.I / m) = 2 * π * Complex.I by field_simp]
   exact Complex.exp_two_pi_mul_I
 
-/-- The nome on the `b`-coset point factorizes as `ζ^b · w`: `q ((τ+b)/m) = ζ^b · w`. -/
+/-- The nome on the `b`-coset point factorizes as `ζ^b · w`: `q ((τ+b)/m) = ζ^b · w`.
+@isnad1 id=eq.0h3v.s8.63dfb6714e6c from=translated src=- shape=d2c1408f vocab=5a59b2ea
+-/
 lemma q_Acol_smul [NeZero m] (b : ℤ) (τ : ℍ) :
     q (Acol m b • τ) = zetaM m ^ b * wParam m τ := by
   have hm : (m : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr (NeZero.ne m)
@@ -312,7 +370,9 @@ lemma q_Acol_smul [NeZero m] (b : ℤ) (τ : ℍ) :
   field_simp
   ring
 
-/-- The nome on the `∞`-coset point is `w^{m²}`: `q (m·τ) = w^{m²}`. -/
+/-- The nome on the `∞`-coset point is `w^{m²}`: `q (m·τ) = w^{m²}`.
+@isnad1 id=eq.0h2v.s8.bd85a218403b from=translated src=- shape=1e4c8a25 vocab=a3a12d44
+-/
 lemma q_AInf_smul [NeZero m] (τ : ℍ) :
     q (AInf m • τ) = wParam m τ ^ (m ^ 2) := by
   have hm : (m : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr (NeZero.ne m)
@@ -323,7 +383,9 @@ lemma q_AInf_smul [NeZero m] (τ : ℍ) :
 
 /-- **q-expansion of the `b`-coset function** in `(ζ^b·w)`: the `HasSum` obtained from
 `JFunction`'s integer `j`-expansion. The `b`-dependence is exactly `ζ^{b·n}` inside
-`(ζ^b w)^n`, which powers the root-of-unity averaging of `(B3)`. -/
+`(ζ^b w)^n`, which powers the root-of-unity averaging of `(B3)`.
+@isnad1 id=hassum.0h3v.s7.7bbe67d675cb from=translated src=- shape=259332f1 vocab=684b8cae
+-/
 lemma hasSum_f_some [NeZero m] (b : ZMod m) (τ : ℍ) :
     HasSum (fun n : ℕ ↦ ((PowerSeries.coeff n jqInt : ℤ) : ℂ)
         * (zetaM m ^ (b.val : ℤ) * wParam m τ) ^ n)
@@ -332,7 +394,9 @@ lemma hasSum_f_some [NeZero m] (b : ZMod m) (τ : ℍ) :
   rw [q_Acol_smul] at h
   simpa only [f_some] using h
 
-/-- **q-expansion of the `∞`-coset function** in `w^{m²}`. -/
+/-- **q-expansion of the `∞`-coset function** in `w^{m²}`.
+@isnad1 id=hassum.0h2v.s7.aa00355bc85d from=translated src=- shape=41e03099 vocab=a8338bd5
+-/
 lemma hasSum_f_none [NeZero m] (τ : ℍ) :
     HasSum (fun n : ℕ ↦ ((PowerSeries.coeff n jqInt : ℤ) : ℂ) * (wParam m τ ^ (m ^ 2)) ^ n)
       (f m none τ * wParam m τ ^ (m ^ 2)) := by
@@ -349,26 +413,34 @@ consume directly: any product (e.g. `∏ (X - f i)`, the elementary symmetric ge
 polynomial) and any sum (e.g. `∑ (f i)^k`, the power sums) of the orbit values is unchanged
 by each generator. -/
 
-/-- Any product over the orbit is `T`-invariant. -/
+/-- Any product over the orbit is `T`-invariant.
+@isnad1 id=eq.0h4v.s6.2426872a2c6d from=translated src=- shape=213ea327 vocab=c7df3e13
+-/
 lemma prod_orbit_T_smul [NeZero m] {M : Type*} [CommMonoid M] (g : ℂ → M) (τ : ℍ) :
     ∏ i, g (f m i ((1 : ℝ) +ᵥ τ)) = ∏ i, g (f m i τ) := by
   simp_rw [f_T_smul]
   exact Equiv.prod_comp (σT m) (fun i ↦ g (f m i τ))
 
-/-- Any sum over the orbit is `T`-invariant (e.g. the power sums `∑ (f i)^k`). -/
+/-- Any sum over the orbit is `T`-invariant (e.g. the power sums `∑ (f i)^k`).
+@isnad1 id=eq.0h4v.s6.841c3cf0d882 from=translated src=- shape=213ea327 vocab=23b4b604
+-/
 lemma sum_orbit_T_smul [NeZero m] {M : Type*} [AddCommMonoid M] (g : ℂ → M) (τ : ℍ) :
     ∑ i, g (f m i ((1 : ℝ) +ᵥ τ)) = ∑ i, g (f m i τ) := by
   simp_rw [f_T_smul]
   exact Equiv.sum_comp (σT m) (fun i ↦ g (f m i τ))
 
-/-- Any product over the orbit is `S`-invariant. -/
+/-- Any product over the orbit is `S`-invariant.
+@isnad1 id=eq.0h4v.s7.8ce8bd8aed0e from=translated src=- shape=7be2113c vocab=47082ae3
+-/
 lemma prod_orbit_S_smul [Fact m.Prime] {M : Type*} [CommMonoid M] (g : ℂ → M) (τ : ℍ) :
     ∏ i, g (f m i (ModularGroup.S • τ)) = ∏ i, g (f m i τ) := by
   have : NeZero m := ⟨(Fact.out : m.Prime).ne_zero⟩
   simp_rw [f_S_smul]
   exact Equiv.prod_comp (σS m) (fun i ↦ g (f m i τ))
 
-/-- Any sum over the orbit is `S`-invariant (e.g. the power sums `∑ (f i)^k`). -/
+/-- Any sum over the orbit is `S`-invariant (e.g. the power sums `∑ (f i)^k`).
+@isnad1 id=eq.0h4v.s7.4073abec1822 from=translated src=- shape=7be2113c vocab=1a232a1b
+-/
 lemma sum_orbit_S_smul [Fact m.Prime] {M : Type*} [AddCommMonoid M] (g : ℂ → M) (τ : ℍ) :
     ∑ i, g (f m i (ModularGroup.S • τ)) = ∑ i, g (f m i τ) := by
   have : NeZero m := ⟨(Fact.out : m.Prime).ne_zero⟩

@@ -72,6 +72,9 @@ noncomputable def segmentFamilyIndex {I : Type*} [Fintype I]
     change 2 * (Fintype.equivFin I i).val < 2 * Fintype.card I
     omega⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.7913355843e3 from=translated src=- shape=72db1e86 vocab=19d0143a
+-/
 theorem segmentFamilyChain_vertex_even {I : Type*} [Fintype I]
     (left right : I → Plane) (i : I) :
     (segmentFamilyChain left right).vertex
@@ -89,6 +92,9 @@ theorem segmentFamilyChain_vertex_even {I : Type*} [Fintype I]
       Fin (Fintype.card I)) = Fintype.equivFin I i := Fin.ext hdiv
   rw [hi, (Fintype.equivFin I).symm_apply_apply]
 
+/--
+@isnad1 id=eq.0h4v.s6.894f0acc0d6c from=translated src=- shape=50f82c4b vocab=cb4067aa
+-/
 theorem segmentFamilyChain_vertex_odd {I : Type*} [Fintype I]
     (left right : I → Plane) (i : I) :
     (segmentFamilyChain left right).vertex
@@ -106,6 +112,9 @@ theorem segmentFamilyChain_vertex_odd {I : Type*} [Fintype I]
       Fin (Fintype.card I)) = Fintype.equivFin I i := Fin.ext hdiv
   rw [hi, (Fintype.equivFin I).symm_apply_apply]
 
+/--
+@isnad1 id=eq.0h4v.s6.cf28e6c971d9 from=translated src=- shape=43d60415 vocab=5bb304cd
+-/
 @[simp] theorem segmentFamilyIndex_castSucc {I : Type*} [Fintype I]
     (left right : I → Plane) (i : I) :
     (segmentFamilyIndex left right i).castSucc =
@@ -113,6 +122,9 @@ theorem segmentFamilyChain_vertex_odd {I : Type*} [Fintype I]
         change 2 * (Fintype.equivFin I i).val < 2 * Fintype.card I + 1
         omega⟩ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.4a2e33b8fd0d from=translated src=- shape=508c9b1c vocab=f099d347
+-/
 @[simp] theorem segmentFamilyIndex_succ {I : Type*} [Fintype I]
     (left right : I → Plane) (i : I) :
     (segmentFamilyIndex left right i).succ =
@@ -120,7 +132,9 @@ theorem segmentFamilyChain_vertex_odd {I : Type*} [Fintype I]
         change 2 * (Fintype.equivFin I i).val + 1 < 2 * Fintype.card I + 1
         omega⟩ := rfl
 
-/-- The segment at the distinguished even index is exactly the requested family member. -/
+/-- The segment at the distinguished even index is exactly the requested family member.
+@isnad1 id=eq.0h4v.s8.c6118b064976 from=translated src=- shape=6824a7b8 vocab=cc708729
+-/
 theorem segmentFamilyChain_segment {I : Type*} [Fintype I]
     (left right : I → Plane) (i : I) :
     segment ℝ
@@ -132,6 +146,9 @@ theorem segmentFamilyChain_segment {I : Type*} [Fintype I]
   rw [segmentFamilyIndex_castSucc, segmentFamilyIndex_succ,
     segmentFamilyChain_vertex_even, segmentFamilyChain_vertex_odd]
 
+/--
+@isnad1 id=ex.1h3v.s4.8523e958128b from=translated src=- shape=41f6ce2e vocab=1cff2eb7
+-/
 theorem exists_data_of_joined {a b : Plane} (h : JoinedByBrokenLine U a b) :
     ∃ B : BrokenLineData U, B.start = a ∧ B.finish = b := by
   obtain ⟨n, v, hv0, hvlast, hvseg⟩ := h
@@ -142,13 +159,22 @@ noncomputable def segmentLine (a b : Plane) : Plane →ᵃ[ℝ] ℝ :=
   (b 1 - a 1) • cartesianX - (b 0 - a 0) • cartesianY -
     AffineMap.const ℝ Plane ((b 1 - a 1) * a 0 - (b 0 - a 0) * a 1)
 
+/--
+@isnad1 id=eq.0h2v.s9.0a429bb6d447 from=translated src=- shape=ebd9189c vocab=fde4eb1b
+-/
 @[simp] theorem segmentLine_apply_left (a b : Plane) : segmentLine a b a = 0 := by
   simp [segmentLine]
 
+/--
+@isnad1 id=eq.0h2v.s9.166c5f748feb from=translated src=- shape=18be87c1 vocab=fde4eb1b
+-/
 @[simp] theorem segmentLine_apply_right (a b : Plane) : segmentLine a b b = 0 := by
   simp [segmentLine]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s9.762d457c7e16 from=translated src=- shape=447fd2ed vocab=a113f767
+-/
 theorem segmentLine_eq_zero_of_mem_segment (a b : Plane) {x : Plane}
     (hx : x ∈ segment ℝ a b) : segmentLine a b x = 0 := by
   rw [segment_eq_image] at hx
@@ -158,7 +184,9 @@ theorem segmentLine_eq_zero_of_mem_segment (a b : Plane) {x : Plane}
 
 /-- A point on the supporting line of a nondegenerate segment belongs to the segment exactly when
 its coordinates lie between the endpoint coordinates.  Both coordinate hypotheses make the
-statement symmetric and avoid selecting a preferred nonconstant coordinate in its interface. -/
+statement symmetric and avoid selecting a preferred nonconstant coordinate in its interface.
+@isnad1 id=mem.4h3v.s10.de167f4b1070 from=translated src=- shape=458c3acc vocab=1c48d9ce
+-/
 theorem mem_segment_of_segmentLine_eq_zero {a b x : Plane} (hab : a ≠ b)
     (hline : segmentLine a b x = 0)
     (hx0 : x 0 ∈ Set.uIcc (a 0) (b 0))
@@ -232,9 +260,15 @@ noncomputable def verticalLine (p : Plane) : Plane →ᵃ[ℝ] ℝ :=
 noncomputable def horizontalLine (p : Plane) : Plane →ᵃ[ℝ] ℝ :=
   cartesianY - AffineMap.const ℝ Plane (p 1)
 
+/--
+@isnad1 id=eq.0h1v.s9.633ff46fa027 from=translated src=- shape=fb4bc348 vocab=d794b6b6
+-/
 @[simp] theorem verticalLine_apply_self (p : Plane) : verticalLine p p = 0 := by
   simp [verticalLine]
 
+/--
+@isnad1 id=eq.0h1v.s9.6a446c5bc0a2 from=translated src=- shape=fb4bc348 vocab=cdca25f5
+-/
 @[simp] theorem horizontalLine_apply_self (p : Plane) : horizontalLine p p = 0 := by
   simp [horizontalLine]
 
@@ -257,11 +291,17 @@ noncomputable def arrangementLines : List (Plane →ᵃ[ℝ] ℝ) :=
 noncomputable def enclosingRadius : ℝ :=
   1 + ∑ i, ‖B.vertex i‖
 
+/--
+@isnad1 id=lt.0h2v.s4.5f413b56e494 from=translated src=- shape=9ec563f8 vocab=97cbc14f
+-/
 theorem enclosingRadius_pos : 0 < B.enclosingRadius := by
   unfold enclosingRadius
   have hsum : 0 ≤ ∑ i, ‖B.vertex i‖ := Finset.sum_nonneg fun _ _ => norm_nonneg _
   linarith
 
+/--
+@isnad1 id=mem.0h3v.s7.2cc1ae9c414c from=translated src=- shape=8f13524a vocab=24cdfd3d
+-/
 theorem vertex_mem_enclosingBall (i : Fin (B.n + 1)) :
     B.vertex i ∈ Metric.closedBall (0 : Plane) B.enclosingRadius := by
   rw [Metric.mem_closedBall, dist_zero_right]
@@ -270,6 +310,9 @@ theorem vertex_mem_enclosingBall (i : Fin (B.n + 1)) :
     Finset.single_le_sum (fun _ _ => norm_nonneg _) (Finset.mem_univ i)
   linarith
 
+/--
+@isnad1 id=le.0h3v.s7.7773e28868c2 from=translated src=- shape=a841ff7a vocab=a1f2a5b1
+-/
 theorem segment_subset_enclosingBall (i : Fin B.n) :
     segment ℝ (B.vertex i.castSucc) (B.vertex i.succ) ⊆
       Metric.closedBall (0 : Plane) B.enclosingRadius :=
@@ -285,6 +328,9 @@ noncomputable def enclosingMesh : TriangleMesh :=
 noncomputable def arrangementMesh : TriangleMesh :=
   B.enclosingMesh.refineByLines B.arrangementLines
 
+/--
+@isnad1 id=eq.0h2v.s7.1b9fa847dd69 from=translated src=- shape=d735de15 vocab=81acc90e
+-/
 theorem arrangementMesh_support :
     B.arrangementMesh.toPlaneComplex.support =
       convexHull ℝ (Set.range
@@ -292,6 +338,9 @@ theorem arrangementMesh_support :
   rw [arrangementMesh, TriangleMesh.refineByLines_support, enclosingMesh,
     TriangleMesh.single_support]
 
+/--
+@isnad1 id=le.0h3v.s7.49ec4bc3f43f from=translated src=- shape=a9536da1 vocab=418c7ce2
+-/
 theorem segment_subset_arrangementMesh_support (i : Fin B.n) :
     segment ℝ (B.vertex i.castSucc) (B.vertex i.succ) ⊆
       B.arrangementMesh.toPlaneComplex.support := by
@@ -299,10 +348,16 @@ theorem segment_subset_arrangementMesh_support (i : Fin B.n) :
   exact (B.segment_subset_enclosingBall i).trans
     (PolygonalCircle.closedBall_subset_enclosingTriangle B.enclosingRadius_pos)
 
+/--
+@isnad1 id=mem.0h3v.s10.2e138b942d2d from=translated src=- shape=2fc6d3ce vocab=02b60aec
+-/
 theorem segmentLine_mem_arrangementLines (i : Fin B.n) :
     segmentLine (B.vertex i.castSucc) (B.vertex i.succ) ∈ B.arrangementLines := by
   simp [arrangementLines, segmentLines]
 
+/--
+@isnad1 id=mem.0h3v.s10.5113c53337ff from=translated src=- shape=864c5579 vocab=a7306041
+-/
 theorem verticalLine_mem_arrangementLines (i : Fin (B.n + 1)) :
     verticalLine (B.vertex i) ∈ B.arrangementLines := by
   apply List.mem_append.mpr
@@ -310,6 +365,9 @@ theorem verticalLine_mem_arrangementLines (i : Fin (B.n + 1)) :
   apply List.mem_flatMap.mpr
   exact ⟨i, by simp, by simp⟩
 
+/--
+@isnad1 id=mem.0h3v.s10.b15d02985d48 from=translated src=- shape=864c5579 vocab=ec8eef8c
+-/
 theorem horizontalLine_mem_arrangementLines (i : Fin (B.n + 1)) :
     horizontalLine (B.vertex i) ∈ B.arrangementLines := by
   apply List.mem_append.mpr
@@ -317,17 +375,26 @@ theorem horizontalLine_mem_arrangementLines (i : Fin (B.n + 1)) :
   apply List.mem_flatMap.mpr
   exact ⟨i, by simp, by simp⟩
 
+/--
+@isnad1 id=ismonoch.0h3v.s5.895e5eba8997 from=translated src=- shape=5938db14 vocab=f9da57c0
+-/
 theorem arrangementMesh_monochromatic_segmentLine (i : Fin B.n) :
     B.arrangementMesh.IsMonochromatic
       (segmentLine (B.vertex i.castSucc) (B.vertex i.succ)) := by
   exact B.enclosingMesh.refineByLines_isMonochromatic_of_mem B.arrangementLines
     (B.segmentLine_mem_arrangementLines i)
 
+/--
+@isnad1 id=ismonoch.0h3v.s5.72d1e9d9bbc1 from=translated src=- shape=1fce856f vocab=b63d4b48
+-/
 theorem arrangementMesh_monochromatic_verticalLine (i : Fin (B.n + 1)) :
     B.arrangementMesh.IsMonochromatic (verticalLine (B.vertex i)) := by
   exact B.enclosingMesh.refineByLines_isMonochromatic_of_mem B.arrangementLines
     (B.verticalLine_mem_arrangementLines i)
 
+/--
+@isnad1 id=ismonoch.0h3v.s5.2979e2bb6b4f from=translated src=- shape=1fce856f vocab=3002e7f2
+-/
 theorem arrangementMesh_monochromatic_horizontalLine (i : Fin (B.n + 1)) :
     B.arrangementMesh.IsMonochromatic (horizontalLine (B.vertex i)) := by
   exact B.enclosingMesh.refineByLines_isMonochromatic_of_mem B.arrangementLines
@@ -340,7 +407,9 @@ namespace TriangleMesh
 variable (M : TriangleMesh)
 
 /-- In a triangulation monochromatic for an affine functional, every point of its zero set lies
-in a face all of whose vertices are zero. -/
+in a face all of whose vertices are zero.
+@isnad1 id=ex.3h3v.s10.b9ab06e3abcc from=translated src=- shape=b51e21b4 vocab=0cc1abb8
+-/
 theorem exists_zero_face_of_mem_support {f : Plane →ᵃ[ℝ] ℝ}
     (hmono : M.IsMonochromatic f) {x : Plane} (hx : x ∈ M.toPlaneComplex.support)
     (hfx : f x = 0) :
@@ -414,7 +483,9 @@ theorem exists_zero_face_of_mem_support {f : Plane →ᵃ[ℝ] ℝ}
     exact (Finset.mem_filter.mp hv).2
 
 /-- Two monochromatic coordinate lines through a supported point force that point to occur as an
-actual mesh vertex. -/
+actual mesh vertex.
+@isnad1 id=ex.3h2v.s6.22300106d3ce from=translated src=- shape=5c2f351b vocab=9275b57a
+-/
 theorem exists_vertex_position_eq_of_monochromatic_coordinates (p : Plane)
     (hp : p ∈ M.toPlaneComplex.support)
     (hx : M.IsMonochromatic (BrokenLineData.verticalLine p))
@@ -455,6 +526,9 @@ theorem exists_vertex_position_eq_of_monochromatic_coordinates (p : Plane)
         exact Finset.mem_of_mem_inter_left hv)
       (Finset.singleton_nonempty _)
 
+/--
+@isnad1 id=le.5h5v.s10.5cdd35ca381d from=translated src=- shape=acc60893 vocab=ec3d5c76
+-/
 theorem nonneg_on_face_of_monochromatic_of_pos {f : Plane →ᵃ[ℝ] ℝ}
     (hmono : M.IsMonochromatic f) {s : Finset M.Vertex}
     (hs : s ∈ M.toPlaneComplex.simplexes) {x : Plane}
@@ -470,6 +544,9 @@ theorem nonneg_on_face_of_monochromatic_of_pos {f : Plane →ᵃ[ℝ] ℝ}
       exact hnonpos v (hst hv)
     linarith
 
+/--
+@isnad1 id=le.5h5v.s10.35d362141e10 from=translated src=- shape=4419e1d2 vocab=ec3d5c76
+-/
 theorem nonpos_on_face_of_monochromatic_of_neg {f : Plane →ᵃ[ℝ] ℝ}
     (hmono : M.IsMonochromatic f) {s : Finset M.Vertex}
     (hs : s ∈ M.toPlaneComplex.simplexes) {x : Plane}
@@ -491,7 +568,9 @@ namespace PlaneComplex
 
 variable (K : PlaneComplex)
 
-/-- An affine-independent face whose vertices lie on one segment has at most two vertices. -/
+/-- An affine-independent face whose vertices lie on one segment has at most two vertices.
+@isnad1 id=le.2h4v.s7.408830dabfcc from=translated src=- shape=78a3b60c vocab=2222e3ef
+-/
 theorem card_le_two_of_vertices_mem_segment {s : Finset K.Vertex}
     (hs : s ∈ K.simplexes) {a b : Plane}
     (hseg : ∀ v ∈ s, K.position v ∈ segment ℝ a b) : s.card ≤ 2 := by
@@ -520,7 +599,9 @@ theorem card_le_two_of_vertices_mem_segment {s : Finset K.Vertex}
     _ ≤ 2 := Finset.card_le_two
 
 /-- A point in a nonempty face of cardinality at most two lies on a segment joining two of that
-face's vertices (the two vertices may coincide for a zero-face). -/
+face's vertices (the two vertices may coincide for a zero-face).
+@isnad1 id=ex.3h3v.s7.2f10227fd7eb from=translated src=- shape=b559368b vocab=ee838d8c
+-/
 theorem exists_vertex_pair_segment_of_mem_cellCarrier {s : Finset K.Vertex}
     (hs : s ∈ K.simplexes) (hcard : s.card ≤ 2) {x : Plane}
     (hx : x ∈ K.cellCarrier s) :
@@ -552,12 +633,17 @@ def vertexGraph : SimpleGraph K.Vertex where
     rintro v ⟨hvv, -⟩
     exact hvv rfl⟩
 
+/--
+@isnad1 id=iff.0h3v.s6.3585665f8dfb from=translated src=- shape=2b9a32b1 vocab=4a8589e0
+-/
 theorem vertexGraph_adj_iff {v w : K.Vertex} :
     K.vertexGraph.Adj v w ↔
       v ≠ w ∧ ({v, w} : Finset K.Vertex) ∈ K.simplexes := Iff.rfl
 
 /-- Every vertex visited by a one-skeleton walk is geometrically supported, provided the final
-vertex is an actual zero-face.  All earlier vertices occur in an edge of the walk. -/
+vertex is an actual zero-face.  All earlier vertices occur in an edge of the walk.
+@isnad1 id=mem.2h5v.s6.ca3d7e34427b from=translated src=- shape=dc55d336 vocab=19087766
+-/
 theorem position_mem_support_of_mem_walk {u v w : K.Vertex}
     (p : K.vertexGraph.Walk u v)
     (hv : ({v} : Finset K.Vertex) ∈ K.simplexes)
@@ -605,18 +691,30 @@ noncomputable def inducedBy (p : K.Vertex → Prop) : PlaneComplex := by
       intro s hs t ht
       exact K.face_inter s (Finset.mem_filter.mp hs).1 t (Finset.mem_filter.mp ht).1 }
 
+/--
+@isnad1 id=eq.0h2v.s4.97e4dfa26953 from=translated src=- shape=9c07065e vocab=fd79b3d6
+-/
 @[simp] theorem inducedBy_position (p : K.Vertex → Prop) :
     (K.inducedBy p).position = K.position := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.cd75ab9f327f from=translated src=- shape=84381c32 vocab=4149ca06
+-/
 @[simp] theorem inducedBy_cellCarrier (p : K.Vertex → Prop) (s : Finset K.Vertex) :
     (K.inducedBy p).cellCarrier s = K.cellCarrier s := rfl
 
+/--
+@isnad1 id=iff.0h3v.s6.1ad48abc25c6 from=translated src=- shape=1602191a vocab=3f289377
+-/
 theorem mem_inducedBy_simplexes_iff (p : K.Vertex → Prop) {s : Finset K.Vertex} :
     s ∈ (K.inducedBy p).simplexes ↔ s ∈ K.simplexes ∧ ∀ v ∈ s, p v := by
   classical
   change s ∈ K.simplexes.filter (fun t => ∀ v ∈ t, p v) ↔ _
   exact Finset.mem_filter
 
+/--
+@isnad1 id=le.2h3v.s7.d06ec3527404 from=translated src=- shape=a7219d5f vocab=cdd1b6bd
+-/
 theorem inducedBy_support_subset {C : Set Plane} (hC : Convex ℝ C)
     (p : K.Vertex → Prop) (hp : ∀ v, p v → K.position v ∈ C) :
     (K.inducedBy p).support ⊆ C := by
@@ -628,6 +726,9 @@ theorem inducedBy_support_subset {C : Set Plane} (hC : Convex ℝ C)
   rintro y ⟨v, hv, rfl⟩
   exact hp v (((K.mem_inducedBy_simplexes_iff p).mp hs).2 v hv)
 
+/--
+@isnad1 id=eq.3h3v.s7.44eb64785074 from=translated src=- shape=076f99a4 vocab=8dca3af9
+-/
 theorem inducedBy_support_eq {C : Set Plane} (hC : Convex ℝ C)
     (p : K.Vertex → Prop) (hp : ∀ v, p v → K.position v ∈ C)
     (hcover : ∀ x ∈ C, ∃ s ∈ K.simplexes,
@@ -668,18 +769,30 @@ noncomputable abbrev restrictedTo (C : Set Plane) : PlaneComplex := by
       intro s hs t ht
       exact K.face_inter s (Finset.mem_filter.mp hs).1 t (Finset.mem_filter.mp ht).1 }
 
+/--
+@isnad1 id=eq.0h2v.s4.be045fc163c4 from=translated src=- shape=0de9b1fb vocab=0a01a091
+-/
 @[simp] theorem restrictedTo_position (C : Set Plane) :
     (K.restrictedTo C).position = K.position := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.5b14d6bbf16d from=translated src=- shape=ab6903e5 vocab=52c086d5
+-/
 @[simp] theorem restrictedTo_cellCarrier (C : Set Plane) (s : Finset K.Vertex) :
     (K.restrictedTo C).cellCarrier s = K.cellCarrier s := rfl
 
+/--
+@isnad1 id=iff.0h3v.s6.bca701e40a1b from=translated src=- shape=0870684c vocab=49ced48a
+-/
 theorem mem_restrictedTo_simplexes_iff (C : Set Plane) {s : Finset K.Vertex} :
     s ∈ (K.restrictedTo C).simplexes ↔ s ∈ K.simplexes ∧ K.cellCarrier s ⊆ C := by
   classical
   change s ∈ K.simplexes.filter (fun t => K.cellCarrier t ⊆ C) ↔ _
   exact Finset.mem_filter
 
+/--
+@isnad1 id=le.0h2v.s3.1e76fbd75f6c from=translated src=- shape=4ddbb31d vocab=b1adf25a
+-/
 theorem restrictedTo_support_subset (C : Set Plane) :
     (K.restrictedTo C).support ⊆ C := by
   intro x hx
@@ -688,6 +801,9 @@ theorem restrictedTo_support_subset (C : Set Plane) :
   obtain ⟨s, hs, hxs⟩ := hx
   exact ((K.mem_restrictedTo_simplexes_iff C).mp hs).2 hxs
 
+/--
+@isnad1 id=eq.1h2v.s6.e0614a1e8a33 from=translated src=- shape=13cdb57c vocab=53595bf0
+-/
 theorem restrictedTo_support_eq (C : Set Plane)
     (hcover : ∀ x ∈ C, ∃ s ∈ K.simplexes,
       x ∈ K.cellCarrier s ∧ K.cellCarrier s ⊆ C) :
@@ -699,7 +815,9 @@ theorem restrictedTo_support_eq (C : Set Plane)
   exact Set.mem_iUnion₂.mpr
     ⟨s, (K.mem_restrictedTo_simplexes_iff C).mpr ⟨hs, hsC⟩, hxs⟩
 
-/-- All vertices of one simplex lie in one reachability class of the vertex graph. -/
+/-- All vertices of one simplex lie in one reachability class of the vertex graph.
+@isnad1 id=reachabl.3h4v.s6.f1f33d1ae027 from=translated src=- shape=b6877f12 vocab=dec471a8
+-/
 theorem vertexGraph_reachable_of_mem_simplex {s : Finset K.Vertex} (hs : s ∈ K.simplexes)
     {v w : K.Vertex} (hv : v ∈ s) (hw : w ∈ s) : K.vertexGraph.Reachable v w := by
   by_cases hvw : v = w
@@ -714,7 +832,9 @@ theorem vertexGraph_reachable_of_mem_simplex {s : Finset K.Vertex} (hs : s ∈ K
     · exact hw
 
 /-- If the support of a finite plane complex is connected, then any two vertices which actually
-occur as zero-faces are joined by a path in its one-skeleton. -/
+occur as zero-faces are joined by a path in its one-skeleton.
+@isnad1 id=reachabl.3h3v.s6.7742d8f165fb from=translated src=- shape=40c71259 vocab=a936ca86
+-/
 theorem vertexGraph_reachable_of_isPreconnected
     (hconn : IsPreconnected K.support) {u v : K.Vertex}
     (hu : ({u} : Finset K.Vertex) ∈ K.simplexes)
@@ -807,7 +927,9 @@ namespace BrokenLineData
 
 variable {U : Set Plane} (B : BrokenLineData U)
 
-/-- Every original chain vertex is a vertex of the line-arrangement mesh. -/
+/-- Every original chain vertex is a vertex of the line-arrangement mesh.
+@isnad1 id=ex.0h3v.s6.0a206f2c5425 from=translated src=- shape=2947d6ea vocab=5bc6a6ab
+-/
 theorem exists_arrangementVertex_position_eq (i : Fin (B.n + 1)) :
     ∃ v : B.arrangementMesh.Vertex,
       B.arrangementMesh.toPlaneComplex.position v = B.vertex i ∧
@@ -823,7 +945,9 @@ theorem exists_arrangementVertex_position_eq (i : Fin (B.n + 1)) :
     (B.arrangementMesh_monochromatic_horizontalLine i)
 
 /-- Every point of an original nondegenerate chain segment lies in an arrangement face whose
-vertices all lie on that segment. -/
+vertices all lie on that segment.
+@isnad1 id=ex.1h4v.s8.0475b4c08134 from=translated src=- shape=b2d4cf56 vocab=576e9a95
+-/
 theorem exists_face_on_segment (i : Fin B.n) {x : Plane}
     (hx : x ∈ segment ℝ (B.vertex i.castSucc) (B.vertex i.succ)) :
     ∃ s ∈ B.arrangementMesh.toPlaneComplex.simplexes,
@@ -1013,7 +1137,9 @@ theorem exists_face_on_segment (i : Fin B.n) {x : Plane}
 /-- The common arrangement of a finite segment family resolves each requested member into faces
 contained in that member.  Keeping this theorem abstract in the family index prevents clients
 with dependent finite index types from unfolding their entire enumeration during kernel
-checking. -/
+checking.
+@isnad1 id=ex.1h5v.s8.252556145312 from=translated src=- shape=b60c545e vocab=465eab80
+-/
 theorem exists_face_on_segmentFamily {I : Type*} [Fintype I]
     (left right : I → Plane) (i : I) {x : Plane}
     (hx : x ∈ segment ℝ (left i) (right i)) :
@@ -1046,7 +1172,9 @@ noncomputable def carrierComplex : PlaneComplex :=
   B.arrangementMesh.toPlaneComplex.restrictToSet B.segmentCarrier
 
 /-- The canonical complex of a broken line has exactly the union of its listed segments as
-support. -/
+support.
+@isnad1 id=eq.0h2v.s4.09fe80b66a4e from=translated src=- shape=6e918c76 vocab=11785741
+-/
 theorem carrierComplex_support : B.carrierComplex.support = B.segmentCarrier := by
   apply Set.Subset.antisymm
   · exact B.arrangementMesh.toPlaneComplex.restrictToSet_support_subset B.segmentCarrier
@@ -1072,17 +1200,25 @@ noncomputable def arrangementVertex (i : Fin (B.n + 1)) :
     B.arrangementMesh.toPlaneComplex.Vertex :=
   Classical.choose (B.exists_arrangementVertex_position_eq i)
 
+/--
+@isnad1 id=eq.0h3v.s5.c779df467f99 from=translated src=- shape=78cdf29a vocab=d9ec2422
+-/
 theorem arrangementVertex_position (i : Fin (B.n + 1)) :
     B.arrangementMesh.toPlaneComplex.position (B.arrangementVertex i) = B.vertex i :=
   (Classical.choose_spec (B.exists_arrangementVertex_position_eq i)).1
 
+/--
+@isnad1 id=mem.0h3v.s6.a72227120a0d from=translated src=- shape=b60e1c92 vocab=478333b9
+-/
 theorem arrangementVertex_face (i : Fin (B.n + 1)) :
     ({B.arrangementVertex i} : Finset B.arrangementMesh.toPlaneComplex.Vertex) ∈
       B.arrangementMesh.toPlaneComplex.simplexes :=
   (Classical.choose_spec (B.exists_arrangementVertex_position_eq i)).2
 
 /-- The left endpoint of a listed family segment is a canonical vertex of the common
-arrangement. -/
+arrangement.
+@isnad1 id=eq.0h4v.s5.a9139a398af9 from=translated src=- shape=39ba4bc7 vocab=67b66e4b
+-/
 theorem segmentFamily_arrangementVertex_position_left {I : Type*} [Fintype I]
     (left right : I → Plane) (i : I) :
     (segmentFamilyChain left right).arrangementMesh.toPlaneComplex.position
@@ -1092,7 +1228,9 @@ theorem segmentFamily_arrangementVertex_position_left {I : Type*} [Fintype I]
   exact segmentFamilyChain_vertex_even left right i
 
 /-- The right endpoint of a listed family segment is a canonical vertex of the common
-arrangement. -/
+arrangement.
+@isnad1 id=eq.0h4v.s5.ec593d3e179c from=translated src=- shape=1fae723f vocab=064cff09
+-/
 theorem segmentFamily_arrangementVertex_position_right {I : Type*} [Fintype I]
     (left right : I → Plane) (i : I) :
     (segmentFamilyChain left right).arrangementMesh.toPlaneComplex.position
@@ -1106,6 +1244,9 @@ noncomputable def segmentComplex (i : Fin B.n) : PlaneComplex :=
   B.arrangementMesh.toPlaneComplex.restrictedTo
     (segment ℝ (B.vertex i.castSucc) (B.vertex i.succ))
 
+/--
+@isnad1 id=eq.0h3v.s7.dfb9daf1c105 from=translated src=- shape=efb1b66d vocab=ae91d7a8
+-/
 theorem segmentComplex_support (i : Fin B.n) :
     (B.segmentComplex i).support =
       segment ℝ (B.vertex i.castSucc) (B.vertex i.succ) := by
@@ -1117,6 +1258,9 @@ theorem segmentComplex_support (i : Fin B.n) :
   rintro y ⟨v, hv, rfl⟩
   exact hsseg v hv
 
+/--
+@isnad1 id=mem.0h3v.s6.41eae6da1ee3 from=translated src=- shape=35129628 vocab=49c9882c
+-/
 theorem arrangementVertex_mem_segmentComplex_left (i : Fin B.n) :
     ({B.arrangementVertex i.castSucc} : Finset (B.segmentComplex i).Vertex) ∈
       (B.segmentComplex i).simplexes := by
@@ -1129,6 +1273,9 @@ theorem arrangementVertex_mem_segmentComplex_left (i : Fin B.n) :
   rw [B.arrangementVertex_position]
   exact left_mem_segment ℝ _ _
 
+/--
+@isnad1 id=mem.0h3v.s6.2232d7047c31 from=translated src=- shape=35129628 vocab=fc1650f7
+-/
 theorem arrangementVertex_mem_segmentComplex_right (i : Fin B.n) :
     ({B.arrangementVertex i.succ} : Finset (B.segmentComplex i).Vertex) ∈
       (B.segmentComplex i).simplexes := by
@@ -1142,7 +1289,9 @@ theorem arrangementVertex_mem_segmentComplex_right (i : Fin B.n) :
   exact right_mem_segment ℝ _ _
 
 /-- The line arrangement turns every original chain segment into a path in a finite
-one-skeleton. -/
+one-skeleton.
+@isnad1 id=reachabl.0h3v.s5.04d6641025bb from=translated src=- shape=344c6cab vocab=cee30bcf
+-/
 theorem reachable_on_segment (i : Fin B.n) :
     (B.segmentComplex i).vertexGraph.Reachable
       (B.arrangementVertex i.castSucc) (B.arrangementVertex i.succ) := by
@@ -1152,6 +1301,9 @@ theorem reachable_on_segment (i : Fin B.n) :
   · exact B.arrangementVertex_mem_segmentComplex_left i
   · exact B.arrangementVertex_mem_segmentComplex_right i
 
+/--
+@isnad1 id=nonempty.0h3v.s5.8205ab155b09 from=translated src=- shape=e3142bea vocab=96bed1c3
+-/
 theorem exists_path_on_segment (i : Fin B.n) :
     Nonempty ((B.segmentComplex i).vertexGraph.Path
       (B.arrangementVertex i.castSucc) (B.arrangementVertex i.succ)) := by
@@ -1172,12 +1324,18 @@ def inSetGraph : SimpleGraph B.arrangementMesh.toPlaneComplex.Vertex where
     rintro v ⟨hvv, -⟩
     exact hvv rfl⟩
 
+/--
+@isnad1 id=iff.0h4v.s7.22bf17a48012 from=translated src=- shape=1583008c vocab=d33d6a69
+-/
 theorem inSetGraph_adj_iff {v w : B.arrangementMesh.toPlaneComplex.Vertex} :
     B.inSetGraph.Adj v w ↔ v ≠ w ∧
       ({v, w} : Finset B.arrangementMesh.toPlaneComplex.Vertex) ∈
         B.arrangementMesh.toPlaneComplex.simplexes ∧
       B.arrangementMesh.toPlaneComplex.cellCarrier {v, w} ⊆ U := Iff.rfl
 
+/--
+@isnad1 id=le.0h2v.s4.5dfc9b62a7d9 from=translated src=- shape=56832be3 vocab=36e66349
+-/
 theorem inSetGraph_le_arrangementVertexGraph :
     B.inSetGraph ≤ B.arrangementMesh.toPlaneComplex.vertexGraph := by
   intro v w hvw
@@ -1185,6 +1343,9 @@ theorem inSetGraph_le_arrangementVertexGraph :
   rw [B.arrangementMesh.toPlaneComplex.vertexGraph_adj_iff]
   exact ⟨hvw.1, hvw.2.1⟩
 
+/--
+@isnad1 id=le.0h3v.s5.5a42f5b5df04 from=translated src=- shape=d2f93172 vocab=eb7c4973
+-/
 theorem segmentVertexGraph_le_inSetGraph (i : Fin B.n) :
     (B.segmentComplex i).vertexGraph ≤
       B.inSetGraph := by
@@ -1196,7 +1357,9 @@ theorem segmentVertexGraph_le_inSetGraph (i : Fin B.n) :
     ⟨hvw.1, hedge, hsegment.trans (B.segment_subset i)⟩
 
 /-- Concatenating the segment paths gives a walk through the entire broken line; Mathlib's
-loop-erasure then produces a path with the same endpoints. -/
+loop-erasure then produces a path with the same endpoints.
+@isnad1 id=nonempty.0h2v.s5.93404dc2e270 from=translated src=- shape=6bde1027 vocab=76813d22
+-/
 theorem exists_arrangement_path :
     Nonempty (B.inSetGraph.Path
       (B.arrangementVertex 0) (B.arrangementVertex (Fin.last B.n))) := by
@@ -1248,6 +1411,9 @@ noncomputable def resolvedVertex
   B.arrangementMesh.toPlaneComplex.position
     (B.resolvedWalk.getVert i)
 
+/--
+@isnad1 id=injectiv.0h2v.s6.3377d161aae8 from=translated src=- shape=54d34724 vocab=55466b22
+-/
 theorem resolvedVertex_injective : Function.Injective B.resolvedVertex := by
   intro i j hij
   apply Fin.ext
@@ -1259,11 +1425,17 @@ theorem resolvedVertex_injective : Function.Injective B.resolvedVertex := by
   apply B.arrangementMesh.toPlaneComplex.position_injective
   exact hij
 
+/--
+@isnad1 id=eq.0h2v.s7.0f75e5f9a583 from=translated src=- shape=b9f2ff1f vocab=b8c6d301
+-/
 theorem resolvedVertex_start : B.resolvedVertex 0 = B.start := by
   change B.arrangementMesh.toPlaneComplex.position (B.resolvedWalk.getVert 0) = B.start
   rw [SimpleGraph.Walk.getVert_zero]
   exact B.arrangementVertex_position 0
 
+/--
+@isnad1 id=eq.0h2v.s6.8402f4304e74 from=translated src=- shape=d4c90504 vocab=18eb53c0
+-/
 theorem resolvedVertex_finish :
     B.resolvedVertex (Fin.last B.resolvedWalk.length) =
       B.finish := by
@@ -1272,6 +1444,9 @@ theorem resolvedVertex_finish :
   rw [SimpleGraph.Walk.getVert_length]
   exact B.arrangementVertex_position (Fin.last B.n)
 
+/--
+@isnad1 id=le.0h3v.s8.da9e23becbdd from=translated src=- shape=82b762bc vocab=1656602f
+-/
 theorem resolvedSegment_subset (i : Fin B.resolvedWalk.length) :
     segment ℝ (B.resolvedVertex i.castSucc) (B.resolvedVertex i.succ) ⊆ U := by
   let p : B.inSetGraph.Walk _ _ := B.resolvedWalk
@@ -1291,6 +1466,9 @@ theorem resolvedSegment_subset (i : Fin B.resolvedWalk.length) :
   rw [PlaneComplex.cellCarrier, himage, convexHull_pair] at hcarrier
   exact hcarrier
 
+/--
+@isnad1 id=eq.0h3v.s9.d9d2ad14c366 from=translated src=- shape=302ef673 vocab=07b71cc5
+-/
 theorem resolvedSegment_eq_cellCarrier (i : Fin B.resolvedWalk.length) :
     segment ℝ (B.resolvedVertex i.castSucc) (B.resolvedVertex i.succ) =
       B.arrangementMesh.toPlaneComplex.cellCarrier
@@ -1308,6 +1486,9 @@ theorem resolvedSegment_eq_cellCarrier (i : Fin B.resolvedWalk.length) :
     simp
   rw [himage, convexHull_pair]
 
+/--
+@isnad1 id=mem.0h3v.s8.f8988b8d7dee from=translated src=- shape=bd0fbb30 vocab=8742679d
+-/
 theorem resolvedEdge_mem_simplexes (i : Fin B.resolvedWalk.length) :
     ({B.resolvedWalk.getVert i.val, B.resolvedWalk.getVert (i.val + 1)} :
       Finset B.arrangementMesh.toPlaneComplex.Vertex) ∈
@@ -1316,7 +1497,9 @@ theorem resolvedEdge_mem_simplexes (i : Fin B.resolvedWalk.length) :
   rw [B.inSetGraph_adj_iff] at hadj
   exact hadj.2.1
 
-/-- Exact face-to-face intersection for the ordered segments of the resolved arc. -/
+/-- Exact face-to-face intersection for the ordered segments of the resolved arc.
+@isnad1 id=eq.0h4v.s10.261cc3412c36 from=translated src=- shape=55475c98 vocab=ed958a07
+-/
 theorem resolvedSegment_inter (i j : Fin B.resolvedWalk.length) :
     segment ℝ (B.resolvedVertex i.castSucc) (B.resolvedVertex i.succ) ∩
       segment ℝ (B.resolvedVertex j.castSucc) (B.resolvedVertex j.succ) =
@@ -1335,6 +1518,9 @@ def resolvedCarrier : Set Plane :=
   else ⋃ i : Fin B.resolvedWalk.length,
     segment ℝ (B.resolvedVertex i.castSucc) (B.resolvedVertex i.succ)
 
+/--
+@isnad1 id=le.1h2v.s4.23382eec9e80 from=translated src=- shape=0c1d9d74 vocab=d75a8d82
+-/
 theorem resolvedCarrier_subset (hstart : B.start ∈ U) : B.resolvedCarrier ⊆ U := by
   intro x hx
   unfold resolvedCarrier at hx
@@ -1382,14 +1568,23 @@ noncomputable def resolvedComplex : PlaneComplex := by
       intro s hs t ht
       exact K.face_inter s (Finset.mem_filter.mp hs).1 t (Finset.mem_filter.mp ht).1 }
 
+/--
+@isnad1 id=eq.0h2v.s4.8b17e7d0d018 from=translated src=- shape=8b333cbb vocab=9a4dd819
+-/
 @[simp] theorem resolvedComplex_position :
     B.resolvedComplex.position = B.arrangementMesh.toPlaneComplex.position := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.9cd1c696aa16 from=translated src=- shape=0051aa29 vocab=0f70a814
+-/
 @[simp] theorem resolvedComplex_cellCarrier
     (s : Finset B.arrangementMesh.toPlaneComplex.Vertex) :
     B.resolvedComplex.cellCarrier s =
       B.arrangementMesh.toPlaneComplex.cellCarrier s := rfl
 
+/--
+@isnad1 id=iff.0h3v.s6.c4834d872603 from=translated src=- shape=751606dd vocab=c01c2882
+-/
 theorem mem_resolvedComplex_simplexes_iff
     {s : Finset B.arrangementMesh.toPlaneComplex.Vertex} :
     s ∈ B.resolvedComplex.simplexes ↔
@@ -1398,7 +1593,9 @@ theorem mem_resolvedComplex_simplexes_iff
   change s ∈ B.arrangementMesh.toPlaneComplex.simplexes.filter B.IsResolvedFace ↔ _
   exact Finset.mem_filter
 
-/-- Every ordered vertex of the resolved path occurs as a zero-face of the selected complex. -/
+/-- Every ordered vertex of the resolved path occurs as a zero-face of the selected complex.
+@isnad1 id=mem.0h3v.s8.a321a31ef2b2 from=translated src=- shape=017e2caf vocab=e53ab296
+-/
 theorem resolvedVertex_face (i : Fin (B.resolvedWalk.length + 1)) :
     ({B.resolvedWalk.getVert i.val} :
       Finset B.arrangementMesh.toPlaneComplex.Vertex) ∈ B.resolvedComplex.simplexes := by
@@ -1439,7 +1636,9 @@ theorem resolvedVertex_face (i : Fin (B.resolvedWalk.length + 1)) :
       exact B.mem_resolvedComplex_simplexes_iff.mpr
         ⟨hsingleton, Finset.singleton_nonempty _, Or.inr ⟨j, hsubset⟩⟩
 
-/-- Every ordered path vertex lies in the support of the selected complex. -/
+/-- Every ordered path vertex lies in the support of the selected complex.
+@isnad1 id=mem.0h3v.s7.851f7cbf4bc6 from=translated src=- shape=66ec99f8 vocab=7e7bc882
+-/
 theorem resolvedVertex_mem_support (i : Fin (B.resolvedWalk.length + 1)) :
     B.resolvedComplex.position (B.resolvedWalk.getVert i.val) ∈
       B.resolvedComplex.support := by
@@ -1447,6 +1646,9 @@ theorem resolvedVertex_mem_support (i : Fin (B.resolvedWalk.length + 1)) :
   exact subset_convexHull ℝ _ ⟨B.resolvedWalk.getVert i.val,
     Finset.mem_singleton_self _, rfl⟩
 
+/--
+@isnad1 id=le.1h3v.s5.a782e1a8e451 from=translated src=- shape=d52a371a vocab=d50ada53
+-/
 theorem resolvedComplex_card_le_two {s : Finset B.resolvedComplex.Vertex}
     (hs : s ∈ B.resolvedComplex.simplexes) : s.card ≤ 2 := by
   have hface := (B.mem_resolvedComplex_simplexes_iff.mp hs).2
@@ -1459,6 +1661,9 @@ theorem resolvedComplex_card_le_two {s : Finset B.resolvedComplex.Vertex}
       _ ≤ 2 := by omega
   · exact (Finset.card_le_card hsi).trans Finset.card_le_two
 
+/--
+@isnad1 id=eq.0h2v.s4.fbb5aabf1bfc from=translated src=- shape=6e918c76 vocab=d6692934
+-/
 theorem resolvedComplex_support : B.resolvedComplex.support = B.resolvedCarrier := by
   classical
   unfold resolvedCarrier
@@ -1531,11 +1736,17 @@ noncomputable def resolvedEdgeParameter (i : Fin B.resolvedWalk.length) :
     (B.resolvedVertex i.succ 1 - B.resolvedVertex i.castSucc 1)⁻¹ •
       (cartesianY - AffineMap.const ℝ Plane (B.resolvedVertex i.castSucc 1))
 
+/--
+@isnad1 id=eq.0h3v.s9.d6c68ffaa400 from=translated src=- shape=dff61cd8 vocab=04e5c3b1
+-/
 theorem resolvedEdgeParameter_apply_left (i : Fin B.resolvedWalk.length) :
     B.resolvedEdgeParameter i (B.resolvedVertex i.castSucc) = 0 := by
   unfold resolvedEdgeParameter
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h3v.s9.6ebf779fe1d9 from=translated src=- shape=dff61cd8 vocab=a3e86c74
+-/
 theorem resolvedEdgeParameter_apply_right (i : Fin B.resolvedWalk.length) :
     B.resolvedEdgeParameter i (B.resolvedVertex i.succ) = 1 := by
   unfold resolvedEdgeParameter
@@ -1554,6 +1765,9 @@ theorem resolvedEdgeParameter_apply_right (i : Fin B.resolvedWalk.length) :
         (B.resolvedVertex i.succ 1 - B.resolvedVertex i.castSucc 1) = 1
     exact inv_mul_cancel₀ (sub_ne_zero.mpr h1.symm)
 
+/--
+@isnad1 id=eq.0h4v.s10.ebdb590f848a from=translated src=- shape=c1f1596d vocab=797e46a6
+-/
 theorem resolvedEdgeParameter_lineMap (i : Fin B.resolvedWalk.length) (t : ℝ) :
     B.resolvedEdgeParameter i
       (AffineMap.lineMap (B.resolvedVertex i.castSucc) (B.resolvedVertex i.succ) t) = t := by
@@ -1566,17 +1780,26 @@ noncomputable def resolvedEdgeGlobalParameter (i : Fin B.resolvedWalk.length) :
     Plane →ᵃ[ℝ] ℝ :=
   AffineMap.const ℝ Plane (i.val : ℝ) + B.resolvedEdgeParameter i
 
+/--
+@isnad1 id=eq.0h3v.s9.aa273e2bcc93 from=translated src=- shape=d1779db8 vocab=cbb95672
+-/
 theorem resolvedEdgeGlobalParameter_apply_left (i : Fin B.resolvedWalk.length) :
     B.resolvedEdgeGlobalParameter i (B.resolvedVertex i.castSucc) = i.val := by
   change (i.val : ℝ) + B.resolvedEdgeParameter i (B.resolvedVertex i.castSucc) = i.val
   rw [B.resolvedEdgeParameter_apply_left]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s9.53123b1165da from=translated src=- shape=908349d7 vocab=3a7ed77a
+-/
 theorem resolvedEdgeGlobalParameter_apply_right (i : Fin B.resolvedWalk.length) :
     B.resolvedEdgeGlobalParameter i (B.resolvedVertex i.succ) = i.val + 1 := by
   change (i.val : ℝ) + B.resolvedEdgeParameter i (B.resolvedVertex i.succ) = i.val + 1
   rw [B.resolvedEdgeParameter_apply_right]
 
+/--
+@isnad1 id=eq.0h4v.s10.2390bed0ba7a from=translated src=- shape=dcf7a04a vocab=9371b01a
+-/
 theorem resolvedEdgeGlobalParameter_lineMap (i : Fin B.resolvedWalk.length) (t : ℝ) :
     B.resolvedEdgeGlobalParameter i
       (AffineMap.lineMap (B.resolvedVertex i.castSucc) (B.resolvedVertex i.succ) t) =
@@ -1590,6 +1813,9 @@ private theorem getVert_index_eq {r s : ℕ} (hr : r ≤ B.resolvedWalk.length)
     (h : B.resolvedWalk.getVert r = B.resolvedWalk.getVert s) : r = s :=
   B.resolvedPath.property.getVert_injOn hr hs h
 
+/--
+@isnad1 id=or.1h4v.s10.8d4feda0be71 from=translated src=- shape=998ec714 vocab=0dcc7722
+-/
 theorem resolvedEdge_indices_close (i j : Fin B.resolvedWalk.length)
     (hinter : (({B.resolvedWalk.getVert i.val, B.resolvedWalk.getVert (i.val + 1)} :
         Finset B.arrangementMesh.toPlaneComplex.Vertex) ∩
@@ -1611,6 +1837,9 @@ theorem resolvedEdge_indices_close (i j : Fin B.resolvedWalk.length)
       (by omega) (by omega) (hi.symm.trans hj)
     omega
 
+/--
+@isnad1 id=or.2h5v.s9.f7096ef7c1e9 from=translated src=- shape=a603a996 vocab=22a6ebdd
+-/
 theorem resolvedSegment_indices_close (i j : Fin B.resolvedWalk.length) {x : Plane}
     (hxi : x ∈ segment ℝ (B.resolvedVertex i.castSucc) (B.resolvedVertex i.succ))
     (hxj : x ∈ segment ℝ (B.resolvedVertex j.castSucc) (B.resolvedVertex j.succ)) :
@@ -1629,6 +1858,9 @@ theorem resolvedSegment_indices_close (i j : Fin B.resolvedWalk.length) {x : Pla
     simp at hx
   exact B.resolvedEdge_indices_close i j hne
 
+/--
+@isnad1 id=eq.1h4v.s9.612e4e7294de from=translated src=- shape=13b42f9b vocab=a6540167
+-/
 theorem resolvedSegment_inter_of_succ_eq (i j : Fin B.resolvedWalk.length)
     (hij : i.val + 1 = j.val) :
     segment ℝ (B.resolvedVertex i.castSucc) (B.resolvedVertex i.succ) ∩
@@ -1679,7 +1911,9 @@ theorem resolvedSegment_inter_of_succ_eq (i j : Fin B.resolvedWalk.length)
       (B.resolvedWalk.getVert (i.val + 1))} = {B.resolvedVertex i.succ}
   rfl
 
-/-- The shifted affine edge parameters agree wherever two selected path edges meet. -/
+/-- The shifted affine edge parameters agree wherever two selected path edges meet.
+@isnad1 id=eq.2h5v.s10.b3474583bcd9 from=translated src=- shape=85cdf887 vocab=6ac4c8b8
+-/
 theorem resolvedEdgeGlobalParameter_agree (i j : Fin B.resolvedWalk.length) {x : Plane}
     (hxi : x ∈ segment ℝ (B.resolvedVertex i.castSucc) (B.resolvedVertex i.succ))
     (hxj : x ∈ segment ℝ (B.resolvedVertex j.castSucc) (B.resolvedVertex j.succ)) :
@@ -1723,6 +1957,9 @@ noncomputable def resolvedGlobalParameter (x : Plane) : ℝ :=
       B.resolvedEdgeGlobalParameter (Classical.choose h) x
     else 0
 
+/--
+@isnad1 id=eq.1h4v.s9.2802ea78d1ac from=translated src=- shape=a1257181 vocab=dbf48cd3
+-/
 theorem resolvedGlobalParameter_eq_on_edge (i : Fin B.resolvedWalk.length) {x : Plane}
     (hx : x ∈ segment ℝ (B.resolvedVertex i.castSucc) (B.resolvedVertex i.succ)) :
     B.resolvedGlobalParameter x = B.resolvedEdgeGlobalParameter i x := by
@@ -1732,6 +1969,9 @@ theorem resolvedGlobalParameter_eq_on_edge (i : Fin B.resolvedWalk.length) {x : 
       (Classical.choose_spec h) hx
   · exact (h ⟨i, hx⟩).elim
 
+/--
+@isnad1 id=eq.1h4v.s10.3546a662b316 from=translated src=- shape=ce61f39f vocab=3d38c4d8
+-/
 theorem resolvedGlobalParameter_lineMap_of_mem (i : Fin B.resolvedWalk.length)
     {t : ℝ} (ht : t ∈ Set.Icc (0 : ℝ) 1) :
     B.resolvedGlobalParameter
@@ -1741,6 +1981,9 @@ theorem resolvedGlobalParameter_lineMap_of_mem (i : Fin B.resolvedWalk.length)
     (lineMap_mem_segment ℝ (B.resolvedVertex i.castSucc) (B.resolvedVertex i.succ) ht)]
   exact B.resolvedEdgeGlobalParameter_lineMap i t
 
+/--
+@isnad1 id=injon.0h2v.s3.205e5d6d119a from=translated src=- shape=15d05836 vocab=2566d5db
+-/
 theorem resolvedGlobalParameter_injectiveOn :
     Set.InjOn B.resolvedGlobalParameter B.resolvedCarrier := by
   intro x hx y hy hxy
@@ -1798,6 +2041,9 @@ theorem resolvedGlobalParameter_injectiveOn :
           exact Fin.ext hsucc
         simpa [ht0, hu1] using hvertex.symm
 
+/--
+@isnad1 id=eq.0h2v.s6.b6e47af6aecf from=translated src=- shape=ec30dee8 vocab=e6f2bf50
+-/
 theorem resolvedGlobalParameter_image :
     B.resolvedGlobalParameter '' B.resolvedCarrier =
       Set.Icc (0 : ℝ) B.resolvedWalk.length := by
@@ -1888,6 +2134,9 @@ theorem resolvedGlobalParameter_image :
             exact B.resolvedGlobalParameter_lineMap_of_mem i ht]
           simp [i, t, k]
 
+/--
+@isnad1 id=eq.0h2v.s7.47ee5d685d6f from=translated src=- shape=9c4ed93b vocab=03cacee7
+-/
 theorem resolvedGlobalParameter_start :
     B.resolvedGlobalParameter (B.resolvedVertex 0) = 0 := by
   by_cases hzero : B.resolvedWalk.length = 0
@@ -1904,6 +2153,9 @@ theorem resolvedGlobalParameter_start :
       B.resolvedEdgeGlobalParameter_apply_left]
     simp [i]
 
+/--
+@isnad1 id=eq.0h2v.s7.60d246bea131 from=translated src=- shape=e5fe0f66 vocab=e215d3d3
+-/
 theorem resolvedGlobalParameter_finish :
     B.resolvedGlobalParameter (B.resolvedVertex (Fin.last B.resolvedWalk.length)) =
       B.resolvedWalk.length := by
@@ -1932,21 +2184,33 @@ def realAxisLinear : ℝ →ₗ[ℝ] Plane where
 /-- The `realAxisAffine` declaration. -/
 def realAxisAffine : ℝ →ᵃ[ℝ] Plane := realAxisLinear.toAffineMap
 
+/--
+@isnad1 id=eq.0h1v.s9.a01eb6160491 from=translated src=- shape=7f9dd017 vocab=81dc2d26
+-/
 @[simp] theorem realAxisAffine_apply (t : ℝ) : realAxisAffine t = planePoint t 0 := rfl
 
 /-- Piecewise-affine straightening of the selected polygonal arc onto the real axis. -/
 noncomputable def resolvedStraighten (x : Plane) : Plane :=
   realAxisAffine (B.resolvedGlobalParameter x)
 
+/--
+@isnad1 id=eq.0h2v.s7.06329f562c22 from=translated src=- shape=1bf91282 vocab=60ff4a58
+-/
 theorem resolvedStraighten_start :
     B.resolvedStraighten (B.resolvedVertex 0) = planePoint 0 0 := by
   simp [resolvedStraighten, B.resolvedGlobalParameter_start]
 
+/--
+@isnad1 id=eq.0h2v.s7.13f9a812e5c3 from=translated src=- shape=51c18627 vocab=adb38ebe
+-/
 theorem resolvedStraighten_finish :
     B.resolvedStraighten (B.resolvedVertex (Fin.last B.resolvedWalk.length)) =
       planePoint B.resolvedWalk.length 0 := by
   simp [resolvedStraighten, B.resolvedGlobalParameter_finish]
 
+/--
+@isnad1 id=injon.0h2v.s3.63d612c14390 from=translated src=- shape=c9b2b134 vocab=e4f4e59b
+-/
 theorem resolvedStraighten_injectiveOn :
     Set.InjOn B.resolvedStraighten B.resolvedCarrier := by
   intro x hx y hy hxy
@@ -1954,6 +2218,9 @@ theorem resolvedStraighten_injectiveOn :
   have hcoord := congrArg (fun p : Plane => p 0) hxy
   exact hcoord
 
+/--
+@isnad1 id=eq.0h2v.s7.f83d69627c0c from=translated src=- shape=684c674b vocab=b1ebc14c
+-/
 theorem resolvedStraighten_image :
     B.resolvedStraighten '' B.resolvedCarrier =
       segment ℝ (planePoint 0 0) (planePoint B.resolvedWalk.length 0) := by
@@ -1971,6 +2238,9 @@ theorem resolvedStraighten_image :
     image_segment (𝕜 := ℝ) realAxisAffine]
   rfl
 
+/--
+@isnad1 id=isaffine.1h3v.s5.eaebfbb04f2f from=translated src=- shape=82a63e76 vocab=a2eb90b8
+-/
 theorem resolvedStraighten_affineOn_faces :
     ∀ s ∈ B.resolvedComplex.simplexes,
       IsAffineOn B.resolvedStraighten (B.resolvedComplex.cellCarrier s) := by
@@ -2014,12 +2284,21 @@ noncomputable def resolvedBrokenLine : BrokenLineData U where
   vertex := B.resolvedVertex
   segment_subset := B.resolvedSegment_subset
 
+/--
+@isnad1 id=eq.0h2v.s4.982410af732a from=translated src=- shape=aac872d5 vocab=4ade5827
+-/
 theorem resolvedBrokenLine_start : B.resolvedBrokenLine.start = B.start :=
   B.resolvedVertex_start
 
+/--
+@isnad1 id=eq.0h2v.s4.87b9b3bddf57 from=translated src=- shape=aac872d5 vocab=b0b1e274
+-/
 theorem resolvedBrokenLine_finish : B.resolvedBrokenLine.finish = B.finish :=
   B.resolvedVertex_finish
 
+/--
+@isnad1 id=injectiv.0h2v.s4.c0e7cecaf792 from=translated src=- shape=d48ee1c7 vocab=7d74a759
+-/
 theorem resolvedBrokenLine_vertex_injective :
     Function.Injective B.resolvedBrokenLine.vertex :=
   B.resolvedVertex_injective
@@ -2028,7 +2307,9 @@ end BrokenLineData
 
 /-- A weak broken line can be resolved into a loop-free path in a finite straight-line graph,
 with every graph edge contained in the same set.  This is the precise polygonal-arc form of
-Moise Chapter 6, Theorem 1 used by the graph approximation argument. -/
+Moise Chapter 6, Theorem 1 used by the graph approximation argument.
+@isnad1 id=ex.1h3v.s6.01dc03c6f7bc from=translated src=- shape=8c4fc50c vocab=be0afe3c
+-/
 theorem JoinedByBrokenLine.exists_polygonalArc {U : Set Plane} {a b : Plane}
     (h : JoinedByBrokenLine U a b) :
     ∃ B : BrokenLineData U,

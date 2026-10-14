@@ -62,7 +62,9 @@ private lemma div_den_eq_one_imp {m : ℕ} (hm : 0 < m) {k : ℕ} (hk : k < m)
   · exact_mod_cast hkq
   · exact absurd hmq hmQ
 
-/-- Division points with `v ≠ 0` are not lattice points (so `℘` is finite there). -/
+/-- Division points with `v ≠ 0` are not lattice points (so `℘` is finite there).
+@isnad1 id=not.1h3v.s6.58fd568d5fcf from=translated src=- shape=48a0fee7 vocab=e43dc724
+-/
 theorem divPt_notMem_lattice {m : ℕ} [NeZero m] {v : Fin m × Fin m} (hv : v ≠ 0) :
     L.divPt m v ∉ L.lattice := by
   have hmpos : 0 < m := NeZero.pos m
@@ -247,7 +249,9 @@ private theorem Fm_add_intmul {p : ℂ} {m : ℕ} (hp : ∀ w, L.Fm m (w + p) = 
     rw [heq, hpneg, ih]
 
 /-- `F_m` is doubly periodic (paper Lemma `lemdefifm`, via the σ-transformation law
-`trafosigma`). -/
+`trafosigma`).
+@isnad1 id=eq.1h4v.s5.409c7e260830 from=translated src=- shape=2f807e59 vocab=34927107
+-/
 theorem Fm_periodic (m : ℕ) {ω : ℂ} (hω : ω ∈ L.lattice) (z : ℂ) :
     L.Fm m (z + ω) = L.Fm m z := by
   -- the σ-transformation laws in the directions ω₁, ω₂
@@ -599,7 +603,9 @@ private lemma mulDiff_const_eq_zero {m : ℕ} [NeZero m] {c : ℂ}
   exact (mul_eq_zero.mp hcω).resolve_right hω₁
 
 /-- Milla's `theowpsum`: the sum of `℘` over all `m`-division points vanishes.
-(From the vanishing of the second-highest coefficient in `thmbaker`.) -/
+(From the vanishing of the second-highest coefficient in `thmbaker`.)
+@isnad1 id=eq.0h2v.s7.48c29e6e5c33 from=translated src=- shape=2d51f62c vocab=b361c65c
+-/
 theorem theowpsum (m : ℕ) [NeZero m] :
     ∑ v ∈ Finset.univ.erase (0 : Fin m × Fin m), L.weierstrassP (L.divPt m v) = 0 := by
   obtain ⟨c, hc⟩ := L.exists_mulDiff_const (m := m)
@@ -700,7 +706,9 @@ private lemma one_le_untop₀_meromorphicOrderAt {c a : ℂ} (ha : a ∉ L.latti
   omega
 
 /-- **`℘` is 2-to-1**: for `z, v ∉ L` with `z − v ∉ L` and `z + v ∉ L`, the values differ,
-`℘ z ≠ ℘ v` (contrapositive of `℘ z = ℘ v → z ≡ ±v mod L`). -/
+`℘ z ≠ ℘ v` (contrapositive of `℘ z = ℘ v → z ≡ ±v mod L`).
+@isnad1 id=ne.4h3v.s7.f281fda48f3a from=translated src=- shape=ce40310c vocab=4b08b137
+-/
 theorem weierstrassP_ne_of_notMem {z v : ℂ} (hz : z ∉ L.lattice) (hv : v ∉ L.lattice)
     (hsub : z - v ∉ L.lattice) (hadd : z + v ∉ L.lattice) :
     L.weierstrassP z ≠ L.weierstrassP v := by
@@ -1126,7 +1134,9 @@ private lemma trailingCoeff_sigmaQuot_zero {v : ℂ} (hv : v ∉ L.lattice) :
   ring
 
 /-- Milla's `lemwpsigma`: for `u, v ∉ L`,
-`℘(v) − ℘(u) = σ(u+v)·σ(u−v)/(σ(u)²·σ(v)²)`. -/
+`℘(v) − ℘(u) = σ(u+v)·σ(u−v)/(σ(u)²·σ(v)²)`.
+@isnad1 id=eq.2h3v.s7.4d5299d2465f from=translated src=- shape=b5dbbc99 vocab=f07fef0a
+-/
 theorem lemwpsigma {u v : ℂ} (hu : u ∉ L.lattice) (hv : v ∉ L.lattice) :
     L.weierstrassP v - L.weierstrassP u
       = L.weierstrassSigma (u + v) * L.weierstrassSigma (u - v)
@@ -1455,7 +1465,9 @@ private lemma trailingCoeff_Fm_zero (m : ℕ) [NeZero m] :
   norm_num
 
 /-- Milla's `propfmprod`: for `z ∉ L`,
-`F_m(z)² = m²·∏_{v ≠ 0} (℘(z) − ℘(u_v))`. -/
+`F_m(z)² = m²·∏_{v ≠ 0} (℘(z) − ℘(u_v))`.
+@isnad1 id=eq.1h3v.s7.614103c36b43 from=translated src=- shape=85520ef1 vocab=1db821dc
+-/
 theorem propfmprod (m : ℕ) [NeZero m] {z : ℂ} (hz : z ∉ L.lattice) :
     L.Fm m z ^ 2 = (m : ℂ) ^ 2
       * ∏ v ∈ Finset.univ.erase (0 : Fin m × Fin m),
@@ -1537,7 +1549,9 @@ theorem propfmprod (m : ℕ) [NeZero m] {z : ℂ} (hz : z ∉ L.lattice) :
   exact hFz
 
 /-- Milla's `lemwpnz`: `℘(nz) = ℘(z) − F_{n−1}(z)·F_{n+1}(z)/F_n(z)²` for `z, nz ∉ L`
-(from `lemwpsigma` with `u = z`, `v = nz`, σ-oddness and the definition of `F_k`). -/
+(from `lemwpsigma` with `u = z`, `v = nz`, σ-oddness and the definition of `F_k`).
+@isnad1 id=eq.2h3v.s7.7a3a8d13ccfb from=translated src=- shape=5e53326d vocab=6ae1e68f
+-/
 theorem lemwpnz (n : ℕ) {z : ℂ} (hz : z ∉ L.lattice) (hnz : (n : ℂ) * z ∉ L.lattice) :
     L.weierstrassP ((n : ℂ) * z)
       = L.weierstrassP z - L.Fm (n - 1) z * L.Fm (n + 1) z / L.Fm n z ^ 2 := by
@@ -1618,22 +1632,39 @@ noncomputable def P : ℕ → Coeff[X]
   termination_by m => m
   decreasing_by all_goals omega
 
+/--
+@isnad1 id=eq.0h0v.s6.bc6c6e6566cc from=translated src=- shape=249d2cad vocab=705ee63a
+-/
 @[simp] lemma P_zero : P 0 = 0 := by simp [P]
 
+/--
+@isnad1 id=eq.0h0v.s6.a9af69b7f3fb from=translated src=- shape=249d2cad vocab=705ee63a
+-/
 @[simp] lemma P_one : P 1 = 1 := by simp [P]
 
+/--
+@isnad1 id=eq.0h0v.s6.4363dbdca0c1 from=translated src=- shape=249d2cad vocab=705ee63a
+-/
 @[simp] lemma P_two : P 2 = 1 := by simp [P]
 
+/--
+@isnad1 id=eq.0h0v.s11.5808076f2c6f from=translated src=- shape=6a9f6306 vocab=532d53c7
+-/
 lemma P_three :
     P 3 = C 3 * X ^ 4 - C (6 * h2) * X ^ 2 - C (12 * h3) * X - C (h2 ^ 2) := by
   simp [P]
 
+/--
+@isnad1 id=eq.0h0v.s12.08244cabe106 from=translated src=- shape=4db34692 vocab=532d53c7
+-/
 lemma P_four :
     P 4 = C 2 * X ^ 6 - C (10 * h2) * X ^ 4 - C (40 * h3) * X ^ 3 - C (10 * h2 ^ 2) * X ^ 2
       - C (8 * h2 * h3) * X - C (16 * h3 ^ 2 - 2 * h2 ^ 3) := by
   simp [P]
 
-/-- Recursion case `m = 4k + 1`, `k ≥ 1` (paper `defipm`). -/
+/-- Recursion case `m = 4k + 1`, `k ≥ 1` (paper `defipm`).
+@isnad1 id=eq.1h1v.s10.9bfd5b668a0c from=translated src=- shape=39576527 vocab=8e82f83c
+-/
 lemma P_four_mul_add_one {k : ℕ} (hk : 1 ≤ k) :
     P (4 * k + 1)
       = E * P (2 * k + 2) * P (2 * k) ^ 3 - P (2 * k - 1) * P (2 * k + 1) ^ 3 := by
@@ -1643,7 +1674,9 @@ lemma P_four_mul_add_one {k : ℕ} (hk : 1 ≤ k) :
   have hdiv : (4 * j + 4) / 4 = j + 1 := by omega
   simp only [hmod, hdiv, ite_eq_left]
 
-/-- Recursion case `m = 4k + 2`, `k ≥ 1` (paper `defipm`). -/
+/-- Recursion case `m = 4k + 2`, `k ≥ 1` (paper `defipm`).
+@isnad1 id=eq.1h1v.s10.8cae19752dcb from=translated src=- shape=61c079a5 vocab=385f420b
+-/
 lemma P_four_mul_add_two {k : ℕ} (hk : 1 ≤ k) :
     P (4 * k + 2)
       = P (2 * k + 1) * (P (2 * k + 3) * P (2 * k) ^ 2 - P (2 * k - 1) * P (2 * k + 2) ^ 2) := by
@@ -1654,7 +1687,9 @@ lemma P_four_mul_add_two {k : ℕ} (hk : 1 ≤ k) :
   simp only [hmod, hdiv]
   norm_num
 
-/-- Recursion case `m = 4k + 3`, `k ≥ 1` (paper `defipm`). -/
+/-- Recursion case `m = 4k + 3`, `k ≥ 1` (paper `defipm`).
+@isnad1 id=eq.1h1v.s10.9626e819c7dc from=translated src=- shape=ca2885ab vocab=8e82f83c
+-/
 lemma P_four_mul_add_three {k : ℕ} (hk : 1 ≤ k) :
     P (4 * k + 3)
       = P (2 * k + 3) * P (2 * k + 1) ^ 3 - E * P (2 * k) * P (2 * k + 2) ^ 3 := by
@@ -1665,7 +1700,9 @@ lemma P_four_mul_add_three {k : ℕ} (hk : 1 ≤ k) :
   simp only [hmod, hdiv]
   norm_num
 
-/-- Recursion case `m = 4k + 4`, `k ≥ 1` (paper `defipm`). -/
+/-- Recursion case `m = 4k + 4`, `k ≥ 1` (paper `defipm`).
+@isnad1 id=eq.1h1v.s10.a458655f5674 from=translated src=- shape=2f7fc532 vocab=385f420b
+-/
 lemma P_four_mul_add_four {k : ℕ} (hk : 1 ≤ k) :
     P (4 * k + 4)
       = P (2 * k + 2) * (P (2 * k + 4) * P (2 * k + 1) ^ 2 - P (2 * k) * P (2 * k + 3) ^ 2) := by
@@ -1990,25 +2027,35 @@ private theorem P_natDegree_leadingCoeff_aux (m : ℕ) :
       · subst hm; exact P_nlc_case_7 j hodd heven
       · subst hm; exact P_nlc_case_8 j hodd heven
 
-/-- `propindu` (2)+(3), odd case: `natDegree (P (2j+1)) = ((2j+1)² − 1)/2`. -/
+/-- `propindu` (2)+(3), odd case: `natDegree (P (2j+1)) = ((2j+1)² − 1)/2`.
+@isnad1 id=eq.0h1v.s6.6f282d800618 from=translated src=- shape=363ec297 vocab=cd3c0ada
+-/
 theorem P_odd_natDegree (j : ℕ) : (P (2 * j + 1)).natDegree = 2 * j ^ 2 + 2 * j :=
   ((P_natDegree_leadingCoeff_aux (2 * j + 1)).1 j rfl).1
 
-/-- `propindu` (3), odd case (with the exact sign): `leadingCoeff (P (2j+1)) = 2j+1`. -/
+/-- `propindu` (3), odd case (with the exact sign): `leadingCoeff (P (2j+1)) = 2j+1`.
+@isnad1 id=eq.0h1v.s6.a055196a0a73 from=translated src=- shape=f9e9be95 vocab=c4043b7e
+-/
 theorem P_odd_leadingCoeff (j : ℕ) :
     (P (2 * j + 1)).leadingCoeff = ((2 * j + 1 : ℕ) : Coeff) :=
   ((P_natDegree_leadingCoeff_aux (2 * j + 1)).1 j rfl).2
 
-/-- `propindu` (2)+(3), even case: `natDegree (P (2j+2)) = ((2j+2)² − 4)/2`. -/
+/-- `propindu` (2)+(3), even case: `natDegree (P (2j+2)) = ((2j+2)² − 4)/2`.
+@isnad1 id=eq.0h1v.s6.583e798f0e62 from=translated src=- shape=363ec297 vocab=cd3c0ada
+-/
 theorem P_even_natDegree (j : ℕ) : (P (2 * j + 2)).natDegree = 2 * j ^ 2 + 4 * j :=
   ((P_natDegree_leadingCoeff_aux (2 * j + 2)).2 j rfl).1
 
-/-- `propindu` (3), even case (with the exact sign): `leadingCoeff (P (2j+2)) = j+1`. -/
+/-- `propindu` (3), even case (with the exact sign): `leadingCoeff (P (2j+2)) = j+1`.
+@isnad1 id=eq.0h1v.s6.de9dedeb762c from=translated src=- shape=263af3f9 vocab=c4043b7e
+-/
 theorem P_even_leadingCoeff (j : ℕ) :
     (P (2 * j + 2)).leadingCoeff = ((j + 1 : ℕ) : Coeff) :=
   ((P_natDegree_leadingCoeff_aux (2 * j + 2)).2 j rfl).2
 
-/-- `P m ≠ 0` for `m ≥ 1`. -/
+/-- `P m ≠ 0` for `m ≥ 1`.
+@isnad1 id=ne.1h1v.s6.cd7d2ee93eee from=translated src=- shape=ccd8a632 vocab=28a67e9c
+-/
 theorem P_ne_zero {m : ℕ} (hm : 1 ≤ m) : P m ≠ 0 := by
   rcases Nat.even_or_odd m with ⟨j, hj⟩ | ⟨j, hj⟩
   · obtain ⟨j', rfl⟩ : ∃ j', m = 2 * j' + 2 := ⟨j - 1, by omega⟩
@@ -2059,7 +2106,9 @@ private lemma divPt_three_props :
     rw [h]
     exact L.divPt_notMem_lattice (by decide)
 
-/-- Milla's `lemwp2str`: `℘''(z) = 6℘(z)² − g₂/2` for `z ∉ L`. -/
+/-- Milla's `lemwp2str`: `℘''(z) = 6℘(z)² − g₂/2` for `z ∉ L`.
+@isnad1 id=eq.1h2v.s7.b7c097d6666b from=translated src=- shape=c8cbf178 vocab=ace8f83d
+-/
 theorem lemwp2str {z : ℂ} (hz : z ∉ L.lattice) :
     deriv L.derivWeierstrassP z = 6 * L.weierstrassP z ^ 2 - L.g₂ / 2 := by
   have hopen : IsOpen ((↑L.lattice : Set ℂ)ᶜ) := L.isClosed_lattice.isOpen_compl
@@ -2148,7 +2197,9 @@ private lemma hasDerivAt_sigma {w : ℂ} (hw : w ∉ L.lattice) :
   rw [logDeriv_apply, div_eq_iff (L.weierstrassSigma_ne_zero hw)] at hlog
   rwa [hlog] at hd
 
-/-- `F₂ = −℘′` for all `z ∉ L` (paper `propfmpm`, `m = 2`). -/
+/-- `F₂ = −℘′` for all `z ∉ L` (paper `propfmpm`, `m = 2`).
+@isnad1 id=eq.1h2v.s5.eab934733bfd from=translated src=- shape=228902fb vocab=a909a07d
+-/
 theorem Fm_two {z : ℂ} (hz : z ∉ L.lattice) :
     L.Fm 2 z = -L.derivWeierstrassP z := by
   set Q : ℂ → ℂ := fun w => ∏' l : {l : L.lattice // l ≠ 0}, weierstrassSigmaTerm w (l.1 : ℂ)
@@ -2420,7 +2471,9 @@ private theorem Fm_master (a d : ℕ) {z : ℂ} (hz : z ∉ L.lattice)
   linear_combination (L.Fm (2 * a + d) z * L.Fm d z) * hpow
 
 /-- Paper `lemfrekur`, first recursion:
-`F_{2j+3} = F_{j+3}·F_{j+1}³ − F_j·F_{j+2}³` at generic `z`. -/
+`F_{2j+3} = F_{j+3}·F_{j+1}³ − F_j·F_{j+2}³` at generic `z`.
+@isnad1 id=eq.1h3v.s7.3bfa468afd81 from=translated src=- shape=f4a34bf3 vocab=2bc23aca
+-/
 theorem lemfrekur_odd (j : ℕ) {z : ℂ}
     (hz : ∀ k : ℕ, k ≠ 0 → (k : ℂ) * z ∉ L.lattice) :
     L.Fm (2 * j + 3) z
@@ -2446,7 +2499,9 @@ theorem lemfrekur_odd (j : ℕ) {z : ℂ}
   ring
 
 /-- Paper `lemfrekur`, second recursion:
-`F_{2j+4}·F₂ = F_{j+2}·(F_{j+4}·F_{j+1}² − F_j·F_{j+3}²)` at generic `z`. -/
+`F_{2j+4}·F₂ = F_{j+2}·(F_{j+4}·F_{j+1}² − F_j·F_{j+3}²)` at generic `z`.
+@isnad1 id=eq.1h3v.s7.313675eb74ae from=translated src=- shape=5f26314c vocab=2bc23aca
+-/
 theorem lemfrekur_even (j : ℕ) {z : ℂ}
     (hz : ∀ k : ℕ, k ≠ 0 → (k : ℂ) * z ∉ L.lattice) :
     L.Fm (2 * j + 4) z * L.Fm 2 z
@@ -2559,7 +2614,9 @@ private lemma Pc_rec_four {k : ℕ} (hk : 1 ≤ k) :
 
 /-- Milla's `propfmpm`: at a generic point `z` (all nonzero integer multiples of `z`
 avoid `L`), `F_m(z) = P̂_m(℘(z))` for odd `m` and `F_m(z) = −℘′(z)·P̂_m(℘(z))` for
-even `m`. -/
+even `m`.
+@isnad1 id=and.1h3v.s6.c7d0af82eda0 from=translated src=- shape=8f424ec3 vocab=e13c1630
+-/
 theorem propfmpm (m : ℕ) {z : ℂ} (hz : ∀ k : ℕ, k ≠ 0 → (k : ℂ) * z ∉ L.lattice) :
     (Odd m → L.Fm m z = (L.Pc m).eval (L.weierstrassP z))
       ∧ (Even m → L.Fm m z
@@ -2797,7 +2854,9 @@ private lemma infinite_wp_generic :
   · intro n
     exact ⟨zpt n, hgen n, rfl⟩
 
-/-- Milla's `thmbaker`, odd case: `m²·∏_{v ≠ 0}(X − ℘(u_v)) = P̂_m(X)²` in `ℂ[X]`. -/
+/-- Milla's `thmbaker`, odd case: `m²·∏_{v ≠ 0}(X − ℘(u_v)) = P̂_m(X)²` in `ℂ[X]`.
+@isnad1 id=eq.1h2v.s8.a3d788b7fd4a from=translated src=- shape=37bbdcaf vocab=2aef115f
+-/
 theorem thmbaker_odd (m : ℕ) [NeZero m] (hm : Odd m) :
     Polynomial.C ((m : ℂ) ^ 2)
         * ∏ v ∈ Finset.univ.erase (0 : Fin m × Fin m),
@@ -2817,7 +2876,9 @@ theorem thmbaker_odd (m : ℕ) [NeZero m] (hm : Odd m) :
   exact hprod.symm
 
 /-- Milla's `thmbaker`, even case:
-`m²·∏_{v ≠ 0}(X − ℘(u_v)) = P̂_m(X)²·4(X³ − ¼g₂X − ¼g₃)` in `ℂ[X]`. -/
+`m²·∏_{v ≠ 0}(X − ℘(u_v)) = P̂_m(X)²·4(X³ − ¼g₂X − ¼g₃)` in `ℂ[X]`.
+@isnad1 id=eq.1h2v.s9.f41e9542cdd4 from=translated src=- shape=f3a2f042 vocab=1b29a382
+-/
 theorem thmbaker_even (m : ℕ) [NeZero m] (hm : Even m) :
     Polynomial.C ((m : ℂ) ^ 2)
         * ∏ v ∈ Finset.univ.erase (0 : Fin m × Fin m),
@@ -2963,7 +3024,9 @@ namespace PeriodPair
 variable (L : PeriodPair)
 
 /-- Milla's `theomwpu`: for every `m`-division point `u`, `m·℘(u)` is integral over
-`ℤ[¼g₂, ¼g₃]`. -/
+`ℤ[¼g₂, ¼g₃]`.
+@isnad1 id=isintegr.1h3v.s8.5e1ec4d76f46 from=translated src=- shape=8717f543 vocab=ff308439
+-/
 theorem theomwpu (m : ℕ) [NeZero m] {v : Fin m × Fin m} (hv : v ≠ 0) :
     IsIntegral (Algebra.adjoin ℤ ({L.g₂ / 4, L.g₃ / 4} : Set ℂ))
       ((m : ℂ) * L.weierstrassP (L.divPt m v)) := by
@@ -3008,7 +3071,9 @@ theorem theomwpu (m : ℕ) [NeZero m] {v : Fin m × Fin m} (hv : v ≠ 0) :
     exact L.isIntegral_of_Pc_root m m (NeZero.ne m) hlead hev
 
 /-- Milla's `theomwpu`, second half: for even `m`, already `(m/2)·℘(u)` is integral
-over `ℤ[¼g₂, ¼g₃]`. -/
+over `ℤ[¼g₂, ¼g₃]`.
+@isnad1 id=isintegr.2h3v.s8.72ffec3e4f10 from=translated src=- shape=7132ccde vocab=8fbd9850
+-/
 theorem theomwpu_even {m : ℕ} [NeZero m] (hm : Even m) {v : Fin m × Fin m} (hv : v ≠ 0) :
     IsIntegral (Algebra.adjoin ℤ ({L.g₂ / 4, L.g₃ / 4} : Set ℂ))
       ((m : ℂ) / 2 * L.weierstrassP (L.divPt m v)) := by

@@ -46,6 +46,9 @@ def tupleColourWord (K : BaseArrayColours S tail)
     (rows : Fin (tail + 1) → ProductModule S K) : K.C → K.C :=
   fun c ↦ K.tupleCode.colour (columnOf rows c)
 
+/--
+@isnad1 id=ex.1h4v.s8.53cb964ec2d3 from=translated src=- shape=c361fdf6 vocab=dce0dab0
+-/
 theorem neighbour_colourWord_bijective
     (S : EveryBaseSeed) (K : BaseArrayColours S tail)
     {x : ProductModule S K} (hx : x ∈ neighbourSet S K) :
@@ -67,6 +70,9 @@ def orbitProfile (K : BaseArrayColours S tail)
 def referenceProfile (K : BaseArrayColours S tail) : Multiset K.D :=
   (Finset.univ : Finset K.C).val.map K.firstColour
 
+/--
+@isnad1 id=eq.1h4v.s5.a8df7f0068a4 from=translated src=- shape=cb6f27b5 vocab=dc79a20c
+-/
 theorem profile_eq_reference_of_neighbour
     (S : EveryBaseSeed) (K : BaseArrayColours S tail)
     {x : ProductModule S K} (hx : x ∈ neighbourSet S K) :
@@ -87,6 +93,9 @@ theorem profile_eq_reference_of_neighbour
   have he := congrArg Finset.val (Finset.map_univ_equiv e)
   exact congrArg (Multiset.map K.firstColour) he
 
+/--
+@isnad1 id=eq.2h5v.s5.3571b709220f from=translated src=- shape=85cf4ad8 vocab=6fb1b368
+-/
 theorem value_eq_at_of_profile_eq_of_eq_off
     {C D : Type*} [Fintype C]
     (f g : C → D) (c0 : C)
@@ -114,6 +123,9 @@ theorem value_eq_at_of_profile_eq_of_eq_off
   rw [huniv, Multiset.map_cons, hs, Multiset.map_cons] at hprofile
   exact (Multiset.cons_inj_left _).mp hprofile
 
+/--
+@isnad1 id=ex.3h6v.s7.2a1f2f0c0e28 from=translated src=- shape=686d59cd vocab=57d6cc56
+-/
 theorem neighbour_orbit_at_of_eq_off
     (S : EveryBaseSeed) (K : BaseArrayColours S tail)
     {x y : ProductModule S K} (hx : x ∈ neighbourSet S K)
@@ -132,6 +144,9 @@ theorem neighbour_orbit_at_of_eq_off
 
 /-! ## The displayed bad vector and the abstract obstruction -/
 
+/--
+@isnad1 id=eq.0h2v.s5.ea3444d80ac2 from=translated src=- shape=cad96617 vocab=5040d5d1
+-/
 theorem add_self_eq_zero_of_binaryModule (S : EveryBaseSeed) (v : S.V) :
     v + v = 0 := by
   rw [← two_nsmul, ← Nat.cast_smul_eq_nsmul (R := ZMod 2)]
@@ -150,11 +165,17 @@ def badVector (S : EveryBaseSeed) (K : BaseArrayColours S tail)
     (c0 : K.C) : ProductModule S K :=
   Function.update (fun _ ↦ 0) c0 S.u
 
+/--
+@isnad1 id=eq.0h4v.s4.fe56dc756d09 from=translated src=- shape=1482fe19 vocab=70e7e867
+-/
 @[simp]
 theorem badVector_at (S : EveryBaseSeed) (K : BaseArrayColours S tail)
     (c0 : K.C) : badVector S K c0 c0 = S.u := by
   simp [badVector]
 
+/--
+@isnad1 id=eq.1h5v.s5.9beb05a3eee3 from=translated src=- shape=79f30850 vocab=44627b20
+-/
 theorem badVector_away (S : EveryBaseSeed) (K : BaseArrayColours S tail)
     {c c0 : K.C} (hne : c ≠ c0) : badVector S K c0 c = 0 := by
   simp [badVector, hne]
@@ -162,7 +183,9 @@ theorem badVector_away (S : EveryBaseSeed) (K : BaseArrayColours S tail)
 /-- Paper Lemma 6.3 at the abstract level. Its hypotheses consist only of
 finite tuple-orbit codes and the explicit binary cycle obstruction stored in
 `EveryBaseSeed`; neither irreducibility nor an external base-size theorem is
-assumed. -/
+assumed.
+@isnad1 id=not.0h4v.s6.058c50b9525b from=translated src=- shape=ccc0316b vocab=79e19cc3
+-/
 theorem badVector_not_mem_neighbourSumset
     (S : EveryBaseSeed) (K : BaseArrayColours S tail) (c0 : K.C) :
     badVector S K c0 ∉ neighbourSet S K + neighbourSet S K := by
@@ -182,7 +205,9 @@ theorem badVector_not_mem_neighbourSumset
     _ = x c0 + h • x c0 := by rw [horbit]
 
 /-- The abstract no-common-neighbour conclusion, obtained from the proved
-generalized affine sumset criterion. -/
+generalized affine sumset criterion.
+@isnad1 id=not.0h4v.s9.d2ac9c9de948 from=translated src=- shape=040050a1 vocab=5c24e350
+-/
 theorem abstractCoreObstruction
     (S : EveryBaseSeed) (K : BaseArrayColours S tail) (c0 : K.C) :
     ¬ Saxl.HasCommonNeighbour (ProductModule S K)
@@ -196,7 +221,9 @@ theorem abstractCoreObstruction
 /-- Paper Theorem 6.4 at the abstract boundary. Exact linear tuple-base
 size is an explicit hypothesis, normally discharged from a
 `RegularTupleColourTower` by `linear_exactTupleBaseSize`; no literature
-base-size formula is hidden here. -/
+base-size formula is hidden here.
+@isnad1 id=and.1h4v.s10.4fd530103d31 from=translated src=- shape=26f8b447 vocab=67a61cf7
+-/
 theorem abstractCoreFamily
     (S : EveryBaseSeed) (K : BaseArrayColours S tail) (c0 : K.C)
     (hlinear : ExactTupleBaseSize

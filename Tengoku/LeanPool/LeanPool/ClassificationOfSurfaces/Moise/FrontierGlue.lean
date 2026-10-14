@@ -38,13 +38,18 @@ noncomputable def frontierDistance {X : Type*} [PseudoMetricSpace X]
     (U : Set X) (x : X) : ℝ :=
   Metric.infDist x Uᶜ
 
+/--
+@isnad1 id=lt.3h3v.s5.1751802cdbef from=translated src=- shape=ac84db87 vocab=4e4c45ca
+-/
 theorem frontierDistance_pos {X : Type*} [PseudoMetricSpace X]
     {U : Set X} (hU : IsOpen U) (hUc : Uᶜ.Nonempty) {x : X} (hx : x ∈ U) :
     0 < frontierDistance U x := by
   apply (hU.isClosed_compl.notMem_iff_infDist_pos hUc).mp
   simpa
 
-/-- Distance to the complement is strongly positive on the open set. -/
+/-- Distance to the complement is strongly positive on the open set.
+@isnad1 id=strongly.2h2v.s5.ae3e9eeb692f from=translated src=- shape=ef30bdee vocab=ce5210c8
+-/
 theorem stronglyPositiveOn_frontierDistance {X : Type*} [PseudoMetricSpace X]
     {U : Set X} (hU : IsOpen U) (hUc : Uᶜ.Nonempty) :
     StronglyPositiveOn U (frontierDistance U) := by
@@ -63,7 +68,9 @@ def VanishesAtFrontier {X : Type*} [TopologicalSpace X]
     (U : Set X) (phi : X → ℝ) : Prop :=
   ∀ x ∈ frontier U, Tendsto phi (nhdsWithin x U) (nhds 0)
 
-/-- Distance to the complement tends to zero along the open set at every frontier point. -/
+/-- Distance to the complement tends to zero along the open set at every frontier point.
+@isnad1 id=vanishes.1h2v.s4.d2eba96175b9 from=translated src=- shape=395f813d vocab=f463e439
+-/
 theorem vanishesAtFrontier_frontierDistance {X : Type*} [PseudoMetricSpace X]
     {U : Set X} (hU : IsOpen U) : VanishesAtFrontier U (frontierDistance U) := by
   intro x hx
@@ -82,11 +89,17 @@ noncomputable def frontierCore {X : Type*} [PseudoMetricSpace X]
     (U : Set X) (n : ℕ) : Set X :=
   {x | 1 / (n + 1 : ℝ) ≤ frontierDistance U x}
 
+/--
+@isnad1 id=iscompac.0h3v.s4.fd9e79145c50 from=translated src=- shape=4739d891 vocab=86d64871
+-/
 theorem isCompact_frontierCore {X : Type*} [PseudoMetricSpace X] [CompactSpace X]
     (U : Set X) (n : ℕ) : IsCompact (frontierCore U n) := by
   apply IsClosed.isCompact
   exact isClosed_Ici.preimage (Metric.continuous_infDist_pt Uᶜ)
 
+/--
+@isnad1 id=le.1h3v.s4.45e17dedadf3 from=translated src=- shape=2ef44d1c vocab=5bb4f9c3
+-/
 theorem frontierCore_subset {X : Type*} [PseudoMetricSpace X]
     {U : Set X} (_ : Uᶜ.Nonempty) (n : ℕ) : frontierCore U n ⊆ U := by
   intro x hx
@@ -97,6 +110,9 @@ theorem frontierCore_subset {X : Type*} [PseudoMetricSpace X]
   have hpos : 0 < 1 / (n + 1 : ℝ) := by positivity
   linarith
 
+/--
+@isnad1 id=eq.2h2v.s5.fb57412d51ab from=translated src=- shape=82573bcd vocab=e638a7d5
+-/
 theorem iUnion_frontierCore {X : Type*} [PseudoMetricSpace X]
     {U : Set X} (hU : IsOpen U) (hUc : Uᶜ.Nonempty) :
     (⋃ n : ℕ, frontierCore U n) = U := by
@@ -108,6 +124,9 @@ theorem iUnion_frontierCore {X : Type*} [PseudoMetricSpace X]
     obtain ⟨n, hn⟩ := exists_nat_one_div_lt (frontierDistance_pos hU hUc hx)
     exact Set.mem_iUnion.mpr ⟨n, hn.le⟩
 
+/--
+@isnad1 id=le.0h3v.s5.cf113404a61b from=translated src=- shape=1bd096d7 vocab=dcc10064
+-/
 theorem frontierCore_subset_interior_succ {X : Type*} [PseudoMetricSpace X]
     (U : Set X) (n : ℕ) :
     frontierCore U n ⊆ interior (frontierCore U (n + 1)) := by
@@ -138,11 +157,17 @@ noncomputable def frontierGlue {X Y : Type*} (U : Set X) (g h : X → Y) : X →
   classical
   exact U.piecewise g h
 
+/--
+@isnad1 id=eq.1h6v.s5.643240a18f6d from=translated src=- shape=4a6e9778 vocab=f947542a
+-/
 @[simp] theorem frontierGlue_of_mem {X Y : Type*} {U : Set X} {g h : X → Y}
     {x : X} (hx : x ∈ U) : frontierGlue U g h x = g x := by
   classical
   simp [frontierGlue, hx]
 
+/--
+@isnad1 id=eq.1h6v.s5.e1c96134d7b8 from=translated src=- shape=4576cef9 vocab=f947542a
+-/
 @[simp] theorem frontierGlue_of_notMem {X Y : Type*} {U : Set X} {g h : X → Y}
     {x : X} (hx : x ∉ U) : frontierGlue U g h x = h x := by
   classical
@@ -155,7 +180,9 @@ def MatchesAtFrontier {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
   ∀ x ∈ frontier U, Tendsto g (nhdsWithin x U) (nhds (h x))
 
 /-- A frontier-matching replacement on an open set glues continuously to the unchanged map.
-Unlike `continuous_frontierGlue`, this form does not require a metric on the target. -/
+Unlike `continuous_frontierGlue`, this form does not require a metric on the target.
+@isnad1 id=continuo.4h5v.s5.ba2b426bac1d from=translated src=- shape=9121e439 vocab=b16b4b3f
+-/
 theorem continuous_frontierGlue_of_matches {X Y : Type*}
     [TopologicalSpace X] [TopologicalSpace Y]
     {U : Set X} (hU : IsOpen U) {g h : X → Y}
@@ -197,7 +224,9 @@ theorem continuous_frontierGlue_of_matches {X Y : Type*}
       exact hh.continuousAt.congr_of_eventuallyEq heq
 
 /-- A replacement on an open set glues continuously to the old map when its error tends to zero
-at the frontier.  No local finiteness or PL data enters this lemma. -/
+at the frontier.  No local finiteness or PL data enters this lemma.
+@isnad1 id=continuo.5h6v.s6.741c98766b46 from=translated src=- shape=4fc81226 vocab=9016fcae
+-/
 theorem continuous_frontierGlue {X Y : Type*} [TopologicalSpace X] [PseudoMetricSpace Y]
     {U : Set X} (hU : IsOpen U) {g h : X → Y}
     (hg : ContinuousOn g U) (hh : Continuous h) {phi : X → ℝ}
@@ -250,7 +279,9 @@ theorem continuous_frontierGlue {X Y : Type*} [TopologicalSpace X] [PseudoMetric
 
 /-- Metric closeness controlled by a frontier-vanishing function supplies the topology-only
 matching condition.  This is the bridge from the quantitative Chapter 6 approximation to the
-metric-free paste in the ambient surface. -/
+metric-free paste in the ambient surface.
+@isnad1 id=matchesa.5h6v.s6.9846488758fe from=translated src=- shape=37583e9b vocab=a1605035
+-/
 theorem matchesAtFrontier_of_vanishing_close {X Y : Type*}
     [TopologicalSpace X] [PseudoMetricSpace Y]
     {U : Set X} (hU : IsOpen U) {g h : X → Y}
@@ -273,7 +304,9 @@ theorem matchesAtFrontier_of_vanishing_close {X Y : Type*}
 
 /-- The range of a frontier glue is exactly the union of the replacement image and the
 unchanged image.  This set-level formula is the one used in Moise Chapter 8 when the modified
-old complex is united with the finite chart complex. -/
+old complex is united with the finite chart complex.
+@isnad1 id=eq.0h5v.s5.b254885d9e13 from=translated src=- shape=adea3fe8 vocab=d3b8d711
+-/
 theorem range_frontierGlue {X Y : Type*} {U : Set X} {g h : X → Y} :
     Set.range (frontierGlue U g h) = g '' U ∪ h '' Uᶜ := by
   classical
@@ -289,7 +322,9 @@ theorem range_frontierGlue {X Y : Type*} {U : Set X} {g h : X → Y} :
       exact ⟨x, frontierGlue_of_notMem hx⟩
 
 /-- A replacement which is injective on the open set and misses the unchanged outside image
-glues to a globally injective map.  No compactness or continuity is needed for this part. -/
+glues to a globally injective map.  No compactness or continuity is needed for this part.
+@isnad1 id=injectiv.3h5v.s6.3652a6db43ba from=translated src=- shape=5d3f5a1b vocab=71bdbaab
+-/
 theorem injective_frontierGlue {X Y : Type*} {U : Set X} {g h : X → Y}
     (hg : Set.InjOn g U) (hh : Function.Injective h)
     (hcross : Disjoint (g '' U) (h '' Uᶜ)) :
@@ -315,7 +350,9 @@ theorem injective_frontierGlue {X Y : Type*} {U : Set X} {g h : X → Y}
       simpa only [frontierGlue_of_notMem hx, frontierGlue_of_notMem hy] using hxy
 
 /-- On a compact source, the continuous injective frontier glue is a topological embedding.
-This packages the exact analytic conclusion used for Moise's modified map `f'_n`. -/
+This packages the exact analytic conclusion used for Moise's modified map `f'_n`.
+@isnad1 id=isembedd.8h6v.s7.0489870de49e from=translated src=- shape=2279f1d5 vocab=67e074eb
+-/
 theorem isEmbedding_frontierGlue {X Y : Type*} [TopologicalSpace X]
     [CompactSpace X] [PseudoMetricSpace Y] [T2Space Y]
     {U : Set X} (hU : IsOpen U)
@@ -329,7 +366,9 @@ theorem isEmbedding_frontierGlue {X Y : Type*} [TopologicalSpace X]
   exact (hcontinuous.isClosedEmbedding
     (injective_frontierGlue hginj hhinj hcross)).isEmbedding
 
-/-- Compact-to-Hausdorff embedding form of the topology-only frontier glue. -/
+/-- Compact-to-Hausdorff embedding form of the topology-only frontier glue.
+@isnad1 id=isembedd.7h5v.s6.0197419058ed from=translated src=- shape=86b9d981 vocab=26456434
+-/
 theorem isEmbedding_frontierGlue_of_matches {X Y : Type*}
     [TopologicalSpace X] [CompactSpace X] [TopologicalSpace Y] [T2Space Y]
     {U : Set X} (hU : IsOpen U) {g h : X → Y}

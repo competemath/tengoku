@@ -42,7 +42,9 @@ namespace PaperKernel
 
 noncomputable section
 
-/-- Countability of tensor products with countable factors. Paper: §2. -/
+/-- Countability of tensor products with countable factors. Paper: §2.
+@isnad1 id=countabl.0h2v.s6.f190ed8c4539 from=translated src=- shape=cf6e6309 vocab=4fcbb980
+-/
 noncomputable instance tensorCountable
     {M N : Type*} [AddCommMonoid M] [AddCommMonoid N]
     [Module k M] [Module k N] [Countable M] [Countable N] :
@@ -53,7 +55,9 @@ noncomputable instance tensorCountable
 /-- Tensor square used by the paper's symmetric kernel. Paper: §2. -/
 abbrev TensorAA := TensorProduct k A A
 
-/-- Countability of the tensor square. Paper: §2. -/
+/-- Countability of the tensor square. Paper: §2.
+@isnad1 id=countabl.0h0v.s1.921786d03215 from=translated src=- shape=49959d42 vocab=f57e564c
+-/
 noncomputable instance tensorAACountable : Countable TensorAA := by
   infer_instance
 
@@ -84,7 +88,9 @@ abbrev PaperV := OpenAIPort.ModTwoSpace
 /-- Dual of the finite symplectic module. Paper: §2. -/
 abbrev VStar := PaperV →ₗ[k] k
 
-/-- Countability of the finite dual module. Paper: §2. -/
+/-- Countability of the finite dual module. Paper: §2.
+@isnad1 id=countabl.0h0v.s1.3cbad0185b78 from=translated src=- shape=49959d42 vocab=a907e367
+-/
 noncomputable instance vStarCountable : Countable VStar := by
   exact (show Function.Injective (fun f : PaperV →ₗ[k] k => f.toFun) from
     fun f g h => LinearMap.ext fun v => congrFun h v).countable
@@ -96,40 +102,52 @@ noncomputable def hadamard (p q : R) : R :=
   Polynomial.ofFinsupp <| AddMonoidAlgebra.coeffEquiv.symm
     (Finsupp.zipWith (· * ·) (by simp) fp fq)
 
-/-- Coefficient formula for the polynomial module product. Paper: §2. -/
+/-- Coefficient formula for the polynomial module product. Paper: §2.
+@isnad1 id=eq.0h3v.s6.6b5f98c3432c from=translated src=- shape=06f1a653 vocab=4af55fcc
+-/
 @[simp] theorem coeff_hadamard (p q : R) (n : ℕ) :
     (hadamard p q).coeff n = p.coeff n * q.coeff n := by
   simp [hadamard, Polynomial.toFinsupp_apply]
 
-/-- Additivity of the first coefficientwise product input. Paper: §2. -/
+/-- Additivity of the first coefficientwise product input. Paper: §2.
+@isnad1 id=eq.0h3v.s5.2d384d3519b3 from=translated src=- shape=2f6dc6a8 vocab=95cd9e85
+-/
 theorem hadamard_add_left (p q r : R) :
     hadamard (p + q) r = hadamard p r + hadamard q r := by
   ext n
   simp only [coeff_hadamard, Polynomial.coeff_add]
   ring
 
-/-- Additivity of the second coefficientwise product input. Paper: §2. -/
+/-- Additivity of the second coefficientwise product input. Paper: §2.
+@isnad1 id=eq.0h3v.s5.1287d9251296 from=translated src=- shape=4a33f3d9 vocab=95cd9e85
+-/
 theorem hadamard_add_right (p q r : R) :
     hadamard p (q + r) = hadamard p q + hadamard p r := by
   ext n
   simp only [coeff_hadamard, Polynomial.coeff_add]
   ring
 
-/-- Scalar compatibility of the first coefficientwise product input. Paper: §2. -/
+/-- Scalar compatibility of the first coefficientwise product input. Paper: §2.
+@isnad1 id=eq.0h3v.s7.83189c1d5460 from=translated src=- shape=ce527358 vocab=534cf2b2
+-/
 theorem hadamard_smul_left (c : k) (p q : R) :
     hadamard (c • p) q = c • hadamard p q := by
   ext n
   simp only [coeff_hadamard, Polynomial.coeff_smul, smul_eq_mul]
   ring
 
-/-- Scalar compatibility of the second coefficientwise product input. Paper: §2. -/
+/-- Scalar compatibility of the second coefficientwise product input. Paper: §2.
+@isnad1 id=eq.0h3v.s7.ff1e70b62f6d from=translated src=- shape=b5dd2775 vocab=534cf2b2
+-/
 theorem hadamard_smul_right (c : k) (p q : R) :
     hadamard p (c • q) = c • hadamard p q := by
   ext n
   simp only [coeff_hadamard, Polynomial.coeff_smul, smul_eq_mul]
   ring
 
-/-- Squaring for the coefficientwise product over the Boolean field. Paper: §2. -/
+/-- Squaring for the coefficientwise product over the Boolean field. Paper: §2.
+@isnad1 id=eq.0h1v.s3.1baa1b36c679 from=translated src=- shape=ca6c1f5d vocab=bccf8d97
+-/
 theorem hadamard_square (p : R) : hadamard p p = p := by
   ext n
   simp only [coeff_hadamard]
@@ -173,7 +191,9 @@ def deltaTensor : TensorAA →ₗ[k] A := TensorProduct.lift coordHadamardLinear
 /-- Equivariant-retraction candidate on the flip-fixed tensor module. Paper: §2. -/
 def delta : C →ₗ[k] A := deltaTensor.domRestrict C
 
-/-- The retraction returns the original vector on diagonal tensors. Paper: §2. -/
+/-- The retraction returns the original vector on diagonal tensors. Paper: §2.
+@isnad1 id=eq.0h1v.s13.56cfe820d426 from=translated src=- shape=f56d9e2a vocab=c7be416c
+-/
 theorem delta_diagonal (a : A) : delta (diagonal a) = a := by
   funext i
   change hadamard (a i) (a i) = a i
@@ -182,18 +202,24 @@ theorem delta_diagonal (a : A) : delta (diagonal a) = a := by
 /-- First summand of the paper's abelian kernel. Paper: §2. -/
 abbrev AVStar := TensorProduct k A VStar
 
-/-- Countability of the tensor-dual summand. Paper: §2. -/
+/-- Countability of the tensor-dual summand. Paper: §2.
+@isnad1 id=countabl.0h0v.s1.f0a868e59ac4 from=translated src=- shape=49959d42 vocab=fbd375c0
+-/
 noncomputable instance avStarCountable : Countable AVStar := by
   infer_instance
 
 /-- Binary product presentation of the paper's direct-sum kernel. Paper: §2. -/
 abbrev D := AVStar × C
 
-/-- Countability of the paper-shaped kernel. Paper: §2. -/
+/-- Countability of the paper-shaped kernel. Paper: §2.
+@isnad1 id=countabl.0h0v.s1.9d6408246ccd from=translated src=- shape=49959d42 vocab=e2030fce
+-/
 noncomputable instance dCountable : Countable D := by
   infer_instance
 
-/-- Countability of the multiplicative paper-shaped kernel. Paper: §2. -/
+/-- Countability of the multiplicative paper-shaped kernel. Paper: §2.
+@isnad1 id=countabl.0h0v.s1.913082938af7 from=translated src=- shape=87ceb31f vocab=3bbf4e2e
+-/
 noncomputable instance paperGammaKernelCountable :
     Countable (Multiplicative D) := by
   change Countable D

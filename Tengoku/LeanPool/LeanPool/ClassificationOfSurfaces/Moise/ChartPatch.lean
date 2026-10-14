@@ -47,15 +47,27 @@ noncomputable def chartDiamondLinearEquiv : Plane ≃ₗ[ℝ] Plane where
 noncomputable def chartDiamondAffineEquiv : Plane ≃ᵃ[ℝ] Plane :=
   chartDiamondLinearEquiv.toAffineEquiv
 
+/--
+@isnad1 id=eq.0h1v.s10.1bad5f094ef0 from=translated src=- shape=436656d5 vocab=838bb8d7
+-/
 @[simp] theorem chartDiamondAffineEquiv_apply_zero (p : Plane) :
     chartDiamondAffineEquiv p 0 = (3 / 4 : ℝ) * p 0 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s10.f124d56f9a1d from=translated src=- shape=436656d5 vocab=838bb8d7
+-/
 @[simp] theorem chartDiamondAffineEquiv_apply_one (p : Plane) :
     chartDiamondAffineEquiv p 1 = (3 / 8 : ℝ) * p 1 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s11.52c4fcb4be53 from=translated src=- shape=0ceba077 vocab=cd5bf1cc
+-/
 @[simp] theorem chartDiamondAffineEquiv_symm_apply_zero (p : Plane) :
     chartDiamondAffineEquiv.symm p 0 = (4 / 3 : ℝ) * p 0 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s11.351bb5e80e1c from=translated src=- shape=0ceba077 vocab=cd5bf1cc
+-/
 @[simp] theorem chartDiamondAffineEquiv_symm_apply_one (p : Plane) :
     chartDiamondAffineEquiv.symm p 1 = (8 / 3 : ℝ) * p 1 := rfl
 
@@ -67,9 +79,15 @@ noncomputable def chartDiamondMesh : TriangleMesh :=
 noncomputable def chartDiamondComplex : PlaneComplex :=
   chartDiamondMesh.toPlaneComplex
 
+/--
+@isnad1 id=ispure2.0h0v.s1.036c433ec362 from=translated src=- shape=49959d42 vocab=ca53fde3
+-/
 theorem chartDiamondComplex_pure : chartDiamondComplex.IsPure2 :=
   chartDiamondMesh.toPlaneComplex_isPure2
 
+/--
+@isnad1 id=eq.0h0v.s10.d944396b72c0 from=translated src=- shape=276e83f2 vocab=38f3dbdb
+-/
 theorem chartDiamondComplex_support :
     chartDiamondComplex.support = chartDiamondAffineEquiv '' diamondPatch := by
   rw [chartDiamondComplex, chartDiamondMesh,
@@ -89,7 +107,9 @@ private theorem chartDiamond_vertex_mem_closedBall (v : chartDiamondMesh.Vertex)
       planePoint, EuclideanSpace.norm_eq, Fin.sum_univ_two] <;>
     norm_num [Real.sqrt_sq_eq_abs, hs9, hs16]
 
-/-- The whole polygonal patch lies strictly inside the open unit disk. -/
+/-- The whole polygonal patch lies strictly inside the open unit disk.
+@isnad1 id=le.0h0v.s6.edae952b53db from=translated src=- shape=03f0fcfc vocab=90a37327
+-/
 theorem chartDiamondComplex_support_subset_ball :
     chartDiamondComplex.support ⊆ Metric.ball (0 : Plane) 1 := by
   intro x hx
@@ -117,7 +137,9 @@ private theorem abs_add_abs_lt_three_four_of_mem_closedBall_half {x : Plane}
   rw [← hnormsq] at hsquares
   nlinarith
 
-/-- The closed radius-`1/2` disk is contained in the interior of the polygonal patch. -/
+/-- The closed radius-`1/2` disk is contained in the interior of the polygonal patch.
+@isnad1 id=le.0h0v.s7.5c38f9318a9b from=translated src=- shape=bf2dff0e vocab=676bdfca
+-/
 theorem closedBall_half_subset_interior_chartDiamond :
     Metric.closedBall (0 : Plane) (1 / 2) ⊆ interior chartDiamondComplex.support := by
   intro x hx
@@ -162,6 +184,9 @@ noncomputable abbrev chartHalfDiamondMesh : TriangleMesh :=
 noncomputable abbrev chartHalfDiamondComplex : PlaneComplex :=
   chartHalfDiamondMesh.toPlaneComplex
 
+/--
+@isnad1 id=ispure2.0h0v.s1.c6f935ca50f5 from=translated src=- shape=49959d42 vocab=db56d5f2
+-/
 theorem chartHalfDiamondComplex_pure : chartHalfDiamondComplex.IsPure2 :=
   chartHalfDiamondMesh.toPlaneComplex_isPure2
 
@@ -187,11 +212,17 @@ private theorem restrictedRightDiamond_support :
     · exact ⟨{1, 2, 4}, by simp [diamondFanTriangles], hxt⟩
     · exact ⟨{1, 4, 3}, by simp [diamondFanTriangles], hxt⟩
 
+/--
+@isnad1 id=eq.0h0v.s10.91ab3b5d05cd from=translated src=- shape=276e83f2 vocab=e26ebdc1
+-/
 theorem chartHalfDiamondComplex_support :
     chartHalfDiamondComplex.support = chartDiamondAffineEquiv '' diamondRightRegion := by
   rw [chartHalfDiamondComplex, chartHalfDiamondMesh, TriangleMesh.mapAffineEquiv_support,
     restrictedRightDiamond_support]
 
+/--
+@isnad1 id=le.0h0v.s3.a9f1c20ff9f5 from=translated src=- shape=0787a30d vocab=f91b0ff3
+-/
 theorem chartHalfDiamondComplex_support_subset_modelRegion :
     chartHalfDiamondComplex.support ⊆ ChartKind.halfDisk.modelRegion := by
   rw [chartHalfDiamondComplex_support]
@@ -207,6 +238,9 @@ theorem chartHalfDiamondComplex_support_subset_modelRegion :
       fin_cases i <;> simp [planePoint]
     exact mul_nonneg (by norm_num) hq0
 
+/--
+@isnad1 id=eq.0h0v.s7.0ac282d2a7fd from=translated src=- shape=b4fdc994 vocab=ab886cfa
+-/
 theorem diamondRightRegion_eq_patch_inter_nonneg :
     diamondRightRegion = diamondPatch ∩ {p : Plane | 0 ≤ p 0} := by
   apply Set.Subset.antisymm
@@ -237,7 +271,9 @@ theorem diamondRightRegion_eq_patch_inter_nonneg :
       fin_cases i <;> simp [w, planePoint]
       all_goals ring
 
-/-- The closed radius-`1/2` half-disk core is covered by the two-triangle half patch. -/
+/-- The closed radius-`1/2` half-disk core is covered by the two-triangle half patch.
+@isnad1 id=le.0h0v.s3.ab55cf3c9d5f from=translated src=- shape=0787a30d vocab=de92ac66
+-/
 theorem halfCore_subset_chartHalfDiamond_support :
     ChartKind.halfDisk.modelCore ⊆ chartHalfDiamondComplex.support := by
   rintro x ⟨hxball, hx0⟩
@@ -256,6 +292,9 @@ theorem halfCore_subset_chartHalfDiamond_support :
   rw [chartHalfDiamondComplex_support, diamondRightRegion_eq_patch_inter_nonneg]
   exact ⟨q, ⟨hq', hq0⟩, chartDiamondAffineEquiv.apply_symm_apply x⟩
 
+/--
+@isnad1 id=eq.0h0v.s3.df965a725539 from=translated src=- shape=10cb269b vocab=f657d1b5
+-/
 theorem chartHalfDiamond_support_eq_inter_halfPlane :
     chartHalfDiamondComplex.support = chartDiamondComplex.support ∩ HalfPlaneSet := by
   rw [chartHalfDiamondComplex_support, chartDiamondComplex_support,
@@ -279,6 +318,9 @@ def chartHalfDiamondRightVertex : chartHalfDiamondComplex.Vertex := by
   change Fin 5
   exact 1
 
+/--
+@isnad1 id=eq.0h1v.s7.c993e6f7e157 from=translated src=- shape=ac8c22dd vocab=5e5b976a
+-/
 theorem chartHalfDiamond_baryEval_coordZero
     (x : GeometricRealization chartHalfDiamondComplex.Vertex
       chartHalfDiamondComplex.cells) :
@@ -310,6 +352,9 @@ theorem chartHalfDiamond_baryEval_coordZero
     Fin.sum_univ_succ, hzero]
   ring
 
+/--
+@isnad1 id=iff.0h1v.s7.2c57e464006c from=translated src=- shape=0a4a70da vocab=c278f16f
+-/
 theorem chartHalfDiamond_baryEval_coordZero_eq_zero_iff
     (x : GeometricRealization chartHalfDiamondComplex.Vertex
       chartHalfDiamondComplex.cells) :
@@ -334,6 +379,9 @@ def chartHalfDiamondLowerBoundaryEdge :
   change Finset (Fin 5)
   exact {4, 3}
 
+/--
+@isnad1 id=iff.0h1v.s8.358946b51a69 from=translated src=- shape=8edfdff8 vocab=26d84b10
+-/
 theorem chartHalfDiamond_coordZero_iff_boundaryEdgeCarrier
     (x : GeometricRealization chartHalfDiamondComplex.Vertex
       chartHalfDiamondComplex.cells) :
@@ -399,7 +447,9 @@ noncomputable def ChartKind.patchBoundaryEdges :
   | .halfDisk => {chartHalfDiamondUpperBoundaryEdge, chartHalfDiamondLowerBoundaryEdge}
 
 /-- The fixed patch meets its model boundary exactly in the carrier of
-`patchBoundaryEdges`. -/
+`patchBoundaryEdges`.
+@isnad1 id=iff.0h2v.s7.f031d6762e58 from=translated src=- shape=8d25ec78 vocab=9234c57e
+-/
 theorem ChartKind.patchComplex_isModelBoundary_iff (k : ChartKind)
     (x : GeometricRealization k.patchComplex.Vertex k.patchComplex.cells) :
     k.IsModelBoundary (k.patchComplex.baryEval x.1) ↔
@@ -425,7 +475,9 @@ theorem ChartKind.patchComplex_isModelBoundary_iff (k : ChartKind)
           exact Or.inr h
 
 /-- Facewise exposed form of the fixed patch boundary.  Every patch triangle meets the model
-boundary in an intrinsic face of cardinality at most two. -/
+boundary in an intrinsic face of cardinality at most two.
+@isnad1 id=ex.1h2v.s8.4279ba666e09 from=translated src=- shape=383d67f5 vocab=138e8035
+-/
 theorem ChartKind.patchComplex_isModelBoundary_facewise (k : ChartKind) :
     ∀ t ∈ k.patchComplex.cells, ∃ b : Finset k.patchComplex.Vertex,
       b ⊆ t ∧ b.card ≤ 2 ∧
@@ -480,7 +532,9 @@ theorem ChartKind.patchComplex_isModelBoundary_facewise (k : ChartKind) :
           apply hx r
           simp []
 
-/-- Every explicitly designated patch-boundary edge is an edge of the patch complex. -/
+/-- Every explicitly designated patch-boundary edge is an edge of the patch complex.
+@isnad1 id=mem.1h2v.s6.a6512f52423b from=translated src=- shape=a09bb6b4 vocab=628a9494
+-/
 theorem ChartKind.mem_patchComplex_edges_of_mem_patchBoundaryEdges (k : ChartKind)
     {e : Finset k.patchComplex.Vertex} (he : e ∈ k.patchBoundaryEdges) :
     e ∈ k.patchComplex.cells.biUnion fun t => t.powersetCard 2 := by
@@ -507,12 +561,17 @@ theorem ChartKind.mem_patchComplex_edges_of_mem_patchBoundaryEdges (k : ChartKin
           decide
         · exact Finset.mem_powersetCard.mpr ⟨by decide, by decide⟩
 
+/--
+@isnad1 id=ispure2.0h1v.s2.41e959869cbc from=translated src=- shape=76a08d12 vocab=dc774f85
+-/
 theorem ChartKind.patchComplex_pure (k : ChartKind) : k.patchComplex.IsPure2 := by
   cases k with
   | disk => exact chartDiamondComplex_pure
   | halfDisk => exact chartHalfDiamondComplex_pure
 
-/-- The four triangles in the fixed disk-chart patch have a connected dual graph. -/
+/-- The four triangles in the fixed disk-chart patch have a connected dual graph.
+@isnad1 id=isdualco.0h0v.s3.3c08a286c1fa from=translated src=- shape=06f63001 vocab=3cc5325f
+-/
 theorem diamondFanTriangles_isDualConnected :
     TriangleFamily.IsDualConnected diamondFanTriangles := by
   change TriangleFamily.IsDualConnected
@@ -533,7 +592,9 @@ theorem diamondFanTriangles_isDualConnected :
   apply TriangleFamily.isDualConnected_insert h₁₂₃ {0, 4, 2} ⟨{1, 2, 4}, by simp⟩
   exact ⟨{2, 4}, by decide, by decide, by decide⟩
 
-/-- The two triangles in the fixed half-disk-chart patch have a connected dual graph. -/
+/-- The two triangles in the fixed half-disk-chart patch have a connected dual graph.
+@isnad1 id=isdualco.0h0v.s6.6bdbff4a806a from=translated src=- shape=f59f60e4 vocab=5f24e29c
+-/
 theorem halfDiamondTriangles_isDualConnected :
     TriangleFamily.IsDualConnected
       (diamondFanTriangles.filter fun t => 1 ∈ t) := by
@@ -545,7 +606,9 @@ theorem halfDiamondTriangles_isDualConnected :
   apply TriangleFamily.isDualConnected_insert h₃ {1, 2, 4} ⟨{1, 4, 3}, by simp⟩
   exact ⟨{1, 4}, by decide, by decide, by decide⟩
 
-/-- Every fixed chart patch starts with a connected dual graph. -/
+/-- Every fixed chart patch starts with a connected dual graph.
+@isnad1 id=isdualco.0h1v.s3.3a1962746cf4 from=translated src=- shape=615d4b79 vocab=23ccef1a
+-/
 theorem ChartKind.patchComplex_isDualConnected (k : ChartKind) :
     TriangleFamily.IsDualConnected k.patchComplex.cells := by
   cases k with
@@ -557,12 +620,18 @@ theorem ChartKind.patchComplex_isDualConnected (k : ChartKind) :
         (diamondFanTriangles.filter fun t => 1 ∈ t)
       exact halfDiamondTriangles_isDualConnected
 
+/--
+@isnad1 id=le.0h1v.s3.b72cd1353482 from=translated src=- shape=d403cf25 vocab=ca750ffa
+-/
 theorem ChartKind.patchComplex_support_subset_modelRegion (k : ChartKind) :
     k.patchComplex.support ⊆ k.modelRegion := by
   cases k with
   | disk => exact chartDiamondComplex_support_subset_ball
   | halfDisk => exact chartHalfDiamondComplex_support_subset_modelRegion
 
+/--
+@isnad1 id=le.0h1v.s3.426673e3bfec from=translated src=- shape=38bf8af6 vocab=60e215b1
+-/
 theorem ChartKind.modelCore_subset_patchComplex_support (k : ChartKind) :
     k.modelCore ⊆ k.patchComplex.support := by
   cases k with
@@ -570,7 +639,9 @@ theorem ChartKind.modelCore_subset_patchComplex_support (k : ChartKind) :
   | halfDisk => exact halfCore_subset_chartHalfDiamond_support
 
 /-- In model-region topology, the fixed chart core lies in the interior of the fixed polygonal
-patch.  In the half-disk case this is relative interior, so edge-line core points are included. -/
+patch.  In the half-disk case this is relative interior, so edge-line core points are included.
+@isnad1 id=le.0h1v.s7.71ab850122eb from=translated src=- shape=81aa7d93 vocab=30ef819b
+-/
 theorem ChartKind.modelCore_subset_interior_patchInRegion (k : ChartKind) :
     {p : k.modelRegion | (p : Plane) ∈ k.modelCore} ⊆
       interior {p : k.modelRegion | (p : Plane) ∈ k.patchComplex.support} := by
@@ -606,16 +677,23 @@ theorem ChartKind.modelCore_subset_interior_patchInRegion (k : ChartKind) :
           chartDiamondComplex.support from interior_subset) hp, p.2.2⟩
       exact interior_maximal hOsub hOopen hxint
 
-/-- Finite valence check for the four-triangle diamond fan. -/
+/-- Finite valence check for the four-triangle diamond fan.
+@isnad1 id=le.1h1v.s6.133bf1d1dd3d from=translated src=- shape=7ba34dcc vocab=719b7971
+-/
 theorem diamondFanTriangles_edge_valence (e : Finset (Fin 5)) (he : e.card = 2) :
     (diamondFanTriangles.filter fun t => e ⊆ t).card ≤ 2 := by
   decide +revert
 
-/-- Finite valence check for the two-triangle half-diamond fan. -/
+/-- Finite valence check for the two-triangle half-diamond fan.
+@isnad1 id=le.0h1v.s7.f6ebc8144976 from=translated src=- shape=ac5b3fa7 vocab=62ae61cd
+-/
 theorem halfDiamondTriangles_edge_valence (e : Finset (Fin 5)) :
     ((diamondFanTriangles.filter fun t => 1 ∈ t).filter fun t => e ⊆ t).card ≤ 2 := by
   decide +revert
 
+/--
+@isnad1 id=le.1h2v.s6.5baadfb21bfd from=translated src=- shape=ffe13d3b vocab=9ca89886
+-/
 theorem ChartKind.patchComplex_edge_valence (k : ChartKind)
     (e : Finset k.patchComplex.Vertex) (he : e.card = 2) :
     (k.patchComplex.cells.filter fun t => e ⊆ t).card ≤ 2 := by

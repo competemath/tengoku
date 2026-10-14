@@ -53,15 +53,23 @@ def binaryRootsEquiv : Multiplicative F ≃* rootsOfUnity 2 Circle :=
     (by simpa only [AddChar.coe_toMonoidHomEquiv,
           EquivLike.bijective_comp] using (bijective_rootsOfUnityAddChar (n := 2)))
 
+/--
+@isnad1 id=eq.0h1v.s10.91b7da3b6c00 from=translated src=- shape=dc3f416f vocab=100c9576
+-/
 @[simp] theorem binaryRootsEquiv_apply (a : F) :
     binaryRootsEquiv (Multiplicative.ofAdd a) =
       ZMod.rootsOfUnityAddChar 2 a := rfl
 
+/--
+@isnad1 id=eq.0h1v.s9.191f8390b1c5 from=translated src=- shape=ab91b357 vocab=c5830900
+-/
 @[simp] theorem binaryRootsEquiv_val (a : Multiplicative F) :
     ((binaryRootsEquiv a).val : Circle) =
       ZMod.toCircle (Multiplicative.toAdd a) := rfl
 
-/-- Binary characters have order dividing two. Paper: §3. -/
+/-- Binary characters have order dividing two. Paper: §3.
+@isnad1 id=eq.0h3v.s6.4644eda2bbce from=translated src=- shape=3ca3ff40 vocab=cb8974d2
+-/
 theorem character_sq (M : Type*) [AddCommGroup M] [Module F M]
     [TopologicalSpace M]
     (χ : PontryaginDual (Multiplicative M))
@@ -124,6 +132,9 @@ def characterLinear {M : Type*} [AddCommGroup M] [Module F M]
     (χ : PontryaginDual (Multiplicative M)) : M →ₗ[F] F :=
   (characterAdd χ).toZModLinearMap 2
 
+/--
+@isnad1 id=eq.0h3v.s8.62d19437ddfb from=translated src=- shape=c9af5241 vocab=91fb96ed
+-/
 @[simp] theorem characterLinear_circle {M : Type*} [AddCommGroup M] [Module F M]
     [TopologicalSpace M]
     (χ : PontryaginDual (Multiplicative M)) (x : M) :
@@ -142,7 +153,9 @@ def characterLinear {M : Type*} [AddCommGroup M] [Module F M]
         congrArg (fun z : rootsOfUnity 2 Circle => (z.val : Circle)) h
     _ = _ := rfl
 
-/-- The extracted linear character is continuous in the pointwise dual topology. Paper: §3. -/
+/-- The extracted linear character is continuous in the pointwise dual topology. Paper: §3.
+@isnad1 id=continuo.0h2v.s7.f57ca1ad0e38 from=translated src=- shape=f670ef61 vocab=2e615119
+-/
 theorem continuous_characterLinear {M : Type*} [AddCommGroup M] [Module F M]
     [TopologicalSpace M]
     (χ : PontryaginDual (Multiplicative M)) :
@@ -175,6 +188,9 @@ theorem continuous_characterLinear {M : Type*} [AddCommGroup M] [Module F M]
   exact isOpen_iUnion fun _ => by simpa only using hopen a
 
 /- Continuous binary bidual functionals are evaluations. Paper: §3. -/
+/--
+@isnad1 id=ex.1h2v.s11.17681f727398 from=translated src=- shape=86119f07 vocab=a52e5d06
+-/
 theorem continuous_binaryDual_eq_evaluation
     (M : Type*) [AddCommGroup M] [Module F M]
     (φ : (M →ₗ[F] F) →ₗ[F] F)
@@ -256,6 +272,9 @@ def continuousBinaryBidualEvaluation (M : Type*) [AddCommGroup M] [Module F M] :
       apply Subtype.ext
       exact map_smul (Module.Dual.eval F M) c m }
 
+/--
+@isnad1 id=eq.0h3v.s14.352d236cb4c8 from=translated src=- shape=820df3e7 vocab=d5f740ee
+-/
 @[simp] theorem continuousBinaryBidualEvaluation_apply
     (M : Type*) [AddCommGroup M] [Module F M]
     (m : M) (ℓ : M →ₗ[F] F) :
@@ -279,6 +298,9 @@ def pointwiseEvaluationCharacter
       exact continuous_of_discreteTopology.comp
         ((continuous_apply m).comp continuous_induced_dom) }
 
+/--
+@isnad1 id=eq.0h3v.s11.5b9865e00bf4 from=translated src=- shape=77adaa3d vocab=ff4be32d
+-/
 @[simp] theorem pointwiseEvaluationCharacter_apply
     (M : Type*) [AddCommGroup M] [Module F M]
     (m : M) (ℓ : M →ₗ[F] F) :
@@ -306,6 +328,9 @@ def pointwiseEvaluationHom (M : Type*) [AddCommGroup M] [Module F M] :
         ZMod.toCircle ((Multiplicative.toAdd ℓ) n)
     rw [map_add, AddChar.map_add_eq_mul]
 
+/--
+@isnad1 id=eq.0h3v.s13.cffd0b5cde32 from=translated src=- shape=e2aca654 vocab=96751347
+-/
 @[simp] theorem pointwiseEvaluationHom_apply
     (M : Type*) [AddCommGroup M] [Module F M]
     (m : M) (ℓ : M →ₗ[F] F) :
@@ -342,10 +367,16 @@ def pointwisePontryaginDualEquiv
     rw [← hm (Multiplicative.toAdd ℓ)]
     exact characterLinear_circle (Additive.toMul χ) (Multiplicative.toAdd ℓ)
 
+/--
+@isnad1 id=eq.0h2v.s14.5a034618dd68 from=translated src=- shape=d2a8f3ed vocab=83c27850
+-/
 @[simp] theorem pointwisePontryaginDualEquiv_symm_apply
     (M : Type*) [AddCommGroup M] [Module F M] (m : M) :
     (pointwisePontryaginDualEquiv M).symm m = pointwiseEvaluationHom M m := rfl
 
+/--
+@isnad1 id=eq.0h3v.s14.1d89dbee4597 from=translated src=- shape=e049d250 vocab=cc151df2
+-/
 @[simp] theorem pointwisePontryaginDualEquiv_apply_character
     (M : Type*) [AddCommGroup M] [Module F M]
     (χ : Additive (PontryaginDual (Multiplicative (M →ₗ[F] F))))

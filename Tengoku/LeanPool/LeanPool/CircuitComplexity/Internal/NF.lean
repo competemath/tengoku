@@ -133,7 +133,9 @@ private lemma wireValue_gate [NeZero N] (φ : CNF N) (x : BitString N) (i : Fin 
                 ((φ.clauses.get ⟨↑i, i.isLt⟩).get j).var.isLt, xor_neg_polarity_eq_eval]
   exact foldl_bor_eq_list_any (φ.clauses.get ⟨↑i, i.isLt⟩) (fun l => l.eval x)
 
-/-- The circuit produced by `toCircuit` correctly computes the CNF formula. -/
+/-- The circuit produced by `toCircuit` correctly computes the CNF formula.
+@isnad1 id=eq.0h2v.s5.25335b6a0385 from=translated src=- shape=e352c419 vocab=44bf45d6
+-/
 theorem eval_toCircuit [NeZero N] (φ : CNF N) :
     (fun x => (φ.toCircuit.eval x) 0) = φ.eval := by
   funext x
@@ -146,7 +148,9 @@ theorem eval_toCircuit [NeZero N] (φ : CNF N) :
   conv_lhs => arg 2; ext acc j; arg 2; rw [wireValue_gate φ x j]
   exact foldl_band_eq_list_all φ.clauses (fun clause => clause.any fun l => l.eval x)
 
-/-- The circuit size of `toCircuit` is `φ.complexity + 1`. -/
+/-- The circuit size of `toCircuit` is `φ.complexity + 1`.
+@isnad1 id=eq.0h2v.s5.adb024e99239 from=translated src=- shape=2ef92ee2 vocab=21d0f38b
+-/
 theorem size_toCircuit [NeZero N] (φ : CNF N) :
     φ.toCircuit.size = φ.complexity + 1 := rfl
 
@@ -199,7 +203,9 @@ private lemma wireValue_gate [NeZero N] (φ : DNF N) (x : BitString N) (i : Fin 
                 ((φ.terms.get ⟨↑i, i.isLt⟩).get j).var.isLt, xor_neg_polarity_eq_eval]
   exact foldl_band_eq_list_all (φ.terms.get ⟨↑i, i.isLt⟩) (fun l => l.eval x)
 
-/-- The circuit produced by `toCircuit` correctly computes the DNF formula. -/
+/-- The circuit produced by `toCircuit` correctly computes the DNF formula.
+@isnad1 id=eq.0h2v.s5.9505db1d6918 from=translated src=- shape=e352c419 vocab=6d5bc3be
+-/
 theorem eval_toCircuit [NeZero N] (φ : DNF N) :
     (fun x => (φ.toCircuit.eval x) 0) = φ.eval := by
   funext x
@@ -212,7 +218,9 @@ theorem eval_toCircuit [NeZero N] (φ : DNF N) :
   conv_lhs => arg 2; ext acc j; arg 2; rw [wireValue_gate φ x j]
   exact foldl_bor_eq_list_any φ.terms (fun term => term.all fun l => l.eval x)
 
-/-- The circuit size of `toCircuit` is `φ.complexity + 1`. -/
+/-- The circuit size of `toCircuit` is `φ.complexity + 1`.
+@isnad1 id=eq.0h2v.s5.584a034ea273 from=translated src=- shape=2ef92ee2 vocab=6572c927
+-/
 theorem size_toCircuit [NeZero N] (φ : DNF N) :
     φ.toCircuit.size = φ.complexity + 1 := rfl
 
@@ -240,7 +248,9 @@ private lemma term_eval_update {term : List (Literal N)} {i : Fin N}
     rw [ih (fun l hl => hmiss l (List.mem_cons_of_mem _ hl))]
 
 /-- If `φ : DNF N` computes a flip-sensitive function, every satisfiable term
-mentions all N variables. -/
+mentions all N variables.
+@isnad1 id=ex.4h6v.s6.5441850bde53 from=translated src=- shape=59c0d09e vocab=91d56188
+-/
 theorem DNF.term_mentions_all (φ : DNF N)
     (f : BitString N → Bool)
     (hcomp : ∀ x, φ.eval x = f x)
@@ -265,7 +275,9 @@ theorem DNF.term_mentions_all (φ : DNF N)
   -- But f flips, so f x ≠ f (flip x i)
   simp_all
 
-/-- If a term mentions all N variables, it is satisfied by at most one assignment. -/
+/-- If a term mentions all N variables, it is satisfied by at most one assignment.
+@isnad1 id=eq.3h4v.s6.c6ff20ec92a1 from=translated src=- shape=569546fc vocab=a464bf9b
+-/
 theorem full_term_unique {term : List (Literal N)}
     (hfull : ∀ i : Fin N, ∃ l ∈ term, l.var = i)
     {x y : BitString N}
@@ -280,7 +292,9 @@ theorem full_term_unique {term : List (Literal N)}
   simp only [Literal.eval, hl_var] at hx_l hy_l
   split at hx_l <;> split at hy_l <;> simp_all
 
-/-- If `f` is flip-sensitive with `N ≥ 1`, its true-set has exactly `2^{N-1}` elements. -/
+/-- If `f` is flip-sensitive with `N ≥ 1`, its true-set has exactly `2^{N-1}` elements.
+@isnad1 id=eq.2h2v.s6.6800ac3da993 from=translated src=- shape=3cddf7aa vocab=1a612c55
+-/
 theorem card_true_of_flip_sensitive {N : Nat} (hN : 1 ≤ N)
     (f : BitString N → Bool)
     (hflip : ∀ x (i : Fin N), f (Function.update x i (!x i)) = !f x) :
@@ -330,7 +344,9 @@ theorem card_true_of_flip_sensitive {N : Nat} (hN : 1 ≤ N)
   omega
 
 /-- If `φ : DNF N` computes a flip-sensitive function with `N ≥ 1`,
-then `2^{N-1} ≤ φ.complexity`. -/
+then `2^{N-1} ≤ φ.complexity`.
+@isnad1 id=le.3h3v.s6.3a313091fc3e from=translated src=- shape=9e7fe8ef vocab=40c3c3e1
+-/
 theorem DNF.flip_complexity_lb (φ : DNF N) (hN : 1 ≤ N)
     (f : BitString N → Bool)
     (hcomp : ∀ x, φ.eval x = f x)

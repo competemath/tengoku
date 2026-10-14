@@ -85,6 +85,9 @@ def flip (F : Dihomotopy f g)
   map_one_left := fun x => rfl
 }
 
+/--
+@isnad1 id=eq.0h6v.s9.325beb35fe7e from=translated src=- shape=9fc7a302 vocab=440ca379
+-/
 lemma flip_apply (F : Dihomotopy f g) (t₀ t₁ : I) :
   F.flip (t₀, t₁) = F (t₁, t₀) := rfl
 
@@ -128,6 +131,9 @@ def hcomp' (F : Dihomotopy p₀.toDirectedMap q₀.toDirectedMap)
         exact G.map_one_left _
     )
 
+/--
+@isnad1 id=eq.1h15v.s10.99d5f8564ea9 from=translated src=- shape=a5b41152 vocab=2a8960c1
+-/
 lemma hcomp'_apply (F : Dihomotopy p₀.toDirectedMap q₀.toDirectedMap)
     (G : Dihomotopy p₁.toDirectedMap q₁.toDirectedMap)
   (h : (F.evalAtRight 1).toDirectedMap = (G.evalAtRight 0).toDirectedMap) (t₁ t₂ : I) :
@@ -145,6 +151,9 @@ lemma hcomp'_apply (F : Dihomotopy p₀.toDirectedMap q₀.toDirectedMap)
   · rw [flip_apply]
     rfl
 
+/--
+@isnad1 id=eq.1h14v.s9.f304bd7136ee from=translated src=- shape=85a3df47 vocab=4f0e8a9d
+-/
 lemma hcomp'_apply_zero_right (F : Dihomotopy p₀.toDirectedMap q₀.toDirectedMap)
     (G : Dihomotopy p₁.toDirectedMap q₁.toDirectedMap)
   (h : (F.evalAtRight 1).toDirectedMap = (G.evalAtRight 0).toDirectedMap) (x : I) :
@@ -152,6 +161,9 @@ lemma hcomp'_apply_zero_right (F : Dihomotopy p₀.toDirectedMap q₀.toDirected
   rw [hcomp'_apply]
   simp_all
 
+/--
+@isnad1 id=eq.1h14v.s9.08944615a5d7 from=translated src=- shape=27d6dad9 vocab=4f0e8a9d
+-/
 lemma hcomp'_apply_one_right (F : Dihomotopy p₀.toDirectedMap q₀.toDirectedMap)
     (G : Dihomotopy p₁.toDirectedMap q₁.toDirectedMap)
   (h : (F.evalAtRight 1).toDirectedMap = (G.evalAtRight 0).toDirectedMap) (x : I) :
@@ -166,6 +178,9 @@ lemma hcomp'_apply_one_right (F : Dihomotopy p₀.toDirectedMap q₀.toDirectedM
     simp
     norm_num
 
+/--
+@isnad1 id=le.1h13v.s9.c0b108e733c9 from=translated src=- shape=220d1b2a vocab=7424c903
+-/
 lemma hcomp'_range (F : Dihomotopy p₀.toDirectedMap q₀.toDirectedMap)
     (G : Dihomotopy p₁.toDirectedMap q₁.toDirectedMap)
   (h : (F.evalAtRight 1).toDirectedMap = (G.evalAtRight 0).toDirectedMap) :

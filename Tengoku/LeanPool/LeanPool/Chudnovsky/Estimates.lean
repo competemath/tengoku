@@ -73,10 +73,15 @@ Euler's pentagonal number theorem (paper Remark `penta`). -/
 def Jtilde (τ : ℍ) : ℂ :=
   (1 + 240 * (q τ + 9 * q τ ^ 2)) ^ 3 / (1728 * q τ * (1 - q τ - q τ ^ 2) ^ 24)
 
+/--
+@isnad1 id=eq.0h1v.s6.f6af089a3fa7 from=translated src=- shape=4f5fd8c0 vocab=e5447365
+-/
 lemma Jtilde_eq (τ : ℍ) :
     Jtilde τ = E₄trunc τ ^ 3 / (1728 * q τ * (1 - q τ - q τ ^ 2) ^ 24) := rfl
 
-/-- `1728·Jtilde` in the normalized form used in the paper and in the numerical phase. -/
+/-- `1728·Jtilde` in the normalized form used in the paper and in the numerical phase.
+@isnad1 id=eq.0h1v.s7.5387454a5d41 from=translated src=- shape=1ff8df60 vocab=d72b1594
+-/
 lemma mul_Jtilde_eq (τ : ℍ) :
     1728 * Jtilde τ =
       (1 + 240 * (q τ + 9 * q τ ^ 2)) ^ 3 / (q τ * (1 - q τ - q τ ^ 2) ^ 24) := by
@@ -92,13 +97,18 @@ def s₂tilde (τ : ℍ) : ℂ :=
   (1 + 240 * (q τ + 9 * q τ ^ 2)) / (1 - 504 * (q τ + 33 * q τ ^ 2)) *
     (1 - 24 * (q τ + 3 * q τ ^ 2) - 3 / (π * τ.im))
 
+/--
+@isnad1 id=eq.0h1v.s4.c2805bd1c664 from=translated src=- shape=5e01a2ae vocab=100e5e12
+-/
 lemma s₂tilde_eq (τ : ℍ) : s₂tilde τ = E₄trunc τ / E₆trunc τ * E₂starTrunc τ := rfl
 
 /-! ### The σₖ bound (paper Lemma `sigmaschaetz`) -/
 
 /-- Paper Lemma `sigmaschaetz`: `σₖ(n) ≤ n^(k+1)`.
 (The paper states this for `n ≥ 1`; with Mathlib's convention `σ k 0 = 0` it holds for
-all `n`.) -/
+all `n`.)
+@isnad1 id=le.0h2v.s5.a8a8ed37d51a from=translated src=- shape=d2f50574 vocab=e0282176
+-/
 theorem sigma_le_pow_succ (k n : ℕ) : ArithmeticFunction.sigma k n ≤ n ^ (k + 1) := by
   rw [ArithmeticFunction.sigma_apply]
   calc ∑ d ∈ n.divisors, d ^ k ≤ ∑ _d ∈ n.divisors, n ^ k :=
@@ -110,7 +120,9 @@ theorem sigma_le_pow_succ (k n : ℕ) : ArithmeticFunction.sigma k n ≤ n ^ (k 
 /-! ### The Archimedes lemma (paper Lemma `archim-lem`) -/
 
 /-- Paper Lemma `archim-lem`: if `Im τ > 5/4` then `|q| < e^(-7.852)`.
-Archimedes' bound `π > 3 + 10/71` is replaced by Mathlib's `Real.pi_gt_d4`. -/
+Archimedes' bound `π > 3 + 10/71` is replaced by Mathlib's `Real.pi_gt_d4`.
+@isnad1 id=lt.1h1v.s4.28015c805a4f from=translated src=- shape=e2e3e306 vocab=cb50ba9c
+-/
 lemma norm_q_lt_of_mem_Region {τ : ℍ} (hτ : τ ∈ Region) :
     ‖q τ‖ < Real.exp (-7.852) := by
   rw [norm_q, Real.exp_lt_exp, neg_lt_neg_iff]
@@ -124,7 +136,9 @@ We derive the divisor-sum `q`-expansions of `E₄`, `E₆` and `E₂` from Mathl
 `EisensteinSeries.q_expansion_bernoulli` and `EisensteinSeries.E2_eq_tsum_cexp`,
 in a `ℕ`-indexed form suitable for splitting off the leading terms. -/
 
-/-- Summability of the divisor-sum `q`-series `∑ σₖ(n)·qⁿ` (paper Prop. `sigmaeisen`). -/
+/-- Summability of the divisor-sum `q`-series `∑ σₖ(n)·qⁿ` (paper Prop. `sigmaeisen`).
+@isnad1 id=summable.0h2v.s6.c7edbe0ae78a from=translated src=- shape=617263c3 vocab=4c567ef3
+-/
 lemma summable_sigma_q (k : ℕ) (τ : ℍ) :
     Summable fun n : ℕ ↦ (ArithmeticFunction.sigma k n : ℂ) * q τ ^ n := by
   apply Summable.of_norm_bounded
@@ -134,7 +148,9 @@ lemma summable_sigma_q (k : ℕ) (τ : ℍ) :
   apply mul_le_mul_of_nonneg_right _ (by positivity)
   exact_mod_cast ArithmeticFunction.sigma_le_pow_succ k n
 
-/-- Summability of the (real, absolute) divisor-sum `q`-series `∑ σₖ(n)·|q|ⁿ`. -/
+/-- Summability of the (real, absolute) divisor-sum `q`-series `∑ σₖ(n)·|q|ⁿ`.
+@isnad1 id=summable.0h2v.s5.e0b7f6e131ea from=translated src=- shape=da2f2fb6 vocab=3f13d9bd
+-/
 lemma summable_norm_sigma_q (k : ℕ) (τ : ℍ) :
     Summable fun n : ℕ ↦ (ArithmeticFunction.sigma k n : ℝ) * ‖q τ‖ ^ n := by
   apply Summable.of_nonneg_of_le (fun n => by positivity) (fun n => ?_)
@@ -143,7 +159,9 @@ lemma summable_norm_sigma_q (k : ℕ) (τ : ℍ) :
   apply mul_le_mul_of_nonneg_right _ (by positivity)
   exact_mod_cast ArithmeticFunction.sigma_le_pow_succ k n
 
-/-- Paper Prop. `sigmaeisen`: `E₄(τ) = 1 + 240·∑_{n≥1} σ₃(n)·qⁿ`. -/
+/-- Paper Prop. `sigmaeisen`: `E₄(τ) = 1 + 240·∑_{n≥1} σ₃(n)·qⁿ`.
+@isnad1 id=eq.0h1v.s8.b32a7ed24f9b from=translated src=- shape=136a2c37 vocab=82fb204e
+-/
 lemma E₄_eq_tsum (τ : ℍ) :
     E₄ τ = 1 + 240 * ∑' n : ℕ, (ArithmeticFunction.sigma 3 (n + 1) : ℂ) * q τ ^ (n + 1) := by
   have h := EisensteinSeries.q_expansion_bernoulli (k := 4) (by norm_num) (by decide) τ
@@ -152,7 +170,9 @@ lemma E₄_eq_tsum (τ : ℍ) :
   rw [tsum_pnat_eq_tsum_succ (f := fun n ↦ (ArithmeticFunction.sigma 3 n : ℂ) * q τ ^ n)] at h
   rw [h]; norm_num
 
-/-- Paper Prop. `sigmaeisen`: `E₆(τ) = 1 - 504·∑_{n≥1} σ₅(n)·qⁿ`. -/
+/-- Paper Prop. `sigmaeisen`: `E₆(τ) = 1 - 504·∑_{n≥1} σ₅(n)·qⁿ`.
+@isnad1 id=eq.0h1v.s8.942c031c504c from=translated src=- shape=55a210ab vocab=83770442
+-/
 lemma E₆_eq_tsum (τ : ℍ) :
     E₆ τ = 1 - 504 * ∑' n : ℕ, (ArithmeticFunction.sigma 5 (n + 1) : ℂ) * q τ ^ (n + 1) := by
   have h := EisensteinSeries.q_expansion_bernoulli (k := 6) (by norm_num) (by decide) τ
@@ -161,7 +181,9 @@ lemma E₆_eq_tsum (τ : ℍ) :
   rw [tsum_pnat_eq_tsum_succ (f := fun n ↦ (ArithmeticFunction.sigma 5 n : ℂ) * q τ ^ n)] at h
   rw [h]; norm_num
 
-/-- Paper Prop. `sigmaeisen`: `E₂(τ) = 1 - 24·∑_{n≥1} σ₁(n)·qⁿ`. -/
+/-- Paper Prop. `sigmaeisen`: `E₂(τ) = 1 - 24·∑_{n≥1} σ₁(n)·qⁿ`.
+@isnad1 id=eq.0h1v.s7.1d0ae41bcf37 from=translated src=- shape=1fc3d0b0 vocab=1e5b6db7
+-/
 lemma E2_eq_tsum (τ : ℍ) :
     E2 τ = 1 - 24 * ∑' n : ℕ, (ArithmeticFunction.sigma 1 (n + 1) : ℂ) * q τ ^ (n + 1) := by
   have h := EisensteinSeries.E2_eq_tsum_cexp τ
@@ -170,7 +192,9 @@ lemma E2_eq_tsum (τ : ℍ) :
   rw [h]
 
 /-- Split off the first two terms of the divisor-sum `q`-series, leaving the tail
-`∑_{n≥3} σₖ(n)·qⁿ` (the paper's `R_{k+1}⁽³⁾`). -/
+`∑_{n≥3} σₖ(n)·qⁿ` (the paper's `R_{k+1}⁽³⁾`).
+@isnad1 id=eq.0h2v.s8.a44dff06b698 from=translated src=- shape=34002d92 vocab=94041d3c
+-/
 lemma tsum_sigma_split (k : ℕ) (τ : ℍ) :
     ∑' n : ℕ, (ArithmeticFunction.sigma k (n + 1) : ℂ) * q τ ^ (n + 1) =
       (ArithmeticFunction.sigma k 1 : ℂ) * q τ ^ 1
@@ -185,7 +209,9 @@ lemma tsum_sigma_split (k : ℕ) (τ : ℍ) :
   rw [← this]
 
 /-- Numerical bound `e^(-7.852) < 0.000389`, replacing the Archimedes step of the paper.
-Proved from `Real.exp_one_gt_d9` and an 8-term Taylor lower bound for `exp 0.852`. -/
+Proved from `Real.exp_one_gt_d9` and an 8-term Taylor lower bound for `exp 0.852`.
+@isnad1 id=lt.0h0v.s4.304ea8715524 from=translated src=- shape=30de924c vocab=426a83d6
+-/
 lemma exp_neg_bound : Real.exp (-7.852) < 0.000389 := by
   have h1 : (2.7182818283 : ℝ) < Real.exp 1 := Real.exp_one_gt_d9
   have h7 : (2.7182818283 : ℝ) ^ 7 < Real.exp 7 := by
@@ -216,7 +242,9 @@ def eisensteinTail (k l : ℕ) (τ : ℍ) : ℂ :=
 
 /-- Paper Lemma `lemrestchaetz` (with `w = k + 1` the Eisenstein weight): if
 `(1 + 1/l)^(k+1)·|q| < 1` then
-`|R_w⁽ˡ⁾| ≤ l^(k+1)·|q|^l / (1 - (1 + 1/l)^(k+1)·|q|)`. -/
+`|R_w⁽ˡ⁾| ≤ l^(k+1)·|q|^l / (1 - (1 + 1/l)^(k+1)·|q|)`.
+@isnad1 id=le.2h3v.s7.2eb43dd8ae44 from=translated src=- shape=d35e3f09 vocab=50d3b611
+-/
 theorem norm_eisensteinTail_le (k l : ℕ) (hl : 0 < l) (τ : ℍ)
     (hs : (1 + 1 / (l : ℝ)) ^ (k + 1) * ‖q τ‖ < 1) :
     ‖eisensteinTail k l τ‖ ≤
@@ -277,7 +305,9 @@ theorem norm_eisensteinTail_le (k l : ℕ) (hl : 0 < l) (τ : ℍ)
         rw [tsum_mul_left, tsum_geometric_of_lt_one hs0 hs]
     _ = (l : ℝ) ^ (k + 1) * Q ^ l / (1 - s) := by rw [div_eq_mul_inv]
 
-/-- The tail `R⁽ˡ⁾` peels off its leading term: `R⁽ˡ⁾ = σₖ(l)·qˡ + R⁽ˡ⁺¹⁾`. -/
+/-- The tail `R⁽ˡ⁾` peels off its leading term: `R⁽ˡ⁾ = σₖ(l)·qˡ + R⁽ˡ⁺¹⁾`.
+@isnad1 id=eq.0h3v.s6.9e5aee462f01 from=translated src=- shape=689d2337 vocab=cc2d454f
+-/
 lemma eisensteinTail_succ (k l : ℕ) (τ : ℍ) :
     eisensteinTail k l τ
       = (ArithmeticFunction.sigma k l : ℂ) * q τ ^ l + eisensteinTail k (l + 1) τ := by
@@ -292,7 +322,9 @@ lemma eisensteinTail_succ (k l : ℕ) (τ : ℍ) :
   intro n
   rw [show n + 1 + l = n + (l + 1) from by omega]
 
-/-- `|q| > 0` on the region (`q τ = e^{2πiτ} ≠ 0`). -/
+/-- `|q| > 0` on the region (`q τ = e^{2πiτ} ≠ 0`).
+@isnad1 id=lt.0h1v.s4.e1bef382cf37 from=translated src=- shape=0b352fea vocab=e48b5d47
+-/
 lemma norm_q_pos (τ : ℍ) : 0 < ‖q τ‖ := by rw [norm_q]; exact Real.exp_pos _
 
 /-- `Q² ≤ c·Q` for `0 < Q < c`: the one product fact the numerical bounds below need, so that
@@ -305,7 +337,9 @@ private lemma pow_succ_le_of_lt {Q c : ℝ} (n : ℕ) (hQ : 0 < Q) (h : Q < c) :
     Q ^ (n + 1) ≤ c * Q ^ n := by
   rw [pow_succ']; exact mul_le_mul_of_nonneg_right h.le (pow_pos hQ n).le
 
-/-- Paper Lemma `lemrestkonkr`, first bound: `|R₂⁽³⁾| ≤ 4.007·|q|³` for `Im τ > 5/4`. -/
+/-- Paper Lemma `lemrestkonkr`, first bound: `|R₂⁽³⁾| ≤ 4.007·|q|³` for `Im τ > 5/4`.
+@isnad1 id=le.1h1v.s6.aa29c4fdba34 from=translated src=- shape=50f76c57 vocab=e28d7641
+-/
 theorem norm_eisensteinTail_sigma₁ {τ : ℍ} (hτ : τ ∈ Region) :
     ‖eisensteinTail 1 3 τ‖ ≤ 4.007 * ‖q τ‖ ^ 3 := by
   set Q := ‖q τ‖ with hQdef
@@ -324,7 +358,9 @@ theorem norm_eisensteinTail_sigma₁ {τ : ℍ} (hτ : τ ∈ Region) :
   push_cast
   linarith [htail, hdiv]
 
-/-- Paper Lemma `lemrestkonkr`, second bound: `|R₄⁽³⁾| ≤ 28.1·|q|³` for `Im τ > 5/4`. -/
+/-- Paper Lemma `lemrestkonkr`, second bound: `|R₄⁽³⁾| ≤ 28.1·|q|³` for `Im τ > 5/4`.
+@isnad1 id=le.1h1v.s6.2a1f09703b05 from=translated src=- shape=50f76c57 vocab=e28d7641
+-/
 theorem norm_eisensteinTail_sigma₃ {τ : ℍ} (hτ : τ ∈ Region) :
     ‖eisensteinTail 3 3 τ‖ ≤ 28.1 * ‖q τ‖ ^ 3 := by
   set Q := ‖q τ‖ with hQdef
@@ -343,7 +379,9 @@ theorem norm_eisensteinTail_sigma₃ {τ : ℍ} (hτ : τ ∈ Region) :
   push_cast
   linarith [htail, hdiv]
 
-/-- Paper Lemma `lemrestkonkr`, third bound: `|R₆⁽³⁾| ≤ 245.6·|q|³` for `Im τ > 5/4`. -/
+/-- Paper Lemma `lemrestkonkr`, third bound: `|R₆⁽³⁾| ≤ 245.6·|q|³` for `Im τ > 5/4`.
+@isnad1 id=le.1h1v.s6.3336c081fba8 from=translated src=- shape=50f76c57 vocab=e28d7641
+-/
 theorem norm_eisensteinTail_sigma₅ {τ : ℍ} (hτ : τ ∈ Region) :
     ‖eisensteinTail 5 3 τ‖ ≤ 245.6 * ‖q τ‖ ^ 3 := by
   set Q := ‖q τ‖ with hQdef
@@ -367,21 +405,27 @@ theorem norm_eisensteinTail_sigma₅ {τ : ℍ} (hτ : τ ∈ Region) :
 The Eisenstein series equal their quadratic truncations plus `240`/`-504`/`-24` times the
 corresponding tail `R⁽³⁾`. -/
 
-/-- `E₄ = X + δX` with `δX = 240·R₄⁽³⁾` (paper Lemma `lemxy`). -/
+/-- `E₄ = X + δX` with `δX = 240·R₄⁽³⁾` (paper Lemma `lemxy`).
+@isnad1 id=eq.0h1v.s8.f230e99e6833 from=translated src=- shape=779b565d vocab=408c7da6
+-/
 lemma E₄_eq_trunc (τ : ℍ) : E₄ τ = E₄trunc τ + 240 * eisensteinTail 3 3 τ := by
   rw [E₄_eq_tsum, tsum_sigma_split 3 τ, E₄trunc, eisensteinTail]
   simp only [show (ArithmeticFunction.sigma 3 1 : ℕ) = 1 from by decide,
     show (ArithmeticFunction.sigma 3 2 : ℕ) = 9 from by decide]
   push_cast; ring
 
-/-- `E₆ = Y + δY` with `δY = -504·R₆⁽³⁾` (paper Lemma `lemxy`). -/
+/-- `E₆ = Y + δY` with `δY = -504·R₆⁽³⁾` (paper Lemma `lemxy`).
+@isnad1 id=eq.0h1v.s8.5ecf918405fa from=translated src=- shape=779b565d vocab=7900bbbd
+-/
 lemma E₆_eq_trunc (τ : ℍ) : E₆ τ = E₆trunc τ - 504 * eisensteinTail 5 3 τ := by
   rw [E₆_eq_tsum, tsum_sigma_split 5 τ, E₆trunc, eisensteinTail]
   simp only [show (ArithmeticFunction.sigma 5 1 : ℕ) = 1 from by decide,
     show (ArithmeticFunction.sigma 5 2 : ℕ) = 33 from by decide]
   push_cast; ring
 
-/-- `E₂* = Z + δZ` with `δZ = -24·R₂⁽³⁾` (paper Lemma `lemxy`). -/
+/-- `E₂* = Z + δZ` with `δZ = -24·R₂⁽³⁾` (paper Lemma `lemxy`).
+@isnad1 id=eq.0h1v.s5.f6fbe92a9576 from=translated src=- shape=47130f8b vocab=d50fbc2e
+-/
 lemma E₂star_eq_trunc (τ : ℍ) : E₂star τ = E₂starTrunc τ - 24 * eisensteinTail 1 3 τ := by
   rw [E₂star, E2_eq_tsum, tsum_sigma_split 1 τ, E₂starTrunc, eisensteinTail]
   simp only [show (ArithmeticFunction.sigma 1 1 : ℕ) = 1 from by decide,
@@ -390,13 +434,17 @@ lemma E₂star_eq_trunc (τ : ℍ) : E₂star τ = E₂starTrunc τ - 24 * eisen
 
 /-! ### The lower bound for `E₆` (paper Lemma `lemE6`) -/
 
-/-- Bound `‖q τ + a·q τ²‖ ≤ |q| + a·|q|²` for `a ≥ 0`. -/
+/-- Bound `‖q τ + a·q τ²‖ ≤ |q| + a·|q|²` for `a ≥ 0`.
+@isnad1 id=le.1h2v.s6.03484db6bd35 from=translated src=- shape=eeb22c89 vocab=6c8ebc7f
+-/
 lemma norm_q_add_smul_sq_le {τ : ℍ} {a : ℝ} (ha : 0 ≤ a) :
     ‖q τ + (a : ℂ) * q τ ^ 2‖ ≤ ‖q τ‖ + a * ‖q τ‖ ^ 2 := by
   refine le_trans (norm_add_le _ _) ?_
   rw [norm_mul, norm_pow, Complex.norm_real, Real.norm_of_nonneg ha]
 
-/-- Paper Lemma `lemE6`: `|E₆(τ)| > 0.8` for `Im τ > 5/4`. -/
+/-- Paper Lemma `lemE6`: `|E₆(τ)| > 0.8` for `Im τ > 5/4`.
+@isnad1 id=lt.1h1v.s8.daa5c789c5e9 from=translated src=- shape=c5a52695 vocab=d6f8750c
+-/
 theorem lemE6 {τ : ℍ} (hτ : τ ∈ Region) : 0.8 < ‖E₆ τ‖ := by
   set Q := ‖q τ‖ with hQdef
   have hQpos : 0 < Q := norm_q_pos τ
@@ -423,7 +471,9 @@ theorem lemE6 {τ : ℍ} (hτ : τ ∈ Region) : 0.8 < ‖E₆ τ‖ := by
     linarith [hQ, sq_le_of_lt hQpos hQ, pow_succ_le_of_lt 2 hQpos hQ]
   linarith [htri, hA, hB, hfinal]
 
-/-- Paper Lemma `lemE6`, "in particular": `E₆(τ) ≠ 0` for `Im τ > 5/4`. -/
+/-- Paper Lemma `lemE6`, "in particular": `E₆(τ) ≠ 0` for `Im τ > 5/4`.
+@isnad1 id=ne.1h1v.s8.cb506f1dcf60 from=translated src=- shape=b6c0cabb vocab=720080aa
+-/
 theorem E₆_ne_zero_of_mem_Region {τ : ℍ} (hτ : τ ∈ Region) : E₆ τ ≠ 0 := by
   intro h
   have h8 := lemE6 hτ
@@ -432,7 +482,9 @@ theorem E₆_ne_zero_of_mem_Region {τ : ℍ} (hτ : τ ∈ Region) : E₆ τ �
 
 /-! ### Truncation norm bounds (paper Lemma `lemxy`) -/
 
-/-- Paper Lemma `lemxy`: `0.8014 ≤ |Y|` where `Y = E₆⁽²⁾`. -/
+/-- Paper Lemma `lemxy`: `0.8014 ≤ |Y|` where `Y = E₆⁽²⁾`.
+@isnad1 id=le.1h1v.s4.ce6114facca3 from=translated src=- shape=87775baf vocab=67325e03
+-/
 lemma norm_E₆trunc_ge {τ : ℍ} (hτ : τ ∈ Region) : (0.8014 : ℝ) ≤ ‖E₆trunc τ‖ := by
   have hQpos : 0 < ‖q τ‖ := norm_q_pos τ
   have hQ : ‖q τ‖ < 0.000389 := lt_trans (norm_q_lt_of_mem_Region hτ) exp_neg_bound
@@ -449,13 +501,18 @@ lemma norm_E₆trunc_ge {τ : ℍ} (hτ : τ ∈ Region) : (0.8014 : ℝ) ≤ �
     linarith [hQ, sq_le_of_lt hQpos hQ]
   linarith [htri, hA, hlow]
 
+/--
+@isnad1 id=ne.1h1v.s4.c09d855f4880 from=translated src=- shape=3bba8081 vocab=d94eb264
+-/
 lemma E₆trunc_ne_zero {τ : ℍ} (hτ : τ ∈ Region) : E₆trunc τ ≠ 0 := by
   intro h
   have := norm_E₆trunc_ge hτ
   rw [h, norm_zero] at this
   norm_num at this
 
-/-- Paper Lemma `lemxy`: `|X| ≤ 1.0937` where `X = E₄⁽²⁾`. -/
+/-- Paper Lemma `lemxy`: `|X| ≤ 1.0937` where `X = E₄⁽²⁾`.
+@isnad1 id=le.1h1v.s4.3134c1402ef2 from=translated src=- shape=222dfe3c vocab=34ee4c8c
+-/
 lemma norm_E₄trunc_le {τ : ℍ} (hτ : τ ∈ Region) : ‖E₄trunc τ‖ ≤ 1.0937 := by
   have hQpos : 0 < ‖q τ‖ := norm_q_pos τ
   have hQ : ‖q τ‖ < 0.000389 := lt_trans (norm_q_lt_of_mem_Region hτ) exp_neg_bound
@@ -466,7 +523,9 @@ lemma norm_E₄trunc_le {τ : ℍ} (hτ : τ ∈ Region) : ‖E₄trunc τ‖ �
   rw [norm_one, norm_mul, Complex.norm_ofNat]
   linarith [hqq, hQ, sq_le_of_lt hQpos hQ]
 
-/-- Paper Lemma `lemxy`: `|Z| ≤ 1.0094` where `Z = E₂⁽²⁾ - 3/(π Im τ)`. -/
+/-- Paper Lemma `lemxy`: `|Z| ≤ 1.0094` where `Z = E₂⁽²⁾ - 3/(π Im τ)`.
+@isnad1 id=le.1h1v.s4.e324751d3b2e from=translated src=- shape=222dfe3c vocab=fd87c59c
+-/
 lemma norm_E₂starTrunc_le {τ : ℍ} (hτ : τ ∈ Region) : ‖E₂starTrunc τ‖ ≤ 1.0094 := by
   have hQpos : 0 < ‖q τ‖ := norm_q_pos τ
   have hQ : ‖q τ‖ < 0.000389 := lt_trans (norm_q_lt_of_mem_Region hτ) exp_neg_bound
@@ -486,7 +545,9 @@ lemma norm_E₂starTrunc_le {τ : ℍ} (hτ : τ ∈ Region) : ‖E₂starTrunc 
   have habs : |1 - 3 / (π * τ.im)| ≤ 1 := by rw [abs_le]; constructor <;> linarith
   linarith [habs, hqq, hQ, sq_le_of_lt hQpos hQ]
 
-/-- Paper: `|stilde₂| ≤ 1.3776`. -/
+/-- Paper: `|stilde₂| ≤ 1.3776`.
+@isnad1 id=le.1h1v.s4.1247d0cdbddb from=translated src=- shape=222dfe3c vocab=7fc53e18
+-/
 lemma norm_s₂tilde_le {τ : ℍ} (hτ : τ ∈ Region) : ‖s₂tilde τ‖ ≤ 1.3776 := by
   rw [s₂tilde_eq, norm_mul, norm_div]
   have hX := norm_E₄trunc_le hτ
@@ -501,21 +562,27 @@ lemma norm_s₂tilde_le {τ : ℍ} (hτ : τ ∈ Region) : ‖s₂tilde τ‖ �
         mul_le_mul hdiv hZ (norm_nonneg _) (by norm_num)
     _ ≤ 1.3776 := by norm_num
 
-/-- `|δX| = |E₄ - X| ≤ 6744·|q|³`. -/
+/-- `|δX| = |E₄ - X| ≤ 6744·|q|³`.
+@isnad1 id=le.1h1v.s8.1dbd67645bfb from=translated src=- shape=3161ac39 vocab=e37e937e
+-/
 lemma norm_sub_E₄trunc_le {τ : ℍ} (hτ : τ ∈ Region) :
     ‖E₄ τ - E₄trunc τ‖ ≤ 6744 * ‖q τ‖ ^ 3 := by
   have heq : E₄ τ - E₄trunc τ = 240 * eisensteinTail 3 3 τ := by rw [E₄_eq_trunc τ]; ring
   rw [heq, norm_mul, Complex.norm_ofNat]
   nlinarith [norm_eisensteinTail_sigma₃ hτ, norm_nonneg (eisensteinTail 3 3 τ)]
 
-/-- `|δY| = |E₆ - Y| ≤ 123783·|q|³`. -/
+/-- `|δY| = |E₆ - Y| ≤ 123783·|q|³`.
+@isnad1 id=le.1h1v.s8.21f6b9f06af9 from=translated src=- shape=3161ac39 vocab=b280164f
+-/
 lemma norm_sub_E₆trunc_le {τ : ℍ} (hτ : τ ∈ Region) :
     ‖E₆ τ - E₆trunc τ‖ ≤ 123783 * ‖q τ‖ ^ 3 := by
   have heq : E₆ τ - E₆trunc τ = -(504 * eisensteinTail 5 3 τ) := by rw [E₆_eq_trunc τ]; ring
   rw [heq, norm_neg, norm_mul, Complex.norm_ofNat]
   nlinarith [norm_eisensteinTail_sigma₅ hτ, norm_nonneg (eisensteinTail 5 3 τ)]
 
-/-- `|δZ| = |E₂* - Z| ≤ 96.2·|q|³`. -/
+/-- `|δZ| = |E₂* - Z| ≤ 96.2·|q|³`.
+@isnad1 id=le.1h1v.s6.da37691b81d2 from=translated src=- shape=42a9d6fb vocab=11fa2a99
+-/
 lemma norm_sub_E₂starTrunc_le {τ : ℍ} (hτ : τ ∈ Region) :
     ‖E₂star τ - E₂starTrunc τ‖ ≤ 96.2 * ‖q τ‖ ^ 3 := by
   have heq : E₂star τ - E₂starTrunc τ = -(24 * eisensteinTail 1 3 τ) := by
@@ -531,16 +598,23 @@ def kfun (τ : ℍ) : ℂ := (E₄ τ ^ 3 - E₆ τ ^ 2) / (1728 * q τ)
 /-- The truncation `ktilde(τ) = (1 - q - q²)²⁴` (paper Lemma `lemk`). -/
 def ktilde (τ : ℍ) : ℂ := (1 - q τ - q τ ^ 2) ^ 24
 
+/--
+@isnad1 id=ne.0h1v.s3.3a76f938ac52 from=translated src=- shape=a311c14d vocab=ebf09ecc
+-/
 lemma q_ne_zero (τ : ℍ) : q τ ≠ 0 := norm_pos_iff.mp (norm_q_pos τ)
 
-/-- `1728·q·J = E₄³ / k`. -/
+/-- `1728·q·J = E₄³ / k`.
+@isnad1 id=eq.0h1v.s8.008668b735a7 from=translated src=- shape=18d69210 vocab=3d11fcfc
+-/
 lemma mul_q_J_eq (τ : ℍ) : 1728 * q τ * J τ = E₄ τ ^ 3 / kfun τ := by
   rw [J, kfun]
   have h1 := E₄_cube_sub_E₆_sq_ne_zero τ
   have h2 := q_ne_zero τ
   field_simp
 
-/-- Bound `1 - |q| - |q|² ≤ ‖1 - q - q²‖ ≤ 1 + |q| + |q|²`. -/
+/-- Bound `1 - |q| - |q|² ≤ ‖1 - q - q²‖ ≤ 1 + |q| + |q|²`.
+@isnad1 id=and.0h1v.s7.f708720aa1c8 from=translated src=- shape=33c1e8f3 vocab=90ab3414
+-/
 lemma norm_one_sub_q_sub_sq {τ : ℍ} :
     1 - ‖q τ‖ - ‖q τ‖ ^ 2 ≤ ‖1 - q τ - q τ ^ 2‖
       ∧ ‖1 - q τ - q τ ^ 2‖ ≤ 1 + ‖q τ‖ + ‖q τ‖ ^ 2 := by
@@ -553,7 +627,9 @@ lemma norm_one_sub_q_sub_sq {τ : ℍ} :
     rw [norm_one] at this; linarith
   · refine le_trans (norm_sub_le _ _) ?_; rw [norm_one]; linarith
 
-/-- Paper Lemma `lemk`: `0.9907 ≤ |ktilde|`. -/
+/-- Paper Lemma `lemk`: `0.9907 ≤ |ktilde|`.
+@isnad1 id=le.1h1v.s4.cd37b4c7b899 from=translated src=- shape=87775baf vocab=d51a3446
+-/
 lemma norm_ktilde_ge {τ : ℍ} (hτ : τ ∈ Region) : (0.9907 : ℝ) ≤ ‖ktilde τ‖ := by
   have hQpos : 0 < ‖q τ‖ := norm_q_pos τ
   have hQ : ‖q τ‖ < 0.000389 := lt_trans (norm_q_lt_of_mem_Region hτ) exp_neg_bound
@@ -564,7 +640,9 @@ lemma norm_ktilde_ge {τ : ℍ} (hτ : τ ∈ Region) : (0.9907 : ℝ) ≤ ‖kt
   calc (0.9907 : ℝ) ≤ 0.9996108 ^ 24 := by norm_num
     _ ≤ ‖1 - q τ - q τ ^ 2‖ ^ 24 := pow_le_pow_left₀ (by norm_num) hlow 24
 
-/-- Paper Lemma `lemk`: `|ktilde| ≤ 1.0094`. -/
+/-- Paper Lemma `lemk`: `|ktilde| ≤ 1.0094`.
+@isnad1 id=le.1h1v.s4.f05b2dbf31ad from=translated src=- shape=222dfe3c vocab=d51a3446
+-/
 lemma norm_ktilde_le {τ : ℍ} (hτ : τ ∈ Region) : ‖ktilde τ‖ ≤ 1.0094 := by
   have hQpos : 0 < ‖q τ‖ := norm_q_pos τ
   have hQ : ‖q τ‖ < 0.000389 := lt_trans (norm_q_lt_of_mem_Region hτ) exp_neg_bound
@@ -576,13 +654,18 @@ lemma norm_ktilde_le {τ : ℍ} (hτ : τ ∈ Region) : ‖ktilde τ‖ ≤ 1.00
         pow_le_pow_left₀ (norm_nonneg _) hhi 24
     _ ≤ 1.0094 := by norm_num
 
+/--
+@isnad1 id=ne.1h1v.s4.090aa06e8339 from=translated src=- shape=3bba8081 vocab=67e1343d
+-/
 lemma ktilde_ne_zero {τ : ℍ} (hτ : τ ∈ Region) : ktilde τ ≠ 0 := by
   intro h
   have := norm_ktilde_ge hτ
   rw [h, norm_zero] at this
   norm_num at this
 
-/-- `1728·q·Jtilde = X³ / ktilde`. -/
+/-- `1728·q·Jtilde = X³ / ktilde`.
+@isnad1 id=eq.1h1v.s6.ec0b66be60cf from=translated src=- shape=61cf7496 vocab=1bafa74f
+-/
 lemma mul_q_Jtilde_eq {τ : ℍ} (hτ : τ ∈ Region) :
     1728 * q τ * Jtilde τ = E₄trunc τ ^ 3 / ktilde τ := by
   have h2 := q_ne_zero τ
@@ -590,7 +673,9 @@ lemma mul_q_Jtilde_eq {τ : ℍ} (hτ : τ ∈ Region) :
   rw [Jtilde, ktilde, E₄trunc] at *
   field_simp
 
-/-- Paper Lemma `lemxy`: `|E₄³ - X³| ≤ 24202·|q|³` (moved above `lemk`, which consumes it). -/
+/-- Paper Lemma `lemxy`: `|E₄³ - X³| ≤ 24202·|q|³` (moved above `lemk`, which consumes it).
+@isnad1 id=le.1h1v.s8.e9782bbdc27c from=translated src=- shape=90bf10f6 vocab=e37e937e
+-/
 lemma norm_sub_cube_E₄trunc_le {τ : ℍ} (hτ : τ ∈ Region) :
     ‖E₄ τ ^ 3 - E₄trunc τ ^ 3‖ ≤ 24202 * ‖q τ‖ ^ 3 := by
   have hQpos : 0 < ‖q τ‖ := norm_q_pos τ
@@ -629,7 +714,9 @@ lemma norm_sub_cube_E₄trunc_le {τ : ℍ} (hτ : τ ∈ Region) :
       ≤ (6744 * ‖q τ‖ ^ 3) * 3.5886 := mul_le_mul hdX hfac2 (norm_nonneg _) (by norm_num)
     _ ≤ 24202 * ‖q τ‖ ^ 3 := by linarith [pow_pos hQpos 3]
 
-/-- Paper Lemma `lemxy`: `|Y| ≤ 1.1987` where `Y = E₆⁽²⁾`. -/
+/-- Paper Lemma `lemxy`: `|Y| ≤ 1.1987` where `Y = E₆⁽²⁾`.
+@isnad1 id=le.1h1v.s4.f789a4d834e7 from=translated src=- shape=222dfe3c vocab=67325e03
+-/
 lemma norm_E₆trunc_le {τ : ℍ} (hτ : τ ∈ Region) : ‖E₆trunc τ‖ ≤ 1.1987 := by
   have hQpos : 0 < ‖q τ‖ := norm_q_pos τ
   have hQ : ‖q τ‖ < 0.000389 := lt_trans (norm_q_lt_of_mem_Region hτ) exp_neg_bound
@@ -640,7 +727,9 @@ lemma norm_E₆trunc_le {τ : ℍ} (hτ : τ ∈ Region) : ‖E₆trunc τ‖ �
   rw [norm_one, norm_mul, Complex.norm_ofNat]
   linarith [hqq, hQ, sq_le_of_lt hQpos hQ]
 
-/-- `|E₆² - Y²| ≤ 296780·|q|³` (paper Lemma `lemk`, the `|E₆²-Y²|/(1728q)` term). -/
+/-- `|E₆² - Y²| ≤ 296780·|q|³` (paper Lemma `lemk`, the `|E₆²-Y²|/(1728q)` term).
+@isnad1 id=le.1h1v.s8.143736015e7a from=translated src=- shape=90bf10f6 vocab=b280164f
+-/
 lemma norm_sub_sq_E₆trunc_le {τ : ℍ} (hτ : τ ∈ Region) :
     ‖E₆ τ ^ 2 - E₆trunc τ ^ 2‖ ≤ 296780 * ‖q τ‖ ^ 3 := by
   have hQpos : 0 < ‖q τ‖ := norm_q_pos τ
@@ -666,7 +755,9 @@ lemma norm_sub_sq_E₆trunc_le {τ : ℍ} (hτ : τ ∈ Region) :
 
 /-- Horner-form norm bound: for `‖p‖ ≤ ρ` (`0 ≤ ρ`), the norm of a polynomial
 `∑ⱼ cⱼ·pʲ` (written in Horner form via `List.foldr`) is bounded by the same fold
-with `|cⱼ|` and `ρ`. Used to bound the degree-46 polynomial remainder in `lemk`. -/
+with `|cⱼ|` and `ρ`. Used to bound the degree-46 polynomial remainder in `lemk`.
+@isnad1 id=le.2h3v.s6.ae9bcf8aa8e5 from=translated src=- shape=4f6e96c3 vocab=39f83cdd
+-/
 lemma horner_norm_bound (p : ℂ) {ρ : ℝ} (hp : ‖p‖ ≤ ρ) (hρ : 0 ≤ ρ) :
     ∀ l : List ℤ,
       ‖l.foldr (fun (a : ℤ) (acc : ℂ) => (a : ℂ) + p * acc) 0‖
@@ -703,7 +794,9 @@ derivative) and comparing with the explicit expansion of `(X³-Y²)/(1728q)`; th
 `|k - ktilde| < 25|q|⁵` needs Euler's pentagonal number theorem. Here we instead use the exact
 polynomial identity `X³ - Y² - 1728·q·(1-q-q²)²⁴ = 1728·q³·G(q)` (`G` of degree 46, with
 `|G(q)| ≤ 179.8` bounded via `horner_norm_bound`), together with the truncation-error
-estimates `|E₄³-X³| ≤ 24202|q|³` and `|E₆²-Y²| ≤ 296780|q|³`. -/
+estimates `|E₄³-X³| ≤ 24202|q|³` and `|E₆²-Y²| ≤ 296780|q|³`.
+@isnad1 id=le.1h1v.s6.24c0e7be4b86 from=translated src=- shape=42a9d6fb vocab=557d17de
+-/
 lemma lemk {τ : ℍ} (hτ : τ ∈ Region) : ‖kfun τ - ktilde τ‖ ≤ 365.6 * ‖q τ‖ ^ 2 := by
   have hQpos : 0 < ‖q τ‖ := norm_q_pos τ
   have hQ : ‖q τ‖ < 0.000389 := lt_trans (norm_q_lt_of_mem_Region hτ) exp_neg_bound
@@ -749,7 +842,9 @@ lemma lemk {τ : ℍ} (hτ : τ ∈ Region) : ‖kfun τ - ktilde τ‖ ≤ 365.
   refine le_trans hnum ?_
   linarith only [pow_pos hQpos 3]
 
-/-- `0.9907 - 365.6|q|² ≤ |k|` (paper: `|k| ≥ |ktilde| - |δktilde|`). -/
+/-- `0.9907 - 365.6|q|² ≤ |k|` (paper: `|k| ≥ |ktilde| - |δktilde|`).
+@isnad1 id=le.1h1v.s6.ba445dbc6cb6 from=translated src=- shape=5c206393 vocab=a74f5812
+-/
 lemma norm_kfun_ge {τ : ℍ} (hτ : τ ∈ Region) :
     0.9907 - 365.6 * ‖q τ‖ ^ 2 ≤ ‖kfun τ‖ := by
   have h1 := norm_ktilde_ge hτ
@@ -761,6 +856,9 @@ lemma norm_kfun_ge {τ : ℍ} (hτ : τ ∈ Region) :
   rw [h4] at h3
   linarith [h1, h2, h3]
 
+/--
+@isnad1 id=ne.1h1v.s4.707a0d8a1ed8 from=translated src=- shape=3bba8081 vocab=a226cf59
+-/
 lemma kfun_ne_zero {τ : ℍ} (hτ : τ ∈ Region) : kfun τ ≠ 0 := by
   have hQpos : 0 < ‖q τ‖ := norm_q_pos τ
   have hQ : ‖q τ‖ < 0.000389 := lt_trans (norm_q_lt_of_mem_Region hτ) exp_neg_bound
@@ -768,7 +866,9 @@ lemma kfun_ne_zero {τ : ℍ} (hτ : τ ∈ Region) : kfun τ ≠ 0 := by
   have : 0 < ‖kfun τ‖ := by linarith [h, hQ, sq_le_of_lt hQpos hQ]
   exact norm_pos_iff.mp this
 
-/-- Paper Lemma `lemxy`: `0.9063 ≤ |X|` where `X = E₄⁽²⁾`. -/
+/-- Paper Lemma `lemxy`: `0.9063 ≤ |X|` where `X = E₄⁽²⁾`.
+@isnad1 id=le.1h1v.s4.6b68f7937a97 from=translated src=- shape=87775baf vocab=34ee4c8c
+-/
 lemma norm_E₄trunc_ge {τ : ℍ} (hτ : τ ∈ Region) : (0.9063 : ℝ) ≤ ‖E₄trunc τ‖ := by
   have hQpos : 0 < ‖q τ‖ := norm_q_pos τ
   have hQ : ‖q τ‖ < 0.000389 := lt_trans (norm_q_lt_of_mem_Region hτ) exp_neg_bound
@@ -785,7 +885,9 @@ lemma norm_E₄trunc_ge {τ : ℍ} (hτ : τ ∈ Region) : (0.9063 : ℝ) ≤ �
     linarith [hQ, sq_le_of_lt hQpos hQ]
   linarith [htri, hA, hlow]
 
-/-- Paper Lemma `lem3`: `|Jtilde₂| ≤ 1.3206` where `Jtilde₂ = X³/ktilde`. -/
+/-- Paper Lemma `lem3`: `|Jtilde₂| ≤ 1.3206` where `Jtilde₂ = X³/ktilde`.
+@isnad1 id=le.1h1v.s5.1b2335a5857e from=translated src=- shape=e1689b1d vocab=cac65bbe
+-/
 lemma norm_Jtilde2_le {τ : ℍ} (hτ : τ ∈ Region) :
     ‖E₄trunc τ ^ 3 / ktilde τ‖ ≤ 1.3206 := by
   rw [norm_div, norm_pow]
@@ -796,7 +898,9 @@ lemma norm_Jtilde2_le {τ : ℍ} (hτ : τ ∈ Region) :
         div_le_div₀ (by norm_num) h1 (by norm_num) hk
     _ ≤ 1.3206 := by norm_num
 
-/-- Paper Lemma `lem3`: `0.7374 ≤ |Jtilde₂|` where `Jtilde₂ = X³/ktilde`. -/
+/-- Paper Lemma `lem3`: `0.7374 ≤ |Jtilde₂|` where `Jtilde₂ = X³/ktilde`.
+@isnad1 id=le.1h1v.s5.8b538dd9296b from=translated src=- shape=9ba5b11b vocab=cac65bbe
+-/
 lemma norm_Jtilde2_ge {τ : ℍ} (hτ : τ ∈ Region) :
     (0.7374 : ℝ) ≤ ‖E₄trunc τ ^ 3 / ktilde τ‖ := by
   rw [norm_div, norm_pow]
@@ -807,7 +911,9 @@ lemma norm_Jtilde2_ge {τ : ℍ} (hτ : τ ∈ Region) :
   calc (0.7374 : ℝ) ≤ 0.9063 ^ 3 / 1.0094 := by norm_num
     _ ≤ ‖E₄trunc τ‖ ^ 3 / ‖ktilde τ‖ := div_le_div₀ (by positivity) h1 hkpos hk
 
-/-- Paper Lemma `lem3`: `|J₂ - Jtilde₂| ≤ 498·|q|²`. -/
+/-- Paper Lemma `lem3`: `|J₂ - Jtilde₂| ≤ 498·|q|²`.
+@isnad1 id=le.1h1v.s6.076e530cf3cc from=translated src=- shape=fe2b1f6b vocab=00eb1a73
+-/
 lemma lem3 {τ : ℍ} (hτ : τ ∈ Region) :
     ‖1728 * q τ * J τ - 1728 * q τ * Jtilde τ‖ ≤ 498 * ‖q τ‖ ^ 2 := by
   have hQpos : 0 < ‖q τ‖ := norm_q_pos τ
@@ -841,7 +947,9 @@ lemma lem3 {τ : ℍ} (hτ : τ ∈ Region) :
 
 /-! ### Theorem `theonaeherJ` -/
 
-/-- `|J₂| = |1728·q·J| ≤ 1.3206 + 498|q|²` (paper: `|J₂| ≤ |Jtilde₂| + |δJtilde₂|`). -/
+/-- `|J₂| = |1728·q·J| ≤ 1.3206 + 498|q|²` (paper: `|J₂| ≤ |Jtilde₂| + |δJtilde₂|`).
+@isnad1 id=le.1h1v.s6.a1a649633d52 from=translated src=- shape=c506d5bd vocab=63f0d363
+-/
 lemma norm_mul_q_J_le {τ : ℍ} (hτ : τ ∈ Region) :
     ‖1728 * q τ * J τ‖ ≤ 1.3206 + 498 * ‖q τ‖ ^ 2 := by
   have h1 : 1728 * q τ * J τ
@@ -854,7 +962,9 @@ lemma norm_mul_q_J_le {τ : ℍ} (hτ : τ ∈ Region) :
           rw [mul_q_Jtilde_eq hτ]; exact norm_Jtilde2_le hτ
         exact add_le_add ht1 (lem3 hτ)
 
-/-- `0.7374 - 498|q|² ≤ |J₂| = |1728·q·J|` (paper: `|J₂| ≥ |Jtilde₂| - |δJtilde₂|`). -/
+/-- `0.7374 - 498|q|² ≤ |J₂| = |1728·q·J|` (paper: `|J₂| ≥ |Jtilde₂| - |δJtilde₂|`).
+@isnad1 id=le.1h1v.s6.d5c4045c7479 from=translated src=- shape=828c0977 vocab=4955689d
+-/
 lemma norm_mul_q_J_ge {τ : ℍ} (hτ : τ ∈ Region) :
     0.7374 - 498 * ‖q τ‖ ^ 2 ≤ ‖1728 * q τ * J τ‖ := by
   have h1 := norm_sub_norm_le (1728 * q τ * Jtilde τ)
@@ -870,7 +980,9 @@ lemma norm_mul_q_J_ge {τ : ℍ} (hτ : τ ∈ Region) :
   linarith [h1, norm_Jtilde2_ge hτ, lem3 hτ]
 
 /-- Paper Theorem `theonaeherJ`, approximation bound in the sharper `500·|q|` form:
-`|1728·J(τ) - 1728·Jtilde(τ)| < 500·|q|` for `Im τ > 5/4`. -/
+`|1728·J(τ) - 1728·Jtilde(τ)| < 500·|q|` for `Im τ > 5/4`.
+@isnad1 id=lt.1h1v.s6.3f97954fa74e from=translated src=- shape=a4d42b9a vocab=3875199c
+-/
 theorem theonaeherJ_approx {τ : ℍ} (hτ : τ ∈ Region) :
     ‖1728 * J τ - 1728 * Jtilde τ‖ < 500 * ‖q τ‖ := by
   have hQpos : 0 < ‖q τ‖ := norm_q_pos τ
@@ -881,7 +993,9 @@ theorem theonaeherJ_approx {τ : ℍ} (hτ : τ ∈ Region) :
   nlinarith [lem3 hτ, pow_pos hQpos 2, hQpos]
 
 /-- Paper Theorem `theonaeherJ`, headline approximation bound:
-`|1728·J(τ) - 1728·Jtilde(τ)| < 0.2` for `Im τ > 5/4`. -/
+`|1728·J(τ) - 1728·Jtilde(τ)| < 0.2` for `Im τ > 5/4`.
+@isnad1 id=lt.1h1v.s6.eadb29c59811 from=translated src=- shape=1522af46 vocab=32d54f7b
+-/
 theorem theonaeherJ {τ : ℍ} (hτ : τ ∈ Region) :
     ‖1728 * J τ - 1728 * Jtilde τ‖ < 0.2 := by
   have h := theonaeherJ_approx hτ
@@ -889,7 +1003,9 @@ theorem theonaeherJ {τ : ℍ} (hτ : τ ∈ Region) :
   linarith [h, hQ]
 
 /-- Paper Theorem `theonaeherJ`, lower bracketing:
-`0.737/|q| < |1728·J(τ)|` for `Im τ > 5/4`. -/
+`0.737/|q| < |1728·J(τ)|` for `Im τ > 5/4`.
+@isnad1 id=lt.1h1v.s5.09a29b0302ac from=translated src=- shape=bb202844 vocab=f5be4202
+-/
 theorem theonaeherJ_lower {τ : ℍ} (hτ : τ ∈ Region) :
     0.737 / ‖q τ‖ < ‖1728 * J τ‖ := by
   have hQpos : 0 < ‖q τ‖ := norm_q_pos τ
@@ -902,7 +1018,9 @@ theorem theonaeherJ_lower {τ : ℍ} (hτ : τ ∈ Region) :
   linarith [mul_le_mul_of_nonneg_right hlow hQpos.le, mul_lt_mul_of_pos_right hQsq hQpos]
 
 /-- Paper Theorem `theonaeherJ`, upper bracketing:
-`|1728·J(τ)| < 1.321/|q|` for `Im τ > 5/4`. -/
+`|1728·J(τ)| < 1.321/|q|` for `Im τ > 5/4`.
+@isnad1 id=lt.1h1v.s5.16e90f4ea99c from=translated src=- shape=df3c85aa vocab=f5be4202
+-/
 theorem theonaeherJ_upper {τ : ℍ} (hτ : τ ∈ Region) :
     ‖1728 * J τ‖ < 1.321 / ‖q τ‖ := by
   have hQpos : 0 < ‖q τ‖ := norm_q_pos τ
@@ -914,7 +1032,9 @@ theorem theonaeherJ_upper {τ : ℍ} (hτ : τ ∈ Region) :
   have hQsq : ‖q τ‖ ^ 2 < 0.000389 ^ 2 := pow_lt_pow_left₀ hQ hQpos.le (by norm_num)
   linarith [mul_le_mul_of_nonneg_right hup hQpos.le, mul_lt_mul_of_pos_right hQsq hQpos]
 
-/-- Paper Theorem `theonaeherJ`: `|J(τ)| > 1.096` for `Im τ > 5/4`. -/
+/-- Paper Theorem `theonaeherJ`: `|J(τ)| > 1.096` for `Im τ > 5/4`.
+@isnad1 id=lt.1h1v.s4.ea79aba57875 from=translated src=- shape=87775baf vocab=c10cdd91
+-/
 theorem theonaeherJ_norm_J {τ : ℍ} (hτ : τ ∈ Region) : 1.096 < ‖J τ‖ := by
   have hQpos : 0 < ‖q τ‖ := norm_q_pos τ
   have hQ : ‖q τ‖ < 0.000389 := lt_trans (norm_q_lt_of_mem_Region hτ) exp_neg_bound
@@ -928,13 +1048,17 @@ theorem theonaeherJ_norm_J {τ : ℍ} (hτ : τ ∈ Region) : 1.096 < ‖J τ‖
   have hQsq : ‖q τ‖ ^ 2 < 0.000389 ^ 2 := pow_lt_pow_left₀ hQ hQpos.le (by norm_num)
   linarith [hlow, hQsq, hQ]
 
-/-- `|J(τ)| > 1` for `Im τ > 5/4`; in particular `J(τ) ≠ 0` and `J(τ) ≠ 1` there. -/
+/-- `|J(τ)| > 1` for `Im τ > 5/4`; in particular `J(τ) ≠ 0` and `J(τ) ≠ 1` there.
+@isnad1 id=lt.1h1v.s4.60981f34880f from=translated src=- shape=d34713a8 vocab=814f1297
+-/
 theorem one_lt_norm_J {τ : ℍ} (hτ : τ ∈ Region) : 1 < ‖J τ‖ :=
   lt_trans (by norm_num) (theonaeherJ_norm_J hτ)
 
 /-! ### Theorem `theonaehers2` -/
 
-/-- Paper Theorem `theonaehers2`: `|s₂(τ) - stilde₂(τ)| < 222000·|q|³` for `Im τ > 5/4`. -/
+/-- Paper Theorem `theonaehers2`: `|s₂(τ) - stilde₂(τ)| < 222000·|q|³` for `Im τ > 5/4`.
+@isnad1 id=lt.1h1v.s6.419f7affb8f5 from=translated src=- shape=ca3ac64e vocab=ea6eeaaa
+-/
 theorem theonaehers2 {τ : ℍ} (hτ : τ ∈ Region) :
     ‖s₂ τ - s₂tilde τ‖ < 222000 * ‖q τ‖ ^ 3 := by
   set Q := ‖q τ‖ with hQdef

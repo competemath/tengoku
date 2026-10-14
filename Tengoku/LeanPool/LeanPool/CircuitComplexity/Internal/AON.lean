@@ -182,7 +182,9 @@ private lemma exists_testBit_encode (N : Nat) (x : BitString N) :
         · simp [Nat.zero_testBit])
       j
 
-/-- The single-output DNF circuit correctly computes `f`. -/
+/-- The single-output DNF circuit correctly computes `f`.
+@isnad1 id=eq.0h2v.s6.7de7bdac3eca from=translated src=- shape=4f23d077 vocab=feafc194
+-/
 theorem AONFor_is_Correct {N : Nat} [NeZero N] (f : BitString N → Bool) :
     (fun (x : BitString 1) => x 0) ∘ (AONFor f).eval = f := by
   funext x
@@ -341,7 +343,9 @@ private lemma AONForM_idx_j {N M : Nat} (j : Fin M) (k : Fin (2 ^ N)) :
     aonOutputIndex (AONForM_idx j k) = j :=
   AONForM_j_of_add j k _
 
-/-- The multi-output DNF circuit correctly computes `f`. -/
+/-- The multi-output DNF circuit correctly computes `f`.
+@isnad1 id=eq.0h3v.s6.c71aa8f873b6 from=translated src=- shape=7f15b706 vocab=3c48c953
+-/
 theorem AONForM_is_Correct {N M : Nat} [NeZero N] [NeZero M]
     (f : BitString N → BitString M) :
     (AONForM f).eval = f := by

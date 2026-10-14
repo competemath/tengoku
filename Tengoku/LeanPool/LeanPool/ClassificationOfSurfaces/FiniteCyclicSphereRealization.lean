@@ -35,15 +35,23 @@ def twoMonogonFaceEquiv : twoMonogonSphere.Face ≃ Bool where
     intro b
     cases b <;> simp
 
+/--
+@isnad1 id=eq.0h0v.s5.79302fd6eca9 from=translated src=- shape=4e0f1cd4 vocab=40524525
+-/
 @[simp]
 theorem twoMonogonFaceEquiv_zero : twoMonogonFaceEquiv 0 = false := by
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s5.14a0374a4f9b from=translated src=- shape=4e0f1cd4 vocab=0afe6ecf
+-/
 @[simp]
 theorem twoMonogonFaceEquiv_one : twoMonogonFaceEquiv 1 = true := by
   rfl
 
-/-- Corresponding monogon faces have the same side count. -/
+/-- Corresponding monogon faces have the same side count.
+@isnad1 id=eq.0h1v.s5.b5d7727ed74f from=translated src=- shape=bf1e465a vocab=c482ef3c
+-/
 theorem twoMonogon_faceBoundaryLength_eq (f : twoMonogonSphere.Face) :
     (twoMonogonSphere.boundary f).length =
       SurfaceCellComplex.sphere.faceBoundaryLength (twoMonogonFaceEquiv f) := by
@@ -71,6 +79,9 @@ noncomputable def twoMonogonPreHomeomorph :
       (fun f => (twoMonogonFaceHomeomorph f).isHomeomorph)).homeomorph
     (Sigma.map twoMonogonFaceEquiv fun f => twoMonogonFaceHomeomorph f)
 
+/--
+@isnad1 id=eq.0h1v.s7.0843a5ba8662 from=translated src=- shape=6281ecb7 vocab=0d942c49
+-/
 @[simp]
 theorem twoMonogonPreHomeomorph_zero (z : PolygonCell 1) :
     twoMonogonPreHomeomorph ⟨(0 : twoMonogonSphere.Face), z⟩ =
@@ -79,6 +90,9 @@ theorem twoMonogonPreHomeomorph_zero (z : PolygonCell 1) :
   · rfl
   · exact HEq.rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.120c1a8ef0a6 from=translated src=- shape=6281ecb7 vocab=ccad722a
+-/
 @[simp]
 theorem twoMonogonPreHomeomorph_one (z : PolygonCell 1) :
     twoMonogonPreHomeomorph ⟨(1 : twoMonogonSphere.Face), z⟩ =
@@ -87,6 +101,9 @@ theorem twoMonogonPreHomeomorph_one (z : PolygonCell 1) :
   · rfl
   · exact HEq.rfl
 
+/--
+@isnad1 id=eq.0h1v.s8.64a396fd7386 from=translated src=- shape=27c562bd vocab=3718a853
+-/
 @[simp]
 theorem twoMonogonPreHomeomorph_symm_false (z : PolygonCell 1) :
     twoMonogonPreHomeomorph.symm ⟨false, z⟩ =
@@ -94,6 +111,9 @@ theorem twoMonogonPreHomeomorph_symm_false (z : PolygonCell 1) :
   apply twoMonogonPreHomeomorph.injective
   simp
 
+/--
+@isnad1 id=eq.0h1v.s8.9f8ee46da0c9 from=translated src=- shape=27c562bd vocab=3337ffcc
+-/
 @[simp]
 theorem twoMonogonPreHomeomorph_symm_true (z : PolygonCell 1) :
     twoMonogonPreHomeomorph.symm ⟨true, z⟩ =
@@ -109,19 +129,27 @@ def twoMonogonPositiveOccurrence : twoMonogonSphere.BoundaryOccurrence :=
 def twoMonogonNegativeOccurrence : twoMonogonSphere.BoundaryOccurrence :=
   ⟨1, ⟨0, by simp [twoMonogonSphere, boundary]⟩⟩
 
+/--
+@isnad1 id=eq.0h0v.s4.3b4440caa016 from=translated src=- shape=d256f35a vocab=daf37b90
+-/
 @[simp]
 theorem twoMonogonPositiveOccurrence_dart :
     twoMonogonPositiveOccurrence.dart = .pos 0 :=
   by simp [twoMonogonPositiveOccurrence, BoundaryOccurrence.dart,
     twoMonogonSphere, boundary]
 
+/--
+@isnad1 id=eq.0h0v.s4.9c27429aadf1 from=translated src=- shape=d256f35a vocab=5951b713
+-/
 @[simp]
 theorem twoMonogonNegativeOccurrence_dart :
     twoMonogonNegativeOccurrence.dart = .neg 0 :=
   by simp [twoMonogonNegativeOccurrence, BoundaryOccurrence.dart,
     twoMonogonSphere, boundary]
 
-/-- Every boundary occurrence of the finite-cyclic sphere is one of its two monogon sides. -/
+/-- Every boundary occurrence of the finite-cyclic sphere is one of its two monogon sides.
+@isnad1 id=or.0h1v.s3.2bdd60485800 from=translated src=- shape=3078c585 vocab=fa8cdfe8
+-/
 theorem twoMonogonBoundaryOccurrence_eq
     (occurrence : twoMonogonSphere.BoundaryOccurrence) :
     occurrence = twoMonogonPositiveOccurrence ∨
@@ -143,6 +171,9 @@ theorem twoMonogonBoundaryOccurrence_eq
     · rfl
     · exact HEq.rfl
 
+/--
+@isnad1 id=not.0h1v.s2.e942454c97d3 from=translated src=- shape=17bc9619 vocab=285bbca9
+-/
 theorem twoMonogon_not_isBoundaryEdge (e : twoMonogonSphere.Edge) :
     ¬twoMonogonSphere.IsBoundaryEdge e := by
   intro h
@@ -171,19 +202,27 @@ def twoMonogonReverseBoundaryPairing : twoMonogonSphere.BoundaryPairing where
   direction := .opposite
   compatible := by simp [SurfaceCellComplex.SignedDart.flip]
 
+/--
+@isnad1 id=mem.0h0v.s5.d6246fe04fe0 from=translated src=- shape=f589a2a3 vocab=03c66971
+-/
 theorem twoMonogonBoundaryPairing_mem :
     twoMonogonBoundaryPairing.identification ∈
       twoMonogonSphere.polygonalIdentifications
         twoMonogonSphere_isSurfaceValid :=
   pairing_identification_mem _ _
 
+/--
+@isnad1 id=mem.0h0v.s5.03d76494b04a from=translated src=- shape=f589a2a3 vocab=edb3594f
+-/
 theorem twoMonogonReverseBoundaryPairing_mem :
     twoMonogonReverseBoundaryPairing.identification ∈
       twoMonogonSphere.polygonalIdentifications
         twoMonogonSphere_isSurfaceValid :=
   pairing_identification_mem _ _
 
-/-- The two directed forms of the monogon pairing exhaust the finite-cyclic sphere generators. -/
+/-- The two directed forms of the monogon pairing exhaust the finite-cyclic sphere generators.
+@isnad1 id=iff.0h1v.s6.39bb5f1d92dd from=translated src=- shape=73edceeb vocab=baf48358
+-/
 theorem mem_twoMonogon_polygonalIdentifications_iff
     (identification :
       PolygonGluing.Identification twoMonogonSphere.Face
@@ -212,6 +251,9 @@ theorem mem_twoMonogon_polygonalIdentifications_iff
     · exact twoMonogonBoundaryPairing_mem
     · exact twoMonogonReverseBoundaryPairing_mem
 
+/--
+@isnad1 id=eq.0h1v.s7.63a06246a212 from=translated src=- shape=b917dcc2 vocab=892b20c2
+-/
 theorem twoMonogonPreHomeomorph_boundaryPairing_source
     (t : unitInterval) :
     twoMonogonPreHomeomorph
@@ -223,6 +265,9 @@ theorem twoMonogonPreHomeomorph_boundaryPairing_source
     SurfaceCellComplex.occurrenceSide, PolygonGluing.Side.point]
   congr 2
 
+/--
+@isnad1 id=eq.0h1v.s7.f08b4ac3b81f from=translated src=- shape=b917dcc2 vocab=7b5fd71b
+-/
 theorem twoMonogonPreHomeomorph_boundaryPairing_target
     (t : unitInterval) :
     twoMonogonPreHomeomorph
@@ -234,6 +279,9 @@ theorem twoMonogonPreHomeomorph_boundaryPairing_target
     SurfaceCellComplex.occurrenceSide, PolygonGluing.Side.point]
   congr 2
 
+/--
+@isnad1 id=eq.0h1v.s7.a446f65a25e5 from=translated src=- shape=5286e1bd vocab=2c343aa8
+-/
 theorem twoMonogonPreHomeomorph_reverseBoundaryPairing_source
     (t : unitInterval) :
     twoMonogonPreHomeomorph
@@ -247,6 +295,9 @@ theorem twoMonogonPreHomeomorph_reverseBoundaryPairing_source
     SurfaceCellComplex.occurrenceSide, PolygonGluing.Side.point]
   congr 2
 
+/--
+@isnad1 id=eq.0h1v.s7.5dd6b3820d4f from=translated src=- shape=5286e1bd vocab=3793c6cc
+-/
 theorem twoMonogonPreHomeomorph_reverseBoundaryPairing_target
     (t : unitInterval) :
     twoMonogonPreHomeomorph
@@ -261,7 +312,9 @@ theorem twoMonogonPreHomeomorph_reverseBoundaryPairing_target
   congr 2
 
 /-- Relabeling the two monogon faces sends the finite-cyclic gluing relation into the typed
-sphere gluing relation. -/
+sphere gluing relation.
+@isnad1 id=r.1h2v.s8.230e3636adca from=translated src=- shape=ddfa3dcf vocab=8e96b272
+-/
 theorem twoMonogonPreHomeomorph_related
     {x y : twoMonogonSphere.PolygonalPreRealization}
     (hxy :
@@ -303,7 +356,9 @@ theorem twoMonogonPreHomeomorph_related
   | trans _ _ _ _ _ ih₁ ih₂ => exact Relation.EqvGen.trans _ _ _ ih₁ ih₂
 
 /-- The inverse face relabeling sends the typed sphere gluing relation back into the
-finite-cyclic gluing relation. -/
+finite-cyclic gluing relation.
+@isnad1 id=r.1h2v.s8.f1bff576331b from=translated src=- shape=efea9ac4 vocab=836f0f3e
+-/
 theorem twoMonogonPreHomeomorph_symm_related
     {x y : SurfaceCellComplex.sphere.PolygonalPreRealization}
     (hxy :
@@ -346,7 +401,9 @@ theorem twoMonogonPreHomeomorph_symm_related
   | trans _ _ _ _ _ ih₁ ih₂ => exact Relation.EqvGen.trans _ _ _ ih₁ ih₂
 
 /-- The face relabeling identifies the generated finite-cyclic and typed sphere relations
-exactly. -/
+exactly.
+@isnad1 id=iff.0h2v.s8.9c9b12808967 from=translated src=- shape=15b1d93e vocab=8e96b272
+-/
 theorem twoMonogonPreHomeomorph_related_iff
     (x y : twoMonogonSphere.PolygonalPreRealization) :
     twoMonogonSphere.PolygonalGluingRel

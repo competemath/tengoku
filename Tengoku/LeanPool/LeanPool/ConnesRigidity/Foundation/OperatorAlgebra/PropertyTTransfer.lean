@@ -66,6 +66,9 @@ structure FiniteExtensionData
 
 /- A property-(T) subgroup supplies the relative part after an explicit
 equivalence to the subgroup. -/
+/--
+@isnad1 id=hasrelat.1h4v.s6.35b934975e4b from=translated src=- shape=7062c2e8 vocab=c6abe8d4
+-/
 theorem relativePropertyT_of_subgroupEquiv
     (L G : CountableDiscreteGroup.{u}) (N : Subgroup G)
     (e : L ≃* OpenAIPort.CountableDiscreteGroup.subgroup G N)
@@ -89,6 +92,9 @@ theorem relativePropertyT_of_subgroupEquiv
 /- The quotient representation inherits almost-invariant vectors from a
 representation with relative property-(T). This is the quantitative bridge
 behind Zhou's Lemma 4.7. -/
+/--
+@isnad1 id=hasalmos.2h4v.s7.c05b127efc63 from=translated src=- shape=733e2450 vocab=95fe849d
+-/
 theorem normalFixedQuotient_hasAlmostInvariantUnitVectors
     (G : CountableDiscreteGroup.{u}) (N : Subgroup G) [N.Normal]
     (hrelative : HasRelativePropertyT.{u, v} G N)
@@ -284,6 +290,9 @@ theorem normalFixedQuotient_hasAlmostInvariantUnitVectors
 Lemma 4.7. The local relative-property API records the qualitative
 representation boundary, so its quantitative transfer proof remains an
 explicit project obligation rather than being hidden in a data structure. -/
+/--
+@isnad1 id=haskazhd.3h2v.s4.c6e4b97f19ba from=translated src=- shape=76d2f81e vocab=f3b5f2bc
+-/
 theorem hasKazhdanPropertyT_of_relative_and_quotient
     (G : CountableDiscreteGroup.{u}) (N : Subgroup G)
     (hN : N.Normal) (hrelative : HasRelativePropertyT.{u, v} G N)
@@ -316,6 +325,9 @@ theorem hasKazhdanPropertyT_of_relative_and_quotient
 
 /- Apply the preceding lemma to a finite-index extension with an explicit
 quotient identification. -/
+/--
+@isnad1 id=haskazhd.2h4v.s4.765b4d5c3067 from=translated src=- shape=9762a847 vocab=4a3c3b04
+-/
 theorem hasKazhdanPropertyT_of_finiteExtension
     (data : FiniteExtensionData L G Q)
     (hL : HasKazhdanPropertyT.{u, v} L)

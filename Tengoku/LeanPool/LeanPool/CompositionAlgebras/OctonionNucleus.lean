@@ -33,19 +33,33 @@ discharged by kernel-external evaluation, so nothing below rests on the compiler
 @[expose] public section
 namespace Octonion
 
+/--
+@isnad1 id=eq.1h3v.s4.737f40e3d921 from=translated src=- shape=ecb05047 vocab=c9f1f52f
+-/
 theorem coord_eq {a b : Octonion} (hab : a = b) (k : Fin 8) : a.coords k = b.coords k := by
   rw [hab]
 
+/--
+@isnad1 id=eq.0h0v.s5.8d9d4064e9ef from=translated src=- shape=592e0cda vocab=200df298
+-/
 theorem tbl_1_2 : mul (basisVec 1) (basisVec 2) = basisVec 4 := by
   ext m; fin_cases m <;> simp [mul, basisVec]
 
+/--
+@isnad1 id=eq.0h0v.s5.e8c8f4c19b95 from=translated src=- shape=592e0cda vocab=200df298
+-/
 theorem tbl_2_3 : mul (basisVec 2) (basisVec 3) = basisVec 5 := by
   ext m; fin_cases m <;> simp [mul, basisVec]
 
+/--
+@isnad1 id=eq.0h0v.s5.d0a91308ebec from=translated src=- shape=592e0cda vocab=200df298
+-/
 theorem tbl_3_4 : mul (basisVec 3) (basisVec 4) = basisVec 6 := by
   ext m; fin_cases m <;> simp [mul, basisVec]
 
-/-- The substantive inclusion: an element in the third-slot nucleus has no imaginary part. -/
+/-- The substantive inclusion: an element in the third-slot nucleus has no imaginary part.
+@isnad1 id=and.1h1v.s7.dbe446973c11 from=translated src=- shape=ef0c3286 vocab=59f90d28
+-/
 theorem nucleus_real (c : Octonion)
     (h : ∀ x y : Octonion, mul (mul x y) c = mul x (mul y c)) :
     c.coords 1 = 0 ∧ c.coords 2 = 0 ∧ c.coords 3 = 0 ∧ c.coords 4 = 0 ∧

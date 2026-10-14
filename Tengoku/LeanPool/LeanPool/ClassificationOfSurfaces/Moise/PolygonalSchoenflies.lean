@@ -34,7 +34,9 @@ namespace Topology
 namespace ClassificationOfSurfaces
 namespace Moise
 
-/-- A triangle mesh with exactly one maximal triangle has triangular support. -/
+/-- A triangle mesh with exactly one maximal triangle has triangular support.
+@isnad1 id=istriang.1h1v.s4.7c77157aaa55 from=translated src=- shape=5a41c4d1 vocab=663fac55
+-/
 theorem TriangleMesh.isTriangle_support_of_card_triangles_eq_one (M : TriangleMesh)
     (hcard : M.triangles.card = 1) : IsTriangle M.toPlaneComplex.support := by
   obtain ⟨t, ht⟩ := Finset.card_eq_one.mp hcard
@@ -69,7 +71,9 @@ inductive TriangleMesh.PLAmbientShellingIn (U : Set Plane) : TriangleMesh → Pr
         frontier (M.eraseTriangle t).toPlaneComplex.support)
       (tail : (M.eraseTriangle t).PLAmbientShellingIn U) : M.PLAmbientShellingIn U
 
-/-- A supported ambient shelling composes to a single relative Schoenflies homeomorphism. -/
+/-- A supported ambient shelling composes to a single relative Schoenflies homeomorphism.
+@isnad1 id=ex.1h2v.s9.61cd10d0d634 from=translated src=- shape=cc937d3a vocab=9c859236
+-/
 theorem TriangleMesh.AmbientShellingIn.straightens {M : TriangleMesh} {U : Set Plane}
     (S : M.AmbientShellingIn U) :
     ∃ h : Plane ≃ₜ Plane, ∃ C : Set Plane,
@@ -93,7 +97,9 @@ theorem TriangleMesh.AmbientShellingIn.straightens {M : TriangleMesh} {U : Set P
         rw [hfix hp]
         simpa using hfixTail hp
 
-/-- A PL-aware shelling composes to a finite PL ambient straightening of its original disk. -/
+/-- A PL-aware shelling composes to a finite PL ambient straightening of its original disk.
+@isnad1 id=ex.1h2v.s10.a118ad790920 from=translated src=- shape=1519c46e vocab=7474985d
+-/
 theorem TriangleMesh.PLAmbientShellingIn.straightens {M : TriangleMesh} {U : Set Plane}
     (S : M.PLAmbientShellingIn U) :
     ∃ h : Plane ≃ₜ Plane, ∃ C : Set Plane,
@@ -130,7 +136,9 @@ noncomputable def triangleAffineHomeomorph (p q : Fin 3 → Plane)
     (triangleAffineEquiv p q hp hq).symm.toAffineMap.continuous_of_finiteDimensional
 
 /-- Moise Chapter 3, Theorem 2 for plane triangles: two nondegenerate closed triangles are
-carried to one another by an affine ambient homeomorphism. -/
+carried to one another by an affine ambient homeomorphism.
+@isnad1 id=ex.2h2v.s9.836d8f6b434f from=translated src=- shape=51d40dae vocab=ad4cd6f7
+-/
 theorem triangle_ambient_homeomorphic {C C' : Set Plane} (hC : IsTriangle C)
     (hC' : IsTriangle C') :
     ∃ h : Plane ≃ₜ Plane, h '' C = C' ∧ h '' frontier C = frontier C' := by
@@ -144,7 +152,9 @@ theorem triangle_ambient_homeomorphic {C C' : Set Plane} (hC : IsTriangle C)
 
 /-! ## The edge complex of a polygon -/
 
-/-- Polygon edges meet exactly in the convex hull of their shared abstract vertices. -/
+/-- Polygon edges meet exactly in the convex hull of their shared abstract vertices.
+@isnad1 id=eq.0h3v.s8.0da938c6f4c3 from=translated src=- shape=45458173 vocab=c0433d7a
+-/
 theorem PolygonalCircle.edgeSegment_inter_eq_shared_vertices
     (J : PolygonalCircle) (i j : ZMod J.n) :
     J.edgeSegment i ∩ J.edgeSegment j =
@@ -246,6 +256,9 @@ noncomputable def PolygonalCircle.edgeFaces (J : PolygonalCircle) :
   exact (Finset.univ : Finset (ZMod J.n)).biUnion fun i =>
     ({i, i + 1} : Finset (ZMod J.n)).powerset.filter (·.Nonempty)
 
+/--
+@isnad1 id=iff.0h2v.s7.6cf6ea8cd2f9 from=translated src=- shape=a9a39c0b vocab=627037f8
+-/
 theorem PolygonalCircle.mem_edgeFaces_iff (J : PolygonalCircle)
     {s : Finset (ZMod J.n)} :
     s ∈ J.edgeFaces ↔ s.Nonempty ∧ ∃ i, s ⊆ {i, i + 1} := by
@@ -385,7 +398,9 @@ noncomputable def PolygonalCircle.edgeComplex (J : PolygonalCircle) : PlaneCompl
             simp]
         exact J.edgeSegment_inter_eq_shared_vertices i j
 
-/-- The support of the polygon edge complex is exactly the polygon carrier. -/
+/-- The support of the polygon edge complex is exactly the polygon carrier.
+@isnad1 id=eq.0h1v.s3.cfca64e0167c from=translated src=- shape=d403cf25 vocab=af630b4f
+-/
 theorem PolygonalCircle.edgeComplex_support (J : PolygonalCircle) :
     J.edgeComplex.support = J.carrier := by
   have hpairCarrier (i : ZMod J.n) :
@@ -418,7 +433,9 @@ theorem PolygonalCircle.edgeComplex_support (J : PolygonalCircle) :
       (J.mem_edgeFaces_iff.mpr ⟨by simp, i, Finset.Subset.rfl⟩) hxi
 
 /-- Removing finitely many points from a polygon carrier leaves a dense subset of that carrier.
-This lets incidence arguments move away from the finite mesh vertex set. -/
+This lets incidence arguments move away from the finite mesh vertex set.
+@isnad1 id=le.1h2v.s6.d6f5fd9ea69f from=translated src=- shape=9a0751cb vocab=35aee06b
+-/
 theorem PolygonalCircle.carrier_subset_closure_sdiff_finite (J : PolygonalCircle)
     {F : Set Plane} (hF : F.Finite) :
     J.carrier ⊆ closure (J.carrier \ F) := by
@@ -453,7 +470,9 @@ theorem PolygonalCircle.carrier_subset_closure_sdiff_finite (J : PolygonalCircle
   exact closure_mono hgoodImage hmemClosureImage
 
 /-- For a mesh whose support is a polygonal disk, the support frontier is exactly the finite
-union of its incidence-one edge carriers.  Polygonality rules out isolated frontier vertices. -/
+union of its incidence-one edge carriers.  Polygonality rules out isolated frontier vertices.
+@isnad1 id=eq.1h2v.s5.63ee036e6144 from=translated src=- shape=70acdb42 vocab=286753bd
+-/
 theorem TriangleMesh.boundaryCarrier_eq_frontier_of_polygonalDisk
     (M : TriangleMesh) (J : PolygonalCircle)
     (hsupport : M.toPlaneComplex.support = J.closedRegion) :
@@ -480,7 +499,9 @@ theorem TriangleMesh.boundaryCarrier_eq_frontier_of_polygonalDisk
   have hpBoundaryClosure : p ∈ closure M.boundaryCarrier := closure_mono hsub hpClosure
   rwa [M.isCompact_boundaryCarrier.isClosed.closure_eq] at hpBoundaryClosure
 
-/-- Restrict a finite PL certificate on a polygonal disk to its polygonal frontier. -/
+/-- Restrict a finite PL certificate on a polygonal disk to its polygonal frontier.
+@isnad1 id=isplonse.1h4v.s8.5b9dd0e7bf85 from=translated src=- shape=673724a1 vocab=888f2149
+-/
 theorem FinitePLHomeomorphOn.isPLOnSet_polygonal_frontier
     {h : Plane ≃ₜ Plane} {A : Set Plane} (F : FinitePLHomeomorphOn h A)
     (J : PolygonalCircle) (hA : A = J.closedRegion) :
@@ -528,7 +549,9 @@ private theorem coordinate_mem_Icc_of_mem_segment {p q r : Plane}
         _ = p 0 := by ring
 
 /-- After the three Figure 3.3 base breakpoints have been made polygon vertices, each polygon
-edge is contained in one base half or avoids the open base altogether. -/
+edge is contained in one base half or avoids the open base altogether.
+@isnad1 id=or.4h2v.s9.26d9f7e016bf from=translated src=- shape=fd5fd346 vocab=3cf03faf
+-/
 theorem PolygonalCircle.edgeSegment_subset_normalized_baseHalf_or_disjoint
     (J : PolygonalCircle)
     (hbase : segment ℝ (planePoint (-1) 0) (planePoint 1 0) ⊆ J.carrier)
@@ -721,7 +744,9 @@ theorem PolygonalCircle.edgeSegment_subset_normalized_baseHalf_or_disjoint
 
 /-- Once the three Figure 3.3 breakpoints are vertices, the normalized thin-kite move carries
 the polygon to another polygon.  Away from the standard triangle only pointwise fixation is
-needed; inside it, the old polygon has exactly the horizontal base trace. -/
+needed; inside it, the old polygon has exactly the horizontal base trace.
+@isnad1 id=ex.7h2v.s10.fa1f14b1735b from=translated src=- shape=79e71db8 vocab=d7a7a27a
+-/
 theorem PolygonalCircle.exists_thinKite_image
     (K : PolygonalCircle) (δ : ℝ) (hδ : 0 < δ)
     (hbase : segment ℝ (planePoint (-1) 0) (planePoint 1 0) ⊆ K.carrier)
@@ -808,7 +833,9 @@ private theorem exists_pos_uniform_fintype {I : Type*} [Finite I] [Nonempty I]
     (Classical.choose (hP i)) (Finset.mem_image.mpr ⟨i, Finset.mem_univ _, rfl⟩))
 
 /-- A sufficiently thin normalized kite fixes a refined polygon outside the standard triangle.
-This is the finite boundary-avoidance step used in the inverse, two-edge Figure 3.3 move. -/
+This is the finite boundary-avoidance step used in the inverse, two-edge Figure 3.3 move.
+@isnad1 id=ex.6h2v.s10.6a06bf3f292f from=translated src=- shape=46223c75 vocab=9a0f4945
+-/
 theorem PolygonalCircle.exists_thinKite_fixing_outside_triangle
     (K : PolygonalCircle)
     (hleft : K.IsVertexPoint (planePoint (-1) 0))
@@ -932,7 +959,9 @@ theorem PolygonalCircle.exists_thinKite_fixing_outside_triangle
 
 /-- In a triangulated polygonal disk with more than one maximal triangle, every maximal
 triangle has an edge-neighbor.  A triangle attached only at vertices would make its open
-interior a clopen piece of the connected polygon interior. -/
+interior a clopen piece of the connected polygon interior.
+@isnad1 id=ex.2h3v.s7.e2a19ac66a57 from=translated src=- shape=2e8f29b8 vocab=8ede0e83
+-/
 theorem TriangleMesh.exists_edgeNeighbor_of_polygonalDisk (M : TriangleMesh)
     (J : PolygonalCircle) (hsupport : M.toPlaneComplex.support = J.closedRegion)
     (T : M.Triangle) (hmore : 1 < M.triangles.card) :
@@ -1026,7 +1055,9 @@ theorem TriangleMesh.exists_edgeNeighbor_of_polygonalDisk (M : TriangleMesh)
     (hallInside hqInside) hqU
 
 /-- If a polygonal-disk mesh has another triangle, some point of the polygon frontier lies
-outside any prescribed maximal triangle. -/
+outside any prescribed maximal triangle.
+@isnad1 id=ex.2h3v.s6.a4714b30c898 from=translated src=- shape=9e578ecf vocab=8d12c73e
+-/
 theorem TriangleMesh.exists_carrier_not_mem_triangleCarrier_of_polygonalDisk
     (M : TriangleMesh) (J : PolygonalCircle)
     (hsupport : M.toPlaneComplex.support = J.closedRegion)
@@ -1120,7 +1151,9 @@ theorem TriangleMesh.exists_carrier_not_mem_triangleCarrier_of_polygonalDisk
   exact hqFrontier
 
 /-- The proved starting point of Moise Chapter 3, Theorem 3: a nontrivial triangulated
-polygonal disk has a weakly free triangle, and that triangle has an edge-neighbor. -/
+polygonal disk has a weakly free triangle, and that triangle has an edge-neighbor.
+@isnad1 id=ex.2h2v.s7.5876c4d74b61 from=translated src=- shape=09208f57 vocab=78f2e765
+-/
 theorem TriangleMesh.exists_freeTriangle_with_neighbor_of_polygonalDisk
     (M : TriangleMesh) (J : PolygonalCircle)
     (hsupport : M.toPlaneComplex.support = J.closedRegion)
@@ -1135,7 +1168,9 @@ theorem TriangleMesh.exists_freeTriangle_with_neighbor_of_polygonalDisk
   exact ⟨T, U, htFree, hTU, hneighbor⟩
 
 /-- Moise Chapter 3, Theorem 3, preliminary step: a nontrivial triangulated polygonal disk has
-two distinct triangles containing incidence-one edges. -/
+two distinct triangles containing incidence-one edges.
+@isnad1 id=ex.2h2v.s7.29d51facd969 from=translated src=- shape=3c5584e4 vocab=b096670a
+-/
 theorem TriangleMesh.exists_two_freeTriangles_of_polygonalDisk
     (M : TriangleMesh) (J : PolygonalCircle)
     (hsupport : M.toPlaneComplex.support = J.closedRegion)
@@ -1173,7 +1208,9 @@ theorem TriangleMesh.exists_two_freeTriangles_of_polygonalDisk
   exact ⟨T, U, hTU, hTfree, hu, e, heBoundary, heu⟩
 
 /-- In a two-triangle polygonal disk, each maximal triangle has exactly its two outer edges on
-the boundary. -/
+the boundary.
+@isnad1 id=eq.2h3v.s6.8d38f851d197 from=translated src=- shape=7597ead5 vocab=0d7edec6
+-/
 theorem TriangleMesh.boundaryEdges_card_two_of_card_triangles_eq_two
     (M : TriangleMesh) (J : PolygonalCircle)
     (hsupport : M.toPlaneComplex.support = J.closedRegion)
@@ -1246,7 +1283,9 @@ theorem TriangleMesh.boundaryEdges_card_two_of_card_triangles_eq_two
   · rw [M.card_triangleEdges T.2]
   · exact Finset.mem_powersetCard.mpr ⟨heT, hecard⟩
 
-/-- Both maximal triangles of a two-triangle polygonal disk are Figure 3.3 free triangles. -/
+/-- Both maximal triangles of a two-triangle polygonal disk are Figure 3.3 free triangles.
+@isnad1 id=isgeomet.2h3v.s5.6a0b9044da2b from=translated src=- shape=3b6f82fe vocab=9db26d63
+-/
 theorem TriangleMesh.isGeometricallyFreeTriangle_of_card_triangles_eq_two
     (M : TriangleMesh) (J : PolygonalCircle)
     (hsupport : M.toPlaneComplex.support = J.closedRegion)
@@ -1258,7 +1297,9 @@ theorem TriangleMesh.isGeometricallyFreeTriangle_of_card_triangles_eq_two
     (M.hasNoIsolatedFrontierVertex_of_boundaryEdges_card_two T hboundary) hboundary
 
 /-- The two non-boundary edges in the hard free-triangle configuration are genuine chords:
-away from their endpoints they lie in the polygon interior. -/
+away from their endpoints they lie in the polygon interior.
+@isnad1 id=and.6h6v.s9.0898ac6b22e8 from=translated src=- shape=d7bb58c6 vocab=c702a256
+-/
 theorem TriangleMesh.cuttingDiagonals_interior_of_polygonalDisk
     (M : TriangleMesh) (J : PolygonalCircle)
     (hsupport : M.toPlaneComplex.support = J.closedRegion)
@@ -1305,7 +1346,9 @@ theorem TriangleMesh.cuttingDiagonals_interior_of_polygonalDisk
       T.2 hbvCard hbvT hbvNotBoundary
 
 /-- A bad weakly free triangle supplies the two proper polygonal crosscuts used in Moise's
-cutting induction. -/
+cutting induction.
+@isnad1 id=ex.5h4v.s8.2ce49786cc1d from=translated src=- shape=85e5957f vocab=a9c829b6
+-/
 theorem TriangleMesh.exists_realizedProperChords_of_badFreeTriangle
     (M : TriangleMesh) (J : PolygonalCircle)
     (hsupport : M.toPlaneComplex.support = J.closedRegion)
@@ -1361,7 +1404,9 @@ theorem TriangleMesh.exists_realizedProperChords_of_badFreeTriangle
         exact hbvInterior }
   exact ⟨a, b, v, Cav, Cbv, htriangle, hboundary, rfl, rfl, rfl, rfl⟩
 
-/-- A bad weakly free triangle supplies two proper polygonal crosscuts. -/
+/-- A bad weakly free triangle supplies two proper polygonal crosscuts.
+@isnad1 id=ex.5h4v.s8.f0486a9f57ba from=translated src=- shape=b63ec041 vocab=12290d7e
+-/
 theorem TriangleMesh.exists_properChords_of_badFreeTriangle
     (M : TriangleMesh) (J : PolygonalCircle)
     (hsupport : M.toPlaneComplex.support = J.closedRegion)
@@ -1375,7 +1420,9 @@ theorem TriangleMesh.exists_properChords_of_badFreeTriangle
     M.exists_realizedProperChords_of_badFreeTriangle J hsupport T U hfree hne hneighbors hnot
   exact ⟨a, b, v, htriangle, hboundary, ⟨Cav⟩, ⟨Cbv⟩⟩
 
-/-- The hard free-triangle branch produces a theta crosscut realized by an actual mesh edge. -/
+/-- The hard free-triangle branch produces a theta crosscut realized by an actual mesh edge.
+@isnad1 id=ex.5h4v.s7.f745b2c49c74 from=translated src=- shape=ebf86db7 vocab=460a0834
+-/
 theorem TriangleMesh.exists_meshCrosscut_of_badFreeTriangle
     (M : TriangleMesh) (J : PolygonalCircle)
     (hsupport : M.toPlaneComplex.support = J.closedRegion)
@@ -1467,7 +1514,9 @@ noncomputable def TriangleMesh.twoEdgeFreeBaseChord
     rw [J.closedRegion_eq_union] at hpClosed
     exact hpClosed.resolve_right hpNotCarrier
 
-/-- The proper chord in a two-edge ear is realized by the corresponding mesh edge. -/
+/-- The proper chord in a two-edge ear is realized by the corresponding mesh edge.
+@isnad1 id=ex.2h4v.s5.bd7e25392c02 from=translated src=- shape=df654280 vocab=c772e347
+-/
 theorem TriangleMesh.exists_meshCrosscut_of_twoEdgeFreeTriangle
     (M : TriangleMesh) (J : PolygonalCircle)
     (hsupport : M.toPlaneComplex.support = J.closedRegion)
@@ -1491,7 +1540,9 @@ theorem TriangleMesh.exists_meshCrosscut_of_twoEdgeFreeTriangle
       rw [M.freeTriangleBaseEdge_carrier T k, hGB3]
       rfl }, rfl⟩
 
-/-- In the one-edge Figure 3.3 case, the base is exactly an incidence-one mesh edge. -/
+/-- In the one-edge Figure 3.3 case, the base is exactly an incidence-one mesh edge.
+@isnad1 id=isbounda.1h3v.s4.1baffa20ce7b from=translated src=- shape=8784ac0e vocab=1c43e044
+-/
 theorem TriangleMesh.isBoundaryEdge_freeTriangleBaseEdge_of_oneEdgeFree
     (M : TriangleMesh) (T : M.Triangle) (k : Fin 3)
     (hfree : M.IsOneEdgeFreeTriangle T k) :
@@ -1561,7 +1612,9 @@ private theorem TriangleMesh.not_isBoundaryEdge_freeTriangleApexEdge1_of_oneEdge
     (M.freeTriangleBase_diff_endpoints_disjoint_apexEdges T k)
     ⟨hpBase, hpEnds⟩ (Or.inr hpApex)
 
-/-- A non-boundary edge of `T` is carried by the support remaining after `T` is deleted. -/
+/-- A non-boundary edge of `T` is carried by the support remaining after `T` is deleted.
+@isnad1 id=le.3h3v.s8.4a47544bad21 from=translated src=- shape=163c4106 vocab=1eb280de
+-/
 theorem TriangleMesh.edgeCarrier_subset_eraseTriangle_support_of_not_boundary
     (M : TriangleMesh) (T : M.Triangle) {e : Finset M.Vertex}
     (hecard : e.card = 2) (heT : e ⊆ T.1) (heNotBoundary : ¬M.IsBoundaryEdge e) :
@@ -1591,7 +1644,9 @@ theorem TriangleMesh.edgeCarrier_subset_eraseTriangle_support_of_not_boundary
       (convexHull_mono (Set.image_mono huData.2))
 
 /-- In the one-edge case, the surviving support attaches to the deleted triangle exactly along
-the two apex edges. -/
+the two apex edges.
+@isnad1 id=eq.1h3v.s8.f8c5ae2d2433 from=translated src=- shape=2af9424b vocab=947e4b0d
+-/
 theorem TriangleMesh.eraseTriangle_support_inter_triangleCarrier_of_oneEdgeFree
     (M : TriangleMesh) (T : M.Triangle) (k : Fin 3)
     (hfree : M.IsOneEdgeFreeTriangle T k) :
@@ -1686,7 +1741,9 @@ theorem TriangleMesh.eraseTriangle_support_inter_triangleCarrier_of_oneEdgeFree
           (M.freeTriangleApexEdge1_subset T k) he1Not hpEdge,
         convexHull_mono (Set.image_mono (M.freeTriangleApexEdge1_subset T k)) hpEdge⟩
 
-/-- Exact frontier update in the one-edge Figure 3.3 case. -/
+/-- Exact frontier update in the one-edge Figure 3.3 case.
+@isnad1 id=eq.1h3v.s8.a5ecbec07541 from=translated src=- shape=4dfa23ef vocab=6c150c9f
+-/
 theorem TriangleMesh.frontier_eraseTriangle_support_of_oneEdgeFree
     (M : TriangleMesh) (T : M.Triangle) (k : Fin 3)
     (hfree : M.IsOneEdgeFreeTriangle T k) :
@@ -1697,7 +1754,9 @@ theorem TriangleMesh.frontier_eraseTriangle_support_of_oneEdgeFree
   rw [M.frontier_eraseTriangle_support T,
     M.eraseTriangle_support_inter_triangleCarrier_of_oneEdgeFree T k hfree]
 
-/-- The old frontier splits into the unchanged part outside the ear and its one-edge trace. -/
+/-- The old frontier splits into the unchanged part outside the ear and its one-edge trace.
+@isnad1 id=eq.1h3v.s8.1a5e7ce8e007 from=translated src=- shape=0da88fd5 vocab=de76d872
+-/
 theorem TriangleMesh.frontier_eq_outside_triangle_union_base_of_oneEdgeFree
     (M : TriangleMesh) (T : M.Triangle) (k : Fin 3)
     (hfree : M.IsOneEdgeFreeTriangle T k) :
@@ -1714,7 +1773,9 @@ theorem TriangleMesh.frontier_eq_outside_triangle_union_base_of_oneEdgeFree
     · exact (hfree.symm ▸ hp).1
 
 /-- In the two-edge case the old frontier is its unchanged outside part together with the two
-apex edges. -/
+apex edges.
+@isnad1 id=eq.1h3v.s8.f3dc38a89f2f from=translated src=- shape=b4c6de2f vocab=454e467c
+-/
 theorem TriangleMesh.frontier_eq_outside_triangle_union_apex_of_twoEdgeFree
     (M : TriangleMesh) (T : M.Triangle) (k : Fin 3)
     (hfree : M.IsTwoEdgeFreeTriangle T k) :
@@ -1732,7 +1793,9 @@ theorem TriangleMesh.frontier_eq_outside_triangle_union_apex_of_twoEdgeFree
     · exact (hfree.symm ▸ hp).1
 
 /-- A Figure 3.3 push which fixes the old frontier away from the ear realizes the exact
-one-edge deletion frontier. -/
+one-edge deletion frontier.
+@isnad1 id=eq.3h4v.s10.4a854b6b080a from=translated src=- shape=bc98ce4f vocab=a3fc33e3
+-/
 theorem TriangleMesh.image_frontier_eq_eraseTriangle_frontier_of_oneEdgeFree
     (M : TriangleMesh) (T : M.Triangle) (k : Fin 3)
     (hfree : M.IsOneEdgeFreeTriangle T k) (g : Plane ≃ₜ Plane)
@@ -1756,7 +1819,9 @@ theorem TriangleMesh.image_frontier_eq_eraseTriangle_frontier_of_oneEdgeFree
     exact ⟨p, hp, hfix hp⟩
 
 /-- The supported thin-kite construction realizes the exact one-edge frontier update while
-remaining the identity off any prescribed neighborhood of the ear. -/
+remaining the identity off any prescribed neighborhood of the ear.
+@isnad1 id=ex.4h5v.s9.b07a7b4acc22 from=translated src=- shape=52765d82 vocab=b1d774a3
+-/
 theorem TriangleMesh.exists_supported_frontier_move_of_oneEdgeFree
     (M : TriangleMesh) (J : PolygonalCircle)
     (hsupport : M.toPlaneComplex.support = J.closedRegion)
@@ -1781,7 +1846,9 @@ namespace PolygonalTheta.MeshCrosscut
 variable {G : PolygonalTheta} {M : TriangleMesh} (C : G.MeshCrosscut M)
 
 /-- If a two-edge Figure 3.3 triangle lies on the first side of its base crosscut, that whole
-side is exactly the closed triangle. -/
+side is exactly the closed triangle.
+@isnad1 id=eq.3h5v.s8.06af65a31a62 from=translated src=- shape=c5af3503 vocab=e3cc9dce
+-/
 theorem side13Mesh_support_eq_triangleCarrier_of_twoEdgeFree
     (T : M.Triangle) (k : Fin 3) (hfree : M.IsTwoEdgeFreeTriangle T k)
     (hbase : G.B3 = segment ℝ (M.freeTriangleOrder T k 0)
@@ -1837,7 +1904,9 @@ theorem side13Mesh_support_eq_triangleCarrier_of_twoEdgeFree
     exact closure_mono hsideInterior
   · exact htriangleSubset
 
-/-- Symmetric form: if the ear lies on the second side, that side is the closed triangle. -/
+/-- Symmetric form: if the ear lies on the second side, that side is the closed triangle.
+@isnad1 id=eq.3h5v.s8.ab8b0ce0f627 from=translated src=- shape=c5af3503 vocab=826f708e
+-/
 theorem side23Mesh_support_eq_triangleCarrier_of_twoEdgeFree
     (T : M.Triangle) (k : Fin 3) (hfree : M.IsTwoEdgeFreeTriangle T k)
     (hbase : G.B3 = segment ℝ (M.freeTriangleOrder T k 0)
@@ -1847,7 +1916,9 @@ theorem side23Mesh_support_eq_triangleCarrier_of_twoEdgeFree
   exact C.swap12.side13Mesh_support_eq_triangleCarrier_of_twoEdgeFree
     (G := G.swap12) T k hfree hbase hT23
 
-/-- In the preceding situation, the first side contains no maximal triangle besides the ear. -/
+/-- In the preceding situation, the first side contains no maximal triangle besides the ear.
+@isnad1 id=eq.3h5v.s8.479557ce5214 from=translated src=- shape=dc78f0ed vocab=ca646f89
+-/
 theorem side13Mesh_triangles_eq_singleton_of_twoEdgeFree
     (T : M.Triangle) (k : Fin 3) (hfree : M.IsTwoEdgeFreeTriangle T k)
     (hbase : G.B3 = segment ℝ (M.freeTriangleOrder T k 0)
@@ -1881,7 +1952,9 @@ theorem side13Mesh_triangles_eq_singleton_of_twoEdgeFree
     ⟨p, hpTInterior, hpU⟩ |>.symm
 
 /-- Once the first crosscut side is the ear, the second side is exactly the mesh obtained by
-deleting that ear. -/
+deleting that ear.
+@isnad1 id=eq.3h5v.s8.421622bb25a3 from=translated src=- shape=cc5395c3 vocab=4fb33dd7
+-/
 theorem side23Mesh_support_eq_eraseTriangle_of_twoEdgeFree
     (T : M.Triangle) (k : Fin 3) (hfree : M.IsTwoEdgeFreeTriangle T k)
     (hbase : G.B3 = segment ℝ (M.freeTriangleOrder T k 0)
@@ -1916,7 +1989,9 @@ theorem side23Mesh_support_eq_eraseTriangle_of_twoEdgeFree
     TriangleMesh.eraseTriangle_triangles, htriangles]
   rfl
 
-/-- Symmetric form: if the ear lies on the second side, the first side is the erased mesh. -/
+/-- Symmetric form: if the ear lies on the second side, the first side is the erased mesh.
+@isnad1 id=eq.3h5v.s8.06d5207b6b21 from=translated src=- shape=cc5395c3 vocab=4fb33dd7
+-/
 theorem side13Mesh_support_eq_eraseTriangle_of_twoEdgeFree
     (T : M.Triangle) (k : Fin 3) (hfree : M.IsTwoEdgeFreeTriangle T k)
     (hbase : G.B3 = segment ℝ (M.freeTriangleOrder T k 0)
@@ -1930,7 +2005,9 @@ theorem side13Mesh_support_eq_eraseTriangle_of_twoEdgeFree
 
 /-- Away from the triangle incident to the new chord, cutting a polygonal disk does not change
 the frontier trace on a mesh triangle.  This is the transport lemma used in Moise's strengthened
-free-triangle induction. -/
+free-triangle induction.
+@isnad1 id=eq.2h4v.s7.3aa0c93757db from=translated src=- shape=154966f7 vocab=e41d4ac2
+-/
 theorem frontier_inter_triangleCarrier_side13 {t : Finset M.Vertex}
     (ht : t ∈ C.side13Mesh.triangles) (hchord : ¬C.chordEdge ⊆ t) :
     frontier M.toPlaneComplex.support ∩ M.triangleCarrier t =
@@ -2032,7 +2109,9 @@ theorem frontier_inter_triangleCarrier_side13 {t : Finset M.Vertex}
       · exact G.P_mem_B1
       · exact G.Q_mem_B1
 
-/-- The symmetric frontier-trace transport theorem for the other cut subdisk. -/
+/-- The symmetric frontier-trace transport theorem for the other cut subdisk.
+@isnad1 id=eq.2h4v.s7.0fd32889b554 from=translated src=- shape=154966f7 vocab=221f8194
+-/
 theorem frontier_inter_triangleCarrier_side23 {t : Finset M.Vertex}
     (ht : t ∈ C.side23Mesh.triangles) (hchord : ¬C.chordEdge ⊆ t) :
     frontier M.toPlaneComplex.support ∩ M.triangleCarrier t =
@@ -2046,7 +2125,9 @@ theorem frontier_inter_triangleCarrier_side23 {t : Finset M.Vertex}
   simpa using h
 
 /-- A geometrically free triangle not incident to the cut edge remains geometrically free after
-the first cut subdisk is glued back into the original polygonal disk. -/
+the first cut subdisk is glued back into the original polygonal disk.
+@isnad1 id=isgeomet.2h4v.s7.99f932413911 from=translated src=- shape=164be786 vocab=5e319531
+-/
 theorem isGeometricallyFreeTriangle_of_side13
     (T : C.side13Mesh.Triangle)
     (hfree : C.side13Mesh.IsGeometricallyFreeTriangle T)
@@ -2063,7 +2144,9 @@ theorem isGeometricallyFreeTriangle_of_side13
     rw [C.frontier_inter_triangleCarrier_side13 T.2 hchord]
     exact hfree
 
-/-- The symmetric geometric-freeness transport theorem for the second cut subdisk. -/
+/-- The symmetric geometric-freeness transport theorem for the second cut subdisk.
+@isnad1 id=isgeomet.2h4v.s7.1a93fdb18635 from=translated src=- shape=164be786 vocab=2b883fe0
+-/
 theorem isGeometricallyFreeTriangle_of_side23
     (T : C.side23Mesh.Triangle)
     (hfree : C.side23Mesh.IsGeometricallyFreeTriangle T)
@@ -2080,7 +2163,9 @@ theorem isGeometricallyFreeTriangle_of_side23
     rw [C.frontier_inter_triangleCarrier_side23 T.2 hchord]
     exact hfree
 
-/-- Each cut subdisk has a maximal triangle incident to the new chord edge. -/
+/-- Each cut subdisk has a maximal triangle incident to the new chord edge.
+@isnad1 id=ex.0h3v.s6.1c88345f255b from=translated src=- shape=6479ce90 vocab=d10f95ca
+-/
 theorem exists_side13_triangle_chordEdge_subset :
     ∃ T : C.side13Mesh.Triangle, C.chordEdge ⊆ T.1 := by
   have hedgeCard := M.card_of_mem_edges C.chordEdge_mem
@@ -2100,7 +2185,9 @@ theorem exists_side13_triangle_chordEdge_subset :
       hpEdge hpt hpv
   exact ⟨⟨t, ht⟩, het⟩
 
-/-- The symmetric chord-incidence existence theorem. -/
+/-- The symmetric chord-incidence existence theorem.
+@isnad1 id=ex.0h3v.s6.db630d068f64 from=translated src=- shape=6479ce90 vocab=78ee5b29
+-/
 theorem exists_side23_triangle_chordEdge_subset :
     ∃ T : C.side23Mesh.Triangle, C.chordEdge ⊆ T.1 := by
   have hedgeCard := M.card_of_mem_edges C.chordEdge_mem
@@ -2120,7 +2207,9 @@ theorem exists_side23_triangle_chordEdge_subset :
       hpEdge hpt hpv
   exact ⟨⟨t, ht⟩, het⟩
 
-/-- On either side of a crosscut there is at most one maximal triangle containing the chord. -/
+/-- On either side of a crosscut there is at most one maximal triangle containing the chord.
+@isnad1 id=eq.2h5v.s8.18e84d745ad3 from=translated src=- shape=9c8e521f vocab=d10f95ca
+-/
 theorem side13_triangle_eq_of_chordEdge_subset
     (T U : C.side13Mesh.Triangle)
     (hT : C.chordEdge ⊆ T.1) (hU : C.chordEdge ⊆ U.1) : T.1 = U.1 := by
@@ -2148,7 +2237,9 @@ theorem side13_triangle_eq_of_chordEdge_subset
   have hU13 : (U.1 : Finset M.Vertex) ∈ C.side13Mesh.triangles := U.2
   exact Finset.disjoint_left.mp C.disjoint_side_triangles hU13 hU23
 
-/-- Symmetric uniqueness on the second cut subdisk. -/
+/-- Symmetric uniqueness on the second cut subdisk.
+@isnad1 id=eq.2h5v.s8.67a0924ad5d0 from=translated src=- shape=9c8e521f vocab=78ee5b29
+-/
 theorem side23_triangle_eq_of_chordEdge_subset
     (T U : C.side23Mesh.Triangle)
     (hT : C.chordEdge ⊆ T.1) (hU : C.chordEdge ⊆ U.1) : T.1 = U.1 := by
@@ -2164,7 +2255,9 @@ theorem side23_triangle_eq_of_chordEdge_subset
     (G := G.swap12) (M := M) T' U' hT hU
 
 /-- If one cut subdisk consists of a single triangle, the two edges other than the chord are
-boundary edges of the original disk. -/
+boundary edges of the original disk.
+@isnad1 id=ex.1h3v.s7.d2d08ba4ed2e from=translated src=- shape=27bd6b89 vocab=8d7cba56
+-/
 theorem exists_geometricallyFreeTriangle_of_side13_card_one
     (hcard : C.side13Mesh.triangles.card = 1) :
     ∃ T : C.side13Mesh.Triangle,
@@ -2267,7 +2360,9 @@ theorem exists_geometricallyFreeTriangle_of_side13_card_one
   exact ⟨T, M.isGeometricallyFreeTriangle_of_boundaryEdges_card_two
     ⟨T.1, hTM⟩ hnoIsolated hboundaryCard⟩
 
-/-- Symmetric one-triangle-side conclusion. -/
+/-- Symmetric one-triangle-side conclusion.
+@isnad1 id=ex.1h3v.s7.824462511584 from=translated src=- shape=27bd6b89 vocab=87e62de7
+-/
 theorem exists_geometricallyFreeTriangle_of_side23_card_one
     (hcard : C.side23Mesh.triangles.card = 1) :
     ∃ T : C.side23Mesh.Triangle,
@@ -2287,7 +2382,9 @@ theorem exists_geometricallyFreeTriangle_of_side23_card_one
 end PolygonalTheta.MeshCrosscut
 
 /-- Removing a two-frontier-edge Figure 3.3 ear leaves another polygonal disk.  The proof uses
-the proper base chord and the exact two-side decomposition from Chapter 2. -/
+the proper base chord and the exact two-side decomposition from Chapter 2.
+@isnad1 id=ex.2h4v.s8.718b66cbc200 from=translated src=- shape=b144c100 vocab=b9e6717c
+-/
 theorem TriangleMesh.exists_polygonalDisk_eraseTriangle_of_twoEdgeFree
     (M : TriangleMesh) (J : PolygonalCircle)
     (hsupport : M.toPlaneComplex.support = J.closedRegion)
@@ -2327,7 +2424,9 @@ theorem TriangleMesh.exists_polygonalDisk_eraseTriangle_of_twoEdgeFree
     rw [htriangle, G.closedRegion13_inter_closedRegion23, hbase]
 
 /-- Moise Chapter 3, Theorem 3 in the strengthened form used by the induction: every nontrivial
-triangulated polygonal disk has at least two geometrically free maximal triangles. -/
+triangulated polygonal disk has at least two geometrically free maximal triangles.
+@isnad1 id=ex.2h2v.s6.da699dd026e0 from=translated src=- shape=89ac12d2 vocab=a3241cee
+-/
 theorem TriangleMesh.exists_two_geometricallyFreeTriangles_of_polygonalDisk
     (M : TriangleMesh) (J : PolygonalCircle)
     (hsupport : M.toPlaneComplex.support = J.closedRegion)
@@ -2490,7 +2589,9 @@ theorem eq_closedRegion_of_isCompact_frontier_eq
     (by rw [← hfrontier]; exact frontier_subset_closure.trans_eq hSclosed.closure_eq)
 
 /-- A homeomorphism carrying the frontier of one polygonal mesh disk to another carries the
-whole closed disk to the other closed disk. -/
+whole closed disk to the other closed disk.
+@isnad1 id=eq.3h4v.s9.ae69580afad8 from=translated src=- shape=5308ddbf vocab=208dac62
+-/
 theorem TriangleMesh.image_support_eq_of_polygonalDisk_frontier
     (M : TriangleMesh) (J' : PolygonalCircle)
     (htriangles : M.triangles.Nonempty)
@@ -2519,7 +2620,9 @@ theorem TriangleMesh.image_support_eq_of_polygonalDisk_frontier
     hcompact hfrontierImage hinterior).trans hN.symm
 
 /-- The one-edge Figure 3.3 move removes an ear through polygonal disks, relative to any open
-neighborhood of that ear. -/
+neighborhood of that ear.
+@isnad1 id=ex.5h5v.s9.ab2116694312 from=translated src=- shape=18ac5f4e vocab=5c55fe76
+-/
 theorem TriangleMesh.exists_supported_polygonalDisk_move_of_oneEdgeFree
     (M : TriangleMesh) (J : PolygonalCircle)
     (hsupport : M.toPlaneComplex.support = J.closedRegion)
@@ -2721,7 +2824,9 @@ theorem TriangleMesh.exists_supported_polygonalDisk_move_of_oneEdgeFree
     hfixU, hfrontier, hremaining⟩
 
 /-- The inverse two-edge Figure 3.3 move removes an ear through polygonal disks, relative to any
-open neighborhood of the ear. -/
+open neighborhood of the ear.
+@isnad1 id=ex.4h5v.s9.44080a3bb668 from=translated src=- shape=c7892cf4 vocab=87a51f50
+-/
 theorem TriangleMesh.exists_supported_polygonalDisk_move_of_twoEdgeFree
     (M : TriangleMesh) (J : PolygonalCircle)
     (hsupport : M.toPlaneComplex.support = J.closedRegion)
@@ -2912,7 +3017,9 @@ theorem TriangleMesh.exists_supported_polygonalDisk_move_of_twoEdgeFree
 
 The closed region bounded by a polygon is the support of a finite, purely two-dimensional plane
 complex.  Moise's proof cuts the region by the finitely many lines through the polygon's edges
-and triangulates each convex piece. -/
+and triangulates each convex piece.
+@isnad1 id=ex.0h1v.s4.c291d480a0bd from=translated src=- shape=b9b6a740 vocab=5cced9e3
+-/
 theorem closedRegion_is_polyhedron :
     ∃ K : PlaneComplex, K.support = J.closedRegion ∧ K.IsPure2 := by
   exact ⟨J.closedRegionMesh.toPlaneComplex, J.closedRegionMesh_support,
@@ -2921,7 +3028,9 @@ theorem closedRegion_is_polyhedron :
 /-- The closed region bounded by a polygon admits a geometric triangulation.
 
 This is real glue (not a boundary): it consumes `closedRegion_is_polyhedron` (Moise Ch. 2,
-Thm. 2) and the realization bridge `PlaneComplex.toGeometricTriangulation`. -/
+Thm. 2) and the realization bridge `PlaneComplex.toGeometricTriangulation`.
+@isnad1 id=nonempty.0h1v.s5.580fb1ab9aa4 from=translated src=- shape=f19dd841 vocab=3fa49663
+-/
 theorem closedRegion_triangulable :
     Nonempty (GeometricTriangulation J.closedRegion) := by
   obtain ⟨K, hsupport, hpure⟩ := J.closedRegion_is_polyhedron
@@ -2933,7 +3042,9 @@ theorem closedRegion_triangulable :
 The straightening homeomorphism can be chosen to fix everything outside a prescribed open set
 containing the closed region: `h` sends the polygon to the frontier of a triangle and is the
 identity off `U`.  This is the version used to reconcile chart triangulations without disturbing
-the part of the complex already built. -/
+the part of the complex already built.
+@isnad1 id=ex.2h2v.s10.4f46bd96d238 from=translated src=- shape=41a4dc04 vocab=c32fb77d
+-/
 theorem polygonal_schoenflies_rel (U : Set Plane) (hU : IsOpen U)
     (hregion : J.closedRegion ⊆ U) :
     ∃ h : Plane ≃ₜ Plane,
@@ -3009,7 +3120,9 @@ theorem polygonal_schoenflies_rel (U : Set Plane) (hU : IsOpen U)
 
 /-- Moise Ch. 3, Thm. 5: any two polygons in the plane are equivalent under an ambient
 homeomorphism.  This follows from relative straightening and the affine equivalence of the two
-resulting triangles. -/
+resulting triangles.
+@isnad1 id=ex.0h2v.s8.d1c102b40a9a from=translated src=- shape=4b47b0bc vocab=d351ca48
+-/
 theorem polygonal_schoenflies (J' : PolygonalCircle) :
     ∃ h : Plane ≃ₜ Plane, h '' J.carrier = J'.carrier := by
   obtain ⟨h, -, ⟨C, hC, hJC, -⟩, -⟩ := J.polygonal_schoenflies_rel Set.univ isOpen_univ

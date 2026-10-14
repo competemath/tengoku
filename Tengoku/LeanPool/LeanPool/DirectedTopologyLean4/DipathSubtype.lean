@@ -27,8 +27,14 @@ namespace DiSubtype
 
 variable {X : dTopCat} {X₀ : Set X}
 
+/--
+@isnad1 id=eq.0h3v.s7.5c7ce2e950d0 from=translated src=- shape=4b7c2ab5 vocab=7b32acf2
+-/
 lemma subtypeHom_eq_coe (x : X₀) : (dTopCat.DirectedSubtypeHom X₀) x = (x : X) := rfl
 
+/--
+@isnad1 id=le.0h5v.s8.89109cf68bcf from=translated src=- shape=eb8a50c6 vocab=14e9f73e
+-/
 lemma range_dipath_map_inclusion {x y : X₀} (γ : Dipath x y)
     : range (γ.map (DirectedSubtypeInclusion X₀)) ⊆ X₀ := by
   rintro z ⟨t, ht⟩
@@ -37,14 +43,23 @@ lemma range_dipath_map_inclusion {x y : X₀} (γ : Dipath x y)
   rw [subtypeHom_eq_coe]
   exact Subtype.mem (γ t)
 
+/--
+@isnad1 id=eq.0h5v.s10.1ecdbbd4ad90 from=translated src=- shape=d8a6bea1 vocab=69687516
+-/
 lemma subtype_path_class_eq_map {x y : X₀} (γ : Dipath x y) :
     (dπₘ (dTopCat.DirectedSubtypeHom X₀)).map ⟦γ⟧ = ⟦(γ.map (DirectedSubtypeInclusion X₀))⟧ :=
   rfl
 
 variable {x y z : X}
 
+/--
+@isnad1 id=mem.1h5v.s6.cb495ea64458 from=translated src=- shape=98e15992 vocab=13706318
+-/
 lemma source_elt_of_image_subset {γ : Dipath x y} (hγ : range γ ⊆ X₀) : x ∈ X₀
     := γ.source ▸ (hγ (mem_range_self 0))
+/--
+@isnad1 id=mem.1h5v.s6.df03cd0f4832 from=translated src=- shape=760124e2 vocab=13706318
+-/
 lemma target_elt_of_image_subset {γ : Dipath x y} (hγ : range γ ⊆ X₀) : y ∈ X₀
     := γ.target ▸ (hγ (mem_range_self 1))
 
@@ -61,36 +76,57 @@ def SubtypeDipath (γ : Dipath x y) (hγ : range γ ⊆ X₀) :
   toPath := SubtypePath hγ
   dipath_toPath := γ.dipath_toPath
 
+/--
+@isnad1 id=eq.1h5v.s10.31fd72e6b80e from=translated src=- shape=fc66f79a vocab=264f510a
+-/
 lemma map_subtypeDipath_eq {x y : X} (γ : Dipath x y) (hγ : range γ ⊆ X₀) :
     (dπₘ (dTopCat.DirectedSubtypeHom X₀)).map ⟦SubtypeDipath γ hγ⟧ = ⟦γ⟧ := by
   rw [subtype_path_class_eq_map]
   congr 1
 
+/--
+@isnad1 id=eq.0h5v.s9.34d609a20f8c from=translated src=- shape=59d8ce30 vocab=60caab67
+-/
 lemma subtypeDipath_of_included_dipath_eq {x y : X₀} (γ : Dipath x y) :
     SubtypeDipath (γ.map (DirectedSubtypeInclusion X₀)) (range_dipath_map_inclusion γ) =
     γ.cast (by ext; rw [←subtypeHom_eq_coe x]; rfl) (by ext; rw [←subtypeHom_eq_coe y]; rfl) := by
   ext t
   rfl
 
+/--
+@isnad1 id=le.1h3v.s6.e9f491bb1e8c from=translated src=- shape=f872ddc6 vocab=115d1b98
+-/
 lemma range_refl_subset_of_mem {x : X} (hx : x ∈ X₀) : range (Dipath.refl x) ⊆ X₀ := by
   rw [Dipath.refl_range]
   exact singleton_subset_iff.mpr hx
 
+/--
+@isnad1 id=eq.1h3v.s7.bcd3109527c3 from=translated src=- shape=92b2487b vocab=dd2664bb
+-/
 lemma subtype_refl {x : X} (hx : x ∈ X₀)
     : (SubtypeDipath (Dipath.refl x) (range_refl_subset_of_mem hx)) = Dipath.refl (⟨x, hx⟩ : X₀)
         := rfl
 
+/--
+@isnad1 id=and.1h7v.s7.5a23e305e0dd from=translated src=- shape=8232d573 vocab=2386b7ff
+-/
 lemma subsets_of_trans_subset {γ₁ : Dipath x y} {γ₂ : Dipath y z} (hγ : range (γ₁.trans γ₂) ⊆ X₀) :
     range γ₁ ⊆ X₀ ∧ range γ₂ ⊆ X₀ := by
   rw [Dipath.trans_range] at hγ
   exact ⟨subset_trans subset_union_left hγ, subset_trans subset_union_right hγ⟩
 
+/--
+@isnad1 id=le.2h7v.s7.e4b3acb9bc65 from=translated src=- shape=7e6f0d09 vocab=2386b7ff
+-/
 lemma trans_subset_of_subsets {γ₁ : Dipath x y} {γ₂ : Dipath y z}
     (hγ₁ : range γ₁ ⊆ X₀) (hγ₂ : range γ₂ ⊆ X₀) :
     range (γ₁.trans γ₂) ⊆ X₀ := by
   rw [Dipath.trans_range]
   exact union_subset hγ₁ hγ₂
 
+/--
+@isnad1 id=eq.1h7v.s8.942bd731108b from=translated src=- shape=e7538fa9 vocab=3b8bab49
+-/
 lemma subtype_trans {γ₁ : Dipath x y} {γ₂ : Dipath y z} (hγ : range (γ₁.trans γ₂) ⊆ X₀) :
     (SubtypeDipath γ₁ (subsets_of_trans_subset hγ).1).trans
         (SubtypeDipath γ₂ (subsets_of_trans_subset hγ).2) =
@@ -100,12 +136,18 @@ lemma subtype_trans {γ₁ : Dipath x y} {γ₂ : Dipath y z} (hγ : range (γ�
   rw [Dipath.trans_apply, Dipath.trans_apply]
   split_ifs <;> rfl
 
+/--
+@isnad1 id=eq.3h6v.s8.616f76bed49c from=translated src=- shape=249a45ee vocab=408ea646
+-/
 lemma subtype_reparam {γ : Dipath x y} (hγ : range γ ⊆ X₀) {f : D(I,I)}
     (hf₀ : f 0 = 0) (hf₁ : f 1 = 1) :
     SubtypeDipath (γ.reparam f hf₀ hf₁) ((Dipath.range_reparam γ f hf₀ hf₁).symm ▸ hγ) =
     (SubtypeDipath γ hγ).reparam f hf₀ hf₁ :=
   rfl
 
+/--
+@isnad1 id=le.3h6v.s7.b02d6ef71df0 from=translated src=- shape=7e0dd980 vocab=8fc75920
+-/
 lemma reparam_subset_of_subset {γ : Dipath x y} (hγ : range γ ⊆ X₀) {f : D(I,I)} (hf₀ : f 0 = 0)
     (hf₁ : f 1 = 1) :
     range (γ.reparam f hf₀ hf₁) ⊆ X₀ := by
@@ -127,6 +169,9 @@ def DihomotopyOfSubtype {γ γ' : Dipath x y} (hγ : range γ ⊆ X₀) (hγ' : 
     rw [←this]
     rfl
 
+/--
+@isnad1 id=eq.3h7v.s9.e6e8972fd281 from=translated src=- shape=a03b187c vocab=ef264e18
+-/
 lemma dihomSubtype_of_dihom_range_subset {γ γ' : Dipath x y} (hγ : range γ ⊆ X₀)
     (hγ' : range γ' ⊆ X₀)
   {F : Dipath.Dihomotopy γ γ'} (hF : range F ⊆ X₀) :

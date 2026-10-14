@@ -26,6 +26,9 @@ There isn't a lot of math going on here, we just take the results from DemAux an
 translate them to Demazure-/
 
 -- Demazure operator has order two
+/--
+@isnad1 id=eq.0h3v.s9.389b9a4c7599 from=translated src=- shape=3b8ef8c2 vocab=e03ff9d4
+-/
 lemma demazure_order_two : ∀ (i : Fin n) (p : MvPolynomial (Fin (n + 1)) ℂ),
   DemazureLinear i (DemazureLinear i p) = 0 := by
   intro i p
@@ -36,6 +39,9 @@ lemma demazure_order_two : ∀ (i : Fin n) (p : MvPolynomial (Fin (n + 1)) ℂ),
   exact demaux_order_two i (mk' p)
 
 -- Demazure operators with adjacent indices have a braid relation
+/--
+@isnad1 id=eq.1h3v.s11.d667ca9cc076 from=translated src=- shape=4f80a336 vocab=8bdd6d74
+-/
 lemma demazure_commutes_adjacent (i : Fin n) (h : i + 1 < n) : ∀ p : MvPolynomial (Fin (n + 1)) ℂ,
   (DemazureLinear i ∘ DemazureLinear ⟨i+1, h⟩ ∘ DemazureLinear i) p =
     (DemazureLinear ⟨i+1, h⟩ ∘ DemazureLinear i ∘ DemazureLinear ⟨i+1, h⟩) p := by
@@ -46,6 +52,9 @@ lemma demazure_commutes_adjacent (i : Fin n) (h : i + 1 < n) : ∀ p : MvPolynom
   apply demaux_commutes_adjacent
 
 -- Demazure operators with non-adjacent indices commute
+/--
+@isnad1 id=eq.1h4v.s10.55ee021fcac5 from=translated src=- shape=6a197019 vocab=158a4dde
+-/
 lemma demazure_commutes_non_adjacent (i j : Fin n) (h : NonAdjacent i j) :
     ∀ p : MvPolynomial (Fin (n + 1)) ℂ,
       (DemazureLinear i ∘ DemazureLinear j) p = (DemazureLinear j ∘ DemazureLinear i) p := by
@@ -57,6 +66,9 @@ lemma demazure_commutes_non_adjacent (i j : Fin n) (h : NonAdjacent i j) :
   exact h
 
 -- Relation between demazure operator and multiplication by non-adjacent monomials
+/--
+@isnad1 id=eq.1h4v.s9.9de15057cd0d from=translated src=- shape=c4fe3dd2 vocab=01339f5b
+-/
 lemma demazure_mul_monomial_non_adjacent (i j : Fin n) (h : NonAdjacent i j) :
     ∀ p : MvPolynomial (Fin (n + 1)) ℂ,
       DemazureLinear i (p * X (Fin.castSucc j)) =
@@ -72,6 +84,9 @@ lemma demazure_mul_monomial_non_adjacent (i j : Fin n) (h : NonAdjacent i j) :
   apply demaux_mul_monomial_non_adjacent i j h
 
 -- Relation between demazure operator and multiplication by adjacent monomial
+/--
+@isnad1 id=eq.1h3v.s10.07ba447da211 from=translated src=- shape=bd83a9c8 vocab=6371c536
+-/
 lemma demazure_mul_monomial_adjacent (i : Fin n) (h : i + 1 < n) :
     ∀ p : MvPolynomial (Fin (n + 1)) ℂ,
       (DemazureLinear i (p * X (Fin.castSucc i))) =
@@ -85,6 +100,9 @@ lemma demazure_mul_monomial_adjacent (i : Fin n) (h : i + 1 < n) :
   apply demaux_mul_monomial_adjacent i h
 
 -- Symmetric polynomials act as scalars wrt Demazure operators
+/--
+@isnad1 id=eq.1h4v.s9.90219d81dd05 from=translated src=- shape=0ef09776 vocab=90f44c47
+-/
 lemma demazure_mul_symm (i : Fin n) (g f : MvPolynomial (Fin (n + 1)) ℂ)
     (h : MvPolynomial.IsSymmetric g) :
     DemazureLinear i (g*f) = g*(DemazureLinear i f) := by

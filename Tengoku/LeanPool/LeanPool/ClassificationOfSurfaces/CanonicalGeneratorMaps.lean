@@ -27,7 +27,9 @@ namespace LeanEval.Topology.ClassificationOfSurfaces.NormalForm
 open Complex
 open SurfaceCellComplex
 
-/-- Every orientable polygon generator maps into the trusted equivalence closure. -/
+/-- Every orientable polygon generator maps into the trusted equivalence closure.
+@isnad1 id=eqvgen.2h4v.s9.cce2414a3bcf from=translated src=- shape=d990340e vocab=1440da9a
+-/
 theorem orientableGenerator_to_eqvGen
     {p n : ℕ} (hvalid : 1 ≤ p ∨ 1 ≤ n)
     {x y : (orientableCellComplex p n).PolygonalPreRealization}
@@ -89,7 +91,9 @@ theorem orientableGenerator_to_eqvGen
         simpa using Relation.EqvGen.symm _ _
           (orientableCarrier_boundary_c_eqvGen (p := p) j (unitInterval.symm t))
 
-/-- Every nonorientable polygon generator maps into the trusted equivalence closure. -/
+/-- Every nonorientable polygon generator maps into the trusted equivalence closure.
+@isnad1 id=eqvgen.2h4v.s9.dc0c13a3470c from=translated src=- shape=3479d949 vocab=a2cfde38
+-/
 theorem nonOrientableGenerator_to_eqvGen
     {p n : ℕ} (hp : 1 ≤ p)
     {x y : (nonOrientableCellComplex p n).PolygonalPreRealization}
@@ -153,7 +157,9 @@ theorem nonOrientableGenerator_to_eqvGen
           (nonOrientableCarrier_boundary_c_eqvGen
             (p := p) j (unitInterval.symm t))
 
-/-- Every trusted orientable generator maps back into the polygonal equivalence closure. -/
+/-- Every trusted orientable generator maps back into the polygonal equivalence closure.
+@isnad1 id=eqvgen.2h4v.s10.2e9829e3b1a3 from=translated src=- shape=1c576896 vocab=81982d45
+-/
 theorem orientableRel_to_polygonEqvGen
     {p n : ℕ} (hvalid : 1 ≤ p ∨ 1 ≤ n)
     {x y : ClosedUnitDisc} (hxy : OrientableRel p n x y) :
@@ -222,7 +228,9 @@ theorem orientableRel_to_polygonEqvGen
             (orientableBoundaryIdentification_mem
               (p := p) hvalid (Fin.rev i)) t))
 
-/-- Every trusted nonorientable generator maps back into the polygonal equivalence closure. -/
+/-- Every trusted nonorientable generator maps back into the polygonal equivalence closure.
+@isnad1 id=eqvgen.2h4v.s10.9067eb4bfb72 from=translated src=- shape=4e329df2 vocab=808ab65b
+-/
 theorem nonOrientableRel_to_polygonEqvGen
     {p n : ℕ} (hp : 1 ≤ p)
     {x y : ClosedUnitDisc} (hxy : NonOrientableRel p n x y) :

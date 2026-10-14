@@ -27,6 +27,9 @@ namespace Belnap
 @[inline]
 def and (w : Wires BelnapLevel 2) : Wires BelnapLevel 1 := #v[(w.get 0).and (w.get 1)]
 
+/--
+@isnad1 id=le.2h4v.s5.213c02669c18 from=translated src=- shape=5676199d vocab=83843295
+-/
 @[simp]
 lemma and_leq
     {a₁ a₂ b₁ b₂ : BelnapLevel}
@@ -37,6 +40,9 @@ lemma and_leq
   rintro (_ | (_ | (_ | _))) (_ | (_ | (_ | _))) (_ | (_ | (_ | _))) (_ | (_ | (_ | _))) h0 h1 <;>
     first | exact h0 | exact h1 | rfl
 
+/--
+@isnad1 id=monotone.0h0v.s5.7ca2ba386f55 from=translated src=- shape=7790699d vocab=1405b26e
+-/
 @[simp]
 lemma and_monotonic : Monotone and := by
   intro a b hab i
@@ -47,6 +53,9 @@ lemma and_monotonic : Monotone and := by
 @[inline]
 def or (w : Wires BelnapLevel 2) : Wires BelnapLevel 1 := #v[(w.get 0).or (w.get 1)]
 
+/--
+@isnad1 id=le.2h4v.s5.3225d61044e6 from=translated src=- shape=5676199d vocab=1769851e
+-/
 @[simp]
 lemma or_leq
     {a₁ a₂ b₁ b₂ : BelnapLevel}
@@ -57,6 +66,9 @@ lemma or_leq
   rintro (_ | (_ | (_ | _))) (_ | (_ | (_ | _))) (_ | (_ | (_ | _))) (_ | (_ | (_ | _))) h0 h1 <;>
     first | exact h0 | exact h1 | rfl
 
+/--
+@isnad1 id=monotone.0h0v.s5.0c07a1a6f9a7 from=translated src=- shape=7790699d vocab=d52a7542
+-/
 @[simp]
 lemma or_monotonic : Monotone or := by
   intro a b hab i
@@ -67,11 +79,17 @@ lemma or_monotonic : Monotone or := by
 @[inline]
 def not (w : Wires BelnapLevel 1) : Wires BelnapLevel 1 := #v[ (w.get 0).not ]
 
+/--
+@isnad1 id=le.1h2v.s4.ac2a8d42d701 from=translated src=- shape=6bee9d27 vocab=5c47f6af
+-/
 @[simp]
 lemma not_leq {x y : BelnapLevel} (h : x ≤ y) : x.not ≤ y.not := by
   revert x y
   rintro (_ | (_ | (_ | _))) (_ | (_ | (_ | _))) h <;> exact h
 
+/--
+@isnad1 id=monotone.0h0v.s5.47796278a8ce from=translated src=- shape=7790699d vocab=14ab6832
+-/
 @[simp]
 lemma not_monotonic : Monotone not := by
   intro a b hab i

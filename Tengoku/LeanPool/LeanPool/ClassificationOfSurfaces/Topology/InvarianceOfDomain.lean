@@ -58,7 +58,9 @@ class BrouwerFixedPoint : Prop where
   brouwer_fixed_point (f : (closedBall (0 : E) 1) → (closedBall 0 1))
     (hf : Continuous f) : ∃ x, f x = x
 
-/-- On a compact set, any continuous map can be uniformly approximated by a differentiable map. -/
+/-- On a compact set, any continuous map can be uniformly approximated by a differentiable map.
+@isnad1 id=ex.3h4v.s8.27ef0abf20c7 from=translated src=- shape=b2da3bd9 vocab=61905bda
+-/
 theorem differentiable_approx_of_continuous {δ : ℝ} (hδ : 0 < δ) {U : Set E}
     (hUcompact : IsCompact U) (G : E → E) (hG_cont : Continuous G) [Nontrivial E] :
     ∃ (P : C(E, E)), Differentiable ℝ P ∧ ∀ y ∈ U, ‖P y - G y‖ < δ := by
@@ -152,7 +154,9 @@ variable [BrouwerFixedPoint E]
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] in
 /-- Stability of zero (Lemma 6). If `G` is a left inverse of `f` on the closed ball,
     and `Gtilde` is a continuous function on `f(Bⁿ)` with `‖G - Gtilde‖ ≤ 1` pointwise,
-    then `Gtilde` has a zero in `f(Bⁿ)`. -/
+    then `Gtilde` has a zero in `f(Bⁿ)`.
+@isnad1 id=ex.4h4v.s8.ba54f947b96f from=translated src=- shape=4ed6d42d vocab=60ad2c79
+-/
 lemma stability_of_zero (f : E → E) (hf_cont : ContinuousOn f (closedBall 0 1))
     (G : C(E, E)) (hG_left_inv : ∀ x ∈ closedBall 0 1, G (f x) = x)
     (Gtilde : E → E) (hGtilde_cont : ContinuousOn Gtilde (f '' closedBall 0 1))
@@ -191,7 +195,9 @@ private theorem radialProjection_mem_sep_union_sphere (c : E) {epsilon : ℝ}
 
 /-- Let `B^n` be the closed unit ball (closedBall 0 1).
 Let `f : B^n → ℝ^n` be an continuous injective map.
-Then `f(0)` lies in the interior of `f(B^n)`. -/
+Then `f(0)` lies in the interior of `f(B^n)`.
+@isnad1 id=mem.2h2v.s7.5f91da06cffa from=translated src=- shape=acfa8625 vocab=9801e062
+-/
 theorem invariance_of_domain_interior (f : E → E)
     (hf_cont : ContinuousOn f (closedBall 0 1)) (hf_inj : Set.InjOn f (closedBall 0 1))
     : f 0 ∈ interior (f ''(closedBall 0 1)) := by
@@ -444,7 +450,9 @@ theorem invariance_of_domain_interior (f : E → E)
   exact hGtilde_nonzero y hy1 hy2
 
 /-- The invariance of domain theorem: if `U ⊆ E` is open,
-  `f : E → E` is continuous on `U` and injective on `U`, then the image `f '' U` is open in `E`. -/
+  `f : E → E` is continuous on `U` and injective on `U`, then the image `f '' U` is open in `E`.
+@isnad1 id=isopen.3h3v.s6.3782e2c8992b from=translated src=- shape=53bb2848 vocab=a141631e
+-/
 theorem invariance_of_domain_open_map (f : E → E) (U : Set E) (hU : IsOpen U)
     (hf_cont : ContinuousOn f U) (hf_inj : Set.InjOn f U) : IsOpen (f '' U) := by
   rw [isOpen_iff_forall_mem_open]
@@ -481,7 +489,9 @@ theorem invariance_of_domain_open_map (f : E → E) (U : Set E) (hU : IsOpen U)
   exact h_interior
 
 /-- If `f` is a partial equivalence continuous on its source, then it maps
-    neighbourhoods of `x` (contained in the source) to neighbourhoods of `f(x)`. -/
+    neighbourhoods of `x` (contained in the source) to neighbourhoods of `f(x)`.
+@isnad1 id=mem.3h4v.s7.45908c30a9c9 from=translated src=- shape=b937d1ff vocab=b202efaf
+-/
 theorem invariance_of_domain_partial_equiv {x : E} {s : Set E} {f : PartialEquiv E E}
     (hCont : ContinuousOn f f.source) : s ∈ nhds x → s ⊆ f.source →
     f '' s ∈ nhds (f x) := by
@@ -500,7 +510,9 @@ class HasInvarianceOfDomain (X : Type*) [TopologicalSpace X] : Prop where
       (hCont : ContinuousOn f f.source) :
     s ∈ nhds x → s ⊆ f.source → f '' s ∈ nhds (f x)
 
-/-- Apply a `HasInvarianceOfDomain` instance to a continuous partial equivalence. -/
+/-- Apply a `HasInvarianceOfDomain` instance to a continuous partial equivalence.
+@isnad1 id=mem.3h4v.s6.4ac3490b0b8b from=translated src=- shape=998e42fa vocab=84142356
+-/
 theorem maps_nhds_to_nhds (X : Type*) [TopologicalSpace X]
     [instID : HasInvarianceOfDomain X] {x : X} {s : Set X} {f : PartialEquiv X X}
     (hCont : ContinuousOn f f.source) :
@@ -508,7 +520,9 @@ theorem maps_nhds_to_nhds (X : Type*) [TopologicalSpace X]
   instID.invariance_of_domain hCont
 
 /-- Brouwer's fixed-point theorem supplies invariance of domain in a finite-dimensional real
-inner product space. -/
+inner product space.
+@isnad1 id=hasinvar.0h1v.s5.f58d72dfef26 from=translated src=- shape=f662a77b vocab=8c0caaed
+-/
 instance instHasInvarianceOfDomainOfBrouwerFixedPoint : HasInvarianceOfDomain E where
   invariance_of_domain := invariance_of_domain_partial_equiv
 
@@ -521,7 +535,9 @@ variable {𝕜 : Type*} [NontriviallyNormedField 𝕜]
 omit [ChartedSpace H M] in
 variable (I) (M) in
 /-- If some `OpenPartialHomeomorph M H` sends a point to the interior of `range I`, then
-so does any other `OpenPartialHomeomorph M H`. -/
+so does any other `OpenPartialHomeomorph M H`.
+@isnad1 id=mem.3h8v.s7.45500f1acb58 from=translated src=- shape=7feaca52 vocab=90ecce25
+-/
 theorem independence_of_interior [HasInvarianceOfDomain E] {x : M}
     {f g : OpenPartialHomeomorph M H} (hfSource : x ∈ f.source) (hgSource : x ∈ g.source) :
     I (f x) ∈ interior (range I) → I (g x) ∈ interior (range I) := by
@@ -595,7 +611,9 @@ theorem independence_of_interior [HasInvarianceOfDomain E] {x : M}
 
 variable (I) in
 /-- A point lies in the interior of M iff *any* `OpenPartialHomeomorph M H`
-sends it to the interior of `range I`. -/
+sends it to the interior of `range I`.
+@isnad1 id=iff.1h7v.s7.373a260e47ed from=translated src=- shape=c5f7dc57 vocab=71280fd7
+-/
 theorem isInteriorPoint_iff_any_chart {x : M} [HasInvarianceOfDomain E]
     {f : OpenPartialHomeomorph M H} (hfSource : x ∈ f.source) :
     I.IsInteriorPoint x ↔ I (f x) ∈ interior (range I) := by
@@ -610,7 +628,9 @@ theorem isInteriorPoint_iff_any_chart {x : M} [HasInvarianceOfDomain E]
 
 variable (I) in
 /-- A point lies on the boundary of M iff *any* `OpenPartialHomeomorph M H`
-sends it to the frontier of `range I`. -/
+sends it to the frontier of `range I`.
+@isnad1 id=iff.1h7v.s7.d93e865799c5 from=translated src=- shape=c5f7dc57 vocab=a49f009a
+-/
 theorem isBoundaryPoint_iff_any_chart {x : M} [HasInvarianceOfDomain E]
     {f : OpenPartialHomeomorph M H} (hfSource : x ∈ f.source) :
     (I.IsBoundaryPoint x ↔ I (f x) ∈ frontier (range I)) := by
@@ -628,7 +648,9 @@ edge of an embedded finite triangle complex.
 
 The use of the *extended* target chart is important: if the image point were on the manifold
 boundary, invariance of domain would produce an ambient vector-space neighborhood contained in
-`range I`, which is impossible there. -/
+`range I`, which is impossible there.
+@isnad1 id=isopen.3h7v.s6.91db2a1854b0 from=translated src=- shape=dda0d8c9 vocab=3659d806
+-/
 theorem isOpen_range_of_isOpen_of_continuous_injective
     (I : ModelWithCorners 𝕜 E H) [HasInvarianceOfDomain E]
     {U : Set E} (hU : IsOpen U) (f : U → M)
@@ -711,7 +733,9 @@ theorem isOpen_range_of_isOpen_of_continuous_injective
   exact Filter.mem_of_superset (hZopen.mem_nhds hfuZ) hZrange
 
 /-- Embedding-form wrapper for
-`isOpen_range_of_isOpen_of_continuous_injective`. -/
+`isOpen_range_of_isOpen_of_continuous_injective`.
+@isnad1 id=isopen.2h7v.s6.ae092e3a7c06 from=translated src=- shape=a39f81e4 vocab=be731411
+-/
 theorem isOpen_range_of_isOpen_of_isEmbedding
     (I : ModelWithCorners 𝕜 E H) [HasInvarianceOfDomain E]
     {U : Set E} (hU : IsOpen U) (f : U → M)
@@ -724,7 +748,9 @@ theorem isOpen_range_of_isOpen_of_isEmbedding
 corresponding local sheet into a boundary point of the new image.
 
 This is deliberately an interior-point statement.  It is false at a manifold-boundary point:
-an embedding of a half-plane may bend its boundary into the ambient interior. -/
+an embedding of a half-plane may bend its boundary into the ambient interior.
+@isnad1 id=mem.4h9v.s7.dac8053c2add from=translated src=- shape=616bfe3d vocab=71648d19
+-/
 theorem mem_interior_range_of_eq_of_mem_interior_range_of_isInteriorPoint
     (I : ModelWithCorners 𝕜 E H) [HasInvarianceOfDomain E]
     {X : Type*} [TopologicalSpace X]

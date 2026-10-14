@@ -34,7 +34,9 @@ Semantic anchors (see `Moise/Countermodels.lean` and the Definition Faithfulness
 /-- A finite closed cover of a preconnected set has a connected intersection graph.
 
 This is the closed-cover counterpart of `IsPreconnected.transGen_of_iUnion`, whose open-cover
-hypothesis is not available for the closed simplexes of a geometric realization. -/
+hypothesis is not available for the closed simplexes of a geometric realization.
+@isnad1 id=transgen.4h5v.s6.b297a898c237 from=translated src=- shape=63cb599d vocab=c515d0ae
+-/
 theorem IsPreconnected.transGen_of_finite_iUnion
     {α ι : Type*} [TopologicalSpace α] [Finite ι] {s : ι → Set α}
     (hs : IsPreconnected (⋃ n, s n)) (hs' : ∀ i, IsClosed (s i))
@@ -105,11 +107,17 @@ non-negative coordinates with total sum `1`. -/
 def stdSimplex : Set (ι → 𝕜) :=
   {f | (∀ x, 0 ≤ f x) ∧ ∑ x, f x = 1}
 
+/--
+@isnad1 id=eq.0h2v.s6.e820dc6bf9bc from=translated src=- shape=14c8623e vocab=0704bbe2
+-/
 theorem stdSimplex_eq_inter :
     stdSimplex 𝕜 ι = (⋂ x, {f : ι → 𝕜 | 0 ≤ f x}) ∩ {f | ∑ x, f x = 1} := by
   ext f
   simp only [stdSimplex, Set.mem_inter_iff, Set.mem_iInter, Set.mem_ofPred_eq]
 
+/--
+@isnad1 id=convex.0h2v.s5.dff2b1e642cf from=translated src=- shape=61bc31f3 vocab=77fedd07
+-/
 theorem convex_stdSimplex [IsOrderedRing 𝕜] : Convex 𝕜 (stdSimplex 𝕜 ι) := by
   refine fun f hf g hg a b ha hb hab => ⟨fun x => ?_, ?_⟩
   · apply_rules [add_nonneg, mul_nonneg, hf.1, hg.1]
@@ -120,12 +128,16 @@ theorem convex_stdSimplex [IsOrderedRing 𝕜] : Convex 𝕜 (stdSimplex 𝕜 ι
 variable {ι}
 
 variable {𝕜} in
-/-- All values of a function `f ∈ stdSimplex 𝕜 ι` belong to `[0, 1]`. -/
+/-- All values of a function `f ∈ stdSimplex 𝕜 ι` belong to `[0, 1]`.
+@isnad1 id=mem.1h4v.s6.090a5aa9b92a from=translated src=- shape=4853f296 vocab=e45e3d8e
+-/
 theorem mem_Icc_of_mem_stdSimplex [IsOrderedAddMonoid 𝕜] {f : ι → 𝕜}
     (hf : f ∈ stdSimplex 𝕜 ι) (x) : f x ∈ Set.Icc (0 : 𝕜) 1 :=
   ⟨hf.1 x, hf.2 ▸ Finset.single_le_sum (fun y _ => hf.1 y) (Finset.mem_univ x)⟩
 
-/-- `stdSimplex 𝕜 ι` is a subset of the unit cube. -/
+/-- `stdSimplex 𝕜 ι` is a subset of the unit cube.
+@isnad1 id=le.0h2v.s6.34604793a27a from=translated src=- shape=004f934b vocab=ee528c69
+-/
 theorem stdSimplex_subset_Icc [IsOrderedAddMonoid 𝕜] : stdSimplex 𝕜 ι ⊆ Set.Icc 0 1 := by
   intro f h
   rw [← Set.pi_univ_Icc, Set.univ_pi_eq_iInter, Set.mem_iInter]
@@ -133,6 +145,9 @@ theorem stdSimplex_subset_Icc [IsOrderedAddMonoid 𝕜] : stdSimplex 𝕜 ι ⊆
 
 variable [DecidableEq ι] [ZeroLEOneClass 𝕜]
 
+/--
+@isnad1 id=mem.0h3v.s6.111eb053d3eb from=translated src=- shape=39c98150 vocab=8a91415c
+-/
 theorem single_mem_stdSimplex (i : ι) : Pi.single i 1 ∈ stdSimplex 𝕜 ι :=
   ⟨le_update_iff.2 ⟨zero_le_one, fun _ _ ↦ le_rfl⟩, by simp⟩
 
@@ -143,18 +158,25 @@ section StandardSimplexTopology
 variable (𝕜 ι : Type*) [Fintype ι] [TopologicalSpace 𝕜] [Semiring 𝕜] [PartialOrder 𝕜]
   [OrderClosedTopology 𝕜] [ContinuousAdd 𝕜]
 
-/-- `stdSimplex 𝕜 ι` is closed. -/
+/-- `stdSimplex 𝕜 ι` is closed.
+@isnad1 id=isclosed.0h2v.s5.3a1eaf165dd4 from=translated src=- shape=40bd7143 vocab=fd7a3cca
+-/
 theorem isClosed_stdSimplex : IsClosed (stdSimplex 𝕜 ι) := by
   rw [stdSimplex_eq_inter]
   apply IsClosed.inter
   · exact isClosed_iInter fun i ↦ isClosed_le continuous_const (continuous_apply i)
   · exact isClosed_eq (by fun_prop) continuous_const
 
-/-- `stdSimplex 𝕜 ι` is compact. -/
+/-- `stdSimplex 𝕜 ι` is compact.
+@isnad1 id=iscompac.0h2v.s6.5a2bc2b7eb55 from=translated src=- shape=321ab96f vocab=11c99a9a
+-/
 theorem isCompact_stdSimplex [CompactIccSpace 𝕜] [IsOrderedAddMonoid 𝕜] :
     IsCompact (stdSimplex 𝕜 ι) :=
   IsCompact.of_isClosed_subset isCompact_Icc (isClosed_stdSimplex 𝕜 ι) (stdSimplex_subset_Icc 𝕜)
 
+/--
+@isnad1 id=compacts.0h2v.s6.4846d4920ad5 from=translated src=- shape=7b234417 vocab=458d4e21
+-/
 instance stdSimplex.instCompactSpace_coe [CompactIccSpace 𝕜] [IsOrderedAddMonoid 𝕜] :
     CompactSpace (stdSimplex 𝕜 ι) :=
   isCompact_iff_compactSpace.mp <| isCompact_stdSimplex 𝕜 _
@@ -171,15 +193,27 @@ instance : FunLike (stdSimplex S X) X S where
   coe s := s.val
   coe_injective := by aesop
 
+/--
+@isnad1 id=eq.1h4v.s6.6b3807519afc from=translated src=- shape=139bbf70 vocab=69efe2fa
+-/
 @[ext high]
 lemma ext {s t : stdSimplex S X} (h : (s : X → S) = t) : s = t := by
   ext : 1
   assumption
 
+/--
+@isnad1 id=le.0h4v.s6.c7268ea49703 from=translated src=- shape=c93d5fa6 vocab=d671feb8
+-/
 @[simp] lemma zero_le (s : stdSimplex S X) (x : X) : 0 ≤ s x := s.2.1 x
 
+/--
+@isnad1 id=eq.0h3v.s6.ce1c65bef834 from=translated src=- shape=41b1565e vocab=dc0061d1
+-/
 @[simp] lemma sum_eq_one (s : stdSimplex S X) : ∑ x, s x = 1 := s.2.2
 
+/--
+@isnad1 id=eq.0h2v.s7.c7148ffab999 from=translated src=- shape=6d3a6bee vocab=9b9e3503
+-/
 @[simp] lemma add_eq_one (s : stdSimplex S (Fin 2)) : s 0 + s 1 = 1 := by
   simpa only [Fin.sum_univ_two] using sum_eq_one s
 
@@ -187,10 +221,16 @@ section
 
 variable [IsOrderedRing S]
 
+/--
+@isnad1 id=le.0h4v.s6.aa573ac82cba from=translated src=- shape=adbc3a8c vocab=acf09193
+-/
 @[simp] lemma le_one (s : stdSimplex S X) (x : X) : s x ≤ 1 := by
   rw [← sum_eq_one s]
   exact Finset.single_le_sum (by simp) (by simp)
 
+/--
+@isnad1 id=le.0h4v.s7.e957b743f3e1 from=translated src=- shape=0b402448 vocab=e953061a
+-/
 lemma image_linearMap (f : X → Y) :
     Set.image (FunOnFinite.linearMap S S f) (stdSimplex S X) ⊆ stdSimplex S Y := by
   classical
@@ -205,12 +245,21 @@ lemma image_linearMap (f : X → Y) :
 noncomputable def map (f : X → Y) (s : stdSimplex S X) : stdSimplex S Y :=
   ⟨FunOnFinite.linearMap S S f s, image_linearMap f (by aesop)⟩
 
+/--
+@isnad1 id=eq.0h5v.s7.49149f2ad865 from=translated src=- shape=6513790d vocab=9871f327
+-/
 @[simp] lemma map_coe (f : X → Y) (s : stdSimplex S X) :
     ⇑(map f s) = FunOnFinite.linearMap S S f s := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.71d31250d0ca from=translated src=- shape=eae5a4b1 vocab=72703d69
+-/
 @[simp] lemma map_id_apply (x : stdSimplex S X) : map id x = x := by
   aesop
 
+/--
+@isnad1 id=eq.0h7v.s6.9b4c389844ec from=translated src=- shape=207c94e1 vocab=5ef12716
+-/
 lemma map_comp_apply (f : X → Y) (g : Y → Z) (x : stdSimplex S X) :
     map g (map f x) = map (g.comp f) x := by
   ext
@@ -220,17 +269,29 @@ lemma map_comp_apply (f : X → Y) (g : Y → Z) (x : stdSimplex S X) :
 abbrev vertex [DecidableEq X] (x : X) : stdSimplex S X :=
   ⟨Pi.single x 1, single_mem_stdSimplex S x⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.7df2fd29d576 from=translated src=- shape=c4329908 vocab=aa1c4e89
+-/
 @[simp] lemma vertex_coe [DecidableEq X] (x : X) :
     ⇑(vertex (S := S) x) = Pi.single x 1 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.cc53bace0d8d from=translated src=- shape=9b0a7cec vocab=4d601ba1
+-/
 @[simp] lemma map_vertex [DecidableEq X] [DecidableEq Y] (f : X → Y) (x : X) :
     map (S := S) f (vertex x) = vertex (f x) := by
   aesop
 
+/--
+@isnad1 id=continuo.0h4v.s7.a914f2048976 from=translated src=- shape=5f34c7ea vocab=1e4d6d92
+-/
 lemma continuous_map [TopologicalSpace S] [IsTopologicalSemiring S] (f : X → Y) :
     Continuous (map (S := S) f) :=
   Continuous.subtype_mk ((FunOnFinite.continuous_linearMap S S f).comp continuous_induced_dom) _
 
+/--
+@isnad1 id=injectiv.0h2v.s5.a0843cccf538 from=translated src=- shape=ce10e8cd vocab=20885c55
+-/
 lemma vertex_injective [Nontrivial S] [DecidableEq X] :
     Function.Injective (vertex (S := S) (X := X)) := by
   intro x y h
@@ -263,9 +324,15 @@ namespace GeometricRealization
 
 variable {V : Type*} [Fintype V] {F : Finset (Finset V)}
 
+/--
+@isnad1 id=le.0h2v.s4.1ed9a201fca7 from=translated src=- shape=c886a842 vocab=6c9647f9
+-/
 theorem subset_stdSimplex : GeometricRealization V F ⊆ stdSimplex ℝ V :=
   fun _ hx => hx.1
 
+/--
+@isnad1 id=isclosed.0h2v.s4.3ea21dfc784e from=translated src=- shape=c912e23a vocab=ba93f72b
+-/
 theorem isClosed : IsClosed (GeometricRealization V F) := by
   have hrepr : GeometricRealization V F =
       stdSimplex ℝ V ∩ ⋃ t ∈ F, {x : V → ℝ | ∀ v ∉ t, x v = 0} := by
@@ -282,6 +349,9 @@ theorem isClosed : IsClosed (GeometricRealization V F) := by
   rw [hInter]
   exact isClosed_biInter fun v _ => isClosed_eq (continuous_apply v) continuous_const
 
+/--
+@isnad1 id=iscompac.0h2v.s4.16b572df8cc5 from=translated src=- shape=c912e23a vocab=e9b92ef1
+-/
 theorem isCompact : IsCompact (GeometricRealization V F) :=
   (isCompact_stdSimplex ℝ V).of_isClosed_subset isClosed subset_stdSimplex
 
@@ -327,20 +397,27 @@ def FaceIntersects (faces : Finset (Finset Vertex)) (f g : Face faces) : Prop :=
   (f.1 ∩ g.1).Nonempty
 
 omit [DecidableEq Vertex] in
+/--
+@isnad1 id=faceadja.1h4v.s4.8bd1591a2436 from=translated src=- shape=d9ad36cf vocab=a3fca3d9
+-/
 theorem faceAdjacent_symm {faces : Finset (Finset Vertex)} {f g : Face faces}
     (h : FaceAdjacent faces f g) : FaceAdjacent faces g f := by
   rcases h with ⟨e, hecard, hef, heg⟩
   exact ⟨e, hecard, heg, hef⟩
 
 omit [DecidableEq Vertex] in
-/-- The right endpoint of a fixed-vertex adjacency step contains the fixed vertex. -/
+/-- The right endpoint of a fixed-vertex adjacency step contains the fixed vertex.
+@isnad1 id=mem.1h5v.s5.d7ac3c070e9f from=translated src=- shape=e9085754 vocab=788b9f49
+-/
 theorem mem_right_of_faceAdjacentAtVertex
     {faces : Finset (Finset Vertex)} {v : Vertex} {f g : Face faces}
     (h : FaceAdjacentAtVertex faces v f g) : v ∈ g.1 := by
   rcases h with ⟨e, _hecard, hve, _hef, heg⟩
   exact heg hve
 
-/-- Faces in different dual components share at most one vertex. -/
+/-- Faces in different dual components share at most one vertex.
+@isnad1 id=le.1h4v.s6.065fd479ac2c from=translated src=- shape=9be82ce5 vocab=728b3ed1
+-/
 theorem card_inter_le_one_of_not_faceAdjacent
     {faces : Finset (Finset Vertex)} {f g : Face faces}
     (h : ¬ FaceAdjacent faces f g) :
@@ -354,7 +431,9 @@ theorem card_inter_le_one_of_not_faceAdjacent
 
 omit [DecidableEq Vertex] in
 /-- Every endpoint reached from a face containing `v` through fixed-vertex adjacency still
-contains `v`. -/
+contains `v`.
+@isnad1 id=mem.2h5v.s6.3275dfd7b5b8 from=translated src=- shape=83fe5107 vocab=22d79b3d
+-/
 theorem mem_of_reflTransGen_faceAdjacentAtVertex
     {faces : Finset (Finset Vertex)} {v : Vertex} {f g : Face faces}
     (hvf : v ∈ f.1)
@@ -395,12 +474,18 @@ def faceOfSubset {faces faces' : Finset (Finset Vertex)} (h : faces ⊆ faces') 
   fun f => ⟨f.1, h f.2⟩
 
 omit [DecidableEq Vertex] in
+/--
+@isnad1 id=eq.1h4v.s6.5286b7bee859 from=translated src=- shape=2f406885 vocab=dbf17765
+-/
 @[simp]
 theorem faceOfSubset_val {faces faces' : Finset (Finset Vertex)} (h : faces ⊆ faces')
     (f : Face faces) : (faceOfSubset h f).1 = f.1 :=
   rfl
 
 omit [DecidableEq Vertex] in
+/--
+@isnad1 id=faceadja.2h5v.s5.38d00b9da613 from=translated src=- shape=cee582a1 vocab=4702cd66
+-/
 theorem faceAdjacent_faceOfSubset {faces faces' : Finset (Finset Vertex)}
     (h : faces ⊆ faces') {f g : Face faces} (hfg : FaceAdjacent faces f g) :
     FaceAdjacent faces' (faceOfSubset h f) (faceOfSubset h g) := by
@@ -408,6 +493,9 @@ theorem faceAdjacent_faceOfSubset {faces faces' : Finset (Finset Vertex)}
   exact ⟨e, hecard, hef, heg⟩
 
 omit [DecidableEq Vertex] in
+/--
+@isnad1 id=refltran.2h5v.s6.c0318ad35c58 from=translated src=- shape=826a6efa vocab=295aaacd
+-/
 theorem reflTransGen_faceAdjacent_faceOfSubset
     {faces faces' : Finset (Finset Vertex)} (h : faces ⊆ faces') {f g : Face faces}
     (hfg : Relation.ReflTransGen (FaceAdjacent faces) f g) :
@@ -417,7 +505,9 @@ theorem reflTransGen_faceAdjacent_faceOfSubset
   | tail _hab hbc ih =>
       exact ih.tail (faceAdjacent_faceOfSubset h hbc)
 
-/-- Two dual-connected face families with a cross-adjacent pair have dual-connected union. -/
+/-- Two dual-connected face families with a cross-adjacent pair have dual-connected union.
+@isnad1 id=isdualco.3h5v.s6.b969977dfb89 from=translated src=- shape=077ae4be vocab=799e964b
+-/
 theorem isDualConnected_union {left right : Finset (Finset Vertex)}
     (hleft : IsDualConnected left) (hright : IsDualConnected right)
     (fleft : Face left) (fright : Face right)
@@ -462,7 +552,9 @@ def HasCrossEdge (left right : Finset (Finset Vertex)) : Prop :=
         (faceOfSubset Finset.subset_union_left fleft)
         (faceOfSubset Finset.subset_union_right fright)
 
-/-- Two dual-connected face families with a shared cross-edge have dual-connected union. -/
+/-- Two dual-connected face families with a shared cross-edge have dual-connected union.
+@isnad1 id=isdualco.3h3v.s5.ffcb786a22fc from=translated src=- shape=4a3dda75 vocab=7405fc70
+-/
 theorem isDualConnected_union_of_hasCrossEdge
     {left right : Finset (Finset Vertex)}
     (hleft : IsDualConnected left) (hright : IsDualConnected right)
@@ -472,7 +564,9 @@ theorem isDualConnected_union_of_hasCrossEdge
   exact isDualConnected_union hleft hright fleft fright hcross
 
 omit [DecidableEq Vertex] in
-/-- A face family consisting of one triangle is dual-connected. -/
+/-- A face family consisting of one triangle is dual-connected.
+@isnad1 id=isdualco.0h2v.s4.40e94ac0523a from=translated src=- shape=cb0303a9 vocab=a22065f4
+-/
 theorem isDualConnected_singleton (face : Finset Vertex) :
     IsDualConnected {face} := by
   intro f g
@@ -482,7 +576,9 @@ theorem isDualConnected_singleton (face : Finset Vertex) :
   subst g
   exact Relation.ReflTransGen.refl
 
-/-- Adding a triangle along an edge of a dual-connected family preserves dual connectivity. -/
+/-- Adding a triangle along an edge of a dual-connected family preserves dual connectivity.
+@isnad1 id=isdualco.2h4v.s7.89cfa01daa68 from=translated src=- shape=d236fa87 vocab=07afad03
+-/
 theorem isDualConnected_insert {faces : Finset (Finset Vertex)}
     (hfaces : IsDualConnected faces) (face : Finset Vertex) (anchor : Face faces)
     (hcross : FaceAdjacent (insert face faces)
@@ -542,17 +638,23 @@ abbrev realization : Set (T.Vertex → ℝ) :=
 
 include T in
 /-- Must-imply anchor: a finitely triangulated space is compact.  This is what rules out the
-empty/junk triangulations that satisfied the previous `SurfaceTriangulable` predicate. -/
+empty/junk triangulations that satisfied the previous `SurfaceTriangulable` predicate.
+@isnad1 id=compacts.0h2v.s3.cb774874c7f8 from=translated src=- shape=c612a321 vocab=bf2eceab
+-/
 theorem compactSpace : CompactSpace S :=
   Homeomorph.compactSpace T.homeo
 
 include T in
 /-- Must-imply anchor: a finitely triangulated space is Hausdorff (the realization is a subspace
-of a finite product of lines). -/
+of a finite product of lines).
+@isnad1 id=t2space.0h2v.s3.089916ccea53 from=translated src=- shape=c612a321 vocab=f72071e3
+-/
 theorem t2Space : T2Space S :=
   Topology.IsEmbedding.t2Space (Homeomorph.isEmbedding T.homeo.symm)
 
-/-- A triangulation of a nonempty space has at least one two-dimensional face. -/
+/-- A triangulation of a nonempty space has at least one two-dimensional face.
+@isnad1 id=nonempty.0h2v.s4.3fb8925a2df0 from=translated src=- shape=883cfd4e vocab=6b3609a5
+-/
 theorem faces_nonempty [Nonempty S] : T.faces.Nonempty := by
   let s : S := Classical.choice inferInstance
   rcases (T.homeo.symm s).2.2 with ⟨t, ht, _⟩
@@ -562,10 +664,16 @@ theorem faces_nonempty [Nonempty S] : T.faces.Nonempty := by
 def edges : Finset (Finset T.Vertex) :=
   T.faces.biUnion fun t => t.powersetCard 2
 
+/--
+@isnad1 id=eq.1h3v.s6.22242403b92d from=translated src=- shape=a7af7210 vocab=54d876be
+-/
 theorem card_of_mem_edges {e : Finset T.Vertex} (he : e ∈ T.edges) : e.card = 2 := by
   rcases Finset.mem_biUnion.mp he with ⟨t, _ht, het⟩
   exact (Finset.mem_powersetCard.mp het).2
 
+/--
+@isnad1 id=mem.3h4v.s7.0d8c9db117cc from=translated src=- shape=7bcaf29e vocab=70ffca7d
+-/
 theorem mem_edges_of_subset_face {e t : Finset T.Vertex} (ht : t ∈ T.faces) (het : e ⊆ t)
     (he : e.card = 2) : e ∈ T.edges :=
   Finset.mem_biUnion.mpr ⟨t, ht, Finset.mem_powersetCard.mpr ⟨het, he⟩⟩
@@ -578,9 +686,15 @@ abbrev Edge : Type :=
 abbrev Triangle : Type :=
   {t : Finset T.Vertex // t ∈ T.faces}
 
+/--
+@isnad1 id=eq.0h3v.s6.9ebfc5ce166d from=translated src=- shape=b0b14bdc vocab=bc446484
+-/
 theorem edge_card (e : T.Edge) : e.1.card = 2 :=
   T.card_of_mem_edges e.2
 
+/--
+@isnad1 id=eq.0h3v.s6.d748bcafd747 from=translated src=- shape=b0b14bdc vocab=b4842e32
+-/
 theorem triangle_card (t : T.Triangle) : t.1.card = 3 :=
   T.faces_card t.1 t.2
 
@@ -592,16 +706,28 @@ noncomputable def edgeSource (e : T.Edge) : T.Vertex :=
 noncomputable def edgeTarget (e : T.Edge) : T.Vertex :=
   (Finset.card_eq_two.mp (T.edge_card e)).choose_spec.choose
 
+/--
+@isnad1 id=ne.0h3v.s4.114713960683 from=translated src=- shape=d3ce82ca vocab=5b3dadd6
+-/
 theorem edgeSource_ne_edgeTarget (e : T.Edge) : T.edgeSource e ≠ T.edgeTarget e :=
   (Finset.card_eq_two.mp (T.edge_card e)).choose_spec.choose_spec.1
 
+/--
+@isnad1 id=eq.0h3v.s6.6b9f747b2bd4 from=translated src=- shape=83df96c4 vocab=a98ee1a9
+-/
 theorem edge_eq_pair (e : T.Edge) : e.1 = {T.edgeSource e, T.edgeTarget e} :=
   (Finset.card_eq_two.mp (T.edge_card e)).choose_spec.choose_spec.2
 
+/--
+@isnad1 id=mem.0h3v.s6.8519fd03ced4 from=translated src=- shape=2e26e7e6 vocab=643b11f3
+-/
 theorem edgeSource_mem (e : T.Edge) : T.edgeSource e ∈ e.1 := by
   rw [T.edge_eq_pair e]
   simp
 
+/--
+@isnad1 id=mem.0h3v.s6.8fc57d40cc81 from=translated src=- shape=2e26e7e6 vocab=9f3d6f58
+-/
 theorem edgeTarget_mem (e : T.Edge) : T.edgeTarget e ∈ e.1 := by
   rw [T.edge_eq_pair e]
   simp

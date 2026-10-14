@@ -182,7 +182,9 @@ private lemma continuous_fixedPointRayScale
     exact Real.continuous_sqrt.comp hdisc
   exact (hb.neg.add hsqrt).div ha hdenom
 
-/-- Brouwer's fixed-point theorem for the closed unit disk in the Euclidean plane. -/
+/-- Brouwer's fixed-point theorem for the closed unit disk in the Euclidean plane.
+@isnad1 id=ex.1h1v.s10.be8002af7a33 from=translated src=- shape=1a1062cf vocab=a052cde7
+-/
 theorem brouwer_fixed_point_planeClosedUnitBall
     (f : Metric.closedBall (0 : Plane) 1 → Metric.closedBall (0 : Plane) 1)
     (hf : Continuous f) :

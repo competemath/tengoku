@@ -36,12 +36,18 @@ two-complex. -/
   faces := K.cells
   faces_card := fun _ ht => K.card_of_mem_cells ht
 
+/--
+@isnad1 id=eq.0h1v.s3.2ced9895e390 from=translated src=- shape=78cca9a3 vocab=a61d5adc
+-/
 @[simp] theorem toIntrinsic_faces : K.toIntrinsic.faces = K.cells := rfl
 
 /-- Barycentric evaluation is an affine map on the ambient coordinate space. -/
 noncomputable def baryEvalAffine : (K.Vertex → ℝ) →ᵃ[ℝ] Plane :=
   (∑ v, (LinearMap.proj v).smulRight (K.position v)).toAffineMap
 
+/--
+@isnad1 id=eq.0h2v.s9.35859aea4c5e from=translated src=- shape=dcb0ee1b vocab=9973b443
+-/
 @[simp] theorem baryEvalAffine_apply (x : K.Vertex → ℝ) :
     K.baryEvalAffine x = K.baryEval x := by
   simp [baryEvalAffine, baryEval]
@@ -60,6 +66,9 @@ noncomputable def faceCoords (T : K.toTriangleMesh.Triangle) :
     else
       AffineMap.const ℝ Plane 0
 
+/--
+@isnad1 id=eq.1h4v.s11.b5bb6569e42f from=translated src=- shape=59a69ba7 vocab=c6b9240b
+-/
 @[simp] theorem faceCoords_apply_of_mem (T : K.toTriangleMesh.Triangle)
     {v : K.Vertex} (hv : v ∈ T.1) (p : Plane) :
     K.faceCoords T p v =
@@ -70,16 +79,25 @@ noncomputable def faceCoords (T : K.toTriangleMesh.Triangle) :
   classical
   simp [faceCoords, hv]
 
+/--
+@isnad1 id=eq.1h4v.s9.a61ad993a57f from=translated src=- shape=c331c3d4 vocab=10c4d44a
+-/
 @[simp] theorem faceCoords_apply_of_notMem (T : K.toTriangleMesh.Triangle)
     {v : K.Vertex} (hv : v ∉ T.1) (p : Plane) :
     K.faceCoords T p v = 0 := by
   classical
   simp [faceCoords, hv]
 
+/--
+@isnad1 id=eq.1h4v.s9.0716f3c1b6ec from=translated src=- shape=cfd3455f vocab=10c4d44a
+-/
 theorem faceCoords_support (T : K.toTriangleMesh.Triangle) (p : Plane) :
     ∀ v ∉ T.1, K.faceCoords T p v = 0 :=
   fun _ hv => K.faceCoords_apply_of_notMem T hv p
 
+/--
+@isnad1 id=eq.0h3v.s9.2b894a5ce94e from=translated src=- shape=702b75f5 vocab=097bd6a0
+-/
 theorem sum_faceCoords (T : K.toTriangleMesh.Triangle) (p : Plane) :
     ∑ v, K.faceCoords T p v = 1 := by
   classical
@@ -99,10 +117,16 @@ theorem sum_faceCoords (T : K.toTriangleMesh.Triangle) (p : Plane) :
       (K.toTriangleMesh.triangleEquiv T).sum_comp (fun i => b.coord i p)
     _ = 1 := b.sum_coord_apply_eq_one p
 
+/--
+@isnad1 id=eq.0h3v.s9.afd94e8c1c6d from=translated src=- shape=c83a8fbc vocab=30ba52c9
+-/
 theorem orderedVertex_triangleEquiv (T : K.toTriangleMesh.Triangle) (v : T.1) :
     K.toTriangleMesh.orderedVertex T (K.toTriangleMesh.triangleEquiv T v) = v.1 := by
   simp [TriangleMesh.orderedVertex]
 
+/--
+@isnad1 id=eq.0h3v.s9.06c94154ffd3 from=translated src=- shape=e8319eda vocab=bbb9741f
+-/
 theorem baryEval_faceCoords (T : K.toTriangleMesh.Triangle) (p : Plane) :
     K.baryEval (K.faceCoords T p) = p := by
   classical
@@ -137,7 +161,9 @@ theorem baryEval_faceCoords (T : K.toTriangleMesh.Triangle) (p : Plane) :
       exact b.linear_combination_coord_eq_self p
 
 /-- The affine coordinates of a geometric triangle vertex are the corresponding unit
-barycentric coordinates. -/
+barycentric coordinates.
+@isnad1 id=eq.1h3v.s9.c39f226cf5da from=translated src=- shape=ae0e8c7f vocab=14b21192
+-/
 theorem faceCoords_position (T : K.toTriangleMesh.Triangle) {v : K.Vertex}
     (hv : v ∈ T.1) :
     K.faceCoords T (K.position v) = Pi.single v 1 := by
@@ -155,7 +181,9 @@ theorem faceCoords_position (T : K.toTriangleMesh.Triangle) {v : K.Vertex}
     simp [PlaneComplex.baryEval]
 
 /-- The inverse barycentric realization map sends a point of a maximal geometric triangle to
-the corresponding intrinsic face. -/
+the corresponding intrinsic face.
+@isnad1 id=mem.2h3v.s9.bf6792fbb214 from=translated src=- shape=55d54bf9 vocab=f2d71d80
+-/
 theorem realizationHomeomorph_symm_mem_faceCarrier (hpure : K.IsPure2)
     (T : K.toTriangleMesh.Triangle) (p : K.support)
     (hp : p.1 ∈ K.cellCarrier T.1) :
@@ -177,7 +205,9 @@ theorem realizationHomeomorph_symm_mem_faceCarrier (hpure : K.IsPure2)
   exact hxsupp
 
 /-- On a selected maximal triangle, the inverse realization homeomorphism is given by the
-explicit affine barycentric-coordinate map for that triangle. -/
+explicit affine barycentric-coordinate map for that triangle.
+@isnad1 id=eq.2h3v.s10.8b163c7289a6 from=translated src=- shape=5f273027 vocab=400b11d7
+-/
 theorem realizationHomeomorph_symm_val_eq_faceCoords (hpure : K.IsPure2)
     (T : K.toTriangleMesh.Triangle) (p : K.support)
     (hp : p.1 ∈ K.cellCarrier T.1) :
@@ -196,7 +226,9 @@ theorem realizationHomeomorph_symm_val_eq_faceCoords (hpure : K.IsPure2)
       _ = K.baryEval (K.faceCoords T p.1) := (K.baryEval_faceCoords T p.1).symm
 
 /-- Barycentric realization carries every abstract face carrier exactly onto its geometric
-convex hull. -/
+convex hull.
+@isnad1 id=eq.2h2v.s8.800e94cb8edd from=translated src=- shape=0fc75d28 vocab=4eda125d
+-/
 theorem realizationHomeomorph_image_faceCarrier (hpure : K.IsPure2)
     {s : Finset K.Vertex} (hs : s ∈ K.simplexes) :
     (fun x : K.toIntrinsic.realization => (K.realizationHomeomorph hpure x).1) ''
@@ -230,6 +262,9 @@ noncomputable def subdivisionHomeomorph {L K : PlaneComplex}
   (L.realizationHomeomorph hLpure).trans
     ((Homeomorph.setCongr hLK.1).trans (K.realizationHomeomorph hKpure).symm)
 
+/--
+@isnad1 id=eq.3h3v.s8.62c280c6c1bd from=translated src=- shape=52fc797b vocab=2c77fdee
+-/
 theorem baryEval_subdivisionHomeomorph {L K : PlaneComplex}
     (hLpure : L.IsPure2) (hKpure : K.IsPure2) (hLK : L.Subdivides K)
     (x : L.toIntrinsic.realization) :

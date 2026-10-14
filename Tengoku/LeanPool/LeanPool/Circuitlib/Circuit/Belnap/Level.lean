@@ -44,9 +44,15 @@ def le : BelnapLevel → BelnapLevel → Prop
   | .some (.some x), .some (.some y) => x == y
   | _, _ => false
 
+/--
+@isnad1 id=le.0h1v.s2.eb51dd274356 from=translated src=- shape=b3bac8d8 vocab=e78a6501
+-/
 lemma le_refl : ∀ (a : BelnapLevel), a.le a := by
   rintro (_ | (_ | (_ | _))) <;> trivial
 
+/--
+@isnad1 id=le.2h3v.s4.6413a1a17a97 from=translated src=- shape=0bc0c4a6 vocab=e78a6501
+-/
 lemma le_trans : ∀ (a b c : BelnapLevel), a.le b → b.le c → a.le c := by
   rintro (_ | (_ | a)) (_ | (_ | b)) (_ | (_ | c)) hab hbc <;> simp_all [le]
 
@@ -55,6 +61,9 @@ instance : Preorder BelnapLevel where
   le_refl
   le_trans
 
+/--
+@isnad1 id=eq.2h2v.s4.3d3a08ddb620 from=translated src=- shape=4c719c5d vocab=2e24d8b4
+-/
 lemma le_antisymm : ∀ (a b : BelnapLevel), a ≤ b → b ≤ a → a = b := by
   rintro (_ | (_ | a)) (_ | (_ | b)) hab hba <;> simp_all [LE.le, le] <;> rfl
 
@@ -66,12 +75,21 @@ def sup : BelnapLevel → BelnapLevel → BelnapLevel
   | _, .some .none => .some .none
   | .some (.some x), .some (.some y) => if x == y then .some (.some x) else .some .none
 
+/--
+@isnad1 id=le.0h2v.s3.f7374a78c0ce from=translated src=- shape=70252ff3 vocab=ccce626f
+-/
 lemma le_sup_left : ∀ (a b : BelnapLevel), a ≤ a.sup b:= by
   rintro (_ | (_ | (_ | _))) (_ | (_ | (_ | _))) <;> trivial
 
+/--
+@isnad1 id=le.0h2v.s3.7aa7840d1e54 from=translated src=- shape=86c6c8ca vocab=ccce626f
+-/
 lemma le_sup_right : ∀ (a b : BelnapLevel), b ≤ a.sup b := by
   rintro (_ | (_ | (_ | _))) (_ | (_ | (_ | _))) <;> trivial
 
+/--
+@isnad1 id=le.2h3v.s4.81b24c3d44b6 from=translated src=- shape=343a5309 vocab=ccce626f
+-/
 lemma sup_le : ∀ (a b c : BelnapLevel), a ≤ c → b ≤ c → a.sup b ≤ c  := by
   rintro (_ | (_ | (_ | _))) (_ | (_ | (_ | _))) (_ | (_ | (_ | _))) hac hbc <;> trivial
 

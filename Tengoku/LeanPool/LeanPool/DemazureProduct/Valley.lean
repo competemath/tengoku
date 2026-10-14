@@ -46,9 +46,15 @@ vertical shifts. -/
 /-- The finite sublevel set `{n | v n ≤ m}`. -/
 noncomputable def floor (m : ℤ) : Finset ℤ := Set.Finite.toFinset (v.rises m)
 
+/--
+@isnad1 id=iff.0h3v.s4.38d4d630b0a4 from=translated src=- shape=a8c06c53 vocab=53a60500
+-/
 @[simp] lemma mem_floor (m n : ℤ) : n ∈ v.floor m ↔ v.f n ≤ m := by
   simp only [floor, Set.Finite.mem_toFinset, Set.mem_ofPred_eq]
 
+/--
+@isnad1 id=nonempty.0h2v.s4.45393fefa06e from=translated src=- shape=e33067c8 vocab=04385271
+-/
 lemma floor_image_nonempty (n : ℤ) : (Finset.image v.f <| v.floor (v.f n)).Nonempty := by
   refine ⟨v.f n, ?_⟩
   exact Finset.mem_image.mpr ⟨n, by simp, rfl⟩
@@ -57,10 +63,16 @@ lemma floor_image_nonempty (n : ℤ) : (Finset.image v.f <| v.floor (v.f n)).Non
 noncomputable def min : ℤ := Finset.min' (Finset.image v.f (v.floor (v.f 0)))
   (v.floor_image_nonempty 0)
 
+/--
+@isnad1 id=ex.0h1v.s5.198b8b82c230 from=translated src=- shape=f027e45b vocab=58135146
+-/
 lemma min_mem : ∃ a ∈ {n | v.f n ≤ v.f 0}, v.f a = v.min := by
   simpa [min, Finset.mem_image] using
     Finset.min'_mem (Finset.image v.f (v.floor (v.f 0))) (v.floor_image_nonempty 0)
 
+/--
+@isnad1 id=le.0h2v.s3.0c0f45ba7ae4 from=translated src=- shape=7c82f523 vocab=feaea2c0
+-/
 lemma min_spec : ∀ n : ℤ, v.f n ≥ v.min := by
   intro n
   by_cases h : v.f n > v.f 0
@@ -73,6 +85,9 @@ lemma min_spec : ∀ n : ℤ, v.f n ≥ v.min := by
     Finset.mem_image.mpr ⟨n, mem_floor, rfl⟩
   exact Finset.min'_le (Finset.image v.f (v.floor (v.f 0))) (v.f n) mem_image_floor
 
+/--
+@isnad1 id=nonempty.0h1v.s3.281c6b7f025a from=translated src=- shape=96d2610a vocab=7994f154
+-/
 lemma argmin_set_nonempty : (v.floor v.min).Nonempty := by
   rcases v.min_mem with ⟨m, -, hm⟩
   exact ⟨m, by simp only [mem_floor, hm, le_refl]⟩
@@ -80,6 +95,9 @@ lemma argmin_set_nonempty : (v.floor v.min).Nonempty := by
 /-- The largest index at which the minimum of the valley is attained. -/
 noncomputable def M : ℤ := Finset.max' (v.floor v.min) v.argmin_set_nonempty
 
+/--
+@isnad1 id=eq.0h1v.s3.778bc2e48e9a from=translated src=- shape=aa9ebf7c vocab=054e7f19
+-/
 lemma f_M : v.f v.M = v.min := by
   have ge : v.f v.M ≥ v.min := v.min_spec v.M
   have le : v.f v.M ≤ v.min := by
@@ -87,6 +105,9 @@ lemma f_M : v.f v.M = v.min := by
     simpa using this
   exact le_antisymm le ge
 
+/--
+@isnad1 id=and.0h2v.s5.4042cc01f0c4 from=translated src=- shape=41feb417 vocab=162c6c72
+-/
 lemma M_spec : ∀ n : ℤ, v.f n ≥ v.f v.M ∧ (n > v.M → v.f n > v.f v.M) := by
   intro n
   constructor
@@ -108,7 +129,9 @@ def shiftDown (k : ℤ) : Valley where
     rw [this]
     apply v.rises
 
-/-- Shifting a valley downward does not change its rightmost minimizer. -/
+/-- Shifting a valley downward does not change its rightmost minimizer.
+@isnad1 id=eq.0h2v.s3.a23297199681 from=translated src=- shape=393de0b8 vocab=595f22c3
+-/
 lemma shift_down_M (k : ℤ) : (v.shiftDown k).M = v.M := by
   let v' := v.shiftDown k
   suffices v.M = v'.M by rw [this]
@@ -133,7 +156,9 @@ lemma shift_down_M (k : ℤ) : (v.shiftDown k).M = v.M := by
     simp_all
   exact le_antisymm M_le_M' M'_le_M
 
-/-- Shifting a valley downward subtracts `k` from its minimum value. -/
+/-- Shifting a valley downward subtracts `k` from its minimum value.
+@isnad1 id=eq.0h2v.s4.c70dc95a4a2f from=translated src=- shape=42db545a vocab=d93468d6
+-/
 lemma shift_down_min (k : ℤ) : (v.shiftDown k).min = v.min - k := by
   let v' := v.shiftDown k
   rw [← v'.f_M, ← v.f_M, v.shift_down_M k]

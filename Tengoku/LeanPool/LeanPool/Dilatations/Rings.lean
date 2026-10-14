@@ -37,6 +37,9 @@ variable {ι A' B' F' : Type*} [CommSemiring A'] [CommSemiring B'] [FunLike F' A
 
 namespace Ideal
 
+/--
+@isnad1 id=eq.0h4v.s6.54c77b5dec39 from=translated src=- shape=e0e7823e vocab=54e0aad3
+-/
 lemma prod_span' (f : ι → A') (s : Finset ι) :
     Ideal.span {∏ i ∈ s, f i} = ∏ i ∈ s, Ideal.span {f i} := by
   classical
@@ -46,6 +49,9 @@ lemma prod_span' (f : ι → A') (s : Finset ι) :
     rw [Finset.prod_insert hi, ← Ideal.span_singleton_mul_span_singleton, ih,
       Finset.prod_insert hi]
 
+/--
+@isnad1 id=eq.0h7v.s7.3ac0bd68c8a8 from=translated src=- shape=39e64e79 vocab=00005803
+-/
 lemma prod_map (f : ι → Ideal A') (s : Finset ι) (χ : F') :
     Ideal.map χ (∏ i ∈ s, f i) = ∏ i ∈ s, Ideal.map χ (f i) := by
   classical
@@ -73,20 +79,31 @@ scoped[CategoryTheory.Dilatations.Family] attribute [instance]
 
 open Family
 
+/--
+@isnad1 id=eq.0h5v.s6.30e9a742a553 from=translated src=- shape=41059eee vocab=414b1f72
+-/
 lemma familyPow_def (f : ι → A') (v : ι →₀ G) : f ^ v = v.prod fun i k ↦ f i ^ k := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.cf534af22fd0 from=translated src=- shape=384a1662 vocab=b73e3b66
+-/
 lemma familyPow_add (f : ι → A') (v w : ι →₀ ℕ) : f ^ (v + w) = f ^ v * f ^ w := by
   classical
   simp only [familyPow_def]
   rw [Finsupp.prod_add_index (by simp) (by simp [pow_add])]
 
+/--
+@isnad1 id=eq.0h3v.s6.58a35b7ab659 from=translated src=- shape=a3a6484c vocab=07dcf73b
+-/
 @[simp]
 lemma familyPow_zero (f : ι → A') : f ^ (0 : ι →₀ ℕ) = (1 : A') := by
   simp only [familyPow_def]
   rw [Finsupp.prod_zero_index]
 
 /-- A family-power raised to an ordinary `ℕ`-power is the family-power at the scaled exponent :
-`(f ^ ν) ^ k = f ^ (k•ν)`. Used to relate a "power of a power" to a single flattened exponent. -/
+`(f ^ ν) ^ k = f ^ (k•ν)`. Used to relate a "power of a power" to a single flattened exponent.
+@isnad1 id=eq.0h5v.s6.600340219eff from=translated src=- shape=e8052325 vocab=f38a4080
+-/
 lemma familyPow_nsmul (f : ι → A') (ν : ι →₀ ℕ) (k : ℕ) : (f ^ ν) ^ k = f ^ (k • ν) := by
   induction k with
   | zero => simp
@@ -96,7 +113,9 @@ lemma familyPow_nsmul (f : ι → A') (ν : ι →₀ ℕ) (k : ℕ) : (f ^ ν) 
 agrees with taking the family-power at each profile first and combining : `μ.prod (fun ν k ↦
 (f ^ ν) ^ k) = f ^ (μ.sum fun ν k ↦ k•ν)`. This is the key identity behind reindexing a
     multi-center by
-exponent profiles (`Multicenter.reindex_LargeIdeal_pow`, `Multicenter.reindex_elem_pow` below). -/
+exponent profiles (`Multicenter.reindex_LargeIdeal_pow`, `Multicenter.reindex_elem_pow` below).
+@isnad1 id=eq.0h4v.s7.277e2682403d from=translated src=- shape=929f2179 vocab=4c655f38
+-/
 lemma family_pow_flatten (f : ι → A') (μ : (ι →₀ ℕ) →₀ ℕ) :
     μ.prod (fun ν k => (f ^ ν) ^ k) = f ^ (μ.sum fun ν k => k • ν) := by
   induction μ using Finsupp.induction with
@@ -116,9 +135,15 @@ variable {ι : Type*} (M : ι → Ideal A') (a : ι → A')
 
 open Family
 
+/--
+@isnad1 id=eq.0h4v.s7.4f5ece58ab4c from=translated src=- shape=aa789389 vocab=d9224e51
+-/
 lemma familyPow_def (v : ι →₀ ℕ) : M ^ v = v.prod fun i k ↦ M i ^ k := rfl
 
 variable {M} in
+/--
+@isnad1 id=mem.2h7v.s8.1ef41d053c85 from=translated src=- shape=6589320c vocab=9d7eb3a8
+-/
 lemma mem_familyPow_add {v w : ι →₀ ℕ} {x y : A'} (hx : x ∈ M ^ v) (hy : y ∈ M ^ w) :
   x * y ∈ M ^ (v+w) := by
   classical
@@ -126,6 +151,9 @@ lemma mem_familyPow_add {v w : ι →₀ ℕ} {x y : A'} (hx : x ∈ M ^ v) (hy 
   exact Ideal.mul_mem_mul hx hy
 
 variable {M a} in
+/--
+@isnad1 id=mem.1h5v.s7.ea9fff346965 from=translated src=- shape=369e379d vocab=d1bae873
+-/
 lemma mem_familyPow_of_mem {v : ι →₀ ℕ} (mem : ∀ i ∈ v.support, a i ∈ M i) : a ^ v ∈ M ^ v :=
   Ideal.prod_mem_prod fun _ hi ↦ Ideal.pow_mem_pow (mem _ hi) _
 
@@ -160,6 +188,9 @@ scoped notation : max M"^ℕ"  => Multicenter.index M  →₀ ℕ
 /-- Enlarge the numerator ideal by the principal ideal of its denominator. -/
 def LargeIdeal (i : M.index) : Ideal A' := M.ideal i + Ideal.span {M.elem i}
 
+/--
+@isnad1 id=mem.0h3v.s5.e1d2a1666af7 from=translated src=- shape=09a0b423 vocab=dcf0eb90
+-/
 lemma elem_mem_LargeIdeal (i : M.index) : M.elem i ∈ M.LargeIdeal i := by
   suffices inequality : Ideal.span {M.elem i} ≤ M.LargeIdeal i by
    apply inequality
@@ -170,6 +201,9 @@ lemma elem_mem_LargeIdeal (i : M.index) : M.elem i ∈ M.LargeIdeal i := by
 abbrev prodLargeIdealPower (v : M^ℕ) : Ideal A' :=
   v.prod fun i k ↦ M.LargeIdeal i ^ k
 
+/--
+@isnad1 id=mem.0h3v.s7.93acbfe7e7d9 from=translated src=- shape=3eba4317 vocab=9b04b8be
+-/
 lemma elem_pow_mem_LargeIdealPow (ν : M^ℕ) : M.elem ^ ν ∈ M.LargeIdeal ^ ν :=
   Ideal.mem_familyPow_of_mem fun i _ => elem_mem_LargeIdeal M i
 
@@ -182,7 +216,9 @@ directly (`reindexRingEquiv` below, inside `Dilatation`). -/
   elem := fun ν => M.elem ^ ν
 
 /-- `reindex`'s large ideal at `ν` is just `L ^ ν` itself : the `+span{a ^ ν}` correction is already
-absorbed, since `a ^ ν ∈ L ^ ν` (`elem_pow_mem_LargeIdealPow`). -/
+absorbed, since `a ^ ν ∈ L ^ ν` (`elem_pow_mem_LargeIdealPow`).
+@isnad1 id=eq.0h3v.s6.1b3216de548f from=translated src=- shape=78cd70fa vocab=cf2ff33f
+-/
 lemma reindex_LargeIdeal (ν : M^ℕ) : (M.reindex).LargeIdeal ν = M.LargeIdeal ^ ν := by
   change M.prodLargeIdealPower ν + Ideal.span {M.elem ^ ν} = M.prodLargeIdealPower ν
   rw [Submodule.add_eq_sup, sup_eq_left, Ideal.span_le, Set.singleton_subset_iff]
@@ -193,29 +229,47 @@ lemma reindex_LargeIdeal (ν : M^ℕ) : (M.reindex).LargeIdeal ν = M.LargeIdeal
 (`(M^ℕ) →₀ ℕ`) and `M`'s (`M^ℕ`). -/
 noncomputable def flatten (μ : (M^ℕ) →₀ ℕ) : M^ℕ := μ.sum (fun ν k => k • ν)
 
+/--
+@isnad1 id=eq.0h4v.s7.c366d5b842c5 from=translated src=- shape=1ca75c26 vocab=bbfcdcfa
+-/
 lemma flatten_add (μ μ' : (M^ℕ) →₀ ℕ) : M.flatten (μ + μ') = M.flatten μ + M.flatten μ' := by
   unfold flatten
   refine Finsupp.sum_add_index' (fun ν => ?_) (fun ν k k' => ?_)
   · simp
   · rw [add_smul]
 
+/--
+@isnad1 id=eq.0h2v.s6.81cbf5a6a9bb from=translated src=- shape=0d09acba vocab=efad0cba
+-/
 lemma flatten_zero : M.flatten 0 = 0 := by
   unfold flatten
   exact Finsupp.sum_zero_index
 
+/--
+@isnad1 id=eq.0h3v.s5.01e9a45d5b56 from=translated src=- shape=95904088 vocab=033adf2a
+-/
 lemma flatten_single (ν0 : M^ℕ) : M.flatten (Finsupp.single ν0 1) = ν0 := by
   unfold flatten
   rw [Finsupp.sum_single_index (by simp), one_smul]
 
+/--
+@isnad1 id=surjecti.0h2v.s5.984f1d91b98a from=translated src=- shape=e88109ec vocab=231a716b
+-/
 lemma flatten_surjective : Function.Surjective (M.flatten) :=
   fun ν0 => ⟨Finsupp.single ν0 1, flatten_single M ν0⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.a87c2e33beb0 from=translated src=- shape=0a0cfbd1 vocab=a5164ff4
+-/
 lemma reindex_LargeIdeal_pow (μ : (M^ℕ) →₀ ℕ) :
     (M.reindex).LargeIdeal ^ μ = M.LargeIdeal ^ (M.flatten μ) := by
   change μ.prod (fun ν k => ((M.reindex).LargeIdeal ν) ^ k) = _
   simp_rw [reindex_LargeIdeal]
   exact family_pow_flatten M.LargeIdeal μ
 
+/--
+@isnad1 id=eq.0h3v.s7.271480903b02 from=translated src=- shape=d302776b vocab=a40ef5f3
+-/
 lemma reindex_elem_pow (μ : (M^ℕ) →₀ ℕ) :
     (M.reindex).elem ^ μ = M.elem ^ (M.flatten μ) :=
   family_pow_flatten M.elem μ
@@ -234,14 +288,23 @@ def r : M.PreDil → M.PreDil → Prop := fun x y =>
 
 variable {M}
 
+/--
+@isnad1 id=r.0h3v.s4.f9f33cdda8b5 from=translated src=- shape=7bff0588 vocab=6fa59c21
+-/
 lemma r_refl (x : M.PreDil) : M.r x x := by simp [r]
 
+/--
+@isnad1 id=r.1h4v.s5.bf2e0002a7d2 from=translated src=- shape=38d8e907 vocab=6fa59c21
+-/
 lemma r_symm (x y : M.PreDil) : M.r x y → M.r y x := by
   intro h
   rcases h with ⟨β, hβ⟩
   use β
   rw [hβ.symm]
 
+/--
+@isnad1 id=r.2h5v.s5.7cfc3b93582a from=translated src=- shape=516e7e6d vocab=6fa59c21
+-/
 lemma r_trans (x y z : M.PreDil) : M.r x y → M.r y z → M.r x z := by
   intro h g
   rcases h with ⟨β, hβ⟩
@@ -272,10 +335,16 @@ namespace Dilatation
 /-- Map a fraction representative to its class in the dilatation. -/
 def mk (x : M.PreDil) : A'[M] := _root_.Quotient.mk _ x
 
+/--
+@isnad1 id=iff.0h4v.s5.6652110b81f1 from=translated src=- shape=cd523902 vocab=f06952a3
+-/
 lemma mk_eq_mk (x y : M.PreDil) : mk x = mk y ↔ M.r x y := by
   erw [_root_.Quotient.eq]
   rfl
 
+/--
+@isnad1 id=var.0h5v.s5.c1538cc10195 from=translated src=- shape=26e0bf6f vocab=5d0166f6
+-/
 @[elab_as_elim]
 lemma induction_on {P : A'[M] → Prop} (x : A'[M]) (h : ∀ x : M.PreDil, P (mk x)) : P x := by
   induction x using _root_.Quotient.inductionOn with | h a =>
@@ -291,11 +360,17 @@ def descFun₂ {B' : Type*} (f : M.PreDil → M.PreDil → B')
     A'[M] → A'[M] → B' :=
   _root_.Quotient.lift₂ f <| fun a x b y ↦ hf a b x y
 
+/--
+@isnad1 id=eq.1h5v.s6.a44817293c69 from=translated src=- shape=11efd3f3 vocab=3e285be2
+-/
 @[simp]
 lemma descFun_mk {B' : Type*} (f : M.PreDil → B') (hf : ∀ x y, M.r x y → f x = f y)
     (x : M.PreDil) :
     descFun f hf (mk x) = f x := rfl
 
+/--
+@isnad1 id=eq.1h6v.s6.7c1f7745059f from=translated src=- shape=dc8b521a vocab=7c1c6e39
+-/
 @[simp]
 lemma descFun₂_mk_mk {B' : Type*} (f : M.PreDil → M.PreDil → B')
     (hf : ∀ a b x y, M.r a b → M.r x y → f a x = f b y) (x y : M.PreDil) :
@@ -316,6 +391,9 @@ def add' (x y : M.PreDil) : M.PreDil where
     exact Ideal.mul_mem_mul (Ideal.mem_familyPow_of_mem fun i _ ↦ elem_mem_LargeIdeal M i)
       y.num_mem)
 
+/--
+@isnad1 id=r.2h6v.s5.50fc6ad60aeb from=translated src=- shape=1542fa90 vocab=f42ad7ef
+-/
 lemma add'_respects {x x' y y' : M.PreDil} (hx : M.r x x') (hy : M.r y y') :
     M.r (add' x y) (add' x' y') := by
   obtain ⟨α, hα⟩ := hx
@@ -341,6 +419,9 @@ instance : Add A'[M] where
   add := descFun₂ (fun x y => mk (add' x y)) fun _ _ _ _ hx hy =>
     (mk_eq_mk _ _).mpr (add'_respects hx hy)
 
+/--
+@isnad1 id=eq.0h4v.s6.e902a928146b from=translated src=- shape=72894683 vocab=e2b3d204
+-/
 lemma mk_add_mk (x y : M.PreDil) : mk x + mk y = mk (add' x y) := rfl
 
 /-- Multiplication of representatives by multiplying their numerators. -/
@@ -350,6 +431,9 @@ def mul' (x y : M.PreDil) : M.PreDil where
   num := x.num * y.num
   num_mem := Ideal.mem_familyPow_add x.num_mem y.num_mem
 
+/--
+@isnad1 id=r.0h5v.s5.53737adc20d2 from=translated src=- shape=46e7bf78 vocab=a7e09a62
+-/
 lemma dist' (x y z : M.PreDil) : M.r (mul' x (add' y z))
                                 (add' (mul' x y) (mul' x z))  := by
   use 0
@@ -370,6 +454,9 @@ instance : Mul A'[M] where
     congr 2
     abel
 
+/--
+@isnad1 id=eq.0h4v.s6.f38364562167 from=translated src=- shape=72894683 vocab=5d4cd340
+-/
 lemma mk_mul_mk (x y : M.PreDil) : mk x * mk y = mk (mul' x y) := rfl
 
 instance : Zero A'[M] where
@@ -379,6 +466,9 @@ instance : Zero A'[M] where
     num_mem := by exact Submodule.zero_mem (M.prodLargeIdealPower 0)
   }
 
+/--
+@isnad1 id=eq.0h2v.s6.65119c80ebca from=translated src=- shape=f5289a05 vocab=caf33f04
+-/
 lemma zero_def :  (0 :A'[M]) =  (mk {
     pow := 0
     num := 0
@@ -392,6 +482,9 @@ instance : One A'[M] where
     num_mem := by exact Submodule.one_le.mp fun ⦃x⦄ a ↦ a
   }
 
+/--
+@isnad1 id=eq.0h2v.s6.26dddf95d56b from=translated src=- shape=f5289a05 vocab=d02a4508
+-/
 lemma one_def :  (1 :A'[M]) =  (mk {
   pow := 0
   num := 1
@@ -509,8 +602,14 @@ def fromBaseRing : A' →+* A'[M] where
 
 instance : Algebra A' A'[M] := RingHom.toAlgebra (fromBaseRing M)
 
+/--
+@isnad1 id=eq.0h2v.s5.3c8e5c5f33b4 from=translated src=- shape=2cecd76a vocab=4f953e36
+-/
 lemma algebraMap_eq : (algebraMap A' A'[M]) = fromBaseRing M := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.7193a0329f1c from=translated src=- shape=4358b675 vocab=4287195f
+-/
 lemma algebraMap_apply (x : A') : algebraMap A' A'[M] x = mk {
   pow := 0
   num := x
@@ -531,6 +630,9 @@ scoped notation : max m"/.[" M"]"ν => frac (M := M) ν m
 /-- Fraction notation with the multicenter inferred from the numerator type. -/
 scoped notation : max m"/."ν => frac ν m
 
+/--
+@isnad1 id=eq.0h6v.s9.f59c87bf82e1 from=translated src=- shape=50be7133 vocab=ec306731
+-/
 lemma frac_add_frac (v w : M^ℕ) (m : M.LargeIdeal ^ v) (n : M.LargeIdeal ^ w) :
     (m/.v) + (n/.w) =
     (⟨(m : A') * M.elem ^ w + (n : A') * M.elem ^ v, Ideal.add_mem _
@@ -543,6 +645,9 @@ lemma frac_add_frac (v w : M^ℕ) (m : M.LargeIdeal ^ v) (n : M.LargeIdeal ^ w) 
   simp only [add'_num, zero_add, familyPow_add, add'_pow]
   ring
 
+/--
+@isnad1 id=eq.0h6v.s9.b0fe32ca930a from=translated src=- shape=c53850c8 vocab=9e3b5b50
+-/
 lemma frac_mul_frac (v w : M^ℕ) (m : M.LargeIdeal ^ v) (n : M.LargeIdeal ^ w) :
     (m/.v) * (n/.w) =
     (⟨m * n, Ideal.mem_familyPow_add m.2 n.2⟩)/.(v + w) := by
@@ -550,6 +655,9 @@ lemma frac_mul_frac (v w : M^ℕ) (m : M.LargeIdeal ^ v) (n : M.LargeIdeal ^ w) 
   use 0
   simp
 
+/--
+@isnad1 id=mem.0h3v.s8.0842387291d2 from=translated src=- shape=7da97f7f vocab=dd9aacf6
+-/
 lemma nonzerodiv_image (v : M^ℕ) :
    algebraMap A' A'[M] (M.elem ^ v) ∈ nonZeroDivisors A'[M] := by
     have key : ∀ x : A'[M], x * algebraMap A' A'[M] (M.elem ^ v) = 0 → x = 0 := by
@@ -565,11 +673,16 @@ lemma nonzerodiv_image (v : M^ℕ) :
     exact ⟨fun x hx => key x (by rw [mul_comm]; exact hx), key⟩
 
 variable (M) in
-/-- Each denominator becomes a non-zero-divisor in the dilatation. -/
+/-- Each denominator becomes a non-zero-divisor in the dilatation.
+@isnad1 id=mem.0h3v.s7.310774f5858e from=translated src=- shape=c04a38a9 vocab=0d7c1d8e
+-/
 lemma nonzerodiv_image_single (i : M.index) :
     algebraMap A' A'[M] (M.elem i) ∈ nonZeroDivisors A'[M] := by
   simpa [familyPow_def] using nonzerodiv_image (M := M) (Finsupp.single i 1)
 
+/--
+@isnad1 id=eq.0h3v.s8.f271547f1153 from=translated src=- shape=fcff9059 vocab=779bbe38
+-/
 lemma image_elem_LargeIdeal_equal (v : M^ℕ) :
  Ideal.span ({algebraMap A' A'[M] (M.elem ^ v)}) =
     Ideal.map (algebraMap A' A'[M]) (M.LargeIdeal ^ v):= by
@@ -605,6 +718,9 @@ noncomputable def toPreDil (x : (M.reindex).PreDil) : M.PreDil where
   num := x.num
   num_mem := reindex_LargeIdeal_pow M x.pow ▸ x.num_mem
 
+/--
+@isnad1 id=r.1h4v.s5.f077fc6ca44d from=translated src=- shape=af441368 vocab=fedaf72d
+-/
 lemma toPreDil_respects {x y : (M.reindex).PreDil} (h : (M.reindex).r x y) :
     M.r (toPreDil x) (toPreDil y) := by
   obtain ⟨β, hβ⟩ := h
@@ -627,6 +743,9 @@ noncomputable def toPreDil' (x : M.PreDil) : (M.reindex).PreDil where
     rw [reindex_LargeIdeal_pow, flatten_single]
     exact x.num_mem
 
+/--
+@isnad1 id=r.1h4v.s5.010c2d64828d from=translated src=- shape=d1a21c11 vocab=c1891dd2
+-/
 lemma toPreDil'_respects {x y : M.PreDil} (h : M.r x y) :
     (M.reindex).r (toPreDil' x) (toPreDil' y) := by
   obtain ⟨β, hβ⟩ := h
@@ -642,10 +761,16 @@ noncomputable def toDilatation' : A'[M] → A'[M.reindex] :=
   descFun (M := M) (fun x => mk (toPreDil' x))
     (fun _ _ hxy => (mk_eq_mk _ _).mpr (toPreDil'_respects hxy))
 
+/--
+@isnad1 id=eq.0h3v.s4.521382d41b4b from=translated src=- shape=d3018184 vocab=77614a6d
+-/
 lemma toPreDil_toPreDil' (x : M.PreDil) : toPreDil (toPreDil' x) = x := by
   unfold toPreDil toPreDil'
   simp only [flatten_single]
 
+/--
+@isnad1 id=r.0h3v.s5.65090ae9b79a from=translated src=- shape=b970d927 vocab=1296b92e
+-/
 lemma toPreDil'_toPreDil (y : (M.reindex).PreDil) :
     (M.reindex).r (toPreDil' (toPreDil y)) y := by
   refine ⟨0, ?_⟩
@@ -653,11 +778,17 @@ lemma toPreDil'_toPreDil (y : (M.reindex).PreDil) :
     y.num * (M.reindex).elem ^ (0 + Finsupp.single (M.flatten y.pow) 1)
   rw [zero_add, zero_add, reindex_elem_pow, reindex_elem_pow, flatten_single]
 
+/--
+@isnad1 id=eq.0h3v.s4.93b63fc31ec3 from=translated src=- shape=d3018184 vocab=a903af94
+-/
 lemma toDilatation_toDilatation' (x : A'[M]) :
     toDilatation (toDilatation' x) = x := by
   induction x using induction_on with
   | h x => change mk (toPreDil (toPreDil' x)) = mk x; rw [toPreDil_toPreDil']
 
+/--
+@isnad1 id=eq.0h3v.s5.4e23e1d3460c from=translated src=- shape=1b4a2e8c vocab=7a668b00
+-/
 lemma toDilatation'_toDilatation (y : A'[M.reindex]) :
     toDilatation' (toDilatation y) = y := by
   induction y using induction_on with
@@ -665,6 +796,9 @@ lemma toDilatation'_toDilatation (y : A'[M.reindex]) :
     change mk (toPreDil' (toPreDil y)) = mk y
     exact (mk_eq_mk _ _).mpr (toPreDil'_toPreDil y)
 
+/--
+@isnad1 id=eq.0h4v.s5.79fc0f355791 from=translated src=- shape=ec773758 vocab=8890ba15
+-/
 lemma toPreDil_add' (x y : (M.reindex).PreDil) :
     toPreDil (add' x y) = add' (toPreDil x) (toPreDil y) := by
   refine PreDil.mk.injEq .. |>.mpr ⟨?_, ?_⟩
@@ -673,20 +807,32 @@ lemma toPreDil_add' (x y : (M.reindex).PreDil) :
       M.elem ^ (M.flatten y.pow) * x.num + M.elem ^ (M.flatten x.pow) * y.num
     rw [reindex_elem_pow, reindex_elem_pow]
 
+/--
+@isnad1 id=eq.0h4v.s5.eebd8723cbe6 from=translated src=- shape=ec773758 vocab=1df82079
+-/
 lemma toPreDil_mul' (x y : (M.reindex).PreDil) :
     toPreDil (mul' x y) = mul' (toPreDil x) (toPreDil y) := by
   refine PreDil.mk.injEq .. |>.mpr ⟨?_, ?_⟩
   · exact flatten_add M x.pow y.pow
   · rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.93e0264a8b8a from=translated src=- shape=dc34ca13 vocab=11904e37
+-/
 lemma toDilatation_zero : toDilatation (0 : A'[M.reindex]) = 0 := by
   change mk (toPreDil _) = _
   congr 1
 
+/--
+@isnad1 id=eq.0h2v.s5.f59de8223afd from=translated src=- shape=dc34ca13 vocab=11904e37
+-/
 lemma toDilatation_one : toDilatation (1 : A'[M.reindex]) = 1 := by
   change mk (toPreDil _) = _
   congr 1
 
+/--
+@isnad1 id=eq.0h4v.s6.1456e5189229 from=translated src=- shape=f1fbe751 vocab=c1cd7121
+-/
 lemma toDilatation_add (x y : A'[M.reindex]) :
     toDilatation (x + y) = toDilatation x + toDilatation y := by
   induction x using induction_on with
@@ -696,6 +842,9 @@ lemma toDilatation_add (x y : A'[M.reindex]) :
       change mk (toPreDil (add' x y)) = mk (toPreDil x) + mk (toPreDil y)
       rw [mk_add_mk, toPreDil_add']
 
+/--
+@isnad1 id=eq.0h4v.s6.8ac11a937982 from=translated src=- shape=f1fbe751 vocab=c7579e83
+-/
 lemma toDilatation_mul (x y : A'[M.reindex]) :
     toDilatation (x * y) = toDilatation x * toDilatation y := by
   induction x using induction_on with
@@ -715,7 +864,9 @@ noncomputable def reindexRingEquiv : A'[M.reindex] ≃+* A'[M] where
   map_add' := toDilatation_add
   map_mul' := toDilatation_mul
 
-/-- Flattening exponent profiles fixes the image of each base element. -/
+/-- Flattening exponent profiles fixes the image of each base element.
+@isnad1 id=eq.0h3v.s7.9993568a2719 from=translated src=- shape=75dce419 vocab=9bf7a2dc
+-/
 @[simp]
 lemma toDilatation_algebraMap (a : A') :
     toDilatation (algebraMap A' A'[M.reindex] a) = algebraMap A' A'[M] a := by
@@ -726,6 +877,9 @@ lemma toDilatation_algebraMap (a : A') :
 noncomputable def reindexAlgEquiv : A'[M.reindex] ≃ₐ[A'] A'[M] :=
   { reindexRingEquiv with commutes' := toDilatation_algebraMap }
 
+/--
+@isnad1 id=eq.1h4v.s8.997d7d275345 from=translated src=- shape=1c0915fc vocab=276b143b
+-/
 lemma algebraMap_mul_fraction (ν : M^ℕ) (num : A') (hnum : num ∈ M.LargeIdeal ^ ν) :
     algebraMap A' A'[M] (M.elem ^ ν) * frac ν ⟨num, hnum⟩ = algebraMap A' A'[M] num := by
   simp only [algebraMap_apply, frac, mk_mul_mk, mk_eq_mk]
@@ -755,6 +909,9 @@ instance : Neg A'[M] where
     use α
     simp [hα]
 
+/--
+@isnad1 id=eq.0h3v.s5.540e73332b8e from=translated src=- shape=31d43160 vocab=2f1c1654
+-/
 lemma mk_neg (x : M.PreDil) : -mk x = mk (neg' x) := rfl
 
 instance : CommRing A'[M] where
@@ -767,6 +924,9 @@ instance : CommRing A'[M] where
     use 0
     simp
 
+/--
+@isnad1 id=eq.0h4v.s8.66943498ade3 from=translated src=- shape=90f599d1 vocab=ba5d6677
+-/
 lemma neg_frac (v : M^ℕ) (m : M.LargeIdeal ^ v) : -(m/.v) = (-m)/.v := by
   simp only [frac, mk_neg, mk_eq_mk]
   use 0
@@ -780,6 +940,9 @@ section universal_property
 
 variable {A' B' : Type*} [CommRing A'] [CommRing B'] (M : Multicenter A')
 
+/--
+@isnad1 id=eq.1h4v.s8.56a1ebbf5e4e from=translated src=- shape=29058c4a vocab=f16f0cca
+-/
 lemma cond_univ_implies_large_cond [Algebra A' B']
     (gen : ∀ i, Ideal.span {(algebraMap A' B') (M.elem i)} = Ideal.map (algebraMap A' B')
       (M.LargeIdeal i)) :
@@ -792,12 +955,18 @@ lemma cond_univ_implies_large_cond [Algebra A' B']
      simp [← Ideal.span_singleton_pow, gen]
      simp [Ideal.prod_map, Ideal.map_pow]
 
+/--
+@isnad1 id=eq.0h4v.s7.6fdf879f4d05 from=translated src=- shape=1161fb16 vocab=afe9d36b
+-/
 lemma equ_trivial_image_divisor_ring [Algebra A' B'] :
     ∀ i, Ideal.map (algebraMap A' B') (Ideal.span {M.elem i})=
       Ideal.span {(algebraMap A' B') (M.elem i)} := by
       intro i
       rw [Ideal.map_span, Set.image_singleton]
 
+/--
+@isnad1 id=iff.0h3v.s8.033c2f4a984a from=translated src=- shape=d1524b2d vocab=a1f684ce
+-/
 lemma equiv_small_big_cond [Algebra A' B'] :
 (    ∀ i, Ideal.map (algebraMap A' B') (Ideal.span {M.elem i}) = Ideal.map (algebraMap A' B')
     (M.LargeIdeal i)) ↔
@@ -806,6 +975,9 @@ lemma equiv_small_big_cond [Algebra A' B'] :
   simp only [LargeIdeal, Submodule.add_eq_sup, Ideal.map_sup]
   exact forall_congr' fun _ => eq_comm.trans sup_eq_right
 
+/--
+@isnad1 id=existsun.2h5v.s9.24b5c27030d6 from=translated src=- shape=40e0a148 vocab=42783414
+-/
 lemma lemma_exists_in_image [Algebra A' B']
     (non_zero_divisor : ∀ i : M.index, (algebraMap A' B') (M.elem i) ∈ nonZeroDivisors B')
     (gen : ∀ i, Ideal.span {(algebraMap A' B') (M.elem i)} = Ideal.map (algebraMap A' B')
@@ -839,6 +1011,9 @@ def fractionValue [Algebra A' B'] (v : M^ℕ) (m : M.LargeIdeal ^ v)
       (M.LargeIdeal i)): B' :=
      (lemma_exists_in_image M non_zero_divisor gen v m).choose
 
+/--
+@isnad1 id=eq.2h5v.s9.483c92cd361c from=translated src=- shape=adaa3dfa vocab=dcd68af7
+-/
 lemma fractionValue_spec [Algebra A' B'] (v : M^ℕ) (m : M.LargeIdeal ^ v)
     (non_zero_divisor : ∀ i : M.index, (algebraMap A' B') (M.elem i) ∈ nonZeroDivisors B')
     (gen : ∀ i, Ideal.span {(algebraMap A' B') (M.elem i)} = Ideal.map (algebraMap A' B')
@@ -847,6 +1022,9 @@ lemma fractionValue_spec [Algebra A' B'] (v : M^ℕ) (m : M.LargeIdeal ^ v)
       A' B') m := by
     apply (lemma_exists_in_image M non_zero_divisor gen v m).choose_spec.1
 
+/--
+@isnad1 id=eq.3h6v.s9.3583765ed729 from=translated src=- shape=45f25cff vocab=dcd68af7
+-/
 lemma fractionValue_unique [Algebra A' B'] (v : M^ℕ) (m : M.LargeIdeal ^ v)
     (non_zero_divisor : ∀ i : M.index, (algebraMap A' B') (M.elem i) ∈ nonZeroDivisors B')
     (gen : ∀ i, Ideal.span {(algebraMap A' B') (M.elem i)} = Ideal.map (algebraMap A' B')
@@ -930,6 +1108,9 @@ def desc [Algebra A' B']
 open Multicenter
 open Dilatation
 
+/--
+@isnad1 id=eq.2h4v.s8.41f68beb67d8 from=translated src=- shape=176726e7 vocab=42fee6c1
+-/
 lemma lemma_exists_unique_morphism [Algebra A' B']
     (non_zero_divisor : ∀ i : M.index, (algebraMap A' B') (M.elem i) ∈ nonZeroDivisors B')
     (gen : ∀ i, Ideal.span {(algebraMap A' B') (M.elem i)} = Ideal.map (algebraMap A' B')
@@ -946,6 +1127,9 @@ lemma lemma_exists_unique_morphism [Algebra A' B']
 
 open Dilatation
 open Multicenter
+/--
+@isnad1 id=eq.0h5v.s7.edafe7c1c5a5 from=translated src=- shape=83c20db0 vocab=582cab31
+-/
 lemma reciprocal_for_univ [Algebra A' B'] (M : Multicenter A')
     (χ' : A'[M] →ₐ[A'] B') (i : M.index) :
     Ideal.span {algebraMap A' B' (M.elem i)} =

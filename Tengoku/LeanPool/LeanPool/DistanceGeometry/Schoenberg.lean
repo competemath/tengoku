@@ -47,7 +47,9 @@ variable {n k : ℕ} [NeZero n]
 
 /-- The polarization identity. When `D` is the squared-distance matrix of `x`, the
 `(i, j)` entry of the basepoint-centered Gram matrix is the inner product of the recentred
-vectors `x i - x 0` and `x j - x 0`. -/
+vectors `x i - x 0` and `x j - x 0`.
+@isnad1 id=eq.1h6v.s8.fa5d34bf99d3 from=translated src=- shape=5497fbd7 vocab=35ae25d0
+-/
 theorem centeredGram_apply_eq_inner
     {D : Matrix (Fin n) (Fin n) ℝ} {x : Fin n → EuclideanSpace ℝ (Fin k)}
     (hD : IsSqDistMatrix D x) (i j : Fin n) :
@@ -64,7 +66,9 @@ theorem centeredGram_apply_eq_inner
   rw [hsub]
   ring
 
-/-- The basepoint-centered Gram matrix is the Gram matrix of the recentred vectors. -/
+/-- The basepoint-centered Gram matrix is the Gram matrix of the recentred vectors.
+@isnad1 id=eq.1h4v.s7.81a50742bb9c from=translated src=- shape=8198da28 vocab=96b0fadc
+-/
 theorem centeredGram_eq_gram
     {D : Matrix (Fin n) (Fin n) ℝ} {x : Fin n → EuclideanSpace ℝ (Fin k)}
     (hD : IsSqDistMatrix D x) :
@@ -73,7 +77,9 @@ theorem centeredGram_eq_gram
   rw [centeredGram_apply_eq_inner hD i j, gram_apply]
 
 /-- The basepoint-centered Gram matrix of a squared-distance matrix is positive semidefinite.
-This is the positive-semidefiniteness half of Schoenberg's necessary conditions. -/
+This is the positive-semidefiniteness half of Schoenberg's necessary conditions.
+@isnad1 id=possemid.1h4v.s5.d42f1336035c from=translated src=- shape=98a5bfe8 vocab=7d477226
+-/
 theorem posSemidef_centeredGram
     {D : Matrix (Fin n) (Fin n) ℝ} {x : Fin n → EuclideanSpace ℝ (Fin k)}
     (hD : IsSqDistMatrix D x) :
@@ -83,7 +89,9 @@ theorem posSemidef_centeredGram
 
 /-- The basepoint-centered Gram matrix of a squared-distance matrix of a configuration in
 dimension `k` has rank at most `k`. This is the rank half of Schoenberg's necessary
-conditions. -/
+conditions.
+@isnad1 id=le.1h4v.s5.717154261689 from=translated src=- shape=b6bb7850 vocab=163ded74
+-/
 theorem rank_centeredGram_le
     {D : Matrix (Fin n) (Fin n) ℝ} {x : Fin n → EuclideanSpace ℝ (Fin k)}
     (hD : IsSqDistMatrix D x) :
@@ -100,7 +108,9 @@ theorem rank_centeredGram_le
 
 /-- The necessary conditions in Schoenberg's theorem: the basepoint-centered Gram matrix of a
 squared-distance matrix of a configuration in `EuclideanSpace ℝ (Fin k)` is positive
-semidefinite and has rank at most `k`. -/
+semidefinite and has rank at most `k`.
+@isnad1 id=and.1h4v.s5.dacede19a5c0 from=translated src=- shape=6d8a21ff vocab=db31999d
+-/
 theorem schoenberg_easy
     {D : Matrix (Fin n) (Fin n) ℝ} {x : Fin n → EuclideanSpace ℝ (Fin k)}
     (hD : IsSqDistMatrix D x) :

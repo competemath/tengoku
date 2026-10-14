@@ -38,15 +38,24 @@ noncomputable def unstretch : List ℕ → ℝ → ℝ
 def Positive (weights : List ℕ) : Prop :=
   ∀ w ∈ weights, 0 < w
 
+/--
+@isnad1 id=lt.1h2v.s4.d762cc581959 from=translated src=- shape=91eb6b6e vocab=af100a8d
+-/
 theorem Positive.head {w : ℕ} {weights : List ℕ}
     (h : Positive (w :: weights)) : 0 < w :=
   h w (by simp)
 
+/--
+@isnad1 id=positive.1h2v.s3.467e4cee280b from=translated src=- shape=353bddaf vocab=882bf8ad
+-/
 theorem Positive.tail {w : ℕ} {weights : List ℕ}
     (h : Positive (w :: weights)) : Positive weights := by
   intro v hv
   exact h v (by simp [hv])
 
+/--
+@isnad1 id=lt.1h2v.s5.e6a2a5b732f6 from=translated src=- shape=d1ab2249 vocab=fd4f071f
+-/
 theorem sum_take_lt_sum {weights : List ℕ} (h : Positive weights)
     (i : Fin weights.length) :
     (weights.take i).sum < weights.sum := by
@@ -59,14 +68,23 @@ theorem sum_take_lt_sum {weights : List ℕ} (h : Positive weights)
         exact Or.inl h.head
       · simpa [List.take_succ_cons] using Nat.add_lt_add_left (ih h.tail j) w
 
+/--
+@isnad1 id=eq.0h1v.s3.58d47d4d0ccb from=translated src=- shape=dedddc79 vocab=010be224
+-/
 @[simp]
 theorem stretch_nil (x : ℝ) : stretch [] x = 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.971b0246edfe from=translated src=- shape=dedddc79 vocab=1836d4f9
+-/
 @[simp]
 theorem unstretch_nil (y : ℝ) : unstretch [] y = 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.627b2713db3a from=translated src=- shape=ae3cb9ac vocab=432ab9b7
+-/
 @[simp]
 theorem stretch_zero (weights : List ℕ) : stretch weights 0 = 0 := by
   induction weights with
@@ -74,6 +92,9 @@ theorem stretch_zero (weights : List ℕ) : stretch weights 0 = 0 := by
   | cons w weights _ =>
       simp [stretch]
 
+/--
+@isnad1 id=eq.0h1v.s4.aef5339a98e9 from=translated src=- shape=ae3cb9ac vocab=b5ad213f
+-/
 @[simp]
 theorem unstretch_zero (weights : List ℕ) : unstretch weights 0 = 0 := by
   induction weights with
@@ -85,6 +106,9 @@ theorem unstretch_zero (weights : List ℕ) : unstretch weights 0 = 0 := by
       · have hwpos : (0 : ℝ) < w := by exact_mod_cast Nat.pos_of_ne_zero hw
         simp [unstretch, hwpos.le]
 
+/--
+@isnad1 id=eq.0h1v.s4.a71dec462ea8 from=translated src=- shape=47e83272 vocab=2ad60d0c
+-/
 @[simp]
 theorem stretch_length (weights : List ℕ) :
     stretch weights weights.length = weights.sum := by
@@ -114,6 +138,9 @@ theorem stretch_length (weights : List ℕ) :
               push_cast
               simp
 
+/--
+@isnad1 id=eq.1h1v.s4.5286c7058092 from=translated src=- shape=a08fa0a3 vocab=950d22d2
+-/
 theorem unstretch_sum (weights : List ℕ) (h : Positive weights) :
     unstretch weights weights.sum = weights.length := by
   induction weights with
@@ -138,7 +165,9 @@ theorem unstretch_sum (weights : List ℕ) (h : Positive weights) :
         push_cast
         ring
 
-/-- Stretching is continuous; adjacent affine pieces agree at every breakpoint. -/
+/-- Stretching is continuous; adjacent affine pieces agree at every breakpoint.
+@isnad1 id=continuo.0h1v.s4.3609e9e25a50 from=translated src=- shape=a9740a7d vocab=649b7b6b
+-/
 theorem continuous_stretch (weights : List ℕ) :
     Continuous (stretch weights) := by
   induction weights with
@@ -156,7 +185,9 @@ theorem continuous_stretch (weights : List ℕ) :
       subst x
       simp
 
-/-- Inverse stretching is continuous when every weight is positive. -/
+/-- Inverse stretching is continuous when every weight is positive.
+@isnad1 id=continuo.1h1v.s4.ef46fd247067 from=translated src=- shape=49e3e2f8 vocab=9fc790b3
+-/
 theorem continuous_unstretch (weights : List ℕ) (h : Positive weights) :
     Continuous (unstretch weights) := by
   induction weights with
@@ -178,6 +209,9 @@ theorem continuous_unstretch (weights : List ℕ) (h : Positive weights) :
       rw [div_self hw, sub_self, unstretch_zero]
       norm_num
 
+/--
+@isnad1 id=le.3h2v.s5.62e14b6fa053 from=translated src=- shape=2f145a8f vocab=1a875744
+-/
 theorem stretch_nonneg {weights : List ℕ} (h : Positive weights)
     {x : ℝ} (hx0 : 0 ≤ x) (hxlen : x ≤ weights.length) :
     0 ≤ stretch weights x := by
@@ -195,6 +229,9 @@ theorem stretch_nonneg {weights : List ℕ} (h : Positive weights)
         exact add_nonneg (by positivity)
           (ih h.tail hx0' hxlen')
 
+/--
+@isnad1 id=le.3h2v.s5.e1aae20faddf from=translated src=- shape=0ede4897 vocab=584dd576
+-/
 theorem stretch_le_sum {weights : List ℕ} (h : Positive weights)
     {x : ℝ} (hx0 : 0 ≤ x) (hxlen : x ≤ weights.length) :
     stretch weights x ≤ weights.sum := by
@@ -217,6 +254,9 @@ theorem stretch_le_sum {weights : List ℕ} (h : Positive weights)
         rw [List.sum_cons, Nat.cast_add]
         linarith
 
+/--
+@isnad1 id=lt.3h2v.s5.09994a1f54a9 from=translated src=- shape=0c97ffb7 vocab=70bfd0cb
+-/
 theorem stretch_pos {weights : List ℕ} (h : Positive weights)
     {x : ℝ} (hx0 : 0 < x) (hxlen : x ≤ weights.length) :
     0 < stretch weights x := by
@@ -238,6 +278,9 @@ theorem stretch_pos {weights : List ℕ} (h : Positive weights)
         have hw : (0 : ℝ) < w := by exact_mod_cast h.head
         linarith
 
+/--
+@isnad1 id=le.3h2v.s5.bf33fd5bcb9a from=translated src=- shape=2f145a8f vocab=4c83c6d7
+-/
 theorem unstretch_nonneg {weights : List ℕ} (h : Positive weights)
     {y : ℝ} (hy0 : 0 ≤ y) (hysum : y ≤ weights.sum) :
     0 ≤ unstretch weights y := by
@@ -254,6 +297,9 @@ theorem unstretch_nonneg {weights : List ℕ} (h : Positive weights)
           simpa only [List.sum_cons, Nat.cast_add, add_comm] using hysum
         exact add_nonneg (by norm_num) (ih h.tail hy0' hysum')
 
+/--
+@isnad1 id=le.3h2v.s5.5c2fc171c51d from=translated src=- shape=0ede4897 vocab=ccac56ff
+-/
 theorem unstretch_le_length {weights : List ℕ} (h : Positive weights)
     {y : ℝ} (hy0 : 0 ≤ y) (hysum : y ≤ weights.sum) :
     unstretch weights y ≤ weights.length := by
@@ -279,6 +325,9 @@ theorem unstretch_le_length {weights : List ℕ} (h : Positive weights)
         push_cast
         linarith
 
+/--
+@isnad1 id=lt.3h2v.s5.c0674e5e1276 from=translated src=- shape=0c97ffb7 vocab=744b3bc6
+-/
 theorem unstretch_pos {weights : List ℕ} (h : Positive weights)
     {y : ℝ} (hy0 : 0 < y) (hysum : y ≤ weights.sum) :
     0 < unstretch weights y := by
@@ -299,6 +348,9 @@ theorem unstretch_pos {weights : List ℕ} (h : Positive weights)
           unstretch_nonneg h.tail hy0' hysum'
         linarith
 
+/--
+@isnad1 id=eq.3h2v.s5.223f461658e7 from=translated src=- shape=0cb61b9f vocab=fe51c796
+-/
 theorem unstretch_stretch {weights : List ℕ} (h : Positive weights)
     {x : ℝ} (hx0 : 0 ≤ x) (hxlen : x ≤ weights.length) :
     unstretch weights (stretch weights x) = x := by
@@ -330,6 +382,9 @@ theorem unstretch_stretch {weights : List ℕ} (h : Positive weights)
         rw [ih']
         ring
 
+/--
+@isnad1 id=eq.3h2v.s5.034b9bfabb4e from=translated src=- shape=0cb61b9f vocab=6eb4f689
+-/
 theorem stretch_unstretch {weights : List ℕ} (h : Positive weights)
     {y : ℝ} (hy0 : 0 ≤ y) (hysum : y ≤ weights.sum) :
     stretch weights (unstretch weights y) = y := by
@@ -393,12 +448,18 @@ noncomputable def intervalHomeomorph (weights : List ℕ) (h : Positive weights)
     apply continuous_induced_rng.2
     exact (continuous_unstretch weights h).comp continuous_subtype_val
 
+/--
+@isnad1 id=eq.1h2v.s9.99f317739264 from=translated src=- shape=75cb2b70 vocab=a78afb4a
+-/
 @[simp]
 theorem intervalHomeomorph_apply_val (weights : List ℕ) (h : Positive weights)
     (x : Set.Icc (0 : ℝ) (0 + weights.length)) :
     (intervalHomeomorph weights h x).val = stretch weights x :=
   rfl
 
+/--
+@isnad1 id=eq.1h1v.s9.9116c9802fc2 from=translated src=- shape=95783b7b vocab=e8083837
+-/
 @[simp]
 theorem intervalHomeomorph_zero (weights : List ℕ) (h : Positive weights) :
     intervalHomeomorph weights h
@@ -408,6 +469,9 @@ theorem intervalHomeomorph_zero (weights : List ℕ) (h : Positive weights) :
   apply Subtype.ext
   exact stretch_zero weights
 
+/--
+@isnad1 id=eq.1h1v.s9.957c76182ae5 from=translated src=- shape=b6021558 vocab=72c64494
+-/
 theorem intervalHomeomorph_length (weights : List ℕ) (h : Positive weights) :
     intervalHomeomorph weights h
         ⟨0 + weights.length, by simp⟩ =
@@ -417,6 +481,9 @@ theorem intervalHomeomorph_length (weights : List ℕ) (h : Positive weights) :
   rw [intervalHomeomorph_apply_val]
   simpa only [zero_add] using stretch_length weights
 
+/--
+@isnad1 id=iff.1h3v.s10.de79786c0c11 from=translated src=- shape=782158b8 vocab=8703159b
+-/
 theorem intervalHomeomorph_endpointIdent_iff
     (weights : List ℕ) (h : Positive weights)
     [Fact (0 < (weights.length : ℝ))]
@@ -518,6 +585,9 @@ noncomputable def circleHomeomorph
       ((addCircleHomeomorph weights h hne).trans
         (AddCircle.homeomorphCircle hsum))
 
+/--
+@isnad1 id=eq.3h2v.s8.48bb9d6b35bf from=translated src=- shape=8ea09824 vocab=d68f8680
+-/
 theorem addCircleHomeomorph_apply_of_mem_Ico
     (weights : List ℕ) (h : Positive weights) (hne : weights ≠ [])
     (x : ℝ) (hx : x ∈ Set.Ico 0 (weights.length : ℝ)) :
@@ -547,7 +617,9 @@ theorem addCircleHomeomorph_apply_of_mem_Ico
   rfl
 
 /-- On the fundamental interval, the circle homeomorphism is exactly the weighted
-piecewise-linear angular map. -/
+piecewise-linear angular map.
+@isnad1 id=eq.3h2v.s7.c0877f0a19fb from=translated src=- shape=1f72d074 vocab=f1b73e06
+-/
 theorem circleHomeomorph_exp_of_mem_Ico
     (weights : List ℕ) (h : Positive weights) (hne : weights ≠ [])
     (x : ℝ) (hx : x ∈ Set.Ico 0 (weights.length : ℝ)) :
@@ -571,7 +643,9 @@ theorem circleHomeomorph_exp_of_mem_Ico
   rw [hsource, addCircleHomeomorph_apply_of_mem_Ico weights h hne x hx,
     AddCircle.homeomorphCircle_apply, AddCircle.toCircle_apply_mk]
 
-/-- On the `i`th unit interval, stretching is affine with slope equal to the `i`th weight. -/
+/-- On the `i`th unit interval, stretching is affine with slope equal to the `i`th weight.
+@isnad1 id=eq.0h3v.s6.db4d3947bbc5 from=translated src=- shape=1f9debeb vocab=6d4f9cf3
+-/
 theorem stretch_index_add
     (weights : List ℕ) (i : Fin weights.length) (t : unitInterval) :
     stretch weights ((i : ℝ) + t) =
@@ -612,7 +686,9 @@ theorem stretch_index_add
           ring
 
 /-- The weighted circle homeomorphism sends a point of side `i` to the boundary coordinate
-obtained by adding the weighted prefix and the affine local parameter. -/
+obtained by adding the weighted prefix and the affine local parameter.
+@isnad1 id=eq.3h3v.s8.cd68f5ee2aa4 from=translated src=- shape=07d1abe3 vocab=eaf9da22
+-/
 theorem circleHomeomorph_exp_index_add
     (weights : List ℕ) (h : Positive weights) (hne : weights ≠ [])
     (i : Fin weights.length) (t : unitInterval)
@@ -632,7 +708,9 @@ theorem circleHomeomorph_exp_index_add
 
 /-- Endpoint-inclusive form of `circleHomeomorph_exp_index_add`.  The only additional case is
 the terminal endpoint of the last source interval; both displayed angles then represent the
-basepoint of their respective circles. -/
+basepoint of their respective circles.
+@isnad1 id=eq.2h3v.s8.6ddf023fb6c8 from=translated src=- shape=b0bab1ed vocab=9c66691e
+-/
 theorem circleHomeomorph_exp_index_add'
     (weights : List ℕ) (h : Positive weights) (hne : weights ≠ [])
     (i : Fin weights.length) (t : unitInterval) :

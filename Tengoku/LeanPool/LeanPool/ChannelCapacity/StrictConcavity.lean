@@ -65,6 +65,9 @@ lemma eq_of_isMaxOn_univ_of_strictConcave
     simpa [hRewrite] using hMixGt
   exact (not_lt_of_ge hMixLe) hMixGt'
 
+/--
+@isnad1 id=eq.1h4v.s5.3a4a7aac2777 from=translated src=- shape=dd78faf0 vocab=0de5f0a3
+-/
 lemma convexCombination_comm (p q : ProbabilityMeasure α) (t : NNReal) (ht : t ≤ 1) :
     ProbabilityMeasure.convexCombination p q t ht =
       ProbabilityMeasure.convexCombination q p (1 - t) (tsub_le_self) := by
@@ -129,12 +132,18 @@ lemma eq_right_of_convexCombination_eq {p q : ProbabilityMeasure α} {t : NNReal
       _ = q := h
   exact eq_left_of_convexCombination_eq (p := q) (q := p) htsub_lt_one hswap
 
+/--
+@isnad1 id=ne.2h4v.s5.b883bde94b40 from=translated src=- shape=7e408b46 vocab=c8f184be
+-/
 lemma convexCombination_ne_left {p q : ProbabilityMeasure α} (h_ne : p ≠ q) {t : NNReal}
     (ht_lt_one : t < 1) :
     ProbabilityMeasure.convexCombination p q t (le_of_lt ht_lt_one) ≠ p := by
   intro h
   exact h_ne ((eq_left_of_convexCombination_eq ht_lt_one h).symm)
 
+/--
+@isnad1 id=ne.3h4v.s6.44496a0518b4 from=translated src=- shape=30dedd61 vocab=c8f184be
+-/
 lemma convexCombination_ne_right {p q : ProbabilityMeasure α} (h_ne : p ≠ q) {t : NNReal}
     (ht_pos : 0 < t) (ht_lt_one : t < 1) :
     ProbabilityMeasure.convexCombination p q t (le_of_lt ht_lt_one) ≠ q := by
@@ -337,6 +346,9 @@ private lemma mutualInformation_strictlyConcave_aux
     _ > (t : ℝ) * mutualInformation p k + (1 - (t : ℝ)) * mutualInformation q k := by
       linarith
 
+/--
+@isnad1 id=lt.5h6v.s7.30c10f5bbbfa from=translated src=- shape=09aff11d vocab=0a3e4176
+-/
 theorem mutualInformation_strictlyConcave_of_injectivePriorPushforward
     {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
     [MeasurableSpace.CountableOrCountablyGenerated α β]
