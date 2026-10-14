@@ -17,7 +17,10 @@ from collections import Counter
 
 from _git import added_lines, blob, changed_files, deregistered, fail, match, module_stem, removed_lines
 
-EXEMPT = ["scripts/*", ".github/*", "schemas/*", "*.py", "*.sh", "*.toml", "*.yml", "*.yaml", "*.json"]
+EXEMPT = ["scripts/*", ".github/*", "schemas/*", "*.py", "*.sh", "*.toml", "*.yml", "*.yaml", "*.json", "README.md"]
+# "README.md" is the ROOT file only (the pattern has no wildcard): the project's front page is prose, and a rewrite of the paragraph that explains the
+# `Author:` convention was refused as a removed credit (tengoku#559, the maintainer's decision). A README.md anywhere else is covered, and a credit line
+# moved INTO the root README is not kept (an exempt file is no home for a credit).
 CREDIT = re.compile(r"(Authors?:|@author|\bCredit|Copyright|\"source_url\"|\"added_by\"|\"author\"|\"authors\")", re.I)
 # In Markdown only the human attribution markers count: a JSON key inside a code example
 # (the README's record-shape block carried `"source_url": "..."`) is not a provenance line.
