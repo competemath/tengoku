@@ -44,14 +44,18 @@ noncomputable section
 
 namespace CKN.Core.Step4
 
-/-- The Morrey growth power in the normalisation used by the cell clauses. -/
+/-- The Morrey growth power in the normalisation used by the cell clauses.
+@isnad1 id=eq.1h1v.s6.7051578bb417 from=translated src=- shape=52f678cf vocab=f442c3c7
+-/
 theorem five_mul_one_sub_six_fifths_div {κ : ℝ} (hκ : κ ≠ 0) :
     5 * (1 - (6 / 5 : ℝ) / κ) = 5 - 6 / κ := by
   field_simp
 
 /-- The cell-centred balance: the radius power produced by a pressure Morrey
 exponent `χ` dominates the power required by the gradient Morrey exponent `κ`
-exactly when `1/χ ≤ 1/κ - 1/5`. -/
+exactly when `1/χ ≤ 1/κ - 1/5`.
+@isnad1 id=iff.0h2v.s7.de8997a42463 from=translated src=- shape=e4ddbee3 vocab=3a3a389f
+-/
 theorem cellCentred_pressure_exponent_le_iff (χ κ : ℝ) :
     5 - 6 / κ ≤ 19 / 5 - 6 / χ ↔ 1 / χ ≤ 1 / κ - 1 / 5 := by
   rw [div_eq_mul_inv (6 : ℝ) κ, div_eq_mul_inv (6 : ℝ) χ, one_div, one_div]
@@ -62,18 +66,24 @@ theorem cellCentred_pressure_exponent_le_iff (χ κ : ℝ) :
     linarith only [h]
 
 /-- At the smallest admissible gradient Morrey exponent the cell-centred route
-needs pressure Morrey exponent exactly `25/6`; both sides equal `59/25`. -/
+needs pressure Morrey exponent exactly `25/6`; both sides equal `59/25`.
+@isnad1 id=eq.0h0v.s7.7d8ba3728a92 from=translated src=- shape=6a2a4dbb vocab=b3e101fc
+-/
 theorem cellCentred_pressure_exponent_at_min_kappa :
     (19 : ℝ) / 5 - 6 / (25 / 6) = 5 - 6 / (25 / 11) := by
   norm_num
 
 /-- At the largest admissible gradient Morrey exponent the cell-centred route
-needs pressure Morrey exponent exactly `25/4`; both sides equal `71/25`. -/
+needs pressure Morrey exponent exactly `25/4`; both sides equal `71/25`.
+@isnad1 id=eq.0h0v.s7.03116c1587a5 from=translated src=- shape=6a2a4dbb vocab=b3e101fc
+-/
 theorem cellCentred_pressure_exponent_at_max_kappa :
     (19 : ℝ) / 5 - 6 / (25 / 4) = 5 - 6 / (25 / 9) := by
   norm_num
 
-/-- The gradient Morrey exponent of `thm:endgame` never exceeds `25/9`. -/
+/-- The gradient Morrey exponent of `thm:endgame` never exceeds `25/9`.
+@isnad1 id=le.2h2v.s6.260653bac914 from=translated src=- shape=6adb9b88 vocab=2b311149
+-/
 theorem endgame_kappa_le {τ q : ℝ} (hτ : 0 < τ) (hτ25 : τ ≤ 25) :
     min ((1 / τ + 8 / 25)⁻¹) q ≤ 25 / 9 := by
   have hinv : (1 : ℝ) / 25 ≤ 1 / τ := one_div_le_one_div_of_le hτ hτ25
@@ -85,7 +95,9 @@ theorem endgame_kappa_le {τ q : ℝ} (hτ : 0 < τ) (hτ25 : τ ≤ 25) :
       _ = 25 / 9 := by norm_num
   exact le_trans (min_le_left _ _) hle
 
-/-- The gradient Morrey exponent of `thm:endgame` is never below `25/11`. -/
+/-- The gradient Morrey exponent of `thm:endgame` is never below `25/11`.
+@isnad1 id=le.2h2v.s7.c0f02ba2a4b2 from=translated src=- shape=f7297c99 vocab=2b311149
+-/
 theorem endgame_kappa_ge {τ q : ℝ} (hτ : 25 / 3 ≤ τ) (hq : 5 / 2 < q) :
     25 / 11 ≤ min ((1 / τ + 8 / 25)⁻¹) q := by
   have hτpos : (0 : ℝ) < τ := by linarith only [hτ]
@@ -104,7 +116,9 @@ theorem endgame_kappa_ge {τ q : ℝ} (hτ : 25 / 3 ≤ τ) (hq : 5 / 2 < q) :
   exact le_min hfirst (by linarith only [hq])
 
 /-- Pressure Morrey exponent `25/4` closes the cell-centred balance for every
-gradient Morrey exponent admissible in `thm:endgame`. -/
+gradient Morrey exponent admissible in `thm:endgame`.
+@isnad1 id=le.2h1v.s7.7e4d3fa48dc7 from=translated src=- shape=97204211 vocab=dea537f2
+-/
 theorem cellCentred_pressure_exponent_quarter_suffices {κ : ℝ}
     (hκ : 0 < κ) (hκle : κ ≤ 25 / 9) :
     5 - 6 / κ ≤ 19 / 5 - 6 / (25 / 4 : ℝ) := by
@@ -117,7 +131,9 @@ theorem cellCentred_pressure_exponent_quarter_suffices {κ : ℝ}
 /-- The pressure Morrey exponent available from the decay estimate, `25/8`,
 does **not** close the cell-centred balance for any admissible gradient Morrey
 exponent: the produced radius power `47/25` stays strictly below the required
-one, which is at least `59/25`. -/
+one, which is at least `59/25`.
+@isnad1 id=lt.1h1v.s7.c95d6af4af28 from=translated src=- shape=e2796b2d vocab=dea537f2
+-/
 theorem cellCentred_pressure_exponent_deficit {κ : ℝ}
     (hκ : 25 / 11 ≤ κ) :
     19 / 5 - 6 / (25 / 8 : ℝ) < 5 - 6 / κ := by
@@ -132,7 +148,9 @@ theorem cellCentred_pressure_exponent_deficit {κ : ℝ}
 /-- The fixed-scale balance: the radius power `17/5` produced by a spatially
 bounded, `L^{3/2}`-in-time pressure majorant dominates the requirement for
 every admissible gradient Morrey exponent, with the strict margin `14/25`
-already at the top of the range. -/
+already at the top of the range.
+@isnad1 id=le.2h1v.s6.1656837419e3 from=translated src=- shape=3b1a370d vocab=dea537f2
+-/
 theorem fixedScale_pressure_exponent_suffices {κ : ℝ} (hκ : κ ≤ 25 / 9)
     (hκpos : 0 < κ) :
     5 - 6 / κ ≤ 17 / 5 := by

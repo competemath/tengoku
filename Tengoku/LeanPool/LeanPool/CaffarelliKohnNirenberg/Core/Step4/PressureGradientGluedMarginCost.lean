@@ -35,7 +35,9 @@ namespace CKN.Core.Step4
 /-- Measuring the one-sided transfer constant at a smaller scale `ρ₀` is
 exactly the same as measuring it at `ρ₁` with the whole-carrier constant `B`
 inflated by the explicit ratio `(ρ₁ / ρ₀) ^ (5 * (1 - P / τ))`; the small-cell
-constant is untouched. -/
+constant is untouched.
+@isnad1 id=eq.3h6v.s7.7f95c3a6be98 from=translated src=- shape=1a878e39 vocab=0f0b86de
+-/
 theorem oneSidedMorreyBound_scale_eq
     {P τ ρ₀ ρ₁ : ℝ} {A B : ℝ≥0∞} (hP : 0 < P) (hρ₀ : 0 < ρ₀) (hρ₁ : 0 < ρ₁) :
     oneSidedMorreyBound P τ ρ₀ A B =
@@ -83,7 +85,9 @@ theorem oneSidedMorreyBound_scale_eq
 /-- Transport to the margin scale of a comparison against an explicit
 majorant stated at the carrier radius: a bound on the constant measured at
 `ρ₁` with the inflated whole-carrier constant also bounds the constant
-measured at `ρ₀`. -/
+measured at `ρ₀`.
+@isnad1 id=le.4h7v.s7.380dc6035f23 from=translated src=- shape=0bfb0635 vocab=9145e8cd
+-/
 theorem oneSidedMorreyBound_margin_le_of_scaled
     {P τ ρ₀ ρ₁ : ℝ} {A B K : ℝ≥0∞} (hP : 0 < P) (hρ₀ : 0 < ρ₀) (hρ₁ : 0 < ρ₁)
     (h : oneSidedMorreyBound P τ ρ₁ A

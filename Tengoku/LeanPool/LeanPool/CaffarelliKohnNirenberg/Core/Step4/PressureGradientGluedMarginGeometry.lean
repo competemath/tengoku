@@ -44,7 +44,9 @@ private theorem vec3EuclideanNorm_sub_triangle (a b c : Vec3) :
 /-- Two Euclidean balls that meet are closer than the sum of their radii: if some
 point lies within radius `r` of `x` and within radius `a` of `c`, then the centres
 themselves are less than `a + r` apart.  This is the quantitative form of the
-separation between a cell that meets the carrier and the outer ball. -/
+separation between a cell that meets the carrier and the outer ball.
+@isnad1 id=lt.1h4v.s6.4fb59f32f699 from=translated src=- shape=87b04afd vocab=71194e57
+-/
 theorem vec3EuclideanNorm_lt_of_vec3Ball_inter_nonempty
     {x c : Vec3} {r a : ℝ}
     (h : (vec3Ball x r ∩ vec3Ball c a).Nonempty) :
@@ -61,7 +63,9 @@ outer region.  Concretely, if `x` is within `R₁ + r` of the origin, `3 * r ≤
 and `R₀ ≤ 1`, then every point of `parabolicCylinder x t (2 * r)` lies in the unit
 cylinder `parabolicCylinder 0 0 1`, provided the base time `t` lies below zero and
 the doubled time-depth stays at or above the unit depth.  The factor three is the
-margin that absorbs the doubling of the radius. -/
+margin that absorbs the doubling of the radius.
+@isnad1 id=le.5h5v.s7.d42bcf1fa490 from=translated src=- shape=cedfb32a vocab=a223c6d6
+-/
 theorem parabolicCylinder_double_subset_unit_of_margin
     {R₀ R₁ r t : ℝ} {x : Vec3}
     (hR₀ : R₀ ≤ 1) (hmargin : 3 * r ≤ R₀ - R₁)
@@ -85,7 +89,9 @@ parabolic cylinder lies in the space-time carrier `Ω × I`, then so does the cl
 of every doubled cylinder whose radius is at most a third of the margin and whose
 base point lies within `R₁ + r` of the origin, with the same time-side bounds.  The
 closure is taken because the slice estimate is applied on closed one-sided
-cylinders. -/
+cylinders.
+@isnad1 id=le.6h7v.s8.d2a9e75acf97 from=translated src=- shape=5a576b4b vocab=3e669b14
+-/
 theorem closure_parabolicCylinder_double_subset_spaceTimeSet_of_origin_margin
     {Ω : Set Vec3} {I : Set ℝ} {R₀ R₁ r t : ℝ} {x : Vec3}
     (hdom : closure (parabolicCylinder (0 : Vec3) 0 1) ⊆ CKN.spaceTimeSet Ω I)
@@ -100,7 +106,9 @@ theorem closure_parabolicCylinder_double_subset_spaceTimeSet_of_origin_margin
 whose radius is at most a third of `R`, and whose base point is within `R/2 + r` of
 the centre and whose base time lies in the one-sided window around the centre time,
 is contained in the parabolic ball of radius `2 * R`.  This is the version applied
-when the outer region is a parabolic ball rather than the unit cylinder. -/
+when the outer region is a parabolic ball rather than the unit cylinder.
+@isnad1 id=le.6h5v.s8.18223b4bcaa4 from=translated src=- shape=c5aa4221 vocab=a2ea3f4e
+-/
 theorem closure_parabolicCylinder_double_subset_metricBall_of_margin
     {z₀ : ParabolicPoint} {R r t : ℝ} {x : Vec3}
     (hR : 0 < R) (hr : 0 < r) (hmargin : 3 * r ≤ R)
@@ -126,7 +134,9 @@ theorem closure_parabolicCylinder_double_subset_metricBall_of_margin
       nlinarith only [hhi, hhigh, hr2, hR]
 
 /-- A margin-safe cell that meets the carrier ball has its own ball, and hence a
-fortiori the region where its slice estimate is read, inside the outer ball. -/
+fortiori the region where its slice estimate is read, inside the outer ball.
+@isnad1 id=le.3h4v.s7.2b543a3c5fdc from=translated src=- shape=97e1452b vocab=b03a53c8
+-/
 theorem vec3Ball_subset_outer_of_margin
     {R₀ R₁ r : ℝ} {x : Vec3} (hr : 0 ≤ r) (hmargin : 3 * r ≤ R₀ - R₁)
     (hx : vec3EuclideanNorm (x - 0) < R₁ + r) :
@@ -138,7 +148,9 @@ theorem vec3Ball_subset_outer_of_margin
 
 /-- The three margin premises of the doubling step for a parabolic metric ball,
 read off a cell that meets the inner ball: the spatial centres are close, and the
-cell's top time lies in the one-sided window around the centre time. -/
+cell's top time lies in the one-sided window around the centre time.
+@isnad1 id=and.2h5v.s8.fa25e4818169 from=translated src=- shape=5ffe5dcf vocab=dcb1e3f3
+-/
 theorem symmetric_margin_premises_of_meet
     {z₀ : ParabolicPoint} {R r t : ℝ} {x : Vec3} (hr : 0 < r)
     (hmeet : (parabolicCylinder x t r ∩ Metric.ball z₀ (R / 2)).Nonempty) :

@@ -240,6 +240,9 @@ private theorem seeleyC1Derivative_continuousAt_on_closure_compl
       (hρ2.continuousAt_fderiv (by simp))
   exact (h1.const_smul (3 : ℝ)).sub (h2.const_smul (2 : ℝ))
 
+/--
+@isnad1 id=contdiff.1h1v.s8.49a4adaa9327 from=translated src=- shape=1661dba1 vocab=82fbbe03
+-/
 theorem seeleyExtension_contDiff (v : Vec 3 → ℝ) (hv : ContDiff ℝ 1 v) :
     ContDiff ℝ 1 (seeleyExtension v) := by
   let D : Vec 3 → Vec 3 →L[ℝ] ℝ := fun x =>
@@ -288,11 +291,17 @@ theorem seeleyExtension_contDiff (v : Vec 3 → ℝ) (hv : ContDiff ℝ 1 v) :
       (seeleyExterior_hasFDerivAt_of_not_mem v hv hxC)
     simpa [D, hxC] using h
 
+/--
+@isnad1 id=eq.1h2v.s6.bb85d0acd05b from=translated src=- shape=0f08941a vocab=e8d56711
+-/
 theorem seeleyExtension_eq_on_closedBall {v : Vec 3 → ℝ} {x : Vec 3}
     (hx : x ∈ euclideanClosedBall (0 : Vec 3) 1) :
     seeleyExtension v x = v x := by
   simp [seeleyExtension, hx]
 
+/--
+@isnad1 id=eq.2h2v.s9.b51d1b30755a from=translated src=- shape=3491d51e vocab=cf9ac340
+-/
 theorem seeleyExtension_fderiv_eq_of_mem_closedBall
     (v : Vec 3 → ℝ) (hv : ContDiff ℝ 1 v) {x : Vec 3}
     (hx : x ∈ euclideanClosedBall (0 : Vec 3) 1) :
@@ -342,6 +351,9 @@ theorem seeleyExtension_fderiv_eq_of_mem_closedBall
       (isClosed_euclideanClosedBall (0 : Vec 3) 1) hxF hvalue
       (hv.differentiable_one x).hasFDerivAt he').fderiv
 
+/--
+@isnad1 id=eq.2h2v.s7.f68aa72e7cf2 from=translated src=- shape=6c3e0473 vocab=7ad4b086
+-/
 theorem seeleyExtension_classicalGradient_eq_of_mem_closedBall
     (v : Vec 3 → ℝ) (hv : ContDiff ℝ 1 v) {x : Vec 3}
     (hx : x ∈ euclideanClosedBall (0 : Vec 3) 1) :
@@ -350,6 +362,9 @@ theorem seeleyExtension_classicalGradient_eq_of_mem_closedBall
   rw [classicalGradient_apply, classicalGradient_apply,
     seeleyExtension_fderiv_eq_of_mem_closedBall v hv hx]
 
+/--
+@isnad1 id=eq.2h2v.s11.3120973cb3bf from=translated src=- shape=e32c3c80 vocab=f5f986cb
+-/
 theorem seeleyExtension_fderiv_eq_reflection_combo_of_mem_annulus
     (v : Vec 3 → ℝ) (hv : ContDiff ℝ 1 v) {x : Vec 3}
     (hx : 1 < vecEuclideanNorm x ∧ vecEuclideanNorm x < 2) :

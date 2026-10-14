@@ -31,6 +31,9 @@ def IsMaximalMajorant (f : Vec3 → ℝ) (M : Vec3 → ℝ≥0∞) : Prop :=
 /-- The maximal majorant associated with the Euclidean maximal function. -/
 def maximalMajorant (f : Vec3 → ℝ) : Vec3 → ℝ≥0∞ :=
   maximalFunction (fun z ↦ ENNReal.ofReal |f z|)
+/--
+@isnad1 id=ismaxima.0h1v.s3.742da16cd9f8 from=translated src=- shape=da4dc51f vocab=32fd3b33
+-/
 theorem isMaximalMajorant_maximalMajorant (f : Vec3 → ℝ) :
     IsMaximalMajorant f (maximalMajorant f) := by
   intro z R hR
@@ -366,6 +369,9 @@ private lemma near_shell_integral_le
               ENNReal.ofReal ((2 * b) ^ 3)) * M z := by ac_rfl
         _ = nearTerm n * ENNReal.ofReal R * M z := by rw [hscale]
 
+/--
+@isnad1 id=le.3h4v.s8.27ecd1be7516 from=translated src=- shape=28edb650 vocab=ee92ddb8
+-/
 theorem rieszPotentialOne_near_le
     {R : ℝ} (hR : 0 < R) {f : Vec3 → ℝ}
     (hf : AEMeasurable f volume) {M : Vec3 → ℝ≥0∞}
@@ -624,6 +630,9 @@ private lemma far_integral_le_shell_sum {R : ℝ} (hR : 0 < R)
     _ = ∑' n, ∫⁻ w in farShell R n z,
           rieszKernelOne z w * ENNReal.ofReal |f w| := by rfl
 
+/--
+@isnad1 id=le.2h3v.s8.9f280cda56f3 from=translated src=- shape=b9c056ae vocab=01812435
+-/
 theorem rieszPotentialOne_far_le
     {R : ℝ} (hR : 0 < R) {f : Vec3 → ℝ}
     (hf : AEMeasurable f volume) (z : Vec3) :
@@ -662,6 +671,9 @@ theorem rieszPotentialOne_far_le
         (∫⁻ w, ENNReal.ofReal |f w| ^ (5 / 2 : ℝ)) ^ (2 / 5 : ℝ) := by
       rfl
 
+/--
+@isnad1 id=le.3h4v.s8.02ce6ada03d5 from=translated src=- shape=7613cdfc vocab=12604072
+-/
 theorem rieszPotentialOne_scale_le
     {R : ℝ} (hR : 0 < R) {f : Vec3 → ℝ}
     (hf : AEMeasurable f volume) {M : Vec3 → ℝ≥0∞}
@@ -707,6 +719,9 @@ theorem rieszPotentialOne_scale_le
         (rieszPotentialOne_near_le hR hf hM z)
         (rieszPotentialOne_far_le hR hf z)
 
+/--
+@isnad1 id=le.6h3v.s9.622f8589cfba from=translated src=- shape=eeb6ecc5 vocab=e8da9d75
+-/
 theorem rieszPotentialOne_hedberg
     {f : Vec3 → ℝ} (hf : AEMeasurable f volume)
     {M : Vec3 → ℝ≥0∞} (hM : IsMaximalMajorant f M) (z : Vec3)

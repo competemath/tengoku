@@ -256,7 +256,9 @@ def SliceDivergenceFree (Ω : Set Vec3) (u : ParabolicPoint → Vec3) (s : ℝ) 
 
 /-- The Fubini reduction of `lem:divfree-slice` and `eq:divfree-ae`: if the space-time
 test pairing (S2) of `def:sws` vanishes, then for each spatial test function `ψ₀` the
-slice pairing vanishes for almost every time in `I`.  The null set may depend on `ψ₀`. -/
+slice pairing vanishes for almost every time in `I`.  The null set may depend on `ψ₀`.
+@isnad1 id=eventual.5h4v.s10.cf09b2f6e77a from=translated src=- shape=b7f5e6d5 vocab=8156c52c
+-/
 theorem divfree_slice_weak {Ω : Set Vec3} {I : Set ℝ} {u : ParabolicPoint → Vec3}
     (hS2 : ∀ ψ : Vec3 × ℝ → ℝ, ψ ∈ spaceTimeTestFunction (V := ℝ) Ω I →
       IntegrableOn (fun z => ∑ i, u z i * spatialPartial ψ i z) (tsupport ψ) volume ∧
@@ -279,7 +281,9 @@ theorem divfree_slice_weak {Ω : Set Vec3} {I : Set ℝ} {u : ParabolicPoint →
 
 /-- The divergence-free slice conclusion read off from the suitable weak solution class
 of `def:sws`: for each spatial test function `ψ₀` the slice pairing vanishes for almost
-every time in `I`. -/
+every time in `I`.
+@isnad1 id=eventual.4h8v.s9.7e8e4e572d14 from=translated src=- shape=0aaac7c2 vocab=62cac93f
+-/
 theorem divfree_slice_weak_of_suitable {Ω : Set Vec3} {I : Set ℝ} {q : ℝ}
     {u : ParabolicPoint → Vec3} {Du : ParabolicPoint → Fin 3 → Vec3}
     {p : ParabolicPoint → ℝ} {f : ParabolicPoint → Vec3}

@@ -47,7 +47,9 @@ def localEnergyRhs
         ∑ i, u z i * spatialPartialProd ψ i z
     + 2 * (∑ i, f z i * u z i) * ψ z
 
-/-- The suitable-solution energy inequality, with its density named. -/
+/-- The suitable-solution energy inequality, with its density named.
+@isnad1 id=le.3h8v.s7.2fdaac375aca from=translated src=- shape=0e67a639 vocab=8e9690ab
+-/
 theorem suitableWeakSolution_energyInequality
     {Ω : Set Vec3} {I : Set ℝ} {q : ℝ}
     {u : ParabolicPoint → Vec3}

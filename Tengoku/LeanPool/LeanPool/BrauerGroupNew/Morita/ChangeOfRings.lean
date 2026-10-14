@@ -69,6 +69,9 @@ def mopToEnd : Aᵐᵒᵖ →ₐ[R] End (ModuleCat.of A A) where
     change _ = algebraMap R A r * 1
     rw [mul_one]
 
+/--
+@isnad1 id=bijectiv.0h2v.s8.f02b4027aff2 from=translated src=- shape=f47d5789 vocab=f7e58072
+-/
 lemma moptoend_bij : Function.Bijective (mopToEnd R A) :=
   ⟨RingHom.injective_iff_ker_eq_bot _ |>.mpr <|
     SetLike.ext fun (α : Aᵐᵒᵖ) => ⟨fun (h : _ = _) => by

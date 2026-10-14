@@ -31,7 +31,9 @@ def forceSourceMorreyBound (q ε₀ : ℝ) : ℝ≥0∞ :=
   volume (parabolicCylinder (0 : Vec3) 0 1) ^ (5 / 6 - 1 / q : ℝ) *
     ENNReal.ofReal ε₀ ^ (1 / q : ℝ)
 
-/-- The numerical force-source bound is finite in the admissible force range. -/
+/-- The numerical force-source bound is finite in the admissible force range.
+@isnad1 id=lt.1h2v.s5.7201fb936d3a from=translated src=- shape=24fef1d2 vocab=a604bf4d
+-/
 theorem forceSourceMorreyBound_lt_top (q ε₀ : ℝ) (hq : 5 / 2 < q) :
     forceSourceMorreyBound q ε₀ < ⊤ := by
   have hq0 : 0 < q := by linarith only [hq]
@@ -45,7 +47,9 @@ theorem forceSourceMorreyBound_lt_top (q ε₀ : ℝ) (hq : 5 / 2 < q) :
     (ENNReal.rpow_lt_top_of_nonneg (one_div_nonneg.mpr hq0.le) ENNReal.ofReal_ne_top)
 
 /-- The original small-data sum controls the global force-source integral
-when the source vanishes outside the unit cylinder and is dominated inside. -/
+when the source vanishes outside the unit cylinder and is dominated inside.
+@isnad1 id=le.4h6v.s8.6af3c98cae4a from=translated src=- shape=c18d137c vocab=be980c30
+-/
 theorem force_source_integral_le_of_small_data
     (q ε₀ : ℝ) (hq : 0 < q)
     {u f : ParabolicPoint → Vec3} {p F : ParabolicPoint → ℝ}
@@ -76,7 +80,9 @@ theorem force_source_integral_le_of_small_data
       lintegral_mono (fun _ => le_add_left le_rfl)
     _ ≤ _ := hsmall
 
-/-- The force-source Morrey estimate at the original force exponent. -/
+/-- The force-source Morrey estimate at the original force exponent.
+@isnad1 id=le.5h6v.s8.7ccf15b4372f from=translated src=- shape=6385c21c vocab=f53972bf
+-/
 theorem force_source_morrey_le_of_small_data
     (q ε₀ : ℝ) (hq : 5 / 2 < q)
     {u f : ParabolicPoint → Vec3} {p F : ParabolicPoint → ℝ}
@@ -102,7 +108,9 @@ theorem force_source_morrey_le_of_small_data
   exact hm.trans (mul_le_mul_of_nonneg_left hLp (by positivity))
 
 /-- On unit support, the paper heat-source exponent is reached without
-increasing the numerical bound. -/
+increasing the numerical bound.
+@isnad1 id=le.5h6v.s8.88e03041db93 from=translated src=- shape=17991c32 vocab=94663b54
+-/
 theorem force_source_paper_morrey_le_of_small_data
     (q ε₀ : ℝ) (hq : 5 / 2 < q)
     {u f : ParabolicPoint → Vec3} {p F : ParabolicPoint → ℝ}

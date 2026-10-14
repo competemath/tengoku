@@ -27,6 +27,9 @@ namespace BooleanIsoperimetry
 noncomputable def gShiftIntervalCount (n lo hi : ℕ) : ℕ :=
   (Finset.univ.filter (fun v : Cube n => lo ≤ rank (gShift v) ∧ rank (gShift v) < hi)).card
 
+/--
+@isnad1 id=eq.1h3v.s5.2e2f3589c2a8 from=translated src=- shape=4533e5ae vocab=c5c402ee
+-/
 lemma H_window_sum_of_le (n lo hi : ℕ) (hlohi : lo ≤ hi) :
     H n hi = H n lo + ∑ i ∈ Finset.Ico lo hi, HIncrement n i := by
   have h1 := H_eq_sum_HIncrement n hi
@@ -34,6 +37,9 @@ lemma H_window_sum_of_le (n lo hi : ℕ) (hlohi : lo ≤ hi) :
   rw [h1, h2]
   rw [← Finset.sum_range_add_sum_Ico (f := fun i => HIncrement n i) hlohi]
 
+/--
+@isnad1 id=eq.1h3v.s4.d6feb1b4b518 from=translated src=- shape=9091b7b3 vocab=d5501d8c
+-/
 lemma gShiftIntervalCount_eq_H_sub (n lo hi : ℕ) (hlohi : lo ≤ hi) :
     gShiftIntervalCount n lo hi = H n hi - H n lo := by
   rw [gShiftIntervalCount, H_eq_gShift_count n hi, H_eq_gShift_count n lo]
@@ -58,6 +64,9 @@ lemma gShiftIntervalCount_eq_H_sub (n lo hi : ℕ) (hlohi : lo ≤ hi) :
   change Aint.card = Ahi.card - Alo.card
   omega
 
+/--
+@isnad1 id=eq.1h3v.s5.ad5ae4d416a6 from=translated src=- shape=1f425959 vocab=78530502
+-/
 lemma HIncrement_window_eq_gShiftIntervalCount (n lo hi : ℕ) (hlohi : lo ≤ hi) :
     (∑ i ∈ Finset.Ico lo hi, HIncrement n i) = gShiftIntervalCount n lo hi := by
   have hwindow := H_window_sum_of_le n lo hi hlohi
@@ -69,6 +78,7 @@ lemma HIncrement_window_eq_gShiftIntervalCount (n lo hi : ℕ) (hlohi : lo ≤ h
 Exact vertex-weight form of a Macaulay shadow window.  This is the same window
 count as `gShiftIntervalCount`, but with each rank vertex weighted by its
 explicit `gShift`-fibre size (`macaulayShadowWeight`).
+@isnad1 id=eq.2h3v.s6.e449d6de0881 from=translated src=- shape=3d1f4089 vocab=9719cccd
 -/
 lemma gShiftIntervalCount_eq_macaulayShadowWeight_sum
     (n lo hi : ℕ) (hlohi : lo ≤ hi) (hhi : hi ≤ 2 ^ n) :
@@ -78,6 +88,9 @@ lemma gShiftIntervalCount_eq_macaulayShadowWeight_sum
   rw [← HIncrement_window_eq_gShiftIntervalCount n lo hi hlohi]
   exact HIncrement_window_eq_macaulayShadowWeight_sum n lo hi hhi
 
+/--
+@isnad1 id=le.3h6v.s6.720cca2281fb from=translated src=- shape=b23c8489 vocab=2aa43253
+-/
 lemma HIncrement_window_le_of_gShiftIntervalCount_le
     {n lo₁ hi₁ lo₂ hi₂ slack : ℕ}
     (h₁ : lo₁ ≤ hi₁) (h₂ : lo₂ ≤ hi₂)
@@ -102,6 +115,7 @@ noncomputable def boundaryCostH (N a b : ℕ) : ℕ :=
 Exact slack decomposition of the max-form boundary cost.  The two truncated
 terms are precisely the slack that is needed in the GT regime, where the simpler
 sum-form `H N a + H N b` is false.
+@isnad1 id=eq.0h3v.s5.d6c2526a73c9 from=translated src=- shape=61ee92fd vocab=84b9f9a7
 -/
 lemma boundaryCostH_eq_H_add_slack (N a b : ℕ) :
     boundaryCostH N a b =
@@ -109,11 +123,17 @@ lemma boundaryCostH_eq_H_add_slack (N a b : ℕ) :
   unfold boundaryCostH
   omega
 
+/--
+@isnad1 id=eq.0h3v.s4.dfe35f6e05a1 from=translated src=- shape=7eed5a8a vocab=bd15d10d
+-/
 lemma boundaryCostH_comm (N a b : ℕ) :
     boundaryCostH N a b = boundaryCostH N b a := by
   unfold boundaryCostH
   omega
 
+/--
+@isnad1 id=le.1h3v.s4.310a6867060d from=translated src=- shape=8b85df40 vocab=43c7fcab
+-/
 lemma cascade_split_q_zero_total_le_one {n k p : ℕ}
     (h : CascadeSplit n k p 0) : k ≤ 1 := by
   rcases h with ⟨r, t, hc, _hp, hq⟩
@@ -131,6 +151,9 @@ lemma cascade_split_q_zero_total_le_one {n k p : ℕ}
       simp [cascadeSlice1Value, choosePred] at hq
       omega
 
+/--
+@isnad1 id=eq.1h3v.s5.9e85deffc965 from=translated src=- shape=ca6440d0 vocab=f46d7222
+-/
 lemma H_window_sum_of_le_int (n lo hi : ℕ) (hlohi : lo ≤ hi) :
     (H n hi : ℤ) = (H n lo : ℤ) + (gShiftIntervalCount n lo hi : ℤ) := by
   rw [gShiftIntervalCount_eq_H_sub n lo hi hlohi]
@@ -142,6 +165,7 @@ The four-block prefix profile exposed by lowering a level-`n+1`
 interleaving to the two level-`n` slices.  The first pair `(x0, y0)` is read
 one layer ahead of the second pair `(x1, y1)`, matching the Pascal shift in
 `CascadeInterleaves.lower_succ`.
+@isnad1 id=le.1h4v.s6.6c7d1a6bf2e7 from=translated src=- shape=58ee0674 vocab=32810024
 -/
 lemma harper_step_total_q_zero (n : ℕ) {a b p : ℕ}
     (hcasc : CascadeSplit (n + 1) (a + b) p 0) :
@@ -157,6 +181,9 @@ lemma harper_step_total_q_zero (n : ℕ) {a b p : ℕ}
     · simp [H_zero, H_one, boundaryCostH]
     · omega
 
+/--
+@isnad1 id=le.3h5v.s7.34b7e75090ed from=translated src=- shape=fe7d62bc vocab=d95e5f15
+-/
 lemma harper_step_sum_form_of_window_shift (n : ℕ)
     {a b p q : ℕ}
     (hap : a ≤ p) (hqb : q ≤ b)
@@ -171,6 +198,9 @@ lemma harper_step_sum_form_of_window_shift (n : ℕ)
   have hHq : H (n + 1) q ≤ H (n + 1) b := H_mono hqb
   omega
 
+/--
+@isnad1 id=le.3h5v.s7.059a726f817e from=translated src=- shape=5bb6ad0f vocab=d95e5f15
+-/
 lemma harper_step_sum_form_of_window_shift' (n : ℕ)
     {a b p q : ℕ}
     (hpa : p ≤ a) (hbq : b ≤ q)
@@ -187,7 +217,9 @@ lemma harper_step_sum_form_of_window_shift' (n : ℕ)
 
 /-- Window additivity for the Macaulay shadow count `gShiftIntervalCount`:
 adjacent rank windows `[lo, mid)` and `[mid, hi)` add to `[lo, hi)`.  A reusable
-block-decomposition tool for splitting shadow windows along layer boundaries. -/
+block-decomposition tool for splitting shadow windows along layer boundaries.
+@isnad1 id=eq.2h4v.s5.9607d9897066 from=translated src=- shape=0935be45 vocab=096afec5
+-/
 lemma gShiftIntervalCount_add_adjacent (n lo mid hi : ℕ)
     (h1 : lo ≤ mid) (h2 : mid ≤ hi) :
     gShiftIntervalCount n lo mid + gShiftIntervalCount n mid hi
@@ -203,7 +235,9 @@ lemma gShiftIntervalCount_add_adjacent (n lo mid hi : ℕ)
 prefixes: the shadow window between `binomPrefix n r` and `binomPrefix n s`
 counts exactly the complete Macaulay layers `r+1, …, s`.  This connects the
 set-level shadow count to the explicit `Nat.choose` layer sizes, which is the
-form the layer-by-layer comparison of the two shadow windows needs. -/
+form the layer-by-layer comparison of the two shadow windows needs.
+@isnad1 id=eq.2h3v.s6.0449f0db56b1 from=translated src=- shape=758c8a99 vocab=2da4621e
+-/
 lemma gShiftIntervalCount_binomPrefix_window (n r s : ℕ) (hr : 1 ≤ r) (hrs : r ≤ s) :
     gShiftIntervalCount n (binomPrefix n r) (binomPrefix n s)
       = (Finset.Ico (r + 1) (s + 1)).sum (fun i => Nat.choose n i) := by
@@ -212,6 +246,9 @@ lemma gShiftIntervalCount_binomPrefix_window (n r s : ℕ) (hr : 1 ≤ r) (hrs :
   have hw := H_binomPrefix_window n r s hr hrs
   omega
 
+/--
+@isnad1 id=le.4h5v.s6.253087818aa9 from=translated src=- shape=1a08a757 vocab=2da4621e
+-/
 lemma gShiftIntervalCount_le_binomPrefix_window_of_endpoints
     (n r s lo hi : ℕ)
     (hr : 1 ≤ r) (hrs : r ≤ s)
@@ -252,6 +289,7 @@ Macaulay shadow comparison *lower-bound the upper window* and *upper-bound the
 lower window* by explicit `Nat.choose` layer sums.  It is the reusable
 accounting helper named in Aristotle's Cycle 1 plan, and is the set-level form
 of "a window that swallows whole layers counts at least those layers".
+@isnad1 id=le.4h5v.s6.8cb8c6887a89 from=translated src=- shape=dece7b75 vocab=2da4621e
 -/
 lemma gShiftIntervalCount_ge_binomPrefix_window_of_endpoints
     (n r s lo hi : ℕ)
@@ -287,6 +325,7 @@ reduces to once the partial-layer boundary pieces of each window have been
 absorbed into the enclosing layer band.  It is `ih`-free and purely `Nat.choose`
 arithmetic at the block level, isolating exactly the layer-index bookkeeping from
 the set-level shadow content.
+@isnad1 id=le.9h9v.s7.d452c8e00a58 from=translated src=- shape=f00ca8de vocab=2da4621e
 -/
 lemma gShiftIntervalCount_le_of_blocks
     (n r₁ s₁ r₂ s₂ lo₁ hi₁ lo₂ hi₂ : ℕ)
@@ -309,7 +348,9 @@ a single Macaulay layer `r` has shadow count at most `L * (n - r)`.  This is the
 set-level form of `HIncrement_window_le_of_layer`: it is the reusable upper bound
 for the *upper* shadow window of the Frankl–Füredi/Macaulay comparison whenever
 that window stays inside one cardinality band (which, computationally, is exactly
-the regime of the reversed-orientation leaf `harper_macaulay_reversed`). -/
+the regime of the reversed-orientation leaf `harper_macaulay_reversed`).
+@isnad1 id=le.3h4v.s6.26071b0db274 from=translated src=- shape=f738bfe1 vocab=8ab70112
+-/
 lemma gShiftIntervalCount_le_of_layer {n r a L : ℕ} (hr : 1 ≤ r)
     (hlo : binomPrefix n r ≤ a) (hhi : a + L ≤ binomPrefix n (r + 1)) :
     gShiftIntervalCount n a (a + L) ≤ L * (n - r) := by
@@ -321,6 +362,7 @@ Endpoint arithmetic for the left-oriented equal-length Macaulay windows.  If
 the canonical split `(p,q)` and the arbitrary split `(a,b)` have the same total
 and `p ≤ a`, then the lower endpoint also moves inward, `b ≤ q`, and the two
 shadow windows `[b,q)` and `[p,a)` have the same length.
+@isnad1 id=and.2h5v.s5.12be51e94291 from=translated src=- shape=02de68ad vocab=8fe13447
 -/
 lemma cascade_left_window_endpoints {N a b p q : ℕ}
     (hcasc : CascadeSplit N (a + b) p q) (hpa : p ≤ a) :
@@ -332,6 +374,7 @@ lemma cascade_left_window_endpoints {N a b p q : ℕ}
 Endpoint arithmetic for the right-oriented equal-length Macaulay windows.  If
 `a ≤ p`, then `q ≤ b`, and the two shadow windows `[a,p)` and `[q,b)` have the
 same length.
+@isnad1 id=and.2h5v.s5.432db599fe9c from=translated src=- shape=db6e3ddc vocab=8fe13447
 -/
 lemma cascade_right_window_endpoints {N a b p q : ℕ}
     (hcasc : CascadeSplit N (a + b) p q) (hap : a ≤ p) :
@@ -343,6 +386,7 @@ lemma cascade_right_window_endpoints {N a b p q : ℕ}
 The GT regime gives the left-oriented window order together with equal lengths.
 This is the arithmetic shape of the Frankl-Füredi slack comparison: the lower
 window `[b,q)` and the upper window `[p,a)` have common length `q-b = a-p`.
+@isnad1 id=and.3h5v.s6.61c3190c90ec from=translated src=- shape=c47d55c3 vocab=1bdd2808
 -/
 lemma harper_gt_shadow_window_endpoints {n a b p q : ℕ}
     (hcasc : CascadeSplit (n + 1) (a + b) p q)
@@ -496,27 +540,40 @@ lemma harper_macaulay_reversed (n : ℕ) {a b p q : ℕ}
 /--
 The boundary cost is monotonically increasing with respect to cascade interleaving.
 This is the core mathematical reduction of the Macaulay window bounds.
+@isnad1 id=cascades.1h5v.s4.6c419b770b06 from=translated src=- shape=e7e63127 vocab=c5d63e76
 -/
 lemma CascadeInterleaves.cascade {n p q a b : ℕ}
     (h_inter : CascadeInterleaves n p q a b) :
     CascadeSplit n (a + b) p q :=
   h_inter.1
 
+/--
+@isnad1 id=eq.1h5v.s5.682df6965568 from=translated src=- shape=40c3a1ff vocab=28d9dbfd
+-/
 lemma CascadeInterleaves.sum_eq {n p q a b : ℕ}
     (h_inter : CascadeInterleaves n p q a b) :
     p + q = a + b :=
   cascade_split_add h_inter.cascade
 
+/--
+@isnad1 id=le.1h5v.s5.9493a83d9329 from=translated src=- shape=f6e0849b vocab=af8af3d3
+-/
 lemma CascadeInterleaves.left_le_cube {n p q a b : ℕ}
     (h_inter : CascadeInterleaves n p q a b) :
     p ≤ 2 ^ n :=
   cascade_p_le h_inter.cascade
 
+/--
+@isnad1 id=le.1h5v.s5.7d66e2a497aa from=translated src=- shape=44c197e1 vocab=af8af3d3
+-/
 lemma CascadeInterleaves.right_le_cube {n p q a b : ℕ}
     (h_inter : CascadeInterleaves n p q a b) :
     q ≤ 2 ^ n :=
   cascade_q_le h_inter.cascade
 
+/--
+@isnad1 id=le.2h3v.s6.af037656dce8 from=translated src=- shape=1aa85bcf vocab=f1dbb140
+-/
 lemma H_pair_step_forward_of_increment_le (N x y : ℕ)
     (hy : 1 ≤ y) (hinc : HIncrement N (y - 1) ≤ HIncrement N x) :
     H N x + H N y ≤ H N (x + 1) + H N (y - 1) := by
@@ -533,6 +590,9 @@ lemma H_pair_step_forward_of_increment_le (N x y : ℕ)
   rw [hyico] at hywin
   omega
 
+/--
+@isnad1 id=le.2h3v.s6.8c18c3b365e1 from=translated src=- shape=00553266 vocab=f1dbb140
+-/
 lemma H_pair_step_backward_of_increment_le (N x y : ℕ)
     (hy : 1 ≤ y) (hinc : HIncrement N x ≤ HIncrement N (y - 1)) :
     H N (x + 1) + H N (y - 1) ≤ H N x + H N y := by
@@ -569,6 +629,9 @@ reduction of that sum leaf to the set-level shadow-window comparison.
 Layer-membership: every rank below `2^N` lies in a unique Macaulay layer
 `[binomPrefix N r, binomPrefix N (r+1))`. Reusable cascade-layer locator.
 -/
+/--
+@isnad1 id=ex.1h2v.s6.90bd45ebbc35 from=translated src=- shape=ebd4fa15 vocab=1a5297a0
+-/
 lemma exists_binomPrefix_layer (N b : ℕ) (hb : b < 2 ^ N) :
     ∃ r, r ≤ N ∧ binomPrefix N r ≤ b ∧ b < binomPrefix N (r + 1) := by
   -- Let's choose the largest $r$ such that $binomPrefix N r \leq b$.
@@ -586,7 +649,9 @@ lemma exists_binomPrefix_layer (N b : ℕ) (hb : b < 2 ^ N) :
 Macaulay layer `r` and `a ≤ H N b`, then `a` lies at or below the top of layer
 `r+1`. Equivalently the LE-regime shadow comparison is confined to the two
 adjacent Macaulay layers `r` and `r+1`. This is the reusable cascade-layer
-increment fact behind the Case-I Kruskal–Katona/Macaulay window comparison. -/
+increment fact behind the Case-I Kruskal–Katona/Macaulay window comparison.
+@isnad1 id=le.2h4v.s5.1bd5a75a2e14 from=translated src=- shape=26be2559 vocab=b75eb3e2
+-/
 lemma H_le_binomPrefix_of_layer (N a b r : ℕ)
     (hb : b ≤ binomPrefix N (r + 1)) (hcase : a ≤ H N b) :
     a ≤ binomPrefix N (r + 2) := by
@@ -597,7 +662,9 @@ lemma H_le_binomPrefix_of_layer (N a b r : ℕ)
 /-- Degenerate `q = 0` branch of the Case-I Macaulay sum leaf.  This removes
 the non-positive canonical split from the Frankl–Füredi/Macaulay core: a
 canonical split with `q = 0` has total mass at most one, so the inequality is a
-finite `0/1` calculation. -/
+finite `0/1` calculation.
+@isnad1 id=le.2h4v.s6.b2c51eb1361b from=translated src=- shape=e04fab3c vocab=da7a7073
+-/
 lemma harper_macaulay_LE_sum_q_zero (n : ℕ)
     {a b p : ℕ}
     (hcasc : CascadeSplit (n + 1) (a + b) p 0)
@@ -664,7 +731,9 @@ inequality `ih`, the canonical cross-boundary cost is minimal.  This carries
 exactly the PDF's inductive inputs (within-slice optimality from
 `ih`/`harper_extremal_n`, and cross-layer prefix-mass majorization from
 `h_lower`).  The unordered case is recovered by `harper_macaulay_exchange_step`
-via the symmetry of the right-hand side under swapping `a, b`. -/
+via the symmetry of the right-hand side under swapping `a, b`.
+@isnad1 id=le.10h13v.s8.5a4f9c78f7c6 from=translated src=- shape=5241b19f vocab=91a2a54e
+-/
 lemma boundaryCost_le_of_lower_interleaves_step_live
     (n p q a b p0 p1 q0 q1 a0 a1 b0 b1 : ℕ)
     (_ : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
@@ -772,7 +841,9 @@ single human-proof leaf `boundaryCost_le_of_lower_interleaves_step_live`: choose
 the four level-`n` cascade slice decompositions of `p,q,a,b` via
 `exists_cascade_split`, obtain the lowered prefix-mass domination from
 `canonicalSplit_interleaves` and `CascadeInterleaves.lower_succ`, and apply the
-leaf. -/
+leaf.
+@isnad1 id=le.4h5v.s8.8b65e560242c from=translated src=- shape=4de1c771 vocab=11580788
+-/
 lemma harper_macaulay_exchange_step (n : ℕ)
     (ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
             H (m + 1) (x + y) ≤ max (H m x) y + max (H m y) x)
@@ -802,7 +873,9 @@ lemma harper_macaulay_exchange_step (n : ℕ)
 
 /-- Positive-cascade Case-I (LE) sum leaf.  Sorry-free corollary of
 `harper_macaulay_exchange_step`: collapse the outer `max`s
-(`canonical_boundaryCost_eq_H_add` on the left; `b ≤ a ≤ H b` on the right). -/
+(`canonical_boundaryCost_eq_H_add` on the left; `b ≤ a ≤ H b` on the right).
+@isnad1 id=le.7h5v.s8.a88425a44e0b from=translated src=- shape=a59a8bbe vocab=11580788
+-/
 lemma harper_macaulay_LE_sum_pos (n : ℕ)
     (ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
             H (m + 1) (x + y) ≤ max (H m x) y + max (H m y) x)
@@ -819,6 +892,9 @@ lemma harper_macaulay_LE_sum_pos (n : ℕ)
       max_eq_left hbHa, max_eq_left hcase] at hmax
   exact hmax
 
+/--
+@isnad1 id=le.6h5v.s8.e162906a6109 from=translated src=- shape=c72b3681 vocab=11580788
+-/
 lemma harper_macaulay_LE_sum (n : ℕ)
     (ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
             H (m + 1) (x + y) ≤ max (H m x) y + max (H m y) x)
@@ -835,7 +911,9 @@ lemma harper_macaulay_LE_sum (n : ℕ)
 /-- Positive-cascade Case-II (GT) sum leaf.  Sorry-free corollary of
 `harper_macaulay_exchange_step`: the outer `max`s collapse via
 `canonical_boundaryCost_eq_H_add` (left) and the GT case `H (n+1) b < a`
-(right, `max (H (n+1) b) a = a`). -/
+(right, `max (H (n+1) b) a = a`).
+@isnad1 id=le.7h5v.s8.4e2a63ed6cee from=translated src=- shape=1b600f89 vocab=11580788
+-/
 lemma harper_macaulay_GT_sum (n : ℕ)
     (ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
             H (m + 1) (x + y) ≤ max (H m x) y + max (H m y) x)
@@ -852,6 +930,9 @@ lemma harper_macaulay_GT_sum (n : ℕ)
       max_eq_left hbHa, max_eq_right (le_of_lt hcase)] at hmax
   exact hmax
 
+/--
+@isnad1 id=le.5h5v.s8.63d6f0661e30 from=translated src=- shape=8a2580fb vocab=11580788
+-/
 lemma boundaryCost_le_of_LE_GT_sums (n : ℕ)
     (ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
             H (m + 1) (x + y) ≤ max (H m x) y + max (H m y) x)
@@ -1153,6 +1234,7 @@ by the Harper induction: the arbitrary split has capacity bounds, and the proof
 may use the already-established lower-dimensional Harper inequality.  The older
 capacity-free, `ih`-free version was stronger than the live proof route and hid
 the PDF's inductive input.
+@isnad1 id=le.4h5v.s8.92cf3058002d from=translated src=- shape=a353fc0a vocab=3b8bd932
 -/
 lemma boundaryCost_le_of_interleaves_core (n p q a b : ℕ)
     (ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
@@ -1177,6 +1259,7 @@ is the split of `a + b` in the `(n+2)`-cube, while the boundary values live in
 the `(n+1)`-cube), in the ordered regime `b ≤ a`, the canonical boundary sum
 `H (n+1) p + H (n+1) q` is bounded by the **arbitrary-split boundary functional**
 `H (n+1) a + max (H (n+1) b) a`.
+@isnad1 id=le.6h5v.s8.ae023b39cc78 from=translated src=- shape=a6e0b0e0 vocab=11580788
 -/
 lemma harper_macaulay_joint (n : ℕ) {a b p q : ℕ}
     (ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
@@ -1203,6 +1286,7 @@ lemma harper_macaulay_joint (n : ℕ) {a b p q : ℕ}
 Now a proved corollary of the unified kernel `harper_macaulay_joint`: in the
 LE regime `a ≤ H (n+1) b` the boundary `max (H (n+1) b) a` collapses to
 `H (n+1) b` (`max_eq_left`).
+@isnad1 id=le.7h5v.s8.a88425a44e0b from=translated src=- shape=a59a8bbe vocab=11580788
 -/
 lemma harper_macaulay_window_le (n : ℕ)
     (ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
@@ -1224,6 +1308,7 @@ GT regime `H (n+1) b < a` the boundary `max (H (n+1) b) a` collapses to `a`
 This is the genuine *joint* slack bound; the previously-exposed split into
 `H (n+1) q ≤ a` and `H (n+1) p ≤ H (n+1) a` is false (see the commented note
 above), so the GT bound must keep `H (n+1) p + H (n+1) q ≤ H (n+1) a + a` intact.
+@isnad1 id=le.7h5v.s8.4e2a63ed6cee from=translated src=- shape=1b600f89 vocab=11580788
 -/
 lemma harper_macaulay_slack_gt (n : ℕ)
     (ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
@@ -1241,6 +1326,7 @@ GT Macaulay shadow slack comparison (PDF-faithful shadow-count form).  Now a
 proved corollary of the joint slack kernel `harper_macaulay_slack_gt`:
 `harper_gt_split_between` supplies `b ≤ q ≤ p ≤ a`, the shadow windows rewrite to
 `H` differences, and the goal follows by arithmetic (`H_mono` plus `omega`).
+@isnad1 id=le.7h5v.s8.69b3ecb60cb8 from=translated src=- shape=7bb9148c vocab=e42ade44
 -/
 lemma harper_macaulay_shadow_gt (n : ℕ)
     (ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
@@ -1279,6 +1365,7 @@ counterexamples for `n ≤ 4`, smallest `n = 1, a = 4, b = 2` with `(p,q)=(3,3)`
 the canonical split can place *less* than `a` in its lower slice, so the windows
 `[a,p)` and `[q,b)` are not nested as that lemma required.  The *sum* form proved
 here is true (0 counterexamples for `n ≤ 6`) and is the correct LE leaf.
+@isnad1 id=le.6h5v.s8.e162906a6109 from=translated src=- shape=c72b3681 vocab=11580788
 -/
 lemma harper_step_le_canonical_sum (n : ℕ)
     (ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
@@ -1342,6 +1429,7 @@ the canonical-sum core `harper_step_le_canonical_sum`: after choosing the
 canonical split `(p,q)` of `a+b` and dispatching the degenerate `q = 0` branch,
 the positive branch rewrites `H (n+2) (a+b)` to `H(n+1)p + H(n+1)q` and applies
 the core.
+@isnad1 id=le.5h3v.s8.f665c68ab184 from=translated src=- shape=2e9ec80a vocab=3406d999
 -/
 lemma harper_step_le_sum_form (n : ℕ)
     (ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
@@ -1381,6 +1469,9 @@ lemma harper_step_le_sum_form (n : ℕ)
     rw [hcanon]
     exact harper_step_le_canonical_sum n ih ha hb hcasc hba hcase
 
+/--
+@isnad1 id=le.5h3v.s8.f665c68ab184 from=translated src=- shape=2e9ec80a vocab=3406d999
+-/
 lemma harper_step_le (n : ℕ)
     (ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
             H (m + 1) (x + y) ≤ max (H m x) y + max (H m y) x)
@@ -1397,6 +1488,7 @@ is the max-free combinatorial heart of Harper's `n → n+1` step in the GT regim
 It is strictly narrower than `harper_step_total` (adds `b ≤ a` and the case
 hypothesis `H (n+1) b < a`, with the outer `max`s eliminated), mentions only
 `H` and `ih`, and is non-circular.
+@isnad1 id=le.5h3v.s8.9e8b697c2a5a from=translated src=- shape=81bd76a1 vocab=3406d999
 -/
 lemma harper_step_gt (n : ℕ)
     (ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
@@ -1431,6 +1523,7 @@ lemma harper_step_gt (n : ℕ)
 The `b ≤ a` branch of `harper_step_total`, assembled from the two max-free case
 lemmas by collapsing the slack form of `boundaryCostH`
 (`boundaryCostH_eq_H_add_slack`).  Sorry-free.
+@isnad1 id=le.4h3v.s7.feffd8c1e8b7 from=translated src=- shape=941ac131 vocab=2a577648
 -/
 lemma harper_step_total_le_case (n : ℕ)
     (ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
@@ -1447,6 +1540,9 @@ lemma harper_step_total_le_case (n : ℕ)
     have h := harper_step_gt n ih ha hb hba hcase'
     omega
 
+/--
+@isnad1 id=le.3h3v.s7.a6b428bc784e from=translated src=- shape=8c44ade8 vocab=2a577648
+-/
 lemma harper_step_total (n : ℕ)
     (ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
             H (m + 1) (x + y) ≤ max (H m x) y + max (H m y) x)
@@ -1462,6 +1558,7 @@ The four-block Frankl-Furedi profile bridge, now a proved consequence of
 the pure-`H` kernel `harper_step_total`.  Using
 `pairedCascadeBoundary_pos_eq_H_succ`, the four-block boundary on the left is
 exactly `H (n+2) (a+b)`, and the conclusion is then `harper_step_total`.
+@isnad1 id=le.4h5v.s8.96094f85b0e0 from=translated src=- shape=04609950 vocab=11580788
 -/
 lemma harper_extremal_step_nested_pos (n : ℕ)
     (ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
@@ -1497,6 +1594,7 @@ lemma harper_extremal_step_nested_pos (n : ℕ)
 The four-block Macaulay/cascade interleaving comparison with explicit witnesses.
 This exposes the nested canonical splits at level `n` for all components, reducing
 the `H (n+1)` expressions to purely `n`-level `max` combinations.
+@isnad1 id=le.16h13v.s9.3b62a12a4655 from=translated src=- shape=39936400 vocab=11580788
 -/
 lemma harper_extremal_step_nested (n : ℕ)
     (ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
@@ -1548,6 +1646,7 @@ refer to any later result such as `harper_core`, `harper_bc_min`,
 It has no elementary proof: `H (n+1)` is neither convex nor concave and the cross
 boundary cost is not a unimodal function of the split, so the genuine
 Kruskal–Katona / Macaulay cascade-interleaving argument is required.
+@isnad1 id=le.4h5v.s8.8b65e560242c from=translated src=- shape=4de1c771 vocab=11580788
 -/
 lemma harper_extremal_step (n : ℕ)
     (ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
@@ -1576,6 +1675,7 @@ the split boundary sum is no larger than `H (n+1) a + H (n+1) b`.
 
 This is now a short consequence of `harper_extremal_step` (the unified extremal
 step) together with `canonical_boundaryCost_eq_H_add` and the case hypotheses.
+@isnad1 id=le.10h5v.s8.8d78c56ce002 from=translated src=- shape=32388290 vocab=11580788
 -/
 lemma harper_nested_g_le (n : ℕ)
     (ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
@@ -1605,6 +1705,7 @@ split boundary sum is no larger than `H (n+1) a + a`.
 
 This is now a short consequence of `harper_extremal_step` together with
 `canonical_boundaryCost_eq_H_add` and the case hypotheses.
+@isnad1 id=le.10h5v.s8.9fca0bf48b63 from=translated src=- shape=eca2b5d9 vocab=11580788
 -/
 lemma harper_nested_g_gt (n : ℕ)
     (ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
@@ -1626,6 +1727,9 @@ lemma harper_nested_g_gt (n : ℕ)
   rw [m1, m2] at hL
   exact hL
 
+/--
+@isnad1 id=le.22h13v.s9.8e45439392a6 from=translated src=- shape=a5c71e91 vocab=989b9205
+-/
 lemma harper_subadd_le_cascade_pos_succ_nested_core
     (n : ℕ)
     (ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
@@ -1662,6 +1766,9 @@ lemma harper_subadd_le_cascade_pos_succ_nested_core
   rw [ep, eq', ea, eb]
   exact harper_nested_g_le n ih ha hb hp hq hq_pos hb_le_a hcase hpq hcasc
 
+/--
+@isnad1 id=le.22h13v.s9.c1b4db305455 from=translated src=- shape=d9ea09f3 vocab=11580788
+-/
 lemma harper_subadd_le_cascade_pos_succ_nested
     (n : ℕ)
     (ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
@@ -1695,6 +1802,9 @@ lemma harper_subadd_le_cascade_pos_succ_nested
   exact harper_subadd_le_cascade_pos_succ_nested_core n ih ha hb hp hq hq_pos hb_le_a
     hcase_rewritten hpq hcasc hp0 hp1 hq0 hq1 ha0 ha1 hb0 hb1 hp_split hq_split ha_split hb_split
 
+/--
+@isnad1 id=le.22h13v.s9.73b3c3452bdc from=translated src=- shape=278c11f7 vocab=989b9205
+-/
 lemma harper_subadd_gt_cascade_pos_succ_nested_core
     (n : ℕ)
     (ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
@@ -1730,6 +1840,9 @@ lemma harper_subadd_gt_cascade_pos_succ_nested_core
   rw [ep, eq', ea]
   exact harper_nested_g_gt n ih ha hb hp hq hq_pos hb_le_a hcase hpq hcasc
 
+/--
+@isnad1 id=le.22h13v.s9.98fbdf77a7ea from=translated src=- shape=03b92fe4 vocab=11580788
+-/
 lemma harper_subadd_gt_cascade_pos_succ_nested
     (n : ℕ)
     (ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
@@ -1761,6 +1874,9 @@ lemma harper_subadd_gt_cascade_pos_succ_nested
   exact harper_subadd_gt_cascade_pos_succ_nested_core n ih ha hb hp hq hq_pos hb_le_a
     hcase_rewritten hpq hcasc hp0 hp1 hq0 hq1 ha0 ha1 hb0 hb1 hp_split hq_split ha_split hb_split
 
+/--
+@isnad1 id=le.10h5v.s8.817976d91241 from=translated src=- shape=5fcf0a01 vocab=11580788
+-/
 lemma harper_subadd_le_cascade_pos
     (n : ℕ)
     (ih : ∀ m, m < n → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
@@ -1798,6 +1914,9 @@ lemma harper_subadd_le_cascade_pos
     simpa [H_succ_cascade hp_split, H_succ_cascade hq_split,
       H_succ_cascade ha_split, H_succ_cascade hb_split] using hnested
 
+/--
+@isnad1 id=le.10h5v.s8.37028728835e from=translated src=- shape=864af0d6 vocab=11580788
+-/
 lemma harper_subadd_gt_cascade_pos
     (n : ℕ)
     (ih : ∀ m, m < n → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
@@ -1845,6 +1964,7 @@ larger part `a` already fits inside the neighborhood of the smaller part
 (`a ≤ H n b`), the closed neighborhood of the initial segment of size `a + b`
 in the `(n+1)`-cube is no larger than `H n a + H n b`.  Via `H_succ_cascade` and
 `canonical_boundaryCost_eq_H_add` this is exactly `harper_bc_min_case_le`.
+@isnad1 id=le.5h3v.s7.a1b509d43589 from=translated src=- shape=296c65fe vocab=3406d999
 -/
 lemma harper_subadd_le
     (n : ℕ)
@@ -1882,6 +2002,7 @@ part `a` exceeds the neighborhood of the smaller part (`H n b < a`), the closed
 neighborhood of the size-`(a+b)` initial segment in the `(n+1)`-cube is no larger
 than `H n a + a`.  Via `H_succ_cascade` and `canonical_boundaryCost_eq_H_add`
 this is exactly `harper_bc_min_case_gt`.
+@isnad1 id=le.5h3v.s7.fcdf340210c9 from=translated src=- shape=229b76e4 vocab=3406d999
 -/
 lemma harper_subadd_gt
     (n : ℕ)
@@ -1911,6 +2032,9 @@ lemma harper_subadd_gt
     have h_bc := boundaryCost_eq_case_gt ha hb_le_a hcase
     omega
 
+/--
+@isnad1 id=le.10h5v.s8.817976d91241 from=translated src=- shape=5fcf0a01 vocab=11580788
+-/
 lemma harper_bc_min_case_le
     (n : ℕ)
     (ih : ∀ m, m < n → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
@@ -1927,6 +2051,9 @@ lemma harper_bc_min_case_le
   rw [hsucc, hcb] at key
   exact key
 
+/--
+@isnad1 id=le.10h5v.s8.37028728835e from=translated src=- shape=864af0d6 vocab=11580788
+-/
 lemma harper_bc_min_case_gt
     (n : ℕ)
     (ih : ∀ m, m < n → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
@@ -1943,6 +2070,9 @@ lemma harper_bc_min_case_gt
   rw [hsucc, hcb] at key
   exact key
 
+/--
+@isnad1 id=le.7h5v.s8.c680555a142b from=translated src=- shape=31b81838 vocab=11580788
+-/
 lemma harper_bc_min (n : ℕ)
     (ih : ∀ m, m < n → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
             H (m + 1) (x + y) ≤ max (H m x) y + max (H m y) x)
@@ -2001,6 +2131,7 @@ This is proved independently of `boundaryCost`, `CascadeInterleaves`,
 `H_inequality_core`, `H_inequality`, `macaulay_optimization`, and
 `interleaving_boundaryCost_mono` (all of which are stated later and ultimately
 depend on this lemma), so there is no circularity.
+@isnad1 id=le.2h3v.s6.aedd22a7a760 from=translated src=- shape=a4d1f832 vocab=2a1acc16
 -/
 lemma harper_core :
     ∀ (n a b : ℕ), a ≤ 2 ^ n → b ≤ 2 ^ n →
@@ -2028,6 +2159,7 @@ noncomputable def boundaryCost (n a b : ℕ) : ℕ :=
 Macaulay interleaving theorem: if `(p, q)` interleaves `(a, b)`, then its
 boundary cost is smaller.  Through the cascade recursion `H_succ_cascade` this
 reduces to Harper's recursion inequality `harper_core`.
+@isnad1 id=le.3h5v.s6.0c56ae59b89c from=translated src=- shape=2e60048b vocab=d2fe153f
 -/
 lemma interleaving_boundaryCost_mono
     {n p q a b : ℕ} (ha : a ≤ 2 ^ n) (hb : b ≤ 2 ^ n)
@@ -2054,6 +2186,7 @@ The supporting structure for this statement is fully developed above:
 * `cascade_q_le_p`         — `q ≤ p`;
 * `H_mono`, `H_ge_self`, `H_le_cube`, `H_add_self_mono` — monotonicity / growth of `H`;
 * `H_eq_gShift_count`      — the explicit boundary count formula.
+@isnad1 id=le.2h3v.s6.aedd22a7a760 from=translated src=- shape=a4d1f832 vocab=2a1acc16
 -/
 lemma H_inequality_core :
     ∀ (n a b : ℕ), a ≤ 2 ^ n → b ≤ 2 ^ n →
@@ -2075,6 +2208,7 @@ lemma H_inequality_core :
 The core Kruskal-Katona / Macaulay optimization inequality for the cascade split.
 For any canonical split `(p, q)` of `a + b`, the cross-sum of their boundary sizes
 is bounded by the sum of boundary bounds for the original sizes `a` and `b`.
+@isnad1 id=le.3h5v.s6.2bb30d430abc from=translated src=- shape=4c95efd1 vocab=3acce346
 -/
 lemma macaulay_optimization {n a b p q : ℕ} (ha : a ≤ 2 ^ n) (hb : b ≤ 2 ^ n)
     (h_casc : CascadeSplit n (a + b) p q) :
@@ -2083,6 +2217,9 @@ lemma macaulay_optimization {n a b p q : ℕ} (ha : a ≤ 2 ^ n) (hb : b ≤ 2 ^
   exact H_inequality_core n a b ha hb
 
 -- The optimization core of Macaulay-Harper: the initial-segment slice split is optimal.
+/--
+@isnad1 id=le.2h3v.s7.474fa33ea11f from=translated src=- shape=8b1bf366 vocab=078c2a5f
+-/
 lemma H_split_opt {n a b : ℕ} (ha : a ≤ 2 ^ n) (hb : b ≤ 2 ^ n) :
     max (H n (slice0 (simplicialInitSeg (n + 1) (a + b))).card)
         (slice1 (simplicialInitSeg (n + 1) (a + b))).card +
@@ -2099,6 +2236,9 @@ lemma H_split_opt {n a b : ℕ} (ha : a ≤ 2 ^ n) (hb : b ≤ 2 ^ n) :
   exact macaulay_optimization ha hb h_split
 
 -- Macaulay-Harper inequality.
+/--
+@isnad1 id=le.2h3v.s6.aedd22a7a760 from=translated src=- shape=a4d1f832 vocab=2a1acc16
+-/
 lemma H_inequality (n a b : ℕ) (ha : a ≤ 2 ^ n) (hb : b ≤ 2 ^ n) :
     H (n + 1) (a + b) ≤ max (H n a) b + max (H n b) a := by
   rw [H_succ_slice]
@@ -2108,6 +2248,9 @@ lemma H_inequality (n a b : ℕ) (ha : a ≤ 2 ^ n) (hb : b ≤ 2 ^ n) :
 -- Optimality of the initial segment
 -- ==========================================
 
+/--
+@isnad1 id=le.2h3v.s7.520f5983e683 from=translated src=- shape=2f746d52 vocab=04c4941a
+-/
 lemma initial_segment_optimal {n : ℕ} (k0 k1 : ℕ) (hk0 : k0 ≤ 2 ^ n) (hk1 : k1 ≤ 2 ^ n) :
     (neighborhood 1 (simplicialInitSeg (n + 1) (k0 + k1))).card ≤
     (neighborhood 1 (simplicialInitSeg n k0) ∪ simplicialInitSeg n k1).card +
@@ -2124,12 +2267,18 @@ lemma initial_segment_optimal {n : ℕ} (k0 k1 : ℕ) (hk0 : k0 ≤ 2 ^ n) (hk1 
 
 Every set of vertices in the n-cube has at most 2^n elements.
 -/
+/--
+@isnad1 id=le.0h2v.s4.48400ea6ec32 from=translated src=- shape=47def3b1 vocab=72c94d7b
+-/
 lemma card_cube_le {n : ℕ} (S : Finset (Cube n)) : S.card ≤ 2 ^ n := by
   convert S.card_le_univ using 1;
   norm_num +zetaDelta at *
 
 /-
 Monotonicity of the boundary-union under the inductive hypothesis.
+-/
+/--
+@isnad1 id=le.3h5v.s7.ebe0953fdcdd from=translated src=- shape=7563fb7c vocab=999ed154
 -/
 lemma union_initSeg_card_le {n a b : ℕ} {B C : Finset (Cube n)}
     (hHa : (neighborhood 1 (simplicialInitSeg n a)).card ≤ (neighborhood 1 B).card)
@@ -2148,12 +2297,18 @@ lemma union_initSeg_card_le {n a b : ℕ} {B C : Finset (Cube n)}
 /-
 Base case of Harper's theorem (dimension 0).
 -/
+/--
+@isnad1 id=le.1h2v.s6.9f03efe3a6d5 from=translated src=- shape=3b21939e vocab=07dfdf4a
+-/
 lemma harper_base (A : Finset (Cube 0)) (k : ℕ) (hk : A.card = k) :
     (neighborhood 1 (simplicialInitSeg 0 k)).card ≤ (neighborhood 1 A).card := by
   subst hk
   fin_cases A <;>
     simp +decide [simplicialInitSeg, Finset.filter_singleton, rank, simplicialLt, simplicialLe]
 
+/--
+@isnad1 id=le.1h3v.s5.4e868fed23c4 from=translated src=- shape=720d6bc2 vocab=07dfdf4a
+-/
 theorem harper_theorem (n : ℕ) (A : Finset (Cube n)) (k : ℕ) (hk : A.card = k) :
     (neighborhood 1 (simplicialInitSeg n k)).card ≤ (neighborhood 1 A).card := by
   revert A k

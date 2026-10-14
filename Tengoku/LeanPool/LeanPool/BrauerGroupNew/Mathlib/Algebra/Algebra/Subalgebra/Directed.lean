@@ -20,6 +20,9 @@ namespace Subalgebra
 variable {R A ι : Type*} [CommSemiring R] [Semiring A] [Algebra R A] {K : ι → Subalgebra R A}
   {s : Set ι}
 
+/--
+@isnad1 id=eq.2h5v.s7.36b89e45de41 from=translated src=- shape=0113a55e vocab=33b3d25e
+-/
 lemma coe_biSup_of_directedOn (hs : s.Nonempty) (dir : DirectedOn (K · ≤ K ·) s) :
     ↑(⨆ i ∈ s, K i) = ⨆ i ∈ s, (K i : Set A) := by
   have := hs.to_subtype

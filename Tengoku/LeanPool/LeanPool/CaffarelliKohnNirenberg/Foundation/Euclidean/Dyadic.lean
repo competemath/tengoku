@@ -56,28 +56,43 @@ def dyadicParent (Q : DyadicIndex) : DyadicIndex :=
   { scale := Q.scale - 1
     corner := fun i => Q.corner i / 2 }
 
+/--
+@isnad1 id=iff.0h3v.s6.034c7c383440 from=translated src=- shape=759db763 vocab=585e577c
+-/
 @[simp] theorem mem_dyadicCube {k : ℤ} {a : DyadicCorner} {x : Vec3} :
     x ∈ dyadicCube k a ↔
       ∀ i, (a i : ℝ) * dyadicScale k ≤ x i ∧
         x i < ((a i : ℝ) + 1) * dyadicScale k := by
   simp [dyadicCube]
 
+/--
+@isnad1 id=lt.0h1v.s3.87be62c7a409 from=translated src=- shape=b9369acb vocab=ca4dac59
+-/
 theorem dyadicScale_pos (k : ℤ) : 0 < dyadicScale k := by
   dsimp [dyadicScale]
   positivity
 
+/--
+@isnad1 id=measurab.0h2v.s5.ca5aa3d76b1e from=translated src=- shape=6ad8120f vocab=f1292d9b
+-/
 theorem dyadicCube_measurable (k : ℤ) (a : DyadicCorner) :
     MeasurableSet (dyadicCube k a) := by
   apply MeasurableSet.pi Set.countable_univ
   intro i hi
   exact measurableSet_Ico
 
+/--
+@isnad1 id=eq.0h2v.s7.77a19f03daec from=translated src=- shape=a04e0712 vocab=f3f483f7
+-/
 theorem volume_dyadicCube (k : ℤ) (a : DyadicCorner) :
     volume (dyadicCube k a) = ENNReal.ofReal (dyadicScale k) ^ (3 : ℕ) := by
   rw [dyadicCube, Real.volume_pi_Ico]
   simp only [add_mul, one_mul, add_sub_cancel_left]
   norm_num [Fin.prod_univ_succ]
 
+/--
+@isnad1 id=eq.0h2v.s7.6a2db1cee621 from=translated src=- shape=26a5bcf2 vocab=c13277b2
+-/
 theorem volume_dyadicCube_eq_pow (k : ℤ) (a : DyadicCorner) :
     volume (dyadicCube k a) = ENNReal.ofReal ((8 : ℝ) ^ (-k : ℤ)) := by
   rw [volume_dyadicCube]
@@ -92,6 +107,9 @@ theorem volume_dyadicCube_eq_pow (k : ℤ) (a : DyadicCorner) :
       exact zpow_mul 2 3 (-k)
     _ = (8 : ℝ) ^ (-k : ℤ) := by norm_num
 
+/--
+@isnad1 id=nonempty.0h2v.s3.a0b7330b3ffe from=translated src=- shape=6ad8120f vocab=f85448fe
+-/
 theorem dyadicCube_nonempty (k : ℤ) (a : DyadicCorner) :
     (dyadicCube k a).Nonempty := by
   refine ⟨dyadicCubeCenter k a, ?_⟩
@@ -101,6 +119,9 @@ theorem dyadicCube_nonempty (k : ℤ) (a : DyadicCorner) :
   have hs : 0 < dyadicScale k := dyadicScale_pos k
   constructor <;> nlinarith only [hs]
 
+/--
+@isnad1 id=mem.0h2v.s4.eaec7f3ad0b3 from=translated src=- shape=febe5707 vocab=2aa3e152
+-/
 theorem mem_dyadicCube_of_corner (k : ℤ) (x : Vec3) :
     x ∈ dyadicCube k (dyadicCorner k x) := by
   rw [mem_dyadicCube]
@@ -110,6 +131,9 @@ theorem mem_dyadicCube_of_corner (k : ℤ) (x : Vec3) :
   · exact (le_div_iff₀ hs).mp (Int.floor_le _)
   · exact (div_lt_iff₀ hs).mp (Int.lt_floor_add_one _)
 
+/--
+@isnad1 id=eq.2h4v.s5.87c344a7aabd from=translated src=- shape=31efe392 vocab=83d33ee5
+-/
 theorem dyadicCorner_unique {k : ℤ} {x : Vec3} {a b : DyadicCorner}
     (ha : x ∈ dyadicCube k a) (hb : x ∈ dyadicCube k b) : a = b := by
   funext i
@@ -132,12 +156,18 @@ theorem dyadicCorner_unique {k : ℤ} {x : Vec3} {a b : DyadicCorner}
       exact_mod_cast (Int.add_one_le_iff.mpr hltInt)
     nlinarith only [ha'.2, hb'.1, hscale, hlt']
 
+/--
+@isnad1 id=existsun.0h2v.s4.30356ca79bcc from=translated src=- shape=1c311e29 vocab=cad808d1
+-/
 theorem dyadicCube_unique_at_scale {k : ℤ} {x : Vec3} :
     ∃! a : DyadicCorner, x ∈ dyadicCube k a := by
   refine ⟨dyadicCorner k x, mem_dyadicCube_of_corner k x, ?_⟩
   intro a ha
   exact dyadicCorner_unique ha (mem_dyadicCube_of_corner k x)
 
+/--
+@isnad1 id=le.1h3v.s5.859099c96814 from=translated src=- shape=c725a01b vocab=f3eadd6d
+-/
 theorem dyadicCube_subset_closedBall {k : ℤ} {a : DyadicCorner}
     {x : Vec3} (hx : x ∈ dyadicCube k a) :
     dyadicCube k a ⊆ Metric.closedBall x (dyadicScale k) := by
@@ -153,6 +183,9 @@ theorem dyadicCube_subset_closedBall {k : ℤ} {a : DyadicCorner}
   rw [abs_le]
   constructor <;> nlinarith only [hx'.1, hx'.2, hy'.1, hy'.2, hscale]
 
+/--
+@isnad1 id=le.0h2v.s6.d15f64885223 from=translated src=- shape=93e40ab9 vocab=65ed4a2e
+-/
 theorem supBall_subset_dyadicCubeCenter (k : ℤ) (a : DyadicCorner) :
     Metric.ball (dyadicCubeCenter k a) (dyadicScale k / 2) ⊆
       dyadicCube k a := by
@@ -171,6 +204,9 @@ theorem supBall_subset_dyadicCubeCenter (k : ℤ) (a : DyadicCorner) :
   rw [abs_lt] at hxi
   constructor <;> nlinarith only [hxi.1, hxi.2, hs]
 
+/--
+@isnad1 id=ex.1h2v.s5.26b6488b8442 from=translated src=- shape=4a07fb54 vocab=40c9f59b
+-/
 theorem dyadicScale_ratio {k l : ℤ} (hkl : k ≤ l) :
     ∃ m : ℤ, 0 < m ∧ dyadicScale k = (m : ℝ) * dyadicScale l := by
   let n : ℕ := Int.toNat (l - k)
@@ -193,6 +229,9 @@ theorem dyadicScale_ratio {k l : ℤ} (hkl : k ≤ l) :
       dsimp [dyadicScale]
       ring
 
+/--
+@isnad1 id=le.0h1v.s5.6b7d0a7aab22 from=translated src=- shape=c4e8a472 vocab=680a008e
+-/
 theorem dyadicCube_subset_parent (Q : DyadicIndex) :
     dyadicCube Q.scale Q.corner ⊆
       dyadicCube (Q.scale - 1) (fun i => Q.corner i / 2) := by
@@ -236,6 +275,9 @@ theorem dyadicCube_subset_parent (Q : DyadicIndex) :
         rw [hs]
         ring
 
+/--
+@isnad1 id=le.2h4v.s5.a0c2e1b9ab55 from=translated src=- shape=063e9665 vocab=93de0dac
+-/
 theorem dyadicCube_subset_of_intersect {k l : ℤ} (hkl : k ≤ l)
     {a b : DyadicCorner}
     (hint : (dyadicCube k a ∩ dyadicCube l b).Nonempty) :
@@ -290,6 +332,9 @@ theorem dyadicCube_subset_of_intersect {k l : ℤ} (hkl : k ≤ l)
         mul_le_mul_of_nonneg_right hright' (dyadicScale_pos l).le
       _ = ((a i : ℝ) + 1) * dyadicScale k := by rw [hscale]; ring
 
+/--
+@isnad1 id=or.0h2v.s6.25cc9f6fa51f from=translated src=- shape=1bddb04e vocab=d2bd327e
+-/
 theorem dyadicCube_nested_or_disjoint (Q R : DyadicIndex) :
     dyadicCube Q.scale Q.corner ⊆ dyadicCube R.scale R.corner ∨
       dyadicCube R.scale R.corner ⊆ dyadicCube Q.scale Q.corner ∨
@@ -313,6 +358,9 @@ theorem dyadicCube_nested_or_disjoint (Q R : DyadicIndex) :
         intro x hxQ hxR
         exact hint ⟨x, hxQ, hxR⟩)))
 
+/--
+@isnad1 id=eq.0h1v.s7.a956bb0ac0b6 from=translated src=- shape=97395df7 vocab=f003aaca
+-/
 theorem dyadicParent_volume_ratio (Q : DyadicIndex) :
     volume (dyadicCube (dyadicParent Q).scale (dyadicParent Q).corner) =
       8 * volume (dyadicCube Q.scale Q.corner) := by

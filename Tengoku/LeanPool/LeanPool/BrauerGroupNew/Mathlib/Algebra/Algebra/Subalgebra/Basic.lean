@@ -18,9 +18,15 @@ Imported Lean Pool material for `LeanPool.BrauerGroupNew.Mathlib.Algebra.Algebra
 namespace Subalgebra
 variable {R A : Type*} [CommSemiring R] [Semiring A] [Algebra R A] {L S T U : Subalgebra R A}
 
+/--
+@isnad1 id=iff.0h3v.s7.be317788dd7f from=translated src=- shape=2f3cf81f vocab=8e874698
+-/
 lemma le_centralizer_self : L ≤ centralizer R L ↔ ∀ x ∈ L, ∀ y ∈ L, x * y = y * x := forall₂_comm
 variable {R A : Type*} [CommSemiring R] [Semiring A] [Algebra R A] {S T U : Subalgebra R A}
 
+/--
+@isnad1 id=eq.2h5v.s8.cb059de2150f from=translated src=- shape=4563acfd vocab=e589ee0d
+-/
 @[simp] lemma inclusion_comp_inclusion (hST : S ≤ T) (hTU : T ≤ U) :
     (inclusion hTU).comp (inclusion hST) = inclusion (hST.trans hTU) := rfl
 

@@ -31,6 +31,9 @@ namespace Simplex
 
 variable {α : Type*} [Fintype α]
 
+/--
+@isnad1 id=continuo.0h3v.s10.654d2472781b from=translated src=- shape=1016d722 vocab=ebc1e811
+-/
 lemma continuous_fisherBilin_apply (u v : tangentSpace (α := α)) :
     Continuous fun p : Simplex α => fisherBilin p u v := by
   classical

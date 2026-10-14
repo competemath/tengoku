@@ -38,6 +38,9 @@ section CommSemiring
 variable {R : Type*} [CommSemiring R]
 variable {A : Type*} [Semiring A] [Algebra R A]
 
+/--
+@isnad1 id=eq.0h4v.s7.3bf9813706f4 from=translated src=- shape=f38be554 vocab=a28d891f
+-/
 lemma centralizer_sup (S T : Subalgebra R A) :
     centralizer R ((S ⊔ T : Subalgebra R A) : Set A) = centralizer R S ⊓ centralizer R T := by
   ext x

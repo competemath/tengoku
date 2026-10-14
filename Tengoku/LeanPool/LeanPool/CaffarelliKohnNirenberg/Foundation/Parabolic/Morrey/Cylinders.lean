@@ -32,6 +32,9 @@ noncomputable section
 
 namespace CKN.Foundation.Parabolic.Morrey
 
+/--
+@isnad1 id=iff.0h4v.s5.69c4283016ad from=translated src=- shape=ae63feb2 vocab=23513065
+-/
 theorem morreyVecMem_iff_ball_lt_top {P τ : ℝ}
     (S : Set ParabolicPoint) (u : ParabolicPoint → Vec3) :
     morreyVecMem P τ S u ↔
@@ -46,6 +49,9 @@ namespace CKN
 /-! The metric-ball-to-cylinder inclusion used to recenter a small Morrey ball. -/
 
 /-! Closure of a positive cylinder is contained in its closed parabolic ball. -/
+/--
+@isnad1 id=le.1h3v.s5.8244ad157716 from=translated src=- shape=50f86faf vocab=8724d463
+-/
 theorem step2_closure_cylinder_subset_closedBall
     {x : Vec3} {t r : ℝ} (hr : 0 < r) :
     closure (parabolicCylinder x t r) ⊆
@@ -64,6 +70,9 @@ theorem step2_closure_cylinder_subset_closedBall
   exact max_le hz.1 hsqrt
 
 /-! Parabolic distance from a point to its forward time-shifted copy. -/
+/--
+@isnad1 id=eq.1h2v.s5.ccf8a6c071cd from=translated src=- shape=5aeeb3e8 vocab=be76f450
+-/
 theorem step2_shifted_center_dist {w : ParabolicPoint} {r : ℝ} (hr : 0 < r) :
     @dist ParabolicPoint (@PseudoMetricSpace.toDist ParabolicPoint
       parabolicMetricSpace.toPseudoMetricSpace)

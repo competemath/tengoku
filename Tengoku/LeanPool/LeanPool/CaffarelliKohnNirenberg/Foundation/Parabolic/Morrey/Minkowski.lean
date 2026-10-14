@@ -34,10 +34,16 @@ def morreyENormCell (p q : ℝ) (f : ParabolicPoint → ℝ≥0∞)
 def morreyENorm (p q : ℝ) (f : ParabolicPoint → ℝ≥0∞) : ℝ≥0∞ :=
   ⨆ z : ParabolicPoint, ⨆ r : {r : ℝ // 0 < r}, morreyENormCell p q f z r.1
 
+/--
+@isnad1 id=eq.0h3v.s4.e3864e335343 from=translated src=- shape=81794f36 vocab=921d8363
+-/
 theorem morreyENorm_ofReal_abs (p q : ℝ) (f : ParabolicPoint → ℝ) :
     morreyENorm p q (fun z => ENNReal.ofReal |f z|) = morreyNorm p q f := by
   rfl
 
+/--
+@isnad1 id=le.6h8v.s7.3b2fe283e74b from=translated src=- shape=76c726f6 vocab=864cc1f1
+-/
 theorem morreyNorm_holder {p p₁ p₂ q q₁ q₂ : ℝ}
     (hp₁ : 1 ≤ p₁) (hp₂ : 1 ≤ p₂)
     (hrelp : 1 / p = 1 / p₁ + 1 / p₂)
@@ -48,6 +54,9 @@ theorem morreyNorm_holder {p p₁ p₂ q q₁ q₂ : ℝ}
       morreyNorm p₁ q₁ f * morreyNorm p₂ q₂ g :=
   morreyNorm_mul_le hp₁ hp₂ hrelp hrelq hf hg
 
+/--
+@isnad1 id=le.4h4v.s7.909b85e273f4 from=translated src=- shape=aa8a10c6 vocab=ead1b1e6
+-/
 theorem morreyNorm_lower_integrability {p' p q : ℝ} (hp' : 1 ≤ p')
     (hpp : p' ≤ p) (hpq : p ≤ q) {f : ParabolicPoint → ℝ}
     (hf : AEMeasurable f volume) :
@@ -56,6 +65,9 @@ theorem morreyNorm_lower_integrability {p' p q : ℝ} (hp' : 1 ≤ p')
         morreyNorm p q f :=
   morreyNorm_lower_p hp' hpp hpq hf
 
+/--
+@isnad1 id=le.6h6v.s7.16b7bbc02410 from=translated src=- shape=c2a8a86c vocab=96a49908
+-/
 theorem morreyNorm_lower_morrey_exponent {p q q' : ℝ} (hp : 1 ≤ p)
     (hpq : p ≤ q) (hpq' : p ≤ q') (hq'q : q' ≤ q)
     {f : ParabolicPoint → ℝ} {z₀ : ParabolicPoint} {R : ℝ} (hR : 0 < R)
@@ -264,6 +276,9 @@ private theorem lintegral_minkowski
       rw [← ENNReal.rpow_mul]
       simp [ne_of_gt (zero_lt_one.trans_le hp)]
 
+/--
+@isnad1 id=le.3h5v.s6.783e20150c0b from=translated src=- shape=ce148e30 vocab=d9be5918
+-/
 theorem morreyENorm_lintegral_le
     {α : Type*} [MeasurableSpace α] (μ : Measure α) [SFinite μ]
     {p q : ℝ} (hp : 1 ≤ p) (_ : p ≤ q)
@@ -357,6 +372,9 @@ private theorem morreyENormCell_translate (p q : ℝ) (f : ParabolicPoint → �
         simpa [parabolicTranslate] using hint]
   simp [parabolicTranslate]
 
+/--
+@isnad1 id=eq.0h5v.s4.a8f7e3f485e7 from=translated src=- shape=712467b5 vocab=7f90deb0
+-/
 theorem morreyENorm_translate (p q : ℝ) (f : ParabolicPoint → ℝ≥0∞)
     (a : Vec3) (τ : ℝ) :
     morreyENorm p q (fun w => f (parabolicTranslate a τ w)) = morreyENorm p q f := by
@@ -422,6 +440,9 @@ private theorem morreyENorm_const_mul (p q : ℝ) (c : ℝ≥0∞)
 def parabolicConvolution (K f : ParabolicPoint → ℝ≥0∞) (z : ParabolicPoint) : ℝ≥0∞ :=
   ∫⁻ w, K w * f (parabolicTranslate (-w.1) (-w.2) z) ∂volume
 
+/--
+@isnad1 id=le.5h4v.s7.1f5aa1b73da1 from=translated src=- shape=019ea861 vocab=30b15d80
+-/
 theorem morreyENorm_parabolicConvolution_le
     {p q : ℝ} (hp : 1 ≤ p) (hpq : p ≤ q)
     {K f : ParabolicPoint → ℝ≥0∞}
@@ -459,6 +480,9 @@ def spatialConvolution (K : Vec3 → ℝ≥0∞) (f : ParabolicPoint → ℝ≥0
     (z : ParabolicPoint) : ℝ≥0∞ :=
   ∫⁻ y, K y * f (parabolicTranslate (-y) 0 z) ∂volume
 
+/--
+@isnad1 id=le.5h4v.s8.1055f5904f7b from=translated src=- shape=5ba1a308 vocab=4a75372e
+-/
 theorem morreyENorm_spatialConvolution_le
     {p q : ℝ} (hp : 1 ≤ p) (hpq : p ≤ q)
     {K : Vec3 → ℝ≥0∞} {f : ParabolicPoint → ℝ≥0∞}

@@ -61,7 +61,9 @@ def MemW1p {d : ℕ}
     (U : Set (Vec d)) (p : ℝ≥0∞) (u : Vec d → ℝ) : Prop :=
   ∃ v : W1pFunction U p, v.toFun = u
 
-/-- Restriction preserves scalar `L^p` membership. -/
+/-- Restriction preserves scalar `L^p` membership.
+@isnad1 id=memlpon.2h5v.s5.274efcb36610 from=translated src=- shape=93e5c27e vocab=ce9f2499
+-/
 theorem memLpOn_mono {d : ℕ}
     {U V : Set (Vec d)} {p : ℝ≥0∞} {u : Vec d → ℝ}
     (hVU : V ⊆ U) (hu : MemLpOn U p u) :
@@ -69,7 +71,9 @@ theorem memLpOn_mono {d : ℕ}
   hu.mono_measure (MeasureTheory.Measure.restrict_mono_set
     MeasureTheory.volume hVU)
 
-/-- Restriction preserves coordinatewise gradient `L^p` membership. -/
+/-- Restriction preserves coordinatewise gradient `L^p` membership.
+@isnad1 id=gradmeml.2h5v.s5.1f4aac7a0c31 from=translated src=- shape=295311a9 vocab=105aec8a
+-/
 theorem gradMemLpOn_mono {d : ℕ}
     {U V : Set (Vec d)} {p : ℝ≥0∞} {Du : Vec d → Vec d}
     (hVU : V ⊆ U) (hDu : GradMemLpOn U p Du) :
@@ -79,6 +83,9 @@ theorem gradMemLpOn_mono {d : ℕ}
 
 namespace W1pFunction
 
+/--
+@isnad1 id=eq.2h5v.s5.63c7059ba78b from=translated src=- shape=4e0c0cca vocab=289ce2df
+-/
 @[ext]
 theorem ext {d : ℕ} {U : Set (Vec d)} {p : ℝ≥0∞}
     {u v : W1pFunction U p}
@@ -90,21 +97,27 @@ theorem ext {d : ℕ} {U : Set (Vec d)} {p : ℝ≥0∞}
   cases hgrad
   rfl
 
-/-- The chosen coordinate weak derivative stored in a W1p representative. -/
+/-- The chosen coordinate weak derivative stored in a W1p representative.
+@isnad1 id=hasweakp.0h5v.s5.2f1d31cb5770 from=translated src=- shape=25e67ff9 vocab=b96e6fbf
+-/
 theorem hasWeakPartialDerivOn {d : ℕ}
     {U : Set (Vec d)} {p : ℝ≥0∞}
     (u : W1pFunction U p) (i : Fin d) :
     HasWeakPartialDerivOn U i u.toFun (fun x => u.grad x i) :=
   u.hasWeakGradient i
 
-/-- The `i`th chosen gradient component belongs to `L^p(U)`. -/
+/-- The `i`th chosen gradient component belongs to `L^p(U)`.
+@isnad1 id=memlpon.0h5v.s4.a8ab91cdfb3a from=translated src=- shape=37b445d2 vocab=ab92f751
+-/
 theorem grad_memLp {d : ℕ}
     {U : Set (Vec d)} {p : ℝ≥0∞}
     (u : W1pFunction U p) (i : Fin d) :
     MemLpOn U p (fun x => u.grad x i) :=
   u.gradMemLp i
 
-/-- The underlying representative belongs to representative-level `W^{1,p}`. -/
+/-- The underlying representative belongs to representative-level `W^{1,p}`.
+@isnad1 id=memw1p.0h4v.s4.c16bcb0f1045 from=translated src=- shape=454df48a vocab=12bc4436
+-/
 theorem memW1p {d : ℕ}
     {U : Set (Vec d)} {p : ℝ≥0∞} (u : W1pFunction U p) :
     MemW1p U p u.toFun :=

@@ -43,6 +43,9 @@ namespace CKN.Foundation.Euclidean
 
 open CKN.Foundation.Parabolic
 
+/--
+@isnad1 id=integrab.2h1v.s8.374e6f367898 from=translated src=- shape=05d4bafc vocab=19af2c07
+-/
 lemma integrable_of_lintegral_absE_lt_top {f : Vec3 → ℝ}
     (hf : AEStronglyMeasurable f volume) (h : ∫⁻ x, absE f x < ∞) :
     Integrable f volume := by

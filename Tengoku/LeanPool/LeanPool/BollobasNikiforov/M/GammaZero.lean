@@ -35,7 +35,9 @@ noncomputable section
 
 /-! ### SC19 — vanishing `H i` when `γ = 0` -/
 
-/-- Original `γ = 0` forces each summand `s i * H i / d i` to vanish. -/
+/-- Original `γ = 0` forces each summand `s i * H i / d i` to vanish.
+@isnad1 id=eq.3h7v.s6.8d9af8e02acb from=translated src=- shape=83cd4c50 vocab=c8beedc5
+-/
 lemma configH_eq_zero_of_configγ_eq_zero {s t : Fin k → ℝ} {ρ x : Fin p → ℝ}
     (hs : ∀ i, 0 < s i) (hρ : ∀ j, 0 < ρ j)
     (hγ : configγ s t ρ x = 0) (i : Fin k) :
@@ -59,11 +61,20 @@ noncomputable def configXstar (t : Fin k → ℝ) : ℝ :=
   | 0, _ => 0
   | _ + 1, t => univ.sup' univ_nonempty t + 1
 
+/--
+@isnad1 id=eq.0h1v.s4.92ea5bd88647 from=translated src=- shape=4442d2e8 vocab=d42eb33e
+-/
 lemma configXstar_zero (t : Fin 0 → ℝ) : configXstar t = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.b2d66ed2e72c from=translated src=- shape=bf065ac5 vocab=fac6d55b
+-/
 lemma configXstar_succ {n : ℕ} (t : Fin (n + 1) → ℝ) :
     configXstar t = univ.sup' univ_nonempty t + 1 := rfl
 
+/--
+@isnad1 id=le.1h2v.s5.3469a03b5ad9 from=translated src=- shape=00c9b24f vocab=621c3c2e
+-/
 lemma configXstar_nonneg {t : Fin k → ℝ} (ht : ∀ i, 0 < t i) :
     0 ≤ configXstar t := by
   cases k with
@@ -75,6 +86,9 @@ lemma configXstar_nonneg {t : Fin k → ℝ} (ht : ∀ i, 0 < t i) :
       exact ⟨0, mem_univ 0, (ht 0).le⟩
     linarith
 
+/--
+@isnad1 id=lt.0h3v.s4.e44e86b0ecf5 from=translated src=- shape=82f09790 vocab=ed35d6ee
+-/
 lemma lt_configXstar (t : Fin k → ℝ) (i : Fin k) : t i < configXstar t := by
   cases k with
   | zero => exact i.elim0
@@ -95,22 +109,37 @@ def configExtendρ (ρ : Fin p → ℝ) (ε : ℝ) : Fin (p + 1) → ℝ :=
 def configExtendx (x : Fin p → ℝ) (xstar : ℝ) : Fin (p + 1) → ℝ :=
   Fin.snoc x xstar
 
+/--
+@isnad1 id=eq.0h4v.s4.9f883e5760c5 from=translated src=- shape=ad918e7d vocab=07ddcf33
+-/
 @[simp] lemma configExtendρ_castSucc (ρ : Fin p → ℝ) (ε : ℝ) (j : Fin p) :
     configExtendρ ρ ε j.castSucc = ρ j := by
   simp [configExtendρ]
 
+/--
+@isnad1 id=eq.0h3v.s4.51632e3cff0b from=translated src=- shape=4392f030 vocab=5b619e60
+-/
 @[simp] lemma configExtendρ_last (ρ : Fin p → ℝ) (ε : ℝ) :
     configExtendρ ρ ε (Fin.last p) = ε := by
   simp [configExtendρ]
 
+/--
+@isnad1 id=eq.0h4v.s4.04a7a118c24f from=translated src=- shape=ad918e7d vocab=991d99a4
+-/
 @[simp] lemma configExtendx_castSucc (x : Fin p → ℝ) (xstar : ℝ) (j : Fin p) :
     configExtendx x xstar j.castSucc = x j := by
   simp [configExtendx]
 
+/--
+@isnad1 id=eq.0h3v.s4.5f3c1c23a0f3 from=translated src=- shape=4392f030 vocab=494115ee
+-/
 @[simp] lemma configExtendx_last (x : Fin p → ℝ) (xstar : ℝ) :
     configExtendx x xstar (Fin.last p) = xstar := by
   simp [configExtendx]
 
+/--
+@isnad1 id=lt.2h4v.s6.def4cbaed58b from=translated src=- shape=0e152743 vocab=959e75e1
+-/
 lemma configExtendρ_pos {ρ : Fin p → ℝ} (hρ : ∀ j, 0 < ρ j) {ε : ℝ}
     (hε : 0 < ε) : ∀ j : Fin (p + 1), 0 < configExtendρ ρ ε j := by
   intro j
@@ -118,6 +147,9 @@ lemma configExtendρ_pos {ρ : Fin p → ℝ} (hρ : ∀ j, 0 < ρ j) {ε : ℝ}
   | last => simpa using hε
   | cast j => simpa using hρ j
 
+/--
+@isnad1 id=le.2h4v.s6.fee4d52eac1a from=translated src=- shape=0e152743 vocab=f0230cad
+-/
 lemma configExtendx_nonneg {x : Fin p → ℝ} (hx : ∀ j, 0 ≤ x j) {xstar : ℝ}
     (hxstar : 0 ≤ xstar) : ∀ j : Fin (p + 1), 0 ≤ configExtendx x xstar j := by
   intro j
@@ -134,18 +166,30 @@ def configIdxEmbed {k p : ℕ} (α : ConfigIdx k p) : ConfigIdx k (p + 1) :=
     | Sum.inl o => Sum.inl o
     | Sum.inr j => Sum.inr j.castSucc
 
+/--
+@isnad1 id=eq.0h2v.s5.bd9f819d872c from=translated src=- shape=68cf78dc vocab=f0f063be
+-/
 lemma configIdxEmbed_z0 :
     configIdxEmbed (idxZ0 : ConfigIdx k p) = (idxZ0 : ConfigIdx k (p + 1)) := by
   simp [configIdxEmbed, idxZ0]
 
+/--
+@isnad1 id=eq.0h3v.s5.758b796b45ab from=translated src=- shape=a12eb4a9 vocab=099a7fd0
+-/
 lemma configIdxEmbed_z (i : Fin k) :
     configIdxEmbed (idxZ (p := p) i) = idxZ (p := p + 1) i := by
   simp [configIdxEmbed, idxZ]
 
+/--
+@isnad1 id=eq.0h3v.s5.90e41844bb84 from=translated src=- shape=600dd446 vocab=72c5c320
+-/
 lemma configIdxEmbed_y (j : Fin p) :
     configIdxEmbed (idxY (k := k) j) = idxY (k := k) j.castSucc := by
   simp [configIdxEmbed, idxY]
 
+/--
+@isnad1 id=eq.0h3v.s6.4553bb8ec7fd from=translated src=- shape=3069a128 vocab=6c015f64
+-/
 lemma configIdxEmbed_val (α : ConfigIdx k p) :
     (configIdxEmbed α).val = α.val := by
   refine configIdx_cases (P := fun β => (configIdxEmbed β).val = β.val) α ?_ ?_ ?_
@@ -156,16 +200,25 @@ lemma configIdxEmbed_val (α : ConfigIdx k p) :
   · intro j
     simp [configIdxEmbed_y, idxY_val]
 
+/--
+@isnad1 id=iff.0h4v.s6.4a1cd9020ec9 from=translated src=- shape=d9a07c14 vocab=ac480671
+-/
 lemma configIdxEmbed_lt_iff {α β : ConfigIdx k p} :
     configIdxEmbed α < configIdxEmbed β ↔ α < β := by
   rw [Fin.lt_def, Fin.lt_def, configIdxEmbed_val, configIdxEmbed_val]
 
+/--
+@isnad1 id=injectiv.0h2v.s4.529f28766cce from=translated src=- shape=9ffde3a3 vocab=beb46085
+-/
 lemma configIdxEmbed_injective :
     Injective (configIdxEmbed (k := k) (p := p)) := by
   intro α β h
   exact Fin.eq_of_val_eq ((configIdxEmbed_val α).symm.trans
     ((congrArg Fin.val h).trans (configIdxEmbed_val β)))
 
+/--
+@isnad1 id=lt.0h3v.s6.94c0d4c3ec5f from=translated src=- shape=0c08d43b vocab=7134f990
+-/
 lemma configIdxEmbed_lt_idxY_last (α : ConfigIdx k p) :
     configIdxEmbed α < idxY (k := k) (Fin.last p) := by
   rw [Fin.lt_def, configIdxEmbed_val, idxY_val]
@@ -175,11 +228,17 @@ lemma configIdxEmbed_lt_idxY_last (α : ConfigIdx k p) :
 
 /-! ### Original vectors are unchanged -/
 
+/--
+@isnad1 id=eq.0h6v.s5.f22fff86e8b0 from=translated src=- shape=a81df133 vocab=7ee87796
+-/
 lemma yVec_extend_castSucc (ρ : Fin p → ℝ) (x : Fin p → ℝ) (ε xstar : ℝ)
     (j : Fin p) :
     yVec (configExtendρ ρ ε) (configExtendx x xstar) j.castSucc = yVec ρ x j := by
   simp [yVec]
 
+/--
+@isnad1 id=eq.0h9v.s6.ead1fcc9cdef from=translated src=- shape=47a3644b vocab=5d3a0dbb
+-/
 lemma configVec_extend_embed (s t : Fin k → ℝ) (ρ x : Fin p → ℝ) (ε xstar : ℝ)
     (α : ConfigIdx k p) :
     configVec s t (configExtendρ ρ ε) (configExtendx x xstar) (configIdxEmbed α) =
@@ -194,7 +253,9 @@ lemma configVec_extend_embed (s t : Fin k → ℝ) (ρ x : Fin p → ℝ) (ε xs
   · intro j
     rw [configIdxEmbed_y, configVec_y, configVec_y, yVec_extend_castSucc]
 
-/-- The Gram matrix among original indices is independent of `ε`. -/
+/-- The Gram matrix among original indices is independent of `ε`.
+@isnad1 id=eq.0h8v.s6.d725eda271e9 from=translated src=- shape=27f63596 vocab=b45f6f72
+-/
 lemma Xconfig_extend_submatrix (s t : Fin k → ℝ) (ρ x : Fin p → ℝ) (ε xstar : ℝ) :
     (Xconfig s t (configExtendρ ρ ε) (configExtendx x xstar)).submatrix
         configIdxEmbed configIdxEmbed =
@@ -202,6 +263,9 @@ lemma Xconfig_extend_submatrix (s t : Fin k → ℝ) (ρ x : Fin p → ℝ) (ε 
   ext α β
   simp [submatrix_apply, Xconfig_apply, configVec_extend_embed]
 
+/--
+@isnad1 id=eq.0h9v.s7.4367dc61e67b from=translated src=- shape=2d099307 vocab=124c8575
+-/
 lemma Xconfig_embed_ystar (s t : Fin k → ℝ) (ρ x : Fin p → ℝ) (ε xstar : ℝ)
     (α : ConfigIdx k p) :
     Xconfig s t (configExtendρ ρ ε) (configExtendx x xstar)
@@ -214,6 +278,9 @@ lemma Xconfig_embed_ystar (s t : Fin k → ℝ) (ρ x : Fin p → ℝ) (ε xstar
 
 /-! ### SC19 — positivity of the enlarged `H i` and `γ` -/
 
+/--
+@isnad1 id=eq.0h8v.s6.47c6148473d2 from=translated src=- shape=ec2f0d13 vocab=fa292ad3
+-/
 lemma configH_extend (t : Fin k → ℝ) (ρ x : Fin p → ℝ) (ε xstar : ℝ)
     (i : Fin k) :
     configH t (configExtendρ ρ ε) (configExtendx x xstar) i =
@@ -222,7 +289,9 @@ lemma configH_extend (t : Fin k → ℝ) (ρ x : Fin p → ℝ) (ε xstar : ℝ)
   rw [Fin.sum_univ_castSucc]
   simp
 
-/-- Each new `H i` is strictly positive: `(x* - t i)_+ > 0` and `ε > 0`. -/
+/-- Each new `H i` is strictly positive: `(x* - t i)_+ > 0` and `ε > 0`.
+@isnad1 id=lt.3h8v.s6.38a61f854420 from=translated src=- shape=6ca91550 vocab=00a767b6
+-/
 lemma configH_extend_pos (t : Fin k → ℝ) {ρ : Fin p → ℝ} (hρ : ∀ j, 0 < ρ j)
     (x : Fin p → ℝ) {ε : ℝ} (hε : 0 < ε) {xstar : ℝ}
     (hxstar : ∀ i, t i < xstar) (i : Fin k) :
@@ -236,7 +305,9 @@ lemma configH_extend_pos (t : Fin k → ℝ) {ρ : Fin p → ℝ} (hρ : ∀ j, 
     exact sq_pos_iff.mpr hdiff.ne'
   exact add_pos_of_nonneg_of_pos hH (mul_pos hε hsq)
 
-/-- The enlarged configuration has `γ > 0` (needs at least one `z`-index). -/
+/-- The enlarged configuration has `γ > 0` (needs at least one `z`-index).
+@isnad1 id=lt.4h8v.s6.8c11b086b0f0 from=translated src=- shape=2252f43b vocab=7f2e9581
+-/
 lemma configγ_extend_pos [NeZero k] (s t : Fin k → ℝ) {ρ : Fin p → ℝ}
     (hρ : ∀ j, 0 < ρ j) (x : Fin p → ℝ) (hs : ∀ i, 0 < s i) {ε : ℝ}
     (hε : 0 < ε) {xstar : ℝ} (hxstar : ∀ i, t i < xstar) :
@@ -248,11 +319,17 @@ lemma configγ_extend_pos [NeZero k] (s t : Fin k → ℝ) {ρ : Fin p → ℝ}
   exact div_pos (mul_pos (hs i) (configH_extend_pos t hρ x hε hxstar i))
     (configD_pos t hρε _ i)
 
+/--
+@isnad1 id=lt.2h7v.s6.d6dcd5880218 from=translated src=- shape=8cd9d7c0 vocab=b90a2bbf
+-/
 lemma configH_extend_configXstar_pos (t : Fin k → ℝ) {ρ : Fin p → ℝ}
     (hρ : ∀ j, 0 < ρ j) (x : Fin p → ℝ) {ε : ℝ} (hε : 0 < ε) (i : Fin k) :
     0 < configH t (configExtendρ ρ ε) (configExtendx x (configXstar t)) i :=
   configH_extend_pos t hρ x hε (lt_configXstar t) i
 
+/--
+@isnad1 id=lt.3h7v.s6.d2bd1380f49e from=translated src=- shape=3dbfdcda vocab=ffa5973e
+-/
 lemma configγ_extend_configXstar_pos [NeZero k] (s t : Fin k → ℝ)
     {ρ : Fin p → ℝ} (hρ : ∀ j, 0 < ρ j) (x : Fin p → ℝ) (hs : ∀ i, 0 < s i)
     {ε : ℝ} (hε : 0 < ε) :
@@ -261,6 +338,9 @@ lemma configγ_extend_configXstar_pos [NeZero k] (s t : Fin k → ℝ)
 
 /-! ### SC20 — principal submatrices of `M` -/
 
+/--
+@isnad1 id=eq.0h3v.s7.9294e930ba70 from=translated src=- shape=1bc698d1 vocab=47e1d1ea
+-/
 lemma sum_configIdx_extend (f : ConfigIdx k (p + 1) → ℝ) :
     ∑ α : ConfigIdx k (p + 1), f α =
       ∑ α : ConfigIdx k p, f (configIdxEmbed α) +
@@ -270,7 +350,9 @@ lemma sum_configIdx_extend (f : ConfigIdx k (p + 1) → ℝ) :
   simp only [configIdxEmbed_z0, configIdxEmbed_z, configIdxEmbed_y]
   ac_rfl
 
-/-- Off-diagonals of `M` among original indices ignore the new vertex. -/
+/-- Off-diagonals of `M` among original indices ignore the new vertex.
+@isnad1 id=eq.1h10v.s8.33ec30569b5c from=translated src=- shape=1b18165a vocab=50028e02
+-/
 lemma MX_extend_submatrix_of_ne (s t : Fin k → ℝ) (ρ x : Fin p → ℝ)
     (ε xstar : ℝ) {α β : ConfigIdx k p} (hne : α ≠ β) :
     M (Xconfig s t (configExtendρ ρ ε) (configExtendx x xstar))
@@ -282,7 +364,9 @@ lemma MX_extend_submatrix_of_ne (s t : Fin k → ℝ) (ρ x : Fin p → ℝ)
     M_apply_of_ne _ (Xconfig_isSymm _ _ _ _) hne]
   simp [posPart_apply, Xconfig_apply, configVec_extend_embed]
 
-/-- Diagonals pick up one extra Laplacian weight from the edge to `y*`. -/
+/-- Diagonals pick up one extra Laplacian weight from the edge to `y*`.
+@isnad1 id=eq.0h9v.s8.e4c7376b4135 from=translated src=- shape=71e5f137 vocab=703d1b00
+-/
 lemma MX_extend_submatrix_diag_add (s t : Fin k → ℝ) (ρ x : Fin p → ℝ)
     (ε xstar : ℝ) (α : ConfigIdx k p) :
     M (Xconfig s t (configExtendρ ρ ε) (configExtendx x xstar))
@@ -330,7 +414,9 @@ lemma MX_extend_submatrix_diag_add (s t : Fin k → ℝ) (ρ x : Fin p → ℝ)
   rw [hUp, hLow]
   ac_rfl
 
-/-- For `ε > 0` the extra diagonal term is `ε` times a constant (hence `O(ε)`). -/
+/-- For `ε > 0` the extra diagonal term is `ε` times a constant (hence `O(ε)`).
+@isnad1 id=eq.1h9v.s9.7a94e88329d0 from=translated src=- shape=74999782 vocab=04564d04
+-/
 lemma MX_extend_submatrix_diag (s t : Fin k → ℝ) (ρ x : Fin p → ℝ)
     {ε : ℝ} (hε : 0 < ε) (xstar : ℝ) (α : ConfigIdx k p) :
     M (Xconfig s t (configExtendρ ρ ε) (configExtendx x xstar))
@@ -360,7 +446,9 @@ lemma MX_extend_submatrix_diag (s t : Fin k → ℝ) (ρ x : Fin p → ℝ)
 /-- `M` of the enlargement, restricted to original indices, is the original
 `M` plus a diagonal of order `ε`. (`M` of the large matrix then submatrix is
 not `M` of the Gram submatrix, because Laplacian edges to `y*` affect
-diagonals; `continuous_M` would only recover `M` of that submatrix.) -/
+diagonals; `continuous_M` would only recover `M` of that submatrix.)
+@isnad1 id=eq.1h8v.s9.c5d8ccd940bc from=translated src=- shape=337ad311 vocab=169e121d
+-/
 lemma MX_extend_submatrix (s t : Fin k → ℝ) (ρ x : Fin p → ℝ)
     {ε : ℝ} (hε : 0 < ε) (xstar : ℝ) :
     (M (Xconfig s t (configExtendρ ρ ε) (configExtendx x xstar))).submatrix
@@ -377,7 +465,9 @@ lemma MX_extend_submatrix (s t : Fin k → ℝ) (ρ x : Fin p → ℝ)
   · simp [submatrix_apply, MX_extend_submatrix_of_ne s t ρ x ε xstar hne,
       Matrix.diagonal, hne]
 
-/-- As `ε ↓ 0`, the principal submatrix of `M(X_ε)` converges to `M(X)`. -/
+/-- As `ε ↓ 0`, the principal submatrix of `M(X_ε)` converges to `M(X)`.
+@isnad1 id=tendsto.0h7v.s8.ce1eb89831ac from=translated src=- shape=25e3fde3 vocab=83310953
+-/
 lemma tendsto_MX_extend_submatrix (s t : Fin k → ℝ) (ρ x : Fin p → ℝ)
     (xstar : ℝ) :
     Tendsto (fun ε : ℝ =>
@@ -418,6 +508,9 @@ lemma tendsto_MX_extend_submatrix (s t : Fin k → ℝ) (ρ x : Fin p → ℝ)
   · refine tendsto_const_nhds.congr fun ε => ?_
     simp [submatrix_apply, MX_extend_submatrix_of_ne s t ρ x ε xstar hne]
 
+/--
+@isnad1 id=tendsto.0h6v.s8.8662675102ac from=translated src=- shape=b981c4a5 vocab=d5b4b461
+-/
 lemma tendsto_MX_extend_submatrix_configXstar (s t : Fin k → ℝ)
     (ρ x : Fin p → ℝ) :
     Tendsto (fun ε : ℝ =>
@@ -429,10 +522,16 @@ lemma tendsto_MX_extend_submatrix_configXstar (s t : Fin k → ℝ)
 
 /-! ### SC21 — `γ = 0` and `p = 0` by closedness -/
 
+/--
+@isnad1 id=eq.0h5v.s5.0da2ae8a44e5 from=translated src=- shape=34ca62a2 vocab=49a30fa2
+-/
 lemma configH_eq_zero_of_p_eq_zero (t : Fin k → ℝ) (ρ x : Fin 0 → ℝ)
     (i : Fin k) : configH t ρ x i = 0 := by
   simp [configH]
 
+/--
+@isnad1 id=eq.0h5v.s5.c5c6c32569ad from=translated src=- shape=9439e1d3 vocab=20208f48
+-/
 lemma configγ_eq_zero_of_p_eq_zero (s t : Fin k → ℝ) (ρ x : Fin 0 → ℝ) :
     configγ s t ρ x = 0 := by
   rw [configγ_eq_sum s t (fun j => j.elim0) x]

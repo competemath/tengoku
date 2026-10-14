@@ -22,7 +22,9 @@ noncomputable section
 namespace CKN
 
 /-- On the support of data carried by the closed ball of radius `R` about `x₀`, a far point
-`x` with `2 * R ≤ ‖x - x₀‖` stays at distance at least `‖x - x₀‖ / 2`. -/
+`x` with `2 * R ≤ ‖x - x₀‖` stays at distance at least `‖x - x₀‖ / 2`.
+@isnad1 id=le.2h4v.s8.6d05e976791c from=translated src=- shape=262e59b0 vocab=21dd88bc
+-/
 theorem far_field_norm_sub_ge {x₀ x y : Vec3} {R : ℝ}
     (hx : 2 * R ≤ ‖x - x₀‖) (hy : ‖y - x₀‖ ≤ R) :
     ‖x - x₀‖ / 2 ≤ ‖x - y‖ := by
@@ -34,7 +36,9 @@ theorem far_field_norm_sub_ge {x₀ x y : Vec3} {R : ℝ}
 
 /-- On the support of data carried by the closed ball of radius `R` about `x₀`, a far point
 `x` with `2 * R ≤ ‖x - x₀‖` is distinct from every such `y`, so the kernel `‖x - y‖⁻¹`
-is finite there. -/
+is finite there.
+@isnad1 id=ne.3h4v.s7.c9e7f4a955b8 from=translated src=- shape=ce94c95e vocab=577bca43
+-/
 theorem far_field_sub_ne_zero {x₀ x y : Vec3} {R : ℝ} (hR : 0 < R)
     (hx : 2 * R ≤ ‖x - x₀‖) (hy : ‖y - x₀‖ ≤ R) :
     x - y ≠ 0 := by
@@ -44,7 +48,9 @@ theorem far_field_sub_ne_zero {x₀ x y : Vec3} {R : ℝ} (hR : 0 < R)
   linarith only [hx, hy, hxy, hR]
 
 /-- A decay estimate centred at `x₀` becomes a decay estimate centred at the origin,
-at the cost of doubling the constant and the radius. -/
+at the cost of doubling the constant and the radius.
+@isnad1 id=le.4h5v.s8.3c2b1ddf6770 from=translated src=- shape=e36ea94d vocab=8fb25fcc
+-/
 theorem inv_norm_decay_recentre {h : Vec3 → ℝ} {x₀ : Vec3} {M R : ℝ}
     (hM : 0 ≤ M) (hR : 0 < R)
     (hdecay : ∀ z : Vec3, 2 * R ≤ ‖z - x₀‖ → |h z| ≤ M * ‖z - x₀‖⁻¹)

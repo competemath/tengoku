@@ -41,6 +41,9 @@ def gram (z : n → Fin 2 → ℝ) : Matrix n n ℝ :=
   of fun i j => z i ⬝ᵥ z j
 
 omit [Fintype n] [DecidableEq n] [LinearOrder n] in
+/--
+@isnad1 id=eq.0h4v.s5.22f7658019fb from=translated src=- shape=e1d7769a vocab=14853f7f
+-/
 @[simp]
 lemma gram_apply (z : n → Fin 2 → ℝ) (i j : n) : gram z i j = z i ⬝ᵥ z j :=
   rfl
@@ -49,18 +52,33 @@ lemma gram_apply (z : n → Fin 2 → ℝ) (i j : n) : gram z i j = z i ⬝ᵥ z
 def euclid (w : Fin 2 → ℝ) : ℝ :=
   Real.sqrt (w ⬝ᵥ w)
 
+/--
+@isnad1 id=le.0h1v.s5.9b2cb62e278a from=translated src=- shape=34675e58 vocab=85611d94
+-/
 lemma euclid_inner_nonneg (w : Fin 2 → ℝ) : 0 ≤ w ⬝ᵥ w :=
   Finset.sum_nonneg fun i _ => mul_self_nonneg (w i)
 
+/--
+@isnad1 id=le.0h1v.s4.f9b8085c4a09 from=translated src=- shape=4d9b546e vocab=20602e28
+-/
 lemma euclid_nonneg (w : Fin 2 → ℝ) : 0 ≤ euclid w :=
   Real.sqrt_nonneg _
 
+/--
+@isnad1 id=eq.0h1v.s5.f62bea0dd4a8 from=translated src=- shape=5075793e vocab=e7142f46
+-/
 lemma euclid_sq (w : Fin 2 → ℝ) : euclid w ^ 2 = w ⬝ᵥ w :=
   Real.sq_sqrt (euclid_inner_nonneg w)
 
+/--
+@isnad1 id=iff.0h1v.s6.b411616e0004 from=translated src=- shape=9e9b0532 vocab=b4f03ca0
+-/
 lemma euclid_eq_zero (w : Fin 2 → ℝ) : euclid w = 0 ↔ w = 0 := by
   rw [euclid, Real.sqrt_eq_zero (euclid_inner_nonneg _), dotProduct_self_eq_zero]
 
+/--
+@isnad1 id=lt.1h1v.s6.7797d28f7ce6 from=translated src=- shape=02248d11 vocab=ada7440c
+-/
 lemma euclid_pos {w : Fin 2 → ℝ} (hw : w ≠ 0) : 0 < euclid w :=
   lt_of_le_of_ne (euclid_nonneg w) (Ne.symm (mt (euclid_eq_zero w).1 hw))
 
@@ -68,6 +86,9 @@ lemma euclid_pos {w : Fin 2 → ℝ} (hw : w ≠ 0) : 0 < euclid w :=
 def normalize (w : Fin 2 → ℝ) : Fin 2 → ℝ :=
   (euclid w)⁻¹ • w
 
+/--
+@isnad1 id=eq.1h1v.s6.886f91a32a91 from=translated src=- shape=02010a4b vocab=58411b33
+-/
 lemma normalize_inner {w : Fin 2 → ℝ} (hw : w ≠ 0) :
     normalize w ⬝ᵥ normalize w = 1 := by
   have hpos : euclid w ≠ 0 := (euclid_pos hw).ne'
@@ -76,6 +97,9 @@ lemma normalize_inner {w : Fin 2 → ℝ} (hw : w ≠ 0) :
   simp only [normalize, smul_dotProduct, dotProduct_smul, smul_eq_mul]
   rwa [← mul_assoc]
 
+/--
+@isnad1 id=eq.1h1v.s6.948780f41a90 from=translated src=- shape=2559228b vocab=0b7b277e
+-/
 lemma smul_normalize {w : Fin 2 → ℝ} (hw : w ≠ 0) :
     euclid w • normalize w = w := by
   have hpos : euclid w ≠ 0 := (euclid_pos hw).ne'
@@ -86,14 +110,23 @@ lemma smul_normalize {w : Fin 2 → ℝ} (hw : w ≠ 0) :
 def det2 (u v : Fin 2 → ℝ) : ℝ :=
   u 0 * v 1 - u 1 * v 0
 
+/--
+@isnad1 id=eq.0h3v.s6.ec6256620006 from=translated src=- shape=04b8fbe7 vocab=422c53ea
+-/
 lemma det2_smul_left (c : ℝ) (u v : Fin 2 → ℝ) : det2 (c • u) v = c * det2 u v := by
   simp [det2, smul_eq_mul]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s6.38f4ceb5069a from=translated src=- shape=d90186c9 vocab=422c53ea
+-/
 lemma det2_smul_right (c : ℝ) (u v : Fin 2 → ℝ) : det2 u (c • v) = c * det2 u v := by
   simp [det2, smul_eq_mul]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s5.8536ff190ee7 from=translated src=- shape=a63f495f vocab=4cc09ff9
+-/
 lemma det2_zero_right (u : Fin 2 → ℝ) : det2 u 0 = 0 := by
   simp [det2]
 
@@ -101,16 +134,28 @@ lemma det2_zero_right (u : Fin 2 → ℝ) : det2 u 0 = 0 := by
 def rotateTo (u x : Fin 2 → ℝ) : Fin 2 → ℝ :=
   fun i => if i = 0 then u ⬝ᵥ x else det2 u x
 
+/--
+@isnad1 id=eq.0h2v.s5.3af17b7ff51e from=translated src=- shape=7fe2c327 vocab=12676a1d
+-/
 lemma rotateTo_zero (u x : Fin 2 → ℝ) : rotateTo u x 0 = u ⬝ᵥ x := by
   simp [rotateTo]
 
+/--
+@isnad1 id=eq.0h2v.s5.1917110abe29 from=translated src=- shape=7045750e vocab=9a8e8837
+-/
 lemma rotateTo_one (u x : Fin 2 → ℝ) : rotateTo u x 1 = det2 u x := by
   simp [rotateTo]
 
+/--
+@isnad1 id=eq.0h1v.s6.03d07013a7e5 from=translated src=- shape=c2c8208c vocab=3bb4a2a6
+-/
 lemma rotateTo_apply_zero_vec (u : Fin 2 → ℝ) : rotateTo u 0 = 0 := by
   ext i
   simp [rotateTo, det2]
 
+/--
+@isnad1 id=eq.1h3v.s6.70d09bc8dd4d from=translated src=- shape=e21ff4b0 vocab=12676a1d
+-/
 lemma rotateTo_inner (u x y : Fin 2 → ℝ) (hu : u ⬝ᵥ u = 1) :
     rotateTo u x ⬝ᵥ rotateTo u y = x ⬝ᵥ y := by
   have hu2 : u 0 ^ 2 + u 1 ^ 2 = 1 := by
@@ -125,6 +170,9 @@ lemma rotateTo_inner (u x y : Fin 2 → ℝ) (hu : u ⬝ᵥ u = 1) :
     · rw [hu2, one_mul]
   exact hrot.trans hid
 
+/--
+@isnad1 id=iff.1h2v.s7.142d129da959 from=translated src=- shape=0a1aec10 vocab=12676a1d
+-/
 lemma rotateTo_eq_zero_iff (u x : Fin 2 → ℝ) (hu : u ⬝ᵥ u = 1) :
     rotateTo u x = 0 ↔ x = 0 := by
   constructor
@@ -137,7 +185,9 @@ lemma rotateTo_eq_zero_iff (u x : Fin 2 → ℝ) (hu : u ⬝ᵥ u = 1) :
     simp [h, rotateTo_apply_zero_vec]
 
 /-- If `α` is a right-half-plane unit vector of minimal second coordinate, then
-every other such unit vector `γ` is counterclockwise from `α`. -/
+every other such unit vector `γ` is counterclockwise from `α`.
+@isnad1 id=le.5h2v.s7.4eb24dc76960 from=translated src=- shape=aaa51c95 vocab=ad65009e
+-/
 lemma det2_nonneg_of_min_snd {α γ : Fin 2 → ℝ}
     (hα : α ⬝ᵥ α = 1) (hγ : γ ⬝ᵥ γ = 1)
     (hα0 : 0 ≤ α 0) (hγ0 : 0 ≤ γ 0) (hmin : α 1 ≤ γ 1) :
@@ -174,6 +224,9 @@ lemma det2_nonneg_of_min_snd {α γ : Fin 2 → ℝ}
 
 omit [DecidableEq n] [LinearOrder n] [Fintype n] in
 variable [Finite n] in
+/--
+@isnad1 id=ex.1h2v.s7.0d250fd40952 from=translated src=- shape=6ec42948 vocab=0fd9a0eb
+-/
 lemma exists_nonneg_gram_factor (z : n → Fin 2 → ℝ)
     (hnn : ∀ i j, 0 ≤ z i ⬝ᵥ z j) :
     ∃ p q : n → ℝ, 0 ≤ p ∧ 0 ≤ q ∧
@@ -249,6 +302,9 @@ lemma exists_nonneg_gram_factor (z : n → Fin 2 → ℝ)
           simp [vecMulVec_apply]
 
 omit [Fintype n] [DecidableEq n] in
+/--
+@isnad1 id=eq.1h4v.s5.ab554b6467b8 from=translated src=- shape=06aaa3ab vocab=8a61808b
+-/
 lemma laplacianCoeff_eq_zero_of_nonneg {X : Matrix n n ℝ}
     (h : ∀ i j, 0 ≤ X i j) (i j : n) : laplacianCoeff X i j = 0 := by
   unfold laplacianCoeff
@@ -256,11 +312,17 @@ lemma laplacianCoeff_eq_zero_of_nonneg {X : Matrix n n ℝ}
   · exact (not_lt.mpr (h i j) hcond.2).elim
   · rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.21cea481e259 from=translated src=- shape=782ff878 vocab=84c5ed3d
+-/
 lemma M_eq_hadamard_of_nonneg {X : Matrix n n ℝ} (h : ∀ i j, 0 ≤ X i j) :
     M X = X ⊙ X := by
   simp [M, laplacianCoeff_eq_zero_of_nonneg h]
 
 omit [Fintype n] [DecidableEq n] [LinearOrder n] in
+/--
+@isnad1 id=eq.0h3v.s6.3442508bdad7 from=translated src=- shape=19c4f2d1 vocab=b7ca304b
+-/
 lemma hadamard_vecMulVec (p q : n → ℝ) :
     vecMulVec p p ⊙ vecMulVec q q = vecMulVec (p * q) (p * q) := by
   ext i j
@@ -268,6 +330,9 @@ lemma hadamard_vecMulVec (p q : n → ℝ) :
   ring
 
 omit [Fintype n] [DecidableEq n] [LinearOrder n] in
+/--
+@isnad1 id=eq.0h3v.s7.d7cd69eb7ee2 from=translated src=- shape=832cd6f3 vocab=97288731
+-/
 lemma hadamard_add_self (A B : Matrix n n ℝ) :
     (A + B) ⊙ (A + B) = A ⊙ A + B ⊙ B + (2 : ℝ) • (A ⊙ B) := by
   ext i j
@@ -275,7 +340,9 @@ lemma hadamard_add_self (A B : Matrix n n ℝ) :
   ring
 
 /-- **HP01.** If all planar inner products are nonnegative, then `M` of the
-Gram matrix is completely positive. -/
+Gram matrix is completely positive.
+@isnad1 id=iscomple.1h2v.s6.a3d053f25d89 from=translated src=- shape=6df57c4a vocab=522902d7
+-/
 lemma isCompletelyPositive_M_of_nonneg_inners (z : n → Fin 2 → ℝ)
     (hnn : ∀ i j, 0 ≤ z i ⬝ᵥ z j) :
     IsCompletelyPositive (M (gram z)) := by
@@ -297,7 +364,9 @@ lemma isCompletelyPositive_M_of_nonneg_inners (z : n → Fin 2 → ℝ)
     exact mul_nonneg (hp i) (hq i)
 
 /-- **HP03.** Completely positivity of `M X` is invariant under positive
-square scalings of `X`. -/
+square scalings of `X`.
+@isnad1 id=iff.1h3v.s6.c3588e19bdd2 from=translated src=- shape=1ac40338 vocab=6346cbba
+-/
 lemma isCompletelyPositive_M_smul_sq_iff {c : ℝ} (hc : 0 < c) (X : Matrix n n ℝ) :
     IsCompletelyPositive (M X) ↔ IsCompletelyPositive (M ((c ^ 2) • X)) := by
   rw [M_smul_sq hc.le]
@@ -313,26 +382,41 @@ lemma isCompletelyPositive_M_smul_sq_iff {c : ℝ} (hc : 0 < c) (X : Matrix n n 
 /-! ### HP07 — delete zero Gram vectors -/
 
 omit [Fintype n] [DecidableEq n] [LinearOrder n] in
+/--
+@isnad1 id=issymm.0h2v.s4.904c5a6e5363 from=translated src=- shape=ce561cc2 vocab=31343e9a
+-/
 lemma gram_isSymm (z : n → Fin 2 → ℝ) : (gram z).IsSymm :=
   IsSymm.ext fun i j => dotProduct_comm (z j) (z i)
 
 omit [Fintype n] [DecidableEq n] [LinearOrder n] in
+/--
+@isnad1 id=eq.1h4v.s6.c81afb8411c9 from=translated src=- shape=1cd5774d vocab=926c18d8
+-/
 lemma gram_eq_zero_of_left {z : n → Fin 2 → ℝ} {i : n} (hi : z i = 0) (j : n) :
     gram z i j = 0 := by
   simp [gram, hi]
 
 omit [Fintype n] [DecidableEq n] [LinearOrder n] in
+/--
+@isnad1 id=eq.1h4v.s6.a7bf03ef36ff from=translated src=- shape=fca8f832 vocab=926c18d8
+-/
 lemma gram_eq_zero_of_right {z : n → Fin 2 → ℝ} {j : n} (hj : z j = 0) (i : n) :
     gram z i j = 0 := by
   simp [gram, hj]
 
 omit [Fintype n] [DecidableEq n] [LinearOrder n] in
+/--
+@isnad1 id=eq.0h4v.s5.7e8fde8f5504 from=translated src=- shape=6ef08d5b vocab=11b03bae
+-/
 lemma gram_submatrix {ι : Type*} (z : n → Fin 2 → ℝ) (e : ι → n) :
     (gram z).submatrix e e = gram (z ∘ e) := by
   ext i j
   simp [gram, submatrix_apply]
 
 omit [Fintype n] in
+/--
+@isnad1 id=eq.1h4v.s7.2fcaea7b9015 from=translated src=- shape=1a4f034d vocab=30eb2d8b
+-/
 lemma laplacianCoeff_add_of_isSymm (X : Matrix n n ℝ) (hX : X.IsSymm) (i j : n) :
     laplacianCoeff X i j + laplacianCoeff X j i =
       if i ≠ j ∧ X i j < 0 then (X i j) ^ 2 else 0 := by
@@ -346,6 +430,9 @@ lemma laplacianCoeff_add_of_isSymm (X : Matrix n n ℝ) (hX : X.IsSymm) (i j : n
       simp [hij, this, hjilt, hX.apply i j]
 
 omit [Fintype n] [LinearOrder n] in
+/--
+@isnad1 id=eq.0h4v.s7.2a0c201c8214 from=translated src=- shape=677dfcfb vocab=99103e0e
+-/
 lemma vecMulVec_edge_diag (p q i : n) :
     vecMulVec (e p - e q) (e p - e q) i i =
       if p ≠ q ∧ (p = i ∨ q = i) then (1 : ℝ) else 0 := by
@@ -361,6 +448,9 @@ lemma vecMulVec_edge_diag (p q i : n) :
         simp [hpq, hip]
       · simp [hip, hiq, Ne.symm hip, Ne.symm hiq]
 
+/--
+@isnad1 id=eq.1h3v.s7.0bb1f1e55210 from=translated src=- shape=b1722f74 vocab=0ee08113
+-/
 lemma M_apply_diag_of_isSymm (X : Matrix n n ℝ) (hX : X.IsSymm) (i : n) :
     M X i i =
       X i i * X i i +
@@ -411,7 +501,9 @@ lemma M_apply_diag_of_isSymm (X : Matrix n n ℝ) (hX : X.IsSymm) (i : n) :
   · simp [hij]
   · simp [hij, laplacianCoeff_add_of_isSymm X hX]
 
-/-- A zero row and column of `X` remain zero in `M X`. -/
+/-- A zero row and column of `X` remain zero in `M X`.
+@isnad1 id=eq.2h4v.s6.936413731a8b from=translated src=- shape=5bc69752 vocab=52281200
+-/
 lemma M_eq_zero_of_row_col_zero {X : Matrix n n ℝ} {i0 : n}
     (hrow : ∀ j, X i0 j = 0) (hcol : ∀ j, X j i0 = 0) (j : n) :
     M X i0 j = 0 := by
@@ -435,6 +527,9 @@ lemma M_eq_zero_of_row_col_zero {X : Matrix n n ℝ} {i0 : n}
     unfold laplacianCoeff
     simp [hrow j, hcol j]
 
+/--
+@isnad1 id=eq.2h4v.s6.85ebfcb08a08 from=translated src=- shape=e9e85915 vocab=52281200
+-/
 lemma M_eq_zero_of_col_row_zero {X : Matrix n n ℝ} {i0 : n}
     (hrow : ∀ j, X i0 j = 0) (hcol : ∀ j, X j i0 = 0) (j : n) :
     M X j i0 = 0 := by
@@ -445,6 +540,9 @@ lemma M_eq_zero_of_col_row_zero {X : Matrix n n ℝ} {i0 : n}
     simp [hrow j, hcol j]
 
 omit [LinearOrder n] [DecidableEq n] in
+/--
+@isnad1 id=eq.2h4v.s6.0aba185e8c4f from=translated src=- shape=294b8a17 vocab=cda03cd2
+-/
 lemma sum_comp_injective {ι : Type*} [Fintype ι]
     (σ : ι → n) (hσ : Function.Injective σ) (f : n → ℝ)
     (hf : ∀ j, j ∉ Set.range σ → f j = 0) :
@@ -479,6 +577,9 @@ lemma sum_comp_injective {ι : Type*} [Fintype ι]
       exact Finset.sum_eq_zero fun j hj => hf j (by simpa using hj)
     _ = ∑ a : ι, f (σ a) := add_zero _
 
+/--
+@isnad1 id=eq.3h6v.s6.86bdffdda731 from=translated src=- shape=27232623 vocab=4c61737c
+-/
 lemma M_eq_zero_of_not_mem_range {ι : Type*}
     {X : Matrix n n ℝ} (hX : X.IsSymm) {e : ι → n}
     (hzero : ∀ i, i ∉ Set.range e → ∀ j, X i j = 0)
@@ -488,6 +589,9 @@ lemma M_eq_zero_of_not_mem_range {ι : Type*}
   have hcol : ∀ k, X k i = 0 := fun k => (hX.apply i k).symm ▸ hzero i hi k
   exact M_eq_zero_of_row_col_zero hrow hcol j
 
+/--
+@isnad1 id=eq.3h6v.s6.ee1cc341108c from=translated src=- shape=3aaef97b vocab=4c61737c
+-/
 lemma M_eq_zero_of_not_mem_range_right {ι : Type*}
     {X : Matrix n n ℝ} (hX : X.IsSymm) {e : ι → n}
     (hzero : ∀ i, i ∉ Set.range e → ∀ j, X i j = 0)
@@ -498,7 +602,9 @@ lemma M_eq_zero_of_not_mem_range_right {ι : Type*}
   exact M_eq_zero_of_col_row_zero hrow hcol i
 
 /-- If `X` is symmetric and vanishes off the image of an injection `e`, then
-`M` commutes with taking the principal submatrix along `e`. -/
+`M` commutes with taking the principal submatrix along `e`.
+@isnad1 id=eq.3h4v.s6.ba16388645dc from=translated src=- shape=4ae06f19 vocab=40809e5d
+-/
 lemma M_submatrix_eq_of_zero_outside {ι : Type*}
     [Fintype ι] [DecidableEq ι] [LinearOrder ι]
     {X : Matrix n n ℝ} (hX : X.IsSymm) {e : ι → n} (he : Function.Injective e)
@@ -524,7 +630,9 @@ lemma M_submatrix_eq_of_zero_outside {ι : Type*}
     simp [posPart_apply, submatrix_apply]
 
 /-- **HP07.** Completely positivity of `M X` is unchanged by deleting zero
-rows/columns along an injection. -/
+rows/columns along an injection.
+@isnad1 id=iff.3h4v.s6.281b49dcb428 from=translated src=- shape=5ba6c1f9 vocab=28d0e6b0
+-/
 lemma isCompletelyPositive_M_iff_submatrix {ι : Type*}
     [Fintype ι] [DecidableEq ι] [LinearOrder ι]
     {X : Matrix n n ℝ} (hX : X.IsSymm) {e : ι → n} (he : Function.Injective e)
@@ -545,7 +653,9 @@ lemma isCompletelyPositive_M_iff_submatrix {ι : Type*}
       · rw [M_apply_of_ne X hX hij, M_apply_of_ne X hX hij.symm]
         simp [posPart_apply, hX.apply]
 
-/-- **HP07** for planar Grams: drop the zero vectors. -/
+/-- **HP07** for planar Grams: drop the zero vectors.
+@isnad1 id=iff.0h2v.s9.aa0637109653 from=translated src=- shape=dab96f1c vocab=fc23a0ad
+-/
 lemma isCompletelyPositive_M_gram_iff_nonzero (z : n → Fin 2 → ℝ) :
     IsCompletelyPositive (M (gram z)) ↔
       IsCompletelyPositive (M (gram fun i : {i // z i ≠ 0} => z i)) := by
@@ -566,12 +676,18 @@ lemma isCompletelyPositive_M_gram_iff_nonzero (z : n → Fin 2 → ℝ) :
 lemma eq_of_fin2 {v w : Fin 2 → ℝ} (h0 : v 0 = w 0) (h1 : v 1 = w 1) : v = w :=
   funext (Fin.forall_fin_two.mpr ⟨h0, h1⟩)
 
+/--
+@isnad1 id=eq.0h3v.s6.a0e6dbb32775 from=translated src=- shape=336413e4 vocab=4109d852
+-/
 lemma rotateTo_smul (u : Fin 2 → ℝ) (c : ℝ) (x : Fin 2 → ℝ) :
     rotateTo u (c • x) = c • rotateTo u x := by
   refine eq_of_fin2 ?_ ?_
   · simp [rotateTo, smul_eq_mul]
   · simp [rotateTo, det2_smul_right, smul_eq_mul]
 
+/--
+@isnad1 id=eq.1h1v.s5.bed0828cdfea from=translated src=- shape=dd257756 vocab=ba09cfa9
+-/
 lemma rotateTo_eq_z0 (u : Fin 2 → ℝ) (hu : u ⬝ᵥ u = 1) :
     rotateTo u u = z0 := by
   refine eq_of_fin2 ?_ ?_
@@ -579,6 +695,9 @@ lemma rotateTo_eq_z0 (u : Fin 2 → ℝ) (hu : u ⬝ᵥ u = 1) :
   · simp [rotateTo, z0, det2]
     ring
 
+/--
+@isnad1 id=eq.1h1v.s6.baa96059b6a6 from=translated src=- shape=3cf750f2 vocab=007eb1d6
+-/
 lemma rotateTo_normalize_self {v : Fin 2 → ℝ} (hv : v ≠ 0) :
     rotateTo (normalize v) v = euclid v • z0 := by
   calc
@@ -590,18 +709,27 @@ lemma rotateTo_normalize_self {v : Fin 2 → ℝ} (hv : v ≠ 0) :
     _ = euclid v • z0 := by
           rw [rotateTo_eq_z0 _ (normalize_inner hv)]
 
+/--
+@isnad1 id=eq.1h1v.s6.208465deeaba from=translated src=- shape=73d48f33 vocab=3bf5e073
+-/
 lemma smul_rotateTo_normalize_self {v : Fin 2 → ℝ} (hv : v ≠ 0) :
     (euclid v)⁻¹ • rotateTo (normalize v) v = z0 := by
   rw [rotateTo_normalize_self hv, smul_smul, inv_mul_cancel₀ (euclid_pos hv).ne',
     one_smul]
 
 omit [Fintype n] [DecidableEq n] [LinearOrder n] in
+/--
+@isnad1 id=eq.1h3v.s6.b37b4d4ff5a4 from=translated src=- shape=7cdf6474 vocab=288cdd53
+-/
 lemma gram_rotateTo (u : Fin 2 → ℝ) (hu : u ⬝ᵥ u = 1) (z : n → Fin 2 → ℝ) :
     gram (fun i => rotateTo u (z i)) = gram z := by
   ext i j
   simp [gram, rotateTo_inner u _ _ hu]
 
 omit [Fintype n] [DecidableEq n] [LinearOrder n] in
+/--
+@isnad1 id=eq.0h3v.s6.865f40e145f2 from=translated src=- shape=f77f9ce8 vocab=cad9280c
+-/
 lemma gram_smul_vec (c : ℝ) (z : n → Fin 2 → ℝ) :
     gram (fun i => c • z i) = (c ^ 2) • gram z := by
   ext i j
@@ -636,21 +764,33 @@ def configRight (z : n → Fin 2 → ℝ) (i0 : n) : Finset n :=
   Finset.univ.filter (fun i => i ≠ i0 ∧ 0 ≤ z i 0)
 
 omit [DecidableEq n] [LinearOrder n] in
+/--
+@isnad1 id=not.1h3v.s5.ae9647d0e85e from=translated src=- shape=6b0ed618 vocab=5f15f6aa
+-/
 lemma not_mem_configLeft_of_z0 {z : n → Fin 2 → ℝ} {i0 : n}
     (hz0 : z i0 = z0) : i0 ∉ configLeft z := by
   simp [configLeft, hz0, z0]
 
 omit [DecidableEq n] [LinearOrder n] in
+/--
+@isnad1 id=iff.0h3v.s5.9a8e4936f078 from=translated src=- shape=1328e716 vocab=ae4fe033
+-/
 lemma mem_configLeft_iff {z : n → Fin 2 → ℝ} {i : n} :
     i ∈ configLeft z ↔ z i 0 < 0 := by
   simp [configLeft]
 
 omit [LinearOrder n] in
+/--
+@isnad1 id=iff.0h4v.s6.b04f5e5b080c from=translated src=- shape=5468a890 vocab=8c23c98b
+-/
 lemma mem_configRight_iff {z : n → Fin 2 → ℝ} {i0 i : n} :
     i ∈ configRight z i0 ↔ i ≠ i0 ∧ 0 ≤ z i 0 := by
   simp [configRight]
 
 omit [LinearOrder n] in
+/--
+@isnad1 id=mem.2h4v.s5.095c5ca675c0 from=translated src=- shape=89f61407 vocab=d9e63338
+-/
 lemma mem_configRight_of_not_left {z : n → Fin 2 → ℝ} {i0 i : n}
     (hi0 : i ≠ i0) (hl : i ∉ configLeft z) : i ∈ configRight z i0 := by
   rw [mem_configRight_iff]
@@ -659,7 +799,9 @@ lemma mem_configRight_of_not_left {z : n → Fin 2 → ℝ} {i0 i : n}
 omit [DecidableEq n] [Fintype n] in
 variable [Finite n] in
 /-- **HP02**, rotated frame: unique contact `z i0 = (1,0)`, all other vectors
-strictly above the axis, and at least one left vector. The data match MX06. -/
+strictly above the axis, and at least one left vector. The data match MX06.
+@isnad1 id=ex.3h3v.s8.8e9d189a06f4 from=translated src=- shape=a7358363 vocab=fdaf08ee
+-/
 lemma exists_config_of_rotated_unique (z : n → Fin 2 → ℝ) (i0 : n)
     (hz0 : z i0 = z0) (hup : ∀ i, i ≠ i0 → 0 < z i 1)
     (hleft : ∃ i, z i 0 < 0) :
@@ -752,6 +894,9 @@ lemma exists_config_of_rotated_unique (z : n → Fin 2 → ℝ) (i0 : n)
       · simp [x]
 
 omit [Fintype n] [DecidableEq n] [LinearOrder n] in
+/--
+@isnad1 id=eq.1h9v.s7.2623766f9aa4 from=translated src=- shape=de25ef5b vocab=a32cab3b
+-/
 lemma gram_eq_Xconfig_submatrix {k p : ℕ}
     {s t : Fin k → ℝ} {ρ x : Fin p → ℝ} {e : n ≃ ConfigIdx k p}
     {z : n → Fin 2 → ℝ} (hz : ∀ i, z i = configVec s t ρ x (e i)) :
@@ -763,7 +908,9 @@ omit [DecidableEq n] [Fintype n] in
 variable [Finite n] in
 /-- **HP02.** Open half-plane, a negative pair, and a unique supporting
 direction: after rotation and positive scaling the vectors match MX06
-with `k ≥ 1`. -/
+with `k ≥ 1`.
+@isnad1 id=ex.5h3v.s9.70142c599fb4 from=translated src=- shape=c75d10b8 vocab=9f41bbae
+-/
 lemma exists_config_of_unique_minimizer (z : n → Fin 2 → ℝ)
     (hnz : ∀ i, z i ≠ 0)
     (hopen : ∃ w : Fin 2 → ℝ, w ≠ 0 ∧ ∀ i, 0 < w ⬝ᵥ z i)
@@ -840,18 +987,30 @@ def permIdx {k p : ℕ} (σ : Equiv.Perm (Fin k)) : ConfigIdx k p ≃ ConfigIdx 
       · simp [idxZ]
     · simp [idxY]
 
+/--
+@isnad1 id=eq.0h3v.s5.605b863f23f2 from=translated src=- shape=f29b6bee vocab=3aa25e59
+-/
 lemma permIdx_z0 {k p : ℕ} (σ : Equiv.Perm (Fin k)) :
     permIdx (p := p) σ idxZ0 = idxZ0 := by
   simp [permIdx, idxZ0]
 
+/--
+@isnad1 id=eq.0h4v.s6.52944589683c from=translated src=- shape=09336150 vocab=b4ae1264
+-/
 lemma permIdx_z {k p : ℕ} (σ : Equiv.Perm (Fin k)) (i : Fin k) :
     permIdx (p := p) σ (idxZ i) = idxZ (σ i) := by
   simp [permIdx, idxZ]
 
+/--
+@isnad1 id=eq.0h4v.s6.88a95f83e664 from=translated src=- shape=91af918b vocab=971920c6
+-/
 lemma permIdx_y {k p : ℕ} (σ : Equiv.Perm (Fin k)) (j : Fin p) :
     permIdx (k := k) σ (idxY j) = idxY j := by
   simp [permIdx, idxY]
 
+/--
+@isnad1 id=eq.0h8v.s7.c78a09755362 from=translated src=- shape=9934601b vocab=1d8cac4a
+-/
 lemma configVec_permIdx {k p : ℕ} (s t : Fin k → ℝ) (ρ x : Fin p → ℝ)
     (σ : Equiv.Perm (Fin k)) (α : ConfigIdx k p) :
     configVec (s ∘ σ) (t ∘ σ) ρ x α = configVec s t ρ x (permIdx σ α) := by
@@ -863,6 +1022,9 @@ lemma configVec_permIdx {k p : ℕ} (s t : Fin k → ℝ) (ρ x : Fin p → ℝ)
       rfl
   · simp [permIdx, configVec, idxY]
 
+/--
+@isnad1 id=eq.0h7v.s7.055128677551 from=translated src=- shape=d5dc5c12 vocab=e3f5357c
+-/
 lemma Xconfig_permIdx {k p : ℕ} (s t : Fin k → ℝ) (ρ x : Fin p → ℝ)
     (σ : Equiv.Perm (Fin k)) :
     Xconfig (s ∘ σ) (t ∘ σ) ρ x =
@@ -870,6 +1032,9 @@ lemma Xconfig_permIdx {k p : ℕ} (s t : Fin k → ℝ) (ρ x : Fin p → ℝ)
   ext α β
   simp [Xconfig, submatrix_apply, configVec_permIdx]
 
+/--
+@isnad1 id=eq.0h7v.s7.511785c8319d from=translated src=- shape=475d9e74 vocab=cce9e823
+-/
 lemma Xconfig_unperm {k p : ℕ} (s t : Fin k → ℝ) (ρ x : Fin p → ℝ)
     (σ : Equiv.Perm (Fin k)) :
     Xconfig s t ρ x =
@@ -880,6 +1045,9 @@ lemma Xconfig_unperm {k p : ℕ} (s t : Fin k → ℝ) (ρ x : Fin p → ℝ)
 
 /-! ### Supporting direction and HP05 — tied minimizers -/
 
+/--
+@isnad1 id=eq.1h3v.s6.5c41d6263176 from=translated src=- shape=83f5e501 vocab=d7989781
+-/
 lemma det2_rotateTo (u x y : Fin 2 → ℝ) (hu : u ⬝ᵥ u = 1) :
     det2 (rotateTo u x) (rotateTo u y) = det2 x y := by
   have hu2 : u 0 ^ 2 + u 1 ^ 2 = 1 := by
@@ -890,6 +1058,9 @@ lemma det2_rotateTo (u x y : Fin 2 → ℝ) (hu : u ⬝ᵥ u = 1) :
   · ring
   · rw [hu2, one_mul]
 
+/--
+@isnad1 id=eq.2h2v.s6.c2ac1e244c5c from=translated src=- shape=686ec20d vocab=e169129d
+-/
 lemma normalize_rotateTo (u x : Fin 2 → ℝ) (hu : u ⬝ᵥ u = 1) (_hx : x ≠ 0) :
     normalize (rotateTo u x) = rotateTo u (normalize x) := by
   have hlen : euclid (rotateTo u x) = euclid x := by
@@ -897,6 +1068,9 @@ lemma normalize_rotateTo (u x : Fin 2 → ℝ) (hu : u ⬝ᵥ u = 1) (_hx : x �
   simp only [normalize, rotateTo_smul]
   rw [hlen]
 
+/--
+@isnad1 id=eq.0h3v.s6.46774627c0ed from=translated src=- shape=e1569490 vocab=df035af8
+-/
 lemma det2_add_right (u x y : Fin 2 → ℝ) : det2 u (x + y) = det2 u x + det2 u y := by
   simp [det2, Pi.add_apply]
   ring
@@ -905,27 +1079,47 @@ lemma det2_add_right (u x y : Fin 2 → ℝ) : det2 u (x + y) = det2 u x + det2 
 def rotate90 (u : Fin 2 → ℝ) : Fin 2 → ℝ :=
   fun i => if i = 0 then -u 1 else u 0
 
+/--
+@isnad1 id=eq.0h1v.s5.549453a9ab08 from=translated src=- shape=876556e9 vocab=bbd74707
+-/
 lemma rotate90_zero (u : Fin 2 → ℝ) : rotate90 u 0 = -u 1 := by simp [rotate90]
+/--
+@isnad1 id=eq.0h1v.s5.252fad4e6953 from=translated src=- shape=e54e66e1 vocab=aafa96f2
+-/
 lemma rotate90_one (u : Fin 2 → ℝ) : rotate90 u 1 = u 0 := by simp [rotate90]
 
+/--
+@isnad1 id=eq.0h1v.s5.6a2c9191c67a from=translated src=- shape=e2291b68 vocab=75d78003
+-/
 lemma det2_rotate90 (u : Fin 2 → ℝ) : det2 u (rotate90 u) = u ⬝ᵥ u := by
   simp [det2, rotate90, dotProduct, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.1h1v.s5.7d8a76f5aded from=translated src=- shape=45280c6f vocab=75d78003
+-/
 lemma det2_rotate90_of_unit {u : Fin 2 → ℝ} (hu : u ⬝ᵥ u = 1) :
     det2 u (rotate90 u) = 1 := by
   rw [det2_rotate90, hu]
 
+/--
+@isnad1 id=eq.0h1v.s5.f8325316c735 from=translated src=- shape=6abf279f vocab=0e7a4767
+-/
 lemma rotate90_inner (u : Fin 2 → ℝ) : rotate90 u ⬝ᵥ rotate90 u = u ⬝ᵥ u := by
   simp [rotate90, dotProduct, Fin.sum_univ_two]
   ring_nf
 
+/--
+@isnad1 id=eq.1h1v.s5.8850a048e414 from=translated src=- shape=a4ec95fe vocab=aa21454c
+-/
 lemma euclid_rotate90_of_unit {u : Fin 2 → ℝ} (hu : u ⬝ᵥ u = 1) :
     euclid (rotate90 u) = 1 := by
   rw [euclid, rotate90_inner, hu, Real.sqrt_one]
 
 omit [DecidableEq n] [LinearOrder n] [Fintype n] in
 variable [Finite n] in
-/-- Some vector realises a supporting ray of the open cone. -/
+/-- Some vector realises a supporting ray of the open cone.
+@isnad1 id=ex.3h3v.s7.27c2f1f77bb7 from=translated src=- shape=df1b9dcd vocab=edfa1b88
+-/
 lemma exists_supporting_minimizer [Nonempty n] (z : n → Fin 2 → ℝ)
     (hnz : ∀ i, z i ≠ 0) {w : Fin 2 → ℝ} (hw : w ≠ 0)
     (hwz : ∀ i, 0 < w ⬝ᵥ z i) :
@@ -975,23 +1169,35 @@ def perturbTied (z : n → Fin 2 → ℝ) (i0 : n) (v : Fin 2 → ℝ) (ε : ℝ
   fun i => if i = i0 then z i else z i + ε • v
 
 omit [Fintype n] [LinearOrder n] in
+/--
+@isnad1 id=eq.0h5v.s5.ca94be1fd3b3 from=translated src=- shape=cf551b70 vocab=114c529a
+-/
 lemma perturbTied_i0 (z : n → Fin 2 → ℝ) (i0 : n) (v : Fin 2 → ℝ) (ε : ℝ) :
     perturbTied z i0 v ε i0 = z i0 := by
   simp [perturbTied]
 
 omit [Fintype n] [LinearOrder n] in
+/--
+@isnad1 id=eq.1h6v.s7.e97c79b8acf9 from=translated src=- shape=716c6cee vocab=90cb9fe7
+-/
 lemma perturbTied_of_ne (z : n → Fin 2 → ℝ) {i0 i : n} (hi : i ≠ i0)
     (v : Fin 2 → ℝ) (ε : ℝ) :
     perturbTied z i0 v ε i = z i + ε • v := by
   simp [perturbTied, hi]
 
 omit [Fintype n] [LinearOrder n] in
+/--
+@isnad1 id=eq.0h4v.s5.0102f426de23 from=translated src=- shape=55728c0e vocab=114c529a
+-/
 lemma perturbTied_zero (z : n → Fin 2 → ℝ) (i0 : n) (v : Fin 2 → ℝ) :
     perturbTied z i0 v 0 = z := by
   ext i k
   simp [perturbTied]
 
 omit [Fintype n] [LinearOrder n] in
+/--
+@isnad1 id=continuo.0h5v.s6.a89a74bde8a4 from=translated src=- shape=05cce1b2 vocab=ae75f5f3
+-/
 lemma continuous_perturbTied_apply (z : n → Fin 2 → ℝ) (i0 : n) (v : Fin 2 → ℝ)
     (i : n) : Continuous fun ε : ℝ => perturbTied z i0 v ε i := by
   by_cases hi : i = i0
@@ -1000,6 +1206,9 @@ lemma continuous_perturbTied_apply (z : n → Fin 2 → ℝ) (i0 : n) (v : Fin 2
     exact continuous_const.add (continuous_id.smul continuous_const)
 
 omit [Fintype n] [LinearOrder n] in
+/--
+@isnad1 id=continuo.0h4v.s5.7917cd680cfa from=translated src=- shape=10129356 vocab=f9fb7187
+-/
 lemma continuous_gram_perturbTied (z : n → Fin 2 → ℝ) (i0 : n) (v : Fin 2 → ℝ) :
     Continuous fun ε : ℝ => gram (perturbTied z i0 v ε) := by
   refine continuous_matrix fun i j => ?_
@@ -1010,6 +1219,9 @@ lemma continuous_gram_perturbTied (z : n → Fin 2 → ℝ) (i0 : n) (v : Fin 2 
     (((continuous_apply 1).comp hi).mul ((continuous_apply 1).comp hj))
 
 omit [LinearOrder n] in
+/--
+@isnad1 id=ne.4h6v.s7.ef339a7393a9 from=translated src=- shape=93c7bb8a vocab=5ed809d9
+-/
 lemma perturbTied_ne_zero [Nonempty n] {z : n → Fin 2 → ℝ} {i0 : n}
     {v : Fin 2 → ℝ} (hnz : ∀ i, z i ≠ 0) (hv : euclid v = 1)
     {ε : ℝ} (hε0 : 0 < ε)
@@ -1031,6 +1243,9 @@ lemma perturbTied_ne_zero [Nonempty n] {z : n → Fin 2 → ℝ} {i0 : n}
     exact (not_le_of_gt hε) (hle.trans_eq hlen)
 
 omit [Fintype n] [LinearOrder n] in
+/--
+@isnad1 id=and.4h5v.s7.0b291347aa18 from=translated src=- shape=5eab117e vocab=84fda509
+-/
 lemma det2_perturbTied {z : n → Fin 2 → ℝ} {i0 : n} {v : Fin 2 → ℝ}
     (hnz0 : z i0 ≠ 0) (hside : ∀ i, 0 ≤ det2 (normalize (z i0)) (z i))
     (hv : det2 (normalize (z i0)) v = 1) {ε : ℝ} (hε : 0 < ε) :
@@ -1054,6 +1269,9 @@ lemma det2_perturbTied {z : n → Fin 2 → ℝ} {i0 : n} {v : Fin 2 → ℝ}
     nlinarith [hside i, hv, hε]
 
 omit [Fintype n] [DecidableEq n] [LinearOrder n] in
+/--
+@isnad1 id=continuo.0h3v.s7.c11aa924b138 from=translated src=- shape=4de7225b vocab=147e65e9
+-/
 lemma continuous_gram_shiftBy (z : n → Fin 2 → ℝ) (w : Fin 2 → ℝ) :
     Continuous fun ε : ℝ => gram (fun i => z i + ε • w) := by
   refine continuous_matrix fun i j => ?_
@@ -1066,6 +1284,9 @@ lemma continuous_gram_shiftBy (z : n → Fin 2 → ℝ) (w : Fin 2 → ℝ) :
     (((continuous_apply 1).comp hi).mul ((continuous_apply 1).comp hj))
 
 omit [Fintype n] [DecidableEq n] [LinearOrder n] in
+/--
+@isnad1 id=ne.3h5v.s8.6703006b0c9d from=translated src=- shape=a5836da6 vocab=726e0619
+-/
 lemma shiftBy_ne_zero (z : n → Fin 2 → ℝ) {w : Fin 2 → ℝ} (hw : w ≠ 0)
     (hwz : ∀ i, 0 ≤ w ⬝ᵥ z i) {ε : ℝ} (hε : 0 < ε) (i : n) :
     z i + ε • w ≠ 0 := by

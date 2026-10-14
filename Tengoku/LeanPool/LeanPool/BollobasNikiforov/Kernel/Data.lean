@@ -36,31 +36,48 @@ def b (x : ℝ) : Fin 3 → ℝ :=
 def truncSq (ti x : ℝ) : ℝ :=
   (max (x - ti) 0) ^ 2
 
-/-- The outer product `v vᵀ` is Hermitian. -/
+/-- The outer product `v vᵀ` is Hermitian.
+@isnad1 id=ishermit.0h1v.s5.19fc49a70982 from=translated src=- shape=432cb425 vocab=dc0aa536
+-/
 lemma isHermitian_vecMulVec_self (w : Fin 3 → ℝ) :
     (vecMulVec w w).IsHermitian := by
   ext i j
   simp [conjTranspose_apply, vecMulVec_apply, mul_comm]
 
-/-- `(v vᵀ) x = (v ⬝ x) v`. -/
+/-- `(v vᵀ) x = (v ⬝ x) v`.
+@isnad1 id=eq.0h2v.s7.550317a64425 from=translated src=- shape=0a9e2363 vocab=fd776746
+-/
 lemma mulVec_vecMulVec_self (w x : Fin 3 → ℝ) :
     vecMulVec w w *ᵥ x = (w ⬝ᵥ x) • w := by
   simp [vecMulVec_mulVec]
 
-/-- The quadratic form of an outer product is a square: `x ⬝ (v vᵀ) x = (v ⬝ x)²`. -/
+/-- The quadratic form of an outer product is a square: `x ⬝ (v vᵀ) x = (v ⬝ x)²`.
+@isnad1 id=eq.0h2v.s6.110096c2c947 from=translated src=- shape=4c914bfc vocab=a75f2c6b
+-/
 lemma dotProduct_mulVec_vecMulVec_self (w x : Fin 3 → ℝ) :
     x ⬝ᵥ vecMulVec w w *ᵥ x = (w ⬝ᵥ x) ^ 2 := by
   rw [mulVec_vecMulVec_self, dotProduct_smul, smul_eq_mul, dotProduct_comm x, ← sq]
 
-/-- The outer product `v vᵀ` is positive semidefinite. -/
+/-- The outer product `v vᵀ` is positive semidefinite.
+@isnad1 id=possemid.0h1v.s5.f4ee05884b5a from=translated src=- shape=fd5e1db2 vocab=05cc884f
+-/
 lemma posSemidef_vecMulVec_self_fin3 (w : Fin 3 → ℝ) :
     (vecMulVec w w).PosSemidef := by
   refine PosSemidef.of_dotProduct_mulVec_nonneg (isHermitian_vecMulVec_self w) fun x ↦ ?_
   simpa [show star x = x from funext fun _ ↦ star_trivial _,
     dotProduct_mulVec_vecMulVec_self] using sq_nonneg (w ⬝ᵥ x)
 
+/--
+@isnad1 id=eq.0h1v.s4.40f33b767c62 from=translated src=- shape=906f1a61 vocab=8db05b59
+-/
 @[simp] lemma v_zero (s : ℝ) : v s 0 = 1 := by simp [v]
+/--
+@isnad1 id=eq.0h1v.s5.237edbe4d089 from=translated src=- shape=4369d273 vocab=79d2044b
+-/
 @[simp] lemma v_one (s : ℝ) : v s 1 = -Real.sqrt 2 * s := by simp [v]
+/--
+@isnad1 id=eq.0h1v.s5.dd01c322c4f6 from=translated src=- shape=7adea3e4 vocab=284ae925
+-/
 @[simp] lemma v_two (s : ℝ) : v s 2 = s ^ 2 := by simp [v]
 
 variable {k : ℕ} (t : Fin k → ℝ) (q : Fin k → ℝ)
@@ -69,14 +86,18 @@ variable {k : ℕ} (t : Fin k → ℝ) (q : Fin k → ℝ)
 def 𝒜 : Matrix (Fin 3) (Fin 3) ℝ :=
   1 + ∑ i, q i • vecMulVec (v (t i)) (v (t i))
 
-/-- `𝒜` is positive definite: the identity is PD and each summand is PSD. -/
+/-- `𝒜` is positive definite: the identity is PD and each summand is PSD.
+@isnad1 id=posdef.1h3v.s5.6f240d4fe1ae from=translated src=- shape=e45c70a9 vocab=99ee7552
+-/
 lemma 𝒜_posDef (hq : ∀ i, 0 < q i) : (𝒜 t q).PosDef := by
   unfold 𝒜
   refine PosDef.add_posSemidef PosDef.one ?_
   exact posSemidef_sum _ fun i _ ↦
     PosSemidef.smul (posSemidef_vecMulVec_self_fin3 (v (t i))) (hq i).le
 
-/-- Positive definite matrices are invertible. -/
+/-- Positive definite matrices are invertible.
+@isnad1 id=isunit.1h3v.s6.581a73040fb4 from=translated src=- shape=8f2f9176 vocab=df50d777
+-/
 lemma 𝒜_isUnit (hq : ∀ i, 0 < q i) : IsUnit (𝒜 t q) :=
   (𝒜_posDef t q hq).isUnit
 
@@ -84,6 +105,9 @@ lemma 𝒜_isUnit (hq : ∀ i, 0 < q i) : IsUnit (𝒜 t q) :=
 def m (j : ℕ) : ℝ :=
   ∑ i, q i * t i ^ j
 
+/--
+@isnad1 id=eq.0h3v.s5.4864b1e8101b from=translated src=- shape=87eac9a8 vocab=a90170f5
+-/
 lemma m_zero : m t q 0 = ∑ i, q i := by
   simp [m]
 
@@ -105,6 +129,9 @@ def Vvec : Fin 3 → ℝ :=
 
 /-! ### KR04: principal minors of `𝒜` -/
 
+/--
+@isnad1 id=eq.0h5v.s6.dc32fda5e2d4 from=translated src=- shape=7006f2f3 vocab=4bb5ff86
+-/
 lemma 𝒜_apply (i j : Fin 3) :
     𝒜 t q i j =
       (if i = j then (1 : ℝ) else 0) + ∑ r, q r * v (t r) i * v (t r) j := by
@@ -112,10 +139,16 @@ lemma 𝒜_apply (i j : Fin 3) :
   rw [Matrix.sum_apply]
   simp [Matrix.smul_apply, vecMulVec_apply, mul_assoc]
 
+/--
+@isnad1 id=eq.0h3v.s5.9d6ec6cdffeb from=translated src=- shape=1c1d755d vocab=b6d180d5
+-/
 lemma 𝒜_00 : 𝒜 t q 0 0 = a0 t q := by
   rw [𝒜_apply, a0, m_zero]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s6.3777e0b2aea0 from=translated src=- shape=06041de0 vocab=5f2311f4
+-/
 lemma 𝒜_11 : 𝒜 t q 1 1 = 1 + 2 * m t q 2 := by
   rw [𝒜_apply]
   simp only [↓reduceIte, v_one, m]
@@ -133,6 +166,9 @@ lemma 𝒜_11 : 𝒜 t q 1 1 = 1 + 2 * m t q 2 := by
               _ = 2 * (q r * t r ^ 2) := by ring
     _ = 2 * ∑ r, q r * t r ^ 2 := (Finset.mul_sum _ _ _).symm
 
+/--
+@isnad1 id=eq.0h3v.s6.aed4795fa90f from=translated src=- shape=9ad21b22 vocab=147af22e
+-/
 lemma 𝒜_01 : 𝒜 t q 0 1 = -Real.sqrt 2 * m t q 1 := by
   rw [𝒜_apply, ite_eq_right (by decide : (0 : Fin 3) ≠ 1)]
   simp only [v_zero, v_one, mul_one, zero_add, m, pow_one]
@@ -143,6 +179,9 @@ lemma 𝒜_01 : 𝒜 t q 0 1 = -Real.sqrt 2 * m t q 1 := by
           ring
     _ = -Real.sqrt 2 * ∑ r, q r * t r := (Finset.mul_sum _ _ _).symm
 
+/--
+@isnad1 id=eq.0h3v.s6.6464944bf7c9 from=translated src=- shape=9ad21b22 vocab=147af22e
+-/
 lemma 𝒜_10 : 𝒜 t q 1 0 = -Real.sqrt 2 * m t q 1 := by
   rw [𝒜_apply, ite_eq_right (by decide : (1 : Fin 3) ≠ 0)]
   simp only [v_zero, v_one, mul_one, zero_add, m, pow_one]
@@ -153,7 +192,9 @@ lemma 𝒜_10 : 𝒜 t q 1 0 = -Real.sqrt 2 * m t q 1 := by
           ring
     _ = -Real.sqrt 2 * ∑ r, q r * t r := (Finset.mul_sum _ _ _).symm
 
-/-- `D₂` is the leading `2×2` principal minor of `𝒜`. -/
+/-- `D₂` is the leading `2×2` principal minor of `𝒜`.
+@isnad1 id=eq.0h3v.s6.380a8c59c073 from=translated src=- shape=bc6b1799 vocab=c0e41eee
+-/
 lemma D2_eq_det_leading :
     D2 t q = ((𝒜 t q).submatrix Fin.castSucc Fin.castSucc).det := by
   have hsq : Real.sqrt 2 * Real.sqrt 2 = 2 := Real.mul_self_sqrt (by norm_num)
@@ -169,9 +210,15 @@ lemma D2_eq_det_leading :
   rw [det_fin_two]
   simp only [submatrix_apply, c0, c1, 𝒜_00, 𝒜_11, 𝒜_01, 𝒜_10, D2, hprod]
 
+/--
+@isnad1 id=lt.1h3v.s5.9537d13af74d from=translated src=- shape=df7636e8 vocab=e7dbf044
+-/
 lemma Δ_pos (hq : ∀ i, 0 < q i) : 0 < Δ t q :=
   PosDef.det_pos (𝒜_posDef t q hq)
 
+/--
+@isnad1 id=lt.1h3v.s5.6f2318d85b67 from=translated src=- shape=df7636e8 vocab=eb124d76
+-/
 lemma D2_pos (hq : ∀ i, 0 < q i) : 0 < D2 t q := by
   rw [D2_eq_det_leading]
   exact PosDef.det_pos ((𝒜_posDef t q hq).submatrix (Fin.castSucc_injective 2))
@@ -198,12 +245,18 @@ def U (γ x : ℝ) : Fin 3 → ℝ :=
 def 𝒦Mat (γ : ℝ) : Matrix (Fin 3) (Fin 3) ℝ :=
   𝒜 t q + (1 / γ) • vecMulVec (Vvec t q) (Vvec t q)
 
+/--
+@isnad1 id=posdef.2h4v.s5.819cbf210f70 from=translated src=- shape=4d1681a5 vocab=98e332e3
+-/
 lemma 𝒦Mat_posDef (γ : ℝ) (hq : ∀ i, 0 < q i) (hγ : 0 < γ) :
     (𝒦Mat t q γ).PosDef := by
   unfold 𝒦Mat
   refine PosDef.add_posSemidef (𝒜_posDef t q hq) ?_
   exact PosSemidef.smul (posSemidef_vecMulVec_self_fin3 _) (div_nonneg zero_le_one hγ.le)
 
+/--
+@isnad1 id=isunit.2h4v.s6.5249ac7e9ed6 from=translated src=- shape=b82a6326 vocab=0d0983d3
+-/
 lemma 𝒦Mat_isUnit (γ : ℝ) (hq : ∀ i, 0 < q i) (hγ : 0 < γ) :
     IsUnit (𝒦Mat t q γ) :=
   (𝒦Mat_posDef t q γ hq hγ).isUnit
@@ -226,6 +279,9 @@ def Z (γ x : ℝ) : ℝ :=
 
 /-! ### KR06: `𝒜⁻¹ V = e₀` -/
 
+/--
+@isnad1 id=eq.1h3v.s7.68aded99c201 from=translated src=- shape=be0e2551 vocab=d6714b7e
+-/
 lemma 𝒜_inv_mulVec_Vvec (hq : ∀ i, 0 < q i) :
     (𝒜 t q)⁻¹ *ᵥ Vvec t q = Pi.single 0 1 := by
   have := (𝒜_isUnit t q hq).invertible

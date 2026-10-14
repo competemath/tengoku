@@ -41,6 +41,9 @@ private theorem seeleyReflectionTwo_measurable :
     ((2 * vecEuclideanNorm x - 1) * vecEuclideanNorm x)⁻¹ • x)
   exact hden.measurable.inv.smul measurable_id
 
+/--
+@isnad1 id=eq.2h4v.s9.b6b42b68f8d3 from=translated src=- shape=caa3a710 vocab=050f3add
+-/
 theorem lintegral_reflection_split_coeff {A : Set (Vec 3)}
     (_ : MeasurableSet A) (a b : ℝ≥0∞) (g : Vec 3 → ℝ≥0∞)
     (hg : Measurable g) :
@@ -56,6 +59,9 @@ theorem lintegral_reflection_split_coeff {A : Set (Vec 3)}
   rw [lintegral_add_left (h₁.const_mul a)]
   rw [lintegral_const_mul a h₁, lintegral_const_mul b h₂]
 
+/--
+@isnad1 id=eq.2h2v.s9.36f2fac59441 from=translated src=- shape=6f910180 vocab=050f3add
+-/
 theorem lintegral_reflection_split {A : Set (Vec 3)}
     (hA : MeasurableSet A) (g : Vec 3 → ℝ≥0∞) (hg : Measurable g) :
     ∫⁻ y in A,

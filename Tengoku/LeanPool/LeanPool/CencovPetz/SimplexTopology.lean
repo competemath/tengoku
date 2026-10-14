@@ -36,9 +36,15 @@ namespace Simplex
 instance : TopologicalSpace (Simplex α) :=
   TopologicalSpace.induced (fun p : Simplex α => p.p) inferInstance
 
+/--
+@isnad1 id=continuo.0h1v.s5.38c7a4e0bec8 from=translated src=- shape=70b645a7 vocab=cfdad245
+-/
 lemma continuous_p : Continuous fun p : Simplex α => p.p :=
   continuous_induced_dom
 
+/--
+@isnad1 id=continuo.0h2v.s4.77d4b77cf5e6 from=translated src=- shape=187d51d6 vocab=cfdad245
+-/
 lemma continuous_eval (a : α) : Continuous fun p : Simplex α => p.p a :=
   (continuous_apply a).comp continuous_p
 

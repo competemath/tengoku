@@ -38,11 +38,17 @@ def rankOneGenerators : Set (Matrix n n ℝ) :=
   (fun p : n → ℝ ↦ vecMulVec p p) '' nonnegativeUnitSphere
 
 omit [Fintype n] [DecidableEq n] in
+/--
+@isnad1 id=continuo.0h1v.s5.0a3e25f91672 from=translated src=- shape=2a92014f vocab=6e4045d0
+-/
 lemma continuous_vecMulVec_self :
     Continuous fun p : n → ℝ ↦ vecMulVec p p :=
   continuous_id.matrix_vecMulVec continuous_id
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=isclosed.0h1v.s4.7f7f7953e6d8 from=translated src=- shape=fea4225f vocab=b4f06ea6
+-/
 lemma isClosed_nonnegativeUnitSphere : IsClosed (nonnegativeUnitSphere (n := n)) := by
   have hnn : IsClosed {p : n → ℝ | 0 ≤ p} := by
     have : {p : n → ℝ | 0 ≤ p} = univ.pi fun _ ↦ Ici (0 : ℝ) := by
@@ -55,6 +61,9 @@ lemma isClosed_nonnegativeUnitSphere : IsClosed (nonnegativeUnitSphere (n := n))
   exact hnn.inter hsph
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=iscompac.0h1v.s4.361203619c99 from=translated src=- shape=fea4225f vocab=02276d28
+-/
 lemma isCompact_nonnegativeUnitSphere : IsCompact (nonnegativeUnitSphere (n := n)) := by
   have hsub : nonnegativeUnitSphere ⊆ (univ.pi fun _ : n ↦ Icc (0 : ℝ) 1) := by
     intro p ⟨hp, hsq⟩ i _
@@ -66,34 +75,49 @@ lemma isCompact_nonnegativeUnitSphere : IsCompact (nonnegativeUnitSphere (n := n
     isClosed_nonnegativeUnitSphere hsub
 
 omit [DecidableEq n] in
-/-- CP06: the unit-mass rank-one generators are compact. -/
+/-- CP06: the unit-mass rank-one generators are compact.
+@isnad1 id=iscompac.0h1v.s4.fb55c0cb1488 from=translated src=- shape=a3188e6b vocab=95f208b4
+-/
 lemma isCompact_rankOneGenerators : IsCompact (rankOneGenerators (n := n)) :=
   isCompact_nonnegativeUnitSphere.image continuous_vecMulVec_self
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=eq.1h2v.s5.5cb5f45b9262 from=translated src=- shape=f0a9f3e5 vocab=e138a299
+-/
 lemma trace_eq_one_of_mem_rankOneGenerators {C : Matrix n n ℝ}
     (hC : C ∈ rankOneGenerators) : C.trace = 1 := by
   obtain ⟨p, ⟨_, hsq⟩, rfl⟩ := hC
   simpa [trace_vecMulVec, dotProduct, sq] using hsq
 
 omit [DecidableEq n] in
-/-- CP06: the unit-mass rank-one generators do not contain the zero matrix. -/
+/-- CP06: the unit-mass rank-one generators do not contain the zero matrix.
+@isnad1 id=not.0h1v.s5.37883be64f13 from=translated src=- shape=58d4e381 vocab=59b2fe11
+-/
 lemma zero_notMem_rankOneGenerators : (0 : Matrix n n ℝ) ∉ rankOneGenerators := by
   intro h
   have := trace_eq_one_of_mem_rankOneGenerators h
   simp at this
 
 omit [Fintype n] [DecidableEq n] in
+/--
+@isnad1 id=iscomple.0h1v.s4.34728d0bbb54 from=translated src=- shape=ce0f984d vocab=67d584ad
+-/
 lemma isCompletelyPositive_zero : IsCompletelyPositive (0 : Matrix n n ℝ) :=
   ⟨0, fun a ↦ isEmptyElim a, fun a ↦ isEmptyElim a, by simp⟩
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=eq.0h3v.s6.ff5abf91f39d from=translated src=- shape=7b27cc48 vocab=8ab66b1a
+-/
 lemma trace_sum_vecMulVec {q : ℕ} (p : Fin q → n → ℝ) :
     (∑ a, vecMulVec (p a) (p a)).trace = ∑ a, ∑ i, p a i ^ 2 := by
   simp [trace_sum, trace_vecMulVec, dotProduct, sq]
 
 omit [DecidableEq n] in
-/-- Drop linearly dependent rank-one summands until at most `card n * card n` remain. -/
+/-- Drop linearly dependent rank-one summands until at most `card n * card n` remain.
+@isnad1 id=ex.1h3v.s7.c97ba30b8728 from=translated src=- shape=ed3c2649 vocab=cd551fef
+-/
 lemma exists_sum_vecMulVec_card_le (q : ℕ) (p : Fin q → n → ℝ) (hp : ∀ a i, 0 ≤ p a i) :
     ∃ q' ≤ Fintype.card n * Fintype.card n, ∃ p' : Fin q' → n → ℝ,
       (∀ a i, 0 ≤ p' a i) ∧
@@ -172,6 +196,9 @@ lemma exists_sum_vecMulVec_card_le (q : ℕ) (p : Fin q → n → ℝ) (hp : ∀
     exact ⟨q', hq', p'', hp'', hred.trans hrec⟩
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=ex.1h2v.s6.303b85cfd326 from=translated src=- shape=8a9ed37a vocab=0b6073e1
+-/
 lemma IsCompletelyPositive.exists_repr_card_le {C : Matrix n n ℝ}
     (hC : IsCompletelyPositive C) :
     ∃ q ≤ Fintype.card n * Fintype.card n, ∃ p : Fin q → n → ℝ,
@@ -181,7 +208,9 @@ lemma IsCompletelyPositive.exists_repr_card_le {C : Matrix n n ℝ}
   exact ⟨q', hq', p', hp', heq⟩
 
 omit [DecidableEq n] in
-/-- A CP matrix is a sum of at most `card n * card n` nonnegative rank-ones, padded. -/
+/-- A CP matrix is a sum of at most `card n * card n` nonnegative rank-ones, padded.
+@isnad1 id=ex.1h2v.s7.b936676fa7fb from=translated src=- shape=fe3a9f4c vocab=0b6073e1
+-/
 lemma IsCompletelyPositive.exists_repr_of_card {C : Matrix n n ℝ}
     (hC : IsCompletelyPositive C) :
     ∃ p : Fin (Fintype.card n * Fintype.card n) → n → ℝ,
@@ -218,13 +247,18 @@ lemma IsCompletelyPositive.exists_repr_of_card {C : Matrix n n ℝ}
             simp [pPad, e, ha]
 
 omit [Fintype n] [DecidableEq n] in
+/--
+@isnad1 id=continuo.0h2v.s6.c8f5c7aaef5c from=translated src=- shape=cece09f7 vocab=f3729057
+-/
 lemma continuous_sum_vecMulVec {q : ℕ} :
     Continuous fun p : Fin q → n → ℝ ↦ ∑ a, vecMulVec (p a) (p a) :=
   continuous_finsetSum _ fun a _ ↦ (continuous_apply a).matrix_vecMulVec (continuous_apply a)
 
 omit [DecidableEq n] [Fintype n] in
 variable [Finite n] in
-/-- CP07: the completely positive cone is closed. -/
+/-- CP07: the completely positive cone is closed.
+@isnad1 id=isclosed.0h1v.s5.819ed535bb79 from=translated src=- shape=179f703f vocab=4f39d4b7
+-/
 lemma isClosed_isCompletelyPositive :
     IsClosed {C : Matrix n n ℝ | IsCompletelyPositive C} := by
   cases nonempty_fintype n

@@ -44,6 +44,9 @@ open scoped InnerProductSpace Matrix
 variable {n : Type*} [Fintype n] [DecidableEq n]
 variable {B : Matrix n n ℝ}
 
+/--
+@isnad1 id=eq.1h3v.s8.8ee783ef4375 from=translated src=- shape=c8182912 vocab=cb31165e
+-/
 lemma eigenvectorBasis_dotProduct_self (hB : B.IsHermitian) (i : n) :
     (hB.eigenvectorBasis i : n → ℝ) ⬝ᵥ (hB.eigenvectorBasis i : n → ℝ) = 1 := by
   have hn : ‖hB.eigenvectorBasis i‖ = 1 := hB.eigenvectorBasis.orthonormal.1 i
@@ -51,6 +54,9 @@ lemma eigenvectorBasis_dotProduct_self (hB : B.IsHermitian) (i : n) :
   simp [dotProduct, pow_two] at hsq ⊢
   simpa [hn] using hsq.symm
 
+/--
+@isnad1 id=eq.2h4v.s8.4b3ca7d06ec6 from=translated src=- shape=7a88da2a vocab=cb31165e
+-/
 lemma eigenvectorBasis_dotProduct (hB : B.IsHermitian) {i j : n} (hij : i ≠ j) :
     (hB.eigenvectorBasis i : n → ℝ) ⬝ᵥ (hB.eigenvectorBasis j : n → ℝ) = 0 := by
   have h0 : ⟪hB.eigenvectorBasis i, hB.eigenvectorBasis j⟫_ℝ = 0 :=
@@ -58,6 +64,9 @@ lemma eigenvectorBasis_dotProduct (hB : B.IsHermitian) {i j : n} (hij : i ≠ j)
   rw [EuclideanSpace.inner_eq_star_dotProduct] at h0
   simpa [dotProduct_comm] using h0
 
+/--
+@isnad1 id=eq.1h3v.s8.924c153c6766 from=translated src=- shape=9d8fc500 vocab=18797968
+-/
 lemma parseval_eigenvectorBasis (hB : B.IsHermitian) (x : n → ℝ) :
     ∑ k, ((hB.eigenvectorBasis k : n → ℝ) ⬝ᵥ x) ^ 2 = x ⬝ᵥ x := by
   have h := OrthonormalBasis.sum_sq_inner_right (hB.eigenvectorBasis) (WithLp.toLp 2 x)
@@ -73,6 +82,9 @@ lemma parseval_eigenvectorBasis (hB : B.IsHermitian) (x : n → ℝ) :
   exact h.trans hnorm
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=eq.0h4v.s6.a3db8a45412e from=translated src=- shape=4f028681 vocab=9ab93bf8
+-/
 lemma vecMulVec_mulVec_real (u v x : n → ℝ) :
     vecMulVec u v *ᵥ x = (v ⬝ᵥ x) • u := by
   ext i
@@ -82,6 +94,9 @@ lemma vecMulVec_mulVec_real (u v x : n → ℝ) :
     exact (Finset.mul_sum Finset.univ (fun j => v j * x j) (u i)).symm
   · ring
 
+/--
+@isnad1 id=eq.1h3v.s8.53a876b703fd from=translated src=- shape=a5e84ee3 vocab=a1feb6b0
+-/
 lemma isHermitian_quadratic (hB : B.IsHermitian) (x : n → ℝ) :
     x ⬝ᵥ B *ᵥ x =
       ∑ k, hB.eigenvalues k *
@@ -99,6 +114,9 @@ lemma isHermitian_quadratic (hB : B.IsHermitian) (x : n → ℝ) :
   rw [dotProduct_comm x]
   ring
 
+/--
+@isnad1 id=le.1h3v.s6.4e0ee8795545 from=translated src=- shape=76a5c46a vocab=7e42705e
+-/
 lemma eigenvalues_le_lambdaMax [Nonempty n] (hB : B.IsHermitian) (i : n) :
     hB.eigenvalues i ≤ lambdaMax hB := by
   have : hB.eigenvalues₀ ((Fintype.equivOfCardEq (Fintype.card_fin (Fintype.card n))).symm i) ≤
@@ -106,6 +124,9 @@ lemma eigenvalues_le_lambdaMax [Nonempty n] (hB : B.IsHermitian) (i : n) :
     hB.eigenvalues₀_antitone (Fin.zero_le _)
   simpa [IsHermitian.eigenvalues, lambdaMax, eigs₀] using this
 
+/--
+@isnad1 id=le.2h3v.s6.4e324b30a467 from=translated src=- shape=99412bac vocab=02dae73b
+-/
 lemma rayleigh_le_lambdaMax [Nonempty n] (hB : B.IsHermitian) {u : n → ℝ}
     (hu : u ⬝ᵥ u = 1) :
     u ⬝ᵥ B *ᵥ u ≤ lambdaMax hB := by
@@ -119,6 +140,9 @@ lemma rayleigh_le_lambdaMax [Nonempty n] (hB : B.IsHermitian) {u : n → ℝ}
   rw [← Finset.mul_sum, parseval_eigenvectorBasis, hu, mul_one]
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=ex.2h2v.s7.703c356c0ab7 from=translated src=- shape=2ebb6378 vocab=3a32fa2f
+-/
 lemma exists_rankTwo_writing [Nontrivial n] {X : Matrix n n ℝ}
     (hX : X.PosSemidef) (hr : X.rank ≤ 2) :
     ∃ (u v : n → ℝ) (α β : ℝ),
@@ -233,6 +257,9 @@ lemma exists_rankTwo_writing [Nontrivial n] {X : Matrix n n ℝ}
   rw [hx, hdecomp, hpair, hrest, add_zero]
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=le.3h4v.s7.f81a9184563f from=translated src=- shape=d641c6b9 vocab=3742dbc3
+-/
 lemma bessel_two {u v x : n → ℝ}
     (hu : u ⬝ᵥ u = 1) (hv : v ⬝ᵥ v = 1) (huv : u ⬝ᵥ v = 0) :
     (u ⬝ᵥ x) ^ 2 + (v ⬝ᵥ x) ^ 2 ≤ x ⬝ᵥ x := by
@@ -256,6 +283,9 @@ lemma bessel_two {u v x : n → ℝ}
     ring
   linarith
 
+/--
+@isnad1 id=le.5h3v.s7.3b0f60f1ac92 from=translated src=- shape=3e863344 vocab=854d13f2
+-/
 lemma sum_antitone_le_two_largest {m : ℕ} (hm : 2 ≤ m)
     (lam q : Fin m → ℝ) (hlam : Antitone lam)
     (hq0 : ∀ i, 0 ≤ q i) (hq1 : ∀ i, q i ≤ 1) (hsum : ∑ i, q i = 2) :
@@ -301,6 +331,9 @@ lemma sum_antitone_le_two_largest {m : ℕ} (hm : 2 ≤ m)
     linarith
   linarith [hrest, hstep, hfinal]
 
+/--
+@isnad1 id=le.4h4v.s7.557f5e3a84b4 from=translated src=- shape=29eb8065 vocab=21cb5cb5
+-/
 lemma orthonormal_pair_le_lambdaMax_add_lambdaSecond [Nontrivial n]
     (hB : B.IsHermitian) {u v : n → ℝ}
     (hu : u ⬝ᵥ u = 1) (hv : v ⬝ᵥ v = 1) (huv : u ⬝ᵥ v = 0) :
@@ -347,6 +380,9 @@ lemma orthonormal_pair_le_lambdaMax_add_lambdaSecond [Nontrivial n]
   simpa [lambdaMax, lambdaSecond, eigs₀] using hbound
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=eq.0h3v.s5.68a1954040e6 from=translated src=- shape=e6e066e1 vocab=3d9e320f
+-/
 lemma inner_vecMulVec' (C : Matrix n n ℝ) (u : n → ℝ) :
     inner C (vecMulVec u u) = u ⬝ᵥ C *ᵥ u := by
   rw [inner_eq_sum]
@@ -362,23 +398,35 @@ lemma inner_vecMulVec' (C : Matrix n n ℝ) (u : n → ℝ) :
   simp [dotProduct, mulVec]
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=eq.0h4v.s6.9f02a5d50a4f from=translated src=- shape=43a40f69 vocab=91cceea3
+-/
 lemma inner_smul_vecMulVec' (r : ℝ) (C : Matrix n n ℝ) (u : n → ℝ) :
     inner C (r • vecMulVec u u) = r * (u ⬝ᵥ C *ᵥ u) := by
   rw [inner_smul_right, inner_vecMulVec']
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=eq.0h3v.s5.f2373820f61d from=translated src=- shape=40a4eddb vocab=9aec9bb7
+-/
 lemma inner_vecMulVec_vecMulVec' (u v : n → ℝ) :
     inner (vecMulVec u u) (vecMulVec v v) = (u ⬝ᵥ v) ^ 2 := by
   rw [inner_vecMulVec', vecMulVec_mulVec_real, dotProduct_smul, smul_eq_mul,
     mul_comm, dotProduct_comm, pow_two]
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=eq.0h6v.s7.365e03c7807e from=translated src=- shape=0ad7f1c3 vocab=3aa46e84
+-/
 lemma inner_rankTwo (C : Matrix n n ℝ) (u v : n → ℝ) (α β : ℝ) :
     inner C (α • vecMulVec u u + β • vecMulVec v v) =
       α * (u ⬝ᵥ C *ᵥ u) + β * (v ⬝ᵥ C *ᵥ v) := by
   simp [inner_add_right, inner_smul_vecMulVec']
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=eq.3h5v.s8.52390f196486 from=translated src=- shape=795abee2 vocab=e4cae4ce
+-/
 lemma inner_self_rankTwo {u v : n → ℝ} (hu : u ⬝ᵥ u = 1) (hv : v ⬝ᵥ v = 1)
     (huv : u ⬝ᵥ v = 0) (α β : ℝ) :
     inner (α • vecMulVec u u + β • vecMulVec v v)
@@ -389,6 +437,9 @@ lemma inner_self_rankTwo {u v : n → ℝ} (hu : u ⬝ᵥ u = 1) (hv : v ⬝ᵥ 
   simp [inner_vecMulVec_vecMulVec', hu, hv, huv, hvu]
   ring
 
+/--
+@isnad1 id=le.0h4v.s7.c7546d855513 from=translated src=- shape=8de5f272 vocab=1c908215
+-/
 lemma cauchySchwarz_two (α β a b : ℝ) :
     α * a + β * b ≤
       Real.sqrt (α ^ 2 + β ^ 2) * Real.sqrt (a ^ 2 + b ^ 2) := by
@@ -404,6 +455,9 @@ lemma cauchySchwarz_two (α β a b : ℝ) :
       Real.sqrt_mul hnn _
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=ex.2h2v.s6.f654dfc9e91d from=translated src=- shape=0edef817 vocab=85fc7a80
+-/
 lemma exists_card_one_writing (hn : Fintype.card n = 1) {X : Matrix n n ℝ}
     (hX : X.PosSemidef) :
     ∃ (u : n → ℝ) (α : ℝ),
@@ -427,7 +481,9 @@ lemma exists_card_one_writing (hn : Fintype.card n = 1) {X : Matrix n n ℝ}
   intro k hk
   exact absurd (huniq k) hk
 
-/-- Local copy of CG03 (`lem:variational`). -/
+/-- Local copy of CG03 (`lem:variational`).
+@isnad1 id=le.3h3v.s6.070c7957ff7e from=translated src=- shape=7c46fea8 vocab=759caa18
+-/
 lemma variational_lemma (hB : B.IsHermitian) {X : Matrix n n ℝ}
     (hX : X.PosSemidef) (hr : X.rank ≤ 2) :
     inner B X ≤ Real.sqrt (F hB) * Real.sqrt (inner X X) := by
@@ -498,40 +554,55 @@ end GramAux
 variable {V : Type*}
 variable {G : SimpleGraph V} [DecidableRel G.Adj]
 
-/-- `max x 0 * x = (max x 0)²`. -/
+/-- `max x 0 * x = (max x 0)²`.
+@isnad1 id=eq.0h1v.s5.c61b772da4bf from=translated src=- shape=1f33d32e vocab=c9d78b86
+-/
 lemma max_zero_mul_self (x : ℝ) : max x 0 * x = (max x 0) ^ 2 := by
   rcases le_total x 0 with hx | hx
   · rw [max_eq_right hx, zero_mul, zero_pow (by decide)]
   · rw [max_eq_left hx, pow_two]
 
+/--
+@isnad1 id=issymm.1h2v.s4.3a2215882990 from=translated src=- shape=bb3461b3 vocab=4f7d765f
+-/
 lemma posPart_isSymm {X : Matrix V V ℝ} (hX : X.IsSymm) :
     (posPart X).IsSymm := by
   ext i j
   simp [posPart_apply, hX.apply]
 
-/-- **CG04.** `A_G ⊙ X₊` is symmetric when `X` is. -/
+/-- **CG04.** `A_G ⊙ X₊` is symmetric when `X` is.
+@isnad1 id=issymm.1h3v.s5.eb84a5393482 from=translated src=- shape=59ae8c34 vocab=05e276c6
+-/
 lemma isSymm_adjMatrix_hadamard_posPart {X : Matrix V V ℝ} (hX : X.IsSymm) :
     (G.adjMatrix ℝ ⊙ posPart X).IsSymm := by
   rw [IsSymm, transpose_hadamard, G.transpose_adjMatrix, posPart_isSymm hX]
 
-/-- **CG04.** `A_G ⊙ X₊` is entrywise nonnegative. -/
+/-- **CG04.** `A_G ⊙ X₊` is entrywise nonnegative.
+@isnad1 id=le.0h5v.s5.babe65fb1d6d from=translated src=- shape=8bdf2300 vocab=9c34803c
+-/
 lemma adjMatrix_hadamard_posPart_nonneg (X : Matrix V V ℝ) (i j : V) :
     0 ≤ (G.adjMatrix ℝ ⊙ posPart X) i j := by
   simp only [hadamard_apply, posPart_apply, SimpleGraph.adjMatrix_apply]
   split_ifs <;> simp
 
-/-- **CG04.** `A_G ⊙ X₊` has zero diagonal. -/
+/-- **CG04.** `A_G ⊙ X₊` has zero diagonal.
+@isnad1 id=eq.0h4v.s5.8a77a46d8ae4 from=translated src=- shape=e2889bed vocab=d118bee6
+-/
 lemma adjMatrix_hadamard_posPart_diag (X : Matrix V V ℝ) (i : V) :
     (G.adjMatrix ℝ ⊙ posPart X) i i = 0 := by
   simp [hadamard_apply, SimpleGraph.adjMatrix_apply]
 
-/-- **CG04.** `A_G ⊙ X₊` vanishes off the edges of `G`. -/
+/-- **CG04.** `A_G ⊙ X₊` vanishes off the edges of `G`.
+@isnad1 id=eq.1h5v.s5.56f799997506 from=translated src=- shape=28b5e1d3 vocab=d118bee6
+-/
 lemma adjMatrix_hadamard_posPart_eq_zero_of_not_adj
     {X : Matrix V V ℝ} {i j : V} (hij : ¬ G.Adj i j) :
     (G.adjMatrix ℝ ⊙ posPart X) i j = 0 := by
   simp [hadamard_apply, SimpleGraph.adjMatrix_apply, hij]
 
-/-- **CG04.** On this support, `⟨B, X⟩ = ⟨B, B⟩`. -/
+/-- **CG04.** On this support, `⟨B, X⟩ = ⟨B, B⟩`.
+@isnad1 id=eq.0h3v.s6.f7b3af498db7 from=translated src=- shape=b3935aa0 vocab=a7149103
+-/
 lemma inner_adjMatrix_hadamard_posPart [Fintype V] (X : Matrix V V ℝ) :
     inner (G.adjMatrix ℝ ⊙ posPart X) X =
       inner (G.adjMatrix ℝ ⊙ posPart X) (G.adjMatrix ℝ ⊙ posPart X) := by
@@ -543,7 +614,9 @@ lemma inner_adjMatrix_hadamard_posPart [Fintype V] (X : Matrix V V ℝ) :
   · simp
 
 /-- Adjacency entries are 0-1, so `A ⊙ X₊` has the same Frobenius mass as the
-weighted sum of squared positive parts. -/
+weighted sum of squared positive parts.
+@isnad1 id=eq.0h3v.s6.7515c23c3e69 from=translated src=- shape=477d49bd vocab=e84db46f
+-/
 lemma inner_adjMatrix_hadamard_posPart_self [Fintype V] (X : Matrix V V ℝ) :
     inner (G.adjMatrix ℝ ⊙ posPart X) (G.adjMatrix ℝ ⊙ posPart X) =
       ∑ i, ∑ j, G.adjMatrix ℝ i j * (posPart X i j) ^ 2 := by

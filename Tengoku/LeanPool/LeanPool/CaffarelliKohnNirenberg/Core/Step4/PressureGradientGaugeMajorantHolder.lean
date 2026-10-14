@@ -24,7 +24,9 @@ noncomputable section
 namespace CKN.Core.Step4
 
 /-- Jensen/Hoelder on a finite measure space: a sub-unit power of an integral
-dominates the integral of the power, at the cost of the total mass. -/
+dominates the integral of the power, at the cost of the total mass.
+@isnad1 id=le.3h4v.s7.dd518bd718ee from=translated src=- shape=a40d40ad vocab=a0954fb5
+-/
 theorem lintegral_rpow_le_rpow_lintegral_mul_measure
     {α : Type*} [MeasurableSpace α] {μ : Measure α}
     {J : α → ℝ≥0∞} (hJ : AEMeasurable J μ) {θ : ℝ} (hθ0 : 0 < θ) (hθ1 : θ < 1) :

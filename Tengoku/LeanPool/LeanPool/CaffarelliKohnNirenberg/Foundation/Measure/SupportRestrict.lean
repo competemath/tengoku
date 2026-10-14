@@ -27,7 +27,9 @@ namespace CKN.Foundation.Measure
 /-- If a function is almost everywhere strongly measurable with respect to the
 restricted measure `volume.restrict s` and its support is contained in the
 measurable set `s`, then it is almost everywhere strongly measurable with
-respect to the ambient `volume`. -/
+respect to the ambient `volume`.
+@isnad1 id=aestrong.3h2v.s8.0d1974af8171 from=translated src=- shape=4cbfd084 vocab=4ea1e2d7
+-/
 theorem aestronglyMeasurable_of_restrict_of_support
     {h : Vec3 → ℝ} {s : Set Vec3} (hs : MeasurableSet s)
     (hmeas : AEStronglyMeasurable h (volume.restrict s))
@@ -46,7 +48,9 @@ theorem aestronglyMeasurable_of_restrict_of_support
   rw [heq] at h1
   exact h1.aestronglyMeasurable
 
-/-- A continuous compactly supported multiplier localizes an integrable function. -/
+/-- A continuous compactly supported multiplier localizes an integrable function.
+@isnad1 id=integrab.4h5v.s6.4a4bd2dd5ab5 from=translated src=- shape=1bb70c9e vocab=5334ac9e
+-/
 theorem integrable_mul_of_tsupport_subset {α : Type*}
     [TopologicalSpace α] [MeasurableSpace α] [OpensMeasurableSpace α]
     {μ : Measure α} {s : Set α} {f g : α → ℝ}

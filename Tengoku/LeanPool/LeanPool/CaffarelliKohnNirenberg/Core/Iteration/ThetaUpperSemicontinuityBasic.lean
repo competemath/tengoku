@@ -183,6 +183,9 @@ private lemma euclidean_sq_le_three_sup_sq (v : Vec3) :
   rw [← sq_abs]
   exact pow_le_pow_left₀ (abs_nonneg _) (norm_le_pi_norm v i) 2
 
+/--
+@isnad1 id=eq.1h4v.s8.c7b63da7f214 from=translated src=- shape=0a09d575 vocab=f2222e44
+-/
 lemma time_slice_energy_eq_ofReal
     {u : ParabolicPoint → Vec3} {x : Vec3} {r s : ℝ}
     (hInt : IntegrableOn
@@ -216,6 +219,9 @@ lemma time_slice_energy_eq_ofReal
   rw [setIntegral_eq_toReal_setLIntegral_of_nonneg hInt hnonneg,
     hlin, ENNReal.ofReal_toReal hfinS]
 
+/--
+@isnad1 id=eventual.3h11v.s7.221d1015c25c from=translated src=- shape=896482fd vocab=4840d76d
+-/
 lemma velocity_slice_integrable
     {Ω : Set Vec3} {I : Set ℝ} {q : ℝ}
     {u : ParabolicPoint → Vec3} {Du : ParabolicPoint → Fin 3 → Vec3}
@@ -252,6 +258,9 @@ lemma velocity_slice_integrable
     exact euclidean_sq_le_three_sup_sq _
   exact heu.mono_measure (Measure.restrict_mono hball le_rfl)
 
+/--
+@isnad1 id=le.5h7v.s8.5bb3fee2fc67 from=translated src=- shape=558fb4f9 vocab=68c94059
+-/
 lemma alpha_sq_le_of_essSup
     {u : ParabolicPoint → Vec3} {z : ParabolicPoint}
     {x₀ : Vec3} {rho r a b : ℝ}
@@ -338,6 +347,9 @@ lemma alpha_sq_le_of_essSup
           (volume.restrict (Ioc a b))).toReal := by
       rw [hEssEq]
 
+/--
+@isnad1 id=eventual.3h3v.s6.39d3593891df from=translated src=- shape=f63397ba vocab=32adc8b8
+-/
 lemma eventually_cylinder_subset_of_open
     {z₀ : ParabolicPoint} {r : ℝ} {U : Set ParabolicPoint}
     (hr : 0 < r) (hU : IsOpen U)
@@ -425,6 +437,9 @@ private lemma integrableOn_of_lintegral_ofReal
     IntegrableOn g K volume :=
   (lintegral_ofReal_ne_top_iff_integrable hmeas hnonneg).mp hfin
 
+/--
+@isnad1 id=integrab.3h4v.s6.e11b975f839a from=translated src=- shape=c77bd58b vocab=ccf1d61b
+-/
 lemma gradient_integrable_of_meas
     {u : ParabolicPoint → Vec3} {Du : ParabolicPoint → Fin 3 → Vec3}
     {K B : Set ParabolicPoint}
@@ -438,6 +453,9 @@ lemma gradient_integrable_of_meas
     Filter.Eventually.of_forall (fun w => by unfold spatialGradientSq; positivity)
   exact integrableOn_of_lintegral_ofReal hmeas hnonneg hfin
 
+/--
+@isnad1 id=integrab.3h3v.s7.098dc10f3700 from=translated src=- shape=8eaf6309 vocab=82b2d692
+-/
 lemma pressure_integrable_of_meas
     {p : ParabolicPoint → ℝ} {K B : Set ParabolicPoint}
     (hmeasB : AEStronglyMeasurable (fun w => |p w| ^ (3 / 2 : ℝ))
@@ -450,12 +468,18 @@ lemma pressure_integrable_of_meas
     Filter.Eventually.of_forall (fun w => by positivity)
   exact integrableOn_of_lintegral_ofReal hmeas hnonneg hfin
 
+/--
+@isnad1 id=le.0h2v.s5.43043b2c1139 from=translated src=- shape=0438c7a3 vocab=4ea4a37e
+-/
 lemma euclidean_triangle (a b : Vec3) :
     vec3EuclideanNorm (a + b) ≤ vec3EuclideanNorm a + vec3EuclideanNorm b := by
   rw [vec3EuclideanNorm_eq_l2, vec3EuclideanNorm_eq_l2,
     vec3EuclideanNorm_eq_l2, WithLp.toLp_add]
   exact norm_add_le _ _
 
+/--
+@isnad1 id=mem.2h3v.s6.81b12347cf55 from=translated src=- shape=82330282 vocab=9d3b6cd1
+-/
 lemma mem_euclideanClosedBall_of_vec3Norm_le
     {x y : Vec3} {R : ℝ} (hR : 0 ≤ R)
     (hxy : vec3EuclideanNorm (y - x) ≤ R) :
@@ -470,6 +494,9 @@ lemma mem_euclideanClosedBall_of_vec3Norm_le
   rw [heq]
   exact hxy
 
+/--
+@isnad1 id=tendsto.4h4v.s7.63eb3c76a7c7 from=translated src=- shape=954c5f0c vocab=2514066e
+-/
 lemma cylinder_integral_tendsto_of_open
     {g : ParabolicPoint → ℝ} {z₀ : ParabolicPoint} {r : ℝ}
     {G : Set ParabolicPoint} (hG : IsOpen G)

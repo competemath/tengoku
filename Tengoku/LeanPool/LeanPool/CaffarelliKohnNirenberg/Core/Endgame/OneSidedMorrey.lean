@@ -51,6 +51,9 @@ private theorem cylinderPowerIntegral_indicator_eq
   rw [cylinderPowerIntegral, heq, lintegral_indicator hS,
     Measure.restrict_restrict hS, inter_comm S]
 
+/--
+@isnad1 id=le.3h6v.s7.673e4bc478c3 from=translated src=- shape=6a81a380 vocab=dad55fc4
+-/
 theorem cylinder_morrey_cell_le
     {P τ : ℝ} {K : ℝ≥0∞} {g : ParabolicPoint → ℝ}
     {z : ParabolicPoint} {r : ℝ} (hP : 0 < P) (hr : 0 < r)
@@ -85,7 +88,9 @@ def oneSidedMorreyBound (P τ ρ₀ : ℝ) (A B : ℝ≥0∞) : ℝ≥0∞ :=
   (A * ENNReal.ofReal ((2 : ℝ) ^ (5 * (1 - P / τ)))) ^ (1 / P : ℝ) +
     ENNReal.ofReal ((ρ₀ / 2) ^ (-(5 * (1 - P / τ) / P))) * B ^ (1 / P : ℝ)
 
-/-- Finite integral constants give a finite transfer constant. -/
+/-- Finite integral constants give a finite transfer constant.
+@isnad1 id=lt.3h5v.s5.0e51f7af2e38 from=translated src=- shape=e0f0251c vocab=5e63b3ee
+-/
 theorem oneSidedMorreyBound_lt_top
     {P τ ρ₀ : ℝ} {A B : ℝ≥0∞}
     (hP : 0 < P) (hA : A < ⊤) (hB : B < ⊤) :
@@ -100,7 +105,9 @@ theorem oneSidedMorreyBound_lt_top
 /-- Small-scale cylinder estimates at admissible centers and a total
 integral bound imply an explicit Morrey estimate on the one-sided
 intermediate cylinder. No measurability of the scalar function is needed
-for this upper-integral estimate. -/
+for this upper-integral estimate.
+@isnad1 id=le.7h7v.s8.b24b38609725 from=translated src=- shape=c1e984a7 vocab=cbab092c
+-/
 theorem morreyNorm_one_sided_indicator_le_on_cylinder
     (a P τ ρ₀ : ℝ) (A B : ℝ≥0∞)
     (ha : 0 < a) (ha34 : a < 3 / 4)
@@ -163,7 +170,9 @@ theorem morreyNorm_one_sided_indicator_le_on_cylinder
       (ENNReal.rpow_le_rpow hI (one_div_nonneg.mpr hPpos.le))).trans
         (le_add_left le_rfl)
 
-/-- Specialization of the quantitative transfer to the fixed intermediate cylinder. -/
+/-- Specialization of the quantitative transfer to the fixed intermediate cylinder.
+@isnad1 id=le.5h6v.s8.6bba86b4edc9 from=translated src=- shape=dae0a800 vocab=cbab092c
+-/
 theorem morreyNorm_one_sided_indicator_le
     (P τ ρ₀ : ℝ) (A B : ℝ≥0∞)
     (hP : 1 ≤ P) (hPτ : P ≤ τ) (hρ₀ : 0 < ρ₀)

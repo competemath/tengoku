@@ -35,7 +35,9 @@ def truncatedCylinderCenter (w w' : ParabolicPoint) (ρ T : ℝ) : ParabolicPoin
   (w'.1, min (w.2 + ρ ^ 2) T)
 
 /-- The truncated center stays in any cylinder of upper time `T` that
-contains the selected intersection point. -/
+contains the selected intersection point.
+@isnad1 id=mem.2h6v.s5.1387c0242cdb from=translated src=- shape=d873426b vocab=4b2adf8b
+-/
 theorem truncatedCylinderCenter_mem
     {w w' : ParabolicPoint} {x : Vec3} {T R ρ : ℝ}
     (hw : w' ∈ parabolicCylinder w.1 w.2 ρ)
@@ -51,7 +53,9 @@ theorem truncatedCylinderCenter_mem
   exact le_min (le_trans hw.2.2 (le_add_of_nonneg_right (sq_nonneg ρ))) hinner.2.2
 
 /-- The portion below time `T` is covered by a cylinder of twice the radius
-whose spatial center is any point of the original cylinder. -/
+whose spatial center is any point of the original cylinder.
+@isnad1 id=le.1h4v.s6.703a6e0e52c4 from=translated src=- shape=ec74e29f vocab=21734929
+-/
 theorem parabolicCylinder_inter_le_subset_truncated
     {w w' : ParabolicPoint} {ρ T : ℝ}
     (hw : w' ∈ parabolicCylinder w.1 w.2 ρ) :
@@ -79,7 +83,9 @@ theorem parabolicCylinder_inter_le_subset_truncated
     nlinarith only [hz.2.1, hmin, sq_nonneg ρ]
   · exact le_trans hz.2.2 (le_add_of_nonneg_right (sq_nonneg ρ))
 
-/-- A positive smaller concentric cylinder lies among the admissible centers. -/
+/-- A positive smaller concentric cylinder lies among the admissible centers.
+@isnad1 id=le.2h1v.s7.927c2745c811 from=translated src=- shape=18eedd10 vocab=81926ecb
+-/
 theorem parabolicCylinder_subset_three_quarters {a : ℝ}
     (ha : 0 < a) (ha34 : a < 3 / 4) :
     parabolicCylinder (0 : Vec3) 0 a ⊆
@@ -92,7 +98,9 @@ theorem parabolicCylinder_subset_three_quarters {a : ℝ}
   exact (sub_lt_sub_left hsq 0).trans hz.2.1
 
 /-- Any cylinder meeting a smaller one-sided cylinder has a truncated
-admissible center covering its entire portion below time zero. -/
+admissible center covering its entire portion below time zero.
+@isnad1 id=ex.3h3v.s8.95ac7f868f30 from=translated src=- shape=45e01cf0 vocab=79ab0e84
+-/
 theorem exists_one_sided_covering_cylinder_on_cylinder
     {a : ℝ} (ha : 0 < a) (ha34 : a < 3 / 4)
     {w : ParabolicPoint} {ρ : ℝ}

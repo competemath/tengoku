@@ -30,6 +30,9 @@ noncomputable section
 
 namespace CKN
 
+/--
+@isnad1 id=mem.6h4v.s8.72a071b8a459 from=translated src=- shape=c992abe8 vocab=6b12f3b1
+-/
 lemma product_test_function
     {Ω : Set Vec3} {I : Set ℝ} {η : Vec3 → ℝ} {θ : ℝ → ℝ}
     (hη : ContDiff ℝ (⊤ : ℕ∞) η) (hηc : HasCompactSupport η)
@@ -53,6 +56,9 @@ lemma product_test_function
   · rw [hts]
     exact Set.prod_mono hηΩ hθI
 
+/--
+@isnad1 id=ex.5h3v.s7.f53c5d3bdfc4 from=translated src=- shape=c5fa78ea vocab=16f96ac9
+-/
 lemma smooth_time_envelope {a b : ℝ} (hab : a < b) {I : Set ℝ}
     (ha : a ∈ I) (hb : b ∈ I) (hI : IsOpen I) (hconn : I.OrdConnected) :
     ∃ θ : ℝ → ℝ, ContDiff ℝ (⊤ : ℕ∞) θ ∧ HasCompactSupport θ ∧
@@ -114,6 +120,9 @@ lemma smooth_time_envelope {a b : ℝ} (hab : a < b) {I : Set ℝ}
         linarith only [hε]
       exact hdist.trans hle)
 
+/--
+@isnad1 id=le.1h2v.s4.74e05f1530f6 from=translated src=- shape=715d6c2f vocab=12ada691
+-/
 lemma vec3Ball_subset_euclideanBall {x : Vec3} {r : ℝ} (hr : 0 < r) :
     vec3Ball x r ⊆ euclideanBall x r := by
   intro y hy
@@ -127,6 +136,9 @@ lemma vec3Ball_subset_euclideanBall {x : Vec3} {r : ℝ} (hr : 0 < r) :
   rw [heq]
   exact hy
 
+/--
+@isnad1 id=tendsto.2h3v.s8.e31b5d5e2b32 from=translated src=- shape=0c86e418 vocab=08df0d3e
+-/
 lemma strip_error_tendsto
     {g : Vec3 × ℝ → ℝ} {K : Set Vec3} {b : ℝ}
     (hK : IsCompact K) (hg : Integrable g volume) :
@@ -154,6 +166,9 @@ lemma strip_error_tendsto
     simpa [measure_singleton] using hmul
   exact hg.norm.tendsto_setIntegral_nhds_zero hmeasure
 
+/--
+@isnad1 id=eq.1h2v.s8.1c1f86c0473f from=translated src=- shape=405d4b7a vocab=cc3cc294
+-/
 lemma setIntegral_univ_Iio_probe
     {g : Vec3 × ℝ → ℝ} {t : ℝ}
     (hg : IntegrableOn g (Set.univ ×ˢ Iio t) volume) :
@@ -176,6 +191,9 @@ lemma setIntegral_univ_Iio_probe
       rw [setIntegral_univ]
       rfl
 
+/--
+@isnad1 id=eventual.11h10v.s9.8320863e4301 from=translated src=- shape=c340c7fb vocab=2e6fbcb3
+-/
 lemma cutoff_slice_le
     {Ω : Set Vec3} {u : ParabolicPoint → Vec3}
     {η : Vec3 → ℝ} {θ : ℝ → ℝ} {x₀ : Vec3} {r R a b : ℝ}

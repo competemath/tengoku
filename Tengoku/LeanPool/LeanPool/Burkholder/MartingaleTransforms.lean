@@ -119,6 +119,7 @@ integrability and adaptedness hypotheses for the transformed process are availab
 The only integrability assumption specific to the multiplier is that each product
 `v (n+1) * (f (n+1) - f n)` is integrable; predictability then pulls `v (n+1)`
 out of the conditional expectation.
+@isnad1 id=martinga.3h6v.s6.fb580877d3d3 from=translated src=- shape=dc374e13 vocab=88228b36
 -/
 theorem martingaleTransform_martingale {μ : Measure Ω} [IsFiniteMeasure μ]
   {ℱ : Filtration ℕ mΩ} {v f : ℕ → Ω → ℝ}

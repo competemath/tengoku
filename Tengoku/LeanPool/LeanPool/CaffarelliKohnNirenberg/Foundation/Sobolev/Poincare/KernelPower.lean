@@ -31,6 +31,9 @@ estimates.
 
 section WeightedPowerMean
 
+/--
+@isnad1 id=le.7h6v.s8.6b618cd8cad5 from=translated src=- shape=0092af43 vocab=798b7e95
+-/
 theorem weighted_power_mean_setIntegral
     {α : Type*} [MeasurableSpace α] {μ : Measure α}
     {s : Set α} (hs : MeasurableSet s)
@@ -168,6 +171,9 @@ section RieszPowerMean
 
 variable {d : ℕ} [NeZero d]
 
+/--
+@isnad1 id=le.6h5v.s8.3bb363a1e994 from=translated src=- shape=169ffc51 vocab=17637277
+-/
 theorem integral_mul_rieszKernel_rpow_le_of_isSobolevRegularDomain
     {U : Set (Vec d)} (hU : IsSobolevRegularDomain U)
     {p : ℝ} (hp : 1 < p)
@@ -184,6 +190,9 @@ theorem integral_mul_rieszKernel_rpow_le_of_isSobolevRegularDomain
     hg_nonneg (fun y => rieszKernel_nonneg x y) hg_meas
     (hU.isBoundedDomain.integrableOn_rieszKernel hx) hgpK_int
 
+/--
+@isnad1 id=le.6h5v.s9.31f539478b03 from=translated src=- shape=c5de7773 vocab=d10a8f9a
+-/
 theorem integral_mul_rieszKernel_rpow_le_bound_of_isSobolevRegularDomain
     {U : Set (Vec d)} (hU : IsSobolevRegularDomain U)
     {p : ℝ} (hp : 1 < p)
@@ -224,6 +233,9 @@ theorem integral_mul_rieszKernel_rpow_le_bound_of_isSobolevRegularDomain
         ∫ y in U, (g y) ^ p * rieszKernel x y ∂MeasureTheory.volume := by
           simp [I, M]
 
+/--
+@isnad1 id=integrab.6h4v.s9.e3d399de06a7 from=translated src=- shape=fdcf970e vocab=c0e47a6c
+-/
 theorem integrable_rpow_integral_mul_rieszKernel_of_isSobolevRegularDomain
     {U : Set (Vec d)} (hU : IsSobolevRegularDomain U)
     {p : ℝ} (hp : 1 < p)
@@ -308,6 +320,9 @@ theorem integrable_rpow_integral_mul_rieszKernel_of_isSobolevRegularDomain
     simpa [Real.norm_of_nonneg hpow_nonneg] using hxbound
   exact hright_int.mono' hleft_ae hleft_bound
 
+/--
+@isnad1 id=le.7h4v.s9.60bd0ebe3c6f from=translated src=- shape=bc3b8244 vocab=a97641e7
+-/
 theorem integral_rpow_integral_mul_rieszKernel_le_bound_of_isSobolevRegularDomain
     {U : Set (Vec d)} (hU : IsSobolevRegularDomain U)
     {p : ℝ} (hp : 1 < p)

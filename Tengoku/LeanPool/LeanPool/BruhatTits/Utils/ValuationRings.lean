@@ -22,12 +22,18 @@ variable {K : Type*} [Field K] (R : Subring K)
 
 variable {R} in
 open Pointwise in
+/--
+@isnad1 id=eq.1h5v.s13.bb2f41579d40 from=translated src=- shape=c7b0294e vocab=ee8de66c
+-/
 lemma maximalIdeal_smul_eq_uniformizer_smul [IsDiscreteValuationRing R] {ι : Type*}
     (M : Submodule R (ι → K)) {ϖ : R} (hϖ : Irreducible ϖ) :
     IsLocalRing.maximalIdeal R • M = ϖ • M := by
   rw [hϖ.maximalIdeal_eq]
   exact Submodule.ideal_span_singleton_smul ϖ M
 
+/--
+@isnad1 id=eq.0h4v.s10.e94520f3f349 from=translated src=- shape=b75fdaef vocab=1d2c7290
+-/
 @[simp]
 lemma Subring.coe_zpow (a : Rˣ) (n : ℤ) :
     (a ^ n).val.val = a.val.val ^ n := by
@@ -43,18 +49,27 @@ variable (ϖ : R) (hϖ : Irreducible ϖ)
 
 local notation "v" => ValuationRing.valuation R K
 
+/--
+@isnad1 id=iff.0h3v.s10.31d4274c75ee from=translated src=- shape=734f939c vocab=0bfb314e
+-/
 lemma mem_subring_iff_integer (x : K) : x ∈ R ↔ v x ≤ 1 := by
   rw [← Valuation.mem_integer_iff, ValuationRing.mem_integer_iff, ← Set.mem_range]
   change x ∈ R ↔ x ∈ R.subtype.range
   rw [Subring.range_subtype]
 
 omit [ValuationRing ↥R] [IsFractionRing (↥R) K] in
+/--
+@isnad1 id=eq.0h3v.s9.b40654cb1528 from=translated src=- shape=7ef914ec vocab=a985171f
+-/
 lemma coe_inv_eq_inv_coe (u : Rˣ) : (u : K)⁻¹ = u⁻¹ := by
   symm
   apply eq_inv_of_mul_eq_one_right
   change ((u : R) : K) * ((u⁻¹ : Rˣ) : R) = 1
   rw [← Subring.coe_mul, Units.mul_inv, Subring.coe_one]
 
+/--
+@isnad1 id=or.0h3v.s8.19621f70c545 from=translated src=- shape=d31b6949 vocab=72fdbe8b
+-/
 lemma mem_or_inv_mem (x : K) : x ∈ R ∨ x⁻¹ ∈ R := by
   rw [mem_subring_iff_integer, mem_subring_iff_integer]
   by_cases h : v x ≤ 1
@@ -101,16 +116,28 @@ NOTE: The following lemmas are mostly copied from the analogous lemmas for `Valu
 It could be advisable to change our setup, started a Zulip discussion for that.
 -/
 
+/--
+@isnad1 id=iff.0h4v.s11.830ea36b5ffc from=translated src=- shape=d14abe84 vocab=bea6f6f6
+-/
 theorem valuation_eq_iff (x y : K) :
     v x = v y ↔ ∃ (a : Rˣ), a * y = x :=
   Quotient.eq''
 
+/--
+@isnad1 id=eq.0h3v.s10.e3a4633c17dd from=translated src=- shape=7b2ebf31 vocab=bffde15f
+-/
 theorem valuation_unit (a : Rˣ) : v a = 1 := by
   rw [← Valuation.map_one v, valuation_eq_iff]; use a; simp
 
+/--
+@isnad1 id=eq.1h3v.s10.336f0707ec59 from=translated src=- shape=9f3ca1e4 vocab=a1bfc78a
+-/
 lemma valuation_isUnit (a : R) (ha : IsUnit a) : v a = 1 :=
   valuation_unit ha.unit
 
+/--
+@isnad1 id=iff.0h3v.s10.8e6c95c879cf from=translated src=- shape=16f87574 vocab=a1bfc78a
+-/
 lemma valuation_eq_one_iff (a : R) : IsUnit a ↔ v a = 1 :=
   ⟨fun h => valuation_unit h.unit, fun h => by
     have ha : (a : K) ≠ 0 := by
@@ -121,10 +148,16 @@ lemma valuation_eq_one_iff (a : R) : IsUnit a ↔ v a = 1 :=
     ext
     simp_all⟩
 
+/--
+@isnad1 id=eq.0h3v.s10.e3a4633c17dd from=translated src=- shape=7b2ebf31 vocab=bffde15f
+-/
 lemma valuation_unit_eq_one (x : Rˣ) : v x = 1 :=
   valuation_unit x
 
 include hϖ in
+/--
+@isnad1 id=lt.1h3v.s11.7ea2f84d4840 from=translated src=- shape=9f3ca1e4 vocab=d652f0c8
+-/
 lemma valuation_lt_one_of_irreducible : v ϖ < 1 := by
   by_contra h
   apply hϖ.not_isUnit
@@ -146,17 +179,26 @@ noncomputable def zaddVal (x : Kˣ) : ℤ :=
     (IsDiscreteValuationRing.exists_irreducible R).choose_spec
     x
 
+/--
+@isnad1 id=ex.1h4v.s11.e828e8e0a5c5 from=translated src=- shape=60023314 vocab=7633ee76
+-/
 lemma zaddVal'_spec (x : Kˣ) : ∃ (u : Rˣ),
     x = Units.map R.subtype u *
       (Units.mk0 ϖ.val (by simpa using hϖ.ne_zero)) ^ (zaddVal' ϖ hϖ x) :=
   (eq_unit_mul_pow_irreducible' ϖ hϖ x).choose_spec
 
+/--
+@isnad1 id=ex.0h3v.s9.67f47d14a646 from=translated src=- shape=63e825ce vocab=b67400e2
+-/
 lemma zaddVal_spec' (x : Kˣ) : ∃ (ϖ : R) (hϖ : Irreducible ϖ),
     zaddVal (R := R) x = zaddVal' ϖ hϖ x := by
   use (IsDiscreteValuationRing.exists_irreducible R).choose
   use (IsDiscreteValuationRing.exists_irreducible R).choose_spec
   rfl
 
+/--
+@isnad1 id=ex.0h3v.s11.211ff3003b88 from=translated src=- shape=ba4e107a vocab=f065438e
+-/
 lemma zaddVal_spec (x : Kˣ) : ∃ (ϖ : R) (hϖ : Irreducible ϖ)
     (u : Rˣ),
     x = Units.map R.subtype u *
@@ -168,6 +210,9 @@ lemma zaddVal_spec (x : Kˣ) : ∃ (ϖ : R) (hϖ : Irreducible ϖ)
   rwa [h]
 
 include hϖ in
+/--
+@isnad1 id=eq.2h7v.s10.9199d5505694 from=translated src=- shape=e9471c67 vocab=bfa7f1c1
+-/
 lemma unit_mul_zpow_congr_zpow' (a b : Rˣ) (m n : ℤ) (h : a * ϖ.val ^ m = b * ϖ.val ^ n) :
     m = n := by
   wlog hmn : m ≤ n
@@ -193,6 +238,9 @@ lemma unit_mul_zpow_congr_zpow' (a b : Rˣ) (m n : ℤ) (h : a * ϖ.val ^ m = b 
   symm
   exact Int.le_antisymm this hmn
 
+/--
+@isnad1 id=eq.3h8v.s10.265d71c15ef3 from=translated src=- shape=d6c89b2e vocab=bfa7f1c1
+-/
 lemma unit_mul_zpow_congr_zpow {p q : R} (hp : Irreducible p) (hq : Irreducible q)
     (a b : Rˣ) (m n : ℤ) (h : a * p.val ^ m = b * q.val ^ n) :
     m = n := by
@@ -207,6 +255,9 @@ lemma unit_mul_zpow_congr_zpow {p q : R} (hp : Irreducible p) (hq : Irreducible 
 
 include hϖ in
 omit [IsDiscreteValuationRing R] in
+/--
+@isnad1 id=iff.1h4v.s10.64ac99632e00 from=translated src=- shape=3b9293d2 vocab=4bd68fbe
+-/
 lemma valuation_irreducible_zpow_eq_one_iff (n : ℤ) : v (ϖ.val ^ n) = 1 ↔ n = 0 := by
   constructor
   · intro h
@@ -217,6 +268,9 @@ lemma valuation_irreducible_zpow_eq_one_iff (n : ℤ) : v (ϖ.val ^ n) = 1 ↔ n
 
 include hϖ in
 omit [ValuationRing R] [IsDiscreteValuationRing ↥R] [IsFractionRing (↥R) K] in
+/--
+@isnad1 id=not.1h3v.s8.ff109583021e from=translated src=- shape=b151602e vocab=60061e6d
+-/
 lemma inv_irreducible_not_mem_subring : ϖ.val⁻¹ ∉ R := by
   by_contra h
   apply hϖ.not_isUnit
@@ -233,6 +287,9 @@ lemma inv_irreducible_not_mem_subring : ϖ.val⁻¹ ∉ R := by
 
 include hϖ in
 omit [ValuationRing R] [IsDiscreteValuationRing ↥R] [IsFractionRing (↥R) K] in
+/--
+@isnad1 id=not.2h4v.s8.3c7df5886cc2 from=translated src=- shape=76f4fbb5 vocab=5beb3d46
+-/
 lemma neg_pow_not_mem_subring (n : ℕ) (hn : n > 0) : ϖ.val ^ (- n : ℤ) ∉ R := by
   induction n with
   | zero => contradiction
@@ -258,6 +315,9 @@ lemma neg_pow_not_mem_subring (n : ℕ) (hn : n > 0) : ϖ.val ^ (- n : ℤ) ∉ 
 
 omit [ValuationRing R] [IsDiscreteValuationRing ↥R] [IsFractionRing (↥R) K] in
 include hϖ in
+/--
+@isnad1 id=iff.1h4v.s8.34e2bb2882ac from=translated src=- shape=97c9ebaa vocab=a80ab009
+-/
 lemma irreducible_zpow_mem_subring_iff (n : ℤ) : ϖ.val ^ n ∈ R ↔ n ≥ 0 := by
   constructor
   · intro h
@@ -273,6 +333,9 @@ lemma irreducible_zpow_mem_subring_iff (n : ℤ) : ϖ.val ^ n ∈ R ↔ n ≥ 0 
     · rw [SubmonoidClass.coe_pow, ← zpow_natCast, Int.toNat_of_nonneg hn]
     · exact SetLike.coe_mem (ϖ ^ n.toNat)
 
+/--
+@isnad1 id=iff.1h5v.s11.ba5fdab8c571 from=translated src=- shape=bb34fb19 vocab=f065438e
+-/
 lemma zaddVal_eq_iff (n : ℤ) (x : Kˣ) :
     zaddVal (R := R) x = n ↔ ∃ (u : Rˣ), Units.map R.subtype u *
       (Units.mk0 ϖ.val (by simpa using hϖ.ne_zero)) ^ n = x := by
@@ -295,6 +358,9 @@ lemma zaddVal_eq_iff (n : ℤ) (x : Kˣ) :
     exact hy.symm
 
 include hϖ in
+/--
+@isnad1 id=iff.1h5v.s9.df66d38d60d1 from=translated src=- shape=9f2546d7 vocab=4a769cdc
+-/
 lemma zaddVal_eq_iff' (n : ℤ) (x : Kˣ) :
     zaddVal (R := R) x = n ↔ ∃ (u : Rˣ), u * ϖ.val ^ n = x := by
   rw [zaddVal_eq_iff ϖ hϖ]
@@ -305,6 +371,9 @@ lemma eq_unit_mul_zpow_zaddVal (x : Kˣ) :
     ∃ (u : Rˣ), u * ϖ.val ^ zaddVal (R := R) x = x :=
   (zaddVal_eq_iff' ϖ hϖ (zaddVal (R := R) x) x).mp rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.eee1008bff77 from=translated src=- shape=704ee111 vocab=e69197f5
+-/
 @[simp]
 lemma zaddVal_mul (x y : Kˣ) :
     zaddVal (R := R) (x * y) = zaddVal (R := R) x + zaddVal (R := R) y := by
@@ -317,6 +386,9 @@ lemma zaddVal_mul (x y : Kˣ) :
   rw [zpow_add₀ (by simpa using hϖ.ne_zero), ← hux, ← huy]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s11.650c059a518a from=translated src=- shape=c14f76c0 vocab=2e1369e1
+-/
 @[simp]
 lemma zaddVal_units_map (x : Rˣ) :
     zaddVal (R := R) (Units.map R.subtype x) = 0 := by

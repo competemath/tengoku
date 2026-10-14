@@ -34,7 +34,9 @@ def parametricPairing {X : Type} (Ψ : X → Vec3 → ℝ)
     ∑ i, ∑ j, (∫ y, g₂ y i j * mixedSecond (Ψ x) i j y)
 
 /-- A continuous scalar pairing which vanishes on a dense parameter set
-vanishes for every parameter. -/
+vanishes for every parameter.
+@isnad1 id=eq.3h7v.s6.6977de7d4c41 from=translated src=- shape=cd443aba vocab=e7dcfa05
+-/
 theorem parametricPairing_eq_zero_of_dense {X : Type} [TopologicalSpace X]
     {Ψ : X → Vec3 → ℝ}
     {g₀ : Vec3 → ℝ} {g₁ : Vec3 → Vec3}
@@ -49,7 +51,9 @@ theorem parametricPairing_eq_zero_of_dense {X : Type} [TopologicalSpace X]
   exact congrFun heq x
 
 /-- A continuous scalar pairing which vanishes on a countable dense parameter
-set vanishes for every parameter. -/
+set vanishes for every parameter.
+@isnad1 id=eq.4h7v.s6.57d75f8ac6c1 from=translated src=- shape=fb1640dd vocab=80fa46c5
+-/
 theorem parametricPairing_eq_zero_of_countable_dense
     {X : Type} [TopologicalSpace X]
     {Ψ : X → Vec3 → ℝ}

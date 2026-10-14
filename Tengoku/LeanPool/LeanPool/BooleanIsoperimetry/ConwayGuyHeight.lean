@@ -21,6 +21,9 @@ open scoped BigOperators
 
 namespace BooleanIsoperimetry.CoherentGap
 
+/--
+@isnad1 id=lt.1h1v.s4.3a72cbd1361f from=translated src=- shape=4d32bca1 vocab=c307602b
+-/
 lemma guide_lt_dimension {dimension : ℕ} (hdimension : 2 ≤ dimension) :
     guide dimension < dimension := by
   have hpositive := guide_pos hdimension
@@ -28,6 +31,9 @@ lemma guide_lt_dimension {dimension : ℕ} (hdimension : 2 ≤ dimension) :
   have htriangular := self_le_triangular (guide dimension - 1)
   omega
 
+/--
+@isnad1 id=eq.0h1v.s4.bbec08343837 from=translated src=- shape=8be6e431 vocab=92261eff
+-/
 lemma guide_at_triangular_end (width : ℕ) :
     guide (triangular width + 1) = width := by
   unfold guide
@@ -38,6 +44,9 @@ lemma guide_at_triangular_end (width : ℕ) :
     have hstrict := triangular_strictMono hsmaller
     omega
 
+/--
+@isnad1 id=iff.1h2v.s6.89081b4282b3 from=translated src=- shape=2f065288 vocab=6509b461
+-/
 lemma guide_eq_iff {dimension width : ℕ} (hwidth : 0 < width) :
     guide dimension = width ↔
       triangular (width - 1) + 2 ≤ dimension ∧
@@ -65,12 +74,18 @@ noncomputable def residual (width dimension : ℕ) : ℤ :=
     ∑ index : Fin width,
       conwayGuyHeight (dimension - index.val - 1)
 
+/--
+@isnad1 id=eq.0h1v.s5.1b4c09eebcc4 from=translated src=- shape=37eb010c vocab=9aed6fee
+-/
 lemma conwayGuyDifference_succ (index : ℕ) :
     conwayGuyDifference (index + 1) =
       ∑ offset ∈ Finset.range (guide (index + 2)),
         conwayGuyDifference (index - offset) := by
   simp [conwayGuyDifference, difference]
 
+/--
+@isnad1 id=eq.3h2v.s5.be749cec44cd from=translated src=- shape=2a510cb7 vocab=0e7662f4
+-/
 lemma residual_succ_eq {width dimension : ℕ}
     (hdimension : 0 < dimension)
     (hwidth : width ≤ dimension)
@@ -109,6 +124,9 @@ lemma residual_succ_eq {width dimension : ℕ}
   rw [hdifference]
   ring
 
+/--
+@isnad1 id=eq.1h2v.s6.3bb25834e13c from=translated src=- shape=e146013b vocab=bea0220f
+-/
 lemma reverse_difference_sum (dimension : ℕ) :
     ∀ width : ℕ, width ≤ dimension →
       (∑ index : Fin width,
@@ -143,6 +161,9 @@ lemma reverse_difference_sum (dimension : ℕ) :
       rw [hzero]
       ring
 
+/--
+@isnad1 id=eq.1h1v.s5.057c9c497c87 from=translated src=- shape=0e2ed30b vocab=fc534200
+-/
 lemma conwayGuyDifference_eq_height_window (dimension : ℕ)
     (hdimension : 0 < dimension) :
     (conwayGuyDifference dimension : ℤ) =
@@ -166,6 +187,9 @@ lemma conwayGuyDifference_eq_height_window (dimension : ℕ)
   simp_rw [hargument]
   exact hwindow
 
+/--
+@isnad1 id=eq.0h2v.s5.af96562e440a from=translated src=- shape=6c694c78 vocab=bd066625
+-/
 lemma residual_succ_width (width dimension : ℕ) :
     residual (width + 1) (dimension + 1) =
       residual width dimension +
@@ -187,6 +211,9 @@ lemma residual_succ_width (width dimension : ℕ) :
   rw [hzero]
   ring
 
+/--
+@isnad1 id=eq.2h2v.s5.a8e7ffd3dc51 from=translated src=- shape=106fb1e9 vocab=1fba8719
+-/
 lemma residual_eq_block_start {width dimension : ℕ}
     (hwidth : 0 < width)
     (hguide : guide dimension = width) :
@@ -205,6 +232,9 @@ lemma residual_eq_block_start {width dimension : ℕ}
       rw [residual_succ_eq (by omega) hwidthLe hnextGuide,
         inductionHypothesis hcurrentGuide (by omega)]
 
+/--
+@isnad1 id=eq.0h1v.s6.83f336abe9b8 from=translated src=- shape=58011a89 vocab=2e446d41
+-/
 lemma residual_next_block_start (previous : ℕ) :
     residual (previous + 2) (triangular (previous + 1) + 2) =
       residual (previous + 1) (triangular (previous + 1) + 1) -
@@ -250,6 +280,9 @@ lemma residual_next_block_start (previous : ℕ) :
       rw [hwindow]
       ring
 
+/--
+@isnad1 id=eq.0h1v.s6.0f834f322f2d from=translated src=- shape=0cd8f9cd vocab=5b565f00
+-/
 lemma correction_sum_succ (previous : ℕ) :
     (∑ index : Fin (previous + 1),
         conwayGuyHeight (triangular index.val)) =
@@ -262,6 +295,9 @@ lemma correction_sum_succ (previous : ℕ) :
       (fun index => conwayGuyHeight (triangular index)) previous,
     Finset.sum_range_succ]
 
+/--
+@isnad1 id=eq.1h2v.s6.b07d31aabd50 from=translated src=- shape=2f339bd1 vocab=6c874e82
+-/
 theorem block_identity_by_width :
     ∀ previous dimension : ℕ,
       guide dimension = previous + 1 →
@@ -304,7 +340,9 @@ theorem block_identity_by_width :
       rw [hstart, residual_next_block_start, correction_sum_succ]
       linarith
 
-/-- The exact triangular-block identity for every Conway--Guy height. -/
+/-- The exact triangular-block identity for every Conway--Guy height.
+@isnad1 id=eq.1h1v.s7.01c8c84bd94d from=translated src=- shape=f9c7c250 vocab=39275b26
+-/
 theorem conwayGuy_block_identity (dimension : ℕ)
     (hdimension : 2 ≤ dimension) :
     conwayGuyHeight dimension -

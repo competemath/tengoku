@@ -39,10 +39,16 @@ def offEdgeMatrix (G : SimpleGraph V) [DecidableRel G.Adj] : Matrix V V ℝ :=
   1 + Gᶜ.adjMatrix ℝ
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=eq.0h3v.s4.43be85ab3bf4 from=translated src=- shape=e1d4b224 vocab=e8b1dfc2
+-/
 lemma onesMatrix_apply (i j : V) : onesMatrix i j = 1 :=
   rfl
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h4v.s5.a3a6f490e244 from=translated src=- shape=31ff57f1 vocab=e719cca6
+-/
 lemma offEdgeMatrix_apply (i j : V) :
     offEdgeMatrix G i j = if G.Adj i j then (0 : ℝ) else 1 := by
   simp [offEdgeMatrix, Matrix.one_apply, SimpleGraph.adjMatrix_apply, SimpleGraph.compl_adj]
@@ -54,16 +60,24 @@ lemma offEdgeMatrix_apply (i j : V) :
     · simp [hii]
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h2v.s4.872a912c63ff from=translated src=- shape=1aaa412e vocab=b59361ec
+-/
 lemma inner_onesMatrix_hadamard_self (X : Matrix V V ℝ) :
     inner (onesMatrix (V := V)) (X ⊙ X) = inner X X := by
   simp [inner_eq_sum, onesMatrix_apply, hadamard_apply]
 
+/--
+@isnad1 id=eq.0h3v.s6.f087923b86a8 from=translated src=- shape=f7db2259 vocab=d532fffe
+-/
 lemma inner_offEdgeMatrix_hadamard_self (X : Matrix V V ℝ) :
     inner (offEdgeMatrix G) (X ⊙ X) =
       ∑ i, ∑ j, if G.Adj i j then (0 : ℝ) else X i j ^ 2 := by
   simp [inner_eq_sum, offEdgeMatrix_apply, hadamard_apply, pow_two]
 
-/-- The mass on the diagonal is at most the off-edge normalization. -/
+/-- The mass on the diagonal is at most the off-edge normalization.
+@isnad1 id=le.0h3v.s6.20632a793b3e from=translated src=- shape=0036f1b0 vocab=c8e3387d
+-/
 lemma sum_diag_sq_le_inner_offEdgeMatrix (X : Matrix V V ℝ) :
     ∑ i, X i i ^ 2 ≤ inner (offEdgeMatrix G) (X ⊙ X) := by
   rw [inner_offEdgeMatrix_hadamard_self]
@@ -91,12 +105,18 @@ noncomputable def chiVec3 (G : SimpleGraph V) [DecidableRel G.Adj] : ℝ :=
 
 omit [DecidableEq V] [Fintype V] in
 variable [Finite V] in
+/--
+@isnad1 id=possemid.0h3v.s5.7eb7ce5f67f1 from=translated src=- shape=142e33e6 vocab=1f70d6be
+-/
 lemma posSemidef_add_vecMulVec (u v : V → ℝ) :
     (vecMulVec u u + vecMulVec v v).PosSemidef :=
   ((posSemidef_vecMulVec_self_star (R := ℝ) u).add
     (posSemidef_vecMulVec_self_star (R := ℝ) v))
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=le.0h3v.s6.81d03d482344 from=translated src=- shape=d7c77e26 vocab=12f9623d
+-/
 lemma rank_add_vecMulVec_le (u v : V → ℝ) :
     (vecMulVec u u + vecMulVec v v).rank ≤ 2 := by
   rw [rank_eq_finrank_span_cols]
@@ -120,7 +140,9 @@ lemma rank_add_vecMulVec_le (u v : V → ℝ) :
   exact this
 
 omit [DecidableEq V] in
-/-- A real PSD matrix of rank at most two is a sum of two real outer products. -/
+/-- A real PSD matrix of rank at most two is a sum of two real outer products.
+@isnad1 id=ex.2h2v.s6.40b139061c5f from=translated src=- shape=25a5bfc7 vocab=66d06a33
+-/
 lemma exists_add_vecMulVec_of_posSemidef_rank_le_two
     {X : Matrix V V ℝ} (hX : X.PosSemidef) (hr : X.rank ≤ 2) :
     ∃ u v : V → ℝ, X = vecMulVec u u + vecMulVec v v := by
@@ -176,6 +198,9 @@ def chiVec3Param (G : SimpleGraph V) [DecidableRel G.Adj] :
     ∀ i j, G.Adj i j → 0 ≤ (vecMulVec p.1 p.1 + vecMulVec p.2 p.2) i j}
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=continuo.0h1v.s6.12697e318128 from=translated src=- shape=af56dd19 vocab=2a7d0ed9
+-/
 lemma continuous_add_vecMulVec :
     Continuous fun p : (V → ℝ) × (V → ℝ) =>
       vecMulVec p.1 p.1 + vecMulVec p.2 p.2 :=
@@ -183,11 +208,17 @@ lemma continuous_add_vecMulVec :
     (continuous_id.matrix_vecMulVec continuous_id).comp continuous_snd
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=continuo.0h1v.s5.4d5e2f6e53c5 from=translated src=- shape=3fbdddc9 vocab=8a11fc41
+-/
 lemma continuous_inner_self : Continuous fun X : Matrix V V ℝ => inner X X := by
   simp_rw [inner_self]
   exact continuous_finsetSum _ fun i _ =>
     continuous_finsetSum _ fun j _ => (continuous_apply_apply i j).pow 2
 
+/--
+@isnad1 id=continuo.0h2v.s5.223f9148d566 from=translated src=- shape=e51f3d33 vocab=04b7b6e6
+-/
 lemma continuous_inner_offEdge_hadamard :
     Continuous fun X : Matrix V V ℝ => inner (offEdgeMatrix G) (X ⊙ X) := by
   simp_rw [inner_offEdgeMatrix_hadamard_self]
@@ -198,10 +229,16 @@ lemma continuous_inner_offEdge_hadamard :
       · exact (continuous_apply_apply i j).pow 2
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=iff.0h2v.s6.b77d04423e3b from=translated src=- shape=d5f0d601 vocab=f7347bbb
+-/
 lemma mem_pi_Icc_iff {u : V → ℝ} :
     u ∈ univ.pi (fun _ : V => Icc (-1 : ℝ) 1) ↔ ∀ i, u i ∈ Icc (-1 : ℝ) 1 :=
   ⟨fun h i => h i (mem_univ i), fun h i _ => h i⟩
 
+/--
+@isnad1 id=isclosed.0h2v.s5.181d97bc8d99 from=translated src=- shape=e86a0350 vocab=032e8896
+-/
 lemma isClosed_chiVec3Param : IsClosed (chiVec3Param G) := by
   have hbox1 : IsClosed {p : (V → ℝ) × (V → ℝ) | ∀ i, p.1 i ∈ Icc (-1 : ℝ) 1} := by
     have : {p : (V → ℝ) × (V → ℝ) | ∀ i, p.1 i ∈ Icc (-1 : ℝ) 1} =
@@ -247,6 +284,9 @@ lemma isClosed_chiVec3Param : IsClosed (chiVec3Param G) := by
   rw [this]
   exact ((hbox1.inter hbox2).inter hnorm).inter hnn
 
+/--
+@isnad1 id=iscompac.0h2v.s5.88db51dbd3df from=translated src=- shape=e86a0350 vocab=d92d4d92
+-/
 lemma isCompact_chiVec3Param : IsCompact (chiVec3Param G) := by
   have hbox : IsCompact
       {p : (V → ℝ) × (V → ℝ) |
@@ -266,6 +306,9 @@ lemma isCompact_chiVec3Param : IsCompact (chiVec3Param G) := by
   intro p hp
   exact ⟨hp.1, hp.2.1⟩
 
+/--
+@isnad1 id=mem.3h5v.s7.021fafb7295f from=translated src=- shape=b21776e7 vocab=c0380d02
+-/
 lemma mem_chiVec3Param_of_add_vecMulVec {X : Matrix V V ℝ} {u v : V → ℝ}
     (hX : X = vecMulVec u u + vecMulVec v v)
     (hnorm : inner (offEdgeMatrix G) (X ⊙ X) = 1)
@@ -291,6 +334,9 @@ lemma mem_chiVec3Param_of_add_vecMulVec {X : Matrix V V ℝ} {u v : V → ℝ}
   · simpa [hX] using hnorm
   · simpa [hX] using hnn
 
+/--
+@isnad1 id=mem.1h3v.s7.2b26ab912652 from=translated src=- shape=e5d0deea vocab=aba906e1
+-/
 lemma ChiVec3Feasible.mem_image_param {X : Matrix V V ℝ}
     (hX : ChiVec3Feasible G X) :
     X ∈ (fun p : (V → ℝ) × (V → ℝ) => vecMulVec p.1 p.1 + vecMulVec p.2 p.2) ''
@@ -299,6 +345,9 @@ lemma ChiVec3Feasible.mem_image_param {X : Matrix V V ℝ}
     exists_add_vecMulVec_of_posSemidef_rank_le_two hX.1 hX.2.1
   exact ⟨(u, v), mem_chiVec3Param_of_add_vecMulVec rfl hX.2.2.1 hX.2.2.2, rfl⟩
 
+/--
+@isnad1 id=chivec3f.1h3v.s7.d622178c58df from=translated src=- shape=e5bea043 vocab=aba906e1
+-/
 lemma ChiVec3Feasible.of_mem_image_param {X : Matrix V V ℝ}
     (hX : X ∈ (fun p : (V → ℝ) × (V → ℝ) => vecMulVec p.1 p.1 + vecMulVec p.2 p.2) ''
       chiVec3Param G) :
@@ -306,6 +355,9 @@ lemma ChiVec3Feasible.of_mem_image_param {X : Matrix V V ℝ}
   obtain ⟨⟨u, v⟩, hp, rfl⟩ := hX
   refine ⟨posSemidef_add_vecMulVec u v, rank_add_vecMulVec_le u v, hp.2.2.1, hp.2.2.2⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.92a5c20365da from=translated src=- shape=e4f2e766 vocab=d59fe500
+-/
 lemma chiVec3FeasibleSet_eq_image :
     {X : Matrix V V ℝ | ChiVec3Feasible G X} =
       (fun p : (V → ℝ) × (V → ℝ) => vecMulVec p.1 p.1 + vecMulVec p.2 p.2) ''
@@ -314,7 +366,9 @@ lemma chiVec3FeasibleSet_eq_image :
   exact ⟨ChiVec3Feasible.mem_image_param, ChiVec3Feasible.of_mem_image_param⟩
 
 /-- **CG07.** A standard-basis rank-one matrix is feasible after the
-normalization (already equal to `1`). -/
+normalization (already equal to `1`).
+@isnad1 id=chivec3f.0h2v.s6.625c69d9ae06 from=translated src=- shape=907470af vocab=a3e17280
+-/
 lemma chiVec3Feasible_single [Nonempty V] :
     ChiVec3Feasible G
       (vecMulVec (Pi.single (Classical.arbitrary V) (1 : ℝ))
@@ -350,20 +404,30 @@ lemma chiVec3Feasible_single [Nonempty V] :
     split_ifs <;> simp_all
   exact ⟨hpsd, hrank, hnorm, hnn⟩
 
+/--
+@isnad1 id=nonempty.0h2v.s5.13c054749aaf from=translated src=- shape=d4babac2 vocab=767f9267
+-/
 lemma chiVec3FeasibleSet_nonempty [Nonempty V] :
     ({X : Matrix V V ℝ | ChiVec3Feasible G X}).Nonempty :=
   ⟨_, chiVec3Feasible_single (G := G)⟩
 
-/-- **CG07.** The feasible set is compact. -/
+/-- **CG07.** The feasible set is compact.
+@isnad1 id=iscompac.0h2v.s5.23502342b125 from=translated src=- shape=2918563c vocab=33282bd5
+-/
 lemma isCompact_chiVec3FeasibleSet : IsCompact {X : Matrix V V ℝ | ChiVec3Feasible G X} := by
   rw [chiVec3FeasibleSet_eq_image]
   exact isCompact_chiVec3Param.image continuous_add_vecMulVec
 
+/--
+@isnad1 id=bddabove.0h2v.s5.9b93ce35bc35 from=translated src=- shape=874fb608 vocab=b7031aad
+-/
 lemma bddAbove_image_inner_chiVec3 :
     BddAbove ((fun X : Matrix V V ℝ => inner X X) '' {X | ChiVec3Feasible G X}) :=
   isCompact_chiVec3FeasibleSet.image continuous_inner_self |>.bddAbove
 
-/-- **CG07.** The Frobenius objective attains its maximum on the feasible set. -/
+/-- **CG07.** The Frobenius objective attains its maximum on the feasible set.
+@isnad1 id=ex.0h2v.s6.302ae7565717 from=translated src=- shape=849c04fe vocab=98c2d8b7
+-/
 lemma exists_isMaxOn_inner_chiVec3 [Nonempty V] :
     ∃ X, ChiVec3Feasible G X ∧
       IsMaxOn (fun X : Matrix V V ℝ => inner X X) {X | ChiVec3Feasible G X} X := by
@@ -383,11 +447,17 @@ noncomputable def cliqueGram (s : Finset V) : Matrix V V ℝ :=
   (1 / Real.sqrt s.card) • vecMulVec (cliqueIndicator s) (cliqueIndicator s)
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h3v.s5.6d59dbff4ee9 from=translated src=- shape=119e7670 vocab=9ee523dc
+-/
 lemma cliqueIndicator_apply (s : Finset V) (i : V) :
     cliqueIndicator s i = if i ∈ s then (1 : ℝ) else 0 :=
   rfl
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h4v.s6.918ce90b0672 from=translated src=- shape=e4eb8e00 vocab=f8d62a8d
+-/
 lemma cliqueGram_apply (s : Finset V) (i j : V) :
     cliqueGram s i j =
       if i ∈ s ∧ j ∈ s then 1 / Real.sqrt s.card else 0 := by
@@ -395,6 +465,9 @@ lemma cliqueGram_apply (s : Finset V) (i j : V) :
   split_ifs <;> simp_all
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h4v.s7.7cb40196232c from=translated src=- shape=fc5f61f3 vocab=32050078
+-/
 lemma cliqueGram_sq_apply {s : Finset V} (hs : s.Nonempty) (i j : V) :
     cliqueGram s i j ^ 2 = if i ∈ s ∧ j ∈ s then (1 : ℝ) / s.card else 0 := by
   have hr : (0 : ℝ) < s.card := Nat.cast_pos.mpr (Finset.card_pos.mpr hs)
@@ -406,12 +479,17 @@ lemma cliqueGram_sq_apply {s : Finset V} (hs : s.Nonempty) (i j : V) :
   · simp
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=le.0h3v.s5.4fc2e119686a from=translated src=- shape=7779664e vocab=12315524
+-/
 lemma rank_smul_le (c : ℝ) (A : Matrix V V ℝ) : (c • A).rank ≤ A.rank := by
   classical
   rw [smul_eq_diagonal_mul]
   exact rank_mul_le_right _ _
 
-/-- **CG09.** Off-edge mass of the clique Gram matrix is `1`. -/
+/-- **CG09.** Off-edge mass of the clique Gram matrix is `1`.
+@isnad1 id=eq.2h3v.s6.da32f6ccad9f from=translated src=- shape=3443b50d vocab=36423473
+-/
 lemma inner_offEdge_cliqueGram {s : Finset V} (hs : G.IsClique (s : Set V))
     (hne : s.Nonempty) :
     inner (offEdgeMatrix G) (cliqueGram s ⊙ cliqueGram s) = 1 := by
@@ -446,7 +524,9 @@ lemma inner_offEdge_cliqueGram {s : Finset V} (hs : G.IsClique (s : Set V))
           · simp
     _ = 1 := hsum
 
-/-- **CG09.** The clique Gram matrix is feasible. -/
+/-- **CG09.** The clique Gram matrix is feasible.
+@isnad1 id=chivec3f.2h3v.s5.b81cf8f0dd48 from=translated src=- shape=225bf5bd vocab=20c31f5f
+-/
 lemma chiVec3Feasible_cliqueGram {s : Finset V} (hs : G.IsClique (s : Set V))
     (hne : s.Nonempty) :
     ChiVec3Feasible G (cliqueGram s) := by
@@ -460,7 +540,9 @@ lemma chiVec3Feasible_cliqueGram {s : Finset V} (hs : G.IsClique (s : Set V))
     · exact div_nonneg zero_le_one (Real.sqrt_nonneg _)
     · exact le_rfl
 
-/-- **CG09.** The clique Gram matrix has Frobenius mass `s.card`. -/
+/-- **CG09.** The clique Gram matrix has Frobenius mass `s.card`.
+@isnad1 id=eq.1h2v.s5.878b223d99cb from=translated src=- shape=dd17ce4f vocab=4f6719fa
+-/
 lemma inner_cliqueGram {s : Finset V} (hne : s.Nonempty) :
     inner (cliqueGram s) (cliqueGram s) = s.card := by
   have hr : (0 : ℝ) < s.card := Nat.cast_pos.mpr (Finset.card_pos.mpr hne)
@@ -477,7 +559,9 @@ lemma inner_cliqueGram {s : Finset V} (hne : s.Nonempty) :
   simp_rw [hinter]
   rw [Finset.sum_ite_mem, Finset.univ_inter, Finset.sum_const, nsmul_eq_mul, mul_one]
 
-/-- A maximum clique witnesses `ω(G) ≤ χ''_{vec,3}(G)`. -/
+/-- A maximum clique witnesses `ω(G) ≤ χ''_{vec,3}(G)`.
+@isnad1 id=le.0h2v.s5.a3cb16090c06 from=translated src=- shape=cbeeb2e9 vocab=89283e80
+-/
 lemma cliqueNum_le_chiVec3 [Nonempty V] :
     (G.cliqueNum : ℝ) ≤ chiVec3 G := by
   obtain ⟨s, hs⟩ := G.exists_isNClique_cliqueNum
@@ -496,6 +580,9 @@ lemma cliqueNum_le_chiVec3 [Nonempty V] :
 /-! ### CG08 — upper bound `chiVec3 ≤ cliqueNum` -/
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h2v.s5.dc9a2539c51b from=translated src=- shape=f411ac2e vocab=1e3a0131
+-/
 lemma onesMatrix_eq_adjMatrix_add_offEdgeMatrix :
     onesMatrix (V := V) = G.adjMatrix ℝ + offEdgeMatrix G := by
   ext i j
@@ -503,6 +590,9 @@ lemma onesMatrix_eq_adjMatrix_add_offEdgeMatrix :
   split_ifs <;> simp
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.1h3v.s6.5a5bcfd096df from=translated src=- shape=e40a5516 vocab=5ba5bd4b
+-/
 lemma inner_adjMatrix_hadamard_self_eq_sum_posPart_sq {X : Matrix V V ℝ}
     (hnn : ∀ i j, G.Adj i j → 0 ≤ X i j) :
     inner (G.adjMatrix ℝ) (X ⊙ X) =
@@ -515,6 +605,9 @@ lemma inner_adjMatrix_hadamard_self_eq_sum_posPart_sq {X : Matrix V V ℝ}
   · rw [ite_eq_right hij, zero_mul, zero_mul]
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=le.0h3v.s5.893b1f2710ce from=translated src=- shape=5ac0f3dd vocab=7e9ae0f8
+-/
 lemma inner_adjMatrix_hadamard_self_nonneg (X : Matrix V V ℝ) :
     0 ≤ inner (G.adjMatrix ℝ) (X ⊙ X) := by
   rw [inner_eq_sum]
@@ -522,6 +615,9 @@ lemma inner_adjMatrix_hadamard_self_nonneg (X : Matrix V V ℝ) :
   simp only [hadamard_apply, SimpleGraph.adjMatrix_apply]
   split_ifs <;> simp [mul_self_nonneg]
 
+/--
+@isnad1 id=eq.1h3v.s6.07568bf4d8af from=translated src=- shape=b9d87add vocab=bfb08d01
+-/
 lemma inner_self_eq_inner_adjMatrix_hadamard_add_one {X : Matrix V V ℝ}
     (hX : ChiVec3Feasible G X) :
     inner X X = inner (G.adjMatrix ℝ) (X ⊙ X) + 1 := by
@@ -529,6 +625,9 @@ lemma inner_self_eq_inner_adjMatrix_hadamard_add_one {X : Matrix V V ℝ}
     inner_add_left, hX.2.2.1]
 
 omit [Fintype V] [DecidableEq V] [DecidableRel G.Adj] in
+/--
+@isnad1 id=eq.0h2v.s5.b3d88b7be37f from=translated src=- shape=7062bebe vocab=8b7a9519
+-/
 lemma one_sub_turanFactor :
     1 - turanFactor G = 1 / (G.cliqueNum : ℝ) := by
   simp [turanFactor]

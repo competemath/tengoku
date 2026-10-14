@@ -25,7 +25,9 @@ noncomputable section
 namespace CKN.Core.Endgame
 
 /-- Multiplication by a real constant scales the Morrey seminorm by at most
-its absolute value. No measurability or finiteness assumptions are needed. -/
+its absolute value. No measurability or finiteness assumptions are needed.
+@isnad1 id=le.1h4v.s5.38e6b5430de0 from=translated src=- shape=9e27da7d vocab=1860b694
+-/
 theorem morreyNorm_const_mul_le {P τ : ℝ} (hP : 0 < P)
     (c : ℝ) (f : ParabolicPoint → ℝ) :
     morreyNorm P τ (fun z => c * f z) ≤ ENNReal.ofReal |c| * morreyNorm P τ f := by

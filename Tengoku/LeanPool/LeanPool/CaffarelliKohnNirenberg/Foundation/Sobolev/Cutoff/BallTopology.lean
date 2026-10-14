@@ -24,18 +24,24 @@ noncomputable section
 
 namespace CKN
 
-/-- The open Euclidean ball is open in the product topology. -/
+/-- The open Euclidean ball is open in the product topology.
+@isnad1 id=isopen.0h3v.s4.c952491410c0 from=translated src=- shape=efc2d0d2 vocab=10ee2bbe
+-/
 theorem isOpen_euclideanBall {d : ℕ} (x₀ : Vec d) (R : ℝ) :
     IsOpen (euclideanBall x₀ R) := by
   change IsOpen {x : Vec d | euclideanSqDist x x₀ < R ^ 2}
   exact isOpen_lt (contDiff_euclideanSqDist_left x₀).continuous continuous_const
 
-/-- The open Euclidean ball is a measurable set. -/
+/-- The open Euclidean ball is a measurable set.
+@isnad1 id=measurab.0h3v.s4.c6a157c27d8f from=translated src=- shape=efc2d0d2 vocab=9fa20767
+-/
 theorem measurableSet_euclideanBall {d : ℕ} (x₀ : Vec d) (R : ℝ) :
     MeasurableSet (euclideanBall x₀ R) :=
   (isOpen_euclideanBall x₀ R).measurableSet
 
-/-- The open Euclidean ball is contained in the metric ball with the same radius. -/
+/-- The open Euclidean ball is contained in the metric ball with the same radius.
+@isnad1 id=le.1h3v.s5.174461c404b7 from=translated src=- shape=6095e3de vocab=13d0a071
+-/
 theorem euclideanBall_subset_metricBall {d : ℕ} {x₀ : Vec d} {R : ℝ} (hR : 0 < R) :
     euclideanBall x₀ R ⊆ Metric.ball x₀ R := by
   intro x hx
@@ -50,17 +56,23 @@ theorem euclideanBall_subset_metricBall {d : ℕ} {x₀ : Vec d} {R : ℝ} (hR :
     exact_mod_cast hnn
   exact hnorm.trans_lt ((mem_euclideanBall_iff_vecEuclideanNorm_lt hR).1 hx)
 
-/-- The volume of the open Euclidean ball is finite. -/
+/-- The volume of the open Euclidean ball is finite.
+@isnad1 id=lt.1h3v.s6.b18712231a08 from=translated src=- shape=2b50709a vocab=f3e471f8
+-/
 theorem volume_euclideanBall_lt_top {d : ℕ} (x₀ : Vec d) {R : ℝ} (hR : 0 < R) :
     volume (euclideanBall x₀ R) < ⊤ :=
   (measure_mono (euclideanBall_subset_metricBall hR)).trans_lt measure_ball_lt_top
 
-/-- The volume of the open Euclidean ball is not infinite. -/
+/-- The volume of the open Euclidean ball is not infinite.
+@isnad1 id=ne.1h3v.s6.8548c04684ca from=translated src=- shape=366fd2cc vocab=f3e471f8
+-/
 theorem volume_euclideanBall_ne_top {d : ℕ} (x₀ : Vec d) {R : ℝ} (hR : 0 < R) :
     volume (euclideanBall x₀ R) ≠ ⊤ :=
   (volume_euclideanBall_lt_top x₀ hR).ne
 
-/-- The volume of the open Euclidean ball is positive. -/
+/-- The volume of the open Euclidean ball is positive.
+@isnad1 id=lt.1h3v.s6.2494ea497227 from=translated src=- shape=0946eba1 vocab=83288a7b
+-/
 theorem volume_euclideanBall_pos {d : ℕ} (x₀ : Vec d) {R : ℝ} (hR : 0 < R) :
     0 < volume (euclideanBall x₀ R) :=
   (isOpen_euclideanBall x₀ R).measure_pos volume ⟨x₀, by simp [euclideanBall, hR]⟩

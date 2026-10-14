@@ -38,17 +38,23 @@ noncomputable def shearAmplitude (z : Vec3 × ℝ) : ℝ :=
 noncomputable def shearSlope (z : Vec3 × ℝ) : ℝ :=
   Real.exp (-z.2) * Real.cos (z.1 1)
 
-/-- The scalar amplitude is smooth on the ordinary product space. -/
+/-- The scalar amplitude is smooth on the ordinary product space.
+@isnad1 id=contdiff.0h0v.s7.ccead0a9d9ea from=translated src=- shape=7c29c6d3 vocab=637c086d
+-/
 theorem shearAmplitude_smooth : ContDiff ℝ (⊤ : ℕ∞) shearAmplitude := by
   unfold shearAmplitude
   fun_prop
 
-/-- The transverse slope is smooth on the ordinary product space. -/
+/-- The transverse slope is smooth on the ordinary product space.
+@isnad1 id=contdiff.0h0v.s7.1df0f6d72932 from=translated src=- shape=7c29c6d3 vocab=d09707f9
+-/
 theorem shearSlope_smooth : ContDiff ℝ (⊤ : ℕ∞) shearSlope := by
   unfold shearSlope
   fun_prop
 
-/-- The vector velocity is smooth. -/
+/-- The vector velocity is smooth.
+@isnad1 id=contdiff.0h0v.s8.43e9f6e66035 from=translated src=- shape=079840dd vocab=bc2a5f1c
+-/
 theorem shearFlow_smooth : ContDiff ℝ (⊤ : ℕ∞) (fun z : Vec3 × ℝ => shearFlow z) := by
   apply contDiff_pi.mpr
   intro i
@@ -58,7 +64,9 @@ theorem shearFlow_smooth : ContDiff ℝ (⊤ : ℕ∞) (fun z : Vec3 × ℝ => s
   · simp only [shearFlow, hi, ite_false]
     exact contDiff_const
 
-/-- The explicit gradient is smooth. -/
+/-- The explicit gradient is smooth.
+@isnad1 id=contdiff.0h0v.s8.adb078ca8768 from=translated src=- shape=c0b8df06 vocab=b6435d34
+-/
 theorem shearFlowGrad_smooth :
     ContDiff ℝ (⊤ : ℕ∞) (fun z : Vec3 × ℝ => shearFlowGrad z) := by
   apply contDiff_pi.mpr
@@ -72,7 +80,9 @@ theorem shearFlowGrad_smooth :
   · simp only [shearFlowGrad, hij, ite_false]
     exact contDiff_const
 
-/-- The shear is nonzero at a point strictly inside its time interval. -/
+/-- The shear is nonzero at a point strictly inside its time interval.
+@isnad1 id=ex.0h0v.s5.91d6fc4bc254 from=translated src=- shape=cb177d03 vocab=a2809bc8
+-/
 theorem shearFlow_ne_zero :
     ∃ z ∈ spaceTimeSet (Set.univ : Set Vec3) (Ioo (0 : ℝ) 1),
       shearFlow z ≠ 0 := by
@@ -83,7 +93,9 @@ theorem shearFlow_ne_zero :
     have h0 := congrFun h (0 : Fin 3)
     simp [shearFlow] at h0
 
-/-- Spatial derivatives of the scalar amplitude. -/
+/-- Spatial derivatives of the scalar amplitude.
+@isnad1 id=eq.0h2v.s6.875169e89e20 from=translated src=- shape=3257f043 vocab=47f31d23
+-/
 theorem shearAmplitude_spatial (z : Vec3 × ℝ) (j : Fin 3) :
     spatialPartial shearAmplitude j z = if j = 1 then shearSlope z else 0 := by
   have h := ((hasFDerivAt_apply (1 : Fin 3) z.1).sin).const_mul (Real.exp (-z.2))
@@ -92,7 +104,9 @@ theorem shearAmplitude_spatial (z : Vec3 × ℝ) (j : Fin 3) :
   rw [h.fderiv]
   by_cases hj : j = 1 <;> simp [hj, shearSlope, basisVec, eq_comm]
 
-/-- Spatial derivatives of the transverse slope. -/
+/-- Spatial derivatives of the transverse slope.
+@isnad1 id=eq.0h2v.s6.2d8434785025 from=translated src=- shape=ad2d3db6 vocab=a6143135
+-/
 theorem shearSlope_spatial (z : Vec3 × ℝ) (j : Fin 3) :
     spatialPartial shearSlope j z = if j = 1 then -shearAmplitude z else 0 := by
   have h := ((hasFDerivAt_apply (1 : Fin 3) z.1).cos).const_mul (Real.exp (-z.2))
@@ -101,7 +115,9 @@ theorem shearSlope_spatial (z : Vec3 × ℝ) (j : Fin 3) :
   rw [h.fderiv]
   by_cases hj : j = 1 <;> simp [hj, shearAmplitude, basisVec, eq_comm]
 
-/-- The amplitude satisfies exponential time decay. -/
+/-- The amplitude satisfies exponential time decay.
+@isnad1 id=eq.0h1v.s3.53b27802b66a from=translated src=- shape=aefe3f97 vocab=76c3f54a
+-/
 theorem shearAmplitude_time (z : Vec3 × ℝ) :
     timePartial shearAmplitude z = -shearAmplitude z := by
   have h := (((hasDerivAt_id z.2).neg).exp).mul_const (Real.sin (z.1 1))
@@ -109,7 +125,9 @@ theorem shearAmplitude_time (z : Vec3 × ℝ) :
   rw [h.hasFDerivAt.fderiv]
   simp [shearAmplitude]
 
-/-- The supplied matrix is the weak spatial gradient on every open spatial set. -/
+/-- The supplied matrix is the weak spatial gradient on every open spatial set.
+@isnad1 id=hasweakg.0h3v.s5.923c8e45dc18 from=translated src=- shape=d93064aa vocab=cbefb4b5
+-/
 theorem shearFlow_weakGradient (U : Set Vec3) (s : ℝ) (i : Fin 3) :
     HasWeakGradientOn U (fun x => shearFlow (x, s) i)
       (fun x => shearFlowGrad (x, s) i) := by

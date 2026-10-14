@@ -24,7 +24,9 @@ namespace CKN
 
 /-- A countable family of functions that agree almost everywhere on their
 pairwise overlaps admits a single function that agrees with every member almost
-everywhere on that member's own piece. -/
+everywhere on that member's own piece.
+@isnad1 id=ex.2h3v.s7.f4505ae40539 from=translated src=- shape=1f535e66 vocab=e2302f32
+-/
 theorem exists_ae_eq_of_countable_family {d : ℕ}
     {V : ℕ → Set (Vec d)} (hV : ∀ n, MeasurableSet (V n))
     {g : ℕ → Vec d → ℝ}
@@ -60,7 +62,9 @@ theorem exists_ae_eq_of_countable_family {d : ℕ}
   exact measure_mono_null hsub hnull
 
 /-- Local integrability passes from the members of an open countable cover to any
-function that agrees with each member almost everywhere on its piece. -/
+function that agrees with each member almost everywhere on its piece.
+@isnad1 id=locallyi.4h5v.s8.1bce0ab9f022 from=translated src=- shape=51d7d9a1 vocab=9ace9c59
+-/
 theorem locallyIntegrableOn_of_ae_eq_cover {d : ℕ}
     {U : Set (Vec d)} {V : ℕ → Set (Vec d)}
     (hV : ∀ n, IsOpen (V n)) (hcover : U ⊆ ⋃ n, V n)

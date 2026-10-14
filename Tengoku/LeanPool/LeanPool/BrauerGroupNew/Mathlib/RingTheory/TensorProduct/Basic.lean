@@ -27,6 +27,9 @@ def Algebra.TensorProduct.assoc' (R S R' A B C : Type*) [CommSemiring R] [CommSe
   AlgEquiv.ofLinearEquiv (TensorProduct.AlgebraTensorModule.assoc _ _ _ _ _ _)
     rfl (LinearMap.map_mul_iff _|>.2 <| by ext; simp)
 
+/--
+@isnad1 id=eq.0h9v.s10.f1db8273d8c1 from=translated src=- shape=d9fd2aad vocab=4665269a
+-/
 @[simp]
 lemma Algebra.TensorProduct.assoc'_apply (R S R' A B C : Type*) [CommSemiring R] [CommSemiring S]
     [CommSemiring R'] [Semiring A] [Semiring B] [Semiring C] [Algebra R R'] [Algebra R A]

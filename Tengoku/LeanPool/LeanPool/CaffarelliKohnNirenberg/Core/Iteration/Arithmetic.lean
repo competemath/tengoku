@@ -57,11 +57,15 @@ def iterationC₂₉ (C₂₇ C₂₈ : ℝ) : ℝ :=
 def iterationLambda₀ (C₂₇ C₂₈ : ℝ) : ℝ :=
   iterationEta C₂₇ / (2 * iterationC₂₉ C₂₇ C₂₈)
 
-/-- The convention exponent is exactly the paper's `2/5`. -/
+/-- The convention exponent is exactly the paper's `2/5`.
+@isnad1 id=eq.0h0v.s4.d720808e5602 from=translated src=- shape=0efb1284 vocab=4c051d2a
+-/
 theorem iterationEpsilon_eq : iterationEpsilon = (2 / 5 : ℝ) := by
   rfl
 
-/-- The contraction factor is positive when the absolute decay constant is positive. -/
+/-- The contraction factor is positive when the absolute decay constant is positive.
+@isnad1 id=lt.1h1v.s4.6410f9bed1c2 from=translated src=- shape=35bd48ee vocab=f9723e29
+-/
 theorem iterationKappa_pos {C₂₇ : ℝ} (hC₂₇ : 0 < C₂₇) :
     0 < iterationKappa C₂₇ := by
   unfold iterationKappa
@@ -70,7 +74,9 @@ theorem iterationKappa_pos {C₂₇ : ℝ} (hC₂₇ : 0 < C₂₇) :
   · apply Real.rpow_pos_of_pos
     positivity
 
-/-- The paper's convention gives `κ ≤ 1/2`. -/
+/-- The paper's convention gives `κ ≤ 1/2`.
+@isnad1 id=le.0h1v.s4.d9f7b81eb4c1 from=translated src=- shape=45b89831 vocab=1b096e88
+-/
 theorem iterationKappa_le_half (C₂₇ : ℝ) : iterationKappa C₂₇ ≤ (1 / 2 : ℝ) := by
   unfold iterationKappa
   exact min_le_left _ _
@@ -104,12 +110,16 @@ private theorem iterationKappa_decay_bound {C₂₇ : ℝ} (hC₂₇ : 0 < C₂�
         C₂₇ * (8 * C₂₇)⁻¹ := mul_le_mul_of_nonneg_left hpow hC₂₇.le
     _ = (1 / 8 : ℝ) := by field_simp
 
-/-- The first numerical inequality in `eq:kappa-props`. -/
+/-- The first numerical inequality in `eq:kappa-props`.
+@isnad1 id=le.1h1v.s6.09ff8f959642 from=translated src=- shape=e70d838d vocab=023a7cbd
+-/
 theorem iterationKappa_prop₁ {C₂₇ : ℝ} (hC₂₇ : 0 < C₂₇) :
     C₂₇ * iterationKappa C₂₇ ^ (2 / 3 - iterationEpsilon) ≤ (1 / 8 : ℝ) :=
   iterationKappa_decay_bound hC₂₇
 
-/-- The threshold `η` is positive. -/
+/-- The threshold `η` is positive.
+@isnad1 id=lt.1h1v.s4.3723969a278f from=translated src=- shape=35bd48ee vocab=3d05f543
+-/
 theorem iterationEta_pos {C₂₇ : ℝ} (hC₂₇ : 0 < C₂₇) : 0 < iterationEta C₂₇ := by
   unfold iterationEta
   have hκ : 0 < iterationKappa C₂₇ := iterationKappa_pos hC₂₇
@@ -117,12 +127,16 @@ theorem iterationEta_pos {C₂₇ : ℝ} (hC₂₇ : 0 < C₂₇) : 0 < iteratio
   · norm_num
   · positivity
 
-/-- The threshold `η` is at most one. -/
+/-- The threshold `η` is at most one.
+@isnad1 id=le.0h1v.s3.e6054b56cef0 from=translated src=- shape=b14ee516 vocab=90fc1767
+-/
 theorem iterationEta_le_one (C₂₇ : ℝ) : iterationEta C₂₇ ≤ (1 : ℝ) := by
   unfold iterationEta
   exact min_le_left _ _
 
-/-- The auxiliary threshold `ε_*` is positive. -/
+/-- The auxiliary threshold `ε_*` is positive.
+@isnad1 id=lt.1h1v.s4.6a2fe2b98b8e from=translated src=- shape=35bd48ee vocab=fd46e86a
+-/
 theorem iterationEpsilonStar_pos {C₂₇ : ℝ} (hC₂₇ : 0 < C₂₇) :
     0 < iterationEpsilonStar C₂₇ := by
   unfold iterationEpsilonStar
@@ -131,20 +145,26 @@ theorem iterationEpsilonStar_pos {C₂₇ : ℝ} (hC₂₇ : 0 < C₂₇) :
   · norm_num
   · positivity
 
-/-- The auxiliary threshold `ε_*` is at most one. -/
+/-- The auxiliary threshold `ε_*` is at most one.
+@isnad1 id=le.0h1v.s3.67167d09bb46 from=translated src=- shape=b14ee516 vocab=e8e9e506
+-/
 theorem iterationEpsilonStar_le_one (C₂₇ : ℝ) :
     iterationEpsilonStar C₂₇ ≤ (1 : ℝ) := by
   unfold iterationEpsilonStar
   exact min_le_left _ _
 
-/-- The coefficient `C₂₉` is positive when both decay constants are positive. -/
+/-- The coefficient `C₂₉` is positive when both decay constants are positive.
+@isnad1 id=lt.2h2v.s5.6c336e8f98da from=translated src=- shape=6c67d60b vocab=6cdae6af
+-/
 theorem iterationC₂₉_pos {C₂₇ C₂₈ : ℝ} (hC₂₇ : 0 < C₂₇) (hC₂₈ : 0 < C₂₈) :
     0 < iterationC₂₉ C₂₇ C₂₈ := by
   unfold iterationC₂₉
   have hκ : 0 < iterationKappa C₂₇ := iterationKappa_pos hC₂₇
   positivity
 
-/-- The force threshold is positive under the convention hypotheses. -/
+/-- The force threshold is positive under the convention hypotheses.
+@isnad1 id=lt.2h2v.s5.d6084be25989 from=translated src=- shape=6c67d60b vocab=6d62d51b
+-/
 theorem iterationLambda₀_pos {C₂₇ C₂₈ : ℝ} (hC₂₇ : 0 < C₂₇) (hC₂₈ : 0 < C₂₈) :
     0 < iterationLambda₀ C₂₇ C₂₈ := by
   unfold iterationLambda₀
@@ -152,7 +172,9 @@ theorem iterationLambda₀_pos {C₂₇ C₂₈ : ℝ} (hC₂₇ : 0 < C₂₇) 
   have hC₂₉ : 0 < iterationC₂₉ C₂₇ C₂₈ := iterationC₂₉_pos hC₂₇ hC₂₈
   positivity
 
-/-- The final convention identity is `C₂₉ Λ₀ = η/2`. -/
+/-- The final convention identity is `C₂₉ Λ₀ = η/2`.
+@isnad1 id=eq.2h2v.s5.bd2089c34c9d from=translated src=- shape=fbe4e8d5 vocab=8f1b7da8
+-/
 theorem iterationC₂₉_mul_Lambda₀ {C₂₇ C₂₈ : ℝ}
     (hC₂₇ : 0 < C₂₇) (hC₂₈ : 0 < C₂₈) :
     iterationC₂₉ C₂₇ C₂₈ * iterationLambda₀ C₂₇ C₂₈ =
@@ -191,7 +213,9 @@ private lemma min_sq_sqrt_bound {a b : ℝ} (ha : 0 ≤ a) (ha1 : a ≤ 1) (hb :
       simpa only [one_mul] using (lt_div_iff₀ hb16).mp hx1
     nlinarith only [ha1, hlt']
 
-/-- The second numerical inequality in `eq:kappa-props`. -/
+/-- The second numerical inequality in `eq:kappa-props`.
+@isnad1 id=le.1h1v.s7.9f7d7b066a47 from=translated src=- shape=7dacce5f vocab=6ec8a2b5
+-/
 theorem iterationKappa_prop₂ {C₂₇ : ℝ} (hC₂₇ : 0 < C₂₇) :
     2 * C₂₇ * iterationKappa C₂₇ ^ (-5 - iterationEpsilon) *
         (iterationEta C₂₇) ^ (1 / 2 : ℝ) ≤ (1 / 8 : ℝ) := by
@@ -216,7 +240,9 @@ theorem iterationKappa_prop₂ {C₂₇ : ℝ} (hC₂₇ : 0 < C₂₇) :
   rw [hmin] at hbound
   simpa [iterationEta, mul_assoc] using hbound
 
-/-- The third numerical inequality in `eq:kappa-props`. -/
+/-- The third numerical inequality in `eq:kappa-props`.
+@isnad1 id=le.1h1v.s7.1d402d52f0df from=translated src=- shape=1e41b660 vocab=fc2f3cd7
+-/
 theorem iterationKappa_prop₃ {C₂₇ : ℝ} (hC₂₇ : 0 < C₂₇) :
     2 * C₂₇ * iterationKappa C₂₇ ^ (-5 - iterationEpsilon) *
         ((iterationEpsilonStar C₂₇) ^ (1 / 2 : ℝ) + iterationEpsilonStar C₂₇) ≤
@@ -277,7 +303,9 @@ private lemma young_eighth {a b : ℝ} :
 Here `T` and `L` are the paper's normalized sequences, while `Θ` is the
 unscaled quantity appearing in the quadratic term of `eq:theta-decay-2`.
 The hypotheses are exactly the numerical smallness inequalities used in the
-paper's induction. -/
+paper's induction.
+@isnad1 id=le.16h11v.s9.163be60db002 from=translated src=- shape=aac144ef vocab=2fba42a9
+-/
 theorem iteration_normalized_bound
     {T L Θ : ℕ → ℝ} {κ ε η C₂₇ C₂₈ C₂₉ Λ₀ : ℝ}
     (hκ : 0 < κ) (hη : 0 < η)
@@ -368,7 +396,9 @@ theorem iteration_normalized_bound
         _ ≤ η := by nlinarith only [hη]
 
 /-- Reconstructs the paper's bound `θ_n ≤ η κ^(nε)` from the normalized
-iteration bound. -/
+iteration bound.
+@isnad1 id=le.3h6v.s6.211693252d64 from=translated src=- shape=4f748995 vocab=58f4c843
+-/
 theorem theta_iteration_bound
     {θ T : ℕ → ℝ} {κ ε η : ℝ}
     (hκ : 0 < κ) (hscale : ∀ n, θ n = T n * κ ^ ((n : ℝ) * ε))
@@ -380,7 +410,9 @@ theorem theta_iteration_bound
     (Real.rpow_nonneg hκ.le ((n : ℝ) * ε))
 
 /-- The paper's force decay `λ_n ≤ κ^(nσ) λ₀` implies the normalized bound
-`L_n = λ_n κ^(-nε) ≤ Λ₀` whenever `ε ≤ σ` and `λ₀ ≤ Λ₀`. -/
+`L_n = λ_n κ^(-nε) ≤ Λ₀` whenever `ε ≤ σ` and `λ₀ ≤ Λ₀`.
+@isnad1 id=le.6h7v.s7.a28b10576b4f from=translated src=- shape=69517d94 vocab=bbfbc6af
+-/
 theorem force_normalized_bound
     {lam : ℕ → ℝ} {κ ε σ lamZero LamZero : ℝ}
     (hκ : 0 < κ) (hκle : κ ≤ 1) (hεσ : ε ≤ σ)
@@ -446,7 +478,9 @@ private lemma ratio_four_thirds_le_kappa_factor {κ x : ℝ} (hκ : 0 < κ)
 
 /-- The combined quantity has the radius comparison used in the intermediate
 scale step of `prop:iteration`.  The three finiteness hypotheses are the
-side conditions required by the established radius monotonicity theorems. -/
+side conditions required by the established radius monotonicity theorems.
+@isnad1 id=le.8h7v.s8.fe89422a0ed7 from=translated src=- shape=9f9e64ec vocab=8998c950
+-/
 theorem theta_mono_radius_of_finite
     (κ : ℝ) (u : ParabolicPoint → Vec3) (Du : ParabolicPoint → Fin 3 → Vec3)
     (p : ParabolicPoint → ℝ) (z : ParabolicPoint) {r ρ : ℝ}
@@ -532,7 +566,9 @@ private lemma scale_power_bound {κ ε r r₅ : ℝ} {n : ℕ}
     _ = κ ^ (-ε) * r₅ ^ (-ε) * r ^ ε := hright
 
 /-- The intermediate-scale estimate of `prop:iteration`, for a supplied index
-`n` satisfying `κ^(n+1) r₅ < r ≤ κ^n r₅`. -/
+`n` satisfying `κ^(n+1) r₅ < r ≤ κ^n r₅`.
+@isnad1 id=and.12h10v.s9.57b9e9897a30 from=translated src=- shape=86d143e4 vocab=3a975ac1
+-/
 theorem theta_intermediate_scale_bound
     (κ ε η r₅ r : ℝ) (u : ParabolicPoint → Vec3)
     (Du : ParabolicPoint → Fin 3 → Vec3) (p : ParabolicPoint → ℝ)

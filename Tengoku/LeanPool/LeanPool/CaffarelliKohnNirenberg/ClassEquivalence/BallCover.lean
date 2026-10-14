@@ -37,19 +37,25 @@ namespace CKN
 /-! ### Euclidean balls inside an open set -/
 
 /-- A Euclidean ball of `Vec3` is contained in the metric ball of the same
-centre and radius for the ambient supremum norm. -/
+centre and radius for the ambient supremum norm.
+@isnad1 id=le.0h2v.s5.ea67c54e9924 from=translated src=- shape=66883f62 vocab=5a3b28cc
+-/
 theorem vec3Ball_subset_ball (x : Vec3) (r : ℝ) : vec3Ball x r ⊆ Metric.ball x r := by
   intro y hy
   simp only [Metric.mem_ball, dist_eq_norm]
   exact lt_of_le_of_lt (norm_le_vec3EuclideanNorm (y - x)) hy
 
-/-- The centre of a Euclidean ball of positive radius belongs to it. -/
+/-- The centre of a Euclidean ball of positive radius belongs to it.
+@isnad1 id=mem.1h2v.s4.225fd03dc23f from=translated src=- shape=0ed9cdf3 vocab=935b2846
+-/
 theorem mem_vec3Ball_self {x : Vec3} {r : ℝ} (hr : 0 < r) : x ∈ vec3Ball x r := by
   simp only [mem_vec3Ball, sub_self]
   rwa [vec3EuclideanNorm_zero]
 
 /-- Every point of an open subset of `Vec3` has a Euclidean ball around it
-inside the set. -/
+inside the set.
+@isnad1 id=ex.2h2v.s6.eaeecb30beb5 from=translated src=- shape=182abe31 vocab=d75e1f66
+-/
 theorem exists_vec3Ball_subset_of_isOpen {U : Set Vec3} (hU : IsOpen U) {x : Vec3}
     (hx : x ∈ U) :
     ∃ r : ℝ, 0 < r ∧ vec3Ball x r ⊆ U := by
@@ -61,7 +67,9 @@ theorem exists_vec3Ball_subset_of_isOpen {U : Set Vec3} (hU : IsOpen U) {x : Vec
 /-- A compact subset of the space-time carrier sits inside a local box whose
 spatial factor is covered, over that same compact set, by finitely many
 Euclidean balls of the factor.  The time factor of the box is used unchanged
-for every ball. -/
+for every ball.
+@isnad1 id=ex.5h3v.s7.7ce87bf74e57 from=translated src=- shape=f6c49834 vocab=cfbc9016
+-/
 theorem exists_localBox_ball_cover_of_compact_subset {Ω : Set Vec3} {I : Set ℝ}
     (hΩ : IsOpen Ω) (hI : IsOpen I) (hIord : I.OrdConnected)
     {K : Set ParabolicPoint} (hK : IsCompact K) (hKsub : K ⊆ spaceTimeSet Ω I) :
@@ -101,7 +109,9 @@ theorem exists_localBox_ball_cover_of_compact_subset {Ω : Set Vec3} {I : Set �
     exact ⟨hxball, (hKbox hz).2⟩
 
 /-- The ball cover of the previous statement, phrased for the data clauses of
-`def:sws`, which supply the openness and order-connectedness hypotheses. -/
+`def:sws`, which supply the openness and order-connectedness hypotheses.
+@isnad1 id=ex.3h8v.s7.63baf39e80f2 from=translated src=- shape=8f0bf1ac vocab=c7f5d0c8
+-/
 theorem exists_localBox_ball_cover_of_data {Ω : Set Vec3} {I : Set ℝ} {q : ℝ}
     {u : ParabolicPoint → Vec3} {Du : ParabolicPoint → Fin 3 → Vec3}
     {p : ParabolicPoint → ℝ} {f : ParabolicPoint → Vec3}

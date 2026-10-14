@@ -47,7 +47,9 @@ private lemma hasWeakGradientOn_zero (U : Set (Fin 3 → ℝ)) (i : Fin 3) :
   simpa [HasWeakGradientOn] using h
 
 /-- The identically zero velocity, pressure, and forcing satisfy
-  `IsSuitableWeakSolutionIntegrable`. -/
+  `IsSuitableWeakSolutionIntegrable`.
+@isnad1 id=issuitab.4h3v.s7.365b7d00045d from=translated src=- shape=4844d319 vocab=dd75a7bf
+-/
 theorem isSuitableWeakSolutionIntegrable_zero {Ω : Set Vec3} {I : Set ℝ} {q : ℝ}
     (hΩ : IsOpen Ω) (hI : IsOpen I) (hIc : OrdConnected I) (hq : 5 / 2 < q) :
     IsSuitableWeakSolutionIntegrable Ω I q (fun _ => 0) (fun _ _ => 0) (fun _ => 0) (fun _ => 0)

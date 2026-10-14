@@ -25,6 +25,9 @@ open scoped ENNReal Convolution Pointwise
 namespace CKN
 
 noncomputable section
+/--
+@isnad1 id=eq.3h3v.s7.fe784ff0e13f from=translated src=- shape=357be06e vocab=923bce98
+-/
 lemma integral_rpow_norm_eq_lpNorm_rpow
     {p : ℝ≥0∞} (hp0 : p ≠ 0) (hpTop : p ≠ ∞)
     {f : Vec 3 → ℝ} {μ : Measure (Vec 3)} (hf : MemLp f p μ) :
@@ -34,6 +37,9 @@ lemma integral_rpow_norm_eq_lpNorm_rpow
     (Eventually.of_forall fun x => Real.rpow_nonneg (norm_nonneg _) _))
     (ENNReal.toReal_ne_zero.mpr ⟨hp0, hpTop⟩)).symm
 
+/--
+@isnad1 id=tendsto.5h4v.s8.afa5a2026381 from=translated src=- shape=853bd015 vocab=52973c4b
+-/
 lemma tendsto_integral_rpow_norm_of_tendsto_lpNorm
     {p : ℝ≥0∞} (hp0 : p ≠ 0) (hpTop : p ≠ ∞)
     {f : Vec 3 → ℝ} {μ : Measure (Vec 3)} (hf : MemLp f p μ)

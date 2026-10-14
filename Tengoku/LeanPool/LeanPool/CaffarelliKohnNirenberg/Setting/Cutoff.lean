@@ -92,6 +92,9 @@ private theorem cutoff_geometry {ρ r : ℝ} (_ : 0 < ρ) (_ : 0 < r)
   rw [hrev] at hdist'
   simpa only [vec3_norm_eq_native] using hdist'
 
+/--
+@isnad1 id=le.5h5v.s7.8735b4ada0ce from=translated src=- shape=ef1533ea vocab=e90a1a2d
+-/
 theorem cutoff_annulus_separation
     {ρ r : ℝ} (hρ : 0 < ρ) (hr : 0 < r) (hhalf : r ≤ ρ / 2)
     {x₀ x y : Vec3} (hx : x ∈ vec3Ball x₀ r)

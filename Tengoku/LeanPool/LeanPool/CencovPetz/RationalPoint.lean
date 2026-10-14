@@ -41,6 +41,9 @@ namespace MarkovMorphism
 
 variable {α : Type u} [Fintype α]
 
+/--
+@isnad1 id=eq.0h2v.s5.0ce46665d2d5 from=translated src=- shape=d20d038d vocab=b3903ac4
+-/
 lemma card_splitTarget (m : α → ℕ) :
     Fintype.card (SplitTarget (α := α) m) = ∑ a : α, m a := by
   classical
@@ -59,6 +62,9 @@ def IsRational (p : Simplex α) : Prop :=
     (∀ a, 0 < m a) ∧
       ∀ a, p.p a = (m a : ℝ) / ((∑ a : α, m a : ℕ) : ℝ)
 
+/--
+@isnad1 id=issplitr.1h2v.s4.86ecc2d065e0 from=translated src=- shape=93e860ac vocab=d5bd54a5
+-/
 lemma IsRational.isSplitRepresentable {p : Simplex α} (hp : IsRational (α := α) p) :
     IsSplitRepresentable (α := α) p := by
   rcases hp with ⟨m, hm, hp⟩

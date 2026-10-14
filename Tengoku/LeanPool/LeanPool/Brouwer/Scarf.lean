@@ -26,6 +26,9 @@ open Finset
 
 variable {α : Type u} {β : Type v} [DecidableEq α] [DecidableEq β]
 
+/--
+@isnad1 id=ex.1h4v.s7.5fa45ffef8bb from=translated src=- shape=25e7e1a1 vocab=3bc7ab85
+-/
 lemma injOn_sdiff (s : Finset α) (f : α → β) (h : s.card = (Finset.image f s).card + 1) : ∃ a b,
     a ∈ s ∧ b ∈ s ∧ f a = f b ∧ a ≠ b ∧ Set.InjOn f (s \ ({a, b} : Finset α)) := by
   obtain ⟨a, ha, b, hb, hne, heq⟩ :=
@@ -92,12 +95,18 @@ def isDominant :=
   ∀ y, ∃ i ∈ C, ∀ x ∈ σ,  y ≤[i] x
 
 variable {σ C} in
+/--
+@isnad1 id=nonempty.1h4v.s4.5586589752ef from=translated src=- shape=bd214eea vocab=2f7ffb78
+-/
 lemma Nonempty_of_Dominant (h : IST.isDominant σ C) : C.Nonempty := by
   obtain ⟨j,hj⟩ := h default
   exact ⟨j, hj.1⟩
 
 /- Lemma 1 -/
 omit [Inhabited T] in
+/--
+@isnad1 id=isdomina.2h5v.s5.487d467bbadb from=translated src=- shape=b2b10849 vocab=6b0d174f
+-/
 lemma Dominant_of_subset (σ τ : Finset T) (C : Finset I) :
   τ ⊆ σ → isDominant σ C  → isDominant τ C := by
     intro h1 h2 y
@@ -107,6 +116,9 @@ lemma Dominant_of_subset (σ τ : Finset T) (C : Finset I) :
     exact hj.2 x (h1 hx)
 
 omit [Inhabited T] in
+/--
+@isnad1 id=isdomina.2h5v.s5.00c42f36e1e5 from=translated src=- shape=4367d947 vocab=6b0d174f
+-/
 lemma Dominant_of_supset (σ : Finset T) (C D : Finset I) :
   C ⊆ D → isDominant σ C  → isDominant σ D := by
     intro h1 h2 y
@@ -118,6 +130,9 @@ lemma Dominant_of_supset (σ : Finset T) (C D : Finset I) :
 abbrev mini {σ : Finset T} (h2 : σ.Nonempty) (i : I) : T := @Finset.min' _ (IST i) _ h2
 
 omit [Inhabited T] in
+/--
+@isnad1 id=eq.2h4v.s5.ac97f32e9b1d from=translated src=- shape=3b4fd202 vocab=7f9f79fc
+-/
 lemma keylemma_of_dominant {σ : Finset T} {C : Finset I} (h1 : IST.isDominant σ C)
     (h2 : σ.Nonempty) : σ  = C.image (mini h2)  :=
   by
@@ -140,6 +155,9 @@ lemma keylemma_of_dominant {σ : Finset T} {C : Finset I} (h1 : IST.isDominant �
       simp [mini,<-ha,Finset.min'_mem]
 
 omit [Inhabited T] in
+/--
+@isnad1 id=le.1h4v.s4.ffec933395db from=translated src=- shape=71a1c327 vocab=8f93d827
+-/
 lemma card_le_of_domiant {σ : Finset T} {C : Finset I} (h1 : IST.isDominant σ C)
     : σ.card  ≤  C.card  := by
   by_cases h2 : σ.Nonempty
@@ -148,6 +166,9 @@ lemma card_le_of_domiant {σ : Finset T} {C : Finset I} (h1 : IST.isDominant σ 
   · simp_all
 
 omit [Inhabited T] in
+/--
+@isnad1 id=isdomina.1h3v.s4.3dd823db21e7 from=translated src=- shape=50a698e6 vocab=5a7610f7
+-/
 lemma empty_Dominant (h : D.Nonempty) : IST.isDominant Finset.empty D := by
   intro y
   obtain ⟨j,hj⟩ := h
@@ -159,6 +180,9 @@ abbrev isCell := isDominant σ C
 /-- A room: a cell whose color and goods sets have equal size. -/
 abbrev isRoom :=  isCell σ C ∧ C.card = σ.card
 
+/--
+@isnad1 id=nonempty.1h4v.s4.7c1f1d12e83d from=translated src=- shape=03ea068e vocab=d863c5f3
+-/
 lemma sigma_nonempty_of_room {σ : Finset T} {C : Finset I} (h : isRoom σ C) : σ.Nonempty  := by
   rw [← Finset.card_pos, h.2.symm]
   exact Finset.card_pos.2 (Nonempty_of_Dominant h.1)
@@ -174,6 +198,9 @@ inductive isDoorof (τ : Finset T) (D : Finset I) (σ : Finset T) (C : Finset I)
   | odoor (h0 : isCell σ C) (h1 : isDoor τ D) (j :I) (h1 : j ∉ C) (h2 : τ = σ) (h3 : D = insert j C)
 
 omit [Inhabited T] in
+/--
+@isnad1 id=iscell.1h6v.s5.8daedc2336f0 from=translated src=- shape=8a76c33b vocab=adf1c1f3
+-/
 lemma isCell_of_door (h1 : isDoorof τ D σ C) : IST.isCell τ D := by
   cases h1
   · simp_all
@@ -181,6 +208,9 @@ lemma isCell_of_door (h1 : isDoorof τ D σ C) : IST.isCell τ D := by
 
 variable {σ C} in
 omit [Inhabited T] in
+/--
+@isnad1 id=isroom.1h6v.s5.d0aa7c2b7b8e from=translated src=- shape=96d025cd vocab=bec73429
+-/
 lemma isRoom_of_Door (h1 : isDoorof τ D σ C) : IST.isRoom σ C := by
   cases h1
   · rename_i h0 h2 x h3 h4 h5
@@ -205,6 +235,9 @@ lemma isRoom_of_Door (h1 : isDoorof τ D σ C) : IST.isRoom σ C := by
   right_inv := sorry-/
 
 omit [Inhabited T] in
+/--
+@isnad1 id=not.1h6v.s5.69a73ed9c914 from=translated src=- shape=99e7d77e vocab=bec73429
+-/
 lemma room_is_not_door (h1 : IST.isRoom σ C) : ∀ τ D,  ¬ (isDoorof σ C τ D) := by
   intro τ D hd
   unfold isRoom at h1
@@ -225,6 +258,9 @@ abbrev isInternalDoor := IST.isDoor τ D ∧ τ.Nonempty
 
 /- Lemma 2-/
 omit [Inhabited T] [DecidableEq T] [DecidableEq I] in
+/--
+@isnad1 id=isoutsid.0h3v.s4.0dc1db926d13 from=translated src=- shape=e558c0bb vocab=e40b496b
+-/
 lemma outsidedoor_singleton (i : I) : IST.isOutsideDoor Finset.empty {i} := by
   refine ⟨⟨fun y => ⟨i, Finset.mem_singleton.2 rfl, fun x hx => absurd hx (Finset.notMem_empty x)⟩,
     ?_⟩, rfl⟩
@@ -233,6 +269,9 @@ lemma outsidedoor_singleton (i : I) : IST.isOutsideDoor Finset.empty {i} := by
 
 --variable (τ D) in
 omit [Inhabited T] [DecidableEq T] [DecidableEq I] in
+/--
+@isnad1 id=and.1h4v.s5.fb5b227d85b3 from=translated src=- shape=c13149ad vocab=e40b496b
+-/
 lemma outsidedoor_is_singleton (h : IST.isOutsideDoor τ D) :  τ = Finset.empty ∧  ∃ i, D = {i} := by
   obtain ⟨h1, h2⟩ := h
   subst h2
@@ -264,6 +303,9 @@ noncomputable def mElement [Fintype T] (τ : Finset T) (D : Finset I) (i : I)
 
 -- Theorem: mElement is indeed the maximal element
 omit [Inhabited T] [DecidableEq T] [DecidableEq I] in
+/--
+@isnad1 id=ismaxima.2h5v.s5.3a6da99d540c from=translated src=- shape=b0724a2d vocab=07163cd2
+-/
 theorem m_element_is_maximal [Fintype T] (τ : Finset T) (D : Finset I) (i : I)
     (h_nonempty : τ.Nonempty)
     (h : (mSet τ D i h_nonempty).Nonempty) :
@@ -281,6 +323,9 @@ theorem m_element_is_maximal [Fintype T] (τ : Finset T) (D : Finset I) (i : I)
 
 -- Sublemma 3.1: τ is dominant with respect to D - i iff i ∈ {a,b} and M_i = ∅
 omit [Inhabited T] [DecidableEq T] in
+/--
+@isnad1 id=iff.3h5v.s7.17eb2d7d217f from=translated src=- shape=706e7cea vocab=4392b577
+-/
 lemma sublemma_3_1 (τ : Finset T) (D : Finset I)
     (h_door : IST.isDoor τ D) (h_nonempty : τ.Nonempty) :
     ∀ i ∈ D, (IST.isDominant τ (D.erase i) ↔
@@ -347,6 +392,9 @@ lemma sublemma_3_1 (τ : Finset T) (D : Finset I)
 
 /-Sublemma 3.2-/
 omit [Inhabited T] in
+/--
+@isnad1 id=iff.7h7v.s7.68ff42b92611 from=translated src=- shape=d37380fe vocab=a36184e9
+-/
 lemma sublemma_3_2 (τ : Finset T) (D : Finset I) (x : T)
     (h_door : IST.isDoor τ D) (h_nonempty : τ.Nonempty) (h_not_mem : x ∉ τ)
     (a b : I) (ha : a ∈ D) (hb : b ∈ D) (hab : a ≠ b)
@@ -481,6 +529,9 @@ lemma sublemma_3_2 (τ : Finset T) (D : Finset I) (x : T)
 
 -- Key lemma: M_a and M_b are disjoint
 omit [Inhabited T] [DecidableEq T] [DecidableEq I] in
+/--
+@isnad1 id=eq.6h6v.s6.e42cd8a34672 from=translated src=- shape=2deb16fa vocab=9e5a0d52
+-/
 lemma M_sets_disjoint (τ : Finset T) (D : Finset I) (a b : I)
     (h_nonempty : τ.Nonempty) (h_door : IST.isDoor τ D)
     (ha : a ∈ D) (hb : b ∈ D) (hab : a ≠ b)
@@ -518,6 +569,9 @@ lemma M_sets_disjoint (τ : Finset T) (D : Finset I) (a b : I)
   · simp_all
 
 omit [Inhabited T] [DecidableEq T] [DecidableEq I] in
+/--
+@isnad1 id=not.8h7v.s6.2ba2ca1a80be from=translated src=- shape=2df8b8e8 vocab=f5b1865e
+-/
 lemma m_element_not_in_tau [Fintype T] (τ : Finset T) (D : Finset I) (i a b : I)
     (h_door : IST.isDoor τ D) (h_nonempty : τ.Nonempty)
     (ha_mem : a ∈ D) (hb_mem : b ∈ D) (hab : a ≠ b)
@@ -560,6 +614,9 @@ lemma m_element_not_in_tau [Fintype T] (τ : Finset T) (D : Finset I) (i a b : I
     exact not_le.mpr h_mini_k_lt_m h_m_le_mini_k
 
 omit [Inhabited T] [DecidableEq T] in
+/--
+@isnad1 id=mem.10h8v.s7.26f744f0ad10 from=translated src=- shape=b37ceb31 vocab=9ae6b23d
+-/
 lemma odoor_index_in_pair (τ : Finset T) (D : Finset I) (C : Finset I)
     (a b j : I) (_h_door : IST.isDoor τ D) (h_nonempty : τ.Nonempty)
     (ha_mem : a ∈ D) (hb_mem : b ∈ D) (hab : a ≠ b)
@@ -591,6 +648,9 @@ lemma odoor_index_in_pair (τ : Finset T) (D : Finset I) (C : Finset I)
   exact hab (h_inj_C ha_in_C hb_in_C h_eq_mini)
 
 omit [Inhabited T] [DecidableEq T] [DecidableEq I] in
+/--
+@isnad1 id=eq.3h6v.s5.36a01c6831a0 from=translated src=- shape=451a7aa1 vocab=07163cd2
+-/
 lemma maximal_element_unique [Fintype T] (τ : Finset T) (D : Finset I) (i : I)
     (h_nonempty : τ.Nonempty) (h_M_nonempty : (mSet τ D i h_nonempty).Nonempty)
     (x : T) (h_x_max : isMaximalInMSet τ D i h_nonempty x) :
@@ -606,6 +666,9 @@ lemma maximal_element_unique [Fintype T] (τ : Finset T) (D : Finset I) (i : I)
   exact le_antisymm h_x_le_mi h_mi_le_x
 
 omit [Inhabited T] [DecidableEq I] in
+/--
+@isnad1 id=or.10h7v.s7.378c7187307d from=translated src=- shape=681acb2f vocab=f7a994c7
+-/
 lemma idoor_determines_element [Fintype T] (τ : Finset T) (D : Finset I)
     (a b : I) (h_door : IST.isDoor τ D) (h_nonempty : τ.Nonempty)
     (ha_mem : a ∈ D) (hb_mem : b ∈ D) (hab : a ≠ b)
@@ -631,7 +694,9 @@ lemma idoor_determines_element [Fintype T] (τ : Finset T) (D : Finset I)
     simp_all
 
 omit [Inhabited T] in
-/-- Two-rooms conclusion when both `mSet`s are nonempty. -/
+/-- Two-rooms conclusion when both `mSet`s are nonempty.
+@isnad1 id=ex.10h6v.s8.29803c118e8c from=translated src=- shape=2162d8b5 vocab=f628c6b1
+-/
 theorem internalDoorTwoRoomsBothNonempty [Finite T] (τ : Finset T) (D : Finset I)
     (h_door : IST.isDoor τ D) (h_nonempty : τ.Nonempty) (a b : I)
     (ha_mem : a ∈ D) (hb_mem : b ∈ D) (h_eq_mini : mini h_nonempty a = mini h_nonempty b)
@@ -776,7 +841,9 @@ theorem internalDoorTwoRoomsBothNonempty [Finite T] (τ : Finset T) (D : Finset 
         simp_all
 
 omit [Inhabited T] in
-/-- Two-rooms conclusion when the first `mSet` is empty but the second is nonempty. -/
+/-- Two-rooms conclusion when the first `mSet` is empty but the second is nonempty.
+@isnad1 id=ex.10h6v.s8.3f31c734fe22 from=translated src=- shape=3066543c vocab=f628c6b1
+-/
 theorem internalDoorTwoRoomsLeftEmpty [Finite T] (τ : Finset T) (D : Finset I)
     (h_door : IST.isDoor τ D) (h_nonempty : τ.Nonempty) (a b : I)
     (ha_mem : a ∈ D) (hb_mem : b ∈ D) (h_eq_mini : mini h_nonempty a = mini h_nonempty b)
@@ -874,7 +941,9 @@ theorem internalDoorTwoRoomsLeftEmpty [Finite T] (τ : Finset T) (D : Finset I)
          exact (Set.not_nonempty_iff_eq_empty.mpr h_M_empty) h_Mb_nonempty
 
 omit [Inhabited T] in
-/-- Two-rooms conclusion when the first `mSet` is nonempty but the second is empty. -/
+/-- Two-rooms conclusion when the first `mSet` is nonempty but the second is empty.
+@isnad1 id=ex.9h6v.s8.dae1a352ed09 from=translated src=- shape=c0ded98b vocab=f48c5ab5
+-/
 theorem internalDoorTwoRoomsRightEmpty [Finite T] (τ : Finset T) (D : Finset I)
     (h_door : IST.isDoor τ D) (h_nonempty : τ.Nonempty) (a b : I)
     (ha_mem : a ∈ D) (hb_mem : b ∈ D) (h_eq_mini : mini h_nonempty a = mini h_nonempty b)
@@ -970,6 +1039,9 @@ theorem internalDoorTwoRoomsRightEmpty [Finite T] (τ : Finset T) (D : Finset I)
 
 /- Lemma 3-/
 omit [Inhabited T] in
+/--
+@isnad1 id=ex.1h4v.s7.24b98e837306 from=translated src=- shape=ced15687 vocab=17180f15
+-/
 theorem internal_door_two_rooms [Finite T] (τ : Finset T) (D : Finset I)
     (h_int_door : IST.isInternalDoor τ D) :
     ∃ (σ₁ σ₂ : Finset T) (C₁ C₂ : Finset I),
@@ -1086,6 +1158,9 @@ def isTypedNC (i : I) (σ : Finset T) (C : Finset I) : Prop := IST.isCell σ C �
 variable {c σ C}
 
 omit [Inhabited T] [DecidableEq T] in
+/--
+@isnad1 id=not.1h6v.s5.1bb76262783b from=translated src=- shape=2c006a41 vocab=72f9efe5
+-/
 lemma not_colorful_of_TypedNC (h1 : isTypedNC c i σ C) : ¬ IST.isColorful c σ C := by
   intro h
   unfold isTypedNC at h1
@@ -1093,6 +1168,9 @@ lemma not_colorful_of_TypedNC (h1 : isTypedNC c i σ C) : ¬ IST.isColorful c σ
   simp_all
 
 omit [Inhabited T] [DecidableEq T] in
+/--
+@isnad1 id=isnearly.1h6v.s5.b97617b4dafa from=translated src=- shape=76f6f847 vocab=66c11143
+-/
 lemma NC_of_TNC (h1 : isTypedNC c i σ C) : isNearlyColorful c σ C := by
   refine ⟨h1.1, ?_⟩
   rw [h1.2]
@@ -1127,6 +1205,9 @@ lemma Finset.eq_of_mem_of_card_one {α : Type*} {s : Finset α} {a : α}
     h_y_eq_b.trans h_a_eq_b.symm⟩
 
 omit [Inhabited T] [DecidableEq T] in
+/--
+@isnad1 id=isroom.1h5v.s5.a148f9b0a25c from=translated src=- shape=d6c83afd vocab=12a16327
+-/
 lemma room_of_colorful (h : IST.isColorful c σ C) : IST.isRoom σ C := by
   refine ⟨h.1, ?_⟩
   have h1 : C.card = (σ.image c).card := by rw [h.2]
@@ -1141,6 +1222,9 @@ def pickColorfulPoint (h : IST.isColorful c σ C)
 -- Easy
 /- Lemma 4 -/
 omit [Inhabited T] [DecidableEq T] in
+/--
+@isnad1 id=isnearly.1h5v.s5.26c80921b311 from=translated src=- shape=7a4dd227 vocab=62963ea8
+-/
 lemma NC_of_outsidedoor (h : isOutsideDoor σ C) : isNearlyColorful c σ C  := by
   cases h with
   | intro hd he =>
@@ -1181,6 +1265,9 @@ private lemma sdiff_image_subset_of_doorof (c : T → I) (h2 : isDoorof τ D σ 
 
 /-Lemma 5-/
 omit [Inhabited T] in
+/--
+@isnad1 id=or.2h8v.s6.95eacc25afd7 from=translated src=- shape=15de9bfd vocab=5cf3624a
+-/
 lemma NC_or_C_of_door (h1 : isTypedNC c i τ D) (h2 : isDoorof τ D σ C)
     : isTypedNC c i σ C ∨ isColorful c σ C := by
   unfold isTypedNC at h1 ⊢
@@ -1211,10 +1298,16 @@ lemma NC_or_C_of_door (h1 : isTypedNC c i τ D) (h2 : isDoorof τ D σ C)
   · simp_all
 
 omit [Inhabited T] in
+/--
+@isnad1 id=istypedn.3h8v.s6.173bbf62e673 from=translated src=- shape=6688a212 vocab=7270ab13
+-/
 lemma NCtype_of_door (h1 : isTypedNC c i τ D) (_ : isDoorof τ D σ C) (_ : isTypedNC c i σ C)
     : isTypedNC c i τ D := h1
 
 omit [Inhabited T] in
+/--
+@isnad1 id=istypedn.3h8v.s6.2d96b24feb54 from=translated src=- shape=06f10df1 vocab=e10396c2
+-/
 lemma isTypedNC_of_isNearlyColorful_of_isDoorof_isTypedNC (h_nc : isNearlyColorful c τ D)
     (h_door : isDoorof τ D σ C) (h_room_typed : isTypedNC c i σ C) : isTypedNC c i τ D := by
   constructor
@@ -1227,6 +1320,9 @@ lemma isTypedNC_of_isNearlyColorful_of_isDoorof_isTypedNC (h_nc : isNearlyColorf
 
 /- Lemma 6 -/
 omit [Inhabited T] [DecidableEq T] in
+/--
+@isnad1 id=or.1h5v.s6.a4fa93539a5b from=translated src=- shape=e7733d23 vocab=745debc1
+-/
 lemma card_of_NCcell (h : isNearlyColorful c σ D) : #σ = #(image c σ)  ∨  #σ = #(image c σ)
     + 1 := by
   unfold isNearlyColorful at h
@@ -1240,6 +1336,9 @@ lemma card_of_NCcell (h : isNearlyColorful c σ D) : #σ = #(image c σ)  ∨  #
   omega
 
 omit [Inhabited T] [DecidableEq T] in
+/--
+@isnad1 id=le.2h5v.s5.ef90213e67de from=translated src=- shape=b3f12094 vocab=0debe371
+-/
 lemma image_subset_of_NCdoor (h1 : isNearlyColorful c σ C) (h2 : isDoor σ C) : image c σ ⊆ C := by
   unfold isNearlyColorful at h1
   unfold isDoor at h2
@@ -1260,6 +1359,9 @@ section ImageErase
 
 variable {T I : Type*} [DecidableEq T] [DecidableEq I]
 
+/--
+@isnad1 id=eq.2h5v.s6.db4dcbc9ec65 from=translated src=- shape=cf549682 vocab=1b685cd2
+-/
 lemma image_erase_eq_erase_image_of_unique
   (σ : Finset T) (c : T → I) {z : T}
   (_ : z ∈ σ)
@@ -1288,6 +1390,9 @@ variable (c σ C) in
 abbrev NCdoors := {(τ,D) | isNearlyColorful c τ D ∧ isDoorof τ D σ C }
 
 omit [DecidableEq T] [Inhabited T] IST in
+/--
+@isnad1 id=le.8h7v.s6.7854fa5a6afb from=translated src=- shape=2b99e172 vocab=4a7a7f20
+-/
 lemma three_collision_card_bound (σ : Finset T) (c : T → I)
     (a b z : T) (ha_in_σ : a ∈ σ) (hb_in_σ : b ∈ σ) (hz_in_σ : z ∈ σ)
     (hab_ne : a ≠ b) (haz_ne : a ≠ z) (hbz_ne : b ≠ z)
@@ -1321,6 +1426,9 @@ lemma three_collision_card_bound (σ : Finset T) (c : T → I)
     _ ≥ (σ.image c).card + 2      := by omega
 
 omit [DecidableEq T] [Inhabited T] IST in
+/--
+@isnad1 id=and.4h6v.s6.229eeda18367 from=translated src=- shape=33dc20c1 vocab=1b685cd2
+-/
 lemma image_erase_collision_preserves [DecidableEq T] (σ : Finset T) (c : T → I)
     (x y : T) (hx_in_σ : x ∈ σ) (hy_in_σ : y ∈ σ) (hxy_ne : x ≠ y) (hcxy_eq : c x = c y) :
     (σ.erase x).image c = σ.image c ∧ (σ.erase y).image c = σ.image c := by
@@ -1358,6 +1466,9 @@ lemma image_erase_collision_preserves [DecidableEq T] (σ : Finset T) (c : T →
         exact ⟨Finset.mem_erase.mpr ⟨h, hw_in_σ⟩, hw_eq⟩
 
 omit [DecidableEq T] [Inhabited T] in
+/--
+@isnad1 id=isdoorof.3h6v.s6.1a646c2990d4 from=translated src=- shape=d01b20a3 vocab=5af86cc1
+-/
 lemma collision_door_valid [DecidableEq T] (σ : Finset T) (C : Finset I) (_ : T → I)
     (x : T) (h_cell : isCell σ C) (hx_in_σ : x ∈ σ) (h_card_eq : C.card = σ.card) :
     isDoorof (σ.erase x) C σ C := by
@@ -1373,7 +1484,9 @@ lemma collision_door_valid [DecidableEq T] (σ : Finset T) (C : Finset I) (_ : T
 
 -- Lemma 7
 omit [DecidableEq T] [Inhabited T] in
-/-- The two doors of a nearly colorful room, when the coloring is injective on `σ`. -/
+/-- The two doors of a nearly colorful room, when the coloring is injective on `σ`.
+@isnad1 id=ex.3h5v.s7.1f3978729422 from=translated src=- shape=e2df72f5 vocab=809a4f45
+-/
 lemma doorsOfNCroomInjective [DecidableEq T] (h_room : isRoom σ C)
     (h_nc : isNearlyColorful c σ C) (h_eq : #σ = #(image c σ)) :
     ∃ door1 door2, door1 ≠ door2 ∧ NCdoors c σ C = {door1, door2} := by
@@ -1508,7 +1621,9 @@ lemma doorsOfNCroomInjective [DecidableEq T] (h_room : isRoom σ C)
           · rfl
 
 omit [DecidableEq T] [Inhabited T] IST in
-/-- The unordered colliding pair equals `{x, y}` for a repeated coloring. -/
+/-- The unordered colliding pair equals `{x, y}` for a repeated coloring.
+@isnad1 id=eq.10h8v.s7.7919150acfd0 from=translated src=- shape=6dcd596c vocab=3bc7ab85
+-/
 lemma pairEqOfCollision [DecidableEq T] {x y a b : T}
     (h_x_in_σ : x ∈ σ) (h_y_in_σ : y ∈ σ) (h_xy_ne : x ≠ y) (h_cxy_eq : c x = c y)
     (ha_in_σ : a ∈ σ) (hb_in_σ : b ∈ σ) (hc_eq : c a = c b) (hab_ne : a ≠ b)
@@ -1547,7 +1662,9 @@ lemma pairEqOfCollision [DecidableEq T] {x y a b : T}
   · rw [Finset.card_pair hab_ne, Finset.card_pair h_xy_ne]
 
 omit [DecidableEq T] [Inhabited T] IST in
-/-- The colliding pair `{a, b}` of a repeated coloring coincides with `{x, y}`. -/
+/-- The colliding pair `{a, b}` of a repeated coloring coincides with `{x, y}`.
+@isnad1 id=or.10h8v.s7.44b4aeef82a2 from=translated src=- shape=451273e1 vocab=3bc7ab85
+-/
 lemma collisionPairEq {x y a b : T}
     (h_x_in_σ : x ∈ σ) (h_y_in_σ : y ∈ σ) (h_xy_ne : x ≠ y) (h_cxy_eq : c x = c y)
     (ha_in_σ : a ∈ σ) (hb_in_σ : b ∈ σ) (hc_eq : c a = c b) (hab_ne : a ≠ b)
@@ -1560,7 +1677,9 @@ lemma collisionPairEq {x y a b : T}
   simpa only [Finset.coe_pair] using congrArg (fun s : Finset T => (s : Set T)) h_pair_eq.symm
 
 omit [DecidableEq T] [Inhabited T] IST in
-/-- A nearly colorful room has a unique missing color in `C`. -/
+/-- A nearly colorful room has a unique missing color in `C`.
+@isnad1 id=existsun.1h5v.s6.84ab891671b0 from=translated src=- shape=375790f2 vocab=8565b577
+-/
 lemma uniqueMissingColor (h_missing_card : (C \ σ.image c).card = 1) :
     ∃! i₀, i₀ ∈ C ∧ i₀ ∉ σ.image c := by
   obtain ⟨i₀, h_eq⟩ := Finset.card_eq_one.mp h_missing_card
@@ -1571,7 +1690,9 @@ lemma uniqueMissingColor (h_missing_card : (C \ σ.image c).card = 1) :
   simp_all
 
 omit [DecidableEq T] [Inhabited T] in
-/-- The two doors of a nearly colorful room, when one color of `σ` is repeated. -/
+/-- The two doors of a nearly colorful room, when one color of `σ` is repeated.
+@isnad1 id=ex.3h5v.s7.f2879c1b7af9 from=translated src=- shape=5eba22ae vocab=10f140fa
+-/
 lemma doorsOfNCroomRepeated [DecidableEq T] (h_room : isRoom σ C)
     (h_nc : isNearlyColorful c σ C) (h_inj : #σ = #(image c σ) + 1) :
     ∃ door1 door2, door1 ≠ door2 ∧ NCdoors c σ C = {door1, door2} := by
@@ -1642,6 +1763,9 @@ lemma doorsOfNCroomRepeated [DecidableEq T] (h_room : isRoom σ C)
         exact h_valid y hy h_images.2
 
 omit [DecidableEq T] [Inhabited T] in
+/--
+@isnad1 id=ex.2h5v.s7.a22eaef922a6 from=translated src=- shape=201ef6cb vocab=80c128a3
+-/
 lemma doors_of_NCroom [DecidableEq T] (h_room : isRoom σ C) (h_nc : isNearlyColorful c σ C) :
   ∃ door1 door2, door1 ≠ door2 ∧ NCdoors c σ C = {door1, door2} := by
   rcases card_of_NCcell h_nc with h_eq | h_inj
@@ -1660,6 +1784,9 @@ abbrev dbcountingset (i : I) := Finset.filter (fun x : (Finset T× Finset I) × 
     => isTypedNC c i x.1.1 x.1.2 ∧ isDoorof x.1.1 x.1.2 x.2.1 x.2.2) univ
 
 variable (c) in
+/--
+@isnad1 id=ex.0h4v.s8.417f34eecdb4 from=translated src=- shape=0cedcaa8 vocab=b14121ce
+-/
 lemma dbcount_outside_door' (i : I) : ∃ x,  filter (fun x => isOutsideDoor x.1.1 x.1.2)
     (dbcountingset c i) = {x}  :=  by
   classical
@@ -1754,12 +1881,18 @@ lemma dbcount_outside_door' (i : I) : ∃ x,  filter (fun x => isOutsideDoor x.1
 variable (c)
 
 -- Use Lemme 2
+/--
+@isnad1 id=odd.0h4v.s8.40d236c25c1e from=translated src=- shape=17c74b2c vocab=7f563201
+-/
 lemma dbcount_outside_door_odd (i : I) : Odd (filter (fun x => isOutsideDoor x.1.1 x.1.2)
     (dbcountingset c i)).card  := by
   obtain ⟨x,hx⟩ := dbcount_outside_door' c i
   simp_all
 
 omit [Inhabited T] in
+/--
+@isnad1 id=other.2h5v.s9.73d29abdbb83 from=translated src=- shape=730e994a vocab=658ed16d
+-/
 lemma fiber_size_internal_door (c : T → I) (i : I) (y : Finset T × Finset I)
     (hy_internal : IST.isInternalDoor y.1 y.2) (hy_typed : isTypedNC c i y.1 y.2) :
     let s := filter (fun x => ¬ isOutsideDoor x.1.1 x.1.2) (dbcountingset c i)
@@ -1831,6 +1964,9 @@ lemma fiber_size_internal_door (c : T → I) (i : I) (y : Finset T × Finset I)
   exact Finset.card_pair elems_distinct
 
 omit [Inhabited T] in
+/--
+@isnad1 id=even.0h4v.s8.6f229897279f from=translated src=- shape=9c5a360e vocab=cc491190
+-/
 lemma dbcount_internal_door_even (i : I) : Even (filter (fun x => ¬ isOutsideDoor x.1.1 x.1.2)
     (dbcountingset c i)).card := by
   let s := filter (fun x => ¬ isOutsideDoor x.1.1 x.1.2) (dbcountingset c i)
@@ -1874,6 +2010,9 @@ lemma dbcount_internal_door_even (i : I) : Even (filter (fun x => ¬ isOutsideDo
 /- Easy -/
 omit [Fintype T] [Fintype I] [Inhabited T] in
 variable {c} in
+/--
+@isnad1 id=istypedn.3h8v.s6.16c5e44bbe13 from=translated src=- shape=5826df82 vocab=5cf3624a
+-/
 lemma NC_of_NCdoor (h1 : isTypedNC c i τ D)
 (h2 : isDoorof τ D σ C) :
   ¬ isColorful c σ C → isTypedNC c i σ C := by
@@ -1884,6 +2023,9 @@ lemma NC_of_NCdoor (h1 : isTypedNC c i τ D)
 
 omit [Inhabited T] in
 variable {c} in
+/--
+@isnad1 id=eq.2h6v.s7.676af0ed660b from=translated src=- shape=1daa49e9 vocab=55a8abc4
+-/
 lemma firber2_doors_NCroom (h0 : isRoom σ C) (h1 : isTypedNC c i σ C) :
   (filter (fun (x : (Finset T× Finset I)× Finset T × Finset I) => x.2 = (σ,C))
       (dbcountingset c i)).card = 2 := by
@@ -1940,6 +2082,9 @@ lemma firber2_doors_NCroom (h0 : isRoom σ C) (h1 : isTypedNC c i σ C) :
     simp_all
 
 omit [Inhabited T] in
+/--
+@isnad1 id=even.0h4v.s7.16aa089230d3 from=translated src=- shape=19b4e898 vocab=b452f19f
+-/
 lemma dbcount_NCroom (i : I) : Even (filter (fun x => ¬isColorful c x.2.1 x.2.2)
     (dbcountingset c i)).card := by
   let s := filter (fun x => ¬isColorful c x.2.1 x.2.2) (dbcountingset c i)
@@ -1981,6 +2126,9 @@ lemma dbcount_NCroom (i : I) : Even (filter (fun x => ¬isColorful c x.2.1 x.2.2
   rw [counteq]
   simp only [even_two, Even.mul_left]
 
+/--
+@isnad1 id=odd.4h4v.s5.c3444a76334c from=translated src=- shape=80ca1c51 vocab=21e3e3f6
+-/
 lemma parity_lemma {a b c d : ℕ} (h1 : Odd a) (h2 : Even b) (h3 : Even d) (h4 : a + b = c + d)
     : Odd c := by
   rw [Nat.odd_iff] at h1 ⊢
@@ -1994,6 +2142,9 @@ theorem _root_.Finset.card_filter_filter_neg {α : Type*} (s : Finset α) (p : �
     nth_rw 1 [<-Finset.filter_union_filter_not_eq p s]
     apply Finset.card_union_eq_card_add_card.2 (Finset.disjoint_filter_filter_not _ _ _)
 
+/--
+@isnad1 id=odd.0h4v.s7.5f2ba6c7e3ad from=translated src=- shape=c5f3c25b vocab=87e04082
+-/
 lemma typed_colorful_room_odd (i : I) : Odd (Finset.filter (fun (x: (Finset T× Finset I)
     × Finset T × Finset I) =>  isColorful c x.2.1 x.2.2) (dbcountingset c i)).card
 := by
@@ -2007,6 +2158,9 @@ lemma typed_colorful_room_odd (i : I) : Odd (Finset.filter (fun (x: (Finset T× 
 variable [Inhabited I]
 
 omit [DecidableEq T] in
+/--
+@isnad1 id=nonempty.0h3v.s5.8df4cfdd8a4d from=translated src=- shape=1fd50b01 vocab=5aec3e3f
+-/
 theorem Scarf : (IST.colorful c).Nonempty := by
   obtain ⟨x,hx⟩ := Finset.card_pos.1 (Odd.pos <| typed_colorful_room_odd c default)
   replace hx := (Finset.mem_filter.1 hx).2

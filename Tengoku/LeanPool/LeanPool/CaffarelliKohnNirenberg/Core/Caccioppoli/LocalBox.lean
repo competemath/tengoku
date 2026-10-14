@@ -24,7 +24,9 @@ noncomputable section
 namespace CKN
 
 /-- A compact subset of an open space-time carrier is contained in a compact
-local box. -/
+local box.
+@isnad1 id=ex.5h3v.s6.ef0af1c41dac from=translated src=- shape=af3604ed vocab=200c15db
+-/
 theorem caccioppoli_localBox_of_compact_subset
     {Ω : Set Vec3} {I : Set ℝ} {K : Set ParabolicPoint}
     (hΩ : IsOpen Ω) (hI : IsOpen I) (hIord : I.OrdConnected)

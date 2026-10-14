@@ -8313,6 +8313,7 @@ inequality for mixed-sign increments, domination of `v`, and strict negativity
 on the nontrivial axis points.
 
 So this is the "package everything together" result for the high-exponent case.
+@isnad1 id=ex.1h1v.s9.77ae430ae563 from=translated src=- shape=84740149 vocab=c66e2c80
 -/
 theorem exists_majorant_geTwo (p : ℝ) (hp : 2 < p) :
     ∃ u du_dx du_dy : ℝ → ℝ → ℝ, ∃ C : ℝ,

@@ -25,7 +25,9 @@ namespace CKN
 
 /-- Global slice derivatives have a jointly measurable representative,
 uniquely identified with every locally integrable weak derivative on each
-good slice. -/
+good slice.
+@isnad1 id=ex.3h2v.s9.a3079ff70b12 from=translated src=- shape=650dbe4d vocab=50f86f3d
+-/
 theorem exists_measurable_global_slice_derivative (k : Fin 3)
     {p : Vec3 × ℝ → ℝ} (hp : Measurable p)
     (hploc : ∀ᵐ t ∂volume, LocallyIntegrable (fun x => p (x, t)) volume)

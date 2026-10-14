@@ -79,7 +79,9 @@ private theorem ae_forall_mollifier_bump {d : ℕ} {Ω : Set (Vec d)} {I : Set �
 compactly supported `ψ` supported in the open set `Ω` the slice divergence
 pairing of `f` vanishes for almost every time, and almost every slice of `f` is
 locally integrable on `Ω`, then for almost every time the slice divergence
-pairing vanishes for *every* such `ψ`. -/
+pairing vanishes for *every* such `ψ`.
+@isnad1 id=eventual.3h3v.s10.0f2f4d754387 from=translated src=- shape=2f1b77b9 vocab=5ebc8803
+-/
 theorem ae_slice_divergence_zero_of_forall_test
     {Ω : Set Vec3} {I : Set ℝ} (hΩ : IsOpen Ω) {f : ParabolicPoint → Vec3}
     (hloc : ∀ᵐ s ∂(MeasureTheory.volume.restrict I), ∀ i : Fin 3,
@@ -108,7 +110,9 @@ theorem ae_slice_divergence_zero_of_forall_test
 `f(·, s)` is divergence free in the sense of distributions, tested against every
 smooth compactly supported spatial test function.  The conclusion is stated in
 the unfolded form used by the pressure module: it reads
-`∀ᵐ s, DistributionalDivergenceFree (fun x => f (x, s))`. -/
+`∀ᵐ s, DistributionalDivergenceFree (fun x => f (x, s))`.
+@isnad1 id=eventual.2h2v.s10.28d84437f155 from=translated src=- shape=99b9e811 vocab=308ec9b5
+-/
 theorem ae_distributional_divergence_free_of_forall_test
     {I : Set ℝ} {f : ParabolicPoint → Vec3}
     (hloc : ∀ᵐ s ∂(MeasureTheory.volume.restrict I), ∀ i : Fin 3,

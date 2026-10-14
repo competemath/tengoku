@@ -28,6 +28,9 @@ variable {α : Type u} [Fintype α]
 
 namespace MonotoneMetricFamily
 
+/--
+@isnad1 id=eq.1h4v.s9.d78aea31ebcd from=translated src=- shape=ab7e948c vocab=109b91be
+-/
 lemma comp_eq_of_replicate (G : MonotoneMetricFamily) (m : ℕ) (hm : 0 < m) (p : Simplex α) :
     (G.g (α := α × Fin m) ((MarkovMorphism.replicate (α := α) m hm).pushforward p)).comp
         ((MarkovMorphism.replicate (α := α) m hm).tangentPushforwardLinear)

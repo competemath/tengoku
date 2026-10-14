@@ -52,7 +52,9 @@ private lemma vec3EuclideanNorm_sq_eq_sum (x : Vec3) :
   exact Finset.sum_nonneg (fun i _ => sq_nonneg (x i))
 
 /-- The Euclidean norm raised to `p ≥ 1` is controlled by the component `ℓᵖ` mass with
-the sharp finite-dimensional constant: `|u|^p ≤ 3^{max(0,p/2-1)} Σ_i |u_i|^p`. -/
+the sharp finite-dimensional constant: `|u|^p ≤ 3^{max(0,p/2-1)} Σ_i |u_i|^p`.
+@isnad1 id=le.1h2v.s7.d064e59ab119 from=translated src=- shape=e33b2c91 vocab=72736aef
+-/
 theorem vec3EuclideanNorm_rpow_le_sum_rpow (x : Vec3) {p : ℝ} (hp : 1 ≤ p) :
     vec3EuclideanNorm x ^ p ≤
       (3 : ℝ) ^ (max 0 (p / 2 - 1)) * ∑ i : Fin 3, |x i| ^ p := by
@@ -171,7 +173,9 @@ private lemma aemeasurable_component_enorm_rpow {μ : Measure Vec3} {u : Vec3 �
   exact ((ENNReal.continuous_rpow_const (y := p)).measurable.comp_aemeasurable hnorm)
 
 /-- Pointwise comparison on the `ℝ≥0∞` side: the `p`-th power of the Euclidean density
-is dominated by the component `ℓᵖ` mass with the sharp finite-dimensional constant. -/
+is dominated by the component `ℓᵖ` mass with the sharp finite-dimensional constant.
+@isnad1 id=le.1h2v.s7.6cd2de8c1c15 from=translated src=- shape=914d1c3d vocab=a78930d8
+-/
 theorem ofReal_vec3EuclideanNorm_rpow_le_sum {u : Vec3} {p : ℝ} (hp : 1 ≤ p) :
     ENNReal.ofReal (vec3EuclideanNorm u) ^ p ≤
       ENNReal.ofReal ((3 : ℝ) ^ max 0 (p / 2 - 1)) *
@@ -199,7 +203,9 @@ theorem ofReal_vec3EuclideanNorm_rpow_le_sum {u : Vec3} {p : ℝ} (hp : 1 ≤ p)
               ENNReal.ofReal_rpow_of_nonneg (abs_nonneg (u i)) hp0])
 
 /-- Integrated form of the sharp comparison: the `Lᵖ` mass of the Euclidean density is
-controlled by the sum of the component `Lᵖ` masses. -/
+controlled by the sum of the component `Lᵖ` masses.
+@isnad1 id=le.2h3v.s8.f5a74f92879d from=translated src=- shape=2e1bf511 vocab=b34d4ba0
+-/
 theorem lintegral_vec3EuclideanNorm_rpow_le_sum {s : Set Vec3} {u : Vec3 → Vec3}
     {p : ℝ} (hp : 1 ≤ p)
     (hu : ∀ i : Fin 3, AEMeasurable (fun x => u x i) (volume.restrict s)) :

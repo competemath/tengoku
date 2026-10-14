@@ -20,12 +20,18 @@ variable {R M : Type*} [Field R] [AddCommGroup M] [Module R M]
 variable [Module.Free R M] [Module.Finite R M]
 
 omit [Module.Free R M] in
+/--
+@isnad1 id=lt.1h3v.s7.99c2841815bc from=translated src=- shape=af9e3a4f vocab=2788b746
+-/
 lemma Submodule.zero_lt_finrank_of_ne_bot (p : Submodule R M) (hp : p ≠ ⊥) :
     0 < Module.finrank R p := by
   by_contra h
   simp_all
 
 omit [Module.Free R M] in
+/--
+@isnad1 id=lt.1h3v.s7.04577c956589 from=translated src=- shape=128daf64 vocab=c0522666
+-/
 lemma Submodule.finrank_lt_finrank_of_ne_top (p : Submodule R M) (hp : p ≠ ⊤) :
     Module.finrank R p < Module.finrank R M := by
   obtain ⟨p', hp'⟩ := ComplementedLattice.exists_isCompl p
@@ -38,6 +44,9 @@ lemma Submodule.finrank_lt_finrank_of_ne_top (p : Submodule R M) (hp : p ≠ ⊤
   exact eq_top_of_isCompl_bot hp'
 
 omit [Module.Free R M] in
+/--
+@isnad1 id=ex.1h3v.s7.4efe95fcab6d from=translated src=- shape=275b1805 vocab=552f0c09
+-/
 lemma Submodule.exists_generator_of_finrank_eq_one (p : Submodule R M)
     (h : Module.finrank R p = 1) :
     ∃ (v : M), v ≠ 0 ∧ Submodule.span R {v} = p := by
@@ -56,6 +65,9 @@ lemma Submodule.exists_generator_of_finrank_eq_one (p : Submodule R M)
     simp_all
 
 omit [Module.Free R M] in
+/--
+@isnad1 id=ex.2h4v.s9.bd2b37a3f16b from=translated src=- shape=84b79b9b vocab=e2ad50b8
+-/
 lemma Submodule.exists_generator_of_finrank_eq_one_basis (b : Basis (Fin 2) R M) (p : Submodule R M)
     (hr : Module.finrank R p = 1)
     (ht : p ≠ Submodule.span R {b 0}) :
@@ -149,7 +161,9 @@ noncomputable def TensorProduct.quotientEquivPiOfBasis (b : Basis ι R M) :
 variable [StrongRankCondition (R ⧸ I)]
 
 omit [DecidableEq ι] in
-/-- If `M` is free, the rank of `M ⧸ IM`as an `R ⧸ I`-module is the rank of `M` as an `R`-module. -/
+/-- If `M` is free, the rank of `M ⧸ IM`as an `R ⧸ I`-module is the rank of `M` as an `R`-module.
+@isnad1 id=eq.0h5v.s8.c32308e0f5f5 from=translated src=- shape=e6dfba09 vocab=b52ffdb6
+-/
 lemma quotient_finrank_eq (b : Basis ι R M) :
     Module.finrank (R ⧸ I) (M ⧸ (I • ⊤ : Submodule R M)) = Fintype.card ι := by
   classical
@@ -176,12 +190,18 @@ instance instOrderBotSubtypeSubmoduleLeLeanPool (p : Submodule R M) :
   bot := ⟨p, le_rfl⟩
   bot_le p' _ hx := p'.property hx
 
+/--
+@isnad1 id=iff.0h4v.s8.ced38d3b07ff from=translated src=- shape=4ee2d1b0 vocab=245d9862
+-/
 lemma Submodule.quotient_equiv_eq_bot_iff (p : Submodule R M)
     (p' : { p' : Submodule R M // p ≤ p' }) :
     p' = ⊥ ↔ p'.val = p := by
   change p' = ⟨p, le_rfl⟩ ↔ p'.val = p
   apply Subtype.ext_iff
 
+/--
+@isnad1 id=lt.1h5v.s10.a26ee57b7afc from=translated src=- shape=ed1da8c9 vocab=597b9956
+-/
 lemma lt_of_ne_top (p : Submodule R M) {p' : Submodule R p}
     (q : { q : Submodule R p // p' ≤ q})
     (h : q ≠ ⊤) : Submodule.map p.subtype q.val < p := by
@@ -202,16 +222,25 @@ section
 
 variable {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
 
+/--
+@isnad1 id=eq.0h4v.s9.667b52b0cb8c from=translated src=- shape=87024baf vocab=27c881e1
+-/
 @[simp]
 lemma Submodule.comap_subtype_smul (I : Ideal R) (p : Submodule R M) :
     Submodule.comap p.subtype (I • p) = I • ⊤ := by
   ext x
   simp [Submodule.mem_smul_top_iff]
 
+/--
+@isnad1 id=eq.0h4v.s9.20556403b3a8 from=translated src=- shape=8009a94b vocab=4ec230ce
+-/
 lemma Submodule.map_subtype_smul (I : Ideal R) (p : Submodule R M) :
     Submodule.map p.subtype (I • ⊤) = I • p := by
   simp_all
 
+/--
+@isnad1 id=lt.1h5v.s12.3dac8f5cdf6c from=translated src=- shape=9681bcef vocab=bc47067b
+-/
 lemma ideal_smul_lt_of_ne_bot {I : Ideal R} (p : Submodule R M)
     (q : { q : Submodule R p // (I • ⊤ : Submodule R p) ≤ q}) (h : q ≠ ⊥) :
     I • p < Submodule.map p.subtype q.val := by
@@ -239,6 +268,9 @@ end
 
 section
 
+/--
+@isnad1 id=eq.0h4v.s10.a4d68735a21b from=translated src=- shape=5bbf6fdf vocab=25328071
+-/
 @[simp]
 lemma Matrix.GeneralLinearGroup.toLin_symm_apply {n : Type*} [DecidableEq n]
     [Fintype n] {R : Type*} [CommRing R] (g : LinearMap.GeneralLinearGroup R (n → R))

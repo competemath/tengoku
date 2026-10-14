@@ -41,7 +41,9 @@ open CKN.Foundation.Parabolic
 
 /-- The `ℝ≥0∞`-valued modulus `absE` commutes with truncation by an indicator:
 truncating `f` to `s` before taking the modulus is the same as taking the
-modulus first and then truncating it to `s`. -/
+modulus first and then truncating it to `s`.
+@isnad1 id=eq.0h2v.s4.09f9ef80a05a from=translated src=- shape=85eb51d3 vocab=4ea7aad4
+-/
 lemma absE_indicator_eq (s : Set Vec3) (f : Vec3 → ℝ) :
     absE (s.indicator f) = s.indicator (absE f) := by
   funext x
@@ -53,13 +55,17 @@ lemma absE_indicator_eq (s : Set Vec3) (f : Vec3 → ℝ) :
     simp
 
 /-- The total mass of the modulus of a truncation is the mass of the modulus over
-the truncating set: `∫ absE (s.indicator f) = ∫_s absE f`. -/
+the truncating set: `∫ absE (s.indicator f) = ∫_s absE f`.
+@isnad1 id=eq.1h2v.s7.6218a12c0225 from=translated src=- shape=ccef69e9 vocab=f48c485a
+-/
 lemma lintegral_absE_indicator {s : Set Vec3} (hs : MeasurableSet s) (f : Vec3 → ℝ) :
     ∫⁻ x, absE (s.indicator f) x = ∫⁻ x in s, absE f x := by
   rw [absE_indicator_eq, lintegral_indicator hs]
 
 /-- The same identity for the square of the modulus:
-`∫ absE (s.indicator f) ^ 2 = ∫_s absE f ^ 2`. -/
+`∫ absE (s.indicator f) ^ 2 = ∫_s absE f ^ 2`.
+@isnad1 id=eq.1h2v.s7.2cd75dcdef96 from=translated src=- shape=2f2befe9 vocab=644c5c01
+-/
 lemma lintegral_absE_indicator_sq {s : Set Vec3} (hs : MeasurableSet s) (f : Vec3 → ℝ) :
     ∫⁻ x, absE (s.indicator f) x ^ 2 = ∫⁻ x in s, absE f x ^ 2 := by
   have hpow : (fun x ↦ absE (s.indicator f) x ^ 2) =

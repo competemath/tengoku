@@ -31,7 +31,9 @@ variable (G : SimpleGraph V) [DecidableRel G.Adj]
 
 omit [Fintype V] in
 /-- The principal 2x2 submatrix of the adjacency matrix on a nonedge is
-identically zero. -/
+identically zero.
+@isnad1 id=eq.4h6v.s6.4d9bf0d307f3 from=translated src=- shape=240a2809 vocab=17c363fa
+-/
 lemma adjMatrix_eq_zero_on_nonedge_pair {i j : V} (hij : i ≠ j) (hna : ¬ G.Adj i j)
     {a b : V} (ha : a ∈ ({i, j} : Finset V)) (hb : b ∈ ({i, j} : Finset V)) :
     G.adjMatrix ℝ a b = 0 := by
@@ -47,7 +49,9 @@ lemma adjMatrix_eq_zero_on_nonedge_pair {i j : V} (hij : i ≠ j) (hna : ¬ G.Ad
     · exact habne rfl
   · rfl
 
-/-- The adjacency quadratic form vanishes on vectors supported on a nonedge. -/
+/-- The adjacency quadratic form vanishes on vectors supported on a nonedge.
+@isnad1 id=eq.3h5v.s6.30a69e523bf8 from=translated src=- shape=500d57de vocab=eb5741f2
+-/
 lemma dotProduct_mulVec_adjMatrix_eq_zero_of_supported_on_nonedge
     {i j : V} (hij : i ≠ j) (hna : ¬ G.Adj i j) {x : V → ℝ}
     (hx : ∀ v, v ∉ ({i, j} : Finset V) → x v = 0) :
@@ -71,11 +75,16 @@ noncomputable def euclInner (x y : EuclideanSpace ℝ n) : ℝ :=
   Inner.inner (𝕜 := ℝ) x y
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=eq.0h4v.s6.c501e442551f from=translated src=- shape=90fcc6da vocab=29e108c5
+-/
 lemma euclInner_smul_right (x y : EuclideanSpace ℝ n) (c : ℝ) :
     euclInner x (c • y) = c * euclInner x y :=
   real_inner_smul_right x y c
 
-/-- The Euclidean quadratic form expands in the ordered eigenbasis. -/
+/-- The Euclidean quadratic form expands in the ordered eigenbasis.
+@isnad1 id=eq.1h3v.s12.e80d80869633 from=translated src=- shape=99ba000a vocab=f7ecfbc1
+-/
 lemma dotProduct_mulVec_eq_sum_eigenvalues₀ (hA : A.IsHermitian) (x : n → ℝ) :
     x ⬝ᵥ A *ᵥ x =
       ∑ i, hA.eigenvalues₀ i *
@@ -103,7 +112,9 @@ lemma dotProduct_mulVec_eq_sum_eigenvalues₀ (hA : A.IsHermitian) (x : n → �
   ring
 
 /-- On the orthogonal complement of a top eigenvector, the Rayleigh form is at
-most `lambdaSecond`. -/
+most `lambdaSecond`.
+@isnad1 id=le.3h3v.s12.faf1da92ed67 from=translated src=- shape=f5ed1966 vocab=1f450f75
+-/
 lemma dotProduct_mulVec_le_lambdaSecond_of_orthogonal (hA : A.IsHermitian)
     [Nontrivial n] {x : n → ℝ} (hx : ∑ k, x k ^ 2 = 1)
     (horth :
@@ -158,7 +169,9 @@ lemma dotProduct_mulVec_le_lambdaSecond_of_orthogonal (hA : A.IsHermitian)
           rw [Finset.mul_sum]
     _ = lambdaSecond hA := by simp [hrest]
 
-/-- A unit vector in `span {e i, e j}` orthogonal to a top eigenvector. -/
+/-- A unit vector in `span {e i, e j}` orthogonal to a top eigenvector.
+@isnad1 id=ex.2h4v.s12.78659631dde8 from=translated src=- shape=da1fb282 vocab=4dc608ad
+-/
 lemma exists_l2_mem_span_single_pair_orthogonal (hA : A.IsHermitian)
     [Nontrivial n] {i j : n} (hij : i ≠ j) :
     ∃ x : n → ℝ,
@@ -232,6 +245,9 @@ def rayleighOnSpanPair (A : Matrix n n ℝ) (i j : n) : Set ℝ :=
       x ∈ Submodule.span ℝ ({Pi.single i (1 : ℝ), Pi.single j 1} : Set (n → ℝ)) ∧
         ∑ k, x k ^ 2 = 1 ∧ t = x ⬝ᵥ A *ᵥ x }
 
+/--
+@isnad1 id=nonempty.0h4v.s4.8180b01f3a8a from=translated src=- shape=19aef839 vocab=d71e219f
+-/
 lemma nonempty_rayleighOnSpanPair {i j : n} :
     (rayleighOnSpanPair A i j).Nonempty := by
   refine ⟨Pi.single i (1 : ℝ) ⬝ᵥ A *ᵥ Pi.single i 1,
@@ -241,6 +257,9 @@ lemma nonempty_rayleighOnSpanPair {i j : n} :
   · intro k hk
     simp [hk]
 
+/--
+@isnad1 id=bddbelow.0h4v.s4.ac828a401dee from=translated src=- shape=19aef839 vocab=16f56213
+-/
 lemma bddBelow_rayleighOnSpanPair {i j : n} :
     BddBelow (rayleighOnSpanPair A i j) := by
   refine ⟨-∑ a, ∑ b, |A a b|, ?_⟩
@@ -262,7 +281,9 @@ lemma bddBelow_rayleighOnSpanPair {i j : n} :
   exact neg_le_of_abs_le habs
 
 /-- **SP14.** Courant-Fischer comparison on a coordinate 2-plane:
-`lambdaSecond` is at least the infimum of the Rayleigh form on `span {e i, e j}`. -/
+`lambdaSecond` is at least the infimum of the Rayleigh form on `span {e i, e j}`.
+@isnad1 id=le.2h4v.s6.f6eb91b25373 from=translated src=- shape=a0961755 vocab=1cc79e33
+-/
 lemma lambdaSecond_ge_sInf_span_single_pair (hA : A.IsHermitian)
     [Nontrivial n] {i j : n} (hij : i ≠ j) :
     sInf (rayleighOnSpanPair A i j) ≤ lambdaSecond hA := by
@@ -272,7 +293,9 @@ lemma lambdaSecond_ge_sInf_span_single_pair (hA : A.IsHermitian)
   exact (csInf_le bddBelow_rayleighOnSpanPair hmem).trans hxle
 
 /-- If the Rayleigh form is nonnegative on the coordinate 2-plane, then
-`0 ≤ lambdaSecond`. -/
+`0 ≤ lambdaSecond`.
+@isnad1 id=le.3h4v.s6.aa8fce19ce4d from=translated src=- shape=3b41e23e vocab=86839e54
+-/
 lemma lambdaSecond_nonneg_of_rayleighOnSpanPair_nonneg (hA : A.IsHermitian)
     [Nontrivial n] {i j : n} (hij : i ≠ j)
     (hnn : ∀ t ∈ rayleighOnSpanPair A i j, 0 ≤ t) :
@@ -280,7 +303,9 @@ lemma lambdaSecond_nonneg_of_rayleighOnSpanPair_nonneg (hA : A.IsHermitian)
   (le_csInf nonempty_rayleighOnSpanPair hnn).trans
     (lambdaSecond_ge_sInf_span_single_pair hA hij)
 
-/-- If the quadratic form vanishes on `span {e i, e j}`, then `0 ≤ lambdaSecond`. -/
+/-- If the quadratic form vanishes on `span {e i, e j}`, then `0 ≤ lambdaSecond`.
+@isnad1 id=le.3h4v.s8.f296fddabd64 from=translated src=- shape=65640da7 vocab=db9f9be0
+-/
 lemma lambdaSecond_nonneg_of_quadForm_eq_zero_on_span (hA : A.IsHermitian)
     [Nontrivial n] {i j : n} (hij : i ≠ j)
     (h0 : ∀ x : n → ℝ,
@@ -292,6 +317,9 @@ lemma lambdaSecond_nonneg_of_quadForm_eq_zero_on_span (hA : A.IsHermitian)
   simp [h0 x hxW]
 
 omit [Fintype n] in
+/--
+@isnad1 id=eq.3h5v.s7.69ad6680f0ed from=translated src=- shape=e50c3ec3 vocab=23dc29d0
+-/
 lemma mem_span_single_pair_support {i j : n} {x : n → ℝ}
     (hx : x ∈ Submodule.span ℝ ({Pi.single i (1 : ℝ), Pi.single j 1} : Set (n → ℝ)))
     {v : n} (hvi : v ≠ i) (hvj : v ≠ j) : x v = 0 := by
@@ -300,15 +328,23 @@ lemma mem_span_single_pair_support {i j : n} {x : n → ℝ}
 
 /-! ### SP15 — `lambda2 G ≥ 0` if `G` is not complete -/
 
+/--
+@isnad1 id=eq.0h2v.s5.8ffa366fd126 from=translated src=- shape=c622e753 vocab=e20aadff
+-/
 lemma lambda2_eq_lambdaSecond [Nontrivial V] :
     lambda2 G = lambdaSecond (G.isHermitian_adjMatrix ℝ) :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.a06fb5b274a4 from=translated src=- shape=c622e753 vocab=cc81b252
+-/
 lemma lambda1_eq_lambdaMax [Nonempty V] :
     lambda1 G = lambdaMax (G.isHermitian_adjMatrix ℝ) :=
   rfl
 
-/-- **SP15.** A noncomplete graph on at least two vertices has `lambda2 ≥ 0`. -/
+/-- **SP15.** A noncomplete graph on at least two vertices has `lambda2 ≥ 0`.
+@isnad1 id=le.1h2v.s5.8f7bee23f616 from=translated src=- shape=d4ad18f5 vocab=27161247
+-/
 lemma lambda2_nonneg [Nontrivial V] (hG : G ≠ ⊤) : 0 ≤ lambda2 G := by
   obtain ⟨i, j, hij, hna⟩ := SimpleGraph.ne_top_iff_exists_not_adj.mp hG
   rw [lambda2_eq_lambdaSecond]
@@ -321,7 +357,9 @@ lemma lambda2_nonneg [Nontrivial V] (hG : G ≠ ⊤) : 0 ≤ lambda2 G := by
 
 /-! ### SP17 — `lambda1 G ≥ 0` -/
 
-/-- **SP17.** The largest adjacency eigenvalue is nonnegative. -/
+/-- **SP17.** The largest adjacency eigenvalue is nonnegative.
+@isnad1 id=le.0h2v.s5.9c6e8a3fe3ca from=translated src=- shape=b662e545 vocab=2eb7f6f1
+-/
 lemma lambda1_nonneg [Nonempty V] : 0 ≤ lambda1 G := by
   let hA := G.isHermitian_adjMatrix ℝ
   have hsum : ∑ i, hA.eigenvalues i = 0 := by
@@ -340,12 +378,17 @@ lemma lambda1_nonneg [Nonempty V] : 0 ≤ lambda1 G := by
 
 /-! ### SP16 — `F(A_G) = lambda1^2 + lambda2^2` for noncomplete `G` -/
 
+/--
+@isnad1 id=le.1h2v.s6.4e4aeba4ccbf from=translated src=- shape=c81eb38a vocab=b5a4dcf0
+-/
 lemma lambdaSecond_le_lambdaMax (hA : A.IsHermitian) [Nontrivial n] :
     lambdaSecond hA ≤ lambdaMax hA :=
   hA.eigenvalues₀_antitone (Fin.zero_le _)
 
 /-- **SP16.** On a noncomplete graph the positive-part squares in `F` are
-`lambda1 ^ 2` and `lambda2 ^ 2`. -/
+`lambda1 ^ 2` and `lambda2 ^ 2`.
+@isnad1 id=eq.1h2v.s6.e9998d90c9c9 from=translated src=- shape=95610fb0 vocab=fabf74c8
+-/
 lemma F_adjMatrix_eq [Nontrivial V] (hG : G ≠ ⊤) :
     F (G.isHermitian_adjMatrix ℝ) = lambda1 G ^ 2 + lambda2 G ^ 2 := by
   let hA := G.isHermitian_adjMatrix ℝ

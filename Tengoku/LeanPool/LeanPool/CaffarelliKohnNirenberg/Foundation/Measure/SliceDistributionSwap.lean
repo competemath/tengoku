@@ -47,7 +47,9 @@ theorem eq_zero_of_dense_of_continuousAt {X : Type*} [TopologicalSpace X]
   exact tendsto_nhds_unique (l := 𝓝[U ∩ S] y) h1 h2
 
 /-- The double integrand of the pairing of `ψ` with the translation averages of
-`G` against `k` is integrable for the product measure. -/
+`G` against `k` is integrable for the product measure.
+@isnad1 id=integrab.5h4v.s8.40d2d1a9eae6 from=translated src=- shape=21974f9e vocab=48cbc283
+-/
 theorem integrable_uncurry_mul_translate {d : ℕ} {ψ G k : Vec d → ℝ}
     (hψ : Continuous ψ) (hψc : HasCompactSupport ψ)
     (hG : MeasureTheory.Integrable G MeasureTheory.volume)
@@ -127,7 +129,9 @@ theorem integrable_uncurry_mul_translate {d : ℕ} {ψ G k : Vec d → ℝ}
 
 /-- The pairing of a compactly supported continuous function `ψ` with the
 translation averages of an integrable function `G` against a compactly supported
-continuous kernel `k` is itself integrable. -/
+continuous kernel `k` is itself integrable.
+@isnad1 id=integrab.5h4v.s8.c37307da669b from=translated src=- shape=462ffac9 vocab=6e2dac6c
+-/
 theorem integrable_mul_integral_translate {d : ℕ} {ψ G k : Vec d → ℝ}
     (hψ : Continuous ψ) (hψc : HasCompactSupport ψ)
     (hG : MeasureTheory.Integrable G MeasureTheory.volume)
@@ -143,7 +147,9 @@ theorem integrable_mul_integral_translate {d : ℕ} {ψ G k : Vec d → ℝ}
 
 /-- Exchanging the order of integration in the pairing of a compactly supported
 continuous function `ψ` with the translation averages of an integrable function
-`G` against a compactly supported continuous kernel `k`. -/
+`G` against a compactly supported continuous kernel `k`.
+@isnad1 id=eq.5h4v.s8.1a9b49eb8be5 from=translated src=- shape=8bf33c58 vocab=6e2dac6c
+-/
 theorem integral_mul_integral_translate_swap {d : ℕ} {ψ G k : Vec d → ℝ}
     (hψ : Continuous ψ) (hψc : HasCompactSupport ψ)
     (hG : MeasureTheory.Integrable G MeasureTheory.volume)

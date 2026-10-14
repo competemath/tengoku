@@ -74,6 +74,9 @@ private theorem integral_kernel_pairing
       unfold F
       ring
 
+/--
+@isnad1 id=eq.1h2v.s7.a0b8df696344 from=translated src=- shape=a1c8a18c vocab=c09060fa
+-/
 theorem backwardHeatPotential_pairing
     {f ζ : ParabolicPoint → ℝ}
     (hF : Integrable
@@ -88,6 +91,9 @@ theorem backwardHeatPotential_pairing
   unfold backwardHeatPotential
   exact integral_kernel_pairing hF
 
+/--
+@isnad1 id=eq.1h3v.s7.4a23a49a2104 from=translated src=- shape=1c5c8f85 vocab=55d90fa4
+-/
 theorem backwardHeatPotential_spatial_pairing
     {i : Fin 3} {f ζ : ParabolicPoint → ℝ}
     (hF : Integrable

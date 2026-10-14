@@ -176,6 +176,9 @@ private theorem integral_norm_sub_integralAverage_le_of_isOpenBoundedConvexDomai
     _ = (B * M) * ∫ y in U, ‖fderiv ℝ u y‖ ∂MeasureTheory.volume := by
       simp [g, B, M, μU]
 
+/--
+@isnad1 id=le.4h3v.s10.7ed77d60afd7 from=translated src=- shape=54ee951f vocab=9ade9355
+-/
 theorem integral_norm_sub_integralAverage_le_bound_of_isOpenBoundedConvexDomain
     {d : ℕ} [NeZero d] {U : Set (Vec d)}
     [MeasureTheory.IsFiniteMeasure (volumeMeasureOn U)]

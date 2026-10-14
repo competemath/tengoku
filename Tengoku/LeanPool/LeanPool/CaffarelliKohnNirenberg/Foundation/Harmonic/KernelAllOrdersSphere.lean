@@ -32,28 +32,36 @@ noncomputable section
 
 namespace CKN.Foundation.Heat
 
-/-- The triangle inequality for the Euclidean length on space. -/
+/-- The triangle inequality for the Euclidean length on space.
+@isnad1 id=le.0h2v.s5.43043b2c1139 from=translated src=- shape=0438c7a3 vocab=4ea4a37e
+-/
 theorem vec3EuclideanNorm_triangle (x y : Vec3) :
     vec3EuclideanNorm (x + y) ≤ vec3EuclideanNorm x + vec3EuclideanNorm y := by
   rw [vec3EuclideanNorm_eq_l2, vec3EuclideanNorm_eq_l2, vec3EuclideanNorm_eq_l2,
     WithLp.toLp_add]
   exact norm_add_le _ _
 
-/-- The Euclidean length is positive away from the origin. -/
+/-- The Euclidean length is positive away from the origin.
+@isnad1 id=lt.1h1v.s5.4efa5513034d from=translated src=- shape=c87724ab vocab=8a677999
+-/
 theorem vec3EuclideanNorm_pos_of_ne_zero {x : Vec3} (hx : x ≠ 0) :
     0 < vec3EuclideanNorm x := by
   rw [vec3EuclideanNorm_eq_l2, norm_pos_iff]
   intro hzero
   exact hx ((WithLp.toLp_eq_zero 2).mp hzero)
 
-/-- A point of positive Euclidean length is nonzero. -/
+/-- A point of positive Euclidean length is nonzero.
+@isnad1 id=ne.1h1v.s5.d1256093d743 from=translated src=- shape=2154ac66 vocab=8a677999
+-/
 theorem ne_zero_of_vec3EuclideanNorm_pos {x : Vec3} (hx : 0 < vec3EuclideanNorm x) :
     x ≠ 0 := by
   intro hx0
   rw [hx0, vec3EuclideanNorm_zero] at hx
   exact lt_irrefl 0 hx
 
-/-- A function continuous away from the origin is bounded on the Euclidean unit sphere. -/
+/-- A function continuous away from the origin is bounded on the Euclidean unit sphere.
+@isnad1 id=ex.1h2v.s6.96b2751a8a85 from=translated src=- shape=629331a8 vocab=bc17002d
+-/
 theorem exists_bound_on_vec3Sphere {F : Type*} [NormedAddCommGroup F]
     {f : Vec3 → F} (hf : ContinuousOn f {z : Vec3 | z ≠ 0}) :
     ∃ c : ℝ, 0 ≤ c ∧ ∀ z : Vec3, vec3EuclideanNorm z = 1 → ‖f z‖ ≤ c := by

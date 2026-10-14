@@ -43,7 +43,9 @@ private theorem large_cell_normalization_le
   exact ENNReal.ofReal_le_ofReal (Real.rpow_le_rpow_of_nonpos hr₀ hr hexp)
 
 /-- Restricting a field to a measurable carrier controls every large cell,
-including cells that intersect its boundary, as used in `prop:bootstrap`. -/
+including cells that intersect its boundary, as used in `prop:bootstrap`.
+@isnad1 id=le.5h7v.s7.67d3189daadc from=translated src=- shape=09cb7193 vocab=5ff062ed
+-/
 theorem morreyCell_indicator_le_carrier_integral_of_large_radius
     {p q r₀ r : ℝ} {f : ParabolicPoint → ℝ} {S : Set ParabolicPoint}
     (hS : MeasurableSet S) (hp : 0 < p) (hpq : p ≤ q)
@@ -66,7 +68,9 @@ theorem morreyCell_indicator_le_carrier_integral_of_large_radius
     (ENNReal.rpow_le_rpow hint (one_div_nonneg.mpr hp.le))
 
 /-- The origin past-cylinder carrier in `prop:bootstrap` has the large-cell
-bound with constant one and explicit cutoff scale `r₀`. -/
+bound with constant one and explicit cutoff scale `r₀`.
+@isnad1 id=le.4h7v.s8.b3740eea3ba3 from=translated src=- shape=e55f3415 vocab=5b14e3f2
+-/
 theorem morreyCell_origin_cylinder_le_of_large_radius
     {p q r₀ r R : ℝ} {f : ParabolicPoint → ℝ}
     (hp : 0 < p) (hpq : p ≤ q) (hr₀ : 0 < r₀) (hr : r₀ ≤ r)
@@ -78,7 +82,9 @@ theorem morreyCell_origin_cylinder_le_of_large_radius
     ((vec3Ball_measurable 0 R).prod measurableSet_Ioc) hp hpq hr₀ hr z
 
 /-- The symmetric parabolic-ball carrier in `prop:bootstrap` has the same
-large-cell normalization, independently of the carrier centre. -/
+large-cell normalization, independently of the carrier centre.
+@isnad1 id=le.4h8v.s7.011a8289075d from=translated src=- shape=ae70cbe3 vocab=cec47ae9
+-/
 theorem morreyCell_ball_le_of_large_radius
     {p q r₀ r R : ℝ} {f : ParabolicPoint → ℝ} (z₀ : ParabolicPoint)
     (hp : 0 < p) (hpq : p ≤ q) (hr₀ : 0 < r₀) (hr : r₀ ≤ r)
@@ -90,7 +96,9 @@ theorem morreyCell_ball_le_of_large_radius
     measurableSet_ball hp hpq hr₀ hr z
 
 /-- At pressure-gradient exponent `6/5` in `prop:bootstrap`, the origin
-past-cylinder bound has scale power `5/κ - 25/6` and integral power `5/6`. -/
+past-cylinder bound has scale power `5/κ - 25/6` and integral power `5/6`.
+@isnad1 id=le.3h6v.s8.1397239afcc6 from=translated src=- shape=06564bab vocab=4333718e
+-/
 theorem pressure_gradient_origin_cylinder_large_cell_le
     {κ r₀ r R : ℝ} {f : ParabolicPoint → ℝ}
     (hκ : 6 / 5 ≤ κ) (hr₀ : 0 < r₀) (hr : r₀ ≤ r) (z : ParabolicPoint) :
@@ -106,7 +114,9 @@ theorem pressure_gradient_origin_cylinder_large_cell_le
   exact h
 
 /-- At pressure-gradient exponent `6/5` in `prop:bootstrap`, the symmetric
-ball bound has scale power `5/κ - 25/6` and integral power `5/6`. -/
+ball bound has scale power `5/κ - 25/6` and integral power `5/6`.
+@isnad1 id=le.3h7v.s8.a8d631e7511d from=translated src=- shape=fa26b1eb vocab=c9ae6be3
+-/
 theorem pressure_gradient_ball_large_cell_le
     {κ r₀ r R : ℝ} {f : ParabolicPoint → ℝ} (z₀ : ParabolicPoint)
     (hκ : 6 / 5 ≤ κ) (hr₀ : 0 < r₀) (hr : r₀ ≤ r) (z : ParabolicPoint) :

@@ -33,6 +33,9 @@ section SegmentChangeOfVariables
 
 variable {d : ℕ}
 
+/--
+@isnad1 id=eq.2h5v.s8.e75a981e5572 from=translated src=- shape=885147bf vocab=e3304581
+-/
 theorem setIntegral_segmentBlend_mul_norm_sub_eq_inv_pow_mul_setIntegral_scaled
     {U : Set (Vec d)} (hU_meas : MeasurableSet U)
     {x : Vec d} {t : ℝ} (ht1 : t < 1)
@@ -121,6 +124,9 @@ theorem setIntegral_segmentBlend_mul_norm_sub_eq_inv_pow_mul_setIntegral_scaled
             ∂MeasureTheory.volume := by
             simp [a, V, hcoeff]
 
+/--
+@isnad1 id=le.6h5v.s9.e0a8a4db5dea from=translated src=- shape=91412f40 vocab=bcd962c9
+-/
 theorem setIntegral_segmentBlend_mul_norm_sub_le_inv_pow_mul_setIntegral_inter_closedBall
     {U : Set (Vec d)} (hU : IsOpenBoundedConvexDomain U)
     {x : Vec d} (hx : x ∈ U) {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t < 1)

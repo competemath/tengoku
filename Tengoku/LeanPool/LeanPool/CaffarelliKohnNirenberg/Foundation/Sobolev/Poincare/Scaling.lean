@@ -27,6 +27,9 @@ namespace CKN
 def ballPullback {d : ℕ} (x₀ : Vec d) (r : ℝ) (u : Vec d → ℝ) : Vec d → ℝ :=
   fun x => u (ballAffineMap x₀ r x)
 
+/--
+@isnad1 id=contdiff.1h4v.s7.4f086da10299 from=translated src=- shape=5db0cab7 vocab=0c7ca228
+-/
 theorem ballPullback_contDiff {d : ℕ} (x₀ : Vec d) (r : ℝ)
     {u : Vec d → ℝ} (hu : ContDiff ℝ 1 u) :
     ContDiff ℝ 1 (ballPullback x₀ r u) := by

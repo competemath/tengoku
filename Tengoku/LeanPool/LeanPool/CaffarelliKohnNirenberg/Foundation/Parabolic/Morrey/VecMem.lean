@@ -27,7 +27,9 @@ namespace CKN
 
 /-- Monotonicity of componentwise parabolic Morrey membership under subset restriction.
 If `u` has finite Morrey norm on `S`, then it also has finite Morrey norm on any
-subset `S' ⊆ S`. -/
+subset `S' ⊆ S`.
+@isnad1 id=morreyve.3h5v.s5.2955e6651f2c from=translated src=- shape=d102441b vocab=632875ff
+-/
 theorem morreyVecMem_mono {P τ : ℝ} (hP : 0 ≤ P)
     {S S' : Set ParabolicPoint} (hS : S' ⊆ S)
     {u : ParabolicPoint → Vec3} (h : morreyVecMem P τ S u) :

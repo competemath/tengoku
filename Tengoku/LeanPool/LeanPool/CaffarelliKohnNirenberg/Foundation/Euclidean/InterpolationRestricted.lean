@@ -61,7 +61,9 @@ open CKN.Foundation.Parabolic
 
 /-- The layer-cake half of the interpolation theorem: the distribution-function
 bound at every level, integrated against the weight `p t^{p-1}`.  This is the proof
-of `interpolation_weak11_strong22` with the tail estimate taken as a hypothesis. -/
+of `interpolation_weak11_strong22` with the tail estimate taken as a hypothesis.
+@isnad1 id=le.6h5v.s9.2ae8b3f082e3 from=translated src=- shape=ae4d93cf vocab=6868d688
+-/
 lemma interpolation_of_tail_bound {T : (Vec3 → ℝ) → (Vec3 → ℝ)} {A₁ A₂ p : ℝ}
     (hA₁ : 0 ≤ A₁) (hp1 : 1 < p) (hp2 : p < 2) {f : Vec3 → ℝ} (hf : Measurable f)
     (hTf : Measurable (T f))

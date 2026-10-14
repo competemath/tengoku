@@ -18,7 +18,9 @@ open scoped ENNReal Topology
 
 namespace CKN
 
-/-- Fatou's lemma transfers convergent upper bounds on nonnegative integrals. -/
+/-- Fatou's lemma transfers convergent upper bounds on nonnegative integrals.
+@isnad1 id=le.7h6v.s7.18c43bdf2b10 from=translated src=- shape=6d6618a5 vocab=466798cf
+-/
 theorem integral_le_of_ae_tendsto_nonneg {α : Type*} [MeasurableSpace α]
     {μ : Measure α} {f : ℕ → α → ℝ} {g : α → ℝ} {bounds : ℕ → ℝ} {bound : ℝ}
     (hf : ∀ n, Integrable (f n) μ) (hfn : ∀ n, 0 ≤ᵐ[μ] f n) (hg : 0 ≤ᵐ[μ] g)

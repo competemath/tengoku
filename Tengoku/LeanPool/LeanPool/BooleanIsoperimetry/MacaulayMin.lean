@@ -62,7 +62,9 @@ is now fully formalized and sorry-free.
 corollary of the set-family shadow leaf `H_shadow_LE_sum` (which collapses the
 Frankl–Füredi paired-compression cost via `H_exchange_max_form_pos`).  The
 hypotheses `ih`, `hp`, `hq`, `hpq` are retained to keep the call site signature
-stable; the content is entirely the shadow-sum comparison. -/
+stable; the content is entirely the shadow-sum comparison.
+@isnad1 id=le.10h5v.s8.98827337c0ff from=translated src=- shape=22e6d6bc vocab=11580788
+-/
 lemma macaulay_extremal_pos_step_LE (n : ℕ)
     (_ : ∀ m, m < n → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
             H (m + 1) (x + y) ≤ max (H m x) y + max (H m y) x)
@@ -74,7 +76,9 @@ lemma macaulay_extremal_pos_step_LE (n : ℕ)
   H_shadow_LE_sum ha hb hcasc hq_pos hba hcase
 
 /-- **Positive-cascade Case-II (GT) Macaulay shadow-sum leaf.**  Now a *proved*
-corollary of the set-family GT shadow-deficit leaf `H_shadow_GT_sum`. -/
+corollary of the set-family GT shadow-deficit leaf `H_shadow_GT_sum`.
+@isnad1 id=le.10h5v.s8.0c21b79bfa90 from=translated src=- shape=d7d2b621 vocab=11580788
+-/
 lemma macaulay_extremal_pos_step_GT (n : ℕ)
     (_ : ∀ m, m < n → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
             H (m + 1) (x + y) ≤ max (H m x) y + max (H m y) x)
@@ -87,7 +91,9 @@ lemma macaulay_extremal_pos_step_GT (n : ℕ)
 
 /-- Positive-cascade max-form wrapper.  Sorry-free modulo the two oriented
 Macaulay shadow-sum leaves `macaulay_extremal_pos_step_LE` and
-`macaulay_extremal_pos_step_GT`. -/
+`macaulay_extremal_pos_step_GT`.
+@isnad1 id=le.8h5v.s8.72e13fba4f8c from=translated src=- shape=2cc756f1 vocab=11580788
+-/
 lemma macaulay_extremal_pos_step (n : ℕ)
     (ih : ∀ m, m < n → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
             H (m + 1) (x + y) ≤ max (H m x) y + max (H m y) x)
@@ -121,7 +127,9 @@ lemma macaulay_extremal_pos_step (n : ℕ)
 canonical cascade split `(p, q)` of `a + b` at level `n`, the canonical split
 minimizes the symmetric max-form boundary cost.  The `q = 0` branch is discharged
 sorry-free by `Macaulay.harper_bc_min_q_zero_core`, and the `q ≥ 1` branch by
-`macaulay_extremal_pos_step`. -/
+`macaulay_extremal_pos_step`.
+@isnad1 id=le.7h5v.s8.c680555a142b from=translated src=- shape=31b81838 vocab=11580788
+-/
 lemma macaulay_bc_min (n : ℕ)
     (ih : ∀ m, m < n → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
             H (m + 1) (x + y) ≤ max (H m x) y + max (H m y) x)
@@ -154,7 +162,9 @@ distributing that mass into two `N`-dimensional slices of sizes `a` and `b`.
 
 Proved by strong induction on the dimension `N` (the Frankl–Füredi recursion):
 `H_succ_cascade` reduces the LHS to `max (H N p) q + max (H N q) p`, and
-`macaulay_bc_min` closes it using the lower-dimensional induction hypothesis. -/
+`macaulay_bc_min` closes it using the lower-dimensional induction hypothesis.
+@isnad1 id=le.2h3v.s6.aedd22a7a760 from=translated src=- shape=a4d1f832 vocab=2a1acc16
+-/
 theorem harper_macaulay_min {N a b : ℕ} (ha : a ≤ 2 ^ N) (hb : b ≤ 2 ^ N) :
     H (N + 1) (a + b) ≤ max (H N a) b + max (H N b) a := by
   suffices key : ∀ n, ∀ a b : ℕ, a ≤ 2 ^ n → b ≤ 2 ^ n →
@@ -176,7 +186,9 @@ theorem harper_macaulay_min {N a b : ℕ} (ha : a ≤ 2 ^ N) (hb : b ≤ 2 ^ N) 
 neighborhood no larger than the particular two-slice family consisting of
 canonical initial segments of sizes `a` and `b`.  Sorry-free corollary of
 `harper_macaulay_min` via the cardinality bridge
-`neighborhood_initialSlicePair_card`. -/
+`neighborhood_initialSlicePair_card`.
+@isnad1 id=le.2h3v.s7.e65b37066a0d from=translated src=- shape=8d007493 vocab=c20ae473
+-/
 theorem initialSlicePair_harper_bound {N a b : ℕ} (ha : a ≤ 2 ^ N) (hb : b ≤ 2 ^ N) :
     (neighborhood 1 (simplicialInitSeg (N + 1) (a + b))).card ≤
       (neighborhood 1 (initialSlicePair N a b)).card := by
@@ -191,7 +203,9 @@ neighborhood among all families of that size: `|N(initSeg N |A|)| ≤ |N(A)|`.
 The proof is the PDF Frankl–Füredi dimension recursion: split a family
 `B ⊆ Cube (M+1)` into its two `M`-dimensional slices, use `neighborhood_succ`,
 lower-bound each cross term by a maximum via the dimension-`M` induction
-hypothesis, and invoke the scalar Macaulay minimization `harper_macaulay_min`. -/
+hypothesis, and invoke the scalar Macaulay minimization `harper_macaulay_min`.
+@isnad1 id=le.0h2v.s5.31b6d20569a3 from=translated src=- shape=5d6f6153 vocab=07dfdf4a
+-/
 theorem harper_compression_descent {N : ℕ} (A : Finset (Cube N)) :
     (neighborhood 1 (simplicialInitSeg N A.card)).card ≤ (neighborhood 1 A).card := by
   suffices h : ∀ (M : ℕ) (B : Finset (Cube M)), H M B.card ≤ (neighborhood 1 B).card by

@@ -30,7 +30,9 @@ namespace CKN.Foundation.Euclidean
 
 open CKN.Foundation.Parabolic
 
-/-- Hölder's estimate for the pairing against a fixed `Lq` test function. -/
+/-- Hölder's estimate for the pairing against a fixed `Lq` test function.
+@isnad1 id=le.3h4v.s9.0fbf254f4398 from=translated src=- shape=f93cfe3a vocab=8f7feb37
+-/
 theorem integral_mul_test_le {p q : ℝ} (hpq : p.HolderConjugate q)
     {g ψ : Vec3 → ℝ} (hg : MemLp g (ENNReal.ofReal p) volume)
     (hψ : MemLp ψ (ENNReal.ofReal q) volume) :
@@ -55,7 +57,9 @@ theorem integral_mul_test_le {p q : ℝ} (hpq : p.HolderConjugate q)
 
 /-- Hölder's estimate for the difference of two pairings against a fixed
 `Lq` test function.  This is the quantitative `Lᵖ` continuity used in the
-distributional limit. -/
+distributional limit.
+@isnad1 id=le.4h5v.s9.de3c93860214 from=translated src=- shape=4e594c89 vocab=a19dc50d
+-/
 theorem integral_mul_test_sub_le {p q : ℝ} (hpq : p.HolderConjugate q)
     {g h ψ : Vec3 → ℝ} (hg : MemLp g (ENNReal.ofReal p) volume)
     (hh : MemLp h (ENNReal.ofReal p) volume)
@@ -66,7 +70,9 @@ theorem integral_mul_test_sub_le {p q : ℝ} (hpq : p.HolderConjugate q)
   exact integral_mul_test_le hpq (hg.sub hh) hψ
 
 /-- The pairing estimate when the test is continuous and compactly supported.
-Such a test is automatically in every finite `Lq` space. -/
+Such a test is automatically in every finite `Lq` space.
+@isnad1 id=le.4h4v.s9.86e20ef4f3d1 from=translated src=- shape=ad0e7dc4 vocab=585446a9
+-/
 theorem integral_mul_continuousCompactSupport_le {p q : ℝ}
     (hpq : p.HolderConjugate q) {g ψ : Vec3 → ℝ}
     (hg : MemLp g (ENNReal.ofReal p) volume) (hψc : Continuous ψ)

@@ -31,7 +31,9 @@ namespace CKN.Core.Step4
 
 /-- Any cylinder meeting the carrier cylinder has a truncated centre inside the
 carrier whose doubled-radius cylinder covers the cylinder's whole portion below
-time zero. -/
+time zero.
+@isnad1 id=ex.1h3v.s7.7d3cffc185e0 from=translated src=- shape=815ba7cd vocab=34b6de26
+-/
 theorem exists_one_sided_covering_cylinder_on_carrier
     {a : ℝ} {w : ParabolicPoint} {ρ : ℝ}
     (hmeet : (parabolicCylinder w.1 w.2 ρ ∩
@@ -45,7 +47,9 @@ theorem exists_one_sided_covering_cylinder_on_carrier
     parabolicCylinder_inter_le_subset_truncated hw'.1⟩
 
 /-- The power integral of an indicator is the integral of the power of the
-function over the cylinder intersected with the underlying set. -/
+function over the cylinder intersected with the underlying set.
+@isnad1 id=eq.2h5v.s6.886fef26fdaf from=translated src=- shape=b814132b vocab=ce8714e7
+-/
 theorem cylinderPowerIntegral_indicator_inter
     {P : ℝ} (hP : 0 < P) {S : Set ParabolicPoint} (hS : MeasurableSet S)
     (g : ParabolicPoint → ℝ) (z : ParabolicPoint) (r : ℝ) :
@@ -71,7 +75,9 @@ private theorem cylinder_morrey_cell_le'
 
 /-- Small-scale cylinder estimates at carrier centres and a total integral
 bound on the carrier imply an explicit Morrey estimate for the one-sided
-indicator of the carrier, with no upper bound on the carrier radius. -/
+indicator of the carrier, with no upper bound on the carrier radius.
+@isnad1 id=le.5h7v.s8.451156f689b3 from=translated src=- shape=bddc87f8 vocab=cbab092c
+-/
 theorem morreyNorm_one_sided_indicator_le_of_carrier_cells
     (a P τ ρ₀ : ℝ) (A B : ℝ≥0∞)
     (hP : 1 ≤ P) (hPτ : P ≤ τ) (hρ₀ : 0 < ρ₀)

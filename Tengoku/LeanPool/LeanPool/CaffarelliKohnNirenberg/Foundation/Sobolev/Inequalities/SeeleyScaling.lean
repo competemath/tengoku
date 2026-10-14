@@ -46,6 +46,9 @@ private theorem seeleyAffine_fderiv {x₀ : Vec 3} (r : ℝ)
   rw [hfd, fderiv_comp_add_left]
   simp [seeleyAffineMap]
 
+/--
+@isnad1 id=eq.1h4v.s7.3edfaffb3ccc from=translated src=- shape=e13b477a vocab=8283e96f
+-/
 theorem seeleyAffine_classicalGradient {x₀ : Vec 3} {r : ℝ}
     {f : Vec 3 → ℝ} (_ : ContDiff ℝ 1 f) (x : Vec 3) :
     classicalGradient (f ∘ seeleyAffineMap x₀ r) x =

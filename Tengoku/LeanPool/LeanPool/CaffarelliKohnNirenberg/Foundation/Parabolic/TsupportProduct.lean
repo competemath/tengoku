@@ -18,7 +18,9 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 namespace CKN
 
 /-- The topological support of a separated product ψ(x) θ(y) on a product space is the product
-of the two topological supports. -/
+of the two topological supports.
+@isnad1 id=eq.0h5v.s6.70cd607d920e from=translated src=- shape=e979fec6 vocab=cf1a681c
+-/
 theorem tsupport_mul_prod_eq {X Y M : Type*} [TopologicalSpace X] [TopologicalSpace Y]
     [MulZeroClass M] [NoZeroDivisors M] (ψ : X → M) (θ : Y → M) :
     tsupport (fun z : X × Y => ψ z.1 * θ z.2) = tsupport ψ ×ˢ tsupport θ := by

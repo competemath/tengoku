@@ -51,11 +51,17 @@ def euclideanBall {d : ℕ} (x₀ : Vec d) (R : ℝ) : Set (Vec d) :=
 def euclideanClosedBall {d : ℕ} (x₀ : Vec d) (R : ℝ) : Set (Vec d) :=
   {x | euclideanSqDist x x₀ ≤ R ^ 2}
 
+/--
+@isnad1 id=eq.0h2v.s4.103e0474cd97 from=translated src=- shape=48892474 vocab=64b8a175
+-/
 @[simp]
 theorem euclideanSqDist_self {d : ℕ} (x : Vec d) :
     euclideanSqDist x x = 0 := by
   simp [euclideanSqDist, vecNormSq, vecDot]
 
+/--
+@isnad1 id=iff.1h4v.s6.3820a72cb29e from=translated src=- shape=6a2180be vocab=b918dd35
+-/
 theorem mem_euclideanBall_iff_vecEuclideanNorm_lt {d : ℕ}
     {x₀ x : Vec d} {R : ℝ} (hR : 0 < R) :
     x ∈ euclideanBall x₀ R ↔
@@ -64,6 +70,9 @@ theorem mem_euclideanBall_iff_vecEuclideanNorm_lt {d : ℕ}
     Real.sqrt (vecNormSq (x - x₀)) < R
   exact (Real.sqrt_lt' hR).symm
 
+/--
+@isnad1 id=iff.1h4v.s6.ee0c34fd8317 from=translated src=- shape=6a2180be vocab=ccb925cc
+-/
 theorem mem_euclideanClosedBall_iff_vecEuclideanNorm_le {d : ℕ}
     {x₀ x : Vec d} {R : ℝ} (hR : 0 ≤ R) :
     x ∈ euclideanClosedBall x₀ R ↔
@@ -72,24 +81,36 @@ theorem mem_euclideanClosedBall_iff_vecEuclideanNorm_le {d : ℕ}
     Real.sqrt (vecNormSq (x - x₀)) ≤ R
   exact (Real.sqrt_le_left hR).symm
 
+/--
+@isnad1 id=contdiff.0h1v.s6.305837edc0fe from=translated src=- shape=aa4c441e vocab=489d981a
+-/
 theorem contDiff_vecNormSq {d : ℕ} :
     ContDiff ℝ (⊤ : ℕ∞) (fun x : Vec d => vecNormSq x) := by
   unfold vecNormSq vecDot
   exact ContDiff.sum (s := Finset.univ) fun i _hi =>
     (contDiff_apply ℝ ℝ i).mul (contDiff_apply ℝ ℝ i)
 
+/--
+@isnad1 id=contdiff.0h2v.s6.817663019140 from=translated src=- shape=20f83454 vocab=1669d4c9
+-/
 theorem contDiff_euclideanSqDist_left {d : ℕ} (x₀ : Vec d) :
     ContDiff ℝ (⊤ : ℕ∞)
       (fun x : Vec d => euclideanSqDist x x₀) := by
   unfold euclideanSqDist
   exact contDiff_vecNormSq.comp (contDiff_id.sub contDiff_const)
 
+/--
+@isnad1 id=isclosed.0h3v.s4.65a555f71fba from=translated src=- shape=efc2d0d2 vocab=5c2a20a0
+-/
 theorem isClosed_euclideanClosedBall {d : ℕ} (x₀ : Vec d) (R : ℝ) :
     IsClosed (euclideanClosedBall x₀ R) := by
   change IsClosed
     ((fun x : Vec d => euclideanSqDist x x₀) ⁻¹' Iic (R ^ 2))
   exact isClosed_Iic.preimage (contDiff_euclideanSqDist_left x₀).continuous
 
+/--
+@isnad1 id=le.0h4v.s5.768455f14497 from=translated src=- shape=6b125391 vocab=1b73bd31
+-/
 theorem sq_coord_sub_le_euclideanSqDist {d : ℕ}
     (x y : Vec d) (i : Fin d) :
     (x i - y i) ^ 2 ≤ euclideanSqDist x y := by
@@ -97,7 +118,9 @@ theorem sq_coord_sub_le_euclideanSqDist {d : ℕ}
     sq_apply_le_vecNormSq (x - y) i
 
 /-- A round closed ball is contained in the inherited supremum-metric closed
-ball with the same nonnegative radius. -/
+ball with the same nonnegative radius.
+@isnad1 id=le.1h3v.s5.33cd6df9ae0b from=translated src=- shape=edd43e93 vocab=331d0968
+-/
 theorem euclideanClosedBall_subset_supClosedBall {d : ℕ}
     {x₀ : Vec d} {R : ℝ} (hR : 0 ≤ R) :
     euclideanClosedBall x₀ R ⊆ Metric.closedBall x₀ R := by
@@ -110,6 +133,9 @@ theorem euclideanClosedBall_subset_supClosedBall {d : ℕ}
     abs_le_of_sq_le_sq hsqi hR
   simpa [Real.dist_eq, abs_sub_comm] using habs
 
+/--
+@isnad1 id=iscompac.1h3v.s5.cad6d133a2bb from=translated src=- shape=a554ddda vocab=f3c448ea
+-/
 theorem isCompact_euclideanClosedBall {d : ℕ}
     (x₀ : Vec d) {R : ℝ} (hR : 0 ≤ R) :
     IsCompact (euclideanClosedBall x₀ R) :=
@@ -117,6 +143,9 @@ theorem isCompact_euclideanClosedBall {d : ℕ}
     (isClosed_euclideanClosedBall x₀ R)
     (euclideanClosedBall_subset_supClosedBall hR)
 
+/--
+@isnad1 id=le.2h4v.s5.68776c62e324 from=translated src=- shape=40b11e83 vocab=d6e7c843
+-/
 theorem euclideanClosedBall_subset_euclideanBall {d : ℕ}
     {x₀ : Vec d} {r R : ℝ} (hr : 0 ≤ r) (hrR : r < R) :
     euclideanClosedBall x₀ r ⊆ euclideanBall x₀ R := by
@@ -247,7 +276,9 @@ private theorem ballCutoffWithSupportRadius_hasCompactSupport
     (isCompact_euclideanClosedBall x₀ hs)
     (ballCutoffWithSupportRadius_support_subset_closedBall hr hrs)
 
-/-- The canonical midpoint-collar cutoff is smooth to every order. -/
+/-- The canonical midpoint-collar cutoff is smooth to every order.
+@isnad1 id=contdiff.2h4v.s6.218988aa2e6f from=translated src=- shape=793ec9f6 vocab=0a332007
+-/
 theorem canonicalBallCutoff_smooth {d : ℕ}
     (x₀ : Vec d) {r R : ℝ} (hr : 0 ≤ r) (hrR : r < R) :
     ContDiff ℝ (⊤ : ℕ∞) (canonicalBallCutoff x₀ r R) := by
@@ -256,19 +287,25 @@ theorem canonicalBallCutoff_smooth {d : ℕ}
       (x₀ := x₀) hr
         (inner_lt_ballCutoffMidRadius hrR)
 
-/-- The canonical midpoint-collar cutoff is nonnegative. -/
+/-- The canonical midpoint-collar cutoff is nonnegative.
+@isnad1 id=le.0h5v.s4.e2a6ebc28524 from=translated src=- shape=9ce3f818 vocab=9e2c5d29
+-/
 theorem canonicalBallCutoff_nonneg {d : ℕ}
     (x₀ : Vec d) (r R : ℝ) (x : Vec d) :
     0 ≤ canonicalBallCutoff x₀ r R x :=
   smoothTransitionProfile.nonneg _
 
-/-- The canonical midpoint-collar cutoff is at most one. -/
+/-- The canonical midpoint-collar cutoff is at most one.
+@isnad1 id=le.0h5v.s4.5bd4fa9695cb from=translated src=- shape=1a40bdc6 vocab=9e2c5d29
+-/
 theorem canonicalBallCutoff_le_one {d : ℕ}
     (x₀ : Vec d) (r R : ℝ) (x : Vec d) :
     canonicalBallCutoff x₀ r R x ≤ 1 :=
   smoothTransitionProfile.le_one _
 
-/-- The canonical midpoint-collar cutoff equals one on the inner open ball. -/
+/-- The canonical midpoint-collar cutoff equals one on the inner open ball.
+@isnad1 id=eq.3h5v.s5.66c2d5e8b471 from=translated src=- shape=5a5ad8d0 vocab=fd48af0a
+-/
 theorem canonicalBallCutoff_eq_one_on_inner {d : ℕ}
     {x₀ : Vec d} {r R : ℝ} (hr : 0 ≤ r) (hrR : r < R)
     {x : Vec d} (hx : x ∈ euclideanBall x₀ r) :
@@ -277,7 +314,9 @@ theorem canonicalBallCutoff_eq_one_on_inner {d : ℕ}
     ballCutoffWithSupportRadius_eq_one
       hr (inner_lt_ballCutoffMidRadius hrR) hx
 
-/-- The topological support lies inside the outer open ball. -/
+/-- The topological support lies inside the outer open ball.
+@isnad1 id=le.2h4v.s5.13bab5a9361a from=translated src=- shape=8259d050 vocab=e22dc112
+-/
 theorem canonicalBallCutoff_tsupport_subset_outer {d : ℕ}
     {x₀ : Vec d} {r R : ℝ} (hr : 0 ≤ r) (hrR : r < R) :
     tsupport (canonicalBallCutoff x₀ r R) ⊆
@@ -298,7 +337,9 @@ theorem canonicalBallCutoff_tsupport_subset_outer {d : ℕ}
   simpa [canonicalBallCutoff, ballCutoffWithSupportRadius] using
     hclosed.trans hstrict
 
-/-- The canonical midpoint-collar cutoff has compact support. -/
+/-- The canonical midpoint-collar cutoff has compact support.
+@isnad1 id=hascompa.2h4v.s5.14025e2bf211 from=translated src=- shape=112d6ff4 vocab=e2465fa5
+-/
 theorem canonicalBallCutoff_hasCompactSupport {d : ℕ}
     {x₀ : Vec d} {r R : ℝ} (hr : 0 ≤ r) (hrR : r < R) :
     HasCompactSupport (canonicalBallCutoff x₀ r R) := by

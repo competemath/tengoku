@@ -36,22 +36,37 @@ noncomputable def standardMollifier {d : ℕ} (ε : ℝ) (hε : 0 < ε) :
 noncomputable def mollifier {d : ℕ} (ε : ℝ) (hε : 0 < ε) : Vec d → ℝ :=
   (standardMollifier ε hε).normed MeasureTheory.volume
 
+/--
+@isnad1 id=le.1h3v.s5.b25ab9406efc from=translated src=- shape=a7ee8d7a vocab=eaf9e877
+-/
 theorem mollifier_nonneg {d : ℕ} {ε : ℝ} (hε : 0 < ε) (x : Vec d) :
     0 ≤ mollifier (d := d) ε hε x := by
   exact (standardMollifier (d := d) ε hε).nonneg_normed x
 
+/--
+@isnad1 id=eq.1h2v.s6.f4cac96507ef from=translated src=- shape=b9125b17 vocab=26f7c6fd
+-/
 theorem mollifier_integral_one {d : ℕ} {ε : ℝ} (hε : 0 < ε) :
     ∫ x : Vec d, mollifier (d := d) ε hε x ∂MeasureTheory.volume = 1 := by
   exact (standardMollifier (d := d) ε hε).integral_normed
 
+/--
+@isnad1 id=hascompa.1h2v.s5.42cf27966160 from=translated src=- shape=3b625574 vocab=5d6d1b70
+-/
 theorem mollifier_hasCompactSupport {d : ℕ} {ε : ℝ} (hε : 0 < ε) :
     HasCompactSupport (mollifier (d := d) ε hε) := by
   exact (standardMollifier (d := d) ε hε).hasCompactSupport_normed
 
+/--
+@isnad1 id=contdiff.1h3v.s6.c2addd129d4e from=translated src=- shape=d760cf97 vocab=730f36d4
+-/
 theorem mollifier_contDiff {d : ℕ} {ε : ℝ} (hε : 0 < ε) {n : ℕ∞} :
     ContDiff ℝ n (mollifier (d := d) ε hε) := by
   exact (standardMollifier (d := d) ε hε).contDiff_normed
 
+/--
+@isnad1 id=locallyi.1h2v.s6.16f362540f2f from=translated src=- shape=1411608a vocab=2bbb745f
+-/
 theorem mollifier_locallyIntegrable {d : ℕ} {ε : ℝ} (hε : 0 < ε) :
     MeasureTheory.LocallyIntegrable (mollifier (d := d) ε hε)
       MeasureTheory.volume := by
@@ -63,17 +78,26 @@ noncomputable def mollify {d : ℕ} (u : Vec d → ℝ) (ε : ℝ) (hε : 0 < ε
   MeasureTheory.convolution (mollifier (d := d) ε hε) u
     (ContinuousLinearMap.lsmul ℝ ℝ) MeasureTheory.volume
 
+/--
+@isnad1 id=contdiff.2h4v.s7.10420ac6edff from=translated src=- shape=bc8f5aa9 vocab=908a04ae
+-/
 theorem mollify_contDiff {d : ℕ} {u : Vec d → ℝ} {ε : ℝ} (hε : 0 < ε)
     {n : ℕ∞} (hu : MeasureTheory.LocallyIntegrable u MeasureTheory.volume) :
     ContDiff ℝ n (mollify u ε hε) := by
   exact (mollifier_hasCompactSupport (d := d) hε).contDiff_convolution_left
     (L := ContinuousLinearMap.lsmul ℝ ℝ) (mollifier_contDiff (d := d) hε) hu
 
+/--
+@isnad1 id=continuo.2h3v.s6.74203139136f from=translated src=- shape=4492c7f1 vocab=e758290f
+-/
 theorem mollify_continuous {d : ℕ} {u : Vec d → ℝ} {ε : ℝ} (hε : 0 < ε)
     (hu : MeasureTheory.LocallyIntegrable u MeasureTheory.volume) :
     Continuous (mollify u ε hε) := by
   exact (mollify_contDiff hε hu (n := 0)).continuous
 
+/--
+@isnad1 id=tendsto.3h6v.s6.4a72b011fb77 from=translated src=- shape=8299c105 vocab=70577e61
+-/
 theorem mollify_tendsto_of_continuous {ι : Type*} {l : Filter ι}
     {d : ℕ} {u : Vec d → ℝ} {ε : ι → ℝ}
     (hε : Filter.Tendsto ε l (nhds 0))

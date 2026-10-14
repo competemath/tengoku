@@ -72,7 +72,9 @@ private lemma mem_parabolicCylinder_diff_sub_center {x₀ : Vec3} {t₀ ρ : ℝ
 
 /-- `eq:psi-lower`: the backward Gaussian test function based at
 `z₀ = (x₀, t₀)` is bounded below by `1/(2000 r)` on the cylinder
-`Cyl(r, z₀)`. -/
+`Cyl(r, z₀)`.
+@isnad1 id=le.2h4v.s6.fe9b82929b04 from=translated src=- shape=41601396 vocab=61676c15
+-/
 theorem centeredBackwardHeatTest_lower_on_cylinder {x₀ : Vec3} {t₀ r : ℝ}
     (hr : 0 < r) {z : ParabolicPoint} (hz : z ∈ parabolicCylinder x₀ t₀ r) :
     1 / (2000 * r) ≤ centeredBackwardHeatTest x₀ t₀ r z := by
@@ -81,7 +83,9 @@ theorem centeredBackwardHeatTest_lower_on_cylinder {x₀ : Vec3} {t₀ r : ℝ}
     backwardHeatTestFunction_lower_on_cylinder hr hz'
 
 /-- `eq:psi-upper`, first part: the backward Gaussian test function based at
-`z₀ = (x₀, t₀)` is bounded above by `1000/r` on the cylinder `Cyl(ρ, z₀)`. -/
+`z₀ = (x₀, t₀)` is bounded above by `1000/r` on the cylinder `Cyl(ρ, z₀)`.
+@isnad1 id=le.3h5v.s6.1519f280697c from=translated src=- shape=3971032d vocab=13ba16a6
+-/
 theorem centeredBackwardHeatTest_upper_on_cylinder {x₀ : Vec3} {t₀ r ρ : ℝ}
     (hr : 0 < r) (hρ : 0 < ρ) {z : ParabolicPoint}
     (hz : z ∈ parabolicCylinder x₀ t₀ ρ) :
@@ -92,7 +96,9 @@ theorem centeredBackwardHeatTest_upper_on_cylinder {x₀ : Vec3} {t₀ r ρ : �
 
 /-- `eq:psi-far`, first part: the backward Gaussian test function based at
 `z₀ = (x₀, t₀)` is bounded above by `8000000 r²/ρ³` on the annulus
-`Cyl(ρ, z₀) \ Cyl(ρ/2, z₀)` when `r ≤ ρ/2`. -/
+`Cyl(ρ, z₀) \ Cyl(ρ/2, z₀)` when `r ≤ ρ/2`.
+@isnad1 id=le.4h5v.s7.f4e44a3bc11e from=translated src=- shape=eed8b820 vocab=ad3f2d51
+-/
 theorem centeredBackwardHeatTest_upper_on_annulus {x₀ : Vec3} {t₀ r ρ : ℝ}
     (hr : 0 < r) (hρ : 0 < ρ) (hscale : r ≤ ρ / 2) {z : ParabolicPoint}
     (hz : z ∈ parabolicCylinder x₀ t₀ ρ \ parabolicCylinder x₀ t₀ (ρ / 2)) :
@@ -103,7 +109,9 @@ theorem centeredBackwardHeatTest_upper_on_annulus {x₀ : Vec3} {t₀ r ρ : ℝ
 
 /-- `eq:psi-far` and `eq:grad-psi`: the gradient norm of the backward Gaussian
 test function based at `z₀ = (x₀, t₀)` is bounded above by `5000000 r²/ρ⁴` on
-the annulus `Cyl(ρ, z₀) \ Cyl(ρ/2, z₀)` when `r ≤ ρ/2`. -/
+the annulus `Cyl(ρ, z₀) \ Cyl(ρ/2, z₀)` when `r ≤ ρ/2`.
+@isnad1 id=le.4h5v.s7.e482148cbb8d from=translated src=- shape=eed8b820 vocab=c18520b0
+-/
 theorem centeredBackwardHeatTestGradient_upper_on_annulus {x₀ : Vec3}
     {t₀ r ρ : ℝ} (hr : 0 < r) (hρ : 0 < ρ) (hscale : r ≤ ρ / 2)
     {z : ParabolicPoint}

@@ -32,12 +32,16 @@ noncomputable section
 namespace CKN.Foundation.Parabolic
 
 /-- The topology on `ParabolicPoint` is the one induced by `parabolicMap`, i.e. the
-pullback of the product topology on `L²(ℝ³) × ℝ`. -/
+pullback of the product topology on `L²(ℝ³) × ℝ`.
+@isnad1 id=isinduci.0h0v.s6.ca5f5db0657a from=translated src=- shape=583fb3b9 vocab=b55074d9
+-/
 theorem isInducing_parabolicMap : Topology.IsInducing parabolicMap :=
   Topology.IsInducing.induced parabolicMap
 
 /-- The spatial coordinate is continuous for the parabolic topology: the first factor of
-`parabolicMap` is `WithLp.toLp 2`, which is continuous for the `L²` product topology. -/
+`parabolicMap` is `WithLp.toLp 2`, which is continuous for the `L²` product topology.
+@isnad1 id=continuo.0h0v.s5.b8524ea50ef2 from=translated src=- shape=528e1737 vocab=0d7660f3
+-/
 theorem continuous_fst_parabolicPoint : Continuous (fun p : ParabolicPoint => p.1) := by
   have h : Continuous (fun p : ParabolicPoint => (parabolicMap p).1.ofLp) :=
     (PiLp.continuous_ofLp (p := 2) (β := fun _ : Fin 3 => ℝ)).comp
@@ -48,7 +52,9 @@ theorem continuous_fst_parabolicPoint : Continuous (fun p : ParabolicPoint => p.
   rwa [hfun] at h
 
 /-- The time coordinate is continuous for the parabolic topology: the second factor of
-`parabolicMap` is the snowflaking equivalence, which carries the same topology as `ℝ`. -/
+`parabolicMap` is the snowflaking equivalence, which carries the same topology as `ℝ`.
+@isnad1 id=continuo.0h0v.s4.25afef0455ce from=translated src=- shape=b890492c vocab=b48b3896
+-/
 theorem continuous_snd_parabolicPoint : Continuous (fun p : ParabolicPoint => p.2) := by
   have h : Continuous (fun p : ParabolicPoint =>
       Metric.Snowflaking.ofSnowflaking (parabolicMap p).2) :=
@@ -61,7 +67,9 @@ theorem continuous_snd_parabolicPoint : Continuous (fun p : ParabolicPoint => p.
   rwa [hfun] at h
 
 /-- `parabolicMap`, read on the product `Vec3 × ℝ` with its product topology, is
-continuous: both `WithLp.toLp 2` and the snowflaking equivalence are. -/
+continuous: both `WithLp.toLp 2` and the snowflaking equivalence are.
+@isnad1 id=continuo.0h0v.s6.88b1b61e9444 from=translated src=- shape=a0295d16 vocab=77e9a099
+-/
 theorem continuous_parabolicMap_prod :
     Continuous (fun q : Vec3 × ℝ => parabolicMap q) := by
   have h1 : Continuous (fun q : Vec3 × ℝ => WithLp.toLp 2 q.1) :=
@@ -72,14 +80,18 @@ theorem continuous_parabolicMap_prod :
   exact h1.prodMk h2
 
 /-- The identity map from the parabolic space-time to `Vec3 × ℝ` with the product
-topology is continuous. -/
+topology is continuous.
+@isnad1 id=continuo.0h0v.s5.b8af68e8ebb6 from=translated src=- shape=1471a0b0 vocab=626ebb51
+-/
 theorem continuous_parabolicPoint_to_prod :
     Continuous (fun p : ParabolicPoint => (p.1, p.2)) :=
   continuous_fst_parabolicPoint.prodMk continuous_snd_parabolicPoint
 
 /-- The identity map from `Vec3 × ℝ` with the product topology to the parabolic
 space-time is continuous; equivalently, the product topology is finer than the parabolic
-topology. -/
+topology.
+@isnad1 id=continuo.0h0v.s6.11cf84d217fa from=translated src=- shape=aa388754 vocab=626ebb51
+-/
 theorem continuous_prod_to_parabolicPoint :
     Continuous (show Vec3 × ℝ → ParabolicPoint from fun q => (q.1, q.2)) := by
   rw [isInducing_parabolicMap.continuous_iff]
@@ -97,21 +109,31 @@ def parabolicHomeomorph : ParabolicPoint ≃ₜ Vec3 × ℝ where
   continuous_toFun := continuous_parabolicPoint_to_prod
   continuous_invFun := continuous_prod_to_parabolicPoint
 
+/--
+@isnad1 id=eq.0h1v.s7.f62d9ed32889 from=translated src=- shape=5676eb68 vocab=259e4e08
+-/
 @[simp] theorem parabolicHomeomorph_apply (p : ParabolicPoint) :
     parabolicHomeomorph p = (p.1, p.2) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.432cc18a9b04 from=translated src=- shape=1a8691bf vocab=57e5881c
+-/
 @[simp] theorem parabolicHomeomorph_symm_apply (q : Vec3 × ℝ) :
     parabolicHomeomorph.symm q = ((q.1, q.2) : ParabolicPoint) := rfl
 
 /-- The topology bridge, as a statement about preimages: the homeomorphism is the
-identity on points, so preimages of product sets are the sets themselves. -/
+identity on points, so preimages of product sets are the sets themselves.
+@isnad1 id=eq.0h1v.s7.60605e54bf7f from=translated src=- shape=21fbcb4f vocab=fd16549c
+-/
 @[simp] theorem parabolicHomeomorph_preimage (s : Set (Vec3 × ℝ)) :
     parabolicHomeomorph ⁻¹' s = s := by
   ext p
   rfl
 
 /-- The instance topology on `ParabolicPoint` equals the product topology on
-`Vec3 × ℝ` transported along the identity. -/
+`Vec3 × ℝ` transported along the identity.
+@isnad1 id=eq.0h0v.s6.b3e637519c68 from=translated src=- shape=734b7410 vocab=2d969857
+-/
 theorem topologicalSpace_eq_induced_prod :
     (inferInstance : TopologicalSpace ParabolicPoint) =
       TopologicalSpace.induced (fun p : ParabolicPoint => (p.1, p.2))
@@ -125,11 +147,16 @@ theorem topologicalSpace_eq_induced_prod :
 def vec3Homeomorph : Vec3 ≃ₜ L2Vec3 :=
   (PiLp.homeomorph 2 (fun _ : Fin 3 => ℝ)).symm
 
+/--
+@isnad1 id=eq.0h1v.s7.8a63fa97d019 from=translated src=- shape=d33004b5 vocab=b4075b19
+-/
 @[simp] theorem vec3Homeomorph_apply (v : Vec3) :
     vec3Homeomorph v = WithLp.toLp 2 v := rfl
 
 /-- Under the identification of `Vec3` with `L²(ℝ³)`, the Euclidean ball `vec3Ball` is a
-metric ball, hence open. -/
+metric ball, hence open.
+@isnad1 id=isopen.0h2v.s5.9418d600239e from=translated src=- shape=1ed02776 vocab=5bceda19
+-/
 theorem isOpen_vec3Ball (x : Vec3) (r : ℝ) : IsOpen (vec3Ball x r) := by
   have h : vec3Ball x r = vec3Homeomorph ⁻¹' Metric.ball (vec3Homeomorph x) r := by
     ext y
@@ -139,7 +166,9 @@ theorem isOpen_vec3Ball (x : Vec3) (r : ℝ) : IsOpen (vec3Ball x r) := by
   exact Metric.isOpen_ball.preimage vec3Homeomorph.continuous
 
 /-- The closure of the Euclidean open ball of positive radius is the corresponding
-closed set `{y | vec3EuclideanNorm (y - x) ≤ r}`. -/
+closed set `{y | vec3EuclideanNorm (y - x) ≤ r}`.
+@isnad1 id=eq.1h2v.s6.012728aab79f from=translated src=- shape=4703da7f vocab=6d2a4e26
+-/
 theorem closure_vec3Ball {x : Vec3} {r : ℝ} (hr : 0 < r) :
     closure (vec3Ball x r) = {y : Vec3 | vec3EuclideanNorm (y - x) ≤ r} := by
   have h : vec3Ball x r = vec3Homeomorph ⁻¹' Metric.ball (vec3Homeomorph x) r := by
@@ -152,7 +181,9 @@ theorem closure_vec3Ball {x : Vec3} {r : ℝ} (hr : 0 < r) :
   rw [← WithLp.toLp_sub, ← vec3EuclideanNorm_eq_l2 (y - x)]
   rfl
 
-/-- The space-time carrier `def:sws` is open when both `Ω` and `I` are open. -/
+/-- The space-time carrier `def:sws` is open when both `Ω` and `I` are open.
+@isnad1 id=isopen.2h2v.s5.4881958686d5 from=translated src=- shape=96ab1166 vocab=0a38b482
+-/
 theorem isOpen_spaceTimeSet (Ω : Set Vec3) (I : Set ℝ) (hΩ : IsOpen Ω) (hI : IsOpen I) :
     IsOpen (CKN.spaceTimeSet Ω I) := by
   rw [show CKN.spaceTimeSet Ω I = parabolicHomeomorph ⁻¹' (Ω ×ˢ I) by
@@ -160,7 +191,9 @@ theorem isOpen_spaceTimeSet (Ω : Set Vec3) (I : Set ℝ) (hΩ : IsOpen Ω) (hI 
   exact (parabolicHomeomorph.isOpen_preimage).mpr (hΩ.prod hI)
 
 /-- The interior of a parabolic cylinder is the product of the Euclidean open ball and
-the open time interval: `Ioc` is not open, so its interior is `Ioo`. -/
+the open time interval: `Ioc` is not open, so its interior is `Ioo`.
+@isnad1 id=eq.0h3v.s6.bc0a5dc15158 from=translated src=- shape=dceeb8e5 vocab=76785c3f
+-/
 theorem interior_parabolicCylinder (x : Vec3) (t r : ℝ) :
     interior (parabolicCylinder x t r) = vec3Ball x r ×ˢ Ioo (t - r ^ 2) t := by
   rw [show parabolicCylinder x t r =
@@ -171,7 +204,9 @@ theorem interior_parabolicCylinder (x : Vec3) (t r : ℝ) :
     parabolicHomeomorph_preimage]
 
 /-- The closure of a parabolic cylinder of positive radius is the product of the
-Euclidean closed ball and the closed time interval. -/
+Euclidean closed ball and the closed time interval.
+@isnad1 id=eq.1h3v.s6.070a8ed284e4 from=translated src=- shape=9cfc5666 vocab=7844007c
+-/
 theorem closure_parabolicCylinder {x : Vec3} {t r : ℝ} (hr : 0 < r) :
     closure (parabolicCylinder x t r) =
       {y : Vec3 | vec3EuclideanNorm (y - x) ≤ r} ×ˢ Icc (t - r ^ 2) t := by
@@ -184,12 +219,16 @@ theorem closure_parabolicCylinder {x : Vec3} {t r : ℝ} (hr : 0 < r) :
   rw [closure_prod_eq, closure_vec3Ball hr, closure_Ioc hlt.ne,
     parabolicHomeomorph_preimage]
 
-/-- Every parabolic cylinder is contained in its closure. -/
+/-- Every parabolic cylinder is contained in its closure.
+@isnad1 id=le.0h3v.s4.8bb2883af0ed from=translated src=- shape=934f1736 vocab=1b192b1f
+-/
 theorem parabolicCylinder_subset_closure (x : Vec3) (t r : ℝ) :
     parabolicCylinder x t r ⊆ closure (parabolicCylinder x t r) :=
   subset_closure
 
-/-- Closures of parabolic cylinders are monotone in the radius. -/
+/-- Closures of parabolic cylinders are monotone in the radius.
+@isnad1 id=le.2h4v.s5.9f3f1540a1d5 from=translated src=- shape=8ce30a9f vocab=1b192b1f
+-/
 theorem closure_parabolicCylinder_mono {x : Vec3} {t r₁ r₂ : ℝ} (hr₁ : 0 ≤ r₁)
     (hr : r₁ ≤ r₂) :
     closure (parabolicCylinder x t r₁) ⊆ closure (parabolicCylinder x t r₂) :=

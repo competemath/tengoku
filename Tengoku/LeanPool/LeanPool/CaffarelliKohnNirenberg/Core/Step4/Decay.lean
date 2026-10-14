@@ -25,6 +25,9 @@ namespace CKN.Core.Step4
 
 /-! Discrete form of the scale iteration used for a rate strictly below three. -/
 
+/--
+@isnad1 id=le.8h6v.s7.4a68b3d22109 from=translated src=- shape=a329b3a3 vocab=762a6581
+-/
 theorem geometric_decay_iteration
     {θ σ A B : ℝ} (hθ : 0 ≤ θ) (hσ : 0 ≤ σ) (hθσ : θ < σ)
     (hA : 0 ≤ A) (hB : 0 ≤ B) {a : ℕ → ℝ}
@@ -59,6 +62,9 @@ theorem geometric_decay_iteration
           rw [hpow]
           ring
 
+/--
+@isnad1 id=eq.4h2v.s7.4ad663c8c356 from=translated src=- shape=63cda629 vocab=103e99f5
+-/
 theorem morrey_exponent_from_decay
     {κ β : ℝ} (hκ : 0 < κ) (_ : 0 ≤ β) (hβ5 : β < 5)
     (hβκ : β = 5 - 5 * (6 / 5 : ℝ) / κ) :
@@ -69,6 +75,9 @@ theorem morrey_exponent_from_decay
   field_simp [ne_of_gt hκ]
   ring
 
+/--
+@isnad1 id=lt.4h3v.s7.48412e3bdd15 from=translated src=- shape=acdb1be8 vocab=c1ca475c
+-/
 theorem gradientMorreyExponent
     {τ τ₃ q : ℝ} (_ : 0 < τ) (_ : 0 < τ₃) (hq : 0 < q)
     (hτcond : 1 / τ + 1 / τ₃ > 0) :
@@ -76,6 +85,9 @@ theorem gradientMorreyExponent
   have hsum : 0 < 1 / τ + 1 / τ₃ := hτcond
   exact lt_min (inv_pos.mpr hsum) hq
 
+/--
+@isnad1 id=le.1h4v.s5.8e1ce17aa798 from=translated src=- shape=5dc617d7 vocab=6787dd16
+-/
 theorem morreyNorm_le_of_cell_bound
     {p q : ℝ} {g : ParabolicPoint → ℝ} {C : ℝ≥0∞}
     (hcell : ∀ z : ParabolicPoint, ∀ r : {r : ℝ // 0 < r},
@@ -89,6 +101,9 @@ theorem morreyNorm_le_of_cell_bound
 the pressure gradient.  The parameters are deliberately exposed: the
 conversion from a continuous scale to the geometric sequence belongs to the
 caller, while this lemma contains the complete iteration. -/
+/--
+@isnad1 id=le.8h6v.s7.245047d37604 from=translated src=- shape=17e04796 vocab=762a6581
+-/
 theorem decay_iteration
     {θ σ A B : ℝ} {a : ℕ → ℝ}
     (hθ : 0 ≤ θ) (hσ : 0 ≤ σ) (hθσ : θ < σ)

@@ -358,6 +358,9 @@ private lemma B_quadratic_dij_sum (i0 i1 : Fin n) (hi01 : i0 ≠ i1) (c : ℝ)
             ac_rfl
   simp_all
 
+/--
+@isnad1 id=eq.1h4v.s11.822e2cb3f713 from=translated src=- shape=3a75d77a vocab=8fb068db
+-/
 lemma B_eq_smul_fisherBilin_uniform (i0 i1 : Fin n) (hi01 : i0 ≠ i1) :
   B (G := G) (n := n)
     =

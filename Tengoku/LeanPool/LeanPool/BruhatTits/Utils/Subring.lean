@@ -18,6 +18,9 @@ variable {ι : Type*} [DecidableEq ι]
 variable {R : Type*} [Ring R]
 variable {A : Subring R}
 
+/--
+@isnad1 id=eq.0h5v.s7.961e21411c53 from=translated src=- shape=c91090c8 vocab=da0bb317
+-/
 @[simp]
 lemma Subtype.val_comp_single (i : ι) (a : A) :
     Subtype.val ∘ Pi.single i a = Pi.single i a := by
@@ -25,12 +28,18 @@ lemma Subtype.val_comp_single (i : ι) (a : A) :
   by_cases h : i = j <;> aesop
 
 omit [DecidableEq ι]
+/--
+@isnad1 id=eq.0h5v.s8.44bc3e96d8ad from=translated src=- shape=cacfaf02 vocab=a6ea54cd
+-/
 @[simp]
 lemma Subtype.val_comp_add (v w : ι → A) :
     Subtype.val ∘ (v + w) = Subtype.val ∘ v + Subtype.val ∘ w := by
   ext j
   simp
 
+/--
+@isnad1 id=eq.0h5v.s9.8fb5a9b5a329 from=translated src=- shape=1085afe4 vocab=a2941464
+-/
 @[simp]
 lemma Subtype.val_comp_smul (a : A) (v : ι → A) :
     Subtype.val ∘ (a • v) = a • Subtype.val ∘ v := by
@@ -43,6 +52,9 @@ section
 variable {K : Type*} [Field K]
 variable {R : Subring K} [IsFractionRing R K]
 
+/--
+@isnad1 id=linearin.0h6v.s13.5440ba392742 from=translated src=- shape=c6a6f06c vocab=ff1ffda4
+-/
 lemma Module.Basis.linearIndependent_of_submodule {κ : Type*} {M : Submodule R (ι → K)}
     (b : Basis κ R M) :
     LinearIndependent K (fun i ↦ (b i).val) := by

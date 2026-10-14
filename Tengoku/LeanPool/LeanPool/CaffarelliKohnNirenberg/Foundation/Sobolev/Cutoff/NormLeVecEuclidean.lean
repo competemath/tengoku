@@ -17,7 +17,9 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 
 namespace CKN
 
-/-- The sup norm of a vector of `Vec d` is at most its Euclidean norm. -/
+/-- The sup norm of a vector of `Vec d` is at most its Euclidean norm.
+@isnad1 id=le.0h2v.s5.2a6bd31a81c5 from=translated src=- shape=e4284abf vocab=11aff1bd
+-/
 theorem pi_norm_le_vecEuclideanNorm {d : ℕ} (x : Vec d) :
     ‖x‖ ≤ vecEuclideanNorm x := by
   rw [Pi.norm_def]

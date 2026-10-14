@@ -42,7 +42,9 @@ private theorem compact_spatial_closedBall (r : ℝ) :
 
 /-- The closed unit cylinder admits a compactly interior product box with
 an open time interval, without any connectedness assumption on the ambient
-time set. -/
+time set.
+@isnad1 id=ex.3h2v.s7.da023ef0f3e1 from=translated src=- shape=8590824c vocab=f5bd2e30
+-/
 theorem exists_localBox_around_closed_unit
     {Ω : Set Vec3} {I : Set ℝ} (hΩ : IsOpen Ω) (hI : IsOpen I)
     (hunit : closure (parabolicCylinder (0 : Vec3) 0 1) ⊆ spaceTimeSet Ω I) :

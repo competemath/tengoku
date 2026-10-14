@@ -32,7 +32,9 @@ namespace SimpleGraph
 
 variable [Finite V]
 
-/-- A graph on a nonempty finite vertex type has clique number at least one. -/
+/-- A graph on a nonempty finite vertex type has clique number at least one.
+@isnad1 id=le.0h2v.s4.685f0b41e0c3 from=translated src=- shape=353aa348 vocab=5d3e1625
+-/
 lemma one_le_cliqueNum (G : SimpleGraph V) [Nonempty V] :
     1 ≤ G.cliqueNum := by
   classical
@@ -41,7 +43,9 @@ lemma one_le_cliqueNum (G : SimpleGraph V) [Nonempty V] :
     by simp
   simpa using hc.card_le_cliqueNum
 
-/-- The endpoints of an edge give a two-vertex clique. -/
+/-- The endpoints of an edge give a two-vertex clique.
+@isnad1 id=le.1h4v.s4.8617816e2a64 from=translated src=- shape=4666b811 vocab=5d1d7022
+-/
 lemma two_le_cliqueNum_of_adj (G : SimpleGraph V) {u v : V}
     (huv : G.Adj u v) :
     2 ≤ G.cliqueNum := by
@@ -59,7 +63,9 @@ lemma eq_bot_of_cliqueNum_eq_one (G : SimpleGraph V)
   have htwo := two_le_cliqueNum_of_adj G huv
   omega
 
-/-- On a nonempty graph, clique number is one exactly in the edgeless case. -/
+/-- On a nonempty graph, clique number is one exactly in the edgeless case.
+@isnad1 id=iff.0h2v.s5.4d6cedf812c9 from=translated src=- shape=085d77ca vocab=199ac82c
+-/
 lemma cliqueNum_eq_one_iff_eq_bot (G : SimpleGraph V) [Nonempty V] :
     G.cliqueNum = 1 ↔ G = ⊥ := by
   classical
@@ -76,7 +82,9 @@ lemma cliqueNum_eq_one_iff_eq_bot (G : SimpleGraph V) [Nonempty V] :
 
 end SimpleGraph
 
-/-- The Turán coefficient is nonnegative for a graph with at least one vertex. -/
+/-- The Turán coefficient is nonnegative for a graph with at least one vertex.
+@isnad1 id=le.0h2v.s4.421eaa72cb14 from=translated src=- shape=90a1c52c vocab=077ddb16
+-/
 lemma turanFactor_nonneg (G : SimpleGraph V) [Finite V] [Nonempty V] :
     0 ≤ turanFactor G := by
   have hω : 1 ≤ (G.cliqueNum : ℝ) := by
@@ -87,7 +95,9 @@ lemma turanFactor_nonneg (G : SimpleGraph V) [Finite V] [Nonempty V] :
     (inv_le_one₀ hωpos).2 hω
   simpa [turanFactor, one_div] using sub_nonneg.mpr hinv
 
-/-- The Turán coefficient is positive when the clique number is at least two. -/
+/-- The Turán coefficient is positive when the clique number is at least two.
+@isnad1 id=lt.1h2v.s4.d1b712ddfc2b from=translated src=- shape=12de40df vocab=6127378e
+-/
 lemma turanFactor_pos (G : SimpleGraph V) (hω : 2 ≤ G.cliqueNum) :
     0 < turanFactor G := by
   have hωr : 1 < (G.cliqueNum : ℝ) := by

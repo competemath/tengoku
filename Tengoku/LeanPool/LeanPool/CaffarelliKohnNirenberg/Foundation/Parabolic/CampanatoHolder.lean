@@ -80,12 +80,21 @@ private lemma vec3ScaleLinear_apply (a : ℝ) (v : Vec3) :
 private lemma vec3ScaleLinear_det (a : ℝ) :
     LinearMap.det (campanatoHolderVec3ScaleLinear a) = a ^ 3 := by
   simp [campanatoHolderVec3ScaleLinear, LinearMap.det_smul, LinearMap.det_id]
+/--
+@isnad1 id=lt.1h2v.s5.48655cf19dc6 from=translated src=- shape=d37bc8e6 vocab=ffba070c
+-/
 theorem parabolicBall_dyadic_pos {R : ℝ} (hR : 0 < R) (n : ℕ) :
     0 < R / (2 : ℝ) ^ n :=
   ball_dyadic_pos hR n
+/--
+@isnad1 id=le.1h2v.s5.d81a43cb13a4 from=translated src=- shape=fb23bde1 vocab=210cda99
+-/
 theorem parabolicBall_dyadic_le {R : ℝ} (hR : 0 < R) (n : ℕ) :
     R / (2 : ℝ) ^ n ≤ R :=
   ball_dyadic_le hR n
+/--
+@isnad1 id=eq.1h3v.s6.31a045062252 from=translated src=- shape=7f08112d vocab=e9cea173
+-/
 theorem parabolicBall_dyadic_rpow {R : ℝ} (hR : 0 ≤ R) (α : ℝ) (n : ℕ) :
     (R / (2 : ℝ) ^ n) ^ α = R ^ α * ((2 : ℝ) ^ (-α)) ^ n :=
   ball_dyadic_rpow hR α n
@@ -140,6 +149,9 @@ private theorem average_sub_const_le_rpow_outer
       gcongr
     _ = D ^ (1 / p) * (⨍ x in A, |f x - c| ^ p ∂μ) ^ (1 / p) := by
       rw [Real.mul_rpow hD0 hnonnegA]
+/--
+@isnad1 id=le.9h7v.s8.f0954e184230 from=translated src=- shape=618fb3e2 vocab=3cc2774c
+-/
 theorem abs_setAverage_sub_setAverage_le
     {α : Type*} [MeasurableSpace α] {μ : Measure α}
     {f : α → ℝ} {A B : Set α} {p D : ℝ} (hBA : B ⊆ A)
@@ -154,6 +166,9 @@ theorem abs_setAverage_sub_setAverage_le
         (⨍ x in A, |f x - ⨍ y in A, f y ∂μ| ^ p ∂μ) ^ (1 / p) := by
   simpa only using
     (average_sub_const_le_rpow_outer hBA hApos hAtop hBpos hBtop hfA hfpA hp hD)
+/--
+@isnad1 id=le.2h6v.s7.e9d886ddde33 from=translated src=- shape=90b25626 vocab=f5092fb5
+-/
 theorem abs_parabolicBallRepresentative_sub_meanSeq_le
     {f : ParabolicPoint → ℝ} {R α C : ℝ} {z : ParabolicPoint}
     (hα : 0 < α) (hstep : ∀ n : ℕ,
@@ -189,6 +204,9 @@ def parabolicCampanatoHolderConstant (α p : ℝ) : ℝ :=
   (2 * parabolicCampanatoTailConstant α + 1) *
     (2 : ℝ) ^ (5 / p) * (8 : ℝ) ^ α
 
+/--
+@isnad1 id=eventual.1h2v.s6.4f67e09fa2e2 from=translated src=- shape=962641d8 vocab=241d9fc4
+-/
 theorem parabolicBallRepresentative_ae_eq
     {f : ParabolicPoint → ℝ} {R : ℝ}
     (hlim : ∀ᵐ z ∂(volume : Measure ParabolicPoint),

@@ -19,7 +19,9 @@ noncomputable section
 
 namespace CKN.Foundation.Heat
 
-/-- For nonnegative `a` and `k : ℕ`, `a ^ k * exp(-a) ≤ k!`. -/
+/-- For nonnegative `a` and `k : ℕ`, `a ^ k * exp(-a) ≤ k!`.
+@isnad1 id=le.1h2v.s5.1aa17008fa12 from=translated src=- shape=c4aab589 vocab=0086b56c
+-/
 theorem exp_poly_bound {k : ℕ} {a : ℝ} (ha : 0 ≤ a) :
     a ^ k * Real.exp (-a) ≤ (k.factorial : ℝ) := by
   have h := Real.pow_div_factorial_le_exp a ha k
@@ -31,7 +33,9 @@ theorem exp_poly_bound {k : ℕ} {a : ℝ} (ha : 0 ≤ a) :
     a ^ k ≤ Real.exp a * (k.factorial : ℝ) := hmul
     _ = (k.factorial : ℝ) * Real.exp a := by ring
 
-/-- For nonnegative `a` and `n : ℕ`, `(1 + a)^n * exp(-a) ≤ 2^(n-1) * (1 + n!)`. -/
+/-- For nonnegative `a` and `n : ℕ`, `(1 + a)^n * exp(-a) ≤ 2^(n-1) * (1 + n!)`.
+@isnad1 id=le.1h2v.s6.b690e2c7fda6 from=translated src=- shape=7f8f2592 vocab=b34db2c7
+-/
 theorem one_add_pow_exp_neg_le {n : ℕ} {a : ℝ} (ha : 0 ≤ a) :
     (1 + a) ^ n * Real.exp (-a) ≤ (2 : ℝ) ^ (n - 1) * (1 + (n.factorial : ℝ)) := by
   have hp := add_pow_le (zero_le_one : (0 : ℝ) ≤ 1) ha n
@@ -53,7 +57,9 @@ theorem one_add_pow_exp_neg_le {n : ℕ} {a : ℝ} (ha : 0 ≤ a) :
     _ ≤ 2 ^ (n - 1) * (1 + (n.factorial : ℝ)) :=
       mul_le_mul_of_nonneg_left hsum (by positivity)
 
-/-- For positive time `t`, the heat prefactor `(4πt)^(-3/2)` is bounded by `(√t)^(-3)`. -/
+/-- For positive time `t`, the heat prefactor `(4πt)^(-3/2)` is bounded by `(√t)^(-3)`.
+@isnad1 id=le.1h1v.s6.86102fbfe1ac from=translated src=- shape=f8e3ec34 vocab=464b95a6
+-/
 theorem heat_prefactor_le {t : ℝ} (ht : 0 < t) :
     (4 * Real.pi * t) ^ (-(3 : ℝ) / 2) ≤ (Real.sqrt t) ^ (-(3 : ℝ)) := by
   have hbase : t ≤ 4 * Real.pi * t := by
@@ -73,7 +79,9 @@ theorem heat_prefactor_le {t : ℝ} (ht : 0 < t) :
       rw [← hsqrt, Real.rpow_neg (by positivity)]
       exact congrArg Inv.inv (Real.rpow_natCast (Real.sqrt t) 3).symm
 
-/-- For positive `z`, `z^(-3)` equals `(z^3)⁻¹`. -/
+/-- For positive `z`, `z^(-3)` equals `(z^3)⁻¹`.
+@isnad1 id=eq.1h1v.s5.ddb3ee816c4d from=translated src=- shape=577c1027 vocab=78ea50f5
+-/
 theorem heat_rpow_neg_three (z : ℝ) (hz : 0 < z) :
     z ^ (-(3 : ℝ)) = (z ^ (3 : ℕ))⁻¹ := by
   rw [Real.rpow_neg hz.le]

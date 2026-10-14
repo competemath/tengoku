@@ -55,7 +55,9 @@ private lemma integrableOn_cylinder_prod {g : ParabolicPoint → ℝ} {x : Vec3}
 
 /-- Fubini step of `prop:lin34`: if a function is integrable on the parabolic
 cylinder `Q_r(z)`, then the spatial slice integrals integrate in time against the
-time interval of the cylinder. -/
+time interval of the cylinder.
+@isnad1 id=integrab.1h4v.s7.0d51271204e3 from=translated src=- shape=00e02027 vocab=cb3e8d89
+-/
 theorem lin34_slice_integrable_of_cylinder
     {g : ParabolicPoint → ℝ} {x : Vec3} {t r : ℝ}
     (hg : IntegrableOn g (parabolicCylinder x t r) volume) :
@@ -65,7 +67,9 @@ theorem lin34_slice_integrable_of_cylinder
 
 /-- Fubini step of `prop:lin34`: if a function is integrable on the parabolic
 cylinder `Q_r(z)`, then for almost every time in the time interval of the
-cylinder its spatial slice is integrable on the spatial ball. -/
+cylinder its spatial slice is integrable on the spatial ball.
+@isnad1 id=eventual.1h4v.s7.cacb01c89640 from=translated src=- shape=9364df9c vocab=d9f19629
+-/
 theorem lin34_slice_integrableOn_ball_ae
     {g : ParabolicPoint → ℝ} {x : Vec3} {t r : ℝ}
     (hg : IntegrableOn g (parabolicCylinder x t r) volume) :
@@ -76,7 +80,9 @@ theorem lin34_slice_integrableOn_ball_ae
 
 /-- `prop:lin34`: on a cylinder whose closure lies in the carrier of a suitable
 weak solution, the pressure raised to the exponent `3 / 2` of `eq:Chat` is
-integrable. -/
+integrable.
+@isnad1 id=integrab.3h9v.s7.92b712641e92 from=translated src=- shape=35d5df61 vocab=18705c65
+-/
 theorem lin34_integrableOn_pressure_pow_cylinder
     {Ω : Set Vec3} {I : Set ℝ} {q : ℝ}
     {u : ParabolicPoint → Vec3} {Du : ParabolicPoint → Fin 3 → Vec3}

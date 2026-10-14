@@ -48,6 +48,9 @@ noncomputable def conwayGuyBaseCertificate :
       right
       exact coordinateSum_basis 0)
 
+/--
+@isnad1 id=isliftab.1h1v.s5.237b44e8de8b from=translated src=- shape=2c5ecfd1 vocab=0346617d
+-/
 lemma principal_valid (hblock : ∀ offset, ConwayGuyBlockIdentity offset)
     (offset : ℕ) :
     IsLiftableUnit (conwayGuyArithmetic.tower.weights (offset + 2))
@@ -70,7 +73,9 @@ noncomputable def conwayGuyFirstCoordinateRecurrence
   decomposition := principal_corrections_decomposition
 
 /-- Conditional concrete normalized chamber rigidity.  The height file
-discharges `hblock` from the published Conway--Guy recurrence. -/
+discharges `hblock` from the published Conway--Guy recurrence.
+@isnad1 id=le.2h3v.s5.b2bb439160c7 from=translated src=- shape=f29864b3 vocab=c82131ee
+-/
 theorem conwayGuyNormalizedChamberRigidity_of_blockIdentity
     (hblock : ∀ offset, ConwayGuyBlockIdentity offset) {n : ℕ}
     (candidate : Fin n → ℝ)
@@ -83,6 +88,9 @@ theorem conwayGuyNormalizedChamberRigidity_of_blockIdentity
   normalizedChamberRigidity conwayGuyArithmetic.tower
     (conwayGuyFirstCoordinateRecurrence hblock) candidate hgap
 
+/--
+@isnad1 id=conwaygu.0h1v.s2.d9df87f7cb34 from=translated src=- shape=5c11bb93 vocab=6e19c2cc
+-/
 lemma conwayGuyBlockIdentity_all (offset : ℕ) :
     ConwayGuyBlockIdentity offset := by
   exact conwayGuy_block_identity (offset + 2) (by omega)
@@ -94,7 +102,9 @@ noncomputable def conwayGuyRecurrence :
   conwayGuyFirstCoordinateRecurrence conwayGuyBlockIdentity_all
 
 /-- Every coordinate of every Conway--Guy row has a nonnegative integral
-certificate supported on liftable unit relations. -/
+certificate supported on liftable unit relations.
+@isnad1 id=nonempty.0h2v.s3.8a011a99bd11 from=translated src=- shape=06530b9a vocab=f6d0f7f1
+-/
 theorem conwayGuyCertificate_exists (dimension : ℕ)
     (coordinate : Fin dimension) :
     Nonempty
@@ -108,6 +118,7 @@ unit-relation inequalities of the Conway--Guy row dominates it coordinatewise.
 
 Bohman's distinct-subset-sum theorem is a separate external input identifying
 these unit relations with consecutive gaps of the induced Boolean term order.
+@isnad1 id=le.1h3v.s5.b8cb6f8c9a84 from=translated src=- shape=e73785c4 vocab=cc04bb31
 -/
 theorem conwayGuyNormalizedChamberRigidity {n : ℕ}
     (candidate : Fin n → ℝ)

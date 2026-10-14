@@ -96,21 +96,33 @@ private lemma third_derivative_integrableOn_Ioi {x : Vec3} {t : ℝ}
         rw [hpow, hrpow]
         ring)
 
+/--
+@isnad1 id=eq.1h5v.s5.6977e49559e9 from=translated src=- shape=c55b1ce0 vocab=1d45fbac
+-/
 lemma subordinatedKernel_causal {j l m : Fin 3} {x : Vec3} {t : ℝ} (ht : t ≤ 0) :
     subordinatedKernel j l m x t = 0 := by
   simp [subordinatedKernel, not_lt.mpr ht]
 
+/--
+@isnad1 id=integrab.1h5v.s6.baf40dd3472c from=translated src=- shape=98648bd5 vocab=6cc719f5
+-/
 lemma subordinatedKernel_integrable {j l m : Fin 3} {x : Vec3} {t : ℝ}
     (ht : 0 < t) :
     IntegrableOn (fun s : ℝ => heatKernelSpaceThirdDerivative x s m j l) (Ioi t) volume := by
   exact third_derivative_integrableOn_Ioi ht m j l
 
+/--
+@isnad1 id=le.1h5v.s6.2e244a3434d4 from=translated src=- shape=fb0c476a vocab=f1191496
+-/
 lemma subordinatedKernel_timeDerivative_abs_le_rho_inv_six
     {j l m : Fin 3} {x : Vec3} {t : ℝ} (ht : 0 < t) :
     |heatKernelSpaceThirdDerivative x t m j l| ≤
       1000000000000 / rhoTwo x t ^ 6 :=
   heatKernelSpaceThirdDerivative_abs_le_rho_inv_six ht m j l
 
+/--
+@isnad1 id=eq.1h6v.s5.fde962888e31 from=translated src=- shape=bc575a82 vocab=32b92f1a
+-/
 lemma subordinatedKernelSpatialDerivative_causal
     {j l m i : Fin 3} {x : Vec3} {t : ℝ} (ht : t ≤ 0) :
     subordinatedKernelSpatialDerivative j l m i x t = 0 := by

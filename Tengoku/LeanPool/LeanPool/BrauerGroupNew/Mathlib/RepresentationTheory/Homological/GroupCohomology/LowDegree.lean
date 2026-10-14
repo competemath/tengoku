@@ -17,9 +17,15 @@ This file restores upstream aliases and multiplicative cocycle closure lemmas.
 
 variable {G M : Type*} [Group G] [CommGroup M] [MulDistribMulAction G M] {f g : G × G → M}
 
+/--
+@isnad1 id=ismulcoc.1h3v.s9.809e635c36f0 from=translated src=- shape=89cf417c vocab=e9665359
+-/
 alias groupCohomology.IsMulCocycle₂.of_mem_cocycles₂ :=
   groupCohomology.isMulCocycle₂_of_mem_cocycles₂
 
+/--
+@isnad1 id=ismulcoc.2h4v.s7.883da0ab4674 from=translated src=- shape=0b3770fa vocab=20a4c33e
+-/
 lemma groupCohomology.IsMulCocycle₂.mul
     (hf : groupCohomology.IsMulCocycle₂ f) (hg : groupCohomology.IsMulCocycle₂ g) :
     groupCohomology.IsMulCocycle₂ (f * g) :=

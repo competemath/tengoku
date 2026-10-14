@@ -27,6 +27,9 @@ noncomputable section
 
 attribute [local instance] Classical.propDecidable
 
+/--
+@isnad1 id=le.2h2v.s10.5c04d92f93c8 from=translated src=- shape=2512311d vocab=71721faa
+-/
 theorem seeleyReflectionOne_comp_fderiv_norm_le_l1
     (v : Vec 3 → ℝ) (hv : ContDiff ℝ 1 v) {x : Vec 3}
     (hx : x ∈ seeleyClosedAnnulus) :
@@ -58,6 +61,9 @@ theorem seeleyReflectionOne_comp_fderiv_norm_le_l1
         (seeleyReflectionOne_fderiv_norm_le hx) (norm_nonneg _)
     _ = 25 * ‖fderiv ℝ v (seeleyReflectionOne x)‖ := by ring
 
+/--
+@isnad1 id=le.2h2v.s10.1a03423544c7 from=translated src=- shape=2512311d vocab=c4e30fdb
+-/
 theorem seeleyReflectionTwo_comp_fderiv_norm_le_l1
     (v : Vec 3 → ℝ) (hv : ContDiff ℝ 1 v) {x : Vec 3}
     (hx : x ∈ seeleyClosedAnnulus) :

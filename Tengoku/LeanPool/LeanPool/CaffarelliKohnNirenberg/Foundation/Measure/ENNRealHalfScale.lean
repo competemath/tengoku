@@ -20,7 +20,9 @@ open scoped ENNReal
 namespace CKN.Foundation.Measure
 
 /-- For `t > 0` and any extended nonnegative real `X`,
-`ENNReal.ofReal A * X / ENNReal.ofReal (t/2) = ENNReal.ofReal (2*A/t) * X`. -/
+`ENNReal.ofReal A * X / ENNReal.ofReal (t/2) = ENNReal.ofReal (2*A/t) * X`.
+@isnad1 id=eq.1h3v.s6.2057bcd81011 from=translated src=- shape=ec2fd271 vocab=beb0ea93
+-/
 theorem ofReal_mul_div_ofReal_half {A t : ℝ} (ht : 0 < t) (X : ℝ≥0∞) :
     ENNReal.ofReal A * X / ENNReal.ofReal (t / 2) = ENNReal.ofReal (2 * A / t) * X := by
   have ht2 : (0 : ℝ) < t / 2 := by linarith only [ht]
@@ -34,7 +36,9 @@ theorem ofReal_mul_div_ofReal_half {A t : ℝ} (ht : 0 < t) (X : ℝ≥0∞) :
         field_simp
 
 /-- For `t > 0` and any extended nonnegative real `X`,
-`ENNReal.ofReal B * X / (ENNReal.ofReal (t/2))^2 = ENNReal.ofReal (4*B/t^2) * X`. -/
+`ENNReal.ofReal B * X / (ENNReal.ofReal (t/2))^2 = ENNReal.ofReal (4*B/t^2) * X`.
+@isnad1 id=eq.1h3v.s7.fd744189b252 from=translated src=- shape=dfeb16f9 vocab=93e72c61
+-/
 theorem ofReal_mul_div_ofReal_half_sq {B t : ℝ} (ht : 0 < t) (X : ℝ≥0∞) :
     ENNReal.ofReal B * X / (ENNReal.ofReal (t / 2)) ^ 2 =
       ENNReal.ofReal (4 * B / t ^ 2) * X := by

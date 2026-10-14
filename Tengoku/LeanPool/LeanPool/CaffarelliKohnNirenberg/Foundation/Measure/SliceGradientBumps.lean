@@ -31,15 +31,24 @@ namespace CKN
 /-- The outer radius of the `n`-th mollifier in the approximate-identity sequence. -/
 def sliceRadius (n : ℕ) : ℝ := 1 / (n + 1)
 
+/--
+@isnad1 id=lt.0h1v.s3.00bbe726ce2d from=translated src=- shape=b9369acb vocab=9adae2ec
+-/
 theorem sliceRadius_pos (n : ℕ) : 0 < sliceRadius n := by
   unfold sliceRadius
   positivity
 
+/--
+@isnad1 id=tendsto.0h0v.s4.e171d8cedc55 from=translated src=- shape=8e2810f0 vocab=bc2ecb70
+-/
 theorem tendsto_sliceRadius_atTop :
     Filter.Tendsto sliceRadius Filter.atTop (nhds (0 : ℝ)) := by
   unfold sliceRadius
   exact tendsto_one_div_add_atTop_nhds_zero_nat (𝕜 := ℝ)
 
+/--
+@isnad1 id=eventual.1h2v.s7.f2cea0d7473c from=translated src=- shape=0dbb01d3 vocab=7eeb4dce
+-/
 theorem ae_tendsto_mollify_sliceRadius {d : ℕ} {g : Vec d → ℝ}
     (hg : MeasureTheory.LocallyIntegrable g MeasureTheory.volume) :
     ∀ᵐ x ∂(MeasureTheory.volume : MeasureTheory.Measure (Vec d)),

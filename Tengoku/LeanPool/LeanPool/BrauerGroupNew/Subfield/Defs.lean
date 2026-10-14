@@ -33,9 +33,15 @@ variable {R K A : Type*}
 section CommSemiring
 variable [CommSemiring R] [Semiring A] [Algebra R A] {L L₁ L₂ : SubField R A} {a : A}
 
+/--
+@isnad1 id=injectiv.0h2v.s5.aee34b23b3e8 from=translated src=- shape=0cc94c66 vocab=856f919b
+-/
 lemma toSubalgebra_injective : Injective (toSubalgebra : SubField R A → Subalgebra R A) := by
   rintro ⟨L⟩; congr!
 
+/--
+@isnad1 id=iff.0h4v.s5.e8989e1c5bda from=translated src=- shape=85b8c418 vocab=cb293046
+-/
 @[simp] lemma toSubalgebra_inj : L₁.toSubalgebra = L₂.toSubalgebra ↔ L₁ = L₂ :=
   toSubalgebra_injective.eq_iff
 
@@ -45,14 +51,32 @@ instance : SetLike (SubField R A) A where
 
 instance : PartialOrder (SubField R A) := .ofSetLike (SubField R A) A
 
+/--
+@isnad1 id=iff.0h4v.s6.03d7b1ec52fc from=translated src=- shape=05c213b4 vocab=e3939621
+-/
 lemma mem_carrier : a ∈ L.carrier ↔ a ∈ L := .rfl
+/--
+@isnad1 id=iff.0h4v.s6.e7d314bf0ee6 from=translated src=- shape=1e85670b vocab=0f94824a
+-/
 @[simp] lemma mem_toSubalgebra : a ∈ L.toSubalgebra ↔ a ∈ L := .rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.008c697829b6 from=translated src=- shape=1b166f70 vocab=c84dc799
+-/
 @[simp] lemma coe_toSubalgebra (L : SubField R A) : (L.toSubalgebra : Set A) = L := rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.c7b16959e105 from=translated src=- shape=bb5d2512 vocab=d154bdb4
+-/
 @[ext] lemma ext (h : ∀ x, x ∈ L₁ ↔ x ∈ L₂) : L₁ = L₂ := SetLike.ext h
 
+/--
+@isnad1 id=iff.0h4v.s6.1ef45a6cbc83 from=translated src=- shape=85b8c418 vocab=b070a0e2
+-/
 @[simp] lemma toSubalgebra_le_toSubalgebra : L₁.toSubalgebra ≤ L₂.toSubalgebra ↔ L₁ ≤ L₂ := .rfl
+/--
+@isnad1 id=iff.0h4v.s6.0f404de28707 from=translated src=- shape=85b8c418 vocab=74db7b53
+-/
 @[simp] lemma toSubalgebra_lt_toSubalgebra : L₁.toSubalgebra < L₂.toSubalgebra ↔ L₁ < L₂ := .rfl
 
 instance : SubsemiringClass (SubField R A) A where
@@ -95,6 +119,9 @@ def dSup (s : Set (SubField R A)) (hs : s.Nonempty) (hsdir : DirectedOn (· ≤ 
     obtain ⟨y, hy, hxy⟩ := L.exists_inverse hx hx₀
     exact ⟨y, ⟨L, hL, hy⟩, hxy⟩
 
+/--
+@isnad1 id=islub.2h3v.s6.c88700da031a from=translated src=- shape=1c1be334 vocab=dbf6bc4e
+-/
 lemma isLUB_dSup (s : Set (SubField R A)) (hs hsdir) : IsLUB s (dSup s hs hsdir) := by
   simpa [IsLUB, IsLeast, lowerBounds, upperBounds, ← toSubalgebra_le_toSubalgebra]
     using isLUB_biSup (s := s) (f := toSubalgebra)

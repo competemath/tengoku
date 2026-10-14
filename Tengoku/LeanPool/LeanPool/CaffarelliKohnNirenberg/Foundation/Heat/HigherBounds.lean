@@ -102,6 +102,9 @@ private lemma heatKernel_third_derivative_abs_le {x : Vec3} {t : ℝ}
       heatKernel x t * (s ^ 3 / (8 * t ^ 3) + 3 * s / (4 * t ^ 2)) by ring] at hmul
   exact hmul
 
+/--
+@isnad1 id=le.1h5v.s6.9186ee22d5e6 from=translated src=- shape=b2a98c8c vocab=f1191496
+-/
 lemma heatKernelSpaceThirdDerivative_abs_le_rho_inv_six
     {x : Vec3} {t : ℝ} (ht : 0 < t) (i j k : Fin 3) :
     |heatKernelSpaceThirdDerivative x t i j k| ≤
@@ -392,6 +395,9 @@ private lemma heatKernel_fourth_derivative_abs_le {x : Vec3} {t : ℝ}
         (s ^ 4 / (16 * t ^ 4) + 3 * s ^ 2 / (4 * t ^ 3) +
           3 / (4 * t ^ 2)) := by ring
 
+/--
+@isnad1 id=le.1h6v.s6.b262242efc88 from=translated src=- shape=6a9f5207 vocab=de70a9b9
+-/
 lemma heatKernelSpaceFourthDerivative_abs_le_rho_inv_seven
     {x : Vec3} {t : ℝ} (ht : 0 < t) (i j k l : Fin 3) :
     |heatKernelSpaceFourthDerivative x t i j k l| ≤

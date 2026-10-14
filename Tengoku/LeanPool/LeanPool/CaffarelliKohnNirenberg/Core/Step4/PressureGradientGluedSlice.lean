@@ -71,7 +71,9 @@ private lemma norm_sub_triangle (a b c : Vec3) :
 set there is a backward parabolic cylinder with rational radius and rational top time,
 centred at a point of any prescribed dense set `S`, whose half-radius ball contains `x`
 and lies in the original ball, whose closure lies in the product of the ball and the time
-set, and whose time window contains `s`. -/
+set, and whose time window contains `s`.
+@isnad1 id=ex.4h6v.s8.8159d072f541 from=translated src=- shape=b95d5258 vocab=166dfcb1
+-/
 theorem exists_small_cylinder_of_mem
     {x₀ : Vec3} {R : ℝ} {I : Set ℝ} (hI : IsOpen I)
     {S : Set Vec3} (hSd : Dense S)
@@ -181,7 +183,9 @@ namespace CKN
 
 /-- Weak partial derivatives given on the members of a countable open cover of
 `U` glue to a single locally integrable weak partial derivative on `U`, which
-agrees almost everywhere with each given piece. -/
+agrees almost everywhere with each given piece.
+@isnad1 id=ex.6h6v.s8.4251bf2e3dd4 from=translated src=- shape=d9755f99 vocab=26a29ebb
+-/
 theorem exists_weakPartialDerivOn_of_countable_cover {d : ℕ}
     {U : Set (Vec d)} {V : ℕ → Set (Vec d)} {i : Fin d} {u : Vec d → ℝ}
     {g : ℕ → Vec d → ℝ}
@@ -208,7 +212,9 @@ theorem exists_weakPartialDerivOn_of_countable_cover {d : ℕ}
 
 /-- Existence of a weak partial derivative is local: a function with a locally
 integrable `i`th weak partial derivative near every point of an open set has
-one on the whole set. -/
+one on the whole set.
+@isnad1 id=ex.3h4v.s8.f25f25cb5cfc from=translated src=- shape=733ffa88 vocab=63e619dc
+-/
 theorem exists_weakPartialDerivOn_of_local {d : ℕ}
     {U : Set (Vec d)} {i : Fin d} {u : Vec d → ℝ}
     (hU : IsOpen U) (hu : LocallyIntegrableOn u U volume)
@@ -267,7 +273,9 @@ weak spatial derivative on a whole ball, at almost every time.
 The hypothesis is exactly the shape display (3.5) delivers: for each centre,
 top time and radius whose closed cylinder lies in the space-time domain, a
 weak spatial derivative on the concentric ball of half the radius, for almost
-every time of that cylinder's window. -/
+every time of that cylinder's window.
+@isnad1 id=eventual.4h6v.s9.8e9d520b993f from=translated src=- shape=c3b2566d vocab=0336c3dd
+-/
 theorem ae_exists_weakPartialDerivOn_ball_of_small_cylinders
     {Ω : Set Vec3} {I : Set ℝ} (hI : IsOpen I)
     {x₀ : Vec3} {R : ℝ} (hRΩ : vec3Ball x₀ R ⊆ Ω)
@@ -333,7 +341,9 @@ private theorem euclideanBall_eq_vec3Ball_of_pos {x₀ : Vec3} {r : ℝ} (hr : 0
   simpa [vec3EuclideanNorm, vecEuclideanNorm, vecNormSq, vecDot, pow_two] using
     (mem_euclideanBall_iff_vecEuclideanNorm_lt hr)
 
-/-- The same statement with the slice estimate's own carrier notation. -/
+/-- The same statement with the slice estimate's own carrier notation.
+@isnad1 id=eventual.4h6v.s9.7b868b5f124a from=translated src=- shape=67f08137 vocab=4a6fb470
+-/
 theorem ae_exists_weakPartialDerivOn_ball_of_small_euclidean_cylinders
     {Ω : Set Vec3} {I : Set ℝ} (hI : IsOpen I)
     {x₀ : Vec3} {R : ℝ} (hRΩ : vec3Ball x₀ R ⊆ Ω)
@@ -355,7 +365,9 @@ theorem ae_exists_weakPartialDerivOn_ball_of_small_euclidean_cylinders
   simpa only [hball] using hslice c t₀ ρ hρ hsub
 
 /-- The unit-cylinder domain hypothesis of the origin carrier puts every ball
-of radius below one inside the spatial domain. -/
+of radius below one inside the spatial domain.
+@isnad1 id=le.2h3v.s6.a01f4aa63f1e from=translated src=- shape=71f2a113 vocab=4787dfbb
+-/
 theorem vec3Ball_subset_of_origin_dom {Ω : Set Vec3} {I : Set ℝ} {R : ℝ}
     (hR : R ≤ 1)
     (hdom : closure (parabolicCylinder (0 : Vec3) 0 1) ⊆ CKN.spaceTimeSet Ω I) :
@@ -374,7 +386,9 @@ theorem vec3Ball_subset_of_origin_dom {Ω : Set Vec3} {I : Set ℝ} {R : ℝ}
 small-cylinder form of display (3.5).  The conclusion is the first clause of
 the origin-pressure-gradient slice data with the majorant clause removed: the
 majorant has to come from the quantitative slice bound, not from this
-qualitative statement. -/
+qualitative statement.
+@isnad1 id=eventual.5h5v.s9.6e6883811ad1 from=translated src=- shape=cfb4f8b0 vocab=4a6fb470
+-/
 theorem ae_exists_origin_slice_gradient_of_small_cylinders
     {Ω : Set Vec3} {I : Set ℝ} (hI : IsOpen I) {R₀ : ℝ} (hR₀ : R₀ ≤ 1)
     {p : ParabolicPoint → ℝ}

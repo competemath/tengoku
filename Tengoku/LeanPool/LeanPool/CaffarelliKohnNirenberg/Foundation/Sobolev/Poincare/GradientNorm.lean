@@ -26,6 +26,9 @@ namespace CKN
 
 noncomputable section
 
+/--
+@isnad1 id=eq.0h1v.s9.e15513e510fa from=translated src=- shape=54c40c92 vocab=568fae82
+-/
 lemma opNorm_eq_sum_abs_basis (L : Vec 3 →L[ℝ] ℝ) :
     ‖L‖ = ∑ i : Fin 3, |L (basisVec i)| := by
   have hdecomp (x : Vec 3) :

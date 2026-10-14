@@ -108,7 +108,9 @@ private lemma lambda_factor {r₁ r₂ A₁ A₂ σ q : ℝ} (hr₁ : 0 < r₁) 
 /-- Lemma `lem:monotonicity` of `paper/ckn.tex` for the velocity energy `alpha`:
 `α(z,r₁) ≤ (r₂/r₁)^{1/2} α(z,r₂)`.  The hypothesis `hfin` records that the
 time-slice energy at the larger radius is finite, as it is for the suitable weak
-solutions of the paper. -/
+solutions of the paper.
+@isnad1 id=le.3h4v.s6.979d5fd02b67 from=translated src=- shape=9af36c6f vocab=c2e55ab0
+-/
 theorem alpha_mono_radius (u : ParabolicPoint → Vec3) (z : ParabolicPoint)
     {r₁ r₂ : ℝ} (hr₁ : 0 < r₁) (hrr : r₁ ≤ r₂)
     (hfin : timeSliceEnergyEssSup z.1 z.2 r₂ (fun w => vec3EuclideanNorm (u w)) ≠ ⊤) :
@@ -124,7 +126,9 @@ theorem alpha_mono_radius (u : ParabolicPoint → Vec3) (z : ParabolicPoint)
   simpa [alpha, Real.rpow_neg_one] using h
 
 /-- Lemma `lem:monotonicity` of `paper/ckn.tex` for the gradient quantity `beta`:
-`β(z,r₁) ≤ (r₂/r₁)^{1/2} β(z,r₂)`. -/
+`β(z,r₁) ≤ (r₂/r₁)^{1/2} β(z,r₂)`.
+@isnad1 id=le.3h5v.s7.84ce9c68b6dc from=translated src=- shape=2d3a0c2a vocab=4704b03a
+-/
 theorem beta_mono_radius (u : ParabolicPoint → Vec3) (Du : ParabolicPoint → Fin 3 → Vec3)
     (z : ParabolicPoint) {r₁ r₂ : ℝ} (hr₁ : 0 < r₁) (hrr : r₁ ≤ r₂)
     (hfin : (∫⁻ w in parabolicCylinder z.1 z.2 r₂,
@@ -141,7 +145,9 @@ theorem beta_mono_radius (u : ParabolicPoint → Vec3) (Du : ParabolicPoint → 
   simpa [beta, Real.rpow_neg_one] using h
 
 /-- Lemma `lem:monotonicity` of `paper/ckn.tex` for the velocity cubic quantity
-`gamma`: `γ(z,r₁) ≤ (r₂/r₁)^{2/3} γ(z,r₂)`. -/
+`gamma`: `γ(z,r₁) ≤ (r₂/r₁)^{2/3} γ(z,r₂)`.
+@isnad1 id=le.3h4v.s7.9162d7a48a6e from=translated src=- shape=2cc7ee73 vocab=0e09ecb2
+-/
 theorem gamma_mono_radius (u : ParabolicPoint → Vec3) (z : ParabolicPoint)
     {r₁ r₂ : ℝ} (hr₁ : 0 < r₁) (hrr : r₁ ≤ r₂)
     (hfin : (∫⁻ w in parabolicCylinder z.1 z.2 r₂,
@@ -161,7 +167,9 @@ theorem gamma_mono_radius (u : ParabolicPoint → Vec3) (z : ParabolicPoint)
 
 /-- Lemma `lem:monotonicity` of `paper/ckn.tex` for the pressure quantity
 `delta`, in the squared form stated in the paper:
-`δ(z,r₁)² ≤ (r₂/r₁)^{4/3} δ(z,r₂)²`. -/
+`δ(z,r₁)² ≤ (r₂/r₁)^{4/3} δ(z,r₂)²`.
+@isnad1 id=le.3h4v.s7.d2f816d322ee from=translated src=- shape=a691d077 vocab=cfcb5cfa
+-/
 theorem delta_sq_mono_radius (p : ParabolicPoint → ℝ) (z : ParabolicPoint)
     {r₁ r₂ : ℝ} (hr₁ : 0 < r₁) (hrr : r₁ ≤ r₂)
     (hfin : (∫⁻ w in parabolicCylinder z.1 z.2 r₂,
@@ -200,7 +208,9 @@ theorem delta_sq_mono_radius (p : ParabolicPoint → ℝ) (z : ParabolicPoint)
 
 /-- Lemma `lem:monotonicity` of `paper/ckn.tex` for the force quantity `lambda`:
 for `q > 0`, `λ(z,r₁) ≤ (r₁/r₂)^{3-5/q} λ(z,r₂)`.  Here `3 - 5/q` is the
-exponent `σ` appearing in the paper. -/
+exponent `σ` appearing in the paper.
+@isnad1 id=le.4h5v.s7.fe7fa3cc5db7 from=translated src=- shape=7328e019 vocab=2a05ce61
+-/
 theorem lambda_mono_radius (q : ℝ) (f : ParabolicPoint → Vec3) (z : ParabolicPoint)
     {r₁ r₂ : ℝ} (hq : 0 < q) (hr₁ : 0 < r₁) (hrr : r₁ ≤ r₂)
     (hfin : (∫⁻ w in parabolicCylinder z.1 z.2 r₂,

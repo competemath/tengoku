@@ -42,7 +42,9 @@ the closure of the half cylinder contains its top face.
 namespace CKN.Core.Endgame
 
 /-- A time truncation preserves the data required by the heat-source
-estimate and cannot increase its Morrey seminorm. -/
+estimate and cannot increase its Morrey seminorm.
+@isnad1 id=and.4h4v.s7.794e8ee1084f from=translated src=- shape=2532d415 vocab=87dc6030
+-/
 theorem time_truncation_source_data
     {F : ParabolicPoint → ℝ} {P θ T : ℝ} (hP : 0 ≤ P)
     (hF : AEMeasurable F volume) (hN : morreyNorm P θ F < ∞)
@@ -60,7 +62,9 @@ theorem time_truncation_source_data
 
 /-- Truncating the sources after a time does not change their heat potential
 at or before that time. No integrability assumption is needed: the integrands
-are pointwise equal, including at the time boundary. -/
+are pointwise equal, including at the time boundary.
+@isnad1 id=eq.1h4v.s6.3ce0da984a1a from=translated src=- shape=c421f1f3 vocab=49327f4f
+-/
 theorem heatPotential_time_truncation
     (F : ParabolicPoint → ℝ) (G : Fin 3 → ParabolicPoint → ℝ)
     {T : ℝ} {w : ParabolicPoint} (hw : w.2 ≤ T) :

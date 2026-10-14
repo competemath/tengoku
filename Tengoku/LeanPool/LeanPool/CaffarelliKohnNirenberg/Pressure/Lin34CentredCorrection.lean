@@ -43,7 +43,9 @@ smooth function) and then assembles the cancellation for the centred pairing.
 
 /-- The integral over all of `Vec3` of a spatial partial derivative of a smooth
 compactly supported function vanishes.  This is integration by parts against the
-constant test function `1`, whose derivative is zero. -/
+constant test function `1`, whose derivative is zero.
+@isnad1 id=eq.2h2v.s7.5aaf81aee93e from=translated src=- shape=ab6a4c46 vocab=3d31ca55
+-/
 theorem lin34_integral_spatialDeriv_eq_zero {G : Vec3 → ℝ}
     (hG : ContDiff ℝ (⊤ : ℕ∞) G) (hGc : HasCompactSupport G) (i : Fin 3) :
     ∫ x, spatialDeriv G i x = 0 := by
@@ -75,7 +77,9 @@ theorem lin34_integral_spatialDeriv_eq_zero {G : Vec3 → ℝ}
 /-- The integral over all of `Vec3` of a mixed second derivative of a smooth
 compactly supported function vanishes: it is the spatial derivative of the smooth
 compactly supported function `∂_j G`, so the previous integration-by-parts fact
-applies. -/
+applies.
+@isnad1 id=eq.2h3v.s8.3ed13eb5ca35 from=translated src=- shape=1f157a4d vocab=ef08d3cd
+-/
 theorem lin34_integral_mixedSecond_eq_zero {G : Vec3 → ℝ}
     (hG : ContDiff ℝ (⊤ : ℕ∞) G) (hGc : HasCompactSupport G) (i j : Fin 3) :
     ∫ x, mixedSecond G i j x = 0 := by
@@ -91,7 +95,9 @@ Hessian of every smooth compactly supported test function `F` supported in `Ω`.
 Indeed the constant vector field `b` is divergence free, so the `b_i b_j` part of
 the pairing vanishes termwise, while the `b_i u_j` part is the divergence-free
 pairing `∫_Ω ∑_j u_j ∂_j ∂_i F` supplied by `hdiv`; the two groups are related by
-the symmetry `∂_i ∂_j F = ∂_j ∂_i F` of the Hessian. -/
+the symmetry `∂_i ∂_j F = ∂_j ∂_i F` of the Hessian.
+@isnad1 id=eq.5h5v.s9.49fec40a3471 from=translated src=- shape=303b86f5 vocab=557fcc2b
+-/
 theorem lin34_constant_hessian_pairing_zero
     {u : ParabolicPoint → Vec3} {Ω : Set Vec3} {s : ℝ} {b : Vec3}
     {F : Vec3 → ℝ} (hF : ContDiff ℝ (⊤ : ℕ∞) F) (hFc : HasCompactSupport F)

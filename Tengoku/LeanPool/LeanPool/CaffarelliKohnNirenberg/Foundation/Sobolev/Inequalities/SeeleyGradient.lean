@@ -28,6 +28,9 @@ noncomputable section
 
 attribute [local instance] Classical.propDecidable
 
+/--
+@isnad1 id=le.0h2v.s9.8c09fab4e68b from=translated src=- shape=23966c47 vocab=6346732c
+-/
 theorem seeley_fderiv_norm_le_three_classicalGradient
     (f : Vec 3 → ℝ) (x : Vec 3) :
     ‖fderiv ℝ f x‖ ≤ 3 * ‖classicalGradient f x‖ := by

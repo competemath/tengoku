@@ -50,12 +50,18 @@ noncomputable def replicate (m : ℕ) (hm : 0 < m) : MarkovMorphism α (α × Fi
     refine ⟨b.1, ?_⟩
     simp_all
 
+/--
+@isnad1 id=eq.1h5v.s6.c52c72f4ef79 from=translated src=- shape=66105308 vocab=8b51e351
+-/
 lemma replicate_pushforward_apply (m : ℕ) (hm : 0 < m) (p : Simplex α) (a : α) (i : Fin m) :
     ((replicate (α := α) m hm).pushforward p).p (a, i) = p.p a / m := by
   classical
   -- Only the term `a' = a` contributes.
   simp [MarkovMorphism.pushforward_apply, replicate, mul_ite, div_eq_mul_inv]
 
+/--
+@isnad1 id=eq.1h2v.s6.f4118a191105 from=translated src=- shape=3c823192 vocab=71e0b043
+-/
 lemma replicate_pushforward_uniform [Nonempty α] (m : ℕ) (hm : 0 < m) :
     letI : Nonempty (Fin m) := ⟨⟨0, hm⟩⟩
     letI : Nonempty (α × Fin m) := by
@@ -70,6 +76,9 @@ lemma replicate_pushforward_uniform [Nonempty α] (m : ℕ) (hm : 0 < m) :
         (a := a) (i := i)]
   simp [Simplex.uniform_apply, div_eq_mul_inv, mul_comm]
 
+/--
+@isnad1 id=eq.1h5v.s8.c4c2bce6139c from=translated src=- shape=4da27c03 vocab=7d9d0693
+-/
 lemma replicate_tangentPushforward_apply (m : ℕ) (hm : 0 < m)
     (u : tangentSpace (α := α)) (a : α) (i : Fin m) :
     ((replicate (α := α) m hm).tangentPushforward u : α × Fin m → ℝ) (a, i) =
@@ -84,6 +93,9 @@ noncomputable def coarsen (m : ℕ) (hm : 0 < m) : MarkovMorphism (α × Fin m) 
   intro a
   refine ⟨(a, ⟨0, hm⟩), rfl⟩
 
+/--
+@isnad1 id=eq.1h3v.s6.5102991bb5d7 from=translated src=- shape=55dace88 vocab=17b69347
+-/
 lemma coarsen_pushforward_replicate (m : ℕ) (hm : 0 < m) (p : Simplex α) :
     (coarsen (α := α) m hm).pushforward ((replicate (α := α) m hm).pushforward p) = p := by
   classical
@@ -121,6 +133,9 @@ lemma coarsen_pushforward_replicate (m : ℕ) (hm : 0 < m) (p : Simplex α) :
           simpa [Fintype.sum_prod_type, Finset.sum_const,
             Finset.card_univ, div_eq_mul_inv] using this
 
+/--
+@isnad1 id=eq.1h3v.s7.1411e2c29b2e from=translated src=- shape=e4ac4227 vocab=b45da5bd
+-/
 lemma coarsen_tangentPushforward_replicate (m : ℕ) (hm : 0 < m)
     (u : tangentSpace (α := α)) :
     (coarsen (α := α) m hm).tangentPushforward

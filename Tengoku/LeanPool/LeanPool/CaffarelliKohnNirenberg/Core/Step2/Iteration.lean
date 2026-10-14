@@ -495,7 +495,9 @@ private lemma iteration_hrec_2 :
     _ = _ := hscaled.symm
 
 /-- Conditional form of `prop:iteration`, consuming the two inequalities of
-`lem:theta-decay` as its only additional analytic input. -/
+`lem:theta-decay` as its only additional analytic input.
+@isnad1 id=and.8h11v.s10.5c301df524ae from=translated src=- shape=1788ba26 vocab=6acc94e4
+-/
 theorem iteration_of_thetaDecay
     {Ω : Set Vec3} {I : Set ℝ} {q : ℝ}
     {u : ParabolicPoint → Vec3} {Du : ParabolicPoint → Fin 3 → Vec3}

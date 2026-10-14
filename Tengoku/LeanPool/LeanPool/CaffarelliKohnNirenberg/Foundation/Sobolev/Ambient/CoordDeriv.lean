@@ -22,7 +22,9 @@ namespace CKN
 
 /-- The `i`th coordinate component of the Fréchet derivative of `f` at `x` equals the
 ordinary derivative, at `x i`, of the one-variable function obtained from `f` by varying
-the `i`th coordinate alone: `s ↦ f (Function.update x i s)`. -/
+the `i`th coordinate alone: `s ↦ f (Function.update x i s)`.
+@isnad1 id=eq.1h4v.s9.7afc12592eb4 from=translated src=- shape=8ddbe7c2 vocab=db358bf7
+-/
 theorem coordFDeriv_eq_deriv_update {d : ℕ} {f : Vec d → ℝ} {x : Vec d}
     (hf : DifferentiableAt ℝ f x) (i : Fin d) :
     (fderiv ℝ f x) (basisVec i) =

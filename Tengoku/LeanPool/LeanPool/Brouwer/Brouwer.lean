@@ -72,6 +72,9 @@ variable {n l} in
 abbrev TT.Ilt (x y : TT n l) :=
   toLex (x i, x)  < toLex (y i, y)
 
+/--
+@isnad1 id=isstrict.0h3v.s5.f0f6be61fd40 from=translated src=- shape=ceb790b9 vocab=1a916a1b
+-/
 instance TT.IST : IsStrictTotalOrder (TT n l) (TT.Ilt i) where
   trichotomous := by
     intro a b h_ab h_ba
@@ -96,10 +99,16 @@ instance TT.ILO : IndexedLOrder (Fin n) (TT n l) where
 local notation  lhs "<[" i "]" rhs => IndexedLOrder.ltAt i lhs rhs
 local notation  lhs "≤[" i "]" rhs => IndexedLOrder.leAt i lhs rhs
 
+/--
+@isnad1 id=iff.0h5v.s6.3b27153090f6 from=translated src=- shape=ea8dda2b vocab=3f290042
+-/
 lemma TT.Ilt_def (a b : TT n l) :
   (a <[i] b) ↔ TT.Ilt i a b := by
   rfl
 
+/--
+@isnad1 id=ltat.1h5v.s8.b2de66533bb4 from=translated src=- shape=2d3f2e72 vocab=bf25cb42
+-/
 lemma TT.Ilt_keyprop (a b : TT n l) :
   a i < b i → a <[i] b := by
   intro h
@@ -107,6 +116,9 @@ lemma TT.Ilt_keyprop (a b : TT n l) :
   change Prod.Lex (· < ·) (· < ·) (a i, a) (b i, b)
   exact Prod.Lex.left a b h
 
+/--
+@isnad1 id=lt.2h4v.s8.578622a96b4e from=translated src=- shape=627c20b1 vocab=ce7cb1e4
+-/
 lemma size_bound_key (σ : Finset (TT n l)) (C : Finset (Fin n)) (h : TT.ILO.isDominant σ C)
 (h2 : σ.Nonempty) :
   l < ∑ k ∈ C, (σ.image (fun x => (x k : ℕ))).min' (h2.image _) + C.card := by
@@ -201,6 +213,9 @@ lemma size_bound_key (σ : Finset (TT n l)) (C : Finset (Fin n)) (h : TT.ILO.isD
     exact not_lt.mpr (h_all x hx) hlt
   exact h_not_dominant h
 
+/--
+@isnad1 id=lt.3h7v.s9.a1dd76df5ce1 from=translated src=- shape=b24d7ad5 vocab=e42d4bd6
+-/
 theorem size_bound_in (σ : Finset (TT n l)) (C : Finset (Fin n)) (h : TT.ILO.isDominant σ C) :
     ∀ x ∈ σ, ∀ y ∈ σ, ∀ i : Fin n, abs ((x i : ℤ) - (y i : ℤ)) < 2 * (n + 1)
     := by
@@ -289,6 +304,9 @@ theorem size_bound_in (σ : Finset (TT n l)) (C : Finset (Fin n)) (h : TT.ILO.is
     exfalso
     exact hσ ⟨x, hx⟩
 
+/--
+@isnad1 id=lt.3h6v.s8.bbb013432c7c from=translated src=- shape=3694d1e4 vocab=eaeea606
+-/
 theorem size_bound_out (σ : Finset (TT n l)) (C : Finset (Fin n)) (h : TT.ILO.isDominant σ C) :
     ∀ x ∈ σ, ∀ i ∉ C, (x i : ℤ) < n + 1
     := by
@@ -339,6 +357,9 @@ variable (f : standardSimplex ℝ (Fin n) → standardSimplex ℝ (Fin n))
 
 variable {n l}
 
+/--
+@isnad1 id=nonempty.0h3v.s7.78d360f521df from=translated src=- shape=8de7d7ff vocab=4ecb9c96
+-/
 instance stdSimplex.upidx (x y : standardSimplex ℝ (Fin n)) : Nonempty { i | x.1 i ≤ y.1 i} := by
   by_contra h
   push Not at h
@@ -380,6 +401,9 @@ def mkSubseq (f : ℕ → ℕ) (h : ∀ n, n < f n) : ℕ → ℕ
   | 0 => f 0
   | n+1 => f (mkSubseq f h n)
 
+/--
+@isnad1 id=ex.1h3v.s6.7a7541d0d71f from=translated src=- shape=1cdfb1f9 vocab=70a4e4d3
+-/
 theorem exists_subseq_constant_of_finite_image {s : Finset α} (e : ℕ → α) (he : ∀ n, e n ∈ s) :
   ∃ a ∈ s, ∃ g : ℕ ↪o ℕ,  (∀ n, e (g n) = a) := by
   have range_subset : Set.range e ⊆ (s : Set α) := Set.range_subset_iff.mpr he
@@ -443,6 +467,9 @@ theorem exists_subseq_constant_of_finite_image {s : Finset α} (e : ℕ → α) 
 
 end finiteness
 
+/--
+@isnad1 id=nonempty.0h2v.s10.e4d0465d30fb from=translated src=- shape=2720d9d3 vocab=6e66eea4
+-/
 lemma constant_index_set_nonempty : Nonempty {(a, g) :(Finset (Fin n)) × (ℕ ↪o ℕ) | ∀ l',
     (roomSeq f (g l')).1.2 = a } := by
   obtain ⟨a, ha,g,hg⟩ := exists_subseq_constant_of_finite_image (s := Finset.univ)
@@ -461,6 +488,9 @@ open Filter
 
 /- roomSeq ∘ g1 ∘ hpkg.1.2 converge to a point in standardSimplex-/
 
+/--
+@isnad1 id=tendsto.2h5v.s10.d6ea96f7da72 from=translated src=- shape=43ed051e vocab=324f332d
+-/
 lemma dominant_coords_tend_to_zero (f : standardSimplex ℝ (Fin n) → standardSimplex ℝ (Fin n))
     (C : Finset (Fin n)) (g : ℕ ↪o ℕ) (h_const : ∀ l', (roomSeq f (g l')).1.2 = C) :
   ∀ i ∉ C, Filter.Tendsto (fun l' => ((roomPointSeq f (g l')) : standardSimplex ℝ (Fin n)).1 i)
@@ -502,6 +532,9 @@ lemma dominant_coords_tend_to_zero (f : standardSimplex ℝ (Fin n) → standard
       exact_mod_cast Nat.lt_succ_of_le (Int.ofNat_le.mp (Int.le_of_lt_add_one h_bound))
     exact le_of_lt h_bound_real
 
+/--
+@isnad1 id=nonempty.0h2v.s8.4d28ebaa01fa from=translated src=- shape=7fde79ba vocab=8ef9a3d1
+-/
 lemma hpkgAux :
   Nonempty {(z , h) : (standardSimplex ℝ  (Fin n)) × (ℕ → ℕ) | StrictMono h ∧ Filter.Tendsto
     ((fun l' => (roomPointSeq f (g1 f l'): standardSimplex ℝ (Fin n))) ∘ h)
@@ -522,6 +555,9 @@ Use
 -- OrderEmbedding.strictMono: (f : α ↪o β), StrictMono ⇑f
 -/
 
+/--
+@isnad1 id=tendsto.0h2v.s14.c725b1c04f19 from=translated src=- shape=6d7f6606 vocab=cc703afc
+-/
 theorem tendsto_diam_to_zero (f : standardSimplex ℝ (Fin n) → standardSimplex ℝ (Fin n)) :
   Tendsto
     (fun k =>
@@ -594,6 +630,9 @@ theorem tendsto_diam_to_zero (f : standardSimplex ℝ (Fin n) → standardSimple
   exact tendsto_of_tendsto_of_tendsto_of_le_of_le (tendsto_const_nhds : Tendsto (fun _ => (0:ℝ))
       atTop (𝓝 0)) h_C_div_l_tends_to_zero (fun _ => Metric.diam_nonneg) hC_bound
 
+/--
+@isnad1 id=le.2h3v.s11.9c458267d0a8 from=translated src=- shape=8c9f1d88 vocab=7571883f
+-/
 theorem f_coords_ge_z_coords (f : standardSimplex ℝ (Fin n) → standardSimplex ℝ (Fin n))
     (hf : Continuous f) :
   ∀ i ∈ (gpkg f).1.1, (f (hpkg f).1.1).1 i ≥ ((hpkg f).1.1).1 i := by
@@ -700,6 +739,9 @@ theorem f_coords_ge_z_coords (f : standardSimplex ℝ (Fin n) → standardSimple
       exact le_of_tendsto_of_tendsto y_seq_φ_coord_converges f_y_seq_φ_coord_converges
           (Eventually.of_forall (fun l' => h_ineq (φ l')))
 
+/--
+@isnad1 id=ex.1h2v.s7.9975b25d55e0 from=translated src=- shape=67904036 vocab=fa07ac67
+-/
 theorem Brouwer (hf : Continuous f) : ∃ x , f x = x := by
   let z := (hpkg f).1.1
   let C := (gpkg f).1.1

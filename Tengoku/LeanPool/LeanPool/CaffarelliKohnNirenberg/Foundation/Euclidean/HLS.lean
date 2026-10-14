@@ -33,6 +33,9 @@ def hlsRieszConstant : ℝ≥0∞ :=
   (hedbergNearConstant + hedbergFarConstant) *
     (maximalStrongConstant (5 / 2 : ℝ)) ^ (1 / 15 : ℝ)
 
+/--
+@isnad1 id=ne.2h2v.s7.8072b99bc152 from=translated src=- shape=0a137cbb vocab=12dcc2db
+-/
 theorem maximalMajorant_ne_zero_of_integral_ne_zero
     {f : Vec3 → ℝ} (hf : Measurable f)
     (hI0 : (∫⁻ w, ENNReal.ofReal |f w| ^ (5 / 2 : ℝ)) ≠ 0) (z : Vec3) :

@@ -88,17 +88,26 @@ noncomputable def merge : MarkovMorphism (SplitTarget (α := α) m) α := by
   · intro a
     refine ⟨⟨a, ⟨0, hm a⟩⟩, by simp⟩
 
+/--
+@isnad1 id=eq.1h5v.s6.9fdcb94e8a74 from=translated src=- shape=d1524115 vocab=4b87a17e
+-/
 lemma split_pushforward_apply (p : Simplex α) (a : α) (i : Fin (m a)) :
     ((split (α := α) m hm).pushforward p).p ⟨a, i⟩ = p.p a / (m a : ℝ) := by
   classical
   simp [MarkovMorphism.pushforward_apply, split, mul_ite, div_eq_mul_inv, eq_comm]
 
+/--
+@isnad1 id=eq.1h5v.s8.3efd31164376 from=translated src=- shape=a82c19bb vocab=dbba51e7
+-/
 lemma split_tangentPushforward_apply (u : tangentSpace (α := α)) (a : α) (i : Fin (m a)) :
     (((split (α := α) m hm).tangentPushforward u : SplitTarget (α := α) m → ℝ) ⟨a, i⟩)
       = (u : α → ℝ) a / (m a : ℝ) := by
   classical
   simp [MarkovMorphism.tangentPushforward_apply, split, mul_ite, div_eq_mul_inv, eq_comm]
 
+/--
+@isnad1 id=eq.1h3v.s6.6b999adf14eb from=translated src=- shape=95aa9585 vocab=17630bf9
+-/
 lemma merge_pushforward_split (p : Simplex α) :
     (merge (α := α) m hm).pushforward ((split (α := α) m hm).pushforward p) = p := by
   classical
@@ -139,6 +148,9 @@ lemma merge_pushforward_split (p : Simplex α) :
             _ = p.p a := by
                   field_simp [hm_ne]
 
+/--
+@isnad1 id=eq.1h3v.s8.92bcd4ea38d1 from=translated src=- shape=bdf13f76 vocab=7d279de1
+-/
 lemma merge_tangentPushforward_split (u : tangentSpace (α := α)) :
     (merge (α := α) m hm).tangentPushforward ((split (α := α) m hm).tangentPushforward u) = u := by
   classical

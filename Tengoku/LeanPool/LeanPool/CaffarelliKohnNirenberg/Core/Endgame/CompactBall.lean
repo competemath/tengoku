@@ -22,7 +22,9 @@ open CKN.Foundation.Parabolic
 
 namespace CKN.Core.Endgame
 
-/-- Every closed ball for the parabolic metric is compact. -/
+/-- Every closed ball for the parabolic metric is compact.
+@isnad1 id=iscompac.0h2v.s4.9948edcdf08b from=translated src=- shape=9dd69421 vocab=3ec18d2f
+-/
 theorem isCompact_parabolic_closedBall (z₀ : ParabolicPoint) (r : ℝ) :
     IsCompact (closedBall z₀ r) := by
   apply parabolicHomeomorph.symm.isCompact_preimage.mp
@@ -48,7 +50,9 @@ theorem isCompact_parabolic_closedBall (z₀ : ParabolicPoint) (r : ℝ) :
     constructor <;> linarith only [habs.1, habs.2]
 
 /-- A ball around a point of a closed ball stays in the outer ball when
-the sum of the two radii is at most the outer radius. -/
+the sum of the two radii is at most the outer radius.
+@isnad1 id=le.2h5v.s5.e905c3c8ba48 from=translated src=- shape=c5fe5be8 vocab=66590ad7
+-/
 theorem parabolic_ball_subset_ball_of_center_mem_closedBall
     {z z₀ : ParabolicPoint} {r s R : ℝ}
     (hz : z ∈ closedBall z₀ r) (hr : r + s ≤ R) :

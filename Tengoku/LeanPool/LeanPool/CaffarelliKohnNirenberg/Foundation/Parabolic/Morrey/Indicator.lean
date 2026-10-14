@@ -23,7 +23,9 @@ noncomputable section
 namespace CKN.Foundation.Parabolic.Morrey
 
 /-- The Morrey cylinder integral of a set indicator equals the integral restricted
-to the intersection of the cylinder with the set. -/
+to the intersection of the cylinder with the set.
+@isnad1 id=eq.2h5v.s6.886fef26fdaf from=translated src=- shape=b814132b vocab=ce8714e7
+-/
 theorem cylinderPowerIntegral_indicator {p : ℝ} (hp : 0 < p)
     {S : Set ParabolicPoint} (hS : MeasurableSet S)
     (g : ParabolicPoint → ℝ) (z : ParabolicPoint) (r : ℝ) :

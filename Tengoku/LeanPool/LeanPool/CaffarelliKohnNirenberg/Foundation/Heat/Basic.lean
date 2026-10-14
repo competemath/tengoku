@@ -46,27 +46,42 @@ def heatKernelPlus (p : ParabolicPoint) : ℝ :=
 def rhoTwo (x : Vec3) (t : ℝ) : ℝ :=
   vec3EuclideanNorm x + Real.sqrt t
 
+/--
+@isnad1 id=eq.0h1v.s6.a25fa18c3fc4 from=translated src=- shape=b3d7bd61 vocab=e3c500d9
+-/
 lemma vec3EuclideanNorm_sq (x : Vec3) :
     (vec3EuclideanNorm x) ^ 2 = ∑ i, x i ^ 2 := by
   rw [vec3EuclideanNorm, Real.sq_sqrt]
   exact Finset.sum_nonneg (fun i _hi => sq_nonneg (x i))
 
+/--
+@isnad1 id=eq.1h2v.s4.9ddd61f68bbd from=translated src=- shape=a7faa7d3 vocab=4021115e
+-/
 lemma heatKernel_eq_zero_of_nonpos {x : Vec3} {t : ℝ} (ht : t ≤ 0) :
     heatKernel x t = 0 := by
   simp [heatKernel, not_lt.mpr ht]
 
+/--
+@isnad1 id=eq.1h2v.s7.642d10ba593f from=translated src=- shape=a85ff9ca vocab=89c38e24
+-/
 lemma heatKernel_eq_formula {x : Vec3} {t : ℝ} (ht : 0 < t) :
   heatKernel x t =
       (4 * Real.pi * t) ^ (-(3 : ℝ) / 2) *
         Real.exp (-(vec3EuclideanNorm x) ^ 2 / (4 * t)) := by
   rw [heatKernel, ite_eq_left ht, vec3EuclideanNorm_sq]
 
+/--
+@isnad1 id=eq.1h2v.s7.bef3986fe528 from=translated src=- shape=b726c23d vocab=0476075a
+-/
 lemma heatKernel_eq_formula_sum {x : Vec3} {t : ℝ} (ht : 0 < t) :
     heatKernel x t =
       (4 * Real.pi * t) ^ (-(3 : ℝ) / 2) *
         Real.exp (-(∑ i, x i ^ 2) / (4 * t)) := by
   rw [heatKernel_eq_formula ht, vec3EuclideanNorm_sq]
 
+/--
+@isnad1 id=le.0h2v.s4.eff764bb149c from=translated src=- shape=787c1379 vocab=4021115e
+-/
 lemma heatKernel_nonneg (x : Vec3) (t : ℝ) : 0 ≤ heatKernel x t := by
   by_cases ht : 0 < t
   · rw [heatKernel_eq_formula ht]
@@ -74,11 +89,17 @@ lemma heatKernel_nonneg (x : Vec3) (t : ℝ) : 0 ≤ heatKernel x t := by
       (Real.exp_pos _).le
   · rw [heatKernel_eq_zero_of_nonpos (le_of_not_gt ht)]
 
+/--
+@isnad1 id=lt.1h2v.s4.7b7a0a74ed3e from=translated src=- shape=696abc3b vocab=0bf6cd85
+-/
 lemma heatKernel_pos {x : Vec3} {t : ℝ} (ht : 0 < t) :
     0 < heatKernel x t := by
   rw [heatKernel_eq_formula ht]
   exact mul_pos (Real.rpow_pos_of_pos (by positivity) _) (Real.exp_pos _)
 
+/--
+@isnad1 id=eq.0h1v.s3.1cc52518f02e from=translated src=- shape=9eaa1e11 vocab=89f3f9db
+-/
 lemma heatKernelPlus_eq_heatKernel (p : ParabolicPoint) :
     heatKernelPlus p = heatKernel p.1 p.2 := by
   by_cases ht : 0 < p.2
@@ -86,6 +107,9 @@ lemma heatKernelPlus_eq_heatKernel (p : ParabolicPoint) :
   · rw [heatKernel_eq_zero_of_nonpos (le_of_not_gt ht)]
     simp [heatKernelPlus, ht]
 
+/--
+@isnad1 id=eq.1h2v.s4.f417f8f1e2d5 from=translated src=- shape=78deb4b1 vocab=24e1067a
+-/
 lemma heatKernelPlus_eq_zero_of_nonpos {x : Vec3} {t : ℝ} (ht : t ≤ 0) :
     heatKernelPlus (x, t) = 0 := by
   simp [heatKernelPlus, not_lt.mpr ht]
@@ -117,6 +141,9 @@ private lemma gaussian_integrable (t : ℝ) (ht : 0 < t) :
   exact hprod.congr (Filter.Eventually.of_forall fun x =>
     (gaussian_sum_exp_eq_prod x t).symm)
 
+/--
+@isnad1 id=integrab.1h1v.s6.9dd71076f15b from=translated src=- shape=4aa00920 vocab=3b36b515
+-/
 lemma heatKernel_integrable {t : ℝ} (ht : 0 < t) :
     Integrable (fun x : Vec3 => heatKernel x t) volume := by
   rw [show (fun x : Vec3 => heatKernel x t) = fun x : Vec3 =>
@@ -126,6 +153,9 @@ lemma heatKernel_integrable {t : ℝ} (ht : 0 < t) :
     exact heatKernel_eq_formula_sum ht]
   exact (gaussian_integrable t ht).const_mul _
 
+/--
+@isnad1 id=eq.1h1v.s7.3177529398fc from=translated src=- shape=9e17b4ee vocab=1d2305a5
+-/
 lemma gaussian_integral (t : ℝ) (ht : 0 < t) :
     ∫ x : Vec3, Real.exp (-(∑ i, x i ^ 2) / (4 * t)) =
       (Real.sqrt (4 * Real.pi * t)) ^ (3 : ℕ) := by
@@ -148,6 +178,9 @@ lemma gaussian_integral (t : ℝ) (ht : 0 < t) :
   congr 1
   field_simp [ht.ne']
 
+/--
+@isnad1 id=eq.1h1v.s6.dadff7099061 from=translated src=- shape=3557dc68 vocab=abf0ed94
+-/
 lemma heatKernel_integral (t : ℝ) (ht : 0 < t) :
     ∫ x : Vec3, heatKernel x t = 1 := by
   rw [show (fun x : Vec3 => heatKernel x t) = fun x : Vec3 =>
@@ -164,6 +197,9 @@ lemma heatKernel_integral (t : ℝ) (ht : 0 < t) :
   rw [← Real.rpow_add hbase]
   simp only [show -(3 : ℝ) / 2 + (3 : ℝ) / 2 = 0 by ring, Real.rpow_zero]
 
+/--
+@isnad1 id=le.0h1v.s3.2d79e1af780b from=translated src=- shape=b9369acb vocab=f3803edb
+-/
 lemma heatKernelPlus_nonneg (p : ParabolicPoint) : 0 ≤ heatKernelPlus p := by
   rw [heatKernelPlus_eq_heatKernel]
   exact heatKernel_nonneg _ _

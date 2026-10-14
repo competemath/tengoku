@@ -77,7 +77,9 @@ def utensorNorm (u : ParabolicPoint → Vec3) (x₀ : Vec3) (ρ t : ℝ) (y : Ve
   Real.sqrt (∑ i : Fin 3, ∑ j : Fin 3, (utensor u x₀ ρ t i j y) ^ (2 : ℕ))
 
 /-- `U` is rank one: `|U|` is the product of the norms of `u(·,t)` and of its
-mean-free part.  This is the pointwise identity used in `eq:U-bounds`. -/
+mean-free part.  This is the pointwise identity used in `eq:U-bounds`.
+@isnad1 id=eq.0h5v.s5.042f8bb509b3 from=translated src=- shape=91bf7a1e vocab=b780ea88
+-/
 theorem utensorNorm_eq (u : ParabolicPoint → Vec3) (x₀ : Vec3) (ρ t : ℝ)
     (y : Vec3) :
     utensorNorm u x₀ ρ t y =

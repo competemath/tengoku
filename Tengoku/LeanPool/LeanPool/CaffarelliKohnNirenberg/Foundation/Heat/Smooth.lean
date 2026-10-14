@@ -85,6 +85,9 @@ def heatKernelSpaceFourthDerivative (x : Vec3) (t : ℝ)
 def heatKernelLaplacian (x : Vec3) (t : ℝ) : ℝ :=
   ∑ i, heatKernelSpaceSecondDerivative x t i
 
+/--
+@isnad1 id=contdiff.0h0v.s7.25f10362b1da from=translated src=- shape=1f3a2e3e vocab=eb722b60
+-/
 lemma heatKernel_contDiffOn_pos :
     ContDiffOn ℝ ⊤ (fun p : Vec3 × ℝ => heatKernel p.1 p.2)
       (univ ×ˢ Ioi (0 : ℝ)) := by
@@ -102,6 +105,9 @@ lemma heatKernel_contDiffOn_pos :
     rw [heatKernel, ite_eq_left hqpos]
   · rw [heatKernel, ite_eq_left hp]
 
+/--
+@isnad1 id=differen.1h2v.s6.59012dd38253 from=translated src=- shape=7c882473 vocab=82c6320e
+-/
 lemma heatKernel_time_differentiableAt {x : Vec3} {t : ℝ} (ht : 0 < t) :
     DifferentiableAt ℝ (fun s => heatKernel x s) t := by
   have hformula : ContDiffAt ℝ ⊤
@@ -118,6 +124,9 @@ lemma heatKernel_time_differentiableAt {x : Vec3} {t : ℝ} (ht : 0 < t) :
     rw [heatKernel_eq_formula_sum hs]
   exact (hformula.congr_of_eventuallyEq heq).differentiableAt (by simp)
 
+/--
+@isnad1 id=eq.1h3v.s9.c9871ce050b5 from=translated src=- shape=d4fbde96 vocab=8ad8aff6
+-/
 lemma coord_fderiv_eq_deriv_update {f : Vec3 → ℝ} {x : Vec3}
     (hf : DifferentiableAt ℝ f x) (i : Fin 3) :
     (fderiv ℝ f x) (CKN.basisVec i) =
@@ -140,6 +149,9 @@ lemma coord_fderiv_eq_deriv_update {f : Vec3 → ℝ} {x : Vec3}
       (fderiv ℝ f x) (ContinuousLinearMap.pi
       (Pi.single i (ContinuousLinearMap.id ℝ ℝ)) 1) by rfl, hb]
 
+/--
+@isnad1 id=eq.1h2v.s4.8a889c3d30c1 from=translated src=- shape=0eb5832c vocab=4f084cc1
+-/
 lemma heatKernel_heat_equation {x : Vec3} {t : ℝ} (ht : 0 < t) :
     heatKernelTimeDerivative x t = heatKernelLaplacian x t := by
   rw [heatKernelTimeDerivative, ite_eq_left ht, heatKernelLaplacian]

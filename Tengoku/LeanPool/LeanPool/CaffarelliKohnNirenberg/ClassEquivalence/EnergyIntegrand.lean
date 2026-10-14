@@ -74,7 +74,9 @@ private theorem vec3EuclideanNorm_sq_le_three_mul_norm_sq (v : Vec3) :
 
 /-- The energy density `|u|²` of the local energy inequality is integrable on
 every compact subset of the space-time carrier: the velocity is square
-integrable there by the data clauses. -/
+integrable there by the data clauses.
+@isnad1 id=integrab.3h8v.s6.68657dd8a00a from=translated src=- shape=1137011f vocab=68b66d17
+-/
 theorem velocity_energyDensity_integrableOn_compact_of_data
     (hdata : IsSuitableWeakSolutionData Ω I q u Du p f)
     (hK : IsCompact K) (hKsub : K ⊆ spaceTimeSet Ω I) :
@@ -104,7 +106,9 @@ variable (hdata : IsSuitableWeakSolutionData Ω I q u Du p f)
 include hdata hK hKsub hψ
 
 /-- The heat-operator term `|u|² (∂ₜψ + Δψ)` of the right-hand side is
-integrable on a compact subset of the carrier. -/
+integrable on a compact subset of the carrier.
+@isnad1 id=integrab.4h9v.s7.4a2a83aeff3b from=translated src=- shape=d6249357 vocab=64a61be4
+-/
 theorem localEnergy_heatTerm_integrableOn_of_data :
     IntegrableOn (fun z => vec3EuclideanNorm (u z) ^ (2 : ℕ) *
       (timePartial ψ z + ∑ i, spatialSecondPartial ψ i i z)) K volume := by

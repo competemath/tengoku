@@ -32,6 +32,9 @@ def toTensorMartrixToFunBilinear : K →ₗ[F] Matrix n n A →ₗ[F] Matrix n n
   map_add' k1 k2 := by ext; simp [add_smul]
   map_smul' r k := by ext; simp
 
+/--
+@isnad1 id=eq.0h6v.s11.9937bea449a1 from=translated src=- shape=ca9f5612 vocab=e1f64d8a
+-/
 @[simp]
 lemma toTensorMartrixToFunBilinear_apply (k : K) (M : Matrix n n A) :
   toTensorMartrixToFunBilinear K F A n k M =
@@ -54,6 +57,9 @@ def invFunToFunBilinear (i j : n) : K →ₗ[F] A →ₗ[F] K ⊗[F] Matrix n n 
   map_smul' _ _ := by ext; simp [smul_tmul']
 
 omit [Fintype n] in
+/--
+@isnad1 id=eq.0h8v.s11.723914c8c362 from=translated src=- shape=4fa8fca3 vocab=5a9730cf
+-/
 @[simp]
 lemma invFunToFunBilinear_apply (i j : n) (k : K) (a : A) :
   invFunToFunBilinear K F A n i j k a = k ⊗ₜ single i j a := rfl

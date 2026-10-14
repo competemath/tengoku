@@ -46,6 +46,9 @@ noncomputable def coordinateDown {N : ℕ} (i : Fin N) (A : Finset (Cube N)) : F
   let A_moved := (A.filter (fun x => i ∈ x ∧ erase x i ∉ A)).image (fun x => erase x i)
   A_kept ∪ A_moved
 
+/--
+@isnad1 id=iscoordi.0h3v.s4.c57d512e5df7 from=translated src=- shape=3c44f7ea vocab=db83d0fa
+-/
 lemma coordinateUp_spec {N : ℕ} (i : Fin N) (A : Finset (Cube N)) :
     IsCoordinateUp i A (coordinateUp i A) := by
   unfold IsCoordinateUp coordinateUp
@@ -99,6 +102,9 @@ lemma coordinateUp_spec {N : ℕ} (i : Fin N) (A : Finset (Cube N)) :
         refine ⟨erase x i, ⟨hyA, by simp, ?_⟩, insert_erase hxi⟩
         · rwa [insert_erase hxi]
 
+/--
+@isnad1 id=iscoordi.0h3v.s4.8c4ec97aed08 from=translated src=- shape=3c44f7ea vocab=d678cc81
+-/
 lemma coordinateDown_spec {N : ℕ} (i : Fin N) (A : Finset (Cube N)) :
     IsCoordinateDown i A (coordinateDown i A) := by
   unfold IsCoordinateDown coordinateDown
@@ -152,62 +158,99 @@ lemma coordinateDown_spec {N : ℕ} (i : Fin N) (A : Finset (Cube N)) :
         refine ⟨insert i x, ⟨hyA, by simp, ?_⟩, erase_insert hxi⟩
         · rwa [erase_insert hxi]
 
+/--
+@isnad1 id=eq.2h5v.s5.591cb1c997df from=translated src=- shape=60fe568d vocab=b0761d30
+-/
 lemma IsCoordinateUp_unique {N : ℕ} {i : Fin N} {A A' A'' : Finset (Cube N)}
     (h1 : IsCoordinateUp i A A') (h2 : IsCoordinateUp i A A'') : A' = A'' := by
   ext x
   rw [h1.2, h2.2]
 
+/--
+@isnad1 id=eq.1h4v.s4.1c9012aad7f9 from=translated src=- shape=4fe03895 vocab=db83d0fa
+-/
 lemma coordinateUp_eq {N : ℕ} {i : Fin N} {A A' : Finset (Cube N)}
     (hA : IsCoordinateUp i A A') : A' = coordinateUp i A :=
   IsCoordinateUp_unique hA (coordinateUp_spec i A)
 
+/--
+@isnad1 id=eq.2h5v.s5.6024e68b8a9c from=translated src=- shape=60fe568d vocab=6eb2a00c
+-/
 lemma IsCoordinateDown_unique {N : ℕ} {i : Fin N} {A A' A'' : Finset (Cube N)}
     (h1 : IsCoordinateDown i A A') (h2 : IsCoordinateDown i A A'') : A' = A'' := by
   ext x
   rw [h1.2, h2.2]
 
+/--
+@isnad1 id=eq.1h4v.s4.aeb0201424f4 from=translated src=- shape=4fe03895 vocab=d678cc81
+-/
 lemma coordinateDown_eq {N : ℕ} {i : Fin N} {A A' : Finset (Cube N)}
     (hA : IsCoordinateDown i A A') : A' = coordinateDown i A :=
   IsCoordinateDown_unique hA (coordinateDown_spec i A)
 
 /-- Membership characterization of the explicit Up compression, read off directly
-from `coordinateUp_spec`. -/
+from `coordinateUp_spec`.
+@isnad1 id=iff.0h4v.s7.b1a9892a3645 from=translated src=- shape=11e1bc77 vocab=b696fbc5
+-/
 lemma mem_coordinateUp_iff {N : ℕ} (i : Fin N) (A : Finset (Cube N)) (x : Cube N) :
     x ∈ coordinateUp i A ↔
       (x ∈ A ∧ (i ∈ x ∨ insert i x ∈ A)) ∨ (i ∈ x ∧ x ∉ A ∧ x.erase i ∈ A) :=
   (coordinateUp_spec i A).2 x
 
+/--
+@isnad1 id=iff.1h4v.s6.74a51c651833 from=translated src=- shape=568ed760 vocab=2768dc22
+-/
 lemma coordinateUp_mem_of_not_mem {N : ℕ} (i : Fin N) (A : Finset (Cube N)) (x : Cube N)
     (hix : i ∉ x) : x ∈ coordinateUp i A ↔ x ∈ A ∧ insert i x ∈ A := by
   rw [mem_coordinateUp_iff]; simp [hix]
 
+/--
+@isnad1 id=iff.1h4v.s6.c05e834a6bae from=translated src=- shape=905817bb vocab=e52bfe59
+-/
 lemma coordinateUp_mem_of_mem {N : ℕ} (i : Fin N) (A : Finset (Cube N)) (x : Cube N)
     (hix : i ∈ x) : x ∈ coordinateUp i A ↔ x ∈ A ∨ x.erase i ∈ A := by
   rw [mem_coordinateUp_iff]; simp [hix]; tauto
 
 /-- Membership characterization of the explicit Down compression, read off directly
-from `coordinateDown_spec`. -/
+from `coordinateDown_spec`.
+@isnad1 id=iff.0h4v.s7.773914c83a04 from=translated src=- shape=4714f20d vocab=f43b2e04
+-/
 lemma mem_coordinateDown_iff {N : ℕ} (i : Fin N) (A : Finset (Cube N)) (x : Cube N) :
     x ∈ coordinateDown i A ↔
       (x ∈ A ∧ (i ∉ x ∨ x.erase i ∈ A)) ∨ (i ∉ x ∧ x ∉ A ∧ insert i x ∈ A) :=
   (coordinateDown_spec i A).2 x
 
+/--
+@isnad1 id=iff.1h4v.s6.3100f119bc36 from=translated src=- shape=905817bb vocab=ef9acd4e
+-/
 lemma coordinateDown_mem_of_mem {N : ℕ} (i : Fin N) (B : Finset (Cube N)) (x : Cube N)
     (hix : i ∈ x) : x ∈ coordinateDown i B ↔ x ∈ B ∧ x.erase i ∈ B := by
   rw [mem_coordinateDown_iff]; simp [hix]
 
+/--
+@isnad1 id=iff.1h4v.s6.304db8486b39 from=translated src=- shape=568ed760 vocab=cf3f0dd3
+-/
 lemma coordinateDown_mem_of_not_mem {N : ℕ} (i : Fin N) (B : Finset (Cube N)) (x : Cube N)
     (hix : i ∉ x) : x ∈ coordinateDown i B ↔ x ∈ B ∨ insert i x ∈ B := by
   rw [mem_coordinateDown_iff]; simp [hix]; tauto
 
 /-! ### Hamming-distance helpers for the coordinate shadow inclusions -/
 
+/--
+@isnad1 id=eq.0h3v.s4.16df1f970526 from=translated src=- shape=9ee3e7a7 vocab=9dcef27a
+-/
 lemma hDist_comm {N : ℕ} (x y : Cube N) : hDist x y = hDist y x := by
   unfold hDist; rw [symmDiff_comm]
 
+/--
+@isnad1 id=le.0h2v.s4.9a33620f38ed from=translated src=- shape=fc61c6a6 vocab=b65811ec
+-/
 lemma hDist_self_le_one {N : ℕ} (x : Cube N) : hDist x x ≤ 1 := by
   unfold hDist; simp [symmDiff_self]
 
+/--
+@isnad1 id=le.1h4v.s5.fcd1e362c506 from=translated src=- shape=ef311c5b vocab=daaa12e9
+-/
 lemma hDist_erase_le_hDist {N : ℕ} (i : Fin N) (x y : Cube N) (h : hDist x y ≤ 1) :
     hDist (x.erase i) (y.erase i) ≤ 1 := by
   unfold hDist at h ⊢
@@ -217,6 +260,9 @@ lemma hDist_erase_le_hDist {N : ℕ} (i : Fin N) (x y : Cube N) (h : hDist x y �
     tauto
   exact le_trans (card_le_card this) h
 
+/--
+@isnad1 id=le.1h4v.s5.c269ce13499a from=translated src=- shape=21ee7b14 vocab=8f244b7a
+-/
 lemma hDist_insert_le_hDist {N : ℕ} (i : Fin N) (x y : Cube N) (h : hDist x y ≤ 1) :
     hDist (insert i x) (insert i y) ≤ 1 := by
   unfold hDist at h ⊢
@@ -226,6 +272,9 @@ lemma hDist_insert_le_hDist {N : ℕ} (i : Fin N) (x y : Cube N) (h : hDist x y 
     tauto
   exact le_trans (card_le_card this) h
 
+/--
+@isnad1 id=le.0h3v.s4.ba1c5b177cca from=translated src=- shape=78510e39 vocab=8f244b7a
+-/
 lemma hDist_insert_self_le_one {N : ℕ} (i : Fin N) (x : Cube N) : hDist (insert i x) x ≤ 1 := by
   unfold hDist
   have : symmDiff (insert i x) x ⊆ {i} := by
@@ -235,9 +284,15 @@ lemma hDist_insert_self_le_one {N : ℕ} (i : Fin N) (x : Cube N) : hDist (inser
   have hcard : (symmDiff (insert i x) x).card ≤ ({i} : Finset (Fin N)).card := card_le_card this
   rwa [card_singleton] at hcard
 
+/--
+@isnad1 id=le.0h3v.s4.ccc2151f9f11 from=translated src=- shape=c26a859d vocab=8f244b7a
+-/
 lemma hDist_self_insert_le_one {N : ℕ} (i : Fin N) (x : Cube N) : hDist x (insert i x) ≤ 1 := by
   rw [hDist_comm]; exact hDist_insert_self_le_one i x
 
+/--
+@isnad1 id=le.0h3v.s4.4dbd617caba8 from=translated src=- shape=8b6019c7 vocab=daaa12e9
+-/
 lemma hDist_erase_self_le_one {N : ℕ} (i : Fin N) (x : Cube N) : hDist (x.erase i) x ≤ 1 := by
   unfold hDist
   have : symmDiff (x.erase i) x ⊆ {i} := by
@@ -247,6 +302,9 @@ lemma hDist_erase_self_le_one {N : ℕ} (i : Fin N) (x : Cube N) : hDist (x.eras
   have hcard : (symmDiff (x.erase i) x).card ≤ ({i} : Finset (Fin N)).card := card_le_card this
   rwa [card_singleton] at hcard
 
+/--
+@isnad1 id=le.0h3v.s4.21b47fb63204 from=translated src=- shape=2d49aaac vocab=daaa12e9
+-/
 lemma hDist_self_erase_le_one {N : ℕ} (i : Fin N) (x : Cube N) : hDist x (x.erase i) ≤ 1 := by
   unfold hDist
   have : symmDiff x (x.erase i) ⊆ {i} := by
@@ -310,7 +368,9 @@ lemma eq_erase_of_hDist_le_one_of_mem_of_not_mem {N : ℕ} {x y : Cube N} {i : F
 
 /-- **Coordinate Up shadow inclusion (PDF Frankl-Füredi).**  The closed unit
 neighborhood of an Up-compressed family is contained in the Up-compression of the
-neighborhood.  This is the classical "compression does not expand the shadow" fact. -/
+neighborhood.  This is the classical "compression does not expand the shadow" fact.
+@isnad1 id=le.0h3v.s5.9786bffdc3d1 from=translated src=- shape=61ccfb34 vocab=85d6a082
+-/
 lemma neighborhood_coordinateUp_subset {N : ℕ} {i : Fin N} {A : Finset (Cube N)} :
     neighborhood 1 (coordinateUp i A) ⊆ coordinateUp i (neighborhood 1 A) := by
   intro y hy
@@ -345,7 +405,9 @@ lemma neighborhood_coordinateUp_subset {N : ℕ} {i : Fin N} {A : Finset (Cube N
              mem_neighborhood_iff.mpr ⟨insert i x, hx.2, hDist_insert_le_hDist i x y hdist⟩⟩
 
 /-- **Coordinate Down shadow inclusion (PDF Frankl-Füredi).**  The mirror of
-`neighborhood_coordinateUp_subset` for Down compression. -/
+`neighborhood_coordinateUp_subset` for Down compression.
+@isnad1 id=le.0h3v.s5.18dcb2915b70 from=translated src=- shape=61ccfb34 vocab=b42e2b5e
+-/
 lemma neighborhood_coordinateDown_subset {N : ℕ} {i : Fin N} {A : Finset (Cube N)} :
     neighborhood 1 (coordinateDown i A) ⊆ coordinateDown i (neighborhood 1 A) := by
   intro y hy
@@ -404,11 +466,17 @@ def IsCoordinateUpFixed {N : ℕ} (A : Finset (Cube N)) : Prop :=
 def IsCoordinateDownFixed {N : ℕ} (A : Finset (Cube N)) : Prop :=
   ∀ i : Fin N, IsCoordinateDown i A A
 
+/--
+@isnad1 id=eq.1h4v.s4.20a950599473 from=translated src=- shape=c303bdc4 vocab=fe3669b0
+-/
 lemma coordinateUp_card_eq {N : ℕ} {i : Fin N} {A A' : Finset (Cube N)}
     (hA : IsCoordinateUp i A A') :
     A'.card = A.card :=
   hA.1
 
+/--
+@isnad1 id=eq.1h4v.s4.66c0b562c52b from=translated src=- shape=c303bdc4 vocab=5b0ba58c
+-/
 lemma coordinateDown_card_eq {N : ℕ} {i : Fin N} {B B' : Finset (Cube N)}
     (hB : IsCoordinateDown i B B') :
     B'.card = B.card :=
@@ -421,7 +489,9 @@ not increase the shadow", here in the closed-neighborhood form
 `|N(C_i^↑ A)| ≤ |N(A)|`.  It is a genuine combinatorial obligation about the
 concrete `IsCoordinateUp` relation, *not* a missing definition: every object in
 the statement is already formalized.  It is proved in the PDF by the inclusion
-`N(C_i^↑ A) ⊆ C_i^↑(N A)` together with cardinality-preservation of `C_i^↑`. -/
+`N(C_i^↑ A) ⊆ C_i^↑(N A)` together with cardinality-preservation of `C_i^↑`.
+@isnad1 id=le.1h4v.s5.24f949634cd7 from=translated src=- shape=c5d3a12c vocab=b004e2b3
+-/
 lemma coordinateUp_neighborhood_card_le {N : ℕ} {i : Fin N} {A A' : Finset (Cube N)}
     (hA : IsCoordinateUp i A A') :
     (neighborhood 1 A').card ≤ (neighborhood 1 A).card := by
@@ -433,7 +503,9 @@ lemma coordinateUp_neighborhood_card_le {N : ℕ} {i : Fin N} {A A' : Finset (Cu
 /-- **PDF compression lemma (Down move).**  The mirror of
 `coordinateUp_neighborhood_card_le`: a Down-compression along coordinate `i` does
 not increase the closed unit neighborhood, `|N(C_i^↓ B)| ≤ |N(B)|`.  Symmetric to
-the Up case under the coordinate-`i` flip isometry of the cube. -/
+the Up case under the coordinate-`i` flip isometry of the cube.
+@isnad1 id=le.1h4v.s5.0ef87ce65e53 from=translated src=- shape=c5d3a12c vocab=456eec6e
+-/
 lemma coordinateDown_neighborhood_card_le {N : ℕ} {i : Fin N} {B B' : Finset (Cube N)}
     (hB : IsCoordinateDown i B B') :
     (neighborhood 1 B').card ≤ (neighborhood 1 B).card := by
@@ -460,7 +532,9 @@ erasure; every other vertex is fixed. -/
 noncomputable def downMap {N : ℕ} (i : Fin N) (A : Finset (Cube N)) (x : Cube N) : Cube N :=
   if i ∈ x ∧ x.erase i ∉ A then x.erase i else x
 
-/-- Erasing a present coordinate is a strictly earlier simplicial vertex. -/
+/-- Erasing a present coordinate is a strictly earlier simplicial vertex.
+@isnad1 id=simplici.1h3v.s5.e6153d38b7f0 from=translated src=- shape=7e9edccf vocab=e1c0b6e2
+-/
 lemma simplicialLt_erase_self {N : ℕ} {i : Fin N} {x : Cube N} (hi : i ∈ x) :
     simplicialLt (x.erase i) x := by
   have hpos : 0 < x.card := Finset.card_pos.mpr ⟨i, hi⟩
@@ -469,7 +543,9 @@ lemma simplicialLt_erase_self {N : ℕ} {i : Fin N} {x : Cube N} (hi : i ∈ x) 
   · rw [hcard]; omega
   · rintro (h | ⟨h, _⟩) <;> · rw [hcard] at h; omega
 
-/-- The Down map never increases simplicial rank. -/
+/-- The Down map never increases simplicial rank.
+@isnad1 id=le.0h4v.s4.d3094c5df98a from=translated src=- shape=938815c3 vocab=cdcc910b
+-/
 lemma downMap_rank_le {N : ℕ} (i : Fin N) (A : Finset (Cube N)) (x : Cube N) :
     rank (downMap i A x) ≤ rank x := by
   unfold downMap
@@ -477,7 +553,9 @@ lemma downMap_rank_le {N : ℕ} (i : Fin N) (A : Finset (Cube N)) (x : Cube N) :
   · next h => exact le_of_lt (rank_strictMono (simplicialLt_erase_self h.1))
   · exact le_rfl
 
-/-- The Down map is injective on its family. -/
+/-- The Down map is injective on its family.
+@isnad1 id=injon.0h3v.s4.4f7fb3c72a1e from=translated src=- shape=4be493e9 vocab=1add7635
+-/
 lemma downMap_injOn {N : ℕ} (i : Fin N) (A : Finset (Cube N)) :
     Set.InjOn (downMap i A) ↑A := by
   intro x hx y hy h
@@ -496,7 +574,9 @@ lemma downMap_injOn {N : ℕ} (i : Fin N) (A : Finset (Cube N)) :
     · rw [ite_eq_right hcx, ite_eq_right hcy] at h
       exact h
 
-/-- `coordinateDown` is the image of the family under `downMap`. -/
+/-- `coordinateDown` is the image of the family under `downMap`.
+@isnad1 id=eq.0h3v.s5.d203bbac8a11 from=translated src=- shape=03ce54c2 vocab=ec61f103
+-/
 lemma coordinateDown_eq_image {N : ℕ} (i : Fin N) (A : Finset (Cube N)) :
     coordinateDown i A = A.image (downMap i A) := by
   unfold coordinateDown downMap
@@ -522,7 +602,9 @@ lemma coordinateDown_eq_image {N : ℕ} (i : Fin N) (A : Finset (Cube N)) :
       rw [not_and_or, not_not] at hcond
       exact hcond
 
-/-- `coordinateDown` never increases the rank potential. -/
+/-- `coordinateDown` never increases the rank potential.
+@isnad1 id=le.0h3v.s4.5aa875284888 from=translated src=- shape=a2099fe5 vocab=c06c6c16
+-/
 lemma coordinateDown_potential_le {N : ℕ} (i : Fin N) (A : Finset (Cube N)) :
     compressionPotential (coordinateDown i A) ≤ compressionPotential A := by
   unfold compressionPotential
@@ -530,7 +612,9 @@ lemma coordinateDown_potential_le {N : ℕ} (i : Fin N) (A : Finset (Cube N)) :
   exact Finset.sum_le_sum (fun x _ => downMap_rank_le i A x)
 
 /-- If a coordinate Down-compression actually changes the family, it strictly
-moves at least one vertex down. -/
+moves at least one vertex down.
+@isnad1 id=ex.1h3v.s5.2af36185b794 from=translated src=- shape=061e4f4e vocab=ecdbaef5
+-/
 lemma exists_downMap_ne_of_ne {N : ℕ} (i : Fin N) (A : Finset (Cube N))
     (hne : coordinateDown i A ≠ A) : ∃ x ∈ A, downMap i A x ≠ x := by
   by_contra hcon
@@ -542,7 +626,9 @@ lemma exists_downMap_ne_of_ne {N : ℕ} (i : Fin N) (A : Finset (Cube N))
 /-- **Coordinate Down-compression strictly decreases the rank potential when it
 moves something.**  Combined with the proven size- and boundary-control
 (`coordinateDown_card_eq`, `coordinateDown_neighborhood_card_le`) this gives any
-non-Down-fixed family an explicit Frankl–Füredi compression descent witness. -/
+non-Down-fixed family an explicit Frankl–Füredi compression descent witness.
+@isnad1 id=lt.1h3v.s4.1b3f5d063d4d from=translated src=- shape=58e0da78 vocab=5e827f8c
+-/
 lemma coordinateDown_potential_lt_of_ne {N : ℕ} (i : Fin N) (A : Finset (Cube N))
     (hne : coordinateDown i A ≠ A) :
     compressionPotential (coordinateDown i A) < compressionPotential A := by
@@ -574,6 +660,9 @@ saturation across a whole level. -/
 def IsLowerLevelSaturated {N : ℕ} (A : Finset (Cube N)) : Prop :=
   ∀ ⦃x y : Cube N⦄, x.card < y.card → y ∈ A → x ∈ A
 
+/--
+@isnad1 id=mem.4h4v.s5.0ade485a882a from=translated src=- shape=54969488 vocab=c99e18a2
+-/
 lemma lowerLevelSaturated_colexFixed_is_downClosed {N : ℕ} (A : Finset (Cube N))
     (hLower : IsLowerLevelSaturated A)
     (hColex : IsColexShiftFixed A) :
@@ -600,6 +689,9 @@ lemma lowerLevelSaturated_colexFixed_is_downClosed {N : ℕ} (A : Finset (Cube N
         · simp [hxA]
       exact (hColex (insert x (A.erase y)) hshift).elim
 
+/--
+@isnad1 id=mem.5h4v.s6.53b2fce1fed0 from=translated src=- shape=830937df vocab=74dabed5
+-/
 lemma coordinate_compressed_is_downClosed {N : ℕ} (A : Finset (Cube N))
     (_hDown : IsCoordinateDownFixed A)
     (hLower : IsLowerLevelSaturated A)
@@ -613,13 +705,22 @@ PDF-language object behind the scalar Macaulay split step. -/
 noncomputable def initialSlicePair (N a b : ℕ) : Finset (Cube (N + 1)) :=
   (simplicialInitSeg N a).image embed0 ∪ (simplicialInitSeg N b).image embed1
 
+/--
+@isnad1 id=injectiv.0h1v.s4.a31922570173 from=translated src=- shape=07441fa7 vocab=cd121eba
+-/
 lemma initialSlicePair_embed0_injective {N : ℕ} : Function.Injective (@embed0 N) :=
   Finset.image_injective (Fin.castSucc_injective N)
 
+/--
+@isnad1 id=not.0h2v.s6.e64ebe56caa7 from=translated src=- shape=a987aa41 vocab=bfcf4c8c
+-/
 lemma initialSlicePair_last_not_mem_embed0 {N : ℕ} (x : Cube N) :
     Fin.last N ∉ embed0 x := by
   simp [embed0]
 
+/--
+@isnad1 id=injectiv.0h1v.s4.32f1ccfb76a8 from=translated src=- shape=07441fa7 vocab=f50f26ab
+-/
 lemma initialSlicePair_embed1_injective {N : ℕ} : Function.Injective (@embed1 N) := by
   intro x y h
   unfold embed1 at h
@@ -628,6 +729,9 @@ lemma initialSlicePair_embed1_injective {N : ℕ} : Function.Injective (@embed1 
     simpa [Finset.erase_insert, initialSlicePair_last_not_mem_embed0] using this
   exact Finset.image_injective (Fin.castSucc_injective N) key
 
+/--
+@isnad1 id=eq.0h3v.s4.c02a19e3fdf3 from=translated src=- shape=ed11167e vocab=b57d7f63
+-/
 lemma slice0_initialSlicePair {N a b : ℕ} :
     slice0 (initialSlicePair N a b) = simplicialInitSeg N a := by
   ext x
@@ -643,6 +747,9 @@ lemma slice0_initialSlicePair {N a b : ℕ} :
   · intro hx
     exact Or.inl ⟨x, hx, rfl⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.57a101c1509e from=translated src=- shape=77685fa6 vocab=5c744380
+-/
 lemma slice1_initialSlicePair {N a b : ℕ} :
     slice1 (initialSlicePair N a b) = simplicialInitSeg N b := by
   ext x
@@ -658,6 +765,9 @@ lemma slice1_initialSlicePair {N a b : ℕ} :
   · intro hx
     exact Or.inr ⟨x, hx, rfl⟩
 
+/--
+@isnad1 id=eq.2h3v.s6.66aed624c973 from=translated src=- shape=d669dc26 vocab=d6f1d596
+-/
 lemma neighborhood_initialSlicePair_card {N a b : ℕ}
     (ha : a ≤ 2 ^ N) (hb : b ≤ 2 ^ N) :
     (neighborhood 1 (initialSlicePair N a b)).card =
@@ -666,7 +776,9 @@ lemma neighborhood_initialSlicePair_card {N a b : ℕ}
   rw [neighborhood_initSeg_eq, neighborhood_initSeg_eq]
   rw [card_initSeg_union (H_le_cube N a) hb, card_initSeg_union (H_le_cube N b) ha]
 
-/-- Every family on the `N`-cube has cardinality at most `2 ^ N`. -/
+/-- Every family on the `N`-cube has cardinality at most `2 ^ N`.
+@isnad1 id=le.0h2v.s4.48400ea6ec32 from=translated src=- shape=47def3b1 vocab=72c94d7b
+-/
 lemma card_le_two_pow {N : ℕ} (S : Finset (Cube N)) : S.card ≤ 2 ^ N := by
   have h1 : S.card ≤ Fintype.card (Cube N) := Finset.card_le_univ S
   have h2 : Fintype.card (Cube N) = 2 ^ N := by

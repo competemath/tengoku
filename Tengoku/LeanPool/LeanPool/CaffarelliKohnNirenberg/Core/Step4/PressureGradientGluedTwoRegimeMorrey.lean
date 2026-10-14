@@ -57,7 +57,9 @@ noncomputable section
 namespace CKN.Core.Step4
 
 /-- A field vanishing off a measurable carrier has every cell power integral
-bounded by its integral over that carrier. -/
+bounded by its integral over that carrier.
+@isnad1 id=le.3h5v.s6.4812491ff132 from=translated src=- shape=ae1c9310 vocab=5126163f
+-/
 theorem cylinderPowerIntegral_le_carrier_lintegral
     {S : Set ParabolicPoint} (hS : MeasurableSet S)
     {f : ParabolicPoint → ℝ} (hvan : ∀ w, w ∉ S → f w = 0)
@@ -80,7 +82,9 @@ theorem cylinderPowerIntegral_le_carrier_lintegral
 
 /-- The large-cell regime.  At or above the scale `r₀` a constant bound on the
 cell power integral is already of the Morrey growth form, with the explicit
-scale factor. -/
+scale factor.
+@isnad1 id=le.5h7v.s7.1e7658a0b929 from=translated src=- shape=9430987e vocab=8946b01c
+-/
 theorem cylinderPowerIntegral_growth_of_large_cell
     {f : ParabolicPoint → ℝ} {B : ℝ≥0∞} {P κ r₀ : ℝ}
     (hP : 0 < P) (hPκ : P ≤ κ) (hr₀ : 0 < r₀)
@@ -112,7 +116,9 @@ theorem cylinderPowerIntegral_growth_of_large_cell
 
 /-- The every-cell growth bound of one field, in its two regimes: the slice
 bound at the cell's own scale below `r₀`, and the whole-carrier integral with
-the explicit scale factor at or above `r₀`. -/
+the explicit scale factor at or above `r₀`.
+@isnad1 id=le.8h9v.s8.c8e34372e9c3 from=translated src=- shape=1c7f3794 vocab=888c580c
+-/
 theorem cylinderPowerIntegral_growth_two_regimes
     {S : Set ParabolicPoint} (hS : MeasurableSet S)
     {f : ParabolicPoint → ℝ} (hvan : ∀ w, w ∉ S → f w = 0)
@@ -151,7 +157,9 @@ namespace CKN.Core.Step4
 
 /-- A cell whose power integral satisfies the growth bound at its own radius is
 bounded by the power of the growth constant: the radius weight of the Morrey
-cell cancels the radius factor carried by the bound. -/
+cell cancels the radius factor carried by the bound.
+@isnad1 id=le.3h6v.s7.673e4bc478c3 from=translated src=- shape=6a81a380 vocab=dad55fc4
+-/
 theorem morreyCell_le_of_cylinderPowerIntegral_growth
     {P κ : ℝ} {K : ℝ≥0∞} {f : ParabolicPoint → ℝ} {z : ParabolicPoint} {r : ℝ}
     (hP : 0 < P) (hr : 0 < r)
@@ -182,7 +190,9 @@ theorem morreyCell_le_of_cylinderPowerIntegral_growth
 
 /-- The every-cell Morrey bound of a field carried by a measurable set, in its
 two regimes: the constant is the power of the sum of the slice constant and the
-whole-carrier integral rescaled by `r₀ ^ (-(5 (1 - P/κ)))`. -/
+whole-carrier integral rescaled by `r₀ ^ (-(5 (1 - P/κ)))`.
+@isnad1 id=le.8h9v.s8.8c3ddf06854f from=translated src=- shape=15981be1 vocab=25149dc3
+-/
 theorem morreyCell_le_two_regimes
     {S : Set ParabolicPoint} (hS : MeasurableSet S)
     {f : ParabolicPoint → ℝ} (hvan : ∀ w, w ∉ S → f w = 0)
@@ -200,7 +210,9 @@ theorem morreyCell_le_two_regimes
       z r hr)
 
 /-- Finite slice and carrier constants give a finite two-regime Morrey
-constant. -/
+constant.
+@isnad1 id=lt.3h5v.s7.2803e2d1ec72 from=translated src=- shape=5a21e27d vocab=e7075a70
+-/
 theorem two_regime_morrey_constant_lt_top
     {A B : ℝ≥0∞} {P κ r₀ : ℝ} (hP : 0 < P) (hA : A < ⊤) (hB : B < ⊤) :
     (A + B * ENNReal.ofReal (r₀ ^ (-(5 * (1 - P / κ))))) ^ (1 / P : ℝ) < ⊤ := by
@@ -208,7 +220,9 @@ theorem two_regime_morrey_constant_lt_top
     ENNReal.add_lt_top.mpr ⟨hA, ENNReal.mul_lt_top hB ENNReal.ofReal_lt_top⟩
   exact ENNReal.rpow_lt_top_of_nonneg (one_div_nonneg.mpr hP.le) hbase.ne
 
-/-- Restricting a field to a carrier can only decrease a cell power integral. -/
+/-- Restricting a field to a carrier can only decrease a cell power integral.
+@isnad1 id=le.1h5v.s5.4c2306f3f0b3 from=translated src=- shape=8025749c vocab=e7f57a34
+-/
 theorem cylinderPowerIntegral_indicator_le
     {S : Set ParabolicPoint} {P : ℝ} (hP : 0 < P) (g : ParabolicPoint → ℝ)
     (z : ParabolicPoint) (r : ℝ) :
@@ -222,7 +236,9 @@ theorem cylinderPowerIntegral_indicator_le
 
 /-- A cell that misses the carrier carries no mass of the restricted field.
 This is the trivial half of the small-cell regime: only cells meeting the
-carrier need the slice estimate. -/
+carrier need the slice estimate.
+@isnad1 id=eq.2h5v.s6.e70120148ae7 from=translated src=- shape=17413335 vocab=a608afc0
+-/
 theorem cylinderPowerIntegral_indicator_eq_zero_of_disjoint
     {S : Set ParabolicPoint} {P : ℝ} (hP : 0 < P) {g : ParabolicPoint → ℝ}
     {z : ParabolicPoint} {r : ℝ}

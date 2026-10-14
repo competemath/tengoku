@@ -67,6 +67,9 @@ private theorem testSpatialDerivative (μ : ℝ) (hμ : 0 < μ) (x₀ : Vec3)
   · exact hφ.differentiable (by simp) _
   · fun_prop
 
+/--
+@isnad1 id=eq.2h5v.s8.3685ffcd6a51 from=translated src=- shape=acd6f202 vocab=24124a94
+-/
 theorem spatialPartial_pullback
     (μ : ℝ) (hμ : 0 < μ) (z₀ : ParabolicPoint)
     {ψ : Vec3 × ℝ → ℝ} (hψ : ContDiff ℝ (⊤ : ℕ∞) ψ)
@@ -122,6 +125,9 @@ private theorem testTimeInverse_deriv (μ : ℝ) (_ : 0 < μ) (t₀ s : ℝ) :
   on_goal 1 => rw [show (fun s : ℝ => s) = id from rfl, fderiv_id]
   simp
 
+/--
+@isnad1 id=eq.2h4v.s8.ff631e3376e3 from=translated src=- shape=8532f420 vocab=ad49dc54
+-/
 theorem timePartial_pullback
     (μ : ℝ) (hμ : 0 < μ) (z₀ : ParabolicPoint)
     {ψ : Vec3 × ℝ → ℝ} (hψ : ContDiff ℝ (⊤ : ℕ∞) ψ)
@@ -169,6 +175,9 @@ theorem timePartial_pullback
   · exact hslice.differentiable (by simp) _
   · fun_prop
 
+/--
+@isnad1 id=eq.2h6v.s8.f81b08851d96 from=translated src=- shape=0de0935f vocab=af4528d0
+-/
 theorem spatialSecondPartial_pullback
     (μ : ℝ) (hμ : 0 < μ) (z₀ : ParabolicPoint)
     {ψ : Vec3 × ℝ → ℝ} (hψ : ContDiff ℝ (⊤ : ℕ∞) ψ)
@@ -288,17 +297,26 @@ private lemma spatialSecondPartial_zero_of_not_mem_tsupport
   rw [hev.fderiv_eq, fderiv_const_apply]
   simp
 
+/--
+@isnad1 id=eq.2h3v.s8.17d7b6d707c3 from=translated src=- shape=0e9836b2 vocab=e7d03894
+-/
 theorem spatialPartial_zero_of_not_mem_tsupport_public
     {ψ : Vec3 × ℝ → ℝ} (hψ : ContDiff ℝ (⊤ : ℕ∞) ψ)
     {z : Vec3 × ℝ} (hz : z ∉ tsupport ψ) (i : Fin 3) :
     spatialPartial ψ i z = 0 :=
   spatialPartial_zero_of_not_mem_tsupport hψ hz i
 
+/--
+@isnad1 id=eq.2h2v.s8.92e76816d63c from=translated src=- shape=1f148661 vocab=ee0fea39
+-/
 theorem timePartial_zero_of_not_mem_tsupport_public
     {ψ : Vec3 × ℝ → ℝ} (hψ : ContDiff ℝ (⊤ : ℕ∞) ψ)
     {z : Vec3 × ℝ} (hz : z ∉ tsupport ψ) : timePartial ψ z = 0 :=
   timePartial_zero_of_not_mem_tsupport hψ hz
 
+/--
+@isnad1 id=eq.2h4v.s8.8e4862c3ddc7 from=translated src=- shape=bc402d24 vocab=8753bfbe
+-/
 theorem spatialSecondPartial_zero_of_not_mem_tsupport_public
     {ψ : Vec3 × ℝ → ℝ} (hψ : ContDiff ℝ (⊤ : ℕ∞) ψ)
     {z : Vec3 × ℝ} (hz : z ∉ tsupport ψ) (i j : Fin 3) :

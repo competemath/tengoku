@@ -29,21 +29,35 @@ variable {k : ℕ} (t q : Fin k → ℝ)
 
 /-! ### Truncated squares -/
 
+/--
+@isnad1 id=le.0h2v.s4.5ecaffbfe891 from=translated src=- shape=a120b2a8 vocab=4d6dbcd4
+-/
 lemma truncSq_nonneg (ti x : ℝ) : 0 ≤ truncSq ti x :=
   sq_nonneg _
 
+/--
+@isnad1 id=eq.1h2v.s4.228fa8fa0c6f from=translated src=- shape=a19b231f vocab=4d6dbcd4
+-/
 lemma truncSq_eq_zero {ti x : ℝ} (h : x ≤ ti) : truncSq ti x = 0 := by
   simp [truncSq, max_eq_right (sub_nonpos.mpr h)]
 
+/--
+@isnad1 id=eq.1h2v.s5.b9d222b551df from=translated src=- shape=07d48894 vocab=029fd949
+-/
 lemma truncSq_eq_sq {ti x : ℝ} (h : ti ≤ x) : truncSq ti x = (x - ti) ^ 2 := by
   simp [truncSq, max_eq_left (sub_nonneg.mpr h)]
 
+/--
+@isnad1 id=le.1h4v.s5.088366a57d3c from=translated src=- shape=219bbc36 vocab=af099f08
+-/
 lemma h_nonneg (hq : ∀ i, 0 < q i) (x : ℝ) : 0 ≤ h t q x :=
   sum_nonneg fun i _ ↦ mul_nonneg (hq i).le (truncSq_nonneg (t i) x)
 
 /-! ### KR14: `Z ≥ 0` -/
 
-/-- `Z(x) = γ x² + (γ + a₀) h(x)` is nonnegative for `x ≥ 0`. -/
+/-- `Z(x) = γ x² + (γ + a₀) h(x)` is nonnegative for `x ≥ 0`.
+@isnad1 id=le.3h5v.s6.b80c20bb6779 from=translated src=- shape=608770c3 vocab=94bb0d82
+-/
 lemma Z_nonneg (γ : ℝ) (hq : ∀ i, 0 < q i) (hγ : 0 < γ) {x : ℝ} (_hx : 0 ≤ x) :
     0 ≤ Z t q γ x := by
   unfold Z
@@ -52,7 +66,9 @@ lemma Z_nonneg (γ : ℝ) (hq : ∀ i, 0 < q i) (hγ : 0 < γ) {x : ℝ} (_hx : 
 
 /-! ### Pairwise summation helper -/
 
-/-- Split a vanishing-diagonal double sum into strictly upper-triangular pairs. -/
+/-- Split a vanishing-diagonal double sum into strictly upper-triangular pairs.
+@isnad1 id=eq.1h2v.s6.c253a7b0ff2c from=translated src=- shape=b74a140b vocab=4abf0387
+-/
 lemma sum_add_swap_lt (f : Fin k → Fin k → ℝ) (hf : ∀ i, f i i = 0) :
     ∑ i, ∑ j, f i j =
       ∑ i, ∑ j ∈ univ.filter (fun j ↦ i < j), (f i j + f j i) := by
@@ -88,11 +104,16 @@ lemma sum_add_swap_lt (f : Fin k → Fin k → ℝ) (hf : ∀ i, f i i = 0) :
 
 /-! ### KR15: expansion of `P` -/
 
+/--
+@isnad1 id=eq.0h3v.s5.3c784ed33585 from=translated src=- shape=6f3770e9 vocab=18db174f
+-/
 lemma m_one : m t q 1 = ∑ i, q i * t i := by
   simp [m]
 
 /-- Algebraic expansion of `P` into a linear term, a sum of truncated-square
-defects, and a pairwise increment. -/
+defects, and a pairwise increment.
+@isnad1 id=eq.0h4v.s7.35c9150da84b from=translated src=- shape=ce9f9631 vocab=331ce3be
+-/
 lemma P_expand (x : ℝ) :
     P t q x =
       a0 t q * x +
@@ -134,7 +155,9 @@ lemma P_expand (x : ℝ) :
 
 /-! ### KR16: each summand of `P` is nonnegative -/
 
-/-- For `x ≥ 0` and `0 < tᵢ`, one has `0 ≤ x² - (x - tᵢ)₊²`. -/
+/-- For `x ≥ 0` and `0 < tᵢ`, one has `0 ≤ x² - (x - tᵢ)₊²`.
+@isnad1 id=le.2h2v.s5.0e5d5f4e2d38 from=translated src=- shape=932fd87b vocab=62422f0b
+-/
 lemma sq_sub_truncSq_nonneg {ti x : ℝ} (hx : 0 ≤ x) (hti : 0 < ti) :
     0 ≤ x ^ 2 - truncSq ti x := by
   rcases le_total x ti with hxt | htx
@@ -152,7 +175,9 @@ lemma sq_sub_truncSq_nonneg {ti x : ℝ} (hx : 0 ≤ x) (hti : 0 < ti) :
     exact mul_nonneg (sub_nonneg.mpr h2x) hti.le
 
 /-- For `x ≥ 0` and `0 < tᵢ ≤ tⱼ`, the truncated squares are antitone in the
-threshold. -/
+threshold.
+@isnad1 id=le.3h3v.s5.017475631bbf from=translated src=- shape=fe507fa3 vocab=61822583
+-/
 lemma truncSq_sub_truncSq_nonneg {ti tj x : ℝ} (_hx : 0 ≤ x) (_hti : 0 < ti)
     (htij : ti ≤ tj) : 0 ≤ truncSq ti x - truncSq tj x := by
   rcases le_total x ti with hx_le_ti | hti_le_x
@@ -171,7 +196,9 @@ lemma truncSq_sub_truncSq_nonneg {ti tj x : ℝ} (_hx : 0 ≤ x) (_hti : 0 < ti)
 /-! ### KR17: `P ≥ 0` -/
 
 /-- `P(x) ≥ 0` for `x ≥ 0` when the nodes are positive and nondecreasing and the
-weights are positive. -/
+weights are positive.
+@isnad1 id=le.4h4v.s6.4dedaf4d7275 from=translated src=- shape=a886e269 vocab=8f8660c4
+-/
 lemma P_nonneg (hq : ∀ i, 0 < q i) (ht : ∀ i, 0 < t i) (hmono : Monotone t)
     {x : ℝ} (hx : 0 ≤ x) : 0 ≤ P t q x := by
   rw [P_expand]

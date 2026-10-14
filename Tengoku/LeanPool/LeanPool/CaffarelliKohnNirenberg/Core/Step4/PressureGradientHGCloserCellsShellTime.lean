@@ -25,7 +25,9 @@ noncomputable section
 namespace CKN.Core.Step4
 
 /-- Minkowski's inequality for a finite family of nonnegative temporal
-majorants at the pressure-gradient integrability exponent. -/
+majorants at the pressure-gradient integrability exponent.
+@isnad1 id=le.1h4v.s7.9d61a8ef58e2 from=translated src=- shape=3a21201d vocab=068c7e27
+-/
 theorem pressure_time_finite_sum_bound
     {ι : Type*} (S : Finset ι) {μ : Measure ℝ} {M : ι → ℝ → ℝ≥0∞}
     (hM : ∀ n ∈ S, AEMeasurable (M n) μ) :
@@ -45,7 +47,9 @@ theorem pressure_time_finite_sum_bound
     exact h.trans (add_le_add_right (ih (fun k hk => hM k (Finset.mem_insert_of_mem hk))) _)
 
 /-- The dyadic exterior ratio is bounded by one fixed ratio strictly below
-one throughout the pressure-gradient exponent range. -/
+one throughout the pressure-gradient exponent range.
+@isnad1 id=and.2h1v.s7.faec23df95a8 from=translated src=- shape=cf52e2e8 vocab=1593f0b5
+-/
 theorem pressure_source_dyadic_ratio_bound
     {κ : ℝ} (hκ : 0 < κ) (hκhi : κ ≤ 25 / 9) :
     (2 : ℝ≥0∞) ^ (5 / 3 - 5 / κ) ≤ (2 : ℝ≥0∞) ^ (-2 / 15 : ℝ) ∧
@@ -57,7 +61,9 @@ theorem pressure_source_dyadic_ratio_bound
     linarith only [hdiv]
   · exact ENNReal.rpow_lt_one_of_one_lt_of_neg (by norm_num) (by norm_num)
 
-/-- Every finite sum of exterior dyadic ratios has one universal bound. -/
+/-- Every finite sum of exterior dyadic ratios has one universal bound.
+@isnad1 id=le.2h2v.s7.8fda3749c987 from=translated src=- shape=250ab386 vocab=1d589ab8
+-/
 theorem pressure_source_dyadic_sum_bound
     {κ : ℝ} (hκ : 0 < κ) (hκhi : κ ≤ 25 / 9) (N : ℕ) :
     (∑ n ∈ Finset.range N, ((2 : ℝ≥0∞) ^ (5 / 3 - 5 / κ)) ^ n) ≤
@@ -70,7 +76,9 @@ theorem pressure_source_dyadic_sum_bound
       ENNReal.sum_le_tsum _
     _ = _ := ENNReal.tsum_geometric _
 
-/-- The universal dyadic constant is finite. -/
+/-- The universal dyadic constant is finite.
+@isnad1 id=lt.0h0v.s6.e4ebd7794b9d from=translated src=- shape=d14f132e vocab=ca469cd3
+-/
 theorem pressure_source_dyadic_constant_lt_top :
     (1 - (2 : ℝ≥0∞) ^ (-2 / 15 : ℝ))⁻¹ < ⊤ := by
   apply ENNReal.inv_lt_top.mpr
@@ -78,7 +86,9 @@ theorem pressure_source_dyadic_constant_lt_top :
     (ENNReal.rpow_lt_one_of_one_lt_of_neg (by norm_num : (1 : ℝ≥0∞) < 2)
       (by norm_num : (-2 / 15 : ℝ) < 0)))
 
-/-- The spatial source mass is a measurable function of time. -/
+/-- The spatial source mass is a measurable function of time.
+@isnad1 id=aemeasur.1h3v.s7.748c0c06d4b9 from=translated src=- shape=02f46d0d vocab=a1980e9f
+-/
 theorem pressure_source_spatial_mass_aemeasurable
     {F : ParabolicPoint → ℝ} (hF : AEMeasurable F volume) (x : Vec3) (ρ : ℝ) :
     AEMeasurable (fun s : ℝ => ∫⁻ y in vec3Ball x ρ, ‖F (y, s)‖ₑ) volume := by
@@ -91,7 +101,9 @@ theorem pressure_source_spatial_mass_aemeasurable
     hprod.enorm.mono_measure (Measure.prod_mono Measure.restrict_le_self le_rfl)
   exact hrestrict.lintegral_prod_left'
 
-/-- Pulling a nonnegative constant out of the temporal `L^{6/5}` norm. -/
+/-- Pulling a nonnegative constant out of the temporal `L^{6/5}` norm.
+@isnad1 id=eq.1h3v.s7.c7061f42d392 from=translated src=- shape=767b7c14 vocab=25a11dd7
+-/
 theorem pressure_time_power_norm_const_mul
     {μ : Measure ℝ} {M : ℝ → ℝ≥0∞} (hM : AEMeasurable M μ) (c : ℝ≥0∞) :
     (∫⁻ s, (c * M s) ^ (6 / 5 : ℝ) ∂μ) ^ (5 / 6 : ℝ) =
@@ -103,7 +115,9 @@ theorem pressure_time_power_norm_const_mul
   norm_num
 
 /-- Time integration and summation of finitely many exterior scales has a
-constant independent of both the number of scales and the exponent. -/
+constant independent of both the number of scales and the exponent.
+@isnad1 id=le.4h6v.s9.49eedafb97f2 from=translated src=- shape=53a2a52f vocab=f220fae0
+-/
 theorem pressure_source_exterior_scale_sum_time_bound
     {κ : ℝ} (hκ : 0 < κ) (hκhi : κ ≤ 25 / 9)
     {F : ParabolicPoint → ℝ} (hF : AEMeasurable F volume)

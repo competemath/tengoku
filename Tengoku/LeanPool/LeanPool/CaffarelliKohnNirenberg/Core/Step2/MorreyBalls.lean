@@ -45,7 +45,9 @@ private theorem morreyBallNorm_lt_top_of_cell_bound
 the local decay estimate, the radius-shifted interpolation glue, and the
 global finiteness argument.  Once those estimates are supplied, the
 ball Morrey memberships follow directly, with the paper exponents
-`τ₂ = 25/3` and `τ₃ = τp = 25/8`. -/
+`τ₂ = 25/3` and `τ₃ = τp = 25/8`.
+@isnad1 id=and.6h7v.s8.1ab4257ca64a from=translated src=- shape=5a284b35 vocab=a02dc9a0
+-/
 theorem step2_morrey_balls
     {Q₂ : Set ParabolicPoint} {u : ParabolicPoint → Vec3}
     {Du : ParabolicPoint → Fin 3 → Vec3} {p : ParabolicPoint → ℝ}

@@ -68,15 +68,24 @@ structure Certificate {n : ℕ} (weights target : Relation n) where
   /-- The listed relations sum to the certificate target. -/
   target_eq : aggregate relations = target
 
+/--
+@isnad1 id=eq.0h3v.s5.ea291e4340d4 from=translated src=- shape=e4bc9e79 vocab=45718b7e
+-/
 lemma coordinateSum_add {n : ℕ} (first second : Relation n) :
     coordinateSum (first + second) =
       coordinateSum first + coordinateSum second := by
   simp [coordinateSum, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h4v.s5.f57c4b55ee59 from=translated src=- shape=6a42c977 vocab=69746ec6
+-/
 lemma dot_add {n : ℕ} (first second weights : Relation n) :
     dot (first + second) weights = dot first weights + dot second weights := by
   simp [dot, add_mul, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h3v.s5.aba77e740584 from=translated src=- shape=6412332e vocab=f17ce6b2
+-/
 lemma dot_aggregate {n : ℕ} (relations : List (Relation n)) (weights : Relation n) :
     dot (aggregate relations) weights =
       (relations.map fun relation => dot relation weights).sum := by
@@ -89,13 +98,18 @@ lemma dot_aggregate {n : ℕ} (relations : List (Relation n)) (weights : Relatio
           (relations.map fun tailRelation => dot tailRelation weights).sum
       rw [dot_add, inductionHypothesis]
 
+/--
+@isnad1 id=eq.0h3v.s4.7abe636501f9 from=translated src=- shape=aa248ee9 vocab=b77e9d1a
+-/
 @[simp]
 lemma dot_basis {n : ℕ} (coordinate : Fin n) (weights : Relation n) :
     dot (basis coordinate) weights = weights coordinate := by
   classical
   simp [dot, basis]
 
-/-- The mass of a certificate equals the value of its target on the weights. -/
+/-- The mass of a certificate equals the value of its target on the weights.
+@isnad1 id=eq.0h4v.s4.6d3a3a230418 from=translated src=- shape=42876304 vocab=185a43f1
+-/
 lemma Certificate.length_eq_dot_target {n : ℕ} {weights target : Relation n}
     (certificate : Certificate weights target) :
     (certificate.relations.length : ℤ) = dot target weights := by
@@ -182,11 +196,17 @@ def extendWeights {n : ℕ} (head : ℤ) (weights : Relation n) : Relation (n + 
 def lift {n : ℕ} (relation : Relation n) : Relation (n + 1) :=
   Fin.cases (-coordinateSum relation) relation
 
+/--
+@isnad1 id=eq.0h2v.s4.9c9c721c67d4 from=translated src=- shape=103107d7 vocab=689c8218
+-/
 @[simp]
 lemma coordinateSum_lift {n : ℕ} (relation : Relation n) :
     coordinateSum (lift relation) = 0 := by
   simp [coordinateSum, lift, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h3v.s7.757df147590e from=translated src=- shape=c70607b7 vocab=905931b1
+-/
 lemma lift_add {n : ℕ} (first second : Relation n) :
     lift (first + second) = lift first + lift second := by
   funext i
@@ -194,6 +214,9 @@ lemma lift_add {n : ℕ} (first second : Relation n) :
   · simp [lift, coordinateSum_add, add_comm]
   · simp [lift]
 
+/--
+@isnad1 id=eq.0h2v.s5.845df595463b from=translated src=- shape=c7269044 vocab=988b72e5
+-/
 lemma lift_aggregate {n : ℕ} (relations : List (Relation n)) :
     aggregate (relations.map lift) = lift (aggregate relations) := by
   induction relations with
@@ -219,6 +242,9 @@ def castRelation {firstDimension secondDimension : ℕ}
   subst secondDimension
   exact relation
 
+/--
+@isnad1 id=eq.0h4v.s5.4b050bb64093 from=translated src=- shape=b60bbb32 vocab=ce648179
+-/
 lemma dot_lift_extendWeights {n : ℕ} (head : ℤ)
     (weights relation : Relation n) :
     dot (lift relation) (extendWeights head weights) = dot relation weights := by
@@ -227,6 +253,9 @@ lemma dot_lift_extendWeights {n : ℕ} (head : ℤ)
   rw [← Finset.sum_mul]
   simp [coordinateSum]
 
+/--
+@isnad1 id=isliftab.1h4v.s5.59dd1ed765e8 from=translated src=- shape=e3987e8b vocab=58e00c54
+-/
 lemma IsLiftableUnit.lift {n : ℕ} {weights relation : Relation n}
     (hrelation : IsLiftableUnit weights relation) (head : ℤ) :
     IsLiftableUnit (extendWeights head weights) (lift relation) := by
@@ -263,6 +292,9 @@ def Certificate.lift {n : ℕ} {weights target : Relation n}
   target_eq := by
     rw [lift_aggregate, certificate.target_eq]
 
+/--
+@isnad1 id=eq.0h2v.s7.d0eb36866a6d from=translated src=- shape=ca5defe3 vocab=04f7cf41
+-/
 @[simp]
 lemma lift_basis {n : ℕ} (coordinate : Fin n) :
     lift (basis coordinate) =
@@ -327,6 +359,9 @@ structure Correction (dimension : ℕ) where
   /-- Lifting reaches the target dimension exactly. -/
   dimension_eq : (sourceOffset + 1) + steps = dimension
 
+/--
+@isnad1 id=lt.0h2v.s4.e82c0c2f557a from=translated src=- shape=94fd9dce vocab=d5a24d11
+-/
 lemma Correction.sourceDimension_lt {dimension : ℕ}
     (correction : Correction dimension) :
     correction.sourceOffset + 1 < dimension := by
@@ -336,6 +371,9 @@ lemma Correction.sourceDimension_lt {dimension : ℕ}
       Nat.lt_add_of_pos_right correction.steps_pos
     _ = dimension := correction.dimension_eq
 
+/--
+@isnad1 id=lt.0h2v.s5.18e72e878d43 from=translated src=- shape=9d6fdb2c vocab=d5a24d11
+-/
 lemma Correction.sourceOffset_lt {offset : ℕ}
     (correction : Correction (offset + 2)) :
     correction.sourceOffset < offset + 1 := by
@@ -393,7 +431,9 @@ def allCoordinatesOfFirst (tower : WeightTower)
         simp)
 
 /-- Strong induction on dimension constructs all coordinate certificates from
-the explicit principal relations and correction chains. -/
+the explicit principal relations and correction chains.
+@isnad1 id=nonempty.0h4v.s4.1cc6cd3cf51d from=translated src=- shape=ec32ad90 vocab=1434a332
+-/
 theorem recurrenceCertificate_exists (tower : WeightTower)
     (recurrence : FirstCoordinateRecurrence tower) :
     ∀ dimension (coordinate : Fin dimension),
@@ -453,12 +493,18 @@ noncomputable def recurrenceCertificates (tower : WeightTower)
 def realDot {n : ℕ} (relation : Relation n) (candidate : Fin n → ℝ) : ℝ :=
   ∑ i, (relation i : ℝ) * candidate i
 
+/--
+@isnad1 id=eq.0h4v.s5.5e48b644ca55 from=translated src=- shape=7bb551a1 vocab=5da2e220
+-/
 lemma realDot_add {n : ℕ} (first second : Relation n)
     (candidate : Fin n → ℝ) :
     realDot (first + second) candidate =
       realDot first candidate + realDot second candidate := by
   simp [realDot, add_mul, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h3v.s5.84301a72428d from=translated src=- shape=22be368f vocab=901d2f62
+-/
 lemma realDot_aggregate {n : ℕ} (relations : List (Relation n))
     (candidate : Fin n → ℝ) :
     realDot (aggregate relations) candidate =
@@ -472,6 +518,9 @@ lemma realDot_aggregate {n : ℕ} (relations : List (Relation n))
           (relations.map fun tailRelation => realDot tailRelation candidate).sum
       rw [realDot_add, inductionHypothesis]
 
+/--
+@isnad1 id=eq.0h3v.s4.9f46f27e16c8 from=translated src=- shape=83a90b68 vocab=9e3b7ad9
+-/
 @[simp]
 lemma realDot_basis {n : ℕ} (coordinate : Fin n) (candidate : Fin n → ℝ) :
     realDot (basis coordinate) candidate = candidate coordinate := by
@@ -480,7 +529,9 @@ lemma realDot_basis {n : ℕ} (coordinate : Fin n) (candidate : Fin n → ℝ) :
 
 /-- Abstract normalized-chamber rigidity.  A certificate for a coordinate
 forces every real row satisfying all its unit-relation inequalities to dominate
-the corresponding reference weight. -/
+the corresponding reference weight.
+@isnad1 id=le.1h5v.s5.bae911750256 from=translated src=- shape=19366658 vocab=3ceeae75
+-/
 theorem coordinate_lower_bound {n : ℕ} {weights : Relation n}
     {coordinate : Fin n} (certificate : Certificate weights (basis coordinate))
     (candidate : Fin n → ℝ)
@@ -523,7 +574,9 @@ theorem coordinate_lower_bound {n : ℕ} {weights : Relation n}
     _ = candidate coordinate := realDot_basis coordinate candidate
 
 /-- Every recurrence certificate has mass equal to its Conway--Guy-style
-reference coordinate. -/
+reference coordinate.
+@isnad1 id=eq.0h4v.s5.1e829ec92c8f from=translated src=- shape=a68d81a4 vocab=d91cf7af
+-/
 theorem recurrenceCertificate_mass (tower : WeightTower)
     (recurrence : FirstCoordinateRecurrence tower) {n : ℕ}
     (coordinate : Fin n) :
@@ -544,7 +597,9 @@ For the Conway--Guy order, the remaining concrete instantiation consists of:
 3. the triangular-index correction list and its basis-vector decomposition.
 
 Bohman's distinct-subset-sum theorem is then used outside this algebraic
-statement to identify the unit relations with consecutive order gaps. -/
+statement to identify the unit relations with consecutive order gaps.
+@isnad1 id=le.1h5v.s5.26873fb481f6 from=translated src=- shape=7095687c vocab=2f9bfe0e
+-/
 theorem normalizedChamberRigidity (tower : WeightTower)
     (recurrence : FirstCoordinateRecurrence tower) {n : ℕ}
     (candidate : Fin n → ℝ)

@@ -18,5 +18,8 @@ Imported Lean Pool material for
 
 variable {R : Type*} [NonUnitalSemiring R]
 
+/--
+@isnad1 id=eq.0h2v.s5.a10a00fe74ca from=translated src=- shape=d98067e9 vocab=e1a58e59
+-/
 @[simp]
 lemma NonUnitalSubsemiring.carrier_eq_coe (S : NonUnitalSubsemiring R) : S.carrier = S := rfl

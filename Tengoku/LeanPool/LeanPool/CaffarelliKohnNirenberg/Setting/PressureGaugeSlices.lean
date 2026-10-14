@@ -48,7 +48,9 @@ private theorem localBox_volume_lt_top {Ω : Set Vec3} {I : Set ℝ} {Ω' : Set 
     (hbox : localBox Ω I Ω' J) : volume Ω' < ∞ :=
   lt_of_le_of_lt (measure_mono subset_closure) hbox.2.1.measure_lt_top
 
-/-- A time-dependent gauge in `L^{3/2}(J)` lies in `L^{3/2}` of the space-time box. -/
+/-- A time-dependent gauge in `L^{3/2}(J)` lies in `L^{3/2}` of the space-time box.
+@isnad1 id=memlp.2h5v.s7.8a0f5eba696d from=translated src=- shape=78368965 vocab=0b6e015a
+-/
 theorem memLp_gauge_on_box {Ω : Set Vec3} {I : Set ℝ} {Ω' : Set Vec3} {J : Set ℝ}
     (hbox : localBox Ω I Ω' J) {c : ℝ → ℝ}
     (hc : MemLp c (ENNReal.ofReal (3 / 2 : ℝ)) (volume.restrict J)) :
@@ -63,7 +65,9 @@ theorem memLp_gauge_on_box {Ω : Set Vec3} {I : Set ℝ} {Ω' : Set Vec3} {J : S
   rw [spaceTimeSet]
   exact h
 
-/-- A spatial partial derivative vanishes off the topological support. -/
+/-- A spatial partial derivative vanishes off the topological support.
+@isnad1 id=eq.1h3v.s6.7bb67dd6a10e from=translated src=- shape=a26c0557 vocab=650d9dd3
+-/
 theorem spatialPartial_eq_zero_off_tsupport {ψ : Vec3 × ℝ → ℝ}
     {z : Vec3 × ℝ} (hz : z ∉ tsupport ψ) (i : Fin 3) :
     spatialPartial ψ i z = 0 := by
@@ -80,7 +84,9 @@ theorem spatialPartial_eq_zero_off_tsupport {ψ : Vec3 × ℝ → ℝ}
   simp
 
 /-- The parabolic topology and the product topology have the same closed
-supports: the identity is a homeomorphism between them. -/
+supports: the identity is a homeomorphism between them.
+@isnad1 id=eq.0h2v.s6.37cffaca5624 from=translated src=- shape=9a6d5d65 vocab=18fecb6b
+-/
 theorem tsupport_parabolic_eq {V : Type} [Zero V] (f : Vec3 × ℝ → V) :
     tsupport (show ParabolicPoint → V from f) = tsupport f := by
   have hsupp : Function.support (show ParabolicPoint → V from f)
@@ -89,7 +95,9 @@ theorem tsupport_parabolic_eq {V : Type} [Zero V] (f : Vec3 × ℝ → V) :
     parabolicHomeomorph_preimage, tsupport]
 
 /-- The support of a spatial partial derivative lies in the support of the
-function. -/
+function.
+@isnad1 id=le.0h2v.s6.eb5589d723ad from=translated src=- shape=656b9f5d vocab=8249b37d
+-/
 theorem tsupport_spatialPartial_subset {ψ : Vec3 × ℝ → ℝ} (i : Fin 3) :
     tsupport (fun z : Vec3 × ℝ => spatialPartial ψ i z) ⊆ tsupport ψ := by
   refine closure_minimal ?_ (isClosed_tsupport ψ)
@@ -97,7 +105,9 @@ theorem tsupport_spatialPartial_subset {ψ : Vec3 × ℝ → ℝ} (i : Fin 3) :
   by_contra hcon
   exact hz (spatialPartial_eq_zero_off_tsupport hcon i)
 
-/-- A time partial derivative vanishes off the topological support. -/
+/-- A time partial derivative vanishes off the topological support.
+@isnad1 id=eq.1h2v.s6.7cf2fb9b785e from=translated src=- shape=311a74c2 vocab=80ea2ca9
+-/
 theorem timePartial_eq_zero_off_tsupport {ψ : Vec3 × ℝ → ℝ}
     {z : Vec3 × ℝ} (hz : z ∉ tsupport ψ) :
     timePartial ψ z = 0 := by
@@ -114,7 +124,9 @@ theorem timePartial_eq_zero_off_tsupport {ψ : Vec3 × ℝ → ℝ}
   simp
 
 /-- A component of a vector-valued test function has support inside the support
-of the test function. -/
+of the test function.
+@isnad1 id=le.1h3v.s7.1539c5369080 from=translated src=- shape=53fbec89 vocab=54350d67
+-/
 theorem tsupport_component_subset
     {ι : Type} (φ : Vec3 × ℝ → ι → ℝ) (i : ι)
     (hzero : ∀ z, φ z = 0 → φ z i = 0) :

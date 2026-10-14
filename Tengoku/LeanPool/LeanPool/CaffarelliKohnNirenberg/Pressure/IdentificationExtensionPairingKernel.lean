@@ -38,7 +38,9 @@ namespace CKN
 
 /-- Spatial derivative of a translate: `∂_i (z ↦ g (z - y)) (x) = ∂_i g (x - y)`.
 This is the chain rule for the translation `z ↦ z - y`, used to move the
-derivative of a reflected mollifier kernel back onto the kernel. -/
+derivative of a reflected mollifier kernel back onto the kernel.
+@isnad1 id=eq.1h4v.s7.fa843c5b896d from=translated src=- shape=1a8921a5 vocab=e9edf036
+-/
 theorem spatialDeriv_sub_const {g : Vec3 → ℝ} (hg : Differentiable ℝ g) (y x : Vec3)
     (i : Fin 3) :
     spatialDeriv (fun z : Vec3 => g (z - y)) i x = spatialDeriv g i (x - y) := by
@@ -51,7 +53,9 @@ theorem spatialDeriv_sub_const {g : Vec3 → ℝ} (hg : Differentiable ℝ g) (y
 
 /-- Mixed second derivative of a translate:
 `∂_i ∂_j (z ↦ g (z - y)) (x) = ∂_i ∂_j g (x - y)`.  This iterates the
-translation chain rule `spatialDeriv_sub_const` on the smooth function `g`. -/
+translation chain rule `spatialDeriv_sub_const` on the smooth function `g`.
+@isnad1 id=eq.1h5v.s7.de30c6c9240f from=translated src=- shape=8b6c1037 vocab=0858c191
+-/
 theorem mixedSecond_sub_const {g : Vec3 → ℝ} (hg : ContDiff ℝ (⊤ : ℕ∞) g) (y x : Vec3)
     (i j : Fin 3) :
     mixedSecond (fun z : Vec3 => g (z - y)) i j x = mixedSecond g i j (x - y) := by
@@ -70,7 +74,9 @@ theorem mixedSecond_sub_const {g : Vec3 → ℝ} (hg : ContDiff ℝ (⊤ : ℕ�
 smooth compactly supported `g`, the pairing of `ψ` with the reflected `i`th
 partial derivative of `g` equals the pairing of the `i`th partial derivative of
 `ψ` with the reflected `g`.  This is the weak partial-derivative identity for
-`ψ` tested against the smooth compactly supported translate `w ↦ g (x - w)`. -/
+`ψ` tested against the smooth compactly supported translate `w ↦ g (x - w)`.
+@isnad1 id=eq.3h4v.s9.9d43cfc779b8 from=translated src=- shape=bd052afc vocab=1293a9b4
+-/
 theorem integral_mul_spatialDeriv_sub {ψ g : Vec3 → ℝ} (hψ : ContDiff ℝ (⊤ : ℕ∞) ψ)
     (hg : ContDiff ℝ (⊤ : ℕ∞) g) (hgc : HasCompactSupport g) (i : Fin 3) (x : Vec3) :
     ∫ y, ψ y * spatialDeriv g i (x - y) ∂MeasureTheory.volume =
@@ -113,7 +119,9 @@ theorem integral_mul_spatialDeriv_sub {ψ g : Vec3 → ℝ} (hψ : ContDiff ℝ 
   rfl
 
 /-- The mixed second derivative of the radius-`ε` mollifier is continuous; it is
-a second partial derivative of a smooth compactly supported kernel. -/
+a second partial derivative of a smooth compactly supported kernel.
+@isnad1 id=continuo.1h3v.s6.b0b5fc552616 from=translated src=- shape=9183b5ea vocab=ef816d78
+-/
 theorem continuous_mixedSecond_mollifier {ε : ℝ} (hε : 0 < ε) (i j : Fin 3) :
     Continuous (mixedSecond (mollifier (d := 3) ε hε) i j) :=
   (contDiff_mixedSecond_smooth (mollifier_contDiff (d := 3) (n := ⊤) hε) i j).continuous
@@ -121,7 +129,9 @@ theorem continuous_mixedSecond_mollifier {ε : ℝ} (hε : 0 < ε) (i j : Fin 3)
 /-- The mixed second derivative of the mollifier vanishes outside the support
 ball: for `ε < ‖z‖`, `∂_i ∂_j mollifier ε z = 0`.  This is because the
 topological support of a coordinate derivative is contained in that of the
-kernel, which is the closed ball of radius `ε`. -/
+kernel, which is the closed ball of radius `ε`.
+@isnad1 id=eq.2h4v.s6.94e66f2a4c3d from=translated src=- shape=3c59895f vocab=63c693cb
+-/
 theorem mixedSecond_mollifier_eq_zero {ε : ℝ} (hε : 0 < ε) (i j : Fin 3) {z : Vec3}
     (hz : ε < ‖z‖) : mixedSecond (mollifier (d := 3) ε hε) i j z = 0 := by
   have hts : tsupport (mollifier (d := 3) ε hε) = closedBall (0 : Vec3) ε :=
@@ -144,7 +154,9 @@ mollifier: for smooth `ψ`, the pairing of `ψ` with `∂_i ∂_j mollifier ε (
 equals the mollification of the mixed second derivative `∂_i ∂_j ψ`.  This is the
 second-order analogue of the first-order identity
 `integral_mul_fderiv_mollifier_sub`, obtained by applying
-`integral_mul_spatialDeriv_sub` twice and using symmetry of the mixed partials. -/
+`integral_mul_spatialDeriv_sub` twice and using symmetry of the mixed partials.
+@isnad1 id=eq.2h5v.s8.d832562be05d from=translated src=- shape=d78954cb vocab=0a8c9807
+-/
 theorem integral_mul_mixedSecond_mollifier_sub {ψ : Vec3 → ℝ}
     (hψ : ContDiff ℝ (⊤ : ℕ∞) ψ) (i j : Fin 3) {ε : ℝ} (hε : 0 < ε) (x : Vec3) :
     ∫ y, ψ y * mixedSecond (mollifier (d := 3) ε hε) i j (x - y)
