@@ -25,7 +25,9 @@ open Finset
 
 /-! ### Extra lemmas -/
 
-/-- TODO: Get this to mathlib, or delete it onces it gets to mathlib -/
+/-- TODO: Get this to mathlib, or delete it onces it gets to mathlib
+@isnad1 id=eq.2h3v.s5.208ca5ead20f from=translated src=- shape=c704427a vocab=0caa7082
+-/
 lemma mod_add_mod_eq_of_dvd_add_of_not_dvd {a b c : ℕ} (h : c ∣ a + b) (ha : ¬c ∣ a) :
     c = a % c + b % c := by
   have h0 : 0 < a % c + b % c := Nat.add_pos_left (Nat.emod_pos_of_not_dvd ha) _
@@ -42,17 +44,26 @@ lemma mod_add_mod_eq_of_dvd_add_of_not_dvd {a b c : ℕ} (h : c ∣ a + b) (ha :
   obtain rfl : k = 1 := Nat.le_antisymm (Nat.le_of_lt_succ h1) h0
   rw [h2, c.mul_one]
 
+/--
+@isnad1 id=eq.1h3v.s5.86e746557be1 from=translated src=- shape=81f0cf44 vocab=aa3dfe43
+-/
 lemma add_mod_of_dvd (h : c ∣ a + b) : a % c + b % c = if c ∣ a then 0 else c := by
   split_ifs with h0
   · rw [Nat.mod_eq_zero_of_dvd h0, Nat.zero_add, ← Nat.dvd_iff_mod_eq_zero]
     exact (Nat.dvd_add_iff_right h0).mpr h
   · exact (mod_add_mod_eq_of_dvd_add_of_not_dvd h h0).symm
 
+/--
+@isnad1 id=eq.2h4v.s6.0d2954e03ca3 from=translated src=- shape=5f468f8c vocab=9cab55dc
+-/
 lemma add_div_of_add_eq_mul (h : 0 < c) (h0 : a + b = c * n) :
     n = a / c + b / c + if c ∣ a then 0 else 1 := by
   rw [← Nat.mul_right_inj h.ne.symm, ← h0, Nat.mul_add, Nat.mul_add, mul_ite, c.mul_zero,
     c.mul_one, ← add_mod_of_dvd ⟨n, h0⟩, Nat.add_add_add_comm, a.div_add_mod, b.div_add_mod]
 
+/--
+@isnad1 id=iff.1h1v.s6.fac59f63c8cf from=translated src=- shape=ad1b13e0 vocab=e0e84b8d
+-/
 lemma succ_prime_iff_not_dvd_lt_mul {n : ℕ} (h : 0 < n) :
     (n + 1).Prime ↔ ∀ i < n, ∀ j < n, ¬n + 1 ∣ (i + 1) * (j + 1) := by
   refine ⟨λ h0 i hi j hj ↦ ?_, λ h0 ↦ by_contra λ h1 ↦ ?_⟩
@@ -84,6 +95,9 @@ lemma succ_prime_iff_not_dvd_lt_mul {n : ℕ} (h : 0 < n) :
 /-- The left hand side, `abbrev`ed for convenience purpose -/
 abbrev targetSum (n : ℕ) := 4 * ∑ i ∈ range n, ∑ j ∈ range n, (i + 1) * (j + 1) / (n + 1)
 
+/--
+@isnad1 id=eq.1h3v.s7.9413d303a502 from=translated src=- shape=49bf9d91 vocab=e0eec4c7
+-/
 theorem main_claim (i) (h : j ≤ n) :
     (i + 1) * (j + 1) / (n + 2) + (i + 1) * (n - j + 1) / (n + 2)
       = i + if n + 2 ∣ (i + 1) * (j + 1) then 1 else 0 := by
@@ -92,6 +106,9 @@ theorem main_claim (i) (h : j ≤ n) :
     rw [← Nat.mul_add, Nat.add_add_add_comm, Nat.add_sub_cancel' h, Nat.mul_comm]
   rw [← add_div_of_add_eq_mul (n + 1).succ_pos h0, i.add_assoc, ite_add_ite, ite_self]
 
+/--
+@isnad1 id=eq.0h1v.s7.41459a21cc71 from=translated src=- shape=3a4f60fa vocab=0bc826a1
+-/
 theorem targetSum_formula (n) :
     targetSum (n + 1) = (n + 1) ^ 2 * n +
       2 * ∑ i ∈ range (n + 1), ∑ j ∈ range (n + 1),
@@ -126,6 +143,9 @@ theorem targetSum_formula (n) :
     _ = (n + 1) ^ 2 * n := by
       rw [sum_const, card_range, sq, Nat.mul_assoc]; rfl
 
+/--
+@isnad1 id=le.0h1v.s5.96716d25bdee from=translated src=- shape=ff1f198c vocab=b367d131
+-/
 theorem main_ineq (n) : (n + 1) ^ 2 * n ≤ targetSum (n + 1) :=
   Nat.le_of_add_right_le (targetSum_formula n).ge
 
@@ -135,12 +155,16 @@ theorem eq_case (n) : targetSum (n + 1) = (n + 1) ^ 2 * n ↔ (n + 2).Prime := b
   simp only [mem_range, sum_eq_zero_iff, ite_eq_right_iff, one_ne_zero, imp_false]
   exact (succ_prime_iff_not_dvd_lt_mul n.succ_pos).symm
 
-/-- Final solution, inequality -/
+/-- Final solution, inequality
+@isnad1 id=le.1h1v.s5.03b7bfddbd35 from=translated src=- shape=5e8ba3b3 vocab=e2526f80
+-/
 theorem final_solution_ineq (hn : n ≠ 0) : n ^ 2 * (n - 1) ≤ targetSum n := by
   obtain ⟨k, rfl⟩ : ∃ k, n = k + 1 := ⟨n.pred, (Nat.succ_pred hn).symm⟩
   exact main_ineq k
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.1h1v.s6.be7e1ee8d9e6 from=translated src=- shape=d023e6e2 vocab=f8034bc8
+-/
 theorem final_solution (hn : n ≠ 0) : targetSum n = n ^ 2 * (n - 1) ↔ (n + 1).Prime := by
   obtain ⟨k, rfl⟩ : ∃ k, n = k + 1 := ⟨n.pred, (Nat.succ_pred hn).symm⟩
   exact eq_case k

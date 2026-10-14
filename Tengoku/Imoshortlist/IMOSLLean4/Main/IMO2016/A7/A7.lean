@@ -27,18 +27,30 @@ variable [Semiring R]
 def good [Semiring S] [LinearOrder S] (f : R → S) :=
   ∀ x y, f (x + y) ^ 2 = 2 * f x * f y + max (f (x ^ 2) + f (y ^ 2)) (f (x ^ 2 + y ^ 2))
 
+/--
+@isnad1 id=good.0h2v.s4.92995415a7ae from=translated src=- shape=bc5b1238 vocab=abf5d72a
+-/
 lemma zero_is_good [Semiring S] [LinearOrder S] : good (λ _ : R ↦ (0 : S)) := λ x y ↦ by
   rw [zero_pow (Nat.succ_ne_zero 1), mul_zero, zero_add, add_zero, max_self]
 
+/--
+@isnad1 id=good.0h2v.s6.a724726b6208 from=translated src=- shape=86252bca vocab=a23ef137
+-/
 lemma neg_one_is_good [Ring S] [LinearOrder S] [IsStrictOrderedRing S] :
     good (λ _ : R ↦ (-1 : S)) := λ x y ↦ by
   rw [mul_assoc, ← sq, neg_one_sq, two_mul, add_assoc, left_eq_add,
     ← max_add_add_left, ← add_assoc, add_neg_cancel, zero_add, max_eq_right_iff]
   exact neg_one_lt_zero.le
 
+/--
+@isnad1 id=good.0h3v.s5.179b3f86fdb5 from=translated src=- shape=49f01e05 vocab=52735b86
+-/
 lemma hom_is_good [CommSemiring S] [LinearOrder S] (φ : R →+* S) : good φ := λ x y ↦ by
   rw [φ.map_add, φ.map_add, max_self, add_comm (_ * _), φ.map_pow, φ.map_pow, add_sq']
 
+/--
+@isnad1 id=good.0h3v.s6.4539f0f0b260 from=translated src=- shape=1aaf5dfc vocab=f71712ce
+-/
 lemma hom_sub_one_is_good [CommRing S] [LinearOrder S] [IsStrictOrderedRing S]
     (φ : R →+* S) : good (φ · - 1) := λ x y ↦ by
   simp only [φ.map_add, φ.map_pow]
@@ -80,6 +92,9 @@ theorem eq_zero_or_hom_of_map_add_map_sq [CommRing S] [IsDomain S] [CharZero S] 
   rw [← h2, ← two_mul, ← sub_eq_zero, ← mul_sub, mul_eq_zero, or_iff_right X] at h1
   exact eq_of_sub_eq_zero h1
 
+/--
+@isnad1 id=or.1h3v.s6.9aa06354df54 from=translated src=- shape=53db7ac1 vocab=a23ef137
+-/
 theorem good_map_zero [Ring S] [LinearOrder S] [IsStrictOrderedRing S]
     {f : R → S} (hf : good f) : f 0 = 0 ∨ f 0 = -1 := by
   specialize hf 0 0
@@ -89,6 +104,9 @@ theorem good_map_zero [Ring S] [LinearOrder S] [IsStrictOrderedRing S]
   rwa [max_eq_right (add_le_of_nonpos_left h), sq, neg_eq_iff_add_eq_zero,
     ← mul_add_one (f 0), mul_eq_zero, ← eq_neg_iff_add_eq_zero] at hf
 
+/--
+@isnad1 id=le.1h5v.s7.136372235193 from=translated src=- shape=f51ce680 vocab=868e954c
+-/
 theorem good_map_main_ineq [Ring S] [LinearOrder S] [IsOrderedRing S]
     {f : R → S} (hf : good f) (x y : R) :
     2 * f x * f y + (f (x ^ 2) + f (y ^ 2)) ≤ f (x + y) ^ 2 :=
@@ -98,7 +116,9 @@ end
 
 variable [Ring R] [CommRing S] [LinearOrder S] [IsStrictOrderedRing S] {f : R → S}
 
-/-- Solution for Case 1: `f(0) = 0` -/
+/-- Solution for Case 1: `f(0) = 0`
+@isnad1 id=or.2h3v.s7.3b603ef55f52 from=translated src=- shape=aec18d4b vocab=f78b2d82
+-/
 theorem good_case_one (hf : good f) (h : f 0 = 0) : f = 0 ∨ ∃ φ : R →+* S, f = φ := by
   have h0 (x) : f (x ^ 2) = f x ^ 2 := by
     specialize hf x 0; rwa [add_zero, zero_pow (Nat.succ_ne_zero 1), h,

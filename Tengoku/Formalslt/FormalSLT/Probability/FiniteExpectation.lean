@@ -23,6 +23,7 @@ Linearity of expectation for real-valued integrable random variables.
 
 This is a claim-facing wrapper around mathlib's Bochner integral linearity
 lemmas. It matches the topic theorem's integrability scope.
+@isnad1 id=eq.2h6v.s7.04be65f9dce2 from=translated src=- shape=edb7bc68 vocab=6c2a452f
 -/
 theorem linearityOfExpectationIntegrable
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
@@ -56,6 +57,7 @@ Proof of the finite weighted-support linearity seed.
 
 This proves only the finite weighted specialization above; it is not the full
 measure-theoretic expectation theorem.
+@isnad1 id=linearit.0h0v.s0.8fe92ebc3448 from=translated src=- shape=45709ebd vocab=8fe92ebc
 -/
 theorem linearityOfFiniteExpectation_proof :
     linearityOfFiniteExpectationStatement := by

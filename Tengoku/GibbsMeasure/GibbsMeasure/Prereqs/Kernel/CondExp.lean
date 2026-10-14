@@ -18,6 +18,9 @@ class IsCondExp (π : Kernel[𝓑, 𝓧] X X) (μ : Measure[𝓧] X) : Prop wher
   condExp_ae_eq_kernel_apply ⦃A : Set X⦄ : MeasurableSet[𝓧] A →
     μ[A.indicator 1| 𝓑] =ᵐ[μ] fun a ↦ (π a A).toReal
 
+/--
+@isnad1 id=eventual.2h6v.s7.9c2d3e25f83a from=translated src=- shape=8a2a31fa vocab=1f41ecce
+-/
 lemma condExp_ae_eq_kernel_apply
     (h : ∀ (f : X → ℝ), Bornology.IsBounded (Set.range f) → Measurable[𝓧] f →
       condExp 𝓑 μ f =ᵐ[μ] (fun x₀ ↦ ∫ x, f x ∂(π x₀)))

@@ -153,6 +153,9 @@ private lemma totalBoundedCoveringIndex_of_mem_halfOpenAnnulus
   rw [hfloor]
   omega
 
+/--
+@isnad1 id=lt.2h3v.s5.af76f62d615c from=translated src=- shape=dff77f9a vocab=cc45d229
+-/
 lemma dyadicChainingCoverCount_pos
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -167,6 +170,9 @@ lemma dyadicChainingCoverCount_pos
       ((dyadicChainingFiniteNetOfTotallyBoundedUniv
         (T := T) hT hradiusScale (j + 1)).net))
 
+/--
+@isnad1 id=le.2h3v.s5.e8077f92c9ad from=translated src=- shape=beefbd2a vocab=309bac32
+-/
 lemma dyadicChainingCoverCount_le_envelope
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -176,6 +182,9 @@ lemma dyadicChainingCoverCount_le_envelope
   unfold totalBoundedDyadicCoverCountEnvelope
   exact Finset.le_sup' _ (by simp)
 
+/--
+@isnad1 id=lt.2h3v.s5.df85470c4fff from=translated src=- shape=dff77f9a vocab=4a7c9bf5
+-/
 lemma totalBoundedDyadicCoverCountEnvelope_pos
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -184,6 +193,9 @@ lemma totalBoundedDyadicCoverCountEnvelope_pos
   lt_of_lt_of_le (dyadicChainingCoverCount_pos (T := T) hT hradiusScale j)
     (dyadicChainingCoverCount_le_envelope (T := T) hT hradiusScale j)
 
+/--
+@isnad1 id=monotone.2h2v.s5.05b0c671e3db from=translated src=- shape=2ebb076b vocab=fbe7b019
+-/
 lemma monotone_totalBoundedDyadicCoverCountEnvelope
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -200,6 +212,9 @@ lemma monotone_totalBoundedDyadicCoverCountEnvelope
     (f := fun k => dyadicChainingCoverCount (T := T) hT hradiusScale k)
     hsubset hnonempty
 
+/--
+@isnad1 id=monotone.2h2v.s5.ea75b9f92a9b from=translated src=- shape=18f11284 vocab=e4030bee
+-/
 lemma monotone_totalBoundedCoveringEntropyAtScale
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -228,7 +243,9 @@ lemma monotone_totalBoundedCoveringEntropyAtScale
   exact Real.log_le_log hpos hle
 
 /-- The real-radius staircase samples the dyadic selected-cover-count envelope
-at every dyadic radius. -/
+at every dyadic radius.
+@isnad1 id=eq.2h3v.s6.7e8571982f09 from=translated src=- shape=a5977c8c vocab=21968f07
+-/
 theorem totalBoundedCoveringNumberAtRadius_dyadic
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -239,7 +256,9 @@ theorem totalBoundedCoveringNumberAtRadius_dyadic
   rw [totalBoundedCoveringNumberAtRadius, totalBoundedCoveringIndex_dyadic hradiusScale j]
 
 /-- The selected-cover-count staircase is constant on each half-open,
-right-closed dyadic annulus. -/
+right-closed dyadic annulus.
+@isnad1 id=eq.4h4v.s7.835593996c94 from=translated src=- shape=93359936 vocab=265020aa
+-/
 theorem totalBoundedCoveringNumberAtRadius_const_on_halfOpenAnnulus
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -251,6 +270,9 @@ theorem totalBoundedCoveringNumberAtRadius_const_on_halfOpenAnnulus
   simp [totalBoundedCoveringNumberAtRadius,
     totalBoundedCoveringIndex_of_mem_halfOpenAnnulus hradiusScale j hleft hright]
 
+/--
+@isnad1 id=ne.2h3v.s5.b85d0aa9a9e7 from=translated src=- shape=1700c322 vocab=01092463
+-/
 theorem totalBoundedCoveringNumberAtRadiusENat_ne_top
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -258,6 +280,9 @@ theorem totalBoundedCoveringNumberAtRadiusENat_ne_top
     totalBoundedCoveringNumberAtRadiusENat (T := T) hT hradiusScale ε ≠ ⊤ := by
   simp [totalBoundedCoveringNumberAtRadiusENat]
 
+/--
+@isnad1 id=eq.2h3v.s5.bb69c3a5271b from=translated src=- shape=06cf2a5d vocab=296fed83
+-/
 theorem totalBoundedCoveringNumberAtRadiusENat_toReal
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -270,6 +295,9 @@ theorem totalBoundedCoveringNumberAtRadiusENat_toReal
         (T := T) hT hradiusScale ε : ℝ) := by
   simp [totalBoundedCoveringNumberAtRadiusENat, ENNReal.toReal_natCast]
 
+/--
+@isnad1 id=le.2h3v.s5.0bff48af9b2a from=translated src=- shape=68f8d526 vocab=1ea6fa01
+-/
 theorem totalBoundedCoveringEntropyAtRadius_nonneg
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -292,7 +320,9 @@ private lemma totalBoundedCoveringEntropyAtRadius_dyadic
 
 /-- The selected-cover-count entropy staircase satisfies the guarded closed
 annulus condition. At the shared left endpoint the next prefix envelope is at
-least the current one. -/
+least the current one.
+@isnad1 id=guardeda.2h3v.s5.f49690a306dc from=translated src=- shape=7a08184a vocab=c8af0c6d
+-/
 theorem totalBoundedCoveringEntropyAtRadius_guarded
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -324,7 +354,9 @@ theorem totalBoundedCoveringEntropyAtRadius_guarded
       (T := T) hT hradiusScale (Nat.le_succ j)
 
 /-- At a dyadic radius the selected-cover-count entropy dominates the finite
-dyadic entropy envelope used by the total-bounded finite wrappers. -/
+dyadic entropy envelope used by the total-bounded finite wrappers.
+@isnad1 id=le.2h3v.s6.4e7819ec3d88 from=translated src=- shape=6a3cbaa4 vocab=d45e225d
+-/
 -- fidelity: the right side is built from the selected adjacent dyadic cover
 -- counts produced by `TotalBoundedDudley`, not from a free real envelope.
 theorem totalBoundedCoveringEntropy_dominates_dyadicEnvelope_sample
@@ -363,7 +395,9 @@ theorem totalBoundedCoveringEntropy_dominates_dyadicEnvelope_sample
   exact Real.log_le_log hpos hcount_le_real
 
 /-- Concrete non-vacuity witness: on the unit interval, the generic
-total-bounded selected-cover-count surface has a positive dyadic sample. -/
+total-bounded selected-cover-count surface has a positive dyadic sample.
+@isnad1 id=lt.0h0v.s6.9a367c5ef794 from=translated src=- shape=47bde748 vocab=17d8229e
+-/
 -- fidelity: this instantiates the generic total-bounded staircase on the
 -- previously mechanized unit-interval total-bounded witness.
 theorem unitInterval_totalBoundedCoveringNumber_sample_positive :

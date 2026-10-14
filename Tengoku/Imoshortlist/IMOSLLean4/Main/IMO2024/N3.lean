@@ -40,23 +40,31 @@ open Finset
 
 /-! ### Extra lemmas -/
 
-/-- TODO: Remove this once it gets into `mathlib`; it should have a chance. -/
+/-- TODO: Remove this once it gets into `mathlib`; it should have a chance.
+@isnad1 id=iff.0h2v.s3.42cfafdb26cb from=translated src=- shape=e5555f7a vocab=40d39091
+-/
 theorem factorMultiset_inj {m n : ℕ+} : m.factorMultiset = n.factorMultiset ↔ m = n :=
   PNat.factorMultisetEquiv.apply_eq_iff_eq (x := m) (y := n)
 
-/-- TODO: Remove this once it gets into `mathlib`; it should have a chance. -/
+/-- TODO: Remove this once it gets into `mathlib`; it should have a chance.
+@isnad1 id=iff.0h2v.s3.7f74e2336a5a from=translated src=- shape=4ee45116 vocab=bdabda12
+-/
 theorem factorMultiset_eq_iff_eq_prod {m : ℕ+} {S : PrimeMultiset} :
     m.factorMultiset = S ↔ m = S.prod :=
   (PNat.factorMultisetEquiv.eq_symm_apply (x := S) (y := m)).symm
 
-/-- TODO: Remove this once it gets into `mathlib`; it should have a chance. -/
+/-- TODO: Remove this once it gets into `mathlib`; it should have a chance.
+@isnad1 id=eq.0h3v.s5.d20efca195f6 from=translated src=- shape=7334ef1c vocab=12804677
+-/
 theorem PrimeMultiset_prod_sum (S : ι → PrimeMultiset) (I : Finset ι) :
     (∑ i ∈ I, S i).prod = ∏ i ∈ I, (S i).prod := by
   change (PrimeMultiset.coePNatMonoidHom _).prod
     = ∏ i ∈ I, (PrimeMultiset.coePNatMonoidHom _).prod
   rw [map_sum, Multiset.prod_sum]
 
-/-- Taking sums of `factorMultiset` is the same as taking `factorMultiset` of prods. -/
+/-- Taking sums of `factorMultiset` is the same as taking `factorMultiset` of prods.
+@isnad1 id=eq.0h3v.s5.f8205153742f from=translated src=- shape=86ebf7bb vocab=f6c9ea7b
+-/
 theorem sum_factorMultiset_eq_factorMultiset_prod (n : ι → ℕ+) (I : Finset ι) :
     ∑ i ∈ I, (n i).factorMultiset = (∏ i ∈ I, n i).factorMultiset := by
   rw [eq_comm, factorMultiset_eq_iff_eq_prod, PrimeMultiset_prod_sum]
@@ -73,16 +81,22 @@ structure nice (a : ℕ → ℕ+) : Prop where
   is_good : good λ n ↦ a n
   is_geo_good : ∀ m k, ∃ G, ∏ i ∈ range k, a (m + i) = G ^ k
 
-/-- Constant sequences are good. -/
+/-- Constant sequences are good.
+@isnad1 id=good.0h1v.s2.ddf961639621 from=translated src=- shape=2c1a380c vocab=ee1662df
+-/
 lemma good_of_const (C) : good (λ _ ↦ C) :=
   λ m k ↦ ⟨C, by rw [sum_const, card_range]; rfl⟩
 
-/-- Constant sequences are nice. -/
+/-- Constant sequences are nice.
+@isnad1 id=nice.0h1v.s2.5692fc775323 from=translated src=- shape=5d0e0b4d vocab=7e6e7f78
+-/
 lemma nice_of_const (C) : nice (λ _ ↦ C) where
   is_good := good_of_const C
   is_geo_good := λ m k ↦ ⟨C, by rw [prod_const, card_range]⟩
 
-/-- If `(a_n)_{n ≥ 0}` is good, then `a_{m + k} ≡ a_m (mod k)` for any `k, m ≥ 0`. -/
+/-- If `(a_n)_{n ≥ 0}` is good, then `a_{m + k} ≡ a_m (mod k)` for any `k, m ≥ 0`.
+@isnad1 id=modeq.1h3v.s4.1812c26a078c from=translated src=- shape=bf37ebbd vocab=6f863078
+-/
 lemma good.ModEq (ha : good a) (m k) : a (m + k) ≡ a m [MOD k] := calc
   _ ≡ a (m + k) + ∑ i ∈ range k, a (m + i) [MOD k] := (ha m k).zero_modEq_nat.add_left _
   _ ≡ a m + ∑ i ∈ range k, a (m + 1 + i) [MOD k] := by
@@ -90,7 +104,9 @@ lemma good.ModEq (ha : good a) (m k) : a (m + k) ≡ a m [MOD k] := calc
     conv => left; right; right; ext; rw [← Nat.add_assoc, Nat.add_right_comm]
   _ ≡ _ [MOD k] := (ha (m + 1) k).modEq_zero_nat.add_left _
 
-/-- If `(a_n)_{n ≥ 0}` is good and takes a value infinitely many times, it is constant. -/
+/-- If `(a_n)_{n ≥ 0}` is good and takes a value infinitely many times, it is constant.
+@isnad1 id=eq.2h3v.s5.83cea64e6fd8 from=translated src=- shape=9ec7b57e vocab=1a1911cd
+-/
 lemma good.const_of_infinite_fiber (ha : good a) (hv : ∀ N, ∃ n ≥ N, a n = v) (k) :
     a k = v := by
   ---- Find a very big number `N > max{a_k, v}`.
@@ -107,7 +123,9 @@ lemma good.const_of_infinite_fiber (ha : good a) (hv : ∀ N, ∃ n ≥ N, a n =
   exact ((ha.ModEq k n).eq_of_lt_of_lt (hNv.trans_le hn) (hNk.trans_le hn)).symm
 
 /-- If `(a_n)_{n ≥ 0}` is a good sequence of positive integers, then for any prime `p`
-  and `k, m ≥ 0`, we have `ν_p(a_{m + kp^{ν_p(a_m) + 1}}) = ν_p(a_m)`. -/
+  and `k, m ≥ 0`, we have `ν_p(a_{m + kp^{ν_p(a_m) + 1}}) = ν_p(a_m)`.
+@isnad1 id=eq.1h4v.s6.0ae24670a1c4 from=translated src=- shape=89be5b23 vocab=4918555a
+-/
 lemma PNat_good_padic_eq_of_shift {a : ℕ → ℕ+} (ha : good λ n ↦ a n) (p k m) :
     (a (m + k * p ^ ((a m).factorMultiset.count p + 1))).factorMultiset.count p
       = (a m).factorMultiset.count p := by
@@ -132,7 +150,9 @@ lemma PNat_good_padic_eq_of_shift {a : ℕ → ℕ+} (ha : good λ n ↦ a n) (p
     rw [← PNat.count_factorMultiset, PNat.dvd_iff, PNat.pow_coe, hp] at hv ⊢
     exact (h.dvd_iff ⟨p, rfl⟩).mpr hv
 
-/-- If `(a_n)_{n ≥ 0}` is nice, then `(ν_p(a_n))_{n ≥ 0}` is good for any prime `p`. -/
+/-- If `(a_n)_{n ≥ 0}` is nice, then `(ν_p(a_n))_{n ≥ 0}` is good for any prime `p`.
+@isnad1 id=good.1h2v.s4.2817674ba704 from=translated src=- shape=17b82ced vocab=11160c7a
+-/
 lemma nice.padic_is_good (ha : nice a) (p : Nat.Primes) :
     good (λ n ↦ (a n).factorMultiset.count p) := by
   intro m k
@@ -143,7 +163,9 @@ lemma nice.padic_is_good (ha : nice a) (p : Nat.Primes) :
   rw [← Multiset.count_nsmul, ← PNat.factorMultiset_pow, ← Multiset.count_sum']
   revert p; rw [← Multiset.ext, sum_factorMultiset_eq_factorMultiset_prod, hG]
 
-/-- There are no nice sequences other than constant ones. -/
+/-- There are no nice sequences other than constant ones.
+@isnad1 id=ex.1h1v.s4.2216bd5baa67 from=translated src=- shape=3fbc1723 vocab=7e6e7f78
+-/
 lemma nice.is_const (ha : nice a) : ∃ C, a = λ _ ↦ C := by
   /- By the results that we have proved above, the sequence
     `(ν_p(a_n))_{n ≥ 0}` is constant for each prime `p`. -/
@@ -157,6 +179,8 @@ lemma nice.is_const (ha : nice a) : ∃ C, a = λ _ ↦ C := by
   rw [← factorMultiset_inj, Multiset.ext]
   exact λ p ↦ h p n
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h1v.s4.0d270e5200a3 from=translated src=- shape=b978269d vocab=7e6e7f78
+-/
 theorem final_solution {a : ℕ → ℕ+} : nice a ↔ ∃ C, a = λ _ ↦ C :=
   ⟨nice.is_const, λ ⟨C, hC⟩ ↦ hC ▸ nice_of_const C⟩

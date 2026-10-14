@@ -66,7 +66,9 @@ noncomputable def exposureIncrement
     exposureMartingale μ f k.succ S - exposureMartingale μ f k.castSucc S
 
 /-- Pointwise telescoping identity:
-`∑ k : Fin n, D_k S = M_n S - M_0 S`. -/
+`∑ k : Fin n, D_k S = M_n S - M_0 S`.
+@isnad1 id=eq.0h5v.s6.251ae5478dff from=translated src=- shape=24c302a0 vocab=b7710029
+-/
 lemma sum_exposureIncrement_eq
     (f : (Fin n → Z) → ℝ) (S : Fin n → Z) :
     ∑ k : Fin n, exposureIncrement μ f k S
@@ -83,7 +85,9 @@ lemma sum_exposureIncrement_eq
 /-- A.e. telescoping identity:
 `∑ k, D_k =ᵐ f - ∫ f dμⁿ`. Combines pointwise telescoping
 (`sum_exposureIncrement_eq`) with the endpoint identities
-(`exposureMartingale_zero_ae`, `exposureMartingale_last_ae`). -/
+(`exposureMartingale_zero_ae`, `exposureMartingale_last_ae`).
+@isnad1 id=eventual.2h4v.s8.39f8622f1744 from=translated src=- shape=c5b3853a vocab=df5f2c1d
+-/
 lemma sum_exposureIncrement_eq_ae
     [IsProbabilityMeasure (Measure.pi μ)]
     {f : (Fin n → Z) → ℝ} (hf : StronglyMeasurable f)

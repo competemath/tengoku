@@ -46,7 +46,9 @@ def good (α : R) := ∀ n : ℕ, (n : ℤ) ∣ ∑ k ∈ range (n + 1), ⌊k �
 
 /-! ### The image of even integers in `R` are good -/
 
-/-- For any `α ∈ R` good and `N ∈ ℤ`, `α + 2N` is good. -/
+/-- For any `α ∈ R` good and `N ∈ ℤ`, `α + 2N` is good.
+@isnad1 id=good.1h3v.s6.ab201cfee44b from=translated src=- shape=ae7cc2d5 vocab=a0b1a6b1
+-/
 lemma good.add_two_mul_int {α : R} (hα : good α) (N : ℤ) : good (α + (2 * N : ℤ)) := by
   intro n; specialize hα n
   -- The proof is just boring bash
@@ -57,15 +59,21 @@ lemma good.add_two_mul_int {α : R} (hα : good α) (N : ℤ) : good (α + (2 * 
     Int.natCast_mul, mul_right_comm]
   exact ⟨n.succ * N, mul_comm _ _⟩
 
-/-- For any `α ∈ R` good and `N ∈ ℤ`, `α - 2N` is good. -/
+/-- For any `α ∈ R` good and `N ∈ ℤ`, `α - 2N` is good.
+@isnad1 id=good.1h3v.s6.fcec707fcf38 from=translated src=- shape=ae7cc2d5 vocab=2e35ae05
+-/
 lemma good.sub_two_mul_int {α : R} (hα : good α) (N : ℤ) : good (α - (2 * N : ℤ)) := by
   simpa only [Int.mul_neg, Int.cast_neg, sub_eq_add_neg] using hα.add_two_mul_int (-N)
 
-/-- `0` is good. -/
+/-- `0` is good.
+@isnad1 id=good.0h1v.s5.aae860e8ae8c from=translated src=- shape=e1627e19 vocab=a01bfd7b
+-/
 lemma zero_is_good : good (0 : R) :=
   λ n ↦ ⟨0, by simp_rw [nsmul_zero]; rw [Int.floor_zero, sum_const_zero, mul_zero]⟩
 
-/-- Any even integer, viewed as an element of `R`, is good. -/
+/-- Any even integer, viewed as an element of `R`, is good.
+@isnad1 id=good.0h2v.s5.739ed3358be9 from=translated src=- shape=fb7a34f1 vocab=c4193869
+-/
 lemma two_mul_is_good (N : ℤ) : good ((2 * N : ℤ) : R) := by
   simpa only [zero_add] using zero_is_good.add_two_mul_int (R := R) N
 
@@ -76,7 +84,9 @@ namespace good
 variable [Archimedean R] {α : R} (hα : good α)
 include hα
 
-/-- The only good element `α ∈ R` with `⌊α⌋ = 0` is `α = 0`. -/
+/-- The only good element `α ∈ R` with `⌊α⌋ = 0` is `α = 0`.
+@isnad1 id=eq.2h2v.s6.c443af2ce45d from=translated src=- shape=01c3d558 vocab=2577c9d7
+-/
 lemma zero_of_floor_eq_zero (hα0 : ⌊α⌋ = 0) : α = 0 := by
   ---- Since `α ≥ 0`, it suffices to show that `⌊nα⌋ = 0` for all `n ∈ ℕ`.
   suffices ∀ n : ℕ, ⌊n • α⌋ = 0 by
@@ -105,7 +115,9 @@ lemma zero_of_floor_eq_zero (hα0 : ⌊α⌋ = 0) : α = 0 := by
   rw [hα1, Int.natCast_dvd] at hα
   exact absurd (Nat.dvd_one.mp hα) k.succ_succ_ne_one
 
-/-- There exists no good element `α ∈ R` with `⌊α⌋ = -1`. -/
+/-- There exists no good element `α ∈ R` with `⌊α⌋ = -1`.
+@isnad1 id=ne.1h2v.s6.bf9b66443fe5 from=translated src=- shape=74151dd3 vocab=3f524dfb
+-/
 lemma floor_ne_neg_one : ⌊α⌋ ≠ -1 := by
   ---- Suppose `⌊α⌋ = -1`. First write down an auxiliary statement `α < 0`.
   intro hα0; have hα1 : α < 0 := Int.floor_le_neg_one_iff.mp hα0.le
@@ -162,6 +174,8 @@ end good
 
 /-! ### Summary -/
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h2v.s6.08eb7b7e8de8 from=translated src=- shape=bf65f02e vocab=59b60084
+-/
 theorem final_solution [Archimedean R] {α : R} : good α ↔ ∃ N : ℤ, α = (2 * N : ℤ) :=
   ⟨good.eq_two_mul_int, λ ⟨N, hN⟩ ↦ hN ▸ two_mul_is_good N⟩

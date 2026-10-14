@@ -47,23 +47,31 @@ namespace ObtuseTriangle
 
 variable (T : ObtuseTriangle)
 
-/-- We have `b < c`. -/
+/-- We have `b < c`.
+@isnad1 id=lt.0h1v.s3.2048446f8ef2 from=translated src=- shape=b70c6bb1 vocab=822497d7
+-/
 lemma b_lt_c : T.b < T.c :=
   (Nat.pow_lt_pow_iff_left (Nat.succ_ne_zero 1)).mp (Nat.lt_of_add_left_lt T.spec)
 
-/-- We have `b ≤ c`. -/
+/-- We have `b ≤ c`.
+@isnad1 id=le.0h1v.s3.ef12f8edbe5b from=translated src=- shape=b70c6bb1 vocab=282dca18
+-/
 lemma b_le_c : T.b ≤ T.c :=
   T.b_lt_c.le
 
 /-- The (finite) set of side lengths of an obtuse triangle. -/
 def sideLengths : Finset ℕ := {T.a, T.b, T.c}
 
-/-- The members of `T.sideLengths` are the side lengths of `T`. -/
+/-- The members of `T.sideLengths` are the side lengths of `T`.
+@isnad1 id=iff.0h2v.s5.a79aa7e32cc6 from=translated src=- shape=141b0393 vocab=5866ed5d
+-/
 theorem mem_sideLengths_iff {T : ObtuseTriangle} {n : ℕ} :
     n ∈ T.sideLengths ↔ n = T.a ∨ n = T.b ∨ n = T.c := by
   rw [sideLengths, mem_insert, mem_insert, mem_singleton]
 
-/-- The cardinality of the set of side lengths of an obtuse triangle is at most `3`. -/
+/-- The cardinality of the set of side lengths of an obtuse triangle is at most `3`.
+@isnad1 id=le.0h1v.s3.a534da99014a from=translated src=- shape=562e4a6d vocab=dbd1717d
+-/
 theorem card_sideLengths_le_three : #T.sideLengths ≤ 3 :=
   card_le_three
 
@@ -208,7 +216,9 @@ def std : (n : ℕ) → GoodCollection n :=
   Nat.strongRec λ n n_ih ↦ if h : n = 0 then zero.copy n h.symm else
     binary_ext (n_ih (n / 2) (Nat.div_lt_self (Nat.zero_lt_of_ne_zero h) Nat.one_lt_two))
 
-/-- The set of side lengths occuring in an `n`-good collection is `{2, 3, …, 3n + 1}`. -/
+/-- The set of side lengths occuring in an `n`-good collection is `{2, 3, …, 3n + 1}`.
+@isnad1 id=eq.0h2v.s5.ff087215ec81 from=translated src=- shape=a5dbfe01 vocab=43005350
+-/
 theorem biUnion_sideLength_eq (X : GoodCollection n) :
     univ.biUnion (λ i ↦ (X.T i).sideLengths) = image (· + 2) (range (3 * n)) := by
   refine ((eq_iff_card_le_of_subset ?_).mp ?_).symm
@@ -237,7 +247,9 @@ end GoodCollection
 
 /-! ### Summary -/
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ex.0h1v.s6.57e5259ee6eb from=translated src=- shape=a5e5d8a3 vocab=26ee7fc1
+-/
 theorem final_solution (n : ℕ) :
     ∃ T : Fin n → ObtuseTriangle,
       univ.biUnion (λ i ↦ (T i).sideLengths) = image (· + 2) (range (3 * n)) :=

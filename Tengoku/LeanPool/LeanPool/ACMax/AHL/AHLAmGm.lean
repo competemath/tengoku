@@ -47,7 +47,9 @@ variable {V : Type*} [Fintype V] {G : SimpleGraph V} [DecidableEq V] [DecidableR
 /-- **The AHL convexity** (W8 core).  The function `φ(x) = x·log(x − 1)` is convex on `[2, ∞)`.
 Its second derivative is `φ''(x) = (x − 2)/(x − 1)² ≥ 0` there; we feed the explicit first and
 second
-derivatives to `convexOn_of_hasDerivWithinAt2_nonneg`. -/
+derivatives to `convexOn_of_hasDerivWithinAt2_nonneg`.
+@isnad1 id=convexon.0h0v.s5.cc40217317b2 from=translated src=- shape=cff91e94 vocab=db12eff8
+-/
 theorem convexOn_deg_mul_log :
     ConvexOn ℝ (Set.Ici (2 : ℝ)) (fun x => x * Real.log (x - 1)) := by
   apply convexOn_of_hasDerivWithinAt2_nonneg (convex_Ici 2)
@@ -110,7 +112,9 @@ omit [DecidableEq V] in
 `D·log((D − n)/n) ≤ ∑_v deg v·log(deg v − 1)`.  Jensen's inequality (`ConvexOn.map_sum_le`) for the
 convex `φ(x) = x·log(x − 1)` with uniform weights `1/n` at the degrees `d_v ∈ [2, ∞)` and center
 `d_avg ∈ [2, ∞)`; multiplying through by `n`. This is the `Λ ≥ d_avg − 1` step
-in logarithmic form. -/
+in logarithmic form.
+@isnad1 id=le.2h2v.s8.7cceba8053c6 from=translated src=- shape=e89607bc vocab=065d85a6
+-/
 theorem sum_deg_mul_log_ge (hδ2 : ∀ v, 2 ≤ G.degree v) (hn : 0 < Fintype.card V) :
     (∑ v, (G.degree v : ℝ)) *
         Real.log (((∑ v, (G.degree v : ℝ)) - Fintype.card V) / Fintype.card V) ≤
@@ -151,7 +155,9 @@ noncomputable def nbEntropy (G : SimpleGraph V) [DecidableRel G.Adj] (k : ℕ) :
 /-- **The weight of a one-edge extension.**  Every non-backtracking extension `s` of a non-nil
 prefix
 `s'` has weight `wt(s') · (deg (end s') − 1)⁻¹` — the new intermediate vertex is the old endpoint.
-Immediate from `nbWeight_concat`. -/
+Immediate from `nbWeight_concat`.
+@isnad1 id=eq.2h5v.s7.e34c420e7613 from=translated src=- shape=2f694526 vocab=1804d94a
+-/
 theorem nbWeight_of_mem_nbExtend {x : V} {s' s : Σ v : V, G.Walk x v} (hnn : ¬ s'.2.Nil)
     (hs : s ∈ nbExtend G x s') :
     nbWeight s = nbWeight s' * ((G.degree s'.1 : ℝ) - 1)⁻¹ := by
@@ -162,12 +168,16 @@ theorem nbWeight_of_mem_nbExtend {x : V} {s' s : Σ v : V, G.Walk x v} (hnn : ¬
   rw [← hbs, nbWeight_concat s'.2 hnn hb.1]
 
 /-- **The entropy as a sum over starts.**  `nbEntropy` regroups `Finset.sum_sigma'`-style as the
-double sum over the start `x` and the length-`k` non-backtracking walks from `x`. -/
+double sum over the start `x` and the length-`k` non-backtracking walks from `x`.
+@isnad1 id=eq.0h3v.s6.36479b499586 from=translated src=- shape=195437c2 vocab=53ef5c57
+-/
 theorem nbEntropy_sumstart (k : ℕ) :
     nbEntropy G k = ∑ x : V, ∑ s ∈ nbWalksFrom G x k, nbWeight s * Real.log (nbWeight s)⁻¹ := by
   rw [nbEntropy, nbAll, Finset.sum_sigma']
 
-/-- **Base case** (W6).  `T₁ = 0`: every length-`1` walk has weight `1` and `log 1⁻¹ = 0`. -/
+/-- **Base case** (W6).  `T₁ = 0`: every length-`1` walk has weight `1` and `log 1⁻¹ = 0`.
+@isnad1 id=eq.0h2v.s5.c628a2061589 from=translated src=- shape=73e03ecd vocab=e0b68734
+-/
 theorem nbEntropy_one : nbEntropy G 1 = 0 := by
   rw [nbEntropy]
   refine Finset.sum_eq_zero fun t ht => ?_
@@ -179,7 +189,9 @@ theorem nbEntropy_one : nbEntropy G 1 = 0 := by
 extensions of
 a non-nil prefix `s'` gives `wt(s')·log wt(s')⁻¹ + wt(s')·log(deg (end s') − 1)`: each extension has
 the same weight `wt(s')·(deg − 1)⁻¹`, and the mass cancels the multiplicity, leaving the prefix mass
-scaled by the log-of-degree increment. -/
+scaled by the log-of-degree increment.
+@isnad1 id=eq.2h4v.s8.10724e545b3e from=translated src=- shape=242ca7b1 vocab=31ec8342
+-/
 theorem fiber_entropy (hδ2 : ∀ w, 2 ≤ G.degree w) {x : V} {s' : Σ v : V, G.Walk x v}
     (hnn : ¬ s'.2.Nil) :
     ∑ s ∈ nbExtend G x s', nbWeight s * Real.log (nbWeight s)⁻¹ =
@@ -206,7 +218,9 @@ theorem fiber_entropy (hδ2 : ∀ w, 2 ≤ G.degree w) {x : V} {s' : Σ v : V, G
 
 /-- **The degree-log marginal collapse.**  Summing `wt·log(deg (end) − 1)` over all length-`k`
 non-backtracking walks partitions by the endpoint and applies the end marginal `nbEndWeight = deg v`
-(W4), giving `∑_v deg v · log(deg v − 1)`. -/
+(W4), giving `∑_v deg v · log(deg v − 1)`.
+@isnad1 id=eq.2h3v.s8.e8e81f6ee56e from=translated src=- shape=80473413 vocab=8db082bc
+-/
 theorem sum_weight_log_deg (hδ2 : ∀ w, 2 ≤ G.degree w) {k : ℕ} (hk : 1 ≤ k) :
     ∑ t ∈ nbAll (G := G) k, nbWeight t.2 * Real.log ((G.degree t.2.1 : ℝ) - 1) =
       ∑ v, (G.degree v : ℝ) * Real.log ((G.degree v : ℝ) - 1) := by
@@ -228,7 +242,9 @@ theorem sum_weight_log_deg (hδ2 : ∀ w, 2 ≤ G.degree w) {k : ℕ} (hk : 1 �
 /-- **The entropy recursion** (W6, II′).  `T_{k+1} = T_k + ∑_v deg v · log(deg v − 1)` for `k ≥ 1`.
 Each length-`k` walk spawns `deg (end) − 1` extensions whose fiber contributes its own entropy plus
 the degree-log increment (`fiber_entropy`); the increment collapses to the degree sum
-(`sum_weight_log_deg`). -/
+(`sum_weight_log_deg`).
+@isnad1 id=eq.2h3v.s7.f5a59d9da82c from=translated src=- shape=01fed750 vocab=d3401efa
+-/
 theorem nbEntropy_succ (hδ2 : ∀ w, 2 ≤ G.degree w) {k : ℕ} (hk : 1 ≤ k) :
     nbEntropy G (k + 1)
       = nbEntropy G k + ∑ v, (G.degree v : ℝ) * Real.log ((G.degree v : ℝ) - 1) := by
@@ -251,7 +267,9 @@ theorem nbEntropy_succ (hδ2 : ∀ w, 2 ≤ G.degree w) {k : ℕ} (hk : 1 ≤ k)
     exact sum_weight_log_deg hδ2 hk
 
 /-- **The entropy closed form** (W6).  For `ℓ ≥ 1`, `T_ℓ = (ℓ − 1)·∑_v deg v · log(deg v − 1)` —
-telescoping the recursion `nbEntropy_succ` from the `T₁ = 0` base. -/
+telescoping the recursion `nbEntropy_succ` from the `T₁ = 0` base.
+@isnad1 id=eq.2h3v.s7.937a6d71e15d from=translated src=- shape=5982045b vocab=3a9a500a
+-/
 theorem nbEntropy_eq (hδ2 : ∀ w, 2 ≤ G.degree w) {ℓ : ℕ} (hℓ : 1 ≤ ℓ) :
     nbEntropy G ℓ = ((ℓ : ℝ) - 1) * ∑ v, (G.degree v : ℝ) * Real.log ((G.degree v : ℝ) - 1) := by
   induction ℓ, hℓ using Nat.le_induction with
@@ -264,7 +282,9 @@ theorem nbEntropy_eq (hδ2 : ∀ w, 2 ≤ G.degree w) {ℓ : ℕ} (hℓ : 1 ≤ 
 /-! ### W7 — the single AM–GM -/
 
 /-- **The walk finset cardinality.**  `|nbAll k| = mₖ`, the total length-`k` non-backtracking walk
-count (`Finset.card_sigma` + `card_nbWalksFrom`). -/
+count (`Finset.card_sigma` + `card_nbWalksFrom`).
+@isnad1 id=eq.0h3v.s5.2ed4db7001eb from=translated src=- shape=819c3a8e vocab=5a114a3a
+-/
 theorem card_nbAll (k : ℕ) : (nbAll (G := G) k).card = nbTotalWalks G k := by
   rw [nbAll, Finset.card_sigma, nbTotalWalks]
   exact Finset.sum_congr rfl fun x _ => card_nbWalksFrom x k
@@ -273,7 +293,9 @@ theorem card_nbAll (k : ℕ) : (nbAll (G := G) k).card = nbTotalWalks G k := by
 dominates the geometric mean: `D·exp(T_k / D) ≤ mₖ`.  One application of
 `Real.geom_mean_le_arith_mean_weighted` with weights `wt/D` (summing to `1` by `nbWeightTotal_eq`)
 and values `D/wt`: the arithmetic side telescopes to `∑ 1 = mₖ`, and the geometric side is
-`∏ (D/wt)^{wt/D} = exp(log D + T_k / D) = D·exp(T_k / D)`. -/
+`∏ (D/wt)^{wt/D} = exp(log D + T_k / D) = D·exp(T_k / D)`.
+@isnad1 id=le.2h3v.s7.caf4a8f563c6 from=translated src=- shape=1d3b3a6f vocab=b493f208
+-/
 theorem nb_amgm (hδ2 : ∀ v, 2 ≤ G.degree v) [Nonempty V] {k : ℕ} (hk : 1 ≤ k) :
     (∑ v, (G.degree v : ℝ)) * Real.exp (nbEntropy G k / (∑ v, (G.degree v : ℝ)))
       ≤ (nbTotalWalks G k : ℝ) := by
@@ -331,7 +353,9 @@ noncomputable def Lambda (G : SimpleGraph V) [DecidableRel G.Adj] : ℝ :=
   ∏ v, ((G.degree v : ℝ) - 1) ^ ((G.degree v : ℝ) / ∑ w, (G.degree w : ℝ))
 
 omit [DecidableEq V] in
-/-- **`Λ > 0`.**  Each factor `(deg v − 1)^{…}` is positive under `δ ≥ 2`. -/
+/-- **`Λ > 0`.**  Each factor `(deg v − 1)^{…}` is positive under `δ ≥ 2`.
+@isnad1 id=lt.1h2v.s6.df73d9eb536e from=translated src=- shape=75255d8f vocab=4164e442
+-/
 theorem Lambda_pos (hδ2 : ∀ v, 2 ≤ G.degree v) : 0 < Lambda G := by
   rw [Lambda]
   refine Finset.prod_pos fun v _ => Real.rpow_pos_of_pos ?_ _
@@ -340,7 +364,9 @@ theorem Lambda_pos (hδ2 : ∀ v, 2 ≤ G.degree v) : 0 < Lambda G := by
 
 omit [DecidableEq V] in
 /-- **`log Λ` in closed form.**  `log Λ = (∑_v deg v · log(deg v − 1)) / D` — the exponent collapse
-`log((deg v − 1)^{deg v / D}) = (deg v / D)·log(deg v − 1)`. -/
+`log((deg v − 1)^{deg v / D}) = (deg v / D)·log(deg v − 1)`.
+@isnad1 id=eq.1h2v.s7.d87ed796ea37 from=translated src=- shape=9b5da6c5 vocab=89cffd9c
+-/
 theorem log_Lambda (hδ2 : ∀ v, 2 ≤ G.degree v) :
     Real.log (Lambda G)
       = (∑ v, (G.degree v : ℝ) * Real.log ((G.degree v : ℝ) - 1)) / ∑ w, (G.degree w : ℝ) := by
@@ -359,7 +385,9 @@ theorem log_Lambda (hδ2 : ∀ v, 2 ≤ G.degree v) :
 
 /-- **W7 (sharp `Λ`-form).**  Under `δ ≥ 2` (and `V` nonempty), `D·Λ^(ℓ−1) ≤ mₗ` for `ℓ ≥ 1`.
 Repackaging `nb_amgm` via `Λ^(ℓ−1) = exp((ℓ−1)·log Λ) = exp(T_ℓ / D)` (`nbEntropy_eq`, `log_Lambda`,
-`Real.rpow_def_of_pos`). -/
+`Real.rpow_def_of_pos`).
+@isnad1 id=le.2h3v.s7.cb4198b186f3 from=translated src=- shape=bc7583f6 vocab=9325838c
+-/
 theorem nb_amgm_lambda (hδ2 : ∀ v, 2 ≤ G.degree v) [Nonempty V] {ℓ : ℕ} (hℓ : 1 ≤ ℓ) :
     (∑ v, (G.degree v : ℝ)) * (Lambda G) ^ ((ℓ : ℝ) - 1) ≤ (nbTotalWalks G ℓ : ℝ) := by
   have hkey : (Lambda G) ^ ((ℓ : ℝ) - 1) = Real.exp (nbEntropy G ℓ / ∑ v, (G.degree v : ℝ)) := by
@@ -372,7 +400,9 @@ theorem nb_amgm_lambda (hδ2 : ∀ v, 2 ≤ G.degree v) [Nonempty V] {ℓ : ℕ}
 omit [DecidableEq V] in
 /-- **W8 (sharp `Λ`-form).**  Under `δ ≥ 2`, `Λ ≥ (D − n)/n = d_avg − 1`.  Exponentiating the
 logarithmic
-Jensen bound `sum_deg_mul_log_ge`: `log((D − n)/n) ≤ (∑_v deg v · log(deg v − 1))/D = log Λ`. -/
+Jensen bound `sum_deg_mul_log_ge`: `log((D − n)/n) ≤ (∑_v deg v · log(deg v − 1))/D = log Λ`.
+@isnad1 id=le.2h2v.s7.7071b2062ded from=translated src=- shape=e24f94d2 vocab=3c5b8f09
+-/
 theorem lambda_ge (hδ2 : ∀ v, 2 ≤ G.degree v) (hn : 0 < Fintype.card V) :
     ((∑ v, (G.degree v : ℝ)) - Fintype.card V) / Fintype.card V ≤ Lambda G := by
   have hn' : (0 : ℝ) < (Fintype.card V : ℝ) := by exact_mod_cast hn

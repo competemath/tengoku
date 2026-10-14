@@ -75,46 +75,66 @@ noncomputable def x1 : ℝ := 29 / (16 * 144 ^ 6)
 noncomputable def x2 : ℝ := 17 * 1300311466573824 / (2 * 144 ^ 20)
 
 /-- `D₂₁ = 36 N₁`, with `N₁ = 214620087510` the radius-one flag count of Section 8.2
-(`typeAFlagSum_eq` and `typeBFlagSum_eq`). -/
+(`typeAFlagSum_eq` and `typeBFlagSum_eq`).
+@isnad1 id=eq.0h0v.s4.72e77150410c from=translated src=- shape=0efb1284 vocab=2d90d0bc
+-/
 theorem D21_eq_thirtysix_mul : D21 = 36 * 214620087510 := by norm_num [D21]
 
-/-- `D₁₂` is the Section 10.1 sum it abbreviates; the evaluation is `depSumOneTwo_eq`. -/
+/-- `D₁₂` is the Section 10.1 sum it abbreviates; the evaluation is `depSumOneTwo_eq`.
+@isnad1 id=eq.0h0v.s5.115e85a41fc1 from=translated src=- shape=87102d0e vocab=99c88c98
+-/
 theorem D12_eq_sum :
     D12 = ∑ s ∈ Finset.Icc 2 5, Nat.choose 5 s * Nat.choose 14006 (9 - s) := depSumOneTwo_eq.symm
 
-/-- `D₂₂` is the Section 10.1 sum it abbreviates; the evaluation is `depSumTwoTwo_eq`. -/
+/-- `D₂₂` is the Section 10.1 sum it abbreviates; the evaluation is `depSumTwoTwo_eq`.
+@isnad1 id=eq.0h0v.s6.b8e6a662f8ed from=translated src=- shape=cce2ccc8 vocab=1ef1068e
+-/
 theorem D22_eq_sum :
     D22 = (∑ s ∈ Finset.Icc 2 9, Nat.choose 9 s * Nat.choose 14002 (9 - s)) - 1 :=
   depSumTwoTwo_eq.symm
 
 /-! ### Positivity of the local-lemma parameters (Section 10.2) -/
 
-/-- The local-lemma parameter `x₁` is positive (Section 10.2 of `bs_lambda.txt`). -/
+/-- The local-lemma parameter `x₁` is positive (Section 10.2 of `bs_lambda.txt`).
+@isnad1 id=lt.0h0v.s3.f1f67c4848c8 from=translated src=- shape=ff3a10fc vocab=79339373
+-/
 theorem x1_pos : 0 < x1 := by norm_num [x1]
 
-/-- The local-lemma parameter `x₂` is positive (Section 10.2 of `bs_lambda.txt`). -/
+/-- The local-lemma parameter `x₂` is positive (Section 10.2 of `bs_lambda.txt`).
+@isnad1 id=lt.0h0v.s3.59c4e45decfb from=translated src=- shape=ff3a10fc vocab=3b4c3437
+-/
 theorem x2_pos : 0 < x2 := by norm_num [x2]
 
-/-- The local-lemma parameter `x₁` lies below `1` (Section 10.2 of `bs_lambda.txt`). -/
+/-- The local-lemma parameter `x₁` lies below `1` (Section 10.2 of `bs_lambda.txt`).
+@isnad1 id=lt.0h0v.s3.959a76fd8ae7 from=translated src=- shape=ffdda526 vocab=79339373
+-/
 theorem x1_lt_one : x1 < 1 := by norm_num [x1]
 
-/-- The local-lemma parameter `x₂` lies below `1` (Section 10.2 of `bs_lambda.txt`). -/
+/-- The local-lemma parameter `x₂` lies below `1` (Section 10.2 of `bs_lambda.txt`).
+@isnad1 id=lt.0h0v.s3.c632605ad092 from=translated src=- shape=ffdda526 vocab=3b4c3437
+-/
 theorem x2_lt_one : x2 < 1 := by norm_num [x2]
 
 /-! ### The two rational loss sums (Section 10.2) -/
 
 /-- The type-1 loss sum is below `0.594` (Section 10.2 of `bs_lambda.txt`).  This is a
-statement about explicit rationals. The true value is `0.5938861514605…`. -/
+statement about explicit rationals. The true value is `0.5938861514605…`.
+@isnad1 id=lt.0h0v.s6.b27fe60911c4 from=translated src=- shape=e49d33d4 vocab=15e92fa6
+-/
 theorem loss_one_lt : (D11 : ℝ) * (x1 / (1 - x1)) + (D12 : ℝ) * (x2 / (1 - x2)) < 0.594 := by
   norm_num [D11, D12, x1, x2]
 
 /-- The type-2 loss sum is below `2.138` (Section 10.2 of `bs_lambda.txt`).  This is a
-statement about explicit rationals. The true value is `2.1372344982481…`. -/
+statement about explicit rationals. The true value is `2.1372344982481…`.
+@isnad1 id=lt.0h0v.s6.8346e3bb5fbb from=translated src=- shape=e49d33d4 vocab=2e765ccd
+-/
 theorem loss_two_lt : (D21 : ℝ) * (x1 / (1 - x1)) + (D22 : ℝ) * (x2 / (1 - x2)) < 2.138 := by
   norm_num [D21, D22, x1, x2]
 
 /-- The logarithmic losses at `x₁` and `x₂`, weighted by two dependency counts, are bounded
-by the corresponding sum of exact rationals (Section 10.2 of `bs_lambda.txt`). -/
+by the corresponding sum of exact rationals (Section 10.2 of `bs_lambda.txt`).
+@isnad1 id=le.0h2v.s7.fda389d2c81a from=translated src=- shape=83e54ad6 vocab=393f29cf
+-/
 theorem add_mul_neg_log_one_sub_le (m n : ℕ) :
     (m : ℝ) * -Real.log (1 - x1) + (n : ℝ) * -Real.log (1 - x2) ≤
       (m : ℝ) * (x1 / (1 - x1)) + (n : ℝ) * (x2 / (1 - x2)) := by
@@ -125,7 +145,9 @@ theorem add_mul_neg_log_one_sub_le (m n : ℕ) :
 /-! ### The two local-lemma conditions (Section 10.2) -/
 
 /-- The type-1 asymmetric local-lemma condition
-`p₁ ≤ x₁ (1-x₁)^{D₁₁} (1-x₂)^{D₁₂}` (Section 10.2 of `bs_lambda.txt`). -/
+`p₁ ≤ x₁ (1-x₁)^{D₁₁} (1-x₂)^{D₁₂}` (Section 10.2 of `bs_lambda.txt`).
+@isnad1 id=le.0h0v.s6.f295a2490bec from=translated src=- shape=ead4f832 vocab=0614b70e
+-/
 theorem lll_cond_one : p1 ≤ x1 * (1 - x1) ^ D11 * (1 - x2) ^ D12 := by
   nth_rewrite 1 [show x1 = 29 / 16 * p1 by norm_num [x1, p1]]
   exact le_mul_pow_mul_pow_of_lt_log (by norm_num [p1]) (by norm_num) (sub_pos.mpr x1_lt_one)
@@ -133,7 +155,9 @@ theorem lll_cond_one : p1 ≤ x1 * (1 - x1) ^ D11 * (1 - x2) ^ D12 := by
     ((add_mul_neg_log_one_sub_le D11 D12).trans_lt (loss_one_lt.trans log_29_div_16_gt))
 
 /-- The type-2 asymmetric local-lemma condition
-`p₂ ≤ x₂ (1-x₁)^{D₂₁} (1-x₂)^{D₂₂}` (Section 10.2 of `bs_lambda.txt`). -/
+`p₂ ≤ x₂ (1-x₁)^{D₂₁} (1-x₂)^{D₂₂}` (Section 10.2 of `bs_lambda.txt`).
+@isnad1 id=le.0h0v.s6.df13f855917c from=translated src=- shape=5e0851a3 vocab=c0188a59
+-/
 theorem lll_cond_two : p2 ≤ x2 * (1 - x1) ^ D21 * (1 - x2) ^ D22 := by
   nth_rewrite 1 [show x2 = 17 / 2 * p2 by norm_num [x2, p2]]
   exact le_mul_pow_mul_pow_of_lt_log (by norm_num [p2]) (by norm_num) (sub_pos.mpr x1_lt_one)

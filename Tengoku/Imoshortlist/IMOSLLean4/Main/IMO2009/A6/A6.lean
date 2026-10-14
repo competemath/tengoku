@@ -22,6 +22,9 @@ Prove that there exists $M, N ∈ ℕ$ such that $f(n) = Mn + N$ for all $n ∈ 
 namespace IMOSL
 namespace IMO2009A6
 
+/--
+@isnad1 id=ex.0h2v.s4.040502c49f29 from=translated src=- shape=b6f39522 vocab=21bdfa14
+-/
 theorem exists_map_minimal [hα : Nonempty α] (f : α → ℕ) : ∃ a₀ : α, ∀ a, f a₀ ≤ f a := by
   by_contra h; simp only [not_exists, not_forall, not_le] at h
   obtain ⟨a₀⟩ := hα
@@ -32,11 +35,17 @@ theorem exists_map_minimal [hα : Nonempty α] (f : α → ℕ) : ∃ a₀ : α,
   obtain ⟨b, h1⟩ := h0 (f a₀).zero_le
   exact Nat.not_le_of_lt h1 (f b).zero_le
 
+/--
+@isnad1 id=ex.1h3v.s5.85c4fa6b26c4 from=translated src=- shape=4b7bb863 vocab=2dadddf9
+-/
 theorem unbounded_of_forall_map_not_maximal [hα : Nonempty α]
     {f : α → ℕ} (hf : ∀ a, ∃ b, f a < f b) : ∀ n, ∃ a, n ≤ f a :=
   Nat.rec (hα.elim λ a ↦ ⟨a, (f a).zero_le⟩)
     λ _ ⟨a, ha⟩ ↦ (hf a).imp λ _ ↦ ha.trans_lt
 
+/--
+@isnad1 id=ex.1h2v.s5.66196ecbd6d4 from=translated src=- shape=f1991a47 vocab=21bdfa14
+-/
 theorem exists_map_maximal_of_bdd [hα : Nonempty α]
     {f : α → ℕ} (hf : ∃ n, ∀ a, f a ≤ n) : ∃ a₀, ∀ a, f a ≤ f a₀ := by
   by_contra h; simp only [not_exists, not_forall, not_le] at h
@@ -44,11 +53,17 @@ theorem exists_map_maximal_of_bdd [hα : Nonempty α]
   obtain ⟨a₀, ha₀⟩ := unbounded_of_forall_map_not_maximal h n.succ
   exact Nat.not_le_of_lt ha₀ (hn a₀)
 
+/--
+@isnad1 id=le.1h4v.s5.394c86eababc from=translated src=- shape=2c305dfc vocab=ebd7a482
+-/
 theorem le_of_linear_growth {A B C D : ℕ} (h : ∀ n, A * n + B ≤ C * n + D) : A ≤ C := by
   replace h : A * (D + 1) ≤ C * (D + 1) + D := Nat.le_of_add_right_le (h (D + 1))
   rw [← Nat.lt_add_one_iff, Nat.add_assoc, ← Nat.succ_mul] at h
   exact Nat.le_of_lt_succ (Nat.lt_of_mul_lt_mul_right h)
 
+/--
+@isnad1 id=le.1h4v.s6.864883e6ddcf from=translated src=- shape=69ca8b0e vocab=e3ba5ca3
+-/
 theorem mul_sub_le_sub_map_of_diff {f : ℕ → ℕ} (hm : ∀ n, f n + m ≤ f (n + 1)) (n k) :
     m * (n - k) ≤ f n - f k := by
   obtain h | ⟨c, rfl⟩ : n ≤ k ∨ ∃ c, n = k + c :=
@@ -64,10 +79,16 @@ theorem mul_sub_le_sub_map_of_diff {f : ℕ → ℕ} (hm : ∀ n, f n + m ≤ f 
           rw [Nat.mul_succ, Nat.add_right_comm]
           exact (Nat.add_le_add_right c_ih m).trans (hm _)
 
+/--
+@isnad1 id=le.1h3v.s5.eb4a6c1f3f2d from=translated src=- shape=e2f009bc vocab=3e35f344
+-/
 theorem sub_le_sub_map_of_StrictMono {f : ℕ → ℕ} (hf : StrictMono f) (n k) :
     (n - k) ≤ f n - f k :=
   (n - k).one_mul ▸ mul_sub_le_sub_map_of_diff (λ n ↦ hf n.lt_succ_self) n k
 
+/--
+@isnad1 id=le.2h4v.s6.284c9351df2d from=translated src=- shape=5b93a89c vocab=3d6a99fe
+-/
 theorem sub_map_le_mul_sub_of_Monotone {f : ℕ → ℕ}
     (hf : Monotone f) (hm : ∀ n, f (n + 1) ≤ f n + m) (n k) :
     f n - f k ≤ m * (n - k) := by
@@ -84,7 +105,9 @@ theorem sub_map_le_mul_sub_of_Monotone {f : ℕ → ℕ}
           rw [Nat.mul_succ, Nat.add_right_comm]
           exact (hm _).trans (Nat.add_le_add_right c_ih m)
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ex.3h1v.s6.7e06edf10f79 from=translated src=- shape=9fc3e637 vocab=75a02999
+-/
 theorem final_solution {f : ℕ → ℕ} (hf : StrictMono f)
     (h : ∃ A B, ∀ n, f (f n) = A * n + B) (h0 : ∃ C D, ∀ n, f (f n + 1) = C * n + D) :
     ∃ M N, ∀ n, f n = M * n + N := by

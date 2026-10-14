@@ -13,6 +13,7 @@ Variance of a finite sum, covariance-expansion form.
 This is a claim-facing wrapper around mathlib's
 `ProbabilityTheory.variance_fun_sum'`.
 Claim-facing wrapper for theorempath.com evidence entry `claim:expectation-variance-covariance-moments::variance-of-sum`.
+@isnad1 id=eq.1h5v.s7.6c4cb66b4251 from=translated src=- shape=86c0e2fb vocab=e81526cf
 -/
 theorem varianceOfFiniteSumWithCovariance
     {Ω ι : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsFiniteMeasure μ]
@@ -26,6 +27,7 @@ theorem varianceOfFiniteSumWithCovariance
 Variance of a finite sum under pairwise zero covariance.
 
 This proves the uncorrelated-variable reduction used by the page theorem.
+@isnad1 id=eq.2h5v.s7.cbeda00cfe28 from=translated src=- shape=03ce92ee vocab=e81526cf
 -/
 theorem varianceOfFiniteSumPairwiseUncorrelated
     {Ω ι : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsFiniteMeasure μ]
@@ -49,6 +51,7 @@ Law of total variance.
 This is an exact claim-facing wrapper around mathlib's conditional-variance
 decomposition `ProbabilityTheory.integral_condVar_add_variance_condExp`.
 Claim-facing wrapper for theorempath.com evidence entry `claim:expectation-variance-covariance-moments::law-of-total-variance`.
+@isnad1 id=eq.2h5v.s7.73049d996e58 from=translated src=- shape=08ffa310 vocab=8824dc6f
 -/
 theorem lawOfTotalVariance
     {Ω : Type*} {m₀ m : MeasurableSpace Ω} {μ : Measure[m₀] Ω}

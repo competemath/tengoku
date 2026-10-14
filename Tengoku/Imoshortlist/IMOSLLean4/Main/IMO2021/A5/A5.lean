@@ -33,6 +33,9 @@ variable [AddCommMonoid M] [LinearOrder M] [IsOrderedAddMonoid M]
   {l : List M} (hl : ∀ x ∈ l, 0 ≤ x)
 include hl
 
+/--
+@isnad1 id=le.1h2v.s7.8726afedadd6 from=translated src=- shape=85a96aad vocab=c275e828
+-/
 lemma foldr_add_nonneg : 0 ≤ l.foldr (· + ·) 0 := by
   induction l with
   | nil => exact le_refl 0
@@ -40,6 +43,9 @@ lemma foldr_add_nonneg : 0 ≤ l.foldr (· + ·) 0 := by
       replace hl : 0 ≤ a ∧ ∀ x ∈ l, 0 ≤ x := List.forall_mem_cons.mp hl
       exact add_nonneg hl.1 (l_ih hl.2)
 
+/--
+@isnad1 id=lt.2h2v.s7.d27009c225ae from=translated src=- shape=7874d859 vocab=14d8c1e5
+-/
 lemma foldr_add_pos (hl0 : ∃ x ∈ l, x ≠ 0) : 0 < l.foldr (· + ·) 0 := by
   induction l with
   | nil => exact hl0.elim λ c h ↦ absurd h.1 List.not_mem_nil
@@ -52,6 +58,9 @@ lemma foldr_add_pos (hl0 : ∃ x ∈ l, x ≠ 0) : 0 < l.foldr (· + ·) 0 := by
 
 end
 
+/--
+@isnad1 id=eq.0h3v.s7.185dcb75a022 from=translated src=- shape=d7ec4776 vocab=9c1cdc1d
+-/
 lemma ring_id [CommRing R] (x y : R) :
     (x + y) ^ 3 - x ^ 3 - y ^ 3 = 3 * (x * y * (x + y)) := calc
   _ = (x ^ 2 + y ^ 2) * (x + y) - (x ^ 3 + y ^ 3) + 2 * (x * y * (x + y)) := by
@@ -64,6 +73,9 @@ lemma ring_id [CommRing R] (x y : R) :
     rw [sq, sq, mul_right_comm, ← mul_rotate x y y, ← mul_add]
   _ = _ := by rw [← one_add_mul, add_comm, two_add_one_eq_three]
 
+/--
+@isnad1 id=le.3h4v.s8.695da686150c from=translated src=- shape=be7aa61f vocab=7d9a3091
+-/
 lemma field_ineq [Field F] [LinearOrder F] [IsStrictOrderedRing F]
     {r : F} (ha : 0 ≤ a) (hs : 0 ≤ s) (h : a + s ≤ r) :
     a / (r - a) * s ^ 2 ≤ ((a + s) ^ 3 - s ^ 3 - a ^ 3) / (3 * r) := calc
@@ -83,24 +95,42 @@ section
 
 variable [Field F] (r : F)
 
+/--
+@isnad1 id=eq.0h2v.s5.3d3db972d164 from=translated src=- shape=e813e2e4 vocab=eebbebfd
+-/
 lemma targetSumPair_nil : targetSumPair r [] = (0, 0) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.6bbdf28df411 from=translated src=- shape=16429391 vocab=b701f61b
+-/
 lemma targetSumPair_cons_fst (a l) :
     (targetSumPair r (a :: l)).1 =
       a / (r - a) * (targetSumPair r l).2 ^ 2 + (targetSumPair r l).1 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.217878128f0b from=translated src=- shape=9bad9721 vocab=ff7d0df6
+-/
 lemma targetSumPair_cons_snd (a l) :
     (targetSumPair r (a :: l)).2 = a + (targetSumPair r l).2 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.396c81151605 from=translated src=- shape=fc02ef75 vocab=c97831f9
+-/
 lemma targetSumPair_snd_eq : ∀ l : List F, (targetSumPair r l).2 = l.foldr (· + ·) 0
   | [] => rfl
   | a :: l => by rw [List.foldr, targetSumPair_cons_snd, targetSumPair_snd_eq]
 
+/--
+@isnad1 id=eq.0h3v.s6.6e0d34c3e110 from=translated src=- shape=87cec705 vocab=b8c70894
+-/
 lemma targetSumPair_replicate_zero : ∀ n, targetSumPair r (List.replicate n 0) = (0, 0)
   | 0 => rfl
   | n + 1 => by rw [targetSumPair, List.replicate_succ, List.foldr_cons,
     ← targetSumPair, targetSumPair_replicate_zero n, zero_div, zero_mul, zero_add]
 
+/--
+@isnad1 id=le.2h3v.s8.2e937567aaa3 from=translated src=- shape=c2f7ff1d vocab=d08b75a5
+-/
 theorem targetSumPair_main_ineq [LinearOrder F] [IsStrictOrderedRing F] {l : List F}
     (hl : ∀ x ∈ l, 0 ≤ x) {r : F} (hr : l.foldr (· + ·) 0 ≤ r) :
     (targetSumPair r l).1 ≤ ((l.foldr (· + ·) 0) ^ 3 - l.foldr (· ^ 3 + ·) 0) / (3 * r) := by
@@ -119,7 +149,9 @@ theorem targetSumPair_main_ineq [LinearOrder F] [IsStrictOrderedRing F] {l : Lis
             (h ▸ l_ih hl.2 (le_of_add_le_of_nonneg_right hr hl.1))
         _ = _ := by rw [← add_div, sub_sub, sub_add, add_sub_sub_cancel, h]; rfl
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=lt.3h3v.s7.e7f1ce24b202 from=translated src=- shape=3caab5df vocab=1df0e9e5
+-/
 theorem final_solution [LinearOrder F] [IsStrictOrderedRing F] {r : F} (hr : 0 < r)
     (hl : ∀ x ∈ l, 0 ≤ x) (h : l.foldr (· + ·) 0 ≤ r) :
     (targetSumPair r l).1 < r ^ 2 / 3 := by

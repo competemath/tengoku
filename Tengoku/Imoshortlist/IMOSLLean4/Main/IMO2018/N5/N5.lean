@@ -21,10 +21,16 @@ namespace IMO2018N5
 
 /-! ### Extra lemmas -/
 
+/--
+@isnad1 id=even.1h2v.s4.830d888e7572 from=translated src=- shape=e7776510 vocab=08e06ec0
+-/
 theorem even_mul_of_odd_add {x y : ℤ} (h : Odd (x + y)) : Even (x * y) := by
   rw [← Int.not_odd_iff_even, Int.odd_mul]
   rintro ⟨hx, hy⟩; exact Int.not_even_iff_odd.mpr h (hx.add_odd hy)
 
+/--
+@isnad1 id=le.2h2v.s6.43a243b84e46 from=translated src=- shape=bb50b21e vocab=62d8f2d7
+-/
 theorem sq_sub_eq_sq_bound {a b : ℤ} (hb : 0 < b) (h : ∃ c, a ^ 2 - b = c ^ 2) :
     2 * a - 1 ≤ b := by
   wlog ha : 0 ≤ a generalizing a
@@ -53,6 +59,9 @@ def mkGood (k l : ℤ) : Fin 4 → ℤ :=
   ![2 * (k * l) + (k - l), 2 * (k * l) - (k - l),
     2 * (k * l) + (k + l), 2 * (k * l) - (k + l)]
 
+/--
+@isnad1 id=good.0h2v.s3.84fdffbd8d8b from=translated src=- shape=b794339c vocab=cd90e605
+-/
 theorem mkGood_good (k l : ℤ) : good (mkGood k l) := by
   show (_ + _) * (_ - _) - (_ + _) * (_ - _) = (_ + _) + (_ - _)
     ∧ (_ + _) + (_ - _) = (_ + _) + (_ - _)
@@ -92,9 +101,15 @@ theorem good.eq_mkGood (hv : good v) : ∃ k l, v = mkGood k l := by
   subst s p q; refine ⟨k, l, funext λ x ↦ ?_⟩
   match x with | 0 => exact hp0 | 1 => exact hp1 | 2 => exact hq2 | 3 => exact hq3
 
+/--
+@isnad1 id=iff.0h1v.s5.4655c3365958 from=translated src=- shape=894b1384 vocab=98d80daf
+-/
 theorem good_iff_eq_mkGood : good v ↔ ∃ k l, v = mkGood k l :=
   ⟨good.eq_mkGood, λ ⟨k, l, h⟩ ↦ h ▸ mkGood_good k l⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.e54a7755ad0c from=translated src=- shape=9db94342 vocab=d9d50b36
+-/
 lemma mkGood_prod (k l) :
     (mkGood k l 0 * mkGood k l 1) * (mkGood k l 2 * mkGood k l 3)
       = ((2 * (k * l)) ^ 2 - (k ^ 2 + l ^ 2)) ^ 2 - (2 * (k * l)) ^ 2 := calc
@@ -108,6 +123,9 @@ lemma mkGood_prod (k l) :
 variable (hv : good v)
 include hv
 
+/--
+@isnad1 id=or.2h1v.s8.2c619b9310ed from=translated src=- shape=70d99bdb vocab=900297de
+-/
 theorem good.prod_eq_sq_imp' (h : ∃ a, (v 0 * v 1) * (v 2 * v 3) = a ^ 2) :
     (∃ x z, v = ![x, -x, z, -z])
       ∨ (v = ![2, 2, 4, 0] ∨ v = ![0, -4, -2, -2])
@@ -146,6 +164,9 @@ theorem good.prod_eq_sq_imp' (h : ∃ a, (v 0 * v 1) * (v 2 * v 3) = a ^ 2) :
     all_goals rintro rfl; revert h; apply Or.imp
     all_goals rintro rfl; rfl
 
+/--
+@isnad1 id=or.3h1v.s8.d31b00b22d43 from=translated src=- shape=5152a6f4 vocab=900297de
+-/
 theorem good.prod_eq_sq_imp (h : ∃ a, v 0 * v 1 = a ^ 2) (h0 : ∃ b, v 2 * v 3 = b ^ 2) :
     v = ![0, 0, 0, 0] ∨ (v = ![2, 2, 4, 0] ∨ v = ![0, -4, -2, -2])
       ∨ (v = ![-4, 0, -2, -2] ∨ v = ![2, 2, 0, 4]) := by
@@ -162,7 +183,9 @@ theorem good.prod_eq_sq_imp (h : ∃ a, v 0 * v 1 = a ^ 2) (h0 : ∃ b, v 2 * v 
     rw [mul_neg, neg_nonneg, ← sq] at h0
     exact sq_eq_zero_iff.mp (h0.antisymm (sq_nonneg z))
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=not.2h1v.s7.539ce8d79395 from=translated src=- shape=9cef79fb vocab=33b6cdfb
+-/
 theorem final_solution (hv0 : ∀ i, v i ≠ 0) :
     ¬((∃ x, v 0 * v 1 = x ^ 2) ∧ ∃ y, v 2 * v 3 = y ^ 2) := by
   rintro ⟨h, h0⟩

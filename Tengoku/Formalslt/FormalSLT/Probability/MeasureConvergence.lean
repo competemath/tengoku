@@ -16,6 +16,7 @@ claim: almost-everywhere measurable functions increase almost everywhere and
 converge almost everywhere to `F`, so their integrals converge to the integral
 of `F`.
 Claim-facing wrapper for theorempath.com evidence entry `claim:measure-theoretic-probability::monotone-convergence-theorem`.
+@isnad1 id=tendsto.3h4v.s6.b552e925494a from=translated src=- shape=93fe00a3 vocab=0c14e8fe
 -/
 theorem monotoneConvergenceLIntegral
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
@@ -32,6 +33,7 @@ Fatou's lemma for nonnegative measurable functions, stated with `lintegral`.
 The `liminf` form is the canonical statement behind the page's expectation
 notation for nonnegative random variables.
 Claim-facing wrapper for theorempath.com evidence entry `claim:measure-theoretic-probability::fatou-lemma`.
+@isnad1 id=le.1h3v.s6.cd4be939394e from=translated src=- shape=c0aa67b8 vocab=e99723ae
 -/
 theorem fatouLemmaLIntegral
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
@@ -47,6 +49,7 @@ This wraps mathlib's theorem with the exact assumptions the governed claim
 needs to expose: a measurable sequence, an integrable real-valued dominating
 bound, domination almost everywhere, and almost-everywhere convergence.
 Claim-facing wrapper for theorempath.com evidence entry `claim:measure-theoretic-probability::dominated-convergence-theorem`.
+@isnad1 id=tendsto.4h6v.s7.1cfda4c6a7b4 from=translated src=- shape=447325ca vocab=1964a4d4
 -/
 theorem dominatedConvergenceIntegral
     {Ω G : Type*} [MeasurableSpace Ω] [NormedAddCommGroup G] [NormedSpace ℝ G]

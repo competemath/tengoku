@@ -29,10 +29,19 @@ noncomputable def polyP (R : Type*) [CommRing R] : ℕ → Polynomial R
   | 1 => 1
   | (n + 2) => polyP R (n + 1) - Polynomial.X * polyP R n
 
+/--
+@isnad1 id=eq.0h1v.s5.fc1546a96b25 from=translated src=- shape=0cccbc47 vocab=b2d73f2f
+-/
 theorem polyP_zero (R : Type*) [CommRing R] : polyP R 0 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.274133c1875a from=translated src=- shape=0cccbc47 vocab=b2d73f2f
+-/
 theorem polyP_one (R : Type*) [CommRing R] : polyP R 1 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.2c5275449537 from=translated src=- shape=d8f9e191 vocab=fa526d9f
+-/
 theorem polyP_succ_succ (R : Type*) [CommRing R] (n : ℕ) :
     polyP R (n + 2) = polyP R (n + 1) - Polynomial.X * polyP R n := rfl
 
@@ -60,6 +69,9 @@ noncomputable def genFunCoeff (K : Type*) [Field K] (m n r : ℕ) {s : ℕ}
 
 /-! ## Basic Properties of polyP -/
 
+/--
+@isnad1 id=eq.0h2v.s5.59519383768d from=translated src=- shape=16072c23 vocab=c744b0c0
+-/
 lemma polyP_constantCoeff (R : Type*) [CommRing R] (n : ℕ) :
     (polyP R n).coeff 0 = 1 := by
   induction n using Nat.strong_induction_on with
@@ -70,15 +82,24 @@ lemma polyP_constantCoeff (R : Type*) [CommRing R] (n : ℕ) :
       simp [polyP] at ih ⊢
       simp_all
 
+/--
+@isnad1 id=ne.0h2v.s6.d09228ad1201 from=translated src=- shape=a1d56855 vocab=8839de1d
+-/
 lemma polyP_coe_constantCoeff_ne_zero (K : Type*) [Field K] (m : ℕ) :
     PowerSeries.constantCoeff (↑(polyP K m) : PowerSeries K) ≠ 0 := by
   simp [polyP_constantCoeff]
 
+/--
+@isnad1 id=ne.0h3v.s7.29306a72a9a2 from=translated src=- shape=dbef59db vocab=d768f4f5
+-/
 lemma polyP_coe_pow_constantCoeff_ne_zero (K : Type*) [Field K] (m k : ℕ) :
     PowerSeries.constantCoeff ((↑(polyP K m) : PowerSeries K) ^ k) ≠ 0 := by
   rw [map_pow]
   exact pow_ne_zero _ (polyP_coe_constantCoeff_ne_zero K m)
 
+/--
+@isnad1 id=eq.1h3v.s6.1ddb5ffdbd11 from=translated src=- shape=a978963e vocab=d29abd56
+-/
 lemma partitionPoly_eq_one_of_parts_le_one (K : Type*) [Field K] {s : ℕ}
     (ξ : Nat.Partition s) (h : ∀ i ∈ ξ.parts, i ≤ 1) :
     partitionPoly K ξ = 1 := by
@@ -102,6 +123,9 @@ private lemma partitionPoly_split_aux (K : Type*) [CommRing K] (m : ℕ) {s : �
   rw [Multiset.map_add, Multiset.prod_add, Multiset.filter_eq', Multiset.map_replicate,
     Multiset.prod_replicate]
 
+/--
+@isnad1 id=ex.0h4v.s7.b2f10eb52d69 from=translated src=- shape=b976cd3f vocab=7e667b8c
+-/
 lemma partitionPoly_split (K : Type*) [CommRing K] (m : ℕ) {s : ℕ}
     (ξ : Nat.Partition s) :
     ∃ Q : Polynomial K,
@@ -120,6 +144,9 @@ private lemma poly_mul_pow_inv_cancel (K : Type*) [Field K]
   rw [pow_add, mul_assoc (↑A : PowerSeries K) _ _, mul_assoc _ ((↑P : PowerSeries K) ^ e) _,
     PowerSeries.mul_inv_cancel _ hPe, mul_one, Polynomial.coe_mul, Polynomial.coe_pow]
 
+/--
+@isnad1 id=ex.3h5v.s6.2deb2412cde5 from=translated src=- shape=a9fae550 vocab=5de41593
+-/
 lemma genFun_is_poly_coe (K : Type*) [Field K]
     (m n : ℕ) {s : ℕ} (ξ : Nat.Partition s) (_hm : 2 ≤ m) (_h_parts : ∀ i ∈ ξ.parts, i ≤ m)
     (h_t : n / m + 1 ≤ countMaxParts m ξ) :
@@ -134,6 +161,9 @@ lemma genFun_is_poly_coe (K : Type*) [Field K]
   exact poly_mul_pow_inv_cancel K (polyP K (m - n % m - 1) * Q) (polyP K m)
     (countMaxParts m ξ) (n / m + 1) h_t (polyP_coe_constantCoeff_ne_zero K m)
 
+/--
+@isnad1 id=eq.1h3v.s8.aff5f1116646 from=translated src=- shape=fafd7ebb vocab=c2d917ce
+-/
 lemma poly_coe_eventually_zero (K : Type*) [Field K] (P : Polynomial K) :
     ∀ r, P.natDegree < r → (PowerSeries.coeff r) (↑P : PowerSeries K) = 0 :=
   fun r h => by simp [Polynomial.coeff_coe, Polynomial.coeff_eq_zero_of_natDegree_lt h]
@@ -151,6 +181,9 @@ private lemma partitionPoly_split_concrete (K : Type*) [CommRing K] (m : ℕ) {s
   rw [Multiset.map_add, Multiset.prod_add, Multiset.filter_eq', Multiset.map_replicate,
     Multiset.prod_replicate]
 
+/--
+@isnad1 id=eq.0h4v.s5.4eca38a8532a from=translated src=- shape=95d8142c vocab=872423b0
+-/
 lemma polyP_map {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S) (n : ℕ) :
     Polynomial.map f (polyP R n) = polyP S n := by
   induction n using Nat.strong_induction_on with
@@ -209,6 +242,9 @@ private lemma second_factor_pos
   obtain ⟨hi_parts, hi_ne⟩ := Multiset.mem_filter.mp hi_mem
   exact h_pos i (lt_of_le_of_ne (h_parts i hi_parts) hi_ne)
 
+/--
+@isnad1 id=ex.3h4v.s8.164fe50629f3 from=translated src=- shape=c0aed24c vocab=8d61cb97
+-/
 lemma genFun_as_rational_fraction_with_pos_numerator
     (m n : ℕ) {s : ℕ} (ξ : Nat.Partition s) (hm : 2 ≤ m) (h_parts : ∀ i ∈ ξ.parts, i ≤ m)
     (h_t : countMaxParts m ξ ≤ n / m) :
@@ -230,6 +266,9 @@ lemma genFun_as_rational_fraction_with_pos_numerator
     rw [Polynomial.map_mul, Polynomial.eval_mul]
     exact mul_pos (h_pos_j (m - n % m - 1) (by omega)) (second_factor_pos m ξ hm h_parts ρ h_pos_j)
 
+/--
+@isnad1 id=ex.1h2v.s8.468963cc32df from=translated src=- shape=4390eb24 vocab=2a571c22
+-/
 lemma coeff_rational_fraction_eq_proper_part
     (A D : Polynomial ℚ) (_hD : PowerSeries.constantCoeff (↑D : PowerSeries ℚ) ≠ 0) :
     ∃ (S R : Polynomial ℚ) (N : ℕ),
@@ -291,6 +330,9 @@ private lemma polyP_eval_eq_chebyshev_S (n : ℕ) (y : ℝ) (hy : y ≠ 0) :
 
 /-! ## Root Analysis -/
 
+/--
+@isnad1 id=ex.1h1v.s6.290d53027fea from=translated src=- shape=cb0651dc vocab=a581cbb2
+-/
 lemma polyP_roots_positive (m : ℕ) (hm : 2 ≤ m) :
     ∃ (ρ : ℝ), 0 < ρ ∧
       Polynomial.eval ρ (Polynomial.map (algebraMap ℚ ℝ) (polyP ℚ m)) = 0 ∧
@@ -323,6 +365,9 @@ lemma polyP_roots_positive (m : ℕ) (hm : 2 ≤ m) :
     rw [polyP_map (algebraMap ℚ ℝ), polyP_eval_eq_chebyshev_S j y₀ hy₀_ne]
     exact mul_pos (by positivity) (chebyshev_S_eval_pos_at_cos m hm j hj)
 
+/--
+@isnad1 id=lt.4h5v.s7.c575ecaf096b from=translated src=- shape=70c03673 vocab=6134bf31
+-/
 lemma remainder_positive_at_roots
     (A D S R : Polynomial ℚ) (hdiv : (↑A : PowerSeries ℚ) * ((↑D : PowerSeries ℚ))⁻¹ =
         ↑S + ↑R * ((↑D : PowerSeries ℚ))⁻¹)
@@ -337,6 +382,9 @@ lemma remainder_positive_at_roots
   have h_poly : A = S * D + R := by exact_mod_cast h_main
   simp_all
 
+/--
+@isnad1 id=lt.2h3v.s8.8e570fd3a470 from=translated src=- shape=d3d2cc16 vocab=e0c2af6b
+-/
 lemma pos_coeff_transfer_R_to_Q
     (f : PowerSeries ℚ) (N : ℕ) (h : ∀ r, N < r →
       (0 : ℝ) < (PowerSeries.coeff r) ((PowerSeries.map (algebraMap ℚ ℝ)) f)) :
@@ -344,6 +392,9 @@ lemma pos_coeff_transfer_R_to_Q
   fun r hr => by
     simp_all
 
+/--
+@isnad1 id=eq.1h1v.s7.c3b4de3b1c24 from=translated src=- shape=0d9fd89b vocab=98c112e7
+-/
 lemma map_algebraMap_inv_comm
     (f : PowerSeries ℚ) (hf : PowerSeries.constantCoeff f ≠ 0) :
     (PowerSeries.map (algebraMap ℚ ℝ)) f⁻¹ =
@@ -356,9 +407,15 @@ lemma map_algebraMap_inv_comm
       (PowerSeries.map (algebraMap ℚ ℝ)) f⁻¹ * (PowerSeries.map (algebraMap ℚ ℝ)) f = 1).trans
     (PowerSeries.inv_mul_cancel _ hf').symm)
 
+/--
+@isnad1 id=ne.0h1v.s5.d88bdc60dfd0 from=translated src=- shape=21cbaf3f vocab=d87c084c
+-/
 lemma polyP_ne_zero (m : ℕ) : polyP ℝ m ≠ 0 :=
   fun h => one_ne_zero ((polyP_constantCoeff ℝ m).symm.trans (by rw [h, Polynomial.coeff_zero]))
 
+/--
+@isnad1 id=le.0h1v.s4.fea1e3c7b728 from=translated src=- shape=ce8271d0 vocab=2761dfb2
+-/
 lemma polyP_natDegree_le (n : ℕ) : (polyP ℝ n).natDegree ≤ n / 2 := by
   induction n using Nat.strongRecOn with
   | _ n ih =>
@@ -380,6 +437,9 @@ lemma polyP_natDegree_le (n : ℕ) : (polyP ℝ n).natDegree ≤ n / 2 := by
             max_le_max h1 hX
         _ ≤ (n + 2) / 2 := by omega
 
+/--
+@isnad1 id=eq.1h2v.s6.5c1bdd070061 from=translated src=- shape=6ed4011e vocab=3728cbea
+-/
 lemma polyP_chebyshev_rescale (n : ℕ) (z : ℝ) (hz : z ≠ 0) :
     (2 * z) ^ n * Polynomial.eval (1 / (4 * z ^ 2)) (polyP ℝ n) =
     Polynomial.eval z (Polynomial.Chebyshev.U ℝ ↑n) := by
@@ -393,6 +453,9 @@ lemma polyP_chebyshev_rescale (n : ℕ) (z : ℝ) (hz : z ≠ 0) :
     field_simp
     ring
 
+/--
+@isnad1 id=lt.2h2v.s6.1f7f8f2e192a from=translated src=- shape=173204c3 vocab=c014e6fb
+-/
 lemma angle_lt_pi_div_two (m k : ℕ) (_hm : 2 ≤ m) (hk_bound : 2 * k < m + 1) :
     ↑k * Real.pi / (↑m + 1) < Real.pi / 2 := by
   have : (k : ℝ) < ((m : ℝ) + 1) / 2 := by
@@ -401,6 +464,9 @@ lemma angle_lt_pi_div_two (m k : ℕ) (_hm : 2 ≤ m) (hk_bound : 2 * k < m + 1)
     _ < ((m + 1 : ℝ) / 2) * (Real.pi / (m + 1)) := by gcongr
     _ = Real.pi / 2 := by field_simp
 
+/--
+@isnad1 id=lt.1h2v.s6.a4c0df83f01f from=translated src=- shape=df6d52ef vocab=6744e4ab
+-/
 lemma cos_angle_pos (m : ℕ) (hm : 2 ≤ m) (j : Fin (m / 2)) :
     0 < Real.cos ((↑(j : ℕ) + 1) * Real.pi / (↑m + 1)) := by
   apply Real.cos_pos_of_mem_Ioo
@@ -408,9 +474,15 @@ lemma cos_angle_pos (m : ℕ) (hm : 2 ≤ m) (j : Fin (m / 2)) :
     show (0 : ℝ) ≤ (↑(j : ℕ) + 1) * Real.pi / (↑m + 1) from by positivity], ?_⟩
   exact_mod_cast angle_lt_pi_div_two m (↑j + 1) hm (by omega)
 
+/--
+@isnad1 id=lt.1h2v.s6.a06d7a2cae02 from=translated src=- shape=565c35d1 vocab=cd342da9
+-/
 lemma angle_pos (m : ℕ) (_hm : 2 ≤ m) (j : Fin (m / 2)) :
     0 < (↑(j : ℕ) + 1) * Real.pi / (↑m + 1) := by positivity
 
+/--
+@isnad1 id=lt.1h2v.s6.a70d8d652ed6 from=translated src=- shape=a44415d7 vocab=cd342da9
+-/
 lemma angle_lt_pi (m : ℕ) (hm : 2 ≤ m) (j : Fin (m / 2)) :
     (↑(j : ℕ) + 1) * Real.pi / (↑m + 1) < Real.pi := by
   have h₁ : (↑(j : ℕ) + 1 : ℝ) / (↑m + 1 : ℝ) < 1 := by
@@ -421,6 +493,9 @@ lemma angle_lt_pi (m : ℕ) (hm : 2 ≤ m) (j : Fin (m / 2)) :
     _ < 1 * Real.pi := by gcongr
     _ = Real.pi := one_mul _
 
+/--
+@isnad1 id=isroot.1h2v.s7.d86d0f64d7a3 from=translated src=- shape=08947c30 vocab=f39e200f
+-/
 lemma candidate_is_root (m : ℕ) (hm : 2 ≤ m) (j : Fin (m / 2)) :
     (polyP ℝ m).IsRoot (1 / (4 * Real.cos ((↑(j : ℕ) + 1) * Real.pi / (↑m + 1)) ^ 2)) := by
   set θ := (↑(j : ℕ) + 1) * Real.pi / (↑m + 1) with hθ_def
@@ -454,6 +529,9 @@ lemma candidate_is_root (m : ℕ) (hm : 2 ≤ m) (j : Fin (m / 2)) :
   rw [hz_def]
   exact (mul_eq_zero.mp h_trig).resolve_right hsin_ne
 
+/--
+@isnad1 id=lt.2h3v.s6.15f18cfc1d81 from=translated src=- shape=76658598 vocab=c014e6fb
+-/
 lemma angle_strict_mono (m k_ρ k_x : ℕ) (_hm : 2 ≤ m) (hk_lt : k_ρ < k_x) :
     ↑k_ρ * Real.pi / (↑m + 1) < ↑k_x * Real.pi / (↑m + 1) := by
   nlinarith [show (k_ρ : ℝ) < (k_x : ℝ) from by norm_cast,
@@ -463,6 +541,9 @@ lemma angle_strict_mono (m k_ρ k_x : ℕ) (_hm : 2 ≤ m) (hk_lt : k_ρ < k_x) 
              show (k_x : ℝ) * Real.pi / ((↑m : ℝ) + 1)
                = (k_x : ℝ) * (Real.pi / ((↑m : ℝ) + 1)) from by ring]
 
+/--
+@isnad1 id=strictmo.1h1v.s7.62d5a0f1a521 from=translated src=- shape=6a2c0483 vocab=b0b6328a
+-/
 lemma candidate_strictMono (m : ℕ) (hm : 2 ≤ m) :
     StrictMono (fun j : Fin (m / 2) =>
       1 / (4 * Real.cos ((↑(j : ℕ) + 1) * Real.pi / (↑m + 1)) ^ 2)) := by
@@ -484,6 +565,9 @@ lemma candidate_strictMono (m : ℕ) (hm : 2 ≤ m) :
 
 /-! ## Coprimality and Splitting -/
 
+/--
+@isnad1 id=eq.2h3v.s8.e092a35ef402 from=translated src=- shape=c8269aac vocab=cc0cb981
+-/
 lemma bezout_core (ρ : ℝ) (hρ_pos : 0 < ρ) (s : ℝ) (hs_pos : 0 < s) (Q : Polynomial ℝ) :
     Polynomial.C (1 / s) * ((Polynomial.X - Polynomial.C ρ) * Q + Polynomial.C s) +
     Polynomial.C (ρ / s) * Q * (-Polynomial.C (1 / ρ) * (Polynomial.X - Polynomial.C ρ)) = 1 := by
@@ -506,6 +590,9 @@ lemma bezout_core (ρ : ℝ) (hρ_pos : 0 < ρ) (s : ℝ) (hs_pos : 0 < s) (Q : 
           rw [hC_one, hC_combine]
     _ = 1 := by ring
 
+/--
+@isnad1 id=iscoprim.2h2v.s6.8c6b9f751288 from=translated src=- shape=ba004bcf vocab=599487c7
+-/
 lemma isCoprime_of_eval_pos (ρ : ℝ) (hρ_pos : 0 < ρ) (S : Polynomial ℝ)
     (hS_pos : 0 < Polynomial.eval ρ S) :
     IsCoprime S (Polynomial.X - Polynomial.C ρ) := by
@@ -523,6 +610,9 @@ lemma isCoprime_of_eval_pos (ρ : ℝ) (hρ_pos : 0 < ρ) (S : Polynomial ℝ)
   convert hbez using 1
   ring
 
+/--
+@isnad1 id=dvd.5h3v.s8.9e4420beffdb from=translated src=- shape=998b0dcb vocab=18763544
+-/
 lemma prod_linear_factors_dvd {p : Polynomial ℝ} {d : ℕ}
     (_hp : p ≠ 0) (r : Fin d → ℝ) (hr_pos : ∀ j, 0 < r j) (hr_mono : StrictMono r)
     (hr_root : ∀ j, p.IsRoot (r j)) (h_dvd : ∀ j, (Polynomial.X - Polynomial.C (r j)) ∣ p) :
@@ -547,6 +637,9 @@ lemma prod_linear_factors_dvd {p : Polynomial ℝ} {d : ℕ}
         (fun j => h_dvd (Fin.castSucc j))
     · exact h_dvd (Fin.last d)
 
+/--
+@isnad1 id=splits.5h3v.s6.608a7f0a6cf2 from=translated src=- shape=ab4c6600 vocab=289ffd96
+-/
 lemma splits_of_distinct_pos_roots_and_deg_le {p : Polynomial ℝ} {d : ℕ}
     (hp : p ≠ 0) (hdeg : p.natDegree ≤ d)
     (r : Fin d → ℝ) (hr_pos : ∀ j, 0 < r j) (hr_mono : StrictMono r)
@@ -572,6 +665,9 @@ lemma splits_of_distinct_pos_roots_and_deg_le {p : Polynomial ℝ} {d : ℕ}
   rw [hpq, hq_const, mul_comm]
   exact hg_splits.C_mul _
 
+/--
+@isnad1 id=other.2h2v.s6.47ceaa6a02a8 from=translated src=- shape=a0fa9425 vocab=478d0446
+-/
 lemma polyP_root_to_chebyshev_root (m : ℕ) (r : ℝ) (hr_pos : 0 < r)
     (hr_root : Polynomial.eval r (polyP ℝ m) = 0) :
     let z := 1 / (2 * Real.sqrt r)
@@ -583,6 +679,9 @@ lemma polyP_root_to_chebyshev_root (m : ℕ) (r : ℝ) (hr_pos : 0 < r)
   rw [show 1 / (4 * z ^ 2) = r from by grind, hr_root, mul_zero] at hrescale
   exact hrescale.symm
 
+/--
+@isnad1 id=lt.3h2v.s6.37c879010d4f from=translated src=- shape=2ff83b1c vocab=aa59c0ff
+-/
 lemma cos_pos_angle_bound (m : ℕ) (hm : 2 ≤ m) (j : ℕ) (hj : j < m)
     (hcos_pos : 0 < Real.cos ((↑j + 1) * Real.pi / (↑m + 1))) :
     2 * (j + 1) < m + 1 := by
@@ -614,6 +713,9 @@ lemma cos_pos_angle_bound (m : ℕ) (hm : 2 ≤ m) (j : ℕ) (hj : j < m)
     nlinarith [Real.pi_gt_three]
   norm_cast at h₃ ⊢
 
+/--
+@isnad1 id=ex.3h2v.s7.d3e96fb2a0b7 from=translated src=- shape=cba89585 vocab=007503bf
+-/
 lemma chebyshev_root_parametrize (m : ℕ) (hm : 2 ≤ m) (z : ℝ) (hz_pos : 0 < z)
     (hz_root : Polynomial.eval z (Polynomial.Chebyshev.U ℝ ↑m) = 0) :
     ∃ k : ℕ, 1 ≤ k ∧ 2 * k < m + 1 ∧
@@ -629,6 +731,9 @@ lemma chebyshev_root_parametrize (m : ℕ) (hm : 2 ≤ m) (z : ℝ) (hz_pos : 0 
   · exact cos_pos_angle_bound m hm j hj_lt (hj_eq ▸ hz_pos)
   · simp_all
 
+/--
+@isnad1 id=ex.3h2v.s7.08c79c19b7a7 from=translated src=- shape=28d1b30f vocab=c7bf9e01
+-/
 lemma polyP_root_parametrize (m : ℕ) (hm : 2 ≤ m) (r : ℝ) (hr_pos : 0 < r)
     (hr_root : Polynomial.eval r (polyP ℝ m) = 0) :
     ∃ k : ℕ, 1 ≤ k ∧ 2 * k < m + 1 ∧
@@ -636,6 +741,9 @@ lemma polyP_root_parametrize (m : ℕ) (hm : 2 ≤ m) (r : ℝ) (hr_pos : 0 < r)
   have ⟨hz_pos, hz_root⟩ := polyP_root_to_chebyshev_root m r hr_pos hr_root
   exact chebyshev_root_parametrize m hm _ hz_pos hz_root
 
+/--
+@isnad1 id=lt.3h2v.s6.a90210935860 from=translated src=- shape=eda171be vocab=ef4726aa
+-/
 lemma candidate_lt_m (m k : ℕ) (_hm : 2 ≤ m) (hk : 2 ≤ k) (hk_bound : 2 * k < m + 1) :
     (m + 1) / k < m := by
   by_contra h
@@ -644,6 +752,9 @@ lemma candidate_lt_m (m k : ℕ) (_hm : 2 ≤ m) (hk : 2 ≤ k) (hk_bound : 2 * 
   have h₂ : m * k ≤ (m + 1) / k * k := Nat.mul_le_mul_right k h
   nlinarith
 
+/--
+@isnad1 id=lt.1h2v.s6.6b227f0fbbf4 from=translated src=- shape=c54d8bd7 vocab=ef4726aa
+-/
 lemma nat_ineq_div_mul (m k : ℕ) (hk : 2 ≤ k) :
     m + 1 < ((m + 1) / k + 1) * k := by
   calc m + 1 < (m + 1) / k * k + k := by
@@ -651,6 +762,9 @@ lemma nat_ineq_div_mul (m k : ℕ) (hk : 2 ≤ k) :
         omega
     _ = ((m + 1) / k + 1) * k := by ring_nf
 
+/--
+@isnad1 id=lt.3h2v.s7.bc7ac19a258b from=translated src=- shape=a404410f vocab=c014e6fb
+-/
 lemma angle_gt_pi (m k : ℕ) (hm : 2 ≤ m) (hk : 2 ≤ k) (_hk_bound : 2 * k < m + 1) :
     Real.pi < (↑((m + 1) / k) + 1) * (↑k * Real.pi / (↑m + 1)) := by
   have hm1_pos : (0 : ℝ) < ↑m + 1 := by positivity
@@ -663,6 +777,9 @@ lemma angle_gt_pi (m k : ℕ) (hm : 2 ≤ m) (hk : 2 ≤ k) (_hk_bound : 2 * k <
   have h' : (↑(m + 1) : ℝ) < ↑(((m + 1) / k + 1) * k) := Nat.cast_lt.mpr h
   simp_all
 
+/--
+@isnad1 id=lt.3h2v.s7.9bc8aac50c65 from=translated src=- shape=70cf9a39 vocab=c014e6fb
+-/
 lemma angle_lt_two_pi (m k : ℕ) (hm : 2 ≤ m) (hk : 2 ≤ k) (hk_bound : 2 * k < m + 1) :
     (↑((m + 1) / k) + 1) * (↑k * Real.pi / (↑m + 1)) < 2 * Real.pi := by
   have h₁ := Nat.div_mul_le_self (m + 1) k
@@ -677,6 +794,9 @@ lemma angle_lt_two_pi (m k : ℕ) (hm : 2 ≤ m) (hk : 2 ≤ k) (hk_bound : 2 * 
       < (2 * (↑m + 1 : ℝ)) * (Real.pi / (↑m + 1)) := by gcongr
     _ = 2 * Real.pi := by field_simp
 
+/--
+@isnad1 id=le.2h1v.s5.712e23fcc17a from=translated src=- shape=1dc9846e vocab=e253ead5
+-/
 lemma sin_nonpos_of_pi_lt_lt_two_pi (θ : ℝ) (h1 : Real.pi < θ) (h2 : θ < 2 * Real.pi) :
     Real.sin θ ≤ 0 := by
   have h1 := Real.sin_pos_of_pos_of_lt_pi (by linarith : 0 < θ - Real.pi) (by linarith)
@@ -684,6 +804,9 @@ lemma sin_nonpos_of_pi_lt_lt_two_pi (θ : ℝ) (h1 : Real.pi < θ) (h2 : θ < 2 
   simp only [sub_add_cancel] at h2
   linarith
 
+/--
+@isnad1 id=le.7h4v.s7.012fde464ab0 from=translated src=- shape=612f86ee vocab=3597de71
+-/
 lemma polyP_eval_nonpos_at_bad_index (m k j₀ : ℕ) (hm : 2 ≤ m)
     (hk : 2 ≤ k) (hk_bound : 2 * k < m + 1) (_hj₀ : j₀ < m) (r : ℝ) (hr_pos : 0 < r)
     (hr_param : 1 / (2 * Real.sqrt r) = Real.cos (↑k * Real.pi / (↑m + 1)))
@@ -714,6 +837,9 @@ lemma polyP_eval_nonpos_at_bad_index (m k j₀ : ℕ) (hm : 2 ≤ m)
   exact nonpos_of_mul_nonpos_right
     (nonpos_of_mul_nonpos_left (key.le.trans h_sin) hsin_pos) h2cos_pos
 
+/--
+@isnad1 id=lt.2h2v.s5.c1e6dd7b1d0f from=translated src=- shape=0f8d4a3c vocab=5f2c9686
+-/
 lemma polyP_roots_pos (m : ℕ) (_hm : 2 ≤ m) (x : ℝ)
     (hx : Polynomial.eval x (polyP ℝ m) = 0) : 0 < x := by
   by_contra h₅
@@ -727,6 +853,9 @@ lemma polyP_roots_pos (m : ℕ) (_hm : 2 ≤ m) (x : ℝ)
       simp [polyP, Polynomial.eval_sub, Polynomial.eval_mul, Polynomial.eval_X] at ih ⊢
       nlinarith [sq_nonneg (x + 1), ih (n + 1) (by omega), ih n (by omega)]
 
+/--
+@isnad1 id=eq.6h3v.s7.391cb065c916 from=translated src=- shape=0a0cc784 vocab=c7bf9e01
+-/
 lemma root_index_eq_one (m : ℕ) (hm : 2 ≤ m) (ρ : ℝ) (hρ_pos : 0 < ρ)
     (hρ_lower : ∀ j : ℕ, j < m → 0 < Polynomial.eval ρ (polyP ℝ j))
     (k : ℕ) (hk_pos : 1 ≤ k) (hk_bound : 2 * k < m + 1)
@@ -743,14 +872,23 @@ lemma root_index_eq_one (m : ℕ) (hm : 2 ≤ m) (ρ : ℝ) (hρ_pos : 0 < ρ)
     ρ hρ_pos hρ_param hj₀_sin
   linarith [hρ_lower j₀ hj₀_lt]
 
+/--
+@isnad1 id=eq.3h2v.s6.0b15ae7cc109 from=translated src=- shape=8b06f1d6 vocab=0d4a5a35
+-/
 lemma sqrt_from_param (ρ : ℝ) (c : ℝ) (_hρ : 0 < ρ) (hc : 0 < c) (h : 1 / (2 * Real.sqrt ρ) = c) :
     Real.sqrt ρ = 1 / (2 * c) := by
   grind
 
+/--
+@isnad1 id=lt.2h2v.s5.3396d48e8581 from=translated src=- shape=286bca47 vocab=0d4a5a35
+-/
 lemma cos_pos_from_param (ρ : ℝ) (c : ℝ) (hρ : 0 < ρ) (h : 1 / (2 * Real.sqrt ρ) = c) :
     0 < c :=
   h ▸ by positivity
 
+/--
+@isnad1 id=lt.10h5v.s8.6bff7b640ba5 from=translated src=- shape=4ecf76f5 vocab=749e43c1
+-/
 lemma root_comparison (m : ℕ) (hm : 2 ≤ m) (ρ x : ℝ) (hρ_pos : 0 < ρ) (hx_pos : 0 < x)
     (k_ρ k_x : ℕ) (hk_ρ_pos : 1 ≤ k_ρ) (_hk_ρ_bound : 2 * k_ρ < m + 1)
     (_hk_x_pos : 1 ≤ k_x) (hk_x_bound : 2 * k_x < m + 1)
@@ -772,6 +910,9 @@ lemma root_comparison (m : ℕ) (hm : 2 ≤ m) (ρ x : ℝ) (hρ_pos : 0 < ρ) (
     exact one_div_lt_one_div_of_lt (by positivity) (by linarith)
   exact (Real.sqrt_lt_sqrt_iff (le_of_lt hρ_pos)).mp h_sqrt_lt
 
+/--
+@isnad1 id=lt.6h3v.s6.9bfdfda90d1e from=translated src=- shape=0130072d vocab=5f2c9686
+-/
 lemma root_is_smallest (m : ℕ) (hm : 2 ≤ m) (ρ : ℝ) (hρ_pos : 0 < ρ)
     (hρ_root : Polynomial.eval ρ (polyP ℝ m) = 0)
     (hρ_lower : ∀ j : ℕ, j < m → 0 < Polynomial.eval ρ (polyP ℝ j))
@@ -794,6 +935,9 @@ lemma root_is_smallest (m : ℕ) (hm : 2 ≤ m) (ρ : ℝ) (hρ_pos : 0 < ρ)
   exact root_comparison m hm ρ x hρ_pos hx_pos 1 k_x hk_ρ_pos hk_ρ_bound hk_x_pos hk_x_bound
     hρ_param hx_param (by omega)
 
+/--
+@isnad1 id=eq.1h1v.s7.20f600767462 from=translated src=- shape=09d25267 vocab=5bbe4475
+-/
 lemma L_eval_at_rho (ρ : ℝ) (hρ : 0 < ρ) :
     Polynomial.eval ρ (1 - Polynomial.C (1/ρ) * Polynomial.X : Polynomial ℝ) = 0 := by
   simp [Polynomial.eval_sub, Polynomial.eval_one, Polynomial.eval_mul, Polynomial.eval_C,
@@ -801,6 +945,9 @@ lemma L_eval_at_rho (ρ : ℝ) (hρ : 0 < ρ) :
   field_simp [hρ.ne']
   ring
 
+/--
+@isnad1 id=eq.2h3v.s8.4c5cee1418d1 from=translated src=- shape=32542171 vocab=6f6fc2d0
+-/
 lemma eval_deriv_eq_neg_inv_rho_mul_eval_S (m : ℕ) (ρ : ℝ) (hρ_pos : 0 < ρ) (S : Polynomial ℝ)
     (hfact : polyP ℝ m = (1 - Polynomial.C (1 / ρ) * Polynomial.X) * S) :
     Polynomial.eval ρ (Polynomial.derivative (polyP ℝ m)) = -(1/ρ) * Polynomial.eval ρ S := by
@@ -814,18 +961,27 @@ lemma eval_deriv_eq_neg_inv_rho_mul_eval_S (m : ℕ) (ρ : ℝ) (hρ_pos : 0 < �
 
 /-! ## Derivative Convolution Identity -/
 
+/--
+@isnad1 id=eq.0h1v.s8.5b42519b4888 from=translated src=- shape=ddab50ab vocab=4b98e362
+-/
 lemma polyP_neg_deriv_base_two (R : Type*) [CommRing R] :
     -Polynomial.derivative (polyP R 2) =
     ∑ j ∈ Finset.range 1, polyP R j * polyP R (0 - j) := by
   simp [polyP, mul_one, Polynomial.derivative_sub, Polynomial.derivative_one,
     Polynomial.derivative_X]
 
+/--
+@isnad1 id=eq.0h1v.s8.758ea6674509 from=translated src=- shape=ddab50ab vocab=4b98e362
+-/
 lemma polyP_neg_deriv_base_three (R : Type*) [CommRing R] :
     -Polynomial.derivative (polyP R 3) =
     ∑ j ∈ Finset.range 2, polyP R j * polyP R (1 - j) := by
   simp [polyP, Polynomial.derivative_sub, Polynomial.derivative_one,
     Polynomial.derivative_X, Finset.sum_range_succ]
 
+/--
+@isnad1 id=eq.0h2v.s9.8069cf359db6 from=translated src=- shape=3b54e8a2 vocab=4cfdd40f
+-/
 lemma polyP_deriv_recurrence (R : Type*) [CommRing R] (n : ℕ) :
     Polynomial.derivative (polyP R (n + 2)) =
     Polynomial.derivative (polyP R (n + 1)) - polyP R n -
@@ -838,6 +994,9 @@ lemma polyP_deriv_recurrence (R : Type*) [CommRing R] (n : ℕ) :
     _ = Polynomial.derivative (polyP R (n + 1)) - polyP R n -
         Polynomial.X * Polynomial.derivative (polyP R n) := by ring_nf
 
+/--
+@isnad1 id=eq.0h2v.s8.5633b757b767 from=translated src=- shape=58eecffd vocab=1568b019
+-/
 lemma inner_sum_recurrence (R : Type*) [CommRing R] (n : ℕ) :
     ∑ j ∈ Finset.range (n + 1), polyP R j * polyP R (n + 2 - j) =
     ∑ j ∈ Finset.range (n + 1), polyP R j * polyP R (n + 1 - j) -
@@ -854,6 +1013,9 @@ lemma inner_sum_recurrence (R : Type*) [CommRing R] (n : ℕ) :
     ring
   rw [h1, Finset.sum_sub_distrib, Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h2v.s8.10b124b93a4c from=translated src=- shape=fa4eb637 vocab=1568b019
+-/
 lemma convolution_sum_step (R : Type*) [CommRing R] (n : ℕ) :
     ∑ j ∈ Finset.range (n + 3), polyP R j * polyP R (n + 2 - j) =
     ∑ j ∈ Finset.range (n + 2), polyP R j * polyP R (n + 1 - j) +
@@ -871,6 +1033,9 @@ lemma convolution_sum_step (R : Type*) [CommRing R] (n : ℕ) :
              show polyP R 0 = (1 : Polynomial R) from rfl, mul_one]
   ring
 
+/--
+@isnad1 id=eq.1h2v.s8.853dabbcf852 from=translated src=- shape=5714ef24 vocab=12e479d1
+-/
 lemma polyP_neg_deriv_eq_convolution (R : Type*) [CommRing R] (n : ℕ) (hn : 2 ≤ n) :
     -Polynomial.derivative (polyP R n) =
     ∑ j ∈ Finset.range (n - 1), polyP R j * polyP R (n - 2 - j) := by
@@ -901,6 +1066,9 @@ lemma polyP_neg_deriv_eq_convolution (R : Type*) [CommRing R] (n : ℕ) (hn : 2 
       linear_combination -hderiv
   exact key n hn
 
+/--
+@isnad1 id=lt.3h2v.s8.ba02befdcb77 from=translated src=- shape=b1edad0a vocab=49f92d73
+-/
 lemma eval_deriv_polyP_neg (m : ℕ) (hm : 2 ≤ m) (ρ : ℝ) (_hρ_pos : 0 < ρ)
     (hρ_lower : ∀ j : ℕ, j < m → 0 < Polynomial.eval ρ (polyP ℝ j)) :
     Polynomial.eval ρ (Polynomial.derivative (polyP ℝ m)) < 0 := by
@@ -921,6 +1089,9 @@ lemma eval_deriv_polyP_neg (m : ℕ) (hm : 2 ≤ m) (ρ : ℝ) (_hρ_pos : 0 < �
       omega
   linarith
 
+/--
+@isnad1 id=ne.5h3v.s7.8ea23bcc9ae1 from=translated src=- shape=4560439b vocab=d1e80dc8
+-/
 lemma rho_not_root_of_S (m : ℕ) (hm : 2 ≤ m) (ρ : ℝ) (hρ_pos : 0 < ρ)
     (_hρ_root : Polynomial.eval ρ (polyP ℝ m) = 0)
     (hρ_lower : ∀ j : ℕ, j < m → 0 < Polynomial.eval ρ (polyP ℝ j)) (S : Polynomial ℝ)
@@ -932,12 +1103,18 @@ lemma rho_not_root_of_S (m : ℕ) (hm : 2 ≤ m) (ρ : ℝ) (hρ_pos : 0 < ρ)
   rw [h, mul_zero] at hderiv
   linarith
 
+/--
+@isnad1 id=eq.1h3v.s7.50042df3425c from=translated src=- shape=83b2561c vocab=3600a53a
+-/
 lemma S_constantCoeff_from_fact (m : ℕ) (ρ : ℝ) (S : Polynomial ℝ)
     (hfact : polyP ℝ m = (1 - Polynomial.C (1 / ρ) * Polynomial.X) * S) :
     S.coeff 0 = 1 := by
   have h₁ : (polyP ℝ m).coeff 0 = 1 := polyP_constantCoeff ℝ m
   simp_all
 
+/--
+@isnad1 id=splits.2h3v.s7.9224d8932074 from=translated src=- shape=d3fe1479 vocab=a11a092e
+-/
 lemma S_splits (m : ℕ) (hm : 2 ≤ m) (ρ : ℝ) (S : Polynomial ℝ)
     (hfact : polyP ℝ m = (1 - Polynomial.C (1 / ρ) * Polynomial.X) * S) :
     S.Splits := by
@@ -951,6 +1128,9 @@ lemma S_splits (m : ℕ) (hm : 2 ≤ m) (ρ : ℝ) (S : Polynomial ℝ)
   exact Polynomial.Splits.of_dvd this (polyP_ne_zero m)
     ⟨1 - Polynomial.C (1/ρ) * Polynomial.X, hfact.symm ▸ mul_comm _ _⟩
 
+/--
+@isnad1 id=lt.5h2v.s6.4a00a7262250 from=translated src=- shape=200a5a8c vocab=83e45bfe
+-/
 lemma eval_pos_from_splits_and_roots_gt
     (S : Polynomial ℝ) (ρ : ℝ) (hρ_pos : 0 < ρ) (_hS_ne : S ≠ 0) (_hS_splits : S.Splits)
     (hS_eval_zero : Polynomial.eval 0 S = 1)
@@ -965,6 +1145,9 @@ lemma eval_pos_from_splits_and_roots_gt
     exact ⟨by simp_all, by simp_all⟩
   linarith [hS_roots_gt y hy', hy.2]
 
+/--
+@isnad1 id=lt.6h4v.s7.512424aa40da from=translated src=- shape=c3ab45dc vocab=d1e80dc8
+-/
 lemma roots_of_S_gt_rho_v2 (m : ℕ) (hm : 2 ≤ m) (ρ : ℝ) (hρ_pos : 0 < ρ)
     (hρ_root : Polynomial.eval ρ (polyP ℝ m) = 0)
     (hρ_lower : ∀ j : ℕ, j < m → 0 < Polynomial.eval ρ (polyP ℝ j)) (S : Polynomial ℝ)
@@ -978,6 +1161,9 @@ lemma roots_of_S_gt_rho_v2 (m : ℕ) (hm : 2 ≤ m) (ρ : ℝ) (hρ_pos : 0 < ρ
     simp_all
   exact root_is_smallest m hm ρ hρ_pos hρ_root hρ_lower x hx_root hx_ne
 
+/--
+@isnad1 id=lt.5h3v.s7.b8f0fb74eb0d from=translated src=- shape=2cff2a87 vocab=d1e80dc8
+-/
 lemma S_eval_pos (m : ℕ) (hm : 2 ≤ m) (ρ : ℝ) (hρ_pos : 0 < ρ)
     (hρ_root : Polynomial.eval ρ (polyP ℝ m) = 0)
     (hρ_lower : ∀ j : ℕ, j < m → 0 < Polynomial.eval ρ (polyP ℝ j)) (S : Polynomial ℝ)
@@ -991,10 +1177,16 @@ lemma S_eval_pos (m : ℕ) (hm : 2 ≤ m) (ρ : ℝ) (hρ_pos : 0 < ρ)
     (by rw [← Polynomial.coeff_zero_eq_eval_zero]; exact S_constantCoeff_from_fact m ρ S hfact)
     (roots_of_S_gt_rho_v2 m hm ρ hρ_pos hρ_root hρ_lower S hfact)
 
+/--
+@isnad1 id=eq.0h1v.s6.78b4eab4bbdb from=translated src=- shape=accdaa84 vocab=3a183704
+-/
 lemma L_constantCoeff (ρ : ℝ) :
     (1 - Polynomial.C (1/ρ) * Polynomial.X : Polynomial ℝ).coeff 0 = 1 := by
   simp
 
+/--
+@isnad1 id=eq.1h1v.s8.e40827c6039a from=translated src=- shape=701a4719 vocab=7b7a8a5d
+-/
 lemma L_eq_neg_C_mul (ρ : ℝ) (hρ : 0 < ρ) :
     1 - Polynomial.C (1 / ρ) * Polynomial.X =
     -Polynomial.C (1 / ρ) * (Polynomial.X - Polynomial.C ρ) := by
@@ -1006,6 +1198,9 @@ lemma L_eq_neg_C_mul (ρ : ℝ) (hρ : 0 < ρ) :
 
 /-! ## Factorization and Power Series Decomposition -/
 
+/--
+@isnad1 id=ex.4h2v.s8.78c14aaabee7 from=translated src=- shape=eba028f5 vocab=b92a061d
+-/
 lemma polyP_factor_at_root (m : ℕ) (hm : 2 ≤ m) (ρ : ℝ) (hρ_pos : 0 < ρ)
     (hρ_root : Polynomial.eval ρ (polyP ℝ m) = 0)
     (hρ_lower : ∀ j : ℕ, j < m → 0 < Polynomial.eval ρ (polyP ℝ j)) :
@@ -1036,10 +1231,16 @@ lemma polyP_factor_at_root (m : ℕ) (hm : 2 ≤ m) (ρ : ℝ) (hρ_pos : 0 < ρ
   · exact roots_of_S_gt_rho_v2 m hm ρ hρ_pos hρ_root hρ_lower S hS
   · exact S_splits m hm ρ S hS
 
+/--
+@isnad1 id=ne.1h2v.s6.9b1c0514e8db from=translated src=- shape=57f8e220 vocab=aef86fa2
+-/
 lemma coe_pow_constantCoeff_ne_zero (p : Polynomial ℝ) (k : ℕ) (hp : p.coeff 0 = 1) :
     PowerSeries.constantCoeff ((↑p : PowerSeries ℝ) ^ k) ≠ 0 := by
   simp [map_pow, hp]
 
+/--
+@isnad1 id=eq.1h5v.s8.5aa3494e8845 from=translated src=- shape=2e7ab52e vocab=3dc519d2
+-/
 lemma bezout_lift_to_ps (L S a b : Polynomial ℝ) (k : ℕ) (hbez : a * L ^ k + b * S ^ k = 1) :
     (↑a : PowerSeries ℝ) * (↑L : PowerSeries ℝ) ^ k +
     (↑b : PowerSeries ℝ) * (↑S : PowerSeries ℝ) ^ k = 1 := by
@@ -1050,6 +1251,9 @@ lemma bezout_lift_to_ps (L S a b : Polynomial ℝ) (k : ℕ) (hbez : a * L ^ k +
     _ = ↑(1 : Polynomial ℝ) := by rw [hbez]
     _ = 1 := by simp [Polynomial.coe_one]
 
+/--
+@isnad1 id=eq.3h5v.s8.5fec0fdd7f5f from=translated src=- shape=1c6c5ea7 vocab=fe362c3f
+-/
 lemma ps_decomp_core
     (R_rem : PowerSeries ℝ) (Lk Sk : PowerSeries ℝ) (hLk : PowerSeries.constantCoeff Lk ≠ 0)
     (hSk : PowerSeries.constantCoeff Sk ≠ 0) (a_ps b_ps : PowerSeries ℝ)
@@ -1063,6 +1267,9 @@ lemma ps_decomp_core
     rw [hbez, one_mul]
   grind
 
+/--
+@isnad1 id=eq.5h7v.s8.a9eedc2da0f8 from=translated src=- shape=270c12e9 vocab=584c5f64
+-/
 lemma ps_decomp (R_rem : Polynomial ℝ) (k : ℕ) (_hk : 0 < k) (L S : Polynomial ℝ)
     (hL_const : L.coeff 0 = 1) (hS_const : S.coeff 0 = 1) (a b : Polynomial ℝ)
     (hbez : a * L ^ k + b * S ^ k = 1) (P : Polynomial ℝ) (hP : P = L * S) :
@@ -1083,6 +1290,9 @@ lemma ps_decomp (R_rem : Polynomial ℝ) (k : ℕ) (_hk : 0 < k) (L S : Polynomi
     hLk_ne hSk_ne (↑a : PowerSeries ℝ) (↑b : PowerSeries ℝ) hbez_ps]
   simp only [Polynomial.coe_mul]
 
+/--
+@isnad1 id=eq.3h6v.s7.06aa61dd6481 from=translated src=- shape=61560643 vocab=bf4a88ea
+-/
 lemma bezout_eval_at_root (L S a b : Polynomial ℝ) (k : ℕ) (hk : 0 < k)
     (ρ : ℝ) (hL_zero : Polynomial.eval ρ L = 0) (hbez : a * L ^ k + b * S ^ k = 1) :
     Polynomial.eval ρ b * (Polynomial.eval ρ S) ^ k = 1 := by
@@ -1095,6 +1305,9 @@ lemma bezout_eval_at_root (L S a b : Polynomial ℝ) (k : ℕ) (hk : 0 < k)
   rw [hL_zero, zero_pow (by omega), mul_zero, zero_add] at h₁
   exact h₁
 
+/--
+@isnad1 id=ex.7h5v.s9.1eb9b1009bc9 from=translated src=- shape=99151f21 vocab=3fe43acb
+-/
 lemma bezout_fraction_split (m : ℕ) (_hm : 2 ≤ m) (R_rem : Polynomial ℝ) (k : ℕ) (hk : 0 < k)
     (ρ : ℝ) (hρ_pos : 0 < ρ) (hR_pos : 0 < Polynomial.eval ρ R_rem) (S : Polynomial ℝ)
     (hfact : polyP ℝ m = (1 - Polynomial.C (1 / ρ) * Polynomial.X) * S)
@@ -1122,15 +1335,24 @@ lemma bezout_fraction_split (m : ℕ) (_hm : 2 ≤ m) (R_rem : Polynomial ℝ) (
       linarith
     simp_all
 
+/--
+@isnad1 id=other.0h1v.s7.ee7f7deef8a5 from=translated src=- shape=b434d30b vocab=2803d2b1
+-/
 lemma L_coe_eq_rescale_one_sub_X (ρ : ℝ) :
     let L : Polynomial ℝ := 1 - Polynomial.C (1/ρ) * Polynomial.X
     (↑L : PowerSeries ℝ) = PowerSeries.rescale (1/ρ) (1 - PowerSeries.X) := by
   simp_all
 
+/--
+@isnad1 id=ne.0h1v.s6.569eb7b30238 from=translated src=- shape=4d0f1e45 vocab=d8760e4d
+-/
 lemma one_sub_X_pow_constantCoeff_ne_zero (k : ℕ) :
     PowerSeries.constantCoeff ((1 - PowerSeries.X : PowerSeries ℝ) ^ k) ≠ 0 := by
   simp [map_pow]
 
+/--
+@isnad1 id=eq.0h1v.s6.304d0edd59ac from=translated src=- shape=8e4b8ee2 vocab=6ef56e6e
+-/
 lemma inv_one_sub_pow_eq_invOneSubPow (k : ℕ) :
     ((1 - PowerSeries.X : PowerSeries ℝ) ^ k)⁻¹ =
       ↑(PowerSeries.invOneSubPow ℝ k) := by
@@ -1140,6 +1362,9 @@ lemma inv_one_sub_pow_eq_invOneSubPow (k : ℕ) :
   simp [PowerSeries.invOneSubPow_zero] at h
   rwa [mul_comm]
 
+/--
+@isnad1 id=eq.1h2v.s7.6edf1eff1825 from=translated src=- shape=fb1edfe3 vocab=1beb622f
+-/
 lemma rescale_inv (a : ℝ) (f : PowerSeries ℝ) (hf : PowerSeries.constantCoeff f ≠ 0) :
     PowerSeries.rescale a (f⁻¹) = (PowerSeries.rescale a f)⁻¹ := by
   have hrf : PowerSeries.constantCoeff (PowerSeries.rescale a f) ≠ 0 := by
@@ -1148,6 +1373,9 @@ lemma rescale_inv (a : ℝ) (f : PowerSeries ℝ) (hf : PowerSeries.constantCoef
   rw [eq_comm, PowerSeries.inv_eq_iff_mul_eq_one hrf, ← map_mul, mul_comm,
     PowerSeries.mul_inv_cancel f hf, map_one]
 
+/--
+@isnad1 id=other.2h3v.s8.f282f3ac5a2c from=translated src=- shape=b8b0fe5c vocab=e4f76dca
+-/
 lemma inv_L_pow_coeff (ρ : ℝ) (hρ_pos : 0 < ρ) (k : ℕ) (hk : 0 < k) (r : ℕ) :
     let L : Polynomial ℝ := 1 - Polynomial.C (1/ρ) * Polynomial.X
     (PowerSeries.coeff r) (((↑L : PowerSeries ℝ) ^ k)⁻¹) =
@@ -1170,6 +1398,9 @@ lemma inv_L_pow_coeff (ρ : ℝ) (hρ_pos : 0 < ρ) (k : ℕ) (hk : 0 < k) (r : 
       PowerSeries.coeff_mk]
   ring
 
+/--
+@isnad1 id=le.2h2v.s7.eca1d49b91fb from=translated src=- shape=e2290065 vocab=f99d1941
+-/
 lemma sum_le_pow_mul_sum (q : Polynomial ℝ) (hd : 1 ≤ q.natDegree) (x : ℝ) (hx : 1 ≤ x) :
     ∑ i ∈ Finset.range q.natDegree, |q.coeff i| * x ^ i ≤
     x ^ (q.natDegree - 1) * ∑ i ∈ Finset.range q.natDegree, |q.coeff i| := by
@@ -1185,6 +1416,9 @@ lemma sum_le_pow_mul_sum (q : Polynomial ℝ) (hd : 1 ≤ q.natDegree) (x : ℝ)
         ext i
         ring
 
+/--
+@isnad1 id=le.2h2v.s7.48d87bff2d54 from=translated src=- shape=dc190887 vocab=f99d1941
+-/
 lemma abs_sum_le_pow_mul_sum_abs (q : Polynomial ℝ) (hd : 1 ≤ q.natDegree) (x : ℝ) (hx : 1 ≤ x) :
     |∑ i ∈ Finset.range q.natDegree, q.coeff i * x ^ i| ≤
     x ^ (q.natDegree - 1) * ∑ i ∈ Finset.range q.natDegree, |q.coeff i| := by
@@ -1197,6 +1431,9 @@ lemma abs_sum_le_pow_mul_sum_abs (q : Polynomial ℝ) (hd : 1 ≤ q.natDegree) (
     _ ≤ x ^ (q.natDegree - 1) * ∑ i ∈ Finset.range q.natDegree, |q.coeff i| :=
         sum_le_pow_mul_sum q hd x hx
 
+/--
+@isnad1 id=le.2h2v.s6.45f605c8dc19 from=translated src=- shape=e6f3828f vocab=48436086
+-/
 lemma poly_eval_lower_bound (q : Polynomial ℝ) (hd : 1 ≤ q.natDegree) (x : ℝ) (hx : 1 ≤ x) :
     x ^ (q.natDegree - 1) * (q.leadingCoeff * x -
       ∑ i ∈ Finset.range q.natDegree, |q.coeff i|) ≤ q.eval x := by
@@ -1210,6 +1447,9 @@ lemma poly_eval_lower_bound (q : Polynomial ℝ) (hd : 1 ≤ q.natDegree) (x : �
       ∑ i ∈ Finset.range q.natDegree, q.coeff i * x ^ i from
     (neg_le_neg (abs_sum_le_pow_mul_sum_abs q hd x hx)).trans (neg_abs_le _)]
 
+/--
+@isnad1 id=ex.1h1v.s5.55189885b9a4 from=translated src=- shape=c03689c3 vocab=153f30f8
+-/
 lemma poly_eventually_pos_nat (q : Polynomial ℝ) (hq : 0 < q.leadingCoeff) :
     ∃ N : ℕ, ∀ r : ℕ, N < r → 0 < q.eval (r : ℝ) := by
   by_cases hd : q.natDegree = 0
@@ -1244,6 +1484,9 @@ lemma poly_eventually_pos_nat (q : Polynomial ℝ) (hq : 0 < q.leadingCoeff) :
 noncomputable def nScaled (ρ : ℝ) (N_poly : Polynomial ℝ) : Polynomial ℝ :=
   N_poly.comp (Polynomial.C ρ * Polynomial.X)
 
+/--
+@isnad1 id=eq.0h2v.s6.cd6e7bee5cea from=translated src=- shape=176ca865 vocab=97105eda
+-/
 lemma N_scaled_coe_eq_rescale (ρ : ℝ) (N_poly : Polynomial ℝ) :
     (↑(nScaled ρ N_poly) : PowerSeries ℝ) =
     (PowerSeries.rescale ρ) (↑N_poly : PowerSeries ℝ) := by
@@ -1265,10 +1508,16 @@ lemma N_scaled_coe_eq_rescale (ρ : ℝ) (N_poly : Polynomial ℝ) :
   ext n
   simp [nScaled, PowerSeries.coeff_rescale, h_main]
 
+/--
+@isnad1 id=eq.0h2v.s4.2ed4ae6fdb00 from=translated src=- shape=047c9be1 vocab=877d3e9a
+-/
 lemma N_scaled_eval_one (ρ : ℝ) (N_poly : Polynomial ℝ) :
     (nScaled ρ N_poly).eval 1 = N_poly.eval ρ := by
   simp [nScaled, Polynomial.eval_comp, Polynomial.eval_mul, Polynomial.eval_C, Polynomial.eval_X]
 
+/--
+@isnad1 id=other.1h1v.s7.3cac786c6a21 from=translated src=- shape=b52af823 vocab=2a04ab56
+-/
 lemma rescale_rho_L_eq_one_sub_X (ρ : ℝ) (hρ : 0 < ρ) :
     let L : Polynomial ℝ := 1 - Polynomial.C (1/ρ) * Polynomial.X
     (PowerSeries.rescale ρ) (↑L : PowerSeries ℝ) = 1 - PowerSeries.X := by
@@ -1278,6 +1527,9 @@ lemma rescale_rho_L_eq_one_sub_X (ρ : ℝ) (hρ : 0 < ρ) :
     show PowerSeries.rescale (1 : ℝ) = RingHom.id _ from PowerSeries.rescale_one]
   simp
 
+/--
+@isnad1 id=eq.1h3v.s6.502380c8c6f2 from=translated src=- shape=2202e82b vocab=b49f688d
+-/
 lemma degree_smul_preHilbertPoly (p : Polynomial ℝ) (d i : ℕ) (hi : i ∈ p.support) :
     (p.coeff i • Polynomial.preHilbertPoly ℝ d i).degree = ↑d := by
   have h_coeff : p.coeff i ≠ 0 := Polynomial.mem_support_iff.mp hi
@@ -1292,6 +1544,9 @@ lemma degree_smul_preHilbertPoly (p : Polynomial ℝ) (d i : ℕ) (hi : i ∈ p.
   rw [Polynomial.degree_C_mul h_coeff, Polynomial.degree_eq_natDegree h_preHilbert_nonzero,
     Polynomial.natDegree_preHilbertPoly]
 
+/--
+@isnad1 id=eq.1h2v.s7.5511ef96bc0f from=translated src=- shape=b6f5488d vocab=769dadf7
+-/
 lemma hilbertPoly_succ_leadingCoeff_sum (p : Polynomial ℝ) (d : ℕ)
     (h_nonzero : ∑ i ∈ p.support, p.coeff i ≠ 0) :
     (∑ i ∈ p.support, (p.coeff i • Polynomial.preHilbertPoly ℝ d i)).leadingCoeff =
@@ -1316,6 +1571,9 @@ lemma hilbertPoly_succ_leadingCoeff_sum (p : Polynomial ℝ) (d : ℕ)
   rw [Polynomial.leadingCoeff_sum_of_degree_eq h_deg h_ne]
   exact Finset.sum_congr rfl h_lc
 
+/--
+@isnad1 id=eq.1h2v.s6.44e361b787b2 from=translated src=- shape=354288c6 vocab=99aa14b5
+-/
 lemma hilbertPoly_succ_leadingCoeff (p : Polynomial ℝ) (d : ℕ)
     (hp : p.eval 1 ≠ 0) :
     (p.hilbertPoly (d + 1)).leadingCoeff = p.eval 1 * ((d.factorial : ℝ)⁻¹) := by
@@ -1326,6 +1584,9 @@ lemma hilbertPoly_succ_leadingCoeff (p : Polynomial ℝ) (d : ℕ)
   have h_sum_ne : ∑ i ∈ p.support, p.coeff i ≠ 0 := by rwa [← h_eval_one]
   rw [hilbertPoly_succ_leadingCoeff_sum p d h_sum_ne, ← Finset.sum_mul, h_eval_one]
 
+/--
+@isnad1 id=lt.3h3v.s6.039c123eafd7 from=translated src=- shape=0648f43c vocab=5d15289c
+-/
 lemma hilbertPoly_pos_leadingCoeff (ρ : ℝ) (_hρ : 0 < ρ) (k : ℕ) (hk : 0 < k)
     (N_poly : Polynomial ℝ) (hN_pos : 0 < Polynomial.eval ρ N_poly) :
     0 < ((nScaled ρ N_poly).hilbertPoly k).leadingCoeff := by
@@ -1338,6 +1599,9 @@ lemma hilbertPoly_pos_leadingCoeff (ρ : ℝ) (_hρ : 0 < ρ) (k : ℕ) (hk : 0 
   · rw [N_scaled_eval_one]
     exact ne_of_gt hN_pos
 
+/--
+@isnad1 id=other.3h3v.s8.04f65404d42c from=translated src=- shape=d6b45f68 vocab=767e70e5
+-/
 lemma scaled_coeff_is_eventually_poly
     (ρ : ℝ) (hρ_pos : 0 < ρ) (k : ℕ) (hk : 0 < k) (N_poly : Polynomial ℝ)
     (hN_pos : 0 < Polynomial.eval ρ N_poly) :
@@ -1364,6 +1628,9 @@ lemma scaled_coeff_is_eventually_poly
       inv_one_sub_pow_eq_invOneSubPow k]
   exact Polynomial.coeff_mul_invOneSubPow_eq_hilbertPoly_eval k hr
 
+/--
+@isnad1 id=other.3h3v.s8.14582783097f from=translated src=- shape=e7bd5ea2 vocab=b44329e4
+-/
 lemma L_part_eventually_pos
     (ρ : ℝ) (hρ_pos : 0 < ρ) (k : ℕ) (hk : 0 < k) (N_poly : Polynomial ℝ)
     (hN_pos : 0 < Polynomial.eval ρ N_poly) :
@@ -1388,12 +1655,18 @@ lemma L_part_eventually_pos
 section finset_lemmas
 open Finset
 
+/--
+@isnad1 id=eq.2h1v.s5.982867100fdd from=translated src=- shape=b646aa62 vocab=4b928947
+-/
 lemma S_eq_one_of_deg_zero_const_one (S : Polynomial ℝ) (hS_const_coeff : Polynomial.eval 0 S = 1)
     (hS_deg : S.natDegree = 0) :
     S = 1 := by
   rw [Polynomial.eq_C_of_natDegree_eq_zero hS_deg]
   simp [Polynomial.coeff_zero_eq_eval_zero, hS_const_coeff]
 
+/--
+@isnad1 id=ex.3h3v.s7.d9f226507fcc from=translated src=- shape=4940edc0 vocab=e29e07d8
+-/
 lemma S_part_eventually_zero_of_const
     (M_poly S : Polynomial ℝ) (k : ℕ) (_hk : 0 < k) (hS_const_coeff : Polynomial.eval 0 S = 1)
     (hS_deg : S.natDegree = 0) :
@@ -1405,6 +1678,9 @@ lemma S_part_eventually_zero_of_const
   simp only [Polynomial.coe_one, one_pow, inv_one, mul_one]
   exact ⟨M_poly.natDegree, fun r hr => poly_coe_eventually_zero ℝ M_poly r hr⟩
 
+/--
+@isnad1 id=ex.2h2v.s8.136c64d949e7 from=translated src=- shape=233d5904 vocab=c1b34924
+-/
 lemma inv_one_pow_coeff_bound (k : ℕ) (_hk : 0 < k) (ρ₁ : ℝ) (hρ₁_pos : 0 < ρ₁) :
     ∃ (C : ℝ) (D : ℕ), 0 < C ∧
       ∀ r, |(PowerSeries.coeff r) ((↑(1 : Polynomial ℝ) : PowerSeries ℝ) ^ k)⁻¹| ≤
@@ -1417,6 +1693,9 @@ lemma inv_one_pow_coeff_bound (k : ℕ) (_hk : 0 < k) (ρ₁ : ℝ) (hρ₁_pos 
   · rw [abs_zero]
     positivity
 
+/--
+@isnad1 id=le.4h7v.s8.0065cc6c9c9a from=translated src=- shape=ba4a851a vocab=4d97c57c
+-/
 lemma coeff_bound_strengthened
     (f : PowerSeries ℝ) (C : ℝ) (D : ℕ) (q : ℝ) (hC : 0 < C) (hq : 0 < q)
     (hbound : ∀ r, |(PowerSeries.coeff r) f| ≤ C * (↑r + 1) ^ D * q ^ r)
@@ -1437,6 +1716,9 @@ lemma coeff_bound_strengthened
             (pow_nonneg (inv_nonneg.mpr (le_of_lt hq)) _)
     _ = C * (↑r + 1) ^ D * q ^ r * q⁻¹ ^ i := by ring
 
+/--
+@isnad1 id=le.0h2v.s5.38b40438caba from=translated src=- shape=424c7cc4 vocab=a84fbab9
+-/
 lemma choose_le_pow_succ_core (n r : ℕ) :
     ((n + r).choose n : ℝ) ≤ (↑r + 1) ^ n := by
   induction n with
@@ -1468,6 +1750,9 @@ lemma choose_le_pow_succ_core (n r : ℕ) :
       _ ≤ (↑r + 1) * (↑r + 1) ^ n := by nlinarith
       _ = (↑r + 1) ^ (n + 1) := by ring
 
+/--
+@isnad1 id=le.6h10v.s8.8e07efc9ac4a from=translated src=- shape=cd386027 vocab=ffea7edc
+-/
 lemma cauchy_summand_bound
     (C₁ C₂ : ℝ) (D₁ D₂ : ℕ) (q : ℝ) (hC₁ : 0 ≤ C₁) (hC₂ : 0 ≤ C₂) (hq : 0 ≤ q)
     (r r₁ r₂ : ℕ) (hr : r₁ + r₂ = r) (b₁ b₂ : ℝ) (hb₁ : |b₁| ≤ C₁ * (↑r₁ + 1) ^ D₁ * q ^ r₁)
@@ -1490,6 +1775,9 @@ lemma cauchy_summand_bound
               · exact_mod_cast by omega
           _ = (↑r + 1 : ℝ) ^ (D₁ + D₂) := by rw [← pow_add]
 
+/--
+@isnad1 id=other.4h3v.s8.1b63751fff2e from=translated src=- shape=e4183231 vocab=608afc69
+-/
 lemma single_factor_inv_pow_bound
     (α : ℝ) (ρ₁ : ℝ) (k : ℕ) (hα_pos : 0 < α) (hρ₁_pos : 0 < ρ₁) (hk : 0 < k) (hα_ge : ρ₁ ≤ α) :
     let L : Polynomial ℝ := 1 - Polynomial.C (1/α) * Polynomial.X
@@ -1504,6 +1792,9 @@ lemma single_factor_inv_pow_bound
     (pow_nonneg (by positivity) r)
     (by positivity)
 
+/--
+@isnad1 id=ex.2h2v.s8.9fb1cde6815a from=translated src=- shape=78859bf5 vocab=1328adfb
+-/
 lemma base_case_bound (k : ℕ) (ρ₁ : ℝ) (_hk : 0 < k) (hρ₁_pos : 0 < ρ₁) :
     ∃ (C : ℝ) (D : ℕ), 0 < C ∧
       ∀ r, |(PowerSeries.coeff r)
@@ -1525,6 +1816,9 @@ lemma base_case_bound (k : ℕ) (ρ₁ : ℝ) (_hk : 0 < k) (hρ₁_pos : 0 < ρ
   · rw [abs_zero]
     positivity
 
+/--
+@isnad1 id=eq.1h1v.s7.e9c4fd8dcacf from=translated src=- shape=b68e9359 vocab=7b7a8a5d
+-/
 lemma X_sub_C_eq_neg_C_mul_L (α : ℝ) (hα : 0 < α) :
     Polynomial.X - Polynomial.C α =
     -Polynomial.C α * (1 - Polynomial.C (1 / α) * Polynomial.X : Polynomial ℝ) := by
@@ -1534,6 +1828,9 @@ lemma X_sub_C_eq_neg_C_mul_L (α : ℝ) (hα : 0 < α) :
   field_simp [hα.ne']
   ring
 
+/--
+@isnad1 id=eq.1h1v.s8.b426c3798fae from=translated src=- shape=ec731b5d vocab=0f147a31
+-/
 lemma prod_X_sub_C_eq_scalar_mul_prod_L (roots : Multiset ℝ) (hroots : ∀ α ∈ roots, (0 : ℝ) < α) :
     (roots.map (fun α => Polynomial.X - Polynomial.C α)).prod =
     (roots.map (fun α => -Polynomial.C α)).prod *
@@ -1545,6 +1842,9 @@ lemma prod_X_sub_C_eq_scalar_mul_prod_L (roots : Multiset ℝ) (hroots : ∀ α 
       from Multiset.map_congr rfl (fun α hα => X_sub_C_eq_neg_C_mul_L α (hroots α hα))]
   exact Multiset.prod_map_mul
 
+/--
+@isnad1 id=eq.0h1v.s6.1c3bf501407d from=translated src=- shape=c56dcf00 vocab=98227e5a
+-/
 lemma prod_neg_C_eq_C_prod_neg (roots : Multiset ℝ) :
     (roots.map (fun α => -Polynomial.C α)).prod =
     Polynomial.C ((roots.map Neg.neg).prod) := by
@@ -1556,6 +1856,9 @@ lemma prod_neg_C_eq_C_prod_neg (roots : Multiset ℝ) :
       simp_all
   simp_all
 
+/--
+@isnad1 id=eq.3h1v.s6.ef7e41bd3278 from=translated src=- shape=bcd5cf8c vocab=60be4ee4
+-/
 lemma leadingCoeff_mul_prod_neg_roots_eq_one (S : Polynomial ℝ) (_hS_ne : S ≠ 0)
     (hS_splits : S.Splits) (hS_const : Polynomial.eval 0 S = 1) :
     S.leadingCoeff * (S.roots.map Neg.neg).prod = 1 := by
@@ -1565,6 +1868,9 @@ lemma leadingCoeff_mul_prod_neg_roots_eq_one (S : Polynomial ℝ) (_hS_ne : S �
   rw [Polynomial.coeff_zero_eq_eval_zero, hS_const] at h1
   linarith [h1]
 
+/--
+@isnad1 id=eq.4h1v.s7.940b11d00242 from=translated src=- shape=2bfc22f9 vocab=5c3fc851
+-/
 lemma splits_poly_eq_prod_L
     (S : Polynomial ℝ) (hS_ne : S ≠ 0) (hS_splits : S.Splits) (hS_const : Polynomial.eval 0 S = 1)
     (hroots_pos : ∀ x ∈ S.roots, (0 : ℝ) < x) :
@@ -1577,6 +1883,9 @@ lemma splits_poly_eq_prod_L
   rw [h2, ← mul_assoc, h3, one_mul] at h1
   exact h1
 
+/--
+@isnad1 id=eq.1h2v.s8.8039908ecf79 from=translated src=- shape=1da55d31 vocab=b48af82b
+-/
 lemma coe_pow_eq_prod_coe_pow
     (S : Polynomial ℝ)
     (hS_eq : S = (S.roots.map
@@ -1592,6 +1901,9 @@ lemma coe_pow_eq_prod_coe_pow
   simp [Multiset.map_map, Function.comp_def, Polynomial.coeToPowerSeries.ringHom_apply,
     Multiset.prod_map_pow]
 
+/--
+@isnad1 id=eq.0h2v.s8.c6412c8f4d68 from=translated src=- shape=17919428 vocab=dc57e0ec
+-/
 lemma inv_prod_eq_prod_inv_of_roots
     (roots : Multiset ℝ) (k : ℕ) :
     (roots.map (fun α =>
@@ -1607,6 +1919,9 @@ lemma inv_prod_eq_prod_inv_of_roots
     simp only [Multiset.map_cons, Multiset.prod_cons]
     rw [PowerSeries.mul_inv_rev, ih, mul_comm]
 
+/--
+@isnad1 id=ex.6h2v.s8.55ff0da6ed3a from=translated src=- shape=87bcae06 vocab=90e13684
+-/
 lemma splits_inv_pow_eq_multiset_prod
     (S : Polynomial ℝ) (k : ℕ) (_hk : 0 < k) (hS_ne : S ≠ 0) (hS_splits : S.Splits)
     (hS_const : Polynomial.eval 0 S = 1) (hroots_pos : ∀ x ∈ S.roots, (0 : ℝ) < x) :
@@ -1623,11 +1938,17 @@ lemma splits_inv_pow_eq_multiset_prod
     (splits_poly_eq_prod_L S hS_ne hS_splits hS_const hroots_pos) k]
   rw [inv_prod_eq_prod_inv_of_roots S.roots k]
 
+/--
+@isnad1 id=eq.2h2v.s5.f7d0562b8501 from=translated src=- shape=80314f52 vocab=25ac4077
+-/
 lemma eval_eq_zero_of_mem_roots_toFinset
     (S : Polynomial ℝ) (hS_ne : S ≠ 0) {x : ℝ} (hx : x ∈ S.roots.toFinset) :
     Polynomial.eval x S = 0 :=
   (Polynomial.mem_roots hS_ne).mp (Multiset.mem_toFinset.mp hx)
 
+/--
+@isnad1 id=ex.5h2v.s6.b52de6dd421b from=translated src=- shape=6c001536 vocab=812768f1
+-/
 lemma exists_min_root_gt
     (S : Polynomial ℝ) (ρ : ℝ) (hρ_pos : 0 < ρ) (hS_ne : S ≠ 0) (hS_splits : S.Splits)
     (hS_nconst : 0 < S.natDegree) (hS_roots_larger : ∀ x : ℝ, Polynomial.eval x S = 0 → ρ < x) :
@@ -1648,6 +1969,9 @@ lemma exists_min_root_gt
 
 end finset_lemmas
 
+/--
+@isnad1 id=eq.1h3v.s5.20abbaae80ea from=translated src=- shape=c36019ec vocab=679b0f15
+-/
 lemma poly_eq_of_eventually_eq (q₁ q₂ : Polynomial ℝ) (N : ℕ)
     (h : ∀ r : ℕ, N < r → q₁.eval (r : ℝ) = q₂.eval (r : ℝ)) :
     q₁ = q₂ := by
@@ -1663,6 +1987,9 @@ lemma poly_eq_of_eventually_eq (q₁ q₂ : Polynomial ℝ) (N : ℕ)
     exact this.not_finite (Polynomial.finite_setOfPred_isRoot (by simp_all))
   exact eq_of_sub_eq_zero (by simpa using h₁)
 
+/--
+@isnad1 id=le.5h5v.s8.b1595c03ccfb from=translated src=- shape=4c2b55a3 vocab=ca8d336a
+-/
 theorem scaled_coeff_poly_degree_ge
     (ρ : ℝ) (hρ_pos : 0 < ρ) (k : ℕ) (hk : 0 < k) (N_poly : Polynomial ℝ)
     (hN_pos : 0 < Polynomial.eval ρ N_poly) (q : Polynomial ℝ) (N₀ : ℕ)
@@ -1707,6 +2034,9 @@ theorem scaled_coeff_poly_degree_ge
     exact this
   rw [hq_eq_Q, hQ_deg]
 
+/--
+@isnad1 id=le.2h5v.s7.3d6401cd7cdb from=translated src=- shape=5883952f vocab=bbfbc6af
+-/
 lemma divide_by_rho_pow (ρ : ℝ) (hρ : 0 < ρ) (c : ℝ) (d r : ℕ) (x : ℝ)
     (h : c * (r : ℝ) ^ d ≤ ρ ^ r * x) :
     c * (r : ℝ) ^ d * (1/ρ) ^ r ≤ x := by
@@ -1717,6 +2047,9 @@ lemma divide_by_rho_pow (ρ : ℝ) (hρ : 0 < ρ) (c : ℝ) (d r : ℕ) (x : ℝ
   rw [one_div, inv_pow, ← div_eq_mul_inv]
   exact h_div
 
+/--
+@isnad1 id=le.5h3v.s7.81c6c101b4f8 from=translated src=- shape=8dd7eef9 vocab=3f39da61
+-/
 lemma poly_lower_bound_at_point (q : Polynomial ℝ) (hq : 0 < q.leadingCoeff)
     (hdeg : 1 ≤ q.natDegree) (d : ℕ) (hd : d ≤ q.natDegree) (x : ℝ) (hx : 1 ≤ x)
     (hxS : 2 * (∑ i ∈ Finset.range q.natDegree, |q.coeff i|) / q.leadingCoeff < x) :
@@ -1747,6 +2080,9 @@ lemma poly_lower_bound_at_point (q : Polynomial ℝ) (hq : 0 < q.leadingCoeff)
     _ ≤ x ^ (q.natDegree - 1) * (lc * x - S) := h6
     _ ≤ q.eval x := h1
 
+/--
+@isnad1 id=ex.3h2v.s6.5e7df1de1178 from=translated src=- shape=506bb873 vocab=018e4897
+-/
 lemma poly_eventually_lower_bound_of_deg_ge_one (q : Polynomial ℝ) (hq : 0 < q.leadingCoeff)
     (hdeg : 1 ≤ q.natDegree) (d : ℕ) (hd : d ≤ q.natDegree) :
     ∃ (c : ℝ) (N : ℕ), 0 < c ∧
@@ -1765,6 +2101,9 @@ lemma poly_eventually_lower_bound_of_deg_ge_one (q : Polynomial ℝ) (hq : 0 < q
     _ < ↑r := by exact_mod_cast hr
   exact poly_lower_bound_at_point q hq hdeg d hd (r : ℝ) hr1 hrS
 
+/--
+@isnad1 id=ex.2h2v.s6.7ad1bd17cd06 from=translated src=- shape=dfc151f2 vocab=018e4897
+-/
 lemma poly_eventually_lower_bound (q : Polynomial ℝ) (hq : 0 < q.leadingCoeff)
     (d : ℕ) (hd : d ≤ q.natDegree) :
     ∃ (c : ℝ) (N : ℕ), 0 < c ∧
@@ -1782,6 +2121,9 @@ lemma poly_eventually_lower_bound (q : Polynomial ℝ) (hq : 0 < q.leadingCoeff)
   · exact poly_eventually_lower_bound_of_deg_ge_one q hq
       (Nat.one_le_iff_ne_zero.mpr hdeg) d hd
 
+/--
+@isnad1 id=other.3h3v.s8.733ac32ce708 from=translated src=- shape=fec3afa1 vocab=71ec0781
+-/
 lemma L_part_coeff_lower_bound
     (ρ : ℝ) (hρ_pos : 0 < ρ) (k : ℕ) (hk : 0 < k) (N_poly : Polynomial ℝ)
     (hN_pos : 0 < Polynomial.eval ρ N_poly) :
@@ -1807,6 +2149,9 @@ lemma L_part_coeff_lower_bound
     exact h_poly_bound
   exact divide_by_rho_pow ρ hρ_pos c (k - 1) r _ h_combined
 
+/--
+@isnad1 id=lt.3h7v.s8.add18d130b06 from=translated src=- shape=b7378041 vocab=c8a517f0
+-/
 lemma bound_transfer
     (C c : ℝ) (D E r : ℕ) (ρ ρ₂ : ℝ) (hρ_pos : 0 < ρ) (hρ₂_pos : 0 < ρ₂)
     (h : C * (↑r + 1) ^ D * (ρ / ρ₂) ^ r < c * (↑r) ^ E) :
@@ -1821,6 +2166,9 @@ lemma bound_transfer
         C * (↑r + 1 : ℝ) ^ D * ((ρ / ρ₂ : ℝ) ^ r * (1 / ρ : ℝ) ^ r) from by ring, h_key]
   simp_all
 
+/--
+@isnad1 id=tendsto.2h2v.s6.93fe5178f659 from=translated src=- shape=64ce7db8 vocab=0db6221a
+-/
 lemma tendsto_add_one_pow_mul_geometric
     (D : ℕ) (q : ℝ) (hq_pos : 0 ≤ q) (hq_lt : q < 1) :
     Filter.Tendsto (fun r : ℕ => (↑r + 1) ^ D * q ^ r) Filter.atTop (nhds 0) := by
@@ -1845,6 +2193,9 @@ lemma tendsto_add_one_pow_mul_geometric
     rw [← this]
     exact Filter.Tendsto.const_mul _ h
 
+/--
+@isnad1 id=ex.4h5v.s7.df68cdd27f6c from=translated src=- shape=65f473d5 vocab=426873df
+-/
 lemma poly_geometric_eventually_lt
     (C c : ℝ) (_hC : 0 < C) (hc : 0 < c) (D E : ℕ) (q : ℝ) (hq_pos : 0 < q) (hq_lt : q < 1) :
     ∃ N : ℕ, ∀ r : ℕ, N < r →
@@ -1871,6 +2222,9 @@ lemma poly_geometric_eventually_lt
     _ = c * 1 := by ring
     _ ≤ c * (↑r : ℝ) ^ E := mul_le_mul_of_nonneg_left hone_le_rpow (le_of_lt hc)
 
+/--
+@isnad1 id=eq.0h3v.s7.3bc34411b478 from=translated src=- shape=497681e3 vocab=f0b28236
+-/
 lemma map_genFun_comm (R_poly : Polynomial ℚ) (m k : ℕ) :
     (PowerSeries.map (algebraMap ℚ ℝ))
       ((↑R_poly : PowerSeries ℚ) * ((↑(polyP ℚ m) : PowerSeries ℚ) ^ k)⁻¹) =
@@ -1887,6 +2241,9 @@ lemma map_genFun_comm (R_poly : Polynomial ℚ) (m k : ℕ) :
 
 /-! ## Main Theorems -/
 
+/--
+@isnad1 id=eq.1h4v.s6.f63007185b69 from=translated src=- shape=5493a6e3 vocab=9d7a098f
+-/
 theorem genFun_eq_one_of_m_eq_one (K : Type*) [Field K]
     (n : ℕ) {s : ℕ} (ξ : Nat.Partition s) (h_parts : ∀ i ∈ ξ.parts, i ≤ 1) :
     genFun K 1 n ξ = 1 := by
@@ -1898,6 +2255,9 @@ theorem genFun_eq_one_of_m_eq_one (K : Type*) [Field K]
   simp only [genFun, Nat.mod_one, Nat.sub_zero, Nat.sub_self, polyP_zero,
     h_partition, h_coe, h_inv, mul_one, Polynomial.coe_one]
 
+/--
+@isnad1 id=ex.3h5v.s6.78960ffa48e7 from=translated src=- shape=b3189770 vocab=49c1c905
+-/
 theorem genFun_is_polynomial (K : Type*) [Field K]
     (m n : ℕ) {s : ℕ} (ξ : Nat.Partition s) (hm : 2 ≤ m) (h_parts : ∀ i ∈ ξ.parts, i ≤ m)
     (h_t : n / m + 1 ≤ countMaxParts m ξ) :

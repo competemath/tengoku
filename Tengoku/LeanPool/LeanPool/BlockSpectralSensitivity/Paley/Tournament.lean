@@ -41,14 +41,18 @@ section QuadraticCharSums
 variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 
 /-- The quadratic character sums to zero over any translate of `F`.
-(Section 2 of `bs_lambda.txt`.) -/
+(Section 2 of `bs_lambda.txt`.)
+@isnad1 id=eq.1h2v.s6.7c777ea55ade from=translated src=- shape=5a52c5b9 vocab=a91dd9e3
+-/
 theorem sum_quadraticChar_sub (hF : ringChar F ≠ 2) (a : F) :
     ∑ z : F, quadraticChar F (z - a) = 0 := by
   rw [← quadraticChar_sum_zero hF]
   exact Fintype.sum_equiv (Equiv.subRight a) _ _ fun _ ↦ rfl
 
 /-- The Jacobsthal-type identity `∑ z, χ ((z - a) * (z - b)) = -1` for `a ≠ b`.
-This is the key identity of the character-sum calculation in Section 2 of `bs_lambda.txt`. -/
+This is the key identity of the character-sum calculation in Section 2 of `bs_lambda.txt`.
+@isnad1 id=eq.2h3v.s7.e3e4be356b75 from=translated src=- shape=6946bd4a vocab=143b18b9
+-/
 theorem sum_quadraticChar_mul_sub (hF : ringChar F ≠ 2) {a b : F} (hab : a ≠ b) :
     ∑ z : F, quadraticChar F ((z - a) * (z - b)) = -1 := by
   have hba : b - a ≠ 0 := sub_ne_zero.mpr (Ne.symm hab)
@@ -102,7 +106,9 @@ theorem sum_quadraticChar_mul_sub (hF : ringChar F ≠ 2) {a b : F} (hab : a ≠
   rw [← hleft, key, hright]
 
 /-- Exactly half of the nonzero elements of `F` are quadratic residues; this gives the out-degree
-`(k - 1) / 2` of the Paley tournament. (Section 2 of `bs_lambda.txt`.) -/
+`(k - 1) / 2` of the Paley tournament. (Section 2 of `bs_lambda.txt`.)
+@isnad1 id=eq.1h1v.s7.520bd47d7376 from=translated src=- shape=0e38d635 vocab=7f1c6310
+-/
 theorem two_mul_card_quadraticChar_eq_one (hF : ringChar F ≠ 2) :
     2 * (univ.filter fun a : F ↦ quadraticChar F a = 1).card + 1 = Fintype.card F := by
   have hval (a : F) : 1 + quadraticChar F a
@@ -118,7 +124,9 @@ theorem two_mul_card_quadraticChar_eq_one (hF : ringChar F ≠ 2) :
   omega
 
 /-- When `-1` is a nonresidue, swapping the two arguments of a difference negates the quadratic
-character. (Section 2 of `bs_lambda.txt`.) -/
+character. (Section 2 of `bs_lambda.txt`.)
+@isnad1 id=eq.1h3v.s7.760016b520c4 from=translated src=- shape=f1d07121 vocab=529fe78d
+-/
 theorem quadraticChar_sub_swap (hneg : quadraticChar F (-1) = -1) (a b : F) :
     quadraticChar F (a - b) = -quadraticChar F (b - a) := by
   rw [← neg_sub b a, ← neg_one_mul, map_mul, hneg, neg_one_mul]
@@ -172,7 +180,9 @@ private theorem one_add_quadraticChar_sub_mul_eq_ite {a b z : F} (hz : z ≠ a) 
 
 /-- For `a ≠ b`, exactly `(#F - 3) / 4` elements `z` satisfy `χ (z - a) = χ (z - b) = 1`.
 This is the common-out-neighbour count of the Paley tournament.
-(Section 2 of `bs_lambda.txt`.) -/
+(Section 2 of `bs_lambda.txt`.)
+@isnad1 id=eq.3h3v.s9.4f2e117a73a3 from=translated src=- shape=c9567c8f vocab=258855ac
+-/
 theorem four_mul_card_quadraticChar_sub_eq_one (hF : ringChar F ≠ 2)
     (hneg : quadraticChar F (-1) = -1) {a b : F} (hab : a ≠ b) :
     4 * (univ.filter fun z : F ↦
@@ -201,18 +211,27 @@ quadratic residue. (Section 2 of `bs_lambda.txt`.) -/
 def paleyArc (k : ℕ) [Fact (Nat.Prime k)] (i j : ZMod k) : Bool :=
   decide (quadraticChar (ZMod k) (j - i) = 1)
 
-/-- `k = 14011` is prime. (Section 2 of `bs_lambda.txt`.) -/
+/-- `k = 14011` is prime. (Section 2 of `bs_lambda.txt`.)
+@isnad1 id=prime.0h0v.s2.de8cd7808c57 from=translated src=- shape=e590c3e1 vocab=1464e337
+-/
 theorem prime_14011 : Nat.Prime 14011 := by norm_num
 
+/--
+@isnad1 id=fact.0h0v.s2.4a46271c1934 from=translated src=- shape=8d7dbbf6 vocab=c1c9ca6d
+-/
 instance factPrime14011 : Fact (Nat.Prime 14011) := ⟨prime_14011⟩
 
-/-- The characteristic of `F_14011` is not `2`. (Section 2 of `bs_lambda.txt`.) -/
+/-- The characteristic of `F_14011` is not `2`. (Section 2 of `bs_lambda.txt`.)
+@isnad1 id=ne.0h0v.s5.17963272b0b8 from=translated src=- shape=88d4f5c9 vocab=1637d577
+-/
 theorem ringChar_zmod14011 : ringChar (ZMod 14011) ≠ 2 := by
   rw [ZMod.ringChar_zmod_n]
   norm_num only
 
 /-- Since `14011 ≡ 3 mod 4`, the element `-1` is a nonresidue in `F_14011`; this is what makes
-the Paley orientation a tournament. (Section 2 of `bs_lambda.txt`.) -/
+the Paley orientation a tournament. (Section 2 of `bs_lambda.txt`.)
+@isnad1 id=eq.0h0v.s7.378d3e8f0c92 from=translated src=- shape=a722467b vocab=6d3edda5
+-/
 theorem quadraticChar_neg_one_zmod14011 : quadraticChar (ZMod 14011) (-1) = -1 := by
   rw [quadraticChar_neg_one ringChar_zmod14011, ZMod.card, ZMod.χ₄_nat_eq_if_mod_four]
   norm_num
@@ -231,7 +250,9 @@ private theorem card_filter_quadraticChar_sub_eq_one {k t : ℕ} [Fact (Nat.Prim
 /-- **The Paley tournament is doubly regular.**  If `F_k` has odd characteristic and `-1` is a
 nonresidue in it — equivalently, `k ≡ 3 mod 4` — then the Paley orientation of `F_k` is a
 doubly regular tournament with out-degree `d = (k - 1) / 2` and `t = (k - 3) / 4` common
-neighbours. (Section 2 of `bs_lambda.txt`.) -/
+neighbours. (Section 2 of `bs_lambda.txt`.)
+@isnad1 id=isdrtour.4h3v.s7.ac80d8750f28 from=translated src=- shape=e600bd53 vocab=77e080f5
+-/
 theorem paleyArc_isDRTournamentWith {k d t : ℕ} [Fact (Nat.Prime k)]
     (hchar : ringChar (ZMod k) ≠ 2) (hneg : quadraticChar (ZMod k) (-1) = -1)
     (hd : 2 * d + 1 = k) (ht : 4 * t + 3 = k) : IsDRTournamentWith (paleyArc k) d t where
@@ -267,7 +288,9 @@ theorem paleyArc_isDRTournamentWith {k d t : ℕ} [Fact (Nat.Prime k)]
     exact card_filter_quadraticChar_sub_eq_one hchar hneg ht fun h ↦ hij (neg_injective h)
 
 /-- **The Paley tournament on `F_14011` is doubly regular** with `d = 7005` and `t = 3502`.
-(Section 2 of `bs_lambda.txt`.) -/
+(Section 2 of `bs_lambda.txt`.)
+@isnad1 id=isdrtour.0h0v.s5.deeec3a347dd from=translated src=- shape=e858e648 vocab=f864f253
+-/
 theorem paley_isDR : IsDRTournamentWith (paleyArc 14011) 7005 3502 :=
   paleyArc_isDRTournamentWith ringChar_zmod14011 quadraticChar_neg_one_zmod14011 rfl rfl
 

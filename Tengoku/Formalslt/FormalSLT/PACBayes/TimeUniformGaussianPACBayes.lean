@@ -45,7 +45,9 @@ def timeUniformSphericalGaussianPACBayesUpperFailure {d : ℕ}
       ≤ ∫ θ, score θ n ω ∂sphericalGaussianMeasure posterior}
 
 /-- The explicit spherical-Gaussian failure event is exactly the abstract
-continuous PAC-Bayes failure event for the corresponding Gaussian measures. -/
+continuous PAC-Bayes failure event for the corresponding Gaussian measures.
+@isnad1 id=eq.0h6v.s5.13787574bced from=translated src=- shape=e9f012e7 vocab=96892fc3
+-/
 theorem timeUniformSphericalGaussianPACBayesUpperFailure_eq_continuous
     {d : ℕ} (prior posterior : SphericalGaussianParams d)
     (score : GaussianParameterSpace d → ℕ → Ω → ℝ) (delta : ℝ) :

@@ -51,7 +51,9 @@ variable {V : Type*} [Fintype V]
 /-! ## Small neighbourhood atoms -/
 
 open Classical in
-/-- A degree-`3` vertex with three known distinct neighbours has no others. -/
+/-- A degree-`3` vertex with three known distinct neighbours has no others.
+@isnad1 id=or.8h7v.s6.c0912977efa4 from=translated src=- shape=97a749a2 vocab=9cb17b25
+-/
 theorem deg3_nbr_pin (G : SimpleGraph V) {v p q r w : V} (hdv : G.degree v = 3)
     (hp : G.Adj v p) (hq : G.Adj v q) (hr : G.Adj v r)
     (hpq : p ≠ q) (hpr : p ≠ r) (hqr : q ≠ r) (hw : G.Adj v w) :
@@ -74,7 +76,9 @@ theorem deg3_nbr_pin (G : SimpleGraph V) {v p q r w : V} (hdv : G.degree v = 3)
   simpa using this
 
 open Classical in
-/-- A degree-`4` vertex with four known distinct neighbours has no others. -/
+/-- A degree-`4` vertex with four known distinct neighbours has no others.
+@isnad1 id=or.12h8v.s7.9c10567b36b2 from=translated src=- shape=d8fc7b65 vocab=9cb17b25
+-/
 theorem deg4_nbr_pin (G : SimpleGraph V) {g p q r s w : V} (hdg : G.degree g = 4)
     (hp : G.Adj g p) (hq : G.Adj g q) (hr : G.Adj g r) (hs : G.Adj g s)
     (hpq : p ≠ q) (hpr : p ≠ r) (hps : p ≠ s) (hqr : q ≠ r) (hqs : q ≠ s) (hrs : r ≠ s)
@@ -100,13 +104,17 @@ theorem deg4_nbr_pin (G : SimpleGraph V) {g p q r s w : V} (hdg : G.degree g = 4
   simpa using this
 
 open Classical in
-/-- An `M`-vertex (a degree-`3` vertex with a degree-`3` neighbour) is not iso. -/
+/-- An `M`-vertex (a degree-`3` vertex with a degree-`3` neighbour) is not iso.
+@isnad1 id=not.2h4v.s6.33b7f9d8b97d from=translated src=- shape=560a1cdc vocab=a01974d0
+-/
 theorem not_iso_of_mnbr (G : SimpleGraph V) {v w : V}
     (hvw : G.Adj v w) (hw3 : G.degree w = 3) : v ∉ isoTwins G :=
   fun hv => (mem_isoTwins.mp hv).2 w hvw hw3
 
 open Classical in
-/-- An iso twin is adjacent to no degree-`3` vertex (symmetric form). -/
+/-- An iso twin is adjacent to no degree-`3` vertex (symmetric form).
+@isnad1 id=not.2h4v.s6.a8d06ab37032 from=translated src=- shape=4a571a32 vocab=a01974d0
+-/
 theorem deg3_not_adj_iso (G : SimpleGraph V) {v t : V}
     (hv3 : G.degree v = 3) (ht : t ∈ isoTwins G) : ¬G.Adj v t :=
   fun hadj => (mem_isoTwins.mp ht).2 v hadj.symm hv3
@@ -114,7 +122,9 @@ theorem deg3_not_adj_iso (G : SimpleGraph V) {v t : V}
 /-! ## The exclusion atoms (F0 / F1 / F5 / the universal share bound) -/
 
 open Classical in
-/-- **F0**: no triangle of degree-`3` vertices (`∑ = 9`, good from `n = 6`). -/
+/-- **F0**: no triangle of degree-`3` vertices (`∑ = 9`, good from `n = 6`).
+@isnad1 id=false.8h5v.s7.052aacf694df from=translated src=- shape=fa1b4487 vocab=bb481e53
+-/
 theorem deg3_triangle_false (n : ℕ) (hn : 6 ≤ n) (G : SimpleGraph (Fin n))
     (hT : ¬HasGoodTriangle n G) {u v w : Fin n}
     (hdu : G.degree u = 3) (hdv : G.degree v = 3) (hdw : G.degree w = 3)
@@ -128,7 +138,9 @@ theorem deg3_triangle_false (n : ℕ) (hn : 6 ≤ n) (G : SimpleGraph (Fin n))
 
 open Classical in
 /-- **F1**: a degree-`≤ 4` hub never sees both ends of an `M`-edge
-(`∑ ≤ 10`, good from `n = 9`). -/
+(`∑ ≤ 10`, good from `n = 9`).
+@isnad1 id=false.8h5v.s7.3605163a7e15 from=translated src=- shape=cd5ebdaf vocab=bb481e53
+-/
 theorem hub_mnbrs_not_adj (n : ℕ) (hn : 9 ≤ n) (G : SimpleGraph (Fin n))
     (hT : ¬HasGoodTriangle n G) {g t₁ t₂ : Fin n}
     (hdg : G.degree g ≤ 4) (hd₁ : G.degree t₁ = 3) (hd₂ : G.degree t₂ = 3)
@@ -142,7 +154,9 @@ theorem hub_mnbrs_not_adj (n : ℕ) (hn : 9 ≤ n) (G : SimpleGraph (Fin n))
 
 open Classical in
 /-- **F5**: a degree-`4` hub never sees two `M`-vertices at `M`-distance `2`
-(the `C₄` `g−t₁−v−t₂` has `∑ = 13`, good from `n = 11`). -/
+(the `C₄` `g−t₁−v−t₂` has `∑ = 13`, good from `n = 11`).
+@isnad1 id=false.12h6v.s8.67a8827207d5 from=translated src=- shape=2bc675cc vocab=b670877e
+-/
 theorem hub_no_dist2_pair (n : ℕ) (hn : 11 ≤ n) (G : SimpleGraph (Fin n))
     (hT : ¬HasGoodTriangle n G) (hC4 : ¬HasGoodC4 n G) {g v t₁ t₂ : Fin n}
     (hdg : G.degree g = 4) (hdv : G.degree v = 3)
@@ -170,7 +184,9 @@ theorem hub_no_dist2_pair (n : ℕ) (hn : 11 ≤ n) (G : SimpleGraph (Fin n))
 open Classical in
 /-- **The universal share bound** (`n ≥ 18`): two distinct degree-`4` hubs share at
 most one degree-`3` twin — adjacent twins die by the `(4,3,3)`-triangle, adjacent
-hubs by the `(4,4,3)`-triangle, and the rest by the `∑ = 14` good `C₄`. -/
+hubs by the `(4,4,3)`-triangle, and the rest by the `∑ = 14` good `C₄`.
+@isnad1 id=le.6h4v.s7.d6ad8a5932f9 from=translated src=- shape=5cd294c8 vocab=6bde56a1
+-/
 theorem hubs_share_le_one (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
     (hT : ¬HasGoodTriangle n G) (hC4 : ¬HasGoodC4 n G) {g h : Fin n}
     (hdg : G.degree g = 4) (hdh : G.degree h = 4) (hne : g ≠ h) :
@@ -199,7 +215,9 @@ theorem hubs_share_le_one (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
       _ ≤ 2 * (4 * (n - 4)) := by omega
 
 open Classical in
-/-- Two shared twins force `False` (extraction form of `hubs_share_le_one`). -/
+/-- Two shared twins force `False` (extraction form of `hubs_share_le_one`).
+@isnad1 id=false.13h6v.s8.3a107d6a5179 from=translated src=- shape=39c333d9 vocab=b670877e
+-/
 theorem hubs_share_two_false (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
     (hT : ¬HasGoodTriangle n G) (hC4 : ¬HasGoodC4 n G) {g h t₁ t₂ : Fin n}
     (hdg : G.degree g = 4) (hdh : G.degree h = 4) (hne : g ≠ h) (hne12 : t₁ ≠ t₂)
@@ -222,7 +240,9 @@ theorem hubs_share_two_false (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
 
 open Classical in
 /-- Iso-twin supply through a covering set: if every degree-`3` vertex outside `S`
-is iso, then `|D| ≤ |Iso| + |S|`. -/
+is iso, then `|D| ≤ |Iso| + |S|`.
+@isnad1 id=le.1h3v.s6.ca767f32b9b0 from=translated src=- shape=37a7bfb8 vocab=bed79997
+-/
 theorem iso_card_of_cover (G : SimpleGraph V) (S : Finset V)
     (hS : ∀ v : V, G.degree v = 3 → v ∉ S → v ∈ isoTwins G) :
     (deg3Set G).card ≤ (isoTwins G).card + S.card := by
@@ -238,7 +258,9 @@ theorem iso_card_of_cover (G : SimpleGraph V) (S : Finset V)
 
 open Classical in
 /-- **The corner pigeonhole count** (sea regime): if every iso twin is
-double-blocked, then `2·|Iso| ≤ 2·#(rich CT hubs) + |CT|`. -/
+double-blocked, then `2·|Iso| ≤ 2·#(rich CT hubs) + |CT|`.
+@isnad1 id=le.3h5v.s7.6734c3dfda34 from=translated src=- shape=ea15b371 vocab=8423a559
+-/
 theorem corner_rich_bound (G : SimpleGraph V) (hsea : ∀ v : V, G.degree v ≤ 4)
     {x z y : V} (hch : Cherry G x z y)
     (hblock : ∀ t ∈ isoTwins G, 2 ≤ (badApexNbrs G x z y t).card) :
@@ -313,7 +335,9 @@ theorem corner_rich_bound (G : SimpleGraph V) (hsea : ∀ v : V, G.degree v ≤ 
 
 open Classical in
 /-- Extraction: with `|Iso| ≥ 3`, the corner provides a **rich cherry-touching
-hub**: degree exactly `4`, `≥ 2` iso twins, adjacent to a cherry vertex. -/
+hub**: degree exactly `4`, `≥ 2` iso twins, adjacent to a cherry vertex.
+@isnad1 id=ex.4h5v.s7.bff120e24ef6 from=translated src=- shape=59f5ab7b vocab=29b47d08
+-/
 theorem corner_rich_one (G : SimpleGraph V) (hsea : ∀ v : V, G.degree v ≤ 4)
     {x z y : V} (hch : Cherry G x z y)
     (hblock : ∀ t ∈ isoTwins G, 2 ≤ (badApexNbrs G x z y t).card)
@@ -332,7 +356,9 @@ theorem corner_rich_one (G : SimpleGraph V) (hsea : ∀ v : V, G.degree v ≤ 4)
 
 open Classical in
 /-- Extraction: with `|Iso| ≥ 4`, the corner provides **two** rich cherry-touching
-hubs. -/
+hubs.
+@isnad1 id=ex.4h5v.s8.a5f6446c0a54 from=translated src=- shape=8857101f vocab=29b47d08
+-/
 theorem corner_rich_two (G : SimpleGraph V) (hsea : ∀ v : V, G.degree v ≤ 4)
     {x z y : V} (hch : Cherry G x z y)
     (hblock : ∀ t ∈ isoTwins G, 2 ≤ (badApexNbrs G x z y t).card)
@@ -357,7 +383,9 @@ theorem corner_rich_two (G : SimpleGraph V) (hsea : ∀ v : V, G.degree v ≤ 4)
 
 open Classical in
 /-- **The TwoTwin fire**: a degree-`4` hub with `≥ 2` iso twins avoiding a cherry
-closes the graph (wrapper around `two_twin_cherry_twoBlock`). -/
+closes the graph (wrapper around `two_twin_cherry_twoBlock`).
+@isnad1 id=twoblock.6h6v.s6.619bd6eb821c from=translated src=- shape=f05887a8 vocab=b5408e1e
+-/
 theorem rich_avoiding_twoBlock (G : SimpleGraph V) {g x' z' y' : V}
     (hch : Cherry G x' z' y') (hdg : G.degree g = 4) (hr : 2 ≤ (isoNbrs G g).card)
     (hnz : ¬G.Adj g z') (hnx : ¬G.Adj g x') (hny : ¬G.Adj g y') :
@@ -369,7 +397,9 @@ theorem rich_avoiding_twoBlock (G : SimpleGraph V) {g x' z' y' : V}
     hnz hnx hny
 
 open Classical in
-/-- `cherryHubs` is symmetric in the two cherry ends. -/
+/-- `cherryHubs` is symmetric in the two cherry ends.
+@isnad1 id=eq.0h5v.s4.300260c07e80 from=translated src=- shape=c9480096 vocab=193f239c
+-/
 theorem cherryHubs_swap (G : SimpleGraph V) (x z y : V) :
     cherryHubs G x z y = cherryHubs G y z x := by
   unfold cherryHubs
@@ -385,14 +415,18 @@ theorem cherryHubs_swap (G : SimpleGraph V) (x z y : V) :
     · exact Or.inr (Or.inl h)
 
 open Classical in
-/-- `badApexNbrs` is symmetric in the two cherry ends. -/
+/-- `badApexNbrs` is symmetric in the two cherry ends.
+@isnad1 id=eq.0h6v.s5.213ba94aee13 from=translated src=- shape=bcb6d1d0 vocab=b4081957
+-/
 theorem badApexNbrs_swap (G : SimpleGraph V) (x z y t : V) :
     badApexNbrs G x z y t = badApexNbrs G y z x t := by
   unfold badApexNbrs
   rw [cherryHubs_swap]
 
 open Classical in
-/-- A `Cherry` with the two ends swapped. -/
+/-- A `Cherry` with the two ends swapped.
+@isnad1 id=cherry.1h5v.s4.f790550dd628 from=translated src=- shape=461dfa8b vocab=7d6e5436
+-/
 theorem Cherry.swap {G : SimpleGraph V} {x z y : V} (h : Cherry G x z y) :
     Cherry G y z x :=
   ⟨h.deg_y, h.deg_z, h.deg_x, h.adj_zy, h.adj_zx, h.ne_xy.symm,
@@ -431,17 +465,25 @@ namespace MShapeP4
 variable {G : SimpleGraph V} {a b c d : V}
 
 open Classical in
+/--
+@isnad1 id=not.1h6v.s4.4f4073c436c9 from=translated src=- shape=e40ac621 vocab=3ee29c6f
+-/
 theorem nadj_ac (hs : MShapeP4 G a b c d) : ¬G.Adj a c := fun h =>
   (G.ne_of_adj hs.adj_bc).symm (hs.mnbr_a c h hs.deg_c)
 
 open Classical in
+/--
+@isnad1 id=not.1h6v.s4.709cbfbf987d from=translated src=- shape=892a8a63 vocab=3ee29c6f
+-/
 theorem nadj_bd (hs : MShapeP4 G a b c d) : ¬G.Adj b d := fun h => by
   rcases hs.mnbr_b d h hs.deg_d with e | e
   · exact hs.ne_ad e.symm
   · exact G.ne_of_adj hs.adj_cd e.symm
 
 open Classical in
-/-- The reversed path is the same shape. -/
+/-- The reversed path is the same shape.
+@isnad1 id=mshapep4.1h6v.s5.ee4bc212bb6c from=translated src=- shape=3548e463 vocab=57ef5cc4
+-/
 theorem rev (hs : MShapeP4 G a b c d) : MShapeP4 G d c b a where
   deg_a := hs.deg_d
   deg_b := hs.deg_c
@@ -460,19 +502,34 @@ theorem rev (hs : MShapeP4 G a b c d) : MShapeP4 G d c b a where
   iso_rest := fun v h3 h1 h2 h3' h4 => hs.iso_rest v h3 h4 h3' h2 h1
 
 open Classical in
+/--
+@isnad1 id=not.1h6v.s5.651b7880dfaa from=translated src=- shape=3cfe0355 vocab=42175b0e
+-/
 theorem a_not_iso (hs : MShapeP4 G a b c d) : a ∉ isoTwins G :=
   not_iso_of_mnbr G hs.adj_ab hs.deg_b
 open Classical in
+/--
+@isnad1 id=not.1h6v.s5.95fe3417f864 from=translated src=- shape=a58204a2 vocab=42175b0e
+-/
 theorem b_not_iso (hs : MShapeP4 G a b c d) : b ∉ isoTwins G :=
   not_iso_of_mnbr G hs.adj_ab.symm hs.deg_a
 open Classical in
+/--
+@isnad1 id=not.1h6v.s5.c7577bff37c2 from=translated src=- shape=e3546040 vocab=42175b0e
+-/
 theorem c_not_iso (hs : MShapeP4 G a b c d) : c ∉ isoTwins G :=
   not_iso_of_mnbr G hs.adj_bc.symm hs.deg_b
 open Classical in
+/--
+@isnad1 id=not.1h6v.s5.fa3a296f16e0 from=translated src=- shape=718d573c vocab=42175b0e
+-/
 theorem d_not_iso (hs : MShapeP4 G a b c d) : d ∉ isoTwins G :=
   not_iso_of_mnbr G hs.adj_cd.symm hs.deg_c
 
 open Classical in
+/--
+@isnad1 id=le.4h6v.s7.8ad6086ad484 from=translated src=- shape=94f00a05 vocab=d32aeb82
+-/
 theorem iso_ge (n : ℕ) (hn : 8 ≤ n) (G' : SimpleGraph (Fin n)) {a b c d : Fin n}
     (hs : MShapeP4 G' a b c d) (hm : G'.edgeFinset.card = 2 * (n - 2))
     (h3 : ∀ v : Fin n, 3 ≤ G'.degree v) : 4 ≤ (isoTwins G').card := by
@@ -625,7 +682,9 @@ private theorem card_triple' {a b c : V} (hab : a ≠ b) (hac : a ≠ c) (hbc : 
   rw [Finset.card_insert_of_notMem (by simp [hab, hac]), Finset.card_pair hbc]
 
 open Classical in
-/-- **The S22 split.** -/
+/-- **The S22 split.**
+@isnad1 id=twoblock.1h8v.s5.92cb69cb5ede from=translated src=- shape=38a0c2c0 vocab=0c4066c2
+-/
 theorem s22_split_twoBlock (G : SimpleGraph V) {q₁ q₂ l₁ l₂ m₁ m₂ : V}
     (hs : MShapeS22 G q₁ q₂ l₁ l₂ m₁ m₂) : TwoBlockConfig G := by
   have ne_q₁l₁ : q₁ ≠ l₁ := G.ne_of_adj hs.adj_l₁
@@ -756,7 +815,9 @@ so a rich hub avoids a full cherry and `two_twin_cherry_twoBlock` fires.  The
 corner pigeonhole (`corner_rich_one`) supplies the rich hub. -/
 
 open Classical in
-/-- **The claw rich-hub kill** (unconditional in the rich hub). -/
+/-- **The claw rich-hub kill** (unconditional in the rich hub).
+@isnad1 id=twoblock.6h7v.s7.e91db2b8edf4 from=translated src=- shape=a526c57e vocab=0b23840c
+-/
 theorem claw_rich_kill (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
     (hT : ¬HasGoodTriangle n G) (hC4 : ¬HasGoodC4 n G) {z₀ x₁ x₂ x₃ : Fin n}
     (hs : MShapeClaw G z₀ x₁ x₂ x₃) {g : Fin n}
@@ -799,7 +860,9 @@ theorem claw_rich_kill (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
   · exact rich_avoiding_twoBlock G hch₁₂ hdg hgr hgz h1 h2
 
 open Classical in
-/-- **The chair rich-hub kill**. -/
+/-- **The chair rich-hub kill**.
+@isnad1 id=twoblock.6h8v.s7.191898f074a3 from=translated src=- shape=93cc79cd vocab=d12a162f
+-/
 theorem chair_rich_kill (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
     (hT : ¬HasGoodTriangle n G) (hC4 : ¬HasGoodC4 n G) {q l₁ l₂ p e : Fin n}
     (hs : MShapeChair G q l₁ l₂ p e) {g : Fin n}
@@ -841,7 +904,9 @@ theorem chair_rich_kill (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
   · exact rich_avoiding_twoBlock G hch_ll hdg hgr hgq h1 h2
 
 open Classical in
-/-- **The C5 rich-hub kill**. -/
+/-- **The C5 rich-hub kill**.
+@isnad1 id=twoblock.6h8v.s7.57360d73c61a from=translated src=- shape=93cc79cd vocab=69239cf1
+-/
 theorem c5_rich_kill (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
     (hT : ¬HasGoodTriangle n G) (hC4 : ¬HasGoodC4 n G) {v₀ v₁ v₂ v₃ v₄ : Fin n}
     (hs : MShapeC5 G v₀ v₁ v₂ v₃ v₄) {g : Fin n}
@@ -907,7 +972,9 @@ pigeonhole gives two rich cherry-touching hubs, double roles are impossible,
 and each role pair fires an explicit cut. -/
 
 open Classical in
-/-- **The P4 role trichotomy** for a rich degree-`4` hub. -/
+/-- **The P4 role trichotomy** for a rich degree-`4` hub.
+@isnad1 id=or.6h7v.s7.54ff435fbad8 from=translated src=- shape=6dcae690 vocab=b345f813
+-/
 theorem p4_rich_role (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
     (hT : ¬HasGoodTriangle n G) (hC4 : ¬HasGoodC4 n G) {a b c d : Fin n}
     (hs : MShapeP4 G a b c d) {g : Fin n}
@@ -946,7 +1013,9 @@ theorem p4_rich_role (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
 
 open Classical in
 /-- **The (B,A) pair cut**: `P = {α, d, k}` vs `N = {β, b, i}` — the opposite-twin
-two-hub cut with the `M`-vertices `d` and `b` as twins. -/
+two-hub cut with the `M`-vertices `d` and `b` as twins.
+@isnad1 id=twoblock.16h8v.s8.69d4d8eb1ab4 from=translated src=- shape=20906860 vocab=b345f813
+-/
 theorem p4_pair_BA (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
     (hT : ¬HasGoodTriangle n G) (hC4 : ¬HasGoodC4 n G) {a b c d : Fin n}
     (hs : MShapeP4 G a b c d) {β α : Fin n}
@@ -1016,7 +1085,9 @@ theorem p4_pair_BA (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
     (fun e => hs.b_not_iso (by rw [e]; exact hIi))
 
 open Classical in
-/-- **The (C,A) pair cut**: `P = {α, a, k}` vs `N = {γ, c, j}`. -/
+/-- **The (C,A) pair cut**: `P = {α, a, k}` vs `N = {γ, c, j}`.
+@isnad1 id=twoblock.16h8v.s8.e8580dadb123 from=translated src=- shape=09047974 vocab=b345f813
+-/
 theorem p4_pair_CA (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
     (hT : ¬HasGoodTriangle n G) (hC4 : ¬HasGoodC4 n G) {a b c d : Fin n}
     (hs : MShapeP4 G a b c d) {γ α : Fin n}
@@ -1029,7 +1100,9 @@ theorem p4_pair_CA (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
     hα4 hαr hαd hαa hαc hαb
 
 open Classical in
-/-- A rich `a`-hub is TT-killed or is an `α*` (role `A`). -/
+/-- A rich `a`-hub is TT-killed or is an `α*` (role `A`).
+@isnad1 id=or.7h7v.s7.2d39210d10a2 from=translated src=- shape=87c31368 vocab=b345f813
+-/
 theorem p4_rich_ahub (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
     (hT : ¬HasGoodTriangle n G) (hC4 : ¬HasGoodC4 n G) {a b c d : Fin n}
     (hs : MShapeP4 G a b c d) {α : Fin n}
@@ -1043,7 +1116,9 @@ theorem p4_rich_ahub (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
   · exact Or.inr hA
 
 open Classical in
-/-- The two hubs of `a` (endpoint of the path). -/
+/-- The two hubs of `a` (endpoint of the path).
+@isnad1 id=ex.3h6v.s8.2155ddcf923c from=translated src=- shape=01e6189a vocab=765fc95a
+-/
 theorem p4_ahubs (n : ℕ) (G : SimpleGraph (Fin n))
     (hmin : ∀ v : Fin n, 3 ≤ G.degree v) (hsea : ∀ v : Fin n, G.degree v ≤ 4)
     {a b c d : Fin n} (hs : MShapeP4 G a b c d) :
@@ -1084,7 +1159,9 @@ theorem p4_ahubs (n : ℕ) (G : SimpleGraph (Fin n))
   simpa using hwmem
 
 open Classical in
-/-- Any degree-`≥ 4` hub of `b` equals the given one (`b` has one hub slot). -/
+/-- Any degree-`≥ 4` hub of `b` equals the given one (`b` has one hub slot).
+@isnad1 id=eq.5h8v.s7.15a3ee20276f from=translated src=- shape=c69b00df vocab=7852903c
+-/
 theorem p4_bpin (G : SimpleGraph V) {a b c d : V} (hs : MShapeP4 G a b c d)
     {β w : V} (hβb : G.Adj β b) (hβ4 : G.degree β = 4)
     (hw : G.Adj w b) (hw4 : 4 ≤ G.degree w) : w = β := by
@@ -1097,7 +1174,9 @@ theorem p4_bpin (G : SimpleGraph V) {a b c d : V} (hs : MShapeP4 G a b c d)
   · exact e
 
 open Classical in
-/-- Any degree-`≥ 4` hub of `c` equals the given one. -/
+/-- Any degree-`≥ 4` hub of `c` equals the given one.
+@isnad1 id=eq.5h8v.s7.9adf70660dfc from=translated src=- shape=4fdf7b2e vocab=7852903c
+-/
 theorem p4_cpin (G : SimpleGraph V) {a b c d : V} (hs : MShapeP4 G a b c d)
     {γ w : V} (hγc : G.Adj γ c) (hγ4 : G.degree γ = 4)
     (hw : G.Adj w c) (hw4 : 4 ≤ G.degree w) : w = γ := by
@@ -1110,7 +1189,9 @@ theorem p4_cpin (G : SimpleGraph V) {a b c d : V} (hs : MShapeP4 G a b c d)
   · exact e
 
 open Classical in
-/-- Unpack two distinct bad-apex neighbours (sea regime: both cherry-touching). -/
+/-- Unpack two distinct bad-apex neighbours (sea regime: both cherry-touching).
+@isnad1 id=ex.2h6v.s7.5760d615f874 from=translated src=- shape=11ac1024 vocab=b1aebf31
+-/
 theorem badApex_two (G : SimpleGraph V) (hsea : ∀ v : V, G.degree v ≤ 4)
     {x z y t : V} (h2 : 2 ≤ (badApexNbrs G x z y t).card) :
     ∃ w₁ w₂ : V, w₁ ≠ w₂ ∧
@@ -1179,7 +1260,9 @@ private theorem alpha_rich_of_three (G : SimpleGraph V) {α₁ α₂ t₁ t₂ t
 
 open Classical in
 /-- **The (B,C) pair closes** — private pair, or a pinch/adjacency counting
-rederivation of a rich `a`-hub feeding `p4_pair_BA`. -/
+rederivation of a rich `a`-hub feeding `p4_pair_BA`.
+@isnad1 id=twoblock.20h8v.s8.1d3e3e643c85 from=translated src=- shape=3bc172ac vocab=39bfb3ad
+-/
 theorem p4_pair_BC (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
     (hT : ¬HasGoodTriangle n G) (hC4 : ¬HasGoodC4 n G)
     (hmin : ∀ v : Fin n, 3 ≤ G.degree v) (hsea : ∀ v : Fin n, G.degree v ≤ 4)
@@ -1361,7 +1444,9 @@ theorem p4_pair_BC (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
         (hget t₂ ht₂I (Or.inr hγt₂))
 
 open Classical in
-/-- **The P4 main tree** (cherry normalized to `(a, b, c)`). -/
+/-- **The P4 main tree** (cherry normalized to `(a, b, c)`).
+@isnad1 id=twoblock.8h6v.s7.429cfe5e03c2 from=translated src=- shape=a75c7c83 vocab=00941247
+-/
 theorem p4_close_main (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
     (hT : ¬HasGoodTriangle n G) (hC4 : ¬HasGoodC4 n G)
     (hmin : ∀ v : Fin n, 3 ≤ G.degree v) (hsea : ∀ v : Fin n, G.degree v ≤ 4)
@@ -1400,7 +1485,9 @@ theorem p4_close_main (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
 
 open Classical in
 /-- **The P4 corner closure** (arbitrary blocked cherry): normalize the cherry
-position by the path reversal and end swap, then run the main tree. -/
+position by the path reversal and end swap, then run the main tree.
+@isnad1 id=twoblock.6h9v.s7.a11cfbae65fc from=translated src=- shape=91e087ee vocab=dfcb8595
+-/
 theorem p4_corner_close (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
     (h : ResidualCore n G) (hsea : ∀ v : Fin n, G.degree v ≤ 4)
     {a b c d : Fin n} (hs : MShapeP4 G a b c d) {x z y : Fin n}
@@ -1472,7 +1559,9 @@ case analysis) or not (→ P4 / C5, growing the cherry to a path). -/
 
 open Classical in
 /-- No `4`-cycle among degree-`3` vertices (diagonals die by the degree-`3`
-triangle, the induced cycle by the `∑ = 12` good `C₄`, `n ≥ 8`). -/
+triangle, the induced cycle by the `∑ = 12` good `C₄`, `n ≥ 8`).
+@isnad1 id=false.13h6v.s8.36507eb023b2 from=translated src=- shape=e738cdd9 vocab=b670877e
+-/
 theorem mC4_false (n : ℕ) (hn : 8 ≤ n) (G : SimpleGraph (Fin n))
     (hT : ¬HasGoodTriangle n G) (hC4 : ¬HasGoodC4 n G) {p q r s : Fin n}
     (h3p : G.degree p = 3) (h3q : G.degree q = 3) (h3r : G.degree r = 3)
@@ -1492,7 +1581,9 @@ theorem mC4_false (n : ℕ) (hn : 8 ≤ n) (G : SimpleGraph (Fin n))
       _ ≤ 2 * (4 * (n - 4)) := by omega
 
 open Classical in
-/-- Two vertex-disjoint `M`-edges have a crossing `M`-edge (no induced `2K₂`). -/
+/-- Two vertex-disjoint `M`-edges have a crossing `M`-edge (no induced `2K₂`).
+@isnad1 id=or.11h6v.s8.8300be5d5a09 from=translated src=- shape=a03445b8 vocab=3cbe8350
+-/
 theorem cross_of_no2K2 (n : ℕ) (G : SimpleGraph (Fin n))
     (h2k2 : ¬HasDeg3Ind2K2 n G) {u v p q : Fin n}
     (hu : G.degree u = 3) (hv : G.degree v = 3) (hp : G.degree p = 3)
@@ -1510,7 +1601,9 @@ theorem cross_of_no2K2 (n : ℕ) (G : SimpleGraph (Fin n))
 open Classical in
 /-- **Outside vertices are iso**: every shape-closed predicate `P` holding on an
 `M`-edge `p−q` isolates all degree-`3` vertices outside `P` (any outside `M`-edge
-would be an induced `2K₂` against `p−q`). -/
+would be an induced `2K₂` against `p−q`).
+@isnad1 id=mem.6h9v.s8.45fe321c4f9a from=translated src=- shape=7a5da497 vocab=152d34e8
+-/
 theorem outside_iso (n : ℕ) (G : SimpleGraph (Fin n)) (h2k2 : ¬HasDeg3Ind2K2 n G)
     (P : Fin n → Prop) {p q : Fin n}
     (hp3 : G.degree p = 3) (hq3 : G.degree q = 3) (hpq : G.Adj p q)
@@ -1630,7 +1723,9 @@ private theorem classify_branch1_hmnbr_2 : ∀ (n : ℕ) (_ : 8 ≤ n) (G : Simp
 
 open Classical in
 /-- **The extended-centre branch**: a degree-`3` claw centre whose leaf `w₁` has a
-further `M`-neighbour `p` gives the chair or the S22. -/
+further `M`-neighbour `p` gives the chair or the S22.
+@isnad1 id=or.17h7v.s8.19ec4a1b0a77 from=translated src=- shape=bece42bd vocab=db97d544
+-/
 theorem classify_branch1 (n : ℕ) (hn : 8 ≤ n) (G : SimpleGraph (Fin n))
     (hT : ¬HasGoodTriangle n G) (hC4 : ¬HasGoodC4 n G) (h2k2 : ¬HasDeg3Ind2K2 n G)
     {v₀ w₁ w₂ w₃ p : Fin n}
@@ -1824,7 +1919,9 @@ theorem classify_branch1 (n : ℕ) (hn : 8 ≤ n) (G : SimpleGraph (Fin n))
 
 open Classical in
 /-- **Case I of the classification**: a vertex of `M`-degree `3` gives the claw,
-the chair, or the S22. -/
+the chair, or the S22.
+@isnad1 id=or.14h6v.s8.c797e000b10f from=translated src=- shape=4ab8505a vocab=8c5f8fd3
+-/
 theorem classify_center3 (n : ℕ) (hn : 8 ≤ n) (G : SimpleGraph (Fin n))
     (hT : ¬HasGoodTriangle n G) (hC4 : ¬HasGoodC4 n G) (h2k2 : ¬HasDeg3Ind2K2 n G)
     {v₀ w₁ w₂ w₃ : Fin n}
@@ -1886,7 +1983,9 @@ theorem classify_center3 (n : ℕ) (hn : 8 ≤ n) (G : SimpleGraph (Fin n))
 
 open Classical in
 /-- **Case II of the classification** (no `M`-degree-`3` vertex): the cherry with
-an end extension gives the P4 or the C5. -/
+an end extension gives the P4 or the C5.
+@isnad1 id=or.9h6v.s8.9d23ffa65ee1 from=translated src=- shape=b01b963f vocab=8054d6a0
+-/
 theorem classify_path_ext (n : ℕ) (hn : 8 ≤ n) (G : SimpleGraph (Fin n))
     (hT : ¬HasGoodTriangle n G) (hC4 : ¬HasGoodC4 n G) (h2k2 : ¬HasDeg3Ind2K2 n G)
     (hno3 : ∀ v u₁ u₂ u₃ : Fin n, G.degree v = 3 → G.degree u₁ = 3 →
@@ -2031,7 +2130,9 @@ theorem classify_path_ext (n : ℕ) (hn : 8 ≤ n) (G : SimpleGraph (Fin n))
       exact Or.inr (Or.inr (Or.inl rfl))
 
 open Classical in
-/-- With `mIncidence ≥ 5` some `M`-edge leaves the cherry. -/
+/-- With `mIncidence ≥ 5` some `M`-edge leaves the cherry.
+@isnad1 id=ex.2h5v.s7.cf1719f2b254 from=translated src=- shape=711c37d9 vocab=cdaf441b
+-/
 theorem third_edge_of_mIncidence (n : ℕ) (G : SimpleGraph (Fin n))
     {x z y : Fin n} (hch : Cherry G x z y) (heM : 5 ≤ mIncidence G) :
     ∃ u v : Fin n, G.degree u = 3 ∧ G.degree v = 3 ∧ G.Adj u v ∧
@@ -2129,7 +2230,9 @@ theorem third_edge_of_mIncidence (n : ℕ) (G : SimpleGraph (Fin n))
 open Classical in
 /-- **THE M-SHAPE CLASSIFICATION**: under the residual exclusions, a cherry and
 `mIncidence ≥ 5` force the degree-`3` graph to be exactly one of the five
-shapes (each with all other degree-`3` vertices iso). -/
+shapes (each with all other degree-`3` vertices iso).
+@isnad1 id=or.6h5v.s8.d14a7909e12c from=translated src=- shape=ce18c80a vocab=c005d019
+-/
 theorem mshape_classify (n : ℕ) (hn : 8 ≤ n) (G : SimpleGraph (Fin n))
     (hT : ¬HasGoodTriangle n G) (hC4 : ¬HasGoodC4 n G) (h2k2 : ¬HasDeg3Ind2K2 n G)
     {x z y : Fin n} (hch : Cherry G x z y) (heM : 5 ≤ mIncidence G) :
@@ -2204,7 +2307,9 @@ theorem mshape_classify (n : ℕ) (hn : 8 ≤ n) (G : SimpleGraph (Fin n))
 open Classical in
 /-- **THE BLOCKED CHERRY CORNER CLOSES for `e(M) ≥ 3`** (`mIncidence ≥ 5`), in
 the sea regime, for every `n ≥ 18`: classify the `M`-shape and run the
-per-shape kill. -/
+per-shape kill.
+@isnad1 id=twoblock.6h5v.s7.acad8eb357cc from=translated src=- shape=0312ec7c vocab=f12799eb
+-/
 theorem blockedCherryCorner_close_eM_ge3 (n : ℕ) (hn : 18 ≤ n)
     (G : SimpleGraph (Fin n)) (h : ResidualCore n G)
     (hsea : ∀ v : Fin n, G.degree v ≤ 4) (heM : 5 ≤ mIncidence G)

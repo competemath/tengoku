@@ -51,7 +51,9 @@ def constantVarianceProxy {Omega : Type*} (b : Real) : Nat -> Omega -> Real :=
 /-- An absolute bound `|X k| <= b` supplies the predictable proxy `b ^ 2`.
 
 The conditional-second-moment field is proved by conditional-expectation
-monotonicity from `X k ^ 2 <= b ^ 2`; it is not an additional premise. -/
+monotonicity from `X k ^ 2 <= b ^ 2`; it is not an additional premise.
+@isnad1 id=ispredic.2h6v.s6.3c1d365c28fb from=translated src=- shape=467b13b9 vocab=199de7e1
+-/
 theorem isPredictableVarianceProxy_const
     {Omega : Type*} {mOmega : MeasurableSpace Omega}
     {mu : Measure Omega} [IsProbabilityMeasure mu]
@@ -94,7 +96,9 @@ def regularizedLaggedSecondMomentProxy {Omega : Type*}
   floor +
     (Finset.sum (Finset.range k) fun i => (X i omega) ^ 2) / (k + 1 : Nat)
 
-/-- A regularized lagged second moment is predictable under increment adaptedness. -/
+/-- A regularized lagged second moment is predictable under increment adaptedness.
+@isnad1 id=strongly.1h4v.s5.44aed1fa56fb from=translated src=- shape=e75fcece vocab=a37ef7db
+-/
 theorem stronglyAdapted_regularizedLaggedSecondMomentProxy
     {Omega : Type*} [mOmega : MeasurableSpace Omega]
     {F : Filtration Nat mOmega} {X : Nat -> Omega -> Real} (floor : Real)
@@ -121,7 +125,9 @@ theorem stronglyAdapted_regularizedLaggedSecondMomentProxy
     stronglyMeasurable_const
   exact hfloor_meas.add hscaled
 
-/-- Pointwise nonnegativity of the regularized lagged proxy. -/
+/-- Pointwise nonnegativity of the regularized lagged proxy.
+@isnad1 id=le.1h5v.s5.bc7122820da0 from=translated src=- shape=d507d500 vocab=ce8b4745
+-/
 theorem regularizedLaggedSecondMomentProxy_nonneg
     {Omega : Type*} {X : Nat -> Omega -> Real} {floor : Real}
     (hfloor : 0 <= floor) (k : Nat) (omega : Omega) :
@@ -135,7 +141,9 @@ theorem regularizedLaggedSecondMomentProxy_nonneg
 
 Predictability and nonnegativity are derived. The displayed domination premise
 cannot follow from adaptedness alone: past observed squares need not upper-bound
-the next conditional second moment for an arbitrary process. -/
+the next conditional second moment for an arbitrary process.
+@isnad1 id=ispredic.4h6v.s7.5095d5b82f50 from=translated src=- shape=4ce467df vocab=820873e8
+-/
 theorem isPredictableVarianceProxy_regularizedLagged_of_condSecondMoment_le
     {Omega : Type*} {mOmega : MeasurableSpace Omega}
     {mu : Measure Omega} [IsFiniteMeasure mu] {F : Filtration Nat mOmega}
@@ -161,7 +169,9 @@ load-bearing, so this construction is at least the constant `b ^ 2` proxy and
 is not variance-adaptive. With floor zero, the all-time domination premise
 forces the initial squared increment to vanish almost everywhere and then
 propagates that degeneracy. This theorem does not claim that a raw past
-empirical average dominates the next conditional second moment. -/
+empirical average dominates the next conditional second moment.
+@isnad1 id=ispredic.3h6v.s6.879ef4792d3a from=translated src=- shape=8b2759c9 vocab=a34fbb97
+-/
 theorem isPredictableVarianceProxy_regularizedLagged
     {Omega : Type*} {mOmega : MeasurableSpace Omega}
     {mu : Measure Omega} [IsProbabilityMeasure mu]

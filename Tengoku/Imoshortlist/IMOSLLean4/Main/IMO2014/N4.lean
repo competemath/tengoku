@@ -27,14 +27,18 @@ It can be proved by induction on $m$ that $(d + 1)^{d^m} ≡ 1 \pmod{d^{m + 1}}$
 namespace IMOSL
 namespace IMO2014N4
 
-/-- If `n` is odd, then `⌊n^{n^k}/n^k⌋` is odd for any `k : ℕ`. -/
+/-- If `n` is odd, then `⌊n^{n^k}/n^k⌋` is odd for any `k : ℕ`.
+@isnad1 id=eq.2h2v.s6.df0f907a7f6b from=translated src=- shape=b6e78eca vocab=cdb013f2
+-/
 theorem case_odd (hn : n > 1) (h : n % 2 = 1) (k) : n ^ (n ^ k) / n ^ k % 2 = 1 :=
   calc n ^ (n ^ k) / n ^ k % 2
   _ = n ^ (n ^ k - k) % 2 :=
     congrArg (· % 2) (Nat.pow_div (Nat.le_of_lt (Nat.lt_pow_self hn)) (Nat.zero_lt_of_lt hn))
   _ = 1 := by rw [Nat.pow_mod, h, Nat.one_pow]
 
-/-- An auxiliary lemma: if `a` is even and `a % b = 1`, then `⌊a/b⌋` is odd. -/
+/-- An auxiliary lemma: if `a` is even and `a % b = 1`, then `⌊a/b⌋` is odd.
+@isnad1 id=eq.2h2v.s5.4f12cf01a14c from=translated src=- shape=cfc31a1c vocab=df3420a3
+-/
 theorem div_odd_of_even_mod_eq_one (ha : 2 ∣ a) (hab : a % b = 1) : a / b % 2 = 1 := by
   obtain hb | hb : b % 2 = 0 ∨ b % 2 = 1 := Nat.mod_two_eq_zero_or_one b
   ---- If `b` is even then `a % b` is even and cannot be `1`; contradiction.
@@ -49,7 +53,9 @@ theorem div_odd_of_even_mod_eq_one (ha : 2 ∣ a) (hab : a % b = 1) : a / b % 2 
       rw [Nat.add_assoc, hab, Nat.add_mod_right, ← Nat.mod_mul_mod, hb, Nat.one_mul]
     _ = 1 := by rw [Nat.div_add_mod, ← Nat.mod_add_mod, Nat.mod_eq_zero_of_dvd ha]
 
-/-- The number `⌊2^{3 4^k}/(3 4^k)⌋` is odd for any `k > 0`. -/
+/-- The number `⌊2^{3 4^k}/(3 4^k)⌋` is odd for any `k > 0`.
+@isnad1 id=eq.1h1v.s6.990cedf156a3 from=translated src=- shape=f7a3712c vocab=6af00c06
+-/
 theorem case_two (hk : k > 0) : 2 ^ (3 * 4 ^ k) / (3 * 4 ^ k) % 2 = 1 := by
   ---- The reason is that `3 4^k - 2k` is a positive even integer.
   have hk0 : 2 * k < 3 * 4 ^ k :=
@@ -69,7 +75,9 @@ theorem case_two (hk : k > 0) : 2 ^ (3 * 4 ^ k) / (3 * 4 ^ k) % 2 = 1 := by
         Nat.div_div_eq_div_mul, Nat.pow_mul 2 2, Nat.mul_comm _ 3]
     _ = 1 := div_odd_of_even_mod_eq_one (Nat.div_pow_of_pos _ _ he) he0
 
-/-- If `k > 0`, then `(mn^k + 1)^b ≡ mbn^k + 1 (mod n^{k + 1})`. -/
+/-- If `k > 0`, then `(mn^k + 1)^b ≡ mbn^k + 1 (mod n^{k + 1})`.
+@isnad1 id=modeq.1h4v.s7.44ef02a462c2 from=translated src=- shape=7877f7e4 vocab=39fef7be
+-/
 theorem pow_mod_eq_of_modeq_mul_pow_add_one (hk : k > 0) (n m b : ℕ) :
     (m * n ^ k + 1) ^ b ≡ m * b * n ^ k + 1 [MOD n ^ (k + 1)] := by
   ---- Induction on `b`; the base case is trivial.
@@ -87,7 +95,9 @@ theorem pow_mod_eq_of_modeq_mul_pow_add_one (hk : k > 0) (n m b : ℕ) :
         ← Nat.pow_add, Nat.add_left_comm, Nat.sub_add_cancel hk]
     _ ≡ m * (b + 1) * n ^ k + 1 [MOD n ^ (k + 1)] := Nat.mul_modulus_add_modEq_iff.mpr rfl
 
-/-- If `k > 0` and `a ≡ 1 (mod n^k)`, then `a^n ≡ 1 (mod n^{k + 1})`. -/
+/-- If `k > 0` and `a ≡ 1 (mod n^k)`, then `a^n ≡ 1 (mod n^{k + 1})`.
+@isnad1 id=modeq.2h3v.s6.84e181258ab4 from=translated src=- shape=df439eab vocab=a5545473
+-/
 theorem pow_modeq_one_of_modeq_one (hk : k > 0) (h : a ≡ 1 [MOD n ^ k]) :
     a ^ n ≡ 1 [MOD n ^ (k + 1)] := by
   cases a with
@@ -105,7 +115,9 @@ theorem pow_modeq_one_of_modeq_one (hk : k > 0) (h : a ≡ 1 [MOD n ^ k]) :
           rw [Nat.mul_assoc, ← Nat.pow_add_one', Nat.add_modEq_right_iff]
           exact Nat.dvd_mul_left _ _
 
-/-- If `k > 0` and `a ≡ 1 (mod n^k)`, then `a^{n^t} ≡ 1 (mod n^{k + t})`. -/
+/-- If `k > 0` and `a ≡ 1 (mod n^k)`, then `a^{n^t} ≡ 1 (mod n^{k + t})`.
+@isnad1 id=modeq.2h4v.s6.aeb025e01f87 from=translated src=- shape=e3e95240 vocab=a5545473
+-/
 theorem pow_pow_modeq_one_of_modeq_one (hk : k > 0) (h : a ≡ 1 [MOD n ^ k]) (t) :
     a ^ (n ^ t) ≡ 1 [MOD n ^ (k + t)] := by
   induction t with
@@ -114,26 +126,34 @@ theorem pow_pow_modeq_one_of_modeq_one (hk : k > 0) (h : a ≡ 1 [MOD n ^ k]) (t
       _ = (a ^ (n ^ t)) ^ n := Nat.pow_mul _ _ _
       _ ≡ 1 [MOD n ^ (k + t + 1)] := pow_modeq_one_of_modeq_one (Nat.add_pos_left hk t) t_ih
 
-/-- For any `k`, we have `(n + 1)^{n^k} ≡ 1 (mod n^{k + 1})`. -/
+/-- For any `k`, we have `(n + 1)^{n^k} ≡ 1 (mod n^{k + 1})`.
+@isnad1 id=modeq.0h2v.s6.d3ee504f4fd1 from=translated src=- shape=056c561f vocab=3b5a0f98
+-/
 theorem add_one_pow_pow_modeq_one (n k) : (n + 1) ^ (n ^ k) ≡ 1 [MOD n ^ (k + 1)] := by
   refine Nat.add_comm k 1 ▸ pow_pow_modeq_one_of_modeq_one Nat.one_pos ?_ k
   rw [Nat.pow_one, Nat.add_modEq_right_iff]
 
-/-- If `n > 1` and `k > 0`, then `(n + 1)^{n^k} % n^k = 1`. -/
+/-- If `n > 1` and `k > 0`, then `(n + 1)^{n^k} % n^k = 1`.
+@isnad1 id=eq.2h2v.s6.bd743b96c3fb from=translated src=- shape=c14c8138 vocab=72a6c46e
+-/
 theorem add_one_pow_pow_mod_pow_eq_one (hn : n > 1) (hk : k > 0) :
     (n + 1) ^ (n ^ k) % n ^ k = 1 := by
   calc (n + 1) ^ (n ^ k) % n ^ k
     _ = 1 % n ^ k := (add_one_pow_pow_modeq_one _ _).of_dvd ⟨n, rfl⟩
     _ = 1 := Nat.mod_eq_of_lt (Nat.one_lt_pow (Nat.ne_zero_of_lt hk) hn)
 
-/-- If `n > 1` is odd and `k > 0`, then `⌊(n + 1)^{n^k}/n^k⌋` is odd. -/
+/-- If `n > 1` is odd and `k > 0`, then `⌊(n + 1)^{n^k}/n^k⌋` is odd.
+@isnad1 id=eq.3h2v.s6.e62309a2bc78 from=translated src=- shape=94384672 vocab=36fe0197
+-/
 theorem case_even (hn : n > 1) (hn0 : 2 ∣ n + 1) (hk : k > 0) :
     (n + 1) ^ (n ^ k) / n ^ k % 2 = 1 :=
   div_odd_of_even_mod_eq_one
     (Nat.dvd_trans hn0 (Nat.div_pow_of_pos _ _ (Nat.pow_pos (Nat.zero_lt_of_lt hn))))
     (add_one_pow_pow_mod_pow_eq_one hn hk)
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ex.1h2v.s6.abed2931be13 from=translated src=- shape=53ee537b vocab=cdb013f2
+-/
 theorem final_solution (hn : n > 1) (N) : ∃ k > N, n ^ k / k % 2 = 1 := by
   ---- If `n` is odd, pick `k = n^N`.
   obtain hn0 | hn0 : n % 2 = 1 ∨ n % 2 = 0 := (Nat.mod_two_eq_zero_or_one n).symm

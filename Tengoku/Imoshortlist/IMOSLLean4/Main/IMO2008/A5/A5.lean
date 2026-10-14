@@ -26,6 +26,9 @@ variable [Semifield F] [LinearOrder F] [IsStrictOrderedRing F] [ExistsAddOfLE F]
   {a b c d : F} (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) (hd : 0 < d)
 include ha hb hc hd
 
+/--
+@isnad1 id=le.4h5v.s8.f58facc04c1c from=translated src=- shape=bcc284d8 vocab=ae284725
+-/
 lemma ineq1 : (4 * a) ^ 4 / (a * b * c * d) ≤ (2 * (a / b) + (b / c + a / d)) ^ 4 := by
   ---- Split calculation, part 1
   calc (4 * a) ^ 4 / (a * b * c * d)
@@ -58,6 +61,9 @@ lemma ineq1 : (4 * a) ^ 4 / (a * b * c * d) ≤ (2 * (a / b) + (b / c + a / d)) 
 variable (h : a * b * c * d = 1)
 include h
 
+/--
+@isnad1 id=le.5h5v.s8.0c915c16275e from=translated src=- shape=488d0fee vocab=65931dcc
+-/
 lemma ineq2 : 4 * a ≤ 2 * (a / b) + (b / c + a / d) := by
   have h0 := ineq1 ha hb hc hd
   rw [h, div_one] at h0
@@ -65,6 +71,9 @@ lemma ineq2 : 4 * a ≤ 2 * (a / b) + (b / c + a / d) := by
   exact (add_pos (mul_pos two_pos (div_pos ha hb))
     (add_pos (div_pos hb hc) (div_pos ha hd))).le
 
+/--
+@isnad1 id=le.5h5v.s9.cf6b34e35217 from=translated src=- shape=0550a986 vocab=65931dcc
+-/
 lemma main_ineq : 4 * (a + b + c + d) ≤
     3 * (a / b + b / c + c / d + d / a) + (b / a + c / b + d / c + a / d) := calc
   _ = 4 * a + 4 * b + 4 * c + 4 * d := by rw [mul_add, mul_add, mul_add]
@@ -84,7 +93,9 @@ lemma main_ineq : 4 * (a + b + c + d) ≤
     · rw [add_comm, ← add_assoc, ← add_assoc]
     · rw [add_rotate (a / d), add_right_comm]
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=lt.6h5v.s9.26e47a2f2e13 from=translated src=- shape=06dbb693 vocab=6384da60
+-/
 theorem final_solution (h0 : a / b + b / c + c / d + d / a < a + b + c + d) :
     a + b + c + d < b / a + c / b + d / c + a / d := by
   refine lt_of_not_ge λ h1 ↦ (main_ineq ha hb hc hd h).not_gt ?_

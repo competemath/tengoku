@@ -28,12 +28,18 @@ def good_alt (g : G → G) := ∀ x y : G, g x < g y → g x ≤ x + y ∧ x + y
 
 variable [IsOrderedAddMonoid G]
 
+/--
+@isnad1 id=goodalt.1h2v.s5.a04a61b80292 from=translated src=- shape=c203b0f4 vocab=a5fc036d
+-/
 theorem good_imp_good_alt {f : G → G} (hf : good f) : good_alt (λ x ↦ x - f x) := by
   intro x y h; rw [sub_lt_sub_iff, add_comm, add_comm y] at h
   refine (hf y x h).symm.imp (λ h0 ↦ ?_) (λ h0 ↦ ?_)
   · rwa [sub_le_iff_le_add', add_left_comm, le_add_iff_nonneg_right]
   · rwa [le_sub_iff_add_le', ← add_assoc, add_le_iff_nonpos_left]
 
+/--
+@isnad1 id=monotone.1h2v.s6.2896aaf0d1f7 from=translated src=- shape=2371cc61 vocab=527a0a33
+-/
 theorem dense_good_alt_imp_Monotone [DenselyOrdered G] {g : G → G} (hf : good_alt g) :
     Monotone g := by
   ---- First prove the claim
@@ -87,7 +93,9 @@ theorem dense_good_alt_imp_Monotone [DenselyOrdered G] {g : G → G} (hf : good_
       rw [h2, ← sub_le_iff_le_add, sub_le_sub_iff_left] at h3
       exact h3.not_gt (hxz.trans hzw)
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=le.2h4v.s6.d714916da5f6 from=translated src=- shape=79ae2afe vocab=e86abed5
+-/
 theorem final_solution [DenselyOrdered G] {f : G → G} (hf : good f) {x y} (h : x ≤ y) :
     f y + x ≤ f x + y := by
   replace hf := dense_good_alt_imp_Monotone (good_imp_good_alt hf) h
@@ -95,6 +103,9 @@ theorem final_solution [DenselyOrdered G] {f : G → G} (hf : good f) {x y} (h :
 
 /-! ### Extra part -/
 
+/--
+@isnad1 id=ex.1h1v.s7.4c80525172d9 from=translated src=- shape=0d8f3a9f vocab=e86abed5
+-/
 theorem discrete_counterexample (h : ¬DenselyOrdered G) :
     ∃ f : G → G, ¬(∀ x y, x ≤ y → f y + x ≤ f x + y) ∧ good f := by
   ---- First get some minimal positive element `g`
@@ -148,7 +159,9 @@ theorem discrete_counterexample (h : ¬DenselyOrdered G) :
   · intro h0; rw [neg_add_eq_sub, ← neg_sub, ← neg_add_eq_sub] at h0 ⊢
     rw [neg_nonpos, and_self]; exact (neg_lt_self_iff.mp h0).le
 
-/-- Final solution, extra -/
+/-- Final solution, extra
+@isnad1 id=iff.0h1v.s6.b1e5dda3ce76 from=translated src=- shape=1ff2ccb3 vocab=e86abed5
+-/
 theorem final_solution_extra :
     (∀ {f : G → G} (_ : good f) {x y}, x ≤ y → f y + x ≤ f x + y) ↔ DenselyOrdered G := by
   refine ⟨λ hG ↦ ?_, λ hG ↦ final_solution⟩

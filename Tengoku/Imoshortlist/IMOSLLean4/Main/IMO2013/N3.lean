@@ -41,7 +41,9 @@ namespace IMOSL
 namespace IMO2013N3
 
 /-- If `f : ℕ → α` satisfies the functional equation `f((n + 1)^2) = max{f(n), f(n + 1)}`,
-  then there exists infinitely many `n` such that `f(n^2) = f((n + 1)^2)`. -/
+  then there exists infinitely many `n` such that `f(n^2) = f((n + 1)^2)`.
+@isnad1 id=ex.1h3v.s7.27bb67695a30 from=translated src=- shape=637fe79f vocab=cc73c4fa
+-/
 theorem general_result [LinearOrder α]
     (f : ℕ → α) (hf : ∀ n, f ((n + 1) ^ 2) = max (f n) (f (n + 1))) (N) :
     ∃ n ≥ N, f (n ^ 2) = f ((n + 1) ^ 2) := by
@@ -85,14 +87,18 @@ theorem general_result [LinearOrder α]
   exact (hf.trans h0).not_gt h
 
 /-- The maximum element of `l ++ l'` is the same as the maximum of the maximum element
-  of `l` and the maximum element of `l'`, where the maximum of `[]` is set to be `0`. -/
+  of `l` and the maximum element of `l'`, where the maximum of `[]` is set to be `0`.
+@isnad1 id=eq.0h2v.s5.a6e2676dd04e from=translated src=- shape=71153b17 vocab=901ef19f
+-/
 theorem foldr_max_zero_append (l l' : List ℕ) :
     (l ++ l').foldr max 0 = max (l.foldr max 0) (l'.foldr max 0) := by
   induction l generalizing l' with
   | nil => exact (Nat.zero_max _).symm
   | cons a l ih => rw [List.cons_append, List.foldr_cons, List.foldr_cons, ih, max_assoc]
 
-/-- The formula `(n + 1)^4 + (n + 1)^2 + 1 = (n^2 + n + 1)((n + 1)^2 + (n + 1) + 1)`. -/
+/-- The formula `(n + 1)^4 + (n + 1)^2 + 1 = (n^2 + n + 1)((n + 1)^2 + (n + 1) + 1)`.
+@isnad1 id=eq.0h1v.s7.7c962ef433e4 from=translated src=- shape=b47f8b6c vocab=30ba1354
+-/
 theorem special_formula (n : ℕ) :
     ((n + 1) ^ 2) ^ 2 + (n + 1) ^ 2 + 1 = (n ^ 2 + n + 1) * ((n + 1) ^ 2 + (n + 1) + 1) :=
   let s : ℕ := n ^ 2 + n + 1
@@ -109,7 +115,9 @@ theorem special_formula (n : ℕ) :
   _ = s * ((n + 1) ^ 2 + (n + 1) + 1) := by
     rw [← Nat.mul_succ, ← Nat.mul_add, Nat.add_assoc]
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ex.0h1v.s7.4b39c901ed61 from=translated src=- shape=ed20d5b1 vocab=e019ec1b
+-/
 theorem final_solution :
     ∀ N, ∃ n ≥ N, (n ^ 4 + n ^ 2 + 1).primeFactorsList.foldr max 0
       = ((n + 1) ^ 4 + (n + 1) ^ 2 + 1).primeFactorsList.foldr max 0 := by

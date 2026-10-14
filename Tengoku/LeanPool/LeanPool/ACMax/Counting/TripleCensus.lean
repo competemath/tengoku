@@ -27,7 +27,9 @@ open Classical in
 first-coordinate sum six while all three indicated pair counts stay small.
 
 The three indicator sums count repeated pairs within the groups.  The product
-sums count pairs crossing the first group with the other two groups. -/
+sums count pairs crossing the first group with the other two groups.
+@isnad1 id=false.6h5v.s8.3572e5237f78 from=translated src=- shape=dccdcc5b vocab=87d9f80e
+-/
 theorem six_triple_census_impossible {α : Type*}
     (B : Finset α) (a c d : α → ℕ)
     (hB : B.card = 6)
@@ -176,7 +178,9 @@ theorem six_triple_census_impossible {α : Type*}
 open Classical in
 /-- Binary incidence form of `six_triple_census_impossible`.  Six three-incidence
 columns on three pairs of rows force a repeated pair either within one row-pair,
-or between the first row-pair and one of the other two. -/
+or between the first row-pair and one of the other two.
+@isnad1 id=or.4h8v.s9.27359371d233 from=translated src=- shape=376726fe vocab=f838565d
+-/
 theorem six_binary_columns_force_repeated_pair {α : Type*}
     (B : Finset α) (a₁ a₂ c₁ c₂ d₁ d₂ : α → Prop)
     (hB : B.card = 6)

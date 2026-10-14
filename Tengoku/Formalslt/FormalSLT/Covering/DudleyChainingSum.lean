@@ -24,7 +24,9 @@ noncomputable section
 
 variable {Ω T : Type*}
 
-/-- Exact telescoping identity for a chain of finite-net projections. -/
+/-- Exact telescoping identity for a chain of finite-net projections.
+@isnad1 id=eq.2h7v.s7.1f550bdb7ad8 from=translated src=- shape=80946973 vocab=dd6edb75
+-/
 theorem dudley_chaining_telescope
     {A : ℕ → Type*} [∀ j : ℕ, Fintype (A j)]
     (N : ∀ j : ℕ, FiniteNet T (A j))

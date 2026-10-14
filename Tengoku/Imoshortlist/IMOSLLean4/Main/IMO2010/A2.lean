@@ -31,16 +31,22 @@ open Finset
 
 variable [CommRing R]
 
-/-- The main identity `4x^3 - x^4 = 6x^2 - 4x + 1 - (x - 1)^4`. -/
+/-- The main identity `4x^3 - x^4 = 6x^2 - 4x + 1 - (x - 1)^4`.
+@isnad1 id=eq.0h2v.s8.5ea62eafb38d from=translated src=- shape=384eb646 vocab=9c1cdc1d
+-/
 theorem main_id (x : R) :
     4 * x ^ 3 - x ^ 4 = 6 * x ^ 2 - 4 * x + 1 - ((x - 1) ^ 2) ^ 2 := by
   ring
 
-/-- The identity `(x - 1)^2 = x^2 - 2x + 1`. -/
+/-- The identity `(x - 1)^2 = x^2 - 2x + 1`.
+@isnad1 id=eq.0h2v.s7.f5959c752cc6 from=translated src=- shape=b4c8b594 vocab=9c1cdc1d
+-/
 theorem sub_one_sq (x : R) : (x - 1) ^ 2 = x ^ 2 - 2 * x + 1 := by
   rw [sub_sq, mul_one, one_pow]
 
-/-- Summing the identity `4x^3 - x^4 = 6x^2 - 4x + 1 - (x - 1)^4` over multiple elements. -/
+/-- Summing the identity `4x^3 - x^4 = 6x^2 - 4x + 1 - (x - 1)^4` over multiple elements.
+@isnad1 id=eq.0h4v.s8.2bae1276915a from=translated src=- shape=82fa7930 vocab=4412e628
+-/
 theorem sum_main_id (I : Finset ι) (x : ι → R) :
     4 * ∑ i ∈ I, x i ^ 3 - ∑ i ∈ I, x i ^ 4
       = 6 * ∑ i ∈ I, x i ^ 2 - 4 * ∑ i ∈ I, x i + #I - ∑ i ∈ I, ((x i - 1) ^ 2) ^ 2 :=
@@ -51,7 +57,9 @@ theorem sum_main_id (I : Finset ι) (x : ι → R) :
     rw [sum_sub_distrib, sum_add_distrib, sum_sub_distrib,
       mul_sum, mul_sum, sum_const, nsmul_one]
 
-/-- Summing the identity `(x - 1)^2 = x^2 - 2x + 1` over multiple elements. -/
+/-- Summing the identity `(x - 1)^2 = x^2 - 2x + 1` over multiple elements.
+@isnad1 id=eq.0h4v.s7.c20240520253 from=translated src=- shape=8e4b3684 vocab=4412e628
+-/
 theorem sum_sub_one_sq (I : Finset ι) (x : ι → R) :
     ∑ i ∈ I, (x i - 1) ^ 2 = ∑ i ∈ I, x i ^ 2 - 2 * ∑ i ∈ I, x i + #I :=
   calc ∑ i ∈ I, (x i - 1) ^ 2
@@ -61,7 +69,9 @@ theorem sum_sub_one_sq (I : Finset ι) (x : ι → R) :
 
 variable [LinearOrder R] [IsStrictOrderedRing R]
 
-/-- The general bound, which generalizes the inequality to be proved. -/
+/-- The general bound, which generalizes the inequality to be proved.
+@isnad1 id=other.0h4v.s9.cd0814f55d86 from=translated src=- shape=a4bff670 vocab=692f42ec
+-/
 theorem general_bound (I : Finset ι) (x : ι → R) :
     let B := 6 * ∑ i ∈ I, x i ^ 2 - 4 * ∑ i ∈ I, x i + #I
     let C := (∑ i ∈ I, x i ^ 2 - 2 * ∑ i ∈ I, x i + #I) ^ 2
@@ -77,7 +87,9 @@ theorem general_bound (I : Finset ι) (x : ι → R) :
   ---- The two inequalities now follow by Cauchy-Schwarz and trivial bound, respectively.
   exact ⟨sq_sum_le_card_mul_sum_sq, sum_sq_le_sq_sum_of_nonneg λ _ _ ↦ sq_nonneg _⟩
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=other.3h4v.s8.9a7a0a318929 from=translated src=- shape=8df7b87d vocab=cc11f4d6
+-/
 theorem final_solution {I : Finset ι} (hI : #I = 4) {x : ι → R}
     (hxI1 : ∑ i ∈ I, x i = 6) (hxI2 : ∑ i ∈ I, x i ^ 2 = 12) :
     let L := 4 * ∑ i ∈ I, x i ^ 3 - ∑ i ∈ I, x i ^ 4

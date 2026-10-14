@@ -38,12 +38,16 @@ namespace IEANTN.Bridges.Platt
 
 open IEANTN
 
-/-- `RiemannHypothesisUpTo` is antitone: verifying further verifies everything nearer. -/
+/-- `RiemannHypothesisUpTo` is antitone: verifying further verifies everything nearer.
+@isnad1 id=riemannh.2h2v.s3.5b19536d21f1 from=translated src=- shape=7f8db54e vocab=4037663f
+-/
 theorem riemannHypothesisUpTo_mono {T T' : ℝ} (h : T' ≤ T) (hT : RiemannHypothesisUpTo T) :
     RiemannHypothesisUpTo T' :=
   ⟨fun s => hT.false ⟨s.1, s.2.1, Set.Icc_subset_Icc_right h s.2.2.1, s.2.2.2⟩⟩
 
-/-- The verification to `3.0610046 · 10¹⁰` implies the one to `3.06 · 10¹⁰`. -/
+/-- The verification to `3.0610046 · 10¹⁰` implies the one to `3.06 · 10¹⁰`.
+@isnad1 id=rhupto.1h0v.s1.f914a22bd6f9 from=translated src=- shape=1d48f1ac vocab=b0a806bc
+-/
 theorem bridge_platt2017_to_platt2015 (h : Platt2017.v1.rh_up_to) : Platt2015.v1.rh_up_to :=
   riemannHypothesisUpTo_mono (by norm_num) h
 

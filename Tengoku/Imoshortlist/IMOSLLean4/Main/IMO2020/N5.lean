@@ -50,12 +50,16 @@ structure good [AddZero M] (f : ℕ+ → M) : Prop where
 /-! ### Construction of good functions -/
 
 /-- `p`-adic valuation of `n : ℕ+` is equal to `0` if and only if `p ∤ n`.
-  TODO: This might be `mathlib`-worthy, so remove this lemma if it goes to `mathlib`. -/
+  TODO: This might be `mathlib`-worthy, so remove this lemma if it goes to `mathlib`.
+@isnad1 id=iff.0h2v.s4.932cacde73cc from=translated src=- shape=7edbb71c vocab=abf8d119
+-/
 lemma factorMultiset_count_eq_zero_iff {p : Nat.Primes} {n : ℕ+} :
     (PNat.factorMultiset n).count p  = 0 ↔ ¬(p : ℕ+) ∣ n := by
   rw [← pow_one (p : ℕ+), PNat.count_factorMultiset, Nat.not_le, Nat.lt_one_iff]
 
-/-- If `a, b : ℕ⁺` and `a + b` is a power of `p`, then `ν_p(a) = ν_p(b)`. -/
+/-- If `a, b : ℕ⁺` and `a + b` is a power of `p`, then `ν_p(a) = ν_p(b)`.
+@isnad1 id=eq.1h4v.s5.7284c62ebea0 from=translated src=- shape=654f8fa3 vocab=ca0efd4a
+-/
 theorem padic_eq_of_add_eq_ppow {p : Nat.Primes} {N} {a b : ℕ+} (h : a + b = p ^ N) :
     (PNat.factorMultiset a).count p = (PNat.factorMultiset b).count p := by
   ---- Induction on `N`, but the base case `N = 0` is impossible, as `a + b > 1`.
@@ -80,7 +84,9 @@ theorem padic_eq_of_add_eq_ppow {p : Nat.Primes} {N} {a b : ℕ+} (h : a + b = p
     refine λ hb ↦ ha ?_
     rwa [PNat.dvd_iff, Nat.dvd_add_iff_left hb]
 
-/-- Functions of the form `n ↦ ν_p(n) c` are good. -/
+/-- Functions of the form `n ↦ ν_p(n) c` are good.
+@isnad1 id=good.1h3v.s5.0d5f1b7839e1 from=translated src=- shape=d27ee8ce vocab=b8720f6c
+-/
 theorem padic_nsmul_is_good [AddMonoid M] (c : M) (hc : c ≠ 0) (p : Nat.Primes) :
     good (λ n ↦ (PNat.factorMultiset n).count p • c) where
   map_one := by
@@ -98,12 +104,16 @@ theorem padic_nsmul_is_good [AddMonoid M] (c : M) (hc : c ≠ 0) (p : Nat.Primes
 
 namespace good
 
-/-- `f(n ^ k) = k f(n)`. -/
+/-- `f(n ^ k) = k f(n)`.
+@isnad1 id=eq.1h4v.s5.cb54e35d45d4 from=translated src=- shape=ea8b7029 vocab=9a049e46
+-/
 theorem map_pow [AddMonoid M] {f : ℕ+ → M} (hf : good f) (n k) : f (n ^ k) = k • f n := by
   induction k with | zero => rw [pow_zero, hf.map_one, zero_nsmul] | succ k hk => ?_
   rw [pow_succ, succ_nsmul, hf.map_mul, hk]
 
-/-- If `n` is `f`-nice and `d ∣ n`, then `d` if `f`-nice. -/
+/-- If `n` is `f`-nice and `d ∣ n`, then `d` if `f`-nice.
+@isnad1 id=nice.3h4v.s5.a319a3e33c55 from=translated src=- shape=345f42cd vocab=edaae85f
+-/
 theorem nice_of_dvd_nice [AddMonoid M] [IsRightCancelAdd M]
     {f : ℕ+ → M} (hf : good f) (hn : nice f n) (hd : d ∣ n) : nice f d := by
   rcases hd with ⟨k, rfl⟩
@@ -117,19 +127,27 @@ include hf
 /-- The smallest `p : ℕ+` such that `f(p) ≠ 0`, named as such because it is prime. -/
 def base_prime_PNat : ℕ+ := PNat.find hf.nontrivial
 
-/-- Specification of `base_prime_PNat`. -/
+/-- Specification of `base_prime_PNat`.
+@isnad1 id=ne.1h1v.s4.5cc78dbd9765 from=translated src=- shape=6999db83 vocab=1734a457
+-/
 theorem base_prime_PNat_spec : f hf.base_prime_PNat ≠ 0 :=
   PNat.find_spec hf.nontrivial
 
-/-- Minimality of `base_prime_PNat`. -/
+/-- Minimality of `base_prime_PNat`.
+@isnad1 id=eq.2h2v.s5.c47d3cb9951b from=translated src=- shape=2feeaa42 vocab=9ad377cb
+-/
 theorem base_prime_PNat_min (h : a < hf.base_prime_PNat) : f a = 0 :=
   not_not.mp (PNat.find_min hf.nontrivial h)
 
-/-- Minimality of `base_prime_PNat`. -/
+/-- Minimality of `base_prime_PNat`.
+@isnad1 id=le.2h2v.s5.2f977a1f56a5 from=translated src=- shape=fe7b70c4 vocab=43f4d34b
+-/
 theorem base_prime_PNat_min' (h : f a ≠ 0) : hf.base_prime_PNat ≤ a :=
   PNat.find_min' hf.nontrivial h
 
-/-- `base_prime_PNat` is prime. -/
+/-- `base_prime_PNat` is prime.
+@isnad1 id=prime.1h1v.s4.b0e525df83ce from=translated src=- shape=e333fdb6 vocab=53a618d4
+-/
 theorem base_prime_PNat_is_prime : hf.base_prime_PNat.Prime := by
   ---- Let `q` be a prime factor of `p = base_prime_PNat`.
   obtain ⟨q, hq, h⟩ : ∃ q : ℕ+, q.Prime ∧ q ∣ hf.base_prime_PNat :=
@@ -149,7 +167,9 @@ theorem base_prime_PNat_is_prime : hf.base_prime_PNat.Prime := by
   Use `base_prime_PNat` for actual computations instead. -/
 def base_prime : Nat.Primes := ⟨hf.base_prime_PNat, hf.base_prime_PNat_is_prime⟩
 
-/-- If `d` is `f`-nice and `p ≤ d`, then `p ∣ d`. -/
+/-- If `d` is `f`-nice and `p ≤ d`, then `p ∣ d`.
+@isnad1 id=dvd.3h2v.s5.60126e82213c from=translated src=- shape=04e65541 vocab=94fe7b88
+-/
 theorem base_prime_dvd_of_le_of_nice (hd : hf.base_prime_PNat ≤ d) (hd0 : nice f d) :
     hf.base_prime_PNat ∣ d := by
   set p : ℕ+ := hf.base_prime_PNat
@@ -169,7 +189,9 @@ theorem base_prime_dvd_of_le_of_nice (hd : hf.base_prime_PNat ≤ d) (hd0 : nice
   refine absurd (hf.base_prime_PNat_min ?_) h.ne.symm
   simpa only [← PNat.coe_lt_coe, hr] using Nat.mod_lt _ p.pos
 
-/-- If `d` is `f`-nice and `p^k ≤ d`, then `p^k ∣ d`. -/
+/-- If `d` is `f`-nice and `p^k ≤ d`, then `p^k ∣ d`.
+@isnad1 id=dvd.3h3v.s6.3b42fe55a4b4 from=translated src=- shape=3cfe17a6 vocab=92b03663
+-/
 theorem base_prime_pow_dvd_of_le_of_nice
     (hd : hf.base_prime_PNat ^ k ≤ d) (hd0 : nice f d) :
     hf.base_prime_PNat ^ k ∣ d := by
@@ -186,13 +208,17 @@ theorem base_prime_pow_dvd_of_le_of_nice
   ---- By induction hypothesis, `p^k ∣ d'`; which gives `p^{k + 1} ∣ d`.
   simpa only [pow_succ'] using mul_dvd_mul_left _ (hk hd hd0)
 
-/-- `p^k` is `f`-nice for any `k ≥ 0`. -/
+/-- `p^k` is `f`-nice for any `k ≥ 0`.
+@isnad1 id=nice.1h2v.s5.db214f418b97 from=translated src=- shape=18c66cba vocab=30aad460
+-/
 theorem base_prime_pow_is_nice (k) : nice f (hf.base_prime_PNat ^ k) := by
   ---- Pick any `n ≥ p^k` that is `f`-nice. Then `p^k ∣ n`, so `p^k` is `f`-nice too.
   obtain ⟨n, hn, hn0⟩ : ∃ n ≥ hf.base_prime_PNat ^ k, nice f n := hf.infinite_nice _
   exact hf.nice_of_dvd_nice hn0 (hf.base_prime_pow_dvd_of_le_of_nice hn hn0)
 
-/-- If `p ∤ n`, then `f(n) = 0`. -/
+/-- If `p ∤ n`, then `f(n) = 0`.
+@isnad1 id=eq.2h2v.s5.24cbf442125b from=translated src=- shape=7e8b9891 vocab=2af29c18
+-/
 theorem map_eq_zero_of_coprime_base_prime (hn : ¬hf.base_prime_PNat ∣ n) : f n = 0 := by
   ---- Assume `n > 1`; we are done otherwise.
   obtain rfl | hn0 : n = 1 ∨ 1 < n := eq_one_or_one_lt n
@@ -234,7 +260,9 @@ end good
 
 /-! ### Summary -/
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h1v.s5.b72d8fd3fed6 from=translated src=- shape=331ec264 vocab=c74b940a
+-/
 theorem final_solution {f : ℕ+ → ℕ} :
     good f ↔ ∃ c ≠ 0, ∃ p : Nat.Primes,
       f = λ n : ℕ+ ↦ n.factorMultiset.count p * c :=

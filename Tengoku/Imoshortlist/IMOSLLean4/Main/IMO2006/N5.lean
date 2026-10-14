@@ -35,7 +35,9 @@ namespace IMO2006N5
 open Finset
 
 /-- Let `p` be a prime and `F` be a finite field. Suppose that there exists `x : F`
-  with `x ≠ 1` such that `∑_{i = 0}^{p - 1} x^i = 0`. Then `|F| ≡ 1 (mod p)`. -/
+  with `x ≠ 1` such that `∑_{i = 0}^{p - 1} x^i = 0`. Then `|F| ≡ 1 (mod p)`.
+@isnad1 id=modeq.3h3v.s6.66f0b7cc8589 from=translated src=- shape=fb99188c vocab=43a36b08
+-/
 theorem FiniteField_prime_geom_sum_eq_zero_imp [Field F] [Fintype F] [DecidableEq F]
     (hp : Nat.Prime p) {x : F} (hx : x ≠ 1) (hx0 : ∑ i ∈ range p, x ^ i = 0) :
     Fintype.card F ≡ 1 [MOD p] := by
@@ -48,7 +50,9 @@ theorem FiniteField_prime_geom_sum_eq_zero_imp [Field F] [Fintype F] [DecidableE
   rwa [Fintype.card_eq_card_units_add_one, Nat.add_modEq_right_iff]
 
 /-- Let `p` and `q` be prime with `p ∣ ∑_{i = 0}^{q - 1} x^i` for sone `x : ℤ`.
-  Then `p` is either equal to `q` or congruent to `1 (mod q)`. -/
+  Then `p` is either equal to `q` or congruent to `1 (mod q)`.
+@isnad1 id=or.3h3v.s5.4913d0a10f05 from=translated src=- shape=45ce0075 vocab=02006851
+-/
 theorem Nat_prime_dvd_prime_geom_sum_imp
     (hp : Nat.Prime p) (hq : Nat.Prime q) {x : ℤ} (hx : (p : ℤ) ∣ ∑ i ∈ range q, x ^ i) :
     p = q ∨ p ≡ 1 [MOD q] := by
@@ -75,7 +79,9 @@ theorem Nat_prime_dvd_prime_geom_sum_imp
       _ ≡ 1 [MOD q] := FiniteField_prime_geom_sum_eq_zero_imp hq hx0 hx
 
 /-- Let `d : ℕ` and `p` be prime with `d ∣ ∑_{i = 0}^{p - 1} x^i` for sone `x : ℤ`.
-  Then either `p ∣ d` or `d ≡ 1 (mod p)`. -/
+  Then either `p ∣ d` or `d ≡ 1 (mod p)`.
+@isnad1 id=or.2h3v.s5.bac044e8c1fc from=translated src=- shape=cfdb630b vocab=02006851
+-/
 theorem Nat_dvd_prime_geom_sum_imp
     (hp : Nat.Prime p) {d : ℕ} {x : ℤ} (hx : (d : ℤ) ∣ ∑ i ∈ range p, x ^ i) :
     p ∣ d ∨ d ≡ 1 [MOD p] := by
@@ -94,7 +100,9 @@ theorem Nat_dvd_prime_geom_sum_imp
     _ ≡ 1 [MOD p] := Nat.ModEq.listProd_one h
 
 /-- Let `d ≥ 0` and `p` be prime with `d ∣ ∑_{i = 0}^{p - 1} x^i` for sone `x : ℤ`.
-  Then either `p ∣ d` or `d ≡ 1 (mod p)`. -/
+  Then either `p ∣ d` or `d ≡ 1 (mod p)`.
+@isnad1 id=or.3h3v.s6.dcb67291c1bb from=translated src=- shape=ed7d2c1b vocab=7b7d815b
+-/
 theorem Int_dvd_prime_geom_sum_imp
     (hp : Nat.Prime p) {d : ℤ} (hd : d ≥ 0) {x : ℤ} (hx : (d : ℤ) ∣ ∑ i ∈ range p, x ^ i) :
     (p : ℤ) ∣ d ∨ d ≡ 1 [ZMOD p] := by
@@ -102,7 +110,9 @@ theorem Int_dvd_prime_geom_sum_imp
   exact (Nat_dvd_prime_geom_sum_imp hp hx).imp Int.ofNat_dvd.mpr Int.natCast_modEq_iff.mpr
 
 /-- Let `d ≥ 0` and `p` be prime with `d ∣ ∑_{i = 0}^{p - 1} x^i` for sone `x : ℤ`.
-  Then in `ZMod p`, `d` is either equal to `0` or `1`. -/
+  Then in `ZMod p`, `d` is either equal to `0` or `1`.
+@isnad1 id=or.3h3v.s6.730c3ab7e4d3 from=translated src=- shape=fb342d93 vocab=8d260211
+-/
 theorem Int_dvd_prime_geom_sum_imp_ZMod
     (hp : Nat.Prime p) {d : ℤ} (hd : d ≥ 0) {x : ℤ} (hx : (d : ℤ) ∣ ∑ i ∈ range p, x ^ i) :
     (d : ZMod p) = 0 ∨ (d : ZMod p) = 1 := by
@@ -110,7 +120,9 @@ theorem Int_dvd_prime_geom_sum_imp_ZMod
     (ZMod.intCast_zmod_eq_zero_iff_dvd _ _).mpr λ h ↦ ?_
   rwa [← Int.cast_one, ZMod.intCast_eq_intCast_iff']
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=not.2h3v.s6.f8376f15fc79 from=translated src=- shape=ca9a4480 vocab=f84d5e30
+-/
 theorem final_solution (hp : Nat.Prime p) (hp0 : p > 3) (x y : ℤ) :
     ¬∑ i ∈ range p, x ^ i = y ^ (p - 2) - 1 := by
   ---- Suppose for the sake of contradiction that `∑_{i = 0}^{p - 1} x^i = y^{p - 2} - 1`.

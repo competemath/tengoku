@@ -33,13 +33,17 @@ section
 
 variable [CommSemiring R] [PartialOrder R] [IsStrictOrderedRing R]
 
-/-- If `a, b > 0` then` a^2 + b^2 < (a + b)^2`. -/
+/-- If `a, b > 0` then` a^2 + b^2 < (a + b)^2`.
+@isnad1 id=lt.2h3v.s7.5d189a9bdab3 from=translated src=- shape=55808a51 vocab=dac969f0
+-/
 theorem sq_add_lt_add_sq {a b : R} (ha : a > 0) (hb : b > 0) :
     a ^ 2 + b ^ 2 < (a + b) ^ 2 := by
   rw [add_sq', lt_add_iff_pos_right]
   exact mul_pos (mul_pos two_pos ha) hb
 
-/-- If `n ≥ 2` and `x_1, x_2, …, x_n > 0`, then `∑_i x_i^2 < (∑_i x_i)^2`. -/
+/-- If `n ≥ 2` and `x_1, x_2, …, x_n > 0`, then `∑_i x_i^2 < (∑_i x_i)^2`.
+@isnad1 id=lt.2h4v.s7.f5f80d64a3c4 from=translated src=- shape=2025db00 vocab=57a8faaa
+-/
 theorem sum_sq_lt_sq_sum_of_pos [DecidableEq ι] {f : ι → R} {I : Finset ι}
     (hI : #I ≥ 2) (hf : ∀ i ∈ I, 0 < f i) :
     ∑ i ∈ I, f i ^ 2 < (∑ i ∈ I, f i) ^ 2 := by

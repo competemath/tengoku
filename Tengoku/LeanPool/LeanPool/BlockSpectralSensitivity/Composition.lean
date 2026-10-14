@@ -42,7 +42,9 @@ resulting bits fed to `f` (Section 14 of `bs_lambda.txt`). -/
 def comp {W V : Type*} (f : Input W → Bool) (g : Input V → Bool) :
     Input (W × V) → Bool := fun x => f fun w => g fun v => x (w, v)
 
-/-- The defining equation of `comp`. -/
+/-- The defining equation of `comp`.
+@isnad1 id=eq.0h5v.s5.edbc68073387 from=translated src=- shape=ab5a2063 vocab=6980d42e
+-/
 theorem comp_apply {W V : Type*} (f : Input W → Bool) (g : Input V → Bool)
     (x : Input (W × V)) : comp f g x = f fun w ↦ g fun v ↦ x (w, v) := rfl
 
@@ -68,7 +70,9 @@ instance instDecidableEqIterCoord {V : Type*} [DecidableEq V] : ∀ m, Decidable
       letI := instDecidableEqIterCoord (V := V) m
       inferInstanceAs (DecidableEq (V × IterCoord V m))
 
-/-- There are exactly `k^m` tuples, where `k = #V` (Section 14). -/
+/-- There are exactly `k^m` tuples, where `k = #V` (Section 14).
+@isnad1 id=eq.0h2v.s5.30a2d2b42b38 from=translated src=- shape=76294671 vocab=983653f6
+-/
 theorem card_iterCoord (V : Type*) [Fintype V] :
     ∀ m, Fintype.card (IterCoord V m) = Fintype.card V ^ m
   | 0 => Fintype.card_punit
@@ -82,11 +86,15 @@ def iterBlock {V ι : Type*} [DecidableEq V] (blk : ι → Finset V) :
   | 0 => fun _ => (Finset.univ : Finset PUnit)
   | m + 1 => fun t => (blk t.1) ×ˢ iterBlock blk m t.2
 
-/-- There is a single degenerate `0`-fold product block, the whole (one-point) cube. -/
+/-- There is a single degenerate `0`-fold product block, the whole (one-point) cube.
+@isnad1 id=eq.0h4v.s5.d93a000c3915 from=translated src=- shape=115a9a46 vocab=d35fc1f8
+-/
 @[simp] theorem iterBlock_zero {V ι : Type*} [DecidableEq V] (blk : ι → Finset V)
     (t : IterCoord ι 0) : iterBlock blk 0 t = (Finset.univ : Finset PUnit) := rfl
 
-/-- The recursion equation of `iterBlock`: the first index picks the outer factor. -/
+/-- The recursion equation of `iterBlock`: the first index picks the outer factor.
+@isnad1 id=eq.0h5v.s6.cf9032471ebd from=translated src=- shape=1ea4b06c vocab=f3ce2445
+-/
 theorem iterBlock_succ {V ι : Type*} [DecidableEq V] (blk : ι → Finset V) (m : ℕ)
     (t : IterCoord ι (m + 1)) : iterBlock blk (m + 1) t = blk t.1 ×ˢ iterBlock blk m t.2 := rfl
 
@@ -96,16 +104,22 @@ def iterFun {V : Type*} (f : Input V → Bool) : (m : ℕ) → Input (IterCoord 
   | 0 => fun x => x PUnit.unit
   | m + 1 => comp f (iterFun f m)
 
-/-- `F_0` is the one-bit identity function. -/
+/-- `F_0` is the one-bit identity function.
+@isnad1 id=eq.0h3v.s4.e251b99abd2c from=translated src=- shape=6a08deeb vocab=c3703f9e
+-/
 @[simp] theorem iterFun_zero {V : Type*} (f : Input V → Bool) (x : Input (IterCoord V 0)) :
     iterFun f 0 x = x PUnit.unit := rfl
 
-/-- The recursion equation of `iterFun`: `F_{m+1} = f ∘ F_m`. -/
+/-- The recursion equation of `iterFun`: `F_{m+1} = f ∘ F_m`.
+@isnad1 id=eq.0h3v.s5.3a454ca454f4 from=translated src=- shape=abd1f03a vocab=2d4149ce
+-/
 theorem iterFun_succ {V : Type*} (f : Input V → Bool) (m : ℕ) :
     iterFun f (m + 1) = comp f (iterFun f m) := rfl
 
 /-- Slicing the all-zero input flipped on a product block `A ×ˢ B`: the `v`-slice is the
-flip of `B` when `v ∈ A`, and the all-zero input otherwise (Section 14). -/
+flip of `B` when `v ∈ A`, and the all-zero input otherwise (Section 14).
+@isnad1 id=eq.0h5v.s6.8c8ab4b20b7a from=translated src=- shape=570cab62 vocab=88f52abe
+-/
 theorem flipSet_zeroInput_product_slice {V W : Type*} [DecidableEq V] [DecidableEq W]
     (A : Finset V) (B : Finset W) (v : V) :
     (fun w => flipSet (zeroInput (V × W)) (A ×ˢ B) (v, w))
@@ -115,7 +129,9 @@ theorem flipSet_zeroInput_product_slice {V W : Type*} [DecidableEq V] [Decidable
 
 /-- The key composition step of Section 14: if the inner function `g` is flipped from `0`
 to `1` by the block `B`, then `comp f g` on the product block `A ×ˢ B` feeds `f` exactly
-the all-zero input flipped on `A`. -/
+the all-zero input flipped on `A`.
+@isnad1 id=eq.2h6v.s6.583b33d63d19 from=translated src=- shape=73343267 vocab=a20a009f
+-/
 theorem comp_flipSet_product {V W : Type*} [DecidableEq V] [DecidableEq W]
     {f : Input V → Bool} {g : Input W → Bool} {A : Finset V} {B : Finset W}
     (hzero : g (zeroInput W) = false) (hflip : g (flipSet (zeroInput W) B) = true) :
@@ -131,7 +147,9 @@ section Seed
 variable {V ι : Type*} [DecidableEq V] {f : Input V → Bool} {blk : ι → Finset V}
 
 omit [DecidableEq V] in
-/-- The all-zero input of `F_m` evaluates to `0` whenever the seed does (Section 14). -/
+/-- The all-zero input of `F_m` evaluates to `0` whenever the seed does (Section 14).
+@isnad1 id=eq.1h3v.s4.bf2e5688d86b from=translated src=- shape=3041e80e vocab=45a2737b
+-/
 theorem iterFun_zeroInput (hzero : f (zeroInput V) = false) :
     ∀ m, iterFun f m (zeroInput (IterCoord V m)) = false
   | 0 => rfl
@@ -141,7 +159,9 @@ theorem iterFun_zeroInput (hzero : f (zeroInput V) = false) :
       exact (congrArg f h).trans hzero
 
 /-- Flipping the Cartesian-product block `B_{i_1} × ⋯ × B_{i_m}` at the all-zero input
-turns the value of `F_m` from `0` to `1` (Section 14). -/
+turns the value of `F_m` from `0` to `1` (Section 14).
+@isnad1 id=eq.2h6v.s6.cad2397bdd2d from=translated src=- shape=8742eebb vocab=f28f9f82
+-/
 theorem iterFun_flipSet_iterBlock (hzero : f (zeroInput V) = false)
     (hflip : ∀ i, f (flipSet (zeroInput V) (blk i)) = true) :
     ∀ (m : ℕ) (t : IterCoord ι m),
@@ -159,13 +179,17 @@ section Blocks
 
 variable {V ι : Type*} [DecidableEq V] {blk : ι → Finset V}
 
-/-- Cartesian products of nonempty blocks are nonempty (Section 14). -/
+/-- Cartesian products of nonempty blocks are nonempty (Section 14).
+@isnad1 id=nonempty.1h5v.s5.28be08781d67 from=translated src=- shape=f8f88a5b vocab=e6e2a00e
+-/
 theorem iterBlock_nonempty (hne : ∀ i, (blk i).Nonempty) :
     ∀ (m : ℕ) (t : IterCoord ι m), (iterBlock blk m t).Nonempty
   | 0 => fun _ ↦ ⟨PUnit.unit, Finset.mem_univ (α := PUnit) _⟩
   | m + 1 => fun t ↦ (hne t.1).product (iterBlock_nonempty hne m t.2)
 
-/-- Distinct index tuples give disjoint Cartesian-product blocks (Section 14). -/
+/-- Distinct index tuples give disjoint Cartesian-product blocks (Section 14).
+@isnad1 id=pairwise.1h4v.s5.f1dc5a955c10 from=translated src=- shape=487c47ac vocab=06c35af7
+-/
 theorem iterBlock_disjoint (hdisj : Pairwise (Disjoint on blk)) :
     ∀ m : ℕ, Pairwise (Disjoint on (iterBlock blk m))
   | 0 => fun t u h ↦ absurd (Subsingleton.elim (α := PUnit) t u) h
@@ -176,7 +200,9 @@ theorem iterBlock_disjoint (hdisj : Pairwise (Disjoint on blk)) :
 end Blocks
 
 /-- **Section 14**: the `k^m` Cartesian-product blocks are pairwise disjoint sensitive
-blocks of `F_m` at the all-zero input, so `bs(F_m) ≥ k^m`. -/
+blocks of `F_m` at the all-zero input, so `bs(F_m) ≥ k^m`.
+@isnad1 id=le.4h5v.s6.570c788d4e57 from=translated src=- shape=9333f1d2 vocab=d51a74b2
+-/
 theorem card_pow_le_bs_iterFun {V ι : Type*} [Fintype V] [DecidableEq V] [Fintype ι]
     {f : Input V → Bool} {blk : ι → Finset V}
     (hzero : f (zeroInput V) = false)

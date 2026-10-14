@@ -28,9 +28,15 @@ namespace IMO2019N4
 
 /-! ### Extra lemmas -/
 
+/--
+@isnad1 id=iff.1h3v.s4.8ede524cd7df from=translated src=- shape=853b338a vocab=505ec72b
+-/
 lemma dvd_iff_of_dvd_add {c : ℕ} (h : c ∣ a + b) : c ∣ a ↔ c ∣ b :=
   ⟨λ h0 ↦ (Nat.dvd_add_right h0).mp h, λ h0 ↦ (Nat.dvd_add_left h0).mp h⟩
 
+/--
+@isnad1 id=iff.1h3v.s6.3c83f00a16c2 from=translated src=- shape=1b7fd73a vocab=da5fd9ce
+-/
 theorem dvd_sq_iff_dvd_sq_of_dvd_add {c : ℕ} (h : c ∣ a + b) :
     c ∣ a ^ 2 ↔ c ∣ b ^ 2 :=
   have h0 {u v w : ℕ} (h0 : u ∣ v + w) : u ∣ v ^ 2 ↔ u ∣ v * w :=
@@ -53,9 +59,15 @@ theorem eq_zero_of_prime_add_dvd_sq (h : p.Prime) (h0 : a < p) (h1 : p + a ∣ p
 def good (C : ℕ) (f : ℕ → ℕ) :=
   ∀ a b : ℕ, C < a + b → a + f b ∣ a ^ 2 + b * f a
 
+/--
+@isnad1 id=good.0h2v.s4.347de97f2f29 from=translated src=- shape=1d0ec5d8 vocab=bc01c007
+-/
 theorem linear_is_good (C k : ℕ) : good C (k * ·) :=
   λ a b _ ↦ ⟨a, by rw [sq, add_mul, Nat.mul_assoc, mul_left_comm]⟩
 
+/--
+@isnad1 id=ex.1h2v.s4.6c75bb17526b from=translated src=- shape=c7147718 vocab=bc01c007
+-/
 theorem good_is_linear {f : ℕ → ℕ} (h : good C f) : ∃ k, f = (k * ·) := by
   ---- `f(n) ≤ n f(1)` for all `n`
   have h0 {n} (h0 : C < n) : f n ≤ n * f 1 := by
@@ -116,7 +128,9 @@ theorem good_is_linear {f : ℕ → ℕ} (h : good C f) : ∃ k, f = (k * ·) :=
   rw [h8, Nat.mul_left_inj h7.ne_zero] at h10
   rw [h11, ← h10, ← h9]
 
-/-- Final solution, `Nat` version -/
+/-- Final solution, `Nat` version
+@isnad1 id=iff.0h2v.s4.e14d76d4139a from=translated src=- shape=b1044a14 vocab=bc01c007
+-/
 theorem final_solution_Nat : good C f ↔ ∃ k : ℕ, f = (k * ·) :=
   ⟨good_is_linear, λ h ↦ h.elim λ k h ↦ h ▸ linear_is_good C k⟩
 
@@ -125,9 +139,15 @@ theorem final_solution_Nat : good C f ↔ ∃ k : ℕ, f = (k * ·) :=
 def goodPNat (C : ℕ+) (f : ℕ+ → ℕ+) :=
   ∀ a b : ℕ+, C < a + b → a + f b ∣ a ^ 2 + b * f a
 
+/--
+@isnad1 id=goodpnat.0h2v.s4.891ab6c3b504 from=translated src=- shape=1d0ec5d8 vocab=70f01a6e
+-/
 theorem linear_is_goodPNat (C k : ℕ+) : goodPNat C (k * ·) :=
   λ a b _ ↦ ⟨a, by rw [sq, add_mul, mul_assoc, mul_left_comm]⟩
 
+/--
+@isnad1 id=ex.1h2v.s4.eb0341d4acf1 from=translated src=- shape=c7147718 vocab=70f01a6e
+-/
 theorem goodPNat_is_linear (h : goodPNat C f) : ∃ k : ℕ+, f = (k * ·) := by
   let g : ℕ → ℕ := λ n ↦ dite (0 < n) (λ h ↦ f ⟨n, h⟩) (λ _ ↦ 0)
   have h0 : good C g := λ a b H ↦ by
@@ -144,6 +164,8 @@ theorem goodPNat_is_linear (h : goodPNat C f) : ∃ k : ℕ+, f = (k * ·) := by
   rw [← PNat.coe_inj, PNat.mul_coe, PNat.mk_coe, ← congr_fun h1, eq_comm]
   exact dite_eq_left x.pos
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h2v.s4.1bf029c59af6 from=translated src=- shape=b1044a14 vocab=70f01a6e
+-/
 theorem final_solution : goodPNat C f ↔ ∃ k : ℕ+, f = (k * ·) :=
   ⟨goodPNat_is_linear, λ h ↦ h.elim λ k h ↦ h ▸ linear_is_goodPNat C k⟩

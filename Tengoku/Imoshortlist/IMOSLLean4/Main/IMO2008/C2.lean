@@ -40,7 +40,9 @@ section
 
 open Function
 
-/-- If `σ : Fin n → Fin n` is a permutation, then `2 ∑_i σ(i) = n(n - 1)`. -/
+/-- If `σ : Fin n → Fin n` is a permutation, then `2 ∑_i σ(i) = n(n - 1)`.
+@isnad1 id=eq.0h2v.s6.a4953d5f4fc0 from=translated src=- shape=f3939c46 vocab=14dd146f
+-/
 theorem two_mul_sum_equiv_fin [NeZero n] (σ : Equiv.Perm (Fin n)) :
     2 * ∑ i ∈ range n, (σ i : ℕ) = n * (n - 1) := by
   have h : ∑ i ∈ range n, (σ i : ℕ) = ∑ i ∈ range n, i := calc
@@ -50,14 +52,18 @@ theorem two_mul_sum_equiv_fin [NeZero n] (σ : Equiv.Perm (Fin n)) :
     _ = ∑ i ∈ range n, i := Fin.sum_univ_eq_sum_range id _
   rw [h, Nat.mul_comm, sum_range_id_mul_two]
 
-/-- If `σ : Fin (n + 1) → Fin (n + 1)` is a permutation, then `2 ∑_i σ(i) = (n + 1)n`. -/
+/-- If `σ : Fin (n + 1) → Fin (n + 1)` is a permutation, then `2 ∑_i σ(i) = (n + 1)n`.
+@isnad1 id=eq.0h2v.s7.49d7477be897 from=translated src=- shape=ff370a79 vocab=2bf12671
+-/
 theorem two_mul_sum_equiv_fin_succ (σ : Equiv.Perm (Fin (n + 1))) :
     2 * ∑ i ∈ range (n + 1), (σ i : ℕ) = (n + 1) * n := by
   rw [two_mul_sum_equiv_fin, Nat.add_sub_cancel]
 
 /-- Let `f, g : Fin n → Fin n` with `f ∘ g = id`.
   Define `f₀, g₀ : Fin (n + 1) → Fin (n + 1)` by `f₀(i) = f(i), g₀(i) = g(i)`
-    for `i < n` and `f₀(n) = g₀(n) = n`. Then `f₀ ∘ g₀ = id`. -/
+    for `i < n` and `f₀(n) = g₀(n) = n`. Then `f₀ ∘ g₀ = id`.
+@isnad1 id=eq.1h4v.s7.f5c6720336a4 from=translated src=- shape=7f99c56f vocab=00e98dba
+-/
 theorem snoc_castSucc_inverse {f g : Fin n → Fin n} (h : ∀ j, f (g j) = j) (i) :
     Fin.snoc (α := λ _ ↦ Fin (n + 1)) (Fin.castSucc ∘ f) (Fin.last n)
       (Fin.snoc (α := λ _ ↦ Fin (n + 1)) (Fin.castSucc ∘ g) (Fin.last n) i) = i := by
@@ -68,7 +74,9 @@ theorem snoc_castSucc_inverse {f g : Fin n → Fin n} (h : ∀ j, f (g j) = j) (
 
 /-- Let `f, g : Fin n → Fin n` with `f ∘ g = id`.
   Define `f₀, g₀ : Fin (n + 1) → Fin (n + 1)` by `f₀(i + 1) = f(i), g₀(i) = g(i) + 1`
-    for `i < n` and `f₀(0) = n, g₀(n) = 0`. Then `f₀ ∘ g₀ = id`. -/
+    for `i < n` and `f₀(0) = n, g₀(n) = 0`. Then `f₀ ∘ g₀ = id`.
+@isnad1 id=eq.1h4v.s7.b7b63cb04a3a from=translated src=- shape=7b400f9d vocab=62e092b2
+-/
 theorem cons_last_snoc_zero_inverse {f g : Fin n → Fin n} (h : ∀ j, f (g j) = j) (i) :
     Fin.cons (α := λ _ ↦ Fin (n + 1)) (Fin.last n) (Fin.castSucc ∘ f)
       (Fin.snoc (α := λ _ ↦ Fin (n + 1)) (Fin.succ ∘ g) 0 i) = i := by
@@ -79,7 +87,9 @@ theorem cons_last_snoc_zero_inverse {f g : Fin n → Fin n} (h : ∀ j, f (g j) 
 
 /-- Let `f, g : Fin n → Fin n` with `f ∘ g = id`.
   Define `f₀, g₀ : Fin (n + 1) → Fin (n + 1)` by `f₀(i) = f(i) + 1, g₀(i + 1) = g(i)`
-    for `i < n` and `f₀(n) = 0, g₀(0) = n`. Then `f₀ ∘ g₀ = id`. -/
+    for `i < n` and `f₀(n) = 0, g₀(0) = n`. Then `f₀ ∘ g₀ = id`.
+@isnad1 id=eq.1h4v.s7.b546b0f80186 from=translated src=- shape=260b8f2d vocab=62e092b2
+-/
 theorem snoc_zero_cons_last_inverse {f g : Fin n → Fin n} (h : ∀ j, f (g j) = j) (i) :
     Fin.snoc (α := λ _ ↦ Fin (n + 1)) (Fin.succ ∘ f) 0
       (Fin.cons (α := λ _ ↦ Fin (n + 1)) (Fin.last n) (Fin.castSucc ∘ g) i) = i := by
@@ -88,13 +98,17 @@ theorem snoc_zero_cons_last_inverse {f g : Fin n → Fin n} (h : ∀ j, f (g j) 
   · rw [Fin.cons_succ, comp_apply, Fin.snoc_castSucc, comp_apply, h]
 
 /-- Let `σ : Fin (n + 1) → Fin (n + 1)` and `j = σ(0)`.
-  Then `σ(i + 1) ≠ j` for any `i : Fin n`. -/
+  Then `σ(i + 1) ≠ j` for any `i : Fin n`.
+@isnad1 id=ne.1h4v.s8.949141f04e82 from=translated src=- shape=cd49bb14 vocab=45d4e4ba
+-/
 theorem equiv_map_castSucc_ne_of_map_zero
     {σ : Equiv.Perm (Fin (n + 1))} (hσ : σ 0 = j) (i : Fin n) : (σ i.succ) ≠ j :=
   λ h ↦ Fin.succ_ne_zero i (σ.injective (h.trans hσ.symm))
 
 /-- Let `σ : Fin (n + 1) → Fin (n + 1)` and `j = σ(n)`.
-  Then `σ(i) ≠ j` for any `i : Fin n`. -/
+  Then `σ(i) ≠ j` for any `i : Fin n`.
+@isnad1 id=ne.1h4v.s8.31566e18b859 from=translated src=- shape=bb37adb7 vocab=31fed84e
+-/
 theorem equiv_map_castSucc_ne_of_map_last
     {σ : Equiv.Perm (Fin (n + 1))} (hσ : σ (Fin.last n) = j) (i : Fin n) :
     (σ i.castSucc) ≠ j :=
@@ -125,45 +139,61 @@ def snoc_last_equiv (σ : Equiv.Perm (Fin n)) : Equiv.Perm (Fin (n + 1)) where
 def snoc_equiv (p : Bool × Equiv.Perm (Fin n)) : Equiv.Perm (Fin (n + 1)) :=
   bif p.1 then snoc_last_equiv p.2 else snoc_zero_equiv p.2
 
-/-- For any `i : Fin n`, we have `snoc_last_equiv σ i = σ(i) + 1`. -/
+/-- For any `i : Fin n`, we have `snoc_last_equiv σ i = σ(i) + 1`.
+@isnad1 id=eq.0h3v.s7.2ac9c4fe297e from=translated src=- shape=bb4e08c5 vocab=1309d182
+-/
 theorem snoc_zero_equiv_apply_castSucc (σ : Equiv.Perm (Fin n)) (i : Fin n) :
     snoc_zero_equiv σ i.castSucc = (σ i).succ :=
   Fin.snoc_castSucc (α := λ _ ↦ Fin (n + 1)) _ _ i
 
-/-- For any `i : Fin n`, we have `snoc_last_equiv σ i = σ(i)`. -/
+/-- For any `i : Fin n`, we have `snoc_last_equiv σ i = σ(i)`.
+@isnad1 id=eq.0h3v.s7.0e178b936fa3 from=translated src=- shape=bb4e08c5 vocab=04a5a262
+-/
 theorem snoc_last_equiv_apply_castSucc (σ : Equiv.Perm (Fin n)) (i : Fin n) :
     snoc_last_equiv σ i.castSucc = (σ i).castSucc :=
   Fin.snoc_castSucc (α := λ _ ↦ Fin (n + 1)) _ _ i
 
-/-- We have `snoc_zero_equiv σ n = n`. -/
+/-- We have `snoc_zero_equiv σ n = n`.
+@isnad1 id=eq.0h2v.s7.8408ca5b6be9 from=translated src=- shape=5d2d971b vocab=c7e45e05
+-/
 theorem snoc_zero_equiv_apply_last (σ : Equiv.Perm (Fin n)) :
     snoc_zero_equiv σ (Fin.last n) = 0 :=
   Fin.snoc_last (α := λ _ ↦ Fin (n + 1)) _ _
 
-/-- We have `snoc_last_equiv σ n = n`. -/
+/-- We have `snoc_last_equiv σ n = n`.
+@isnad1 id=eq.0h2v.s7.5f6a7cb4d219 from=translated src=- shape=34f2e2f9 vocab=54f9c1ac
+-/
 theorem snoc_last_equiv_apply_last (σ : Equiv.Perm (Fin n)) :
     snoc_last_equiv σ (Fin.last n) = Fin.last n :=
   Fin.snoc_last (α := λ _ ↦ Fin (n + 1)) _ _
 
-/-- We have `snoc_equiv (b, σ) n` equal to `0` if `b = false` and `n` if `b = true`. -/
+/-- We have `snoc_equiv (b, σ) n` equal to `0` if `b = false` and `n` if `b = true`.
+@isnad1 id=eq.0h2v.s7.f1528c5f3f7a from=translated src=- shape=a483f7be vocab=c0052d04
+-/
 theorem snoc_equiv_apply_last (p : Bool × Equiv.Perm (Fin n)) :
     snoc_equiv p (Fin.last n) = bif p.1 then Fin.last n else 0 :=
   match p with
   | (false, σ) => snoc_zero_equiv_apply_last σ
   | (true, σ) => snoc_last_equiv_apply_last σ
 
-/-- The function `snoc_zero_equiv` is injective. -/
+/-- The function `snoc_zero_equiv` is injective.
+@isnad1 id=injectiv.0h1v.s4.3c8952120c69 from=translated src=- shape=d2e5a97f vocab=ca58a2d6
+-/
 theorem snoc_zero_equiv_injective {n} : (snoc_zero_equiv (n := n)).Injective := by
   intro σ τ h; refine Equiv.ext λ i ↦ ?_
   rw [← Fin.succ_inj, ← snoc_zero_equiv_apply_castSucc, h, snoc_zero_equiv_apply_castSucc]
 
-/-- The function `snoc_last_equiv` is injective. -/
+/-- The function `snoc_last_equiv` is injective.
+@isnad1 id=injectiv.0h1v.s4.e9a497cc3ef6 from=translated src=- shape=d2e5a97f vocab=b3bf9575
+-/
 theorem snoc_last_equiv_injective {n} : (snoc_last_equiv (n := n)).Injective := by
   intro σ τ h; refine Equiv.ext λ i ↦ ?_
   rw [← Fin.castSucc_inj, ← snoc_last_equiv_apply_castSucc,
     h, snoc_last_equiv_apply_castSucc]
 
-/-- The function `snoc_equiv` is injective. -/
+/-- The function `snoc_equiv` is injective.
+@isnad1 id=injectiv.0h1v.s5.6a21dbda5217 from=translated src=- shape=83cccde5 vocab=bd5218bc
+-/
 theorem snoc_equiv_injective [NeZero n] : (snoc_equiv (n := n)).Injective := by
   rintro ⟨b, σ⟩ ⟨c, τ⟩ h
   have h0 : Fin.last n ≠ 0 := mt Fin.last_eq_zero_iff.mp (NeZero.ne n)
@@ -190,7 +220,9 @@ def snoc_zero_inverse : Equiv.Perm (Fin n) where
   left_inv i := by simp_rw [Fin.succ_pred, Equiv.symm_apply_apply, Fin.castPred_castSucc]
   right_inv i := by simp_rw [Fin.castSucc_castPred, Equiv.apply_symm_apply, Fin.pred_succ]
 
-/-- The function `snoc_zero_inverse` is the right inverse for `snoc_zero_equiv`. -/
+/-- The function `snoc_zero_inverse` is the right inverse for `snoc_zero_equiv`.
+@isnad1 id=eq.1h2v.s7.ecfa3a75e745 from=translated src=- shape=a008ab0f vocab=adbebca3
+-/
 theorem snoc_zero_equiv_inverse : snoc_zero_equiv (snoc_zero_inverse hσ) = σ := by
   ext i; obtain ⟨j, rfl⟩ | rfl : (∃ j : Fin n, i = j.castSucc) ∨ i = Fin.last n :=
     i.eq_castSucc_or_eq_last
@@ -211,7 +243,9 @@ def snoc_last_inverse : Equiv.Perm (Fin n) where
   left_inv i := by simp_rw [Fin.castSucc_castPred, σ.symm_apply_apply, Fin.castPred_castSucc]
   right_inv i := by simp_rw [Fin.castSucc_castPred, σ.apply_symm_apply, Fin.castPred_castSucc]
 
-/-- The function `snoc_last_inverse` is the right inverse for `snoc_last_equiv`. -/
+/-- The function `snoc_last_inverse` is the right inverse for `snoc_last_equiv`.
+@isnad1 id=eq.1h2v.s7.3a514c874e75 from=translated src=- shape=c8d29490 vocab=8188383f
+-/
 theorem snoc_last_equiv_inverse : snoc_last_equiv (snoc_last_inverse hσ) = σ := by
   ext i; obtain ⟨j, rfl⟩ | rfl : (∃ j : Fin n, i = j.castSucc) ∨ i = Fin.last n :=
     i.eq_castSucc_or_eq_last
@@ -249,11 +283,15 @@ def nice (σ : Equiv.Perm (Fin n)) :=
   | 0 => True
   | _ + 1 => ∀ k ≤ n, k ∣ 2 * ∑ i ∈ range k, (σ i : ℕ)
 
-/-- A permutation on `Fin 0` is nice. -/
+/-- A permutation on `Fin 0` is nice.
+@isnad1 id=nice.0h1v.s3.e8224a9ceac3 from=translated src=- shape=8dd71da0 vocab=87b1e255
+-/
 theorem perm_zero_is_nice (σ : Equiv.Perm (Fin 0)) : nice σ :=
   trivial
 
-/-- Definition of a nice permutation on `Fin n` for `n ≠ 0`. -/
+/-- Definition of a nice permutation on `Fin n` for `n ≠ 0`.
+@isnad1 id=iff.0h2v.s6.2e3c6325072d from=translated src=- shape=b53b3ab4 vocab=e27a88f0
+-/
 theorem nice_def [NeZero n] {σ : Equiv.Perm (Fin n)} :
     nice σ ↔ ∀ k ≤ n, k ∣ 2 * ∑ i ∈ range k, (σ i : ℕ) := by
   cases n with | zero => exact absurd rfl (NeZero.ne 0) | succ n => rfl
@@ -262,7 +300,9 @@ theorem nice_def [NeZero n] {σ : Equiv.Perm (Fin n)} :
 instance : DecidablePred (nice (n := n)) :=
   λ _ ↦ match n with | 0 => isTrue trivial | _ + 1 => Nat.decidableBallLE _ _
 
-/-- The construction `snoc_zero_equiv` preserves niceness. -/
+/-- The construction `snoc_zero_equiv` preserves niceness.
+@isnad1 id=iff.0h2v.s4.d9d06e7d2fbe from=translated src=- shape=22e76021 vocab=6f74385d
+-/
 theorem snoc_zero_equiv_nice_iff_nice {σ : Equiv.Perm (Fin n)} :
     nice (snoc_zero_equiv σ) ↔ nice σ := by
   cases n with | zero => decide +revert | succ m => ?_
@@ -280,7 +320,9 @@ theorem snoc_zero_equiv_nice_iff_nice {σ : Equiv.Perm (Fin n)} :
   lift i to Fin n using hi
   rw [Fin.coe_eq_castSucc, Fin.cast_val_eq_self, snoc_zero_equiv_apply_castSucc]; rfl
 
-/-- The construction `snoc_last_equiv` preserves niceness. -/
+/-- The construction `snoc_last_equiv` preserves niceness.
+@isnad1 id=iff.0h2v.s4.f910e90e4a91 from=translated src=- shape=22e76021 vocab=044fd3a3
+-/
 theorem snoc_last_equiv_nice_iff_nice {σ : Equiv.Perm (Fin n)} :
     nice (snoc_last_equiv σ) ↔ nice σ := by
   cases n with | zero => decide +revert | succ m => ?_
@@ -296,7 +338,9 @@ theorem snoc_last_equiv_nice_iff_nice {σ : Equiv.Perm (Fin n)} :
   lift i to Fin n using hi
   rw [Fin.coe_eq_castSucc, Fin.cast_val_eq_self, snoc_last_equiv_apply_castSucc]; rfl
 
-/-- The construction `snoc_equiv` preserves niceness. -/
+/-- The construction `snoc_equiv` preserves niceness.
+@isnad1 id=iff.0h2v.s5.035b1f86bbaf from=translated src=- shape=01e7f41f vocab=fe632e5e
+-/
 theorem snoc_equiv_nice_iff_nice {p : Bool × Equiv.Perm (Fin n)} :
     nice (snoc_equiv p) ↔ nice p.2 :=
   match p with
@@ -308,7 +352,9 @@ section
 variable (hn : n ≥ 3)
 include hn
 
-/-- If `n ≥ 3`, then `σ(n) ∈ {0, n}` for any nice permutation `σ` on `Fin (n + 1)`. -/
+/-- If `n ≥ 3`, then `σ(n) ∈ {0, n}` for any nice permutation `σ` on `Fin (n + 1)`.
+@isnad1 id=or.2h2v.s8.9221fdabd0eb from=translated src=- shape=7317e43e vocab=f2420adb
+-/
 theorem nice.map_last_eq_zero_or_last {σ : Equiv.Perm (Fin (n + 1))} (hσ : nice σ) :
     σ (Fin.last n) = 0 ∨ σ (Fin.last n) = Fin.last n := by
   have hn0 : 1 ≤ n := Nat.zero_lt_of_lt hn
@@ -382,7 +428,9 @@ theorem nice.map_last_eq_zero_or_last {σ : Equiv.Perm (Fin (n + 1))} (hσ : nic
       _ = 2 * (σ (Fin.last n) + (n - 1)) := by rw [Nat.mul_add, h]
 
 /-- For `n ≥ 3`, a permutation `σ : Fin (n + 1) → Fin (n + 1)` is nice if and only if
-  it equals `snoc_equiv (b, τ)` with `τ : Fin n → Fin n` being a nice permutation. -/
+  it equals `snoc_equiv (b, τ)` with `τ : Fin n → Fin n` being a nice permutation.
+@isnad1 id=iff.1h2v.s6.9262697eee99 from=translated src=- shape=2d49014c vocab=302ad842
+-/
 theorem nice_iff_exists_snoc_equiv_nice {σ : Equiv.Perm (Fin (n + 1))} :
     nice σ ↔ ∃ p : Bool × Equiv.Perm (Fin n), nice p.2 ∧ snoc_equiv p = σ := by
   refine ⟨λ hσ ↦ ?_, λ hσ ↦ ?_⟩
@@ -395,7 +443,9 @@ theorem nice_iff_exists_snoc_equiv_nice {σ : Equiv.Perm (Fin (n + 1))} :
     exact snoc_equiv_nice_iff_nice.mpr hp
 
 /-- For `n ≥ 3`, the set of nice permutations on `Fin (n + 1)` is precisely the image of
-  `snoc_equiv` on pairs `(b, σ)` where `σ` is a nice permutation on `Fin n`. -/
+  `snoc_equiv` on pairs `(b, σ)` where `σ` is a nice permutation on `Fin n`.
+@isnad1 id=eq.1h1v.s8.660ac169348e from=translated src=- shape=d7b15569 vocab=53b4d610
+-/
 theorem filter_nice_eq_image_snoc_equiv :
     ({σ : Equiv.Perm (Fin (n + 1)) | nice σ} : Finset _)
       = (univ ×ˢ ({σ : Equiv.Perm (Fin n) | nice σ} : Finset _)).image snoc_equiv := by
@@ -405,7 +455,9 @@ theorem filter_nice_eq_image_snoc_equiv :
           rw [mem_product, and_iff_right (mem_univ _), mem_filter_univ]
 
 /-- For `n ≥ 3`, the number of nice permutations on `Fin (n + 1)`
-  is twice the number of nice permutations on `Fin n`. -/
+  is twice the number of nice permutations on `Fin n`.
+@isnad1 id=eq.1h1v.s7.2250b2c2c2a5 from=translated src=- shape=3121bf80 vocab=69cee547
+-/
 theorem card_nice_perm_of_ge_three :
     #{σ : Equiv.Perm (Fin (n + 1)) | nice σ} = 2 * #{σ : Equiv.Perm (Fin n) | nice σ} := by
   have : NeZero n := NeZero.of_gt hn
@@ -414,14 +466,18 @@ theorem card_nice_perm_of_ge_three :
 
 end
 
-/-- For every `m`, the number of nice permutations on `Fin (m + 3)` is `6 * 2^m`. -/
+/-- For every `m`, the number of nice permutations on `Fin (m + 3)` is `6 * 2^m`.
+@isnad1 id=eq.0h1v.s7.ba1bd8820417 from=translated src=- shape=22210d98 vocab=7ae42012
+-/
 theorem card_nice_perm_add_three (m) :
     #{σ : Equiv.Perm (Fin (m + 3)) | nice σ} = 6 * 2 ^ m := by
   induction m with | zero => decide | succ m m_ih => ?_
   rw [card_nice_perm_of_ge_three (Nat.le_add_left 3 m),
     m_ih, Nat.mul_left_comm, Nat.pow_succ']
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=eq.0h1v.s6.60377c0a687a from=translated src=- shape=097c718c vocab=54162c44
+-/
 theorem final_solution (n) :
     #{σ : Equiv.Perm (Fin n) | nice σ} =
       match n with

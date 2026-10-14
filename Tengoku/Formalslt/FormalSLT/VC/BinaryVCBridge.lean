@@ -70,19 +70,25 @@ def toFilterSet : (Fin n → Bool) → Finset (Fin n) :=
   fun p => (Finset.univ : Finset (Fin n)).filter (fun k => p k = true)
 
 omit [Fintype ι] [Nonempty ι] in
-/-- The loss-vector map factors as `toLossVec ∘ predictionPattern`. -/
+/-- The loss-vector map factors as `toLossVec ∘ predictionPattern`.
+@isnad1 id=eq.0h5v.s5.0b8d1da4721e from=translated src=- shape=20705a26 vocab=fe9286ff
+-/
 lemma lossVector_eq_toLossVec_comp (h : ι → α → Bool) (x : Fin n → α) :
     lossVector (zeroOneLoss h) x = toLossVec ∘ predictionPattern h x := by
   funext i k; rfl
 
 omit [Fintype ι] [Nonempty ι] in
-/-- The filter-set map factors as `toFilterSet ∘ predictionPattern`. -/
+/-- The filter-set map factors as `toFilterSet ∘ predictionPattern`.
+@isnad1 id=eq.0h5v.s6.a26c8c2dcb57 from=translated src=- shape=2088aa49 vocab=0c41410e
+-/
 lemma binaryTrace_map_eq_toFilterSet_comp (h : ι → α → Bool) (x : Fin n → α) :
     (fun i => (Finset.univ : Finset (Fin n)).filter (fun k => h i (x k) = true))
       = toFilterSet ∘ predictionPattern h x := by
   funext i; rfl
 
-/-- `toLossVec` is injective: distinct prediction patterns yield distinct loss vectors. -/
+/-- `toLossVec` is injective: distinct prediction patterns yield distinct loss vectors.
+@isnad1 id=injectiv.0h1v.s3.6366633880c2 from=translated src=- shape=a63464cb vocab=f37faf07
+-/
 lemma toLossVec_injective : Function.Injective (toLossVec : (Fin n → Bool) → (Fin n → ℝ)) := by
   intro p q heq
   ext k
@@ -98,7 +104,9 @@ lemma toLossVec_injective : Function.Injective (toLossVec : (Fin n → Bool) →
     · simp [hq] at hk
     · exact (Bool.eq_false_iff.mpr hp) ▸ (Bool.eq_false_iff.mpr hq) ▸ rfl
 
-/-- `toFilterSet` is injective: distinct prediction patterns yield distinct filter sets. -/
+/-- `toFilterSet` is injective: distinct prediction patterns yield distinct filter sets.
+@isnad1 id=injectiv.0h1v.s3.5717d5ca4937 from=translated src=- shape=19f6a8fe vocab=df3bde1f
+-/
 lemma toFilterSet_injective : Function.Injective (toFilterSet : (Fin n → Bool) → Finset (Fin n)) := by
   intro p q heq
   funext k
@@ -109,7 +117,9 @@ lemma toFilterSet_injective : Function.Injective (toFilterSet : (Fin n → Bool)
 
 omit [Nonempty ι] in
 /-- The effective class (as an image) equals the image of the prediction-pattern
-    image through `toLossVec`. -/
+    image through `toLossVec`.
+@isnad1 id=eq.0h5v.s6.66d5868e382f from=translated src=- shape=71c46c58 vocab=f176d8de
+-/
 lemma effectiveClass_eq_image_toLossVec (h : ι → α → Bool) (x : Fin n → α) :
     effectiveClass (zeroOneLoss h) x =
       ((Finset.univ : Finset ι).image (predictionPattern h x)).image toLossVec := by
@@ -118,7 +128,9 @@ lemma effectiveClass_eq_image_toLossVec (h : ι → α → Bool) (x : Fin n → 
 
 omit [Nonempty ι] in
 /-- The binary class trace (as an image) equals the image of the prediction-pattern
-    image through `toFilterSet`. -/
+    image through `toFilterSet`.
+@isnad1 id=eq.0h5v.s6.542a0b3eb690 from=translated src=- shape=9857c3db vocab=ea7a8155
+-/
 lemma binaryClassTrace_eq_image_toFilterSet (h : ι → α → Bool) (x : Fin n → α) :
     binaryClassTrace h x =
       ((Finset.univ : Finset ι).image (predictionPattern h x)).image toFilterSet := by
@@ -133,7 +145,9 @@ For binary classifiers `h : ι → α → Bool` and a feature sample
 equals the number of distinct binary labeling patterns.
 
 Both factor through the prediction-pattern image with injective
-final maps, so they have the same cardinality. -/
+final maps, so they have the same cardinality.
+@isnad1 id=eq.0h5v.s5.03d4dffa5b8f from=translated src=- shape=d12cadf8 vocab=ecfc7614
+-/
 theorem effectiveClass_zeroOneLoss_card_eq_binaryClassTrace
     (h : ι → α → Bool) (x : Fin n → α) :
     (effectiveClass (zeroOneLoss h) x).card = (binaryClassTrace h x).card := by
@@ -150,7 +164,9 @@ omit [Nonempty ι] in
 
 For binary classifiers with 0-1 loss, the effective class satisfies
 the Sauer-Shelah bound inherited from the binary trace. This removes
-the "growth bound supplied externally" caveat for binary classification. -/
+the "growth bound supplied externally" caveat for binary classification.
+@isnad1 id=le.0h5v.s6.bacba7582424 from=translated src=- shape=fb3aff87 vocab=9c9b75ca
+-/
 theorem effectiveClass_zeroOneLoss_card_le_sauerShelah
     (h : ι → α → Bool) (x : Fin n → α) :
     (effectiveClass (zeroOneLoss h) x).card ≤

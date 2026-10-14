@@ -27,6 +27,9 @@ class nice (a b c d : ℕ) : Prop where
   spec : ((a * b : ℕ) : ℚ) / (a + b : ℕ) + (c * d : ℕ) / (c + d : ℕ)
     = (a + b : ℕ) * (c + d : ℕ) / (a + b + c + d : ℕ)
 
+/--
+@isnad1 id=nice.2h2v.s6.07c9430eec42 from=translated src=- shape=c87f146e vocab=5224e043
+-/
 theorem nice_of_special_form (hk : 0 < k) (hn : 0 < n) :
     nice (k * n ^ 2) (k * n) (k * n) k := by
   have hkn : 0 < k * n := mul_pos hk hn
@@ -51,6 +54,9 @@ theorem eq_nice_sum_of_not_Squarefree (hn : 0 < n) (h : ¬Squarefree n) :
   rw [sq, ← mul_assoc, ← Nat.mul_succ, add_assoc, ← Nat.mul_succ, mul_right_comm,
     ← Nat.mul_succ, Nat.succ_pred_eq_of_pos hp.pos, mul_rotate]
 
+/--
+@isnad1 id=not.1h4v.s5.ee7b300f2156 from=translated src=- shape=bfce3d04 vocab=b8d6dda5
+-/
 theorem nice_sum_not_Squarefree (h : nice a b c d) : ¬Squarefree (a + b + c + d) := λ h0 ↦ by
   have hab : 0 < a + b := Nat.add_pos_left h.a_pos b
   have hcd : 0 < c + d := Nat.add_pos_left h.c_pos d
@@ -74,7 +80,9 @@ theorem nice_sum_not_Squarefree (h : nice a b c d) : ¬Squarefree (a + b + c + d
     (h0.dvd_pow_iff_dvd (Nat.succ_ne_zero 3)).mp (Nat.dvd_of_mod_eq_zero h1)
   exact (Nat.le_of_dvd hab h1).not_gt (Nat.lt_add_of_pos_right hcd)
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.1h1v.s6.c563c9f58c4f from=translated src=- shape=3c3d0b8b vocab=7890b10d
+-/
 theorem final_solution (hn : 0 < n) :
     (∃ a b c d, nice a b c d ∧ a + b + c + d = n) ↔ ¬Squarefree n :=
   ⟨λ ⟨_, _, _, _, h, h0⟩ ↦ h0 ▸ nice_sum_not_Squarefree h, eq_nice_sum_of_not_Squarefree hn⟩

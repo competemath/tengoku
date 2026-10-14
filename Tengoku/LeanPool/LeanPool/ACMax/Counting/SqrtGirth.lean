@@ -41,7 +41,9 @@ open SimpleGraph
 variable {V : Type*}
 
 /-- **Ordered adjacent pairs count twice the induced edges.**  The number of ordered pairs
-`(x, y)` with `x, y ∈ S` and `G.Adj x y` equals `2 * (G.induce ↑S).edgeFinset.card`. -/
+`(x, y)` with `x, y ∈ S` and `G.Adj x y` equals `2 * (G.induce ↑S).edgeFinset.card`.
+@isnad1 id=eq.0h3v.s8.f10348c8fc74 from=translated src=- shape=dc4703d9 vocab=3762762f
+-/
 theorem induced_pairs_eq_two_mul_edges (G : SimpleGraph V)
     [DecidableRel G.Adj] (S : Finset V) :
     ((S ×ˢ S).filter (fun q => G.Adj q.1 q.2)).card
@@ -80,7 +82,9 @@ open SimpleGraph
 /-- **The `Walk.IsCycle → ZMod k` conversion.**  A cycle walk `w` in `G` of length `k` whose
 support sits inside `S` yields `3 ≤ k` and an injective cyclic map `c : ZMod k → Fin n`
 (`c i ~ c (i+1)`, `c i ∈ S`) — the existential shape demanded by `GirthExcessBound`.  Reusable
-for any girth discharge that produces a bounded-length cycle walk. -/
+for any girth discharge that produces a bounded-length cycle walk.
+@isnad1 id=and.2h5v.s8.2f2ce568e2d6 from=translated src=- shape=e64cd6c5 vocab=67e62922
+-/
 theorem cycle_walk_to_zmod {n : ℕ} {G : SimpleGraph (Fin n)} {v : Fin n} {w : G.Walk v v}
     (hcyc : w.IsCycle) {S : Finset (Fin n)} (hsupp : ∀ x ∈ w.support, x ∈ S) :
     3 ≤ w.length ∧ ∃ c : ZMod w.length → Fin n, Function.Injective c ∧
@@ -139,14 +143,18 @@ namespace ACMax
 
 open SimpleGraph Finset
 
-/-- The distance from `x` to a vertex on a walk `x → z` is bounded by the walk's length. -/
+/-- The distance from `x` to a vertex on a walk `x → z` is bounded by the walk's length.
+@isnad1 id=le.1h6v.s5.813652e09c06 from=translated src=- shape=1ca4bf15 vocab=ad7a83a5
+-/
 theorem dist_le_of_mem_support {V : Type*} (G : SimpleGraph V) {x z : V} (g : G.Walk x z) {w : V}
     (hw : w ∈ g.support) : G.dist x w ≤ g.length := by
   classical
   exact (SimpleGraph.dist_le (g.takeUntil w hw)).trans (g.length_takeUntil_le_length hw)
 
 /-- Two distinct paths with the same endpoints whose total length is `≤ 2r + 1` are impossible
-under the girth hypothesis: they close a cycle of length `≤ 2r + 1`. -/
+under the girth hypothesis: they close a cycle of length `≤ 2r + 1`.
+@isnad1 id=false.5h7v.s7.910176c8e987 from=translated src=- shape=01793f5b vocab=4c0ca983
+-/
 theorem no_short_cycle_of_paths {V : Type*} (G : SimpleGraph V) {r : ℕ}
     (hg : ∀ (v : V) (c : G.Walk v v), c.IsCycle → 2 * r + 1 < c.length) {x y : V}
     {P Q : G.Walk x y} (hP : P.IsPath) (hQ : Q.IsPath) (hne : P ≠ Q)
@@ -157,7 +165,9 @@ theorem no_short_cycle_of_paths {V : Type*} (G : SimpleGraph V) {r : ℕ}
   omega
 
 /-- On a geodesic `g : x → y`, a vertex `z ≠ y` at the same distance from `x` as `y` cannot lie on
-`g` (the geodesic reaches distance `dist x y` only at its endpoint). -/
+`g` (the geodesic reaches distance `dist x y` only at its endpoint).
+@isnad1 id=not.3h6v.s5.6c8ded5814f5 from=translated src=- shape=d3cfa527 vocab=fe8f1827
+-/
 theorem notMem_geodesic_of_dist_eq {V : Type*} (G : SimpleGraph V) {x y : V} (g : G.Walk x y)
     (hglen : g.length = G.dist x y) {z : V} (hdist : G.dist x z = G.dist x y) (hne : z ≠ y) :
     z ∉ g.support := by
@@ -174,7 +184,9 @@ theorem notMem_geodesic_of_dist_eq {V : Type*} (G : SimpleGraph V) {x y : V} (g 
 
 /-- **No same-level edge.**  Under `hg` (no cycle of length `≤ 2r + 1`), no two vertices at the same
 BFS level `L_i(x)` with `1 ≤ i ≤ r` are adjacent — the edge plus two `dist`-`i` geodesics would
-close a cycle of length `≤ 2i + 1 ≤ 2r + 1`. -/
+close a cycle of length `≤ 2i + 1 ≤ 2r + 1`.
+@isnad1 id=not.5h7v.s6.ff7009230e6a from=translated src=- shape=04f2e2ff vocab=fabd7e16
+-/
 theorem level_no_internal_edge {V : Type*} (G : SimpleGraph V) {r : ℕ}
     (hg : ∀ (v : V) (c : G.Walk v v), c.IsCycle → 2 * r + 1 < c.length) (x : V) {i : ℕ}
     (hi1 : 1 ≤ i) (hir : i ≤ r) {v w : V} (hv : G.dist x v = i) (hw : G.dist x w = i) :
@@ -200,7 +212,9 @@ theorem level_no_internal_edge {V : Type*} (G : SimpleGraph V) {r : ℕ}
 
 /-- **Unique parent.**  Under `hg`, a level-`(i+1)` vertex `v` (`i + 1 ≤ r`) has exactly one
 neighbour at level `i`: `((N v) ∩ L_i).card = 1`.  Existence is the penultimate vertex of a
-geodesic `x → v`; uniqueness is a short cycle from two length-`(i+1)` paths to `v`. -/
+geodesic `x → v`; uniqueness is a short cycle from two length-`(i+1)` paths to `v`.
+@isnad1 id=eq.3h6v.s7.b4f9bce69c49 from=translated src=- shape=f70eab92 vocab=bd0f9278
+-/
 theorem level_unique_parent {V : Type*} [Fintype V] (G : SimpleGraph V) [DecidableRel G.Adj]
     {r : ℕ} (hg : ∀ (v : V) (c : G.Walk v v), c.IsCycle → 2 * r + 1 < c.length) (x : V) {i : ℕ}
     (hir : i + 1 ≤ r) {v : V} (hv : G.dist x v = i + 1) :
@@ -260,7 +274,9 @@ theorem level_unique_parent {V : Type*} [Fintype V] (G : SimpleGraph V) [Decidab
 
 /-- **Children count.**  Under `hg`, a level-`i` vertex `v` (`1 ≤ i ≤ r`) has exactly `deg v − 1`
 neighbours at level `i + 1`.  Its neighbourhood splits into the unique parent (level `i − 1`), no
-same-level neighbour, and the remaining `deg v − 1` children at level `i + 1`. -/
+same-level neighbour, and the remaining `deg v − 1` children at level `i + 1`.
+@isnad1 id=eq.4h6v.s7.78d4182f8f55 from=translated src=- shape=8005617a vocab=17299189
+-/
 theorem level_children_count {V : Type*} [Fintype V] (G : SimpleGraph V) [DecidableRel G.Adj]
     {r : ℕ} (hg : ∀ (v : V) (c : G.Walk v v), c.IsCycle → 2 * r + 1 < c.length) (x : V) {i : ℕ}
     (hi1 : 1 ≤ i) (hir : i ≤ r) {v : V} (hv : G.dist x v = i) :
@@ -299,7 +315,9 @@ theorem level_children_count {V : Type*} [Fintype V] (G : SimpleGraph V) [Decida
 /-- **Level identity.**  Under `hg`, for `1 ≤ i` and `i + 1 ≤ r` the BFS level `L_{i+1}(x)` has
 cardinality `Σ_{v ∈ L_i}(deg v − 1)`.  Proof: double-count the `L_i`–`L_{i+1}` edges — the parent
 map (`level_unique_parent`) counts each child once, the children map (`level_children_count`) sums
-to `Σ(deg v − 1)`, and the two counts agree by symmetry of adjacency. -/
+to `Σ(deg v − 1)`, and the two counts agree by symmetry of adjacency.
+@isnad1 id=eq.3h5v.s7.bb9bea5ba2af from=translated src=- shape=ec2375c7 vocab=ad711463
+-/
 theorem level_card_growth {V : Type*} [Fintype V] (G : SimpleGraph V) [DecidableRel G.Adj]
     {r : ℕ} (hg : ∀ (v : V) (c : G.Walk v v), c.IsCycle → 2 * r + 1 < c.length) (x : V) {i : ℕ}
     (hi1 : 1 ≤ i) (hir : i + 1 ≤ r) :
@@ -351,7 +369,9 @@ part of the graph and the bound breaks (`ball_weighted_lower`). -/
 
 /-- **Triangular double-sum identity.**  `Σ_{i < r} Σ_{k ≤ i} ε k = Σ_{k < r}(r − k)·ε k`: reindex
 the lower-triangular pairs `k ≤ i < r` by their column `k`, which appears in the `r − k` rows
-`k, …, r − 1`. -/
+`k, …, r − 1`.
+@isnad1 id=eq.0h2v.s6.f951f82429e5 from=translated src=- shape=11ad3164 vocab=dc645f82
+-/
 theorem sum_range_triangle (r : ℕ) (ε : ℕ → ℕ) :
     ∑ i ∈ range r, ∑ k ∈ range (i + 1), ε k = ∑ k ∈ range r, (r - k) * ε k := by
   induction r with
@@ -375,7 +395,9 @@ r)` satisfies
 `1 + 2r + Σ_{i < r}(r − i)·ε_i(x) ≤ |B(x, r)|`, where `ε_i(x) = Σ_{v ∈ L_i}(deg v − 2)` is the
 excess at BFS level `L_i(x) = (Finset.univ.filter fun v => dist x v = i)`.  Under connectivity the
 bound is an exact
-equality; the levels telescope through `level_card_growth`. -/
+equality; the levels telescope through `level_card_growth`.
+@isnad1 id=le.3h4v.s8.bf618814537e from=translated src=- shape=7c653209 vocab=835b073d
+-/
 theorem ball_weighted_lower {V : Type*} [Fintype V] (G : SimpleGraph V) [DecidableRel G.Adj]
     {r : ℕ} (hmin : ∀ v, 2 ≤ G.degree v)
     (hg : ∀ (v : V) (c : G.Walk v v), c.IsCycle → 2 * r + 1 < c.length)
@@ -478,7 +500,9 @@ The full `GirthExcessBound` discharge additionally needs a component descent
 the `exists_isCycle_of_excess` / `cycle_walk_to_zmod` witness plumbing. -/
 
 /-- **Triangular Gauss sum.**  `2·Σ_{i<m}(m − i) = m·(m + 1)`: the descending run
-`m, m−1, …, 1` has twice-sum `m(m+1)`. -/
+`m, m−1, …, 1` has twice-sum `m(m+1)`.
+@isnad1 id=eq.0h1v.s5.d37a9a64c1fd from=translated src=- shape=8747f586 vocab=dc645f82
+-/
 theorem two_mul_sum_range_sub (m : ℕ) :
     2 * ∑ i ∈ Finset.range m, (m - i) = m * (m + 1) := by
   induction m with
@@ -502,7 +526,9 @@ since two of them meeting at distance `j ≤ r` would close a cycle of length `�
 Formally this is the *same* induction as `level_card_ge_two`, which already produces `deg x` at the
 base level (`L_1(x)` is the neighbourhood) and then only ever needs `deg v − 1 ≥ 1` to carry the
 floor outward; `level_card_ge_two` immediately weakens the base to `2 ≤ deg x` and loses the extra
-`deg x − 2`.  Keeping it multiplies the excess term of `sqrt_double_count` by `3/2`. -/
+`deg x − 2`.  Keeping it multiplies the excess term of `sqrt_double_count` by `3/2`.
+@isnad1 id=le.4h5v.s7.d5b12f016d43 from=translated src=- shape=d93b237b vocab=4c26a781
+-/
 theorem level_card_ge_deg {V : Type*} [Fintype V] (G : SimpleGraph V) [DecidableRel G.Adj]
     {r : ℕ} (hmin : ∀ v, 2 ≤ G.degree v)
     (hg : ∀ (v : V) (c : G.Walk v v), c.IsCycle → 2 * r + 1 < c.length) (x : V) {j : ℕ}
@@ -528,7 +554,9 @@ theorem level_card_ge_deg {V : Type*} [Fintype V] (G : SimpleGraph V) [Decidable
           Finset.sum_le_sum (fun v _ => by have := hmin v; omega)
 
 /-- **The BFS-level swap.**  Summing the level-`i` excess `Σ_{v : dist x v = i}(deg v − 2)` over all
-roots `x` regroups (by symmetry of distance) as `Σ_v (deg v − 2)·|{x : dist v x = i}|`. -/
+roots `x` regroups (by symmetry of distance) as `Σ_v (deg v − 2)·|{x : dist v x = i}|`.
+@isnad1 id=eq.0h3v.s7.e1505635170e from=translated src=- shape=7ed07abc vocab=c28a35ee
+-/
 theorem sum_level_excess_swap {V : Type*} [Fintype V] (G : SimpleGraph V) [DecidableRel G.Adj]
     (i : ℕ) :
     ∑ x : V, (∑ v ∈ univ.filter (fun v => G.dist x v = i), (G.degree v - 2))
@@ -554,7 +582,9 @@ The excess weight is `3r² − r`, not the `2r²` obtained from the weaker floor
 (`level_card_ge_two`): an excess vertex `v` is seen at distance `i` by at least `deg v ≥ 3` roots,
 not merely `2`, so `W i ≥ 3D` for `1 ≤ i ≤ r` and the triangular telescope returns
 `rD + 3D·r(r−1)/2 ≥ t(3r² − r)`.  Since `3r² − r ≥ 2r²` for `r ≥ 1`, this strictly strengthens the
-old conclusion, and it is what pulls the import-free girth floor down. -/
+old conclusion, and it is what pulls the import-free girth floor down.
+@isnad1 id=le.4h4v.s7.099bbed93450 from=translated src=- shape=8bf2eac2 vocab=b420b209
+-/
 theorem sqrt_double_count {V : Type*} [Fintype V] (G : SimpleGraph V) [DecidableRel G.Adj]
     {r t : ℕ} (hmin : ∀ v, 2 ≤ G.degree v)
     (hg : ∀ (v : V) (c : G.Walk v v), c.IsCycle → 2 * r + 1 < c.length)
@@ -711,7 +741,9 @@ def edgeSumWithin (G : SimpleGraph V) [DecidableRel G.Adj] (S : Finset V) : ℕ 
   ∑ u ∈ S, degWithin G S u
 
 /-- **The within-`S` handshake.**  The within-`S` degree sum equals the number of ordered adjacent
-pairs with both coordinates in `S`. -/
+pairs with both coordinates in `S`.
+@isnad1 id=eq.0h3v.s6.046cc20e3703 from=translated src=- shape=463adc28 vocab=089f4996
+-/
 theorem edgeSumWithin_eq_pairs (G : SimpleGraph V) [DecidableRel G.Adj]
     (S : Finset V) :
     edgeSumWithin G S = ((S ×ˢ S).filter (fun q => G.Adj q.1 q.2)).card := by
@@ -721,7 +753,9 @@ theorem edgeSumWithin_eq_pairs (G : SimpleGraph V) [DecidableRel G.Adj]
   rw [degWithin, Finset.card_filter]
 
 /-- **The erase law.**  Deleting a vertex `v ∈ S` drops the within-`S` degree sum by exactly twice
-the within-`S` degree of `v`. -/
+the within-`S` degree of `v`.
+@isnad1 id=eq.1h4v.s6.986b81c5c7eb from=translated src=- shape=f251b093 vocab=b6b2e25e
+-/
 theorem edgeSumWithin_erase [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
     {S : Finset V} {v : V} (hv : v ∈ S) :
     edgeSumWithin G S = edgeSumWithin G (S.erase v) + 2 * degWithin G S v := by
@@ -752,7 +786,9 @@ theorem edgeSumWithin_erase [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.
 
 /-- **The 2-core induction.**  Starting from any `S` carrying the excess `2·|S| + 2t ≤
 edgeSumWithin G S`, one reaches a nonempty subset of minimum within-degree `≥ 2` still carrying the
-excess, by repeatedly deleting a within-degree `≤ 1` vertex. -/
+excess, by repeatedly deleting a within-degree `≤ 1` vertex.
+@isnad1 id=ex.2h4v.s7.e1a26852ad8a from=translated src=- shape=adc66768 vocab=e7ef2bda
+-/
 theorem two_core_aux (G : SimpleGraph V) [DecidableRel G.Adj] {t : ℕ}
     (ht : 1 ≤ t) :
     ∀ S : Finset V, 2 * S.card + 2 * t ≤ edgeSumWithin G S →

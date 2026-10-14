@@ -61,7 +61,9 @@ def nice (n : ℕ) (P : ℤ[X]) := ∀ y, ∃ x, P.eval x ≡ y [ZMOD n]
   `P` is `n`-good for infinitely many `n : ℕ`. -/
 def veryGood (P : ℤ[X]) := ∀ N, ∃ n > N, good n P
 
-/-- A polynomial `P` is `n`-good iff it is injective modulo `n`. -/
+/-- A polynomial `P` is `n`-good iff it is injective modulo `n`.
+@isnad1 id=iff.0h2v.s5.aca6bd5fca1f from=translated src=- shape=f09e0434 vocab=52172f50
+-/
 theorem good_iff_ZMod : good n P ↔ (P.map (Int.castRingHom (ZMod n))).eval.Injective := by
   set φ : ℤ →+* ZMod n := Int.castRingHom (ZMod n)
   have hφ : Function.Surjective φ := ZMod.ringHom_surjective φ
@@ -69,7 +71,9 @@ theorem good_iff_ZMod : good n P ↔ (P.map (Int.castRingHom (ZMod n))).eval.Inj
   rw [good, Function.Injective, hφ.forall₂]
   conv_rhs => ext k m; rw [eval_map_apply, eval_map_apply, hφ0, hφ0]
 
-/-- A polynomial `P` is `n`-nice iff it is surjective modulo `n`. -/
+/-- A polynomial `P` is `n`-nice iff it is surjective modulo `n`.
+@isnad1 id=iff.0h2v.s5.c4284014d8ba from=translated src=- shape=f09e0434 vocab=5d113389
+-/
 theorem nice_iff_ZMod : nice n P ↔ (P.map (Int.castRingHom (ZMod n))).eval.Surjective := by
   set φ : ℤ →+* ZMod n := Int.castRingHom (ZMod n)
   have hφ : Function.Surjective φ := ZMod.ringHom_surjective φ
@@ -77,26 +81,36 @@ theorem nice_iff_ZMod : nice n P ↔ (P.map (Int.castRingHom (ZMod n))).eval.Sur
   rw [nice, Function.Surjective, hφ.forall]
   simp_rw [hφ.exists, eval_map_apply, hφ0]
 
-/-- If `n > 0`, a polynomial `P` is `n`-good iff it is `n`-nice. -/
+/-- If `n > 0`, a polynomial `P` is `n`-good iff it is `n`-nice.
+@isnad1 id=iff.0h2v.s4.6f51aae6da8c from=translated src=- shape=2f7def05 vocab=06552a9d
+-/
 theorem good_iff_nice [NeZero n] : good n P ↔ nice n P := by
   rw [good_iff_ZMod, nice_iff_ZMod, Finite.injective_iff_surjective]
 
-/-- Any polynomial is `1`-good. -/
+/-- Any polynomial is `1`-good.
+@isnad1 id=good.0h1v.s3.fc76cc3b8c93 from=translated src=- shape=4583a4a8 vocab=765fe4b2
+-/
 theorem good_one_left (P) : good 1 P :=
   λ _ _ _ ↦ Int.modEq_one
 
-/-- If `P` is `m`-nice and `n ∣ m`, then `P` is `n`-nice. -/
+/-- If `P` is `m`-nice and `n ∣ m`, then `P` is `n`-nice.
+@isnad1 id=nice.2h3v.s4.b144431ede47 from=translated src=- shape=0583aee8 vocab=c2582758
+-/
 theorem nice.of_dvd (hm : nice m P) (hnm : n ∣ m) : nice n P := by
   intro y
   obtain ⟨x, hx⟩ : ∃ x, P.eval x ≡ y [ZMOD m] := hm y
   exact ⟨x, hx.of_dvd (Int.ofNat_dvd.mpr hnm)⟩
 
-/-- If `m > 0`, `n ∣ m`, and `P` is `m`-good, then `P` is `n`-good. -/
+/-- If `m > 0`, `n ∣ m`, and `P` is `m`-good, then `P` is `n`-good.
+@isnad1 id=good.2h3v.s4.a054c3b083e9 from=translated src=- shape=be4e36c3 vocab=b0c1cc9e
+-/
 theorem good.of_dvd [NeZero m] (hm : good m P) (hnm : n ∣ m) : good n P :=
   have : NeZero n := ⟨ne_zero_of_dvd_ne_zero (NeZero.ne m) hnm⟩
   good_iff_nice.mpr ((good_iff_nice.mp hm).of_dvd hnm)
 
-/-- Evaluation of a polynomial after mapping to a product of rings. -/
+/-- Evaluation of a polynomial after mapping to a product of rings.
+@isnad1 id=eq.0h8v.s6.265495d547f6 from=translated src=- shape=cff7eb45 vocab=bde086c6
+-/
 theorem eval_map_RingHom_prod [Semiring R] [Semiring S] [Semiring T]
     (φ : R →+* S) (ρ : R →+* T) (P : R[X]) (s : S) (t : T) :
     (P.map (φ.prod ρ)).eval (s, t) = ((P.map φ).eval s, (P.map ρ).eval t) := by
@@ -108,7 +122,9 @@ theorem eval_map_RingHom_prod [Semiring R] [Semiring S] [Semiring T]
       iterate 3 rw [map_monomial, eval_monomial]
       rw [RingHom.prod_apply, Prod.pow_mk, Prod.mk_mul_mk]
 
-/-- If `k` and `m` are coprime, then `P` is `km`-nice iff `P` is `k`-nice and `m`-nice. -/
+/-- If `k` and `m` are coprime, then `P` is `km`-nice iff `P` is `k`-nice and `m`-nice.
+@isnad1 id=iff.1h3v.s4.80457f56c172 from=translated src=- shape=248e5cae vocab=69fcd5b9
+-/
 theorem nice_iff_of_coprime (h : Nat.Coprime k m) :
     nice (k * m) P ↔ nice k P ∧ nice m P := by
   ---- It suffices to do the `→` direction.
@@ -138,7 +154,9 @@ theorem nice_iff_of_coprime (h : Nat.Coprime k m) :
     RingHom.ext_int _ _
   rw [h, eval_map, ← hom_eval₂, eval_map]
 
-/-- If `k, m > 0` are coprime, then `P` is `km`-good iff `P` is `k`-good and `m`-good. -/
+/-- If `k, m > 0` are coprime, then `P` is `km`-good iff `P` is `k`-good and `m`-good.
+@isnad1 id=iff.1h3v.s4.896d2eb1c1f5 from=translated src=- shape=248e5cae vocab=6bbba16a
+-/
 theorem good_iff_of_coprime (h : Nat.Coprime k m) :
     good (k * m) P ↔ good k P ∧ good m P := by
   ---- If `k = 0` then `m = 1` and we are done.
@@ -152,7 +170,9 @@ theorem good_iff_of_coprime (h : Nat.Coprime k m) :
   ---- If `k, m > 0` then the statement follows from the `nice` version.
   rw [good_iff_nice, good_iff_nice, good_iff_nice, nice_iff_of_coprime h]
 
-/-- Let `p > 1` and let `P` be a `p^2`-good polynomial. Then `p ∤ P'(x)` for any `x : ℤ`. -/
+/-- Let `p > 1` and let `P` be a `p^2`-good polynomial. Then `p ∤ P'(x)` for any `x : ℤ`.
+@isnad1 id=not.2h3v.s7.c35fa3a780cf from=translated src=- shape=c00f6e53 vocab=75b9019c
+-/
 theorem good.prime_not_dvd_derivative (hp : p > 1) (hP : good (p ^ 2) P) (x : ℤ) :
     ¬(p : ℤ) ∣ P.derivative.eval x := by
   ---- Suppose `p ∣ P'(k)` for some integer `k`.
@@ -184,7 +204,9 @@ variable [Fact (Nat.Prime p)] (hP : good p P) (hP0 : ∀ x, ¬(p : ℤ) ∣ P.de
 include hP hP0
 
 /-- Let `p` be a prime and let `P` be a `p`-good polynomial such that
-  `p ∤ P'(x)` for every integer `x`. Then `P` is `p^k`-good for all `k ≥ 0`. -/
+  `p ∤ P'(x)` for every integer `x`. Then `P` is `p^k`-good for all `k ≥ 0`.
+@isnad1 id=good.2h3v.s7.541d7e2adaf6 from=translated src=- shape=4a1f3391 vocab=a98434ac
+-/
 theorem good.pow_lift_of_not_dvd_derivative (k) : good (p ^ k) P := by
   ---- The case `k = 0` is trivial.
   obtain rfl | hk : k = 0 ∨ k > 0 := Nat.eq_zero_or_pos k
@@ -228,7 +250,9 @@ theorem good.pow_lift_of_not_dvd_derivative (k) : good (p ^ k) P := by
   exact ((Nat.prime_iff_prime_int.mp Fact.out).dvd_or_dvd hab).resolve_left (hP0 b)
 
 /-- Let `p` be a prime and let `P` be a `p`-good polynomial such that
-  `P'` does not have a root mod `p`. Then `P` is very good. -/
+  `P'` does not have a root mod `p`. Then `P` is very good.
+@isnad1 id=verygood.2h2v.s7.4901c5a2e2ee from=translated src=- shape=854474d0 vocab=9679fb86
+-/
 theorem good.veryGood_of_not_dvd_derivative : veryGood P :=
   λ N ↦ ⟨p ^ N, Nat.lt_pow_self (Nat.Prime.one_lt Fact.out),
     hP.pow_lift_of_not_dvd_derivative hP0 N⟩
@@ -237,12 +261,16 @@ end
 
 /-! ### Part 1 -/
 
-/-- Evaluating `X^3 - bX` at a point. -/
+/-- Evaluating `X^3 - bX` at a point.
+@isnad1 id=eq.0h3v.s8.d6576e657e9b from=translated src=- shape=25fc0431 vocab=86934e1d
+-/
 theorem eval_X3_sub_mul_X [CommRing R] (b r : R) :
     (X ^ 3 - C b * X).eval r = r ^ 3 - b * r := by
   rw [eval_sub, eval_C_mul, eval_X_pow, eval_X]
 
-/-- The polynomial `X^3 - n^2 X` is not `k`-good for any `k > n`. -/
+/-- The polynomial `X^3 - n^2 X` is not `k`-good for any `k > n`.
+@isnad1 id=not.2h2v.s7.0d0db2451e99 from=translated src=- shape=344c33b8 vocab=4d4c5530
+-/
 theorem not_good_X3_sub_sq_mul_X_of_lt {n k : ℕ} (hn : n > 0) (hnk : n < k) :
     ¬good k (X ^ 3 - C (n ^ 2 : ℤ) * X) := by
   ---- This follows from `n^3 - n^2 n = 0^3 - n^2 0 = 0`.
@@ -253,7 +281,9 @@ theorem not_good_X3_sub_sq_mul_X_of_lt {n k : ℕ} (hn : n > 0) (hnk : n < k) :
   rw [Int.modEq_zero_iff_dvd, Int.natCast_dvd_natCast] at hk
   exact Nat.not_dvd_of_pos_of_lt hn hnk hk
 
-/-- The polynomial `X^3 - n^2 X` is not very good for any `n : ℕ` with `n ≠ 0`. -/
+/-- The polynomial `X^3 - n^2 X` is not very good for any `n : ℕ` with `n ≠ 0`.
+@isnad1 id=not.1h1v.s7.4129f65e2173 from=translated src=- shape=719712b7 vocab=30c44d9a
+-/
 theorem not_veryGood_X3_sub_sq_mul_X {n : ℕ} (hn : n > 0) :
     ¬veryGood (X ^ 3 - C (n ^ 2 : ℤ) * X) := by
   intro h
@@ -261,7 +291,9 @@ theorem not_veryGood_X3_sub_sq_mul_X {n : ℕ} (hn : n > 0) :
   exact not_good_X3_sub_sq_mul_X_of_lt hn hkn hk
 
 /-- Let `p` be a prime with either `p = 3` or `p ≡ 2 (mod 3)`.
-  Then for any `b : ℤ` with `p ∣ b`, `X^3 - bX` is `p`-good. -/
+  Then for any `b : ℤ` with `p ∣ b`, `X^3 - bX` is `p`-good.
+@isnad1 id=good.2h2v.s7.a0c7430d8461 from=translated src=- shape=fe64882f vocab=1ed7dc2e
+-/
 theorem good_prime_X3_sub_mul_X
     {p : ℕ} {b : ℤ} [Fact p.Prime] (hp : p = 3 ∨ p % 3 = 2) (hpb : (p : ℤ) ∣ b) :
     good p (X ^ 3 - C b * X) := by
@@ -292,7 +324,9 @@ theorem good_prime_X3_sub_mul_X
     _ = x * x ^ (p - 1) := by rw [Nat.add_sub_assoc hp0, pow_add, hpb]
     _ = x := by rw [← pow_succ', Nat.sub_add_cancel hp0, hpb]
 
-/-- Let `p` be a prime with `p % 3 = 2`. Then `X^3 - (3p)^2 X` is `3p`-good. -/
+/-- Let `p` be a prime with `p % 3 = 2`. Then `X^3 - (3p)^2 X` is `3p`-good.
+@isnad1 id=good.1h1v.s7.589c5c1a976c from=translated src=- shape=a191d410 vocab=2378cf12
+-/
 theorem good_three_mul_prime_X3_sub_sq_mul_X {p : ℕ} [Fact p.Prime] (hp : p % 3 = 2) :
     good (3 * p) (X ^ 3 - C ((3 * p) ^ 2 : ℤ) * X) := by
   have hp0 : Nat.Coprime 3 p := by
@@ -303,7 +337,9 @@ theorem good_three_mul_prime_X3_sub_sq_mul_X {p : ℕ} [Fact p.Prime] (hp : p % 
   · refine good_prime_X3_sub_mul_X (Or.inr hp) ⟨3 ^ 2 * p, ?_⟩
     rw [Int.mul_pow, sq (p : ℤ), Int.mul_left_comm]
 
-/-- Final solution, part 1 -/
+/-- Final solution, part 1
+@isnad1 id=other.0h0v.s7.814983a56f53 from=translated src=- shape=24103cd8 vocab=012ecd8f
+-/
 theorem final_solution_part1 :
     let P : ℤ[X] := X ^ 3 - C (51 ^ 2) * X
     good 51 P ∧ ¬veryGood P :=
@@ -313,13 +349,17 @@ theorem final_solution_part1 :
 
 /-! ### Part 2 -/
 
-/-- Mapping `aX^3 + bX` under a ring homomorphism from `ℤ` to a commutative ring. -/
+/-- Mapping `aX^3 + bX` under a ring homomorphism from `ℤ` to a commutative ring.
+@isnad1 id=eq.0h3v.s9.77de0b7cc71f from=translated src=- shape=0a6bf21d vocab=421dc57f
+-/
 theorem map_mul_X3_add_mul_X (R) [CommRing R] (a b : ℤ) :
     (C a * X ^ 3 + C b * X).map (Int.castRingHom R) = C (a : R) * X ^ 3 + C (b : R) * X := by
   rw [Polynomial.map_add, Polynomial.map_mul, Polynomial.map_mul,
     map_C, map_C, eq_intCast, eq_intCast, Polynomial.map_pow, map_X]
 
-/-- If `P(X) = aX^3 + bX`, then `P'(X) = 3aX^2 + b`. -/
+/-- If `P(X) = aX^3 + bX`, then `P'(X) = 3aX^2 + b`.
+@isnad1 id=eq.0h2v.s8.ec8e660facd5 from=translated src=- shape=649ecff1 vocab=615b9459
+-/
 theorem derivative_mul_X3_add_mul_X (a b : ℤ) :
     (C a * X ^ 3 + C b * X).derivative = C (3 * a) * X ^ 2 + C b := by
   rw [derivative_add, derivative_C_mul_X_pow, Int.mul_comm, derivative_C_mul_X]; rfl
@@ -330,7 +370,9 @@ variable [Fintype F] [Field F] (hF3 : ringChar F ≠ 3)
 include hF3
 
 /-- Let `F` be a finite field of characteristic `≠ 3`.
-  Then for any `x : F`, there exists `t, u : F` such that `t^2 + tu + u^2 = x`. -/
+  Then for any `x : F`, there exists `t, u : F` such that `t^2 + tu + u^2 = x`.
+@isnad1 id=ex.1h2v.s7.95c1cdf36a45 from=translated src=- shape=a0c0068f vocab=0ce6ed35
+-/
 theorem exists_cyclotomic3_eq_of_char_ne3 (x : F) :
     ∃ t u : F, t ^ 2 + t * u + u ^ 2 = x := by
   ---- If `char(F) = 2`, then take `t = 0` and let `u` be the square root of `x`.
@@ -355,7 +397,9 @@ theorem exists_cyclotomic3_eq_of_char_ne3 (x : F) :
   subst h; ring
 
 /-- Let `F` be a finite field of characteristic `≠ 3`.
-  Then for any `x : F` nonzero, there exists `t ≠ u : F` such that `t^2 + tu + u^2 = x`. -/
+  Then for any `x : F` nonzero, there exists `t ≠ u : F` such that `t^2 + tu + u^2 = x`.
+@isnad1 id=ex.2h2v.s7.d4fb8eb40ac8 from=translated src=- shape=a916914d vocab=0ce6ed35
+-/
 theorem exists_cyclotomic3_eq_of_char_ne3' {x : F} (hx : x ≠ 0) :
     ∃ t u : F, t ≠ u ∧ t ^ 2 + t * u + u ^ 2 = x := by
   obtain ⟨t, u, rfl⟩ : ∃ t u, t ^ 2 + t * u + u ^ 2 = x :=
@@ -367,7 +411,9 @@ theorem exists_cyclotomic3_eq_of_char_ne3' {x : F} (hx : x ≠ 0) :
 
 end
 
-/-- Rewriting the condition that the polynomial `aX^3 + bX` is `n`-good. -/
+/-- Rewriting the condition that the polynomial `aX^3 + bX` is `n`-good.
+@isnad1 id=iff.0h3v.s8.d90180a369af from=translated src=- shape=ec63f217 vocab=01d0dd58
+-/
 theorem good_mul_X3_add_mul_X_iff {n : ℕ} {a b : ℤ} :
     good n (C a * X ^ 3 + C b * X) ↔ (λ x : ZMod n ↦ a * x ^ 3 + b * x).Injective := by
   rw [good_iff_ZMod, map_mul_X3_add_mul_X]
@@ -378,7 +424,9 @@ section
 variable {p : ℕ} [Fact p.Prime] (h : good p (C a * X ^ 3 + C b * X))
 include h
 
-/-- If `aX^3 + bX` is `p`-good where `p ≠ 3` is prime, then either `p ∣ a` or `p ∣ b`. -/
+/-- If `aX^3 + bX` is `p`-good where `p ≠ 3` is prime, then either `p ∣ a` or `p ∣ b`.
+@isnad1 id=or.2h3v.s7.98b6f415ee9a from=translated src=- shape=33511359 vocab=898b897b
+-/
 theorem good.prime_dvd_X3_coeff_or_X_coeff (hp : p ≠ 3) : (p : ℤ) ∣ a ∨ (p : ℤ) ∣ b := by
   by_contra! h0
   ---- Pick `t ≠ u ∈ 𝔽_p` with `t^2 + tu + u^2 = -b/a`.
@@ -397,7 +445,9 @@ theorem good.prime_dvd_X3_coeff_or_X_coeff (hp : p ≠ 3) : (p : ℤ) ∣ a ∨ 
   ---- Thus `t = u`; contradiction.
   exact htu (good_mul_X3_add_mul_X_iff.mp h h1)
 
-/-- If `aX^3 + bX` is `p`-good where `p` is prime and `p ≡ 1 (mod 3)`, then `p ∤ b`. -/
+/-- If `aX^3 + bX` is `p`-good where `p` is prime and `p ≡ 1 (mod 3)`, then `p ∤ b`.
+@isnad1 id=not.2h3v.s7.0e0c87363d84 from=translated src=- shape=96daf70b vocab=7a85b155
+-/
 theorem good.prime_not_dvd_X_coeff (hp : p % 3 = 1) : ¬(p : ℤ) ∣ b := by
   ---- If `p ∣ b`, then the map `x ↦ ax^3` is injective.
   intro hb; replace hb : (b : ZMod p) = 0 := (ZMod.intCast_zmod_eq_zero_iff_dvd b p).mpr hb
@@ -416,7 +466,9 @@ theorem good.prime_not_dvd_X_coeff (hp : p % 3 = 1) : ¬(p : ℤ) ∣ b := by
   rw [h, orderOf_one] at hx
   exact absurd hx.symm (Nat.succ_succ_ne_one 1)
 
-/-- Let `p` be a prime with `p % 3 = 1`. If `aX^3 + bX` is `p`-good then it is very good. -/
+/-- Let `p` be a prime with `p % 3 = 1`. If `aX^3 + bX` is `p`-good then it is very good.
+@isnad1 id=verygood.2h3v.s8.2e336c8527e9 from=translated src=- shape=99f797de vocab=33865505
+-/
 theorem good.veryGood_cubic (hp : p % 3 = 1) : veryGood (C a * X ^ 3 + C b * X) := by
   refine h.veryGood_of_not_dvd_derivative λ x ↦ ?_
   have hb : ¬(p : ℤ) ∣ b := h.prime_not_dvd_X_coeff hp
@@ -427,7 +479,9 @@ theorem good.veryGood_cubic (hp : p % 3 = 1) : veryGood (C a * X ^ 3 + C b * X) 
 
 end
 
-/-- Final solution, part 2 -/
+/-- Final solution, part 2
+@isnad1 id=verygood.1h2v.s8.d783c833d345 from=translated src=- shape=6240bf70 vocab=220f6a9c
+-/
 theorem final_solution_part2 {a b : ℤ} (h : good 2010 (C a * X ^ 3 + C b * X)) :
     veryGood (C a * X ^ 3 + C b * X) :=
   haveI : Fact (Nat.Prime 67) := ⟨by decide⟩

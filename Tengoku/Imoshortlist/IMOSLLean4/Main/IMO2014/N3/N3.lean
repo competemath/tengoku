@@ -26,6 +26,9 @@ open Multiset
 
 /-! ### Extra lemmas -/
 
+/--
+@isnad1 id=iff.0h3v.s5.480c30e08253 from=translated src=- shape=efaa2a00 vocab=9e445f12
+-/
 theorem Multiset_mem_sum [DecidableEq α] {P : Multiset (Multiset α)} {a : α} :
     a ∈ P.sum ↔ ∃ M ∈ P, a ∈ M := by
   rw [sum_eq_sum_toEnumFinset, Multiset.mem_sum]
@@ -36,21 +39,33 @@ theorem Multiset_mem_sum [DecidableEq α] {P : Multiset (Multiset α)} {a : α} 
     refine ⟨⟨M, 0⟩, ?_, h0⟩
     rwa [mem_toEnumFinset, count_pos]
 
+/--
+@isnad1 id=eq.1h1v.s5.deeaad1bcf96 from=translated src=- shape=eef0a402 vocab=9c70a10c
+-/
 theorem sum_replicate_map_inv (hn : n ≠ 0) :
     ((replicate n n).map λ x : ℕ ↦ (x : ℚ)⁻¹).sum = 1 := by
   rw [map_replicate, sum_replicate, nsmul_eq_mul, mul_inv_cancel₀ (Nat.cast_ne_zero.mpr hn)]
 
+/--
+@isnad1 id=eq.0h1v.s5.4a3c2eeb4d40 from=translated src=- shape=ad77aec0 vocab=8167b5e6
+-/
 theorem sum_replicate_two_mul (n : ℕ) :
     ((replicate 2 (2 * n)).map λ x : ℕ ↦ (x : ℚ)⁻¹).sum = (n : ℚ)⁻¹ := by
   rw [map_replicate, sum_replicate, Nat.cast_mul, nsmul_eq_mul, mul_inv,
     mul_inv_cancel_left₀ (Nat.cast_ne_zero.mpr (Nat.succ_ne_zero 1))]
 
+/--
+@isnad1 id=eq.0h4v.s5.5673aae2997f from=translated src=- shape=ed1db7e6 vocab=15bd1dc9
+-/
 theorem sum_map_sum [AddCommMonoid M] (P : Multiset (Multiset α)) (f : α → M) :
     (P.map λ i ↦ (i.map f).sum).sum = (P.sum.map f).sum := by
   revert P; refine Multiset.induction ?_ λ i P hP ↦ ?_
   · simp only [Multiset.map_zero, sum_zero]
   · rw [map_cons, sum_cons, hP, sum_cons, Multiset.map_add, sum_add]
 
+/--
+@isnad1 id=eq.0h2v.s7.cd1c304f4722 from=translated src=- shape=e813f955 vocab=323d02c8
+-/
 theorem sum_map_replicate_two (C : Multiset ℕ) :
     ∀ N, replicate (C.count 0) 0 + sum ((range N).map λ i ↦
       replicate (C.count (2 * i + 1)) (2 * i + 1)
@@ -95,10 +110,16 @@ def add_replicate_self (P : CapeTownPartition N C) (k) :
     · rw [replicate_zero, Multiset.map_zero, sum_zero]; exact zero_le_one
     · exact (sum_replicate_map_inv h).le
 
+/--
+@isnad1 id=nonempty.1h3v.s5.8a0c5ce350e9 from=translated src=- shape=bc73254b vocab=e560c0d9
+-/
 theorem nonempty_add_replicate_self (h : Nonempty (CapeTownPartition N C)) (k) :
     Nonempty (CapeTownPartition (N + 1) (C + replicate k k)) :=
   h.elim λ P ↦ ⟨add_replicate_self P k⟩
 
+/--
+@isnad1 id=nonempty.1h3v.s5.edbf93078e71 from=translated src=- shape=4b4241c8 vocab=e560c0d9
+-/
 theorem nonempty_append_zeroes (h : Nonempty (CapeTownPartition N C)) (k) :
     Nonempty (CapeTownPartition N (C + replicate k 0)) := by
   rcases h with ⟨part', card_part', rfl, total_bound'⟩
@@ -114,11 +135,17 @@ theorem nonempty_append_zeroes (h : Nonempty (CapeTownPartition N C)) (k) :
       inv_zero, sum_add, sum_replicate, nsmul_zero, add_zero]
     exact total_bound' G₀ (mem_cons_self G₀ part'')
 
+/--
+@isnad1 id=nonempty.1h2v.s4.be7887f67191 from=translated src=- shape=0cd5f79f vocab=e2326e40
+-/
 theorem nonempty_cons_zero (h : Nonempty (CapeTownPartition N C)) :
     Nonempty (CapeTownPartition N (0 ::ₘ C)) := by
   replace h := nonempty_append_zeroes h 1
   rwa [replicate_one, add_comm, singleton_add] at h
 
+/--
+@isnad1 id=nonempty.2h4v.s5.2efdb5a6c532 from=translated src=- shape=7c49ab5f vocab=db5c61f1
+-/
 theorem nonempty_merge (h : Nonempty (CapeTownPartition N (n ::ₘ C)))
     {C' : Multiset ℕ} (h0 : (C'.map λ x : ℕ ↦ (x : ℚ)⁻¹).sum = (n : ℚ)⁻¹) :
     Nonempty (CapeTownPartition N (C + C')) := by
@@ -136,10 +163,16 @@ theorem nonempty_merge (h : Nonempty (CapeTownPartition N (n ::ₘ C)))
     apply (total_bound' (n ::ₘ G₀) (mem_cons_self _ _)).trans_eq'
     rw [Multiset.map_add, sum_add, h0, add_comm, map_cons, sum_cons]
 
+/--
+@isnad1 id=nonempty.1h3v.s5.5d5fc7b56390 from=translated src=- shape=6b9e26e4 vocab=2a487796
+-/
 theorem nonempty_replicate_two_mul (h : Nonempty (CapeTownPartition N (n ::ₘ C))) :
     Nonempty (CapeTownPartition N (C + replicate 2 (2 * n))) :=
   nonempty_merge h (sum_replicate_two_mul n)
 
+/--
+@isnad1 id=nonempty.4h2v.s6.6ca745a49b8d from=translated src=- shape=62fd6909 vocab=34dba7a4
+-/
 theorem nonempty_of_restricted (hC : 0 ∉ C) (hC0 : ∀ n ≠ 0, C.count n < n)
     (hC1 : ∀ n, C.count (2 * n) ≤ 1) (hC2 : ∀ n ∈ C, n ≤ 2 * N.succ) :
     Nonempty (CapeTownPartition N C) := by
@@ -160,6 +193,9 @@ theorem nonempty_of_restricted (hC : 0 ∉ C) (hC0 : ∀ n ≠ 0, C.count n < n)
       ← nsmul_eq_mul, succ_nsmul, add_le_add_iff_left]
     exact inv_anti₀ X (Nat.cast_le.mpr (2 * i).succ.le_succ)
 
+/--
+@isnad1 id=nonempty.1h2v.s5.dd3ec44624d1 from=translated src=- shape=ac7480c6 vocab=ac09d225
+-/
 theorem nonempty_of_sum_le {N : ℕ} (h : (map (λ x : ℕ ↦ (x : ℚ)⁻¹) C).sum ≤ N + 2⁻¹) :
     Nonempty (CapeTownPartition N C) := by
   ---- Formally running the steps would consist of strong induction on `|C|`
@@ -237,5 +273,7 @@ theorem nonempty_of_sum_le {N : ℕ} (h : (map (λ x : ℕ ↦ (x : ℚ)⁻¹) C
 
 end CapeTownPartition
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=nonempty.1h2v.s5.dd3ec44624d1 from=translated src=- shape=ac7480c6 vocab=ac09d225
+-/
 alias final_solution := CapeTownPartition.nonempty_of_sum_le

@@ -54,17 +54,23 @@ namespace IMO2011A4
 
 /-! ### Extra lemmas -/
 
-/-- For any `a, b ∈ ℕ+`, if `a + b = 2`, then `a = 1`. -/
+/-- For any `a, b ∈ ℕ+`, if `a + b = 2`, then `a = 1`.
+@isnad1 id=eq.1h2v.s4.39507952293e from=translated src=- shape=4fbbe29b vocab=eb21d8c3
+-/
 theorem pnat_add_eq_two_imp_left_eq_one {a b : ℕ+} (h : a + b = 2) : a = 1 :=
   (eq_one_or_one_lt a).resolve_right ((PNat.lt_add_right _ _).trans_eq h).not_ge
 
 /-- Iteration formula but the function to be iterated is constant.
-  TODO: Remove this once it gets into `mathlib`. -/
+  TODO: Remove this once it gets into `mathlib`.
+@isnad1 id=eq.1h4v.s4.0b28dbfcf838 from=translated src=- shape=b65e1c52 vocab=8e9d20e9
+-/
 theorem fn_iterate_const {α : Type*} (hn : 0 < n) (a b : α) : (λ _ ↦ a)^[n] b = a :=
   match n with | 0 => absurd rfl hn.ne | n + 1 => Function.iterate_fixed rfl n
 
 /-- If `f : ℕ+ → α` satisfies `f(n + 1) > f(n)` for all `n ∈ ℕ+`, where `α` is a preorder,
-  then `f` is strictly increasing. The naming mimics `strictMono_nat_of_lt_succ`. -/
+  then `f` is strictly increasing. The naming mimics `strictMono_nat_of_lt_succ`.
+@isnad1 id=strictmo.1h2v.s5.34605fa98df9 from=translated src=- shape=ceb07bec vocab=7d1a3e8a
+-/
 theorem strictMono_pnat_of_lt_succ [Preorder α] {f : ℕ+ → α} (hf : ∀ n, f n < f (n + 1)) :
     StrictMono f :=
   λ b c h ↦ calc f b
@@ -76,7 +82,9 @@ theorem strictMono_pnat_of_lt_succ [Preorder α] {f : ℕ+ → α} (hf : ∀ n, 
 /-! ### Start of the problem -/
 
 /-- Given `f : ℕ+ → ℕ+` and `g : ℕ+ → ℕ`, if `g(n) ≥ 2` for all `n ∈ ℕ` and
-  `f(n + 1) > f^{g(n)}(n)` for all `n ∈ ℕ`, then `f(n) = n` for all `n ∈ ℕ`. -/
+  `f(n + 1) > f^{g(n)}(n)` for all `n ∈ ℕ`, then `f(n) = n` for all `n ∈ ℕ`.
+@isnad1 id=eq.2h2v.s6.6739df73b235 from=translated src=- shape=1d3bbcaa vocab=9151a0f8
+-/
 theorem f_eq_id_of_map_iter_lt_map_succ {f : ℕ+ → ℕ+} {g : ℕ+ → ℕ}
     (hg : ∀ n, 2 ≤ g n) (hfg : ∀ n, f^[g n] n < f (n + 1)) :
     f = id := by
@@ -114,7 +122,9 @@ theorem f_eq_id_of_map_iter_lt_map_succ {f : ℕ+ → ℕ+} {g : ℕ+ → ℕ}
   ---- Since we showed that `f(n) ≥ n`, we are done.
   exact funext λ n ↦ (h 1 n).antisymm' (hfg n)
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h2v.s6.17acbe6543ae from=translated src=- shape=0c7d8c9e vocab=927af6a9
+-/
 theorem final_solution {f g : ℕ+ → ℕ+} :
     (∀ n, f^[g n + 1] n + g^[f n] n + g (n + 1) = f (n + 1) + 1)
       ↔ f = id ∧ g = λ _ ↦ 1 := by

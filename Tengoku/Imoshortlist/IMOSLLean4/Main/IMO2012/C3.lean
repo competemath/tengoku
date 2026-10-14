@@ -39,7 +39,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι] (S : Finset (ι × ι))
 /-- The number `T(S)` for each subset `S ⊆ ι × ι`. -/
 def T : ℕ := #{p : (ι × ι) × (ι × ι) | p.1 ∈ S ∧ (p.2.1, p.1.2) ∉ S ∧ (p.1.1, p.2.2) ∉ S}
 
-/-- An alternate formula for `T(S)`. -/
+/-- An alternate formula for `T(S)`.
+@isnad1 id=eq.0h2v.s7.9919d0bc5861 from=translated src=- shape=786b280e vocab=fe822964
+-/
 theorem T_alt_formula : T S = ∑ p ∈ S, #{j | (p.1, j) ∉ S} * #{i | (i, p.2) ∉ S} :=
   calc #{p : (ι × ι) × (ι × ι) | p.1 ∈ S ∧ (p.2.1, p.1.2) ∉ S ∧ (p.1.1, p.2.2) ∉ S}
   _ = ∑ p : (ι × ι) × (ι × ι) with p.1 ∈ S ∧ (p.2.1, p.1.2) ∉ S ∧ (p.1.1, p.2.2) ∉ S, 1 :=
@@ -58,7 +60,9 @@ theorem T_alt_formula : T S = ∑ p ∈ S, #{j | (p.1, j) ∉ S} * #{i | (i, p.2
       ← card_product, ← filter_product, univ_product_univ]
 
 /-- The inequality `2T(S) ≤ ∑_i (|ι| - a_i) a_i^2 + ∑_j (|ι| - b_j) b_j^2`,
-  where `a_i = #{j | (i, j) ∉ S}` and `b_j = #{i | (i, j) ∉ S}`. -/
+  where `a_i = #{j | (i, j) ∉ S}` and `b_j = #{i | (i, j) ∉ S}`.
+@isnad1 id=le.0h2v.s8.477767d66154 from=translated src=- shape=c8e66c27 vocab=5800d6bc
+-/
 theorem T_ineq1 :
     2 * T S ≤ ∑ i, #{j | (i, j) ∈ S} * #{j | (i, j) ∉ S} ^ 2
       + ∑ j, #{i | (i, j) ∈ S} * #{i | (i, j) ∉ S} ^ 2 :=
@@ -82,7 +86,9 @@ theorem T_ineq1 :
       exact (sum_finset_product_right S univ (λ j ↦ {i | (i, j) ∈ S}) h).trans
         (Fintype.sum_congr _ _ λ i ↦ sum_const_nat λ _ _ ↦ rfl)
 
-/-- For any `a, b : ℕ`, we have `27ab^2 ≤ 4(a + b)^3`. -/
+/-- For any `a, b : ℕ`, we have `27ab^2 ≤ 4(a + b)^3`.
+@isnad1 id=le.0h2v.s6.54047fb400ed from=translated src=- shape=42030e2d vocab=f96c6fce
+-/
 theorem AMGM3_ineq (a b : ℕ) : 27 * (a * b ^ 2) ≤ 4 * (a + b) ^ 3 :=
   have h : 2 * (2 * a) * b ≤ (2 * a) ^ 2 + b ^ 2 := two_mul_le_add_sq _ _
   calc 27 * (a * b ^ 2)
@@ -94,7 +100,9 @@ theorem AMGM3_ineq (a b : ℕ) : 27 * (a * b ^ 2) ≤ 4 * (a + b) ^ 3 :=
       Nat.add_le_add_right (Nat.mul_le_mul_left _ h) _
     _ = 4 * (a + b) ^ 3 := by ring
 
-/-- The inequality `27 T(S) ≤ 4|ι|^4`. -/
+/-- The inequality `27 T(S) ≤ 4|ι|^4`.
+@isnad1 id=le.0h2v.s6.8bf94e7168b9 from=translated src=- shape=69bd3748 vocab=353987c0
+-/
 theorem T_ineq2 : 27 * T S ≤ 4 * Fintype.card ι ^ 4 := by
   refine Nat.le_of_mul_le_mul_left ?_ Nat.two_pos
   calc 2 * (27 * T S)
@@ -114,7 +122,9 @@ theorem T_ineq2 : 27 * T S ≤ 4 * Fintype.card ι ^ 4 := by
       rw [← Nat.two_mul, sum_const, card_univ,
         Nat.pow_succ' (n := 3), Nat.mul_left_comm 4]; rfl
 
-/-- Given a bijection `e : ι ≃ κ`, we have `T({(e(i), e(j)) : (i, j) ∈ S}) = T(S)`. -/
+/-- Given a bijection `e : ι ≃ κ`, we have `T({(e(i), e(j)) : (i, j) ∈ S}) = T(S)`.
+@isnad1 id=eq.0h4v.s6.7135e53893da from=translated src=- shape=5a987232 vocab=6150c244
+-/
 theorem T_image_equiv [Fintype κ] [DecidableEq κ] (e : ι ≃ κ) :
     T (S.image (e.prodCongr e)) = T S := by
   set e₂ := e.prodCongr e
@@ -130,7 +140,9 @@ theorem T_image_equiv [Fintype κ] [DecidableEq κ] (e : ι ≃ κ) :
 end
 
 /-- Let `S ⊆ κ × κ`, and define `S' = {(k, i, l, j) : (k, l) ∈ S} ⊆ (κ × ι) × (κ × ι)`.
-  Then `T(S') = T(S) |ι|^4`. -/
+  Then `T(S') = T(S) |ι|^4`.
+@isnad1 id=eq.0h3v.s7.c79324393f82 from=translated src=- shape=50f400a7 vocab=d8f95dd5
+-/
 theorem T_product_univ_right
     [Fintype κ] [DecidableEq κ] (S : Finset (κ × κ)) (ι) [Fintype ι] [DecidableEq ι] :
     T {p : (κ × ι) × (κ × ι) | (p.1.1, p.2.1) ∈ S} = T S * Fintype.card ι ^ 4 :=
@@ -150,12 +162,16 @@ theorem T_product_univ_right
     _ = T S * Fintype.card ι ^ 4 := by
       rw [Fintype.card_prod, Fintype.card_prod, ← Nat.pow_two, ← Nat.pow_two, ← Nat.pow_mul]
 
-/-- If `S ⊆ Fin 3 × Fin 3` is the diagonal, then `T(S) = 12`. -/
+/-- If `S ⊆ Fin 3 × Fin 3` is the diagonal, then `T(S) = 12`.
+@isnad1 id=eq.0h0v.s5.58ca54388487 from=translated src=- shape=2f2687b8 vocab=f64f24fb
+-/
 theorem T_Fin3_diag : T (diag univ : Finset (Fin 3 × Fin 3)) = 12 := by
   simp_rw [T, mem_diag, mem_univ, true_and]; rfl
 
 /-- If `S ⊆ (Fin 3 × ι) × (Fin 3 × ι)` is defined by
-  `S = {(m, i, n, j) : m = n}`, then `T(S) = 12|ι|^4`. -/
+  `S = {(m, i, n, j) : m = n}`, then `T(S) = 12|ι|^4`.
+@isnad1 id=eq.0h1v.s9.4991654203da from=translated src=- shape=1e72ca83 vocab=3e912a64
+-/
 theorem T_Fin3_diag_product (ι) [Fintype ι] [DecidableEq ι] :
     T {p : (Fin 3 × ι) × (Fin 3 × ι) | (p.1.1, p.2.1) ∈ diag univ}
       = 12 * Fintype.card ι ^ 4 :=
@@ -164,7 +180,9 @@ theorem T_Fin3_diag_product (ι) [Fintype ι] [DecidableEq ι] :
     T_product_univ_right {p : Fin 3 × Fin 3 | p.1 = p.2} ι
   _ = 12 * Fintype.card ι ^ 4 := congrArg (· * _) T_Fin3_diag
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=isgreate.0h1v.s6.b3f5fc8f1b1e from=translated src=- shape=4ff6708e vocab=a3bb7ebb
+-/
 theorem final_solution (N) : IsGreatest (Set.range (T (ι := Fin (3 * N)))) (12 * N ^ 4) := by
   refine ⟨?_, ?_⟩
   ---- There exists a subset `S ⊆ Fin 3N × Fin 3N` with `T(S) = 12N^4`.

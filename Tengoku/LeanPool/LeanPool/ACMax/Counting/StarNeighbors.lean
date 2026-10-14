@@ -14,7 +14,9 @@ public import Tengoku
 namespace ACMax
 
 open Classical in
-/-- A degree-four center has two neighbors outside a three-vertex star. -/
+/-- A degree-four center has two neighbors outside a three-vertex star.
+@isnad1 id=eq.4h5v.s7.298af172bc56 from=translated src=- shape=0e77e2cd vocab=7afd47b3
+-/
 theorem star_center_external_degree {V : Type*} [Fintype V]
     (G : SimpleGraph V) (h a b : V) (ha : G.Adj h a) (hb : G.Adj h b)
     (hab : a ≠ b) (hd : G.degree h = 4) :
@@ -37,7 +39,9 @@ theorem star_center_external_degree {V : Type*} [Fintype V]
   omega
 
 open Classical in
-/-- A degree-three leaf has two neighbors outside an induced three-vertex star. -/
+/-- A degree-three leaf has two neighbors outside an induced three-vertex star.
+@isnad1 id=eq.3h5v.s7.ea93eb79ddf3 from=translated src=- shape=3b3188f4 vocab=7afd47b3
+-/
 theorem star_leaf_external_degree {V : Type*} [Fintype V]
     (G : SimpleGraph V) (h a b : V) (ha : G.Adj h a) (hab : ¬G.Adj a b)
     (hd : G.degree a = 3) :
@@ -61,7 +65,9 @@ theorem star_leaf_external_degree {V : Type*} [Fintype V]
 open Finset
 
 open Classical in
-/-- Vertices of degree at least four each contribute at least one unit of excess. -/
+/-- Vertices of degree at least four each contribute at least one unit of excess.
+@isnad1 id=le.1h3v.s7.c595ffe78295 from=translated src=- shape=4651e8dd vocab=55e79349
+-/
 theorem card_le_sum_excess {V : Type*} [Fintype V] (G : SimpleGraph V)
     (S : Finset V) (hdeg : ∀ x ∈ S, 4 ≤ G.degree x) :
     S.card ≤ ∑ x ∈ S, (G.degree x - 3) := by

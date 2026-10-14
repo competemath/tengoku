@@ -62,7 +62,9 @@ variable {V : Type*} [Fintype V] {G : SimpleGraph V} [DecidableEq V] [DecidableR
 /-- **Disjointness of the extension fibers.**  Over distinct prefix walks the one-edge
 non-backtracking extension sets `nbExtend G x` are disjoint: a shared extension `p.concat _`
 determines its prefix `p` via `Walk.concat_inj`.  This is the disjointness the `biUnion`
-decomposition and every weighted regrouping below rely on. -/
+decomposition and every weighted regrouping below rely on.
+@isnad1 id=pairwise.0h4v.s6.4f1c6807f264 from=translated src=- shape=f1a9db0a vocab=d9559663
+-/
 theorem pairwiseDisjoint_nbExtend (x : V) (k : ℕ) :
     Set.PairwiseDisjoint (↑(nbWalksFrom G x k)) (nbExtend G x) := by
   intro s _ s' _ hss'
@@ -84,7 +86,9 @@ theorem pairwiseDisjoint_nbExtend (x : V) (k : ℕ) :
 
 /-- **Fiber cardinality.**  A prefix walk `s` (non-nil, so its endpoint has a penultimate) has
 exactly `deg s.1 − 1` non-backtracking extensions — one per neighbour of the endpoint other than
-the arrived-from vertex.  This is `nb_extension_count` transported across the image. -/
+the arrived-from vertex.  This is `nb_extension_count` transported across the image.
+@isnad1 id=eq.1h4v.s7.4c784f0f5496 from=translated src=- shape=32641f88 vocab=985d49e7
+-/
 theorem card_nbExtend {x : V} {s : Σ v : V, G.Walk x v} (hnn : ¬ s.2.Nil) :
     (nbExtend G x s).card = G.degree s.1 - 1 := by
   have hadj : G.Adj s.1 s.2.penultimate := (s.2.adj_penultimate hnn).symm
@@ -96,7 +100,9 @@ theorem card_nbExtend {x : V} {s : Σ v : V, G.Walk x v} (hnn : ¬ s.2.Nil) :
 
 /-- **Penultimate of an extension.**  Every extension of `s` has the prefix endpoint `s.1` as its
 penultimate vertex: the old endpoint becomes the new intermediate vertex.  (Immediate from
-`Walk.penultimate_concat`.) -/
+`Walk.penultimate_concat`.)
+@isnad1 id=eq.1h5v.s7.69e3d7736e2e from=translated src=- shape=fb616e7a vocab=1284a407
+-/
 theorem penultimate_of_mem_nbExtend {x : V} {s s' : Σ v : V, G.Walk x v}
     (hs' : s' ∈ nbExtend G x s) : s'.2.penultimate = s.1 := by
   rw [nbExtend, Finset.mem_image] at hs'
@@ -109,7 +115,9 @@ theorem penultimate_of_mem_nbExtend {x : V} {s s' : Σ v : V, G.Walk x v}
 /-- **The one-step decomposition** (W0).  For `k ≥ 1`, the length-`(k+1)` non-backtracking walks
 from `x` are exactly the disjoint union of the one-edge non-backtracking extensions of the
 length-`k` ones.  Extracted from the proof of `card_nbWalksFrom_succ`; the cardinality and every
-weighted marginal of the AHL assembly are read off this identity via `Finset.sum_biUnion`. -/
+weighted marginal of the AHL assembly are read off this identity via `Finset.sum_biUnion`.
+@isnad1 id=eq.1h4v.s7.b71978b77f7d from=translated src=- shape=93994357 vocab=2aba60d6
+-/
 theorem nbWalksFrom_succ_eq_biUnion (x : V) {k : ℕ} (hk : 1 ≤ k) :
     nbWalksFrom G x (k + 1) = (nbWalksFrom G x k).biUnion (nbExtend G x) := by
   have ha : ∀ s ∈ nbWalksFrom G x k, nbExtend G x s ⊆ nbWalksFrom G x (k + 1) := by
@@ -163,20 +171,26 @@ noncomputable def nbWeight {x : V} (s : Σ v : V, G.Walk x v) : ℝ :=
   ∏ j ∈ Finset.Ico 1 s.2.length, ((G.degree (s.2.getVert j) : ℝ) - 1)⁻¹
 
 omit [DecidableEq V] in
-/-- Unfolding of `nbWeight` on an explicit sigma constructor. -/
+/-- Unfolding of `nbWeight` on an explicit sigma constructor.
+@isnad1 id=eq.0h5v.s6.df98998c8936 from=translated src=- shape=f6fed39d vocab=92dbb663
+-/
 theorem nbWeight_mk {x v : V} (p : G.Walk x v) :
     nbWeight (⟨v, p⟩ : Σ w : V, G.Walk x w) =
       ∏ j ∈ Finset.Ico 1 p.length, ((G.degree (p.getVert j) : ℝ) - 1)⁻¹ := rfl
 
 omit [DecidableEq V] in
 /-- **The weight is `1` on short walks.**  For a walk of length `≤ 1` the intermediate range
-`Ico 1 len` is empty, so the weight is the empty product `1`. -/
+`Ico 1 len` is empty, so the weight is the empty product `1`.
+@isnad1 id=eq.1h4v.s6.ad8fd41e73be from=translated src=- shape=a3fc5e50 vocab=03529159
+-/
 theorem nbWeight_one {x : V} {s : Σ v : V, G.Walk x v} (h : s.2.length ≤ 1) : nbWeight s = 1 := by
   rw [nbWeight, Finset.Ico_eq_empty_of_le h, Finset.prod_empty]
 
 omit [DecidableEq V] in
 /-- **Positivity.**  Under `δ ≥ 2` every factor `(deg (getVert j) − 1)⁻¹` is positive, so the whole
-weight is positive. -/
+weight is positive.
+@isnad1 id=lt.1h4v.s6.d1fe8b4580e3 from=translated src=- shape=6993f601 vocab=11e0bae3
+-/
 theorem nbWeight_pos (hδ2 : ∀ v, 2 ≤ G.degree v) {x : V} (s : Σ v : V, G.Walk x v) :
     0 < nbWeight s := by
   rw [nbWeight]
@@ -189,7 +203,9 @@ omit [DecidableEq V] in
 /-- **Weight under a one-edge extension** (mass conservation).  Extending a non-nil walk
 `p : G.Walk x v` by an edge `h : G.Adj v t` multiplies the weight by exactly `(deg v − 1)⁻¹` — the
 old endpoint `v` becomes the new intermediate vertex.  This is the whole AHL trick: the weighted
-end-count obeys an *exact* degree law (unlike the raw end-count). -/
+end-count obeys an *exact* degree law (unlike the raw end-count).
+@isnad1 id=eq.2h6v.s7.1f37e3fb55bf from=translated src=- shape=e79f4133 vocab=3f9ea22c
+-/
 theorem nbWeight_concat {x v t : V} (p : G.Walk x v) (hp : ¬ p.Nil) (h : G.Adj v t) :
     nbWeight (⟨t, p.concat h⟩ : Σ w : V, G.Walk x w) =
       nbWeight (⟨v, p⟩ : Σ w : V, G.Walk x w) * ((G.degree v : ℝ) - 1)⁻¹ := by
@@ -218,7 +234,9 @@ def nbAll (k : ℕ) : Finset (Σ x : V, Σ v : V, G.Walk x v) :=
   Finset.univ.sigma fun x => nbWalksFrom G x k
 
 /-- Membership in `nbAll`: `⟨x, ⟨v, p⟩⟩` lies in `nbAll k` iff `p` has length `k` and is
-non-backtracking (the start ranges over all of `V`). -/
+non-backtracking (the start ranges over all of `V`).
+@isnad1 id=iff.0h4v.s8.777515a5f2b4 from=translated src=- shape=0a986888 vocab=47c5038e
+-/
 theorem mem_nbAll {k : ℕ} {t : Σ x : V, Σ v : V, G.Walk x v} :
     t ∈ nbAll (G := G) k ↔ t.2.2.length = k ∧ IsNonBacktracking t.2.2 := by
   rw [nbAll, Finset.mem_sigma]

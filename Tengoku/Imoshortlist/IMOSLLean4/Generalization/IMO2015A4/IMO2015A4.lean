@@ -29,26 +29,41 @@ namespace good
 variable [Ring R] {f : R → R} (hf : good f)
 include hf
 
+/--
+@isnad1 id=eq.1h3v.s6.32fe7f5fc29d from=translated src=- shape=4b78222b vocab=b82c3540
+-/
 @[inherit_doc map_add_map_add_one_fixed]
 alias eq1_map_add_map_add_one_fixed := map_add_map_add_one_fixed
 
+/--
+@isnad1 id=eq.1h3v.s6.12da38ef8c57 from=translated src=- shape=55b68961 vocab=adfc7537
+-/
 @[inherit_doc map_map_add_map_zero]
 alias eq2_map_map_add_map_zero := map_map_add_map_zero
 
+/--
+@isnad1 id=eq.1h3v.s6.adc1caead4d2 from=translated src=- shape=acd3b0b2 vocab=b82c3540
+-/
 @[inherit_doc map_self_add_map_self]
 alias eq3_map_self_add_map_self := map_self_add_map_self
 
-/-- (4) We have `f(f(0)) = 0`. -/
+/-- (4) We have `f(f(0)) = 0`.
+@isnad1 id=eq.1h2v.s5.7406ac5377bb from=translated src=- shape=e3bdc650 vocab=8b6a80f1
+-/
 theorem eq4_map_map_zero_eq_zero : f (f 0) = 0 := by
   have h := hf.map_map_add_map_zero 0
   rwa [mul_zero, add_zero, add_eq_right] at h
 
-/-- (5) We have `f(f(0) - 1) = f(0) - 1`. -/
+/-- (5) We have `f(f(0) - 1) = f(0) - 1`.
+@isnad1 id=eq.1h2v.s6.c75d89d71b10 from=translated src=- shape=f7c41791 vocab=26cab5b5
+-/
 theorem eq5_map_zero_sub_one_fixed : f (f 0 - 1) = f 0 - 1 := by
   have h := hf.map_add_map_add_one_fixed (f 0 - 1)
   rwa [sub_add_cancel, hf.eq4_map_map_zero_eq_zero, add_zero] at h
 
-/-- We have `f(1) = 1`, unconditionally. -/
+/-- We have `f(1) = 1`, unconditionally.
+@isnad1 id=eq.1h2v.s5.b781db39d5e9 from=translated src=- shape=061c6a34 vocab=8b6a80f1
+-/
 theorem map_one_eq_one : f 1 = 1 := by
   ---- Let `b = f(1) - 1`; it suffices to show that `b = 0`.
   let b : R := f 1 - 1
@@ -98,12 +113,16 @@ theorem map_one_eq_one : f 1 = 1 := by
   rw [h, sub_mul, mul_add, h0, mul_add, h1, sub_self] at h2
   exact h2.symm
 
-/-- If `f(y) = y` and `f(y + 1) = y + 1`, then `f(y + 2) = y + 2`. -/
+/-- If `f(y) = y` and `f(y + 1) = y + 1`, then `f(y + 2) = y + 2`.
+@isnad1 id=eq.3h3v.s7.e8147e794530 from=translated src=- shape=67cc2a25 vocab=35cdafa5
+-/
 theorem fixed_pt_add_two_of_fixed_pt (hy : f y = y) (hy0 : f (y + 1) = y + 1) :
     f (y + 2) = y + 2 :=
   fixed_pt_add_two_of_map_one hf hf.map_one_eq_one hy hy0
 
-/-- If `(y) = y` and `f(y + 1) = y + 1`, then `f(y + n) = y + n` for every `n ∈ ℕ`. -/
+/-- If `(y) = y` and `f(y + 1) = y + 1`, then `f(y + n) = y + n` for every `n ∈ ℕ`.
+@isnad1 id=eq.3h4v.s7.e807d2ad485a from=translated src=- shape=ed7dc8e3 vocab=0bd59d0c
+-/
 theorem fixed_pt_add_nat_of_fixed_pt (hy : f y = y) (hy0 : f (y + 1) = y + 1) (n : ℕ) :
     f (y + n) = y + n := by
   ---- We use two-step induction on `n`; the two base cases are given as hypothesis.
@@ -119,11 +138,15 @@ theorem fixed_pt_add_nat_of_fixed_pt (hy : f y = y) (hy0 : f (y + 1) = y + 1) (n
 variable (hf0 : f 0 = 0)
 include hf0
 
-/-- (7) If `f(0) = 0`, then `f(-x) = -f(x)` for every `x ∈ R`. -/
+/-- (7) If `f(0) = 0`, then `f(-x) = -f(x)` for every `x ∈ R`.
+@isnad1 id=eq.2h3v.s6.2b3580cfd0af from=translated src=- shape=c4be24ca vocab=4cd500ce
+-/
 theorem eq7_map_neg (x) : f (-x) = -f x :=
   map_neg_of_map_zero_map_one hf hf0 hf.map_one_eq_one x
 
-/-- (8) If `f(0) = 0`, then `f(nx) = nf(x)` for every `n ∈ ℕ` and `x ∈ R`. -/
+/-- (8) If `f(0) = 0`, then `f(nx) = nf(x)` for every `n ∈ ℕ` and `x ∈ R`.
+@isnad1 id=eq.2h4v.s6.7669d0fd5622 from=translated src=- shape=7f09e74b vocab=b4d7b628
+-/
 theorem eq8_map_nsmul (n : ℕ) (x : R) : f (x * n) = f x * n := by
   ---- First show that for any `x ∈ R`, `x + n + f(x)` is a fixed point of `f`.
   have h (x) : f (x + f x + n) = x + f x + n := by
@@ -144,11 +167,15 @@ theorem eq8_map_nsmul (n : ℕ) (x : R) : f (x * n) = f x * n := by
   have h0 := hf x (-n)
   rwa [h, add_right_inj, mul_neg, mul_neg, hf.eq7_map_neg hf0, neg_inj] at h0
 
-/-- (8), specialized to the case `n = 2`: `f(2x) = 2f(x)` for all `x ∈ R`. -/
+/-- (8), specialized to the case `n = 2`: `f(2x) = 2f(x)` for all `x ∈ R`.
+@isnad1 id=eq.2h3v.s6.1d6dc64c53f2 from=translated src=- shape=979fe0fb vocab=d0064236
+-/
 theorem eq8_map_two_mul (x : R) : f (2 * x) = 2 * f x := by
   simpa only [Nat.cast_two, mul_two, two_mul] using hf.eq8_map_nsmul hf0 2 x
 
-/-- (9) If `f(0) = 0`, then `2f(t) = 2t` for all `t ∈ R`. -/
+/-- (9) If `f(0) = 0`, then `2f(t) = 2t` for all `t ∈ R`.
+@isnad1 id=eq.2h3v.s6.9be6ef87da43 from=translated src=- shape=81540e66 vocab=d0064236
+-/
 theorem eq9_two_mul_map (t : R) : 2 * f t = 2 * t :=
   two_mul_map_of_map_zero_eq_zero hf hf0 hf.map_one_eq_one t
 
@@ -229,7 +256,9 @@ theorem eq_id_of_map_zero_eq_zero : f = id := by
 
 end good
 
-/-- Final solution to the generalized version -/
+/-- Final solution to the generalized version
+@isnad1 id=iff.0h2v.s6.bbb4199285ea from=translated src=- shape=8fa79bbc vocab=1254eb31
+-/
 theorem Generalization.final_solution [Ring R] [DecidableEq R] [NoZeroDivisors R]
     {f : R → R} : good f ↔ f = (λ x ↦ 2 - x) ∨ f = id := by
   refine ⟨λ hf ↦ ?_, λ hf ↦ ?_⟩

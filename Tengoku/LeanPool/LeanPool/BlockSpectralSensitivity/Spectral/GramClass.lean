@@ -56,7 +56,9 @@ common neighbours.
 -/
 
 /-- Two distinct inputs with a common Hamming neighbour differ in exactly two
-coordinates (Section 11.2). -/
+coordinates (Section 11.2).
+@isnad1 id=ex.3h4v.s6.1a90441c02ed from=translated src=- shape=cf814932 vocab=dbc91ded
+-/
 theorem exists_pair_of_common_nbr {x y z : Input V} (hxy : x ≠ y)
     (hxz : hammingDist x z = 1) (hyz : hammingDist y z = 1) :
     ∃ p q : V, p ≠ q ∧ y = flipSet x {p, q} := by
@@ -92,7 +94,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι] (F : CertFamily V ι)
 
 /-- Two distinct positive inputs with the same owner have no common negative neighbour:
 both flipped coordinates are free for the common owner, so both midpoints stay inside
-its certificate and are therefore positive (Section 11.2, case `i = j`). -/
+its certificate and are therefore positive (Section 11.2, case `i = j`).
+@isnad1 id=eq.2h5v.s6.3b0217bf2393 from=translated src=- shape=e8ad32a2 vocab=2cb71fdd
+-/
 theorem gram_eq_zero_of_owner_eq {x y : Ones F.ind} (hxy : x ≠ y)
     (h : F.owner x = F.owner y) : gram F.ind x y = 0 := by
   by_contra hne
@@ -108,14 +112,18 @@ theorem gram_eq_zero_of_owner_eq {x y : Ones F.ind} (hxy : x ≠ y)
   · exact key (Finset.mem_insert_self p {q}) h1
   · exact key (by simp) h1
 
-/-- A nonzero off-diagonal Gram entry forces distinct owners (Section 11.2). -/
+/-- A nonzero off-diagonal Gram entry forces distinct owners (Section 11.2).
+@isnad1 id=ne.2h5v.s6.f9175b155954 from=translated src=- shape=5cc18e41 vocab=2cb71fdd
+-/
 theorem owner_ne_of_gram_ne_zero {x y : Ones F.ind} (hxy : x ≠ y)
     (hne : gram F.ind x y ≠ 0) : F.owner x ≠ F.owner y :=
   fun h ↦ hne (F.gram_eq_zero_of_owner_eq hxy h)
 
 /-- A point at distance one from another point's certificate is not that point, since every
 point satisfies its own certificate.  This is why the oriented lemmas below take no
-separate `x ≠ y` hypothesis (Section 11.2). -/
+separate `x ≠ y` hypothesis (Section 11.2).
+@isnad1 id=ne.1h5v.s6.5c4934ffdfcb from=translated src=- shape=88a0bbbc vocab=faa14219
+-/
 theorem ne_of_dist_eq_one {x y : Ones F.ind} (hd : (F.P (F.owner y)).dist x.1 = 1) : x ≠ y := by
   rintro rfl
   rw [PartialAssign.dist_eq_zero_iff.2 (F.owner_sat x)] at hd
@@ -159,7 +167,9 @@ private theorem exists_flip_pair_of_ind_flipSet_singleton_eq_false {x y : Ones F
 /-- **Classification of a nonzero off-diagonal Gram entry** (Section 11.2).  The two
 inputs differ in exactly two coordinates `p ≠ q`; the coordinate `q` is the unique
 conflict of the two owners' certificates, and the other coordinate `p` is fixed by
-exactly one of them. -/
+exactly one of them.
+@isnad1 id=ex.2h5v.s8.550a021e2ae4 from=translated src=- shape=26293e21 vocab=7f46e64e
+-/
 theorem exists_flip_pair_of_gram_ne_zero {x y : Ones F.ind} (hxy : x ≠ y)
     (hne : gram F.ind x y ≠ 0) :
     ∃ p q : V, p ≠ q ∧ (F.P (F.owner x)).Conflict (F.P (F.owner y)) q ∧
@@ -177,7 +187,9 @@ theorem exists_flip_pair_of_gram_ne_zero {x y : Ones F.ind} (hxy : x ≠ y)
 
 /-- Of the two midpoints between `x` and `y = x^{p,q}`, at least one is positive: some
 certificate containing `x` or `y` leaves `p` or `q` free, because otherwise `p` and `q`
-would both be conflict coordinates of the two owners (Section 11.2). -/
+would both be conflict coordinates of the two owners (Section 11.2).
+@isnad1 id=or.2h7v.s7.f8608601af39 from=translated src=- shape=98ad3f78 vocab=13dec4d7
+-/
 theorem ind_flipSet_singleton_eq_true_or {x y : Ones F.ind} {p q : V} (hpq : p ≠ q)
     (hy : y.1 = flipSet x.1 {p, q}) :
     F.ind (flipSet x.1 {p}) = true ∨ F.ind (flipSet x.1 {q}) = true := by
@@ -209,7 +221,9 @@ theorem ind_flipSet_singleton_eq_true_or {x y : Ones F.ind} {p q : V} (hpq : p �
 
 /-- Distinct positive inputs have at most one common negative neighbour: the two candidates
 are the midpoints `x^p` and `x^q`, and by `ind_flipSet_singleton_eq_true_or` at most one of
-them is negative (Section 11.2). -/
+them is negative (Section 11.2).
+@isnad1 id=le.1h5v.s6.2213524e2980 from=translated src=- shape=ee592d91 vocab=9d764143
+-/
 theorem gram_le_one {x y : Ones F.ind} (hxy : x ≠ y) : gram F.ind x y ≤ 1 := by
   rw [gram_apply, Nat.cast_le_one, Finset.card_le_one]
   intro z hz w hw
@@ -227,7 +241,9 @@ theorem gram_le_one {x y : Ones F.ind} (hxy : x ≠ y) : gram F.ind x y ≤ 1 :=
 /-- Orientation of a nonzero off-diagonal entry: one of the two inputs lies at distance
 exactly one from the other's certificate (Section 11.2).  In either case the conflict
 coordinate is the only violated literal, by
-`PartialAssign.violSet_eq_singleton_of_conflict`. -/
+`PartialAssign.violSet_eq_singleton_of_conflict`.
+@isnad1 id=or.2h5v.s7.8639ad881e86 from=translated src=- shape=c6843490 vocab=02b9420f
+-/
 theorem dist_eq_one_or_dist_eq_one {x y : Ones F.ind} (hxy : x ≠ y)
     (hne : gram F.ind x y ≠ 0) :
     (F.P (F.owner y)).dist x.1 = 1 ∨ (F.P (F.owner x)).dist y.1 = 1 := by
@@ -244,7 +260,9 @@ theorem dist_eq_one_or_dist_eq_one {x y : Ones F.ind} (hxy : x ≠ y)
 
 /-- Oriented form of `exists_flip_pair_of_gram_ne_zero`: once it is known which of the two
 inputs is the near one, the alternative on `p` is resolved — `C_i` fixes `p` and `C_j` leaves
-it free, since otherwise `x` would violate both `p` and `q` of `C_j` (Section 11.3). -/
+it free, since otherwise `x` would violate both `p` and `q` of `C_j` (Section 11.3).
+@isnad1 id=ex.2h5v.s8.347c173f7acc from=translated src=- shape=320b8f52 vocab=75887e3d
+-/
 theorem exists_flip_pair_of_dist_eq_one {x y : Ones F.ind} (hne : gram F.ind x y ≠ 0)
     (hd : (F.P (F.owner y)).dist x.1 = 1) :
     ∃ p q : V, p ≠ q ∧ (F.P (F.owner x)).Conflict (F.P (F.owner y)) q ∧
@@ -270,7 +288,9 @@ theorem exists_flip_pair_of_dist_eq_one {x y : Ones F.ind} (hne : gram F.ind x y
 /-- The two alternatives of `dist_eq_one_or_dist_eq_one` are exclusive, and in the oriented
 case the reverse distance is exactly two and is realised by the nearest-point projection: `y`
 violates both `p` and `q` for `C_i`, and resetting them returns `x` (Section 11.3,
-column bound). -/
+column bound).
+@isnad1 id=and.2h5v.s7.7e6fc925875a from=translated src=- shape=9b92ca41 vocab=136105f7
+-/
 theorem dist_eq_two_of_dist_eq_one {x y : Ones F.ind} (hne : gram F.ind x y ≠ 0)
     (hd : (F.P (F.owner y)).dist x.1 = 1) :
     (F.P (F.owner x)).dist y.1 = 2 ∧ x.1 = (F.P (F.owner x)).proj y.1 := by
@@ -291,7 +311,9 @@ theorem dist_eq_two_of_dist_eq_one {x y : Ones F.ind} (hne : gram F.ind x y ≠ 
 
 /-- In the oriented case the projection of `x` onto `C_j` is `x^q`, and `y` is obtained
 from it by flipping the single coordinate `p`, which is fixed by `C_i`
-(Section 11.3, row bound). -/
+(Section 11.3, row bound).
+@isnad1 id=ex.2h5v.s7.25e65626321d from=translated src=- shape=2602a8c7 vocab=6d990377
+-/
 theorem exists_flip_proj {x y : Ones F.ind} (hne : gram F.ind x y ≠ 0)
     (hd : (F.P (F.owner y)).dist x.1 = 1) :
     ∃ p ∈ (F.P (F.owner x)).fixedSet, y.1 = flipSet ((F.P (F.owner y)).proj x.1) {p} := by
@@ -310,7 +332,9 @@ theorem exists_flip_proj {x y : Ones F.ind} (hne : gram F.ind x y ≠ 0)
 
 /-- The point `x` itself is a single flip of its own projection onto `C_j`, namely at the
 conflict coordinate, which is fixed by `C_i`.  This removes one option from the row bound
-of Section 11.3. -/
+of Section 11.3.
+@isnad1 id=ex.3h6v.s6.880713344100 from=translated src=- shape=6fbd7756 vocab=8114cfcf
+-/
 theorem exists_flip_proj_self {i j : ι} (hij : i ≠ j) {x : Input V} (hx : (F.P i).Sat x)
     (hd : (F.P j).dist x = 1) :
     ∃ p₀ ∈ (F.P i).fixedSet, x = flipSet ((F.P j).proj x) {p₀} := by

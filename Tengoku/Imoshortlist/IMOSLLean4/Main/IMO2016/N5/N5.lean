@@ -31,35 +31,62 @@ section
 variable (h : nice k a x y)
 include h
 
+/--
+@isnad1 id=nice.1h4v.s4.daecf95abb06 from=translated src=- shape=24bfdbb3 vocab=3233a9bf
+-/
 theorem neg_left : nice k a (-x) y := by
   rwa [nice, neg_sq]
 
+/--
+@isnad1 id=nice.1h4v.s4.9ff619531673 from=translated src=- shape=48ad96be vocab=3233a9bf
+-/
 theorem neg_right : nice k a x (-y) := by
   rwa [nice, neg_sq]
 
+/--
+@isnad1 id=nice.1h4v.s4.892a37935bd9 from=translated src=- shape=adc0df8b vocab=3233a9bf
+-/
 theorem neg_neg : nice k a (-x) (-y) :=
   h.neg_left.neg_right
 
+/--
+@isnad1 id=nice.1h4v.s4.f31ff7e5455a from=translated src=- shape=24bfdbb3 vocab=40a30972
+-/
 theorem abs_left : nice k a |x| y := by
   rwa [nice, sq_abs]
 
+/--
+@isnad1 id=nice.1h4v.s4.880360681652 from=translated src=- shape=48ad96be vocab=40a30972
+-/
 theorem abs_right : nice k a x |y| := by
   rwa [nice, sq_abs]
 
+/--
+@isnad1 id=nice.1h4v.s4.981767272f12 from=translated src=- shape=adc0df8b vocab=40a30972
+-/
 theorem abs_abs : nice k a |x| |y| :=
   h.abs_left.abs_right
 
+/--
+@isnad1 id=nice.1h4v.s7.c595d81153fe from=translated src=- shape=38dd1ea5 vocab=c704e657
+-/
 theorem linear_transform :
     nice k a ((2 * k + 1) * x + 2 * (k + 1) * y) (2 * k * x + (2 * k + 1) * y) := calc
   _ = (k + 1) * y ^ 2 - k * x ^ 2 := by ring
   _ = a := h
 
+/--
+@isnad1 id=nice.1h4v.s5.9e0bb6bfd2d9 from=translated src=- shape=8fc784bd vocab=474bd325
+-/
 theorem k_mirror : nice (-(k + 1)) a y x := by
   rwa [nice, neg_mul, sub_neg_eq_add, add_comm,
     neg_add', sub_add_cancel, neg_mul, ← sub_eq_add_neg]
 
 end
 
+/--
+@isnad1 id=ne.3h4v.s5.4c3a37e5463e from=translated src=- shape=4da15919 vocab=f16d2b62
+-/
 theorem y_ne_zero (hk : 0 ≤ k) (ha : 0 < a) (h : nice k a x y) : y ≠ 0 := λ h1 ↦ by
   rw [h1, nice, zero_pow (Nat.succ_ne_zero 1), mul_zero, zero_sub] at h
   exact h.not_lt ((neg_nonpos.mpr (mul_nonneg hk (sq_nonneg x))).trans_lt ha)
@@ -69,7 +96,9 @@ end nice
 variable {k a : ℤ} (hk : 0 ≤ k) (ha : 0 < a)
 include hk ha
 
-/-- Generate a new nice pair `(x', y')` with `x'` arbitrarily big from any nice pair -/
+/-- Generate a new nice pair `(x', y')` with `x'` arbitrarily big from any nice pair
+@isnad1 id=ex.3h3v.s6.51386d65e628 from=translated src=- shape=94c99549 vocab=c55217d0
+-/
 theorem exists_x_ge_bound_nat (h : ∃ x y, nice k a x y) :
     ∀ N : ℕ, ∃ x y : ℤ, 0 ≤ x ∧ N ≤ x ^ 2 ∧ nice k a x y := by
   ---- Set up induction on `N`
@@ -91,7 +120,9 @@ theorem exists_x_ge_bound_nat (h : ∃ x y, nice k a x y) :
   exact add_pos_of_nonneg_of_pos (mul_nonneg X1 hx)
     (mul_pos X2 (abs_pos.mpr (h.y_ne_zero hk ha)))
 
-/-- Generate a new nice pair `(x', y')` with `x' ≤ √a` from any nice pair -/
+/-- Generate a new nice pair `(x', y')` with `x' ≤ √a` from any nice pair
+@isnad1 id=ex.3h2v.s6.b2b364eeca76 from=translated src=- shape=0343db99 vocab=1dd58078
+-/
 theorem exists_x_sq_le_a (h : ∃ x y, nice k a x y) :
     ∃ x y : ℤ, 0 ≤ x ∧ x ^ 2 ≤ a ∧ nice k a x y := by
   ---- Reduce to a decreasing induction statement
@@ -134,7 +165,9 @@ theorem exists_x_sq_le_a (h : ∃ x y, nice k a x y) :
 
 /-! ### Summary -/
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.2h2v.s6.e8ce39257ce1 from=translated src=- shape=c81bb1e6 vocab=1dd58078
+-/
 theorem final_solution :
     (∃ x y, 0 ≤ x ∧ a < x ^ 2 ∧ nice k a x y)
       ↔ (∃ x y, 0 ≤ x ∧ x ^ 2 ≤ a ∧ nice k a x y) := by

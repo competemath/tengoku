@@ -47,7 +47,9 @@ theorem eq_zero_of_three_mul_add_two_dvd_12 (hq : 3 * q + 2 ∣ 12) : q = 0 := b
   replace hq0 : q < 4 := Nat.lt_of_mul_lt_mul_left hq0
   revert hq; revert q; decide
 
-/-- If `(3q + 2)d = 12p` where `p` is prime and `p ≡ 1 (mod 6)`, then `q = 0` or `d = 6`. -/
+/-- If `(3q + 2)d = 12p` where `p` is prime and `p ≡ 1 (mod 6)`, then `q = 0` or `d = 6`.
+@isnad1 id=or.3h3v.s6.d0face914b8f from=translated src=- shape=6f1b9c61 vocab=b892c073
+-/
 theorem q_eq_zero_or_d_eq_six_of_Diophantine
     (hp : Nat.Prime p) (hp0 : p % 6 = 1) (h : (3 * q + 2) * d = 12 * p) :
     q = 0 ∨ d = 6 := by
@@ -124,11 +126,15 @@ include hN
 
 /-! ### Basic properties -/
 
-/-- The `d_i`'s are positive. -/
+/-- The `d_i`'s are positive.
+@isnad1 id=lt.1h4v.s5.2550eeb5ddc9 from=translated src=- shape=e8672610 vocab=991866fb
+-/
 theorem divisor_pos (i) : 0 < X.divisor i :=
   Nat.pos_of_dvd_of_pos (X.divisor_spec i) hN
 
-/-- The `d_i`'s are less than or equal to `N`. -/
+/-- The `d_i`'s are less than or equal to `N`.
+@isnad1 id=le.1h4v.s5.bdc043345a38 from=translated src=- shape=7dbfdf86 vocab=847a5d1c
+-/
 theorem divisor_le (i) : X.divisor i ≤ N :=
   Nat.le_of_dvd hN (X.divisor_spec i)
 
@@ -136,23 +142,33 @@ theorem divisor_le (i) : X.divisor i ≤ N :=
 def divisor_quot (i : Fin 3) : ℕ := N / X.divisor i
 
 omit hN in
-/-- The number `q_i` sastisfies `q_i d_i = N`. -/
+/-- The number `q_i` sastisfies `q_i d_i = N`.
+@isnad1 id=eq.0h4v.s5.8350e81f1842 from=translated src=- shape=5b51470b vocab=34d99144
+-/
 theorem divisor_quot_spec (i) : X.divisor_quot i * X.divisor i = N :=
   Nat.div_mul_cancel (X.divisor_spec i)
 
-/-- The number `q_i` is positive. -/
+/-- The number `q_i` is positive.
+@isnad1 id=lt.1h4v.s5.a8d0be0dd6a8 from=translated src=- shape=f4ab6040 vocab=2afc4998
+-/
 theorem divisor_quot_pos (i) : 0 < X.divisor_quot i :=
   Nat.div_pos (X.divisor_le hN i) (X.divisor_pos hN i)
 
-/-- We have `q_0 < q_1`. -/
+/-- We have `q_0 < q_1`.
+@isnad1 id=lt.1h3v.s5.39ebd29b0c33 from=translated src=- shape=085b961a vocab=2afc4998
+-/
 theorem divisor_quot0lt1 : X.divisor_quot 0 < X.divisor_quot 1 :=
   (Nat.div_lt_div_left hN.ne.symm (X.divisor_spec 0) (X.divisor_spec 1)).mpr X.divisor1lt0
 
-/-- We have `q_1 < q_2`. -/
+/-- We have `q_1 < q_2`.
+@isnad1 id=lt.1h3v.s5.8b61dca50626 from=translated src=- shape=085b961a vocab=2afc4998
+-/
 theorem divisor_quot1lt2 : X.divisor_quot 1 < X.divisor_quot 2 :=
   (Nat.div_lt_div_left hN.ne.symm (X.divisor_spec 1) (X.divisor_spec 2)).mpr X.divisor2lt1
 
-/-- We have `q_1 ≥ 2`. -/
+/-- We have `q_1 ≥ 2`.
+@isnad1 id=le.1h3v.s5.724567fc03f8 from=translated src=- shape=534a767e vocab=4cef924e
+-/
 theorem two_le_divisor_quot1 : 2 ≤ X.divisor_quot 1 := calc
   1 ≤ X.divisor_quot 0 := X.divisor_quot_pos hN 0
   _ < X.divisor_quot 1 := X.divisor_quot0lt1 hN
@@ -161,7 +177,9 @@ end
 
 /-! ### Solution for the main problem -/
 
-/-- If `13N < 12n`, then `q_0 = 1`. -/
+/-- If `13N < 12n`, then `q_0 = 1`.
+@isnad1 id=eq.2h3v.s6.361237a1764e from=translated src=- shape=58b8ec26 vocab=780574cc
+-/
 theorem divisor0_eq_one_of_13N_lt_12n
     (hN : 0 < N) (h : 13 * N < 12 * n) (X : Norwegian n N) :
     X.divisor_quot 0 = 1 := by
@@ -185,7 +203,9 @@ theorem divisor0_eq_one_of_13N_lt_12n
   _ = 6 * N + 4 * N + 3 * N := by iterate 3 rw [X.divisor_quot_spec]
   _ = 13 * N := by rw [← Nat.add_mul, ← Nat.add_mul]
 
-/-- If `3N ≤ 2n`, then `q_1 ≤ 3`. -/
+/-- If `3N ≤ 2n`, then `q_1 ≤ 3`.
+@isnad1 id=le.2h3v.s6.74e8b65e9524 from=translated src=- shape=a37f5310 vocab=fb6ba794
+-/
 theorem divisor1_le_three_of_3N_le_2n (hN : 0 < N) (h : 3 * N ≤ 2 * n) (X : Norwegian n N) :
     X.divisor_quot 1 ≤ 3 := by
   ---- Assume `q_1 ≥ 4`, and get `q_2 > 4`.
@@ -204,7 +224,9 @@ theorem divisor1_le_three_of_3N_le_2n (hN : 0 < N) (h : 3 * N ≤ 2 * n) (X : No
   _ = 6 * N := by rw [← Nat.succ_mul, ← Nat.succ_mul]
   _ = 2 * (3 * N) := Nat.mul_assoc 2 3 N
 
-/-- If `3N < 2n` and `q_1 = 3`, then `q_2 ≤ 5`. -/
+/-- If `3N < 2n` and `q_1 = 3`, then `q_2 ≤ 5`.
+@isnad1 id=le.3h3v.s6.7b56d90e6124 from=translated src=- shape=905d4260 vocab=fb6ba794
+-/
 theorem divisor2_le_five_of_3N_lt_2n_and_divisor1_eq_three
     (hN : 0 < N) (h : 3 * N < 2 * n) (X : Norwegian n N) (hXq1 : X.divisor_quot 1 = 3) :
     X.divisor_quot 2 ≤ 5 := by
@@ -225,7 +247,9 @@ theorem divisor2_le_five_of_3N_lt_2n_and_divisor1_eq_three
       · exact (Nat.mul_le_mul_right _ h0).trans_eq (X.divisor_quot_spec 2)
     _ = 3 * (3 * N) := by rw [← Nat.add_mul, ← Nat.succ_mul, ← Nat.mul_assoc]
 
-/-- If `19 ∤ n`, `q_0 = 1`, and `q_1 = 3`, then `q_2 ≠ 4`. -/
+/-- If `19 ∤ n`, `q_0 = 1`, and `q_1 = 3`, then `q_2 ≠ 4`.
+@isnad1 id=ne.3h3v.s6.6f546bdbc552 from=translated src=- shape=78878b88 vocab=a730e12d
+-/
 theorem divisor2_ne_four_of_divisor01_eq_one_three (hn19 : ¬19 ∣ n)
     (X : Norwegian n N) (hXq0 : X.divisor_quot 0 = 1) (hXq1 : X.divisor_quot 1 = 3) :
     X.divisor_quot 2 ≠ 4 := by
@@ -247,7 +271,9 @@ theorem divisor2_ne_four_of_divisor01_eq_one_three (hn19 : ¬19 ∣ n)
   _ = 8 * (12 * n) % 19 := by rw [← Nat.mul_assoc, ← Nat.mod_mul_mod, Nat.one_mul]
   _ = 0 := by rw [h, ← Nat.mul_mod_mod, Nat.mul_mod_right]
 
-/-- If `23 ∤ n`, `q_0 = 1`, and `q_1 = 3`, then `q_2 ≠ 5`. -/
+/-- If `23 ∤ n`, `q_0 = 1`, and `q_1 = 3`, then `q_2 ≠ 5`.
+@isnad1 id=ne.3h3v.s6.4adcb244de0c from=translated src=- shape=78878b88 vocab=a730e12d
+-/
 theorem divisor2_ne_five_of_divisor01_eq_one_three (hn23 : ¬23 ∣ n)
     (X : Norwegian n N) (hXq0 : X.divisor_quot 0 = 1) (hXq1 : X.divisor_quot 1 = 3) :
     X.divisor_quot 2 ≠ 5 := by
@@ -269,7 +295,9 @@ theorem divisor2_ne_five_of_divisor01_eq_one_three (hn23 : ¬23 ∣ n)
   _ = 20 * (15 * n) % 23 := by rw [← Nat.mul_assoc, ← Nat.mod_mul_mod, Nat.one_mul]
   _ = 0 := by rw [h, ← Nat.mul_mod_mod, Nat.mul_mod_right]
 
-/-- If `3N < 2n`, `19 ∤ n`, and `23 ∤ n`, then `q_0 = 1` and `q_1 = 2`. -/
+/-- If `3N < 2n`, `19 ∤ n`, and `23 ∤ n`, then `q_0 = 1` and `q_1 = 2`.
+@isnad1 id=and.4h3v.s6.e06492f10675 from=translated src=- shape=49cbb334 vocab=6a7b5fd8
+-/
 theorem divisor01_eq_of_3N_le_2n_of_19_and_23_not_dvd_n
     (hN : 0 < N) (h : 3 * N < 2 * n) (hn19 : ¬19 ∣ n) (hn23 : ¬23 ∣ n) (X : Norwegian n N) :
     X.divisor_quot 0 = 1 ∧ X.divisor_quot 1 = 2 := by
@@ -295,7 +323,9 @@ theorem divisor01_eq_of_3N_le_2n_of_19_and_23_not_dvd_n
     X.divisor2_ne_five_of_divisor01_eq_one_three hn23 h0 h1 h2,
     h2.not_ge (X.divisor2_le_five_of_3N_lt_2n_and_divisor1_eq_three hN h h1)]
 
-/-- If `n = 6p` and `N < 4p` where `p > 23` is prime, then `q_0 = 1` and `q_1 = 2`. -/
+/-- If `n = 6p` and `N < 4p` where `p > 23` is prime, then `q_0 = 1` and `q_1 = 2`.
+@isnad1 id=and.4h3v.s7.5242b2ddacef from=translated src=- shape=836535ff vocab=279f445a
+-/
 theorem divisor01_eq_of_n_eq_six_times_prime (hp : Nat.Prime p) (hp0 : 23 < p)
     (hN : 0 < N) (hN0 : N < 4 * p) (X : Norwegian (6 * p) N) :
     X.divisor_quot 0 = 1 ∧ X.divisor_quot 1 = 2 := by
@@ -349,7 +379,9 @@ end Norwegian
 /-! ### Summary -/
 
 /-- If `p = 6k + 1` is prime, where `k ≥ 4`,
-  then the smallest `6(6k + 1)`-Norwegian number is `24k`. -/
+  then the smallest `6(6k + 1)`-Norwegian number is `24k`.
+@isnad1 id=isleast.2h1v.s6.dd9ea82c7226 from=translated src=- shape=3f47fb43 vocab=184afe80
+-/
 theorem IsLeast_Norwegian_prime_one_mod_six (hk : Nat.Prime (6 * k + 1)) (hk0 : 4 ≤ k) :
     IsLeast {N > 0 | Nonempty (Norwegian (6 * (6 * k + 1)) N)} (24 * k) := by
   ---- First show that `24k` is positive and `6(6k + 1)`-Norwegian.
@@ -370,6 +402,8 @@ theorem IsLeast_Norwegian_prime_one_mod_six (hk : Nat.Prime (6 * k + 1)) (hk0 : 
     have hk1 : (6 * k + 1) % 6 = 1 := Nat.mul_add_mod_self_left _ _ _
     refine (X.eq_Norwegian_std_six_times_6k_add_one hk hk0 hk1 hN h).ge
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=isleast.0h0v.s4.a593398e1353 from=translated src=- shape=ea62ee1a vocab=b3bf749c
+-/
 theorem final_solution : IsLeast {N > 0 | Nonempty (Norwegian 2022 N)} 1344 :=
   IsLeast_Norwegian_prime_one_mod_six (k := 56) (by norm_num) (by decide)

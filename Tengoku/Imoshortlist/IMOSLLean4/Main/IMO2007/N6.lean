@@ -27,7 +27,9 @@ namespace IMO2007N6
 /-- A pair `(x, y)` is called a *bad pair* if `axy - 1 ∣ (ax^2 - 1)^2`. -/
 abbrev bad_pair (a x y : ℤ) := a * x * y - 1 ∣ (a * x ^ 2 - 1) ^ 2
 
-/-- Property (ii): if `(x, y)` is a bad pair, then so is `(y, x)`. -/
+/-- Property (ii): if `(x, y)` is a bad pair, then so is `(y, x)`.
+@isnad1 id=badpair.1h3v.s3.c280fef3ac2a from=translated src=- shape=7289543a vocab=67e5f451
+-/
 theorem bad_pair.symm (h : bad_pair a x y) : bad_pair a y x := by
   ---- First unfold everything in terms of modular arithmetic.
   rw [bad_pair, ← Int.modEq_zero_iff_dvd, Int.mul_right_comm] at h
@@ -43,7 +45,9 @@ theorem bad_pair.symm (h : bad_pair a x y) : bad_pair a y x := by
   _ ≡ 0 [ZMOD a * y * x - 1] := by rw [Int.mul_zero]
 
 /-- A more general descent: if `N > 1`, `0 < x < y`, and `Ny - 1 ∣ (Nx - 1)^2`,
-  then `(Ny - 1)(Nz - 1) = (Nx - 1)^2` for some positive integer `z < x`. -/
+  then `(Ny - 1)(Nz - 1) = (Nx - 1)^2` for some positive integer `z < x`.
+@isnad1 id=ex.4h3v.s7.ff1c8db3e0a9 from=translated src=- shape=7640f889 vocab=291aa6b4
+-/
 theorem general_descent {N x y : ℤ}
     (hN : N > 1) (hx : x > 0) (hxy : x < y) (h : N * y - 1 ∣ (N * x - 1) ^ 2) :
     ∃ z > 0, z < x ∧ (N * y - 1) * (N * z - 1) = (N * x - 1) ^ 2 := by
@@ -95,7 +99,9 @@ theorem general_descent {N x y : ℤ}
       _ < (N * y - 1) * (N * z - 1) := Int.mul_lt_mul hxy hxz (hN0 hx) hN0y.le
 
 /-- Property (i): If `(x, y)` is a bad pair with `0 < x < y`,
-  then `(z, x)` is a bad pair for some integer `z` with `0 < z < x`. -/
+  then `(z, x)` is a bad pair for some integer `z` with `0 < z < x`.
+@isnad1 id=ex.4h3v.s5.aa92674d73e7 from=translated src=- shape=f2f3ed26 vocab=0979741c
+-/
 theorem bad_pair.descent (ha : a > 1) (hx : x > 0) (hxy : x < y) (h : bad_pair a x y) :
     ∃ z > 0, z < x ∧ bad_pair a x z := by
   ---- This essentially follows from the `general_descent` step.
@@ -105,7 +111,9 @@ theorem bad_pair.descent (ha : a > 1) (hx : x > 0) (hxy : x < y) (h : bad_pair a
   refine ⟨z, hz, hzx, a * x * y - 1, ?_⟩
   rw [sq x, ← Int.mul_assoc, ← h0, Int.mul_comm]
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=eq.4h3v.s5.42406db52634 from=translated src=- shape=d593d0f4 vocab=0979741c
+-/
 theorem final_solution (ha : 1 < a) (hx : x > 0) (hy : y > 0) (h : bad_pair a x y) :
     x = y := by
   ---- Strong induction on `x`.

@@ -78,7 +78,9 @@ def runningSum {Ω : Type*} (X : ℕ → Ω → ℝ) (n : ℕ) (ω : Ω) : ℝ :
 def runningMean {Ω : Type*} (X : ℕ → Ω → ℝ) (n : ℕ) (ω : Ω) : ℝ :=
   runningSum X n ω / (n : ℝ)
 
-/-- A finite running sum of measurable increments is measurable. -/
+/-- A finite running sum of measurable increments is measurable.
+@isnad1 id=measurab.1h4v.s5.ba0f72f1c35d from=translated src=- shape=7abcb907 vocab=3e674fa4
+-/
 theorem measurable_runningSum
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {X : ℕ → Ω → ℝ} (hX_meas : ∀ k, Measurable (X k)) (n : ℕ) :
@@ -86,7 +88,9 @@ theorem measurable_runningSum
   unfold runningSum
   fun_prop
 
-/-- A finite running mean of measurable increments is measurable. -/
+/-- A finite running mean of measurable increments is measurable.
+@isnad1 id=measurab.1h4v.s5.f857de99584c from=translated src=- shape=7abcb907 vocab=0f86db8c
+-/
 theorem measurable_runningMean
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {X : ℕ → Ω → ℝ} (hX_meas : ∀ k, Measurable (X k)) (n : ℕ) :
@@ -139,6 +143,7 @@ The `h_condSubGamma_step` hypothesis is the exact post-extractor obligation:
 `E[M_{n+1} | F_n] <= M_n`. It is the form produced by combining
 `FormalSLT.Concentration.SubGamma.condSubGammaMGF_of_bounded_centered_condVariance`
 with the conditional-expectation pull-out API.
+@isnad1 id=and.3h7v.s7.320e126c9dcd from=translated src=- shape=a868d18b vocab=912f897e
 -/
 theorem nonneg_supermartingale_of_condSubGamma
     {Ω : Type*} [mΩ : MeasurableSpace Ω]
@@ -174,6 +179,7 @@ prefactor `Z = M_n · exp(-cgf)` out of the conditional expectation
 `E[exp(lambda · X_n) | F_n] ≤ exp(cgf)` via
 `FormalSLT.Concentration.SubGamma.condSubGammaMGF_of_bounded_centered_condVariance`.
 Since `Z ≥ 0` and `exp(-cgf) · exp(cgf) = 1`, the product collapses back to `M_n`.
+@isnad1 id=eventual.10h8v.s8.69e78b2619c5 from=translated src=- shape=86695bfe vocab=d394f4ff
 -/
 theorem condSubGamma_supermartingale_step
     {Ω : Type*} [mΩ : MeasurableSpace Ω]
@@ -261,6 +267,7 @@ boundary event, for any positive tilt `lam`. This is the deterministic content t
 At `n = 0` both sides reduce to `1`. For `n ≥ 1`, multiplying the boundary inequality
 `t ≤ S_n / n - cgf / lam` by `lam * n > 0` gives `lam * n * t ≤ lam * S_n - n * cgf`, and the
 running max dominates the time-`n` exponential term.
+@isnad1 id=le.1h7v.s6.dc04de811542 from=translated src=- shape=96172893 vocab=2d593c03
 -/
 theorem subGamma_runningMean_boundary_subset
     {Ω : Type*} {X : ℕ → Ω → ℝ} {sigma2 b lam t : ℝ} {n : ℕ}
@@ -306,6 +313,7 @@ For the genuine end-to-end results (where the one-sided coverage is DERIVED from
 the conditional sub-Gamma increment model), use
 `ville_inequality_subGamma_running_mean_of_increment_model` (this file) and the
 witnessed headline `MixtureCS.mixture_confidence_sequence_uniformPrior`.
+@isnad1 id=anytimev.3h9v.s7.023590cdb56d from=translated src=- shape=a03a431a vocab=a1543f33
 -/
 theorem anytime_valid_confidence_sequence_subGamma
     {Ω : Type*} [MeasurableSpace Ω]

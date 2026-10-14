@@ -11,6 +11,9 @@ namespace MeasureTheory.Measure
 variable {α β E : Type*} {mα : MeasurableSpace α} {mβ : MeasurableSpace β}
   {μ : Measure α} {κ : Kernel α β} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
+/--
+@isnad1 id=eq.1h8v.s7.4579558227e9 from=translated src=- shape=6c3fab2f vocab=a028a016
+-/
 lemma integral_comp {f : β → E} (hf : Integrable f (κ ∘ₘ μ)) :
     ∫ b, f b ∂(κ ∘ₘ μ) = ∫ a, ∫ b, f b ∂(κ a) ∂μ := by
   rw [comp_eq_comp_const_apply] at hf ⊢

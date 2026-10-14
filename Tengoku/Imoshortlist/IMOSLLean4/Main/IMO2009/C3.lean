@@ -49,12 +49,16 @@ open List
 def g (k m : Γ → Nat) : Nat × Nat → List Γ → Nat × Nat :=
   foldr (λ i (x, y) ↦ (y, k i * x + m i * y))
 
-/-- The formula `g_2(wi) = k_i g_1(w) + m_i g_2(w)`. -/
+/-- The formula `g_2(wi) = k_i g_1(w) + m_i g_2(w)`.
+@isnad1 id=eq.0h6v.s6.cb380487c0cb from=translated src=- shape=2dfa905f vocab=47b48c0f
+-/
 theorem g_cons₂ (k m : Γ → Nat) (p i l) :
     (g k m p (i :: l)).2 = k i * (g k m p l).1 + m i * (g k m p l).2 := rfl
 
 /-- The function `g` with starting point `(x + y, z + w)` is the sum of
-  the two functions `g` with starting point `(x, z)` and `(y, w)`. -/
+  the two functions `g` with starting point `(x, z)` and `(y, w)`.
+@isnad1 id=and.0h8v.s7.2b9650c8a8e7 from=translated src=- shape=31f85b0b vocab=95e0947a
+-/
 theorem g_add (k m : Γ → Nat) (x y z w) :
     ∀ l, (g k m (x + y, z + w) l).1 = (g k m (x, z) l).1 + (g k m (y, w) l).1 ∧
       (g k m (x + y, z + w) l).2 = (g k m (x, z) l).2 + (g k m (y, w) l).2 := by
@@ -62,30 +66,40 @@ theorem g_add (k m : Γ → Nat) (x y z w) :
   rw [g_cons₂, g_cons₂, g_cons₂, Nat.add_add_add_comm,
     ← Nat.mul_add, ← Nat.mul_add, h.1, h.2]
 
-/-- The second coordinate of `g_add`. -/
+/-- The second coordinate of `g_add`.
+@isnad1 id=eq.0h8v.s6.a3cf45ecc29a from=translated src=- shape=c1a49f70 vocab=1d2c088c
+-/
 theorem g_add₂ (k m : Γ → Nat) (x y z w l) :
     (g k m (x + y, z + w) l).2 = (g k m (x, z) l).2 + (g k m (y, w) l).2 :=
   (g_add k m x y z w l).2
 
 /-- The function `g` with starting point `(cx, cy)` is
-  `c` times the function `g` with starting point `(x, y)`. -/
+  `c` times the function `g` with starting point `(x, y)`.
+@isnad1 id=and.0h7v.s6.29c5e7a75163 from=translated src=- shape=78b09427 vocab=9d7727a7
+-/
 theorem g_mul (k m : Γ → Nat) (c x y) :
     ∀ l, (g k m (c * x, c * y) l).1 = c * (g k m (x, y) l).1 ∧
       (g k m (c * x, c * y) l).2 = c * (g k m (x, y) l).2 := by
   refine List.rec ⟨rfl, rfl⟩ λ a l h ↦ ⟨h.2, ?_⟩
   rw [g_cons₂, g_cons₂, h.1, h.2, c.mul_add, c.mul_left_comm, c.mul_left_comm]
 
-/-- The second coordinate of `g_mul`. -/
+/-- The second coordinate of `g_mul`.
+@isnad1 id=eq.0h7v.s6.1d9281ae03b7 from=translated src=- shape=e75b14ce vocab=f8d6b1f5
+-/
 theorem g_mul₂ (k m : Γ → Nat) (c x y l) :
     (g k m (c * x, c * y) l).2 = c * (g k m (x, y) l).2 :=
   (g_mul k m c x y l).2
 
-/-- A formula for `g(iw)`. -/
+/-- A formula for `g(iw)`.
+@isnad1 id=eq.0h6v.s6.ccbbd5a810b3 from=translated src=- shape=01449272 vocab=9921b977
+-/
 theorem g_append_singleton (k m : Γ → Nat) (p i l) :
     g k m p (l ++ [i]) = g k m (p.2, k i * p.1 + m i * p.2) l :=
   foldr_append
 
-/-- The main theorem on `g`. -/
+/-- The main theorem on `g`.
+@isnad1 id=eq.1h7v.s6.a1915fe7e3a5 from=translated src=- shape=f7514892 vocab=9d86197c
+-/
 theorem g_reverse {k m : Γ → Nat} (h : ∀ i, k i * X + m i * Y = Z) :
     ∀ l : List Γ, (g k m (Y, Z) l.reverse).2 = (g k m (Y, Z) l).2
   | [] => rfl
@@ -104,10 +118,14 @@ theorem g_reverse {k m : Γ → Nat} (h : ∀ i, k i * X + m i * Y = Z) :
 def f : List Bool → Nat × Nat :=
   foldr (λ i (x, y) ↦ (y, match i with | false => 2 * x + 3 * y | true => 3 * x + y)) (1, 7)
 
-/-- Expressing `f` as `g` with `(k_0, k_1, m_0, m_1, X, Y, Z) = (2, 3, 3, 1, 2, 1, 7)`. -/
+/-- Expressing `f` as `g` with `(k_0, k_1, m_0, m_1, X, Y, Z) = (2, 3, 3, 1, 2, 1, 7)`.
+@isnad1 id=eq.0h0v.s5.2a856ae034fc from=translated src=- shape=cb55e4b4 vocab=f6232f8a
+-/
 theorem f_eq_g : f = g (Bool.rec 2 3) (Bool.rec 3 1) (1, 7) :=
   congrArg (foldr · (1, 7)) (funext (Bool.rec rfl (by simp only [Nat.one_mul])))
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=eq.0h1v.s4.a680d3687f95 from=translated src=- shape=da472189 vocab=7536e1b1
+-/
 theorem final_solution : ∀ l, (f l.reverse).2 = (f l).2 :=
   f_eq_g ▸ g_reverse (X := 2) (Bool.rec rfl rfl)

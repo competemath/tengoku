@@ -37,6 +37,7 @@ This is a claim-facing wrapper around mathlib's
 `MeasureTheory.mul_meas_ge_le_integral_of_nonneg`, divided by the positive
 threshold. It matches the topic theorem after making the integrability
 assumption explicit.
+@isnad1 id=le.3h4v.s7.5ba8eadaa5ff from=translated src=- shape=d5e882fe vocab=3dd35a1f
 -/
 theorem markovInequalityRealIntegrable
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} {X : Ω → ℝ} {t : ℝ}
@@ -52,6 +53,7 @@ Chebyshev's inequality, variance form.
 
 This is a claim-facing wrapper around mathlib's
 `ProbabilityTheory.meas_ge_le_variance_div_sq`.
+@isnad1 id=le.2h4v.s7.c6fd7b9b0dbc from=translated src=- shape=4b460b82 vocab=25b9210b
 -/
 theorem chebyshevInequalityVariance
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsFiniteMeasure μ]
@@ -64,6 +66,7 @@ Finite-sum tail bound for independent sub-Gaussian random variables.
 
 This is the exact mathlib-backed concentration theorem that sits immediately
 above the finite-class union-bound pattern used in learning theory.
+@isnad1 id=le.3h7v.s7.ba463352342f from=translated src=- shape=1442aca1 vocab=5c13c998
 -/
 theorem subGaussianFiniteSumTailBound
     {Ω ι : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
@@ -81,6 +84,7 @@ sub-Gaussian in the MGF-parameter sense.
 This is a scoped bridge for the public psi₂-norm closure theorem: mathlib's
 formal vocabulary is the MGF parameter `c`, so the theorem proves the finite
 MGF closure statement without claiming the Orlicz-norm equivalence constants.
+@isnad1 id=hassubga.2h7v.s7.e85071919340 from=translated src=- shape=f1261be8 vocab=f0ce9df9
 -/
 theorem subGaussianIndependentFiniteLinearCombinationMGF
     {Ω ι : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
@@ -105,6 +109,7 @@ This is a scoped bridge for the public bounded-increment Azuma-Hoeffding
 claims. Mathlib's theorem is stated in the stronger formal vocabulary of
 conditional sub-Gaussian increments, so this wrapper is not a two-sided
 bounded-difference claim verification.
+@isnad1 id=le.4h8v.s7.31de929ad61b from=translated src=- shape=2473d863 vocab=5fe4f731
 -/
 theorem azumaHoeffdingConditionalSubGaussianTail
     {Ω : Type*} {mΩ : MeasurableSpace Ω} [StandardBorelSpace Ω]
@@ -128,6 +133,7 @@ This is the claim-facing wrapper for the basic MGF-implies-tail theorem in
 the Sub-Gaussian page. The centering assumption in the prose theorem is
 stronger than this implication needs; the MGF condition is the load-bearing
 formal hypothesis.
+@isnad1 id=le.2h5v.s7.4f3314814ae3 from=translated src=- shape=774b6862 vocab=6840bd0a
 -/
 theorem subGaussianMGFImpliesRightTailBound
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
@@ -143,6 +149,7 @@ Hoeffding's lemma for a bounded centered real random variable.
 This wraps mathlib's sub-Gaussian MGF form directly. The public claim remains
 claim-level only: the wrapper verifies the exact theorem statement, not the
 whole Sub-Gaussian page.
+@isnad1 id=hassubga.3h5v.s7.1390397b4b24 from=translated src=- shape=d96d26a8 vocab=35c967bf
 -/
 theorem hoeffdingLemmaBoundedCenteredSubgaussianMGF
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -159,6 +166,7 @@ One-sided Hoeffding bound for a finite independent family of bounded variables.
 This composes mathlib's bounded-variable Hoeffding lemma with its finite
 sub-Gaussian sum tail theorem. Average and two-sided textbook displays should
 remain separate governed claims unless their exact statements are wrapped too.
+@isnad1 id=le.4h8v.s8.4d491a85fe3f from=translated src=- shape=a57fbb86 vocab=879f8109
 -/
 theorem hoeffdingBoundedFiniteSumTail
     {Ω ι : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -222,6 +230,7 @@ Proof of the finite-support Markov statement seed.
 
 This proves only the finite weighted specialization above; it is not the full
 measure-theoretic page theorem.
+@isnad1 id=markovin.0h0v.s0.8376d2c90e1c from=translated src=- shape=45709ebd vocab=210b41f2
 -/
 theorem markovInequalityFiniteWeighted_proof :
     markovInequalityFiniteWeightedStatement.{u} := by
@@ -250,6 +259,7 @@ Proof of the finite-support Chebyshev statement seed.
 
 This proves only the finite weighted specialization above; it is not the full
 measure-theoretic page theorem.
+@isnad1 id=chebyshe.0h0v.s0.ddc544a02c49 from=translated src=- shape=45709ebd vocab=e74cbb56
 -/
 theorem chebyshevInequalityFiniteWeighted_proof :
     chebyshevInequalityFiniteWeightedStatement.{u} := by

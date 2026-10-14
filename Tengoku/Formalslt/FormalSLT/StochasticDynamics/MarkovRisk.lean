@@ -42,6 +42,9 @@ variable {Z : Type*} [Fintype Z] [MeasurableSpace Z] [MeasurableSingletonClass Z
 def pmfKernel (P : Z → PMF Z) : Kernel Z Z :=
   Kernel.ofFunOfCountable fun z ↦ (P z).toMeasure
 
+/--
+@isnad1 id=ismarkov.0h2v.s4.68053346ca62 from=translated src=- shape=fb3246f2 vocab=c00e1008
+-/
 instance pmfKernel.instIsMarkovKernel (P : Z → PMF Z) : IsMarkovKernel (pmfKernel P) :=
   ⟨fun z ↦ by
     change IsProbabilityMeasure (P z).toMeasure
@@ -54,6 +57,9 @@ def prefixKernel (P : Z → PMF Z) (n : ℕ) : Kernel ((i : Finset.Iic n) → Z)
     (measurable_pi_apply (X := fun _ : Finset.Iic n ↦ Z)
       ⟨n, Finset.mem_Iic.mpr le_rfl⟩)
 
+/--
+@isnad1 id=ismarkov.0h3v.s7.fc0a131b32eb from=translated src=- shape=643348dc vocab=f20983c8
+-/
 instance prefixKernel.instIsMarkovKernel (P : Z → PMF Z) (n : ℕ) :
     IsMarkovKernel (prefixKernel P n) := by
   unfold prefixKernel
@@ -63,6 +69,9 @@ instance prefixKernel.instIsMarkovKernel (P : Z → PMF Z) (n : ℕ) :
 def markovPathMeasure (P : Z → PMF Z) (x0 : Z) : Measure (ℕ → Z) :=
   Kernel.traj (X := fun _ : ℕ ↦ Z) (prefixKernel P) 0 (fun _ ↦ x0)
 
+/--
+@isnad1 id=isprobab.0h3v.s5.7c38e7093858 from=translated src=- shape=38e0285b vocab=e1e3bcdc
+-/
 instance markovPathMeasure.instIsProbabilityMeasure (P : Z → PMF Z) (x0 : Z) :
     IsProbabilityMeasure (markovPathMeasure P x0) := by
   unfold markovPathMeasure
@@ -81,12 +90,18 @@ def conditionalSquaredRisk (P : Z → PMF Z) (f q : Z → ℝ)
     (n : ℕ) (x : ℕ → Z) : ℝ :=
   ∫ y, transitionSquaredLoss f q (x n) y ∂(P (x n)).toMeasure
 
+/--
+@isnad1 id=measurab.0h4v.s5.1744da9a90d5 from=translated src=- shape=7d7379c2 vocab=86d01298
+-/
 lemma measurable_pathSquaredLoss (f q : Z → ℝ) (n : ℕ) :
     Measurable (pathSquaredLoss f q n) := by
   unfold pathSquaredLoss transitionSquaredLoss
   fun_prop
 
 omit [Fintype Z] [MeasurableSpace Z] [MeasurableSingletonClass Z] in
+/--
+@isnad1 id=mem.2h5v.s6.3bba266e9ab7 from=translated src=- shape=084a8a82 vocab=2b6632ef
+-/
 lemma transitionSquaredLoss_mem_Icc
     {f q : Z → ℝ}
     (hf : ∀ z, f z ∈ Set.Icc (0 : ℝ) 1)
@@ -102,6 +117,9 @@ lemma transitionSquaredLoss_mem_Icc
     nlinarith [sq_nonneg (f y - q x), sq_nonneg (1 - (f y - q x)),
       sq_nonneg (1 + (f y - q x))]
 
+/--
+@isnad1 id=integrab.2h6v.s6.9fc63511947a from=translated src=- shape=604ac5d2 vocab=3890028a
+-/
 lemma integrable_pathSquaredLoss
     {P : Z → PMF Z} {x0 : Z} {f q : Z → ℝ}
     (hf : ∀ z, f z ∈ Set.Icc (0 : ℝ) 1)
@@ -116,7 +134,9 @@ lemma integrable_pathSquaredLoss
     exact (transitionSquaredLoss_mem_Icc hf hq (x n) (x (n + 1))).2
 
 /-- Under the generated trajectory, the next coordinate has the transition PMF
-at the last state of the supplied prefix. -/
+at the last state of the supplied prefix.
+@isnad1 id=eq.0h4v.s8.a1027b56b7cf from=translated src=- shape=f6552cf7 vocab=1a0593fa
+-/
 lemma map_traj_next (P : Z → PMF Z) (n : ℕ) (u : (i : Finset.Iic n) → Z) :
     (Kernel.traj (X := fun _ : ℕ ↦ Z) (prefixKernel P) n u).map
         (fun x ↦ x (n + 1)) =
@@ -128,7 +148,9 @@ lemma map_traj_next (P : Z → PMF Z) (n : ℕ) (u : (i : Finset.Iic n) → Z) :
   rfl
 
 /-- Integrating the observed next-step loss against a trajectory continuation is
-the transition-row risk at the final state of the prefix. -/
+the transition-row risk at the final state of the prefix.
+@isnad1 id=eq.0h6v.s8.dedb9828e5e2 from=translated src=- shape=99ac885d vocab=fcff10e6
+-/
 lemma integral_pathSquaredLoss_traj
     (P : Z → PMF Z) (f q : Z → ℝ) (n : ℕ) (u : (i : Finset.Iic n) → Z) :
     ∫ x, pathSquaredLoss f q n x
@@ -167,7 +189,9 @@ lemma integral_pathSquaredLoss_traj
 
 /-- The generated Markov trajectory determines the conditional expectation of
 the next-step squared loss.  In particular, the right-hand side is not carried
-as a martingale-difference assumption. -/
+as a martingale-difference assumption.
+@isnad1 id=eventual.2h6v.s7.2b371dc7be11 from=translated src=- shape=10101316 vocab=2466b3b7
+-/
 theorem pathSquaredLoss_condExp
     (P : Z → PMF Z) (x0 : Z) (f q : Z → ℝ)
     (hf : ∀ z, f z ∈ Set.Icc (0 : ℝ) 1)
@@ -193,6 +217,9 @@ private lemma stronglyMeasurable_piLE_of_prefix
   rw [Filtration.piLE_eq_comap_frestrictLe]
   exact hg.comp_measurable (comap_measurable _)
 
+/--
+@isnad1 id=strongly.0h5v.s6.8495ca25771a from=translated src=- shape=d4afe8c2 vocab=0a89d90c
+-/
 lemma stronglyMeasurable_conditionalSquaredRisk
     (P : Z → PMF Z) (f q : Z → ℝ) (n : ℕ) :
     StronglyMeasurable[Filtration.piLE (X := fun _ : ℕ ↦ Z) n]
@@ -207,6 +234,9 @@ lemma stronglyMeasurable_conditionalSquaredRisk
   simpa [g, Preorder.frestrictLe_apply] using
     stronglyMeasurable_piLE_of_prefix n g hg
 
+/--
+@isnad1 id=mem.2h6v.s6.cd0d884029e9 from=translated src=- shape=5d6b6796 vocab=2364574f
+-/
 lemma conditionalSquaredRisk_mem_Icc
     (P : Z → PMF Z) {f q : Z → ℝ}
     (hf : ∀ z, f z ∈ Set.Icc (0 : ℝ) 1)
@@ -223,6 +253,9 @@ lemma conditionalSquaredRisk_mem_Icc
           (transitionSquaredLoss_mem_Icc hf hq (x n) y).2)
     simpa [conditionalSquaredRisk, rowLoss] using hle
 
+/--
+@isnad1 id=integrab.2h6v.s7.e08542a441f7 from=translated src=- shape=8066d2fe vocab=b5090e4b
+-/
 lemma integrable_conditionalSquaredRisk
     {P : Z → PMF Z} {x0 : Z} {f q : Z → ℝ}
     (hf : ∀ z, f z ∈ Set.Icc (0 : ℝ) 1)
@@ -257,6 +290,9 @@ private lemma stronglyMeasurable_pathSquaredLoss_succ
   simpa [g, Preorder.frestrictLe_apply] using
     stronglyMeasurable_piLE_of_prefix (n + 1) g hg
 
+/--
+@isnad1 id=incremen.0h4v.s5.61501ace93ce from=translated src=- shape=fe90f259 vocab=f1402a01
+-/
 lemma markovRiskInnovation_incrementAdapted
     (P : Z → PMF Z) (f q : Z → ℝ) :
     AnytimeValid.IncrementAdapted
@@ -267,12 +303,18 @@ lemma markovRiskInnovation_incrementAdapted
     ((stronglyMeasurable_conditionalSquaredRisk P f q n).mono
       ((Filtration.piLE (X := fun _ : ℕ ↦ Z)).mono (Nat.le_succ n)))
 
+/--
+@isnad1 id=measurab.0h5v.s5.78e4ce68ed27 from=translated src=- shape=d4afe8c2 vocab=e45d22e8
+-/
 lemma measurable_markovRiskInnovation
     (P : Z → PMF Z) (f q : Z → ℝ) (n : ℕ) :
     Measurable (markovRiskInnovation P f q n) :=
   ((markovRiskInnovation_incrementAdapted P f q) n).mono
       ((Filtration.piLE (X := fun _ : ℕ ↦ Z)).le (n + 1)) |>.measurable
 
+/--
+@isnad1 id=le.2h6v.s6.2dc0d217e6d5 from=translated src=- shape=56498f5f vocab=bcd4ca35
+-/
 lemma abs_markovRiskInnovation_le_one
     (P : Z → PMF Z) {f q : Z → ℝ}
     (hf : ∀ z, f z ∈ Set.Icc (0 : ℝ) 1)
@@ -287,6 +329,9 @@ lemma abs_markovRiskInnovation_le_one
   unfold markovRiskInnovation pathSquaredLoss
   constructor <;> linarith
 
+/--
+@isnad1 id=integrab.2h6v.s7.9de4dbadc035 from=translated src=- shape=8066d2fe vocab=01a440a9
+-/
 lemma integrable_markovRiskInnovation
     {P : Z → PMF Z} {x0 : Z} {f q : Z → ℝ}
     (hf : ∀ z, f z ∈ Set.Icc (0 : ℝ) 1)
@@ -297,7 +342,9 @@ lemma integrable_markovRiskInnovation
     (integrable_conditionalSquaredRisk (P := P) (x0 := x0) hf hq n)
 
 /-- The prequential innovation is conditionally centered because its risk term
-is the transition-row conditional expectation of the observed loss. -/
+is the transition-row conditional expectation of the observed loss.
+@isnad1 id=eventual.2h6v.s7.1c1f7ea1d799 from=translated src=- shape=6099a1d5 vocab=d9c8fd79
+-/
 theorem markovRiskInnovation_condExp_eq_zero
     (P : Z → PMF Z) (x0 : Z) {f q : Z → ℝ}
     (hf : ∀ z, f z ∈ Set.Icc (0 : ℝ) 1)
@@ -339,7 +386,9 @@ theorem markovRiskInnovation_condExp_eq_zero
 /-- The conditional second moment of the centered one-step loss has the sharp
 `1/4` bound for a random variable taking values in `[0,1]`.  The proof uses the
 actual transition-law conditional expectation, then applies
-`E[L² | ℱ] ≤ E[L | ℱ]` and `m(1-m) ≤ 1/4`. -/
+`E[L² | ℱ] ≤ E[L | ℱ]` and `m(1-m) ≤ 1/4`.
+@isnad1 id=eventual.2h6v.s7.5e95ef75336c from=translated src=- shape=1015904b vocab=cd79abbc
+-/
 theorem markovRiskInnovation_condSecondMoment_le_one_fourth
     (P : Z → PMF Z) (x0 : Z) {f q : Z → ℝ}
     (hf : ∀ z, f z ∈ Set.Icc (0 : ℝ) 1)
@@ -387,7 +436,9 @@ theorem markovRiskInnovation_condSecondMoment_le_one_fourth
   nlinarith [sq_nonneg (conditionalSquaredRisk P f q n x - 1 / 2)]
 
 /-- Conservative unit bound, retained as a compatibility corollary of the
-sharp `1/4` conditional-second-moment theorem. -/
+sharp `1/4` conditional-second-moment theorem.
+@isnad1 id=eventual.2h6v.s7.fd45f3c22a70 from=translated src=- shape=9e056475 vocab=999882a0
+-/
 lemma markovRiskInnovation_condSecondMoment_le_one
     (P : Z → PMF Z) (x0 : Z) {f q : Z → ℝ}
     (hf : ∀ z, f z ∈ Set.Icc (0 : ℝ) 1)
@@ -412,7 +463,9 @@ def averageConditionalRisk (P : Z → PMF Z) (f q : Z → ℝ)
 
 omit [Fintype Z] [MeasurableSingletonClass Z] in
 /-- The innovation running mean is exactly observed prequential risk minus the
-average conditional transition risk. -/
+average conditional transition risk.
+@isnad1 id=eq.0h6v.s5.98764d14eac5 from=translated src=- shape=779f4142 vocab=83052dde
+-/
 theorem runningMean_markovRiskInnovation
     (P : Z → PMF Z) (f q : Z → ℝ) (n : ℕ) (x : ℕ → Z) :
     AnytimeValid.runningMean (markovRiskInnovation P f q) n x =
@@ -442,12 +495,18 @@ def markovPrequentialRiskExceptionalEvent
   toMeasurable (markovPathMeasure P x0)
     (markovPrequentialRiskRawFailure P f q Lam delta)
 
+/--
+@isnad1 id=measurab.0h7v.s5.abf3c8651c79 from=translated src=- shape=2b5d4f3b vocab=77c20f1f
+-/
 theorem markovPrequentialRiskExceptionalEvent_measurable
     (P : Z → PMF Z) (x0 : Z) (f q : Z → ℝ)
     (Lam : Finset ℝ) (delta : ℝ) :
     MeasurableSet (markovPrequentialRiskExceptionalEvent P x0 f q Lam delta) :=
   measurableSet_toMeasurable _ _
 
+/--
+@isnad1 id=le.0h7v.s5.9c4b1ccb7147 from=translated src=- shape=2e3716b3 vocab=f1fddb04
+-/
 theorem markovPrequentialRiskRawFailure_subset_exceptionalEvent
     (P : Z → PMF Z) (x0 : Z) (f q : Z → ℝ)
     (Lam : Finset ℝ) (delta : ℝ) :
@@ -456,7 +515,9 @@ theorem markovPrequentialRiskRawFailure_subset_exceptionalEvent
   subset_toMeasurable _ _
 
 /-- Outside the measurable exceptional event, the observed and conditional
-trajectory-average risks differ by less than every declared grid boundary. -/
+trajectory-average risks differ by less than every declared grid boundary.
+@isnad1 id=lt.3h10v.s7.9638ccaf681b from=translated src=- shape=7fb13eb5 vocab=bf7757bf
+-/
 theorem abs_prequentialRisk_sub_averageConditionalRisk_lt_of_not_mem
     (P : Z → PMF Z) (x0 : Z) (f q : Z → ℝ)
     {Lam : Finset ℝ} {delta lam : ℝ} {n : ℕ} {x : ℕ → Z}
@@ -472,7 +533,9 @@ theorem abs_prequentialRisk_sub_averageConditionalRisk_lt_of_not_mem
 
 /-- Human-readable upper certificate for the latent average conditional risk.
 The right-hand side uses only the observed prequential loss and declared
-confidence parameters. -/
+confidence parameters.
+@isnad1 id=lt.3h10v.s7.a6dabe99f35d from=translated src=- shape=1a190f0f vocab=645c592c
+-/
 theorem averageConditionalRisk_lt_empiricalPrequentialRisk_add_boundary_of_not_mem
     (P : Z → PMF Z) (x0 : Z) (f q : Z → ℝ)
     {Lam : Finset ℝ} {delta lam : ℝ} {n : ℕ} {x : ℕ → Z}

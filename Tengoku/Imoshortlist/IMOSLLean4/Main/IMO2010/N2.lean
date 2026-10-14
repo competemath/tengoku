@@ -36,17 +36,23 @@ def good (m : ℤ) (n : ℕ) := m ^ 2 + 2 * 3 ^ n = m * (2 ^ (n + 1) - 1)
 /-- A pair `(p, q)` is caled *nice* if `3^p + 2 3^q = 2^{p + q + 1} - 1`. -/
 def nice (p q : ℕ) := (3 : ℤ) ^ p + 2 * 3 ^ q = 2 ^ (p + q + 1) - 1
 
-/-- Given a nice pair `(p, q)`, the pair `(3^p, p + q)` is good. -/
+/-- Given a nice pair `(p, q)`, the pair `(3^p, p + q)` is good.
+@isnad1 id=good.1h2v.s5.ae34996da66e from=translated src=- shape=61d5fa6c vocab=ce92dffc
+-/
 theorem nice.good_three_pow_left (h : nice p q) : good (3 ^ p) (p + q) := by
   rw [good, ← h, sq, Int.pow_add, Int.mul_left_comm, Int.mul_add]
 
-/-- Given a nice pair `(p, q)`, the pair `(2 3^q, p + q)` is good. -/
+/-- Given a nice pair `(p, q)`, the pair `(2 3^q, p + q)` is good.
+@isnad1 id=good.1h2v.s5.abcfe0dab757 from=translated src=- shape=712edf81 vocab=afcdf85b
+-/
 theorem nice.good_two_mul_three_pow_right (h : nice p q) : good (2 * 3 ^ q) (p + q) := by
   rw [good, ← h, sq, Int.pow_add, Int.mul_left_comm 2,
     Int.add_comm, ← Int.add_mul, Int.mul_comm]
 
 /-- A pair `(m, n)` is good iff there exists a nice pair `(p, q)`
-  such that `n = p + q` and either `m = 3^p` or `m = 2 3^q`. -/
+  such that `n = p + q` and either `m = 3^p` or `m = 2 3^q`.
+@isnad1 id=iff.0h2v.s6.55c4fe7edee2 from=translated src=- shape=4b499b47 vocab=afcdf85b
+-/
 theorem good_iff_nice :
     good m n ↔ ∃ p q, nice p q ∧ n = p + q ∧ (m = 3 ^ p ∨ m = 2 * 3 ^ q) := by
   ---- The `←` direction has been proved via two lemmas.
@@ -101,7 +107,9 @@ theorem good_iff_nice :
       _ = 3 ^ p * (2 ^ (p + (n - p) + 1) - 1) := by rw [← hp]
     exact Int.eq_of_mul_eq_mul_left (h0 p).ne.symm h
 
-/-- If `(p, q)` is a nice pair, then `p + q ≤ 3 min{p, q} + 1`. -/
+/-- If `(p, q)` is a nice pair, then `p + q ≤ 3 min{p, q} + 1`.
+@isnad1 id=le.1h2v.s5.79bfaf1f4f23 from=translated src=- shape=d65cd063 vocab=12eab79d
+-/
 theorem nice.add_le_three_mul_min_add_one (h : nice p q) : p + q ≤ 3 * min p q + 1 := by
   ---- This is done via bounding over the real place.
   have X (n : ℕ) : 0 ≤ (3 : ℤ) ^ n := Int.pow_nonneg (Int.natCast_nonneg 3)
@@ -135,7 +143,9 @@ theorem nice.add_le_three_mul_min_add_one (h : nice p q) : p + q ≤ 3 * min p q
       Nat.succ_mul, Nat.add_lt_add_iff_left, Nat.lt_succ_iff] at h0
   rwa [← max_add_min p q, Nat.succ_mul, Nat.add_right_comm, Nat.add_le_add_iff_right]
 
-/-- If `(p, q)` is a nice pair, then `min{p, q} > 0`. -/
+/-- If `(p, q)` is a nice pair, then `min{p, q} > 0`.
+@isnad1 id=lt.1h2v.s4.7e86efd7ccc2 from=translated src=- shape=e63077c9 vocab=644c96fb
+-/
 theorem nice.min_pos (h : nice p q) : min p q > 0 := by
   ---- If not, the previous bound gives `p + q ≤ 1`.
   refine Nat.pos_of_ne_zero λ h0 ↦ ?_
@@ -149,7 +159,9 @@ theorem nice.min_pos (h : nice p q) : min p q > 0 := by
   revert h; revert p; revert q
   unfold nice; decide
 
-/-- If `3 ∣ 2^n - 1`, then `2 ∣ n`. -/
+/-- If `3 ∣ 2^n - 1`, then `2 ∣ n`.
+@isnad1 id=dvd.1h1v.s5.cedb7f625469 from=translated src=- shape=1ad38cf6 vocab=82732b80
+-/
 theorem two_dvd_of_three_dvd_pow_sub_one (h : (3 : ℤ) ∣ 2 ^ n - 1) : 2 ∣ n := by
   refine Decidable.by_contra λ h0 ↦ ?_
   replace h0 : n % 2 = 1 := Nat.two_dvd_ne_zero.mp h0
@@ -163,7 +175,9 @@ theorem two_dvd_of_three_dvd_pow_sub_one (h : (3 : ℤ) ∣ 2 ^ n - 1) : 2 ∣ n
     _ ≡ 1 [MOD 3] := (Nat.modEq_of_dvd h).symm
   revert h; decide
 
-/-- We have `ν_3(4^r - 1) = r + 1` for any `r : ℕ`. -/
+/-- We have `ν_3(4^r - 1) = r + 1` for any `r : ℕ`.
+@isnad1 id=eq.0h1v.s6.7a2ec757a7e9 from=translated src=- shape=63c98ccc vocab=b28e962d
+-/
 theorem emultiplicity_three_four_pow_sub_one (r : ℕ) :
     emultiplicity (3 : ℤ) (4 ^ r - 1) = emultiplicity 3 r + 1 :=
   calc emultiplicity (3 : ℤ) (4 ^ r - 1)
@@ -174,7 +188,9 @@ theorem emultiplicity_three_four_pow_sub_one (r : ℕ) :
     congrArg (· + _) (FiniteMultiplicity.emultiplicity_self ⟨2, by decide⟩)
   _ = emultiplicity 3 r + 1 := add_comm _ _
 
-/-- This lemma is `emultiplicity_three_four_pow_sub_one` with `multiplicity` version. -/
+/-- This lemma is `emultiplicity_three_four_pow_sub_one` with `multiplicity` version.
+@isnad1 id=eq.1h1v.s6.b0b6365b73ab from=translated src=- shape=9ce23a25 vocab=acccd4d1
+-/
 theorem multiplicity_three_four_pow_sub_one {r : ℕ} (hr : r ≠ 0) :
     multiplicity (3 : ℤ) (4 ^ r - 1) = multiplicity 3 r + 1 := by
   have h : 3 ≠ 1 := by decide
@@ -187,7 +203,9 @@ theorem multiplicity_three_four_pow_sub_one {r : ℕ} (hr : r ≠ 0) :
     ← hr.emultiplicity_eq_multiplicity, emultiplicity_three_four_pow_sub_one]
 
 /-- If `(p, q)` is a nice pair, then `p + q + 1 = 2r`
-  for some `r : ℕ` and `min{p, q} ≤ ν_3(r) + 1`. -/
+  for some `r : ℕ` and `min{p, q} ≤ ν_3(r) + 1`.
+@isnad1 id=ex.1h2v.s6.df93792ab96f from=translated src=- shape=46d7dbc9 vocab=664a7e0a
+-/
 theorem nice.add_succ_even_and_min_le_multiplicity (h : nice p q) :
     ∃ r, p + q + 1 = 2 * r ∧ min p q ≤ multiplicity 3 r + 1 := by
   ---- The given equation yields `3^{min(p, q)} ∣ 2^{p + q + 1} - 1`.
@@ -214,7 +232,9 @@ theorem nice.add_succ_even_and_min_le_multiplicity (h : nice p q) :
     _ = multiplicity (3 : ℤ) (4 ^ r - 1) := by rw [hr, Int.pow_mul]; rfl
     _ = multiplicity 3 r + 1 := multiplicity_three_four_pow_sub_one h0
 
-/-- The only nice pairs are `(2, 1)` and `(2, 3)`. -/
+/-- The only nice pairs are `(2, 1)` and `(2, 3)`.
+@isnad1 id=iff.0h2v.s5.04a0dc631aa3 from=translated src=- shape=f6955530 vocab=1dbb660e
+-/
 theorem nice_iff : nice p q ↔ p = 2 ∧ (q = 1 ∨ q = 3) := by
   ---- The `←` direction can be checked directly.
   refine Iff.symm ⟨λ hpq ↦ ?_, λ hpq ↦ ?_⟩
@@ -263,7 +283,9 @@ theorem nice_iff : nice p q ↔ p = 2 ∧ (q = 1 ∨ q = 3) := by
   clear hr; revert q; revert r
   unfold nice; decide
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h2v.s5.687ffd830123 from=translated src=- shape=be4f1d69 vocab=93bc32fb
+-/
 theorem final_solution :
     good m n ↔ (n = 3 ∧ (m = 9 ∨ m = 6)) ∨ (n = 5 ∧ (m = 9 ∨ m = 54)) := by
   simp [good_iff_nice, nice_iff]

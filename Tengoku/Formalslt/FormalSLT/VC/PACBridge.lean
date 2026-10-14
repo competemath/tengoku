@@ -59,7 +59,9 @@ def binaryClassTrace
 
 /-- The trivial growth-function bound: the number of distinct labeling
 patterns produced by *any* hypothesis class on a sample of size `n` is
-bounded by `2^n`, the total number of subsets of the sample. -/
+bounded by `2^n`, the total number of subsets of the sample.
+@isnad1 id=le.0h5v.s5.0a8e72800a7d from=translated src=- shape=9ffc5f2e vocab=f3b791b9
+-/
 lemma card_binaryClassTrace_le_two_pow_n
     (h : ι → α → Bool) (z : Fin n → α) :
     (binaryClassTrace h z).card ≤ 2 ^ n := by
@@ -88,7 +90,9 @@ Direct application of `FormalSLT.VC.Dimension.sauerShelahFiniteSetFamily`
 to the trace family. The VC dimension of the trace is bounded by the
 "intrinsic" VC dimension of the class (the dimension realized by *some*
 sample); we deliberately state the bound in terms of the
-sample-dependent trace VC dimension to keep the PR strict-scope. -/
+sample-dependent trace VC dimension to keep the PR strict-scope.
+@isnad1 id=le.0h5v.s6.1719a86d4e93 from=translated src=- shape=6dcfe6be vocab=c9a90f62
+-/
 theorem card_binaryClassTrace_le_sauerShelah
     (h : ι → α → Bool) (z : Fin n → α) :
     (binaryClassTrace h z).card ≤
@@ -98,7 +102,9 @@ theorem card_binaryClassTrace_le_sauerShelah
     (binaryClassTrace h z)
 
 /-- Restated `card_binaryClassTrace_le_sauerShelah` with `n` directly
-in the binomial-coefficient sum (using `Fintype.card_fin`). -/
+in the binomial-coefficient sum (using `Fintype.card_fin`).
+@isnad1 id=le.0h5v.s5.8a313f056c06 from=translated src=- shape=d51b6843 vocab=12b8c657
+-/
 theorem card_binaryClassTrace_le_sauerShelah'
     (h : ι → α → Bool) (z : Fin n → α) :
     (binaryClassTrace h z).card ≤

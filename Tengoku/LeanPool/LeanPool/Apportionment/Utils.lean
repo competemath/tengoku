@@ -16,7 +16,9 @@ vector of natural numbers, and a closed form for the sum of a length-four vector
 
 @[expose] public section
 
-/-- A vector of natural numbers has positive sum iff at least one component is positive. -/
+/-- A vector of natural numbers has positive sum iff at least one component is positive.
+@isnad1 id=iff.0h2v.s6.dc5af51160e0 from=translated src=- shape=e2dd8c5a vocab=8082960a
+-/
 lemma sum_pos_iff_exists_pos {n : ℕ} {v : Vector ℕ n} :
     0 < v.sum ↔ ∃ i : Fin n, 0 < v[i] := by
   constructor
@@ -36,7 +38,9 @@ lemma sum_pos_iff_exists_pos {n : ℕ} {v : Vector ℕ n} :
     rw [← Array.sum_toList]
     exact List.le_sum_of_mem (by simp)
 
-/-- The sum of a length-4 vector equals the sum of its components. -/
+/-- The sum of a length-4 vector equals the sum of its components.
+@isnad1 id=eq.0h1v.s7.daad8428f3f1 from=translated src=- shape=b163f03b vocab=17bdb690
+-/
 lemma Vector.sum_four (v : Vector ℕ 4) : v.sum = v[0] + v[1] + v[2] + v[3] := by
   have h : v.toArray = #[v[0], v[1], v[2], v[3]] := by grind
   simp [Vector.sum, h, Array.sum]

@@ -115,16 +115,25 @@ def identityBundledFiniteNet [PseudoMetricSpace T] [Fintype T] [Nonempty T] :
       instNonempty := inferInstance
       net := N }
 
+/--
+@isnad1 id=eq.0h1v.s5.5723bda93561 from=translated src=- shape=84c616ba vocab=30772e0a
+-/
 @[simp] theorem identityBundledFiniteNet_radius
     [PseudoMetricSpace T] [Fintype T] [Nonempty T] :
     (identityBundledFiniteNet (T := T)).net.radius = 0 := by
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.9af0c6b039ce from=translated src=- shape=c46f4818 vocab=2f0c10f0
+-/
 @[simp] theorem identityBundledFiniteNet_dist
     [PseudoMetricSpace T] [Fintype T] [Nonempty T] :
     (identityBundledFiniteNet (T := T)).net.dist = fun s t => dist s t := by
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.a406903810d6 from=translated src=- shape=492e91b0 vocab=60502953
+-/
 @[simp] theorem identityBundledFiniteNet_projection
     [PseudoMetricSpace T] [Fintype T] [Nonempty T] (t : T) :
     (identityBundledFiniteNet (T := T)).net.projection t = t := by
@@ -132,7 +141,9 @@ def identityBundledFiniteNet [PseudoMetricSpace T] [Fintype T] [Nonempty T] :
 
 /-- A totally bounded metric index space admits a finite metric cover at every
 positive real radius. This is the Mathlib extraction step, stated with `dist`
-and `≤` so it can feed `FiniteNet`. -/
+and `≤` so it can feed `FiniteNet`.
+@isnad1 id=ex.2h2v.s5.92a44deccc9c from=translated src=- shape=6be7a2ba vocab=4d59f82d
+-/
 theorem finiteMetricCoverOfTotallyBoundedUniv [PseudoMetricSpace T]
     (hT : TotallyBounded (Set.univ : Set T)) {ε : ℝ} (hε : 0 < ε) :
     ∃ C : Set T, C.Finite ∧ ∀ t : T, ∃ c : T, c ∈ C ∧ dist t c ≤ ε := by
@@ -160,7 +171,9 @@ def finiteNetOfTotallyBoundedUniv [PseudoMetricSpace T] [Nonempty T]
     ε hε.le
     (Classical.choose_spec cover).2
 
-/-- The finite net extracted from total boundedness uses the requested radius. -/
+/-- The finite net extracted from total boundedness uses the requested radius.
+@isnad1 id=eq.2h2v.s5.dfafdd1f7bc2 from=translated src=- shape=3aedba70 vocab=4d3f65c2
+-/
 @[simp] theorem finiteNetOfTotallyBoundedUniv_radius
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T)) (ε : ℝ) (hε : 0 < ε) :
@@ -168,7 +181,9 @@ def finiteNetOfTotallyBoundedUniv [PseudoMetricSpace T] [Nonempty T]
   rfl
 
 /-- The finite net extracted from total boundedness uses the ambient metric
-distance. -/
+distance.
+@isnad1 id=eq.2h2v.s6.871382a384f6 from=translated src=- shape=de8144fc vocab=0f7cbdd2
+-/
 @[simp] theorem finiteNetOfTotallyBoundedUniv_dist
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T)) (ε : ℝ) (hε : 0 < ε) :
@@ -176,7 +191,9 @@ distance. -/
   rfl
 
 /-- The projection selected by the total-bounded finite net is within the
-requested metric radius. -/
+requested metric radius.
+@isnad1 id=le.2h3v.s6.b399b899a3dd from=translated src=- shape=8aab1a01 vocab=fc69f5a5
+-/
 theorem finiteNetOfTotallyBoundedUniv_covers
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T)) {ε : ℝ} (hε : 0 < ε)
@@ -195,21 +212,27 @@ The extra `2^2` shrinkage leaves room for adjacent projection increments:
 def dyadicChainingNetRadius (radiusScale : ℝ) (j : ℕ) : ℝ :=
   radiusScale / (2 : ℝ) ^ (j + 2)
 
-/-- Positivity of the dyadic net radius under a positive top scale. -/
+/-- Positivity of the dyadic net radius under a positive top scale.
+@isnad1 id=lt.1h2v.s4.cdf60852195c from=translated src=- shape=9141f3a7 vocab=e6d5fdfb
+-/
 theorem dyadicChainingNetRadius_pos {radiusScale : ℝ}
     (hradiusScale : 0 < radiusScale) (j : ℕ) :
     0 < dyadicChainingNetRadius radiusScale j := by
   unfold dyadicChainingNetRadius
   exact div_pos hradiusScale (pow_pos (by norm_num) _)
 
-/-- Nonnegativity of the dyadic net radius under a nonnegative top scale. -/
+/-- Nonnegativity of the dyadic net radius under a nonnegative top scale.
+@isnad1 id=le.1h2v.s4.4f7a69ef3096 from=translated src=- shape=9141f3a7 vocab=8f32a83b
+-/
 theorem dyadicChainingNetRadius_nonneg {radiusScale : ℝ}
     (hradiusScale : 0 ≤ radiusScale) (j : ℕ) :
     0 ≤ dyadicChainingNetRadius radiusScale j := by
   unfold dyadicChainingNetRadius
   exact div_nonneg hradiusScale (pow_pos (by norm_num) _).le
 
-/-- Adjacent dyadic net radii fit inside the finite chaining radius budget. -/
+/-- Adjacent dyadic net radii fit inside the finite chaining radius budget.
+@isnad1 id=le.1h2v.s6.3c840a9fb243 from=translated src=- shape=f9bb5800 vocab=161db782
+-/
 theorem dyadicChainingNetRadius_pair_sum_le {radiusScale : ℝ}
     (hradiusScale_nonneg : 0 ≤ radiusScale) (j : ℕ) :
     dyadicChainingNetRadius radiusScale j +
@@ -238,7 +261,9 @@ def dyadicChainingFiniteNetOfTotallyBoundedUniv
     (T := T) hT (dyadicChainingNetRadius radiusScale j)
     (dyadicChainingNetRadius_pos hradiusScale j)
 
-/-- The dyadic finite-net schedule has the expected radius at each scale. -/
+/-- The dyadic finite-net schedule has the expected radius at each scale.
+@isnad1 id=eq.2h3v.s6.ed4f1e4ffd13 from=translated src=- shape=ca4f7769 vocab=0a1ea1d0
+-/
 @[simp] theorem dyadicChainingFiniteNetOfTotallyBoundedUniv_radius
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -248,7 +273,9 @@ def dyadicChainingFiniteNetOfTotallyBoundedUniv
       dyadicChainingNetRadius radiusScale j := by
   rfl
 
-/-- The dyadic finite-net schedule uses the ambient metric distance. -/
+/-- The dyadic finite-net schedule uses the ambient metric distance.
+@isnad1 id=eq.2h3v.s6.6e9234b7d676 from=translated src=- shape=87184d35 vocab=9dfa6165
+-/
 @[simp] theorem dyadicChainingFiniteNetOfTotallyBoundedUniv_dist
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -257,7 +284,9 @@ def dyadicChainingFiniteNetOfTotallyBoundedUniv
       (T := T) hT hradiusScale j).net.dist = fun s t => dist s t := by
   rfl
 
-/-- Each dyadic finite net covers every index point at its scheduled radius. -/
+/-- Each dyadic finite net covers every index point at its scheduled radius.
+@isnad1 id=le.2h4v.s6.cf4b624ef78c from=translated src=- shape=dcf309df vocab=30f1a853
+-/
 theorem dyadicChainingFiniteNetOfTotallyBoundedUniv_covers
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -271,7 +300,9 @@ theorem dyadicChainingFiniteNetOfTotallyBoundedUniv_covers
   apply finiteNetOfTotallyBoundedUniv_covers
 
 /-- Adjacent extracted dyadic nets satisfy the radius hypothesis expected by
-the existing finite Dudley chaining theorems. -/
+the existing finite Dudley chaining theorems.
+@isnad1 id=le.2h3v.s7.1cb2da22e7d6 from=translated src=- shape=0882dac8 vocab=83d204eb
+-/
 theorem dyadicChainingFiniteNetOfTotallyBoundedUniv_pair_radius_le
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -287,7 +318,9 @@ theorem dyadicChainingFiniteNetOfTotallyBoundedUniv_pair_radius_le
 
 /-- Adjacent extracted dyadic nets have positive combined radius. This is the
 finite positivity condition needed by the finite sub-Gaussian max bound at
-each projected-chaining scale. -/
+each projected-chaining scale.
+@isnad1 id=lt.2h3v.s7.c8e6f324c423 from=translated src=- shape=4a1ae90d vocab=b6b4c4f7
+-/
 theorem dyadicChainingFiniteNetOfTotallyBoundedUniv_pair_radius_pos
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -344,7 +377,9 @@ def dyadicChainingCoarseBudget
             (T := T) hT hradiusScale 0).net.center u.1)))
 
 /-- The terminal-scale coarse supremum is bounded by the level-0 projected
-coarse supremum. -/
+coarse supremum.
+@isnad1 id=le.2h6v.s8.c145409b6fdd from=translated src=- shape=e843c25e vocab=90a2a216
+-/
 theorem dyadicChainingCoarseProjectedSup_le_levelZero
     {Ω : Type*} [Fintype Ω]
     [PseudoMetricSpace T] [Nonempty T]
@@ -393,7 +428,9 @@ theorem dyadicChainingCoarseProjectedSup_le_levelZero
   simpa [N₀, Nₘ, v, FiniteNet.projection] using hv
 
 /-- The concrete level-0 coarse budget dominates every terminal-scale coarse
-projection budget in the dyadic total-bounded construction. -/
+projection budget in the dyadic total-bounded construction.
+@isnad1 id=le.2h5v.s7.63b131dbaa08 from=translated src=- shape=0574db82 vocab=5030baa3
+-/
 theorem dyadicChainingCoarseBudget_bound
     {Ω : Type*} [Fintype Ω]
     [PseudoMetricSpace T] [Nonempty T]
@@ -419,7 +456,9 @@ theorem dyadicChainingCoarseBudget_bound
         dyadicChainingCoarseProjectedSup_le_levelZero
           (T := T) P hT hradiusScale m ω)
 
-/-- Twice the next dyadic radius is bounded by a quarter of the top scale. -/
+/-- Twice the next dyadic radius is bounded by a quarter of the top scale.
+@isnad1 id=le.1h2v.s6.a4a56050885e from=translated src=- shape=956d04c2 vocab=b8f71623
+-/
 theorem two_mul_dyadicChainingNetRadius_succ_le_quarter
     {radiusScale : ℝ} (hradiusScale : 0 ≤ radiusScale) (j : ℕ) :
     2 * dyadicChainingNetRadius radiusScale (j + 1) ≤ radiusScale / 4 := by
@@ -449,7 +488,9 @@ theorem two_mul_dyadicChainingNetRadius_succ_le_quarter
 Either there is a pair separated by more than `radiusScale / 4`, which is the
 nondegenerate branch used to produce nontrivial dyadic projection-pair
 families, or every pair has distance at most `radiusScale / 4`, which is the
-small-diameter branch needed for the later fallback theorem. -/
+small-diameter branch needed for the later fallback theorem.
+@isnad1 id=or.0h2v.s6.bfea288da482 from=translated src=- shape=95cc95e1 vocab=a4d42daf
+-/
 theorem radiusScale_quarter_separated_or_smallDiameter
     [PseudoMetricSpace T] (radiusScale : ℝ) :
     (∃ x y : T, radiusScale / 4 < dist x y) ∨
@@ -462,7 +503,9 @@ theorem radiusScale_quarter_separated_or_smallDiameter
     exact le_of_not_gt (fun hxy => hsep ⟨x, y, hxy⟩)
 
 /-- Two points separated beyond twice the next dyadic radius give two realized
-projection pairs at scale `j`. -/
+projection pairs at scale `j`.
+@isnad1 id=lt.3h5v.s8.b9dd17e2282b from=translated src=- shape=55645f38 vocab=e0ba8fb2
+-/
 theorem dyadicChainingProjectionPair_card_gt_one_of_dist_gt_two_next_radius
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -511,7 +554,9 @@ theorem dyadicChainingProjectionPair_card_gt_one_of_dist_gt_two_next_radius
   exact not_lt_of_ge hxy_le' hxy
 
 /-- A top-scale separated pair gives nontrivial realized projection-pair families
-at every dyadic scale. -/
+at every dyadic scale.
+@isnad1 id=lt.3h5v.s8.6482dd755dd5 from=translated src=- shape=420ef17a vocab=3cb91e04
+-/
 theorem dyadicChainingProjectionPair_card_gt_one_of_radiusScale_quarter_lt_dist
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -537,7 +582,9 @@ theorem dyadicChainingProjectionPair_card_gt_one_of_radiusScale_quarter_lt_dist
 total-bounded construction.
 
 The cardinality side is built from a separated pair at the top scale. The coarse
-side is bounded by the level-0 projected finite supremum budget. -/
+side is bounded by the level-0 projected finite supremum budget.
+@isnad1 id=eventual.3h4v.s8.f083c68f0129 from=translated src=- shape=60fb2df9 vocab=d8b48d25
+-/
 theorem dyadicChaining_eventual_card_coarse_obligations
     {Ω : Type*} [Fintype Ω]
     [PseudoMetricSpace T] [Nonempty T]
@@ -580,7 +627,9 @@ theorem dyadicChaining_eventual_card_coarse_obligations
         dyadicChainingCoarseBudget_bound (T := T) P hT hradiusScale m⟩)
 
 /-- The concrete eventual coarse-budget obligation for the dyadic total-bounded
-construction, without any nontrivial projection-pair cardinality requirement. -/
+construction, without any nontrivial projection-pair cardinality requirement.
+@isnad1 id=eventual.2h4v.s7.d324eaea38ef from=translated src=- shape=c10d835c vocab=5b7e356f
+-/
 theorem dyadicChaining_eventual_coarse_obligations
     {Ω : Type*} [Fintype Ω]
     [PseudoMetricSpace T] [Nonempty T]
@@ -821,6 +870,7 @@ the cover radius.
 
 This is the elementary bridge from finite-cover geometry to the finite-skeleton
 assumption used by the Dudley boundary adapter.
+@isnad1 id=le.2h10v.s6.d8dc99bcc5e1 from=translated src=- shape=411608b2 vocab=1f82c410
 -/
 lemma skeletonApprox_of_finiteCover_pathwiseModulus
     {Ω : Type*} {K : Type u}
@@ -957,6 +1007,7 @@ supremum-boundary certificate used by the Dudley adapter.
 This theorem is the reusable finite-cover bridge: finite-cover geometry plus
 pathwise modulus discharges the explicit finite-skeleton approximation
 hypothesis in `EpsilonizedSupremumBoundaryChoice`.
+@isnad1 id=epsiloni.3h9v.s6.75c5a1a2d111 from=translated src=- shape=50ec1f20 vocab=594920e3
 -/
 theorem epsilonizedSupremumBoundaryChoice_of_finiteCoverSupremumBoundaryChoice
     {Ω : Type*} [Fintype Ω]
@@ -995,7 +1046,9 @@ theorem epsilonizedSupremumBoundaryChoice_of_finiteCoverSupremumBoundaryChoice
     hskeletonModulus
 
 /-- Singleton-safe finite-cover bridge into the epsilonized boundary
-certificate. -/
+certificate.
+@isnad1 id=epsiloni.3h9v.s6.f2cbd97e9526 from=translated src=- shape=50ec1f20 vocab=293f4b6b
+-/
 theorem epsilonizedSupremumBoundaryChoiceNonempty_of_finiteCoverSupremumBoundaryChoiceNonempty
     {Ω : Type*} [Fintype Ω]
     [PseudoMetricSpace T] [Nonempty T]
@@ -1038,6 +1091,7 @@ If `x` is at most `y + eta` for every positive `eta`, then `x ≤ y`.
 This small analytic adapter is the final bookkeeping step used to remove the
 explicit boundary error from epsilonized Dudley statements under a uniform
 finite-budget hypothesis.
+@isnad1 id=le.1h2v.s5.2ee79f5afcc4 from=translated src=- shape=aca71d2c vocab=91bdb49a
 -/
 lemma le_of_forall_pos_le_add {x y : ℝ}
     (h : ∀ eta : ℝ, 0 < eta → x ≤ y + eta) :
@@ -1166,7 +1220,9 @@ approximation required by the separable Dudley boundary certificate.
 The terminal dyadic net already covers every skeleton point at radius
 `dyadicChainingNetRadius radiusScale m`; this lemma packages the direct
 one-sided continuity/modulus step needed to move from a skeleton point to its
-terminal projection. -/
+terminal projection.
+@isnad1 id=le.3h10v.s7.4efadf7ae6cc from=translated src=- shape=4094b735 vocab=29fbce89
+-/
 lemma terminalApprox_of_pathwiseTerminalModulus
     {Ω : Type*} {K : Type u} [Fintype Ω]
     [PseudoMetricSpace T] [Nonempty T]
@@ -1198,7 +1254,9 @@ This constructor is the clean boundary interface used on the path toward
 continuous Dudley: a finite skeleton controls the supplied supremum functional,
 and a pathwise terminal modulus controls projection to the terminal dyadic net.
 It is still a finite certificate, not a theorem about arbitrary measurable
-suprema or separability by itself. -/
+suprema or separability by itself.
+@isnad1 id=separabl.9h13v.s9.fe67ad39270f from=translated src=- shape=6ada3aa3 vocab=6fe5e583
+-/
 theorem separableTerminalSupremumBoundaryChoice_of_pathwiseTerminalModulus
     {Ω : Type*} [Fintype Ω]
     {K : Type u} [Fintype K] [Nonempty K]
@@ -1262,7 +1320,9 @@ theorem separableTerminalSupremumBoundaryChoice_of_pathwiseTerminalModulus
     (m := m) (embed := embed) hterminalModulus
 
 /-- Singleton-safe constructor for separability/terminal-projection Dudley
-boundary certificates from pathwise terminal modulus. -/
+boundary certificates from pathwise terminal modulus.
+@isnad1 id=separabl.8h13v.s9.b5662fc567c1 from=translated src=- shape=80980ffe vocab=eeafb5a5
+-/
 theorem separableTerminalSupremumBoundaryChoiceNonempty_of_pathwiseTerminalModulus
     {Ω : Type*} [Fintype Ω]
     {K : Type u} [Fintype K] [Nonempty K]
@@ -1331,6 +1391,7 @@ discharges terminal projection on the finite skeleton.
 The result is still a finite-choice boundary adapter. It does not construct an
 arbitrary measurable supremum, prove separability from a dense sequence, or
 claim a continuous Dudley theorem.
+@isnad1 id=separabl.3h9v.s6.0a384f594f10 from=translated src=- shape=50ec1f20 vocab=6707baa0
 -/
 theorem separableTerminalSupremumBoundaryChoice_of_finiteCoverSupremumBoundaryChoice
     {Ω : Type*} [Fintype Ω]
@@ -1383,7 +1444,9 @@ theorem separableTerminalSupremumBoundaryChoice_of_finiteCoverSupremumBoundaryCh
         (T := T) hT hradiusScale m (embed k))
 
 /-- Singleton-safe finite-cover bridge to the separability/terminal-projection
-certificate. -/
+certificate.
+@isnad1 id=separabl.3h9v.s6.7df3d4591d6c from=translated src=- shape=50ec1f20 vocab=0fe623ed
+-/
 theorem separableTerminalSupremumBoundaryChoiceNonempty_of_finiteCoverSupremumBoundaryChoiceNonempty
     {Ω : Type*} [Fintype Ω]
     [PseudoMetricSpace T] [Nonempty T]
@@ -1495,6 +1558,9 @@ def dyadicTerminalFiniteNet
           intro t
           simp }
 
+/--
+@isnad1 id=eq.2h4v.s6.9509b9062e0d from=translated src=- shape=97bd346f vocab=f7fef49c
+-/
 @[simp] theorem dyadicTerminalFiniteNet_dist
     [PseudoMetricSpace T] [Fintype T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -1507,7 +1573,9 @@ def dyadicTerminalFiniteNet
   · simp [hj]
 
 /-- Before the terminal level, the wrapper net has the total-bounded dyadic
-radius. -/
+radius.
+@isnad1 id=eq.3h4v.s6.76865471bb1e from=translated src=- shape=78a0f9ec vocab=ef99b57f
+-/
 @[simp] theorem dyadicTerminalFiniteNet_radius_of_lt
     [PseudoMetricSpace T] [Fintype T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -1518,7 +1586,9 @@ radius. -/
   unfold dyadicTerminalFiniteNet
   simp [hj]
 
-/-- At the terminal level, the wrapper net is exact. -/
+/-- At the terminal level, the wrapper net is exact.
+@isnad1 id=eq.2h4v.s6.3e02ec394b14 from=translated src=- shape=208e10b4 vocab=955cbe8f
+-/
 @[simp] theorem dyadicTerminalFiniteNet_projection_terminal
     [PseudoMetricSpace T] [Fintype T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -1528,7 +1598,9 @@ radius. -/
   simp [FiniteNet.projection]
 
 /-- Every radius in the finite terminal wrapper is bounded by the scheduled
-dyadic radius at that level. -/
+dyadic radius at that level.
+@isnad1 id=le.2h4v.s6.d958b11fb3ea from=translated src=- shape=5ff1afa1 vocab=5a5757a6
+-/
 theorem dyadicTerminalFiniteNet_radius_le
     [PseudoMetricSpace T] [Fintype T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -1543,7 +1615,9 @@ theorem dyadicTerminalFiniteNet_radius_le
     simpa [hj] using hnonneg
 
 /-- Adjacent radii in the finite terminal wrapper fit the geometric radius
-budget used by the finite Dudley entropy-sum theorem. -/
+budget used by the finite Dudley entropy-sum theorem.
+@isnad1 id=le.3h4v.s7.d7ec227353c5 from=translated src=- shape=f226e0f8 vocab=7443f6c1
+-/
 theorem dyadicTerminalFiniteNet_pair_radius_le
     [PseudoMetricSpace T] [Fintype T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -1567,7 +1641,9 @@ theorem dyadicTerminalFiniteNet_pair_radius_le
             (radiusScale := radiusScale) hradiusScale.le j
 
 /-- Adjacent radii in the finite terminal wrapper are positive before the
-terminal scale. -/
+terminal scale.
+@isnad1 id=lt.3h4v.s7.d411914425d9 from=translated src=- shape=230c635d vocab=1320e239
+-/
 theorem dyadicTerminalFiniteNet_pair_radius_pos
     [PseudoMetricSpace T] [Fintype T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))

@@ -30,7 +30,9 @@ open Finset
 variable [CommRing R] [LinearOrder R] [IsStrictOrderedRing R]
 
 /-- Let `n ≥ 2` and `a, b : R` with `a > 0`, `a + b ≥ 0`, and `b ≠ 0`.
-  Then `a^n + na^{n - 1} b < (a + b)^n`. -/
+  Then `a^n + na^{n - 1} b < (a + b)^n`.
+@isnad1 id=lt.4h4v.s8.75accb5ecdc2 from=translated src=- shape=d21a5991 vocab=0e9d7856
+-/
 theorem pow_add_mul_lt_add_pow
     {a b : R} (ha : 0 < a) (hab : 0 ≤ a + b) (hb : b ≠ 0) {n : ℕ} (hn : 2 ≤ n) :
     a ^ n + n * a ^ (n - 1) * b < (a + b) ^ n := by
@@ -48,7 +50,9 @@ theorem pow_add_mul_lt_add_pow
     _ = (a + b) ^ (k + 2) := (pow_succ _ _).symm
 
 /-- An application of Bernoulli's inequality: if `1 + x ≥ 0`,
-  then `(n + 2)^{n + 2} x ≤ (n + 1)^{n + 1} (1 + x)^{n + 2}` for any `n : ℕ`. -/
+  then `(n + 2)^{n + 2} x ≤ (n + 1)^{n + 1} (1 + x)^{n + 2}` for any `n : ℕ`.
+@isnad1 id=le.1h3v.s8.74f9feedb0e8 from=translated src=- shape=67684a5b vocab=df8006cb
+-/
 theorem bernoulli_special1 {x : R} (hx : 0 ≤ 1 + x) (n : ℕ) :
     (n + 2 : ℕ) ^ (n + 2) * x ≤ (n + 1 : ℕ) ^ (n + 1) * (1 + x) ^ (n + 2) := by
   refine le_of_mul_le_mul_of_pos_left ?_ (Nat.cast_pos.mpr (Nat.succ_pos n))
@@ -71,7 +75,9 @@ theorem bernoulli_special1 {x : R} (hx : 0 ≤ 1 + x) (n : ℕ) :
       rw [mul_pow, pow_succ', mul_assoc]
 
 /-- An application of Bernoulli's inequality: if `x ≥ -1` and `(n + 1)x ≠ 1`,
-  then `(n + 2)^{n + 2} x ≤ (n + 1)^{n + 1} (1 + x)^{n + 2}` for any `n : ℕ`. -/
+  then `(n + 2)^{n + 2} x ≤ (n + 1)^{n + 1} (1 + x)^{n + 2}` for any `n : ℕ`.
+@isnad1 id=lt.2h3v.s8.2f80c01b932d from=translated src=- shape=776a72a7 vocab=67eb6d05
+-/
 theorem bernoulli_special2 {x : R} (hx : 0 ≤ 1 + x) {n : ℕ} (hx0 : (n + 1 : ℕ) * x ≠ 1) :
     (n + 2 : ℕ) ^ (n + 2) * x < (n + 1 : ℕ) ^ (n + 1) * (1 + x) ^ (n + 2) := by
   ---- The proof is by redoing the proof of `bernoulli_special1`.

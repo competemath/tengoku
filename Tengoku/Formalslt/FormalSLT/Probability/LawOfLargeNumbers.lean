@@ -15,6 +15,7 @@ the theorem under pairwise independence plus identical distribution, which
 covers the usual i.i.d. textbook scope while making the formal assumptions
 explicit.
 Claim-facing wrapper for theorempath.com evidence entry `claim:law-of-large-numbers::strong-law-of-large-numbers`.
+@isnad1 id=eventual.3h4v.s7.ffa7948c9748 from=translated src=- shape=51a14766 vocab=f829e214
 -/
 theorem strongLawAverageTendstoAlmostSure
     {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : Measure Ω}
@@ -38,6 +39,7 @@ probability space implies convergence in measure, i.e. convergence in
 probability. The formal statement keeps the same pairwise-independence and
 identical-distribution assumptions as mathlib's strong law.
 Claim-facing wrapper for theorempath.com evidence entry `claim:law-of-large-numbers::weak-law-of-large-numbers`.
+@isnad1 id=tendstoi.3h4v.s7.1614a3b01838 from=translated src=- shape=6283bd65 vocab=8bdf7fcf
 -/
 theorem weakLawAverageTendstoInMeasure
     {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : Measure Ω} [IsProbabilityMeasure μ]

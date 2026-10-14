@@ -36,6 +36,7 @@ Proof of the finite cardinality union-bound seed.
 
 This proves only the finite-set counting specialization above; it is not the
 full measure-theoretic Borel-Cantelli page theorem.
+@isnad1 id=finiteun.0h0v.s0.b8804d8bdc73 from=translated src=- shape=45709ebd vocab=0da432cd
 -/
 theorem finiteUnionCardBound_proof :
     finiteUnionCardBoundStatement := by
@@ -77,6 +78,7 @@ Proof of the finite weighted probability union-bound seed.
 
 The proof is pointwise: every outcome's union indicator is bounded by the sum
 of its finite event indicators, then summed against nonnegative weights.
+@isnad1 id=finitepr.0h0v.s0.3d0a144b3d38 from=translated src=- shape=45709ebd vocab=bfbad02b
 -/
 theorem finiteProbabilityUnionBound_proof :
     finiteProbabilityUnionBoundStatement := by
@@ -125,6 +127,7 @@ lies in at least one `t j`.  Stating the hypothesis that way keeps the lemma
 independent of how `U` was built, so a caller whose union set carries its own
 `DecidableEq` instance never has to reconcile that instance with a freshly
 elaborated `Finset.biUnion`.
+@isnad1 id=le.2h5v.s6.8ed1695b5656 from=translated src=- shape=92d0bc71 vocab=6a9f23c2
 -/
 theorem finiteWeightedUnionBound_sum_le_of_exists_mem
     {α β : Type*} [Fintype β]
@@ -159,6 +162,7 @@ theorem finiteWeightedUnionBound_sum_le_of_exists_mem
 Finite measure-theoretic union bound.
 
 This is a thin wrapper around mathlib's finite-index subadditivity theorem.
+@isnad1 id=le.0h4v.s6.2a9b7731d27b from=translated src=- shape=ace3fc0c vocab=a41b454f
 -/
 theorem finiteMeasureUnionBound
     {Ω ι : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [Fintype ι]
@@ -172,6 +176,7 @@ Finite measure union bound with a supplied per-event budget sequence.
 This is the finite budget-allocation form: if event `i` has mass at most
 `budget i`, and the finite budget sum is bounded by `α`, then the union has
 mass at most `α`.
+@isnad1 id=le.2h6v.s6.9df3589f849c from=translated src=- shape=4c2f8720 vocab=a41b454f
 -/
 theorem finiteMeasureUnionBound_budget
     {Ω ι : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [Fintype ι]
@@ -192,6 +197,7 @@ Finite measure union bound with a common per-event budget.
 This is the finite-class skeleton used by anytime-valid arguments: if every
 event in a finite family has measure at most `β`, then the union has measure at
 most the number of events times `β`.
+@isnad1 id=le.1h5v.s6.b1c89540e385 from=translated src=- shape=9b3abd14 vocab=d940c22c
 -/
 theorem finiteMeasureUnionBound_const
     {Ω ι : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [Fintype ι]
@@ -212,6 +218,7 @@ Finite measure union bound with an equal split of a total budget.
 The hypotheses keep the arithmetic explicit: `inv_card` is a chosen reciprocal
 for the finite index count and `hbudget` records that the count times the
 per-event budget is bounded by the desired total budget.
+@isnad1 id=le.2h6v.s6.df7639b4c900 from=translated src=- shape=20444c05 vocab=d940c22c
 -/
 theorem finiteMeasureUnionBound_equalBudget
     {Ω ι : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [Fintype ι]
@@ -227,6 +234,7 @@ theorem finiteMeasureUnionBound_equalBudget
 /--
 Finite measure union bound with the total budget split equally across a
 nonempty finite index type.
+@isnad1 id=le.1h5v.s6.667999f3eb7a from=translated src=- shape=58fa31bc vocab=db07a4a8
 -/
 theorem finiteMeasureUnionBound_cardInv
     {Ω ι : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [Fintype ι] [Nonempty ι]
@@ -249,6 +257,7 @@ theorem finiteMeasureUnionBound_cardInv
 Countable measure-theoretic union bound.
 
 This is a thin wrapper around mathlib's countable subadditivity theorem.
+@isnad1 id=le.0h4v.s6.2f738c07d00b from=translated src=- shape=5d3066a4 vocab=1818483a
 -/
 theorem countableMeasureUnionBound
     {Ω ι : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [Countable ι]

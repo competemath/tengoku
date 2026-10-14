@@ -14,6 +14,9 @@ open Function MeasureTheory Set
 
 variable {S E : Type*} {mE : MeasurableSpace E}
 
+/--
+@isnad1 id=iff.2h7v.s6.ee8729d55339 from=translated src=- shape=b0a0cd36 vocab=0bcc2d9d
+-/
 lemma mem_congr_of_measurableSet_cylinderEvents {Δ : Set S} {B : Set (S → E)}
     (hB : MeasurableSet[cylinderEvents Δ] B) {f₁ f₂ : S → E} (h : ∀ i ∈ Δ, f₁ i = f₂ i) :
     f₁ ∈ B ↔ f₂ ∈ B := by
@@ -31,6 +34,9 @@ namespace MeasureTheory
 
 variable {ι : Type*} {X : ι → Type*} [∀ i, MeasurableSpace (X i)] {Δ : Set ι}
 
+/--
+@isnad1 id=eq.0h3v.s6.8ccf58edec58 from=translated src=- shape=883b8951 vocab=78cbe9ab
+-/
 lemma cylinderEvents_eq_comap_domRestrict (Δ : Set ι) :
     cylinderEvents (X := X) Δ =
       MeasurableSpace.comap Δ.domRestrict (inferInstance : MeasurableSpace (∀ i : Δ, X i)) := by
@@ -39,6 +45,9 @@ lemma cylinderEvents_eq_comap_domRestrict (Δ : Set ι) :
   exact MeasurableSpace.comap_le_comap_of_eq_comp (fun x : ∀ i : Δ, X i ↦ x ⟨i, hi⟩)
     (measurable_pi_apply _) rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.dbf0be444d34 from=translated src=- shape=a2cbc564 vocab=78c5b872
+-/
 lemma cylinderEvents_eq_comap_finsetRestrict (Λ : Finset ι) :
     cylinderEvents (X := X) (Λ : Set ι) =
       MeasurableSpace.comap (Λ.restrict (π := X))
@@ -69,6 +78,9 @@ theorem _root_.Measurable.cylinderEvents_of_dependsOn
     rw [cylinderEvents_eq_comap_domRestrict, hfe]
     exact .comp (by fun_prop) (.of_comap_le le_rfl)
 
+/--
+@isnad1 id=iff.0h5v.s6.1a7a9233a675 from=translated src=- shape=3a52008e vocab=3a86fd78
+-/
 theorem measurable_cylinderEvents_iff_dependsOn [MeasurableSingletonClass Z] :
     Measurable[cylinderEvents Δ] f ↔ Measurable f ∧ DependsOn f Δ :=
   ⟨fun h ↦ ⟨h.mono cylinderEvents_le_pi le_rfl, h.dependsOn_of_cylinderEvents⟩,
@@ -78,15 +90,24 @@ variable (ι) (X) in
 abbrev measurableSquareCylinders : Set (Set (∀ i, X i)) :=
   squareCylinders fun _ ↦ {s | MeasurableSet s}
 
+/--
+@isnad1 id=ispisyst.0h2v.s4.0d51d30d15b1 from=translated src=- shape=dece17ac vocab=ab2d812c
+-/
 protected lemma IsPiSystem.measurableSquareCylinders :
     IsPiSystem (measurableSquareCylinders ι X) :=
   isPiSystem_squareCylinders (fun _ ↦ MeasurableSpace.isPiSystem_measurableSet)
     fun _ ↦ MeasurableSet.univ
 
+/--
+@isnad1 id=eq.0h2v.s5.ead36397bf6b from=translated src=- shape=1757c7b4 vocab=43b5bb0b
+-/
 lemma generateFrom_measurableSquareCylinders :
     MeasurableSpace.generateFrom (measurableSquareCylinders ι X) = MeasurableSpace.pi :=
   generateFrom_squareCylinders
 
+/--
+@isnad1 id=mem.0h2v.s5.3a6ad87b76e4 from=translated src=- shape=42f1090c vocab=1570b1ce
+-/
 lemma univ_mem_measurableSquareCylinders :
     (univ : Set (∀ i, X i)) ∈ measurableSquareCylinders ι X :=
   ⟨∅, fun _ ↦ univ, fun _ _ ↦ MeasurableSet.univ, by simp⟩

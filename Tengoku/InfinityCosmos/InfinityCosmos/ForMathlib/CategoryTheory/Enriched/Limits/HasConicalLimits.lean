@@ -59,6 +59,9 @@ namespace conicalLimit
 protected noncomputable def π (j : J) : conicalLimit V F ⟶ F.obj j :=
   (conicalLimitCone V F).limitCone.cone.π.app j
 
+/--
+@isnad1 id=eq.0h7v.s7.93a89096ff3e from=translated src=- shape=1537e760 vocab=da6016f1
+-/
 @[reassoc (attr := simp)]
 protected theorem w {j j' : J} (f : j ⟶ j') :
     conicalLimit.π V F j ≫ F.map f = conicalLimit.π V F j' :=
@@ -70,7 +73,9 @@ end HasConicalLimit
 
 namespace HasConicalLimitsOfSize
 
-/-- A category that has larger conical limits also has smaller conical limits. -/
+/-- A category that has larger conical limits also has smaller conical limits.
+@isnad1 id=hasconic.0h2v.s5.a99567725057 from=translated src=- shape=45ec0cf0 vocab=49d6041e
+-/
 lemma of_univLE [HasConicalLimitsOfSize.{v₁, u₁} V C] [UnivLE.{v₂, v₁}] [UnivLE.{u₂, u₁}] :
     HasConicalLimitsOfSize.{v₂, u₂} V C where
   hasConicalLimitsOfShape J :=
@@ -78,7 +83,9 @@ lemma of_univLE [HasConicalLimitsOfSize.{v₁, u₁} V C] [UnivLE.{v₂, v₁}] 
       ((ShrinkHoms.equivalence.{v₁} J).trans (Shrink.equivalence _)).inverse
 
 /-- `shrink.{v, u} C` tries to obtain `HasConicalLimitsOfSize.{v, u} C`
-from some other `HasConicalLimitsOfSize.{v₁, u₁} C`. -/
+from some other `HasConicalLimitsOfSize.{v₁, u₁} C`.
+@isnad1 id=hasconic.0h2v.s5.52d628f3fd7f from=translated src=- shape=e1494a47 vocab=22e9a6c7
+-/
 theorem shrink [HasConicalLimitsOfSize.{max v₁ v₂, max u₁ u₂} V C] :
     HasConicalLimitsOfSize.{v₁, u₁} V C :=
   of_univLE.{max v₁ v₂, max u₁ u₂} V C

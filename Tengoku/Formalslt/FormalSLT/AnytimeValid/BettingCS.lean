@@ -49,7 +49,9 @@ def bettingMeanRejectionEvent {Ω : Type*} (X lambda : ℕ → Ω → ℝ) (m de
     Set Ω :=
   {ω | ∃ n : ℕ, 0 < n ∧ (1 / delta) ≤ bettingWealthProcess X lambda m n ω}
 
-/-- Nonnegative betting factors give nonnegative wealth. -/
+/-- Nonnegative betting factors give nonnegative wealth.
+@isnad1 id=le.1h4v.s6.31dc7c8e73be from=translated src=- shape=7a90b79e vocab=f27d3174
+-/
 theorem bettingWealth_nonneg {Ω : Type*} {X lambda : ℕ → Ω → ℝ} {m : ℝ}
     (hfactor_nonneg : ∀ k ω, 0 ≤ bettingFactor X lambda m k ω) :
     0 ≤ bettingWealthProcess X lambda m := by
@@ -57,7 +59,9 @@ theorem bettingWealth_nonneg {Ω : Type*} {X lambda : ℕ → Ω → ℝ} {m : �
   unfold bettingWealthProcess
   exact Finset.prod_nonneg fun k _ => hfactor_nonneg k ω
 
-/-- The betting wealth is adapted when increments are revealed one step late and bets are predictable. -/
+/-- The betting wealth is adapted when increments are revealed one step late and bets are predictable.
+@isnad1 id=strongly.2h6v.s6.571073f1cbb4 from=translated src=- shape=742f38f8 vocab=4fc2cbae
+-/
 theorem stronglyAdapted_bettingWealthProcess_of_adapted
     {Ω : Type*} {mΩ : MeasurableSpace Ω} {ℱ : Filtration ℕ mΩ}
     {X lambda : ℕ → Ω → ℝ} {m : ℝ}
@@ -83,6 +87,7 @@ theorem stronglyAdapted_bettingWealthProcess_of_adapted
 The one-step betting factor has conditional expectation at most `1` under the
 conditional-mean null. The betting fraction is predictable, bounded, and
 nonnegative.
+@isnad1 id=eventual.5h9v.s7.810f2192edda from=translated src=- shape=363b629e vocab=e7a1d173
 -/
 theorem bettingFactor_condExp_le_one_of_condMean
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
@@ -147,6 +152,7 @@ The hypotheses keep the predictable-bet discipline explicit: `X` uses
 `IncrementAdapted`, while `lambda` is `StronglyAdapted`. The bounded-current-
 wealth hypothesis is the exact condition needed to use mathlib's conditional
 pull-out theorem.
+@isnad1 id=supermar.7h7v.s8.66c6428fe55c from=translated src=- shape=f92aac13 vocab=0aab07c7
 -/
 theorem bettingWealth_supermartingale
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
@@ -194,7 +200,9 @@ theorem bettingWealth_supermartingale
       mul_le_mul_of_nonneg_left (by simpa [Y] using hstepω) hZ_nonneg
     _ = bettingWealthProcess X lambda m n ω := by simp [Z]
 
-/-- The betting wealth is an e-process when it is nonnegative and a supermartingale. -/
+/-- The betting wealth is an e-process when it is nonnegative and a supermartingale.
+@isnad1 id=eprocess.2h7v.s6.b8b0d6b59458 from=translated src=- shape=2fd749ca vocab=beb0e1a1
+-/
 theorem bettingWealth_eProcess
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {μ : Measure Ω} {ℱ : Filtration ℕ mΩ}
@@ -239,6 +247,9 @@ def filtBool : Filtration ℕ (⊤ : MeasurableSpace Bool) where
     · simp only [hi]; exact bot_le
     · simp [hi]
 
+/--
+@isnad1 id=incremen.0h0v.s5.ffef10b95cae from=translated src=- shape=7af4a0a2 vocab=82e9a6b1
+-/
 theorem XBool_incrementAdapted : IncrementAdapted filtBool XBool := by
   intro k
   have hfilt : filtBool (k + 1) = ⊤ := by simp [filtBool]
@@ -246,10 +257,16 @@ theorem XBool_incrementAdapted : IncrementAdapted filtBool XBool := by
       (StronglyMeasurable[⊤] (XBool k)) from by rw [hfilt]]
   exact measurable_from_top.stronglyMeasurable
 
+/--
+@isnad1 id=strongly.0h0v.s6.1a291a9bafb9 from=translated src=- shape=6465d66e vocab=70124adb
+-/
 theorem lambdaBool_stronglyAdapted : StronglyAdapted filtBool lambdaBool := by
   intro k
   exact stronglyMeasurable_const
 
+/--
+@isnad1 id=le.0h2v.s4.161777f60dc7 from=translated src=- shape=5d0da768 vocab=ed29ef22
+-/
 theorem factor_nonneg (k : ℕ) (ω : Bool) :
     0 ≤ bettingFactor XBool lambdaBool 0 k ω := by
   simp only [bettingFactor, lambdaBool, XBool, sub_zero]
@@ -258,7 +275,9 @@ theorem factor_nonneg (k : ℕ) (ω : Bool) :
     cases ω <;> norm_num
   · simp [hk]
 
-/-- The betting witness gains wealth on the positive Rademacher outcome. -/
+/-- The betting witness gains wealth on the positive Rademacher outcome.
+@isnad1 id=lt.0h0v.s4.cca2eee1bdfa from=translated src=- shape=86336e4a vocab=d752f6fa
+-/
 theorem bettingWitness_positive_gain :
     (1 : ℝ) < bettingWealthProcess XBool lambdaBool 0 1 true := by
   simp [bettingWealthProcess, bettingFactor, XBool, lambdaBool]

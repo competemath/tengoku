@@ -55,7 +55,9 @@ def minimalMetricCoveringNumber [PseudoMetricSpace T] [Nonempty T]
   exact Nat.find
     (metricCoverCardinalityLe_exists_of_totallyBoundedUniv (T := T) hT hε)
 
-/-- The minimal covering number is realized by an explicit finite metric cover. -/
+/-- The minimal covering number is realized by an explicit finite metric cover.
+@isnad1 id=metricco.2h2v.s5.916f45f0181c from=translated src=- shape=a5af5997 vocab=a994b2b2
+-/
 theorem minimalMetricCoveringNumber_spec
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T)) {ε : ℝ} (hε : 0 < ε) :
@@ -67,7 +69,9 @@ theorem minimalMetricCoveringNumber_spec
     (metricCoverCardinalityLe_exists_of_totallyBoundedUniv (T := T) hT hε)
 
 /-- Minimality: any finite metric `ε`-cover with at most `n` centers bounds the
-genuine minimal covering number by `n`. -/
+genuine minimal covering number by `n`.
+@isnad1 id=le.3h3v.s5.ba70e24debc6 from=translated src=- shape=c1b61b0c vocab=4125e241
+-/
 theorem minimalMetricCoveringNumber_le_of_metricCoverCardinalityLe
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T)) {ε : ℝ} (hε : 0 < ε)
@@ -80,7 +84,9 @@ theorem minimalMetricCoveringNumber_le_of_metricCoverCardinalityLe
     hcover
 
 /-- A nonempty index space has positive genuine minimal covering number at any
-positive radius. -/
+positive radius.
+@isnad1 id=lt.2h2v.s5.f369d81b89f5 from=translated src=- shape=2523e5d6 vocab=51641571
+-/
 theorem minimalMetricCoveringNumber_pos
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T)) {ε : ℝ} (hε : 0 < ε) :
@@ -109,7 +115,9 @@ def minimalMetricCoverOfTotallyBoundedUniv
     Finset T :=
   Classical.choose (minimalMetricCoveringNumber_spec (T := T) hT hε)
 
-/-- The chosen minimal cover covers every index point within radius `ε`. -/
+/-- The chosen minimal cover covers every index point within radius `ε`.
+@isnad1 id=ex.2h3v.s6.bac66ccd467b from=translated src=- shape=84f5a79a vocab=dbfbbd28
+-/
 theorem minimalMetricCoverOfTotallyBoundedUniv_cover
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T)) {ε : ℝ} (hε : 0 < ε)
@@ -121,7 +129,9 @@ theorem minimalMetricCoverOfTotallyBoundedUniv_cover
     (minimalMetricCoveringNumber_spec (T := T) hT hε)).2 t
 
 /-- The chosen minimal cover has at most the genuine minimal covering number
-many centers. -/
+many centers.
+@isnad1 id=le.2h2v.s5.f30b1f1194cf from=translated src=- shape=5c826eb7 vocab=88d74c5f
+-/
 theorem minimalMetricCoverOfTotallyBoundedUniv_card_le
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T)) {ε : ℝ} (hε : 0 < ε) :
@@ -132,7 +142,9 @@ theorem minimalMetricCoverOfTotallyBoundedUniv_card_le
     (minimalMetricCoveringNumber_spec (T := T) hT hε)).1
 
 /-- The chosen minimal cover has exactly the genuine minimal covering number
-of centers. -/
+of centers.
+@isnad1 id=eq.2h2v.s5.85968b5cbbc9 from=translated src=- shape=5c826eb7 vocab=ebe946d9
+-/
 theorem minimalMetricCoverOfTotallyBoundedUniv_card_eq
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T)) {ε : ℝ} (hε : 0 < ε) :
@@ -147,7 +159,9 @@ theorem minimalMetricCoverOfTotallyBoundedUniv_card_eq
         minimalMetricCoverOfTotallyBoundedUniv_cover (T := T) hT hε⟩
 
 /-- Cardinal minimality of the chosen finite metric cover: every finite
-`ε`-cover has at least as many centers. -/
+`ε`-cover has at least as many centers.
+@isnad1 id=le.3h3v.s6.9430d0e721ac from=translated src=- shape=c22c5f17 vocab=c8a09e88
+-/
 theorem minimalMetricCoverOfTotallyBoundedUniv_card_minimal
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T)) {ε : ℝ} (hε : 0 < ε)
@@ -176,14 +190,18 @@ def minimalFiniteNetOfTotallyBoundedUniv
         ⟨c, hc, hdist⟩
       exact ⟨c, by simpa [F] using hc, hdist⟩)
 
-/-- The minimal finite-net extractor uses the requested radius. -/
+/-- The minimal finite-net extractor uses the requested radius.
+@isnad1 id=eq.2h2v.s5.90942d30454d from=translated src=- shape=3aedba70 vocab=f373c74f
+-/
 @[simp] theorem minimalFiniteNetOfTotallyBoundedUniv_radius
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T)) (ε : ℝ) (hε : 0 < ε) :
     (minimalFiniteNetOfTotallyBoundedUniv (T := T) hT ε hε).net.radius = ε := by
   rfl
 
-/-- The minimal finite-net extractor uses the ambient metric distance. -/
+/-- The minimal finite-net extractor uses the ambient metric distance.
+@isnad1 id=eq.2h2v.s6.d59a206e9e8c from=translated src=- shape=de8144fc vocab=95499679
+-/
 @[simp] theorem minimalFiniteNetOfTotallyBoundedUniv_dist
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T)) (ε : ℝ) (hε : 0 < ε) :
@@ -192,7 +210,9 @@ def minimalFiniteNetOfTotallyBoundedUniv
   rfl
 
 /-- The bundled minimal finite net carries exactly the genuine minimal covering
-number of centers. -/
+number of centers.
+@isnad1 id=eq.2h2v.s5.bfd1feee28d6 from=translated src=- shape=5c826eb7 vocab=05bfe14f
+-/
 theorem minimalFiniteNetOfTotallyBoundedUniv_coveringNumber_eq
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T)) {ε : ℝ} (hε : 0 < ε) :
@@ -213,7 +233,9 @@ def minimalDyadicChainingFiniteNetOfTotallyBoundedUniv
     (T := T) hT (dyadicChainingNetRadius radiusScale j)
     (dyadicChainingNetRadius_pos hradiusScale j)
 
-/-- The minimal dyadic finite-net schedule has the expected radius. -/
+/-- The minimal dyadic finite-net schedule has the expected radius.
+@isnad1 id=eq.2h3v.s6.d3d37a1d734f from=translated src=- shape=ca4f7769 vocab=c72286e1
+-/
 @[simp] theorem minimalDyadicChainingFiniteNetOfTotallyBoundedUniv_radius
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -223,7 +245,9 @@ def minimalDyadicChainingFiniteNetOfTotallyBoundedUniv
       dyadicChainingNetRadius radiusScale j := by
   rfl
 
-/-- The minimal dyadic finite-net schedule uses the ambient metric distance. -/
+/-- The minimal dyadic finite-net schedule uses the ambient metric distance.
+@isnad1 id=eq.2h3v.s6.b0468f11eb47 from=translated src=- shape=87184d35 vocab=8c8f73e6
+-/
 @[simp] theorem minimalDyadicChainingFiniteNetOfTotallyBoundedUniv_dist
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -233,7 +257,9 @@ def minimalDyadicChainingFiniteNetOfTotallyBoundedUniv
   rfl
 
 /-- At each dyadic radius, the minimal dyadic finite net has cardinality equal
-to the genuine minimal covering number. -/
+to the genuine minimal covering number.
+@isnad1 id=eq.2h3v.s5.b878076c715b from=translated src=- shape=cd94b566 vocab=38887fac
+-/
 theorem minimalDyadicChainingFiniteNetOfTotallyBoundedUniv_coveringNumber_eq
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -246,7 +272,9 @@ theorem minimalDyadicChainingFiniteNetOfTotallyBoundedUniv_coveringNumber_eq
     (T := T) hT (dyadicChainingNetRadius_pos hradiusScale j)
 
 /-- A bundled finite net using the ambient metric distance gives a finite metric
-cover with at most its selected covering count. -/
+cover with at most its selected covering count.
+@isnad1 id=metricco.1h2v.s5.aad93cd52709 from=translated src=- shape=f76c5107 vocab=97db8f09
+-/
 theorem metricCoverCardinalityLe_of_bundledFiniteNet
     [PseudoMetricSpace T] [Nonempty T]
     (B : BundledFiniteNet T)
@@ -265,7 +293,9 @@ theorem metricCoverCardinalityLe_of_bundledFiniteNet
     · simpa [hdist] using B.net.covers t
 
 /-- Any ambient-metric bundled finite net bounds the genuine minimal covering
-number at its radius. -/
+number at its radius.
+@isnad1 id=le.3h2v.s6.6b01a6b85eae from=translated src=- shape=26dfd16d vocab=4ddad246
+-/
 theorem minimalMetricCoveringNumber_le_bundledFiniteNet_coveringNumber
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -278,7 +308,9 @@ theorem minimalMetricCoveringNumber_le_bundledFiniteNet_coveringNumber
     (metricCoverCardinalityLe_of_bundledFiniteNet (T := T) B hdist)
 
 /-- At each dyadic radius, the genuine minimal covering number is bounded by
-the selected total-bounded dyadic net cardinality. -/
+the selected total-bounded dyadic net cardinality.
+@isnad1 id=le.2h3v.s6.c1b7ed929505 from=translated src=- shape=7fc94c78 vocab=ea4964d6
+-/
 theorem minimalMetricCoveringNumber_le_dyadicSelectedCoveringNumber
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -302,7 +334,9 @@ theorem minimalMetricCoveringNumber_le_dyadicSelectedCoveringNumber
 
 /-- The selected dyadic envelope dominates the genuine minimal covering number
 at each sampled dyadic net radius. This is the true bridge from minimal
-covering numbers to the currently selected-count staircase. -/
+covering numbers to the currently selected-count staircase.
+@isnad1 id=le.2h3v.s5.128d68a18547 from=translated src=- shape=60c44c40 vocab=81ac8858
+-/
 theorem minimalMetricCoveringNumber_le_totalBoundedDyadicCoverCountEnvelope
     [PseudoMetricSpace T] [Nonempty T]
     (hT : TotallyBounded (Set.univ : Set T))
@@ -334,7 +368,9 @@ theorem minimalMetricCoveringNumber_le_totalBoundedDyadicCoverCountEnvelope
       (dyadicChainingCoverCount_le_envelope (T := T) hT hradiusScale j))
 
 /-- Non-vacuity witness: the genuine minimal covering number is positive on the
-mechanized unit interval at a concrete positive radius. -/
+mechanized unit interval at a concrete positive radius.
+@isnad1 id=lt.0h0v.s5.c1a505a20f17 from=translated src=- shape=af2c19b7 vocab=11aec84d
+-/
 theorem unitInterval_minimalMetricCoveringNumber_sample_positive :
     0 <
       minimalMetricCoveringNumber
@@ -347,7 +383,9 @@ theorem unitInterval_minimalMetricCoveringNumber_sample_positive :
     (by norm_num : (0 : ℝ) < (1 : ℝ) / 2)
 
 /-- Non-vacuity witness: the chosen cardinal-minimal finite cover of the
-mechanized unit interval has positive cardinality at a concrete radius. -/
+mechanized unit interval has positive cardinality at a concrete radius.
+@isnad1 id=lt.0h0v.s6.9ad60196ec6c from=translated src=- shape=76c08603 vocab=7df8b4a1
+-/
 theorem unitInterval_minimalMetricCoverOfTotallyBoundedUniv_sample_card_positive :
     0 <
       (minimalMetricCoverOfTotallyBoundedUniv

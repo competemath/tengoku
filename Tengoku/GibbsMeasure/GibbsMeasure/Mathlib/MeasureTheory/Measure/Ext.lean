@@ -18,6 +18,9 @@ variable {α : Type*} {mα : MeasurableSpace α} {C : Set (Set α)} {μ ν : Mea
 
 namespace Measure
 
+/--
+@isnad1 id=eq.5h5v.s6.6f3c96589b7b from=translated src=- shape=746b0908 vocab=18965a39
+-/
 lemma ext_of_generateFrom_of_univ
     (hA : ‹MeasurableSpace α› = MeasurableSpace.generateFrom C) (hC : IsPiSystem C)
     (h_univ : (univ : Set α) ∈ C) (hμ : μ univ ≠ ∞)
@@ -27,6 +30,9 @@ lemma ext_of_generateFrom_of_univ
 
 end Measure
 
+/--
+@isnad1 id=eq.3h5v.s6.76a863c1ed49 from=translated src=- shape=5005886b vocab=05b21e76
+-/
 lemma ext_of_generateFrom_of_isProbabilityMeasure
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (hA : ‹MeasurableSpace α› = MeasurableSpace.generateFrom C) (hC : IsPiSystem C)

@@ -45,7 +45,9 @@ variable (k : ℕ) {m : ℕ} (hm : m > 0)
 include hm
 
 open Fin.NatCast in
-/-- For any `k, m : ℕ` with `m > 0`, there exists `a < b` such that `k^a ≡ k^b (mod m)`. -/
+/-- For any `k, m : ℕ` with `m > 0`, there exists `a < b` such that `k^a ≡ k^b (mod m)`.
+@isnad1 id=ex.1h2v.s6.08df0b8813a2 from=translated src=- shape=0072db26 vocab=56505286
+-/
 theorem exists_lt_pow_mod_eq : ∃ a, ∃ b > a, k ^ a % m = k ^ b % m := by
   have : NeZero m := NeZero.of_pos hm
   obtain ⟨a, b, hab, h⟩ : ∃ a b, a ≠ b ∧ ((k ^ a : ℕ) : Fin m) = (k ^ b : ℕ) :=
@@ -53,7 +55,9 @@ theorem exists_lt_pow_mod_eq : ∃ a, ∃ b > a, k ^ a % m = k ^ b % m := by
   obtain hab | hab : a < b ∨ b < a := Nat.lt_or_gt_of_ne hab
   exacts [⟨a, b, hab, congrArg Fin.val h⟩, ⟨b, a, hab, congrArg Fin.val h.symm⟩]
 
-/-- For any `k, m : ℕ` with `m > 0`, there exists `a < b` such that `m ∣ k^a - k^b`. -/
+/-- For any `k, m : ℕ` with `m > 0`, there exists `a < b` such that `m ∣ k^a - k^b`.
+@isnad1 id=ex.1h2v.s6.0147d5968c0f from=translated src=- shape=8b4c39f1 vocab=b01e1c03
+-/
 theorem exists_lt_dvd_pow_sub_pow : ∃ a, ∃ b > a, (m : ℤ) ∣ k ^ b - k ^ a := by
   obtain ⟨a, b, hab, h⟩ : ∃ a, ∃ b > a, k ^ a % m = k ^ b % m := exists_lt_pow_mod_eq k hm
   refine ⟨a, b, hab, ?_⟩
@@ -61,7 +65,9 @@ theorem exists_lt_dvd_pow_sub_pow : ∃ a, ∃ b > a, (m : ℤ) ∣ k ^ b - k ^ 
     ← Int.natCast_pow, ← Int.natCast_emod, ← Int.natCast_pow, ← Int.natCast_emod, h]
 
 /-- For any `k, m : ℕ` with `m > 0`, there exists
-  `N` and `d > 0` with `m ∣ k^{N + d} - k^N`. -/
+  `N` and `d > 0` with `m ∣ k^{N + d} - k^N`.
+@isnad1 id=ex.1h2v.s6.f484f728ec9f from=translated src=- shape=0f7e66f8 vocab=01a4a72e
+-/
 theorem exists_lt_dvd_pow_add_sub_pow : ∃ N, ∃ d > 0, (m : ℤ) ∣ k ^ (N + d) - k ^ N := by
   obtain ⟨a, b, hab, h⟩ : ∃ a, ∃ b > a, (m : ℤ) ∣ k ^ b - k ^ a :=
     exists_lt_dvd_pow_sub_pow k hm
@@ -69,7 +75,9 @@ theorem exists_lt_dvd_pow_add_sub_pow : ∃ N, ∃ d > 0, (m : ℤ) ∣ k ^ (N +
   rwa [Nat.add_sub_cancel' (Nat.le_of_lt hab)]
 
 /-- For any `k, m : ℕ` with `m > 0`, there exists
-  `N`, `d > 0`, and `t` with `k^{N + d} = mt + k^N`. -/
+  `N`, `d > 0`, and `t` with `k^{N + d} = mt + k^N`.
+@isnad1 id=ex.1h2v.s6.2b89fa578c9f from=translated src=- shape=51ca0dd3 vocab=aaa47f67
+-/
 theorem exists_lt_pow_eq_pow_add_mul : ∃ N, ∃ d > 0, ∃ t, k ^ (N + d) = m * t + k ^ N := by
   obtain rfl | hk : k = 0 ∨ k > 0 := Nat.eq_zero_or_pos k
   · exact ⟨1, 1, Nat.one_pos, 0, rfl⟩
@@ -95,12 +103,16 @@ def nthDecimalDigit (b : ℕ) (r : R) (n : ℕ) : ℤ := ⌊b ^ (n + 1) * r⌋ %
 
 omit [IsStrictOrderedRing R] in
 /-- The `(n + d)`th decimal digit of `r` in base `b` is the
-  same as the `n`th decimal digit of `b^d r` in base `b`. -/
+  same as the `n`th decimal digit of `b^d r` in base `b`.
+@isnad1 id=eq.0h5v.s6.f7ea3fcca512 from=translated src=- shape=879fa5c0 vocab=d7bde276
+-/
 theorem nthDecimalDigit_add (b) (r : R) (n d) :
     nthDecimalDigit b r (n + d) = nthDecimalDigit b (b ^ d * r) n := by
   unfold nthDecimalDigit; rw [Nat.add_right_comm, pow_add, mul_assoc]
 
-/-- An alternative formula for the `n`th decimal digit, `⌊b^{n + 1} r⌋ - b⌊b^n r⌋`. -/
+/-- An alternative formula for the `n`th decimal digit, `⌊b^{n + 1} r⌋ - b⌊b^n r⌋`.
+@isnad1 id=eq.0h4v.s7.fb087be13824 from=translated src=- shape=e305d4bd vocab=26879523
+-/
 theorem nthDecimalDigit_alt_formula (b : ℕ) (r : R) (n : ℕ) :
     nthDecimalDigit b r n = ⌊b ^ (n + 1) * r⌋ - b * ⌊b ^ n * r⌋ := by
   obtain rfl | hb : b = 0 ∨ b ≠ 0 := eq_or_ne _ _
@@ -108,7 +120,9 @@ theorem nthDecimalDigit_alt_formula (b : ℕ) (r : R) (n : ℕ) :
   · rw [nthDecimalDigit, Int.emod_def, sub_right_inj, pow_succ',
       mul_assoc, Int.natCast_mul_floor_div_cancel hb]
 
-/-- A summation formula for `⌊b^n r⌋ - b^n⌊r⌋` in terms of base `b` decimal digits of `r`. -/
+/-- A summation formula for `⌊b^n r⌋ - b^n⌊r⌋` in terms of base `b` decimal digits of `r`.
+@isnad1 id=eq.0h4v.s7.b92b891690ce from=translated src=- shape=4ced2fe2 vocab=3eccf1ff
+-/
 theorem nthDecimalDigit_floor_sum_formula (b : ℕ) (r : R) (n : ℕ) :
     ∑ i ∈ range n, b ^ (n - (i + 1)) * nthDecimalDigit b r i
       = ⌊b ^ n * r⌋ - b ^ n * ⌊r⌋ :=
@@ -122,7 +136,9 @@ theorem nthDecimalDigit_floor_sum_formula (b : ℕ) (r : R) (n : ℕ) :
     _ = ⌊b ^ n * r⌋ - b ^ n * ⌊r⌋ := by
       rw [Nat.sub_self, Int.pow_zero, Int.one_mul, pow_zero, one_mul]
 
-/-- A summation formula for `b^n{r} - {b^n r}` in terms of base `b` decimal digits of `r`. -/
+/-- A summation formula for `b^n{r} - {b^n r}` in terms of base `b` decimal digits of `r`.
+@isnad1 id=eq.0h4v.s7.019b338f4a15 from=translated src=- shape=34f75f7e vocab=b6936baf
+-/
 theorem nthDecimalDigit_fract_sum_formula (b : ℕ) (r : R) (n : ℕ) :
     ∑ i ∈ range n, b ^ (n - (i + 1)) * nthDecimalDigit b r i
       = b ^ n * Int.fract r - Int.fract (b ^ n * r) := by
@@ -130,14 +146,18 @@ theorem nthDecimalDigit_fract_sum_formula (b : ℕ) (r : R) (n : ℕ) :
     neg_add_eq_sub, nthDecimalDigit_floor_sum_formula, Int.cast_sub,
     Int.cast_mul, Int.cast_pow, Int.cast_natCast]
 
-/-- A rearrangement of `nthDecimalDigit_fract_sum_formula`. -/
+/-- A rearrangement of `nthDecimalDigit_fract_sum_formula`.
+@isnad1 id=eq.0h4v.s7.443dba63d89c from=translated src=- shape=5491732c vocab=b6936baf
+-/
 theorem nthDecimalDigit_fract_sum_formula2 (b : ℕ) (r : R) (n : ℕ) :
     b ^ n * Int.fract r = Int.fract (b ^ n * r)
       + ∑ i ∈ range n, b ^ (n - (i + 1)) * nthDecimalDigit b r i := by
   rw [nthDecimalDigit_fract_sum_formula, add_sub_cancel]
 
 /-- If `r` and `s` has the same base `b` digits after decimal,
-  then `|{r} - {s}|` is infinitesimal. -/
+  then `|{r} - {s}|` is infinitesimal.
+@isnad1 id=lt.2h5v.s7.0bc0eaf4f0e3 from=translated src=- shape=21c483a8 vocab=d74e80db
+-/
 theorem infinitesimal_of_nthDecimalDigit_eq (hb : b > 1)
     {r s : R} (hrs : nthDecimalDigit b r = nthDecimalDigit b s) (n : ℕ) :
     n • |Int.fract r - Int.fract s| < 1 :=
@@ -153,7 +173,9 @@ theorem infinitesimal_of_nthDecimalDigit_eq (hb : b > 1)
     rw [hrs]
 
 /-- If `R` is archimedean and `r` and `s` has the same base `b` digits after decimal,
-  then `r - s` is an integer. -/
+  then `r - s` is an integer.
+@isnad1 id=ex.2h4v.s6.8c456266dbac from=translated src=- shape=895d9591 vocab=796c28e4
+-/
 theorem sub_eq_intCast_of_nthDecimalDigit_eq [Archimedean R] (hb : b > 1)
     {r s : R} (hrs : nthDecimalDigit b r = nthDecimalDigit b s) :
     ∃ z : ℤ, r - s = z := by
@@ -174,7 +196,9 @@ theorem sub_eq_intCast_of_nthDecimalDigit_eq [Archimedean R] (hb : b > 1)
 def isRational (r : R) := ∃ m > 0, ∃ T : ℤ, m • r = T
 
 /-- If an element is rational, then its decimal digit
-  sequence base `b` is eventually periodic. -/
+  sequence base `b` is eventually periodic.
+@isnad1 id=ex.1h3v.s6.32b2b3a7a02f from=translated src=- shape=af0beabf vocab=389b4370
+-/
 theorem isRational.nthDecimalDigit_eventually_periodic {r : R} (hr : isRational r) (b) :
     ∃ N, ∃ d > 0, ∀ n ≥ N, nthDecimalDigit b r (n + d) = nthDecimalDigit b r n := by
   ---- Write `mr = T` for some `m : ℕ` and `T : ℤ` with `m > 0`.
@@ -207,7 +231,9 @@ theorem isRational.nthDecimalDigit_eventually_periodic {r : R} (hr : isRational 
     _ = ⌊b ^ (N + k + 1) * r⌋ % b := Int.mul_add_emod_self_right _ _ _
 
 /-- If the decimal digit sequence base `b` of an element is eventually periodic,
-  then that element is rational. -/
+  then that element is rational.
+@isnad1 id=isration.2h3v.s6.dea2cf21ea25 from=translated src=- shape=f2263daf vocab=5a9275fe
+-/
 theorem isRational_of_nthDecimalDigit_eventually_periodic
     [Archimedean R] (hb : b > 1) {r : R}
     (hr : ∃ N, ∃ d > 0, ∀ n ≥ N, nthDecimalDigit b r (n + d) = nthDecimalDigit b r n) :
@@ -230,7 +256,9 @@ theorem isRational_of_nthDecimalDigit_eventually_periodic
 
 /-! ### The main statement -/
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=isration.3h4v.s6.652bb7f3b553 from=translated src=- shape=ec46d354 vocab=b01e7344
+-/
 theorem final_solution [Archimedean R] (hb : b > 1) {x y : R} (hx : isRational x)
     (hyx : ∀ n, nthDecimalDigit b y n = nthDecimalDigit b x (2 ^ n)) :
     isRational y := by

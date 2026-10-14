@@ -52,20 +52,32 @@ def twoPointTerminalNet : FiniteNet TwoPoint Bool where
 def twoPointRootedNet (j : ℕ) : FiniteNet TwoPoint Bool :=
   if j = 0 then twoPointRootNet else twoPointTerminalNet
 
+/--
+@isnad1 id=eq.0h1v.s4.48a327a7927d from=translated src=- shape=3d1b0112 vocab=5cf52e4b
+-/
 theorem twoPointRootedNet_dist (j : ℕ) :
     (twoPointRootedNet j).dist = twoPointRademacherProcess.dist := by
   by_cases hj : j = 0 <;>
     simp [twoPointRootedNet, hj, twoPointRootNet, twoPointTerminalNet,
       twoPointRademacherProcess]
 
+/--
+@isnad1 id=eq.0h1v.s4.a50cf4762b15 from=translated src=- shape=2821eb15 vocab=6f2b9c0d
+-/
 theorem twoPointRootedNet_root (t : TwoPoint) :
     (twoPointRootedNet 0).projection t = false := by
   simp [twoPointRootedNet, twoPointRootNet, FiniteNet.projection]
 
+/--
+@isnad1 id=eq.0h1v.s4.1077b206fa23 from=translated src=- shape=7a3dad5d vocab=15566d2c
+-/
 theorem twoPointRootedNet_terminal (t : TwoPoint) :
     (twoPointRootedNet 1).projection t = t := by
   cases t <;> simp [twoPointRootedNet, twoPointTerminalNet, FiniteNet.projection]
 
+/--
+@isnad1 id=lt.1h1v.s5.fcade2716e3d from=translated src=- shape=0ce8b9e5 vocab=1dfe16d6
+-/
 theorem twoPointRootedNet_radius_pos_m1 :
     ∀ j ∈ Finset.range 1,
       0 < (twoPointRootedNet j).radius + (twoPointRootedNet (j + 1)).radius := by
@@ -76,6 +88,9 @@ theorem twoPointRootedNet_radius_pos_m1 :
   subst j
   norm_num [twoPointRootedNet, twoPointRootNet, twoPointTerminalNet]
 
+/--
+@isnad1 id=le.1h1v.s6.9a243a36eb37 from=translated src=- shape=05ec5870 vocab=807b5601
+-/
 theorem twoPointRootedNet_radius_geometric_m1 :
     ∀ j ∈ Finset.range 1,
       (twoPointRootedNet j).radius + (twoPointRootedNet (j + 1)).radius ≤
@@ -90,15 +105,24 @@ theorem twoPointRootedNet_radius_geometric_m1 :
 /-- Constant finite cover envelope for the single rooted/terminal pair. -/
 def twoPointIntegralCoverProfile (_ε : ℝ) : ℕ := 4
 
+/--
+@isnad1 id=antitone.0h0v.s2.d2507444e003 from=translated src=- shape=54c8eceb vocab=5b5ba9ac
+-/
 theorem twoPointIntegralCoverProfile_antitone :
     Antitone twoPointIntegralCoverProfile := by
   intro ε δ hεδ
   rfl
 
+/--
+@isnad1 id=lt.0h1v.s3.ff6f08fc45b5 from=translated src=- shape=b9369acb vocab=68f7cf11
+-/
 theorem twoPointIntegralCoverProfile_pos (ε : ℝ) :
     0 < twoPointIntegralCoverProfile ε := by
   norm_num [twoPointIntegralCoverProfile]
 
+/--
+@isnad1 id=le.1h1v.s6.931fb18d88fe from=translated src=- shape=d87fe440 vocab=7385f966
+-/
 theorem twoPointRootedNet_coverProduct_m1 :
     ∀ j ∈ Finset.range 1,
       (twoPointRootedNet j).coveringNumber *
@@ -112,6 +136,9 @@ theorem twoPointRootedNet_coverProduct_m1 :
   norm_num [twoPointRootedNet, twoPointRootNet, twoPointTerminalNet,
     FiniteNet.coveringNumber, twoPointIntegralCoverProfile]
 
+/--
+@isnad1 id=eq.1h2v.s7.91a5ea51bf9b from=translated src=- shape=bc7ca958 vocab=e7c5ab40
+-/
 theorem twoPointRootedNet_centered_increment_m1 :
     ∀ j ∈ Finset.range 1,
       ∀ pair : FiniteNet.ProjectionPair

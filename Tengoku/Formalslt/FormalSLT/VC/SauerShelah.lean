@@ -33,7 +33,9 @@ namespace FormalSLT.VC.SauerShelah
 
 /-- For `0 < d ≤ n`, the partial binomial sum `∑_{k=0}^d C(n,k)` is bounded by
 `(e·n/d)^d`. This is the polynomial form of the Sauer-Shelah growth-function
-bound, converting the binomial-sum form into a clean closed-form expression. -/
+bound, converting the binomial-sum form into a clean closed-form expression.
+@isnad1 id=le.2h2v.s6.30bd869fa3e8 from=translated src=- shape=386f3990 vocab=b7104c41
+-/
 theorem sauerShelah_polynomial_bound {n d : ℕ} (hd : 0 < d) (hdn : d ≤ n) :
     (∑ k ∈ Finset.range (d + 1), (n.choose k : ℝ)) ≤ (Real.exp 1 * ↑n / ↑d) ^ d := by
   have hdR : (0 : ℝ) < (d : ℝ) := Nat.cast_pos.mpr hd

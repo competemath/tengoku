@@ -47,24 +47,34 @@ def triple_pos (x : ℕ × ℕ × ℕ) := x.1 > 0 ∧ x.2.1 > 0 ∧ x.2.2 > 0
 
 /-! ### Basic lemmas -/
 
-/-- If `a, b, c` are positive, then all entries of `f(a, b, c)` are also positive. -/
+/-- If `a, b, c` are positive, then all entries of `f(a, b, c)` are also positive.
+@isnad1 id=triplepo.1h1v.s3.ad2f0c479936 from=translated src=- shape=e97603a6 vocab=89375cbd
+-/
 theorem f_triple_pos (hx : triple_pos x) : triple_pos (f x) :=
   hx.imp (Nat.add_pos_left · _) (And.imp (Nat.add_pos_left · _) (Nat.add_pos_left · _))
 
-/-- If `a, b, c` are positive, then all entries of `f^N(a, b, c)` are also positive. -/
+/-- If `a, b, c` are positive, then all entries of `f^N(a, b, c)` are also positive.
+@isnad1 id=triplepo.1h2v.s4.fe0b4dfe1d0e from=translated src=- shape=5b98cfd9 vocab=e8215fab
+-/
 theorem triple_pos.f_iter (hx : triple_pos x) (N) : triple_pos (f^[N] x) :=
   Nat.recOn N hx λ _ ↦ f.iterate_succ_apply' _ _ ▸ f_triple_pos
 
-/-- If `na, nb, nc > 0`, then `a, b, c > 0`. -/
+/-- If `na, nb, nc > 0`, then `a, b, c > 0`.
+@isnad1 id=triplepo.1h2v.s5.bab9c45d01f5 from=translated src=- shape=d193576c vocab=b78b6edc
+-/
 theorem triple_pos.of_nsmul {n : ℕ} (h : triple_pos (n • x)) : triple_pos x :=
   h.imp Nat.pos_of_mul_pos_left (And.imp Nat.pos_of_mul_pos_left Nat.pos_of_mul_pos_left)
 
-/-- If `f^N(a, b, c) = k(d, e, f)` and `a, b, c > 0`, then `d, e, f > 0`. -/
+/-- If `f^N(a, b, c) = k(d, e, f)` and `a, b, c > 0`, then `d, e, f > 0`.
+@isnad1 id=triplepo.2h4v.s6.a38a4de01fbb from=translated src=- shape=a1f92b7a vocab=0e8ca9aa
+-/
 theorem triple_pos.of_f_iter_nsmul (h : triple_pos x) {k : ℕ} (h0 : f^[N] x = k • y) :
     triple_pos y :=
   (h0 ▸ h.f_iter N).of_nsmul
 
-/-- We have `f(na, nb, nc) = n f(a, b, c)` for any `n, a, b, c : ℕ`. -/
+/-- We have `f(na, nb, nc) = n f(a, b, c)` for any `n, a, b, c : ℕ`.
+@isnad1 id=eq.0h2v.s6.81e4dcc7f995 from=translated src=- shape=36e847eb vocab=dbad2f5e
+-/
 theorem f_nsmul (n : ℕ) (x : ℕ × ℕ × ℕ) : f (n • x) = n • f x := by
   rcases x with ⟨a, b, c⟩
   have h (a b c : ℕ) : n • (a + b.gcd c) = n • a + (n • b).gcd (n • c) := by
@@ -72,18 +82,24 @@ theorem f_nsmul (n : ℕ) (x : ℕ × ℕ × ℕ) : f (n • x) = n • f x := b
     rw [Nat.gcd_mul_left, Nat.mul_add]
   simp only [f, Prod.smul_mk, h]
 
-/-- We have `f^N(na, nb, nc) = n f^N(a, b, c)` for any `N, n, a, b, c : ℕ`. -/
+/-- We have `f^N(na, nb, nc) = n f^N(a, b, c)` for any `N, n, a, b, c : ℕ`.
+@isnad1 id=eq.0h3v.s6.9d9477e13f51 from=translated src=- shape=c977dce8 vocab=2ffc2b8a
+-/
 theorem f_iter_nsmul (N n : ℕ) (x : ℕ × ℕ × ℕ) : f^[N] (n • x) = n • f^[N] x := by
   induction N with | zero => rfl | succ N N_ih =>
     rw [f.iterate_succ_apply', N_ih, f_nsmul, f.iterate_succ_apply']
 
 /-! ### The first entry of`f^N(3, 5, 6)` is `2 ^ (N / 3) * (3 + N % 3)` -/
 
-/-- The entries of `(3, 5, 6)` are positive. -/
+/-- The entries of `(3, 5, 6)` are positive.
+@isnad1 id=triplepo.0h0v.s4.c7ebc690b572 from=translated src=- shape=521c4ec5 vocab=e4a3c9e3
+-/
 theorem triple_pos_356 : triple_pos (3, 5, 6) := by
   unfold triple_pos; decide
 
-/-- We have `f^{3N}(3, 5, 6) = (2^N * 3, 2^N * 5, 2^N * 6)` for any `N`. -/
+/-- We have `f^{3N}(3, 5, 6) = (2^N * 3, 2^N * 5, 2^N * 6)` for any `N`.
+@isnad1 id=eq.0h1v.s7.7084c3d64839 from=translated src=- shape=b742bd8e vocab=76ab3057
+-/
 theorem f_iter3N_356 (N : ℕ) : f^[3 * N] (3, 5, 6) = 2 ^ N • (3, 5, 6) := by
   induction N with | zero => rfl | succ N N_ih => ?_
   calc f^[3 * (N + 1)] (3, 5, 6)
@@ -93,15 +109,21 @@ theorem f_iter3N_356 (N : ℕ) : f^[3 * N] (3, 5, 6) = 2 ^ N • (3, 5, 6) := by
       have h (a) : 2 * (2 ^ N * a) = 2 ^ (N + 1) * a := by rw [Nat.pow_succ', Nat.mul_assoc]
       Prod.ext (h 3) (Prod.ext (h 5) (h 6))
 
-/-- We have `f^N(3, 5, 6) = 2^{N / 3} f^{N % 3}(3, 5, 6)` for any `N`. -/
+/-- We have `f^N(3, 5, 6) = 2^{N / 3} f^{N % 3}(3, 5, 6)` for any `N`.
+@isnad1 id=eq.0h1v.s7.adb9c7fe9039 from=translated src=- shape=dc5c035b vocab=aed5d6fc
+-/
 theorem f_iterN_356 (N : ℕ) : f^[N] (3, 5, 6) = 2 ^ (N / 3) • f^[N % 3] (3, 5, 6) := by
   rw [← f_iter_nsmul, ← f_iter3N_356, ← f.iterate_add_apply, Nat.mod_add_div]
 
-/-- The first entry of `f^N(3, 5, 6)` is `3 + N` if `N < 3`. -/
+/-- The first entry of `f^N(3, 5, 6)` is `3 + N` if `N < 3`.
+@isnad1 id=eq.1h1v.s5.15e62fd5b0d3 from=translated src=- shape=c87e7ebc vocab=088c625e
+-/
 theorem f_iterN_356_fst_of_lt_three (hN : N < 3) : (f^[N] (3, 5, 6)).1 = 3 + N := by
   match N with | 0 => rfl | 1 => rfl | 2 => rfl
 
-/-- The first entry of `f^N(3, 5, 6)` is `2^{N / 3} (3 + N % 3)`. -/
+/-- The first entry of `f^N(3, 5, 6)` is `2^{N / 3} (3 + N % 3)`.
+@isnad1 id=eq.0h1v.s6.1ef1eb7ebe83 from=translated src=- shape=7f60ddb0 vocab=87436846
+-/
 theorem f_iterN_356_fst (N) : (f^[N] (3, 5, 6)).1 = 2 ^ (N / 3) * (3 + N % 3) :=
   (congrArg Prod.fst (f_iterN_356 N)).trans <| congrArg (2 ^ (N / 3) * ·) <|
     f_iterN_356_fst_of_lt_three (Nat.mod_lt N (Nat.succ_pos 2))
@@ -116,7 +138,9 @@ open Fin.NatCast
   `g_1(a, b, c) = a + d`, where `d = 0` if `b = c = 0` and `d = 1` otherwise. -/
 def g_1 (a b c : Fin 2) : Fin 2 := a + if b = 0 ∧ c = 0 then 0 else 1
 
-/-- The value of `gcd(b, c) % 2` purely in terms of `b % 2` and `c % 2`. -/
+/-- The value of `gcd(b, c) % 2` purely in terms of `b % 2` and `c % 2`.
+@isnad1 id=eq.0h2v.s7.a40980b5b2ca from=translated src=- shape=020f1130 vocab=fe4d292e
+-/
 theorem gcd_mod_two (b c : ℕ) : b.gcd c % 2 = if b % 2 = 0 ∧ c % 2 = 0 then 0 else 1 := by
   by_cases h : b % 2 = 0 ∧ c % 2 = 0
   ---- Case 1: `b` and `c` are even.
@@ -126,7 +150,9 @@ theorem gcd_mod_two (b c : ℕ) : b.gcd c % 2 = if b % 2 = 0 ∧ c % 2 = 0 then 
   · rw [ite_eq_right h, ← Nat.mod_two_ne_zero, Ne, ← Nat.dvd_iff_mod_eq_zero, Nat.dvd_gcd_iff]
     exact λ h0 ↦ h (h0.imp Nat.mod_eq_zero_of_dvd Nat.mod_eq_zero_of_dvd)
 
-/-- The reduction to `Fin 2` of `a + gcd(b, c)` is exactly `g_1((a, b, c) mod 2)`. -/
+/-- The reduction to `Fin 2` of `a + gcd(b, c)` is exactly `g_1((a, b, c) mod 2)`.
+@isnad1 id=eq.0h3v.s6.e159beca9d2b from=translated src=- shape=8ae3e7f3 vocab=de7a1ae7
+-/
 theorem add_gcd_Fin2_eq_g (a b c : ℕ) : ((a + b.gcd c : ℕ) : Fin 2) = g_1 a b c := by
   suffices (a + b.gcd c) % 2 = (g_1 a b c).val from Fin.val_inj.mp this
   calc (a + b.gcd c) % 2
@@ -145,21 +171,29 @@ def triple_to_Fin2 (x : ℕ × ℕ × ℕ) : Fin 2 × Fin 2 × Fin 2 := (x.1, x.
 def g (x : Fin 2 × Fin 2 × Fin 2) : Fin 2 × Fin 2 × Fin 2 :=
   (g_1 x.1 x.2.1 x.2.2, g_1 x.2.1 x.2.2 x.1, g_1 x.2.2 x.1 x.2.1)
 
-/-- Semiconjugation by `triple_to_Fin2` from `f` to `g`. -/
+/-- Semiconjugation by `triple_to_Fin2` from `f` to `g`.
+@isnad1 id=semiconj.0h0v.s4.d4e63898e993 from=translated src=- shape=1679a8ca vocab=346de1e8
+-/
 theorem triple_to_Fin2_semiconj_f_to_g : triple_to_Fin2.Semiconj f g :=
   λ _ ↦ Prod.ext (add_gcd_Fin2_eq_g _ _ _)
     (Prod.ext (add_gcd_Fin2_eq_g _ _ _) (add_gcd_Fin2_eq_g _ _ _))
 
-/-- For any triple `x : Fin 2 × Fin 2 × Fin 2`, we have `g^3(x) = 0`. -/
+/-- For any triple `x : Fin 2 × Fin 2 × Fin 2`, we have `g^3(x) = 0`.
+@isnad1 id=eq.0h1v.s7.71fa321dcde5 from=translated src=- shape=f5ddc866 vocab=545c970f
+-/
 theorem g_iter3_eq_zero (x) : g^[3] x = (0, 0, 0) := by
   rcases x with ⟨a, b, c⟩
   revert a b c; decide
 
-/-- For any triple `x : ℕ × ℕ × ℕ`, the entries of `f^3(x)` modulo `2` are zeroes. -/
+/-- For any triple `x : ℕ × ℕ × ℕ`, the entries of `f^3(x)` modulo `2` are zeroes.
+@isnad1 id=eq.0h1v.s6.f877e86017ca from=translated src=- shape=7331a148 vocab=b9807ee6
+-/
 theorem triple_to_Fin2_f_iter3_eq_zero (x) : triple_to_Fin2 (f^[3] x) = (0, 0, 0) :=
   (triple_to_Fin2_semiconj_f_to_g.iterate_right 3 _).trans (g_iter3_eq_zero _)
 
-/-- All entries of `f^3(a, b, c)` are even. -/
+/-- All entries of `f^3(a, b, c)` are even.
+@isnad1 id=ex.0h1v.s6.7851da5b08b6 from=translated src=- shape=500e28df vocab=2ffc2b8a
+-/
 theorem f_iter3_exists_two_nsmul (x) : ∃ y, f^[3] x = 2 • y := by
   have h {a : ℕ} (ha : (a : Fin 2) = 0) : a = 2 * (a / 2) :=
     (Nat.mul_div_cancel' (Nat.dvd_of_mod_eq_zero (congrArg Fin.val ha))).symm
@@ -170,7 +204,9 @@ theorem f_iter3_exists_two_nsmul (x) : ∃ y, f^[3] x = 2 • y := by
 
 end
 
-/-- All entries of `f^{3N}(a, b, c)` are multiples of `2^N`. -/
+/-- All entries of `f^{3N}(a, b, c)` are multiples of `2^N`.
+@isnad1 id=ex.0h2v.s6.dd11ad1d8a33 from=translated src=- shape=375cf555 vocab=20cc8c08
+-/
 theorem f_iter3N_exists_two_pow_N_nsmul (x N) : ∃ y, f^[3 * N] x = 2 ^ N • y := by
   induction N with
   | zero =>
@@ -185,21 +221,29 @@ theorem f_iter3N_exists_two_pow_N_nsmul (x N) : ∃ y, f^[3 * N] x = 2 ^ N • y
 
 /-! ### The first entry of `f^N(x)` is at least `2 ^ (N / 3) * (3 + N % 3)` -/
 
-/-- If `a, b, c` are positive, then the first entry of `f(a, b, c)` is at least `a + 1`. -/
+/-- If `a, b, c` are positive, then the first entry of `f(a, b, c)` is at least `a + 1`.
+@isnad1 id=le.1h1v.s5.0955c2471b8d from=translated src=- shape=deb1a0c8 vocab=b45fd55f
+-/
 theorem f_fst_of_triple_pos (hx : triple_pos x) : x.1 + 1 ≤ (f x).1 :=
   Nat.lt_add_of_pos_right (Nat.gcd_pos_of_pos_left x.2.2 hx.2.1)
 
-/-- If `a, b, c` are positive, then the first entry of `f^N(a, b, c)` is at least `a + N`. -/
+/-- If `a, b, c` are positive, then the first entry of `f^N(a, b, c)` is at least `a + N`.
+@isnad1 id=le.1h2v.s5.2dc5ebc4b901 from=translated src=- shape=d6fd0edf vocab=a497c4bc
+-/
 theorem f_iter_fst_of_triple_pos (N : ℕ) (hx : triple_pos x) : x.1 + N ≤ (f^[N] x).1 :=
   Nat.recOn N (Nat.le_refl _)
     λ n hn ↦ f.iterate_succ_apply' _ _ ▸
       Nat.lt_of_le_of_lt hn (f_fst_of_triple_pos (hx.f_iter n))
 
-/-- If `a, b, c` are positive, then the first entry of `f^3(a, b, c)` is at least `4`. -/
+/-- If `a, b, c` are positive, then the first entry of `f^3(a, b, c)` is at least `4`.
+@isnad1 id=le.1h1v.s5.01c86a09d8cb from=translated src=- shape=d200860d vocab=4d90c47d
+-/
 theorem four_le_f_iter3_fst_of_triple_pos (hx : triple_pos x) : 4 ≤ (f^[3] x).1 :=
   Nat.le_trans (Nat.add_le_add_right hx.1 3) (f_iter_fst_of_triple_pos 3 hx)
 
-/-- If `a, b, c` are positive, then `f^6(a, b, c) = (4d, 4e, 4f)` with `d ≥ 3`. -/
+/-- If `a, b, c` are positive, then `f^6(a, b, c) = (4d, 4e, 4f)` with `d ≥ 3`.
+@isnad1 id=ex.1h1v.s6.7071d11b42d0 from=translated src=- shape=c8927245 vocab=d1203a12
+-/
 theorem f_iter6_form_of_triple_pos (hx : triple_pos x) :
     ∃ z, f^[6] x = 4 • z ∧ 3 ≤ z.1 := by
   ---- First write `f^3(x) = 2y` for some triple `y` and show that `y.1 ≥ 2`.
@@ -222,7 +266,9 @@ theorem f_iter6_form_of_triple_pos (hx : triple_pos x) :
       _ = 2 * z.1 := congrArg Prod.fst hz
     exact Nat.lt_of_mul_lt_mul_left (a := 2) hz0
 
-/-- If `a ≥ 3`, `b, c > 0`, and `f^{3N}(a, b, c) = 2^N (d, e, f)`, then `d ≥ 3`. -/
+/-- If `a ≥ 3`, `b, c > 0`, and `f^{3N}(a, b, c) = 2^N (d, e, f)`, then `d ≥ 3`.
+@isnad1 id=le.3h3v.s7.65e105b2c98f from=translated src=- shape=721526af vocab=676c99f0
+-/
 theorem f_iter3N_div_two_pow_N_fst
     (hx : triple_pos x) (hx0 : 3 ≤ x.1) (hy : f^[3 * N] x = 2 ^ N • y) : 3 ≤ y.1 := by
   induction N generalizing y with
@@ -245,7 +291,9 @@ theorem f_iter3N_div_two_pow_N_fst
     _ = 2 ^ (N + 1) * y.1 := hy
 
 /-- If `a ≥ 3` and `b, c > 0`, then the first entry
-  of `f^N(a, b, c)` is at least `2^{N/3} * (3 + N % 3)`. -/
+  of `f^N(a, b, c)` is at least `2^{N/3} * (3 + N % 3)`.
+@isnad1 id=le.2h2v.s6.0de673e1c631 from=translated src=- shape=43f7416e vocab=0a430ef0
+-/
 theorem f_iterN_of_three_le_fst {x} (hx : triple_pos x) (hx0 : 3 ≤ x.1) (N) :
     2 ^ (N / 3) * (3 + N % 3) ≤ (f^[N] x).1 := by
   obtain ⟨y, hy⟩ : ∃ y, f^[3 * (N / 3)] x = 2 ^ (N / 3) • y :=
@@ -258,7 +306,9 @@ theorem f_iterN_of_three_le_fst {x} (hx : triple_pos x) (hx0 : 3 ≤ x.1) (N) :
     _ = (f^[N] x).1 := by
       rw [← f_iter_nsmul, ← hy, ← f.iterate_add_apply, Nat.mod_add_div]
 
-/-- If `a, b, c > 0` and `N ≥ 6`, then `f^N(a, b, c) ≥ 2^{N/3} * (3 + N % 3)`. -/
+/-- If `a, b, c > 0` and `N ≥ 6`, then `f^N(a, b, c) ≥ 2^{N/3} * (3 + N % 3)`.
+@isnad1 id=le.2h2v.s6.e1cce09e878a from=translated src=- shape=0c577ccd vocab=16a5d306
+-/
 theorem f_iterN_fst_of_ge_six (hN : N ≥ 6) (hx : triple_pos x) :
     2 ^ (N / 3) * (3 + N % 3) ≤ (f^[N] x).1 := by
   obtain ⟨K, rfl⟩ : ∃ K, N = K + 6 := Nat.exists_eq_add_of_le' hN
@@ -270,13 +320,17 @@ theorem f_iterN_fst_of_ge_six (hN : N ≥ 6) (hx : triple_pos x) :
 /-! ### Summary -/
 
 /-- The general result: the smallest possible value of the first entry of
-  `f^N(a, b, c)` is `2^{N / 3} (3 + N % 3)` if `N ≥ 6`. -/
+  `f^N(a, b, c)` is `2^{N / 3} (3 + N % 3)` if `N ≥ 6`.
+@isnad1 id=isleast.1h1v.s6.85c03a2c8605 from=translated src=- shape=48c6f799 vocab=4bf12514
+-/
 theorem general_result (hN : N ≥ 6) :
     IsLeast ((Set.ofPred triple_pos).image λ x ↦ (f^[N] x).1) (2 ^ (N / 3) * (3 + N % 3)) :=
   ⟨⟨(3, 5, 6), triple_pos_356, f_iterN_356_fst N⟩,
   λ _ ⟨_, hx, h⟩ ↦ h ▸ f_iterN_fst_of_ge_six hN hx⟩
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=isleast.1h1v.s6.fbac64385630 from=translated src=- shape=fd0b739b vocab=206e6d80
+-/
 theorem final_solution (hN : N ≥ 2) :
     IsLeast ((Set.ofPred triple_pos).image λ x ↦ (f^[3 * N] x).1) (2 ^ N * 3) := by
   simpa only [Nat.mul_div_right _ (Nat.succ_pos 2), Nat.mul_mod_right]

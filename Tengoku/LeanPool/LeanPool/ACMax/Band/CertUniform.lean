@@ -28,6 +28,9 @@ ratio certificates formerly used by `Band.Assembly`.
 
 namespace ACMax
 
+/--
+@isnad1 id=le.0h3v.s8.a3921f309231 from=translated src=- shape=470b0a8d vocab=6e2f5509
+-/
 theorem binomial_lower_three (v t k : ℕ) :
     3 * (v + 2 * t) ^ (k + 3) ≥
       3 * v ^ (k + 3) +
@@ -59,6 +62,9 @@ theorem binomial_lower_three (v t k : ℕ) :
             nlinarith [Nat.zero_le
               (8 * (k + 3) * (k + 2) * (k + 1) * t ^ 4 * v ^ k)]
 
+/--
+@isnad1 id=le.4h2v.s7.6fd934261a26 from=translated src=- shape=81947970 vocab=cdb4433a
+-/
 theorem uniform_power_four (t v : ℕ)
     (ht43 : 43 ≤ t) (htv : t ≤ v) (hv122 : v ≤ 122)
     (hlin : 5 * v + 41 ≤ 200 + 3 * t) :
@@ -124,6 +130,9 @@ theorem uniform_power_four (t v : ℕ)
   dsimp [T, V] at hfinalZ
   exact_mod_cast hfinalZ
 
+/--
+@isnad1 id=le.6h3v.s8.44cba95eb944 from=translated src=- shape=d261285c vocab=cdb4433a
+-/
 theorem uniform_cubic_arith (t v ell : ℕ)
     (ht43 : 43 ≤ t) (htv : t ≤ v) (hv122 : v ≤ 122)
     (hell5 : 5 ≤ ell) (hell10 : ell ≤ 10)
@@ -252,6 +261,9 @@ theorem uniform_cubic_arith (t v ell : ℕ)
   dsimp [T, V, L] at hdesiredZ
   exact_mod_cast hdesiredZ
 
+/--
+@isnad1 id=le.6h3v.s7.cd396e0e65c0 from=translated src=- shape=4e6077b6 vocab=cdb4433a
+-/
 theorem uniform_power_ge_five (t v k : ℕ)
     (ht43 : 43 ≤ t) (htv : t ≤ v) (hv122 : v ≤ 122)
     (hk2 : 2 ≤ k) (hk7 : k ≤ 7)
@@ -303,6 +315,9 @@ theorem uniform_power_ge_five (t v k : ℕ)
         simpa only [add_assoc] using hbin
   exact Nat.le_of_mul_le_mul_left hthree (by norm_num)
 
+/--
+@isnad1 id=le.6h3v.s7.1dfcbbfc165d from=translated src=- shape=31e067f2 vocab=cdb4433a
+-/
 theorem uniform_power_certificate (t v ell : ℕ)
     (ht43 : 43 ≤ t) (htv : t ≤ v) (hv122 : v ≤ 122)
     (hell4 : 4 ≤ ell) (hell10 : ell ≤ 10)
@@ -316,6 +331,9 @@ theorem uniform_power_certificate (t v ell : ℕ)
     exact uniform_power_ge_five t v k ht43 htv hv122
       (by dsimp [k]; omega) (by dsimp [k]; omega) hlin
 
+/--
+@isnad1 id=other.5h3v.s8.e222ac8f5596 from=translated src=- shape=429e1707 vocab=e32ddfcd
+-/
 theorem uniform_region_bounds (n X h : ℕ)
     (hM : 10 * X + 7 * h + 186 ≤ 4 * n)
     (hHoard : 3 * X + 26 ≤ n) (hhX : h ≤ X)
@@ -328,6 +346,9 @@ theorem uniform_region_bounds (n X h : ℕ)
   dsimp
   omega
 
+/--
+@isnad1 id=lt.4h3v.s8.ea9a29540d84 from=translated src=- shape=fd263d76 vocab=62399aff
+-/
 theorem sum_cert_of_power {t v ell : ℕ}
     (ht10 : 10 ≤ t)
     (hA : t * (v - 1) + 1 ≤ (t - 10) * (v + t))
@@ -365,6 +386,9 @@ theorem sum_cert_of_power {t v ell : ℕ}
     omega
   exact hstrict.trans_le (hcorner.trans hscale)
 
+/--
+@isnad1 id=lt.5h3v.s9.cdb17908916c from=translated src=- shape=8bd351c8 vocab=b68d0884
+-/
 theorem band_cert_uniform_48_122 (n X h : ℕ)
     (hM : 10 * X + 7 * h + 186 ≤ 4 * n)
     (hHoard : 3 * X + 26 ≤ n) (hhX : h ≤ X)

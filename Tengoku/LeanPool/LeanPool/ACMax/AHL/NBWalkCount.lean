@@ -50,7 +50,9 @@ instance decidableIsNonBacktracking [DecidableEq V] {u v : V} :
 /-- **Extension characterization.**  A non-nil walk `p : G.Walk x y` followed by an edge `h : Adj
 y t`
 is non-backtracking iff `p` is and the new vertex `t` differs from `p`'s penultimate vertex (so the
-last step does not reverse the previous one). -/
+last step does not reverse the previous one).
+@isnad1 id=iff.2h6v.s5.3f99cb3a0e72 from=translated src=- shape=1835083e vocab=60d8be07
+-/
 theorem nb_concat_iff {x y t : V} (p : G.Walk x y) (hp : ¬ p.Nil) (h : G.Adj y t) :
     IsNonBacktracking (p.concat h) ↔ IsNonBacktracking p ∧ t ≠ p.penultimate := by
   have hL : 1 ≤ p.length := Walk.not_nil_iff_lt_length.mp hp
@@ -93,7 +95,9 @@ def nbWalksFrom (G : SimpleGraph V) [Fintype V] [DecidableEq V] [DecidableRel G.
     ((G.finsetWalkLength k x v).filter IsNonBacktracking).map (sigmaWalkEmb G x v)
 
 /-- Membership in `nbWalksFrom`: a bundled walk lies in it iff it has the right length and is
-non-backtracking. -/
+non-backtracking.
+@isnad1 id=iff.0h5v.s7.6fcd27a6f2e0 from=translated src=- shape=ec213377 vocab=71d0da57
+-/
 theorem mem_nbWalksFrom [Fintype V] [DecidableEq V] [DecidableRel G.Adj] {x : V} {k : ℕ}
     {s : Σ v : V, G.Walk x v} :
     s ∈ nbWalksFrom G x k ↔ s.2.length = k ∧ IsNonBacktracking s.2 := by
@@ -106,7 +110,9 @@ theorem mem_nbWalksFrom [Fintype V] [DecidableEq V] [DecidableRel G.Adj] {x : V}
     exact ⟨s.1, s.2, ⟨hlen, hnb⟩, rfl⟩
 
 /-- The bundled count equals the sum over endpoints of the filtered `finsetWalkLength`
-cardinality. -/
+cardinality.
+@isnad1 id=eq.0h4v.s6.9192fd06d9c1 from=translated src=- shape=c9dea54d vocab=c3432e92
+-/
 theorem card_nbWalksFrom [Fintype V] [DecidableEq V] [DecidableRel G.Adj] (x : V) (k : ℕ) :
     (nbWalksFrom G x k).card =
       ∑ v : V, ((G.finsetWalkLength k x v).filter IsNonBacktracking).card := by

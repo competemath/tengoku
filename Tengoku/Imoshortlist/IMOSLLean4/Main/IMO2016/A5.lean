@@ -26,7 +26,9 @@ Note that for part 1, we also include the case $n = 0$.
 namespace IMOSL
 namespace IMO2016A5
 
-/-- Final solution, part 1 -/
+/-- Final solution, part 1
+@isnad1 id=ex.0h1v.s7.4077d9165b77 from=translated src=- shape=264057fb vocab=5985059e
+-/
 theorem final_solution_part1 (n) :
     ∃ a, ∃ b > 0, b ≤ Nat.sqrt n + 1 ∧ b ^ 2 * n ≤ a ^ 2 ∧ a ^ 2 ≤ b ^ 2 * (n + 1) := by
   ---- If `n = 0`, choose `a = 0` and `b = 1`.
@@ -60,7 +62,9 @@ theorem final_solution_part1 (n) :
     replace hs : r - k ≤ r + 1 := Nat.le_of_lt (Nat.sub_lt_succ r k)
     exact hr ▸ ⟨Nat.le_add_right _ _, Nat.add_le_add_left (Nat.pow_le_pow_left hs 2) _⟩
 
-/-- Final solution, part 2, explicit version -/
+/-- Final solution, part 2, explicit version
+@isnad1 id=not.0h1v.s7.67261c6d3db8 from=translated src=- shape=7549b8d3 vocab=90f779e9
+-/
 theorem final_solution_part2_explicit (k) :
     ¬∃ a, ∃ b > 0, b ≤ k ∧ b ^ 2 * (k ^ 2 + 1) ≤ a ^ 2 ∧ a ^ 2 ≤ b ^ 2 * (k ^ 2 + 2) := by
   ---- If there is such `a` and `b`, then `(bk)^2 < a^2 < (bk + 1)^2`.
@@ -83,7 +87,9 @@ theorem final_solution_part2_explicit (k) :
       _ = (b * k + 1) * (b * k + 1) := by
         rw [Nat.succ_mul, Nat.mul_succ, Nat.add_assoc]
 
-/-- Final solution, part 2 -/
+/-- Final solution, part 2
+@isnad1 id=ex.0h1v.s7.0500bcf90ba2 from=translated src=- shape=b5cb285e vocab=5985059e
+-/
 theorem final_solution_part2 (N) :
     ∃ n > N, ¬∃ a, ∃ b > 0, b ≤ Nat.sqrt n ∧
       b ^ 2 * n ≤ a ^ 2 ∧ a ^ 2 ≤ b ^ 2 * (n + 1) := by

@@ -30,6 +30,9 @@ def mixtureExponentialProcess {Ω : Type*} [MeasurableSpace Ω]
 def uniformTiltPrior (lam0 lam1 : ℝ) : Measure ℝ :=
   volume[|Set.Icc lam0 lam1]
 
+/--
+@isnad1 id=isprobab.1h2v.s4.13ad9a97bde1 from=translated src=- shape=05b8b121 vocab=74b77094
+-/
 lemma uniformTiltPrior_isProbabilityMeasure {lam0 lam1 : ℝ} (h : lam0 < lam1) :
     IsProbabilityMeasure (uniformTiltPrior lam0 lam1) := by
   unfold uniformTiltPrior
@@ -39,6 +42,9 @@ lemma uniformTiltPrior_isProbabilityMeasure {lam0 lam1 : ℝ} (h : lam0 < lam1) 
   · rw [Real.volume_Icc]
     exact ENNReal.ofReal_ne_top
 
+/--
+@isnad1 id=eventual.3h3v.s6.38040a093230 from=translated src=- shape=44f094ed vocab=3d25e157
+-/
 lemma uniformTiltPrior_valid_tilt_support
     {b lam0 lam1 : ℝ} (h0 : 0 < lam0) (_h01 : lam0 < lam1) (h1 : lam1 < 3 / b) :
     ∀ᵐ lam ∂uniformTiltPrior lam0 lam1, lam ∈ Set.Ioo 0 (3 / b) := by
@@ -49,6 +55,7 @@ lemma uniformTiltPrior_valid_tilt_support
 /--
 Order from testing set integrals on a sub-sigma-algebra. This is the
 inequality analogue of the conditional-expectation uniqueness principle.
+@isnad1 id=eventual.6h6v.s7.385abb7fec63 from=translated src=- shape=ab27f841 vocab=5a29be9e
 -/
 theorem ae_le_of_forall_subalgebra_setIntegral_le
     {Ω : Type*} {m m₀ : MeasurableSpace Ω}
@@ -79,6 +86,7 @@ theorem ae_le_of_forall_subalgebra_setIntegral_le
 Conditional expectation commutes with the prior integral, under the product
 integrability and conditional-side measurability obligations needed for Fubini
 and the defining set-integral property of conditional expectation.
+@isnad1 id=eventual.5h7v.s9.8c74e64a1b9c from=translated src=- shape=4b6e08d5 vocab=b57dfc7e
 -/
 theorem condExp_mixture_swap
     {Ω : Type*} {m m₀ : MeasurableSpace Ω}
@@ -141,6 +149,7 @@ theorem condExp_mixture_swap
 One mixture supermartingale step from fixed-tilt conditional steps, proved by
 testing on `F_n`-measurable sets. This avoids needing joint measurability of the
 chosen conditional-expectation versions in the tilt parameter.
+@isnad1 id=eventual.7h9v.s9.76af2d0c33d5 from=translated src=- shape=b60c42fe vocab=4346b171
 -/
 theorem mixture_condExp_step_of_fixed_tilt_steps
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
@@ -225,6 +234,7 @@ theorem mixture_condExp_step_of_fixed_tilt_steps
 /--
 The mixture process is a nonnegative supermartingale once the conditional
 expectation swap and the resulting integral one-step inequality are available.
+@isnad1 id=and.15h8v.s9.e7cda9c92ee8 from=translated src=- shape=03eb0220 vocab=fbc9d18b
 -/
 theorem mixture_is_supermartingale
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
@@ -304,7 +314,9 @@ increment model alone, with no free hypotheses:
 -/
 
 /-- Joint measurability of the parameterized sub-Gamma exponential process in the product
-σ-algebra, from measurability of each increment. -/
+σ-algebra, from measurability of each increment.
+@isnad1 id=measurab.1h5v.s5.1886f7433ed9 from=translated src=- shape=a270e4eb vocab=e8a4a939
+-/
 theorem measurable_subGammaExponentialProcess_prod {Ω : Type*} [MeasurableSpace Ω]
     (X : ℕ → Ω → ℝ) (sigma2 b : ℝ) (n : ℕ)
     (hX_meas : ∀ k, Measurable (X k)) :
@@ -314,7 +326,9 @@ theorem measurable_subGammaExponentialProcess_prod {Ω : Type*} [MeasurableSpace
 
 /-- Pointwise upper bound `M_n ≤ exp (lam1 · n · b)` on the fixed-tilt exponential process when the
 increments are bounded (`|X_i ω| ≤ b` for `i < n`) and the tilt is admissible
-(`0 ≤ lam ≤ lam1`, `b · lam < 3`). The negative cumulant term only helps, so it is dropped. -/
+(`0 ≤ lam ≤ lam1`, `b · lam < 3`). The negative cumulant term only helps, so it is dropped.
+@isnad1 id=le.6h8v.s7.c16d30965fd5 from=translated src=- shape=6d790ae7 vocab=dd75a0bf
+-/
 theorem subGammaExponentialProcess_le_of_bound {Ω : Type*}
     (X : ℕ → Ω → ℝ) (sigma2 b lam lam1 : ℝ) (n : ℕ) (ω : Ω)
     (hb : 0 < b) (hσ : 0 ≤ sigma2) (hlam0 : 0 ≤ lam) (hlam1 : lam ≤ lam1) (hblam : b * lam < 3)
@@ -343,7 +357,9 @@ theorem subGammaExponentialProcess_le_of_bound {Ω : Type*}
   have hcgf2 : 0 ≤ (n : ℝ) * subGammaCgf sigma2 b lam := by positivity
   nlinarith [hlS, hlS2, hcgf2]
 
-/-- For the uniform prior, almost every tilt lies in the closed parameter interval. -/
+/-- For the uniform prior, almost every tilt lies in the closed parameter interval.
+@isnad1 id=eventual.0h2v.s5.83d2fafb800e from=translated src=- shape=287d5931 vocab=9fa832ab
+-/
 theorem uniformTiltPrior_ae_mem_Icc {lam0 lam1 : ℝ} :
     ∀ᵐ lam ∂uniformTiltPrior lam0 lam1, lam ∈ Set.Icc lam0 lam1 := by
   unfold uniformTiltPrior
@@ -351,7 +367,9 @@ theorem uniformTiltPrior_ae_mem_Icc {lam0 lam1 : ℝ} :
 
 /-- Product integrability for `subGammaExponentialProcess` under `(uniformTiltPrior …).prod μ`.
 The integrand is a.e. bounded by `exp (lam1 · n · b)` and the product of two probability measures
-is finite, so `Integrable.of_bound` applies. -/
+is finite, so `Integrable.of_bound` applies.
+@isnad1 id=integrab.7h9v.s7.62236c5088cc from=translated src=- shape=46c32ce8 vocab=706ca995
+-/
 theorem integrable_subGammaExponentialProcess_prod_uniformPrior
     {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : Measure Ω} [IsFiniteMeasure μ]
     {X : ℕ → Ω → ℝ} {sigma2 b lam0 lam1 : ℝ} (n : ℕ)
@@ -387,7 +405,9 @@ theorem integrable_subGammaExponentialProcess_prod_uniformPrior
 /-- Product integrability in the `Ω × ℝ` orientation under `ν.prod (uniformTiltPrior …)`, for any
 finite measure `ν` on `Ω` carrying a `ν`-a.e. increment bound. This single statement covers both the
 full measure (`ν = μ`) and the filtration-restricted measure (`ν = μ.restrict s`) variants the
-supermartingale step needs. -/
+supermartingale step needs.
+@isnad1 id=integrab.7h9v.s7.f368809b51d3 from=translated src=- shape=a7a5d0f0 vocab=706ca995
+-/
 theorem integrable_subGammaExponentialProcess_omegaProd_uniformPrior
     {Ω : Type*} {mΩ : MeasurableSpace Ω} (ν : Measure Ω) [IsFiniteMeasure ν]
     {X : ℕ → Ω → ℝ} {sigma2 b lam0 lam1 : ℝ} (n : ℕ)
@@ -442,7 +462,9 @@ def IncrementAdapted {Ω : Type*} {mΩ : MeasurableSpace Ω} (ℱ : Filtration �
 
 /-- Each fixed-tilt exponential process is `ℱ`-adapted once the increment process is
 predictable-increment adapted (`X_k` is `ℱ (k+1)`-measurable). The running sum `S_n` is
-`ℱ n`-measurable because it only involves `X_0, …, X_{n-1}` and `i < n ⟹ i + 1 ≤ n`. -/
+`ℱ n`-measurable because it only involves `X_0, …, X_{n-1}` and `i < n ⟹ i + 1 ≤ n`.
+@isnad1 id=strongly.1h7v.s5.bd3811274150 from=translated src=- shape=ae6a926b vocab=9ce2b242
+-/
 theorem stronglyAdapted_subGammaExponentialProcess_of_adapted
     {Ω : Type*} {mΩ : MeasurableSpace Ω} {ℱ : Filtration ℕ mΩ}
     {X : ℕ → Ω → ℝ} (sigma2 b lam : ℝ)
@@ -463,7 +485,9 @@ theorem stronglyAdapted_subGammaExponentialProcess_of_adapted
   exact Real.continuous_exp.comp_stronglyMeasurable hbody
 
 /-- Joint strong-measurability of the parameterized process in the `ℱ n`-product σ-algebra, from
-adaptedness of the increment process. This is the input to the integral-over-tilt adaptedness. -/
+adaptedness of the increment process. This is the input to the integral-over-tilt adaptedness.
+@isnad1 id=strongly.1h7v.s6.cb70f8ed359b from=translated src=- shape=6c89ee08 vocab=9974540a
+-/
 theorem stronglyMeasurable_filtration_prod_subGamma
     {Ω : Type*} {mΩ : MeasurableSpace Ω} {ℱ : Filtration ℕ mΩ}
     {X : ℕ → Ω → ℝ} (sigma2 b : ℝ) (n : ℕ)
@@ -497,7 +521,9 @@ theorem stronglyMeasurable_filtration_prod_subGamma
       exact measurable_snd
 
 /-- The prior integral preserves `ℱ n`-strong-measurability, so the mixture process is adapted
-to `ℱ` whenever the increment process is. -/
+to `ℱ` whenever the increment process is.
+@isnad1 id=strongly.1h7v.s5.afeec4720183 from=translated src=- shape=20196fa5 vocab=1120098e
+-/
 theorem stronglyAdapted_mixtureExponentialProcess_of_adapted
     {Ω : Type*} {mΩ : MeasurableSpace Ω} {ℱ : Filtration ℕ mΩ}
     {X : ℕ → Ω → ℝ} (sigma2 b : ℝ) (ρ : Measure ℝ) [SFinite ρ]

@@ -14,6 +14,7 @@ This wraps mathlib's `MeasureTheory.maximal_ineq`. The governed page claim
 also states the Lp maximal inequality, so this declaration is a scoped proof
 artifact rather than an exact verification of the whole Doob maximal claim.
 Claim-facing wrapper for theorempath.com evidence entry `claim:martingale-theory::doob-weak-maximal-inequality`.
+@isnad1 id=le.2h7v.s7.f282ca30e94c from=translated src=- shape=e6e7beeb vocab=19abb67b
 -/
 theorem doobWeakMaximalInequality
     {Ω : Type*} {m0 : MeasurableSpace Ω} {μ : Measure Ω} [IsFiniteMeasure μ]

@@ -36,7 +36,9 @@ namespace IMO2012N1
 def admissible [Semiring R] (A : Set R) :=
   ∀ x y : R, x ∈ A → y ∈ A → ∀ r : R, x ^ 2 + r * x * y + y ^ 2 ∈ A
 
-/-- An ideal of `R` is always admissible as a set. -/
+/-- An ideal of `R` is always admissible as a set.
+@isnad1 id=admissib.0h2v.s5.113a24630b60 from=translated src=- shape=c88c809d vocab=ab5e6db5
+-/
 theorem admissible_ideal [CommSemiring R] (I : Ideal R) : admissible (I : Set R) := by
   intro u v h h0 r
   rw [sq, sq, add_assoc, ← add_mul]
@@ -47,22 +49,30 @@ namespace admissible
 variable [CommRing R] {A : Set R} (hA : admissible A)
 include hA
 
-/-- If `A ⊆ R` is admissible and `z ∈ A`, then `rz^2 ∈ A` for any `r ∈ A`. -/
+/-- If `A ⊆ R` is admissible and `z ∈ A`, then `rz^2 ∈ A` for any `r ∈ A`.
+@isnad1 id=mem.2h4v.s6.cff170844b97 from=translated src=- shape=3bd962be vocab=d82d063b
+-/
 theorem mul_sq_mem (hz : z ∈ A) (r : R) : r * z ^ 2 ∈ A := by
   convert hA z z hz hz (r - 2) using 1
   rw [add_right_comm, ← two_mul, mul_assoc, ← sq, ← add_mul, add_sub_cancel]
 
-/-- If `A ⊆ R` is admissible and `x, y ∈ A`, then `(x + y)^2 ∈ A`. -/
+/-- If `A ⊆ R` is admissible and `x, y ∈ A`, then `(x + y)^2 ∈ A`.
+@isnad1 id=mem.3h4v.s6.6a9b339a1c69 from=translated src=- shape=37836b23 vocab=811e7d97
+-/
 theorem add_sq_mem (hx : x ∈ A) (hy : y ∈ A) : (x + y) ^ 2 ∈ A :=
   add_sq x y ▸ hA x y hx hy 2
 
-/-- If `A ⊆ R` is admissible and `1 ∈ A`, then `A` contains every element of `R`. -/
+/-- If `A ⊆ R` is admissible and `1 ∈ A`, then `A` contains every element of `R`.
+@isnad1 id=mem.2h3v.s5.b537ffccf7c6 from=translated src=- shape=0bebe079 vocab=c23ff0ad
+-/
 theorem one_mem_imp (hA0 : 1 ∈ A) (z : R) : z ∈ A := by
   simpa only [one_pow, mul_one] using hA.mul_sq_mem hA0 z
 
 end admissible
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h3v.s5.951fe20bb929 from=translated src=- shape=c0d23ae1 vocab=ed6548b1
+-/
 theorem final_solution [CommRing R] {x y : R} :
     (∀ A : Set R, admissible A → x ∈ A → y ∈ A → ∀ z : R, z ∈ A) ↔ IsCoprime x y := by
   refine ⟨λ hxy ↦ ?_, λ hxy A hA hx hy ↦ ?_⟩

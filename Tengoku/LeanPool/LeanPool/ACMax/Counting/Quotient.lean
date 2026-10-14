@@ -61,7 +61,9 @@ noncomputable def interEdges {m : ℕ} (G : SimpleGraph V) (c : V → Fin m)
       (fun p => G.Adj p.1 p.2) |>.card
 
 open Classical in
-/-- Fiberwise decomposition of a vertex sum by classes. -/
+/-- Fiberwise decomposition of a vertex sum by classes.
+@isnad1 id=eq.0h5v.s6.76f4fa5d1993 from=translated src=- shape=94e861ca vocab=8a998268
+-/
 theorem sum_classes {m : ℕ} {M : Type*} [AddCommMonoid M]
     (c : V → Fin m) (f : V → M) :
     ∑ v : V, f v
@@ -69,7 +71,9 @@ theorem sum_classes {m : ℕ} {M : Type*} [AddCommMonoid M]
   (Finset.sum_fiberwise Finset.univ c f).symm
 
 open Classical in
-/-- A class-constant square sum aggregates to class sizes. -/
+/-- A class-constant square sum aggregates to class sizes.
+@isnad1 id=eq.0h4v.s6.b69dd503b115 from=translated src=- shape=d6a34da5 vocab=523502ab
+-/
 theorem sum_sq_classes {m : ℕ} (c : V → Fin m) (x : Fin m → ℝ) :
     ∑ v : V, x (c v) ^ 2
       = ∑ i : Fin m, (classSize c i : ℝ) * x i ^ 2 := by
@@ -80,7 +84,9 @@ theorem sum_sq_classes {m : ℕ} (c : V → Fin m) (x : Fin m → ℝ) :
   rfl
 
 open Classical in
-/-- The inter-class count as a double indicator sum over the fibers. -/
+/-- The inter-class count as a double indicator sum over the fibers.
+@isnad1 id=eq.0h6v.s6.8ec2e8e05831 from=translated src=- shape=8f987dcb vocab=8711aa61
+-/
 theorem interEdges_eq_sum {m : ℕ} (G : SimpleGraph V) (c : V → Fin m)
     (i j : Fin m) :
     (interEdges G c i j : ℝ)
@@ -93,7 +99,9 @@ theorem interEdges_eq_sum {m : ℕ} (G : SimpleGraph V) (c : V → Fin m)
   rw [Finset.sum_product]
 
 open Classical in
-/-- The edge quadratic form aggregates to inter-class counts. -/
+/-- The edge quadratic form aggregates to inter-class counts.
+@isnad1 id=eq.0h5v.s7.713339873a9b from=translated src=- shape=50b10aa1 vocab=32683980
+-/
 theorem sum_edge_sq_classes {m : ℕ} (G : SimpleGraph V) (c : V → Fin m)
     (x : Fin m → ℝ) :
     ∑ u : V, ∑ v : V,
@@ -134,7 +142,9 @@ theorem sum_edge_sq_classes {m : ℕ} (G : SimpleGraph V) (c : V → Fin m)
 /-! ## Handshake identities for the quotient data -/
 
 open Classical in
-/-- Inter-class counts are symmetric. -/
+/-- Inter-class counts are symmetric.
+@isnad1 id=eq.0h6v.s5.d898957534ae from=translated src=- shape=d98ae192 vocab=2135a443
+-/
 theorem interEdges_symm {m : ℕ} (G : SimpleGraph V) (c : V → Fin m)
     (i j : Fin m) : interEdges G c i j = interEdges G c j i := by
   classical

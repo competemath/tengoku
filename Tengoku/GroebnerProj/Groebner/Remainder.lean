@@ -134,6 +134,9 @@ variable {σ : Type*} {m : MonomialOrder σ}
 variable {R : Type*} [CommSemiring R]
 variable (f p : MvPolynomial σ R) (B : Set (MvPolynomial σ R)) (r : MvPolynomial σ R)
 
+/--
+@isnad1 id=iff.0h6v.s10.0520eb2600ff from=translated src=- shape=52fa1a2d vocab=355cb828
+-/
 lemma isRemainder_def (p : MvPolynomial σ R) (B : Set (MvPolynomial σ R))
     (r : MvPolynomial σ R) : m.IsRemainder p B r ↔
       (∃ (g : B → MvPolynomial σ R) (B' : Finset B),
@@ -171,6 +174,7 @@ lemma isRemainder_def (p : MvPolynomial σ R) (B : Set (MvPolynomial σ R))
 
 /--
 A variant of `MonomialOrder.IsRemainder` without coercion of a `Set (MvPolynomial σ R)`.
+@isnad1 id=iff.0h6v.s10.61b3adcdb51b from=translated src=- shape=7f13f42b vocab=11beff51
 -/
 lemma isRemainder_def' (p : MvPolynomial σ R) (B : Set (MvPolynomial σ R))
     (r : MvPolynomial σ R) : m.IsRemainder p B r ↔
@@ -195,6 +199,7 @@ lemma isRemainder_def' (p : MvPolynomial σ R) (B : Set (MvPolynomial σ R))
 A variant of `MonomialOrder.IsRemainder` where `g : MvPolynomial σ R →₀ MvPolynomial σ R` is
 replaced with a function `g : MvPolynomial σ R → MvPolynomial σ R` without limitation on its
 support.
+@isnad1 id=iff.0h6v.s9.0534a1004651 from=translated src=- shape=5097eb27 vocab=a3ecf914
 -/
 lemma isRemainder_def'' (p : MvPolynomial σ R) (B : Set (MvPolynomial σ R))
     (r : MvPolynomial σ R) :
@@ -239,6 +244,7 @@ lemma isRemainder_def'' (p : MvPolynomial σ R) (B : Set (MvPolynomial σ R))
 
 /--
 A variant of `MonomialOrder.IsRemainder_def'` where `B` is `Finset (MvPolynomial σ R)`.
+@isnad1 id=iff.0h6v.s9.dc2c16c4b4ab from=translated src=- shape=01a95f91 vocab=e5ff2a08
 -/
 lemma isRemainder_finset (p : MvPolynomial σ R) (B' : Finset (MvPolynomial σ R))
     (r : MvPolynomial σ R) : m.IsRemainder p B' r ↔
@@ -272,6 +278,9 @@ lemma isRemainder_finset (p : MvPolynomial σ R) (B' : Finset (MvPolynomial σ R
     · simp [hsum]
     · simp_intro .. [hg]
 
+/--
+@isnad1 id=iff.0h6v.s7.7e3a548c927c from=translated src=- shape=a6330f16 vocab=0f1ae845
+-/
 lemma isRemainder_iff_exists_isRemainder_finset (p : MvPolynomial σ R)
     (B : Set (MvPolynomial σ R)) (r : MvPolynomial σ R) :
     m.IsRemainder p B r ↔
@@ -289,7 +298,9 @@ lemma isRemainder_iff_exists_isRemainder_finset (p : MvPolynomial σ R)
 defined in `MonomialOrder.div` with this family of polynomials given as a map from indexes to them.
 
 It is a variant of `MonomialOrder.IsRemainder` where divisors are given as a map from indexes to
-polynomials. -/
+polynomials.
+@isnad1 id=iff.0h7v.s10.07b2cef694ef from=translated src=- shape=cf538f9c vocab=fad96ae4
+-/
 lemma isRemainder_range {ι : Type*} (f : MvPolynomial σ R)
     (b : ι → MvPolynomial σ R) (r : MvPolynomial σ R) :
     m.IsRemainder f (Set.range b) r ↔
@@ -365,6 +376,9 @@ lemma isRemainder_range {ι : Type*} (f : MvPolynomial σ R)
         simp
     · aesop
 
+/--
+@isnad1 id=iff.0h7v.s9.ae3a5dd91804 from=translated src=- shape=e2080e90 vocab=e6ad96dd
+-/
 lemma isRemainder_range_fintype {ι : Type*} [Fintype ι] (b : ι → MvPolynomial σ R)
     (r : MvPolynomial σ R) :
       m.IsRemainder p (Set.range b) r ↔
@@ -380,6 +394,7 @@ lemma isRemainder_range_fintype {ι : Type*} [Fintype ι] (b : ι → MvPolynomi
 
 /--
 Remainders are preserved on insertion of the zero polynomial into the set of divisors.
+@isnad1 id=iff.0h6v.s6.2154e83e5b20 from=translated src=- shape=4779ee26 vocab=bac9d70a
 -/
 @[simp]
 lemma isRemainder_insert_zero_iff_isRemainder (p : MvPolynomial σ R)
@@ -399,6 +414,7 @@ lemma isRemainder_insert_zero_iff_isRemainder (p : MvPolynomial σ R)
 
 /--
 Remainders are preserved with the zero polynomial removed from the set of divisors.
+@isnad1 id=iff.0h6v.s6.79b4717c15e3 from=translated src=- shape=3c0b984e vocab=799613ef
 -/
 @[simp]
 lemma isRemainder_sdiff_singleton_zero_iff_isRemainder (p : MvPolynomial σ R)
@@ -409,6 +425,9 @@ lemma isRemainder_sdiff_singleton_zero_iff_isRemainder (p : MvPolynomial σ R)
   · simp [h]
 
 variable {B} in
+/--
+@isnad1 id=eq.1h5v.s6.6fa4627a29b0 from=translated src=- shape=7e3eb9cc vocab=dfed86d6
+-/
 lemma isRemainder_zero {r : MvPolynomial σ R}
     (h : m.IsRemainder 0 B r) : r = 0 := by
   classical
@@ -424,6 +443,9 @@ lemma isRemainder_zero {r : MvPolynomial σ R}
       toWithBotSyn_apply_eq_bot_iff, withBotDegree_eq_bot_iff] at hg
   rcases hg with hg | hg <;> simp [hg]
 
+/--
+@isnad1 id=iff.0h5v.s6.136eda35283d from=translated src=- shape=a6e3d08a vocab=dfed86d6
+-/
 @[simp]
 lemma isRemainder_zero_iff :
     m.IsRemainder 0 B r ↔ r = 0 := by
@@ -431,11 +453,17 @@ lemma isRemainder_zero_iff :
   exact ⟨⟨0, by simp [h]⟩, by simp [h]⟩
 
 variable {f B r} in
+/--
+@isnad1 id=ne.2h6v.s6.db140e2a3306 from=translated src=- shape=8123ab6b vocab=dfed86d6
+-/
 lemma ne_zero_of_ne_remainder (h : m.IsRemainder f B r) (h : f ≠ r) :
     f ≠ 0 := by
   contrapose! h with rfl
   exact h.isRemainder_zero.symm
 
+/--
+@isnad1 id=iff.1h6v.s10.eff797a5d6fd from=translated src=- shape=0f0ce74f vocab=840158a3
+-/
 lemma isRemainder_iff_degree (hB : ∀ b ∈ B, m.leadingCoeff b ∈ nonZeroDivisors _) :
     m.IsRemainder f B r ↔
     (∃ (g : B →₀ MvPolynomial σ R),
@@ -478,6 +506,9 @@ lemma isRemainder_iff_degree (hB : ∀ b ∈ B, m.leadingCoeff b ∈ nonZeroDivi
   rw [← hg] at hr
   simp at hr
 
+/--
+@isnad1 id=iff.1h6v.s10.4929264bbcf0 from=translated src=- shape=60148cf1 vocab=840158a3
+-/
 lemma isRemainder_iff_degree₀
     (hB : ∀ b ∈ B, m.leadingCoeff b ∈ nonZeroDivisors _ ∨ b = 0) :
     m.IsRemainder f B r ↔
@@ -508,6 +539,9 @@ lemma isRemainder_iff_degree₀
     · simp_intro ..
   simp
 
+/--
+@isnad1 id=mem.3h7v.s8.a4d659a8c8d0 from=translated src=- shape=ca997ab5 vocab=9b19c63b
+-/
 lemma mem_ideal_of_mem_ideal {B : Set (MvPolynomial σ R)} {r : MvPolynomial σ R}
     {I : Ideal (MvPolynomial σ R)} {p : MvPolynomial σ R}
     (hBI : B ⊆ I) (hpBr : m.IsRemainder p B r) (hr : r ∈ I) :
@@ -519,6 +553,9 @@ lemma mem_ideal_of_mem_ideal {B : Set (MvPolynomial σ R)} {r : MvPolynomial σ 
   apply Ideal.sum_mem
   exact fun _ _ ↦ Ideal.mul_mem_left _ _ (Set.mem_of_mem_of_subset (by simp) hBI)
 
+/--
+@isnad1 id=not.2h7v.s9.3a4576c5be30 from=translated src=- shape=587926d4 vocab=70c350fd
+-/
 lemma term_notMem_span_span_monomial {p r : MvPolynomial σ R}
     {B : Set (MvPolynomial σ R)} (h : m.IsRemainder p B r) :
     ∀ s ∈ r.support, monomial s (r.coeff s) ∉
@@ -535,6 +572,9 @@ lemma term_notMem_span_span_monomial {p r : MvPolynomial σ R}
   unfold MonomialOrder.IsRemainder at h
   exact h.2 _ hs b hb
 
+/--
+@isnad1 id=not.2h7v.s8.3d82ac903e31 from=translated src=- shape=4e15d04f vocab=a26b6125
+-/
 lemma term_notMem_span_leadingTerm {p r : MvPolynomial σ R}
     {B : Set (MvPolynomial σ R)} (h : m.IsRemainder p B r) :
     ∀ s ∈ r.support, monomial s (r.coeff s) ∉ Ideal.span (m.leadingTerm '' B) := by
@@ -565,6 +605,9 @@ lemma _root_.MvPolynomial.monomial_notMem_span_leadingTerm {r : MvPolynomial σ 
   exact monomial_notMem_span_monomial h s hs
 
 variable {f r B} in
+/--
+@isnad1 id=le.1h6v.s8.0036507a6f4d from=translated src=- shape=ff1f72f8 vocab=3c37968c
+-/
 lemma withBotDegree_remainder_le (h : m.IsRemainder f B r) :
     m.withBotDegree r ≼'[m] m.withBotDegree f := by
   wlog! hf : f ≠ 0
@@ -588,6 +631,9 @@ lemma withBotDegree_remainder_le (h : m.IsRemainder f B r) :
   simpa [add_comm] using lt_of_le_of_lt (h b) hsum
 
 variable {f r B} in
+/--
+@isnad1 id=iff.1h6v.s8.df81b96b5b36 from=translated src=- shape=89cd3c31 vocab=603e3132
+-/
 lemma withBotDegree_remainder_lt_iff (h : m.IsRemainder f B r) :
     m.withBotDegree r ≺'[m] m.withBotDegree f ↔
       m.withBotDegree f ≠ m.withBotDegree r:= by
@@ -595,6 +641,9 @@ lemma withBotDegree_remainder_lt_iff (h : m.IsRemainder f B r) :
   grind [h.withBotDegree_remainder_le]
 
 variable {p B r} in
+/--
+@isnad1 id=ex.2h6v.s6.5f9ccde64446 from=translated src=- shape=8784792d vocab=9c085e10
+-/
 lemma exists_withBotDegree_le_withBotDegree
     (h : m.IsRemainder p B r) (hfr : m.withBotDegree p ≠ m.withBotDegree r) :
     ∃ b ∈ B, m.withBotDegree b ≤ m.withBotDegree p := by
@@ -633,6 +682,9 @@ lemma exists_withBotDegree_le_withBotDegree
   exact WithBot.le_self_add (m.withBotDegree_eq_bot_iff _ |>.not.mpr hgbne0) _
 
 variable {p B r} in
+/--
+@isnad1 id=ex.2h6v.s7.26c8c17b198e from=translated src=- shape=90c83257 vocab=9c085e10
+-/
 lemma exists_withBotDegree_le_withBotDegree₀
     (h : m.IsRemainder p B r) (hfr : m.withBotDegree p ≠ m.withBotDegree r) :
     ∃ b ∈ B, b ≠ 0 ∧ m.withBotDegree b ≤ m.withBotDegree p := by
@@ -640,6 +692,9 @@ lemma exists_withBotDegree_le_withBotDegree₀
   simpa [← and_assoc] using h.exists_withBotDegree_le_withBotDegree hfr
 
 variable {p B} in
+/--
+@isnad1 id=ex.2h5v.s7.612e51c4d9b9 from=translated src=- shape=6b499b63 vocab=319c257e
+-/
 lemma exists_degree_le_degree_of_zero (hp : p ≠ 0) (h : m.IsRemainder p B 0) :
     ∃ b ∈ B, m.degree b ≤ m.degree p := by
   obtain ⟨b, hbB, hb⟩ := exists_withBotDegree_le_withBotDegree (r := 0) h (by simpa)
@@ -648,6 +703,9 @@ lemma exists_degree_le_degree_of_zero (hp : p ≠ 0) (h : m.IsRemainder p B 0) :
   · simp [hb0]
   simpa [(withBotDegree_eq_coe_degree_iff _).mpr _, hb0, hp] using hb
 
+/--
+@isnad1 id=isremain.0h6v.s5.22c27a8578dd from=translated src=- shape=d4371132 vocab=77e2f78c
+-/
 @[simp, nontriviality]
 lemma of_subsingleton [Subsingleton (MvPolynomial σ R)]
     {p r : MvPolynomial σ R} {s : Set (MvPolynomial σ R)} :
@@ -660,6 +718,9 @@ section CommRing
 
 variable {σ : Type*} {m : MonomialOrder σ} {R : Type*} [CommRing R]
 
+/--
+@isnad1 id=ex.1h5v.s6.e6f52c7fc5a2 from=translated src=- shape=36948df0 vocab=f280af73
+-/
 theorem exists_isRemainder {B : Set (MvPolynomial σ R)}
     (hB : ∀ b ∈ B, IsUnit <| m.leadingCoeff b) (p : MvPolynomial σ R) :
     ∃ (r : MvPolynomial σ R), m.IsRemainder p B r := by
@@ -673,7 +734,9 @@ theorem exists_isRemainder {B : Set (MvPolynomial σ R)}
   · intro c hc b hb _
     exact h.2.2 c hc b hb
 
-/-- A variant of `div_set'` including `0` -/
+/-- A variant of `div_set'` including `0`
+@isnad1 id=ex.1h5v.s7.ee053df08b30 from=translated src=- shape=61308385 vocab=cf30426c
+-/
 lemma exists_isRemainder₀ {B : Set (MvPolynomial σ R)}
     (hB : ∀ b ∈ B, (IsUnit (m.leadingCoeff b) ∨ b = 0)) (p : MvPolynomial σ R) :
     ∃ (r : MvPolynomial σ R), m.IsRemainder p B r := by
@@ -683,6 +746,9 @@ lemma exists_isRemainder₀ {B : Set (MvPolynomial σ R)}
   exists r
   rwa [← isRemainder_sdiff_singleton_zero_iff_isRemainder]
 
+/--
+@isnad1 id=iff.2h7v.s8.4b806db7792d from=translated src=- shape=6a996478 vocab=2d9b5ee2
+-/
 lemma mem_ideal_iff {B : Set (MvPolynomial σ R)}
     {r : MvPolynomial σ R} {I : Ideal (MvPolynomial σ R)} {p : MvPolynomial σ R}
     (hBI : B ⊆ I) (hpBr : m.IsRemainder p B r) : r ∈ I ↔ p ∈ I := by
@@ -694,6 +760,9 @@ lemma mem_ideal_iff {B : Set (MvPolynomial σ R)}
   apply Ideal.sum_mem
   exact fun _ _ ↦ Ideal.mul_mem_left I _ (Set.mem_of_mem_of_subset (by simp) hBI)
 
+/--
+@isnad1 id=mem.3h8v.s8.eef05ba2a7e9 from=translated src=- shape=3ee0a893 vocab=844af49c
+-/
 lemma sub_mem_ideal_of_isRemainder_of_subset_ideal
     {B : Set (MvPolynomial σ R)} {I : Ideal (MvPolynomial σ R)} {p r₁ r₂ : MvPolynomial σ R}
     (hBI : B ⊆ I) (hr₁ : m.IsRemainder p B r₁) (hr₂ : m.IsRemainder p B r₂) :
@@ -708,6 +777,9 @@ lemma sub_mem_ideal_of_isRemainder_of_subset_ideal
     intro g hg
     exact Ideal.mul_mem_left I _ (Set.mem_of_mem_of_subset (by simp) hBI)
 
+/--
+@isnad1 id=not.3h8v.s9.8ba869c1cef0 from=translated src=- shape=5e94b75d vocab=be679ce4
+-/
 lemma sub_monomial_notMem_span_leadingTerm
     {B : Set (MvPolynomial σ R)} {p r₁ r₂ : MvPolynomial σ R}
     (hr₁ : m.IsRemainder p B r₁) (hr₂ : m.IsRemainder p B r₂) :
@@ -733,13 +805,18 @@ section Field
 
 variable {k : Type*} [Field k] {σ : Type*} {m : MonomialOrder σ}
 
-/-- A variant of `div_set'` in field -/
+/-- A variant of `div_set'` in field
+@isnad1 id=ex.0h5v.s5.d03404dd526d from=translated src=- shape=91801130 vocab=05bae046
+-/
 lemma exists_isRemainder' (B : Set (MvPolynomial σ k))
     (p : MvPolynomial σ k) :
     ∃ (r : MvPolynomial σ k), m.IsRemainder p B r := by
   apply exists_isRemainder₀
   simp [em']
 
+/--
+@isnad1 id=iff.0h6v.s10.7d009b3a811a from=translated src=- shape=7c9d8bd4 vocab=6b5e4278
+-/
 lemma isRemainder_iff_degree' (f : MvPolynomial σ k) (B) (r) :
     m.IsRemainder f B r ↔
     (∃ (g : B →₀ MvPolynomial σ k),

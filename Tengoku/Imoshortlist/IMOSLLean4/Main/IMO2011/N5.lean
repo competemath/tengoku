@@ -43,7 +43,9 @@ We implement $f$ as a function from $G$ to $ℤ$ such that $f(x) > 0$ for all $x
 namespace IMOSL
 namespace IMO2011N5
 
-/-- If `0 ≤ a < c` and `0 ≤ b < c`, then `|a - b| < c`. -/
+/-- If `0 ≤ a < c` and `0 ≤ b < c`, then `|a - b| < c`.
+@isnad1 id=lt.4h3v.s5.3c1e199d6a5e from=translated src=- shape=a7a18379 vocab=9508c09d
+-/
 theorem natAbs_sub_lt_of_nonneg_of_lt {a b : ℤ}
     (ha0 : 0 ≤ a) (hac : a < c) (hb0 : 0 ≤ b) (hbc : b < c) :
     (a - b).natAbs < c.natAbs := by
@@ -69,16 +71,22 @@ namespace good
 variable [AddGroup G] {f : G → ℤ} (hf : good f)
 include hf
 
-/-- For any `x ∈ G`, we have `0 ≤ f(x)`. -/
+/-- For any `x ∈ G`, we have `0 ≤ f(x)`.
+@isnad1 id=le.1h3v.s4.4fd7f64197b9 from=translated src=- shape=cf51b17a vocab=d711cb7d
+-/
 theorem nonneg (x) : 0 ≤ f x :=
   Int.le_of_lt (hf.pos x)
 
-/-- For any `x ∈ G`, we have `f(x) ∣ f(0)`. -/
+/-- For any `x ∈ G`, we have `f(x) ∣ f(0)`.
+@isnad1 id=dvd.1h3v.s5.81d8cf8479e1 from=translated src=- shape=09b5b96f vocab=2ab502ec
+-/
 theorem map_dvd_map_zero (x) : f x ∣ f 0 := by
   have h : f (x - 0) ∣ f x - f 0 := hf.spec x 0
   rwa [sub_zero, Int.sub_eq_add_neg, Int.dvd_add_right (Int.dvd_refl _), Int.dvd_neg] at h
 
-/-- For any `x ∈ G`, we have `f(-x) = f(x)`. -/
+/-- For any `x ∈ G`, we have `f(-x) = f(x)`.
+@isnad1 id=eq.1h3v.s5.7374fbc128ef from=translated src=- shape=05aa47ea vocab=d82450cd
+-/
 theorem map_neg : ∀ x : G, f (-x) = f x := by
   ---- Reduce to `f(x) ∣ f(-x)` for any `x ∈ G`.
   suffices ∀ x, f (-x) ∣ f x
@@ -90,7 +98,9 @@ theorem map_neg : ∀ x : G, f (-x) = f x := by
   rwa [zero_sub, ← Int.dvd_neg, Int.neg_sub,
     ← Int.dvd_add_left (hf.map_dvd_map_zero _), Int.sub_add_cancel] at h
 
-/-- For any `x, y ∈ G`, if `f(x) < f(y)`, then `f(x) ∣ f(y)`. -/
+/-- For any `x, y ∈ G`, if `f(x) < f(y)`, then `f(x) ∣ f(y)`.
+@isnad1 id=dvd.2h4v.s5.dfe23a4dea1f from=translated src=- shape=1ad91825 vocab=0d0eaade
+-/
 theorem map_dvd_of_map_lt (h : f x < f y) : f x ∣ f y := by
   ---- First notice that `f(y - x) ∣ f(y) - f(x)`.
   have h0 : f (y - x) ∣ f y - f x := hf.spec y x
@@ -112,11 +122,15 @@ theorem map_dvd_of_map_lt (h : f x < f y) : f x ∣ f y := by
   exact Int.eq_of_sub_eq_zero <| Int.eq_zero_of_dvd_of_natAbs_lt_natAbs h1
     (natAbs_sub_lt_of_nonneg_of_lt (hf.nonneg _) h0 (hf.nonneg _) h)
 
-/-- For any `x, y ∈ G` such that `f(x) ≤ f(y)`, we have `f(x) ∣ f(y)`. -/
+/-- For any `x, y ∈ G` such that `f(x) ≤ f(y)`, we have `f(x) ∣ f(y)`.
+@isnad1 id=dvd.2h4v.s5.6da739ea2c7b from=translated src=- shape=1ad91825 vocab=e148501b
+-/
 theorem map_dvd_of_map_le (h : f x ≤ f y) : f x ∣ f y :=
   (Int.le_iff_eq_or_lt.mp h).elim (λ h ↦ h ▸ Int.dvd_refl _) hf.map_dvd_of_map_lt
 
 end good
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=dvd.2h4v.s5.6da739ea2c7b from=translated src=- shape=1ad91825 vocab=e148501b
+-/
 alias final_solution := good.map_dvd_of_map_le

@@ -20,6 +20,9 @@ namespace IMO2006N1
 
 /-! ### Extra lemmas -/
 
+/--
+@isnad1 id=or.1h2v.s7.0bcc6aee8bb0 from=translated src=- shape=531f5757 vocab=b28ebd8f
+-/
 lemma sq_eq_two_pow_mul_add_one_imp {a : ℤ} (h : 2 ^ (k + 1) ∣ a ^ 2 - 1) :
     2 ^ k ∣ a - 1 ∨ 2 ^ k ∣ a + 1 := by
   have h0 : Odd a := by
@@ -46,14 +49,26 @@ lemma sq_eq_two_pow_mul_add_one_imp {a : ℤ} (h : 2 ^ (k + 1) ∣ a ^ 2 - 1) :
 
 def good (x : ℕ) (y : ℤ) := 2 ^ (2 * x + 1) + 2 ^ x + 1 = y ^ 2
 
+/--
+@isnad1 id=iff.0h1v.s4.67907b20e7d7 from=translated src=- shape=5777cec2 vocab=5ce05c67
+-/
 lemma good_zero_iff : good 0 y ↔ y = 2 ∨ y = -2 := by
   rw [← sq_eq_sq_iff_eq_or_eq_neg, eq_comm]; rfl
 
+/--
+@isnad1 id=iff.0h1v.s4.a0160ee7e852 from=translated src=- shape=5777cec2 vocab=5ce05c67
+-/
 lemma good_four_iff : good 4 y ↔ y = 23 ∨ y = -23 := by
   rw [← sq_eq_sq_iff_eq_or_eq_neg, eq_comm]; rfl
 
+/--
+@isnad1 id=good.1h2v.s3.83ee09ce0b99 from=translated src=- shape=d086edac vocab=5ce05c67
+-/
 lemma good_neg_right (h : good x y) : good x (-y) := h.trans (neg_sq y).symm
 
+/--
+@isnad1 id=eq.1h2v.s4.2100da568b26 from=translated src=- shape=36af1d1f vocab=3ad16564
+-/
 lemma good_succ_imp_three (h : good (x + 1) y) : x = 3 := by
   wlog hy : 0 ≤ y
   · refine this (good_neg_right h) (neg_nonneg_of_nonpos (le_of_not_ge hy))
@@ -129,7 +144,9 @@ lemma good_succ_imp_three (h : good (x + 1) y) : x = 3 := by
     rw [Int.mul_one, pow_right_inj₀ X (OfNat.one_ne_ofNat 2).symm] at h
     exact congrArg Nat.succ h
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h2v.s6.88b28d647add from=translated src=- shape=6e10230a vocab=5ce05c67
+-/
 theorem final_solution :
     good x y ↔ (x = 0 ∧ (y = 2 ∨ y = -2)) ∨ (x = 4 ∧ (y = 23 ∨ y = -23)) := by
   rw [← good_zero_iff, ← good_four_iff]

@@ -34,6 +34,7 @@ convex `φ` continuous on the image.**
 The convex function `φ` need only be `ConvexOn ℝ Set.univ φ` and
 lower-semicontinuous for the mathlib lemma; we state the specialization
 the extractor needs (one-dimensional case, real values).
+@isnad1 id=eventual.5h6v.s7.8e1b351025ed from=translated src=- shape=f4fc537b vocab=4994857e
 -/
 theorem condJensen_real
     {Ω : Type*} {m₀ : MeasurableSpace Ω}

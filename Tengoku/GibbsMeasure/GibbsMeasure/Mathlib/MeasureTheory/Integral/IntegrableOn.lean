@@ -9,6 +9,9 @@ attribute [fun_prop] MeasureTheory.IntegrableOn
 variable {α : Type*} {m m0 : MeasurableSpace α} {μ : Measure α} [IsFiniteMeasure μ] {s : Set α}
   {g : α → ℝ≥0∞}
 
+/--
+@isnad1 id=integrab.3h6v.s6.72a3069cb2b6 from=translated src=- shape=4d00df2c vocab=d670377c
+-/
 @[fun_prop]
 public lemma integrableOn_toReal (t : Set α) (hm : m ≤ m0) (hgm : AEStronglyMeasurable[m] g μ)
    (hg_int_finite : ∀ t, MeasurableSet[m] t → μ t < ∞ → ∫⁻ a in t, g a ∂μ ≠ ⊤) :

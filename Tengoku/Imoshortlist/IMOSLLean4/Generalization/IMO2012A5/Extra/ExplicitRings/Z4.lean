@@ -69,14 +69,23 @@ instance : Mul ℤ₄ := ⟨ℤ₄.mul⟩
 
 /-! ### `ℤ₄` is a commutative group -/
 
+/--
+@isnad1 id=eq.0h1v.s4.fb72d7c28b1b from=translated src=- shape=eeffd242 vocab=cb56eb12
+-/
 protected theorem add_zero : ∀ x : ℤ₄, x + 0 = x
   | ℤ₄0 => rfl
   | ℤ₄1 => rfl
   | ℤ₄2 => rfl
   | ℤ₄3 => rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.de7cb2a4db1b from=translated src=- shape=bbd74598 vocab=cb56eb12
+-/
 protected theorem zero_add (x : ℤ₄) : 0 + x = x := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.88541d8bd25e from=translated src=- shape=900bc7c0 vocab=cb56eb12
+-/
 protected theorem add_comm : ∀ x y : ℤ₄, x + y = y + x
   | ℤ₄0, x => x.add_zero.symm
   | x, ℤ₄0 => x.add_zero
@@ -90,6 +99,9 @@ protected theorem add_comm : ∀ x y : ℤ₄, x + y = y + x
   | ℤ₄3, ℤ₄2 => rfl
   | ℤ₄3, ℤ₄3 => rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.54309505b24d from=translated src=- shape=03a6b791 vocab=cb56eb12
+-/
 protected theorem add_assoc : ∀ x y z : ℤ₄, x + y + z = x + (y + z)
   | ℤ₄0, _, _ => rfl
   | x, ℤ₄0, z => congr_arg (· + z) x.add_zero
@@ -122,6 +134,9 @@ protected theorem add_assoc : ∀ x y z : ℤ₄, x + y + z = x + (y + z)
   | ℤ₄3, ℤ₄3, ℤ₄2 => rfl
   | ℤ₄3, ℤ₄3, ℤ₄3 => rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.107cd94637ba from=translated src=- shape=f2c77883 vocab=3f8d12e7
+-/
 protected theorem neg_add_cancel : ∀ x : ℤ₄, -x + x = 0
   | ℤ₄0 => rfl
   | ℤ₄1 => rfl
@@ -139,22 +154,37 @@ instance : AddCommGroup ℤ₄ :=
 
 /-! ### `ℤ₄` is a ring -/
 
+/--
+@isnad1 id=eq.0h1v.s4.b1dcc662eb5c from=translated src=- shape=8c4189b2 vocab=fb9192c6
+-/
 protected theorem zero_mul (x : ℤ₄) : 0 * x = 0 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.f47d8de9e3e1 from=translated src=- shape=4b31552c vocab=fb9192c6
+-/
 protected theorem mul_zero : ∀ x : ℤ₄, x * 0 = 0
   | ℤ₄0 => rfl
   | ℤ₄1 => rfl
   | ℤ₄2 => rfl
   | ℤ₄3 => rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.d25bda7acf17 from=translated src=- shape=eeffd242 vocab=fb9192c6
+-/
 protected theorem mul_one : ∀ x : ℤ₄, x * 1 = x
   | ℤ₄0 => rfl
   | ℤ₄1 => rfl
   | ℤ₄2 => rfl
   | ℤ₄3 => rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.8e739ae5bfc2 from=translated src=- shape=bbd74598 vocab=fb9192c6
+-/
 protected theorem one_mul (x : ℤ₄) : 1 * x = x := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.0c96441e2b3c from=translated src=- shape=900bc7c0 vocab=fb9192c6
+-/
 protected theorem mul_comm : ∀ x y : ℤ₄, x * y = y * x
   | ℤ₄1, x => x.mul_one.symm
   | x, ℤ₄1 => x.mul_one
@@ -168,6 +198,9 @@ protected theorem mul_comm : ∀ x y : ℤ₄, x * y = y * x
   | ℤ₄3, ℤ₄2 => rfl
   | ℤ₄3, ℤ₄3 => rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.55b3dd335380 from=translated src=- shape=03a6b791 vocab=fb9192c6
+-/
 protected theorem mul_assoc : ∀ x y z : ℤ₄, x * y * z = x * (y * z)
   | ℤ₄0, _, _ => rfl
   | ℤ₄1, _, _ => rfl
@@ -192,6 +225,9 @@ protected theorem mul_assoc : ∀ x y z : ℤ₄, x * y * z = x * (y * z)
   | ℤ₄3, ℤ₄3, ℤ₄2 => rfl
   | ℤ₄3, ℤ₄3, ℤ₄3 => rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.27f36e262409 from=translated src=- shape=1dfc5842 vocab=15723f6d
+-/
 protected theorem mul_add : ∀ x y z : ℤ₄, x * (y + z) = x * y + x * z
   | ℤ₄0, _, _ => rfl
   | ℤ₄1, _, _ => rfl
@@ -222,6 +258,9 @@ protected theorem mul_add : ∀ x y z : ℤ₄, x * (y + z) = x * y + x * z
   | ℤ₄3, ℤ₄3, ℤ₄2 => rfl
   | ℤ₄3, ℤ₄3, ℤ₄3 => rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.318c86bd66f3 from=translated src=- shape=89e741f9 vocab=15723f6d
+-/
 protected theorem add_mul (x y z : ℤ₄) : (x + y) * z = x * z + y * z :=
   by rw [ℤ₄.mul_comm, ℤ₄.mul_add, z.mul_comm, z.mul_comm]
 
@@ -247,6 +286,9 @@ def cast [AddGroupWithOne R] : ℤ₄ → R
 variable [NonAssocRing R] (h : (4 : R) = 0)
 include h
 
+/--
+@isnad1 id=eq.1h3v.s6.54a4cdafdd4d from=translated src=- shape=8b5080fa vocab=eff003e0
+-/
 theorem cast_add (x y : ℤ₄) : cast (R := R) (x + y) = cast x + cast y :=
   have h : (2 : R) + 2 = 0 := by rw [← h, ← Nat.cast_two, ← Nat.cast_add]; rfl
   have h0 : (1 : R) + 1 = 2 := one_add_one_eq_two
@@ -264,6 +306,9 @@ theorem cast_add (x y : ℤ₄) : cast (R := R) (x + y) = cast x + cast y :=
     | ℤ₄3, ℤ₄2 => eq_neg_add_of_add_eq h0
     | ℤ₄3, ℤ₄3 => eq_neg_add_of_add_eq h1.symm
 
+/--
+@isnad1 id=eq.1h3v.s6.d7046166cc05 from=translated src=- shape=8b5080fa vocab=5daa350e
+-/
 theorem cast_mul (x y : ℤ₄) : cast (R := R) (x * y) = cast x * cast y :=
   have h0 : (2 : R) + 2 = 0 := by rw [← h, ← Nat.cast_two, ← Nat.cast_add]; rfl
   match x, y with

@@ -37,7 +37,9 @@ def friendly (a : ℤ) := ∃ m > 0, ∃ n > 0, (m ^ 2 + n) * (n ^ 2 + m) = a * 
 
 /-! ### Part 1 -/
 
-/-- If `k > 0`, then `4k + 1` is friendly. -/
+/-- If `k > 0`, then `4k + 1` is friendly.
+@isnad1 id=friendly.1h1v.s5.11fd111e14b1 from=translated src=- shape=24e2122d vocab=26aec6aa
+-/
 theorem four_mul_add_one_is_friendly (hk : 0 < k) : friendly (4 * k + 1) :=
   have h : (0 : ℤ) ≤ 2 := Int.zero_le_ofNat 2
   ⟨2 * k + 1, Int.lt_add_one_of_le (Int.mul_nonneg h (Int.le_of_lt hk)), k, hk, by ring⟩
@@ -50,7 +52,9 @@ end
 
 /-! ### Part 2 -/
 
-/-- If `0 < b ≤ a` and `a^2 + 8b` is a square, then `a + 1 = 2b`. -/
+/-- If `0 < b ≤ a` and `a^2 + 8b` is a square, then `a + 1 = 2b`.
+@isnad1 id=eq.3h3v.s6.96f22fb01616 from=translated src=- shape=471426ef vocab=9ff77676
+-/
 theorem add_one_eq_two_mul_sq_add_eight_mul_is_square
     {a b c : ℤ} (hb : b > 0) (hba : b ≤ a) (habc : a ^ 2 + 8 * b = c ^ 2) :
     a + 1 = 2 * b := by
@@ -96,7 +100,9 @@ theorem add_one_eq_two_mul_sq_add_eight_mul_is_square
       _ < d * d + d * a := Int.lt_add_of_pos_left _ (Int.mul_pos hc hc)
       _ = (d + a) * d := by rw [← Int.mul_add, Int.mul_comm]
 
-/-- Final solution, part 2 -/
+/-- Final solution, part 2
+@isnad1 id=not.0h0v.s2.da57e503312a from=translated src=- shape=8d7dbbf6 vocab=f8ecc450
+-/
 theorem final_solution_part2 : ¬friendly 2 := by
   ---- Suppose that `(m^2 + n)(n^2 + m) = 2(m - n)^3` for some `m, n ∈ ℕ⁺`.
   rintro ⟨m, hm, n, hn, h⟩

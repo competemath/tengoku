@@ -21,22 +21,34 @@ namespace IMO2015N2
 
 /-! ### Extra lemmas -/
 
+/--
+@isnad1 id=le.0h2v.s4.9d327748c888 from=translated src=- shape=fc305228 vocab=47eb4af3
+-/
 theorem factorial_le_succ_ascFactorial (a) :
     ∀ n : ℕ, n.factorial ≤ (a + 1).ascFactorial n := by
   refine Nat.rec (Nat.le_refl 1) λ n ↦ Nat.mul_le_mul ?_
   rw [Nat.add_right_comm, Nat.add_assoc]
   exact n.succ.le_add_left a
 
+/--
+@isnad1 id=le.1h3v.s5.5f716de387e0 from=translated src=- shape=ab6e840d vocab=7dde21a1
+-/
 theorem ascFactorial_succ_mono_right (a) (h : m ≤ n) :
     (a + 1).ascFactorial m ≤ (a + 1).ascFactorial n := by
   refine Nat.le_of_mul_le_mul_left ?_ a.factorial_pos
   rw [Nat.factorial_mul_ascFactorial, Nat.factorial_mul_ascFactorial]
   exact Nat.factorial_le (Nat.add_le_add_left h a)
 
+/--
+@isnad1 id=le.1h3v.s4.0661fa7d3016 from=translated src=- shape=79c5e0af vocab=41c0bf60
+-/
 theorem ascFactorial_mono_left {a b : ℕ} (h : a ≤ b) :
     ∀ n, a.ascFactorial n ≤ b.ascFactorial n :=
   Nat.rec (Nat.le_refl 1) λ n ↦ Nat.mul_le_mul (Nat.add_le_add_right h n)
 
+/--
+@isnad1 id=eq.0h2v.s5.5a2ffe1dc4f4 from=translated src=- shape=b1511fe7 vocab=f54b2ed5
+-/
 theorem ascFactorial_succ' (n k) :
     n.ascFactorial (k + 1) = n * (n + 1).ascFactorial k := by
   obtain rfl | ⟨n, rfl⟩ : n = 0 ∨ ∃ n', n = n' + 1 :=
@@ -46,6 +58,9 @@ theorem ascFactorial_succ' (n k) :
       ← Nat.mul_assoc, n.factorial.mul_comm, ← Nat.factorial_succ,
       Nat.factorial_mul_ascFactorial, Nat.add_right_comm, Nat.add_assoc]
 
+/--
+@isnad1 id=dvd.2h3v.s5.23f97ee018e4 from=translated src=- shape=2b66ab9a vocab=e4d01d9c
+-/
 theorem add_one_dvd_of_dvd_mul (h : a ∣ b) (h0 : b + 1 ∣ a * c) : b + 1 ∣ c :=
   (Nat.dvd_add_right (Nat.dvd_trans h0 (Nat.mul_dvd_mul_right h c))).mp
     ⟨c, (b.succ_mul c).symm⟩
@@ -54,20 +69,34 @@ theorem add_one_dvd_of_dvd_mul (h : a ∣ b) (h0 : b + 1 ∣ a * c) : b + 1 ∣ 
 
 def good (c d : ℕ) := c + d ∣ c * d
 
+/--
+@isnad1 id=iff.0h2v.s3.509d79c6cc4d from=translated src=- shape=62a40b99 vocab=81d1ab8a
+-/
 lemma good_comm : good c d ↔ good d c := by
   rw [good, good, Nat.add_comm, Nat.mul_comm]
 
+/--
+@isnad1 id=iff.0h2v.s4.1dc1f40a480e from=translated src=- shape=77006f03 vocab=89679343
+-/
 lemma good_iff : good c d ↔ c + d ∣ c * c := by
   have h : c + d ∣ c * c + c * d := ⟨c, by rw [← c.mul_add, c.mul_comm]⟩
   refine ⟨λ h0 ↦ (Nat.dvd_add_iff_left h0).mpr h, λ h0 ↦ (Nat.dvd_add_iff_right h0).mpr h⟩
 
+/--
+@isnad1 id=not.1h1v.s4.48f0b9ed43eb from=translated src=- shape=1f289047 vocab=43c271f3
+-/
 lemma not_good_one_right (hc : 0 < c) : ¬good c 1 := by
   rw [good, c.mul_one]; exact Nat.not_dvd_of_pos_of_lt hc c.lt_succ_self
 
+/--
+@isnad1 id=not.1h1v.s4.c1b5c9e0dec1 from=translated src=- shape=86aaae2a vocab=43c271f3
+-/
 lemma not_good_one_left (hd : 0 < d) : ¬good 1 d :=
   mt good_comm.mp (not_good_one_right hd)
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=and.1h2v.s7.e3bea9269f17 from=translated src=- shape=79bc56f8 vocab=f65b2589
+-/
 theorem final_solution (h : good a.factorial b.factorial) :
     2 * b + 2 ≤ 3 * a ∧ (2 * b + 2 = 3 * a ↔ a = 2 ∧ b = 2 ∨ a = 4 ∧ b = 5) := by
   ---- First, discharge the case `b < a`

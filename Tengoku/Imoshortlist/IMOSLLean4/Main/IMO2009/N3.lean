@@ -49,7 +49,9 @@ namespace IMO2009N3
 variable {f : ℕ → ℤ} (hf : ∀ a b : ℕ, (a : ℤ) - b ∣ f a - f b)
 include hf
 
-/-- If `f(c) = f(0)` for infinitely many `c`, then `f` is constant. -/
+/-- If `f(c) = f(0)` for infinitely many `c`, then `f` is constant.
+@isnad1 id=ex.2h1v.s6.a0b27bde8139 from=translated src=- shape=46b1a4fd vocab=4983a4e1
+-/
 lemma const_of_infinite_map_eq_map_zero (hf0 : ∀ K, ∃ c ≥ K, f c = f 0) :
     ∃ C, ∀ x, f x = C := by
   ---- Fix `a ∈ ℕ`.
@@ -65,7 +67,9 @@ lemma const_of_infinite_map_eq_map_zero (hf0 : ∀ K, ∃ c ≥ K, f c = f 0) :
   ---- Thus `f(a) = f(0)`.
   exact (Int.eq_of_sub_eq_zero (Int.eq_zero_of_dvd_of_natAbs_lt_natAbs hc0 hc)).symm
 
-/-- If only finitely many primes divide `f(c)` for some `c`, then `f` is constant. -/
+/-- If only finitely many primes divide `f(c)` for some `c`, then `f` is constant.
+@isnad1 id=ex.2h2v.s6.dec68d7ac0ab from=translated src=- shape=08aec503 vocab=ca649f81
+-/
 lemma const_of_finite_prime_divisor (hf0 : ∀ p ≥ K, Nat.Prime p → (∀ c, ¬(p : ℤ) ∣ f c)) :
     ∃ C, ∀ x, f x = C := by
   ---- First note that `f(0) ≠ 0`; else infinitely many primes divide `f(0)`.
@@ -128,7 +132,9 @@ lemma const_of_finite_prime_divisor (hf0 : ∀ p ≥ K, Nat.Prime p → (∀ c, 
       _ ∣ -1 - 1 := h
     exact absurd h (by decide : ¬(4 : ℤ) ∣ -2)
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ex.2h2v.s6.58f9c6cb3c47 from=translated src=- shape=e4fb79c2 vocab=ca649f81
+-/
 theorem final_solution (hf0 : ∀ C, ∃ x, f x ≠ C) (K : ℕ) :
     ∃ p ≥ K, Nat.Prime p ∧ ∃ c, (p : ℤ) ∣ f c := by
   contrapose! hf0; exact const_of_finite_prime_divisor hf hf0

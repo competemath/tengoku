@@ -35,7 +35,9 @@ namespace IMO2024A3
 open Finset NNReal
 
 /-- Given real numbers `x_1, x_2, …, x_n ≥ 0` and `p ≥ 1`,
-  we have `x_1^p + x_2^p + … + x_n^p ≤ (x_1 + x_2 + … + x_n)^p`. -/
+  we have `x_1^p + x_2^p + … + x_n^p ≤ (x_1 + x_2 + … + x_n)^p`.
+@isnad1 id=le.1h4v.s6.31f90cde6fa7 from=translated src=- shape=f1237443 vocab=d641580d
+-/
 theorem Finset_sum_rpow_le_rpow_sum {p : ℝ} (hp : 1 ≤ p) (I : Finset ι) (x : ι → ℝ≥0) :
     ∑ i ∈ I, x i ^ p ≤ (∑ i ∈ I, x i) ^ p :=
   have hp0 : p - 1 + 1 = p := sub_add_cancel p 1
@@ -51,7 +53,9 @@ theorem Finset_sum_rpow_le_rpow_sum {p : ℝ} (hp : 1 ≤ p) (I : Finset ι) (x 
 
 /-- Given real numbers `p` and `q` with `1 ≤ q < p` and `ε > 0`, there exists an
   integer `N` such that for any `n ≥ N` real numbers `x_1, x_2, …, x_n ≥ 1`,
-  we have `x_1^q + x_2^q + … + x_n^q < ε(x_1 + x_2 + … + x_n)^p`. -/
+  we have `x_1^q + x_2^q + … + x_n^q < ε(x_1 + x_2 + … + x_n)^p`.
+@isnad1 id=ex.3h3v.s7.f74a63c42c4c from=translated src=- shape=b549d703 vocab=a58ed2d7
+-/
 theorem exists_N_forall_target_lt_eps_of_card_ge_N.{u}
     {p q : ℝ} (hq : 1 ≤ q) (hqp : q < p) {ε : ℝ≥0} (hε : 0 < ε) :
     ∃ N, ∀ (ι : Type u) (_ : DecidableEq ι) (I : Finset ι) (_ : #I ≥ N)
@@ -82,7 +86,9 @@ theorem exists_N_forall_target_lt_eps_of_card_ge_N.{u}
     _ = #I • (1 : ℝ≥0) := (nsmul_one _).symm
     _ ≤ ∑ i ∈ I, x i := card_nsmul_le_sum I x 1 hx
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ex.1h1v.s7.ffb2c1af147e from=translated src=- shape=444b708e vocab=b2be1737
+-/
 theorem final_solution {ε : ℝ≥0} (hε : 0 < ε) :
     ∃ N : ℕ, ∀ a : ℕ → ℝ≥0, ∀ n ≥ N,
       (∑ i ∈ range n, (3 : ℝ≥0) ^ (a i : ℝ))

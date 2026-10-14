@@ -34,6 +34,9 @@ structure baseAssumptions (d : ℕ) (a : ℕ → ℝ) : Prop where
 
 variable (ha : baseAssumptions d a) (hb : baseAssumptions d b) (hc : baseAssumptions d c)
 
+/--
+@isnad1 id=le.1h2v.s5.ebea9e8b9101 from=translated src=- shape=f7e0ba5e vocab=b0fffd75
+-/
 lemma baseAssumptions.sum_restrict_bound (ha : baseAssumptions d a) :
     ∑ i ∈ Finset.Icc 1 d, i * a i ≤ 1 := by
   simpa [Nat.Iic_eq_Icc, Finset.sum_Icc_succ_bot (a := 0)] using ha.sum_bound
@@ -51,7 +54,9 @@ variable (h43ab : Bound4Point3 d ε a b)
 
 section
 
-/-- The bound 4.3 is symmetric in `a, b` -/
+/-- The bound 4.3 is symmetric in `a, b`
+@isnad1 id=bound4po.1h4v.s4.1cfd8c9fece8 from=translated src=- shape=2bc64b41 vocab=cc2ed2cd
+-/
 lemma Bound4Point3.symm (h43ab : Bound4Point3 d ε a b) : Bound4Point3 d ε b a :=
   h43ab.trans_eq <| Finset.sum_congr rfl fun _ _ ↦ add_comm _ _
 
@@ -70,10 +75,19 @@ section
 
 include h44
 
+/--
+@isnad1 id=bound4po.1h6v.s5.fec402511acd from=translated src=- shape=61641d1d vocab=1725fa75
+-/
 lemma Bound4Point4.left_comm : Bound4Point4 d δ ε b a c :=
   h44.trans_eq' <| sum_congr rfl fun x hx ↦ by ring
+/--
+@isnad1 id=bound4po.1h6v.s5.06df9d3f719d from=translated src=- shape=c01ea0b7 vocab=1725fa75
+-/
 lemma Bound4Point4.right_comm : Bound4Point4 d δ ε a c b :=
   h44.trans_eq' <| sum_congr rfl fun x hx ↦ by ring
+/--
+@isnad1 id=bound4po.1h6v.s5.e814df995d26 from=translated src=- shape=8a6481da vocab=1725fa75
+-/
 lemma Bound4Point4.rotate : Bound4Point4 d δ ε b c a :=
   h44.trans_eq' <| sum_congr rfl fun x hx ↦ by ring
 
@@ -109,27 +123,41 @@ section
 
 include hfab
 
-/-- From the Fourier bound, we can deduce bounds for each `j ∈ (1, d]`. -/
+/-- From the Fourier bound, we can deduce bounds for each `j ∈ (1, d]`.
+@isnad1 id=lt.2h6v.s7.28896ad4235f from=translated src=- shape=ce1b4531 vocab=e29535c2
+-/
 lemma FourierBound.special (j : ℕ) (hj : j ∈ Set.Ioc 1 d) :
     ν < 1/2 * (1 + δ + ∑ i ≤ d, max (a i) (b i) - max (a j) (b j)) := by
   apply hfab.trans_le ?_
   gcongr
   exact le_csSup ((Set.finite_Ioc 1 d).image _).bddAbove ⟨_, hj, rfl⟩
 
+/--
+@isnad1 id=lt.2h6v.s7.966e42ad890a from=translated src=- shape=aab8e20c vocab=eb268d13
+-/
 lemma FourierBound.special' (j : ℕ) (hj : j ∈ Set.Ioc 1 d) :
     ν < 1/2 * (1 + δ + ∑ i ≤ d with i ≠ j, max (a i) (b i)) := by
   refine (hfab.special j hj).trans_eq ?_
   rw [add_sub_assoc, Finset.filter_ne', Finset.sum_erase_eq_sub]
   simp_all
 
+/--
+@isnad1 id=lt.2h5v.s7.2a58305624d0 from=translated src=- shape=161fca39 vocab=d17ef867
+-/
 lemma FourierBound.two (hd : 2 ≤ d) :
     ν < 1/2 * (1 + δ + ∑ i ≤ d, max (a i) (b i) - max (a 2) (b 2)) :=
   hfab.special 2 (by simpa)
 
+/--
+@isnad1 id=lt.2h5v.s7.b13cff4ec1d1 from=translated src=- shape=161fca39 vocab=d17ef867
+-/
 lemma FourierBound.three (hd : 3 ≤ d) :
     ν < 1/2 * (1 + δ + ∑ i ≤ d, max (a i) (b i) - max (a 3) (b 3)) :=
   hfab.special _ (by simpa)
 
+/--
+@isnad1 id=fourierb.1h5v.s4.887a2f1a0a5c from=translated src=- shape=d48b4785 vocab=4e7d91e9
+-/
 lemma FourierBound.symm : FourierBound d δ ν b a := hfab.trans_eq (by simp [max_comm])
 
 end
@@ -152,6 +180,9 @@ variable
 
 section
 
+/--
+@isnad1 id=finite.0h4v.s7.25539d7f879c from=translated src=- shape=cec4ca7a vocab=08a77908
+-/
 lemma determinantBound_set_finite :
     {1 + δ - a p - b q + min (a p / q) (b q / p) |
       (p : ℕ) (q : ℕ) (_ : p ∈ Set.Ioc 1 d) (_ : q ∈ Set.Ioc 1 d)}.Finite := by
@@ -166,6 +197,9 @@ lemma determinantBound_set_finite :
 
 include hdab
 
+/--
+@isnad1 id=determin.1h5v.s4.bd8c6d4df50b from=translated src=- shape=d48b4785 vocab=7eb17064
+-/
 lemma DeterminantBound.symm : DeterminantBound d δ ν b a := by
   refine hdab.trans_eq ?_
   congr! 3 with x
@@ -178,7 +212,9 @@ lemma DeterminantBound.symm : DeterminantBound d δ ν b a := by
 
 include ha hdac
 
-/-- A particular application of the determinant bound used in subcase 2.1 -/
+/-- A particular application of the determinant bound used in subcase 2.1
+@isnad1 id=lt.5h7v.s7.201f6fbe6e02 from=translated src=- shape=06c8f51a vocab=304eccef
+-/
 lemma DeterminantBound.application (hd : 4 ≤ d) (M : ℝ)
     (hM : M = sSup {max (b i) (c i) | i ∈ Set.Icc 4 d}) :
     ν < 1 + δ - a 3 - M + min (a 3 / 4) (M / 3) := by
@@ -215,9 +251,15 @@ section
 
 include htab
 
+/--
+@isnad1 id=thueboun.1h5v.s4.bb69989b1fff from=translated src=- shape=d48b4785 vocab=25f8d0fe
+-/
 lemma ThueBound.symm : ThueBound d δ ν b a :=
   htab.trans_eq (by simp [add_comm])
 
+/--
+@isnad1 id=lt.2h6v.s6.5f02973a1fa9 from=translated src=- shape=31c415bf vocab=14fd9a6a
+-/
 lemma ThueBound.special (p : ℕ) (hp : p ∈ Set.Ioc 1 d) :
     ν < 1 + δ - ∑ i ≤ d with p ∣ i, (a i + b i) := by
   refine htab.trans_le ?_
@@ -225,6 +267,9 @@ lemma ThueBound.special (p : ℕ) (hp : p ∈ Set.Ioc 1 d) :
   exact le_csSup ((Set.finite_Ioc 1 d).image _).bddAbove ⟨_, hp, rfl⟩
 
 include ha hb
+/--
+@isnad1 id=lt.4h6v.s6.4d1471940f74 from=translated src=- shape=76fff15e vocab=1ac5c417
+-/
 lemma ThueBound.very_special (p : ℕ) (hp : p ∈ Set.Ioc 1 d) :
     ν < 1 + δ - (a p + b p) := by
   refine (htab.special p hp).trans_le ?_
@@ -235,6 +280,9 @@ lemma ThueBound.very_special (p : ℕ) (hp : p ∈ Set.Ioc 1 d) :
     exact add_nonneg (ha.nonneg i) (hb.nonneg i)
   · simp_all
 
+/--
+@isnad1 id=lt.4h5v.s6.7b8ac1f4499a from=translated src=- shape=572d31d0 vocab=f76b9674
+-/
 lemma ThueBound.special_two (hd : 4 ≤ d) :
     ν < 1 + δ - (a 2 + a 4 + (b 2 + b 4)) := by
   refine (htab.special 2 (by simp; omega)).trans_le ?_
@@ -252,20 +300,41 @@ def section4Sum (a b c : ℕ → ℝ) (i : ℕ) := a i + b i + c i
 local notation "s" => section4Sum a b c
 
 variable (a b c) in
+/--
+@isnad1 id=eq.0h4v.s5.49d63211949d from=translated src=- shape=1185324d vocab=9cc187a7
+-/
 lemma s_apply (i : ℕ) : s i = a i + b i + c i := rfl
 
 include ha hb hc in
+/--
+@isnad1 id=le.3h5v.s5.65187ec1ba43 from=translated src=- shape=103bf281 vocab=f8fb5832
+-/
 lemma s_nonneg (i : ℕ) : 0 ≤ s i :=
   add_nonneg (add_nonneg (ha.nonneg _) (hb.nonneg _)) (hc.nonneg _)
 
 include ha hb hc in
+/--
+@isnad1 id=eq.3h4v.s5.9916d7c21f8d from=translated src=- shape=4eb4d47f vocab=fab4b862
+-/
 lemma s_zero : s 0 = 0 := by
   simp [s_apply, ha.zero, hb.zero, hc.zero]
 
+/--
+@isnad1 id=eq.0h3v.s4.6563c0b8c66f from=translated src=- shape=f527171e vocab=e0f73532
+-/
 lemma s_rotate : section4Sum b c a = s := by ext i; simp only [s_apply]; ring
+/--
+@isnad1 id=eq.0h3v.s4.87ae319895a1 from=translated src=- shape=4a140096 vocab=e0f73532
+-/
 lemma s_left_comm : section4Sum b a c = s := by ext i; simp only [s_apply]; ring
+/--
+@isnad1 id=eq.0h3v.s4.91295dc45d12 from=translated src=- shape=0d031275 vocab=e0f73532
+-/
 lemma s_right_comm : section4Sum a c b = s := by ext i; simp only [s_apply]; ring
 
+/--
+@isnad1 id=le.1h6v.s6.8ece53721558 from=translated src=- shape=10787cc7 vocab=2778684b
+-/
 lemma Bound4Point4.s_version (h44 : Bound4Point4 d δ ε a b c) : ∑ i ≤ d, s i ≤ 1 + δ - ε := h44
 
 -- TODO: change geometry bound things to eqn 4.6 instead, and deduce this version from that.
@@ -294,6 +363,7 @@ section
 
 /--
 The set that we are taking the infimum over in the geometry bound is a finite set.
+@isnad1 id=finite.0h4v.s7.c2c387c4f021 from=translated src=- shape=bba3a243 vocab=d706bf22
 -/
 lemma geometryBound_set_finite :
     Set.Finite
@@ -320,6 +390,9 @@ lemma geometryBound_set_finite :
 include hg
 
 include h44 in
+/--
+@isnad1 id=lt.5h10v.s8.f2d7be667949 from=translated src=- shape=6754038f vocab=b0c84e35
+-/
 lemma GeometryBound.special (Ia Ib Ic : Finset ℕ)
     (hIa : Ia ⊆ Finset.Icc 1 d) (hIb : Ib ⊆ Finset.Icc 1 d) (hIc : Ic ⊆ Finset.Icc 1 d) :
     ν < δ + (max 1 (∑ i ∈ Ia, i * a i + ∑ i ∈ Ib, i * b i + ∑ i ∈ Ic, i * c i) -
@@ -346,18 +419,30 @@ lemma GeometryBound.special (Ia Ib Ic : Finset ℕ)
     rw [← max_add_add_left, add_zero, add_sub_cancel]
 
 include h44 in
+/--
+@isnad1 id=lt.3h8v.s6.37ce57b88226 from=translated src=- shape=7fe3fe48 vocab=7cce5988
+-/
 lemma GeometryBound.special_s
     (I : Finset ℕ) (hI : I ⊆ Finset.Icc 1 d) :
     ν < δ + (max 1 (∑ i ∈ I, (i * s i)) - (∑ i ∈ I, s i)) := by
   refine (hg.special h44 I I I hI hI hI).trans_eq ?_
   simp [s_apply, mul_add, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=geometry.1h6v.s5.b4b15d9155aa from=translated src=- shape=61641d1d vocab=a614739f
+-/
 lemma GeometryBound.left_comm : GeometryBound d ε ν b a c :=
   fun Ia hIa Ib hIb Ic hIc ↦ (hg Ib hIb Ia hIa Ic hIc).trans_eq (by ring_nf)
 
+/--
+@isnad1 id=geometry.1h6v.s5.4fa64fc3789a from=translated src=- shape=c01ea0b7 vocab=a614739f
+-/
 lemma GeometryBound.right_comm : GeometryBound d ε ν a c b :=
   fun Ia hIa Ib hIb Ic hIc ↦ (hg Ia hIa Ic hIc Ib hIb).trans_eq (by ring_nf)
 
+/--
+@isnad1 id=geometry.1h6v.s5.c98788028a6a from=translated src=- shape=8a6481da vocab=a614739f
+-/
 lemma GeometryBound.rotate : GeometryBound d ε ν b c a := hg.left_comm.right_comm
 
 end
@@ -365,18 +450,29 @@ end
 /-- Define `δ_ f` to be `1 / 3 - ∑ i ≤ d, f i`. -/
 def δ_ (d : ℕ) (f : ℕ → ℝ) : ℝ := 1 / 3 - ∑ i ≤ d, f i
 
-/-- 4.7 -/
+/-- 4.7
+@isnad1 id=eq.0h2v.s5.c08992a46a8c from=translated src=- shape=43e4541a vocab=ea6acf1e
+-/
 lemma sum_eq_δ_ (d : ℕ) (f : ℕ → ℝ) : ∑ i ≤ d, f i = 1 / 3 - δ_ d f := by simp [δ_]
 
+/--
+@isnad1 id=le.1h4v.s6.c0e17390956b from=translated src=- shape=ce009ba2 vocab=8877e96e
+-/
 lemma bound_4_point_8 (h43 : Bound4Point3 d ε a b) : δ_ d a + δ_ d b ≤ 2 / 300 + ε ^ 2 := by
   simp only [δ_, sub_add_sub_comm, ← Finset.sum_add_distrib, Bound4Point3] at h43 ⊢
   linear_combination h43
 
+/--
+@isnad1 id=le.2h4v.s6.0492d0c55a4f from=translated src=- shape=ca58d264 vocab=eba507f5
+-/
 lemma bound_4_point_9_lower (hε : 0 < ε) (f : ℕ → ℝ) (h45 : Bound4Point5 d δ ε f) :
     - 2 / 300 - δ ≤ δ_ d f := by
   rw [δ_]
   linear_combination h45.upper + 1 / 2 * hε
 
+/--
+@isnad1 id=le.2h4v.s6.a3673dd7d7b1 from=translated src=- shape=a4e81857 vocab=794209c3
+-/
 lemma bound_4_point_9_upper (hε : 0 < ε) (f : ℕ → ℝ) (h45 : Bound4Point5 d δ ε f) :
     δ_ d f ≤ 1 / 75 + δ + ε := by
   rw [δ_]
@@ -386,17 +482,29 @@ lemma bound_4_point_9_upper (hε : 0 < ε) (f : ℕ → ℝ) (h45 : Bound4Point5
 def deltaS (d : ℕ) (a b c : ℕ → ℝ) := δ_ d a + δ_ d b + δ_ d c
 local notation "δₛ" => deltaS d a b c
 
+/--
+@isnad1 id=eq.0h4v.s5.aedd5f42ea71 from=translated src=- shape=80bb4cb2 vocab=2d79e57b
+-/
 lemma δₛ_eq : δₛ = δ_ d a + δ_ d b + δ_ d c := rfl
 
+/--
+@isnad1 id=lt.2h6v.s5.7ba48cd5f81e from=translated src=- shape=a0f1027f vocab=c23427c2
+-/
 lemma bound_4_point_10_lower (hε : 0 < ε) (h44 : Bound4Point4 d δ ε a b c) :
     - δ < δₛ := by
   simp only [δₛ_eq, Bound4Point4, Finset.sum_add_distrib, δ_] at h44 ⊢
   linear_combination h44 + hε
 
+/--
+@isnad1 id=eq.0h4v.s5.1920de0df2a5 from=translated src=- shape=41ab2787 vocab=3f99874f
+-/
 lemma sum_s : ∑ i ≤ d, s i = 1 - δₛ := by
   simp [s_apply, δₛ_eq, Finset.sum_add_distrib, δ_]
   ring
 
+/--
+@isnad1 id=le.5h5v.s6.84c0df19ff85 from=translated src=- shape=7df6e463 vocab=563c56ea
+-/
 lemma bound_4_point_10_upper (hε : 0 < ε) (hε₁ : ε ≤ 2 / 3)
     (h43ab : Bound4Point3 d ε a b)
     (h43ac : Bound4Point3 d ε a c)
@@ -407,6 +515,9 @@ lemma bound_4_point_10_upper (hε : 0 < ε) (hε₁ : ε ≤ 2 / 3)
     linear_combination bound_4_point_8 h43ab + bound_4_point_8 h43ac + bound_4_point_8 h43bc
   linear_combination (this + 3 * ε * hε₁) / 2
 
+/--
+@isnad1 id=le.2h2v.s6.f66a9a46314d from=translated src=- shape=2c012d9d vocab=b7ef7f1a
+-/
 lemma bound_4_point_11_2 (h : baseAssumptions d a) (hd : 1 ≤ d) :
     ∑ i ∈ Finset.Icc 2 d, (i - 1) * a i ≤ 2 / 3 + δ_ d a :=
   calc
@@ -421,6 +532,9 @@ lemma bound_4_point_11_2 (h : baseAssumptions d a) (hd : 1 ≤ d) :
         and_true, not_false_eq_true, Finset.sum_insert, h.zero]
       linear_combination h.sum_restrict_bound
 
+/--
+@isnad1 id=le.2h2v.s7.fdd194c6abbc from=translated src=- shape=892385fc vocab=b7ef7f1a
+-/
 lemma bound_4_point_11_3 (ha : baseAssumptions d a) (hd : 2 ≤ d) :
     ∑ i ∈ Finset.Icc 3 d, (i - 2) * a i ≤ 1 / 3 + a 1 + 2 * δ_ d a := by
   have hd' : 3 ≤ d + 1 := by omega
@@ -434,6 +548,9 @@ lemma bound_4_point_11_3 (ha : baseAssumptions d a) (hd : 2 ≤ d) :
   simp only [sub_mul, Finset.sum_sub_distrib, h₂, ← Finset.mul_sum]
   linear_combination h₁
 
+/--
+@isnad1 id=le.2h2v.s7.34d1db220fba from=translated src=- shape=730652bf vocab=acb4dcbc
+-/
 lemma bound_4_point_11_4 (ha : baseAssumptions d a) (hd : 3 ≤ d) :
     ∑ i ∈ Finset.Icc 4 d, (i - 3) * a i ≤ 2 * a 1 + a 2 + 3 * δ_ d a := by
   have hd' : 4 ≤ d + 1 := by omega
@@ -448,16 +565,25 @@ lemma bound_4_point_11_4 (ha : baseAssumptions d a) (hd : 3 ≤ d) :
   linear_combination h₁
 
 include ha hb htab in
+/--
+@isnad1 id=lt.5h6v.s6.12c111a16df0 from=translated src=- shape=4b414a1f vocab=57fea914
+-/
 lemma bound_4_point_12 (j : ℕ) (hj : j ∈ Set.Ioc 1 d) (hν : 0.66 < ν) :
     a j + b j < 0.34 + δ := by
   linear_combination htab.very_special ha hb j hj + hν
 
 include ha hb htab in
+/--
+@isnad1 id=lt.5h5v.s6.748e72f6369b from=translated src=- shape=98c87915 vocab=41bf2b3e
+-/
 lemma bound_4_point_13 (hd : 4 ≤ d) (hν : 0.66 < ν) :
     a 2 + a 4 + (b 2 + b 4) < 0.34 + δ := by
   linear_combination htab.special_two ha hb hd + hν
 
 include ha hb hc htab htac htbc in
+/--
+@isnad1 id=lt.8h7v.s6.3034adaa4a89 from=translated src=- shape=3851f8e3 vocab=1a066f20
+-/
 lemma bound_4_point_14_general
     (j : ℕ) (hj : j ∈ Set.Ioc 1 d) (hν : 0.66 < ν) :
     s j < 0.51 + 1.5 * δ := by
@@ -467,6 +593,9 @@ lemma bound_4_point_14_general
   linear_combination s_apply a b c j + (hab + hac + hbc) / 2
 
 include ha hb hc htab htac htbc in
+/--
+@isnad1 id=lt.8h6v.s7.59b1639ce8fe from=translated src=- shape=674f2061 vocab=5002bb9a
+-/
 lemma bound_4_point_14_two_four (hd : 4 ≤ d) (hν : 0.66 < ν) :
     s 2 + s 4 < 0.51 + 1.5 * δ := by
   replace hab := bound_4_point_13 ha hb htab hd hν
@@ -476,11 +605,17 @@ lemma bound_4_point_14_two_four (hd : 4 ≤ d) (hν : 0.66 < ν) :
 
 -- see also `sum_s`
 include ha hb hc in
+/--
+@isnad1 id=le.4h4v.s6.cdfccec17b1d from=translated src=- shape=2624c04a vocab=295516f9
+-/
 lemma sum_s_2 (hd : 1 ≤ d) : ∑ i ∈ Icc 2 d, (i - 1) * s i ≤ 2 + δₛ := by
   simp only [s_apply, mul_add, Finset.sum_add_distrib, δₛ_eq]
   linear_combination bound_4_point_11_2 ha hd + bound_4_point_11_2 hb hd + bound_4_point_11_2 hc hd
 
 include ha hb hc in
+/--
+@isnad1 id=le.4h4v.s7.88eefdd07ee3 from=translated src=- shape=7cc0f75d vocab=295516f9
+-/
 lemma sum_s_3
     (hd : 2 ≤ d) :
     ∑ i ∈ Finset.Icc 3 d, (i - 2) * s i ≤ 1 + s 1 + 2 * δₛ := by
@@ -488,6 +623,9 @@ lemma sum_s_3
   linear_combination bound_4_point_11_3 ha hd + bound_4_point_11_3 hb hd + bound_4_point_11_3 hc hd
 
 include ha hb hc in
+/--
+@isnad1 id=le.4h4v.s7.8c37cca6ea24 from=translated src=- shape=cd6cec6d vocab=295516f9
+-/
 lemma sum_s_4
     (hd : 3 ≤ d) :
     ∑ i ∈ Finset.Icc 4 d, (i - 3) * s i ≤ 2 * s 1 + s 2 + 3 * δₛ := by
@@ -495,6 +633,9 @@ lemma sum_s_4
   linear_combination bound_4_point_11_4 ha hd + bound_4_point_11_4 hb hd + bound_4_point_11_4 hc hd
 
 include ha hb hc h44 htab htac htbc hg in
+/--
+@isnad1 id=le.11h7v.s7.4e143ba1783b from=translated src=- shape=163c71a9 vocab=599fee6f
+-/
 lemma bound_4_point_15
     (hδ : δ ≤ 0.06)
     (hν : 0.66 < ν) (hd : 2 ≤ d) :
@@ -523,6 +664,9 @@ def SubSums (j : ℕ) (a b c : ℕ → ℝ) : Set ℝ :=
     {a j, b j, c j, a j + b j, a j + c j, b j + c j, a j + b j + c j}
 
 include h44 hg in
+/--
+@isnad1 id=and.4h9v.s8.4645ae90dd5a from=translated src=- shape=72c9af51 vocab=c2e3c735
+-/
 lemma GeometryBound.subSums
     {τ : ℝ} (j : ℕ) (hj : j ∈ Set.Icc 3 d) (hτ : τ ∈ SubSums j a b c) :
     ν < δ + (max 1 (s 1 + 2 * s 2 + j * τ) - (s 1 + s 2 + τ)) ∧
@@ -587,6 +731,9 @@ lemma GeometryBound.subSums
     exact ⟨h₂.trans_eq (by ring_nf), h₁.trans_eq (by ring_nf)⟩
 
 include h44 hg in
+/--
+@isnad1 id=not.5h9v.s7.b92f30c88b2a from=translated src=- shape=7e89c65b vocab=72b2cd61
+-/
 lemma bound_4_point_17 (τ : ℝ) {j : ℕ} (hτ : τ ∈ SubSums j a b c) (hν : 0.66 < ν)
     (hj : j ∈ Set.Icc 3 d) :
     τ ∉ Set.Icc (0.34 - s 1 - s 2 + δ) ((0.66 - s 2 - δ) / (j - 1)) := by
@@ -605,12 +752,18 @@ lemma bound_4_point_17 (τ : ℝ) {j : ℕ} (hτ : τ ∈ SubSums j a b c) (hν 
     linear_combination h₁.2 + hν
 
 include h44 hg in
+/--
+@isnad1 id=not.5h8v.s7.082b3ce7e6a7 from=translated src=- shape=0b67f9e5 vocab=a60aa458
+-/
 lemma bound_4_point_17_3 (τ : ℝ) (hτ : τ ∈ SubSums 3 a b c) (hν : 0.66 < ν) (hd : 3 ≤ d) :
     τ ∉ Set.Icc (0.34 - s 1 - s 2 + δ) (0.33 - 1 / 2 * s 2 - 1 / 2 * δ) := by
   convert bound_4_point_17 h44 hg τ hτ hν (by simp [hd]) using 3
   ring
 
 include h44 hg in
+/--
+@isnad1 id=not.5h8v.s7.312975c2c814 from=translated src=- shape=f3ff7cea vocab=a60aa458
+-/
 lemma bound_4_point_18_aux (τ : ℝ) (hτ : τ ∈ SubSums 3 a b c) (hν : 0.66 < ν) (hd : 3 ≤ d) :
     τ ∉ Set.Icc (0.34 - s 1 + δ) (0.33 - 1 / 2 * δ) := by
   have h₁ := (hg.subSums h44 3 (by simp [hd]) hτ).2
@@ -624,6 +777,9 @@ lemma bound_4_point_18_aux (τ : ℝ) (hτ : τ ∈ SubSums 3 a b c) (hν : 0.66
   · linear_combination 2 * h₁.2 + hν
 
 include h44 hg in
+/--
+@isnad1 id=not.5h8v.s8.7ba0217b34fb from=translated src=- shape=177844de vocab=634f7b4c
+-/
 lemma bound_4_point_18 (τ : ℝ) (hτ : τ ∈ SubSums 3 a b c) (hd : 3 ≤ d) (hν : 0.66 < ν) :
     τ ∉ Set.Icc (0.34 - s 1 - s 2 + δ) (0.33 - 1 / 2 * s 2 - 1 / 2 * δ) ∪
         Set.Icc (0.34 - s 1 + δ) (0.33 - 1 / 2 * δ) := by
@@ -631,6 +787,9 @@ lemma bound_4_point_18 (τ : ℝ) (hτ : τ ∈ SubSums 3 a b c) (hd : 3 ≤ d) 
   exact ⟨bound_4_point_17_3 h44 hg τ hτ hν hd, bound_4_point_18_aux h44 hg τ hτ hν hd⟩
 
 include ha in
+/--
+@isnad1 id=le.2h2v.s7.cbcde076aa3e from=translated src=- shape=89bbcf0e vocab=aa2295ef
+-/
 lemma bound_4_point_19_first (hd : 3 ≤ d) :
     1 / 3 - 4 * δ_ d a - 3 * a 1 - 2 * a 2 ≤ a 3 := by
   have hd' : 4 ≤ d + 1 := by omega
@@ -648,6 +807,9 @@ lemma bound_4_point_19_first (hd : 3 ≤ d) :
   linear_combination h₁ + h₂ - h₃
 
 include ha in
+/--
+@isnad1 id=le.2h2v.s7.9947234ad471 from=translated src=- shape=52192a29 vocab=aa2295ef
+-/
 lemma bound_4_point_19_second (hd : 4 ≤ d) :
     1 / 3 - (5 / 2) * δ_ d a - 2 * a 1 - (3 / 2) * a 2 - 1 / 2 * a 4 ≤ a 3 := by
   have hd' : 5 ≤ d + 1 := by omega
@@ -669,6 +831,9 @@ lemma bound_4_point_19_second (hd : 4 ≤ d) :
   linear_combination h₁ + h₂ / 2 - h₃
 
 include ha hb hc in
+/--
+@isnad1 id=le.4h4v.s7.9eb3f7a30a33 from=translated src=- shape=e94b5508 vocab=20819e7b
+-/
 lemma bound_4_point_20 (hd : 3 ≤ d) :
     1 - 4 * δₛ - 3 * s 1 - 2 * s 2 ≤ s 3 := by
   simp only [δₛ_eq, s_apply]
@@ -676,6 +841,9 @@ lemma bound_4_point_20 (hd : 3 ≤ d) :
     bound_4_point_19_first ha hd + bound_4_point_19_first hb hd + bound_4_point_19_first hc hd
 
 include ha hb hc in
+/--
+@isnad1 id=le.4h4v.s7.09fdc335b2ef from=translated src=- shape=f0d6498f vocab=ea7dfa02
+-/
 lemma bound_4_point_21 (hd : 4 ≤ d) :
     1 - (5 / 2) * δₛ - 2 * s 1 - (3 / 2) * s 2 - 1 / 2 * s 4 ≤ s 3 := by
   simp only [δₛ_eq, s_apply]
@@ -683,16 +851,25 @@ lemma bound_4_point_21 (hd : 4 ≤ d) :
     bound_4_point_19_second ha hd + bound_4_point_19_second hb hd + bound_4_point_19_second hc hd
 
 include ha hb hc h44 htab htac htbc hg in
+/--
+@isnad1 id=le.12h7v.s7.f869472583fe from=translated src=- shape=a0d59a10 vocab=599fee6f
+-/
 lemma bound_4_point_22 (hν : 0.66 < ν) (hs₂ : 0.3 ≤ s 2) (hδ : δ ≤ 0.06) (hd : 2 ≤ d) :
     s 1 ≤ 0.04 + δ := by
   linear_combination bound_4_point_15 ha hb hc h44 htab htac htbc hg hδ hν hd + hs₂
 
 include ha hb hc htab htac htbc in
+/--
+@isnad1 id=lt.9h6v.s7.349bd67311bc from=translated src=- shape=432f9eb3 vocab=2bdcef7a
+-/
 lemma case_1_helper (hν : 0.66 < ν) (hs₂ : 0.3 ≤ s 2) (hd : 4 ≤ d) :
     s 4 < 0.21 + 3 / 2 * δ := by
   linear_combination bound_4_point_14_two_four ha hb hc htab htac htbc hd hν + hs₂
 
 include ha hb hc h43ab h43ac h43bc h44 hg htab htac htbc hg in
+/--
+@isnad1 id=false.19h7v.s8.60050b8d843b from=translated src=- shape=0a3bbdd3 vocab=f2cced5d
+-/
 lemma subcase_1_point_1
     (hd : 4 ≤ d)
     (hν : 0.66 < ν)
@@ -740,6 +917,9 @@ lemma subcase_1_point_1
   exact not_lt_of_ge h₄ this
 
 include h44 hg in
+/--
+@isnad1 id=lt.5h7v.s7.37322187757f from=translated src=- shape=3000118a vocab=b0dc39d5
+-/
 lemma bound_4_point_23
     (hd : 3 ≤ d)
     (hν : 0.66 < ν)
@@ -773,6 +953,9 @@ private lemma bN_bound_common
       (by linear_combination hδ) hν (by omega) + this
 
 include ha hb hc h44 h45b hg htab htac htbc in
+/--
+@isnad1 id=lt.15h7v.s8.a8dfb3dc6ecf from=translated src=- shape=cc7d3e87 vocab=fd2a4dad
+-/
 lemma b4_bound
     (hd : 4 ≤ d) (hν : 0.66 < ν) (hb₃ : 0.34 - s 1 - s 2 + δ < b 3) (hε₀ : 0 < ε) (hδ : δ ≤ 0.003)
     (hε : ε ≤ 1 / 10000) :
@@ -799,6 +982,9 @@ lemma b4_bound
     _ = (0.66 - s 2 - δ) / 3 := by ring
 
 include ha hb hc h44 h45b hg htab htac htbc in
+/--
+@isnad1 id=lt.15h7v.s8.a55efa749135 from=translated src=- shape=cc7d3e87 vocab=fd2a4dad
+-/
 lemma b5_bound
     (hd : 5 ≤ d) (hν : 0.66 < ν) (hb₃ : 0.34 - s 1 - s 2 + δ < b 3) (hε₀ : 0 < ε) (hδ : δ ≤ 0.003)
     (hε : ε ≤ 1 / 10000) :
@@ -825,6 +1011,9 @@ lemma b5_bound
     _ = (0.66 - s 2 - δ) / 4 := by ring
 
 include ha hb hc h44 h45b hg htab htac htbc in
+/--
+@isnad1 id=lt.15h7v.s8.e3962660de02 from=translated src=- shape=cc7d3e87 vocab=fd2a4dad
+-/
 lemma b6_bound
     (hd : 6 ≤ d) (hν : 0.66 < ν) (hb₃ : 0.34 - s 1 - s 2 + δ < b 3) (hε₀ : 0 < ε) (hδ : δ ≤ 0.003)
     (hε : ε ≤ 1 / 10000) :
@@ -851,6 +1040,9 @@ lemma b6_bound
     _ = (0.66 - s 2 - δ) / 5 := by ring
 
 include ha hb hc h44 h45a hg htab htac htbc in
+/--
+@isnad1 id=lt.16h7v.s8.3b1d10473766 from=translated src=- shape=2be2defd vocab=fd2a4dad
+-/
 lemma a4_bound
     (hd : 4 ≤ d) (hν : 0.66 < ν) (hb₃ : 0.34 - s 1 - s 2 + δ < b 3) (hε₀ : 0 < ε) (hδ : δ ≤ 0.003)
     (hε : ε ≤ 1 / 10000) (hba : b 3 ≤ a 3) :
@@ -862,6 +1054,9 @@ lemma a4_bound
   · rw [s_left_comm]
 
 include ha hb hc h44 h45a hg htab htac htbc in
+/--
+@isnad1 id=lt.16h7v.s8.744547cf8f19 from=translated src=- shape=2be2defd vocab=fd2a4dad
+-/
 lemma a5_bound
     (hd : 5 ≤ d) (hν : 0.66 < ν) (hb₃ : 0.34 - s 1 - s 2 + δ < b 3) (hε₀ : 0 < ε) (hδ : δ ≤ 0.003)
     (hε : ε ≤ 1 / 10000) (hba : b 3 ≤ a 3) :
@@ -873,6 +1068,9 @@ lemma a5_bound
   · rw [s_left_comm]
 
 include ha hb hc h44 h45a hg htab htac htbc in
+/--
+@isnad1 id=lt.16h7v.s8.3dc0a725d4d3 from=translated src=- shape=2be2defd vocab=fd2a4dad
+-/
 lemma a6_bound
     (hd : 6 ≤ d) (hν : 0.66 < ν) (hb₃ : 0.34 - s 1 - s 2 + δ < b 3) (hε₀ : 0 < ε) (hδ : δ ≤ 0.003)
     (hε : ε ≤ 1 / 10000) (hba : b 3 ≤ a 3) :
@@ -884,6 +1082,9 @@ lemma a6_bound
   · rw [s_left_comm]
 
 include ha hb hc h44 h45a h45b hg htab htac htbc in
+/--
+@isnad1 id=and.17h7v.s8.82a43966a4b2 from=translated src=- shape=b12ceec7 vocab=bdd212c9
+-/
 lemma self_improve_bounds
     (hd : 6 ≤ d) (hν : 0.66 < ν) (hb₃ : 0.34 - s 1 - s 2 + δ < b 3) (hε₀ : 0 < ε) (hδ : δ ≤ 0.003)
     (hε : ε ≤ 1 / 10000) (hba : b 3 ≤ a 3) :
@@ -938,12 +1139,18 @@ lemma self_improve_bounds
       norm_num1
       exact h₁
 
+/--
+@isnad1 id=eq.1h4v.s6.46caf1859878 from=translated src=- shape=7b5bbed6 vocab=ae6626b3
+-/
 lemma test {α : Type*} [AddCommMonoid α] {a b : ℕ} {f : ℕ → α} (hab : a ≤ b) :
     ∑ i ≤ a, f i + ∑ i ∈ Finset.Icc (a + 1) b, f i = ∑ i ≤ b, f i := by
   rw [Nat.Iic_eq_Icc, Nat.Iic_eq_Icc, ← Finset.sum_union, Nat.Icc_union_Icc_eq_Icc (by omega) hab]
   simp +contextual [Finset.disjoint_left]
 
 include ha hb hfab in
+/--
+@isnad1 id=lt.4h5v.s7.588f6525eeca from=translated src=- shape=e3a97c40 vocab=68204624
+-/
 lemma apply_fourier
     (hd : 6 ≤ d) :
     2 * ν - 1 - δ <
@@ -966,6 +1173,9 @@ lemma apply_fourier
   _ = _ := by rw [Finset.sum_neg_distrib]; ring
 
 include ha in
+/--
+@isnad1 id=le.2h2v.s7.feafbc66511d from=translated src=- shape=7442350e vocab=4223e2bc
+-/
 lemma two_bound (hd : 6 ≤ d) :
     4 / 15 - 1 / 5 * ∑ i ≤ 6 with i ≠ 2, (7 - i) * a i - 7 / 5 * δ_ d a ≤ a 2 := by
   suffices 7 * ∑ i ≤ d, a i - (∑ i ≤ 6 with i ≠ 2, (7 - i) * a i + (7 - (2 : ℕ)) * a 2) ≤ 1 by
@@ -983,10 +1193,16 @@ lemma two_bound (hd : 6 ≤ d) :
     _ = ∑ i ≤ d, i * a i := by rw [test hd]
     _ ≤ 1 := ha.sum_bound
 
+/--
+@isnad1 id=eq.0h0v.s6.e2a52eef9cf8 from=translated src=- shape=0812d6a7 vocab=23a2eebc
+-/
 lemma summation_range_eq : (Finset.Iic 6).filter (· ≠ 2) = {0, 1, 3, 4, 5, 6} := by
   ext i; simp; omega
 
 include ha hb hfab in
+/--
+@isnad1 id=lt.5h5v.s8.8eb25fd98848 from=translated src=- shape=ea4e3767 vocab=52f84c44
+-/
 lemma bound_4_point_24 (hd : 6 ≤ d) (hba : b 3 ≤ a 3) :
     2 * ν - 1 - δ < 2 / 15 + 2 / 5 * (δ_ d a + δ_ d b) + 1 / 5 *
       (6 * max (a 1) (b 1) + min (a 1) (b 1) + 4 * a 3 - b 3 +
@@ -1016,12 +1232,18 @@ lemma bound_4_point_24 (hd : 6 ≤ d) (hba : b 3 ≤ a 3) :
       linear_combination 2 * h4 + 3 * h5 + 4 * h6
 
 include ha hb h44 htab hg in
+/--
+@isnad1 id=le.8h7v.s8.091831b229ab from=translated src=- shape=595cbbea vocab=aff5144d
+-/
 lemma subcase_1_point_2_aux (hd : 3 ≤ d) (hν : 0.66 < ν) (hb₃ : 0.34 - s 1 - s 2 + δ < b 3) :
     4 * a 3 - b 3 ≤ 5 / 2 * s 2 - 0.29 + 13 / 2 * δ := by
   have h₁ := bound_4_point_12 ha hb htab 3 (by simpa) hν
   linear_combination 4 * h₁ + 5 * bound_4_point_23 h44 hg hd hν hb₃
 
 include ha hb hc h43ab h44 h45a h45b hg htab htac htbc hfab in
+/--
+@isnad1 id=false.20h7v.s8.4379623150db from=translated src=- shape=a3df6576 vocab=bc4a555b
+-/
 lemma subcase_1_point_2
     (hd : 6 ≤ d) (hν : 0.66 < ν) (hba : b 3 ≤ a 3) (hs₂ : 0.3 ≤ s 2)
     (hb₃ : 0.34 - s 1 - s 2 + δ < b 3) (hε₀ : 0 < ε) (hδ : δ ≤ 0.003) (hε : ε ≤ 1 / 10000) :
@@ -1045,6 +1267,9 @@ lemma subcase_1_point_2
   exact not_le_of_gt this (by linear_combination hν)
 
 include ha hb hc h43ab h43ac h43bc h44 h45a h45b hg htab htac htbc hfab in
+/--
+@isnad1 id=false.22h7v.s7.dccd3e039315 from=translated src=- shape=28d9c2fa vocab=3150e868
+-/
 lemma case_1
     (hd : 6 ≤ d) (hν : 0.66 < ν) (hs₂ : 0.3 ≤ s 2) (hδ : δ ≤ 0.003)
     (hε₀ : 0 < ε) (hε : ε ≤ 1 / 10000)
@@ -1057,6 +1282,9 @@ lemma case_1
       hε₀ hδ hε
 
 include ha hb htab in
+/--
+@isnad1 id=lt.6h5v.s6.5a9c2fd2de32 from=translated src=- shape=144e3071 vocab=b5a18272
+-/
 lemma bound_4_point_25
     (hd : 3 ≤ d)
     (hν : 0.66 < ν)
@@ -1065,6 +1293,9 @@ lemma bound_4_point_25
   linear_combination 1 / 2 * h + 1 / 2 * bound_4_point_12 ha hb htab 3 (by simp; omega) hν
 
 include ha hb h44 htab hg in
+/--
+@isnad1 id=and.11h7v.s8.53c093373fce from=translated src=- shape=ac2c9a51 vocab=10adff9d
+-/
 lemma bound_4_point_26_aux
     (hd : 3 ≤ d) (hν : 0.66 < ν) (hs₂ : s 2 < 0.3) (hδ : δ ≤ 0.01)
     (hba : b 3 ≤ a 3) (hcb : c 3 ≤ b 3) :
@@ -1079,6 +1310,9 @@ lemma bound_4_point_26_aux
   exact ⟨h₂, h₃⟩
 
 include ha hb hc h44 htab hg in
+/--
+@isnad1 id=le.12h7v.s7.bd6c6f447eeb from=translated src=- shape=8c6de763 vocab=f0a7911f
+-/
 lemma bound_4_point_26
     (hd : 3 ≤ d) (hν : 0.66 < ν) (hs₂ : s 2 < 0.3) (hδ : δ ≤ 0.01)
     (hba : b 3 ≤ a 3) (hcb : c 3 ≤ b 3) :
@@ -1088,6 +1322,9 @@ lemma bound_4_point_26
   linear_combination h₂ + h₃ + bound_4_point_20 ha hb hc hd + s_apply a b c 3
 
 include ha hdab hdac in
+/--
+@isnad1 id=false.8h6v.s7.e097203b46c4 from=translated src=- shape=afc9a812 vocab=026c6b1d
+-/
 lemma case_2_subcase_1_large_sum
     (hd : 4 ≤ d)
     (hν : 0.66 < ν)
@@ -1106,6 +1343,9 @@ lemma case_2_subcase_1_large_sum
 
 open Finset
 include ha hb hc hg in
+/--
+@isnad1 id=lt.5h6v.s8.c3198f635e7c from=translated src=- shape=5d0e1009 vocab=9edc4050
+-/
 lemma GeometryBound.s21_application_basic
     (hd : 4 ≤ d) :
     ν < ε + a 3 + b 3 + min (b 4) (c 4) + ∑ i ∈ Finset.Icc 5 d, (b i + c i) +
@@ -1144,10 +1384,16 @@ lemma GeometryBound.s21_application_basic
   · simpa only [min_eq_left h4, max_eq_right h4] using hbounds.2
   · simpa only [min_eq_right h4, max_eq_left h4] using hbounds.1
 
+/--
+@isnad1 id=le.0h2v.s5.364ce425bf62 from=translated src=- shape=895f9ea4 vocab=953e79ab
+-/
 lemma min_le_half_add {x y : ℝ} : min x y ≤ (x + y) / 2 := by
   linarith [min_le_left x y, min_le_right x y]
 
 include ha hb hc h43bc htab in
+/--
+@isnad1 id=lt.12h7v.s8.c93447170305 from=translated src=- shape=4bacabf0 vocab=b3fdb1f5
+-/
 lemma case_2_subcase_1_subsubcase_1
     (hd : 5 ≤ d)
     (hν : 0.66 < ν)
@@ -1190,6 +1436,9 @@ lemma case_2_subcase_1_subsubcase_1
         linear_combination h + 1 / 5 * h' + 1 / 5 * h₅ + hδ + 1 / 5 * h''
 
 include ha hb hc h45b h45c htac in
+/--
+@isnad1 id=lt.13h7v.s8.1a4995d04d27 from=translated src=- shape=24a289bc vocab=803cece6
+-/
 lemma case_2_subcase_1_subsubcase_2
     (hd : 4 ≤ d)
     (hν : 0.66 < ν)
@@ -1223,6 +1472,9 @@ lemma case_2_subcase_1_subsubcase_2
       linear_combination h + h' + 3 * h₄ + 4 * hδ
 
 include ha hb hc h43bc h45b h45c htab htac hg hdab hdac in
+/--
+@isnad1 id=false.18h7v.s7.bba3405780a1 from=translated src=- shape=a99bdadc vocab=a5ae69ba
+-/
 lemma case_2_subcase_1
     (hd : 5 ≤ d)
     (hν : 0.66 < ν)
@@ -1258,6 +1510,9 @@ lemma case_2_subcase_1
     norm_num1 at this
 
 include ha hb hc h43ab h43ac h43bc h44 h45b h45c hdab hdac htab htac htbc hg in
+/--
+@isnad1 id=false.22h7v.s8.c13c8fdbd0c8 from=translated src=- shape=92a742c9 vocab=474efc42
+-/
 lemma case_2_subcase_2
     (hd : 5 ≤ d)
     (hν : 0.66 < ν)
@@ -1284,6 +1539,9 @@ lemma case_2_subcase_2
     h421 + 5 / 2 * h410 + 1 / 2 * h414 + 11 / 4 * hδ + 5 / 2 * hε
 
 include ha hb hc h43ab h43ac h43bc h44 h45b h45c hdab hdac htab htac htbc hg in
+/--
+@isnad1 id=false.24h7v.s8.979aa3607ed2 from=translated src=- shape=9138d17b vocab=2b595294
+-/
 lemma case_2_subcase_3
     (hd : 5 ≤ d) (hν : 0.66 < ν) (hs₂ : s 2 < 0.3)
     (hδ : δ ≤ 0.003) (hε₀ : 0 < ε) (hε : ε ≤ 1 / 10000)
@@ -1298,6 +1556,9 @@ lemma case_2_subcase_3
   linear_combination h₁ + h₂ + 1 / 2 * h + 5 / 2 * hδ
 
 include ha hb hc h43ab h43ac h43bc h44 h45b h45c hdab hdac htab htac htbc hg in
+/--
+@isnad1 id=false.24h7v.s8.3a6fae340983 from=translated src=- shape=3c1633ef vocab=2b595294
+-/
 lemma case_2_subcase_4
     (hd : 5 ≤ d)
     (hν : 0.66 < ν)
@@ -1323,6 +1584,9 @@ lemma case_2_subcase_4
   linear_combination h₁ + h₂ + 2 * this + 8 * hε + 13 / 2 * hδ
 
 include ha hb hc h43ab h43ac h43bc h44 h45b h45c hdab hdac htab htac htbc hg in
+/--
+@isnad1 id=false.24h7v.s8.a91965d08a16 from=translated src=- shape=38fa60c6 vocab=3a240034
+-/
 lemma case_2_subcase_5
     (hd : 5 ≤ d)
     (hν : 0.66 < ν)
@@ -1353,6 +1617,9 @@ lemma case_2_subcase_5
   linear_combination h₂ + h₃ + 2 * h₁ + (3 / 2) * h.2 + (7 / 2) * hδ
 
 include ha hb h45a h45b hfab in
+/--
+@isnad1 id=le.10h6v.s7.e32226b447ab from=translated src=- shape=13854fc2 vocab=6c30bf09
+-/
 lemma case_2_subcase_6_end_ab
     (hd : 5 ≤ d)
     (hδ : δ ≤ 0.001)
@@ -1393,6 +1660,9 @@ lemma case_2_subcase_6_end_ab
     hmin + h2min) + 1 / 6 * hε + 7 / 6 * hδ
 
 include ha hb hc h45a h45b h45c hfab hfac hfbc in
+/--
+@isnad1 id=false.18h7v.s8.fb28d4caef3d from=translated src=- shape=ce8f84f8 vocab=793e705d
+-/
 lemma case_2_subcase_6_end_ec
     (hd : 5 ≤ d)
     (hν : 0.66 < ν)
@@ -1431,6 +1701,9 @@ lemma case_2_subcase_6_end_ec
   norm_num1 at this
 
 include ha hb hc h43ab h43ac h43bc h44 h45a h45b h45c hfab hfac hfbc hdab hdac htab htac htbc hg in
+/--
+@isnad1 id=false.28h7v.s8.e7220d118ff1 from=translated src=- shape=b26b87ad vocab=b50624a2
+-/
 lemma case_2_subcase_6
     (hd : 5 ≤ d)
     (hν : 0.66 < ν)
@@ -1492,6 +1765,9 @@ lemma case_2_subcase_6
     hε hba hcb hbc3' hs2
 
 include ha hb hc h43ab h43ac h43bc h44 h45a h45b h45c hfab hfac hfbc hdab hdac htab htac htbc hg in
+/--
+@isnad1 id=false.27h7v.s8.3d3ac3f14104 from=translated src=- shape=f6279cef vocab=8f5fce91
+-/
 lemma case_2
     (hd : 5 ≤ d) (hν : 0.66 < ν)
     (hs₂ : s 2 < 0.3) (hδ : δ ≤ 0.001) (hε₀ : 0 < ε) (hε : ε ≤ 1 / 100000)
@@ -1523,6 +1799,9 @@ include ha hb hc
   hdab hdac
   htab htac htbc
   hfab hg in
+/--
+@isnad1 id=le.25h7v.s7.54527b44ac60 from=translated src=- shape=311af63c vocab=74d15f6a
+-/
 theorem thm_4_point_3_asymm (hd : 6 ≤ d) (hδ : δ ≤ 0.001) (hε₀ : 0 < ε) (hε : ε ≤ 1 / 100000)
     (hba : b 3 ≤ a 3) (hcb : c 3 ≤ b 3) :
     ν ≤ 0.66 := by
@@ -1544,6 +1823,9 @@ include ha hb hc
   htab htac htbc
   hfab hfac hfbc
   hg in
+/--
+@isnad1 id=le.24h7v.s7.8ef9398a278b from=translated src=- shape=d832a469 vocab=74d15f6a
+-/
 theorem thm_4_point_3
     (hd : 6 ≤ d) (hδ : δ ≤ 0.001)
     (hε₀ : 0 < ε) (hε : ε ≤ 1 / 100000) :

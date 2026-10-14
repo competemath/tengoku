@@ -41,7 +41,9 @@ open Finset
 
 variable [AddCommGroup G] [LinearOrder G] [IsOrderedAddMonoid G] (a : ℕ → G) (n : ℕ)
 
-/-- Final solution, part 1 -/
+/-- Final solution, part 1
+@isnad1 id=le.3h6v.s7.635a48c03567 from=translated src=- shape=ac243ecd vocab=7d97302b
+-/
 theorem final_solution_part1 {x : ℕ → G} (hx : Monotone x) (h0 : k ≤ m) (h1 : m ≤ n) :
     a k - a m ≤ 2 • (range (n + 1)).sup' nonempty_range_add_one (λ i ↦ |x i - a i|) :=
   ---- The proof is just inequality bash.
@@ -59,7 +61,9 @@ theorem final_solution_part1 {x : ℕ → G} (hx : Monotone x) (h0 : k ≤ m) (h
     exact add_le_add (h2 k (h0.trans h1)) (h2 m h1)
   _ = 2 • L := (two_nsmul L).symm
 
-/-- Final solution, part 2 -/
+/-- Final solution, part 2
+@isnad1 id=ex.1h4v.s7.c014894751f2 from=translated src=- shape=af4179a0 vocab=7d97302b
+-/
 theorem final_solution_part2 (ha : ∀ k m : ℕ, k ≤ m → m ≤ n → a k - a m ≤ 2 • g) :
     ∃ x : ℕ → G, Monotone x ∧
       (range (n + 1)).sup' nonempty_range_add_one (λ i ↦ |x i - a i|) = g := by

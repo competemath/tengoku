@@ -24,6 +24,9 @@ namespace ProbabilityTheory.Kernel
 variable {X : Type*} {𝓑 𝓧 : MeasurableSpace X} {π : Kernel[𝓑, 𝓧] X X} {A B : Set X}
   {f g : X → ℝ} {x₀ : X}
 
+/--
+@isnad1 id=eventual.3h7v.s6.8522f855c4d8 from=translated src=- shape=e688518f vocab=273ce331
+-/
 lemma IsProper.ae_eq_const (hπ : IsProper π) (h𝓑𝓧 : 𝓑 ≤ 𝓧)
     {Y : Type*} [MeasurableSpace Y] [MeasurableSingletonClass Y] {g : X → Y}
     (hg : Measurable[𝓑] g) (x₀ : X) :

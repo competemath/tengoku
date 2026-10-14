@@ -37,7 +37,9 @@ namespace IEANTN.Bridges.Platt
 
 open IEANTN
 
-/-- The verification to `3.0610046 · 10¹⁰` implies the ZetaGrid height. -/
+/-- The verification to `3.0610046 · 10¹⁰` implies the ZetaGrid height.
+@isnad1 id=rhupto.1h0v.s1.b24666b5b40c from=translated src=- shape=1d48f1ac vocab=7f8da34a
+-/
 theorem bridge_platt2017_to_wedeniwski (h : Platt2017.v1.rh_up_to) : Wedeniwski.v1.rh_up_to :=
   riemannHypothesisUpTo_mono (by norm_num) h
 

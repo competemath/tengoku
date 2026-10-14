@@ -83,45 +83,61 @@ def IsBoolean (R) [Ring R] := ∀ r : R, r ^ 2 = r
 
 namespace IsBoolean
 
-/-- Any trivial ring is boolean. -/
+/-- Any trivial ring is boolean.
+@isnad1 id=isboolea.0h1v.s3.442d9e520f49 from=translated src=- shape=c612a321 vocab=bd597cb7
+-/
 theorem of_Subsingleton (R) [Ring R] [Subsingleton R] : IsBoolean R :=
   λ _ ↦ Subsingleton.allEq _ _
 
-/-- The ring `ZMod 2` is boolean. -/
+/-- The ring `ZMod 2` is boolean.
+@isnad1 id=isboolea.0h0v.s4.2d9536545f2e from=translated src=- shape=8d7dbbf6 vocab=0ac00f1b
+-/
 theorem ZMod2 : IsBoolean (ZMod 2) :=
   λ r ↦ match r with | 0 => rfl | 1 => rfl
 
 variable [Ring R] (hR : IsBoolean R)
 include hR
 
-/-- The constant function `1` over a boolean ring is not good. -/
+/-- The constant function `1` over a boolean ring is not good.
+@isnad1 id=not.1h1v.s4.c10b6c4065d7 from=translated src=- shape=762c4d19 vocab=60b6f401
+-/
 theorem const_one_not_good : ¬good (λ _ : R ↦ 1) := by
   rintro ⟨_, _, c, h⟩
   refine h 0 ?_
   rw [sq, ← mul_assoc, ← add_mul, mul_zero, zero_add, mul_one_sub, ← sq, hR, sub_self]
 
-/-- A boolean ring is not nice. -/
+/-- A boolean ring is not nice.
+@isnad1 id=not.1h1v.s3.118e06005ed1 from=translated src=- shape=9499e9bc vocab=8b176c19
+-/
 theorem not_nice : ¬nice R :=
   λ h ↦ hR.const_one_not_good (by simpa only [eval_one] using h 1)
 
 end IsBoolean
 
-/-- The ring `ZMod 1` is not nice. -/
+/-- The ring `ZMod 1` is not nice.
+@isnad1 id=not.0h0v.s4.0a81232426c7 from=translated src=- shape=f4d8664b vocab=f9d07c89
+-/
 theorem not_nice_ZMod1 : ¬nice (ZMod 1) :=
   (IsBoolean.of_Subsingleton _).not_nice
 
-/-- The ring `ZMod 2` is not nice. -/
+/-- The ring `ZMod 2` is not nice.
+@isnad1 id=not.0h0v.s4.a52b50c802f5 from=translated src=- shape=f4d8664b vocab=f9d07c89
+-/
 theorem not_nice_ZMod2 : ¬nice (ZMod 2) :=
   IsBoolean.ZMod2.not_nice
 
 /-! ### The ring `ZMod 4` is nice -/
 
-/-- For any `a, b ∈ ZMod 4`, there exists `c ∈ ZMod 4` such that `c(a - c), c(b - c) ≠ 0`. -/
+/-- For any `a, b ∈ ZMod 4`, there exists `c ∈ ZMod 4` such that `c(a - c), c(b - c) ≠ 0`.
+@isnad1 id=ex.0h2v.s8.785fdd3e6966 from=translated src=- shape=b9c485cb vocab=68fda44a
+-/
 theorem ZMod4_exists_mul_sub_ne_zero₂ :
     ∀ a b : ZMod 4, ∃ c, c * (a - c) ≠ 0 ∧ c * (b - c) ≠ 0 := by
   decide
 
-/-- Every function `f : ZMod 4 → ZMod 4` is good. -/
+/-- Every function `f : ZMod 4 → ZMod 4` is good.
+@isnad1 id=good.0h1v.s5.5403d2372541 from=translated src=- shape=6443dd4c vocab=b2f4c402
+-/
 theorem ZMod4_good (f : ZMod 4 → ZMod 4) : good f := by
   ---- Pick some `u ∈ ZMod 4` such that `c(f(0) - c) ≠ 0` and `c(f(2) - c) ≠ 0`.
   obtain ⟨u, hc0, hc2⟩ : ∃ u, u * (f 0 - u) ≠ 0 ∧ u * (f 2 - u) ≠ 0 :=
@@ -142,7 +158,9 @@ theorem ZMod4_good (f : ZMod 4 → ZMod 4) : good f := by
   | 2 => exact (h (f 2)).trans_ne hc2
   | 3 => exact (h0 (f 3)).trans_ne hd3
 
-/-- `ZMod 4` is nice. -/
+/-- `ZMod 4` is nice.
+@isnad1 id=nice.0h0v.s4.52bd3a8532a2 from=translated src=- shape=8d7dbbf6 vocab=f9d07c89
+-/
 theorem ZMod4_nice : nice (ZMod 4) :=
   λ P ↦ ZMod4_good P.eval
 
@@ -157,7 +175,9 @@ section
 variable [Ring R] [Ring S] (φ : R →+* S) (hφ : (⇑φ).Surjective)
 include hφ
 
-/-- A surjective ring homomorphism pulls good polynomials back to good polynomials. -/
+/-- A surjective ring homomorphism pulls good polynomials back to good polynomials.
+@isnad1 id=good.2h4v.s6.3b30abc316e6 from=translated src=- shape=1f89b933 vocab=a5984fb0
+-/
 theorem good.of_Polynomial_map (P : R[X]) (hP : good (P.map φ).eval) : good P.eval := by
   rcases hP with ⟨a', b', c', h⟩
   obtain ⟨a, rfl⟩ : ∃ a, φ a = a' := hφ a'
@@ -174,13 +194,17 @@ theorem good.of_Polynomial_map (P : R[X]) (hP : good (P.map φ).eval) : good P.e
     _ ≠ 0 := h (φ r)
   exact ⟨a, b, c, λ r hr ↦ h r ((congrArg φ hr).trans φ.map_zero)⟩
 
-/-- If `R` surjects into a nice ring, then `R` is nice. -/
+/-- If `R` surjects into a nice ring, then `R` is nice.
+@isnad1 id=nice.2h3v.s6.741d16e58573 from=translated src=- shape=1444cf0b vocab=8a38c0d2
+-/
 theorem nice.of_surjection (hS : nice S) : nice R :=
   λ P ↦ (hS (P.map φ)).of_Polynomial_map φ hφ P
 
 end
 
-/-- If `ZMod k` is nice and `k ∣ n`, then `ZMod n` is nice. -/
+/-- If `ZMod k` is nice and `k ∣ n`, then `ZMod n` is nice.
+@isnad1 id=nice.2h2v.s4.77c8d5ccf673 from=translated src=- shape=b4b2c946 vocab=6fb4714a
+-/
 theorem ZMod_nice_of_dvd (hk : nice (ZMod k)) (hkn : k ∣ n) : nice (ZMod n) :=
   hk.of_surjection (ZMod.castHom hkn (ZMod k)) (ZMod.castHom_surjective hkn)
 
@@ -190,7 +214,9 @@ section
 
 variable [CommRing R] {f : R → R}
 
-/-- If `f : R → R` is good, then for any `v ∈ R`, the function `x ↦ f(x + v)` is good. -/
+/-- If `f : R → R` is good, then for any `v ∈ R`, the function `x ↦ f(x + v)` is good.
+@isnad1 id=good.1h3v.s5.034862a22bc2 from=translated src=- shape=bcf108d5 vocab=0be34196
+-/
 theorem good.shift (hf : good f) (v : R) : good (λ x ↦ f (x + v)) := by
   rcases hf with ⟨a, b, c, h⟩
   refine ⟨a, a * (2 * v) + b, a * v ^ 2 + b * v + c, λ r ↦ ?_⟩
@@ -198,23 +224,31 @@ theorem good.shift (hf : good f) (v : R) : good (λ x ↦ f (x + v)) := by
     add_add_add_comm, ← mul_add, ← mul_add, mul_right_comm, ← add_sq]
   exact h (r + v)
 
-/-- For any `f : R → R` and `v ∈ R`, the function `x ↦ f(x + v)` is good iff `f` is good. -/
+/-- For any `f : R → R` and `v ∈ R`, the function `x ↦ f(x + v)` is good iff `f` is good.
+@isnad1 id=iff.0h3v.s5.7bce837c1f30 from=translated src=- shape=9f1aecb8 vocab=0be34196
+-/
 theorem good_shift_iff {v : R} : good (λ x ↦ f (x + v)) ↔ good f :=
   ⟨λ hf ↦ by simpa only [neg_add_cancel_right] using hf.shift (-v), λ hf ↦ hf.shift v⟩
 
-/-- If `f : R → R` is good, then for any `u ∈ R`, the function `x ↦ f(ux)` is good. -/
+/-- If `f : R → R` is good, then for any `u ∈ R`, the function `x ↦ f(ux)` is good.
+@isnad1 id=good.1h3v.s5.a23036520c5b from=translated src=- shape=9eb79590 vocab=e4136cb4
+-/
 theorem good.scale (hf : good f) (u : R) : good (λ x ↦ f (u * x)) := by
   rcases hf with ⟨a, b, c, h⟩
   refine ⟨a * u ^ 2, b * u, c, λ r ↦ ?_⟩
   rw [mul_assoc, ← mul_pow, mul_assoc]
   exact h (u * r)
 
-/-- For any `f : R → R` and `u ∈ Rˣ`, the function `x ↦ f(ux)` is good iff `f` is good. -/
+/-- For any `f : R → R` and `u ∈ Rˣ`, the function `x ↦ f(ux)` is good iff `f` is good.
+@isnad1 id=iff.0h3v.s5.f059e5314aff from=translated src=- shape=422bfe40 vocab=0ffb4bf7
+-/
 theorem good_scale_iff {u : Rˣ} : good (λ x ↦ f (u * x)) ↔ good f :=
   ⟨λ hf ↦ by simpa only [Units.mul_inv_cancel_left] using hf.scale ↑u⁻¹, λ hf ↦ hf.scale u⟩
 
 /-- For any `f : R → R`, `u ∈ Rˣ`, and `v ∈ R`,
-  the function `x ↦ f(ux + v)` is good iff `f` is good. -/
+  the function `x ↦ f(ux + v)` is good iff `f` is good.
+@isnad1 id=iff.0h4v.s6.a328a4e7fc07 from=translated src=- shape=03afc63e vocab=b13982b5
+-/
 theorem good_shift_scale_iff {u : Rˣ} {v : R} : good (λ x ↦ f (u * x + v)) ↔ good f :=
   (good_scale_iff (f := λ x ↦ f (x + v)) (u := u)).trans good_shift_iff
 
@@ -230,7 +264,9 @@ The main statement is that to prove every function `f : F → F` is good,
 
 /-- Let `R` be a domain, and let `f : R → R` be a function.
   Define `g : R → R` by `g(r) = 1` if `f(r) = 0` and `g(r) = f(r)` otherwise.
-  If `g` is good, then `f` is good. -/
+  If `g` is good, then `f` is good.
+@isnad1 id=good.2h3v.s6.3f8fc1deaf6b from=translated src=- shape=c386576e vocab=40914ae8
+-/
 theorem good_of_good_map_ite_zero [Ring R] [IsDomain R] [DecidableEq R]
     {f g : R → R} (hfg : ∀ r, g r = if f r = 0 then 1 else f r) (hg : good g) : good f := by
   ---- Use the same `a, b, c : F` for `g` to show that `f` is good.
@@ -245,7 +281,9 @@ theorem good_of_good_map_ite_zero [Ring R] [IsDomain R] [DecidableEq R]
   · rwa [hfg, ite_eq_right hr] at h
 
 /-- Let `F` be a division ring. For any `a, b, c, d ∈ F` such that `a ≠ b` and `c ≠ d`,
-  there exists `u ∈ Fˣ` and `v ∈ F` such that `uc + v = a` and `ud + v = b`. -/
+  there exists `u ∈ Fˣ` and `v ∈ F` such that `uc + v = a` and `ud + v = b`.
+@isnad1 id=ex.2h5v.s7.d976acce1eba from=translated src=- shape=420ae021 vocab=a8c987a9
+-/
 theorem linear_transform_solver [DivisionRing F] {a b c d : F} (h : a ≠ b) (h0 : c ≠ d) :
     ∃ u : Fˣ, ∃ v : F, u * c + v = a ∧ u * d + v = b := by
   ---- Solving directly yields `u = (b - a)/(d - c)` and `v = a - uc`.
@@ -256,7 +294,9 @@ theorem linear_transform_solver [DivisionRing F] {a b c d : F} (h : a ≠ b) (h0
   refine ⟨u, a - u * c, add_sub_cancel _ _, ?_⟩
   rw [add_sub_left_comm, ← mul_sub, hu, div_mul_cancel₀ _ h0, add_sub_cancel]
 
-/-- If `R` is a domain and `f : R → R` does not attain some non-zero value, `f` is good. -/
+/-- If `R` is a domain and `f : R → R` does not attain some non-zero value, `f` is good.
+@isnad1 id=good.2h3v.s5.2c3fea4c3df8 from=translated src=- shape=381c4312 vocab=086615a0
+-/
 theorem good_of_map_ne_of_ne_zero [Ring R] [NoZeroDivisors R]
     {u : R} (hu : u ≠ 0) {f : R → R} (hf : ∀ r, f r ≠ u) : good f := by
   refine ⟨0, 0, u, λ r ↦ ?_⟩
@@ -265,7 +305,9 @@ theorem good_of_map_ne_of_ne_zero [Ring R] [NoZeroDivisors R]
 
 /-- Let `F` be a finite field, and fix two distinct elements `a, b ∈ F`.
   Suppose that every function `f : F → F` with `f(a) = f(b)` and `f(F) = Fˣ` is good.
-  Then every function `f : F → F` is good. -/
+  Then every function `f : F → F` is good.
+@isnad1 id=good.2h4v.s6.de3ff0a49b1a from=translated src=- shape=2362d043 vocab=a629ec9c
+-/
 theorem FiniteField.good_of_forall_map_pair_eq_of_image_eq_units
     [Field F] [Fintype F] [DecidableEq F] {a b : F} (hab : a ≠ b)
     (hF : ∀ f : F → F, f a = f b → (∀ r, f r ≠ 0) → (∀ x ≠ 0, ∃ r, f r = x) → good f)
@@ -302,7 +344,9 @@ theorem FiniteField.good_of_forall_map_pair_eq_of_image_eq_units
 open Finset in
 /-- Let `f : S → S` be a function on a finite set `S`. Suppose that there exists
   `a, b, c ∈ S` pairwise distinct and `d ≠ c` such that `f(a) = f(b)` and `f(c) = f(d)`.
-  Then for any `x ∈ S`, there exists `y ∈ S` with `y ≠ x` such that `y ∉ f(S)`. -/
+  Then for any `x ∈ S`, there exists `y ∈ S` with `y ≠ x` such that `y ∉ f(S)`.
+@isnad1 id=ex.6h7v.s6.fab8e0334296 from=translated src=- shape=48350a55 vocab=e88e931a
+-/
 theorem exists_ne_map_ne_of_four [Fintype S] [DecidableEq S] {f : S → S}
     {a b c d : S} (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c) (hcd : c ≠ d)
     (hab0 : f a = f b) (hcd0 : f c = f d) (x) :
@@ -341,7 +385,9 @@ namespace FiniteField
 variable [Field F] [Fintype F] [DecidableEq F]
 
 /-- Let `F` be a finite field of characteristic not equal to `2`.
-  Then every function from `F` to itself is good. -/
+  Then every function from `F` to itself is good.
+@isnad1 id=good.1h2v.s5.ced07d6adac0 from=translated src=- shape=553166f1 vocab=a866fbc1
+-/
 theorem good_of_char_ne_two (hF : ringChar F ≠ 2) : ∀ f : F → F, good f := by
   ---- Reduce to the case where `f(-1) = f(1)` and `f(F) = Fˣ`.
   refine good_of_forall_map_pair_eq_of_image_eq_units (a := -1) (b := 1)
@@ -381,19 +427,25 @@ theorem good_of_char_ne_two (hF : ringChar F ≠ 2) : ∀ f : F → F, good f :=
   rw [zero_mul, add_zero, ← mul_add, ← sub_eq_add_neg, mul_ne_zero_iff, sub_ne_zero]
   exact ⟨mul_ne_zero ha (hr x), λ h0 ↦ ha0 x (div_eq_of_eq_mul (hr x) h0)⟩
 
-/-- A finite field of characteristic `≠ 2` is nice. -/
+/-- A finite field of characteristic `≠ 2` is nice.
+@isnad1 id=nice.1h1v.s5.de576c5725be from=translated src=- shape=8590ff2a vocab=4ac91855
+-/
 theorem nice_of_char_ne_two (hF : ringChar F ≠ 2) : nice F :=
   λ P ↦ good_of_char_ne_two hF P.eval
 
 end FiniteField
 
-/-- If `p` is an odd prime, then `ZMod p` is nice. -/
+/-- If `p` is an odd prime, then `ZMod p` is nice.
+@isnad1 id=nice.1h1v.s4.7f7b030f1b7e from=translated src=- shape=dcebacda vocab=3f899829
+-/
 theorem ZMod_nice_of_prime_ne_two (p) [Fact (Nat.Prime p)] (hp : p ≠ 2) : nice (ZMod p) :=
   FiniteField.nice_of_char_ne_two ((ZMod.ringChar_zmod_n p).trans_ne hp)
 
 /-! ### Summary for the `ZMod` case -/
 
-/-- For any `k`, `ZMod 2^k` is nice if and only if `k > 1`. -/
+/-- For any `k`, `ZMod 2^k` is nice if and only if `k > 1`.
+@isnad1 id=iff.0h1v.s6.ba3e26f0c00b from=translated src=- shape=6e188420 vocab=7cf4b46c
+-/
 theorem ZMod_two_pow_nice_iff {k : ℕ} : nice (ZMod (2 ^ k)) ↔ 1 < k := by
   ---- If `k ≥ 2`, then `ZMod 2^k` surjects into `ZMod 4`, which is nice.
   refine Iff.symm ⟨λ hk ↦ ?_, λ hk ↦ Nat.lt_of_not_le λ hk0 ↦ ?_⟩
@@ -402,7 +454,9 @@ theorem ZMod_two_pow_nice_iff {k : ℕ} : nice (ZMod (2 ^ k)) ↔ 1 < k := by
   obtain rfl | rfl : k = 0 ∨ k = 1 := Nat.le_one_iff_eq_zero_or_eq_one.mp hk0
   exacts [not_nice_ZMod1 hk, not_nice_ZMod2 hk]
 
-/-- If `n > 0`, then `ZMod n` is nice if and only if `n > 2`. -/
+/-- If `n > 0`, then `ZMod n` is nice if and only if `n > 2`.
+@isnad1 id=iff.1h1v.s4.e547a55df433 from=translated src=- shape=c8390107 vocab=47988c49
+-/
 theorem ZMod_nice_iff {n : ℕ} (hn : n > 0) : nice (ZMod n) ↔ n > 2 := by
   ---- The case where `n` is a power of `2` is covered by `ZMod_two_pow_nice_iff`.
   obtain ⟨k, rfl⟩ | ⟨p, hp, hpn, hp0⟩ :
@@ -424,7 +478,9 @@ def natGood (n : ℕ) (f : ℤ → ℤ) :=
   ∃ a ≠ 0, ∃ b c, ∀ k, ¬(n : ℤ) ∣ (a * k ^ 2 + b * k + c) * (f k + (a * k ^ 2 + b * k + c))
 
 /-- The version of `natGood` over `ZMod n`, also with `f(k) - (ak^2 + bk + c)`
-  instead of `f(k) + (ak^2 + bk + c)`. -/
+  instead of `f(k) + (ak^2 + bk + c)`.
+@isnad1 id=iff.0h2v.s7.7a7987bb2933 from=translated src=- shape=6795fd13 vocab=7df87b89
+-/
 theorem natGood_iff :
     natGood n f ↔ ∃ a ≠ 0, ∃ b c,
       ∀ k, ¬(n : ℤ) ∣ (a * k ^ 2 + b * k + c) * (f k - (a * k ^ 2 + b * k + c)) := by
@@ -440,7 +496,9 @@ theorem natGood_iff :
     rw [neg_mul, neg_mul, ← neg_add, ← neg_add, neg_mul, dvd_neg, ← sub_eq_add_neg]
     exact h k
 
-/-- If `n > 0`, the condition `a ≠ 0` on `natGood f n` is superficial. -/
+/-- If `n > 0`, the condition `a ≠ 0` on `natGood f n` is superficial.
+@isnad1 id=iff.1h2v.s7.6b1d77f4cd18 from=translated src=- shape=38f11873 vocab=6f606492
+-/
 theorem natGood_iff_of_pos (hn : n > 0) :
     natGood n f ↔ ∃ a b c, ∀ k,
       ¬(n : ℤ) ∣ (a * k ^ 2 + b * k + c) * (f k - (a * k ^ 2 + b * k + c)) := by
@@ -462,7 +520,9 @@ theorem natGood_iff_of_pos (hn : n > 0) :
   exact h k
 
 /-- An integer polynomial `P` is `n`-good if and only if `φ(P)` is `good`,
-  where `φ` is the canonical map from `ℤ` to `ℤ/nℤ`. -/
+  where `φ` is the canonical map from `ℤ` to `ℤ/nℤ`.
+@isnad1 id=iff.1h2v.s6.58cf3c01cf03 from=translated src=- shape=f1951b10 vocab=e0d219f3
+-/
 theorem natGood_polynomial_iff_good (hn : n > 0) (P : ℤ[X]) :
     natGood n P.eval ↔ good (P.map (Int.castRingHom (ZMod n))).eval := by
   set φ : ℤ →+* ZMod n := Int.castRingHom (ZMod n)
@@ -474,7 +534,9 @@ theorem natGood_polynomial_iff_good (hn : n > 0) (P : ℤ[X]) :
     rw [← φ.map_pow, ← φ.map_mul, ← φ.map_mul, ← φ.map_add, ← φ.map_add, eval_map_apply,
       ← φ.map_sub, ← φ.map_mul, eq_intCast, Ne, ZMod.intCast_zmod_eq_zero_iff_dvd]
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.1h1v.s5.90ec6444a991 from=translated src=- shape=c932d518 vocab=2fdc45f6
+-/
 theorem final_solution (hn : n > 0) : (∀ P : ℤ[X], natGood n P.eval) ↔ n > 2 := by
   simp_rw [← ZMod_nice_iff hn, natGood_polynomial_iff_good hn]
   exact Iff.symm (map_surjective _ (ZMod.ringHom_surjective _)).forall

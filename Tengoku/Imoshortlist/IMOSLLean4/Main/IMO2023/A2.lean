@@ -33,7 +33,9 @@ $$ f(x + y) (f(x - y) + f(y - x)) ≥ (g(x) - g(y)) + (g(y) - g(x)) = 0. $$
 namespace IMOSL
 namespace IMO2023A2
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=or.3h4v.s8.faaaf48019bf from=translated src=- shape=01447e89 vocab=aaedde65
+-/
 theorem final_solution [AddCommGroup G] (hG : ∀ x : G, ∃ y, 2 • y = x)
     [Ring R] [LinearOrder R] [IsStrictOrderedRing R] {f g : G → R}
     (hf : ∀ x y, g x - g y ≤ f (x + y) * f (x - y))

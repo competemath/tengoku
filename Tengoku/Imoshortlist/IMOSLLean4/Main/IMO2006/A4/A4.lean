@@ -25,11 +25,17 @@ open Finset
 
 /-! ### Summation identities -/
 
+/--
+@isnad1 id=eq.0h4v.s6.c4905190eb24 from=translated src=- shape=efa0e25c vocab=d324806f
+-/
 theorem sum_offDiag_eq' [AddCommMonoid M] [DecidableEq ι] (a : ι × ι → M) (S : Finset ι) :
     S.sum (λ i ↦ a (i, i)) + S.offDiag.sum a = (S ×ˢ S).sum a := by
   rw [← S.sum_diag, ← sum_disjUnion S.disjoint_diag_offDiag,
     ← diag_union_offDiag, disjUnion_eq_union]
 
+/--
+@isnad1 id=eq.0h4v.s6.2ae02bcb8002 from=translated src=- shape=ca2fe5f8 vocab=086f08f8
+-/
 theorem sum_offDiag_eq [AddCommGroup G] [DecidableEq ι] (a : ι × ι → G) (S : Finset ι) :
     S.offDiag.sum a = (S ×ˢ S).sum a - S.sum (λ i ↦ a (i, i)) :=
   eq_sub_of_add_eq' (sum_offDiag_eq' a S)
@@ -38,6 +44,9 @@ section
 
 variable [AddCommMonoid M] [LinearOrder ι] (S : Finset ι)
 
+/--
+@isnad1 id=eq.0h4v.s7.82a84baf1559 from=translated src=- shape=e75a7b21 vocab=34038e03
+-/
 theorem orderedPair_sum_eq_offDiag (a : ι × ι → M) :
     ((S ×ˢ S).filter λ p ↦ p.1 < p.2).sum a + ((S ×ˢ S).filter λ p ↦ p.2 < p.1).sum a
       = S.offDiag.sum a := by
@@ -48,12 +57,18 @@ theorem orderedPair_sum_eq_offDiag (a : ι × ι → M) :
   ext x; rw [mem_offDiag, disjUnion_eq_union, ← filter_or,
     mem_filter, lt_or_lt_iff_ne, mem_product, and_assoc]
 
+/--
+@isnad1 id=eq.1h4v.s7.a3d174591458 from=translated src=- shape=5c296d1e vocab=cfc08199
+-/
 theorem orderedPair_symm_sum {a : ι × ι → M} (ha : ∀ p, a p.swap = a p) :
     ((S ×ˢ S).filter λ p ↦ p.1 < p.2).sum a = ((S ×ˢ S).filter λ p ↦ p.2 < p.1).sum a := by
   refine sum_bijective Prod.swap Prod.swap_bijective (λ p ↦ ?_) (λ p _ ↦ (ha p).symm)
   rw [mem_filter, mem_filter, mem_product, mem_product]
   exact and_congr_left' and_comm
 
+/--
+@isnad1 id=eq.1h4v.s7.edd61396e173 from=translated src=- shape=65bc4f50 vocab=0842abea
+-/
 theorem orderedPair_sum_eq_offDiag_of_symm {a : ι × ι → M} (ha : ∀ p, a p.swap = a p) :
     2 • ((S ×ˢ S).filter λ p ↦ p.1 < p.2).sum a = S.offDiag.sum a := by
   rw [two_nsmul, ← orderedPair_sum_eq_offDiag, orderedPair_symm_sum S ha]
@@ -66,6 +81,9 @@ section
 
 variable [Field F]
 
+/--
+@isnad1 id=eq.0h3v.s7.c788b5d6b323 from=translated src=- shape=39425c67 vocab=fb7f47cf
+-/
 theorem field_id1 (x y : F) : 2 ^ 2 * (x * y / (x + y)) = x + y - (x - y) ^ 2 / (x + y) := by
   by_cases h : x + y = 0
   · rw [h, div_zero, div_zero, sub_zero, mul_zero]
@@ -74,10 +92,16 @@ theorem field_id1 (x y : F) : 2 ^ 2 * (x * y / (x + y)) = x + y - (x - y) ^ 2 / 
 
 variable [DecidableEq ι] (a : ι → F) (S : Finset ι)
 
+/--
+@isnad1 id=eq.0h4v.s7.6e98d3a5b0ea from=translated src=- shape=1d1b0d17 vocab=034460e7
+-/
 theorem field_id2 : S.offDiag.sum (λ p ↦ a p.1 + a p.2) = 2 * ((S.card - 1) * S.sum a) := by
   rw [sum_add_distrib, sum_offDiag_eq, sum_offDiag_eq, sum_product, sum_product]
   simp only [sum_const]; rw [sum_nsmul, ← two_mul, nsmul_eq_mul, sub_one_mul]
 
+/--
+@isnad1 id=eq.0h4v.s8.435e6fb5cd59 from=translated src=- shape=d570fb14 vocab=bf394e34
+-/
 theorem field_id3 :
     2 ^ 2 * S.offDiag.sum (λ p ↦ a p.1 * a p.2 / (a p.1 + a p.2))
       = 2 * ((S.card - 1) * S.sum a)
@@ -85,6 +109,9 @@ theorem field_id3 :
   rw [mul_sum]; simp only [field_id1]
   rw [sum_sub_distrib, field_id2]
 
+/--
+@isnad1 id=eq.0h4v.s8.b5fda763fa80 from=translated src=- shape=7b206ec6 vocab=41e08fcf
+-/
 theorem field_id4 :
     S.offDiag.sum (λ p ↦ (a p.1 - a p.2) ^ 2)
       = 2 * (S.card • S.sum λ i ↦ a i ^ 2) - 2 * S.sum a ^ 2 := by
@@ -93,6 +120,9 @@ theorem field_id4 :
   rw [zero_pow (Nat.succ_ne_zero 1), nsmul_zero, sub_zero, sum_nsmul, ← two_mul]
   simp only [← mul_sum]; rw [← sum_mul, ← mul_sum, mul_assoc, sq]
 
+/--
+@isnad1 id=eq.0h4v.s7.caf94bd65e14 from=translated src=- shape=0709e14c vocab=1309fa51
+-/
 theorem field_id5 :
     S.offDiag.sum (λ p ↦ a p.1 * a p.2) = S.sum a ^ 2 - S.sum (λ i ↦ a i ^ 2) := by
   rw [sum_offDiag_eq, sum_product]
@@ -102,7 +132,9 @@ end
 
 /-! ### Summary -/
 
-/-- A version of the inequality to be proved, where the index is unordered. -/
+/-- A version of the inequality to be proved, where the index is unordered.
+@isnad1 id=le.1h4v.s8.8cfdf6a8fe6d from=translated src=- shape=0fd08092 vocab=1c355d30
+-/
 theorem unordered_index_version [Field F] [LinearOrder F] [IsStrictOrderedRing F]
     [DecidableEq ι] (a : ι → F) {S : Finset ι} (hS : ∀ i ∈ S, 0 < a i) :
     S.offDiag.sum (λ p ↦ a p.1 * a p.2 / (a p.1 + a p.2))
@@ -123,7 +155,9 @@ theorem unordered_index_version [Field F] [LinearOrder F] [IsStrictOrderedRing F
   rw [← mul_div_right_comm, le_div_iff₀ (add_pos (hS i hi) (hS j hj))]
   exact mul_le_mul_of_nonneg_left (add_le_sum (λ k hk ↦ (hS k hk).le) hi hj h) (sq_nonneg _)
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=other.1h4v.s8.a27d9fcd2cf7 from=translated src=- shape=f7698c88 vocab=4cc0f9fe
+-/
 theorem final_solution [Field F] [LinearOrder F] [IsStrictOrderedRing F]
     [LinearOrder ι] (a : ι → F) {S : Finset ι} (hS : ∀ i ∈ S, 0 < a i) :
     let T := (S ×ˢ S).filter λ p ↦ p.1 < p.2

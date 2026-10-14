@@ -29,6 +29,9 @@ open Multiset
 
 variable [LinearOrder α]
 
+/--
+@isnad1 id=mem.0h3v.s5.c1d39c83062b from=translated src=- shape=288d7806 vocab=234fc744
+-/
 theorem multiset_max_mem_cons (a : α) (S : Multiset α) : S.fold max a ∈ a ::ₘ S :=
   Multiset.induction_on S (mem_cons_self a 0) λ b T h ↦ by
     rw [fold_cons_left, cons_swap]
@@ -36,6 +39,9 @@ theorem multiset_max_mem_cons (a : α) (S : Multiset α) : S.fold max a ∈ a ::
     · rw [h0]; exact mem_cons_self b _
     · rw [h0]; exact mem_cons_of_mem h
 
+/--
+@isnad1 id=le.1h4v.s5.5d30688296ff from=translated src=- shape=c46f5f4a vocab=938c70b8
+-/
 theorem multiset_le_max_of_mem (a : α) (S : Multiset α) :
     ∀ b : α, b ∈ a ::ₘ S → b ≤ S.fold max a :=
   Multiset.induction_on S (λ _ h => (mem_singleton.mp h).le) λ b T h c h0 ↦ by
@@ -43,6 +49,9 @@ theorem multiset_le_max_of_mem (a : α) (S : Multiset α) :
     rw [cons_swap, mem_cons] at h0
     exact h0.imp le_of_eq (h c)
 
+/--
+@isnad1 id=ex.1h2v.s6.a78121dc44cb from=translated src=- shape=34e1f7f0 vocab=eb0e1ab2
+-/
 theorem exists_max_add_rest {S : Multiset α} (h : S ≠ 0) :
     ∃ (a : α) (S₀ : Multiset α), S = a ::ₘ S₀ ∧ ∀ x : α, x ∈ S₀ → x ≤ a := by
   rcases exists_mem_of_ne_zero h with ⟨b, h0⟩
@@ -51,6 +60,9 @@ theorem exists_max_add_rest {S : Multiset α} (h : S ≠ 0) :
   refine ⟨T.fold max b, U, h1, λ x h2 ↦ multiset_le_max_of_mem _ _ _ ?_⟩
   rw [h1]; exact mem_cons_of_mem h2
 
+/--
+@isnad1 id=var.0h5v.s6.26924be6143e from=translated src=- shape=820f264e vocab=eb0e1ab2
+-/
 theorem LinearOrder_induction {P : Multiset α → Prop}
     (h : P 0) (h0 : ∀ a S, P S → (∀ x ∈ S, x ≤ a) → P (a ::ₘ S)) (S) : P S := by
   generalize hS : card S = n
@@ -62,7 +74,9 @@ theorem LinearOrder_induction {P : Multiset α → Prop}
       rw [card_cons, Nat.succ_inj] at hS
       exact h0 a S₀ (h1 S₀ hS) h2
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ex.4h4v.s8.57cb1d72f247 from=translated src=- shape=6b82c450 vocab=4b88808d
+-/
 theorem final_solution [AddCommGroup G] [LinearOrder G] [IsOrderedAddMonoid G] (g : G) :
     ∀ (S : Multiset G) (_ : ∀ x : G, x ∈ S → g ≤ x) (_ : S.sum ≤ (2 * card S) • g)
       {r : G} (_ : -(2 • g) ≤ r) (_ : r ≤ S.sum),

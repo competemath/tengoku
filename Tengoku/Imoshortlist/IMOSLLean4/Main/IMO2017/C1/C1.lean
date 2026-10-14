@@ -33,6 +33,9 @@ open Finset
 def latticeRect (q : (ℕ × ℕ) × ℕ × ℕ) : Finset (ℕ × ℕ) :=
   Ico q.1.1 (q.1.1 + q.2.1) ×ˢ Ico q.1.2 (q.1.2 + q.2.2)
 
+/--
+@isnad1 id=eq.0h2v.s6.f9e6280034a5 from=translated src=- shape=d9749edf vocab=7448c259
+-/
 theorem sum_neg_one_pow_Ico (a : ℕ) :
     ∀ n : ℕ, (Ico a (a + n)).sum ((-1 : ℤ) ^ ·) = bif n.bodd then (-1 : ℤ) ^ a else 0
   | 0 => by rw [add_zero, Ico_self]; rfl
@@ -46,10 +49,16 @@ theorem sum_neg_one_pow_Ico (a : ℕ) :
 /-- The weight of a finset in `ℕ × ℕ` -/
 abbrev weight (S : Finset (ℕ × ℕ)) : ℤ := S.sum λ p ↦ (-1) ^ p.1 * (-1) ^ p.2
 
+/--
+@isnad1 id=eq.1h3v.s5.0f9911b3e39d from=translated src=- shape=ef17e358 vocab=7db16541
+-/
 theorem disjiUnion_weight_eq {I : Finset ι} (h : (I : Set ι).PairwiseDisjoint F) :
     weight (I.disjiUnion F h) = I.sum λ i ↦ weight (F i) :=
   sum_disjiUnion _ _ _
 
+/--
+@isnad1 id=eq.0h1v.s6.1c954d524000 from=translated src=- shape=f06944ed vocab=32cf9439
+-/
 theorem latticeRect_weight (q : (ℕ × ℕ) × ℕ × ℕ) :
     weight (latticeRect q) =
       bif (q.2.1.bodd && q.2.2.bodd) then ((-1 : ℤ) ^ (q.1.1 + q.1.2)) else 0 := by
@@ -58,6 +67,9 @@ theorem latticeRect_weight (q : (ℕ × ℕ) × ℕ × ℕ) :
   cases q.2.1.bodd; exact zero_mul _
   cases q.2.2.bodd; exacts [mul_zero _, (pow_add _ _ _).symm]
 
+/--
+@isnad1 id=and.1h1v.s6.0b0afa68591d from=translated src=- shape=002ec1a4 vocab=5ac7df17
+-/
 theorem latticeRect_weight_pos_imp :
     (h : 0 < weight (latticeRect q)) →
       (q.2.1.bodd = true ∧ q.2.2.bodd = true) ∧ (q.1.1 + q.1.2).bodd = false := by
@@ -68,7 +80,9 @@ theorem latticeRect_weight_pos_imp :
     cases (q.1.1 + q.1.2).bodd
     exacts [λ _ ↦ ⟨rfl, rfl⟩, λ h ↦ absurd (by simp) h.not_gt]
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ex.3h5v.s7.8aa40a8c05c2 from=translated src=- shape=061e6d35 vocab=8ad5bddf
+-/
 theorem final_solution {I : Finset ι}
     (h : (I : Set ι).PairwiseDisjoint (latticeRect ∘ Q))
     (h0 : m.bodd = true ∧ n.bodd = true)

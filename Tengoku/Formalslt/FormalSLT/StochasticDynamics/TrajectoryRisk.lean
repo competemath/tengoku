@@ -42,6 +42,9 @@ def trajectoryMeasure
     [∀ n, IsMarkovKernel (κ n)] (x0 : Z) : Measure (ℕ → Z) :=
   Kernel.traj (X := fun _ : ℕ ↦ Z) κ 0 (fun _ ↦ x0)
 
+/--
+@isnad1 id=isprobab.0h3v.s7.250472537532 from=translated src=- shape=89457833 vocab=8f8419b8
+-/
 instance trajectoryMeasure.instIsProbabilityMeasure
     (κ : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z)
     [∀ n, IsMarkovKernel (κ n)] (x0 : Z) :
@@ -71,7 +74,9 @@ private lemma stronglyMeasurable_piLE_of_prefix_trajectory
   exact hg.comp_measurable (comap_measurable _)
 
 /-- The observed score at step `n` is measurable with respect to the path
-through coordinate `n + 1`. -/
+through coordinate `n + 1`.
+@isnad1 id=strongly.0h3v.s6.7818f6707940 from=translated src=- shape=d02e25b4 vocab=97485df1
+-/
 lemma stronglyMeasurable_observedTrajectoryScore_succ
     (score : TrajectoryScore Z) (n : ℕ) :
     StronglyMeasurable[Filtration.piLE (X := fun _ : ℕ ↦ Z) (n + 1)]
@@ -89,6 +94,9 @@ lemma stronglyMeasurable_observedTrajectoryScore_succ
   simp only [g, Preorder.frestrictLe_apply]
   congr 1
 
+/--
+@isnad1 id=measurab.0h3v.s5.86f66dcad2d1 from=translated src=- shape=d02e25b4 vocab=6bc36647
+-/
 lemma measurable_observedTrajectoryScore
     (score : TrajectoryScore Z) (n : ℕ) :
     Measurable (observedTrajectoryScore score n) :=
@@ -96,6 +104,9 @@ lemma measurable_observedTrajectoryScore
     ((Filtration.piLE (X := fun _ : ℕ ↦ Z)).le (n + 1))).measurable
 
 omit [Fintype Z] [MeasurableSpace Z] [MeasurableSingletonClass Z] in
+/--
+@isnad1 id=mem.1h4v.s6.67525ae66e72 from=translated src=- shape=886363a3 vocab=f9e6f737
+-/
 lemma observedTrajectoryScore_mem_Icc
     {score : TrajectoryScore Z}
     (hscore : ∀ n u y, score n u y ∈ Set.Icc (0 : ℝ) 1)
@@ -103,6 +114,9 @@ lemma observedTrajectoryScore_mem_Icc
     observedTrajectoryScore score n x ∈ Set.Icc (0 : ℝ) 1 :=
   hscore n (Preorder.frestrictLe n x) (x (n + 1))
 
+/--
+@isnad1 id=integrab.1h5v.s8.7a80a7bbae0c from=translated src=- shape=320b4bec vocab=a36a3da9
+-/
 lemma integrable_observedTrajectoryScore
     {κ : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z}
     [∀ n, IsMarkovKernel (κ n)] {x0 : Z} {score : TrajectoryScore Z}
@@ -118,7 +132,9 @@ lemma integrable_observedTrajectoryScore
 
 omit [Fintype Z] [MeasurableSingletonClass Z] in
 /-- Under a trajectory continuation from prefix `u`, coordinate `n + 1` has
-exactly the law selected by the prefix-dependent kernel `κ n u`. -/
+exactly the law selected by the prefix-dependent kernel `κ n u`.
+@isnad1 id=eq.0h4v.s9.0539a301f8de from=translated src=- shape=999f3acd vocab=8c2eb11e
+-/
 lemma map_trajectory_next
     (κ : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z)
     [∀ n, IsMarkovKernel (κ n)] (n : ℕ)
@@ -131,7 +147,9 @@ lemma map_trajectory_next
   rw [Kernel.map_traj_succ_self]
 
 /-- Integrating the observed score against a trajectory continuation is the
-kernel-conditional risk associated with its supplied prefix. -/
+kernel-conditional risk associated with its supplied prefix.
+@isnad1 id=eq.0h5v.s9.f9de5a119988 from=translated src=- shape=58d06d71 vocab=779faae7
+-/
 lemma integral_observedTrajectoryScore_traj
     (κ : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z)
     [∀ n, IsMarkovKernel (κ n)]
@@ -172,7 +190,9 @@ lemma integral_observedTrajectoryScore_traj
         exact map_trajectory_next κ n u]
 
 /-- The trajectory construction determines the exact conditional expectation
-of the next score from the whole observed prefix. -/
+of the next score from the whole observed prefix.
+@isnad1 id=eventual.1h5v.s8.dbed377fe566 from=translated src=- shape=0538aaed vocab=bbded9a1
+-/
 theorem observedTrajectoryScore_condExp
     (κ : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z)
     [∀ n, IsMarkovKernel (κ n)] (x0 : Z)
@@ -191,6 +211,9 @@ theorem observedTrajectoryScore_condExp
   rw [hx, integral_observedTrajectoryScore_traj κ score n]
   rfl
 
+/--
+@isnad1 id=strongly.0h4v.s7.f46a195746c3 from=translated src=- shape=a10d4475 vocab=a1a187f0
+-/
 lemma stronglyMeasurable_conditionalTrajectoryRisk
     (κ : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z)
     (score : TrajectoryScore Z) (n : ℕ) :
@@ -204,6 +227,9 @@ lemma stronglyMeasurable_conditionalTrajectoryRisk
       ∂κ n (Preorder.frestrictLe n x))
   simpa [g] using stronglyMeasurable_piLE_of_prefix_trajectory n g hg
 
+/--
+@isnad1 id=mem.1h5v.s8.cf2dd38d9e89 from=translated src=- shape=d2c634ba vocab=105985ad
+-/
 lemma conditionalTrajectoryRisk_mem_Icc
     (κ : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z)
     [∀ n, IsMarkovKernel (κ n)] {score : TrajectoryScore Z}
@@ -220,6 +246,9 @@ lemma conditionalTrajectoryRisk_mem_Icc
         (Filter.Eventually.of_forall fun y ↦ (hscore n u y).2)
     simpa [conditionalTrajectoryRisk, u, rowScore] using hle
 
+/--
+@isnad1 id=integrab.1h5v.s8.bcf00b5e4dc5 from=translated src=- shape=0e474ed2 vocab=295f5c11
+-/
 lemma integrable_conditionalTrajectoryRisk
     {κ : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z}
     [∀ n, IsMarkovKernel (κ n)] {x0 : Z} {score : TrajectoryScore Z}
@@ -241,6 +270,9 @@ def trajectoryRiskInnovation
     (score : TrajectoryScore Z) (n : ℕ) (x : ℕ → Z) : ℝ :=
   observedTrajectoryScore score n x - conditionalTrajectoryRisk κ score n x
 
+/--
+@isnad1 id=incremen.0h3v.s7.c11d95b5969d from=translated src=- shape=0fe2792b vocab=aeb78276
+-/
 lemma trajectoryRiskInnovation_incrementAdapted
     (κ : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z)
     (score : TrajectoryScore Z) :
@@ -252,6 +284,9 @@ lemma trajectoryRiskInnovation_incrementAdapted
     ((stronglyMeasurable_conditionalTrajectoryRisk κ score n).mono
       ((Filtration.piLE (X := fun _ : ℕ ↦ Z)).mono (Nat.le_succ n)))
 
+/--
+@isnad1 id=measurab.0h4v.s7.61ede9ad5e7b from=translated src=- shape=a10d4475 vocab=4c17e0a4
+-/
 lemma measurable_trajectoryRiskInnovation
     (κ : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z)
     (score : TrajectoryScore Z) (n : ℕ) :
@@ -259,6 +294,9 @@ lemma measurable_trajectoryRiskInnovation
   ((trajectoryRiskInnovation_incrementAdapted κ score) n).mono
       ((Filtration.piLE (X := fun _ : ℕ ↦ Z)).le (n + 1)) |>.measurable
 
+/--
+@isnad1 id=le.1h5v.s8.f9e99373b729 from=translated src=- shape=6637db29 vocab=fa3c2820
+-/
 lemma abs_trajectoryRiskInnovation_le_one
     (κ : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z)
     [∀ n, IsMarkovKernel (κ n)] {score : TrajectoryScore Z}
@@ -273,6 +311,9 @@ lemma abs_trajectoryRiskInnovation_le_one
   unfold trajectoryRiskInnovation
   constructor <;> linarith
 
+/--
+@isnad1 id=integrab.1h5v.s8.f576c7e7ad0b from=translated src=- shape=0e474ed2 vocab=70bf2e5e
+-/
 lemma integrable_trajectoryRiskInnovation
     {κ : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z}
     [∀ n, IsMarkovKernel (κ n)] {x0 : Z} {score : TrajectoryScore Z}
@@ -283,7 +324,9 @@ lemma integrable_trajectoryRiskInnovation
     (integrable_conditionalTrajectoryRisk (κ := κ) (x0 := x0) hscore n)
 
 /-- The prefix-dependent trajectory innovation is conditionally centered under
-the path law generated by the same kernels. -/
+the path law generated by the same kernels.
+@isnad1 id=eventual.1h5v.s8.83ebdc8ca2e7 from=translated src=- shape=f7370273 vocab=71b8fb6d
+-/
 theorem trajectoryRiskInnovation_condExp_eq_zero
     (κ : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z)
     [∀ n, IsMarkovKernel (κ n)] (x0 : Z) {score : TrajectoryScore Z}
@@ -325,7 +368,9 @@ theorem trajectoryRiskInnovation_condExp_eq_zero
   simp
 
 /-- A `[0,1]` prefix-dependent score has conditional centered second moment at
-most `1 / 4`, with no stationarity or finite-memory assumption on the kernels. -/
+most `1 / 4`, with no stationarity or finite-memory assumption on the kernels.
+@isnad1 id=eventual.1h5v.s8.fe45a838b452 from=translated src=- shape=e1c3af1a vocab=0513145b
+-/
 theorem trajectoryRiskInnovation_condSecondMoment_le_one_fourth
     (κ : (n : ℕ) → Kernel ((i : Finset.Iic n) → Z) Z)
     [∀ n, IsMarkovKernel (κ n)] (x0 : Z) {score : TrajectoryScore Z}
@@ -373,7 +418,9 @@ theorem trajectoryRiskInnovation_condSecondMoment_le_one_fourth
   nlinarith [sq_nonneg (conditionalTrajectoryRisk κ score n x - 1 / 2)]
 
 /-- The Markov path measure is the specialization of `trajectoryMeasure` to
-the current-state `prefixKernel`. -/
+the current-state `prefixKernel`.
+@isnad1 id=eq.0h3v.s5.bfd32a033ef7 from=translated src=- shape=89395178 vocab=ba3829c3
+-/
 lemma trajectoryMeasure_prefixKernel_eq_markovPathMeasure
     (P : Z → PMF Z) (x0 : Z) :
     trajectoryMeasure (prefixKernel P) x0 = markovPathMeasure P x0 := rfl
@@ -384,11 +431,17 @@ def markovSquaredTrajectoryScore (f q : Z → ℝ) : TrajectoryScore Z :=
     (u ⟨n, Finset.mem_Iic.mpr le_rfl⟩) y
 
 omit [Fintype Z] [MeasurableSpace Z] [MeasurableSingletonClass Z] in
+/--
+@isnad1 id=eq.0h5v.s5.4a2a45bac7f2 from=translated src=- shape=6379ade8 vocab=a87b7371
+-/
 lemma observedTrajectoryScore_markovSquaredTrajectoryScore
     (f q : Z → ℝ) (n : ℕ) (x : ℕ → Z) :
     observedTrajectoryScore (markovSquaredTrajectoryScore f q) n x =
       pathSquaredLoss f q n x := rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.33a9a0d5462f from=translated src=- shape=ab72df81 vocab=4bfe71a5
+-/
 lemma conditionalTrajectoryRisk_markovSquaredTrajectoryScore
     (P : Z → PMF Z) (f q : Z → ℝ) (n : ℕ) (x : ℕ → Z) :
     conditionalTrajectoryRisk (prefixKernel P)
@@ -396,6 +449,9 @@ lemma conditionalTrajectoryRisk_markovSquaredTrajectoryScore
       conditionalSquaredRisk P f q n x := by
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.6ea71db15bd2 from=translated src=- shape=ab72df81 vocab=4c783d6c
+-/
 lemma trajectoryRiskInnovation_markovSquaredTrajectoryScore
     (P : Z → PMF Z) (f q : Z → ℝ) (n : ℕ) (x : ℕ → Z) :
     trajectoryRiskInnovation (prefixKernel P)
@@ -404,7 +460,9 @@ lemma trajectoryRiskInnovation_markovSquaredTrajectoryScore
   rfl
 
 /-- The original homogeneous-Markov squared-loss conditional-expectation
-theorem is an instance of the prefix-dependent trajectory theorem. -/
+theorem is an instance of the prefix-dependent trajectory theorem.
+@isnad1 id=eventual.2h6v.s7.2b371dc7be11 from=translated src=- shape=10101316 vocab=2466b3b7
+-/
 theorem pathSquaredLoss_condExp_via_trajectory
     (P : Z → PMF Z) (x0 : Z) (f q : Z → ℝ)
     (hf : ∀ z, f z ∈ Set.Icc (0 : ℝ) 1)

@@ -60,6 +60,9 @@ noncomputable def productDistPolyFrom {d : ℕ}
   ∏ r ∈ D, (C (r^2) - distPolyFrom y)
 
 -- Bound on the total degree of distPolyFrom.
+/--
+@isnad1 id=le.0h3v.s5.9b6bfa6b5652 from=translated src=- shape=b3406996 vocab=6e3d42ad
+-/
 lemma degree_distPolyFrom_le {d : ℕ}
     (y : EuclideanSpace R (Fin d)) :
      (distPolyFrom y).totalDegree ≤ 2 := by
@@ -75,6 +78,9 @@ lemma degree_distPolyFrom_le {d : ℕ}
     simp [Subsingleton.elim (distPolyFrom y) 0]
 
 -- Bound on the total degree of distPoly.
+/--
+@isnad1 id=le.0h2v.s5.7b35a86c8e5e from=translated src=- shape=3da339bf vocab=a368d89a
+-/
 lemma degree_distPoly (d : ℕ) :
     (distPoly d : MvPolynomial (Fin (2 * d)) R).totalDegree ≤ 2 := by
   by_cases R_nontrivial : Nontrivial R
@@ -89,6 +95,9 @@ lemma degree_distPoly (d : ℕ) :
     simp [Subsingleton.elim (distPoly d)  0]
 
 -- Bound on the total degree of productDistPoly.
+/--
+@isnad1 id=le.0h3v.s5.dca8a2baf540 from=translated src=- shape=aaf1173b vocab=bead1474
+-/
 lemma degree_productDistPoly_le
     {d : ℕ}
     (D : Finset R) : (productDistPoly d D).totalDegree ≤ 2 * D.card := by
@@ -102,6 +111,9 @@ lemma degree_productDistPoly_le
   simpa only [totalDegree_neg, totalDegree_C, zero_le, sup_of_le_right] using degree_distPoly d
 
 -- Bound on the total degree of productDistPolyFrom.
+/--
+@isnad1 id=le.0h4v.s5.493449c65ecd from=translated src=- shape=d90c6fd5 vocab=0cf4ab73
+-/
 lemma degree_productDistPolyFrom_le
     {d : ℕ}
     (y : EuclideanSpace R (Fin d)) (D : Finset R) :
@@ -120,6 +132,9 @@ lemma degree_productDistPolyFrom_le
 -- Connecting distPoly and distPolyFrom via evaluation. More precisely,
 -- evaluating distPoly at the point (x,y) ∈ R^{2d} is equivalent to
 -- evaluating distPolyFrom y at the point x ∈ R^d.
+/--
+@isnad1 id=eq.0h4v.s8.c5c85a3e5d29 from=translated src=- shape=c9140295 vocab=4af74b22
+-/
 lemma eval_distPoly_eq_eval_distPolyFrom {d : ℕ}
     (x y : EuclideanSpace R (Fin d)) :
     eval ((Fin.append x y) ∘ Fin.cast (by rw [two_mul])) (distPoly d) =
@@ -134,6 +149,9 @@ lemma eval_distPoly_eq_eval_distPolyFrom {d : ℕ}
 -- Evaluating the polynomial productDistPolyFrom y at y
 -- yields a non-zero value (provided 0 is not in the distance set D).
 -- This requires R to be an integral domain.
+/--
+@isnad1 id=ne.1h4v.s7.1789a1520943 from=translated src=- shape=e459129b vocab=e979130d
+-/
 lemma eval_productDistPolyFrom_eq
     {d : ℕ} [IsDomain R]
     (y : EuclideanSpace R (Fin d)) (D : Finset R) (h_nul : 0 ∉ D) :
@@ -143,6 +161,9 @@ lemma eval_productDistPolyFrom_eq
 
 -- In ℝ, evaluating the polynomial productDistPolyFrom y at a point x
 -- yields 0 (provided dist(x,y) ∈ D).
+/--
+@isnad1 id=eq.1h4v.s7.d29764700823 from=translated src=- shape=18f73662 vocab=82e5edbe
+-/
 lemma eval_productDistPolyFrom_ne {d : ℕ} (x y : EuclideanSpace ℝ (Fin d))
  (D : Finset ℝ) (h_dist : dist x y ∈ D) :
     -- For Real Euclidean Space specifically:
@@ -163,6 +184,9 @@ variable {R : Type*} [CommRing R]
 -- The "Diagonal" Argument:
 -- If a family of vectors (here, polynomials) evaluates to 0 off-diagonal
 -- and non-zero on-diagonal with respect to a family of points, it is linearly independent.
+/--
+@isnad1 id=linearin.2h5v.s8.05b74d5f9372 from=translated src=- shape=95cdfdfb vocab=75b0a52a
+-/
 lemma linearIndependent_of_eval_eq_zero
     {d : ℕ} [IsDomain R]
     {ι : Type*}
@@ -182,6 +206,9 @@ lemma linearIndependent_of_eval_eq_zero
       rwa [h_off, mul_zero]
   exact (mul_eq_zero_iff_right (h_diag i)).mp (this.symm)
 
+/--
+@isnad1 id=finite.1h2v.s5.5ecf77a87b47 from=translated src=- shape=679c6f32 vocab=937c0e9a
+-/
 lemma finite_distance_set_imp_finite_set
     {d : ℕ} (S : Set (EuclideanSpace ℝ (Fin d)))
     (hdis_fin : (distanceSet S).Finite) : S.Finite := by
@@ -275,6 +302,9 @@ noncomputable def finsuppToMultisetRestricted {d s : ℕ} :
 -- to multisets of cardinality s by adding 'none' elements (representing
 -- the slack variable in the combinatorial argument).
 -- First, we prove a general lemma about filterMap and countP.
+/--
+@isnad1 id=eq.0h4v.s5.dd61da8c31be from=translated src=- shape=ce1f223e vocab=65f5e252
+-/
 lemma card_filterMap_eq_countP {α β} (f : α → Option β) (s : Multiset α) :
   Multiset.card (s.filterMap f) = Multiset.countP (fun a => (f a).isSome) s := by
   induction s using Multiset.induction_on with
@@ -292,6 +322,9 @@ lemma card_filterMap_eq_countP {α β} (f : α → Option β) (s : Multiset α) 
 -- This facilitates the equivalence definition by isolating the 'some' elements
 -- from the 'none' elements.
 
+/--
+@isnad1 id=eq.0h2v.s6.f787b40bbd3a from=translated src=- shape=b68ba849 vocab=090f15d4
+-/
 lemma multiset_decomposition_option {α : Type*} [DecidableEq α] (m : Multiset (Option α)) :
   m = (m.filterMap id).map Option.some + replicate (m.count Option.none) Option.none := by
   induction m using Multiset.induction_on with
@@ -345,6 +378,9 @@ noncomputable instance fintypeMonomialsBoundedDegree {d s : ℕ} :
 -- We compute the finrank of restrictTotalDegree (Fin d) F s,
 -- which corresponds to the number of monomials of degree ≤ s in d variables,
 -- using the derived equivalences and the lemma `Sym.card_sym_eq_choose`.
+/--
+@isnad1 id=eq.0h3v.s8.f96a202131ed from=translated src=- shape=248f3adb vocab=9dda20ba
+-/
 lemma restrictTotalDegree_finrank {d : ℕ} (s : ℕ) :
     Module.finrank F (restrictTotalDegree (Fin d) F s) = Nat.choose (d + s) s := by
     -- We know the dimension is the number of monomials of degree ≤ s.
@@ -363,6 +399,9 @@ lemma restrictTotalDegree_finrank {d : ℕ} (s : ℕ) :
 
 -- Finally, we prove the bound dim A s ≤ (d + s) choose s
 -- using the rank-nullity theorem and the previous lemma.
+/--
+@isnad1 id=le.0h4v.s5.4077d234e522 from=translated src=- shape=05f1b735 vocab=da4cfb48
+-/
 lemma dim_le_min_card_and_binom
     {d : ℕ}
     (A : Finset (EuclideanSpace F (Fin d)))
@@ -391,6 +430,9 @@ inner product on (A → F), denoted by Ω_F_A_s_orth.
 Since the inner product is non-degenerate (and the dimension is
 finite), we have card A = dim (A → F) = dim Ω_F_A_s_orth +
 dim Ω_F_A_s = dim Ω_F_A_s_orth + dim A s.
+-/
+/--
+@isnad1 id=other.0h4v.s14.cb3d78517fa1 from=translated src=- shape=d372d039 vocab=d992febc
 -/
 lemma orthogonal_complement_dimension
     {d : ℕ}
@@ -460,6 +502,9 @@ eval ((Fin.append a b) ∘ Fin.cast (by rw [two_mul])) (monomial m 1)
 = eval a (monomial (m_left m) 1) * eval b (monomial (m_right m) 1).
 This follows from the definition of evaluation on monomials.
 -/
+/--
+@isnad1 id=other.0h5v.s10.3245c95e9345 from=translated src=- shape=b4253767 vocab=af83422e
+-/
 lemma eval_split {d : ℕ}
     (m : Fin (2 * d) →₀ ℕ)
     (a b : EuclideanSpace F (Fin d)) :
@@ -513,6 +558,9 @@ We prove the subadditivity of the matrix rank:
 rank(A + B) ≤ rank(A) + rank(B).
 This is a standard linear algebra result.
 -/
+/--
+@isnad1 id=le.0h4v.s6.19dad6160909 from=translated src=- shape=6b2738c4 vocab=5713282b
+-/
 lemma matrix_rank_add_le {n : Type*} [Fintype n]
   (A B : Matrix n n F) :
   (A + B).rank ≤ A.rank + B.rank := by
@@ -539,6 +587,9 @@ size of the complementary block, which is dim Ω_F_A_s +
 dim Ω_F_A_s = 2 * dim A s. Therefore, the rank of M
 is bounded by 2 * dim A s.
 This argument relies on the first, third, and fourth preliminary lemmas.
+-/
+/--
+@isnad1 id=other.1h5v.s9.79b233fcd780 from=translated src=- shape=89ac0a40 vocab=504696a5
 -/
 lemma Croot_Lev_Pach_lemma_generalised_1st_part
     {d : ℕ}

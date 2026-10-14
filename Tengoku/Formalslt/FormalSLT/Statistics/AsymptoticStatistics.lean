@@ -13,6 +13,7 @@ governed TheoremPath claim is broader: continuity on a limit-a.s. set, plus
 probability and almost-sure variants. This wrapper must therefore stay scoped
 and not be used as a full-page claim verification.
 Claim-facing wrapper for theorempath.com evidence entry `claim:asymptotic-statistics::continuous-mapping-theorem`.
+@isnad1 id=tendstoi.2h13v.s7.626820c9c853 from=translated src=- shape=1dde8194 vocab=db008a3e
 -/
 theorem continuousMappingTheoremContinuous
     {ι E F Ω' : Type*} {Ω : ι → Type*} {m : ∀ i, MeasurableSpace (Ω i)}
@@ -40,6 +41,7 @@ instances of `continuousMappingTheoremContinuous` applied to the joint limit.
 This wrapper is therefore a scoped Lean artifact, not a full-page claim
 verification.
 Claim-facing wrapper for theorempath.com evidence entry `claim:asymptotic-statistics::slutsky-theorem`.
+@isnad1 id=tendstoi.3h16v.s8.edd5e36ed37a from=translated src=- shape=2a057ba0 vocab=5ecaf705
 -/
 theorem slutskyTheoremPair
     {ι E E' Ω' Ω'' : Type*} {l : Filter ι} [l.IsCountablyGenerated]
@@ -67,6 +69,7 @@ to a constant `c` (in the same seminormed additive group as `X n`), then
 This is one of the standard Slutsky corollaries listed on the
 `asymptotic-statistics` page. It follows from `slutskyTheoremPair` composed
 with the continuous map `(x, y) ↦ x + y`.
+@isnad1 id=tendstoi.3h14v.s7.5c63f9f647c8 from=translated src=- shape=ec2e5240 vocab=707bb4d6
 -/
 theorem slutskyTheoremAdd
     {ι E Ω' Ω'' : Type*} {l : Filter ι} [l.IsCountablyGenerated]
@@ -91,6 +94,7 @@ on `E × E'`, then `g (X n, Y n) → g (Z, c)` in distribution.
 This is the general continuous-function form of Slutsky from which the
 addition, multiplication, and (where defined) ratio corollaries follow as
 special cases.
+@isnad1 id=tendstoi.4h18v.s8.e8955a54130f from=translated src=- shape=5b259c81 vocab=9bde3082
 -/
 theorem slutskyTheoremContinuous
     {ι E E' F Ω' Ω'' : Type*} {l : Filter ι} [l.IsCountablyGenerated]

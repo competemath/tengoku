@@ -24,7 +24,9 @@ noncomputable section
 
 variable {Ω T : Type*}
 
-/-- Entropy from a positive antitone covering-number profile is antitone. -/
+/-- Entropy from a positive antitone covering-number profile is antitone.
+@isnad1 id=antitone.2h1v.s5.c6ba4b64752e from=translated src=- shape=e7fe068c vocab=8d3f4fd3
+-/
 theorem coveringNumber_entropy_antitone
     (coveringNumberAtRadius : ℝ → ℕ)
     (hcover_antitone : Antitone coveringNumberAtRadius)
@@ -43,6 +45,7 @@ theorem coveringNumber_entropy_antitone
 /--
 Interval integrability of the finite covering-number entropy profile from
 antitonicity and positivity.
+@isnad1 id=interval.2h3v.s5.93eb283cb715 from=translated src=- shape=ef8aa23e vocab=4676299e
 -/
 theorem coveringNumber_entropy_integrable_of_antitone
     (coveringNumberAtRadius : ℝ → ℕ) (a b : ℝ)
@@ -57,6 +60,7 @@ theorem coveringNumber_entropy_integrable_of_antitone
 /--
 Interval-integrability compatibility wrapper for callers that still carry a
 finite boundedness receipt on the interval.
+@isnad1 id=interval.3h3v.s6.cd3a8590cfaf from=translated src=- shape=7606ad70 vocab=4819a9b1
 -/
 theorem coveringNumber_entropy_integrable
     (coveringNumberAtRadius : ℝ → ℕ) (a b : ℝ)
@@ -75,6 +79,7 @@ Dyadic upper-sum comparison for an abstract antitone entropy profile. The
 factor is `2` for the finite truncated interval
 `[radiusScale / 2^(m+1), radiusScale / 2]`; the later Dudley theorem pays one
 more factor `2` when rewriting geometric radii as dyadic annulus widths.
+@isnad1 id=le.3h3v.s7.5de905237394 from=translated src=- shape=c361b2ae vocab=16447aa7
 -/
 theorem dyadic_sum_le_entropy_integral
     {radiusScale : ℝ} (m : ℕ) (entropyAtRadius : ℝ → ℝ)

@@ -31,7 +31,9 @@ variable {n : ℕ}
 /-! ## Helper lemmas -/
 
 /-- A Rademacher sign times a value is bounded by the absolute value:
-`signOfBool(b) · a ≤ |a|`. -/
+`signOfBool(b) · a ≤ |a|`.
+@isnad1 id=le.0h2v.s4.dd94d69a866d from=translated src=- shape=1fa4b605 vocab=6cda863b
+-/
 lemma signOfBool_mul_le_abs (b : Bool) (a : ℝ) :
     signOfBool b * a ≤ |a| :=
   le_trans (le_abs_self _)
@@ -46,7 +48,9 @@ the full class is bounded by `ε` plus the Rademacher complexity of the
 net class.
 
 The proof decomposes each σ-weighted sum into a residual (bounded by ε
-via `|σ_k| = 1`) and a net term (bounded by `sup` over `κ`). -/
+via `|σ_k| = 1`) and a net term (bounded by `sup` over `κ`).
+@isnad1 id=le.3h9v.s7.23c47535d4e1 from=translated src=- shape=90a11d18 vocab=c18df83c
+-/
 theorem rademacher_covering_bound
     {ι κ Z : Type*} [Fintype ι] [Nonempty ι] [Fintype κ] [Nonempty κ]
     (ℓ : ι → Z → ℝ) (g : κ → Z → ℝ) (z : Fin n → Z)
@@ -124,7 +128,9 @@ theorem rademacher_covering_bound
 
 /-- **Rademacher covering + Massart**: combining the ε-net peeling with
 Massart's finite-class bound on the net gives
-`R̂_S(F) ≤ ε + B · √(2 · log|N| / n)`. -/
+`R̂_S(F) ≤ ε + B · √(2 · log|N| / n)`.
+@isnad1 id=le.6h10v.s7.b839705c2b48 from=translated src=- shape=4805db70 vocab=41cc482f
+-/
 theorem rademacher_covering_massart
     {ι κ Z : Type*} [Fintype ι] [Nonempty ι] [Fintype κ] [Nonempty κ]
     (ℓ : ι → Z → ℝ) (g : κ → Z → ℝ) (z : Fin n → Z)

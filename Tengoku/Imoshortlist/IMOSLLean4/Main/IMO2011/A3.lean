@@ -36,7 +36,9 @@ namespace IMO2011A3
 def good [NonUnitalNonAssocSemiring R] (f g : R → R) :=
   ∀ x y, g (f (x + y)) = f x + (2 • x + y) * g y
 
-/-- The pair `(x ↦ x^2 + C, x ↦ x)` is good for any `C : R`. -/
+/-- The pair `(x ↦ x^2 + C, x ↦ x)` is good for any `C : R`.
+@isnad1 id=good.0h2v.s5.d6d708454864 from=translated src=- shape=5f93343f vocab=ad888b69
+-/
 theorem mul_self_add_const_is_good [NonUnitalNonAssocCommSemiring R] (C : R) :
     good (λ x ↦ x * x + C) id := by
   intro x y; calc (x + y) * (x + y) + C
@@ -44,7 +46,9 @@ theorem mul_self_add_const_is_good [NonUnitalNonAssocCommSemiring R] (C : R) :
     _ = x * x + (x + (x + y)) * y + C := by rw [add_assoc (x * x), ← add_mul]
     _ = x * x + C + (2 • x + y) * y := by rw [two_nsmul, add_right_comm, add_assoc x]
 
-/-- The pair `(0, 0)` is good. -/
+/-- The pair `(0, 0)` is good.
+@isnad1 id=good.0h1v.s5.6e04c3d235e3 from=translated src=- shape=fa8556e5 vocab=eca93ae0
+-/
 theorem zero_is_good [NonUnitalNonAssocSemiring R] : good (λ _ : R ↦ 0) (λ _ ↦ 0) :=
   λ _ _ ↦ ((zero_add _).trans (mul_zero _)).symm
 
@@ -55,13 +59,17 @@ section
 variable [NonUnitalNonAssocRing R] {f g : R → R} (h : good f g)
 include h
 
-/-- We have `g(f(x)) = -x` for any `x : R`. -/
+/-- We have `g(f(x)) = -x` for any `x : R`.
+@isnad1 id=eq.1h4v.s5.6e51aa996b6a from=translated src=- shape=057afb7d vocab=ffe89b2c
+-/
 theorem gf_eq_f_neg (x : R) : g (f x) = f (-x) := by
   specialize h (-x) (2 • x)
   rwa [← nsmul_add, neg_add_cancel, nsmul_zero, zero_mul,
     add_zero, two_nsmul, neg_add_cancel_left] at h
 
-/-- We have `f(-a) = f(-b) + (a - b) g(a + b)` for any `a, b : R`. -/
+/-- We have `f(-a) = f(-b) + (a - b) g(a + b)` for any `a, b : R`.
+@isnad1 id=eq.1h5v.s6.49b1c18c9182 from=translated src=- shape=6c85b01c vocab=bdbe402f
+-/
 theorem f_neg_eq_f_neg_add (a b : R) : f (-a) = f (-b) + (a - b) * g (a + b) := calc
   _ = g (f a) := (h.gf_eq_f_neg a).symm
   _ = g (f (-b + (a + b))) := congrArg (g ∘ f) (neg_add_cancel_comm_assoc b a).symm
@@ -69,11 +77,15 @@ theorem f_neg_eq_f_neg_add (a b : R) : f (-a) = f (-b) + (a - b) * g (a + b) := 
   _ = f (-b) + (a - b) * g (a + b) := by
     rw [two_nsmul, add_assoc, neg_add_cancel_comm_assoc, neg_add_eq_sub]
 
-/-- We have `f(-x) = x g(x) + f(0)` for any `x : R`. -/
+/-- We have `f(-x) = x g(x) + f(0)` for any `x : R`.
+@isnad1 id=eq.1h4v.s6.e7c610cdb562 from=translated src=- shape=fb1bd305 vocab=d2656a5a
+-/
 theorem f_eq_x_mul_g_add_f_zero (x : R) : f (-x) = x * g x + f 0 := by
   rw [h.f_neg_eq_f_neg_add x 0, neg_zero, sub_zero, add_zero, add_comm]
 
-/-- We have `(f(x) - xg(x)) - (f(y) - yg(y)) = 2(yg(x) - xg(y))` for any `x, y : R`. -/
+/-- We have `(f(x) - xg(x)) - (f(y) - yg(y)) = 2(yg(x) - xg(y))` for any `x, y : R`.
+@isnad1 id=eq.1h5v.s7.202dd4980230 from=translated src=- shape=01da88b5 vocab=c5273af7
+-/
 theorem f_sub_self_mul_g_diff (x y : R) :
     (f x - x * g x) - (f y - y * g y) = 2 • (y * g x - x * g y) := by
   have h0 (a b : R) : g (f (a + b)) = f a + 2 • (a * g b) + b * g b := by
@@ -81,7 +93,9 @@ theorem f_sub_self_mul_g_diff (x y : R) :
   rw [nsmul_sub, sub_eq_sub_iff_add_eq_add, ← add_sub_right_comm, ← add_sub_assoc,
     sub_eq_sub_iff_add_eq_add, ← h0, add_comm _ (f y), ← h0, add_comm]
 
-/-- We have `2y(g(x) - g(0)) = 2x(g(y) - g(0))` for any `x, y : R`. -/
+/-- We have `2y(g(x) - g(0)) = 2x(g(y) - g(0))` for any `x, y : R`.
+@isnad1 id=eq.1h5v.s7.20e3c1178bc7 from=translated src=- shape=2d988fff vocab=c5273af7
+-/
 theorem two_nsmul_mul_g_sub_g_zero (x y : R) :
     2 • (y * (g x - g 0)) = 2 • (x * (g y - g 0)) := by
   suffices 2 • (y * g x - x * g y) = 2 • (y * g 0) - 2 • (x * g 0) by
@@ -102,7 +116,9 @@ section
 
 variable [NonAssocRing R]
 
-/-- If `2` is not a zero divisor in `R`, then `g` is (right) linear. -/
+/-- If `2` is not a zero divisor in `R`, then `g` is (right) linear.
+@isnad1 id=ex.2h3v.s6.e2ce42e12b5a from=translated src=- shape=cddbc9a1 vocab=9bff38cb
+-/
 theorem g_right_linear (hR2 : IsLeftRegular (2 : R)) {f g : R → R} (h : good f g) :
     ∃ A B : R, ∀ x : R, g x = x * A + B := by
   refine ⟨g 1 - g 0, g 0, λ x ↦ eq_add_of_sub_eq (hR2 ?_)⟩
@@ -113,7 +129,9 @@ theorem g_right_linear (hR2 : IsLeftRegular (2 : R)) {f g : R → R} (h : good f
     _ = 2 * (x * (g 1 - g 0)) := nsmul_eq_mul _ _
 
 /-- If `R` is a domain and `2 ≠ 0` in `R`, then `(f, g)` is either
-  `(x ↦ x^2 + C, x ↦ x)` for some `C : R` or `(0, 0)`. -/
+  `(x ↦ x^2 + C, x ↦ x)` for some `C : R` or `(0, 0)`.
+@isnad1 id=or.2h3v.s7.2acff1977b5d from=translated src=- shape=dca62c85 vocab=f99a4730
+-/
 theorem solve_of_NoZeroDivisors_two_ne_zero
     [IsLeftCancelMulZero R] (hR2 : (2 : R) ≠ 0) {f g : R → R} (h : good f g) :
     ((∃ C, f = λ x ↦ x * x + C) ∧ g = id) ∨ (f = (λ _ ↦ 0) ∧ g = (λ _ ↦ 0)) := by
@@ -170,7 +188,9 @@ end
 
 end good
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.1h3v.s7.d174c61e6ab2 from=translated src=- shape=0f43e8a1 vocab=0b3c9f67
+-/
 theorem final_solution
     [NonAssocCommRing R] [IsLeftCancelMulZero R] (hR2 : (2 : R) ≠ 0) {f g : R → R} :
     good f g ↔ ((∃ C, f = λ x ↦ x * x + C) ∧ g = id) ∨ (f = (λ _ ↦ 0) ∧ g = (λ _ ↦ 0)) := by
