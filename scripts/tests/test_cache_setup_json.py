@@ -23,7 +23,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 CACHE_SH = ROOT / "scripts" / "cache.sh"
 sys.path.insert(0, str(HERE))
-from test_topup import BASE_FILES, TOOL, mark, run, tree  # noqa: E402
+from test_topup import BASE_FILES, mark, run, tree  # noqa: E402
 
 SJ = "build/ir/Tengoku/Mod.setup.json"
 FILES = {
@@ -45,12 +45,21 @@ class CacheSh(unittest.TestCase):
 
     def repo_with_build(self) -> Path:
         d = tree(FILES)
-        for args in (["init", "-q", "-b", "main"], ["-c", "user.name=t", "-c", "user.email=t@example.invalid", "commit", "-q", "--allow-empty", "-m", "x"]):
+        for args in (
+            ["init", "-q", "-b", "main"],
+            ["-c", "user.name=t", "-c", "user.email=t@example.invalid", "commit", "-q", "--allow-empty", "-m", "x"],
+        ):
             subprocess.run(["git", *args], cwd=d, check=True, capture_output=True)
         return d
 
     def listing(self, parts_dir: Path) -> list[str]:
-        cat = subprocess.run(f'cat "{parts_dir}"/tengoku-cache.tar.zst.part-* | zstd -d -q | tar -tf -', shell=True, capture_output=True, text=True, check=True)
+        cat = subprocess.run(
+            f'cat "{parts_dir}"/tengoku-cache.tar.zst.part-* | zstd -d -q | tar -tf -',
+            shell=True,
+            capture_output=True,
+            text=True,
+            check=True,
+        )
         return [ln for ln in cat.stdout.splitlines() if ln and not ln.endswith("/")]
 
     def test_pack_leaves_the_setup_files_out(self):
@@ -65,7 +74,9 @@ class CacheSh(unittest.TestCase):
         # a cache published before this change: setup.json inside the tarball
         src = tree(FILES)
         parts = Path(tempfile.mkdtemp())
-        subprocess.run(f'tar -C "{src}/.lake" -cf - build | zstd -q | split -b 1900m - "{parts}/tengoku-cache.tar.zst.part-"', shell=True, check=True)
+        subprocess.run(
+            f'tar -C "{src}/.lake" -cf - build | zstd -q | split -b 1900m - "{parts}/tengoku-cache.tar.zst.part-"', shell=True, check=True
+        )
         self.assertIn(SJ, self.listing(parts), "the fixture must hold the file the unpack is to leave out")
         dest = Path(tempfile.mkdtemp())
         r = subprocess.run(["bash", str(CACHE_SH), "unpack", str(parts)], cwd=dest, env=self.env(dest), capture_output=True, text=True)
