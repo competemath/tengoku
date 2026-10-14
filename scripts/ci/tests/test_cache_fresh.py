@@ -15,54 +15,35 @@ from test_gates import Repo  # noqa: E402
 
 
 class TimeBudget(unittest.TestCase):
-    """The wait comes out of the queue's 40-minute check, with everything after it still to run (CodeRabbit, 2026-10-05: a 25-minute wait left 15 minutes for a seed
-    of up to 4, candidates and axioms of up to 6, a build capped at 20 and a pack of 2). The durations are those of the real queue runs of 2026-10-05
-    (seed 133 to 219 s, candidates 96 s, axioms 201 s, build 56 to 103 s, checkout and disk 150 to 170 s)."""
+    """What the queue's build can take, worst case, against the queue's check timeout (the ruleset's `check_response_timeout_minutes`, 120 on tengoku).
+    Measured on the real runs of 2026-10-14 (tag groups of 351 and 353 modules): checkout, toolchain and disk 3.7 min, seed 4.4, candidates 21.4,
+    axioms 4.1, tags 6.1, leak report 16.6 (48 min between them; 60 leaves room for a larger group), the whole-library build 3 to 6 when the group
+    is a tag group, and 25 for a part of 286 modules (the chain test of 2026-10-13), hence the 35-minute cap."""
 
-    LIMIT = 40
-    BEFORE, SEED, CANDIDATES, PACK = 3, 4, 6, 2  # minutes, worst cases of the real runs
+    LIMIT = 120
+    BEFORE, SEED, MIDDLE, PACK = 4, 5, 60, 3  # minutes: worst cases of the real runs; MIDDLE = candidates, axioms, tags and the leak report
     WORKFLOW = HERE.parent.parent.parent / ".github" / "workflows" / "queue-gate.yml"
 
-    def test_the_wait_and_what_follows_fit_the_queue_limit(self):
+    def test_the_restore_and_what_follows_fit_the_queue_limit(self):
+        """Since the deltas (scripts/lake_cache.py) the queue no longer waits for a fresh cache: it restores what merged since the nightly, under its
+        own cap. That cap takes the old wait's place in the budget."""
         text = self.WORKFLOW.read_text(encoding="utf-8")
-        waits = re.findall(r"cache_fresh\.py \"\$BASE\" --wait (\d+)", text)
+        self.assertNotIn("cache_fresh.py", text, "the queue no longer refuses a stale cache: it restores the deltas instead")
+        restores = re.findall(r"timeout -k \d+ (\d+)m python3 scripts/lake_cache\.py restore", text)
         caps = re.findall(r"timeout -k \d+ (\d+)m lake build Tengoku\.All", text)
-        self.assertEqual((len(waits), len(caps)), (1, 1), "the step or the build's own cap was not found")
-        wait, cap = int(waits[0]), int(caps[0])
-        worst = self.BEFORE + wait + self.SEED + self.CANDIDATES + cap + self.PACK
+        self.assertEqual((len(restores), len(caps)), (1, 1), "the restore step or the build's own cap was not found")
+        restore, cap = int(restores[0]), int(caps[0])
+        worst = self.BEFORE + restore + self.SEED + self.MIDDLE + cap + self.PACK
+        job = int(re.search(r"queue-build:.*?timeout-minutes: (\d+)", text, re.S).group(1))
         self.assertLessEqual(
-            worst, self.LIMIT, f"waiting {wait} min, then a build capped at {cap}, can take {worst} min of the queue's {self.LIMIT}"
+            job, self.LIMIT, f"the job's own timeout ({job} min) must end before the queue gives up on the check ({self.LIMIT})"
         )
-
-
-class TopupSize(unittest.TestCase):
-    """2026-10-11: the top-up (the difference from the nightly cache) reached 2.15 GiB, the release upload answered HTTP 422, and a group whose build had passed left
-    the queue. The step that packs it must turn one over the limit into an incomplete merge (the cache build that follows resets the difference)."""
-
-    WORKFLOW = TimeBudget.WORKFLOW
-
-    def step(self):
-        text = self.WORKFLOW.read_text(encoding="utf-8")
-        start = text.index('scripts/cache.sh topup-make "$GITHUB_SHA" topup-out')
-        return text[start : text.index("\n      - ", start)]
-
-    def test_a_top_up_over_the_asset_limit_is_marked_incomplete(self):
-        step = self.step()
-        limit = re.search(r"limit=\$\(\((\d+) \* 1024 \* 1024 \* 1024 - (\d+) \* 1024 \* 1024\)\)", step)
-        self.assertIsNotNone(limit, "the size limit was not found after the pack")
-        self.assertLess(
-            int(limit.group(1)) * 1024**3 - int(limit.group(2)) * 1024**2, 2 * 1024**3, "the limit must be under GitHub's 2 GiB asset cap"
+        self.assertLessEqual(worst, job, f"the steps can add up to {worst} min but the job is stopped at {job}")
+        self.assertLessEqual(
+            worst,
+            self.LIMIT,
+            f"restoring for up to {restore} min, then a build capped at {cap}, can take {worst} min of the queue's {self.LIMIT}",
         )
-        self.assertIn('[ "$size" -ge "$limit" ]', step)
-        over = step[step.index('[ "$size" -ge "$limit" ]') : step.index('echo "state=complete"')]
-        self.assertIn("state=incomplete", over)
-        self.assertIn("rm -f topup-out/topup-*", over)  # nothing is left to be uploaded
-        self.assertIn(".incomplete", over)
-
-    def test_a_small_top_up_is_still_complete(self):
-        step = self.step()
-        self.assertEqual(step.count('echo "state=complete"'), 1)
-        self.assertGreater(step.index('echo "state=complete"'), step.index('[ "$size" -ge "$limit" ]'))
 
 
 class CommitIds(unittest.TestCase):
