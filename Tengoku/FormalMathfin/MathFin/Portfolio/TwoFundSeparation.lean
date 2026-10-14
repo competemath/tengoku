@@ -47,7 +47,9 @@ noncomputable def cmlMean (μ_t r_f α : ℝ) : ℝ := α * μ_t + (1 - α) * r_
 /-- CML portfolio standard deviation at tangent weight `α`. -/
 noncomputable def cmlStdev (σ_t α : ℝ) : ℝ := α * σ_t
 
-/-- **CML equation**: `μ_combined = r_f + σ_combined · Sharpe_t`. -/
+/-- **CML equation**: `μ_combined = r_f + σ_combined · Sharpe_t`.
+@isnad1 id=eq.1h4v.s5.07aef17fe36a from=translated src=- shape=15307c22 vocab=cf6dbbf9
+-/
 lemma cml_equation (μ_t σ_t r_f α : ℝ) (hσ_t : σ_t ≠ 0) :
     cmlMean μ_t r_f α =
       r_f + cmlStdev σ_t α * sharpeRatio μ_t r_f σ_t := by
@@ -56,7 +58,9 @@ lemma cml_equation (μ_t σ_t r_f α : ℝ) (hσ_t : σ_t ≠ 0) :
   ring
 
 /-- **Sharpe invariance along the CML**: for `α ≠ 0` and `σ_t ≠ 0`, any
-CML portfolio has the same Sharpe ratio as the tangent portfolio. -/
+CML portfolio has the same Sharpe ratio as the tangent portfolio.
+@isnad1 id=eq.2h4v.s5.85f3faa22f5f from=translated src=- shape=f52f6253 vocab=258b9ff8
+-/
 lemma cml_sharpeRatio_invariant (μ_t σ_t r_f α : ℝ)
     (hα : α ≠ 0) (hσ_t : σ_t ≠ 0) :
     sharpeRatio (cmlMean μ_t r_f α) r_f (cmlStdev σ_t α) =
@@ -70,7 +74,9 @@ lemma cml_sharpeRatio_invariant (μ_t σ_t r_f α : ℝ)
 `α = σ_p / σ_t` reproduces the target standard deviation,
 `cmlStdev σ_t (σ_p/σ_t) = σ_p`. This is the decomposition step of two-fund
 separation: the weight is read off the target stdev (the statement is the
-recovery identity; it does not itself assert uniqueness). -/
+recovery identity; it does not itself assert uniqueness).
+@isnad1 id=eq.1h2v.s4.cef3302676ea from=translated src=- shape=64ed5bca vocab=57e64aea
+-/
 lemma cml_weight_recovers_stdev (σ_t σ_p : ℝ) (hσ_t : σ_t ≠ 0) :
     cmlStdev σ_t (σ_p / σ_t) = σ_p := by
   unfold cmlStdev
@@ -79,14 +85,18 @@ lemma cml_weight_recovers_stdev (σ_t σ_p : ℝ) (hσ_t : σ_t ≠ 0) :
 /-- **CML decomposition — weight uniqueness**: any weight attaining the
 target stdev is the canonical one, `cmlStdev σ_t α = σ_p ⟹ α = σ_p / σ_t`
 (Mathlib's `eq_div_iff`). Together with `cml_weight_recovers_stdev` this is
-the full unique-weight statement of the decomposition. -/
+the full unique-weight statement of the decomposition.
+@isnad1 id=eq.2h3v.s5.0733623857fe from=translated src=- shape=190952b5 vocab=57e64aea
+-/
 lemma cml_weight_unique (σ_t α σ_p : ℝ) (hσ_t : σ_t ≠ 0)
     (h : cmlStdev σ_t α = σ_p) : α = σ_p / σ_t :=
   (eq_div_iff hσ_t).mpr h
 
 /-- **Mean recovery on the CML**: a portfolio with std deviation `σ_p` on the
 CML through `r_f` with tangent slope `Sharpe_t` has expected return
-`μ_p = r_f + σ_p · Sharpe_t`. -/
+`μ_p = r_f + σ_p · Sharpe_t`.
+@isnad1 id=eq.1h4v.s5.1e6f765ba544 from=translated src=- shape=8b4b9c41 vocab=65b318c7
+-/
 lemma cml_mean_at_stdev (μ_t σ_t r_f σ_p : ℝ) (hσ_t : σ_t ≠ 0) :
     cmlMean μ_t r_f (σ_p / σ_t) = r_f + σ_p * sharpeRatio μ_t r_f σ_t := by
   unfold cmlMean sharpeRatio

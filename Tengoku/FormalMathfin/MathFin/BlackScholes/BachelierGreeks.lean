@@ -46,7 +46,9 @@ private lemma hasDerivAt_bachelierD_S {K σ T : ℝ} (hσ : 0 < σ) (hT : 0 < T)
     convert (hasDerivAt_id S).sub_const K using 1 <;> rfl
   exact h_num.div_const (σ * Real.sqrt T)
 
-/-- **Bachelier delta**: `∂V/∂S = Φ(d)`. -/
+/-- **Bachelier delta**: `∂V/∂S = Φ(d)`.
+@isnad1 id=hasderiv.2h4v.s6.96670685283d from=translated src=- shape=364e0cf3 vocab=1e1056f9
+-/
 lemma hasDerivAt_bachelierV_S {K σ T : ℝ} (hσ : 0 < σ) (hT : 0 < T) (S : ℝ) :
     HasDerivAt (fun s ↦ bachelierV K σ T s) (Phi (bachelierD S K σ T)) S := by
   have h_sqrt_pos : 0 < Real.sqrt T := Real.sqrt_pos.mpr hT
@@ -78,7 +80,9 @@ lemma hasDerivAt_bachelierV_S {K σ T : ℝ} (hσ : 0 < σ) (hT : 0 < T) (S : �
   field_simp
   ring
 
-/-- **Bachelier vega**: `∂V/∂σ = √T · ϕ(d)`. -/
+/-- **Bachelier vega**: `∂V/∂σ = √T · ϕ(d)`.
+@isnad1 id=hasderiv.2h4v.s6.f7d42f2d08cd from=translated src=- shape=c44e0720 vocab=36f6c4db
+-/
 lemma hasDerivAt_bachelierV_sigma {K T : ℝ} (hT : 0 < T)
     {S σ : ℝ} (hσ : 0 < σ) :
     HasDerivAt (fun s ↦ bachelierV K s T S)
@@ -116,7 +120,9 @@ lemma hasDerivAt_bachelierV_sigma {K T : ℝ} (hT : 0 < T)
   field_simp
   ring
 
-/-- **Bachelier gamma**: `∂²V/∂S² = ϕ(d) / (σ √T)`. Chain rule on `Φ(d(S))`. -/
+/-- **Bachelier gamma**: `∂²V/∂S² = ϕ(d) / (σ √T)`. Chain rule on `Φ(d(S))`.
+@isnad1 id=hasderiv.2h4v.s6.2a8812d954da from=translated src=- shape=55f53436 vocab=99a9e32a
+-/
 lemma hasDerivAt_bachelierV_SS {K σ T : ℝ} (hσ : 0 < σ) (hT : 0 < T) (S : ℝ) :
     HasDerivAt (fun s ↦ Phi (bachelierD s K σ T))
       (gaussianPDFReal 0 1 (bachelierD S K σ T) / (σ * Real.sqrt T)) S := by
@@ -127,7 +133,9 @@ lemma hasDerivAt_bachelierV_SS {K σ T : ℝ} (hσ : 0 < σ) (hT : 0 < T) (S : �
 
 /-- **Bachelier theta**: `∂V/∂T = σ · ϕ(d) / (2 √T)`.
 
-Chain-rule contributions through `d` cancel via `(S − K) · d / √T = σ · d²`. -/
+Chain-rule contributions through `d` cancel via `(S − K) · d / √T = σ · d²`.
+@isnad1 id=hasderiv.2h4v.s6.b78f34347f24 from=translated src=- shape=79933cb1 vocab=5b286cad
+-/
 lemma hasDerivAt_bachelierV_T {K σ : ℝ} (hσ : 0 < σ) {S T : ℝ} (hT : 0 < T) :
     HasDerivAt (fun t ↦ bachelierV K σ t S)
       (σ * gaussianPDFReal 0 1 (bachelierD S K σ T) / (2 * Real.sqrt T)) T := by

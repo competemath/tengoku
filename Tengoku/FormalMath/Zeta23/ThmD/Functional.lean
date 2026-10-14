@@ -54,23 +54,37 @@ def HD (lam : ℝ) : ℝ := 2 - 1 / cStar lam
 
 /-! ### Elementary range facts -/
 
+/--
+@isnad1 id=le.1h1v.s4.0c7cd6049b75 from=translated src=- shape=35bd48ee vocab=493c6f39
+-/
 theorem theta_nonneg {lam : ℝ} (h : 0 ≤ lam) : 0 ≤ theta lam := by
   unfold theta; positivity
 
+/--
+@isnad1 id=lt.1h1v.s4.bfc99bc76a8f from=translated src=- shape=35bd48ee vocab=baa9dd8f
+-/
 theorem theta_pos {lam : ℝ} (h : 0 < lam) : 0 < theta lam := by
   unfold theta; positivity
 
+/--
+@isnad1 id=le.2h1v.s5.23e38e66d73c from=translated src=- shape=2afb495a vocab=09bc4d58
+-/
 theorem theta_le {lam : ℝ} (h : lam ≤ 1) (_h0 : 0 ≤ lam) : theta lam ≤ (Real.sqrt 2)⁻¹ := by
   unfold theta
   rw [div_le_iff₀ (by positivity), inv_mul_cancel₀ (by positivity)]
   exact h
 
+/--
+@isnad1 id=lt.0h0v.s4.390473987e17 from=translated src=- shape=cd1182ec vocab=5de1a369
+-/
 theorem sqrt_two_inv_lt_one : (Real.sqrt 2)⁻¹ < 1 := by
   rw [inv_lt_one_iff₀]
   right
   nlinarith [Real.sq_sqrt (by norm_num : (2:ℝ) ≥ 0), Real.sqrt_nonneg 2]
 
-/-- on [0, 1/√2] the denominator of cStar is ≥ 3/4  (cos x ≥ 1 − x²/2 and x sin x ≥ 0). -/
+/-- on [0, 1/√2] the denominator of cStar is ≥ 3/4  (cos x ≥ 1 − x²/2 and x sin x ≥ 0).
+@isnad1 id=le.2h1v.s6.921022b569c0 from=translated src=- shape=2d16f0d6 vocab=ce12a6cf
+-/
 theorem theta_sq_le {lam : ℝ} (h0 : 0 ≤ lam) (h1 : lam ≤ 1) : theta lam ^ 2 ≤ 1 / 2 := by
   have h := theta_le h1 h0
   have h2 : ((Real.sqrt 2)⁻¹) ^ 2 = 1 / 2 := by
@@ -79,22 +93,34 @@ theorem theta_sq_le {lam : ℝ} (h0 : 0 ≤ lam) (h1 : lam ≤ 1) : theta lam ^ 
   calc theta lam ^ 2 ≤ ((Real.sqrt 2)⁻¹) ^ 2 := pow_le_pow_left₀ (theta_nonneg h0) h 2
     _ = 1 / 2 := h2
 
+/--
+@isnad1 id=lt.2h1v.s5.7d7452dca35e from=translated src=- shape=1835e8b1 vocab=86c34fe1
+-/
 theorem theta_lt_pi_div_two {lam : ℝ} (h0 : 0 ≤ lam) (h1 : lam ≤ 1) :
     theta lam < π / 2 := by
   have h := theta_le h1 h0
   have := sqrt_two_inv_lt_one
   nlinarith [Real.pi_gt_three]
 
+/--
+@isnad1 id=le.2h1v.s5.9729add5440e from=translated src=- shape=ef2a8964 vocab=567c1eb5
+-/
 theorem sin_theta_nonneg {lam : ℝ} (h0 : 0 ≤ lam) (h1 : lam ≤ 1) :
     0 ≤ Real.sin (theta lam) := by
   apply Real.sin_nonneg_of_nonneg_of_le_pi (theta_nonneg h0)
   nlinarith [theta_lt_pi_div_two h0 h1, Real.pi_gt_three]
 
+/--
+@isnad1 id=lt.2h1v.s5.02297abec26b from=translated src=- shape=83fe09a3 vocab=2203fb7a
+-/
 theorem sin_theta_pos {lam : ℝ} (h0 : 0 < lam) (h1 : lam ≤ 1) :
     0 < Real.sin (theta lam) := by
   apply Real.sin_pos_of_pos_of_lt_pi (theta_pos h0)
   nlinarith [theta_lt_pi_div_two h0.le h1, Real.pi_gt_three]
 
+/--
+@isnad1 id=lt.2h1v.s5.8a82b88a1e64 from=translated src=- shape=acf7d323 vocab=f93a37d8
+-/
 theorem cos_theta_pos {lam : ℝ} (h0 : 0 ≤ lam) (h1 : lam ≤ 1) :
     0 < Real.cos (theta lam) := by
   apply Real.cos_pos_of_mem_Ioo
@@ -102,6 +128,9 @@ theorem cos_theta_pos {lam : ℝ} (h0 : 0 ≤ lam) (h1 : lam ≤ 1) :
   · nlinarith [theta_nonneg h0, Real.pi_gt_three]
   · exact theta_lt_pi_div_two h0 h1
 
+/--
+@isnad1 id=le.2h1v.s6.c10510dfd161 from=translated src=- shape=ac5d1601 vocab=d1591753
+-/
 theorem cStar_denom_ge {lam : ℝ} (h0 : 0 ≤ lam) (h1 : lam ≤ 1) :
     3 / 4 ≤ Real.cos (theta lam) + theta lam * Real.sin (theta lam) := by
   have h1' := Real.one_sub_sq_div_two_le_cos (x := theta lam)
@@ -109,6 +138,9 @@ theorem cStar_denom_ge {lam : ℝ} (h0 : 0 ≤ lam) (h1 : lam ≤ 1) :
   have h3 := mul_nonneg (theta_nonneg h0) (sin_theta_nonneg h0 h1)
   linarith
 
+/--
+@isnad1 id=lt.2h1v.s5.6c0135d5e60d from=translated src=- shape=91c05246 vocab=6f3cd405
+-/
 theorem cStar_pos {lam : ℝ} (h0 : 0 < lam) (h1 : lam ≤ 1) : 0 < cStar lam := by
   unfold cStar
   have hn : 0 < Real.sqrt 2 * Real.sin (theta lam) := by
@@ -117,7 +149,9 @@ theorem cStar_pos {lam : ℝ} (h0 : 0 < lam) (h1 : lam ≤ 1) : 0 < cStar lam :=
   have hd := cStar_denom_ge h0.le h1
   positivity
 
-/-- Lipschitz bound on [0,1]: |c*_x − c*_y| ≤ 14|x − y| (the constant is crude). -/
+/-- Lipschitz bound on [0,1]: |c*_x − c*_y| ≤ 14|x − y| (the constant is crude).
+@isnad1 id=le.4h2v.s6.0cf204b395b7 from=translated src=- shape=06b10e00 vocab=c28b6f06
+-/
 theorem cStar_lipschitzOn {x y : ℝ} (hx0 : 0 ≤ x) (hx1 : x ≤ 1) (hy0 : 0 ≤ y) (hy1 : y ≤ 1) :
     |cStar x - cStar y| ≤ 14 * |x - y| := by
   have hs2 : (0:ℝ) < Real.sqrt 2 := by positivity
@@ -216,7 +250,9 @@ theorem cStar_lipschitzOn {x y : ℝ} (hx0 : 0 ≤ x) (hx1 : x ≤ 1) (hy0 : 0 �
         apply div_le_div₀ (by positivity) hnum (by norm_num) hden
     _ ≤ 14 * |x - y| := by rw [div_div_eq_mul_div]; nlinarith [abs_nonneg (x - y)]
 
-/-- c*_λ is continuous on [0,1] (its denominator is ≥ 3/4 there); this is all the λ → 1⁻ passage needs. -/
+/-- c*_λ is continuous on [0,1] (its denominator is ≥ 3/4 there); this is all the λ → 1⁻ passage needs.
+@isnad1 id=continuo.0h0v.s4.26d5e8fa1360 from=translated src=- shape=6c3888e7 vocab=1f5f4c71
+-/
 theorem cStar_continuousOn : ContinuousOn cStar (Set.Icc 0 1) := by
   have hnum : Continuous fun lam : ℝ => Real.sqrt 2 * Real.sin (theta lam) := by unfold theta; fun_prop
   have hden : Continuous fun lam : ℝ => Real.cos (theta lam) + theta lam * Real.sin (theta lam) := by
@@ -225,7 +261,9 @@ theorem cStar_continuousOn : ContinuousOn cStar (Set.Icc 0 1) := by
   have := cStar_denom_ge hlam.1 hlam.2
   linarith
 
-/-- c* in the paper's tan form [eq:vstar] (cos ϑ ≠ 0 on the range). -/
+/-- c* in the paper's tan form [eq:vstar] (cos ϑ ≠ 0 on the range).
+@isnad1 id=eq.2h1v.s6.e55d80a25b9e from=translated src=- shape=e9a78821 vocab=2382ae2d
+-/
 theorem cStar_eq_tan_form {lam : ℝ} (h0 : 0 ≤ lam) (h1 : lam ≤ 1) :
     cStar lam = Real.sqrt 2 * Real.tan (theta lam)
       / (1 + theta lam * Real.tan (theta lam)) := by
@@ -241,7 +279,9 @@ theorem cStar_eq_tan_form {lam : ℝ} (h0 : 0 ≤ lam) (h1 : lam ≤ 1) :
 
 /-! ### The moments of v*_λ (elementary trigonometric integrals) -/
 
-/-- a* = √2 sin ϑ / λ  (= 2 sin(ω/2)/ω for ω = √2λ = 2ϑ). -/
+/-- a* = √2 sin ϑ / λ  (= 2 sin(ω/2)/ω for ω = √2λ = 2ϑ).
+@isnad1 id=eq.0h1v.s5.ef2b48ada1b6 from=translated src=- shape=1c6f70ba vocab=aea60694
+-/
 theorem sqrt2_mul_half {lam : ℝ} : Real.sqrt 2 * lam * (1 / 2) = theta lam := by
   have hs2 : (0:ℝ) < Real.sqrt 2 := by positivity
   have hsq : Real.sqrt 2 ^ 2 = 2 := Real.sq_sqrt (by norm_num)
@@ -251,11 +291,17 @@ theorem sqrt2_mul_half {lam : ℝ} : Real.sqrt 2 * lam * (1 / 2) = theta lam := 
   rw [hsq]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s5.14285ad5372b from=translated src=- shape=e4a48379 vocab=331d8eaa
+-/
 theorem sqrt2_mul_neg_half {lam : ℝ} : Real.sqrt 2 * lam * (-(1:ℝ) / 2) = -theta lam := by
   have h := sqrt2_mul_half (lam := lam)
   ring_nf at h ⊢
   linarith
 
+/--
+@isnad1 id=eq.1h1v.s5.90e06474025f from=translated src=- shape=317b734c vocab=a0ec815e
+-/
 theorem aStar_eq {lam : ℝ} (h0 : 0 < lam) :
     aStar lam = Real.sqrt 2 * Real.sin (theta lam) / lam := by
   have hs2 : (0:ℝ) < Real.sqrt 2 := by positivity
@@ -269,7 +315,9 @@ theorem aStar_eq {lam : ℝ} (h0 : 0 < lam) :
   try rw [hsq]
   try ring
 
-/-- b* = 1/2 + sin(2ϑ)/(4ϑ). -/
+/-- b* = 1/2 + sin(2ϑ)/(4ϑ).
+@isnad1 id=eq.1h1v.s6.374166ad5408 from=translated src=- shape=e899a8f5 vocab=15b30f08
+-/
 theorem bStar_eq {lam : ℝ} (h0 : 0 < lam) :
     bStar lam = 1 / 2 + Real.sin (2 * theta lam) / (4 * theta lam) := by
   have hs2 : (0:ℝ) < Real.sqrt 2 := by positivity
@@ -381,7 +429,9 @@ private theorem kernel_eq {lam : ℝ} (h0 : 0 < lam) {s : ℝ} (hs1 : -(1:ℝ)/2
   try ring
 
 /-- The kernel identity behind J*: with β := a*/2 + cos ϑ/λ²,
-∬|s−s'| v* v* = β a* − b*/λ². -/
+∬|s−s'| v* v* = β a* − b*/λ².
+@isnad1 id=eq.2h1v.s7.29f46dbb0ec0 from=translated src=- shape=40e55341 vocab=f4341fcb
+-/
 theorem jStar_eq {lam : ℝ} (h0 : 0 < lam) (_h1 : lam ≤ 1) :
     jStar lam = (aStar lam / 2 + Real.cos (theta lam) / lam ^ 2) * aStar lam
       - bStar lam / lam ^ 2 := by
@@ -428,7 +478,9 @@ theorem jStar_eq {lam : ℝ} (h0 : 0 < lam) (_h1 : lam ≤ 1) :
   try ring
 
 /-- [eq:vstar]: c_λ(v*_λ) = c*_λ  (the algebra b* + λ²J* = λ² β a* = ϑ sin ϑ·(√2 sin ϑ/λ·…),
-collapsing to √2 sin ϑ/(cos ϑ + ϑ sin ϑ) after cancelling a*). -/
+collapsing to √2 sin ϑ/(cos ϑ + ϑ sin ϑ) after cancelling a*).
+@isnad1 id=eq.2h1v.s5.5cacd96a0993 from=translated src=- shape=1089c90f vocab=c050c6aa
+-/
 theorem cFun_vStar {lam : ℝ} (h0 : 0 < lam) (h1 : lam ≤ 1) :
     cFun lam (vStar lam) = cStar lam := by
   have hθ := theta_pos h0
@@ -457,10 +509,15 @@ theorem cFun_vStar {lam : ℝ} (h0 : 0 < lam) (h1 : lam ≤ 1) :
 
 /-! ### The λ = 1 values (the constants of Theorem D) -/
 
-/-- HD 1 = 3/2 − (1/√2)·cot(1/√2)  (the paper's 2 − 1/c₁* = 3/2 − 2^{-1/2} cot 2^{-1/2}). -/
+/-- HD 1 = 3/2 − (1/√2)·cot(1/√2)  (the paper's 2 − 1/c₁* = 3/2 − 2^{-1/2} cot 2^{-1/2}).
+@isnad1 id=eq.0h0v.s4.ae92d47be947 from=translated src=- shape=80953954 vocab=1d1ec4d3
+-/
 theorem theta_one : theta 1 = (Real.sqrt 2)⁻¹ := by
   unfold theta; rw [one_div]
 
+/--
+@isnad1 id=eq.0h0v.s6.abbb319f74a5 from=translated src=- shape=ef55937d vocab=0357b101
+-/
 theorem HD_one :
     HD 1 = 3 / 2 - (Real.sqrt 2)⁻¹ * (Real.cos (Real.sqrt 2)⁻¹ / Real.sin (Real.sqrt 2)⁻¹) := by
   have hs : 0 < Real.sin ((Real.sqrt 2)⁻¹) := by
@@ -478,7 +535,9 @@ theorem HD_one :
 
 /-- closed form of J* (used by Window.lean's jD_close):
 J* = sin(2ϑ)/(8ϑ³) − cos(2ϑ)/(4ϑ²)  (pure algebra from jStar_eq + aStar_eq + bStar_eq,
-using λ² = 2ϑ², sin 2ϑ = 2 sin ϑ cos ϑ, cos 2ϑ = 1 − 2 sin²ϑ). -/
+using λ² = 2ϑ², sin 2ϑ = 2 sin ϑ cos ϑ, cos 2ϑ = 1 − 2 sin²ϑ).
+@isnad1 id=eq.2h1v.s7.f82d9c984306 from=translated src=- shape=5adca8a0 vocab=ea61650d
+-/
 theorem jStar_closed {lam : ℝ} (h0 : 0 < lam) (h1 : lam ≤ 1) :
     jStar lam = Real.sin (2 * theta lam) / (8 * theta lam ^ 3)
       - Real.cos (2 * theta lam) / (4 * theta lam ^ 2) := by

@@ -45,16 +45,22 @@ open Real
 noncomputable def survivalProbability (h t T : ℝ) : ℝ :=
   Real.exp (-(h * (T - t)))
 
-/-- At `T = t`, survival is 1 (no time elapsed). -/
+/-- At `T = t`, survival is 1 (no time elapsed).
+@isnad1 id=eq.0h2v.s4.e57c1bbd5e37 from=translated src=- shape=c2a510d9 vocab=a914e3e5
+-/
 lemma survival_at_zero (h T : ℝ) : survivalProbability h T T = 1 := by
   unfold survivalProbability
   rw [sub_self, mul_zero, neg_zero, Real.exp_zero]
 
-/-- Survival probability is strictly positive. -/
+/-- Survival probability is strictly positive.
+@isnad1 id=lt.0h3v.s4.fb8414aab311 from=translated src=- shape=ac9c39a3 vocab=00ab2f4e
+-/
 lemma survival_pos (h t T : ℝ) : 0 < survivalProbability h t T := Real.exp_pos _
 
 /-- **Credit spread equals hazard rate** under constant hazard:
-`-log(S(t, T)) / (T − t) = h`. -/
+`-log(S(t, T)) / (T − t) = h`.
+@isnad1 id=eq.1h3v.s5.af195e96703f from=translated src=- shape=6e13cf87 vocab=7eeac34e
+-/
 lemma creditSpread_eq_hazard {h t T : ℝ} (htT : t < T) :
     -Real.log (survivalProbability h t T) / (T - t) = h := by
   unfold survivalProbability
@@ -62,7 +68,9 @@ lemma creditSpread_eq_hazard {h t T : ℝ} (htT : t < T) :
   have h_ne : T - t ≠ 0 := sub_ne_zero.mpr htT.ne'
   field_simp
 
-/-- **Positive hazard ⇒ strictly decreasing survival in horizon `T`**. -/
+/-- **Positive hazard ⇒ strictly decreasing survival in horizon `T`**.
+@isnad1 id=strictan.1h2v.s4.f9571974ed4e from=translated src=- shape=6ffa5569 vocab=faca7383
+-/
 lemma survival_strictAnti_of_pos_hazard {h t : ℝ} (hh : 0 < h) :
     StrictAntiOn (fun T ↦ survivalProbability h t T) (Set.Ici t) := by
   intro T₁ _ T₂ _ hT
@@ -85,12 +93,16 @@ at zero recovery. -/
 /-- **Fair CDS spread under constant hazard with recovery**: `c = h · (1 − R)`. -/
 noncomputable def cdsFairSpread (hh R : ℝ) : ℝ := hh * (1 - R)
 
-/-- **Zero recovery specialisation**: the fair spread equals the hazard rate. -/
+/-- **Zero recovery specialisation**: the fair spread equals the hazard rate.
+@isnad1 id=eq.0h1v.s3.457cd2ff774e from=translated src=- shape=1fa26838 vocab=4588294e
+-/
 lemma cdsFairSpread_zero_recovery (hh : ℝ) : cdsFairSpread hh 0 = hh := by
   unfold cdsFairSpread; ring
 
 /-- **Leg-equality characterisation**: with `factor` the common annuity factor,
-the fair spread is the unique value equating premium and protection legs. -/
+the fair spread is the unique value equating premium and protection legs.
+@isnad1 id=iff.1h4v.s6.d5b98aacca65 from=translated src=- shape=c804d752 vocab=1ae7a10f
+-/
 theorem cds_leg_equality (hh R factor c : ℝ) (h_factor_ne : factor ≠ 0) :
     c * factor = (1 - R) * hh * factor ↔ c = cdsFairSpread hh R := by
   unfold cdsFairSpread

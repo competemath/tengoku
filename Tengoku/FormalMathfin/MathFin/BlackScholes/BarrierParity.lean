@@ -68,7 +68,9 @@ noncomputable def vanillaValue (D : ℝ) (Q : Measure Ω) (f : Ω → ℝ) : ℝ
 /-- **Barrier payoff partition** (pathwise): the knock-in payoff `𝟙_A · f` and the
 knock-out payoff `𝟙_{Aᶜ} · f` sum to the vanilla payoff `f` on every path — each
 path either hits the barrier (`ω ∈ A`) or does not (`ω ∈ Aᶜ`), and contributes
-`f ω` to exactly one leg. -/
+`f ω` to exactly one leg.
+@isnad1 id=eq.0h3v.s5.e77693c08e99 from=translated src=- shape=17f25593 vocab=8f9f2807
+-/
 theorem barrier_payoff_partition (A : Set Ω) (f : Ω → ℝ) :
     A.indicator f + Aᶜ.indicator f = f :=
   Set.indicator_self_add_compl A f
@@ -76,7 +78,9 @@ theorem barrier_payoff_partition (A : Set Ω) (f : Ω → ℝ) :
 /-- **In–out barrier parity**: `V_in + V_out = V_vanilla`. The barrier-hit event
 `A` and its complement partition the paths (`barrier_payoff_partition`), so the
 discounted expected payoffs add to the vanilla price. Pure linearity of the
-integral — no barrier density required. -/
+integral — no barrier density required.
+@isnad1 id=eq.2h6v.s6.ed36f0eea28c from=translated src=- shape=639b45c1 vocab=0763a7fb
+-/
 theorem knockIn_add_knockOut_eq_vanilla
     (D : ℝ) (Q : Measure Ω) (A : Set Ω) (f : Ω → ℝ)
     (hA : MeasurableSet A) (hf : Integrable f Q) :

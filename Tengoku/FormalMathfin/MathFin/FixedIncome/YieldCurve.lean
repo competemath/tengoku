@@ -52,7 +52,9 @@ def couponBondPricingEq {ι : Type*} (sprev : Finset ι) (c B : ι → ℝ)
   P = (∑ i ∈ sprev, c i * B i) + (c_last + F) * B_last
 
 /-- **Bootstrap solve identity**: from the coupon-bond pricing equation, the
-new ZCB price `B_last` is recovered as a closed-form ratio. -/
+new ZCB price `B_last` is recovered as a closed-form ratio.
+@isnad1 id=eq.2h8v.s6.891d07480d7b from=translated src=- shape=74b067d4 vocab=4c3d3f29
+-/
 lemma bootstrap_solve {ι : Type*} (sprev : Finset ι) (c B : ι → ℝ)
     (P c_last F B_last : ℝ) (h : c_last + F ≠ 0)
     (hP : couponBondPricingEq sprev c B P c_last F B_last) :
@@ -62,7 +64,9 @@ lemma bootstrap_solve {ι : Type*} (sprev : Finset ι) (c B : ι → ℝ)
   linarith
 
 /-- **First-bond bootstrap** (empty previous schedule): a single-period coupon
-bond with cash flow `c_last + F` at maturity gives `B_last = P / (c_last + F)`. -/
+bond with cash flow `c_last + F` at maturity gives `B_last = P / (c_last + F)`.
+@isnad1 id=eq.2h4v.s6.cd2fb7754ead from=translated src=- shape=f40e797c vocab=a74ee98d
+-/
 lemma bootstrap_solve_first (P c_last F B_last : ℝ) (h : c_last + F ≠ 0)
     (hP : P = (c_last + F) * B_last) :
     B_last = P / (c_last + F) := by
@@ -71,7 +75,9 @@ lemma bootstrap_solve_first (P c_last F B_last : ℝ) (h : c_last + F ≠ 0)
 
 /-- **Second-bond bootstrap step**: with one previous ZCB price `B_1` and a
 two-period bond paying coupon `c` at both dates plus face `F` at the second,
-`B_2 = (P − c · B_1) / (c + F)`. -/
+`B_2 = (P − c · B_1) / (c + F)`.
+@isnad1 id=eq.2h5v.s6.4c1e2a3869e9 from=translated src=- shape=d1e17cd3 vocab=335f4d48
+-/
 lemma bootstrap_solve_second (P c F B_1 B_2 : ℝ) (h : c + F ≠ 0)
     (hP : P = c * B_1 + (c + F) * B_2) :
     B_2 = (P - c * B_1) / (c + F) := by
@@ -80,7 +86,9 @@ lemma bootstrap_solve_second (P c F B_1 B_2 : ℝ) (h : c + F ≠ 0)
   ring
 
 /-- **Recursive consistency**: the bootstrapped ZCB price, plugged back into
-the pricing equation, recovers the original bond price. -/
+the pricing equation, recovers the original bond price.
+@isnad1 id=couponbo.1h7v.s6.3e2fb729edad from=translated src=- shape=81d24472 vocab=4c3d3f29
+-/
 lemma bootstrap_consistency {ι : Type*} (sprev : Finset ι) (c B : ι → ℝ)
     (P c_last F : ℝ) (h : c_last + F ≠ 0) :
     couponBondPricingEq sprev c B P c_last F

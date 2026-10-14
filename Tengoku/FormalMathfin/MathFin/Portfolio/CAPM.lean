@@ -46,19 +46,25 @@ noncomputable def jensenAlpha (eR rf β eRm : ℝ) : ℝ :=
 
 /-- The CAPM pricing identity `E[R] = R_f + β (E[R_M] − R_f)` holds iff
 Jensen's alpha vanishes — Mathlib's `sub_eq_zero` through the `jensenAlpha`
-definition. -/
+definition.
+@isnad1 id=iff.0h4v.s4.eff7f2797921 from=translated src=- shape=cf3fcc90 vocab=3da97826
+-/
 lemma jensenAlpha_eq_zero_iff (eR rf β eRm : ℝ) :
     jensenAlpha eR rf β eRm = 0 ↔ eR = securityMarketLine rf β eRm :=
   sub_eq_zero
 
-/-- A risk-free asset (zero covariance with the market) has beta zero. -/
+/-- A risk-free asset (zero covariance with the market) has beta zero.
+@isnad1 id=eq.0h1v.s4.97b2ded91b11 from=translated src=- shape=fe2c2146 vocab=c9358f22
+-/
 lemma beta_of_riskFree (varRm : ℝ) :
     beta 0 varRm = 0 := by
   unfold beta
   exact zero_div varRm
 
 /-- The market portfolio's beta is one: when `R_i = R_M`, `Cov(R_M, R_M) = Var(R_M)`
-so `β_M = 1`. -/
+so `β_M = 1`.
+@isnad1 id=eq.1h1v.s4.43fba895f842 from=translated src=- shape=ef8e552e vocab=c9358f22
+-/
 lemma beta_market {varRm : ℝ} (hVar : varRm ≠ 0) :
     beta varRm varRm = 1 := by
   unfold beta
@@ -69,7 +75,9 @@ weight-sum of the component betas.
 
 For a portfolio `R_p = w_1 R_1 + w_2 R_2`, bilinearity of covariance gives
 `Cov(R_p, R_M) = w_1 Cov(R_1, R_M) + w_2 Cov(R_2, R_M)`, so dividing by
-`Var(R_M)` yields the result. -/
+`Var(R_M)` yields the result.
+@isnad1 id=eq.1h5v.s6.8c0e472ea20e from=translated src=- shape=5aec5a22 vocab=1a18abe4
+-/
 lemma beta_linearity_two
     {varRm : ℝ} (hVar : varRm ≠ 0)
     (w₁ w₂ covR₁Rm covR₂Rm : ℝ) :
@@ -82,7 +90,9 @@ lemma beta_linearity_two
 weight-sum of the component betas.
 
 For weights `w : ι → ℝ` and component covariances `c : ι → ℝ`, bilinearity of
-covariance gives `Cov(∑ w_i R_i, R_M) = ∑ w_i Cov(R_i, R_M)`. -/
+covariance gives `Cov(∑ w_i R_i, R_M) = ∑ w_i Cov(R_i, R_M)`.
+@isnad1 id=eq.0h5v.s5.c52bb790655b from=translated src=- shape=e45d3095 vocab=92fa9541
+-/
 lemma beta_linearity_finset
     {ι : Type*} (s : Finset ι) (w c : ι → ℝ) (varRm : ℝ) :
     beta (∑ i ∈ s, w i * c i) varRm = ∑ i ∈ s, w i * beta (c i) varRm := by

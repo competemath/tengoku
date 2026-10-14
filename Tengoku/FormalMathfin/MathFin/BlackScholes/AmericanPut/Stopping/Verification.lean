@@ -32,6 +32,9 @@ variable {Ω : Type*} [MeasurableSpace Ω] {P : Measure Ω} [IsProbabilityMeasur
   {𝓕 : Filtration ℝ≥0 ‹MeasurableSpace Ω›} {W U : ℝ≥0 → Ω → ℝ}
   {K r q σ S C : ℝ} {T : ℝ≥0}
 
+/--
+@isnad1 id=integrab.3h7v.s7.f2f077dfc372 from=translated src=- shape=e35949d0 vocab=c9da219f
+-/
 theorem candidate_stopped_integrable
     (hU : Supermartingale U 𝓕 P) (hcont : ∀ ω, Continuous (fun t => U t ω))
     (hbound : ∀ t ω, ‖U t ω‖ ≤ C) (θ : BoundedRule 𝓕 T) :
@@ -43,6 +46,9 @@ theorem candidate_stopped_integrable
     (hmeas.comp (θ.measurable_time.prodMk measurable_id)).aestronglyMeasurable
     (Filter.Eventually.of_forall (fun ω => hbound _ ω))
 
+/--
+@isnad1 id=le.8h12v.s7.67ffbfa4f63a from=translated src=- shape=d224dc4e vocab=b384511e
+-/
 theorem value_le_supermartingale_candidate
     (hW : Measurable W.uncurry) (hK : 0 ≤ K) (hr : 0 ≤ r) (hS : 0 ≤ S)
     (hU : Supermartingale U 𝓕 P) (hcont : ∀ ω, Continuous (fun t => U t ω))
@@ -58,7 +64,9 @@ theorem value_le_supermartingale_candidate
       (expected_stoppedValue_le_initial hU hcont hbound θ)
 
 /-- Verification with an explicit admissible contact rule. Neither optimality
-nor equality with the stopping-value supremum is among the hypotheses. -/
+nor equality with the stopping-value supremum is among the hypotheses.
+@isnad1 id=eq.10h13v.s8.9c1ecc30853a from=translated src=- shape=69b08ec4 vocab=3d81b1ea
+-/
 theorem value_eq_of_contact_martingale
     (hW : Measurable W.uncurry) (hK : 0 ≤ K) (hr : 0 ≤ r) (hS : 0 ≤ S)
     (hU : Supermartingale U 𝓕 P) (hcont : ∀ ω, Continuous (fun t => U t ω))

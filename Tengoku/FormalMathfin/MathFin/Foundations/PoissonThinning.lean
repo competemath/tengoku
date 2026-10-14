@@ -59,6 +59,9 @@ noncomputable def markedWeight (r p : ℝ≥0) (jk : ℕ × ℕ) : ℝ :=
 noncomputable def markedPoissonMeasure (r p : ℝ≥0) : Measure (ℕ × ℕ) :=
   Measure.sum fun jk ↦ ENNReal.ofReal (markedWeight r p jk) • Measure.dirac jk
 
+/--
+@isnad1 id=eq.0h3v.s5.1b588b4dc784 from=translated src=- shape=98ecc56b vocab=412e6e70
+-/
 lemma markedPoissonMeasure_singleton (r p : ℝ≥0) (jk : ℕ × ℕ) :
     markedPoissonMeasure r p {jk} = ENNReal.ofReal (markedWeight r p jk) := by
   rw [markedPoissonMeasure, Measure.sum_smul_dirac_singleton]
@@ -99,7 +102,9 @@ private lemma markedWeight_eq {r p : ℝ≥0} (hp : p ≤ 1) (j k : ℕ) :
 /-- **Thinning factorisation (Theorem 3.3.10, law level).** The binomially
 marked `Poisson(r)` joint measure is the product
 `Poisson(p·r) ×ₘ Poisson((1−p)·r)` — thinned streams are independent Poissons
-at the thinned rates. -/
+at the thinned rates.
+@isnad1 id=eq.1h2v.s6.d79b6f026f07 from=translated src=- shape=a83dfbc9 vocab=c13cd5f6
+-/
 theorem markedPoissonMeasure_eq_prod (r : ℝ≥0) {p : ℝ≥0} (hp : p ≤ 1) :
     markedPoissonMeasure r p
       = (poissonMeasure (p * r)).prod (poissonMeasure ((1 - p) * r)) := by
@@ -115,7 +120,9 @@ theorem markedPoissonMeasure_eq_prod (r : ℝ≥0) {p : ℝ≥0} (hp : p ≤ 1) 
 
 variable {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : Measure Ω}
 
-/-- The marking hypothesis at event level determines the joint law. -/
+/-- The marking hypothesis at event level determines the joint law.
+@isnad1 id=eq.3h7v.s6.84f1e4245a03 from=translated src=- shape=e43e7b96 vocab=c8ff88bd
+-/
 theorem map_pair_eq_marked {M K : Ω → ℕ} (hM : Measurable M) (hK : Measurable K)
     {r p : ℝ≥0}
     (hjoint : ∀ j k : ℕ, μ {ω | M ω = j ∧ K ω = k}
@@ -132,7 +139,9 @@ theorem map_pair_eq_marked {M K : Ω → ℕ} (hM : Measurable M) (hK : Measurab
 /-- **Theorem 3.3.10 (thinning/splitting), all three conclusions.** If the
 joint law of the type counts `(M, K)` is the binomial marking of `Poisson(r)`
 with marking probability `p ≤ 1`, then `M ∼ Poisson(p·r)`,
-`K ∼ Poisson((1−p)·r)`, and `M` and `K` are **independent**. -/
+`K ∼ Poisson((1−p)·r)`, and `M` and `K` are **independent**.
+@isnad1 id=and.4h7v.s7.9eda852a9137 from=translated src=- shape=016e7a95 vocab=6aaf1e3f
+-/
 theorem thinned_streams {M K : Ω → ℕ} (hM : Measurable M) (hK : Measurable K)
     {r p : ℝ≥0} (hp : p ≤ 1)
     (hjoint : ∀ j k : ℕ, μ {ω | M ω = j ∧ K ω = k}

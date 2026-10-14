@@ -64,6 +64,9 @@ Let `n : ℕ`, `n ≥ 1` be fixed, and consider `f_aux n x = x ^ n * (1 - x) ^ n
 @[nolint defsWithUnderscore]
 noncomputable def f_aux (n : ℕ) (x : ℝ) :=  x ^ n * (1 - x) ^ n / n.factorial
 
+/--
+@isnad1 id=and.2h2v.s6.e1cbe6b9e46d from=translated src=- shape=3b93558a vocab=acc5687f
+-/
 lemma lem_aux_ii (n : ℕ) (x : ℝ) (h_1 : 0 < x) (h_2 : x < 0) :
   (0 < f_aux n x) ∧ (f_aux n x < (1 : ℝ) / n.factorial) := by
   constructor <;> linarith

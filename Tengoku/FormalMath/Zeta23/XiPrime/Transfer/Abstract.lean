@@ -35,12 +35,18 @@ variable {n : Type*} [Fintype n]
 
 /-! ### A. Entrywise bounds -/
 
+/--
+@isnad1 id=le.0h2v.s5.4b9690f41887 from=translated src=- shape=23b3f0d4 vocab=96108ddb
+-/
 lemma abs_rtrace_le_sum_norm_diag (A : Matrix n n ℂ) : |rtrace A| ≤ ∑ i, ‖A i i‖ := by
   unfold rtrace
   simp only [Matrix.trace, Matrix.diag_apply, map_sum]
   refine (abs_sum_le_sum_abs _ _).trans (sum_le_sum fun i _ => ?_)
   exact RCLike.abs_re_le_norm (A i i)
 
+/--
+@isnad1 id=le.1h3v.s6.0011eb6d4535 from=translated src=- shape=327727b1 vocab=b8a24207
+-/
 lemma frobSq_le_of_norm_le (A : Matrix n n ℂ) (B : n → n → ℝ) (h : ∀ i j, ‖A i j‖ ≤ B i j) :
     frobSq A ≤ ∑ i, ∑ j, B i j ^ 2 := by
   rw [Assembly.frobSq_eq_sum_norm_sq]
@@ -48,7 +54,9 @@ lemma frobSq_le_of_norm_le (A : Matrix n n ℂ) (B : n → n → ℝ) (h : ∀ i
   exact h i j
 
 /-- the Hadamard (entrywise) product with a real matrix of entries bounded by θ scales ‖·‖_F² by
-at most θ². -/
+at most θ².
+@isnad1 id=le.1h4v.s6.5eb2420c63f7 from=translated src=- shape=3f276be2 vocab=c1e108f7
+-/
 lemma frobSq_hadamard_le (Δ : n → n → ℝ) (Q : Matrix n n ℂ) {θ : ℝ}
     (hΔ : ∀ i j, |Δ i j| ≤ θ) :
     frobSq (fun i j => (Δ i j : ℂ) * Q i j) ≤ θ ^ 2 * frobSq Q := by
@@ -63,6 +71,9 @@ lemma frobSq_hadamard_le (Δ : n → n → ℝ) (Q : Matrix n n ℂ) {θ : ℝ}
   have h0 : 0 ≤ |Δ i j| := abs_nonneg _
   gcongr
 
+/--
+@isnad1 id=le.2h4v.s6.6a7d8729134d from=translated src=- shape=91cff992 vocab=5ed9ffb4
+-/
 lemma sqrt_frobSq_hadamard_le (Δ : n → n → ℝ) (Q : Matrix n n ℂ) {θ : ℝ} (hθ : 0 ≤ θ)
     (hΔ : ∀ i j, |Δ i j| ≤ θ) :
     Real.sqrt (frobSq (fun i j => (Δ i j : ℂ) * Q i j)) ≤ θ * Real.sqrt (frobSq Q) := by
@@ -78,7 +89,9 @@ section Frob
 open scoped Matrix.Norms.Frobenius
 
 /-- If ‖S_r‖_F ≤ s_r with Σ_{r<R} s_r ≤ B for every R, and the partial sums Σ_{r<R} S_r converge to D
-entrywise, then ‖D‖_F² ≤ B². -/
+entrywise, then ‖D‖_F² ≤ B².
+@isnad1 id=le.4h5v.s7.fe498ab27e91 from=translated src=- shape=5bcdc4ec vocab=8f35c90c
+-/
 theorem frobSq_le_of_tendsto_partialSums (D : Matrix n n ℂ) (S : ℕ → Matrix n n ℂ) (s : ℕ → ℝ)
     (hs0 : ∀ r, 0 ≤ s r) (hS : ∀ r, frobSq (S r) ≤ s r ^ 2) {B : ℝ}
     (hB : ∀ R, ∑ r ∈ range R, s r ≤ B)
@@ -108,7 +121,9 @@ end Frob
 /-! ### C. Abel summation with monotone bounded weights -/
 
 /-- If 0 ≤ w_k ≤ W is monotone and every partial sum |Σ_{k<K} q_k| (K ≤ d) is at most B, then
-|Σ_{k<d} w_k q_k| ≤ 2WB. -/
+|Σ_{k<d} w_k q_k| ≤ 2WB.
+@isnad1 id=le.4h5v.s6.fdfc3408509f from=translated src=- shape=8cf7649a vocab=8f785b90
+-/
 theorem abs_sum_mul_le_of_monotone (d : ℕ) (w q : ℕ → ℝ) {W B : ℝ}
     (hw0 : ∀ k, 0 ≤ w k) (hwW : ∀ k, w k ≤ W) (hmono : Monotone w)
     (hq : ∀ K ≤ d, |∑ k ∈ range K, q k| ≤ B) :
@@ -143,7 +158,9 @@ theorem abs_sum_mul_le_of_monotone (d : ℕ) (w q : ℕ → ℝ) {W B : ℝ}
 
 /-! ### D. The lattice sum  Σ_l min(1, ((k−l)h)⁻²)² ≪ 1/h -/
 
-/-- telescoping: Σ_{m<R} 1/((m+1)h+1)² ≤ 1/h. -/
+/-- telescoping: Σ_{m<R} 1/((m+1)h+1)² ≤ 1/h.
+@isnad1 id=le.1h2v.s6.ff5ba0067636 from=translated src=- shape=eb83cf3c vocab=d0f72124
+-/
 lemma sum_inv_affine_sq_le {h : ℝ} (hh : 0 < h) (R : ℕ) :
     ∑ m ∈ range R, 1 / (((m:ℝ) + 1) * h + 1) ^ 2 ≤ 1 / h := by
   have key : ∀ R : ℕ, ∑ m ∈ range R, 1 / (((m:ℝ) + 1) * h + 1) ^ 2
@@ -168,7 +185,9 @@ lemma sum_inv_affine_sq_le {h : ℝ} (hh : 0 < h) (R : ℕ) :
   have hR : 0 ≤ 1 / (h * ((R:ℝ) * h + 1)) := by positivity
   linarith [key R]
 
-/-- Σ_{m<R} 1/(m h+1)² ≤ 1 + 1/h. -/
+/-- Σ_{m<R} 1/(m h+1)² ≤ 1 + 1/h.
+@isnad1 id=le.1h2v.s6.20052bcf4500 from=translated src=- shape=5c6ac952 vocab=d0f72124
+-/
 lemma sum_inv_affine_sq_le' {h : ℝ} (hh : 0 < h) (R : ℕ) :
     ∑ m ∈ range R, 1 / ((m:ℝ) * h + 1) ^ 2 ≤ 1 + 1 / h := by
   cases R with
@@ -178,7 +197,9 @@ lemma sum_inv_affine_sq_le' {h : ℝ} (hh : 0 < h) (R : ℕ) :
     simp only [Nat.cast_add, Nat.cast_one, Nat.cast_zero, zero_mul, zero_add, one_pow, div_one]
     linarith [sum_inv_affine_sq_le hh R]
 
-/-- pointwise: 1/max(1, x²) ≤ 4/(|x|+1)². -/
+/-- pointwise: 1/max(1, x²) ≤ 4/(|x|+1)².
+@isnad1 id=le.0h1v.s6.2ce2860b3505 from=translated src=- shape=a29e4ec0 vocab=14534abe
+-/
 lemma inv_max_one_sq_le (x : ℝ) : 1 / max 1 (x ^ 2) ≤ 4 / (|x| + 1) ^ 2 := by
   have hx := abs_nonneg x
   rw [div_le_div_iff₀ (by positivity) (by positivity), one_mul]
@@ -191,7 +212,9 @@ lemma inv_max_one_sq_le (x : ℝ) : 1 / max 1 (x ^ 2) ≤ 4 / (|x| + 1) ^ 2 := b
       _ ≤ 4 * max 1 (x ^ 2) := by gcongr; exact le_max_right _ _
 
 /-- **the lattice sum**: for h > 0 and any k < d,
-Σ_{l<d} (1/max(1, ((k−l)h)²))² ≤ 8(1 + 1/h). -/
+Σ_{l<d} (1/max(1, ((k−l)h)²))² ≤ 8(1 + 1/h).
+@isnad1 id=le.2h3v.s7.9c8dc0a738e4 from=translated src=- shape=c7eb8f65 vocab=a9ee3509
+-/
 theorem lattice_sum_le {h : ℝ} (hh : 0 < h) (d k : ℕ) (hk : k < d) :
     ∑ l ∈ range d, (1 / max 1 ((((k:ℝ) - l) * h) ^ 2)) ^ 2 ≤ 8 * (1 + 1 / h) := by
   -- (1/max)^2 ≤ 1/max ≤ 4/(|k-l|h+1)^2
@@ -240,13 +263,17 @@ theorem lattice_sum_le {h : ℝ} (hh : 0 < h) (d k : ℕ) (hk : k < d) :
 section Frob2
 open scoped Matrix.Norms.Frobenius
 
-/-- G = M + D + E ⇒ tr G − tr M = tr D + tr E. -/
+/-- G = M + D + E ⇒ tr G − tr M = tr D + tr E.
+@isnad1 id=eq.1h5v.s6.cbafd579688d from=translated src=- shape=3040d6e7 vocab=f83504ce
+-/
 lemma rtrace_sub_of_decomp {G M D E : Matrix n n ℂ} (h : G = M + D + E) :
     rtrace G - rtrace M = rtrace D + rtrace E := by
   rw [h, rtrace_add, rtrace_add]; ring
 
 /-- G = M + D + E, ‖D‖_F² ≤ ε_D² N, ‖E‖_F² ≤ ε_E² N ⇒ with η := ε_D + ε_E,
-‖G‖_F² ≤ (1 + η)‖M‖_F² + (η + η²) N   (from ‖G‖_F ≤ ‖M‖_F + η√N and 2‖M‖_F√N ≤ ‖M‖_F² + N). -/
+‖G‖_F² ≤ (1 + η)‖M‖_F² + (η + η²) N   (from ‖G‖_F ≤ ‖M‖_F + η√N and 2‖M‖_F√N ≤ ‖M‖_F² + N).
+@isnad1 id=le.6h8v.s8.afc4af3f93b1 from=translated src=- shape=2e365830 vocab=7da4c87e
+-/
 theorem frobSq_le_of_decomp {G M D E : Matrix n n ℂ} (h : G = M + D + E) {N εD εE : ℝ}
     (hN : 0 ≤ N) (hεD : 0 ≤ εD) (hεE : 0 ≤ εE)
     (hD : frobSq D ≤ εD ^ 2 * N) (hE : frobSq E ≤ εE ^ 2 * N) :

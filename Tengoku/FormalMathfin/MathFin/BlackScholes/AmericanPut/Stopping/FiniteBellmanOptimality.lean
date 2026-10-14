@@ -28,9 +28,15 @@ noncomputable def finiteBellmanContact (P : Measure Ω) (𝓕 : Filtration ℕ �
     (Z : ℕ → Ω → ℝ) (N : ℕ) : Ω → ℕ :=
   hittingBtwn (fun i ω => finiteBellman P 𝓕 Z N i ω-Z (min i N) ω) {0} 0 N
 
+/--
+@isnad1 id=le.0h6v.s5.7de6490965c0 from=translated src=- shape=e2c9f777 vocab=06badec8
+-/
 theorem finiteBellmanContact_le (N : ℕ) (ω : Ω) : finiteBellmanContact P 𝓕 Z N ω ≤ N :=
   hittingBtwn_le ω
 
+/--
+@isnad1 id=isstoppi.1h5v.s5.18321532fce9 from=translated src=- shape=0ceb03b2 vocab=1a1c8855
+-/
 theorem finiteBellmanContact_stopping (ha : Adapted 𝓕 Z) (N : ℕ) :
     IsStoppingTime 𝓕 (fun ω => (finiteBellmanContact P 𝓕 Z N ω : WithTop ℕ)) := by
   apply Adapted.isStoppingTime_hittingBtwn ?_ (measurableSet_singleton 0)
@@ -38,6 +44,9 @@ theorem finiteBellmanContact_stopping (ha : Adapted 𝓕 Z) (N : ℕ) :
   exact ((finiteBellman_stronglyAdapted ha N i).measurable).sub
     ((ha (min i N)).mono (𝓕.mono (min_le_left _ _)) le_rfl)
 
+/--
+@isnad1 id=eq.0h6v.s5.9a7dff51bd12 from=translated src=- shape=8fcc6173 vocab=1495d2f7
+-/
 theorem finiteBellmanContact_contact (N : ℕ) (ω : Ω) :
     finiteBellman P 𝓕 Z N (finiteBellmanContact P 𝓕 Z N ω) ω =
       Z (finiteBellmanContact P 𝓕 Z N ω) ω := by
@@ -52,6 +61,9 @@ theorem finiteBellmanContact_contact (N : ℕ) (ω : Ω) :
   rw [min_eq_left hbound] at hh
   exact sub_eq_zero.mp hh
 
+/--
+@isnad1 id=eq.1h7v.s6.11d790fabcf7 from=translated src=- shape=290804d8 vocab=3dfb55e2
+-/
 theorem finiteBellmanContact_before (N i : ℕ) (ω : Ω)
     (ht : i < finiteBellmanContact P 𝓕 Z N ω) :
     P[finiteBellman P 𝓕 Z N (i+1) | 𝓕 i] ω = finiteBellman P 𝓕 Z N i ω := by
@@ -70,6 +82,9 @@ theorem finiteBellmanContact_before (N i : ℕ) (ω : Ω)
 
 variable [IsProbabilityMeasure P]
 
+/--
+@isnad1 id=martinga.2h5v.s6.6ab8516652eb from=translated src=- shape=bd6dc433 vocab=8dca4fa7
+-/
 theorem finiteBellmanContact_martingale (ha : Adapted 𝓕 Z)
     (hi : ∀ i, Integrable (Z i) P) (N : ℕ) :
     Martingale (stoppedProcess (finiteBellman P 𝓕 Z N)
@@ -78,6 +93,9 @@ theorem finiteBellmanContact_martingale (ha : Adapted 𝓕 Z)
     (finiteBellman_integrable hi N) (finiteBellmanContact_stopping ha N)
     (finiteBellmanContact_before N)
 
+/--
+@isnad1 id=eq.2h5v.s7.16ba0d8b4b8f from=translated src=- shape=325f6ac2 vocab=5e9e1b18
+-/
 theorem finiteBellmanContact_expected_payoff (ha : Adapted 𝓕 Z)
     (hi : ∀ i, Integrable (Z i) P) (N : ℕ) :
     (∫ ω, Z (finiteBellmanContact P 𝓕 Z N ω) ω ∂P) =
@@ -99,6 +117,9 @@ theorem finiteBellmanContact_expected_payoff (ha : Adapted 𝓕 Z)
   rw [h0,hN] at he
   simpa only [Measure.restrict_univ] using he.symm
 
+/--
+@isnad1 id=le.4h6v.s7.b84c127c90ef from=translated src=- shape=0dd27f88 vocab=975757d4
+-/
 theorem expected_discrete_payoff_le_bellman (ha : Adapted 𝓕 Z)
     (hi : ∀ i, Integrable (Z i) P) {N : ℕ} {τ : Ω → ℕ}
     (hτ : IsStoppingTime 𝓕 (fun ω => (τ ω : WithTop ℕ))) (hb : ∀ ω, τ ω ≤ N) :
@@ -121,6 +142,9 @@ theorem expected_discrete_payoff_le_bellman (ha : Adapted 𝓕 Z)
     convert! ho using 1
   exact hle.trans ho'
 
+/--
+@isnad1 id=le.4h6v.s7.411b7e9b698c from=translated src=- shape=9b0a5977 vocab=2cba14f0
+-/
 theorem finiteBellmanContact_optimal (ha : Adapted 𝓕 Z)
     (hi : ∀ i, Integrable (Z i) P) {N : ℕ} {τ : Ω → ℕ}
     (hτ : IsStoppingTime 𝓕 (fun ω => (τ ω : WithTop ℕ))) (hb : ∀ ω, τ ω ≤ N) :

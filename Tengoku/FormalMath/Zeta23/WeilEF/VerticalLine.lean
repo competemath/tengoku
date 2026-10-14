@@ -39,17 +39,25 @@ def Hfn (k : ℝ → ℂ) (s : ℂ) : ℂ := paperFT k ((s - 1/2) / I)
 /-- The tilted test function k_b(u) := k(u)·e^{b u}. -/
 def tilt (k : ℝ → ℂ) (b : ℝ) : ℝ → ℂ := fun u => k u * (Real.exp (b * u) : ℂ)
 
+/--
+@isnad1 id=contdiff.1h2v.s6.89c872d7655e from=translated src=- shape=eb9aa4d6 vocab=eb7389b3
+-/
 theorem tilt_contDiff {k : ℝ → ℂ} (hk : ContDiff ℝ 2 k) (b : ℝ) : ContDiff ℝ 2 (tilt k b) := by
   refine hk.mul ?_
   have : ContDiff ℝ 2 (fun u : ℝ => Real.exp (b * u)) := (Real.contDiff_exp.comp
     (contDiff_const.mul contDiff_id)).of_le le_top
   exact Complex.ofRealCLM.contDiff.comp this
 
+/--
+@isnad1 id=hascompa.1h2v.s4.1b65a57a8455 from=translated src=- shape=4535375a vocab=7962b877
+-/
 theorem tilt_hasCompactSupport {k : ℝ → ℂ} (hk : HasCompactSupport k) (b : ℝ) :
     HasCompactSupport (tilt k b) := by
   refine hk.mul_right
 
-/-- On the line Re s = c: H(c+it) = paperFT (tilt k (c − 1/2)) t. -/
+/-- On the line Re s = c: H(c+it) = paperFT (tilt k (c − 1/2)) t.
+@isnad1 id=eq.0h3v.s6.d704245880b3 from=translated src=- shape=8f592296 vocab=68580be2
+-/
 theorem Hfn_line (k : ℝ → ℂ) (c t : ℝ) :
     Hfn k (c + t * I) = paperFT (tilt k (c - 1/2)) t := by
   unfold Hfn tilt paperFT
@@ -63,7 +71,9 @@ theorem Hfn_line (k : ℝ → ℂ) (c t : ℝ) :
   rw [harg, Complex.exp_add, ← Complex.ofReal_exp]
   ring
 
-/-- Tilted inversion: (1/2π)∫ paperFT (tilt k b) t · e^{−i t y} dt = k(y)·e^{b y}. -/
+/-- Tilted inversion: (1/2π)∫ paperFT (tilt k b) t · e^{−i t y} dt = k(y)·e^{b y}.
+@isnad1 id=eq.2h3v.s7.c3d2f4804c8a from=translated src=- shape=e126c582 vocab=90c78da3
+-/
 theorem tilted_inversion {k : ℝ → ℂ} (hk : ContDiff ℝ 2 k) (hkc : HasCompactSupport k)
     (b y : ℝ) :
     (1 / (2 * Real.pi) : ℂ) * ∫ t : ℝ, paperFT (tilt k b) t * cexp (-I * t * y)
@@ -78,7 +88,9 @@ theorem tilted_inversion {k : ℝ → ℂ} (hk : ContDiff ℝ 2 k) (hkc : HasCom
   rfl
 
 /-- Step 1 (pointwise on the line): the integrand is the tsum of tilted-transform × L-series
-terms.  −ζ'/ζ = LSeries ↗Λ on Re s > 1 (Mathlib), then distribute paperFT (tilt k b) t. -/
+terms.  −ζ'/ζ = LSeries ↗Λ on Re s > 1 (Mathlib), then distribute paperFT (tilt k b) t.
+@isnad1 id=eq.1h3v.s7.604b498e1e48 from=translated src=- shape=75531b13 vocab=d12ae0da
+-/
 theorem integrand_eq_tsum {k : ℝ → ℂ} {c : ℝ} (hc1 : 1 < c) (t : ℝ) :
     Hfn k (c + t * I) * (-logDeriv riemannZeta (c + t * I))
       = ∑' n : ℕ, paperFT (tilt k (c - 1/2)) t * LSeries.term (fun n => (Λ n : ℂ)) (c + t * I) n := by
@@ -93,7 +105,9 @@ theorem integrand_eq_tsum {k : ℝ → ℂ} {c : ℝ} (hc1 : 1 < c) (t : ℝ) :
   rw [Hfn_line, h1, LSeries, ← tsum_mul_left]
 
 /-- Step 2 (per-n line integral): (1/2π)∫ paperFT(tilt k b) t · term_n(c+it) dt
-  = Λ(n) n^{−1/2} k(log n). -/
+  = Λ(n) n^{−1/2} k(log n).
+@isnad1 id=eq.2h3v.s7.184d0a5f298f from=translated src=- shape=6a10a49f vocab=efd694b6
+-/
 theorem per_n_line_integral {k : ℝ → ℂ} (hk : ContDiff ℝ 2 k) (hkc : HasCompactSupport k)
     {c : ℝ} (n : ℕ) :
     (1 / (2 * Real.pi) : ℂ) * ∫ t : ℝ,
@@ -155,7 +169,9 @@ theorem per_n_line_integral {k : ℝ → ℂ} (hk : ContDiff ℝ 2 k) (hkc : Has
       _ = ((Λ n / Real.sqrt n : ℝ) : ℂ) * k (Real.log n) := by
           rw [hpow, hsqrt, mul_one_div]
 
-/-- Step 3 (tsum/integral swap): dominated by ‖paperFT (tilt k b)‖ ∈ L¹ × Σ Λ(n)n^{−c} < ∞. -/
+/-- Step 3 (tsum/integral swap): dominated by ‖paperFT (tilt k b)‖ ∈ L¹ × Σ Λ(n)n^{−c} < ∞.
+@isnad1 id=eq.3h2v.s8.e77ecdbf3235 from=translated src=- shape=ad8d1415 vocab=254e5c15
+-/
 theorem line_integral_swap {k : ℝ → ℂ} (hk : ContDiff ℝ 2 k) (hkc : HasCompactSupport k)
     {c : ℝ} (hc1 : 1 < c) :
     ∫ t : ℝ, (∑' n : ℕ, paperFT (tilt k (c - 1/2)) t
@@ -216,7 +232,9 @@ theorem line_integral_swap {k : ℝ → ℂ} (hk : ContDiff ℝ 2 k) (hkc : HasC
   exact (MeasureTheory.hasSum_integral_of_summable_integral_norm hint hsum).tsum_eq.symm
 
 /-- **Prime side on Re s = c ∈ (1, 3/2]**:
-(1/2π)∫_ℝ H(c+it)·(−ζ'/ζ)(c+it) dt = Σ_{n≥1} Λ(n) n^{−1/2} k(log n). -/
+(1/2π)∫_ℝ H(c+it)·(−ζ'/ζ)(c+it) dt = Σ_{n≥1} Λ(n) n^{−1/2} k(log n).
+@isnad1 id=eq.3h2v.s8.e867e2930407 from=translated src=- shape=b5323a02 vocab=6c0ffa60
+-/
 theorem prime_side_line {k : ℝ → ℂ} (hk : ContDiff ℝ 2 k) (hkc : HasCompactSupport k)
     {c : ℝ} (hc1 : 1 < c) :
     (1 / (2 * Real.pi) : ℂ) * ∫ t : ℝ, Hfn k (c + t * I) * (-logDeriv riemannZeta (c + t * I))
@@ -239,7 +257,9 @@ theorem prime_side_line {k : ℝ → ℂ} (hk : ContDiff ℝ 2 k) (hkc : HasComp
 
 /-- Coarse digamma growth on the right half-plane strip (consumed by the Γℝ line shift and the
 horizontal-segment estimates; any polynomial bound works — dischargeable via a Stirling-type
-estimate or directly). -/
+estimate or directly).
+@isnad1 id=ex.0h0v.s6.9b1ee1ec8a57 from=translated src=- shape=a103e289 vocab=7f91d79f
+-/
 theorem digamma_growth_strip : ∃ C : ℝ, 0 < C ∧ ∀ s : ℂ, 1/4 ≤ s.re → s.re ≤ 1 →
     ‖Complex.digamma s‖ ≤ C * Real.log (2 + |s.im|) := by
   -- differentiability of ψ on the right half-plane
@@ -408,7 +428,9 @@ theorem digamma_growth_strip : ∃ C : ℝ, 0 < C ∧ ∀ s : ℂ, 1/4 ≤ s.re 
                 le_max_right _ _
             _ ≤ max (M / Real.log 2) (1 + K₀ / Real.log 2) + 1 := by linarith
 
-/-- continuity ⇒ integrability on vertical lines under a majorant (used by vertical_line_shift). -/
+/-- continuity ⇒ integrability on vertical lines under a majorant (used by vertical_line_shift).
+@isnad1 id=integrab.3h3v.s7.75f365bebfeb from=translated src=- shape=4192a8f9 vocab=a441b385
+-/
 lemma integrable_line {f : ℂ → ℂ} {σ : ℝ} (hf : ∀ t : ℝ, DifferentiableAt ℂ f (σ + t * I))
     {φ : ℝ → ℝ} (hφ : Integrable φ) (hb : ∀ t : ℝ, ‖f (σ + t * I)‖ ≤ φ t) :
     Integrable (fun t : ℝ => f (σ + t * I)) := by
@@ -421,7 +443,9 @@ lemma integrable_line {f : ℂ → ℂ} {σ : ℝ} (hf : ∀ t : ℝ, Differenti
 
 /-- General vertical-line shift for an analytic function with an integrable, uniformly-decaying
 majorant on a closed strip (Cauchy on rectangles + horizontal vanishing + dominated limits).
-Proof route: RectangleIntegral machinery (HolomorphicOn.vanishesOnRectangle). -/
+Proof route: RectangleIntegral machinery (HolomorphicOn.vanishesOnRectangle).
+@isnad1 id=eq.6h4v.s8.bf25069d8c5c from=translated src=- shape=2b4ac834 vocab=30a9e248
+-/
 theorem vertical_line_shift {f : ℂ → ℂ} {a b : ℝ} (hab : a ≤ b)
     (hf : ∀ s : ℂ, a ≤ s.re → s.re ≤ b → DifferentiableAt ℂ f s)
     {φ : ℝ → ℝ} (hφ : Integrable φ)
@@ -490,7 +514,9 @@ theorem vertical_line_shift {f : ℂ → ℂ} {a b : ℝ} (hab : a ≤ b)
   exact sub_eq_zero.mp this
 
 /-- paperFT of a continuous compactly supported function is entire (differentiation under the
-integral sign); needed for all contour arguments (H = Hfn k analytic in s). -/
+integral sign); needed for all contour arguments (H = Hfn k analytic in s).
+@isnad1 id=differen.2h1v.s6.28503f69056a from=translated src=- shape=558df7bd vocab=7239bab3
+-/
 theorem differentiable_paperFT {k : ℝ → ℂ} (hk : Continuous k) (hkc : HasCompactSupport k) :
     Differentiable ℂ (paperFT k) := by
   intro z₀
@@ -545,7 +571,9 @@ theorem differentiable_paperFT {k : ℝ → ℂ} (hk : Continuous k) (hkc : HasC
     have h3 := h2.const_mul (k u)
     exact h3.congr_deriv (by ring)
 
-/-- log(2+x)/(1+x²) ≤ 6 (1+x)^{−3/2} for x ≥ 0. -/
+/-- log(2+x)/(1+x²) ≤ 6 (1+x)^{−3/2} for x ≥ 0.
+@isnad1 id=le.1h1v.s7.5b47d3b70267 from=translated src=- shape=f3819f02 vocab=020725a0
+-/
 lemma log_two_add_div_le {x : ℝ} (hx : 0 ≤ x) :
     Real.log (2 + x) / (1 + x ^ 2) ≤ 6 * (1 + x) ^ (-(3 / 2 : ℝ)) := by
   have h1 := Real.log_le_rpow_div (show (0:ℝ) ≤ 2 + x by linarith) (show (0:ℝ) < 1/2 by norm_num)
@@ -572,7 +600,9 @@ lemma log_two_add_div_le {x : ℝ} (hx : 0 ≤ x) :
     _ = 6 * (1 + x) ^ (-(3 / 2 : ℝ)) := by rw [← Real.rpow_add (by linarith)]; norm_num
 
 /-- uniform decay of H = paperFT k near the real axis: for |Im z| ≤ 1,
-‖paperFT k z‖ ≤ 2 e^{Lam} (‖k‖₁ + ‖k″‖₁)/(1 + (Re z)²). -/
+‖paperFT k z‖ ≤ 2 e^{Lam} (‖k‖₁ + ‖k″‖₁)/(1 + (Re z)²).
+@isnad1 id=le.5h3v.s8.8e072efbbb3a from=translated src=- shape=93d9253d vocab=746e4b87
+-/
 lemma norm_paperFT_le_uniform {k : ℝ → ℂ} (hk : ContDiff ℝ 2 k) (hki : Integrable k) {Lam : ℝ}
     (hLam : 0 ≤ Lam) (hsupp : ∀ u, k u ≠ 0 → |u| ≤ Lam) {z : ℂ} (hz : |z.im| ≤ 1) :
     ‖paperFT k z‖ ≤ 2 * Real.exp Lam * ((∫ u, ‖k u‖) + ∫ u, ‖deriv (deriv k) u‖) / (1 + z.re ^ 2) := by

@@ -20,7 +20,9 @@ noncomputable section
 namespace Zeta23
 namespace Assembly
 
-/-- κ-version of `N0star_lower_H`: moments ⟹ fixed-T lower bound. -/
+/-- κ-version of `N0star_lower_H`: moments ⟹ fixed-T lower bound.
+@isnad1 id=le.4h9v.s8.1d408c7c9c0e from=translated src=- shape=4db52923 vocab=119f0b21
+-/
 theorem N0star_lower_moment
     {N0star N NII trGh frGh B κ R₁ R₂ : ℝ} (hB : 0 ≤ B)
     (h0 : 4 * trGh - frGh - 2 * N - 3 * NII - B * (4 + 2 * Real.sqrt frGh + B) ≤ N0star)
@@ -35,7 +37,9 @@ the zero-side inequality arrives as the hypothesis h0, so the same algebra serve
 the c = 2 multiplicity-aware N₀ˢ seam, and — in halved form below — the c = 3 N_d seam). -/
 
 /-- The moment certificate with the fixed-T seam inequality abstracted: any count `lower`
-satisfying the seam shape eventually obeys the (2 − κ − ε) certificate. -/
+satisfying the seam shape eventually obeys the (2 − κ − ε) certificate.
+@isnad1 id=ex.8h6v.s9.0bbd464eb85c from=translated src=- shape=0be116e7 vocab=4647c4fa
+-/
 theorem count_certificate (Z : ZeroConfig) (P : Params) (κ : ℝ) (lower : ℝ → ℝ)
     (θ₀ : ℝ → ℝ)
     (h0 : ∀ᶠ T in atTop, 4 * rtrace (P.hat T (Z.Gz P T)) - frobSq (P.hat T (Z.Gz P T))
@@ -88,7 +92,9 @@ theorem count_certificate (Z : ZeroConfig) (P : Params) (κ : ℝ) (lower : ℝ 
   exact ⟨T₀, fun T hT => hT₀ T hT⟩
 
 /-- the c = 3 fixed-T algebra: from `6·tr − frob − 3N − 3NII − B·(…) ≤ 2·lower` and the moment
-bounds, `(3/2 − κ/2)·N − errors ≤ lower`. -/
+bounds, `(3/2 − κ/2)·N − errors ≤ lower`.
+@isnad1 id=le.4h9v.s8.216ca1b86795 from=translated src=- shape=77634e97 vocab=1df984aa
+-/
 theorem count_lower_moment_c3
     {lower N NII trGh frGh B κ R₁ R₂ : ℝ} (hB : 0 ≤ B)
     (h0 : 6 * trGh - frGh - 3 * N - 5 * NII - B * (6 + 2 * Real.sqrt frGh + B) ≤ 2 * lower)

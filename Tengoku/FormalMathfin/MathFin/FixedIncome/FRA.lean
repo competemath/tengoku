@@ -49,21 +49,27 @@ noncomputable def fraForwardRate (P1 P2 δ : ℝ) : ℝ := (P1 / P2 - 1) / δ
 def fraValue (δ P2 F K : ℝ) : ℝ := δ * P2 * (F - K)
 
 /-- Substituting the simple forward rate into the FRA value gives the
-discount-factor difference net of the fixed payment. -/
+discount-factor difference net of the fixed payment.
+@isnad1 id=eq.2h4v.s6.f9f6aeb4da28 from=translated src=- shape=44928385 vocab=2923481d
+-/
 theorem fraValue_forwardRate_eq_discount_difference (P1 P2 δ K : ℝ)
     (hδ : δ ≠ 0) (hP2 : P2 ≠ 0) :
     fraValue δ P2 (fraForwardRate P1 P2 δ) K = P1 - P2 - δ * P2 * K := by
   unfold fraValue fraForwardRate
   field_simp
 
-/-- The FRA value identity on the deterministic zero-coupon-bond curve. -/
+/-- The FRA value identity on the deterministic zero-coupon-bond curve.
+@isnad1 id=eq.1h5v.s6.fb8fcebf28f2 from=translated src=- shape=8f12b1c9 vocab=6cce0bc3
+-/
 theorem fraValue_zcb_eq_discount_difference (r δ K T1 T2 : ℝ) (hδ : δ ≠ 0) :
     fraValue δ (zcb r 0 T2) (fraForwardRate (zcb r 0 T1) (zcb r 0 T2) δ) K =
       zcb r 0 T1 - zcb r 0 T2 - δ * zcb r 0 T2 * K :=
   fraValue_forwardRate_eq_discount_difference _ _ _ _ hδ (zcb_pos r 0 T2).ne'
 
 /-- On the zero-coupon-bond curve, the FRA has zero value exactly when its
-fixed rate is the simple forward rate. -/
+fixed rate is the simple forward rate.
+@isnad1 id=iff.1h5v.s6.822046c1611f from=translated src=- shape=420121dc vocab=7bc9f70b
+-/
 theorem fraValue_zcb_eq_zero_iff (r δ K T1 T2 : ℝ) (hδ : δ ≠ 0) :
     fraValue δ (zcb r 0 T2) (fraForwardRate (zcb r 0 T1) (zcb r 0 T2) δ) K = 0 ↔
       K = fraForwardRate (zcb r 0 T1) (zcb r 0 T2) δ := by

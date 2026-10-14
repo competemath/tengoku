@@ -64,26 +64,38 @@ bracket measure `d⟨M⟩ = f² ds ⊗ dμ`. -/
 noncomputable def sqWeight (ν : Measure α) (f : α → ℝ) : Measure α :=
   ν.withDensity fun x ↦ ‖f x‖ₑ ^ 2
 
+/--
+@isnad1 id=measurab.1h3v.s6.2a7765d7f026 from=translated src=- shape=97b2fc6f vocab=c53a848c
+-/
 lemma measurable_sqDensity (hf : Measurable f) : Measurable fun x ↦ ‖f x‖ₑ ^ 2 :=
   hf.enorm.pow_const 2
 
+/--
+@isnad1 id=ne.0h3v.s6.b575f25bdcf7 from=translated src=- shape=fd11faee vocab=ac768c74
+-/
 lemma sqDensity_ne_top (x : α) : ‖f x‖ₑ ^ 2 ≠ ⊤ := by
   simp [enorm_ne_top]
 
 /-- The density is nonzero exactly where `f` is, which is what turns an a.e. statement for
-`sqWeight ν f` into one for `ν` restricted to `{f ≠ 0}`. -/
+`sqWeight ν f` into one for `ν` restricted to `{f ≠ 0}`.
+@isnad1 id=ne.1h3v.s6.17655767d638 from=translated src=- shape=ac49e130 vocab=47c6e69e
+-/
 lemma sqDensity_ne_zero {x : α} (hx : f x ≠ 0) : ‖f x‖ₑ ^ 2 ≠ 0 :=
   pow_ne_zero 2 (by simpa using hx)
 
 /-- **Change of density for lower integrals.** Integrating against `f²·ν` is integrating
-against `ν` with the integrand scaled by `‖f‖ₑ²`. -/
+against `ν` with the integrand scaled by `‖f‖ₑ²`.
+@isnad1 id=eq.1h5v.s6.ccc2fdcfbce9 from=translated src=- shape=a4b9d307 vocab=5cd67c4f
+-/
 lemma lintegral_sqWeight (hf : Measurable f) (g : α → ℝ≥0∞) :
     ∫⁻ x, g x ∂(sqWeight ν f) = ∫⁻ x, ‖f x‖ₑ ^ 2 * g x ∂ν := by
   rw [sqWeight, lintegral_withDensity_eq_lintegral_mul_non_measurable _
     (measurable_sqDensity hf) (Eventually.of_forall fun x ↦ (sqDensity_ne_top x).lt_top)]
   rfl
 
-/-- The weight only sees `f` up to a `ν`-null set. -/
+/-- The weight only sees `f` up to a `ν`-null set.
+@isnad1 id=eq.1h5v.s5.d976cb2fe5e7 from=translated src=- shape=ceb19091 vocab=f801ffde
+-/
 lemma sqWeight_congr_ae {g : α → ℝ} (h : f =ᵐ[ν] g) : sqWeight ν f = sqWeight ν g := by
   rw [sqWeight, sqWeight]
   exact withDensity_congr_ae (by filter_upwards [h] with x hx; rw [hx])
@@ -93,7 +105,9 @@ product. Densities multiply, and `‖fg‖ₑ² = ‖f‖ₑ²‖g‖ₑ²`.
 
 This is the associativity of the chain rule. Reading `sqWeight` as a bracket, it says
 `d⟨ψ●M⟩ = ψ² d⟨M⟩`: an Itô integral against an Itô integral is again one, with the brackets
-composing the way the integrands do. -/
+composing the way the integrands do.
+@isnad1 id=eq.2h5v.s5.30ea30d992c5 from=translated src=- shape=93a4f323 vocab=1d0a0b7a
+-/
 lemma sqWeight_sqWeight (hf : Measurable f) {g : α → ℝ} (hg : Measurable g) :
     sqWeight (sqWeight ν f) g = sqWeight ν (fun x ↦ f x * g x) := by
   have hdens : (fun x ↦ ‖f x * g x‖ₑ ^ 2)
@@ -104,7 +118,9 @@ lemma sqWeight_sqWeight (hf : Measurable f) {g : α → ℝ} (hg : Measurable g)
   exact (withDensity_mul ν (measurable_sqDensity hf) (measurable_sqDensity hg)).symm
 
 /-- **The norm identity.** `‖f·g‖_{L²(ν)} = ‖g‖_{L²(f²·ν)}`, for an arbitrary `g` — no
-integrability is needed, both sides being lower integrals. -/
+integrability is needed, both sides being lower integrals.
+@isnad1 id=eq.1h5v.s7.3db2f5d2b6ad from=translated src=- shape=eb7541cd vocab=f03e0989
+-/
 lemma eLpNorm_mul_eq (hf : Measurable f) (g : α → ℝ) :
     eLpNorm (fun x ↦ f x * g x) 2 ν = eLpNorm g 2 (sqWeight ν f) := by
   rw [eLpNorm_eq_lintegral_rpow_enorm_toReal (by norm_num) (by norm_num),
@@ -116,12 +132,16 @@ lemma eLpNorm_mul_eq (hf : Measurable f) (g : α → ℝ) :
   rw [show ((2 : ℝ≥0∞).toReal) = ((2 : ℕ) : ℝ) by norm_num, ENNReal.rpow_natCast]
 
 /-- `(‖r‖ₑ²).toReal = r²` — the real form of the density, used to turn a `withDensity`
-transfer into an honest multiplication by `f²`. -/
+transfer into an honest multiplication by `f²`.
+@isnad1 id=eq.0h1v.s6.33fd1ecc1d4d from=translated src=- shape=5c47ea35 vocab=132d68f7
+-/
 lemma enorm_sq_toReal (r : ℝ) : (‖r‖ₑ ^ 2).toReal = r ^ 2 := by
   rw [ENNReal.toReal_pow, Real.enorm_eq_ofReal_abs, ENNReal.toReal_ofReal (abs_nonneg r),
     sq_abs]
 
-/-- **Bochner transfer.** Integrating `u` against `f²·ν` is integrating `f²·u` against `ν`. -/
+/-- **Bochner transfer.** Integrating `u` against `f²·ν` is integrating `f²·u` against `ν`.
+@isnad1 id=eq.1h5v.s6.34fce19c7a10 from=translated src=- shape=873b996c vocab=96ee325d
+-/
 lemma integral_sqWeight (hf : Measurable f) (u : α → ℝ) :
     ∫ x, u x ∂(sqWeight ν f) = ∫ x, f x ^ 2 * u x ∂ν := by
   rw [sqWeight, integral_withDensity_eq_integral_toReal_smul (measurable_sqDensity hf)
@@ -129,7 +149,9 @@ lemma integral_sqWeight (hf : Measurable f) (u : α → ℝ) :
   exact integral_congr_ae (Eventually.of_forall fun x ↦ by
     simp only [smul_eq_mul, enorm_sq_toReal])
 
-/-- The set-integral form of `integral_sqWeight`. -/
+/-- The set-integral form of `integral_sqWeight`.
+@isnad1 id=eq.2h6v.s6.b0949b1be7f7 from=translated src=- shape=b22426f6 vocab=ecd1d2fd
+-/
 lemma setIntegral_sqWeight (hf : Measurable f) {R : Set α} (hR : MeasurableSet R) (u : α → ℝ) :
     ∫ x in R, u x ∂(sqWeight ν f) = ∫ x in R, f x ^ 2 * u x ∂ν := by
   rw [sqWeight, restrict_withDensity hR,
@@ -139,7 +161,9 @@ lemma setIntegral_sqWeight (hf : Measurable f) {R : Set α} (hR : MeasurableSet 
     simp only [smul_eq_mul, enorm_sq_toReal])
 
 /-- `f²·ν` is carried by `{f ≠ 0}`: the weight kills the rest. This is what turns "`f²·g = 0`
-`ν`-a.e." into "`g = 0` a.e. for the weighted measure". -/
+`ν`-a.e." into "`g = 0` a.e. for the weighted measure".
+@isnad1 id=eventual.1h4v.s5.4b0261b61cc8 from=translated src=- shape=4ecb04d8 vocab=5018eb15
+-/
 lemma sqWeight_ae_ne_zero (hf : Measurable f) : ∀ᵐ x ∂(sqWeight ν f), f x ≠ 0 := by
   rw [sqWeight, ae_withDensity_iff (measurable_sqDensity hf)]
   filter_upwards with x hx hfx
@@ -147,14 +171,18 @@ lemma sqWeight_ae_ne_zero (hf : Measurable f) : ∀ᵐ x ∂(sqWeight ν f), f x
 
 /-- `ψ ∈ L²(f²·ν)` implies `f·ψ ∈ L²(ν)`. The measurability is not transported across the
 measures — an `Lp` element carries a genuinely `StronglyMeasurable` representative
-(`Lp.stronglyMeasurable`), so it is measurable for every measure at once. -/
+(`Lp.stronglyMeasurable`), so it is measurable for every measure at once.
+@isnad1 id=memlp.1h5v.s9.a7dd5ac7c42d from=translated src=- shape=7780de21 vocab=daa7424b
+-/
 lemma memLp_mul (hf : Measurable f) (ψ : Lp ℝ 2 (sqWeight ν f)) :
     MemLp (fun x ↦ f x * ψ x) 2 ν :=
   ⟨hf.aestronglyMeasurable.mul (Lp.stronglyMeasurable ψ).aestronglyMeasurable,
     by rw [eLpNorm_mul_eq hf]; exact Lp.eLpNorm_lt_top ψ⟩
 
 /-- When `f ≠ 0` a.e., an a.e. statement for the weighted measure transfers back to `ν`. The
-two measures are then equivalent: `f²·ν ≪ ν` always, and the density is a.e. nonzero. -/
+two measures are then equivalent: `f²·ν ≪ ν` always, and the density is a.e. nonzero.
+@isnad1 id=eventual.3h5v.s6.2d9c1a9e088f from=translated src=- shape=32affb85 vocab=5018eb15
+-/
 lemma ae_of_sqWeight_of_ae_ne_zero (hf : Measurable f) (hf0 : ∀ᵐ x ∂ν, f x ≠ 0)
     {p : α → Prop} (h : ∀ᵐ x ∂(sqWeight ν f), p x) : ∀ᵐ x ∂ν, p x := by
   rw [sqWeight, ae_withDensity_iff (measurable_sqDensity hf)] at h
@@ -186,7 +214,9 @@ noncomputable def mulLM (ν : Measure α) (hf : Measurable f) :
     · rw [hs (sqDensity_ne_zero hx), Pi.smul_apply, smul_eq_mul, smul_eq_mul]
       ring
 
-/-- **The characterising a.e. identity** — without it the map is opaque. -/
+/-- **The characterising a.e. identity** — without it the map is opaque.
+@isnad1 id=eventual.1h5v.s11.21e897edad30 from=translated src=- shape=3a02ba84 vocab=758f0156
+-/
 lemma coeFn_mulLM (ν : Measure α) (hf : Measurable f) (ψ : Lp ℝ 2 (sqWeight ν f)) :
     ⇑(mulLM ν hf ψ) =ᵐ[ν] fun x ↦ f x * ψ x :=
   (memLp_mul hf ψ).coeFn_toLp
@@ -198,11 +228,16 @@ noncomputable def mulLI (ν : Measure α) (hf : Measurable f) :
   norm_map' ψ := by
     rw [Lp.norm_def, Lp.norm_def, eLpNorm_congr_ae (coeFn_mulLM ν hf ψ), eLpNorm_mul_eq hf]
 
+/--
+@isnad1 id=eq.1h4v.s11.ac77de6923c6 from=translated src=- shape=44087536 vocab=3e1c7b2e
+-/
 @[simp]
 lemma mulLI_toLinearMap (ν : Measure α) (hf : Measurable f) :
     (mulLI ν hf).toLinearMap = mulLM ν hf := rfl
 
-/-- `coeFn_mulLM` for the bundled isometry. -/
+/-- `coeFn_mulLM` for the bundled isometry.
+@isnad1 id=eventual.1h5v.s11.0af18eea5eb8 from=translated src=- shape=3a02ba84 vocab=cdb91fe4
+-/
 lemma coeFn_mulLI (ν : Measure α) (hf : Measurable f) (ψ : Lp ℝ 2 (sqWeight ν f)) :
     ⇑(mulLI ν hf ψ) =ᵐ[ν] fun x ↦ f x * ψ x :=
   coeFn_mulLM ν hf ψ
@@ -212,7 +247,9 @@ lemma coeFn_mulLI (ν : Measure α) (hf : Measurable f) (ψ : Lp ℝ 2 (sqWeight
 
 The inner identity holds only `(f²·ν)`-a.e., which is strictly weaker than `ν`-a.e., so it does
 not transfer — but it does not need to: off `{f ≠ 0}` the outer multiplication kills both sides.
-Same case split as the well-definedness argument, for the same reason. -/
+Same case split as the well-definedness argument, for the same reason.
+@isnad1 id=eventual.2h6v.s12.578545d355e4 from=translated src=- shape=c75789b3 vocab=cdb91fe4
+-/
 lemma coeFn_mulLI_mulLI (ν : Measure α) (hf : Measurable f) {g : α → ℝ} (hg : Measurable g)
     (χ : Lp ℝ 2 (sqWeight (sqWeight ν f) g)) :
     ⇑(mulLI ν hf (mulLI (sqWeight ν f) hg χ)) =ᵐ[ν] fun x ↦ f x * (g x * χ x) := by
@@ -230,7 +267,9 @@ lemma coeFn_mulLI_mulLI (ν : Measure α) (hf : Measurable f) {g : α → ℝ} (
 /-- **Multiplication by `f` is onto when `f ≠ 0` a.e.** The preimage of `u` is `u/f`, which
 lands in the weighted space precisely because the weight cancels the division:
 `∫|u/f|² f² dν = ∫|u|² dν`. This is what turns a hedge against `B` into a holding in a price
-with volatility `f`. -/
+with volatility `f`.
+@isnad1 id=ex.2h5v.s11.62890c1698d7 from=translated src=- shape=e2b99410 vocab=74bc7a04
+-/
 theorem exists_mulLI_eq (hf : Measurable f) (hf0 : ∀ᵐ x ∂ν, f x ≠ 0) (u : Lp ℝ 2 ν) :
     ∃ ψ : Lp ℝ 2 (sqWeight ν f), mulLI ν hf ψ = u := by
   have hcancel : (fun x ↦ f x * ((u : α → ℝ) x / f x)) =ᵐ[ν] ⇑u := by

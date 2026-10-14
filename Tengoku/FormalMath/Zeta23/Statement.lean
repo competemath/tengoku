@@ -96,23 +96,53 @@ def zetaZeros (hs : ZetaSeam) : ZeroConfig where
 section seam_rfl
 variable (hs : ZetaSeam) (T₁ T₂ : ℝ)
 
+/--
+@isnad1 id=eq.1h0v.s3.27c2e3e25583 from=translated src=- shape=0f1e8e58 vocab=f602a899
+-/
 @[simp] lemma zetaZeros_carrier : (zetaZeros hs).carrier = {ρ | IsNontrivialZero ρ} := rfl
+/--
+@isnad1 id=eq.1h0v.s3.f4fae6b161c5 from=translated src=- shape=53675764 vocab=5d161e46
+-/
 @[simp] lemma zetaZeros_mult : (zetaZeros hs).mult = zeroMult := rfl
+/--
+@isnad1 id=eq.1h0v.s4.083ed396c447 from=translated src=- shape=8b860e6e vocab=aae93418
+-/
 @[simp] lemma zetaZeros_simple : (zetaZeros hs).simple = {ρ | zeroMult ρ = 1} := rfl
 
+/--
+@isnad1 id=eq.1h2v.s4.123375825c71 from=translated src=- shape=61134b7f vocab=9f09b606
+-/
 lemma zetaZeros_window : (zetaZeros hs).window T₁ T₂ = zerosIn T₁ T₂ := by
   ext ρ; simp [ZeroConfig.window, zerosIn]
 
+/--
+@isnad1 id=eq.1h2v.s4.7cb5953a8608 from=translated src=- shape=95d13dc0 vocab=355525e3
+-/
 @[simp] lemma zetaZeros_N : (zetaZeros hs).N T₁ T₂ = Ncount T₁ T₂ := by
   simp [ZeroConfig.N, Ncount, zetaZeros_window]
+/--
+@isnad1 id=eq.1h2v.s4.37919e1842fa from=translated src=- shape=95d13dc0 vocab=3d6659f1
+-/
 @[simp] lemma zetaZeros_Nd : (zetaZeros hs).Nd T₁ T₂ = Ndist T₁ T₂ := by
   simp [ZeroConfig.Nd, Ndist, zetaZeros_window]
+/--
+@isnad1 id=eq.1h2v.s4.03e1e0252ea6 from=translated src=- shape=95d13dc0 vocab=ee824bab
+-/
 @[simp] lemma zetaZeros_N0 : (zetaZeros hs).N0 T₁ T₂ = N0 T₁ T₂ := by
   simp [ZeroConfig.N0, N0, zetaZeros_window, ZeroConfig.onLine]
+/--
+@isnad1 id=eq.1h2v.s4.19e15d5cd33e from=translated src=- shape=95d13dc0 vocab=a43ed6b0
+-/
 @[simp] lemma zetaZeros_N0star : (zetaZeros hs).N0star T₁ T₂ = N0star T₁ T₂ := by
   simp [ZeroConfig.N0star, N0star, zetaZeros_window, ZeroConfig.onLine]
+/--
+@isnad1 id=eq.1h2v.s4.c9af013488d3 from=translated src=- shape=95d13dc0 vocab=e3ade51f
+-/
 @[simp] lemma zetaZeros_N0s : (zetaZeros hs).N0s T₁ T₂ = N0simple T₁ T₂ := by
   simp [ZeroConfig.N0s, N0simple, zetaZeros_window, ZeroConfig.onLine]
+/--
+@isnad1 id=eq.1h2v.s4.a8f21aebc721 from=translated src=- shape=95d13dc0 vocab=dab2877f
+-/
 @[simp] lemma zetaZeros_Ns : (zetaZeros hs).Ns T₁ T₂ = Nsimple T₁ T₂ := by
   simp [ZeroConfig.Ns, Nsimple, zetaZeros_window]
 
@@ -121,7 +151,9 @@ end seam_rfl
 /-! ## 3. Sanity anchors (connection to Mathlib's existing statement of RH) -/
 
 /-- A strip zero is a "nontrivial zero" in the sense inlined in Mathlib's RiemannHypothesis:
-not a trivial zero −2(n+1) (those have real part ≤ −2) and not the pole 1. -/
+not a trivial zero −2(n+1) (those have real part ≤ −2) and not the pole 1.
+@isnad1 id=and.1h1v.s5.3d4409f37812 from=translated src=- shape=6c757bef vocab=42c86242
+-/
 lemma IsNontrivialZero.not_trivial {ρ : ℂ} (h : IsNontrivialZero ρ) :
     (¬∃ n : ℕ, ρ = -2 * (n + 1)) ∧ ρ ≠ 1 := by
   refine ⟨?_, ?_⟩
@@ -132,14 +164,18 @@ lemma IsNontrivialZero.not_trivial {ρ : ℂ} (h : IsNontrivialZero ρ) :
   · rintro rfl
     simpa using h.2.2
 
-/-- Mathlib's RiemannHypothesis puts every nontrivial zero (in our sense) on the critical line. -/
+/-- Mathlib's RiemannHypothesis puts every nontrivial zero (in our sense) on the critical line.
+@isnad1 id=eq.2h1v.s5.364c44920b11 from=translated src=- shape=8f3063ca vocab=f7418e20
+-/
 theorem RH_implies_on_line (hRH : RiemannHypothesis) {ρ : ℂ} (h : IsNontrivialZero ρ) :
     ρ.re = 1 / 2 :=
   hRH ρ h.1 h.not_trivial.1 h.not_trivial.2
 
 /-- Sanity anchor 1: under Mathlib's RiemannHypothesis all counted zeros are on the
 line, so the on-line counts equal the full counts, with and without multiplicity. No other
-hypotheses. -/
+hypotheses.
+@isnad1 id=and.1h2v.s4.92ceb718e38b from=translated src=- shape=043014e0 vocab=f82f7e0c
+-/
 theorem RH_implies_all_on_line (hRH : RiemannHypothesis) (T₁ T₂ : ℝ) :
     N0 T₁ T₂ = Ncount T₁ T₂ ∧ N0star T₁ T₂ = Ndist T₁ T₂ := by
   have hset : zerosIn T₁ T₂ ∩ {ρ | ρ.re = 1 / 2} = zerosIn T₁ T₂ := by
@@ -152,7 +188,9 @@ theorem RH_implies_all_on_line (hRH : RiemannHypothesis) (T₁ T₂ : ℝ) :
 
 /-- Sanity anchor 2 [eq:trivialchain], verbatim: "trivially N₀ˢ ≤ N₀* ≤ N₀ ≤ N,
 N₀ˢ ≤ Nˢ ≤ N_d ≤ N". Needs the seam facts (finiteness of the window; m_ρ ≥ 1), nothing from the
-paper. -/
+paper.
+@isnad1 id=and.1h2v.s6.070bcde9de34 from=translated src=- shape=61de0218 vocab=c8ee640c
+-/
 theorem trivial_chain (hs : ZetaSeam) (T₁ T₂ : ℝ) :
     N0simple T₁ T₂ ≤ N0star T₁ T₂ ∧ N0star T₁ T₂ ≤ N0 T₁ T₂ ∧ N0 T₁ T₂ ≤ Ncount T₁ T₂ ∧
     N0simple T₁ T₂ ≤ Nsimple T₁ T₂ ∧ Nsimple T₁ T₂ ≤ Ndist T₁ T₂ ∧ Ndist T₁ T₂ ≤ Ncount T₁ T₂ := by

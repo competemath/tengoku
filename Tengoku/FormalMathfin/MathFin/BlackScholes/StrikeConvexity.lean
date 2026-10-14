@@ -59,7 +59,9 @@ open Set Real ProbabilityTheory
 
 /-- The affine function `K ↦ a − K` is convex on `Set.univ`. Affine
 functions are simultaneously convex and concave; the inequality holds
-with equality. -/
+with equality.
+@isnad1 id=convexon.0h1v.s4.fbcc3d1e834c from=translated src=- shape=d40d80ff vocab=a8ddf273
+-/
 lemma convexOn_sub_const_id (a : ℝ) :
     ConvexOn ℝ Set.univ (fun K : ℝ ↦ a - K) := by
   refine ⟨convex_univ, fun K₁ _ K₂ _ s t _ _ hst ↦ ?_⟩
@@ -74,7 +76,9 @@ lemma convexOn_sub_const_id (a : ℝ) :
 This is the structural spine of static option-price no-arbitrage relations.
 Butterfly non-negativity and Breeden-Litzenberger PDF positivity are
 discrete and infinitesimal consequences (respectively) of this single fact,
-after passing through risk-neutral expectation. -/
+after passing through risk-neutral expectation.
+@isnad1 id=convexon.0h1v.s5.43944bb1c982 from=translated src=- shape=2ea74165 vocab=39f4179c
+-/
 lemma convexOn_call_payoff (S : ℝ) :
     ConvexOn ℝ Set.univ (fun K : ℝ ↦ max (S - K) 0) :=
   (convexOn_sub_const_id S).sup (convexOn_const (0 : ℝ) convex_univ)
@@ -82,7 +86,9 @@ lemma convexOn_call_payoff (S : ℝ) :
 /-- **Call payoff is antitone in the strike**: higher strikes pay less.
 
 Equivalent to monotonicity of `max(·, 0)` composed with `K ↦ S − K` (which
-is itself antitone). The single-line consequence of monotonicity of `max`. -/
+is itself antitone). The single-line consequence of monotonicity of `max`.
+@isnad1 id=antitone.0h1v.s4.5af6202d9c6c from=translated src=- shape=a9e2cc4e vocab=8fee17af
+-/
 lemma antitone_call_payoff (S : ℝ) :
     Antitone (fun K : ℝ ↦ max (S - K) 0) :=
   fun _ _ h ↦ max_le_max (by linarith) le_rfl
@@ -129,7 +135,9 @@ This is the second-derivative test applied to BS: at every `K > 0`,
 `∂²_K bsV = e^{-rτ} · ϕ(d_2)/(K σ √τ) ≥ 0`. The hypotheses of
 `convexOn_of_deriv2_nonneg'` are the differentiability of `bsV` and of its
 first derivative on `Ioi 0`, both of which we have in closed form from
-`hasDerivAt_bsV_K` and `hasDerivAt_bsV_KK`. -/
+`hasDerivAt_bsV_K` and `hasDerivAt_bsV_KK`.
+@isnad1 id=convexon.3h4v.s6.5aa0a33eb13b from=translated src=- shape=c3eec88f vocab=184ff949
+-/
 theorem bsV_strike_convexOn {S r σ τ : ℝ} (hS : 0 < S) (hσ : 0 < σ) (hτ : 0 < τ) :
     ConvexOn ℝ (Set.Ioi (0 : ℝ)) (fun K ↦ bsV K r σ S τ) := by
   refine convexOn_of_deriv2_nonneg' (convex_Ioi 0) ?_ ?_ ?_
@@ -160,7 +168,9 @@ theorem bsV_strike_convexOn {S r σ τ : ℝ} (hS : 0 < S) (hσ : 0 < σ) (hτ :
 /-- **Put price is convex in the strike on `(0, ∞)`** — free from the call's
 strike-convexity: `bsP = bsV + (K·e^{-rτ} − S)` differs from `bsV` by an affine
 function of `K`, and convexity is preserved by adding an affine function. The
-second-derivative apparatus of `PutStrikeConvexity` is not needed. -/
+second-derivative apparatus of `PutStrikeConvexity` is not needed.
+@isnad1 id=convexon.3h4v.s6.ee3915369742 from=translated src=- shape=c3eec88f vocab=5a58227b
+-/
 theorem bsP_strike_convexOn {S r σ τ : ℝ} (hS : 0 < S) (hσ : 0 < σ) (hτ : 0 < τ) :
     ConvexOn ℝ (Set.Ioi (0 : ℝ)) (fun K ↦ bsP K r σ S τ) := by
   have h_eq : (fun K ↦ bsP K r σ S τ)

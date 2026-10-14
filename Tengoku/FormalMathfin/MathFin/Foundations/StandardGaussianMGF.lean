@@ -66,7 +66,9 @@ open MeasureTheory ProbabilityTheory Real
 `∫ exp(α + β · z) · pdf(0, 1, z) dz = exp(α + β²/2)`.
 
 Direct corollary of the bare MGF `integral_exp_mul_gaussianPDFReal_univ` plus
-`exp(α + β·z) = exp(α) · exp(β·z)` and linearity of integration. -/
+`exp(α + β·z) = exp(α) · exp(β·z)` and linearity of integration.
+@isnad1 id=eq.0h2v.s6.1a12553b47e9 from=translated src=- shape=5feab60b vocab=77d53bb5
+-/
 lemma integral_exp_affine_gaussianPDFReal_univ (α β : ℝ) :
     ∫ z, Real.exp (α + β * z) * gaussianPDFReal 0 1 z =
       Real.exp (α + β^2 / 2) := by

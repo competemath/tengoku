@@ -25,17 +25,26 @@ derivative `fderiv ℝ F z`. -/
 noncomputable def heatPartial (F : ℝ × ℝ → ℝ) (v z : ℝ × ℝ) : ℝ :=
   fderiv ℝ F z v
 
+/--
+@isnad1 id=contdiff.1h3v.s7.6a89144f5fd3 from=translated src=- shape=35158f43 vocab=919a8acf
+-/
 theorem heatPartial_smoothAt {F : ℝ × ℝ → ℝ} {z : ℝ × ℝ}
     (hF : ContDiffAt ℝ ∞ F z) (v : ℝ × ℝ) :
     ContDiffAt ℝ ∞ (heatPartial F v) z :=
   (hF.fderiv_right (by simp)).clm_apply contDiffAt_const
 
+/--
+@isnad1 id=hasderiv.1h3v.s7.50905b98e848 from=translated src=- shape=87034154 vocab=b63e83ca
+-/
 theorem heatPartial_time {F : ℝ × ℝ → ℝ} {t x : ℝ}
     (hF : DifferentiableAt ℝ F (t,x)) :
     HasDerivAt (fun s => F (s,x)) (heatPartial F (1,0) (t,x)) t := by
   convert! hF.hasFDerivAt.comp_hasDerivAt t
     ((hasDerivAt_id t).prodMk (hasDerivAt_const t x)) using 1
 
+/--
+@isnad1 id=hasderiv.1h3v.s7.d7e39becf7da from=translated src=- shape=285cc3ad vocab=b63e83ca
+-/
 theorem heatPartial_space {F : ℝ × ℝ → ℝ} {t x : ℝ}
     (hF : DifferentiableAt ℝ F (t,x)) :
     HasDerivAt (fun y => F (t,y)) (heatPartial F (0,1) (t,x)) x := by
@@ -45,9 +54,15 @@ theorem heatPartial_space {F : ℝ × ℝ → ℝ} {t x : ℝ}
 /-- The causal heat boundary kernel as one function of the plane point `z = (t,x)`. -/
 noncomputable def boundaryKernelPlane (z : ℝ × ℝ) : ℝ := causalHeatBoundaryKernel z.1 z.2
 
+/--
+@isnad1 id=contdiff.1h1v.s6.1f24bd191cfe from=translated src=- shape=215530c5 vocab=7a1a88ed
+-/
 theorem boundaryKernelPlane_smoothAt {z : ℝ × ℝ} (hx : 0 < z.2) :
     ContDiffAt ℝ ∞ boundaryKernelPlane z := causalHeatBoundaryKernel_smoothAt hx.ne'
 
+/--
+@isnad1 id=eq.1h2v.s6.9de3edf8e908 from=translated src=- shape=1ed33e2d vocab=c8c2abcd
+-/
 theorem boundaryKernelPlane_equation (t : ℝ) {x : ℝ} (hx : 0 < x) :
     heatPartial boundaryKernelPlane (1,0) (t,x) =
       (1/2)*heatPartial (heatPartial boundaryKernelPlane (0,1)) (0,1) (t,x) := by
@@ -61,6 +76,9 @@ theorem boundaryKernelPlane_equation (t : ℝ) {x : ℝ} (hx : 0 < x) :
   rw [← ht.deriv,← hd.deriv,he.deriv_eq]
   exact causalHeatBoundaryKernel_equation t hx
 
+/--
+@isnad1 id=hasderiv.3h3v.s7.798e9c1f835a from=translated src=- shape=adfcadd5 vocab=20438e09
+-/
 theorem compact_causalBoundaryIntegral_hasDeriv_time {g : ℝ → ℝ}
     (hg : Continuous g) (hc : HasCompactSupport g) {x : ℝ} (hx : 0 < x) (t : ℝ) :
     HasDerivAt (fun s => causalBoundaryIntegral g x s)
@@ -81,6 +99,9 @@ theorem compact_causalBoundaryIntegral_hasDeriv_time {g : ℝ → ℝ}
     simp
   · exact mem_univ _
 
+/--
+@isnad1 id=hasderiv.4h4v.s8.d783c1885e78 from=translated src=- shape=71b6b26c vocab=f58f6108
+-/
 theorem compact_planeIntegral_hasDeriv_space {g : ℝ → ℝ}
     (hg : Continuous g) (hc : HasCompactSupport g) {F : ℝ × ℝ → ℝ}
     (hF : ∀ z, 0 < z.2 → ContDiffAt ℝ ∞ F z) {x : ℝ} (hx : 0 < x) (t : ℝ) :
@@ -100,6 +121,9 @@ theorem compact_planeIntegral_hasDeriv_space {g : ℝ → ℝ}
     exact heatPartial_space ((hF (t-y,s) hs).differentiableAt (by simp))
   · exact hx
 
+/--
+@isnad1 id=eq.3h3v.s7.adb39628f223 from=translated src=- shape=de2586b8 vocab=42d33727
+-/
 theorem compact_causalBoundaryIntegral_equation {g : ℝ → ℝ}
     (hg : Continuous g) (hc : HasCompactSupport g) {x : ℝ} (hx : 0 < x) (t : ℝ) :
     deriv (fun s => causalBoundaryIntegral g x s) t =
@@ -121,6 +145,9 @@ theorem compact_causalBoundaryIntegral_equation {g : ℝ → ℝ}
   rw [boundaryKernelPlane_equation (t-y) hx]
   ring
 
+/--
+@isnad1 id=eq.3h3v.s7.cb923c0671f6 from=translated src=- shape=de2586b8 vocab=ef52bb88
+-/
 theorem compact_heatBoundaryExtension_equation {g : ℝ → ℝ}
     (hg : Continuous g) (hc : HasCompactSupport g) {x : ℝ} (hx : 0 < x) (t : ℝ) :
     deriv (fun s => heatBoundaryExtension g x s) t =
@@ -135,7 +162,9 @@ theorem compact_heatBoundaryExtension_equation {g : ℝ → ℝ}
   exact compact_causalBoundaryIntegral_equation hg hc hx t
 
 /-- Constructed half-line solution for continuous compact boundary data that starts at `a`.
-This is not a solution matching both ends of a finite interval. -/
+This is not a solution matching both ends of a finite interval.
+@isnad1 id=ex.3h2v.s8.f8ae6c16e2e5 from=translated src=- shape=b48cfb28 vocab=701adbe2
+-/
 theorem exists_halfLine_heat_boundary_solution {g : ℝ → ℝ}
     (hg : Continuous g) (hc : HasCompactSupport g) {a : ℝ}
     (hstart : ∀ t, t ≤ a → g t = 0) :

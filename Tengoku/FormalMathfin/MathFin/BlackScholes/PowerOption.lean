@@ -51,7 +51,9 @@ open scoped NNReal ENNReal
 Direct instance of the affine-shifted standard-normal MGF: with
 `α = n(r − σ²/2)T` and `β = nσ√T`, the integrand `(bsTerminal z)^n` equals
 `S_0^n · exp(α + β·z)`, so `E[(bsTerminal)^n] = S_0^n · exp(α + β²/2)`.
-The algebraic identity `α + β²/2 = nrT + n(n−1)/2 σ²T` finishes. -/
+The algebraic identity `α + β²/2 = nrT + n(n−1)/2 σ²T` finishes.
+@isnad1 id=eq.1h10v.s7.9ebb87fbdb7f from=translated src=- shape=9d78127c vocab=c7cf86e8
+-/
 theorem nthMoment_terminal
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
@@ -101,7 +103,9 @@ theorem nthMoment_terminal
 * `n = 0`: `e^{−rT}` (a unit-payoff at maturity is a zero-coupon bond).
 * `n = 1`: `S_0` (discounted spot is a martingale: `e^{−rT} · E[S_T] = S_0`).
 * `n = 2`: `S_0² · exp(rT + σ²T)` (the variance-relevant moment after
-  subtracting the squared forward). -/
+  subtracting the squared forward).
+@isnad1 id=eq.1h10v.s7.a804a435f2f7 from=translated src=- shape=383a1544 vocab=73eb2ab3
+-/
 theorem powerForward_price
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]

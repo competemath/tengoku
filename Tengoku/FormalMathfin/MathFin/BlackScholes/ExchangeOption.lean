@@ -63,7 +63,9 @@ open MeasureTheory ProbabilityTheory
 /-- **Variance of a spread** via covariance bilinearity: for two L²
 random variables, `Var[L₁ − L₂] = Var L₁ + Var L₂ − 2·cov(L₁, L₂)`. The
 cross term carries the correlation — this is where the `−2ρσ₁σ₂` of the
-Margrabe effective volatility comes from. -/
+Margrabe effective volatility comes from.
+@isnad1 id=eq.2h5v.s7.3b3da4b99376 from=translated src=- shape=56dabee4 vocab=75455508
+-/
 theorem margrabe_variance_sub {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {P : Measure Ω} [IsProbabilityMeasure P]
     {L₁ L₂ : Ω → ℝ} (h₁ : MemLp L₁ 2 P) (h₂ : MemLp L₂ 2 P) :
@@ -78,7 +80,9 @@ theorem margrabe_variance_sub {Ω : Type*} {mΩ : MeasurableSpace Ω}
 /-- **Margrabe effective variance**: with `Var L₁ = σ₁²T`, `Var L₂ = σ₂²T`,
 and `cov(L₁, L₂) = ρσ₁σ₂T`, the log-spread variance is
 `(σ₁² + σ₂² − 2ρσ₁σ₂)·T` — the effective variance at which the exchange
-option prices as a one-asset Black-Scholes call. -/
+option prices as a one-asset Black-Scholes call.
+@isnad1 id=eq.5h9v.s8.3369cea4e274 from=translated src=- shape=c397f1fd vocab=0fae7936
+-/
 theorem margrabe_effective_variance {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {P : Measure Ω} [IsProbabilityMeasure P]
     {L₁ L₂ : Ω → ℝ} {σ₁ σ₂ ρ T : ℝ}
@@ -92,7 +96,9 @@ theorem margrabe_effective_variance {Ω : Type*} {mΩ : MeasurableSpace Ω}
 /-- **Exchange-option payoff reduction**: `max(a − b, 0) = b · max(a/b − 1, 0)`
 for `b > 0`. The exchange payoff `max(S¹_T − S²_T, 0)` is `S²_T` times a
 vanilla call payoff on the ratio `S¹_T/S²_T` struck at `1` — the algebraic
-form of "use `S²` as numeraire." -/
+form of "use `S²` as numeraire."
+@isnad1 id=eq.1h2v.s6.88bd82ae34d2 from=translated src=- shape=8485915b vocab=1b086f71
+-/
 theorem exchange_payoff_eq_ratio (a b : ℝ) (hb : 0 < b) :
     max (a - b) 0 = b * max (a / b - 1) 0 := by
   rw [mul_max_of_nonneg _ _ hb.le, mul_zero,
@@ -124,7 +130,9 @@ equals `bsVGarman` at `A = S¹₀`, `K = S²₀`, `DF = 1`, effective vol `σ`. 
 second asset plays the role of the discounted strike and `DF = 1` because the
 S²-numeraire measure carries no discounting. So a *multivariate* option is the
 same closed form `V = A·Φ(d₁) − K·DF·Φ(d₂)` as every BS-family price — one
-more consumer of the `GarmanNormalForm` principle. -/
+more consumer of the `GarmanNormalForm` principle.
+@isnad1 id=eq.0h4v.s4.90d876b615dd from=translated src=- shape=cb4eee7c vocab=51f955ed
+-/
 theorem margrabe_eq_bsVGarman (S1 S2 σ T : ℝ) :
     margrabePrice S1 S2 σ T = bsVGarman S1 S2 1 σ T := by
   have hd1 : margrabeD1 S1 S2 σ T = gbsd1 S1 S2 1 σ T := by
@@ -141,7 +149,9 @@ equals the forward on the spread:
 Foundation-certain: swapping the two assets sends `d₁ ↦ −d₂` and `d₂ ↦ −d₁`
 (the `σ²T/(σ√T) = σ√T` identity), and `Φ(x) + Φ(−x) = 1` (the same symmetry
 `Phi_add_Phi_neg` that drives put-call parity) collapses the rest. No
-probability machinery, no assumed moments — pure algebra on the closed form. -/
+probability machinery, no assumed moments — pure algebra on the closed form.
+@isnad1 id=eq.4h4v.s6.4b4e64e52206 from=translated src=- shape=125cc23b vocab=27e48374
+-/
 theorem margrabe_parity (S1 S2 σ T : ℝ)
     (hS1 : 0 < S1) (hS2 : 0 < S2) (hσ : σ ≠ 0) (hT : 0 < T) :
     margrabePrice S1 S2 σ T - margrabePrice S2 S1 σ T = S1 - S2 := by
@@ -195,7 +205,9 @@ Given that the ratio `R = S¹/S²` is risk-neutral lognormal under the
 rate, effective vol `σ`), the `S²`-numeraire value of the exchange payoff
 `S²₀ · E_Q[max(R_T − 1, 0)]` equals the Margrabe price `margrabePrice`. This
 is a one-line composition of `bs_call_formula` with the algebra `S²₀·R₀ = S¹₀`
-and the `d`-bridges above — no new probability machinery. -/
+and the `d`-bridges above — no new probability machinery.
+@isnad1 id=eq.2h8v.s7.659bcbfda2f9 from=translated src=- shape=2b981fc8 vocab=2b159528
+-/
 theorem margrabe_price_via_call
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
@@ -227,7 +239,9 @@ reference measure `Q`:
 
 This is `changeOfNumeraire` at `X = ` the exchange payoff, `N = S²`, `B ≡ 1`, composed
 with `exchange_payoff_eq_ratio` (`max(S¹−S²,0) = S²·max(S¹/S²−1,0)`). No integrability
-hypothesis is needed — only strict positivity of the numéraire `S²_T > 0`. -/
+hypothesis is needed — only strict positivity of the numéraire `S²_T > 0`.
+@isnad1 id=eq.3h6v.s7.3dc2cdfb575e from=translated src=- shape=19f3d3f7 vocab=3cf4a020
+-/
 theorem exchangeOption_numeraire_price
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     (Q : Measure Ω) (S1T S2T : Ω → ℝ) (S2_0 : ℝ)

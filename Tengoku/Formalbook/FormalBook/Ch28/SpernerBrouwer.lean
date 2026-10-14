@@ -54,7 +54,9 @@ private theorem odd_card_filter_eq_one {α : Type*} {S : Finset α} {f : α → 
     3. The total sum of 12-edge counts is odd (from the Sperner boundary condition
        and the double-counting argument: each interior 12-edge is shared by exactly
        two triangles, so contributes evenly, while boundary 12-edges contribute once),
-    then the number of rainbow triangles is odd. -/
+    then the number of rainbow triangles is odd.
+@isnad1 id=odd.3h4v.s7.054ff548109b from=translated src=- shape=0891bc3d vocab=41eb1a43
+-/
 theorem sperner_lemma {m : ℕ} (T : Triangulation m) (c : Fin m → Fin 3)
     (count12 : Finset (Fin m) → ℕ)
     (h_rainbow_iff : ∀ t ∈ T.triangles, isRainbow c t ↔ count12 t = 1)
@@ -70,7 +72,9 @@ theorem sperner_lemma {m : ℕ} (T : Triangulation m) (c : Fin m → Fin 3)
   rw [hfilt]
   exact odd_card_filter_eq_one h_range h_odd_sum
 
-/-- Corollary: at least one rainbow triangle exists. -/
+/-- Corollary: at least one rainbow triangle exists.
+@isnad1 id=ex.3h4v.s7.97d190cfd1eb from=translated src=- shape=c61d4be2 vocab=d5d72b06
+-/
 theorem sperner_lemma_exists {m : ℕ} (T : Triangulation m) (c : Fin m → Fin 3)
     (count12 : Finset (Fin m) → ℕ)
     (h_rainbow_iff : ∀ t ∈ T.triangles, isRainbow c t ↔ count12 t = 1)

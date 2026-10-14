@@ -50,7 +50,9 @@ variable {Ω E : Type*} {m0 : MeasurableSpace Ω}
 /-- **Uniqueness of the Doob decomposition.** If `f = M + A` with `M` a
 martingale and `A` predictable (`A (n+1)` is `ℱ n`-measurable), integrable,
 and null at `0`, then `M` and `A` agree a.e. at every time with Mathlib's
-canonical parts `martingalePart f ℱ μ` and `predictablePart f ℱ μ`. -/
+canonical parts `martingalePart f ℱ μ` and `predictablePart f ℱ μ`.
+@isnad1 id=and.5h9v.s8.063358e3bed1 from=translated src=- shape=f7139889 vocab=39c72ad5
+-/
 theorem doob_decomposition_unique [SigmaFiniteFiltration μ ℱ]
     {f M A : ℕ → Ω → E}
     (hM : Martingale M ℱ μ)
@@ -66,7 +68,9 @@ theorem doob_decomposition_unique [SigmaFiniteFiltration μ ℱ]
 integrable process `f : ℕ → Ω → E` decomposes as `f = M + A` where `M` is a
 martingale and `A` is predictable with `A 0 = 0`; the decomposition is unique
 up to a.e. equality at every time. The witnesses are Mathlib's
-`martingalePart f ℱ μ` and `predictablePart f ℱ μ`. -/
+`martingalePart f ℱ μ` and `predictablePart f ℱ μ`.
+@isnad1 id=ex.2h6v.s8.3bc5bb24465f from=translated src=- shape=e240ba36 vocab=e22aaaa8
+-/
 theorem doob_decomposition [SigmaFiniteFiltration μ ℱ]
     {f : ℕ → Ω → E} (hf : StronglyAdapted ℱ f) (hf_int : ∀ n, Integrable (f n) μ) :
     ∃ M A : ℕ → Ω → E,

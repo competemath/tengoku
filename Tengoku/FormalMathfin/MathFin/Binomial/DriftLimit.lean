@@ -45,7 +45,9 @@ open scoped Topology
 
 Algebraic identity `e^{σh} + e^{−σh} − 2 = e^{−σh} · (e^{σh} − 1)²` reduces this
 to a product of three existing limits: `e^{−σh} → 1`, `(e^{σh} − 1)/h → σ`,
-and squaring is continuous. -/
+and squaring is continuous.
+@isnad1 id=tendsto.0h1v.s7.edad248218df from=translated src=- shape=610e3865 vocab=c4791f68
+-/
 lemma tendsto_exp_sym_sub_two_div_sq (σ : ℝ) :
     Tendsto (fun h : ℝ ↦ (Real.exp (σ * h) + Real.exp (-(σ * h)) - 2) / h^2)
       (𝓝[≠] 0) (𝓝 (σ^2)) := by
@@ -86,7 +88,9 @@ lemma tendsto_exp_sym_sub_two_div_sq (σ : ℝ) :
 /-- **Numerator-of-`2p−1` limit**: `(2 e^{rh²} − e^{σh} − e^{−σh}) / h² → 2r − σ²`.
 
 Combines `tendsto_exp_sq_sub_one_div_sq r` (gives `(e^{rh²}-1)/h² → r`) with
-`tendsto_exp_sym_sub_two_div_sq σ` (gives `(e^{σh}+e^{-σh}-2)/h² → σ²`). -/
+`tendsto_exp_sym_sub_two_div_sq σ` (gives `(e^{σh}+e^{-σh}-2)/h² → σ²`).
+@isnad1 id=tendsto.0h2v.s7.8c092141ee8a from=translated src=- shape=7966f80b vocab=9afc2f93
+-/
 lemma tendsto_crr_numerator_div_sq (σ r : ℝ) :
     Tendsto (fun h : ℝ ↦
         (2 * Real.exp (r * h^2) - Real.exp (σ * h) - Real.exp (-(σ * h))) / h^2)
@@ -107,7 +111,9 @@ lemma tendsto_crr_numerator_div_sq (σ r : ℝ) :
 /-- **Drift-quotient limit (continuous form)**: as `h → 0` (`h ≠ 0`),
 `(2 e^{rh²} − e^{σh} − e^{−σh}) / (h · (e^{σh} − e^{−σh})) → (r − σ²/2) / σ`.
 
-Quotient of `tendsto_crr_numerator_div_sq r` and `tendsto_sinh_div σ`. -/
+Quotient of `tendsto_crr_numerator_div_sq r` and `tendsto_sinh_div σ`.
+@isnad1 id=tendsto.1h2v.s7.c6299a0c02bc from=translated src=- shape=d7c13412 vocab=9afc2f93
+-/
 lemma tendsto_crr_drift_quotient {σ : ℝ} (hσ : σ ≠ 0) (r : ℝ) :
     Tendsto (fun h : ℝ ↦
         (2 * Real.exp (r * h^2) - Real.exp (σ * h) - Real.exp (-(σ * h)))
@@ -142,7 +148,9 @@ For `σ ≠ 0`, as `h → 0` (`h ≠ 0`):
 
 To extract the textbook `n · (2 p_n − 1) · σ √(T/n) → (r − σ²/2) T` form,
 substitute `h = √(T/n)`, multiply by `σT`, and use `n · √(T/n) · √(T/n) = T`.
-That n-indexed form is completed below in `crr_drift_limit_n`. -/
+That n-indexed form is completed below in `crr_drift_limit_n`.
+@isnad1 id=tendsto.1h2v.s7.c6299a0c02bc from=translated src=- shape=d7c13412 vocab=9afc2f93
+-/
 theorem crr_drift_limit_h {σ : ℝ} (hσ : σ ≠ 0) (r : ℝ) :
     Tendsto (fun h : ℝ ↦
         (2 * Real.exp (r * h^2) - Real.exp (σ * h) - Real.exp (-(σ * h)))
@@ -154,7 +162,9 @@ theorem crr_drift_limit_h {σ : ℝ} (hσ : σ ≠ 0) (r : ℝ) :
 `n · (2 p_n − 1) · σ · √(T/n) → (r − σ²/2) · T`.
 
 The substitution `h_n = √(T/n)` reduces this to `crr_drift_limit_h` scaled by
-`σ T`, using the algebraic identity `n · (√(T/n))² = T`. -/
+`σ T`, using the algebraic identity `n · (√(T/n))² = T`.
+@isnad1 id=tendsto.2h3v.s7.43a206ad1eaf from=translated src=- shape=cd226b63 vocab=95716eff
+-/
 theorem crr_drift_limit_n {σ T r : ℝ} (hσ : 0 < σ) (hT : 0 < T) :
     Tendsto (fun n : ℕ ↦
         (n : ℝ) * (2 * crrProb r σ T n - 1) * σ * Real.sqrt (T / n))

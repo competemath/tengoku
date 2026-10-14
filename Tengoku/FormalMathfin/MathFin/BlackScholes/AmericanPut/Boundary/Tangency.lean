@@ -34,7 +34,9 @@ variable {k h c d : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
 
 /-- If the comparison line is strictly in continuation, its difference from
 the American price is positive. No restriction to below-strike points is
-needed: the actual payoff dominates the intrinsic expression everywhere. -/
+needed: the actual payoff dominates the intrinsic expression everywhere.
+@isnad1 id=lt.3h7v.s6.a4526648c79c from=translated src=- shape=e29dd583 vocab=ce2a7a1d
+-/
 theorem lineDifference_on_line_pos (hp : ContinuousBoundaryPutSolution k h p b) {t : ℝ}
     (ht : 0 < t) (hline : b t < d - c * t) : 0 < lineDifference p k h c d 0 t := by
   have hq := (straightPrice_fit hp.rate_pos hp.dividend_nonneg c d t).1
@@ -46,7 +48,9 @@ theorem lineDifference_on_line_pos (hp : ContinuousBoundaryPutSolution k h p b) 
   exact div_pos (sub_pos.mpr hpbound) ((profile_data hp.rate_pos.le).pos _)
 
 /-- Construct the forbidden rectangle from positivity at the terminal slice,
-strict line inclusion just before contact, and the interval hypothesis. -/
+strict line inclusion just before contact, and the interval hypothesis.
+@isnad1 id=false.8h9v.s7.dd13159db02c from=translated src=- shape=58e05c79 vocab=68180c3e
+-/
 theorem no_contact_of_past_line_below_and_terminal_positive
     (hp : ContinuousBoundaryPutSolution k h p b) {A T x₁ : ℝ}
     (hA : 0 < A) (hAT : A < T) (hcontact : b T = d - c * T)
@@ -95,7 +99,9 @@ theorem no_contact_of_past_line_below_and_terminal_positive
 
 /-- Step 5 with its propagation premise explicit. A line
 which touches from above at an isolated local contact is impossible if every
-positive continuation slice is an interval. -/
+positive continuation slice is an interval.
+@isnad1 id=false.7h7v.s7.763016f3d251 from=translated src=- shape=69498f63 vocab=e02f38f1
+-/
 theorem no_isolated_contact_of_positive_intervals (hp : ContinuousBoundaryPutSolution k h p b)
     (hc : 0 < c) (hd : d ≤ 0) {T : ℝ} (hT : 0 < T)
     (hcontact : b T = d - c * T)
@@ -118,7 +124,9 @@ theorem no_isolated_contact_of_positive_intervals (hp : ContinuousBoundaryPutSol
 /-- Local curvature conclusion for a decreasing tangent with nonpositive
 intercept. Its interval-invariance hypothesis is supplied separately. This theorem
 assembles the actual PDE comparison, maximum principle, geometry and Hopf
-contradiction; it does not assume an abstract no-tangency principle. -/
+contradiction; it does not assume an abstract no-tangency principle.
+@isnad1 id=le.5h5v.s8.b56698e29989 from=translated src=- shape=78e78e4a vocab=013bf872
+-/
 theorem curvature_nonneg_of_tangent_intervals (hp : DividendPutSolution k h p b)
     {T : ℝ} (hT : 0 < T) (hspeed : deriv b T < 0)
     (hintercept : b T - T * deriv b T ≤ 0)
@@ -134,7 +142,9 @@ theorem curvature_nonneg_of_tangent_intervals (hp : DividendPutSolution k h p b)
   convert ht hne using 1
   ring
 
-/-- Zero-dividend version of the same conditional local curvature result. -/
+/-- Zero-dividend version of the same conditional local curvature result.
+@isnad1 id=le.5h4v.s8.a146b11734b4 from=translated src=- shape=0b7f7151 vocab=5c4b34d8
+-/
 theorem zeroDividend_curvature_nonneg_of_tangent_intervals {k : ℝ}
     {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ} (hp : NormalizedPutSolution k p b)
     {T : ℝ} (hT : 0 < T) (hspeed : deriv b T < 0)

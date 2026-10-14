@@ -25,11 +25,17 @@ open Set Filter MeasureTheory
 open MathFin.FeynmanKacHeatEquation
 open scoped Topology ContDiff Convolution
 
+/--
+@isnad1 id=contdiff.1h2v.s6.1a2b18d4e2f7 from=translated src=- shape=6ad48b34 vocab=c2abbce9
+-/
 theorem heatKernel_smoothAt {t x : ℝ} (ht : 0 < t) :
     ContDiffAt ℝ ∞ (fun z : ℝ × ℝ => heatKernel z.1 z.2) (t,x) := by
   unfold heatKernel
   fun_prop (disch := positivity)
 
+/--
+@isnad1 id=contdiff.2h1v.s7.8b3313ae9c8a from=translated src=- shape=b99e0133 vocab=5a2913c2
+-/
 theorem compact_continuous_heatFlow_smooth {f : ℝ → ℝ}
     (hf : Continuous f) (hc : HasCompactSupport f) :
     ContDiffOn ℝ ∞ (fun z : ℝ × ℝ => feynmanU f z.1 z.2) {z | 0 < z.1} := by
@@ -68,6 +74,9 @@ theorem compact_continuous_heatFlow_smooth {f : ℝ → ℝ}
   · rw [hχ y hy,one_mul]
     exact mul_comm _ _
 
+/--
+@isnad1 id=contdiff.2h1v.s7.51deef3696fa from=translated src=- shape=3e9abb5b vocab=bfb58808
+-/
 theorem compact_continuous_heatFlow_contDiff {f : ℝ → ℝ}
     (hf : Continuous f) (hc : HasCompactSupport f) :
     ContDiffOn ℝ 2 (fun z : ℝ × ℝ => feynmanU f z.1 z.2) {z | 0 < z.1} :=

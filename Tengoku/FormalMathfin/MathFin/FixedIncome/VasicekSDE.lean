@@ -84,13 +84,17 @@ noncomputable def vasicekSDETerminal
     (r_0 θ κ σ t : ℝ) (Z : ℝ) : ℝ :=
   vasicekSDEMean r_0 θ κ t + Real.sqrt (vasicekSDEVariance σ κ t) * Z
 
-/-- **Mean at `t = 0`** equals the initial value `r_0`. -/
+/-- **Mean at `t = 0`** equals the initial value `r_0`.
+@isnad1 id=eq.0h3v.s4.2f5a226159dc from=translated src=- shape=66861e1c vocab=12340ead
+-/
 lemma vasicekSDE_mean_at_zero (r_0 θ κ : ℝ) :
     vasicekSDEMean r_0 θ κ 0 = r_0 := by
   unfold vasicekSDEMean
   simp
 
-/-- **Variance at `t = 0`** is zero (no diffusion yet). -/
+/-- **Variance at `t = 0`** is zero (no diffusion yet).
+@isnad1 id=eq.1h2v.s4.8dd2f2dd96d6 from=translated src=- shape=3fe2792e vocab=e58fa021
+-/
 lemma vasicekSDE_variance_at_zero (σ κ : ℝ) (_hκ : κ ≠ 0) :
     vasicekSDEVariance σ κ 0 = 0 := by
   unfold vasicekSDEVariance
@@ -99,7 +103,9 @@ lemma vasicekSDE_variance_at_zero (σ κ : ℝ) (_hκ : κ ≠ 0) :
 /-- **Variance positivity** for positive `κ, t` and non-zero `σ`: as `2κt
 > 0`, `e^{−2κt} < 1`, so the variance numerator `1 − e^{−2κt} > 0`. The
 denominator `2κ > 0` and `σ² > 0` (from `σ ≠ 0`) make the whole variance
-strictly positive. -/
+strictly positive.
+@isnad1 id=lt.3h3v.s5.e2d3ec204e05 from=translated src=- shape=e6425d05 vocab=a61e3958
+-/
 lemma vasicekSDE_variance_pos (σ κ t : ℝ)
     (hκ : 0 < κ) (ht : 0 < t) (hσ : σ ≠ 0) :
     0 < vasicekSDEVariance σ κ t := by

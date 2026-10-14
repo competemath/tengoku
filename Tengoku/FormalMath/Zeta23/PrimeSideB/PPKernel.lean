@@ -31,40 +31,67 @@ namespace PrimeSide
 
 section Basics
 
+/--
+@isnad1 id=le.1h2v.s4.b697e4e25a57 from=translated src=- shape=c860e20e vocab=8066384e
+-/
 lemma one_le_of_mem_primeRange {X : ℝ} {n : ℕ} (hn : n ∈ primeRange X) : 1 ≤ n :=
   (Finset.mem_Ioc.mp hn).1
 
+/--
+@isnad1 id=le.2h2v.s5.e776b83ce5b0 from=translated src=- shape=861cfae7 vocab=5ebbfe41
+-/
 lemma cast_le_of_mem_primeRange {X : ℝ} (hX : 0 ≤ X) {n : ℕ} (hn : n ∈ primeRange X) :
     (n : ℝ) ≤ X :=
   (Nat.cast_le.mpr (Finset.mem_Ioc.mp hn).2).trans (Nat.floor_le hX)
 
+/--
+@isnad1 id=le.1h2v.s5.d1138d9077d9 from=translated src=- shape=22252ee1 vocab=4ea3e7dd
+-/
 lemma log_nonneg_of_mem_primeRange {X : ℝ} {n : ℕ} (hn : n ∈ primeRange X) :
     0 ≤ Real.log n :=
   Real.log_nonneg (by exact_mod_cast one_le_of_mem_primeRange hn)
 
+/--
+@isnad1 id=le.2h2v.s5.3697d528bbce from=translated src=- shape=d8734017 vocab=4ea3e7dd
+-/
 lemma log_le_of_mem_primeRange {X : ℝ} (hX : 1 ≤ X) {n : ℕ} (hn : n ∈ primeRange X) :
     Real.log n ≤ Real.log X :=
   Real.log_le_log (by exact_mod_cast one_le_of_mem_primeRange hn)
     (cast_le_of_mem_primeRange (by linarith) hn)
 
+/--
+@isnad1 id=le.0h1v.s5.9829e4e9dc06 from=translated src=- shape=7cbd491e vocab=fcb28404
+-/
 lemma a2_nonneg (n : ℕ) : 0 ≤ (Λ n : ℝ) ^ 2 / n := div_nonneg (sq_nonneg _) (Nat.cast_nonneg _)
 
+/--
+@isnad1 id=le.0h1v.s3.e9380cba0815 from=translated src=- shape=b9369acb vocab=0071a8e5
+-/
 lemma acoef_nonneg (n : ℕ) : 0 ≤ acoef n :=
   div_nonneg ArithmeticFunction.vonMangoldt_nonneg (Real.sqrt_nonneg _)
 
-/-- a_n² = Λ(n)²/n (§5.4). -/
+/-- a_n² = Λ(n)²/n (§5.4).
+@isnad1 id=eq.0h1v.s6.965f74d74f37 from=translated src=- shape=b4cf335c vocab=640d4c6a
+-/
 lemma acoef_sq (n : ℕ) : acoef n ^ 2 = (Λ n : ℝ) ^ 2 / n := by
   unfold acoef; rw [div_pow, Real.sq_sqrt (Nat.cast_nonneg n)]
 
-/-- 2n·a_n² = 2Λ(n)² — the MV weight with δ_n = 1/(2n) [eq:deltan]. -/
+/-- 2n·a_n² = 2Λ(n)² — the MV weight with δ_n = 1/(2n) [eq:deltan].
+@isnad1 id=eq.1h1v.s6.0745ae66be6e from=translated src=- shape=9b7c84e2 vocab=19c3d06d
+-/
 lemma acoef_sq_mul_two_mul {n : ℕ} (hn : 1 ≤ n) : acoef n ^ 2 * (2 * n) = 2 * (Λ n : ℝ) ^ 2 := by
   rw [acoef_sq]
   have : (0:ℝ) < n := by exact_mod_cast hn
   field_simp
 
-/-- Λ(1) = 0, so a_1 = 0: terms with n = 1 never contribute. -/
+/-- Λ(1) = 0, so a_1 = 0: terms with n = 1 never contribute.
+@isnad1 id=eq.0h0v.s3.a42510945613 from=translated src=- shape=1ac31801 vocab=7613720d
+-/
 lemma acoef_one : acoef 1 = 0 := by simp [acoef, ArithmeticFunction.vonMangoldt_apply_one]
 
+/--
+@isnad1 id=or.1h2v.s5.28d7dfcff7a4 from=translated src=- shape=4e75feb2 vocab=06f519a7
+-/
 lemma acoef_eq_zero_or_two_le {X : ℝ} {n : ℕ} (hn : n ∈ primeRange X) :
     acoef n = 0 ∨ 2 ≤ n := by
   rcases Nat.lt_or_ge n 2 with h | h
@@ -90,6 +117,9 @@ def shearHomeo : ℝ × ℝ ≃ₜ ℝ × ℝ where
   continuous_toFun := by fun_prop
   continuous_invFun := by fun_prop
 
+/--
+@isnad1 id=measurep.0h0v.s6.386cfb6369a8 from=translated src=- shape=1139f0cc vocab=adad3a85
+-/
 lemma measurePreserving_shear :
     MeasurePreserving (fun z : ℝ × ℝ => (z.1 + z.2, z.2)) volume volume := by
   have := measurePreserving_add_prod (volume : Measure ℝ) (volume : Measure ℝ)
@@ -99,9 +129,15 @@ lemma measurePreserving_shear :
 (§5.4: "= [T + x⁻, 2T − x⁺] for |x| < T", empty for `|x| > T`). -/
 def Ix (T x : ℝ) : Set ℝ := Icc (max (T - x) T) (min (2 * T - x) (2 * T))
 
+/--
+@isnad1 id=measurab.0h2v.s3.0d9c239bff29 from=translated src=- shape=80310a19 vocab=0cc57619
+-/
 lemma measurableSet_Ix (T x : ℝ) : MeasurableSet (Ix T x) := by
   unfold Ix; exact measurableSet_Icc
 
+/--
+@isnad1 id=iff.0h3v.s6.e96f05d62899 from=translated src=- shape=cd014921 vocab=6f1073b2
+-/
 lemma mem_Ix {T x τ' : ℝ} : τ' ∈ Ix T x ↔ x + τ' ∈ Icc T (2 * T) ∧ τ' ∈ Icc T (2 * T) := by
   simp only [Ix, Set.mem_Icc, max_le_iff, le_min_iff]
   constructor
@@ -111,7 +147,9 @@ lemma mem_Ix {T x τ' : ℝ} : τ' ∈ Ix T x ↔ x + τ' ∈ Icc T (2 * T) ∧ 
 /-- **Shear + Fubini** (§5.4 "Substituting τ = τ'+x and noting that for fixed x the variable
 τ' ranges over I∩(I−x)"): for continuous `Φ`, `G`,
   `∬_{I×I} Φ(τ−τ')² G(τ,τ') d(τ,τ') = ∫_ℝ Φ(x)² (∫_{I∩(I−x)} G(x+τ', τ') dτ') dx`.
-The map `(x,τ') ↦ (x+τ',τ')` preserves Lebesgue measure on `ℝ²`. -/
+The map `(x,τ') ↦ (x+τ',τ')` preserves Lebesgue measure on `ℝ²`.
+@isnad1 id=eq.2h3v.s8.babe233fd367 from=translated src=- shape=3504b28f vocab=cd779e5c
+-/
 lemma sqIntegral_shear (hΦ : Continuous Φ) {G : ℝ × ℝ → ℝ} (hG : Continuous G) :
     ∫ q in Icc T (2 * T) ×ˢ Icc T (2 * T), Φ (q.1 - q.2) ^ 2 * G q
       = ∫ x, Φ x ^ 2 * ∫ τ' in Ix T x, G (x + τ', τ') := by
@@ -150,7 +188,9 @@ lemma sqIntegral_shear (hΦ : Continuous Φ) {G : ℝ × ℝ → ℝ} (hG : Cont
         rw [integral_indicator (measurableSet_Ix T x), integral_const_mul]
 
 /-- The sheared integrand is integrable in `x` (Fubini), so the outer integral above is a genuine
-Lebesgue integral. -/
+Lebesgue integral.
+@isnad1 id=integrab.2h3v.s7.dcb3fd28cb3a from=translated src=- shape=e196345c vocab=45a597c1
+-/
 lemma integrable_sq_mul_inner (hΦ : Continuous Φ) {G : ℝ × ℝ → ℝ} (hG : Continuous G) :
     Integrable (fun x => Φ x ^ 2 * ∫ τ' in Ix T x, G (x + τ', τ')) := by
   set S := Icc T (2 * T) with hS
@@ -182,7 +222,9 @@ lemma integrable_sq_mul_inner (hΦ : Continuous Φ) {G : ℝ × ℝ → ℝ} (hG
   rw [integral_indicator (measurableSet_Ix T x), integral_const_mul]
 
 /-- For `T ≥ 0` the window `I∩(I−x)` is empty unless `|x| ≤ T`; so the `x`-integral may be
-restricted to `[−T, T]` (§5.4 "which is empty for |x| ≥ T"). -/
+restricted to `[−T, T]` (§5.4 "which is empty for |x| ≥ T").
+@isnad1 id=eq.2h2v.s5.44bfc3795468 from=translated src=- shape=e6ae1254 vocab=f1b10522
+-/
 lemma Ix_eq_empty (_hT : 0 ≤ T) {x : ℝ} (hx : T < |x|) : Ix T x = ∅ := by
   unfold Ix
   apply Set.Icc_eq_empty
@@ -194,12 +236,17 @@ lemma Ix_eq_empty (_hT : 0 ≤ T) {x : ℝ} (hx : T < |x|) : Ix T x = ∅ := by
   · rw [abs_of_neg h] at hx; linarith
 
 /-- On `|x| ≤ T` (and `T ≥ 0`) the window is the honest interval `[max(T−x,T), min(2T−x,2T)]`
-with left end ≤ right end, of length `T − |x|`. -/
+with left end ≤ right end, of length `T − |x|`.
+@isnad1 id=le.2h2v.s6.bbc99fab7af8 from=translated src=- shape=3a74e6e0 vocab=e09877fb
+-/
 lemma Ix_le (hT : 0 ≤ T) {x : ℝ} (hx : |x| ≤ T) :
     max (T - x) T ≤ min (2 * T - x) (2 * T) := by
   rw [abs_le] at hx
   simp only [max_le_iff, le_min_iff]; refine ⟨⟨by linarith, by linarith⟩, by linarith, by linarith⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.10d8ba60dd18 from=translated src=- shape=313b995c vocab=3e2e1795
+-/
 lemma Ix_length {x : ℝ} :
     min (2 * T - x) (2 * T) - max (T - x) T = T - |x| := by
   rcases le_or_gt 0 x with h | h
@@ -213,7 +260,9 @@ end Shear
 section CosIntegral
 
 /-- `cos A cos B = (cos(A−B) + cos(A+B))/2` (§5.4, real form of
-`P_X(τ)P_X(τ') = (1/2π²) Re Σ a_n a_m [n^{iτ}m^{−iτ'} + n^{iτ}m^{iτ'}]`). -/
+`P_X(τ)P_X(τ') = (1/2π²) Re Σ a_n a_m [n^{iτ}m^{−iτ'} + n^{iτ}m^{iτ'}]`).
+@isnad1 id=eq.0h2v.s5.6581748bb0e6 from=translated src=- shape=d8b5ac74 vocab=016fe65a
+-/
 lemma cos_mul_cos_eq (A B : ℝ) :
     Real.cos A * Real.cos B = (Real.cos (A - B) + Real.cos (A + B)) / 2 := by
   rw [Real.cos_sub, Real.cos_add]; ring
@@ -223,11 +272,17 @@ inner integral is T−|x|"), else `[sin(θβ+c) − sin(θα+c)]/θ` (§5.4). -/
 def Jker (θ c α β : ℝ) : ℝ :=
   if θ = 0 then (β - α) * Real.cos c else (Real.sin (θ * β + c) - Real.sin (θ * α + c)) / θ
 
+/--
+@isnad1 id=eq.1h4v.s6.cb17a399feed from=translated src=- shape=cfc1aa84 vocab=1898f83f
+-/
 lemma intervalIntegral_cos_linear {θ : ℝ} (hθ : θ ≠ 0) (c α β : ℝ) :
     ∫ t in α..β, Real.cos (θ * t + c) = (Real.sin (θ * β + c) - Real.sin (θ * α + c)) / θ := by
   rw [intervalIntegral.integral_comp_mul_add (fun t => Real.cos t) hθ c, integral_cos,
     smul_eq_mul, inv_mul_eq_div]
 
+/--
+@isnad1 id=eq.0h4v.s5.651530c8e5e6 from=translated src=- shape=b2755b1a vocab=33dc7c8a
+-/
 lemma intervalIntegral_cos_linear_eq_Jker (θ c α β : ℝ) :
     ∫ t in α..β, Real.cos (θ * t + c) = Jker θ c α β := by
   unfold Jker
@@ -235,12 +290,20 @@ lemma intervalIntegral_cos_linear_eq_Jker (θ c α β : ℝ) :
   · subst hθ; simp [intervalIntegral.integral_const]
   · exact intervalIntegral_cos_linear hθ c α β
 
+/--
+@isnad1 id=eq.0h3v.s5.1d8d9665fcc8 from=translated src=- shape=ee071e4c vocab=b34f4575
+-/
 lemma Jker_zero (c α β : ℝ) : Jker 0 c α β = (β - α) * Real.cos c := by simp [Jker]
 
+/--
+@isnad1 id=eq.1h4v.s6.12c8d31041e7 from=translated src=- shape=2d092406 vocab=77f307b7
+-/
 lemma Jker_of_ne {θ : ℝ} (hθ : θ ≠ 0) (c α β : ℝ) :
     Jker θ c α β = (Real.sin (θ * β + c) - Real.sin (θ * α + c)) / θ := by simp [Jker, hθ]
 
-/-- `|J| ≤ 2/|θ|` for `θ ≠ 0` (§5.4 "≤ 2/log(nm)"). -/
+/-- `|J| ≤ 2/|θ|` for `θ ≠ 0` (§5.4 "≤ 2/log(nm)").
+@isnad1 id=le.1h4v.s5.00571674df0e from=translated src=- shape=869bc6b6 vocab=6d696900
+-/
 lemma abs_Jker_le {θ : ℝ} (hθ : θ ≠ 0) (c α β : ℝ) : |Jker θ c α β| ≤ 2 / |θ| := by
   rw [Jker_of_ne hθ, abs_div]
   gcongr
@@ -250,7 +313,9 @@ lemma abs_Jker_le {θ : ℝ} (hθ : θ ≠ 0) (c α β : ℝ) : |Jker θ c α β
     _ = 2 := by norm_num
 
 /-- `J` as a function of the offset `x` (through `c = xy`, `α = max(T−x,T)`, `β = min(2T−x,2T)`)
-is continuous. -/
+is continuous.
+@isnad1 id=continuo.0h3v.s6.f93d4b97cf40 from=translated src=- shape=11f4a04f vocab=7a26f87c
+-/
 lemma continuous_Jker_offset (θ y T : ℝ) :
     Continuous fun x : ℝ => Jker θ (x * y) (max (T - x) T) (min (2 * T - x) (2 * T)) := by
   by_cases hθ : θ = 0
@@ -260,7 +325,9 @@ lemma continuous_Jker_offset (θ y T : ℝ) :
 variable {T : ℝ}
 
 /-- The inner integral of [eq:MPP] in closed form: for `|x| ≤ T`,
-`∫_{I∩(I−x)} cos((x+τ')y) cos(τ'y') dτ' = ½ J(y−y', xy) + ½ J(y+y', xy)`. -/
+`∫_{I∩(I−x)} cos((x+τ')y) cos(τ'y') dτ' = ½ J(y−y', xy) + ½ J(y+y', xy)`.
+@isnad1 id=eq.2h4v.s8.da785a332b9b from=translated src=- shape=8c11783e vocab=caaf5005
+-/
 lemma inner_cos_cos (hT : 0 ≤ T) {x : ℝ} (hx : |x| ≤ T) (y y' : ℝ) :
     ∫ τ' in Ix T x, Real.cos ((x + τ') * y) * Real.cos (τ' * y')
       = (Jker (y - y') (x * y) (max (T - x) T) (min (2 * T - x) (2 * T))
@@ -290,8 +357,14 @@ def JmK (T y y' x : ℝ) : ℝ := Jker (y - y') (x * y) (max (T - x) T) (min (2 
 /-- The "+" (sum-frequency) inner integral at offset x:  J(y+y', xy; I∩(I−x)). -/
 def JpK (T y y' x : ℝ) : ℝ := Jker (y + y') (x * y) (max (T - x) T) (min (2 * T - x) (2 * T))
 
+/--
+@isnad1 id=continuo.0h3v.s4.2c794e2c1207 from=translated src=- shape=53906041 vocab=992334c0
+-/
 lemma continuous_JmK (T y y' : ℝ) : Continuous (JmK T y y') := by
   unfold JmK; exact continuous_Jker_offset _ _ _
+/--
+@isnad1 id=continuo.0h3v.s4.d7c56d732b26 from=translated src=- shape=53906041 vocab=9fd1eca6
+-/
 lemma continuous_JpK (T y y' : ℝ) : Continuous (JpK T y y') := by
   unfold JpK; exact continuous_Jker_offset _ _ _
 
@@ -300,6 +373,9 @@ the two halves of 𝓜[cos(·y),cos(·y')] ([eq:MPP]: first / second inner integ
 def Aminus (Φ : ℝ → ℝ) (T y y' : ℝ) : ℝ := ∫ x in Icc (-T) T, Φ x ^ 2 * JmK T y y' x
 def Aplus (Φ : ℝ → ℝ) (T y y' : ℝ) : ℝ := ∫ x in Icc (-T) T, Φ x ^ 2 * JpK T y y' x
 
+/--
+@isnad1 id=lt.1h2v.s4.744ad95ac8f4 from=translated src=- shape=e3a6d85f vocab=3aa78d74
+-/
 lemma not_mem_Icc_neg {x : ℝ} (hx : x ∉ Icc (-T) T) : T < |x| := by
   simp only [Set.mem_Icc, not_and_or, not_le] at hx
   rcases hx with h | h
@@ -309,7 +385,9 @@ lemma not_mem_Icc_neg {x : ℝ} (hx : x ∉ Icc (-T) T) : T < |x| := by
   · exact lt_of_lt_of_le h (le_abs_self x)
 
 /-- **[eq:MPP] per pair** (§5.4): for T ≥ 0,
-𝓜[cos(·y), cos(·y')] = ½ A⁻(y,y') + ½ A⁺(y,y'). -/
+𝓜[cos(·y), cos(·y')] = ½ A⁻(y,y') + ½ A⁺(y,y').
+@isnad1 id=eq.2h4v.s6.5c0e18db2e41 from=translated src=- shape=b19c1df5 vocab=c65c32b2
+-/
 lemma Mform_cos_cos (hT : 0 ≤ T) (hΦ : Continuous Φ) (y y' : ℝ) :
     Mform Φ T (fun τ => Real.cos (τ * y)) (fun τ => Real.cos (τ * y'))
       = (Aminus Φ T y y' + Aplus Φ T y y') / 2 := by
@@ -335,12 +413,17 @@ lemma Mform_cos_cos (hT : 0 ≤ T) (hΦ : Continuous Φ) (y y' : ℝ) :
 
 /-! ### The diagonal 𝒟 (§5.4) -/
 
+/--
+@isnad1 id=eq.0h3v.s5.3b7702b4874c from=translated src=- shape=f55045de vocab=32f69968
+-/
 lemma JmK_diag (T y x : ℝ) : JmK T y y x = (T - |x|) * Real.cos (x * y) := by
   unfold JmK; rw [sub_self, Jker_zero, Ix_length]
 
 /-- **𝒟, per frequency** (§5.4): "For n=m the first inner integral is T−|x|, so by
 [eq:Phi2FT] … 𝒟 = (T/π)Σ a_n² g(y_n) + O(…)", "using ∫_{|x|>T}Φ² ≤ ∫Φ²|x|/T":
-  |A⁻(y,y) − T ∫_ℝ Φ(x)² cos(xy) dx| ≤ ∫_ℝ Φ(x)²|x| dx. -/
+  |A⁻(y,y) − T ∫_ℝ Φ(x)² cos(xy) dx| ≤ ∫_ℝ Φ(x)²|x| dx.
+@isnad1 id=le.4h3v.s8.6a4c4a055913 from=translated src=- shape=c96b67ae vocab=a7c11a66
+-/
 lemma abs_Aminus_diag_sub_le (hT : 0 ≤ T) (hΦ : Continuous Φ)
     (hΦ2 : Integrable fun x => Φ x ^ 2) (hΦabs : Integrable fun x => Φ x ^ 2 * |x|) (y : ℝ) :
     |Aminus Φ T y y - T * ∫ x, Φ x ^ 2 * Real.cos (x * y)| ≤ ∫ x, Φ x ^ 2 * |x| := by
@@ -384,7 +467,9 @@ lemma abs_Aminus_diag_sub_le (hT : 0 ≤ T) (hΦ : Continuous Φ)
 /-! ### The sum-frequency terms 𝒪₂ (§5.4) -/
 
 /-- **𝒪₂, per pair** (§5.4: "|∫(nm)^{iτ'}dτ'| ≤ 2/log(nm)"): for y + y' > 0,
-|A⁺(y,y')| ≤ (2/(y+y')) ∫_ℝ Φ². -/
+|A⁺(y,y')| ≤ (2/(y+y')) ∫_ℝ Φ².
+@isnad1 id=le.3h4v.s7.853ee13d4d7d from=translated src=- shape=af756629 vocab=193e2389
+-/
 lemma abs_Aplus_le (hΦ : Continuous Φ) (hΦ2 : Integrable fun x => Φ x ^ 2) {y y' : ℝ}
     (hyy : 0 < y + y') :
     |Aplus Φ T y y'| ≤ 2 / (y + y') * ∫ x, Φ x ^ 2 := by
@@ -417,7 +502,9 @@ def Sp (Φ : ℝ → ℝ) (T y : ℝ) : ℝ := ∫ x in (0:ℝ)..T, Φ x ^ 2 * R
 def Cm (Φ : ℝ → ℝ) (T y : ℝ) : ℝ := ∫ x in (-T)..0, Φ x ^ 2 * Real.cos (x * y)
 def Sm (Φ : ℝ → ℝ) (T y : ℝ) : ℝ := ∫ x in (-T)..0, Φ x ^ 2 * Real.sin (x * y)
 
-/-- linearity step: ∫_a^b Φ²[sin(c₁+xy) − sin(c₂+xy')] in terms of the cos/sin moments. -/
+/-- linearity step: ∫_a^b Φ²[sin(c₁+xy) − sin(c₂+xy')] in terms of the cos/sin moments.
+@isnad1 id=eq.1h7v.s8.14b3711bc5ad from=translated src=- shape=519d555e vocab=0b4a7692
+-/
 lemma integral_sq_mul_sin_sub_sin (hΦ : Continuous Φ) (a b c₁ c₂ y y' : ℝ) :
     ∫ x in a..b, Φ x ^ 2 * (Real.sin (c₁ + x * y) - Real.sin (c₂ + x * y'))
       = (Real.sin c₁ * ∫ x in a..b, Φ x ^ 2 * Real.cos (x * y))
@@ -439,7 +526,9 @@ lemma integral_sq_mul_sin_sub_sin (hΦ : Continuous Φ) (a b c₁ c₂ y y' : �
 θ·A⁻(y,y') = [sin2θT·C⁻(y) + cos2θT·S⁻(y)] − [sinθT·C⁻(y') + cosθT·S⁻(y')]
            + [sin2θT·C⁺(y') + cos2θT·S⁺(y')] − [sinθT·C⁺(y) + cosθT·S⁺(y)].
 (Paper: "n^{ix}(n/m)^{−ix⁺} equals m^{ix} for x>0 and n^{ix} for x<0 …"; we split [−T,T] at 0:
-on x ≤ 0 the window is [T−x, 2T], on x ≥ 0 it is [T, 2T−x].) -/
+on x ≤ 0 the window is [T−x, 2T], on x ≥ 0 it is [T, 2T−x].)
+@isnad1 id=eq.3h4v.s8.cf075413342d from=translated src=- shape=00d42eb0 vocab=0629ced2
+-/
 lemma sub_mul_Aminus_eq (hT : 0 ≤ T) (hΦ : Continuous Φ) {y y' : ℝ} (hθ : y - y' ≠ 0) :
     (y - y') * Aminus Φ T y y'
       = (Real.sin ((y - y') * (2 * T)) * Cm Φ T y + Real.cos ((y - y') * (2 * T)) * Sm Φ T y
@@ -487,7 +576,9 @@ lemma sub_mul_Aminus_eq (hT : 0 ≤ T) (hΦ : Continuous Φ) {y y' : ℝ} (hθ :
   rw [hL, hR, integral_sq_mul_sin_sub_sin hΦ, integral_sq_mul_sin_sub_sin hΦ]
 
 /-- Each half-line moment is bounded by ∫_ℝ Φ² (the paper's |α_n^±| ≤ πbL, §5.4; we use the
-cruder ≤ ∫Φ² = 2πbL, constants being immaterial). -/
+cruder ≤ ∫Φ² = 2πbL, constants being immaterial).
+@isnad1 id=le.5h4v.s7.bfd2a9d8483a from=translated src=- shape=882b030d vocab=28e6a911
+-/
 lemma abs_halfMoment_le (hΦ : Continuous Φ) (hΦ2 : Integrable fun x => Φ x ^ 2) {a b : ℝ}
     (hab : a ≤ b) (g : ℝ → ℝ) (hg : Continuous g) (hg1 : ∀ x, |g x| ≤ 1) :
     |∫ x in a..b, Φ x ^ 2 * g x| ≤ ∫ x, Φ x ^ 2 := by
@@ -505,15 +596,27 @@ lemma abs_halfMoment_le (hΦ : Continuous Φ) (hΦ2 : Integrable fun x => Φ x ^
     _ ≤ ∫ x, Φ x ^ 2 :=
         setIntegral_le_integral hΦ2 (Filter.Eventually.of_forall fun _ => sq_nonneg _)
 
+/--
+@isnad1 id=le.3h3v.s7.004bfb0af45f from=translated src=- shape=a7dd1541 vocab=51517531
+-/
 lemma abs_Cp_le (hT : 0 ≤ T) (hΦ : Continuous Φ) (hΦ2 : Integrable fun x => Φ x ^ 2) (y : ℝ) :
     |Cp Φ T y| ≤ ∫ x, Φ x ^ 2 :=
   abs_halfMoment_le hΦ hΦ2 hT _ (by fun_prop) fun x => Real.abs_cos_le_one _
+/--
+@isnad1 id=le.3h3v.s7.12826aa1377d from=translated src=- shape=a7dd1541 vocab=47ad52f2
+-/
 lemma abs_Sp_le (hT : 0 ≤ T) (hΦ : Continuous Φ) (hΦ2 : Integrable fun x => Φ x ^ 2) (y : ℝ) :
     |Sp Φ T y| ≤ ∫ x, Φ x ^ 2 :=
   abs_halfMoment_le hΦ hΦ2 hT _ (by fun_prop) fun x => Real.abs_sin_le_one _
+/--
+@isnad1 id=le.3h3v.s7.5f8b79cac619 from=translated src=- shape=a7dd1541 vocab=9ba16c3a
+-/
 lemma abs_Cm_le (hT : 0 ≤ T) (hΦ : Continuous Φ) (hΦ2 : Integrable fun x => Φ x ^ 2) (y : ℝ) :
     |Cm Φ T y| ≤ ∫ x, Φ x ^ 2 :=
   abs_halfMoment_le hΦ hΦ2 (by linarith) _ (by fun_prop) fun x => Real.abs_cos_le_one _
+/--
+@isnad1 id=le.3h3v.s7.03bd628d46f1 from=translated src=- shape=a7dd1541 vocab=6a903e23
+-/
 lemma abs_Sm_le (hT : 0 ≤ T) (hΦ : Continuous Φ) (hΦ2 : Integrable fun x => Φ x ^ 2) (y : ℝ) :
     |Sm Φ T y| ≤ ∫ x, Φ x ^ 2 :=
   abs_halfMoment_le hΦ hΦ2 (by linarith) _ (by fun_prop) fun x => Real.abs_sin_le_one _
@@ -527,7 +630,9 @@ variable {C : ℝ}
 
 /-- **[eq:deltan]** (§5.1): "consecutive prime powers n<n' satisfy
 log(n'/n) ≥ log((n+1)/n) ≥ 1/(2n), so δ_n⁻¹ ≤ 2n" — in the admissible-weight form H-MV wants:
-1/(2n) ≤ |log n − log m| for all distinct n, m ≥ 1 (no primality needed). -/
+1/(2n) ≤ |log n − log m| for all distinct n, m ≥ 1 (no primality needed).
+@isnad1 id=le.3h2v.s6.e9b4af85b31d from=translated src=- shape=998e3a7f vocab=f96f9903
+-/
 lemma inv_two_mul_le_abs_log_sub {n m : ℕ} (hn : 1 ≤ n) (hm : 1 ≤ m) (hnm : n ≠ m) :
     1 / (2 * (n:ℝ)) ≤ |Real.log n - Real.log m| := by
   have hn0 : (0:ℝ) < n := by exact_mod_cast hn
@@ -561,7 +666,9 @@ lemma inv_two_mul_le_abs_log_sub {n m : ℕ} (hn : 1 ≤ n) (hm : 1 ≤ m) (hnm 
 /-- **H-MV on the prime-power frequencies** ([lem:MV] with [eq:deltan], §5.1: "We apply this with
 {λ_r} = {log n : n ≤ X a prime power}" — we index by all n ∈ primeRange X, harmless since the weights
 will carry a factor Λ(n)): for complex weights x, z, frequencies y_n = log n and admissible spacing
-δ_n = 1/(2n),  ‖Σ_{n≠m} x_n conj(z_m)/(y_n−y_m)‖ ≤ C (Σ 2n‖x_n‖²)^{1/2} (Σ 2n‖z_n‖²)^{1/2}. -/
+δ_n = 1/(2n),  ‖Σ_{n≠m} x_n conj(z_m)/(y_n−y_m)‖ ≤ C (Σ 2n‖x_n‖²)^{1/2} (Σ 2n‖z_n‖²)^{1/2}.
+@isnad1 id=le.1h4v.s8.90a9ae053835 from=translated src=- shape=6bd96332 vocab=afda3981
+-/
 lemma MV_primeRange (hMV : Zeta23.MVHilbert C) (X : ℝ) (x z : ℕ → ℂ) :
     ‖∑ n ∈ primeRange X, ∑ m ∈ primeRange X,
         (if n = m then (0:ℂ) else x n * conj (z m) / ((Real.log n - Real.log m : ℝ) : ℂ))‖
@@ -606,7 +713,9 @@ lemma MV_primeRange (hMV : Zeta23.MVHilbert C) (X : ℝ) (x z : ℕ → ℂ) :
 for real weights u, v and a real phase c, both
   Σ_{n≠m} u_n v_m cos(c(y_n−y_m))/(y_n−y_m)  and  Σ_{n≠m} u_n v_m sin(c(y_n−y_m))/(y_n−y_m)
 (= Re, Im of the MV bilinear form with x_n = u_n e^{icy_n}, z_m = v_m e^{icy_m}) are bounded by
-C (Σ 2n u_n²)^{1/2} (Σ 2n v_n²)^{1/2}. -/
+C (Σ 2n u_n²)^{1/2} (Σ 2n v_n²)^{1/2}.
+@isnad1 id=and.1h5v.s8.a223e84702f2 from=translated src=- shape=bc7255eb vocab=f78bbc9f
+-/
 lemma MV_real (hMV : Zeta23.MVHilbert C) (X c : ℝ) (u v : ℕ → ℝ) :
     |∑ n ∈ primeRange X, ∑ m ∈ primeRange X, (if n = m then (0:ℝ) else
         u n * v m * Real.cos (c * (Real.log n - Real.log m)) / (Real.log n - Real.log m))|
@@ -666,7 +775,9 @@ lemma MV_real (hMV : Zeta23.MVHilbert C) (X c : ℝ) (u v : ℕ → ℝ) :
 
 /-- The size of the MV bound for our weights (§5.4 "each of the four is at most
 (3π/2)·πL·Σ_n a_n²/δ_n ≪ L²X"): with u = a and v = a·w (or vice versa), |w| ≤ W,
-C (Σ 2n u_n²)^{1/2} (Σ 2n v_n²)^{1/2} ≤ 2 C W Σ_{n≤X} Λ(n)². -/
+C (Σ 2n u_n²)^{1/2} (Σ 2n v_n²)^{1/2} ≤ 2 C W Σ_{n≤X} Λ(n)².
+@isnad1 id=and.3h4v.s8.6dec10e7f87e from=translated src=- shape=ac9213d5 vocab=e9064691
+-/
 lemma MV_size_le (hC : 0 ≤ C) (X : ℝ) {w : ℕ → ℝ} {W : ℝ} (hW : 0 ≤ W)
     (hw : ∀ n ∈ primeRange X, |w n| ≤ W) :
     C * Real.sqrt (∑ n ∈ primeRange X, acoef n ^ 2 * (2 * n))

@@ -43,7 +43,9 @@ variable {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : Measure Ω} [IsProbabilit
 `∫ 𝟙_{(lo,hi]} dB = B_hi − B_lo`. The extension `wienerIntegralLp` agrees with the base
 assembly on the dense span of step indicators (`LinearMap.extendOfNorm_eq`), and on the
 single-basis coefficient `stepAssembly (single i 1) = stepIndicatorLp i`,
-`wienerAssembly (single i 1) = wienerIncrementLp i`. -/
+`wienerAssembly (single i 1) = wienerIncrementLp i`.
+@isnad1 id=eq.1h6v.s13.4793045d72b0 from=translated src=- shape=d038a904 vocab=46cbbec2
+-/
 lemma wienerIntegralLp_stepIndicator (hB : IsPreBrownianReal B μ) (T : ℝ≥0) (i : StepIndex T) :
     wienerIntegralLp B hB T (stepIndicatorLp T i) = wienerIncrementLp B hB i := by
   have hstep : stepIndicatorLp T i = stepAssembly T (Finsupp.single i (1 : ℝ)) := by

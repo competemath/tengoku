@@ -56,7 +56,9 @@ private theorem positivePart_sub_negativePart (x : ℝ) :
     rw [max_eq_right hx0, max_eq_left (neg_nonneg.mpr hx0)]
     ring
 
-/-- Expected upside minus expected downside equals mean excess return. -/
+/-- Expected upside minus expected downside equals mean excess return.
+@isnad1 id=eq.0h3v.s5.ce31bccc6c4b from=translated src=- shape=65cefaa8 vocab=abdbc05c
+-/
 theorem omega_upside_sub_downside {ι : Type*} [Fintype ι]
     (m : FiniteReturnModel ι) (threshold : ℝ) :
     omegaUpside m threshold - omegaDownside m threshold =
@@ -81,7 +83,9 @@ theorem omega_upside_sub_downside {ι : Type*} [Fintype ι]
     _ = (∑ i, m.weight i * m.outcome i) - threshold := by
           rw [m.weight_sum_one, mul_one]
 
-/-- The finite-state Omega ratio is nonnegative. -/
+/-- The finite-state Omega ratio is nonnegative.
+@isnad1 id=le.0h3v.s4.67aa07064532 from=translated src=- shape=6c655851 vocab=35026675
+-/
 theorem omegaRatio_nonneg {ι : Type*} [Fintype ι]
     (m : FiniteReturnModel ι) (threshold : ℝ) :
     0 ≤ omegaRatio m threshold := by
@@ -92,7 +96,9 @@ theorem omegaRatio_nonneg {ι : Type*} [Fintype ι]
   · exact Finset.sum_nonneg fun i _ =>
       mul_nonneg (m.weight_nonneg i) (le_max_right _ _)
 
-/-- Threshold identity for the Omega ratio when expected downside is nonzero. -/
+/-- Threshold identity for the Omega ratio when expected downside is nonzero.
+@isnad1 id=eq.1h3v.s6.4bf69ff812e8 from=translated src=- shape=455b5a6f vocab=3eab0f74
+-/
 theorem omegaRatio_threshold_identity {ι : Type*} [Fintype ι]
     (m : FiniteReturnModel ι) (threshold : ℝ)
     (hdown : omegaDownside m threshold ≠ 0) :
@@ -143,12 +149,16 @@ private theorem drawdownCandidates_scale {n : ℕ} (price : Fin n → ℝ) (c : 
 noncomputable def maximumDrawdown {n : ℕ} (price : Fin n → ℝ) : ℝ :=
   listMaximum (drawdownCandidates price)
 
-/-- Maximum drawdown is nonnegative, including for an empty path. -/
+/-- Maximum drawdown is nonnegative, including for an empty path.
+@isnad1 id=le.0h2v.s4.5e7ad8934ab1 from=translated src=- shape=42a2b5ba vocab=eb3b95a6
+-/
 theorem maximumDrawdown_nonneg {n : ℕ} (price : Fin n → ℝ) :
     0 ≤ maximumDrawdown price :=
   listMaximum_nonneg _
 
-/-- Maximum drawdown is positively homogeneous for nonnegative scaling. -/
+/-- Maximum drawdown is positively homogeneous for nonnegative scaling.
+@isnad1 id=eq.1h3v.s5.d534a2b74a39 from=translated src=- shape=03132356 vocab=a9d2601d
+-/
 theorem maximumDrawdown_scale {n : ℕ} (price : Fin n → ℝ) (c : ℝ) (hc : 0 ≤ c) :
     maximumDrawdown (fun i => c * price i) = c * maximumDrawdown price := by
   unfold maximumDrawdown
@@ -158,14 +168,18 @@ theorem maximumDrawdown_scale {n : ℕ} (price : Fin n → ℝ) (c : ℝ) (hc : 
 noncomputable def calmarRatio (annualReturn maxDrawdown : ℝ) : ℝ :=
   annualReturn / maxDrawdown
 
-/-- Calmar ratio is invariant under strictly positive common scaling. -/
+/-- Calmar ratio is invariant under strictly positive common scaling.
+@isnad1 id=eq.1h3v.s5.c7e331a1d71f from=translated src=- shape=8b4c1a5c vocab=0d4fb473
+-/
 theorem calmarRatio_scale_invariant (annualReturn maxDrawdown c : ℝ) (hc : 0 < c) :
     calmarRatio (c * annualReturn) (c * maxDrawdown) =
       calmarRatio annualReturn maxDrawdown := by
   simpa [calmarRatio] using
     (diff_div_scale_invariant (c := c) hc.ne' annualReturn 0 maxDrawdown)
 
-/-- One acceptance bundle covering Omega, maximum drawdown, and Calmar. -/
+/-- One acceptance bundle covering Omega, maximum drawdown, and Calmar.
+@isnad1 id=and.2h7v.s7.0b08dff2a75b from=translated src=- shape=8f1e427f vocab=ecb0fa5a
+-/
 theorem downsideMetrics_bundle {ι : Type*} [Fintype ι]
     (m : FiniteReturnModel ι) (threshold : ℝ)
     (hdown : omegaDownside m threshold ≠ 0)

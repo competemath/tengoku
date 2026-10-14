@@ -27,7 +27,9 @@ namespace XiPrime
 
 open Zeta23.EF
 
-/-- h(r)·sin(r y) is integrable in r when h is. -/
+/-- h(r)·sin(r y) is integrable in r when h is.
+@isnad1 id=integrab.1h2v.s7.7928e78d927f from=translated src=- shape=389a4079 vocab=d904b5bb
+-/
 theorem integrable_paperFT_mul_sin {k : ℝ → ℂ} (hFk : Integrable (𝓕 k)) (y : ℝ) :
     Integrable (fun r : ℝ => paperFT k r * (Real.sin (r * y) : ℂ)) := by
   refine (integrable_paperFT_ofReal hFk).mul_bdd (c := 1) (by fun_prop) ?_
@@ -35,7 +37,9 @@ theorem integrable_paperFT_mul_sin {k : ℝ → ℂ} (hFk : Integrable (𝓕 k))
   rw [Complex.norm_real, Real.norm_eq_abs]
   exact Real.abs_sin_le_one _
 
-/-- the real trigonometric combination attached to a complex coefficient. -/
+/-- the real trigonometric combination attached to a complex coefficient.
+@isnad1 id=integrab.1h3v.s7.e984081dd46f from=translated src=- shape=b4f53264 vocab=af3f3da5
+-/
 theorem integrable_paperFT_mul_trig {k : ℝ → ℂ} (hFk : Integrable (𝓕 k)) (c : ℂ) (y : ℝ) :
     Integrable (fun r : ℝ => paperFT k r * ((c.re * Real.cos (r * y) + c.im * Real.sin (r * y) : ℝ) : ℂ)) := by
   have h := ((integrable_paperFT_mul_cos hFk y).const_mul (c.re : ℂ)).add
@@ -45,7 +49,9 @@ theorem integrable_paperFT_mul_trig {k : ℝ → ℂ} (hFk : Integrable (𝓕 k)
   simp only [Pi.add_apply, Complex.ofReal_add, Complex.ofReal_mul]
   ring
 
-/-- c e^{−iθ} + c̄ e^{iθ} = 2 (Re c · cos θ + Im c · sin θ). -/
+/-- c e^{−iθ} + c̄ e^{iθ} = 2 (Re c · cos θ + Im c · sin θ).
+@isnad1 id=eq.0h2v.s7.d8491903a496 from=translated src=- shape=2beee6e8 vocab=1c235e16
+-/
 theorem mul_cexp_add_conj_mul_cexp (c : ℂ) (θ : ℝ) :
     c * cexp (-I * θ) + conj c * cexp (I * θ) = 2 * ((c.re * Real.cos θ + c.im * Real.sin θ : ℝ) : ℂ) := by
   have e1 : cexp (-I * θ) = Real.cos θ - I * Real.sin θ := by
@@ -64,7 +70,9 @@ theorem mul_cexp_add_conj_mul_cexp (c : ℂ) (θ : ℝ) :
   · simp
     ring
 
-/-- **c·k(y) + c̄·k(−y) = (1/π) ∫ h(τ) (Re c · cos(τy) + Im c · sin(τy)) dτ.** -/
+/-- **c·k(y) + c̄·k(−y) = (1/π) ∫ h(τ) (Re c · cos(τy) + Im c · sin(τy)) dτ.**
+@isnad1 id=eq.3h3v.s8.358e3da1030a from=translated src=- shape=abd63b57 vocab=918c76cd
+-/
 theorem c_mul_k_add_conj_mul_k_neg {k : ℝ → ℂ} (hk : Continuous k) (hki : Integrable k)
     (hFk : Integrable (𝓕 k)) (c : ℂ) (y : ℝ) :
     c * k y + conj c * k (-y)
@@ -96,7 +104,9 @@ theorem c_mul_k_add_conj_mul_k_neg {k : ℝ → ℂ} (hk : Continuous k) (hki : 
   have hπ : (π : ℂ) ≠ 0 := by exact_mod_cast Real.pi_ne_zero
   field_simp
 
-/-- support step: for N ∉ (0, e^L] the N-th summand vanishes (√0 = 0 in Lean for N = 0; k(±log N) = 0 for N > e^L). -/
+/-- support step: for N ∉ (0, e^L] the N-th summand vanishes (√0 = 0 in Lean for N = 0; k(±log N) = 0 for N > e^L).
+@isnad1 id=eq.2h4v.s7.2bcc74157380 from=translated src=- shape=d0fbd0b5 vocab=7996e4ca
+-/
 theorem complex_summand_eq_zero {k : ℝ → ℂ} {L : ℝ} (hks : tsupport k ⊆ Icc (-L) L) (c : ℕ → ℂ)
     {N : ℕ} (hN : N ∉ Finset.Ioc 0 ⌊Real.exp L⌋₊) :
     (c N * k (Real.log N) + conj (c N) * k (-Real.log N)) / ((Real.sqrt N : ℝ) : ℂ) = 0 := by
@@ -117,6 +127,9 @@ theorem complex_summand_eq_zero {k : ℝ → ℂ} {L : ℝ} (hks : tsupport k �
       intro hmem; have := (hks hmem).1; linarith
     rw [h1, h2, mul_zero, mul_zero, add_zero, zero_div]
 
+/--
+@isnad1 id=eq.0h3v.s7.8c0c71148150 from=translated src=- shape=7165cfd3 vocab=1192a692
+-/
 theorem paperFT_mul_Pc_eq (k : ℝ → ℂ) (L : ℝ) (c : ℕ → ℂ) :
     (fun τ : ℝ => paperFT k τ * ((Pc (Real.exp L) c τ : ℝ) : ℂ))
       = fun τ : ℝ => ∑ N ∈ Finset.Ioc 0 ⌊Real.exp L⌋₊,
@@ -129,14 +142,18 @@ theorem paperFT_mul_Pc_eq (k : ℝ → ℂ) (L : ℝ) (c : ℕ → ℂ) :
   refine Finset.sum_congr rfl fun N _ => ?_
   ring
 
-/-- h·P_c(e^L) is integrable. -/
+/-- h·P_c(e^L) is integrable.
+@isnad1 id=integrab.1h3v.s7.d38978d33d18 from=translated src=- shape=a39ada69 vocab=df3c07df
+-/
 theorem integrable_paperFT_mul_Pc {k : ℝ → ℂ} (L : ℝ) (hFk : Integrable (𝓕 k)) (c : ℕ → ℂ) :
     Integrable (fun τ : ℝ => paperFT k τ * ((Pc (Real.exp L) c τ : ℝ) : ℂ)) := by
   rw [paperFT_mul_Pc_eq]
   exact integrable_finsetSum _ (fun N _ => (integrable_paperFT_mul_trig hFk (c N) _).const_mul _)
 
 /-- **Prime term with complex coefficients.**  For k continuous with supp k ⊆ [−L, L], 𝓕k integrable, c : ℕ → ℂ:
-Σ_N (c_N k(log N) + c̄_N k(−log N))/√N = ∫ h_k(τ) P_c(e^L; τ) dτ. -/
+Σ_N (c_N k(log N) + c̄_N k(−log N))/√N = ∫ h_k(τ) P_c(e^L; τ) dτ.
+@isnad1 id=eq.3h3v.s8.6f6d0b8fe3bc from=translated src=- shape=225eb924 vocab=ab8eee2a
+-/
 theorem prime_term_complex {k : ℝ → ℂ} {L : ℝ} (hk : Continuous k) (hks : tsupport k ⊆ Icc (-L) L)
     (hFk : Integrable (𝓕 k)) (c : ℕ → ℂ) :
     (∑' N : ℕ, (c N * k (Real.log N) + conj (c N) * k (-Real.log N)) / ((Real.sqrt N : ℝ) : ℂ))
@@ -159,6 +176,9 @@ theorem prime_term_complex {k : ℝ → ℂ} {L : ℝ} (hk : Continuous k) (hks 
 
 /-! ### algebra of P_c -/
 
+/--
+@isnad1 id=eq.0h4v.s5.c119ec4ae0b3 from=translated src=- shape=9dc66181 vocab=65237afb
+-/
 theorem Pc_add (X : ℝ) (c₁ c₂ : ℕ → ℂ) (τ : ℝ) :
     Pc X (fun N => c₁ N + c₂ N) τ = Pc X c₁ τ + Pc X c₂ τ := by
   simp only [Pc, Complex.add_re, Complex.add_im, ← mul_add, ← Finset.sum_add_distrib]
@@ -166,13 +186,18 @@ theorem Pc_add (X : ℝ) (c₁ c₂ : ℕ → ℂ) (τ : ℝ) :
   refine Finset.sum_congr rfl fun N _ => ?_
   ring
 
+/--
+@isnad1 id=eq.1h4v.s6.e393e4633bc9 from=translated src=- shape=ab95103c vocab=87e76e20
+-/
 theorem Pc_congr {X : ℝ} {c₁ c₂ : ℕ → ℂ} (h : ∀ N ∈ Finset.Ioc 0 ⌊X⌋₊, c₁ N = c₂ N) (τ : ℝ) :
     Pc X c₁ τ = Pc X c₂ τ := by
   simp only [Pc]
   congr 1
   exact Finset.sum_congr rfl fun N hN => by rw [h N hN]
 
-/-- P_{−Λ}(X) = P_X. -/
+/-- P_{−Λ}(X) = P_X.
+@isnad1 id=eq.0h2v.s4.270287f6b016 from=translated src=- shape=045f7e48 vocab=c4cb8db1
+-/
 theorem Pc_neg_vonMangoldt (X τ : ℝ) : Pc X (fun N => -((Λ N : ℝ) : ℂ)) τ = PX X τ := by
   simp only [Pc, PX, Complex.neg_re, Complex.neg_im, Complex.ofReal_re, Complex.ofReal_im, neg_zero,
     zero_mul, add_zero]
@@ -181,7 +206,9 @@ theorem Pc_neg_vonMangoldt (X τ : ℝ) : Pc X (fun N => -((Λ N : ℝ) : ℂ)) 
   refine Finset.sum_congr rfl fun N _ => ?_
   ring
 
-/-- ν_c(X) for the ξ′ coefficients c = C(·;Λ⋆) = −Λ + (C + Λ):  ν_c = ν_X + P_{C+Λ}(X). -/
+/-- ν_c(X) for the ξ′ coefficients c = C(·;Λ⋆) = −Λ + (C + Λ):  ν_c = ν_X + P_{C+Λ}(X).
+@isnad1 id=eq.0h3v.s5.a5ffab13e57b from=translated src=- shape=3958b0af vocab=161e83bb
+-/
 theorem nuc_xiCoeff_eq' (X : ℝ) (Λs : ℂ) (τ : ℝ) :
     nuc X (xiCoeff Λs) τ = nuX X τ + Pc X (fun N => xiCoeff Λs N + ((Λ N : ℝ) : ℂ)) τ := by
   have hsplit : Pc X (xiCoeff Λs) τ

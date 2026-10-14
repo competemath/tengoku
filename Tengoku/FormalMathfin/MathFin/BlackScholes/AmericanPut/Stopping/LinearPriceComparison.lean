@@ -27,6 +27,9 @@ point `x+(k-h-1)*(t-a)`. -/
 noncomputable def linearPriceKernel (f : ℝ → ℝ) (k h a x t : ℝ) : ℝ :=
   Real.exp (-k*(t-a))*feynmanU f (2*(t-a)) (x+(k-h-1)*(t-a))
 
+/--
+@isnad1 id=contdiff.3h6v.s7.213a548aa30c from=translated src=- shape=588b8259 vocab=d58c6822
+-/
 theorem linearPriceKernel_contDiffAt {f : ℝ → ℝ} (hf : Continuous f) (hc : HasCompactSupport f)
     {k h a x t : ℝ} (ht : a < t) :
     ContDiffAt ℝ 2 (fun z : ℝ × ℝ => linearPriceKernel f k h a z.1 z.2) (x,t) := by
@@ -40,6 +43,9 @@ theorem linearPriceKernel_contDiffAt {f : ℝ → ℝ} (hf : Continuous f) (hc :
       (show ContDiffAt ℝ 2 (fun z : ℝ × ℝ => (2*(z.2-a),z.1+(k-h-1)*(z.2-a))) (x,t) by fun_prop)
   exact (show ContDiffAt ℝ 2 (fun z : ℝ × ℝ => Real.exp (-k*(z.2-a))) (x,t) by fun_prop).mul hcomp
 
+/--
+@isnad1 id=hasderiv.3h5v.s8.7a8e52afd314 from=translated src=- shape=7d6aaaf5 vocab=1d88161a
+-/
 theorem heatFlow_affine_hasDeriv {f : ℝ → ℝ} (hf : Continuous f) (hc : HasCompactSupport f)
     {α a x t : ℝ} (ht : a < t) :
     HasDerivAt (fun s => feynmanU f (2*(s-a)) (x+α*(s-a)))
@@ -68,6 +74,9 @@ theorem heatFlow_affine_hasDeriv {f : ℝ → ℝ} (hf : Continuous f) (hc : Has
   simp only [map_add,map_smul,smul_eq_mul]
   rfl
 
+/--
+@isnad1 id=eq.3h6v.s6.b0542a2667cb from=translated src=- shape=2a0dfae7 vocab=3781ff4f
+-/
 theorem linearPriceKernel_equation {f : ℝ → ℝ} (hf : Continuous f) (hc : HasCompactSupport f)
     {k h a x t : ℝ} (ht : a < t) :
     deriv (linearPriceKernel f k h a x) t =

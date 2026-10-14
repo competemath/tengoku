@@ -42,7 +42,9 @@ noncomputable def portfolioVarN
     {ι : Type*} (s : Finset ι) (w : ι → ℝ) (σ : ι → ι → ℝ) : ℝ :=
   ∑ i ∈ s, ∑ j ∈ s, w i * w j * σ i j
 
-/-- **Quadratic scaling**: `Var(c · w) = c² · Var(w)`. -/
+/-- **Quadratic scaling**: `Var(c · w) = c² · Var(w)`.
+@isnad1 id=eq.0h5v.s6.c3bdd66c24ef from=translated src=- shape=d2948669 vocab=3efe10d8
+-/
 lemma portfolioVarN_smul {ι : Type*} (s : Finset ι)
     (w : ι → ℝ) (σ : ι → ι → ℝ) (c : ℝ) :
     portfolioVarN s (fun i ↦ c * w i) σ = c ^ 2 * portfolioVarN s w σ := by
@@ -56,7 +58,9 @@ lemma portfolioVarN_smul {ι : Type*} (s : Finset ι)
   ring
 
 /-- **Diagonal covariance**: when `σ_{ij} = 0` for `i ≠ j`, the portfolio
-variance collapses to `∑ w_i² · σ_{ii}`. -/
+variance collapses to `∑ w_i² · σ_{ii}`.
+@isnad1 id=eq.1h4v.s6.6d53043b1a25 from=translated src=- shape=b10ce638 vocab=48bbea4f
+-/
 lemma portfolioVarN_diag {ι : Type*} [DecidableEq ι] (s : Finset ι)
     (w : ι → ℝ) (σ : ι → ι → ℝ)
     (h_diag : ∀ i ∈ s, ∀ j ∈ s, i ≠ j → σ i j = 0) :
@@ -77,7 +81,9 @@ lemma portfolioVarN_diag {ι : Type*} [DecidableEq ι] (s : Finset ι)
 
 /-- **Diversification under iid assets**: equal weights `c` across an index set
 `s` of cardinality `n`, with zero cross-covariances and common variance `σ²`,
-gives `Var(c · 1) = c² · n · σ²`. -/
+gives `Var(c · 1) = c² · n · σ²`.
+@isnad1 id=eq.2h5v.s7.ac0d1820bdb5 from=translated src=- shape=647a0ce4 vocab=8bcc235c
+-/
 lemma portfolioVarN_equal_weights_iid {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (c σ_sq : ℝ)
     (kernel : ι → ι → ℝ)
@@ -91,7 +97,9 @@ lemma portfolioVarN_equal_weights_iid {ι : Type*} [DecidableEq ι]
   ring
 
 /-- **Non-negativity from PSD kernel**: if `σ` defines a non-negative quadratic
-form (`∀ v, ∑∑ v_i v_j σ_{ij} ≥ 0`), then `Var(w) ≥ 0`. -/
+form (`∀ v, ∑∑ v_i v_j σ_{ij} ≥ 0`), then `Var(w) ≥ 0`.
+@isnad1 id=le.1h4v.s6.8a475b122902 from=translated src=- shape=6e3f221d vocab=025fbe3e
+-/
 lemma portfolioVarN_nonneg_of_psd
     {ι : Type*} (s : Finset ι) (w : ι → ℝ) (σ : ι → ι → ℝ)
     (h_psd : ∀ v : ι → ℝ, 0 ≤ ∑ i ∈ s, ∑ j ∈ s, v i * v j * σ i j) :

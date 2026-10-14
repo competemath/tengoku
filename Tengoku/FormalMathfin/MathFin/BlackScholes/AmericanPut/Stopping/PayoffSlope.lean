@@ -25,6 +25,9 @@ namespace MathFin.BlackScholes.AmericanPut.Stopping
 open Set Filter Boundary
 open scoped Topology
 
+/--
+@isnad1 id=and.1h2v.s5.d3a3516fac87 from=translated src=- shape=f14751ca vocab=2e0eed12
+-/
 theorem putPayoff_sub_bounds {x y : ℝ} (hxy : x ≤ y) :
     0 ≤ putPayoff x-putPayoff y ∧ putPayoff x-putPayoff y ≤ y-x := by
   by_cases hy : y ≤ 0
@@ -53,6 +56,9 @@ theorem putPayoff_sub_bounds {x y : ℝ} (hxy : x ≤ y) :
       rw [max_eq_right (sub_nonpos.mpr (Real.one_le_exp_iff.mpr (le_of_not_ge hx)))]
       linarith
 
+/--
+@isnad1 id=le.0h2v.s5.16e79a0d5772 from=translated src=- shape=97161052 vocab=e037ffc7
+-/
 theorem putPayoff_norm_sub_le (x y : ℝ) : ‖putPayoff x-putPayoff y‖ ≤ ‖x-y‖ := by
   rcases le_total x y with hxy | hyx
   · obtain ⟨hn,hb⟩ := putPayoff_sub_bounds hxy
@@ -63,6 +69,9 @@ theorem putPayoff_norm_sub_le (x y : ℝ) : ‖putPayoff x-putPayoff y‖ ≤ �
       Real.norm_eq_abs,abs_of_nonneg (sub_nonneg.mpr hyx)]
     linarith
 
+/--
+@isnad1 id=hasderiv.1h1v.s5.2aa5b7b382ea from=translated src=- shape=bbbc147a vocab=ab45660f
+-/
 theorem putPayoff_hasDerivAt_neg {b : ℝ} (hb : b < 0) : HasDerivAt putPayoff (-Real.exp b) b := by
   have hd := (Real.hasDerivAt_exp b).const_sub 1
   apply hd.congr_of_eventuallyEq
@@ -75,6 +84,9 @@ between `b` and `x`, both displaced by `D`. -/
 noncomputable def discountedPutSlope (k b x t D : ℝ) : ℝ :=
   (Real.exp (-k*t)*(putPayoff (x+D)-putPayoff (b+D)))/(x-b)
 
+/--
+@isnad1 id=le.2h5v.s5.0f988a9ac5ed from=translated src=- shape=e7f03b98 vocab=63fd685b
+-/
 theorem discountedPutSlope_bound {k t : ℝ} (hk : 0 ≤ k) (ht : 0 ≤ t) (b x D : ℝ) :
     ‖discountedPutSlope k b x t D‖ ≤ 1 := by
   by_cases hx : x = b
@@ -91,12 +103,18 @@ theorem discountedPutSlope_bound {k t : ℝ} (hk : 0 ≤ k) (ht : 0 ≤ t) (b x 
     exact (mul_le_mul_of_nonneg_left hp (Real.exp_pos _).le).trans
       (by simpa only [one_mul] using mul_le_mul_of_nonneg_right he (norm_nonneg (x-b)))
 
+/--
+@isnad1 id=eq.2h5v.s7.7901f23c92d4 from=translated src=- shape=a435e1db vocab=bee0082a
+-/
 theorem discountedPutSlope_eq_exp {k b x t D : ℝ} (hx : x+D ≤ 0) (hb : b+D ≤ 0) :
     discountedPutSlope k b x t D = -Real.exp (-k*t+D)*slope Real.exp b x := by
   rw [discountedPutSlope,putPayoff_of_nonpos hx,putPayoff_of_nonpos hb]
   simp only [Real.exp_add,slope,vsub_eq_sub,smul_eq_mul,div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=tendsto.3h4v.s6.f6620e5bb8a5 from=translated src=- shape=14c13d92 vocab=36797603
+-/
 theorem discountedPutSlope_tendsto {b k : ℝ} (hb : b < 0) {t D : ℝ → ℝ}
     (ht : Tendsto t (𝓝 b) (𝓝 0)) (hD : Tendsto D (𝓝 b) (𝓝 0)) :
     Tendsto (fun x => discountedPutSlope k b x (t x) (D x)) (𝓝[>] b) (𝓝 (-Real.exp b)) := by

@@ -117,7 +117,9 @@ private theorem value_pay_eq {ι : Type*} (Q : Measure Ω) (D : ℝ≥0 → ℝ)
   simp [Contract.value, Contract.pathPV, Contract.cashflows]
 
 /-- The reified European call prices to the Black–Scholes call formula: the value of
-`europeanCall K T` under `bsAssets` is exactly `bs_call_formula`'s right-hand side. -/
+`europeanCall K T` under `bsAssets` is exactly `bs_call_formula`'s right-hand side.
+@isnad1 id=eq.1h9v.s7.840f96ba3bad from=translated src=- shape=54459ddd vocab=7eee3e0c
+-/
 theorem value_europeanCall {Q : Measure Ω} [IsProbabilityMeasure Q]
     {S_0 K r σ : ℝ} {T : ℝ≥0} {Z : Ω → ℝ} (h : BSCallHyp Q S_0 K r σ T Z) :
     (europeanCall K T).value Q (fun _ ↦ Real.exp (-r * T)) (bsAssets S_0 r σ T Z)
@@ -126,7 +128,9 @@ theorem value_europeanCall {Q : Measure Ω} [IsProbabilityMeasure Q]
   exact MathFin.bs_call_formula h
 
 /-- The reified European put prices to the Black–Scholes put formula: the value of
-`europeanPut K T` under `bsAssets` is exactly `bs_put_formula`'s right-hand side. -/
+`europeanPut K T` under `bsAssets` is exactly `bs_put_formula`'s right-hand side.
+@isnad1 id=eq.1h9v.s7.52f7f7f5d46d from=translated src=- shape=bea420a1 vocab=77ce72e3
+-/
 theorem value_europeanPut {Q : Measure Ω} [IsProbabilityMeasure Q]
     {S_0 K r σ : ℝ} {T : ℝ≥0} {Z : Ω → ℝ} (h : BSCallHyp Q S_0 K r σ T Z) :
     (europeanPut K T).value Q (fun _ ↦ Real.exp (-r * T)) (bsAssets S_0 r σ T Z)

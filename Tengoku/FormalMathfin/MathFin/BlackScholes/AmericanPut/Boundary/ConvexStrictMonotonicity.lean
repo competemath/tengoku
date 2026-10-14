@@ -20,7 +20,9 @@ namespace MathFin.BlackScholes.AmericanPut.Boundary
 open Set
 
 /-- A nonincreasing convex function on the positive half-line can fail to
-strictly decrease only by having a constant tail. -/
+strictly decrease only by having a constant tail.
+@isnad1 id=strictan.3h1v.s6.0e99cf909803 from=translated src=- shape=aa16217a vocab=0df33e5e
+-/
 theorem strictAntiOn_of_convex_antitone_no_flat_tail {b : ℝ → ℝ}
     (hc : ConvexOn ℝ (Ioi 0) b) (ha : AntitoneOn b (Ioi 0))
     (hn : ∀ A, 0 < A → ¬ (∀ u, A ≤ u → b u = b A)) : StrictAntiOn b (Ioi 0) := by
@@ -39,7 +41,9 @@ theorem strictAntiOn_of_convex_antitone_no_flat_tail {b : ℝ → ℝ}
     exact le_antisymm (ha ht hupos hu.le) (by linarith)
 
 /-- Strict convexity of `exp` upgrades convexity of any injective real profile.
-The inner profile need not be strictly convex or differentiable. -/
+The inner profile need not be strictly convex or differentiable.
+@isnad1 id=strictco.2h2v.s5.6871c5e944c4 from=translated src=- shape=465c5c70 vocab=3c128905
+-/
 theorem strictConvexOn_exp_of_convex_injective {b : ℝ → ℝ} {s : Set ℝ}
     (hc : ConvexOn ℝ s b) (hi : s.InjOn b) :
     StrictConvexOn ℝ s (fun t => Real.exp (b t)) := by

@@ -27,7 +27,9 @@ open MeasureTheory
 namespace MathFin
 
 /-- **Cauchy–Schwarz on a finite measure**: `(∫ f)² ≤ ν(univ)·∫ f²`, via Hölder with `g ≡ 1` at
-exponents `2,2`. -/
+exponents `2,2`.
+@isnad1 id=le.1h4v.s7.50a88bca0049 from=translated src=- shape=57e75868 vocab=89f30f38
+-/
 theorem sq_integral_le_measureReal_mul {α : Type*} {m : MeasurableSpace α} {ν : Measure α}
     [IsFiniteMeasure ν] {f : α → ℝ} (hf : MemLp f 2 ν) :
     (∫ a, f a ∂ν) ^ 2 ≤ (ν Set.univ).toReal * ∫ a, (f a) ^ 2 ∂ν := by

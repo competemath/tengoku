@@ -51,14 +51,18 @@ The same calculus as `Actuarial.survivalFromForce`. -/
 noncomputable def hazardSurvival (h : ℝ → ℝ) (t : ℝ) : ℝ :=
   survivalFromIntensity h t
 
-/-- `S(0) = 1`. -/
+/-- `S(0) = 1`.
+@isnad1 id=eq.0h1v.s4.40483c942d2e from=translated src=- shape=b298c1f9 vocab=b1cfd9eb
+-/
 lemma hazardSurvival_at_zero (h : ℝ → ℝ) : hazardSurvival h 0 = 1 := by
   unfold hazardSurvival survivalFromIntensity cumulativeIntensity
   rw [integral_same, neg_zero, Real.exp_zero]
 
 /-- Hazard survival is strictly positive (an instance of the
 `ExponentialDiscount` principle `discount_pos`; holds regardless of hazard
-sign / integrability). -/
+sign / integrability).
+@isnad1 id=lt.0h2v.s4.fea1982678be from=translated src=- shape=d51b80ee vocab=d45c23c6
+-/
 lemma hazardSurvival_pos (h : ℝ → ℝ) (t : ℝ) : 0 < hazardSurvival h t :=
   discount_pos _
 
@@ -68,7 +72,9 @@ cumulative hazard `H(t) = ∫₀^t h` has derivative `h(t)` by the FTC, and the
 `ExponentialDiscount` principle `rate_eq_neg_log_deriv` gives the
 log-derivative form against `S = hazardSurvival h`. Mirrors
 `force_eq_neg_log_deriv_survival` in `Actuarial/Mortality.lean` — the credit
-and actuarial recoveries are the same identity. -/
+and actuarial recoveries are the same identity.
+@isnad1 id=hasderiv.1h2v.s5.9de54572a4d5 from=translated src=- shape=f28ec990 vocab=2e942e83
+-/
 theorem hazard_eq_neg_log_deriv_survival {h : ℝ → ℝ} (t : ℝ)
     (hh : Continuous h) :
     HasDerivAt (fun s ↦ -(Real.log (hazardSurvival h s))) (h t) t := by
@@ -79,7 +85,9 @@ theorem hazard_eq_neg_log_deriv_survival {h : ℝ → ℝ} (t : ℝ)
       hh.continuousAt
   simpa only [hazardSurvival, survivalFromIntensity, cumHazard] using rate_eq_neg_log_deriv hH
 
-/-- For a constant hazard `h_0`, `H(t) = h_0 · t`. -/
+/-- For a constant hazard `h_0`, `H(t) = h_0 · t`.
+@isnad1 id=eq.0h2v.s4.7c33e740eeeb from=translated src=- shape=a1c8fae3 vocab=ee3f1d61
+-/
 lemma cumHazard_const (h_0 t : ℝ) :
     cumHazard (fun _ ↦ h_0) t = h_0 * t := by
   unfold cumHazard cumulativeIntensity
@@ -87,7 +95,9 @@ lemma cumHazard_const (h_0 t : ℝ) :
   simp [mul_comm]
 
 /-- The time-varying model collapses to the constant-hazard `survivalProbability`
-under `t = 0` and constant hazard. -/
+under `t = 0` and constant hazard.
+@isnad1 id=eq.0h2v.s4.226c947c0b7e from=translated src=- shape=1a2e7d90 vocab=84ffb7af
+-/
 lemma hazardSurvival_eq_const_survival (h_0 T : ℝ) :
     hazardSurvival (fun _ ↦ h_0) T = survivalProbability h_0 0 T := by
   unfold hazardSurvival survivalFromIntensity survivalProbability
@@ -95,7 +105,9 @@ lemma hazardSurvival_eq_const_survival (h_0 T : ℝ) :
   congr 1; ring
 
 /-- **Credit spread as time-averaged hazard**: for `T > 0`,
-`c(T) = -log(S(T)) / T = H(T) / T = (1/T) · ∫₀^T h(u) du`. -/
+`c(T) = -log(S(T)) / T = H(T) / T = (1/T) · ∫₀^T h(u) du`.
+@isnad1 id=eq.1h2v.s5.071b1406dec9 from=translated src=- shape=941d77aa vocab=c1372e4e
+-/
 lemma creditSpread_eq_time_avg_hazard {h : ℝ → ℝ} {T : ℝ} (_hT : 0 < T) :
     -Real.log (hazardSurvival h T) / T = cumHazard h T / T := by
   unfold hazardSurvival survivalFromIntensity cumHazard

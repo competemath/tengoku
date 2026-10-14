@@ -28,6 +28,9 @@ namespace MathFin.BlackScholes.AmericanPut.Boundary
 open Set
 open scoped Topology ContDiff
 
+/--
+@isnad1 id=eq.2h6v.s7.c7d2b78de640 from=translated src=- shape=86056516 vocab=87f2d933
+-/
 theorem dividendSpatialOperator_sub_const_mul {F G : ℝ → ℝ} {x : ℝ}
     (hF : ContDiffAt ℝ 2 F x) (hG : ContDiffAt ℝ 2 G x) (k h ε : ℝ) :
     dividendSpatialOperator k h (fun y => F y - ε*G y) x =
@@ -52,6 +55,9 @@ namespace DividendPutSolution
 
 variable {k h : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
 
+/--
+@isnad1 id=and.4h8v.s7.392c67ce3412 from=translated src=- shape=527e7979 vocab=b68a57a4
+-/
 theorem penalizedDelay_local_subsolution (hp : DividendPutSolution k h p b)
     {a ε x t : ℝ} (hε : 0 < ε) (ht : 0 < t)
     (hgt : p x t < penalizedDelay p k h a ε x t) :
@@ -85,7 +91,9 @@ theorem penalizedDelay_local_subsolution (hp : DividendPutSolution k h p b)
 
 /-- The spatial localization is an implementation device, not a price
 assumption. The comparison takes place on a finite rectangle chosen for each
-positive penalty and target point. -/
+positive penalty and target point.
+@isnad1 id=le.4h8v.s6.bb1243ed5b7a from=translated src=- shape=86cfe239 vocab=7f872435
+-/
 theorem penalizedDelay_le_price (hp : DividendPutSolution k h p b)
     {a ε : ℝ} (ha : 0 ≤ a) (hε : 0 < ε) (x : ℝ) {T : ℝ} (hT : 0 ≤ T) :
     penalizedDelay p k h a ε x T ≤ p x T := by
@@ -124,6 +132,9 @@ theorem penalizedDelay_le_price (hp : DividendPutSolution k h p b)
     (fun t ht _ => hedges R rfl t ht)
   exact hcomp (x,T) ⟨hT,le_rfl,by linarith [neg_abs_le x],(le_abs_self x).trans hRx⟩
 
+/--
+@isnad1 id=le.3h7v.s5.2da6bef9b465 from=translated src=- shape=ef31c547 vocab=00adceb9
+-/
 theorem delayedPrice_le_price (hp : DividendPutSolution k h p b)
     {a : ℝ} (ha : 0 ≤ a) (x : ℝ) {t : ℝ} (ht : 0 ≤ t) :
     delayedPrice p a x t ≤ p x t := by
@@ -140,7 +151,9 @@ theorem delayedPrice_le_price (hp : DividendPutSolution k h p b)
   linarith
 
 /-- Time monotonicity is proved from the classical pricing contract, not
-assumed through an optimal-stopping representation or a monotone boundary. -/
+assumed through an optimal-stopping representation or a monotone boundary.
+@isnad1 id=le.3h7v.s5.67813d40ed6c from=translated src=- shape=ad77dc80 vocab=841e4acb
+-/
 theorem price_mono_time (hp : DividendPutSolution k h p b) (x : ℝ)
     {s t : ℝ} (hs : 0 ≤ s) (hst : s ≤ t) : p x s ≤ p x t := by
   have hh := hp.delayedPrice_le_price (sub_nonneg.mpr hst) x (hs.trans hst)

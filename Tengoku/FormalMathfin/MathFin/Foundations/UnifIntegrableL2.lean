@@ -41,7 +41,9 @@ moment `∫ (f n)² ≤ M`, and some subsequence has `f (msₖ) → g` a.e., the
 squared enorms, `∫⁻ ‖g²‖ₑ ≤ liminf ∫⁻ ‖f(msₖ)²‖ₑ = liminf ∫ f(msₖ)² ≤ M < ∞`. No finiteness of `μ`
 is needed (pure Fatou) — the limit-side companion to the finite-measure Vitali producers above, and
 the single principle behind an a.e.-subsequential `L²` limit inheriting its family's uniform second
-moment (both the Girsanov continuous and predictable Doléans densities consume it). -/
+moment (both the Girsanov continuous and predictable Doléans densities consume it).
+@isnad1 id=memlp.4h6v.s7.eef5ed886863 from=translated src=- shape=04afd3b9 vocab=1cd79906
+-/
 theorem memLp_two_of_subseq_ae_of_sq_bound {f : ℕ → α → ℝ} {g : α → ℝ}
     (hf : ∀ n, MemLp (f n) 2 μ) (hmeas : ∀ n, Measurable (f n))
     {M : ℝ} (hM : ∀ n, ∫ x, (f n x) ^ 2 ∂μ ≤ M)
@@ -72,7 +74,9 @@ theorem memLp_two_of_subseq_ae_of_sq_bound {f : ℕ → α → ℝ} {g : α → 
 
 /-- **`TendstoInMeasure` only sees a.e.-classes of the sequence.** Replacing each `f n` by an
 a.e.-equal `f' n` preserves convergence in measure — a generic congruence Mathlib does not ship
-in this left-argument form. -/
+in this left-argument form.
+@isnad1 id=tendstoi.2h7v.s7.60b3510314d7 from=translated src=- shape=07fe7e61 vocab=20468840
+-/
 theorem tendstoInMeasure_congr_left {E : Type*} [MetricSpace E] {f f' : ℕ → α → E} {g : α → E}
     (h : ∀ n, f n =ᵐ[μ] f' n) (hfg : TendstoInMeasure μ f atTop g) :
     TendstoInMeasure μ f' atTop g := by

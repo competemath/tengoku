@@ -21,6 +21,9 @@ namespace MathFin.BlackScholes.AmericanPut.Stopping
 open Set Filter MeasureTheory
 open scoped Topology ContDiff BoundedContinuousFunction
 
+/--
+@isnad1 id=ex.0h2v.s7.ad7b428a4c88 from=translated src=- shape=b634b05e vocab=eab9d674
+-/
 theorem exists_boundary_time_cutoff (a T : ℝ) :
     ∃ (D : ℝ) (χ : ℝ →ᵇ ℝ), 0 ≤ D ∧ HasCompactSupport (χ : ℝ → ℝ) ∧
       (∀ t, ‖χ t‖ ≤ 1) ∧ (∀ t ∈ Icc a T, χ t = 1) ∧
@@ -55,12 +58,18 @@ of `f₁` at depth `L-x`. -/
 noncomputable def intervalHeatCorrection (f₀ f₁ : ℝ → ℝ) (L : ℝ) (x t : ℝ) : ℝ :=
   heatBoundaryExtension f₀ x t+heatBoundaryExtension f₁ (L-x) t
 
+/--
+@isnad1 id=continuo.0h3v.s6.7f23e07e7469 from=translated src=- shape=a91d81c9 vocab=7b11c76b
+-/
 theorem intervalHeatCorrection_continuous (f₀ f₁ : ℝ →ᵇ ℝ) (L : ℝ) :
     Continuous (fun z : ℝ × ℝ => intervalHeatCorrection f₀ f₁ L z.1 z.2) :=
   (heatBoundaryExtension_continuous f₀.continuous f₀.norm_coe_le_norm).add
     ((heatBoundaryExtension_continuous f₁.continuous f₁.norm_coe_le_norm).comp
       ((continuous_const.sub continuous_fst).prodMk continuous_snd))
 
+/--
+@isnad1 id=contdiff.6h5v.s7.b34d1261c9cd from=translated src=- shape=fe556329 vocab=0f46b363
+-/
 theorem intervalHeatCorrection_smoothAt {f₀ f₁ : ℝ → ℝ}
     (h₀ : Continuous f₀) (hc₀ : HasCompactSupport f₀)
     (h₁ : Continuous f₁) (hc₁ : HasCompactSupport f₁) {L x t : ℝ}
@@ -74,6 +83,9 @@ theorem intervalHeatCorrection_smoothAt {f₀ f₁ : ℝ → ℝ}
   exact h0.add (h1.comp (x,t) (f := fun z : ℝ × ℝ => (L-z.1,z.2))
     (show ContDiffAt ℝ ∞ (fun z : ℝ × ℝ => (L-z.1,z.2)) (x,t) by fun_prop))
 
+/--
+@isnad1 id=eq.6h5v.s7.99bc8d685c89 from=translated src=- shape=630d099f vocab=93e66d8e
+-/
 theorem intervalHeatCorrection_equation {f₀ f₁ : ℝ → ℝ}
     (h₀ : Continuous f₀) (hc₀ : HasCompactSupport f₀)
     (h₁ : Continuous f₁) (hc₁ : HasCompactSupport f₁) {L x t : ℝ}
@@ -112,7 +124,9 @@ theorem intervalHeatCorrection_equation {f₀ f₁ : ℝ → ℝ}
   ring
 
 /-- Constructed two-sided boundary correction, with no regularity assumed of the
-boundary data beyond continuity and a compatible zero initial trace. -/
+boundary data beyond continuity and a compatible zero initial trace.
+@isnad1 id=ex.7h5v.s8.76e42bffc8b7 from=translated src=- shape=3ebea02a vocab=896fb13f
+-/
 theorem exists_interval_heat_boundary_solution {g₀ g₁ : ℝ → ℝ}
     (h₀ : Continuous g₀) (hc₀ : HasCompactSupport g₀)
     (h₁ : Continuous g₁) (hc₁ : HasCompactSupport g₁) {a L : ℝ}
@@ -154,7 +168,9 @@ theorem exists_interval_heat_boundary_solution {g₀ g₁ : ℝ → ℝ}
   · intro x hx hxL t
     exact intervalHeatCorrection_equation f₀.1.continuous hf₀ f₁.1.continuous hf₁ hx hxL
 
-/-- Compact support is supplied by the construction, not required of the data. -/
+/-- Compact support is supplied by the construction, not required of the data.
+@isnad1 id=ex.5h5v.s8.d54081de8fc8 from=translated src=- shape=ae426694 vocab=0021dbc3
+-/
 theorem exists_interval_heat_boundary_solution_continuous {g₀ g₁ : ℝ → ℝ}
     (h₀ : Continuous g₀) (h₁ : Continuous g₁) {a L : ℝ}
     (hL : 0 < L) (hs₀ : ∀ t, t ≤ a → g₀ t = 0) (hs₁ : ∀ t, t ≤ a → g₁ t = 0) (T : ℝ) :

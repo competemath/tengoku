@@ -123,7 +123,9 @@ filtration `sampledFiltration 𝓕 ht`: adaptedness and the tower property both 
 `t`. A general, standalone structural lemma (the discrete-time trace of a continuous-time
 martingale). The forward theorem `isEMM_noArbitrageSimple` below takes a direct term-by-term
 route and does not use this; it is kept as a reusable primitive (benchmarked as
-`gir-martingale-reindex`) for sampled-model instances and the eventual meaning-2 development. -/
+`gir-martingale-reindex`) for sampled-model instances and the eventual meaning-2 development.
+@isnad1 id=martinga.2h7v.s6.1c4a8eb9f7a7 from=translated src=- shape=750ba0d8 vocab=3015a117
+-/
 theorem martingale_comp_monotone {Q : Measure Ω} {S : ℝ≥0 → Ω → F}
     (hS : Martingale S 𝓕 Q) {t : ℕ → ℝ≥0} (ht : Monotone t) :
     Martingale (fun n ↦ S (t n)) (sampledFiltration 𝓕 ht) Q :=
@@ -131,7 +133,9 @@ theorem martingale_comp_monotone {Q : Measure Ω} {S : ℝ≥0 → Ω → F}
 
 /-- **A predictable-weighted increment `⟪φ, S t − S s⟫` is `Q`-integrable** when `φ` is bounded
 and `S` is a `Q`-martingale (so `S t`, `S s` are integrable): Cauchy–Schwarz bounds the inner
-product by `K · ‖S t − S s‖`, which is integrable. -/
+product by `K · ‖S t − S s‖`, which is integrable.
+@isnad1 id=integrab.3h10v.s7.c7683157a31e from=translated src=- shape=ccd91335 vocab=d9084ead
+-/
 theorem increment_integrable {Q : Measure Ω}
     {S : ℝ≥0 → Ω → F} (hS : Martingale S 𝓕 Q) {φ : Ω → F} {s t : ℝ≥0}
     (hφ : StronglyMeasurable[𝓕 s] φ) {K : ℝ} (hφb : ∀ ω, ‖φ ω‖ ≤ K) :
@@ -145,7 +149,9 @@ theorem increment_integrable {Q : Measure Ω}
 
 /-- **A predictable-weighted martingale increment has zero `Q`-integral.** For a `Q`-martingale
 `S`, a `𝓕 s`-measurable bounded weight `φ`, and `s ≤ t`, the increment gain `⟪φ, S t − S s⟫`
-integrates to `0`: pull `φ` out of `Q[· | 𝓕 s]` and use `Q[S t − S s | 𝓕 s] = 0`. -/
+integrates to `0`: pull `φ` out of `Q[· | 𝓕 s]` and use `Q[S t − S s | 𝓕 s] = 0`.
+@isnad1 id=eq.4h10v.s7.3c7c974ac3c2 from=translated src=- shape=c815b9b2 vocab=ddb59156
+-/
 theorem increment_integral_zero {Q : Measure Ω} [IsProbabilityMeasure Q]
     {S : ℝ≥0 → Ω → F} (hS : Martingale S 𝓕 Q) {φ : Ω → F} {s t : ℝ≥0} (hst : s ≤ t)
     (hφ : StronglyMeasurable[𝓕 s] φ) {K : ℝ} (hφb : ∀ ω, ‖φ ω‖ ≤ K) :
@@ -176,7 +182,9 @@ arbitrage.** If `Q` is an EMM for the discounted price `S`, then no simple strat
 are `P`-a.s. nonnegative and strictly positive on a `P`-non-null set. Each increment integrates to
 `0` under `Q` (`increment_integral_zero`), so the whole gain does; transporting the `P`-nonnegativity
 to `Q` (via `Q ≈ P`), the zero-mean nonnegative gain vanishes `Q`-a.s.
-(`ae_zero_of_nonneg_of_integral_zero`), hence `P`-a.s. -/
+(`ae_zero_of_nonneg_of_integral_zero`), hence `P`-a.s.
+@isnad1 id=noarbitr.1h7v.s6.67fdd7ce36d0 from=translated src=- shape=2d44e63f vocab=9a1a3253
+-/
 theorem isEMM_noArbitrageSimple {S : ℝ≥0 → Ω → F} {Q : Measure Ω}
     (h : IsEMM (P := P) (𝓕 := 𝓕) S Q) : NoArbitrageSimple (P := P) (𝓕 := 𝓕) S := by
   intro ψ hnonneg

@@ -104,7 +104,9 @@ def Payoff.obsTimes : Payoff ι → List ℝ≥0
   | .add a b | .sub a b | .mul a b | .max a b | .min a b | .indicatorLt a b =>
       a.obsTimes ++ b.obsTimes
 
-/-- Evaluating a payoff against a jointly-measurable model is measurable. -/
+/-- Evaluating a payoff against a jointly-measurable model is measurable.
+@isnad1 id=measurab.1h5v.s5.b4133f27b909 from=translated src=- shape=fc7fb5be vocab=08d36461
+-/
 theorem Payoff.measurable_eval (e : Payoff ι) (X : ι → ℝ≥0 → Ω → ℝ)
     (hX : ∀ i t, Measurable (X i t)) :
     Measurable fun ω ↦ e.eval (fun i t ↦ X i t ω) := by
@@ -124,7 +126,9 @@ consumer whose model only satisfies `AEMeasurable` (e.g. `HasLaw.aemeasurable`, 
 `Measurable`) actually has. Built from `measurable_eval` on each model coordinate's measurable
 representative `(hX i t).mk (X i t)`, transported across its a.e. equality with the original —
 not a second induction into `AEMeasurable`, whose `indicatorLt` case wants a
-`NullMeasurableSet` awkward to produce here. -/
+`NullMeasurableSet` awkward to produce here.
+@isnad1 id=aemeasur.1h6v.s5.96c86dc50ae0 from=translated src=- shape=87505a88 vocab=84b5d633
+-/
 theorem Payoff.aemeasurable_eval {μ : Measure Ω} (e : Payoff ι) (X : ι → ℝ≥0 → Ω → ℝ)
     (hX : ∀ i t, AEMeasurable (X i t) μ) :
     AEMeasurable (fun ω ↦ e.eval (fun i t ↦ X i t ω)) μ := by
@@ -160,7 +164,9 @@ integrand — the adaptedness hypothesis a future integral rung will need.
 Still has no consumer: `Contracts/Pricing.lean` integrates against a fixed
 measure, not a filtration, and unlike `measurable_eval`'s a.e. counterpart
 above, no `Payoff` in the tower yet needs an argument observed before a fixed
-time rather than a fixed measure. -/
+time rather than a fixed measure.
+@isnad1 id=measurab.2h7v.s6.ddbbc1a679a6 from=translated src=- shape=deb97fd4 vocab=6ea8d9a1
+-/
 theorem Payoff.measurable_eval_of_obsTimes_le
     {𝓕 : Filtration ℝ≥0 mΩ} {u : ℝ≥0} (e : Payoff ι) (X : ι → ℝ≥0 → Ω → ℝ)
     (hX : ∀ i t, Measurable[𝓕 t] (X i t))

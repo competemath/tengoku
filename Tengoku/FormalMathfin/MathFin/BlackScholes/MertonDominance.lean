@@ -51,13 +51,17 @@ open MeasureTheory ProbabilityTheory Real
 open scoped NNReal Nat
 
 /-- With zero jump volatility the conditional vol collapses to the diffusion
-vol: `mertonVol σ 0 T n = σ`. -/
+vol: `mertonVol σ 0 T n = σ`.
+@isnad1 id=eq.1h3v.s4.3d005ad68b0d from=translated src=- shape=2c5c3838 vocab=45be1205
+-/
 lemma mertonVol_delta_zero {σ : ℝ} (hσ : 0 ≤ σ) (T : ℝ) (n : ℕ) :
     mertonVol σ 0 T n = σ := by
   unfold mertonVol
   simp [Real.sqrt_sq hσ]
 
-/-- Jump uncertainty only adds variance: `σ ≤ mertonVol σ δ T n`. -/
+/-- Jump uncertainty only adds variance: `σ ≤ mertonVol σ δ T n`.
+@isnad1 id=le.2h4v.s5.a9593973af18 from=translated src=- shape=b950eab3 vocab=bd81f1e4
+-/
 lemma le_mertonVol {σ T : ℝ} (δ : ℝ) (hσ : 0 ≤ σ) (hT : 0 < T) (n : ℕ) :
     σ ≤ mertonVol σ δ T n := by
   unfold mertonVol
@@ -67,7 +71,9 @@ lemma le_mertonVol {σ T : ℝ} (δ : ℝ) (hσ : 0 ≤ σ) (hT : 0 < T) (n : �
 
 /-- **Per-term vol-monotonicity**: the zero-jump-vol conditional value lower-
 bounds the conditional value at any jump vol `δ` — the BS value is increasing
-in vol (vega) and jump variance only adds. -/
+in vol (vega) and jump variance only adds.
+@isnad1 id=le.5h9v.s6.6572f06300a4 from=translated src=- shape=af170ca7 vocab=1710c56f
+-/
 lemma mertonCallTerm_delta_zero_le {S_0 K r σ T k : ℝ} (δ : ℝ) (Λ : ℝ≥0)
     (hS_0 : 0 < S_0) (hK : 0 < K) (hσ : 0 < σ) (hT : 0 < T) (hk : -1 < k)
     (n : ℕ) :
@@ -78,7 +84,9 @@ lemma mertonCallTerm_delta_zero_le {S_0 K r σ T k : ℝ} (δ : ℝ) (Λ : ℝ�
     (le_mertonVol δ hσ.le hT n)
 
 /-- **Price-level vol-monotonicity**: the δ = 0 mixture lower-bounds the
-Merton price. -/
+Merton price.
+@isnad1 id=le.5h8v.s6.faa702f9a703 from=translated src=- shape=fa899498 vocab=99c09fd1
+-/
 lemma mertonCallPrice_delta_zero_le {S_0 K r σ T k : ℝ} (δ : ℝ) (Λ : ℝ≥0)
     (hS_0 : 0 < S_0) (hK : 0 < K) (hσ : 0 < σ) (hT : 0 < T) (hk : -1 < k) :
     mertonCallPrice S_0 K r σ T k 0 Λ ≤ mertonCallPrice S_0 K r σ T k δ Λ := by
@@ -90,7 +98,9 @@ lemma mertonCallPrice_delta_zero_le {S_0 K r σ T k : ℝ} (δ : ℝ) (Λ : ℝ�
 /-- **The Jensen floor at zero jump-vol**: spot convexity (tangent at `S₀`,
 slope delta) plus the compensation identity `E[mertonSpot] = S₀` make the
 δ = 0 mixture dominate the Black–Scholes value — the linear tangent term
-integrates to zero *because* the conditional forwards recombine. -/
+integrates to zero *because* the conditional forwards recombine.
+@isnad1 id=le.5h7v.s6.fed273e624f4 from=translated src=- shape=af95f20e vocab=ecb42fa5
+-/
 lemma bsV_le_mertonCallPrice_delta_zero {S_0 K r σ T k : ℝ} (Λ : ℝ≥0)
     (hS_0 : 0 < S_0) (hK : 0 < K) (hσ : 0 < σ) (hT : 0 < T) (hk : -1 < k) :
     bsV K r σ S_0 T ≤ mertonCallPrice S_0 K r σ T k 0 Λ := by
@@ -138,7 +148,9 @@ vol `δ`:
 Chain: vol-monotonicity reduces to `δ = 0`
 (`mertonCallPrice_delta_zero_le`, the vega channel), then spot convexity
 plus the compensation identity give the Jensen floor
-(`bsV_le_mertonCallPrice_delta_zero`, the gamma channel). -/
+(`bsV_le_mertonCallPrice_delta_zero`, the gamma channel).
+@isnad1 id=le.5h8v.s6.05be58465167 from=translated src=- shape=16e1dcd7 vocab=ecb42fa5
+-/
 theorem bsV_le_mertonCallPrice {S_0 K r σ T k : ℝ} (δ : ℝ) (Λ : ℝ≥0)
     (hS_0 : 0 < S_0) (hK : 0 < K) (hσ : 0 < σ) (hT : 0 < T) (hk : -1 < k) :
     bsV K r σ S_0 T ≤ mertonCallPrice S_0 K r σ T k δ Λ :=

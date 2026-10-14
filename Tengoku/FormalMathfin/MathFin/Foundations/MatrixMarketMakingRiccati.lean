@@ -93,14 +93,18 @@ noncomputable def matrixRiccatiCoeff {Â : Matrix n n ℝ} (hÂ : Â.IsHermitian
     diagonal (fun i => riccatiCoeff (hÂ.eigenvalues i) T t) *
     star (hÂ.eigenvectorUnitary : Matrix n n ℝ)
 
-/-- **Terminal condition**: `a(T) = 0`. -/
+/-- **Terminal condition**: `a(T) = 0`.
+@isnad1 id=eq.1h3v.s6.75054b56742a from=translated src=- shape=e2a185aa vocab=bd1bfd19
+-/
 theorem matrixRiccatiCoeff_terminal {Â : Matrix n n ℝ} (hÂ : Â.IsHermitian) (T : ℝ) :
     matrixRiccatiCoeff hÂ T T = 0 := by
   unfold matrixRiccatiCoeff
   simp [riccatiCoeff_terminal]
 
 /-- **Spectral form of `Â²`**: `Â · Â = U · diag (λᵢ²) · Uᴴ`. The conjugation `M ↦ U · M · Uᴴ` is a
-`⋆`-algebra homomorphism, so `Â · Â = (U · diag λ · Uᴴ)² = U · diag λ² · Uᴴ` by `map_mul`. -/
+`⋆`-algebra homomorphism, so `Â · Â = (U · diag λ · Uᴴ)² = U · diag λ² · Uᴴ` by `map_mul`.
+@isnad1 id=eq.1h2v.s8.58f434d8965e from=translated src=- shape=8a4575f2 vocab=cee58e37
+-/
 theorem matrixRiccatiCoeff_spectral_sq {Â : Matrix n n ℝ} (hÂ : Â.IsHermitian) :
     Â * Â = (hÂ.eigenvectorUnitary : Matrix n n ℝ) *
       diagonal (fun i => (hÂ.eigenvalues i) ^ 2) *
@@ -112,7 +116,9 @@ theorem matrixRiccatiCoeff_spectral_sq {Â : Matrix n n ℝ} (hÂ : Â.IsHermiti
   simp [Function.comp, sq]
 
 /-- **Symmetry**: the matrix Riccati coefficient is Hermitian (its diagonal core is real, and
-conjugation by a unitary preserves Hermitian-ness) — the value function's Hessian is symmetric. -/
+conjugation by a unitary preserves Hermitian-ness) — the value function's Hessian is symmetric.
+@isnad1 id=ishermit.1h4v.s6.3fa93df16235 from=translated src=- shape=0fd110ea vocab=bd1bfd19
+-/
 theorem matrixRiccatiCoeff_isHermitian {Â : Matrix n n ℝ} (hÂ : Â.IsHermitian) (T t : ℝ) :
     (matrixRiccatiCoeff hÂ T t).IsHermitian := by
   unfold matrixRiccatiCoeff
@@ -123,7 +129,9 @@ theorem matrixRiccatiCoeff_isHermitian {Â : Matrix n n ℝ} (hÂ : Â.IsHermiti
 operator norm). The `t`-dependence lives entirely in the diagonal core; its derivative is
 `diag (riccatiCoeff (λᵢ)² − λᵢ²)` by the scalar `hasDerivAt_riccatiCoeff`, and conjugating by the
 constant `U`, `Uᴴ` and re-collapsing (`star U · U = 1`, `map_mul`) turns `U · diag(riccatiCoeff² − λ²) · Uᴴ`
-into `a·a − Â·Â`. -/
+into `a·a − Â·Â`.
+@isnad1 id=hasderiv.1h4v.s7.e259f832ab50 from=translated src=- shape=67e92f0b vocab=5e6a2b34
+-/
 theorem hasDerivAt_matrixRiccatiCoeff {Â : Matrix n n ℝ} (hÂ : Â.IsHermitian) (T t : ℝ) :
     HasDerivAt (matrixRiccatiCoeff hÂ T)
       (matrixRiccatiCoeff hÂ T t * matrixRiccatiCoeff hÂ T t - Â * Â) t := by
@@ -172,7 +180,9 @@ noncomputable def mmMatrixValueCoeff (d : n → ℝ) {Â : Matrix n n ℝ} (hÂ 
   (1 / 2 : ℝ) • (diagonal (fun i => (Real.sqrt (d i))⁻¹) * matrixRiccatiCoeff hÂ T t
     * diagonal (fun i => (Real.sqrt (d i))⁻¹))
 
-/-- **Terminal condition**: `A(T) = 0`. -/
+/-- **Terminal condition**: `A(T) = 0`.
+@isnad1 id=eq.1h4v.s6.88a5906b646b from=translated src=- shape=a7be8b07 vocab=d01df674
+-/
 theorem mmMatrixValueCoeff_terminal (d : n → ℝ) {Â : Matrix n n ℝ} (hÂ : Â.IsHermitian) (T : ℝ) :
     mmMatrixValueCoeff d hÂ T T = 0 := by
   unfold mmMatrixValueCoeff
@@ -183,7 +193,9 @@ theorem mmMatrixValueCoeff_terminal (d : n → ℝ) {Â : Matrix n n ℝ} (hÂ :
 diagonal d` positive and `Â` the Hermitian generator scale `Â·Â = γ • (D₊^{½} Σ D₊^{½})` (the
 paper's `Â = √γ (D₊^{½}ΣD₊^{½})^{½}`). The change of variables collapses because
 `D₊^{-½} D₊ D₊^{-½} = 1` and `D₊^{-½} Â² D₊^{-½} = γ Σ`, reducing everything to the abstract matrix
-Riccati ODE `hasDerivAt_matrixRiccatiCoeff`. -/
+Riccati ODE `hasDerivAt_matrixRiccatiCoeff`.
+@isnad1 id=hasderiv.3h7v.s8.8a8f24ff2daf from=translated src=- shape=e7b7e9dc vocab=37714571
+-/
 theorem hasDerivAt_mmMatrixValueCoeff
     (d : n → ℝ) (hd : ∀ i, 0 < d i) (cov : Matrix n n ℝ) (γ : ℝ)
     {Â : Matrix n n ℝ} (hÂ : Â.IsHermitian)

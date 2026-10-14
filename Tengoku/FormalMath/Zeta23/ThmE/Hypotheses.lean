@@ -136,7 +136,9 @@ structure PaperInputsChi (κ q : ℕ) (c : ℕ → ℂ) (Z : ZeroConfig) : Prop 
 
 section PXcUnfold
 
-/-- `n^{−1/2−iτ} = n^{−1/2}·e^{−iτ log n}` for `n ≥ 1`. -/
+/-- `n^{−1/2−iτ} = n^{−1/2}·e^{−iτ log n}` for `n ≥ 1`.
+@isnad1 id=eq.1h2v.s7.6ecf85707f07 from=translated src=- shape=223ec6b6 vocab=3563c5f0
+-/
 lemma natCast_cpow_neg_half_sub_I_mul {n : ℕ} (hn : 0 < n) (τ : ℝ) :
     (n : ℂ) ^ (-(1/2 : ℂ) - Complex.I * τ)
       = (((n : ℝ) ^ (-(1/2 : ℝ)) : ℝ) : ℂ) * Complex.exp (-(Complex.I * (τ * Real.log n))) := by
@@ -154,7 +156,9 @@ lemma natCast_cpow_neg_half_sub_I_mul {n : ℕ} (hn : 0 < n) (τ : ℝ) :
   rw [Real.rpow_def_of_pos (by exact_mod_cast hn)]
   ring_nf
 
-/-- `e^{−iθ} = cos θ − i sin θ`, real θ, cast form. -/
+/-- `e^{−iθ} = cos θ − i sin θ`, real θ, cast form.
+@isnad1 id=eq.0h1v.s5.5cba0121dd76 from=translated src=- shape=e1a09a06 vocab=172d1a8e
+-/
 lemma exp_neg_I_mul_ofReal (θ : ℝ) :
     Complex.exp (-(Complex.I * (θ : ℂ)))
       = ((Real.cos θ : ℝ) : ℂ) - ((Real.sin θ : ℝ) : ℂ) * Complex.I := by
@@ -164,7 +168,9 @@ lemma exp_neg_I_mul_ofReal (θ : ℝ) :
   ring
 
 /-- `P_{X,χ}` as a real sum of phase-split cosines/sines, coefficients `(c n).re, (c n).im`:
-`P_{X,c}(τ) = −π⁻¹ Σ_{n≤X} Λ(n) n^{−1/2} ((c n).re·cos(τ log n) + (c n).im·sin(τ log n))`. -/
+`P_{X,c}(τ) = −π⁻¹ Σ_{n≤X} Λ(n) n^{−1/2} ((c n).re·cos(τ log n) + (c n).im·sin(τ log n))`.
+@isnad1 id=eq.0h3v.s7.a148b79b9290 from=translated src=- shape=12b9424a vocab=6d4dbefd
+-/
 lemma PXc_eq_sum_cos_sin (c : ℕ → ℂ) (X τ : ℝ) :
     PXc c X τ = -(1 / Real.pi) * ∑ n ∈ Finset.Ioc 0 ⌊X⌋₊,
       (Λ n : ℝ) * (n : ℝ) ^ (-(1/2 : ℝ)) *
@@ -217,7 +223,9 @@ structure GammaFactsChiBounded (κ q : ℕ) (C : ℝ) : Prop where
     |(∫ τ in T..(2 * T), muq κ q τ ^ 2) - T * ell1q q T ^ 2 / (4 * Real.pi ^ 2)|
       ≤ C * (T * ell1q q T ^ 2 / (4 * Real.pi ^ 2)) / l T ^ 2
 
-/-- forgetting the uniformity. -/
+/-- forgetting the uniformity.
+@isnad1 id=gammafac.1h3v.s3.fc31f0d9d8f6 from=translated src=- shape=6a903307 vocab=5af59df7
+-/
 lemma GammaFactsChiBounded.toGammaFactsChi {κ q : ℕ} {C : ℝ}
     (h : GammaFactsChiBounded κ q C) : GammaFactsChi κ q :=
   ⟨h.even, h.smooth, h.monotoneOn, h.mu_zero_le, h.neg_one_lt_mu_zero,
@@ -232,7 +240,9 @@ structure ChebyshevMertensCoprimeBounded (q : ℕ) (B : ℝ) : Prop where
     |∑ n ∈ (Finset.Ioc 0 ⌊x⌋₊).filter (fun n => Nat.Coprime n q),
         Λ n ^ 2 / n * (Real.log x - Real.log n) - Real.log x ^ 3 / 6| ≤ B * Real.log x ^ 2
 
-/-- forgetting the uniformity. -/
+/-- forgetting the uniformity.
+@isnad1 id=chebyshe.1h2v.s3.4fa2e684c229 from=translated src=- shape=304e7556 vocab=5ce8216c
+-/
 lemma ChebyshevMertensCoprimeBounded.toChebyshevMertensCoprime {q : ℕ} {B : ℝ}
     (h : ChebyshevMertensCoprimeBounded q B) : ChebyshevMertensCoprime q :=
   ⟨⟨B, h.cheb2a⟩, ⟨B, h.cheb2b⟩⟩

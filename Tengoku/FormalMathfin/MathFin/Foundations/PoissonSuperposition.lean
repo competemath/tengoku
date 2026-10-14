@@ -48,7 +48,9 @@ namespace PoissonSuperposition
 /-- **Poisson convolution identity** — Mathlib's
 `ProbabilityTheory.poissonMeasure_conv_poissonMeasure`, re-exported under the
 name the Poisson benchmark snippets reference. Not proved here: upstream has it
-(via characteristic functions) and a second proof would be a duplicate. -/
+(via characteristic functions) and a second proof would be a duplicate.
+@isnad1 id=eq.0h2v.s4.d4e76f1bd1fb from=translated src=- shape=7e2d94cb vocab=6c43a6ee
+-/
 theorem poissonMeasure_conv_poissonMeasure (a b : ℝ≥0) :
     poissonMeasure a ∗ poissonMeasure b = poissonMeasure (a + b) :=
   _root_.ProbabilityTheory.poissonMeasure_conv_poissonMeasure a b
@@ -58,7 +60,9 @@ theorem poissonMeasure_conv_poissonMeasure (a b : ℝ≥0) :
 /-- **Superposition theorem (increment form, Saporito Theorem 3.3.9).** If
 `X` and `Y` are independent `ℕ`-valued random counts with `Poisson(a)` and
 `Poisson(b)` laws, their sum is `Poisson(a + b)`. No measurability hypotheses
-are needed: a nonzero pushforward forces a.e.-measurability. -/
+are needed: a nonzero pushforward forces a.e.-measurability.
+@isnad1 id=eq.3h7v.s6.263e78dc6bac from=translated src=- shape=60d6111d vocab=3328d526
+-/
 theorem indepFun_map_add_poissonMeasure {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {μ : Measure Ω} {a b : ℝ≥0} {X Y : Ω → ℕ} (hXY : IndepFun X Y μ)
     (hX : μ.map X = poissonMeasure a) (hY : μ.map Y = poissonMeasure b) :

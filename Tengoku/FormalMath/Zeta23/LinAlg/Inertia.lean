@@ -47,7 +47,9 @@ variable {m d : Type*} [Fintype m] [DecidableEq m] [Fintype d] [DecidableEq d]
 
 /-- **Inertia under pull-back** (paper `lem:inertia`, matrix form).
 For Hermitian `Q` and any matrix `B`, the pulled-back form `BᴴQB` has
-positive index at most that of `Q`. -/
+positive index at most that of `Q`.
+@isnad1 id=le.1h5v.s8.a2af903c18e9 from=translated src=- shape=8a681669 vocab=b8a7a56e
+-/
 theorem posIndex_conj_le {Q : Matrix m m 𝕜} (hQ : Q.IsHermitian) (B : Matrix m d 𝕜) :
     posIndex (isHermitian_conjTranspose_mul_mul B hQ) ≤ posIndex hQ := by
   set M := Bᴴ * Q * B
@@ -86,7 +88,9 @@ theorem posIndex_conj_le {Q : Matrix m m 𝕜} (hQ : Q.IsHermitian) (B : Matrix 
     _ ≤ posIndex hQ := finrank_le_posIndex_of_posDefOn hQ hposBV
 
 /-- **Subadditivity of the positive index** (paper §3, after `lem:inertia`).
-`n₊(Q₁ + Q₂) ≤ n₊(Q₁) + n₊(Q₂)`. -/
+`n₊(Q₁ + Q₂) ≤ n₊(Q₁) + n₊(Q₂)`.
+@isnad1 id=le.2h4v.s7.df3fef1737ae from=translated src=- shape=32c10102 vocab=e2381ea3
+-/
 theorem posIndex_add_le {Q₁ Q₂ : Matrix m m 𝕜}
     (hQ₁ : Q₁.IsHermitian) (hQ₂ : Q₂.IsHermitian) :
     posIndex (hQ₁.add hQ₂) ≤ posIndex hQ₁ + posIndex hQ₂ := by

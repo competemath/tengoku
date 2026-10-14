@@ -28,6 +28,9 @@ namespace MathFin.BlackScholes.AmericanPut.Boundary
 open Set
 open scoped Topology ContDiff
 
+/--
+@isnad1 id=lt.13h8v.s9.c1feff978cdf from=translated src=- shape=6d3ec66e vocab=ea331a3c
+-/
 theorem positive_rectangle_of_positive_bottom {U D : ℝ → ℝ → ℝ} {L a T M : ℝ}
     (hL : 0 < L) (haT : a ≤ T)
     (hU : ContinuousOn (fun z : ℝ × ℝ => U z.1 z.2) (movingStrip (fun _ => 0) L a T))
@@ -100,7 +103,9 @@ theorem positive_rectangle_of_positive_bottom {U D : ℝ → ℝ → ℝ} {L a T
   exact hb.trans_le (sub_nonpos.mp (hcomp (x,t) ⟨hat,htT,hx.le,hxL.le⟩))
 
 /-- Transport of a positive bottom patch along a straight tube. The drift
-bound changes by at most the absolute speed of the tube. -/
+bound changes by at most the absolute speed of the tube.
+@isnad1 id=lt.12h10v.s9.4b4cc46bdc1a from=translated src=- shape=b21cf73a vocab=a9a20840
+-/
 theorem positive_straight_tube {U D : ℝ → ℝ → ℝ} {L a T M c d : ℝ}
     (hL : 0 < L) (haT : a ≤ T)
     (hU : ContinuousOn (fun z : ℝ × ℝ => U (z.1+(d-c*z.2)) z.2)

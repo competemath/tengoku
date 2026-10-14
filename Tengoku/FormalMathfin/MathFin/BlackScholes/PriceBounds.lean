@@ -106,7 +106,9 @@ private lemma bsP_eq_riskNeutralExpectation
 
 /-- **Call price non-negativity**: `0 ≤ bsV`. Integrand `e^{−rT} · (S_T − K)⁺`
 is non-negative pointwise (positive discount factor times the non-negative
-positive-part). -/
+positive-part).
+@isnad1 id=le.1h9v.s5.6ee1afa6cddc from=translated src=- shape=6a2f328f vocab=71c6ee8f
+-/
 theorem bsV_nonneg
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
@@ -117,7 +119,9 @@ theorem bsV_nonneg
   exact integral_nonneg fun _ ↦
     mul_nonneg (Real.exp_pos _).le (le_max_right _ _)
 
-/-- **Put price non-negativity**: `0 ≤ bsP`. Same argument with `(K − S_T)⁺`. -/
+/-- **Put price non-negativity**: `0 ≤ bsP`. Same argument with `(K − S_T)⁺`.
+@isnad1 id=le.1h9v.s5.f09bb201a303 from=translated src=- shape=6a2f328f vocab=e9acdbe9
+-/
 theorem bsP_nonneg
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
@@ -134,7 +138,9 @@ theorem bsP_nonneg
 
 /-- **Call upper bound**: `bsV ≤ S` for non-negative spot/strike. By
 `Phi ≤ 1`: the `S · Φ(d₁)` term is bounded by `S`, and the `−K · e^{−rτ} ·
-Φ(d₂)` term is non-positive. -/
+Φ(d₂)` term is non-positive.
+@isnad1 id=le.2h5v.s5.8fde633e270c from=translated src=- shape=f6be0183 vocab=cbedc579
+-/
 lemma bsV_le_S (K r σ : ℝ) (S τ : ℝ) (hS : 0 ≤ S) (hK : 0 ≤ K) :
     bsV K r σ S τ ≤ S := by
   unfold bsV
@@ -149,7 +155,9 @@ lemma bsV_le_S (K r σ : ℝ) (S τ : ℝ) (hS : 0 ≤ S) (hK : 0 ≤ K) :
   linarith
 
 /-- **Put upper bound**: `bsP ≤ K · e^{−rτ}`. Symmetric to `bsV_le_S` via
-`Φ(−d₂) ≤ 1`. -/
+`Φ(−d₂) ≤ 1`.
+@isnad1 id=le.2h5v.s5.c2f64412edbf from=translated src=- shape=ebb01cf3 vocab=9f67cb53
+-/
 lemma bsP_le_K_disc (K r σ : ℝ) (S τ : ℝ) (hS : 0 ≤ S) (hK : 0 ≤ K) :
     bsP K r σ S τ ≤ K * Real.exp (-(r * τ)) := by
   unfold bsP
@@ -168,7 +176,9 @@ lemma bsP_le_K_disc (K r σ : ℝ) (S τ : ℝ) (hS : 0 ≤ S) (hK : 0 ≤ K) :
 /-! ### The four parity-driven corollaries (one-line proofs each) -/
 
 /-- **Forward lower bound**: `S − K · e^{−rτ} ≤ bsV`. By parity
-`bsV = bsP + S − K · e^{−rτ}` and `bsP ≥ 0`. -/
+`bsV = bsP + S − K · e^{−rτ}` and `bsP ≥ 0`.
+@isnad1 id=le.1h9v.s6.b7c41dfad9cd from=translated src=- shape=9420de7f vocab=210c0e09
+-/
 theorem bsV_ge_forward_lower_bound
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
@@ -181,7 +191,9 @@ theorem bsV_ge_forward_lower_bound
 
 /-- **Intrinsic-style put lower bound**: `K · e^{−rτ} − S ≤ bsP`. By parity
 `bsP = bsV + K · e^{−rτ} − S` and `bsV ≥ 0`. The "dual" of the call's forward
-lower bound. -/
+lower bound.
+@isnad1 id=le.1h9v.s6.ef324c8c2327 from=translated src=- shape=838a382c vocab=4cf523f5
+-/
 theorem bsP_ge_intrinsic_no_arb
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
@@ -193,7 +205,9 @@ theorem bsP_ge_intrinsic_no_arb
   linarith
 
 /-- **Box-spread identity**: `(bsV(K₁) − bsP(K₁)) − (bsV(K₂) − bsP(K₂)) =
-(K₂ − K₁) · e^{−rτ}`. Two applications of put-call parity, subtracted. -/
+(K₂ − K₁) · e^{−rτ}`. Two applications of put-call parity, subtracted.
+@isnad1 id=eq.0h6v.s6.bdd4b603c164 from=translated src=- shape=197078b1 vocab=1aa8ecc1
+-/
 theorem box_spread_identity (K₁ K₂ r σ S τ : ℝ) :
     (bsV K₁ r σ S τ - bsP K₁ r σ S τ) -
         (bsV K₂ r σ S τ - bsP K₂ r σ S τ) =
@@ -211,7 +225,9 @@ with `bsV ≥ 0`, this strictly dominates the immediate-exercise payoff
 `max(S₀ − K, 0)`, so early exercise is never optimal. American = European.
 
 Proof: `bsV ≥ S₀ − K · e^{−rT}` (forward lb) and `K · e^{−rT} < K` (because
-`e^{−rT} < 1` for `r > 0` and `T > 0`, multiplied by `K > 0`). -/
+`e^{−rT} < 1` for `r > 0` and `T > 0`, multiplied by `K > 0`).
+@isnad1 id=lt.2h9v.s6.ee513507a486 from=translated src=- shape=8bd9f9e9 vocab=d245c3d3
+-/
 theorem bsV_strict_gt_immediate_exercise
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
@@ -237,7 +253,9 @@ prices satisfy
   `max(0, K · e^{−rT} − S₀) ≤ bsP K r σ S₀ T ≤ K · e^{−rT}`.
 
 Each of the four sides of the call rectangle (and put rectangle) is a named
-theorem above; this packages them. -/
+theorem above; this packages them.
+@isnad1 id=and.1h9v.s7.1fd226d3fbe4 from=translated src=- shape=932c9feb vocab=acdc6f7d
+-/
 theorem noArbBox
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]

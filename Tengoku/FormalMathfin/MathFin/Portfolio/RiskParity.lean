@@ -40,7 +40,9 @@ noncomputable def riskParityWeightTwo (σ₁ σ₂ : ℝ) : ℝ :=
 /-- **Risk-parity equal-contribution identity** for two assets: at
 `w₁ = σ₂/(σ₁+σ₂)`, `w₂ = σ₁/(σ₁+σ₂)`, asset 1 and asset 2 contribute
 identically to portfolio variance regardless of correlation `ρ`. The
-contribution of asset `i` is `w_i · (Σ·w)_i = w_i · (w_i σ_i² + w_j ρ σ_i σ_j)`. -/
+contribution of asset `i` is `w_i · (Σ·w)_i = w_i · (w_i σ_i² + w_j ρ σ_i σ_j)`.
+@isnad1 id=other.1h3v.s7.3d136f666c52 from=translated src=- shape=333fbf81 vocab=90e422ea
+-/
 theorem risk_parity_equal_contribution (σ₁ σ₂ ρ : ℝ)
     (hσ : σ₁ + σ₂ ≠ 0) :
     let w₁ := riskParityWeightTwo σ₁ σ₂
@@ -52,7 +54,9 @@ theorem risk_parity_equal_contribution (σ₁ σ₂ ρ : ℝ)
   field_simp
   ring
 
-/-- **Risk-parity weights sum to one**: `w₁ + w₂ = 1`. -/
+/-- **Risk-parity weights sum to one**: `w₁ + w₂ = 1`.
+@isnad1 id=eq.1h2v.s5.6401de0d34fb from=translated src=- shape=b3569f41 vocab=61f69b5b
+-/
 lemma riskParity_weights_sum_one (σ₁ σ₂ : ℝ) (hσ : σ₁ + σ₂ ≠ 0) :
     riskParityWeightTwo σ₁ σ₂ + riskParityWeightTwo σ₂ σ₁ = 1 := by
   unfold riskParityWeightTwo

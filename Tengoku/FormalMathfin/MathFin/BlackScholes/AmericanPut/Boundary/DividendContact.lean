@@ -27,6 +27,9 @@ open Set
 
 variable {k h : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
 
+/--
+@isnad1 id=iff.2h6v.s5.a1278a9571fa from=translated src=- shape=2edaa821 vocab=cdd79d93
+-/
 theorem contact_iff (hp : DividendPutSolution k h p b) {x t : ℝ} (ht : 0 < t) :
     p x t = putPayoff x ↔ x ≤ b t := by
   constructor
@@ -38,6 +41,9 @@ theorem contact_iff (hp : DividendPutSolution k h p b) {x t : ℝ} (ht : 0 < t) 
   · intro hx
     rw [hp.exercise x t ht hx,putPayoff_of_nonpos (hx.trans (hp.boundary_nonpos ht))]
 
+/--
+@isnad1 id=iff.4h7v.s6.24f9ee3b5f94 from=translated src=- shape=05709e6a vocab=de5b7d3f
+-/
 theorem contact_in_stock_units (hp : DividendPutSolution k h p b)
     {K S t : ℝ} (hK : 0 < K) (hS : 0 < S) (ht : 0 < t) :
     K*p (Real.log (S/K)) t = max (K-S) 0 ↔ S ≤ K*Real.exp (b t) := by

@@ -75,7 +75,9 @@ structure IsEMM (Q : Measure Ω) : Prop where
 omit [IsProbabilityMeasure P] [MeasurableSpace F] [BorelSpace F] in
 /-- **Forward direction**: an equivalent martingale measure precludes arbitrage.
 Under `Q`, `∫ ⟪θ, Y⟫ ∂Q = ⟪θ, E_Q[Y]⟫ = 0`, so a non-negative `⟪θ, Y⟫` is `0` a.e.;
-equivalence transports this back to `P`. -/
+equivalence transports this back to `P`.
+@isnad1 id=noarbitr.1h6v.s6.6bac1e22e8e5 from=translated src=- shape=ff98dce5 vocab=26aa4894
+-/
 theorem noArbitrage_of_isEMM {Q : Measure Ω} (hQ : IsEMM P Y Q) : NoArbitrage P Y := by
   haveI := hQ.prob
   intro θ hpos
@@ -99,25 +101,41 @@ noncomputable def softplus (u : ℝ) : ℝ := Real.log (1 + Real.exp u)
 /-- Logistic function `eᵘ/(1 + eᵘ) = σ(u)`, the derivative of `softplus`. -/
 noncomputable def logistic (u : ℝ) : ℝ := Real.exp u / (1 + Real.exp u)
 
+/--
+@isnad1 id=lt.0h1v.s3.07ecf89074b2 from=translated src=- shape=8a62b088 vocab=b4641291
+-/
 lemma logistic_pos (u : ℝ) : 0 < logistic u := by rw [logistic]; positivity
 
+/--
+@isnad1 id=lt.0h1v.s3.2d410e0b8575 from=translated src=- shape=b14ee516 vocab=b4641291
+-/
 lemma logistic_lt_one (u : ℝ) : logistic u < 1 := by
   rw [logistic, div_lt_one (by positivity)]; linarith [Real.exp_pos u]
 
+/--
+@isnad1 id=le.0h1v.s3.da6793d319dd from=translated src=- shape=8a62b088 vocab=02b05647
+-/
 lemma softplus_nonneg (u : ℝ) : 0 ≤ softplus u := by
   rw [softplus]; exact Real.log_nonneg (by linarith [Real.exp_pos u])
 
+/--
+@isnad1 id=le.0h1v.s3.82eded0884e4 from=translated src=- shape=e63234f4 vocab=02b05647
+-/
 lemma self_le_softplus (u : ℝ) : u ≤ softplus u := by
   rw [softplus]
   calc u = Real.log (Real.exp u) := (Real.log_exp u).symm
     _ ≤ Real.log (1 + Real.exp u) :=
         Real.log_le_log (Real.exp_pos u) (by linarith [Real.exp_pos u])
 
-/-- `u⁺ = max u 0 ≤ softplus u`: the lower bound powering coercivity of the potential. -/
+/-- `u⁺ = max u 0 ≤ softplus u`: the lower bound powering coercivity of the potential.
+@isnad1 id=le.0h1v.s4.6c90cd77241c from=translated src=- shape=f5c863b0 vocab=22cf515b
+-/
 lemma posPart_le_softplus (u : ℝ) : max u 0 ≤ softplus u :=
   max_le (self_le_softplus u) (softplus_nonneg u)
 
-/-- `softplus u ≤ |u| + log 2`: the linear-growth upper bound giving `L¹`-integrability. -/
+/-- `softplus u ≤ |u| + log 2`: the linear-growth upper bound giving `L¹`-integrability.
+@isnad1 id=le.0h1v.s4.5f36a8744d91 from=translated src=- shape=4cea653b vocab=0d6c248b
+-/
 lemma softplus_le (u : ℝ) : softplus u ≤ |u| + Real.log 2 := by
   rw [softplus]
   have hb : 1 + Real.exp u ≤ 2 * Real.exp |u| := by
@@ -129,7 +147,9 @@ lemma softplus_le (u : ℝ) : softplus u ≤ |u| + Real.log 2 := by
     _ = |u| + Real.log 2 := by
         rw [Real.log_mul (by norm_num) (Real.exp_ne_zero _), Real.log_exp]; ring
 
-/-- `softplus` is differentiable with derivative the logistic `σ`. -/
+/-- `softplus` is differentiable with derivative the logistic `σ`.
+@isnad1 id=hasderiv.0h1v.s5.3947676606b6 from=translated src=- shape=475e04ea vocab=689f407b
+-/
 lemma hasDerivAt_softplus (u : ℝ) : HasDerivAt softplus (logistic u) u := by
   have h2 : (1 : ℝ) + Real.exp u ≠ 0 := by positivity
   have h1 : HasDerivAt (fun v ↦ 1 + Real.exp v) (Real.exp u) u := by
@@ -138,10 +158,16 @@ lemma hasDerivAt_softplus (u : ℝ) : HasDerivAt softplus (logistic u) u := by
   rw [show logistic u = (1 + Real.exp u)⁻¹ * Real.exp u from by rw [logistic, div_eq_inv_mul]]
   exact h3
 
+/--
+@isnad1 id=continuo.0h0v.s3.5e2e359063c6 from=translated src=- shape=e3d48bcb vocab=370bc74b
+-/
 lemma continuous_softplus : Continuous softplus := by
   have hpos : ∀ u : ℝ, (0 : ℝ) < 1 + Real.exp u := fun u ↦ by positivity
   exact (continuous_const.add Real.continuous_exp).log (fun u ↦ (hpos u).ne')
 
+/--
+@isnad1 id=continuo.0h0v.s3.2660af68665c from=translated src=- shape=e3d48bcb vocab=4fe0c990
+-/
 lemma continuous_logistic : Continuous logistic := by
   have hpos : ∀ u : ℝ, (0 : ℝ) < 1 + Real.exp u := fun u ↦ by positivity
   exact Real.continuous_exp.div (continuous_const.add Real.continuous_exp) (fun u ↦ (hpos u).ne')
@@ -152,7 +178,9 @@ noncomputable def potential (θ : F) : ℝ :=
   ∫ ω, softplus (inner ℝ θ (Y ω)) ∂P
 
 omit [FiniteDimensional ℝ F] [MeasurableSpace F] [BorelSpace F] in
-/-- `softplus⟪θ,Y⟫` is `P`-integrable, dominated by `‖θ‖‖Y‖ + log 2`. -/
+/-- `softplus⟪θ,Y⟫` is `P`-integrable, dominated by `‖θ‖‖Y‖ + log 2`.
+@isnad1 id=integrab.1h6v.s6.30b7e1e8e190 from=translated src=- shape=3c5cf01b vocab=c25c74b9
+-/
 lemma integrable_softplus_inner (hYint : Integrable Y P) (θ : F) :
     Integrable (fun ω ↦ softplus (inner ℝ θ (Y ω))) P := by
   have hmeas : AEStronglyMeasurable (fun ω ↦ softplus (inner ℝ θ (Y ω))) P :=
@@ -166,7 +194,9 @@ lemma integrable_softplus_inner (hYint : Integrable Y P) (θ : F) :
 
 /-- **Directional derivative of the potential**. For `Y ∈ L¹`, `t ↦ f(θ + t•u)` is
 differentiable at `0` with derivative `∫ σ⟪θ,Y⟫ · ⟪u,Y⟫ ∂P` — differentiation under the
-integral, dominated by `‖u‖‖Y‖` since `σ ∈ (0,1)`. -/
+integral, dominated by `‖u‖‖Y‖` since `σ ∈ (0,1)`.
+@isnad1 id=hasderiv.2h7v.s8.c02c75737f24 from=translated src=- shape=4e4e83b9 vocab=1a565cbe
+-/
 lemma hasDerivAt_potential_dir (hY : Measurable Y) (hYint : Integrable Y P) (θ u : F) :
     HasDerivAt (fun t : ℝ ↦ potential P Y (θ + t • u))
       (∫ ω, logistic (inner ℝ θ (Y ω)) * inner ℝ u (Y ω) ∂P) 0 := by
@@ -215,7 +245,9 @@ lemma hasDerivAt_potential_dir (hY : Measurable Y) (hYint : Integrable Y P) (θ 
     refine integral_congr_ae ?_; filter_upwards with ω; simp only [hΦ', zero_mul, add_zero]
   rw [hpot, ← hval]; exact hderiv
 
-/-- `softplus` is `1`-Lipschitz (its derivative `σ` lies in `(0,1)`). -/
+/-- `softplus` is `1`-Lipschitz (its derivative `σ` lies in `(0,1)`).
+@isnad1 id=lipschit.0h0v.s4.b86c5d7d18e7 from=translated src=- shape=9b6bf902 vocab=2ab34ce6
+-/
 lemma lipschitzWith_softplus : LipschitzWith 1 softplus := by
   refine lipschitzWith_of_nnnorm_deriv_le
     (fun x ↦ (hasDerivAt_softplus x).differentiableAt) fun x ↦ ?_
@@ -225,7 +257,9 @@ lemma lipschitzWith_softplus : LipschitzWith 1 softplus := by
 
 omit [IsProbabilityMeasure P] [FiniteDimensional ℝ F] [MeasurableSpace F] [BorelSpace F] in
 /-- For a `1`-Lipschitz `φ`, the averaged map `θ ↦ ∫ φ⟪θ,Y⟫ ∂P` is `(∫‖Y‖)`-Lipschitz
-(`φ` is `1`-Lipschitz and `θ ↦ ⟪θ,Y ω⟫` is `‖Y ω‖`-Lipschitz, by Cauchy–Schwarz). -/
+(`φ` is `1`-Lipschitz and `θ ↦ ⟪θ,Y ω⟫` is `‖Y ω‖`-Lipschitz, by Cauchy–Schwarz).
+@isnad1 id=lipschit.3h6v.s7.edf5a03bb226 from=translated src=- shape=ad9c242e vocab=ab923cb9
+-/
 lemma lipschitzWith_integral_inner {φ : ℝ → ℝ} (hφ : LipschitzWith 1 φ)
     (hint : ∀ θ : F, Integrable (fun ω ↦ φ (inner ℝ θ (Y ω))) P)
     (hYint : Integrable Y P) :
@@ -250,17 +284,23 @@ lemma lipschitzWith_integral_inner {φ : ℝ → ℝ} (hφ : LipschitzWith 1 φ)
     _ = (∫ ω, ‖Y ω‖ ∂P) * ‖θ - θ'‖ := integral_mul_const _ _
 
 omit [FiniteDimensional ℝ F] [MeasurableSpace F] [BorelSpace F] in
-/-- The potential is continuous. -/
+/-- The potential is continuous.
+@isnad1 id=continuo.1h5v.s6.c7f148b1f532 from=translated src=- shape=9e6f0777 vocab=044ecca2
+-/
 lemma continuous_potential (hYint : Integrable Y P) : Continuous (potential P Y) :=
   (lipschitzWith_integral_inner P Y lipschitzWith_softplus
     (integrable_softplus_inner P Y hYint) hYint).continuous
 
-/-- `s ↦ max s 0` (positive part) is `1`-Lipschitz. -/
+/-- `s ↦ max s 0` (positive part) is `1`-Lipschitz.
+@isnad1 id=lipschit.0h0v.s4.9f433a8f0bf5 from=translated src=- shape=3ef6e365 vocab=4b793b4e
+-/
 lemma lipschitzWith_posPart : LipschitzWith 1 (fun s : ℝ ↦ max s 0) :=
   LipschitzWith.id.max_const 0
 
 omit [IsProbabilityMeasure P] [FiniteDimensional ℝ F] [MeasurableSpace F] [BorelSpace F] in
-/-- `max⟪θ,Y⟫ 0` is `P`-integrable (dominated by `‖θ‖‖Y‖`). -/
+/-- `max⟪θ,Y⟫ 0` is `P`-integrable (dominated by `‖θ‖‖Y‖`).
+@isnad1 id=integrab.1h6v.s6.f6a8d5aef943 from=translated src=- shape=52d55cfc vocab=3a11a9a3
+-/
 lemma integrable_posPart_inner (hYint : Integrable Y P) (θ : F) :
     Integrable (fun ω ↦ max (inner ℝ θ (Y ω)) 0) P := by
   have hmeas : AEStronglyMeasurable (fun ω ↦ max (inner ℝ θ (Y ω)) 0) P :=
@@ -272,7 +312,9 @@ lemma integrable_posPart_inner (hYint : Integrable Y P) (θ : F) :
 
 omit [IsProbabilityMeasure P] [FiniteDimensional ℝ F] [MeasurableSpace F] [BorelSpace F] in
 /-- The positive-gain average `g(θ) = ∫⟪θ,Y⟫⁺ ∂P` is continuous. It lower-bounds the
-potential (`softplus s ≥ s⁺`) and drives the coercivity argument. -/
+potential (`softplus s ≥ s⁺`) and drives the coercivity argument.
+@isnad1 id=continuo.1h5v.s6.505677917101 from=translated src=- shape=c23733dc vocab=d21662d5
+-/
 lemma continuous_gainsPos (hYint : Integrable Y P) :
     Continuous (fun θ ↦ ∫ ω, max (inner ℝ θ (Y ω)) 0 ∂P) :=
   (lipschitzWith_integral_inner P Y lipschitzWith_posPart
@@ -310,6 +352,9 @@ def gainsKernel : Submodule ℝ F where
     rw [real_inner_smul_left, eb, mul_zero]
 
 omit [IsProbabilityMeasure P] [FiniteDimensional ℝ F] [MeasurableSpace F] [BorelSpace F] in
+/--
+@isnad1 id=iff.0h6v.s7.c098a725172b from=translated src=- shape=b78dfacf vocab=7b0b3d62
+-/
 @[simp] lemma mem_gainsKernel {θ : F} :
     θ ∈ gainsKernel P Y ↔ (fun ω ↦ inner ℝ θ (Y ω)) =ᵐ[P] 0 := Iff.rfl
 
@@ -317,7 +362,9 @@ omit [MeasurableSpace F] [BorelSpace F] in
 /-- **Coercivity** of the potential on `Nᗮ` (no arbitrage). The positive gain average
 `g(θ) = ∫⟪θ,Y⟫⁺` is positive on `Nᗮ \ {0}` (no arbitrage, plus `N ⊓ Nᗮ = ⊥`), continuous
 and positively homogeneous; its minimum `c` over the unit sphere of `Nᗮ` is positive, and
-`softplus s ≥ s⁺` gives `c‖θ‖ ≤ f(θ)` for `θ ∈ Nᗮ`. -/
+`softplus s ≥ s⁺` gives `c‖θ‖ ≤ f(θ)` for `θ ∈ Nᗮ`.
+@isnad1 id=ex.3h5v.s8.bb63d931565d from=translated src=- shape=0ecb8ec8 vocab=e0289a99
+-/
 lemma exists_pos_lower_bound (hYint : Integrable Y P) (hNA : NoArbitrage P Y)
     (hNbot : (gainsKernel P Y)ᗮ ≠ ⊥) :
     ∃ c > 0, ∀ θ ∈ (gainsKernel P Y)ᗮ, c * ‖θ‖ ≤ potential P Y θ := by
@@ -392,7 +439,9 @@ omit [MeasurableSpace F] [BorelSpace F] in
 /-- **The potential attains a global minimum** (no arbitrage). On `Nᗮ`, coercivity makes
 the minimum over a large closed ball global; and the potential is constant along `N`
 (`⟪n,Y⟫ = 0` a.e.), so a minimiser over `Nᗮ` minimises over all of `F` after the
-decomposition `θ = n + z`, `n ∈ N`, `z ∈ Nᗮ`. -/
+decomposition `θ = n + z`, `n ∈ N`, `z ∈ Nᗮ`.
+@isnad1 id=ex.3h5v.s7.4bf038591572 from=translated src=- shape=9287ebc3 vocab=88a67278
+-/
 lemma exists_global_min_potential (hYint : Integrable Y P) (hNA : NoArbitrage P Y)
     (hNbot : (gainsKernel P Y)ᗮ ≠ ⊥) :
     ∃ θ₀, ∀ θ, potential P Y θ₀ ≤ potential P Y θ := by
@@ -441,7 +490,9 @@ lemma exists_global_min_potential (hYint : Integrable Y P) (hNA : NoArbitrage P 
 
 /-- **First-order condition**. At a global minimiser `θ₀` of the potential, every
 directional derivative vanishes (`IsLocalMin.hasDerivAt_eq_zero`), so the gradient
-`∫ σ⟪θ₀,Y⟫ • Y` is the zero vector — the candidate density `z = σ⟪θ₀,Y⟫` makes `Y` fair. -/
+`∫ σ⟪θ₀,Y⟫ • Y` is the zero vector — the candidate density `z = σ⟪θ₀,Y⟫` makes `Y` fair.
+@isnad1 id=eq.3h6v.s8.7163962fb1e8 from=translated src=- shape=4f934346 vocab=438ce7a3
+-/
 lemma integral_logistic_smul_eq_zero (hY : Measurable Y) (hYint : Integrable Y P)
     {θ₀ : F} (hmin : ∀ θ, potential P Y θ₀ ≤ potential P Y θ) :
     ∫ ω, logistic (inner ℝ θ₀ (Y ω)) • Y ω ∂P = 0 := by
@@ -471,7 +522,9 @@ lemma integral_logistic_smul_eq_zero (hY : Measurable Y) (hYint : Integrable Y P
 arbitrage gives an equivalent martingale measure. If `Y =ᵐ 0` (every direction redundant)
 then `Q = P`; otherwise the logistic density `z = σ⟪θ₀,Y⟫` at the potential's global
 minimiser is strictly positive, bounded, and fair, so `Q = P.withDensity (z / ∫z)` is the
-EMM. -/
+EMM.
+@isnad1 id=ex.3h5v.s6.84e4d768de92 from=translated src=- shape=d1d875e6 vocab=b53a7f01
+-/
 theorem exists_isEMM_of_noArbitrage_integrable (hY : Measurable Y) (hYint : Integrable Y P)
     (hNA : NoArbitrage P Y) :
     ∃ Q, IsEMM P Y Q := by
@@ -551,7 +604,9 @@ theorem exists_isEMM_of_noArbitrage_integrable (hY : Measurable Y) (hYint : Inte
 measurable `Y`, no arbitrage gives an EMM. Pass to the equivalent probability measure
 `P̃ = P.withDensity (w/κ)`, `w = (1+‖Y‖)⁻¹`, under which `Y` is integrable; no arbitrage is
 an a.e. notion preserved by `P̃ ~ P`, so the integrable backward direction applies, and
-`Q ~ P̃ ~ P` by transitivity. -/
+`Q ~ P̃ ~ P` by transitivity.
+@isnad1 id=ex.2h5v.s6.8477c604e581 from=translated src=- shape=249ad490 vocab=c0eeab35
+-/
 theorem exists_isEMM_of_noArbitrage (hY : Measurable Y) (hNA : NoArbitrage P Y) :
     ∃ Q, IsEMM P Y Q := by
   set w : Ω → ℝ := fun ω ↦ (1 + ‖Y ω‖)⁻¹ with hwdef
@@ -610,7 +665,9 @@ d)` is the `d`-asset case), no arbitrage holds iff there is an equivalent martin
 measure `Q ~ P` with `Y` integrable and `E_Q[Y] = 0`. The backward direction is
 explicit: minimise the softplus potential over the gains kernel's orthogonal complement
 (its logistic weight is the density), needing no Hahn–Banach, no L⁰-cone closedness,
-no measurable selection, and **no non-redundancy hypothesis**. -/
+no measurable selection, and **no non-redundancy hypothesis**.
+@isnad1 id=iff.1h5v.s6.fc8aa8ded7e9 from=translated src=- shape=ad364b39 vocab=c0eeab35
+-/
 theorem ftap_one_period_vector (hY : Measurable Y) :
     NoArbitrage P Y ↔ ∃ Q, IsEMM P Y Q :=
   ⟨fun hNA ↦ exists_isEMM_of_noArbitrage P Y hY hNA,

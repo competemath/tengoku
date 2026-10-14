@@ -57,7 +57,9 @@ noncomputable def kmvDistanceToDefault (V_0 F r σ_V T : ℝ) : ℝ :=
 
 /-- **The KMV distance-to-default equals the BS `d_2`** at the standard
 parameters. This is *not* a new formula — it is the BS `d_2`, in different
-variable names. -/
+variable names.
+@isnad1 id=eq.2h5v.s5.5dfe4a8bd8b3 from=translated src=- shape=04dc410e vocab=8168bcc5
+-/
 theorem kmvDistanceToDefault_eq_bsd2 (V_0 F r σ_V T : ℝ) (hV : 0 < V_0) (hF : 0 < F) :
     kmvDistanceToDefault V_0 F r σ_V T = bsd2 V_0 F r σ_V T := by
   unfold kmvDistanceToDefault
@@ -68,15 +70,21 @@ that prices the cash-or-nothing put on the firm value. -/
 noncomputable def kmvPD (V_0 F r σ_V T : ℝ) : ℝ :=
   Phi (-(kmvDistanceToDefault V_0 F r σ_V T))
 
-/-- **PD ≥ 0** (Φ takes non-negative values). -/
+/-- **PD ≥ 0** (Φ takes non-negative values).
+@isnad1 id=le.0h5v.s4.99b10c7ab9cc from=translated src=- shape=d72d0e19 vocab=14b286d3
+-/
 lemma kmvPD_nonneg (V_0 F r σ_V T : ℝ) : 0 ≤ kmvPD V_0 F r σ_V T :=
   Phi_nonneg _
 
-/-- **PD ≤ 1** (`Φ` takes values in `[0,1]`; `Phi_le_one` from `StandardNormal`). -/
+/-- **PD ≤ 1** (`Φ` takes values in `[0,1]`; `Phi_le_one` from `StandardNormal`).
+@isnad1 id=le.0h5v.s4.c339ed726651 from=translated src=- shape=45c1f0f6 vocab=14b286d3
+-/
 lemma kmvPD_le_one (V_0 F r σ_V T : ℝ) : kmvPD V_0 F r σ_V T ≤ 1 :=
   Phi_le_one _
 
-/-- **Survival = 1 − PD = Φ(d_2)**: the risk-neutral probability of no default. -/
+/-- **Survival = 1 − PD = Φ(d_2)**: the risk-neutral probability of no default.
+@isnad1 id=eq.0h5v.s5.2d03e6b25b50 from=translated src=- shape=329bc0fb vocab=3e0c15ce
+-/
 theorem kmv_survival_eq_Phi_d2 (V_0 F r σ_V T : ℝ) :
     1 - kmvPD V_0 F r σ_V T = Phi (kmvDistanceToDefault V_0 F r σ_V T) := by
   unfold kmvPD

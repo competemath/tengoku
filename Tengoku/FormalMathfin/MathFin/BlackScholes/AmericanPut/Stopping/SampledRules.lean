@@ -58,6 +58,9 @@ def DiscreteRule.toSampledRule {𝓕 : Filtration ℝ≥0 ‹MeasurableSpace Ω�
     · exact @MeasurableSet.empty Ω (𝓕 t)
   le_horizon := fun ω => hs (η.le_horizon ω)
 
+/--
+@isnad1 id=eventual.1h7v.s6.9f1d4c1b1a56 from=translated src=- shape=84ce81ab vocab=adf317cc
+-/
 theorem bellmanAux_const_mul {P : Measure Ω} {𝓕 : Filtration ℕ ‹MeasurableSpace Ω›}
     (Z : ℕ → Ω → ℝ) {a : ℝ} (ha : 0 ≤ a) (n i : ℕ) :
     bellmanAux P 𝓕 (fun j ω => a*Z j ω) n i =ᵐ[P]

@@ -113,7 +113,9 @@ zero (and dividing by `e^{−rt} > 0`) gives `drift(V) = r V` — equivalently,
 
   `∂_t V + r S · ∂_S V + (1/2) · σ² S² · ∂_SS V − r V = 0`,
 
-which is the Black-Scholes PDE. -/
+which is the Black-Scholes PDE.
+@isnad1 id=iff.0h7v.s7.80f9098c0f61 from=translated src=- shape=92e4832e vocab=1ea75d57
+-/
 theorem bs_pde_from_no_arbitrage (r σ S V V_S V_SS V_t : ℝ) :
     bsItoDrift r σ S V_S V_SS V_t - r * V = 0 ↔
       V_t + r * S * V_S + (1 / 2) * σ ^ 2 * S ^ 2 * V_SS - r * V = 0 := by
@@ -125,7 +127,9 @@ theorem bs_pde_from_no_arbitrage (r σ S V V_S V_SS V_t : ℝ) :
 /-- **Itô-drift identification of the BS PDE LHS**: the LHS of the
 Black-Scholes PDE `∂_t V + r S ∂_S V + (1/2) σ² S² ∂_SS V − r V` equals
 `drift(V) − rV` where `drift(V)` is the Itô drift of `V` under risk-
-neutral GBM. -/
+neutral GBM.
+@isnad1 id=eq.0h7v.s7.4d3998d732e3 from=translated src=- shape=20da0a23 vocab=1ea75d57
+-/
 theorem bs_pde_lhs_eq_drift_minus_rV (r σ S V V_S V_SS V_t : ℝ) :
     V_t + r * S * V_S + (1 / 2) * σ ^ 2 * S ^ 2 * V_SS - r * V =
       bsItoDrift r σ S V_S V_SS V_t - r * V := by
@@ -134,7 +138,9 @@ theorem bs_pde_lhs_eq_drift_minus_rV (r σ S V V_S V_SS V_t : ℝ) :
 
 /-- **One-dimensional Itô drift of `V = V(S)`** (no explicit time
 dependence — pure function of `S`). This is just Phase 39's `itoDrift`
-with `μ_X = r S, σ_X = σ S, f' = V_S, f'' = V_SS`. -/
+with `μ_X = r S, σ_X = σ S, f' = V_S, f'' = V_SS`.
+@isnad1 id=eq.0h5v.s5.8a1f86e996b5 from=translated src=- shape=87943930 vocab=a1592409
+-/
 lemma bsItoDrift_no_time_eq_itoDrift (r σ S V_S V_SS : ℝ) :
     bsItoDrift r σ S V_S V_SS 0 = itoDrift V_S V_SS (r * S) (σ * S) := by
   unfold bsItoDrift itoDrift
@@ -152,7 +158,9 @@ pricing-specific algebra — a structural consumer of the foundations
 /-- **The BS Itô drift is the 2D Itô drift under risk-neutral GBM.**
 `bsItoDrift r σ S V_S V_SS V_t = itoDrift2D V_t V_S V_SS (r·S) (σ·S)`. The
 time-derivative slot `V_t` of `itoDrift2D` carries the `∂_t V` term; the
-GBM local drift `r·S` and local volatility `σ·S` fill the generator. -/
+GBM local drift `r·S` and local volatility `σ·S` fill the generator.
+@isnad1 id=eq.0h6v.s5.6706128ccf0a from=translated src=- shape=82bbcf7d vocab=4da9c466
+-/
 lemma bsItoDrift_eq_itoDrift2D (r σ S V_S V_SS V_t : ℝ) :
     bsItoDrift r σ S V_S V_SS V_t = itoDrift2D V_t V_S V_SS (r * S) (σ * S) := by
   unfold bsItoDrift itoDrift2D
@@ -170,7 +178,9 @@ NOTE — what this does NOT prove: that the discounted price `e^{−rt} V_t` is 
 `Q`-martingale (hence driftless), which is what makes "drift `= 0`" the
 *no-arbitrage* condition. That continuous-time martingale step is deferred
 (see module header); here `… = 0` is only the **algebraic form** of the
-no-arbitrage PDE, established by `ring`, not derived from a martingale. -/
+no-arbitrage PDE, established by `ring`, not derived from a martingale.
+@isnad1 id=eq.0h7v.s7.095af15f5a0c from=translated src=- shape=072efb4a vocab=0e471267
+-/
 theorem bs_pde_eq_itoDrift2D_minus_rV (r σ S V V_S V_SS V_t : ℝ) :
     V_t + r * S * V_S + (1 / 2) * σ ^ 2 * S ^ 2 * V_SS - r * V =
       itoDrift2D V_t V_S V_SS (r * S) (σ * S) - r * V := by

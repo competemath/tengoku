@@ -24,6 +24,9 @@ namespace MathFin.BlackScholes.AmericanPut.Boundary
 
 open Set
 
+/--
+@isnad1 id=monotone.3h1v.s7.8ff2c3901aad from=translated src=- shape=0dbc57fb vocab=40cb3416
+-/
 theorem boundaryRatio_monotone_of_line_intervals {b : ℝ → ℝ}
     (hneg : ∀ t, 0 < t → b t < 0)
     (hnear : ∀ c T : ℝ, 0 < c → 0 < T → ∃ v, 0 < v ∧ v < T ∧ b v < -c*v)
@@ -50,6 +53,9 @@ theorem boundaryRatio_monotone_of_line_intervals {b : ℝ → ℝ}
   have hmid' : b s < d-c*s := hmid.2
   linarith
 
+/--
+@isnad1 id=convexon.3h1v.s7.e12d45adeba6 from=translated src=- shape=e32e4a32 vocab=5f3c2cd2
+-/
 theorem convexOn_of_ratio_monotone_and_line_intervals {b : ℝ → ℝ}
     (hanti : AntitoneOn b (Ioi 0))
     (hratio : MonotoneOn (fun t => b t/t) (Ioi 0))
@@ -100,6 +106,9 @@ theorem convexOn_of_ratio_monotone_and_line_intervals {b : ℝ → ℝ}
   rw [hxfit,hzfit]
   nlinarith
 
+/--
+@isnad1 id=convexon.4h1v.s7.747f09eca7af from=translated src=- shape=48be6faa vocab=19985510
+-/
 theorem convexOn_of_negative_line_intervals {b : ℝ → ℝ}
     (hneg : ∀ t, 0 < t → b t < 0) (hanti : AntitoneOn b (Ioi 0))
     (hnear : ∀ c T : ℝ, 0 < c → 0 < T → ∃ v, 0 < v ∧ v < T ∧ b v < -c*v)

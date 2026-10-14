@@ -29,11 +29,17 @@ noncomputable def rectangleMargin (X : ℝ≥0 → Ω → ℝ) (x R : ℝ) (δ t
   max 0 (min (R-|X t ω-x|) ((δ : ℝ)-(t : ℝ)))
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=continuo.1h6v.s5.fe30d6452df4 from=translated src=- shape=e29d3a6b vocab=7d0e1765
+-/
 theorem rectangleMargin_continuous (hc : ∀ ω, Continuous (fun t => X t ω))
     (x R : ℝ) (δ : ℝ≥0) (ω : Ω) : Continuous (fun t => rectangleMargin X x R δ t ω) := by
   unfold rectangleMargin
   fun_prop
 
+/--
+@isnad1 id=adapted.1h6v.s5.13701b819fc1 from=translated src=- shape=f73d6e50 vocab=87572048
+-/
 theorem rectangleMargin_adapted (ha : Adapted 𝓕 X) (x R : ℝ) (δ : ℝ≥0) :
     Adapted 𝓕 (rectangleMargin X x R δ) := by
   intro t
@@ -42,10 +48,16 @@ theorem rectangleMargin_adapted (ha : Adapted 𝓕 X) (x R : ℝ) (δ : ℝ≥0)
   exact measurable_const.max ((measurable_const.sub (ht.sub measurable_const).abs).min measurable_const)
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.0h7v.s5.25048ab6bfd7 from=translated src=- shape=8ea4f309 vocab=0b4d0841
+-/
 theorem rectangleMargin_nonneg (x R : ℝ) (δ t : ℝ≥0) (ω : Ω) : 0 ≤ rectangleMargin X x R δ t ω :=
   le_max_left _ _
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.0h6v.s5.696e2f729f55 from=translated src=- shape=cbc92a09 vocab=4419dbc5
+-/
 theorem rectangleMargin_terminal (x R : ℝ) (δ : ℝ≥0) (ω : Ω) : rectangleMargin X x R δ δ ω = 0 := by
   unfold rectangleMargin
   rw [sub_self]
@@ -57,6 +69,9 @@ noncomputable def rectangleExitRule (ha : Adapted 𝓕 X) (hc : ∀ ω, Continuo
   firstContactRule (rectangleMargin_adapted ha x R δ) (rectangleMargin_continuous hc x R δ)
     (rectangleMargin_nonneg x R δ) δ (rectangleMargin_terminal x R δ)
 
+/--
+@isnad1 id=and.3h8v.s6.5f404d16cd0c from=translated src=- shape=16730cd3 vocab=45f9a48c
+-/
 theorem rectangleExitRule_before (ha : Adapted 𝓕 X) (hc : ∀ ω, Continuous (fun t => X t ω))
     {x R : ℝ} {δ t : ℝ≥0} (ω : Ω) (ht : t < (rectangleExitRule ha hc x R δ).time ω) :
     |X t ω-x| < R ∧ t < δ := by
@@ -66,6 +81,9 @@ theorem rectangleExitRule_before (ha : Adapted 𝓕 X) (hc : ∀ ω, Continuous 
   simp only [lt_max_iff,lt_self_iff_false,false_or,lt_min_iff,sub_pos] at hh
   exact ⟨hh.1,by exact_mod_cast hh.2⟩
 
+/--
+@isnad1 id=lt.4h7v.s7.f7e029d82ac4 from=translated src=- shape=b4cc7855 vocab=45f9a48c
+-/
 theorem rectangleExitRule_pos (ha : Adapted 𝓕 X) (hc : ∀ ω, Continuous (fun t => X t ω))
     {x R : ℝ} {δ : ℝ≥0} (hδ : 0 < δ) (ω : Ω) (hstart : |X 0 ω-x| < R) :
     0 < (rectangleExitRule ha hc x R δ).time ω := by
@@ -80,6 +98,9 @@ theorem rectangleExitRule_pos (ha : Adapted 𝓕 X) (hc : ∀ ω, Continuous (fu
     exact lt_min (sub_pos.mpr hstart) (by simpa using (show (0 : ℝ) < δ by exact_mod_cast hδ))
   exact (ne_of_gt hp) hz
 
+/--
+@isnad1 id=le.3h7v.s6.4ef5e47b2776 from=translated src=- shape=a038329d vocab=2595b2ad
+-/
 theorem rectangleExitRule_spatial_bound (ha : Adapted 𝓕 X) (hc : ∀ ω, Continuous (fun t => X t ω))
     {x R : ℝ} {δ : ℝ≥0} (ω : Ω) (hτ : 0 < (rectangleExitRule ha hc x R δ).time ω) :
     |X ((rectangleExitRule ha hc x R δ).time ω) ω-x| ≤ R := by
@@ -93,6 +114,9 @@ theorem rectangleExitRule_spatial_bound (ha : Adapted 𝓕 X) (hc : ∀ ω, Cont
     exact (show τ ≤ τ from le_rfl)
   exact hclosed.closure_subset_iff.mpr hsub hm
 
+/--
+@isnad1 id=other.3h7v.s7.a628d87d2c90 from=translated src=- shape=e5afd26d vocab=45f9a48c
+-/
 theorem rectangleExitRule_boundary (ha : Adapted 𝓕 X) (hc : ∀ ω, Continuous (fun t => X t ω))
     {x R : ℝ} {δ : ℝ≥0} (ω : Ω) (hτ : 0 < (rectangleExitRule ha hc x R δ).time ω) :
     let τ := (rectangleExitRule ha hc x R δ).time ω

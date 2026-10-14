@@ -63,7 +63,9 @@ private lemma brownian_start_zero' (hB : IsPreBrownianReal B μ) : B 0 =ᵐ[μ] 
 and averaging dates `τ : Fin n → ℝ≥0` all `≤ T`, the average of the Brownian values
 `(1/n) ∑ᵢ B_{τᵢ}` — the Gaussian part of the log geometric average — has the centred
 Gaussian law `N(0, (1/n²) ∑ᵢ∑ⱼ min(τᵢ,τⱼ))`, the variance coming from the Brownian
-covariance `∫ B_u·B_v = min(u,v)`. The `n = 2` case recovers `asianGeom_driver_hasLaw`. -/
+covariance `∫ B_u·B_v = min(u,v)`. The `n = 2` case recovers `asianGeom_driver_hasLaw`.
+@isnad1 id=haslaw.3h7v.s7.0a86e962f8bc from=translated src=- shape=008b12de vocab=d52568c8
+-/
 theorem geomAsianN_driver_hasLaw (hB : IsPreBrownianReal B μ) (T : ℝ≥0)
     {n : ℕ} (hn : 0 < n) (τ : Fin n → ℝ≥0) (hτT : ∀ i, τ i ≤ T) :
     HasLaw (fun ω ↦ (∑ i, B (τ i) ω) / n)
@@ -187,7 +189,9 @@ private lemma bsTerminal_geomAsian_eq {S₀ r σ Tmat V tbar d : ℝ}
 non-degenerate log-driver variance `Vₙ > 0`, the discounted expected geometric-Asian call
 payoff `e^{−rT}·𝔼[max((∏ᵢ S_{τᵢ})^{1/n} − K, 0)]` equals the Black–Scholes call price with
 effective spot `Ŝ₀` and volatility `σ_G` — the same "reduce to one effective BS driver"
-move as Margrabe, here with the geometric-average forward carrying the `σ²Vₙ/2` convexity. -/
+move as Margrabe, here with the geometric-average forward carrying the `σ²Vₙ/2` convexity.
+@isnad1 id=eq.8h12v.s8.b14e6d1dc3cc from=translated src=- shape=8292191d vocab=d429bf74
+-/
 theorem geomAsianN_call_price (hB : IsPreBrownianReal B μ) (T : ℝ≥0)
     {n : ℕ} (hn : 0 < n) (τ : Fin n → ℝ≥0) (hτT : ∀ i, τ i ≤ T)
     (S₀ K r σ Tmat : ℝ) (hS₀ : 0 < S₀) (hK : 0 < K) (hσ : 0 < σ) (hTmat : 0 < Tmat)

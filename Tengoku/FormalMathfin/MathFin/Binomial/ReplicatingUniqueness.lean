@@ -65,7 +65,9 @@ has a unique solution `(Δ, B)`, given explicitly by
 The proof: the system is a 2×2 linear system in `(Δ, B)` with coefficient
 matrix `[[S₀·u, e^r], [S₀·d, e^r]]`. Its determinant is
 `S₀ · u · e^r − S₀ · d · e^r = S₀ · (u − d) · e^r`, which is strictly positive
-(and so non-zero) since `S₀ > 0`, `u > d` (no-arb), and `e^r > 0`. -/
+(and so non-zero) since `S₀ > 0`, `u > d` (no-arb), and `e^r > 0`.
+@isnad1 id=existsun.2h6v.s6.1ea71dfd5317 from=translated src=- shape=c8897851 vocab=7c2d2cd1
+-/
 theorem binomial_replicatingPortfolio_unique
     {S₀ u d r V_u V_d : ℝ} (hS₀ : 0 < S₀) (h : BinomialNoArb u d r) :
     ∃! p : ℝ × ℝ,

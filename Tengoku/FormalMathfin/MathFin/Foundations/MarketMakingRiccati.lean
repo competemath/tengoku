@@ -55,7 +55,9 @@ open Real
 /-! ## §1  Abstract scalar Riccati coefficient -/
 
 /-- **Derivative of `tanh`** — `tanh'(x) = 1 − tanh² x` — derived from `tanh = sinh / cosh` and the
-    quotient rule (Mathlib carries no `HasDerivAt` lemma for `tanh` at this pin). -/
+    quotient rule (Mathlib carries no `HasDerivAt` lemma for `tanh` at this pin).
+@isnad1 id=hasderiv.0h1v.s6.68e2eb3324c6 from=translated src=- shape=52cd03bd vocab=dcf05c76
+-/
 theorem hasDerivAt_tanh (x : ℝ) : HasDerivAt Real.tanh (1 - Real.tanh x ^ 2) x := by
   have hc : Real.cosh x ≠ 0 := (Real.cosh_pos x).ne'
   have hsinh : HasDerivAt Real.sinh (Real.cosh x) x := by simpa using (hasDerivAt_id x).sinh
@@ -74,12 +76,16 @@ theorem hasDerivAt_tanh (x : ℝ) : HasDerivAt Real.tanh (1 - Real.tanh x ^ 2) x
     `A(t) = riccatiCoeff Â T t / (2 · (α₂ᵇ + α₂ᵃ) · z)`. -/
 noncomputable def riccatiCoeff (Â T t : ℝ) : ℝ := Â * Real.tanh (Â * (T - t))
 
-/-- **Terminal condition**: `a(T) = 0`. -/
+/-- **Terminal condition**: `a(T) = 0`.
+@isnad1 id=eq.0h2v.s4.d752f67aabf5 from=translated src=- shape=c2a510d9 vocab=9838cac3
+-/
 theorem riccatiCoeff_terminal (Â T : ℝ) : riccatiCoeff Â T T = 0 := by
   unfold riccatiCoeff
   rw [sub_self, mul_zero, Real.tanh_zero, mul_zero]
 
-/-- **Riccati ODE**: `a'(t) = a(t)² − Â²`. -/
+/-- **Riccati ODE**: `a'(t) = a(t)² − Â²`.
+@isnad1 id=hasderiv.0h3v.s6.7559b57947d6 from=translated src=- shape=4a499605 vocab=d4701bde
+-/
 theorem hasDerivAt_riccatiCoeff (Â T t : ℝ) :
     HasDerivAt (riccatiCoeff Â T) (riccatiCoeff Â T t ^ 2 - Â ^ 2) t := by
   unfold riccatiCoeff
@@ -100,7 +106,9 @@ theorem hasDerivAt_riccatiCoeff (Â T t : ℝ) :
     of the approximate Hamilton–Jacobi equation (the paper's Eq. 9, `Q = ∞`) whenever `(A, B, C)`
     solve the scalar reduction of the ODE system (Eq. 11) — `A` the Riccati coefficient
     (`Â = σ · √(γ · (α₂ᵇ + α₂ᵃ) · z)`). The `B`/`C` ODE right-hand sides are pinned by the `ring`
-    closure below (self-certifying). -/
+    closure below (self-certifying).
+@isnad1 id=hasderiv.4h14v.s10.87db30c71b33 from=translated src=- shape=4c12ba4e vocab=1fe2f9ef
+-/
 theorem valueFunction_satisfies_approxHJ
     (γ σ z α₀b α₁b α₂b α₀a α₁a α₂a : ℝ) (hz : 0 < z)
     (A B C : ℝ → ℝ) (t q : ℝ)
@@ -151,12 +159,16 @@ noncomputable def mmQuoteAsk (A B : ℝ → ℝ) (z c t q : ℝ) : ℝ :=
   expIntensityQuote c (-2 * A t * q + A t * z - B t)
 
 /-- **Constant half-spread**: `(δ̌ᵃ + δ̌ᵇ) / 2 = A(t) · z + c`, independent of inventory `q`. Holds for
-    both models via the constant `c` (`quoteConstA` for Model A, `quoteConstB` for Model B). -/
+    both models via the constant `c` (`quoteConstA` for Model A, `quoteConstB` for Model B).
+@isnad1 id=eq.0h6v.s6.64c15c47c1f9 from=translated src=- shape=ae3f3f78 vocab=878ad94b
+-/
 theorem mmHalfSpread_const (A B : ℝ → ℝ) (z c t q : ℝ) :
     (mmQuoteAsk A B z c t q + mmQuoteBid A B z c t q) / 2 = A t * z + c := by
   unfold mmQuoteAsk mmQuoteBid expIntensityQuote; ring
 
-/-- **Inventory-linear skew**: `(δ̌ᵃ − δ̌ᵇ) / 2 = −2 · A(t) · q − B(t)` (the constant `c` cancels). -/
+/-- **Inventory-linear skew**: `(δ̌ᵃ − δ̌ᵇ) / 2 = −2 · A(t) · q − B(t)` (the constant `c` cancels).
+@isnad1 id=eq.0h6v.s6.8ac8a65fb353 from=translated src=- shape=c99e7a9e vocab=2fef699a
+-/
 theorem mmSkew_linear (A B : ℝ → ℝ) (z c t q : ℝ) :
     (mmQuoteAsk A B z c t q - mmQuoteBid A B z c t q) / 2 = -2 * A t * q - B t := by
   unfold mmQuoteAsk mmQuoteBid expIntensityQuote; ring

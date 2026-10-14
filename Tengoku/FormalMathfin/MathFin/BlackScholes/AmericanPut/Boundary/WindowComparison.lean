@@ -27,6 +27,9 @@ namespace MathFin.BlackScholes.AmericanPut.Boundary
 open Set Filter
 open scoped Topology ContDiff
 
+/--
+@isnad1 id=le.9h10v.s8.b8ea52f04716 from=translated src=- shape=8cac635a vocab=92948556
+-/
 theorem DividendPutSolution.obstacle_comparison_window
     {k h a T L R : ℝ} {p U : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
     (hp : DividendPutSolution k h p b) (ha : 0 ≤ a)
@@ -89,6 +92,9 @@ theorem DividendPutSolution.obstacle_comparison_window
       exact hmax (show (w.1,s) ∈ Icc L R ×ˢ Icc a T from ⟨hw.1,hs⟩)
     exact hp.no_positive_max_off_boundary ht0 he hj hspace htm (sub_pos.mp hwpos) hi
 
+/--
+@isnad1 id=le.4h6v.s8.8d56d6829ffa from=translated src=- shape=32dedaba vocab=78611471
+-/
 theorem localization_penalty_subsolution {k h ε x t : ℝ} {U : ℝ → ℝ → ℝ}
     (hk : 0 ≤ k) (hε : 0 ≤ ε)
     (hU : ContDiffAt ℝ 2 (fun z : ℝ × ℝ => U z.1 z.2) (x,t))
@@ -110,7 +116,9 @@ theorem localization_penalty_subsolution {k h ε x t : ℝ} {U : ℝ → ℝ →
 
 /-- A bounded-above pricing subsolution starting below the price stays below
 it on the whole spatial line, from any nonnegative initial time. Local
-smoothness is needed only where the test exceeds the price. -/
+smoothness is needed only where the test exceeds the price.
+@isnad1 id=le.8h10v.s8.43c5bb4d31c3 from=translated src=- shape=877f9835 vocab=2cac5f96
+-/
 theorem DividendPutSolution.obstacle_comparison_unbounded_window
     {k h a T C : ℝ} {p U : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
     (hp : DividendPutSolution k h p b) (ha : 0 ≤ a)

@@ -31,7 +31,9 @@ open scoped Topology
 equals the Black–Scholes put price `K e^{−rT} Φ(−d₂) − S₀ Φ(−d₁)`. Proved by
 instantiating `bs_put_formula` on that gaussian with the standardisation
 `Z = (· − (r−σ²/2)T)/(σ√T)` (which has `N(0,1)` law), under which the BS
-terminal `bsTerminal S₀ r σ T (Z x)` collapses to `S₀·eˣ`. -/
+terminal `bsTerminal S₀ r σ T (Z x)` collapses to `S₀·eˣ`.
+@isnad1 id=eq.4h5v.s8.6c0cf0269ced from=translated src=- shape=026ebae1 vocab=165791b3
+-/
 lemma exp_neg_mul_integral_put_gaussian_eq {r σ T S₀ K : ℝ}
     (hσ : 0 < σ) (hT : 0 < T) (hS₀ : 0 < S₀) (hK : 0 < K) :
     Real.exp (-(r * T)) * ∫ x, max (K - S₀ * Real.exp x) 0
@@ -85,7 +87,9 @@ Black–Scholes call price `S₀·Φ(d₁) − K·e^{−rT}·Φ(d₂)`.
 
 This is `binomialPrice_call_tendsto_bs` with its put-call-parity integral limit
 chained, via `exp_neg_mul_integral_put_gaussian_eq` + `Phi_neg`, onto the closed
-`Φ`-form. -/
+`Φ`-form.
+@isnad1 id=tendsto.5h5v.s7.33f2f47d5858 from=translated src=- shape=9a16295e vocab=de9cbdab
+-/
 theorem binomialPrice_call_tendsto_bs_closed {r σ T S₀ K : ℝ}
     (hσ : 0 < σ) (hT : 0 < T) (hS₀ : 0 < S₀) (hK : 0 < K)
     (hna : ∀ n, 0 < n → BinomialNoArb (crrUp σ T n) (crrDown σ T n) (crrPerStepRate r T n)) :

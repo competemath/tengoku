@@ -33,7 +33,9 @@ open MeasureTheory ProbabilityTheory Real
 noncomputable def bsVDiv (K r q σ : ℝ) (S τ : ℝ) : ℝ :=
   Real.exp (-(q * τ)) * bsV K (r - q) σ S τ
 
-/-- **BS-Merton delta**: `∂_S V_q = e^{-qT} · Φ(d₁')` where `d₁' = bsd1 S K (r-q) σ T`. -/
+/-- **BS-Merton delta**: `∂_S V_q = e^{-qT} · Φ(d₁')` where `d₁' = bsd1 S K (r-q) σ T`.
+@isnad1 id=hasderiv.4h6v.s7.92eaf46a3368 from=translated src=- shape=42566e57 vocab=a53ab7f0
+-/
 lemma hasDerivAt_bsVDiv_S {K r q σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
     {S τ : ℝ} (hS : 0 < S) (hτ : 0 < τ) :
     HasDerivAt (fun s ↦ bsVDiv K r q σ s τ)
@@ -41,7 +43,9 @@ lemma hasDerivAt_bsVDiv_S {K r q σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
   have h_bs := hasDerivAt_bsV_S (r := r - q) hK hσ hS hτ
   exact h_bs.const_mul (Real.exp (-(q * τ)))
 
-/-- **BS-Merton gamma**: `∂²_S V_q = e^{-qT} · ϕ(d₁') / (S σ √τ)`. -/
+/-- **BS-Merton gamma**: `∂²_S V_q = e^{-qT} · ϕ(d₁') / (S σ √τ)`.
+@isnad1 id=hasderiv.4h6v.s7.7ee751780094 from=translated src=- shape=3f266371 vocab=9c6100cd
+-/
 lemma hasDerivAt_bsVDiv_SS {K r q σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
     {S τ : ℝ} (hS : 0 < S) (hτ : 0 < τ) :
     HasDerivAt (fun s ↦ Real.exp (-(q * τ)) * Phi (bsd1 s K (r - q) σ τ))
@@ -52,7 +56,9 @@ lemma hasDerivAt_bsVDiv_SS {K r q σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
   convert h using 1 <;> try rfl
   ring
 
-/-- **BS-Merton vega**: `∂_σ V_q = e^{-qT} · S · ϕ(d₁') · √τ`. -/
+/-- **BS-Merton vega**: `∂_σ V_q = e^{-qT} · S · ϕ(d₁') · √τ`.
+@isnad1 id=hasderiv.4h6v.s7.e054ad2d6476 from=translated src=- shape=dc54d516 vocab=0a833cb7
+-/
 lemma hasDerivAt_bsVDiv_sigma {K r q : ℝ} (hK : 0 < K)
     {S σ τ : ℝ} (hS : 0 < S) (hσ : 0 < σ) (hτ : 0 < τ) :
     HasDerivAt (fun s ↦ bsVDiv K r q s S τ)
@@ -67,7 +73,9 @@ lemma hasDerivAt_bsVDiv_sigma {K r q : ℝ} (hK : 0 < K)
 
 `V_q = e^{-qT} · bsV(K, r-q, σ, S, T)`. Chain rule on `r-q` gives
 `∂_r V_q = e^{-qT} · bsV_rho(K, r-q, σ, S, T) = e^{-qT} · K·τ·e^{-(r-q)τ}·Φ(d₂')`,
-and `e^{-qT} · e^{-(r-q)τ} = e^{-rτ}`. -/
+and `e^{-qT} · e^{-(r-q)τ} = e^{-rτ}`.
+@isnad1 id=hasderiv.4h6v.s7.694d7e16543b from=translated src=- shape=67d0ded1 vocab=f493da8b
+-/
 lemma hasDerivAt_bsVDiv_r {K q σ τ : ℝ} (hK : 0 < K) (hσ : 0 < σ) (hτ : 0 < τ)
     {S : ℝ} (hS : 0 < S) (r : ℝ) :
     HasDerivAt (fun r' ↦ bsVDiv K r' q σ S τ)
@@ -95,7 +103,9 @@ lemma hasDerivAt_bsVDiv_r {K q σ τ : ℝ} (hK : 0 < K) (hσ : 0 < σ) (hτ : 0
 * `∂_q [bsV(K, r-q, σ, S, τ)] = -bsV_rho(K, r-q, σ, S, τ) = -K·τ·e^{-(r-q)τ}·Φ(d₂')`
 
 Combining and using `S · e^{-qτ} · Φ(d₁') − K · e^{-rτ} · Φ(d₂') = V_q`,
-the result collapses to `-S · τ · e^{-qτ} · Φ(d₁')`. -/
+the result collapses to `-S · τ · e^{-qτ} · Φ(d₁')`.
+@isnad1 id=hasderiv.4h6v.s7.982a871a7343 from=translated src=- shape=31c2b64c vocab=a53ab7f0
+-/
 lemma hasDerivAt_bsVDiv_q {K r σ τ : ℝ} (hK : 0 < K) (hσ : 0 < σ) (hτ : 0 < τ)
     {S : ℝ} (hS : 0 < S) (q : ℝ) :
     HasDerivAt (fun q' ↦ bsVDiv K r q' σ S τ)
@@ -128,7 +138,9 @@ lemma hasDerivAt_bsVDiv_q {K r σ τ : ℝ} (hK : 0 < K) (hσ : 0 < σ) (hτ : 0
 
 /-- **BS-Merton theta** (`∂_τ` form): `∂_τ V_q = -q · V_q + e^{-qτ} · (call_theta_at_drift_{r-q})`.
 
-Product rule on `V_q = e^{-qτ} · bsV(K, r-q, σ, S, τ)`. -/
+Product rule on `V_q = e^{-qτ} · bsV(K, r-q, σ, S, τ)`.
+@isnad1 id=hasderiv.4h6v.s8.08ab1db455aa from=translated src=- shape=ed8e4180 vocab=cd2ca86c
+-/
 lemma hasDerivAt_bsVDiv_tau {K r q σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
     {S τ : ℝ} (hS : 0 < S) (hτ : 0 < τ) :
     HasDerivAt (fun t ↦ bsVDiv K r q σ S t)

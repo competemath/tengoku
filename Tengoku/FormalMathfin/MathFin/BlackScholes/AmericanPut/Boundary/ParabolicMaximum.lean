@@ -28,7 +28,9 @@ open scoped Topology
 
 /-- A local spatial maximum has nonpositive second derivative. Continuity of
 the function suffices; if the second derivative were positive, the second
-derivative test and the maximum would make the function locally constant. -/
+derivative test and the maximum would make the function locally constant.
+@isnad1 id=le.2h2v.s6.50747d26bd20 from=translated src=- shape=e887a513 vocab=39e969d3
+-/
 theorem second_deriv_nonpos_at_local_max {f : ℝ → ℝ} {x : ℝ}
     (hm : IsLocalMax f x) (hc : ContinuousAt f x) : deriv (deriv f) x ≤ 0 := by
   by_contra hn
@@ -42,7 +44,9 @@ theorem second_deriv_nonpos_at_local_max {f : ℝ → ℝ} {x : ℝ}
   linarith
 
 /-- At a maximum over a left-hand time neighborhood, the ordinary time
-derivative is nonnegative. This includes a terminal-time maximum. -/
+derivative is nonnegative. This includes a terminal-time maximum.
+@isnad1 id=le.2h2v.s6.eb5231a96719 from=translated src=- shape=aed7ed5b vocab=609750e2
+-/
 theorem deriv_nonneg_at_left_max {f : ℝ → ℝ} {t : ℝ}
     (hd : DifferentiableAt ℝ f t)
     (hm : ∀ᶠ s in 𝓝[<] t, f s ≤ f t) : 0 ≤ deriv f t := by
@@ -57,7 +61,9 @@ def movingStrip (b : ℝ → ℝ) (R a T : ℝ) : Set (ℝ × ℝ) :=
   {z | a ≤ z.2 ∧ z.2 ≤ T ∧ b z.2 ≤ z.1 ∧ z.1 ≤ R}
 
 /-- Parameterizing each spatial section by the unit interval proves
-compactness without differentiating the moving boundary. -/
+compactness without differentiating the moving boundary.
+@isnad1 id=iscompac.2h4v.s6.99e32bb2cf6b from=translated src=- shape=4168b676 vocab=57b594b8
+-/
 theorem movingStrip_isCompact {b : ℝ → ℝ} {R a T : ℝ}
     (hb : ContinuousOn b (Icc a T)) (hR : ∀ t ∈ Icc a T, b t ≤ R) :
     IsCompact (movingStrip b R a T) := by
@@ -90,7 +96,9 @@ theorem movingStrip_isCompact {b : ℝ → ℝ} {R a T : ℝ}
 
 /-- A strictly subcaloric function cannot have a positive maximum away from
 the initial or lateral boundary. Compactness is supplied separately so this
-lemma can also be reused for other compact space-time geometries. -/
+lemma can also be reused for other compact space-time geometries.
+@isnad1 id=le.9h7v.s8.306768c08dbb from=translated src=- shape=726bd749 vocab=024a717b
+-/
 theorem strict_parabolic_maximum {u D : ℝ → ℝ → ℝ} {b : ℝ → ℝ} {R a T : ℝ}
     (hQ : IsCompact (movingStrip b R a T))
     (hb : ContinuousOn b (Icc a T))
@@ -146,7 +154,9 @@ theorem strict_parabolic_maximum {u D : ℝ → ℝ → ℝ} {b : ℝ → ℝ} {
 
 /-- Weak maximum principle for `u_t <= u_xx + D*u_x` on a continuous
 moving strip. No coefficient bound or boundary derivative is needed here:
-at an interior spatial maximum the drift term vanishes exactly. -/
+at an interior spatial maximum the drift term vanishes exactly.
+@isnad1 id=le.9h7v.s8.3b78fa3b2bfa from=translated src=- shape=4291a81f vocab=14e0a403
+-/
 theorem parabolic_maximum {u D : ℝ → ℝ → ℝ} {b : ℝ → ℝ} {R a T : ℝ}
     (hb : ContinuousOn b (Icc a T)) (hR : ∀ t ∈ Icc a T, b t ≤ R)
     (hu : ContinuousOn (fun z : ℝ × ℝ => u z.1 z.2) (movingStrip b R a T))

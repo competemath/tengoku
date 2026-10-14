@@ -58,7 +58,13 @@ def Iwin (T : ℝ) : Set ℝ := Icc T (2 * T)
 /-- I' := (T − D₀, 2T + D₀]  [eq:D0]. -/
 def Iprime (T : ℝ) : Set ℝ := Ioc (T - D0 T) (2 * T + D0 T)
 
+/--
+@isnad1 id=eq.0h0v.s5.f0d87a45deec from=translated src=- shape=d4f6e56f vocab=862c09c1
+-/
 lemma Hfun_one : Hfun 1 = 2 / 3 := by norm_num [Hfun]
+/--
+@isnad1 id=eq.0h0v.s5.823f5d3f0104 from=translated src=- shape=d4f6e56f vocab=f889547b
+-/
 lemma Ffun_one : Ffun 1 = 3 / 4 := by norm_num [Ffun]
 
 /-! ## 2. The densities μ, Π_X, P_X, ν_X  [eq:mudef]–[eq:nudef]

@@ -54,7 +54,9 @@ trades the jump-compensated spot for a rate shift. -/
 noncomputable def mertonRate (r k T : ℝ) (Λ : ℝ≥0) (n : ℕ) : ℝ :=
   r - k * (Λ : ℝ) / T + n * Real.log (1 + k) / T
 
-/-- `d₁` trades spot growth `e^{cτ}` for a rate shift `r ↦ r + c`. -/
+/-- `d₁` trades spot growth `e^{cτ}` for a rate shift `r ↦ r + c`.
+@isnad1 id=eq.2h6v.s6.8797d3a72662 from=translated src=- shape=85dca02e vocab=59e92ffb
+-/
 lemma bsd1_spot_exp_shift {S K : ℝ} (hS : 0 < S) (hK : 0 < K)
     (r c σ τ : ℝ) :
     bsd1 (S * rexp (c * τ)) K r σ τ = bsd1 S K (r + c) σ τ := by
@@ -63,7 +65,9 @@ lemma bsd1_spot_exp_shift {S K : ℝ} (hS : 0 < S) (hK : 0 < K)
     Real.log_mul (by positivity) (Real.exp_pos _).ne', Real.log_exp]
   ring
 
-/-- `d₂` inherits the same trade. -/
+/-- `d₂` inherits the same trade.
+@isnad1 id=eq.2h6v.s6.fad64a2fba50 from=translated src=- shape=85dca02e vocab=60ea2110
+-/
 lemma bsd2_spot_exp_shift {S K : ℝ} (hS : 0 < S) (hK : 0 < K)
     (r c σ τ : ℝ) :
     bsd2 (S * rexp (c * τ)) K r σ τ = bsd2 S K (r + c) σ τ := by
@@ -72,7 +76,9 @@ lemma bsd2_spot_exp_shift {S K : ℝ} (hS : 0 < S) (hK : 0 < K)
 
 /-- **Rate-shift identity**: spot growth `e^{cτ}` trades for a discount-rate
 shift, `bsV K r σ (S e^{cτ}) τ = e^{cτ} · bsV K (r+c) σ S τ`. The algebraic
-engine of the classic Merton display. -/
+engine of the classic Merton display.
+@isnad1 id=eq.2h6v.s6.4ed942110938 from=translated src=- shape=1daa720e vocab=26ac84e5
+-/
 theorem bsV_spot_exp_rate_shift {S K : ℝ} (hS : 0 < S) (hK : 0 < K)
     (r c σ τ : ℝ) :
     bsV K r σ (S * rexp (c * τ)) τ = rexp (c * τ) * bsV K (r + c) σ S τ := by
@@ -82,7 +88,9 @@ theorem bsV_spot_exp_rate_shift {S K : ℝ} (hS : 0 < S) (hK : 0 < K)
   ring
 
 /-- The compensated spot as exponential growth at the shifted rate:
-`mertonSpot S₀ k Λ n = S₀ · e^{(r_n − r)T}`. -/
+`mertonSpot S₀ k Λ n = S₀ · e^{(r_n − r)T}`.
+@isnad1 id=eq.2h6v.s6.2a76418189d6 from=translated src=- shape=22f1ff87 vocab=4fd828dc
+-/
 lemma mertonSpot_eq_spot_exp {k T : ℝ} (S_0 : ℝ) (hT : 0 < T) (hk : -1 < k)
     (Λ : ℝ≥0) (r : ℝ) (n : ℕ) :
     mertonSpot S_0 k Λ n = S_0 * rexp ((mertonRate r k T Λ n - r) * T) := by
@@ -96,7 +104,9 @@ lemma mertonSpot_eq_spot_exp {k T : ℝ} (S_0 : ℝ) (hT : 0 < T) (hk : -1 < k)
 
 /-- **Per-term classic form**: each Merton term regroups as the compensated
 jump growth times a Black–Scholes value at spot `S₀` and the shifted rate:
-`term_n = e^{−kΛ}(1+k)^n · bsV K r_n vol_n S₀ T`. -/
+`term_n = e^{−kΛ}(1+k)^n · bsV K r_n vol_n S₀ T`.
+@isnad1 id=eq.4h9v.s7.a4afb67e53d6 from=translated src=- shape=241732bd vocab=4fa477c3
+-/
 theorem mertonCallTerm_eq_classic {S_0 K k T : ℝ} (r σ δ : ℝ) (Λ : ℝ≥0)
     (hS_0 : 0 < S_0) (hK : 0 < K) (hT : 0 < T) (hk : -1 < k) (n : ℕ) :
     mertonCallTerm S_0 K r σ T k δ Λ n
@@ -116,7 +126,9 @@ theorem mertonCallTerm_eq_classic {S_0 K k T : ℝ} (r σ δ : ℝ) (Λ : ℝ≥
 the adjusted intensity `Λ′ = Λ(1+k)`, Black–Scholes values at spot `S₀`,
 shifted rates `r_n`, conditional vols `vol_n`:
 
-  `C_Merton = Σₙ e^{−Λ′} Λ′ⁿ/n! · C_BS(S₀, K, r_n, vol_n, T)`. -/
+  `C_Merton = Σₙ e^{−Λ′} Λ′ⁿ/n! · C_BS(S₀, K, r_n, vol_n, T)`.
+@isnad1 id=eq.4h8v.s7.f3b7891ccbb5 from=translated src=- shape=5a09823c vocab=42e3cd95
+-/
 theorem mertonCallPrice_eq_classic_tsum {S_0 K k T : ℝ} (r σ δ : ℝ) (Λ : ℝ≥0)
     (hS_0 : 0 < S_0) (hK : 0 < K) (hT : 0 < T) (hk : -1 < k) :
     mertonCallPrice S_0 K r σ T k δ Λ

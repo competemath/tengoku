@@ -33,7 +33,9 @@ namespace MathFin
 
 open MeasureTheory ProbabilityTheory Real
 
-/-- `(−ϕ(0,1,·))' = z · ϕ(0,1,z)`. Algebraic content: `d/dz [exp(-z²/2)] = -z · exp(-z²/2)`. -/
+/-- `(−ϕ(0,1,·))' = z · ϕ(0,1,z)`. Algebraic content: `d/dz [exp(-z²/2)] = -z · exp(-z²/2)`.
+@isnad1 id=hasderiv.0h1v.s6.9fcc531b4ec4 from=translated src=- shape=b346b979 vocab=bb668eea
+-/
 lemma hasDerivAt_neg_gaussianPDFReal_zero_one (z : ℝ) :
     HasDerivAt (fun z' : ℝ ↦ -gaussianPDFReal 0 1 z')
       (z * gaussianPDFReal 0 1 z) z := by
@@ -62,7 +64,9 @@ lemma hasDerivAt_neg_gaussianPDFReal_zero_one (z : ℝ) :
 
 /-- `ϕ(0,1,·)' = -z · ϕ(0,1,z)` — the standard-normal PDF derivative (the
 `.neg`-flip of `hasDerivAt_neg_gaussianPDFReal_zero_one`). The single
-standard-normal first-derivative reused across the Greeks files. -/
+standard-normal first-derivative reused across the Greeks files.
+@isnad1 id=hasderiv.0h1v.s6.680ba42cd05d from=translated src=- shape=1cc151bb vocab=bb668eea
+-/
 theorem hasDerivAt_gaussianPDFReal_zero_one (z : ℝ) :
     HasDerivAt (fun z' : ℝ ↦ gaussianPDFReal 0 1 z')
       (-(z * gaussianPDFReal 0 1 z)) z := by
@@ -72,7 +76,9 @@ theorem hasDerivAt_gaussianPDFReal_zero_one (z : ℝ) :
   rw [h_eq] at h
   exact h
 
-/-- **Standard normal CDF derivative**: `Phi'(x) = gaussianPDFReal 0 1 x`. -/
+/-- **Standard normal CDF derivative**: `Phi'(x) = gaussianPDFReal 0 1 x`.
+@isnad1 id=hasderiv.0h1v.s5.3741cf262a44 from=translated src=- shape=8a889477 vocab=2def7a76
+-/
 theorem hasDerivAt_Phi (x : ℝ) :
     HasDerivAt Phi (gaussianPDFReal 0 1 x) x := by
   set a : ℝ := x - 1

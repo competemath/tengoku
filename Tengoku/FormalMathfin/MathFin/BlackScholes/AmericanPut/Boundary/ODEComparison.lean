@@ -25,6 +25,9 @@ namespace MathFin.BlackScholes.AmericanPut.Boundary
 
 open scoped ContDiff
 
+/--
+@isnad1 id=le.7h6v.s8.fe328d8996d9 from=translated src=- shape=17cdb39f vocab=7bfec842
+-/
 theorem ode_nonneg_of_factored_forcing {H : ℝ → ℝ} {a b u v : ℝ}
     (hH : ContDiff ℝ ∞ H) (ha : a ≤ 0) (hb : 0 ≤ b)
     (hzero : H 0 = 0) (hslope : deriv H 0 = 0)

@@ -94,14 +94,18 @@ variable {Ω : Type*}
 /-! ## Stage 1 — the trade probabilities, derived from the trader mix -/
 
 /-- **The informed half.** On the high-value event, every informed trader buys,
-so the buy-and-informed mass is exactly the informed mass. -/
+so the buy-and-informed mass is exactly the informed mass.
+@isnad1 id=eq.1h4v.s5.09c6d856cd60 from=translated src=- shape=38d16ca6 vocab=b2eac1ad
+-/
 theorem inter_informed (H B I : Set Ω) (hbuy : B ∩ I = H ∩ I) :
     H ∩ B ∩ I = H ∩ I := by
   rw [Set.inter_assoc, hbuy, ← Set.inter_assoc, Set.inter_self]
 
 /-- **The informed half, low value.** An informed trader facing a low value sells,
 so the buy-and-informed mass on `Hᶜ` is empty. Derived from the same primitive —
-no extra hypothesis. -/
+no extra hypothesis.
+@isnad1 id=eq.1h4v.s5.2dfb3d95c732 from=translated src=- shape=800e0928 vocab=422b3f97
+-/
 theorem inter_informed_low (H B I : Set Ω) (hbuy : B ∩ I = H ∩ I) :
     Hᶜ ∩ B ∩ I = ∅ := by
   rw [Set.inter_assoc, hbuy, ← Set.inter_assoc, Set.compl_inter_self, Set.empty_inter]
@@ -109,7 +113,9 @@ theorem inter_informed_low (H B I : Set Ω) (hbuy : B ∩ I = H ∩ I) :
 variable [MeasurableSpace Ω] (μ : Measure Ω)
 
 /-- **The trade probability, derived.** Doubling clears the uninformed `1/2`
-without ever subtracting: `2·μ(H ∩ B) = (1 + p)·θ`. -/
+without ever subtracting: `2·μ(H ∩ B) = (1 + p)·θ`.
+@isnad1 id=eq.5h7v.s7.56a33dc6d2e4 from=translated src=- shape=9dac35eb vocab=5a359d85
+-/
 theorem two_mul_inter_high_buy (H B I : Set Ω) (hI : MeasurableSet I) {θ p : ℝ≥0∞}
     (hbuy : B ∩ I = H ∩ I)
     (hindep : μ (H ∩ I) = p * θ)
@@ -127,7 +133,9 @@ theorem two_mul_inter_high_buy (H B I : Set Ω) (hI : MeasurableSet I) {θ p : �
     _ = (1 + p) * θ := by rw [add_mul, one_mul, add_comm]
 
 /-- **`P(buy | V_H)`, subtraction- and division-free.** The additive form
-`2·P = 1 + p` is the one `ℝ≥0∞` actually likes. -/
+`2·P = 1 + p` is the one `ℝ≥0∞` actually likes.
+@isnad1 id=eq.8h7v.s8.bfccc791c26a from=translated src=- shape=7e4b86cd vocab=5a95dbb5
+-/
 theorem two_mul_cond_buy_high (H B I : Set Ω) (hH' : MeasurableSet H) (hI : MeasurableSet I)
     {θ p : ℝ≥0∞} (hθ0 : θ ≠ 0) (hθtop : θ ≠ ∞)
     (hbuy : B ∩ I = H ∩ I) (hindep : μ (H ∩ I) = p * θ) (hH : μ H = θ)
@@ -148,7 +156,9 @@ theorem two_mul_cond_buy_high (H B I : Set Ω) (hH' : MeasurableSet H) (hI : Mea
 And note which hypothesis the proof demands: `μ Hᶜ ≠ 0`, i.e. `θ ≠ 1`. Together
 with `θ ≠ 0` from the high-value case, **the model itself forces `0 < θ < 1`** —
 exactly the hypothesis the issue is missing. It is not an extra condition imposed
-on the theorem; it is what the derivation needs in order to exist. -/
+on the theorem; it is what the derivation needs in order to exist.
+@isnad1 id=eq.8h7v.s8.03e638079cd3 from=translated src=- shape=32e06e1e vocab=3c193ef6
+-/
 theorem two_mul_cond_buy_low_add (H B I : Set Ω) (hHc : MeasurableSet Hᶜ)
     (hI : MeasurableSet I) {θ' p : ℝ≥0∞} (hθ0 : θ' ≠ 0) (hθtop : θ' ≠ ∞)
     (hbuy : B ∩ I = H ∩ I)
@@ -181,7 +191,9 @@ noncomputable def payoff (H : Set Ω) (VL VH : ℝ) : Ω → ℝ :=
   fun ω => VL + Set.indicator H (fun _ => VH - VL) ω
 
 /-- **The expectation of a two-valued payoff.** Against any probability measure,
-`E[V] = V_L + P(H)·(V_H − V_L)`. -/
+`E[V] = V_L + P(H)·(V_H − V_L)`.
+@isnad1 id=eq.1h5v.s6.e43312833513 from=translated src=- shape=c1add790 vocab=dc6f5a46
+-/
 theorem integral_payoff (ν : Measure Ω) [IsProbabilityMeasure ν] (H : Set Ω)
     (hH : MeasurableSet H) (VL VH : ℝ) :
     ∫ ω, payoff H VL VH ω ∂ν = VL + (ν H).toReal * (VH - VL) := by
@@ -191,7 +203,9 @@ theorem integral_payoff (ν : Measure Ω) [IsProbabilityMeasure ν] (H : Set Ω)
   simp [measureReal_def]
 
 /-- **The quote.** `E[V | E]` for a conditioning event of positive probability —
-this is `ask` when `E` is a buy and `bid` when `E` is a sell. -/
+this is `ask` when `E` is a buy and `bid` when `E` is a sell.
+@isnad1 id=eq.2h6v.s6.828bb12540b8 from=translated src=- shape=59496c11 vocab=cf4f6ebc
+-/
 theorem integral_payoff_cond [IsFiniteMeasure μ] (E H : Set Ω) (hH : MeasurableSet H)
     (hE0 : μ E ≠ 0) (VL VH : ℝ) :
     ∫ ω, payoff H VL VH ω ∂(μ[|E]) = VL + (μ[H | E]).toReal * (VH - VL) := by
@@ -200,7 +214,9 @@ theorem integral_payoff_cond [IsFiniteMeasure μ] (E H : Set Ω) (hH : Measurabl
 
 /-- **The spread, reduced to the posteriors.** Every trace of the payoff cancels
 except the scale `V_H − V_L`; what is left is exactly how much a buy moves the
-belief relative to a sell. Adverse selection, and nothing else, sets the spread. -/
+belief relative to a sell. Adverse selection, and nothing else, sets the spread.
+@isnad1 id=eq.3h7v.s7.f32ea55a7b45 from=translated src=- shape=4beaf3f3 vocab=16059d70
+-/
 theorem spread_eq [IsFiniteMeasure μ] (B S H : Set Ω) (hH : MeasurableSet H)
     (hB0 : μ B ≠ 0) (hS0 : μ S ≠ 0) (VL VH : ℝ) :
     (∫ ω, payoff H VL VH ω ∂(μ[|B])) - (∫ ω, payoff H VL VH ω ∂(μ[|S]))
@@ -215,7 +231,9 @@ at `θ = 1, p = 1` every arriving trader buys, so `Bᶜ` is null and the "bid" i
 not a bad price but no price at all. `p = 1` alone is harmless and is *not*
 excluded — `spread_pos_of_model` derives `p ≤ 1` rather than assuming it, and at
 `p = 1` with `0 < θ < 1` both trade events still carry positive mass. It is the
-prior's endpoints that have to go. -/
+prior's endpoints that have to go.
+@isnad1 id=eq.1h6v.s6.17b727b3d37a from=translated src=- shape=646923b8 vocab=2161df37
+-/
 theorem quote_eq_zero_of_null (H B : Set Ω) (VL VH : ℝ) (hB : μ B = 0) :
     ∫ ω, payoff H VL VH ω ∂(μ[|B]) = 0 := by
   rw [cond_eq_zero_of_meas_eq_zero hB]; simp
@@ -232,7 +250,9 @@ noncomputable def postSell (θ p : ℝ) : ℝ := (1 - p) * θ / (1 - p * (2 * θ
 (see `hBreal` in `spread_pos_of_model`), not `P(buy)` itself. Positivity holds
 because it equals `(1−p) + 2pθ`, two non-negative terms with the second strictly
 positive — which is the hint `nlinarith` is given, so no case split on the sign
-of `2θ−1` is needed. -/
+of `2θ−1` is needed.
+@isnad1 id=lt.3h2v.s6.db50c92b1858 from=translated src=- shape=e5021f5e vocab=7435bc9b
+-/
 theorem buy_denom_pos {θ p : ℝ} (hθ0 : 0 < θ) (hp0 : 0 ≤ p) (hp1 : p ≤ 1) :
     0 < 1 + p * (2 * θ - 1) := by
   rcases hp1.lt_or_eq with h | h
@@ -240,7 +260,9 @@ theorem buy_denom_pos {θ p : ℝ} (hθ0 : 0 < θ) (hp0 : 0 ≤ p) (hp1 : p ≤ 
   · subst h; linarith
 
 /-- The sell denominator is positive — likewise *twice* `P(sell)` — by the mirror
-identity `1 − p(2θ−1) = (1−p) + 2p(1−θ)`. -/
+identity `1 − p(2θ−1) = (1−p) + 2p(1−θ)`.
+@isnad1 id=lt.3h2v.s6.4fd7fe9f9232 from=translated src=- shape=3eb111ee vocab=49bacf4d
+-/
 theorem sell_denom_pos {θ p : ℝ} (hθ1 : θ < 1) (hp0 : 0 ≤ p) (hp1 : p ≤ 1) :
     0 < 1 - p * (2 * θ - 1) := by
   rcases hp1.lt_or_eq with h | h
@@ -252,7 +274,9 @@ theorem sell_denom_pos {θ p : ℝ} (hθ1 : θ < 1) (hp0 : 0 ≤ p) (hp1 : p ≤
 `postBuy − postSell = 4pθ(1−θ) / (1 − p²(2θ−1)²)`.
 
 The `θ(1−θ)` in the numerator is the whole point: it is what the acceptance
-criterion forgets, and it vanishes exactly at `θ ∈ {0,1}`. -/
+criterion forgets, and it vanishes exactly at `θ ∈ {0,1}`.
+@isnad1 id=eq.4h2v.s7.17e3e4f89979 from=translated src=- shape=d5bafbfd vocab=084fc6f1
+-/
 theorem post_sub_post {θ p : ℝ} (hθ0 : 0 < θ) (hθ1 : θ < 1) (hp0 : 0 < p)
     (hp1 : p ≤ 1) :
     postBuy θ p - postSell θ p
@@ -268,7 +292,9 @@ theorem post_sub_post {θ p : ℝ} (hθ0 : 0 < θ) (hθ1 : θ < 1) (hp0 : 0 < p)
 
 /-- **A buy moves the belief strictly more than a sell does.** This is the whole
 economic content: the order's direction is informative, so the two quotes cannot
-coincide. -/
+coincide.
+@isnad1 id=lt.4h2v.s5.7b229dc7218e from=translated src=- shape=e9d8746d vocab=8b8fb29c
+-/
 theorem postSell_lt_postBuy {θ p : ℝ} (hθ0 : 0 < θ) (hθ1 : θ < 1) (hp0 : 0 < p)
     (hp1 : p ≤ 1) : postSell θ p < postBuy θ p := by
   have h1 := buy_denom_pos hθ0 hp0.le hp1
@@ -282,24 +308,32 @@ theorem postSell_lt_postBuy {θ p : ℝ} (hθ0 : 0 < θ) (hθ1 : θ < 1) (hp0 : 
 
 /-- **The theorem the issue asks for**, with the hypotheses it is missing:
 `ask − bid > 0` whenever `V_L < V_H`, `0 < p ≤ 1` **and `0 < θ < 1`** — where
-`ask − bid = (V_H − V_L)·(postBuy − postSell)` is exactly Stage 2's `spread_eq`. -/
+`ask − bid = (V_H − V_L)·(postBuy − postSell)` is exactly Stage 2's `spread_eq`.
+@isnad1 id=lt.5h4v.s6.a2b2ac96080a from=translated src=- shape=316cc775 vocab=c4277787
+-/
 theorem spread_pos {θ p VL VH : ℝ} (hθ0 : 0 < θ) (hθ1 : θ < 1) (hp0 : 0 < p)
     (hp1 : p ≤ 1) (hV : VL < VH) :
     0 < (VH - VL) * (postBuy θ p - postSell θ p) :=
   mul_pos (sub_pos.mpr hV) (sub_pos.mpr (postSell_lt_postBuy hθ0 hθ1 hp0 hp1))
 
-/-- `postSell 1 1 = 0/0`, which Lean evaluates to `0` rather than rejecting. -/
+/-- `postSell 1 1 = 0/0`, which Lean evaluates to `0` rather than rejecting.
+@isnad1 id=eq.0h0v.s4.e8c3c6b557eb from=translated src=- shape=7226d0ee vocab=93fdf4ea
+-/
 theorem postSell_one_one : postSell 1 1 = 0 := by unfold postSell; norm_num
 
 /-- `postBuy 1 1 = 1`: after a buy the value is certainly high — which is true,
-and is exactly why the *difference* below is the whole value range. -/
+and is exactly why the *difference* below is the whole value range.
+@isnad1 id=eq.0h0v.s4.cba0ed4173d2 from=translated src=- shape=7226d0ee vocab=bd427054
+-/
 theorem postBuy_one_one : postBuy 1 1 = 1 := by unfold postBuy; norm_num
 
 /-- **The punchline.** At `θ = 1, p = 1` the closed form hands back the *entire
 value range* as the spread — the largest it could conceivably be — at exactly the
 point where the value is common knowledge and the true spread is `0`. Nothing
 errors, nothing is flagged; `0/0 = 0` does it all. A `full` entry quantified over
-`p ≤ 1` and unconstrained `θ` would carry this inside it. -/
+`p ≤ 1` and unconstrained `θ` would carry this inside it.
+@isnad1 id=eq.0h2v.s6.80c914f7eadb from=translated src=- shape=d2fafb82 vocab=8022e158
+-/
 theorem spread_junk_at_corner (VL VH : ℝ) :
     (VH - VL) * (postBuy 1 1 - postSell 1 1) = VH - VL := by
   rw [postSell_one_one, postBuy_one_one]; ring
@@ -307,7 +341,9 @@ theorem spread_junk_at_corner (VL VH : ℝ) :
 /-! ## Stage 4 — the seam -/
 
 /-- **The unconditional probability of `E`, in `ℝ`.** The law of total
-probability, converted once. -/
+probability, converted once.
+@isnad1 id=eq.4h7v.s7.77a26abd3666 from=translated src=- shape=f435a684 vocab=1cc26e6c
+-/
 theorem measure_toReal_of_likelihoods [IsProbabilityMeasure μ] (E H : Set Ω) (hH : MeasurableSet H)
     {a c t : ℝ} (ha : (μ[E | H]).toReal = a) (hc : (μ[E | Hᶜ]).toReal = c)
     (ht : (μ H).toReal = t) :
@@ -328,7 +364,9 @@ This is what makes the stages one argument rather than three. Stage 2 hands back
 `(μ[H | E]).toReal`; Stage 3 reasons about a ratio of real numbers; this says they
 are the same number. No hypothesis that the denominator is nonzero is needed —
 in the degenerate case both sides are `0`, which is precisely the behaviour the
-issue's statement must not be allowed to hide. -/
+issue's statement must not be allowed to hide.
+@isnad1 id=eq.5h7v.s7.cc040939d9ae from=translated src=- shape=16a7be7c vocab=2746d7c5
+-/
 theorem cond_toReal_eq [IsProbabilityMeasure μ] (E H : Set Ω) (hE : MeasurableSet E) (hH : MeasurableSet H)
     {a c t : ℝ} (ha : (μ[E | H]).toReal = a) (hc : (μ[E | Hᶜ]).toReal = c)
     (ht : (μ H).toReal = t) :
@@ -339,14 +377,18 @@ theorem cond_toReal_eq [IsProbabilityMeasure μ] (E H : Set Ω) (hE : Measurable
   ring
 
 /-- **The complementary likelihood.** `P(Eᶜ | F) = 1 − P(E | F)`, in `ℝ`, given
-that `F` is not null — the hypothesis the model already forces. -/
+that `F` is not null — the hypothesis the model already forces.
+@isnad1 id=eq.2h4v.s6.f82fe51f9496 from=translated src=- shape=4b4e1735 vocab=11a230f8
+-/
 theorem cond_compl_toReal [IsFiniteMeasure μ] (E F : Set Ω) (hE : MeasurableSet E)
     (hF0 : μ F ≠ 0) :
     (μ[Eᶜ | F]).toReal = 1 - (μ[E | F]).toReal := by
   haveI : IsProbabilityMeasure (μ[|F]) := cond_isProbabilityMeasure hF0
   rw [← measureReal_def, probReal_compl_eq_one_sub hE, measureReal_def]
 
-/-- `P(buy | V_H) = (1+p)/2`, converted from Stage 1's additive form. -/
+/-- `P(buy | V_H) = (1+p)/2`, converted from Stage 1's additive form.
+@isnad1 id=eq.2h5v.s7.b1f25d51a965 from=translated src=- shape=2cd334f4 vocab=a85851e2
+-/
 theorem cond_buy_high_toReal (H B : Set Ω) {p : ℝ} (hp0 : 0 ≤ p)
     (hhigh : 2 * μ[B | H] = 1 + ENNReal.ofReal p) :
     (μ[B | H]).toReal = (1 + p) / 2 := by
@@ -356,7 +398,9 @@ theorem cond_buy_high_toReal (H B : Set Ω) {p : ℝ} (hp0 : 0 ≤ p)
   simp only [ENNReal.toReal_ofNat, ENNReal.toReal_one] at h
   linarith
 
-/-- `P(buy | V_L) = (1−p)/2`, converted from Stage 1's additive form. -/
+/-- `P(buy | V_L) = (1−p)/2`, converted from Stage 1's additive form.
+@isnad1 id=eq.2h5v.s7.abc524af867b from=translated src=- shape=e789dee8 vocab=4c3e9aec
+-/
 theorem cond_buy_low_toReal (H B : Set Ω) {p : ℝ} (hp0 : 0 ≤ p)
     (hlow : 2 * μ[B | Hᶜ] + ENNReal.ofReal p = 1) :
     (μ[B | Hᶜ]).toReal = (1 - p) / 2 := by
@@ -369,7 +413,9 @@ theorem cond_buy_low_toReal (H B : Set Ω) {p : ℝ} (hp0 : 0 ≤ p)
 
 /-- **The posterior after a buy is exactly `postBuy`.** Stage 3's `postBuy` was a
 real function of two real numbers with no measure in sight; this is the theorem
-that makes it the model's posterior. -/
+that makes it the model's posterior.
+@isnad1 id=eq.6h6v.s7.bc2afa91082b from=translated src=- shape=b3d09061 vocab=b4381ad6
+-/
 theorem postBuy_eq [IsProbabilityMeasure μ] (H B : Set Ω) (hB : MeasurableSet B) (hH : MeasurableSet H)
     {θ p : ℝ} (hp0 : 0 ≤ p) (ht : (μ H).toReal = θ)
     (hhigh : 2 * μ[B | H] = 1 + ENNReal.ofReal p)
@@ -387,7 +433,9 @@ buy ones swapped, and the same seam lemma does the work.
 
 Only `μ Hᶜ ≠ 0` (that is, `θ ≠ 1`) is taken as a hypothesis. Its mirror
 `μ H ≠ 0` is *derived*: at a degenerate prior `cond` collapses to the zero
-measure, so `hhigh` would read `0 = 1 + p`. -/
+measure, so `hhigh` would read `0 = 1 + p`.
+@isnad1 id=eq.7h6v.s7.6aa53c396653 from=translated src=- shape=808fb830 vocab=b737bf48
+-/
 theorem postSell_eq [IsProbabilityMeasure μ] (H B : Set Ω) (hB : MeasurableSet B) (hH : MeasurableSet H)
     {θ p : ℝ} (hp0 : 0 ≤ p) (ht : (μ H).toReal = θ) (hHc0 : μ Hᶜ ≠ 0)
     (hhigh : 2 * μ[B | H] = 1 + ENNReal.ofReal p)
@@ -414,7 +462,9 @@ the second whenever `V_L < V_H`, `0 < p ≤ 1` **and `0 < θ < 1`**.
 This is the issue's `## Acceptance criteria`, with the hypothesis it omits. The
 chain is: Stage 1 derives the trade probabilities from the trader mix; Stage 4
 converts them and applies Bayes to get the posteriors; Stage 2 turns the quotes
-into those posteriors; Stage 3 supplies the strict inequality. -/
+into those posteriors; Stage 3 supplies the strict inequality.
+@isnad1 id=lt.13h9v.s8.bbe0be124965 from=translated src=- shape=d2dc803a vocab=265d199b
+-/
 theorem spread_pos_of_model [IsProbabilityMeasure μ] (H B I : Set Ω)
     (hH : MeasurableSet H) (hB : MeasurableSet B) (hI : MeasurableSet I)
     {θ p VL VH : ℝ}

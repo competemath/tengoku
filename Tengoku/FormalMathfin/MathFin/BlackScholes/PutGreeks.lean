@@ -42,7 +42,9 @@ open MeasureTheory ProbabilityTheory Real
 noncomputable def bsP (K r σ : ℝ) (S τ : ℝ) : ℝ :=
   K * Real.exp (-(r * τ)) * Phi (-bsd2 S K r σ τ) - S * Phi (-bsd1 S K r σ τ)
 
-/-- **Put-call parity** (price form): `bsP = bsV − S + K · e^{-rτ}`. -/
+/-- **Put-call parity** (price form): `bsP = bsV − S + K · e^{-rτ}`.
+@isnad1 id=eq.0h5v.s5.e8e10d93fe43 from=translated src=- shape=a5665ee0 vocab=607cf3d0
+-/
 lemma bsP_eq_bsV (K r σ S τ : ℝ) :
     bsP K r σ S τ = bsV K r σ S τ - S + K * Real.exp (-(r * τ)) := by
   unfold bsP bsV
@@ -50,7 +52,9 @@ lemma bsP_eq_bsV (K r σ S τ : ℝ) :
   have h_d2 := Phi_add_Phi_neg (bsd2 S K r σ τ)
   linear_combination -S * h_d1 + K * Real.exp (-(r * τ)) * h_d2
 
-/-- **Put delta**: `∂_S P = Φ(d₁) − 1`. -/
+/-- **Put delta**: `∂_S P = Φ(d₁) − 1`.
+@isnad1 id=hasderiv.4h5v.s6.598b5a35299e from=translated src=- shape=f4f40f17 vocab=20bda5a7
+-/
 lemma hasDerivAt_bsP_S {K r σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
     {S τ : ℝ} (hS : 0 < S) (hτ : 0 < τ) :
     HasDerivAt (fun s ↦ bsP K r σ s τ) (Phi (bsd1 S K r σ τ) - 1) S := by
@@ -66,7 +70,9 @@ lemma hasDerivAt_bsP_S {K r σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
   ring
 
 /-- **Put gamma**: `∂²_S P = ϕ(d₁) / (S σ √τ)` — the same as call gamma
-(differs from put by a linear term in `S`, which vanishes on second differentiation). -/
+(differs from put by a linear term in `S`, which vanishes on second differentiation).
+@isnad1 id=hasderiv.4h5v.s7.0a7cfa4c6fea from=translated src=- shape=e068f23e vocab=47527024
+-/
 lemma hasDerivAt_bsP_SS {K r σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
     {S τ : ℝ} (hS : 0 < S) (hτ : 0 < τ) :
     HasDerivAt (fun s ↦ Phi (bsd1 s K r σ τ) - 1)
@@ -80,7 +86,9 @@ lemma hasDerivAt_bsP_SS {K r σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
 /-- **Put theta** (`∂_τ` form): `∂_τ P = σ S ϕ(d₁) / (2 √τ) − r K e^{-rτ} Φ(-d₂)`.
 
 Via parity: `∂_τ P = ∂_τ V + ∂_τ (K e^{-rτ}) = (call theta) − r K e^{-rτ}`.
-The `Φ(d₂) → Φ(-d₂)` rearrangement uses `Φ(d₂) + Φ(-d₂) = 1`. -/
+The `Φ(d₂) → Φ(-d₂)` rearrangement uses `Φ(d₂) + Φ(-d₂) = 1`.
+@isnad1 id=hasderiv.4h5v.s7.a1f31602242a from=translated src=- shape=70533965 vocab=5fc52a7e
+-/
 lemma hasDerivAt_bsP_tau {K r σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
     {S τ : ℝ} (hS : 0 < S) (hτ : 0 < τ) :
     HasDerivAt (fun t ↦ bsP K r σ S t)
@@ -106,7 +114,9 @@ lemma hasDerivAt_bsP_tau {K r σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
   linear_combination -(r * K * Real.exp (-(r * τ))) * h_phi
 
 /-- **Put vega**: `∂_σ P = S · ϕ(d₁) · √τ` — same as call vega (the `−S + K e^{-rτ}`
-correction is `σ`-independent). -/
+correction is `σ`-independent).
+@isnad1 id=hasderiv.4h5v.s6.c934637661d9 from=translated src=- shape=e64547d2 vocab=590254be
+-/
 lemma hasDerivAt_bsP_sigma {K r : ℝ} (hK : 0 < K)
     {S σ τ : ℝ} (hS : 0 < S) (hσ : 0 < σ) (hτ : 0 < τ) :
     HasDerivAt (fun s ↦ bsP K r s S τ)
@@ -125,7 +135,9 @@ lemma hasDerivAt_bsP_sigma {K r : ℝ} (hK : 0 < K)
 /-- **Put rho**: `∂_r P = -K · τ · e^{-rτ} · Φ(-d₂)`.
 
 Via parity: `∂_r P = ∂_r V + ∂_r (K e^{-rτ}) = K τ e^{-rτ} Φ(d₂) − K τ e^{-rτ}`,
-and `Φ(d₂) − 1 = -Φ(-d₂)`. -/
+and `Φ(d₂) − 1 = -Φ(-d₂)`.
+@isnad1 id=hasderiv.4h5v.s7.2d96958b7a0e from=translated src=- shape=c115a5d1 vocab=d9977d8c
+-/
 lemma hasDerivAt_bsP_r {K σ τ : ℝ} (hK : 0 < K) (hσ : 0 < σ) (hτ : 0 < τ)
     {S : ℝ} (hS : 0 < S) (r : ℝ) :
     HasDerivAt (fun r' ↦ bsP K r' σ S τ)

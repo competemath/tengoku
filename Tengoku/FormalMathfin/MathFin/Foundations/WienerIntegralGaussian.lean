@@ -73,7 +73,9 @@ variable {Ω : Type*} {mΩ : MeasurableSpace Ω}
 /-! ### The Wiener integral agrees with the elementary integral on step processes -/
 
 /-- On the range of `stepAssembly`, the extended Wiener integral is the
-elementary integral `wienerAssembly` (this is `LinearMap.extendOfNorm_eq`). -/
+elementary integral `wienerAssembly` (this is `LinearMap.extendOfNorm_eq`).
+@isnad1 id=eq.1h6v.s13.7b4eda683312 from=translated src=- shape=740bf95e vocab=eca373ee
+-/
 lemma wienerIntegralLp_stepAssembly (hB : IsPreBrownianReal B μ) (T : ℝ≥0)
     (x : StepIndex T →₀ ℝ) :
     wienerIntegralLp B hB T (stepAssembly T x) = wienerAssembly B hB T x := by
@@ -85,7 +87,9 @@ lemma wienerIntegralLp_stepAssembly (hB : IsPreBrownianReal B μ) (T : ℝ≥0)
 
 omit [IsProbabilityMeasure μ] in
 /-- Explicit a.e. form of the elementary integral: `wienerAssembly B hB T x`
-agrees a.e. with the finite sum of scaled Brownian increments. -/
+agrees a.e. with the finite sum of scaled Brownian increments.
+@isnad1 id=eventual.1h6v.s10.f365fd6e1365 from=translated src=- shape=f2de5fe2 vocab=84f867af
+-/
 lemma wienerAssembly_coeFn (hB : IsPreBrownianReal B μ) (T : ℝ≥0)
     (x : StepIndex T →₀ ℝ) :
     (wienerAssembly B hB T x : Ω → ℝ) =ᵐ[μ]
@@ -111,7 +115,9 @@ lemma wienerAssembly_coeFn (hB : IsPreBrownianReal B μ) (T : ℝ≥0)
 omit [IsProbabilityMeasure μ] in
 /-- The scaled-increment family `i ↦ xᵢ (B_{hiᵢ} − B_{loᵢ})` is a Gaussian
 process: each value is a (continuous-linear) combination of finitely many
-values of the Gaussian process `B`. -/
+values of the Gaussian process `B`.
+@isnad1 id=isgaussi.1h6v.s7.5eb1cf18b8f6 from=translated src=- shape=6dc78742 vocab=08e2d642
+-/
 lemma isGaussianProcess_scaledIncrement (hB : IsPreBrownianReal B μ) (T : ℝ≥0)
     (x : StepIndex T →₀ ℝ) :
     IsGaussianProcess (fun (i : StepIndex T) ω ↦ x i • (B i.1.2 ω - B i.1.1 ω)) μ := by
@@ -124,7 +130,9 @@ lemma isGaussianProcess_scaledIncrement (hB : IsPreBrownianReal B μ) (T : ℝ�
   simp [Finset.restrict]
 
 omit [IsProbabilityMeasure μ] in
-/-- A simple (step-process) Wiener integral has a Gaussian law. -/
+/-- A simple (step-process) Wiener integral has a Gaussian law.
+@isnad1 id=hasgauss.1h6v.s10.66d375018831 from=translated src=- shape=37038d9f vocab=7129393b
+-/
 lemma wienerAssembly_hasGaussianLaw (hB : IsPreBrownianReal B μ) (T : ℝ≥0)
     (x : StepIndex T →₀ ℝ) :
     HasGaussianLaw (fun ω ↦ (wienerAssembly B hB T x) ω) μ := by
@@ -133,7 +141,9 @@ lemma wienerAssembly_hasGaussianLaw (hB : IsPreBrownianReal B μ) (T : ℝ≥0)
     (isGaussianProcess_scaledIncrement hB T x).hasGaussianLaw_fun_sum (I := x.support)
   exact hsum.congr (wienerAssembly_coeFn hB T x).symm
 
-/-- The elementary integral is centred: `∫ wienerAssembly B hB T x ∂μ = 0`. -/
+/-- The elementary integral is centred: `∫ wienerAssembly B hB T x ∂μ = 0`.
+@isnad1 id=eq.1h6v.s10.4287f70d50b1 from=translated src=- shape=94a40809 vocab=7fe4f2b6
+-/
 lemma wienerAssembly_integral_zero (hB : IsPreBrownianReal B μ) (T : ℝ≥0)
     (x : StepIndex T →₀ ℝ) :
     ∫ ω, (wienerAssembly B hB T x) ω ∂μ = 0 := by
@@ -149,7 +159,9 @@ lemma wienerAssembly_integral_zero (hB : IsPreBrownianReal B μ) (T : ℝ≥0)
       ((hB.isGaussianProcess.hasGaussianLaw_eval i.1.1).memLp_two.integrable one_le_two),
     hB.integral_eval i.1.2, hB.integral_eval i.1.1, sub_zero, smul_zero]
 
-/-- The law of a simple-process Wiener integral: `gaussianReal 0 ‖stepAssembly x‖²`. -/
+/-- The law of a simple-process Wiener integral: `gaussianReal 0 ‖stepAssembly x‖²`.
+@isnad1 id=eq.1h6v.s11.e774d37c3032 from=translated src=- shape=03b6b5e5 vocab=bb4d9f87
+-/
 lemma wienerAssembly_map_eq_gaussianReal (hB : IsPreBrownianReal B μ) (T : ℝ≥0)
     (x : StepIndex T →₀ ℝ) :
     μ.map (fun ω ↦ (wienerAssembly B hB T x) ω)
@@ -166,7 +178,9 @@ lemma wienerAssembly_map_eq_gaussianReal (hB : IsPreBrownianReal B μ) (T : ℝ�
 
 /-! ### Pass to the L²-limit by characteristic functions -/
 
-/-- Auxiliary: on a probability measure, `∫ ‖g‖ ≤ ‖g‖₂` for `g ∈ L²`. -/
+/-- Auxiliary: on a probability measure, `∫ ‖g‖ ≤ ‖g‖₂` for `g ∈ L²`.
+@isnad1 id=le.0h4v.s9.848ecf4ce5f7 from=translated src=- shape=ba8d5cbb vocab=2d9aa767
+-/
 lemma L1_norm_le_L2_norm_prob (g : Lp ℝ 2 μ) :
     ∫ ω, ‖g ω‖ ∂μ ≤ ‖g‖ := by
   rw [show (∫ ω, ‖g ω‖ ∂μ) = (eLpNorm (g : Ω → ℝ) 1 μ).toReal by
@@ -175,7 +189,9 @@ lemma L1_norm_le_L2_norm_prob (g : Lp ℝ 2 μ) :
   exact ENNReal.toReal_mono (Lp.eLpNorm_ne_top g)
     (eLpNorm_le_eLpNorm_of_exponent_le one_le_two (Lp.aestronglyMeasurable g))
 
-/-- The characteristic function of `μ.map h` is `|t|`-Lipschitz in `h : L²(μ)`. -/
+/-- The characteristic function of `μ.map h` is `|t|`-Lipschitz in `h : L²(μ)`.
+@isnad1 id=le.0h6v.s10.c0dc817616a9 from=translated src=- shape=f2a15d13 vocab=9beb9b24
+-/
 lemma charFun_map_lp_dist_le (t : ℝ) (h₁ h₂ : Lp ℝ 2 μ) :
     ‖charFun (μ.map (h₁ : Ω → ℝ)) t - charFun (μ.map (h₂ : Ω → ℝ)) t‖
       ≤ |t| * ‖h₁ - h₂‖ := by
@@ -226,7 +242,9 @@ lemma charFun_map_lp_dist_le (t : ℝ) (h₁ h₂ : Lp ℝ 2 μ) :
         exact L1_norm_le_L2_norm_prob _
 
 /-- **The Wiener integral of a deterministic integrand is Gaussian.** For every
-`f ∈ L²([0,T])`, `μ.map (wienerIntegralLp B hB T f) = gaussianReal 0 ‖f‖²`. -/
+`f ∈ L²([0,T])`, `μ.map (wienerIntegralLp B hB T f) = gaussianReal 0 ‖f‖²`.
+@isnad1 id=eq.1h6v.s13.240e1abfd5bb from=translated src=- shape=d663a53a vocab=fc8e6898
+-/
 theorem wienerIntegralLp_map_eq_gaussianReal (hB : IsPreBrownianReal B μ) (T : ℝ≥0)
     (f : Lp ℝ 2 (volume.restrict (Set.Ioc (0 : ℝ) (T : ℝ)))) :
     μ.map (fun ω ↦ (wienerIntegralLp B hB T f) ω)
@@ -265,7 +283,9 @@ theorem wienerIntegralLp_map_eq_gaussianReal (hB : IsPreBrownianReal B μ) (T : 
   rw [show (((‖f‖ ^ 2).toNNReal : ℝ)) = ‖f‖ ^ 2 from Real.coe_toNNReal _ (by positivity)]
   push_cast; ring
 
-/-- **`HasLaw` form**, with the variance in integral shape `∫₀ᵀ f²`. -/
+/-- **`HasLaw` form**, with the variance in integral shape `∫₀ᵀ f²`.
+@isnad1 id=haslaw.1h6v.s13.34ff2eaf8148 from=translated src=- shape=299bf694 vocab=0b4b3ded
+-/
 theorem wienerIntegralLp_hasLaw_gaussian (hB : IsPreBrownianReal B μ) (T : ℝ≥0)
     (f : Lp ℝ 2 (volume.restrict (Set.Ioc (0 : ℝ) (T : ℝ)))) :
     HasLaw (fun ω ↦ (wienerIntegralLp B hB T f) ω)

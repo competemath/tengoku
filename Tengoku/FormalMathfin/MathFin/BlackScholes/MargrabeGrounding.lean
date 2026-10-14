@@ -55,7 +55,9 @@ variable {Ω : Type*} {mΩ : MeasurableSpace Ω} {P : Measure Ω} [IsProbability
 log-spread driver `(σ₁·W₁ − σ₂·W₂)/σ_eff` is standard normal, where
 `σ_eff² = σ₁² + σ₂² − 2ρσ₁σ₂ > 0`. The variance is pinned to `1` by covariance
 bilinearity (`margrabe_effective_variance`); gaussianity is preserved under the
-linear map. -/
+linear map.
+@isnad1 id=haslaw.8h9v.s8.8de5ef408588 from=translated src=- shape=5d12baf4 vocab=3589f421
+-/
 theorem normalizedSpread_hasLaw_std
     {W₁ W₂ : Ω → ℝ} {σ₁ σ₂ ρ σeff : ℝ}
     (hjoint : HasGaussianLaw (fun ω ↦ (W₁ ω, W₂ ω)) P)
@@ -127,7 +129,9 @@ tilt — the `S²`-numeraire change of measure) and a standard-normal driver `Z`
 under which `BSCallHyp` holds for the ratio `S¹₀/S²₀` at strike `1`, zero rate,
 and the effective volatility `σ_eff = √(σ₁² + σ₂² − 2ρσ₁σ₂)`.
 `margrabe_price_of_gaussian` (below) composes this with `margrabe_price_via_call`
-to price the exchange option with no assumed risk-neutral hypothesis. -/
+to price the exchange option with no assumed risk-neutral hypothesis.
+@isnad1 id=ex.11h13v.s8.85023ffbafa5 from=translated src=- shape=1d614d64 vocab=1c06c023
+-/
 theorem margrabe_bsCallHyp_of_gaussian
     {W₁ W₂ : Ω → ℝ} {σ₁ σ₂ ρ σeff S1 S2 T c : ℝ}
     (hjoint : HasGaussianLaw (fun ω ↦ (W₁ ω, W₂ ω)) P)
@@ -148,7 +152,9 @@ theorem margrabe_bsCallHyp_of_gaussian
 
 /-- **End-to-end Margrabe price from a joint gaussian model** (no assumed
 risk-neutral hypothesis). Composes `margrabe_bsCallHyp_of_gaussian` (which
-*derives* the ratio's `BSCallHyp`) with `margrabe_price_via_call`. -/
+*derives* the ratio's `BSCallHyp`) with `margrabe_price_via_call`.
+@isnad1 id=ex.11h13v.s8.af339d55bab7 from=translated src=- shape=5c324401 vocab=d03bad23
+-/
 theorem margrabe_price_of_gaussian
     {W₁ W₂ : Ω → ℝ} {σ₁ σ₂ ρ σeff S1 S2 T c : ℝ}
     (hjoint : HasGaussianLaw (fun ω ↦ (W₁ ω, W₂ ω)) P)

@@ -30,6 +30,9 @@ open scoped ContDiff
 
 variable {k h c d : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
 
+/--
+@isnad1 id=le.7h10v.s6.af5b42efe633 from=translated src=- shape=bd22ee87 vocab=af13cccb
+-/
 theorem straightDifference_three_point_bound (hp : ContinuousBoundaryPutSolution k h p b)
     (hc : 0 < c) (hd : d ≤ 0) {x y z t : ℝ} (ht : 0 < t)
     (hx : b t ≤ x) (hxy : x ≤ y) (hyz : y ≤ z) :
@@ -75,7 +78,9 @@ theorem straightDifference_three_point_bound (hp : ContinuousBoundaryPutSolution
     hinit ht.le le_rfl hx hxy hyz hzR
 
 /-- All nonnegative strict superlevel sets of the actual comparison are
-intervals. This is the propagation invariant, with no unproved analytic input. -/
+intervals. This is the propagation invariant, with no unproved analytic input.
+@isnad1 id=ordconne.5h8v.s6.f67a414d944a from=translated src=- shape=f043e38e vocab=55042ea0
+-/
 theorem straightDifference_superlevel_interval (hp : ContinuousBoundaryPutSolution k h p b)
     (hc : 0 < c) (hd : d ≤ 0) {t ε : ℝ} (ht : 0 < t) (hε : 0 ≤ ε) :
     OrdConnected {x | b t < x ∧ ε < straightDifference p k h c d x t} := by
@@ -89,12 +94,17 @@ theorem straightDifference_superlevel_interval (hp : ContinuousBoundaryPutSoluti
   have hhi : max (straightDifference p k h c d y t) 0 ≤ ε := max_le hmid hε
   linarith
 
+/--
+@isnad1 id=ordconne.4h7v.s6.403acb364387 from=translated src=- shape=593eb1ec vocab=55042ea0
+-/
 theorem straightDifference_positive_interval (hp : ContinuousBoundaryPutSolution k h p b)
     (hc : 0 < c) (hd : d ≤ 0) {t : ℝ} (ht : 0 < t) :
     OrdConnected {x | b t < x ∧ 0 < straightDifference p k h c d x t} :=
   straightDifference_superlevel_interval hp hc hd ht le_rfl
 
-/-- Zero-dividend propagation checkpoint, on the original solution contract. -/
+/-- Zero-dividend propagation checkpoint, on the original solution contract.
+@isnad1 id=ordconne.4h6v.s6.5a5d4ff5a677 from=translated src=- shape=8e5008e0 vocab=38bbb001
+-/
 theorem zeroDividend_positive_interval (hp : NormalizedPutSolution k p b)
     (hc : 0 < c) (hd : d ≤ 0) {t : ℝ} (ht : 0 < t) :
     OrdConnected {x | b t < x ∧ 0 < straightDifference p k 0 c d x t} :=

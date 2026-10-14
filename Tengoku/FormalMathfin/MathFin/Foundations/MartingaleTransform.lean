@@ -27,6 +27,9 @@ variable {Ω : Type*}
 noncomputable def martingaleTransform (A M : ℕ → Ω → ℝ) (n : ℕ) (ω : Ω) : ℝ :=
   ∑ k ∈ Finset.range n, A (k + 1) ω * (M (k + 1) ω - M k ω)
 
+/--
+@isnad1 id=eq.0h3v.s5.8b64d8dfa33c from=translated src=- shape=ef553827 vocab=3d782690
+-/
 @[simp] lemma martingaleTransform_zero (A M : ℕ → Ω → ℝ) :
     martingaleTransform A M 0 = 0 := by
   funext ω; simp [martingaleTransform]
@@ -112,7 +115,9 @@ private lemma martingaleTransform_condExp_increment
   simp
 
 /-- Theorem 2.2.9: the martingale transform of a martingale `M` by a bounded
-predictable process `A` is itself a martingale. -/
+predictable process `A` is itself a martingale.
+@isnad1 id=martinga.3h5v.s7.c1a28546f3f9 from=translated src=- shape=e0607b80 vocab=ff480122
+-/
 theorem martingaleTransform_isMartingale
     (hM : Martingale M 𝓕 μ) (hA : StronglyAdapted 𝓕 (fun n ↦ A (n + 1)))
     (hA_bdd : ∃ K : ℝ, ∀ᵐ ω ∂μ, ∀ n, |A n ω| ≤ K) :

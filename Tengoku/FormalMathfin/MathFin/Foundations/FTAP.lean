@@ -33,7 +33,9 @@ Given a discounted-price process `S` adapted to a filtration `𝓕`, an equivale
 probability measure `Q ≪≫ P` under which `S` is a martingale, and a bounded
 predictable strategy `φ`, the discounted P&L
 `V_T = ∑_{t<T} φ_{t+1}(ω) · (S_{t+1} − S_t)`
-cannot be `P`-a.s. nonnegative and strictly positive on a `P`-non-null set. -/
+cannot be `P`-a.s. nonnegative and strictly positive on a `P`-non-null set.
+@isnad1 id=eq.6h7v.s8.e198bf9221ab from=translated src=- shape=d70f4fed vocab=2831bf4f
+-/
 theorem emm_implies_no_arbitrage
     {Ω : Type*} [m0 : MeasurableSpace Ω] {P : Measure Ω}
     {T : ℕ} {𝓕 : Filtration ℕ m0} {S : ℕ → Ω → ℝ}

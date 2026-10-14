@@ -57,14 +57,18 @@ the mortality instance of the shared `survivalFromIntensity`. -/
 noncomputable def survivalFromForce (μ : ℝ → ℝ) (t : ℝ) : ℝ :=
   survivalFromIntensity μ t
 
-/-- `S(0) = 1` (no mortality before age `0`). -/
+/-- `S(0) = 1` (no mortality before age `0`).
+@isnad1 id=eq.0h1v.s4.f0a88cb84b69 from=translated src=- shape=b298c1f9 vocab=31fe9b23
+-/
 lemma survivalFromForce_at_zero (μ : ℝ → ℝ) :
     survivalFromForce μ 0 = 1 := by
   unfold survivalFromForce survivalFromIntensity cumulativeIntensity
   rw [integral_same, neg_zero, Real.exp_zero]
 
 /-- Survival is strictly positive (an instance of the `ExponentialDiscount`
-principle `discount_pos`). -/
+principle `discount_pos`).
+@isnad1 id=lt.0h2v.s4.e212e00cf11c from=translated src=- shape=d51b80ee vocab=79ce1688
+-/
 lemma survivalFromForce_pos (μ : ℝ → ℝ) (t : ℝ) :
     0 < survivalFromForce μ t := discount_pos _
 
@@ -73,7 +77,9 @@ recovery direction `μ(t) = −d/dt log S(t)` that the classical definition
 `μ(t) = −S'(t)/S(t)` encodes. For continuous `μ`, the cumulative force
 `H(t) = ∫₀^t μ` has derivative `μ(t)` by the FTC, and the
 `ExponentialDiscount` principle `rate_eq_neg_log_deriv` then gives the
-log-derivative form against `S = survivalFromForce μ`. -/
+log-derivative form against `S = survivalFromForce μ`.
+@isnad1 id=hasderiv.1h2v.s5.07d1dbf29d35 from=translated src=- shape=f28ec990 vocab=ac179db6
+-/
 theorem force_eq_neg_log_deriv_survival {μ : ℝ → ℝ} (t : ℝ)
     (hμ : Continuous μ) :
     HasDerivAt (fun s ↦ -(Real.log (survivalFromForce μ s))) (μ t) t := by
@@ -86,7 +92,9 @@ theorem force_eq_neg_log_deriv_survival {μ : ℝ → ℝ} (t : ℝ)
     rate_eq_neg_log_deriv hH
 
 /-- **Gompertz cumulative force** in closed form:
-`∫₀^t B · e^{c u} du = (B/c) · (e^{c t} − 1)` for `c ≠ 0`. -/
+`∫₀^t B · e^{c u} du = (B/c) · (e^{c t} − 1)` for `c ≠ 0`.
+@isnad1 id=eq.1h3v.s6.acae0d7e67de from=translated src=- shape=ce9df61b vocab=d843df6c
+-/
 theorem gompertz_cumulative_force (B c t : ℝ) (hc : c ≠ 0) :
     ∫ u in (0:ℝ)..t, B * Real.exp (c * u) =
       (B / c) * (Real.exp (c * t) - 1) := by
@@ -114,7 +122,9 @@ Poisson aggregate `S = ∑_{i=1}^N X_i` has MGF `exp(λ · (M_X(t) − 1))`.
 The algebraic core is `e^{−λ} · e^{λ M} = e^{λ(M − 1)}`. The Lundberg
 adjustment coefficient solves `λ · (M(R) − 1) − c · R = 0`. -/
 
-/-- **Compound Poisson MGF algebraic core**: `e^{−λ} · e^{λ M} = e^{λ(M − 1)}`. -/
+/-- **Compound Poisson MGF algebraic core**: `e^{−λ} · e^{λ M} = e^{λ(M − 1)}`.
+@isnad1 id=eq.0h2v.s5.48d07343ed53 from=translated src=- shape=56181992 vocab=db2263f0
+-/
 theorem compoundPoisson_mgf_identity (lam M : ℝ) :
     Real.exp (-lam) * Real.exp (lam * M) = Real.exp (lam * (M - 1)) := by
   rw [← Real.exp_add]
@@ -125,7 +135,9 @@ def IsLundbergAdjustmentCoefficient (lam c R : ℝ) (M : ℝ → ℝ) : Prop :=
   lam * (M R - 1) - c * R = 0
 
 /-- **Trivial root at zero**: `R = 0` always satisfies the adjustment equation
-when `M 0 = 1` (which holds for any MGF). -/
+when `M 0 = 1` (which holds for any MGF).
+@isnad1 id=islundbe.1h3v.s5.f28c7e270ceb from=translated src=- shape=86ee066d vocab=ba632f49
+-/
 theorem lundberg_zero_at_zero (lam c : ℝ) (M : ℝ → ℝ) (hM0 : M 0 = 1) :
     IsLundbergAdjustmentCoefficient lam c 0 M := by
   unfold IsLundbergAdjustmentCoefficient

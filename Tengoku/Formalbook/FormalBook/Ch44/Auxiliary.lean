@@ -21,7 +21,9 @@ open Finset Matrix
 /-! ### Dedekind's lemma (1858): √m rational ⟹ √m integer -/
 
 /-- **Dedekind's lemma (1858), infinite descent proof (the book's proof).**
-If `p² = m * q²` with `q > 0`, then `q ∣ p` (and hence `m` is a perfect square). -/
+If `p² = m * q²` with `q > 0`, then `q ∣ p` (and hence `m` is a perfect square).
+@isnad1 id=dvd.2h3v.s6.2ad287292d4e from=translated src=- shape=585991b3 vocab=75fce841
+-/
 lemma Nat.sqrt_rational_is_integer (m p q : ℕ) (hq : 0 < q)
     (hsq : p ^ 2 = m * q ^ 2) : q ∣ p := by
   suffices h : ∀ q : ℕ, 0 < q → ∀ p : ℕ, p ^ 2 = m * q ^ 2 → q ∣ p from h q hq p hsq
@@ -65,7 +67,9 @@ lemma Nat.sqrt_rational_is_integer (m p q : ℕ) (hq : 0 < q)
         nlinarith [Nat.sqrt_le_sqrt (le_of_eq hpsq), sq_nonneg (p - k * q), sq_nonneg (k * q - p)]
       exact hdvd ⟨k, by linarith⟩
 
-/-- **Dedekind's lemma (1858), alternative proof (coprime version).** -/
+/-- **Dedekind's lemma (1858), alternative proof (coprime version).**
+@isnad1 id=eq.3h3v.s6.8b39c5db1e62 from=translated src=- shape=e0ec3d75 vocab=feaca243
+-/
 lemma Nat.sqrt_rational_is_integer_coprime (m p q : ℕ) (hq : 0 < q)
     (hcop : Nat.Coprime p q) (hsq : p ^ 2 = m * q ^ 2) : q = 1 := by
   have h1 : q ^ 2 ∣ p ^ 2 := ⟨m, by linarith⟩
@@ -76,6 +80,9 @@ lemma Nat.sqrt_rational_is_integer_coprime (m p q : ℕ) (hq : 0 < q)
 
 /-! ### Number-theoretic endgame -/
 
+/--
+@isnad1 id=false.3h2v.s6.61afa8a20223 from=translated src=- shape=6f750177 vocab=2da69026
+-/
 lemma false_of_sq_mul_pred_eq_sq (d k : ℕ) (hd : 3 ≤ d) (hk : 0 < k)
     (heq : k ^ 2 * (d - 1) = d ^ 2) : False := by
   obtain ⟨a, b, g, hg, had, hbk, hcop⟩ :
@@ -112,6 +119,9 @@ lemma false_of_sq_mul_pred_eq_sq (d k : ℕ) (hd : 3 ≤ d) (hk : 0 < k)
 
 /-! ### Auxiliary lemmas for eigenvalue analysis -/
 
+/--
+@isnad1 id=ex.2h4v.s7.31657381ccee from=translated src=- shape=05f56574 vocab=9224f6f4
+-/
 lemma sq_sum_eq_sq_mul {ι : Type*} (S : Finset ι) (f : ι → ℝ) (c : ℕ)
     (hc : 0 < c) (hf : ∀ i ∈ S, f i ^ 2 = (c : ℝ)) :
     ∃ k : ℕ, (∑ i ∈ S, f i) ^ 2 = ↑c * (k : ℝ) ^ 2 := by
@@ -143,6 +153,9 @@ lemma sq_sum_eq_sq_mul {ι : Type*} (S : Finset ι) (f : ι → ℝ) (c : ℕ)
     exact_mod_cast Int.natAbs_sq s]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s11.29871787cf4a from=translated src=- shape=0f1429f7 vocab=ac415099
+-/
 lemma trace_unitary_conj {n : Type*} [Fintype n] [DecidableEq n]
     (U : ↥(unitaryGroup n ℝ)) (M : Matrix n n ℝ) :
     ((Unitary.conjStarAlgAut ℝ (Matrix n n ℝ)) U M).trace = M.trace := by

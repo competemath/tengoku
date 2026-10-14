@@ -46,7 +46,9 @@ namespace PoissonInterarrival
 variable {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : Measure Ω}
 
 /-- **Survival law of the first arrival.** From the increment law alone:
-`P(N_t = 0) = e^{−rate·t}` for `t ≥ 0`. -/
+`P(N_t = 0) = e^{−rate·t}` for `t ≥ 0`.
+@isnad1 id=eq.4h6v.s7.7cf675fd3e1d from=translated src=- shape=292c24d5 vocab=eb49d2d0
+-/
 theorem survival_eq {rate : ℝ≥0} {N : ℝ → Ω → ℕ}
     (hmeas : ∀ t, Measurable (N t)) (hzero : ∀ ω, N 0 ω = 0)
     (hincr : ∀ ⦃s t : ℝ⦄, 0 ≤ s → (hst : s ≤ t) →
@@ -67,7 +69,9 @@ theorem survival_eq {rate : ℝ≥0} {N : ℝ → Ω → ℕ}
 /-- **Memoryless factorisation (the exponential signature).** Survival of
 the first arrival factorises over disjoint windows:
 `P(N_t = 0) = P(N_s = 0) · P(N_t − N_s = 0)` — derived from independent
-increments and monotone paths, not assumed. -/
+increments and monotone paths, not assumed.
+@isnad1 id=eq.5h6v.s8.9a772fce5ee1 from=translated src=- shape=5433e8f4 vocab=f44e4080
+-/
 theorem survival_factorizes {N : ℝ → Ω → ℕ}
     (hzero : ∀ ω, N 0 ω = 0)
     (hmono : ∀ ⦃s t : ℝ⦄, s ≤ t → ∀ ω, N s ω ≤ N t ω)
@@ -95,7 +99,9 @@ theorem survival_factorizes {N : ℝ → Ω → ℕ}
 /-- **Proposition 3.3.6, first interarrival (derived).** If `τ` is the first
 arrival time of the counting process (`τ > t ↔ N_t = 0` for `t ≥ 0`,
 `τ ≥ 0`), then `τ ∼ Exp(rate)`. The CDF is computed from the survival law
-and matched against Mathlib's closed-form exponential CDF. -/
+and matched against Mathlib's closed-form exponential CDF.
+@isnad1 id=eq.7h6v.s7.84126e5452a9 from=translated src=- shape=34cfa8fb vocab=c8aad8fa
+-/
 theorem map_firstArrival_eq_expMeasure [IsProbabilityMeasure μ]
     {rate : ℝ≥0} (hrate : 0 < rate) {N : ℝ → Ω → ℕ}
     (hmeas : ∀ t, Measurable (N t)) (hzero : ∀ ω, N 0 ω = 0)

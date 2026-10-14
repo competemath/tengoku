@@ -25,6 +25,9 @@ namespace MathFin.BlackScholes.AmericanPut.Boundary.Comparison
 
 open scoped ContDiff
 
+/--
+@isnad1 id=eq.2h3v.s8.1323e49c008e from=translated src=- shape=d556b5a0 vocab=e6fcef4c
+-/
 theorem deriv2_mul_at {F G : ℝ → ℝ} {x : ℝ}
     (hF : ContDiffAt ℝ 2 F x) (hG : ContDiffAt ℝ 2 G x) :
     deriv (deriv (fun y => F y * G y)) x =
@@ -36,11 +39,17 @@ theorem deriv2_mul_at {F G : ℝ → ℝ} {x : ℝ}
 
 variable {α k c d : ℝ} {f : ℝ → ℝ}
 
+/--
+@isnad1 id=hasderiv.1h7v.s7.244990360e4a from=translated src=- shape=67a96b62 vocab=b98f4432
+-/
 theorem shiftedProfile_hasDeriv_x (hf : ProfileData (α - c) k f) (x t : ℝ) :
     HasDerivAt (fun y => f (y + c * t - d)) (deriv f (x + c * t - d)) x := by
   simpa only [id_eq, mul_one, Function.comp_def] using
     (hf.hasDeriv _).comp x (((hasDerivAt_id x).add_const (c * t)).sub_const d)
 
+/--
+@isnad1 id=eq.1h7v.s7.062fb2ffeb88 from=translated src=- shape=1855acc9 vocab=07e8488e
+-/
 theorem shiftedProfile_deriv2_x (hf : ProfileData (α - c) k f) (x t : ℝ) :
     deriv (deriv (fun y => f (y + c * t - d))) x = deriv (deriv f) (x + c * t - d) := by
   rw [show deriv (fun y => f (y + c * t - d)) = fun y => deriv f (y + c * t - d) from
@@ -48,6 +57,9 @@ theorem shiftedProfile_deriv2_x (hf : ProfileData (α - c) k f) (x t : ℝ) :
   simpa only [id_eq, mul_one, Function.comp_def] using
     ((hf.hasDeriv_deriv _).comp x (((hasDerivAt_id x).add_const (c * t)).sub_const d)).deriv
 
+/--
+@isnad1 id=hasderiv.1h7v.s7.1e52b5af854d from=translated src=- shape=6dfeaf6e vocab=b98f4432
+-/
 theorem shiftedProfile_hasDeriv_t (hf : ProfileData (α - c) k f) (x t : ℝ) :
     HasDerivAt (fun s => f (x + c * s - d)) (c * deriv f (x + c * t - d)) t := by
   convert! (hf.hasDeriv _).comp t
@@ -60,7 +72,9 @@ noncomputable def gauge (u : ℝ → ℝ → ℝ) (f : ℝ → ℝ) (c d x t : �
   u x t / f (x + c * t - d)
 
 /-- An actual partial-derivative identity for the quotient, with NO zero-order
-term. The numerator need only solve the pricing equation at this point. -/
+term. The numerator need only solve the pricing equation at this point.
+@isnad1 id=eq.4h8v.s9.e110e0c41692 from=translated src=- shape=bc23c4fe vocab=f1a7e00e
+-/
 theorem gauge_equation {u : ℝ → ℝ → ℝ} {x t : ℝ}
     (hf : ProfileData (α - c) k f)
     (hux : ContDiffAt ℝ 2 (fun y => u y t) x)
@@ -106,7 +120,9 @@ theorem gauge_equation {u : ℝ → ℝ → ℝ} {x t : ℝ}
   field_simp [(hf.pos (x + c * t - d)).ne']
   linear_combination heq + gauge u f c d x t * hf.equation (x + c * t - d)
 
-/-- Subtracting a constant preserves a no-zero-order parabolic equation. -/
+/-- Subtracting a constant preserves a no-zero-order parabolic equation.
+@isnad1 id=eq.3h5v.s8.c3f959c9eb0d from=translated src=- shape=bc8ea68e vocab=3f21ddbc
+-/
 theorem constant_shift_equation {v : ℝ → ℝ → ℝ} {β x t ε : ℝ}
     (hvx : ContDiffAt ℝ 2 (fun y => v y t) x)
     (hvt : DifferentiableAt ℝ (v x) t)
@@ -121,6 +137,9 @@ theorem constant_shift_equation {v : ℝ → ℝ → ℝ} {β x t ε : ℝ}
   rw [h₂]
   exact heq
 
+/--
+@isnad1 id=contdiff.2h7v.s7.5afda879e8d8 from=translated src=- shape=0b3cc4b4 vocab=0bf19523
+-/
 theorem price_joint_smooth {h : ℝ} {g : ℝ → ℝ}
     (hf : ProfileData (α - c) k f) (hg : ProfileData (α + 2 - c) h g) :
     ContDiff ℝ ∞ (fun z : ℝ × ℝ => price f g c d z.1 z.2) := by
@@ -129,6 +148,9 @@ theorem price_joint_smooth {h : ℝ} {g : ℝ → ℝ}
   unfold price
   fun_prop
 
+/--
+@isnad1 id=contdiff.5h10v.s7.4325492b7f33 from=translated src=- shape=6493b38d vocab=b2c0d318
+-/
 theorem normalizedDifference_contDiffAt {h : ℝ} {p : ℝ → ℝ → ℝ} {b g : ℝ → ℝ}
     (hp : ContinuousBoundaryPutSolution k h p b)
     (hf : ProfileData (k - h - 1 - c) k f)
@@ -142,7 +164,9 @@ theorem normalizedDifference_contDiffAt {h : ℝ} {p : ℝ → ℝ → ℝ} {b g
     fun_prop
   exact (hps.sub hqs).div hden (hf.pos _).ne'
 
-/-- Continuity includes the initial kink; differentiability there is not needed. -/
+/-- Continuity includes the initial kink; differentiability there is not needed.
+@isnad1 id=continuo.3h8v.s7.df827e14bfb8 from=translated src=- shape=785884dc vocab=29c08087
+-/
 theorem normalizedDifference_continuousOn {h : ℝ} {p : ℝ → ℝ → ℝ} {b g : ℝ → ℝ}
     (hp : ContinuousBoundaryPutSolution k h p b)
     (hf : ProfileData (k - h - 1 - c) k f)
@@ -156,7 +180,9 @@ theorem normalizedDifference_continuousOn {h : ℝ} {p : ℝ → ℝ → ℝ} {b
 
 /-- The epsilon-shift is strictly negative in a relative neighborhood of the
 expiry corner. This supplies the corner-sign part of zero-count initialization,
-not the still-open positive-time count itself. -/
+not the still-open positive-time count itself.
+@isnad1 id=eventual.6h9v.s7.d2ac4bd2880b from=translated src=- shape=67eb58eb vocab=db1ff833
+-/
 theorem normalizedDifference_negative_near_corner {h ε : ℝ}
     {p : ℝ → ℝ → ℝ} {b g : ℝ → ℝ}
     (hp : ContinuousBoundaryPutSolution k h p b)
@@ -180,7 +206,9 @@ theorem normalizedDifference_negative_near_corner {h ε : ℝ}
 
 /-- Equation (12) for the ACTUAL pricing-solution difference, at each interior
 point of the continuation region. No extra PDE premise or global regularity
-of the payoff-extended price is needed. -/
+of the payoff-extended price is needed.
+@isnad1 id=eq.5h10v.s8.2f0a6d561529 from=translated src=- shape=8c6132d9 vocab=b8909141
+-/
 theorem normalizedDifference_equation {h : ℝ} {p : ℝ → ℝ → ℝ} {b g : ℝ → ℝ}
     (hp : ContinuousBoundaryPutSolution k h p b)
     (hf : ProfileData (k - h - 1 - c) k f)
@@ -217,6 +245,9 @@ theorem normalizedDifference_equation {h : ℝ} {p : ℝ → ℝ → ℝ} {b g :
   have hqeq := price_equation (d := d) rfl hf hg x t
   linarith
 
+/--
+@isnad1 id=eq.5h11v.s8.e708cf8b5296 from=translated src=- shape=e840b066 vocab=b8909141
+-/
 theorem normalizedDifference_shifted_equation {h ε : ℝ}
     {p : ℝ → ℝ → ℝ} {b g : ℝ → ℝ}
     (hp : ContinuousBoundaryPutSolution k h p b)
@@ -236,7 +267,9 @@ theorem normalizedDifference_shifted_equation {h ε : ℝ}
       (by norm_num))
   exact normalizedDifference_equation hp hf hg ht hx
 
-/-- The strictly negative moving-boundary data needed after subtracting epsilon. -/
+/-- The strictly negative moving-boundary data needed after subtracting epsilon.
+@isnad1 id=lt.7h10v.s7.e380b9375c28 from=translated src=- shape=774b9297 vocab=fb147e4b
+-/
 theorem normalizedDifference_boundary_neg {h : ℝ} {p : ℝ → ℝ → ℝ} {b g : ℝ → ℝ}
     (hp : ContinuousBoundaryPutSolution k h p b)
     (hf : ProfileData (k - h - 1 - c) k f)

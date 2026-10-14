@@ -36,7 +36,9 @@ namespace MathFin
 open MeasureTheory ProbabilityTheory Real
 open scoped NNReal ENNReal Topology
 
-/-- **Vega is strictly positive** for `S > 0, T > 0` and any `σ > 0`. -/
+/-- **Vega is strictly positive** for `S > 0, T > 0` and any `σ > 0`.
+@isnad1 id=lt.4h5v.s6.c0641c9d05f2 from=translated src=- shape=19bd89c7 vocab=3e8c195a
+-/
 lemma bsV_vega_pos {K r : ℝ} (_hK : 0 < K)
     {S σ T : ℝ} (hS : 0 < S) (_hσ : 0 < σ) (hT : 0 < T) :
     0 < S * gaussianPDFReal 0 1 (bsd1 S K r σ T) * Real.sqrt T := by
@@ -47,7 +49,9 @@ lemma bsV_vega_pos {K r : ℝ} (_hK : 0 < K)
 /-- **The BS call price is strictly monotone in `σ`** on `(0, ∞)`.
 
 A direct consequence of positive vega (`hasDerivAt_bsV_sigma` + `bsV_vega_pos`)
-and the mean-value theorem (`strictMonoOn_of_deriv_pos`). -/
+and the mean-value theorem (`strictMonoOn_of_deriv_pos`).
+@isnad1 id=strictmo.3h4v.s5.7e4a386b207c from=translated src=- shape=05bba2b1 vocab=0582830c
+-/
 theorem bsV_strictMonoOn_sigma {K r T : ℝ} (hK : 0 < K) (hT : 0 < T)
     {S : ℝ} (hS : 0 < S) :
     StrictMonoOn (fun σ ↦ bsV K r σ S T) (Set.Ioi 0) := by
@@ -65,7 +69,9 @@ theorem bsV_strictMonoOn_sigma {K r T : ℝ} (hK : 0 < K) (hT : 0 < T)
 
 /-- **Uniqueness of implied volatility.** If two volatilities `σ₁, σ₂ ∈ (0, ∞)`
 give the same BS call price, then `σ₁ = σ₂`. Direct consequence of strict
-monotonicity. -/
+monotonicity.
+@isnad1 id=eq.6h6v.s6.0a0ceaed0649 from=translated src=- shape=4e664103 vocab=2903ee5f
+-/
 theorem implied_volatility_unique {K r T : ℝ} (hK : 0 < K) (hT : 0 < T)
     {S : ℝ} (hS : 0 < S) {σ₁ σ₂ : ℝ} (hσ₁ : 0 < σ₁) (hσ₂ : 0 < σ₂)
     (h_eq : bsV K r σ₁ S T = bsV K r σ₂ S T) :
@@ -85,13 +91,17 @@ identities. -/
 /-- **Newton-Raphson iteration step**: `σ_{n+1} = σ_n − f(σ_n) / f'(σ_n)`. -/
 noncomputable def newtonStep (f f' : ℝ → ℝ) (σ : ℝ) : ℝ := σ - f σ / f' σ
 
-/-- **A root is a fixed point of the Newton iteration**. -/
+/-- **A root is a fixed point of the Newton iteration**.
+@isnad1 id=eq.1h3v.s4.211ba440e814 from=translated src=- shape=97852658 vocab=49bcb0f2
+-/
 theorem newtonStep_fixed_at_root (f f' : ℝ → ℝ) {σ : ℝ} (h_root : f σ = 0) :
     newtonStep f f' σ = σ := by
   unfold newtonStep
   rw [h_root, zero_div, sub_zero]
 
-/-- **Error decomposition for one Newton step** when `σ_*` is a root of `f`. -/
+/-- **Error decomposition for one Newton step** when `σ_*` is a root of `f`.
+@isnad1 id=eq.1h4v.s6.f00a5b126078 from=translated src=- shape=cddd21e8 vocab=faea6eec
+-/
 theorem newtonStep_error_via_root
     (f f' : ℝ → ℝ) {σ_star σ : ℝ} (_h_root : f σ_star = 0) :
     newtonStep f f' σ - σ_star = (σ - σ_star) - f σ / f' σ := by

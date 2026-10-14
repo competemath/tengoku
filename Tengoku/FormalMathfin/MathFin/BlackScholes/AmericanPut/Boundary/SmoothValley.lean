@@ -40,10 +40,16 @@ minimum of `x` and `z` against a smoothed positive part of `y`. -/
 noncomputable def smoothValley (δ x y z : ℝ) : ℝ :=
   smoothMinimum δ x z - smoothPositive δ y
 
+/--
+@isnad1 id=continuo.0h1v.s4.6ee5ae324283 from=translated src=- shape=f736e2c1 vocab=d0e9165e
+-/
 theorem smoothPositive_continuous (δ : ℝ) : Continuous (smoothPositive δ) := by
   unfold smoothPositive
   fun_prop
 
+/--
+@isnad1 id=hasderiv.1h2v.s5.2fececb9db8d from=translated src=- shape=7475a177 vocab=b39d74e7
+-/
 theorem smoothPositive_hasDeriv {δ : ℝ} (hδ : 0 < δ) (x : ℝ) :
     HasDerivAt (smoothPositive δ) (smoothPositiveSlope δ x) x := by
   have hrad : 0 < x^2+δ^2 := by positivity
@@ -54,6 +60,9 @@ theorem smoothPositive_hasDeriv {δ : ℝ} (hδ : 0 < δ) (x : ℝ) :
   field_simp
   ring
 
+/--
+@isnad1 id=and.1h2v.s5.662d040c109a from=translated src=- shape=1a0f9657 vocab=3b066e4c
+-/
 theorem smoothPositiveSlope_bounds {δ : ℝ} (hδ : 0 < δ) (x : ℝ) :
     0 < smoothPositiveSlope δ x ∧ smoothPositiveSlope δ x < 1 := by
   have hrad : 0 < x^2+δ^2 := by positivity
@@ -66,6 +75,9 @@ theorem smoothPositiveSlope_bounds {δ : ℝ} (hδ : 0 < δ) (x : ℝ) :
   unfold smoothPositiveSlope
   constructor <;> linarith
 
+/--
+@isnad1 id=and.1h2v.s6.676af4486d01 from=translated src=- shape=cba091d0 vocab=9a34e4c9
+-/
 theorem smoothPositive_bounds {δ : ℝ} (hδ : 0 ≤ δ) (x : ℝ) :
     max x 0 ≤ smoothPositive δ x ∧ smoothPositive δ x ≤ max x 0+δ/2 := by
   have hs : 0 ≤ Real.sqrt (x^2+δ^2) := Real.sqrt_nonneg _
@@ -80,6 +92,9 @@ theorem smoothPositive_bounds {δ : ℝ} (hδ : 0 ≤ δ) (x : ℝ) :
   · rw [max_eq_right hx,abs_of_nonpos hx] at *
     constructor <;> linarith
 
+/--
+@isnad1 id=and.1h3v.s6.58addeb5748c from=translated src=- shape=92eb4c45 vocab=bc8f140a
+-/
 theorem smoothMinimum_bounds {δ : ℝ} (hδ : 0 ≤ δ) (x z : ℝ) :
     min x z-δ/2 ≤ smoothMinimum δ x z ∧ smoothMinimum δ x z ≤ min x z := by
   have hb := smoothPositive_bounds hδ (x-z)
@@ -90,24 +105,36 @@ theorem smoothMinimum_bounds {δ : ℝ} (hδ : 0 ≤ δ) (x z : ℝ) :
   · rw [min_eq_right hzx,max_eq_left (sub_nonneg.mpr hzx)] at *
     constructor <;> linarith
 
+/--
+@isnad1 id=strictmo.1h1v.s4.3a13922bfce1 from=translated src=- shape=e217721d vocab=ce9c67ac
+-/
 theorem smoothPositive_strictMono {δ : ℝ} (hδ : 0 < δ) : StrictMono (smoothPositive δ) := by
   apply strictMono_of_deriv_pos
   intro x
   rw [(smoothPositive_hasDeriv hδ x).deriv]
   exact (smoothPositiveSlope_bounds hδ x).1
 
+/--
+@isnad1 id=hasderiv.1h3v.s6.b56100f49dd2 from=translated src=- shape=e59b4c5f vocab=9bbc9790
+-/
 theorem smoothMinimum_hasDeriv_left {δ : ℝ} (hδ : 0 < δ) (x z : ℝ) :
     HasDerivAt (fun y => smoothMinimum δ y z) (1-smoothPositiveSlope δ (x-z)) x := by
   convert! (hasDerivAt_id x).sub
     ((smoothPositive_hasDeriv hδ (x-z)).comp x ((hasDerivAt_id x).sub_const z)) using 1
   simp
 
+/--
+@isnad1 id=hasderiv.1h3v.s5.0e4a642fb0a0 from=translated src=- shape=b4d4e08f vocab=9bbc9790
+-/
 theorem smoothMinimum_hasDeriv_right {δ : ℝ} (hδ : 0 < δ) (x z : ℝ) :
     HasDerivAt (smoothMinimum δ x) (smoothPositiveSlope δ (x-z)) z := by
   convert! (hasDerivAt_const z x).sub
     ((smoothPositive_hasDeriv hδ (x-z)).comp z ((hasDerivAt_id z).const_sub x)) using 1
   simp
 
+/--
+@isnad1 id=strictmo.1h2v.s4.2224ec2222fc from=translated src=- shape=965e9bc5 vocab=ee9d8498
+-/
 theorem smoothMinimum_strictMono_left {δ : ℝ} (hδ : 0 < δ) (z : ℝ) :
     StrictMono (fun x => smoothMinimum δ x z) := by
   apply strictMono_of_deriv_pos
@@ -115,6 +142,9 @@ theorem smoothMinimum_strictMono_left {δ : ℝ} (hδ : 0 < δ) (z : ℝ) :
   rw [(smoothMinimum_hasDeriv_left hδ x z).deriv]
   linarith [(smoothPositiveSlope_bounds hδ (x-z)).2]
 
+/--
+@isnad1 id=strictmo.1h2v.s4.efa48a2ba9a9 from=translated src=- shape=8f3f48ce vocab=ee9d8498
+-/
 theorem smoothMinimum_strictMono_right {δ : ℝ} (hδ : 0 < δ) (x : ℝ) :
     StrictMono (smoothMinimum δ x) := by
   apply strictMono_of_deriv_pos
@@ -122,6 +152,9 @@ theorem smoothMinimum_strictMono_right {δ : ℝ} (hδ : 0 < δ) (x : ℝ) :
   rw [(smoothMinimum_hasDeriv_right hδ x z).deriv]
   exact (smoothPositiveSlope_bounds hδ (x-z)).1
 
+/--
+@isnad1 id=and.1h4v.s6.fdf0aa481a37 from=translated src=- shape=cdd31555 vocab=20559a96
+-/
 theorem smoothValley_bounds {δ : ℝ} (hδ : 0 ≤ δ) (x y z : ℝ) :
     min x z-max y 0-δ ≤ smoothValley δ x y z ∧
       smoothValley δ x y z ≤ min x z-max y 0 := by
@@ -130,6 +163,9 @@ theorem smoothValley_bounds {δ : ℝ} (hδ : 0 ≤ δ) (x y z : ℝ) :
   unfold smoothValley
   constructor <;> linarith
 
+/--
+@isnad1 id=hasderiv.4h8v.s8.9bd3e20bcc83 from=translated src=- shape=5254595b vocab=735b5050
+-/
 theorem smoothValley_hasDeriv {δ t f' g' j' : ℝ} {f g j : ℝ → ℝ}
     (hδ : 0 < δ) (hf : HasDerivAt f f' t) (hg : HasDerivAt g g' t) (hj : HasDerivAt j j' t) :
     HasDerivAt (fun s => smoothValley δ (f s) (g s) (j s))

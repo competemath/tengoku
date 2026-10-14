@@ -41,27 +41,42 @@ noncomputable def finiteBellman (P : Measure Ω) (𝓕 : Filtration ℕ ‹Measu
 variable {P : Measure Ω}
   {𝓕 : Filtration ℕ ‹MeasurableSpace Ω›} {Z : ℕ → Ω → ℝ}
 
+/--
+@isnad1 id=measurab.1h6v.s5.c59e351fd598 from=translated src=- shape=1daf0c2c vocab=1b917bb5
+-/
 theorem bellmanAux_measurable (hZ : Adapted 𝓕 Z) (n i : ℕ) :
     Measurable[𝓕 i] (bellmanAux P 𝓕 Z n i) := by
   cases n with
   | zero => exact hZ i
   | succ n => exact (hZ i).max stronglyMeasurable_condExp.measurable
 
+/--
+@isnad1 id=integrab.1h6v.s6.57720503bbaa from=translated src=- shape=0bf51eb5 vocab=5d2c61a6
+-/
 theorem bellmanAux_integrable (hZ : ∀ i, Integrable (Z i) P) (n i : ℕ) :
     Integrable (bellmanAux P 𝓕 Z n i) P := by
   cases n with
   | zero => exact hZ i
   | succ n => exact (hZ i).sup integrable_condExp
 
+/--
+@isnad1 id=le.0h7v.s5.5537b1eae908 from=translated src=- shape=8bd76c2e vocab=48c43103
+-/
 theorem bellmanAux_dominates (n i : ℕ) (ω : Ω) : Z i ω ≤ bellmanAux P 𝓕 Z n i ω := by
   cases n with
   | zero => exact le_rfl
   | succ n => exact le_max_left _ _
 
+/--
+@isnad1 id=eq.1h6v.s5.f54b975ef4bd from=translated src=- shape=696dee5c vocab=91ed7d9d
+-/
 theorem finiteBellman_after_horizon {N i : ℕ} (hNi : N ≤ i) :
     finiteBellman P 𝓕 Z N i = Z N := by
   simp only [finiteBellman,Nat.sub_eq_zero_of_le hNi,min_eq_right hNi,bellmanAux]
 
+/--
+@isnad1 id=eq.1h6v.s6.3e8ca111324b from=translated src=- shape=51424e1e vocab=5a8b3954
+-/
 theorem finiteBellman_recursion {N i : ℕ} (hi : i < N) :
     finiteBellman P 𝓕 Z N i =
       fun ω => max (Z i ω) (P[finiteBellman P 𝓕 Z N (i+1) | 𝓕 i] ω) := by
@@ -69,19 +84,31 @@ theorem finiteBellman_recursion {N i : ℕ} (hi : i < N) :
   rw [finiteBellman,min_eq_left hi.le,hn,bellmanAux]
   simp only [finiteBellman,min_eq_left (show i+1 ≤ N by omega)]
 
+/--
+@isnad1 id=strongly.1h5v.s5.e2eb30255e11 from=translated src=- shape=714b8d87 vocab=66c46d8f
+-/
 theorem finiteBellman_stronglyAdapted (hZ : Adapted 𝓕 Z) (N : ℕ) :
     StronglyAdapted 𝓕 (finiteBellman P 𝓕 Z N) := by
   intro i
   exact ((bellmanAux_measurable hZ (N-i) (min i N)).mono (𝓕.mono (min_le_left _ _)) le_rfl).stronglyMeasurable
 
+/--
+@isnad1 id=integrab.1h6v.s6.fced6aea19ff from=translated src=- shape=0bf51eb5 vocab=7552d503
+-/
 theorem finiteBellman_integrable (hZ : ∀ i, Integrable (Z i) P) (N i : ℕ) :
     Integrable (finiteBellman P 𝓕 Z N i) P := bellmanAux_integrable hZ _ _
 
+/--
+@isnad1 id=le.0h7v.s5.8f0c04a3d724 from=translated src=- shape=16362307 vocab=24dc2733
+-/
 theorem finiteBellman_dominates (N i : ℕ) (ω : Ω) :
     Z (min i N) ω ≤ finiteBellman P 𝓕 Z N i ω := bellmanAux_dominates _ _ ω
 
 variable [IsProbabilityMeasure P]
 
+/--
+@isnad1 id=supermar.2h5v.s6.84c3b80d10dc from=translated src=- shape=e5e6bff1 vocab=c7a9727d
+-/
 theorem finiteBellman_supermartingale (ha : Adapted 𝓕 Z) (hi : ∀ i, Integrable (Z i) P) (N : ℕ) :
     Supermartingale (finiteBellman P 𝓕 Z N) 𝓕 P := by
   apply supermartingale_nat (finiteBellman_stronglyAdapted ha N) (finiteBellman_integrable hi N)
@@ -96,7 +123,9 @@ theorem finiteBellman_supermartingale (ha : Adapted 𝓕 Z) (hi : ∀ i, Integra
         (((ha N).mono (𝓕.mono hNi) le_rfl).stronglyMeasurable) (hi N)]
 
 omit [IsProbabilityMeasure P] in
-/-- Minimality among integrable supermartingales dominating the reward. -/
+/-- Minimality among integrable supermartingales dominating the reward.
+@isnad1 id=eventual.3h7v.s7.395280c14b22 from=translated src=- shape=11d1fdd5 vocab=f88199a6
+-/
 theorem bellmanAux_le_supermartingale {U : ℕ → Ω → ℝ}
     (hU : Supermartingale U 𝓕 P) (hi : ∀ i, Integrable (Z i) P)
     (hdom : ∀ i, Z i ≤ᵐ[P] U i) (n i : ℕ) : bellmanAux P 𝓕 Z n i ≤ᵐ[P] U i := by
@@ -108,6 +137,9 @@ theorem bellmanAux_le_supermartingale {U : ℕ → Ω → ℝ}
     exact max_le hz (hc.trans hu)
 
 omit [IsProbabilityMeasure P] in
+/--
+@isnad1 id=eventual.4h7v.s7.185895099d78 from=translated src=- shape=ff9cdead vocab=947a58c1
+-/
 theorem finiteBellman_le_supermartingale {U : ℕ → Ω → ℝ}
     (hU : Supermartingale U 𝓕 P) (hi : ∀ i, Integrable (Z i) P)
     (hdom : ∀ i, Z i ≤ᵐ[P] U i) {N i : ℕ} (hiN : i ≤ N) :

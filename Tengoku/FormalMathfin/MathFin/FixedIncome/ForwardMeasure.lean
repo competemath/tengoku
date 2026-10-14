@@ -67,7 +67,9 @@ noncomputable def forwardMeasure (Q : Measure Ω) (r T : ℝ) : Measure Ω :=
 
 /-- **The T-forward measure is a probability measure.** The normalisation
 `𝔼^Q[N_T/B_T] = N_0/B_0` reads `𝔼^Q[e^{−rT}] = e^{−rT}`, which holds because the
-integrand is the constant `e^{−rT}` and `Q` is a probability measure. -/
+integrand is the constant `e^{−rT}` and `Q` is a probability measure.
+@isnad1 id=isprobab.0h4v.s4.02d2d9dad234 from=translated src=- shape=dbaf45a1 vocab=9b06f988
+-/
 theorem forwardMeasure_isProbabilityMeasure {Q : Measure Ω} [IsProbabilityMeasure Q] (r T : ℝ) :
     IsProbabilityMeasure (forwardMeasure Q r T) := by
   refine numeraireMeasure_isProbabilityMeasure (fun _ ↦ one_pos) (fun _ ↦ Real.exp_pos _)
@@ -79,7 +81,9 @@ theorem forwardMeasure_isProbabilityMeasure {Q : Measure Ω} [IsProbabilityMeasu
 
 /-- **The bond-numéraire change of measure**: `e^{−rT}·𝔼^{Q^T}[X] = 𝔼^Q[e^{−rT}·X]`.
 Directly the change-of-numéraire theorem with the bond slots `N_T = 1`,
-`N_0 = e^{−rT}`, `B_T = e^{rT}`, `B_0 = 1` (no integrability hypothesis needed). -/
+`N_0 = e^{−rT}`, `B_T = e^{rT}`, `B_0 = 1` (no integrability hypothesis needed).
+@isnad1 id=eq.0h5v.s6.c90c80c476c0 from=translated src=- shape=a14bd0b3 vocab=5d118031
+-/
 theorem forwardMeasure_price {Q : Measure Ω} (X : Ω → ℝ) (r T : ℝ) :
     Real.exp (-(r * T)) * ∫ ω, X ω ∂(forwardMeasure Q r T)
       = ∫ ω, Real.exp (-(r * T)) * X ω ∂Q := by
@@ -95,7 +99,9 @@ theorem forwardMeasure_price {Q : Measure Ω} (X : Ω → ℝ) (r T : ℝ) :
 
 /-- **The forward price is the `Q^T`-expectation of the spot**: given the EMM
 property `𝔼^Q[e^{−rT}·S_T] = S_0`, one has `𝔼^{Q^T}[S_T] = S_0·e^{rT} = S_0/P(0,T)`
-— the no-arbitrage forward price. -/
+— the no-arbitrage forward price.
+@isnad1 id=eq.1h6v.s6.4d393277054e from=translated src=- shape=f76d66d0 vocab=5d118031
+-/
 theorem forwardMeasure_expected_spot {Q : Measure Ω} (S_0 r T : ℝ) (X : Ω → ℝ)
     (hEMM : ∫ ω, Real.exp (-(r * T)) * X ω ∂Q = S_0) :
     ∫ ω, X ω ∂(forwardMeasure Q r T) = S_0 * Real.exp (r * T) := by
@@ -109,7 +115,9 @@ theorem forwardMeasure_expected_spot {Q : Measure Ω} (S_0 r T : ℝ) (X : Ω �
 /-- **The Black–Scholes forward price under the T-forward measure**: for the
 `BSCallHyp` lognormal terminal, `𝔼^{Q^T}[S_T] = S_0·e^{rT}`. Combines the
 `Q^T`-expectation identity with the discounted-terminal EMM property
-`discounted_terminal_eq_S0`. -/
+`discounted_terminal_eq_S0`.
+@isnad1 id=eq.1h8v.s6.5eb701b8351c from=translated src=- shape=63dcc845 vocab=5d36cbed
+-/
 theorem forwardMeasure_bs_expected_terminal {Q : Measure Ω} [IsProbabilityMeasure Q]
     {S_0 K r σ T : ℝ} {Z : Ω → ℝ} (h : BSCallHyp Q S_0 K r σ T Z) :
     ∫ ω, bsTerminal S_0 r σ T (Z ω) ∂(forwardMeasure Q r T) = S_0 * Real.exp (r * T) :=

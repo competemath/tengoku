@@ -25,6 +25,9 @@ namespace MathFin.BlackScholes.AmericanPut.Boundary
 open Set Filter
 open scoped Topology
 
+/--
+@isnad1 id=ex.4h3v.s6.68e93f3e4fec from=translated src=- shape=97ab511f vocab=02727f0c
+-/
 theorem exists_first_nonnegative_contact {f : ℝ → ℝ} {a m : ℝ} (ham : a ≤ m)
     (hf : ContinuousOn f (Icc a m)) (ha : f a < 0) (hm : 0 ≤ f m) :
     ∃ T, a < T ∧ T ≤ m ∧ f T = 0 ∧ ∀ t ∈ Ico a T, f t < 0 := by

@@ -30,6 +30,9 @@ open scoped Topology ContDiff
 noncomputable def delayedPrice (p : ℝ → ℝ → ℝ) (a x t : ℝ) : ℝ :=
   p x (max (t-a) 0)
 
+/--
+@isnad1 id=eventual.1h4v.s6.10a33e3be2e9 from=translated src=- shape=2b3cb376 vocab=a437239a
+-/
 theorem delayedPrice_eventuallyEq {p : ℝ → ℝ → ℝ} {a x t : ℝ} (ht : a < t) :
     (fun z : ℝ × ℝ => delayedPrice p a z.1 z.2) =ᶠ[𝓝 (x,t)]
       (fun z => p z.1 (z.2-a)) := by
@@ -42,16 +45,25 @@ namespace DividendPutSolution
 
 variable {k h : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
 
+/--
+@isnad1 id=continuo.1h5v.s5.ba824ead3a8c from=translated src=- shape=e7fad0a2 vocab=b8e728af
+-/
 theorem delayedPrice_continuous (hp : DividendPutSolution k h p b) (a : ℝ) :
     Continuous (fun z : ℝ × ℝ => delayedPrice p a z.1 z.2) := by
   exact hp.price_continuous.comp_continuous
     (show Continuous (fun z : ℝ × ℝ => (z.1,max (z.2-a) 0)) by fun_prop)
     (fun z => le_max_right (z.2-a) 0)
 
+/--
+@isnad1 id=eq.2h6v.s5.ea916e37a2b6 from=translated src=- shape=8d1a5941 vocab=cc775a23
+-/
 theorem delayedPrice_initial (hp : DividendPutSolution k h p b) {a : ℝ} (ha : 0 ≤ a) (x : ℝ) :
     delayedPrice p a x 0 = putPayoff x := by
   simp only [delayedPrice,zero_sub,max_eq_right (neg_nonpos.mpr ha),hp.initial]
 
+/--
+@isnad1 id=and.2h7v.s5.970d37ab736c from=translated src=- shape=d75cb403 vocab=fb47994a
+-/
 theorem delayedPrice_above_payoff (hp : DividendPutSolution k h p b) {a x t : ℝ}
     (hgt : putPayoff x < delayedPrice p a x t) : a < t ∧ b (t-a) < x := by
   have ht : a < t := by
@@ -67,6 +79,9 @@ theorem delayedPrice_above_payoff (hp : DividendPutSolution k h p b) {a x t : �
   rw [he] at hgt
   exact (not_lt_of_ge (le_max_left (1-Real.exp x) 0)) hgt
 
+/--
+@isnad1 id=contdiff.3h7v.s7.ef6a4c2ffd89 from=translated src=- shape=f528f4f4 vocab=b0ebb303
+-/
 theorem delayedPrice_contDiffAt (hp : DividendPutSolution k h p b) {a x t : ℝ}
     (ht : a < t) (hx : b (t-a) < x) :
     ContDiffAt ℝ 2 (fun z : ℝ × ℝ => delayedPrice p a z.1 z.2) (x,t) := by
@@ -77,6 +92,9 @@ theorem delayedPrice_contDiffAt (hp : DividendPutSolution k h p b) {a x t : ℝ}
       (show ContDiffAt ℝ 2 (fun z : ℝ × ℝ => (z.1,z.2-a)) (x,t) by fun_prop)
   exact hc.congr_of_eventuallyEq (delayedPrice_eventuallyEq ht)
 
+/--
+@isnad1 id=eq.3h7v.s6.8493526b97ef from=translated src=- shape=f8bbb9b7 vocab=a273c518
+-/
 theorem delayedPrice_equation (hp : DividendPutSolution k h p b) {a x t : ℝ}
     (ht : a < t) (hx : b (t-a) < x) :
     deriv (delayedPrice p a x) t = dividendSpatialOperator k h (fun y => delayedPrice p a y t) x := by

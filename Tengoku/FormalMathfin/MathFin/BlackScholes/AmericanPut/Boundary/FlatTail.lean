@@ -27,6 +27,9 @@ open scoped Topology ContDiff
 
 variable {k h : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
 
+/--
+@isnad1 id=monotone.1h4v.s5.45560cdd57ca from=translated src=- shape=504a0438 vocab=5ba68d62
+-/
 theorem boundary_deriv_monoOn (hp : DividendPutSolution k h p b) :
     MonotoneOn (deriv b) (Ioi 0) := by
   have hd (t : ℝ) (ht : 0 < t) : DifferentiableAt ℝ (deriv b) t := by
@@ -40,6 +43,9 @@ theorem boundary_deriv_monoOn (hp : DividendPutSolution k h p b) :
   · intro t ht
     exact Comparison.dividend_log_curvature hp t (interior_subset ht)
 
+/--
+@isnad1 id=eq.4h6v.s6.b7d74af5d754 from=translated src=- shape=dd88905f vocab=d275a023
+-/
 theorem boundary_flat_tail_of_zero_speed (hp : DividendPutSolution k h p b)
     {T : ℝ} (hT : 0 < T) (hz : deriv b T = 0) :
     ∀ t, T ≤ t → b t = b T := by

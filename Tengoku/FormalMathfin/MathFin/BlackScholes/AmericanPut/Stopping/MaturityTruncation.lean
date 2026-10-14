@@ -30,6 +30,9 @@ def BoundedRule.truncate {T : ℝ≥0} (θ : BoundedRule 𝓕 T) (U : ℝ≥0) :
     convert! θ.stopping.min (isStoppingTime_const 𝓕 U) using 1
   le_horizon := fun _ => min_le_right _ _
 
+/--
+@isnad1 id=tendsto.3h4v.s6.488d6fdb1235 from=translated src=- shape=b40e2d83 vocab=bcee8cdf
+-/
 theorem continuous_reward_truncation {f : ℝ≥0 → ℝ} (hf : Continuous f)
     {T : ℝ≥0} {Tn s : ℕ → ℝ≥0} (hT : Tendsto Tn atTop (𝓝 T)) (hs : ∀ n, s n ≤ Tn n) :
     Tendsto (fun n => f (s n)-f (min (s n) T)) atTop (𝓝 0) := by
@@ -53,12 +56,18 @@ theorem continuous_reward_truncation {f : ℝ≥0 → ℝ} (hf : Continuous f)
     simpa [min_eq_right hTs,Real.dist_eq,Real.norm_eq_abs,abs_abs] using hh
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=continuo.1h8v.s5.06436ae96556 from=translated src=- shape=e6d8e999 vocab=c386a758
+-/
 theorem putReward_time_continuous {W : ℝ≥0 → Ω → ℝ}
     (hW : ∀ ω, Continuous (fun t => W t ω)) (K r q σ S : ℝ) (ω : Ω) :
     Continuous (fun t => putReward W K r q σ S (fun _ => t) ω) := by
   unfold putReward MathFin.gbmValue
   fun_prop
 
+/--
+@isnad1 id=tendsto.6h12v.s7.2145cd7d8827 from=translated src=- shape=32f72baf vocab=39137b5f
+-/
 theorem expectedReward_truncate_tendsto {P : Measure Ω} [IsProbabilityMeasure P]
     {W : ℝ≥0 → Ω → ℝ} (hW : Measurable W.uncurry)
     (hpaths : ∀ ω, Continuous (fun t => W t ω))
@@ -89,6 +98,9 @@ theorem expectedReward_truncate_tendsto {P : Measure Ω} [IsProbabilityMeasure P
   simpa only [integral_sub (putReward_integrable hW P hK hr hS (θ _).measurable_time)
     (putReward_integrable hW P hK hr hS ((θ _).truncate T).measurable_time),integral_zero] using hlim
 
+/--
+@isnad1 id=tendsto.6h12v.s7.ca48d9e03121 from=translated src=- shape=656c8333 vocab=07e4fd61
+-/
 theorem expectedReward_fixed_truncate_tendsto {P : Measure Ω} [IsProbabilityMeasure P]
     {W : ℝ≥0 → Ω → ℝ} (hW : Measurable W.uncurry)
     (hpaths : ∀ ω, Continuous (fun t => W t ω))

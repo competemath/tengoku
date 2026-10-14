@@ -32,6 +32,9 @@ open scoped Topology ContDiff
 
 variable {k h : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
 
+/--
+@isnad1 id=not.2h5v.s5.50c57f884026 from=translated src=- shape=51426cb0 vocab=f896ec9d
+-/
 theorem boundary_no_flat_tail (hp : DividendPutSolution k h p b)
     {A : ℝ} (hA : 0 < A) : ¬ (∀ s, A ≤ s → b s = b A) := by
   intro hflat
@@ -106,6 +109,9 @@ theorem boundary_no_flat_tail (hp : DividendPutSolution k h p b)
     (fun t ht => hpos 1 t (by norm_num) ht.1 ht.2 (Or.inl (by norm_num))) hzero hd
   exact (lt_irrefl 0) hhopf
 
+/--
+@isnad1 id=lt.2h5v.s6.7fb959cd3e78 from=translated src=- shape=556b81d4 vocab=ddac159c
+-/
 theorem boundary_deriv_neg (hp : DividendPutSolution k h p b) {t : ℝ} (ht : 0 < t) :
     deriv b t < 0 := by
   apply lt_of_le_of_ne (hp.boundary_deriv_nonpos ht)

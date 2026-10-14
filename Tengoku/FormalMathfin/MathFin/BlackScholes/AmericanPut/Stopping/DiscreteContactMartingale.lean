@@ -22,6 +22,9 @@ open Set Filter MeasureTheory ProbabilityTheory
 variable {Ω : Type*} [MeasurableSpace Ω] {P : Measure Ω} [IsProbabilityMeasure P]
   {𝓕 : Filtration ℕ ‹MeasurableSpace Ω›} {U : ℕ → Ω → ℝ} {τ : Ω → ℕ}
 
+/--
+@isnad1 id=martinga.4h5v.s7.c2a14b7a9594 from=translated src=- shape=52c54b94 vocab=45f65875
+-/
 theorem discrete_stopped_martingale_of_before
     (ha : StronglyAdapted 𝓕 U) (hi : ∀ i, Integrable (U i) P)
     (hτ : IsStoppingTime 𝓕 (fun ω => (τ ω : WithTop ℕ)))

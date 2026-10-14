@@ -25,7 +25,9 @@ open Assembly
 
 /-- **c = 2 count certificate, function-abstract form.**  If eventually
 4·tr − fr − 2N − 3NII − B(4 + 2√fr + B) ≤ lower, B ≥ 0, B → 0, NII = o(N), N → ∞, fr ≥ 0, and for every
-δ > 0 eventually (1−δ)N ≤ tr and fr ≤ (κ+δ)N, then for every ε > 0 eventually (2 − κ − ε)N ≤ lower. -/
+δ > 0 eventually (1−δ)N ≤ tr and fr ≤ (κ+δ)N, then for every ε > 0 eventually (2 − κ − ε)N ≤ lower.
+@isnad1 id=ex.9h8v.s8.74dd67bffbf8 from=translated src=- shape=f7bbfd94 vocab=11d80890
+-/
 theorem count_certificate_fn (κ : ℝ) {N NII tr fr B lower : ℝ → ℝ}
     (hfr0 : ∀ᶠ T in atTop, 0 ≤ fr T)
     (h0 : ∀ᶠ T in atTop,
@@ -71,7 +73,9 @@ theorem count_certificate_fn (κ : ℝ) {N NII tr fr B lower : ℝ → ℝ}
   exact ⟨T₀, fun T hT => hT₀ T hT⟩
 
 /-- **c = 3 count certificate, function-abstract form:** from
-6·tr − fr − 3N − 5NII − B(6 + 2√fr + B) ≤ 2·lower and the moments, eventually (3/2 − κ/2 − ε)N ≤ lower. -/
+6·tr − fr − 3N − 5NII − B(6 + 2√fr + B) ≤ 2·lower and the moments, eventually (3/2 − κ/2 − ε)N ≤ lower.
+@isnad1 id=ex.9h8v.s8.1c31affa273b from=translated src=- shape=e854d7ef vocab=a712787e
+-/
 theorem count_certificate_c3_fn (κ : ℝ) {N NII tr fr B lower : ℝ → ℝ}
     (hfr0 : ∀ᶠ T in atTop, 0 ≤ fr T)
     (h0 : ∀ᶠ T in atTop,

@@ -23,7 +23,9 @@ certified unification of two known textbook facts — not new finance.
 namespace MathFin
 
 /-- **Concentration ✕ variance bridge.** Diagonal covariance with common
-variance `σ_sq` ⇒ `Var(w) = σ_sq · HHI(w)`. -/
+variance `σ_sq` ⇒ `Var(w) = σ_sq · HHI(w)`.
+@isnad1 id=eq.2h5v.s6.7a1dcf7ea383 from=translated src=- shape=a21340bf vocab=801af4b1
+-/
 theorem portfolioVarN_diag_eq_herfindahl {ι : Type*} [DecidableEq ι] (s : Finset ι)
     (w : ι → ℝ) (σ : ι → ι → ℝ) (σ_sq : ℝ)
     (h_diag : ∀ i ∈ s, ∀ j ∈ s, i ≠ j → σ i j = 0)

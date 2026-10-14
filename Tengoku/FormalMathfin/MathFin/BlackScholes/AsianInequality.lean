@@ -44,7 +44,9 @@ open Real
 
 /-- **Two-element AM-GM**: `√(a · b) ≤ (a + b) / 2` for `a, b ≥ 0`. Mathlib's
 weighted two-element AM-GM `Real.geom_mean_le_arith_mean2_weighted` at weights
-`w₁ = w₂ = 1/2`, with `√x = x^(1/2)` bridging `sqrt` to `rpow`. -/
+`w₁ = w₂ = 1/2`, with `√x = x^(1/2)` bridging `sqrt` to `rpow`.
+@isnad1 id=le.2h2v.s6.93f9194f13c7 from=translated src=- shape=9a915b9d vocab=23d532ce
+-/
 lemma am_gm_two (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) :
     Real.sqrt (a * b) ≤ (a + b) / 2 := by
   have h := Real.geom_mean_le_arith_mean2_weighted
@@ -57,7 +59,9 @@ lemma am_gm_two (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) :
 
 /-- **Two-time-point geometric vs arithmetic Asian payoff**: for positive
 prices `S₁, S₂` and any strike `K`, the geometric-Asian-call payoff is
-bounded above by the arithmetic-Asian-call payoff. -/
+bounded above by the arithmetic-Asian-call payoff.
+@isnad1 id=le.2h3v.s6.b8e5b2d1adb9 from=translated src=- shape=5ac7e6e0 vocab=5e0b35cd
+-/
 lemma asian_payoff_geom_le_arith_two (S₁ S₂ K : ℝ) (h₁ : 0 ≤ S₁) (h₂ : 0 ≤ S₂) :
     max (Real.sqrt (S₁ * S₂) - K) 0 ≤ max ((S₁ + S₂) / 2 - K) 0 := by
   have h_mean := am_gm_two S₁ S₂ h₁ h₂
@@ -66,7 +70,9 @@ lemma asian_payoff_geom_le_arith_two (S₁ S₂ K : ℝ) (h₁ : 0 ≤ S₁) (h�
   exact max_le_max h_sub le_rfl
 
 /-- **Weighted AM-GM, n-element equal-weight form**:
-`n · ∏ f_i^{1/n} ≤ ∑ f_i` for non-negative `f : Fin n → ℝ` and `n > 0`. -/
+`n · ∏ f_i^{1/n} ≤ ∑ f_i` for non-negative `f : Fin n → ℝ` and `n > 0`.
+@isnad1 id=le.2h2v.s6.547518722bb0 from=translated src=- shape=fbb0759c vocab=8bf07754
+-/
 lemma geom_mean_le_arith_mean_n {n : ℕ} (f : Fin n → ℝ)
     (h_nn : ∀ i, 0 ≤ f i) (hn : 0 < n) :
     (n : ℝ) * (∏ i : Fin n, f i ^ ((n : ℝ)⁻¹)) ≤ ∑ i : Fin n, f i := by
@@ -96,7 +102,9 @@ lemma geom_mean_le_arith_mean_n {n : ℕ} (f : Fin n → ℝ)
 /-- **n-date geometric vs arithmetic Asian payoff**: the geometric-mean Asian
 call payoff is bounded above by the arithmetic-mean one, for any number `n` of
 averaging dates — the `n`-date extension of `asian_payoff_geom_le_arith_two`,
-a one-line `max_le_max` over the already-proved AM-GM `geom_mean_le_arith_mean_n`. -/
+a one-line `max_le_max` over the already-proved AM-GM `geom_mean_le_arith_mean_n`.
+@isnad1 id=le.2h3v.s7.0b73403a3fd5 from=translated src=- shape=1e725436 vocab=73e47051
+-/
 lemma asian_payoff_geom_le_arith_n {n : ℕ} (S : Fin n → ℝ)
     (h_nn : ∀ i, 0 ≤ S i) (hn : 0 < n) (K : ℝ) :
     max ((∏ i, S i ^ ((n : ℝ)⁻¹)) - K) 0 ≤ max ((∑ i, S i) / n - K) 0 := by

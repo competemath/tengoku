@@ -25,7 +25,9 @@ namespace Stirling
 
 open Complex Filter Topology
 
-/-- ψ is differentiable on the integer complement (Γ is analytic and nonvanishing there). -/
+/-- ψ is differentiable on the integer complement (Γ is analytic and nonvanishing there).
+@isnad1 id=differen.1h1v.s6.e9530fa53d0d from=translated src=- shape=3211a2b3 vocab=e02eb842
+-/
 theorem differentiableAt_digamma {z : ℂ} (hz : z ∈ Complex.integerComplement) :
     DifferentiableAt ℂ Complex.digamma z := by
   have hopenZ : IsOpen Complex.integerComplement := isOpen_compl_range_intCast
@@ -49,7 +51,9 @@ theorem differentiableAt_digamma {z : ℂ} (hz : z ∈ Complex.integerComplement
   exact hψan.differentiableAt
 
 /-- Trigamma termwise series (used in Zeta23/GammaFacts/Mu.lean, deriv_bound).
-ψ′(z) = Σ_{n≥0} 1/(z+n)², differentiating the digamma series termwise.   -/
+ψ′(z) = Σ_{n≥0} 1/(z+n)², differentiating the digamma series termwise.
+@isnad1 id=hassum.1h1v.s6.e48430e8d388 from=translated src=- shape=2c8ebdaf vocab=bbb8ee19
+-/
 theorem hasSum_trigamma {z : ℂ} (hz : z ∈ Complex.integerComplement) :
     HasSum (fun n : ℕ => 1 / (z + n) ^ 2) (deriv Complex.digamma z) := by
   have hopenZ : IsOpen Complex.integerComplement := isOpen_compl_range_intCast

@@ -26,6 +26,9 @@ namespace MathFin.BlackScholes.AmericanPut.Boundary
 open Set Filter
 open scoped Topology
 
+/--
+@isnad1 id=le.3h2v.s7.935c2c086d1e from=translated src=- shape=700f26c0 vocab=39ba0203
+-/
 theorem second_deriv_nonpos_at_left_stationary_max {F : ℝ → ℝ} {x : ℝ}
     (hF : ContinuousAt F x) (hstationary : deriv F x = 0)
     (hmax : ∀ᶠ y in 𝓝[<] x, F y ≤ F x) : deriv (deriv F) x ≤ 0 := by
@@ -58,7 +61,9 @@ namespace DividendPutSolution
 /-- At a local maximum of test minus price, the test has the payoff slope
 and at most the payoff curvature at exercise contact. After subtracting the
 contact value, this is a test touching the price from below. Only the test
-function has a second derivative across the boundary. -/
+function has a second derivative across the boundary.
+@isnad1 id=and.4h6v.s7.8dc1f22c0c6b from=translated src=- shape=fe210a5e vocab=cf417bcb
+-/
 theorem spatial_test_at_boundary {k h : ℝ} {p : ℝ → ℝ → ℝ} {b F : ℝ → ℝ}
     (hp : DividendPutSolution k h p b) {t : ℝ} (ht : 0 < t)
     (hF : ContDiffAt ℝ 2 F (b t))

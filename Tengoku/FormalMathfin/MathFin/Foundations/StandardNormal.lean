@@ -53,26 +53,38 @@ where `Z ~ N(0, 1)`. -/
 noncomputable def Phi (x : ℝ) : ℝ :=
   (gaussianReal 0 1 (Set.Iic x)).toReal
 
+/--
+@isnad1 id=eq.0h1v.s5.e590839e7a38 from=translated src=- shape=0cb1a2cc vocab=0fc45e77
+-/
 lemma Phi_def (x : ℝ) : Phi x = (gaussianReal 0 1 (Set.Iic x)).toReal := rfl
 
+/--
+@isnad1 id=le.0h1v.s3.752bd4039eca from=translated src=- shape=8a62b088 vocab=e0f7928d
+-/
 lemma Phi_nonneg (x : ℝ) : 0 ≤ Phi x := ENNReal.toReal_nonneg
 
 /-- The set-integral of the standard-normal density over a measurable set `s`
 equals the (real) Gaussian measure of `s`: `∫_{z ∈ s} ϕ(μ,1,z) dz = N(μ,1)(s)`.
 The `.toReal`-of-`gaussianReal` bridge that every closed-form Gaussian integral
-factors through (`Phi_eq_integral`, the call/put/digital tails, the MGF shift). -/
+factors through (`Phi_eq_integral`, the call/put/digital tails, the MGF shift).
+@isnad1 id=eq.1h2v.s6.4e519a741917 from=translated src=- shape=a9a52ea6 vocab=0a628b26
+-/
 lemma setIntegral_gaussianPDFReal_eq_toReal {s : Set ℝ} (hs : MeasurableSet s) (μ : ℝ) :
     ∫ z in s, gaussianPDFReal μ 1 z = (gaussianReal μ 1 s).toReal := by
   rw [gaussianReal_apply_eq_integral μ (one_ne_zero : (1 : ℝ≥0) ≠ 0) s]
   exact (ENNReal.toReal_ofReal (setIntegral_nonneg hs
     (fun _ _ ↦ gaussianPDFReal_nonneg _ _ _))).symm
 
-/-- `Φ(x)` as the Lebesgue integral of the standard-normal density over `(-∞, x]`. -/
+/-- `Φ(x)` as the Lebesgue integral of the standard-normal density over `(-∞, x]`.
+@isnad1 id=eq.0h1v.s5.38498db04ab1 from=translated src=- shape=3bc8e9ad vocab=5e4746c9
+-/
 lemma Phi_eq_integral (x : ℝ) :
     Phi x = ∫ z in Set.Iic x, gaussianPDFReal 0 1 z := by
   rw [Phi_def, setIntegral_gaussianPDFReal_eq_toReal measurableSet_Iic (0 : ℝ)]
 
-/-- `Φ(-x) = 1 − Φ(x)`. Symmetry of the standard normal around 0. -/
+/-- `Φ(-x) = 1 − Φ(x)`. Symmetry of the standard normal around 0.
+@isnad1 id=eq.0h1v.s4.f0d91d2837e1 from=translated src=- shape=c50c3999 vocab=b0889de3
+-/
 lemma Phi_neg (x : ℝ) : Phi (-x) = 1 - Phi x := by
   -- Standard normal is symmetric: gaussianReal 0 1 is invariant under negation
   have hmap : (gaussianReal (0 : ℝ) 1).map (fun y ↦ -y) = gaussianReal 0 1 := by
@@ -112,13 +124,17 @@ lemma Phi_neg (x : ℝ) : Phi (-x) = 1 - Phi x := by
         exact measure_mono (Set.subset_univ _)) (by simp)]
   rfl
 
-/-- `Φ(x) + Φ(-x) = 1`. -/
+/-- `Φ(x) + Φ(-x) = 1`.
+@isnad1 id=eq.0h1v.s4.12245186a367 from=translated src=- shape=bae6aac5 vocab=c322c3e8
+-/
 lemma Phi_add_Phi_neg (x : ℝ) : Phi x + Phi (-x) = 1 := by
   rw [Phi_neg]; ring
 
 /-- **Standard normal CDF upper bound** `Φ(x) ≤ 1`, from `Φ(x) + Φ(-x) = 1`
 and `Φ(-x) ≥ 0`. The pricing-free home of the bound used across the BS price
-rectangle (`PriceBounds`) and the KMV-Merton default probability (`KMVMerton`). -/
+rectangle (`PriceBounds`) and the KMV-Merton default probability (`KMVMerton`).
+@isnad1 id=le.0h1v.s3.9c8e8b2a5613 from=translated src=- shape=b14ee516 vocab=e0f7928d
+-/
 lemma Phi_le_one (x : ℝ) : Phi x ≤ 1 := by
   have h_sum : Phi x + Phi (-x) = 1 := Phi_add_Phi_neg x
   have h_neg : 0 ≤ Phi (-x) := Phi_nonneg _
@@ -126,7 +142,9 @@ lemma Phi_le_one (x : ℝ) : Phi x ≤ 1 := by
 
 /-- **Standard normal PDF evenness**: `ϕ(-z) = ϕ(z)`, since the density depends
 on `z` only through `z²`. Model-agnostic — consumed by the Greeks and the
-put-strike convexity. -/
+put-strike convexity.
+@isnad1 id=eq.0h1v.s5.3219198f769a from=translated src=- shape=eb33a416 vocab=79687de1
+-/
 lemma gaussianPDFReal_zero_one_neg (z : ℝ) :
     gaussianPDFReal 0 1 (-z) = gaussianPDFReal 0 1 z := by
   unfold gaussianPDFReal
@@ -135,7 +153,9 @@ lemma gaussianPDFReal_zero_one_neg (z : ℝ) :
 
 /-! ### Tail probabilities of the standard normal -/
 
-/-- `Q(Ioi a) = 1 − Φ(a) = Φ(-a)`. The right tail of the standard normal. -/
+/-- `Q(Ioi a) = 1 − Φ(a) = Φ(-a)`. The right tail of the standard normal.
+@isnad1 id=eq.0h1v.s5.a3d0ebab55fe from=translated src=- shape=da454ca4 vocab=814d1488
+-/
 lemma gaussianReal_Ioi_toReal (a : ℝ) :
     (gaussianReal 0 1 (Set.Ioi a)).toReal = Phi (-a) := by
   have h_compl : Set.Ioi a = (Set.Iic a)ᶜ := by ext y; simp
@@ -149,7 +169,9 @@ lemma gaussianReal_Ioi_toReal (a : ℝ) :
 
 /-- The exponential shift identity: `exp(c·z) · gaussianPDFReal 0 1 z =
 exp(c²/2) · gaussianPDFReal c 1 z`. This is the algebraic content of
-"completing the square" `c·z − z²/2 = c²/2 − (z − c)²/2`. -/
+"completing the square" `c·z − z²/2 = c²/2 − (z − c)²/2`.
+@isnad1 id=eq.0h2v.s6.a7ad1f75b330 from=translated src=- shape=26e45c19 vocab=19eaa28c
+-/
 lemma exp_mul_gaussianPDFReal_zero_one (c z : ℝ) :
     Real.exp (c * z) * gaussianPDFReal 0 1 z =
       Real.exp (c^2 / 2) * gaussianPDFReal c 1 z := by
@@ -169,7 +191,9 @@ lemma exp_mul_gaussianPDFReal_zero_one (c z : ℝ) :
   `∫ z in Ioi a, exp(c·z) · gaussianPDFReal 0 1 z dz = exp(c²/2) · Φ(c − a)`.
 
 Combines `exp_mul_gaussianPDFReal_zero_one` (algebraic completing-the-square)
-with `gaussianReal_map_add_const` (push forward via shift). -/
+with `gaussianReal_map_add_const` (push forward via shift).
+@isnad1 id=eq.0h2v.s6.a07471d16242 from=translated src=- shape=4747c18e vocab=fdc2fd3a
+-/
 lemma integral_exp_mul_gaussianPDFReal_Ioi (a c : ℝ) :
     ∫ z in Set.Ioi a, Real.exp (c * z) * gaussianPDFReal 0 1 z
       = Real.exp (c^2 / 2) * Phi (c - a) := by
@@ -198,7 +222,9 @@ Mathlib's `mgf_gaussianReal` gives the same value as an integral against the
 `gaussianReal` *measure*; this is the explicit Lebesgue/pdf form the Black–Scholes
 integrals consume directly, and the completing-the-square shift it factors through
 (`exp_mul_gaussianPDFReal_zero_one`) plus the truncated `Ioi` sibling above are the
-load-bearing primitives with no Mathlib analogue. -/
+load-bearing primitives with no Mathlib analogue.
+@isnad1 id=eq.0h1v.s6.4950b84aee46 from=translated src=- shape=fc5411ac vocab=e9c683f0
+-/
 lemma integral_exp_mul_gaussianPDFReal_univ (c : ℝ) :
     ∫ z, Real.exp (c * z) * gaussianPDFReal 0 1 z = Real.exp (c^2 / 2) := by
   rw [show (fun z ↦ Real.exp (c * z) * gaussianPDFReal 0 1 z)

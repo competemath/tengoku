@@ -66,7 +66,9 @@ open Finset
 This is the pointwise algebraic fact that turns into put-call parity when
 passed through a linear pricing functional. It is Mathlib's
 `max_zero_sub_max_neg_zero_eq_self`, cited rather than re-proved; kept
-under its finance name as the named conceptual pivot of this file. -/
+under its finance name as the named conceptual pivot of this file.
+@isnad1 id=eq.0h1v.s5.59d6383bb21b from=translated src=- shape=0c317d79 vocab=6bb156d2
+-/
 lemma max_sub_max_neg (x : ℝ) : max x 0 - max (-x) 0 = x :=
   max_zero_sub_max_neg_zero_eq_self x
 
@@ -87,7 +89,9 @@ The proof has *no reference to the Black-Scholes formula*. It uses only:
 
 Specialisation to the BS model recovers `bsP_eq_bsV` (currently proved
 algebraically); the algebraic proof there can now be seen as
-"the BS closed forms are realised by some such pricing functional." -/
+"the BS closed forms are realised by some such pricing functional."
+@isnad1 id=eq.2h7v.s7.8836ef743ec9 from=translated src=- shape=7936cb41 vocab=cd088ee0
+-/
 theorem putCall_parity_from_no_arbitrage
     {ι : Type*} (s : Finset ι) (q : ι → ℝ) (S : ι → ℝ)
     (DF S₀ K : ℝ)
@@ -123,7 +127,9 @@ With continuous compounding (`DF = e^{−rT}`), this is the classical
 `F = S_0 · e^{rT}` cash-and-carry formula.
 
 The proof: by linearity, `Λ(S_T − F) = Λ(S_T) − F · Λ(1) = S_0 − F · DF`.
-Setting this equal to zero and solving gives `F = S_0 / DF`. -/
+Setting this equal to zero and solving gives `F = S_0 / DF`.
+@isnad1 id=iff.3h7v.s6.810591adf3b7 from=translated src=- shape=d9b1ee73 vocab=7ad2708c
+-/
 theorem forward_price_from_no_arbitrage
     {ι : Type*} (s : Finset ι) (q : ι → ℝ) (S : ι → ℝ)
     (DF S₀ F : ℝ) (hDF : DF ≠ 0)
@@ -146,7 +152,9 @@ theorem forward_price_from_no_arbitrage
   · intro hF
     rw [hF]; field_simp; ring
 
-/-- **Forward price (closed form)**: the unique fair forward is `F = S_0 / DF`. -/
+/-- **Forward price (closed form)**: the unique fair forward is `F = S_0 / DF`.
+@isnad1 id=existsun.3h6v.s6.7c849ac5312d from=translated src=- shape=bd355636 vocab=a877fc16
+-/
 theorem forward_price_eq_spot_div_discount
     {ι : Type*} (s : Finset ι) (q : ι → ℝ) (S : ι → ℝ)
     (DF S₀ : ℝ) (hDF : DF ≠ 0)

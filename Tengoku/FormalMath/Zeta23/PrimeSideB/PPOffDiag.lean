@@ -36,7 +36,9 @@ namespace PrimeSide
 /-- **[prop:PP], 𝒪₁** (§5.4, "Hence |𝒪₁| ≪ L²X" — here in the pre-Chebyshev form):
 for T ≥ 0, continuous Φ with Φ² integrable, and H-MV with constant C ≥ 0,
   |Σ_{n≠m≤X} a_n a_m A⁻(log n, log m)| ≤ 16·C·(∫_ℝ Φ²)·Σ_{n≤X} Λ(n)².
-(A⁻ = `Aminus`, the difference-frequency half of 𝓜[cos(·y_n),cos(·y_m)], see PPKernel.) -/
+(A⁻ = `Aminus`, the difference-frequency half of 𝓜[cos(·y_n),cos(·y_m)], see PPKernel.)
+@isnad1 id=le.5h4v.s8.fd28dd554a0a from=translated src=- shape=a6e0e00b vocab=7f969d8f
+-/
 theorem O1_bound {C : ℝ} (hMV : Zeta23.MVHilbert C) (hC : 0 ≤ C) {Φ : ℝ → ℝ} {T : ℝ} (hT : 0 ≤ T)
     (hΦ : Continuous Φ) (hΦ2 : Integrable fun x => Φ x ^ 2) (X : ℝ) :
     |∑ n ∈ primeRange X, ∑ m ∈ primeRange X,

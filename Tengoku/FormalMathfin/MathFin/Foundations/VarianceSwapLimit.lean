@@ -57,7 +57,9 @@ Proof structure:
 3. Add the two via `Tendsto.add` ⟹ `Tendsto (σ²·T + drift²·T²/(n+1))
    atTop (𝓝 (σ²·T + 0)) = (𝓝 (σ²·T))`.
 4. Apply `.congr` with Phase 33's per-`n` closed form to convert to the
-   target functional. -/
+   target functional.
+@isnad1 id=tendsto.2h7v.s7.99bf337f0381 from=translated src=- shape=2c849996 vocab=01d0a657
+-/
 theorem tendsto_expected_bsLogPrice_equipartition_sum
     [IsProbabilityMeasure μ]
     (hB : BrownianQuadraticVariation μ B) (S_0 r σ : ℝ)

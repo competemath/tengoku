@@ -76,7 +76,9 @@ and `s ≤ t : ℝ≥0`, the single-step Wiener integral `c · (B_t − B_s)` sa
   `∫ ω, (c · (B_t ω − B_s ω))² ∂μ = c² · (t − s)`.
 
 This is the kernel of the Itô isometry: for a step function `f = c · 𝟙_{(s, t]}`,
-both `E[(∫ f dB)²] = c² (t − s)` and `∫ f² ds = c² (t − s)`. -/
+both `E[(∫ f dB)²] = c² (t − s)` and `∫ f² ds = c² (t − s)`.
+@isnad1 id=eq.2h7v.s7.e83dc1e4740b from=translated src=- shape=25793b2d vocab=e1127526
+-/
 theorem wiener_step_isometry (c : ℝ) {s t : ℝ≥0} (hst : s ≤ t) :
     ∫ ω, (c * (B t ω - B s ω)) ^ 2 ∂μ = c ^ 2 * ((t - s : ℝ≥0) : ℝ) := by
   simp_rw [mul_pow]
@@ -95,7 +97,9 @@ and coefficients `c : Fin n → ℝ`, the Wiener step-sum
 
 satisfies the discrete Itô isometry
 
-  `E[I²] = ∑ k, c k² · (p k.succ − p k.castSucc)`. -/
+  `E[I²] = ∑ k, c k² · (p k.succ − p k.castSucc)`.
+@isnad1 id=eq.2h7v.s7.627a00776697 from=translated src=- shape=46e597e1 vocab=80ff0631
+-/
 theorem wiener_finset_isometry
     {n : ℕ} (p : Fin (n + 1) → ℝ≥0) (hp : Monotone p) (c : Fin n → ℝ) :
     ∫ ω, (∑ k : Fin n, c k * (B (p k.succ) ω - B (p k.castSucc) ω)) ^ 2 ∂μ

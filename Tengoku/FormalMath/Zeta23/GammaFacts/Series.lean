@@ -32,16 +32,24 @@ open Complex Filter Topology
 /-- Offset Weierstrass factor: `1 + wTerm n z = (1 + z/(n+1))·e^{−z/(n+1)}`. -/
 def wTerm (n : ℕ) (z : ℂ) : ℂ := (1 + z / (n + 1)) * Complex.exp (-(z / (n + 1))) - 1
 
+/--
+@isnad1 id=eq.0h2v.s6.e422598eb897 from=translated src=- shape=730dcaa8 vocab=30aa1e21
+-/
 lemma one_add_wTerm (n : ℕ) (z : ℂ) :
     1 + wTerm n z = (1 + z / (n + 1)) * Complex.exp (-(z / (n + 1))) := by
   unfold wTerm
   ring
 
+/--
+@isnad1 id=eq.0h1v.s5.0e930481a8ec from=translated src=- shape=7561a1b7 vocab=2963b3a4
+-/
 lemma norm_natCast_add_one (n : ℕ) : ‖((n : ℂ) + 1)‖ = (n : ℝ) + 1 := by
   rw [show ((n : ℂ) + 1) = (((n : ℝ) + 1 : ℝ) : ℂ) by push_cast; ring, Complex.norm_real]
   rw [Real.norm_eq_abs, abs_of_pos (by positivity)]
 
-/-- The quadratic tail bound for the Weierstrass factor. -/
+/-- The quadratic tail bound for the Weierstrass factor.
+@isnad1 id=le.1h2v.s6.633a0b0b2721 from=translated src=- shape=7171c3db vocab=16cfe047
+-/
 lemma norm_wTerm_le {z : ℂ} {n : ℕ} (h : ‖z‖ ≤ (n : ℝ) + 1) :
     ‖wTerm n z‖ ≤ 3 * (‖z‖ / ((n : ℝ) + 1)) ^ 2 := by
   set w : ℂ := z / ((n : ℂ) + 1) with hwdef
@@ -81,6 +89,9 @@ lemma norm_wTerm_le {z : ℂ} {n : ℕ} (h : ‖z‖ ≤ (n : ℝ) + 1) :
     _ ≤ 3 * ‖w‖ ^ 2 := by nlinarith [norm_nonneg w, hwn, sq_nonneg ‖w‖]
     _ = 3 * (‖z‖ / ((n : ℝ) + 1)) ^ 2 := by rw [hwnorm]
 
+/--
+@isnad1 id=summable.0h1v.s6.183e791b338f from=translated src=- shape=b9ff053a vocab=cb1f9b7c
+-/
 lemma summable_wBound (R : ℝ) : Summable (fun n : ℕ => 3 * (R / ((n : ℝ) + 1)) ^ 2) := by
   have h1 : Summable (fun n : ℕ => (((n : ℝ) + 1) ^ 2)⁻¹) := by
     have h2 : Summable (fun n : ℕ => (((n : ℝ)) ^ 2)⁻¹) := by
@@ -99,6 +110,9 @@ lemma summable_wBound (R : ℝ) : Summable (fun n : ℕ => 3 * (R / ((n : ℝ) +
   rw [h3]
   exact h1.mul_left _
 
+/--
+@isnad1 id=summable.0h1v.s4.88ea31b13f7e from=translated src=- shape=aa5d3f9e vocab=e1b7533e
+-/
 lemma summable_norm_wTerm (z : ℂ) : Summable (fun n => ‖wTerm n z‖) := by
   refine (summable_wBound ‖z‖).of_norm_bounded_eventually ?_
   rw [Nat.cofinite_eq_atTop]
@@ -109,11 +123,17 @@ lemma summable_norm_wTerm (z : ℂ) : Summable (fun n => ‖wTerm n z‖) := by
     _ ≤ (n : ℝ) := by exact_mod_cast hn
     _ ≤ (n : ℝ) + 1 := by linarith
 
+/--
+@isnad1 id=multipli.0h1v.s5.ba084de3fd13 from=translated src=- shape=8deea772 vocab=08b46ae6
+-/
 lemma multipliable_one_add_wTerm (z : ℂ) : Multipliable fun n => 1 + wTerm n z :=
   Complex.multipliable_one_add_of_summable ((summable_norm_wTerm z).of_norm)
 
 /-! ### The finite identity and the Weierstrass product -/
 
+/--
+@isnad1 id=eq.0h1v.s5.dcc6101f045c from=translated src=- shape=dd8478b2 vocab=4fd30c13
+-/
 lemma harmonic_cast_eq (N : ℕ) :
     ((harmonic N : ℚ) : ℝ) = ∑ m ∈ Finset.range N, (1 : ℝ) / ((m : ℝ) + 1) := by
   rw [harmonic]
@@ -121,7 +141,9 @@ lemma harmonic_cast_eq (N : ℕ) :
   refine Finset.sum_congr rfl fun m _ => ?_
   rw [one_div]
 
-/-- The finite identity: (GammaSeq z N)⁻¹ = z·e^{(H_N − log N)z}·∏_{n<N}(1 + wTerm n z). -/
+/-- The finite identity: (GammaSeq z N)⁻¹ = z·e^{(H_N − log N)z}·∏_{n<N}(1 + wTerm n z).
+@isnad1 id=eq.2h2v.s7.a18b78190fb7 from=translated src=- shape=70795863 vocab=396f3318
+-/
 lemma inv_gammaSeq_eq {z : ℂ} (_hz : z ∈ Complex.integerComplement) {N : ℕ} (hN : 1 ≤ N) :
     (Complex.GammaSeq z N)⁻¹
       = z * Complex.exp ((((∑ m ∈ Finset.range N, (1 : ℝ) / ((m : ℝ) + 1))
@@ -200,7 +222,9 @@ lemma inv_gammaSeq_eq {z : ℂ} (_hz : z ∈ Complex.integerComplement) {N : ℕ
   field_simp
 
 /-- **The Weierstrass product for 1/Γ** on the integer complement:
-Γ(z)⁻¹ = z·e^{γz}·∏'ₙ (1 + z/(n+1))e^{−z/(n+1)}. -/
+Γ(z)⁻¹ = z·e^{γz}·∏'ₙ (1 + z/(n+1))e^{−z/(n+1)}.
+@isnad1 id=eq.1h1v.s6.f8c5f7c91890 from=translated src=- shape=c9c28e91 vocab=7313eaa6
+-/
 theorem inv_gamma_eq_prod {z : ℂ} (hz : z ∈ Complex.integerComplement) :
     (Complex.Gamma z)⁻¹
       = z * Complex.exp ((Real.eulerMascheroniConstant : ℂ) * z)
@@ -240,7 +264,9 @@ theorem inv_gamma_eq_prod {z : ℂ} (hz : z ∈ Complex.integerComplement) :
     exact inv_gammaSeq_eq hz hN
   exact tendsto_nhds_unique (hL.congr' heq) hRHS
 
-/-- The logarithmic derivative of a single Weierstrass factor. -/
+/-- The logarithmic derivative of a single Weierstrass factor.
+@isnad1 id=eq.1h2v.s6.898658315287 from=translated src=- shape=fcb8a593 vocab=4a3b2866
+-/
 lemma logDeriv_one_add_wTerm {z : ℂ} (hz : z ∈ Complex.integerComplement) (n : ℕ) :
     logDeriv (fun s => 1 + wTerm n s) z = 1 / (z + n + 1) - 1 / ((n : ℂ) + 1) := by
   have hn1 : ((n : ℂ) + 1) ≠ 0 := Nat.cast_add_one_ne_zero n
@@ -289,7 +315,9 @@ lemma logDeriv_one_add_wTerm {z : ℂ} (hz : z ∈ Complex.integerComplement) (n
   have h4 : ((1 : ℂ) + (n : ℂ) + z) * ((1 + (n : ℂ) + z)⁻¹) = 1 := mul_inv_cancel₀ h3
   linear_combination (-z) * h4
 
-/-- Summability of the digamma partial-fraction series. -/
+/-- Summability of the digamma partial-fraction series.
+@isnad1 id=summable.1h1v.s6.aa34de9ad7f4 from=translated src=- shape=2d3471ff vocab=1afe87f0
+-/
 theorem summable_digamma_series {z : ℂ} (hz : z ∈ Complex.integerComplement) :
     Summable (fun n : ℕ => 1 / ((n : ℂ) + 1) - 1 / (z + n + 1)) := by
   refine Summable.of_norm ?_
@@ -339,7 +367,9 @@ theorem summable_digamma_series {z : ℂ} (hz : z ∈ Complex.integerComplement)
           field_simp
 
 /-- **The digamma partial-fraction series, HasSum form**:
-Σₙ (1/(n+1) − 1/(z+n+1)) converges to ψ(z) + γ + 1/z on the integer complement. -/
+Σₙ (1/(n+1) − 1/(z+n+1)) converges to ψ(z) + γ + 1/z on the integer complement.
+@isnad1 id=hassum.1h1v.s7.eb1d1d068b74 from=translated src=- shape=fbc70e83 vocab=089c3f41
+-/
 theorem hasSum_digamma_series {z : ℂ} (hz : z ∈ Complex.integerComplement) :
     HasSum (fun n : ℕ => 1 / ((n : ℂ) + 1) - 1 / (z + n + 1))
       (Complex.digamma z + (Real.eulerMascheroniConstant : ℂ) + 1 / z) := by
@@ -483,7 +513,9 @@ theorem hasSum_digamma_series {z : ℂ} (hz : z ∈ Complex.integerComplement) :
 
 /-- **The digamma partial-fraction series** (paper [eq:mufacts]'s parenthetical, the
 keystone for the remaining H-Γ fields):
-ψ(z) = −γ − 1/z + Σ'ₙ (1/(n+1) − 1/(z+n+1)) for z off the integers. -/
+ψ(z) = −γ − 1/z + Σ'ₙ (1/(n+1) − 1/(z+n+1)) for z off the integers.
+@isnad1 id=eq.1h1v.s7.6c5abdda1a7b from=translated src=- shape=0b3f596c vocab=14487ac3
+-/
 theorem digamma_series {z : ℂ} (hz : z ∈ Complex.integerComplement) :
     Complex.digamma z = -(Real.eulerMascheroniConstant : ℂ) - 1 / z
       + ∑' n : ℕ, (1 / ((n : ℂ) + 1) - 1 / (z + n + 1)) := by

@@ -27,7 +27,9 @@ open MeasureTheory ProbabilityTheory
 open scoped NNReal
 
 /-- Second moment of a centered real Gaussian: `∫ x, x² ∂(gaussianReal 0 v) = v`.
-For a mean-zero law the second moment is the variance (`variance_id_gaussianReal`). -/
+For a mean-zero law the second moment is the variance (`variance_id_gaussianReal`).
+@isnad1 id=eq.0h1v.s5.43cbd38061e8 from=translated src=- shape=1e405a35 vocab=68f94ede
+-/
 lemma integral_sq_gaussianReal (v : ℝ≥0) :
     ∫ x, x ^ 2 ∂(gaussianReal 0 v) = (v : ℝ) := by
   have h_var : variance id (gaussianReal 0 v) = (v : ℝ) := variance_id_gaussianReal
@@ -36,7 +38,9 @@ lemma integral_sq_gaussianReal (v : ℝ≥0) :
   exact h_var
 
 /-- **A centered squared Gaussian has mean zero**: `∫ (x² − v) ∂N(0,v) = 0`, i.e.
-`E[X² − Var] = 0` for `X ~ N(0,v)`. (`E[X²] = v`.) -/
+`E[X² − Var] = 0` for `X ~ N(0,v)`. (`E[X²] = v`.)
+@isnad1 id=eq.0h1v.s5.852d90d59938 from=translated src=- shape=2d9eca7c vocab=7399e2c9
+-/
 lemma integral_sq_sub_var_gaussianReal (v : ℝ≥0) :
     ∫ x, (x ^ 2 - (v : ℝ)) ∂(gaussianReal 0 v) = 0 := by
   have hint2 : Integrable (fun x : ℝ ↦ x ^ 2) (gaussianReal 0 v) :=

@@ -33,7 +33,9 @@ open scoped Topology
 
 /-- The proposed log-curvature conclusion, conditional only on the
 interval invariant. In particular this invariant is not claimed as a
-consequence of an unformalized zero-number theorem. -/
+consequence of an unformalized zero-number theorem.
+@isnad1 id=le.3h5v.s7.d690b30d216f from=translated src=- shape=7c39c152 vocab=b70571ba
+-/
 theorem dividend_curvature_of_comparison_inputs {k h : ℝ}
     {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ} (hp : DividendPutSolution k h p b)
     (hinterval : ∀ c d : ℝ, 0 < c → d < 0 → ∀ t, 0 < t →
@@ -48,7 +50,9 @@ theorem dividend_curvature_of_comparison_inputs {k h : ℝ}
 
 /-- Zero dividends with the original CCJZ contract. The interval invariant
 is supplied in `ComparisonConclusion`, and the conclusion is weak log curvature, not CCJZ's
-strict log curvature theorem. -/
+strict log curvature theorem.
+@isnad1 id=le.3h4v.s7.81387cca0aa2 from=translated src=- shape=a6699ea1 vocab=b5bd78cc
+-/
 theorem zeroDividend_curvature_of_comparison_inputs {k : ℝ}
     {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ} (hp : NormalizedPutSolution k p b)
     (hinterval : ∀ c d : ℝ, 0 < c → d < 0 → ∀ t, 0 < t →
@@ -59,7 +63,9 @@ theorem zeroDividend_curvature_of_comparison_inputs {k : ℝ}
 /-- The requested STRICT stock-boundary curvature consequence of the same
 conditional proof. `stockBoundary` uses the existing calendar-time convention;
 time reversal does not change the second-derivative sign. This is still not
-an identification with a continuous-time optimal-stopping value. -/
+an identification with a continuous-time optimal-stopping value.
+@isnad1 id=lt.6h8v.s7.e074128af24f from=translated src=- shape=18dcddbc vocab=9cc2f78e
+-/
 theorem stock_curvature_of_comparison_inputs {k h : ℝ}
     {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ} (hp : DividendPutSolution k h p b)
     (hspeed : ∀ t, 0 < t → deriv b t < 0)

@@ -97,7 +97,9 @@ noncomputable def Contract.value (Q : Measure Ω) (D : ℝ≥0 → ℝ)
   ∫ ω, c.pathPV D (scenarioAt X ω) ∂Q
 
 /-- `value` is homogeneous under `scale`, unconditionally: `integral_const_mul` holds even
-off the integrable set (both sides are `0` there), so no integrability hypothesis is needed. -/
+off the integrable set (both sides are `0` there), so no integrability hypothesis is needed.
+@isnad1 id=eq.0h8v.s5.310d139e7197 from=translated src=- shape=222ed04f vocab=fe024ad9
+-/
 theorem Contract.value_scale (Q : Measure Ω) (D : ℝ≥0 → ℝ)
     (X : ι → ℝ≥0 → Ω → ℝ) (r : ℝ) (a : Contract ι) :
     (Contract.scale r a).value Q D X = r * a.value Q D X := by
@@ -105,7 +107,9 @@ theorem Contract.value_scale (Q : Measure Ω) (D : ℝ≥0 → ℝ)
   exact integral_const_mul r _
 
 /-- `value` is additive under `both`, given both summands are integrable — `integral_add`
-is false without that hypothesis on either side, unlike `value_scale`'s unconditional case. -/
+is false without that hypothesis on either side, unlike `value_scale`'s unconditional case.
+@isnad1 id=eq.2h8v.s7.6168c3670354 from=translated src=- shape=e5b0da0c vocab=7d8d9195
+-/
 theorem Contract.value_both (Q : Measure Ω) (D : ℝ≥0 → ℝ)
     (X : ι → ℝ≥0 → Ω → ℝ) (a b : Contract ι)
     (ha : Integrable (fun ω ↦ a.pathPV D (scenarioAt X ω)) Q)
@@ -123,7 +127,9 @@ uses. It carries no equivalence content — `Q` need not be an EMM for `S`, only
 probability measure under which `S` is a martingale — so it is stated against
 `Martingale` directly rather than the library's `IsEMM` bundle, whose `ac`/`ac'` fields
 this argument never needs; that mutual-absolute-continuity content lives elsewhere
-(`ContinuousMarket.isEMM_noArbitrageSimple`). -/
+(`ContinuousMarket.isEMM_noArbitrageSimple`).
+@isnad1 id=eq.1h6v.s6.24aa2780d5c3 from=translated src=- shape=7f3834f5 vocab=992bd88f
+-/
 theorem Contract.value_deliverAsset {𝓕 : Filtration ℝ≥0 mΩ}
     {S : ℝ≥0 → Ω → ℝ} {Q : Measure Ω} [IsProbabilityMeasure Q]
     (hM : Martingale S 𝓕 Q) (T : ℝ≥0) :
@@ -139,7 +145,9 @@ theorem Contract.value_deliverAsset {𝓕 : Filtration ℝ≥0 mΩ}
 contract just gives the constant-`0` martingale (Bochner junk value); the theorem's content
 is the integrable case. Needs **no** EMM hypothesis either: it is a property of conditional
 expectation, not of the pricing measure — no theorem in this file needs `IsEMM`;
-`value_deliverAsset` needs only `Martingale S 𝓕 Q` and `[IsProbabilityMeasure Q]`. -/
+`value_deliverAsset` needs only `Martingale S 𝓕 Q` and `[IsProbabilityMeasure Q]`.
+@isnad1 id=martinga.0h8v.s6.e83eb467f32c from=translated src=- shape=2bcce16f vocab=d07d54e4
+-/
 theorem Contract.value_process_martingale {Q : Measure Ω} {𝓕 : Filtration ℝ≥0 mΩ}
     [SigmaFiniteFiltration Q 𝓕] (D : ℝ≥0 → ℝ) (X : ι → ℝ≥0 → Ω → ℝ)
     (c : Contract ι) :

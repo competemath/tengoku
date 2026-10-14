@@ -72,7 +72,9 @@ continuous) and reference level `κ ∈ [L, U]`, every spot `S ∈ [L, U]` satis
 i.e. the payoff is cash `f κ`, a forward position `f' κ` in `(S − κ)`, plus a static book of
 puts (strikes `K ∈ [L, κ]`) and calls (strikes `K ∈ [κ, U]`) held in density `f''(K) dK`.
 This is the honest compact-strike-range Carr–Madan formula; the textbook unbounded form is
-the `L = 0`, `U → ∞` limit, needing separate integrability-at-`∞` hypotheses. -/
+the `L = 0`, `U → ∞` limit, needing separate integrability-at-`∞` hypotheses.
+@isnad1 id=eq.6h7v.s8.dc2a3d4f4774 from=translated src=- shape=98f38c22 vocab=4fcd374f
+-/
 theorem carrMadan_spanning {f f' f'' : ℝ → ℝ} {L U κ S : ℝ}
     (hLκ : L ≤ κ) (hκU : κ ≤ U) (hS : S ∈ Set.Icc L U)
     (hf : ∀ t ∈ Set.Icc L U, HasDerivAt f (f' t) t)
@@ -154,7 +156,9 @@ the underlying plus a static strip of out-of-the-money options weighted by `1/K�
   `log S = log κ + κ⁻¹·(S − κ) + ∫_L^κ −(K²)⁻¹·(K − S)⁺ dK + ∫_κ^U −(K²)⁻¹·(S − K)⁺ dK`.
 
 The `−1/K²` weight (the log payoff's convexity `f''`) is exactly the density of OTM puts and
-calls a variance swap holds. Specialises `carrMadan_spanning` to `f = Real.log`. -/
+calls a variance swap holds. Specialises `carrMadan_spanning` to `f = Real.log`.
+@isnad1 id=eq.4h4v.s7.6e5222d1f57a from=translated src=- shape=4d96efe6 vocab=2328a05b
+-/
 theorem carrMadan_log_spanning {L U κ S : ℝ} (hL : 0 < L)
     (hLκ : L ≤ κ) (hκU : κ ≤ U) (hS : S ∈ Set.Icc L U) :
     Real.log S = Real.log κ + κ⁻¹ * (S - κ)

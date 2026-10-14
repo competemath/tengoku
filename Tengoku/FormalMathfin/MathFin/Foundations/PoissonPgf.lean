@@ -45,7 +45,9 @@ namespace PoissonPgf
 
 /-- **Weighted Poisson series** (`HasSum` form): for every `x : ℝ`,
 `∑ₙ e^{−r} rⁿ/n! · xⁿ = e^{r(x−1)}` — absolute convergence included, this
-being the exponential series at `r·x` rescaled by `e^{−r}`. -/
+being the exponential series at `r·x` rescaled by `e^{−r}`.
+@isnad1 id=hassum.0h2v.s6.0009581a984b from=translated src=- shape=264927d8 vocab=dc09c8f2
+-/
 lemma hasSum_poisson_weights_mul_pow (r : ℝ≥0) (x : ℝ) :
     HasSum (fun n : ℕ ↦ rexp (-(r : ℝ)) * (r : ℝ) ^ n / n ! * x ^ n)
       (rexp ((r : ℝ) * (x - 1))) := by
@@ -56,7 +58,9 @@ lemma hasSum_poisson_weights_mul_pow (r : ℝ≥0) (x : ℝ) :
       | (funext n; rw [mul_pow]; ring)
       | (rw [← exp_eq_exp_ℝ, ← Real.exp_add]; congr 1; ring)
 
-/-- **Weighted Poisson series** (`tsum` form). -/
+/-- **Weighted Poisson series** (`tsum` form).
+@isnad1 id=eq.0h2v.s6.3ca5e314cc08 from=translated src=- shape=23a64ce9 vocab=1ba03227
+-/
 lemma tsum_poisson_weights_mul_pow (r : ℝ≥0) (x : ℝ) :
     ∑' n : ℕ, rexp (-(r : ℝ)) * (r : ℝ) ^ n / n ! * x ^ n
       = rexp ((r : ℝ) * (x - 1)) :=
@@ -65,7 +69,9 @@ lemma tsum_poisson_weights_mul_pow (r : ℝ≥0) (x : ℝ) :
 /-- **Poisson probability generating function**: `E[x^N] = e^{r(x−1)}` for
 `N ∼ Poisson(r)` and every `x : ℝ`. Stated as an honest expectation against
 `poissonMeasure`; no integrability hypothesis is needed since the codomain
-is finite-dimensional (`integral_poissonMeasure`). -/
+is finite-dimensional (`integral_poissonMeasure`).
+@isnad1 id=eq.0h2v.s5.52bbbc950c26 from=translated src=- shape=aeeff976 vocab=88d35461
+-/
 theorem integral_pow_poissonMeasure (r : ℝ≥0) (x : ℝ) :
     ∫ n, x ^ n ∂(poissonMeasure r) = rexp ((r : ℝ) * (x - 1)) := by
   rw [integral_poissonMeasure r (fun n ↦ x ^ n)]

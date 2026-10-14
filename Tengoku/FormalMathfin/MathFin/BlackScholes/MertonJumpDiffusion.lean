@@ -89,13 +89,17 @@ noncomputable def mertonSpot (S_0 k : ℝ) (Λ : ℝ≥0) (n : ℕ) : ℝ :=
 noncomputable def mertonVol (σ δ T : ℝ) (n : ℕ) : ℝ :=
   Real.sqrt (σ ^ 2 + (n : ℝ) * δ ^ 2 / T)
 
-/-- The Merton jump-conditional spot is positive (`S₀`, the drift `exp`, and `(1+k)ⁿ` all positive). -/
+/-- The Merton jump-conditional spot is positive (`S₀`, the drift `exp`, and `(1+k)ⁿ` all positive).
+@isnad1 id=lt.2h4v.s5.7d5cb3e76552 from=translated src=- shape=83bc4448 vocab=52d50707
+-/
 lemma mertonSpot_pos {S_0 k : ℝ} (hS_0 : 0 < S_0) (hk : -1 < k)
     (Λ : ℝ≥0) (n : ℕ) : 0 < mertonSpot S_0 k Λ n := by
   have h1k : (0 : ℝ) < 1 + k := by linarith
   exact mul_pos (mul_pos hS_0 (Real.exp_pos _)) (pow_pos h1k n)
 
-/-- The Merton jump-conditional volatility is positive (`σ > 0`; the radicand is a sum of nonnegatives). -/
+/-- The Merton jump-conditional volatility is positive (`σ > 0`; the radicand is a sum of nonnegatives).
+@isnad1 id=lt.2h4v.s5.11e3eeaea4e1 from=translated src=- shape=d5d561e6 vocab=d892465e
+-/
 lemma mertonVol_pos {σ δ T : ℝ} (hσ : 0 < σ) (hT : 0 < T) (n : ℕ) :
     0 < mertonVol σ δ T n := by
   apply Real.sqrt_pos.mpr
@@ -133,7 +137,9 @@ noncomputable def mertonPutPrice (S_0 K r σ T k δ : ℝ) (Λ : ℝ≥0) : ℝ 
 
 /-- Each conditional value *is* the Black–Scholes price function `bsV` at the
 jump-adjusted spot and volatility: the Merton mixture averages genuine BS
-prices. The bridge consumed by `MertonDominance` and `MertonClassicDisplay`. -/
+prices. The bridge consumed by `MertonDominance` and `MertonClassicDisplay`.
+@isnad1 id=eq.0h9v.s5.97402002d587 from=translated src=- shape=80d01056 vocab=0f9acbed
+-/
 theorem mertonCallTerm_eq_bsV (S_0 K r σ T k δ : ℝ) (Λ : ℝ≥0) (n : ℕ) :
     mertonCallTerm S_0 K r σ T k δ Λ n
       = bsV K r (mertonVol σ δ T n) (mertonSpot S_0 k Λ n) T := by
@@ -144,7 +150,9 @@ theorem mertonCallTerm_eq_bsV (S_0 K r σ T k δ : ℝ) (Λ : ℝ≥0) (n : ℕ)
 
 /-- Each Merton call term is the discounted conditional expected payoff:
 `bs_call_formula` on the canonical Gaussian space `(ℝ, gaussianReal 0 1)`
-at the jump-adjusted spot and volatility. -/
+at the jump-adjusted spot and volatility.
+@isnad1 id=eq.5h9v.s7.4d81167cc4cd from=translated src=- shape=3578d750 vocab=657739e7
+-/
 theorem mertonCallTerm_eq_integral {S_0 K r σ T k : ℝ} (δ : ℝ) (Λ : ℝ≥0)
     (hS_0 : 0 < S_0) (hK : 0 < K) (hσ : 0 < σ) (hT : 0 < T) (hk : -1 < k)
     (n : ℕ) :
@@ -156,7 +164,9 @@ theorem mertonCallTerm_eq_integral {S_0 K r σ T k : ℝ} (δ : ℝ) (Λ : ℝ�
     ⟨mertonSpot_pos hS_0 hk Λ n, hK, mertonVol_pos hσ hT n, hT, HasLaw.id⟩).symm
 
 /-- Each Merton put term is the discounted conditional expected payoff:
-`bs_put_formula` at the jump-adjusted parameters. -/
+`bs_put_formula` at the jump-adjusted parameters.
+@isnad1 id=eq.5h9v.s7.eaaff71554bd from=translated src=- shape=21951883 vocab=3cf83d44
+-/
 theorem mertonPutTerm_eq_integral {S_0 K r σ T k : ℝ} (δ : ℝ) (Λ : ℝ≥0)
     (hS_0 : 0 < S_0) (hK : 0 < K) (hσ : 0 < σ) (hT : 0 < T) (hk : -1 < k)
     (n : ℕ) :
@@ -172,6 +182,9 @@ theorem mertonPutTerm_eq_integral {S_0 K r σ T k : ℝ} (δ : ℝ) (Λ : ℝ≥
 `Phi_nonneg` comes from `Foundations/StandardNormal.lean`, `Phi_le_one` from
 `BlackScholes/PriceBounds.lean` (non-public import above). -/
 
+/--
+@isnad1 id=le.5h9v.s6.c9ede09919c1 from=translated src=- shape=00886e71 vocab=1710c56f
+-/
 lemma mertonCallTerm_nonneg {S_0 K r σ T k : ℝ} (δ : ℝ) (Λ : ℝ≥0)
     (hS_0 : 0 < S_0) (hK : 0 < K) (hσ : 0 < σ) (hT : 0 < T) (hk : -1 < k)
     (n : ℕ) : 0 ≤ mertonCallTerm S_0 K r σ T k δ Λ n := by
@@ -179,6 +192,9 @@ lemma mertonCallTerm_nonneg {S_0 K r σ T k : ℝ} (δ : ℝ) (Λ : ℝ≥0)
   exact integral_nonneg fun z ↦
     mul_nonneg (Real.exp_pos _).le (le_max_right _ _)
 
+/--
+@isnad1 id=le.3h9v.s6.706cb6a11f75 from=translated src=- shape=6fca2e23 vocab=6ea71209
+-/
 lemma mertonCallTerm_le_spot {S_0 K r σ T k : ℝ} (δ : ℝ) (Λ : ℝ≥0)
     (hS_0 : 0 < S_0) (hK : 0 < K) (hk : -1 < k) (n : ℕ) :
     mertonCallTerm S_0 K r σ T k δ Λ n ≤ mertonSpot S_0 k Λ n := by
@@ -191,6 +207,9 @@ lemma mertonCallTerm_le_spot {S_0 K r σ T k : ℝ} (δ : ℝ) (Λ : ℝ≥0)
   unfold mertonCallTerm
   linarith
 
+/--
+@isnad1 id=le.5h9v.s6.52beb670026f from=translated src=- shape=00886e71 vocab=09055652
+-/
 lemma mertonPutTerm_nonneg {S_0 K r σ T k : ℝ} (δ : ℝ) (Λ : ℝ≥0)
     (hS_0 : 0 < S_0) (hK : 0 < K) (hσ : 0 < σ) (hT : 0 < T) (hk : -1 < k)
     (n : ℕ) : 0 ≤ mertonPutTerm S_0 K r σ T k δ Λ n := by
@@ -198,6 +217,9 @@ lemma mertonPutTerm_nonneg {S_0 K r σ T k : ℝ} (δ : ℝ) (Λ : ℝ≥0)
   exact integral_nonneg fun z ↦
     mul_nonneg (Real.exp_pos _).le (le_max_right _ _)
 
+/--
+@isnad1 id=le.3h9v.s6.9b85b3f54813 from=translated src=- shape=747765b6 vocab=e4bc35e6
+-/
 lemma mertonPutTerm_le_strike {S_0 K r σ T k : ℝ} (δ : ℝ) (Λ : ℝ≥0)
     (hS_0 : 0 < S_0) (hK : 0 < K) (hk : -1 < k) (n : ℕ) :
     mertonPutTerm S_0 K r σ T k δ Λ n ≤ K * rexp (-r * T) := by
@@ -212,7 +234,9 @@ lemma mertonPutTerm_le_strike {S_0 K r σ T k : ℝ} (δ : ℝ) (Λ : ℝ≥0)
 /-! ### Well-definedness: the mixture is integrable -/
 
 /-- The Poisson-weighted conditional spots form a convergent (exponential)
-series — the quantitative heart of the mixture's well-definedness. -/
+series — the quantitative heart of the mixture's well-definedness.
+@isnad1 id=summable.0h3v.s6.bb318c442a85 from=translated src=- shape=c85ba9bb vocab=2ae87653
+-/
 lemma summable_weights_mul_mertonSpot (S_0 k : ℝ) (Λ : ℝ≥0) :
     Summable (fun n : ℕ ↦
       rexp (-(Λ : ℝ)) * (Λ : ℝ) ^ n / n ! * mertonSpot S_0 k Λ n) := by
@@ -221,6 +245,9 @@ lemma summable_weights_mul_mertonSpot (S_0 k : ℝ) (Λ : ℝ≥0) :
   unfold mertonSpot
   ring
 
+/--
+@isnad1 id=integrab.5h8v.s6.6e08b473be19 from=translated src=- shape=7779866e vocab=6b5f3fba
+-/
 lemma integrable_mertonCallTerm {S_0 K r σ T k : ℝ} (δ : ℝ) (Λ : ℝ≥0)
     (hS_0 : 0 < S_0) (hK : 0 < K) (hσ : 0 < σ) (hT : 0 < T) (hk : -1 < k) :
     Integrable (mertonCallTerm S_0 K r σ T k δ Λ) (poissonMeasure Λ) := by
@@ -234,6 +261,9 @@ lemma integrable_mertonCallTerm {S_0 K r σ T k : ℝ} (δ : ℝ) (Λ : ℝ≥0)
     exact mertonCallTerm_le_spot δ Λ hS_0 hK hk n
   exact mul_le_mul_of_nonneg_left hterm (by positivity)
 
+/--
+@isnad1 id=integrab.5h8v.s6.1c63e7b7b987 from=translated src=- shape=7779866e vocab=3d7105d4
+-/
 lemma integrable_mertonPutTerm {S_0 K r σ T k : ℝ} (δ : ℝ) (Λ : ℝ≥0)
     (hS_0 : 0 < S_0) (hK : 0 < K) (hσ : 0 < σ) (hT : 0 < T) (hk : -1 < k) :
     Integrable (mertonPutTerm S_0 K r σ T k δ Λ) (poissonMeasure Λ) := by
@@ -246,6 +276,9 @@ lemma integrable_mertonPutTerm {S_0 K r σ T k : ℝ} (δ : ℝ) (Λ : ℝ≥0)
     exact mertonPutTerm_le_strike δ Λ hS_0 hK hk n
   exact mul_le_mul_of_nonneg_left hterm (by positivity)
 
+/--
+@isnad1 id=integrab.2h3v.s5.1268efde070c from=translated src=- shape=4e9c103c vocab=2ea8eaee
+-/
 lemma integrable_mertonSpot {S_0 k : ℝ} (Λ : ℝ≥0)
     (hS_0 : 0 < S_0) (hk : -1 < k) :
     Integrable (mertonSpot S_0 k Λ) (poissonMeasure Λ) := by
@@ -258,7 +291,9 @@ compensation identity -/
 
 /-- **The Merton series.** The price expands to the textbook Poisson-weighted
 sum of conditional Black–Scholes values — no hypotheses needed: the integral
-over `poissonMeasure` *is* the weighted series for real-valued integrands. -/
+over `poissonMeasure` *is* the weighted series for real-valued integrands.
+@isnad1 id=eq.0h8v.s6.491184e9a35e from=translated src=- shape=6b0d2499 vocab=49500a0f
+-/
 theorem mertonCallPrice_eq_tsum (S_0 K r σ T k δ : ℝ) (Λ : ℝ≥0) :
     mertonCallPrice S_0 K r σ T k δ Λ
       = ∑' n : ℕ, rexp (-(Λ : ℝ)) * (Λ : ℝ) ^ n / n !
@@ -269,7 +304,9 @@ theorem mertonCallPrice_eq_tsum (S_0 K r σ T k δ : ℝ) (Λ : ℝ≥0) :
 
 /-- **The Merton price as an iterated expectation**: outer expectation over
 the Poisson jump count, inner discounted expected payoff under the
-conditional lognormal — the honest mixture-pricing form. -/
+conditional lognormal — the honest mixture-pricing form.
+@isnad1 id=eq.5h8v.s7.3b0b0f1a1338 from=translated src=- shape=33a57cf8 vocab=792511f9
+-/
 theorem mertonCallPrice_eq_iterated_expectation {S_0 K r σ T k : ℝ}
     (δ : ℝ) (Λ : ℝ≥0)
     (hS_0 : 0 < S_0) (hK : 0 < K) (hσ : 0 < σ) (hT : 0 < T) (hk : -1 < k) :
@@ -284,7 +321,9 @@ theorem mertonCallPrice_eq_iterated_expectation {S_0 K r σ T k : ℝ}
 `E[mertonSpot(N)] = S₀`. The compensator `e^{−kΛ}` exactly cancels the
 expected jump growth `E[(1+k)^N] = e^{kΛ}` (the Poisson pgf at `1+k`): the
 conditional forwards recombine to the true forward. No hypotheses — the
-identity is exact for all `k` and `Λ`. -/
+identity is exact for all `k` and `Λ`.
+@isnad1 id=eq.0h3v.s5.830d30618f4e from=translated src=- shape=50945cd4 vocab=d329a4f8
+-/
 theorem integral_mertonSpot (S_0 k : ℝ) (Λ : ℝ≥0) :
     ∫ n, mertonSpot S_0 k Λ n ∂(poissonMeasure Λ) = S_0 := by
   rw [integral_poissonMeasure]
@@ -301,7 +340,9 @@ theorem integral_mertonSpot (S_0 k : ℝ) (Λ : ℝ≥0) :
     Real.exp_zero, mul_one]
 
 /-- **Term-wise put–call parity** for the conditional values: pure
-`Φ(x) + Φ(−x) = 1` algebra, no hypotheses. -/
+`Φ(x) + Φ(−x) = 1` algebra, no hypotheses.
+@isnad1 id=eq.0h9v.s6.c4cebfd67c9a from=translated src=- shape=f010b090 vocab=38eba4b9
+-/
 theorem mertonTerm_parity (S_0 K r σ T k δ : ℝ) (Λ : ℝ≥0) (n : ℕ) :
     mertonCallTerm S_0 K r σ T k δ Λ n - mertonPutTerm S_0 K r σ T k δ Λ n
       = mertonSpot S_0 k Λ n - K * rexp (-r * T) := by
@@ -315,7 +356,9 @@ theorem mertonTerm_parity (S_0 K r σ T k δ : ℝ) (Λ : ℝ≥0) (n : ℕ) :
 /-- **Merton put–call parity**: `C − P = S₀ − K e^{−rT}`. Parity survives
 jump risk *because of* the compensation identity: term-wise BS parity leaves
 `E[mertonSpot(N)] − Ke^{−rT}`, and spot recombination collapses the
-expectation to `S₀`. -/
+expectation to `S₀`.
+@isnad1 id=eq.5h8v.s7.af2d32260d04 from=translated src=- shape=69f57f68 vocab=752b048f
+-/
 theorem merton_put_call_parity {S_0 K r σ T k : ℝ} (δ : ℝ) (Λ : ℝ≥0)
     (hS_0 : 0 < S_0) (hK : 0 < K) (hσ : 0 < σ) (hT : 0 < T) (hk : -1 < k) :
     mertonCallPrice S_0 K r σ T k δ Λ - mertonPutPrice S_0 K r σ T k δ Λ

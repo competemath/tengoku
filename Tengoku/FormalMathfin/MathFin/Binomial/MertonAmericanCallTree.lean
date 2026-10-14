@@ -72,7 +72,9 @@ open Real
 no-arbitrage, the up-probability `q` satisfies `q · u + (1 − q) · d = e^r`.
 
 Equivalently, the discounted asset price is a Q-martingale at every step.
-Direct algebraic consequence of `crrUpProb = (e^r − d) / (u − d)`. -/
+Direct algebraic consequence of `crrUpProb = (e^r − d) / (u − d)`.
+@isnad1 id=eq.1h3v.s5.a17c2d9fed31 from=translated src=- shape=8fdea789 vocab=11296364
+-/
 theorem binomial_martingale_identity {u d r : ℝ} (h : BinomialNoArb u d r) :
     crrUpProb u d r * u + (1 - crrUpProb u d r) * d = Real.exp r :=
   crrUpProb_mul_up_add u d r h
@@ -83,7 +85,9 @@ real `a, b` and convex-combination weights `q, 1 − q` with `q ∈ [0, 1]`,
   `max(q · a + (1 − q) · b, 0) ≤ q · max(a, 0) + (1 − q) · max(b, 0)`.
 
 This is Jensen's inequality for the convex function `x ↦ max(x, 0)`,
-which is convex as the maximum of the affine `x` and the constant `0`. -/
+which is convex as the maximum of the affine `x` and the constant `0`.
+@isnad1 id=le.2h3v.s7.d29767c90360 from=translated src=- shape=1bcced6f vocab=a5c9b83f
+-/
 lemma weighted_max_zero_ge {q a b : ℝ} (hq : 0 ≤ q) (h1q : q ≤ 1) :
     max (q * a + (1 - q) * b) 0 ≤ q * max a 0 + (1 - q) * max b 0 := by
   have h1q_nn : 0 ≤ 1 - q := by linarith
@@ -96,7 +100,9 @@ lemma weighted_max_zero_ge {q a b : ℝ} (hq : 0 ≤ q) (h1q : q ≤ 1) :
 
 `max(·, 0)` is positively homogeneous: `c · max(x, 0) = max(c · x, 0)` for
 `c ≥ 0`. Combined with `e^{−r} · e^r = 1`, this gives the discount-shift
-identity. -/
+identity.
+@isnad1 id=eq.0h3v.s6.b3a23f4d137c from=translated src=- shape=dafdc212 vocab=c4ee64dd
+-/
 lemma exp_neg_mul_max_call_payoff (S K r : ℝ) :
     Real.exp (-r) * max (S * Real.exp r - K) 0 = max (S - K * Real.exp (-r)) 0 := by
   have h_exp_pos : 0 < Real.exp (-r) := Real.exp_pos _
@@ -139,7 +145,9 @@ single-period binomial. For the call payoff `g(S) = max(S − K, 0)`,
     = continuation`.
 
 Combines `weighted_max_zero_ge` (Jensen for max-zero), the martingale identity
-(`qu + (1 − q)d = e^r`), and the discount-shift identity. -/
+(`qu + (1 − q)d = e^r`), and the discount-shift identity.
+@isnad1 id=le.1h5v.s6.7ce45ccc7e99 from=translated src=- shape=b3146000 vocab=2ab16aaf
+-/
 theorem call_one_period_continuation_ge_forward
     {u d r K S : ℝ} (h : BinomialNoArb u d r) :
     max (S - K * Real.exp (-r)) 0 ≤
@@ -179,7 +187,9 @@ theorem call_one_period_continuation_ge_forward
 `call_one_period_continuation_ge_forward` with the forward-discount
 inequality `max(S − K · e^{−r}, 0) ≥ max(S − K, 0)` (for `r ≥ 0`, `K ≥ 0`).
 
-For positive `r` and positive `K`, this is *strict*. -/
+For positive `r` and positive `K`, this is *strict*.
+@isnad1 id=le.3h5v.s6.b07472151dd9 from=translated src=- shape=ec72aa79 vocab=8bc2cc9d
+-/
 theorem call_one_period_continuation_dominates_intrinsic
     {u d r K S : ℝ} (h : BinomialNoArb u d r) (hr : 0 ≤ r) (hK : 0 ≤ K) :
     max (S - K) 0 ≤
@@ -222,7 +232,9 @@ equality. -/
 with `r ≥ 0, K ≥ 0`.
 
 This is the substantive content of Merton 1973 at multi-step horizons: the
-one-period continuation dominance lifts to every step by induction. -/
+one-period continuation dominance lifts to every step by induction.
+@isnad1 id=le.3h6v.s6.e4b528e47962 from=translated src=- shape=99fbc9f8 vocab=30224316
+-/
 theorem call_intrinsic_le_binomialPrice {u d r K : ℝ} (h : BinomialNoArb u d r)
     (hr : 0 ≤ r) (hK : 0 ≤ K) :
     ∀ (n : ℕ) (S : ℝ),
@@ -255,7 +267,9 @@ The Bellman `max(intrinsic, continuation)` is bounded above by the European
 price because (i) the intrinsic is bounded by the European price
 (`call_intrinsic_le_binomialPrice`), and (ii) the American continuation is
 bounded by the European continuation (inductive hypothesis at the daughters,
-plus monotonicity of the one-period operator). -/
+plus monotonicity of the one-period operator).
+@isnad1 id=le.3h6v.s6.8abe64b72445 from=translated src=- shape=8b28397f vocab=1a290820
+-/
 theorem americanCallPrice_le_binomialPrice {u d r K : ℝ} (h : BinomialNoArb u d r)
     (hr : 0 ≤ r) (hK : 0 ≤ K) :
     ∀ (n : ℕ) (S : ℝ),
@@ -285,7 +299,9 @@ the European call price at every step in the no-dividend binomial tree, for
 `r ≥ 0, K ≥ 0`.
 
 Both inequalities together: `americanCallPrice_le_binomialPrice` (this file)
-+ `binomialPrice_le_americanPrice` (`Binomial.American`). -/
++ `binomialPrice_le_americanPrice` (`Binomial.American`).
+@isnad1 id=eq.3h6v.s6.f95505ec87b9 from=translated src=- shape=89e5b248 vocab=1a290820
+-/
 theorem americanCallPrice_eq_binomialPrice {u d r K : ℝ} (h : BinomialNoArb u d r)
     (hr : 0 ≤ r) (hK : 0 ≤ K) (n : ℕ) (S : ℝ) :
     americanPrice u d r (fun S' ↦ max (S' - K) 0) n S =

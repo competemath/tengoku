@@ -30,6 +30,9 @@ open scoped Topology ContDiff Convolution
 noncomputable def causalBoundaryIntegral (g : ℝ → ℝ) (x t : ℝ) : ℝ :=
   ∫ y, causalHeatBoundaryKernel (t-y) x * g y
 
+/--
+@isnad1 id=contdiff.2h1v.s7.f65be6f5d6c1 from=translated src=- shape=b99e0133 vocab=548ac7ae
+-/
 theorem compact_causalBoundaryIntegral_smooth {g : ℝ → ℝ}
     (hg : Continuous g) (hc : HasCompactSupport g) :
     ContDiffOn ℝ ∞ (fun z : ℝ × ℝ => causalBoundaryIntegral g z.1 z.2) {z | 0 < z.1} := by
@@ -70,6 +73,9 @@ theorem compact_causalBoundaryIntegral_smooth {g : ℝ → ℝ}
   · simp [hy]
   · rw [hχ y hy,one_mul]
 
+/--
+@isnad1 id=eq.1h3v.s4.6e05e63af2ae from=translated src=- shape=1b9ab8cb vocab=3f4297ba
+-/
 theorem heatBoundaryExtension_eq_causalBoundaryIntegral (g : ℝ → ℝ)
     {x : ℝ} (hx : 0 < x) (t : ℝ) :
     heatBoundaryExtension g x t = causalBoundaryIntegral g x t := by
@@ -89,6 +95,9 @@ theorem heatBoundaryExtension_eq_causalBoundaryIntegral (g : ℝ → ℝ)
       simpa only [causalBoundaryIntegral,sub_sub_cancel] using
         integral_sub_left_eq_self (fun y => causalHeatBoundaryKernel (t-y) x*g y) volume t
 
+/--
+@isnad1 id=contdiff.2h1v.s7.d4b559647d5e from=translated src=- shape=b99e0133 vocab=8c613ed0
+-/
 theorem compact_heatBoundaryExtension_smooth {g : ℝ → ℝ}
     (hg : Continuous g) (hc : HasCompactSupport g) :
     ContDiffOn ℝ ∞ (fun z : ℝ × ℝ => heatBoundaryExtension g z.1 z.2) {z | 0 < z.1} := by

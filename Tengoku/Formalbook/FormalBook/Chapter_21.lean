@@ -12,6 +12,9 @@ D'Alembert and Argand's proof
 
 open Complex Polynomial Filter Finset Finsupp ComplexConjugate
 
+/--
+@isnad1 id=ex.3h3v.s6.998ae916674c from=translated src=- shape=c83d8060 vocab=afcad39e
+-/
 theorem dalembert_lemma {p : Polynomial ℂ} (hp : p.natDegree > 0)
     {a : ℂ} (hpa : p.eval a ≠ 0) {R : ℝ} (hR : 0 < R) :
     ∃ b, ‖b - a‖ < R ∧ ‖p.eval b‖ < ‖p.eval a‖ := by
@@ -199,6 +202,9 @@ theorem dalembert_lemma {p : Polynomial ℂ} (hp : p.natDegree > 0)
         linarith only [h3]
       _ < _ := by linarith only [h3]
 
+/--
+@isnad1 id=ex.1h1v.s5.dda5ae3ae3b9 from=translated src=- shape=5980e33a vocab=f6d12649
+-/
 theorem fundamental_theorem_of_algebra (p : Polynomial ℂ) (hp : p.natDegree > 0) :
     ∃ z : ℂ, p.eval z = 0 := by
   obtain ⟨z0, hfz0_le⟩ := p.exists_forall_norm_le

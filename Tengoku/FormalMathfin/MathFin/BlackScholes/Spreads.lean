@@ -34,7 +34,9 @@ i.e. the Breeden-Litzenberger implied PDF.
 namespace MathFin
 
 /-- **Bull-call spread payoff non-negativity**: for `K₁ ≤ K₂`,
-`max(S − K₂, 0) ≤ max(S − K₁, 0)`. Antitone face of the call payoff in `K`. -/
+`max(S − K₂, 0) ≤ max(S − K₁, 0)`. Antitone face of the call payoff in `K`.
+@isnad1 id=le.1h3v.s5.55a8b22acf3e from=translated src=- shape=ca3b11a6 vocab=64e44ed3
+-/
 lemma bull_call_spread_payoff_le (S K₁ K₂ : ℝ) (h : K₁ ≤ K₂) :
     max (S - K₂) 0 ≤ max (S - K₁) 0 :=
   antitone_call_payoff S h
@@ -46,7 +48,9 @@ The discrete second-difference of the convex function `K ↦ max(S − K, 0)` at
 the midpoint of `K₁` and `K₃` is non-negative: this is Jensen's inequality
 `f((K₁+K₃)/2) ≤ (f(K₁) + f(K₃))/2`, multiplied by 2 and rearranged. The
 hypothesis `K₁ ≤ K₃` is retained for API stability but is not needed for
-the inequality. -/
+the inequality.
+@isnad1 id=le.1h3v.s7.e351b7526926 from=translated src=- shape=400651e2 vocab=77a44d76
+-/
 lemma butterfly_payoff_nonneg (S K₁ K₃ : ℝ) (_h : K₁ ≤ K₃) :
     0 ≤
       max (S - K₁) 0 -

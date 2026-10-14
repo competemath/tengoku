@@ -56,7 +56,9 @@ variable {ι : Type*}
 noncomputable def spectralRiskFinite (s : Finset ι) (φ : ι → ℝ) (Q : ι → ℝ) : ℝ :=
   ∑ i ∈ s, φ i * Q i
 
-/-- **Translation invariance**: if `Σ φ = 1`, then `ρ(Q + c·𝟙) = ρ(Q) + c`. -/
+/-- **Translation invariance**: if `Σ φ = 1`, then `ρ(Q + c·𝟙) = ρ(Q) + c`.
+@isnad1 id=eq.1h5v.s6.a6e2c2a381f0 from=translated src=- shape=d70166c7 vocab=1556598d
+-/
 theorem spectralRisk_translation (s : Finset ι) (φ : ι → ℝ) (Q : ι → ℝ)
     (c : ℝ) (h_norm : ∑ i ∈ s, φ i = 1) :
     spectralRiskFinite s φ (fun i ↦ Q i + c) =
@@ -68,7 +70,9 @@ theorem spectralRisk_translation (s : Finset ι) (φ : ι → ℝ) (Q : ι → �
 
 /-- **Monotonicity**: with non-negative weights, pointwise quantile dominance
 gives risk dominance: `Q ≤ Q'` on the grid ⟹ `ρ_φ(Q) ≤ ρ_φ(Q')` — the
-monotonicity coherence axiom in the finite quantile-grid formulation. -/
+monotonicity coherence axiom in the finite quantile-grid formulation.
+@isnad1 id=le.2h5v.s6.eec96b42088d from=translated src=- shape=eedda729 vocab=1f16089c
+-/
 theorem spectralRisk_mono (s : Finset ι) (φ Q Q' : ι → ℝ)
     (hφ : ∀ i ∈ s, 0 ≤ φ i) (hQ : ∀ i ∈ s, Q i ≤ Q' i) :
     spectralRiskFinite s φ Q ≤ spectralRiskFinite s φ Q' := by
@@ -78,7 +82,9 @@ theorem spectralRisk_mono (s : Finset ι) (φ Q Q' : ι → ℝ)
 
 /-- **Convex combination of normalized spectra remains normalized**:
 `t Σ φ + (1−t) Σ ψ = t · 1 + (1−t) · 1 = 1`. The convex-combination weight
-`t·φ + (1−t)·ψ` is therefore a valid spectral weight. -/
+`t·φ + (1−t)·ψ` is therefore a valid spectral weight.
+@isnad1 id=eq.2h5v.s6.04eee05e63b4 from=translated src=- shape=b3903060 vocab=ad4e5c97
+-/
 theorem spectralRisk_convex_combination_normalized
     (s : Finset ι) (φ ψ : ι → ℝ) (t : ℝ)
     (hφ : ∑ i ∈ s, φ i = 1) (hψ : ∑ i ∈ s, ψ i = 1) :
@@ -88,7 +94,9 @@ theorem spectralRisk_convex_combination_normalized
 
 /-- **Convex combination of spectral risks**: a convex combination of
 spectral risk measures (with normalized weight functions) acts on the loss
-by the convex combination of the underlying weight functions. -/
+by the convex combination of the underlying weight functions.
+@isnad1 id=eq.0h6v.s6.6767e874484d from=translated src=- shape=c55f5e7d vocab=36e044af
+-/
 theorem spectralRisk_convex_combination
     (s : Finset ι) (φ ψ : ι → ℝ) (Q : ι → ℝ) (t : ℝ) :
     t * spectralRiskFinite s φ Q + (1 - t) * spectralRiskFinite s ψ Q =

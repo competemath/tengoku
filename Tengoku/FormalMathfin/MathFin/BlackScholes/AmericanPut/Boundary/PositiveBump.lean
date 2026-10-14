@@ -31,16 +31,25 @@ open scoped ContDiff
 /-- The quartic `x ^ 2 * (L - x) ^ 2`, vanishing to second order at `0` and at `L`. -/
 noncomputable def positiveBump (L x : ℝ) : ℝ := x^2*(L-x)^2
 
+/--
+@isnad1 id=contdiff.0h1v.s5.56914561b23f from=translated src=- shape=0fc4d29f vocab=878494e6
+-/
 theorem positiveBump_contDiff (L : ℝ) : ContDiff ℝ ∞ (positiveBump L) := by
   unfold positiveBump
   fun_prop
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.4abb427a74cf from=translated src=- shape=29df0283 vocab=b5e85066
+-/
 theorem positiveBump_hasDeriv (L x : ℝ) :
     HasDerivAt (positiveBump L) (2*x*(L-x)*(L-2*x)) x := by
   convert! ((hasDerivAt_id x).pow 2).mul (((hasDerivAt_id x).const_sub L).pow 2) using 1
   simp only [id_eq, Pi.pow_apply]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s7.ed16ca3f155c from=translated src=- shape=9e2e01f6 vocab=be6659e9
+-/
 theorem positiveBump_deriv2 (L x : ℝ) :
     deriv (deriv (positiveBump L)) x = 2*(L-2*x)^2-4*x*(L-x) := by
   rw [show deriv (positiveBump L) = fun y => 2*y*(L-y)*(L-2*y) from
@@ -50,10 +59,16 @@ theorem positiveBump_deriv2 (L x : ℝ) :
   simp only [id_eq, Pi.mul_apply]
   ring
 
+/--
+@isnad1 id=lt.2h2v.s5.00623b40ba6b from=translated src=- shape=909fdf01 vocab=305408a8
+-/
 theorem positiveBump_pos {L x : ℝ} (hx : 0 < x) (hxL : x < L) : 0 < positiveBump L x := by
   unfold positiveBump
   positivity
 
+/--
+@isnad1 id=le.2h4v.s7.5e605e05b6ae from=translated src=- shape=f71f34cf vocab=c1de1a90
+-/
 theorem positiveBump_operator {L M D x : ℝ} (hL : 0 < L) (hD : |D| ≤ M) :
     0 ≤ deriv (deriv (positiveBump L)) x + D*deriv (positiveBump L) x +
       (M^2+16/L^2)*positiveBump L x := by
@@ -73,11 +88,17 @@ theorem positiveBump_operator {L M D x : ℝ} (hL : 0 < L) (hD : |D| ≤ M) :
 noncomputable def decayingBump (L M η a x t : ℝ) : ℝ :=
   η*Real.exp (-(M^2+16/L^2)*(t-a))*positiveBump L x
 
+/--
+@isnad1 id=contdiff.0h4v.s6.4b7ad6d218d2 from=translated src=- shape=167e7d68 vocab=3bfb6715
+-/
 theorem decayingBump_contDiff (L M η a : ℝ) :
     ContDiff ℝ ∞ (fun z : ℝ × ℝ => decayingBump L M η a z.1 z.2) := by
   unfold decayingBump positiveBump
   fun_prop
 
+/--
+@isnad1 id=hasderiv.0h6v.s6.495f7f09586a from=translated src=- shape=98fa83b1 vocab=dc06ae51
+-/
 theorem decayingBump_hasDeriv_t (L M η a x t : ℝ) :
     HasDerivAt (decayingBump L M η a x)
       (-(M^2+16/L^2)*decayingBump L M η a x t) t := by
@@ -86,6 +107,9 @@ theorem decayingBump_hasDeriv_t (L M η a x t : ℝ) :
   dsimp [decayingBump]
   ring
 
+/--
+@isnad1 id=le.3h7v.s7.3594224ad0a6 from=translated src=- shape=b1394ba5 vocab=c7c4a7f8
+-/
 theorem decayingBump_subsolution {L M η a D x t : ℝ}
     (hL : 0 < L) (hη : 0 ≤ η) (hD : |D| ≤ M) :
     deriv (decayingBump L M η a x) t ≤

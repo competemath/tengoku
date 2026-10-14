@@ -44,7 +44,9 @@ open Set Real ProbabilityTheory
 
 /-- **Call payoff is convex in the spot**: `S ↦ max(S − K, 0)` is the
 positive part of an affine function. The spot-direction sibling of
-`convexOn_call_payoff`. -/
+`convexOn_call_payoff`.
+@isnad1 id=convexon.0h1v.s5.82582718ecfc from=translated src=- shape=90ef603b vocab=39f4179c
+-/
 lemma convexOn_call_payoff_spot (K : ℝ) :
     ConvexOn ℝ Set.univ (fun S : ℝ ↦ max (S - K) 0) := by
   refine ConvexOn.sup ⟨convex_univ, fun a _ b _ s t _ _ hst ↦ ?_⟩
@@ -86,7 +88,9 @@ private lemma deriv_bsV_S_eventuallyEq (K r σ τ : ℝ) (hK : 0 < K) (hσ : 0 <
 
 /-- **BS call price is convex in the spot on `(0, ∞)`** — the continuous-
 price face of S-convexity: at every `S > 0`,
-`∂²_S bsV = ϕ(d₁)/(S σ √τ) ≥ 0` (gamma). -/
+`∂²_S bsV = ϕ(d₁)/(S σ √τ) ≥ 0` (gamma).
+@isnad1 id=convexon.3h4v.s6.d1648a407be9 from=translated src=- shape=21804964 vocab=184ff949
+-/
 theorem bsV_spot_convexOn {K r σ τ : ℝ} (hK : 0 < K) (hσ : 0 < σ) (hτ : 0 < τ) :
     ConvexOn ℝ (Set.Ioi (0 : ℝ)) (fun s ↦ bsV K r σ s τ) := by
   refine convexOn_of_deriv2_nonneg' (convex_Ioi 0) ?_ ?_ ?_
@@ -115,7 +119,9 @@ theorem bsV_spot_convexOn {K r σ τ : ℝ} (hK : 0 < K) (hσ : 0 < σ) (hτ : 0
 /-- **The price lies above its tangent at any `S₀ > 0`, with slope delta**:
 `bsV(S₀) + Φ(d₁(S₀))·(s − S₀) ≤ bsV(s)`. The supporting-hyperplane form of
 `bsV_spot_convexOn` — convexity plus the closed-form delta
-(`hasDerivAt_bsV_S`) via the slope comparison lemmas. -/
+(`hasDerivAt_bsV_S`) via the slope comparison lemmas.
+@isnad1 id=le.5h6v.s6.a559b6b1e212 from=translated src=- shape=ddb9ec45 vocab=70686d01
+-/
 theorem bsV_spot_tangent_le {K r σ τ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
     (hτ : 0 < τ) {S₀ s : ℝ} (hS₀ : 0 < S₀) (hs : 0 < s) :
     bsV K r σ S₀ τ + Phi (bsd1 S₀ K r σ τ) * (s - S₀) ≤ bsV K r σ s τ := by

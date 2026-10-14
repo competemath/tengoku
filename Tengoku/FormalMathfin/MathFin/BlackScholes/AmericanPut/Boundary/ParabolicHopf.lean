@@ -31,16 +31,25 @@ open scoped Topology ContDiff
 /-- The stationary barrier `η * (Real.exp (lam * x) - 1)`, which vanishes at `x = 0`. -/
 noncomputable def expBarrier (η lam x : ℝ) : ℝ := η * (Real.exp (lam * x) - 1)
 
+/--
+@isnad1 id=contdiff.0h2v.s5.9622c82a61e1 from=translated src=- shape=7c676072 vocab=1ee9ae0f
+-/
 theorem expBarrier_smooth (η lam : ℝ) : ContDiff ℝ ∞ (expBarrier η lam) := by
   unfold expBarrier
   fun_prop
 
+/--
+@isnad1 id=hasderiv.0h3v.s6.25e4db02f595 from=translated src=- shape=e5ae8133 vocab=b8ffc5f2
+-/
 theorem expBarrier_hasDeriv (η lam x : ℝ) :
     HasDerivAt (expBarrier η lam) (η * lam * Real.exp (lam * x)) x := by
   convert! ((((hasDerivAt_id x).const_mul lam).exp).sub_const 1).const_mul η using 1
   simp only [id_eq]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s6.362c534f24ad from=translated src=- shape=57bca9fc vocab=06058611
+-/
 theorem expBarrier_deriv2 (η lam x : ℝ) :
     deriv (deriv (expBarrier η lam)) x = η * lam ^ 2 * Real.exp (lam * x) := by
   rw [show deriv (expBarrier η lam) = fun y => η * lam * Real.exp (lam * y) from
@@ -49,6 +58,9 @@ theorem expBarrier_deriv2 (η lam x : ℝ) :
   simp only [id_eq]
   ring
 
+/--
+@isnad1 id=le.3h4v.s7.dc8b3f1757df from=translated src=- shape=8b499e41 vocab=6a5cebd8
+-/
 theorem expBarrier_operator_nonneg {η lam D x : ℝ}
     (hη : 0 ≤ η) (hlam : 0 ≤ lam) (hD : 0 ≤ lam + D) :
     0 ≤ deriv (deriv (expBarrier η lam)) x + D * deriv (expBarrier η lam) x := by
@@ -57,7 +69,9 @@ theorem expBarrier_operator_nonneg {η lam D x : ℝ}
   nlinarith
 
 /-- A linear lower bound on a right neighborhood bounds the one-sided
-derivative from below. Only the derivative within `Ici 0` is needed. -/
+derivative from below. Only the derivative within `Ici 0` is needed.
+@isnad1 id=le.4h4v.s6.561aac21523d from=translated src=- shape=23a08e02 vocab=74c9010e
+-/
 theorem right_deriv_ge_of_linear_lower {F : ℝ → ℝ} {L m v : ℝ}
     (hL : 0 < L) (hzero : F 0 = 0) (hd : HasDerivWithinAt F v (Ici 0) 0)
     (hlower : ∀ x, 0 < x → x ≤ L → m * x ≤ F x) : m ≤ v := by
@@ -71,7 +85,9 @@ theorem right_deriv_ge_of_linear_lower {F : ℝ → ℝ} {L m v : ℝ}
 
 /-- Quantitative terminal Hopf estimate. The bottom and right edges dominate
 the barrier, and the left edge is nonnegative. The PDE is a supersolution
-inequality, so equality is not necessary. -/
+inequality, so equality is not necessary.
+@isnad1 id=le.14h8v.s9.1f5e87e4a2ba from=translated src=- shape=3db91b2b vocab=5bc15b38
+-/
 theorem terminal_hopf_of_barrier {u D : ℝ → ℝ → ℝ} {L a T η lam v : ℝ}
     (hL : 0 < L) (haT : a ≤ T) (hη : 0 < η) (hlam : 0 < lam)
     (hu : ContinuousOn (fun z : ℝ × ℝ => u z.1 z.2) (movingStrip (fun _ => 0) L a T))
@@ -122,7 +138,9 @@ theorem terminal_hopf_of_barrier {u D : ℝ → ℝ → ℝ} {L a T η lam v : �
 
 /-- Strict positivity on the compact bottom and right edges supplies a
 positive barrier scale. This is a proved compactness step, not an extra
-quantitative lower-bound premise. -/
+quantitative lower-bound premise.
+@isnad1 id=ex.7h5v.s7.7d594170d5ba from=translated src=- shape=3f18c100 vocab=73911d50
+-/
 theorem exists_expBarrier_below_edges {u : ℝ → ℝ → ℝ} {L a T lam : ℝ}
     (hL : 0 < L) (haT : a ≤ T) (hlam : 0 ≤ lam)
     (hbottom : ContinuousOn (fun x => u x a) (Icc 0 L))
@@ -151,7 +169,9 @@ theorem exists_expBarrier_below_edges {u : ℝ → ℝ → ℝ} {L a T lam : ℝ
 
 /-- Terminal boundary-point lemma with qualitative positivity hypotheses.
 Only a lower bound on the drift and a one-sided terminal derivative are used.
-The needed positive barrier scale is constructed by compactness. -/
+The needed positive barrier scale is constructed by compactness.
+@isnad1 id=lt.12h7v.s9.3461a28eb0c0 from=translated src=- shape=48ec9585 vocab=83b9a04e
+-/
 theorem terminal_hopf {u D : ℝ → ℝ → ℝ} {L a T M v : ℝ}
     (hL : 0 < L) (haT : a ≤ T)
     (hu : ContinuousOn (fun z : ℝ × ℝ => u z.1 z.2) (movingStrip (fun _ => 0) L a T))

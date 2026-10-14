@@ -69,7 +69,9 @@ the discount/survival, the difference is only in what `H` represents.
 
 The proof: `log(exp(−H s)) = −H s` (logs and exps are inverses), so
 `−log(exp(−H s)) = H s`, and the derivative of the LHS equals `H'(t)` by
-hypothesis. -/
+hypothesis.
+@isnad1 id=hasderiv.1h3v.s6.0857a4e960dd from=translated src=- shape=93086f3d vocab=ebd4f81d
+-/
 theorem rate_eq_neg_log_deriv {H : ℝ → ℝ} {H' t : ℝ}
     (hH : HasDerivAt H H' t) :
     HasDerivAt (fun s ↦ -(Real.log (Real.exp (-H s)))) H' t := by
@@ -82,14 +84,18 @@ theorem rate_eq_neg_log_deriv {H : ℝ → ℝ} {H' t : ℝ}
 
 Underpins `survival_pos` (constant-hazard credit), `hazardSurvival_pos`
 (time-varying hazard), `survivalFromForce_pos` (mortality), and the
-implicit positivity of the BS discount factor `exp(−rT)`. -/
+implicit positivity of the BS discount factor `exp(−rT)`.
+@isnad1 id=lt.0h1v.s4.938dc7ba4dd7 from=translated src=- shape=2139bacf vocab=379b737d
+-/
 lemma discount_pos (H : ℝ) : 0 < Real.exp (-H) := Real.exp_pos _
 
 /-- Universal discount monotonicity: `H₁ < H₂ ⇒ exp(−H₂) < exp(−H₁)`.
 
 Underpins `survival_strictAnti_of_pos_hazard`, the strict ordering of ZCB
 prices at distinct rates, and the strict-positive-correlation tightening
-of variance bounds. -/
+of variance bounds.
+@isnad1 id=lt.1h2v.s4.f06d2f3942d2 from=translated src=- shape=2d24f4ce vocab=379b737d
+-/
 lemma discount_strictAnti {H₁ H₂ : ℝ} (h : H₁ < H₂) :
     Real.exp (-H₂) < Real.exp (-H₁) :=
   Real.exp_lt_exp.mpr (by linarith)

@@ -35,6 +35,9 @@ def two_colorable (𝓕 : Finset (Finset X)) :=
   ∃ c : X → Fin 2, ∀ A : Finset X,
   A ∈ 𝓕 → ∃ x y : A, (c (x : X) = (0 : Fin 2)) ∧ (c y = (1 : Fin 2))
 
+/--
+@isnad1 id=ex.0h1v.s7.09078031797c from=translated src=- shape=5d8544d7 vocab=5ab01486
+-/
 theorem remark_1 {d : ℕ} : ∃ α : Type, ∃ X : Finset α, ∃ 𝓕 : Finset (Finset X),
   (∀ A ∈ 𝓕, A.card = d) ∧  ¬ two_colorable 𝓕 := by
   use Fin (2 * d + 1)
@@ -60,6 +63,9 @@ theorem remark_1 {d : ℕ} : ∃ α : Type, ∃ X : Finset α, ∃ 𝓕 : Finset
     simp +contextual [Finset.subset_iff]
 
 omit [DecidableEq α] in
+/--
+@isnad1 id=twocolor.2h4v.s7.03549efae77f from=translated src=- shape=765a077d vocab=1dc2d258
+-/
 theorem remark_2 {𝓕 𝓢 : Finset (Finset X)}
   (h₁ : two_colorable 𝓕)  (h₂ : 𝓢 ⊆ 𝓕) : two_colorable 𝓢 := by
   apply h₁.imp ?_
@@ -68,6 +74,9 @@ theorem remark_2 {𝓕 𝓢 : Finset (Finset X)}
 
 open ENNReal NNReal
 
+/--
+@isnad1 id=iff.4h3v.s6.075bbcfbc04e from=translated src=- shape=e1230600 vocab=21bb90dd
+-/
 protected lemma ENNReal.mul_inv_eq_iff_eq_mul {a b c: ENNReal}
   (h0 : b ≠ 0) (ha : a ≠ ∞) (hb : b ≠ ∞) (hc : c ≠ ∞) :
   a * b⁻¹ = c ↔ a = c * b := by
@@ -79,6 +88,9 @@ protected lemma ENNReal.mul_inv_eq_iff_eq_mul {a b c: ENNReal}
 
 open MeasureTheory
 
+/--
+@isnad1 id=lt.1h5v.s8.f3b7bbf8b9c6 from=translated src=- shape=d795164f vocab=09ebd371
+-/
 theorem MeasureTheory.measure_biUnion_lt_sum_of_inter {β : Type _}
   [MeasurableSpace β] [MeasurableSingletonClass β] [DecidableEq β]
   {P : Measure β} [IsFiniteMeasure P] (s : Finset α) (t : α → Finset β)
@@ -104,6 +116,9 @@ theorem MeasureTheory.measure_biUnion_lt_sum_of_inter {β : Type _}
         (Set.Finite.measurableSet <| finite_toSet (t j))]
       apply ENNReal.lt_add_right (by apply measure_ne_top) h
 
+/--
+@isnad1 id=twocolor.3h4v.s7.73ed12dab069 from=translated src=- shape=03a3270a vocab=5737cfb7
+-/
 theorem theorem_1 {h_d : d ≥ 2} (𝓕 : Finset (Finset X))
   (H_𝓕 : ∀ (A : Finset X), A ∈ 𝓕 → A.card = d)
   : 𝓕.card ≤ 2 ^ (d-1) → two_colorable 𝓕 := by

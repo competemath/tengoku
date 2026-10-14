@@ -27,7 +27,9 @@ namespace ThmD
 Flat top (a = b = 1, J = 1/3): c = F(λ₁); Montgomery–Taylor window: c → cStar λ + O(w/L + 1/l). -/
 def cRatio (lam1 a b J : ℝ) : ℝ := lam1 * a ^ 2 / (b + lam1 ^ 2 * J)
 
-/-- flat-top sanity: cRatio λ₁ 1 1 (1/3) = F(λ₁). -/
+/-- flat-top sanity: cRatio λ₁ 1 1 (1/3) = F(λ₁).
+@isnad1 id=eq.0h1v.s5.76af279d5c22 from=translated src=- shape=5fef4fc3 vocab=0d1c0d70
+-/
 theorem cRatio_flat (lam1 : ℝ) : cRatio lam1 1 1 (1/3) = Ffun lam1 := by
   unfold cRatio Ffun
   ring_nf
@@ -37,7 +39,9 @@ Assembly.lean's N0star_lower_H; same proof) -/
 
 /-- §6, Thm A-line, window-general: with cinv in the role of 1/λ₁ + λ₁/3 = 1/F(λ₁):
 if 4trG^ − ‖G^‖² − 2N − 3N(I′∖I) − B(4+2‖G^‖+B) ≤ N₀*, |trG^ − N| ≤ R₁, ‖G^‖² ≤ cinv·N + R₂,
-then (2 − cinv)N − [4R₁ + R₂ + 3NII + B(4 + 2√(cinv·N + R₂) + B)] ≤ N₀*. -/
+then (2 − cinv)N − [4R₁ + R₂ + 3NII + B(4 + 2√(cinv·N + R₂) + B)] ≤ N₀*.
+@isnad1 id=le.4h9v.s8.8b6cc81add9e from=translated src=- shape=0e2b4289 vocab=83994332
+-/
 theorem N0star_lower_c
     {N0star N NII trGh frGh B cinv R₁ R₂ : ℝ} (hB : 0 ≤ B)
     (h0 : 4 * trGh - frGh - 2 * N - 3 * NII - B * (4 + 2 * Real.sqrt frGh + B) ≤ N0star)
@@ -50,7 +54,9 @@ theorem N0star_lower_c
   have h2 : Real.sqrt frGh ≤ Real.sqrt (cinv * N + R₂) := Real.sqrt_le_sqrt hfr
   nlinarith [h0, h1, h2, hB, mul_le_mul_of_nonneg_left h2 hB]
 
-/-- link to the Theorem-D constant: 2 − 1/cStar λ = HD λ by definition. -/
+/-- link to the Theorem-D constant: 2 − 1/cStar λ = HD λ by definition.
+@isnad1 id=eq.0h1v.s5.c79fe69d1f48 from=translated src=- shape=0904433d vocab=15702a74
+-/
 theorem two_sub_inv_cStar (lam : ℝ) : 2 - 1 / cStar lam = HD lam := rfl
 
 /-! ### The D-interface for the traces (produced by Traces.lean, consumed by Endgame.lean)

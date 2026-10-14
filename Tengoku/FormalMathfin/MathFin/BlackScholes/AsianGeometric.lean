@@ -60,7 +60,9 @@ private lemma brownian_start_zero (hB : IsPreBrownianReal B μ) : B 0 =ᵐ[μ] 0
 /-- **The two-date geometric-Asian log-driver is Gaussian.** For a pre-Brownian motion `B`
 and sampling dates `s ≤ t ≤ T`, the average of the Brownian values `(B_s + B_t)/2` — the
 Gaussian part of the log geometric average `log √(S_s·S_t)` — has the centred Gaussian law
-`N(0, (3s+t)/4)`, the variance coming from the Brownian covariance `∫ B_s·B_t = min(s,t)`. -/
+`N(0, (3s+t)/4)`, the variance coming from the Brownian covariance `∫ B_s·B_t = min(s,t)`.
+@isnad1 id=haslaw.4h7v.s7.b270dfbdd4ea from=translated src=- shape=16318902 vocab=318990ad
+-/
 theorem asianGeom_driver_hasLaw (hB : IsPreBrownianReal B μ) (T : ℝ≥0)
     {s t : ℝ≥0} (hst : s ≤ t) (hsT : s ≤ T) (htT : t ≤ T) :
     HasLaw (fun ω ↦ (B s ω + B t ω) / 2)

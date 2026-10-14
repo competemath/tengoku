@@ -24,7 +24,9 @@ GammaFacts.stirling). -/
 def StirlingHyp : Prop := ∃ C : ℝ, ∀ τ : ℝ, 1 ≤ |τ| →
   |Zeta23.mu τ - (1 / (2 * Real.pi)) * Real.log (|τ| / (2 * Real.pi))| ≤ C / τ ^ 2
 
-/-- FTC anchor: ∫_T^{2T} (1/2π)·log(τ/2π) dτ = T·ℓ₁/(2π) for T > 0. -/
+/-- FTC anchor: ∫_T^{2T} (1/2π)·log(τ/2π) dτ = T·ℓ₁/(2π) for T > 0.
+@isnad1 id=eq.1h1v.s7.fb7083b1198e from=translated src=- shape=98b9d8e9 vocab=c5bac153
+-/
 lemma integral_main_eq {T : ℝ} (hT : 0 < T) :
     ∫ τ in T..(2 * T), (1 / (2 * Real.pi)) * Real.log (τ / (2 * Real.pi))
       = T * ell1 T / (2 * Real.pi) := by
@@ -81,7 +83,9 @@ lemma integral_main_eq {T : ℝ} (hT : 0 < T) :
   field_simp
   ring
 
-/-- **[eq:muints].1 given Stirling**: ∫_T^{2T} μ = Tℓ₁/(2π) + O(1/T). -/
+/-- **[eq:muints].1 given Stirling**: ∫_T^{2T} μ = Tℓ₁/(2π) + O(1/T).
+@isnad1 id=ex.1h0v.s6.4e1bd4121951 from=translated src=- shape=5fcbe4b2 vocab=ff2d9377
+-/
 theorem int_mu_of_stirling (hst : StirlingHyp) :
     ∃ C T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T →
       |(∫ τ in T..(2 * T), Zeta23.mu τ) - T * ell1 T / (2 * Real.pi)| ≤ C / T := by
@@ -165,7 +169,9 @@ theorem int_mu_of_stirling (hst : StirlingHyp) :
         rw [div_le_div_iff₀ h2 hT0]
         nlinarith
 
-/-- FTC anchor: ∫_T^{2T} log²(τ/2π) dτ = T(ℓ₁² + 1 − 2log²2) for T > 0. -/
+/-- FTC anchor: ∫_T^{2T} log²(τ/2π) dτ = T(ℓ₁² + 1 − 2log²2) for T > 0.
+@isnad1 id=eq.1h1v.s7.2ed16ac21585 from=translated src=- shape=b8ff7a59 vocab=db592a6d
+-/
 lemma integral_main_sq_eq {T : ℝ} (hT : 0 < T) :
     ∫ τ in T..(2 * T), Real.log (τ / (2 * Real.pi)) ^ 2
       = T * (ell1 T ^ 2 + 1 - 2 * Real.log 2 ^ 2) := by
@@ -223,7 +229,9 @@ lemma integral_main_sq_eq {T : ℝ} (hT : 0 < T) :
   ring
 
 set_option maxHeartbeats 1600000 in
-/-- **[eq:muints].2 given Stirling**: ∫_T^{2T} μ² = (Tℓ₁²/4π²)(1 + O(l⁻²)). -/
+/-- **[eq:muints].2 given Stirling**: ∫_T^{2T} μ² = (Tℓ₁²/4π²)(1 + O(l⁻²)).
+@isnad1 id=ex.1h0v.s8.56fbb0149d09 from=translated src=- shape=550a7ca1 vocab=1e32b1f9
+-/
 theorem int_mu_sq_of_stirling (hst : StirlingHyp) :
     ∃ C T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T →
       |(∫ τ in T..(2 * T), Zeta23.mu τ ^ 2) - T * ell1 T ^ 2 / (4 * Real.pi ^ 2)|

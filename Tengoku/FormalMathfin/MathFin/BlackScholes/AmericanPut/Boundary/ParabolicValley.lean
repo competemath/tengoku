@@ -28,6 +28,9 @@ namespace MathFin.BlackScholes.AmericanPut.Boundary
 open Set Filter
 open scoped Topology ContDiff
 
+/--
+@isnad1 id=le.2h2v.s6.76a36d8aaa24 from=translated src=- shape=c76582a0 vocab=0a1a671c
+-/
 theorem second_deriv_nonneg_at_local_min {F : ℝ → ℝ} {x : ℝ}
     (hm : IsLocalMin F x) (hc : ContinuousAt F x) : 0 ≤ deriv (deriv F) x := by
   by_contra hn
@@ -45,6 +48,9 @@ theorem second_deriv_nonneg_at_local_min {F : ℝ → ℝ} {x : ℝ}
 noncomputable def valleyOnTriple (U : ℝ → ℝ → ℝ) (δ η : ℝ) (w : SpaceTimeTriple) : ℝ :=
   smoothValley δ (U w.1.1 w.1.2) (U w.2.1.1 w.2.1.2) (U w.2.2.1 w.2.2.2) - η*w.1.2
 
+/--
+@isnad1 id=continuo.1h4v.s6.1e58064cb59e from=translated src=- shape=7b2153e5 vocab=04f3ce68
+-/
 theorem valleyOnTriple_continuousOn {U : ℝ → ℝ → ℝ} {Q : Set (ℝ × ℝ)}
     (hU : ContinuousOn (fun z : ℝ × ℝ => U z.1 z.2) Q) (δ η : ℝ) :
     ContinuousOn (valleyOnTriple U δ η) (orderedTriples Q) := by
@@ -61,7 +67,9 @@ theorem valleyOnTriple_continuousOn {U : ℝ → ℝ → ℝ} {Q : Set (ℝ × �
 
 /-- No positive maximum of the smoothed valley detector minus a strictly
 increasing time penalty. Initial data need only be continuous and satisfy the
-three-point shape inequality; no initial derivative convergence is required. -/
+three-point shape inequality; no initial derivative convergence is required.
+@isnad1 id=le.11h8v.s9.bd58d47645ff from=translated src=- shape=faf2fcf5 vocab=19f55f2c
+-/
 theorem parabolic_smoothValley_nonpos {U D : ℝ → ℝ → ℝ} {b : ℝ → ℝ} {R T δ η : ℝ}
     (hδ : 0 < δ) (hη : 0 < η)
     (hb : ContinuousOn b (Icc 0 T)) (hbR : ∀ t ∈ Icc 0 T, b t ≤ R)

@@ -30,6 +30,9 @@ open scoped Topology ContDiff
 
 variable {k h : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
 
+/--
+@isnad1 id=lt.4h7v.s6.f382c4a052f2 from=translated src=- shape=9e8c5873 vocab=83664ccd
+-/
 theorem incrementGauge_pos_above_strike (hp : DividendPutSolution k h p b)
     {δ x t : ℝ} (hδ : 0 < δ) (hx : 0 < x) (ht : 0 < t) :
     0 < incrementGauge p k h δ x t := by
@@ -47,6 +50,9 @@ theorem incrementGauge_pos_above_strike (hp : DividendPutSolution k h p b)
     exact hp.incrementGauge_nonneg hδ.le hs z
   · exact hp.incrementGauge_initial_pos hδ hx
 
+/--
+@isnad1 id=lt.6h8v.s6.7422853a4a2f from=translated src=- shape=106d91e6 vocab=bd2cf166
+-/
 theorem incrementGauge_pos_on_flat_tail (hp : DividendPutSolution k h p b)
     {δ A x t : ℝ} (hδ : 0 < δ) (hA : 0 < A)
     (hflat : ∀ s, A ≤ s → b s = b A) (hx : b A < x) (ht : A < t) :
@@ -66,6 +72,9 @@ theorem incrementGauge_pos_on_flat_tail (hp : DividendPutSolution k h p b)
     exact hp.incrementGauge_nonneg hδ.le (hA.le.trans hs) z
   · exact hp.incrementGauge_pos_above_strike hδ (by norm_num) hA
 
+/--
+@isnad1 id=and.4h6v.s6.2dab1fa675ab from=translated src=- shape=bf1047c5 vocab=a2c3af22
+-/
 theorem incrementGauge_fit_of_same_boundary (hp : DividendPutSolution k h p b)
     {δ t : ℝ} (hδ : 0 ≤ δ) (ht : 0 < t) (heq : b (t+δ) = b t) :
     incrementGauge p k h δ (b t) t = 0 ∧

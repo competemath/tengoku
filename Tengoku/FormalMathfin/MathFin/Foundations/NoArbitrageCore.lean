@@ -27,7 +27,9 @@ open MeasureTheory ProbabilityTheory
 
 /-- **A nonnegative payoff with zero mean vanishes a.s.** If `f` is `Q`-integrable, `Q`-a.s.
 nonnegative, and has `∫ f dQ = 0`, then `{f > 0}` is `Q`-null. The common closing step of the
-forward FTAP in every setting. -/
+forward FTAP in every setting.
+@isnad1 id=eq.3h3v.s7.a67dd50131a0 from=translated src=- shape=3137c5f9 vocab=74c4a003
+-/
 theorem ae_zero_of_nonneg_of_integral_zero
     {Ω : Type*} [MeasurableSpace Ω] {Q : Measure Ω} {f : Ω → ℝ}
     (hf_int : Integrable f Q) (hf_nonneg : 0 ≤ᵐ[Q] f) (hf0 : ∫ ω, f ω ∂Q = 0) :
@@ -37,7 +39,9 @@ theorem ae_zero_of_nonneg_of_integral_zero
 
 /-- **A nonnegative martingale started at `0` vanishes at the terminal time.** The discrete
 forward FTAP's route to zero mean: `∫ V_T dQ = ∫ V_0 dQ = 0`, then
-`ae_zero_of_nonneg_of_integral_zero`. -/
+`ae_zero_of_nonneg_of_integral_zero`.
+@isnad1 id=eq.3h5v.s7.3987ce1009d8 from=translated src=- shape=70fb7d28 vocab=280ec563
+-/
 theorem martingale_nonneg_terminal_ae_zero
     {Ω : Type*} [m0 : MeasurableSpace Ω] {Q : Measure Ω} [IsProbabilityMeasure Q]
     {𝓕 : Filtration ℕ m0} {V : ℕ → Ω → ℝ}

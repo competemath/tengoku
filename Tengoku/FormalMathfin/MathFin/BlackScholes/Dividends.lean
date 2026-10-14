@@ -42,7 +42,9 @@ expected payoff of the European call is
 
 with `d_i = bsdi S_0 K (r − q) σ T`.
 
-Proof: factor `e^{-rT} = e^{-qT} · e^{-(r−q)T}` to apply `bs_call_formula`. -/
+Proof: factor `e^{-rT} = e^{-qT} · e^{-(r−q)T}` to apply `bs_call_formula`.
+@isnad1 id=eq.1h10v.s7.63b4e8c0de49 from=translated src=- shape=83d8334c vocab=9e4aad64
+-/
 theorem bs_dividends_call_formula {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
     {S_0 K r q σ T : ℝ} {Z : Ω → ℝ}
@@ -70,7 +72,9 @@ discounted expected dividend-adjusted call payoff equals `bsVGarman` at
 `A = S₀ · e^{−qT}`, `DF = e^{−rT}` — the dividend-discounted-asset numéraire.
 Routes `bs_dividends_call_formula` through
 `BlackScholes/GarmanNormalForm`'s `bs_dividends_RHS_eq_bsVGarman`, making the
-unification load-bearing from the consumer side. -/
+unification load-bearing from the consumer side.
+@isnad1 id=eq.1h10v.s7.bc90f9791b55 from=translated src=- shape=b3b7bbe7 vocab=3f8dc6e3
+-/
 theorem bs_dividends_price_eq_bsVGarman {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
     {S_0 K r q σ T : ℝ} {Z : Ω → ℝ}
@@ -84,7 +88,9 @@ theorem bs_dividends_price_eq_bsVGarman {Ω : Type*} {mΩ : MeasurableSpace Ω}
 foreign currency. Identical to the dividends formula with `q = r_f` (the foreign
 risk-free rate); the domestic rate `r_d` plays the role of `r`. The two payment
 streams (foreign currency yields `r_f` continuously to the holder, domestic
-funding costs `r_d`) net to an effective drift `r_d − r_f`. -/
+funding costs `r_d`) net to an effective drift `r_d − r_f`.
+@isnad1 id=eq.1h10v.s7.63b4e8c0de49 from=translated src=- shape=83d8334c vocab=9e4aad64
+-/
 theorem garman_kohlhagen_call_formula {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
     {S_0 K r_d r_f σ T : ℝ} {Z : Ω → ℝ}
@@ -113,7 +119,9 @@ noncomputable def quantoForward (S_0 r_dom ρ σ_S σ_FX T : ℝ) : ℝ :=
   S_0 * Real.exp ((r_dom - ρ * σ_S * σ_FX) * T)
 
 /-- **Quanto correction factor**: ratio of quanto-adjusted forward to
-unadjusted domestic forward equals `exp(−ρ σ_S σ_FX T)`. -/
+unadjusted domestic forward equals `exp(−ρ σ_S σ_FX T)`.
+@isnad1 id=eq.1h6v.s6.598bf6731d8a from=translated src=- shape=9d11c43a vocab=d59e6a72
+-/
 theorem quanto_correction_factor (S_0 r_dom ρ σ_S σ_FX T : ℝ) (hS : 0 < S_0) :
     quantoForward S_0 r_dom ρ σ_S σ_FX T / (S_0 * Real.exp (r_dom * T))
       = Real.exp (-(ρ * σ_S * σ_FX * T)) := by

@@ -70,7 +70,9 @@ then for any positive `T : ℝ`, the rescaled time-`T` value
 Combines `IsPreBrownianReal.hasLaw_eval` (BM marginal `W_T ~ N(0, T.toNNReal)`)
 with `gaussianReal_div_const` (Gaussian scaling under `· / c`). The
 variance computation `T.toNNReal / NNReal.mk((√T)², _) = 1` reduces to
-`Real.sq_sqrt` + `NNReal.div_self`. -/
+`Real.sq_sqrt` + `NNReal.div_self`.
+@isnad1 id=haslaw.2h5v.s6.8432ec5bad8f from=translated src=- shape=d694e48e vocab=fc86c581
+-/
 lemma scaled_isPreBrownian_eval_law
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω}
@@ -95,7 +97,9 @@ lemma scaled_isPreBrownian_eval_law
 /-- **`BSCallHyp` from a pre-Brownian motion**. Given a pre-Brownian
 process `W` under `Q` and positive parameters `(S_0, K, σ, T)`, the
 rescaled `Z := W T.toNNReal / √T` satisfies the BS risk-neutral lognormal
-hypothesis. -/
+hypothesis.
+@isnad1 id=bscallhy.5h9v.s6.c2961936b8d2 from=translated src=- shape=74b25b7b vocab=19f30b8f
+-/
 theorem BSCallHyp.of_isPreBrownian
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     (Q : Measure Ω) [IsProbabilityMeasure Q]
@@ -108,7 +112,9 @@ theorem BSCallHyp.of_isPreBrownian
 /-- **`BachelierHyp` from a pre-Brownian motion**. Same scaled `Z := W
 T.toNNReal / √T` works for the Bachelier arithmetic-BM model (no
 exponential), since both hypotheses share `Z_law : HasLaw Z (gaussianReal
-0 1) Q`. -/
+0 1) Q`.
+@isnad1 id=bachelie.4h8v.s6.e2c9378c763d from=translated src=- shape=5b2145af vocab=78ef6acc
+-/
 theorem BachelierHyp.of_isPreBrownian
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     (Q : Measure Ω) [IsProbabilityMeasure Q]
@@ -127,7 +133,9 @@ GBM form
 with the `√T` factor cancelling. This is the form most textbooks state
 directly — the BS-formula derivation uses the standard-normal Z marginal
 because that's algebraically convenient, but the *meaning* is the BM
-exponential. -/
+exponential.
+@isnad1 id=eq.1h7v.s7.a043323c6661 from=translated src=- shape=2a304c3a vocab=c9c19b35
+-/
 lemma bsTerminal_via_brownian
     {Ω : Type*} (W : ℝ≥0 → Ω → ℝ) {S_0 r σ T : ℝ} (hT : 0 < T) (ω : Ω) :
     bsTerminal S_0 r σ T (W T.toNNReal ω / Real.sqrt T) =
@@ -143,7 +151,9 @@ arithmetic-BM model has
 
   `S_T(ω) = S_0 + σ · W T.toNNReal(ω)`
 
-when `Z := W T.toNNReal / √T` is plugged into `S_0 + σ √T · Z`. -/
+when `Z := W T.toNNReal / √T` is plugged into `S_0 + σ √T · Z`.
+@isnad1 id=eq.1h6v.s6.b888108328c0 from=translated src=- shape=d5c0cf3a vocab=99d4ce7f
+-/
 lemma bachelierTerminal_via_brownian
     {Ω : Type*} (W : ℝ≥0 → Ω → ℝ) {S_0 σ T : ℝ} (hT : 0 < T) (ω : Ω) :
     S_0 + σ * Real.sqrt T * (W T.toNNReal ω / Real.sqrt T) =

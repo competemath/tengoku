@@ -68,7 +68,9 @@ martingale part satisfies Mathlib's optional sampling *equality*; the
 compensator is a.s. nondecreasing (Mathlib's
 `Submartingale.monotone_predictablePart`), so its stopped values compare
 pathwise and `condExp_mono` transports the
-comparison. Summing the two statements gives the theorem. -/
+comparison. Summing the two statements gives the theorem.
+@isnad1 id=eventual.5h8v.s7.f14c6ff673ad from=translated src=- shape=0acd6831 vocab=8b399317
+-/
 theorem submartingale_optional_sampling [SigmaFiniteFiltration μ ℱ]
     (hf : Submartingale f ℱ μ)
     (hτ : IsStoppingTime ℱ τ) (hσ : IsStoppingTime ℱ σ)

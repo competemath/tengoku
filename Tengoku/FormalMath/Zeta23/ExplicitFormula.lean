@@ -91,17 +91,28 @@ def EF_paper (Z : ZeroConfig) : Prop :=
 RCLike-generic lemma elaborates `Mul ℂ`/`NormedAddCommGroup ℂ` through a different instance path than
 a goal written with `*`; restating the lemmas at ℂ (proved by `exact`) makes `rw` usable.) -/
 
+/--
+@isnad1 id=eq.0h2v.s6.8c9071d4af6c from=translated src=- shape=84987c26 vocab=8cecdb08
+-/
 theorem cintegral_const_mul (c : ℂ) (f : ℝ → ℂ) : ∫ x, c * f x = c * ∫ x, f x :=
   integral_const_mul c f
 
+/--
+@isnad1 id=eq.0h2v.s6.b9514019ada5 from=translated src=- shape=c8a29f89 vocab=8cecdb08
+-/
 theorem cintegral_mul_const (c : ℂ) (f : ℝ → ℂ) : ∫ x, f x * c = (∫ x, f x) * c :=
   integral_mul_const c f
 
+/--
+@isnad1 id=eq.0h1v.s6.ea69797e1136 from=translated src=- shape=5bed719b vocab=4a0af900
+-/
 theorem cintegral_conj (f : ℝ → ℂ) : ∫ x, conj (f x) = conj (∫ x, f x) := integral_conj
 
 /-! ## Dictionary with Mathlib's Fourier transform -/
 
-/-- `h_k(τ) = 𝓕 k (−τ/(2π))` for real τ. -/
+/-- `h_k(τ) = 𝓕 k (−τ/(2π))` for real τ.
+@isnad1 id=eq.0h2v.s6.df085340961d from=translated src=- shape=91afd142 vocab=cbd2a1b6
+-/
 theorem paperFT_ofReal_eq_fourier (k : ℝ → ℂ) (τ : ℝ) :
     paperFT k τ = 𝓕 k (-τ / (2 * π)) := by
   rw [Real.fourier_real_eq_integral_exp_smul]
@@ -115,7 +126,9 @@ theorem paperFT_ofReal_eq_fourier (k : ℝ → ℂ) (τ : ℝ) :
   push_cast
   ring_nf
 
-/-- `h_k` is integrable on the real line when `𝓕 k` is (dictionary + linear substitution). -/
+/-- `h_k` is integrable on the real line when `𝓕 k` is (dictionary + linear substitution).
+@isnad1 id=integrab.1h1v.s6.74cc4dc962d9 from=translated src=- shape=925d2f30 vocab=2055efba
+-/
 theorem integrable_paperFT_ofReal {k : ℝ → ℂ} (hFk : Integrable (𝓕 k)) :
     Integrable (fun τ : ℝ => paperFT k τ) := by
   have : (fun τ : ℝ => paperFT k τ) = fun τ => (𝓕 k) ((-(1 / (2 * π))) * τ) := by
@@ -124,7 +137,9 @@ theorem integrable_paperFT_ofReal {k : ℝ → ℂ} (hFk : Integrable (𝓕 k)) 
   exact hFk.comp_mul_left' (neg_ne_zero.mpr (by positivity))
 
 /-- Paper inversion `k(u) = (1/2π) ∫ h(r) e^{−iru} dr` (App. A, "so that …"), from Mathlib's
-`Continuous.fourierInv_fourier_eq` and the substitution `v = −r/(2π)`. -/
+`Continuous.fourierInv_fourier_eq` and the substitution `v = −r/(2π)`.
+@isnad1 id=eq.3h2v.s7.62a563f8e744 from=translated src=- shape=2e875c36 vocab=6d106c25
+-/
 theorem paper_inversion {k : ℝ → ℂ} (hk : Continuous k) (hki : Integrable k)
     (hFk : Integrable (𝓕 k)) (u : ℝ) :
     k u = (1 / (2 * π) : ℂ) * ∫ r : ℝ, paperFT k r * cexp (-I * r * u) := by
@@ -151,18 +166,30 @@ theorem paper_inversion {k : ℝ → ℂ} (hk : Continuous k) (hki : Integrable 
 
 /-! ## The test function k = f ⋆ g̃ -/
 
+/--
+@isnad1 id=continuo.1h1v.s5.e1e724512213 from=translated src=- shape=95abb765 vocab=1ab545ac
+-/
 theorem continuous_tilde {g : ℝ → ℂ} (hg : Continuous g) : Continuous (tilde g) :=
   Complex.continuous_conj.comp (hg.comp continuous_neg)
 
+/--
+@isnad1 id=hascompa.1h1v.s4.2450f079c54b from=translated src=- shape=95abb765 vocab=0b44183b
+-/
 theorem hasCompactSupport_tilde {g : ℝ → ℂ} (hgs : HasCompactSupport g) :
     HasCompactSupport (tilde g) :=
   (hgs.comp_homeomorph (Homeomorph.neg ℝ)).comp_left (g := fun w : ℂ => conj w) (map_zero _)
 
+/--
+@isnad1 id=le.0h1v.s5.3263c63655df from=translated src=- shape=841e843b vocab=aa5317ea
+-/
 theorem support_tilde_subset (g : ℝ → ℂ) : Function.support (tilde g) ⊆ -tsupport g := by
   intro u hu
   simp only [Function.mem_support, tilde, ne_eq, map_eq_zero] at hu
   exact subset_tsupport _ (by simpa [Function.mem_support] using hu)
 
+/--
+@isnad1 id=le.1h2v.s6.fd1eb3ce3aef from=translated src=- shape=46c892e8 vocab=32e22822
+-/
 theorem tsupport_tilde_subset {g : ℝ → ℂ} {L : ℝ} (hgs : tsupport g ⊆ Icc (-(L / 2)) (L / 2)) :
     tsupport (tilde g) ⊆ Icc (-(L / 2)) (L / 2) := by
   refine closure_minimal ((support_tilde_subset g).trans ?_) isClosed_Icc
@@ -171,6 +198,9 @@ theorem tsupport_tilde_subset {g : ℝ → ℂ} {L : ℝ} (hgs : tsupport g ⊆ 
   simp only [mem_Icc] at this ⊢
   constructor <;> linarith [this.1, this.2]
 
+/--
+@isnad1 id=eq.0h2v.s6.318df0abdd3d from=translated src=- shape=06aff409 vocab=b2ce4ab8
+-/
 theorem paperFT_tilde (g : ℝ → ℂ) (z : ℂ) :
     paperFT (tilde g) z = conj (paperFT g (conj z)) := by
   unfold paperFT tilde
@@ -180,7 +210,9 @@ theorem paperFT_tilde (g : ℝ → ℂ) (z : ℂ) :
     Complex.ofReal_neg, neg_neg]
   ring_nf
 
-/-- App. A: `h_{f⋆g̃}(z) = h_f(z) · conj(h_g(conj z))` for all complex z. -/
+/-- App. A: `h_{f⋆g̃}(z) = h_f(z) · conj(h_g(conj z))` for all complex z.
+@isnad1 id=eq.4h3v.s7.232447777d65 from=translated src=- shape=c4659259 vocab=23498f3b
+-/
 theorem paperFT_weilTest {f g : ℝ → ℂ} (hf : Continuous f) (hg : Continuous g)
     (hfs : HasCompactSupport f) (hgs : HasCompactSupport g) (z : ℂ) :
     paperFT (weilTest f g) z = paperFT f z * conj (paperFT g (conj z)) := by
@@ -230,6 +262,9 @@ theorem paperFT_weilTest {f g : ℝ → ℂ} (hf : Continuous f) (hg : Continuou
     _ = paperFT f z * paperFT (tilde g) z := by
         simp only [paperFT]; rw [← cintegral_mul_const]
 
+/--
+@isnad1 id=contdiff.3h2v.s6.5453707cfdde from=translated src=- shape=c69c60bb vocab=efaf9d04
+-/
 theorem weilTest_contDiff {f g : ℝ → ℂ} (hf : ContDiff ℝ 2 f) (hg : Continuous g)
     (hfs : HasCompactSupport f) :
     ContDiff ℝ 2 (weilTest f g) := by
@@ -237,12 +272,17 @@ theorem weilTest_contDiff {f g : ℝ → ℂ} (hf : ContDiff ℝ 2 f) (hg : Cont
     hf (continuous_tilde hg).locallyIntegrable
   simpa [weilTest] using this
 
+/--
+@isnad1 id=hascompa.2h2v.s5.5ca95237c984 from=translated src=- shape=e052830a vocab=068cdcc0
+-/
 theorem weilTest_hasCompactSupport {f g : ℝ → ℂ}
     (hfs : HasCompactSupport f) (hgs : HasCompactSupport g) :
     HasCompactSupport (weilTest f g) :=
   hfs.convolution _ (hasCompactSupport_tilde hgs)
 
-/-- App. A: `supp k ⊆ [−L, L]` when `supp f, supp g ⊆ [−L/2, L/2]`. -/
+/-- App. A: `supp k ⊆ [−L, L]` when `supp f, supp g ⊆ [−L/2, L/2]`.
+@isnad1 id=le.2h3v.s7.0cf28f67bea7 from=translated src=- shape=216d1dfe vocab=35b70256
+-/
 theorem tsupport_weilTest_subset {f g : ℝ → ℂ} {L : ℝ}
     (hfs : tsupport f ⊆ Icc (-(L / 2)) (L / 2)) (hgs : tsupport g ⊆ Icc (-(L / 2)) (L / 2)) :
     tsupport (weilTest f g) ⊆ Icc (-L) L := by
@@ -256,7 +296,9 @@ theorem tsupport_weilTest_subset {f g : ℝ → ℂ} {L : ℝ}
 
 /-! ## App. A: the three identifications -/
 
-/-- *Gamma term*: `(1/2π) ∫ h(r)[Re Γ'/Γ(1/4+ir/2) − log π] dr = ∫ h μ` — definitional ([eq:mudef]). -/
+/-- *Gamma term*: `(1/2π) ∫ h(r)[Re Γ'/Γ(1/4+ir/2) − log π] dr = ∫ h μ` — definitional ([eq:mudef]).
+@isnad1 id=eq.0h1v.s6.9417758b004d from=translated src=- shape=e9e4d793 vocab=82339942
+-/
 theorem gamma_term (k : ℝ → ℂ) :
     (1 / (2 * π) : ℂ) * ∫ r : ℝ, paperFT k r * (gammaBracket r : ℂ)
       = ∫ τ : ℝ, paperFT k τ * (mu τ : ℂ) := by
@@ -266,12 +308,16 @@ theorem gamma_term (k : ℝ → ℂ) :
   push_cast
   ring
 
-/-- Compact support from a support bound. -/
+/-- Compact support from a support bound.
+@isnad1 id=hascompa.1h2v.s5.9046dc631df6 from=translated src=- shape=e9b2bf94 vocab=16178ec5
+-/
 theorem hasCompactSupport_of_tsupport_subset {k : ℝ → ℂ} {L : ℝ}
     (hks : tsupport k ⊆ Icc (-L) L) : HasCompactSupport k :=
   IsCompact.of_isClosed_subset isCompact_Icc (isClosed_tsupport k) hks
 
-/-- `h(r) e^{-irw}` is integrable in r when h is. -/
+/-- `h(r) e^{-irw}` is integrable in r when h is.
+@isnad1 id=integrab.1h2v.s7.5fc11f6b6465 from=translated src=- shape=71f7af70 vocab=a974c0f3
+-/
 theorem integrable_paperFT_mul_cexp {k : ℝ → ℂ} (hFk : Integrable (𝓕 k)) (w : ℝ) :
     Integrable (fun r : ℝ => paperFT k r * cexp (-I * r * w)) := by
   refine (integrable_paperFT_ofReal hFk).mul_bdd (c := 1) (by fun_prop) ?_
@@ -279,7 +325,9 @@ theorem integrable_paperFT_mul_cexp {k : ℝ → ℂ} (hFk : Integrable (𝓕 k)
   rw [Complex.norm_exp]
   simp
 
-/-- `h(r) cos(r y)` is integrable in r when h is. -/
+/-- `h(r) cos(r y)` is integrable in r when h is.
+@isnad1 id=integrab.1h2v.s7.5f9eb24d7ce6 from=translated src=- shape=389a4079 vocab=3034c5c8
+-/
 theorem integrable_paperFT_mul_cos {k : ℝ → ℂ} (hFk : Integrable (𝓕 k)) (y : ℝ) :
     Integrable (fun r : ℝ => paperFT k r * (Real.cos (r * y) : ℂ)) := by
   refine (integrable_paperFT_ofReal hFk).mul_bdd (c := 1) (by fun_prop) ?_
@@ -287,7 +335,9 @@ theorem integrable_paperFT_mul_cos {k : ℝ → ℂ} (hFk : Integrable (𝓕 k))
   rw [Complex.norm_real, Real.norm_eq_abs]
   exact Real.abs_cos_le_one _
 
-/-- App. A, *prime term*, first step: `k(y) + k(−y) = (1/2π)∫ h(τ)(e^{−iτy}+e^{iτy})dτ = (1/π) ∫ h(τ) cos(τy) dτ`. -/
+/-- App. A, *prime term*, first step: `k(y) + k(−y) = (1/2π)∫ h(τ)(e^{−iτy}+e^{iτy})dτ = (1/π) ∫ h(τ) cos(τy) dτ`.
+@isnad1 id=eq.3h2v.s7.c06fd162245a from=translated src=- shape=5d61a303 vocab=4c2bdb33
+-/
 theorem k_add_k_neg {k : ℝ → ℂ} (hk : Continuous k) (hki : Integrable k)
     (hFk : Integrable (𝓕 k)) (y : ℝ) :
     k y + k (-y) = (1 / π : ℂ) * ∫ τ : ℝ, paperFT k τ * (Real.cos (τ * y) : ℂ) := by
@@ -306,7 +356,9 @@ theorem k_add_k_neg {k : ℝ → ℂ} (hk : Continuous k) (hki : Integrable k)
   field_simp
 
 /-- App. A, *prime term*, support step: `k(±log n) = 0` for `n > X = e^L`; and the n = 0 term
-vanishes since Λ(0) = 0.  Hence the n-sum in [eq:EFstd] is the finite sum over `0 < n ≤ ⌊X⌋`. -/
+vanishes since Λ(0) = 0.  Hence the n-sum in [eq:EFstd] is the finite sum over `0 < n ≤ ⌊X⌋`.
+@isnad1 id=eq.2h3v.s7.fe6c586b3861 from=translated src=- shape=1e38e69f vocab=d3624aed
+-/
 theorem prime_summand_eq_zero {k : ℝ → ℂ} {L : ℝ} (hks : tsupport k ⊆ Icc (-L) L)
     {n : ℕ} (hn : n ∉ Finset.Ioc 0 ⌊Real.exp L⌋₊) :
     ((Λ n / Real.sqrt n : ℝ) : ℂ) * (k (Real.log n) + k (-Real.log n)) = 0 := by
@@ -329,7 +381,9 @@ theorem prime_summand_eq_zero {k : ℝ → ℂ} {L : ℝ} (hks : tsupport k ⊆ 
 
 /-- *Prime term*: for k continuous with `supp k ⊆ [−L, L]` and h integrable on ℝ,
 `−Σ_{n≥1} Λ(n)n^{-1/2}(k(log n)+k(−log n)) = ∫ h P_X`, `X = e^L`
-(uses inversion: `k(y)+k(−y) = (1/π)∫ h(τ)cos(τy)dτ`, and `k(±log n) = 0` for `n > X`). -/
+(uses inversion: `k(y)+k(−y) = (1/π)∫ h(τ)cos(τy)dτ`, and `k(±log n) = 0` for `n > X`).
+@isnad1 id=eq.3h2v.s7.e4aac6254185 from=translated src=- shape=83376681 vocab=7b3e41d2
+-/
 theorem prime_term {k : ℝ → ℂ} {L : ℝ} (hk : Continuous k)
     (hks : tsupport k ⊆ Icc (-L) L) (hFk : Integrable (𝓕 k)) :
     -(∑' n : ℕ, ((Λ n / Real.sqrt n : ℝ) : ℂ) * (k (Real.log n) + k (-Real.log n)))
@@ -363,10 +417,15 @@ theorem prime_term {k : ℝ → ℂ} {L : ℝ} (hk : Continuous k)
 
 /-! ### Pole term: inversion + Fubini, and the two explicit integrals -/
 
+/--
+@isnad1 id=eq.0h2v.s5.2896d664e05f from=translated src=- shape=f1b32921 vocab=ef02fdd8
+-/
 theorem norm_cexp_neg_I_mul (τ u : ℝ) : ‖cexp (-I * τ * u)‖ = 1 := by
   rw [Complex.norm_exp]; simp
 
-/-- Joint integrability of `(u,τ) ↦ h(τ) e^{−iτu} E(u)` for integrable h (on ℝ) and E. -/
+/-- Joint integrability of `(u,τ) ↦ h(τ) e^{−iτu} E(u)` for integrable h (on ℝ) and E.
+@isnad1 id=integrab.2h2v.s7.74fdcc4beba3 from=translated src=- shape=c09b3582 vocab=f6fbdbf4
+-/
 theorem integrable_inversion_kernel {k : ℝ → ℂ} (hFk : Integrable (𝓕 k)) {E : ℝ → ℂ}
     (hE : Integrable E) :
     Integrable (Function.uncurry fun (u τ : ℝ) => paperFT k τ * cexp (-I * τ * u) * E u)
@@ -386,7 +445,9 @@ theorem integrable_inversion_kernel {k : ℝ → ℂ} (hFk : Integrable (𝓕 k)
     exact le_of_eq (mul_comm _ _)
 
 /-- App. A, "inserting `k(u) = (1/2π)∫ h(τ)e^{−iτu}dτ` and interchanging (all integrals absolutely
-convergent)": for an integrable weight E,  `∫ k(u)E(u)du = (1/2π) ∫ h(τ) (∫ E(u)e^{−iτu}du) dτ`. -/
+convergent)": for an integrable weight E,  `∫ k(u)E(u)du = (1/2π) ∫ h(τ) (∫ E(u)e^{−iτu}du) dτ`.
+@isnad1 id=eq.4h2v.s8.beee000c2dc2 from=translated src=- shape=2bc35703 vocab=6d106c25
+-/
 theorem integral_k_mul_weight {k : ℝ → ℂ} (hk : Continuous k) (hki : Integrable k)
     (hFk : Integrable (𝓕 k)) {E : ℝ → ℂ} (hE : Integrable E) :
     ∫ u : ℝ, k u * E u
@@ -401,7 +462,9 @@ theorem integral_k_mul_weight {k : ℝ → ℂ} (hk : Continuous k) (hki : Integ
   rw [← cintegral_const_mul]
   congr 1; ext u; ring
 
-/-- The τ-integrand produced by `integral_k_mul_weight` is integrable (Fubini). -/
+/-- The τ-integrand produced by `integral_k_mul_weight` is integrable (Fubini).
+@isnad1 id=integrab.2h2v.s7.9e6c457e3224 from=translated src=- shape=1dc268bb vocab=2b190fb5
+-/
 theorem integrable_paperFT_mul_weightFT {k : ℝ → ℂ} (hFk : Integrable (𝓕 k)) {E : ℝ → ℂ}
     (hE : Integrable E) :
     Integrable (fun τ : ℝ => paperFT k τ * ∫ u : ℝ, E u * cexp (-I * τ * u)) := by
@@ -412,16 +475,27 @@ theorem integrable_paperFT_mul_weightFT {k : ℝ → ℂ} (hFk : Integrable (�
   rw [← cintegral_const_mul]
   congr 1; ext u; ring
 
+/--
+@isnad1 id=ne.0h1v.s5.9e5f8001af10 from=translated src=- shape=ac5d4a47 vocab=8bc512a4
+-/
 theorem half_add_I_mul_ne_zero (τ : ℝ) : (1 / 2 : ℂ) + I * τ ≠ 0 := by
   intro h; have := congrArg Complex.re h; simp at this
 
+/--
+@isnad1 id=ne.0h1v.s5.73ad96f9e838 from=translated src=- shape=ac5d4a47 vocab=5e6711d2
+-/
 theorem half_sub_I_mul_ne_zero (τ : ℝ) : (1 / 2 : ℂ) - I * τ ≠ 0 := by
   intro h; have := congrArg Complex.re h; simp at this
 
+/--
+@isnad1 id=ne.0h1v.s5.080f8ec5bed0 from=translated src=- shape=f0e2fbd5 vocab=997e61b8
+-/
 theorem neg_half_sub_I_mul_ne_zero (τ : ℝ) : (-(1 / 2) : ℂ) - I * τ ≠ 0 := by
   intro h; have := congrArg Complex.re h; norm_num at this
 
-/-- Integrability of `u ↦ e^{−|u|/2} e^{−iτu}` on ℝ (two half-lines). -/
+/-- Integrability of `u ↦ e^{−|u|/2} e^{−iτu}` on ℝ (two half-lines).
+@isnad1 id=integrab.0h1v.s6.89579e38e152 from=translated src=- shape=e8e9052e vocab=d11e350b
+-/
 theorem integrable_exp_neg_abs_half_mul (τ : ℝ) :
     Integrable (fun u : ℝ => (Real.exp (-|u| / 2) : ℂ) * cexp (-I * τ * u)) := by
   have hIic : IntegrableOn (fun u : ℝ => cexp ((1 / 2 - I * τ) * u)) (Iic 0) :=
@@ -444,11 +518,16 @@ theorem integrable_exp_neg_abs_half_mul (τ : ℝ) :
     (hIoi.congr_fun eIoi.symm measurableSet_Ioi)
   rwa [Iic_union_Ioi, integrableOn_univ] at this
 
+/--
+@isnad1 id=integrab.0h0v.s6.10eebaa787cd from=translated src=- shape=fd71bc54 vocab=6997b269
+-/
 theorem integrable_exp_neg_abs_half :
     Integrable (fun u : ℝ => (Real.exp (-|u| / 2) : ℂ)) := by
   simpa using integrable_exp_neg_abs_half_mul 0
 
-/-- App. A: `∫_ℝ e^{−|u|/2} e^{−iτu} du = (1/4 + τ²)^{−1}`. -/
+/-- App. A: `∫_ℝ e^{−|u|/2} e^{−iτu} du = (1/4 + τ²)^{−1}`.
+@isnad1 id=eq.0h1v.s7.38d6ae071c02 from=translated src=- shape=257fa945 vocab=df858287
+-/
 theorem integral_exp_neg_abs_half (τ : ℝ) :
     ∫ u : ℝ, (Real.exp (-|u| / 2) : ℂ) * cexp (-I * τ * u) = 1 / ((1 / 4 : ℂ) + τ ^ 2) := by
   have hIic : IntegrableOn (fun u : ℝ => cexp ((1 / 2 - I * τ) * u)) (Iic 0) :=
@@ -485,19 +564,26 @@ theorem integral_exp_neg_abs_half (τ : ℝ) :
 /-- The truncated growing weight `E_L(u) := 1_{[−L,L]}(u) e^{|u|/2}`. -/
 def EL (L : ℝ) : ℝ → ℂ := (Icc (-L) L).indicator fun u => (Real.exp (|u| / 2) : ℂ)
 
+/--
+@isnad1 id=integrab.0h1v.s5.cb052360ef5a from=translated src=- shape=e3851cd2 vocab=22c3c934
+-/
 theorem integrable_EL (L : ℝ) : Integrable (EL L) := by
   unfold EL
   refine IntegrableOn.integrable_indicator ?_ measurableSet_Icc
   exact (by fun_prop : Continuous fun u : ℝ => (Real.exp (|u| / 2) : ℂ)).continuousOn.integrableOn_compact
     isCompact_Icc
 
-/-- `X^s = e^{Ls}` for `X = e^L`. -/
+/-- `X^s = e^{Ls}` for `X = e^L`.
+@isnad1 id=eq.0h2v.s4.0f4aa4a7e894 from=translated src=- shape=d72d682b vocab=af5a6e51
+-/
 theorem exp_cpow (L : ℝ) (s : ℂ) : ((Real.exp L : ℝ) : ℂ) ^ s = cexp (L * s) := by
   rw [Complex.cpow_def_of_ne_zero (by exact_mod_cast (Real.exp_pos L).ne'),
     ← Complex.ofReal_log (Real.exp_pos L).le, Real.log_exp]
 
 /-- App. A: `∫_{−L}^{L} e^{|u|/2}e^{−iτu}du = 2Re∫_0^L e^{us̄}du = 2Re((X^s−1)/s)`, `s = 1/2+iτ`,
-`X = e^L`. -/
+`X = e^L`.
+@isnad1 id=eq.1h2v.s7.c0a70bdb2d92 from=translated src=- shape=41b77238 vocab=9dddc142
+-/
 theorem integral_EL_mul (τ : ℝ) {L : ℝ} (hL : 0 < L) :
     ∫ u : ℝ, EL L u * cexp (-I * τ * u)
       = ((2 * ((((Real.exp L : ℝ) : ℂ) ^ ((1 / 2 : ℂ) + I * τ) - 1) / ((1 / 2 : ℂ) + I * τ)).re : ℝ) : ℂ) := by
@@ -548,7 +634,9 @@ theorem integral_EL_mul (τ : ℝ) {L : ℝ} (hL : 0 < L) :
 
 /-- *Pole term*: for k continuous with `supp k ⊆ [−L, L]` and h integrable on ℝ,
 `h(i/2) + h(−i/2) = ∫ h Π_X`, `X = e^L`
-(uses `∫_ℝ e^{−|u|/2}e^{−iτu}du = (1/4+τ²)^{-1}` and `∫_{−L}^{L} e^{|u|/2}e^{−iτu}du = 2Re((X^s−1)/s)`). -/
+(uses `∫_ℝ e^{−|u|/2}e^{−iτu}du = (1/4+τ²)^{-1}` and `∫_{−L}^{L} e^{|u|/2}e^{−iτu}du = 2Re((X^s−1)/s)`).
+@isnad1 id=eq.4h2v.s7.f922ae43c6cc from=translated src=- shape=1670407c vocab=8d38d7ec
+-/
 theorem pole_term {k : ℝ → ℂ} {L : ℝ} (hL : 0 < L) (hk : Continuous k)
     (hks : tsupport k ⊆ Icc (-L) L) (hFk : Integrable (𝓕 k)) :
     paperFT k (I / 2) + paperFT k (-I / 2)
@@ -621,6 +709,9 @@ theorem pole_term {k : ℝ → ℂ} {L : ℝ} (hL : 0 < L) (hk : Continuous k)
 
 /-! ### Integrability of the three densities against h (from the computations above) -/
 
+/--
+@isnad1 id=integrab.2h2v.s7.c424685a7695 from=translated src=- shape=b99f6877 vocab=5e8748f2
+-/
 theorem integrable_paperFT_mul_PiX {k : ℝ → ℂ} {L : ℝ} (hL : 0 < L) (hFk : Integrable (𝓕 k)) :
     Integrable (fun τ : ℝ => paperFT k τ * (PiX (Real.exp L) τ : ℂ)) := by
   have hintA : Integrable (fun τ : ℝ => paperFT k τ * (1 / ((1 / 4 : ℂ) + τ ^ 2))) := by
@@ -642,6 +733,9 @@ theorem integrable_paperFT_mul_PiX {k : ℝ → ℂ} {L : ℝ} (hL : 0 < L) (hFk
   push_cast
   field_simp
 
+/--
+@isnad1 id=eq.0h2v.s7.cc0f2c2445ba from=translated src=- shape=ddf4e111 vocab=0256191f
+-/
 theorem paperFT_mul_PX_eq (k : ℝ → ℂ) (L : ℝ) :
     (fun τ : ℝ => paperFT k τ * (PX (Real.exp L) τ : ℂ))
       = fun τ : ℝ => ∑ n ∈ Finset.Ioc 0 ⌊Real.exp L⌋₊, (-(1 / π) * ((Λ n / Real.sqrt n : ℝ) : ℂ)) *
@@ -653,13 +747,18 @@ theorem paperFT_mul_PX_eq (k : ℝ → ℂ) (L : ℝ) :
   refine Finset.sum_congr rfl fun n _ => ?_
   ring
 
+/--
+@isnad1 id=integrab.1h2v.s6.4269341021e3 from=translated src=- shape=e455506c vocab=2693f395
+-/
 theorem integrable_paperFT_mul_PX {k : ℝ → ℂ} (L : ℝ) (hFk : Integrable (𝓕 k)) :
     Integrable (fun τ : ℝ => paperFT k τ * (PX (Real.exp L) τ : ℂ)) := by
   rw [paperFT_mul_PX_eq]
   exact integrable_finsetSum _ (fun n _ => (integrable_paperFT_mul_cos hFk _).const_mul _)
 
 /-- `h·ν_X` is integrable, given that `h·μ` is (μ grows like log|τ|, so this last fact needs the
-decay [eq:hfbound] of h and the Stirling bound [eq:mufacts]; it is supplied by the caller). -/
+decay [eq:hfbound] of h and the Stirling bound [eq:mufacts]; it is supplied by the caller).
+@isnad1 id=integrab.3h2v.s7.bd9bae71063a from=translated src=- shape=b59f0413 vocab=94454173
+-/
 theorem integrable_paperFT_mul_nuX {k : ℝ → ℂ} {L : ℝ} (hL : 0 < L) (hFk : Integrable (𝓕 k))
     (hμ : Integrable (fun τ : ℝ => paperFT k τ * (mu τ : ℂ))) :
     Integrable (fun τ : ℝ => paperFT k τ * (nuX (Real.exp L) τ : ℂ)) := by
@@ -672,7 +771,9 @@ theorem integrable_paperFT_mul_nuX {k : ℝ → ℂ} {L : ℝ} (hL : 0 < L) (hFk
 /-! ## Adding up -/
 
 /-- App. A, "Adding the three identifications gives (eq:EF)": the literature right-hand side equals
-`∫ h ν_X`, `X = e^L`, for k ∈ C_c(ℝ) with `supp k ⊆ [−L, L]`, `𝓕 k` integrable and `h·μ` integrable. -/
+`∫ h ν_X`, `X = e^L`, for k ∈ C_c(ℝ) with `supp k ⊆ [−L, L]`, `𝓕 k` integrable and `h·μ` integrable.
+@isnad1 id=eq.5h2v.s7.3d5c6954c23b from=translated src=- shape=be7e3a89 vocab=7e1b387f
+-/
 theorem literatureRHS_eq_integral_nu {k : ℝ → ℂ} {L : ℝ} (hL : 0 < L) (hk : Continuous k)
     (hks : tsupport k ⊆ Icc (-L) L) (hFk : Integrable (𝓕 k))
     (hμ : Integrable (fun τ : ℝ => paperFT k τ * (mu τ : ℂ))) :
@@ -694,7 +795,9 @@ theorem literatureRHS_eq_integral_nu {k : ℝ → ℂ} {L : ℝ} (hL : 0 < L) (h
 /-- **Main theorem.**  [eq:EFstd] (hypothesis `EF_lit`) ⟹ [eq:EF] for the pair (f,g):
 `W(f,g) = ∫ h_f(τ) conj(h_g(τ)) ν_X(τ) dτ`, `X = e^L`.
 Side hypotheses `hFk`, `hμ` are the two integrability facts App. A uses silently
-("all integrals absolutely convergent") for k = f ⋆ g̃; both follow from [eq:hfbound] and [eq:mufacts]. -/
+("all integrals absolutely convergent") for k = f ⋆ g̃; both follow from [eq:hfbound] and [eq:mufacts].
+@isnad1 id=and.8h4v.s9.d780905f6799 from=translated src=- shape=6018642f vocab=744f8b46
+-/
 theorem prop_EF_of_lit (Z : ZeroConfig) (hEF : EF_lit Z) {L : ℝ} (hL : 0 < L) {f g : ℝ → ℂ}
     (hf : ContDiff ℝ 2 f) (hg : ContDiff ℝ 2 g)
     (hfs : tsupport f ⊆ Icc (-(L / 2)) (L / 2)) (hgs : tsupport g ⊆ Icc (-(L / 2)) (L / 2))

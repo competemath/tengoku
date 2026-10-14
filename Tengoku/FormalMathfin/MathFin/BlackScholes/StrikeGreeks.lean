@@ -39,7 +39,9 @@ namespace MathFin
 
 open Real ProbabilityTheory
 
-/-- `∂_K d₁(S, K, r, σ, τ) = −1 / (K · σ · √τ)`. Mirror of `hasDerivAt_bsd1_S`. -/
+/-- `∂_K d₁(S, K, r, σ, τ) = −1 / (K · σ · √τ)`. Mirror of `hasDerivAt_bsd1_S`.
+@isnad1 id=hasderiv.4h5v.s6.e92ae535eb07 from=translated src=- shape=42e5156d vocab=f8315eea
+-/
 lemma hasDerivAt_bsd1_K (S r σ τ : ℝ) (hS : 0 < S) (hσ : 0 < σ) (hτ : 0 < τ)
     {K : ℝ} (hK : 0 < K) :
     HasDerivAt (fun k ↦ bsd1 S k r σ τ) (-(1 / (K * σ * Real.sqrt τ))) K := by
@@ -81,7 +83,9 @@ lemma hasDerivAt_bsd1_K (S r σ τ : ℝ) (hS : 0 < S) (hσ : 0 < σ) (hτ : 0 <
   exact h_div_στ
 
 /-- `∂_K d₂(S, K, r, σ, τ) = −1 / (K · σ · √τ)` (same as `∂_K d_1` since `d_2 − d_1`
-is `K`-independent). -/
+is `K`-independent).
+@isnad1 id=hasderiv.4h5v.s6.b26e27e71f35 from=translated src=- shape=42e5156d vocab=3ddb72e3
+-/
 lemma hasDerivAt_bsd2_K (S r σ τ : ℝ) (hS : 0 < S) (hσ : 0 < σ) (hτ : 0 < τ)
     {K : ℝ} (hK : 0 < K) :
     HasDerivAt (fun k ↦ bsd2 S k r σ τ) (-(1 / (K * σ * Real.sqrt τ))) K := by
@@ -94,7 +98,9 @@ lemma hasDerivAt_bsd2_K (S r σ τ : ℝ) (hS : 0 < S) (hσ : 0 < σ) (hτ : 0 <
 
 /-- **Strike-derivative of the call price**: `∂_K bsV = −e^{-rτ} · Φ(d₂)`.
 The magic identity `S · ϕ(d₁) = K · e^{-rτ} · ϕ(d₂)` collapses the `d_1`
-contribution. -/
+contribution.
+@isnad1 id=hasderiv.4h5v.s6.6e154e8ae952 from=translated src=- shape=6022c52e vocab=76d8d9b8
+-/
 lemma hasDerivAt_bsV_K {S r σ : ℝ} (hS : 0 < S) (hσ : 0 < σ)
     {K τ : ℝ} (hK : 0 < K) (hτ : 0 < τ) :
     HasDerivAt (fun k ↦ bsV k r σ S τ)
@@ -139,7 +145,9 @@ lemma hasDerivAt_bsV_K {S r σ : ℝ} (hS : 0 < S) (hσ : 0 < σ)
   linarith [h_bs]
 
 /-- **Strike-derivative of the put price**: `∂_K bsP = e^{-rτ} · Φ(-d₂)`. Follows
-from put-call parity `bsP = bsV − S + K · e^{-rτ}`. -/
+from put-call parity `bsP = bsV − S + K · e^{-rτ}`.
+@isnad1 id=hasderiv.4h5v.s6.f641bfb5112b from=translated src=- shape=4b769916 vocab=d9977d8c
+-/
 lemma hasDerivAt_bsP_K {S r σ : ℝ} (hS : 0 < S) (hσ : 0 < σ)
     {K τ : ℝ} (hK : 0 < K) (hτ : 0 < τ) :
     HasDerivAt (fun k ↦ bsP k r σ S τ)
@@ -170,7 +178,9 @@ lemma hasDerivAt_bsP_K {S r σ : ℝ} (hS : 0 < S) (hσ : 0 < σ)
 
 /-- **Convexity of the call price in `K`** (Greek `∂²_K bsV`):
 `∂²_K bsV = e^{-rτ} · ϕ(d₂) / (K σ √τ) ≥ 0`. This is butterfly-spread
-non-negativity in differential form. -/
+non-negativity in differential form.
+@isnad1 id=hasderiv.4h5v.s7.966ec4a8d0e2 from=translated src=- shape=8c822504 vocab=abcec99e
+-/
 lemma hasDerivAt_bsV_KK {S r σ : ℝ} (hS : 0 < S) (hσ : 0 < σ)
     {K τ : ℝ} (hK : 0 < K) (hτ : 0 < τ) :
     HasDerivAt (fun k ↦ -(Real.exp (-(r * τ)) * Phi (bsd2 S k r σ τ)))

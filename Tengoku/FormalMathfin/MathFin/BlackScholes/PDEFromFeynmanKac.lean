@@ -69,7 +69,9 @@ namespace MathFin
 
 open FeynmanKacHeatEquation
 
-/-- **Step 2 — Feynman–Kac representation of the Black–Scholes call value.** -/
+/-- **Step 2 — Feynman–Kac representation of the Black–Scholes call value.**
+@isnad1 id=eq.4h5v.s7.c167fb07cf50 from=translated src=- shape=0179c092 vocab=77abff13
+-/
 theorem bsV_eq_feynmanU {K r σ S τ : ℝ}
     (hS : 0 < S) (hK : 0 < K) (hσ : 0 < σ) (hτ : 0 < τ) :
     bsV K r σ S τ =
@@ -119,7 +121,9 @@ private lemma callPayoff_le_exp {K : ℝ} (hK : 0 < K) (z : ℝ) :
   rw [abs_of_nonneg (le_max_right _ _)]
   exact max_le (by linarith) (Real.exp_nonneg z)
 
-/-- **Step 3 (bridge) — the Black–Scholes value is a discounted heat flow.** -/
+/-- **Step 3 (bridge) — the Black–Scholes value is a discounted heat flow.**
+@isnad1 id=eq.4h5v.s7.3e2a9598d49f from=translated src=- shape=6dc7e5d5 vocab=77abff13
+-/
 theorem bsV_eq_discount_feynmanU {K r σ S τ : ℝ}
     (hS : 0 < S) (hK : 0 < K) (hσ : 0 < σ) (hτ : 0 < τ) :
     bsV K r σ S τ = Real.exp (-(r * τ))
@@ -281,7 +285,9 @@ equation (`feynmanU_heat_equation`). This is the independent, probabilistically-
 of `bs_pde_holds` — closing the two-tower gap by making `feynmanU` load-bearing for the PDE. (The hard
 differentiability work — uniform domination, differentiation under the integral — already lives in
 `hasDerivAt_feynmanU_comp` and the Greeks; `feynmanU_heat_equation` supplies only the algebraic kernel
-identity `∂_t K = ½ ∂_xx K`, and the operator vanishing is then exact algebra.) -/
+identity `∂_t K = ½ ∂_xx K`, and the operator vanishing is then exact algebra.)
+@isnad1 id=ex.4h5v.s8.d4cef101a854 from=translated src=- shape=a4218712 vocab=bc562dfc
+-/
 theorem bsV_satisfies_bs_pde_via_feynmanKac {K r σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
     {S τ : ℝ} (hS : 0 < S) (hτ : 0 < τ) :
     ∃ Vτ VS VSS : ℝ,

@@ -84,7 +84,9 @@ noncomputable def bsLogReturn (r σ T Z : ℝ) : ℝ :=
 
 /-- **Algebraic identity**: `log(bsTerminal S_0 r σ T Z / S_0) =
 bsLogReturn r σ T Z`. The lognormal hypothesis collapses to a linear
-function of `Z` under `log`. -/
+function of `Z` under `log`.
+@isnad1 id=eq.1h5v.s5.b7d8667cb70f from=translated src=- shape=09b5bfa3 vocab=9e66e13d
+-/
 theorem bsLogReturn_eq (S_0 r σ T Z : ℝ) (hS_0 : 0 < S_0) :
     Real.log (bsTerminal S_0 r σ T Z / S_0) = bsLogReturn r σ T Z := by
   unfold bsTerminal bsLogReturn
@@ -106,7 +108,9 @@ relative to `bsd1`.
 
 Proof: `HasLaw` transfer of the integral to `gaussianReal 0 1`,
 linearity of integration, `integral_id_gaussianReal` (`∫ z ∂N(0,1) =
-0`), algebra. -/
+0`), algebra.
+@isnad1 id=eq.1h9v.s6.71faa42cee0d from=translated src=- shape=4b00682a vocab=1ca933b4
+-/
 theorem bsLogReturn_mean
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]

@@ -45,7 +45,9 @@ variable {ι : Type*} {v : ι → ℝ}
 are ordered `European ≤ Bermudan ≤ American` — enlarging the exercise set never
 lowers the value. The financial content is the monotonicity of `Finset.sup'`
 over the exercise set (`Finset.sup'_mono`); we state the full two-step ordering
-directly rather than via single-`sup'_mono` wrapper lemmas. -/
+directly rather than via single-`sup'_mono` wrapper lemmas.
+@isnad1 id=and.3h5v.s6.16161a659d54 from=translated src=- shape=4921f48b vocab=e1608186
+-/
 lemma bermudan_sandwich
     {Eur Berm Amer : Finset ι}
     (hEB : Eur ⊆ Berm) (hBA : Berm ⊆ Amer) (hEurNE : Eur.Nonempty)
@@ -77,9 +79,15 @@ noncomputable def bermudanPrice (E : Set ℕ) (u d r : ℝ) (g : ℝ → ℝ) : 
         binomialOptionPriceOnePeriod u d r
           (bermudanPrice E u d r g n (S * u)) (bermudanPrice E u d r g n (S * d))
 
+/--
+@isnad1 id=eq.0h6v.s5.5d56f82eeec5 from=translated src=- shape=dd96ed3f vocab=6aa412a6
+-/
 @[simp] lemma bermudanPrice_zero (E : Set ℕ) (u d r : ℝ) (g : ℝ → ℝ) (S : ℝ) :
     bermudanPrice E u d r g 0 S = g S := rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.6e74e3b03fae from=translated src=- shape=5703c36b vocab=a361e46a
+-/
 lemma bermudanPrice_succ (E : Set ℕ) (u d r : ℝ) (g : ℝ → ℝ) (n : ℕ) (S : ℝ) :
     bermudanPrice E u d r g (n + 1) S =
       if (n + 1) ∈ E then
@@ -89,7 +97,9 @@ lemma bermudanPrice_succ (E : Set ℕ) (u d r : ℝ) (g : ℝ → ℝ) (n : ℕ)
         binomialOptionPriceOnePeriod u d r
           (bermudanPrice E u d r g n (S * u)) (bermudanPrice E u d r g n (S * d)) := rfl
 
-/-- `bermudanPrice ∅ = binomialPrice`: never exercising early is the European price. -/
+/-- `bermudanPrice ∅ = binomialPrice`: never exercising early is the European price.
+@isnad1 id=eq.0h6v.s5.c68a297d1687 from=translated src=- shape=3111c284 vocab=f35f00b1
+-/
 lemma bermudanPrice_empty (u d r : ℝ) (g : ℝ → ℝ) (n : ℕ) (S : ℝ) :
     bermudanPrice ∅ u d r g n S = binomialPrice u d r g n S := by
   induction n generalizing S with
@@ -98,7 +108,9 @@ lemma bermudanPrice_empty (u d r : ℝ) (g : ℝ → ℝ) (n : ℕ) (S : ℝ) :
     rw [bermudanPrice_succ, ite_eq_right (by simp), ih (S * u), ih (S * d),
         ← binomialPrice_succ_eq_onePeriod]
 
-/-- `bermudanPrice univ = americanPrice`: always allowing exercise is the American price. -/
+/-- `bermudanPrice univ = americanPrice`: always allowing exercise is the American price.
+@isnad1 id=eq.0h6v.s5.6266b824a7b3 from=translated src=- shape=59aefd3e vocab=b29ff72a
+-/
 lemma bermudanPrice_univ (u d r : ℝ) (g : ℝ → ℝ) (n : ℕ) (S : ℝ) :
     bermudanPrice Set.univ u d r g n S = americanPrice u d r g n S := by
   induction n generalizing S with
@@ -108,7 +120,9 @@ lemma bermudanPrice_univ (u d r : ℝ) (g : ℝ → ℝ) (n : ℕ) (S : ℝ) :
         ← americanPrice_succ]
 
 /-- **Monotone in the exercise set**: enlarging the admissible early-exercise set
-never lowers the price (`BinomialNoArb` makes the continuation monotone). -/
+never lowers the price (`BinomialNoArb` makes the continuation monotone).
+@isnad1 id=le.2h8v.s5.fdd40dd34e4e from=translated src=- shape=03eb046e vocab=0da1bcd2
+-/
 lemma bermudanPrice_mono {u d r : ℝ} (h : BinomialNoArb u d r) (g : ℝ → ℝ)
     {E₁ E₂ : Set ℕ} (hE : E₁ ⊆ E₂) (n : ℕ) (S : ℝ) :
     bermudanPrice E₁ u d r g n S ≤ bermudanPrice E₂ u d r g n S := by
@@ -127,7 +141,9 @@ lemma bermudanPrice_mono {u d r : ℝ} (h : BinomialNoArb u d r) (g : ℝ → �
 /-- **Bermudan sandwich (genuine price-tree form)**: `European ≤ Bermudan ≤
 American` for any admissible early-exercise set `E`, at every step and spot —
 the three legs are the actual discounted-expectation CRR recursions, not an
-abstract `Finset.sup'` over a free value function. -/
+abstract `Finset.sup'` over a free value function.
+@isnad1 id=and.1h7v.s5.7043c536b0b5 from=translated src=- shape=ae7d1df0 vocab=1e38cadb
+-/
 theorem binomialPrice_le_bermudanPrice_le_americanPrice {u d r : ℝ}
     (h : BinomialNoArb u d r) (g : ℝ → ℝ) (E : Set ℕ) (n : ℕ) (S : ℝ) :
     binomialPrice u d r g n S ≤ bermudanPrice E u d r g n S ∧

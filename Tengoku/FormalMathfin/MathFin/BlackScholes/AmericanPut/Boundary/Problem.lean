@@ -35,6 +35,9 @@ open scoped Topology ContDiff
 /-- Positive-rate, zero-dividend Black--Scholes normalization. -/
 noncomputable def normalizedRate (r σ : ℝ) : ℝ := 2 * r / σ ^ 2
 
+/--
+@isnad1 id=lt.2h2v.s5.4d089b4d4e58 from=translated src=- shape=6c67d60b vocab=a3903abf
+-/
 theorem normalizedRate_pos {r σ : ℝ} (hr : 0 < r) (hσ : 0 < σ) :
     0 < normalizedRate r σ := by
   unfold normalizedRate
@@ -75,13 +78,21 @@ structure NormalizedPutSolution (k : ℝ) (p : ℝ → ℝ → ℝ) (s : ℝ →
       (nhdsWithin (s t) (Set.Ioi (s t))) (nhds (-Real.exp (s t)))
   decay : ∀ t, 0 ≤ t → Tendsto (fun x => p x t) atTop (nhds 0)
 
+/--
+@isnad1 id=le.0h1v.s3.da36b9658d29 from=translated src=- shape=8a62b088 vocab=fb31c446
+-/
 theorem putPayoff_nonneg (x : ℝ) : 0 ≤ putPayoff x := le_max_right _ _
 
+/--
+@isnad1 id=eq.1h1v.s5.5ebde39b23d4 from=translated src=- shape=8b803e2e vocab=08098cd7
+-/
 theorem putPayoff_of_nonpos {x : ℝ} (hx : x ≤ 0) :
     putPayoff x = 1 - Real.exp x := by
   exact max_eq_left (sub_nonneg.mpr (Real.exp_le_one_iff.mpr hx))
 
-/-- The normalized payoff is exactly the usual monetary put payoff. -/
+/-- The normalized payoff is exactly the usual monetary put payoff.
+@isnad1 id=eq.2h2v.s6.e25360211205 from=translated src=- shape=d2af98c5 vocab=d2f10345
+-/
 theorem putPayoff_in_stock_units {E S : ℝ} (hE : 0 < E) (hS : 0 < S) :
     E * putPayoff (Real.log (S / E)) = max (E - S) 0 := by
   unfold putPayoff
@@ -94,14 +105,18 @@ namespace NormalizedPutSolution
 
 variable {k : ℝ} {p : ℝ → ℝ → ℝ} {s : ℝ → ℝ}
 
-/-- The contact condition and nonnegative value force the threshold below strike. -/
+/-- The contact condition and nonnegative value force the threshold below strike.
+@isnad1 id=le.2h4v.s5.7f610ee4ba15 from=translated src=- shape=1e0a9e63 vocab=7e1ed3da
+-/
 theorem boundary_nonpos (h : NormalizedPutSolution k p s) {t : ℝ} (ht : 0 < t) :
     s t ≤ 0 := by
   have hp := (putPayoff_nonneg (s t)).trans (h.dominates (s t) t ht.le)
   rw [h.exercise (s t) t ht le_rfl] at hp
   exact Real.exp_le_one_iff.mp (by linarith)
 
-/-- Before expiry the contact set is exactly the lower half-line. -/
+/-- Before expiry the contact set is exactly the lower half-line.
+@isnad1 id=iff.2h5v.s5.490dfc685168 from=translated src=- shape=2f96dec5 vocab=09d0ff31
+-/
 theorem contact_iff (h : NormalizedPutSolution k p s) {x t : ℝ} (ht : 0 < t) :
     p x t = putPayoff x ↔ x ≤ s t := by
   constructor
@@ -113,17 +128,24 @@ theorem contact_iff (h : NormalizedPutSolution k p s) {x t : ℝ} (ht : 0 < t) :
   · intro hx
     rw [h.exercise x t ht hx, putPayoff_of_nonpos (hx.trans (h.boundary_nonpos ht))]
 
-/-- In particular, the boundary is recoverable from the value function. -/
+/-- In particular, the boundary is recoverable from the value function.
+@isnad1 id=eq.2h4v.s5.09cc143ed5b2 from=translated src=- shape=f97052f1 vocab=49ba2c0c
+-/
 theorem contactSet (h : NormalizedPutSolution k p s) {t : ℝ} (ht : 0 < t) :
     {x | p x t = putPayoff x} = Set.Iic (s t) := by
   ext x
   exact h.contact_iff ht
 
+/--
+@isnad1 id=eq.2h4v.s5.7e97eb9be1eb from=translated src=- shape=b3917df8 vocab=1d7c5bef
+-/
 theorem boundary_eq_sSup_contact (h : NormalizedPutSolution k p s)
     {t : ℝ} (ht : 0 < t) : s t = sSup {x | p x t = putPayoff x} := by
   rw [h.contactSet ht, csSup_Iic]
 
-/-- Uniqueness of the threshold for a FIXED price, not PDE uniqueness. -/
+/-- Uniqueness of the threshold for a FIXED price, not PDE uniqueness.
+@isnad1 id=eq.3h5v.s5.2a9ed98fb865 from=translated src=- shape=1e0c3807 vocab=7ac289af
+-/
 theorem boundary_unique (h : NormalizedPutSolution k p s) {r : ℝ → ℝ}
     (hr : NormalizedPutSolution k p r) {t : ℝ} (ht : 0 ≤ t) : s t = r t := by
   rcases ht.eq_or_lt with ht | ht
@@ -131,13 +153,17 @@ theorem boundary_unique (h : NormalizedPutSolution k p s) {r : ℝ → ℝ}
     rw [h.boundary_initial, hr.boundary_initial]
   · rw [h.boundary_eq_sSup_contact ht, hr.boundary_eq_sSup_contact ht]
 
-/-- At expiry the contact set is all of log-price space, unlike positive times. -/
+/-- At expiry the contact set is all of log-price space, unlike positive times.
+@isnad1 id=eq.1h3v.s5.40ec8c17f6ca from=translated src=- shape=2a3b54c6 vocab=0962d1f8
+-/
 theorem contactSet_expiry (h : NormalizedPutSolution k p s) :
     {x | p x 0 = putPayoff x} = Set.univ := by
   ext x
   simp [h.initial]
 
-/-- The reconstructed boundary is positive and does not exceed strike. -/
+/-- The reconstructed boundary is positive and does not exceed strike.
+@isnad1 id=and.4h7v.s6.812c04fd9e3a from=translated src=- shape=826548fc vocab=e944d16d
+-/
 theorem stockBoundary_bounds (h : NormalizedPutSolution k p s)
     {E σ expiry T : ℝ} (hE : 0 < E) (hσ : 0 < σ) (hT : T < expiry) :
     0 < stockBoundary E σ expiry s T ∧ stockBoundary E σ expiry s T ≤ E := by
@@ -147,7 +173,9 @@ theorem stockBoundary_bounds (h : NormalizedPutSolution k p s)
     simpa [stockBoundary] using
       mul_le_mul_of_nonneg_left (Real.exp_le_one_iff.mpr hs) hE.le
 
-/-- Price/payoff coincidence expressed in the original positive stock variable. -/
+/-- Price/payoff coincidence expressed in the original positive stock variable.
+@isnad1 id=iff.4h6v.s6.b5c5e7ae44e1 from=translated src=- shape=b578acd0 vocab=696546ee
+-/
 theorem contact_in_stock_units (h : NormalizedPutSolution k p s)
     {E S t : ℝ} (hE : 0 < E) (hS : 0 < S) (ht : 0 < t) :
     E * p (Real.log (S / E)) t = max (E - S) 0 ↔ S ≤ E * Real.exp (s t) := by
@@ -156,12 +184,17 @@ theorem contact_in_stock_units (h : NormalizedPutSolution k p s)
   rw [mul_comm E]
 
 /-- Regularity supplies actual derivatives, avoiding Lean's default derivative
-value for a nondifferentiable function. -/
+value for a nondifferentiable function.
+@isnad1 id=hasderiv.2h4v.s6.977571dc2025 from=translated src=- shape=ced25cbd vocab=7637e8a4
+-/
 theorem boundary_hasDerivAt (h : NormalizedPutSolution k p s) {t : ℝ} (ht : 0 < t) :
     HasDerivAt s (deriv s t) t :=
   ((h.boundary_smooth.contDiffAt (isOpen_Ioi.mem_nhds ht)).differentiableAt
     (by simp)).hasDerivAt
 
+/--
+@isnad1 id=hasderiv.2h4v.s7.4a26dcab7bdd from=translated src=- shape=00a0eb80 vocab=7637e8a4
+-/
 theorem boundary_hasDerivAt_deriv (h : NormalizedPutSolution k p s)
     {t : ℝ} (ht : 0 < t) : HasDerivAt (deriv s) (deriv (deriv s) t) t := by
   have hs : ContDiffOn ℝ ∞ (deriv s) (Set.Ioi 0) :=
@@ -169,7 +202,9 @@ theorem boundary_hasDerivAt_deriv (h : NormalizedPutSolution k p s)
   exact ((hs.contDiffAt (isOpen_Ioi.mem_nhds ht)).differentiableAt (by simp)).hasDerivAt
 
 /-- The remaining analytic curvature input suffices for the stock boundary.
-This is a reduction lemma, not a proof of that input. -/
+This is a reduction lemma, not a proof of that input.
+@isnad1 id=lt.5h7v.s7.1c715becd74a from=translated src=- shape=ed700c77 vocab=7eb73a3a
+-/
 theorem stock_curvature_of_log_curvature (h : NormalizedPutSolution k p s)
     {E σ expiry T : ℝ} (hE : 0 < E) (hσ : 0 < σ) (hT : T < expiry)
     (hcurvature : 0 < deriv (deriv s) (normalizedTime σ expiry T)) :

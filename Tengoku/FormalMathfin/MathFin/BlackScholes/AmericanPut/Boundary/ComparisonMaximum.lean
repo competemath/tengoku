@@ -29,6 +29,9 @@ open scoped Topology ContDiff
 
 variable {k h c d : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
 
+/--
+@isnad1 id=le.4h7v.s6.0e86f4742fbc from=translated src=- shape=75d6a9c2 vocab=3297bac3
+-/
 theorem straightDifference_boundary_nonpos (hp : ContinuousBoundaryPutSolution k h p b)
     (hc : 0 ≤ c) (hd : d ≤ 0) {t : ℝ} (ht : 0 ≤ t) :
     straightDifference p k h c d (b t) t ≤ 0 := by
@@ -48,7 +51,9 @@ theorem straightDifference_boundary_nonpos (hp : ContinuousBoundaryPutSolution k
   linarith
 
 /-- All nonnegative upper levels are preserved if they bound an entire time
-slice. This is the no-positive-data branch of Step 4, including `a=0`. -/
+slice. This is the no-positive-data branch of Step 4, including `a=0`.
+@isnad1 id=le.8h10v.s6.a7a4f8b9f0b5 from=translated src=- shape=2f6fa3c1 vocab=f8eacefc
+-/
 theorem straightDifference_le_of_initial_le (hp : ContinuousBoundaryPutSolution k h p b)
     (hc : 0 < c) (hd : d ≤ 0) {a ε : ℝ} (ha : 0 ≤ a) (hε : 0 ≤ ε)
     (hinit : ∀ x, b a ≤ x → straightDifference p k h c d x a ≤ ε)
@@ -95,7 +100,9 @@ theorem straightDifference_le_of_initial_le (hp : ContinuousBoundaryPutSolution 
   exact sub_nonpos.mp hresult
 
 /-- The positive point required in Step 5 exists at every earlier time slice
-if a positive continuation value exists later. No zero-count premise is used. -/
+if a positive continuation value exists later. No zero-count premise is used.
+@isnad1 id=ex.7h9v.s6.8636722eab8e from=translated src=- shape=653b1090 vocab=f8eacefc
+-/
 theorem straightDifference_positive_at_earlier_time (hp : ContinuousBoundaryPutSolution k h p b)
     (hc : 0 < c) (hd : d ≤ 0) {a T x : ℝ} (ha : 0 ≤ a) (haT : a ≤ T)
     (hx : b T ≤ x) (hpos : 0 < straightDifference p k h c d x T) :
@@ -111,7 +118,9 @@ theorem straightDifference_positive_at_earlier_time (hp : ContinuousBoundaryPutS
   linarith
 
 /-- Zero-dividend checkpoint using the original published-proof solution
-contract and `g=1`. It is a maximum principle, not a convexity claim. -/
+contract and `g=1`. It is a maximum principle, not a convexity claim.
+@isnad1 id=le.8h9v.s7.1d3484d4c91a from=translated src=- shape=e18238e4 vocab=b3a21a66
+-/
 theorem zeroDividend_le_of_initial_le {k c d : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
     (hp : NormalizedPutSolution k p b) (hc : 0 < c) (hd : d ≤ 0)
     {a ε : ℝ} (ha : 0 ≤ a) (hε : 0 ≤ ε)

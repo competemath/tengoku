@@ -68,7 +68,9 @@ noncomputable def sortinoRatio (μ target σ_down : ℝ) : ℝ :=
   (μ - target) / σ_down
 
 /-- Sortino is invariant under uniform rescaling. One-line consequence of
-`diff_div_scale_invariant`. -/
+`diff_div_scale_invariant`.
+@isnad1 id=eq.1h4v.s5.17b7fba9ad69 from=translated src=- shape=6a28a593 vocab=8f75bcbe
+-/
 lemma sortinoRatio_scale_invariant {c : ℝ} (hc : c ≠ 0)
     (μ target σ_down : ℝ) :
     sortinoRatio (c * μ) (c * target) (c * σ_down) =
@@ -77,7 +79,9 @@ lemma sortinoRatio_scale_invariant {c : ℝ} (hc : c ≠ 0)
   exact diff_div_scale_invariant hc μ target σ_down
 
 /-- Sortino is translation-invariant in the additive shift of both mean and
-target. -/
+target.
+@isnad1 id=eq.0h4v.s5.8a762ebad579 from=translated src=- shape=7e12a897 vocab=0db1592f
+-/
 lemma sortinoRatio_translation (μ target σ_down shift : ℝ) :
     sortinoRatio (μ + shift) (target + shift) σ_down =
       sortinoRatio μ target σ_down := by
@@ -88,7 +92,9 @@ lemma sortinoRatio_translation (μ target σ_down shift : ℝ) :
 noncomputable def treynorRatio (μ r_f β : ℝ) : ℝ := (μ - r_f) / β
 
 /-- Treynor is invariant under uniform rescaling. One-line consequence of
-`diff_div_scale_invariant`. -/
+`diff_div_scale_invariant`.
+@isnad1 id=eq.1h4v.s5.eac0e3349ba1 from=translated src=- shape=6a28a593 vocab=7a435cf3
+-/
 lemma treynorRatio_scale_invariant {c : ℝ} (hc : c ≠ 0) (μ r_f β : ℝ) :
     treynorRatio (c * μ) (c * r_f) (c * β) = treynorRatio μ r_f β := by
   unfold treynorRatio
@@ -100,7 +106,9 @@ noncomputable def informationRatio (μ_p μ_b σ_active : ℝ) : ℝ :=
   (μ_p - μ_b) / σ_active
 
 /-- Information ratio is invariant under uniform rescaling. One-line
-consequence of `diff_div_scale_invariant`. -/
+consequence of `diff_div_scale_invariant`.
+@isnad1 id=eq.1h4v.s5.f87f3754a52f from=translated src=- shape=6a28a593 vocab=2af95bfb
+-/
 lemma informationRatio_scale_invariant {c : ℝ} (hc : c ≠ 0)
     (μ_p μ_b σ_active : ℝ) :
     informationRatio (c * μ_p) (c * μ_b) (c * σ_active) =
@@ -116,14 +124,18 @@ noncomputable def trackingErrorSq (σ_p σ_b cov : ℝ) : ℝ :=
   σ_p ^ 2 - 2 * cov + σ_b ^ 2
 
 /-- **Self-benchmark vanishing**: when the benchmark equals the portfolio
-(`σ_p = σ_b` and `cov = σ_p²`), the tracking error vanishes. -/
+(`σ_p = σ_b` and `cov = σ_p²`), the tracking error vanishes.
+@isnad1 id=eq.0h1v.s4.9307b153180d from=translated src=- shape=262b3425 vocab=d28ef44e
+-/
 lemma trackingErrorSq_self (σ_p : ℝ) :
     trackingErrorSq σ_p σ_p (σ_p ^ 2) = 0 := by
   unfold trackingErrorSq
   ring
 
 /-- **Tracking error non-negativity** when `cov ≤ σ_p · σ_b` (Cauchy-Schwarz
-bound): `σ_active² ≥ (σ_p - σ_b)²`. -/
+bound): `σ_active² ≥ (σ_p - σ_b)²`.
+@isnad1 id=le.1h3v.s5.e0c7e2b0423a from=translated src=- shape=7a55edbd vocab=ee10d1c9
+-/
 lemma trackingErrorSq_ge_diff_sq (σ_p σ_b cov : ℝ) (h_cs : cov ≤ σ_p * σ_b) :
     (σ_p - σ_b) ^ 2 ≤ trackingErrorSq σ_p σ_b cov := by
   unfold trackingErrorSq
@@ -138,7 +150,9 @@ noncomputable def gainToPain (s : Finset ι) (r : ι → ℝ) : ℝ :=
 
 /-- **Gain-to-pain is nonnegative**: both legs are sums of positive/negative
 parts. Unconditionally — with no losses the denominator is `0` and the ratio is
-`0`, which the statement already covers. -/
+`0`, which the statement already covers.
+@isnad1 id=le.0h3v.s4.140a8ef3dfe3 from=translated src=- shape=abba1d9e vocab=e9e7fb22
+-/
 lemma gainToPain_nonneg (s : Finset ι) (r : ι → ℝ) : 0 ≤ gainToPain s r :=
   div_nonneg (Finset.sum_nonneg fun _ _ ↦ posPart_nonneg _)
     (Finset.sum_nonneg fun _ _ ↦ negPart_nonneg _)
@@ -146,7 +160,9 @@ lemma gainToPain_nonneg (s : Finset ι) (r : ι → ℝ) : 0 ≤ gainToPain s r 
 /-- **Gain-to-pain exceeds one exactly on a profitable period set**: since
 `r⁺ - r⁻ = r` summand-wise, `∑ r⁺ ≥ ∑ r⁻` says precisely `∑ r ≥ 0`. Here the
 positive-pain hypothesis is load-bearing — it is what makes the quotient
-comparable to `1`. -/
+comparable to `1`.
+@isnad1 id=iff.1h3v.s6.4abb5902ebdf from=translated src=- shape=69766ee5 vocab=9d3f0479
+-/
 lemma one_le_gainToPain_iff (s : Finset ι) (r : ι → ℝ)
     (h : 0 < ∑ i ∈ s, (r i)⁻) :
     1 ≤ gainToPain s r ↔ 0 ≤ ∑ i ∈ s, r i := by
@@ -160,7 +176,9 @@ noncomputable def upCapture (up : Finset ι) (p b : ι → ℝ) : ℝ :=
 
 /-- **Upside capture is homogeneous of degree one in the portfolio leg**: the
 scalar factors out of the numerator sum, and `mul_div_assoc` carries it past the
-benchmark leg with no nonvanishing condition. -/
+benchmark leg with no nonvanishing condition.
+@isnad1 id=eq.0h5v.s5.a6d572781f26 from=translated src=- shape=e2191ea2 vocab=b554df06
+-/
 lemma upCapture_smul (up : Finset ι) (p b : ι → ℝ) (c : ℝ) :
     upCapture up (c • p) b = c * upCapture up p b := by
   simp [upCapture, ← Finset.mul_sum, mul_div_assoc]

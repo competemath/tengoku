@@ -52,7 +52,9 @@ variable {ι : Type*}
 
 Proof: chain rule via `HasDerivAt.pow` on `(1 + y')^n`, then `HasDerivAt.div`
 with a constant numerator. The `n = 0` and `n ≥ 1` cases are bundled by the
-final `field_simp + ring`. -/
+final `field_simp + ring`.
+@isnad1 id=hasderiv.1h3v.s7.57b3d81b5f90 from=translated src=- shape=9d54ce9d vocab=7a8a56dd
+-/
 lemma hasDerivAt_coupon_term (c_val : ℝ) (n : ℕ) {y : ℝ} (hy : 1 + y ≠ 0) :
     HasDerivAt (fun y' ↦ c_val / (1 + y') ^ n)
                (-((n : ℝ) * c_val / (1 + y) ^ (n + 1))) y := by
@@ -79,7 +81,9 @@ numerator is the negative slope of the bond price.
 
 Proof: term-by-term derivative via `hasDerivAt_coupon_term`, summed over
 the cashflow finset. The sum-of-functions vs function-of-sums identification
-is handled by `Finset.sum_apply`. -/
+is handled by `Finset.sum_apply`.
+@isnad1 id=hasderiv.1h5v.s6.571b0818ae24 from=translated src=- shape=70be7b19 vocab=de0cb60a
+-/
 theorem hasDerivAt_bondPriceDisc
     (s : Finset ι) (t : ι → ℕ) (c : ι → ℝ) {y : ℝ} (hy : 1 + y ≠ 0) :
     HasDerivAt (bondPriceDisc s t c)
@@ -98,7 +102,9 @@ theorem hasDerivAt_bondPriceDisc
 This is the operational content of duration: it measures the *percentage*
 sensitivity of bond price to yield. Combined with
 `modifiedNumerator_eq_macaulayNumerator_div`, gives the standard
-discrete-compounding identity `D_mod = D_Mac / (1 + y)`. -/
+discrete-compounding identity `D_mod = D_Mac / (1 + y)`.
+@isnad1 id=ex.1h5v.s6.de6c9083e90d from=translated src=- shape=90ad3af1 vocab=ed3c4b7c
+-/
 theorem bondPriceDisc_deriv_eq_neg_modified_duration_times_price
     (s : Finset ι) (t : ι → ℕ) (c : ι → ℝ) {y : ℝ}
     (hy : 1 + y ≠ 0) :

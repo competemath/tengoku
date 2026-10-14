@@ -47,7 +47,9 @@ open Real
 The same identity drives the scale invariance of every "difference-over-stdev"
 performance ratio: `Sharpe`, `Sortino`, `Treynor`, `Information ratio` are
 all instances. Naming the algebraic fact factors the work — each ratio's
-`*_scale_invariant` lemma is a one-line application. -/
+`*_scale_invariant` lemma is a one-line application.
+@isnad1 id=eq.1h4v.s6.709718cc2c4d from=translated src=- shape=c346027c vocab=a37a6b07
+-/
 lemma diff_div_scale_invariant {c : ℝ} (hc : c ≠ 0) (a b d : ℝ) :
     (c * a - c * b) / (c * d) = (a - b) / d := by
   by_cases hd : d = 0
@@ -59,7 +61,9 @@ noncomputable def sharpeRatio (μ r_f σ : ℝ) : ℝ := (μ - r_f) / σ
 
 /-- **Scale invariance**: the Sharpe ratio is invariant under uniform scaling
 of mean, risk-free rate, and volatility. One-line consequence of the
-`diff_div_scale_invariant` master. -/
+`diff_div_scale_invariant` master.
+@isnad1 id=eq.1h4v.s5.4d6ac892e508 from=translated src=- shape=6a28a593 vocab=8b75eb50
+-/
 lemma sharpeRatio_scale_invariant {c : ℝ} (hc : c ≠ 0) (μ r_f σ : ℝ) :
     sharpeRatio (c * μ) (c * r_f) (c * σ) = sharpeRatio μ r_f σ := by
   unfold sharpeRatio
@@ -68,7 +72,9 @@ lemma sharpeRatio_scale_invariant {c : ℝ} (hc : c ≠ 0) (μ r_f σ : ℝ) :
 /-- **The "affine ratio invariance" algebraic master**: the ratio
 `(c·a + d − (c·b + d)) / (c·e)` collapses to `(a − b) / e` for `c ≠ 0`.
 The shift `d` cancels in the numerator; the scale `c` cancels between
-numerator and denominator. -/
+numerator and denominator.
+@isnad1 id=eq.1h5v.s6.afa2b54eabc0 from=translated src=- shape=e8e6d211 vocab=335f4d48
+-/
 lemma diff_div_affine_invariant {c : ℝ} (hc : c ≠ 0) (a b d e : ℝ) :
     (c * a + d - (c * b + d)) / (c * e) = (a - b) / e := by
   rw [show c * a + d - (c * b + d) = c * a - c * b from by ring]
@@ -77,7 +83,9 @@ lemma diff_div_affine_invariant {c : ℝ} (hc : c ≠ 0) (a b d e : ℝ) :
 /-- **Signed affine invariance algebraic master**: when the denominator
 scales as `|c|` (the natural scaling of a standard deviation under
 `X ↦ c·X + d`, since `Var(cX + d) = c² · Var(X)`), the ratio picks up
-`sign(c)`. -/
+`sign(c)`.
+@isnad1 id=eq.1h5v.s6.03eb5b174adf from=translated src=- shape=57e9eef3 vocab=ce1a00a5
+-/
 lemma diff_div_affine_signed {c : ℝ} (hc : c ≠ 0) (a b d e : ℝ) :
     (c * a + d - (c * b + d)) / (|c| * e) = Real.sign c * ((a - b) / e) := by
   rw [show c * a + d - (c * b + d) = c * (a - b) from by ring]
@@ -92,7 +100,9 @@ lemma diff_div_affine_signed {c : ℝ} (hc : c ≠ 0) (a b d e : ℝ) :
 
 /-- **Translation invariance of the Sharpe ratio**: shifting the mean and
 risk-free rate by the same additive constant preserves `S = (μ − r_f)/σ`,
-since the shift cancels in the excess return. -/
+since the shift cancels in the excess return.
+@isnad1 id=eq.0h4v.s5.2a78974f4191 from=translated src=- shape=7e12a897 vocab=7993bcf8
+-/
 lemma sharpeRatio_translation_invariant (μ r_f σ b : ℝ) :
     sharpeRatio (μ + b) (r_f + b) σ = sharpeRatio μ r_f σ := by
   unfold sharpeRatio; ring_nf
@@ -100,7 +110,9 @@ lemma sharpeRatio_translation_invariant (μ r_f σ b : ℝ) :
 /-- **Full affine invariance of the Sharpe ratio (signed-σ convention)**:
 under the joint substitution `μ → c·μ + d`, `r_f → c·r_f + d`, `σ → c·σ`,
 the Sharpe ratio is invariant for any `c ≠ 0`. The shift cancels in the
-excess, and the scale cancels in the ratio. -/
+excess, and the scale cancels in the ratio.
+@isnad1 id=eq.1h5v.s6.dc395c82e3ea from=translated src=- shape=06808915 vocab=f49da371
+-/
 lemma sharpeRatio_affine_invariant {c : ℝ} (hc : c ≠ 0) (μ r_f σ d : ℝ) :
     sharpeRatio (c * μ + d) (c * r_f + d) (c * σ) = sharpeRatio μ r_f σ := by
   unfold sharpeRatio
@@ -108,7 +120,9 @@ lemma sharpeRatio_affine_invariant {c : ℝ} (hc : c ≠ 0) (μ r_f σ d : ℝ) 
 
 /-- **Sign-aware affine invariance** (natural `|c|`-volatility convention):
 since `StDev(cX + d) = |c| · StDev(X)`, the Sharpe ratio under the joint
-substitution flips sign when `c < 0`. -/
+substitution flips sign when `c < 0`.
+@isnad1 id=eq.1h5v.s6.2a49597de92d from=translated src=- shape=5f8033e9 vocab=b31941b1
+-/
 lemma sharpeRatio_affine_signed {c : ℝ} (hc : c ≠ 0) (μ r_f σ d : ℝ) :
     sharpeRatio (c * μ + d) (c * r_f + d) (|c| * σ) =
       Real.sign c * sharpeRatio μ r_f σ := by
@@ -117,7 +131,9 @@ lemma sharpeRatio_affine_signed {c : ℝ} (hc : c ≠ 0) (μ r_f σ d : ℝ) :
 
 /-- **Sharpe `√T`-scaling**: under iid time aggregation, `L_T ~ N(T·μ, T·σ²)`,
 so the Sharpe ratio at horizon `T` equals `√T` times the unit-horizon Sharpe
-ratio. -/
+ratio.
+@isnad1 id=eq.2h4v.s6.f636c264424e from=translated src=- shape=d3fb18f7 vocab=9f84b290
+-/
 lemma sharpeRatio_scaleT {μ r_f σ T : ℝ} (hT : 0 < T) (hσ : σ ≠ 0) :
     sharpeRatio (T * μ) (T * r_f) (σ * Real.sqrt T) =
       Real.sqrt T * sharpeRatio μ r_f σ := by
@@ -140,7 +156,9 @@ noncomputable def kellyGrowth (p b f : ℝ) : ℝ :=
   p * Real.log (1 + f * b) + (1 - p) * Real.log (1 - f)
 
 /-- **Kelly first-order condition**: at the Kelly fraction `f* = (p·b − q)/b`,
-the derivative of the expected log-growth vanishes. -/
+the derivative of the expected log-growth vanishes.
+@isnad1 id=hasderiv.3h2v.s6.3415304d6b89 from=translated src=- shape=0d7fc6b4 vocab=dc628d67
+-/
 lemma kellyGrowth_deriv_at_kelly {p b : ℝ}
     (hp : 0 < p) (hp1 : p < 1) (hb : 0 < b) :
     HasDerivAt (fun f ↦ kellyGrowth p b f) 0 (kellyFraction p b) := by

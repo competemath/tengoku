@@ -74,7 +74,9 @@ noncomputable def numeraireDensity (BT NT : Ω → ℝ) (B0 N0 : ℝ) : Ω → �
   fun ω ↦ ENNReal.ofReal (NT ω * B0 / (N0 * BT ω))
 
 /-- The numéraire density is a nonnegative real when both numéraires are
-positive. -/
+positive.
+@isnad1 id=le.4h6v.s6.139dc9bc4911 from=translated src=- shape=48fbd717 vocab=8b1f73a6
+-/
 lemma numeraireDensity_toReal_nonneg {BT NT : Ω → ℝ} {B0 N0 : ℝ}
     (hNTpos : ∀ ω, 0 < NT ω) (hBTpos : ∀ ω, 0 < BT ω)
     (hB0 : 0 ≤ B0) (hN0 : 0 < N0) (ω : Ω) :
@@ -93,7 +95,9 @@ variable [MeasurableSpace Ω] {Q : Measure Ω} {BT NT : Ω → ℝ} {B0 N0 : ℝ
 
 /-- **The numéraire measure is a probability measure.** Under the tradeability /
 normalization condition `𝔼^Q[N_T/B_T] = N₀/B₀` (equivalently: `N/B` is a
-`Q`-martingale), the total mass `∫ dQ^N/dQ ∂Q` equals `(B₀/N₀)·(N₀/B₀) = 1`. -/
+`Q`-martingale), the total mass `∫ dQ^N/dQ ∂Q` equals `(B₀/N₀)·(N₀/B₀) = 1`.
+@isnad1 id=isprobab.6h6v.s7.0e156a9c91cd from=translated src=- shape=695daeef vocab=ef30d1ba
+-/
 theorem numeraireMeasure_isProbabilityMeasure
     (hNTpos : ∀ ω, 0 < NT ω) (hBTpos : ∀ ω, 0 < BT ω) (hB0 : 0 < B0) (hN0 : 0 < N0)
     (hint : Integrable (fun ω ↦ NT ω / BT ω) Q)
@@ -120,7 +124,9 @@ theorem numeraireMeasure_isProbabilityMeasure
 
 where `Q^N = Q.withDensity((N_T·B₀)/(N₀·B_T))`. The proof transports the
 `Q^N`-integral back to `Q` (multiplying by the density) and cancels `N_T`; no
-integrability hypothesis is needed. -/
+integrability hypothesis is needed.
+@isnad1 id=eq.6h7v.s7.b69974ae62a7 from=translated src=- shape=a74863a3 vocab=2b150ae5
+-/
 theorem changeOfNumeraire (X : Ω → ℝ)
     (hNTmeas : Measurable NT) (hBTmeas : Measurable BT)
     (hNTpos : ∀ ω, 0 < NT ω) (hBTpos : ∀ ω, 0 < BT ω) (hB0 : 0 ≤ B0) (hN0 : 0 < N0) :
@@ -167,7 +173,9 @@ This is the **Bayes engine** `changeOfMeasure_setIntegral_eq` instantiated at th
 density process `Z_t = (N_t·B₀)/(N₀·B_t)` and payoff process `D_t = X_t/N_t`, whose
 product `Z_t·D_t = (B₀/N₀)(X_t/B_t)` is exactly `hXB` (the `N_t` cancels). It wires the
 change-of-numéraire seam to the Girsanov change-of-measure engine. The tilted measure
-is definitionally `numeraireMeasure Q (B T) (N T) B0 N0`. -/
+is definitionally `numeraireMeasure Q (B T) (N T) B0 N0`.
+@isnad1 id=eq.13h13v.s9.3cdc94f80faf from=translated src=- shape=fe37bb45 vocab=eeb71efe
+-/
 theorem changeOfNumeraire_setIntegral_eq (T : ℝ≥0)
     (hNpos : ∀ u ω, 0 < N u ω) (hBpos : ∀ u ω, 0 < B u ω)
     (hB0 : 0 ≤ B0) (hN0 : 0 < N0)

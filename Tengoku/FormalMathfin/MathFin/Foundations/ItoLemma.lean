@@ -82,7 +82,9 @@ noncomputable def itoDrift (f' f'' μ_X σ_X : ℝ) : ℝ :=
 
 /-- **Sanity check: identity function**. With `f = id` (so `f' = 1`,
 `f'' = 0`), the Itô drift collapses to the underlying process's local
-drift `μ_X`. -/
+drift `μ_X`.
+@isnad1 id=eq.0h2v.s4.6ade8036e625 from=translated src=- shape=4bf3ae32 vocab=24731cd8
+-/
 lemma itoDrift_id (μ_X σ_X : ℝ) :
     itoDrift 1 0 μ_X σ_X = μ_X := by
   unfold itoDrift
@@ -96,7 +98,9 @@ motion `dS_t = μ S_t dt + σ S_t dB_t` and `f = log`, so `f'(S) = 1/S` and
 
 This is the celebrated `−σ²/2` Itô correction that distinguishes
 stochastic from ordinary calculus, and the reason BS uses `r − σ²/2` in
-the `d_2` argument (vs `r + σ²/2` for `d_1`). -/
+the `d_2` argument (vs `r + σ²/2` for `d_1`).
+@isnad1 id=eq.1h3v.s7.ea2d62013ebf from=translated src=- shape=7fa292a5 vocab=2ccea788
+-/
 theorem itoDrift_log_gbm (μ σ S : ℝ) (hS : S ≠ 0) :
     itoDrift (1 / S) (-1 / S ^ 2) (μ * S) (σ * S) = μ - σ ^ 2 / 2 := by
   unfold itoDrift
@@ -106,7 +110,9 @@ theorem itoDrift_log_gbm (μ σ S : ℝ) (hS : S ≠ 0) :
 /-- **Volatility of `log S_t` under GBM**: the diffusion coefficient
 (`dB_t` factor) of `d(log S_t)` is `σ_X · f'(X) = σ S · (1/S) = σ`. This is
 the *constant* volatility of log-returns under GBM, contrasting with the
-*linear* volatility `σ S` of `S_t` itself. -/
+*linear* volatility `σ S` of `S_t` itself.
+@isnad1 id=eq.1h2v.s5.a3451bc9e815 from=translated src=- shape=d280acd6 vocab=525158d4
+-/
 lemma gbm_log_volatility (σ S : ℝ) (hS : S ≠ 0) :
     σ * S * (1 / S) = σ := by
   field_simp

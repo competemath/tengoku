@@ -129,7 +129,9 @@ noncomputable def blPosteriorMean {n m : ℕ}
     blPrecisionWeightedMean π Q Sg_inv P Om_inv
 
 /-- **Explicit form satisfies the normal equation** (when posterior precision
-is invertible). -/
+is invertible).
+@isnad1 id=isblpost.0h7v.s6.4dc2c40c12fe from=translated src=- shape=c3dbf037 vocab=a989e5cf
+-/
 theorem blPosteriorMean_satisfies_normal_eq {n m : ℕ}
     (π : Fin n → ℝ) (Q : Fin m → ℝ)
     (Sg_inv : Matrix (Fin n) (Fin n) ℝ)
@@ -143,7 +145,9 @@ theorem blPosteriorMean_satisfies_normal_eq {n m : ℕ}
   rw [Matrix.one_mulVec]
 
 /-- **Uniqueness of the BL posterior mean** (when posterior precision is
-invertible): any solution to the normal equation equals the explicit form. -/
+invertible): any solution to the normal equation equals the explicit form.
+@isnad1 id=eq.1h8v.s6.ae276f4cf6c3 from=translated src=- shape=ef910eb6 vocab=a989e5cf
+-/
 theorem IsBLPosteriorMean.unique {n m : ℕ}
     {μ_post π : Fin n → ℝ} {Q : Fin m → ℝ}
     {Sg_inv : Matrix (Fin n) (Fin n) ℝ}
@@ -162,7 +166,9 @@ theorem IsBLPosteriorMean.unique {n m : ℕ}
 /-- **n = 1 recovers the scalar posterior**: at `n = m = 1`, `P = 1`,
 `Sg_inv = (1/s0sq)`, `Om_inv = (1/s1sq)`, the scalar `posteriorMean1d` is the
 BL posterior mean — the 1-D case of the matrix normal equation, showing the
-N-asset form specialises to `Portfolio/BlackLitterman`. -/
+N-asset form specialises to `Portfolio/BlackLitterman`.
+@isnad1 id=isblpost.2h4v.s9.8a75ec4b629b from=translated src=- shape=2e012015 vocab=bced56ab
+-/
 theorem isBLPosteriorMean_one_dim (π₀ Q₀ s0sq s1sq : ℝ) (h₀ : 0 < s0sq) (h₁ : 0 < s1sq) :
     IsBLPosteriorMean ![posteriorMean1d π₀ Q₀ s0sq s1sq] ![π₀] ![Q₀]
         (!![1 / s0sq]) (1 : Matrix (Fin 1) (Fin 1) ℝ) (!![1 / s1sq]) := by

@@ -38,24 +38,32 @@ def variancePremium (α μ σ2 : ℝ) : ℝ := μ + α * σ2
 /-- Standard-deviation premium principle with loading `β`: `μ + β · σ`. -/
 def stdDevPremium (β μ σ : ℝ) : ℝ := μ + β * σ
 
-/-- A nonnegative loading prices at or above the mean: expected-value principle. -/
+/-- A nonnegative loading prices at or above the mean: expected-value principle.
+@isnad1 id=le.2h2v.s5.c70e65683887 from=translated src=- shape=bb8b1858 vocab=c5af4ee1
+-/
 theorem expectedValuePremium_ge_mean {θ μ : ℝ} (hθ : 0 ≤ θ) (hμ : 0 ≤ μ) :
     expectedValuePremium θ μ ≥ μ :=
   le_mul_of_one_le_left hμ (le_add_of_nonneg_right hθ)
 
-/-- A nonnegative loading prices at or above the mean: variance principle. -/
+/-- A nonnegative loading prices at or above the mean: variance principle.
+@isnad1 id=le.2h3v.s5.844fe520d907 from=translated src=- shape=b1e86723 vocab=69a51291
+-/
 theorem variancePremium_ge_mean {α σ2 : ℝ} (μ : ℝ) (hα : 0 ≤ α) (hσ2 : 0 ≤ σ2) :
     variancePremium α μ σ2 ≥ μ :=
   le_add_of_nonneg_right (mul_nonneg hα hσ2)
 
 /-- A nonnegative loading prices at or above the mean: standard-deviation
-principle. -/
+principle.
+@isnad1 id=le.2h3v.s5.15f71c8a612e from=translated src=- shape=b1e86723 vocab=1efeeeab
+-/
 theorem stdDevPremium_ge_mean {β σ : ℝ} (μ : ℝ) (hβ : 0 ≤ β) (hσ : 0 ≤ σ) :
     stdDevPremium β μ σ ≥ μ :=
   le_add_of_nonneg_right (mul_nonneg hβ hσ)
 
 /-- All three classical premium principles with nonnegative loadings price at
-or above the pure premium. -/
+or above the pure premium.
+@isnad1 id=and.6h6v.s6.25097fab776c from=translated src=- shape=343be6a8 vocab=73a16b9a
+-/
 theorem premium_ge_mean (μ σ2 σ θ α β : ℝ) (hμ : 0 ≤ μ) (hσ2 : 0 ≤ σ2)
     (hσ : 0 ≤ σ) (hθ : 0 ≤ θ) (hα : 0 ≤ α) (hβ : 0 ≤ β) :
     expectedValuePremium θ μ ≥ μ ∧ variancePremium α μ σ2 ≥ μ ∧

@@ -78,7 +78,9 @@ private lemma functional_nonneg_on_cone {ι : Type*} [Fintype ι] {C : Set (ι �
 simplex admits a strictly-positive functional `q` that is `≤ 0` on `C` (a separating supporting
 functional). The geometric heart shared by the FTAP (gains cone), the coherent-risk
 representation (acceptance cone), and superhedging (super-replication cone). Generalizes
-`exists_pos_dual_of_disjoint_stdSimplex` (subspace ⇒ two-sided `= 0`) to a cone (one-sided `≤ 0`). -/
+`exists_pos_dual_of_disjoint_stdSimplex` (subspace ⇒ two-sided `= 0`) to a cone (one-sided `≤ 0`).
+@isnad1 id=ex.4h2v.s7.61c7c3eeaa8a from=translated src=- shape=b92dee4f vocab=d4d44d8e
+-/
 theorem exists_pos_separating_of_cone_disjoint_simplex
     {ι : Type*} [Fintype ι]
     (C : Set (ι → ℝ)) (hCconv : Convex ℝ C) (hCclosed : IsClosed C)
@@ -114,7 +116,9 @@ separated by a functional `p` that is `≤ 0` on `C` and `> 0` at `x₀`. The co
 `exists_pos_separating_of_cone_disjoint_simplex`: that separates a cone from the whole simplex
 (strictly positive `q`); this separates a single exterior point from the cone (a representing
 density direction). The coherent-risk representation applies it to a rejected position and the
-acceptance cone. -/
+acceptance cone.
+@isnad1 id=ex.5h3v.s8.4275082fc0ab from=translated src=- shape=e89017ca vocab=ef8ad894
+-/
 theorem exists_separating_of_not_mem_cone
     {ι : Type*} [Fintype ι] (C : Set (ι → ℝ))
     (hCconv : Convex ℝ C) (hCclosed : IsClosed C)

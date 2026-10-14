@@ -27,6 +27,9 @@ namespace MathFin.BlackScholes.AmericanPut.Boundary
 open Set Filter
 open scoped Topology ContDiff
 
+/--
+@isnad1 id=lt.9h8v.s8.c367a4566ab2 from=translated src=- shape=1d0b03e8 vocab=bacec6ed
+-/
 theorem positive_later_of_positive_point {U D : ℝ → ℝ → ℝ} {β a T M x y : ℝ}
     (haT : a < T) (hx : β < x) (hy : β < y)
     (hU : ContinuousOn (fun z : ℝ × ℝ => U z.1 z.2) (Ioi β ×ˢ Icc a T))

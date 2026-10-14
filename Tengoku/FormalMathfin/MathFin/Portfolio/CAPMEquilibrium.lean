@@ -91,7 +91,9 @@ The proof is a discrete-Lagrangian argument:
 3. LHS becomes `(∑_j w_M(j) μ_excess(j)) · (Σw_M)_i = μ_M · (Σw_M)_i`.
 4. RHS becomes `μ_excess(i) · (∑_j w_M(j) (Σw_M)_j) = μ_excess(i) · Var(R_M)`.
 5. So `μ_M · (Σw_M)_i = μ_excess(i) · Var(R_M)`, and dividing by `Var(R_M) ≠ 0`
-   yields `μ_excess(i) = (Σw_M)_i / Var(R_M) · μ_M = β_i · μ_M`. -/
+   yields `μ_excess(i) = (Σw_M)_i / Var(R_M) · μ_M = β_i · μ_M`.
+@isnad1 id=eq.3h6v.s7.1781a3f1f675 from=translated src=- shape=e7ce3f2f vocab=42a170de
+-/
 theorem CAPM_from_market_equilibrium
     {ι : Type*} (s : Finset ι) (w_M : ι → ℝ) (μ_excess : ι → ℝ)
     (Sg : ι → ι → ℝ) (i : ι) (hi : i ∈ s)
@@ -134,7 +136,9 @@ theorem CAPM_from_market_equilibrium
 identity in the standard SML form `E[R_i] = R_f + β_i (E[R_M] − R_f)`.
 
 This packages `CAPM_from_market_equilibrium` together with the relations
-`μ_excess(i) = E[R_i] − R_f` and `μ_excess(M) = E[R_M] − R_f`. -/
+`μ_excess(i) = E[R_i] − R_f` and `μ_excess(M) = E[R_M] − R_f`.
+@isnad1 id=eq.4h7v.s7.b6e0c510f5c1 from=translated src=- shape=4625d876 vocab=51a67efa
+-/
 theorem expectedReturn_eq_SML_from_equilibrium
     {ι : Type*} (s : Finset ι) (w_M : ι → ℝ) (μ : ι → ℝ) (rf : ℝ)
     (Sg : ι → ι → ℝ) (i : ι) (hi : i ∈ s)

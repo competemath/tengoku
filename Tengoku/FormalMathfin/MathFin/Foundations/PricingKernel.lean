@@ -79,7 +79,9 @@ noncomputable def statePrices_two_state (z_up z_down rT : ℝ) : Fin 2 → ℝ :
 
 /-- **State prices are non-negative** when the FTAP sign condition
 holds (`z_up > 0, z_down < 0`): EMM-weight positivity (Phase 37 sign
-data) times positivity of the discount factor `e^{−rT}`. -/
+data) times positivity of the discount factor `e^{−rT}`.
+@isnad1 id=le.2h4v.s5.ff5f73e5ef06 from=translated src=- shape=d22177d7 vocab=ce9bddc4
+-/
 theorem statePrices_two_state_nonneg (z_up z_down rT : ℝ)
     (h_up : 0 < z_up) (h_down : z_down < 0) :
     ∀ i, 0 ≤ statePrices_two_state z_up z_down rT i := by

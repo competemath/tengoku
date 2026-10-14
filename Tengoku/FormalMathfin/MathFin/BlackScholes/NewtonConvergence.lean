@@ -79,7 +79,9 @@ The next error is the Taylor remainder over `f' x`, computed in **integral
 form** via the FTC for the linearization-subtracted auxiliary
 `w ↦ f w − f' x · w`: its derivative `f' t − f' x` is Lipschitz-bounded by
 `L·|t − x|` — *linear* in the distance to `x` — which integrates along
-`[r, x]` to the sharp `(L/2)·(x − r)²`; `|f' x| ≥ m` divides it out. -/
+`[r, x]` to the sharp `(L/2)·(x − r)²`; `|f' x| ≥ m` divides it out.
+@isnad1 id=le.7h7v.s8.0bb557c75586 from=translated src=- shape=be251d64 vocab=4d114029
+-/
 theorem newtonStep_quadratic_error
     (hroot : f r = 0) (hm0 : 0 < m) (hL : 0 ≤ L)
     (hd : ∀ y ∈ Set.Icc (r - δ) (r + δ), HasDerivAt f (f' y) y)
@@ -198,7 +200,9 @@ theorem newtonStep_quadratic_error
 
 The sharp quadratic bound `(L/(2m))·e²` turns into the halving `e/2` as soon
 as `e ≤ δ ≤ m/L`, and halving preserves the basin — the induction
-invariant. -/
+invariant.
+@isnad1 id=le.8h8v.s8.7db1f7105b74 from=translated src=- shape=3e365b0b vocab=5cdcf839
+-/
 theorem newtonSeq_error_le_geometric
     (hroot : f r = 0) (hm0 : 0 < m) (hL : 0 ≤ L)
     (hd : ∀ y ∈ Set.Icc (r - δ) (r + δ), HasDerivAt f (f' y) y)
@@ -246,7 +250,9 @@ theorem newtonSeq_error_le_geometric
 
 /-- **Newton–Raphson converges** in the basin: under the quadratic-error
 hypotheses with `|x₀ − r| ≤ δ` and `L·δ ≤ m`, the iterates tend to the root.
-Squeeze of the geometric decay `(½)ⁿ·|x₀ − r| → 0`. -/
+Squeeze of the geometric decay `(½)ⁿ·|x₀ − r| → 0`.
+@isnad1 id=tendsto.8h7v.s8.9ea7be9e0f72 from=translated src=- shape=01c0a075 vocab=126dda3b
+-/
 theorem newtonSeq_tendsto_root
     (hroot : f r = 0) (hm0 : 0 < m) (hL : 0 ≤ L)
     (hd : ∀ y ∈ Set.Icc (r - δ) (r + δ), HasDerivAt f (f' y) y)

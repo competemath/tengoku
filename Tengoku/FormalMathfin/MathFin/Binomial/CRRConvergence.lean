@@ -72,13 +72,19 @@ noncomputable def crrProb (r σ T : ℝ) (n : ℕ) : ℝ :=
 
 /-! ### Positivity and basic facts -/
 
-/-- The CRR up-factor `u = exp(σ√(T/n))` is positive. -/
+/-- The CRR up-factor `u = exp(σ√(T/n))` is positive.
+@isnad1 id=lt.0h3v.s4.81e91b1bfe25 from=translated src=- shape=bad53a6c vocab=24b89ce6
+-/
 lemma crrUp_pos (σ T : ℝ) (n : ℕ) : 0 < crrUp σ T n := Real.exp_pos _
 
-/-- The CRR down-factor `d = exp(-σ√(T/n))` is positive. -/
+/-- The CRR down-factor `d = exp(-σ√(T/n))` is positive.
+@isnad1 id=lt.0h3v.s4.d1cdc7d7e2e0 from=translated src=- shape=bad53a6c vocab=31c27fc2
+-/
 lemma crrDown_pos (σ T : ℝ) (n : ℕ) : 0 < crrDown σ T n := Real.exp_pos _
 
-/-- Under `σ > 0, T > 0, n ≥ 1`, the up-factor exceeds the down-factor. -/
+/-- Under `σ > 0, T > 0, n ≥ 1`, the up-factor exceeds the down-factor.
+@isnad1 id=lt.3h3v.s5.c8f4b46436ad from=translated src=- shape=0cec255d vocab=a9a3859f
+-/
 lemma crrDown_lt_crrUp {σ T : ℝ} (hσ : 0 < σ) (hT : 0 < T) {n : ℕ} (hn : 1 ≤ n) :
     crrDown σ T n < crrUp σ T n := by
   have h_n_pos : (0 : ℝ) < n := by exact_mod_cast hn
@@ -95,7 +101,9 @@ This is why the no-arbitrage hypothesis of the convergence theorems is stated fo
 `0 < n`. `BinomialNoArb 1 1 0` is *false* — it demands `Real.exp 0 < 1` — so a
 hypothesis quantified over every `n` is unsatisfiable and the theorem carrying it
 says nothing. The `0 ≤ p ≤ 1` bound the limit actually consumes survives at
-`n = 0` regardless, which is what makes the restricted hypothesis enough. -/
+`n = 0` regardless, which is what makes the restricted hypothesis enough.
+@isnad1 id=eq.0h3v.s4.7eeb7ce8cf6e from=translated src=- shape=1eabbd05 vocab=4c608a0a
+-/
 @[simp]
 lemma crrProb_zero (r σ T : ℝ) : crrProb r σ T 0 = 0 := by
   simp [crrProb, crrUp, crrDown, crrPerStepRate, crrStep]
@@ -108,7 +116,9 @@ Some restriction is unavoidable in both directions: `n = 0` is degenerate
 (`crrProb_zero`), and for a fixed `n` a large enough `|r|` pushes `e^{rΔt}`
 outside `[d, u]`. Since `√(T/n) ≤ √T` for `n ≥ 1`, the single bound `|r|·√T < σ`
 covers every step at once — so this discharges the hypothesis of
-`binomialPrice_call_tendsto_bs_closed` on a nonempty set of parameters. -/
+`binomialPrice_call_tendsto_bs_closed` on a nonempty set of parameters.
+@isnad1 id=binomial.3h4v.s5.b012280b9176 from=translated src=- shape=0abec442 vocab=6a042fdf
+-/
 lemma binomialNoArb_crr {r σ T : ℝ} (hT : 0 < T) (hrT : |r| * Real.sqrt T < σ)
     {n : ℕ} (hn : 0 < n) :
     BinomialNoArb (crrUp σ T n) (crrDown σ T n) (crrPerStepRate r T n) := by
@@ -143,7 +153,9 @@ lemma binomialNoArb_crr {r σ T : ℝ} (hT : 0 < T) (hrT : |r| * Real.sqrt T < �
     the one-step discounted asset price a martingale.
 
     Requires the no-arbitrage condition `d < e^{rΔt}` (implied by `d < u` when
-    we're between them, but explicit here so this works in either parameterization). -/
+    we're between them, but explicit here so this works in either parameterization).
+@isnad1 id=eq.1h4v.s6.e2523f4a45af from=translated src=- shape=4707358b vocab=1c7025d0
+-/
 theorem crr_one_step_martingale {σ T r : ℝ} {n : ℕ}
     (h_du : crrDown σ T n < crrUp σ T n) :
     crrProb r σ T n * crrUp σ T n + (1 - crrProb r σ T n) * crrDown σ T n
@@ -156,12 +168,16 @@ theorem crr_one_step_martingale {σ T r : ℝ} {n : ℕ}
 
 /-! ### Step-size limits -/
 
-/-- The CRR step `Δt = T/n` tends to 0 as `n → ∞`. -/
+/-- The CRR step `Δt = T/n` tends to 0 as `n → ∞`.
+@isnad1 id=tendsto.0h1v.s4.714335f17b38 from=translated src=- shape=e0462002 vocab=68b03fb8
+-/
 lemma tendsto_crrStep_zero (T : ℝ) : Tendsto (crrStep T) atTop (𝓝 0) := by
   unfold crrStep
   exact Tendsto.div_atTop tendsto_const_nhds (tendsto_natCast_atTop_atTop (R := ℝ))
 
-/-- `√(T/n) → 0` as `n → ∞`. -/
+/-- `√(T/n) → 0` as `n → ∞`.
+@isnad1 id=tendsto.0h1v.s4.36623306096a from=translated src=- shape=8a3dbbfc vocab=c6786588
+-/
 lemma tendsto_sqrt_crrStep_zero (T : ℝ) :
     Tendsto (fun n ↦ Real.sqrt (crrStep T n)) atTop (𝓝 0) := by
   rw [show (0 : ℝ) = Real.sqrt 0 from Real.sqrt_zero.symm]
@@ -170,7 +186,9 @@ lemma tendsto_sqrt_crrStep_zero (T : ℝ) :
 /-! ### Exponential difference quotients (first-order Taylor at 0) -/
 
 /-- **Difference quotient of `exp` at 0**: `(e^{c x} − 1) / x → c` as `x → 0` (`x ≠ 0`).
-    Just `HasDerivAt (fun x ↦ e^{cx}) c 0` unpacked via `hasDerivAt_iff_tendsto_slope`. -/
+    Just `HasDerivAt (fun x ↦ e^{cx}) c 0` unpacked via `hasDerivAt_iff_tendsto_slope`.
+@isnad1 id=tendsto.0h1v.s6.16f4497b2492 from=translated src=- shape=8fd2b0ec vocab=8909b851
+-/
 lemma tendsto_exp_sub_one_div (c : ℝ) :
     Tendsto (fun x : ℝ ↦ (Real.exp (c * x) - 1) / x) (𝓝[≠] 0) (𝓝 c) := by
   have h_deriv : HasDerivAt (fun x : ℝ ↦ Real.exp (c * x)) c 0 := by
@@ -198,13 +216,17 @@ private lemma tendsto_sq_nhdsWithin_ne_zero :
     exact pow_ne_zero 2 hh
 
 /-- `(e^{c · h²} − 1) / h² → c` as `h → 0` (`h ≠ 0`).
-    Composition of `tendsto_exp_sub_one_div` with `h ↦ h²`. -/
+    Composition of `tendsto_exp_sub_one_div` with `h ↦ h²`.
+@isnad1 id=tendsto.0h1v.s6.8a99075ba352 from=translated src=- shape=f9910e50 vocab=9fc36390
+-/
 lemma tendsto_exp_sq_sub_one_div_sq (c : ℝ) :
     Tendsto (fun h : ℝ ↦ (Real.exp (c * h^2) - 1) / h^2) (𝓝[≠] 0) (𝓝 c) :=
   (tendsto_exp_sub_one_div c).comp tendsto_sq_nhdsWithin_ne_zero
 
 /-- `(e^{c · h²} − 1) / h → 0` as `h → 0` (`h ≠ 0`).
-    Equals `h · ((e^{c·h²} − 1)/h²) → 0 · c = 0`. -/
+    Equals `h · ((e^{c·h²} − 1)/h²) → 0 · c = 0`.
+@isnad1 id=tendsto.0h1v.s6.8a57acf7db43 from=translated src=- shape=a52cd438 vocab=9fc36390
+-/
 lemma tendsto_exp_sq_sub_one_div_h (c : ℝ) :
     Tendsto (fun h : ℝ ↦ (Real.exp (c * h^2) - 1) / h) (𝓝[≠] 0) (𝓝 0) := by
   have h_id : Tendsto (fun h : ℝ ↦ h) (𝓝[≠] 0) (𝓝 0) :=
@@ -228,7 +250,9 @@ private lemma exp_diff_sub_eq (σ h : ℝ) :
   congr 1
   ring
 
-/-- `(e^{σ h} − e^{-σ h}) / h → 2σ` as `h → 0` (`h ≠ 0`). -/
+/-- `(e^{σ h} − e^{-σ h}) / h → 2σ` as `h → 0` (`h ≠ 0`).
+@isnad1 id=tendsto.0h1v.s6.fd537755d985 from=translated src=- shape=d406d85c vocab=42c6ca4a
+-/
 lemma tendsto_sinh_div (σ : ℝ) :
     Tendsto (fun h : ℝ ↦ (Real.exp (σ * h) - Real.exp (-(σ * h))) / h)
       (𝓝[≠] 0) (𝓝 (2 * σ)) := by
@@ -263,7 +287,9 @@ As `h_n → 0`:
   - `(e^{σ h_n} − 1)/h_n → σ`
   - `(e^{-σ h_n} − 1)/h_n → −σ`
 
-Hence `p_n → (0 − (−σ)) / (σ − (−σ)) = σ / (2σ) = 1/2`. -/
+Hence `p_n → (0 − (−σ)) / (σ − (−σ)) = σ / (2σ) = 1/2`.
+@isnad1 id=tendsto.2h3v.s6.c298e05ad9df from=translated src=- shape=b75003a8 vocab=156abe17
+-/
 theorem crrProb_tendsto_half {σ T r : ℝ} (hσ : 0 < σ) (hT : 0 < T) :
     Tendsto (fun n : ℕ ↦ crrProb r σ T n) atTop (𝓝 (1/2)) := by
   -- Step 1: define the per-h probability function and prove p(h) → 1/2 as h → 0 (h ≠ 0).
@@ -355,7 +381,9 @@ theorem crrProb_tendsto_half {σ T r : ℝ} (hσ : 0 < σ) (hT : 0 < T) :
 Equivalently, the per-step variance of the log-return matches the BS variance to
 leading order. Follows directly from `crrProb_tendsto_half` and limit arithmetic.
 
-The formula simplifies: `n · σ² · (T/n) · 4 p_n (1 − p_n) = 4 σ² T · p_n (1 − p_n)`. -/
+The formula simplifies: `n · σ² · (T/n) · 4 p_n (1 − p_n) = 4 σ² T · p_n (1 − p_n)`.
+@isnad1 id=tendsto.2h3v.s7.7e2d8ec0ac6a from=translated src=- shape=2e8655f0 vocab=90aaf264
+-/
 theorem crr_variance_limit {σ T r : ℝ} (hσ : 0 < σ) (hT : 0 < T) :
     Tendsto (fun n : ℕ ↦ 4 * σ^2 * T * (crrProb r σ T n) * (1 - crrProb r σ T n))
       atTop (𝓝 (σ^2 * T)) := by

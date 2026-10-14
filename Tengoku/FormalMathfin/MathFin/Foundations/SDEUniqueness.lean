@@ -47,7 +47,9 @@ namespace MathFin
 `G t = ∫₀ᵗ g` is `C¹` with `G' = g` (FTC, `g` continuous), `G 0 = 0`, and
 `‖G' x‖ = g x ≤ K·G x = K‖G x‖`, so
 `eq_zero_of_abs_deriv_le_mul_abs_self_of_eq_zero_right` gives `G ≡ 0`; then
-`g t ≤ K·G t = 0` with `g ≥ 0` gives `g t = 0`. -/
+`g t ≤ K·G t = 0` with `g ≥ 0` gives `g t = 0`.
+@isnad1 id=eq.4h4v.s7.70fdbf647395 from=translated src=- shape=f592aa90 vocab=6bae2eff
+-/
 theorem gronwall_zero_of_le_const_mul_integral {g : ℝ → ℝ} {K b : ℝ}
     (hg0 : ∀ t, 0 ≤ g t) (hgc : ContinuousOn g (Set.Ici 0))
     (hle : ∀ t ∈ Set.Icc 0 b, g t ≤ K * ∫ s in (0:ℝ)..t, g s) :
@@ -179,7 +181,9 @@ agree almost surely at every time.
 
 The energy `E s = 𝔼[(Xₛ−Yₛ)²]` satisfies `E s ≤ (2·Cdrift·s + 2·Cdiff)·∫₀ˢ E`; on `[0,t]` the
 prefactor is dominated by the constant `K = 2·Cdrift·t + 2·Cdiff`, and
-`gronwall_zero_of_le_const_mul_integral` forces `E ≡ 0`, i.e. `Xₜ = Yₜ` a.s. -/
+`gronwall_zero_of_le_const_mul_integral` forces `E ≡ 0`, i.e. `Xₜ = Yₜ` a.s.
+@isnad1 id=eventual.9h9v.s9.047ec13b222d from=translated src=- shape=791c71c9 vocab=cd4424e4
+-/
 theorem sde_pathwise_uniqueness
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
     {μ_coef : ℝ → ℝ} {X Y : ℝ → Ω → ℝ} {Iσ : (ℝ → Ω → ℝ) → ℝ → Ω → ℝ}
@@ -303,7 +307,9 @@ structure IsL2SolutionPair {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
 /-- **Theorem 8.2.5 (uniqueness), pathwise `L²` form.** Two `L²` strong solutions sharing a driver
 agree almost surely at every time. The drift energy bound is derived from Lipschitz `μ`
 (`drift_energy_le`), the diffusion from the Itô isometry (`isometry` field), and the `L²`-energy
-Grönwall argument (`sde_pathwise_uniqueness`) closes it. -/
+Grönwall argument (`sde_pathwise_uniqueness`) closes it.
+@isnad1 id=eventual.2h9v.s6.a8368c31d4ba from=translated src=- shape=cd34f94c vocab=f2f2ea35
+-/
 theorem IsL2SolutionPair.uniqueness {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
     [IsProbabilityMeasure μ] {μ_coef : ℝ → ℝ} {Lμ : ℝ≥0} {Cdiff : ℝ}
     {X Y : ℝ → Ω → ℝ} {Iσ : (ℝ → Ω → ℝ) → ℝ → Ω → ℝ}

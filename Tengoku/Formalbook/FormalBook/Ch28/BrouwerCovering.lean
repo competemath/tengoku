@@ -246,6 +246,9 @@ private theorem brouwer_complex
   have hfp : ∀ x, ‖x‖ ≤ 1 → f x ≠ x := fun x hx hfx => (h x hx hfx).elim
   exact no_retraction_complex (retraction_from_fp_free hf hB hfp)
 
+/--
+@isnad1 id=ex.2h1v.s8.75ffddbc8a88 from=translated src=- shape=6b825703 vocab=08998104
+-/
 theorem brouwer_fixed_point_2d_from_complex
     (f : EuclideanSpace ℝ (Fin 2) → EuclideanSpace ℝ (Fin 2))
     (hf : Continuous f) (hB : ∀ x, ‖x‖ ≤ 1 → ‖f x‖ ≤ 1) :

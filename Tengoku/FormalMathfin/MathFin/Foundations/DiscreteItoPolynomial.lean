@@ -49,7 +49,9 @@ application (recursion for `E[B_t^n]`, variance-of-variance, etc.).
 namespace MathFin
 
 /-- For `f(x) = x³`, with `f'(x) = 3x²` and `f''(x) = 6x`, the discrete
-Taylor remainder is `(b − a)³`. Pure ring identity. -/
+Taylor remainder is `(b − a)³`. Pure ring identity.
+@isnad1 id=eq.0h2v.s6.d865115a92b0 from=translated src=- shape=69fef41f vocab=481c0ecc
+-/
 lemma discreteTaylorRemainder_cube (Xk Xkp1 : ℝ) :
     discreteTaylorRemainder (fun x ↦ x ^ 3) (fun x ↦ 3 * x ^ 2) (fun x ↦ 6 * x) Xk Xkp1
       = (Xkp1 - Xk) ^ 3 := by
@@ -59,7 +61,9 @@ lemma discreteTaylorRemainder_cube (Xk Xkp1 : ℝ) :
 /-- For `f(x) = x⁴`, with `f'(x) = 4x³` and `f''(x) = 12x²`, the discrete
 Taylor remainder is `4·a·(b − a)³ + (b − a)⁴`. The cube term is the
 deterministic part (vanishes a.s. as the partition refines, by Brownian
-third-moment bounds) and the quartic term is the higher-order tail. -/
+third-moment bounds) and the quartic term is the higher-order tail.
+@isnad1 id=eq.0h2v.s7.8a1aafa4f357 from=translated src=- shape=162e1347 vocab=11b580b6
+-/
 lemma discreteTaylorRemainder_quartic (Xk Xkp1 : ℝ) :
     discreteTaylorRemainder (fun x ↦ x ^ 4) (fun x ↦ 4 * x ^ 3) (fun x ↦ 12 * x ^ 2)
         Xk Xkp1 = 4 * Xk * (Xkp1 - Xk) ^ 3 + (Xkp1 - Xk) ^ 4 := by
@@ -75,7 +79,9 @@ the third-power discrete Itô integral; the second is the third-power QV-
 weighted sum (analogous to the `½ ∑ f''(B)·(ΔB)²` term in classical Itô,
 here with the explicit `f''(x) = 6x`, hence the factor `3 = 6·½`); the
 third sum is the cubic remainder `∑ R_k` which goes to zero in `L¹(μ)` as
-the partition refines (Brownian-cube moment bound). -/
+the partition refines (Brownian-cube moment bound).
+@isnad1 id=eq.0h2v.s8.ad01948c48cb from=translated src=- shape=7df40c67 vocab=caf3bb20
+-/
 theorem discrete_cubing_identity (N : ℕ) (X : ℕ → ℝ) :
     X N ^ 3 - X 0 ^ 3 =
       3 * (∑ k ∈ Finset.range N, X k ^ 2 * (X (k + 1) - X k)) +
@@ -98,7 +104,9 @@ theorem discrete_cubing_identity (N : ℕ) (X : ℕ → ℝ) :
 
 /-- **Discrete Itô identity for cubing — rearranged.** Writes `X_N³` as
 `X_0³` plus the three Itô sums (Itô-integral against `X²`, the QV-weighted
-cross sum, and the cubic remainder). -/
+cross sum, and the cubic remainder).
+@isnad1 id=eq.0h2v.s8.1ef597a7113e from=translated src=- shape=7a0c709a vocab=caf3bb20
+-/
 theorem discrete_cubing_identity' (N : ℕ) (X : ℕ → ℝ) :
     X N ^ 3 = X 0 ^ 3 +
       3 * (∑ k ∈ Finset.range N, X k ^ 2 * (X (k + 1) - X k)) +

@@ -37,6 +37,9 @@ noncomputable def lineDifference (p : ℝ → ℝ → ℝ) (k h c d : ℝ) : ℝ
 
 variable {k h c d : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
 
+/--
+@isnad1 id=continuo.1h6v.s6.c206a6451fad from=translated src=- shape=6dd06f4e vocab=5b3c3c3f
+-/
 theorem lineDifference_continuousOn (hp : ContinuousBoundaryPutSolution k h p b) :
     ContinuousOn (fun z : ℝ × ℝ => lineDifference p k h c d z.1 z.2) {z | 0 ≤ z.2} := by
   exact (normalizedDifference_continuousOn (d := d) hp
@@ -44,6 +47,9 @@ theorem lineDifference_continuousOn (hp : ContinuousBoundaryPutSolution k h p b)
       (show ContinuousOn (fun z : ℝ × ℝ => (z.1 + (d - c * z.2),z.2)) {z | 0 ≤ z.2} by fun_prop)
       (fun _ hz => hz)
 
+/--
+@isnad1 id=contdiff.3h8v.s7.4b007686f85c from=translated src=- shape=0027f7aa vocab=06dddd56
+-/
 theorem lineDifference_contDiffAt (hp : ContinuousBoundaryPutSolution k h p b) {y t : ℝ}
     (ht : 0 < t) (hx : b t < y + (d - c * t)) :
     ContDiffAt ℝ ∞ (fun z : ℝ × ℝ => lineDifference p k h c d z.1 z.2) (y,t) := by
@@ -51,6 +57,9 @@ theorem lineDifference_contDiffAt (hp : ContinuousBoundaryPutSolution k h p b) {
     (profile_data hp.dividend_nonneg) ht hx).comp (y,t)
       (show ContDiffAt ℝ ∞ (fun z : ℝ × ℝ => (z.1 + (d - c * z.2),z.2)) (y,t) by fun_prop)
 
+/--
+@isnad1 id=eq.3h8v.s8.974d0e1b9e2f from=translated src=- shape=76f922f5 vocab=a2a4354a
+-/
 theorem lineDifference_equation (hp : ContinuousBoundaryPutSolution k h p b) {y t : ℝ}
     (ht : 0 < t) (hx : b t < y + (d - c * t)) :
     deriv (lineDifference p k h c d y) t =
@@ -72,7 +81,9 @@ theorem lineDifference_equation (hp : ContinuousBoundaryPutSolution k h p b) {y 
   ring
 
 /-- Value matching and RIGHT smooth fit of the actual difference at a line
-contact. No spatial derivative of the price across its boundary is required. -/
+contact. No spatial derivative of the price across its boundary is required.
+@isnad1 id=and.3h7v.s7.6c829bbdc07e from=translated src=- shape=d83be28b vocab=d3fc7d96
+-/
 theorem lineDifference_fit (hp : ContinuousBoundaryPutSolution k h p b) {T : ℝ} (hT : 0 < T)
     (hcontact : b T = d - c * T) :
     lineDifference p k h c d 0 T = 0 ∧
@@ -102,7 +113,9 @@ theorem lineDifference_fit (hp : ContinuousBoundaryPutSolution k h p b) {T : ℝ
 
 /-- The comparison equals the intrinsic expression on its own line, whereas
 the American value dominates that expression. This needs no line/boundary
-ordering and supplies the left edge of the Hopf rectangle automatically. -/
+ordering and supplies the left edge of the Hopf rectangle automatically.
+@isnad1 id=le.2h7v.s5.fa0aa0303ba3 from=translated src=- shape=aebb30d1 vocab=18f4f2a2
+-/
 theorem lineDifference_on_line_nonneg (hp : ContinuousBoundaryPutSolution k h p b) {t : ℝ}
     (ht : 0 ≤ t) : 0 ≤ lineDifference p k h c d 0 t := by
   have hq := (straightPrice_fit hp.rate_pos hp.dividend_nonneg c d t).1
@@ -116,7 +129,9 @@ theorem lineDifference_on_line_nonneg (hp : ContinuousBoundaryPutSolution k h p 
 /-- The precise terminal rectangle needed by Step 5 is incompatible with
 contact and smooth fit. The comparison PDE, drift bound, left-edge sign, and
 zero right derivative are derived here, not assumed. The remaining task is to
-construct such a rectangle from a concave tangency and the interval invariant. -/
+construct such a rectangle from a concave tangency and the interval invariant.
+@isnad1 id=false.8h9v.s7.85ecc184ab89 from=translated src=- shape=1fa62954 vocab=c51bd096
+-/
 theorem lineDifference_no_positive_rectangle (hp : ContinuousBoundaryPutSolution k h p b)
     {L a T : ℝ} (hL : 0 < L) (ha : 0 < a) (haT : a ≤ T)
     (hline : ∀ t ∈ Icc a T, b t ≤ d - c * t)
@@ -155,7 +170,9 @@ theorem lineDifference_no_positive_rectangle (hp : ContinuousBoundaryPutSolution
   exact (lt_irrefl 0) hpos
 
 /-- The same terminal-rectangle contradiction at zero dividends, stated with
-the original classical zero-dividend solution contract. -/
+the original classical zero-dividend solution contract.
+@isnad1 id=false.8h8v.s7.b214d3384e48 from=translated src=- shape=ddb26876 vocab=d2409a6c
+-/
 theorem zeroDividend_no_positive_rectangle {k c d : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
     (hp : NormalizedPutSolution k p b) {L a T : ℝ}
     (hL : 0 < L) (ha : 0 < a) (haT : a ≤ T)

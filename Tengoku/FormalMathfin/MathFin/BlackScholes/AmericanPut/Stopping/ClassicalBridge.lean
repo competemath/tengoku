@@ -33,6 +33,9 @@ variable {Ω : Type*} [MeasurableSpace Ω] {P : Measure Ω} [IsProbabilityMeasur
   {𝓕 : Filtration ℝ≥0 ‹MeasurableSpace Ω›} {W : ℝ≥0 → Ω → ℝ}
   {K r q σ k h : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ} {T : ℝ≥0} {t : ℝ}
 
+/--
+@isnad1 id=eq.7h14v.s7.6171742dadb6 from=translated src=- shape=c7a72700 vocab=c8f6d654
+-/
 theorem threshold_eq_of_price_identification (hp : DividendPutSolution k h p b)
     (hW : Measurable W.uncurry) (hzero : ∀ᵐ ω ∂P, W 0 ω = 0)
     (hK : 0 < K) (hr : 0 ≤ r) (ht : 0 < t)

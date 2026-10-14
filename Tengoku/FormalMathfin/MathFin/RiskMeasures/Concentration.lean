@@ -43,7 +43,9 @@ variable {ι : Type*}
 noncomputable def herfindahl (s : Finset ι) (w : ι → ℝ) : ℝ :=
   ∑ i ∈ s, (w i)^2
 
-/-- **Non-negativity**: `HHI ≥ 0`. -/
+/-- **Non-negativity**: `HHI ≥ 0`.
+@isnad1 id=le.0h3v.s4.656077dd1d53 from=translated src=- shape=abba1d9e vocab=be08ac9a
+-/
 lemma herfindahl_nonneg (s : Finset ι) (w : ι → ℝ) :
     0 ≤ herfindahl s w := by
   unfold herfindahl
@@ -51,7 +53,9 @@ lemma herfindahl_nonneg (s : Finset ι) (w : ι → ℝ) :
   intros i _
   exact sq_nonneg _
 
-/-- **Upper bound HHI ≤ 1** when weights are in `[0,1]` and `Σ w ≤ 1`. -/
+/-- **Upper bound HHI ≤ 1** when weights are in `[0,1]` and `Σ w ≤ 1`.
+@isnad1 id=le.3h3v.s6.274c329f3553 from=translated src=- shape=6c211ae8 vocab=8fe176a3
+-/
 lemma herfindahl_le_one_of_sum_le_one_of_nonneg
     (s : Finset ι) (w : ι → ℝ)
     (hnn : ∀ i ∈ s, 0 ≤ w i) (hw_le : ∀ i ∈ s, w i ≤ 1)
@@ -66,7 +70,9 @@ lemma herfindahl_le_one_of_sum_le_one_of_nonneg
       ≤ ∑ i ∈ s, w i := Finset.sum_le_sum h_bound
     _ ≤ 1 := h_sum
 
-/-- **Cauchy-Schwarz lower bound HHI ≥ 1/n** under unit-budget constraint. -/
+/-- **Cauchy-Schwarz lower bound HHI ≥ 1/n** under unit-budget constraint.
+@isnad1 id=le.2h3v.s5.f0a1bc4ec48c from=translated src=- shape=8c4050b0 vocab=b35279c2
+-/
 lemma herfindahl_card_inv_le_of_sum_one (s : Finset ι) (w : ι → ℝ)
     (hs : s.Nonempty) (h_sum : ∑ i ∈ s, w i = 1) :
     (s.card : ℝ)⁻¹ ≤ herfindahl s w := by

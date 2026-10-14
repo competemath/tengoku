@@ -43,7 +43,9 @@ open MeasureTheory ProbabilityTheory Real
 `E_Q[S_T²] = S_0² · exp(2 r T + σ² T)`.
 
 Instance of `nthMoment_terminal` at `n = 2`: the general formula gives
-`S_0^2 · exp(2·r·T + 2·1/2·σ²T) = S_0^2 · exp(2rT + σ²T)`. -/
+`S_0^2 · exp(2·r·T + 2·1/2·σ²T) = S_0^2 · exp(2rT + σ²T)`.
+@isnad1 id=eq.1h9v.s7.92b3bd0ea6a9 from=translated src=- shape=baab1d8a vocab=c985e240
+-/
 theorem secondMoment_terminal
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
@@ -63,7 +65,9 @@ theorem secondMoment_terminal
 /-- **Variance of the terminal asset price**: under `BSCallHyp`,
 `Var_Q[S_T] = E_Q[S_T²] − (E_Q[S_T])² = S_0² · exp(2 r T) · (exp(σ² T) − 1)`.
 
-Combines `secondMoment_terminal` with `expected_terminal_eq_forward`. -/
+Combines `secondMoment_terminal` with `expected_terminal_eq_forward`.
+@isnad1 id=eq.1h9v.s7.c86db8160c8c from=translated src=- shape=eb5cacc2 vocab=97fc8f7b
+-/
 theorem variance_terminal
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]

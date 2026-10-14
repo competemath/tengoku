@@ -46,7 +46,9 @@ noncomputable def tangentWeightTwo (r₁ r₂ σ₁ σ₂ ρ : ℝ) : ℝ :=
 `D · [r₂ · (w σ₁² + (1 − w) ρ σ₁ σ₂)] = D · [r₁ · (w ρ σ₁ σ₂ + (1 − w) σ₂²)]`
 i.e. multiplying both sides by `D` we get a polynomial identity. Stated as
 the cross-product form `r₂ · D · ((Σw)_1) = r₁ · D · ((Σw)_2)` to avoid the
-division. -/
+division.
+@isnad1 id=other.0h5v.s8.64aebcd9dda0 from=translated src=- shape=7250afdd vocab=3f072e55
+-/
 theorem tangentTwo_satisfies_FOC (r₁ r₂ σ₁ σ₂ ρ : ℝ) :
     -- `D` is the common denominator `σ₂² r₁ + σ₁² r₂ − ρ σ₁ σ₂ (r₁ + r₂)` —
     -- not referenced in the statement itself (the FOC is stated in
@@ -74,7 +76,9 @@ def IsTangentPortfolioN {ι : Type*} (s : Finset ι) (μ_excess : ι → ℝ)
 
 /-- **Sufficient condition for tangency**: if `Σw = λ · μ_excess` for some
 scalar `λ`, then `w` is a tangent portfolio. Captures the matrix-inverse
-characterisation `w ∝ Σ⁻¹ · μ_excess` without requiring matrix machinery. -/
+characterisation `w ∝ Σ⁻¹ · μ_excess` without requiring matrix machinery.
+@isnad1 id=istangen.1h6v.s6.59771c5140b1 from=translated src=- shape=4ec5c37f vocab=dc8b8c91
+-/
 theorem isTangent_of_proportional {ι : Type*} (s : Finset ι) (μ_excess : ι → ℝ)
     (Sg : ι → ι → ℝ) (w : ι → ℝ) (lam : ℝ)
     (h : ∀ i ∈ s, (∑ k ∈ s, Sg i k * w k) = lam * μ_excess i) :

@@ -25,6 +25,9 @@ def circularArc {n : ℕ} (k : ℕ) (s : Fin n) : Finset (Fin n) :=
 def permArc {n : ℕ} (k : ℕ) (σ : Equiv.Perm (Fin n)) (s : Fin n) : Finset (Fin n) :=
   (circularArc k s).image σ
 
+/--
+@isnad1 id=eq.0h3v.s5.6543ad809bb3 from=translated src=- shape=3f077a99 vocab=71c46038
+-/
 lemma fin_add_sub_cancel' {n : ℕ} (s j : Fin n) : (s + j - s) = j := by
   ext; simp only [Fin.sub_def, Fin.add_def, Fin.val_mk]
   rcases Nat.lt_or_ge (s.val + j.val) n with h | h
@@ -33,12 +36,18 @@ lemma fin_add_sub_cancel' {n : ℕ} (s j : Fin n) : (s + j - s) = j := by
   · rw [Nat.mod_eq_sub_mod h, Nat.mod_eq_of_lt (by omega : s.val + j.val - n < n),
         show n - s.val + (s.val + j.val - n) = j.val from by omega, Nat.mod_eq_of_lt j.isLt]
 
+/--
+@isnad1 id=lt.2h4v.s5.b0689d64cb4c from=translated src=- shape=6f804624 vocab=2db4a53c
+-/
 lemma circularArc_sub_val_lt' {n k : ℕ} (hkn : k ≤ n) {s x : Fin n}
     (hx : x ∈ circularArc k s) : (x - s).val < k := by
   simp only [circularArc, Finset.mem_image, Finset.mem_range] at hx
   obtain ⟨j, hjk, rfl⟩ := hx
   rw [fin_add_sub_cancel']; simp [Nat.mod_eq_of_lt (by omega : j < n)]; exact hjk
 
+/--
+@isnad1 id=or.5h5v.s7.270582838c70 from=translated src=- shape=62c6d6e7 vocab=3d942bf6
+-/
 lemma mod_close' {n k a b c : ℕ} (ha : a < n) (hb : b < n) (hc : c < n)
     (h1 : (n - a + c) % n < k) (h2 : (n - b + c) % n < k) :
     (n - b + a) % n < k ∨ (n - a + b) % n < k := by
@@ -64,6 +73,9 @@ lemma mod_close' {n k a b c : ℕ} (ha : a < n) (hb : b < n) (hc : c < n)
       · rw [aux a b ha hb hab]; omega
     · left; rw [aux b a hb ha (le_of_lt hab)]; omega
 
+/--
+@isnad1 id=or.2h4v.s6.3ced5fd817ef from=translated src=- shape=f2cbcdf9 vocab=f2347fdc
+-/
 lemma arc_inter_close' {n k : ℕ} (hkn : k ≤ n) (i j : Fin n)
     (h : (circularArc k i ∩ circularArc k j).Nonempty) :
     (i - j).val < k ∨ (j - i).val < k := by
@@ -72,6 +84,9 @@ lemma arc_inter_close' {n k : ℕ} (hkn : k ≤ n) (i j : Fin n)
   exact mod_close' i.isLt j.isLt x.isLt
     (circularArc_sub_val_lt' hkn hx.1) (circularArc_sub_val_lt' hkn hx.2)
 
+/--
+@isnad1 id=eq.1h3v.s5.868c7010f0bd from=translated src=- shape=c483d3fe vocab=42ea5c54
+-/
 lemma fin_sub_add_sub {n : ℕ} (a b : Fin n) (hab : a ≠ b) :
     (a - b).val + (b - a).val = n := by
   simp only [Fin.sub_def, Fin.val_mk]
@@ -90,6 +105,9 @@ lemma fin_sub_add_sub {n : ℕ} (a b : Fin n) (hab : a ≠ b) :
         Nat.mod_eq_of_lt (by omega : n - a.val + b.val < n)]
     omega
 
+/--
+@isnad1 id=le.2h3v.s6.5e449d4789b6 from=translated src=- shape=0e590aec vocab=d9e6fca9
+-/
 lemma arc_lemma {n k : ℕ} (h2k : 2 * k ≤ n) (S : Finset (Fin n))
     (hS : ∀ i ∈ S, ∀ j ∈ S, (circularArc k i ∩ circularArc k j).Nonempty) :
     S.card ≤ k := by
@@ -164,7 +182,9 @@ lemma arc_lemma {n k : ℕ} (h2k : 2 * k ≤ n) (S : Finset (Fin n))
           exact Finset.mem_range.mpr (hf_lt s hs))
     _ = k := Finset.card_range k
 
-/-- Permutations preserve arc intersection. -/
+/-- Permutations preserve arc intersection.
+@isnad1 id=nonempty.1h5v.s5.f7550cccc3f9 from=translated src=- shape=d507f4e4 vocab=1ccab5ad
+-/
 lemma permArc_inter {n k : ℕ} (σ : Equiv.Perm (Fin n)) (i j : Fin n)
     (h : (circularArc k i ∩ circularArc k j).Nonempty) :
     (permArc k σ i ∩ permArc k σ j).Nonempty := by
@@ -174,7 +194,9 @@ lemma permArc_inter {n k : ℕ} (σ : Equiv.Perm (Fin n)) (i j : Fin n)
   · exact Finset.mem_image_of_mem σ hx.1
   · exact Finset.mem_image_of_mem σ hx.2
 
-/-- For a fixed permutation and intersecting family, at most k arcs are in 𝒜. -/
+/-- For a fixed permutation and intersecting family, at most k arcs are in 𝒜.
+@isnad1 id=le.2h4v.s7.7118607cd027 from=translated src=- shape=6bd3ee90 vocab=a1825084
+-/
 lemma perm_arcs_le_k {n k : ℕ} (h2k : 2 * k ≤ n)
     (𝒜 : Finset (Finset (Fin n)))
     (h𝒜 : (𝒜 : Set (Finset (Fin n))).Intersecting)
@@ -197,6 +219,9 @@ lemma perm_arcs_le_k {n k : ℕ} (h2k : 2 * k ≤ n)
   subst hab
   exact ⟨a, Finset.mem_inter.mpr ⟨hai, hbj⟩⟩
 
+/--
+@isnad1 id=le.2h3v.s7.7ab1c12ece57 from=translated src=- shape=c7787bfa vocab=5ea687b6
+-/
 lemma upper_bound_sum {n k : ℕ} (h2k : 2 * k ≤ n)
     (𝒜 : Finset (Finset (Fin n)))
     (h𝒜 : (𝒜 : Set (Finset (Fin n))).Intersecting) :
@@ -211,6 +236,9 @@ lemma upper_bound_sum {n k : ℕ} (h2k : 2 * k ≤ n)
         simp [Finset.sum_const, Finset.card_univ, Fintype.card_perm,
           Fintype.card_fin, mul_comm]
 
+/--
+@isnad1 id=eq.1h3v.s4.20ef65123ed1 from=translated src=- shape=8e05a5fa vocab=a2efa3dd
+-/
 lemma circularArc_card {n k : ℕ} (hk : k ≤ n) (i : Fin n) :
     (circularArc k i).card = k := by
   unfold circularArc
@@ -223,6 +251,9 @@ lemma circularArc_card {n k : ℕ} (hk : k ≤ n) (i : Fin n) :
     rw [Nat.mod_eq_of_lt (by omega : j₁ < n), Nat.mod_eq_of_lt (by omega : j₂ < n)] at this
     exact this
 
+/--
+@isnad1 id=eq.2h4v.s6.e298cda122ab from=translated src=- shape=a1b1dccf vocab=0bef1079
+-/
 lemma count_perms_fixing_arc {n k : ℕ} (i : Fin n) (A : Finset (Fin n))
     (hA : A.card = k) (hcirc : (circularArc k i).card = k) :
     (Finset.univ.filter (fun σ : Equiv.Perm (Fin n) => permArc k σ i = A)).card =
@@ -293,6 +324,9 @@ lemma count_perms_fixing_arc {n k : ℕ} (i : Fin n) (A : Finset (Fin n))
         · have e := (arcᶜ.equivFin.trans (finCongr hAc)).trans (Aᶜ.equivFin.trans (finCongr hAc')).symm
           rw [Fintype.card_equiv e, Fintype.card_coe, hAc]
 
+/--
+@isnad1 id=le.3h3v.s7.3d75fb90d03d from=translated src=- shape=70408c23 vocab=4e79edbd
+-/
 lemma lower_bound_sum {n k : ℕ} (_h2k : 2 * k ≤ n)
     (𝒜 : Finset (Finset (Fin n)))
     (_h𝒜 : (𝒜 : Set (Finset (Fin n))).Intersecting)
@@ -334,6 +368,9 @@ lemma lower_bound_sum {n k : ℕ} (_h2k : 2 * k ≤ n)
           rw [Finset.mem_filter] at hσA hσB
           exact hAB (hσA.2 ▸ hσB.2)
 
+/--
+@isnad1 id=le.3h3v.s6.f32754d5c928 from=translated src=- shape=12907e30 vocab=a6f987ea
+-/
 lemma double_counting_ineq {n k : ℕ} (h2k : 2 * k ≤ n)
     (𝒜 : Finset (Finset (Fin n)))
     (h𝒜 : (𝒜 : Set (Finset (Fin n))).Intersecting)
@@ -341,6 +378,9 @@ lemma double_counting_ineq {n k : ℕ} (h2k : 2 * k ≤ n)
     𝒜.card * (n * k.factorial * (n - k).factorial) ≤ k * n.factorial :=
   le_trans (lower_bound_sum h2k 𝒜 h𝒜 hSized) (upper_bound_sum h2k 𝒜 h𝒜)
 
+/--
+@isnad1 id=eq.2h2v.s6.ed85272e55fc from=translated src=- shape=a0668e5b vocab=4eb8a786
+-/
 lemma choose_factorial_identity {n k : ℕ} (h1k : 1 ≤ k) (hkn : k ≤ n) :
     (n - 1).choose (k - 1) * (n * k.factorial * (n - k).factorial) = k * n.factorial := by
   have hk1 : k - 1 ≤ n - 1 := by omega

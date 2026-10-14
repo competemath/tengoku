@@ -55,7 +55,9 @@ open scoped NNReal ENNReal
 /-- **Gaussian Esscher identity** (completing the square): tilting the
 standard-normal density by the normalised exponential `exp(c·x − c²/2)`
 yields the `N(c, 1)` density. This is the pointwise heart of the static
-Girsanov change of measure. -/
+Girsanov change of measure.
+@isnad1 id=eq.0h2v.s6.5e1aaa6a9ef6 from=translated src=- shape=382b0d7c vocab=8562d9f9
+-/
 theorem gaussian_esscher_pdf (c x : ℝ) :
     Real.exp (c * x - c ^ 2 / 2) * gaussianPDFReal 0 1 x = gaussianPDFReal c 1 x := by
   simp only [gaussianPDFReal, NNReal.coe_one, mul_one, sub_zero]
@@ -68,7 +70,9 @@ theorem gaussian_esscher_pdf (c x : ℝ) :
 standard normal `N(0,1)` by the Radon-Nikodym density `exp(c·x − c²/2)`
 produces exactly `N(c, 1)`. The mean shifts by the tilt parameter `c`; the
 variance is unchanged. This is the static (single-Gaussian) Girsanov
-theorem. -/
+theorem.
+@isnad1 id=eq.0h1v.s6.a3a00982f98d from=translated src=- shape=a03c4fe3 vocab=f6472921
+-/
 theorem gaussianReal_withDensity_esscher (c : ℝ) :
     (gaussianReal 0 1).withDensity
       (fun x ↦ ENNReal.ofReal (Real.exp (c * x - c ^ 2 / 2))) = gaussianReal c 1 := by
@@ -85,7 +89,9 @@ theorem gaussianReal_withDensity_esscher (c : ℝ) :
 for measurable `W : Ω → ℝ` and `g : ℝ → ℝ≥0∞`, the law of `W` under
 `P.withDensity (g ∘ W)` is `(law of W under P).withDensity g`. This is the
 plumbing that lets a change of measure defined on `Ω` (via a density in the
-driver `W`) be read entirely at the level of `W`'s law. -/
+driver `W`) be read entirely at the level of `W`'s law.
+@isnad1 id=eq.2h5v.s5.f1f08e0fb4ce from=translated src=- shape=9a006a23 vocab=525afc46
+-/
 theorem map_withDensity_comp {Ω : Type*} {mΩ : MeasurableSpace Ω}
     (P : Measure Ω) {W : Ω → ℝ} (hW : Measurable W) {g : ℝ → ℝ≥0∞}
     (hg : Measurable g) :
@@ -100,7 +106,9 @@ normal under the physical measure `P`, then under the Esscher-tilted measure
 `Q := P.withDensity(exp(c·W − c²/2))`, the *same* `W` has law `N(c, 1)`. The
 change of measure shifts the driver's mean by the tilt `c` and leaves the
 variance fixed — exactly the static (single-Gaussian) Girsanov theorem,
-stated at the level of the random variable. -/
+stated at the level of the random variable.
+@isnad1 id=haslaw.2h5v.s6.c02df76f729e from=translated src=- shape=d58212da vocab=75b2b159
+-/
 theorem hasLaw_esscher_tilt {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {P : Measure Ω} {W : Ω → ℝ} (c : ℝ)
     (hWmeas : Measurable W) (hW : HasLaw W (gaussianReal 0 1) P) :
@@ -114,7 +122,9 @@ theorem hasLaw_esscher_tilt {Ω : Type*} {mΩ : MeasurableSpace Ω}
         gaussianReal_withDensity_esscher]
 
 /-- **Shifting a Gaussian driver**: if `W ~ N(m, 1)` then `W − c ~ N(m − c, 1)`.
-Recentering by a constant translates the mean. -/
+Recentering by a constant translates the mean.
+@isnad1 id=haslaw.2h6v.s6.672acd20218f from=translated src=- shape=071c8127 vocab=28e23f49
+-/
 theorem hasLaw_sub_const {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} {W : Ω → ℝ} (c m : ℝ)
     (hWmeas : Measurable W) (hW : HasLaw W (gaussianReal m 1) Q) :
@@ -130,7 +140,9 @@ theorem hasLaw_sub_const {Ω : Type*} {mΩ : MeasurableSpace Ω}
 /-- **The Esscher-tilted measure is a probability measure.** Its total mass
 is the standard-normal MGF evaluated to `1` (the Esscher density is
 normalised), read off from the fact that `W` has a genuine law (`N(c,1)`)
-under it. -/
+under it.
+@isnad1 id=isprobab.2h5v.s6.29f82443658f from=translated src=- shape=f8a56253 vocab=ed7d1ebe
+-/
 theorem esscherTilt_isProbabilityMeasure {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {P : Measure Ω} {W : Ω → ℝ} (c : ℝ)
     (hWmeas : Measurable W) (hW : HasLaw W (gaussianReal 0 1) P) :
@@ -154,7 +166,9 @@ Economic instantiation: take `c = (r − μ)·√T / σ = −θ·√T` where `θ
 is the market price of risk; then `W − c = W + θ√T` is the risk-neutral
 driver, and `Q` is the equivalent martingale measure — its martingale
 property `E_Q[e^{−rT} S_T] = S_0` follows from the resulting `BSCallHyp` via
-`discounted_terminal_eq_S0`. -/
+`discounted_terminal_eq_S0`.
+@isnad1 id=ex.6h10v.s7.ed64915160bf from=translated src=- shape=2777c8ea vocab=ee05a3f9
+-/
 theorem BSCallHyp.exists_of_physical {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {P : Measure Ω}
     {S_0 K r σ T : ℝ} {W : Ω → ℝ} (c : ℝ)
@@ -179,7 +193,9 @@ equals the risk-neutral terminal `S_0·exp((r−σ²/2)T + σ√T·(W − c))`. 
 `S_T` is invariant; only its *drift* changes `μ → r`. This is *why* the
 Esscher tilt of `BSCallHyp.exists_of_physical` is the right change of
 measure: it is the one that turns the real-world drift into the risk-free
-rate while leaving the random variable `S_T` untouched. -/
+rate while leaving the random variable `S_T` untouched.
+@isnad1 id=eq.2h6v.s6.dce1e335c043 from=translated src=- shape=611f9c0d vocab=ecf80a31
+-/
 theorem bsTerminal_physical_eq_riskNeutral
     (S_0 μ r σ T w : ℝ) (hσ : σ ≠ 0) (hT : 0 ≤ T) :
     bsTerminal S_0 μ σ T w
@@ -206,7 +222,9 @@ from the physical measure). For the Esscher-tilted `Q` of
 `Q`-martingale: `E_Q[e^{−rT}·S_T] = S_0`. This is the *defining* property of
 an EMM — so the construction yields a genuine risk-neutral measure, not
 merely one under which the driver is standard normal. Composes
-`exists_of_physical` with `discounted_terminal_eq_S0`. -/
+`exists_of_physical` with `discounted_terminal_eq_S0`.
+@isnad1 id=ex.6h10v.s7.1d8095abfa4a from=translated src=- shape=927042fe vocab=7bf7dfde
+-/
 theorem discounted_terminal_eq_S0_of_physical {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {P : Measure Ω}
     {S_0 K r σ T : ℝ} {W : Ω → ℝ} (c : ℝ)
@@ -225,7 +243,9 @@ theorem discounted_terminal_eq_S0_of_physical {Ω : Type*} {mΩ : MeasurableSpac
 the constructed EMM `Q`, the discounted expected payoff equals the
 Black-Scholes closed form. Every other BS-family result composes the same
 way; this one stands for the pipeline. Composes `exists_of_physical` with
-`bs_call_formula`. -/
+`bs_call_formula`.
+@isnad1 id=ex.6h10v.s8.6c96e79afe59 from=translated src=- shape=59d2ca3d vocab=89845d0c
+-/
 theorem bs_call_formula_of_physical {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {P : Measure Ω}
     {S_0 K r σ T : ℝ} {W : Ω → ℝ} (c : ℝ)
@@ -250,7 +270,9 @@ terminal `bsTerminal S_0 μ σ T W` (drift `μ`) with the risk-neutral one, and
 `discounted_terminal_eq_S0_of_physical` supplies the martingale property — so
 `E_Q[e^{−rT}·S_T] = S_0` holds for the asset carrying the *physical* drift `μ`.
 This composes the previously-standalone drift-invariance identity into the EMM
-pipeline, closing the `physical → EMM` step at the level of the physical model. -/
+pipeline, closing the `physical → EMM` step at the level of the physical model.
+@isnad1 id=ex.5h9v.s7.d9d37fb27490 from=translated src=- shape=65657944 vocab=1fe8b3f9
+-/
 theorem discounted_physical_terminal_eq_S0 {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {P : Measure Ω}
     {S_0 r μ σ T : ℝ} {W : Ω → ℝ}

@@ -25,6 +25,9 @@ namespace MathFin.BlackScholes.AmericanPut.Stopping
 open Set Filter
 open scoped Topology
 
+/--
+@isnad1 id=continuo.5h3v.s8.ef0f4dfe9689 from=translated src=- shape=0d2c2c8c vocab=405ea147
+-/
 theorem continuousAt_deriv_convex_slices {f : ℝ → ℝ → ℝ}
     (hc : ∀ t, 0 < t → ConvexOn ℝ (Ici 0) (fun S => f S t))
     (hd : ∀ S t, 0 < S → 0 < t → DifferentiableAt ℝ (fun R => f R t) S)
