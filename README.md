@@ -55,9 +55,7 @@ seem like it is related to Tengoku (if you have an odd idea or need particular p
 However you contribute, it would be useful to make mention of what you are working on, or would like work to be directed 
 at, in the [goals](GOALS.md) file.
 
-Every theorem keeps its author's credit: put a docstring above it with one
-line starting `Author:` that names you, and any AI you used. [How credit works](docs/credit.md) ·
-[Contributing](CONTRIBUTING.md) · [How a theorem gets in](docs/how-a-pr-flows.md) · [Code of Ethics](https://github.com/competemath/.github/blob/main/CODE_OF_ETHICS.md) · [Posting guidelines](https://github.com/competemath/.github/blob/main/POSTING.md) · [Found an issue, or have an idea?](https://github.com/competemath/tengoku/issues/new) · [Found a security problem?](SECURITY.md). 
+[How credit works](docs/credit.md) · [Contributing](CONTRIBUTING.md) · [How a theorem gets in](docs/how-a-pr-flows.md) · [Code of Ethics](https://github.com/competemath/.github/blob/main/CODE_OF_ETHICS.md) · [Posting guidelines](https://github.com/competemath/.github/blob/main/POSTING.md) · [Found an issue, or have an idea?](https://github.com/competemath/tengoku/issues/new) · [Found a security problem?](SECURITY.md). 
 
 If you are unsure if an issue is a security problem, assume it is and raise it via the formal procedure above anyway.
 
