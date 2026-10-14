@@ -261,7 +261,9 @@ private theorem wireValue_restrict {G : Nat} [NeZero m] (b : Bool)
       intro i hi hip
       exact ih i (by omega) (by omega) hip
 
-/-- The restricted circuit computes `restrictFirst f b`. -/
+/-- The restricted circuit computes `restrictFirst f b`.
+@isnad1 id=eq.1h6v.s7.641e9baa7bbf from=translated src=- shape=a2080664 vocab=02e2d67f
+-/
 theorem restrictCircuit_eval {G : Nat} [NeZero m] (b : Bool)
     (c : Circuit Basis.andOr2 ((k + 1) + m) 1 G)
     (f : BitString ((k + 1) + m) → Bool)

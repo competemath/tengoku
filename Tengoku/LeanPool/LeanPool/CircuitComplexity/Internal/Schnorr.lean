@@ -30,7 +30,9 @@ def insertAt {N : Nat} (x : BitString N) (a : Fin (N + 1)) (b : Bool) :
   else if h2 : j.val = a.val then b
   else x ⟨j.val - 1, by have := a.isLt; have := j.isLt; omega⟩
 
-/-- XOR with an inserted bit equals the inserted bit XORed with XOR of the rest. -/
+/-- XOR with an inserted bit equals the inserted bit XORed with XOR of the rest.
+@isnad1 id=eq.0h4v.s5.f04282bbdfba from=translated src=- shape=7436aa16 vocab=fa362380
+-/
 theorem xorBool_insertAt {N : Nat} (x : BitString N) (a : Fin (N + 1)) (b : Bool) :
     xorBool (N + 1) (insertAt x a b) = b.xor (xorBool N x) := by
   induction N with
@@ -59,7 +61,9 @@ theorem xorBool_insertAt {N : Nat} (x : BitString N) (a : Fin (N + 1)) (b : Bool
 
 /-! ## CircDesc Insensitivity -/
 
-/-- If no gate references input `a`, wire values are unchanged when `a` is modified. -/
+/-- If no gate references input `a`, wire values are unchanged when `a` is modified.
+@isnad1 id=eq.2h7v.s8.6356313e77fd from=translated src=- shape=b2bdafed vocab=ed588bbc
+-/
 theorem wireValD_eq_of_unreferenced
     {N s : Nat} (d : CircDesc N s) (a : Fin N) (b : Bool)
     (hno : ∀ g : Fin s, (d g).2.1.1.val ≠ a.val ∧ (d g).2.1.2.val ≠ a.val)
@@ -89,7 +93,9 @@ theorem wireValD_eq_of_unreferenced
     simp_all
 termination_by w.val
 
-/-- If evaluation depends on input `a`, some gate references `a`. -/
+/-- If evaluation depends on input `a`, some gate references `a`.
+@isnad1 id=ex.2h4v.s7.a17af72a1864 from=translated src=- shape=24602ac6 vocab=5c6866cc
+-/
 theorem evalD_essential_means_referenced
     {N s : Nat} (d : CircDesc N s) (hs : 0 < s) (a : Fin N)
     (hdep : ∃ x : BitString N, evalD hs d x ≠ evalD hs d (Function.update x a (!x a))) :
@@ -218,6 +224,9 @@ private theorem wireValD_restrictD {N s : Nat} (d : CircDesc (N + 1) s)
         (fun w' hw' => wireValD_restrictD d a b x w')
 termination_by w.val
 
+/--
+@isnad1 id=eq.1h6v.s6.9868b14c3744 from=translated src=- shape=3bfe8deb vocab=e9325b2c
+-/
 theorem evalD_restrictD {N s : Nat} (d : CircDesc (N + 1) s)
     (hs : 0 < s) (a : Fin (N + 1)) (b : Bool) (x : BitString N) :
     evalD hs (restrictD d a b) x = evalD hs d (insertAt x a b) := by
@@ -416,6 +425,9 @@ private theorem wireValD_elimGateD {N s : Nat} (d : CircDesc N (s + 1))
           (fun w' hw' => wireValD_elimGateD d g rd hrd hrd_wire x w')
 termination_by w.val
 
+/--
+@isnad1 id=eq.4h6v.s8.957d2a117ee1 from=translated src=- shape=9a633bba vocab=72568746
+-/
 theorem evalD_elimGateD {N s : Nat} (d : CircDesc N (s + 1))
     (hs : 0 < s) (g : Fin (s + 1)) (rd : GateRedirect (N + s))
     (hrd : ∀ x : BitString N,
@@ -1322,7 +1334,9 @@ private theorem restrictionElimTwoB {n t : Nat} (d : CircDesc (n + 1) (t + 3))
         exact truncateAtGate d₁ hj_lt (f₂.xor (comp.xor b_kill)) hxw
 
 /-- Key inductive step: restricting one variable of a totally essential XOR circuit
-    yields a circuit for XOR on one fewer input, with at least 2 fewer gates. -/
+    yields a circuit for XOR on one fewer input, with at least 2 fewer gates.
+@isnad1 id=ex.4h4v.s8.24fe44d153f5 from=translated src=- shape=7345eb77 vocab=a57d9ac6
+-/
 theorem restriction_eliminates_two {n s : Nat} (d : CircDesc (n + 1) s)
     (hs : 0 < s) (hn : 0 < n) (comp : Bool)
     (heval : ∀ x, evalD hs d x = comp.xor (xorBool (n + 1) x))
@@ -1372,7 +1386,9 @@ theorem restriction_eliminates_two {n s : Nat} (d : CircDesc (n + 1) s)
     exact restrictionElimTwoB d hn comp hessential hrestrict g₁ hg₁ hg₁_not_last h_two
 /-! ## The 2(N-1) Lower Bound -/
 
-/-- Any DeMorgan circuit computing XOR_N (or complement) has ≥ 2N - 1 gates. -/
+/-- Any DeMorgan circuit computing XOR_N (or complement) has ≥ 2N - 1 gates.
+@isnad1 id=le.3h4v.s6.777451c52ecb from=translated src=- shape=95cbcbfc vocab=569610ba
+-/
 theorem xor_lower_bound_2 (N s : Nat) (hs : 0 < s) (d : CircDesc N s) (comp : Bool)
     (heval : ∀ x, evalD hs d x = comp.xor (xorBool N x))
     (hN : 1 ≤ N) : s + 1 ≥ 2 * N := by

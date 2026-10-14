@@ -45,10 +45,16 @@ def shift (k l : ℤ) : Fin 2 → ℝ := ![2 * k * hgap, l * vgap]
 /-- The translate of `goodSet` into the cell with index `(k, l)`. -/
 def goodCopy (k l : ℤ) : Set (Fin 2 → ℝ) := (fun z => -shift k l + z) ⁻¹' goodSet
 
+/--
+@isnad1 id=iff.0h1v.s7.9f6f5f0a51c8 from=translated src=- shape=0a7e9acf vocab=3b92dfe2
+-/
 theorem mem_cell {z : Fin 2 → ℝ} :
     z ∈ cell ↔ (-hgap ≤ z 0 ∧ z 0 < hgap) ∧ (-(vgap / 2) ≤ z 1 ∧ z 1 < vgap / 2) := by
   simp [cell, Fin.forall_fin_two, neg_div]
 
+/--
+@isnad1 id=measurab.0h0v.s5.c434d6b219cf from=translated src=- shape=d8e483ff vocab=e687cebb
+-/
 theorem measurableSet_slots : MeasurableSet slots := by
   have h₀ : Measurable fun z : Fin 2 → ℝ => |z 0| :=
     (continuous_abs.comp (continuous_apply 0)).measurable
@@ -57,9 +63,15 @@ theorem measurableSet_slots : MeasurableSet slots := by
   exact (measurableSet_lt measurable_const h₀).inter ((measurableSet_lt h₀ measurable_const).inter
     ((measurableSet_lt measurable_const h₁).inter (measurableSet_lt h₁ measurable_const)))
 
+/--
+@isnad1 id=measurab.0h0v.s5.7f3e3d3d1024 from=translated src=- shape=d8e483ff vocab=a8d83a39
+-/
 theorem measurableSet_goodSet : MeasurableSet goodSet :=
   (MeasurableSet.univ_pi fun _ => measurableSet_Ico).diff measurableSet_slots
 
+/--
+@isnad1 id=eq.0h0v.s7.c1107365f353 from=translated src=- shape=98809074 vocab=b35480ef
+-/
 theorem volume_cell : volume cell = ENNReal.ofReal (2 * hgap * vgap) := by
   rw [cell, Real.volume_pi_Ico, Fin.prod_univ_two]
   simp only [Matrix.cons_val_zero, Matrix.cons_val_one]
@@ -82,7 +94,9 @@ private theorem volume_preimage_abs_Ioo_le {a b : ℝ} : volume (abs ⁻¹' Ioo 
     _ ≤ _ := (measure_union_le _ _).trans_eq <| by simp [neg_add_eq_sub]
 
 /-- The four open slots, each a `slotW × slotH` rectangle, have total area at most
-`4 slotW slotH`, written in `ℝ≥0∞` as `(slotW + slotW) * (slotH + slotH)`. -/
+`4 slotW slotH`, written in `ℝ≥0∞` as `(slotW + slotW) * (slotH + slotH)`.
+@isnad1 id=le.0h0v.s7.fb313209fc40 from=translated src=- shape=e4795626 vocab=ef136bf9
+-/
 theorem volume_slots_le : volume slots ≤ (ENNReal.ofReal slotW + ENNReal.ofReal slotW) *
     (ENNReal.ofReal slotH + ENNReal.ofReal slotH) :=
   calc volume slots
@@ -94,7 +108,9 @@ theorem volume_slots_le : volume slots ≤ (ENNReal.ofReal slotW + ENNReal.ofRea
 
 /-- The witnessed part `goodSet = cell \ slots` of the period cell has area at least
 `2 hgap vgap - 4 slotW slotH`: the area of `cell` (`volume_cell`) minus the bound `volume_slots_le`
-on the four slots. -/
+on the four slots.
+@isnad1 id=le.0h0v.s7.8f4c3eb6416c from=translated src=- shape=4b96c836 vocab=a6508e8b
+-/
 theorem ofReal_le_volume_goodSet : ENNReal.ofReal (2 * hgap * vgap - 4 * (slotW * slotH)) ≤
     volume goodSet := by
   -- the left side is `volume cell - 4 * (slotW * slotH)`, computed in `ℝ≥0∞`
@@ -103,12 +119,21 @@ theorem ofReal_le_volume_goodSet : ENNReal.ofReal (2 * hgap * vgap - 4 * (slotW 
   -- `volume_slots_le` bounds the slots, and `volume cell - volume slots ≤ volume (cell \ slots)`
   exact (tsub_le_tsub_left (volume_slots_le.trans_eq (by ring)) _).trans le_measure_sdiff
 
+/--
+@isnad1 id=eq.0h2v.s8.abd86f6581de from=translated src=- shape=56bb2817 vocab=8b0d6b92
+-/
 theorem volume_goodCopy (k l : ℤ) : volume (goodCopy k l) = volume goodSet :=
   measure_preimage_add volume (-shift k l) goodSet
 
+/--
+@isnad1 id=measurab.0h2v.s5.6778717ea63c from=translated src=- shape=5ce0bb93 vocab=89de1c63
+-/
 theorem measurableSet_goodCopy (k l : ℤ) : MeasurableSet (goodCopy k l) :=
   measurableSet_goodSet.preimage (measurable_const_add _)
 
+/--
+@isnad1 id=iff.0h3v.s7.03e1e7332f17 from=translated src=- shape=4c83de6b vocab=426744ff
+-/
 theorem mem_goodCopy {k l : ℤ} {z : Fin 2 → ℝ} :
     z ∈ goodCopy k l ↔ ![z 0 - 2 * k * hgap, z 1 - l * vgap] ∈ goodSet := by
   have : -shift k l + z = ![z 0 - 2 * k * hgap, z 1 - l * vgap] := by
@@ -118,7 +143,9 @@ theorem mem_goodCopy {k l : ℤ} {z : Fin 2 → ℝ} :
 
 /-- The translates `goodCopy k l`, `(k, l) : ℤ × ℤ`, of `goodSet` are pairwise disjoint. The index
 set is all of `ℤ × ℤ`: restrict it to a finite box with `Set.PairwiseDisjoint.subset` before adding
-up volumes with `measure_biUnion_finset`, as `ofReal_le_volume_levelSet` does. -/
+up volumes with `measure_biUnion_finset`, as `ofReal_le_volume_levelSet` does.
+@isnad1 id=pairwise.0h0v.s7.8efbf7fcf9a6 from=translated src=- shape=99d0fcf9 vocab=13f37881
+-/
 theorem pairwiseDisjoint_goodCopy :
     (univ : Set (ℤ × ℤ)).PairwiseDisjoint fun p => goodCopy p.1 p.2 := by
   rintro ⟨k, l⟩ - ⟨k', l'⟩ - hne
@@ -133,7 +160,9 @@ theorem pairwiseDisjoint_goodCopy :
 /-- Every point `z` of the translate `goodCopy k l` has a level-one witness `(L, A)` whose atoms lie
 in `nearBox k l`. This is `exists_isWitness_of_abs` (the cell centred at the origin) moved to the
 cell with index `(k, l)`; `nearBox_subset_atomBox` then puts the atoms inside `atomBox N` when
-`|k|, |l| ≤ N`, as in `ofReal_le_volume_levelSet`. -/
+`|k|, |l| ≤ N`, as in `ofReal_le_volume_levelSet`.
+@isnad1 id=ex.1h3v.s6.8204c9d4b810 from=translated src=- shape=9ea500aa vocab=9cf1bb8a
+-/
 theorem exists_isWitness_of_mem_goodCopy {k l : ℤ} {z : Fin 2 → ℝ} (hz : z ∈ goodCopy k l) :
     ∃ L A, A ⊆ nearBox k l ∧ IsWitness (z 0) (z 1) L A := by
   -- the untranslated point lies in the cell centred at the origin and (unfolding `slots`) outside
@@ -147,7 +176,9 @@ theorem exists_isWitness_of_mem_goodCopy {k l : ℤ} {z : Fin 2 → ℝ} (hz : z
 
 /-- For `|k|, |l| ≤ N`, the atoms `nearBox k l` available to a witness in the cell with index
 `(k, l)` are kept in `atomBox N`: the columns `2k - 2, …, 2k + 2` lie in `-2N - 2, …, 2N + 2` and
-the rows `l - 1, …, l + 1` lie in `-N - 1, …, N + 1`. -/
+the rows `l - 1, …, l + 1` lie in `-N - 1, …, N + 1`.
+@isnad1 id=le.2h3v.s5.75d5d99ec607 from=translated src=- shape=7cf7302e vocab=f1ddd059
+-/
 theorem nearBox_subset_atomBox {N : ℕ} {k l : ℤ} (hk : |k| ≤ N) (hl : |l| ≤ N) :
     nearBox k l ⊆ atomBox N := by
   grind [nearBox, atomBox]
@@ -155,7 +186,9 @@ theorem nearBox_subset_atomBox {N : ℕ} {k l : ℤ} (hk : |k| ≤ N) (hl : |l| 
 /-- The level set of `smeared N ε` at height `1 - 2ε` has measure at least `(2N + 1)²` times the
 lower bound `2 hgap vgap - 4 slotW slotH` on the area of `goodSet` (`ofReal_le_volume_goodSet`), for
 every `ε > 0`: it contains the `(2N + 1)²` disjoint copies `goodCopy k l`, `|k|, |l| ≤ N`, of
-`goodSet`. This is the level-set side of the weak type inequality in `ofReal_mul_phi_le`. -/
+`goodSet`. This is the level-set side of the weak type inequality in `ofReal_mul_phi_le`.
+@isnad1 id=le.1h2v.s8.c5c3fef9658b from=translated src=- shape=532194ef vocab=7d734aec
+-/
 theorem ofReal_le_volume_levelSet (N : ℕ) {ε : ℝ} (hε : 0 < ε) :
     ENNReal.ofReal ((2 * N + 1) ^ 2 * (2 * hgap * vgap - 4 * (slotW * slotH))) ≤
       volume {z | ENNReal.ofReal (1 - 2 * ε) < maximalFunction (smeared N ε) z} := by
@@ -199,7 +232,9 @@ private theorem div_pow_three_mul_phi_eq (N : ℕ) : ((2 * N + 1) / (2 * N + 3))
   field_simp
 
 /-- A weak type bound in dimension two is at least `((2N + 1)/(2N + 3))³ Φ`, for every `N`. This is
-the finite-`N` form of `ofReal_phi_le`, which lets `N → ∞`. -/
+the finite-`N` form of `ofReal_phi_le`, which lets `N → ∞`.
+@isnad1 id=le.1h2v.s6.ab76566fce83 from=translated src=- shape=435589e4 vocab=63ad99a2
+-/
 theorem ofReal_mul_phi_le {C : ℝ≥0∞} (hC : IsWeakTypeBound 2 C) (N : ℕ) :
     ENNReal.ofReal (((2 * N + 1) / (2 * N + 3)) ^ 3 * phi) ≤ C := by
   -- test the weak type bound on `smeared N ε` with `ε = 1 / (2N + 3)`, whose level `1 - 2ε` is
@@ -214,7 +249,9 @@ theorem ofReal_mul_phi_le {C : ℝ≥0∞} (hC : IsWeakTypeBound 2 C) (N : ℕ) 
 
 /-- Every weak type bound in dimension two is at least `Φ`. Taking the infimum over all such `C`
 with `le_weakTypeConstant` gives `Φ ≤ c₂`; `ofReal_mul_phi_le` is the weaker bound
-`((2N + 1)/(2N + 3))³ Φ ≤ C` for a single `N`. -/
+`((2N + 1)/(2N + 3))³ Φ ≤ C` for a single `N`.
+@isnad1 id=le.1h1v.s4.3ded9523abcd from=translated src=- shape=e8e76fca vocab=b9357090
+-/
 theorem ofReal_phi_le {C : ℝ≥0∞} (hC : IsWeakTypeBound 2 C) : ENNReal.ofReal phi ≤ C := by
   -- the finite-`N` bounds `ofReal_mul_phi_le` tend to `Φ`, as `(2N + 1)/(2N + 3) → 1`
   refine le_of_tendsto' (x := atTop) (ENNReal.tendsto_ofReal ?_) (ofReal_mul_phi_le hC)

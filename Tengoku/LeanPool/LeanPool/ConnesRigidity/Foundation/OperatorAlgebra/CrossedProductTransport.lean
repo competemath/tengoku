@@ -46,6 +46,9 @@ def crossedHaarHilbertEquiv
     crossedHilbert X ≃ₗᵢ[ℂ] crossedHilbert Y :=
   crossedFiberwiseEquiv (K := K) (crossedBaseHaarEquiv e)
 
+/--
+@isnad1 id=eq.0h8v.s16.1621834b4264 from=translated src=- shape=9c770bfa vocab=a9258692
+-/
 @[simp] theorem crossedHaarHilbertEquiv_apply
     {X : HaarProbabilityAction K Ω}
     {Y : HaarProbabilityAction K Ξ}
@@ -55,6 +58,9 @@ def crossedHaarHilbertEquiv
 
 /- Constant one is preserved by measure-preserving base transport.
 Paper: §3. -/
+/--
+@isnad1 id=other.0h6v.s13.d31b0dbfaaf0 from=translated src=- shape=cc7e189f vocab=802721d3
+-/
 theorem crossedBaseHaarEquiv_const_one
     {X : HaarProbabilityAction K Ω}
     {Y : HaarProbabilityAction K Ξ}
@@ -88,6 +94,9 @@ theorem crossedBaseHaarEquiv_const_one
 
 /- The crossed-product vacuum is invariant under equivariant Haar transport.
 Paper: §3. -/
+/--
+@isnad1 id=eq.0h6v.s16.0e75cd54135f from=translated src=- shape=f36a339f vocab=be375d4a
+-/
 theorem crossedHaarHilbertEquiv_vacuum
     {X : HaarProbabilityAction K Ω}
     {Y : HaarProbabilityAction K Ξ}
@@ -107,6 +116,9 @@ theorem crossedHaarHilbertEquiv_vacuum
       ne_eq, hk, not_false_eq_true, Pi.single_eq_of_ne, map_zero]
 
 /- Base multiplication is transported by the Haar pullback. Paper: §3. -/
+/--
+@isnad1 id=eq.0h8v.s14.c1305249b1bc from=translated src=- shape=310c98ad vocab=f9969573
+-/
 theorem crossedBaseHaarEquiv_multiplier_apply
     {X : HaarProbabilityAction K Ω}
     {Y : HaarProbabilityAction K Ξ}
@@ -148,6 +160,9 @@ theorem crossedBaseHaarEquiv_multiplier_apply
     _ = _ := hright.symm
 
 /- Equivariance transports the base action on L². Paper: §3. -/
+/--
+@isnad1 id=eq.0h8v.s14.f71c6a8b3ecf from=translated src=- shape=960536d4 vocab=9edd50bf
+-/
 theorem crossedBaseHaarEquiv_action
     {X : HaarProbabilityAction K Ω}
     {Y : HaarProbabilityAction K Ξ}
@@ -202,6 +217,9 @@ theorem crossedBaseHaarEquiv_action
 
 /- The crossed-product group unitary is transported by equivariant Haar data.
 Paper: §3. -/
+/--
+@isnad1 id=eq.0h8v.s18.eb0ae99f55c4 from=translated src=- shape=73054242 vocab=9b48cc96
+-/
 theorem crossedHaarHilbertEquiv_group_apply
     {X : HaarProbabilityAction K Ω}
     {Y : HaarProbabilityAction K Ξ}
@@ -214,6 +232,9 @@ theorem crossedHaarHilbertEquiv_group_apply
 
 /- The transported crossed-product group operator is conjugate to the target.
 Paper: §3. -/
+/--
+@isnad1 id=eq.0h7v.s20.e24328b95574 from=translated src=- shape=6d6f2287 vocab=b435b0c7
+-/
 theorem crossedHaarHilbertEquiv_group_conj
     {X : HaarProbabilityAction K Ω}
     {Y : HaarProbabilityAction K Ξ}

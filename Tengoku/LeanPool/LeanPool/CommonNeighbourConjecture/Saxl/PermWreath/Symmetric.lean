@@ -24,7 +24,9 @@ def WordDistinguishing (Q : Type*) {ι C : Type*} [Group Q] [MulAction Q ι]
   ∀ q : Q, (∀ i, word (q⁻¹ • i) = word i) → q = 1
 
 /-- For the natural action of the full symmetric group, a word is
-distinguishing exactly when it has no repeated colour. -/
+distinguishing exactly when it has no repeated colour.
+@isnad1 id=iff.0h3v.s4.5915e5b96809 from=translated src=- shape=ad48e5c3 vocab=e8ecc450
+-/
 theorem symmetricTop_wordDistinguishing_iff_injective
     {C D : Type*} (word : C → D) :
     WordDistinguishing (Equiv.Perm C) word ↔ Function.Injective word := by
@@ -54,7 +56,9 @@ theorem symmetricTop_wordDistinguishing_iff_injective
     simpa [Equiv.Perm.smul_def] using h.symm
 
 /-- A self-colouring of a finite coordinate type distinguishes its full
-symmetric group exactly when it is a bijection. -/
+symmetric group exactly when it is a bijection.
+@isnad1 id=iff.0h2v.s4.779d511fa808 from=translated src=- shape=0feb3403 vocab=f78e74e3
+-/
 theorem symmetricTop_wordDistinguishing_iff_bijective
     {C : Type*} [Finite C] (word : C → C) :
     WordDistinguishing (Equiv.Perm C) word ↔ Function.Bijective word := by

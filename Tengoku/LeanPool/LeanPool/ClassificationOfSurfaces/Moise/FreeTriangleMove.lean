@@ -28,12 +28,21 @@ noncomputable def affineEquivHomeomorph (e : Plane ≃ᵃ[ℝ] Plane) : Plane �
   continuous_toFun := e.toAffineMap.continuous_of_finiteDimensional
   continuous_invFun := e.symm.toAffineMap.continuous_of_finiteDimensional
 
+/--
+@isnad1 id=eq.0h2v.s11.893a44d48f60 from=translated src=- shape=1b586209 vocab=a95fe599
+-/
 @[simp] theorem affineEquivHomeomorph_apply (e : Plane ≃ᵃ[ℝ] Plane) (p : Plane) :
     affineEquivHomeomorph e p = e p := rfl
 
+/--
+@isnad1 id=eq.0h2v.s11.844c16efb8f5 from=translated src=- shape=2d8aac66 vocab=1c18cbbd
+-/
 @[simp] theorem affineEquivHomeomorph_symm_apply (e : Plane ≃ᵃ[ℝ] Plane) (p : Plane) :
     (affineEquivHomeomorph e).symm p = e.symm p := rfl
 
+/--
+@isnad1 id=eq.0h3v.s12.8ff8ccaeceb3 from=translated src=- shape=a2542a29 vocab=f587664a
+-/
 theorem affineEquivHomeomorph_image_segment (e : Plane ≃ᵃ[ℝ] Plane) (a b : Plane) :
     affineEquivHomeomorph e '' segment ℝ a b = segment ℝ (e a) (e b) := by
   exact image_segment ℝ e.toAffineMap a b
@@ -48,6 +57,9 @@ noncomputable def transportedThinKiteHomeomorph (e : Plane ≃ᵃ[ℝ] Plane)
 def transportedThinKitePatch (e : Plane ≃ᵃ[ℝ] Plane) (δ : ℝ) : Set Plane :=
   e '' thinKitePatch δ
 
+/--
+@isnad1 id=eqon.1h2v.s9.5c24bb902bb2 from=translated src=- shape=4c45b214 vocab=ea3a0f2c
+-/
 theorem transportedThinKiteHomeomorph_eqOn_compl (e : Plane ≃ᵃ[ℝ] Plane)
     (δ : ℝ) (hδ : 0 < δ) :
     Set.EqOn (transportedThinKiteHomeomorph e δ hδ) id
@@ -62,6 +74,9 @@ theorem transportedThinKiteHomeomorph_eqOn_compl (e : Plane ≃ᵃ[ℝ] Plane)
     thinKiteAmbientHomeomorph_eqOn_compl δ hδ hpre]
   simp
 
+/--
+@isnad1 id=eq.1h2v.s13.2f2dd50d574a from=translated src=- shape=4c45bca7 vocab=c0ed1907
+-/
 theorem transportedThinKiteHomeomorph_image_baseSegment (e : Plane ≃ᵃ[ℝ] Plane)
     (δ : ℝ) (hδ : 0 < δ) :
     transportedThinKiteHomeomorph e δ hδ ''
@@ -77,7 +92,9 @@ theorem transportedThinKiteHomeomorph_image_baseSegment (e : Plane ≃ᵃ[ℝ] P
   simp [transportedThinKiteHomeomorph, Set.mem_image]
 
 /-- A sufficiently thin transported kite lies in every open neighborhood of its limiting
-triangle. -/
+triangle.
+@isnad1 id=ex.2h2v.s11.bb418173da40 from=translated src=- shape=49038d3c vocab=0928b7a8
+-/
 theorem exists_thinKitePatch_subset_open (e : Plane ≃ᵃ[ℝ] Plane)
     (U : Set Plane) (hU : IsOpen U)
     (htriangle : e '' convexHull ℝ (Set.range kiteTrianglePosition) ⊆ U) :
@@ -111,7 +128,9 @@ theorem exists_thinKitePatch_subset_open (e : Plane ≃ᵃ[ℝ] Plane)
   exact hball hδball q hq
 
 /-- Uniform version of `exists_thinKitePatch_subset_open`: every smaller positive thickness
-also lies in the prescribed open set. -/
+also lies in the prescribed open set.
+@isnad1 id=ex.2h2v.s11.90dac74e995e from=translated src=- shape=d8239d3d vocab=0928b7a8
+-/
 theorem exists_eventually_transportedThinKitePatch_subset_open
     (e : Plane ≃ᵃ[ℝ] Plane) (U : Set Plane) (hU : IsOpen U)
     (htriangle : e '' convexHull ℝ (Set.range kiteTrianglePosition) ⊆ U) :
@@ -135,16 +154,25 @@ variable (M : TriangleMesh)
 noncomputable def freeTriangleOrder (T : M.Triangle) (k : Fin 3) : Fin 3 → Plane :=
   fun i => M.position (M.orderedVertex T ((Equiv.swap 2 k) i))
 
+/--
+@isnad1 id=affinein.0h3v.s8.3c72201b3ceb from=translated src=- shape=0e123df6 vocab=8b10ee70
+-/
 theorem freeTriangleOrder_affineIndependent (T : M.Triangle) (k : Fin 3) :
     AffineIndependent ℝ (M.freeTriangleOrder T k) := by
   exact (M.orderedVertex_affineIndependent T).comp_embedding (Equiv.swap 2 k).toEmbedding
 
+/--
+@isnad1 id=eq.0h3v.s6.3b230bd9249d from=translated src=- shape=d093cbb7 vocab=742901d7
+-/
 theorem range_freeTriangleOrder (T : M.Triangle) (k : Fin 3) :
     Set.range (M.freeTriangleOrder T k) = M.position '' (T.1 : Set M.Vertex) := by
   change Set.range ((M.position ∘ M.orderedVertex T) ∘ Equiv.swap 2 k) = _
   rw [EquivLike.range_comp]
   rw [Set.range_comp, M.range_orderedVertex T]
 
+/--
+@isnad1 id=eq.0h2v.s7.d14237286d15 from=translated src=- shape=b2c617f2 vocab=f27ab43e
+-/
 theorem triangle_eq_orderedVertices (T : M.Triangle) :
     T.1 = {M.orderedVertex T 0, M.orderedVertex T 1, M.orderedVertex T 2} := by
   ext v
@@ -162,6 +190,9 @@ theorem triangle_eq_orderedVertices (T : M.Triangle) :
     · exact M.orderedVertex_mem T 1
     · exact M.orderedVertex_mem T 2
 
+/--
+@isnad1 id=eq.0h2v.s8.2e46ea17e7ce from=translated src=- shape=aa8dca97 vocab=389432ba
+-/
 theorem triangleEdges_eq_orderedEdges (T : M.Triangle) :
     M.triangleEdges T.1 =
       {{M.orderedVertex T 0, M.orderedVertex T 1},
@@ -208,7 +239,9 @@ def IsTwoEdgeFreeTriangle (T : M.Triangle) (k : Fin 3) : Prop :=
 def IsGeometricallyFreeTriangle (T : M.Triangle) : Prop :=
   ∃ k : Fin 3, M.IsOneEdgeFreeTriangle T k ∨ M.IsTwoEdgeFreeTriangle T k
 
-/-- The relative interior of the base in the Figure 3.3 ordering misses both apex edges. -/
+/-- The relative interior of the base in the Figure 3.3 ordering misses both apex edges.
+@isnad1 id=disjoint.0h3v.s9.596f61956288 from=translated src=- shape=10eb0456 vocab=972c8320
+-/
 theorem freeTriangleBase_diff_endpoints_disjoint_apexEdges (T : M.Triangle) (k : Fin 3) :
     Disjoint
       (segment ℝ (M.freeTriangleOrder T k 0) (M.freeTriangleOrder T k 1) \
@@ -258,58 +291,88 @@ noncomputable def freeTriangleApexEdge1 (T : M.Triangle) (k : Fin 3) : Finset M.
   {M.orderedVertex T ((Equiv.swap 2 k) 1),
     M.orderedVertex T ((Equiv.swap 2 k) 2)}
 
+/--
+@isnad1 id=eq.0h3v.s4.0f07ab915c07 from=translated src=- shape=6889a829 vocab=bd756d29
+-/
 theorem freeTriangleBaseEdge_card (T : M.Triangle) (k : Fin 3) :
     (M.freeTriangleBaseEdge T k).card = 2 := by
   rw [freeTriangleBaseEdge, Finset.card_image_of_injective _ (M.orderedVertex_injective T),
     Finset.card_erase_of_mem (Finset.mem_univ k)]
   decide
 
+/--
+@isnad1 id=le.0h3v.s5.c75ea0e4937a from=translated src=- shape=c69b434a vocab=6520e99a
+-/
 theorem freeTriangleBaseEdge_subset (T : M.Triangle) (k : Fin 3) :
     M.freeTriangleBaseEdge T k ⊆ T.1 := by
   intro v hv
   obtain ⟨i, -, rfl⟩ := Finset.mem_image.mp hv
   exact M.orderedVertex_mem T i
 
+/--
+@isnad1 id=mem.0h3v.s5.5cdb1b433681 from=translated src=- shape=70b6d02c vocab=77f0c158
+-/
 theorem freeTriangleBaseEdge_mem_edges (T : M.Triangle) (k : Fin 3) :
     M.freeTriangleBaseEdge T k ∈ M.edges := by
   apply Finset.mem_biUnion.mpr
   exact ⟨T.1, T.2, Finset.mem_powersetCard.mpr
     ⟨M.freeTriangleBaseEdge_subset T k, M.freeTriangleBaseEdge_card T k⟩⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.d7ce4ca63077 from=translated src=- shape=6889a829 vocab=28fb2fca
+-/
 theorem freeTriangleApexEdge0_card (T : M.Triangle) (k : Fin 3) :
     (M.freeTriangleApexEdge0 T k).card = 2 := by
   rw [freeTriangleApexEdge0, Finset.card_pair]
   exact (M.orderedVertex_injective T).ne <| (Equiv.swap 2 k).injective.ne (by decide)
 
+/--
+@isnad1 id=eq.0h3v.s4.8a24dedc59c3 from=translated src=- shape=6889a829 vocab=bf79763f
+-/
 theorem freeTriangleApexEdge1_card (T : M.Triangle) (k : Fin 3) :
     (M.freeTriangleApexEdge1 T k).card = 2 := by
   rw [freeTriangleApexEdge1, Finset.card_pair]
   exact (M.orderedVertex_injective T).ne <| (Equiv.swap 2 k).injective.ne (by decide)
 
+/--
+@isnad1 id=le.0h3v.s5.ba6ce9d2b1bd from=translated src=- shape=c69b434a vocab=4b99484e
+-/
 theorem freeTriangleApexEdge0_subset (T : M.Triangle) (k : Fin 3) :
     M.freeTriangleApexEdge0 T k ⊆ T.1 := by
   intro v hv
   simp only [freeTriangleApexEdge0, Finset.mem_insert, Finset.mem_singleton] at hv
   rcases hv with rfl | rfl <;> exact M.orderedVertex_mem T _
 
+/--
+@isnad1 id=le.0h3v.s5.f77a7a3c11da from=translated src=- shape=c69b434a vocab=5fe0a448
+-/
 theorem freeTriangleApexEdge1_subset (T : M.Triangle) (k : Fin 3) :
     M.freeTriangleApexEdge1 T k ⊆ T.1 := by
   intro v hv
   simp only [freeTriangleApexEdge1, Finset.mem_insert, Finset.mem_singleton] at hv
   rcases hv with rfl | rfl <;> exact M.orderedVertex_mem T _
 
+/--
+@isnad1 id=mem.0h3v.s5.f05f20997e09 from=translated src=- shape=70b6d02c vocab=11fbd0ee
+-/
 theorem freeTriangleApexEdge0_mem_edges (T : M.Triangle) (k : Fin 3) :
     M.freeTriangleApexEdge0 T k ∈ M.edges := by
   apply Finset.mem_biUnion.mpr
   exact ⟨T.1, T.2, Finset.mem_powersetCard.mpr
     ⟨M.freeTriangleApexEdge0_subset T k, M.freeTriangleApexEdge0_card T k⟩⟩
 
+/--
+@isnad1 id=mem.0h3v.s5.15ac5a7c3957 from=translated src=- shape=70b6d02c vocab=4682c34b
+-/
 theorem freeTriangleApexEdge1_mem_edges (T : M.Triangle) (k : Fin 3) :
     M.freeTriangleApexEdge1 T k ∈ M.edges := by
   apply Finset.mem_biUnion.mpr
   exact ⟨T.1, T.2, Finset.mem_powersetCard.mpr
     ⟨M.freeTriangleApexEdge1_subset T k, M.freeTriangleApexEdge1_card T k⟩⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.7620315c92a5 from=translated src=- shape=1143fa31 vocab=90e4932a
+-/
 theorem image_freeTriangleBaseEdge (T : M.Triangle) (k : Fin 3) :
     M.position '' (M.freeTriangleBaseEdge T k : Set M.Vertex) =
       {M.freeTriangleOrder T k 0, M.freeTriangleOrder T k 1} := by
@@ -321,6 +384,9 @@ theorem image_freeTriangleBaseEdge (T : M.Triangle) (k : Fin 3) :
   ext p
   simp [freeTriangleOrder]
 
+/--
+@isnad1 id=eq.0h3v.s8.19646469f9c9 from=translated src=- shape=3310e566 vocab=5ee791ab
+-/
 theorem freeTriangleBaseEdge_eq_orderedPair (T : M.Triangle) (k : Fin 3) :
     M.freeTriangleBaseEdge T k =
       {M.orderedVertex T ((Equiv.swap 2 k) 0),
@@ -331,11 +397,17 @@ theorem freeTriangleBaseEdge_eq_orderedPair (T : M.Triangle) (k : Fin 3) :
   rw [freeTriangleBaseEdge, hindices]
   rw [Finset.image_insert, Finset.image_singleton]
 
+/--
+@isnad1 id=eq.0h3v.s8.674e225e88b6 from=translated src=- shape=b812378e vocab=216d6658
+-/
 theorem freeTriangleBaseEdge_carrier (T : M.Triangle) (k : Fin 3) :
     convexHull ℝ (M.position '' (M.freeTriangleBaseEdge T k : Set M.Vertex)) =
       segment ℝ (M.freeTriangleOrder T k 0) (M.freeTriangleOrder T k 1) := by
   rw [M.image_freeTriangleBaseEdge T k, convexHull_pair]
 
+/--
+@isnad1 id=eq.0h3v.s8.e2b79622ec63 from=translated src=- shape=b812378e vocab=1a9c0fc3
+-/
 theorem freeTriangleApexEdge0_carrier (T : M.Triangle) (k : Fin 3) :
     convexHull ℝ (M.position '' (M.freeTriangleApexEdge0 T k : Set M.Vertex)) =
       segment ℝ (M.freeTriangleOrder T k 0) (M.freeTriangleOrder T k 2) := by
@@ -345,6 +417,9 @@ theorem freeTriangleApexEdge0_carrier (T : M.Triangle) (k : Fin 3) :
       simp [freeTriangleApexEdge0, freeTriangleOrder]]
   exact convexHull_pair _ _
 
+/--
+@isnad1 id=eq.0h3v.s8.3cbcf34d1b5a from=translated src=- shape=b812378e vocab=919176a4
+-/
 theorem freeTriangleApexEdge1_carrier (T : M.Triangle) (k : Fin 3) :
     convexHull ℝ (M.position '' (M.freeTriangleApexEdge1 T k : Set M.Vertex)) =
       segment ℝ (M.freeTriangleOrder T k 1) (M.freeTriangleOrder T k 2) := by
@@ -354,6 +429,9 @@ theorem freeTriangleApexEdge1_carrier (T : M.Triangle) (k : Fin 3) :
       simp [freeTriangleApexEdge1, freeTriangleOrder]]
   exact convexHull_pair _ _
 
+/--
+@isnad1 id=eq.0h3v.s7.41759d727e15 from=translated src=- shape=f930b5bf vocab=d31fa9a4
+-/
 theorem triangleEdges_eq_freeTriangleEdges (T : M.Triangle) (k : Fin 3) :
     M.triangleEdges T.1 =
       {M.freeTriangleBaseEdge T k, M.freeTriangleApexEdge0 T k,
@@ -386,7 +464,9 @@ theorem triangleEdges_eq_freeTriangleEdges (T : M.Triangle) (k : Fin 3) :
       Equiv.refl_apply, Finset.image_insert, Finset.image_singleton,
       freeTriangleApexEdge0, freeTriangleApexEdge1]
 
-/-- Every triangle vertex lies on one of the two apex edges. -/
+/-- Every triangle vertex lies on one of the two apex edges.
+@isnad1 id=mem.1h4v.s8.c77ae1d057fd from=translated src=- shape=bafca71d vocab=214faf0d
+-/
 theorem triangleVertex_mem_freeTriangleApexEdges (T : M.Triangle) (k : Fin 3)
     {v : M.Vertex} (hv : v ∈ T.1) :
     M.position v ∈
@@ -402,7 +482,9 @@ theorem triangleVertex_mem_freeTriangleApexEdges (T : M.Triangle) (k : Fin 3)
 
 -- Normalizing all six finite-order cases for the three geometric edges exceeds the default.
 /-- The frontier of a maximal triangle is covered by the base and the two apex edges in every
-Figure 3.3 ordering. -/
+Figure 3.3 ordering.
+@isnad1 id=le.0h3v.s9.ca55b8314dd8 from=translated src=- shape=d569c6e5 vocab=90691963
+-/
 theorem frontier_triangleCarrier_subset_freeTriangleEdges (T : M.Triangle) (k : Fin 3) :
     frontier (M.triangleCarrier T.1) ⊆
       segment ℝ (M.freeTriangleOrder T k 0) (M.freeTriangleOrder T k 1) ∪
@@ -476,6 +558,9 @@ theorem frontier_triangleCarrier_subset_freeTriangleEdges (T : M.Triangle) (k : 
     · simp [freeTriangleOrder]
   rwa [horder]
 
+/--
+@isnad1 id=eq.0h3v.s8.b6ef0c539df0 from=translated src=- shape=530079a1 vocab=3742fdc7
+-/
 theorem freeTriangleBaseSegment_eq_oppositeEdgeCarrier (T : M.Triangle) (k : Fin 3) :
     segment ℝ (M.freeTriangleOrder T k 0) (M.freeTriangleOrder T k 1) =
       convexHull ℝ ((M.oppositeEdgePoints T k : Finset Plane) : Set Plane) := by
@@ -502,6 +587,9 @@ theorem freeTriangleBaseSegment_eq_oppositeEdgeCarrier (T : M.Triangle) (k : Fin
     rw [show (Finset.univ.erase (2 : Fin 3)) = {0, 1} by decide]
     simp [convexHull_pair]
 
+/--
+@isnad1 id=isgeomet.2h2v.s6.cf800bb7815a from=translated src=- shape=a3bde1f3 vocab=89db2530
+-/
 theorem isGeometricallyFreeTriangle_of_boundaryEdges_card_one (T : M.Triangle)
     (hvertices : M.HasNoIsolatedFrontierVertex T.1)
     (hcard : (M.boundaryEdges T.1).card = 1) :
@@ -517,7 +605,9 @@ theorem isGeometricallyFreeTriangle_of_boundaryEdges_card_one (T : M.Triangle)
   rw [M.freeTriangleBaseSegment_eq_oppositeEdgeCarrier T k, hedge, Finset.coe_image]
 
 /-- Moise's second free-triangle case: if exactly two edges of a triangle lie on the mesh
-frontier, their common endpoint can be chosen as the apex of the Figure 3.3 move. -/
+frontier, their common endpoint can be chosen as the apex of the Figure 3.3 move.
+@isnad1 id=isgeomet.2h2v.s6.7aca01ca7747 from=translated src=- shape=a3bde1f3 vocab=89db2530
+-/
 theorem isGeometricallyFreeTriangle_of_boundaryEdges_card_two (T : M.Triangle)
     (hvertices : M.HasNoIsolatedFrontierVertex T.1)
     (hcard : (M.boundaryEdges T.1).card = 2) :
@@ -691,7 +781,9 @@ theorem isGeometricallyFreeTriangle_of_boundaryEdges_card_two (T : M.Triangle)
 
 /-- The finite conclusion used by Moise's cutting induction.  Once a weakly free triangle has
 an edge-neighbor and no isolated frontier vertex, its frontier trace is one of the two
-configurations in Figure 3.3. -/
+configurations in Figure 3.3.
+@isnad1 id=isgeomet.4h3v.s7.a52a76b9e5a3 from=translated src=- shape=67943ace vocab=613bbf81
+-/
 theorem isGeometricallyFreeTriangle_of_isFreeTriangle
     (T U : M.Triangle) (hfree : M.IsFreeTriangle T.1)
     (hne : T.1 ≠ U.1) (hneighbors : M.AreEdgeNeighbors T.1 U.1)
@@ -710,7 +802,9 @@ theorem isGeometricallyFreeTriangle_of_isFreeTriangle
 
 /-- The exact diagonal configuration in the hard branch of Moise Chapter 3, Theorem 3.  If a
 weakly free triangle is not one of the Figure 3.3 configurations, it has one boundary edge and
-an isolated opposite boundary vertex; the other two edges are the cutting diagonals. -/
+an isolated opposite boundary vertex; the other two edges are the cutting diagonals.
+@isnad1 id=ex.4h3v.s8.ee808992cd14 from=translated src=- shape=9f262a62 vocab=2cafae50
+-/
 theorem exists_cutting_diagonal_configuration
     (T U : M.Triangle) (hfree : M.IsFreeTriangle T.1)
     (hne : T.1 ≠ U.1) (hneighbors : M.AreEdgeNeighbors T.1 U.1)
@@ -786,11 +880,17 @@ noncomputable def freeTriangleAffineEquiv (T : M.Triangle) (k : Fin 3) : Plane �
   triangleAffineEquiv kiteTrianglePosition (M.freeTriangleOrder T k)
     kiteTrianglePosition_affineIndependent (M.freeTriangleOrder_affineIndependent T k)
 
+/--
+@isnad1 id=eq.0h4v.s10.88c90f6d03b5 from=translated src=- shape=55f38c46 vocab=c2d23113
+-/
 @[simp] theorem freeTriangleAffineEquiv_apply_vertex (T : M.Triangle) (k i : Fin 3) :
     M.freeTriangleAffineEquiv T k (kiteTrianglePosition i) = M.freeTriangleOrder T k i := by
   exact triangleAffineEquiv_apply kiteTrianglePosition (M.freeTriangleOrder T k)
     kiteTrianglePosition_affineIndependent (M.freeTriangleOrder_affineIndependent T k) i
 
+/--
+@isnad1 id=eq.0h3v.s10.79be6df58a76 from=translated src=- shape=8ebfd1ac vocab=414cf6a7
+-/
 theorem freeTriangleAffineEquiv_image_triangle (T : M.Triangle) (k : Fin 3) :
     M.freeTriangleAffineEquiv T k '' convexHull ℝ (Set.range kiteTrianglePosition) =
       M.triangleCarrier T.1 := by
@@ -799,7 +899,9 @@ theorem freeTriangleAffineEquiv_image_triangle (T : M.Triangle) (k : Fin 3) :
     kiteTrianglePosition_affineIndependent (M.freeTriangleOrder_affineIndependent T k)
 
 /-- Every boundary edge other than the base of a one-edge move is avoided by all sufficiently
-thin transported kites, except possibly at the two base endpoints. -/
+thin transported kites, except possibly at the two base endpoints.
+@isnad1 id=ex.3h4v.s9.8ba1f8a98dc9 from=translated src=- shape=6f3009f3 vocab=4ab3121f
+-/
 theorem exists_transportedThinKitePatch_inter_boundaryEdge_subset_baseEndpoints
     (T : M.Triangle) (k : Fin 3)
     (htrace : frontier M.toPlaneComplex.support ∩ M.triangleCarrier T.1 =
@@ -1024,7 +1126,9 @@ private theorem exists_pos_uniform_finset {α : Type*}
       · exact hs y hy δ hδ (hδε.trans_le (min_le_right _ _))
 
 /-- The one-edge Figure 3.3 push can be made relative both to a prescribed open set and to
-the entire old boundary carrier away from the deleted triangle. -/
+the entire old boundary carrier away from the deleted triangle.
+@isnad1 id=ex.3h4v.s10.074fb02b014d from=translated src=- shape=7e250063 vocab=8d25736d
+-/
 theorem exists_supported_triangle_push_fixing_boundaryCarrier
     (T : M.Triangle) (k : Fin 3)
     (htrace : frontier M.toPlaneComplex.support ∩ M.triangleCarrier T.1 =
@@ -1105,7 +1209,9 @@ theorem exists_supported_triangle_push_fixing_boundaryCarrier
     simpa only [E, h0, h1, h2] using hmove
 
 /-- Moise's Figure 3.3 move in an arbitrary free triangle coordinate system, with support in a
-prescribed open neighborhood of that triangle. -/
+prescribed open neighborhood of that triangle.
+@isnad1 id=ex.2h4v.s10.b5f1b176cc6f from=translated src=- shape=222454cf vocab=6d05b343
+-/
 theorem exists_supported_triangle_push (T : M.Triangle) (k : Fin 3)
     (U : Set Plane) (hU : IsOpen U) (hTU : M.triangleCarrier T.1 ⊆ U) :
     ∃ h : Plane ≃ₜ Plane,
@@ -1135,7 +1241,9 @@ theorem exists_supported_triangle_push (T : M.Triangle) (k : Fin 3)
         M.freeTriangleAffineEquiv_apply_vertex T k 2
     simpa only [h, h0, h1, h2] using hmove
 
-/-- The inverse Figure 3.3 move removes a triangle whose two apex edges lie on the frontier. -/
+/-- The inverse Figure 3.3 move removes a triangle whose two apex edges lie on the frontier.
+@isnad1 id=ex.2h4v.s10.dc8cd5de45ed from=translated src=- shape=2a485e00 vocab=6d05b343
+-/
 theorem exists_supported_triangle_pull (T : M.Triangle) (k : Fin 3)
     (U : Set Plane) (hU : IsOpen U) (hTU : M.triangleCarrier T.1 ⊆ U) :
     ∃ h : Plane ≃ₜ Plane,

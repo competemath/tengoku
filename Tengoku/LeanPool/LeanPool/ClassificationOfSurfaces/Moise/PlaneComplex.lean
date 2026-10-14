@@ -45,7 +45,9 @@ abbrev Plane : Type :=
 def IsTriangle (C : Set Plane) : Prop :=
   ∃ p : Fin 3 → Plane, AffineIndependent ℝ p ∧ C = convexHull ℝ (Set.range p)
 
-/-- Two plane points with equal coordinates are equal. -/
+/-- Two plane points with equal coordinates are equal.
+@isnad1 id=eq.2h2v.s7.cdec99cd3e6d from=translated src=- shape=11489ea2 vocab=fbc4e091
+-/
 theorem plane_ext {p q : Plane} (h0 : p 0 = q 0) (h1 : p 1 = q 1) : p = q := by
   ext i
   fin_cases i
@@ -53,7 +55,9 @@ theorem plane_ext {p q : Plane} (h0 : p 0 = q 0) (h1 : p 1 = q 1) : p = q := by
   · exact h1
 
 /-- Affine independence transports to the inclusion of a finite set of points contained in the
-range of the independent family. -/
+range of the independent family.
+@isnad1 id=affinein.2h3v.s9.2e42311d8bfd from=translated src=- shape=a599315d vocab=07d02cbb
+-/
 theorem affineIndependent_finset_coe {ι : Type*} {f : ι → Plane}
     (hf : AffineIndependent ℝ f) {S : Finset Plane} (hS : ∀ a ∈ S, a ∈ Set.range f) :
     AffineIndependent ℝ ((↑) : S → Plane) := by
@@ -69,7 +73,9 @@ theorem affineIndependent_finset_coe {ι : Type*} {f : ι → Plane}
   rw [heq]
   exact hf.comp_embedding ⟨g, hinj⟩
 
-/-- Every finite set of at most two distinct plane points is affinely independent. -/
+/-- Every finite set of at most two distinct plane points is affinely independent.
+@isnad1 id=affinein.1h1v.s8.092cd4f9eb96 from=translated src=- shape=53b96fbc vocab=c795782d
+-/
 theorem affineIndependent_finset_of_card_le_two (A : Finset Plane) (hcard : A.card ≤ 2) :
     AffineIndependent ℝ ((↑) : A → Plane) := by
   interval_cases h : A.card
@@ -86,7 +92,9 @@ theorem affineIndependent_finset_of_card_le_two (A : Finset Plane) (hcard : A.ca
     · exact ⟨0, rfl⟩
     · exact ⟨1, rfl⟩
 
-/-- Adjacent edges of an affinely independent triple meet exactly in the shared vertex. -/
+/-- Adjacent edges of an affinely independent triple meet exactly in the shared vertex.
+@isnad1 id=eq.1h3v.s9.e491eda3fee9 from=translated src=- shape=9df0f2cb vocab=dcff92c7
+-/
 theorem segment_inter_segment_of_affineIndependent {x y z : Plane}
     (h : AffineIndependent ℝ ![x, y, z]) :
     segment ℝ x y ∩ segment ℝ y z = {y} := by
@@ -124,7 +132,9 @@ theorem segment_inter_segment_of_affineIndependent {x y z : Plane}
     using hmain.symm
 
 /-- Every positive ball about one endpoint of a nondegenerate segment contains a relative
-interior point of that segment. -/
+interior point of that segment.
+@isnad1 id=ex.2h3v.s7.10f88302e551 from=translated src=- shape=838a3bef vocab=d4d80e81
+-/
 theorem exists_mem_openSegment_inter_ball {a b : Plane} (hab : a ≠ b)
     {r : ℝ} (hr : 0 < r) :
     ∃ x : Plane, x ∈ openSegment ℝ a b ∧ x ∈ Metric.ball a r := by
@@ -150,7 +160,9 @@ theorem exists_mem_openSegment_inter_ball {a b : Plane} (hab : a ≠ b)
     linarith
 
 /-- An endpoint of a nondegenerate segment cannot lie strictly between two distinct points of
-that segment. -/
+that segment.
+@isnad1 id=not.4h4v.s8.3ea03f5e371c from=translated src=- shape=36516117 vocab=fb28e636
+-/
 theorem endpoint_not_mem_openSegment_of_mem_segment {a b x y : Plane}
     (hab : a ≠ b) (hxy : x ≠ y) (hx : x ∈ segment ℝ a b)
     (hy : y ∈ segment ℝ a b) : a ∉ openSegment ℝ x y := by
@@ -187,7 +199,9 @@ theorem endpoint_not_mem_openSegment_of_mem_segment {a b x y : Plane}
   rw [hs0, ht0]
 
 /-- If two collinear points bracket the midpoint of a segment and neither lies in its relative
-interior, then they bracket the whole segment. -/
+interior, then they bracket the whole segment.
+@isnad1 id=le.6h4v.s11.e4d8c8b25843 from=translated src=- shape=04a1589d vocab=23c60d2b
+-/
 theorem segment_subset_of_midpoint_mem_openSegment
     {P Q A B : Plane} (hPQ : P ≠ Q)
     (hAline : A ∈ affineSpan ℝ ({P, Q} : Set Plane))
@@ -272,7 +286,9 @@ theorem segment_subset_of_midpoint_mem_openSegment
     exact (convex_segment A B).segment_subset hp hq
 
 /-- If a nondegenerate segment contains two distinct points on the horizontal axis, then both
-endpoints lie on that axis. -/
+endpoints lie on that axis.
+@isnad1 id=and.6h4v.s9.e850a8af5906 from=translated src=- shape=edba0fc7 vocab=77620f4f
+-/
 theorem endpoint_secondCoords_eq_zero_of_two_axis_points {a b x y : Plane}
     (_ : a ≠ b) (hxy : x ≠ y) (hx : x ∈ segment ℝ a b)
     (hy : y ∈ segment ℝ a b) (hx0 : x 1 = 0) (hy0 : y 1 = 0) :
@@ -418,6 +434,9 @@ noncomputable def reposition (position' : M.Vertex → Plane)
   affineIndependent_triangle := haffineIndependent
   triangle_inter := htriangle_inter
 
+/--
+@isnad1 id=eq.3h2v.s10.b101a4ec62e6 from=translated src=- shape=68075d2c vocab=cd3d60f5
+-/
 @[simp] theorem reposition_triangles (position' : M.Vertex → Plane)
     (hposition_injective : Function.Injective position')
     (haffineIndependent : ∀ t ∈ M.triangles,
@@ -445,9 +464,15 @@ noncomputable def eraseTriangle (t : Finset M.Vertex) : TriangleMesh where
     intro s hs u hu
     exact M.triangle_inter s (Finset.mem_of_mem_erase hs) u (Finset.mem_of_mem_erase hu)
 
+/--
+@isnad1 id=eq.0h2v.s5.c189758ea0fc from=translated src=- shape=8e6800a7 vocab=5c5af485
+-/
 @[simp] theorem eraseTriangle_triangles (t : Finset M.Vertex) :
     (M.eraseTriangle t).triangles = M.triangles.erase t := rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.60cb11ae84b2 from=translated src=- shape=148d03ec vocab=ce07f50d
+-/
 theorem card_eraseTriangle_triangles {t : Finset M.Vertex} (ht : t ∈ M.triangles) :
     (M.eraseTriangle t).triangles.card + 1 = M.triangles.card := by
   change (M.triangles.erase t).card + 1 = M.triangles.card
@@ -515,12 +540,18 @@ noncomputable abbrev restrictTriangles (p : Finset M.Vertex → Prop) [Decidable
   triangle_inter := fun s hs t ht =>
     M.triangle_inter s (Finset.mem_filter.mp hs).1 t (Finset.mem_filter.mp ht).1
 
+/--
+@isnad1 id=iff.0h3v.s6.2a2d71296332 from=translated src=- shape=78cfc2aa vocab=7659bcfb
+-/
 theorem mem_restrictTriangles_triangles (p : Finset M.Vertex → Prop)
     [DecidablePred p] {t : Finset M.Vertex} :
     t ∈ (M.restrictTriangles p).triangles ↔ t ∈ M.triangles ∧ p t := by
   change t ∈ M.triangles.filter p ↔ t ∈ M.triangles ∧ p t
   rw [Finset.mem_filter]
 
+/--
+@isnad1 id=eq.0h2v.s9.5aea8233d22c from=translated src=- shape=1f54b2b7 vocab=e4019b15
+-/
 theorem mapAffineEquiv_triangles (e : Plane ≃ᵃ[ℝ] Plane) :
     (M.mapAffineEquiv e).triangles = M.triangles := rfl
 
@@ -528,6 +559,9 @@ theorem mapAffineEquiv_triangles (e : Plane ≃ᵃ[ℝ] Plane) :
 def faces : Finset (Finset M.Vertex) :=
   M.triangles.biUnion fun t => t.powerset.filter (·.Nonempty)
 
+/--
+@isnad1 id=iff.0h2v.s6.bd4f3187549c from=translated src=- shape=2dd503cf vocab=d23c010b
+-/
 theorem mem_faces_iff {s : Finset M.Vertex} :
     s ∈ M.faces ↔ s.Nonempty ∧ ∃ t ∈ M.triangles, s ⊆ t := by
   simp only [faces, Finset.mem_biUnion, Finset.mem_filter, Finset.mem_powerset]
@@ -628,14 +662,22 @@ def cellCarrier (s : Finset K.Vertex) : Set Plane :=
 def support : Set Plane :=
   ⋃ s ∈ K.simplexes, K.cellCarrier s
 
+/--
+@isnad1 id=le.1h2v.s5.d0a9f0e12e39 from=translated src=- shape=b8ffce8c vocab=60da2b5a
+-/
 theorem cellCarrier_subset_support {s : Finset K.Vertex} (hs : s ∈ K.simplexes) :
     K.cellCarrier s ⊆ K.support :=
   Set.subset_biUnion_of_mem hs
 
+/--
+@isnad1 id=iscompac.0h2v.s5.6bbcfa7a57fc from=translated src=- shape=7bccf03c vocab=d8818ec3
+-/
 theorem isCompact_cellCarrier (s : Finset K.Vertex) : IsCompact (K.cellCarrier s) :=
   Set.Finite.isCompact_convexHull (𝕜 := ℝ) (s.finite_toSet.image K.position)
 
-/-- The support of a finite plane complex is compact. -/
+/-- The support of a finite plane complex is compact.
+@isnad1 id=iscompac.0h1v.s5.9e31c0c9eee5 from=translated src=- shape=1a6c1393 vocab=d3f85905
+-/
 theorem isCompact_support : IsCompact K.support :=
   K.simplexes.finite_toSet.isCompact_biUnion fun s _ => K.isCompact_cellCarrier s
 
@@ -663,9 +705,15 @@ noncomputable def mapAffineEquiv (e : Plane ≃ᵃ[ℝ] Plane) : PlaneComplex wh
       ← e.toAffineMap.image_convexHull]
     rw [← Set.image_inter (f := e.toAffineMap) e.injective, hinter]
 
+/--
+@isnad1 id=eq.0h2v.s9.6439c82ec4a9 from=translated src=- shape=1f54b2b7 vocab=ba0656b4
+-/
 @[simp] theorem mapAffineEquiv_simplexes (e : Plane ≃ᵃ[ℝ] Plane) :
     (K.mapAffineEquiv e).simplexes = K.simplexes := rfl
 
+/--
+@isnad1 id=eq.0h3v.s11.fdcb297e955a from=translated src=- shape=2b3968e7 vocab=9b32d185
+-/
 theorem mapAffineEquiv_cellCarrier (e : Plane ≃ᵃ[ℝ] Plane)
     (s : Finset K.Vertex) :
     (K.mapAffineEquiv e).cellCarrier s = e '' K.cellCarrier s := by
@@ -674,6 +722,9 @@ theorem mapAffineEquiv_cellCarrier (e : Plane ≃ᵃ[ℝ] Plane)
   rw [Set.image_comp]
   exact (e.toAffineMap.image_convexHull _).symm
 
+/--
+@isnad1 id=eq.0h2v.s11.3cf417afa689 from=translated src=- shape=eb327722 vocab=c161dffd
+-/
 theorem mapAffineEquiv_support (e : Plane ≃ᵃ[ℝ] Plane) :
     (K.mapAffineEquiv e).support = e '' K.support := by
   rw [PlaneComplex.support, PlaneComplex.support]
@@ -734,16 +785,28 @@ noncomputable abbrev oneSkeleton : PlaneComplex where
     intro s hs t ht
     exact K.face_inter s (Finset.mem_filter.mp hs).1 t (Finset.mem_filter.mp ht).1
 
+/--
+@isnad1 id=iff.0h2v.s6.554a96be682a from=translated src=- shape=6bb3cc1f vocab=f172125f
+-/
 theorem mem_oneSkeleton_simplexes {s : Finset K.Vertex} :
     s ∈ K.oneSkeleton.simplexes ↔ s ∈ K.simplexes ∧ s.card ≤ 2 := by
   classical
   exact Finset.mem_filter
 
+/--
+@isnad1 id=eq.0h1v.s3.7fe58becde35 from=translated src=- shape=39790fbd vocab=a062a0e8
+-/
 @[simp] theorem oneSkeleton_position : K.oneSkeleton.position = K.position := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.05805c1c2117 from=translated src=- shape=94cee032 vocab=623a011b
+-/
 @[simp] theorem oneSkeleton_cellCarrier (s : Finset K.Vertex) :
     K.oneSkeleton.cellCarrier s = K.cellCarrier s := rfl
 
+/--
+@isnad1 id=le.0h1v.s3.ad20b7b1cc7c from=translated src=- shape=f589419e vocab=aebd0019
+-/
 theorem oneSkeleton_support_subset : K.oneSkeleton.support ⊆ K.support := by
   intro x hx
   rw [PlaneComplex.support] at hx ⊢
@@ -752,6 +815,9 @@ theorem oneSkeleton_support_subset : K.oneSkeleton.support ⊆ K.support := by
   obtain ⟨hsK, -⟩ := K.mem_oneSkeleton_simplexes.mp hs
   exact ⟨s, hsK, hxs⟩
 
+/--
+@isnad1 id=eq.1h1v.s5.684a20e12a5f from=translated src=- shape=77b6686c vocab=8a02d200
+-/
 theorem oneSkeleton_support_eq (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2) :
     K.oneSkeleton.support = K.support := by
   apply Set.Subset.antisymm K.oneSkeleton_support_subset
@@ -761,6 +827,9 @@ theorem oneSkeleton_support_eq (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2) :
   obtain ⟨s, hs, hxs⟩ := hx
   exact ⟨s, K.mem_oneSkeleton_simplexes.mpr ⟨hs, hgraph s hs⟩, hxs⟩
 
+/--
+@isnad1 id=le.1h2v.s5.9e6044e706a2 from=translated src=- shape=902a55f9 vocab=f172125f
+-/
 theorem oneSkeleton_isGraph :
     ∀ s ∈ K.oneSkeleton.simplexes, s.card ≤ 2 := by
   intro s hs
@@ -795,18 +864,30 @@ noncomputable def subordinateTo (L K : PlaneComplex) : PlaneComplex := by
       intro s hs t ht
       exact L.face_inter s (Finset.mem_filter.mp hs).1 t (Finset.mem_filter.mp ht).1 }
 
+/--
+@isnad1 id=iff.0h3v.s6.924393fcb176 from=translated src=- shape=f5c4e678 vocab=30cff354
+-/
 theorem mem_subordinateTo_simplexes_iff (L K : PlaneComplex) {s : Finset L.Vertex} :
     s ∈ (L.subordinateTo K).simplexes ↔
       s ∈ L.simplexes ∧ ∃ t ∈ K.simplexes, L.cellCarrier s ⊆ K.cellCarrier t := by
   classical
   exact Finset.mem_filter
 
+/--
+@isnad1 id=eq.0h2v.s4.ac1f1fb0b1be from=translated src=- shape=16a3fc64 vocab=5082a106
+-/
 @[simp] theorem subordinateTo_position (L K : PlaneComplex) :
     (L.subordinateTo K).position = L.position := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.8bb6660ec001 from=translated src=- shape=1c1fe164 vocab=d73d72c0
+-/
 @[simp] theorem subordinateTo_cellCarrier (L K : PlaneComplex) (s : Finset L.Vertex) :
     (L.subordinateTo K).cellCarrier s = L.cellCarrier s := rfl
 
+/--
+@isnad1 id=le.0h2v.s3.4ac7ac679e3c from=translated src=- shape=1b789442 vocab=0516925a
+-/
 theorem subordinateTo_support_subset (L K : PlaneComplex) :
     (L.subordinateTo K).support ⊆ K.support := by
   intro x hx
@@ -836,16 +917,25 @@ noncomputable def restrictToSet (K : PlaneComplex) (A : Set Plane) : PlaneComple
     face_inter := fun s hs t ht =>
       K.face_inter s (Finset.mem_filter.mp hs).1 t (Finset.mem_filter.mp ht).1 }
 
+/--
+@isnad1 id=iff.0h3v.s6.1d8cadb56da6 from=translated src=- shape=0870684c vocab=10aee536
+-/
 @[simp] theorem mem_restrictToSet_simplexes_iff (K : PlaneComplex) (A : Set Plane)
     {s : Finset K.Vertex} :
     s ∈ (K.restrictToSet A).simplexes ↔ s ∈ K.simplexes ∧ K.cellCarrier s ⊆ A := by
   classical
   exact Finset.mem_filter
 
+/--
+@isnad1 id=eq.0h3v.s4.32946a83502f from=translated src=- shape=ab6903e5 vocab=951ec770
+-/
 @[simp] theorem restrictToSet_cellCarrier (K : PlaneComplex) (A : Set Plane)
     (s : Finset K.Vertex) :
     (K.restrictToSet A).cellCarrier s = K.cellCarrier s := rfl
 
+/--
+@isnad1 id=le.0h2v.s3.b5c7a9611431 from=translated src=- shape=4ddbb31d vocab=9b523baa
+-/
 theorem restrictToSet_support_subset (K : PlaneComplex) (A : Set Plane) :
     (K.restrictToSet A).support ⊆ A := by
   intro x hx
@@ -864,6 +954,9 @@ namespace TriangleMesh
 
 variable (M : TriangleMesh)
 
+/--
+@isnad1 id=eq.0h1v.s8.655f597f0ab9 from=translated src=- shape=3daa03dd vocab=67967d48
+-/
 theorem toPlaneComplex_support :
     M.toPlaneComplex.support = ⋃ t ∈ M.triangles,
       convexHull ℝ (M.position '' (t : Set M.Vertex)) := by
@@ -879,6 +972,9 @@ theorem toPlaneComplex_support :
     exact M.mem_faces_iff.mpr ⟨Finset.card_pos.mp (by rw [M.card_triangle t ht]; omega),
       t, ht, subset_rfl⟩
 
+/--
+@isnad1 id=le.0h2v.s4.17d5591047e1 from=translated src=- shape=18871076 vocab=ed2c6aea
+-/
 theorem eraseTriangle_support_subset (t : Finset M.Vertex) :
     (M.eraseTriangle t).toPlaneComplex.support ⊆ M.toPlaneComplex.support := by
   rw [TriangleMesh.toPlaneComplex_support, TriangleMesh.toPlaneComplex_support]
@@ -889,7 +985,9 @@ theorem eraseTriangle_support_subset (t : Finset M.Vertex) :
   exact ⟨s, hsM, hps⟩
 
 /-- The support of a mesh is the union of one maximal triangle and the support left after
-deleting it. -/
+deleting it.
+@isnad1 id=eq.1h2v.s7.6b4d348fb952 from=translated src=- shape=1d891fa5 vocab=b2d1f241
+-/
 theorem support_eq_eraseTriangle_union_triangleCarrier {t : Finset M.Vertex}
     (ht : t ∈ M.triangles) :
     M.toPlaneComplex.support =
@@ -907,6 +1005,9 @@ theorem support_eq_eraseTriangle_union_triangleCarrier {t : Finset M.Vertex}
     · exact ⟨s, (Finset.mem_erase.mp hs).2, hps⟩
     · exact ⟨t, ht, hpt⟩
 
+/--
+@isnad1 id=eq.1h1v.s8.ade34da8af7f from=translated src=- shape=9dc7c561 vocab=3c7d3d07
+-/
 theorem single_support (p : Fin 3 → Plane) (hp : AffineIndependent ℝ p) :
     (single p hp).toPlaneComplex.support = convexHull ℝ (Set.range p) := by
   rw [toPlaneComplex_support]
@@ -930,6 +1031,9 @@ theorem single_support (p : Fin 3 → Plane) (hp : AffineIndependent ℝ p) :
         (p '' (↑(Finset.univ : Finset (Fin 3)) : Set (Fin 3)))
       simpa using hx
 
+/--
+@isnad1 id=ispure2.0h1v.s2.d7c3256d5d9a from=translated src=- shape=76a08d12 vocab=112f8580
+-/
 theorem toPlaneComplex_isPure2 : M.toPlaneComplex.IsPure2 := by
   intro s hs
   obtain ⟨-, t, ht, hst⟩ := M.mem_faces_iff.mp hs
@@ -937,7 +1041,9 @@ theorem toPlaneComplex_isPure2 : M.toPlaneComplex.IsPure2 := by
       t, ht, subset_rfl⟩, hst, M.card_triangle t ht⟩
 
 /-- The two-dimensional cells generated by a triangle mesh are exactly its listed maximal
-triangles. -/
+triangles.
+@isnad1 id=eq.0h1v.s3.f2f91ec0765c from=translated src=- shape=78cca9a3 vocab=d9eaa082
+-/
 theorem toPlaneComplex_cells : M.toPlaneComplex.cells = M.triangles := by
   ext s
   constructor
@@ -956,7 +1062,9 @@ theorem toPlaneComplex_cells : M.toPlaneComplex.cells = M.triangles := by
       omega), s, hs, subset_rfl⟩, M.card_triangle s hs⟩
 
 /-- Affine transport carries the support of a triangle mesh to the affine image of its original
-support. -/
+support.
+@isnad1 id=eq.0h2v.s11.0798137c8c33 from=translated src=- shape=224ba97f vocab=0b500667
+-/
 theorem mapAffineEquiv_support (e : Plane ≃ᵃ[ℝ] Plane) :
     (M.mapAffineEquiv e).toPlaneComplex.support = e '' M.toPlaneComplex.support := by
   rw [toPlaneComplex_support, toPlaneComplex_support]
@@ -983,7 +1091,9 @@ theorem mapAffineEquiv_support (e : Plane ≃ᵃ[ℝ] Plane) :
   · rintro ⟨y, ⟨t, ht, hyt⟩, rfl⟩
     exact ⟨t, ht, by rw [hcarrier]; exact ⟨y, hyt, rfl⟩⟩
 
-/-- Reindexing without changing positions preserves support. -/
+/-- Reindexing without changing positions preserves support.
+@isnad1 id=eq.2h4v.s6.d7717dc62a83 from=translated src=- shape=d08fd107 vocab=87df9146
+-/
 theorem reindex_support {V' : Type} [Fintype V'] [DecidableEq V']
     (position' : V' → Plane) (hposition_injective : Function.Injective position')
     (e : M.Vertex ↪ V') (hposition : ∀ v, position' (e v) = M.position v) :
@@ -1024,9 +1134,15 @@ def Subdivides (K' K : PlaneComplex) : Prop :=
   K'.support = K.support ∧
     ∀ s' ∈ K'.simplexes, ∃ s ∈ K.simplexes, K'.cellCarrier s' ⊆ K.cellCarrier s
 
+/--
+@isnad1 id=subdivid.0h1v.s2.64e62793b75f from=translated src=- shape=b3bac8d8 vocab=48c9b90e
+-/
 theorem Subdivides.refl (K : PlaneComplex) : K.Subdivides K :=
   ⟨rfl, fun s hs => ⟨s, hs, subset_rfl⟩⟩
 
+/--
+@isnad1 id=subdivid.2h3v.s4.584265a024a5 from=translated src=- shape=0bc0c4a6 vocab=48c9b90e
+-/
 theorem Subdivides.trans {K₂ K₁ K₀ : PlaneComplex}
     (h₂₁ : K₂.Subdivides K₁) (h₁₀ : K₁.Subdivides K₀) :
     K₂.Subdivides K₀ := by
@@ -1037,6 +1153,9 @@ theorem Subdivides.trans {K₂ K₁ K₀ : PlaneComplex}
     obtain ⟨u, hu, htu⟩ := h₁₀.2 t ht
     exact ⟨u, hu, hst.trans htu⟩
 
+/--
+@isnad1 id=subdivid.1h3v.s9.08ac8510fc52 from=translated src=- shape=7f97a145 vocab=b5c53ca4
+-/
 theorem Subdivides.mapAffineEquiv {K' K : PlaneComplex} (h : K'.Subdivides K)
     (e : Plane ≃ᵃ[ℝ] Plane) :
     (K'.mapAffineEquiv e).Subdivides (K.mapAffineEquiv e) := by
@@ -1052,6 +1171,9 @@ theorem Subdivides.mapAffineEquiv {K' K : PlaneComplex} (h : K'.Subdivides K)
       K.mapAffineEquiv_cellCarrier e t]
     exact Set.image_mono hst
 
+/--
+@isnad1 id=subdivid.1h2v.s4.5c868527c9c7 from=translated src=- shape=31f99271 vocab=8e3aaf9f
+-/
 theorem subordinateTo_subdivides (L K : PlaneComplex)
     (hsupport : (L.subordinateTo K).support = K.support) :
     (L.subordinateTo K).Subdivides K := by
@@ -1086,14 +1208,18 @@ def IsPLOnSet (A : Set Plane) (f : Plane → Plane) : Prop :=
 
 namespace IsAffineOn
 
-/-- Restrict an affine-on-set witness to a smaller set. -/
+/-- Restrict an affine-on-set witness to a smaller set.
+@isnad1 id=isaffine.2h3v.s4.4bf392352170 from=translated src=- shape=896ef2a9 vocab=7ea7c520
+-/
 theorem mono {f : Plane → Plane} {A B : Set Plane} (hf : IsAffineOn f A) (hBA : B ⊆ A) :
     IsAffineOn f B := by
   obtain ⟨g, hfg⟩ := hf
   exact ⟨g, hfg.mono hBA⟩
 
 /-- Composition of affine-on-set maps is affine when the first map carries the source set into
-the set on which the second map is affine. -/
+the set on which the second map is affine.
+@isnad1 id=isaffine.3h4v.s5.094e253ca7d9 from=translated src=- shape=0e24a2f4 vocab=8a377461
+-/
 theorem comp {f g : Plane → Plane} {A B : Set Plane}
     (hg : IsAffineOn g B) (hf : IsAffineOn f A) (hmap : Set.MapsTo f A B) :
     IsAffineOn (g ∘ f) A := by
@@ -1103,14 +1229,18 @@ theorem comp {f g : Plane → Plane} {A B : Set Plane}
   change g (f x) = G (F x)
   rw [hfF hx, hgG (by rw [← hfF hx]; exact hmap hx)]
 
-/-- A function agreeing with an affine map on a set is continuous there. -/
+/-- A function agreeing with an affine map on a set is continuous there.
+@isnad1 id=continuo.1h2v.s6.75ebddcaced8 from=translated src=- shape=5037fe6e vocab=297d123f
+-/
 theorem continuousOn {f : Plane → Plane} {A : Set Plane} (hf : IsAffineOn f A) :
     ContinuousOn f A := by
   obtain ⟨g, hfg⟩ := hf
   exact g.continuous_of_finiteDimensional.continuousOn.congr fun x hx => hfg hx
 
 /-- An affine-on-set map sends every segment contained in the set to the segment between the
-endpoint images. -/
+endpoint images.
+@isnad1 id=eq.2h4v.s8.b9e662849a45 from=translated src=- shape=370c147c vocab=30e071bc
+-/
 theorem image_segment {f : Plane → Plane} {A : Set Plane} (hf : IsAffineOn f A)
     {x y : Plane} (hsegment : segment ℝ x y ⊆ A) :
     f '' segment ℝ x y = segment ℝ (f x) (f y) := by
@@ -1123,7 +1253,9 @@ theorem image_segment {f : Plane → Plane} {A : Set Plane} (hf : IsAffineOn f A
       rw [hfg (hsegment (left_mem_segment ℝ x y)),
         hfg (hsegment (right_mem_segment ℝ x y))]
 
-/-- An affine-on-hull map carries a finite convex hull to the convex hull of the images. -/
+/-- An affine-on-hull map carries a finite convex hull to the convex hull of the images.
+@isnad1 id=eq.1h2v.s9.60d40b0de23c from=translated src=- shape=68458c97 vocab=85927f3e
+-/
 theorem image_convexHull {f : Plane → Plane} {A : Set Plane}
     (hf : IsAffineOn f (convexHull ℝ A)) :
     convexHull ℝ (f '' A) = f '' convexHull ℝ A := by
@@ -1137,7 +1269,9 @@ end IsAffineOn
 
 namespace IsPLOn
 
-/-- A map affine on the support is PL without further subdivision. -/
+/-- A map affine on the support is PL without further subdivision.
+@isnad1 id=isplon.1h2v.s3.85725b39d883 from=translated src=- shape=120e4786 vocab=6b8c099d
+-/
 theorem of_affineOn_support {K : PlaneComplex} {f : Plane → Plane}
     (hf : IsAffineOn f K.support) : IsPLOn K f := by
   refine ⟨K, PlaneComplex.Subdivides.refl K, ?_⟩
@@ -1145,13 +1279,17 @@ theorem of_affineOn_support {K : PlaneComplex} {f : Plane → Plane}
   obtain ⟨g, hfg⟩ := hf
   exact ⟨g, hfg.mono (K.cellCarrier_subset_support hs)⟩
 
-/-- A PL witness on a subdivision is also a PL witness on the original complex. -/
+/-- A PL witness on a subdivision is also a PL witness on the original complex.
+@isnad1 id=isplon.2h3v.s4.6e4cbfc4d116 from=translated src=- shape=81a1cd6c vocab=bd328c99
+-/
 theorem of_subdivision {K' K : PlaneComplex} {f : Plane → Plane}
     (hsubdivision : K'.Subdivides K) (hf : IsPLOn K' f) : IsPLOn K f := by
   obtain ⟨L, hL, haffine⟩ := hf
   exact ⟨L, hL.trans hsubdivision, haffine⟩
 
-/-- A PL map is continuous on the support of its complex. -/
+/-- A PL map is continuous on the support of its complex.
+@isnad1 id=continuo.1h2v.s6.906324b5b18c from=translated src=- shape=dbe2de3b vocab=045db71b
+-/
 theorem continuousOn {K : PlaneComplex} {f : Plane → Plane} (hf : IsPLOn K f) :
     ContinuousOn f K.support := by
   obtain ⟨K', hsubdivision, haffine⟩ := hf
@@ -1165,7 +1303,9 @@ theorem continuousOn {K : PlaneComplex} {f : Plane → Plane} (hf : IsPLOn K f) 
   have hglued := hlocal.continuousOn_iUnion hclosed hcontinuous
   simpa only [PlaneComplex.support, carriers, Set.iUnion_subtype] using hglued
 
-/-- PL maps remain PL after affine changes of coordinates in source and target. -/
+/-- PL maps remain PL after affine changes of coordinates in source and target.
+@isnad1 id=isplon.1h4v.s12.ac1162142954 from=translated src=- shape=91d84b7a vocab=c1a9b6f0
+-/
 theorem affineConjugate {K : PlaneComplex} {f : Plane → Plane} (hf : IsPLOn K f)
     (source target : Plane ≃ᵃ[ℝ] Plane) :
     IsPLOn (K.mapAffineEquiv source) (fun x => target (f (source.symm x))) := by
@@ -1190,10 +1330,16 @@ namespace PlaneComplex
 
 variable (K : PlaneComplex)
 
+/--
+@isnad1 id=mem.1h2v.s5.86c746466727 from=translated src=- shape=1f0c888a vocab=87a5f0d1
+-/
 theorem mem_simplexes_of_mem_cells {t : Finset K.Vertex} (ht : t ∈ K.cells) :
     t ∈ K.simplexes :=
   (Finset.mem_filter.mp ht).1
 
+/--
+@isnad1 id=eq.1h2v.s5.4e5f41cea67e from=translated src=- shape=320ae28e vocab=c899f14f
+-/
 theorem card_of_mem_cells {t : Finset K.Vertex} (ht : t ∈ K.cells) : t.card = 3 :=
   (Finset.mem_filter.mp ht).2
 
@@ -1201,23 +1347,34 @@ theorem card_of_mem_cells {t : Finset K.Vertex} (ht : t ∈ K.cells) : t.card = 
 noncomputable def baryEval (x : K.Vertex → ℝ) : Plane :=
   ∑ v, x v • K.position v
 
+/--
+@isnad1 id=continuo.0h1v.s6.b86eda4e93aa from=translated src=- shape=6b56c3a6 vocab=da4dd1e1
+-/
 theorem continuous_baryEval :
     Continuous fun x : K.Vertex → ℝ => K.baryEval x := by
   unfold baryEval
   exact continuous_finsetSum _ fun v _ => (continuous_apply v).smul continuous_const
 
+/--
+@isnad1 id=eq.1h3v.s7.3dabc1786902 from=translated src=- shape=ad3fe8ab vocab=ca8dd27e
+-/
 theorem baryEval_eq_sum_of_support {x : K.Vertex → ℝ} {t : Finset K.Vertex}
     (hsupp : ∀ v ∉ t, x v = 0) :
     K.baryEval x = ∑ v ∈ t, x v • K.position v :=
   (Finset.sum_subset (Finset.subset_univ t)
     (fun v _ hv => by rw [hsupp v hv, zero_smul])).symm
 
+/--
+@isnad1 id=eq.1h3v.s6.bc0c1b6a0d0e from=translated src=- shape=fe489897 vocab=1cd1557e
+-/
 theorem sum_eq_sum_of_support {x : K.Vertex → ℝ} {t : Finset K.Vertex}
     (hsupp : ∀ v ∉ t, x v = 0) :
     ∑ v, x v = ∑ v ∈ t, x v :=
   (Finset.sum_subset (Finset.subset_univ t) (fun v _ hv => hsupp v hv)).symm
 
-/-- Barycentric evaluation of weights supported on a face lands in that face's carrier. -/
+/-- Barycentric evaluation of weights supported on a face lands in that face's carrier.
+@isnad1 id=mem.3h3v.s6.785065ffeb2c from=translated src=- shape=8b846108 vocab=09a89fad
+-/
 theorem baryEval_mem_cellCarrier {x : K.Vertex → ℝ} {t : Finset K.Vertex}
     (hsupp : ∀ v ∉ t, x v = 0) (h0 : ∀ v, 0 ≤ x v) (h1 : ∑ v, x v = 1) :
     K.baryEval x ∈ K.cellCarrier t := by
@@ -1229,7 +1386,9 @@ theorem baryEval_mem_cellCarrier {x : K.Vertex → ℝ} {t : Finset K.Vertex}
   exact Finset.centerMass_mem_convexHull t (fun v _ => h0 v) (by rw [hsum_t]; norm_num)
     (fun v hv => Set.mem_image_of_mem _ hv)
 
-/-- Every point of a face carrier has barycentric weights supported on that face. -/
+/-- Every point of a face carrier has barycentric weights supported on that face.
+@isnad1 id=ex.1h3v.s6.e54c80aab412 from=translated src=- shape=0c5967c7 vocab=09a89fad
+-/
 theorem exists_weights_of_mem_cellCarrier {p : Plane} {t : Finset K.Vertex}
     (hp : p ∈ K.cellCarrier t) :
     ∃ x : K.Vertex → ℝ, (∀ v ∉ t, x v = 0) ∧ (∀ v, 0 ≤ x v) ∧ (∑ v, x v = 1) ∧
@@ -1260,7 +1419,9 @@ theorem exists_weights_of_mem_cellCarrier {p : Plane} {t : Finset K.Vertex}
     rw [hite, ← himg2]
     exact hwp
 
-/-- Barycentric weights on an affinely independent face are unique. -/
+/-- Barycentric weights on an affinely independent face are unique.
+@isnad1 id=eq.6h4v.s7.7b248fef0229 from=translated src=- shape=08c867f2 vocab=29fd3349
+-/
 theorem baryEval_injOn_face {t : Finset K.Vertex} (ht : t ∈ K.simplexes)
     {x y : K.Vertex → ℝ}
     (hx : ∀ v ∉ t, x v = 0) (hy : ∀ v ∉ t, y v = 0)
@@ -1342,6 +1503,9 @@ noncomputable def PlaneComplex.realizationHomeomorph (K : PlaneComplex) (hpure :
   exact Continuous.homeoOfEquivCompactToT2
     (f := Equiv.ofBijective φ ⟨hinj, hsurj⟩) hcont
 
+/--
+@isnad1 id=eq.1h2v.s8.5c73abca6644 from=translated src=- shape=a79db214 vocab=6c368d38
+-/
 @[simp] theorem PlaneComplex.realizationHomeomorph_apply (K : PlaneComplex)
     (hpure : K.IsPure2) (x : GeometricRealization K.Vertex K.cells) :
     ((K.realizationHomeomorph hpure) x).1 = K.baryEval x.1 := rfl
@@ -1349,7 +1513,9 @@ noncomputable def PlaneComplex.realizationHomeomorph (K : PlaneComplex) (hpure :
 /-- **Realization bridge** (elementary): a purely two-dimensional plane complex induces a
 geometric triangulation of its support, by barycentric coordinates in the face containing each
 point.  Injectivity is the uniqueness of barycentric coordinates on each affinely independent
-face, glued across faces by the face-to-face intersection condition. -/
+face, glued across faces by the face-to-face intersection condition.
+@isnad1 id=nonempty.1h1v.s5.5e6f09cc5109 from=translated src=- shape=a0811ea4 vocab=36371830
+-/
 theorem PlaneComplex.toGeometricTriangulation (K : PlaneComplex) (hpure : K.IsPure2) :
     Nonempty (GeometricTriangulation K.support) := by
   exact ⟨{ Vertex := K.Vertex

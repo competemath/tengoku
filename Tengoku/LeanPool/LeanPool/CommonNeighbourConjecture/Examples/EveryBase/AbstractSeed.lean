@@ -44,6 +44,9 @@ def TupleRowsDistinguishing
   ∀ q : Q,
     (∀ i, SameTupleOrbit H (rows (q⁻¹ • i)) (rows i)) → q = 1
 
+/--
+@isnad1 id=iff.0h6v.s6.236bb0fe82e8 from=translated src=- shape=b0f48cf9 vocab=e0c33df4
+-/
 theorem permWreath_isBaseTuple_iff
     (H Q ι V : Type*)
     [Group H] [Group Q] [MulAction H V] [MulAction Q ι]
@@ -108,6 +111,9 @@ structure TupleColourCode
   hits : ∀ c : C, ∃ x : Fin n → V,
     Saxl.IsBaseTuple H V x ∧ colour x = c
 
+/--
+@isnad1 id=iff.0h8v.s7.55b344119d86 from=translated src=- shape=746c1e6a vocab=5acff1ad
+-/
 theorem permWreath_isBaseTuple_iff_colourWord
     (H Q ι V C : Type*)
     [Group H] [Group Q] [MulAction H V] [MulAction Q ι]
@@ -136,6 +142,9 @@ theorem permWreath_isBaseTuple_iff_colourWord
       (hcolumns (q⁻¹ • i)) (hcolumns i)).2
     exact hq i
 
+/--
+@isnad1 id=iff.0h6v.s7.9c22112f50a2 from=translated src=- shape=ec33220c vocab=71701d5d
+-/
 theorem symmetricTop_isBaseTuple_iff_bijective
     (H V C : Type*) [Group H] [MulAction H V] [Finite C]
     {n : Nat} (code : TupleColourCode H V n C)
@@ -212,6 +221,9 @@ def AvoidingCycle.reindexEquiv (S : EveryBaseSeed) (h : S.H) :
   left_inv ω := by ext; simp
   right_inv ω := by ext; simp
 
+/--
+@isnad1 id=eq.0h3v.s7.508e55714343 from=translated src=- shape=0a49bb37 vocab=7b0ca4b8
+-/
 theorem cycleSum_smul (S : EveryBaseSeed) (h : S.H) (v : S.V) :
     cycleSum S (S.avoidingCycle h).carrier (h • v) =
       cycleSum S (S.avoidingCycle h).carrier v := by
@@ -229,6 +241,9 @@ theorem cycleSum_smul (S : EveryBaseSeed) (h : S.H) (v : S.V) :
         (fun ω : L ↦ S.coord v ω)
     _ = cycleSum S L v := Finset.sum_coe_sort L (fun ω ↦ S.coord v ω)
 
+/--
+@isnad1 id=eq.0h3v.s7.29ee5704678f from=translated src=- shape=ba6dea70 vocab=52f2f7ff
+-/
 theorem cycleSum_add_smul (S : EveryBaseSeed) (h : S.H) (v : S.V) :
     cycleSum S (S.avoidingCycle h).carrier (v + h • v) = 0 := by
   rw [cycleSum, map_add]
@@ -243,6 +258,9 @@ theorem cycleSum_add_smul (S : EveryBaseSeed) (h : S.H) (v : S.V) :
     CharP.cast_eq_zero (ZMod 2) 2
   rw [hcast, zero_smul]
 
+/--
+@isnad1 id=eq.0h2v.s6.4ae1e4981d65 from=translated src=- shape=248eda48 vocab=e1cbc72c
+-/
 theorem cycleSum_u (S : EveryBaseSeed) (h : S.H) :
     cycleSum S (S.avoidingCycle h).carrier S.u = 1 := by
   let L := (S.avoidingCycle h).carrier
@@ -261,6 +279,9 @@ theorem cycleSum_u (S : EveryBaseSeed) (h : S.H) :
         (Nat.odd_iff.mp (S.avoidingCycle h).odd_card)]
       norm_num
 
+/--
+@isnad1 id=ne.0h3v.s6.d96b8825a961 from=translated src=- shape=c26a7ea7 vocab=31d8de65
+-/
 theorem u_ne_add_smul (S : EveryBaseSeed) (h : S.H) (v : S.V) :
     S.u ≠ v + h • v := by
   intro hu
@@ -325,16 +346,25 @@ noncomputable def representative (T : RegularTupleColourTower S)
     (n : Nat) (c : T.C n) : Fin (n + 1) → S.V :=
   Classical.choose ((T.code n).hits c)
 
+/--
+@isnad1 id=isbasetu.0h4v.s6.16f633ad8d04 from=translated src=- shape=8587b52d vocab=1e76741b
+-/
 theorem representative_isBase (T : RegularTupleColourTower S)
     (n : Nat) (c : T.C n) :
     Saxl.IsBaseTuple S.H S.V (T.representative n c) :=
   (Classical.choose_spec ((T.code n).hits c)).1
 
+/--
+@isnad1 id=eq.0h4v.s6.9388826d67b0 from=translated src=- shape=3dc11a3a vocab=882c77a1
+-/
 theorem representative_colour (T : RegularTupleColourTower S)
     (n : Nat) (c : T.C n) :
     (T.code n).colour (T.representative n c) = c :=
   (Classical.choose_spec ((T.code n).hits c)).2
 
+/--
+@isnad1 id=nonempty.0h3v.s3.6a0201bc6187 from=translated src=- shape=efe0a783 vocab=0203b51b
+-/
 theorem colour_nonempty (T : RegularTupleColourTower S)
     (n : Nat) : Nonempty (T.C n) := by
   obtain ⟨v, hv⟩ := S.regular_exists
@@ -351,6 +381,9 @@ noncomputable def appendColour (T : RegularTupleColourTower S) (n : Nat) :
   fun cv ↦ (T.code (n + 1)).colour
     (Fin.snoc (T.representative n cv.1) cv.2)
 
+/--
+@isnad1 id=injectiv.0h3v.s5.b995d41d414d from=translated src=- shape=05d1c2fb vocab=96014ae3
+-/
 theorem appendColour_injective (T : RegularTupleColourTower S) (n : Nat) :
     Function.Injective (T.appendColour n) := by
   rintro ⟨c, v⟩ ⟨d, w⟩ hcolour
@@ -388,6 +421,9 @@ theorem appendColour_injective (T : RegularTupleColourTower S) (n : Nat) :
   subst w
   rfl
 
+/--
+@isnad1 id=le.0h3v.s5.7ed5cc3a5ea7 from=translated src=- shape=57f25985 vocab=f9a57e19
+-/
 theorem card_mul_le_next (T : RegularTupleColourTower S) (n : Nat) :
     T.card n * Fintype.card S.V ≤ T.card (n + 1) := by
   let := T.fintypeC n
@@ -395,6 +431,9 @@ theorem card_mul_le_next (T : RegularTupleColourTower S) (n : Nat) :
   simpa [card] using Fintype.card_le_of_injective (T.appendColour n)
     (T.appendColour_injective n)
 
+/--
+@isnad1 id=lt.0h3v.s5.5eaa441d692e from=translated src=- shape=6aec97f9 vocab=76e5babc
+-/
 theorem card_lt_next [Nontrivial S.V]
     (T : RegularTupleColourTower S) (n : Nat) :
     T.card n < T.card (n + 1) := by
@@ -408,6 +447,9 @@ theorem card_lt_next [Nontrivial S.V]
     exact lt_mul_of_one_lt_right hpos hV
   exact hmul.trans_le (T.card_mul_le_next n)
 
+/--
+@isnad1 id=strictmo.0h2v.s4.3d93a04af05e from=translated src=- shape=1fa282f2 vocab=eb33fbfb
+-/
 theorem card_strictMono [Nontrivial S.V]
     (T : RegularTupleColourTower S) :
     StrictMono T.card := by
@@ -415,6 +457,9 @@ theorem card_strictMono [Nontrivial S.V]
   intro n
   exact T.card_lt_next n
 
+/--
+@isnad1 id=lt.1h4v.s4.be0a4518b5ba from=translated src=- shape=e72f754c vocab=c3199aed
+-/
 theorem card_lt_of_lt [Nontrivial S.V]
     (T : RegularTupleColourTower S) {m n : Nat} (hmn : m < n) :
     T.card m < T.card n :=
@@ -433,6 +478,9 @@ noncomputable def baseRows (T : RegularTupleColourTower S) (n : Nat) :
     Fin (n + 1) → T.LinearSpace n :=
   fun j c ↦ T.representative n c j
 
+/--
+@isnad1 id=isbasetu.0h3v.s7.d90ca64f47c3 from=translated src=- shape=b62180ca vocab=ccd537e8
+-/
 theorem baseRows_isBase (T : RegularTupleColourTower S) (n : Nat) :
     Saxl.IsBaseTuple (T.LinearGroup n) (T.LinearSpace n) (T.baseRows n) := by
   let := T.fintypeC n
@@ -447,6 +495,9 @@ theorem baseRows_isBase (T : RegularTupleColourTower S) (n : Nat) :
     rw [hword]
     exact Function.bijective_id
 
+/--
+@isnad1 id=not.1h4v.s7.e14811b35e0c from=translated src=- shape=ad98b7de vocab=95cafa4f
+-/
 theorem no_baseTuple_of_card_lt (T : RegularTupleColourTower S)
     {m n : Nat} (hcard : T.card m < T.card n) :
     ¬ ∃ rows : Fin (m + 1) → T.LinearSpace n,
@@ -536,6 +587,9 @@ noncomputable def regularTupleColour (S : EveryBaseSeed) (n : Nat)
     Quotient.mk (regularTupleSetoid S n) (⟨x, hx⟩ : RegularTuple S n)
   else Quotient.mk (regularTupleSetoid S n) (defaultRegularTuple S n)
 
+/--
+@isnad1 id=iff.2h4v.s7.21f277d868d2 from=translated src=- shape=dbee027a vocab=ee0a6d6b
+-/
 theorem regularTupleColour_eq_iff_sameOrbit (S : EveryBaseSeed) (n : Nat)
     {x y : Fin (n + 1) → S.V}
     (hx : Saxl.IsBaseTuple S.H S.V x)
@@ -545,6 +599,9 @@ theorem regularTupleColour_eq_iff_sameOrbit (S : EveryBaseSeed) (n : Nat)
   simp only [regularTupleColour, dite_eq_left hx, dite_eq_left hy]
   exact Quotient.eq
 
+/--
+@isnad1 id=ex.0h3v.s6.19e9c9e41dcc from=translated src=- shape=ab27b7b0 vocab=87bfb948
+-/
 theorem regularTupleColour_hits (S : EveryBaseSeed) (n : Nat)
     (c : RegularTupleColour S n) :
     ∃ x : Fin (n + 1) → S.V,
@@ -619,6 +676,9 @@ noncomputable def firstVectorOrbitColour (S : EveryBaseSeed) (tail : Nat) :
       obtain ⟨h, hh⟩ := hxy
       exact ⟨h, hh 0⟩)
 
+/--
+@isnad1 id=eq.1h3v.s7.f193952e6eb4 from=translated src=- shape=5e28081a vocab=c7a2c347
+-/
 theorem firstVectorOrbitColour_regularTupleColour
     (S : EveryBaseSeed) (tail : Nat)
     (x : Fin (tail + 1) → S.V)
@@ -653,6 +713,9 @@ def ExactTupleBaseSize
   (∃ x : Fin n → X, Saxl.IsBaseTuple G X x) ∧
     ∀ m < n, ¬ ∃ x : Fin m → X, Saxl.IsBaseTuple G X x
 
+/--
+@isnad1 id=injectiv.2h4v.s6.70a55a561302 from=translated src=- shape=3102722b vocab=da8b304b
+-/
 theorem isBaseTuple_injective_of_no_predecessor
     {G X : Type*} [Group G] [MulAction G X]
     {n : Nat} (x : Fin (n + 1) → X)
@@ -679,6 +742,9 @@ theorem isBaseTuple_injective_of_no_predecessor
         _ = x j := hji.symm
   | p k => exact hg k
 
+/--
+@isnad1 id=exactbas.1h3v.s4.0a24fdd07b2c from=translated src=- shape=56c79eb8 vocab=6e6a4189
+-/
 theorem exactBaseSize_of_exactTupleBaseSize
     {G X : Type*} [Group G] [MulAction G X] {n : Nat}
     (h : ExactTupleBaseSize G X n) : Saxl.ExactBaseSize G X n := by
@@ -693,6 +759,9 @@ theorem exactBaseSize_of_exactTupleBaseSize
   · intro m hm hset
     exact h.2 m hm ⟨hset.choose, hset.choose_spec.2⟩
 
+/--
+@isnad1 id=exacttup.1h3v.s7.5b7a44b43a55 from=translated src=- shape=22b2c4c7 vocab=9774b0f3
+-/
 theorem RegularTupleColourTower.linear_exactTupleBaseSize
     [Nontrivial S.H]
     (T : RegularTupleColourTower S) (n : Nat)
@@ -717,12 +786,18 @@ theorem RegularTupleColourTower.linear_exactTupleBaseSize
         have hmn : m < n := by omega
         exact T.no_baseTuple_of_card_lt (hcard m hmn)
 
+/--
+@isnad1 id=exacttup.0h3v.s7.07a3a07e72a1 from=translated src=- shape=f925efe8 vocab=22e2f35c
+-/
 theorem RegularTupleColourTower.linear_exactTupleBaseSize_of_seed
     [Nontrivial S.H] [Nontrivial S.V]
     (T : RegularTupleColourTower S) (n : Nat) :
     ExactTupleBaseSize (T.LinearGroup n) (T.LinearSpace n) (n + 1) :=
   T.linear_exactTupleBaseSize n (fun _m _hm ↦ T.card_lt_of_lt _hm)
 
+/--
+@isnad1 id=exacttup.2h3v.s6.094afbc86b03 from=translated src=- shape=ace0fdb2 vocab=a58a3941
+-/
 theorem affine_exactTupleBaseSize_succ
     (H V : Type*) [Group H] [AddCommGroup V] [DistribMulAction H V]
     {n : Nat} (hn : 0 < n) (h : ExactTupleBaseSize H V n) :
@@ -755,6 +830,9 @@ theorem affine_exactTupleBaseSize_succ
         apply h.2 m (Nat.lt_of_succ_lt_succ hm)
         exact ⟨_, hlinear⟩
 
+/--
+@isnad1 id=exactbas.2h3v.s6.d443068cde09 from=translated src=- shape=68dc304a vocab=c85105d2
+-/
 theorem affine_exactBaseSize_succ
     (H V : Type*) [Group H] [AddCommGroup V] [DistribMulAction H V]
     {n : Nat} (hn : 0 < n) (h : ExactTupleBaseSize H V n) :

@@ -95,7 +95,9 @@ private theorem kernelDetectorCheck_all (x : BitVec 16) :
   exact kernelDetectorBlocks block high middle low
 
 /-- The finite symplectic factor has no nontrivial normal abelian subgroup.
-This strengthens the elementary-abelian case used in Zhou §6. -/
+This strengthens the elementary-abelian case used in Zhou §6.
+@isnad1 id=eq.2h1v.s15.b2ff955344d9 from=translated src=- shape=1a465b85 vocab=0420745c
+-/
 theorem no_nontrivial_normal_abelian_subgroup
     (N : Subgroup Group) (hnormal : N.Normal)
     (hab : ∀ x y : N, x * y = y * x) : N = ⊥ := by

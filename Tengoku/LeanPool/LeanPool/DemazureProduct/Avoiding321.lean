@@ -42,6 +42,9 @@ structure tfas : Type extends AspSet where
 
 /-!
   Every 321-avoiding permutation of the integers is almost-sign-preserving. -/
+/--
+@isnad1 id=isasp.2h1v.s3.53dd87666e00 from=translated src=- shape=a179fb98 vocab=8136e102
+-/
 theorem is_asp_of_is_321a (τ : ℤ → ℤ) (h_bij : Function.Bijective τ)
     (h_321a : is321a τ) : isAsp τ := by
   have ex_src : ∃ u : ℤ, ∀ n : ℤ, ⟨n,u⟩ ∉ invSet τ := by
@@ -116,7 +119,9 @@ private lemma tfree_of_is_321a (τ : ℤ → ℤ) (h_321a : is321a τ) :
   exact ⟨le_of_lt uv_inv.2, le_of_lt vw_inv.2⟩
 
 /-- A bijection of `ℤ` is 321-avoiding exactly when its inversion set is a
-triangle-free ASP set. -/
+triangle-free ASP set.
+@isnad1 id=iff.1h1v.s3.e435c007faf0 from=translated src=- shape=c46d53ce vocab=3d469953
+-/
 theorem is_321a_iff_set_321a_prop (τ : ℤ → ℤ) (hperm : Function.Bijective τ) :
     is321a τ ↔ set_321a_prop (invSet τ) := by
   constructor
@@ -201,7 +206,9 @@ noncomputable def perm321aEquivTfas :
     · exact I.chi_of_toAspPerm χ
 
 /-- Characterize the sets of boxes that arise as inversion sets of
-321-avoiding ASP permutations. -/
+321-avoiding ASP permutations.
+@isnad1 id=iff.0h1v.s5.990a1e72b658 from=translated src=- shape=5a3cf13d vocab=27e04f9e
+-/
 theorem inv_321a_char (I : Set (ℤ × ℤ)) :
   set_321a_prop I
   ↔ (∃ τ : (ℤ → ℤ), (is321a τ ∧ Function.Bijective τ ∧ invSet τ = I)) := by
@@ -226,6 +233,9 @@ theorem inv_321a_char (I : Set (ℤ × ℤ)) :
 def isSrc (τ : AspPerm) (u : ℤ) : Prop :=
   ∃ v : ℤ, ⟨u, v⟩ ∈ invSet τ
 
+/--
+@isnad1 id=issrc.1h3v.s4.3d1efb3d6eb9 from=translated src=- shape=18b26fb0 vocab=7ab0fc94
+-/
 lemma src_of_inv {τ : AspPerm} {u v : ℤ} (uv_inv : ⟨u, v⟩ ∈ invSet τ) :
   isSrc τ u := by use v
 
@@ -233,6 +243,9 @@ lemma src_of_inv {τ : AspPerm} {u v : ℤ} (uv_inv : ⟨u, v⟩ ∈ invSet τ) 
 def isSnk (τ : AspPerm) (v : ℤ) : Prop :=
   ∃ u : ℤ, (u, v) ∈ invSet τ
 
+/--
+@isnad1 id=issnk.1h3v.s4.208065d7c0ed from=translated src=- shape=aaa0de1c vocab=6c7c9522
+-/
 lemma snk_of_inv {τ : AspPerm} {u v : ℤ} (uv_inv : ⟨u, v⟩ ∈ invSet τ) :
   isSnk τ v := by use u
 
@@ -246,6 +259,9 @@ section fixed_321a
 variable {τ : AspPerm} (h_321a : is321a τ)
 include h_321a
 
+/--
+@isnad1 id=is321a.1h1v.s4.dca2452cde40 from=translated src=- shape=7673f4cd vocab=2f698a75
+-/
 lemma inv_is_321a : is321a τ⁻¹.func := by
   intro i j k i_lt_j j_lt_k
   have h := h_321a (τ⁻¹ k) (τ⁻¹ j) (τ⁻¹ i)
@@ -263,6 +279,9 @@ lemma inv_is_321a : is321a τ⁻¹.func := by
   have := h h2 h1
   rcases this <;> linarith
 
+/--
+@isnad1 id=or.1h2v.s4.51e9bd15beca from=translated src=- shape=eebd2312 vocab=e988bce9
+-/
 lemma not_src_and_snk (n : ℤ) :
   ¬ (isSrc τ n) ∨ ¬(isSnk τ) n := by
   by_contra!
@@ -272,6 +291,9 @@ lemma not_src_and_snk (n : ℤ) :
   have := tfree_of_is_321a τ h_321a u n v
   rcases this <;> contradiction
 
+/--
+@isnad1 id=lt.3h3v.s4.650deb5ecae2 from=translated src=- shape=fdeed303 vocab=ba7d734c
+-/
 lemma snk_lt {v x : ℤ} (v_snk : isSnk τ v) (v_lt_x : v < x) :
   τ v < τ x := by
   by_contra! h
@@ -285,6 +307,9 @@ lemma snk_lt {v x : ℤ} (v_snk : isSnk τ v) (v_lt_x : v < x) :
   have := tfree_of_is_321a τ h_321a u v x
   rcases this <;> contradiction
 
+/--
+@isnad1 id=le.3h3v.s4.fddfb94febb2 from=translated src=- shape=fdeed303 vocab=c837605b
+-/
 lemma snk_le {v x : ℤ} (v_snk : isSnk τ v) (v_le_x : v ≤ x) :
   τ v ≤ τ x := by
   by_cases heq : v = x
@@ -293,6 +318,9 @@ lemma snk_le {v x : ℤ} (v_snk : isSnk τ v) (v_le_x : v ≤ x) :
     apply le_of_lt
     exact snk_lt h_321a v_snk v_lt_x
 
+/--
+@isnad1 id=lt.3h3v.s4.b80dde842572 from=translated src=- shape=9893b246 vocab=f3f6a7b7
+-/
 lemma src_gt {u x : ℤ} (u_src : isSrc τ u) (x_lt_u : x < u) :
   τ x < τ u := by
   by_contra! h
@@ -306,6 +334,9 @@ lemma src_gt {u x : ℤ} (u_src : isSrc τ u) (x_lt_u : x < u) :
   have := tfree_of_is_321a τ h_321a x u v
   rcases this <;> contradiction
 
+/--
+@isnad1 id=le.3h3v.s4.52dacb1013ea from=translated src=- shape=9893b246 vocab=d0688810
+-/
 lemma src_ge {u x : ℤ} (u_src : isSrc τ u) (x_le_u : x ≤ u) :
   τ x ≤ τ u := by
   by_cases h : x = u
@@ -327,6 +358,9 @@ structure between_inv_prop (u x v : ℤ) where
   /-- Sink status is equivalent to absence of the right inversion. -/
   snk_iff_right_ninv : isSnk τ x ↔ ⟨x, v⟩ ∉ invSet τ
 
+/--
+@isnad1 id=betweeni.4h4v.s5.bd23b0e67cc6 from=translated src=- shape=c4091e49 vocab=da25e855
+-/
 lemma between_inv {u x v : ℤ}
   (uv_inv : ⟨u, v⟩ ∈ invSet τ) (u_le_x : u ≤ x) (x_le_v : x ≤ v) :
   between_inv_prop (τ := τ) u x v := by
@@ -365,6 +399,9 @@ lemma between_inv {u x v : ℤ}
     constructor <;> simp [x_src, x_nsnk, h_ux, h_xv]
 
 omit h_321a in
+/--
+@isnad1 id=mem.2h5v.s5.373ea04bd3e0 from=translated src=- shape=3cc146e7 vocab=f587579d
+-/
 lemma inv_of_quadrants {τ : AspPerm} {a b u v : ℤ}
   (hu : u ∈ northwestSet τ a b) (hv : v ∈ southeastSet τ a b) :
   ⟨u, v⟩ ∈ invSet τ := by
@@ -372,6 +409,9 @@ lemma inv_of_quadrants {τ : AspPerm} {a b u v : ℤ}
   have τ_u_gt_v : τ v < τ u := lt_of_lt_of_le hv.2 hu.2
   exact ⟨u_lt_v, τ_u_gt_v⟩
 
+/--
+@isnad1 id=eq.5h5v.s6.6d64be07332c from=translated src=- shape=8a6ee522 vocab=7ff8dde4
+-/
 lemma split_s {u v : ℤ} {a b : ℤ}
   (u_lt_b : u < b) (b_le_v : b ≤ v) (τv_lt_a : τ v < a) (τu_ge_a : τ u ≥ a) :
   τ.s a v + τ.s (τ v) b = τ.s a b := by
@@ -414,6 +454,9 @@ lemma split_s {u v : ℤ} {a b : ℤ}
     exact_mod_cast h_ncard
   simpa [AspPerm.s_eq_ncard, add_comm] using h_cast.symm
 
+/--
+@isnad1 id=and.6h5v.s7.6a9630221130 from=translated src=- shape=ce7e8151 vocab=393eaf1a
+-/
 lemma uv_duality_ge {a b : ℤ}
   {m m' : ℤ} (m_pos : m > 0) (m'_pos : m' > 0) (m_sum : m + m' = τ.s a b + 1) :
   isSnk τ (τ.v b m_pos) → isSnk τ (τ⁻¹ (τ⁻¹.u a m'_pos)) →
@@ -499,6 +542,9 @@ lemma uv_duality_ge {a b : ℤ}
       simpa using snk_le h_321a τiw_snk v_ge_τiw
     exact lt_irrefl w (lt_of_le_of_lt τv_ge_w τv_lt_w)
 
+/--
+@isnad1 id=other.4h5v.s7.ac77d4c2af0d from=translated src=- shape=cb55a6f1 vocab=22f59df1
+-/
 lemma uv_duality_lt (a b : ℤ) {m m' : ℤ} (m_pos : m > 0) (m'_pos : m' > 0)
   (h_sum : m + m' ≥ τ.s a b + 2) :
   let v := τ.v b m_pos
@@ -559,6 +605,9 @@ lemma uv_duality_lt (a b : ℤ) {m m' : ℤ} (m_pos : m > 0) (m'_pos : m' > 0)
   have := Finset.card_le_card (Finset.union_subset A_subset B_subset)
   linarith [this, ineq]
 
+/--
+@isnad1 id=eq.5h5v.s6.19614593d7fb from=translated src=- shape=2d2ad04f vocab=35766b38
+-/
 lemma split_s' {u v : ℤ} {a b : ℤ}
   (u_lt_b : u < b) (b_le_v : b ≤ v) (τv_lt_a : τ v < a) (τu_ge_a : τ u ≥ a) :
   τ⁻¹.s b (τ u) + τ⁻¹.s u a = τ⁻¹.s b a := by
@@ -580,15 +629,24 @@ variable {β : AspPerm} (h_L : β ≤L τ)
 include h_L
 
 omit h_321a in
+/--
+@isnad1 id=issrc.2h3v.s4.aaff5e8e67d5 from=translated src=- shape=db2301d2 vocab=4f7832a6
+-/
 lemma src_of_src {n : ℤ} (h_src : isSrc β n) : isSrc τ n := by
   rcases h_src with ⟨v, h_inv⟩
   exact src_of_inv (h_L h_inv)
 
 omit h_321a in
+/--
+@isnad1 id=issnk.2h3v.s4.78266003be21 from=translated src=- shape=db2301d2 vocab=a3207780
+-/
 lemma snk_of_snk {n : ℤ} (h_snk : isSnk β n) : isSnk τ n := by
   rcases h_snk with ⟨u, h_inv⟩
   exact snk_of_inv (h_L h_inv)
 
+/--
+@isnad1 id=is321a.2h2v.s3.565551d89c04 from=translated src=- shape=149b3374 vocab=b7ffa24c
+-/
 lemma is_321a_of_lel : is321a β := by
   rw [is_321a_iff_set_321a_prop τ τ.bijective] at h_321a
   rw [is_321a_iff_set_321a_prop β β.bijective]
@@ -616,6 +674,9 @@ structure between_inv_lel_prop (β τ : AspPerm) (u x v : ℤ) where
   src_iff : isSrc β x ↔ isSrc τ x
   snk_iff : isSnk β x ↔ isSnk τ x
 
+/--
+@isnad1 id=betweeni.5h5v.s5.65374364e88f from=translated src=- shape=b30a41d5 vocab=a13b4215
+-/
 lemma between_inv_lel
   {u x v : ℤ} (uv_inv : ⟨u, v⟩ ∈ invSet β) (u_le_x : u ≤ x) (x_le_v : x ≤ v)
   : between_inv_lel_prop β τ u x v  := by
@@ -673,6 +734,9 @@ def intervalSub (i₁ i₂ : (ℤ × ℤ)) : Prop :=
 /-- Infix notation for interval-subordination of inversion boxes. -/
 infix:50 " ≼ " => intervalSub
 
+/--
+@isnad1 id=iff.4h6v.s6.a208a147015e from=translated src=- shape=8054a92d vocab=ae49542d
+-/
 lemma inv_of_lel_iff
   {u v u' v' : ℤ} (uv_inv : ⟨u, v⟩ ∈ invSet β) (nested : ⟨u', v'⟩ ≼ ⟨u, v⟩) :
   ⟨u', v'⟩ ∈ invSet β ↔ ⟨u', v'⟩ ∈ invSet τ := by
@@ -700,6 +764,9 @@ lemma inv_of_lel_iff
   exact u'v'_inv
 
 omit h_L in
+/--
+@isnad1 id=iff.4h6v.s6.1a1bae886a82 from=translated src=- shape=d4d5eb5a vocab=e73a22d1
+-/
 lemma sr_inv_of_ler_iff {α : AspPerm} (h_R : α ≤R τ)
   {u v u' v' : ℤ} (uv_inv : ⟨u, v⟩ ∈ (τ.sr α) '' invSet α)
   (nested : ⟨u, v⟩ ≼ ⟨u', v'⟩) :
@@ -728,6 +795,9 @@ lemma sr_inv_of_ler_iff {α : AspPerm} (h_R : α ≤R τ)
     simpa [J] using (τ.sr_crit α u' v').mpr invJ
 
 omit h_321a h_L in
+/--
+@isnad1 id=set321ap.0h2v.s3.da9d97a577fd from=translated src=- shape=82ed3eb1 vocab=f9e1573a
+-/
 lemma set_321a_prop_of_func (avset : tfas) (χ : ℤ) :
     set_321a_prop (invSet (avset.recon χ)) := by
   constructor
@@ -785,6 +855,9 @@ lemma eq_s'_of_lel
   have nested : ⟨u, x⟩ ≼ ⟨u, v⟩ := by constructor <;> linarith
   exact inv_of_lel_iff h_321a h_L uv_inv nested
 
+/--
+@isnad1 id=and.5h5v.s6.3eedf9192693 from=translated src=- shape=c767a05a vocab=7c7eef7f
+-/
 lemma uv_eq_of_lel
   (b : ℤ) {m n : ℤ} (m_pos : m > 0) (n_pos : n > 0) :
   ⟨τ.u b n_pos, τ.v b m_pos⟩ ∈ invSet β
@@ -806,6 +879,9 @@ lemma uv_eq_of_lel
   exact ⟨ (β.u_crit b n_pos u).mpr ⟨n_eq, u_lt_b⟩,
     (β.v_crit b m_pos v).mpr ⟨m_eq, b_le_v⟩ ⟩
 
+/--
+@isnad1 id=and.5h5v.s6.e67a26369d0b from=translated src=- shape=0a0c013d vocab=7c7eef7f
+-/
 lemma uv_eq_of_lel'
   (b : ℤ) {m n : ℤ} (m_pos : m > 0) (n_pos : n > 0) :
   ⟨β.u b n_pos, β.v b m_pos⟩ ∈ invSet β
@@ -827,6 +903,9 @@ lemma uv_eq_of_lel'
   exact ⟨ (τ.u_crit b n_pos u).mpr ⟨n_eq, u_lt_b⟩,
     (τ.v_crit b m_pos v).mpr ⟨m_eq, b_le_v⟩ ⟩
 
+/--
+@isnad1 id=iff.4h5v.s6.d2ccd0c10e14 from=translated src=- shape=58d7fc01 vocab=f7ad908e
+-/
 theorem lel_ramp
   (b : ℤ) {m n : ℤ} (m_pos : m > 0) (n_pos : n > 0) :
   ⟨τ.u b n_pos, τ.v b m_pos⟩ ∈ invSet β
@@ -844,6 +923,9 @@ theorem lel_ramp
     rwa [← uv_eq.1, ← uv_eq.2]
 
 omit h_L in
+/--
+@isnad1 id=iff.4h5v.s6.d8bfe63c24d0 from=translated src=- shape=a0e24fea vocab=e260c23b
+-/
 theorem lel_lamp {α : AspPerm} (h_R : α ≤R τ)
   (a : ℤ) {m n : ℤ} (m_pos : m > 0) (n_pos : n > 0) :
   ⟨τ⁻¹.u a m_pos, τ⁻¹.v a n_pos⟩ ∈ invSet α⁻¹.func
@@ -854,6 +936,9 @@ theorem lel_lamp {α : AspPerm} (h_R : α ≤R τ)
   rw [this]
   simp only [α⁻¹.ramp_lamp_dual a, inv_inv]
 
+/--
+@isnad1 id=other.4h5v.s6.0e45d84bc5f9 from=translated src=- shape=0948e375 vocab=64f9fc6d
+-/
 theorem inv_of_lel_iff_ramp
   {u b v : ℤ} (u_lt_b : u < b) (b_le_v : b ≤ v) :
   let m := τ.s (τ v) b + 1
@@ -882,6 +967,9 @@ section factorization
 variable {α : AspPerm} (h_R : α ≤R τ) (h_χ : τ.χ = α.χ + β.χ)
 include τ α β h_321a h_R h_L h_χ
 
+/--
+@isnad1 id=mem.9h7v.s6.82f9fd70dc36 from=translated src=- shape=64c74e0d vocab=597fb6f2
+-/
 lemma inversion_in_union (a b u v : ℤ) (dprod : α.dprodValGe β a b (τ.s a b)) :
   u < b → b ≤ v → τ u ≥ a → τ v < a
   → ⟨u, v⟩ ∈ (τ.sr α) '' (invSet α) ∪ invSet β := by
@@ -934,6 +1022,9 @@ lemma inversion_in_union (a b u v : ℤ) (dprod : α.dprodValGe β a b (τ.s a b
     apply h.mpr at hα
     exact (τ.sr_crit α u v).mpr hα
 
+/--
+@isnad1 id=dprodval.5h5v.s6.3a6891b47070 from=translated src=- shape=605386a7 vocab=5f4d50be
+-/
 lemma union_sufficient (a b : ℤ)
     (h_union : invSet τ ⊆ ((τ.sr α) '' invSet α) ∪ invSet β) :
    α.dprodValGe β a b (τ.s a b)
@@ -990,6 +1081,9 @@ lemma union_sufficient (a b : ℤ)
     exact ⟨lt_of_lt_of_le u_lt_b v_ge_b, lt_of_lt_of_le τv_lt_a τu_ge_a⟩
   exact h_union uv_inv
 
+/--
+@isnad1 id=other.7h6v.s7.80a8e7094cb0 from=translated src=- shape=1fc06e44 vocab=f0ca5ed2
+-/
 lemma excess_of_not_isolated {u v₁ v₂ : ℤ} (v₁_lt_v₂ : v₁ < v₂)
     (uv₁_inv : ⟨u, v₁⟩ ∈ (τ.sr α) '' invSet α)
     (uv₂_inv : ⟨u, v₂⟩ ∈ invSet β) :
@@ -1069,6 +1163,9 @@ lemma excess_of_not_isolated {u v₁ v₂ : ℤ} (v₁_lt_v₂ : v₁ < v₂)
       linarith [τ.s_nonneg a (τ v₁ + 1)]
 
 omit h_χ in
+/--
+@isnad1 id=ex.11h9v.s8.73e0aed845f1 from=translated src=- shape=83acfafb vocab=ab0610ac
+-/
 lemma not_isolated_of_domino (a b m m' n n' : ℤ)
   (m_pos : m ≥ 1) (m'_pos : m' ≥ 1) (n_pos : n ≥ 1) (n'_pos : n' ≥ 1)
   (msum : m + m' = τ.s a b + 2) (nsum : n + n' = τ⁻¹.s b a + 1)
@@ -1165,6 +1262,9 @@ lemma not_isolated_of_domino (a b m m' n n' : ℤ)
     · subst xJ; exact ⟨Jα, Jβ⟩
   exact ⟨I_prec_J, I_ne_J⟩
 
+/--
+@isnad1 id=ex.5h5v.s7.c3bddab36d9f from=translated src=- shape=c7f3f5ab vocab=2efc4ed0
+-/
 lemma not_isolated_of_excess {a b : ℤ} (h_s : α.dprodValGe β a b (τ.s a b + 1)) :
   ∃ (I J : ℤ × ℤ), {I, J} ⊆ (τ.sr α '' invSet α) ∩ invSet β ∧ I ≼ J ∧ I ≠ J
   := by
@@ -1318,7 +1418,9 @@ lemma not_isolated_of_excess {a b : ℤ} (h_s : α.dprodValGe β a b (τ.s a b +
 
 /-- In the 321-avoiding setting, the inequality `τ ≤ α ⋆ β` is equivalent to
 the inversion set of `τ` lying in the union of the shifted inversion set of
-`α` and the inversion set of `β`. -/
+`α` and the inversion set of `β`.
+@isnad1 id=iff.4h3v.s6.5ac3d7ea6595 from=translated src=- shape=7d256917 vocab=c2d74852
+-/
 theorem dprod_ge_iff_union :
     τ ≤ α ⋆ β ↔ invSet τ ⊆ (τ.sr α) '' invSet α ∪ invSet β := by
   rw [τ.le_star_iff α β]
@@ -1338,7 +1440,9 @@ def isolated (S : Set (ℤ × ℤ)) : Prop := ∀ I ∈ S, ∀ J ∈ S, I ≼ J 
 
 /-- In the 321-avoiding setting, the inequality `α ⋆ β ≤ τ` is equivalent to
 isolatedness of the overlap between the shifted inversion set of `α` and the
-inversion set of `β`. -/
+inversion set of `β`.
+@isnad1 id=iff.4h3v.s6.7e5f89a3a75b from=translated src=- shape=259f14c2 vocab=95856bc0
+-/
 theorem dprod_le_iff_isolated : α ⋆ β ≤ τ
   ↔ isolated ((τ.sr α) '' (invSet α) ∩ invSet β)  := by
   rw [τ.ge_star_iff α β]
@@ -1408,7 +1512,9 @@ theorem dprod_le_iff_isolated : α ⋆ β ≤ τ
 
 omit h_L h_R h_χ in
 /-- Characterize the Demazure factorization `τ = α ⋆ β` by equality of shifts,
-a union formula for inversion sets, and isolatedness of the overlap. -/
+a union formula for inversion sets, and isolatedness of the overlap.
+@isnad1 id=iff.1h3v.s6.d94597011a89 from=translated src=- shape=8c64566c vocab=28230902
+-/
 theorem dprod_eq_iff : τ = α ⋆ β
   ↔ (α.χ + β.χ = τ.χ)
     ∧ invSet τ = (τ.sr α) '' (invSet α) ∪ invSet β

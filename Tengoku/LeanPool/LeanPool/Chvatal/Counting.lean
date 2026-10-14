@@ -61,30 +61,40 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 def indicator (B : Family ι) (x : Finset ι) : ℝ := if x ∈ B then 1 else 0
 
 omit [Fintype ι] in
-/-- Evaluating the Section 4 indicator at a member of its family. -/
+/-- Evaluating the Section 4 indicator at a member of its family.
+@isnad1 id=eq.1h3v.s5.6b12e759fc35 from=translated src=- shape=3f7a55bd vocab=6d1c244e
+-/
 @[simp] theorem indicator_of_mem {B : Family ι} {x : Finset ι} (hx : x ∈ B) :
     B.indicator x = 1 := by simp [indicator, hx]
 
 omit [Fintype ι] in
-/-- Evaluating the Section 4 indicator outside its family. -/
+/-- Evaluating the Section 4 indicator outside its family.
+@isnad1 id=eq.1h3v.s5.05b561bb6b70 from=translated src=- shape=6956a64e vocab=6d1c244e
+-/
 @[simp] theorem indicator_of_not_mem {B : Family ι} {x : Finset ι} (hx : x ∉ B) :
     B.indicator x = 0 := by simp [indicator, hx]
 
 /-- The expectation of a family indicator is its density in the Boolean cube,
-the normalization used in both counting formulas in Section 4. -/
+the normalization used in both counting formulas in Section 4.
+@isnad1 id=eq.0h2v.s5.5b6badda5d63 from=translated src=- shape=3f93083e vocab=39bb4c53
+-/
 theorem cubeMean_indicator (B : Family ι) :
     cubeMean B.indicator = B.card / (Fintype.card (Finset ι) : ℝ) := by
   simp [cubeMean, indicator]
 
 omit [Fintype ι] in
 /-- The pointwise product of two family indicators counts their intersection,
-as used in the covariance calculation in Section 4. -/
+as used in the covariance calculation in Section 4.
+@isnad1 id=eq.0h3v.s5.ce45b4a913dd from=translated src=- shape=0f773955 vocab=07ba1d06
+-/
 theorem indicator_inter (D B : Family ι) :
     (D ∩ B).indicator = fun x => D.indicator x * B.indicator x := by
   funext x
   by_cases hD : x ∈ D <;> by_cases hB : x ∈ B <;> simp [indicator, hD, hB]
 
-/-- Complementing family membership gives the function `1 - 𝟙_D` of Section 4. -/
+/-- Complementing family membership gives the function `1 - 𝟙_D` of Section 4.
+@isnad1 id=eq.0h2v.s6.4e77c31939af from=translated src=- shape=00e17072 vocab=0841e74c
+-/
 theorem indicator_compl (D : Family ι) :
     Dᶜ.indicator = fun x => 1 - D.indicator x := by
   funext x
@@ -92,7 +102,9 @@ theorem indicator_compl (D : Family ι) :
 
 omit [Fintype ι] in
 /-- An increasing family has an increasing indicator, as used for `g = 𝟙_B`
-in Section 4. -/
+in Section 4.
+@isnad1 id=monotone.1h2v.s4.7d701dd2dd8a from=translated src=- shape=02f8a7ba vocab=fff8754a
+-/
 theorem IsIncreasing.monotone_indicator {B : Family ι} (hB : B.IsIncreasing) :
     Monotone B.indicator := by
   intro x y hxy
@@ -104,7 +116,9 @@ theorem IsIncreasing.monotone_indicator {B : Family ι} (hB : B.IsIncreasing) :
 
 omit [Fintype ι] in
 /-- For a hereditary family, the function `f = 1 - 𝟙_D` in Section 4 is
-increasing. -/
+increasing.
+@isnad1 id=monotone.1h2v.s5.0abb0965aece from=translated src=- shape=97f6c7f2 vocab=b56ae442
+-/
 theorem IsHereditary.monotone_one_sub_indicator {D : Family ι}
     (hD : D.IsHereditary) : Monotone (fun x => 1 - D.indicator x) := by
   intro x y hxy
@@ -114,7 +128,9 @@ theorem IsHereditary.monotone_one_sub_indicator {D : Family ι}
   · by_cases hx : x ∈ D <;> simp [indicator, hx, hy]
 
 /-- The indicator of an antipodal family is self-dual, giving the antipodality
-hypothesis for `g` in the application of Corollary 1.3. -/
+hypothesis for `g` in the application of Corollary 1.3.
+@isnad1 id=eq.1h2v.s5.587f934e18b3 from=translated src=- shape=7bca363b vocab=3f3b747d
+-/
 theorem IsAntipodal.dual_indicator {B : Family ι} (hB : B.IsAntipodal) :
     Chvatal.dual B.indicator = B.indicator := by
   funext x
@@ -126,14 +142,18 @@ theorem IsAntipodal.dual_indicator {B : Family ι} (hB : B.IsAntipodal) :
     simp [Chvatal.dual, indicator, hx, hxc]
 
 /-- Family duality and Boolean-function duality agree under indicators, as
-used when translating the families in Sections 3 and 4. -/
+used when translating the families in Sections 3 and 4.
+@isnad1 id=eq.0h2v.s5.d9cb2c13b9c0 from=translated src=- shape=fedf3d09 vocab=10241908
+-/
 theorem indicator_dual (B : Family ι) :
     B.dual.indicator = Chvatal.dual B.indicator := by
   funext x
   by_cases hx : xᶜ ∈ B <;> simp [indicator, Chvatal.dual, hx]
 
 /-- An antipodal family has uniform density one half, the input to Section 4's
-covariance calculation. -/
+covariance calculation.
+@isnad1 id=eq.1h2v.s5.4b1ac95c03e3 from=translated src=- shape=e3ef45cf vocab=5b0d1f6e
+-/
 theorem IsAntipodal.cubeMean_indicator {B : Family ι} (hB : B.IsAntipodal) :
     cubeMean B.indicator = 1 / 2 := by
   have hmean := cubeMean_dual B.indicator
@@ -142,7 +162,9 @@ theorem IsAntipodal.cubeMean_indicator {B : Family ι} (hB : B.IsAntipodal) :
 
 /-- The first counting identity in Section 4: for `f = 1 - 𝟙_D` and
 `g = 𝟙_B`, with `B` antipodal, covariance is
-`(|D| / 2 - |D ∩ B|) / 2^n`. Heredity is unnecessary for this identity. -/
+`(|D| / 2 - |D ∩ B|) / 2^n`. Heredity is unnecessary for this identity.
+@isnad1 id=eq.1h3v.s6.e3dadc62c6bc from=translated src=- shape=fc5403b2 vocab=b7659ce8
+-/
 theorem covariance_one_sub_indicator {D B : Family ι} (hB : B.IsAntipodal) :
     covariance (fun x => 1 - D.indicator x) B.indicator =
       ((D.card : ℝ) / 2 - (D ∩ B).card) / Fintype.card (Finset ι) := by
@@ -156,7 +178,9 @@ theorem covariance_one_sub_indicator {D B : Family ι} (hB : B.IsAntipodal) :
   ring
 
 /-- The converse indicator bridge in Section 4: a self-dual family indicator
-comes from an antipodal family. -/
+comes from an antipodal family.
+@isnad1 id=iff.0h2v.s5.dc9d146d3b87 from=translated src=- shape=2cb4dc84 vocab=3f3b747d
+-/
 theorem isAntipodal_iff_dual_indicator (B : Family ι) :
     B.IsAntipodal ↔ Chvatal.dual B.indicator = B.indicator := by
   refine ⟨IsAntipodal.dual_indicator, ?_⟩
@@ -172,14 +196,18 @@ def oneSupport (f : Finset ι → ℝ) : Family ι := by
   exact Finset.univ.filter (fun x => f x = 1)
 
 omit [DecidableEq ι] in
-/-- Membership in the support used in Section 4's converse implication. -/
+/-- Membership in the support used in Section 4's converse implication.
+@isnad1 id=iff.0h3v.s5.32cd4d018cc8 from=translated src=- shape=8e85c9e3 vocab=841e72c0
+-/
 @[simp] theorem mem_oneSupport {f : Finset ι → ℝ} {x : Finset ι} :
     x ∈ oneSupport f ↔ f x = 1 := by
   classical
   simp [oneSupport]
 
 /-- Taking the indicator of a Boolean function's support recovers the function,
-as required in Section 4's converse construction. -/
+as required in Section 4's converse construction.
+@isnad1 id=eq.1h2v.s5.72a14f0c6da4 from=translated src=- shape=d4e25955 vocab=1b05568e
+-/
 theorem indicator_oneSupport {f : Finset ι → ℝ}
     (hf : ∀ x, f x = 0 ∨ f x = 1) : (oneSupport f).indicator = f := by
   funext x
@@ -187,7 +215,9 @@ theorem indicator_oneSupport {f : Finset ι → ℝ}
 
 omit [DecidableEq ι] in
 /-- The support of an increasing Boolean function is an increasing family,
-the first family construction in Section 4's converse. -/
+the first family construction in Section 4's converse.
+@isnad1 id=isincrea.2h2v.s5.027de10ff665 from=translated src=- shape=9a9dbbbd vocab=820194df
+-/
 theorem isIncreasing_oneSupport {f : Finset ι → ℝ}
     (hf : ∀ x, f x = 0 ∨ f x = 1) (hm : Monotone f) :
     (oneSupport f).IsIncreasing := by
@@ -200,7 +230,9 @@ theorem isIncreasing_oneSupport {f : Finset ι → ℝ}
   · exact mem_oneSupport.mpr hy
 
 /-- The complement of an increasing family is hereditary, used for
-`D = supp (1 - f)` in Section 4's converse. -/
+`D = supp (1 - f)` in Section 4's converse.
+@isnad1 id=isheredi.1h2v.s5.af02c3864d42 from=translated src=- shape=42071d83 vocab=1ec07109
+-/
 theorem IsIncreasing.isHereditary_compl {B : Family ι} (hB : B.IsIncreasing) :
     Bᶜ.IsHereditary := by
   intro x y hxy hy
@@ -209,20 +241,26 @@ theorem IsIncreasing.isHereditary_compl {B : Family ι} (hB : B.IsIncreasing) :
 
 omit [Fintype ι] in
 /-- A family indicator is Boolean-valued, as required when invoking
-Corollary 1.3 in Section 4. -/
+Corollary 1.3 in Section 4.
+@isnad1 id=isboolea.0h2v.s3.dd0bb7445ed3 from=translated src=- shape=ed10201d vocab=80bf6d17
+-/
 theorem isBoolean_indicator (B : Family ι) : IsBoolean B.indicator := by
   intro x
   by_cases hx : x ∈ B <;> simp [indicator, hx]
 
 omit [Fintype ι] in
-/-- The complement indicator `1 - 𝟙_D` used in Section 4 is Boolean-valued. -/
+/-- The complement indicator `1 - 𝟙_D` used in Section 4 is Boolean-valued.
+@isnad1 id=isboolea.0h2v.s4.321abfd2e1f2 from=translated src=- shape=d394592b vocab=3637a404
+-/
 theorem isBoolean_one_sub_indicator (D : Family ι) :
     IsBoolean (fun x => 1 - D.indicator x) := by
   intro x
   by_cases hx : x ∈ D <;> simp [indicator, hx]
 
 /-- Each coordinate sign has uniform mean zero, the cancellation used to count
-influences in Section 4. -/
+influences in Section 4.
+@isnad1 id=eq.0h2v.s4.954ec3e5462f from=translated src=- shape=6cdb3b85 vocab=7f08cdcd
+-/
 theorem cubeMean_coordinateSign (i : ι) : cubeMean (coordinateSign i) = 0 := by
   have heq : coordinateSign i = fun x => -walsh {i} x := by
     funext x
@@ -232,7 +270,9 @@ theorem cubeMean_coordinateSign (i : ι) : cubeMean (coordinateSign i) = 0 := by
 
 /-- The second counting identity in Section 4: the influence of `1 - 𝟙_D`
 is twice the number of boundary edges in coordinate `i`, divided by `2^n`.
-The numerator is `|D| - 2 |D_i|`. -/
+The numerator is `|D| - 2 |D_i|`.
+@isnad1 id=eq.1h3v.s6.0b2d74448a8d from=translated src=- shape=99ff7cce vocab=23ab115f
+-/
 theorem influence_one_sub_indicator {D : Family ι} (hD : D.IsHereditary) (i : ι) :
     influence (fun x => 1 - D.indicator x) i =
       2 * ((D.card : ℝ) - 2 * (D.star i).card) / Fintype.card (Finset ι) := by
@@ -248,7 +288,9 @@ theorem influence_one_sub_indicator {D : Family ι} (hD : D.IsHereditary) (i : �
   ring
 
 /-- The coordinatewise form of equation (17) in Section 4. Taking the minimum
-influence and the maximum star size yields the displayed equation in the paper. -/
+influence and the maximum star size yields the displayed equation in the paper.
+@isnad1 id=eq.2h4v.s7.bb6aeb39f2a3 from=translated src=- shape=008c6137 vocab=68400321
+-/
 theorem covariance_sub_quarter_influence {D B : Family ι}
     (hD : D.IsHereditary) (hB : B.IsAntipodal) (i : ι) :
     covariance (fun x => 1 - D.indicator x) B.indicator -
@@ -259,7 +301,9 @@ theorem covariance_sub_quarter_influence {D B : Family ι}
 
 /-- Equation (17) of Section 4, with its finite minimum of influences and
 maximum of star cardinalities. A nonempty coordinate type makes the minimum
-well-defined. -/
+well-defined.
+@isnad1 id=eq.2h3v.s7.7e13514e8b30 from=translated src=- shape=38c2e41b vocab=0e76dfea
+-/
 theorem covariance_sub_quarter_min_influence [Nonempty ι] {D B : Family ι}
     (hD : D.IsHereditary) (hB : B.IsAntipodal) :
     covariance (fun x => 1 - D.indicator x) B.indicator -
@@ -285,7 +329,9 @@ theorem covariance_sub_quarter_min_influence [Nonempty ι] {D B : Family ι}
   exact covariance_sub_quarter_influence hD hB i
 
 /-- Equation (17) turns a coordinate's influence bound into the corresponding
-star bound, in either direction. -/
+star bound, in either direction.
+@isnad1 id=iff.2h4v.s7.28735fa8e019 from=translated src=- shape=31434491 vocab=15904d37
+-/
 theorem influence_le_four_covariance_iff {D B : Family ι}
     (hD : D.IsHereditary) (hB : B.IsAntipodal) (i : ι) :
     influence (fun x => 1 - D.indicator x) i ≤
@@ -325,7 +371,9 @@ def AntipodalCorrelationBound (ι : Type*) [Fintype ι] [DecidableEq ι] : Prop 
 
 /-- Theorem 1.1 deduced from Corollary 1.3, exactly as in Section 4. The analytic
 correlation theorem is an explicit hypothesis: this declaration does not claim
-to prove that analytic assertion. -/
+to prove that analytic assertion.
+@isnad1 id=hasstarp.2h2v.s4.d5a5d9ffa84a from=translated src=- shape=fc688b40 vocab=0167bc62
+-/
 theorem chvatal_of_antipodal_correlation [Nonempty ι]
     (hcorr : AntipodalCorrelationBound ι) {D : Family ι} (hD : D.IsHereditary) :
     D.HasStarProperty := by
@@ -339,7 +387,9 @@ theorem chvatal_of_antipodal_correlation [Nonempty ι]
   exact ⟨i, (Family.influence_le_four_covariance_iff hD hB.isAntipodal i).mp hi⟩
 
 /-- Section 4's converse: a star bound for every hereditary family implies the
-antipodal correlation bound, using `D = supp(1-f)` and `B = supp(g)`. -/
+antipodal correlation bound, using `D = supp(1-f)` and `B = supp(g)`.
+@isnad1 id=antipoda.1h1v.s4.81a9b00cf39d from=translated src=- shape=743e1817 vocab=a4346887
+-/
 theorem antipodal_correlation_of_chvatal
     (hstar : ∀ D : Family ι, D.IsHereditary → D.HasStarProperty) :
     AntipodalCorrelationBound ι := by
@@ -367,7 +417,9 @@ theorem antipodal_correlation_of_chvatal
 
 /-- The equivalence recalled in Section 4 between Chvátal's star assertion and
 Corollary 1.3's antipodal correlation assertion. Both sides remain explicit
-propositions; no direction relies on an unproved result. -/
+propositions; no direction relies on an unproved result.
+@isnad1 id=iff.0h1v.s4.447ca444b47b from=translated src=- shape=14216226 vocab=0167bc62
+-/
 theorem chvatal_iff_antipodal_correlation [Nonempty ι] :
     (∀ D : Family ι, D.IsHereditary → D.HasStarProperty) ↔
       AntipodalCorrelationBound ι :=

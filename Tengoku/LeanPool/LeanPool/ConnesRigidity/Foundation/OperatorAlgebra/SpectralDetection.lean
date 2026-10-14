@@ -28,6 +28,9 @@ open MeasureTheory Filter Set
 open scoped ENNReal Topology BigOperators
 
 /- Uniform primitive detection counts bound the active spectral mass. Paper: §4. -/
+/--
+@isnad1 id=le.5h7v.s7.ad03583f6465 from=translated src=- shape=e56ab606 vocab=7abb0721
+-/
 theorem measure_detection_gap_of_uniform_primitive_counts
     {α ι : Type*} [MeasurableSpace α]
     (μ : Measure α) (primitive : Finset ι)
@@ -87,6 +90,9 @@ theorem measure_detection_gap_of_uniform_primitive_counts
   simpa only [mul_comm, mul_left_comm] using hweighted
 
 /- Finite-measure form of the uniform primitive-count estimate. Paper: §4. -/
+/--
+@isnad1 id=le.5h7v.s7.eba0ecd6e059 from=translated src=- shape=e1b8ae20 vocab=67e780fd
+-/
 theorem measureReal_detection_gap_of_uniform_primitive_counts
     {α ι : Type*} [MeasurableSpace α]
     (μ : Measure α) [IsFiniteMeasure μ] (primitive : Finset ι)
@@ -109,6 +115,9 @@ theorem measureReal_detection_gap_of_uniform_primitive_counts
     ENNReal.toReal_ofNat] using hreal
 
 /- Monotone exhaustion bounds the complement of a distinguished point. Paper: §4. -/
+/--
+@isnad1 id=le.2h4v.s6.58b51261cafa from=translated src=- shape=d3f03b52 vocab=c4c6d662
+-/
 theorem measureReal_iUnion_le_of_monotone
     {α : Type*} [MeasurableSpace α]
     (μ : Measure α) [IsFiniteMeasure μ] (U : ℕ → Set α)
@@ -123,6 +132,9 @@ theorem measureReal_iUnion_le_of_monotone
   exact le_of_tendsto' hlim hbound
 
 /- An exhaustion detection gap yields a positive distinguished atom. Paper: §4. -/
+/--
+@isnad1 id=le.4h5v.s7.61cc1509202c from=translated src=- shape=35e6bf93 vocab=21a8bf3f
+-/
 theorem probability_detection_gap_of_exhaustion
     {α : Type*} [MeasurableSpace α]
     (μ : ProbabilityMeasure α) (zero : α) (U : ℕ → Set α)

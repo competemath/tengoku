@@ -33,8 +33,14 @@ namespace Fraction
 @[reducible]
 def ofPos {n : ℕ} (hn : 0 < n) : I := Fraction hn (Nat.succ_le_iff.mpr hn)
 
+/--
+@isnad1 id=eq.2h2v.s5.9a24d603ef63 from=translated src=- shape=66c3bace vocab=9ec882ce
+-/
 @[simp]
 lemma Fraction_coe {i n : ℕ} (hn : 0 < n) (hi : i ≤ n) : (Fraction hn hi : ℝ) = (i/n : ℝ) := rfl
+/--
+@isnad1 id=eq.1h1v.s5.47e21929e380 from=translated src=- shape=d5716831 vocab=f1480629
+-/
 lemma ofPos_coe {n : ℕ} (hn : 0 < n) : ((ofPos hn) : ℝ) = (1/n : ℝ) := by simp
 
 /-- For any postive `n : ℕ`, we have that `0/n = n`.
@@ -52,6 +58,7 @@ lemma eq_one {n : ℕ} (n_pos : 0 < n) : Fraction n_pos (le_refl n) = 1 := by
   · exact Nat.cast_ne_zero.mpr (ne_of_gt n_pos)
 
 /-- For any `i n : ℕ` with `0 < i ≤ n`, we have that `i/n * 1/i` = `1/n` as members of `I`.
+@isnad1 id=eq.2h2v.s5.d3e2750b1674 from=translated src=- shape=04440e87 vocab=33e58713
 -/
 lemma mul_inv {i n : ℕ} (i_pos : 0 < i) (hi_n : i ≤ n) :
     (Fraction (lt_of_lt_of_le i_pos hi_n) hi_n) * (ofPos i_pos) =
@@ -62,11 +69,13 @@ lemma mul_inv {i n : ℕ} (i_pos : 0 < i) (hi_n : i ≤ n) :
   field_simp
 
 /-- For any `n i : ℕ` with `0 < i ≤ n`, we have that `0 < i/n`.
+@isnad1 id=lt.2h2v.s5.5247af03783c from=translated src=- shape=39d2cc2d vocab=815723ad
 -/
 lemma pos_of_pos {n i : ℕ} (hi : 0 < i) (hn : i ≤ n) : 0 < Fraction (lt_of_lt_of_le hi hn) hn :=
   Subtype.coe_lt_coe.mp (div_pos (Nat.cast_pos.mpr hi) (Nat.cast_pos.mpr (lt_of_lt_of_le hi hn)))
 
 /-- For any `n i : ℕ` with `0 ≤ i < n`, we have that `i/n < 1`.
+@isnad1 id=lt.2h2v.s5.959d306332aa from=translated src=- shape=8f65fe4f vocab=f7cd54e9
 -/
 lemma lt_one_of_lt {n i : ℕ} (hi : 0 ≤ i) (hn : i < n) :
     Fraction (lt_of_le_of_lt hi hn) (le_of_lt hn) < 1 :=
@@ -76,17 +85,26 @@ lemma lt_one_of_lt {n i : ℕ} (hi : 0 ≤ i) (hn : i < n) :
 /-
 For any positive `n : ℕ`, we have that `0 < 1/n`.
 -/
+/--
+@isnad1 id=lt.1h1v.s5.81c6225a02f8 from=translated src=- shape=bd88c0cc vocab=9f30a046
+-/
 lemma ofPos_pos {n : ℕ} (hn : 0 < n) : 0 < ofPos hn :=
   pos_of_pos zero_lt_one (Nat.succ_le_iff.mpr hn)
 
 /-
 For any `n : ℕ` with `n > 1`, we have that `1/n < 1`.
 -/
+/--
+@isnad1 id=lt.1h1v.s5.1aecdfab3c2c from=translated src=- shape=a55094c6 vocab=29e06e54
+-/
 lemma ofPos_lt_one {n : ℕ} (hn : 1 < n) : ofPos (lt_trans zero_lt_one hn) < 1 :=
   lt_one_of_lt zero_le_one hn
 
 /-
 For any `n m : ℕ` with `m < n`, we have that `m/n ≤ (m+1) ≤ n`
+-/
+/--
+@isnad1 id=lt.1h2v.s5.05ab5f4b6975 from=translated src=- shape=969fb02a vocab=5225521e
 -/
 lemma lt_frac_succ {n m : ℕ} (hn : m < n) :
     Fraction (lt_of_le_of_lt (Nat.zero_le m) hn) (le_of_lt hn) <

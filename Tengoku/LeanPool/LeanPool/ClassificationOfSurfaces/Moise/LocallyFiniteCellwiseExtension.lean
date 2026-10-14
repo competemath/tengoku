@@ -39,12 +39,18 @@ noncomputable def faceMap {f : K.Face} (F : K.FacePLFilling (G := G) f) :
     K.ClosedFace f → Plane :=
   fun x ↦ F.map (K.facePlaneHomeomorph f x).1
 
+/--
+@isnad1 id=continuo.0h5v.s8.c6811dd33e89 from=translated src=- shape=98b0255e vocab=c20be7d3
+-/
 theorem continuous_faceMap {f : K.Face} (F : K.FacePLFilling (G := G) f) :
     Continuous F.faceMap := by
   have hF : Continuous (fun p : standardFaceRegion ↦ F.map p.1) :=
     continuousOn_iff_continuous_domRestrict.mp F.continuousOn
   exact hF.comp (K.facePlaneHomeomorph f).continuous
 
+/--
+@isnad1 id=injectiv.0h5v.s6.eb38519067a9 from=translated src=- shape=98b0255e vocab=eb7983b8
+-/
 theorem injective_faceMap {f : K.Face} (F : K.FacePLFilling (G := G) f) :
     Function.Injective F.faceMap := by
   intro x y hxy
@@ -53,6 +59,9 @@ theorem injective_faceMap {f : K.Face} (F : K.FacePLFilling (G := G) f) :
   exact F.injectiveOn (K.facePlaneHomeomorph f x).2
     (K.facePlaneHomeomorph f y).2 hxy
 
+/--
+@isnad1 id=eq.0h5v.s6.28992bcdf206 from=translated src=- shape=57384318 vocab=c0a0908b
+-/
 theorem range_faceMap {f : K.Face} (F : K.FacePLFilling (G := G) f) :
     Set.range F.faceMap = (K.facePolygonalCircle (G := G) f).closedRegion := by
   rw [← F.image_eq]
@@ -69,7 +78,9 @@ theorem range_faceMap {f : K.Face} (F : K.FacePLFilling (G := G) f) :
     rw [(K.facePlaneHomeomorph f).apply_symm_apply]
 
 /-- The relative interior of a filled source face maps into the bounded complementary region
-of its polygonal boundary. -/
+of its polygonal boundary.
+@isnad1 id=mapsto.0h5v.s6.0493a855948f from=translated src=- shape=88deeba4 vocab=33a9f44a
+-/
 theorem mapsTo_interiorRegion {f : K.Face} (F : K.FacePLFilling (G := G) f) :
     Set.MapsTo F.map (interior standardFaceRegion)
       (K.facePolygonalCircle (G := G) f).interiorRegion := by
@@ -96,6 +107,9 @@ end FacePLFilling
 
 /-! ## Boundary recognition from global barycentric coordinates -/
 
+/--
+@isnad1 id=ex.1h4v.s6.c90aea8d307b from=translated src=- shape=06ae727c vocab=45816a9f
+-/
 theorem exists_faceVertex_eq_of_mem (f : K.Face) {v : K.Vertex}
     (hv : v ∈ K.faceVertices f) : ∃ i : ZMod 3, K.faceVertex f i = v := by
   let w : {w // w ∈ K.faceVertices f} := ⟨v, hv⟩
@@ -107,7 +121,9 @@ theorem exists_faceVertex_eq_of_mem (f : K.Face) {v : K.Vertex}
   rw [(ZMod.finEquiv 3).symm_apply_apply,
     (K.faceVertexEquiv f).apply_symm_apply]
 
-/-- Every abstract edge contained in a maximal face is one of its three cyclic edges. -/
+/-- Every abstract edge contained in a maximal face is one of its three cyclic edges.
+@isnad1 id=ex.1h4v.s6.1328c7c6a7f4 from=translated src=- shape=4af38cc5 vocab=04434327
+-/
 theorem exists_faceEdge_eq_of_subset (f : K.Face) (e : K.Edge)
     (hef : e.1 ⊆ K.faceVertices f) :
     ∃ i : ZMod 3, K.faceEdge f i = e := by
@@ -136,7 +152,9 @@ theorem exists_faceEdge_eq_of_subset (f : K.Face) (e : K.Edge)
     simp [or_comm]
 
 /-- If equal global barycentric coordinates are represented on distinct vertex triples, the
-standard coordinate on the first triangle lies on its frontier. -/
+standard coordinate on the first triangle lies on its frontier.
+@isnad1 id=mem.2h6v.s10.435d5f9f3991 from=translated src=- shape=d939f29e vocab=11c10eb7
+-/
 theorem faceChart_mem_frontier_of_extended_eq
     {f g : K.Face} (hfg : K.faceVertices f ≠ K.faceVertices g)
     {x : K.ClosedFace f} {y : K.ClosedFace g}
@@ -209,7 +227,9 @@ theorem faceChart_mem_frontier_of_extended_eq
   simpa only [standardFaceRegion, standardTrianglePlaneComplex_support] using hpCarrier
 
 /-- Lifting the standard coordinate of a boundary point recovers its original ambient support
-point. -/
+point.
+@isnad1 id=eq.1h4v.s11.9ceae11048f5 from=translated src=- shape=c7ab0ce3 vocab=8f84f799
+-/
 theorem faceBoundaryLift_facePlaneHomeomorph (f : K.Face) (x : K.ClosedFace f)
     (hp : (K.facePlaneHomeomorph f x).1 ∈ frontier standardFaceRegion) :
     (K.faceBoundaryLift f
@@ -246,13 +266,18 @@ structure CellwiseCompatibility (G : K.PlaneGraphRealization) : Prop where
 
 namespace CellwiseCompatibility
 
+/--
+@isnad1 id=ne.2h5v.s5.2377173147ff from=translated src=- shape=28d42a07 vocab=4630ac7e
+-/
 theorem distinct_faceVertices (H : K.CellwiseCompatibility G)
     {f g : K.Face} (hfg : f ≠ g) :
     K.faceVertices f ≠ K.faceVertices g := by
   exact fun h ↦ hfg (CellwiseCompatibility.faceVertices_injective H h)
 
 /-- The transported chosen fillings have exactly the same overlap relation as the original
-abstract triangles. -/
+abstract triangles.
+@isnad1 id=iff.1h7v.s7.40c567596b38 from=translated src=- shape=2e9ab74d vocab=989a10d6
+-/
 theorem faceMap_eq_iff (H : K.CellwiseCompatibility G)
     {f g : K.Face} {x : K.ClosedFace f} {y : K.ClosedFace g} :
     (K.facePLFilling (G := G) f).faceMap x =
@@ -389,15 +414,24 @@ noncomputable abbrev polygonalReplacementComplex (H : K.CellwiseCompatibility G)
       obtain ⟨x, hx⟩ := hq
       exact ⟨x, Subtype.ext hx⟩
 
+/--
+@isnad1 id=eq.1h4v.s7.626432b018ce from=translated src=- shape=d24fd11a vocab=e45b2ceb
+-/
 @[simp] theorem polygonalReplacementComplex_faceVertices
     (H : K.CellwiseCompatibility G) (f : K.Face) :
     (K.polygonalReplacementComplex H).faceVertices f = K.faceVertices f := rfl
 
+/--
+@isnad1 id=eq.1h5v.s7.e2e8aec8364b from=translated src=- shape=77937e9d vocab=7a70e0b9
+-/
 @[simp] theorem polygonalReplacementComplex_faceMap
     (H : K.CellwiseCompatibility G) (f : K.Face) (x : K.ClosedFace f) :
     ((K.polygonalReplacementComplex H).faceMap f x).1 =
       (K.facePLFilling (G := G) f).faceMap x := rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.49739b231322 from=translated src=- shape=c7e63279 vocab=a990d049
+-/
 theorem polygonalReplacementComplex_faceCarrier
     (H : K.CellwiseCompatibility G) (f : K.Face) :
     (K.polygonalReplacementComplex H).faceCarrier f =
@@ -420,6 +454,9 @@ theorem polygonalReplacementComplex_faceCarrier
 noncomputable def supportFace (p : K.support) : K.Face :=
   Classical.choose (Set.mem_iUnion.mp p.2)
 
+/--
+@isnad1 id=mem.0h3v.s5.84a29d33b006 from=translated src=- shape=551dd433 vocab=c559e6da
+-/
 theorem mem_faceCarrier_supportFace (p : K.support) :
     p.1 ∈ K.faceCarrier (K.supportFace p) :=
   Classical.choose_spec (Set.mem_iUnion.mp p.2)
@@ -428,10 +465,16 @@ theorem mem_faceCarrier_supportFace (p : K.support) :
 noncomputable def supportFacePoint (p : K.support) : K.ClosedFace (K.supportFace p) :=
   Classical.choose (K.mem_faceCarrier_supportFace p)
 
+/--
+@isnad1 id=eq.0h3v.s5.feac6d55e464 from=translated src=- shape=8cea890e vocab=a45815ab
+-/
 theorem faceMap_supportFacePoint (p : K.support) :
     K.faceMap (K.supportFace p) (K.supportFacePoint p) = p.1 :=
   Classical.choose_spec (K.mem_faceCarrier_supportFace p)
 
+/--
+@isnad1 id=eq.0h3v.s6.9098ac44c981 from=translated src=- shape=4c72e295 vocab=0a26bf20
+-/
 theorem faceInSupport_eq_preimage (f : K.Face) :
     faceInSupport (K := K) f =
       Subtype.val ⁻¹' K.faceCarrier f := by
@@ -443,6 +486,9 @@ theorem faceInSupport_eq_preimage (f : K.Face) :
     refine ⟨x, ?_⟩
     exact Subtype.ext hx
 
+/--
+@isnad1 id=locallyf.0h2v.s5.84cfe7f7be00 from=translated src=- shape=dc927cd9 vocab=572066a7
+-/
 theorem locallyFinite_faceInSupport :
     LocallyFinite (faceInSupport (K := K)) := by
   have h := K.locallyFinite.preimage_continuous
@@ -457,7 +503,9 @@ def PlaneGraphRealization.faceImageInRegion (G : K.PlaneGraphRealization)
   {q | q.1 ∈ G.map '' faceInSupport (K := K) f}
 
 /-- Source faces remain locally finite after passing through a realization which is closed
-relative to its perturbation region. -/
+relative to its perturbation region.
+@isnad1 id=locallyf.0h3v.s6.1462354b0599 from=translated src=- shape=a595d37e vocab=cfd22775
+-/
 theorem PlaneGraphRealization.locallyFinite_faceImagesInRegion
     (G : K.PlaneGraphRealization) :
     LocallyFinite G.faceImageInRegion := by
@@ -481,6 +529,9 @@ theorem PlaneGraphRealization.locallyFinite_faceImagesInRegion
       exact hpq
   rwa [← heq]
 
+/--
+@isnad1 id=eq.0h2v.s5.d8725b4a063a from=translated src=- shape=8f49c85c vocab=d38a2c20
+-/
 theorem iUnion_faceInSupport :
     (⋃ f : K.Face, faceInSupport (K := K) f) = Set.univ := by
   apply Set.eq_univ_of_forall
@@ -490,6 +541,9 @@ theorem iUnion_faceInSupport :
   apply Subtype.ext
   exact K.faceMap_supportFacePoint p
 
+/--
+@isnad1 id=isembedd.0h3v.s9.d3800d66bdb5 from=translated src=- shape=4271e8a0 vocab=9002be56
+-/
 theorem isEmbedding_faceToSupport [T2Space S] (f : K.Face) :
     _root_.Topology.IsEmbedding (faceToSupport (K := K) f) :=
   (K.isEmbedding_faceMap f).codRestrict K.support
@@ -500,6 +554,9 @@ noncomputable def faceToSupportHomeomorph [T2Space S] (f : K.Face) :
     K.ClosedFace f ≃ₜ faceInSupport (K := K) f :=
   (K.isEmbedding_faceToSupport f).toHomeomorph
 
+/--
+@isnad1 id=eq.0h4v.s10.df23258efb69 from=translated src=- shape=0afb7cb5 vocab=97b0e576
+-/
 @[simp] theorem faceToSupportHomeomorph_apply [T2Space S]
     (f : K.Face) (x : K.ClosedFace f) :
     (K.faceToSupportHomeomorph f x).1 = faceToSupport (K := K) f x := rfl
@@ -517,7 +574,9 @@ noncomputable def polygonalReplacementMap (H : K.CellwiseCompatibility G) :
       Set.mem_range_self (K.supportFacePoint p)⟩⟩
 
 omit [T2Space S] in
-/-- On every named source face, the global replacement map is the chosen face filling. -/
+/-- On every named source face, the global replacement map is the chosen face filling.
+@isnad1 id=eq.1h5v.s7.cf7212e725aa from=translated src=- shape=3635b283 vocab=cb2e3a0e
+-/
 theorem polygonalReplacementMap_faceToSupport
     (H : K.CellwiseCompatibility G) (f : K.Face) (x : K.ClosedFace f) :
     K.polygonalReplacementMap H (faceToSupport (K := K) f x) =
@@ -540,6 +599,9 @@ noncomputable def polygonalReplacementMapOnFace
   fun p ↦ faceToSupport (K := K.polygonalReplacementComplex H) f
     ((K.faceToSupportHomeomorph f).symm p)
 
+/--
+@isnad1 id=continuo.1h4v.s8.4386dffef81a from=translated src=- shape=12178803 vocab=88a623b8
+-/
 theorem continuous_polygonalReplacementMapOnFace
     (H : K.CellwiseCompatibility G) (f : K.Face) :
     Continuous (K.polygonalReplacementMapOnFace H f) := by
@@ -547,6 +609,9 @@ theorem continuous_polygonalReplacementMapOnFace
     (K := K.polygonalReplacementComplex H) f).comp
       (K.faceToSupportHomeomorph f).symm.continuous
 
+/--
+@isnad1 id=eq.1h5v.s7.02462b88065b from=translated src=- shape=6745a4fe vocab=1dbb6828
+-/
 theorem polygonalReplacementMap_eqOn_faceInSupport
     (H : K.CellwiseCompatibility G) (f : K.Face) :
     ∀ p : faceInSupport (K := K) f,
@@ -557,6 +622,9 @@ theorem polygonalReplacementMap_eqOn_faceInSupport
   congr 1
   exact (K.faceToSupportHomeomorph f).symm_apply_apply x |>.symm
 
+/--
+@isnad1 id=continuo.1h3v.s8.3a109793c434 from=translated src=- shape=5086703d vocab=2a2e2e02
+-/
 theorem continuous_polygonalReplacementMap (H : K.CellwiseCompatibility G) :
     Continuous (K.polygonalReplacementMap H) := by
   apply K.locallyFinite_faceInSupport.continuous K.iUnion_faceInSupport
@@ -576,7 +644,9 @@ noncomputable def polygonalReplacementInverse (H : K.CellwiseCompatibility G) :
     ((K.polygonalReplacementComplex H).supportFacePoint p)
 
 omit [T2Space S] in
-/-- On every replacement face, the inverse is the original face parametrization. -/
+/-- On every replacement face, the inverse is the original face parametrization.
+@isnad1 id=eq.1h5v.s7.63671d5f74df from=translated src=- shape=e38c5400 vocab=f81d8ab8
+-/
 theorem polygonalReplacementInverse_faceToSupport
     (H : K.CellwiseCompatibility G) (f : K.Face) (x : K.ClosedFace f) :
     K.polygonalReplacementInverse H
@@ -602,6 +672,9 @@ noncomputable def polygonalReplacementInverseOnFace
     (((K.polygonalReplacementComplex H).faceToSupportHomeomorph f).symm p)
 
 omit [T2Space S] in
+/--
+@isnad1 id=continuo.1h4v.s9.b0acc7603aa7 from=translated src=- shape=66100aee vocab=6eba5264
+-/
 theorem continuous_polygonalReplacementInverseOnFace
     (H : K.CellwiseCompatibility G) (f : K.Face) :
     Continuous (K.polygonalReplacementInverseOnFace H f) := by
@@ -609,6 +682,9 @@ theorem continuous_polygonalReplacementInverseOnFace
     ((K.polygonalReplacementComplex H).faceToSupportHomeomorph f).symm.continuous
 
 omit [T2Space S] in
+/--
+@isnad1 id=eq.1h5v.s9.47a0c2a9095d from=translated src=- shape=8a63823f vocab=faa27801
+-/
 theorem polygonalReplacementInverse_eqOn_faceInSupport
     (H : K.CellwiseCompatibility G) (f : K.Face) :
     ∀ p : faceInSupport (K := K.polygonalReplacementComplex H) f,
@@ -620,6 +696,9 @@ theorem polygonalReplacementInverse_eqOn_faceInSupport
   exact ((K.polygonalReplacementComplex H).faceToSupportHomeomorph f).symm_apply_apply x |>.symm
 
 omit [T2Space S] in
+/--
+@isnad1 id=continuo.1h3v.s8.49f67f0e034e from=translated src=- shape=60280039 vocab=a3acd449
+-/
 theorem continuous_polygonalReplacementInverse (H : K.CellwiseCompatibility G) :
     Continuous (K.polygonalReplacementInverse H) := by
   let L := K.polygonalReplacementComplex H
@@ -633,6 +712,9 @@ theorem continuous_polygonalReplacementInverse (H : K.CellwiseCompatibility G) :
     exact K.polygonalReplacementInverse_eqOn_faceInSupport H f p
 
 omit [T2Space S] in
+/--
+@isnad1 id=eq.1h4v.s5.798dcac465f0 from=translated src=- shape=2d3820f6 vocab=86aee57b
+-/
 theorem polygonalReplacementInverse_apply_map
     (H : K.CellwiseCompatibility G) (p : K.support) :
     K.polygonalReplacementInverse H (K.polygonalReplacementMap H p) = p := by
@@ -645,6 +727,9 @@ theorem polygonalReplacementInverse_apply_map
     K.polygonalReplacementInverse_faceToSupport H f x]
 
 omit [T2Space S] in
+/--
+@isnad1 id=eq.1h4v.s7.cf6ac0a8f18c from=translated src=- shape=8c05f2a3 vocab=482d752a
+-/
 theorem polygonalReplacementMap_apply_inverse
     (H : K.CellwiseCompatibility G)
     (p : (K.polygonalReplacementComplex H).support) :
@@ -670,7 +755,9 @@ noncomputable def polygonalReplacementHomeomorph (H : K.CellwiseCompatibility G)
 
 /-- The canonical replacement homeomorphism preserves every named closed face exactly.  This
 is stronger than preservation of the total support and is the bridge used when a finite family
-of replacement faces is pulled back to a finite source subcomplex. -/
+of replacement faces is pulled back to a finite source subcomplex.
+@isnad1 id=iff.1h5v.s10.39e4d3546390 from=translated src=- shape=c9937356 vocab=03e01e32
+-/
 theorem polygonalReplacementHomeomorph_mem_faceCarrier_iff
     (H : K.CellwiseCompatibility G) (f : K.Face) (p : K.support) :
     (K.polygonalReplacementHomeomorph H p).1 ∈

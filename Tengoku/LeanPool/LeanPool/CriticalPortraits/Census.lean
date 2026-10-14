@@ -32,7 +32,9 @@ open Finset
 
 The cleanest statement: the count of portraits times `d` equals the binomial numerator.
 Proved by the `T`-bijection onto level-canonical `(d−1)`-subsets composed with
-`card_levelCanonical_mul`. -/
+`card_levelCanonical_mul`.
+@isnad1 id=eq.2h2v.s6.3f9f1860d9cd from=translated src=- shape=50752c80 vocab=fe41789a
+-/
 theorem card_portraits_mul {d m : ℕ} (hd : 0 < d) (hm : 0 < m) :
     d * Fintype.card {P : Finset (Finset (ZMod (d*m))) // Portrait d m P}
       = (d*m).choose (d-1) := by
@@ -51,7 +53,9 @@ theorem card_portraits_mul {d m : ℕ} (hd : 0 < d) (hm : 0 < m) :
 /-- **HEADLINE CENSUS THEOREM.** `#{portraits} = C(d*m, d-1) / d` for all `d` (and all `m`).
 
 The number of degree-`d` portraits at level `m` equals `C(d·m, d−1) / d`. Follows from the
-multiplicative form by `Nat.div_eq_of_eq_mul_right` (exact `ℕ`-division, no remainder). -/
+multiplicative form by `Nat.div_eq_of_eq_mul_right` (exact `ℕ`-division, no remainder).
+@isnad1 id=eq.2h2v.s6.06b07b8772dc from=translated src=- shape=2963f1e6 vocab=e65b93a9
+-/
 theorem card_portraits {d m : ℕ} (hd : 0 < d) (hm : 0 < m) :
     Fintype.card {P : Finset (Finset (ZMod (d*m))) // Portrait d m P}
       = (d*m).choose (d-1) / d :=
@@ -59,7 +63,9 @@ theorem card_portraits {d m : ℕ} (hd : 0 < d) (hm : 0 < m) :
 
 /-- **Exactness of the `/ d`.** The denominator divides the numerator: `d ∣ C(d*m, d-1)`. Hence the
 `/ d` in `card_portraits` is *exact* `ℕ`-division (the count is a genuine integer), not floor
-rounding — the witness is the portrait count itself, read off `card_portraits_mul`. -/
+rounding — the witness is the portrait count itself, read off `card_portraits_mul`.
+@isnad1 id=dvd.2h2v.s5.9c758da87403 from=translated src=- shape=9ccdb8ab vocab=a485350c
+-/
 theorem d_dvd_choose {d m : ℕ} (hd : 0 < d) (hm : 0 < m) :
     d ∣ (d * m).choose (d - 1) :=
   ⟨_, (card_portraits_mul hd hm).symm⟩

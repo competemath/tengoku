@@ -86,16 +86,25 @@ private theorem mulPair_bounds {x y : ℚInterval} {xv yv : ℝ} (hx : xv ∈ x)
   simp only [mul_comm] at hl hu h ⊢
   exact ⟨(min_le_min hl.1 hu.1).trans h.1, h.2.trans (max_le_max hl.2 hu.2)⟩
 
+/--
+@isnad1 id=le.2h4v.s5.38ce612f808f from=translated src=- shape=5fbb5c4a vocab=02606cfc
+-/
 theorem mulPair_lb_is_lb {x y : ℚInterval} : ∀ xv ∈ x, ∀ yv ∈ y,
     (mulPair x y).fst ≤ xv * yv := by
   intro xv hx yv hy
   exact (mulPair_bounds hx hy).1
 
+/--
+@isnad1 id=le.2h4v.s5.4a03297fb768 from=translated src=- shape=5fbb5c4a vocab=b7e995e6
+-/
 theorem mulPair_ub_is_ub {x y : ℚInterval} : ∀ xv ∈ x, ∀ yv ∈ y,
     (mulPair x y).snd ≥ xv * yv := by
   intro xv hx yv hy
   exact (mulPair_bounds hx hy).2
 
+/--
+@isnad1 id=mem.2h4v.s5.589d19e5e621 from=translated src=- shape=9ffbcb13 vocab=5036b6a1
+-/
 theorem mem_mulPair {x y : ℚInterval} : ∀ xv ∈ x, ∀ yv ∈ y, xv * yv ∈ mulPair x y :=
   fun _ hx _ hy ↦ ⟨mulPair_lb_is_lb _ hx _ hy, mulPair_ub_is_ub _ hx _ hy⟩
 
@@ -144,24 +153,45 @@ def ub (x : ComputableℝSeq) : CauSeq ℚ abs := ⟨fun n ↦ (x.lub n).snd, x.
   the lower bound sequence. -/
 irreducible_def val (x : ComputableℝSeq) : ℝ := Real.mk x.lb
 
+/--
+@isnad1 id=equiv.0h1v.s5.4c92cebfe859 from=translated src=- shape=78748d38 vocab=fe1483c9
+-/
 theorem heq (x : ComputableℝSeq) : x.lb ≈ x.ub :=
   x.heq'
 
+/--
+@isnad1 id=eq.0h1v.s3.9a3a4d8ef2ad from=translated src=- shape=bc817a25 vocab=41ca4742
+-/
 theorem lb_eq_ub (x : ComputableℝSeq) : Real.mk x.lb = Real.mk x.ub :=
   Real.mk_eq.2 x.heq'
 
+/--
+@isnad1 id=eq.0h1v.s3.9fa2bdb2905d from=translated src=- shape=69b989be vocab=066c7d5f
+-/
 theorem val_eq_mk_lb (x : ComputableℝSeq) : x.val = Real.mk x.lb :=
   val_def x
 
+/--
+@isnad1 id=eq.0h1v.s3.145b36069a17 from=translated src=- shape=69b989be vocab=0696a9d0
+-/
 theorem val_eq_mk_ub (x : ComputableℝSeq) : x.val = Real.mk x.ub :=
   x.val_eq_mk_lb.trans x.lb_eq_ub
 
+/--
+@isnad1 id=le.0h2v.s5.3320ba184761 from=translated src=- shape=e3e664b3 vocab=ff74ddf8
+-/
 theorem hlb (x : ComputableℝSeq) : ∀n, x.lb n ≤ x.val :=
   fun n ↦ val_eq_mk_lb _ ▸ (x.hlub n).1
 
+/--
+@isnad1 id=le.0h2v.s5.0728f597329e from=translated src=- shape=e3e664b3 vocab=7f02841a
+-/
 theorem hub (x : ComputableℝSeq) : ∀n, x.ub n ≥ x.val :=
   fun n ↦ val_eq_mk_lb _ ▸ (x.hlub n).2
 
+/--
+@isnad1 id=mem.0h2v.s3.d7d8417b502e from=translated src=- shape=0f6e5d1a vocab=85070fea
+-/
 theorem val_mem_interval (x : ComputableℝSeq) : ∀n, x.val ∈ x.lub n :=
   fun n ↦ ⟨x.hlb n, x.hub n⟩
 
@@ -180,7 +210,9 @@ private theorem val_uniq' {x : ℝ} {lb ub : CauSeq ℚ abs} (hlb : ∀ n, lb n 
         <;> linarith⟩)).2
 
 /-- If a real number x is bounded below and above by a sequence, it must be the value of that
-sequence. -/
+sequence.
+@isnad1 id=eq.2h2v.s6.fb6d9d4fcb32 from=translated src=- shape=35a85ee6 vocab=61075e16
+-/
 theorem val_uniq {x : ℝ} {s : ComputableℝSeq} (hlb : ∀ n, s.lb n ≤ x) (hub : ∀ n, s.ub n ≥ x) :
     s.val = x :=
   s.val_def ▸ val_uniq' hlb hub s.heq
@@ -202,12 +234,21 @@ def mk (x : ℝ) (lub : ℕ → ℚInterval)
     rw [val_uniq' hlb hub heq]
     exact ⟨hlb n, hub n⟩
 
+/--
+@isnad1 id=eq.4h3v.s7.df0c8caf64a9 from=translated src=- shape=c939052e vocab=b2041a3f
+-/
 theorem mk_val_eq_val : (mk x v h₁ h₂ h₃ h₄ h₅).val = x :=
   val_uniq (fun n ↦ h₃ n) (fun n ↦ h₄ n)
 
+/--
+@isnad1 id=le.0h2v.s5.0aab4a226df3 from=translated src=- shape=45ad46e6 vocab=153bf57b
+-/
 theorem lb_le_ub (x : ComputableℝSeq) : ∀n, x.lb n ≤ x.ub n :=
   fun n ↦ Rat.cast_le.mp (le_trans (x.hlb n) (x.hub n))
 
+/--
+@isnad1 id=eq.2h2v.s6.c7b8c69b1e9f from=translated src=- shape=7e72ca48 vocab=3ffa2981
+-/
 @[ext]
 theorem ext {x y : ComputableℝSeq} (h₁ : ∀ n, x.lb n = y.lb n) (h₂ : ∀ n, x.ub n = y.ub n) : x = y
   :=
@@ -271,28 +312,39 @@ def mulLb (x : ComputableℝSeq) (y : ComputableℝSeq) : CauSeq ℚ abs :=
 def mulUb (x : ComputableℝSeq) (y : ComputableℝSeq) : CauSeq ℚ abs :=
   ((x.lb * y.lb) ⊔ (x.ub * y.lb)) ⊔ ((x.lb * y.ub) ⊔ (x.ub * y.ub))
 
-/-- The lower bounds from `mul'` are precisely the same sequence as `mulLb`. -/
+/-- The lower bounds from `mul'` are precisely the same sequence as `mulLb`.
+@isnad1 id=eq.0h2v.s5.d606ae53bb6a from=translated src=- shape=b1671bb3 vocab=2106df03
+-/
 theorem fst_mul'_eq_mulLb : (fun i ↦ i.fst) ∘ mul' x y = (mulLb x y).1 := by
   ext n
   dsimp
   rw [mul', mulLb]
   congr
 
-/-- The upper bounds from `mul'` are precisely the same sequence as `mulUb`. -/
+/-- The upper bounds from `mul'` are precisely the same sequence as `mulUb`.
+@isnad1 id=eq.0h2v.s5.ecd6220d7156 from=translated src=- shape=b1671bb3 vocab=e90dd59f
+-/
 theorem snd_mul'_eq_mulUb : (fun i ↦ i.snd) ∘ mul' x y = (mulUb x y).1 := by
   ext n
   dsimp
   rw [mul', mulUb]
   congr
 
-/-- The lower bounds from `mul'` form a Cauchy sequence. -/
+/-- The lower bounds from `mul'` form a Cauchy sequence.
+@isnad1 id=iscauseq.0h2v.s5.d59268566f41 from=translated src=- shape=7188029c vocab=c9a00455
+-/
 theorem mul'_fst_iscau : IsCauSeq abs ((fun i ↦ i.fst) ∘ (mul' x y)) :=
   fst_mul'_eq_mulLb ▸ Subtype.property _
 
-/-- The upper bounds from `mul'` form a Cauchy sequence. -/
+/-- The upper bounds from `mul'` form a Cauchy sequence.
+@isnad1 id=iscauseq.0h2v.s5.ad09575053a1 from=translated src=- shape=7188029c vocab=79a10bdc
+-/
 theorem mul'_snd_iscau : IsCauSeq abs ((fun i ↦ i.snd) ∘ (mul' x y)) :=
   snd_mul'_eq_mulUb ▸ Subtype.property _
 
+/--
+@isnad1 id=equiv.0h2v.s5.b52fbb79f3fe from=translated src=- shape=995ce5a1 vocab=494f3e0c
+-/
 theorem lb_ub_mul_equiv (x : ComputableℝSeq) (y : ComputableℝSeq) :
     mulLb x y ≈ mulUb x y := by
   have hll : x.lb * y.lb ≈ x.lb * y.lb := Setoid.refl _
@@ -307,10 +359,16 @@ theorem lb_ub_mul_equiv (x : ComputableℝSeq) (y : ComputableℝSeq) :
       (CauSeq.sup_equiv_of_equivs hlu huu)
   exact Setoid.trans hl (Setoid.symm hu)
 
+/--
+@isnad1 id=le.0h3v.s5.b2340a6b32ab from=translated src=- shape=2de9eb08 vocab=7caf2f28
+-/
 theorem mulLb_is_lb (x : ComputableℝSeq) (y : ComputableℝSeq) (n : ℕ) :
     (mulLb x y).1 n ≤ x.val * y.val :=
   QInterval.mulPair_lb_is_lb _ (x.val_mem_interval n) _ (y.val_mem_interval n)
 
+/--
+@isnad1 id=le.0h3v.s5.167c8edea672 from=translated src=- shape=2de9eb08 vocab=1fab4532
+-/
 theorem mulUb_is_ub (x : ComputableℝSeq) (y : ComputableℝSeq) (n : ℕ) :
     (mulUb x y).1 n ≥ x.val * y.val :=
   QInterval.mulPair_ub_is_ub _ (x.val_mem_interval n) _ (y.val_mem_interval n)
@@ -356,115 +414,196 @@ section simps
 
 variable (x y : ComputableℝSeq)
 
+/--
+@isnad1 id=eq.0h1v.s5.7164356b9b36 from=translated src=- shape=738c9efe vocab=3ad7d4b8
+-/
 @[simp]
 theorem natCast_lb : (Nat.cast n : ComputableℝSeq).lb = n := by
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.4f8fcbe07c28 from=translated src=- shape=738c9efe vocab=b9a57b56
+-/
 @[simp]
 theorem natCast_ub : (Nat.cast n : ComputableℝSeq).ub = n := by
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.b5579b8b179e from=translated src=- shape=b37550ee vocab=3236527f
+-/
 @[simp]
 theorem val_natCast : (Nat.cast n : ComputableℝSeq).val = n :=
   val_eq_mk_lb _ ▸ natCast_lb ▸ rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.e08f0d2d349e from=translated src=- shape=738c9efe vocab=4023a826
+-/
 @[simp]
 theorem intCast_lb : (Int.cast z : ComputableℝSeq).lb = z := by
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.cf0e15cf3da2 from=translated src=- shape=738c9efe vocab=77e685a9
+-/
 @[simp]
 theorem intCast_ub : (Int.cast z : ComputableℝSeq).ub = z := by
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.d6dcbc07fa8a from=translated src=- shape=b37550ee vocab=ccee7ca3
+-/
 @[simp]
 theorem val_intCast : (Int.cast z : ComputableℝSeq).val = z :=
   val_eq_mk_lb _ ▸ intCast_lb ▸ rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.b40ac1416d46 from=translated src=- shape=fc9a1cf9 vocab=72d81ba7
+-/
 theorem ratCast_lb : (Rat.cast q : ComputableℝSeq).lb = CauSeq.const abs q := by
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.d53e9436d7e5 from=translated src=- shape=fc9a1cf9 vocab=cac6bb07
+-/
 theorem ratCast_ub : (Rat.cast q : ComputableℝSeq).ub = CauSeq.const abs q := by
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.c0fa8d0e5b41 from=translated src=- shape=b37550ee vocab=d4005ee0
+-/
 @[simp]
 theorem val_ratCast : (Rat.cast q : ComputableℝSeq).val = q :=
   val_eq_mk_lb _ ▸ ratCast_lb ▸ rfl
 
+/--
+@isnad1 id=eq.0h0v.s6.50624292b888 from=translated src=- shape=34fd2b08 vocab=22fbd940
+-/
 @[simp]
 theorem zero_lb : (0 : ComputableℝSeq).lb = 0 := by
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s6.bc4e038a061d from=translated src=- shape=34fd2b08 vocab=0b3a2034
+-/
 @[simp]
 theorem zero_ub : (0 : ComputableℝSeq).ub = 0 := by
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.56d979f3bb13 from=translated src=- shape=1ac31801 vocab=c3550bd8
+-/
 @[simp]
 theorem val_zero : (0 : ComputableℝSeq).val = 0 :=
   val_eq_mk_lb _ ▸ Real.mk_zero
 
+/--
+@isnad1 id=eq.0h0v.s6.e5da3f3ec99f from=translated src=- shape=34fd2b08 vocab=22fbd940
+-/
 @[simp]
 theorem one_lb : (1 : ComputableℝSeq).lb = 1 := by
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s6.29f4ac3383e2 from=translated src=- shape=34fd2b08 vocab=0b3a2034
+-/
 @[simp]
 theorem one_ub : (1 : ComputableℝSeq).ub = 1 := by
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.3eaf0a2ea7b5 from=translated src=- shape=1ac31801 vocab=c3550bd8
+-/
 @[simp]
 theorem val_one : (1 : ComputableℝSeq).val = 1 :=
   val_eq_mk_lb _ ▸ Real.mk_one
 
+/--
+@isnad1 id=eq.0h2v.s6.18e3f90ffb09 from=translated src=- shape=b2f24dcd vocab=3d9b0194
+-/
 @[simp]
 theorem lb_add : (x + y).lb = x.lb + y.lb :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.bd7e0beadc1c from=translated src=- shape=b2f24dcd vocab=945fd651
+-/
 @[simp]
 theorem ub_add : (x + y).ub = x.ub + y.ub :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.42c8641cb024 from=translated src=- shape=0438c7a3 vocab=bcfbfc95
+-/
 @[simp]
 theorem val_add : (x + y).val = x.val + y.val :=
   (mk_val_eq_val : (add x y).val = x.val + y.val)
 
+/--
+@isnad1 id=eq.0h1v.s5.298560f0ec69 from=translated src=- shape=5b0db9a3 vocab=1691669f
+-/
 @[simp]
 theorem lb_neg : (-x).lb = -x.ub :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.4317398052c7 from=translated src=- shape=5b0db9a3 vocab=1691669f
+-/
 @[simp]
 theorem ub_neg : (-x).ub = -x.lb := by
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.a63021a50735 from=translated src=- shape=5a02da31 vocab=9f2da361
+-/
 @[simp]
 theorem val_neg : (-x).val = -x.val :=
   (mk_val_eq_val : (neg x).val = -x.val)
 
+/--
+@isnad1 id=eq.0h2v.s6.774be4ee3506 from=translated src=- shape=4438fcfe vocab=1755447b
+-/
 @[simp]
 theorem lb_sub : (x - y).lb = x.lb - y.ub := by
   change (x + -y).lb = x.lb - y.ub
   rw [lb_add, lb_neg, sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.0h2v.s6.3dd69e6260bf from=translated src=- shape=4438fcfe vocab=1755447b
+-/
 @[simp]
 theorem ub_sub : (x - y).ub = x.ub - y.lb := by
   change (x + -y).ub = x.ub - y.lb
   rw [ub_add, ub_neg, sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.0h2v.s4.b118d684ef8f from=translated src=- shape=0438c7a3 vocab=007faeb4
+-/
 @[simp]
 theorem val_sub : (x - y).val = x.val - y.val := by
   change (x + -y).val = x.val - y.val
   rw [val_add, val_neg, sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.0h2v.s8.bf920078f1e7 from=translated src=- shape=28a38d61 vocab=9438485c
+-/
 theorem lb_mul : (x * y).lb = ((x.lb * y.lb) ⊓ (x.ub * y.lb)) ⊓ ((x.lb * y.ub) ⊓ (x.ub * y.ub)) :=
   by
   ext
   rw [← mulLb, ← fst_mul'_eq_mulLb]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.934e2b0db480 from=translated src=- shape=60b803ed vocab=a45d6ac9
+-/
 theorem ub_mul : (x * y).ub = ((x.lb * y.lb) ⊔ (x.ub * y.lb)) ⊔ ((x.lb * y.ub) ⊔ (x.ub * y.ub)) :=
   by
   ext
   rw [← mulUb, ← snd_mul'_eq_mulUb]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.99d926d5ede7 from=translated src=- shape=0438c7a3 vocab=2519e520
+-/
 @[simp]
 theorem val_mul : (x * y).val = x.val * y.val := by
   suffices (mul x y).val = x.val * y.val by
@@ -487,15 +626,27 @@ private noncomputable instance sign_aux_sound (x : ℝ) :
 noncomputable def sign (x : ComputableℝSeq) : SignType :=
   SignType.sign x.val
 
+/--
+@isnad1 id=eq.0h1v.s5.9380bb6f1b96 from=translated src=- shape=fda29813 vocab=f46760a7
+-/
 theorem sign_sound (x : ComputableℝSeq) : x.sign = SignType.sign x.val :=
   rfl
 
+/--
+@isnad1 id=iff.0h1v.s4.7ea94faf207d from=translated src=- shape=eec6a9b8 vocab=6f49ca3f
+-/
 theorem sign_pos_iff (x : ComputableℝSeq) : x.sign = SignType.pos ↔ 0 < x.val := by
   rw [sign_sound, SignType.pos_eq_one, sign_eq_one_iff]
 
+/--
+@isnad1 id=iff.0h1v.s4.8a360fb5e8a4 from=translated src=- shape=13806f84 vocab=65bc43fc
+-/
 theorem sign_neg_iff (x : ComputableℝSeq) : x.sign = SignType.neg ↔ x.val < 0 := by
   rw [sign_sound, SignType.neg_eq_neg_one, sign_eq_neg_one_iff]
 
+/--
+@isnad1 id=iff.0h1v.s4.cae8ba033a64 from=translated src=- shape=201d5bbc vocab=e4df34ca
+-/
 theorem sign_zero_iff (x : ComputableℝSeq) : x.sign = SignType.zero ↔ x.val = 0 := by
   rw [sign_sound, SignType.zero_eq_zero, sign_eq_zero_iff]
 
@@ -510,6 +661,9 @@ noncomputable def signWitnessTerm (x : ComputableℝSeq) (hnz : x.val ≠ 0) :
     obtain ⟨i, hi⟩ := Classical.indefiniteDescription _ (x.heq q (Rat.cast_pos.mp hq₁))
     use (i, q)
 
+/--
+@isnad1 id=le.3h2v.s8.90eb445a2e9d from=translated src=- shape=b68fffde vocab=baec065c
+-/
 theorem signWitnessTerm_prop (x : ComputableℝSeq) (n : ℕ) (hnz : x.val ≠ 0)
     (hub : ¬(x.ub).val n < 0) (hlb : ¬(x.lb).val n > 0) :
     n + Nat.succ 0 ≤ (x.signWitnessTerm hnz).val.1 := by
@@ -550,7 +704,9 @@ irreducible_def signWitness (x : ComputableℝSeq) (hnz : x.val ≠ 0) :
 def isPos {x : ComputableℝSeq} (hnz : x.val ≠ 0) : Bool :=
   0 < x.lb (x.signWitness hnz)
 
-/-- Proof that `isPos` correctly determines whether a nonzero computable number is positive. -/
+/-- Proof that `isPos` correctly determines whether a nonzero computable number is positive.
+@isnad1 id=iff.1h1v.s4.234404cb234b from=translated src=- shape=33195768 vocab=6b89aa73
+-/
 theorem isPos_iff (x : ComputableℝSeq) (hnz : x.val ≠ 0) : isPos hnz ↔ 0 < x.val := by
   have hsw := (x.signWitness hnz).property
   have hls := x.hlb (x.signWitness hnz)
@@ -567,6 +723,9 @@ theorem isPos_iff (x : ComputableℝSeq) (hnz : x.val ≠ 0) : isPos hnz ↔ 0 <
     rw [isPos, decide_eq_true_eq]
     tauto
 
+/--
+@isnad1 id=lt.2h1v.s5.cc7f4074ad11 from=translated src=- shape=c492d061 vocab=6b89aa73
+-/
 theorem neg_of_not_pos {x : ComputableℝSeq} {hnz : x.val ≠ 0} (h : ¬isPos hnz) : x.val < 0 := by
   rw [isPos_iff] at h
   linarith (config := {splitNe := true})
@@ -586,15 +745,24 @@ def dropTilSigned (x : ComputableℝSeq) (hnz : x.val ≠ 0) : ComputableℝSeq 
       Setoid.trans (x.lb.drop_equiv_self start) x.heq)
       (Setoid.symm (x.ub.drop_equiv_self start)))
 
+/--
+@isnad1 id=eq.1h1v.s4.6be19f8a0d50 from=translated src=- shape=6318ec3e vocab=f437884c
+-/
 @[simp]
 theorem val_dropTilSigned {x : ComputableℝSeq} (h : x.val ≠ 0) : (x.dropTilSigned h).val = x.val :=
   by
   rw [val, val, Real.mk_eq]
   apply (lb x).drop_equiv_self
 
+/--
+@isnad1 id=ne.1h1v.s4.dc4741bfd9a9 from=translated src=- shape=3ed1d281 vocab=f437884c
+-/
 theorem dropTilSigned_nz {x : ComputableℝSeq} (h : x.val ≠ 0) : (x.dropTilSigned h).val ≠ 0 :=
   val_dropTilSigned h ▸ h
 
+/--
+@isnad1 id=or.1h1v.s6.78c01bba5906 from=translated src=- shape=6508f91e vocab=3d54530d
+-/
 theorem sign_dropTilSigned {x : ComputableℝSeq} (hnz : x.val ≠ 0) :
     (0 < x.val ∧ 0 < (x.dropTilSigned hnz).lb 0) ∨ (x.val < 0 ∧ (x.dropTilSigned hnz).ub 0 < 0) :=
       by
@@ -602,6 +770,9 @@ theorem sign_dropTilSigned {x : ComputableℝSeq} (hnz : x.val ≠ 0) :
   have := lt_trichotomy x.val 0
   tauto
 
+/--
+@isnad1 id=iff.1h1v.s6.0752a6e519c3 from=translated src=- shape=9bd07e5e vocab=7ec4402e
+-/
 theorem dropTilSigned_pos {x : ComputableℝSeq} (h : x.val ≠ 0) :
     x.val > 0 ↔ (x.dropTilSigned h).lb 0 > 0 :=
   ⟨fun h' ↦ (Or.resolve_right (sign_dropTilSigned h)
@@ -610,6 +781,9 @@ theorem dropTilSigned_pos {x : ComputableℝSeq} (h : x.val ≠ 0) :
         _ ≥ _ := (x.dropTilSigned h).hlb 0
         _ > 0 := Rat.cast_pos.2 h'⟩
 
+/--
+@isnad1 id=iff.1h1v.s6.00ab7f0ff4da from=translated src=- shape=9bd07e5e vocab=3427f9a7
+-/
 theorem dropTilSigned_neg {x : ComputableℝSeq} (h : x.val ≠ 0) :
     x.val < 0 ↔ (x.dropTilSigned h).ub 0 < 0 :=
   ⟨fun h' ↦ (Or.resolve_left (sign_dropTilSigned h)
@@ -622,25 +796,43 @@ end signs
 
 section safeInv
 
+/--
+@isnad1 id=not.1h1v.s4.45155ced29b9 from=translated src=- shape=81a9c16e vocab=9620eb28
+-/
 theorem neg_LimZero_lb_of_val {x : ComputableℝSeq} (hnz : x.val ≠ 0) : ¬x.lb.LimZero := by
   rw [← CauSeq.Completion.mk_eq_zero]
   rw [val_eq_mk_lb, ←Real.mk_zero, ne_eq, Real.ofCauchy.injEq] at hnz
   exact hnz
 
+/--
+@isnad1 id=not.1h1v.s4.6601e46e06cb from=translated src=- shape=81a9c16e vocab=c37e7831
+-/
 theorem neg_LimZero_ub_of_val {x : ComputableℝSeq} (hnz : x.val ≠ 0) : ¬x.ub.LimZero := by
   rw [← CauSeq.Completion.mk_eq_zero]
   rw [val_eq_mk_ub, ←Real.mk_zero, ne_eq, Real.ofCauchy.injEq] at hnz
   exact hnz
 
+/--
+@isnad1 id=pos.1h1v.s4.a2826b718dfc from=translated src=- shape=5e6a3299 vocab=34536073
+-/
 theorem pos_ub_of_val {x : ComputableℝSeq} (hp : x.val > 0) : x.ub.Pos :=
   Real.mk_pos.1 (val_eq_mk_ub _ ▸ hp)
 
+/--
+@isnad1 id=pos.1h1v.s5.b11fc6191471 from=translated src=- shape=3741e945 vocab=df5acd4c
+-/
 theorem pos_neg_ub_of_val {x : ComputableℝSeq} (hn : x.val < 0) : (-x.ub).Pos :=
   Real.mk_pos.1 (lb_neg _ ▸ val_eq_mk_lb _ ▸ val_neg _ ▸ Left.neg_pos_iff.mpr hn)
 
+/--
+@isnad1 id=pos.1h1v.s4.1d3dc2a2b05d from=translated src=- shape=5e6a3299 vocab=22b6539a
+-/
 theorem pos_lb_of_val {x : ComputableℝSeq} (hp : x.val > 0) : x.lb.Pos :=
   Real.mk_pos.1 (val_eq_mk_lb _ ▸ hp)
 
+/--
+@isnad1 id=pos.1h1v.s5.5fcd75557e9e from=translated src=- shape=3741e945 vocab=6fea3143
+-/
 theorem pos_neg_lb_of_val {x : ComputableℝSeq} (hn : x.val < 0) : (-x.lb).Pos :=
   Real.mk_pos.1 (ub_neg _ ▸ val_eq_mk_ub _ ▸ val_neg _ ▸ Left.neg_pos_iff.mpr hn)
 
@@ -698,7 +890,9 @@ def ubInv (x : ComputableℝSeq) (hnz : x.val ≠ 0) : CauSeq ℚ abs :=
               exact Hδ (H j hj).1.1 iK (H' j hj)
               ⟩⟩
 
-/-- When applied to a `dropTilSigned`, `lbInv` is a correct lower bound on x⁻¹. -/
+/-- When applied to a `dropTilSigned`, `lbInv` is a correct lower bound on x⁻¹.
+@isnad1 id=le.1h2v.s5.6913920d14a4 from=translated src=- shape=205e3537 vocab=a3552ab8
+-/
 theorem lbInv_correct {x : ComputableℝSeq} (hnz : x.val ≠ 0) : ∀n,
     (x.dropTilSigned hnz).lbInv (dropTilSigned_nz hnz) n ≤ x.val⁻¹ := by
   intro n
@@ -722,7 +916,9 @@ theorem lbInv_correct {x : ComputableℝSeq} (hnz : x.val ≠ 0) : ∀n,
     · exact_mod_cast (dropTilSigned_neg hnz).1 hv
     · exact_mod_cast not_le.1 h
 
-/-- When applied to a `dropTilSigned`, `ubInv` is a correct upper bound on x⁻¹. -/
+/-- When applied to a `dropTilSigned`, `ubInv` is a correct upper bound on x⁻¹.
+@isnad1 id=le.1h2v.s5.5dd563ed9bac from=translated src=- shape=205e3537 vocab=ff48b88e
+-/
 theorem ubInv_correct {x : ComputableℝSeq} (hnz : x.val ≠ 0) : ∀n,
     (x.dropTilSigned hnz).ubInv (dropTilSigned_nz hnz) n ≥ x.val⁻¹ := by
   intro n
@@ -749,7 +945,9 @@ theorem ubInv_correct {x : ComputableℝSeq} (hnz : x.val ≠ 0) : ∀n,
     · calc _ ≤ _ := ((val_dropTilSigned hnz) ▸ hlb _ _)
       _ < _ := hp
 
-/-- `x.lbInv` converges to `(x.val)⁻¹`. -/
+/-- `x.lbInv` converges to `(x.val)⁻¹`.
+@isnad1 id=eq.1h1v.s4.cdd4ae65875e from=translated src=- shape=77504a84 vocab=a703e593
+-/
 theorem lbInv_converges {x : ComputableℝSeq} (hnz : x.val ≠ 0) :
     Real.mk (x.lbInv hnz) = x.val⁻¹ := by
   apply Real.ext_cauchy
@@ -770,12 +968,16 @@ theorem lbInv_converges {x : ComputableℝSeq} (hnz : x.val ≠ 0) :
             else (x.ub j)⁻¹ from congrFun (congrArg Subtype.val (dite_eq_right h)) j]
           simp [this, hε]⟩
 
-/-- When applied to a `dropTilSigned`, `lbInv` is converges to x⁻¹. -/
+/-- When applied to a `dropTilSigned`, `lbInv` is converges to x⁻¹.
+@isnad1 id=eq.1h1v.s4.73cd5eee022e from=translated src=- shape=811b3768 vocab=04fd0597
+-/
 theorem lbInv_signed_converges {x : ComputableℝSeq} (hnz : x.val ≠ 0) :
     Real.mk ((x.dropTilSigned hnz).lbInv (dropTilSigned_nz hnz)) = x.val⁻¹ := by
   simp [lbInv_converges (dropTilSigned_nz hnz)]
 
-/-- `x.ubInv` converges to `(x.val)⁻¹`. -/
+/-- `x.ubInv` converges to `(x.val)⁻¹`.
+@isnad1 id=eq.1h1v.s4.28fab36d15e8 from=translated src=- shape=77504a84 vocab=44fb4be3
+-/
 theorem ubInv_converges {x : ComputableℝSeq} (hnz : x.val ≠ 0) :
     Real.mk (x.ubInv hnz) = x.val⁻¹ := by
   apply Real.ext_cauchy
@@ -798,7 +1000,9 @@ theorem ubInv_converges {x : ComputableℝSeq} (hnz : x.val ≠ 0) :
     exact CauSeq.zero_limZero
 
 /-- When applied to a `dropTilSigned`, `ubInv` is converges to x⁻¹.
-TODO: version without hnz hypothesis. -/
+TODO: version without hnz hypothesis.
+@isnad1 id=eq.1h1v.s4.6e4fc81df2a0 from=translated src=- shape=811b3768 vocab=5b7eac47
+-/
 theorem ubInv_signed_converges {x : ComputableℝSeq} (hnz : x.val ≠ 0) :
     Real.mk ((x.dropTilSigned hnz).ubInv (dropTilSigned_nz hnz)) = x.val⁻¹ := by
   simp [ubInv_converges (dropTilSigned_nz hnz)]
@@ -822,10 +1026,16 @@ noncomputable def safeInv (x : ComputableℝSeq) (hnz : x.val ≠ 0) : Computabl
   (hub := ubInv_correct hnz)
   (heq := Real.mk_eq.1 ((lbInv_signed_converges hnz).trans (ubInv_signed_converges hnz).symm))
 
+/--
+@isnad1 id=eq.1h1v.s4.421b24f202cd from=translated src=- shape=714021e5 vocab=7641908a
+-/
 @[simp]
 theorem val_safeInv {x : ComputableℝSeq} (hnz : x.val ≠ 0) : (x.safeInv hnz).val = x.val⁻¹ := by
   rw [safeInv, mk_val_eq_val]
 
+/--
+@isnad1 id=ne.1h1v.s4.a90e13cb46fe from=translated src=- shape=3ed1d281 vocab=a2c8d8d6
+-/
 theorem val_safeInv_ne_zero {x : ComputableℝSeq} (hnz : x.val ≠ 0) : (x.safeInv hnz).val ≠ 0 := by
   rwa [val_safeInv, ne_eq, inv_eq_zero]
 
@@ -835,6 +1045,9 @@ def nzSeq := {x : ComputableℝSeq // x.val ≠ 0}
 noncomputable def invNz : nzSeq → nzSeq :=
   fun x ↦ ⟨x.val.safeInv x.prop, val_safeInv_ne_zero _⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.f63dfd8d426e from=translated src=- shape=b6cc2fb8 vocab=a8a5a810
+-/
 @[simp]
 theorem val_invNz (x : nzSeq) : (invNz x).val.val = x.val.val⁻¹ :=
   val_safeInv _
@@ -861,11 +1074,16 @@ noncomputable instance instInv : Inv ComputableℝSeq :=
 noncomputable instance instDiv : Div ComputableℝSeq :=
   ⟨fun x y ↦ x * y⁻¹⟩
 
+/--
+@isnad1 id=eq.0h1v.s3.1ca8e1805685 from=translated src=- shape=5e17aa0a vocab=a8c9fa9d
+-/
 theorem inv_def (x : ComputableℝSeq) : x⁻¹ = x.inv :=
   rfl
 
 /-- The inverse is equal to the `safeInv`. This is an actual equality of sequences, not just
-equivalence. -/
+equivalence.
+@isnad1 id=eq.1h1v.s4.4689045310cc from=translated src=- shape=88390f41 vocab=7641908a
+-/
 theorem inv_eq_safeInv {x : ComputableℝSeq} (hnz : x.val ≠ 0) : x⁻¹ = x.safeInv hnz := by
   rw [inv_def, inv]
   split
@@ -875,6 +1093,9 @@ theorem inv_eq_safeInv {x : ComputableℝSeq} (hnz : x.val ≠ 0) : x⁻¹ = x.s
     absurd h
     rwa [sign_zero_iff]
 
+/--
+@isnad1 id=eq.0h1v.s3.96e3aa00cdf7 from=translated src=- shape=5a02da31 vocab=114389c3
+-/
 @[simp]
 theorem val_inv (x : ComputableℝSeq) : x⁻¹.val = x.val⁻¹ := by
   by_cases h : x.val = 0
@@ -887,6 +1108,9 @@ theorem val_inv (x : ComputableℝSeq) : x⁻¹.val = x.val⁻¹ := by
     next h => exact val_zero
   · rwa [inv_eq_safeInv, val_safeInv]
 
+/--
+@isnad1 id=eq.0h2v.s4.43bf8939a1d8 from=translated src=- shape=0438c7a3 vocab=f3dba294
+-/
 @[simp]
 theorem val_div (x y : ComputableℝSeq) : (x / y).val = x.val / y.val := by
   change (x * y⁻¹).val = x.val * y.val⁻¹
@@ -896,9 +1120,15 @@ end inv
 
 section semiring --proving that computable real *sequences* form a commutative semiring
 
+/--
+@isnad1 id=eq.0h2v.s4.8b7beb09f88d from=translated src=- shape=900bc7c0 vocab=b1518877
+-/
 theorem add_comm (x y : ComputableℝSeq) : x + y = y + x := by
   ext <;> simp only [ub_add, lb_add] <;> ring_nf
 
+/--
+@isnad1 id=eq.0h2v.s4.ce4bb44487dd from=translated src=- shape=900bc7c0 vocab=c4b088a9
+-/
 theorem mul_comm (x y : ComputableℝSeq) : x * y = y * x := by
   ext n
   <;> simp only [lb_mul, ub_mul]
@@ -917,6 +1147,9 @@ theorem mul_comm (x y : ComputableℝSeq) : x * y = y * x := by
     rw [← sup_assoc, ← sup_assoc]
     nth_rw 2 [sup_comm]
 
+/--
+@isnad1 id=eq.0h2v.s4.f23f1f4e1b7b from=translated src=- shape=c517b5c2 vocab=320ddd00
+-/
 theorem neg_mul (x y : ComputableℝSeq) : -x * y = -(x * y) := by
   ext
   · rw [lb_neg, lb_mul, ub_mul]
@@ -934,9 +1167,15 @@ theorem neg_mul (x y : ComputableℝSeq) : -x * y = -(x * y) := by
     nth_rewrite 3 [sup_comm]
     ring_nf
 
+/--
+@isnad1 id=eq.0h2v.s4.bc4c639a9951 from=translated src=- shape=48fe9248 vocab=320ddd00
+-/
 theorem mul_neg (x y : ComputableℝSeq) : x * -y = -(x * y) := by
   rw [mul_comm, neg_mul, mul_comm]
 
+/--
+@isnad1 id=eq.1h2v.s4.74ed798a4399 from=translated src=- shape=4932d469 vocab=be1951ae
+-/
 theorem neg_eq_of_add (x y : ComputableℝSeq) (h : x + y = 0) : -x = y := by
   have hlb : ∀(x y : ComputableℝSeq), x + y = 0 → x.lb = -y.ub := by
     intro x y h
@@ -1015,6 +1254,9 @@ instance equiv : Setoid (ComputableℝSeq) :=
   ⟨fun f g => f.val = g.val,
     ⟨fun _ => rfl, Eq.symm, Eq.trans⟩⟩
 
+/--
+@isnad1 id=iff.0h2v.s4.730881c3a8c7 from=translated src=- shape=d8adba2e vocab=1568095b
+-/
 theorem equiv_iff {x y : ComputableℝSeq} : x ≈ y ↔ x.val = y.val :=
   ⟨id, id⟩
 

@@ -25,6 +25,9 @@ namespace Moise
 
 open scoped BigOperators _root_.Topology
 
+/--
+@isnad1 id=ispure2.0h0v.s1.7dad4e1bda35 from=translated src=- shape=49959d42 vocab=49612675
+-/
 theorem standardTrianglePlaneComplex_pure : standardTrianglePlaneComplex.IsPure2 := by
   intro s hs
   refine ⟨Finset.univ, ?_, Finset.subset_univ s, ?_⟩
@@ -34,6 +37,9 @@ theorem standardTrianglePlaneComplex_pure : standardTrianglePlaneComplex.IsPure2
   · change (Finset.univ : Finset (Fin 3)).card = 3
     decide
 
+/--
+@isnad1 id=mem.0h0v.s5.bc34a0be9d65 from=translated src=- shape=7cf1b3f5 vocab=de9a2f0e
+-/
 theorem standardTriangle_univ_mem_cells :
     (Finset.univ : Finset (Fin 3)) ∈ standardTrianglePlaneComplex.cells := by
   change (Finset.univ : Finset (Fin 3)) ∈
@@ -46,6 +52,9 @@ noncomputable def standardTriangleMeshFace :
     standardTrianglePlaneComplex.toTriangleMesh.Triangle :=
   ⟨Finset.univ, standardTriangle_univ_mem_cells⟩
 
+/--
+@isnad1 id=eq.0h0v.s7.7c9db417899d from=translated src=- shape=b2ead6d5 vocab=a7c10749
+-/
 theorem standardTrianglePlaneComplex_support :
     standardTrianglePlaneComplex.support =
       convexHull ℝ (Set.range standardTriangleVertex) := by
@@ -66,6 +75,9 @@ theorem standardTrianglePlaneComplex_support :
       (standardTriangleVertex '' ((Finset.univ : Finset (Fin 3)) : Set (Fin 3)))
     simpa only [Finset.coe_univ, Set.image_univ] using hx
 
+/--
+@isnad1 id=eq.0h0v.s4.ff3b6be67093 from=translated src=- shape=55f2a188 vocab=de97afbb
+-/
 theorem standardTriangle_cellCarrier_univ :
     standardTrianglePlaneComplex.cellCarrier (Finset.univ : Finset (Fin 3)) =
       standardTrianglePlaneComplex.support := by
@@ -74,6 +86,9 @@ theorem standardTriangle_cellCarrier_univ :
     (standardTriangleVertex '' ((Finset.univ : Finset (Fin 3)) : Set (Fin 3))) = _
   rw [Finset.coe_univ, Set.image_univ, ← standardTrianglePlaneComplex_support]
 
+/--
+@isnad1 id=istriang.0h0v.s1.95a16042de8c from=translated src=- shape=87ceb31f vocab=9e01521f
+-/
 theorem standardTrianglePlaneComplex_isTriangle :
     IsTriangle standardTrianglePlaneComplex.support := by
   exact ⟨standardTriangleVertex, standardTriangleVertex_affineIndependent,
@@ -83,6 +98,9 @@ namespace IntrinsicTwoComplex
 
 variable (K : IntrinsicTwoComplex)
 
+/--
+@isnad1 id=eq.0h1v.s8.62c7749064da from=translated src=- shape=c3258795 vocab=1bd02b07
+-/
 @[simp] theorem finEquiv_symm_three (i : ZMod 3) :
     (ZMod.finEquiv 3).symm i = i := rfl
 
@@ -95,15 +113,24 @@ noncomputable def faceVertexEmbedding (t : K.Face) : Fin 3 ↪ K.Vertex where
 noncomputable def faceStandardEdge (i : ZMod 3) : Finset (Fin 3) :=
   {(ZMod.finEquiv 3).symm i, (ZMod.finEquiv 3).symm (i + 1)}
 
+/--
+@isnad1 id=eq.0h3v.s8.397abbdf62df from=translated src=- shape=cc55027c vocab=02364901
+-/
 theorem faceVertexEmbedding_cyclic (t : K.Face) (i : ZMod 3) :
     K.faceVertexEmbedding t ((ZMod.finEquiv 3).symm i) = K.faceVertex t i := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.f0fd9b46c10c from=translated src=- shape=5004c8cd vocab=98b7ba05
+-/
 theorem faceStandardEdge_map (t : K.Face) (i : ZMod 3) :
     (faceStandardEdge i).map (K.faceVertexEmbedding t) = (K.faceEdge t i).1 := by
   simp only [faceStandardEdge, Finset.map_insert, Finset.map_singleton,
     faceVertexEmbedding, K.faceEdge_val]
   rfl
 
+/--
+@isnad1 id=mem.0h1v.s5.4dc1250ab3de from=translated src=- shape=c5bdba75 vocab=aa1fa090
+-/
 theorem faceStandardEdge_mem_simplexes (i : ZMod 3) :
     faceStandardEdge i ∈ standardTrianglePlaneComplex.simplexes := by
   change faceStandardEdge i ∈
@@ -112,7 +139,9 @@ theorem faceStandardEdge_mem_simplexes (i : ZMod 3) :
   refine ⟨Finset.mem_powerset.mpr (Finset.subset_univ _), ?_⟩
   exact ⟨i, Finset.mem_insert_self i {i + 1}⟩
 
-/-- The geometric carrier of a standard cyclic edge is its polygon side. -/
+/-- The geometric carrier of a standard cyclic edge is its polygon side.
+@isnad1 id=eq.0h1v.s4.23d3a8f61d33 from=translated src=- shape=3966c185 vocab=4fa2fb08
+-/
 theorem standard_cellCarrier_faceStandardEdge (i : ZMod 3) :
     standardTrianglePlaneComplex.cellCarrier (faceStandardEdge i) =
       standardTriangleCircle.edgeSegment i := by
@@ -136,7 +165,9 @@ theorem standard_cellCarrier_faceStandardEdge (i : ZMod 3) :
     · exact ⟨(ZMod.finEquiv 3).symm (i + 1),
         Finset.mem_insert_of_mem (Finset.mem_singleton_self _), rfl⟩
 
-/-- The one-skeleton of the standard triangle complex is exactly its polygonal frontier. -/
+/-- The one-skeleton of the standard triangle complex is exactly its polygonal frontier.
+@isnad1 id=eq.0h0v.s3.ccd7c4f8622e from=translated src=- shape=f0e44a99 vocab=bd9a5f71
+-/
 theorem standardTriangle_oneSkeleton_support :
     standardTrianglePlaneComplex.oneSkeleton.support =
       standardTriangleCircle.carrier := by
@@ -248,6 +279,9 @@ noncomputable def faceReindexFromStandard (t : K.Face)
   · intro v hv
     simp [x, hv]
 
+/--
+@isnad1 id=eq.0h3v.s4.ed28025be660 from=translated src=- shape=9a6007cb vocab=33ef414a
+-/
 @[simp] theorem faceReindexFromStandard_toStandard (t : K.Face) (x : K.ClosedFace t) :
     K.faceReindexFromStandard t (K.faceReindexToStandard t x) = x := by
   apply Subtype.ext
@@ -257,6 +291,9 @@ noncomputable def faceReindexFromStandard (t : K.Face)
   · simp [faceReindexFromStandard, faceReindexToStandard, hv]
   · simp [faceReindexFromStandard, hv, x.2 v hv]
 
+/--
+@isnad1 id=eq.0h3v.s4.bc29247347e3 from=translated src=- shape=2ba38d80 vocab=d5365dc0
+-/
 @[simp] theorem faceReindexToStandard_fromStandard (t : K.Face)
     (z : standardTrianglePlaneComplex.toIntrinsic.realization) :
     K.faceReindexToStandard t (K.faceReindexFromStandard t z) = z := by
@@ -264,6 +301,9 @@ noncomputable def faceReindexFromStandard (t : K.Face)
   funext i
   simp [faceReindexToStandard, faceReindexFromStandard]
 
+/--
+@isnad1 id=continuo.0h2v.s7.adb3fd862405 from=translated src=- shape=0feac41f vocab=b772cfd3
+-/
 theorem continuous_faceReindexToStandard (t : K.Face) :
     Continuous (K.faceReindexToStandard t) := by
   apply Continuous.subtype_mk
@@ -287,7 +327,9 @@ noncomputable def faceReindexHomeomorph (t : K.Face) :
     (K.continuous_faceReindexToStandard t)
 
 /-- Reindexing carries any selected standard subface exactly to the corresponding intrinsic
-vertex set. -/
+vertex set.
+@isnad1 id=iff.0h4v.s6.0b1ec6884ad7 from=translated src=- shape=9f3d5e88 vocab=6b075699
+-/
 theorem faceReindexToStandard_mem_faceCarrier (t : K.Face) (s : Finset (Fin 3))
     (x : K.ClosedFace t) :
     K.faceReindexToStandard t x ∈ standardTrianglePlaneComplex.toIntrinsic.faceCarrier s ↔
@@ -329,6 +371,9 @@ noncomputable def faceCoordRestrictionAffine (t : K.Face) :
   AffineMap.pi fun j =>
     (LinearMap.proj (K.faceVertexEmbedding t j)).toAffineMap
 
+/--
+@isnad1 id=eq.0h4v.s8.36f523cb08e1 from=translated src=- shape=544c6814 vocab=4a0790d0
+-/
 @[simp] theorem faceCoordRestrictionAffine_apply (t : K.Face)
     (x : K.Vertex → ℝ) (j : Fin 3) :
     K.faceCoordRestrictionAffine t x j =
@@ -342,6 +387,9 @@ noncomputable def facePlaneForwardAffine (t : K.Face) :
   standardTrianglePlaneComplex.baryEvalAffine.comp
     (K.faceCoordRestrictionAffine t)
 
+/--
+@isnad1 id=eq.0h3v.s10.0c717e39d9eb from=translated src=- shape=8169c7f5 vocab=f322f246
+-/
 theorem facePlaneHomeomorph_val_eq_forwardAffine (t : K.Face)
     (x : K.ClosedFace t) :
     (K.facePlaneHomeomorph t x).1 =
@@ -363,12 +411,18 @@ noncomputable def faceCoordExtensionAffine (t : K.Face) :
     else
       AffineMap.const ℝ (Fin 3 → ℝ) 0
 
+/--
+@isnad1 id=eq.1h4v.s9.809316358795 from=translated src=- shape=ae225ed4 vocab=811faf51
+-/
 @[simp] theorem faceCoordExtensionAffine_apply_of_mem (t : K.Face)
     (z : Fin 3 → ℝ) {v : K.Vertex} (hv : v ∈ t.1) :
     K.faceCoordExtensionAffine t z v =
       z ((K.faceVertexEquiv t).symm ⟨v, hv⟩) := by
   simp [faceCoordExtensionAffine, hv]
 
+/--
+@isnad1 id=eq.1h4v.s8.1038a2fc5627 from=translated src=- shape=d4e99eb3 vocab=c2b1cf1f
+-/
 @[simp] theorem faceCoordExtensionAffine_apply_of_notMem (t : K.Face)
     (z : Fin 3 → ℝ) {v : K.Vertex} (hv : v ∉ t.1) :
     K.faceCoordExtensionAffine t z v = 0 := by
@@ -382,7 +436,9 @@ noncomputable def facePlaneInverseAffine (t : K.Face) :
     (standardTrianglePlaneComplex.faceCoords standardTriangleMeshFace)
 
 /-- The inverse-chart affine formula takes each standard corner to the corresponding intrinsic
-unit barycentric coordinate. -/
+unit barycentric coordinate.
+@isnad1 id=eq.0h3v.s9.b96a30b7e530 from=translated src=- shape=21dcfa46 vocab=c0960f1f
+-/
 theorem facePlaneInverseAffine_standardVertex (t : K.Face) (j : Fin 3) :
     K.facePlaneInverseAffine t (standardTriangleVertex j) =
       Pi.single (K.faceVertexEmbedding t j) 1 := by
@@ -418,7 +474,9 @@ theorem facePlaneInverseAffine_standardVertex (t : K.Face) (j : Fin 3) :
       exact (K.faceVertexEquiv t j).2
     simp [hvj]
 
-/-- The first endpoint of a cyclic face edge belongs to the containing face. -/
+/-- The first endpoint of a cyclic face edge belongs to the containing face.
+@isnad1 id=mem.0h3v.s6.b93b27bd3c97 from=translated src=- shape=75842cca vocab=3bba79a6
+-/
 theorem edgeFirst_faceEdge_mem_face (t : K.Face) (i : ZMod 3) :
     K.edgeFirst (K.faceEdge t i) ∈ t.1 := by
   have h := K.edgeFirst_mem (K.faceEdge t i)
@@ -428,7 +486,9 @@ theorem edgeFirst_faceEdge_mem_face (t : K.Face) (i : ZMod 3) :
   · simpa only [h] using K.faceVertex_mem t i
   · simpa only [h] using K.faceVertex_mem t (i + 1)
 
-/-- The second endpoint of a cyclic face edge belongs to the containing face. -/
+/-- The second endpoint of a cyclic face edge belongs to the containing face.
+@isnad1 id=mem.0h3v.s6.89d0b11fffa2 from=translated src=- shape=75842cca vocab=9a55a65a
+-/
 theorem edgeSecond_faceEdge_mem_face (t : K.Face) (i : ZMod 3) :
     K.edgeSecond (K.faceEdge t i) ∈ t.1 := by
   have h := K.edgeSecond_mem (K.faceEdge t i)
@@ -448,12 +508,18 @@ noncomputable def faceEdgeSecondIndex (t : K.Face) (i : ZMod 3) : Fin 3 :=
   (K.faceVertexEquiv t).symm
     ⟨K.edgeSecond (K.faceEdge t i), K.edgeSecond_faceEdge_mem_face t i⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.2aebdeb3a5be from=translated src=- shape=f20bc67f vocab=f415cfb0
+-/
 @[simp] theorem faceVertexEmbedding_faceEdgeFirstIndex (t : K.Face) (i : ZMod 3) :
     K.faceVertexEmbedding t (K.faceEdgeFirstIndex t i) =
       K.edgeFirst (K.faceEdge t i) := by
   change ((K.faceVertexEquiv t) ((K.faceVertexEquiv t).symm _)).1 = _
   rw [(K.faceVertexEquiv t).apply_symm_apply]
 
+/--
+@isnad1 id=eq.0h3v.s5.a8a3700587fe from=translated src=- shape=f20bc67f vocab=669f022d
+-/
 @[simp] theorem faceVertexEmbedding_faceEdgeSecondIndex (t : K.Face) (i : ZMod 3) :
     K.faceVertexEmbedding t (K.faceEdgeSecondIndex t i) =
       K.edgeSecond (K.faceEdge t i) := by
@@ -461,7 +527,9 @@ noncomputable def faceEdgeSecondIndex (t : K.Face) (i : ZMod 3) : Fin 3 :=
   rw [(K.faceVertexEquiv t).apply_symm_apply]
 
 /-- The two standard endpoint indices are exactly the cyclic standard side, with the order
-chosen globally by the intrinsic edge. -/
+chosen globally by the intrinsic edge.
+@isnad1 id=eq.0h3v.s6.41eef5d122a2 from=translated src=- shape=767afadc vocab=63db67f3
+-/
 theorem faceStandardEdge_eq_endpointIndices (t : K.Face) (i : ZMod 3) :
     faceStandardEdge i =
       {K.faceEdgeFirstIndex t i, K.faceEdgeSecondIndex t i} := by
@@ -477,7 +545,9 @@ noncomputable def faceEdgeSourcePoint (t : K.Face) (i : ZMod 3) (r : ℝ) : Plan
     (standardTriangleVertex (K.faceEdgeSecondIndex t i)) r
 
 /-- The inverse face chart carries the oriented standard side parameter to the corresponding
-intrinsic barycentric line parameter. -/
+intrinsic barycentric line parameter.
+@isnad1 id=eq.0h4v.s9.7ba309d1bac9 from=translated src=- shape=4aee227a vocab=1558ae35
+-/
 theorem facePlaneInverseAffine_faceEdgeSourcePoint (t : K.Face) (i : ZMod 3) (r : ℝ) :
     K.facePlaneInverseAffine t (K.faceEdgeSourcePoint t i r) =
       (AffineMap.lineMap (k := ℝ)
@@ -490,7 +560,9 @@ theorem facePlaneInverseAffine_faceEdgeSourcePoint (t : K.Face) (i : ZMod 3) (r 
     K.faceVertexEmbedding_faceEdgeSecondIndex]
 
 /-- On the oriented standard side, the second intrinsic barycentric coordinate is its affine
-parameter. -/
+parameter.
+@isnad1 id=eq.0h4v.s9.c12f67e10fd5 from=translated src=- shape=8f33a1af vocab=195491d7
+-/
 theorem facePlaneInverseAffine_faceEdgeSourcePoint_apply_second
     (t : K.Face) (i : ZMod 3) (r : ℝ) :
     K.facePlaneInverseAffine t (K.faceEdgeSourcePoint t i r)
@@ -499,7 +571,9 @@ theorem facePlaneInverseAffine_faceEdgeSourcePoint_apply_second
   simp [AffineMap.lineMap_apply_module,
     K.edgeFirst_ne_edgeSecond (K.faceEdge t i)]
 
-/-- Every unit-interval source point lies on the corresponding standard side. -/
+/-- Every unit-interval source point lies on the corresponding standard side.
+@isnad1 id=mem.1h4v.s5.40672659643d from=translated src=- shape=eecf8465 vocab=e3002f90
+-/
 theorem faceEdgeSourcePoint_mem_standardEdge (t : K.Face) (i : ZMod 3)
     {r : ℝ} (hr : r ∈ Set.Icc (0 : ℝ) 1) :
     K.faceEdgeSourcePoint t i r ∈
@@ -522,7 +596,9 @@ theorem faceEdgeSourcePoint_mem_standardEdge (t : K.Face) (i : ZMod 3)
   rw [convexHull_pair, segment_eq_image_lineMap]
   exact ⟨r, hr, rfl⟩
 
-/-- The oriented unit interval covers exactly the corresponding standard side. -/
+/-- The oriented unit interval covers exactly the corresponding standard side.
+@isnad1 id=eq.0h3v.s5.cfd2da1976df from=translated src=- shape=03c4fd7c vocab=85726f41
+-/
 theorem faceEdgeSourcePoint_image_Icc (t : K.Face) (i : ZMod 3) :
     K.faceEdgeSourcePoint t i '' Set.Icc (0 : ℝ) 1 =
       standardTrianglePlaneComplex.cellCarrier (faceStandardEdge i) := by
@@ -538,7 +614,9 @@ theorem faceEdgeSourcePoint_image_Icc (t : K.Face) (i : ZMod 3) :
   rfl
 
 /-- The inverse face chart is the restriction of `facePlaneInverseAffine` to the closed
-standard triangle. -/
+standard triangle.
+@isnad1 id=eq.0h3v.s10.9c2be12fa7b8 from=translated src=- shape=f76afa78 vocab=f1da49a6
+-/
 theorem facePlaneHomeomorph_symm_val (t : K.Face)
     (p : standardTrianglePlaneComplex.support) :
     ((K.facePlaneHomeomorph t).symm p).1.1 = K.facePlaneInverseAffine t p.1 := by
@@ -562,7 +640,9 @@ theorem facePlaneHomeomorph_symm_val (t : K.Face)
   · simp [faceReindexFromStandard, facePlaneInverseAffine, hv]
 
 /-- The standard plane chart sends cyclic intrinsic edge `i` exactly onto cyclic side `i` of
-the standard triangle. -/
+the standard triangle.
+@isnad1 id=eq.0h3v.s9.9fdbe43f34d1 from=translated src=- shape=2b672fcd vocab=fd730a9a
+-/
 theorem facePlaneHomeomorph_image_edge (t : K.Face) (i : ZMod 3) :
     (fun x : K.ClosedFace t => (K.facePlaneHomeomorph t x).1) ''
         {x : K.ClosedFace t | x.1 ∈ K.faceCarrier (K.faceEdge t i).1} =

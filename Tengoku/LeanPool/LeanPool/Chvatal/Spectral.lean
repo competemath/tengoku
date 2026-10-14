@@ -60,28 +60,38 @@ The empty index is assigned zero so that sums can run over the entire cube. -/
 def maxInfluence (f : Finset ι → ℝ) (S : Finset ι) : ℝ :=
   if h : S.Nonempty then S.sup' h (influence f) else 0
 
-/-- The empty Fourier index makes no contribution to Theorem 1.2. -/
+/-- The empty Fourier index makes no contribution to Theorem 1.2.
+@isnad1 id=eq.0h2v.s4.a28c604cfc65 from=translated src=- shape=df4c0288 vocab=101f0932
+-/
 @[simp] theorem maxInfluence_empty (f : Finset ι → ℝ) : maxInfluence f ∅ = 0 := by
   simp [maxInfluence]
 
-/-- On a nonempty index, the influence weight is the ordinary finite maximum. -/
+/-- On a nonempty index, the influence weight is the ordinary finite maximum.
+@isnad1 id=eq.1h3v.s5.d4f8c8fe51bc from=translated src=- shape=3ea601e5 vocab=929b65da
+-/
 theorem maxInfluence_of_nonempty (f : Finset ι → ℝ) {S : Finset ι} (hS : S.Nonempty) :
     maxInfluence f S = S.sup' hS (influence f) := by simp [maxInfluence, hS]
 
-/-- Every coordinate in an index is bounded by its maximum influence. -/
+/-- Every coordinate in an index is bounded by its maximum influence.
+@isnad1 id=le.1h4v.s5.09f2b7632cec from=translated src=- shape=b49af7d0 vocab=e5b3762a
+-/
 theorem influence_le_maxInfluence (f : Finset ι → ℝ) {S : Finset ι} {i : ι}
     (hi : i ∈ S) : influence f i ≤ maxInfluence f S := by
   rw [maxInfluence_of_nonempty f ⟨i, hi⟩]
   exact Finset.le_sup' (influence f) hi
 
-/-- The spectral weights in Theorem 1.2 are nonnegative. -/
+/-- The spectral weights in Theorem 1.2 are nonnegative.
+@isnad1 id=le.0h3v.s4.5b37e49f9067 from=translated src=- shape=7b149da3 vocab=bcc75854
+-/
 theorem maxInfluence_nonneg (f : Finset ι → ℝ) (S : Finset ι) : 0 ≤ maxInfluence f S := by
   by_cases hS : S.Nonempty
   · obtain ⟨i, hi⟩ := hS
     exact (influence_nonneg f i).trans (influence_le_maxInfluence f hi)
   · simp [maxInfluence, hS]
 
-/-- Lemma 3.3 in its stated maximum-over-coordinates form. -/
+/-- Lemma 3.3 in its stated maximum-over-coordinates form.
+@isnad1 id=le.2h3v.s6.c55162e8614f from=translated src=- shape=370e91c4 vocab=f39d7875
+-/
 theorem maxInfluence_le_flip_energy {f : Finset ι → ℝ} (hf : IsBoolean f)
     (hm : Monotone f) (T : Finset ι) :
     maxInfluence f T ≤ cubeMean (fun x => (f x - f (x ∆ T)) ^ 2) := by
@@ -93,7 +103,9 @@ theorem maxInfluence_le_flip_energy {f : Finset ι → ℝ} (hf : IsBoolean f)
     exact cubeMean_nonneg fun _ => sq_nonneg _
 
 /-- Lemma 3.3, equation (15): maximum influence is bounded by the odd-intersection
-Fourier energy. The formula also holds for the empty index under our zero convention. -/
+Fourier energy. The formula also holds for the empty index under our zero convention.
+@isnad1 id=le.2h3v.s6.20c8affa2f3b from=translated src=- shape=68f469e0 vocab=cd8151aa
+-/
 theorem maxInfluence_le_odd_spectral {f : Finset ι → ℝ} (hf : IsBoolean f)
     (hm : Monotone f) (T : Finset ι) :
     maxInfluence f T ≤ 4 * ∑ S ∈ Finset.univ.filter (fun S : Finset ι => Odd (S ∩ T).card),
@@ -106,7 +118,9 @@ Its empty-index term vanishes by `maxInfluence_empty`. -/
 def spectralWeight (f g : Finset ι → ℝ) : ℝ :=
   ∑ S, fourier g S ^ 2 * maxInfluence f S
 
-/-- The expression `spectralWeight` agrees with the paper's sum over nonempty indices. -/
+/-- The expression `spectralWeight` agrees with the paper's sum over nonempty indices.
+@isnad1 id=eq.0h3v.s6.f5cef6c22a50 from=translated src=- shape=42685720 vocab=9eb618a4
+-/
 theorem spectralWeight_eq_sum_nonempty (f g : Finset ι → ℝ) :
     spectralWeight f g = ∑ S ∈ Finset.univ.erase (∅ : Finset ι),
       fourier g S ^ 2 * maxInfluence f S := by
@@ -115,11 +129,15 @@ theorem spectralWeight_eq_sum_nonempty (f g : Finset ι → ℝ) :
   simp only [maxInfluence_empty, mul_zero, add_zero] at h
   exact h.symm
 
-/-- Nonnegativity of the left side of Theorem 1.2, used when a covariance vanishes. -/
+/-- Nonnegativity of the left side of Theorem 1.2, used when a covariance vanishes.
+@isnad1 id=le.0h3v.s5.f3bc148e4981 from=translated src=- shape=4f3fe825 vocab=7ac88028
+-/
 theorem spectralWeight_nonneg (f g : Finset ι → ℝ) : 0 ≤ spectralWeight f g := by
   exact Finset.sum_nonneg fun S _ => mul_nonneg (sq_nonneg _) (maxInfluence_nonneg f S)
 
-/-- Equation (16): multiply Lemma 3.3 by the squared Fourier coefficient and sum. -/
+/-- Equation (16): multiply Lemma 3.3 by the squared Fourier coefficient and sum.
+@isnad1 id=le.2h3v.s7.987834d3d10d from=translated src=- shape=29ce912a vocab=f6b6cb09
+-/
 theorem spectralWeight_le_four_spectral {f : Finset ι → ℝ} (hf : IsBoolean f)
     (hm : Monotone f) (g : Finset ι → ℝ) :
     spectralWeight f g ≤ 4 * ∑ T,
@@ -140,14 +158,18 @@ theorem spectralWeight_le_four_spectral {f : Finset ι → ℝ} (hf : IsBoolean 
       ring
 
 /-- The Parseval computation in Corollary 1.3: nonconstant Fourier coefficients
-of an antipodal Boolean function have total squared mass one quarter. -/
+of an antipodal Boolean function have total squared mass one quarter.
+@isnad1 id=eq.2h2v.s6.2245b33b66e4 from=translated src=- shape=68c0d4ff vocab=071ff426
+-/
 theorem fourier_mass_of_antipodal {g : Finset ι → ℝ} (hb : IsBoolean g)
     (hg : dual g = g) :
     (∑ S ∈ Finset.univ.erase (∅ : Finset ι), fourier g S ^ 2) = 1 / 4 := by
   simpa [covariance_fourier, pow_two] using variance_eq_quarter_of_antipodal hb hg
 
 /-- The lower bound on `𝒲(f,g)` used in Corollary 1.3. Any common lower bound
-on the coordinate influences is weighted by the variance `1/4`. -/
+on the coordinate influences is weighted by the variance `1/4`.
+@isnad1 id=le.3h4v.s6.1cecd050f0b2 from=translated src=- shape=d67a69c0 vocab=2a06349f
+-/
 theorem quarter_le_spectralWeight {f g : Finset ι → ℝ} {m : ℝ}
     (hb : IsBoolean g) (hg : dual g = g) (hm : ∀ i, m ≤ influence f i) :
     m / 4 ≤ spectralWeight f g := by

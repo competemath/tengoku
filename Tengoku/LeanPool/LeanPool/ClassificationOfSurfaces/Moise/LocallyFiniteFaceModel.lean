@@ -36,6 +36,9 @@ abbrev standardFaceRegion : Set Plane := standardTrianglePlaneComplex.support
 abbrev StandardFaceBoundary :=
   {p : Plane // p ∈ frontier standardFaceRegion}
 
+/--
+@isnad1 id=mem.0h1v.s5.17dbb6521275 from=translated src=- shape=92c0a2ad vocab=a303f869
+-/
 theorem standardFaceBoundary_mem_region (p : StandardFaceBoundary) :
     p.1 ∈ standardFaceRegion :=
   standardTrianglePlaneComplex.isCompact_support.isClosed.frontier_subset p.2
@@ -57,6 +60,9 @@ noncomputable def faceReindexFromStandard (f : K.Face) (z : stdSimplex ℝ (Fin 
   · exact fun v ↦ z.2.1 _
   · exact (K.faceVertexEquiv f).symm.sum_comp (fun i ↦ z i) |>.trans z.2.2
 
+/--
+@isnad1 id=eq.0h4v.s6.6504edfd173c from=translated src=- shape=b0ff2847 vocab=99bc5d41
+-/
 @[simp] theorem faceReindexFromStandard_toStandard (f : K.Face)
     (x : K.ClosedFace f) :
     K.faceReindexFromStandard f (K.faceReindexToStandard f x) = x := by
@@ -65,6 +71,9 @@ noncomputable def faceReindexFromStandard (f : K.Face) (z : stdSimplex ℝ (Fin 
   change x (K.faceVertexEquiv f ((K.faceVertexEquiv f).symm v)) = x v
   rw [(K.faceVertexEquiv f).apply_symm_apply]
 
+/--
+@isnad1 id=eq.0h4v.s6.d4a674e7dd0a from=translated src=- shape=8aeb9afe vocab=3f88a89d
+-/
 @[simp] theorem faceReindexToStandard_fromStandard (f : K.Face)
     (z : stdSimplex ℝ (Fin 3)) :
     K.faceReindexToStandard f (K.faceReindexFromStandard f z) = z := by
@@ -73,12 +82,18 @@ noncomputable def faceReindexFromStandard (f : K.Face) (z : stdSimplex ℝ (Fin 
   change z ((K.faceVertexEquiv f).symm (K.faceVertexEquiv f i)) = z i
   rw [(K.faceVertexEquiv f).symm_apply_apply]
 
+/--
+@isnad1 id=continuo.0h3v.s9.83b25177e022 from=translated src=- shape=e067d9fd vocab=a6144508
+-/
 theorem continuous_faceReindexToStandard (f : K.Face) :
     Continuous (K.faceReindexToStandard f) := by
   apply Continuous.subtype_mk
   exact continuous_pi fun i ↦
     (continuous_apply (K.faceVertexEquiv f i)).comp continuous_subtype_val
 
+/--
+@isnad1 id=continuo.0h3v.s9.7c5ae88e1c6d from=translated src=- shape=2f1eb263 vocab=ae94a53c
+-/
 theorem continuous_faceReindexFromStandard (f : K.Face) :
     Continuous (K.faceReindexFromStandard f) := by
   apply Continuous.subtype_mk
@@ -107,9 +122,15 @@ noncomputable def standardRealizationToSimplex
     stdSimplex ℝ (Fin 3) :=
   ⟨z.1, z.2.1⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.afc6b4403b5a from=translated src=- shape=7e401d98 vocab=324fe762
+-/
 @[simp] theorem standardRealizationToSimplex_toRealization (z : stdSimplex ℝ (Fin 3)) :
     standardRealizationToSimplex (standardSimplexToRealization z) = z := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.0e272c103dd2 from=translated src=- shape=ee6bbdea vocab=3d5ec0bb
+-/
 @[simp] theorem standardSimplexToRealization_toSimplex
     (z : standardTrianglePlaneComplex.toIntrinsic.realization) :
     standardSimplexToRealization (standardRealizationToSimplex z) = z := by
@@ -131,7 +152,9 @@ noncomputable def standardSimplexRealizationHomeomorph :
     apply Continuous.subtype_mk
     exact continuous_subtype_val
 
-/-- A cyclic face edge is contained in the face which names it. -/
+/-- A cyclic face edge is contained in the face which names it.
+@isnad1 id=le.0h4v.s6.142658cb3d54 from=translated src=- shape=4833b85e vocab=cf762717
+-/
 theorem faceEdge_subset_faceVertices (f : K.Face) (i : ZMod 3) :
     (K.faceEdge f i).1 ⊆ K.faceVertices f := by
   rw [K.faceEdge_val f i]
@@ -139,10 +162,16 @@ theorem faceEdge_subset_faceVertices (f : K.Face) (i : ZMod 3) :
     ⟨K.faceVertex_mem f i, Finset.singleton_subset_iff.mpr
       (K.faceVertex_mem f (i + 1))⟩
 
+/--
+@isnad1 id=mem.0h4v.s5.2c6ab2517a8b from=translated src=- shape=d538fdb6 vocab=596dc67f
+-/
 theorem edgeFirst_faceEdge_mem_face (f : K.Face) (i : ZMod 3) :
     K.edgeFirst (K.faceEdge f i) ∈ K.faceVertices f :=
   K.faceEdge_subset_faceVertices f i (K.edgeFirst_mem (K.faceEdge f i))
 
+/--
+@isnad1 id=mem.0h4v.s5.a12560c7b892 from=translated src=- shape=d538fdb6 vocab=a899bdd7
+-/
 theorem edgeSecond_faceEdge_mem_face (f : K.Face) (i : ZMod 3) :
     K.edgeSecond (K.faceEdge f i) ∈ K.faceVertices f :=
   K.faceEdge_subset_faceVertices f i (K.edgeSecond_mem (K.faceEdge f i))
@@ -170,19 +199,27 @@ noncomputable def faceEdgeSecondIndex (f : K.Face) (i : ZMod 3) : Fin 3 :=
   (K.faceVertexEquiv f).symm
     ⟨K.edgeSecond (K.faceEdge f i), K.edgeSecond_faceEdge_mem_face f i⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.97681e250770 from=translated src=- shape=4d52be89 vocab=6f5acc51
+-/
 @[simp] theorem faceVertexEmbedding_faceEdgeFirstIndex (f : K.Face) (i : ZMod 3) :
     K.faceVertexEmbedding f (K.faceEdgeFirstIndex f i) =
       K.edgeFirst (K.faceEdge f i) := by
   change ((K.faceVertexEquiv f) ((K.faceVertexEquiv f).symm _)).1 = _
   rw [(K.faceVertexEquiv f).apply_symm_apply]
 
+/--
+@isnad1 id=eq.0h4v.s6.de5c5e522924 from=translated src=- shape=4d52be89 vocab=d7ad75f0
+-/
 @[simp] theorem faceVertexEmbedding_faceEdgeSecondIndex (f : K.Face) (i : ZMod 3) :
     K.faceVertexEmbedding f (K.faceEdgeSecondIndex f i) =
       K.edgeSecond (K.faceEdge f i) := by
   change ((K.faceVertexEquiv f) ((K.faceVertexEquiv f).symm _)).1 = _
   rw [(K.faceVertexEquiv f).apply_symm_apply]
 
-/-- The two standard indices of cyclic side `i`, ordered by the global abstract edge. -/
+/-- The two standard indices of cyclic side `i`, ordered by the global abstract edge.
+@isnad1 id=eq.0h4v.s6.18023bda75a1 from=translated src=- shape=2af7ee85 vocab=1e7abeb3
+-/
 theorem faceStandardEdge_eq_endpointIndices (f : K.Face) (i : ZMod 3) :
     IntrinsicTwoComplex.faceStandardEdge i =
       {K.faceEdgeFirstIndex f i, K.faceEdgeSecondIndex f i} := by
@@ -225,6 +262,9 @@ noncomputable def faceEdgeParameterAffine (f : K.Face) (i : ZMod 3) :
   (LinearMap.proj (K.faceEdgeSecondIndex f i)).toAffineMap.comp
     (standardTrianglePlaneComplex.faceCoords standardTriangleMeshFace)
 
+/--
+@isnad1 id=eq.0h5v.s9.637166ef47b0 from=translated src=- shape=7a29c4d9 vocab=bcd619d4
+-/
 @[simp] theorem faceEdgeParameterAffine_sourcePoint
     (f : K.Face) (i : ZMod 3) (r : ℝ) :
     K.faceEdgeParameterAffine f i (K.faceEdgeSourcePoint f i r) = r := by
@@ -246,6 +286,9 @@ noncomputable def faceEdgeParameterAffine (f : K.Face) (i : ZMod 3) :
     AffineMap.apply_lineMap, hfirst, hsecond]
   simp [AffineMap.lineMap_apply_module, hne]
 
+/--
+@isnad1 id=mem.1h5v.s5.5b96480f56c0 from=translated src=- shape=a57c64b8 vocab=53b47043
+-/
 theorem faceEdgeSourcePoint_mem_standardEdge (f : K.Face) (i : ZMod 3)
     {r : ℝ} (hr : r ∈ Set.Icc (0 : ℝ) 1) :
     K.faceEdgeSourcePoint f i r ∈
@@ -261,6 +304,9 @@ theorem faceEdgeSourcePoint_mem_standardEdge (f : K.Face) (i : ZMod 3)
   rw [convexHull_pair, segment_eq_image_lineMap]
   exact ⟨r, hr, rfl⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.4483cd0ab983 from=translated src=- shape=4a0efb69 vocab=8d39f9ce
+-/
 theorem faceEdgeSourcePoint_image_Icc (f : K.Face) (i : ZMod 3) :
     K.faceEdgeSourcePoint f i '' Set.Icc (0 : ℝ) 1 =
       standardTrianglePlaneComplex.cellCarrier
@@ -284,7 +330,9 @@ private theorem eq_edgeFirst_or_edgeSecond (e : K.Edge) {v : K.Vertex}
   rw [K.edge_eq_pair e] at hv
   simpa only [Finset.mem_insert, Finset.mem_singleton] using hv
 
-/-- The two endpoint coordinates of a face point supported on an edge add to one. -/
+/-- The two endpoint coordinates of a face point supported on an edge add to one.
+@isnad1 id=eq.2h5v.s9.3cf20b354a30 from=translated src=- shape=ad187a8d vocab=6fefb818
+-/
 theorem supportedOnEdge_endpoint_sum (f : K.Face) (e : K.Edge)
     (hef : e.1 ⊆ K.faceVertices f) (x : K.ClosedFace f)
     (hx : ∀ v, v.1 ∉ e.1 → x v = 0) :
@@ -325,6 +373,9 @@ theorem supportedOnEdge_endpoint_sum (f : K.Face) (e : K.Edge)
       simp [E, hve]
     _ = 1 := x.2.2
 
+/--
+@isnad1 id=eq.1h5v.s9.7c25cb935e57 from=translated src=- shape=bcf1916e vocab=fae0d317
+-/
 theorem faceSide_endpoint_sum (f : K.Face) (i : ZMod 3)
     (x : K.ClosedFace f) (hx : x ∈ K.faceSide f i) :
     x ⟨K.edgeFirst (K.faceEdge f i), K.edgeFirst_faceEdge_mem_face f i⟩ +
@@ -349,7 +400,9 @@ noncomputable def faceSideToEdgeSimplex (f : K.Face) (i : ZMod 3)
   K.supportedOnEdgeToSimplex f (K.faceEdge f i)
     (K.faceEdge_subset_faceVertices f i) x hx
 
-/-- A face point supported on an incident edge maps into that edge carrier. -/
+/-- A face point supported on an incident edge maps into that edge carrier.
+@isnad1 id=mem.2h5v.s8.5897abcef0f3 from=translated src=- shape=d3c57222 vocab=facf01ff
+-/
 theorem faceMap_mem_edgeCarrier_of_supportedOnEdge (f : K.Face) (e : K.Edge)
     (hef : e.1 ⊆ K.faceVertices f) (x : K.ClosedFace f)
     (hx : ∀ v, v.1 ∉ e.1 → x v = 0) :
@@ -381,7 +434,9 @@ theorem faceMap_mem_edgeCarrier_of_supportedOnEdge (f : K.Face) (e : K.Edge)
       exact (hx ⟨v, hvf⟩ hv).symm
     · rw [extendFaceCoordinates_of_notMem (K.faceVertices f) x hvf]
 
-/-- A point of a native face side maps into the corresponding ambient edge carrier. -/
+/-- A point of a native face side maps into the corresponding ambient edge carrier.
+@isnad1 id=mem.1h5v.s7.4c4e22231ed1 from=translated src=- shape=416f0c36 vocab=c3cb490d
+-/
 theorem faceMap_mem_edgeCarrier_of_mem_faceSide (f : K.Face) (i : ZMod 3)
     (x : K.ClosedFace f) (hx : x ∈ K.faceSide f i) :
     K.faceMap f x ∈ K.edgeCarrier (K.faceEdge f i) :=
@@ -394,12 +449,18 @@ noncomputable def edgeSimplexInFace (f : K.Face) (e : K.Edge)
     (z : stdSimplex ℝ {v // v ∈ e.1}) : K.ClosedFace f :=
   stdSimplex.map (fun v : {v // v ∈ e.1} ↦ ⟨v.1, hef v.2⟩) z
 
+/--
+@isnad1 id=eq.1h5v.s7.29bee37ea3b9 from=translated src=- shape=67fb764c vocab=a475cf67
+-/
 theorem faceMap_edgeSimplexInFace (f : K.Face) (e : K.Edge)
     (hef : e.1 ⊆ K.faceVertices f)
     (z : stdSimplex ℝ {v // v ∈ e.1}) :
     K.faceMap f (K.edgeSimplexInFace f e hef z) = K.edgeMap e z :=
   (K.edgeMap_eq_faceMap e f hef z).symm
 
+/--
+@isnad1 id=eq.2h6v.s9.367d38384208 from=translated src=- shape=b1bb0a5b vocab=51665df0
+-/
 theorem edgeSimplexInFace_supported (f : K.Face) (e : K.Edge)
     (hef : e.1 ⊆ K.faceVertices f)
     (z : stdSimplex ℝ {v // v ∈ e.1})
@@ -421,7 +482,9 @@ theorem edgeSimplexInFace_supported (f : K.Face) (e : K.Edge)
   simp
 
 /-- Reindexing the canonical edge simplex inside a face gives the same oriented affine
-parameter on the corresponding two standard vertices. -/
+parameter on the corresponding two standard vertices.
+@isnad1 id=eq.0h5v.s9.d3f60130aeee from=translated src=- shape=a3be01c3 vocab=3e5756f1
+-/
 theorem faceReindexToStandard_edgeSimplexPath (f : K.Face) (i : ZMod 3)
     (r : Set.Icc (0 : ℝ) 1) :
     (K.faceReindexToStandard f
@@ -498,7 +561,9 @@ theorem faceReindexToStandard_edgeSimplexPath (f : K.Face) (i : ZMod 3)
     simp [AffineMap.lineMap_apply_module, hjFirst, hjSecond]
 
 /-- The standard plane chart sends the canonical edge-simplex path to the globally oriented
-affine parameter on the corresponding standard side. -/
+affine parameter on the corresponding standard side.
+@isnad1 id=eq.0h5v.s10.e89be848bc3c from=translated src=- shape=be623be7 vocab=bc78a1c4
+-/
 theorem facePlaneHomeomorph_edgeSimplexPath (f : K.Face) (i : ZMod 3)
     (r : Set.Icc (0 : ℝ) 1) :
     (K.facePlaneHomeomorph f
@@ -533,6 +598,9 @@ theorem facePlaneHomeomorph_edgeSimplexPath (f : K.Face) (i : ZMod 3)
     simp []
   rw [hfirst, hsecond, AffineMap.lineMap_apply_module]
 
+/--
+@isnad1 id=le.1h4v.s6.2e0c93bd4e81 from=translated src=- shape=b5f15750 vocab=70ed8c5c
+-/
 theorem edgeCarrier_subset_faceCarrier_of_subset (f : K.Face) (e : K.Edge)
     (hef : e.1 ⊆ K.faceVertices f) :
     K.edgeCarrier e ⊆ K.faceCarrier f := by
@@ -540,6 +608,9 @@ theorem edgeCarrier_subset_faceCarrier_of_subset (f : K.Face) (e : K.Edge)
   exact ⟨K.edgeSimplexInFace f e hef z,
     K.faceMap_edgeSimplexInFace f e hef z⟩
 
+/--
+@isnad1 id=iff.0h5v.s7.84b4fd56f6a8 from=translated src=- shape=f2518424 vocab=96a40923
+-/
 theorem faceReindexToStandard_mem_faceCarrier (f : K.Face) (i : ZMod 3)
     (x : K.ClosedFace f) :
     standardSimplexToRealization (K.faceReindexToStandard f x) ∈
@@ -588,7 +659,9 @@ theorem faceReindexToStandard_mem_faceCarrier (f : K.Face) (i : ZMod 3)
       exact Subtype.ext hmem
 
 /-- The standard plane chart sends cyclic source side `i` exactly onto cyclic side `i` of the
-standard triangle. -/
+standard triangle.
+@isnad1 id=eq.0h4v.s10.549217e2b3fb from=translated src=- shape=ac40389c vocab=59ed1fdc
+-/
 theorem facePlaneHomeomorph_image_edge (f : K.Face) (i : ZMod 3) :
     (fun x : K.ClosedFace f ↦ (K.facePlaneHomeomorph f x).1) '' K.faceSide f i =
       standardTriangleCircle.edgeSegment i := by

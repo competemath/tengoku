@@ -47,16 +47,25 @@ def castSuccDart {n : ℕ} : SignedDart (Fin n) → SignedDart (Fin (n + 1))
   | .pos e => .pos e.castSucc
   | .neg e => .neg e.castSucc
 
+/--
+@isnad1 id=eq.0h2v.s5.f4bcef60f377 from=translated src=- shape=7412d20c vocab=d6d8462b
+-/
 @[simp]
 theorem castSuccDart_pos {n : ℕ} (e : Fin n) :
     castSuccDart (.pos e) = .pos e.castSucc :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.4bec4f972da7 from=translated src=- shape=7412d20c vocab=5dc175b5
+-/
 @[simp]
 theorem castSuccDart_neg {n : ℕ} (e : Fin n) :
     castSuccDart (.neg e) = .neg e.castSucc :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.810e5d9841c8 from=translated src=- shape=8591dcbc vocab=8c7bfc48
+-/
 @[simp]
 theorem edgeOfDart_castSuccDart {n : ℕ} (d : SignedDart (Fin n)) :
     edgeOfDart (castSuccDart d) = (edgeOfDart d).castSucc := by
@@ -70,6 +79,9 @@ def freshEdge (n : ℕ) : Fin (n + 1) :=
 def firstSubedge {n : ℕ} (a : Fin n) : Fin (n + 1) :=
   a.castSucc
 
+/--
+@isnad1 id=ne.0h2v.s4.2f7866536456 from=translated src=- shape=7451783b vocab=06081af9
+-/
 theorem firstSubedge_ne_freshEdge {n : ℕ} (a : Fin n) :
     firstSubedge a ≠ freshEdge n :=
   Fin.castSucc_ne_last a
@@ -88,25 +100,39 @@ def expandDart {n : ℕ} (a : Fin n) :
       else
         [.neg e.castSucc]
 
+/--
+@isnad1 id=eq.0h2v.s6.f15ecf2276ce from=translated src=- shape=ca701e22 vocab=b6a608e2
+-/
 @[simp]
 theorem expandDart_pos_self {n : ℕ} (a : Fin n) :
     expandDart a (.pos a) = [.pos (firstSubedge a), .pos (freshEdge n)] := by
   simp [expandDart]
 
+/--
+@isnad1 id=eq.0h2v.s6.4ed7ce68d3e0 from=translated src=- shape=023948f8 vocab=a4cf7c76
+-/
 @[simp]
 theorem expandDart_neg_self {n : ℕ} (a : Fin n) :
     expandDart a (.neg a) = [.neg (freshEdge n), .neg (firstSubedge a)] := by
   simp [expandDart]
 
+/--
+@isnad1 id=eq.1h3v.s6.ad5a57304e29 from=translated src=- shape=fa426f38 vocab=bd691216
+-/
 theorem expandDart_pos_of_ne {n : ℕ} {a e : Fin n} (h : e ≠ a) :
     expandDart a (.pos e) = [.pos e.castSucc] := by
   simp [expandDart, h]
 
+/--
+@isnad1 id=eq.1h3v.s6.c179b9e649ba from=translated src=- shape=fa426f38 vocab=c2ba9bf4
+-/
 theorem expandDart_neg_of_ne {n : ℕ} {a e : Fin n} (h : e ≠ a) :
     expandDart a (.neg e) = [.neg e.castSucc] := by
   simp [expandDart, h]
 
-/-- P1 sends the opposite dart to the inverse of the substituted word. -/
+/-- P1 sends the opposite dart to the inverse of the substituted word.
+@isnad1 id=eq.0h3v.s5.f255cb95d440 from=translated src=- shape=6726789f vocab=62a1a05c
+-/
 @[simp]
 theorem expandDart_flip {n : ℕ} (a : Fin n) (d : SignedDart (Fin n)) :
     expandDart a d.flip = inverseWord (expandDart a d) := by
@@ -122,6 +148,9 @@ theorem expandDart_flip {n : ℕ} (a : Fin n) (d : SignedDart (Fin n)) :
         simp [expandDart, inverseWord, SignedDart.flip]
       · simp [expandDart, inverseWord, SignedDart.flip, h]
 
+/--
+@isnad1 id=mem.0h3v.s6.c2e7e81b79c3 from=translated src=- shape=722ad599 vocab=ef7fdf22
+-/
 theorem castSuccDart_mem_expandDart {n : ℕ} (a : Fin n)
     (d : SignedDart (Fin n)) :
     castSuccDart d ∈ expandDart a d := by
@@ -143,21 +172,33 @@ def contractDart {n : ℕ} :
   | .pos e => Fin.lastCases none (fun b ↦ some (.pos b)) e
   | .neg e => Fin.lastCases none (fun b ↦ some (.neg b)) e
 
+/--
+@isnad1 id=eq.0h2v.s5.36f92b904ec9 from=translated src=- shape=ff0ced94 vocab=7443559e
+-/
 @[simp]
 theorem contractDart_pos_castSucc {n : ℕ} (e : Fin n) :
     contractDart (.pos e.castSucc) = some (.pos e) := by
   simp [contractDart]
 
+/--
+@isnad1 id=eq.0h2v.s5.3256a0221b74 from=translated src=- shape=ff0ced94 vocab=6980acbb
+-/
 @[simp]
 theorem contractDart_neg_castSucc {n : ℕ} (e : Fin n) :
     contractDart (.neg e.castSucc) = some (.neg e) := by
   simp [contractDart]
 
+/--
+@isnad1 id=eq.0h1v.s4.1da26fe83445 from=translated src=- shape=5fa49746 vocab=e3bdd605
+-/
 @[simp]
 theorem contractDart_pos_freshEdge (n : ℕ) :
     contractDart (.pos (freshEdge n)) = none := by
   simp [contractDart, freshEdge]
 
+/--
+@isnad1 id=eq.0h1v.s4.679dd1a0e0a6 from=translated src=- shape=5fa49746 vocab=ddc5c074
+-/
 @[simp]
 theorem contractDart_neg_freshEdge (n : ℕ) :
     contractDart (.neg (freshEdge n)) = none := by
@@ -173,39 +214,59 @@ def contractWord {n : ℕ} (word : List (SignedDart (Fin (n + 1)))) :
     List (SignedDart (Fin n)) :=
   word.filterMap contractDart
 
+/--
+@isnad1 id=eq.0h2v.s5.545466748749 from=translated src=- shape=1f2c8196 vocab=b783403b
+-/
 @[simp]
 theorem expandWord_nil {n : ℕ} (a : Fin n) :
     expandWord a [] = [] :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.68397cdc3297 from=translated src=- shape=70b37c99 vocab=74fc7559
+-/
 @[simp]
 theorem expandWord_cons {n : ℕ} (a : Fin n) (d : SignedDart (Fin n))
     (word : List (SignedDart (Fin n))) :
     expandWord a (d :: word) = expandDart a d ++ expandWord a word :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.7906678b566e from=translated src=- shape=d83af7ab vocab=91fc5848
+-/
 theorem expandWord_singleton {n : ℕ} (a : Fin n) (d : SignedDart (Fin n)) :
     expandWord a [d] = expandDart a d := by
   simp [expandWord]
 
+/--
+@isnad1 id=eq.0h4v.s7.6f011bf68668 from=translated src=- shape=61dd9763 vocab=abd36165
+-/
 @[simp]
 theorem expandWord_append {n : ℕ} (a : Fin n)
     (left right : List (SignedDart (Fin n))) :
     expandWord a (left ++ right) = expandWord a left ++ expandWord a right := by
   simp [expandWord]
 
+/--
+@isnad1 id=eq.0h1v.s4.a4127e528754 from=translated src=- shape=eebe8cda vocab=e44b9634
+-/
 @[simp]
 theorem contractWord_nil {n : ℕ} :
     contractWord ([] : List (SignedDart (Fin (n + 1)))) = [] :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.62a5d654ffd3 from=translated src=- shape=f1a7e7f9 vocab=4a9f0138
+-/
 @[simp]
 theorem contractWord_append {n : ℕ}
     (left right : List (SignedDart (Fin (n + 1)))) :
     contractWord (left ++ right) = contractWord left ++ contractWord right := by
   simp [contractWord]
 
-/-- Contracting one substituted occurrence returns that occurrence. -/
+/-- Contracting one substituted occurrence returns that occurrence.
+@isnad1 id=eq.0h3v.s4.f2b8b0d17478 from=translated src=- shape=222b6600 vocab=6cb898e8
+-/
 @[simp]
 theorem contractWord_expandDart {n : ℕ} (a : Fin n)
     (d : SignedDart (Fin n)) :
@@ -222,7 +283,9 @@ theorem contractWord_expandDart {n : ℕ} (a : Fin n)
         simp [contractWord, contractDart, firstSubedge, freshEdge]
       · simp [contractWord, contractDart, expandDart, h]
 
-/-- Contracting the global P1 substitution returns the original word exactly. -/
+/-- Contracting the global P1 substitution returns the original word exactly.
+@isnad1 id=eq.0h3v.s4.60575c0652b1 from=translated src=- shape=c7a10374 vocab=bd41b120
+-/
 @[simp]
 theorem contractWord_expandWord {n : ℕ} (a : Fin n)
     (word : List (SignedDart (Fin n))) :
@@ -233,6 +296,9 @@ theorem contractWord_expandWord {n : ℕ} (a : Fin n)
       rw [expandWord_cons, contractWord_append, contractWord_expandDart, ih]
       rfl
 
+/--
+@isnad1 id=iff.0h3v.s5.85da773f3cbe from=translated src=- shape=b4a782a7 vocab=b783403b
+-/
 @[simp]
 theorem expandWord_eq_nil_iff {n : ℕ} (a : Fin n)
     (word : List (SignedDart (Fin n))) :
@@ -244,7 +310,9 @@ theorem expandWord_eq_nil_iff {n : ℕ} (a : Fin n)
   · rintro rfl
     rfl
 
-/-- P1 commutes with reversal of an oriented cyclic boundary word. -/
+/-- P1 commutes with reversal of an oriented cyclic boundary word.
+@isnad1 id=eq.0h3v.s5.d0eeeefe1388 from=translated src=- shape=c158d2bc vocab=e54e7677
+-/
 @[simp]
 theorem expandWord_inverseWord {n : ℕ} (a : Fin n)
     (word : List (SignedDart (Fin n))) :
@@ -265,7 +333,9 @@ theorem expandWord_inverseWord {n : ℕ} (a : Fin n)
         _ = inverseWord (expandWord a (d :: word)) :=
           rfl
 
-/-- A list-valued substitution preserves cyclic rotation. -/
+/-- A list-valued substitution preserves cyclic rotation.
+@isnad1 id=isrotate.1h4v.s5.d5dbeed29e4e from=translated src=- shape=0cec546d vocab=d02b334a
+-/
 theorem expandWord_isRotated {n : ℕ} {a : Fin n}
     {left right : List (SignedDart (Fin n))}
     (h : left.IsRotated right) :
@@ -286,7 +356,9 @@ theorem expandWord_isRotated {n : ℕ} {a : Fin n}
       exact List.isRotated_append
     _ = expandWord a (left.rotate k) := congrArg (expandWord a) hrotate.symm
 
-/-- Contraction preserves cyclic rotation even when the cut passes through a subdivided pair. -/
+/-- Contraction preserves cyclic rotation even when the cut passes through a subdivided pair.
+@isnad1 id=isrotate.1h3v.s6.a69ed99b0702 from=translated src=- shape=3046fb82 vocab=5485682a
+-/
 theorem contractWord_isRotated {n : ℕ}
     {left right : List (SignedDart (Fin (n + 1)))}
     (h : left.IsRotated right) :
@@ -307,7 +379,9 @@ theorem contractWord_isRotated {n : ℕ}
       exact List.isRotated_append
     _ = contractWord (left.rotate k) := congrArg contractWord hrotate.symm
 
-/-- P1 substitution preserves and reflects cyclic rotation. -/
+/-- P1 substitution preserves and reflects cyclic rotation.
+@isnad1 id=iff.0h4v.s5.de0bf9f1a8bf from=translated src=- shape=608a27d3 vocab=d02b334a
+-/
 @[simp]
 theorem expandWord_isRotated_iff {n : ℕ} (a : Fin n)
     (left right : List (SignedDart (Fin n))) :
@@ -318,7 +392,9 @@ theorem expandWord_isRotated_iff {n : ℕ} (a : Fin n)
     simpa only [contractWord_expandWord] using contractWord_isRotated h
   · exact expandWord_isRotated
 
-/-- The occurrence of every retained edge survives the expansion. -/
+/-- The occurrence of every retained edge survives the expansion.
+@isnad1 id=mem.1h4v.s7.91ff4acb65a2 from=translated src=- shape=430ae1ed vocab=c32854d4
+-/
 theorem castSucc_edge_mem_expandWord {n : ℕ} {a e : Fin n}
     {word : List (SignedDart (Fin n))}
     (h : e ∈ word.map edgeOfDart) :
@@ -327,7 +403,9 @@ theorem castSucc_edge_mem_expandWord {n : ℕ} {a e : Fin n}
   refine List.mem_map.mpr ⟨castSuccDart d, ?_, edgeOfDart_castSuccDart d⟩
   exact List.mem_flatMap.mpr ⟨d, hd, castSuccDart_mem_expandDart a d⟩
 
-/-- Each retained edge has exactly its old word multiplicity after P1. -/
+/-- Each retained edge has exactly its old word multiplicity after P1.
+@isnad1 id=eq.0h4v.s7.e0a2684ddbd8 from=translated src=- shape=441c62a0 vocab=f7629e1e
+-/
 theorem count_expandWord_castSucc {n : ℕ} (a e : Fin n)
     (word : List (SignedDart (Fin n))) :
     (word.map edgeOfDart).count e =
@@ -353,7 +431,9 @@ theorem count_expandWord_castSucc {n : ℕ} (a e : Fin n)
               List.count_cons, beq_iff_eq, hlast]
           · simp [expandDart, h, ih, edgeOfDart, List.count_cons, beq_iff_eq]
 
-/-- The fresh edge receives exactly the old multiplicity of the subdivided edge. -/
+/-- The fresh edge receives exactly the old multiplicity of the subdivided edge.
+@isnad1 id=eq.0h3v.s6.948b4efd2009 from=translated src=- shape=e744652f vocab=a63af6c3
+-/
 theorem count_expandWord_freshEdge {n : ℕ} (a : Fin n)
     (word : List (SignedDart (Fin n))) :
     (word.map edgeOfDart).count a =
@@ -379,11 +459,17 @@ abbrev expand (P : FiniteCyclicPresentation) (a : P.Edge) :
   edgeCount := P.edgeCount + 1
   faces := P.faces.map (expandWord a)
 
+/--
+@isnad1 id=eq.0h2v.s4.4db739471d60 from=translated src=- shape=34012f48 vocab=b6f68337
+-/
 @[simp]
 theorem expand_edgeCount (P : FiniteCyclicPresentation) (a : P.Edge) :
     (expand P a).edgeCount = P.edgeCount + 1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.2f3eefe08b22 from=translated src=- shape=e3a29f9c vocab=ddd1ecbb
+-/
 theorem expand_faces_length (P : FiniteCyclicPresentation) (a : P.Edge) :
     (expand P a).faces.length = P.faces.length := by
   simp [expand]
@@ -393,12 +479,18 @@ def faceEquiv (P : FiniteCyclicPresentation) (a : P.Edge) :
     P.Face ≃ (expand P a).Face :=
   finCongr (expand_faces_length P a).symm
 
+/--
+@isnad1 id=eq.0h3v.s6.c3fd78a8baa1 from=translated src=- shape=83866e07 vocab=2ddb8d27
+-/
 @[simp]
 theorem faceEquiv_apply_val (P : FiniteCyclicPresentation) (a : P.Edge)
     (f : P.Face) :
     (faceEquiv P a f).val = f.val :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.f8be19574d56 from=translated src=- shape=def35049 vocab=7fb361ed
+-/
 @[simp]
 theorem expand_boundary (P : FiniteCyclicPresentation) (a : P.Edge)
     (f : P.Face) :
@@ -406,7 +498,9 @@ theorem expand_boundary (P : FiniteCyclicPresentation) (a : P.Edge)
       expandWord a (P.boundary f) := by
   simp [boundary, List.get_eq_getElem, expand, faceEquiv]
 
-/-- P1 copies every retained edge's facewise multiplicity. -/
+/-- P1 copies every retained edge's facewise multiplicity.
+@isnad1 id=eq.0h4v.s6.696ef40ae073 from=translated src=- shape=90989695 vocab=5bc3e68a
+-/
 theorem faceEdgeMultiplicity_expand_castSucc
     (P : FiniteCyclicPresentation) (a e : P.Edge) (f : P.Face) :
     P.faceEdgeMultiplicity f e =
@@ -414,7 +508,9 @@ theorem faceEdgeMultiplicity_expand_castSucc
   simp only [faceEdgeMultiplicity, expand_boundary]
   exact count_expandWord_castSucc a e (P.boundary f)
 
-/-- P1 gives the fresh edge the subdivided edge's facewise multiplicity. -/
+/-- P1 gives the fresh edge the subdivided edge's facewise multiplicity.
+@isnad1 id=eq.0h3v.s5.d64bfe38cf85 from=translated src=- shape=8f771589 vocab=2df6609e
+-/
 theorem faceEdgeMultiplicity_expand_freshEdge
     (P : FiniteCyclicPresentation) (a : P.Edge) (f : P.Face) :
     P.faceEdgeMultiplicity f a =
@@ -423,7 +519,9 @@ theorem faceEdgeMultiplicity_expand_freshEdge
   simp only [faceEdgeMultiplicity, expand_boundary]
   exact count_expandWord_freshEdge a (P.boundary f)
 
-/-- P1 copies every retained edge's total multiplicity. -/
+/-- P1 copies every retained edge's total multiplicity.
+@isnad1 id=eq.0h3v.s4.ae9955e79364 from=translated src=- shape=40d22da0 vocab=5310cb6c
+-/
 theorem edgeMultiplicity_expand_castSucc
     (P : FiniteCyclicPresentation) (a e : P.Edge) :
     P.edgeMultiplicity e = (expand P a).edgeMultiplicity e.castSucc := by
@@ -431,7 +529,9 @@ theorem edgeMultiplicity_expand_castSucc
   exact Fintype.sum_equiv (faceEquiv P a) _ _ fun f ↦
     faceEdgeMultiplicity_expand_castSucc P a e f
 
-/-- P1 gives the fresh edge the subdivided edge's total multiplicity. -/
+/-- P1 gives the fresh edge the subdivided edge's total multiplicity.
+@isnad1 id=eq.0h2v.s4.9d36fd1ac2c8 from=translated src=- shape=ac2b719b vocab=80c3a167
+-/
 theorem edgeMultiplicity_expand_freshEdge
     (P : FiniteCyclicPresentation) (a : P.Edge) :
     P.edgeMultiplicity a =
@@ -440,7 +540,9 @@ theorem edgeMultiplicity_expand_freshEdge
   exact Fintype.sum_equiv (faceEquiv P a) _ _ fun f ↦
     faceEdgeMultiplicity_expand_freshEdge P a f
 
-/-- P1 sends source face adjacency to target face adjacency. -/
+/-- P1 sends source face adjacency to target face adjacency.
+@isnad1 id=faceadja.1h4v.s6.33449b2d883e from=translated src=- shape=de051e3e vocab=f0e4dc9f
+-/
 theorem map_faceAdjacent
     (P : FiniteCyclicPresentation) (a : P.Edge) {f g : P.Face}
     (h : P.FaceAdjacent f g) :
@@ -452,7 +554,9 @@ theorem map_faceAdjacent
   · rw [expand_boundary]
     exact castSucc_edge_mem_expandWord heg
 
-/-- P1 preserves ordinary finite-presentation incidence validity. -/
+/-- P1 preserves ordinary finite-presentation incidence validity.
+@isnad1 id=issurfac.1h2v.s3.6327ef5c23aa from=translated src=- shape=8f4fd3ab vocab=a8d0b81a
+-/
 theorem expand_isSurfaceValid
     (P : FiniteCyclicPresentation) (a : P.Edge) (h : P.IsSurfaceValid) :
     (expand P a).IsSurfaceValid := by
@@ -502,7 +606,9 @@ theorem expand_isSurfaceValid
       rw [edgeMultiplicity_expand_castSucc P a b] at hmultiplicity
       exact hmultiplicity
 
-/-- P1 preserves connectedness of the face-edge incidence graph. -/
+/-- P1 preserves connectedness of the face-edge incidence graph.
+@isnad1 id=isconnec.1h2v.s3.32317a59bb33 from=translated src=- shape=8f4fd3ab vocab=f5a4dec8
+-/
 theorem expand_isConnected
     (P : FiniteCyclicPresentation) (a : P.Edge) (h : P.IsConnected) :
     (expand P a).IsConnected := by
@@ -518,7 +624,9 @@ theorem expand_isConnected
 
 /-- P1 preserves the regular and exceptional branches of Gallier validity.
 
-The exceptional branch is impossible here because selecting `a` already supplies an edge. -/
+The exceptional branch is impossible here because selecting `a` already supplies an edge.
+@isnad1 id=isgallie.1h2v.s3.63f6aebebcd7 from=translated src=- shape=8f4fd3ab vocab=050a9591
+-/
 theorem expand_isGallierValid
     (P : FiniteCyclicPresentation) (a : P.Edge) (h : P.IsGallierValid) :
     (expand P a).IsGallierValid := by
@@ -540,26 +648,34 @@ def P1Subdivision (P Q : FiniteCyclicPresentation) : Prop :=
 
 namespace P1Subdivision
 
-/-- The canonical expansion is a P1 subdivision. -/
+/-- The canonical expansion is a P1 subdivision.
+@isnad1 id=p1subdiv.0h2v.s3.163b5a1dd7e5 from=translated src=- shape=20553ef8 vocab=c1b8d0e6
+-/
 theorem canonical (P : FiniteCyclicPresentation) (a : P.Edge) :
     P1Subdivision P (P1.expand P a) :=
   ⟨a, ⟨SignedPresentationIso.refl _⟩⟩
 
-/-- P1 subdivisions preserve ordinary incidence validity. -/
+/-- P1 subdivisions preserve ordinary incidence validity.
+@isnad1 id=issurfac.2h2v.s3.506b36cbbb27 from=translated src=- shape=a72c41e2 vocab=80dafbcf
+-/
 theorem isSurfaceValid {P Q : FiniteCyclicPresentation}
     (hPQ : P1Subdivision P Q) (h : P.IsSurfaceValid) :
     Q.IsSurfaceValid := by
   rcases hPQ with ⟨a, ⟨e⟩⟩
   exact e.isSurfaceValid (P1.expand_isSurfaceValid P a h)
 
-/-- P1 subdivisions preserve face-incidence connectivity. -/
+/-- P1 subdivisions preserve face-incidence connectivity.
+@isnad1 id=isconnec.2h2v.s3.8a1fd23f8bc8 from=translated src=- shape=a72c41e2 vocab=0504a747
+-/
 theorem isConnected {P Q : FiniteCyclicPresentation}
     (hPQ : P1Subdivision P Q) (h : P.IsConnected) :
     Q.IsConnected := by
   rcases hPQ with ⟨a, ⟨e⟩⟩
   exact e.isConnected (P1.expand_isConnected P a h)
 
-/-- P1 subdivisions preserve Gallier validity. -/
+/-- P1 subdivisions preserve Gallier validity.
+@isnad1 id=isgallie.2h2v.s3.11fe89280230 from=translated src=- shape=a72c41e2 vocab=a64cd599
+-/
 theorem isGallierValid {P Q : FiniteCyclicPresentation}
     (hPQ : P1Subdivision P Q) (h : P.IsGallierValid) :
     Q.IsGallierValid := by

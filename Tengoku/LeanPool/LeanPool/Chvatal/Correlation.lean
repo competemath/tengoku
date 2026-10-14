@@ -57,13 +57,17 @@ namespace Chvatal
 
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
-/-- Summing against a family indicator restricts a sum to that family, as in (11). -/
+/-- Summing against a family indicator restricts a sum to that family, as in (11).
+@isnad1 id=eq.0h3v.s5.40a0a814cea8 from=translated src=- shape=57d2b18a vocab=48f94b9f
+-/
 theorem sum_indicator_mul (F : Family ι) (h : Finset ι → ℝ) :
     (∑ x, F.indicator x * h x) = ∑ x ∈ F, h x := by
   simp [Family.indicator, ite_mul]
 
 /-- Summing a symmetric kernel against the squared change of an indicator counts
-each boundary pair twice. This is the Boolean step in equation (11). -/
+each boundary pair twice. This is the Boolean step in equation (11).
+@isnad1 id=eq.1h3v.s7.293476002d37 from=translated src=- shape=e0f61565 vocab=0a4f37b1
+-/
 theorem indicator_boundary_sum (F : Family ι) (k : Finset ι → Finset ι → ℝ)
     (hk : ∀ x y, k x y = k y x) :
     (∑ x, ∑ y, (F.indicator x - F.indicator y) ^ 2 * k x y) =
@@ -87,7 +91,9 @@ theorem indicator_boundary_sum (F : Family ι) (k : Finset ι → Finset ι → 
   ring
 
 /-- Equation (11), its first equality: the odd-intersection spectral sum is one
-half of the Fourier-weighted flip energy. -/
+half of the Fourier-weighted flip energy.
+@isnad1 id=eq.0h3v.s8.ff33dc5dbd4a from=translated src=- shape=e038c095 vocab=41c38738
+-/
 theorem two_spectral_eq_weighted_flip (f g : Finset ι → ℝ) :
     2 * (∑ T, ∑ S ∈ Finset.univ.filter (fun S : Finset ι => Odd (S ∩ T).card),
       fourier f S ^ 2 * fourier g T ^ 2) =
@@ -100,7 +106,9 @@ theorem two_spectral_eq_weighted_flip (f g : Finset ι → ℝ) :
   intro S hS
   ring
 
-/-- Equation (11), the boundary formula for a family indicator. -/
+/-- Equation (11), the boundary formula for a family indicator.
+@isnad1 id=eq.0h3v.s7.7ac7ce1c5ae4 from=translated src=- shape=4d3d1a63 vocab=67eb8eb9
+-/
 theorem two_spectral_eq_boundary (F : Family ι) (g : Finset ι → ℝ) :
     2 * (∑ T, ∑ S ∈ Finset.univ.filter (fun S : Finset ι => Odd (S ∩ T).card),
       fourier F.indicator S ^ 2 * fourier g T ^ 2) =
@@ -112,7 +120,9 @@ theorem two_spectral_eq_boundary (F : Family ι) (g : Finset ι → ℝ) :
   ring
 
 /-- Equation (12): the Fourier kernel across a family boundary is unchanged
-when a constant is subtracted from the function. -/
+when a constant is subtracted from the function.
+@isnad1 id=eq.0h4v.s7.3b8dfba3f74f from=translated src=- shape=e8141ff1 vocab=32c3d296
+-/
 theorem boundary_sub_const (F : Family ι) (g : Finset ι → ℝ) (t : ℝ) :
     (∑ x ∈ F, ∑ y ∈ Fᶜ, fourier g (x ∆ y) ^ 2) =
       ∑ x ∈ F, ∑ y ∈ Fᶜ, fourier (fun z => g z - t) (x ∆ y) ^ 2 := by
@@ -128,7 +138,9 @@ theorem boundary_sub_const (F : Family ι) (g : Finset ι → ℝ) (t : ℝ) :
   rw [fourier_sub, fourier_const, ite_eq_right hne, sub_zero]
 
 /-- Reindexing the squared Fourier kernel gives the Parseval norm, the first
-step in equation (13). -/
+step in equation (13).
+@isnad1 id=eq.0h3v.s6.f686466fa9b9 from=translated src=- shape=0d0ca07e vocab=3bdd8705
+-/
 theorem sum_fourier_kernel_sq (g : Finset ι → ℝ) (x : Finset ι) :
     (∑ y, fourier g (x ∆ y) ^ 2) = cubeMean (fun z => g z ^ 2) := by
   rw [parseval]
@@ -136,7 +148,9 @@ theorem sum_fourier_kernel_sq (g : Finset ι → ℝ) (x : Finset ι) :
     fun y => symmDiff_symmDiff_cancel_left x y).bijective.sum_comp
       (fun y => fourier g y ^ 2)
 
-/-- Equation (13): boundary energy equals total energy minus interior energy. -/
+/-- Equation (13): boundary energy equals total energy minus interior energy.
+@isnad1 id=eq.0h3v.s7.fb7e9eaa7353 from=translated src=- shape=24142775 vocab=39f18c3d
+-/
 theorem boundary_eq_total_sub_interior (F : Family ι) (g : Finset ι → ℝ) :
     (∑ x ∈ F, ∑ y ∈ Fᶜ, fourier g (x ∆ y) ^ 2) =
       F.card * cubeMean (fun z => g z ^ 2) -
@@ -150,7 +164,9 @@ theorem boundary_eq_total_sub_interior (F : Family ι) (g : Finset ι → ℝ) :
   linarith
 
 omit [DecidableEq ι] in
-/-- A shifted Boolean function's squared norm, used after equation (14). -/
+/-- A shifted Boolean function's squared norm, used after equation (14).
+@isnad1 id=eq.1h3v.s7.9f4b9fcc038c from=translated src=- shape=eb797e0d vocab=c21fce65
+-/
 theorem boolean_sub_const_norm {g : Finset ι → ℝ} (hg : IsBoolean g) (t : ℝ) :
     cubeMean (fun z => (g z - t) ^ 2) =
       (1 - t) ^ 2 * cubeMean g + t ^ 2 * (1 - cubeMean g) := by
@@ -161,7 +177,9 @@ theorem boolean_sub_const_norm {g : Finset ι → ℝ} (hg : IsBoolean g) (t : �
   rw [cubeMean_add, cubeMean_mul_left, cubeMean_mul_left, cubeMean_sub, cubeMean_const]
 
 /-- The density of a family difference is the difference of the corresponding
-indicator means, used to convert equation (14) into covariance. -/
+indicator means, used to convert equation (14) into covariance.
+@isnad1 id=eq.0h3v.s6.aad31833de2e from=translated src=- shape=2a5dfe2e vocab=9be522e9
+-/
 theorem card_sdiff_div_cube (F G : Family ι) :
     ((F \ G).card : ℝ) / Fintype.card (Finset ι) =
       cubeMean F.indicator - cubeMean (fun x => F.indicator x * G.indicator x) := by
@@ -173,7 +191,9 @@ theorem card_sdiff_div_cube (F G : Family ι) :
   linarith
 
 /-- The final algebra in Section 3.2: the total shifted norm minus the two
-auxiliary-family dimensions equals a quadratic combination of covariances. -/
+auxiliary-family dimensions equals a quadratic combination of covariances.
+@isnad1 id=eq.0h4v.s8.838b9e5306c4 from=translated src=- shape=70ec5bcc vocab=ce17c8cb
+-/
 theorem shifted_dimension_covariance (F G : Family ι) (t : ℝ) :
     (F.card * cubeMean (fun z => (G.indicator z - t) ^ 2) -
       (t ^ 2 * (F \ G).card + (1 - t) ^ 2 * (F \ G.dual).card)) /
@@ -194,7 +214,9 @@ theorem shifted_dimension_covariance (F G : Family ι) (t : ℝ) :
   ring
 
 /-- The last step of Section 3.2, isolating how the interior-kernel estimate (14)
-combines with the boundary identities (11)–(13). -/
+combines with the boundary identities (11)–(13).
+@isnad1 id=le.1h4v.s8.f5e2f50ac766 from=translated src=- shape=6d2af129 vocab=44fb3dbd
+-/
 theorem two_spectral_le_of_interior_bound (F G : Family ι) (t : ℝ)
     (hinterior : t ^ 2 * (F \ G).card + (1 - t) ^ 2 * (F \ G.dual).card ≤
       ∑ x ∈ F, ∑ y ∈ F, fourier (fun z => G.indicator z - t) (x ∆ y) ^ 2) :
@@ -209,7 +231,9 @@ theorem two_spectral_le_of_interior_bound (F G : Family ι) (t : ℝ)
 
 /-- Theorem 1.4, equation (3): for every real `t`, twice the odd-intersection
 Fourier energy is bounded by the indicated quadratic combination of covariances.
-The proof includes empty supports and an empty coordinate type. -/
+The proof includes empty supports and an empty coordinate type.
+@isnad1 id=le.4h4v.s8.4e106b1ff72f from=translated src=- shape=30fba785 vocab=f4144f8f
+-/
 theorem two_spectral_le_quadratic_covariance {f g : Finset ι → ℝ}
     (hf : IsBoolean f) (hmf : Monotone f) (hg : IsBoolean g) (hmg : Monotone g)
     (t : ℝ) :

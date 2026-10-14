@@ -72,7 +72,9 @@ def Unlinked {N : ℕ} (A B : Finset (ZMod N)) : Prop := ¬ Linked A B
 instance {N : ℕ} (A B : Finset (ZMod N)) : Decidable (Unlinked A B) := by
   unfold Unlinked; infer_instance
 
-/-- `Unlinked` is symmetric: crossing chords of `A, B` are crossing chords of `B, A`. -/
+/-- `Unlinked` is symmetric: crossing chords of `A, B` are crossing chords of `B, A`.
+@isnad1 id=unlinked.1h3v.s4.23f4d1a60952 from=translated src=- shape=617eec71 vocab=ea4fd168
+-/
 theorem Unlinked.symm {N : ℕ} {A B : Finset (ZMod N)} (h : Unlinked A B) : Unlinked B A := by
   intro hL
   apply h
@@ -83,7 +85,9 @@ theorem Unlinked.symm {N : ℕ} {A B : Finset (ZMod N)} (h : Unlinked A B) : Unl
 
 /-- The crossing witness Lemma A / Seam / Bridge will call: a strictly-alternating quadruple
     `a1 < b1 < a2 < b2` (linear `.val` order) with `a1,a2 ∈ A`, `b1,b2 ∈ B` contradicts
-    `Unlinked A B`. -/
+    `Unlinked A B`.
+@isnad1 id=not.7h7v.s7.b768c8894d55 from=translated src=- shape=1ec0cd7c vocab=5db25d73
+-/
 theorem not_unlinked_of_alternating {N : ℕ} {A B : Finset (ZMod N)}
     {a1 a2 b1 b2 : ZMod N} (ha1 : a1 ∈ A) (ha2 : a2 ∈ A) (hb1 : b1 ∈ B) (hb2 : b2 ∈ B)
     (h1 : a1.val < b1.val) (h2 : b1.val < a2.val) (h3 : a2.val < b2.val) :
@@ -105,7 +109,9 @@ instance (d m : ℕ) (P : Finset (Finset (ZMod (d * m)))) : Decidable (Portrait 
 /-! ## 4. The portrait subtype is a Fintype (unconditional, mirroring `instFiniteCanonical`). -/
 
 /-- When `d * m = 0`, no portrait exists. (`m = 0` ⇒ no fiber witness; `d = 0` ⇒ weight
-    target `0`, but every critical set has positive weight, so the family is empty.) -/
+    target `0`, but every critical set has positive weight, so the family is empty.)
+@isnad1 id=eq.2h3v.s6.30081957f006 from=translated src=- shape=03e50f2f vocab=30e6258a
+-/
 lemma portrait_eq_empty_of_degenerate (d m : ℕ) (h0 : d * m = 0)
     (P : Finset (Finset (ZMod (d * m)))) (hP : Portrait d m P) : P = ∅ := by
   classical
@@ -130,6 +136,9 @@ lemma portrait_eq_empty_of_degenerate (d m : ℕ) (h0 : d * m = 0)
       · exact ⟨S, hS, by omega⟩
     simp_all
 
+/--
+@isnad1 id=finite.0h2v.s5.e5b738fd87d6 from=translated src=- shape=286780ae vocab=76fd5a77
+-/
 instance instFinitePortrait (d m : ℕ) :
     Finite {P : Finset (Finset (ZMod (d * m))) // Portrait d m P} := by
   rcases Nat.eq_zero_or_pos (d * m) with h0 | hpos
@@ -154,9 +163,15 @@ in level, so least-`.val` = lowest-level = exactly bare-Lean's `S.drop 1`. -/
 noncomputable def minVal {N : ℕ} (S : Finset (ZMod N)) (h : S.Nonempty) : ZMod N :=
   (Finset.exists_min_image S (fun x => x.val) h).choose
 
+/--
+@isnad1 id=mem.1h2v.s4.5a4319df37a5 from=translated src=- shape=8436a707 vocab=dad61b4a
+-/
 lemma minVal_mem {N : ℕ} (S : Finset (ZMod N)) (h : S.Nonempty) : minVal S h ∈ S :=
   (Finset.exists_min_image S (fun x => x.val) h).choose_spec.1
 
+/--
+@isnad1 id=le.2h3v.s5.e2f0d9bf4029 from=translated src=- shape=8f5c6138 vocab=323e3890
+-/
 lemma minVal_le {N : ℕ} (S : Finset (ZMod N)) (h : S.Nonempty) :
     ∀ x ∈ S, (minVal S h).val ≤ x.val :=
   (Finset.exists_min_image S (fun x => x.val) h).choose_spec.2
@@ -165,19 +180,27 @@ lemma minVal_le {N : ℕ} (S : Finset (ZMod N)) (h : S.Nonempty) :
 noncomputable def eraseMin {N : ℕ} (S : Finset (ZMod N)) : Finset (ZMod N) :=
   if h : S.Nonempty then S.erase (minVal S h) else S
 
+/--
+@isnad1 id=le.0h2v.s4.965b63bc1ecd from=translated src=- shape=24b8b90a vocab=469c93df
+-/
 lemma eraseMin_subset {N : ℕ} (S : Finset (ZMod N)) : eraseMin S ⊆ S := by
   unfold eraseMin
   split
   · exact Finset.erase_subset _ _
   · exact subset_rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.5e69fc8c4610 from=translated src=- shape=875950d1 vocab=b78cf7f6
+-/
 lemma eraseMin_card {N : ℕ} (S : Finset (ZMod N)) (h : S.Nonempty) :
     (eraseMin S).card = S.card - 1 := by
   unfold eraseMin
   rw [dite_eq_left h, Finset.card_erase_of_mem (minVal_mem S h)]
 
 /-- Membership in `eraseMin`: everything of `S` except its `.val`-minimum (nonempty `S`).
-    The clean characterization the downstream membership reasoning will use. -/
+    The clean characterization the downstream membership reasoning will use.
+@isnad1 id=iff.1h3v.s5.7348514ecc75 from=translated src=- shape=d07644dc vocab=9a77e748
+-/
 lemma mem_eraseMin {N : ℕ} (S : Finset (ZMod N)) (h : S.Nonempty) (x : ZMod N) :
     x ∈ eraseMin S ↔ x ∈ S ∧ x ≠ minVal S h := by
   unfold eraseMin
@@ -188,7 +211,9 @@ lemma mem_eraseMin {N : ℕ} (S : Finset (ZMod N)) (h : S.Nonempty) (x : ZMod N)
 noncomputable def T {N : ℕ} (P : Finset (Finset (ZMod N))) : Finset (ZMod N) :=
   P.sup eraseMin
 
-/-- The erased sets remain pairwise disjoint (erase only shrinks). -/
+/-- The erased sets remain pairwise disjoint (erase only shrinks).
+@isnad1 id=pairwise.1h3v.s6.84e220c4e9f4 from=translated src=- shape=2cc176a7 vocab=6bfbd123
+-/
 lemma eraseMin_pairwiseDisjoint {d m : ℕ} (P : Finset (Finset (ZMod (d * m))))
     (hP : Portrait d m P) : (↑P : Set (Finset (ZMod (d * m)))).PairwiseDisjoint eraseMin := by
   intro A hA B hB hAB
@@ -196,7 +221,9 @@ lemma eraseMin_pairwiseDisjoint {d m : ℕ} (P : Finset (Finset (ZMod (d * m))))
 
 /-! ## 6. BASIC API: the weight identity `#T = d - 1`. -/
 
-/-- **The weight identity.** For a critical portrait, `#T(P) = d - 1`. -/
+/-- **The weight identity.** For a critical portrait, `#T(P) = d - 1`.
+@isnad1 id=eq.1h3v.s5.63b73debe174 from=translated src=- shape=0aa062b1 vocab=170ffa34
+-/
 theorem T_card {d m : ℕ} {P : Finset (Finset (ZMod (d * m)))}
     (hP : Portrait d m P) : (T P).card = d - 1 := by
   classical
@@ -216,7 +243,9 @@ These coincide on a critical set because within one fiber the `.val` order is th
 and the level is injective on the set.  This underwrites "survivors = edge tops" and "each
 block/component has a unique non-survivor = its lowest-level vertex" (scout risk R2). -/
 
-/-- Within a single fiber (same residue mod `m`), the `.val` order equals the level order. -/
+/-- Within a single fiber (same residue mod `m`), the `.val` order equals the level order.
+@isnad1 id=iff.1h4v.s6.7b1260aa9357 from=translated src=- shape=23d723d5 vocab=ddf00b97
+-/
 theorem val_le_iff_level_le_of_sameFiber {N m : ℕ} {x y : ZMod N}
     (hxy : x.val % m = y.val % m) :
     x.val ≤ y.val ↔ x.val / m ≤ y.val / m := by
@@ -230,7 +259,9 @@ theorem val_le_iff_level_le_of_sameFiber {N m : ℕ} {x y : ZMod N}
     omega
 
 /-- The level is injective on a single fiber: same fiber + same level ⇒ same `.val` ⇒
-    same element. -/
+    same element.
+@isnad1 id=eq.2h4v.s6.2bdeab4f2a86 from=translated src=- shape=32f6b60b vocab=0b6c7b20
+-/
 theorem level_injOn_fiber {N m : ℕ} [NeZero N] {x y : ZMod N}
     (hxy : x.val % m = y.val % m) (hlev : x.val / m = y.val / m) : x = y := by
   have hx : x.val = (x.val / m) * m + x.val % m := (Nat.div_add_mod' x.val m).symm
@@ -239,7 +270,9 @@ theorem level_injOn_fiber {N m : ℕ} [NeZero N] {x y : ZMod N}
   exact ZMod.val_injective _ this
 
 /-- **The min-rule is the min-LEVEL rule.** On a critical set, `minVal S` is the unique point
-    of minimum level: its level is `≤` every member's. -/
+    of minimum level: its level is `≤` every member's.
+@isnad1 id=le.3h4v.s7.5142b8dded36 from=translated src=- shape=9bc2fb3a vocab=ea42d13b
+-/
 theorem minVal_level_le {d m : ℕ} {S : Finset (ZMod (d * m))}
     (hS : IsCriticalSet d m S) (h : S.Nonempty) :
     ∀ x ∈ S, (minVal S h).val / m ≤ x.val / m := by
@@ -250,7 +283,9 @@ theorem minVal_level_le {d m : ℕ} {S : Finset (ZMod (d * m))}
   exact (val_le_iff_level_le_of_sameFiber hsame).mp (minVal_le S h x hx)
 
 /-- The dropped point (the minimum) is strictly below — in LEVEL — every survivor of that set.
-    This is what makes "survivors = edge tops" hold; each critical set keeps exactly its tops. -/
+    This is what makes "survivors = edge tops" hold; each critical set keeps exactly its tops.
+@isnad1 id=lt.5h4v.s7.1ccecfa16124 from=translated src=- shape=9dfa382d vocab=20fe842b
+-/
 theorem minVal_lt_survivor {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {S : Finset (ZMod (d * m))} (hS : IsCriticalSet d m S) (h : S.Nonempty) :
     ∀ x ∈ eraseMin S, (minVal S h).val / m < x.val / m := by
@@ -274,26 +309,34 @@ theorem minVal_lt_survivor {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
 These pin the model to the verified one and expose the (M)-style arithmetic. -/
 
 /-- Within one fiber, `val` is strictly monotone in level: a point's `.val` equals
-    `level * m + col`.  (Used to identify least-`.val` with lowest-level.) -/
+    `level * m + col`.  (Used to identify least-`.val` with lowest-level.)
+@isnad1 id=eq.0h3v.s5.8533b00d3f71 from=translated src=- shape=7fad8b57 vocab=85171243
+-/
 lemma val_eq_level_mul_add_col {N : ℕ} (m : ℕ) (i : ZMod N) :
     i.val = (i.val / m) * m + i.val % m := (Nat.div_add_mod' i.val m).symm
 
 /-- **The master separation inequality (M).** One level of separation beats any column
-    offset: for columns `p, q < m` and levels `a < c`, `p + a*m < q + c*m`. -/
+    offset: for columns `p, q < m` and levels `a < c`, `p + a*m < q + c*m`.
+@isnad1 id=lt.3h5v.s6.97fc1454d608 from=translated src=- shape=a2c0f8d1 vocab=304a85f3
+-/
 lemma sep_master {m : ℕ} {p q a c : ℕ} (hp : p < m) (_hq : q < m) (hac : a < c) :
     p + a * m < q + c * m := by
   have hstep : (a + 1) * m ≤ c * m := Nat.mul_le_mul_right m (by omega)
   have : a * m + m ≤ c * m := by rw [Nat.add_mul, Nat.one_mul] at hstep; omega
   omega
 
-/-- A crossing quadruple in strict val-order makes `A, B` linked (the (M)-witness hook). -/
+/-- A crossing quadruple in strict val-order makes `A, B` linked (the (M)-witness hook).
+@isnad1 id=linked.7h7v.s7.61c4bef5ffc4 from=translated src=- shape=c5088118 vocab=5e8f8013
+-/
 lemma linked_of_lt {N : ℕ} {A B : Finset (ZMod N)} {a1 a2 b1 b2 : ZMod N}
     (ha1 : a1 ∈ A) (ha2 : a2 ∈ A) (hb1 : b1 ∈ B) (hb2 : b2 ∈ B)
     (h1 : a1.val < b1.val) (h2 : b1.val < a2.val) (h3 : a2.val < b2.val) :
     Linked A B :=
   ⟨a1, ha1, a2, ha2, b1, hb1, b2, hb2, Or.inl ⟨h1, h2, h3⟩⟩
 
-/-- Membership in `T P`. -/
+/-- Membership in `T P`.
+@isnad1 id=iff.0h3v.s6.fa902ae6861f from=translated src=- shape=eaadd31b vocab=ce9314b8
+-/
 lemma mem_T {N : ℕ} {P : Finset (Finset (ZMod N))} {x : ZMod N} :
     x ∈ T P ↔ ∃ S ∈ P, x ∈ eraseMin S := by
   unfold T

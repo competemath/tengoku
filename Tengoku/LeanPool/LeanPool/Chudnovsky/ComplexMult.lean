@@ -47,7 +47,9 @@ def kappa (τ : ℍ) (A C : ℤ) : ℂ :=
   ((A : ℂ) * (Lτ τ).eta₁ - (C : ℂ) * τ * (Lτ τ).eta₂) / τ
 
 /-- Milla's `lemkapa1`: `κ = −√D·(π²/3)·E₂*(τ)` (with `ω₁ = 1` and `√D = 2Cτ + B`).
-Uses the Legendre relation and `η₁ = π²E₂/3`. -/
+Uses the Legendre relation and `η₁ = π²E₂/3`.
+@isnad1 id=eq.1h4v.s7.928621c2651e from=translated src=- shape=bf1f5bcc vocab=ba3ffb3a
+-/
 theorem lemkapa1 {τ : ℍ} {A B C : ℤ}
     (hCM : (A : ℂ) + B * τ + C * (τ : ℂ) ^ 2 = 0) :
     kappa τ A C = -(2 * C * τ + B) * (π : ℂ) ^ 2 / 3 * E₂star τ := by
@@ -88,7 +90,9 @@ theorem lemkapa1 {τ : ℍ} {A B C : ℤ}
 integers" step): `C·τbar` is an algebraic integer, being a root of the monic integer
 polynomial `X² + B·X + AC`. Indeed `τbar = conj τ` satisfies the conjugate CM relation
 `A + B·τbar + C·τbar² = 0` (the coefficients `A, B, C` are real), and multiplying by `C`
-gives `(Cτbar)² + B·(Cτbar) + AC = 0`. -/
+gives `(Cτbar)² + B·(Cτbar) + AC = 0`.
+@isnad1 id=isintegr.1h4v.s7.ced0795ed49d from=translated src=- shape=b558987a vocab=365698dd
+-/
 theorem isIntegral_C_mul_conj {τ : ℍ} {A B C : ℤ}
     (hCM : (A : ℂ) + B * τ + C * (τ : ℂ) ^ 2 = 0) :
     IsIntegral ℤ ((C : ℂ) * (starRingEnd ℂ) (τ : ℂ)) := by
@@ -104,7 +108,9 @@ theorem isIntegral_C_mul_conj {τ : ℍ} {A B C : ℤ}
     linear_combination (C : ℂ) * hconj
 
 /-- Easy part of Milla's `satzezweistern`: `E₄/η⁸` is an algebraic integer whenever
-`j = 1728·J` is (it is a root of `X³ − j`). -/
+`j = 1728·J` is (it is a root of `X³ − j`).
+@isnad1 id=isintegr.1h1v.s8.debb17e5591b from=translated src=- shape=cb553843 vocab=36fd459a
+-/
 theorem isIntegral_E₄_div_eta_pow (τ : ℍ) (hj : IsIntegral ℤ (1728 * J τ)) :
     IsIntegral ℤ (E₄ τ / ModularForm.eta τ ^ 8) := by
   refine IsIntegral.of_pow (n := 3) (by norm_num) ?_
@@ -115,7 +121,9 @@ theorem isIntegral_E₄_div_eta_pow (τ : ℍ) (hj : IsIntegral ℤ (1728 * J τ
   rw [hx]; exact hj
 
 /-- Easy part of Milla's `satzezweistern`: `E₆/η¹²` is an algebraic integer whenever
-`j = 1728·J` is (it is a root of `X² − (j − 1728)`). -/
+`j = 1728·J` is (it is a root of `X² − (j − 1728)`).
+@isnad1 id=isintegr.1h1v.s8.876abafa02de from=translated src=- shape=cb553843 vocab=566a1594
+-/
 theorem isIntegral_E₆_div_eta_pow (τ : ℍ) (hj : IsIntegral ℤ (1728 * J τ)) :
     IsIntegral ℤ (E₆ τ / ModularForm.eta τ ^ 12) := by
   refine IsIntegral.of_pow (n := 2) (by norm_num) ?_
@@ -1023,7 +1031,9 @@ private lemma lemkapppppa_rescaled (τ : ℍ) {A B C : ℤ}
 This is the full content of Milla's `proofzweistern` *except* the CM input that `j(τ)` is an
 algebraic integer.  For a general CM point that input is Silverman's theorem (PLAN Phase C,
 `SingularModuli.lean`), which is only pinned here at `τ₁₆₃`; the unconditional
-`theoezweisternrest` below therefore genuinely requires it (see the statement audit note). -/
+`theoezweisternrest` below therefore genuinely requires it (see the statement audit note).
+@isnad1 id=isintegr.3h4v.s7.ff43c4996c29 from=translated src=- shape=34999687 vocab=08cc50e8
+-/
 theorem theoezweisternrest_of_isIntegral_j (τ : ℍ) {A B C : ℤ}
     (hgcd : Int.gcd (Int.gcd A B) C = 1)
     (hCM : (A : ℂ) + B * τ + C * (τ : ℂ) ^ 2 = 0)

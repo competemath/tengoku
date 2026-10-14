@@ -37,6 +37,9 @@ universe u v
 variable {𝕜 : Type u} [RCLike 𝕜]
 variable {E : Type v} [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] [CompleteSpace E]
 
+/--
+@isnad1 id=eq.2h3v.s9.5c1f06a4a469 from=translated src=- shape=118417a7 vocab=fec2ce64
+-/
 theorem iSup_eigenspace_orthogonal_eq_bot_of_isCompactOperator_of_isSelfAdjoint
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E)) :
     (⨆ μ : 𝕜, Module.End.eigenspace (T : E →ₗ[𝕜] E) μ)ᗮ = ⊥ := by
@@ -131,6 +134,9 @@ theorem iSup_eigenspace_orthogonal_eq_bot_of_isCompactOperator_of_isSelfAdjoint
       simpa [hdisj.eq_bot] using this
     simpa using this
   · simp_all
+/--
+@isnad1 id=ex.2h3v.s9.bb678580fa66 from=translated src=- shape=29aad31f vocab=42e46a36
+-/
 theorem exists_hilbertBasis_hasEigenvector_of_isCompactOperator_of_isSelfAdjoint
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E)) :
     ∃ (ι : Type (max u v)) (μ : ι → 𝕜) (b : HilbertBasis ι 𝕜 E),

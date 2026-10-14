@@ -47,6 +47,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace 𝕜 E]
 noncomputable def compress (T : E →L[𝕜] E) (V : Submodule 𝕜 E) [CompleteSpace V] : V →L[𝕜] V :=
   V.orthogonalProjectionOnto ∘L T ∘L V.subtypeL
 
+/--
+@isnad1 id=eq.1h5v.s11.1689b2d6ebe8 from=translated src=- shape=9ed150b0 vocab=5aa4cc46
+-/
 lemma coe_compress_apply_of_invariant (T : E →L[𝕜] E) (V : Submodule 𝕜 E) [CompleteSpace V]
     (hV : ∀ v ∈ V, T v ∈ V) (v : V) :
     (compress (T := T) (V := V) v : E) = T v := by
@@ -58,6 +61,9 @@ lemma coe_compress_apply_of_invariant (T : E →L[𝕜] E) (V : Submodule 𝕜 E
   have hw' : (V.orthogonalProjectionOnto (T (v : E)) : E) = T v := by
     simpa [w] using congrArg (fun x : V => (x : E)) hw
   simpa [compress, ContinuousLinearMap.comp_apply, Submodule.subtypeL_apply] using hw'
+/--
+@isnad1 id=haseigen.2h6v.s11.7c83fab1ea20 from=translated src=- shape=54718847 vocab=fdff7a11
+-/
 lemma hasEigenvector_of_hasEigenvector_compress_of_invariant
     (T : E →L[𝕜] E) (V : Submodule 𝕜 E) [CompleteSpace V]
     (hV : ∀ v ∈ V, T v ∈ V) {μ : 𝕜} {v : V}
@@ -74,6 +80,9 @@ lemma hasEigenvector_of_hasEigenvector_compress_of_invariant
   have hproj : (compress (T := T) (V := V) v : E) = T v :=
     coe_compress_apply_of_invariant (T := T) (V := V) hV v
   simpa [hproj] using hv_eq
+/--
+@isnad1 id=iscompac.1h4v.s11.b5d2bc67d71d from=translated src=- shape=fab2408d vocab=a1f09507
+-/
 lemma isCompactOperator_compress (T : E →L[𝕜] E) (hTc : IsCompactOperator (T : E → E))
     (V : Submodule 𝕜 E) [CompleteSpace V] :
     IsCompactOperator (compress (T := T) (V := V) : V → V) := by
@@ -86,6 +95,9 @@ section CompleteSpace
 
 variable [CompleteSpace E]
 
+/--
+@isnad1 id=isselfad.1h4v.s10.fdbe8a81682e from=translated src=- shape=366be457 vocab=98eada11
+-/
 lemma isSelfAdjoint_compress (T : E →L[𝕜] E) (hT : IsSelfAdjoint T)
     (V : Submodule 𝕜 E) [CompleteSpace V] :
     IsSelfAdjoint (compress (T := T) (V := V)) := by
@@ -93,6 +105,9 @@ lemma isSelfAdjoint_compress (T : E →L[𝕜] E) (hT : IsSelfAdjoint T)
   refine ContinuousLinearMap.isSelfAdjoint_iff'.mpr ?_
   simp [compress, ContinuousLinearMap.adjoint_comp, hT', Submodule.adjoint_subtypeL,
     Submodule.adjoint_orthogonalProjectionOnto, ContinuousLinearMap.comp_assoc]
+/--
+@isnad1 id=mem.2h5v.s10.425b1a410cca from=translated src=- shape=84d12f8c vocab=12f1c5a6
+-/
 lemma invariant_orthogonalComplement_eigenspace_of_isSelfAdjoint
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (μ : 𝕜) :
     ∀ v : E,

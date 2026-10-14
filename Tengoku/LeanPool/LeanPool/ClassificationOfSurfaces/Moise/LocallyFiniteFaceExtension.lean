@@ -33,7 +33,9 @@ open PlaneGraphRealization
 variable {S : Type*} [TopologicalSpace S] {K : LocallyFiniteTriangleComplex S}
   {G : K.PlaneGraphRealization}
 
-/-- The inverse standard-face chart takes cyclic side `i` into the corresponding native side. -/
+/-- The inverse standard-face chart takes cyclic side `i` into the corresponding native side.
+@isnad1 id=mem.1h5v.s11.8081c6191043 from=translated src=- shape=0febd296 vocab=f58c2d16
+-/
 theorem facePlaneHomeomorph_symm_mem_faceSide (f : K.Face) (i : ZMod 3)
     (p : StandardFaceBoundary)
     (hp : p.1 ∈ standardTriangleCircle.edgeSegment i) :
@@ -55,6 +57,9 @@ noncomputable def faceBoundarySupportPoint (f : K.Face)
     ((K.facePlaneHomeomorph f).symm
       ⟨p.1, standardFaceBoundary_mem_region p⟩)
 
+/--
+@isnad1 id=mem.1h5v.s6.0f503804969a from=translated src=- shape=c0f43b3a vocab=d6c432d2
+-/
 theorem faceBoundarySupportPoint_mem_edge (f : K.Face) (i : ZMod 3)
     (p : StandardFaceBoundary)
     (hp : p.1 ∈ standardTriangleCircle.edgeSegment i) :
@@ -63,6 +68,9 @@ theorem faceBoundarySupportPoint_mem_edge (f : K.Face) (i : ZMod 3)
   exact K.faceMap_mem_edgeCarrier_of_mem_faceSide f i _
     (K.facePlaneHomeomorph_symm_mem_faceSide f i p hp)
 
+/--
+@isnad1 id=mem.0h4v.s5.0404a1dd838d from=translated src=- shape=3de32cf6 vocab=2e5dbd52
+-/
 theorem faceBoundarySupportPoint_mem_oneSkeleton (f : K.Face)
     (p : StandardFaceBoundary) :
     K.faceBoundarySupportPoint f p ∈ oneSkeletonInSupport (K := K) := by
@@ -79,6 +87,9 @@ noncomputable def faceBoundaryLift (f : K.Face) :
   fun p ↦ ⟨K.faceBoundarySupportPoint f p,
     K.faceBoundarySupportPoint_mem_oneSkeleton f p⟩
 
+/--
+@isnad1 id=continuo.0h3v.s7.8711a1cc588c from=translated src=- shape=f2174e2f vocab=89fab6e5
+-/
 theorem continuous_faceBoundarySupportPoint (f : K.Face) :
     Continuous (K.faceBoundarySupportPoint f) := by
   apply Continuous.subtype_mk
@@ -86,11 +97,17 @@ theorem continuous_faceBoundarySupportPoint (f : K.Face) :
     ((K.facePlaneHomeomorph f).symm.continuous.comp
       (Continuous.subtype_mk continuous_subtype_val _))
 
+/--
+@isnad1 id=continuo.0h3v.s7.d17db51b48ef from=translated src=- shape=f90c231d vocab=08ad0f74
+-/
 theorem continuous_faceBoundaryLift (f : K.Face) :
     Continuous (K.faceBoundaryLift f) := by
   apply Continuous.subtype_mk
   exact K.continuous_faceBoundarySupportPoint f
 
+/--
+@isnad1 id=injectiv.0h3v.s5.fd4779dca54f from=translated src=- shape=f90c231d vocab=76dbb03a
+-/
 theorem injective_faceBoundaryLift (f : K.Face) :
     Function.Injective (K.faceBoundaryLift f) := by
   intro p q hpq
@@ -113,11 +130,17 @@ noncomputable def faceBoundaryMap (f : K.Face) (p : Plane) : Plane := by
     G.graphReplacementMap (K.faceBoundaryLift f ⟨p, hp⟩)
   else 0
 
+/--
+@isnad1 id=eq.0h5v.s6.0bab13e423ea from=translated src=- shape=97dafa7b vocab=c6167a12
+-/
 @[simp] theorem faceBoundaryMap_apply (f : K.Face) (p : StandardFaceBoundary) :
     K.faceBoundaryMap (G := G) f p.1 =
       G.graphReplacementMap (K.faceBoundaryLift f p) := by
   simp [faceBoundaryMap, p.2]
 
+/--
+@isnad1 id=continuo.0h4v.s7.f57c41ae0c1f from=translated src=- shape=e7f126e4 vocab=790f42cc
+-/
 theorem continuousOn_faceBoundaryMap (f : K.Face) :
     ContinuousOn (K.faceBoundaryMap (G := G) f)
       (frontier standardFaceRegion) := by
@@ -126,6 +149,9 @@ theorem continuousOn_faceBoundaryMap (f : K.Face) :
   funext p
   exact K.faceBoundaryMap_apply f p
 
+/--
+@isnad1 id=injon.0h4v.s6.1b093b630959 from=translated src=- shape=e7f126e4 vocab=1663b23f
+-/
 theorem faceBoundaryMap_injectiveOn (f : K.Face) :
     Set.InjOn (K.faceBoundaryMap (G := G) f)
       (frontier standardFaceRegion) := by
@@ -139,7 +165,9 @@ theorem faceBoundaryMap_injectiveOn (f : K.Face) :
   exact congrArg Subtype.val
     (K.injective_faceBoundaryLift f (G.graphReplacementMap_injective hgraph))
 
-/-- The globally oriented affine parameter on a standard side lies on the face frontier. -/
+/-- The globally oriented affine parameter on a standard side lies on the face frontier.
+@isnad1 id=mem.0h5v.s6.65a43bb3d75c from=translated src=- shape=12092f1e vocab=ee986d1c
+-/
 theorem faceEdgeSourcePoint_mem_frontier (f : K.Face) (i : ZMod 3)
     (r : Set.Icc (0 : ℝ) 1) :
     K.faceEdgeSourcePoint f i r.1 ∈ frontier standardFaceRegion := by
@@ -154,7 +182,9 @@ theorem faceEdgeSourcePoint_mem_frontier (f : K.Face) (i : ZMod 3)
   simpa only [standardFaceRegion, standardTrianglePlaneComplex_support] using hpCarrier
 
 /-- On a standard face side, the canonical boundary lift is literally the global canonical
-source path of the corresponding abstract edge. -/
+source path of the corresponding abstract edge.
+@isnad1 id=eq.0h5v.s7.af198120865d from=translated src=- shape=41c3f411 vocab=4b37c156
+-/
 theorem faceBoundarySupportPoint_sourcePoint (f : K.Face) (i : ZMod 3)
     (r : Set.Icc (0 : ℝ) 1) :
     K.faceBoundarySupportPoint f
@@ -186,7 +216,9 @@ theorem faceBoundarySupportPoint_sourcePoint (f : K.Face) (i : ZMod 3)
   rfl
 
 /-- On every oriented source side, the face boundary map is the complete polygonal replacement
-path with the identical unit-interval parameter. -/
+path with the identical unit-interval parameter.
+@isnad1 id=eq.0h6v.s8.27491e566da1 from=translated src=- shape=c7740f95 vocab=b190db6a
+-/
 theorem faceBoundaryMap_sourcePoint (f : K.Face) (i : ZMod 3)
     (r : Set.Icc (0 : ℝ) 1) :
     K.faceBoundaryMap (G := G) f (K.faceEdgeSourcePoint f i r.1) =
@@ -209,7 +241,9 @@ theorem faceBoundaryMap_sourcePoint (f : K.Face) (i : ZMod 3)
   apply Subtype.ext
   exact hlift
 
-/-- The canonical face boundary map has exactly the assembled three-edge carrier as image. -/
+/-- The canonical face boundary map has exactly the assembled three-edge carrier as image.
+@isnad1 id=eq.0h4v.s6.427fb145d1fa from=translated src=- shape=11ac1f83 vocab=107884b8
+-/
 theorem faceBoundaryMap_image_frontier (f : K.Face) :
     K.faceBoundaryMap (G := G) f '' frontier standardFaceRegion =
       K.faceReplacementCarrier (G := G) f := by
@@ -271,6 +305,9 @@ theorem faceBoundaryMap_image_frontier (f : K.Face) :
     apply Subtype.ext
     exact hlift
 
+/--
+@isnad1 id=eq.0h4v.s6.ec046c9c34ef from=translated src=- shape=dad896c0 vocab=061bc7a5
+-/
 theorem faceBoundaryMap_image_polygon (f : K.Face) :
     K.faceBoundaryMap (G := G) f '' frontier standardFaceRegion =
       (K.facePolygonalCircle (G := G) f).carrier := by
@@ -288,6 +325,9 @@ noncomputable def faceBreakpointPoint (f : K.Face)
   K.faceEdgeSourcePoint f b.1
     (edgeBreakpointParameter (G.replacementArc (K.faceEdge f b.1)) b.2)
 
+/--
+@isnad1 id=mem.0h5v.s6.c19b6dd7af25 from=translated src=- shape=bdc3ec33 vocab=01f53d15
+-/
 theorem faceBreakpointPoint_mem_standardEdge (f : K.Face)
     (b : FaceBreakpoint (K := K) (G := G) f) :
     K.faceBreakpointPoint (G := G) f b ∈
@@ -297,6 +337,9 @@ theorem faceBreakpointPoint_mem_standardEdge (f : K.Face)
   exact edgeBreakpointParameter_mem
     (G.replacementArc (K.faceEdge f b.1)) b.2
 
+/--
+@isnad1 id=mem.0h5v.s5.aea20b2abd50 from=translated src=- shape=a18e8dc2 vocab=e6f930e8
+-/
 theorem faceBreakpointPoint_mem_standardOneSkeleton (f : K.Face)
     (b : FaceBreakpoint (K := K) (G := G) f) :
     K.faceBreakpointPoint (G := G) f b ∈
@@ -314,6 +357,9 @@ noncomputable def faceBoundarySubdivision (f : K.Face) : PlaneComplex :=
   standardTrianglePlaneComplex.oneSkeleton.markedEdgeSubdivision
     (K.faceBreakpointPoint (G := G) f)
 
+/--
+@isnad1 id=subdivid.0h4v.s4.f072fccadde6 from=translated src=- shape=6643c7ba vocab=8ed0b6aa
+-/
 theorem faceBoundarySubdivision_subdivides (f : K.Face) :
     (K.faceBoundarySubdivision (G := G) f).Subdivides
       standardTrianglePlaneComplex.oneSkeleton :=
@@ -321,6 +367,9 @@ theorem faceBoundarySubdivision_subdivides (f : K.Face) :
     (K.faceBreakpointPoint (G := G) f)
     standardTrianglePlaneComplex.oneSkeleton.oneSkeleton_isGraph
 
+/--
+@isnad1 id=eq.0h4v.s6.0f3596ecada6 from=translated src=- shape=267cd985 vocab=76c852b4
+-/
 theorem faceBoundarySubdivision_support (f : K.Face) :
     (K.faceBoundarySubdivision (G := G) f).support =
       frontier standardFaceRegion := by
@@ -346,16 +395,25 @@ noncomputable def faceEdgeSecondBoundaryVertex (f : K.Face) (i : ZMod 3) :
   change Fin 3
   exact K.faceEdgeSecondIndex f i
 
+/--
+@isnad1 id=eq.0h4v.s5.a6b0041bbe7d from=translated src=- shape=13ad4113 vocab=e391b984
+-/
 @[simp] theorem faceEdgeFirstBoundaryVertex_position (f : K.Face) (i : ZMod 3) :
     standardTrianglePlaneComplex.oneSkeleton.position
         (K.faceEdgeFirstBoundaryVertex f i) =
       standardTriangleVertex (K.faceEdgeFirstIndex f i) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.e59f90d86920 from=translated src=- shape=13ad4113 vocab=75d5c49d
+-/
 @[simp] theorem faceEdgeSecondBoundaryVertex_position (f : K.Face) (i : ZMod 3) :
     standardTrianglePlaneComplex.oneSkeleton.position
         (K.faceEdgeSecondBoundaryVertex f i) =
       standardTriangleVertex (K.faceEdgeSecondIndex f i) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.03360dfa852d from=translated src=- shape=0fcf14d5 vocab=3cbd2b29
+-/
 theorem standardFaceEdgeFace_val_eq_boundaryEndpoints (f : K.Face) (i : ZMod 3) :
     (IntrinsicTwoComplex.standardFaceEdgeFace i).1 =
       {K.faceEdgeFirstBoundaryVertex f i,
@@ -365,7 +423,9 @@ theorem standardFaceEdgeFace_val_eq_boundaryEndpoints (f : K.Face) (i : ZMod 3) 
   exact K.faceStandardEdge_eq_endpointIndices f i
 
 /-- The arbitrary finite graph enumeration of a standard side either follows or reverses the
-global edge orientation. -/
+global edge orientation.
+@isnad1 id=or.0h4v.s6.3dd8e1f51836 from=translated src=- shape=171473d0 vocab=722233b5
+-/
 theorem standardFaceEdge_endpoint_order (f : K.Face) (i : ZMod 3) :
     (standardTrianglePlaneComplex.oneSkeleton.edgeFirst
           (IntrinsicTwoComplex.standardFaceEdgeIndex i) =
@@ -398,6 +458,9 @@ theorem standardFaceEdge_endpoint_order (f : K.Face) (i : ZMod 3) :
   · exact Or.inr ⟨hfirst, hsecond⟩
   · exact (T.edgeFirst_ne_edgeSecond j (hfirst.trans hsecond.symm)).elim
 
+/--
+@isnad1 id=eq.1h5v.s9.dfd649535d7a from=translated src=- shape=7e1a8e39 vocab=4dae602a
+-/
 theorem standardFaceEdgeParameter_sourcePoint_of_forward (f : K.Face) (i : ZMod 3)
     (horient :
       standardTrianglePlaneComplex.oneSkeleton.edgeFirst
@@ -415,6 +478,9 @@ theorem standardFaceEdgeParameter_sourcePoint_of_forward (f : K.Face) (i : ZMod 
     ← horient.1, ← horient.2,
     standardTrianglePlaneComplex.oneSkeleton.edgeParameter_lineMap]
 
+/--
+@isnad1 id=eq.1h5v.s9.b07b33f7ea64 from=translated src=- shape=135436aa vocab=f760285e
+-/
 theorem standardFaceEdgeParameter_sourcePoint_of_reverse (f : K.Face) (i : ZMod 3)
     (horient :
       standardTrianglePlaneComplex.oneSkeleton.edgeFirst
@@ -432,6 +498,9 @@ theorem standardFaceEdgeParameter_sourcePoint_of_reverse (f : K.Face) (i : ZMod 
     ← horient.2, ← horient.1, ← AffineMap.lineMap_apply_one_sub,
     standardTrianglePlaneComplex.oneSkeleton.edgeParameter_lineMap]
 
+/--
+@isnad1 id=eq.2h5v.s10.d63b8ce02c85 from=translated src=- shape=91a4ce92 vocab=32cd7d1c
+-/
 theorem standardFaceEdgeParameter_eq_faceEdgeParameter_of_forward
     (f : K.Face) (i : ZMod 3)
     (horient :
@@ -451,6 +520,9 @@ theorem standardFaceEdgeParameter_eq_faceEdgeParameter_of_forward
   rw [K.standardFaceEdgeParameter_sourcePoint_of_forward f i horient,
     K.faceEdgeParameterAffine_sourcePoint]
 
+/--
+@isnad1 id=eq.2h5v.s10.5082965dae63 from=translated src=- shape=b6ffd1e9 vocab=5fa7cbdf
+-/
 theorem standardFaceEdgeParameter_eq_one_sub_faceEdgeParameter_of_reverse
     (f : K.Face) (i : ZMod 3)
     (horient :
@@ -471,7 +543,9 @@ theorem standardFaceEdgeParameter_eq_one_sub_faceEdgeParameter_of_reverse
     K.faceEdgeParameterAffine_sourcePoint]
 
 /-- Every face of the marked boundary subdivision lies on one side of every marked parameter,
-measured in the finite graph enumeration coordinate. -/
+measured in the finite graph enumeration coordinate.
+@isnad1 id=or.1h7v.s11.0d99fc627d86 from=translated src=- shape=7dff197e vocab=98c44e7e
+-/
 theorem faceBoundarySubdivision_parameter_side_standard
     (f : K.Face) (i : ZMod 3)
     (b : EdgeBreakpoint (G.replacementArc (K.faceEdge f i)))
@@ -512,7 +586,9 @@ theorem faceBoundarySubdivision_parameter_side_standard
       |>.subordinateTo_cellCarrier T u).symm ▸ hside)
 
 /-- On a subdivision face contained in one standard side, the marked-side test is the globally
-oriented edge-parameter test, independently of the graph enumeration orientation. -/
+oriented edge-parameter test, independently of the graph enumeration orientation.
+@isnad1 id=or.2h7v.s10.7878a88c75da from=translated src=- shape=2b317963 vocab=3fd0dbea
+-/
 theorem faceBoundarySubdivision_parameter_side
     (f : K.Face) (i : ZMod 3)
     (b : EdgeBreakpoint (G.replacementArc (K.faceEdge f i)))
@@ -572,7 +648,9 @@ theorem faceBoundarySubdivision_parameter_side
       linarith
 
 /-- The two spoke joins split each subdivision face on a selected standard side into the left,
-middle, or right parameter range. -/
+middle, or right parameter range.
+@isnad1 id=or.2h6v.s11.1fccb86262b3 from=translated src=- shape=5ab8175f vocab=233dafc5
+-/
 theorem faceBoundarySubdivision_piece
     (f : K.Face) (i : ZMod 3)
     {u : Finset (K.faceBoundarySubdivision (G := G) f).Vertex}
@@ -616,6 +694,9 @@ noncomputable def faceMiddleSourceAffine (f : K.Face) (i : ZMod 3) :
       (A.exitData.left + (A.exitData.right - A.exitData.left) * 2)) 0)).comp
     (K.faceEdgeParameterAffine f i)
 
+/--
+@isnad1 id=eq.0h6v.s11.495cf1d15c0c from=translated src=- shape=128f8b84 vocab=f4180b98
+-/
 @[simp] theorem faceMiddleSourceAffine_apply (f : K.Face) (i : ZMod 3)
     (p : Plane) :
     K.faceMiddleSourceAffine (G := G) f i p =
@@ -636,7 +717,9 @@ noncomputable def faceMiddleSourceAffine (f : K.Face) (i : ZMod 3) :
     simp [AffineMap.lineMap_apply_module, planePoint]; ring
 
 /-- The boundary map is affine on every subset of a standard side contained in the first
-spoke range. -/
+spoke range.
+@isnad1 id=isaffine.2h6v.s9.8611c4749abc from=translated src=- shape=17d00087 vocab=31d64eb6
+-/
 theorem faceBoundaryMap_affineOn_left
     (f : K.Face) (i : ZMod 3) {E : Set Plane}
     (hside : E ⊆ standardTrianglePlaneComplex.cellCarrier
@@ -663,7 +746,9 @@ theorem faceBoundaryMap_affineOn_left
   simp [g, scalar, q, AffineMap.comp_apply]
 
 /-- The boundary map is affine on every subset of a standard side contained in the final
-spoke range. -/
+spoke range.
+@isnad1 id=isaffine.2h6v.s9.46afdf2642b4 from=translated src=- shape=e5689e87 vocab=31d64eb6
+-/
 theorem faceBoundaryMap_affineOn_right
     (f : K.Face) (i : ZMod 3) {E : Set Plane}
     (hside : E ⊆ standardTrianglePlaneComplex.cellCarrier
@@ -691,7 +776,9 @@ theorem faceBoundaryMap_affineOn_right
   simp [g, scalar, q, AffineMap.comp_apply]
 
 /-- A middle side piece is affine once its affine source image lies in one simplex of the
-finite polygonal segment model. -/
+finite polygonal segment model.
+@isnad1 id=isaffine.4h6v.s11.7507e9739425 from=translated src=- shape=16c54e05 vocab=e01a7009
+-/
 theorem faceBoundaryMap_affineOn_middle
     (f : K.Face) (i : ZMod 3) {E : Set Plane}
     (hside : E ⊆ standardTrianglePlaneComplex.cellCarrier
@@ -725,7 +812,9 @@ theorem faceBoundaryMap_affineOn_middle
     K.faceEdgeParameterAffine_sourcePoint] using hq (hmaps hp)
 
 /-- The marked middle-model vertices ensure that a two-vertex subdivision face maps into one
-simplex of the finite segment model. -/
+simplex of the finite segment model.
+@isnad1 id=ex.5h6v.s11.aaa543ab9696 from=translated src=- shape=9337cd5d vocab=19572bdf
+-/
 theorem faceBoundarySubdivision_middleSource
     (f : K.Face) (i : ZMod 3)
     {u : Finset (K.faceBoundarySubdivision (G := G) f).Vertex}
@@ -921,7 +1010,9 @@ theorem faceBoundarySubdivision_middleSource
   exact ⟨x, hx, rfl⟩
 
 /-- The canonical face boundary map is affine on every simplex of its finite marked
-subdivision. -/
+subdivision.
+@isnad1 id=isaffine.1h5v.s6.09691f0aa828 from=translated src=- shape=217a7839 vocab=24e606bf
+-/
 theorem faceBoundaryMap_affineOn_subdivision (f : K.Face) :
     ∀ u ∈ (K.faceBoundarySubdivision (G := G) f).simplexes,
       IsAffineOn (K.faceBoundaryMap (G := G) f)
@@ -979,7 +1070,9 @@ theorem faceBoundaryMap_affineOn_subdivision (f : K.Face) :
           (by simp [hpq]) hmiddle.1 hmiddle.2
       · exact K.faceBoundaryMap_affineOn_right (G := G) f i hui hright
 
-/-- The coherent standard-triangle boundary map is genuinely PL on the polygonal frontier. -/
+/-- The coherent standard-triangle boundary map is genuinely PL on the polygonal frontier.
+@isnad1 id=isplonse.0h4v.s6.e234ee19bed4 from=translated src=- shape=5c10327e vocab=462e9a65
+-/
 theorem faceBoundaryMap_isPLOnSet (f : K.Face) :
     IsPLOnSet (frontier standardFaceRegion)
       (K.faceBoundaryMap (G := G) f) := by

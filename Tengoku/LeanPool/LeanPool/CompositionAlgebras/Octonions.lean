@@ -68,16 +68,31 @@ instance : Add Octonion := ⟨fun a b => ⟨fun i => a.coords i + b.coords i⟩�
 instance : Neg Octonion := ⟨fun a => ⟨fun i => -(a.coords i)⟩⟩
 instance : SMul ℝ Octonion := ⟨fun r a => ⟨fun i => r * a.coords i⟩⟩
 
+/--
+@isnad1 id=eq.1h2v.s4.efa30fcf95fc from=translated src=- shape=799f10d8 vocab=c9f1f52f
+-/
 @[ext]
 theorem ext {a b : Octonion} (h : ∀ i, a.coords i = b.coords i) : a = b := by
   cases a; cases b; congr; funext i; exact h i
 
+/--
+@isnad1 id=eq.0h1v.s4.3b9ef9681fdf from=translated src=- shape=8ec2dc77 vocab=c9f1f52f
+-/
 @[simp] lemma zero_coords (i : Fin 8) : (0 : Octonion).coords i = 0 := rfl
+/--
+@isnad1 id=eq.0h3v.s5.7450b395d0e6 from=translated src=- shape=df3ce2d5 vocab=e28247be
+-/
 @[simp] lemma add_coords (a b : Octonion) (i : Fin 8) :
     (a + b).coords i = a.coords i + b.coords i := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.8e49e1f410be from=translated src=- shape=ebbeb0b5 vocab=b5a89893
+-/
 @[simp] lemma smul_coords (r : ℝ) (a : Octonion) (i : Fin 8) :
     (r • a).coords i = r * a.coords i := rfl
+/--
+@isnad1 id=eq.0h2v.s4.2214c93ef4a3 from=translated src=- shape=76b72381 vocab=fc530d83
+-/
 @[simp] lemma neg_coords (a : Octonion) (i : Fin 8) : (-a).coords i = -(a.coords i) := rfl
 
 /-- The real unit octonion e_0 = (1, 0, 0, 0, 0, 0, 0, 0). -/
@@ -145,14 +160,21 @@ def imagUnit (i : Fin 7) : Octonion := basisVec ⟨i.val + 1, by omega⟩
 
 -- Fundamental properties
 
-/-- Octonionic multiplication has a two-sided identity. -/
+/-- Octonionic multiplication has a two-sided identity.
+@isnad1 id=eq.0h1v.s3.86f2cc2d9952 from=translated src=- shape=9960b201 vocab=c9a37fd3
+-/
 theorem mul_one' (a : Octonion) : mul a one = a := by
   ext i; fin_cases i <;> simp [mul, one]
 
+/--
+@isnad1 id=eq.0h1v.s3.619e0b4289f3 from=translated src=- shape=29edb2d9 vocab=c9a37fd3
+-/
 theorem one_mul' (a : Octonion) : mul one a = a := by
   ext i; fin_cases i <;> simp [mul, one]
 
-/-- Octonions are NOT associative. There exist a, b, c with (ab)c != a(bc). -/
+/-- Octonions are NOT associative. There exist a, b, c with (ab)c != a(bc).
+@isnad1 id=ex.0h0v.s4.f43e70aaf15f from=translated src=- shape=c29e9b95 vocab=d0f1c38f
+-/
 theorem non_associative : ∃ (a b c : Octonion),
     mul (mul a b) c ≠ mul a (mul b c) := by
   refine ⟨basisVec 1, basisVec 2, basisVec 3, ?_⟩
@@ -163,13 +185,17 @@ theorem non_associative : ∃ (a b c : Octonion),
 
 -- Eight-square identity (Degen) expanded component-wise
 /-- The norm is multiplicative: N(ab) = N(a) N(b).
-    This supplies the concrete octonion example used in Hurwitz's classification. -/
+    This supplies the concrete octonion example used in Hurwitz's classification.
+@isnad1 id=eq.0h2v.s4.9a8853b25985 from=translated src=- shape=88b36870 vocab=83bb25f2
+-/
 theorem norm_multiplicative (a b : Octonion) :
     normSq (mul a b) = normSq a * normSq b := by
   simp only [normSq, Fin.sum_univ_eight, mul, Fin.isValue, Fin.val_zero, Fin.val_one]
   norm_num; ring
 
-/-- Octonions form a division algebra: ab = 0 implies a = 0 or b = 0. -/
+/-- Octonions form a division algebra: ab = 0 implies a = 0 or b = 0.
+@isnad1 id=iff.0h2v.s5.908ae597dcf6 from=translated src=- shape=33e5028f vocab=d0f1c38f
+-/
 theorem mul_eq_zero_iff (a b : Octonion) :
     mul a b = 0 ↔ a = 0 ∨ b = 0 := by
   constructor
@@ -193,17 +219,23 @@ theorem mul_eq_zero_iff (a b : Octonion) :
   · rintro (rfl | rfl) <;> ext i <;> fin_cases i <;> simp [mul]
 
 -- Anti-involution expanded component-wise
-/-- Conjugation is an anti-involution: (ab)* = b* a*. -/
+/-- Conjugation is an anti-involution: (ab)* = b* a*.
+@isnad1 id=eq.0h2v.s3.8eb5a9b3ea0a from=translated src=- shape=0e1e4560 vocab=bbf739f8
+-/
 theorem conj_mul (a b : Octonion) :
     conj (mul a b) = mul (conj b) (conj a) := by
   ext i; fin_cases i <;> simp [mul, conj, Fin.isValue] <;> ring
 
-/-- Conjugation is involutive: a** = a. -/
+/-- Conjugation is involutive: a** = a.
+@isnad1 id=eq.0h1v.s3.b0a949cdbd93 from=translated src=- shape=47dcad53 vocab=9e210a43
+-/
 theorem conj_conj (a : Octonion) : conj (conj a) = a := by
   ext i; simp only [conj]; split_ifs with h <;> simp_all
 
 -- Norm-squared identity expanded component-wise
-/-- a * a* = N(a) * 1. -/
+/-- a * a* = N(a) * 1.
+@isnad1 id=eq.0h1v.s4.7cb5fef662f1 from=translated src=- shape=d8df0170 vocab=5c29de65
+-/
 theorem mul_conj (a : Octonion) :
     mul a (conj a) = normSq a • one := by
   ext i
@@ -213,15 +245,27 @@ theorem mul_conj (a : Octonion) :
 
 -- Bilinearity of octonionic multiplication, used to build the composition-algebra instance.
 
+/--
+@isnad1 id=eq.0h3v.s5.c552fde86faf from=translated src=- shape=4a33f3d9 vocab=25659ff6
+-/
 theorem mul_add' (a b c : Octonion) : mul a (b + c) = mul a b + mul a c := by
   ext i; fin_cases i <;> simp [mul, add_coords, Fin.isValue] <;> ring
 
+/--
+@isnad1 id=eq.0h3v.s5.e5703a2f6417 from=translated src=- shape=2f6dc6a8 vocab=25659ff6
+-/
 theorem add_mul' (a b c : Octonion) : mul (a + b) c = mul a c + mul b c := by
   ext i; fin_cases i <;> simp [mul, add_coords, Fin.isValue] <;> ring
 
+/--
+@isnad1 id=eq.0h3v.s5.c566f488e5e1 from=translated src=- shape=ce527358 vocab=f0f91fff
+-/
 theorem smul_mul (r : ℝ) (a b : Octonion) : mul (r • a) b = r • mul a b := by
   ext i; fin_cases i <;> simp [mul, smul_coords, Fin.isValue] <;> ring
 
+/--
+@isnad1 id=eq.0h3v.s5.733fb6926674 from=translated src=- shape=b5dd2775 vocab=f0f91fff
+-/
 theorem mul_smul' (r : ℝ) (a b : Octonion) : mul a (r • b) = r • mul a b := by
   ext i; fin_cases i <;> simp [mul, smul_coords, Fin.isValue] <;> ring
 

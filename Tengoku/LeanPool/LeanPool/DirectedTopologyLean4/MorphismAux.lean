@@ -32,11 +32,13 @@ lemma eq_of_morphism {a b₀ b₁ c : C} {f₀ : a ⟶ b₀} {f₁ : a ⟶ b₁}
   simp_all
 
 /-- If two functors are equal, they map objects to the same image
+@isnad1 id=eq.1h5v.s6.99b7cf63e9ba from=translated src=- shape=201fb44c vocab=7ed983a9
 -/
 lemma obj_eq_obj_of_eq {F₁ F₂ : C ⥤ C'} (h : F₁ = F₂) (x : C) : F₁.obj x = F₂.obj x :=
   congrFun (congrArg Prefunctor.obj (congrArg Functor.toPrefunctor h)) x
 
 /-- If two functors are equal, they map morphisms to the same image
+@isnad1 id=eq.1h7v.s8.b731af08d8b5 from=translated src=- shape=1e2b267c vocab=3c9c59ff
 -/
 lemma map_eq_map_of_eq {F₁ F₂ : C ⥤ C'} (h : F₁ = F₂) {x y : C} (f : x ⟶ y) :
     F₁.map f = (eqToHom (obj_eq_obj_of_eq h x)) ≫ F₂.map f ≫ (eqToHom (obj_eq_obj_of_eq h y).symm)

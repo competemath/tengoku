@@ -64,14 +64,18 @@ weight or hereditary family under consideration. -/
 def spectralWeights (g : Finset ι → ℝ) (select : Finset ι → ι) (i : ι) : ℝ :=
   4 * ∑ S ∈ Finset.univ.erase ∅, if select S = i then fourier g S ^ 2 else 0
 
-/-- Nonnegativity of every coefficient in Proposition 5.3. -/
+/-- Nonnegativity of every coefficient in Proposition 5.3.
+@isnad1 id=le.0h4v.s5.4f9351c12154 from=translated src=- shape=bcd0e99d vocab=85ea0e93
+-/
 theorem spectralWeights_nonneg (g : Finset ι → ℝ) (select : Finset ι → ι) (i : ι) :
     0 ≤ spectralWeights g select i := by
   apply mul_nonneg (by norm_num)
   exact Finset.sum_nonneg fun S _ => by split_ifs <;> positivity
 
 /-- Regrouping Fourier sets according to their selected coordinate, the
-partition-of-mass step in Proposition 5.3. -/
+partition-of-mass step in Proposition 5.3.
+@isnad1 id=eq.0h4v.s7.24a74e69ac28 from=translated src=- shape=6b75efd0 vocab=24afbb67
+-/
 theorem sum_spectralWeights_mul (g : Finset ι → ℝ) (select : Finset ι → ι)
     (a : ι → ℝ) :
     (∑ i, spectralWeights g select i * a i) =
@@ -83,7 +87,9 @@ theorem sum_spectralWeights_mul (g : Finset ι → ℝ) (select : Finset ι → 
   simp [mul_assoc, mul_ite, ite_mul]
 
 /-- The coefficients in Proposition 5.3 sum to one, by Parseval and the
-variance-one-quarter identity for an antipodal Boolean function. -/
+variance-one-quarter identity for an antipodal Boolean function.
+@isnad1 id=eq.2h3v.s5.25c725ddeebe from=translated src=- shape=c662aefb vocab=d3f1c95e
+-/
 theorem sum_spectralWeights {g : Finset ι → ℝ} (hg : IsBoolean g)
     (hdual : dual g = g) (select : Finset ι → ι) :
     ∑ i, spectralWeights g select i = 1 := by
@@ -103,7 +109,9 @@ def orderedSelector [LinearOrder ι] [Nonempty ι] (S : Finset ι) : ι :=
 
 omit [Fintype ι] [DecidableEq ι] in
 /-- The ordered selector lies in each nonempty set, the property of the
-paper's `max_≺` used in the weighted argument. -/
+paper's `max_≺` used in the weighted argument.
+@isnad1 id=mem.1h2v.s4.47986f00e202 from=translated src=- shape=58c83df6 vocab=14587c40
+-/
 theorem orderedSelector_mem [LinearOrder ι] [Nonempty ι] {S : Finset ι}
     (hS : S.Nonempty) : orderedSelector S ∈ S := by
   simp only [orderedSelector, dite_eq_left hS]
@@ -111,7 +119,9 @@ theorem orderedSelector_mem [LinearOrder ι] [Nonempty ι] {S : Finset ι}
 
 /-- The hereditary-family inequality in the proof of Proposition 5.3, deduced
 from the selected-coordinate spectral lower bound. This hypothesis is explicit
-so the counting reduction is independent of the analytic proof. -/
+so the counting reduction is independent of the analytic proof.
+@isnad1 id=le.4h4v.s7.b9f778365133 from=translated src=- shape=93f63b2c vocab=cac97b98
+-/
 theorem hereditary_bound_of_selected_correlation {g : Finset ι → ℝ}
     (hg : IsBoolean g) (hdual : dual g = g) (select : Finset ι → ι)
     (hcor : ∀ f : Finset ι → ℝ, IsBoolean f → Monotone f →
@@ -167,7 +177,9 @@ def starMixture (weights : ι → ℝ) (x : Finset ι) : ℝ :=
   ∑ i, if i ∈ x then weights i else 0
 
 /-- Counting the fractional star function on a family gives the corresponding
-weighted combination of its star cardinalities (Proposition 5.3). -/
+weighted combination of its star cardinalities (Proposition 5.3).
+@isnad1 id=eq.0h3v.s5.18ed994730c4 from=translated src=- shape=000a996a vocab=1c27ca4d
+-/
 theorem sum_starMixture (weights : ι → ℝ) (D : Family ι) :
     (∑ x ∈ D, starMixture weights x) =
       ∑ i, weights i * (D.star i).card := by
@@ -179,20 +191,26 @@ theorem sum_starMixture (weights : ι → ℝ) (D : Family ι) :
 
 omit [Fintype ι] in
 /-- Summing a family indicator over another family counts their intersection,
-the second counting step for the defect in Proposition 5.3. -/
+the second counting step for the defect in Proposition 5.3.
+@isnad1 id=eq.0h3v.s5.45a387b91849 from=translated src=- shape=e4aa432a vocab=1fad68b9
+-/
 theorem sum_indicator_on_family (B D : Family ι) :
     (∑ x ∈ D, B.indicator x) = ((D ∩ B).card : ℝ) := by
   simp [Family.indicator]
 
 /-- The mean-zero defect in Proposition 5.3, summed on a hereditary family.
-The identity itself holds for every family. -/
+The identity itself holds for every family.
+@isnad1 id=eq.0h4v.s6.c912675f0b81 from=translated src=- shape=bb2ff49f vocab=ef291ac7
+-/
 theorem sum_starMixture_sub_indicator (weights : ι → ℝ) (B D : Family ι) :
     (∑ x ∈ D, (starMixture weights x - B.indicator x)) =
       (∑ i, weights i * (D.star i).card) - (D ∩ B).card := by
   rw [Finset.sum_sub_distrib, sum_starMixture, sum_indicator_on_family]
 
 /-- The weighted form of the same defect, obtained by interchanging finite
-sums. This is the finite counterpart of the layer-cake calculation in (18). -/
+sums. This is the finite counterpart of the layer-cake calculation in (18).
+@isnad1 id=eq.0h4v.s6.37f4b958c384 from=translated src=- shape=e5a97641 vocab=30add075
+-/
 theorem sum_defect_mul (weights : ι → ℝ) (B : Family ι) (ω : Finset ι → ℝ) :
     (∑ x, (starMixture weights x - B.indicator x) * ω x) =
       (∑ i, weights i * ∑ x ∈ Family.star Finset.univ i, ω x) - ∑ x ∈ B, ω x := by
@@ -207,7 +225,9 @@ theorem sum_defect_mul (weights : ι → ℝ) (B : Family ι) (ω : Finset ι �
   · simp [Family.indicator, ite_mul]
 
 /-- Finite layer-cake lifting in Proposition 5.3: domination on every
-hereditary family implies domination for every nonnegative decreasing weight. -/
+hereditary family implies domination for every nonnegative decreasing weight.
+@isnad1 id=le.3h4v.s7.d0ad89221464 from=translated src=- shape=19be070f vocab=f929185a
+-/
 theorem weighted_bound_of_hereditary_bound (weights : ι → ℝ) (B : Family ι)
     (hbound : ∀ D : Family ι, D.IsHereditary →
       ((D ∩ B).card : ℝ) ≤ ∑ i, weights i * (D.star i).card)
@@ -222,7 +242,9 @@ theorem weighted_bound_of_hereditary_bound (weights : ι → ℝ) (B : Family ι
   exact sub_nonneg.mp h
 
 /-- The selected-coordinate expression in Proposition 5.3 is bounded by the
-spectral expression in Theorem 1.2, because the selector belongs to its set. -/
+spectral expression in Theorem 1.2, because the selector belongs to its set.
+@isnad1 id=le.1h4v.s6.e624bac22df4 from=translated src=- shape=208337f9 vocab=6ede7e90
+-/
 theorem selected_spectral_le (f g : Finset ι → ℝ) (select : Finset ι → ι)
     (hselect : ∀ S : Finset ι, S.Nonempty → select S ∈ S) :
     (∑ S ∈ Finset.univ.erase ∅, fourier g S ^ 2 * influence f (select S)) ≤
@@ -235,7 +257,9 @@ theorem selected_spectral_le (f g : Finset ι → ℝ) (select : Finset ι → �
     (sq_nonneg _)
 
 /-- The first inequality of Proposition 5.3 deduced from the antipodal spectral
-bound, keeping the analytic dependency explicit. -/
+bound, keeping the analytic dependency explicit.
+@isnad1 id=le.5h4v.s7.66e0fee02ac8 from=translated src=- shape=37812d64 vocab=a7a5748d
+-/
 theorem weighted_bound_of_spectral_bound [Nonempty ι] {B : Family ι}
     (hB : B.IsMaximalIntersecting) (select : Finset ι → ι)
     (hselect : ∀ S : Finset ι, S.Nonempty → select S ∈ S)
@@ -256,7 +280,9 @@ theorem weighted_bound_of_spectral_bound [Nonempty ι] {B : Family ι}
   simpa only [hsupport] using h
 
 /-- Proposition 5.3's first inequality, proved from the antipodal case of
-Theorem 1.2. It holds for any fixed selector belonging to each nonempty index. -/
+Theorem 1.2. It holds for any fixed selector belonging to each nonempty index.
+@isnad1 id=le.4h4v.s7.18e85365e6be from=translated src=- shape=240724c7 vocab=55ef9287
+-/
 theorem weighted_star_mixture_bound [Nonempty ι] {B : Family ι}
     (hB : B.IsMaximalIntersecting) (select : Finset ι → ι)
     (hselect : ∀ S : Finset ι, S.Nonempty → select S ∈ S)
@@ -268,7 +294,9 @@ theorem weighted_star_mixture_bound [Nonempty ι] {B : Family ι}
       hB.isIncreasing.monotone_indicator hB.isAntipodal.dual_indicator) ω hω hanti
 
 /-- A convex combination of star weights is at most their maximum, the second
-inequality in equation (18). -/
+inequality in equation (18).
+@isnad1 id=le.2h3v.s7.4d401ac1b21c from=translated src=- shape=3d59fbc8 vocab=4ce57fad
+-/
 theorem star_mixture_le_max [Nonempty ι] (weights : ι → ℝ)
     (hweights : ∀ i, 0 ≤ weights i) (hsum : ∑ i, weights i = 1)
     (ω : Finset ι → ℝ) :
@@ -288,7 +316,9 @@ theorem star_mixture_le_max [Nonempty ι] (weights : ι → ℝ)
 
 /-- Proposition 5.3 in the paper's exact ordered-selector formulation: the
 spectral coefficients are nonnegative, sum to one, and satisfy both inequalities
-in equation (18). The total order represents the paper's fixed permutation. -/
+in equation (18). The total order represents the paper's fixed permutation.
+@isnad1 id=and.3h3v.s8.428c4d38eebf from=translated src=- shape=bd4c4e64 vocab=a25045fe
+-/
 theorem kleitman_weighted_bound [LinearOrder ι] [Nonempty ι] {B : Family ι}
     (hB : B.IsMaximalIntersecting) (ω : Finset ι → ℝ)
     (hω : ∀ x, 0 ≤ ω x) (hanti : Antitone ω) :
@@ -309,7 +339,9 @@ theorem kleitman_weighted_bound [LinearOrder ι] [Nonempty ι] {B : Family ι}
     star_mixture_le_max _ hweights hsum ω⟩
 
 /-- The final conclusion of Proposition 5.3 for one intersecting family:
-its total nonnegative decreasing weight is bounded by some full-cube star. -/
+its total nonnegative decreasing weight is bounded by some full-cube star.
+@isnad1 id=ex.3h3v.s6.98440cadd24a from=translated src=- shape=6cefcaa7 vocab=932e3f09
+-/
 theorem exists_weighted_star_bound [Nonempty ι] {A : Family ι}
     (hA : A.IsIntersecting) (ω : Finset ι → ℝ)
     (hω : ∀ x, 0 ≤ ω x) (hanti : Antitone ω) :
@@ -340,7 +372,9 @@ theorem exists_weighted_star_bound [Nonempty ι] {A : Family ι}
 
 /-- The final maximum-attainment statement of Proposition 5.3: one star
 simultaneously dominates every intersecting family for a fixed nonnegative
-decreasing weight, and that star is itself intersecting. -/
+decreasing weight, and that star is itself intersecting.
+@isnad1 id=ex.2h2v.s6.c7cefe3b598c from=translated src=- shape=6a64a33a vocab=932e3f09
+-/
 theorem exists_largest_weighted_intersecting_star [Nonempty ι]
     (ω : Finset ι → ℝ) (hω : ∀ x, 0 ≤ ω x) (hanti : Antitone ω) :
     ∃ i : ι, (Family.star (Finset.univ : Family ι) i).IsIntersecting ∧

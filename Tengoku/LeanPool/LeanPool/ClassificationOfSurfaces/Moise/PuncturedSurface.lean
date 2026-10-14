@@ -41,14 +41,18 @@ def foldDiskToHalfDisk :
       simpa only [Metric.mem_ball, dist_zero_right, norm_foldPlaneToHalfSpace] using hp
     · exact (foldPlaneToHalfSpace p).2⟩
 
-/-- Folding the disk onto the half-disk is continuous. -/
+/-- Folding the disk onto the half-disk is continuous.
+@isnad1 id=continuo.0h0v.s6.946f75610d44 from=translated src=- shape=aa81ab66 vocab=3acb13c7
+-/
 theorem continuous_foldDiskToHalfDisk : Continuous foldDiskToHalfDisk := by
   apply Continuous.subtype_mk
   exact continuous_subtype_val.comp
     (continuous_foldPlaneToHalfSpace.comp continuous_subtype_val)
 
 /-- The inverse image of a finite set under the disk fold is finite.  Each fiber is contained in
-the two-point set consisting of a point and its reflection across the boundary line. -/
+the two-point set consisting of a point and its reflection across the boundary line.
+@isnad1 id=finite.1h1v.s4.185ba0798c45 from=translated src=- shape=9b7850bb vocab=25865f90
+-/
 theorem finite_preimage_foldDiskToHalfDisk
     (s : Set ChartKind.halfDisk.modelRegion) (hs : s.Finite) :
     (foldDiskToHalfDisk ⁻¹' s).Finite := by
@@ -81,7 +85,9 @@ theorem finite_preimage_foldDiskToHalfDisk
     · simpa [reflectAcrossHalfPlaneBoundary] using hneg
     · simpa [reflectAcrossHalfPlaneBoundary] using h1
 
-/-- Folding the disk onto the half-disk is surjective. -/
+/-- Folding the disk onto the half-disk is surjective.
+@isnad1 id=surjecti.0h0v.s3.f8988a438f6f from=translated src=- shape=aa81ab66 vocab=9e53f1e1
+-/
 theorem surjective_foldDiskToHalfDisk :
     Function.Surjective foldDiskToHalfDisk := by
   intro q
@@ -92,7 +98,9 @@ theorem surjective_foldDiskToHalfDisk :
   · simp [foldDiskToHalfDisk, foldPlaneToHalfSpace, abs_of_nonneg q.2.2, p]
   · simp [foldDiskToHalfDisk, foldPlaneToHalfSpace, p]
 
-/-- An open disk with finitely many points deleted is path-connected. -/
+/-- An open disk with finitely many points deleted is path-connected.
+@isnad1 id=ispathco.1h1v.s6.b06288d49784 from=translated src=- shape=409c3449 vocab=e5753339
+-/
 theorem diskModel_compl_finite_isPathConnected
     (s : Set ChartKind.disk.modelRegion) (hs : s.Finite) :
     IsPathConnected sᶜ := by
@@ -104,7 +112,9 @@ theorem diskModel_compl_finite_isPathConnected
     simp [Plane]
   · exact (Set.Finite.preimage e.injective.injOn hs).countable
 
-/-- An open half-disk with finitely many points deleted is path-connected. -/
+/-- An open half-disk with finitely many points deleted is path-connected.
+@isnad1 id=ispathco.1h1v.s6.043529b8245b from=translated src=- shape=409c3449 vocab=dc64440e
+-/
 theorem halfDiskModel_compl_finite_isPathConnected
     (s : Set ChartKind.halfDisk.modelRegion) (hs : s.Finite) :
     IsPathConnected sᶜ := by
@@ -118,7 +128,9 @@ theorem halfDiskModel_compl_finite_isPathConnected
     Set.image_preimage_eq _ surjective_foldDiskToHalfDisk] at himage
   exact himage
 
-/-- Either Moise chart model remains path-connected after deleting finitely many points. -/
+/-- Either Moise chart model remains path-connected after deleting finitely many points.
+@isnad1 id=ispathco.1h2v.s6.4148f1b50435 from=translated src=- shape=49ac293e vocab=e4bf7531
+-/
 theorem ChartKind.isPathConnected_compl_finite
     (k : ChartKind) (s : Set k.modelRegion) (hs : s.Finite) :
     IsPathConnected sᶜ := by
@@ -127,7 +139,9 @@ theorem ChartKind.isPathConnected_compl_finite
   | halfDisk => exact halfDiskModel_compl_finite_isPathConnected s hs
 
 /-- The underlying planar model region remains path-connected after deleting a finite ambient
-set. -/
+set.
+@isnad1 id=ispathco.1h2v.s5.d80baf52f6b3 from=translated src=- shape=15bc4634 vocab=a2058cbb
+-/
 theorem ChartKind.isPathConnected_modelRegion_diff_finite
     (k : ChartKind) (s : Set Plane) (hs : s.Finite) :
     IsPathConnected (k.modelRegion \ s) := by
@@ -147,7 +161,9 @@ namespace MoiseChart
 variable {S : Type*} [TopologicalSpace S] (c : MoiseChart S)
 
 /-- A Moise chart domain, as a subtype, remains path-connected after deleting finitely many
-points. -/
+points.
+@isnad1 id=ispathco.1h3v.s6.73478778034c from=translated src=- shape=aef1e67f vocab=4b0bda13
+-/
 theorem isPathConnected_compl_finite_subtype
     (s : Set c.domain) (hs : s.Finite) :
     IsPathConnected sᶜ := by
@@ -165,7 +181,9 @@ theorem isPathConnected_compl_finite_subtype
   exact hpre
 
 /-- The ambient chart domain remains path-connected after deleting a finite subset of the
-surface. -/
+surface.
+@isnad1 id=ispathco.1h3v.s4.2d44dcb7ac1c from=translated src=- shape=fc049c40 vocab=0021ade7
+-/
 theorem isPathConnected_domain_diff_finite
     (s : Set S) (hs : s.Finite) :
     IsPathConnected (c.domain \ s) := by
@@ -186,7 +204,9 @@ an open neighborhood whose complement of the whole finite set is path-connected.
 
 For a putative separation of the complement, each deleted point is assigned to the unique side
 containing its punctured neighborhood.  Restoring the assigned points then produces two disjoint
-open sets covering the original connected space. -/
+open sets covering the original connected space.
+@isnad1 id=isconnec.2h2v.s6.903e5a1f0a33 from=translated src=- shape=7803fb1c vocab=6f653956
+-/
 theorem isConnected_compl_finite_of_locally_pathConnected
     {S : Type*} [TopologicalSpace S] [T1Space S] [ConnectedSpace S]
     {F : Set S} (hF : F.Finite)
@@ -312,7 +332,9 @@ theorem isConnected_compl_finite_of_locally_pathConnected
   exact Set.disjoint_left.mp hA'B'disjoint hxA' hxB'
 
 /-- A connected surface charted on the Euclidean half-plane remains connected after deleting
-finitely many points. -/
+finitely many points.
+@isnad1 id=isconnec.1h2v.s5.bc88020bfce8 from=translated src=- shape=779e5f33 vocab=eb3b49eb
+-/
 theorem isConnected_compl_finite_surface
     {S : Type*} [TopologicalSpace S] [T1Space S] [ConnectedSpace S]
     [ChartedSpace (EuclideanHalfSpace 2) S]

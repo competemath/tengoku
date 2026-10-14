@@ -50,30 +50,41 @@ def ExactBaseSize (n : Nat) : Prop :=
 def tupleStabilizer {n : Nat} (x : Fin n → Ω) : Subgroup G :=
   ⨅ i, MulAction.stabilizer G (x i)
 
+/--
+@isnad1 id=iff.0h5v.s6.a92e931ba6d0 from=translated src=- shape=e3f9056c vocab=860e0894
+-/
 @[simp]
 theorem mem_tupleStabilizer_iff {n : Nat} (x : Fin n → Ω) (g : G) :
     g ∈ tupleStabilizer G Ω x ↔ ∀ i, g • x i = x i := by
   simp [tupleStabilizer, MulAction.mem_stabilizer_iff]
 
-/-- A tuple is a base exactly when its pointwise stabilizer is trivial. -/
+/-- A tuple is a base exactly when its pointwise stabilizer is trivial.
+@isnad1 id=iff.0h4v.s5.21890e968368 from=translated src=- shape=b037bea1 vocab=378c811b
+-/
 theorem isBaseTuple_iff_tupleStabilizer_eq_bot {n : Nat} (x : Fin n → Ω) :
     IsBaseTuple G Ω x ↔ tupleStabilizer G Ω x = ⊥ := by
   simp [IsBaseTuple, Subgroup.eq_bot_iff_forall]
 
-/-- The stabilizer characterization of ordinary Saxl adjacency. -/
+/-- The stabilizer characterization of ordinary Saxl adjacency.
+@isnad1 id=iff.0h4v.s5.bbdff3480a8e from=translated src=- shape=2d6d7423 vocab=f8248a4b
+-/
 theorem adjacent_iff_pair_stabilizer_eq_bot (x y : Ω) :
     Adjacent G Ω x y ↔
       MulAction.stabilizer G x ⊓ MulAction.stabilizer G y = ⊥ := by
   simp [Adjacent, IsBaseTuple, Fin.forall_fin_two, Subgroup.eq_bot_iff_forall,
     MulAction.mem_stabilizer_iff]
 
-/-- A one-entry tuple is a base exactly when that point has trivial stabilizer. -/
+/-- A one-entry tuple is a base exactly when that point has trivial stabilizer.
+@isnad1 id=iff.0h3v.s5.b86d001c78c0 from=translated src=- shape=489627f1 vocab=652c7254
+-/
 theorem isBaseTuple_singleton_iff_stabilizer_eq_bot (x : Ω) :
     IsBaseTuple G Ω (fun _ : Fin 1 ↦ x) ↔ MulAction.stabilizer G x = ⊥ := by
   simp [IsBaseTuple, Subgroup.eq_bot_iff_forall, MulAction.mem_stabilizer_iff]
 
 /-- Exact set-base size two means that a distinct adjacent pair exists, but no
-single point has trivial stabilizer. -/
+single point has trivial stabilizer.
+@isnad1 id=iff.0h2v.s6.0b5432d5cb75 from=translated src=- shape=c265ebc0 vocab=e771176e
+-/
 theorem exactBaseSize_two_iff :
     ExactBaseSize G Ω 2 ↔
       (∃ x y : Ω, x ≠ y ∧ Adjacent G Ω x y) ∧
@@ -116,7 +127,9 @@ theorem exactBaseSize_two_iff :
                   (Nat.succ_le_succ (Nat.succ_le_succ (Nat.zero_le m)))) hm)
 
 /-- To rule out a common neighbour it suffices to rule out every possible
-witness, one vertex at a time. -/
+witness, one vertex at a time.
+@isnad1 id=not.1h4v.s5.06aef0ec283e from=translated src=- shape=ef3fa75a vocab=3898d6cf
+-/
 theorem noCommonNeighbour {R : Ω → Ω → Prop} {x y : Ω}
     (h : ∀ z, R x z → R z y → False) :
     ¬ HasCommonNeighbour Ω R x y := by

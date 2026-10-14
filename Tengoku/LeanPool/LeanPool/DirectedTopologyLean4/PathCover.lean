@@ -43,17 +43,26 @@ namespace covered
 
 variable {x₀ x₁ : X}
 
+/--
+@isnad1 id=covered.1h4v.s5.f121f0225ad1 from=translated src=- shape=ccd587c9 vocab=2cd0aa3a
+-/
 lemma covered_refl (x : X) (hX : X₀ ∪ X₁ = univ) : covered hX (Dipath.refl x) := by
   rcases (Set.mem_union x X₀ X₁).mp (Filter.mem_top.mpr hX x) with hx₀ | hx₁
   · exact Or.inl (DiSubtype.range_refl_subset_of_mem hx₀)
   · exact Or.inr (DiSubtype.range_refl_subset_of_mem hx₁)
 
+/--
+@isnad1 id=covered.2h6v.s7.94ab75b36fcc from=translated src=- shape=ddb60f00 vocab=970890ca
+-/
 lemma covered_of_extended_image_subset (γ : Dipath x₀ x₁) (hX : X₀ ∪ X₁ = univ)
     (hγ : γ.extend '' I ⊆ X₀ ∨ γ.extend '' I ⊆ X₁) :
     covered hX γ := by
   rw [(Dipath.range_eq_image γ).symm] at hγ
   exact hγ
 
+/--
+@isnad1 id=and.2h8v.s6.37883e036ebf from=translated src=- shape=de2e4436 vocab=934840c4
+-/
 lemma covered_of_covered_trans {x₂ : X} {γ₁ : Dipath x₀ x₁} {γ₂ : Dipath x₁ x₂}
   {hX : X₀ ∪ X₁ = univ} (hγ : covered hX (γ₁.trans γ₂)) :
     (covered hX γ₁ ∧ covered hX γ₂) := by
@@ -63,6 +72,9 @@ lemma covered_of_covered_trans {x₂ : X} {γ₁ : Dipath x₀ x₁} {γ₂ : Di
   · simp_all
   · simp_all
 
+/--
+@isnad1 id=covered.2h7v.s7.4e78d44ea4c7 from=translated src=- shape=25b8bd6d vocab=79f0ff93
+-/
 lemma covered_subparam_of_covered {γ : Dipath x₀ x₁} {hX : X₀ ∪ X₁ = univ} (hγ : covered hX γ)
     (f : D(I,I)) :
     covered hX (γ.subparam f) := by
@@ -70,18 +82,25 @@ lemma covered_subparam_of_covered {γ : Dipath x₀ x₁} {hX : X₀ ∪ X₁ = 
   · exact Or.inl (subset_trans (Dipath.subparam_range γ f) hγ)
   · exact Or.inr (subset_trans (Dipath.subparam_range γ f) hγ)
 
+/--
+@isnad1 id=iff.3h7v.s7.cd8378009a10 from=translated src=- shape=289c930a vocab=cc8bfe6c
+-/
 lemma covered_reparam_iff (γ : Dipath x₀ x₁) (hX : X₀ ∪ X₁ = univ) (f : D(I,I)) (hf₀ : f 0 = 0)
     (hf₁ : f 1 = 1) :
     covered hX γ ↔ covered hX (γ.reparam f hf₀ hf₁) := by
   unfold covered
   rw [Dipath.range_reparam _ _]
 
+/--
+@isnad1 id=iff.3h8v.s6.185b6196ddb3 from=translated src=- shape=2022ba77 vocab=7e1055b8
+-/
 lemma covered_cast_iff {x₀' x₁' : X} (γ : Dipath x₀ x₁) (hX : X₀ ∪ X₁ = univ)
     (hx₀ : x₀' = x₀) (hx₁ : x₁' = x₁) :
     covered hX γ ↔ covered hX (γ.cast hx₀ hx₁) := by rfl
 
 /-- If γ is a dipath that is covered, then by splitting it into two parts [0, T] and [T, 1], both
 parts remain covered
+@isnad1 id=and.4h7v.s7.5b91d0222769 from=translated src=- shape=f6c7be1f vocab=1523bf2c
 -/
 lemma covered_split_path {γ : Dipath x₀ x₁} {hX : X₀ ∪ X₁ = Set.univ} {T : I}
     (hT₀ : 0 < T) (hT₁ : T < 1) (hγ : covered hX γ) :
@@ -109,11 +128,15 @@ def coveredPartwise (hX : X₀ ∪ X₁ = Set.univ) {x y : X} (γ : Dipath x y) 
 
 namespace coveredPartwise
 
+/--
+@isnad1 id=coveredp.4h9v.s6.fae404ccebe7 from=translated src=- shape=0201e15c vocab=3b73fda8
+-/
 lemma covered_partwise_of_equal (hX : X₀ ∪ X₁ = Set.univ) {x₀ x₁ : X} {γ₁ γ₂ : Dipath x₀ x₁}
     {n m : ℕ} (h : γ₁ = γ₂) (h' : n = m) (hγ₁ : coveredPartwise hX γ₁ n) :
   coveredPartwise hX γ₂ m := by subst_vars; exact hγ₁
 
 /-- If γ is a dipath that is fully covered, then it is also partwise covered for all n ∈ ℕ
+@isnad1 id=coveredp.2h7v.s5.a565edd18ae1 from=translated src=- shape=91c1d2b4 vocab=e4c7add9
 -/
 lemma covered_partwise_of_covered {hX : X₀ ∪ X₁ = Set.univ} (n : ℕ) :
     ∀ {x₀ x₁ : X} {γ : Dipath x₀ x₁}, covered hX γ → coveredPartwise hX γ n := by
@@ -130,6 +153,9 @@ lemma covered_partwise_of_covered {hX : X₀ ∪ X₁ = Set.univ} (n : ℕ) :
       exact (covered_split_path (Fraction.ofPos_pos _)
         (Fraction.ofPos_lt_one (by norm_num)) hγ).right
 
+/--
+@isnad1 id=iff.3h9v.s6.4f436ccab271 from=translated src=- shape=fc968e6b vocab=63d7bb2c
+-/
 lemma covered_partwise_cast_iff (hX : X₀ ∪ X₁ = univ) {n : ℕ} :
     ∀ {x₀ x₁ x₀' x₁' : X} (γ : Dipath x₀ x₁) (hx₀ : x₀' = x₀) (hx₁ : x₁' = x₁),
     coveredPartwise hX γ n ↔ coveredPartwise hX (γ.cast hx₀ hx₁) n := by
@@ -149,6 +175,7 @@ lemma covered_partwise_cast_iff (hX : X₀ ∪ X₁ = univ) {n : ℕ} :
 
 /-- A dipath γ that can be covered with n+1 intervals can satisfied `coveredPartwise _ γ n`.
  This is the converse of `covered_by_intervals_of_covered_partwise`.
+@isnad1 id=coveredp.2h7v.s8.309fb643e29e from=translated src=- shape=9ddf9b22 vocab=27611f9d
 -/
 lemma covered_partwise_of_covered_by_intervals {hX : X₀ ∪ X₁ = Set.univ} (n : ℕ) :
     ∀ {x₀ x₁ : X} {γ : Dipath x₀ x₁}, (∀ (i : ℕ) (_ : i < (n + 1)),
@@ -183,6 +210,7 @@ lemma covered_partwise_of_covered_by_intervals {hX : X₀ ∪ X₁ = Set.univ} (
 
 /-- A dipath γ that satisfies `coveredPartwise _ γ n` can be covered with n+1 intervals.
  This is the converse of `covered_partwise_of_covered_by_intervals`.
+@isnad1 id=or.3h8v.s8.997a90e1e107 from=translated src=- shape=552e3f6e vocab=27611f9d
 -/
 lemma covered_by_intervals_of_covered_partwise {hX : X₀ ∪ X₁ = Set.univ} (n : ℕ) :
     ∀ {x₀ x₁ : X} {γ : Dipath x₀ x₁}, coveredPartwise hX γ n →
@@ -218,6 +246,9 @@ lemma covered_by_intervals_of_covered_partwise {hX : X₀ ∪ X₁ = Set.univ} (
       rw [←SplitProperties.secondPart_range_interval_coe γ (this) (by linarith)]
       convert ih hγ.right (i-1) (this) <;> exact (Nat.cast_succ n)
 
+/--
+@isnad1 id=ex.3h6v.s8.f9681cbf8bbd from=translated src=- shape=552eab58 vocab=bf2df448
+-/
 lemma has_interval_division {X₁ X₂ : Set X} (hX : X₁ ∪ X₂ = Set.univ) (X₁_open : IsOpen X₁)
   (X₂_open : IsOpen X₂) (γ : Dipath x₀ x₁) :
     ∃ (n : ℕ), (n > 0) ∧ ∀ (i : ℕ) (_ : i < n),
@@ -253,6 +284,7 @@ lemma has_interval_division {X₁ X₂ : Set X} (hX : X₁ ∪ X₂ = Set.univ) 
 
 /-- If `γ` is a dipath and a directed space `X` is covered by two opens `X₁` and `X₂`, then `γ` is
 n-covered for some `n`.
+@isnad1 id=ex.3h6v.s6.185d2d2376ae from=translated src=- shape=1f63fb62 vocab=bf01c9c3
 -/
 lemma has_subpaths {X₁ X₂ : Set X} (hX : X₁ ∪ X₂ = Set.univ) (X₁_open : IsOpen X₁)
   (X₂_open : IsOpen X₂) (γ : Dipath x₀ x₁) :

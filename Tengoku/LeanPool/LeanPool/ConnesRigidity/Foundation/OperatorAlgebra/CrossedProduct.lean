@@ -166,7 +166,9 @@ def crossedBaseMultiplier
   (ContinuousLinearMap.mul ℂ ℂ).holderL X.measure ⊤ 2 2 f
 
 /-- The multiplier has its pointwise representative almost everywhere.
-Paper: §3. -/
+Paper: §3.
+@isnad1 id=eventual.0h5v.s13.326674de0638 from=translated src=- shape=ec65a007 vocab=f8bd0cf8
+-/
 theorem crossedBaseMultiplier_apply_ae
     {K : Type u} {Ω : Type v} [Group K]
     [AddCommGroup Ω] [TopologicalSpace Ω] [MeasurableSpace Ω]
@@ -214,6 +216,9 @@ def crossedFiberwiseOperator
         rw [lp.norm_const_smul (by norm_num : (2 : ℝ≥0∞) ≠ 0)]
         simp only [Complex.norm_real, norm_norm])
 
+/--
+@isnad1 id=eq.0h5v.s12.9d09616c5de5 from=translated src=- shape=ec37c0a9 vocab=97d29b81
+-/
 @[simp] theorem crossedFiberwiseOperator_apply
     {K : Type u} {H : Type v}
     [NormedAddCommGroup H] [NormedSpace ℂ H]
@@ -231,6 +236,9 @@ def crossedMultiplier
     crossedHilbert X →L[ℂ] crossedHilbert X :=
   crossedFiberwiseOperator (crossedBaseMultiplier X f)
 
+/--
+@isnad1 id=eq.0h6v.s16.84687691ea66 from=translated src=- shape=5ff788bc vocab=f0bdfd80
+-/
 @[simp] theorem crossedMultiplier_apply
     {K : Type u} {Ω : Type v} [Group K]
     [AddCommGroup Ω] [TopologicalSpace Ω] [MeasurableSpace Ω]
@@ -287,6 +295,9 @@ def crossedFiberwiseEquiv
           (1 / (2 : ℝ≥0∞).toReal)
     simp only [LinearIsometryEquiv.norm_map]
 
+/--
+@isnad1 id=eq.0h6v.s11.a03c7bcb7c55 from=translated src=- shape=267b7769 vocab=ab661b31
+-/
 @[simp] theorem crossedFiberwiseEquiv_apply
     {K : Type u} {H : Type v} {J : Type w}
     [NormedAddCommGroup H] [NormedSpace ℂ H]
@@ -329,6 +340,9 @@ def crossedIndexEquiv
     congr 1
     exact e.symm.tsum_eq (fun k ↦ ‖ξ k‖ ^ (2 : ℝ≥0∞).toReal)
 
+/--
+@isnad1 id=eq.0h5v.s11.180b681cb763 from=translated src=- shape=f1a40fa8 vocab=e936969a
+-/
 @[simp] theorem crossedIndexEquiv_apply
     {K : Type u} {H : Type v}
     [NormedAddCommGroup H] [NormedSpace ℂ H]
@@ -381,6 +395,9 @@ def crossedBaseHaarEquiv
   norm_map' := fun f ↦ Lp.norm_compMeasurePreserving f
     (EquivariantHaarEquiv.symm e).measure_preserving
 
+/--
+@isnad1 id=eq.0h7v.s13.012473a4cbc3 from=translated src=- shape=700d7c96 vocab=617edf5f
+-/
 @[simp] theorem crossedBaseHaarEquiv_apply
     {K : Type u} {Ω : Type v} {Ξ : Type w} [Group K]
     [AddCommGroup Ω] [TopologicalSpace Ω] [MeasurableSpace Ω]
@@ -433,6 +450,9 @@ def crossedActionL2Equiv
   norm_map' := fun f ↦ Lp.norm_compMeasurePreserving f
     (X.action_preserves_measure k⁻¹)
 
+/--
+@isnad1 id=eq.0h5v.s13.5d069de4c87d from=translated src=- shape=19268159 vocab=24146bf6
+-/
 @[simp] theorem crossedActionL2Equiv_apply
     {K : Type u} {Ω : Type v} [Group K]
     [AddCommGroup Ω] [TopologicalSpace Ω] [MeasurableSpace Ω]
@@ -453,6 +473,9 @@ def crossedGroupUnitary
   (crossedIndexEquiv (Equiv.mulLeft k)).trans
     (crossedFiberwiseEquiv (crossedActionL2Equiv X k))
 
+/--
+@isnad1 id=eq.0h6v.s16.5f4aa51be23e from=translated src=- shape=f677739a vocab=bdbb4015
+-/
 @[simp] theorem crossedGroupUnitary_apply
     {K : Type u} {Ω : Type v} [Group K]
     [AddCommGroup Ω] [TopologicalSpace Ω] [MeasurableSpace Ω]

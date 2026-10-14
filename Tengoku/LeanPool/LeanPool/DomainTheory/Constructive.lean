@@ -53,7 +53,9 @@ variable {α : Type*} [DecidableEq α]
 
 /-- Choice-free commutativity of `insert` (mathlib's `Finset.insert_comm` is
 choice-tainted).
-Needed to fold `insert` over a `Multiset`. -/
+Needed to fold `insert` over a `Multiset`.
+@isnad1 id=eq.0h4v.s5.fb5f45da75be from=translated src=- shape=883a3ba4 vocab=c041abc6
+-/
 theorem insert_comm' (a b : α) (s : Finset α) :
     insert a (insert b s) = insert b (insert a s) := by
   ext x
@@ -75,6 +77,9 @@ def funion (u v : Finset α) : Finset α := Multiset.foldr insert u v.1
 
 @[inherit_doc] infixl:65 " ∪' " => funion
 
+/--
+@isnad1 id=iff.0h4v.s5.6405037efc3a from=translated src=- shape=3935bcd1 vocab=763a88ae
+-/
 theorem mem_foldr_insert (a : α) (u : Finset α) (s : Multiset α) :
     a ∈ Multiset.foldr insert u s ↔ a ∈ u ∨ a ∈ s := by
   refine Multiset.induction_on s ?_ ?_
@@ -87,21 +92,34 @@ theorem mem_foldr_insert (a : α) (u : Finset α) (s : Multiset α) :
     · rintro (h | h | h)
       exacts [Or.inr (Or.inl h), Or.inl h, Or.inr (Or.inr h)]
 
+/--
+@isnad1 id=iff.0h4v.s5.de6e53967d30 from=translated src=- shape=c7dc40fb vocab=2c85f67e
+-/
 @[simp] theorem mem_funion {a : α} {u v : Finset α} :
     a ∈ u ∪' v ↔ a ∈ u ∨ a ∈ v := mem_foldr_insert a u v.1
 
 /-- The coercion of `u ∪' v` to a `Set` is the (choice-free) set union of the
-coercions. -/
+coercions.
+@isnad1 id=eq.0h3v.s5.c15ec16d24e0 from=translated src=- shape=209dcb1d vocab=8d650e27
+-/
 theorem coe_funion (u v : Finset α) :
     (↑(u ∪' v) : Set α) = (↑u : Set α) ∪ ↑v := by
   ext x
   simp only [Set.mem_union, Finset.mem_coe, mem_funion]
 
+/--
+@isnad1 id=le.0h3v.s4.599faf1d67d0 from=translated src=- shape=853418c8 vocab=fad6abdc
+-/
 theorem subset_funion_left (u v : Finset α) : u ⊆ u ∪' v := fun _ hx => mem_funion.2 (Or.inl hx)
 
+/--
+@isnad1 id=le.0h3v.s4.bbb9d7de4621 from=translated src=- shape=aa4783a4 vocab=fad6abdc
+-/
 theorem subset_funion_right (u v : Finset α) : v ⊆ u ∪' v := fun _ hx => mem_funion.2 (Or.inr hx)
 
-/-- Universal property of the union: `u ∪' v ⊆ w` iff both `u ⊆ w` and `v ⊆ w`. -/
+/-- Universal property of the union: `u ∪' v ⊆ w` iff both `u ⊆ w` and `v ⊆ w`.
+@isnad1 id=iff.0h4v.s5.a0c9a6a5d24c from=translated src=- shape=0ddf0818 vocab=fad6abdc
+-/
 theorem funion_subset_iff {u v w : Finset α} : u ∪' v ⊆ w ↔ u ⊆ w ∧ v ⊆ w := by
   constructor
   · intro h

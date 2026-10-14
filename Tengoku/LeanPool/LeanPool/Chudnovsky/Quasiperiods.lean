@@ -87,13 +87,17 @@ private theorem weierstrassZeta_add_period (ω : ℂ) (hω : ω ∈ L.lattice)
   exact hopen.eqOn_of_deriv_eq hconn hfdiff hgdiff hderiv hx₀ hval hz
 
 /-- Quasi-periodicity of `ζ` in the direction `ω₁`: `ζ(z+ω₁) = ζ(z) + η₁` for `z ∉ L`
-(paper `eta` and Def. `defetak`). -/
+(paper `eta` and Def. `defetak`).
+@isnad1 id=eq.1h2v.s5.8ec1dbfcd9d5 from=translated src=- shape=9ef26c0a vocab=959f4a28
+-/
 theorem weierstrassZeta_add_ω₁ (z : ℂ) (hz : z ∉ L.lattice) :
     L.weierstrassZeta (z + L.ω₁) = L.weierstrassZeta z + L.eta₁ :=
   L.weierstrassZeta_add_period L.ω₁ L.ω₁_mem_lattice L.ω₁_div_two_notMem_lattice hz
 
 /-- Quasi-periodicity of `ζ` in the direction `ω₂`: `ζ(z+ω₂) = ζ(z) + η₂` for `z ∉ L`
-(paper `eta` and Def. `defetak`). -/
+(paper `eta` and Def. `defetak`).
+@isnad1 id=eq.1h2v.s5.f320aa20ce28 from=translated src=- shape=9ef26c0a vocab=9be18807
+-/
 theorem weierstrassZeta_add_ω₂ (z : ℂ) (hz : z ∉ L.lattice) :
     L.weierstrassZeta (z + L.ω₂) = L.weierstrassZeta z + L.eta₂ :=
   L.weierstrassZeta_add_period L.ω₂ L.ω₂_mem_lattice L.ω₂_div_two_notMem_lattice hz
@@ -476,7 +480,9 @@ private theorem legendre_Lτ_aux (τ : ℍ) :
 
 /-- **Legendre's relation** (paper `legendre`): `η₁ω₂ - η₂ω₁ = 2πi` for a positively
 oriented basis (`0 < Im(ω₂/ω₁)`; for the opposite orientation the right-hand side is
-`-2πi`). -/
+`-2πi`).
+@isnad1 id=eq.1h1v.s6.2a38624859c9 from=translated src=- shape=e1798404 vocab=5dc7c416
+-/
 theorem legendre_relation (h : 0 < (L.ω₂ / L.ω₁).im) :
     L.eta₁ * L.ω₂ - L.eta₂ * L.ω₁ = 2 * (Real.pi : ℂ) * Complex.I := by
   have hω₁ : L.ω₁ ≠ 0 := by simpa using L.indep.ne_zero 0
@@ -512,7 +518,9 @@ open UpperHalfPlane EisensteinSeries
 open scoped Real
 
 /-- Legendre's relation for the lattice `L_τ = ℤ + ℤτ`: `η₁τ - η₂ = 2πi`
-(paper `legendre` with `ω₁ = 1`, `ω₂ = τ`). -/
+(paper `legendre` with `ω₁ = 1`, `ω₂ = τ`).
+@isnad1 id=eq.0h1v.s5.59957182121e from=translated src=- shape=05552756 vocab=6c49cdd4
+-/
 theorem legendre_Lτ (τ : ℍ) :
     (Lτ τ).eta₁ * τ - (Lτ τ).eta₂ = 2 * (π : ℂ) * Complex.I := by
   have h := (Lτ τ).legendre_relation (by simpa using τ.im_pos)
@@ -521,7 +529,9 @@ theorem legendre_Lτ (τ : ℍ) :
 /-- The first quasiperiod of `L_τ` is the weight-2 Eisenstein series `G₂` in its
 Eisenstein summation order (Mathlib's `EisensteinSeries.G2`, summed over symmetric
 intervals). Together with `G₂ = 2ζ(2)·E₂` and `ζ(2) = π²/6`, this is the paper's
-`η₁(L_τ) = π²E₂(τ)/3` from Thm. `fouriertheorem` (see `Fourier.lean`). -/
+`η₁(L_τ) = π²E₂(τ)/3` from Thm. `fouriertheorem` (see `Fourier.lean`).
+@isnad1 id=eq.0h1v.s3.f6dd0666995c from=translated src=- shape=7718e021 vocab=5920b3aa
+-/
 theorem eta₁_Lτ_eq_G2 (τ : ℍ) : (Lτ τ).eta₁ = G2 τ :=
   PeriodPair.eta₁_Lτ_eq_G2_aux τ
 

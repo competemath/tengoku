@@ -65,20 +65,33 @@ instance instModule : Module ℝ Octonion where
   add_smul r s a := by ext i; exact add_mul _ _ _
   zero_smul a := by ext i; exact zero_mul _
 
+/--
+@isnad1 id=eq.0h0v.s3.423de38f4703 from=translated src=- shape=3c26ae4f vocab=9e210a43
+-/
 @[simp] theorem conj_zero : conj (0 : Octonion) = 0 := by
   ext i; simp only [conj, zero_coords]; split_ifs <;> simp
 
-/-- Conjugation is additive. -/
+/-- Conjugation is additive.
+@isnad1 id=eq.0h2v.s4.9a6fd1533534 from=translated src=- shape=a13ca989 vocab=230138a0
+-/
 @[simp] theorem conj_add (x y : Octonion) : conj (x + y) = conj x + conj y := by
   ext i; simp only [conj, add_coords]; split_ifs <;> ring
 
-/-- Conjugation is `ℝ`-homogeneous; with `conj_add`, `conj` is `ℝ`-linear. -/
+/-- Conjugation is `ℝ`-homogeneous; with `conj_add`, `conj` is `ℝ`-linear.
+@isnad1 id=eq.0h2v.s4.e5f482819b78 from=translated src=- shape=12ed3a53 vocab=af39c41f
+-/
 @[simp] theorem conj_smul (r : ℝ) (x : Octonion) : conj (r • x) = r • conj x := by
   ext i; simp only [conj, smul_coords]; split_ifs <;> ring
 
+/--
+@isnad1 id=eq.0h1v.s4.dfa74c4d2551 from=translated src=- shape=1d838610 vocab=d0f1c38f
+-/
 @[simp] theorem mul_zero' (x : Octonion) : mul x 0 = 0 := by
   ext i; fin_cases i <;> simp [mul]
 
+/--
+@isnad1 id=eq.0h1v.s4.789cef89790f from=translated src=- shape=fe2c2146 vocab=d0f1c38f
+-/
 @[simp] theorem zero_mul' (x : Octonion) : mul 0 x = 0 := by
   ext i; fin_cases i <;> simp [mul]
 
@@ -91,34 +104,61 @@ there reach the trace form on hermitian octonionic matrices. -/
 /-- The Euclidean inner product on the octonions. -/
 def octIp (x y : Octonion) : ℝ := ∑ i, x.coords i * y.coords i
 
+/--
+@isnad1 id=eq.0h2v.s3.698ebac620b8 from=translated src=- shape=ab795eaa vocab=fd39d3e9
+-/
 theorem octIp_comm (x y : Octonion) : octIp x y = octIp y x := by
   simp only [octIp]; exact Finset.sum_congr rfl fun i _ => mul_comm _ _
 
+/--
+@isnad1 id=eq.0h3v.s5.5358868e8b06 from=translated src=- shape=086cad00 vocab=09d77136
+-/
 @[simp] theorem octIp_add_left (x y z : Octonion) :
     octIp (x + y) z = octIp x z + octIp y z := by
   simp only [octIp, add_coords, ← Finset.sum_add_distrib]
   exact Finset.sum_congr rfl fun i _ => by ring
 
+/--
+@isnad1 id=eq.0h3v.s4.4877b18aff8b from=translated src=- shape=6b1f7a25 vocab=4afb2e3d
+-/
 @[simp] theorem octIp_smul_left (r : ℝ) (x y : Octonion) :
     octIp (r • x) y = r * octIp x y := by
   simp only [octIp, smul_coords, Finset.mul_sum]
   exact Finset.sum_congr rfl fun i _ => by ring
 
+/--
+@isnad1 id=eq.0h3v.s5.78785e61358e from=translated src=- shape=50a03441 vocab=09d77136
+-/
 @[simp] theorem octIp_add_right (x y z : Octonion) :
     octIp x (y + z) = octIp x y + octIp x z := by
   rw [octIp_comm, octIp_add_left, octIp_comm y x, octIp_comm z x]
 
+/--
+@isnad1 id=eq.0h3v.s4.5cccda122343 from=translated src=- shape=bd37ea74 vocab=4afb2e3d
+-/
 @[simp] theorem octIp_smul_right (r : ℝ) (x y : Octonion) :
     octIp x (r • y) = r * octIp x y := by
   rw [octIp_comm, octIp_smul_left, octIp_comm y x]
 
+/--
+@isnad1 id=eq.0h1v.s4.7077fb0e6183 from=translated src=- shape=d7485c18 vocab=fd39d3e9
+-/
 @[simp] theorem octIp_zero_left (x : Octonion) : octIp 0 x = 0 := by simp [octIp]
 
+/--
+@isnad1 id=eq.0h1v.s4.24e72ad5d334 from=translated src=- shape=8fc7241c vocab=fd39d3e9
+-/
 @[simp] theorem octIp_zero_right (x : Octonion) : octIp x 0 = 0 := by simp [octIp]
 
+/--
+@isnad1 id=le.0h1v.s3.91688997b8fc from=translated src=- shape=5c4ef0be vocab=518e4050
+-/
 theorem octIp_self_nonneg (x : Octonion) : 0 ≤ octIp x x :=
   Finset.sum_nonneg fun _ _ => mul_self_nonneg _
 
+/--
+@isnad1 id=eq.1h1v.s4.b7aa616a4a0a from=translated src=- shape=a70f2b34 vocab=fd39d3e9
+-/
 theorem octIp_self_eq_zero {x : Octonion} (h : octIp x x = 0) : x = 0 := by
   ext i
   have hle : x.coords i * x.coords i ≤ octIp x x :=
@@ -129,25 +169,33 @@ theorem octIp_self_eq_zero {x : Octonion} (h : octIp x x = 0) : x = 0 := by
   simpa using mul_self_eq_zero.mp this
 
 /-- The Euclidean inner product is the trace form: `⟨x, y⟩ = re (x * conj y)`.
-This is the bridge to `OctonionTrace.lean`. -/
+This is the bridge to `OctonionTrace.lean`.
+@isnad1 id=eq.0h2v.s3.7b05340970d0 from=translated src=- shape=739685a8 vocab=a4a54db6
+-/
 theorem octIp_eq_re (x y : Octonion) : octIp x y = re (mul x (conj y)) := by
   simp [octIp, re, mul, conj, Fin.sum_univ_eight]
 
 /-- Cyclic invariance of the real part of a triple product.  `re_mul_assoc` moves the bracket,
-`re_mul_comm` rotates the factors. -/
+`re_mul_comm` rotates the factors.
+@isnad1 id=eq.0h3v.s4.4674c3f5d210 from=translated src=- shape=b6773378 vocab=39e5eae2
+-/
 theorem re_three_cyc (x y z : Octonion) :
     re (mul (mul x y) z) = re (mul (mul y z) x) := by
   rw [re_mul_assoc, re_mul_comm]
 
 /-- Cyclic rotation of a conjugated triple, in the `octIp` vocabulary the trace form on
 hermitian octonionic matrices is written in.  This and `octIp_conj_cyc'` are the only
-octonionic input that form's Euclidean hypothesis needs. -/
+octonionic input that form's Euclidean hypothesis needs.
+@isnad1 id=eq.0h3v.s4.567c45e255d7 from=translated src=- shape=a0c7a228 vocab=4ab2f8c4
+-/
 theorem octIp_conj_cyc (a b c : Octonion) :
     octIp (mul (conj a) (conj b)) c = octIp (mul (conj b) (conj c)) a := by
   rw [octIp_eq_re, octIp_eq_re]
   exact re_three_cyc (conj a) (conj b) (conj c)
 
-/-- Cyclic rotation the other way. -/
+/-- Cyclic rotation the other way.
+@isnad1 id=eq.0h3v.s4.1377462a26d2 from=translated src=- shape=98e061c7 vocab=4ab2f8c4
+-/
 theorem octIp_conj_cyc' (a b c : Octonion) :
     octIp (mul (conj a) (conj b)) c = octIp (mul (conj c) (conj a)) b := by
   rw [octIp_conj_cyc, octIp_conj_cyc]
@@ -161,6 +209,9 @@ def coordsEquiv : Octonion ≃ₗ[ℝ] (Fin 8 → ℝ) where
   left_inv a := by cases a; rfl
   right_inv c := rfl
 
+/--
+@isnad1 id=finitedi.0h0v.s2.6d544d527d68 from=translated src=- shape=25b03439 vocab=e1695aed
+-/
 instance instFiniteDimensional : FiniteDimensional ℝ Octonion :=
   Module.Finite.equiv coordsEquiv.symm
 

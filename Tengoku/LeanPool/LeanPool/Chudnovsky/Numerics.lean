@@ -47,12 +47,16 @@ open scoped Real
 `π = 3.14159265358979323846264338327950288419716939937510…` -/
 
 /-- High-precision lower bound for `π` (21 significant digits).
-To be proved by the `Mathlib.Analysis.Real.Pi.Bounds` machinery (PLAN D1). -/
+To be proved by the `Mathlib.Analysis.Real.Pi.Bounds` machinery (PLAN D1).
+@isnad1 id=lt.0h0v.s3.4bf13ea3396d from=translated src=- shape=a948b8aa vocab=489aaca7
+-/
 theorem pi_gt_high_precision : 3.14159265358979323846 < π :=
   Real.pi_gt_d20
 
 /-- High-precision upper bound for `π` (21 significant digits).
-To be proved by the `Mathlib.Analysis.Real.Pi.Bounds` machinery (PLAN D1). -/
+To be proved by the `Mathlib.Analysis.Real.Pi.Bounds` machinery (PLAN D1).
+@isnad1 id=lt.0h0v.s3.36b8862e73f9 from=translated src=- shape=425298da vocab=489aaca7
+-/
 theorem pi_lt_high_precision : π < 3.14159265358979323847 :=
   Real.pi_lt_d20
 
@@ -62,12 +66,16 @@ theorem pi_lt_high_precision : π < 3.14159265358979323847 :=
 the endpoint rationals below satisfy `lo² < 163 < hi²` (verified exactly). -/
 
 /-- Lower bound for `√163` (21 significant digits). To be proved from
-`lo² < 163` via `Real.lt_sqrt` / `nlinarith` (PLAN D1). -/
+`lo² < 163` via `Real.lt_sqrt` / `nlinarith` (PLAN D1).
+@isnad1 id=lt.0h0v.s4.ed2688ba5b33 from=translated src=- shape=8905eb1d vocab=18350630
+-/
 theorem sqrt_163_gt : 12.7671453348037046617 < Real.sqrt 163 := by
   rw [Real.lt_sqrt (by norm_num)]; norm_num
 
 /-- Upper bound for `√163` (21 significant digits). To be proved from
-`163 < hi²` via `Real.sqrt_lt'` / `nlinarith` (PLAN D1). -/
+`163 < hi²` via `Real.sqrt_lt'` / `nlinarith` (PLAN D1).
+@isnad1 id=lt.0h0v.s4.10b8343a1489 from=translated src=- shape=339e478a vocab=18350630
+-/
 theorem sqrt_163_lt : Real.sqrt 163 < 12.7671453348037046618 := by
   rw [Real.sqrt_lt' (by norm_num)]; norm_num
 
@@ -289,7 +297,9 @@ the truncation-error estimates of ch. 5/10 are evaluated at. -/
 
 /-- Lower bound for `e^{-π√163}` (30 significant digits), i.e.
 `380898093700765233822623151647 / 10^47 < e^{-π√163}`.
-To be proved by ℚ-interval arithmetic + `Real.exp_bound` (PLAN D1). -/
+To be proved by ℚ-interval arithmetic + `Real.exp_bound` (PLAN D1).
+@isnad1 id=lt.0h0v.s5.45364c676477 from=translated src=- shape=e9752252 vocab=6ee18457
+-/
 theorem exp_neg_pi_sqrt_163_gt :
     3.80898093700765233822623151647e-18 < Real.exp (-(π * Real.sqrt 163)) := by
   rw [Real.exp_neg]
@@ -305,7 +315,9 @@ theorem exp_neg_pi_sqrt_163_gt :
 
 /-- Upper bound for `e^{-π√163}` (30 significant digits), i.e.
 `e^{-π√163} < 380898093700765233822623151648 / 10^47`.
-To be proved by ℚ-interval arithmetic + `Real.exp_bound` (PLAN D1). -/
+To be proved by ℚ-interval arithmetic + `Real.exp_bound` (PLAN D1).
+@isnad1 id=lt.0h0v.s5.98871885cceb from=translated src=- shape=152230e2 vocab=6ee18457
+-/
 theorem exp_neg_pi_sqrt_163_lt :
     Real.exp (-(π * Real.sqrt 163)) < 3.80898093700765233822623151648e-18 := by
   rw [Real.exp_neg]
@@ -321,14 +333,18 @@ theorem exp_neg_pi_sqrt_163_lt :
 
 /-! ### The nome at `τ₁₆₃` -/
 
-/-- The magnitude of the nome at the CM point: `‖q τ₁₆₃‖ = e^{-π√163}`. -/
+/-- The magnitude of the nome at the CM point: `‖q τ₁₆₃‖ = e^{-π√163}`.
+@isnad1 id=eq.0h0v.s4.b72189ce786d from=translated src=- shape=233ab3af vocab=5399ec06
+-/
 theorem norm_q_τ₁₆₃ : ‖q τ₁₆₃‖ = Real.exp (-(π * Real.sqrt 163)) := by
   rw [norm_q, τ₁₆₃_im]
   congr 1
   ring
 
 /-- The nome at the CM point is real and *negative*:
-`q τ₁₆₃ = e^{2πi(1/2 + i√163/2)} = e^{πi}·e^{-π√163} = -e^{-π√163}`. -/
+`q τ₁₆₃ = e^{2πi(1/2 + i√163/2)} = e^{πi}·e^{-π√163} = -e^{-π√163}`.
+@isnad1 id=eq.0h0v.s4.34f2e48309c4 from=translated src=- shape=7bece87a vocab=66946482
+-/
 theorem q_τ₁₆₃_eq : q τ₁₆₃ = -Complex.exp (-(π * Real.sqrt 163) : ℝ) := by
   rw [q_eq]
   have hre : τ₁₆₃.re = 1 / 2 := rfl
@@ -343,7 +359,9 @@ theorem q_τ₁₆₃_eq : q τ₁₆₃ = -Complex.exp (-(π * Real.sqrt 163) :
   ring
 
 /-- Restatement of `q_τ₁₆₃_eq` via the real exponential: `q τ₁₆₃` is the coercion of
-the negative real number `-e^{-π√163}`. -/
+the negative real number `-e^{-π√163}`.
+@isnad1 id=eq.0h0v.s4.654a3dcd646c from=translated src=- shape=1d8150c6 vocab=17769ec8
+-/
 theorem q_τ₁₆₃_eq_ofReal :
     q τ₁₆₃ = ((-Real.exp (-(π * Real.sqrt 163)) : ℝ) : ℂ) := by
   rw [q_τ₁₆₃_eq]

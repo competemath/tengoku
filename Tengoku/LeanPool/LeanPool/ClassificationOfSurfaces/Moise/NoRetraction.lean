@@ -36,15 +36,23 @@ def circleToClosedUnitDisk (z : Circle) : ClosedUnitDisk :=
     rw [Metric.mem_closedBall, dist_zero_right]
     rw [Circle.norm_coe]⟩
 
+/--
+@isnad1 id=eq.0h1v.s6.58df81a0a4de from=translated src=- shape=86b8dc3b vocab=7a2fe4a0
+-/
 @[simp] theorem circleToClosedUnitDisk_coe (z : Circle) :
     (circleToClosedUnitDisk z : ℂ) = z :=
   rfl
 
+/--
+@isnad1 id=continuo.0h0v.s5.e4d1c1417ff7 from=translated src=- shape=583fb3b9 vocab=2dd03088
+-/
 theorem continuous_circleToClosedUnitDisk : Continuous circleToClosedUnitDisk := by
   apply Continuous.subtype_mk
   exact continuous_subtype_val
 
-/-- The closed disk does not retract continuously onto its boundary circle. -/
+/-- The closed disk does not retract continuously onto its boundary circle.
+@isnad1 id=not.0h0v.s5.ffe69c97872c from=translated src=- shape=afeb827e vocab=2dd03088
+-/
 theorem no_retraction_closedUnitDisk :
     ¬ ∃ r : ClosedUnitDisk → Circle,
       Continuous r ∧ ∀ z : Circle, r (circleToClosedUnitDisk z) = z := by
@@ -120,6 +128,9 @@ noncomputable def planeUnitSphereToCircle (x : Metric.sphere (0 : Plane) 1) : Ci
         rw [LinearIsometryEquiv.norm_map]
         exact mem_sphere_zero_iff_norm.mp x.2)⟩
 
+/--
+@isnad1 id=eq.0h1v.s8.3b54f62ba9f9 from=translated src=- shape=c535ca23 vocab=2f53186c
+-/
 @[simp] theorem planeUnitSphereToCircle_circleToPlaneClosedUnitBall (z : Circle) :
     planeUnitSphereToCircle
       ⟨(circleToPlaneClosedUnitBall z : Plane), by
@@ -129,10 +140,16 @@ noncomputable def planeUnitSphereToCircle (x : Metric.sphere (0 : Plane) 1) : Ci
   apply Subtype.ext
   exact planeComplexIsometry.apply_symm_apply z
 
+/--
+@isnad1 id=continuo.0h0v.s8.0d183bc514bd from=translated src=- shape=56d15e12 vocab=b32b7a62
+-/
 theorem continuous_circleToPlaneClosedUnitBall : Continuous circleToPlaneClosedUnitBall := by
   apply Continuous.subtype_mk
   exact planeComplexIsometry.symm.continuous.comp continuous_subtype_val
 
+/--
+@isnad1 id=continuo.0h0v.s8.c5fed97d96af from=translated src=- shape=b2ecec1b vocab=1d4d4260
+-/
 theorem continuous_planeUnitSphereToCircle : Continuous planeUnitSphereToCircle := by
   apply Continuous.subtype_mk
   exact planeComplexIsometry.continuous.comp continuous_subtype_val
@@ -144,12 +161,17 @@ noncomputable def complexDiskToPlaneClosedUnitBall
     rw [Metric.mem_closedBall, dist_zero_right, LinearIsometryEquiv.norm_map]
     simpa [dist_zero_right] using Metric.mem_closedBall.mp z.2⟩
 
+/--
+@isnad1 id=continuo.0h0v.s8.5e3c831e16a3 from=translated src=- shape=4177f4bd vocab=3cffae3a
+-/
 theorem continuous_complexDiskToPlaneClosedUnitBall :
     Continuous complexDiskToPlaneClosedUnitBall := by
   apply Continuous.subtype_mk
   exact planeComplexIsometry.symm.continuous.comp continuous_subtype_val
 
-/-- The closed unit ball in the project's Euclidean plane does not retract onto its sphere. -/
+/-- The closed unit ball in the project's Euclidean plane does not retract onto its sphere.
+@isnad1 id=not.0h0v.s10.795e344d7f78 from=translated src=- shape=883a93c8 vocab=9c727376
+-/
 theorem no_retraction_planeClosedUnitBall :
     ¬ ∃ r : Metric.closedBall (0 : Plane) 1 → Metric.sphere (0 : Plane) 1,
       Continuous r ∧
@@ -171,7 +193,9 @@ theorem no_retraction_planeClosedUnitBall :
     exact planeUnitSphereToCircle_circleToPlaneClosedUnitBall z
 
 /-- Retractions are invariant under an ambient homeomorphism carrying both the disk and its
-boundary to the target disk and boundary. -/
+boundary to the target disk and boundary.
+@isnad1 id=not.5h7v.s8.15e9fca0e7c8 from=translated src=- shape=b0758218 vocab=88396c44
+-/
 theorem no_retraction_of_homeomorph {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
     {A B : Set X} {A' B' : Set Y} (e : X ≃ₜ Y)
     (hA : e '' A = A') (hB : e '' B = B') (hBA : B ⊆ A) (hB'A' : B' ⊆ A')
@@ -216,7 +240,9 @@ theorem no_retraction_of_homeomorph {X Y : Type*} [TopologicalSpace X] [Topologi
     congrArg Subtype.val (hretract ⟨e.symm z.1, hzB⟩)]
   exact e.apply_symm_apply z.1
 
-/-- A nondegenerate closed plane triangle has no continuous retraction onto its frontier. -/
+/-- A nondegenerate closed plane triangle has no continuous retraction onto its frontier.
+@isnad1 id=not.1h1v.s8.ff33c7ed937e from=translated src=- shape=ff24571d vocab=0943bf87
+-/
 theorem IsTriangle.no_retraction {C : Set Plane} (hC : IsTriangle C) :
     ¬ ∃ r : C → frontier C,
       Continuous r ∧ ∀ z : frontier C,
@@ -234,7 +260,9 @@ theorem IsTriangle.no_retraction {C : Set Plane} (hC : IsTriangle C) :
 
 /-- Radial projection from an interior point of a bounded convex plane set retracts the
 punctured plane onto the set's frontier.  The Minkowski gauge supplies the distance to the
-frontier along each ray. -/
+frontier along each ray.
+@isnad1 id=ex.3h2v.s9.3f27ef5e062f from=translated src=- shape=d10ca870 vocab=1a3c1798
+-/
 theorem exists_radial_retraction_to_frontier {C : Set Plane}
     (hconvex : Convex ℝ C) (hbounded : Bornology.IsBounded C)
     {q : Plane} (hq : q ∈ interior C) :

@@ -28,24 +28,48 @@ namespace IntrinsicTwoComplex
 
 variable (K : IntrinsicTwoComplex)
 
+/--
+@isnad1 id=eq.0h1v.s7.db91bada8451 from=translated src=- shape=020303a5 vocab=014cf724
+-/
 @[simp] theorem zmod3_three_add (i : ZMod 3) : 3 + i = i :=
   (by decide : ∀ i : ZMod 3, 3 + i = i) i
 
+/--
+@isnad1 id=eq.0h1v.s7.3674d388dcee from=translated src=- shape=411374f6 vocab=014cf724
+-/
 @[simp] theorem zmod3_add_three (i : ZMod 3) : i + 3 = i :=
   (by decide : ∀ i : ZMod 3, i + 3 = i) i
 
+/--
+@isnad1 id=eq.0h1v.s8.d92134fc55bd from=translated src=- shape=37879f65 vocab=014cf724
+-/
 @[simp] theorem zmod3_one_add (i : ZMod 3) : 1 + i = i + 1 := by abel
 
+/--
+@isnad1 id=eq.0h1v.s8.0ea2f6e608e1 from=translated src=- shape=37879f65 vocab=014cf724
+-/
 @[simp] theorem zmod3_two_add (i : ZMod 3) : 2 + i = i + 2 := by abel
 
+/--
+@isnad1 id=eq.0h1v.s8.e3d6b035999c from=translated src=- shape=b1725130 vocab=014cf724
+-/
 @[simp] theorem zmod3_add_two_add_one (i : ZMod 3) : i + 2 + 1 = i :=
   (by decide : ∀ i : ZMod 3, i + 2 + 1 = i) i
 
+/--
+@isnad1 id=eq.0h1v.s8.77009d11d387 from=translated src=- shape=86388364 vocab=014cf724
+-/
 @[simp] theorem zmod3_add_one_add_one (i : ZMod 3) : i + 1 + 1 = i + 2 := by ring
 
+/--
+@isnad1 id=eq.0h1v.s8.ff9a3bb464da from=translated src=- shape=b1725130 vocab=014cf724
+-/
 @[simp] theorem zmod3_add_one_add_two (i : ZMod 3) : i + 1 + 2 = i :=
   (by decide : ∀ i : ZMod 3, i + 1 + 2 = i) i
 
+/--
+@isnad1 id=eq.0h1v.s8.33e611a14631 from=translated src=- shape=86388364 vocab=014cf724
+-/
 @[simp] theorem zmod3_add_two_add_two (i : ZMod 3) : i + 2 + 2 = i + 1 :=
   (by decide : ∀ i : ZMod 3, i + 2 + 2 = i + 1) i
 
@@ -70,6 +94,9 @@ noncomputable def midpointFacesOver (t : K.Face) : Finset (Finset K.MidpointVert
 noncomputable def midpointFaces : Finset (Finset K.MidpointVertex) :=
   K.faces.attach.biUnion K.midpointFacesOver
 
+/--
+@isnad1 id=ne.0h3v.s7.9194a955fc24 from=translated src=- shape=37178b78 vocab=0121ea4c
+-/
 theorem faceEdge_ne_add_two (t : K.Face) (i : ZMod 3) :
     K.faceEdge t i ≠ K.faceEdge t (i + 2) := by
   intro h
@@ -79,6 +106,9 @@ theorem faceEdge_ne_add_two (t : K.Face) (i : ZMod 3) :
   rw [hcycle]
   exact h.symm
 
+/--
+@isnad1 id=injectiv.0h2v.s4.79d0624326cd from=translated src=- shape=52fbbae4 vocab=0748f0e6
+-/
 theorem faceEdge_injective (t : K.Face) : Function.Injective (K.faceEdge t) := by
   intro i j hij
   by_contra hne
@@ -92,10 +122,16 @@ theorem faceEdge_injective (t : K.Face) : Function.Injective (K.faceEdge t) := b
   · exact K.faceEdge_ne_next t i hij
   · exact K.faceEdge_ne_add_two t i hij
 
+/--
+@isnad1 id=eq.0h3v.s4.8dcc8cb97444 from=translated src=- shape=6889a829 vocab=295dbd18
+-/
 theorem midpointCornerFace_card (t : K.Face) (i : ZMod 3) :
     (K.midpointCornerFace t i).card = 3 := by
   simp [midpointCornerFace, K.faceEdge_ne_add_two t i]
 
+/--
+@isnad1 id=eq.0h2v.s4.e2f7b0f764d7 from=translated src=- shape=a01a8b7d vocab=8609c7ab
+-/
 theorem midpointCentralFace_card (t : K.Face) :
     (K.midpointCentralFace t).card = 3 := by
   rw [midpointCentralFace, Finset.card_image_iff.mpr]
@@ -103,6 +139,9 @@ theorem midpointCentralFace_card (t : K.Face) :
   · intro i _ j _ hij
     exact K.faceEdge_injective t (Sum.inr.inj hij)
 
+/--
+@isnad1 id=eq.1h3v.s5.c6e266a341d2 from=translated src=- shape=e577f660 vocab=ac02a1b5
+-/
 theorem midpointFacesOver_card (t : K.Face) {s : Finset K.MidpointVertex}
     (hs : s ∈ K.midpointFacesOver t) : s.card = 3 := by
   rw [midpointFacesOver, Finset.mem_union] at hs
@@ -121,9 +160,14 @@ noncomputable def midpointComplex : IntrinsicTwoComplex where
     obtain ⟨t, ht, hst⟩ := Finset.mem_biUnion.mp hs
     exact K.midpointFacesOver_card t hst
 
+/--
+@isnad1 id=eq.0h1v.s3.4bce34ed243a from=translated src=- shape=78cca9a3 vocab=da4960f8
+-/
 @[simp] theorem midpointComplex_faces : K.midpointComplex.faces = K.midpointFaces := rfl
 
-/-- Every refined face remembers an old face which contains it geometrically. -/
+/-- Every refined face remembers an old face which contains it geometrically.
+@isnad1 id=ex.1h2v.s5.629e4585c2aa from=translated src=- shape=c017a09c vocab=4cf73530
+-/
 theorem exists_parentFace_of_mem_midpointFaces
     {s : Finset K.MidpointVertex} (hs : s ∈ K.midpointFaces) :
     ∃ t : K.Face, s ∈ K.midpointFacesOver t := by
@@ -136,6 +180,9 @@ construction. -/
 noncomputable def midpointParentFace (s : K.midpointComplex.Face) : K.Face :=
   Classical.choose (K.exists_parentFace_of_mem_midpointFaces s.2)
 
+/--
+@isnad1 id=mem.0h2v.s6.fafa76be8bca from=translated src=- shape=e589c8e2 vocab=3d229a36
+-/
 theorem midpointFace_mem_parent (s : K.midpointComplex.Face) :
     s.1 ∈ K.midpointFacesOver (K.midpointParentFace s) :=
   Classical.choose_spec (K.exists_parentFace_of_mem_midpointFaces s.2)
@@ -145,12 +192,21 @@ noncomputable def midpointPosition : K.MidpointVertex → (K.Vertex → ℝ)
   | Sum.inl v => Pi.single v 1
   | Sum.inr e => fun v => if v ∈ e.1 then (2 : ℝ)⁻¹ else 0
 
+/--
+@isnad1 id=eq.0h2v.s5.6b1e7c1ee5a9 from=translated src=- shape=702a7b55 vocab=1ab508bc
+-/
 @[simp] theorem midpointPosition_old (v : K.Vertex) :
     K.midpointPosition (Sum.inl v) = Pi.single v 1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.8f43cb94910b from=translated src=- shape=9970fd3f vocab=f76b4412
+-/
 @[simp] theorem midpointPosition_edge_apply (e : K.Edge) (v : K.Vertex) :
     K.midpointPosition (Sum.inr e) v = if v ∈ e.1 then (2 : ℝ)⁻¹ else 0 := rfl
 
+/--
+@isnad1 id=le.0h3v.s4.79464ab1d13f from=translated src=- shape=d78b0cc0 vocab=af7a8f28
+-/
 theorem midpointPosition_nonneg (w : K.MidpointVertex) (u : K.Vertex) :
     0 ≤ K.midpointPosition w u := by
   rcases w with v | e
@@ -161,6 +217,9 @@ theorem midpointPosition_nonneg (w : K.MidpointVertex) (u : K.Vertex) :
   · simp only [midpointPosition]
     split_ifs <;> norm_num
 
+/--
+@isnad1 id=eq.0h2v.s4.093a4b9cb8c8 from=translated src=- shape=2f2c65d2 vocab=8cdea2d9
+-/
 theorem sum_midpointPosition (w : K.MidpointVertex) :
     ∑ v, K.midpointPosition w v = 1 := by
   rcases w with v | e
@@ -172,10 +231,16 @@ noncomputable def midpointEvalAffine :
     (K.MidpointVertex → ℝ) →ᵃ[ℝ] (K.Vertex → ℝ) :=
   (∑ w, (LinearMap.proj w).smulRight (K.midpointPosition w)).toAffineMap
 
+/--
+@isnad1 id=eq.0h2v.s8.b9393376b411 from=translated src=- shape=6e283d0c vocab=ed77119f
+-/
 @[simp] theorem midpointEvalAffine_apply (x : K.MidpointVertex → ℝ) :
     K.midpointEvalAffine x = ∑ w, x w • K.midpointPosition w := by
   simp [midpointEvalAffine]
 
+/--
+@isnad1 id=eq.1h3v.s8.9b7c987a5581 from=translated src=- shape=a08a25fc vocab=eb0f4972
+-/
 theorem midpointEvalAffine_eq_sum_of_support {x : K.MidpointVertex → ℝ}
     {s : Finset K.MidpointVertex} (hsupp : ∀ w ∉ s, x w = 0) :
     K.midpointEvalAffine x = ∑ w ∈ s, x w • K.midpointPosition w := by
@@ -183,11 +248,17 @@ theorem midpointEvalAffine_eq_sum_of_support {x : K.MidpointVertex → ℝ}
   exact (Finset.sum_subset (Finset.subset_univ s)
     (fun w _ hw => by rw [hsupp w hw, zero_smul])).symm
 
+/--
+@isnad1 id=eq.1h3v.s6.bbbf174d90ac from=translated src=- shape=fe489897 vocab=1b5453ab
+-/
 theorem sum_eq_sum_of_midpointSupport {x : K.MidpointVertex → ℝ}
     {s : Finset K.MidpointVertex} (hsupp : ∀ w ∉ s, x w = 0) :
     ∑ w, x w = ∑ w ∈ s, x w :=
   (Finset.sum_subset (Finset.subset_univ s) (fun w _ hw => hsupp w hw)).symm
 
+/--
+@isnad1 id=ex.1h3v.s6.7101ab94e7ca from=translated src=- shape=e960acbf vocab=7d6e61f9
+-/
 theorem exists_faceVertex_eq_of_mem (t : K.Face) {v : K.Vertex} (hv : v ∈ t.1) :
     ∃ i : ZMod 3, K.faceVertex t i = v := by
   let j : Fin 3 := (K.faceVertexEquiv t).symm ⟨v, hv⟩
@@ -195,6 +266,9 @@ theorem exists_faceVertex_eq_of_mem (t : K.Face) {v : K.Vertex} (hv : v ∈ t.1)
   refine ⟨i, ?_⟩
   simp [faceVertex, i, j]
 
+/--
+@isnad1 id=eq.0h3v.s8.03e2b3d42eaf from=translated src=- shape=0a2cb81f vocab=a4027719
+-/
 theorem midpointCentralFace_eq (t : K.Face) (i : ZMod 3) :
     K.midpointCentralFace t =
       {Sum.inr (K.faceEdge t i), Sum.inr (K.faceEdge t (i + 1)),
@@ -207,6 +281,9 @@ theorem midpointCentralFace_eq (t : K.Face) (i : ZMod 3) :
   rw [hu]
   simp
 
+/--
+@isnad1 id=eq.1h4v.s8.6aa32e09b932 from=translated src=- shape=5845f3c6 vocab=e1873033
+-/
 theorem midpointEval_corner_self
     (t : K.Face) (i : ZMod 3) {x : K.MidpointVertex → ℝ}
     (hx : ∀ w ∉ K.midpointCornerFace t i, x w = 0) :
@@ -218,6 +295,9 @@ theorem midpointEval_corner_self
     K.faceVertex_ne_add_two t i, K.faceEdge_ne_add_two t i]
   ring
 
+/--
+@isnad1 id=eq.1h4v.s8.1b3fc02106d2 from=translated src=- shape=f3173716 vocab=54559d09
+-/
 theorem midpointEval_corner_next
     (t : K.Face) (i : ZMod 3) {x : K.MidpointVertex → ℝ}
     (hx : ∀ w ∉ K.midpointCornerFace t i, x w = 0) :
@@ -232,6 +312,9 @@ theorem midpointEval_corner_next
     h12, h10]
   ring
 
+/--
+@isnad1 id=eq.1h4v.s9.f1aa99a75fec from=translated src=- shape=c6fe8fb5 vocab=54559d09
+-/
 theorem midpointEval_corner_prev
     (t : K.Face) (i : ZMod 3) {x : K.MidpointVertex → ℝ}
     (hx : ∀ w ∉ K.midpointCornerFace t i, x w = 0) :
@@ -245,6 +328,9 @@ theorem midpointEval_corner_prev
   simp [midpointCornerFace, midpointPosition, K.faceEdge_ne_add_two t i, h20, h21]
   ring
 
+/--
+@isnad1 id=eq.1h4v.s8.e522424f9e54 from=translated src=- shape=562cc6ee vocab=8cd21ee8
+-/
 theorem midpointEval_central_coord
     (t : K.Face) (i : ZMod 3) {x : K.MidpointVertex → ℝ}
     (hx : ∀ w ∉ K.midpointCentralFace t, x w = 0) :
@@ -278,6 +364,9 @@ noncomputable def midpointRecover (p : K.Vertex → ℝ) : K.MidpointVertex → 
   | Sum.inl v => K.midpointRecoverOld p v
   | Sum.inr e => K.midpointRecoverEdge p e
 
+/--
+@isnad1 id=eq.0h4v.s8.bff9e1cc889d from=translated src=- shape=866d301e vocab=396d32da
+-/
 theorem midpointRecoverEdge_faceEdge (p : K.Vertex → ℝ) (t : K.Face) (i : ZMod 3) :
     K.midpointRecoverEdge p (K.faceEdge t i) =
       max 0 (min (2 * p (K.faceVertex t i))
@@ -289,7 +378,9 @@ theorem midpointRecoverEdge_faceEdge (p : K.Vertex → ℝ) (t : K.Face) (i : ZM
     congr 1
     ac_rfl
 
-/-- Every old edge contained in a face is one of its three cyclic edges. -/
+/-- Every old edge contained in a face is one of its three cyclic edges.
+@isnad1 id=ex.1h3v.s6.a847ed48e522 from=translated src=- shape=82887b9c vocab=c6e0564e
+-/
 theorem exists_faceEdge_eq_of_subset (t : K.Face) (e : K.Edge) (het : e.1 ⊆ t.1) :
     ∃ i : ZMod 3, K.faceEdge t i = e := by
   obtain ⟨i, hi⟩ := K.exists_faceVertex_eq_of_mem t (het (K.edgeFirst_mem e))
@@ -314,6 +405,9 @@ theorem exists_faceEdge_eq_of_subset (t : K.Face) (e : K.Edge) (het : e.1 ⊆ t.
     ext v
     simp [or_comm]
 
+/--
+@isnad1 id=le.0h3v.s6.f9f5cb692ba9 from=translated src=- shape=59a8165f vocab=cc352d29
+-/
 theorem faceEdge_subset_face (t : K.Face) (i : ZMod 3) :
     (K.faceEdge t i).1 ⊆ t.1 := by
   intro v hv
@@ -322,7 +416,9 @@ theorem faceEdge_subset_face (t : K.Face) (i : ZMod 3) :
   · exact K.faceVertex_mem t i
   · exact K.faceVertex_mem t (i + 1)
 
-/-- Every vertex of a refined face is supported on its parent old face. -/
+/-- Every vertex of a refined face is supported on its parent old face.
+@isnad1 id=eq.3h5v.s6.1bb8751e1fa7 from=translated src=- shape=bd4345b2 vocab=05dc5caf
+-/
 theorem midpointPosition_support_of_mem_face
     (t : K.Face) {s : Finset K.MidpointVertex} (hs : s ∈ K.midpointFacesOver t)
     {w : K.MidpointVertex} (hw : w ∈ s) {v : K.Vertex} (hv : v ∉ t.1) :
@@ -354,7 +450,9 @@ theorem midpointPosition_support_of_mem_face
       fun h => hv (by rw [h]; exact K.faceVertex_mem t (i + 1))
     simp [midpointPosition, hvi, hvj]
 
-/-- The affine midpoint evaluation sends a refined face into its parent old face. -/
+/-- The affine midpoint evaluation sends a refined face into its parent old face.
+@isnad1 id=eq.3h5v.s8.ffe73d05eb24 from=translated src=- shape=ae69e3e7 vocab=75610b11
+-/
 theorem midpointEvalAffine_support
     (t : K.Face) {s : Finset K.MidpointVertex} (hs : s ∈ K.midpointFacesOver t)
     {x : K.MidpointVertex → ℝ} (hxs : ∀ w ∉ s, x w = 0) {v : K.Vertex}
@@ -370,7 +468,9 @@ theorem midpointEvalAffine_support
     rfl
 
 /-- Every old vertex of a parent face receives positive weight from at least one vertex of each
-midpoint child. -/
+midpoint child.
+@isnad1 id=ex.2h4v.s6.29d3fe424336 from=translated src=- shape=3bc6c15f vocab=c99f4c39
+-/
 theorem exists_midpointPosition_pos_of_mem_parent
     (t : K.Face) {s : Finset K.MidpointVertex} (hs : s ∈ K.midpointFacesOver t)
     {v : K.Vertex} (hv : v ∈ t.1) :
@@ -399,7 +499,9 @@ theorem exists_midpointPosition_pos_of_mem_parent
     · simp [midpointPosition]
 
 /-- A point with strictly positive coordinates on a midpoint child maps to a point with strictly
-positive coordinates on its parent. -/
+positive coordinates on its parent.
+@isnad1 id=lt.5h5v.s8.15d8b056e9f3 from=translated src=- shape=ef2e3514 vocab=6716c885
+-/
 theorem midpointEvalAffine_pos_on_parent
     (t : K.Face) {s : Finset K.MidpointVertex} (hs : s ∈ K.midpointFacesOver t)
     {x : K.MidpointVertex → ℝ} (hxs : ∀ w ∉ s, x w = 0)
@@ -413,7 +515,9 @@ theorem midpointEvalAffine_pos_on_parent
     exact mul_nonneg (hx0 q) (K.midpointPosition_nonneg q v)
   · exact ⟨w, hws, mul_pos (hxpos w hws) hwpos⟩
 
-/-- A midpoint child has a unique old parent triangle. -/
+/-- A midpoint child has a unique old parent triangle.
+@isnad1 id=eq.2h4v.s6.86cf8ab6b721 from=translated src=- shape=1c426d83 vocab=57201d6c
+-/
 theorem midpointFacesOver_parent_unique
     {t u : K.Face} {s : Finset K.MidpointVertex}
     (hst : s ∈ K.midpointFacesOver t)
@@ -451,7 +555,9 @@ theorem midpointFacesOver_parent_unique
     exact (lt_irrefl 0 hpos)
 
 /-- Inside one old parent, a refined edge joining an old vertex to an old-edge midpoint belongs
-to at most one midpoint child. -/
+to at most one midpoint child.
+@isnad1 id=le.0h4v.s8.0911e472637f from=translated src=- shape=873c920b vocab=4fa1cc9e
+-/
 theorem midpointFacesOver_mixed_edge_card_le_one
     (t : K.Face) (v : K.Vertex) (e : K.Edge) :
     ((K.midpointFacesOver t).filter fun s ↦
@@ -487,7 +593,9 @@ theorem midpointFacesOver_mixed_edge_card_le_one
       (Finset.mem_insert_self (Sum.inl v) {Sum.inr e})
     simp [midpointCentralFace] at hv
 
-/-- An old edge whose midpoint occurs in a midpoint child belongs to that child's parent. -/
+/-- An old edge whose midpoint occurs in a midpoint child belongs to that child's parent.
+@isnad1 id=le.2h4v.s7.9d60fd439bc7 from=translated src=- shape=ef5c47d1 vocab=c3a2adab
+-/
 theorem edge_subset_parent_of_midpoint_mem
     (t : K.Face) {s : Finset K.MidpointVertex} (hs : s ∈ K.midpointFacesOver t)
     (e : K.Edge) (he : Sum.inr e ∈ s) :
@@ -507,7 +615,9 @@ theorem edge_subset_parent_of_midpoint_mem
     rw [← Sum.inr.inj he]
     exact K.faceEdge_subset_face t i
 
-/-- A midpoint child contains at most one old vertex. -/
+/-- A midpoint child contains at most one old vertex.
+@isnad1 id=eq.3h5v.s6.90234835f334 from=translated src=- shape=bf439774 vocab=93fed2b0
+-/
 theorem oldVertex_eq_of_mem_midpointFace
     (t : K.Face) {s : Finset K.MidpointVertex} (hs : s ∈ K.midpointFacesOver t)
     {v w : K.Vertex} (hv : Sum.inl v ∈ s) (hw : Sum.inl w ∈ s) :
@@ -523,7 +633,9 @@ theorem oldVertex_eq_of_mem_midpointFace
   · rw [Finset.mem_singleton.mp hcentral, midpointCentralFace] at hv
     simp at hv
 
-/-- Two distinct edges of a triangular face cover the whole face. -/
+/-- Two distinct edges of a triangular face cover the whole face.
+@isnad1 id=eq.1h4v.s7.f4dae1000739 from=translated src=- shape=2aca635a vocab=0660f47a
+-/
 theorem faceEdge_union_eq_face_of_ne
     (t : K.Face) {i j : ZMod 3} (hij : i ≠ j) :
     (K.faceEdge t i).1 ∪ (K.faceEdge t j).1 = t.1 := by
@@ -549,7 +661,9 @@ theorem faceEdge_union_eq_face_of_ne
           ∀ i k : ZMod 3, k = i ∨ k = i + 1 ∨ k = i + 2) i k with
         rfl | rfl | rfl <;> simp []
 
-/-- Two distinct old edges determine their triangular parent. -/
+/-- Two distinct old edges determine their triangular parent.
+@isnad1 id=eq.5h5v.s8.c5e64af0b3d6 from=translated src=- shape=48a1df4b vocab=fb1d0217
+-/
 theorem face_eq_of_two_edges_subset
     {t u : K.Face} {e d : K.Edge} (hed : e ≠ d)
     (het : e.1 ⊆ t.1) (hdt : d.1 ⊆ t.1)
@@ -575,7 +689,9 @@ theorem face_eq_of_two_edges_subset
     _ = (K.faceEdge u k).1 ∪ (K.faceEdge u l).1 := by rw [hk, hl]
     _ = u.1 := K.faceEdge_union_eq_face_of_ne u hkl
 
-/-- In a fixed parent, two distinct midpoint vertices determine at most one corner child. -/
+/-- In a fixed parent, two distinct midpoint vertices determine at most one corner child.
+@isnad1 id=eq.5h6v.s7.ac70cc437770 from=translated src=- shape=85dfb790 vocab=4cc91dad
+-/
 theorem midpointCornerFace_eq_of_two_midpoints_mem
     (t : K.Face) {i j : ZMod 3} {e d : K.Edge} (hed : e ≠ d)
     (hei : Sum.inr e ∈ K.midpointCornerFace t i)
@@ -633,7 +749,9 @@ theorem midpointCornerFace_eq_of_two_midpoints_mem
     rw [this]
 
 /-- Within one old parent, the corner children incident to two distinct midpoint vertices form
-a set of cardinality at most one. -/
+a set of cardinality at most one.
+@isnad1 id=le.1h4v.s8.b5f49d91c123 from=translated src=- shape=da2596d1 vocab=16cd85e0
+-/
 theorem midpointCornerFaces_pair_card_le_one
     (t : K.Face) (e d : K.Edge) (hed : e ≠ d) :
     ((Finset.univ.image (K.midpointCornerFace t)).filter fun s ↦
@@ -651,7 +769,9 @@ theorem midpointCornerFaces_pair_card_le_one
   · exact hbEdge (by simp)
 
 /-- Inside one old parent, a refined edge joining two old-edge midpoints belongs to at most two
-midpoint children (one corner and the central child). -/
+midpoint children (one corner and the central child).
+@isnad1 id=le.1h4v.s8.0a0cfe1d9787 from=translated src=- shape=5358b808 vocab=b28d251c
+-/
 theorem midpointFacesOver_midpoint_edge_card_le_two
     (t : K.Face) (e d : K.Edge) (hed : e ≠ d) :
     ((K.midpointFacesOver t).filter fun s ↦
@@ -665,7 +785,9 @@ theorem midpointFacesOver_midpoint_edge_card_le_two
     exact (Finset.card_filter_le _ _).trans (by simp)
   omega
 
-/-- Globally, a mixed old-vertex/midpoint edge inherits the valence bound of its old edge. -/
+/-- Globally, a mixed old-vertex/midpoint edge inherits the valence bound of its old edge.
+@isnad1 id=le.1h3v.s8.87859ca1861e from=translated src=- shape=4328dd00 vocab=e22ad59e
+-/
 theorem midpoint_mixed_edge_valence
     (hK : K.HasSurfaceEdgeValence) (v : K.Vertex) (e : K.Edge) :
     (K.midpointComplex.faces.filter fun s ↦
@@ -710,7 +832,9 @@ theorem midpoint_mixed_edge_valence
   exact (Finset.card_le_card_of_injective hinj).trans (hK e.1 e.2)
 
 /-- Equality-normalized form of `midpoint_mixed_edge_valence`, convenient when the two
-endpoints of the unordered edge are presented in the opposite order. -/
+endpoints of the unordered edge are presented in the opposite order.
+@isnad1 id=le.2h4v.s7.3e8f92357533 from=translated src=- shape=de39a189 vocab=e22ad59e
+-/
 theorem midpoint_mixed_edge_valence_of_eq
     (hK : K.HasSurfaceEdgeValence) (v : K.Vertex) (e : K.Edge)
     (q : Finset K.MidpointVertex)
@@ -720,7 +844,9 @@ theorem midpoint_mixed_edge_valence_of_eq
   exact K.midpoint_mixed_edge_valence hK v e
 
 /-- Globally, an edge joining two distinct old-edge midpoints is contained in at most two
-midpoint children.  The two old edges determine a single parent triangle. -/
+midpoint children.  The two old edges determine a single parent triangle.
+@isnad1 id=le.1h3v.s8.4cb487f8bd8c from=translated src=- shape=540125a2 vocab=1afbb712
+-/
 theorem midpoint_midpoint_edge_valence
     (e d : K.Edge) (hed : e ≠ d) :
     (K.midpointComplex.faces.filter fun s ↦
@@ -764,7 +890,9 @@ theorem midpoint_midpoint_edge_valence
     change I.card ≤ 2
     simp [hEmpty]
 
-/-- Midpoint subdivision preserves the surface edge-valence bound. -/
+/-- Midpoint subdivision preserves the surface edge-valence bound.
+@isnad1 id=hassurfa.1h1v.s3.f7e2a84e1d18 from=translated src=- shape=2c86d966 vocab=21f6be8b
+-/
 theorem hasSurfaceEdgeValence_midpointComplex
     (hK : K.HasSurfaceEdgeValence) :
     K.midpointComplex.HasSurfaceEdgeValence := by
@@ -787,6 +915,9 @@ theorem hasSurfaceEdgeValence_midpointComplex
   · exact K.midpoint_midpoint_edge_valence e d fun hed ↦
       hab (congrArg Sum.inr hed)
 
+/--
+@isnad1 id=eq.3h5v.s8.51222d53835a from=translated src=- shape=3ec28521 vocab=d21db448
+-/
 theorem midpointRecoverOld_corner
     (t : K.Face) (i : ZMod 3) {x : K.MidpointVertex → ℝ}
     (hx : ∀ w ∉ K.midpointCornerFace t i, x w = 0)
@@ -838,6 +969,9 @@ theorem midpointRecoverOld_corner
       fun h => hv (by rw [h]; exact K.faceVertex_mem t i)
     exact (hx (Sum.inl v) (by simp [midpointCornerFace, hvi])).symm
 
+/--
+@isnad1 id=eq.3h4v.s8.7f863e92b1f7 from=translated src=- shape=ad5af215 vocab=5b9033b3
+-/
 theorem midpointRecoverOld_central
     (t : K.Face) {x : K.MidpointVertex → ℝ}
     (hx : ∀ w ∉ K.midpointCentralFace t, x w = 0)
@@ -871,6 +1005,9 @@ theorem midpointRecoverOld_central
       max_eq_right (by norm_num : (-1 : ℝ) ≤ 0)]
     exact (hx (Sum.inl v) (by simp [midpointCentralFace])).symm
 
+/--
+@isnad1 id=eq.3h5v.s8.840043113130 from=translated src=- shape=bd9e0f4c vocab=beb3c996
+-/
 theorem midpointRecoverEdge_corner
     (t : K.Face) (i : ZMod 3) {x : K.MidpointVertex → ℝ}
     (hx : ∀ w ∉ K.midpointCornerFace t i, x w = 0)
@@ -971,6 +1108,9 @@ theorem midpointRecoverEdge_corner
       rw [max_eq_left hle']
       exact (hx (Sum.inr e) hnotmem).symm
 
+/--
+@isnad1 id=eq.3h4v.s8.a10ecffb7306 from=translated src=- shape=d585f0cf vocab=2b62f4eb
+-/
 theorem midpointRecoverEdge_central
     (t : K.Face) {x : K.MidpointVertex → ℝ}
     (hx : ∀ w ∉ K.midpointCentralFace t, x w = 0)
@@ -1042,7 +1182,9 @@ theorem midpointRecoverEdge_central
       rw [max_eq_left hle']
       exact (hx (Sum.inr e) hnotmem).symm
 
-/-- Midpoint coordinates are uniquely recovered from their old barycentric image. -/
+/-- Midpoint coordinates are uniquely recovered from their old barycentric image.
+@isnad1 id=eq.0h2v.s8.b8cc9b95186e from=translated src=- shape=4151d53b vocab=75deb3a7
+-/
 theorem midpointRecover_midpointEvalAffine (x : K.midpointComplex.realization) :
     K.midpointRecover (K.midpointEvalAffine x.1) = x.1 := by
   obtain ⟨s, hs, hxs⟩ := x.2.2
@@ -1061,6 +1203,9 @@ theorem midpointRecover_midpointEvalAffine (x : K.midpointComplex.realization) :
     · exact K.midpointRecoverOld_central t hxs x.2.1.1 x.2.1.2 v
     · exact K.midpointRecoverEdge_central t hxs x.2.1.1 x.2.1.2 e
 
+/--
+@isnad1 id=injectiv.0h1v.s7.7c5f5ef08150 from=translated src=- shape=28b18143 vocab=ccec05bf
+-/
 theorem injective_midpointEvalAffine_on_realization :
     Function.Injective (fun x : K.midpointComplex.realization => K.midpointEvalAffine x.1) := by
   intro x y hxy
@@ -1068,6 +1213,9 @@ theorem injective_midpointEvalAffine_on_realization :
   exact (K.midpointRecover_midpointEvalAffine x).symm.trans
     ((congrArg K.midpointRecover hxy).trans (K.midpointRecover_midpointEvalAffine y))
 
+/--
+@isnad1 id=eq.0h2v.s6.cb3501fdb220 from=translated src=- shape=d03b687d vocab=c01d7f3d
+-/
 theorem face_eq_image_faceVertex (t : K.Face) :
     t.1 = Finset.univ.image (K.faceVertex t) := by
   ext v
@@ -1079,6 +1227,9 @@ theorem face_eq_image_faceVertex (t : K.Face) :
     obtain ⟨i, -, rfl⟩ := Finset.mem_image.mp hv
     exact K.faceVertex_mem t i
 
+/--
+@isnad1 id=eq.2h4v.s8.2d61c3a3dd4f from=translated src=- shape=e46f8f3a vocab=2e15b173
+-/
 theorem sum_faceVertex_coords (t : K.Face) (p : K.Vertex → ℝ)
     (hsupp : ∀ v ∉ t.1, p v = 0) (hsum : ∑ v, p v = 1) (i : ZMod 3) :
     p (K.faceVertex t i) + p (K.faceVertex t (i + 1)) +
@@ -1106,18 +1257,27 @@ noncomputable def midpointCornerWeights (t : K.Face) (i : ZMod 3)
   else if w = Sum.inr (K.faceEdge t (i + 2)) then 2 * p (K.faceVertex t (i + 2))
   else 0
 
+/--
+@isnad1 id=eq.0h4v.s6.438a4ee1e44b from=translated src=- shape=7f520548 vocab=e33ca0a3
+-/
 @[simp] theorem midpointCornerWeights_old (t : K.Face) (i : ZMod 3)
     (p : K.Vertex → ℝ) :
     K.midpointCornerWeights t i p (Sum.inl (K.faceVertex t i)) =
       2 * p (K.faceVertex t i) - 1 := by
   simp [midpointCornerWeights]
 
+/--
+@isnad1 id=eq.0h4v.s7.4d0b55ed925c from=translated src=- shape=76a1b1e5 vocab=b5321aee
+-/
 @[simp] theorem midpointCornerWeights_nextEdge (t : K.Face) (i : ZMod 3)
     (p : K.Vertex → ℝ) :
     K.midpointCornerWeights t i p (Sum.inr (K.faceEdge t i)) =
       2 * p (K.faceVertex t (i + 1)) := by
   simp [midpointCornerWeights]
 
+/--
+@isnad1 id=eq.0h4v.s8.416bf48d3130 from=translated src=- shape=c7370768 vocab=b5321aee
+-/
 @[simp] theorem midpointCornerWeights_prevEdge (t : K.Face) (i : ZMod 3)
     (p : K.Vertex → ℝ) :
     K.midpointCornerWeights t i p (Sum.inr (K.faceEdge t (i + 2))) =
@@ -1125,6 +1285,9 @@ noncomputable def midpointCornerWeights (t : K.Face) (i : ZMod 3)
   simp [midpointCornerWeights,
     (K.faceEdge_ne_add_two t i).symm]
 
+/--
+@isnad1 id=eq.1h5v.s5.d7fb2388d036 from=translated src=- shape=f75379ba vocab=1a5ed207
+-/
 theorem midpointCornerWeights_support (t : K.Face) (i : ZMod 3)
     (p : K.Vertex → ℝ) :
     ∀ w ∉ K.midpointCornerFace t i, K.midpointCornerWeights t i p w = 0 := by
@@ -1136,6 +1299,9 @@ theorem midpointCornerWeights_support (t : K.Face) (i : ZMod 3)
   · exact (hw (by simp [midpointCornerFace, h₃])).elim
   · rfl
 
+/--
+@isnad1 id=le.2h5v.s6.6ce87a18704d from=translated src=- shape=cf9a847a vocab=9b5f7322
+-/
 theorem midpointCornerWeights_nonneg (t : K.Face) (i : ZMod 3)
     (p : K.Vertex → ℝ) (hp0 : ∀ v, 0 ≤ p v)
     (hi : (2 : ℝ)⁻¹ ≤ p (K.faceVertex t i)) :
@@ -1145,6 +1311,9 @@ theorem midpointCornerWeights_nonneg (t : K.Face) (i : ZMod 3)
   split_ifs <;> linarith [hp0 (K.faceVertex t (i + 1)),
     hp0 (K.faceVertex t (i + 2))]
 
+/--
+@isnad1 id=eq.1h4v.s8.4dece75bb43d from=translated src=- shape=61e375fd vocab=a6bef624
+-/
 theorem sum_midpointCornerWeights (t : K.Face) (i : ZMod 3)
     (p : K.Vertex → ℝ)
     (hsum : p (K.faceVertex t i) + p (K.faceVertex t (i + 1)) +
@@ -1160,6 +1329,9 @@ noncomputable def midpointCentralWeights (t : K.Face) (p : K.Vertex → ℝ) :
   ∑ i : ZMod 3, if w = Sum.inr (K.faceEdge t i) then
     1 - 2 * p (K.faceVertex t (i + 2)) else 0
 
+/--
+@isnad1 id=eq.0h4v.s7.854676888579 from=translated src=- shape=8fe8e070 vocab=88b1da92
+-/
 @[simp] theorem midpointCentralWeights_edge (t : K.Face) (p : K.Vertex → ℝ)
     (i : ZMod 3) :
     K.midpointCentralWeights t p (Sum.inr (K.faceEdge t i)) =
@@ -1177,6 +1349,9 @@ noncomputable def midpointCentralWeights (t : K.Face) (p : K.Vertex → ℝ) :
       exact hji (K.faceEdge_injective t (Sum.inr.inj h).symm)
     _ = 1 - 2 * p (K.faceVertex t (i + 2)) := by simp
 
+/--
+@isnad1 id=eq.1h4v.s5.c867499f26dc from=translated src=- shape=6e59388d vocab=af6dfc51
+-/
 theorem midpointCentralWeights_support (t : K.Face) (p : K.Vertex → ℝ) :
     ∀ w ∉ K.midpointCentralFace t, K.midpointCentralWeights t p w = 0 := by
   intro w hw
@@ -1189,6 +1364,9 @@ theorem midpointCentralWeights_support (t : K.Face) (p : K.Vertex → ℝ) :
   rw [midpointCentralFace]
   exact Finset.mem_image.mpr ⟨i, Finset.mem_univ i, h.symm⟩
 
+/--
+@isnad1 id=le.1h4v.s5.576d7d1d0fab from=translated src=- shape=1881e64d vocab=3c19ee63
+-/
 theorem midpointCentralWeights_nonneg (t : K.Face) (p : K.Vertex → ℝ)
     (hle : ∀ i : ZMod 3, p (K.faceVertex t i) ≤ (2 : ℝ)⁻¹) :
     ∀ w, 0 ≤ K.midpointCentralWeights t p w := by
@@ -1200,6 +1378,9 @@ theorem midpointCentralWeights_nonneg (t : K.Face) (p : K.Vertex → ℝ)
   · linarith [hle (i + 2)]
   · rfl
 
+/--
+@isnad1 id=eq.1h3v.s8.c64c13b28aa8 from=translated src=- shape=3e3e31bf vocab=15364380
+-/
 theorem sum_midpointCentralWeights (t : K.Face) (p : K.Vertex → ℝ)
     (hsum : p (K.faceVertex t 0) + p (K.faceVertex t 1) +
       p (K.faceVertex t 2) = 1) :
@@ -1221,7 +1402,9 @@ theorem sum_midpointCentralWeights (t : K.Face) (p : K.Vertex → ℝ)
   rw [h12, h22]
   linarith
 
-/-- The four named midpoint children of an old face cover that old face. -/
+/-- The four named midpoint children of an old face cover that old face.
+@isnad1 id=ex.1h3v.s8.50d3f1bb64a3 from=translated src=- shape=a26c38c6 vocab=4fda2c27
+-/
 theorem exists_midpoint_preimage_in_face (T : K.Face) (p : K.realization)
     (hpt : p ∈ K.faceCarrier T.1) :
     ∃ (x : K.midpointComplex.realization) (s : Finset K.MidpointVertex),
@@ -1293,7 +1476,9 @@ theorem exists_midpoint_preimage_in_face (T : K.Face) (p : K.realization)
       linarith [hsum i]
     · rw [K.midpointEvalAffine_support T hfaceOver hySupp hv, hpt v hv]
 
-/-- The four midpoint triangles cover every old face, hence the whole realization. -/
+/-- The four midpoint triangles cover every old face, hence the whole realization.
+@isnad1 id=ex.0h2v.s8.4eb57da3d9d3 from=translated src=- shape=733fe6a7 vocab=b7b31471
+-/
 theorem surjective_midpointEvalAffine_on_realization :
     ∀ p : K.realization, ∃ x : K.midpointComplex.realization,
       K.midpointEvalAffine x.1 = p.1 := by
@@ -1303,6 +1488,9 @@ theorem surjective_midpointEvalAffine_on_realization :
     K.exists_midpoint_preimage_in_face ⟨t, ht⟩ p hpt
   exact ⟨x, hx⟩
 
+/--
+@isnad1 id=le.0h3v.s7.25f91915b866 from=translated src=- shape=2a1da652 vocab=fe002f60
+-/
 theorem midpointEvalAffine_nonneg (x : K.midpointComplex.realization) (v : K.Vertex) :
     0 ≤ K.midpointEvalAffine x.1 v := by
   classical
@@ -1311,6 +1499,9 @@ theorem midpointEvalAffine_nonneg (x : K.midpointComplex.realization) (v : K.Ver
   exact Finset.sum_nonneg fun w _ =>
     mul_nonneg (x.2.1.1 w) (K.midpointPosition_nonneg w v)
 
+/--
+@isnad1 id=eq.0h2v.s8.3bf4fe8cf221 from=translated src=- shape=8597ffed vocab=d05653c8
+-/
 theorem sum_midpointEvalAffine (x : K.midpointComplex.realization) :
     ∑ v, K.midpointEvalAffine x.1 v = 1 := by
   classical
@@ -1339,13 +1530,22 @@ noncomputable def midpointEval (x : K.midpointComplex.realization) : K.realizati
   obtain ⟨t, hst⟩ := K.exists_parentFace_of_mem_midpointFaces hs
   exact ⟨t.1, t.2, fun v hv => K.midpointEvalAffine_support t hst hxs hv⟩
 
+/--
+@isnad1 id=eq.0h2v.s8.c2935bf24173 from=translated src=- shape=75a08ada vocab=2751d80b
+-/
 @[simp] theorem midpointEval_val (x : K.midpointComplex.realization) :
     (K.midpointEval x).1 = K.midpointEvalAffine x.1 := rfl
 
+/--
+@isnad1 id=continuo.0h1v.s6.c8356c76eb9c from=translated src=- shape=4ea82b3d vocab=42573730
+-/
 theorem continuous_midpointEval : Continuous K.midpointEval := by
   apply Continuous.subtype_mk
   exact K.midpointEvalAffine.continuous_of_finiteDimensional.comp continuous_subtype_val
 
+/--
+@isnad1 id=mem.2h4v.s6.9b00844a9ae9 from=translated src=- shape=bdbcbe6e vocab=cec102cc
+-/
 theorem midpointEval_mem_parentFace
     (t : K.Face) {s : Finset K.MidpointVertex} (hs : s ∈ K.midpointFacesOver t)
     (x : K.midpointComplex.realization) (hx : x ∈ K.midpointComplex.faceCarrier s) :
@@ -1353,6 +1553,9 @@ theorem midpointEval_mem_parentFace
   intro v hv
   exact K.midpointEvalAffine_support t hs hx hv
 
+/--
+@isnad1 id=ex.1h2v.s8.f0c8c3e93d7f from=translated src=- shape=416cffa7 vocab=87e1e536
+-/
 theorem midpointEval_affineOnFace
     {s : Finset K.MidpointVertex} (_ : s ∈ K.midpointFaces) :
     ∃ a : (K.MidpointVertex → ℝ) →ᵃ[ℝ] (K.Vertex → ℝ),
@@ -1360,11 +1563,17 @@ theorem midpointEval_affineOnFace
         x ∈ K.midpointComplex.faceCarrier s → (K.midpointEval x).1 = a x.1 :=
   ⟨K.midpointEvalAffine, fun _ _ => rfl⟩
 
+/--
+@isnad1 id=injectiv.0h1v.s3.81d5988579f7 from=translated src=- shape=4ea82b3d vocab=e64f70da
+-/
 theorem injective_midpointEval : Function.Injective K.midpointEval := by
   intro x y hxy
   apply K.injective_midpointEvalAffine_on_realization
   exact congrArg Subtype.val hxy
 
+/--
+@isnad1 id=surjecti.0h1v.s3.b053d39c72ed from=translated src=- shape=4ea82b3d vocab=ff9d7118
+-/
 theorem surjective_midpointEval : Function.Surjective K.midpointEval := by
   intro p
   obtain ⟨x, hx⟩ := K.surjective_midpointEvalAffine_on_realization p
@@ -1378,6 +1587,9 @@ noncomputable def midpointHomeomorph :
       ⟨K.injective_midpointEval, K.surjective_midpointEval⟩)
     K.continuous_midpointEval
 
+/--
+@isnad1 id=eq.0h2v.s8.440033ee2b34 from=translated src=- shape=d2fb321b vocab=09b9ae16
+-/
 @[simp] theorem midpointHomeomorph_apply (x : K.midpointComplex.realization) :
     K.midpointHomeomorph x = K.midpointEval x := rfl
 
@@ -1393,9 +1605,15 @@ noncomputable def midpointSubdivision : K.Subdivision where
     obtain ⟨t, hst⟩ := K.exists_parentFace_of_mem_midpointFaces hs
     exact ⟨t.1, t.2, fun x hx => K.midpointEval_mem_parentFace t hst x hx⟩
 
+/--
+@isnad1 id=eq.0h1v.s3.5945be215a82 from=translated src=- shape=a06f8c79 vocab=bff7711f
+-/
 @[simp] theorem midpointSubdivision_refined :
     K.midpointSubdivision.refined = K.midpointComplex := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.a7f76c429172 from=translated src=- shape=bb839b79 vocab=20821da3
+-/
 theorem midpointSubdivision_homeo_apply (x : K.midpointComplex.realization) :
     K.midpointSubdivision.homeo x = K.midpointEval x := rfl
 

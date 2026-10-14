@@ -72,6 +72,9 @@ def countJointSquarefree (b : ℕ) (T : Finset ℕ) (X : ℕ) : ℕ :=
 /-- The residues `r ∈ [0, p²)` divisible by `p²` (just `r = 0`). -/
 def typeA (p : ℕ) : Finset ℕ := (Finset.range (p ^ 2)).filter fun r => (p ^ 2) ∣ r
 
+/--
+@isnad1 id=eq.1h1v.s4.dd3e4ebfa2ec from=translated src=- shape=7b6c5063 vocab=8175754a
+-/
 lemma typeA_card_eq_one (p : ℕ) (hp : Nat.Prime p) : (typeA p).card = 1 := by
   have h₁ : (typeA p) = {0} := by
     apply Finset.ext
@@ -86,12 +89,18 @@ lemma typeA_card_eq_one (p : ℕ) (hp : Nat.Prime p) : (typeA p).card = 1 := by
       simp_all [pow_pos hp.pos 2]
   simp_all
 
+/--
+@isnad1 id=coprime.3h2v.s5.31940736fdbb from=translated src=- shape=9e8bc144 vocab=02aeb0e8
+-/
 lemma b_coprime_p_sq (p : ℕ) (hp : Nat.Prime p) (b : ℕ) (hb : 2 ≤ b) (hbp : b < p) :
     b.Coprime (p ^ 2) := by
   apply Nat.Prime.coprime_pow_of_not_dvd hp
   intro h_dvd
   exact absurd (Nat.le_of_dvd (by linarith) h_dvd) (by linarith)
 
+/--
+@isnad1 id=eq.5h4v.s9.bffeaf68a9bb from=translated src=- shape=6054380c vocab=71e671ea
+-/
 lemma r_eq_inv_image (p : ℕ) (hp : Nat.Prime p) (b : ℕ) (hb : 2 ≤ b) (hbp : b < p)
     (r : ℕ) (hr : r < p ^ 2) (d : ℕ) (hd : (p ^ 2) ∣ (b * r + d)) :
     r = ((-((d : ℕ) : ZMod (p ^ 2))) * ((b : ℕ) : ZMod (p ^ 2))⁻¹).val := by
@@ -116,6 +125,9 @@ lemma r_eq_inv_image (p : ℕ) (hp : Nat.Prime p) (b : ℕ) (hb : 2 ≤ b) (hbp 
   calc r = ((r : ℕ) : ZMod (p ^ 2)).val := (ZMod.val_natCast_of_lt hr).symm
     _ = (-((d : ℕ) : ZMod (p ^ 2)) * ((b : ℕ) : ZMod (p ^ 2))⁻¹).val := by rw [hR]
 
+/--
+@isnad1 id=le.4h3v.s9.e18d41e1aabd from=translated src=- shape=ce2a63c3 vocab=256f3352
+-/
 lemma filtered_subset_image (p : ℕ) (hp : Nat.Prime p) (b : ℕ) (hb : 2 ≤ b)
     (hbp : b < p) (T : Finset ℕ) (_hT : T ⊆ Finset.range b) :
     ((Finset.range (p ^ 2)).filter fun r => ∃ d ∈ T, (p ^ 2) ∣ (b * r + d)) ⊆
@@ -126,6 +138,9 @@ lemma filtered_subset_image (p : ℕ) (hp : Nat.Prime p) (b : ℕ) (hb : 2 ≤ b
   rw [Finset.mem_image]
   exact ⟨d, hd_mem, (r_eq_inv_image p hp b hb hbp r hr_range d hdiv).symm⟩
 
+/--
+@isnad1 id=le.4h3v.s7.72f7c553d0b5 from=translated src=- shape=8fe430cb vocab=0e6dec9d
+-/
 lemma bad_residues_type_B_card_le (p : ℕ) (hp : Nat.Prime p) (b : ℕ) (hb : 2 ≤ b)
     (hbp : b < p) (T : Finset ℕ) (hT : T ⊆ Finset.range b) :
     ((Finset.range (p ^ 2)).filter fun r => ∃ d ∈ T, (p ^ 2) ∣ (b * r + d)).card ≤ T.card := by
@@ -139,6 +154,9 @@ lemma bad_residues_type_B_card_le (p : ℕ) (hp : Nat.Prime p) (b : ℕ) (hb : 2
 def typeB (p b : ℕ) (T : Finset ℕ) : Finset ℕ :=
   (Finset.range (p ^ 2)).filter fun r => ∃ d ∈ T, (p ^ 2) ∣ (b * r + d)
 
+/--
+@isnad1 id=le.4h3v.s8.206b5cb59faf from=translated src=- shape=9570a7f3 vocab=0e6dec9d
+-/
 lemma bad_residues_card_le (p : ℕ) (hp : Nat.Prime p) (b : ℕ) (hb : 2 ≤ b)
     (hbp : b < p) (T : Finset ℕ) (hT : T ⊆ Finset.range b) :
     ((Finset.range (p ^ 2)).filter fun r => (p ^ 2) ∣ r ∨ ∃ d ∈ T, (p ^ 2) ∣ (b * r + d)).card
@@ -154,6 +172,9 @@ lemma bad_residues_card_le (p : ℕ) (hp : Nat.Prime p) (b : ℕ) (hb : 2 ≤ b)
         exact bad_residues_type_B_card_le p hp b hb hbp T hT
     _ = T.card + 1 := by ring
 
+/--
+@isnad1 id=le.4h3v.s8.e935fa7dc5dc from=translated src=- shape=79a7bce8 vocab=c9cd3c4c
+-/
 lemma valid_residues_card_ge (p : ℕ) (hp : Nat.Prime p) (b : ℕ) (hb : 2 ≤ b)
     (hbp : b < p) (T : Finset ℕ) (hT : T ⊆ Finset.range b) :
     (p ^ 2 : ℕ) - (T.card + 1) ≤
@@ -170,6 +191,9 @@ lemma valid_residues_card_ge (p : ℕ) (hp : Nat.Prime p) (b : ℕ) (hb : 2 ≤ 
   rw [h1] at hcard
   omega
 
+/--
+@isnad1 id=le.0h3v.s4.6999fe7d4065 from=translated src=- shape=7dc13c12 vocab=dbe29f0c
+-/
 lemma localDensityFactor_le_one (p : ℕ) (b : ℕ) (T : Finset ℕ) :
     localDensityFactor p b T ≤ 1 := by
   unfold localDensityFactor
@@ -184,11 +208,17 @@ lemma localDensityFactor_le_one (p : ℕ) (b : ℕ) (T : Finset ℕ) :
     have h1 : validResidues.card ≤ (Finset.range pSq).card := Finset.card_filter_le _ _
     simp_all
 
+/--
+@isnad1 id=le.0h3v.s4.2306bd2557e4 from=translated src=- shape=f4292a3a vocab=dbe29f0c
+-/
 lemma localDensityFactor_nonneg (p : ℕ) (b : ℕ) (T : Finset ℕ) :
     0 ≤ localDensityFactor p b T := by
   simp only [localDensityFactor]
   positivity
 
+/--
+@isnad1 id=le.4h3v.s6.a7424f1f645a from=translated src=- shape=5a6dc65a vocab=06d3db54
+-/
 lemma localDensityFactor_ge_sub (p : ℕ) (hp : Nat.Prime p) (b : ℕ) (hb : 2 ≤ b)
     (hbp : b < p) (T : Finset ℕ) (hT : T ⊆ Finset.range b) :
     1 - (T.card + 1 : ℝ) / (p ^ 2 : ℝ) ≤ localDensityFactor p b T := by
@@ -211,6 +241,9 @@ lemma localDensityFactor_ge_sub (p : ℕ) (hp : Nat.Prime p) (b : ℕ) (hb : 2 �
   rw [hcast2]
   exact Nat.cast_le.mpr hcard
 
+/--
+@isnad1 id=le.4h3v.s6.3075fa39c0ef from=translated src=- shape=1f5bc164 vocab=04b305ac
+-/
 lemma localDensityFactor_near_one_large_prime (p : ℕ) (hp : Nat.Prime p) (b : ℕ) (hb : 2 ≤ b)
     (hbp : b < p) (T : Finset ℕ) (hT : T ⊆ Finset.range b) :
     |localDensityFactor p b T - 1| ≤ (T.card + 1 : ℝ) / (p ^ 2 : ℝ) := by
@@ -220,6 +253,9 @@ lemma localDensityFactor_near_one_large_prime (p : ℕ) (hp : Nat.Prime p) (b : 
   rw [abs_sub_comm, abs_of_nonneg (by linarith : 0 ≤ 1 - localDensityFactor p b T)]
   linarith
 
+/--
+@isnad1 id=summable.0h0v.s5.91719a0383fb from=translated src=- shape=fd9681af vocab=0714059e
+-/
 lemma primes_summable_one_div_sq : Summable (fun p : Nat.Primes => 1 / ((p : ℕ) : ℝ) ^ 2) := by
   have h : Summable (fun p : Nat.Primes => ((p : ℕ) : ℝ) ^ (-2 : ℝ)) :=
     Nat.Primes.summable_rpow.mpr (by norm_num)
@@ -228,17 +264,26 @@ lemma primes_summable_one_div_sq : Summable (fun p : Nat.Primes => 1 / ((p : ℕ
   rw [Real.rpow_neg (le_of_lt hpos)]
   norm_num [Real.rpow_natCast]
 
+/--
+@isnad1 id=summable.2h2v.s6.6c21ea478435 from=translated src=- shape=9cdaff73 vocab=eaf0b788
+-/
 lemma bound_summable (b : ℕ) (_hb : 2 ≤ b) (T : Finset ℕ) (_hT : T ⊆ Finset.range b) :
     Summable (fun p : Nat.Primes => (T.card + 1 : ℝ) / ((p : ℕ) : ℝ) ^ 2) := by
   simp_rw [show ∀ p : Nat.Primes, (T.card + 1 : ℝ) / ((p : ℕ) : ℝ) ^ 2 =
       (T.card + 1 : ℝ) * (1 / ((p : ℕ) : ℝ) ^ 2) from fun p => by ring]
   exact primes_summable_one_div_sq.mul_left _
+/--
+@isnad1 id=le.4h3v.s6.86ecff123438 from=translated src=- shape=ee363dd9 vocab=39b077ad
+-/
 theorem deviation_bound_for_large_prime (p : ℕ) (hp : Nat.Prime p) (b : ℕ) (hb : 2 ≤ b)
     (hbp : b < p) (T : Finset ℕ) (hT : T ⊆ Finset.range b) :
     ‖|localDensityFactor p b T - 1|‖ ≤ (T.card + 1 : ℝ) / (p : ℝ) ^ 2 := by
   rw [Real.norm_of_nonneg (abs_nonneg _)]
   exact localDensityFactor_near_one_large_prime p hp b hb hbp T hT
 
+/--
+@isnad1 id=finite.0h1v.s4.dd61ea8764b3 from=translated src=- shape=847b6e25 vocab=1a45b74e
+-/
 lemma finite_primes_le (b : ℕ) : {p : Nat.Primes | (p : ℕ) ≤ b}.Finite := by
   have h₃ : {p : Nat.Primes | (p : ℕ) ≤ b} = Set.preimage (fun p : Nat.Primes => (p : ℕ))
       (Set.Iic b) := by aesop
@@ -246,6 +291,9 @@ lemma finite_primes_le (b : ℕ) : {p : Nat.Primes | (p : ℕ) ≤ b}.Finite := 
   exact (Set.finite_Iic _).preimage
     ((Set.injOn_of_injective Nat.Primes.coe_nat_injective).mono (Set.subset_univ _))
 
+/--
+@isnad1 id=eventual.2h2v.s6.e99c56be6f64 from=translated src=- shape=86507f5e vocab=12897383
+-/
 lemma deviation_bounded_eventually (b : ℕ) (hb : 2 ≤ b) (T : Finset ℕ) (hT : T ⊆ Finset.range b) :
     ∀ᶠ p : Nat.Primes in Filter.cofinite,
       ‖|localDensityFactor (p : ℕ) b T - 1|‖ ≤ (T.card + 1 : ℝ) / ((p : ℕ) : ℝ) ^ 2 := by
@@ -259,7 +307,9 @@ lemma deviation_bounded_eventually (b : ℕ) (hb : 2 ≤ b) (T : Finset ℕ) (hT
 
 /-- The sum ∑_p |μ_p(b,T) - 1| converges.
     By localDensityFactor_near_one, |μ_p - 1| ≤ (|T|+1)/p².
-    Since ∑_p 1/p² converges (it's bounded by ∑_n 1/n² = π²/6), the sum converges. -/
+    Since ∑_p 1/p² converges (it's bounded by ∑_n 1/n² = π²/6), the sum converges.
+@isnad1 id=summable.2h2v.s6.58c440052eec from=translated src=- shape=cd61bbb0 vocab=23bc59f8
+-/
 lemma sum_localDensityFactor_deviation_summable (b : ℕ) (hb : 2 ≤ b) (T : Finset ℕ)
     (hT : T ⊆ Finset.range b) :
     Summable (fun p : Nat.Primes => |localDensityFactor (p : ℕ) b T - 1|) := by
@@ -269,7 +319,9 @@ lemma sum_localDensityFactor_deviation_summable (b : ℕ) (hb : 2 ≤ b) (T : Fi
 /-- Multipliability from summability of deviations.
     Write μ_p = 1 + (μ_p - 1). If ∑|μ_p - 1| converges, then ∏ μ_p converges.
     Mathlib's `Multipliable.of_norm_bounded` or related lemmas apply when the factors
-    are close to 1, which follows from sum_localDensityFactor_deviation_summable. -/
+    are close to 1, which follows from sum_localDensityFactor_deviation_summable.
+@isnad1 id=multipli.3h2v.s6.3a3cfaf39760 from=translated src=- shape=8a322454 vocab=a8e43157
+-/
 lemma multipliable_of_deviation_summable (b : ℕ) (_hb : 2 ≤ b) (T : Finset ℕ)
     (_hT : T ⊆ Finset.range b)
     (h_sum : Summable (fun p : Nat.Primes => |localDensityFactor (p : ℕ) b T - 1|)) :
@@ -277,17 +329,26 @@ lemma multipliable_of_deviation_summable (b : ℕ) (_hb : 2 ≤ b) (T : Finset �
   have h_mult := Real.multipliable_one_add_of_summable (Summable.of_abs h_sum)
   exact h_mult.congr fun p => by ring
 
+/--
+@isnad1 id=multipli.2h2v.s5.aba2944bbdf1 from=translated src=- shape=0e4c06cf vocab=b33f5ccf
+-/
 lemma jointSquarefreeDensity_multipliable (b : ℕ) (hb : 2 ≤ b)
     (T : Finset ℕ) (hT : T ⊆ Finset.range b) :
     Multipliable (fun p : Nat.Primes => localDensityFactor (p : ℕ) b T) :=
   multipliable_of_deviation_summable b hb T hT (sum_localDensityFactor_deviation_summable b hb T hT)
 
+/--
+@isnad1 id=multipli.3h3v.s6.2c7405ecb0e1 from=translated src=- shape=c6b55175 vocab=304ade47
+-/
 lemma multipliable_of_deviation_summable_subtype
     (b : ℕ) (_hb : 2 ≤ b) (T : Finset ℕ) (_hT : T ⊆ Finset.range b)
     (U : Set Nat.Primes)
     (h_sum : Summable (fun p : U => |localDensityFactor (p : ℕ) b T - 1|)) :
     Multipliable (fun p : U => localDensityFactor (p : ℕ) b T) :=
   (Real.multipliable_one_add_of_summable (Summable.of_abs h_sum)).congr fun p => by ring
+/--
+@isnad1 id=multipli.2h3v.s6.cf523f5ea90d from=translated src=- shape=5b77251a vocab=e1e1ef11
+-/
 lemma multipliable_compl_of_multipliable (b : ℕ) (hb : 2 ≤ b) (T : Finset ℕ)
     (hT : T ⊆ Finset.range b) (S : Finset Nat.Primes) :
     Multipliable ((fun p : Nat.Primes => localDensityFactor (p : ℕ) b T) ∘

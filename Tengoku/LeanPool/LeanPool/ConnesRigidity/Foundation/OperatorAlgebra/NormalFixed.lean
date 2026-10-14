@@ -39,12 +39,17 @@ def normalFixedSubmodule (N : Subgroup G)
   smul_mem' c x hx n := by
     rw [map_smul, hx n]
 
+/--
+@isnad1 id=iff.0h5v.s12.90b20efb66ba from=translated src=- shape=ef1f4f15 vocab=93589d89
+-/
 @[simp] theorem mem_normalFixedSubmodule
     (N : Subgroup G) (π : UnitaryRepresentation G K) (x : K) :
     x ∈ normalFixedSubmodule N π ↔
       ∀ n : N, (π (n : G) : K →L[ℂ] K) x = x := Iff.rfl
 
-/-- The fixed subspace is closed, hence complete. Paper: §4. -/
+/-- The fixed subspace is closed, hence complete. Paper: §4.
+@isnad1 id=isclosed.0h4v.s6.84e811be1b25 from=translated src=- shape=40f8c5a5 vocab=a7cc1c22
+-/
 theorem normalFixedSubmodule_isClosed
     (N : Subgroup G) (π : UnitaryRepresentation G K) :
     IsClosed (normalFixedSubmodule N π : Set K) := by
@@ -57,6 +62,9 @@ theorem normalFixedSubmodule_isClosed
   exact isClosed_iInter fun n =>
     isClosed_eq (π (n : G) : K →L[ℂ] K).continuous continuous_id
 
+/--
+@isnad1 id=complete.0h4v.s7.2d190d55f3a8 from=translated src=- shape=99ac69e2 vocab=c54b766a
+-/
 instance normalFixedSubmodule_completeSpace
     (N : Subgroup G) (π : UnitaryRepresentation G K) :
     CompleteSpace (normalFixedSubmodule N π) :=
@@ -66,7 +74,9 @@ section Normality
 
 variable (N : Subgroup G) [N.Normal] (π : UnitaryRepresentation G K)
 
-/-- Normality makes the fixed subspace invariant. Paper: §4. -/
+/-- Normality makes the fixed subspace invariant. Paper: §4.
+@isnad1 id=mem.1h6v.s12.806d8b6f3d82 from=translated src=- shape=ff05a872 vocab=25a25373
+-/
 theorem unitary_mem_normalFixedSubmodule
     (g : G) {x : K} (hx : x ∈ normalFixedSubmodule N π) :
     (π g : K →L[ℂ] K) x ∈ normalFixedSubmodule N π := by
@@ -92,7 +102,9 @@ theorem unitary_mem_normalFixedSubmodule
       rfl
     _ = (π g : K →L[ℂ] K) x := by rw [hx n']
 
-/-- The orthogonal complement is invariant as well. Paper: §4. -/
+/-- The orthogonal complement is invariant as well. Paper: §4.
+@isnad1 id=mem.1h6v.s12.e8517fdd8dfd from=translated src=- shape=eda15d6f vocab=d42de9f4
+-/
 theorem unitary_mem_normalFixedSubmodule_orthogonal
     (g : G) {x : K} (hx : x ∈ (normalFixedSubmodule N π)ᗮ) :
     (π g : K →L[ℂ] K) x ∈ (normalFixedSubmodule N π)ᗮ := by
@@ -166,12 +178,18 @@ def normalFixedRepresentation :
     rw [map_mul]
     rfl
 
+/--
+@isnad1 id=eq.0h6v.s17.c3f192256163 from=translated src=- shape=e61013ba vocab=dbcde4cc
+-/
 @[simp] theorem normalFixedRepresentation_apply
     (g : G) (x : normalFixedSubmodule N π) :
     ((normalFixedRepresentation N π g :
       normalFixedSubmodule N π →L[ℂ] normalFixedSubmodule N π) x : K) =
       (π g : K →L[ℂ] K) (x : K) := rfl
 
+/--
+@isnad1 id=eq.1h5v.s17.177fdae7d83c from=translated src=- shape=1c01084b vocab=a8c8482b
+-/
 theorem normalFixedRepresentation_apply_eq_one
     (n : G) (hn : n ∈ N) : normalFixedRepresentation N π n = 1 := by
   apply Subtype.ext
@@ -187,6 +205,9 @@ def normalFixedQuotientRepresentation :
   QuotientGroup.lift N (normalFixedRepresentation N π)
     (fun n hn => normalFixedRepresentation_apply_eq_one N π n hn)
 
+/--
+@isnad1 id=eq.0h6v.s17.ec34448a01c0 from=translated src=- shape=9f9b59f1 vocab=2f1a059d
+-/
 theorem normalFixedQuotientRepresentation_apply_mk
     (g : G) (x : normalFixedSubmodule N π) :
     ((normalFixedQuotientRepresentation N π (QuotientGroup.mk' N g) :
@@ -244,6 +265,9 @@ def normalFixedOrthogonalRepresentation :
     rw [map_mul]
     rfl
 
+/--
+@isnad1 id=eq.0h6v.s18.da0401368c40 from=translated src=- shape=9ed1ad7f vocab=abf260a2
+-/
 @[simp] theorem normalFixedOrthogonalRepresentation_apply
     (g : G) (x : (normalFixedSubmodule N π)ᗮ) :
     ((normalFixedOrthogonalRepresentation N π g :
@@ -251,6 +275,9 @@ def normalFixedOrthogonalRepresentation :
         (normalFixedSubmodule N π)ᗮ) x : K) =
       (π g : K →L[ℂ] K) (x : K) := rfl
 
+/--
+@isnad1 id=eq.1h5v.s18.db960072c3ed from=translated src=- shape=85819dd2 vocab=abf260a2
+-/
 theorem normalFixedOrthogonalRepresentation_no_fixed
     (x : (normalFixedSubmodule N π)ᗮ)
     (hx : ∀ n : N,
@@ -265,7 +292,9 @@ theorem normalFixedOrthogonalRepresentation_no_fixed
   apply Subtype.ext
   exact inner_self_eq_zero.mp hinner
 
-/-- The normal fixed projection commutes with the representation. Paper: §4. -/
+/-- The normal fixed projection commutes with the representation. Paper: §4.
+@isnad1 id=eq.0h6v.s13.e2024a3d4230 from=translated src=- shape=6ff5dbda vocab=8c17041e
+-/
 theorem normalFixed_starProjection_commute
     (g : G) (x : K) :
     (normalFixedSubmodule N π).starProjection
@@ -280,7 +309,9 @@ theorem normalFixed_starProjection_commute
     exact unitary_mem_normalFixedSubmodule_orthogonal N π g
       (Submodule.sub_starProjection_mem_orthogonal x)
 
-/-- Passing to the orthogonal residual cannot increase displacement. Paper: §4. -/
+/-- Passing to the orthogonal residual cannot increase displacement. Paper: §4.
+@isnad1 id=le.0h6v.s13.69602b581849 from=translated src=- shape=44adcb25 vocab=fbcde690
+-/
 theorem normalFixed_orthogonalResidual_displacement_le
     (g : G) (x : K) :
     ‖(π g : K →L[ℂ] K)

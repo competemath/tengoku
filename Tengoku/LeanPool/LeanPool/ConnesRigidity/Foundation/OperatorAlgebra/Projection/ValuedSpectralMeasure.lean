@@ -95,7 +95,9 @@ variable {π : UnitaryRepresentation G K}
 
 omit [BorelSpace (DiscreteCharacterSpace A)]
   [MeasurableSingletonClass (DiscreteCharacterSpace A)] in
-/-- The scalar spectral measure has total mass equal to squared norm. Paper: §4. -/
+/-- The scalar spectral measure has total mass equal to squared norm. Paper: §4.
+@isnad1 id=eq.0h8v.s7.8f9e0abe04d8 from=translated src=- shape=a582c5be vocab=55722468
+-/
 theorem scalar_univ_real
     (P : ProjectionValuedSpectralMeasure E K π) (x : K) :
     (P.scalar x).real Set.univ = ‖x‖ ^ 2 := by
@@ -106,7 +108,9 @@ theorem scalar_univ_real
 
 omit [BorelSpace (DiscreteCharacterSpace A)]
   [MeasurableSingletonClass (DiscreteCharacterSpace A)] in
-/-- A unit vector normalizes its scalar spectral measure. Paper: §4. -/
+/-- A unit vector normalizes its scalar spectral measure. Paper: §4.
+@isnad1 id=isprobab.1h8v.s6.2702427f346a from=translated src=- shape=3568ed74 vocab=be607b2a
+-/
 theorem scalar_isProbabilityMeasure
     (P : ProjectionValuedSpectralMeasure E K π)
     (x : K) (hx : ‖x‖ = 1) :
@@ -126,7 +130,9 @@ def probabilityMeasure
 
 omit [BorelSpace (DiscreteCharacterSpace A)]
   [MeasurableSingletonClass (DiscreteCharacterSpace A)] in
-/-- Quotient-fixed vectors produce invariant scalar spectral measures. Paper: §4. -/
+/-- Quotient-fixed vectors produce invariant scalar spectral measures. Paper: §4.
+@isnad1 id=isinvari.0h8v.s7.7607a7005a78 from=translated src=- shape=c1756741 vocab=5e83afb0
+-/
 theorem probabilityMeasure_invariant
     (P : ProjectionValuedSpectralMeasure E K π)
     (x : QuotientFixedUnitVector E K π) :
@@ -139,7 +145,9 @@ theorem probabilityMeasure_invariant
 
 omit [BorelSpace (DiscreteCharacterSpace A)]
   [MeasurableSingletonClass (DiscreteCharacterSpace A)] in
-/-- The scalar spectral energy is the kernel displacement energy. Paper: §4. -/
+/-- The scalar spectral energy is the kernel displacement energy. Paper: §4.
+@isnad1 id=eq.0h9v.s12.c41cb146e5a8 from=translated src=- shape=d51c1964 vocab=5450b5c7
+-/
 theorem probabilityMeasure_energy
     (P : ProjectionValuedSpectralMeasure E K π)
     (x : QuotientFixedUnitVector E K π) (a : A) :
@@ -149,7 +157,9 @@ theorem probabilityMeasure_energy
   exact P.energy_identity x.vector a
 
 omit [BorelSpace (DiscreteCharacterSpace A)] in
-/-- A positive trivial atom gives a nonzero trivial spectral projection. Paper: §4. -/
+/-- A positive trivial atom gives a nonzero trivial spectral projection. Paper: §4.
+@isnad1 id=ne.1h8v.s8.2d4b9ec47f0d from=translated src=- shape=82348e6b vocab=3a6c7e43
+-/
 theorem trivialProjection_ne_zero_of_atom_pos
     (P : ProjectionValuedSpectralMeasure E K π)
     (x : QuotientFixedUnitVector E K π)
@@ -168,7 +178,9 @@ theorem trivialProjection_ne_zero_of_atom_pos
 
 omit [BorelSpace (DiscreteCharacterSpace A)]
   [MeasurableSingletonClass (DiscreteCharacterSpace A)] in
-/-- The trivial spectral projection is fixed by every kernel element. Paper: §4. -/
+/-- The trivial spectral projection is fixed by every kernel element. Paper: §4.
+@isnad1 id=eq.0h9v.s12.d00a8e20eb8b from=translated src=- shape=62f86b43 vocab=47803e09
+-/
 theorem trivialProjection_kernel_fixed
     (P : ProjectionValuedSpectralMeasure E K π)
     (x : K) (a : A) :
@@ -179,7 +191,9 @@ theorem trivialProjection_kernel_fixed
 
 omit [BorelSpace (DiscreteCharacterSpace A)]
   [MeasurableSingletonClass (DiscreteCharacterSpace A)] in
-/-- The trivial spectral projection is fixed by every quotient section. Paper: §4. -/
+/-- The trivial spectral projection is fixed by every quotient section. Paper: §4.
+@isnad1 id=eq.0h9v.s12.b449cba91949 from=translated src=- shape=fd8ae13c vocab=60f97c95
+-/
 theorem trivialProjection_quotient_fixed
     (P : ProjectionValuedSpectralMeasure E K π)
     (x : QuotientFixedUnitVector E K π) (h : H) :
@@ -191,7 +205,9 @@ theorem trivialProjection_quotient_fixed
   exact hcov
 
 omit [BorelSpace (DiscreteCharacterSpace A)] in
-/-- A positive trivial atom yields a vector fixed by the split extension. Paper: §4. -/
+/-- A positive trivial atom yields a vector fixed by the split extension. Paper: §4.
+@isnad1 id=ex.1h8v.s13.76857ebd91a9 from=translated src=- shape=ccc4847e vocab=f1b02964
+-/
 theorem positive_atom_invariant
     (P : ProjectionValuedSpectralMeasure E K π)
     (x : QuotientFixedUnitVector E K π)
@@ -231,6 +247,9 @@ omit [TopologicalSpace A] [DiscreteTopology A]
   [MeasurableSpace (DiscreteCharacterSpace A)]
   [BorelSpace (DiscreteCharacterSpace A)]
   [MeasurableSingletonClass (DiscreteCharacterSpace A)] in
+/--
+@isnad1 id=ex.3h8v.s12.6f31e04a4992 from=translated src=- shape=5b51c64a vocab=bb67f69d
+-/
 theorem exists_quotientFixedUnitVector_with_displacement
     (hH : HasKazhdanPropertyT.{u, v} H)
     (hπ : π.HasAlmostInvariantUnitVectors)
@@ -406,6 +425,9 @@ omit [TopologicalSpace A] [DiscreteTopology A]
   [MeasurableSingletonClass (DiscreteCharacterSpace A)] in
 /- Consequently the quotient-fixed approximation field is not additional
 spectral data: it follows from quotient property (T) and almost invariance. -/
+/--
+@isnad1 id=hasquoti.0h6v.s5.821ed996a883 from=translated src=- shape=67ce5b4b vocab=1ab30390
+-/
 theorem hasQuotientFixedApproximation :
     HasQuotientFixedApproximation E π := by
   intro hH hπ J ε hε
@@ -460,7 +482,9 @@ end ProjectionValuedSpectralMeasure
 
 omit [BorelSpace (DiscreteCharacterSpace A)] in
 /-- Relative property-(T) from an analytic PVM and detector.  Quotient
-approximation follows generically from quotient property (T). Paper: §4. -/
+approximation follows generically from quotient property (T). Paper: §4.
+@isnad1 id=haskazhd.3h7v.s6.39829262069b from=translated src=- shape=ae827a74 vocab=555172d0
+-/
 theorem relative_propertyT_of_projectionValuedSpectralMeasure
     (E : SplitAbelianExtension A G H)
     (hH : HasKazhdanPropertyT.{u, v} H)

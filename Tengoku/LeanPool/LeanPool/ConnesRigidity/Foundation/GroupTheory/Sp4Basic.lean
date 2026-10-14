@@ -79,7 +79,9 @@ private theorem pairing_one_bridge :
       ∃ z : V, pairing v z = 1 ∧ pairing z w = 1 := by
   decide
 
-/-- Nonzero-vector transitivity. Paper: §2. -/
+/-- Nonzero-vector transitivity. Paper: §2.
+@isnad1 id=ex.2h2v.s11.ba1e8717d89b from=translated src=- shape=b7220814 vocab=43d8a508
+-/
 theorem transitive_on_nonzero_vectors :
     ∀ v : OpenAIPort.ModTwoSpace, v ≠ 0 →
       ∀ w : OpenAIPort.ModTwoSpace, w ≠ 0 →

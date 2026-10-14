@@ -45,7 +45,9 @@ section
 
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace 𝕜 E]
 
-/-- If `T` is compact, then the eigenspace for a nonzero eigenvalue is finite-dimensional. -/
+/-- If `T` is compact, then the eigenspace for a nonzero eigenvalue is finite-dimensional.
+@isnad1 id=finitedi.2h4v.s10.e8f0409e7e8b from=translated src=- shape=29cdfb61 vocab=b9b0bad4
+-/
 theorem finiteDimensional_eigenspace_of_isCompactOperator (T : E →L[𝕜] E)
     (hTc : IsCompactOperator (T : E → E)) {μ : 𝕜} (hμ : μ ≠ 0) :
     FiniteDimensional 𝕜 (Module.End.eigenspace (T : E →ₗ[𝕜] E) μ) := by
@@ -112,7 +114,9 @@ end
 norm is bounded below by `ε > 0`.
 This is a standard compact spectral theorem ingredient: since distinct eigenspaces are orthogonal,
 such a sequence would give an orthonormal family `e n` with `‖T (e n)‖ = ‖μ n‖ ≥ ε`, contradicting
-that compact operators send orthonormal sequences to norm-null sequences. -/
+that compact operators send orthonormal sequences to norm-null sequences.
+@isnad1 id=not.3h4v.s9.c3f1f98d15a1 from=translated src=- shape=3d43af40 vocab=77764cc3
+-/
 lemma not_exists_injective_hasEigenvalue_norm_ge_of_isCompactOperator_of_isSelfAdjoint
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {ε : ℝ} (hε : 0 < ε) :
@@ -176,7 +180,9 @@ lemma not_exists_injective_hasEigenvalue_norm_ge_of_isCompactOperator_of_isSelfA
   rcases (Filter.Eventually.exists hμlt) with ⟨n, hn⟩
   exact (not_lt_of_ge (hμge n)) hn
 /-- For a compact self-adjoint operator, the set of eigenvalues with norm bounded below by
-`ε > 0` is finite. -/
+`ε > 0` is finite.
+@isnad1 id=finite.3h4v.s9.bff76aacf513 from=translated src=- shape=9e67cbd8 vocab=957e5fc6
+-/
 theorem finite_set_hasEigenvalue_norm_ge_of_isCompactOperator_of_isSelfAdjoint
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {ε : ℝ} (hε : 0 < ε) :
@@ -205,7 +211,9 @@ theorem finite_set_hasEigenvalue_norm_ge_of_isCompactOperator_of_isSelfAdjoint
     (not_exists_injective_hasEigenvalue_norm_ge_of_isCompactOperator_of_isSelfAdjoint
         (𝕜 := 𝕜) (E := E) T hT hTc hε) ⟨μ, hμinj, hμge, hμeig⟩
 /-- For a compact self-adjoint operator, the set of nonzero eigenvalues is countable (indeed, only
-`0` can be an accumulation point). -/
+`0` can be an accumulation point).
+@isnad1 id=countabl.2h3v.s9.fafaed974647 from=translated src=- shape=f2dd7539 vocab=27e5286d
+-/
 theorem countable_set_hasEigenvalue_ne_zero_of_isCompactOperator_of_isSelfAdjoint
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E)) :
     {μ : 𝕜 | μ ≠ 0 ∧ Module.End.HasEigenvalue (T : E →ₗ[𝕜] E) μ}.Countable := by
@@ -231,7 +239,9 @@ theorem countable_set_hasEigenvalue_ne_zero_of_isCompactOperator_of_isSelfAdjoin
           (𝕜 := 𝕜) (E := E) T hT hTc (ε := (1 : ℝ) / ((n : ℝ) + 1)) hε).countable
   exact hcountU.mono hsub
 /-- For a compact self-adjoint operator, any injective eigenvalue sequence must have eigenvalues
-converging to `0` in norm. -/
+converging to `0` in norm.
+@isnad1 id=tendsto.4h4v.s9.ce808dba3923 from=translated src=- shape=db7f1921 vocab=30461d53
+-/
 theorem tendsto_norm_of_injective_hasEigenvalue_of_isCompactOperator_of_isSelfAdjoint
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {μ : ℕ → 𝕜} (hμinj : Function.Injective μ)
@@ -270,7 +280,9 @@ theorem tendsto_norm_of_injective_hasEigenvalue_of_isCompactOperator_of_isSelfAd
     exact hμ' hcontra
   simp_all
 /-! ### Isolation of nonzero eigenvalues -/
-/-- For a compact self-adjoint operator, any nonzero eigenvalue is isolated among eigenvalues. -/
+/-- For a compact self-adjoint operator, any nonzero eigenvalue is isolated among eigenvalues.
+@isnad1 id=ex.4h4v.s9.d246715a416d from=translated src=- shape=669c2635 vocab=353ca03d
+-/
 lemma exists_ball_hasEigenvalue_eq_of_isCompactOperator_of_isSelfAdjoint
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {μ : 𝕜} (hμ0 : μ ≠ 0)
@@ -360,7 +372,9 @@ lemma exists_ball_hasEigenvalue_eq_of_isCompactOperator_of_isSelfAdjoint
     exact hνμ
 /-! ### Finite-dimensionality of large spectral subspaces -/
 /-- For a compact self-adjoint operator, the sum (iSup) of eigenspaces corresponding to eigenvalues
-with `‖μ‖ ≥ ε` is finite-dimensional. -/
+with `‖μ‖ ≥ ε` is finite-dimensional.
+@isnad1 id=other.3h4v.s10.a932ba13881c from=translated src=- shape=2e613aea vocab=57144236
+-/
 lemma finiteDimensional_iSup_eigenspace_norm_ge
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {ε : ℝ} (hε : 0 < ε) :

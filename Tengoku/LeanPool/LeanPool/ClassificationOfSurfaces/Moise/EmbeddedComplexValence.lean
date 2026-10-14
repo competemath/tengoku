@@ -191,7 +191,9 @@ private theorem exists_pair_pages_open_neighborhood
     exact hk.symm
 
 /-- A finite family of abstract triangles carried by an embedded barycentric realization in a
-surface has edge valence at most two. -/
+surface has edge valence at most two.
+@isnad1 id=le.3h5v.s7.1fccba444b30 from=translated src=- shape=b2f7d672 vocab=f455ed1a
+-/
 theorem edge_valence_le_two_of_isEmbedding
     {V : Type*} [Fintype V] [DecidableEq V]
     (F : Finset (Finset V))

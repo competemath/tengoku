@@ -55,7 +55,9 @@ variable {α : Type*} [Fintype α] [Preorder α]
 /-- The finite layer-cake principle used in Section 5 (Proposition 5.3): if a
 signed function has nonnegative sum on every lower set, then its scalar product
 with every nonnegative antitone weight is nonnegative. This also covers an empty
-underlying type. -/
+underlying type.
+@isnad1 id=le.3h3v.s6.07f9a118b532 from=translated src=- shape=441c6e07 vocab=3ffbb1f6
+-/
 theorem sum_mul_antitone_nonneg_of_lowerSets (c : α → ℝ)
     (hc : ∀ D : Finset α, IsLowerSet (D : Set α) → 0 ≤ ∑ x ∈ D, c x)
     (ω : α → ℝ) (hω : ∀ x, 0 ≤ ω x) (hanti : Antitone ω) :

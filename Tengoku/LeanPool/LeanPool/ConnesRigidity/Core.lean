@@ -101,7 +101,9 @@ open scoped NNReal ENNReal
 /-- Group-indexed Hilbert carrier. Paper: §3. -/
 abbrev GroupL2 (G : Type u) := lp (fun _ : G ↦ ℂ) 2
 
-/-- Reindexing an `ℓp` family along an equivalence preserves membership in `ℓp`. -/
+/-- Reindexing an `ℓp` family along an equivalence preserves membership in `ℓp`.
+@isnad1 id=memp.1h6v.s8.2d8c6a1dfd77 from=translated src=- shape=42f88c4f vocab=a41d70e4
+-/
 theorem memℓp_reindex {α : Type u} {β : Type v} {E : Type w}
     [NormedAddCommGroup E] {p : ℝ≥0∞} (e : α ≃ β) (hp : 0 < p.toReal)
     (f : lp (fun _ : α ↦ E) p) : Memℓp (fun j : β ↦ f (e.symm j)) p := by
@@ -155,7 +157,9 @@ def vonNeumannClosure
        Set.centralizer_centralizer_centralizer (S ∪ star S) } :
     VonNeumannAlgebra H).commutant
 
-/-- The von Neumann closure has the expected bicommutant carrier. -/
+/-- The von Neumann closure has the expected bicommutant carrier.
+@isnad1 id=eq.0h2v.s10.e7d063882b65 from=translated src=- shape=cbc3997e vocab=78f00b2a
+-/
 @[simp]
 theorem coe_vonNeumannClosure
     {H : Type u} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
@@ -167,7 +171,9 @@ theorem coe_vonNeumannClosure
   rfl
 
 /-- Membership in the von Neumann closure is membership in the star-algebraic
-bicommutant of the generating set. -/
+bicommutant of the generating set.
+@isnad1 id=iff.0h3v.s10.579247ff87a2 from=translated src=- shape=3172760e vocab=7181b17a
+-/
 @[simp]
 theorem mem_vonNeumannClosure
     {H : Type u} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
@@ -208,7 +214,9 @@ def IsProjectionSupremum {A : Type u} [Mul A] [Star A] [LE A]
 
 namespace IsProjectionSupremum
 
-/-- Construct a projection supremum from its projection, upper-bound, and leastness clauses. -/
+/-- Construct a projection supremum from its projection, upper-bound, and leastness clauses.
+@isnad1 id=isprojec.3h3v.s6.d24ede4dec16 from=translated src=- shape=ded29706 vocab=d94131ba
+-/
 theorem intro
     {A : Type u} [Mul A] [Star A] [LE A] {S : Set A} {p : A}
     (hp : IsStarProjection p)
@@ -217,27 +225,35 @@ theorem intro
     IsProjectionSupremum S p :=
   ⟨hp, hupper, hleast⟩
 
-/-- The supremum candidate is a projection. -/
+/-- The supremum candidate is a projection.
+@isnad1 id=isstarpr.1h3v.s4.56bcb5b9c567 from=translated src=- shape=cbf7f4c8 vocab=97dcd82b
+-/
 theorem isStarProjection
     {A : Type u} [Mul A] [Star A] [LE A] {S : Set A} {p : A}
     (h : IsProjectionSupremum S p) : IsStarProjection p :=
   h.1
 
-/-- Every member is a projection below the supremum candidate. -/
+/-- Every member is a projection below the supremum candidate.
+@isnad1 id=and.2h4v.s5.14bb95c802fb from=translated src=- shape=b8ee9af4 vocab=d94131ba
+-/
 theorem upper
     {A : Type u} [Mul A] [Star A] [LE A] {S : Set A} {p q : A}
     (h : IsProjectionSupremum S p) (hq : q ∈ S) :
     IsStarProjection q ∧ q ≤ p :=
   h.2.1 q hq
 
-/-- The supremum candidate lies below every projection upper bound. -/
+/-- The supremum candidate lies below every projection upper bound.
+@isnad1 id=le.3h4v.s5.900244063c66 from=translated src=- shape=5869d473 vocab=d94131ba
+-/
 theorem least
     {A : Type u} [Mul A] [Star A] [LE A] {S : Set A} {p r : A}
     (h : IsProjectionSupremum S p) (hr : IsStarProjection r)
     (hupper : ∀ q ∈ S, q ≤ r) : p ≤ r :=
   h.2.2 r hr hupper
 
-/-- Projection suprema are unique. -/
+/-- Projection suprema are unique.
+@isnad1 id=eq.2h4v.s5.ba0afd1f5248 from=translated src=- shape=69a6e38d vocab=9ddf0999
+-/
 theorem unique
     {A : Type u} [Mul A] [Star A] [LE A]
     [Std.Antisymm (fun a b : A ↦ a ≤ b)]
@@ -269,7 +285,9 @@ variable {A : Type u} {B : Type v}
   [Add A] [Mul A] [SMul ℂ A] [Star A] [LE A]
   [Add B] [Mul B] [SMul ℂ B] [Star B] [LE B]
 
-/-- Construct normality from projection-supremum transport in both directions. -/
+/-- Construct normality from projection-supremum transport in both directions.
+@isnad1 id=isnormal.2h3v.s7.2540172f76bb from=translated src=- shape=4dad00a9 vocab=f22894e9
+-/
 theorem intro
     {e : A ≃⋆ₐ[ℂ] B}
     (hmap : ∀ (S : Set A) (p : A),
@@ -280,21 +298,27 @@ theorem intro
     IsNormalStarAlgEquiv e :=
   ⟨hmap, hsymm_map⟩
 
-/-- A normal star-algebra equivalence preserves projection suprema. -/
+/-- A normal star-algebra equivalence preserves projection suprema.
+@isnad1 id=isprojec.2h5v.s7.5ea585804b19 from=translated src=- shape=61a1600c vocab=65bcb773
+-/
 theorem map
     {e : A ≃⋆ₐ[ℂ] B} (h : IsNormalStarAlgEquiv e)
     {S : Set A} {p : A} (hp : IsProjectionSupremum S p) :
     IsProjectionSupremum (e '' S) (e p) :=
   h.1 S p hp
 
-/-- The inverse of a normal star-algebra equivalence preserves projection suprema. -/
+/-- The inverse of a normal star-algebra equivalence preserves projection suprema.
+@isnad1 id=isprojec.2h5v.s7.368e3c7e3655 from=translated src=- shape=cd4fb497 vocab=f22894e9
+-/
 theorem symm_map
     {e : A ≃⋆ₐ[ℂ] B} (h : IsNormalStarAlgEquiv e)
     {S : Set B} {p : B} (hp : IsProjectionSupremum S p) :
     IsProjectionSupremum (e.symm '' S) (e.symm p) :=
   h.2 S p hp
 
-/-- The identity star-algebra equivalence is normal. -/
+/-- The identity star-algebra equivalence is normal.
+@isnad1 id=isnormal.0h1v.s5.652f7d4f876f from=translated src=- shape=1b23b0f1 vocab=bc5e68fd
+-/
 theorem refl : IsNormalStarAlgEquiv (StarAlgEquiv.refl ℂ A) := by
   refine intro ?_ ?_
   · intro S p hp
@@ -304,7 +328,9 @@ theorem refl : IsNormalStarAlgEquiv (StarAlgEquiv.refl ℂ A) := by
     rw [StarAlgEquiv.refl_symm, StarAlgEquiv.coe_refl, Set.image_id]
     exact hp
 
-/-- The inverse of a normal star-algebra equivalence is normal. -/
+/-- The inverse of a normal star-algebra equivalence is normal.
+@isnad1 id=isnormal.1h3v.s6.9fb27be66ed8 from=translated src=- shape=03cdcd9e vocab=c529bb36
+-/
 theorem symm {e : A ≃⋆ₐ[ℂ] B} (h : IsNormalStarAlgEquiv e) :
     IsNormalStarAlgEquiv e.symm := by
   refine intro (fun _ _ ↦ h.symm_map) ?_
@@ -312,7 +338,9 @@ theorem symm {e : A ≃⋆ₐ[ℂ] B} (h : IsNormalStarAlgEquiv e) :
   rw [StarAlgEquiv.symm_symm]
   exact h.map hp
 
-/-- A composite of normal star-algebra equivalences is normal. -/
+/-- A composite of normal star-algebra equivalences is normal.
+@isnad1 id=isnormal.2h5v.s7.9b3c0b69691a from=translated src=- shape=03089b31 vocab=1b17670c
+-/
 theorem trans
     {C : Type*}
     [Add C] [Mul C] [SMul ℂ C] [Star C] [LE C]

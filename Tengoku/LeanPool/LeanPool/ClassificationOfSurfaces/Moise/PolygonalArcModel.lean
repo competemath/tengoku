@@ -20,7 +20,9 @@ namespace Moise
 namespace BrokenLineData
 
 /-- A polygonal arc extracted from a broken line is the endpoint-preserving PL image of a
-straight segment. -/
+straight segment.
+@isnad1 id=ex.0h2v.s8.34c2c7c71ed8 from=translated src=- shape=eeca8de7 vocab=284568fa
+-/
 theorem exists_PL_segment_model {U : Set Plane} (B : BrokenLineData U) :
     ∃ (S : PlaneComplex) (F : Plane → Plane),
       S.support = segment ℝ (planePoint 0 0) (planePoint B.resolvedWalk.length 0) ∧

@@ -65,6 +65,9 @@ instance Real.instCompositionAlgebra : CompositionAlgebra ℝ where
   B_pos x hx := by simp only [LinearMap.mul_apply']; exact mul_self_pos.mpr hx
   B_comp x y := by simp only [LinearMap.mul_apply']; ring
 
+/--
+@isnad1 id=eq.0h1v.s4.72a7c441a1cc from=translated src=- shape=103e6a46 vocab=c58d8538
+-/
 theorem Real.nf_eq (x : ℝ) : nf x = x * x := rfl
 
 /-! ## `ℂ` -/
@@ -79,6 +82,9 @@ def Complex.ipBilin : ℂ →ₗ[ℝ] ℂ →ₗ[ℝ] ℝ :=
     (by intro c x y; simp only [Complex.real_smul, Complex.mul_re, Complex.mul_im,
       Complex.ofReal_re, Complex.ofReal_im, smul_eq_mul]; ring)
 
+/--
+@isnad1 id=eq.0h2v.s9.5c4622ea6fab from=translated src=- shape=88ea56ae vocab=d287bee3
+-/
 @[simp] theorem Complex.ipBilin_apply (x y : ℂ) :
     Complex.ipBilin x y = x.re * y.re + x.im * y.im := rfl
 
@@ -93,6 +99,9 @@ instance Complex.instCompositionAlgebra : CompositionAlgebra ℂ where
   B_comp x y := by
     simp only [Complex.ipBilin_apply, Complex.mul_re, Complex.mul_im]; ring
 
+/--
+@isnad1 id=eq.0h1v.s6.5ef45be97d05 from=translated src=- shape=ac318ca0 vocab=67edf201
+-/
 theorem Complex.nf_eq (z : ℂ) : nf z = z.re * z.re + z.im * z.im := rfl
 
 /-! ## `ℍ` -/
@@ -102,6 +111,9 @@ theorem Complex.nf_eq (z : ℂ) : nf z = z.re * z.re + z.im * z.im := rfl
 they are stated for `Algebra.toSMul` — and the two bilinearity classes have to be proved
 against the componentwise action. -/
 
+/--
+@isnad1 id=isscalar.0h0v.s5.9bb86c0e61f0 from=translated src=- shape=4b718b57 vocab=bba302dd
+-/
 instance Quaternion.instIsScalarTowerSelf : IsScalarTower ℝ ℍ[ℝ] ℍ[ℝ] where
   smul_assoc r x y := by
     ext <;>
@@ -109,6 +121,9 @@ instance Quaternion.instIsScalarTowerSelf : IsScalarTower ℝ ℍ[ℝ] ℍ[ℝ] 
         Quaternion.imK_smul, Quaternion.re_mul, Quaternion.imI_mul, Quaternion.imJ_mul,
         Quaternion.imK_mul, smul_eq_mul] <;> ring
 
+/--
+@isnad1 id=smulcomm.0h0v.s5.725c0c5d7c5f from=translated src=- shape=4b718b57 vocab=a46c9b71
+-/
 instance Quaternion.instSMulCommClassSelf : SMulCommClass ℝ ℍ[ℝ] ℍ[ℝ] where
   smul_comm r x y := by
     ext <;>
@@ -128,9 +143,15 @@ def Quaternion.ipBilin : ℍ[ℝ] →ₗ[ℝ] ℍ[ℝ] →ₗ[ℝ] ℝ :=
     (by intro c x y; simp only [Quaternion.re_smul, Quaternion.imI_smul, Quaternion.imJ_smul,
       Quaternion.imK_smul, smul_eq_mul]; ring)
 
+/--
+@isnad1 id=eq.0h2v.s9.85ae829ce907 from=translated src=- shape=dfdc33d6 vocab=b54031d6
+-/
 @[simp] theorem Quaternion.ipBilin_apply (x y : ℍ[ℝ]) :
     Quaternion.ipBilin x y = x.re * y.re + x.imI * y.imI + x.imJ * y.imJ + x.imK * y.imK := rfl
 
+/--
+@isnad1 id=eq.0h1v.s9.23a6182d3fb0 from=translated src=- shape=5248eade vocab=64f0a3b0
+-/
 theorem Quaternion.ipBilin_self (x : ℍ[ℝ]) : Quaternion.ipBilin x x = Quaternion.normSq x := by
   rw [Quaternion.normSq_def']
   simp only [Quaternion.ipBilin_apply]
@@ -155,6 +176,9 @@ namespace Octonion
 /-- The unit of `𝕆`. `Octonions.lean` has only a `def one`. -/
 instance instOne : One Octonion := ⟨Octonion.one⟩
 
+/--
+@isnad1 id=eq.0h0v.s3.abfcafae9069 from=translated src=- shape=ff3a10fc vocab=843a39cc
+-/
 theorem one_def : (1 : Octonion) = Octonion.one := rfl
 
 instance instNonAssocRing : NonAssocRing Octonion where
@@ -167,9 +191,15 @@ instance instNonAssocRing : NonAssocRing Octonion where
   one_mul := Octonion.one_mul'
   mul_one := Octonion.mul_one'
 
+/--
+@isnad1 id=isscalar.0h0v.s3.1299f2c861ef from=translated src=- shape=54c8eceb vocab=f57630e2
+-/
 instance instIsScalarTower : IsScalarTower ℝ Octonion Octonion where
   smul_assoc r x y := Octonion.smul_mul r x y
 
+/--
+@isnad1 id=smulcomm.0h0v.s3.251bbc51755b from=translated src=- shape=54c8eceb vocab=1043fd46
+-/
 instance instSMulCommClass : SMulCommClass ℝ Octonion Octonion where
   smul_comm r x y := (Octonion.mul_smul' r x y).symm
 
@@ -181,8 +211,14 @@ def ipBilin : Octonion →ₗ[ℝ] Octonion →ₗ[ℝ] ℝ :=
     (by intro x y z; exact Octonion.octIp_add_right x y z)
     (by intro c x y; simp [Octonion.octIp_smul_right])
 
+/--
+@isnad1 id=eq.0h2v.s8.774a6d2909a9 from=translated src=- shape=0f3d9715 vocab=f4b30244
+-/
 @[simp] theorem ipBilin_apply (x y : Octonion) : ipBilin x y = Octonion.octIp x y := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.3f09f152b473 from=translated src=- shape=1a018cbb vocab=9c2dbd83
+-/
 theorem octIp_self_eq_norm_sq (x : Octonion) : Octonion.octIp x x = Octonion.normSq x := by
   simp only [Octonion.octIp, Octonion.normSq, sq]
 
@@ -207,8 +243,17 @@ end Octonion
 
 `1, 2, 4, 8`. Hurwitz's theorem is the statement that these are the only ones. -/
 
+/--
+@isnad1 id=eq.0h0v.s3.b31e2d45525c from=translated src=- shape=069c4242 vocab=40743c31
+-/
 theorem Real.finrank_comp : Module.finrank ℝ ℝ = 1 := Module.finrank_self ℝ
 
+/--
+@isnad1 id=eq.0h0v.s5.94a3daad410c from=translated src=- shape=b3c4969c vocab=4a3c790b
+-/
 theorem Complex.finrank_comp : Module.finrank ℝ ℂ = 2 := Complex.finrank_real_complex
 
+/--
+@isnad1 id=eq.0h0v.s5.c454a16f82a7 from=translated src=- shape=4a8fd812 vocab=04f9f482
+-/
 theorem Quaternion.finrank_comp : Module.finrank ℝ ℍ[ℝ] = 4 := Quaternion.finrank_eq_four

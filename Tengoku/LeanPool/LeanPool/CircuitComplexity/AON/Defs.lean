@@ -62,15 +62,21 @@ def Basis.andOr2 : Basis where
   arity _ := .exactly 2
   eval op n _ inputs := op.eval n inputs
 
-/-- Every gate over `Basis.andOr2` has fan-in exactly 2. -/
+/-- Every gate over `Basis.andOr2` has fan-in exactly 2.
+@isnad1 id=eq.0h2v.s4.6a4f81b2c671 from=translated src=- shape=e624d44c vocab=3ea782b0
+-/
 theorem andOr2_fanIn {W : Nat} (g : Gate Basis.andOr2 W) : g.fanIn = 2 := g.arityOk
 
-/-- A fan-in-2 AND gate computes the conjunction of its two inputs. -/
+/-- A fan-in-2 AND gate computes the conjunction of its two inputs.
+@isnad1 id=eq.0h1v.s5.a28ed6ba8762 from=translated src=- shape=9272e2aa vocab=7f65d1d8
+-/
 theorem AONOp.eval_two_and (inputs : BitString 2) :
     AONOp.eval .and 2 inputs = (inputs 0 && inputs 1) := by
   simp [AONOp.eval, Fin.foldl_succ_last, Fin.foldl_zero]
 
-/-- A fan-in-2 OR gate computes the disjunction of its two inputs. -/
+/-- A fan-in-2 OR gate computes the disjunction of its two inputs.
+@isnad1 id=eq.0h1v.s5.03a0f255c827 from=translated src=- shape=9272e2aa vocab=4a8ff422
+-/
 theorem AONOp.eval_two_or (inputs : BitString 2) :
     AONOp.eval .or 2 inputs = (inputs 0 || inputs 1) := by
   simp [AONOp.eval, Fin.foldl_succ_last, Fin.foldl_zero]

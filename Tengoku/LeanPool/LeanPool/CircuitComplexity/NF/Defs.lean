@@ -46,7 +46,9 @@ def Literal.eval (l : Literal N) (x : BitString N) : Bool :=
 def Literal.neg (l : Literal N) : Literal N :=
   { l with polarity := !l.polarity }
 
-/-- Negating a literal negates its evaluation. -/
+/-- Negating a literal negates its evaluation.
+@isnad1 id=eq.0h3v.s4.a7485c04fab3 from=translated src=- shape=d429ce97 vocab=7230dda4
+-/
 theorem Literal.eval_neg (l : Literal N) (x : BitString N) :
     l.neg.eval x = !(l.eval x) := by
   obtain ⟨v, p⟩ := l
@@ -111,19 +113,25 @@ By De Morgan's laws, `¬(∨ᵢ ∧ⱼ lᵢⱼ) = ∧ᵢ ∨ⱼ ¬lᵢⱼ`. -/
 def DNF.neg (φ : DNF N) : CNF N :=
   ⟨φ.terms.map (fun term => term.map Literal.neg)⟩
 
-/-- Negating a CNF formula negates its evaluation (De Morgan duality). -/
+/-- Negating a CNF formula negates its evaluation (De Morgan duality).
+@isnad1 id=eq.0h3v.s4.87953c65dd10 from=translated src=- shape=56924023 vocab=15a3deac
+-/
 theorem CNF.eval_neg (φ : CNF N) (x : BitString N) :
     φ.neg.eval x = !(φ.eval x) := by
   simp only [CNF.neg, DNF.eval, CNF.eval, List.any_map, List.all_map, Function.comp_def,
     List.not_all_eq_any_not, List.not_any_eq_all_not, Literal.eval_neg]
 
-/-- Negating a DNF formula negates its evaluation (De Morgan duality). -/
+/-- Negating a DNF formula negates its evaluation (De Morgan duality).
+@isnad1 id=eq.0h3v.s4.ca22be66c3da from=translated src=- shape=56924023 vocab=a75bf2e7
+-/
 theorem DNF.eval_neg (φ : DNF N) (x : BitString N) :
     φ.neg.eval x = !(φ.eval x) := by
   simp only [DNF.neg, CNF.eval, DNF.eval, List.any_map, List.all_map, Function.comp_def,
     List.not_all_eq_any_not, List.not_any_eq_all_not, Literal.eval_neg]
 
-/-- Negating a CNF preserves complexity. -/
+/-- Negating a CNF preserves complexity.
+@isnad1 id=eq.0h2v.s3.011bca3e8519 from=translated src=- shape=74148a6e vocab=53ae91f2
+-/
 theorem CNF.neg_complexity (φ : CNF N) : φ.neg.complexity = φ.complexity := by
   simp [CNF.neg, DNF.complexity, CNF.complexity, List.length_map]
 

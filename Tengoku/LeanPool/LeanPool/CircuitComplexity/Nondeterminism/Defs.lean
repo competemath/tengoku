@@ -51,18 +51,26 @@ def existQuantify (f : BitString (k + m) → Bool) : BitString m → Bool :=
 def forallQuantify (f : BitString (k + m) → Bool) : BitString m → Bool :=
   fun y => decide (∀ x : BitString k, f (Fin.append x y) = true)
 
+/--
+@isnad1 id=iff.0h4v.s5.843066e7d3bb from=translated src=- shape=51911cb8 vocab=993520f3
+-/
 @[simp]
 theorem existQuantify_eq_true {f : BitString (k + m) → Bool} {y : BitString m} :
     existQuantify f y = true ↔ ∃ x : BitString k, f (Fin.append x y) = true := by
   simp [existQuantify]
 
+/--
+@isnad1 id=iff.0h4v.s5.cf846efc2fc1 from=translated src=- shape=9f07727e vocab=8b424ed1
+-/
 @[simp]
 theorem forallQuantify_eq_true {f : BitString (k + m) → Bool} {y : BitString m} :
     forallQuantify f y = true ↔ ∀ x : BitString k, f (Fin.append x y) = true := by
   simp [forallQuantify]
 
 /-- De Morgan duality: universal quantification equals negated existential
-    of negation. -/
+    of negation.
+@isnad1 id=eq.0h4v.s5.4549e72f79cd from=translated src=- shape=11881113 vocab=8cd2314d
+-/
 theorem forallQuantify_eq_not_existQuantify_not
     (f : BitString (k + m) → Bool) (y : BitString m) :
     forallQuantify f y = !(existQuantify (fun z => !(f z)) y) := by
@@ -71,7 +79,9 @@ theorem forallQuantify_eq_not_existQuantify_not
     simp_all [decide_eq_false_iff_not, not_forall]
 
 /-- De Morgan duality: existential quantification equals negated universal
-    of negation. -/
+    of negation.
+@isnad1 id=eq.0h4v.s5.22c72cc47193 from=translated src=- shape=11881113 vocab=8cd2314d
+-/
 theorem existQuantify_eq_not_forallQuantify_not
     (f : BitString (k + m) → Bool) (y : BitString m) :
     existQuantify f y = !(forallQuantify (fun z => !(f z)) y) := by
@@ -80,7 +90,9 @@ theorem existQuantify_eq_not_forallQuantify_not
     simp_all [decide_eq_false_iff_not, not_exists]
 
 /-- Monotonicity: if `f` implies `g` pointwise, existential quantification
-    preserves this. -/
+    preserves this.
+@isnad1 id=eq.2h5v.s6.c6cd71ca5016 from=translated src=- shape=e2b976af vocab=b33686c0
+-/
 theorem existQuantify_mono {f g : BitString (k + m) → Bool}
     (h : ∀ z, f z = true → g z = true) {y : BitString m} :
     existQuantify f y = true → existQuantify g y = true := by
@@ -88,31 +100,41 @@ theorem existQuantify_mono {f g : BitString (k + m) → Bool}
   rintro ⟨x, hx⟩
   exact ⟨x, h _ hx⟩
 
-/-- Monotonicity for universal quantification. -/
+/-- Monotonicity for universal quantification.
+@isnad1 id=eq.2h5v.s6.a8ea83d073ba from=translated src=- shape=e2b976af vocab=627890c6
+-/
 theorem forallQuantify_mono {f g : BitString (k + m) → Bool}
     (h : ∀ z, f z = true → g z = true) {y : BitString m} :
     forallQuantify f y = true → forallQuantify g y = true := by
   simp_all
 
-/-- Constant true: existential quantification is always true. -/
+/-- Constant true: existential quantification is always true.
+@isnad1 id=eq.0h2v.s4.f8eb5a4b259a from=translated src=- shape=5fb92f31 vocab=b33686c0
+-/
 @[simp]
 theorem existQuantify_const_true :
     existQuantify (k := k) (m := m) (fun _ => true) = fun _ => true := by
   funext y; simp [existQuantify]
 
-/-- Constant false: existential quantification is always false. -/
+/-- Constant false: existential quantification is always false.
+@isnad1 id=eq.0h2v.s4.da486395f8b5 from=translated src=- shape=5fb92f31 vocab=f8891f2a
+-/
 @[simp]
 theorem existQuantify_const_false :
     existQuantify (k := k) (m := m) (fun _ => false) = fun _ => false := by
   funext y; simp [existQuantify]
 
-/-- Constant true: universal quantification is always true. -/
+/-- Constant true: universal quantification is always true.
+@isnad1 id=eq.0h2v.s4.95827798ade2 from=translated src=- shape=5fb92f31 vocab=627890c6
+-/
 @[simp]
 theorem forallQuantify_const_true :
     forallQuantify (k := k) (m := m) (fun _ => true) = fun _ => true := by
   funext y; simp [forallQuantify]
 
-/-- Constant false: universal quantification is always false. -/
+/-- Constant false: universal quantification is always false.
+@isnad1 id=eq.0h2v.s4.55a1c8184790 from=translated src=- shape=5fb92f31 vocab=8ead4bac
+-/
 @[simp]
 theorem forallQuantify_const_false :
     forallQuantify (k := k) (m := m) (fun _ => false) = fun _ => false := by
@@ -127,7 +149,9 @@ def restrictFirst (f : BitString ((k + 1) + m) → Bool) (b : Bool) :
 /-- Decomposition: quantifying over `k + 1` variables factors as quantifying
     over `k` variables for each value of the first variable.
 
-    `(∃ a ∈ {0,1}^{k+1}, f(a,y)) ↔ (∃ x ∈ {0,1}^k, f(0∷x,y)) ∨ (∃ x ∈ {0,1}^k, f(1∷x,y))` -/
+    `(∃ a ∈ {0,1}^{k+1}, f(a,y)) ↔ (∃ x ∈ {0,1}^k, f(0∷x,y)) ∨ (∃ x ∈ {0,1}^k, f(1∷x,y))`
+@isnad1 id=eq.0h4v.s6.53afbdff53e0 from=translated src=- shape=2af4ced0 vocab=dd77fa66
+-/
 theorem existQuantify_succ (f : BitString ((k + 1) + m) → Bool) (y : BitString m) :
     existQuantify (k := k + 1) f y =
     ((existQuantify (k := k) (restrictFirst f false) y) ||

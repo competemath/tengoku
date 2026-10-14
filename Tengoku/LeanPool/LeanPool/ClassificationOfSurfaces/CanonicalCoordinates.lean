@@ -33,7 +33,9 @@ noncomputable def orientableOccurrencePoint (p n : ℕ)
     ((orientableCellComplex p n).occurrenceSide
       ⟨PUnit.unit, i⟩) t
 
-/-- The carrier bridge sends occurrence `i` to the boundary parameter `(i+t)/|word|`. -/
+/-- The carrier bridge sends occurrence `i` to the boundary parameter `(i+t)/|word|`.
+@isnad1 id=eq.0h4v.s8.2ed0c4f6286e from=translated src=- shape=fe1bfd7f vocab=70155c51
+-/
 theorem orientableCarrier_occurrencePoint (p n : ℕ)
     (i : Fin (orientableBoundaryWord p n).length) (t : unitInterval) :
     oneFacePolygonalPreRealizationHomeomorph (orientableBoundaryWord p n)
@@ -44,6 +46,9 @@ theorem orientableCarrier_occurrencePoint (p n : ℕ)
     oneFacePolygonalPreRealizationHomeomorph_sidePoint
       (orientableBoundaryWord p n) i t
 
+/--
+@isnad1 id=eq.0h4v.s9.ded8d318237c from=translated src=- shape=32975658 vocab=697d129a
+-/
 theorem orientableCarrier_handle_a_pos {p n : ℕ} (i : Fin p) (t : unitInterval) :
     oneFacePolygonalPreRealizationHomeomorph (orientableBoundaryWord p n)
         (orientableOccurrencePoint p n (orientableHandlePosition p n i 0) t) =
@@ -56,6 +61,9 @@ theorem orientableCarrier_handle_a_pos {p n : ℕ} (i : Fin p) (t : unitInterval
   norm_num
   ring
 
+/--
+@isnad1 id=eq.0h4v.s9.95da2063729b from=translated src=- shape=73ecfaed vocab=561d0090
+-/
 theorem orientableCarrier_handle_a_neg {p n : ℕ} (i : Fin p) (t : unitInterval) :
     oneFacePolygonalPreRealizationHomeomorph (orientableBoundaryWord p n)
         (orientableOccurrencePoint p n (orientableHandlePosition p n i 2)
@@ -70,6 +78,9 @@ theorem orientableCarrier_handle_a_neg {p n : ℕ} (i : Fin p) (t : unitInterval
   norm_num
   ring
 
+/--
+@isnad1 id=eq.0h4v.s9.84bf831b4e26 from=translated src=- shape=eb80ce19 vocab=697d129a
+-/
 theorem orientableCarrier_handle_b_pos {p n : ℕ} (i : Fin p) (t : unitInterval) :
     oneFacePolygonalPreRealizationHomeomorph (orientableBoundaryWord p n)
         (orientableOccurrencePoint p n (orientableHandlePosition p n i 1) t) =
@@ -82,6 +93,9 @@ theorem orientableCarrier_handle_b_pos {p n : ℕ} (i : Fin p) (t : unitInterval
   norm_num
   ring
 
+/--
+@isnad1 id=eq.0h4v.s9.92fefaf9f075 from=translated src=- shape=73ecfaed vocab=561d0090
+-/
 theorem orientableCarrier_handle_b_neg {p n : ℕ} (i : Fin p) (t : unitInterval) :
     oneFacePolygonalPreRealizationHomeomorph (orientableBoundaryWord p n)
         (orientableOccurrencePoint p n (orientableHandlePosition p n i 3)
@@ -96,6 +110,9 @@ theorem orientableCarrier_handle_b_neg {p n : ℕ} (i : Fin p) (t : unitInterval
   norm_num
   ring
 
+/--
+@isnad1 id=eq.0h4v.s9.8de4c1d50584 from=translated src=- shape=36810520 vocab=0f12213f
+-/
 theorem orientableCarrier_boundary_c_pos {p n : ℕ} (j : Fin n) (t : unitInterval) :
     oneFacePolygonalPreRealizationHomeomorph (orientableBoundaryWord p n)
         (orientableOccurrencePoint p n (orientableBoundaryPosition p n j 0) t) =
@@ -108,6 +125,9 @@ theorem orientableCarrier_boundary_c_pos {p n : ℕ} (j : Fin n) (t : unitInterv
   norm_num
   ring
 
+/--
+@isnad1 id=eq.0h4v.s9.cb5a37e303ca from=translated src=- shape=966b710a vocab=0f12213f
+-/
 theorem orientableCarrier_boundary_h_pos {p n : ℕ} (j : Fin n) (t : unitInterval) :
     oneFacePolygonalPreRealizationHomeomorph (orientableBoundaryWord p n)
         (orientableOccurrencePoint p n (orientableBoundaryPosition p n j 1) t) =
@@ -120,6 +140,9 @@ theorem orientableCarrier_boundary_h_pos {p n : ℕ} (j : Fin n) (t : unitInterv
   norm_num
   ring
 
+/--
+@isnad1 id=eq.0h4v.s9.64f94e7c3258 from=translated src=- shape=77ed3ca3 vocab=b300cfbc
+-/
 theorem orientableCarrier_boundary_c_neg {p n : ℕ} (j : Fin n) (t : unitInterval) :
     oneFacePolygonalPreRealizationHomeomorph (orientableBoundaryWord p n)
         (orientableOccurrencePoint p n (orientableBoundaryPosition p n j 2)
@@ -134,14 +157,18 @@ theorem orientableCarrier_boundary_c_neg {p n : ℕ} (j : Fin n) (t : unitInterv
   norm_num
   ring
 
-/-- Reversing a finite index converts its real value to `n - j - 1`. -/
+/-- Reversing a finite index converts its real value to `n - j - 1`.
+@isnad1 id=eq.0h2v.s5.4109e29c12ee from=translated src=- shape=c056883c vocab=d6d87e1a
+-/
 theorem fin_rev_cast_real {n : ℕ} (j : Fin n) :
     ((Fin.rev j : Fin n) : ℝ) = n - (j : ℝ) - 1 := by
   rw [Fin.val_rev, Nat.cast_sub (Nat.succ_le_iff.mpr j.isLt)]
   push_cast
   ring
 
-/-- Trusted boundary source `Fin.rev j` is the second canonical `cⱼ` side, modulo one turn. -/
+/-- Trusted boundary source `Fin.rev j` is the second canonical `cⱼ` side, modulo one turn.
+@isnad1 id=eq.0h4v.s9.0d27c923b189 from=translated src=- shape=e3b0c902 vocab=be4547d9
+-/
 theorem orientableBoundary_trustedSource_eq_carrier_c_neg
     {p n : ℕ} (j : Fin n) (t : unitInterval) :
     ClosedUnitDisc.bdyPtOfReal
@@ -179,7 +206,9 @@ theorem orientableBoundary_trustedSource_eq_carrier_c_neg
           (unitInterval.symm t)) :=
       (orientableCarrier_boundary_c_neg j t).symm
 
-/-- Trusted boundary target `Fin.rev j` is the first canonical `cⱼ` side, modulo one turn. -/
+/-- Trusted boundary target `Fin.rev j` is the first canonical `cⱼ` side, modulo one turn.
+@isnad1 id=eq.0h4v.s9.db81e18fde75 from=translated src=- shape=5641610e vocab=615f4bf7
+-/
 theorem orientableBoundary_trustedTarget_eq_carrier_c_pos
     {p n : ℕ} (j : Fin n) (t : unitInterval) :
     ClosedUnitDisc.bdyPtOfReal
@@ -217,7 +246,9 @@ theorem orientableBoundary_trustedTarget_eq_carrier_c_pos
         (orientableOccurrencePoint p n (orientableBoundaryPosition p n j 0) t) :=
       (orientableCarrier_boundary_c_pos j t).symm
 
-/-- Every canonical `aᵢ` side pairing maps into the trusted orientable equivalence closure. -/
+/-- Every canonical `aᵢ` side pairing maps into the trusted orientable equivalence closure.
+@isnad1 id=eqvgen.0h4v.s9.0c74a459c1fa from=translated src=- shape=45c3a8dd vocab=04aed37f
+-/
 theorem orientableCarrier_handle_a_eqvGen
     {p n : ℕ} (i : Fin p) (t : unitInterval) :
     Relation.EqvGen (OrientableRel p n)
@@ -229,7 +260,9 @@ theorem orientableCarrier_handle_a_eqvGen
   rw [orientableCarrier_handle_a_pos, orientableCarrier_handle_a_neg]
   exact Relation.EqvGen.rel _ _ (OrientableRel.a (n := n) t i)
 
-/-- Every canonical `bᵢ` side pairing maps into the trusted orientable equivalence closure. -/
+/-- Every canonical `bᵢ` side pairing maps into the trusted orientable equivalence closure.
+@isnad1 id=eqvgen.0h4v.s9.42503d6042ec from=translated src=- shape=45c3a8dd vocab=04aed37f
+-/
 theorem orientableCarrier_handle_b_eqvGen
     {p n : ℕ} (i : Fin p) (t : unitInterval) :
     Relation.EqvGen (OrientableRel p n)
@@ -241,7 +274,9 @@ theorem orientableCarrier_handle_b_eqvGen
   rw [orientableCarrier_handle_b_pos, orientableCarrier_handle_b_neg]
   exact Relation.EqvGen.rel _ _ (OrientableRel.b (n := n) t i)
 
-/-- Every canonical `cⱼ` side pairing maps into the trusted orientable equivalence closure. -/
+/-- Every canonical `cⱼ` side pairing maps into the trusted orientable equivalence closure.
+@isnad1 id=eqvgen.0h4v.s9.866b350bfaf8 from=translated src=- shape=10dbb980 vocab=8010ab71
+-/
 theorem orientableCarrier_boundary_c_eqvGen
     {p n : ℕ} (j : Fin n) (t : unitInterval) :
     Relation.EqvGen (OrientableRel p n)
@@ -264,7 +299,9 @@ noncomputable def nonOrientableOccurrencePoint (p n : ℕ)
     ((nonOrientableCellComplex p n).occurrenceSide
       ⟨PUnit.unit, i⟩) t
 
-/-- The nonorientable carrier bridge sends occurrence `i` to `(i+t)/|word|`. -/
+/-- The nonorientable carrier bridge sends occurrence `i` to `(i+t)/|word|`.
+@isnad1 id=eq.0h4v.s8.d331f12b5c78 from=translated src=- shape=fe1bfd7f vocab=91ce1513
+-/
 theorem nonOrientableCarrier_occurrencePoint (p n : ℕ)
     (i : Fin (nonOrientableBoundaryWord p n).length) (t : unitInterval) :
     oneFacePolygonalPreRealizationHomeomorph (nonOrientableBoundaryWord p n)
@@ -275,6 +312,9 @@ theorem nonOrientableCarrier_occurrencePoint (p n : ℕ)
     oneFacePolygonalPreRealizationHomeomorph_sidePoint
       (nonOrientableBoundaryWord p n) i t
 
+/--
+@isnad1 id=eq.0h4v.s9.1cb8cc1d3fce from=translated src=- shape=32975658 vocab=183fd7d5
+-/
 theorem nonOrientableCarrier_crosscap_a_first
     {p n : ℕ} (i : Fin p) (t : unitInterval) :
     oneFacePolygonalPreRealizationHomeomorph (nonOrientableBoundaryWord p n)
@@ -289,6 +329,9 @@ theorem nonOrientableCarrier_crosscap_a_first
   norm_num
   ring
 
+/--
+@isnad1 id=eq.0h4v.s9.d55184925b4b from=translated src=- shape=eb80ce19 vocab=183fd7d5
+-/
 theorem nonOrientableCarrier_crosscap_a_second
     {p n : ℕ} (i : Fin p) (t : unitInterval) :
     oneFacePolygonalPreRealizationHomeomorph (nonOrientableBoundaryWord p n)
@@ -303,6 +346,9 @@ theorem nonOrientableCarrier_crosscap_a_second
   norm_num
   ring
 
+/--
+@isnad1 id=eq.0h4v.s9.4e534073ff02 from=translated src=- shape=36810520 vocab=1885e450
+-/
 theorem nonOrientableCarrier_boundary_c_pos
     {p n : ℕ} (j : Fin n) (t : unitInterval) :
     oneFacePolygonalPreRealizationHomeomorph (nonOrientableBoundaryWord p n)
@@ -317,6 +363,9 @@ theorem nonOrientableCarrier_boundary_c_pos
   norm_num
   ring
 
+/--
+@isnad1 id=eq.0h4v.s9.cbca48aec0cb from=translated src=- shape=966b710a vocab=1885e450
+-/
 theorem nonOrientableCarrier_boundary_h_pos
     {p n : ℕ} (j : Fin n) (t : unitInterval) :
     oneFacePolygonalPreRealizationHomeomorph (nonOrientableBoundaryWord p n)
@@ -331,6 +380,9 @@ theorem nonOrientableCarrier_boundary_h_pos
   norm_num
   ring
 
+/--
+@isnad1 id=eq.0h4v.s9.d12e268db763 from=translated src=- shape=77ed3ca3 vocab=fde23e87
+-/
 theorem nonOrientableCarrier_boundary_c_neg
     {p n : ℕ} (j : Fin n) (t : unitInterval) :
     oneFacePolygonalPreRealizationHomeomorph (nonOrientableBoundaryWord p n)
@@ -347,7 +399,9 @@ theorem nonOrientableCarrier_boundary_c_neg
   norm_num
   ring
 
-/-- Trusted boundary source `Fin.rev j` is the second nonorientable `cⱼ` side. -/
+/-- Trusted boundary source `Fin.rev j` is the second nonorientable `cⱼ` side.
+@isnad1 id=eq.0h4v.s9.d5d954e4f8c4 from=translated src=- shape=e3b0c902 vocab=510b9874
+-/
 theorem nonOrientableBoundary_trustedSource_eq_carrier_c_neg
     {p n : ℕ} (j : Fin n) (t : unitInterval) :
     ClosedUnitDisc.bdyPtOfReal
@@ -386,7 +440,9 @@ theorem nonOrientableBoundary_trustedSource_eq_carrier_c_neg
           (nonOrientableBoundaryPosition p n j 2) (unitInterval.symm t)) :=
       (nonOrientableCarrier_boundary_c_neg j t).symm
 
-/-- Trusted boundary target `Fin.rev j` is the first nonorientable `cⱼ` side. -/
+/-- Trusted boundary target `Fin.rev j` is the first nonorientable `cⱼ` side.
+@isnad1 id=eq.0h4v.s9.ea88b0c62f12 from=translated src=- shape=5641610e vocab=f45e97e1
+-/
 theorem nonOrientableBoundary_trustedTarget_eq_carrier_c_pos
     {p n : ℕ} (j : Fin n) (t : unitInterval) :
     ClosedUnitDisc.bdyPtOfReal
@@ -427,7 +483,9 @@ theorem nonOrientableBoundary_trustedTarget_eq_carrier_c_pos
           (nonOrientableBoundaryPosition p n j 0) t) :=
       (nonOrientableCarrier_boundary_c_pos j t).symm
 
-/-- Every canonical crosscap pairing maps into the trusted nonorientable closure. -/
+/-- Every canonical crosscap pairing maps into the trusted nonorientable closure.
+@isnad1 id=eqvgen.0h4v.s9.cdba587ae350 from=translated src=- shape=eb90bee2 vocab=e4b2fc94
+-/
 theorem nonOrientableCarrier_crosscap_a_eqvGen
     {p n : ℕ} (i : Fin p) (t : unitInterval) :
     Relation.EqvGen (NonOrientableRel p n)
@@ -441,7 +499,9 @@ theorem nonOrientableCarrier_crosscap_a_eqvGen
     nonOrientableCarrier_crosscap_a_second]
   exact Relation.EqvGen.rel _ _ (NonOrientableRel.a (n := n) t i)
 
-/-- Every canonical boundary-seam pairing maps into the trusted nonorientable closure. -/
+/-- Every canonical boundary-seam pairing maps into the trusted nonorientable closure.
+@isnad1 id=eqvgen.0h4v.s9.0086b5ceed5b from=translated src=- shape=10dbb980 vocab=b2e2e32a
+-/
 theorem nonOrientableCarrier_boundary_c_eqvGen
     {p n : ℕ} (j : Fin n) (t : unitInterval) :
     Relation.EqvGen (NonOrientableRel p n)

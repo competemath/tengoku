@@ -69,6 +69,9 @@ i.e. `scottTopologicalSpace ≤ τ` in mathlib's order on topologies. -/
 def CoarserThanScottTopology (τ : TopologicalSpace D) : Prop :=
   scottTopologicalSpace ≤ τ
 
+/--
+@isnad1 id=scottope.2h3v.s4.8d991ccc3daa from=translated src=- shape=1fd1fa65 vocab=9f8aafc4
+-/
 theorem scottOpen_of_coarserThanScott {τ : TopologicalSpace D} (hτ : CoarserThanScottTopology τ)
     {U : Set D} (hU : @IsOpen D τ U) : ScottOpen U :=
   isOpen_iff_scottOpen.mp (hτ U hU)

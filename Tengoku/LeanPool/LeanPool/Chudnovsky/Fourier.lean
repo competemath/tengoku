@@ -81,7 +81,9 @@ private lemma riemannZeta_six : riemannZeta 6 = (π : ℂ) ^ 6 / 945 := by
 private lemma pi_C_ne_zero : (π : ℂ) ≠ 0 := by exact_mod_cast Real.pi_ne_zero
 
 /-- `η₁(L_τ) = π²·E₂(τ)/3` (paper Thm. `fouriertheorem`). Together with
-`eta₁_Lτ_eq_G2` this is Mathlib's `G₂ = 2ζ(2)·E₂` with `ζ(2) = π²/6`. -/
+`eta₁_Lτ_eq_G2` this is Mathlib's `G₂ = 2ζ(2)·E₂` with `ζ(2) = π²/6`.
+@isnad1 id=eq.0h1v.s5.2051bb4fb5b2 from=translated src=- shape=b20c630b vocab=e8620b08
+-/
 theorem eta₁_Lτ (τ : ℍ) : (Lτ τ).eta₁ = (π : ℂ) ^ 2 / 3 * E2 τ := by
   have hz : (2 * riemannZeta 2 : ℂ) ≠ 0 := by
     rw [riemannZeta_two]
@@ -91,26 +93,34 @@ theorem eta₁_Lτ (τ : ℍ) : (Lτ τ).eta₁ = (π : ℂ) ^ 2 / 3 * E2 τ := 
     rw [hdef, smul_eq_mul, ← mul_assoc, mul_one_div, div_self hz, one_mul]
   rw [eta₁_Lτ_eq_G2, hE2, riemannZeta_two]; ring
 
-/-- `g₂(L_τ) = (4/3)·π⁴·E₄(τ)` (paper Thm. `fouriertheorem`). -/
+/-- `g₂(L_τ) = (4/3)·π⁴·E₄(τ)` (paper Thm. `fouriertheorem`).
+@isnad1 id=eq.0h1v.s8.4ec9dee01a0e from=translated src=- shape=f06747df vocab=aed1998c
+-/
 theorem g₂_Lτ (τ : ℍ) : (Lτ τ).g₂ = 4 / 3 * (π : ℂ) ^ 4 * E₄ τ := by
   rw [PeriodPair.g₂, G_Lτ_eq τ (by norm_num), eisensteinSeries_eq_two_E τ (by norm_num)]
   rw [show ((4 : ℕ) : ℂ) = 4 by norm_num, riemannZeta_four]
   ring
 
-/-- `g₃(L_τ) = (8/27)·π⁶·E₆(τ)` (paper Thm. `fouriertheorem`). -/
+/-- `g₃(L_τ) = (8/27)·π⁶·E₆(τ)` (paper Thm. `fouriertheorem`).
+@isnad1 id=eq.0h1v.s8.80b331450d21 from=translated src=- shape=f06747df vocab=e121ad46
+-/
 theorem g₃_Lτ (τ : ℍ) : (Lτ τ).g₃ = 8 / 27 * (π : ℂ) ^ 6 * E₆ τ := by
   rw [PeriodPair.g₃, G_Lτ_eq τ (by norm_num), eisensteinSeries_eq_two_E τ (by norm_num)]
   rw [show ((6 : ℕ) : ℂ) = 6 by norm_num, riemannZeta_six]
   ring
 
-/-- `Δ(L_τ) = (2π)¹²/1728·(E₄(τ)³ - E₆(τ)²)` (paper Thm. `fouriertheorem`). -/
+/-- `Δ(L_τ) = (2π)¹²/1728·(E₄(τ)³ - E₆(τ)²)` (paper Thm. `fouriertheorem`).
+@isnad1 id=eq.0h1v.s9.7b8eb60886bd from=translated src=- shape=3f6ed5ed vocab=3bf6acac
+-/
 theorem discr_Lτ (τ : ℍ) :
     (Lτ τ).discr = (2 * (π : ℂ)) ^ 12 / 1728 * (E₄ τ ^ 3 - E₆ τ ^ 2) := by
   rw [PeriodPair.discr, g₂_Lτ, g₃_Lτ]; ring
 
 /-- Klein's absolute invariant of the lattice `L_τ` agrees with the modular `J`-function
 `J = E₄³/(E₄³ - E₆²)` of `Basic.lean`, i.e. `J(τ) = g₂³/(g₂³ - 27g₃²)` evaluated at `L_τ`
-(paper Thm. `fouriertheorem` and Def. `defijdelta`). -/
+(paper Thm. `fouriertheorem` and Def. `defijdelta`).
+@isnad1 id=eq.0h1v.s3.15477a03c019 from=translated src=- shape=69b989be vocab=b836b0fc
+-/
 theorem J_eq_J_Lτ (τ : ℍ) : J τ = (Lτ τ).J := by
   have hne := E₄_cube_sub_E₆_sq_ne_zero τ
   rw [PeriodPair.J, g₂_Lτ, discr_Lτ, J]
@@ -663,7 +673,9 @@ private lemma hfun_add_lattice (τ : ℍ) (l : ℂ) (hl : l ∈ (Lτ τ).lattice
 
 `σ(z; L_τ) = (2πi)⁻¹·e^{η₁z²/2}·(e^{πiz} - e^{-πiz})·∏_{n≥1} (1-qⁿq_z)(1-qⁿ/q_z)/(1-qⁿ)²`.
 
-The half-integral powers `q_z^{±1/2}` of the paper are written branch-free as `e^{±πiz}`. -/
+The half-integral powers `q_z^{±1/2}` of the paper are written branch-free as `e^{±πiz}`.
+@isnad1 id=eq.0h2v.s8.4ca5ebbee117 from=translated src=- shape=5159845b vocab=9d6a406f
+-/
 theorem weierstrassSigma_Lτ (τ : ℍ) (z : ℂ) :
     (Lτ τ).weierstrassSigma z =
       (2 * (π : ℂ) * I)⁻¹ * exp ((Lτ τ).eta₁ * z ^ 2 / 2) *

@@ -38,10 +38,16 @@ def mk : ComputableℝSeq → Computableℝ :=
 /-- Definition of `val`. -/
 def val : Computableℝ → ℝ := Quotient.lift ComputableℝSeq.val (fun _ _ h ↦ h)
 
+/--
+@isnad1 id=eq.0h1v.s3.1803d2d8955e from=translated src=- shape=7718e021 vocab=40eb93c8
+-/
 @[simp]
 theorem val_mk_eq_val : (mk x).val = x.val :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.5c60d8b2df08 from=translated src=- shape=7109d419 vocab=b2dbc22a
+-/
 @[simp]
 theorem val_quot_eq_val (x : ComputableℝSeq) : val (⟦x⟧ : Computableℝ) = x.val :=
   rfl
@@ -70,6 +76,9 @@ def mapℝ (f : ComputableℝSeq → ComputableℝSeq) {f₂ : ℝ → ℝ} (h :
     Computableℝ → Computableℝ :=
   mapℝ' f ⟨f₂, h⟩
 
+/--
+@isnad1 id=eq.2h2v.s5.94b5d28c47fd from=translated src=- shape=a5fe5770 vocab=eac2d682
+-/
 theorem mapℝ'_eq_mapℝ : mapℝ' f h = mapℝ f h₂ := by
   rfl
 
@@ -85,10 +94,16 @@ def map₂ℝ (f : ComputableℝSeq → ComputableℝSeq → ComputableℝSeq) {
     Computableℝ → Computableℝ → Computableℝ :=
   map₂ℝ' f ⟨f₂, h⟩
 
+/--
+@isnad1 id=eq.2h2v.s6.56c4fc9c5364 from=translated src=- shape=42331c01 vocab=5a98e563
+-/
 theorem map₂ℝ'_eq_map₂ℝ : map₂ℝ' f h = map₂ℝ f h₂ := by
   ext
   rw [map₂ℝ]
 
+/--
+@isnad1 id=eq.1h3v.s5.2ea9bbe60c78 from=translated src=- shape=42c6e852 vocab=9d218805
+-/
 @[simp]
 theorem val_mapℝ_eq_val : (@mapℝ f f₂ h x).val = f₂ x.val := by
   let ⟨x',hx'⟩ := Quotient.exists_rep x
@@ -96,6 +111,9 @@ theorem val_mapℝ_eq_val : (@mapℝ f f₂ h x).val = f₂ x.val := by
   rw [mapℝ, mapℝ', Quotient.map_mk]
   apply h
 
+/--
+@isnad1 id=eq.1h4v.s5.9cf113b1bf7a from=translated src=- shape=9f35fded vocab=f60acb1f
+-/
 @[simp]
 theorem val_map₂ℝ_eq_val : (@map₂ℝ f f₂ h x y).val = f₂ x.val y.val := by
   let ⟨x',hx'⟩ := Quotient.exists_rep x
@@ -125,39 +143,69 @@ instance instComputableOne : One Computableℝ :=
 
 variable (x y : Computableℝ)
 
+/--
+@isnad1 id=eq.0h2v.s4.7a1b4d3fb625 from=translated src=- shape=0438c7a3 vocab=0e6c3b8b
+-/
 @[simp]
 theorem val_add : (x + y).val = x.val + y.val :=
   val_map₂ℝ_eq_val
 
+/--
+@isnad1 id=eq.0h2v.s4.cd56b6b20ab7 from=translated src=- shape=0438c7a3 vocab=8e870d4e
+-/
 @[simp]
 theorem val_mul : (x * y).val = x.val * y.val :=
   val_map₂ℝ_eq_val
 
+/--
+@isnad1 id=eq.0h1v.s3.1b32fe9f7370 from=translated src=- shape=5a02da31 vocab=d6a97fde
+-/
 @[simp]
 theorem val_neg : (-x).val = -(x.val) :=
   val_mapℝ_eq_val
 
+/--
+@isnad1 id=eq.0h2v.s4.7cf8a4e4084d from=translated src=- shape=0438c7a3 vocab=f2e93523
+-/
 @[simp]
 theorem val_sub : (x - y).val = x.val - y.val :=
   val_map₂ℝ_eq_val
 
+/--
+@isnad1 id=eq.0h0v.s3.27fb09c1b193 from=translated src=- shape=1ac31801 vocab=4f5e6049
+-/
 @[simp]
 theorem val_zero : (0 : Computableℝ).val = 0 :=
   ComputableℝSeq.val_zero
 
+/--
+@isnad1 id=eq.0h0v.s3.835bcbeb9f12 from=translated src=- shape=1ac31801 vocab=4f5e6049
+-/
 @[simp]
 theorem val_one : (1 : Computableℝ).val = 1 :=
   ComputableℝSeq.val_one
 
+/--
+@isnad1 id=eq.0h2v.s4.2b6689ad681c from=translated src=- shape=967b4483 vocab=df610d11
+-/
 theorem add_mk (x y : ComputableℝSeq) : mk x + mk y = mk (x + y) :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.d67deb33fbd1 from=translated src=- shape=967b4483 vocab=c7c047d0
+-/
 theorem mul_mk (x y : ComputableℝSeq) : mk x * mk y = mk (x * y) :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.8601b7ef32d6 from=translated src=- shape=967b4483 vocab=352ce6fb
+-/
 theorem sub_mk (x y : ComputableℝSeq) : mk x - mk y = mk (x - y) :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.1617552f4280 from=translated src=- shape=114bec3c vocab=744e11e7
+-/
 theorem neg_mk (x : ComputableℝSeq) : -mk x = mk (-x) :=
   rfl
 
@@ -185,6 +233,9 @@ instance instCommRing : CommRing Computableℝ := by
       simp
       try ring_nf!
 
+/--
+@isnad1 id=eq.0h2v.s5.5cba2224d598 from=translated src=- shape=d14eb2af vocab=fb6ce19a
+-/
 @[simp]
 theorem val_natpow (x : Computableℝ) (n : ℕ) : (x ^ n).val = x.val ^ n := by
   induction n
@@ -217,6 +268,9 @@ noncomputable def safeInv' : { x : Computableℝ // x ≠ 0 } → { x : Computab
 /-- Inverse of a nonzero Computableℝ, safe (terminating) as long as x is nonzero. -/
 noncomputable irreducible_def safeInv (hnz : x ≠ 0) : Computableℝ := safeInv' ⟨x, hnz⟩
 
+/--
+@isnad1 id=eq.1h1v.s4.5bb7ee47058a from=translated src=- shape=a780dde5 vocab=823fcabf
+-/
 @[simp]
 theorem safeInv_val (hnz : x ≠ 0) : (x.safeInv hnz).val = x.val⁻¹ := by
   let ⟨x',hx'⟩ := Quotient.exists_rep x
@@ -239,6 +293,9 @@ section field
 noncomputable instance instComputableInv : Inv Computableℝ :=
   ⟨mapℝ' (·⁻¹) ⟨(·⁻¹), ComputableℝSeq.val_inv⟩⟩
 
+/--
+@isnad1 id=eq.0h1v.s3.76222d4f52a7 from=translated src=- shape=5a02da31 vocab=e31b0705
+-/
 @[simp]
 theorem inv_val : (x⁻¹).val = (x.val)⁻¹ := by
   change (mapℝ' _ _ _).val = (x.val)⁻¹
@@ -259,6 +316,9 @@ noncomputable instance instField : Field Computableℝ := { instCommRing with
   inv_zero := by rw [← eq_iff_eq_val]; simp
     }
 
+/--
+@isnad1 id=eq.0h2v.s5.7d6ed9c7146f from=translated src=- shape=0438c7a3 vocab=e1ab3852
+-/
 @[simp]
 theorem div_val : (x / y).val = x.val / y.val := by
   change (x * y⁻¹).val = _
@@ -291,6 +351,9 @@ def le : Prop := by
 instance instLE : LE Computableℝ :=
   ⟨le⟩
 
+/--
+@isnad1 id=iff.0h2v.s4.5d224c500d85 from=translated src=- shape=e5555f7a vocab=716ce199
+-/
 @[simp]
 theorem lt_iff_lt : x.val < y.val ↔ x < y := by
   change x.val < y.val ↔ lt x y
@@ -301,6 +364,9 @@ theorem lt_iff_lt : x.val < y.val ↔ x < y := by
   rw [lt, ← mk, val_mk_eq_val, val_mk_eq_val, sub_mk, mk, Quotient.lift_mk]
   rw [ComputableℝSeq.sign_pos_iff, ComputableℝSeq.val_sub, sub_pos]
 
+/--
+@isnad1 id=iff.0h2v.s4.c229c8462851 from=translated src=- shape=e5555f7a vocab=1e031209
+-/
 @[simp]
 theorem le_iff_le : x.val ≤ y.val ↔ x ≤ y := by
   change x.val ≤ y.val ↔ le x y

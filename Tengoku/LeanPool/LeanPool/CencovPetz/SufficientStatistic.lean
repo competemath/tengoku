@@ -69,6 +69,9 @@ noncomputable def pushforward (g : α → β) (hg : Function.Surjective g) (p : 
       simpa using (Finset.sum_fiberwise (s := (Finset.univ : Finset α)) (g := g) (f := p.p))
     simpa [hfib] using p.sum_eq_one
 
+/--
+@isnad1 id=eq.1h5v.s6.07014ae2baf5 from=translated src=- shape=65ae60d4 vocab=f3da026c
+-/
 @[simp] lemma pushforward_apply (g : α → β) (hg : Function.Surjective g) (p : Simplex α) (b : β) :
     (pushforward g hg p).p b = ∑ a with g a = b, p.p a :=
   rfl
@@ -91,12 +94,17 @@ noncomputable def tangentPushforward (g : α → β) (u : tangentSpace (α := α
   refine (tangentSpace.mem_iff (α := β) (u := fun b => ∑ a with g a = b, ((u : α → ℝ) a))).2 ?_
   simp [hfib, hu_sum]
 
+/--
+@isnad1 id=eq.0h5v.s8.8bf6138d34ac from=translated src=- shape=458cabc3 vocab=85eef6f1
+-/
 @[simp] lemma tangentPushforward_apply (g : α → β) (u : tangentSpace (α := α)) (b : β) :
     (tangentPushforward (α := α) (β := β) g u : β → ℝ) b = ∑ a with g a = b, ((u : α → ℝ) a) :=
   rfl
 
 /-- Monotonicity of the Fisher quadratic form under a surjective map
-(finite sufficient statistic). -/
+(finite sufficient statistic).
+@isnad1 id=le.1h5v.s11.49494d53716d from=translated src=- shape=d8c2a42c vocab=9146691f
+-/
 theorem fisherBilin_pushforward_le (g : α → β) (hg : Function.Surjective g)
     (p : Simplex α) (u : tangentSpace (α := α)) :
     fisherBilin (Simplex.pushforward (α := α) (β := β) g hg p)

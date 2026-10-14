@@ -32,7 +32,9 @@ namespace ClassificationOfSurfaces
 open InvarianceOfDomain Set
 
 /-- C0 invariance of the boundary stratum for surface charts, derived from planar invariance of
-domain. -/
+domain.
+@isnad1 id=chartbou.0h1v.s4.d0ff83ceb70d from=translated src=- shape=5c191da2 vocab=48bb17a9
+-/
 instance chartBoundaryInvariant_of_invarianceOfDomain
     (S : Type*) [TopologicalSpace S] [ChartedSpace (EuclideanHalfSpace 2) S] :
     ChartBoundaryInvariant S where
@@ -61,7 +63,9 @@ coordinate. -/
 def foldPlaneToHalfSpace (p : Moise.Plane) : EuclideanHalfSpace 2 :=
   ⟨WithLp.toLp 2 (fun i => if i = 0 then |p i| else p i), by simp⟩
 
-/-- Reflection across the boundary line is continuous. -/
+/-- Reflection across the boundary line is continuous.
+@isnad1 id=continuo.0h0v.s6.8e7bf067bc06 from=translated src=- shape=e3d48bcb vocab=f70428d8
+-/
 theorem continuous_reflectAcrossHalfPlaneBoundary :
     Continuous reflectAcrossHalfPlaneBoundary := by
   unfold reflectAcrossHalfPlaneBoundary
@@ -72,7 +76,9 @@ theorem continuous_reflectAcrossHalfPlaneBoundary :
     simp only [Fin.zero_eta, Fin.isValue, ↓reduceIte, Fin.mk_one, one_ne_zero] <;>
     fun_prop
 
-/-- Folding the plane onto the Euclidean half-plane is continuous. -/
+/-- Folding the plane onto the Euclidean half-plane is continuous.
+@isnad1 id=continuo.0h0v.s5.142a9efb87b7 from=translated src=- shape=d3a93718 vocab=1a9bf82e
+-/
 theorem continuous_foldPlaneToHalfSpace :
     Continuous foldPlaneToHalfSpace := by
   unfold foldPlaneToHalfSpace
@@ -84,7 +90,9 @@ theorem continuous_foldPlaneToHalfSpace :
     simp only [Fin.zero_eta, Fin.isValue, ↓reduceIte, Fin.mk_one, one_ne_zero] <;>
     fun_prop
 
-/-- Reflection across the boundary line is injective. -/
+/-- Reflection across the boundary line is injective.
+@isnad1 id=injectiv.0h0v.s2.be3d7ecddd26 from=translated src=- shape=e3d48bcb vocab=f134d1fc
+-/
 theorem injective_reflectAcrossHalfPlaneBoundary :
     Function.Injective reflectAcrossHalfPlaneBoundary := by
   intro p q hpq
@@ -94,21 +102,27 @@ theorem injective_reflectAcrossHalfPlaneBoundary :
   have hi := congrArg (fun z : Moise.Plane => z i) h
   fin_cases i <;> simpa [reflectAcrossHalfPlaneBoundary] using hi
 
-/-- Reflection across the boundary line is an involution. -/
+/-- Reflection across the boundary line is an involution.
+@isnad1 id=eq.0h1v.s3.9ede54f91d6b from=translated src=- shape=47dcad53 vocab=e9fbe60b
+-/
 @[simp] theorem reflectAcrossHalfPlaneBoundary_involutive (p : Moise.Plane) :
     reflectAcrossHalfPlaneBoundary (reflectAcrossHalfPlaneBoundary p) = p := by
   apply PiLp.ext
   intro i
   fin_cases i <;> simp [reflectAcrossHalfPlaneBoundary]
 
-/-- Folding fixes points on the nonnegative side of the boundary line. -/
+/-- Folding fixes points on the nonnegative side of the boundary line.
+@isnad1 id=eq.1h1v.s8.6a9fb5077105 from=translated src=- shape=e7e99965 vocab=f1792712
+-/
 theorem foldPlaneToHalfSpace_val_of_nonneg (p : Moise.Plane) (hp : 0 ≤ p 0) :
     (foldPlaneToHalfSpace p).1 = p := by
   apply PiLp.ext
   intro i
   fin_cases i <;> simp [foldPlaneToHalfSpace, abs_of_nonneg hp]
 
-/-- Folding a point on the negative side agrees with reflection. -/
+/-- Folding a point on the negative side agrees with reflection.
+@isnad1 id=eq.1h1v.s8.8e4b173ae21d from=translated src=- shape=0caee335 vocab=44348146
+-/
 theorem foldPlaneToHalfSpace_val_of_neg (p : Moise.Plane) (hp : p 0 < 0) :
     (foldPlaneToHalfSpace p).1 = reflectAcrossHalfPlaneBoundary p := by
   apply PiLp.ext
@@ -116,7 +130,9 @@ theorem foldPlaneToHalfSpace_val_of_neg (p : Moise.Plane) (hp : p 0 < 0) :
   fin_cases i <;>
     simp [foldPlaneToHalfSpace, reflectAcrossHalfPlaneBoundary, abs_of_neg hp]
 
-/-- Reflection across the boundary line preserves the Euclidean norm. -/
+/-- Reflection across the boundary line preserves the Euclidean norm.
+@isnad1 id=eq.0h1v.s6.ab8267730d83 from=translated src=- shape=d6ba374a vocab=c263ed81
+-/
 theorem norm_reflectAcrossHalfPlaneBoundary (p : Moise.Plane) :
     ‖reflectAcrossHalfPlaneBoundary p‖ = ‖p‖ := by
   rw [EuclideanSpace.norm_eq, EuclideanSpace.norm_eq]
@@ -125,7 +141,9 @@ theorem norm_reflectAcrossHalfPlaneBoundary (p : Moise.Plane) :
   intro i _
   fin_cases i <;> simp [reflectAcrossHalfPlaneBoundary]
 
-/-- Folding onto the half-plane preserves the Euclidean norm. -/
+/-- Folding onto the half-plane preserves the Euclidean norm.
+@isnad1 id=eq.0h1v.s7.a2605ef90e91 from=translated src=- shape=7b64869d vocab=975aa4e7
+-/
 theorem norm_foldPlaneToHalfSpace (p : Moise.Plane) :
     ‖(foldPlaneToHalfSpace p).1‖ = ‖p‖ := by
   rw [EuclideanSpace.norm_eq, EuclideanSpace.norm_eq]
@@ -140,7 +158,9 @@ An embedding of an open subset of the half-plane has open image provided it carr
 boundary line exactly to the boundary line.  The boundary hypothesis is necessary: without it,
 an embedding may bend a boundary arc into the interior.  The proof doubles the source and map
 across the boundary line, applies planar invariance of domain, and then restricts the resulting
-open image back to the half-plane. -/
+open image back to the half-plane.
+@isnad1 id=isopen.3h2v.s9.aed1f2de141d from=translated src=- shape=568ddee3 vocab=af643988
+-/
 theorem isOpen_range_halfSpace_of_isOpen_of_isEmbedding_of_boundary
     {U : Set (EuclideanHalfSpace 2)} (hU : IsOpen U)
     (f : U → EuclideanHalfSpace 2)
@@ -295,7 +315,9 @@ an interior sheet of its new half-plane image.
 
 Unlike pointwise physical coverage, this statement compares corresponding source points.  It
 is the local relative-invariance-of-domain input used when two polyhedral pieces are identified
-along a boundary-preserving seam. -/
+along a boundary-preserving seam.
+@isnad1 id=mem.4h4v.s9.b1e477a830ed from=translated src=- shape=b814b500 vocab=469f6c38
+-/
 theorem mem_interior_range_halfSpace_of_isEmbedding_of_boundary
     {X : Type*} [TopologicalSpace X]
     {f g : X → EuclideanHalfSpace 2}

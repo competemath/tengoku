@@ -45,6 +45,9 @@ def Hom (V : Type v) [Preorder V] (I O : CombinationalCircuitCategory V G) :=
 @[inline, simp]
 def idVal : Wires V n → Wires V n := fun x => x
 
+/--
+@isnad1 id=monotone.0h2v.s4.18830464422e from=translated src=- shape=3b1fda34 vocab=344ed39b
+-/
 @[simp]
 lemma id_monotone [Preorder V] : Monotone (idVal (V:=V) (n:=n)) := monotone_id
 
@@ -63,6 +66,9 @@ instance [Preorder V] : Category.{v} (CombinationalCircuitCategory V G) where
   comp_id _ := by rfl
   assoc _ _ _ := by rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.8bb86b1e5537 from=translated src=- shape=a627156e vocab=b88cb3e4
+-/
 @[simp]
 lemma id_coe_apply
     [Preorder V]
@@ -73,6 +79,9 @@ lemma id_coe_apply
 @[inline, simp]
 def fork (w : Wires V 1) : Wires V 2 := #v[w.get 0, w.get 0]
 
+/--
+@isnad1 id=monotone.0h1v.s5.8b956141c7a1 from=translated src=- shape=7914ba20 vocab=e8bbdfbd
+-/
 @[simp]
 lemma fork_monotone [Preorder V] : Monotone (fork (V:=V)) := fun _ _ h i => by
   obtain ⟨i, hi⟩ := i; have : i = 0 ∨ i = 1 := by omega
@@ -82,6 +91,9 @@ lemma fork_monotone [Preorder V] : Monotone (fork (V:=V)) := fun _ _ h i => by
 @[inline, simp]
 def join [SemilatticeSup V] (w : Wires V 2) : Wires V 1 := #v[w.get 0 ⊔ w.get 1]
 
+/--
+@isnad1 id=monotone.0h1v.s5.d1fe88ed1bf7 from=translated src=- shape=7914ba20 vocab=34bf2802
+-/
 @[simp]
 lemma join_monotone [SemilatticeSup V] : Monotone (join (V:=V)) := fun _ _ h i => by
   obtain ⟨i, hi⟩ := i; have : i = 0 := by omega
@@ -104,11 +116,17 @@ instance
   fork := ⟨fork, fork_monotone⟩
   join := ⟨join, join_monotone⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.d5f5407b9467 from=translated src=- shape=7268f4cd vocab=51bd3412
+-/
 lemma tensorHom_val_add
     {X₁ X₂ : CombinationalCircuitCategory V G} :
     min X₁.obj (X₁.obj + X₂.obj) = X₁.obj :=
   by simp
 
+/--
+@isnad1 id=eq.0h4v.s5.b61663fcec05 from=translated src=- shape=53446b24 vocab=9663d1ea
+-/
 lemma tensorHom_val_sub
     {X₁ X₂ : CombinationalCircuitCategory V G} :
     X₁.obj + X₂.obj - X₁.obj = X₂.obj :=
@@ -127,6 +145,9 @@ abbrev tensorHomVal
   (f.val ((v.take X₁.obj).cast tensorHom_val_add)).append
     (g.val ((v.drop X₁.obj).cast tensorHom_val_sub))
 
+/--
+@isnad1 id=eq.0h7v.s7.d06ee80befbf from=translated src=- shape=2f0f649e vocab=276655f6
+-/
 lemma tensorHom_eq
     {X₁ Y₁ X₂ : CombinationalCircuitCategory V G}
     (a : Wires V (X₁.obj + X₂.obj))
@@ -135,6 +156,9 @@ lemma tensorHom_eq
   (f.val (Vector.ofFn (fun i => a.get (i.castAdd _)))).size_toArray
 
 omit [SemilatticeSup V] in
+/--
+@isnad1 id=eq.0h5v.s7.f9b4b692b1ef from=translated src=- shape=a73657d1 vocab=c36b5921
+-/
 lemma tensorHom_take
     {X₁ X₂ : CombinationalCircuitCategory V G}
     (a : Wires V (X₁.obj + X₂.obj)) :
@@ -146,6 +170,9 @@ lemma tensorHom_take
   rfl
 
 omit [SemilatticeSup V] in
+/--
+@isnad1 id=eq.0h5v.s7.43e0a9b02f52 from=translated src=- shape=36f406e2 vocab=4bc0c929
+-/
 lemma tensorHom_drop
     {X₁ X₂ : CombinationalCircuitCategory V G}
     (a : Wires V (X₁.obj + X₂.obj)) :
@@ -156,6 +183,9 @@ lemma tensorHom_drop
   simp [Vector.get]
   rfl
 
+/--
+@isnad1 id=eq.0h10v.s7.a78eb452bddf from=translated src=- shape=ebd01a59 vocab=e720b83d
+-/
 lemma tensorHom_eq_left
     {X₁ Y₁ X₂ Y₂ : CombinationalCircuitCategory V G}
     (a : Wires V (X₁.obj + X₂.obj))
@@ -166,6 +196,9 @@ lemma tensorHom_eq_left
     Vector.get (f.val (Vector.ofFn fun i => Vector.get a (Fin.castAdd X₂.obj i))) j := by
   simp only [tensorHomVal, Wires.get_append_left, tensorHom_take]
 
+/--
+@isnad1 id=eq.0h10v.s7.794f940e3564 from=translated src=- shape=58881713 vocab=476ee876
+-/
 lemma tensorHom_eq_right
     {X₁ Y₁ X₂ Y₂ : CombinationalCircuitCategory V G}
     (a : Wires V (X₁.obj + X₂.obj))
@@ -176,6 +209,9 @@ lemma tensorHom_eq_right
     Vector.get (g.val (Vector.ofFn fun i => Vector.get a (Fin.natAdd X₁.obj i))) j := by
   simp only [tensorHomVal, Wires.get_append_right, tensorHom_drop]
 
+/--
+@isnad1 id=eq.0h10v.s9.3fc2fbd0ecfa from=translated src=- shape=10802e15 vocab=2370a65c
+-/
 lemma tensorHom_get
     {X₁ Y₁ X₂ Y₂ : CombinationalCircuitCategory V G}
     (f : X₁ ⟶ Y₁) (g : X₂ ⟶ Y₂) (w : Wires V (X₁.obj + X₂.obj))
@@ -191,6 +227,9 @@ lemma tensorHom_get
                dite_eq_right (show ¬(Y₁.obj + j.val < Y₁.obj) from by omega)]
     congr 1; exact Fin.ext (by simp)
 
+/--
+@isnad1 id=monotone.0h8v.s7.961552f718d4 from=translated src=- shape=1daec792 vocab=8c069669
+-/
 @[simp]
 lemma tensorHom_monotone
     {X₁ Y₁ X₂ Y₂ : CombinationalCircuitCategory V G}
@@ -227,6 +266,9 @@ abbrev tensorHom
 @[simp]
 abbrev isoHomVal (h : n = m) : Wires V n → Wires V m := (·.cast h)
 
+/--
+@isnad1 id=monotone.1h3v.s5.a2143396beed from=translated src=- shape=30dc62be vocab=0bab507d
+-/
 @[simp]
 lemma iso_hom_monotone (h : n = m) : Monotone (isoHomVal (V:=V) h) :=
   fun _ _ hab i => hab (i.cast h.symm)
@@ -240,6 +282,9 @@ abbrev isoHom (h : n = m) : { f : Wires V n → Wires V m // Monotone f } :=
 @[simp]
 abbrev isoInvVal (h : n = m) : Wires V m → Wires V n := (·.cast h.symm)
 
+/--
+@isnad1 id=monotone.1h3v.s5.4691d248e402 from=translated src=- shape=2831734e vocab=ace29d32
+-/
 lemma iso_inv_monotone (h : n = m) : Monotone (isoInvVal (V:=V) h) :=
   fun _ _ hab i => hab (i.cast h)
 
@@ -248,12 +293,18 @@ lemma iso_inv_monotone (h : n = m) : Monotone (isoInvVal (V:=V) h) :=
 abbrev isoInv (h : n = m) : { f : Wires V m → Wires V n // Monotone f } :=
   ⟨isoInvVal h, iso_inv_monotone h⟩
 
+/--
+@isnad1 id=eq.1h4v.s7.c9a432101d0d from=translated src=- shape=bc0dfa4e vocab=367b7f28
+-/
 @[simp]
 lemma iso_hom_inv_id
     (h : n = m) :
     isoHom h ≫ isoInv h = 𝟙 (OfNat.ofNat n : CombinationalCircuitCategory V G) := by
   apply Subtype.ext; funext v; rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.7463638a0df6 from=translated src=- shape=e3be9b5d vocab=367b7f28
+-/
 lemma iso_inv_hom_id
     (h : n = m) :
     isoInv h ≫ isoHom h = 𝟙 (OfNat.ofNat m : CombinationalCircuitCategory V G) := by
@@ -269,6 +320,9 @@ def iso
     hom_inv_id := iso_hom_inv_id h
     inv_hom_id := iso_inv_hom_id h }
 
+/--
+@isnad1 id=eq.0h4v.s6.9c670589dfc7 from=translated src=- shape=bd1781b3 vocab=ede356ab
+-/
 @[simp]
 lemma whisker
     (X Y : CombinationalCircuitCategory V G) :
@@ -300,6 +354,9 @@ abbrev whiskerRight
     (Y : CombinationalCircuitCategory V G) : tensorObj X₁ Y ⟶ tensorObj X₂ Y :=
   tensorHom f (𝟙 Y)
 
+/--
+@isnad1 id=eq.0h8v.s7.37d17b1e363b from=translated src=- shape=62a875cd vocab=e4d9e06d
+-/
 @[simp]
 lemma tensorHom_def
     {W X Y Z : CombinationalCircuitCategory V G} (f : W ⟶ X) (g : Y ⟶ Z) :
@@ -318,6 +375,9 @@ lemma tensorHom_def
         conv_rhs => rw [Wires.get_ofFn]
         exact (tensorHom_eq_right v k f (𝟙 _)).symm))
 
+/--
+@isnad1 id=eq.0h4v.s6.9c670589dfc7 from=translated src=- shape=bd1781b3 vocab=ede356ab
+-/
 @[simp]
 lemma id_tensorHom_id
     (X₁ X₂ : CombinationalCircuitCategory V G) :
@@ -332,6 +392,9 @@ lemma id_tensorHom_id
   · rw [tensorHom_eq_right v j (𝟙 X₁) (𝟙 X₂)]
     simp only [CategoryStruct.id, id, idVal, Wires.get_ofFn]
 
+/--
+@isnad1 id=eq.0h12v.s7.3cae42d7a92c from=translated src=- shape=ec861311 vocab=f9d6dd53
+-/
 @[simp]
 lemma tensorHom_comp_tensorHom
     {X₁ Y₁ Z₁ X₂ Y₂ Z₂ : CombinationalCircuitCategory V G}
@@ -362,6 +425,9 @@ lemma tensorHom_comp_tensorHom
 def tensorUnit : CombinationalCircuitCategory V G := .of V G 0
 
 omit [SemilatticeSup V] in
+/--
+@isnad1 id=eq.0h5v.s6.7c1abc3c6663 from=translated src=- shape=b6d57b64 vocab=3b7f355f
+-/
 @[simp]
 lemma associator_eq
     (X Y Z : CombinationalCircuitCategory V G) :
@@ -375,6 +441,9 @@ def associator
     (X.tensorObj Y).tensorObj Z ≅ X.tensorObj (Y.tensorObj Z) :=
   iso (associator_eq X Y Z)
 
+/--
+@isnad1 id=eq.0h11v.s8.e3ad9de659c6 from=translated src=- shape=127251c1 vocab=4c20ff0e
+-/
 lemma associator_naturality
     {X₁ X₂ X₃ Y₁ Y₂ Y₃ : CombinationalCircuitCategory V G}
     (f₁ : X₁ ⟶ Y₁)
@@ -385,6 +454,9 @@ lemma associator_naturality
   apply Subtype.ext; funext v; unfold Wires at v; apply Vector.ext; intro i hi
   simp [CategoryStruct.comp, Function.comp, Vector.append, Vector.cast]
 
+/--
+@isnad1 id=eq.0h6v.s8.4ffd71211ea3 from=translated src=- shape=e1e093ba vocab=745980b3
+-/
 lemma pentagon
     (W X Y Z : CombinationalCircuitCategory V G) :
     whiskerRight (W.associator X Y).hom Z ≫
@@ -400,12 +472,18 @@ lemma pentagon
   split_ifs <;> exact congrArg v.get (Fin.ext (by simp <;> omega))
 
 omit [SemilatticeSup V] in
+/--
+@isnad1 id=eq.0h3v.s4.4c870e21d91c from=translated src=- shape=44da2d3c vocab=1249920f
+-/
 lemma leftUnitor_eq
     (X : CombinationalCircuitCategory V G) :
     (tensorUnit (V:=V) (G:=G)).obj + X.obj = X.obj :=
   Nat.zero_add X.obj
 
 omit [SemilatticeSup V] in
+/--
+@isnad1 id=eq.0h3v.s4.2035e648ba4e from=translated src=- shape=a2e0ab5c vocab=1249920f
+-/
 lemma rightUnitor_eq
     (X : CombinationalCircuitCategory V G) :
     X.obj + (tensorUnit (V:=V) (G:=G)).obj = X.obj :=
@@ -421,6 +499,9 @@ abbrev leftUnitor (X : CombinationalCircuitCategory V G) : tensorObj tensorUnit 
 abbrev rightUnitor (X : CombinationalCircuitCategory V G) : tensorObj X tensorUnit ≅ X :=
   iso (rightUnitor_eq X)
 
+/--
+@isnad1 id=eq.0h5v.s7.8104fe5171b2 from=translated src=- shape=70b9694c vocab=6d0578ae
+-/
 lemma leftUnitor_naturality
     {X Y : CombinationalCircuitCategory V G} (f : X ⟶ Y) :
     whiskerLeft tensorUnit f ≫ (leftUnitor Y).hom = (leftUnitor X).hom ≫ f := by
@@ -436,6 +517,9 @@ lemma leftUnitor_naturality
     dite_eq_right (show ¬ (i.val < (tensorUnit (V := V) (G := G)).obj) from by simp), harg]
   exact congrArg _ (Fin.ext (by simp))
 
+/--
+@isnad1 id=eq.0h5v.s7.8ee1e3c654ae from=translated src=- shape=6841d722 vocab=8f09965f
+-/
 lemma rightUnitor_naturality
     {X Y : CombinationalCircuitCategory V G}
     (f : X ⟶ Y) :
@@ -452,6 +536,9 @@ lemma rightUnitor_naturality
 
 open MonoidalCategory
 
+/--
+@isnad1 id=eq.0h4v.s7.4ee4e69e2902 from=translated src=- shape=b9e78d22 vocab=ea9bda30
+-/
 lemma triangle
     (X Y : CombinationalCircuitCategory V G) :
     (associator X tensorUnit Y).hom ≫ whiskerLeft X (leftUnitor Y).hom =
@@ -486,35 +573,56 @@ instance : MonoidalCategory.{v} (CombinationalCircuitCategory V G) where
   pentagon
   triangle
 
+/--
+@isnad1 id=eq.0h4v.s6.b4ad5603f1bf from=translated src=- shape=6ac2c575 vocab=e080e1aa
+-/
 @[simp]
 lemma monoidal_tensorObj_obj
     (X Y : CombinationalCircuitCategory V G) :
     (X ⊗ Y).obj = X.obj + Y.obj := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.066afd88f5ed from=translated src=- shape=1b6729ee vocab=f87e0933
+-/
 @[simp]
 lemma monoidal_tensorUnit_obj :
     (𝟙_ (CombinationalCircuitCategory V G)).obj = 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.134d5ad24cf0 from=translated src=- shape=a627156e vocab=d0c6df6d
+-/
 @[simp]
 lemma id_hom_apply
     (X : CombinationalCircuitCategory V G) (v : Wires V X.obj) :
     (CategoryStruct.id X : Hom V X X).val v = v := rfl
 
 omit [SemilatticeSup V] in
+/--
+@isnad1 id=eq.0h4v.s5.b61663fcec05 from=translated src=- shape=53446b24 vocab=9663d1ea
+-/
 lemma sub_eq {X Y : CombinationalCircuitCategory V G} : X.obj + Y.obj - X.obj = Y.obj := by omega
 
+/--
+@isnad1 id=eq.0h6v.s9.7c905e8c569e from=translated src=- shape=3f36b073 vocab=8a0ee110
+-/
 @[simp]
 lemma associator_hom_apply
     (X Y Z : CombinationalCircuitCategory V G)
     (v : Wires V ((X ⊗ Y) ⊗ Z).obj) :
     (α_ X Y Z).hom.val v = v.cast (associator_eq X Y Z) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.d344ea1cdef4 from=translated src=- shape=dce2eaad vocab=a916bc5b
+-/
 @[simp]
 lemma associator_inv_apply
     (X Y Z : CombinationalCircuitCategory V G)
     (v : Wires V (X ⊗ (Y ⊗ Z)).obj) :
     (α_ X Y Z).inv.val v = v.cast (associator_eq X Y Z).symm := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.f6cf0c97448d from=translated src=- shape=343ed860 vocab=f64c1360
+-/
 lemma braiding_hom_eq
     {X Y : CombinationalCircuitCategory V G} :
     (X ⊗ Y).obj - X.obj + min X.obj (X ⊗ Y).obj = (Y ⊗ X).obj := by simp
@@ -527,12 +635,18 @@ abbrev braidingHomVal
     Wires V (Y ⊗ X).obj :=
   ((v.drop X.obj).append (v.take X.obj)).cast braiding_hom_eq
 
+/--
+@isnad1 id=lt.0h5v.s6.2196910992c1 from=translated src=- shape=9813f585 vocab=73f6b399
+-/
 lemma braiding_hom_lt
     {X Y : CombinationalCircuitCategory V G}
     {j : Fin Y.obj} :
     X.obj + ↑j < (X ⊗ Y).obj := by
   simp_all
 
+/--
+@isnad1 id=lt.0h5v.s5.576eb2da2ba8 from=translated src=- shape=251607d3 vocab=9471da3a
+-/
 lemma braiding_hom_ge
     {X Y : CombinationalCircuitCategory V G}
     {j : Fin X.obj} :
@@ -540,6 +654,9 @@ lemma braiding_hom_ge
   change j.val < X.obj + Y.obj
   omega
 
+/--
+@isnad1 id=monotone.0h4v.s7.e238c2501849 from=translated src=- shape=131fb8df vocab=b6c4def5
+-/
 @[simp]
 lemma braiding_hom_monotone
     {X Y : CombinationalCircuitCategory V G} :
@@ -554,6 +671,9 @@ lemma braiding_hom_monotone
 def braidingHom (X Y : CombinationalCircuitCategory V G) : X ⊗ Y ⟶ Y ⊗ X :=
   ⟨braidingHomVal X Y, braiding_hom_monotone⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.a35f4e86a307 from=translated src=- shape=64bfd792 vocab=e27e0843
+-/
 lemma braiding_hom_inv_id
     {X Y : CombinationalCircuitCategory V G} :
     X.braidingHom Y ≫ Y.braidingHom X = 𝟙 (X ⊗ Y) := by
@@ -574,6 +694,9 @@ def braiding (X Y : CombinationalCircuitCategory V G) : X ⊗ Y ≅ Y ⊗ X :=
     hom_inv_id := braiding_hom_inv_id
     inv_hom_id := braiding_hom_inv_id }
 
+/--
+@isnad1 id=eq.0h6v.s9.c21daf799cdd from=translated src=- shape=e38df357 vocab=d39c574d
+-/
 lemma braiding_naturality_left
     {X Y : CombinationalCircuitCategory V G}
     (f : X ⟶ Y)
@@ -604,6 +727,9 @@ lemma braiding_naturality_left
                    | (exfalso; omega)
                    | (exact congrArg v.get (Fin.ext (by simp)))))
 
+/--
+@isnad1 id=eq.0h8v.s10.6486ac63c965 from=translated src=- shape=2f8914ae vocab=f3f0c77a
+-/
 lemma braiding_eq
     {X Y Z : CombinationalCircuitCategory V G}
     {f : Y ⟶ Z}
@@ -624,6 +750,9 @@ lemma braiding_eq
       | (exfalso; omega)
       | (exact congrArg v.get (Fin.ext (by simp)))
 
+/--
+@isnad1 id=eq.0h6v.s9.e7ea25869590 from=translated src=- shape=9f6cec64 vocab=d39c574d
+-/
 lemma braiding_naturality_right
     (X : CombinationalCircuitCategory V G)
     {Y Z : CombinationalCircuitCategory V G}
@@ -655,11 +784,17 @@ lemma braiding_naturality_right
                    | (exact congrArg v.get (Fin.ext (by simp)))))
 
 omit [SemilatticeSup V] in
+/--
+@isnad1 id=lt.1h5v.s5.1645ca21dfab from=translated src=- shape=aa8d92f5 vocab=6fbbf96f
+-/
 lemma braiding_add
     {X Y : CombinationalCircuitCategory V G}
     (h : ↑i < Y.obj) :
     X.obj + ↑i < X.obj + Y.obj := by omega
 
+/--
+@isnad1 id=lt.0h5v.s7.6c11b5dc5a7e from=translated src=- shape=485b7397 vocab=d8bc6635
+-/
 lemma braiding_sub
     {X Y : CombinationalCircuitCategory V G}
     {i : Fin (Y ⊗ X).obj} :
@@ -669,11 +804,17 @@ lemma braiding_sub
   omega
 
 omit [SemilatticeSup V] in
+/--
+@isnad1 id=not.0h5v.s5.1cc671b1c5ae from=translated src=- shape=4c79ab04 vocab=1c811456
+-/
 lemma braiding_get_ge
     {X Y : CombinationalCircuitCategory V G}
     {j : Fin X.obj} :
     ¬Y.obj + ↑j < Y.obj := by omega
 
+/--
+@isnad1 id=eq.0h6v.s9.4121bb2e0581 from=translated src=- shape=b1348fd4 vocab=38ccf491
+-/
 lemma braiding_get
     (X Y : CombinationalCircuitCategory V G)
     (v : Wires V (X ⊗ Y).obj)
@@ -691,6 +832,9 @@ lemma braiding_get
       | (exfalso; omega)
       | (exact congrArg v.get (Fin.ext (by simp)))
 
+/--
+@isnad1 id=eq.0h6v.s8.d1288bdffa64 from=translated src=- shape=a654d115 vocab=0878b4e8
+-/
 lemma braiding_get_castAdd
     (X Y : CombinationalCircuitCategory V G)
     (v : Wires V (X.obj + Y.obj)) (j : Fin Y.obj) :
@@ -699,6 +843,9 @@ lemma braiding_get_castAdd
   simp only [braiding_get, Fin.val_castAdd, dite_eq_left j.isLt]
   exact congrArg v.get (Fin.ext (by simp))
 
+/--
+@isnad1 id=eq.0h6v.s8.503a4f538dbf from=translated src=- shape=75ee9f97 vocab=0878b4e8
+-/
 lemma braiding_get_natAdd
     (X Y : CombinationalCircuitCategory V G)
     (v : Wires V (X.obj + Y.obj)) (j : Fin X.obj) :
@@ -707,6 +854,9 @@ lemma braiding_get_natAdd
   simp only [braiding_get, braiding_get_ge, Fin.val_natAdd]
   exact congrArg v.get (Fin.ext (by simp))
 
+/--
+@isnad1 id=eq.0h5v.s10.024ac37076c6 from=translated src=- shape=69d5725b vocab=4024b15f
+-/
 lemma hexagon_forward
     (X Y Z : CombinationalCircuitCategory V G) :
     (α_ X Y Z).hom ≫ (X.braiding (Y ⊗ Z)).hom ≫ (α_ Y Z X).hom =
@@ -725,6 +875,9 @@ lemma hexagon_forward
       | (exfalso; omega)
       | (exact congrArg v.get (Fin.ext (by simp <;> omega)))
 
+/--
+@isnad1 id=eq.0h5v.s10.443c3ec82f23 from=translated src=- shape=828e7174 vocab=21405a7b
+-/
 lemma hexagon_reverse
     (X Y Z : CombinationalCircuitCategory V G) :
     (α_ X Y Z).inv ≫ ((X ⊗ Y).braiding Z).hom ≫ (α_ Z X Y).inv =
@@ -743,6 +896,9 @@ lemma hexagon_reverse
       | (exfalso; omega)
       | (exact congrArg v.get (Fin.ext (by simp; omega)))
 
+/--
+@isnad1 id=eq.0h4v.s8.cfc89ec2c9dd from=translated src=- shape=153897f2 vocab=85f40a4f
+-/
 lemma symmetry
     (X Y : CombinationalCircuitCategory V G) :
     (X.braiding Y).hom ≫ (Y.braiding X).hom = 𝟙 (X ⊗ Y) := by

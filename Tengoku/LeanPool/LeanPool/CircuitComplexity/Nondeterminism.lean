@@ -58,7 +58,9 @@ namespace CircuitComplexity
 variable {k m : Nat}
 
 /-- `k + m ≥ 1` whenever `m ≥ 1`.  Enables `sizeComplexity` on
-    `BitString (k + m)`. -/
+    `BitString (k + m)`.
+@isnad1 id=nezero.0h2v.s4.be0b28f2aa06 from=translated src=- shape=cc410e0e vocab=1ced7130
+-/
 instance instNeZeroAddLeft [NeZero m] : NeZero (k + m) :=
   ⟨by have := NeZero.ne m; omega⟩
 
@@ -70,7 +72,9 @@ instance instNeZeroAddLeft [NeZero m] : NeZero (k + m) :=
     (via `restrictGateP`): any input that referenced the hardwired variable
     is redirected using the gate's negation flags to produce the correct
     constant, without adding extra gates.  See `Circ.Internal.Nondeterminism`
-    for the construction. -/
+    for the construction.
+@isnad1 id=le.0h4v.s6.a810dff15f7e from=translated src=- shape=4d650140 vocab=fb5f3917
+-/
 theorem restrict_size_complexity_le [CompleteBasis Basis.andOr2] [NeZero m]
     (f : BitString ((k + 1) + m) → Bool) (b : Bool) :
     Circuit.sizeComplexity Basis.andOr2 (restrictFirst f b) ≤
@@ -85,7 +89,9 @@ theorem restrict_size_complexity_le [CompleteBasis Basis.andOr2] [NeZero m]
 /-- The OR of two Boolean functions has circuit complexity bounded by the
     sum of their individual complexities plus one (for the OR output gate).
 
-    Uses `ShannonUpper.binopCircuit` to compose two circuits side-by-side. -/
+    Uses `ShannonUpper.binopCircuit` to compose two circuits side-by-side.
+@isnad1 id=le.0h3v.s6.697d6dff0f63 from=translated src=- shape=a5792a04 vocab=b62f236c
+-/
 theorem or_size_complexity_le [CompleteBasis Basis.andOr2] [NeZero N]
     (g₁ g₂ : BitString N → Bool) :
     Circuit.sizeComplexity Basis.andOr2 (fun x => g₁ x || g₂ x) ≤
@@ -148,7 +154,9 @@ private theorem cast_fun_fin_apply {n n' : Nat}
       `existQuantify_succ`.  Restriction preserves complexity; the OR adds
       one gate; and the inductive hypothesis bounds each branch by
       `2^k · (s + 1) − 1`.  After the "+1 trick":
-      `(size₁ + size₂ + 1) + 1 = (size₁ + 1) + (size₂ + 1) ≤ 2^(k+1) · (s + 1)`. -/
+      `(size₁ + size₂ + 1) + 1 = (size₁ + 1) + (size₂ + 1) ≤ 2^(k+1) · (s + 1)`.
+@isnad1 id=le.0h3v.s6.7aeec7bd52b9 from=translated src=- shape=baafe861 vocab=832645b6
+-/
 theorem existQuantify_complexity_le [CompleteBasis Basis.andOr2]
     (f : BitString (k + m) → Bool) [NeZero m] :
     Circuit.sizeComplexity Basis.andOr2 (existQuantify f) ≤
@@ -202,7 +210,9 @@ theorem existQuantify_complexity_le [CompleteBasis Basis.andOr2]
     an `m`-input Boolean function, so the Shannon upper bound applies
     unconditionally.  Even if `f` has exponential circuit complexity,
     `existQuantify f` has complexity at most `O(2^m / m)`, which decreases
-    exponentially as more variables are quantified away. -/
+    exponentially as more variables are quantified away.
+@isnad1 id=le.1h3v.s6.04adce9fb671 from=translated src=- shape=5407b7fe vocab=09bca752
+-/
 theorem existQuantify_complexity_shannon
     (f : BitString (k + m) → Bool) [NeZero m] (hm : 16 ≤ m) :
     Circuit.sizeComplexity Basis.andOr2 (existQuantify f) ≤ 18 * 2 ^ m / m :=
@@ -212,7 +222,9 @@ theorem existQuantify_complexity_shannon
 
     When `sizeComplexity(f) ≈ 2^(k+m)/2`, the Shannon bound
     `18 · 2^m / m` is exponentially better than the naive
-    `2^k · (s + 1)`, especially for large `k`. -/
+    `2^k · (s + 1)`, especially for large `k`.
+@isnad1 id=le.1h3v.s7.4e4affee4f81 from=translated src=- shape=443435c7 vocab=7b4e1910
+-/
 theorem existQuantify_complexity_min [CompleteBasis Basis.andOr2]
     (f : BitString (k + m) → Bool) [NeZero m] (hm : 16 ≤ m) :
     Circuit.sizeComplexity Basis.andOr2 (existQuantify f) ≤

@@ -47,11 +47,19 @@ instance instSMulUnitsPeriodPair : SMul ℂˣ PeriodPair := ⟨smul⟩
 
 variable (a : ℂˣ) (L : PeriodPair)
 
+/--
+@isnad1 id=eq.0h2v.s5.896642a5982f from=translated src=- shape=e420e314 vocab=4bff42ae
+-/
 @[simp] lemma smul_ω₁ : (a • L).ω₁ = a * L.ω₁ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.3db0bbf835e9 from=translated src=- shape=e420e314 vocab=29754846
+-/
 @[simp] lemma smul_ω₂ : (a • L).ω₂ = a * L.ω₂ := rfl
 
-/-- The lattice of `a•L` is the scaled lattice `a·L` (paper ch. 3). -/
+/-- The lattice of `a•L` is the scaled lattice `a·L` (paper ch. 3).
+@isnad1 id=iff.0h3v.s6.809c6891ef7b from=translated src=- shape=efac5075 vocab=47d29a45
+-/
 theorem mem_smul_lattice_iff (z : ℂ) :
     z ∈ (a • L).lattice ↔ ∃ w ∈ L.lattice, z = a * w := by
   rw [mem_lattice]
@@ -74,6 +82,9 @@ def smulLatticeEquiv : L.lattice ≃ (a • L).lattice where
   right_inv z := by
     apply Subtype.ext; simp only; rw [← mul_assoc, mul_inv_cancel₀ a.ne_zero, one_mul]
 
+/--
+@isnad1 id=eq.0h3v.s9.7fd440c7907b from=translated src=- shape=ae62b51f vocab=e9816023
+-/
 @[simp] lemma smulLatticeEquiv_coe (l : L.lattice) :
     ((smulLatticeEquiv a L l : (a • L).lattice) : ℂ) = (a : ℂ) * (l : ℂ) := rfl
 
@@ -85,6 +96,9 @@ def smulLatticeEquiv' :
     have ha : (a : ℂ) ≠ 0 := a.ne_zero
     simp only [ne_eq, ← Submodule.coe_eq_zero, smulLatticeEquiv_coe, mul_eq_zero, ha, false_or]
 
+/--
+@isnad1 id=eq.0h3v.s11.d868c5a7f2b3 from=translated src=- shape=7c608db0 vocab=bea79aab
+-/
 @[simp] lemma smulLatticeEquiv'_coe (l : {l : L.lattice // l ≠ 0}) :
     (((smulLatticeEquiv' a L l).1 : (a • L).lattice) : ℂ) = (a : ℂ) * ((l : L.lattice) : ℂ) :=
   rfl
@@ -132,33 +146,45 @@ def J : ℂ := L.g₂ ^ 3 / L.discr
 
 /-! ## Scaling laws (paper `trafog23`, `etatransf`) -/
 
-/-- Scaling law for the Eisenstein series: `G_n(aL) = a⁻ⁿ·G_n(L)` (paper `trafog23`). -/
+/-- Scaling law for the Eisenstein series: `G_n(aL) = a⁻ⁿ·G_n(L)` (paper `trafog23`).
+@isnad1 id=eq.0h3v.s6.ff8e1c227374 from=translated src=- shape=259854b4 vocab=bf53432f
+-/
 theorem G_smul (n : ℕ) : (a • L).G n = ((a : ℂ) ^ n)⁻¹ * L.G n := by
   rw [G, G, ← (smulLatticeEquiv a L).tsum_eq, ← tsum_mul_left]
   refine tsum_congr fun l => ?_
   rw [smulLatticeEquiv_coe, mul_pow, mul_inv]
 
-/-- Scaling law `g₂(aL) = a⁻⁴·g₂(L)` (paper `trafog23`). -/
+/-- Scaling law `g₂(aL) = a⁻⁴·g₂(L)` (paper `trafog23`).
+@isnad1 id=eq.0h2v.s6.c5db2416ecec from=translated src=- shape=18e08f3a vocab=07478389
+-/
 theorem g₂_smul : (a • L).g₂ = ((a : ℂ) ^ 4)⁻¹ * L.g₂ := by
   rw [g₂, g₂, G_smul]; ring
 
-/-- Scaling law `g₃(aL) = a⁻⁶·g₃(L)` (paper `trafog23`). -/
+/-- Scaling law `g₃(aL) = a⁻⁶·g₃(L)` (paper `trafog23`).
+@isnad1 id=eq.0h2v.s6.8f4315f74360 from=translated src=- shape=18e08f3a vocab=9fbe6093
+-/
 theorem g₃_smul : (a • L).g₃ = ((a : ℂ) ^ 6)⁻¹ * L.g₃ := by
   rw [g₃, g₃, G_smul]; ring
 
-/-- Scaling law `Δ(aL) = a⁻¹²·Δ(L)` (paper `trafog23`). -/
+/-- Scaling law `Δ(aL) = a⁻¹²·Δ(L)` (paper `trafog23`).
+@isnad1 id=eq.0h2v.s6.8b9cdc08dbb8 from=translated src=- shape=18e08f3a vocab=22fe89b8
+-/
 theorem discr_smul : (a • L).discr = ((a : ℂ) ^ 12)⁻¹ * L.discr := by
   rw [discr, discr, g₂_smul, g₃_smul]; ring
 
 /-- Klein's absolute invariant is invariant under scaling: `J(aL) = J(L)`
-(paper `trafog23`). -/
+(paper `trafog23`).
+@isnad1 id=eq.0h2v.s4.690bf5efd73b from=translated src=- shape=c4095571 vocab=78d6966e
+-/
 theorem J_smul : (a • L).J = L.J := by
   have ha : (a : ℂ) ≠ 0 := a.ne_zero
   have key : ((a : ℂ) ^ 4)⁻¹ ^ 3 = ((a : ℂ) ^ 12)⁻¹ := by rw [inv_pow, ← pow_mul]
   rw [J, J, g₂_smul, discr_smul, mul_pow, key,
       mul_div_mul_left _ _ (inv_ne_zero (pow_ne_zero 12 ha))]
 
-/-- Scaling law for the ℘-function: `℘(az; aL) = a⁻²·℘(z; L)`. -/
+/-- Scaling law for the ℘-function: `℘(az; aL) = a⁻²·℘(z; L)`.
+@isnad1 id=eq.0h3v.s6.760531775785 from=translated src=- shape=e2fb26ec vocab=430c665a
+-/
 theorem weierstrassP_smul (z : ℂ) :
     (a • L).weierstrassP ((a : ℂ) * z) = ((a : ℂ) ^ 2)⁻¹ * L.weierstrassP z := by
   rw [weierstrassP, weierstrassP, ← (smulLatticeEquiv a L).tsum_eq, ← tsum_mul_left]
@@ -166,7 +192,9 @@ theorem weierstrassP_smul (z : ℂ) :
   simp only [smulLatticeEquiv_coe, ← mul_sub]
   exact pTerm_aux _ _ _
 
-/-- Scaling law for ℘′: `℘'(az; aL) = a⁻³·℘'(z; L)`. -/
+/-- Scaling law for ℘′: `℘'(az; aL) = a⁻³·℘'(z; L)`.
+@isnad1 id=eq.0h3v.s6.a63b0d602047 from=translated src=- shape=e2fb26ec vocab=6a1072ca
+-/
 theorem derivWeierstrassP_smul (z : ℂ) :
     (a • L).derivWeierstrassP ((a : ℂ) * z) = ((a : ℂ) ^ 3)⁻¹ * L.derivWeierstrassP z := by
   rw [derivWeierstrassP, derivWeierstrassP, mul_neg, neg_inj,
@@ -175,7 +203,9 @@ theorem derivWeierstrassP_smul (z : ℂ) :
   simp only [smulLatticeEquiv_coe, ← mul_sub]
   exact derivTerm_aux _ _
 
-/-- Scaling law for the ζ-function: `ζ(az; aL) = a⁻¹·ζ(z; L)` (paper `etatransf`). -/
+/-- Scaling law for the ζ-function: `ζ(az; aL) = a⁻¹·ζ(z; L)` (paper `etatransf`).
+@isnad1 id=eq.0h3v.s6.d49330a6eb72 from=translated src=- shape=5171c3eb vocab=7c030c33
+-/
 theorem weierstrassZeta_smul (z : ℂ) :
     (a • L).weierstrassZeta ((a : ℂ) * z) = (a : ℂ)⁻¹ * L.weierstrassZeta z := by
   rw [weierstrassZeta, weierstrassZeta, mul_add, ← (smulLatticeEquiv' a L).tsum_eq,
@@ -186,7 +216,9 @@ theorem weierstrassZeta_smul (z : ℂ) :
     rw [smulLatticeEquiv'_coe]
     exact zetaTerm_aux a.ne_zero (Submodule.coe_eq_zero.not.mpr l.2) z
 
-/-- Scaling law for the σ-function: `σ(az; aL) = a·σ(z; L)`. -/
+/-- Scaling law for the σ-function: `σ(az; aL) = a·σ(z; L)`.
+@isnad1 id=eq.0h3v.s5.bcb1d0c96305 from=translated src=- shape=1eebba11 vocab=27bdabc2
+-/
 theorem weierstrassSigma_smul (z : ℂ) :
     (a • L).weierstrassSigma ((a : ℂ) * z) = (a : ℂ) * L.weierstrassSigma z := by
   have hprod :
@@ -199,13 +231,17 @@ theorem weierstrassSigma_smul (z : ℂ) :
   rw [weierstrassSigma, weierstrassSigma, ← (smulLatticeEquiv' a L).tprod_eq, hprod]
   ring
 
-/-- Scaling law for the first quasiperiod: `η₁(aL) = a⁻¹·η₁(L)` (paper `etatransf`). -/
+/-- Scaling law for the first quasiperiod: `η₁(aL) = a⁻¹·η₁(L)` (paper `etatransf`).
+@isnad1 id=eq.0h2v.s5.f5d43dcbe039 from=translated src=- shape=f6e8ba40 vocab=8cf03452
+-/
 theorem eta₁_smul : (a • L).eta₁ = (a : ℂ)⁻¹ * L.eta₁ := by
   rw [eta₁, eta₁, smul_ω₁, show (a : ℂ) * L.ω₁ / 2 = (a : ℂ) * (L.ω₁ / 2) from by ring,
       weierstrassZeta_smul]
   ring
 
-/-- Scaling law for the second quasiperiod: `η₂(aL) = a⁻¹·η₂(L)` (paper `etatransf`). -/
+/-- Scaling law for the second quasiperiod: `η₂(aL) = a⁻¹·η₂(L)` (paper `etatransf`).
+@isnad1 id=eq.0h2v.s5.8237eb0c3f05 from=translated src=- shape=f6e8ba40 vocab=d907edda
+-/
 theorem eta₂_smul : (a • L).eta₂ = (a : ℂ)⁻¹ * L.eta₂ := by
   rw [eta₂, eta₂, smul_ω₂, show (a : ℂ) * L.ω₂ / 2 = (a : ℂ) * (L.ω₂ / 2) from by ring,
       weierstrassZeta_smul]

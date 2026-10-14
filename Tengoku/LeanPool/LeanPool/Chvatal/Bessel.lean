@@ -64,11 +64,15 @@ noncomputable def uniformEuclidean : (Ω → ℝ) ≃ₗ[ℝ] EuclideanSpace ℝ
     (inv_ne_zero (Real.sqrt_ne_zero'.mpr (by exact_mod_cast Fintype.card_pos)))).trans
       (WithLp.linearEquiv 2 ℝ (Ω → ℝ)).symm
 
-/-- Coordinate formula for the normalization used in Theorem 2.1. -/
+/-- Coordinate formula for the normalization used in Theorem 2.1.
+@isnad1 id=eq.0h3v.s8.3a53b34a79aa from=translated src=- shape=30fd5270 vocab=80d9d023
+-/
 @[simp] theorem uniformEuclidean_apply (f : Ω → ℝ) (x : Ω) :
     uniformEuclidean f x = (Real.sqrt (Fintype.card Ω))⁻¹ * f x := rfl
 
-/-- The normalization preserves exactly the probability inner product of Section 2. -/
+/-- The normalization preserves exactly the probability inner product of Section 2.
+@isnad1 id=eq.0h3v.s9.ca64cb02e66c from=translated src=- shape=24850370 vocab=ccd434e3
+-/
 theorem inner_uniformEuclidean (f g : Ω → ℝ) :
     inner ℝ (uniformEuclidean f) (uniformEuclidean g) = uniformInner f g := by
   rw [PiLp.inner_apply, uniformInner, Finset.sum_div]
@@ -88,14 +92,18 @@ def UniformOrthonormal {κ : Type*} (u : κ → Ω → ℝ) : Prop := by
   classical
   exact ∀ i j, uniformInner (u i) (u j) = if i = j then 1 else 0
 
-/-- Uniform orthonormality is ordinary orthonormality after normalization. -/
+/-- Uniform orthonormality is ordinary orthonormality after normalization.
+@isnad1 id=iff.0h3v.s8.76f60902018d from=translated src=- shape=7b0a440d vocab=d2cc2d7c
+-/
 theorem uniformOrthonormal_iff {κ : Type*} (u : κ → Ω → ℝ) :
     UniformOrthonormal u ↔ Orthonormal ℝ (fun i => uniformEuclidean (u i)) := by
   classical
   rw [orthonormal_iff_ite]
   simp only [UniformOrthonormal, inner_uniformEuclidean]
 
-/-- Theorem 2.1 (Bessel's inequality), with the paper's normalized inner product. -/
+/-- Theorem 2.1 (Bessel's inequality), with the paper's normalized inner product.
+@isnad1 id=le.1h4v.s6.fb760bdb64e3 from=translated src=- shape=e5023acb vocab=6ac35140
+-/
 theorem bessel_inequality {κ : Type*} [Fintype κ] (u : κ → Ω → ℝ)
     (hu : UniformOrthonormal u) (h : Ω → ℝ) :
     ∑ i, (uniformInner (u i) h) ^ 2 ≤ uniformInner h h := by
@@ -107,7 +115,9 @@ theorem bessel_inequality {κ : Type*} [Fintype κ] (u : κ → Ω → ℝ)
 
 /-- The linear algebra step in Corollary 3.2: a finite independent family contained
 in a subspace can be orthonormalized inside that same subspace. Thus simultaneous
-physical and Fourier support restrictions, which define subspaces, are preserved. -/
+physical and Fourier support restrictions, which define subspaces, are preserved.
+@isnad1 id=ex.2h4v.s7.abf86bc41c46 from=translated src=- shape=71fb05eb vocab=791154ab
+-/
 theorem exists_uniformOrthonormal_in_submodule {κ : Type*} [Finite κ]
     (W : Submodule ℝ (Ω → ℝ)) (f : κ → Ω → ℝ)
     (hli : LinearIndependent ℝ f) (hf : ∀ i, f i ∈ W) :

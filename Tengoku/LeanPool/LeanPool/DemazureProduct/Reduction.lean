@@ -36,7 +36,9 @@ open AspPerm
 Bruhat component, part 1/3.*
 
 If `α ⋆ β ≥ γ`, then `α₁ = γ ◃ β⁻¹` and `β₁ = α₁⁻¹ ▹ γ` satisfy
-`α₁ ⋆ β₁ = α₁ * β₁ = γ` and `α₁ ≤ α`, `β₁ ≤ β`. -/
+`α₁ ⋆ β₁ = α₁ * β₁ = γ` and `α₁ ≤ α`, `β₁ ≤ β`.
+@isnad1 id=other.1h3v.s6.0265c01612b2 from=translated src=- shape=cfbe11d9 vocab=c0dce45a
+-/
 theorem reduce_witness (α β γ : AspPerm) (h : α ⋆ β ≥ γ) :
     let α₁ := γ ◃ β⁻¹
     let β₁ := α₁⁻¹ ▹ γ
@@ -56,7 +58,9 @@ theorem reduce_witness (α β γ : AspPerm) (h : α ⋆ β ≥ γ) :
 [An extended Demazure product](https://arxiv.org/abs/2206.14227), second paragraph, including the
 shift identities, part 2/3.* Under the additional hypothesis $\chi_\alpha + \chi_\beta =
 \chi_\gamma$ (which makes both shift equalities meaningful), we further have
-$\alpha_1 \leq_\chi \alpha$ and $\beta_1 \leq_\chi \beta$. -/
+$\alpha_1 \leq_\chi \alpha$ and $\beta_1 \leq_\chi \beta$.
+@isnad1 id=other.2h3v.s6.11cba8badfcf from=translated src=- shape=70ba212a vocab=f3fd6781
+-/
 theorem reduce_witness_chi (α β γ : AspPerm) (hχ : α.χ + β.χ = γ.χ)
     (h : α ⋆ β ≥ γ) :
     let α₁ := γ ◃ β⁻¹
@@ -80,7 +84,9 @@ ASP form, part 3/3.*
 
 For all `α, β, γ ∈ ASP` with `α.χ + β.χ = γ.χ`, the inequality `α ⋆ β ≥ γ`
 is equivalent to the existence of `α₁, β₁` with `α₁ ≤χ α`, `β₁ ≤χ β`, and
-`α₁ ⋆ β₁ = α₁ * β₁ = γ`. -/
+`α₁ ⋆ β₁ = α₁ * β₁ = γ`.
+@isnad1 id=iff.1h3v.s6.61656c082a5c from=translated src=- shape=c7cec1bb vocab=0df82262
+-/
 theorem reduce (α β γ : AspPerm) (hχ : α.χ + β.χ = γ.χ) :
     α ⋆ β ≥ γ ↔
       ∃ α₁ β₁ : AspPerm,
@@ -122,7 +128,9 @@ private lemma eq_id_of_le_id_chi_zero {γ : AspPerm} (h : γ ≤ AspPerm.id)
 For any list of permutations `αs` and a target `γ ∈ ASP` with matching total
 shift, if the Demazure product over `αs` is Bruhat-≥ `γ`, then there exists a
 list of "reduced witnesses" `βs` of the same length, with `βᵢ ≤χ αᵢ`
-pointwise, whose Demazure product and ordinary product both equal `γ`. -/
+pointwise, whose Demazure product and ordinary product both equal `γ`.
+@isnad1 id=ex.2h2v.s6.3310a657c641 from=translated src=- shape=0baf372c vocab=f468c7ce
+-/
 theorem reduceList :
     ∀ (αs : List AspPerm) (γ : AspPerm),
       (αs.map AspPerm.χ).sum = γ.χ →

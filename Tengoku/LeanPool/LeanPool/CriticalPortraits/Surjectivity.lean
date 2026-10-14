@@ -54,7 +54,9 @@ open scoped BigOperators
 /-! ## Layer 0: discrete IVT via Nat.findGreatest. -/
 
 /-- **Discrete IVT.** An integer-valued sequence with `D 0 ≤ 0`, `0 ≤ D L`, and unit-bounded
-    up-steps (`D (k+1) ≤ D k + 1`) hits zero somewhere in `[0, L]`. -/
+    up-steps (`D (k+1) ≤ D k + 1`) hits zero somewhere in `[0, L]`.
+@isnad1 id=ex.3h2v.s6.47926befc593 from=translated src=- shape=f678d7e0 vocab=5c6f3c94
+-/
 theorem discrete_ivt (D : ℕ → ℤ) (L : ℕ) (h0 : D 0 ≤ 0) (hL : 0 ≤ D L)
     (hstep : ∀ k, k < L → D (k + 1) ≤ D k + 1) : ∃ k ≤ L, D k = 0 := by
   classical
@@ -84,7 +86,9 @@ theorem discrete_ivt (D : ℕ → ℤ) (L : ℕ) (h0 : D 0 ≤ 0) (hL : 0 ≤ D 
 def Scount {d m : ℕ} (U : Finset (ZMod (d * m))) (x y : ℕ) : ℕ :=
   (U.filter (fun t => x < t.val ∧ t.val < y)).card
 
-/-- Enlarging the lower endpoint shrinks the open interval: `Scount` is antitone in `x`. -/
+/-- Enlarging the lower endpoint shrinks the open interval: `Scount` is antitone in `x`.
+@isnad1 id=le.1h6v.s5.85b800168d1e from=translated src=- shape=9a78c058 vocab=4187567b
+-/
 lemma Scount_antitone_left {d m : ℕ} (U : Finset (ZMod (d * m))) {x x' y : ℕ}
     (hxx : x ≤ x') : Scount U x' y ≤ Scount U x y := by
   unfold Scount
@@ -98,7 +102,9 @@ lemma Scount_antitone_left {d m : ℕ} (U : Finset (ZMod (d * m))) {x x' y : ℕ
 def Defc {d m : ℕ} (U : Finset (ZMod (d * m))) (φ lu uval k : ℕ) : ℤ :=
   (Scount U (φ + k*m) uval : ℤ) - ((lu : ℤ) - (k : ℤ) - 1)
 
-/-- The deficiency has unit-bounded up-steps (the E3 step bound). -/
+/-- The deficiency has unit-bounded up-steps (the E3 step bound).
+@isnad1 id=le.1h7v.s6.34ea9c5dc691 from=translated src=- shape=24ecb0e3 vocab=85224596
+-/
 lemma Defc_step {d m : ℕ} (_hm : 0 < m) (U : Finset (ZMod (d * m))) (φ lu uval k : ℕ) :
     Defc U φ lu uval (k+1) ≤ Defc U φ lu uval k + 1 := by
   unfold Defc
@@ -111,13 +117,17 @@ lemma Defc_step {d m : ℕ} (_hm : 0 < m) (U : Finset (ZMod (d * m))) (φ lu uva
   omega
 
 /-- **E1 (upper boundary).** `D(lu-1) ≥ 0`: the constant `(lu - (lu-1) - 1) = 0`
-    and `Scount ≥ 0`. -/
+    and `Scount ≥ 0`.
+@isnad1 id=le.1h6v.s5.2c504646e120 from=translated src=- shape=55ae6bdf vocab=9ba10fe1
+-/
 lemma Defc_top_nonneg {d m : ℕ} (U : Finset (ZMod (d * m))) (φ lu uval : ℕ) (hlu : 1 ≤ lu) :
     0 ≤ Defc U φ lu uval (lu - 1) := by
   unfold Defc
   simp_all
 
-/-- The scount bound from canonicity: `#{t ∈ U : φ < t.val < u.val} ≤ lu - 1`. -/
+/-- The scount bound from canonicity: `#{t ∈ U : φ < t.val < u.val} ≤ lu - 1`.
+@isnad1 id=le.4h4v.s7.8e41d5328761 from=translated src=- shape=e8e5d44c vocab=1cdd51c3
+-/
 lemma Scount_bot_le {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U)
     {u : ZMod (d * m)} (hu : u ∈ U) :
@@ -161,7 +171,9 @@ lemma Scount_bot_le {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
   unfold Scount
   omega
 
-/-- **E2 (lower boundary).** `D(0) ≤ 0` from canonicity. -/
+/-- **E2 (lower boundary).** `D(0) ≤ 0` from canonicity.
+@isnad1 id=le.5h4v.s7.9c6f27610189 from=translated src=- shape=7747ef3f vocab=e1de6785
+-/
 lemma Defc_bot_nonpos {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U)
     {u : ZMod (d * m)} (hu : u ∈ U) (hlu : 1 ≤ u.val / m) :
@@ -175,7 +187,9 @@ lemma Defc_bot_nonpos {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
 /-! ## Layer 2: existence of a balance index. -/
 
 /-- **Existence (E).** For a survivor `u` of a canonical `U` with level `≥ 1`, some balance index
-    `k ≤ lu-1` has deficiency `0`. -/
+    `k ≤ lu-1` has deficiency `0`.
+@isnad1 id=ex.5h4v.s7.07a3a93f3990 from=translated src=- shape=7bee5341 vocab=6c67754f
+-/
 lemma exists_balance {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U)
     {u : ZMod (d * m)} (hu : u ∈ U) (hlu : 1 ≤ u.val / m) :
@@ -186,7 +200,9 @@ lemma exists_balance {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
   · intro k _
     exact Defc_step hm U (u.val % m) (u.val / m) u.val k
 
-/-- Every position has level `< d`. -/
+/-- Every position has level `< d`.
+@isnad1 id=lt.1h3v.s5.66838770d77c from=translated src=- shape=09881a5f vocab=af465e6f
+-/
 lemma level_lt_d {d m : ℕ} (_hm : 0 < m) (x : ZMod (d * m)) [NeZero (d * m)] : x.val / m < d := by
   have hlt : x.val < d * m := ZMod.val_lt x
   have hdiv : (x.val / m) * m ≤ x.val := Nat.div_mul_le_self x.val m
@@ -202,11 +218,15 @@ open Classical in
 noncomputable def betaK {d m : ℕ} (U : Finset (ZMod (d * m))) (u : ZMod (d * m)) : ℕ :=
   Nat.findGreatest (fun k => Defc U (u.val % m) (u.val / m) u.val k = 0) (u.val / m - 1)
 
-/-- `betaK ≤ lu - 1`. -/
+/-- `betaK ≤ lu - 1`.
+@isnad1 id=le.0h4v.s6.8dbfb6154985 from=translated src=- shape=db891ec4 vocab=5c7da764
+-/
 lemma betaK_le {d m : ℕ} (U : Finset (ZMod (d * m))) (u : ZMod (d * m)) :
     betaK U u ≤ u.val / m - 1 := Nat.findGreatest_le _
 
-/-- `betaK` is a balance index: deficiency `0` there. -/
+/-- `betaK` is a balance index: deficiency `0` there.
+@isnad1 id=eq.5h4v.s7.64cd3bc4c632 from=translated src=- shape=463b94d5 vocab=ba8cccd3
+-/
 lemma betaK_spec {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U)
     {u : ZMod (d * m)} (hu : u ∈ U) (hlu : 1 ≤ u.val / m) :
@@ -217,7 +237,9 @@ lemma betaK_spec {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     (m := k) (n := u.val / m - 1) hkle hkdef
   exact this
 
-/-- **Maximality (M2).** For `betaK < j ≤ lu-1`, deficiency at `j` is nonzero. -/
+/-- **Maximality (M2).** For `betaK < j ≤ lu-1`, deficiency at `j` is nonzero.
+@isnad1 id=ne.2h5v.s7.a21695bc6a16 from=translated src=- shape=5e65c11d vocab=79cef5f2
+-/
 lemma betaK_max {d m : ℕ} {U : Finset (ZMod (d * m))} {u : ZMod (d * m)} {j : ℕ}
     (hj1 : betaK U u < j) (hj2 : j ≤ u.val / m - 1) :
     Defc U (u.val % m) (u.val / m) u.val j ≠ 0 := by
@@ -229,7 +251,9 @@ lemma betaK_max {d m : ℕ} {U : Finset (ZMod (d * m))} {u : ZMod (d * m)} {j : 
 noncomputable def betaParentVal {d m : ℕ} (U : Finset (ZMod (d * m))) (u : ZMod (d * m)) : ℕ :=
   u.val % m + betaK U u * m
 
-/-- The parent value is `< d*m` (so its ZMod point round-trips). -/
+/-- The parent value is `< d*m` (so its ZMod point round-trips).
+@isnad1 id=lt.3h4v.s6.0058a3fd7c4d from=translated src=- shape=07790177 vocab=42f7f411
+-/
 lemma betaParentVal_lt {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} {u : ZMod (d * m)} (hlu : 1 ≤ u.val / m) :
     betaParentVal U u < d * m := by
@@ -260,7 +284,9 @@ noncomputable def betaParent {d m : ℕ} (U : Finset (ZMod (d * m))) (u : ZMod (
     ZMod (d * m) :=
   (betaParentVal U u : ZMod (d*m))
 
-/-- `betaParent`'s `.val` is exactly `betaParentVal` (round-trips since it is `< d*m`). -/
+/-- `betaParent`'s `.val` is exactly `betaParentVal` (round-trips since it is `< d*m`).
+@isnad1 id=eq.3h4v.s6.71d030f13ed0 from=translated src=- shape=2c9726d9 vocab=c85089fb
+-/
 lemma betaParent_val {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} {u : ZMod (d * m)} (hlu : 1 ≤ u.val / m) :
     (betaParent U u).val = betaParentVal U u := by
@@ -268,7 +294,9 @@ lemma betaParent_val {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
   unfold betaParent
   exact ZMod.val_natCast_of_lt (betaParentVal_lt hd hm hlu)
 
-/-- `betaParent` shares `u`'s fiber. -/
+/-- `betaParent` shares `u`'s fiber.
+@isnad1 id=eq.3h4v.s6.19a7812166d2 from=translated src=- shape=4310c4cc vocab=81bc2932
+-/
 lemma betaParent_fiber {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} {u : ZMod (d * m)} (hlu : 1 ≤ u.val / m) :
     (betaParent U u).val % m = u.val % m := by
@@ -276,7 +304,9 @@ lemma betaParent_fiber {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
   unfold betaParentVal
   simp_all
 
-/-- `betaParent`'s level is `betaK` (strictly below `u`'s level). -/
+/-- `betaParent`'s level is `betaK` (strictly below `u`'s level).
+@isnad1 id=eq.3h4v.s6.16e18b86da70 from=translated src=- shape=1986265b vocab=8c003708
+-/
 lemma betaParent_level {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} {u : ZMod (d * m)} (hlu : 1 ≤ u.val / m) :
     (betaParent U u).val / m = betaK U u := by
@@ -285,7 +315,9 @@ lemma betaParent_level {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
   have hφ : u.val % m < m := Nat.mod_lt _ hm
   rw [Nat.add_mul_div_right _ _ hm, Nat.div_eq_of_lt hφ, Nat.zero_add]
 
-/-- `betaParent`'s level is strictly below `u`'s level. -/
+/-- `betaParent`'s level is strictly below `u`'s level.
+@isnad1 id=lt.3h4v.s6.df97edf043ea from=translated src=- shape=daf6e628 vocab=680e2c10
+-/
 lemma betaParent_level_lt {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} {u : ZMod (d * m)} (hlu : 1 ≤ u.val / m) :
     (betaParent U u).val / m < u.val / m := by
@@ -293,7 +325,9 @@ lemma betaParent_level_lt {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
   have := betaK_le U u
   omega
 
-/-- `betaParent`'s `.val` is strictly below `u`'s `.val`. -/
+/-- `betaParent`'s `.val` is strictly below `u`'s `.val`.
+@isnad1 id=lt.3h4v.s6.8eb6d5d7e88c from=translated src=- shape=856260bd vocab=680e2c10
+-/
 lemma betaParent_val_lt {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} {u : ZMod (d * m)} (hlu : 1 ≤ u.val / m) :
     (betaParent U u).val < u.val := by
@@ -312,6 +346,9 @@ def bEdge (U : Finset (ZMod (d * m))) (a b : ZMod (d * m)) : Prop :=
 def bAdj (U : Finset (ZMod (d * m))) (a b : ZMod (d * m)) : Prop :=
   bEdge U a b ∨ bEdge U b a
 
+/--
+@isnad1 id=badj.1h5v.s5.7963505765e3 from=translated src=- shape=221c6198 vocab=d6abf068
+-/
 lemma bAdj_symm {U : Finset (ZMod (d * m))} {a b : ZMod (d * m)} (h : bAdj U a b) : bAdj U b a := by
   rcases h with h | h
   · exact Or.inr h
@@ -321,9 +358,15 @@ lemma bAdj_symm {U : Finset (ZMod (d * m))} {a b : ZMod (d * m)} (h : bAdj U a b
 def bReach (U : Finset (ZMod (d * m))) (a b : ZMod (d * m)) : Prop :=
   Relation.ReflTransGen (bAdj U) a b
 
+/--
+@isnad1 id=breach.0h4v.s5.14913f08c050 from=translated src=- shape=d71a5df7 vocab=7675848b
+-/
 lemma bReach_refl {U : Finset (ZMod (d * m))} (a : ZMod (d * m)) : bReach U a a :=
   Relation.ReflTransGen.refl
 
+/--
+@isnad1 id=breach.1h5v.s5.7bf155b29e42 from=translated src=- shape=221c6198 vocab=7675848b
+-/
 lemma bReach_symm {U : Finset (ZMod (d * m))} {a b : ZMod (d * m)} (h : bReach U a b) :
     bReach U b a := by
   unfold bReach at h ⊢
@@ -331,6 +374,9 @@ lemma bReach_symm {U : Finset (ZMod (d * m))} {a b : ZMod (d * m)} (h : bReach U
   | refl => exact Relation.ReflTransGen.refl
   | @tail x y _ hxy ih => exact Relation.ReflTransGen.head (bAdj_symm hxy) ih
 
+/--
+@isnad1 id=breach.2h6v.s6.5350be0e40c1 from=translated src=- shape=8b64d6f3 vocab=7675848b
+-/
 lemma bReach_trans {U : Finset (ZMod (d * m))} {a b c : ZMod (d * m)}
     (h1 : bReach U a b) (h2 : bReach U b c) : bReach U a c :=
   Relation.ReflTransGen.trans h1 h2
@@ -347,6 +393,9 @@ noncomputable def betaBlock (U : Finset (ZMod (d * m))) (x : ZMod (d * m)) :
     Finset (ZMod (d * m)) :=
   (bVerts U).filter (fun y => @decide (bReach U x y) (bReachDecidable U x y))
 
+/--
+@isnad1 id=iff.0h5v.s7.193ab441b385 from=translated src=- shape=88a192c9 vocab=83b0b190
+-/
 lemma mem_betaBlock {U : Finset (ZMod (d * m))} {x y : ZMod (d * m)} :
     y ∈ betaBlock U x ↔ y ∈ bVerts U ∧ bReach U x y := by
   unfold betaBlock; simp_all
@@ -357,7 +406,9 @@ noncomputable def beta (U : Finset (ZMod (d * m))) : Finset (Finset (ZMod (d * m
 
 /-! ## Layer 5: structural facts. -/
 
-/-- Canonical `U`: every survivor has level `≥ 1` (canonicity at `j = 0`). -/
+/-- Canonical `U`: every survivor has level `≥ 1` (canonicity at `j = 0`).
+@isnad1 id=le.3h4v.s6.9380111940a1 from=translated src=- shape=66206137 vocab=390052d2
+-/
 lemma survivor_level_pos {d m : ℕ} (hd : 0 < d) {U : Finset (ZMod (d * m))}
     (hcanon : LevelCanonical d m U) {u : ZMod (d * m)} (hu : u ∈ U) : 1 ≤ u.val / m := by
   by_contra hlt
@@ -371,7 +422,9 @@ lemma survivor_level_pos {d m : ℕ} (hd : 0 < d) {U : Finset (ZMod (d * m))}
   rw [hempty] at hmem
   exact absurd hmem (by simp)
 
-/-- A single adjacency step preserves the fiber. -/
+/-- A single adjacency step preserves the fiber.
+@isnad1 id=eq.4h5v.s6.cc30a34e5b00 from=translated src=- shape=f85aa5c3 vocab=c94d002f
+-/
 lemma bAdj_sameFiber {d m : ℕ} (hd : 0 < d) (hm : 0 < m) {U : Finset (ZMod (d * m))}
     (_hcanon : LevelCanonical d m U) {a b : ZMod (d * m)} (h : bAdj U a b) :
     a.val % m = b.val % m := by
@@ -379,7 +432,9 @@ lemma bAdj_sameFiber {d m : ℕ} (hd : 0 < d) (hm : 0 < m) {U : Finset (ZMod (d 
   · rw [hab]; exact betaParent_fiber hd hm hblu
   · rw [hba]; exact (betaParent_fiber hd hm halu).symm
 
-/-- Reachability preserves the fiber. -/
+/-- Reachability preserves the fiber.
+@isnad1 id=eq.4h5v.s6.b02f6a025a94 from=translated src=- shape=f85aa5c3 vocab=d0358a43
+-/
 lemma bReach_sameFiber {d m : ℕ} (hd : 0 < d) (hm : 0 < m) {U : Finset (ZMod (d * m))}
     (hcanon : LevelCanonical d m U) {a b : ZMod (d * m)} (h : bReach U a b) :
     a.val % m = b.val % m := by
@@ -391,7 +446,9 @@ lemma bReach_sameFiber {d m : ℕ} (hd : 0 < d) (hm : 0 < m) {U : Finset (ZMod (
 /-! ## Layer 6: Scount additivity and parent injectivity (I). -/
 
 /-- **Scount split** through an interior `U`-point `w`: if `x < w.val < y` and `w ∈ U`, then
-    `Scount U x y = Scount U x w.val + 1 + Scount U w.val y`. -/
+    `Scount U x y = Scount U x w.val + 1 + Scount U w.val y`.
+@isnad1 id=eq.3h6v.s7.ef4e2887d13b from=translated src=- shape=a0257328 vocab=8de4e354
+-/
 lemma Scount_split {d m : ℕ} [NeZero (d * m)] {U : Finset (ZMod (d * m))} {x y : ℕ}
     {w : ZMod (d * m)}
     (hwU : w ∈ U) (hxw : x < w.val) (hwy : w.val < y) :
@@ -432,7 +489,9 @@ lemma Scount_split {d m : ℕ} [NeZero (d * m)] {U : Finset (ZMod (d * m))} {x y
   rw [Finset.card_union_of_disjoint hdisj2, Finset.card_union_of_disjoint hdisj1,
     Finset.card_singleton]
 
-/-- The balance identity at `betaK`: `Scount U (betaParent).val u.val = lu - betaK - 1`. -/
+/-- The balance identity at `betaK`: `Scount U (betaParent).val u.val = lu - betaK - 1`.
+@isnad1 id=eq.5h4v.s7.ceeabe9300f8 from=translated src=- shape=83476b7f vocab=8056f6ee
+-/
 lemma betaParent_balance {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U)
     {u : ZMod (d * m)} (hu : u ∈ U) (hlu : 1 ≤ u.val / m) :
@@ -446,7 +505,9 @@ lemma betaParent_balance {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
   -- hspec : (Scount U (u.val%m + betaK U u * m) u.val : ℤ) - ((u.val/m) - betaK U u - 1) = 0
   linarith
 
-/-- **Injectivity (I).** The parent map is injective on survivors of canonical `U`. -/
+/-- **Injectivity (I).** The parent map is injective on survivors of canonical `U`.
+@isnad1 id=eq.6h5v.s7.e08eda9e616d from=translated src=- shape=95a11967 vocab=67c1b040
+-/
 lemma betaParent_inj {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U)
     {u1 u2 : ZMod (d * m)} (hu1 : u1 ∈ U) (hu2 : u2 ∈ U)
@@ -531,7 +592,9 @@ noncomputable def bStep {d m : ℕ} (U : Finset (ZMod (d * m))) (x : ZMod (d * m
     ZMod (d * m) :=
   if _hx : x ∈ U then betaParent U x else x
 
-/-- The step strictly decreases `.val` when `x ∈ U`. -/
+/-- The step strictly decreases `.val` when `x ∈ U`.
+@isnad1 id=lt.4h4v.s7.5ff46292e100 from=translated src=- shape=0586d35d vocab=f5c641b8
+-/
 lemma bStep_lt {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U) {x : ZMod (d * m)} (hx : x ∈ U) :
     (bStep U x).val < x.val := by
@@ -545,19 +608,25 @@ noncomputable def betaRoot {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
 termination_by x.val
 decreasing_by exact betaParent_val_lt hd hm (survivor_level_pos hd hcanon _hx)
 
-/-- If `x ∉ U`, the root is `x`. -/
+/-- If `x ∉ U`, the root is `x`.
+@isnad1 id=eq.4h4v.s7.78f78ffb6dc6 from=translated src=- shape=df215b49 vocab=4661f31a
+-/
 lemma betaRoot_of_not_mem {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U) {x : ZMod (d * m)} (hx : x ∉ U) :
     betaRoot hd hm hcanon x = x := by
   rw [betaRoot]; rw [dite_eq_right hx]
 
-/-- If `x ∈ U`, the root descends to its parent's root. -/
+/-- If `x ∈ U`, the root descends to its parent's root.
+@isnad1 id=eq.4h4v.s7.7566136bcaed from=translated src=- shape=0f149e92 vocab=74cf3f2a
+-/
 lemma betaRoot_of_mem {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U) {x : ZMod (d * m)} (hx : x ∈ U) :
     betaRoot hd hm hcanon x = betaRoot hd hm hcanon (betaParent U x) := by
   rw [betaRoot]; rw [dite_eq_left hx]
 
-/-- The root is never in `U`. -/
+/-- The root is never in `U`.
+@isnad1 id=not.3h4v.s6.02e0cdccdf28 from=translated src=- shape=1ad4e629 vocab=4661f31a
+-/
 lemma betaRoot_not_mem {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U) (x : ZMod (d * m)) :
     betaRoot hd hm hcanon x ∉ U := by
@@ -570,7 +639,9 @@ lemma betaRoot_not_mem {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
         (betaParent U x) rfl
     · rw [betaRoot_of_not_mem hd hm hcanon hx]; exact hx
 
-/-- The root's `.val` is `≤ x.val`. -/
+/-- The root's `.val` is `≤ x.val`.
+@isnad1 id=le.3h4v.s6.f94ae1100b4e from=translated src=- shape=03e60198 vocab=03e0bb1a
+-/
 lemma betaRoot_le {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U) (x : ZMod (d * m)) :
     (betaRoot hd hm hcanon x).val ≤ x.val := by
@@ -584,7 +655,9 @@ lemma betaRoot_le {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
       exact le_trans (ih (betaParent U x).val hlt (betaParent U x) rfl) (le_of_lt hlt)
     · rw [betaRoot_of_not_mem hd hm hcanon hx]
 
-/-- For `x ∈ U`, the root is strictly below `x`. -/
+/-- For `x ∈ U`, the root is strictly below `x`.
+@isnad1 id=lt.4h4v.s7.4ddadc25eed8 from=translated src=- shape=36921431 vocab=28c11bd8
+-/
 lemma betaRoot_lt {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U) {x : ZMod (d * m)} (hx : x ∈ U) :
     (betaRoot hd hm hcanon x).val < x.val := by
@@ -593,7 +666,9 @@ lemma betaRoot_lt {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     betaParent_val_lt hd hm (survivor_level_pos hd hcanon hx)
   exact lt_of_le_of_lt (betaRoot_le hd hm hcanon (betaParent U x)) hlt
 
-/-- `x` reaches its root. -/
+/-- `x` reaches its root.
+@isnad1 id=breach.3h4v.s6.1c645a2b9a0f from=translated src=- shape=8789bc07 vocab=0cecceab
+-/
 lemma bReach_betaRoot {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U) (x : ZMod (d * m)) :
     bReach U x (betaRoot hd hm hcanon x) := by
@@ -610,7 +685,9 @@ lemma bReach_betaRoot {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
       exact bReach_trans (Relation.ReflTransGen.single hstep) hrec
     · rw [betaRoot_of_not_mem hd hm hcanon hx]; exact bReach_refl x
 
-/-- The root is invariant under one adjacency step. -/
+/-- The root is invariant under one adjacency step.
+@isnad1 id=eq.4h5v.s6.d34f69dfa022 from=translated src=- shape=91ad0bca vocab=cc33cee9
+-/
 lemma betaRoot_bAdj {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U) {x y : ZMod (d * m)}
     (h : bAdj U x y) : betaRoot hd hm hcanon x = betaRoot hd hm hcanon y := by
@@ -620,7 +697,9 @@ lemma betaRoot_bAdj {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
   · -- bEdge U y x: x ∈ U, y = betaParent x
     rw [hyx, ← betaRoot_of_mem hd hm hcanon hxU]
 
-/-- The root is invariant along reachability. -/
+/-- The root is invariant along reachability.
+@isnad1 id=eq.4h5v.s6.ab113ed06962 from=translated src=- shape=91ad0bca vocab=0cecceab
+-/
 lemma betaRoot_bReach {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U) {x y : ZMod (d * m)}
     (h : bReach U x y) : betaRoot hd hm hcanon x = betaRoot hd hm hcanon y := by
@@ -631,25 +710,33 @@ lemma betaRoot_bReach {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
 
 /-! ## Layer 8: block membership and the min = root. -/
 
-/-- A `U`-point is a vertex. -/
+/-- A `U`-point is a vertex.
+@isnad1 id=mem.1h4v.s7.8e0ca69806de from=translated src=- shape=510c5f46 vocab=543b224c
+-/
 lemma mem_bVerts_of_mem {d m : ℕ} {U : Finset (ZMod (d * m))} {x : ZMod (d * m)} (hx : x ∈ U) :
     x ∈ bVerts U := by
   unfold bVerts; exact Finset.mem_union_left _ hx
 
-/-- A balance parent of a `U`-point is a vertex. -/
+/-- A balance parent of a `U`-point is a vertex.
+@isnad1 id=mem.1h4v.s7.6b8227b7d227 from=translated src=- shape=8d7a7342 vocab=ac556fbd
+-/
 lemma betaParent_mem_bVerts {d m : ℕ} {U : Finset (ZMod (d * m))} {u : ZMod (d * m)} (hu : u ∈ U) :
     betaParent U u ∈ bVerts U := by
   unfold bVerts
   exact Finset.mem_union_right _ (Finset.mem_image_of_mem _ hu)
 
-/-- One adjacency step from a vertex lands on a vertex. -/
+/-- One adjacency step from a vertex lands on a vertex.
+@isnad1 id=mem.1h5v.s6.df087d60d411 from=translated src=- shape=dc080d18 vocab=3b82e883
+-/
 lemma bAdj_mem_bVerts {d m : ℕ} {U : Finset (ZMod (d * m))} {x y : ZMod (d * m)}
     (h : bAdj U x y) : y ∈ bVerts U := by
   rcases h with ⟨hyU, _, _⟩ | ⟨hxU, _, hyx⟩
   · exact mem_bVerts_of_mem hyU
   · rw [hyx]; exact betaParent_mem_bVerts hxU
 
-/-- Reachability from a vertex stays in `bVerts`. -/
+/-- Reachability from a vertex stays in `bVerts`.
+@isnad1 id=mem.2h5v.s7.fc2bd250cbfb from=translated src=- shape=af17b8a5 vocab=64ea9f18
+-/
 lemma bReach_mem_bVerts {d m : ℕ} {U : Finset (ZMod (d * m))} {x y : ZMod (d * m)}
     (hx : x ∈ bVerts U) (h : bReach U x y) : y ∈ bVerts U := by
   unfold bReach at h
@@ -657,20 +744,26 @@ lemma bReach_mem_bVerts {d m : ℕ} {U : Finset (ZMod (d * m))} {x y : ZMod (d *
   | refl => exact hx
   | @tail w z _ hwz _ => exact bAdj_mem_bVerts hwz
 
-/-- The root of a vertex is a vertex. -/
+/-- The root of a vertex is a vertex.
+@isnad1 id=mem.4h4v.s7.0a42703b3bdb from=translated src=- shape=844458df vocab=ae7d8802
+-/
 lemma betaRoot_mem_bVerts {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U) {x : ZMod (d * m)}
     (hx : x ∈ bVerts U) : betaRoot hd hm hcanon x ∈ bVerts U :=
   bReach_mem_bVerts hx (bReach_betaRoot hd hm hcanon x)
 
-/-- The root is in the block of `x`. -/
+/-- The root is in the block of `x`.
+@isnad1 id=mem.4h4v.s7.8c127ebb7b38 from=translated src=- shape=c3de30eb vocab=ce6b37ea
+-/
 lemma betaRoot_mem_block {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U) {x : ZMod (d * m)}
     (hx : x ∈ bVerts U) : betaRoot hd hm hcanon x ∈ betaBlock U x := by
   rw [mem_betaBlock]
   exact ⟨betaRoot_mem_bVerts hd hm hcanon hx, bReach_betaRoot hd hm hcanon x⟩
 
-/-- The root is `.val`-minimal in the block. -/
+/-- The root is `.val`-minimal in the block.
+@isnad1 id=le.4h5v.s7.7b04357f47b9 from=translated src=- shape=b69b45d2 vocab=aad22934
+-/
 lemma betaRoot_min_in_block {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U) {x y : ZMod (d * m)}
     (hy : y ∈ betaBlock U x) : (betaRoot hd hm hcanon x).val ≤ y.val := by
@@ -681,12 +774,16 @@ lemma betaRoot_min_in_block {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
   rw [hroot_eq]
   exact betaRoot_le hd hm hcanon y
 
-/-- The block of a vertex is nonempty. -/
+/-- The block of a vertex is nonempty.
+@isnad1 id=nonempty.1h4v.s6.6db88b274d30 from=translated src=- shape=2593f0c0 vocab=16185efe
+-/
 lemma betaBlock_nonempty {d m : ℕ} {U : Finset (ZMod (d * m))} {x : ZMod (d * m)}
     (hx : x ∈ bVerts U) : (betaBlock U x).Nonempty :=
   ⟨x, by rw [mem_betaBlock]; exact ⟨hx, bReach_refl x⟩⟩
 
-/-- The minimum of a block is its root. -/
+/-- The minimum of a block is its root.
+@isnad1 id=eq.4h4v.s7.fea7204f1add from=translated src=- shape=2d155b63 vocab=f0e165ea
+-/
 lemma minVal_betaBlock {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U) {x : ZMod (d * m)}
     (hx : x ∈ bVerts U) :
@@ -700,7 +797,9 @@ lemma minVal_betaBlock {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     betaRoot_min_in_block hd hm hcanon (minVal_mem (betaBlock U x) h)
   exact ZMod.val_injective _ (le_antisymm h1 h2)
 
-/-- A block member that is not the root is a survivor (`∈ U`). -/
+/-- A block member that is not the root is a survivor (`∈ U`).
+@isnad1 id=mem.5h5v.s7.56b9ee5bb361 from=translated src=- shape=515189a1 vocab=f3fcef22
+-/
 lemma mem_U_of_mem_block_ne_root {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U) {x y : ZMod (d * m)}
     (hy : y ∈ betaBlock U x) (hne : y ≠ betaRoot hd hm hcanon x) : y ∈ U := by
@@ -713,18 +812,25 @@ lemma mem_U_of_mem_block_ne_root {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     betaRoot_bReach hd hm hcanon hreach
   simp_all
 
-/-- `betaBlock U x ∈ beta U` for a vertex `x`. -/
+/-- `betaBlock U x ∈ beta U` for a vertex `x`.
+@isnad1 id=mem.1h4v.s7.aca227d3b8cf from=translated src=- shape=db21bd44 vocab=a7005523
+-/
 lemma betaBlock_mem_beta {d m : ℕ} {U : Finset (ZMod (d * m))} {x : ZMod (d * m)}
     (hx : x ∈ bVerts U) : betaBlock U x ∈ beta U :=
   Finset.mem_image_of_mem _ hx
 
+/--
+@isnad1 id=iff.0h4v.s7.a82ae1373cbe from=translated src=- shape=3050409b vocab=a7005523
+-/
 lemma mem_beta_iff {d m : ℕ} {U : Finset (ZMod (d * m))} {S : Finset (ZMod (d * m))} :
     S ∈ beta U ↔ ∃ v ∈ bVerts U, betaBlock U v = S := by
   unfold beta; rw [Finset.mem_image]
 
 /-! ## Layer 9: T(β U) = U. -/
 
-/-- **The load-bearing spec.** `T(β U) = U` for canonical `U`. -/
+/-- **The load-bearing spec.** `T(β U) = U` for canonical `U`.
+@isnad1 id=eq.3h3v.s6.9ef32bd366b1 from=translated src=- shape=d1e829f3 vocab=1d717122
+-/
 theorem T_beta {d m : ℕ} (hd : 0 < d) (hm : 0 < m) {U : Finset (ZMod (d * m))}
     (hcanon : LevelCanonical d m U) : T (beta U) = U := by
   have : NeZero (d*m) := ⟨by positivity⟩
@@ -759,7 +865,9 @@ theorem T_beta {d m : ℕ} (hd : 0 < d) (hm : 0 < m) {U : Finset (ZMod (d * m))}
 
 /-! ## Layer 10: β U is a Portrait — IsCriticalSet per block. -/
 
-/-- Every block member shares the vertex's fiber. -/
+/-- Every block member shares the vertex's fiber.
+@isnad1 id=eq.4h5v.s7.1ce044b4c2cd from=translated src=- shape=44b75b15 vocab=d1eb9c5f
+-/
 lemma betaBlock_sameFiber {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U) {x y : ZMod (d * m)}
     (hy : y ∈ betaBlock U x) : y.val % m = x.val % m := by
@@ -768,7 +876,9 @@ lemma betaBlock_sameFiber {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
   exact (bReach_sameFiber hd hm hcanon hreach).symm
 
 /-- Every block contains a second point besides its root (its root has a `U`-child, or the
-    vertex itself is a `U`-point). -/
+    vertex itself is a `U`-point).
+@isnad1 id=le.4h4v.s7.ceb8d0fcae94 from=translated src=- shape=4af59ec6 vocab=6590bedf
+-/
 lemma betaBlock_two_le {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U) {v : ZMod (d * m)}
     (hv : v ∈ bVerts U) : 2 ≤ (betaBlock U v).card := by
@@ -822,7 +932,9 @@ lemma betaBlock_two_le {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     calc 2 = ({u, v} : Finset (ZMod (d*m))).card := hcard2.symm
       _ ≤ (betaBlock U v).card := Finset.card_le_card hsub
 
-/-- Each block is a critical set. -/
+/-- Each block is a critical set.
+@isnad1 id=iscritic.4h4v.s6.bc954d92dfa2 from=translated src=- shape=88da7875 vocab=3d46883d
+-/
 lemma betaBlock_critical {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U) {v : ZMod (d * m)}
     (hv : v ∈ bVerts U) : IsCriticalSet d m (betaBlock U v) := by
@@ -833,7 +945,9 @@ lemma betaBlock_critical {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
 
 /-! ## Layer 11: blocks determined by reachability; Disjoint. -/
 
-/-- Reachable vertices have the same block. -/
+/-- Reachable vertices have the same block.
+@isnad1 id=eq.1h5v.s6.d3a310838bd5 from=translated src=- shape=bc2d9753 vocab=340f6000
+-/
 lemma betaBlock_eq_of_bReach {d m : ℕ} {U : Finset (ZMod (d * m))} {v1 v2 : ZMod (d * m)}
     (h : bReach U v1 v2) : betaBlock U v1 = betaBlock U v2 := by
   ext z
@@ -842,7 +956,9 @@ lemma betaBlock_eq_of_bReach {d m : ℕ} {U : Finset (ZMod (d * m))} {v1 v2 : ZM
   · rintro ⟨hzv, hreach⟩; exact ⟨hzv, bReach_trans (bReach_symm h) hreach⟩
   · rintro ⟨hzv, hreach⟩; exact ⟨hzv, bReach_trans h hreach⟩
 
-/-- Distinct blocks are vertex-disjoint. -/
+/-- Distinct blocks are vertex-disjoint.
+@isnad1 id=disjoint.1h5v.s6.b10b0498aa56 from=translated src=- shape=f80790e1 vocab=1d298adb
+-/
 lemma betaBlock_disjoint {d m : ℕ} {U : Finset (ZMod (d * m))} {v1 v2 : ZMod (d * m)}
     (hne : betaBlock U v1 ≠ betaBlock U v2) : Disjoint (betaBlock U v1) (betaBlock U v2) := by
   rw [Finset.disjoint_left]
@@ -854,7 +970,9 @@ lemma betaBlock_disjoint {d m : ℕ} {U : Finset (ZMod (d * m))} {v1 v2 : ZMod (
   have hv12 : bReach U v1 v2 := bReach_trans hr1 (bReach_symm hr2)
   exact hne (betaBlock_eq_of_bReach hv12)
 
-/-- Distinct blocks of `β U` are disjoint. -/
+/-- Distinct blocks of `β U` are disjoint.
+@isnad1 id=disjoint.3h5v.s7.49eb2ef5a262 from=translated src=- shape=3431e28e vocab=e7a4718c
+-/
 lemma beta_pairwise_disjoint {d m : ℕ} {U : Finset (ZMod (d * m))} :
     ∀ A ∈ beta U, ∀ B ∈ beta U, A ≠ B → Disjoint A B := by
   intro A hA B hB hAB
@@ -866,7 +984,9 @@ lemma beta_pairwise_disjoint {d m : ℕ} {U : Finset (ZMod (d * m))} :
 
 /-! ## Layer 12: the weight identity ∑(|S|-1) = d-1. -/
 
-/-- **Weight.** `∑ S ∈ β U, (|S| - 1) = d - 1` (counted via `T(β U) = U`). -/
+/-- **Weight.** `∑ S ∈ β U, (|S| - 1) = d - 1` (counted via `T(β U) = U`).
+@isnad1 id=eq.4h3v.s7.8a4ca19ae1f6 from=translated src=- shape=57805312 vocab=7fd8e256
+-/
 lemma beta_weight {d m : ℕ} (hd : 0 < d) (hm : 0 < m) {U : Finset (ZMod (d * m))}
     (hcard : U.card = d - 1) (hcanon : LevelCanonical d m U) :
     ∑ S ∈ beta U, (S.card - 1) = d - 1 := by
@@ -892,7 +1012,9 @@ lemma beta_weight {d m : ℕ} (hd : 0 < d) (hm : 0 < m) {U : Finset (ZMod (d * m
 /-- **M2 strict positivity.** For a survivor `u` of canonical `U` and `betaK U u < j ≤ lu-1`,
     the deficiency at `j` is strictly positive.  If it were `≤ 0`, then since `D(lu-1) ≥ 0` (E1)
     and up-steps are `≤ 1`, the discrete IVT on `[j, lu-1]` yields an exact zero `> K`,
-    contradicting maximality `betaK_max`. -/
+    contradicting maximality `betaK_max`.
+@isnad1 id=lt.7h5v.s7.d8bc9cf774f9 from=translated src=- shape=5cf7be79 vocab=5ef90a9c
+-/
 lemma Defc_pos_after {d m : ℕ} (_hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (_hcanon : LevelCanonical d m U)
     {u : ZMod (d * m)} (_hu : u ∈ U) (hlu : 1 ≤ u.val / m) {j : ℕ}
@@ -927,14 +1049,18 @@ lemma Defc_pos_after {d m : ℕ} (_hd : 0 < d) (hm : 0 < m)
 
 /-! ## Layer 12c: the no-escape property `P` and the laminarity bridge to interval-closure. -/
 
-/-- Any balance index `≤ betaK`: `betaK` is the *largest* zero of the deficiency. -/
+/-- Any balance index `≤ betaK`: `betaK` is the *largest* zero of the deficiency.
+@isnad1 id=le.2h5v.s7.3e0f588dfe43 from=translated src=- shape=b86ed209 vocab=cb2785f3
+-/
 lemma betaK_ge {d m : ℕ} {U : Finset (ZMod (d * m))} {s : ZMod (d * m)} {k : ℕ}
     (hk : Defc U (s.val % m) (s.val / m) s.val k = 0) (hkle : k ≤ s.val / m - 1) :
     k ≤ betaK U s := by
   classical
   exact Nat.le_findGreatest hkle hk
 
-/-- Two disjoint open subintervals fit inside the whole: `Scount` is superadditive. -/
+/-- Two disjoint open subintervals fit inside the whole: `Scount` is superadditive.
+@isnad1 id=le.2h6v.s5.54c520097087 from=translated src=- shape=8084df7f vocab=d7c1e3dd
+-/
 lemma Scount_add_le {d m : ℕ} (U : Finset (ZMod (d * m))) {x y z : ℕ}
     (hxy : x ≤ y) (hyz : y ≤ z) :
     Scount U x y + Scount U y z ≤ Scount U x z := by
@@ -955,7 +1081,9 @@ lemma Scount_add_le {d m : ℕ} (U : Finset (ZMod (d * m))) {x y z : ℕ}
 
 /-- **GPRE prefix bound.** For a survivor `u` of canonical `U`, with `K := betaK U u` and a
     `φ`-column index `j` with `K < j ≤ lu`, the survivor count from `v*(u)` up to the `φ`-point at
-    level `j` is at most `j - K - 1`. -/
+    level `j` is at most `j - K - 1`.
+@isnad1 id=le.7h5v.s8.9a0fb7ec01f0 from=translated src=- shape=e6c6004d vocab=12288d5e
+-/
 lemma GPRE {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U)
     {u : ZMod (d * m)} (hu : u ∈ U) (hlu : 1 ≤ u.val / m) {j : ℕ}
@@ -999,7 +1127,9 @@ lemma GPRE {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
   linarith
 
 /-- **N0.** No survivor lies strictly inside one column-window above an edge bottom:
-    there is no `t ∈ U` with `v*(u) < t.val < v*(u) + m`. -/
+    there is no `t ∈ U` with `v*(u) < t.val < v*(u) + m`.
+@isnad1 id=false.8h5v.s8.05bcfe13a0dc from=translated src=- shape=a8cf7a19 vocab=1eacf2d6
+-/
 lemma N0 {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U)
     {u : ZMod (d * m)} (hu : u ∈ U) (hlu : 1 ≤ u.val / m)
@@ -1033,7 +1163,9 @@ lemma N0 {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     exact Finset.card_pos.mpr ⟨t, htmem⟩
   omega
 
-/-- Shrinking the upper endpoint shrinks the open interval: `Scount` is monotone in `y`. -/
+/-- Shrinking the upper endpoint shrinks the open interval: `Scount` is monotone in `y`.
+@isnad1 id=le.1h6v.s5.807306622e23 from=translated src=- shape=0deb7ca0 vocab=4187567b
+-/
 lemma Scount_mono_right {d m : ℕ} (U : Finset (ZMod (d * m))) {x y y' : ℕ}
     (hyy : y ≤ y') : Scount U x y ≤ Scount U x y' := by
   unfold Scount
@@ -1044,7 +1176,9 @@ lemma Scount_mono_right {d m : ℕ} (U : Finset (ZMod (d * m))) {x y y' : ℕ}
 
 /-- **Q (the deficiency-sign anchor).** For an edge `(v,u) = (v*(u), u)` and an interior survivor
     `s` (fiber `ψ`), if `y = ψ + ly*m` is the `ψ`-point in `[v, v+m)`, then the deficiency of `s`
-    at level `ly` is `≤ 0`. -/
+    at level `ly` is `≤ 0`.
+@isnad1 id=le.10h6v.s8.c19407b136dd from=translated src=- shape=be8dd25c vocab=483b3864
+-/
 lemma Q {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U)
     {u s : ZMod (d * m)} (hu : u ∈ U) (hlu : 1 ≤ u.val / m) (hs : s ∈ U)
@@ -1186,7 +1320,9 @@ lemma Q {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
 
 /-- **P (no escape).** For an edge `(v,u) = (v*(u), u)` of canonical `U` and an interior survivor
     `s` (`v < s.val < u.val`), the balance parent of `s` does not escape below `v`:
-    `v*(u).val ≤ v*(s).val`. -/
+    `v*(u).val ≤ v*(s).val`.
+@isnad1 id=le.7h5v.s8.b21e81bc62a2 from=translated src=- shape=ed8b9bbc vocab=fb2bb71e
+-/
 lemma noEscape {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U)
     {u s : ZMod (d * m)} (hu : u ∈ U) (hs : s ∈ U)
@@ -1273,7 +1409,9 @@ lemma noEscape {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
   omega
 
 /-- The **root stays above the edge bottom**: for an edge `(v,u)` and any vertex `w` strictly
-    inside its val-interval, the root of `w` has val `≥ v`. -/
+    inside its val-interval, the root of `w` has val `≥ v`.
+@isnad1 id=le.7h5v.s8.ef67a614138a from=translated src=- shape=e01706d5 vocab=3cb88c0c
+-/
 lemma root_ge {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U)
     {u : ZMod (d * m)} (hu : u ∈ U) :
@@ -1311,7 +1449,9 @@ lemma root_ge {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
 /-- **Descend across a threshold.** If `w` is a vertex with `betaRoot w ≤ L < w.val`,
     then descending
     the parent chain crosses `L`: some survivor `b` reachable from `w` has
-    `v*(b).val ≤ L < b.val`. -/
+    `v*(b).val ≤ L < b.val`.
+@isnad1 id=ex.5h5v.s7.5ff3e38ddd9f from=translated src=- shape=91815a51 vocab=faed856f
+-/
 lemma descend_cross {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     {U : Finset (ZMod (d * m))} (hcanon : LevelCanonical d m U) (L : ℕ) :
     ∀ w : ZMod (d*m), (betaRoot hd hm hcanon w).val ≤ L → L < w.val →
@@ -1341,6 +1481,9 @@ lemma descend_cross {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
       rw [betaRoot_of_not_mem hd hm hcanon hwU] at hroot
       omega
 
+/--
+@isnad1 id=and.10h7v.s9.90d9c9d2462c from=translated src=- shape=7c751c53 vocab=c9e385c0
+-/
 lemma beta_interval_closed {d m : ℕ} (hd : 0 < d) (hm : 0 < m) {U : Finset (ZMod (d * m))}
     (hcanon : LevelCanonical d m U) {x z : ZMod (d * m)}
     (hx : x ∈ bVerts U) (hz : z ∈ bVerts U)
@@ -1456,7 +1599,9 @@ lemma beta_interval_closed {d m : ℕ} (hd : 0 < d) (hm : 0 < m) {U : Finset (ZM
   have hminX_in_Z : minX ∈ betaBlock U z := by rw [← haz_eq_pt]; exact haz_mem
   exact (Finset.disjoint_left.mp hdisj hminX_mem) hminX_in_Z
 
-/-- **Unlinked (N).** Distinct blocks of `β U` are unlinked. -/
+/-- **Unlinked (N).** Distinct blocks of `β U` are unlinked.
+@isnad1 id=unlinked.6h5v.s7.cb7fc9ed4a72 from=translated src=- shape=3daab6d4 vocab=a6bbacdb
+-/
 lemma beta_unlinked {d m : ℕ} (hd : 0 < d) (hm : 0 < m) {U : Finset (ZMod (d * m))}
     (hcanon : LevelCanonical d m U) :
     ∀ A ∈ beta U, ∀ B ∈ beta U, A ≠ B → Unlinked A B := by
@@ -1516,7 +1661,9 @@ lemma beta_unlinked {d m : ℕ} (hd : 0 < d) (hm : 0 < m) {U : Finset (ZMod (d *
 
 /-! ## Layer 14: β U is a Portrait, and surjectivity. -/
 
-/-- **β(U) is a valid portrait.** -/
+/-- **β(U) is a valid portrait.**
+@isnad1 id=portrait.4h3v.s6.f4c9911f1bfa from=translated src=- shape=77d6c486 vocab=7d3294c1
+-/
 theorem beta_portrait {d m : ℕ} (hd : 0 < d) (hm : 0 < m) {U : Finset (ZMod (d * m))}
     (hcard : U.card = d - 1) (hcanon : LevelCanonical d m U) : Portrait d m (beta U) := by
   refine ⟨?_, ?_, ?_, ?_⟩
@@ -1533,7 +1680,9 @@ theorem beta_portrait {d m : ℕ} (hd : 0 < d) (hm : 0 < m) {U : Finset (ZMod (d
   · -- weight
     exact beta_weight hd hm hcard hcanon
 
-/-- **Surjectivity.** `T` is surjective onto canonical `(d-1)`-subsets. -/
+/-- **Surjectivity.** `T` is surjective onto canonical `(d-1)`-subsets.
+@isnad1 id=surjon.2h2v.s7.1d79c5a64e96 from=translated src=- shape=9551e1bb vocab=0e2da7d3
+-/
 theorem T_surjOn {d m : ℕ} (hd : 0 < d) (hm : 0 < m) :
     Set.SurjOn (T (N := d*m)) {P | Portrait d m P}
       {U | U.card = d - 1 ∧ LevelCanonical d m U} := by

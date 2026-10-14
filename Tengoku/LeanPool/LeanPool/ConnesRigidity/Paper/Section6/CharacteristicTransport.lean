@@ -51,6 +51,9 @@ def kernelSubgroup (action : H →* MulAut N) : Subgroup (PaperKernel.paperGamma
   (SemidirectProduct.inl (N := N) (G := H) (φ := action)).range
 
 /- Commutativity descends through a surjective homomorphism (Zhou §6). -/
+/--
+@isnad1 id=eq.1h6v.s9.b5264e8ad36c from=translated src=- shape=a5cbd489 vocab=acfb0017
+-/
 theorem mapCommutes
     {G M : Type*} [Group G] [Group M]
     (f : G →* M) (E : Subgroup G)
@@ -66,6 +69,9 @@ theorem mapCommutes
     (hcomm ⟨a, ha⟩ ⟨b, hb⟩)
 
 /- The quotient image preserves normality and commutativity (Zhou §6). -/
+/--
+@isnad1 id=other.2h2v.s17.ff97df73bbe5 from=translated src=- shape=7603ad38 vocab=92811453
+-/
 theorem quotientImage_is_normal_commuting
     (action : H →* MulAut N) (E : Subgroup (PaperKernel.paperGammaCarrier action))
     (hnormal : E.Normal) (hcomm : ∀ x y : E, x * y = y * x) :
@@ -77,6 +83,9 @@ theorem quotientImage_is_normal_commuting
   · exact mapCommutes _ _ hcomm
 
 /- The linear quotient factor has no nontrivial abelian normal image (Zhou §6). -/
+/--
+@isnad1 id=eq.2h1v.s15.3185586c0883 from=translated src=- shape=48fcaafa vocab=def8638c
+-/
 theorem sl3Image_is_bot
     (R : Subgroup H) (hnormal : R.Normal)
     (hcomm : ∀ x y : R, x * y = y * x) :
@@ -86,6 +95,9 @@ theorem sl3Image_is_bot
   · exact mapCommutes _ _ hcomm
 
 /- The finite symplectic quotient factor has no such normal image (Zhou §6). -/
+/--
+@isnad1 id=eq.2h1v.s15.8478e8bc0487 from=translated src=- shape=ebe4e318 vocab=405ac3fa
+-/
 theorem qImage_is_bot
     (R : Subgroup H) (hnormal : R.Normal)
     (hcomm : ∀ x y : R, x * y = y * x) :
@@ -95,6 +107,9 @@ theorem qImage_is_bot
   · exact mapCommutes _ _ hcomm
 
 /- Every abelian normal subgroup is contained in the paper kernel (Zhou §6). -/
+/--
+@isnad1 id=le.2h2v.s17.ce5a935980c2 from=translated src=- shape=6a08669a vocab=3b69bf13
+-/
 theorem paperSemidirectNormalAbelian_le_kernel
     (action : H →* MulAut N) (E : Subgroup (PaperKernel.paperGammaCarrier action))
     (hnormal : E.Normal) (hcomm : ∀ x y : E, x * y = y * x) :
@@ -127,6 +142,9 @@ theorem paperSemidirectNormalAbelian_le_kernel
   exact Prod.ext hs hq
 
 /- The paper kernel is normal in its semidirect product (Zhou §6). -/
+/--
+@isnad1 id=normal.0h1v.s14.a4450255e5fe from=translated src=- shape=e4ead131 vocab=d85eb868
+-/
 theorem kernelSubgroup_normal (action : H →* MulAut N) :
     (kernelSubgroup action).Normal := by
   rw [kernelSubgroup, SemidirectProduct.range_inl_eq_ker_rightHom]
@@ -138,6 +156,9 @@ theorem kernelSubgroup_normal (action : H →* MulAut N) :
   simp
 
 /- The paper kernel is abelian in multiplicative coordinates (Zhou §6). -/
+/--
+@isnad1 id=eq.0h3v.s17.a8acc0c4000f from=translated src=- shape=d9bba9b7 vocab=a1c755a0
+-/
 theorem kernelSubgroup_commuting (action : H →* MulAut N) :
     ∀ x y : kernelSubgroup action, x * y = y * x := by
   intro x y
@@ -149,6 +170,9 @@ theorem kernelSubgroup_commuting (action : H →* MulAut N) :
   rw [← hax, ← hby, ← map_mul, ← map_mul, mul_comm]
 
 /- Group isomorphisms carry the paper kernel onto the paper kernel (Zhou §6). -/
+/--
+@isnad1 id=eq.0h3v.s16.0eabbee7b76a from=translated src=- shape=ece6db83 vocab=ebd68af2
+-/
 theorem kernelSubgroup_characteristic
     (action₁ action₂ : H →* MulAut N)
     (f : PaperKernel.paperGammaCarrier action₁ ≃* PaperKernel.paperGammaCarrier action₂) :

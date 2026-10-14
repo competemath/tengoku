@@ -32,30 +32,54 @@ namespace SplitProperties
 --TODO: Rework some of these statement to make them more general: that should make proving the
 -- specfic versions easier.
 
+/--
+@isnad1 id=eq.2h7v.s7.29ba713fe4d7 from=translated src=- shape=9b0ba84e vocab=deb14a3e
+-/
 lemma firstPart_cast {x₀' x₁' : X} (γ : Dipath x₀ x₁) (hx₀ : x₀' = x₀) (hx₁ : x₁' = x₁) (T : I) :
   (FirstPart (γ.cast hx₀ hx₁) T) = (FirstPart γ T).cast hx₀ rfl := rfl
 
+/--
+@isnad1 id=eq.2h7v.s7.a48ca305234c from=translated src=- shape=7d5b989b vocab=1563534c
+-/
 lemma secondPart_cast {x₀' x₁' : X} (γ : Dipath x₀ x₁) (hx₀ : x₀' = x₀) (hx₁ : x₁' = x₁) (T : I) :
   (SecondPart (γ.cast hx₀ hx₁) T) = (SecondPart γ T).cast rfl hx₁ := rfl
 
+/--
+@isnad1 id=eq.1h6v.s6.18b42c88ba72 from=translated src=- shape=5376e802 vocab=4f264271
+-/
 lemma firstPart_eq_of_split_point_eq (γ : Dipath x₀ x₁) {T T' : I} (hT : T = T') :
   (FirstPart γ T) = (FirstPart γ T').cast rfl (congr_arg γ hT) := by subst_vars; rfl
 
+/--
+@isnad1 id=eq.1h6v.s6.fc8dce5a2816 from=translated src=- shape=aef7d45a vocab=e4ef14a3
+-/
 lemma secondPart_eq_of_split_point_eq (γ : Dipath x₀ x₁) {T T' : I} (hT : T = T') :
   (SecondPart γ T) = (SecondPart γ T').cast (congr_arg γ hT) rfl := by subst_vars; rfl
 
+/--
+@isnad1 id=eq.1h7v.s7.fec041370c4a from=translated src=- shape=50f70345 vocab=9d2ab186
+-/
 lemma firstPart_eq_of_point_eq (γ : Dipath x₀ x₁) {T T' : I} (h : T = T') (t : I) :
   (FirstPart γ T) t = (FirstPart γ T') t := by subst_vars; rfl
 
+/--
+@isnad1 id=eq.1h7v.s7.7047276b7d50 from=translated src=- shape=34389a54 vocab=8b8f8afb
+-/
 lemma secondPart_eq_of_point_eq (γ : Dipath x₀ x₁) {T T' : I} (h : T = T') (t : I) :
   (SecondPart γ T) t = (SecondPart γ T') t := by subst_vars; rfl
 
+/--
+@isnad1 id=eq.3h9v.s7.ce5a82f780a1 from=translated src=- shape=7d7ad978 vocab=60eaa605
+-/
 lemma interval_cast {γ : Dipath x₀ x₁} {A : Set X} {a b a' b' : I} (h_im : A = γ '' Icc a b)
       (ha : a' = a) (hb : b' = b) :
     A = γ '' Icc a' b' := by subst_vars; rfl
 
 /-! ### First Part -/
 
+/--
+@isnad1 id=eq.1h7v.s7.85759d965927 from=translated src=- shape=0686b360 vocab=9d496a5c
+-/
 lemma firstPart_image (γ : Dipath x₀ x₁) (T a b : I) (h_ab : a ≤ b) :
     (FirstPart γ T) '' Icc a b = γ '' Icc (T * a) (T * b) := by
   ext z
@@ -91,15 +115,24 @@ lemma firstPart_image (γ : Dipath x₀ x₁) (T a b : I) (h_ab : a ≤ b) :
       · exact mul_one (t : ℝ)
       · exact unitInterval.coe_ne_zero.mpr h
 
+/--
+@isnad1 id=eq.0h5v.s7.6c6f09b94040 from=translated src=- shape=ee10e246 vocab=5130ff3e
+-/
 lemma firstPart_range (γ : Dipath x₀ x₁) (T : I) :
     range (FirstPart γ T) = (γ '' Icc 0 T) := by
   rw [Dipath.range_eq_image_I _]
   convert firstPart_image γ T 0 1 zero_le_one <;> norm_num
 
+/--
+@isnad1 id=eq.1h5v.s7.86cc67288728 from=translated src=- shape=bc511784 vocab=b8ac33a8
+-/
 lemma firstPart_range_interval (γ : Dipath x₀ x₁) {n : ℕ} (h : 0 < n) :
     range (FirstPart γ (Fraction.ofPos h)) = γ ''  Icc 0 (Fraction.ofPos h) :=
   firstPart_range γ (Fraction.ofPos h)
 
+/--
+@isnad1 id=eq.1h5v.s7.bfc0c09fbdfd from=translated src=- shape=c07099e3 vocab=d205d270
+-/
 lemma firstPart_range_interval_coe (γ : Dipath x₀ x₁) {n : ℕ} (h : 0 < n) :
     range (FirstPart γ (Fraction.ofPos h)) = γ.extend '' Icc 0 (1 / (↑n)) := by
   rw [firstPart_range_interval γ h, ←Dipath.image_extend_eq_image, Fraction.ofPos_coe]
@@ -108,6 +141,7 @@ lemma firstPart_range_interval_coe (γ : Dipath x₀ x₁) {n : ℕ} (h : 0 < n)
 /-- If `γ` is a path, then the image of `[i/(d+1), (i+1)/(d+1)]` under `γ` split at `(d+1)/(n+1)` is
 the
 image of `[i/(n+1), (i+1)/(n+1)]` under `γ`
+@isnad1 id=eq.2h7v.s7.cedbe043f808 from=translated src=- shape=acb7101d vocab=414ad3c2
 -/
 lemma firstPart_range_interval_partial (γ : Dipath x₀ x₁) {n d i : ℕ} (hd : d.succ < n.succ)
     (hi : i < d.succ) :
@@ -134,6 +168,9 @@ lemma firstPart_range_interval_partial (γ : Dipath x₀ x₁) {n d i : ℕ} (hd
 
 /-! ### Second Part -/
 
+/--
+@isnad1 id=eq.1h7v.s8.8e390667e32b from=translated src=- shape=9525dfd2 vocab=1d493b27
+-/
 lemma secondPart_image (γ : Dipath x₀ x₁) (T a b : I) (h_ab : a ≤ b) :
     (SecondPart γ T) '' Icc a b = γ '' Icc
       ⟨σ T * a + T, interp_left_mem_I T a⟩
@@ -171,6 +208,9 @@ lemma secondPart_image (γ : Dipath x₀ x₁) (T a b : I) (h_ab : a ≤ b) :
       · ring
       exact ne_of_gt this
 
+/--
+@isnad1 id=eq.0h5v.s7.af927e628364 from=translated src=- shape=587e8be2 vocab=d3d06337
+-/
 lemma secondPart_range (γ : Dipath x₀ x₁) (T : I) :
     range (SecondPart γ T) = γ '' Icc T 1  := by
   rw [Dipath.range_eq_image_I _]
@@ -179,6 +219,7 @@ lemma secondPart_range (γ : Dipath x₀ x₁) (T : I) :
 /-- When γ is a dipath, an we split it on the intervals [0, 1/(n+1)] and [1/(n+1), 1], then the
 image of γ of
   [(i+1)/(n+1), (i+2)/(n+1)] is equal to the image the second part of γ of [i/n, (i+1)/n]
+@isnad1 id=eq.2h6v.s8.f937c335d44e from=translated src=- shape=7da84cb3 vocab=755150b7
 -/
 lemma secondPart_range_interval (γ : Dipath x₀ x₁) {i n : ℕ} (hi : i < n) (hn : 0 < n) :
     (SecondPart γ (Fraction.ofPos (Nat.succ_pos n))) '' Icc
@@ -225,6 +266,7 @@ lemma secondPart_range_interval (γ : Dipath x₀ x₁) {i n : ℕ} (hi : i < n)
 image of γ of
   [(i+1)/(n+1), (i+2)/(n+1)] is equal to the image the second part of γ of [i/n, (i+1)/n].
   Version with interval of real numbers
+@isnad1 id=eq.2h6v.s8.3f82c18a1dcd from=translated src=- shape=f2592e8d vocab=55caf134
 -/
 lemma secondPart_range_interval_coe (γ : Dipath x₀ x₁) {i n : ℕ} (hi : i < n) (hn : 0 < n) :
     (SecondPart γ (Fraction.ofPos (Nat.succ_pos n))).extend '' Icc (↑i/↑n) ((↑i+1)/↑n) =
@@ -242,6 +284,7 @@ lemma secondPart_range_interval_coe (γ : Dipath x₀ x₁) {i n : ℕ} (hi : i 
 the image of γ of
   [(i+d.succ)/(n+1), (i+d.succ+1)/(n+1)]
       is equal to the image the second part of γ of [(i/(n-d), (i+1)/(n-d)].
+@isnad1 id=eq.2h7v.s8.80496a669088 from=translated src=- shape=3873c1c6 vocab=749c4150
 -/
 lemma secondPart_range_partial_interval (γ : Dipath x₀ x₁) {i d n : ℕ} (hd : d.succ < n.succ)
     (hi : i < n - d) :
@@ -288,6 +331,7 @@ lemma secondPart_range_partial_interval (γ : Dipath x₀ x₁) {i d n : ℕ} (h
 
 /-- Splitting a dipath `γ` at `[0, k/n]` and then at `[0, 1/k]` is the same as splitting it at `[0,
 1/n]`.
+@isnad1 id=eq.2h6v.s8.e79c408e5f1e from=translated src=- shape=13c3ec96 vocab=5836544f
 -/
 lemma firstPart_of_firstPart (γ : Dipath x₀ x₁) {n k : ℕ} (hkn : k < n) (hk : 0 < k) :
     FirstPart
@@ -304,6 +348,7 @@ lemma firstPart_of_firstPart (γ : Dipath x₀ x₁) {n k : ℕ} (hkn : k < n) (
 
 /-- Splitting a dipath `[0, (k+1)/(n+1)]` and then `[1/(k+1), 1]` is the same as
   splitting it `[1/(n+1), 1]` and then `[0, k/n]`
+@isnad1 id=eq.2h6v.s9.1876b4d3c507 from=translated src=- shape=20db54e2 vocab=2b80ca55
 -/
 lemma first_part_of_second_part (γ : Dipath x₀ x₁) {n k : ℕ} (hkn : k < n) (hk : 0 < k) :
   SecondPart
@@ -353,6 +398,7 @@ lemma first_part_of_second_part (γ : Dipath x₀ x₁) {n k : ℕ} (hkn : k < n
 
 /-- Splitting a dipath [(k+2)/(n+2), 1] is the same as splitting it [1/(n+2), 1] and then
 [(k+1)/(n+1), 1]
+@isnad1 id=eq.1h6v.s8.31446dacd6fd from=translated src=- shape=90d4d41b vocab=fa58769a
 -/
 lemma second_part_of_second_part (γ : Dipath x₀ x₁) {n k : ℕ} (hkn : k < n) :
   SecondPart
@@ -410,6 +456,7 @@ lemma second_part_of_second_part (γ : Dipath x₀ x₁) {n k : ℕ} (hkn : k < 
 variable {x₂ : X}
 
 /-- If `γ₁` and `γ₂` are two paths, then the first part of `γ₁.trans γ₂` split at `1/2` is `γ₁`
+@isnad1 id=eq.0h6v.s7.6df33c3de2b5 from=translated src=- shape=cd3969b0 vocab=a15b5f12
 -/
 lemma first_part_trans (γ₁ : Dipath x₀ x₁) (γ₂ : Dipath x₁ x₂) :
     (FirstPart (γ₁.trans γ₂) (Fraction.ofPos two_pos)) =
@@ -419,6 +466,7 @@ lemma first_part_trans (γ₁ : Dipath x₀ x₁) (γ₂ : Dipath x₁ x₂) :
   simp [t.2.2]
 
 /-- If `γ₁` and `γ₂` are two paths, then the second part of `γ₁.trans γ₂` split at `1/2` is `γ₂`
+@isnad1 id=eq.0h6v.s7.df3ba25fc7bc from=translated src=- shape=39d53b4c vocab=3c475f4e
 -/
 lemma second_part_trans (γ₁ : Dipath x₀ x₁) (γ₂ : Dipath x₁ x₂) :
     (SecondPart (γ₁.trans γ₂) (Fraction.ofPos two_pos)) =
@@ -440,6 +488,7 @@ lemma second_part_trans (γ₁ : Dipath x₀ x₁) (γ₂ : Dipath x₁ x₂) :
 /-- If `γ₁` and `γ₂` are two paths, then the first part of `γ₁.trans γ₂` split at `1/(2n + 2)` is
 the
 same as `γ₁` split at `1/(n + 1)`.
+@isnad1 id=eq.0h8v.s7.b90ccd6b1e85 from=translated src=- shape=55651d6f vocab=840a26c7
 -/
 lemma trans_first_part (γ₁ : Dipath x₀ x₁) (γ₂ : Dipath x₁ x₂) (n : ℕ) (t : I) :
     (FirstPart (γ₁.trans γ₂) (Fraction.ofPos (Nat.succ_pos (n + n).succ))) t =
@@ -468,26 +517,56 @@ lemma trans_first_part (γ₁ : Dipath x₀ x₁) (γ₂ : Dipath x₁ x₂) (n 
 
 namespace AuxEqualities
 
+/--
+@isnad1 id=le.0h1v.s4.a830f16e7b19 from=translated src=- shape=d23b8c51 vocab=2f65a7e1
+-/
 lemma h₁ (t : I) : 0 ≤ (t : ℝ) := t.2.1
+/--
+@isnad1 id=le.0h1v.s3.6e5388158648 from=translated src=- shape=22749854 vocab=2e7cbec4
+-/
 lemma h₂ (n : ℕ) : 0 ≤ (n : ℝ) := Nat.cast_nonneg n
+/--
+@isnad1 id=ne.0h1v.s5.33e3adbb2f8b from=translated src=- shape=2ba5e247 vocab=6afbe28e
+-/
 lemma h₃ (n : ℕ) : (n + 1 + 1 : ℝ) ≠ 0 := by linarith [h₂ n]
+/--
+@isnad1 id=lt.0h1v.s6.d981e067511f from=translated src=- shape=496fa266 vocab=5c8f0983
+-/
 lemma h₄ (n : ℕ) : (↑n + ↑n + 1 + 1 + 1 + 1 : ℝ) > 0 := by linarith [h₂ n]
+/--
+@isnad1 id=eq.0h1v.s6.5020c699c72e from=translated src=- shape=a71bfd56 vocab=f2063c5d
+-/
 lemma h₅ (n : ℕ) : (↑n + ↑n + 1 + 1 + 1 + 1 : ℝ) = 2 * (↑n + 1 + 1) := by ring
+/--
+@isnad1 id=eq.0h1v.s6.00ad012b465c from=translated src=- shape=eae10f40 vocab=1e0bc747
+-/
 lemma h₆ (n : ℕ) : (↑n + 1 + 1 : ℝ) / (↑n + ↑n + 1 + 1 + 1 + 1) = 2⁻¹ := by
   rw [h₅ n]
   rw [mul_comm]
   rw [div_mul_eq_div_div]
   rw [div_self (h₃ n)]
   exact one_div _
+/--
+@isnad1 id=ne.0h1v.s6.de059b77a4f9 from=translated src=- shape=7d4afd93 vocab=6afbe28e
+-/
 lemma h₇ (n : ℕ) : (n + n + 1 + 1 + 1: ℝ) ≠ 0 := by linarith [h₂ n]
+/--
+@isnad1 id=eq.0h1v.s7.ba0114f13495 from=translated src=- shape=cdbf160f vocab=6afbe28e
+-/
 lemma h₈ (n : ℕ) : (↑n + 1 + (↑n + 1) + 1 + 1 : ℝ) = (↑n + ↑n + 1 + 1 + 1 + 1) := by ring
 
+/--
+@isnad1 id=eq.0h2v.s7.7372e6b33853 from=translated src=- shape=7a1cb4b5 vocab=cfa18d17
+-/
 lemma e₁ (n : ℕ) (t : I) :
     (1 - (n + 1 : ℝ) / (↑n + 1 + 1)) * ↑t + (↑n + 1) / (↑n + 1 + 1) =
     ((t : ℝ) + ↑n + 1) / (↑n + 1 + 1) := by
   nth_rewrite 1 [←div_self (h₃ n)]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s8.50a17743f346 from=translated src=- shape=ba3c6653 vocab=cfa18d17
+-/
 lemma e₂ (n : ℕ) (t : I) :
     ((1 - (n + n + 1 + 1 : ℝ) / (↑n + ↑n + 1 + 1 + 1)) * ↑t +
         (↑n + ↑n + 1 + 1) / (↑n + ↑n + 1 + 1 + 1)) =
@@ -495,12 +574,18 @@ lemma e₂ (n : ℕ) (t : I) :
   nth_rewrite 1 [←div_self (h₇ n)]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s7.fa2dcb3092a2 from=translated src=- shape=6e9c28de vocab=245ce421
+-/
 lemma e₃ (n : ℕ) :
     (1 - (n + 1 + (n + 1) + 1 + 1 : ℝ)⁻¹) =
     (↑n + ↑n + 1 + 1 + 1) / (↑n + ↑n + 1 + 1 + 1 + 1) := by
   nth_rewrite 1 [←div_self (ne_of_gt (h₄ n))]
   ring_nf
 
+/--
+@isnad1 id=eq.0h2v.s8.1cfccba7837b from=translated src=- shape=559e2f0b vocab=c6748dfb
+-/
 lemma e₄ (n : ℕ) (t : I) :
     ((↑n + ↑n + 1 + 1 + 1 : ℝ) / (↑n + ↑n + 1 + 1 + 1 + 1) *
         ((↑t + ↑n + ↑n + 1 + 1) / (↑n + ↑n + 1 + 1 + 1))) =
@@ -508,6 +593,9 @@ lemma e₄ (n : ℕ) (t : I) :
   rw [mul_comm]
   rw [div_mul_div_cancel₀ (h₇ n)]
 
+/--
+@isnad1 id=eq.0h2v.s7.38ab2667c044 from=translated src=- shape=0fd7f840 vocab=8520fd0c
+-/
 lemma e₅ (n : ℕ) (r : ℝ) :
     2 * (r / (n + n + 1 + 1 + 1 + 1 : ℝ) + ((n : ℝ) + 1 + (↑n + 1) + 1 + 1)⁻¹) =
     (r + 1) / (↑n + 1 + 1) := by
@@ -515,6 +603,9 @@ lemma e₅ (n : ℕ) (r : ℝ) :
   field_simp
   ring
 
+/--
+@isnad1 id=eq.0h2v.s7.d2a57d4fc9e4 from=translated src=- shape=4eb04c09 vocab=c23193de
+-/
 lemma e₆ (n : ℕ) (r : ℝ) :
   (1 - (n + 1 + 1 : ℝ)⁻¹) * r + (n + 1 + 1 : ℝ)⁻¹ = ((n + 1) * r + 1) / (n + 1 + 1) := by
   nth_rewrite 1 [←div_self (h₃ n)]
@@ -528,6 +619,7 @@ open AuxEqualities
   3)/(2n + 4)]`)
 is the same as
   `γ₁` --> `[1/(n+2), 1]`, added to `γ₂` --> `[0, (n+1)/(n+2)]`
+@isnad1 id=eq.0h8v.s9.a3005d468124 from=translated src=- shape=7f48b6e9 vocab=e073bb9a
 -/
 lemma trans_first_part_of_second_part (γ₁ : Dipath x₀ x₁) (γ₂ : Dipath x₁ x₂) (n : ℕ) (t : I) :
   (FirstPart
@@ -599,6 +691,7 @@ lemma trans_first_part_of_second_part (γ₁ : Dipath x₀ x₁) (γ₂ : Dipath
   `γ₁.trans γ₂` --> `[1/(2n + 4), 1]` --> `[(2n+2)/(2n+3), 1]` (so to `[(2n+3)/(2n+4), 1]`)
 is the same as
   `γ₂` --> `[(n+1)/(n+2), 1]`
+@isnad1 id=eq.0h8v.s9.be93e41ad2f3 from=translated src=- shape=c1467859 vocab=6005bb73
 -/
 lemma trans_second_part_second_part (γ₁ : Dipath x₀ x₁) (γ₂ : Dipath x₁ x₂) (n : ℕ) (t : I) :
   (SecondPart
@@ -633,6 +726,7 @@ lemma trans_second_part_second_part (γ₁ : Dipath x₀ x₁) (γ₂ : Dipath x
 
 /-- If `γ₁` and `γ₂` are two paths, then `γ₁.trans γ₂` evaluated at `1/(2n+2)` is the same as
 `γ₁` evaluated at `1/(n+1)`.
+@isnad1 id=eq.0h7v.s6.f18ae762ac5a from=translated src=- shape=3c04a11f vocab=a5d83031
 -/
 lemma trans_image_inv_eq_first (γ₁ : Dipath x₀ x₁) (γ₂ : Dipath x₁ x₂) (n : ℕ) :
     (γ₁.trans γ₂) (Fraction.ofPos (Nat.succ_pos (n + n).succ)) =
@@ -643,6 +737,7 @@ lemma trans_image_inv_eq_first (γ₁ : Dipath x₀ x₁) (γ₂ : Dipath x₁ x
 /-- If `γ₁` and `γ₂` are two paths, then `γ₁.trans γ₂` --> `[1/(2n+4), 1]` evaluated at
 `(2n+2)/(2n+3)` is the same as
 `γ₂` evaluated at `(n+1)/(n+2)`.
+@isnad1 id=eq.0h7v.s7.3c8684483243 from=translated src=- shape=bcd1efa6 vocab=cf684acf
 -/
 lemma second_part_trans_eval_at_end (γ₁ : Dipath x₀ x₁) (γ₂ : Dipath x₁ x₂) (n : ℕ) :
     (SecondPart (γ₁.trans γ₂) <| Fraction.ofPos <| Nat.succ_pos (n.succ + n.succ).succ)

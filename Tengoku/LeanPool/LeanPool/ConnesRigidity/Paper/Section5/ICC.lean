@@ -152,7 +152,9 @@ private theorem q_displacement_conjugate
       SemidirectProduct.inv_right]
     simp
 
-/-- Three-case ICC transfer for the product quotient in Zhou §5. -/
+/-- Three-case ICC transfer for the product quotient in Zhou §5.
+@isnad1 id=isicc.1h1v.s14.15f52b9b97b9 from=translated src=- shape=da35a18a vocab=c26071b9
+-/
 theorem isICC_of_product_quotient
     (action : H →* MulAut N) (data : ActionData action) :
     IsICC (PaperKernel.paperGammaOf action) := by

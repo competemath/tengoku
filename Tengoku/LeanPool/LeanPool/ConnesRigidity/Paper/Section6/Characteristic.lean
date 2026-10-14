@@ -49,6 +49,9 @@ def paperTransvection (i j : I) (hij : i ≠ j) (f : R) : G :=
   Matrix.SpecialLinearGroup.transvection hij f
 
 /- The characteristic-two square identity for the transvection (Zhou §6). -/
+/--
+@isnad1 id=eq.1h3v.s6.97585bcd1887 from=translated src=- shape=1546c0ca vocab=100cf1cf
+-/
 theorem paperTransvection_square (i j : I) (hij : i ≠ j) (f : R) :
     paperTransvection i j hij f * paperTransvection i j hij f = 1 := by
   apply Subtype.ext
@@ -63,6 +66,9 @@ theorem paperTransvection_square (i j : I) (hij : i ≠ j) (f : R) :
     add_zero]
   rw [add_assoc, hself, add_zero]
 
+/--
+@isnad1 id=eq.2h4v.s9.9574febdef5d from=translated src=- shape=f62c7717 vocab=fe1b8698
+-/
 theorem paperDiagonalEntryEquation (i j : I) (hij : i ≠ j) (b : G) (f : R)
     (hcomm : Commute b
       (paperTransvection i j hij f * b * (paperTransvection i j hij f)⁻¹)) :
@@ -99,6 +105,9 @@ theorem paperDiagonalEntryEquation (i j : I) (hij : i ≠ j) (b : G) (f : R)
   rw [hB2E, hEBB, hBEB] at hentry
   linear_combination -hentry
 
+/--
+@isnad1 id=eq.4h4v.s10.33e6fa2d06c9 from=translated src=- shape=755e18f6 vocab=e644e5c8
+-/
 theorem paperOffDiagonalZeroOfMemNormalCommuting
     (B : Subgroup G) (hBnormal : B.Normal)
     (hcommute : ∀ x y : B, x * y = y * x)
@@ -184,6 +193,9 @@ private theorem paperPolynomialUnitEqOne {p : R} (hp : IsUnit p) : p = 1 := by
   rw [hpC, hcoeff]
   simp
 
+/--
+@isnad1 id=eq.2h1v.s10.655a4989e319 from=translated src=- shape=09177d6a vocab=cd530578
+-/
 theorem paperSL3NoNontrivialAbelianNormalSubgroup
     (B : Subgroup G) (hBnormal : B.Normal)
     (hcommute : ∀ x y : B, x * y = y * x) : B = ⊥ := by

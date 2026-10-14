@@ -211,7 +211,9 @@ private theorem vertexPoint_eq_realizationVertex_of_positive
   simp [Moise.IntrinsicTwoComplex.vertexPoint, realizationVertex, huv]
 
 /-- Every fixed-vertex face star in a geometric triangulation of a topological surface is
-connected through edges containing that vertex. -/
+connected through edges containing that vertex.
+@isnad1 id=other.0h2v.s9.f34a30693187 from=translated src=- shape=d608a801 vocab=80727f03
+-/
 theorem faces_isStrongVertexStarConnected
     [ChartedSpace (EuclideanHalfSpace 2) S]
     [IsManifold (modelWithCornersEuclideanHalfSpace 2) 0 S] :

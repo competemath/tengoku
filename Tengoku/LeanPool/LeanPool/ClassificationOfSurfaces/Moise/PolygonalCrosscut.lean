@@ -28,7 +28,9 @@ namespace Moise
 namespace PolygonalCircle
 
 /-- Splitting a nondegenerate segment at a non-endpoint produces two subsegments meeting only
-at the split point. -/
+at the split point.
+@isnad1 id=eq.3h3v.s8.6f160911ecdb from=translated src=- shape=57def904 vocab=3d1298c9
+-/
 theorem segment_split_inter {a b p : Plane} (hp : p ∈ segment ℝ a b)
     (hpa : p ≠ a) (hpb : p ≠ b) :
     segment ℝ a p ∩ segment ℝ p b = {p} := by
@@ -70,10 +72,16 @@ theorem segment_split_inter {a b p : Plane} (hp : p ∈ segment ℝ a b)
 def insertZeroVertex (J : PolygonalCircle) (p : Plane) : ZMod (J.n + 1) → Plane :=
   fun i => if i.val = 0 then p else J.vertex (i.val : ZMod J.n)
 
+/--
+@isnad1 id=eq.0h2v.s6.0dc7c19c9b5f from=translated src=- shape=04c82701 vocab=f264b3a8
+-/
 @[simp] theorem insertZeroVertex_zero (J : PolygonalCircle) (p : Plane) :
     J.insertZeroVertex p 0 = p := by
   simp [insertZeroVertex]
 
+/--
+@isnad1 id=eq.2h3v.s7.9b6072eb6232 from=translated src=- shape=7a5b9199 vocab=0787e50e
+-/
 theorem insertZeroVertex_natCast (J : PolygonalCircle) (p : Plane) {m : ℕ}
     (hm0 : 0 < m) (hm : m < J.n + 1) :
     J.insertZeroVertex p (m : ZMod (J.n + 1)) = J.vertex (m : ZMod J.n) := by
@@ -85,6 +93,9 @@ def insertZeroEdgeSegment (J : PolygonalCircle) (p : Plane)
     (i : ZMod (J.n + 1)) : Set Plane :=
   segment ℝ (J.insertZeroVertex p i) (J.insertZeroVertex p (i + 1))
 
+/--
+@isnad1 id=eq.0h2v.s8.9b43cc9040d7 from=translated src=- shape=7c84dc24 vocab=0badfc45
+-/
 theorem insertZeroEdgeSegment_zero (J : PolygonalCircle) (p : Plane) :
     J.insertZeroEdgeSegment p 0 = segment ℝ p (J.vertex 1) := by
   unfold insertZeroEdgeSegment
@@ -97,6 +108,9 @@ theorem insertZeroEdgeSegment_zero (J : PolygonalCircle) (p : Plane) :
   rw [ZMod.val_one_eq_one_mod, Nat.mod_eq_of_lt htwo]
   simp
 
+/--
+@isnad1 id=eq.2h3v.s7.6c0acb909887 from=translated src=- shape=3667966f vocab=619d512a
+-/
 theorem insertZeroEdgeSegment_middle (J : PolygonalCircle) (p : Plane) {m : ℕ}
     (hm0 : 0 < m) (hm : m < J.n) :
     J.insertZeroEdgeSegment p (m : ZMod (J.n + 1)) =
@@ -110,6 +124,9 @@ theorem insertZeroEdgeSegment_middle (J : PolygonalCircle) (p : Plane) {m : ℕ}
   congr 2
   norm_num [Nat.cast_add]
 
+/--
+@isnad1 id=eq.0h2v.s7.719637da4215 from=translated src=- shape=ac4ddb15 vocab=48e9710f
+-/
 theorem insertZeroEdgeSegment_last (J : PolygonalCircle) (p : Plane) :
     J.insertZeroEdgeSegment p (J.n : ZMod (J.n + 1)) =
       segment ℝ (J.vertex 0) p := by
@@ -128,6 +145,9 @@ theorem insertZeroEdgeSegment_last (J : PolygonalCircle) (p : Plane) :
   congr 2
   exact ZMod.natCast_self J.n
 
+/--
+@isnad1 id=ne.2h3v.s8.95a2eca205f8 from=translated src=- shape=ddca37fc vocab=afd9f82c
+-/
 theorem insertZeroVertex_adjacent_ne (J : PolygonalCircle) {p : Plane}
     (hp0 : p ≠ J.vertex 0) (hp1 : p ≠ J.vertex 1)
     (i : ZMod (J.n + 1)) :
@@ -179,6 +199,9 @@ theorem insertZeroVertex_adjacent_ne (J : PolygonalCircle) {p : Plane}
     simpa only [Nat.cast_add, Nat.cast_one] using
       J.adjacent_ne (m : ZMod J.n)
 
+/--
+@isnad1 id=eq.3h3v.s9.2f1572fd98b2 from=translated src=- shape=4e6c1316 vocab=df3d3c54
+-/
 theorem insertZero_consecutive_inter (J : PolygonalCircle) {p : Plane}
     (hp : p ∈ J.edgeSegment 0) (hp0 : p ≠ J.vertex 0) (hp1 : p ≠ J.vertex 1)
     (i : ZMod (J.n + 1)) :
@@ -291,6 +314,9 @@ theorem insertZero_consecutive_inter (J : PolygonalCircle) {p : Plane}
         one_add_one_eq_two] using
         J.consecutive_inter (m : ZMod J.n)
 
+/--
+@isnad1 id=not.3h2v.s8.dd036bdf3b30 from=translated src=- shape=84e4a6bf vocab=18d8195f
+-/
 theorem vertex_zero_not_mem_insertZero_first (J : PolygonalCircle) {p : Plane}
     (hp : p ∈ J.edgeSegment 0) (hp0 : p ≠ J.vertex 0) (hp1 : p ≠ J.vertex 1) :
     J.vertex 0 ∉ segment ℝ p (J.vertex 1) := by
@@ -304,6 +330,9 @@ theorem vertex_zero_not_mem_insertZero_first (J : PolygonalCircle) {p : Plane}
   rw [hinter, Set.mem_singleton_iff] at hboth
   exact hp0 hboth.symm
 
+/--
+@isnad1 id=not.3h2v.s8.4f37aacffdff from=translated src=- shape=c723fcea vocab=18d8195f
+-/
 theorem vertex_one_not_mem_insertZero_last (J : PolygonalCircle) {p : Plane}
     (hp : p ∈ J.edgeSegment 0) (hp0 : p ≠ J.vertex 0) (hp1 : p ≠ J.vertex 1) :
     J.vertex 1 ∉ segment ℝ (J.vertex 0) p := by
@@ -317,6 +346,9 @@ theorem vertex_one_not_mem_insertZero_last (J : PolygonalCircle) {p : Plane}
   rw [hinter, Set.mem_singleton_iff] at hboth
   exact hp1 hboth.symm
 
+/--
+@isnad1 id=disjoint.3h2v.s8.f9427bd23cdf from=translated src=- shape=0793aea7 vocab=63709df7
+-/
 theorem disjoint_insertZero_first_previous (J : PolygonalCircle) {p : Plane}
     (hp : p ∈ J.edgeSegment 0) (hp0 : p ≠ J.vertex 0) (hp1 : p ≠ J.vertex 1) :
     Disjoint (segment ℝ p (J.vertex 1))
@@ -357,6 +389,9 @@ theorem disjoint_insertZero_first_previous (J : PolygonalCircle) {p : Plane}
     simpa only [zero_add, hbase, Set.mem_singleton_iff] using hxBase
   exact J.vertex_zero_not_mem_insertZero_first hp hp0 hp1 (hxBase' ▸ hxFirst)
 
+/--
+@isnad1 id=disjoint.3h2v.s8.e76838db1fd7 from=translated src=- shape=dc9e6710 vocab=4e444d85
+-/
 theorem disjoint_insertZero_last_next (J : PolygonalCircle) {p : Plane}
     (hp : p ∈ J.edgeSegment 0) (hp0 : p ≠ J.vertex 0) (hp1 : p ≠ J.vertex 1) :
     Disjoint (segment ℝ (J.vertex 0) p) (J.edgeSegment 1) := by
@@ -394,6 +429,9 @@ private theorem natCast_eq_succ_of_pos_lt {n m l : ℕ} [NeZero n] [Fact (1 < n)
     rw [heq, Nat.mod_self] at hv
     omega
 
+/--
+@isnad1 id=le.1h2v.s7.12378289cdc6 from=translated src=- shape=82644e3c vocab=d5e3321c
+-/
 theorem insertZero_first_subset_edge_zero (J : PolygonalCircle) {p : Plane}
     (hp : p ∈ J.edgeSegment 0) :
     segment ℝ p (J.vertex 1) ⊆ J.edgeSegment 0 := by
@@ -404,6 +442,9 @@ theorem insertZero_first_subset_edge_zero (J : PolygonalCircle) {p : Plane}
     (convex_segment (J.vertex 0) (J.vertex 1)).segment_subset hp'
       (right_mem_segment ℝ _ _) hx
 
+/--
+@isnad1 id=le.1h2v.s7.3cbda8d9deb8 from=translated src=- shape=e97ea916 vocab=d5e3321c
+-/
 theorem insertZero_last_subset_edge_zero (J : PolygonalCircle) {p : Plane}
     (hp : p ∈ J.edgeSegment 0) :
     segment ℝ (J.vertex 0) p ⊆ J.edgeSegment 0 := by
@@ -414,7 +455,9 @@ theorem insertZero_last_subset_edge_zero (J : PolygonalCircle) {p : Plane}
     (convex_segment (J.vertex 0) (J.vertex 1)).segment_subset
       (left_mem_segment ℝ _ _) hp' hx
 
-/-- Splitting edge zero preserves disjointness of every pair of non-adjacent edges. -/
+/-- Splitting edge zero preserves disjointness of every pair of non-adjacent edges.
+@isnad1 id=eq.6h4v.s9.e3a1eab2fd8b from=translated src=- shape=920528f0 vocab=2893860b
+-/
 theorem insertZero_nonadjacent_disjoint (J : PolygonalCircle) {p : Plane}
     (hp : p ∈ J.edgeSegment 0) (hp0 : p ≠ J.vertex 0) (hp1 : p ≠ J.vertex 1)
     (i j : ZMod (J.n + 1)) (hij : i ≠ j) (hprev : i ≠ j + 1)
@@ -619,7 +662,9 @@ theorem insertZero_nonadjacent_disjoint (J : PolygonalCircle) {p : Plane}
     apply hnext
     rw [hlm, Nat.cast_add, Nat.cast_one]
 
-/-- A point on a segment splits it into two subsegments whose union is the original segment. -/
+/-- A point on a segment splits it into two subsegments whose union is the original segment.
+@isnad1 id=eq.1h3v.s8.9ded9a73d3cf from=translated src=- shape=391dafd3 vocab=c5851f10
+-/
 theorem segment_split_union {a b p : Plane} (hp : p ∈ segment ℝ a b) :
     segment ℝ a p ∪ segment ℝ p b = segment ℝ a b := by
   apply Set.Subset.antisymm
@@ -657,16 +702,24 @@ def insertZero (J : PolygonalCircle) (p : Plane) (hp : p ∈ J.edgeSegment 0)
     simpa only [insertZeroEdgeSegment] using
       J.insertZero_nonadjacent_disjoint hp hp0 hp1 i j hij hprev hnext
 
+/--
+@isnad1 id=eq.3h2v.s7.d7eb5909020a from=translated src=- shape=782b6d14 vocab=4506d5c2
+-/
 @[simp] theorem insertZero_n (J : PolygonalCircle) (p : Plane)
     (hp : p ∈ J.edgeSegment 0) (hp0 : p ≠ J.vertex 0) (hp1 : p ≠ J.vertex 1) :
     (J.insertZero p hp hp0 hp1).n = J.n + 1 := rfl
 
+/--
+@isnad1 id=eq.3h2v.s7.755f1cce1206 from=translated src=- shape=113b6c10 vocab=57897928
+-/
 @[simp] theorem insertZero_vertex_zero (J : PolygonalCircle) (p : Plane)
     (hp : p ∈ J.edgeSegment 0) (hp0 : p ≠ J.vertex 0) (hp1 : p ≠ J.vertex 1) :
     (J.insertZero p hp hp0 hp1).vertex 0 = p := by
   exact J.insertZeroVertex_zero p
 
-/-- Inserting a vertex into an edge does not change the polygon carrier. -/
+/-- Inserting a vertex into an edge does not change the polygon carrier.
+@isnad1 id=eq.3h2v.s6.daf7cfd822d0 from=translated src=- shape=8bca7728 vocab=5acd086a
+-/
 theorem insertZero_carrier (J : PolygonalCircle) (p : Plane) (hp : p ∈ J.edgeSegment 0)
     (hp0 : p ≠ J.vertex 0) (hp1 : p ≠ J.vertex 1) :
     (J.insertZero p hp hp0 hp1).carrier = J.carrier := by
@@ -740,12 +793,21 @@ def rotate (J : PolygonalCircle) (a : ZMod J.n) : PolygonalCircle where
         _ = (i + 1) + a := by ring)))
     convert h using 1; ring
 
+/--
+@isnad1 id=eq.0h2v.s3.3414cfdab8de from=translated src=- shape=9df1c05a vocab=44c647fe
+-/
 @[simp] theorem rotate_n (J : PolygonalCircle) (a : ZMod J.n) :
     (J.rotate a).n = J.n := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.4be598a82139 from=translated src=- shape=c2fe26ef vocab=687f1035
+-/
 @[simp] theorem rotate_vertex (J : PolygonalCircle) (a i : ZMod J.n) :
     (J.rotate a).vertex i = J.vertex (i + a) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.7a4e5f6ba23c from=translated src=- shape=7d91ccfe vocab=136971e2
+-/
 theorem rotate_edgeSegment (J : PolygonalCircle) (a i : ZMod J.n) :
     (J.rotate a).edgeSegment i = J.edgeSegment (i + a) := by
   change segment ℝ (J.vertex (i + a)) (J.vertex ((i + 1) + a)) =
@@ -753,6 +815,9 @@ theorem rotate_edgeSegment (J : PolygonalCircle) (a i : ZMod J.n) :
   congr 2
   exact add_right_comm i (1 : ZMod J.n) a
 
+/--
+@isnad1 id=eq.0h2v.s3.1eec6c641349 from=translated src=- shape=48bd151f vocab=df71ee9f
+-/
 theorem rotate_carrier (J : PolygonalCircle) (a : ZMod J.n) :
     (J.rotate a).carrier = J.carrier := by
   apply Set.Subset.antisymm
@@ -774,7 +839,9 @@ theorem rotate_carrier (J : PolygonalCircle) (a : ZMod J.n) :
     convert hi using 1; ring
 
 /-- The bounded and unbounded complementary components depend only on the polygon carrier, not
-on its cyclic indexing. -/
+on its cyclic indexing.
+@isnad1 id=and.1h2v.s4.d8efe39bfc7e from=translated src=- shape=b35fd3b8 vocab=08cfaf6f
+-/
 theorem regions_eq_of_carrier_eq {J J' : PolygonalCircle}
     (hcarrier : J.carrier = J'.carrier) :
     J.interiorRegion = J'.interiorRegion ∧ J.exteriorRegion = J'.exteriorRegion := by
@@ -836,19 +903,31 @@ theorem regions_eq_of_carrier_eq {J J' : PolygonalCircle}
     · exact False.elim <| Set.disjoint_left.mp J'.disjoint_interior_exterior
         hp (hExterior ▸ hpExt)
 
+/--
+@isnad1 id=eq.0h2v.s3.929d1ea556e5 from=translated src=- shape=48bd151f vocab=73065164
+-/
 theorem rotate_interiorRegion (J : PolygonalCircle) (a : ZMod J.n) :
     (J.rotate a).interiorRegion = J.interiorRegion :=
   (regions_eq_of_carrier_eq (J.rotate_carrier a)).1
 
+/--
+@isnad1 id=eq.0h2v.s3.f11041157f48 from=translated src=- shape=48bd151f vocab=2a29101b
+-/
 theorem rotate_exteriorRegion (J : PolygonalCircle) (a : ZMod J.n) :
     (J.rotate a).exteriorRegion = J.exteriorRegion :=
   (regions_eq_of_carrier_eq (J.rotate_carrier a)).2
 
+/--
+@isnad1 id=eq.3h2v.s6.feb29baca811 from=translated src=- shape=8bca7728 vocab=5ce802d4
+-/
 theorem insertZero_interiorRegion (J : PolygonalCircle) (p : Plane)
     (hp : p ∈ J.edgeSegment 0) (hp0 : p ≠ J.vertex 0) (hp1 : p ≠ J.vertex 1) :
     (J.insertZero p hp hp0 hp1).interiorRegion = J.interiorRegion :=
   (regions_eq_of_carrier_eq (J.insertZero_carrier p hp hp0 hp1)).1
 
+/--
+@isnad1 id=eq.3h2v.s6.9281be50732b from=translated src=- shape=8bca7728 vocab=6f9f2f8c
+-/
 theorem insertZero_exteriorRegion (J : PolygonalCircle) (p : Plane)
     (hp : p ∈ J.edgeSegment 0) (hp0 : p ≠ J.vertex 0) (hp1 : p ≠ J.vertex 1) :
     (J.insertZero p hp hp0 hp1).exteriorRegion = J.exteriorRegion :=
@@ -859,7 +938,9 @@ def IsVertexPoint (J : PolygonalCircle) (p : Plane) : Prop :=
   ∃ i, J.vertex i = p
 
 /-- A point known to be a polygon vertex lies on an edge exactly when it is one of that edge's
-two endpoints. -/
+two endpoints.
+@isnad1 id=iff.1h3v.s6.f08e949cb520 from=translated src=- shape=ccdb4b28 vocab=b8c3d326
+-/
 theorem IsVertexPoint.mem_edgeSegment_iff {J : PolygonalCircle} {p : Plane}
     (hp : J.IsVertexPoint p) (i : ZMod J.n) :
     p ∈ J.edgeSegment i ↔ p = J.vertex i ∨ p = J.vertex (i + 1) := by
@@ -873,6 +954,9 @@ theorem IsVertexPoint.mem_edgeSegment_iff {J : PolygonalCircle} {p : Plane}
     · exact Or.inl (J.vertex_injective h)
     · exact Or.inr (J.vertex_injective h)
 
+/--
+@isnad1 id=iff.0h3v.s4.9ed29600cc55 from=translated src=- shape=6dcbe5ab vocab=6be1871b
+-/
 theorem isVertexPoint_rotate_iff (J : PolygonalCircle) (a : ZMod J.n) (p : Plane) :
     (J.rotate a).IsVertexPoint p ↔ J.IsVertexPoint p := by
   change (∃ i : ZMod J.n, J.vertex (i + a) = p) ↔
@@ -884,6 +968,9 @@ theorem isVertexPoint_rotate_iff (J : PolygonalCircle) (a : ZMod J.n) (p : Plane
     refine ⟨i - a, ?_⟩
     simpa only [rotate_vertex, sub_add_cancel] using hi
 
+/--
+@isnad1 id=isvertex.4h3v.s6.50f1c33f10f5 from=translated src=- shape=eef529f8 vocab=2c359045
+-/
 theorem isVertexPoint_insertZero (J : PolygonalCircle) (p : Plane)
     (hp : p ∈ J.edgeSegment 0) (hp0 : p ≠ J.vertex 0) (hp1 : p ≠ J.vertex 1)
     {q : Plane} (hq : J.IsVertexPoint q) :
@@ -905,7 +992,9 @@ theorem isVertexPoint_insertZero (J : PolygonalCircle) (p : Plane)
 
 /-- Insert a boundary point as vertex zero without changing the carrier, while retaining every
 old vertex.  Endpoint cases need only a cyclic reindexing; an interior edge point uses
-`insertZero`. -/
+`insertZero`.
+@isnad1 id=ex.1h2v.s6.8b5f0c3de9ee from=translated src=- shape=5cdba094 vocab=bbc67360
+-/
 theorem exists_refinement_vertex_zero (J : PolygonalCircle) {p : Plane}
     (hp : p ∈ J.carrier) :
     ∃ J' : PolygonalCircle,
@@ -941,7 +1030,9 @@ theorem exists_refinement_vertex_zero (J : PolygonalCircle) {p : Plane}
         ((J.isVertexPoint_rotate_iff i q).mpr hq)
 
 /-- Refine a polygonal presentation so that every point of a prescribed finite subset of its
-carrier is a polygon vertex, without changing the carrier. -/
+carrier is a polygon vertex, without changing the carrier.
+@isnad1 id=ex.1h2v.s5.5ea8854027c8 from=translated src=- shape=7bd9521e vocab=c7036900
+-/
 theorem exists_refinement_vertices (J : PolygonalCircle) (F : Finset Plane)
     (hF : ∀ p ∈ F, p ∈ J.carrier) :
     ∃ J' : PolygonalCircle, J'.carrier = J.carrier ∧
@@ -1003,7 +1094,9 @@ def rotate (a : ZMod J.n) : (J.rotate a).ProperChord where
     rw [J.rotate_interiorRegion]
     exact C.interior_subset
 
-/-- The chord meets the original polygon precisely at its endpoints. -/
+/-- The chord meets the original polygon precisely at its endpoints.
+@isnad1 id=eq.0h2v.s7.6c4a1927d61d from=translated src=- shape=7354db8f vocab=348d24b2
+-/
 theorem segment_inter_carrier :
     segment ℝ C.P C.Q ∩ J.carrier = {C.P, C.Q} := by
   apply Set.Subset.antisymm
@@ -1019,6 +1112,9 @@ theorem segment_inter_carrier :
     · exact ⟨left_mem_segment ℝ _ _, C.P_mem⟩
     · exact ⟨right_mem_segment ℝ _ _, C.Q_mem⟩
 
+/--
+@isnad1 id=nonempty.0h2v.s7.0b3b58b88d55 from=translated src=- shape=5fdad0ac vocab=4d77946d
+-/
 theorem interior_nonempty :
     (segment ℝ C.P C.Q \ {C.P, C.Q}).Nonempty := by
   refine ⟨midpoint ℝ C.P C.Q, midpoint_mem_segment C.P C.Q, ?_⟩
@@ -1027,7 +1123,9 @@ theorem interior_nonempty :
   · exact C.ne ((midpoint_eq_left_iff (R := ℝ)).mp h)
   · exact C.ne ((midpoint_eq_right_iff (R := ℝ)).mp h)
 
-/-- Each endpoint of a proper chord lies on a concrete polygon edge. -/
+/-- Each endpoint of a proper chord lies on a concrete polygon edge.
+@isnad1 id=ex.0h2v.s5.a0b471cbfc6d from=translated src=- shape=288eb9a9 vocab=24e7dc19
+-/
 theorem exists_endpoint_edges :
     ∃ i j : ZMod J.n, C.P ∈ J.edgeSegment i ∧ C.Q ∈ J.edgeSegment j := by
   have hP := C.P_mem
@@ -1038,7 +1136,9 @@ theorem exists_endpoint_edges :
   obtain ⟨j, hj⟩ := hQ
   exact ⟨i, j, hi, hj⟩
 
-/-- The endpoints of a proper chord cannot lie on one polygon edge. -/
+/-- The endpoints of a proper chord cannot lie on one polygon edge.
+@isnad1 id=ne.2h4v.s5.4f1d7d1e17c0 from=translated src=- shape=88fa9a11 vocab=24e7dc19
+-/
 theorem endpoint_edges_ne {i j : ZMod J.n} (hi : C.P ∈ J.edgeSegment i)
     (hj : C.Q ∈ J.edgeSegment j) : i ≠ j := by
   intro hij
@@ -1062,7 +1162,9 @@ theorem endpoint_edges_ne {i j : ZMod J.n} (hi : C.P ∈ J.edgeSegment i)
   exact hmCompl hmCarrier
 
 /-- Normalize a proper chord so that its first endpoint lies on edge zero and its second
-endpoint lies on an edge with a positive ordinary index. -/
+endpoint lies on an edge with a positive ordinary index.
+@isnad1 id=ex.0h2v.s6.5b6437c1b1da from=translated src=- shape=72813cc2 vocab=2a006369
+-/
 theorem exists_rotated_endpoint_edges :
     ∃ a : ZMod J.n, ∃ k : ℕ, 0 < k ∧ k < J.n ∧
       C.P ∈ (J.rotate a).edgeSegment 0 ∧
@@ -1086,7 +1188,9 @@ theorem exists_rotated_endpoint_edges :
     simpa [d] using hj
 
 /-- After subdividing boundary edges and cyclically reindexing, both chord endpoints are
-vertices, with the first at index zero and the second at a strictly positive ordinary index. -/
+vertices, with the first at index zero and the second at a strictly positive ordinary index.
+@isnad1 id=ex.0h2v.s7.a15df8f75c15 from=translated src=- shape=1098eb64 vocab=90a191f6
+-/
 theorem exists_vertex_normalization :
     ∃ J' : PolygonalCircle, ∃ k : ℕ,
       2 ≤ k ∧ k + 1 < J'.n ∧ J'.carrier = J.carrier ∧
@@ -1183,11 +1287,17 @@ def symm : J.ProperChord where
 def forwardCutVertex (k : ℕ) : ZMod (k + 1) → Plane :=
   fun i => J.vertex (i.val : ZMod J.n)
 
+/--
+@isnad1 id=eq.1h3v.s7.2fc7e5ad8fb0 from=translated src=- shape=e61ad5c5 vocab=2b21dfca
+-/
 theorem forwardCutVertex_natCast {k m : ℕ} (hm : m < k + 1) :
     forwardCutVertex (J := J) k (m : ZMod (k + 1)) = J.vertex (m : ZMod J.n) := by
   unfold forwardCutVertex
   rw [ZMod.val_natCast_of_lt hm]
 
+/--
+@isnad1 id=eq.4h3v.s8.1c779aa230cb from=translated src=- shape=98febc3a vocab=27c8ae64
+-/
 theorem edgeBeforeChord_inter_chord {k : ℕ} (hk2 : 2 ≤ k) (hk : k + 1 < J.n)
     (hP : J.vertex 0 = C.P) (hQ : J.vertex (k : ZMod J.n) = C.Q) :
     J.edgeSegment ((k - 1 : ℕ) : ZMod J.n) ∩ segment ℝ C.Q C.P = {C.Q} := by
@@ -1231,6 +1341,9 @@ theorem edgeBeforeChord_inter_chord {k : ℕ} (hk2 : 2 ≤ k) (hk : k + 1 < J.n)
     subst x
     exact ⟨hkmem, left_mem_segment ℝ _ _⟩
 
+/--
+@isnad1 id=eq.4h3v.s8.25af56ac53e2 from=translated src=- shape=32f532c1 vocab=1b0d810a
+-/
 theorem chord_inter_firstEdge {k : ℕ} (hk2 : 2 ≤ k) (hk : k + 1 < J.n)
     (hP : J.vertex 0 = C.P) (hQ : J.vertex (k : ZMod J.n) = C.Q) :
     segment ℝ C.Q C.P ∩ J.edgeSegment 0 = {C.P} := by
@@ -1265,6 +1378,9 @@ theorem chord_inter_firstEdge {k : ℕ} (hk2 : 2 ≤ k) (hk : k + 1 < J.n)
     subst x
     exact ⟨right_mem_segment ℝ _ _, hPmem⟩
 
+/--
+@isnad1 id=disjoint.5h4v.s8.2a6ad060ac22 from=translated src=- shape=6ee9d464 vocab=d307c9ce
+-/
 theorem chord_disjoint_middleEdge {k m : ℕ} (hm0 : 0 < m) (hmk : m + 1 < k)
     (hk : k < J.n) (hP : J.vertex 0 = C.P)
     (hQ : J.vertex (k : ZMod J.n) = C.Q) :
@@ -1306,6 +1422,9 @@ def forwardCutEdgeSegment (k : ℕ) (i : ZMod (k + 1)) : Set Plane :=
   segment ℝ (forwardCutVertex (J := J) k i)
     (forwardCutVertex (J := J) k (i + 1))
 
+/--
+@isnad1 id=eq.1h3v.s7.400fec8b66de from=translated src=- shape=99f24309 vocab=dea8f520
+-/
 theorem forwardCutEdgeSegment_of_lt {k m : ℕ} (hm : m < k) :
     forwardCutEdgeSegment (J := J) k (m : ZMod (k + 1)) =
       J.edgeSegment (m : ZMod J.n) := by
@@ -1317,6 +1436,9 @@ theorem forwardCutEdgeSegment_of_lt {k m : ℕ} (hm : m < k) :
   congr 2
   rw [Nat.cast_add, Nat.cast_one]
 
+/--
+@isnad1 id=eq.3h3v.s8.45528cecbd83 from=translated src=- shape=267ad453 vocab=c72a1d33
+-/
 theorem forwardCutEdgeSegment_last {k : ℕ} (_ : k < J.n)
     (hP : J.vertex 0 = C.P) (hQ : J.vertex (k : ZMod J.n) = C.Q) :
     forwardCutEdgeSegment (J := J) k (k : ZMod (k + 1)) = segment ℝ C.Q C.P := by
@@ -1333,6 +1455,9 @@ theorem forwardCutEdgeSegment_last {k : ℕ} (_ : k < J.n)
   simp only [Nat.cast_zero]
   rw [hP]
 
+/--
+@isnad1 id=ne.4h4v.s8.c2fcbd398cee from=translated src=- shape=7e241f27 vocab=c8ee8c8c
+-/
 theorem forwardCutVertex_adjacent_ne {k : ℕ} (_ : 2 ≤ k) (_ : k < J.n)
     (hP : J.vertex 0 = C.P) (hQ : J.vertex (k : ZMod J.n) = C.Q)
     (i : ZMod (k + 1)) :
@@ -1361,6 +1486,9 @@ theorem forwardCutVertex_adjacent_ne {k : ℕ} (_ : 2 ≤ k) (_ : k < J.n)
     rw [hsucc, forwardCutVertex_natCast (J := J) (by omega)]
     simpa only [Nat.cast_add, Nat.cast_one] using J.adjacent_ne (m : ZMod J.n)
 
+/--
+@isnad1 id=eq.4h4v.s9.5d5d80f099d9 from=translated src=- shape=88541816 vocab=c8ec17b1
+-/
 theorem forwardCut_consecutive_inter {k : ℕ} (hk2 : 2 ≤ k) (hk : k + 1 < J.n)
     (hP : J.vertex 0 = C.P) (hQ : J.vertex (k : ZMod J.n) = C.Q)
     (i : ZMod (k + 1)) :
@@ -1411,6 +1539,9 @@ theorem forwardCut_consecutive_inter {k : ℕ} (hk2 : 2 ≤ k) (hk : k + 1 < J.n
     simpa only [edgeSegment, Nat.cast_add, Nat.cast_one, add_assoc,
       one_add_one_eq_two] using J.consecutive_inter (m : ZMod J.n)
 
+/--
+@isnad1 id=eq.7h5v.s9.849e09dd971e from=translated src=- shape=7f0ba3dd vocab=347e4ef6
+-/
 theorem forwardCut_nonadjacent_disjoint {k : ℕ} (hk2 : 2 ≤ k) (hk : k + 1 < J.n)
     (hP : J.vertex 0 = C.P) (hQ : J.vertex (k : ZMod J.n) = C.Q)
     (i j : ZMod (k + 1)) (hij : i ≠ j) (hprev : i ≠ j + 1)
@@ -1517,6 +1648,9 @@ def forwardCutCircle {k : ℕ} (hk2 : 2 ≤ k) (hk : k + 1 < J.n)
 def forwardArc (k : ℕ) : Set Plane :=
   ⋃ m : Fin k, J.edgeSegment (m.val : ZMod J.n)
 
+/--
+@isnad1 id=eq.4h3v.s7.a8e8da9088cf from=translated src=- shape=69284358 vocab=85a49267
+-/
 theorem forwardCutCircle_carrier {k : ℕ} (hk2 : 2 ≤ k) (hk : k + 1 < J.n)
     (hP : J.vertex 0 = C.P) (hQ : J.vertex (k : ZMod J.n) = C.Q) :
     (C.forwardCutCircle hk2 hk hP hQ).carrier =
@@ -1550,6 +1684,9 @@ theorem forwardCutCircle_carrier {k : ℕ} (hk2 : 2 ≤ k) (hk : k + 1 < J.n)
       change x ∈ forwardCutEdgeSegment (J := J) k (k : ZMod (k + 1))
       rwa [C.forwardCutEdgeSegment_last (by omega) hP hQ]
 
+/--
+@isnad1 id=and.4h3v.s6.9f543ed6cf54 from=translated src=- shape=6aadbcc0 vocab=3ac42b4b
+-/
 theorem endpoints_mem_forwardArc {k : ℕ} (hk2 : 2 ≤ k) (_ : k < J.n)
     (hP : J.vertex 0 = C.P) (hQ : J.vertex (k : ZMod J.n) = C.Q) :
     C.P ∈ forwardArc (J := J) k ∧ C.Q ∈ forwardArc (J := J) k := by
@@ -1572,6 +1709,9 @@ theorem endpoints_mem_forwardArc {k : ℕ} (hk2 : 2 ≤ k) (_ : k < J.n)
         congrArg (fun q : ℕ => (q : ZMod J.n)) (by omega)
       _ = ((k - 1 : ℕ) : ZMod J.n) + 1 := by rw [Nat.cast_add, Nat.cast_one]
 
+/--
+@isnad1 id=nonempty.4h3v.s6.839c333f8d03 from=translated src=- shape=88567af0 vocab=3a243ab5
+-/
 theorem forwardArc_interior_nonempty {k : ℕ} (hk2 : 2 ≤ k) (_ : k < J.n)
     (hP : J.vertex 0 = C.P) (_ : J.vertex (k : ZMod J.n) = C.Q) :
     (forwardArc (J := J) k \ {C.P, C.Q}).Nonempty := by
@@ -1595,6 +1735,9 @@ theorem forwardArc_interior_nonempty {k : ℕ} (hk2 : 2 ≤ k) (_ : k < J.n)
         simpa only [zero_add] using right_mem_segment ℝ (J.vertex 0) (J.vertex 1)
       exact (C.endpoint_edges_ne hPedge hQedge) rfl
 
+/--
+@isnad1 id=le.0h2v.s3.1a3dd22a0e06 from=translated src=- shape=f0e93b54 vocab=f918c736
+-/
 theorem forwardArc_subset_carrier {k : ℕ} :
     forwardArc (J := J) k ⊆ J.carrier := by
   intro x hx
@@ -1607,18 +1750,26 @@ index zero. -/
 def backwardArc (k : ℕ) : Set Plane :=
   forwardArc (J := J.rotate (k : ZMod J.n)) (J.n - k)
 
+/--
+@isnad1 id=le.0h2v.s3.c531e5d1c014 from=translated src=- shape=f0e93b54 vocab=35b974d6
+-/
 theorem backwardArc_subset_carrier {k : ℕ} :
     backwardArc (J := J) k ⊆ J.carrier := by
   intro x hx
   have hx' := forwardArc_subset_carrier (J := J.rotate (k : ZMod J.n)) hx
   rwa [J.rotate_carrier] at hx'
 
+/--
+@isnad1 id=eq.2h3v.s7.6ffdc7a39048 from=translated src=- shape=c769755b vocab=75658ba0
+-/
 theorem rotate_edgeSegment_nat {k m : ℕ} (_ : k < J.n) (_ : m + k < J.n) :
     (J.rotate (k : ZMod J.n)).edgeSegment (m : ZMod J.n) =
       J.edgeSegment (m + k : ZMod J.n) := by
   rw [J.rotate_edgeSegment]
 
-/-- The two cyclic boundary arcs cover the original polygon carrier. -/
+/-- The two cyclic boundary arcs cover the original polygon carrier.
+@isnad1 id=eq.1h2v.s4.4235444cc7d3 from=translated src=- shape=8a1d8403 vocab=d9d698bb
+-/
 theorem forwardArc_union_backwardArc {k : ℕ} (hk : k < J.n) :
     forwardArc (J := J) k ∪ backwardArc (J := J) k = J.carrier := by
   apply Set.Subset.antisymm
@@ -1650,7 +1801,9 @@ theorem forwardArc_union_backwardArc {k : ℕ} (hk : k < J.n) :
       rw [hidx]
       exact hi
 
-/-- The complementary arc has the same two endpoints as the forward arc. -/
+/-- The complementary arc has the same two endpoints as the forward arc.
+@isnad1 id=and.4h3v.s7.4e8ab8057817 from=translated src=- shape=6304b089 vocab=58c623b9
+-/
 theorem endpoints_mem_backwardArc {k : ℕ} (hkpos : 0 < k) (hk2 : k + 1 < J.n)
     (hP : J.vertex 0 = C.P) (hQ : J.vertex (k : ZMod J.n) = C.Q) :
     C.P ∈ backwardArc (J := J) k ∧ C.Q ∈ backwardArc (J := J) k := by
@@ -1679,6 +1832,9 @@ theorem endpoints_mem_backwardArc {k : ℕ} (hkpos : 0 < k) (hk2 : k + 1 < J.n)
   have hends := CR.endpoints_mem_forwardArc hlen hlenlt hRzero hRlast
   exact ⟨hends.2, hends.1⟩
 
+/--
+@isnad1 id=eq.4h3v.s7.914f6d72c6e6 from=translated src=- shape=80188732 vocab=56538cc0
+-/
 theorem forwardArc_inter_chord {k : ℕ} (hk2 : 2 ≤ k) (hk : k < J.n)
     (hP : J.vertex 0 = C.P) (hQ : J.vertex (k : ZMod J.n) = C.Q) :
     forwardArc (J := J) k ∩ segment ℝ C.P C.Q = {C.P, C.Q} := by
@@ -1693,6 +1849,9 @@ theorem forwardArc_inter_chord {k : ℕ} (hk2 : 2 ≤ k) (hk : k < J.n)
     · exact ⟨(C.endpoints_mem_forwardArc hk2 hk hP hQ).2,
         right_mem_segment ℝ _ _⟩
 
+/--
+@isnad1 id=eq.4h3v.s7.e1c132342021 from=translated src=- shape=1597492a vocab=ee92e837
+-/
 theorem backwardArc_inter_chord {k : ℕ} (hk2 : 2 ≤ k) (hk : k + 1 < J.n)
     (hP : J.vertex 0 = C.P) (hQ : J.vertex (k : ZMod J.n) = C.Q) :
     backwardArc (J := J) k ∩ segment ℝ C.P C.Q = {C.P, C.Q} := by
@@ -1707,7 +1866,9 @@ theorem backwardArc_inter_chord {k : ℕ} (hk2 : 2 ≤ k) (hk : k + 1 < J.n)
     · exact ⟨(C.endpoints_mem_backwardArc (by omega) hk hP hQ).2,
         right_mem_segment ℝ _ _⟩
 
-/-- The two complementary cyclic boundary arcs meet only at their endpoints. -/
+/-- The two complementary cyclic boundary arcs meet only at their endpoints.
+@isnad1 id=eq.4h3v.s7.5c746e34aba3 from=translated src=- shape=e02668b3 vocab=5ef8043c
+-/
 theorem forwardArc_inter_backwardArc {k : ℕ} (hk2 : 2 ≤ k) (hk : k + 1 < J.n)
     (hP : J.vertex 0 = C.P) (hQ : J.vertex (k : ZMod J.n) = C.Q) :
     forwardArc (J := J) k ∩ backwardArc (J := J) k = {C.P, C.Q} := by
@@ -1818,6 +1979,9 @@ def backwardCutCircle {k : ℕ} (hk2 : 2 ≤ k) (hk : k + 1 < J.n)
     exact hP
   exact CR.forwardCutCircle hlen hcut hRzero hRlast
 
+/--
+@isnad1 id=eq.4h3v.s7.ec7c12b780e7 from=translated src=- shape=cd123964 vocab=15065be9
+-/
 theorem backwardCutCircle_carrier {k : ℕ} (hk2 : 2 ≤ k) (hk : k + 1 < J.n)
     (hP : J.vertex 0 = C.P) (hQ : J.vertex (k : ZMod J.n) = C.Q) :
     (C.backwardCutCircle hk2 hk hP hQ).carrier =
@@ -1828,6 +1992,9 @@ theorem backwardCutCircle_carrier {k : ℕ} (hk2 : 2 ≤ k) (hk : k + 1 < J.n)
   rw [PolygonalCircle.ProperChord.forwardCutCircle_carrier]
   simp only [backwardArc, ProperChord.symm, ProperChord.rotate]
 
+/--
+@isnad1 id=nonempty.4h3v.s7.ac2c62075cda from=translated src=- shape=e24baf62 vocab=9ada094f
+-/
 theorem backwardArc_interior_nonempty {k : ℕ} (hk2 : 2 ≤ k) (hk : k + 1 < J.n)
     (hP : J.vertex 0 = C.P) (hQ : J.vertex (k : ZMod J.n) = C.Q) :
     (backwardArc (J := J) k \ {C.P, C.Q}).Nonempty := by
@@ -1862,16 +2029,25 @@ def SegmentCrossed (v w P : Plane) : Prop :=
   (v 1 ≤ P 1 ∧ P 1 < w 1 ∨ w 1 ≤ P 1 ∧ P 1 < v 1) ∧
     crossingX v w (P 1) < P 0
 
+/--
+@isnad1 id=iff.0h3v.s6.238f1cb9c6fd from=translated src=- shape=e9bffd49 vocab=0ae88e7e
+-/
 theorem edgeCrossed_iff_segmentCrossed (J : PolygonalCircle) (i : ZMod J.n) (P : Plane) :
     J.EdgeCrossed i P ↔ SegmentCrossed (J.vertex i) (J.vertex (i + 1)) P :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.1h3v.s7.7d1577449ced from=translated src=- shape=a38eec6c vocab=493ed7cf
+-/
 theorem crossingX_comm {v w : Plane} {y : ℝ} (h : v 1 ≠ w 1) :
     crossingX v w y = crossingX w v y := by
   unfold crossingX
   field_simp
   ring
 
+/--
+@isnad1 id=iff.0h3v.s3.bd0847900aea from=translated src=- shape=ebff192d vocab=463130e1
+-/
 theorem segmentCrossed_comm (v w P : Plane) :
     SegmentCrossed v w P ↔ SegmentCrossed w v P := by
   by_cases hheight : v 1 = w 1
@@ -1889,6 +2065,9 @@ open scoped Classical in
 noncomputable def crossingCount (J : PolygonalCircle) (P : Plane) : ℕ :=
   ∑ m ∈ Finset.range J.n, if J.EdgeCrossed (m : ZMod J.n) P then 1 else 0
 
+/--
+@isnad1 id=eq.0h2v.s4.c0504e80ca4e from=translated src=- shape=88f6baaf vocab=85bf0421
+-/
 theorem index_eq_crossingCount_mod (J : PolygonalCircle) (P : Plane) :
     J.index P = J.crossingCount P % 2 := by
   classical
@@ -1911,6 +2090,9 @@ theorem index_eq_crossingCount_mod (J : PolygonalCircle) (P : Plane) :
       simpa only [ZMod.val_natCast_of_lt hm.1] using hm.2
     · exact ZMod.val_natCast_of_lt hm.1
 
+/--
+@isnad1 id=iff.0h4v.s5.f975b2216cdb from=translated src=- shape=a07525e8 vocab=f167690e
+-/
 theorem rotate_edgeCrossed_iff (J : PolygonalCircle) (a i : ZMod J.n) (P : Plane) :
     (J.rotate a).EdgeCrossed i P ↔ J.EdgeCrossed (i + a) P := by
   change SegmentCrossed (J.vertex (i + a)) (J.vertex ((i + 1) + a)) P ↔
@@ -1921,6 +2103,9 @@ namespace ProperChord
 
 variable {J : PolygonalCircle} (C : J.ProperChord)
 
+/--
+@isnad1 id=iff.5h5v.s7.b405484632d6 from=translated src=- shape=9eafdfdf vocab=fa5e9352
+-/
 theorem forwardCutCircle_edgeCrossed_of_lt {k m : ℕ} (hk2 : 2 ≤ k)
     (hk : k + 1 < J.n) (hP : J.vertex 0 = C.P)
     (hQ : J.vertex (k : ZMod J.n) = C.Q) (hm : m < k) (P : Plane) :
@@ -1935,6 +2120,9 @@ theorem forwardCutCircle_edgeCrossed_of_lt {k m : ℕ} (hk2 : 2 ≤ k)
   rw [hsucc, forwardCutVertex_natCast (J := J) (by omega)]
   rw [Nat.cast_add, Nat.cast_one]
 
+/--
+@isnad1 id=iff.4h4v.s7.642d447ad292 from=translated src=- shape=b44bba97 vocab=19658f2f
+-/
 theorem forwardCutCircle_edgeCrossed_last {k : ℕ} (hk2 : 2 ≤ k)
     (hk : k + 1 < J.n) (hP : J.vertex 0 = C.P)
     (hQ : J.vertex (k : ZMod J.n) = C.Q) (P : Plane) :
@@ -1971,6 +2159,9 @@ theorem forwardCutCircle_edgeCrossed_last {k : ℕ} (hk2 : 2 ≤ k)
     exact h''
 
 open scoped Classical in
+/--
+@isnad1 id=eq.4h4v.s7.48812a94a30c from=translated src=- shape=4c6077f5 vocab=46913580
+-/
 theorem crossingCount_forwardCutCircle {k : ℕ} (hk2 : 2 ≤ k)
     (hk : k + 1 < J.n) (hP : J.vertex 0 = C.P)
     (hQ : J.vertex (k : ZMod J.n) = C.Q) (P : Plane) :
@@ -1990,6 +2181,9 @@ theorem crossingCount_forwardCutCircle {k : ℕ} (hk2 : 2 ≤ k)
   · rw [C.forwardCutCircle_edgeCrossed_last hk2 hk hP hQ]
 
 open scoped Classical in
+/--
+@isnad1 id=eq.4h4v.s7.225d8b69f878 from=translated src=- shape=60c4837d vocab=b65a5203
+-/
 theorem crossingCount_backwardCutCircle {k : ℕ} (hk2 : 2 ≤ k)
     (hk : k + 1 < J.n) (hP : J.vertex 0 = C.P)
     (hQ : J.vertex (k : ZMod J.n) = C.Q) (P : Plane) :
@@ -2035,6 +2229,9 @@ theorem crossingCount_backwardCutCircle {k : ℕ} (hk2 : 2 ≤ k)
     change (if SegmentCrossed C.Q C.P P then 1 else 0) = _
     exact if_congr hcomm rfl rfl
 
+/--
+@isnad1 id=eq.4h4v.s7.3f3e4386430f from=translated src=- shape=f81897a5 vocab=231311e0
+-/
 theorem index_parity_cutCircles {k : ℕ} (hk2 : 2 ≤ k)
     (hk : k + 1 < J.n) (hP : J.vertex 0 = C.P)
     (hQ : J.vertex (k : ZMod J.n) = C.Q) (P : Plane) :
@@ -2121,7 +2318,9 @@ namespace PolygonalCircle.ProperChord
 variable {J : PolygonalCircle} (C : J.ProperChord)
 
 /-- Every proper straight chord of a polygon determines the finite polygonal theta graph used
-in Moise Chapter 2, Theorems 7 and 8. -/
+in Moise Chapter 2, Theorems 7 and 8.
+@isnad1 id=ex.0h2v.s7.bf30879ee98d from=translated src=- shape=8d0fe171 vocab=2800f9f7
+-/
 theorem exists_polygonalTheta :
     ∃ G : PolygonalTheta,
       G.J12.carrier = J.carrier ∧ G.P = C.P ∧ G.Q = C.Q ∧ G.B3 = segment ℝ C.P C.Q := by
@@ -2196,11 +2395,17 @@ namespace PolygonalTheta
 
 variable (G : PolygonalTheta)
 
+/--
+@isnad1 id=le.0h1v.s4.cda6901c3300 from=translated src=- shape=75702c10 vocab=bc3a81e9
+-/
 theorem endpoints_subset_carrier12 : ({G.P, G.Q} : Set Plane) ⊆ G.J12.carrier := by
   rw [G.carrier12]
   intro x hx
   rcases hx with (rfl | rfl) <;> simp [G.P_mem_B1, G.Q_mem_B1]
 
+/--
+@isnad1 id=disjoint.0h1v.s5.eae049dc0652 from=translated src=- shape=d403cf25 vocab=4fabdfab
+-/
 theorem exterior12_disjoint_B3 : Disjoint G.J12.exteriorRegion G.B3 := by
   rw [Set.disjoint_left]
   intro x hxExterior hxB3
@@ -2212,6 +2417,9 @@ theorem exterior12_disjoint_B3 : Disjoint G.J12.exteriorRegion G.B3 := by
     exact hxCompl hxCarrier
   · exact Set.disjoint_left.mp G.J12.disjoint_interior_exterior hxInterior hxExterior
 
+/--
+@isnad1 id=le.0h1v.s3.74b479e85fdd from=translated src=- shape=edfea727 vocab=34d5ceb8
+-/
 theorem exterior12_subset_exterior13 :
     G.J12.exteriorRegion ⊆ G.J13.exteriorRegion := by
   have hsubsetCompl : G.J12.exteriorRegion ⊆ G.J13.carrierᶜ := by
@@ -2242,6 +2450,9 @@ theorem exterior12_subset_exterior13 :
   exact G.J12.not_isBounded_exteriorRegion
     (G.J13.isBounded_interiorRegion.subset hallInterior)
 
+/--
+@isnad1 id=le.0h1v.s5.670c790c6613 from=translated src=- shape=4176bd8f vocab=b0e91397
+-/
 theorem B2_diff_endpoints_subset_exterior13 :
     G.B2 \ {G.P, G.Q} ⊆ G.J13.exteriorRegion := by
   intro x hx
@@ -2263,6 +2474,9 @@ theorem B2_diff_endpoints_subset_exterior13 :
   rw [closure_eq_self_union_frontier, G.J13.frontier_exteriorRegion] at hxClosure13
   exact hxClosure13.resolve_right hxNotCarrier13
 
+/--
+@isnad1 id=le.0h1v.s3.2cff59f42c87 from=translated src=- shape=edfea727 vocab=f1330603
+-/
 theorem interior13_subset_interior12 :
     G.J13.interiorRegion ⊆ G.J12.interiorRegion := by
   have hsubsetCompl : G.J13.interiorRegion ⊆ G.J12.carrierᶜ := by
@@ -2336,19 +2550,30 @@ def swap12 : PolygonalTheta where
     rw [Nat.add_comm]
     exact G.index_parity x hx12 hx13 hx23
 
+/--
+@isnad1 id=le.0h1v.s3.fdde1f565696 from=translated src=- shape=edfea727 vocab=5c68879d
+-/
 theorem exterior12_subset_exterior23 :
     G.J12.exteriorRegion ⊆ G.J23.exteriorRegion :=
   (G.swap12).exterior12_subset_exterior13
 
+/--
+@isnad1 id=le.0h1v.s5.44abedfb86bb from=translated src=- shape=4176bd8f vocab=e21ada90
+-/
 theorem B1_diff_endpoints_subset_exterior23 :
     G.B1 \ {G.P, G.Q} ⊆ G.J23.exteriorRegion :=
   (G.swap12).B2_diff_endpoints_subset_exterior13
 
+/--
+@isnad1 id=le.0h1v.s3.bb0cd32886a9 from=translated src=- shape=edfea727 vocab=2f84d601
+-/
 theorem interior23_subset_interior12 :
     G.J23.interiorRegion ⊆ G.J12.interiorRegion :=
   (G.swap12).interior13_subset_interior12
 
-/-- The interior of one cut-off polygon lies in the exterior of the other. -/
+/-- The interior of one cut-off polygon lies in the exterior of the other.
+@isnad1 id=le.0h1v.s3.2da466e3dd2a from=translated src=- shape=307674b3 vocab=72c6a160
+-/
 theorem interior13_subset_exterior23 :
     G.J13.interiorRegion ⊆ G.J23.exteriorRegion := by
   have hsubsetCompl : G.J13.interiorRegion ⊆ G.J23.carrierᶜ := by
@@ -2390,11 +2615,16 @@ theorem interior13_subset_exterior23 :
     G.J23.isOpen_interiorRegion G.J23.isOpen_exteriorRegion
     G.J23.disjoint_interior_exterior hsubsetUnion ⟨z, hz13, hz23⟩
 
+/--
+@isnad1 id=le.0h1v.s3.7515665c8da4 from=translated src=- shape=307674b3 vocab=72c6a160
+-/
 theorem interior23_subset_exterior13 :
     G.J23.interiorRegion ⊆ G.J13.exteriorRegion :=
   (G.swap12).interior13_subset_exterior23
 
-/-- The two polygons cut off by the chord have disjoint interiors. -/
+/-- The two polygons cut off by the chord have disjoint interiors.
+@isnad1 id=disjoint.0h1v.s5.c9d05b9ee469 from=translated src=- shape=edfea727 vocab=c5edf618
+-/
 theorem disjoint_interior13_interior23 :
     Disjoint G.J13.interiorRegion G.J23.interiorRegion := by
   have hsubsetCompl : G.J13.interiorRegion ⊆ G.J23.carrierᶜ := by
@@ -2439,7 +2669,9 @@ theorem disjoint_interior13_interior23 :
   exact Set.disjoint_left.mpr fun x hx13 hx23 =>
     Set.disjoint_left.mp G.J23.disjoint_interior_exterior hx23 (hallExterior hx13)
 
-/-- The two closed subdisks cut off by a proper chord meet exactly in that chord. -/
+/-- The two closed subdisks cut off by a proper chord meet exactly in that chord.
+@isnad1 id=eq.0h1v.s4.839d2e37cad9 from=translated src=- shape=fc8f612c vocab=d84897c3
+-/
 theorem closedRegion13_inter_closedRegion23 :
     G.J13.closedRegion ∩ G.J23.closedRegion = G.B3 := by
   rw [G.J13.closedRegion_eq_union, G.J23.closedRegion_eq_union,
@@ -2477,6 +2709,9 @@ theorem closedRegion13_inter_closedRegion23 :
   · intro hxB3
     exact ⟨Or.inr (Or.inr hxB3), Or.inr (Or.inr hxB3)⟩
 
+/--
+@isnad1 id=le.0h1v.s4.6e3142cc001d from=translated src=- shape=7ed17b48 vocab=e5ddf48f
+-/
 theorem interior12_diff_chord_subset :
     G.J12.interiorRegion \ G.B3 ⊆ G.J13.interiorRegion ∪ G.J23.interiorRegion := by
   intro x hx
@@ -2540,7 +2775,9 @@ theorem interior12_diff_chord_subset :
   norm_num at hparity
 
 /-- Moise Chapter 2, Theorem 8(2): the two chord polygons exactly fill the original closed
-polygonal disk. -/
+polygonal disk.
+@isnad1 id=eq.0h1v.s4.a2c72b74a345 from=translated src=- shape=720b2134 vocab=88a62976
+-/
 theorem closedRegion_eq_union :
     G.J12.closedRegion = G.J13.closedRegion ∪ G.J23.closedRegion := by
   rw [G.J12.closedRegion_eq_union, G.J13.closedRegion_eq_union,
@@ -2589,7 +2826,9 @@ noncomputable def swap12 (C : G.MeshCrosscut M) : G.swap12.MeshCrosscut M where
   chordVertices := C.chordVertices
   chordCarrier := C.chordCarrier
 
-/-- A mesh triangle lies wholly on one side of a realized crosscut. -/
+/-- A mesh triangle lies wholly on one side of a realized crosscut.
+@isnad1 id=or.0h4v.s7.cef64efab1ca from=translated src=- shape=ae8bfed5 vocab=a67b06e7
+-/
 theorem triangle_interior_side (C : G.MeshCrosscut M) (T : M.Triangle) :
     interior (M.triangleCarrier T.1) ⊆ G.J13.interiorRegion ∨
       interior (M.triangleCarrier T.1) ⊆ G.J23.interiorRegion := by
@@ -2634,8 +2873,14 @@ noncomputable def side23Mesh (_ : G.MeshCrosscut M) : TriangleMesh := by
   exact M.restrictTriangles fun t =>
     (interior (M.triangleCarrier t) ∩ G.J23.interiorRegion).Nonempty
 
+/--
+@isnad1 id=eq.0h3v.s4.6a0631495a6b from=translated src=- shape=cd7aaa99 vocab=d1cc329a
+-/
 @[simp] theorem swap12_side13Mesh : C.swap12.side13Mesh = C.side23Mesh := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.efee9d2f1c3b from=translated src=- shape=cd7aaa99 vocab=d1cc329a
+-/
 @[simp] theorem swap12_side23Mesh : C.swap12.side23Mesh = C.side13Mesh := rfl
 
 private theorem triangleCarrier_subset_side13 {t : Finset M.Vertex}
@@ -2678,7 +2923,9 @@ private theorem triangleCarrier_subset_side23 {t : Finset M.Vertex}
   rw [← M.closure_interior_triangleCarrier T, PolygonalCircle.closedRegion]
   exact closure_mono hside
 
-/-- Restricting along a realized crosscut gives exactly the first closed polygonal subdisk. -/
+/-- Restricting along a realized crosscut gives exactly the first closed polygonal subdisk.
+@isnad1 id=eq.0h3v.s4.70b640ac9799 from=translated src=- shape=d92e985a vocab=4c8e8154
+-/
 theorem side13Mesh_support :
     C.side13Mesh.toPlaneComplex.support = G.J13.closedRegion := by
   classical
@@ -2716,7 +2963,9 @@ theorem side13Mesh_support :
         (interior (M.triangleCarrier u) ∩ G.J13.interiorRegion).Nonempty).mpr
           ⟨ht, hmeet⟩) hpt
 
-/-- Restricting along a realized crosscut gives exactly the second closed polygonal subdisk. -/
+/-- Restricting along a realized crosscut gives exactly the second closed polygonal subdisk.
+@isnad1 id=eq.0h3v.s4.aa2ab19b853c from=translated src=- shape=d92e985a vocab=a56e3a59
+-/
 theorem side23Mesh_support :
     C.side23Mesh.toPlaneComplex.support = G.J23.closedRegion := by
   classical
@@ -2754,6 +3003,9 @@ theorem side23Mesh_support :
         (interior (M.triangleCarrier u) ∩ G.J23.interiorRegion).Nonempty).mpr
           ⟨ht, hmeet⟩) hpt
 
+/--
+@isnad1 id=iff.0h4v.s6.003a81a305b0 from=translated src=- shape=c43eda5c vocab=c3add78a
+-/
 theorem mem_side13Mesh_triangles_iff {t : Finset M.Vertex} :
     t ∈ C.side13Mesh.triangles ↔ t ∈ M.triangles ∧
       interior (M.triangleCarrier t) ⊆ G.J13.interiorRegion := by
@@ -2774,6 +3026,9 @@ theorem mem_side13Mesh_triangles_iff {t : Finset M.Vertex} :
     obtain ⟨p, hp⟩ := M.interior_triangleCarrier_nonempty ⟨t, ht⟩
     exact ⟨ht, p, hp, hside hp⟩
 
+/--
+@isnad1 id=iff.0h4v.s6.d2dea498fbe4 from=translated src=- shape=c43eda5c vocab=0f4e7bd8
+-/
 theorem mem_side23Mesh_triangles_iff {t : Finset M.Vertex} :
     t ∈ C.side23Mesh.triangles ↔ t ∈ M.triangles ∧
       interior (M.triangleCarrier t) ⊆ G.J23.interiorRegion := by
@@ -2794,7 +3049,9 @@ theorem mem_side23Mesh_triangles_iff {t : Finset M.Vertex} :
     obtain ⟨p, hp⟩ := M.interior_triangleCarrier_nonempty ⟨t, ht⟩
     exact ⟨ht, p, hp, hside hp⟩
 
-/-- The two restricted triangle sets partition the original mesh. -/
+/-- The two restricted triangle sets partition the original mesh.
+@isnad1 id=eq.0h3v.s6.b7b69ad1b985 from=translated src=- shape=0a4aa03b vocab=e511c0b6
+-/
 theorem side_triangles_union :
     C.side13Mesh.triangles ∪ C.side23Mesh.triangles = M.triangles := by
   classical
@@ -2810,7 +3067,9 @@ theorem side_triangles_union :
     · exact Finset.mem_union_left _ <| C.mem_side13Mesh_triangles_iff.mpr ⟨ht, h13⟩
     · exact Finset.mem_union_right _ <| C.mem_side23Mesh_triangles_iff.mpr ⟨ht, h23⟩
 
-/-- No maximal triangle occurs on both sides of the crosscut. -/
+/-- No maximal triangle occurs on both sides of the crosscut.
+@isnad1 id=disjoint.0h3v.s5.cbf8e0e91c80 from=translated src=- shape=afb60563 vocab=1459a7d0
+-/
 theorem disjoint_side_triangles :
     Disjoint C.side13Mesh.triangles C.side23Mesh.triangles := by
   classical
@@ -2822,6 +3081,9 @@ theorem disjoint_side_triangles :
     ⟨t, (C.mem_side13Mesh_triangles_iff.mp ht13).1⟩
   exact Set.disjoint_left.mp G.disjoint_interior13_interior23 (h13 hp) (h23 hp)
 
+/--
+@isnad1 id=nonempty.0h3v.s4.20712d2b92e0 from=translated src=- shape=7d82655d vocab=f6ad31b5
+-/
 theorem side13_triangles_nonempty : C.side13Mesh.triangles.Nonempty := by
   obtain ⟨p, hp⟩ := G.J13.isConnected_interiorRegion.nonempty
   have hpSupport : p ∈ C.side13Mesh.toPlaneComplex.support := by
@@ -2832,6 +3094,9 @@ theorem side13_triangles_nonempty : C.side13Mesh.triangles.Nonempty := by
   obtain ⟨t, ht, -⟩ := hpSupport
   exact ⟨t, ht⟩
 
+/--
+@isnad1 id=nonempty.0h3v.s4.59ecf090d3c8 from=translated src=- shape=7d82655d vocab=13e6ebb3
+-/
 theorem side23_triangles_nonempty : C.side23Mesh.triangles.Nonempty := by
   obtain ⟨p, hp⟩ := G.J23.isConnected_interiorRegion.nonempty
   have hpSupport : p ∈ C.side23Mesh.toPlaneComplex.support := by
@@ -2842,7 +3107,9 @@ theorem side23_triangles_nonempty : C.side23Mesh.triangles.Nonempty := by
   obtain ⟨t, ht, -⟩ := hpSupport
   exact ⟨t, ht⟩
 
-/-- Each side of a proper realized crosscut has strictly fewer maximal triangles. -/
+/-- Each side of a proper realized crosscut has strictly fewer maximal triangles.
+@isnad1 id=lt.0h3v.s4.a4bfdd749612 from=translated src=- shape=cc37f787 vocab=d9c10864
+-/
 theorem card_side13_triangles_lt :
     C.side13Mesh.triangles.card < M.triangles.card := by
   apply Finset.card_lt_card
@@ -2855,6 +3122,9 @@ theorem card_side13_triangles_lt :
     have ht13 : t ∈ C.side13Mesh.triangles := by rwa [heq]
     exact Finset.disjoint_left.mp C.disjoint_side_triangles ht13 ht23
 
+/--
+@isnad1 id=lt.0h3v.s4.55999e7a5964 from=translated src=- shape=cc37f787 vocab=cdec46f8
+-/
 theorem card_side23_triangles_lt :
     C.side23Mesh.triangles.card < M.triangles.card := by
   apply Finset.card_lt_card

@@ -58,12 +58,18 @@ def faceWeights (P : FiniteCyclicPresentation) (a : P.Edge) (f : P.Face) :
     List ℕ :=
   (P.boundary f).map (dartWeight a)
 
+/--
+@isnad1 id=eq.0h3v.s4.a3fcf5d2ca3c from=translated src=- shape=6e5b5881 vocab=84f22ee2
+-/
 @[simp]
 theorem faceWeights_length (P : FiniteCyclicPresentation) (a : P.Edge)
     (f : P.Face) :
     (faceWeights P a f).length = (P.boundary f).length := by
   simp [faceWeights]
 
+/--
+@isnad1 id=positive.0h3v.s3.224e5172f852 from=translated src=- shape=3c29c769 vocab=43b0fa05
+-/
 theorem faceWeights_positive (P : FiniteCyclicPresentation) (a : P.Edge)
     (f : P.Face) :
     WeightedCircle.Positive (faceWeights P a f) := by
@@ -72,12 +78,18 @@ theorem faceWeights_positive (P : FiniteCyclicPresentation) (a : P.Edge)
   simp only [dartWeight]
   split <;> norm_num
 
+/--
+@isnad1 id=ne.1h3v.s4.33949ab0e4d2 from=translated src=- shape=7fe0789b vocab=bbe50fd5
+-/
 theorem faceWeights_ne_nil
     (P : FiniteCyclicPresentation) (a : P.Edge) (f : P.Face)
     (validP : P.IsSurfaceValid) :
     faceWeights P a f ≠ [] := by
   simpa [faceWeights] using validP.2.1 f
 
+/--
+@isnad1 id=eq.0h3v.s5.9e6a213da21c from=translated src=- shape=91daed2e vocab=f1574ee1
+-/
 @[simp]
 theorem length_expandDart_eq_dartWeight {n : ℕ} (a : Fin n)
     (d : SignedDart (Fin n)) :
@@ -94,6 +106,9 @@ theorem length_expandDart_eq_dartWeight {n : ℕ} (a : Fin n)
         simp [expandDart, dartWeight, edgeOfDart]
       · simp [expandDart, dartWeight, edgeOfDart, h]
 
+/--
+@isnad1 id=eq.0h3v.s5.3b3813b5a069 from=translated src=- shape=ba395817 vocab=17d9f76a
+-/
 theorem expandWord_length_eq_sum_map_dartWeight {n : ℕ} (a : Fin n)
     (word : List (SignedDart (Fin n))) :
     (expandWord a word).length = (word.map (dartWeight a)).sum := by
@@ -102,11 +117,17 @@ theorem expandWord_length_eq_sum_map_dartWeight {n : ℕ} (a : Fin n)
   | cons d word ih =>
       simp [expandWord, length_expandDart_eq_dartWeight]
 
+/--
+@isnad1 id=eq.0h3v.s5.a2f3979ea319 from=translated src=- shape=609d3de7 vocab=46049fe3
+-/
 theorem expandWord_length_eq_sum_faceWeights
     (P : FiniteCyclicPresentation) (a : P.Edge) (f : P.Face) :
     (expandWord a (P.boundary f)).length = (faceWeights P a f).sum := by
   exact expandWord_length_eq_sum_map_dartWeight a (P.boundary f)
 
+/--
+@isnad1 id=eq.0h3v.s6.79bec9a58b7e from=translated src=- shape=90bab738 vocab=03466de7
+-/
 theorem faceWeights_sum
     (P : FiniteCyclicPresentation) (a : P.Edge) (f : P.Face) :
     (faceWeights P a f).sum =
@@ -128,6 +149,9 @@ def expandedStartIndex
     exact WeightedCircle.sum_take_lt_sum
       (faceWeights_positive P a f) (Fin.cast (faceWeights_length P a f).symm i)⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.abcb7970a344 from=translated src=- shape=6aaed857 vocab=734e3a42
+-/
 @[simp]
 theorem expandedStartIndex_val
     (P : FiniteCyclicPresentation) (a : P.Edge) (f : P.Face)
@@ -143,6 +167,9 @@ def firstExpandedOccurrence
     (expand P a).BoundaryOccurrence :=
   ⟨faceEquiv P a o.1, expandedStartIndex P a o.1 o.2⟩
 
+/--
+@isnad1 id=eq.0h4v.s7.b8b57d6fabe0 from=translated src=- shape=7bbcbca9 vocab=24342aa3
+-/
 theorem expandWord_getElem_expandedStart {n : ℕ} (a : Fin n)
     (word : List (SignedDart (Fin n))) (i : Fin word.length) :
     (expandWord a word)[((word.map (dartWeight a)).take i).sum]? =
@@ -171,6 +198,9 @@ theorem expandWord_getElem_expandedStart {n : ℕ} (a : Fin n)
         · rw [length_expandDart_eq_dartWeight]
           omega
 
+/--
+@isnad1 id=lt.0h3v.s5.511bbba992a4 from=translated src=- shape=34e2a062 vocab=2baec70c
+-/
 theorem expandDart_length_pos {n : ℕ} (a : Fin n)
     (d : SignedDart (Fin n)) :
     0 < (expandDart a d).length := by
@@ -178,12 +208,18 @@ theorem expandDart_length_pos {n : ℕ} (a : Fin n)
   unfold dartWeight
   split <;> omega
 
+/--
+@isnad1 id=iff.0h3v.s4.79858323583a from=translated src=- shape=528e32f3 vocab=82e91f17
+-/
 @[simp]
 theorem dartWeight_eq_two_iff {n : ℕ} (a : Fin n)
     (d : SignedDart (Fin n)) :
     dartWeight a d = 2 ↔ edgeOfDart d = a := by
   simp [dartWeight]
 
+/--
+@isnad1 id=iff.0h3v.s4.a3d8b82e4d10 from=translated src=- shape=e2488c6b vocab=82e91f17
+-/
 @[simp]
 theorem dartWeight_eq_one_iff {n : ℕ} (a : Fin n)
     (d : SignedDart (Fin n)) :
@@ -191,7 +227,9 @@ theorem dartWeight_eq_one_iff {n : ℕ} (a : Fin n)
   simp [dartWeight]
 
 /-- More generally, lookup inside an expanded block agrees with lookup in the substituted
-dart-word. -/
+dart-word.
+@isnad1 id=eq.1h5v.s8.c26d5d3ba672 from=translated src=- shape=37ee5f46 vocab=24342aa3
+-/
 theorem expandWord_getElem_expandedOffset {n : ℕ} (a : Fin n)
     (word : List (SignedDart (Fin n))) (i : Fin word.length)
     (k : ℕ) (hk : k < (expandDart a (word.get i)).length) :
@@ -218,6 +256,9 @@ theorem expandWord_getElem_expandedOffset {n : ℕ} (a : Fin n)
         · rw [length_expandDart_eq_dartWeight]
           omega
 
+/--
+@isnad1 id=eq.0h3v.s6.9f3c0f8514d1 from=translated src=- shape=7ef7c31c vocab=59fd3cc3
+-/
 theorem firstExpandedOccurrence_dart
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (o : P.BoundaryOccurrence) :
@@ -242,6 +283,9 @@ theorem firstExpandedOccurrence_dart
   rw [List.get_of_eq (expand_boundary P a f)]
   exact hvalue
 
+/--
+@isnad1 id=le.0h2v.s5.a7dd9c17c157 from=translated src=- shape=12a3d16b vocab=cd1260bc
+-/
 theorem sum_take_add_get_le_sum {weights : List ℕ}
     (i : Fin weights.length) :
     (weights.take i).sum + weights.get i ≤ weights.sum := by
@@ -254,6 +298,9 @@ theorem sum_take_add_get_le_sum {weights : List ℕ}
   rw [hget] at hsplit
   omega
 
+/--
+@isnad1 id=lt.1h2v.s5.43c0b9a1332f from=translated src=- shape=d39c058b vocab=16acde3c
+-/
 theorem sum_take_add_one_lt_sum_of_get_eq_two {weights : List ℕ}
     (i : Fin weights.length) (hget : weights.get i = 2) :
     (weights.take i).sum + 1 < weights.sum := by
@@ -269,7 +316,9 @@ abbrev BlockPosition (weights : List ℕ) :=
 def blockPosition {weights : List ℕ} (p : BlockPosition weights) : ℕ :=
   (weights.take p.1).sum + p.2
 
-/-- Distinct block-local positions have distinct linear positions. -/
+/-- Distinct block-local positions have distinct linear positions.
+@isnad1 id=injectiv.0h1v.s3.4dd9ccb75309 from=translated src=- shape=103a1916 vocab=60904e50
+-/
 @[simp] theorem blockPosition_injective (weights : List ℕ) :
     Function.Injective (@blockPosition weights) := by
   induction weights with
@@ -314,6 +363,9 @@ def blockPosition {weights : List ℕ} (p : BlockPosition weights) : ℕ :=
               cases hp
               rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.c0ad634d16dc from=translated src=- shape=a5929075 vocab=17c8d232
+-/
 theorem faceWeights_get
     (P : FiniteCyclicPresentation) (a : P.Edge) (f : P.Face)
     (i : Fin (P.boundary f).length) :
@@ -345,6 +397,9 @@ def expandedOffsetIndex
     rw [hget] at hle
     omega⟩
 
+/--
+@isnad1 id=eq.0h5v.s7.00ee8b560707 from=translated src=- shape=950b1f14 vocab=8657fd1f
+-/
 @[simp]
 theorem expandedOffsetIndex_val
     (P : FiniteCyclicPresentation) (a : P.Edge) (f : P.Face)
@@ -367,7 +422,9 @@ def expandedOccurrenceAt
   ⟨faceEquiv P a p.1.1,
     expandedOffsetIndex P a p.1.1 p.1.2 p.2⟩
 
-/-- The block-local occurrence transport is injective: expanded blocks never overlap. -/
+/-- The block-local occurrence transport is injective: expanded blocks never overlap.
+@isnad1 id=injectiv.0h2v.s4.14f4acd02431 from=translated src=- shape=a53e6100 vocab=eada4d55
+-/
 theorem expandedOccurrenceAt_injective
     (P : FiniteCyclicPresentation) (a : P.Edge) :
     Function.Injective (expandedOccurrenceAt P a) := by
@@ -407,6 +464,9 @@ theorem expandedOccurrenceAt_injective
   subst l
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.a5f4f41cebd1 from=translated src=- shape=31efe794 vocab=1be77625
+-/
 theorem expandedOccurrenceAt_dart
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (p : ExpandedSourcePosition P a) :
@@ -453,6 +513,9 @@ theorem expandedOccurrenceAt_dart
   rw [List.get_of_eq (expand_boundary P a f)]
   exact hvalue
 
+/--
+@isnad1 id=iff.0h3v.s4.4cea9877c040 from=translated src=- shape=cfc154c4 vocab=bc44883c
+-/
 theorem isBoundaryEdge_expand_castSucc_iff
     (P : FiniteCyclicPresentation) (a e : P.Edge) :
     (expand P a).IsBoundaryEdge e.castSucc ↔
@@ -460,6 +523,9 @@ theorem isBoundaryEdge_expand_castSucc_iff
   unfold IsBoundaryEdge
   rw [← edgeMultiplicity_expand_castSucc P a e]
 
+/--
+@isnad1 id=iff.0h2v.s4.b258cb02786c from=translated src=- shape=de2ee2c9 vocab=27764f58
+-/
 theorem isBoundaryEdge_expand_freshEdge_iff
     (P : FiniteCyclicPresentation) (a : P.Edge) :
     (expand P a).IsBoundaryEdge (freshEdge P.edgeCount) ↔
@@ -475,7 +541,9 @@ def expandedSubedge {n : ℕ} (a : Fin n) (d : SignedDart (Fin n))
       rw [length_expandDart_eq_dartWeight]
       exact k.isLt))
 
-/-- Each target subedge has the same boundary/internal status as its source edge. -/
+/-- Each target subedge has the same boundary/internal status as its source edge.
+@isnad1 id=iff.0h4v.s5.ba617cfa2801 from=translated src=- shape=ef48a01f vocab=c8781754
+-/
 theorem isBoundaryEdge_expandedSubedge_iff
     (P : FiniteCyclicPresentation) (a : P.Edge) (d : P.Dart)
     (k : Fin (dartWeight a d)) :
@@ -513,7 +581,9 @@ theorem isBoundaryEdge_expandedSubedge_iff
         simp [expandedSubedge, expandDart, dartWeight, edgeOfDart,
           he, hk0, isBoundaryEdge_expand_castSucc_iff]
 
-/-- Every target subedge has the same boundary/internal status as its source edge. -/
+/-- Every target subedge has the same boundary/internal status as its source edge.
+@isnad1 id=not.1h3v.s5.aed9a5f23835 from=translated src=- shape=b097ec8f vocab=c81fff0c
+-/
 theorem expandedOccurrenceAt_not_boundary
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (p : ExpandedSourcePosition P a)
@@ -537,6 +607,9 @@ def oneOffset {n : ℕ} (a : Fin n) (d : SignedDart (Fin n))
     rw [(dartWeight_eq_two_iff a d).2 hselected]
     omega⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.9f399bab937e from=translated src=- shape=1f288bc9 vocab=bec85c1a
+-/
 @[simp]
 theorem dartWeight_flip {n : ℕ} (a : Fin n)
     (d : SignedDart (Fin n)) :
@@ -557,7 +630,9 @@ def reverseOffset {n : ℕ} (a : Fin n) (d : SignedDart (Fin n))
     rw [dartWeight_flip]
     exact Nat.sub_lt (Nat.zero_lt_of_lt k.isLt) (Nat.succ_pos _)⟩
 
-/-- Reversing a source dart reverses the expanded block and flips its signed darts. -/
+/-- Reversing a source dart reverses the expanded block and flips its signed darts.
+@isnad1 id=eq.0h4v.s5.5ed06c33caa4 from=translated src=- shape=e3c4d53c vocab=c0748403
+-/
 theorem expandedSubdart_flip_reverseOffset {n : ℕ} (a : Fin n)
     (d : SignedDart (Fin n)) (k : Fin (dartWeight a d)) :
     expandedSubdart a d.flip (reverseOffset a d k) =
@@ -592,6 +667,9 @@ theorem expandedSubdart_flip_reverseOffset {n : ℕ} (a : Fin n)
         simp [expandedSubdart, reverseOffset, expandDart, dartWeight,
           edgeOfDart, he, hk0, SignedDart.flip]
 
+/--
+@isnad1 id=eq.0h2v.s4.bcc89c7591f1 from=translated src=- shape=aeafb86d vocab=2650c1c2
+-/
 theorem BoundaryPairing.target_edge_eq_source_edge
     {P : FiniteCyclicPresentation} (pairing : P.BoundaryPairing) :
     pairing.target.edge = pairing.source.edge := by
@@ -606,6 +684,9 @@ theorem BoundaryPairing.target_edge_eq_source_edge
         simpa only [hdirection] using pairing.compatible
       simp only [BoundaryOccurrence.edge, hcompatible, edgeOfDart_flip]
 
+/--
+@isnad1 id=eq.0h3v.s5.855fd0d12968 from=translated src=- shape=d7a321a4 vocab=70765297
+-/
 theorem expandedOccurrenceAt_dart_eq_expandedSubdart
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (p : ExpandedSourcePosition P a) :
@@ -632,6 +713,9 @@ def oppositePairedOffset
   Fin.cast (congrArg (dartWeight a) hcompatible.symm)
     (reverseOffset a pairing.source.dart k)
 
+/--
+@isnad1 id=eq.1h5v.s5.894dcb435ae7 from=translated src=- shape=6fa0fa19 vocab=238d1cdc
+-/
 theorem expandedSubdart_cast_eq {n : ℕ} (a : Fin n)
     {d₁ d₂ : SignedDart (Fin n)} (h : d₂ = d₁)
     (k : Fin (dartWeight a d₁)) :
@@ -641,6 +725,9 @@ theorem expandedSubdart_cast_eq {n : ℕ} (a : Fin n)
   subst d₂
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.62c36a398d3a from=translated src=- shape=fafd7bd0 vocab=7b8d4aa5
+-/
 theorem expandedSubdart_cast_flip {n : ℕ} (a : Fin n)
     {d₁ d₂ : SignedDart (Fin n)} (h : d₂ = d₁.flip)
     (k : Fin (dartWeight a d₁)) :
@@ -651,6 +738,9 @@ theorem expandedSubdart_cast_flip {n : ℕ} (a : Fin n)
   subst d₂
   exact expandedSubdart_flip_reverseOffset a d₁ k
 
+/--
+@isnad1 id=eq.1h4v.s6.90e4219e1adc from=translated src=- shape=4a19bc30 vocab=f517d7bb
+-/
 theorem expandedSubdart_samePairedOffset
     {P : FiniteCyclicPresentation} (a : P.Edge)
     (pairing : P.BoundaryPairing)
@@ -661,6 +751,9 @@ theorem expandedSubdart_samePairedOffset
       expandedSubdart a pairing.source.dart k := by
   exact expandedSubdart_cast_eq a hcompatible k
 
+/--
+@isnad1 id=eq.1h4v.s6.21de1a3a147e from=translated src=- shape=9930322d vocab=5e182883
+-/
 theorem expandedSubdart_oppositePairedOffset
     {P : FiniteCyclicPresentation} (a : P.Edge)
     (pairing : P.BoundaryPairing)
@@ -744,6 +837,9 @@ def secondExpandedIndex
       exact (dartWeight_eq_two_iff a _).2 hselected
     exact sum_take_add_one_lt_sum_of_get_eq_two i' hget⟩
 
+/--
+@isnad1 id=eq.1h4v.s6.c0c51ef5c601 from=translated src=- shape=c8337338 vocab=b691876c
+-/
 @[simp]
 theorem secondExpandedIndex_val
     (P : FiniteCyclicPresentation) (a : P.Edge) (f : P.Face)
@@ -761,6 +857,9 @@ def secondExpandedOccurrence
   ⟨faceEquiv P a o.1,
     secondExpandedIndex P a o.1 o.2 hselected⟩
 
+/--
+@isnad1 id=eq.1h3v.s6.2680bf76c2e2 from=translated src=- shape=4ec61f22 vocab=4515ac69
+-/
 theorem secondExpandedOccurrence_dart
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (o : P.BoundaryOccurrence) (hselected : o.edge = a) :
@@ -822,6 +921,9 @@ noncomputable def preHomeomorph
       (fun f => (faceHomeomorph P a validP f).isHomeomorph)).homeomorph
     (Sigma.map (faceEquiv P a) fun f => faceHomeomorph P a validP f)
 
+/--
+@isnad1 id=eq.1h3v.s8.62274aa63ffc from=translated src=- shape=c642ee58 vocab=265ae782
+-/
 @[simp]
 theorem preHomeomorph_apply_fst
     (P : FiniteCyclicPresentation) (a : P.Edge)
@@ -829,6 +931,9 @@ theorem preHomeomorph_apply_fst
     (preHomeomorph P a validP x).1 = faceEquiv P a x.1 :=
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s9.f4fe15c45754 from=translated src=- shape=b9dae6d5 vocab=d188309b
+-/
 @[simp]
 theorem faceHomeomorph_ofCircle
     (P : FiniteCyclicPresentation) (a : P.Edge)
@@ -840,7 +945,9 @@ theorem faceHomeomorph_ofCircle
         (faceCircleHomeomorph P a validP f z) := by
   exact PolygonCell.radialHomeomorph_ofCircle _ _
 
-/-- Exact boundary-coordinate formula for the facewise P1 map. -/
+/-- Exact boundary-coordinate formula for the facewise P1 map.
+@isnad1 id=eq.1h5v.s10.329c480e46b6 from=translated src=- shape=96ddf7ae vocab=7942a603
+-/
 theorem faceHomeomorph_side
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (validP : P.IsSurfaceValid) (f : P.Face)
@@ -878,6 +985,9 @@ theorem faceHomeomorph_side
       (faceWeights_ne_nil P a f validP)
       (Fin.cast (faceWeights_length P a f).symm i) t
 
+/--
+@isnad1 id=eq.2h5v.s10.b523df25c376 from=translated src=- shape=3ffb3f9b vocab=35b5ede8
+-/
 theorem faceHomeomorph_side_of_not_selected
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (validP : P.IsSurfaceValid) (f : P.Face)
@@ -915,18 +1025,27 @@ def secondHalfParameter (t : unitInterval) (h : 1 / 2 ≤ (t : ℝ)) :
     unitInterval :=
   ⟨2 * (t : ℝ) - 1, by linarith, by linarith [t.property.2]⟩
 
+/--
+@isnad1 id=eq.1h1v.s6.e480faf6bb96 from=translated src=- shape=0900396f vocab=593affab
+-/
 @[simp]
 theorem firstHalfParameter_val (t : unitInterval)
     (h : (t : ℝ) ≤ 1 / 2) :
     (firstHalfParameter t h : ℝ) = 2 * (t : ℝ) :=
   rfl
 
+/--
+@isnad1 id=eq.1h1v.s6.e16267af57c5 from=translated src=- shape=3cfbe3e5 vocab=3e42dc5e
+-/
 @[simp]
 theorem secondHalfParameter_val (t : unitInterval)
     (h : 1 / 2 ≤ (t : ℝ)) :
     (secondHalfParameter t h : ℝ) = 2 * (t : ℝ) - 1 :=
   rfl
 
+/--
+@isnad1 id=eq.3h5v.s10.8195ff867a30 from=translated src=- shape=51514751 vocab=4fbd8fed
+-/
 theorem faceHomeomorph_side_firstHalf
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (validP : P.IsSurfaceValid) (f : P.Face)
@@ -956,6 +1075,9 @@ theorem faceHomeomorph_side_firstHalf
   push_cast
   ring
 
+/--
+@isnad1 id=eq.3h5v.s10.abb117617066 from=translated src=- shape=2893cfa6 vocab=5f108060
+-/
 theorem faceHomeomorph_side_secondHalf
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (validP : P.IsSurfaceValid) (f : P.Face)
@@ -986,6 +1108,9 @@ theorem faceHomeomorph_side_secondHalf
   push_cast
   ring
 
+/--
+@isnad1 id=eq.2h4v.s8.0990ef7a120c from=translated src=- shape=2b299d6a vocab=e5dc70b7
+-/
 theorem preHomeomorph_occurrenceSide_of_not_selected
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (validP : P.IsSurfaceValid) (o : P.BoundaryOccurrence)
@@ -1008,6 +1133,9 @@ theorem preHomeomorph_occurrenceSide_of_not_selected
     rw [faceHomeomorph_side_of_not_selected P a validP f i hnot]
     congr 2
 
+/--
+@isnad1 id=eq.3h4v.s8.c060d8d393cb from=translated src=- shape=f4aa72c2 vocab=e4aaf676
+-/
 theorem preHomeomorph_occurrenceSide_firstHalf
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (validP : P.IsSurfaceValid) (o : P.BoundaryOccurrence)
@@ -1034,6 +1162,9 @@ theorem preHomeomorph_occurrenceSide_firstHalf
     rw [faceHomeomorph_side_firstHalf P a validP f i hselected t ht]
     congr 2
 
+/--
+@isnad1 id=eq.3h4v.s8.a0b1152ecc98 from=translated src=- shape=04fdea8b vocab=f93e43f7
+-/
 theorem preHomeomorph_occurrenceSide_secondHalf
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (validP : P.IsSurfaceValid) (o : P.BoundaryOccurrence)
@@ -1063,6 +1194,9 @@ theorem preHomeomorph_occurrenceSide_secondHalf
     rw [faceHomeomorph_side_secondHalf P a validP f i hselected t ht]
     congr 2
 
+/--
+@isnad1 id=eq.1h4v.s5.55e07e8dd6dc from=translated src=- shape=febed6ac vocab=179026a0
+-/
 @[simp]
 theorem samePairedOffset_val
     {P : FiniteCyclicPresentation} (a : P.Edge)
@@ -1072,6 +1206,9 @@ theorem samePairedOffset_val
     (samePairedOffset a pairing hcompatible k).val = k.val :=
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.9e7e004ba7d4 from=translated src=- shape=8696f743 vocab=0a2e60c8
+-/
 @[simp]
 theorem oppositePairedOffset_val
     {P : FiniteCyclicPresentation} (a : P.Edge)
@@ -1082,6 +1219,9 @@ theorem oppositePairedOffset_val
       dartWeight a pairing.source.dart - (k.val + 1) := by
   rfl
 
+/--
+@isnad1 id=eq.1h1v.s5.a2a78f289482 from=translated src=- shape=ee980c82 vocab=6ddd9477
+-/
 theorem symm_firstHalfParameter
     (t : unitInterval) (ht : (t : ℝ) ≤ 1 / 2) :
     unitInterval.symm (firstHalfParameter t ht) =
@@ -1092,6 +1232,9 @@ theorem symm_firstHalfParameter
   simp [firstHalfParameter, secondHalfParameter, unitInterval.symm]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s5.d88030b76b58 from=translated src=- shape=bef52735 vocab=a33ab041
+-/
 theorem symm_secondHalfParameter
     (t : unitInterval) (ht : 1 / 2 ≤ (t : ℝ)) :
     unitInterval.symm (secondHalfParameter t ht) =
@@ -1102,6 +1245,9 @@ theorem symm_secondHalfParameter
   simp [firstHalfParameter, secondHalfParameter, unitInterval.symm]
   ring
 
+/--
+@isnad1 id=r.2h5v.s7.67ed273941d0 from=translated src=- shape=50cf52ad vocab=6ee82271
+-/
 theorem expandedPairingSame_related
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (validQ : (expand P a).IsSurfaceValid)
@@ -1121,6 +1267,9 @@ theorem expandedPairingSame_related
     (pairing_identification_mem validQ
       (expandedPairingSame P a pairing hcompatible k)) u
 
+/--
+@isnad1 id=r.2h5v.s7.8a3d212b4732 from=translated src=- shape=6b050b4a vocab=bb7cf8de
+-/
 theorem expandedPairingOpposite_related
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (validQ : (expand P a).IsSurfaceValid)
@@ -1142,7 +1291,9 @@ theorem expandedPairingOpposite_related
       (expandedPairingOpposite P a pairing hcompatible k)) u
 
 /-- The facewise P1 map sends every source gluing generator into the target generated
-relation. -/
+relation.
+@isnad1 id=r.1h4v.s9.2176106e6946 from=translated src=- shape=05893aff vocab=7a6bba1f
+-/
 theorem preHomeomorph_generator_related
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (validP : P.IsSurfaceValid) (pairing : P.BoundaryPairing)
@@ -1297,6 +1448,9 @@ theorem preHomeomorph_generator_related
         exact expandedPairingOpposite_related P a validQ pairing hcompatible
           (zeroOffset a pairing.source.dart) t
 
+/--
+@isnad1 id=eq.0h2v.s6.74eb8a918729 from=translated src=- shape=93e811af vocab=cf3b2541
+-/
 theorem card_expandedSourcePosition
     (P : FiniteCyclicPresentation) (a : P.Edge) :
     Fintype.card (ExpandedSourcePosition P a) =
@@ -1330,6 +1484,9 @@ noncomputable def expandedOccurrenceEquiv
       ⟨expandedOccurrenceAt_injective P a,
         card_expandedSourcePosition P a⟩)
 
+/--
+@isnad1 id=eq.0h3v.s6.0a9565adbd67 from=translated src=- shape=3de24bf5 vocab=39c3a1e7
+-/
 @[simp]
 theorem expandedOccurrenceEquiv_apply
     (P : FiniteCyclicPresentation) (a : P.Edge)
@@ -1341,16 +1498,25 @@ theorem expandedOccurrenceEquiv_apply
 def contractExpandedEdge {n : ℕ} (a : Fin n) : Fin (n + 1) → Fin n :=
   Fin.lastCases a id
 
+/--
+@isnad1 id=eq.0h3v.s4.9fac11746744 from=translated src=- shape=dd90247e vocab=0ef50c14
+-/
 @[simp]
 theorem contractExpandedEdge_castSucc {n : ℕ} (a e : Fin n) :
     contractExpandedEdge a e.castSucc = e := by
   simp [contractExpandedEdge]
 
+/--
+@isnad1 id=eq.0h2v.s3.49e35b908af0 from=translated src=- shape=ce413fbc vocab=45bc4453
+-/
 @[simp]
 theorem contractExpandedEdge_freshEdge {n : ℕ} (a : Fin n) :
     contractExpandedEdge a (freshEdge n) = a := by
   simp [contractExpandedEdge, freshEdge]
 
+/--
+@isnad1 id=eq.0h4v.s4.4a182544866b from=translated src=- shape=cefe9d3b vocab=9e5f241e
+-/
 theorem contractExpandedEdge_expandedSubedge {n : ℕ} (a : Fin n)
     (d : SignedDart (Fin n)) (k : Fin (dartWeight a d)) :
     contractExpandedEdge a (expandedSubedge a d k) = edgeOfDart d := by
@@ -1382,6 +1548,9 @@ theorem contractExpandedEdge_expandedSubedge {n : ℕ} (a : Fin n)
         simp [expandedSubedge, expandDart, dartWeight, edgeOfDart,
           he, hk0]
 
+/--
+@isnad1 id=eq.1h6v.s5.598c179ae5f0 from=translated src=- shape=65c3506f vocab=0379e365
+-/
 theorem sourceEdge_eq_of_expandedSubedge_eq {n : ℕ} (a : Fin n)
     {d e : SignedDart (Fin n)}
     {k : Fin (dartWeight a d)} {l : Fin (dartWeight a e)}
@@ -1390,6 +1559,9 @@ theorem sourceEdge_eq_of_expandedSubedge_eq {n : ℕ} (a : Fin n)
   have := congrArg (contractExpandedEdge a) h
   simpa only [contractExpandedEdge_expandedSubedge] using this
 
+/--
+@isnad1 id=injectiv.0h3v.s5.bf0b21256040 from=translated src=- shape=70871beb vocab=8cc3d0bf
+-/
 theorem expandedSubedge_injective_offset {n : ℕ} (a : Fin n)
     (d : SignedDart (Fin n)) :
     Function.Injective (expandedSubedge a d) := by
@@ -1436,6 +1608,9 @@ theorem expandedSubedge_injective_offset {n : ℕ} (a : Fin n)
           simpa [dartWeight, edgeOfDart, he] using l.isLt
         omega
 
+/--
+@isnad1 id=eq.0h3v.s5.bd2ee2b4c3a0 from=translated src=- shape=75f6f9a1 vocab=8965bb5b
+-/
 theorem expandedOccurrenceAt_edge
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (p : ExpandedSourcePosition P a) :
@@ -1444,6 +1619,9 @@ theorem expandedOccurrenceAt_edge
   rw [BoundaryOccurrence.edge, expandedOccurrenceAt_dart]
   rfl
 
+/--
+@isnad1 id=eq.2h4v.s7.2c29586de995 from=translated src=- shape=2d4c6450 vocab=b6c7bbf5
+-/
 theorem expandedSourcePosition_eq_of_fst_eq_of_subedge_eq
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (p q : ExpandedSourcePosition P a)
@@ -1460,6 +1638,9 @@ theorem expandedSourcePosition_eq_of_fst_eq_of_subedge_eq
   subst l
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.fd5f66aa57e7 from=translated src=- shape=d4025500 vocab=9ddf8e5a
+-/
 theorem expandedSourcePosition_mk_transport
     (P : FiniteCyclicPresentation) (a : P.Edge)
     {o o' : P.BoundaryOccurrence} (h : o = o')
@@ -1468,6 +1649,9 @@ theorem expandedSourcePosition_mk_transport
   cases h
   rfl
 
+/--
+@isnad1 id=eq.2h3v.s5.8dbf6668babd from=translated src=- shape=3b88bb8c vocab=1aa2c067
+-/
 theorem BoundaryPairing.direction_eq_of_source_target_eq
     {P : FiniteCyclicPresentation} (p q : P.BoundaryPairing)
     (hsource : p.source = q.source) (htarget : p.target = q.target) :
@@ -1511,7 +1695,9 @@ theorem BoundaryPairing.eq_of_source_target_direction_eq
   cases q
   simp_all
 
-/-- Every target pairing is one of the subedge pairings expanded from a unique old pairing. -/
+/-- Every target pairing is one of the subedge pairings expanded from a unique old pairing.
+@isnad1 id=or.1h3v.s7.112c567bc38a from=translated src=- shape=32259e51 vocab=e7f5bce3
+-/
 theorem exists_eq_expandedPairing
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (validP : P.IsSurfaceValid)
@@ -1660,6 +1846,9 @@ theorem exists_eq_expandedPairing
           BoundaryPairing.eq_of_source_target_direction_eq q er
             hersource.symm hertarget.symm hdirectionEq⟩
 
+/--
+@isnad1 id=lt.0h3v.s4.a8444e410e6b from=translated src=- shape=931faef3 vocab=281bcc77
+-/
 theorem dartWeight_pos {n : ℕ} (a : Fin n)
     (d : SignedDart (Fin n)) :
     0 < dartWeight a d := by
@@ -1677,6 +1866,9 @@ noncomputable def unexpandParameter {n : ℕ} (a : Fin n) (d : SignedDart (Fin n
       exact_mod_cast k.isLt
     linarith [u.property.2]⟩
 
+/--
+@isnad1 id=eq.0h5v.s6.08bed2a7d7cf from=translated src=- shape=ad459384 vocab=039f1639
+-/
 @[simp]
 theorem unexpandParameter_val {n : ℕ} (a : Fin n)
     (d : SignedDart (Fin n)) (k : Fin (dartWeight a d))
@@ -1685,6 +1877,9 @@ theorem unexpandParameter_val {n : ℕ} (a : Fin n)
       ((k : ℝ) + (u : ℝ)) / dartWeight a d :=
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s10.eef6aed7eb49 from=translated src=- shape=2fe076f1 vocab=86f1c67e
+-/
 theorem faceHomeomorph_side_unexpand
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (validP : P.IsSurfaceValid) (f : P.Face)
@@ -1723,6 +1918,9 @@ theorem faceHomeomorph_side_unexpand
   field_simp [hw]
   ring
 
+/--
+@isnad1 id=eq.1h4v.s8.2843a90fb39d from=translated src=- shape=073c43e6 vocab=1d5795a7
+-/
 theorem preHomeomorph_occurrenceSide_unexpand
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (validP : P.IsSurfaceValid) (p : ExpandedSourcePosition P a)
@@ -1746,6 +1944,9 @@ theorem preHomeomorph_occurrenceSide_unexpand
   · apply heq_of_eq
     exact faceHomeomorph_side_unexpand P a validP f i k u
 
+/--
+@isnad1 id=eq.1h4v.s8.3baa018daec5 from=translated src=- shape=9acdf3db vocab=8016f58f
+-/
 theorem preHomeomorph_symm_expandedOccurrenceAt
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (validP : P.IsSurfaceValid) (p : ExpandedSourcePosition P a)
@@ -1759,6 +1960,9 @@ theorem preHomeomorph_symm_expandedOccurrenceAt
   rw [(preHomeomorph P a validP).apply_symm_apply]
   exact (preHomeomorph_occurrenceSide_unexpand P a validP p u).symm
 
+/--
+@isnad1 id=eq.1h6v.s5.39b7d75c1f95 from=translated src=- shape=e21ce903 vocab=d5456375
+-/
 theorem unexpandParameter_cast_eq {n : ℕ} (a : Fin n)
     {d₁ d₂ : SignedDart (Fin n)} (h : d₂ = d₁)
     (k : Fin (dartWeight a d₁)) (u : unitInterval) :
@@ -1768,6 +1972,9 @@ theorem unexpandParameter_cast_eq {n : ℕ} (a : Fin n)
   subst d₂
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.27f3eaa7df2d from=translated src=- shape=ec611407 vocab=61e4c5b1
+-/
 theorem unexpandParameter_flip_reverse {n : ℕ} (a : Fin n)
     (d : SignedDart (Fin n)) (k : Fin (dartWeight a d))
     (u : unitInterval) :
@@ -1786,6 +1993,9 @@ theorem unexpandParameter_flip_reverse {n : ℕ} (a : Fin n)
   field_simp [hw]
   ring
 
+/--
+@isnad1 id=eq.1h5v.s6.df8af930180d from=translated src=- shape=3033a135 vocab=9d3fde09
+-/
 theorem unexpandParameter_samePairedOffset
     {P : FiniteCyclicPresentation} (a : P.Edge)
     (pairing : P.BoundaryPairing)
@@ -1796,6 +2006,9 @@ theorem unexpandParameter_samePairedOffset
       unexpandParameter a pairing.source.dart k u :=
   unexpandParameter_cast_eq a hcompatible k u
 
+/--
+@isnad1 id=eq.1h5v.s6.05e8666a0392 from=translated src=- shape=62a0f955 vocab=76456783
+-/
 theorem unexpandParameter_oppositePairedOffset
     {P : FiniteCyclicPresentation} (a : P.Edge)
     (pairing : P.BoundaryPairing)
@@ -1811,6 +2024,9 @@ theorem unexpandParameter_oppositePairedOffset
       (unitInterval.symm u)).trans
     (unexpandParameter_flip_reverse a pairing.source.dart k u)
 
+/--
+@isnad1 id=r.3h5v.s9.89a16bd06030 from=translated src=- shape=8db06c7b vocab=7e997d88
+-/
 theorem preHomeomorph_symm_expandedPairingSame_generator_related
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (validP : P.IsSurfaceValid) (pairing : P.BoundaryPairing)
@@ -1850,6 +2066,9 @@ theorem preHomeomorph_symm_expandedPairingSame_generator_related
       (pairing_identification_mem validP pairing)
       (unexpandParameter a pairing.source.dart k u)
 
+/--
+@isnad1 id=r.3h5v.s9.12963764d842 from=translated src=- shape=8e9cf343 vocab=c7621476
+-/
 theorem preHomeomorph_symm_expandedPairingOpposite_generator_related
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (validP : P.IsSurfaceValid) (pairing : P.BoundaryPairing)
@@ -1894,7 +2113,9 @@ theorem preHomeomorph_symm_expandedPairingOpposite_generator_related
 /-! ### Descent to the faithful polygonal quotient -/
 
 /-- The inverse facewise map sends every target gluing generator into the source generated
-relation. -/
+relation.
+@isnad1 id=r.1h4v.s9.e3ae0a63bb5d from=translated src=- shape=307607f9 vocab=f5bd9177
+-/
 theorem preHomeomorph_symm_generator_related
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (validP : P.IsSurfaceValid) (pairing : (expand P a).BoundaryPairing)
@@ -1913,7 +2134,9 @@ theorem preHomeomorph_symm_generator_related
   · exact preHomeomorph_symm_expandedPairingOpposite_generator_related
       P a validP r hdirection hcompatible k t
 
-/-- The facewise P1 homeomorphism preserves the complete source gluing relation. -/
+/-- The facewise P1 homeomorphism preserves the complete source gluing relation.
+@isnad1 id=r.2h4v.s9.1db755c867ae from=translated src=- shape=e228b94f vocab=c36da555
+-/
 theorem preHomeomorph_related
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (validP : P.IsSurfaceValid) {x y : P.PolygonalPreRealization}
@@ -1935,7 +2158,9 @@ theorem preHomeomorph_related
   | trans _ _ _ _ _ ih₁ ih₂ =>
       exact Relation.EqvGen.trans _ _ _ ih₁ ih₂
 
-/-- The inverse facewise P1 homeomorphism preserves the complete target gluing relation. -/
+/-- The inverse facewise P1 homeomorphism preserves the complete target gluing relation.
+@isnad1 id=r.2h4v.s9.830bea76c770 from=translated src=- shape=0dcac007 vocab=f56a57cb
+-/
 theorem preHomeomorph_symm_related
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (validP : P.IsSurfaceValid)
@@ -1963,7 +2188,9 @@ theorem preHomeomorph_symm_related
       exact Relation.EqvGen.trans _ _ _ ih₁ ih₂
 
 /-- The selected P1 pre-realization homeomorphism identifies the two generated gluing relations
-exactly. -/
+exactly.
+@isnad1 id=iff.1h4v.s9.0987a6830768 from=translated src=- shape=927decc3 vocab=c36da555
+-/
 theorem preHomeomorph_related_iff
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (validP : P.IsSurfaceValid) (x y : P.PolygonalPreRealization) :
@@ -1985,7 +2212,9 @@ noncomputable def realizationHomeomorph
   PolygonGluing.realizationCongr (preHomeomorph P a validP)
     (preHomeomorph_related_iff P a validP)
 
-/-- Propositional realization-invariance form for the canonical P1 expansion. -/
+/-- Propositional realization-invariance form for the canonical P1 expansion.
+@isnad1 id=polygona.1h2v.s3.480a9ee54fdd from=translated src=- shape=b51342f1 vocab=db327ecd
+-/
 theorem polygonallyEquivalent
     (P : FiniteCyclicPresentation) (a : P.Edge)
     (validP : P.IsSurfaceValid) :
@@ -1996,7 +2225,9 @@ theorem polygonallyEquivalent
 end P1
 
 /-- Every P1 subdivision, including signed relabeling of the canonical target, preserves the
-faithful polygonal realization. -/
+faithful polygonal realization.
+@isnad1 id=preserve.0h0v.s0.a4ad51702e43 from=translated src=- shape=45709ebd vocab=a4ad5170
+-/
 theorem P1Subdivision.preservesPolygonalRealization :
     P1Subdivision.PreservesPolygonalRealization := by
   intro P Q hPQ validP validQ

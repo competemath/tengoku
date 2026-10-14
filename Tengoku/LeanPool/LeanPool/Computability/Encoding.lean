@@ -21,11 +21,15 @@ open Denumerable Encodable
 
 namespace Computability
 
-/-- The identity function is recursive in any oracle `O`. -/
+/-- The identity function is recursive in any oracle `O`.
+@isnad1 id=recursiv.0h1v.s3.551dcf8ba66f from=translated src=- shape=1f9231af vocab=650e14fd
+-/
 theorem RecursiveIn_id {O : Set (ℕ →. ℕ)} : RecursiveIn O (fun n => Part.some n) :=
   recursiveIn_of_partrec (Nat.Partrec.of_primrec Nat.Primrec.id)
 
-/-- The composition of two total recursive functions is recursive. -/
+/-- The composition of two total recursive functions is recursive.
+@isnad1 id=recursiv.2h3v.s5.42644e680690 from=translated src=- shape=a41fff77 vocab=650e14fd
+-/
 lemma RecursiveIn_comp_total {O : Set (ℕ →. ℕ)} {f g : ℕ → ℕ}
   (hf : RecursiveIn O (fun n => Part.some (f n)))
   (hg : RecursiveIn O (fun n => Part.some (g n))) :
@@ -33,6 +37,9 @@ lemma RecursiveIn_comp_total {O : Set (ℕ →. ℕ)} {f g : ℕ → ℕ}
     convert hf.comp hg using 1
     aesop
 
+/--
+@isnad1 id=recursiv.2h3v.s5.c9035756129d from=translated src=- shape=331166d4 vocab=d51d8608
+-/
 lemma RecursiveIn_pair_total {O : Set (ℕ →. ℕ)} {f g : ℕ → ℕ}
   (hf : RecursiveIn O (fun n => Part.some (f n)))
   (hg : RecursiveIn O (fun n => Part.some (g n))) :
@@ -44,6 +51,9 @@ lemma RecursiveIn_pair_total {O : Set (ℕ →. ℕ)} {f g : ℕ → ℕ}
     erw [Part.mem_bind_iff]
     aesop
 
+/--
+@isnad1 id=recursiv.2h3v.s6.c36c639aec9e from=translated src=- shape=a61b3f43 vocab=428310c4
+-/
 lemma RecursiveIn_prec_total {O : Set (ℕ →. ℕ)} {f : ℕ → ℕ} {h : ℕ → ℕ}
     (hf : RecursiveIn O (fun n => Part.some (f n)))
     (hh : RecursiveIn O (fun n => Part.some (h n))) :
@@ -60,11 +70,16 @@ lemma RecursiveIn_prec_total {O : Set (ℕ →. ℕ)} {f : ℕ → ℕ} {h : ℕ
   | zero => rfl
   | succ y ih => simp only [ih, Part.bind_some]
 
+/--
+@isnad1 id=recursiv.0h1v.s4.adacc5e2e293 from=translated src=- shape=7e3d7fdc vocab=51b25bf4
+-/
 theorem RecursiveIn_add {O : Set (ℕ →. ℕ)} :
     RecursiveIn O (fun p => Part.some (p.unpair.1 + p.unpair.2)) :=
   recursiveIn_of_partrec (Nat.Partrec.of_primrec Nat.Primrec.add)
 
-/-- Every primitive recursive function is recursive. -/
+/-- Every primitive recursive function is recursive.
+@isnad1 id=recursiv.1h2v.s4.e47b32eca4c6 from=translated src=- shape=9ade2965 vocab=0f55fe9f
+-/
 theorem RecursiveIn_of_Primrec {O : Set (ℕ →. ℕ)} {f : ℕ → ℕ} (hf : Nat.Primrec f) :
     RecursiveIn O (fun n => Part.some (f n)) := by
   induction hf with
@@ -76,6 +91,9 @@ theorem RecursiveIn_of_Primrec {O : Set (ℕ →. ℕ)} {f : ℕ → ℕ} (hf : 
   | comp _ _ ihf ihg => exact RecursiveIn_comp_total ihf ihg
   | prec _ _ ihf ihg => exact RecursiveIn_prec_total ihf ihg
 
+/--
+@isnad1 id=recursiv.1h2v.s6.086abdc6751b from=translated src=- shape=8f132327 vocab=e9f59f93
+-/
 theorem RecursiveIn.rfind' {f : ℕ →. ℕ} (hf : RecursiveIn O f) :
   RecursiveIn O (Nat.unpaired fun a m =>
     (Nat.rfind fun n => (fun m => m = 0) <$> f (Nat.pair a (n + m))).map (· + m))
@@ -226,6 +244,9 @@ def decodeCodeo : ℕ → codeo
 termination_by n => n
 decreasing_by all_goals first | exact hq₁ | exact hq₂ | exact hq
 
+/--
+@isnad1 id=eq.0h1v.s3.b1153c960e8c from=translated src=- shape=47dcad53 vocab=4d428ef5
+-/
 theorem encodeCodeo_decodeCodeo' : ∀ c, encodeCodeo (decodeCodeo c) = c :=
 fun c => match c with
   | 0 => by simp [decodeCodeo, encodeCodeo]
@@ -289,6 +310,9 @@ fun c => match c with
     specialize h_inv c
     aesop
 
+/--
+@isnad1 id=eq.0h1v.s3.3c8510837f00 from=translated src=- shape=47dcad53 vocab=7011b241
+-/
 theorem decodeCodeo_encodeCodeo (c : codeo) : decodeCodeo (encodeCodeo c) = c := by
   have h_inj : ∀ c1 c2 : codeo, encodeCodeo c1 = encodeCodeo c2 → c1 = c2 := by
     intro c1 c2 h_eq
@@ -312,6 +336,9 @@ def const : ℕ → codeo
   | 0 => codeo.zero
   | n + 1 => codeo.comp codeo.succ (const n)
 
+/--
+@isnad1 id=eq.1h2v.s3.2d3e41c4d900 from=translated src=- shape=296f4854 vocab=69c536d5
+-/
 theorem const_inj : ∀ {n₁ n₂}, const n₁ = const n₂ → n₁ = n₂
   | 0, 0, _ => by simp
   | n₁ + 1, n₂ + 1, h => by
@@ -329,6 +356,9 @@ def curry (c : codeo) (n : ℕ) : codeo :=
   codeo.comp c (codeo.pair (const n) idCode)
 
 -- helper lemma to prove rfind' case of univ theorem, since rfind' is defined differently from rfind
+/--
+@isnad1 id=recursiv.1h3v.s6.a810746490a1 from=translated src=- shape=bd46d59b vocab=477dae55
+-/
 theorem rfind'o {α : Type} [Primcodable α] {g : α → ℕ →. ℕ} {cf : codeo}
     (hf : RecursiveIn (Set.range g) (evalo g cf)) :
   RecursiveIn (Set.range g)
@@ -354,6 +384,9 @@ private theorem nat_primrec_linear (a b : ℕ) : Nat.Primrec (fun n => a * n + b
       simp
   exact (Nat.Primrec.add.comp (Nat.Primrec.pair hmul (Nat.Primrec.const b))).of_eq fun n => by simp
 
+/--
+@isnad1 id=primrec.0h0v.s1.fc6df4a810bb from=translated src=- shape=49959d42 vocab=a385b297
+-/
 theorem encode_const_step_primrec : Nat.Primrec encodeConstStepFun := by
   have h_inner : Nat.Primrec (fun p : ℕ => Nat.pair 1 (Nat.unpair (Nat.unpair p).2).2) :=
     Nat.Primrec.pair (Nat.Primrec.const 1) (Nat.Primrec.right.comp Nat.Primrec.right)
@@ -361,9 +394,15 @@ theorem encode_const_step_primrec : Nat.Primrec encodeConstStepFun := by
     simp only [encodeConstStepFun]
     omega
 
+/--
+@isnad1 id=eq.0h1v.s5.9185085232a0 from=translated src=- shape=8b5cd8ce vocab=58ae2b91
+-/
 theorem encode_const_succ (n : ℕ) :
     encodeConst (n + 1) = 4 + (5 * Nat.pair 1 (encodeConst n) + 2) := rfl
 
+/--
+@isnad1 id=primrec.0h0v.s1.b82148217ba3 from=translated src=- shape=49959d42 vocab=c3cb39c2
+-/
 theorem encode_const_primrec : Nat.Primrec encodeConst := by
   have ih_step : Nat.Primrec (Nat.unpaired fun a n => Nat.rec (encodeCodeo codeo.zero) (fun y IH =>
       encodeConstStepFun (Nat.pair a (Nat.pair y IH))) n) := by
@@ -380,9 +419,15 @@ theorem encode_const_primrec : Nat.Primrec encodeConst := by
 /-- The encoding of the code pairing the constant `n` with the identity code. -/
 def sInner (n : ℕ) : ℕ := encodeCodeo (codeo.pair (const n) idCode)
 
+/--
+@isnad1 id=eq.0h1v.s5.a7cbe3db9cdb from=translated src=- shape=e6dadeee vocab=b4248e6e
+-/
 @[simp] lemma s_inner_eq (n : ℕ) :
     sInner n = 4 + (5 * Nat.pair (encodeConst n) (encodeCodeo idCode) + 1) := rfl
 
+/--
+@isnad1 id=primrec.0h0v.s1.30526717292a from=translated src=- shape=49959d42 vocab=841293bc
+-/
 theorem s_inner_primrec : Nat.Primrec sInner := by
   have h_pair : Nat.Primrec (fun n => Nat.pair (encodeCodeo (const n)) (encodeCodeo idCode)) :=
     Nat.Primrec.pair encode_const_primrec (Nat.Primrec.const _)
@@ -393,8 +438,14 @@ theorem s_inner_primrec : Nat.Primrec sInner := by
 /-- The encoding of the code applying oracle `0` to the constant `n` (an `s`-`m`-`n` index). -/
 def s (n : ℕ) : ℕ := encodeCodeo (codeo.comp (codeo.oracle 0) (const n))
 
+/--
+@isnad1 id=eq.0h1v.s5.da758a490cfa from=translated src=- shape=e4cfd70f vocab=4cc30553
+-/
 theorem s_eq (n : ℕ) : s n = 4 + (5 * Nat.pair 4 (encodeConst n) + 2) := rfl
 
+/--
+@isnad1 id=primrec.0h0v.s1.02e0b495e45c from=translated src=- shape=49959d42 vocab=f0964bfa
+-/
 theorem s_primrec : Nat.Primrec s := by
   have h_pair : Nat.Primrec (fun n => Nat.pair (encodeCodeo (codeo.oracle 0)) (encodeConst n)) :=
     Nat.Primrec.pair (Nat.Primrec.const _) encode_const_primrec
@@ -404,7 +455,9 @@ theorem s_primrec : Nat.Primrec s := by
 
 /-- A function is partial recursive relative to an indexed set of oracles `O` if and only if there
 is a code implementing it.
-Therefore, `evalo` is a **universal partial recursive function relative to `g`**. -/
+Therefore, `evalo` is a **universal partial recursive function relative to `g`**.
+@isnad1 id=iff.0h3v.s5.54aa4dae8ba6 from=translated src=- shape=464b4f3a vocab=3e306cc7
+-/
 theorem exists_code_rel {α : Type} [Primcodable α] (g : α → ℕ →. ℕ) (f : ℕ →. ℕ) :
   RecursiveIn (Set.range g) f ↔ ∃ c : codeo, evalo g c = f := by
   constructor

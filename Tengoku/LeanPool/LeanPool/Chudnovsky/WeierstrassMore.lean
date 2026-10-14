@@ -45,27 +45,37 @@ def e₃ : ℂ := ℘[L] ((L.ω₁ + L.ω₂) / 2)
 
 /-- `℘'` vanishes at every half-lattice point `l/2` for `l ∈ L`.
 This is purely algebraic: `℘'` is odd and `L`-periodic, so
-`℘'(l/2) = ℘'(l/2 - l) = ℘'(-l/2) = -℘'(l/2)`. -/
+`℘'(l/2) = ℘'(l/2 - l) = ℘'(-l/2) = -℘'(l/2)`.
+@isnad1 id=eq.0h2v.s6.e0786f711931 from=translated src=- shape=d649b2ac vocab=18389d6f
+-/
 theorem derivWeierstrassP_half_lattice (l : L.lattice) : ℘'[L] ((l : ℂ) / 2) = 0 := by
   have h := L.derivWeierstrassP_sub_coe ((l : ℂ) / 2) l
   rw [show (l : ℂ) / 2 - (l : ℂ) = -((l : ℂ) / 2) by ring, L.derivWeierstrassP_neg] at h
   exact CharZero.eq_neg_self_iff.mp h.symm
 
-/-- `℘'` vanishes at the half-period `ω₁/2`. -/
+/-- `℘'` vanishes at the half-period `ω₁/2`.
+@isnad1 id=eq.0h1v.s4.bd6d72c0df62 from=translated src=- shape=3ebec24b vocab=6605a86f
+-/
 theorem derivWeierstrassP_ω₁_div_two : ℘'[L] (L.ω₁ / 2) = 0 :=
   L.derivWeierstrassP_half_lattice ⟨L.ω₁, L.ω₁_mem_lattice⟩
 
-/-- `℘'` vanishes at the half-period `ω₂/2`. -/
+/-- `℘'` vanishes at the half-period `ω₂/2`.
+@isnad1 id=eq.0h1v.s4.b9237be3db46 from=translated src=- shape=3ebec24b vocab=27f2bf0c
+-/
 theorem derivWeierstrassP_ω₂_div_two : ℘'[L] (L.ω₂ / 2) = 0 :=
   L.derivWeierstrassP_half_lattice ⟨L.ω₂, L.ω₂_mem_lattice⟩
 
-/-- `℘'` vanishes at the half-period `(ω₁+ω₂)/2`. -/
+/-- `℘'` vanishes at the half-period `(ω₁+ω₂)/2`.
+@isnad1 id=eq.0h1v.s5.9c9f0aa177e6 from=translated src=- shape=1fc46739 vocab=bad1a655
+-/
 theorem derivWeierstrassP_add_div_two : ℘'[L] ((L.ω₁ + L.ω₂) / 2) = 0 :=
   L.derivWeierstrassP_half_lattice ⟨L.ω₁ + L.ω₂, add_mem L.ω₁_mem_lattice L.ω₂_mem_lattice⟩
 
 /-! ### Auxiliary lemmas for the Liouville counting arguments -/
 
-/-- The only lattice point of the fundamental parallelogram is `0`. -/
+/-- The only lattice point of the fundamental parallelogram is `0`.
+@isnad1 id=not.2h2v.s5.2c026356bfce from=translated src=- shape=ecbe0f74 vocab=3eca0d38
+-/
 theorem notMem_lattice_of_mem_fund {z : ℂ} (hz : z ∈ L.fundamentalParallelogram)
     (hz0 : z ≠ 0) : z ∉ L.lattice := by
   obtain ⟨s, ⟨hs0, hs1⟩, t, ⟨ht0, ht1⟩, rfl⟩ := hz
@@ -97,7 +107,9 @@ theorem notMem_lattice_of_mem_fund {z : ℂ} (hz : z ∈ L.fundamentalParallelog
   rw [← hs, ← ht, hm0, hn0]
   simp
 
-/-- `℘ - c` has a pole of order `2` at each lattice point. -/
+/-- `℘ - c` has a pole of order `2` at each lattice point.
+@isnad1 id=eq.1h3v.s6.223e9c4cc912 from=translated src=- shape=69e6fe32 vocab=fa77be52
+-/
 theorem meromorphicOrderAt_weierstrassP_sub {c : ℂ} {l₀ : ℂ} (h : l₀ ∈ L.lattice) :
     meromorphicOrderAt (fun z => ℘[L] z - c) l₀ = -2 := by
   have heq : (fun z => ℘[L] z - c) = ℘[L] + fun _ => -c := by
@@ -111,7 +123,9 @@ theorem meromorphicOrderAt_weierstrassP_sub {c : ℂ} {l₀ : ℂ} (h : l₀ ∈
     exact lt_of_lt_of_le hneg analyticAt_const.meromorphicOrderAt_nonneg
   rw [heq, meromorphicOrderAt_add_eq_left_of_lt analyticAt_const.meromorphicAt hlt, hord]
 
-/-- `℘ - c` is an elliptic function. -/
+/-- `℘ - c` is an elliptic function.
+@isnad1 id=isellipt.0h2v.s4.dad64dcf8a06 from=translated src=- shape=70f707ff vocab=20e11983
+-/
 theorem isEllipticWith_weierstrassP_sub (c : ℂ) :
     L.IsEllipticWith (fun z => ℘[L] z - c) :=
   ⟨by fun_prop, fun z l => by simp⟩
@@ -120,7 +134,9 @@ theorem isEllipticWith_weierstrassP_sub (c : ℂ) :
 has, counted with multiplicity, at most `2` zeros in the fundamental parallelogram, since
 it has a single double pole (at `0`). Concretely, for any finite set `A` of non-lattice
 points of the fundamental parallelogram at which `℘ = c`, the multiplicities add up to at
-most `2`. -/
+most `2`.
+@isnad1 id=le.3h3v.s7.9a3dba243302 from=translated src=- shape=f4052398 vocab=6ead66e0
+-/
 theorem sum_untop₀_meromorphicOrderAt_le_two (c : ℂ) (A : Finset ℂ)
     (hAf : ∀ a ∈ A, a ∈ L.fundamentalParallelogram)
     (hAl : ∀ a ∈ A, a ∉ L.lattice) (hAz : ∀ a ∈ A, ℘[L] a = c) :
@@ -175,7 +191,9 @@ theorem sum_untop₀_meromorphicOrderAt_le_two (c : ℂ) (A : Finset ℂ)
     _ = 2 := hsum_erase
 
 /-- At a point `a ∉ L` where `℘ a = c` and `℘' a = 0`, the function `℘ - c` has a zero of
-order at least `2`. -/
+order at least `2`.
+@isnad1 id=le.3h3v.s6.9ece77aee6fe from=translated src=- shape=eaeabd43 vocab=83ec4e18
+-/
 theorem two_le_untop₀_meromorphicOrderAt {c : ℂ} {a : ℂ} (ha : a ∉ L.lattice)
     (hc : ℘[L] a = c) (hderiv : ℘'[L] a = 0) :
     2 ≤ (meromorphicOrderAt (fun z => ℘[L] z - c) a).untop₀ := by
@@ -207,7 +225,9 @@ theorem two_le_untop₀_meromorphicOrderAt {c : ℂ} {a : ℂ} (ha : a ∉ L.lat
 
 /-! ## The factorization of ℘′² (paper `pstrichprod`) -/
 
-/-- `(ω₁+ω₂)/2` is not a lattice point. -/
+/-- `(ω₁+ω₂)/2` is not a lattice point.
+@isnad1 id=not.0h1v.s5.d568e508cd85 from=translated src=- shape=deea5702 vocab=8d22396e
+-/
 theorem add_div_two_notMem_lattice : (L.ω₁ + L.ω₂) / 2 ∉ L.lattice := by
   have h := (L.mul_ω₁_add_mul_ω₂_mem_lattice (α := 1 / 2) (β := 1 / 2)).not.mpr (by norm_num)
   intro hmem
@@ -216,7 +236,9 @@ theorem add_div_two_notMem_lattice : (L.ω₁ + L.ω₂) / 2 ∉ L.lattice := by
       = (L.ω₁ + L.ω₂) / 2 by push_cast; ring]
   exact hmem
 
-/-- Two distinct real-linear combinations of the periods with coefficients in `[0,1)` differ. -/
+/-- Two distinct real-linear combinations of the periods with coefficients in `[0,1)` differ.
+@isnad1 id=ne.1h5v.s7.5588e0ce63ff from=translated src=- shape=176ced2f vocab=a0c2a4ee
+-/
 theorem half_ne_half {a b a' b' : ℝ} (h : ¬ (a = a' ∧ b = b')) :
     a • L.ω₁ + b • L.ω₂ ≠ a' • L.ω₁ + b' • L.ω₂ := by
   intro he
@@ -229,7 +251,9 @@ theorem half_ne_half {a b a' b' : ℝ} (h : ¬ (a = a' ∧ b = b')) :
 
 /-- If two half-period points of the fundamental parallelogram are distinct, `℘` takes
 different values there (both are double zeros of `℘ - value`, and `℘ - c` has at most a
-double zero, by the counting bound). -/
+double zero, by the counting bound).
+@isnad1 id=ne.7h3v.s7.c017b3414f0c from=translated src=- shape=6735518c vocab=fad62ad0
+-/
 theorem weierstrassP_ne_of_half {p q : ℂ}
     (hpf : p ∈ L.fundamentalParallelogram) (hqf : q ∈ L.fundamentalParallelogram)
     (hpl : p ∉ L.lattice) (hql : q ∉ L.lattice) (hpq : p ≠ q)
@@ -289,19 +313,25 @@ private theorem ω₂_div_two_ne_add_div_two : L.ω₂ / 2 ≠ (L.ω₁ + L.ω�
       show (1 / 2 : ℝ) • L.ω₁ + (1 / 2 : ℝ) • L.ω₂ = (L.ω₁ + L.ω₂) / 2 by
         simp [Complex.real_smul]; ring] at h
 
-/-- The half-lattice values are pairwise distinct: `e₁ ≠ e₂`. -/
+/-- The half-lattice values are pairwise distinct: `e₁ ≠ e₂`.
+@isnad1 id=ne.0h1v.s3.624fc4f6ddf0 from=translated src=- shape=b70c6bb1 vocab=7212a924
+-/
 theorem e₁_ne_e₂ : L.e₁ ≠ L.e₂ :=
   L.weierstrassP_ne_of_half L.mem_fund_ω₁_div_two L.mem_fund_ω₂_div_two
     L.ω₁_div_two_notMem_lattice L.ω₂_div_two_notMem_lattice
     L.ω₁_div_two_ne_ω₂_div_two L.derivWeierstrassP_ω₁_div_two L.derivWeierstrassP_ω₂_div_two
 
-/-- The half-lattice values are pairwise distinct: `e₁ ≠ e₃`. -/
+/-- The half-lattice values are pairwise distinct: `e₁ ≠ e₃`.
+@isnad1 id=ne.0h1v.s3.b849f283c57e from=translated src=- shape=b70c6bb1 vocab=27d9d6be
+-/
 theorem e₁_ne_e₃ : L.e₁ ≠ L.e₃ :=
   L.weierstrassP_ne_of_half L.mem_fund_ω₁_div_two L.mem_fund_add_div_two
     L.ω₁_div_two_notMem_lattice L.add_div_two_notMem_lattice
     L.ω₁_div_two_ne_add_div_two L.derivWeierstrassP_ω₁_div_two L.derivWeierstrassP_add_div_two
 
-/-- The half-lattice values are pairwise distinct: `e₂ ≠ e₃`. -/
+/-- The half-lattice values are pairwise distinct: `e₂ ≠ e₃`.
+@isnad1 id=ne.0h1v.s3.bc44cebebe0b from=translated src=- shape=b70c6bb1 vocab=1776ab0b
+-/
 theorem e₂_ne_e₃ : L.e₂ ≠ L.e₃ :=
   L.weierstrassP_ne_of_half L.mem_fund_ω₂_div_two L.mem_fund_add_div_two
     L.ω₂_div_two_notMem_lattice L.add_div_two_notMem_lattice
@@ -326,7 +356,9 @@ private theorem cubic_root_e₃ : 4 * L.e₃ ^ 3 - L.g₂ * L.e₃ - L.g₃ = 0 
   have h' : (0 : ℂ) ^ 2 = 4 * L.e₃ ^ 3 - L.g₂ * L.e₃ - L.g₃ := h
   linear_combination -h'
 
-/-- The factorization `℘'(z)² = 4(℘(z)-e₁)(℘(z)-e₂)(℘(z)-e₃)` (paper `pstrichprod`). -/
+/-- The factorization `℘'(z)² = 4(℘(z)-e₁)(℘(z)-e₂)(℘(z)-e₃)` (paper `pstrichprod`).
+@isnad1 id=eq.1h2v.s6.39e91a67c86f from=translated src=- shape=2e796a15 vocab=94446428
+-/
 theorem derivWeierstrassP_sq_eq_four_mul_prod (z : ℂ) (hz : z ∉ L.lattice) :
     ℘'[L] z ^ 2 = 4 * (℘[L] z - L.e₁) * (℘[L] z - L.e₂) * (℘[L] z - L.e₃) := by
   rw [L.derivWeierstrassP_sq z hz]
@@ -359,7 +391,9 @@ theorem derivWeierstrassP_sq_eq_four_mul_prod (z : ℂ) (hz : z ∉ L.lattice) :
 /-! ## Characterisation of the zeros of `℘'` (paper `zerowp`) -/
 
 /-- Every point of `ℂ` is congruent modulo `L` to a point of the fundamental
-parallelogram. -/
+parallelogram.
+@isnad1 id=ex.0h2v.s5.d8d079e8a57c from=translated src=- shape=3787f198 vocab=b2dd95a1
+-/
 theorem exists_mem_fund (z₀ : ℂ) :
     ∃ p ∈ L.fundamentalParallelogram, z₀ - p ∈ L.lattice := by
   set s := L.basis.repr z₀ 0 with hs
@@ -379,7 +413,9 @@ theorem exists_mem_fund (z₀ : ℂ) :
   ring
 
 /-- The zeros of `℘'` are exactly the points `ω/2` with `ω ∈ L` but `ω/2 ∉ L`, i.e. for
-`z ∉ L` we have `℘'(z) = 0` iff `2z ∈ L` (paper `zerowp`). -/
+`z ∉ L` we have `℘'(z) = 0` iff `2z ∈ L` (paper `zerowp`).
+@isnad1 id=iff.1h2v.s6.c37f9db03feb from=translated src=- shape=ee89be6a vocab=6d61790d
+-/
 theorem derivWeierstrassP_eq_zero_iff {z : ℂ} (hz : z ∉ L.lattice) :
     ℘'[L] z = 0 ↔ 2 * z ∈ L.lattice := by
   constructor

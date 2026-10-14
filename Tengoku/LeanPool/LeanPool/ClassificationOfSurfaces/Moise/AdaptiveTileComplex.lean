@@ -39,6 +39,9 @@ variable [AdaptiveSafety.IsAdmissible (K := K) (U := U)]
 abbrev AdaptiveClosedFace (t : K.AdaptiveFace U) :=
   {p : K.realization // p ∈ K.adaptiveFaceCarrier U t}
 
+/--
+@isnad1 id=mem.1h4v.s9.99aef9319d79 from=translated src=- shape=05901945 vocab=468e40d4
+-/
 theorem levelFaceHomeoSymm_mem_carrier {n : ℕ} (t : K.LevelFace n)
     {p : K.realization} (hp : p ∈ K.levelFaceCarrier t) :
     (K.safeSubdivision n).homeo.symm p ∈
@@ -72,7 +75,9 @@ noncomputable def adaptiveFacePlaneHomeomorph (t : K.AdaptiveFace U) :
   (K.adaptiveFaceSourceHomeomorph U t).trans
     ((K.safeSubdivision t.1).refined.facePlaneHomeomorph t.2.1)
 
-/-- A point on an adaptive edge pulls back to the corresponding edge of the refined face. -/
+/-- A point on an adaptive edge pulls back to the corresponding edge of the refined face.
+@isnad1 id=mem.1h5v.s9.8acf4ce63677 from=translated src=- shape=1accf1f4 vocab=01f8aaa0
+-/
 theorem homeo_symm_mem_levelFaceEdgeCarrier {n : ℕ} (t : K.LevelFace n)
     (i : ZMod 3) {p : K.realization} (hp : p ∈ K.levelFaceEdgeCarrier t i) :
     (K.safeSubdivision n).homeo.symm p ∈
@@ -91,7 +96,9 @@ noncomputable def adaptiveBoundaryPlanePoint (hU : IsOpen U)
   K.adaptiveFacePlaneHomeomorph U t
     ⟨p.1, ((K.mem_boundaryVertices_iff U hU t p.1).mp p.2).1⟩
 
-/-- Every resolved boundary mark lies in the standard triangle's one-skeleton. -/
+/-- Every resolved boundary mark lies in the standard triangle's one-skeleton.
+@isnad1 id=mem.1h4v.s6.9c12afd7696e from=translated src=- shape=961353be vocab=071631a4
+-/
 theorem adaptiveBoundaryPlanePoint_mem_standardOneSkeleton (hU : IsOpen U)
     (t : K.AdaptiveFace U) (p : K.AdaptiveBoundaryVertex U hU t) :
     K.adaptiveBoundaryPlanePoint U hU t p ∈
@@ -118,6 +125,9 @@ noncomputable def adaptiveBoundarySubdivision (hU : IsOpen U)
   standardTrianglePlaneComplex.oneSkeleton.markedEdgeSubdivision
     (K.adaptiveBoundaryPlanePoint U hU t)
 
+/--
+@isnad1 id=eq.1h3v.s6.956abc9b4866 from=translated src=- shape=e049d3df vocab=408803db
+-/
 theorem adaptiveBoundarySubdivision_support (hU : IsOpen U)
     (t : K.AdaptiveFace U) :
     (K.adaptiveBoundarySubdivision U hU t).support =
@@ -134,6 +144,9 @@ noncomputable def adaptiveBoundaryGraph (hU : IsOpen U)
     (t : K.AdaptiveFace U) : PlaneComplex :=
   (K.adaptiveBoundarySubdivision U hU t).used
 
+/--
+@isnad1 id=eq.1h3v.s6.ab47e2cfe95c from=translated src=- shape=e049d3df vocab=d0eb8754
+-/
 theorem adaptiveBoundaryGraph_support (hU : IsOpen U)
     (t : K.AdaptiveFace U) :
     (K.adaptiveBoundaryGraph U hU t).support =
@@ -141,6 +154,9 @@ theorem adaptiveBoundaryGraph_support (hU : IsOpen U)
   rw [adaptiveBoundaryGraph, PlaneComplex.used_support,
     K.adaptiveBoundarySubdivision_support U hU t]
 
+/--
+@isnad1 id=le.2h4v.s7.4711889013e4 from=translated src=- shape=7fdc7e7a vocab=40986f3b
+-/
 theorem adaptiveBoundaryGraph_isGraph (hU : IsOpen U)
     (t : K.AdaptiveFace U) :
     ∀ s ∈ (K.adaptiveBoundaryGraph U hU t).simplexes, s.card ≤ 2 := by
@@ -159,7 +175,9 @@ theorem adaptiveBoundaryGraph_isGraph (hU : IsOpen U)
     _ ≤ 2 := hcard
 
 /-- Exact support on the polygonal frontier rules out isolated used vertices: every boundary
-vertex belongs to a two-vertex face. -/
+vertex belongs to a two-vertex face.
+@isnad1 id=ex.1h4v.s7.9f0fea61f533 from=translated src=- shape=8f2800b9 vocab=1b172171
+-/
 theorem adaptiveBoundaryGraph_vertex_mem_edge (hU : IsOpen U)
     (t : K.AdaptiveFace U) (v : (K.adaptiveBoundaryGraph U hU t).Vertex) :
     ∃ e ∈ (K.adaptiveBoundaryGraph U hU t).simplexes,
@@ -264,7 +282,9 @@ theorem adaptiveBoundaryGraph_vertex_mem_edge (hU : IsOpen U)
   · have hzOther : z ∈ other := Set.mem_iUnion.mpr ⟨⟨s, hs, hsv⟩, hzs⟩
     exact (hball hzBall) hzOther
 
-/-- Every simplex of the boundary graph is contained in an edge. -/
+/-- Every simplex of the boundary graph is contained in an edge.
+@isnad1 id=ex.2h4v.s8.2c116926b615 from=translated src=- shape=c7c7479d vocab=40986f3b
+-/
 theorem adaptiveBoundaryGraph_isPureOne (hU : IsOpen U)
     (t : K.AdaptiveFace U) :
     ∀ s ∈ (K.adaptiveBoundaryGraph U hU t).simplexes,
@@ -286,10 +306,16 @@ theorem adaptiveBoundaryGraph_isPureOne (hU : IsOpen U)
 noncomputable def standardAdaptiveConePoint : Plane :=
   Classical.choose standardTrianglePlaneComplex_isTriangle.infinite_interior.nonempty
 
+/--
+@isnad1 id=mem.0h0v.s5.fef468fb0ee4 from=translated src=- shape=22e45067 vocab=32fb5939
+-/
 theorem standardAdaptiveConePoint_mem_interior :
     standardAdaptiveConePoint ∈ interior standardTrianglePlaneComplex.support :=
   Classical.choose_spec standardTrianglePlaneComplex_isTriangle.infinite_interior.nonempty
 
+/--
+@isnad1 id=not.1h3v.s6.39514d25e88b from=translated src=- shape=471efdbb vocab=97bd6b69
+-/
 theorem standardAdaptiveConePoint_not_mem_boundaryGraph_range (hU : IsOpen U)
     (t : K.AdaptiveFace U) :
     standardAdaptiveConePoint ∉ Set.range (K.adaptiveBoundaryGraph U hU t).position := by
@@ -315,6 +341,9 @@ noncomputable def adaptiveTilePlaneComplex (hU : IsOpen U)
     (K.adaptiveBoundaryGraph_isGraph U hU t)
     (K.adaptiveBoundaryGraph_support U hU t)
 
+/--
+@isnad1 id=eq.1h3v.s6.4cd4b44f5ed7 from=translated src=- shape=f1aea994 vocab=429912d7
+-/
 theorem adaptiveTilePlaneComplex_support (hU : IsOpen U)
     (t : K.AdaptiveFace U) :
     (K.adaptiveTilePlaneComplex U hU t).support =
@@ -330,7 +359,9 @@ theorem adaptiveTilePlaneComplex_support (hU : IsOpen U)
     (K.adaptiveBoundaryGraph_support U hU t)
     standardTrianglePlaneComplex_isTriangle.frontier_nonempty
 
-/-- Coning a pure boundary graph produces a pure two-dimensional tile complex. -/
+/-- Coning a pure boundary graph produces a pure two-dimensional tile complex.
+@isnad1 id=ispure2.1h3v.s6.a8980e49536e from=translated src=- shape=f5e318f2 vocab=8a52f7d6
+-/
 theorem adaptiveTilePlaneComplex_isPure2 (hU : IsOpen U)
     (t : K.AdaptiveFace U) :
     (K.adaptiveTilePlaneComplex U hU t).IsPure2 := by
@@ -383,6 +414,9 @@ noncomputable def adaptiveTileSupportEmbed (hU : IsOpen U)
     K.adaptiveFaceCarrier_subset U t
       (K.adaptiveTileSupportHomeomorph U hU t p).2⟩
 
+/--
+@isnad1 id=isembedd.1h3v.s7.3a06f9bf5c8a from=translated src=- shape=ac90bd84 vocab=5a5de12c
+-/
 theorem isEmbedding_adaptiveTileSupportEmbed (hU : IsOpen U)
     (t : K.AdaptiveFace U) :
     _root_.Topology.IsEmbedding (K.adaptiveTileSupportEmbed U hU t) := by
@@ -396,6 +430,9 @@ theorem isEmbedding_adaptiveTileSupportEmbed (hU : IsOpen U)
     (e ∘ (K.adaptiveTileSupportHomeomorph U hU t))
   exact he.comp (K.adaptiveTileSupportHomeomorph U hU t).isEmbedding
 
+/--
+@isnad1 id=eq.1h3v.s6.ca96cc243d81 from=translated src=- shape=eb50f51f vocab=e4d60ffb
+-/
 theorem range_adaptiveTileSupportEmbed (hU : IsOpen U)
     (t : K.AdaptiveFace U) :
     Set.range (K.adaptiveTileSupportEmbed U hU t) =

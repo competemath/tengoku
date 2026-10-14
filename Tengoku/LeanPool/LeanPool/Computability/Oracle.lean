@@ -117,15 +117,22 @@ def ComputableIn₂ {α β σ} [Primcodable α] [Primcodable β] [Primcodable σ
     (O : Set (ℕ →. ℕ)) (f : α → β → σ) : Prop :=
   ComputableIn O (fun p : α × β => f p.1 p.2)
 
+/--
+@isnad1 id=recursiv.2h3v.s5.2df7c23d452e from=translated src=- shape=60375b08 vocab=5feca121
+-/
 theorem RecursiveIn.of_eq {f g : ℕ →. ℕ} (hf : RecursiveIn O f) (H : ∀ n, f n = g n) :
     RecursiveIn O g :=
   (funext H : f = g) ▸ hf
 
+/--
+@isnad1 id=recursiv.2h3v.s5.d21d4582bbb8 from=translated src=- shape=63d90b8b vocab=603b394e
+-/
 theorem RecursiveIn.of_eq_tot {f : ℕ →. ℕ} {g : ℕ → ℕ} (hf : RecursiveIn O f)
     (H : ∀ n, g n ∈ f n) : RecursiveIn O g :=
   hf.of_eq fun n => eq_some_iff.2 (H n)
 /--
 If a function is partial recursive, then it is recursive in every partial function.
+@isnad1 id=recursiv.1h2v.s3.895591f6f27d from=translated src=- shape=e6c76c10 vocab=ef0ae235
 -/
 lemma recursiveIn_of_partrec (pF : Nat.Partrec f) : RecursiveIn O f := by
   induction pF with
@@ -137,35 +144,57 @@ lemma recursiveIn_of_partrec (pF : Nat.Partrec f) : RecursiveIn O f := by
 
 /--
 If a function is computable, then it is computable in every oracle.
+@isnad1 id=computab.1h4v.s5.31b151796c0b from=translated src=- shape=6470f395 vocab=8526a5b6
 -/
 theorem computableIn_of_computable {f : α → β} [Primcodable α]
 [Primcodable β]
 (hf : Computable f) : ComputableIn O f :=
   recursiveIn_of_partrec hf
 
+/--
+@isnad1 id=recursiv.1h2v.s4.49b9cf185ef8 from=translated src=- shape=5e64c308 vocab=062300fc
+-/
 theorem RecursiveIn.of_primrec {f : ℕ → ℕ} (hf : Nat.Primrec f) :
 RecursiveIn O (fun n => f n) := recursiveIn_of_partrec (Nat.Partrec.of_primrec hf)
 
+/--
+@isnad1 id=computab.1h4v.s5.97f7aae69827 from=translated src=- shape=3c82cf89 vocab=92ac4495
+-/
 theorem computableIn_of_primrec {α σ} [Primcodable α] [Primcodable σ]
     {f : α → σ} (hf : Primrec f) (O : Set (ℕ →. ℕ)) :
     ComputableIn O f := computableIn_of_computable (Primrec.to_comp hf)
 
+/--
+@isnad1 id=computab.1h5v.s5.27d98e943193 from=translated src=- shape=85012e5e vocab=681df69f
+-/
 theorem computableIn₂_of_primrec₂ {α β σ} [Primcodable α] [Primcodable β] [Primcodable σ]
     {f : α → β → σ} (hf : Primrec₂ f) (O : Set (ℕ →. ℕ)) :
     ComputableIn₂ O f :=
   computableIn_of_primrec hf O
 
+/--
+@isnad1 id=recursiv.1h4v.s5.57541b4400b3 from=translated src=- shape=706b2119 vocab=ea536fd8
+-/
 protected theorem ComputableIn.recursiveIn' {α σ} [Primcodable α] [Primcodable σ]
     {f : α → σ} {O} (hf : ComputableIn O f) :
     RecursiveIn' O (fun a => Part.some (f a)) := hf
 
+/--
+@isnad1 id=recursiv.1h5v.s5.c7437110d633 from=translated src=- shape=32699f47 vocab=3643cf86
+-/
 protected theorem ComputableIn₂.recursiveIn₂ {α β σ} [Primcodable α] [Primcodable β] [Primcodable σ]
     {f : α → β → σ} {O} (hf : ComputableIn₂ O f) :
     RecursiveIn₂ O fun a => (f a : β →. σ) := hf
 
+/--
+@isnad1 id=recursiv.0h1v.s3.4d80c21cf000 from=translated src=- shape=5195c8ad vocab=650e14fd
+-/
 protected theorem RecursiveIn.some : RecursiveIn O some :=
   RecursiveIn.of_primrec Nat.Primrec.id
 
+/--
+@isnad1 id=recursiv.0h1v.s3.44d4fb1c4da7 from=translated src=- shape=b6854a9d vocab=c2e9be97
+-/
 theorem RecursiveIn.none : RecursiveIn O (fun _ => none) :=
   (RecursiveIn.of_primrec (Nat.Primrec.const 1)).rfind.of_eq fun _ =>
     eq_none_iff.2 fun _ ⟨h, _⟩ => by
@@ -175,33 +204,58 @@ theorem RecursiveIn.none : RecursiveIn O (fun _ => none) :=
 variable {α : Type*} {β : Type*} {γ : Type*} {σ : Type*}
 variable [Primcodable α] [Primcodable β] [Primcodable γ] [Primcodable σ]
 
+/--
+@isnad1 id=computab.0h4v.s4.82a9cbffafff from=translated src=- shape=46061524 vocab=0f7b1075
+-/
 theorem const_in (O : Set (ℕ →. ℕ)) (s : σ) : ComputableIn O (fun _ : α => s) :=
   computableIn_of_primrec (Primrec.const s) O
 
+/--
+@isnad1 id=computab.0h2v.s4.480080853f80 from=translated src=- shape=2a4816c8 vocab=4c679c9a
+-/
 theorem id_in (O : Set (ℕ →. ℕ)) : ComputableIn O (@id α) :=
   computableIn_of_primrec Primrec.id O
 
+/--
+@isnad1 id=computab.0h3v.s4.3fc04985c441 from=translated src=- shape=538af1e1 vocab=2c5d40e2
+-/
 theorem fst_in (O : Set (ℕ →. ℕ)) : ComputableIn O (@Prod.fst α β) :=
   computableIn_of_primrec Primrec.fst O
 
+/--
+@isnad1 id=computab.0h3v.s4.85ceded19d1f from=translated src=- shape=da9633cb vocab=a0244531
+-/
 theorem snd_in (O : Set (ℕ →. ℕ)) : ComputableIn O (@Prod.snd α β) :=
   computableIn_of_primrec Primrec.snd O
 
+/--
+@isnad1 id=computab.0h1v.s4.e4f2c0480af3 from=translated src=- shape=dbdaaccb vocab=22768fc0
+-/
 theorem unpair_in (O : Set (ℕ →. ℕ)) : ComputableIn O Nat.unpair :=
   computableIn_of_primrec Primrec.unpair O
 
+/--
+@isnad1 id=computab.0h1v.s4.1e14cc8684ed from=translated src=- shape=19797508 vocab=14fb6f06
+-/
 theorem succ_in (O : Set (ℕ →. ℕ)) : ComputableIn O Nat.succ :=
   computableIn_of_primrec Primrec.succ O
 
+/--
+@isnad1 id=computab.0h3v.s4.3d775072f5af from=translated src=- shape=8e04e710 vocab=54892e53
+-/
 theorem sumInl_in (O : Set (ℕ →. ℕ)) : ComputableIn O (@Sum.inl α β) :=
   computableIn_of_primrec Primrec.sumInl O
 
+/--
+@isnad1 id=computab.0h3v.s4.6225c489d279 from=translated src=- shape=826c1210 vocab=9ab492d7
+-/
 theorem sumInr_in (O : Set (ℕ →. ℕ)) : ComputableIn O (@Sum.inr α β) :=
   computableIn_of_primrec Primrec.sumInr O
 
 /--
 If a function is recursive in the constant zero function,
 then it is partial recursive.
+@isnad1 id=partrec.1h1v.s4.590084f50c91 from=translated src=- shape=81c5e63a vocab=051e0ab7
 -/
 lemma RecursiveIn.partrec_of_zero (fRecInZero : RecursiveIn {fun _ => Part.some 0} f) :
     Nat.Partrec f := by
@@ -216,6 +270,7 @@ lemma RecursiveIn.partrec_of_zero (fRecInZero : RecursiveIn {fun _ => Part.some 
 /--
 If a function is partial recursive in the constant none function,
 then it is partial recursive.
+@isnad1 id=partrec.1h1v.s4.b0164e885a19 from=translated src=- shape=8a78ab05 vocab=8af7ab1e
 -/
 lemma RecursiveIn.partrec_of_none (fRecInNone : RecursiveIn {fun _ => Part.none} f) :
     Nat.Partrec f := by
@@ -230,10 +285,14 @@ lemma RecursiveIn.partrec_of_none (fRecInNone : RecursiveIn {fun _ => Part.none}
 /--
 A partial function `f` is partial recursive if and only if it is recursive in
 every partial function `g`.
+@isnad1 id=iff.0h1v.s4.79e5b684b73c from=translated src=- shape=40870e4b vocab=813607fd
 -/
 theorem partrec_iff_forall_recursiveIn : Nat.Partrec f ↔ ∀ g, RecursiveIn {g} f:=
   ⟨fun hf _ ↦ recursiveIn_of_partrec hf, (· _ |>.partrec_of_zero)⟩
 
+/--
+@isnad1 id=iff.0h1v.s4.aa61e4c4b32f from=translated src=- shape=24b3d016 vocab=c1099534
+-/
 @[simp]
 lemma recursiveIn_empty_iff_partrec : RecursiveIn {} f ↔ Nat.Partrec f := by
   constructor
@@ -248,6 +307,9 @@ lemma recursiveIn_empty_iff_partrec : RecursiveIn {} f ↔ Nat.Partrec f := by
   · intro hf
     exact recursiveIn_of_partrec (O := ({} : Set (ℕ →. ℕ))) hf
 
+/--
+@isnad1 id=recursiv.2h3v.s5.0801e3c279e8 from=translated src=- shape=da37bff4 vocab=7e41b72c
+-/
 theorem recursiveIn_mono {O₁ O₂ : Set (ℕ →. ℕ)} (hsub : O₁ ⊆ O₂) {g : ℕ →. ℕ} :
       RecursiveIn O₁ g → RecursiveIn O₂ g := by
   intro hg
@@ -259,6 +321,9 @@ theorem recursiveIn_mono {O₁ O₂ : Set (ℕ →. ℕ)} (hsub : O₁ ⊆ O₂)
   | prec _ _ ih₁ ih₂ => exact RecursiveIn.prec ih₁ ih₂
   | rfind _ ih => exact RecursiveIn.rfind ih
 
+/--
+@isnad1 id=recursiv.2h3v.s5.6072ef62af01 from=translated src=- shape=817f8e9d vocab=171d3625
+-/
 theorem RecursiveIn_subst {O O' : Set (ℕ →. ℕ)} {f : ℕ →. ℕ} (hf : RecursiveIn O f)
     (hO : ∀ g, g ∈ O → RecursiveIn O' g) : RecursiveIn O' f := by
   induction hf with

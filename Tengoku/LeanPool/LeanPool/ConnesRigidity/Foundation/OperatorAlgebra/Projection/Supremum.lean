@@ -34,7 +34,9 @@ noncomputable section
 
 universe u v
 
-/-- The inherited operator order agrees with the algebraic order on star-subalgebra projections. -/
+/-- The inherited operator order agrees with the algebraic order on star-subalgebra projections.
+@isnad1 id=iff.2h4v.s14.cb658beb198f from=translated src=- shape=11b70bd1 vocab=cb69cf48
+-/
 theorem StarSubalgebra.le_iff_mul_eq_left_of_isStarProjection
     {E : Type u} [NormedAddCommGroup E] [InnerProductSpace ℂ E] [CompleteSpace E]
     {A : StarSubalgebra ℂ (E →L[ℂ] E)} {p q : A}
@@ -49,7 +51,9 @@ theorem StarSubalgebra.le_iff_mul_eq_left_of_isStarProjection
   · intro h
     exact hp'.le_of_mul_eq_left hq' (congrArg Subtype.val h)
 
-/-- A star-algebra equivalence preserves operator order between subalgebra projections. -/
+/-- A star-algebra equivalence preserves operator order between subalgebra projections.
+@isnad1 id=iff.2h7v.s16.a4fd66666bf3 from=translated src=- shape=5342996a vocab=6bd6e857
+-/
 @[simp]
 theorem StarAlgEquiv.map_le_map_iff_of_isStarProjection
     {E : Type u} [NormedAddCommGroup E] [InnerProductSpace ℂ E] [CompleteSpace E]
@@ -66,7 +70,9 @@ theorem StarAlgEquiv.map_le_map_iff_of_isStarProjection
 
 namespace IsProjectionSupremum
 
-/-- A star-algebra equivalence carries a projection supremum to its image. -/
+/-- A star-algebra equivalence carries a projection supremum to its image.
+@isnad1 id=isprojec.1h7v.s16.c5d657719baf from=translated src=- shape=ab56eb1a vocab=6b98ffd5
+-/
 theorem map_starAlgEquiv
     {E : Type u} [NormedAddCommGroup E] [InnerProductSpace ℂ E] [CompleteSpace E]
     {F : Type v} [NormedAddCommGroup F] [InnerProductSpace ℂ F] [CompleteSpace F]
@@ -96,7 +102,9 @@ theorem map_starAlgEquiv
 
 end IsProjectionSupremum
 
-/-- Every star-algebra equivalence between operator subalgebras preserves projection suprema. -/
+/-- Every star-algebra equivalence between operator subalgebras preserves projection suprema.
+@isnad1 id=isnormal.0h5v.s15.b76fcb6d74ae from=translated src=- shape=88729c64 vocab=4ded8ce0
+-/
 theorem StarAlgEquiv.isNormal
     {E : Type u} [NormedAddCommGroup E] [InnerProductSpace ℂ E] [CompleteSpace E]
     {F : Type v} [NormedAddCommGroup F] [InnerProductSpace ℂ F] [CompleteSpace F]

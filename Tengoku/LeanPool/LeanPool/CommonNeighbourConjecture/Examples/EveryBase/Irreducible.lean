@@ -27,6 +27,9 @@ namespace SaxlCounterexamples.EveryBase
 
 open scoped BigOperators MonoidAlgebra
 
+/--
+@isnad1 id=or.0h1v.s5.32878ca26f0b from=translated src=- shape=3fa442d4 vocab=d5101624
+-/
 theorem f2_eq_zero_or_one (a : F2) : a = 0 ∨ a = 1 := by
   have hlt := ZMod.val_lt a
   interval_cases h : a.val
@@ -53,6 +56,9 @@ local instance finiteDecidableEq : DecidableEq Ω := Classical.decEq Ω
 def matrixCoeff (E : PermMod Ω →ₗ[F2] PermMod Ω) (x y : Ω) : F2 :=
   E (Pi.basisFun F2 Ω y) x
 
+/--
+@isnad1 id=eq.0h4v.s9.f5a5c0aada79 from=translated src=- shape=4ca3e94e vocab=5aa45dd3
+-/
 theorem smul_basisFun (g : H) (y : Ω) :
     g • (Pi.basisFun F2 Ω y) = Pi.basisFun F2 Ω (g • y) := by
   classical
@@ -74,6 +80,9 @@ theorem smul_basisFun (g : H) (y : Ω) :
   · have h' : x ≠ g • y := fun hx ↦ h (hiff.mpr hx)
     simp [h, h']
 
+/--
+@isnad1 id=eq.1h6v.s10.1b26dc442fc7 from=translated src=- shape=ab9bdc2c vocab=b682fc01
+-/
 theorem matrixCoeff_smul
     (E : PermMod Ω →ₗ[F2] PermMod Ω)
     (hE : ∀ (g : H) f, E (g • f) = g • E f)
@@ -104,6 +113,9 @@ structure RankThreeOrbitals (R : Ω → Ω → Prop) where
   other_transport : ∀ x y, x ≠ y → ¬ R x y →
     ∃ g : H, g • otherX = x ∧ g • otherY = y
 
+/--
+@isnad1 id=eq.1h7v.s10.b0a474f3b25c from=translated src=- shape=6d34c765 vocab=a8d2ace2
+-/
 theorem matrixCoeff_rankThree
     (R : Ω → Ω → Prop) [DecidableRel R]
     (K : RankThreeOrbitals (H := H) R)
@@ -130,6 +142,9 @@ theorem matrixCoeff_rankThree
       rw [← hgx, ← hgy]
       exact matrixCoeff_smul E hE g K.otherX K.otherY
 
+/--
+@isnad1 id=eq.0h4v.s9.b3d44d92edb8 from=translated src=- shape=b856a640 vocab=a0849933
+-/
 theorem apply_eq_sum_matrixCoeff
     (E : PermMod Ω →ₗ[F2] PermMod Ω) (f : PermMod Ω) (x : Ω) :
     E f x = ∑ y, f y * matrixCoeff E x y := by
@@ -180,7 +195,9 @@ def allOnesOp : PermMod Ω →ₗ[F2] PermMod Ω where
     exact map_smul coordSum a f
 
 /-- This is the exact point at which the all-ones matrix is killed by
-restriction to the deleted module. -/
+restriction to the deleted module.
+@isnad1 id=eq.0h2v.s9.ca46dd5f540b from=translated src=- shape=5589b49d vocab=e902732d
+-/
 @[simp] theorem allOnesOp_deleted (v : DeletedModule Ω) :
     allOnesOp (v : PermMod Ω) = 0 := by
   funext x
@@ -191,6 +208,9 @@ def relationSum (R : Ω → Ω → Prop) [DecidableRel R]
     (v : PermMod Ω) (x : Ω) : F2 :=
   ∑ y, if R x y then v y else 0
 
+/--
+@isnad1 id=eq.1h7v.s10.69769240f0e8 from=translated src=- shape=662f15a3 vocab=418434ff
+-/
 theorem rankThreeOp_apply_deleted
     (R : Ω → Ω → Prop) [DecidableRel R]
     (hdiag : ∀ x, ¬ R x x) (α β γ : F2)
@@ -231,6 +251,9 @@ theorem rankThreeOp_apply_deleted
 
 end RankThree
 
+/--
+@isnad1 id=eq.2h4v.s6.76f746126405 from=translated src=- shape=3d03e506 vocab=62f19fe9
+-/
 theorem double_sum_eq_diag_of_symmetric
     {I A : Type*} [AddCommMonoid A]
     (hchar2 : ∀ a : A, a + a = 0) (s : Finset I) (f : I → I → A)
@@ -270,6 +293,9 @@ theorem double_sum_eq_diag_of_symmetric
 
 variable [Finite H] [NeZero (Nat.card H : F2)]
 
+/--
+@isnad1 id=ex.0h3v.s14.156650be1766 from=translated src=- shape=11c332fc vocab=d626cc2e
+-/
 theorem exists_equivariant_idempotent_projection
     (U : Subrepresentation
       (Representation.ofDistribMulAction F2 H (DeletedModule Ω))) :
@@ -373,11 +399,17 @@ noncomputable def hqRankThreeOrbitals (d : Nat) (hd : Odd d) :
 noncomputable def squareFinset (d : Nat) : Finset (Fq d) :=
   Finset.univ.filter fun z ↦ z ≠ 0 ∧ IsSquare z
 
+/--
+@isnad1 id=iff.0h2v.s6.c219920d0074 from=translated src=- shape=c497d8d0 vocab=b509e1ef
+-/
 @[simp] theorem mem_squareFinset (d : Nat) (z : Fq d) :
     z ∈ squareFinset d ↔ z ≠ 0 ∧ IsSquare z := by
   classical
   simp [squareFinset]
 
+/--
+@isnad1 id=mem.0h1v.s5.b1a4c342af86 from=translated src=- shape=bda6f994 vocab=67eefe16
+-/
 theorem one_mem_squareFinset (d : Nat) : (1 : Fq d) ∈ squareFinset d := by
   simp
 
@@ -397,11 +429,17 @@ noncomputable def paleyOp (d : Nat) :
 noncomputable def squareRelFinset (d : Nat) (x : Fq d) : Finset (Fq d) :=
   Finset.univ.filter (SquareDiff d x)
 
+/--
+@isnad1 id=iff.0h3v.s5.4dc7c5734a37 from=translated src=- shape=9bf45da3 vocab=3435e447
+-/
 @[simp] theorem mem_squareRelFinset (d : Nat) (x y : Fq d) :
     y ∈ squareRelFinset d x ↔ SquareDiff d x y := by
   classical
   simp [squareRelFinset]
 
+/--
+@isnad1 id=eq.0h3v.s8.05d0df0d9823 from=translated src=- shape=1086fc9e vocab=6656007d
+-/
 theorem relationSum_squareDiff_eq_paley
     (d : Nat) (v : PermMod (Fq d)) (x : Fq d) :
     relationSum (SquareDiff d) v x = paleyOp d v x := by
@@ -433,6 +471,9 @@ theorem relationSum_squareDiff_eq_paley
   · intro _ _
     rfl
 
+/--
+@isnad1 id=eq.1h1v.s9.26021cc59358 from=translated src=- shape=4d954c59 vocab=ca5f046f
+-/
 theorem paley_pairVector_zero (d : Nat) (hd : Odd d) :
     paleyOp d (pairVector d : PermMod (Fq d)) 0 = 0 := by
   apply Finset.sum_eq_zero
@@ -446,6 +487,9 @@ theorem paley_pairVector_zero (d : Nat) (hd : Odd d) :
   rw [pairVector_apply, Pi.basisFun_apply, Pi.basisFun_apply]
   simp [hneg0, hneg1]
 
+/--
+@isnad1 id=eq.0h2v.s6.0e43dfb61192 from=translated src=- shape=b44a125b vocab=f914f0c9
+-/
 theorem char_three_neg_add_self (d : Nat) (c : Fq d) : -c - c = c := by
   have h3 : (3 : Fq d) = 0 := CharP.cast_eq_zero (Fq d) 3
   calc
@@ -453,7 +497,9 @@ theorem char_three_neg_add_self (d : Nat) (c : Fq d) : -c - c = c := by
     _ = c := by rw [h3, zero_mul, neg_zero, zero_add]
 
 /-- The parity witness with the exact relation orientation `x-y ∈ Cq`:
-for the two-point vector `v`, `A v (0)=0` but `A² v (0)=1`. -/
+for the two-point vector `v`, `A v (0)=0` but `A² v (0)=1`.
+@isnad1 id=eq.0h1v.s10.4ac11567243c from=translated src=- shape=28ec5167 vocab=c67064a0
+-/
 theorem paley_sq_pairVector_zero (d : Nat) :
     paleyOp d (paleyOp d (pairVector d : PermMod (Fq d))) 0 = 1 := by
   simp only [paleyOp, LinearMap.coe_mk, AddHom.coe_mk]
@@ -472,10 +518,16 @@ theorem paley_sq_pairVector_zero (d : Nat) :
   · intro c e
     ring_nf
 
+/--
+@isnad1 id=eq.0h3v.s10.ded54b6e034e from=translated src=- shape=66c783c9 vocab=076614b9
+-/
 theorem paley_map_add (d : Nat) (f g : PermMod (Fq d)) :
     paleyOp d (f + g) = paleyOp d f + paleyOp d g :=
   map_add (paleyOp d) f g
 
+/--
+@isnad1 id=or.3h4v.s14.984f3c179795 from=translated src=- shape=9e946d76 vocab=abbc4f22
+-/
 theorem idempotent_rankThree_restriction
     (d : Nat) (hd : Odd d)
     (p : Vq d →ₗ[F2] Vq d)
@@ -548,7 +600,9 @@ theorem idempotent_rankThree_restriction
     exact zero_ne_one hid0
 
 /-- The deleted binary permutation module for `Hq d` is irreducible whenever
-`d` is odd. -/
+`d` is odd.
+@isnad1 id=isirredu.1h1v.s10.1bc69d3042da from=translated src=- shape=51441e51 vocab=52f75a0e
+-/
 theorem hq_irreducible (d : Nat) (hd : Odd d) :
     Representation.IsIrreducible (hqRepresentation d) := by
   let _ : Finite (Hq d) :=

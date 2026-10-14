@@ -64,12 +64,16 @@ private lemma pi_I_ne_zero : (π : ℂ) * I ≠ 0 := mul_ne_zero pi_ne_zero' I_n
 
 private lemma two_pi_I_ne_zero' : (2 * π * I : ℂ) ≠ 0 := two_pi_I_ne_zero
 
-/-- Two functions agreeing on the (open) upper half-plane have the same derivative there. -/
+/-- Two functions agreeing on the (open) upper half-plane have the same derivative there.
+@isnad1 id=eq.2h3v.s6.a7d3d99b2f80 from=translated src=- shape=5fab1a68 vocab=c66fa8da
+-/
 lemma deriv_eqOn_upperHalfPlaneSet {F G : ℂ → ℂ} (h : Set.EqOn F G upperHalfPlaneSet)
     {z : ℂ} (hz : 0 < z.im) : deriv F z = deriv G z :=
   (Filter.eventuallyEq_of_mem (isOpen_upperHalfPlaneSet.mem_nhds hz) h).deriv_eq
 
-/-- A `1`-translation-invariant function on `ℍ` extends to a `1`-periodic function on `ℂ`. -/
+/-- A `1`-translation-invariant function on `ℍ` extends to a `1`-periodic function on `ℂ`.
+@isnad1 id=periodic.1h1v.s6.8e86089a60c0 from=translated src=- shape=7e1f5b60 vocab=b14d4d73
+-/
 lemma periodic_comp_ofComplex_of_vadd {f : ℍ → ℂ} (hf : ∀ τ : ℍ, f ((1 : ℝ) +ᵥ τ) = f τ) :
     Periodic (f ∘ ofComplex) 1 := by
   intro w
@@ -86,23 +90,33 @@ lemma periodic_comp_ofComplex_of_vadd {f : ℍ → ℂ} (hf : ∀ τ : ℍ, f ((
 
 /-! ### Transformation behaviour of `E₂` and of level-one modular forms under `T` and `S` -/
 
+/--
+@isnad1 id=eq.0h0v.s6.c4fc7dc762e4 from=translated src=- shape=656092e4 vocab=3a64a14c
+-/
 lemma E2_slash_T : E2 ∣[(2 : ℤ)] ModularGroup.T = E2 := by
   simp [E2_slash_action, D2_T]
 
 private lemma denom_T (τ : ℍ) : denom ModularGroup.T τ = 1 := by
   simp [ModularGroup.denom_apply, ModularGroup.coe_T]
 
-/-- `E₂` is invariant under `τ ↦ τ + 1`. -/
+/-- `E₂` is invariant under `τ ↦ τ + 1`.
+@isnad1 id=eq.0h1v.s5.4f34e5d3f921 from=translated src=- shape=ba65eac2 vocab=1e60f4fd
+-/
 lemma E2_vadd_one (τ : ℍ) : E2 ((1 : ℝ) +ᵥ τ) = E2 τ := by
   have h := congr_fun E2_slash_T τ
   rw [SL_slash_apply, denom_T, modular_T_smul] at h
   simpa using h
 
+/--
+@isnad1 id=periodic.0h0v.s5.4386f4663828 from=translated src=- shape=ebef409b vocab=f4010659
+-/
 lemma E2_periodic_comp_ofComplex : Periodic (E2 ∘ ofComplex) 1 :=
   periodic_comp_ofComplex_of_vadd E2_vadd_one
 
 /-- The `S`-transformation law of `E₂`, in a form using only the combination `π * I`:
-`E₂(-1/τ) = τ²E₂(τ) + 6τ/(πi)`. -/
+`E₂(-1/τ) = τ²E₂(τ) + 6τ/(πi)`.
+@isnad1 id=eq.0h1v.s7.1765e9adaba0 from=translated src=- shape=e299df3d vocab=8431fc20
+-/
 lemma E2_S_smul (τ : ℍ) :
     E2 (ModularGroup.S • τ) = ↑τ ^ 2 * E2 τ + 6 / (π * I) * ↑τ := by
   have h := congr_fun (E2_slash_action ModularGroup.S) τ
@@ -119,12 +133,16 @@ lemma E2_S_smul (τ : ℍ) :
   field_simp
   ring
 
-/-- Any level-one modular form is invariant under `τ ↦ τ + 1`. -/
+/-- Any level-one modular form is invariant under `τ ↦ τ + 1`.
+@isnad1 id=eq.0h3v.s9.c68449274347 from=translated src=- shape=31285362 vocab=a5b00e62
+-/
 lemma modularForm_vadd_one {k : ℤ} (f : ModularForm 𝒮ℒ k) (τ : ℍ) :
     f ((1 : ℝ) +ᵥ τ) = f τ :=
   SlashInvariantForm.vAdd_apply_of_mem_strictPeriods f τ one_mem_strictPeriods_SL
 
-/-- The `S`-transformation law of a level-one modular form: `f(-1/τ) = τᵏ·f(τ)`. -/
+/-- The `S`-transformation law of a level-one modular form: `f(-1/τ) = τᵏ·f(τ)`.
+@isnad1 id=eq.0h3v.s9.d86bde1da2a5 from=translated src=- shape=2cae5f09 vocab=2bfe2d24
+-/
 lemma modularForm_S_smul {k : ℤ} (f : ModularForm 𝒮ℒ k) (τ : ℍ) :
     f (ModularGroup.S • τ) = ↑τ ^ k * f τ := by
   have h0 : (⇑f) ∣[k] ModularGroup.S = ⇑f :=
@@ -154,7 +172,9 @@ private lemma summable_sigma_one_norm_q (τ : ℍ) :
     exact_mod_cast ArithmeticFunction.sigma_le_pow_succ 1 n
   exact mul_le_mul_of_nonneg_right hσ (by positivity)
 
-/-- `E₂ → 1` as `Im τ → ∞`. -/
+/-- `E₂ → 1` as `Im τ → ∞`.
+@isnad1 id=tendsto.0h0v.s4.072bf3008588 from=translated src=- shape=506b465c vocab=8eddedc2
+-/
 lemma tendsto_E2_atImInfty : Tendsto E2 atImInfty (𝓝 1) := by
   set r : ℝ := Real.exp (-(2 * π)) with hrdef
   have hr0 : 0 < r := Real.exp_pos _
@@ -222,13 +242,18 @@ lemma tendsto_E2_atImInfty : Tendsto E2 atImInfty (𝓝 1) := by
     simpa using hq0.const_mul (24 * C)
   exact squeeze_zero_norm' hev hg
 
+/--
+@isnad1 id=isbounde.0h0v.s2.f2f622059302 from=translated src=- shape=25b03439 vocab=14540859
+-/
 lemma isBoundedAtImInfty_E2 : IsBoundedAtImInfty E2 :=
   tendsto_E2_atImInfty.isBigO_one ℝ
 
 private instance : Fact (IsCusp OnePoint.infty 𝒮ℒ) :=
   ⟨(𝒮ℒ).isCusp_of_mem_strictPeriods one_pos one_mem_strictPeriods_SL⟩
 
-/-- A `1`-periodic, holomorphic, bounded function on `ℍ` tends to its value at `i∞`. -/
+/-- A `1`-periodic, holomorphic, bounded function on `ℍ` tends to its value at `i∞`.
+@isnad1 id=tendsto.3h1v.s7.057ec89d5707 from=translated src=- shape=8566fe07 vocab=4ea82e20
+-/
 lemma tendsto_valueAtInfty_atImInfty {f : ℍ → ℂ} (hper : Periodic (f ∘ ofComplex) 1)
     (hhol : MDiff f) (hbdd : IsBoundedAtImInfty f) :
     Tendsto f atImInfty (𝓝 (valueAtInfty f)) := by
@@ -244,7 +269,9 @@ lemma tendsto_valueAtInfty_atImInfty {f : ℍ → ℂ} (hper : Periodic (f ∘ o
   rwa [cuspFunction_apply_zero one_pos
     (analyticAt_cuspFunction_zero one_pos hper hhol hbdd) hper] at h2
 
-/-- `E₄ → 1` as `Im τ → ∞`. -/
+/-- `E₄ → 1` as `Im τ → ∞`.
+@isnad1 id=tendsto.0h0v.s8.5eff8588af51 from=translated src=- shape=4f6adda0 vocab=8f4b2c09
+-/
 lemma tendsto_E₄_atImInfty : Tendsto (⇑E₄) atImInfty (𝓝 1) := by
   have hper : Periodic ((⇑E₄) ∘ ofComplex) 1 :=
     SlashInvariantFormClass.periodic_comp_ofComplex E₄ one_mem_strictPeriods_SL
@@ -257,7 +284,9 @@ lemma tendsto_E₄_atImInfty : Tendsto (⇑E₄) atImInfty (𝓝 1) := by
     exact E_qExpansion_coeff_zero _ ⟨2, rfl⟩
   rwa [hval] at h
 
-/-- `E₆ → 1` as `Im τ → ∞`. -/
+/-- `E₆ → 1` as `Im τ → ∞`.
+@isnad1 id=tendsto.0h0v.s8.b13d0b285584 from=translated src=- shape=4f6adda0 vocab=8d9204ad
+-/
 lemma tendsto_E₆_atImInfty : Tendsto (⇑E₆) atImInfty (𝓝 1) := by
   have hper : Periodic ((⇑E₆) ∘ ofComplex) 1 :=
     SlashInvariantFormClass.periodic_comp_ofComplex E₆ one_mem_strictPeriods_SL
@@ -281,7 +310,9 @@ section NormalizedDeriv
 variable {f : ℍ → ℂ}
 
 /-- `D f τ = q · F′(q)` where `F = cuspFunction 1 f`.  This is the bridge between
-`τ`-derivatives and `q`-derivatives, used throughout the `q`-expansion arguments. -/
+`τ`-derivatives and `q`-derivatives, used throughout the `q`-expansion arguments.
+@isnad1 id=eq.3h2v.s7.10b987f35705 from=translated src=- shape=e686105d vocab=f43cd3b4
+-/
 lemma normalizedDeriv_eq_q_mul_deriv_cuspFunction (hper : Periodic (f ∘ ofComplex) 1)
     (hhol : MDiff f) (hbdd : IsBoundedAtImInfty f) (τ : ℍ) :
     D f τ = q τ * deriv (cuspFunction 1 f) (q τ) := by
@@ -306,7 +337,9 @@ lemma normalizedDeriv_eq_q_mul_deriv_cuspFunction (hper : Periodic (f ∘ ofComp
   field_simp
 
 /-- The normalized derivative of a `1`-periodic bounded holomorphic function vanishes
-at `i∞`. -/
+at `i∞`.
+@isnad1 id=iszeroat.3h1v.s7.bcab60cf3689 from=translated src=- shape=983f2269 vocab=d9ce0f2e
+-/
 lemma isZeroAtImInfty_normalizedDeriv (hper : Periodic (f ∘ ofComplex) 1)
     (hhol : MDiff f) (hbdd : IsBoundedAtImInfty f) :
     IsZeroAtImInfty (D f) := by
@@ -321,7 +354,9 @@ lemma isZeroAtImInfty_normalizedDeriv (hper : Periodic (f ∘ ofComplex) 1)
   rw [zero_mul] at h
   exact h.congr fun τ ↦ (normalizedDeriv_eq_q_mul_deriv_cuspFunction hper hhol hbdd τ).symm
 
-/-- `D f` is invariant under `τ ↦ τ + 1` when `f` is `1`-periodic. -/
+/-- `D f` is invariant under `τ ↦ τ + 1` when `f` is `1`-periodic.
+@isnad1 id=eq.1h2v.s6.12fcaeb092b1 from=translated src=- shape=7b384192 vocab=11cca163
+-/
 lemma normalizedDeriv_vadd_one (hper : Periodic (f ∘ ofComplex) 1) (τ : ℍ) :
     D f ((1 : ℝ) +ᵥ τ) = D f τ := by
   have hcoe : ((((1 : ℝ) +ᵥ τ : ℍ)) : ℂ) = ↑τ + 1 := by
@@ -338,7 +373,9 @@ lemma normalizedDeriv_vadd_one (hper : Periodic (f ∘ ofComplex) 1) (τ : ℍ) 
 /-! #### Behaviour of `D` under `S` -/
 
 /-- Differentiating a functional equation along `S`: if `f` extends `Φ` along `w ↦ -w⁻¹`
-on the upper half-plane, then `(f ∘ ofComplex)′(-1/τ) = τ² Φ′(τ)`. -/
+on the upper half-plane, then `(f ∘ ofComplex)′(-1/τ) = τ² Φ′(τ)`.
+@isnad1 id=eq.2h3v.s8.8a79941d4d0c from=translated src=- shape=6553a1bc vocab=3a534c55
+-/
 lemma deriv_comp_ofComplex_S (hhol : MDiff f) {Φ : ℂ → ℂ}
     (heq : Set.EqOn ((f ∘ ofComplex) ∘ fun w ↦ -w⁻¹) Φ upperHalfPlaneSet) (τ : ℍ) :
     deriv (f ∘ ofComplex) (-(↑τ : ℂ)⁻¹) = (↑τ : ℂ) ^ 2 * deriv Φ ↑τ := by
@@ -368,7 +405,9 @@ private lemma coe_S_smul (τ : ℍ) : ((ModularGroup.S • τ : ℍ) : ℂ) = -(
 
 /-- How `D f` transforms under `S` for a function of weight `m + 1`:
 if `f(-1/τ) = τ^(m+1)·f(τ)` then
-`(D f)(-1/τ) = τ^(m+3)·D f(τ) + (m+1)·τ^(m+2)·f(τ)/(2πi)`. -/
+`(D f)(-1/τ) = τ^(m+3)·D f(τ) + (m+1)·τ^(m+2)·f(τ)/(2πi)`.
+@isnad1 id=eq.2h3v.s9.4ab04e7b70fa from=translated src=- shape=154bbe96 vocab=89dc7070
+-/
 lemma normalizedDeriv_S_smul_of_weight (hhol : MDiff f) {m : ℕ}
     (hfS : ∀ σ : ℍ, f (ModularGroup.S • σ) = ↑σ ^ (m + 1) * f σ) (τ : ℍ) :
     D f (ModularGroup.S • τ) =
@@ -407,7 +446,9 @@ lemma normalizedDeriv_S_smul_of_weight (hhol : MDiff f) {m : ℕ}
   ring
 
 /-- How `D E₂` transforms under `S`:
-`(D E₂)(-1/τ) = τ⁴·D E₂(τ) + τ³·E₂(τ)/(πi) + 3τ²/(πi)²`. -/
+`(D E₂)(-1/τ) = τ⁴·D E₂(τ) + τ³·E₂(τ)/(πi) + 3τ²/(πi)²`.
+@isnad1 id=eq.0h1v.s8.3aeeeec77e56 from=translated src=- shape=b2d58d25 vocab=48037bb4
+-/
 lemma normalizedDeriv_E2_S_smul (τ : ℍ) :
     D E2 (ModularGroup.S • τ) =
       ↑τ ^ 4 * D E2 τ + (π * I)⁻¹ * ↑τ ^ 3 * E2 τ + 3 * ((π * I) ^ 2)⁻¹ * ↑τ ^ 2 := by
@@ -641,7 +682,9 @@ private lemma smul_const_of_tendsto {k : ℤ} {e : ModularForm 𝒮ℒ k} {g : �
   exact tendsto_nhds_unique h1 hg
 
 /-- The Serre-derivative form of Ramanujan's identity for `E₄`:
-`D E₄ - (1/3)·E₂·E₄ = -(1/3)·E₆`. -/
+`D E₄ - (1/3)·E₂·E₄ = -(1/3)·E₆`.
+@isnad1 id=eq.0h0v.s9.ca9741bb17bf from=translated src=- shape=53efd493 vocab=4b92145b
+-/
 theorem serreDerivative_E₄_eq : serreDerivative 4 (⇑E₄) = fun τ : ℍ ↦ -(3⁻¹) * E₆ τ := by
   obtain ⟨c, hc⟩ := (finrank_eq_one_iff_of_nonzero' E₆ (E_ne_zero _ ⟨3, rfl⟩)).mp
     (Module.rank_eq_one_iff_finrank_eq_one.mp ModularForm.levelOne_weight_six_rank_one) serreE₄
@@ -659,7 +702,9 @@ theorem serreDerivative_E₄_eq : serreDerivative 4 (⇑E₄) = fun τ : ℍ ↦
   simp
 
 /-- The Serre-derivative form of Ramanujan's identity for `E₆`:
-`D E₆ - (1/2)·E₂·E₆ = -(1/2)·E₄²`. -/
+`D E₆ - (1/2)·E₂·E₆ = -(1/2)·E₄²`.
+@isnad1 id=eq.0h0v.s9.092515c5a7cf from=translated src=- shape=1afc7628 vocab=4b92145b
+-/
 theorem serreDerivative_E₆_eq :
     serreDerivative 6 (⇑E₆) = fun τ : ℍ ↦ -(2⁻¹) * (E₄ τ * E₄ τ) := by
   obtain ⟨c, hc⟩ := (finrank_eq_one_iff_of_nonzero' E₄sq E₄sq_ne_zero).mp
@@ -679,7 +724,9 @@ theorem serreDerivative_E₆_eq :
   simp [E₄sq_coe]
 
 /-- The Serre-derivative form of Ramanujan's identity for `E₂`:
-`D E₂ - (1/12)·E₂² = -(1/12)·E₄`. -/
+`D E₂ - (1/12)·E₂² = -(1/12)·E₄`.
+@isnad1 id=eq.0h0v.s8.a8b563b3d2d6 from=translated src=- shape=ae080964 vocab=bff7cbfc
+-/
 theorem serreDerivative_E2_eq : serreDerivative 1 E2 = fun τ : ℍ ↦ -(12⁻¹) * E₄ τ := by
   obtain ⟨c, hc⟩ := (finrank_eq_one_iff_of_nonzero' E₄ (E_ne_zero _ ⟨2, rfl⟩)).mp
     (Module.rank_eq_one_iff_finrank_eq_one.mp ModularForm.levelOne_weight_four_rank_one) serreE2
@@ -700,19 +747,25 @@ end RankOne
 
 /-! ### Ramanujan's identities -/
 
-/-- **Ramanujan's identity for `E₂`**: `D E₂ = (E₂² - E₄)/12`. -/
+/-- **Ramanujan's identity for `E₂`**: `D E₂ = (E₂² - E₄)/12`.
+@isnad1 id=eq.0h1v.s8.a4318d7bdd1c from=translated src=- shape=c5d4bedd vocab=5bc4b5cd
+-/
 theorem deriv_E2 (τ : ℍ) : D E2 τ = (E2 τ ^ 2 - E₄ τ) / 12 := by
   have h := congr_fun serreDerivative_E2_eq τ
   rw [serreDerivative_apply] at h
   linear_combination h
 
-/-- **Ramanujan's identity for `E₄`**: `D E₄ = (E₂·E₄ - E₆)/3`. -/
+/-- **Ramanujan's identity for `E₄`**: `D E₄ = (E₂·E₄ - E₆)/3`.
+@isnad1 id=eq.0h1v.s9.2df554ae677d from=translated src=- shape=c2337c90 vocab=0850df18
+-/
 theorem deriv_E₄ (τ : ℍ) : D (⇑E₄) τ = (E2 τ * E₄ τ - E₆ τ) / 3 := by
   have h := congr_fun serreDerivative_E₄_eq τ
   rw [serreDerivative_apply] at h
   linear_combination h
 
-/-- **Ramanujan's identity for `E₆`**: `D E₆ = (E₂·E₆ - E₄²)/2`. -/
+/-- **Ramanujan's identity for `E₆`**: `D E₆ = (E₂·E₆ - E₄²)/2`.
+@isnad1 id=eq.0h1v.s9.6fe8e6f74c6e from=translated src=- shape=881c26fb vocab=bcab9c11
+-/
 theorem deriv_E₆ (τ : ℍ) : D (⇑E₆) τ = (E2 τ * E₆ τ - E₄ τ ^ 2) / 2 := by
   have h := congr_fun serreDerivative_E₆_eq τ
   rw [serreDerivative_apply] at h
@@ -728,16 +781,25 @@ private lemma deriv_eq_two_pi_I_mul_D (f : ℍ → ℂ) (τ : ℍ) :
   change _ = 2 * π * I * ((2 * π * I)⁻¹ * deriv (f ∘ ofComplex) ↑τ)
   field_simp
 
+/--
+@isnad1 id=eq.0h1v.s8.798a434ba279 from=translated src=- shape=c82f33c3 vocab=1f7eb4a6
+-/
 theorem deriv_comp_ofComplex_E2 (τ : ℍ) :
     deriv (E2 ∘ ofComplex) ↑τ = π * I / 6 * (E2 τ ^ 2 - E₄ τ) := by
   rw [deriv_eq_two_pi_I_mul_D E2 τ, deriv_E2]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s10.336b2bbb91b2 from=translated src=- shape=c005918b vocab=b9141d0e
+-/
 theorem deriv_comp_ofComplex_E₄ (τ : ℍ) :
     deriv ((⇑E₄) ∘ ofComplex) ↑τ = 2 * π * I / 3 * (E2 τ * E₄ τ - E₆ τ) := by
   rw [deriv_eq_two_pi_I_mul_D (⇑E₄) τ, deriv_E₄]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s9.6a32e0c6f392 from=translated src=- shape=c88e37d6 vocab=1bd0cd94
+-/
 theorem deriv_comp_ofComplex_E₆ (τ : ℍ) :
     deriv ((⇑E₆) ∘ ofComplex) ↑τ = π * I * (E2 τ * E₆ τ - E₄ τ ^ 2) := by
   rw [deriv_eq_two_pi_I_mul_D (⇑E₆) τ, deriv_E₆]
@@ -745,7 +807,9 @@ theorem deriv_comp_ofComplex_E₆ (τ : ℍ) :
 
 /-! ### The discriminant: `D Δ = E₂·Δ` -/
 
-/-- `D Δ = E₂·Δ`, from Mathlib's `logDeriv_eta_eq_E2` and `Δ = η²⁴`. -/
+/-- `D Δ = E₂·Δ`, from Mathlib's `logDeriv_eta_eq_E2` and `Δ = η²⁴`.
+@isnad1 id=eq.0h1v.s4.ad646a3cbacf from=translated src=- shape=b5a22cd9 vocab=15f9e3c6
+-/
 theorem deriv_discriminant (τ : ℍ) :
     D (ModularForm.discriminant) τ = E2 τ * ModularForm.discriminant τ := by
   have hmem : (↑τ : ℂ) ∈ upperHalfPlaneSet := τ.im_pos

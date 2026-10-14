@@ -62,6 +62,9 @@ This is an interpolation from 0 to T
 -/
 abbrev DirectedFst (T : I) : D(I,I) := directedInterpolateConst (unitIAux.zero_le T)
 
+/--
+@isnad1 id=eq.0h2v.s6.fdfda02fca19 from=translated src=- shape=bc5116e0 vocab=32908a01
+-/
 @[simp]
 lemma directedFst_apply (T t : I) : DirectedFst T t = ⟨_, unitInterval.mul_mem T.2 t.2⟩ := by
   apply Subtype.coe_inj.mp
@@ -73,6 +76,9 @@ This is an interpolation from T to 1
 -/
 abbrev DirectedSnd (T : I) : D(I,I) := directedInterpolateConst (unitIAux.le_one T)
 
+/--
+@isnad1 id=eq.0h2v.s6.822b238533d0 from=translated src=- shape=3fb4fc5c vocab=94021efb
+-/
 @[simp]
 lemma directedSnd_apply (T t : I) : DirectedSnd T t = ⟨_, interp_left_mem_I T t⟩ := by
   apply Subtype.coe_inj.mp
@@ -90,6 +96,9 @@ def FirstPartVerticallyDihomotopy {x y : X} {γ₁ γ₂ : Dipath x y} (F : Dipa
   map_one_left := fun x => by change F (DirectedFst T 1, x) = F (T, x); simp
   prop' := fun t z hz => F.prop' _ z hz
 
+/--
+@isnad1 id=eq.0h9v.s9.44918ce5c5e5 from=translated src=- shape=4964e75d vocab=1dcf2971
+-/
 lemma fpv_apply {x y : X} {γ₁ γ₂ : Dipath x y} (F : Dipath.Dihomotopy γ₁ γ₂) (T s t : I) :
     FirstPartVerticallyDihomotopy F T (s, t) = F (T * s, t) := by
   change F (DirectedFst T s, t) = F (T * s, t)
@@ -112,6 +121,9 @@ def SecondPartVerticallyDihomotopy {x y : X} {γ₁ γ₂ : Dipath x y} (F : Dip
       rw [this]
       exact (F.prop' _ z hz)
 
+/--
+@isnad1 id=eq.0h9v.s9.63f6c46767cf from=translated src=- shape=ca03b2ae vocab=40e19a2a
+-/
 lemma spv_apply {x y : X} {γ₁ γ₂ : Dipath x y} (F : Dipath.Dihomotopy γ₁ γ₂) (T s t : I) :
     SecondPartVerticallyDihomotopy F T (s, t) = F (⟨_, interp_left_mem_I T s⟩, t) := by
   change F (DirectedSnd T s, t) = F (_, t)
@@ -133,6 +145,9 @@ def FirstPartHorizontallyDihomotopy {f g : D(I,X)} (F : Dihomotopy f g) (T : I) 
     simp
     rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.2f4ea24cc7e9 from=translated src=- shape=58c789a1 vocab=6be41088
+-/
 lemma fph_apply {f g : D(I,X)} (F : Dihomotopy f g) (T s t : I) :
     FirstPartHorizontallyDihomotopy F T (s, t) = F (s, T * t) := by
   change F (s, DirectedFst T t) = F (s, _)
@@ -155,11 +170,17 @@ def SecondPartHorizontallyDihomotopy {f g : D(I,X)} (F : Dihomotopy f g) (T : I)
     simp
     rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.a3e82f82e88c from=translated src=- shape=72a999e1 vocab=76dcc42c
+-/
 lemma sph_apply {f g : D(I,X)} (F : Dihomotopy f g) (T s t : I) :
     SecondPartHorizontallyDihomotopy F T (s, t) = F (s, ⟨_, interp_left_mem_I T t⟩) := by
   change F (s, DirectedSnd T t) = F (s, _)
   rw [directedSnd_apply]
 
+/--
+@isnad1 id=eq.0h5v.s11.da3e8294b62a from=translated src=- shape=a545e678 vocab=20459a1a
+-/
 lemma fph_eval_0 {f g : D(I,X)} (F : Dihomotopy f g) (T : I) :
     (FirstPartHorizontallyDihomotopy F T).evalAtRight 0 = (F.evalAtRight 0).cast (by simp)
         (by simp) := by
@@ -167,6 +188,9 @@ lemma fph_eval_0 {f g : D(I,X)} (F : Dihomotopy f g) (T : I) :
   change F (t, DirectedFst T 0) = F (t, 0)
   simp
 
+/--
+@isnad1 id=eq.0h5v.s11.40a65ed8e439 from=translated src=- shape=e63194c7 vocab=7b1b9fca
+-/
 lemma fph_eval_1 {f g : D(I,X)} (F : Dihomotopy f g) (T : I) :
     (FirstPartHorizontallyDihomotopy F T).evalAtRight 1 =
       (F.evalAtRight T).cast (by { simp; rfl }) (by { simp; rfl }) := by
@@ -174,6 +198,9 @@ lemma fph_eval_1 {f g : D(I,X)} (F : Dihomotopy f g) (T : I) :
   change F (t, DirectedFst T 1) = F (t, T)
   simp
 
+/--
+@isnad1 id=eq.0h5v.s11.79ac3fe95412 from=translated src=- shape=075f543b vocab=7c279bad
+-/
 lemma sph_eval_0 {f g : D(I,X)} (F : Dihomotopy f g) (T : I) :
     (SecondPartHorizontallyDihomotopy F T).evalAtRight 0 =
       (F.evalAtRight T).cast (by { simp; rfl }) (by { simp; rfl }) := by
@@ -181,6 +208,9 @@ lemma sph_eval_0 {f g : D(I,X)} (F : Dihomotopy f g) (T : I) :
   change F (t, DirectedSnd T 0) = F (t, T)
   simp
 
+/--
+@isnad1 id=eq.0h5v.s11.50a042fd5b4b from=translated src=- shape=da876e92 vocab=40a3388b
+-/
 lemma sph_eval_1 {f g : D(I,X)} (F : Dihomotopy f g) (T : I) :
     (SecondPartHorizontallyDihomotopy F T).evalAtRight 1 = (F.evalAtRight 1).cast (by simp)
         (by simp) := by

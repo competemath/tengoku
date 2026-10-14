@@ -117,7 +117,9 @@ def faceReplacementCarrier (t : K.Face) : Set Plane :=
       |>.completeCarrier)
 
 /-- Consecutive replacement edges around one face meet exactly at their shared cyclic
-vertex. -/
+vertex.
+@isnad1 id=eq.0h5v.s8.f3221213f180 from=translated src=- shape=5f671b26 vocab=55e3cb56
+-/
 theorem faceReplacementCarrier_inter_next (t : K.Face) (i : ZMod 3) :
     (faceReplacementArc (G := G) t i).completeCarrier ∩
         (faceReplacementArc (G := G) t (i + 1)).completeCarrier =
@@ -142,7 +144,9 @@ theorem faceReplacementCarrier_inter_next (t : K.Face) (i : ZMod 3) :
     · apply B.vertex_mem_completeCarrier
       simp [add_assoc]
 
-/-- Every listed family segment lies in the replacement boundary carrier. -/
+/-- Every listed family segment lies in the replacement boundary carrier.
+@isnad1 id=le.0h5v.s7.e38ed5406155 from=translated src=- shape=f7779a1d vocab=6e670698
+-/
 theorem faceBoundaryPiece_segment_subset (t : K.Face)
     (p : FaceBoundaryPiece (G := G) t) :
     segment ℝ
@@ -175,7 +179,9 @@ theorem faceBoundaryPiece_segment_subset (t : K.Face)
       |>.vertex_mem_completeCarrier)
     simp
 
-/-- Every boundary-carrier point lies on one of the explicitly indexed family segments. -/
+/-- Every boundary-carrier point lies on one of the explicitly indexed family segments.
+@isnad1 id=ex.1h5v.s7.84a1af2e77f7 from=translated src=- shape=55064931 vocab=ea4c68a2
+-/
 theorem exists_faceBoundaryPiece_segment (t : K.Face) {x : Plane}
     (hx : x ∈ faceReplacementCarrier
       (G := G) t) :
@@ -211,7 +217,9 @@ noncomputable abbrev faceBoundaryComplex (t : K.Face) : PlaneComplex :=
     |>.arrangementMesh.toPlaneComplex).restrictedTo
       (faceReplacementCarrier (G := G) t)
 
-/-- The common face complex has exactly the union of the three replacement edges as support. -/
+/-- The common face complex has exactly the union of the three replacement edges as support.
+@isnad1 id=eq.0h4v.s5.6931f5e8b289 from=translated src=- shape=7d7df50b vocab=f578dec6
+-/
 theorem faceBoundaryComplex_support (t : K.Face) :
     (faceBoundaryComplex (G := G) t).support =
       faceReplacementCarrier (G := G) t := by
@@ -242,6 +250,9 @@ noncomputable def faceBoundaryVertex (t : K.Face) (i : ZMod 3) :
   (BrokenLineData.segmentFamilyChain left right).arrangementVertex
     (BrokenLineData.segmentFamilyIndex left right (K.faceVertexPiece t i)).castSucc
 
+/--
+@isnad1 id=eq.0h5v.s5.d816f6da69ea from=translated src=- shape=ddbf63e6 vocab=f1c91603
+-/
 theorem faceBoundaryVertex_position (t : K.Face) (i : ZMod 3) :
     (faceBoundaryComplex
       (G := G) t).position
@@ -256,7 +267,9 @@ private theorem singleton_cellCarrier_eq_position {L : PlaneComplex} (v : L.Vert
       {L.position v} := by ext x; simp
   rw [himage, convexHull_singleton]
 
-/-- Every abstract corner is a zero-face of the common boundary complex. -/
+/-- Every abstract corner is a zero-face of the common boundary complex.
+@isnad1 id=mem.0h5v.s6.74d707b38c6a from=translated src=- shape=d6bca35a vocab=ef9a0240
+-/
 theorem faceBoundaryVertex_face (t : K.Face) (i : ZMod 3) :
     ({K.faceBoundaryVertex t i} : Finset
       (faceBoundaryComplex
@@ -284,7 +297,9 @@ theorem faceBoundaryVertex_face (t : K.Face) (i : ZMod 3) :
   simp
 
 /-- A family segment on edge `i` containing the given edge-carrier point, together with its
-subordination to that one edge. -/
+subordination to that one edge.
+@isnad1 id=ex.1h6v.s8.b7bb491e7927 from=translated src=- shape=97813f8f vocab=628dba78
+-/
 theorem exists_faceBoundaryPiece_segment_on_edge (t : K.Face) (i : ZMod 3) {x : Plane}
     (hx : x ∈ (faceReplacementArc
       (G := G) t i).completeCarrier) :
@@ -323,7 +338,9 @@ theorem exists_faceBoundaryPiece_segment_on_edge (t : K.Face) (i : ZMod 3) {x : 
   exact ((convex_convexHull ℝ _).segment_subset hvCarrier hwCarrier).trans hsub
 
 /-- The common arrangement has a face subordinate to edge `i` through every point of that
-edge. -/
+edge.
+@isnad1 id=ex.1h6v.s7.4b25113a0587 from=translated src=- shape=38f2a9ea vocab=32c5fab1
+-/
 theorem exists_faceBoundary_face_on_edge (t : K.Face) (i : ZMod 3) {x : Plane}
     (hx : x ∈ (faceReplacementArc
       (G := G) t i).completeCarrier) :
@@ -351,6 +368,9 @@ noncomputable abbrev faceEdgeComplex (t : K.Face) (i : ZMod 3) : PlaneComplex :=
       (faceReplacementArc
         (G := G) t i).completeCarrier
 
+/--
+@isnad1 id=eq.0h5v.s5.31e0b6e7a360 from=translated src=- shape=f5bb791c vocab=7c5e2a9b
+-/
 theorem faceEdgeComplex_support (t : K.Face) (i : ZMod 3) :
     (faceEdgeComplex
       (G := G) t i).support =
@@ -386,6 +406,9 @@ private theorem faceBoundaryVertex_cellCarrier_subset_edge (t : K.Face)
   · simp
   · simp
 
+/--
+@isnad1 id=mem.0h5v.s6.c85e4625a504 from=translated src=- shape=ccab3488 vocab=49f18e78
+-/
 theorem faceBoundaryVertex_face_edge_start (t : K.Face) (i : ZMod 3) :
     ({K.faceBoundaryVertex t i} : Finset
       (faceEdgeComplex
@@ -398,6 +421,9 @@ theorem faceBoundaryVertex_face_edge_start (t : K.Face) (i : ZMod 3) :
   exact ⟨K.faceBoundaryVertex_face t i,
     K.faceBoundaryVertex_cellCarrier_subset_edge t i i (Or.inl rfl)⟩
 
+/--
+@isnad1 id=mem.0h5v.s7.268a022199ff from=translated src=- shape=596ae73d vocab=0da6c46f
+-/
 theorem faceBoundaryVertex_face_edge_finish (t : K.Face) (i : ZMod 3) :
     ({K.faceBoundaryVertex t (i + 1)} : Finset
       (faceEdgeComplex
@@ -410,6 +436,9 @@ theorem faceBoundaryVertex_face_edge_finish (t : K.Face) (i : ZMod 3) :
   exact ⟨K.faceBoundaryVertex_face t (i + 1),
     K.faceBoundaryVertex_cellCarrier_subset_edge t i (i + 1) (Or.inr rfl)⟩
 
+/--
+@isnad1 id=isprecon.0h5v.s6.00a326aea6b7 from=translated src=- shape=3c3e5ba5 vocab=2b60a950
+-/
 theorem isPreconnected_faceEdgeComplex_support (t : K.Face) (i : ZMod 3) :
     IsPreconnected (faceEdgeComplex
       (G := G) t i).support := by
@@ -433,6 +462,9 @@ noncomputable def faceEdgeVertexPath (t : K.Face) (i : ZMod 3) :
       (K.faceBoundaryVertex_face_edge_finish t i)).exists_isPath
   exact ⟨⟨p, hp⟩⟩
 
+/--
+@isnad1 id=le.0h5v.s5.6287c8546e65 from=translated src=- shape=936324b0 vocab=53f7d9f7
+-/
 theorem faceEdgeComplex_vertexGraph_le (t : K.Face) (i : ZMod 3) :
     (faceEdgeComplex
       (G := G) t i).vertexGraph ≤
@@ -461,7 +493,9 @@ noncomputable def faceBoundaryEdgePath (t : K.Face) (i : ZMod 3) :
   exact p.property.mapLe hle
 
 /-- Every vertex visited by the oriented path for edge `i` lies geometrically on that replacement
-edge. -/
+edge.
+@isnad1 id=mem.1h6v.s9.d1cb2d132338 from=translated src=- shape=f0f036e0 vocab=b950b4cd
+-/
 theorem faceBoundaryEdgePath_position_mem (t : K.Face) (i : ZMod 3)
     {v : (faceBoundaryComplex
       (G := G) t).Vertex}
@@ -500,7 +534,9 @@ noncomputable def faceEdgeGeometricPath (t : K.Face) (i : ZMod 3) :
       (K.faceEdgeVertexPath t i).1
 
 /-- The selected finite graph path covers the entire polygonal replacement edge.  The key input
-is that a connected subpath of an embedded arc containing both endpoints must be the whole arc. -/
+is that a connected subpath of an embedded arc containing both endpoints must be the whole arc.
+@isnad1 id=eq.0h5v.s8.36a663a9356f from=translated src=- shape=d557660c vocab=a3331d5d
+-/
 theorem range_faceEdgeGeometricPath (t : K.Face) (i : ZMod 3) :
     Set.range (K.faceEdgeGeometricPath
       (G := G) t i) =
@@ -582,7 +618,9 @@ theorem range_faceEdgeGeometricPath (t : K.Face) (i : ZMod 3) :
       _ = A.completeCarrier := harcRange
 
 /-- The same edge path, mapped into the common face-boundary complex, still covers the complete
-replacement edge. -/
+replacement edge.
+@isnad1 id=eq.0h5v.s10.bb58d9168f2f from=translated src=- shape=86532fd6 vocab=793f713d
+-/
 theorem range_faceBoundaryEdgePath (t : K.Face) (i : ZMod 3) :
     Set.range ((faceBoundaryComplex
       (G := G) t).walkGeometricPath
@@ -603,7 +641,9 @@ theorem range_faceBoundaryEdgePath (t : K.Face) (i : ZMod 3) :
       exact B.range_walkGeometricPath_mapLe_restrictedTo A.completeCarrier p.1 hle
     _ = A.completeCarrier := K.range_faceEdgeGeometricPath t i
 
-/-- Distinct cyclic corners remain distinct as vertices of the common arrangement. -/
+/-- Distinct cyclic corners remain distinct as vertices of the common arrangement.
+@isnad1 id=ne.0h5v.s7.ed4d2ecf02b8 from=translated src=- shape=a51c26c1 vocab=82d158f6
+-/
 theorem faceBoundaryVertex_ne_next (t : K.Face) (i : ZMod 3) :
     K.faceBoundaryVertex
         (G := G) t i ≠
@@ -619,7 +659,9 @@ theorem faceBoundaryVertex_ne_next (t : K.Face) (i : ZMod 3) :
     G.vertexImage_injective hpos
   exact K.faceVertex_ne_next t i hused
 
-/-- Every oriented replacement-edge path contains at least one edge. -/
+/-- Every oriented replacement-edge path contains at least one edge.
+@isnad1 id=lt.0h5v.s9.3ae661463b9b from=translated src=- shape=770d625b vocab=e5f1a281
+-/
 theorem faceBoundaryEdgePath_length_pos (t : K.Face) (i : ZMod 3) :
     0 < (K.faceBoundaryEdgePath
       (G := G) t i).1.length := by
@@ -629,7 +671,9 @@ theorem faceBoundaryEdgePath_length_pos (t : K.Face) (i : ZMod 3) :
     (SimpleGraph.Walk.eq_of_length_eq_zero hzero)
 
 /-- Consecutive replacement-edge paths share only their common endpoint, which is removed from
-the tail of the second path. -/
+the tail of the second path.
+@isnad1 id=disjoint.0h5v.s11.1c4c6f364a36 from=translated src=- shape=35e2b114 vocab=06baad00
+-/
 theorem faceBoundaryEdgePath_support_disjoint_next_tail (t : K.Face) (i : ZMod 3) :
     List.Disjoint
       (K.faceBoundaryEdgePath
@@ -690,7 +734,9 @@ noncomputable def faceBoundaryTwoEdgePath (t : K.Face) (i : ZMod 3) :
     K.faceBoundaryEdgePath_support_disjoint_next_tail
       (G := G) t i⟩
 
-/-- The tail of the first two boundary edges is disjoint from the tail of the closing edge. -/
+/-- The tail of the first two boundary edges is disjoint from the tail of the closing edge.
+@isnad1 id=disjoint.0h5v.s11.71742388b2ed from=translated src=- shape=f00f590e vocab=4b2d0a07
+-/
 theorem faceBoundaryTwoEdgePath_tail_disjoint_closing_tail (t : K.Face) (i : ZMod 3) :
     List.Disjoint
       (K.faceBoundaryTwoEdgePath
@@ -794,7 +840,9 @@ theorem faceBoundaryTwoEdgePath_tail_disjoint_closing_tail (t : K.Face) (i : ZMo
     rw [← r.1.cons_tail_support, List.nodup_cons] at hn
     exact hn.1 hvr
 
-/-- The two-edge boundary path has length at least two. -/
+/-- The two-edge boundary path has length at least two.
+@isnad1 id=lt.0h5v.s10.3a262fe38e42 from=translated src=- shape=b09ddf75 vocab=1109325b
+-/
 theorem one_lt_faceBoundaryTwoEdgePath_length (t : K.Face) (i : ZMod 3) :
     1 < (K.faceBoundaryTwoEdgePath
       (G := G) t i).1.length := by
@@ -838,7 +886,9 @@ noncomputable def faceBoundaryCycleWalk (t : K.Face) (i : ZMod 3) :
       (G := G) t j) hcycle
   exact p.1.append (r.1.copy rfl hend)
 
-/-- The boundary walk extracted from the common arrangement is a simple graph cycle. -/
+/-- The boundary walk extracted from the common arrangement is a simple graph cycle.
+@isnad1 id=iscycle.0h5v.s5.b8506a38393d from=translated src=- shape=7406efc9 vocab=507fa543
+-/
 theorem faceBoundaryCycleWalk_isCycle (t : K.Face) (i : ZMod 3) :
     (K.faceBoundaryCycleWalk
       (G := G) t i).IsCycle := by
@@ -868,7 +918,9 @@ theorem faceBoundaryCycleWalk_isCycle (t : K.Face) (i : ZMod 3) :
       (G := G) t i)
 
 /-- The geometric range of the boundary cycle is the union of its three complete replacement
-edges. -/
+edges.
+@isnad1 id=eq.0h5v.s9.3af0e2769e4e from=translated src=- shape=061bbd26 vocab=c5b82ea1
+-/
 theorem range_faceBoundaryCycleWalk (t : K.Face) (i : ZMod 3) :
     Set.range ((faceBoundaryComplex
       (G := G) t).walkGeometricPath
@@ -917,7 +969,9 @@ noncomputable def facePolygonalCircle (t : K.Face) : PolygonalCircle :=
       (K.faceBoundaryCycleWalk_isCycle
         (G := G) t 0)
 
-/-- The extracted polygonal circle has exactly the prescribed three-edge replacement boundary. -/
+/-- The extracted polygonal circle has exactly the prescribed three-edge replacement boundary.
+@isnad1 id=eq.0h4v.s5.1775ef101179 from=translated src=- shape=7d7df50b vocab=598089ec
+-/
 theorem facePolygonalCircle_carrier (t : K.Face) :
     (K.facePolygonalCircle
       (G := G) t).carrier =

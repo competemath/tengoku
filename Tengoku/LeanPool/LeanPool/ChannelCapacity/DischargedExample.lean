@@ -54,6 +54,9 @@ noncomputable def twoByTwoRowPMF : Fin 2 → PMF (Fin 2)
 noncomputable def twoByTwoRows (i : Fin 2) : ProbabilityMeasure (Fin 2) :=
   ⟨(twoByTwoRowPMF i).toMeasure, by infer_instance⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.6b29eec5a738 from=translated src=- shape=000de0ee vocab=33caf209
+-/
 @[simp]
 lemma twoByTwoRows_apply_singleton (i j : Fin 2) :
     (twoByTwoRows i).toMeasure {j} = twoByTwoRowPMF i j := by
@@ -63,15 +66,24 @@ lemma twoByTwoRows_apply_singleton (i j : Fin 2) :
 noncomputable def twoByTwoKernel : Kernel (Fin 2) (Fin 2) :=
   Kernel.ofFunOfCountable fun i => (twoByTwoRows i).toMeasure
 
+/--
+@isnad1 id=eq.0h1v.s6.e33ff5dc338b from=translated src=- shape=11e298fe vocab=05144aab
+-/
 @[simp]
 lemma twoByTwoKernel_apply (i : Fin 2) :
     twoByTwoKernel i = (twoByTwoRows i).toMeasure := by
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.966e4dd747b7 from=translated src=- shape=f6b3a7b3 vocab=53df51a9
+-/
 lemma twoByTwoKernel_apply_singleton (i j : Fin 2) :
     twoByTwoKernel i {j} = twoByTwoRowPMF i j := by
   simp [twoByTwoKernel_apply, twoByTwoRows]
 
+/--
+@isnad1 id=ismarkov.0h0v.s4.430403da4511 from=translated src=- shape=8bd98729 vocab=477c4cf6
+-/
 noncomputable instance twoByTwoKernel_isMarkov : IsMarkovKernel twoByTwoKernel := by
   constructor
   intro i
@@ -83,11 +95,17 @@ noncomputable instance twoByTwoKernel_isMarkov : IsMarkovKernel twoByTwoKernel :
 noncomputable def twoByTwoDensity (i j : Fin 2) : NNReal :=
   if i = j then 3 / 4 else 1 / 4
 
+/--
+@isnad1 id=eq.0h2v.s5.560c41c4a90b from=translated src=- shape=a7f6acc8 vocab=43dc9c26
+-/
 @[simp]
 lemma twoByTwoDensity_apply (i j : Fin 2) :
     (twoByTwoDensity i j : ℝ≥0∞) = twoByTwoRowPMF i j := by
   fin_cases i <;> fin_cases j <;> simp [twoByTwoDensity, twoByTwoRowPMF]
 
+/--
+@isnad1 id=rowmatri.0h0v.s5.9f49c4812e69 from=translated src=- shape=44762807 vocab=76c9b269
+-/
 theorem twoByTwo_rowMatrixFullRank : Kernel.RowMatrixFullRank twoByTwoKernel := by
   intro w v hEq
   funext a
@@ -101,6 +119,9 @@ theorem twoByTwo_rowMatrixFullRank : Kernel.RowMatrixFullRank twoByTwoKernel := 
     norm_num [Fin.sum_univ_two, twoByTwoKernel_apply_singleton, twoByTwoRowPMF] at h0 h1 ⊢
     nlinarith
 
+/--
+@isnad1 id=injectiv.0h0v.s4.c93756abc647 from=translated src=- shape=44762807 vocab=e45228d5
+-/
 theorem twoByTwo_injectivePriorPushforward :
     Kernel.InjectivePriorPushforward twoByTwoKernel :=
   Kernel.injectivePriorPushforward_of_rowMatrixFullRank twoByTwoKernel twoByTwo_rowMatrixFullRank

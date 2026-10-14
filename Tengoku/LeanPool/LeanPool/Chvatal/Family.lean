@@ -83,39 +83,53 @@ def IsMaximalIntersecting (B : Family ι) : Prop :=
 (Theorem 1.1 and Section 4). -/
 def star (D : Family ι) (i : ι) : Family ι := D.filter (i ∈ ·)
 
-/-- Membership in the star from Theorem 1.1. -/
+/-- Membership in the star from Theorem 1.1.
+@isnad1 id=iff.0h4v.s5.f71aa7ab608e from=translated src=- shape=a1f51595 vocab=4b685765
+-/
 @[simp] theorem mem_star {D : Family ι} {i : ι} {S : Finset ι} :
     S ∈ D.star i ↔ S ∈ D ∧ i ∈ S := by
   simp [star]
 
-/-- A star is a subfamily of its ambient family, as used in Theorem 1.1. -/
+/-- A star is a subfamily of its ambient family, as used in Theorem 1.1.
+@isnad1 id=le.0h3v.s4.ea342961b923 from=translated src=- shape=5f122e03 vocab=e28d8621
+-/
 theorem star_subset (D : Family ι) (i : ι) : D.star i ⊆ D :=
   Finset.filter_subset _ _
 
 /-- Every star is intersecting; this is the last observation in the proof of
-Proposition 5.3, and explains why stars are competitors in Chvátal's conjecture. -/
+Proposition 5.3, and explains why stars are competitors in Chvátal's conjecture.
+@isnad1 id=isinters.0h3v.s4.2e88bf8945ab from=translated src=- shape=a4721fb8 vocab=e90d0b53
+-/
 theorem star_isIntersecting (D : Family ι) (i : ι) : (D.star i).IsIntersecting := by
   intro S hS T hT hdisj
   exact Finset.disjoint_left.mp hdisj (mem_star.mp hS).2 (mem_star.mp hT).2
 
-/-- Intersecting families cannot contain the empty set (Section 4's convention). -/
+/-- Intersecting families cannot contain the empty set (Section 4's convention).
+@isnad1 id=not.1h2v.s5.3993a2c93a5a from=translated src=- shape=85055744 vocab=013dffcf
+-/
 theorem IsIntersecting.empty_not_mem {B : Family ι} (hB : B.IsIntersecting) : ∅ ∉ B :=
   hB.bot_notMem
 
 /-- Membership in an intersecting family guarantees that the member is nonempty,
-including when the two members in the definition coincide. -/
+including when the two members in the definition coincide.
+@isnad1 id=nonempty.2h3v.s5.d32c6df7cf68 from=translated src=- shape=4e9f9407 vocab=297b266e
+-/
 theorem IsIntersecting.nonempty {B : Family ι} (hB : B.IsIntersecting)
     {S : Finset ι} (hS : S ∈ B) : S.Nonempty :=
   Finset.nonempty_iff_ne_empty.mpr (hB.ne_bot hS)
 
 /-- An intersecting subfamily remains intersecting; this is used when restricting
-a maximal intersecting family to a hereditary family in Section 4. -/
+a maximal intersecting family to a hereditary family in Section 4.
+@isnad1 id=isinters.2h3v.s5.bbe2b58d1c66 from=translated src=- shape=9ba8899d vocab=d559d1c2
+-/
 theorem IsIntersecting.mono {B C : Family ι} (hC : C.IsIntersecting)
     (hBC : B ⊆ C) : B.IsIntersecting := Set.Intersecting.mono hBC hC
 
 /-- Every intersecting family has a maximal intersecting extension, as used at
 the end of Section 4 and in the proof of Proposition 5.3. This also holds in dimension
-zero. -/
+zero.
+@isnad1 id=ex.1h2v.s5.03514b74f191 from=translated src=- shape=637e8713 vocab=88d56a04
+-/
 theorem IsIntersecting.exists_maximal_extension [Finite ι] {B : Family ι}
     (hB : B.IsIntersecting) : ∃ C : Family ι, B ⊆ C ∧ C.IsMaximalIntersecting := by
   let : Fintype ι := Fintype.ofFinite ι
@@ -123,7 +137,9 @@ theorem IsIntersecting.exists_maximal_extension [Finite ι] {B : Family ι}
   exact ⟨C, hBC, hC, fun D hD hCD => Finset.Subset.antisymm hCD (hmax hD hCD)⟩
 
 /-- The first assertion in the proof of Proposition 4.1: adjoining supersets
-preserves intersection, so every maximal intersecting family is increasing. -/
+preserves intersection, so every maximal intersecting family is increasing.
+@isnad1 id=isincrea.1h2v.s4.e7745dc1f4d8 from=translated src=- shape=93e860ac vocab=7dff916a
+-/
 theorem IsMaximalIntersecting.isIncreasing {B : Family ι}
     (hB : B.IsMaximalIntersecting) : B.IsIncreasing :=
   hB.1.isUpperSet' hB.2
@@ -133,13 +149,17 @@ variable [Fintype ι]
 /-- The dual family `B* = {S : Sᶜ ∉ B}` from Section 3.1. -/
 def dual (B : Family ι) : Family ι := Finset.univ.filter (fun S => Sᶜ ∉ B)
 
-/-- Membership in the dual family, matching the convention in Section 3.1. -/
+/-- Membership in the dual family, matching the convention in Section 3.1.
+@isnad1 id=iff.0h3v.s5.f3c621ac801f from=translated src=- shape=f55821e5 vocab=e5c1ffc7
+-/
 @[simp] theorem mem_dual {B : Family ι} {S : Finset ι} :
     S ∈ B.dual ↔ Sᶜ ∉ B := by
   simp [dual]
 
 /-- Family duality is an involution, as is the Boolean-function duality in
-Sections 1–3. -/
+Sections 1–3.
+@isnad1 id=eq.0h2v.s4.2a03f06ff244 from=translated src=- shape=e17ccb0b vocab=24e3c1fa
+-/
 @[simp] theorem dual_dual (B : Family ι) : B.dual.dual = B := by
   ext S
   simp
@@ -148,19 +168,25 @@ Sections 1–3. -/
 it, as defined immediately before Proposition 4.1. -/
 def IsAntipodal (B : Family ι) : Prop := ∀ S : Finset ι, S ∈ B ↔ Sᶜ ∉ B
 
-/-- Antipodality is the self-duality condition used in Section 4. -/
+/-- Antipodality is the self-duality condition used in Section 4.
+@isnad1 id=iff.0h2v.s4.12f6da6f9125 from=translated src=- shape=b5d20269 vocab=46e60b0e
+-/
 theorem isAntipodal_iff_dual_eq (B : Family ι) : B.IsAntipodal ↔ B.dual = B := by
   simp only [IsAntipodal, Finset.ext_iff, mem_dual]
   exact forall_congr' fun S => iff_comm
 
-/-- Duality preserves increasing families, as used for `𝒢*` in Section 3. -/
+/-- Duality preserves increasing families, as used for `𝒢*` in Section 3.
+@isnad1 id=isincrea.1h2v.s4.3b7518b93680 from=translated src=- shape=18bc5a72 vocab=42a70e8f
+-/
 theorem IsIncreasing.dual {B : Family ι} (hB : B.IsIncreasing) : B.dual.IsIncreasing := by
   intro S T hST hS
   simp only [Finset.mem_coe, mem_dual] at hS ⊢
   exact fun hTc => hS (hB (compl_le_compl hST) hTc)
 
 /-- Complementing membership in a hereditary family gives an increasing family;
-this is the family underlying `f = 1 - 𝟙_D` in Section 4. -/
+this is the family underlying `f = 1 - 𝟙_D` in Section 4.
+@isnad1 id=isincrea.1h2v.s5.7b2b8345216c from=translated src=- shape=42071d83 vocab=1ec07109
+-/
 theorem IsHereditary.isIncreasing_compl {D : Family ι} (hD : D.IsHereditary) :
     Dᶜ.IsIncreasing := by
   intro S T hST hS
@@ -168,18 +194,24 @@ theorem IsHereditary.isIncreasing_compl {D : Family ι} (hD : D.IsHereditary) :
   exact fun hT => hS (hD hST hT)
 
 /-- The cardinality bound for intersecting families used by Proposition 4.1,
-written without division so it remains valid in dimension zero. -/
+written without division so it remains valid in dimension zero.
+@isnad1 id=le.1h2v.s5.5bc9abbafe69 from=translated src=- shape=9b928f7a vocab=d55635e4
+-/
 theorem IsIntersecting.two_mul_card_le {B : Family ι} (hB : B.IsIntersecting) :
     2 * B.card ≤ 2 ^ Fintype.card ι := by
   simpa only [Fintype.card_finset] using hB.card_le
 
 /-- The equality case in Proposition 4.1, in the division-free form
-`2 |B| = 2^n`. The ground type must be nonempty. -/
+`2 |B| = 2^n`. The ground type must be nonempty.
+@isnad1 id=eq.1h2v.s5.60a19605d076 from=translated src=- shape=c7428939 vocab=7266726a
+-/
 theorem IsMaximalIntersecting.two_mul_card_eq [Nonempty ι] {B : Family ι}
     (hB : B.IsMaximalIntersecting) : 2 * B.card = 2 ^ Fintype.card ι := by
   simpa only [Fintype.card_finset] using hB.1.is_max_iff_card_eq.mp hB.2
 
-/-- Proposition 4.1: a maximal intersecting family occupies half the cube. -/
+/-- Proposition 4.1: a maximal intersecting family occupies half the cube.
+@isnad1 id=eq.1h2v.s5.f936377a24fb from=translated src=- shape=4bd4b083 vocab=e8ed7d8a
+-/
 theorem IsMaximalIntersecting.card_eq [Nonempty ι] {B : Family ι}
     (hB : B.IsMaximalIntersecting) : B.card = 2 ^ (Fintype.card ι - 1) := by
   have hpos := Fintype.card_pos (α := ι)
@@ -189,7 +221,9 @@ theorem IsMaximalIntersecting.card_eq [Nonempty ι] {B : Family ι}
   omega
 
 /-- The antipodality conclusion of Proposition 4.1, obtained by counting the
-disjoint family and its image under complementation. -/
+disjoint family and its image under complementation.
+@isnad1 id=isantipo.1h2v.s4.d76fd7cf9ed5 from=translated src=- shape=9387b468 vocab=753dd5f1
+-/
 theorem IsMaximalIntersecting.isAntipodal [Nonempty ι] {B : Family ι}
     (hB : B.IsMaximalIntersecting) : B.IsAntipodal := by
   let C := B.map ⟨compl, compl_injective⟩
@@ -210,14 +244,18 @@ theorem IsMaximalIntersecting.isAntipodal [Nonempty ι] {B : Family ι}
       simpa only [← hTS, Function.Embedding.coeFn_mk, compl_compl] using hT
 
 /-- The converse direction of Proposition 4.1: increasing antipodal families
-are intersecting. -/
+are intersecting.
+@isnad1 id=isinters.2h2v.s4.5a0bd7cb50e5 from=translated src=- shape=48de6b88 vocab=26e86dbc
+-/
 theorem IsIncreasing.isIntersecting_of_isAntipodal {B : Family ι}
     (hinc : B.IsIncreasing) (hanti : B.IsAntipodal) : B.IsIntersecting := by
   intro S hS T hT hdisj
   exact (hanti S).mp hS (hinc hdisj.le_compl_left hT)
 
 /-- The converse maximality assertion of Proposition 4.1: any newly adjoined
-member has its complement already in the original family. -/
+member has its complement already in the original family.
+@isnad1 id=ismaxima.2h2v.s4.3cbb5fa0a2ef from=translated src=- shape=48de6b88 vocab=01563c1d
+-/
 theorem IsIncreasing.isMaximalIntersecting_of_isAntipodal {B : Family ι}
     (hinc : B.IsIncreasing) (hanti : B.IsAntipodal) : B.IsMaximalIntersecting := by
   refine ⟨hinc.isIntersecting_of_isAntipodal hanti, ?_⟩
@@ -231,27 +269,35 @@ theorem IsIncreasing.isMaximalIntersecting_of_isAntipodal {B : Family ι}
   exact hC.compl_notMem hS (hBC hScB)
 
 /-- Proposition 4.1: on a nonempty ground type, maximal intersecting families
-are exactly the increasing antipodal families. -/
+are exactly the increasing antipodal families.
+@isnad1 id=iff.0h2v.s4.3cd92d86c826 from=translated src=- shape=7759bb02 vocab=72004c4c
+-/
 theorem isMaximalIntersecting_iff [Nonempty ι] (B : Family ι) :
     B.IsMaximalIntersecting ↔ B.IsIncreasing ∧ B.IsAntipodal :=
   ⟨fun hB => ⟨hB.isIncreasing, hB.isAntipodal⟩,
     fun hB => hB.1.isMaximalIntersecting_of_isAntipodal hB.2⟩
 
-/-- A full-cube star is increasing, as used among the examples in Section 5. -/
+/-- A full-cube star is increasing, as used among the examples in Section 5.
+@isnad1 id=isincrea.0h2v.s4.b3fa0d35b0d9 from=translated src=- shape=0783232c vocab=11630792
+-/
 theorem univ_star_isIncreasing (i : ι) :
     (star (Finset.univ : Family ι) i).IsIncreasing := by
   intro S T hST hS
   exact mem_star.mpr ⟨Finset.mem_univ _, hST (mem_star.mp hS).2⟩
 
 /-- A full-cube star selects exactly one member of each complementary pair;
-this is the simplest antipodal family in Proposition 4.1. -/
+this is the simplest antipodal family in Proposition 4.1.
+@isnad1 id=isantipo.0h2v.s4.df13798d8dff from=translated src=- shape=0783232c vocab=73cfacc5
+-/
 theorem univ_star_isAntipodal (i : ι) :
     (star (Finset.univ : Family ι) i).IsAntipodal := by
   intro S
   simp
 
 /-- Full-cube stars are maximal intersecting, the basic extremal examples in
-Sections 4 and 5. -/
+Sections 4 and 5.
+@isnad1 id=ismaxima.0h2v.s4.0ffb886a7d6a from=translated src=- shape=0783232c vocab=fa985709
+-/
 theorem univ_star_isMaximalIntersecting (i : ι) :
     (star (Finset.univ : Family ι) i).IsMaximalIntersecting :=
   (univ_star_isIncreasing i).isMaximalIntersecting_of_isAntipodal
@@ -260,7 +306,9 @@ theorem univ_star_isMaximalIntersecting (i : ι) :
 omit [Fintype ι] in
 /-- The last reduction in Section 4: to prove the star bound inside `D`, it
 suffices to bound `D ∩ B` for each maximal intersecting family `B`. This lemma
-isolates the purely combinatorial reduction from the correlation inequality. -/
+isolates the purely combinatorial reduction from the correlation inequality.
+@isnad1 id=ex.3h3v.s6.0443e98d3bea from=translated src=- shape=75b49493 vocab=546178c3
+-/
 theorem exists_star_bound_of_maximal [Finite ι] {D : Family ι}
     (hmax : ∀ B : Family ι, B.IsMaximalIntersecting →
       ∃ i : ι, (D ∩ B).card ≤ (D.star i).card)

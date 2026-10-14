@@ -38,6 +38,9 @@ open Path.Homotopy
 
 section assoc
 
+/--
+@isnad1 id=directed.0h0v.s6.ca9feb7e9ad8 from=translated src=- shape=fb48e863 vocab=fb39c94e
+-/
 lemma transAssocReparamAux_directed : DirectedMap.Directed
     ({ toFun := fun t => ⟨transAssocReparamAux t, transAssocReparamAux_mem_I t⟩
        continuous_toFun := Continuous.subtype_mk continuous_transAssocReparamAux _ } :
@@ -71,6 +74,9 @@ def transAssocReparamAuxMap : D(I,I) where
   continuous_toFun := Continuous.subtype_mk continuous_transAssocReparamAux _
   directed_toFun := transAssocReparamAux_directed
 
+/--
+@isnad1 id=eq.0h8v.s6.471436e659c9 from=translated src=- shape=fd02b567 vocab=f30a25b8
+-/
 lemma trans_assoc_reparam_directed {x₀ x₁ x₂ x₃ : X} (p : Dipath x₀ x₁) (q : Dipath x₁ x₂)
     (r : Dipath x₂ x₃) :
     (p.trans q).trans r = (p.trans (q.trans r)).reparam
@@ -83,7 +89,9 @@ lemma trans_assoc_reparam_directed {x₀ x₁ x₂ x₃ : X} (p : Dipath x₀ x�
   rfl
 
 /-- For any three dipaths `p q r`, `(p.trans q).trans r` is dihomotopic with
-`p.trans (q.trans r)`. -/
+`p.trans (q.trans r)`.
+@isnad1 id=dihomoto.0h8v.s6.a0624c37d26a from=translated src=- shape=f531756a vocab=201eef85
+-/
 theorem trans_assoc {x₀ x₁ x₂ x₃ : X} (p : Dipath x₀ x₁) (q : Dipath x₁ x₂) (r : Dipath x₂ x₃) :
     ((p.trans q).trans r).Dihomotopic (p.trans (q.trans r)) := by
   have := Dihomotopic.reparam (p.trans (q.trans r)) transAssocReparamAuxMap
@@ -118,16 +126,25 @@ def equiv (X : Type*) : FundamentalCategory X ≃ X where
   left_inv _ := rfl
   right_inv _ := rfl
 
+/--
+@isnad1 id=iff.0h1v.s3.c516a3e85ba0 from=translated src=- shape=a1bae4b0 vocab=66c4d755
+-/
 @[simp]
 lemma isEmpty_iff (X : Type*) :
     IsEmpty (FundamentalCategory X) ↔ IsEmpty X :=
   equiv _ |>.isEmpty_congr
 
+/--
+@isnad1 id=iff.0h1v.s3.cfafe2469a76 from=translated src=- shape=a1bae4b0 vocab=0415891c
+-/
 @[simp]
 lemma nonempty_iff (X : Type*) :
     Nonempty (FundamentalCategory X) ↔ Nonempty X :=
   equiv _ |>.nonempty_congr
 
+/--
+@isnad1 id=iff.0h1v.s3.3153a5f04a84 from=translated src=- shape=a1bae4b0 vocab=b861ca89
+-/
 @[simp]
 lemma subsingleton_iff (X : Type*) :
     Subsingleton (FundamentalCategory X) ↔ Subsingleton X :=
@@ -160,9 +177,15 @@ instance : CategoryTheory.Category (FundamentalCategory X) where
       show ⟦(p.trans q).trans r⟧ = ⟦p.trans (q.trans r)⟧ from
         Quotient.sound (Dipath.Dihomotopy.trans_assoc p q r)
 
+/--
+@isnad1 id=eq.0h6v.s6.2945fe9e7def from=translated src=- shape=890ca8ed vocab=038a3559
+-/
 lemma comp_eq (x y z : FundamentalCategory X) (p : x ⟶ y) (q : y ⟶ z) :
     p ≫ q = p.comp q := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.73f72fcc8804 from=translated src=- shape=e773324b vocab=69ca242b
+-/
 lemma id_eq_path_refl (x : FundamentalCategory X) :
     𝟙 x = ⟦Dipath.refl x.as⟧ := rfl
 
@@ -176,6 +199,9 @@ def mapFunctor {X Y : Type*} [DirectedSpace X] [DirectedSpace Y] (f : D(X,Y)) :
   map_comp {_ _ _} p q :=
     Quotient.inductionOn₂ p q fun a b => congrArg _ (Dipath.map_trans a b f)
 
+/--
+@isnad1 id=eq.0h1v.s4.08dc1b529af0 from=translated src=- shape=a9843297 vocab=e2877870
+-/
 @[simp]
 protected theorem mapFunctor_id (X : Type*) [DirectedSpace X] :
     mapFunctor (DirectedMap.id X) = 𝟭 _ := by
@@ -188,6 +214,9 @@ protected theorem mapFunctor_id (X : Type*) [DirectedSpace X] :
     simp
     rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.fc272abeded6 from=translated src=- shape=1bfee7af vocab=e9ef768b
+-/
 @[simp]
 protected theorem mapFunctor_comp {X Y Z : Type*} [DirectedSpace X] [DirectedSpace Y]
     [DirectedSpace Z] (f : D(X,Y)) (g : D(Y,Z)) :
@@ -227,6 +256,9 @@ def fundamentalCategoryMap {X Y : dTopCat} (f : X ⟶ Y) :
 /-- Notation for the underlying functor on fundamental categories induced by a `dTopCat` map. -/
 scoped notation "dπₘ" => FundamentalCategory.fundamentalCategoryMap
 
+/--
+@isnad1 id=eq.0h6v.s7.fcfee149fe35 from=translated src=- shape=231b35df vocab=e98177f7
+-/
 lemma map_eq {X Y : dTopCat} {x₀ x₁ : X} (f : X ⟶ Y) (p : Dipath.Dihomotopic.Quotient x₀ x₁) :
   (dπₘ f).map p = p.mapFn f.hom := rfl
 

@@ -50,11 +50,16 @@ namespace FinitePLHomeomorphBetween
 
 variable {f g : Plane → Plane} {A B C : Set Plane}
 
-/-- Forget the explicit pure witness. -/
+/-- Forget the explicit pure witness.
+@isnad1 id=isplonse.0h4v.s4.f5f21d21f7ef from=translated src=- shape=113a7a7d vocab=7be2505d
+-/
 theorem isPLOnSet (F : FinitePLHomeomorphBetween f A B) : IsPLOnSet A f := by
   exact ⟨F.complex, F.support_eq, F.complex, PlaneComplex.Subdivides.refl F.complex,
     F.affineOn⟩
 
+/--
+@isnad1 id=continuo.0h4v.s6.fc18fbff7b91 from=translated src=- shape=3b65c763 vocab=05b249d6
+-/
 theorem continuousOn (F : FinitePLHomeomorphBetween f A B) : ContinuousOn f A := by
   rw [← F.support_eq]
   exact (show IsPLOn F.complex f from
@@ -76,16 +81,25 @@ noncomputable def targetComplex (F : FinitePLHomeomorphBetween f A B) : PlaneCom
   F.complex.mapComplexOn f F.vertex_mem_support
     (by simpa only [F.support_eq] using F.injOn) F.affineOn
 
+/--
+@isnad1 id=eq.0h4v.s4.2ebce366f832 from=translated src=- shape=d731e84b vocab=b94f931a
+-/
 theorem targetComplex_support (F : FinitePLHomeomorphBetween f A B) :
     F.targetComplex.support = B := by
   rw [targetComplex, F.complex.mapComplexOn_support f F.vertex_mem_support
     (by simpa only [F.support_eq] using F.injOn) F.affineOn, F.support_eq, F.image_eq]
 
+/--
+@isnad1 id=ispure2.0h4v.s4.073e5e64a484 from=translated src=- shape=e5582256 vocab=07db4433
+-/
 theorem targetComplex_pure (F : FinitePLHomeomorphBetween f A B) :
     F.targetComplex.IsPure2 :=
   PlaneComplex.IsPure2.mapComplexOn F.complex F.pure f F.vertex_mem_support
     (by simpa only [F.support_eq] using F.injOn) F.affineOn
 
+/--
+@isnad1 id=mem.0h5v.s5.b6f5f095f477 from=translated src=- shape=29235105 vocab=3e12c4cd
+-/
 theorem targetComplex_vertex_mem_support (F : FinitePLHomeomorphBetween f A B)
     (v : F.targetComplex.Vertex) :
     F.targetComplex.position v ∈ F.targetComplex.support := by
@@ -106,6 +120,9 @@ noncomputable def inverseOn (F : FinitePLHomeomorphBetween f A B) : Plane → Pl
         exact hy)
     else 0
 
+/--
+@isnad1 id=mem.1h5v.s5.ec82afec4f63 from=translated src=- shape=a9410498 vocab=cf1e264e
+-/
 theorem inverseOn_mem (F : FinitePLHomeomorphBetween f A B) {y : Plane} (hy : y ∈ B) :
     F.inverseOn y ∈ A := by
   simp only [inverseOn, dite_eq_left hy]
@@ -113,6 +130,9 @@ theorem inverseOn_mem (F : FinitePLHomeomorphBetween f A B) {y : Plane} (hy : y 
     rw [← F.image_eq] at hy
     exact hy)).1
 
+/--
+@isnad1 id=eq.1h5v.s5.2200b24ea5b1 from=translated src=- shape=05f0568e vocab=cf1e264e
+-/
 theorem apply_inverseOn (F : FinitePLHomeomorphBetween f A B) {y : Plane} (hy : y ∈ B) :
     f (F.inverseOn y) = y := by
   simp only [inverseOn, dite_eq_left hy]
@@ -120,6 +140,9 @@ theorem apply_inverseOn (F : FinitePLHomeomorphBetween f A B) {y : Plane} (hy : 
     rw [← F.image_eq] at hy
     exact hy)).2
 
+/--
+@isnad1 id=eq.1h5v.s5.8b80bc975096 from=translated src=- shape=9f454055 vocab=cf1e264e
+-/
 theorem inverseOn_apply (F : FinitePLHomeomorphBetween f A B) {x : Plane} (hx : x ∈ A) :
     F.inverseOn (f x) = x := by
   have hfx : f x ∈ B := by
@@ -128,6 +151,9 @@ theorem inverseOn_apply (F : FinitePLHomeomorphBetween f A B) {x : Plane} (hx : 
   apply F.injOn (F.inverseOn_mem hfx) hx
   rw [F.apply_inverseOn hfx]
 
+/--
+@isnad1 id=injon.0h4v.s4.a35f2b428607 from=translated src=- shape=f428c691 vocab=8e112bda
+-/
 theorem inverseOn_injOn (F : FinitePLHomeomorphBetween f A B) :
     Set.InjOn F.inverseOn B := by
   intro x hx y hy hxy
@@ -136,7 +162,9 @@ theorem inverseOn_injOn (F : FinitePLHomeomorphBetween f A B) :
     _ = f (F.inverseOn y) := congrArg f hxy
     _ = y := F.apply_inverseOn hy
 
-/-- On a subdivision of the target complex, the certified inverse is affine facewise. -/
+/-- On a subdivision of the target complex, the certified inverse is affine facewise.
+@isnad1 id=isaffine.2h6v.s5.bd0e10d77ed3 from=translated src=- shape=fc360227 vocab=013d78ad
+-/
 theorem inverseOn_affineOn_of_subdivides_targetComplex
     (F : FinitePLHomeomorphBetween f A B) {R : PlaneComplex}
     (hR : R.Subdivides F.targetComplex) :
@@ -243,6 +271,9 @@ variable {f : Plane → Plane} {A B : Set Plane}
   {F : FinitePLHomeomorphBetween f A B} {R : PlaneComplex}
   (P : PullbackSubdivision F R)
 
+/--
+@isnad1 id=injon.0h6v.s5.e653e0969807 from=translated src=- shape=fd5f3991 vocab=0414f7c3
+-/
 theorem inverseOn_injOn_target : Set.InjOn F.inverseOn P.target.support := by
   rw [P.target_support]
   exact F.inverseOn_injOn
@@ -253,8 +284,14 @@ noncomputable def source : PlaneComplex :=
   P.target.mapComplexOn F.inverseOn P.target_vertex_mem_support
     P.inverseOn_injOn_target P.inverseAffine
 
+/--
+@isnad1 id=eq.0h6v.s5.ff8536291b68 from=translated src=- shape=91004d9c vocab=4fd0898a
+-/
 @[simp] theorem source_simplexes : P.source.simplexes = P.target.simplexes := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.bd12e5614e2f from=translated src=- shape=3dde1025 vocab=43aa88c3
+-/
 theorem inverseOn_image_target : F.inverseOn '' B = A := by
   apply Set.Subset.antisymm
   · rintro x ⟨y, hy, rfl⟩
@@ -264,15 +301,24 @@ theorem inverseOn_image_target : F.inverseOn '' B = A := by
     rw [← F.image_eq]
     exact ⟨x, hx, rfl⟩
 
+/--
+@isnad1 id=eq.0h6v.s5.e45137f51bc0 from=translated src=- shape=75742de7 vocab=27a77596
+-/
 theorem source_support : P.source.support = A := by
   rw [source, P.target.mapComplexOn_support F.inverseOn
     P.target_vertex_mem_support P.inverseOn_injOn_target P.inverseAffine,
     P.target_support, inverseOn_image_target (F := F)]
 
+/--
+@isnad1 id=ispure2.0h6v.s5.21d23baf6a8a from=translated src=- shape=a5b41129 vocab=86c1881d
+-/
 theorem source_pure : P.source.IsPure2 :=
   PlaneComplex.IsPure2.mapComplexOn P.target P.target_pure F.inverseOn
     P.target_vertex_mem_support P.inverseOn_injOn_target P.inverseAffine
 
+/--
+@isnad1 id=eq.1h7v.s6.9ccdaa585d69 from=translated src=- shape=7c470bc8 vocab=4ec20914
+-/
 theorem source_cellCarrier (s : Finset P.target.Vertex)
     (hs : s ∈ P.target.simplexes) :
     P.source.cellCarrier s = F.inverseOn '' P.target.cellCarrier s := by
@@ -280,7 +326,9 @@ theorem source_cellCarrier (s : Finset P.target.Vertex)
     P.inverseOn_injOn_target P.inverseAffine hs
 
 /-- Corresponding source and target faces are carried exactly onto one another by the
-original map. -/
+original map.
+@isnad1 id=eq.1h7v.s6.ad30521b52fd from=translated src=- shape=dc7734d5 vocab=65cff838
+-/
 theorem image_source_cellCarrier (s : Finset P.target.Vertex)
     (hs : s ∈ P.target.simplexes) :
     f '' P.source.cellCarrier s = P.target.cellCarrier s := by
@@ -414,7 +462,9 @@ def congrSet (F : FinitePLHomeomorphOn h A) {B : Set Plane} (hAB : A = B) :
 def congrHomeomorph (F : FinitePLHomeomorphOn h A) {g : Plane ≃ₜ Plane} (hg : h = g) :
     FinitePLHomeomorphOn g A := hg ▸ F
 
-/-- Forget the explicit pure witness and retain the ordinary finite PL-on-set predicate. -/
+/-- Forget the explicit pure witness and retain the ordinary finite PL-on-set predicate.
+@isnad1 id=isplonse.0h3v.s8.a8d884a9493c from=translated src=- shape=bb2487c6 vocab=3773fe2f
+-/
 theorem isPLOnSet (F : FinitePLHomeomorphOn h A) : IsPLOnSet A h := by
   exact ⟨F.complex, F.support_eq, F.complex, PlaneComplex.Subdivides.refl F.complex,
     F.affineOn⟩
@@ -423,10 +473,16 @@ theorem isPLOnSet (F : FinitePLHomeomorphOn h A) : IsPLOnSet A h := by
 noncomputable def targetComplex (F : FinitePLHomeomorphOn h A) : PlaneComplex :=
   F.complex.mapComplex h h.injective F.affineOn
 
+/--
+@isnad1 id=eq.0h3v.s8.aab7f472ac62 from=translated src=- shape=8e1eb169 vocab=a6d1f734
+-/
 theorem targetComplex_support (F : FinitePLHomeomorphOn h A) :
     F.targetComplex.support = h '' A := by
   rw [targetComplex, F.complex.mapComplex_support h h.injective F.affineOn, F.support_eq]
 
+/--
+@isnad1 id=ispure2.0h3v.s6.eb565cd6b15d from=translated src=- shape=46fed069 vocab=178ecbba
+-/
 theorem targetComplex_pure (F : FinitePLHomeomorphOn h A) :
     F.targetComplex.IsPure2 :=
   PlaneComplex.IsPure2.mapComplex F.complex F.pure h h.injective F.affineOn

@@ -64,7 +64,9 @@ the fixed-point set because `e` is idempotent). -/
 
 /-- With the ambient-then-`e` supremum, every set has a least upper bound in
 `IdemFix e`. This
-needs only that `e` is monotone (which follows from Scott continuity). -/
+needs only that `e` is monotone (which follows from Scott continuity).
+@isnad1 id=islub.2h3v.s6.0cc54c3cd501 from=translated src=- shape=2e2fcd8a vocab=246500ea
+-/
 theorem isLUB_sSup (hidem : ∀ x, e (e x) = e x) (hmono : Monotone e) :
     letI := supSet hidem
     ∀ S : Set (IdemFix e), IsLUB S (sSup S) := by
@@ -94,7 +96,9 @@ supremum corrected by `e`; the rest follows from `completeLatticeOfSup`. -/
   letI := supSet hidem
   completeLatticeOfSup (IdemFix e) (isLUB_sSup hidem hmono)
 
-/-- The ambient supremum corrected by `e` is the supremum in `IdemFix e`. -/
+/-- The ambient supremum corrected by `e` is the supremum in `IdemFix e`.
+@isnad1 id=eq.2h3v.s6.aa2f9f589875 from=translated src=- shape=14cfd034 vocab=9f00fa0f
+-/
 theorem coe_sSup (hidem : ∀ x, e (e x) = e x) (hmono : Monotone e) (S : Set (IdemFix e)) :
     letI := completeLattice hidem hmono
     ((sSup S : IdemFix e) : L) = e (sSup (Subtype.val '' S)) := rfl
@@ -106,6 +110,9 @@ lattice -/
 
 variable {e : L → L}
 
+/--
+@isnad1 id=preserve.2h2v.s5.868227bfaeb4 from=translated src=- shape=0c417a8e vocab=21f1b511
+-/
 theorem idemFix_incl_preservesDirectedSup (hidem : ∀ x, e (e x) = e x)
     (hsc : PreservesDirectedSup e) :
     letI := IdemFix.completeLattice hidem (preservesDirectedSup_monotone hsc)
@@ -123,6 +130,9 @@ theorem idemFix_incl_preservesDirectedSup (hidem : ∀ x, e (e x) = e x)
   rw [← Set.image_comp]
   exact Set.image_congr (fun s _ => s.2)
 
+/--
+@isnad1 id=preserve.2h2v.s6.336bf7589d12 from=translated src=- shape=d696f456 vocab=c1a8c2c1
+-/
 theorem idemFix_retr_preservesDirectedSup (hidem : ∀ x, e (e x) = e x)
     (hsc : PreservesDirectedSup e) :
     letI := IdemFix.completeLattice hidem (preservesDirectedSup_monotone hsc)
@@ -162,7 +172,9 @@ noncomputable def idemFixRetraction (hidem : ∀ x, e (e x) = e x) (hsc : Preser
 
 /-- **Fixed points of a Scott-continuous idempotent form a continuous lattice.**
 Combine the
-retraction `idemFixRetraction` with Proposition 2.10(a). -/
+retraction `idemFixRetraction` with Proposition 2.10(a).
+@isnad1 id=iscontin.3h2v.s5.4ee9e74db04e from=translated src=- shape=876372c5 vocab=2f3eeeef
+-/
 theorem idemFix_isContinuousLattice (hidem : ∀ x, e (e x) = e x) (hsc : PreservesDirectedSup e)
     (hL : IsContinuousLattice L) :
     @IsContinuousLattice (IdemFix e)
@@ -174,7 +186,9 @@ theorem idemFix_isContinuousLattice (hidem : ∀ x, e (e x) = e x) (hsc : Preser
 2.10(b) applied
 to `idemFixRetraction`: the Scott topology of `IdemFix e` is the topology induced
 by the inclusion
-from the Scott topology of `L`. -/
+from the Scott topology of `L`.
+@isnad1 id=eq.3h2v.s6.38ddfbde53e3 from=translated src=- shape=a4a9d78b vocab=cdfc8532
+-/
 theorem idemFix_scottTopology (hidem : ∀ x, e (e x) = e x) (hsc : PreservesDirectedSup e)
     (hL : IsContinuousLattice L) :
     @scottTopologicalSpace (IdemFix e)
@@ -203,7 +217,9 @@ topology by
 continuous lattice
 (`idemFix_isContinuousLattice`, via Proposition 2.10), and `d ↦ s d` is a
 homeomorphism `D ≃ₜ
-IdemFix e` with inverse the retraction. -/
+IdemFix e` with inverse the retraction.
+@isnad1 id=ex.1h1v.s5.75a7c9bac4f7 from=translated src=- shape=ba65f883 vocab=90853cad
+-/
 theorem theorem_2_12_backward {D : Type u} [TopologicalSpace D] [T0Space D]
     (hD : IsInjectiveSpace.{u, u} D) :
     ∃ (E : Type u) (inst : CompleteLattice E),
@@ -253,7 +269,9 @@ theorem theorem_2_12_backward {D : Type u} [TopologicalSpace D] [T0Space D]
 (homeomorphic to) a
 continuous lattice under its Scott topology. The forward direction is Proposition
 2.11; the
-backward direction is `theorem_2_12_backward`. -/
+backward direction is `theorem_2_12_backward`.
+@isnad1 id=iff.0h1v.s5.b3f69c2186b4 from=translated src=- shape=1eaac30a vocab=90853cad
+-/
 theorem theorem_2_12 {D : Type u} [TopologicalSpace D] [T0Space D] :
     IsInjectiveSpace.{u, u} D ↔
       ∃ (E : Type u) (inst : CompleteLattice E),
@@ -288,7 +306,9 @@ the *sub*-solution
   maximality of `gbar` (`scottExtend_maximal_le`, the remark after 3.8) gives the
   bound;
 * combining: `fbar = j ∘ i ∘ fbar ⊑ j ∘ gbar ⊑ fbar` (using `j ∘ i = id` and monotonicity
-of `j`). -/
+of `j`).
+@isnad1 id=eq.6h9v.s7.c2ebd089e75c from=translated src=- shape=02818698 vocab=fc428d46
+-/
 theorem lemma_3_9 (hD : IsContinuousLattice D) (hD' : IsContinuousLattice D')
     (P : IsContinuousLatticeProjection D D') (e : X → Y) (he : IsEmbedding e)
     {f : X → D} {g : X → D'} (hf : @Continuous X D _ scottTopologicalSpace f)

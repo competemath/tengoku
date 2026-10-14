@@ -68,30 +68,47 @@ def act (f : BQF) (p q r s : ℤ) : BQF where
   b := 2 * f.a * p * q + f.b * (p * s + q * r) + 2 * f.c * r * s
   c := f.a * q ^ 2 + f.b * q * s + f.c * s ^ 2
 
+/--
+@isnad1 id=eq.0h5v.s6.ce43d7859913 from=translated src=- shape=773b5758 vocab=f9d59480
+-/
 @[simp] lemma act_a (f : BQF) (p q r s : ℤ) :
     (act f p q r s).a = f.a * p ^ 2 + f.b * p * r + f.c * r ^ 2 := rfl
+/--
+@isnad1 id=eq.0h5v.s6.57b268794eb1 from=translated src=- shape=8a21983f vocab=6b3f864d
+-/
 @[simp] lemma act_b (f : BQF) (p q r s : ℤ) :
     (act f p q r s).b = 2 * f.a * p * q + f.b * (p * s + q * r) + 2 * f.c * r * s := rfl
+/--
+@isnad1 id=eq.0h5v.s6.d83ab6c34936 from=translated src=- shape=5bbd65a6 vocab=f9d59480
+-/
 @[simp] lemma act_c (f : BQF) (p q r s : ℤ) :
     (act f p q r s).c = f.a * q ^ 2 + f.b * q * s + f.c * s ^ 2 := rfl
 
-/-- The identity matrix acts trivially. -/
+/-- The identity matrix acts trivially.
+@isnad1 id=eq.0h1v.s4.283548cfcea4 from=translated src=- shape=4104c681 vocab=8e3ebbbd
+-/
 @[simp] lemma act_one (f : BQF) : act f 1 0 0 1 = f := by
   ext <;> simp
 
 /-- **Discriminant transforms by the square of the determinant.** In particular for
-`SL₂` (`p s − q r = 1`) the discriminant is invariant. -/
+`SL₂` (`p s − q r = 1`) the discriminant is invariant.
+@isnad1 id=eq.0h5v.s6.21752e250b6a from=translated src=- shape=4b95db6a vocab=0562e694
+-/
 theorem disc_act (f : BQF) (p q r s : ℤ) :
     disc (act f p q r s) = (p * s - q * r) ^ 2 * disc f := by
   simp only [disc, act_a, act_b, act_c]; ring
 
-/-- Composition of two `act`s is the `act` of the matrix product. -/
+/-- Composition of two `act`s is the `act` of the matrix product.
+@isnad1 id=eq.0h9v.s7.a3e543b82dbf from=translated src=- shape=7e941a02 vocab=c02c187f
+-/
 theorem act_act (f : BQF) (p q r s p' q' r' s' : ℤ) :
     act (act f p q r s) p' q' r' s' =
       act f (p * p' + q * r') (p * q' + q * s') (r * p' + s * r') (r * q' + s * s') := by
   ext <;> simp only [act_a, act_b, act_c] <;> ring
 
-/-- Acting by an `SL₂`-matrix and then by its inverse `![![s,-q],![-r,p]]` returns `f`. -/
+/-- Acting by an `SL₂`-matrix and then by its inverse `![![s,-q],![-r,p]]` returns `f`.
+@isnad1 id=eq.1h5v.s5.446d9111ff7a from=translated src=- shape=a493a721 vocab=42154c99
+-/
 theorem act_act_inv (f : BQF) {p q r s : ℤ} (hdet : p * s - q * r = 1) :
     act (act f p q r s) s (-q) (-r) p = f := by
   rw [act_act]
@@ -101,7 +118,9 @@ theorem act_act_inv (f : BQF) {p q r s : ℤ} (hdet : p * s - q * r = 1) :
   have h4 : r * (-q) + s * p = 1 := by linear_combination hdet
   rw [h1, h2, h3, h4, act_one]
 
-/-- A common divisor of the coefficients divides the coefficients of any `act`. -/
+/-- A common divisor of the coefficients divides the coefficients of any `act`.
+@isnad1 id=and.3h6v.s6.b79435285f08 from=translated src=- shape=be341751 vocab=5be2c0d2
+-/
 lemma dvd_act_of_dvd {d : ℤ} {f : BQF} (ha : d ∣ f.a) (hb : d ∣ f.b) (hc : d ∣ f.c)
     (p q r s : ℤ) :
     d ∣ (act f p q r s).a ∧ d ∣ (act f p q r s).b ∧ d ∣ (act f p q r s).c := by
@@ -111,7 +130,9 @@ lemma dvd_act_of_dvd {d : ℤ} {f : BQF} (ha : d ∣ f.a) (hb : d ∣ f.b) (hc :
       (((hc.mul_left 2).mul_right r).mul_right s),
     dvd_add (dvd_add (ha.mul_right _) ((hb.mul_right q).mul_right s)) (hc.mul_right _)⟩
 
-/-- **Primitivity is preserved by `SL₂`** (indeed `GL₂(ℤ)`). -/
+/-- **Primitivity is preserved by `SL₂`** (indeed `GL₂(ℤ)`).
+@isnad1 id=isprimit.2h5v.s5.c661da3f799a from=translated src=- shape=3e0c1a30 vocab=56514373
+-/
 theorem IsPrimitive.act {f : BQF} (hf : IsPrimitive f) {p q r s : ℤ}
     (hdet : p * s - q * r = 1) : IsPrimitive (act f p q r s) := by
   intro d hda hdb hdc
@@ -126,7 +147,9 @@ def IsRoot (f : BQF) (τ : ℍ) : Prop :=
   (f.a : ℂ) * (τ : ℂ) ^ 2 + (f.b : ℂ) * (τ : ℂ) + (f.c : ℂ) = 0
 
 /-- A real linear relation `α·τ + β = 0` at a point of `ℍ` forces `α = 0` (and then
-`β = 0`): the imaginary part gives `α · Im τ = 0`. -/
+`β = 0`): the imaginary part gives `α · Im τ = 0`.
+@isnad1 id=and.1h3v.s5.de04f5b79124 from=translated src=- shape=306e7863 vocab=49345d23
+-/
 lemma real_lin_eq_zero (τ : ℍ) {α β : ℝ} (h : (α : ℂ) * (τ : ℂ) + (β : ℂ) = 0) :
     α = 0 ∧ β = 0 := by
   have him := congrArg Complex.im h
@@ -142,20 +165,26 @@ lemma real_lin_eq_zero (τ : ℍ) {α β : ℝ} (h : (α : ℂ) * (τ : ℂ) + (
     Complex.zero_re] at hre
   simpa using hre
 
-/-- An integer linear relation `α·τ + β = 0` at a point of `ℍ` forces `α = β = 0`. -/
+/-- An integer linear relation `α·τ + β = 0` at a point of `ℍ` forces `α = β = 0`.
+@isnad1 id=and.1h3v.s5.2a143070acaf from=translated src=- shape=eec2ab67 vocab=4b630ff3
+-/
 lemma int_lin_eq_zero (τ : ℍ) {α β : ℤ} (h : (α : ℂ) * (τ : ℂ) + (β : ℂ) = 0) :
     α = 0 ∧ β = 0 := by
   have h' : ((α : ℝ) : ℂ) * (τ : ℂ) + ((β : ℝ) : ℂ) = 0 := by push_cast at h ⊢; exact h
   obtain ⟨hα, hβ⟩ := real_lin_eq_zero τ h'
   exact ⟨by exact_mod_cast hα, by exact_mod_cast hβ⟩
 
-/-- For a positive-definite form, `c > 0` as well (`4ac = b² − disc > 0`). -/
+/-- For a positive-definite form, `c > 0` as well (`4ac = b² − disc > 0`).
+@isnad1 id=lt.1h1v.s3.e5875342fcef from=translated src=- shape=a124ee4e vocab=028b7107
+-/
 lemma IsPosDef.c_pos {f : BQF} (hf : IsPosDef f) : 0 < f.c := by
   obtain ⟨ha, hd⟩ := hf
   simp only [disc] at hd
   nlinarith [sq_nonneg f.b, hd, ha]
 
-/-- The square-completion identity `(2aτ + b)² = disc f` for a root `τ` of `f`. -/
+/-- The square-completion identity `(2aτ + b)² = disc f` for a root `τ` of `f`.
+@isnad1 id=eq.1h2v.s6.61941a71ea24 from=translated src=- shape=aca603ae vocab=f794ca37
+-/
 lemma sq_two_a_root {f : BQF} {τ : ℍ} (h : IsRoot f τ) :
     (2 * (f.a : ℂ) * (τ : ℂ) + (f.b : ℂ)) ^ 2 = (disc f : ℂ) := by
   simp only [disc, IsRoot] at *
@@ -163,7 +192,9 @@ lemma sq_two_a_root {f : BQF} {τ : ℍ} (h : IsRoot f τ) :
   linear_combination (4 * (f.a : ℂ)) * h
 
 /-- **Uniqueness of the CM point of a positive-definite form.** Two roots in `ℍ` of the
-same positive-definite form are equal (both are the root with positive imaginary part). -/
+same positive-definite form are equal (both are the root with positive imaginary part).
+@isnad1 id=eq.3h3v.s4.80b7a2e8b457 from=translated src=- shape=7273b788 vocab=14a27188
+-/
 theorem root_unique {f : BQF} (hf : IsPosDef f) {τ τ' : ℍ}
     (h : IsRoot f τ) (h' : IsRoot f τ') : τ = τ' := by
   obtain ⟨ha, _⟩ := hf
@@ -196,7 +227,9 @@ positive-definite form `f = (a,b,c)`, the fixing matrices are exactly `p·I + k�
 def Fixes (p q r s : ℤ) (τ : ℍ) : Prop :=
   (p : ℂ) * (τ : ℂ) + (q : ℂ) = (τ : ℂ) * ((r : ℂ) * (τ : ℂ) + (s : ℂ))
 
-/-- A primitive form admits a Bézout relation among its coefficients. -/
+/-- A primitive form admits a Bézout relation among its coefficients.
+@isnad1 id=ex.1h1v.s6.bce9491f0f1a from=translated src=- shape=f3b926e9 vocab=aaad5252
+-/
 lemma bezout_of_primitive {f : BQF} (hf : IsPrimitive f) :
     ∃ u v w : ℤ, u * f.a + v * f.b + w * f.c = 1 := by
   have hg1 : Int.gcd f.a (Int.gcd f.b f.c) = 1 := by
@@ -222,7 +255,9 @@ lemma bezout_of_primitive {f : BQF} (hf : IsPrimitive f) :
 
 /-- **Fixed-matrix classification.** If an integer matrix `![![p,q],![r,s]]` fixes a root
 `τ` of a primitive positive-definite form `f`, then there is `k : ℤ` with
-`r = k·a`, `s − p = k·b`, `q = −k·c`. -/
+`r = k·a`, `s − p = k·b`, `q = −k·c`.
+@isnad1 id=ex.4h6v.s6.d6a91cfa2222 from=translated src=- shape=3af14207 vocab=ae46f024
+-/
 theorem fixes_classification {f : BQF} (hf : IsPrimitive f) (hpd : IsPosDef f)
     {p q r s : ℤ} {τ : ℍ} (hroot : IsRoot f τ) (hfix : Fixes p q r s τ) :
     ∃ k : ℤ, r = k * f.a ∧ s - p = k * f.b ∧ q = -(k * f.c) := by
@@ -254,7 +289,9 @@ theorem fixes_classification {f : BQF} (hf : IsPrimitive f) (hpd : IsPosDef f)
 
 /-- **Determinant is the norm form.** For a fixing matrix as classified above,
 `det = p s − q r = p² + b p k + a c k²` — the value of the norm form of the order at
-`(p, k)`, with `disc = b² − 4ac`. -/
+`(p, k)`, with `disc = b² − 4ac`.
+@isnad1 id=ex.4h6v.s7.64e95ac7cf77 from=translated src=- shape=ad3bb71e vocab=4d86a8b5
+-/
 theorem det_of_fixes {f : BQF} (hf : IsPrimitive f) (hpd : IsPosDef f)
     {p q r s : ℤ} {τ : ℍ} (hroot : IsRoot f τ) (hfix : Fixes p q r s τ) :
     ∃ k : ℤ, p * s - q * r = p ^ 2 + f.b * p * k + f.a * f.c * k ^ 2 := by

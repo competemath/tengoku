@@ -61,6 +61,9 @@ both pieces are necessarily empty. -/
 def IsNondegenerate {P : FiniteCyclicPresentation} (cut : P2Cut P) : Prop :=
   cut.left ≠ [] ∧ cut.right ≠ []
 
+/--
+@isnad1 id=iff.0h2v.s5.45ed335afa0d from=translated src=- shape=6098cef4 vocab=cdeca6df
+-/
 theorem isNondegenerate_iff_lengths_pos {P : FiniteCyclicPresentation}
     (cut : P2Cut P) :
     cut.IsNondegenerate ↔ 0 < cut.left.length ∧ 0 < cut.right.length := by
@@ -76,28 +79,43 @@ def canonical {P : FiniteCyclicPresentation} (face : P.OrientedFace)
     simpa only [List.take_append_drop] using
       List.IsRotated.refl (P.orientedBoundary face)
 
+/--
+@isnad1 id=eq.0h3v.s5.9a3e80f68f1d from=translated src=- shape=20af077b vocab=65a8f8b6
+-/
 @[simp]
 theorem canonical_face {P : FiniteCyclicPresentation} (face : P.OrientedFace)
     (position : Fin ((P.orientedBoundary face).length + 1)) :
     (canonical face position).face = face :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.c13b70ca4608 from=translated src=- shape=b27954d7 vocab=cfaf19ab
+-/
 @[simp]
 theorem canonical_zero_left {P : FiniteCyclicPresentation} (face : P.OrientedFace) :
     (canonical face 0).left = [] :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.a11171482dbc from=translated src=- shape=e27ce862 vocab=8d6e6492
+-/
 @[simp]
 theorem canonical_zero_right {P : FiniteCyclicPresentation} (face : P.OrientedFace) :
     (canonical face 0).right = P.orientedBoundary face :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.d9b71a9f78b5 from=translated src=- shape=d0e4c65e vocab=35fb32cd
+-/
 @[simp]
 theorem canonical_last_left {P : FiniteCyclicPresentation} (face : P.OrientedFace) :
     (canonical face (Fin.last (P.orientedBoundary face).length)).left =
       P.orientedBoundary face := by
   simp [canonical]
 
+/--
+@isnad1 id=eq.0h2v.s4.a2bd44ddf975 from=translated src=- shape=11373f6a vocab=f21b6d19
+-/
 @[simp]
 theorem canonical_last_right {P : FiniteCyclicPresentation} (face : P.OrientedFace) :
     (canonical face (Fin.last (P.orientedBoundary face).length)).right = [] := by
@@ -121,33 +139,51 @@ def flip {P : FiniteCyclicPresentation} (cut : P2Cut P) : P2Cut P where
     simpa only [inverseWord_append] using
       inverseWord_isRotated cut.boundary_rotated
 
+/--
+@isnad1 id=eq.0h2v.s4.f4ddd223f454 from=translated src=- shape=dc061f59 vocab=d8935f51
+-/
 @[simp]
 theorem swap_face {P : FiniteCyclicPresentation} (cut : P2Cut P) :
     cut.swap.face = cut.face :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.16395d640361 from=translated src=- shape=1e9eb030 vocab=9523abe0
+-/
 @[simp]
 theorem flip_face {P : FiniteCyclicPresentation} (cut : P2Cut P) :
     cut.flip.face = cut.face.flip :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.a0c6206fd702 from=translated src=- shape=6ddf6d3e vocab=e7730444
+-/
 @[simp]
 theorem swap_swap {P : FiniteCyclicPresentation} (cut : P2Cut P) :
     cut.swap.swap = cut := by
   cases cut
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.6c21e43ced41 from=translated src=- shape=6ddf6d3e vocab=88ccaf43
+-/
 @[simp]
 theorem flip_flip {P : FiniteCyclicPresentation} (cut : P2Cut P) :
     cut.flip.flip = cut := by
   cases cut
   simp [flip]
 
+/--
+@isnad1 id=eq.0h2v.s4.ed8263eea358 from=translated src=- shape=1ab3f269 vocab=2862b935
+-/
 theorem swap_flip {P : FiniteCyclicPresentation} (cut : P2Cut P) :
     cut.swap.flip = cut.flip.swap := by
   cases cut
   rfl
 
+/--
+@isnad1 id=iff.0h2v.s3.66abd6ae2628 from=translated src=- shape=d0788cef vocab=d9f13c46
+-/
 @[simp]
 theorem isNondegenerate_swap {P : FiniteCyclicPresentation} (cut : P2Cut P) :
     cut.swap.IsNondegenerate ↔ cut.IsNondegenerate := by
@@ -157,6 +193,9 @@ theorem isNondegenerate_swap {P : FiniteCyclicPresentation} (cut : P2Cut P) :
       0 < cut.left.length ∧ 0 < cut.right.length
   exact and_comm
 
+/--
+@isnad1 id=iff.0h2v.s3.ced21c030896 from=translated src=- shape=d0788cef vocab=8dad69f1
+-/
 @[simp]
 theorem isNondegenerate_flip {P : FiniteCyclicPresentation} (cut : P2Cut P) :
     cut.flip.IsNondegenerate ↔ cut.IsNondegenerate := by
@@ -186,39 +225,59 @@ def storedWord {α : Type*} (orientation : Bool)
     (word : List (SignedDart α)) : List (SignedDart α) :=
   if orientation then inverseWord word else word
 
+/--
+@isnad1 id=eq.0h1v.s5.bd76b37b42f5 from=translated src=- shape=1b6b5b98 vocab=56d8ca2a
+-/
 @[simp]
 theorem retainWord_nil {n : ℕ} :
     retainWord ([] : List (SignedDart (Fin n))) = [] :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.e9a7e833a1a7 from=translated src=- shape=41945ce5 vocab=24fe75a6
+-/
 @[simp]
 theorem retainWord_append {n : ℕ}
     (left right : List (SignedDart (Fin n))) :
     retainWord (left ++ right) = retainWord left ++ retainWord right := by
   simp [retainWord]
 
+/--
+@isnad1 id=eq.0h2v.s5.e89e68098305 from=translated src=- shape=43a85773 vocab=71f2b105
+-/
 @[simp]
 theorem castSuccDart_flip {n : ℕ} (d : SignedDart (Fin n)) :
     P1.castSuccDart d.flip = (P1.castSuccDart d).flip := by
   cases d <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.218a2d0b37d5 from=translated src=- shape=71f51965 vocab=b061b67f
+-/
 @[simp]
 theorem retainWord_inverseWord {n : ℕ}
     (word : List (SignedDart (Fin n))) :
     retainWord (inverseWord word) = inverseWord (retainWord word) := by
   simp [retainWord, inverseWord, List.map_map, Function.comp_def]
 
+/--
+@isnad1 id=eq.0h2v.s3.14181f3d1a02 from=translated src=- shape=bd4a16a7 vocab=cb7060c9
+-/
 @[simp]
 theorem storedWord_false {α : Type*} (word : List (SignedDart α)) :
     storedWord false word = word :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.198fd8931915 from=translated src=- shape=1729f3db vocab=38ed8f1f
+-/
 @[simp]
 theorem storedWord_true {α : Type*} (word : List (SignedDart α)) :
     storedWord true word = inverseWord word :=
   rfl
 
-/-- Reading a stored word in its selected orientation returns the displayed word. -/
+/-- Reading a stored word in its selected orientation returns the displayed word.
+@isnad1 id=eq.0h3v.s5.0f0108a9ac82 from=translated src=- shape=ad0f2c15 vocab=74f55b26
+-/
 @[simp]
 theorem oriented_storedWord {α : Type*} (orientation : Bool)
     (word : List (SignedDart α)) :
@@ -226,11 +285,17 @@ theorem oriented_storedWord {α : Type*} (orientation : Bool)
       else storedWord orientation word) = word := by
   cases orientation <;> simp [storedWord]
 
+/--
+@isnad1 id=eq.0h2v.s4.828017a2a35e from=translated src=- shape=e12de8e4 vocab=11c99766
+-/
 @[simp]
 theorem contractDart_castSuccDart {n : ℕ} (d : SignedDart (Fin n)) :
     P1.contractDart (P1.castSuccDart d) = some d := by
   cases d <;> simp [P1.contractDart, P1.castSuccDart]
 
+/--
+@isnad1 id=eq.0h2v.s4.5a20f6c70ff3 from=translated src=- shape=89de4472 vocab=7813930d
+-/
 @[simp]
 theorem contractWord_retainWord {n : ℕ}
     (word : List (SignedDart (Fin n))) :
@@ -278,11 +343,17 @@ abbrev split (P : FiniteCyclicPresentation) (cut : P2Cut P) :
   edgeCount := P.edgeCount + 1
   faces := List.ofFn (faceWord P cut)
 
+/--
+@isnad1 id=eq.0h2v.s4.28d8a4deb4d4 from=translated src=- shape=34012f48 vocab=01e600ce
+-/
 @[simp]
 theorem split_edgeCount (P : FiniteCyclicPresentation) (cut : P2Cut P) :
     (split P cut).edgeCount = P.edgeCount + 1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.e3191fe4138f from=translated src=- shape=53d0f2eb vocab=0d440059
+-/
 theorem split_faces_length (P : FiniteCyclicPresentation) (cut : P2Cut P) :
     (split P cut).faces.length = P.faces.length + 1 := by
   simp [split]
@@ -302,12 +373,18 @@ def rightFace (P : FiniteCyclicPresentation) (cut : P2Cut P) :
     (split P cut).Face :=
   faceEquiv P cut (Fin.last P.faces.length)
 
+/--
+@isnad1 id=eq.0h3v.s7.57c327542c07 from=translated src=- shape=613b749f vocab=262909f8
+-/
 @[simp]
 theorem faceEquiv_apply_val (P : FiniteCyclicPresentation) (cut : P2Cut P)
     (f : Fin (P.faces.length + 1)) :
     (faceEquiv P cut f).val = f.val :=
   rfl
 
+/--
+@isnad1 id=or.0h3v.s5.c90662580be4 from=translated src=- shape=8578d389 vocab=3e4b2bd5
+-/
 theorem face_cases (P : FiniteCyclicPresentation) (cut : P2Cut P)
     (q : (split P cut).Face) :
     (∃ f : P.Face, q = oldFace P cut f) ∨ q = rightFace P cut := by
@@ -321,6 +398,9 @@ theorem face_cases (P : FiniteCyclicPresentation) (cut : P2Cut P)
   intro h
   exact Or.inr h.symm
 
+/--
+@isnad1 id=eq.0h3v.s7.80c645c15c9b from=translated src=- shape=ee719ba8 vocab=98847ca2
+-/
 @[simp]
 theorem split_boundary_index (P : FiniteCyclicPresentation) (cut : P2Cut P)
     (q : Fin (P.faces.length + 1)) :
@@ -331,6 +411,9 @@ theorem split_boundary_index (P : FiniteCyclicPresentation) (cut : P2Cut P)
   apply Fin.ext
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.8789b926bdf7 from=translated src=- shape=dc2c775d vocab=59570776
+-/
 @[simp]
 theorem split_boundary_old (P : FiniteCyclicPresentation) (cut : P2Cut P)
     (f : P.Face) :
@@ -341,23 +424,34 @@ theorem split_boundary_old (P : FiniteCyclicPresentation) (cut : P2Cut P)
         retainWord (P.boundary f) := by
   simp [oldFace, faceWord]
 
+/--
+@isnad1 id=eq.0h2v.s4.63552834a1b9 from=translated src=- shape=985b6ce9 vocab=c62a69c6
+-/
 theorem split_boundary_selected (P : FiniteCyclicPresentation) (cut : P2Cut P) :
     (split P cut).boundary (oldFace P cut cut.face.face) =
       selectedBoundary P cut := by
   simp
 
+/--
+@isnad1 id=eq.1h3v.s5.9afce7eb512d from=translated src=- shape=14a058af vocab=1a651676
+-/
 theorem split_boundary_old_of_ne (P : FiniteCyclicPresentation) (cut : P2Cut P)
     {f : P.Face} (h : f ≠ cut.face.face) :
     (split P cut).boundary (oldFace P cut f) =
       retainWord (P.boundary f) := by
   simp [h]
 
+/--
+@isnad1 id=eq.0h2v.s4.c3a1e980c6a5 from=translated src=- shape=d8b3cdf4 vocab=96bda474
+-/
 @[simp]
 theorem split_boundary_right (P : FiniteCyclicPresentation) (cut : P2Cut P) :
     (split P cut).boundary (rightFace P cut) = rightBoundary P cut := by
   simp [rightFace, faceWord]
 
-/-- The selected child has exactly the displayed oriented boundary `left d`. -/
+/-- The selected child has exactly the displayed oriented boundary `left d`.
+@isnad1 id=eq.0h2v.s5.b87dbcdc1ca5 from=translated src=- shape=74b32334 vocab=6eba684a
+-/
 theorem split_orientedBoundary_selected
     (P : FiniteCyclicPresentation) (cut : P2Cut P) :
     (split P cut).orientedBoundary
@@ -367,7 +461,9 @@ theorem split_orientedBoundary_selected
   simp only [split_boundary_selected]
   exact oriented_storedWord cut.face.orientation _
 
-/-- The right child has exactly the displayed oriented boundary `d⁻¹ right`. -/
+/-- The right child has exactly the displayed oriented boundary `d⁻¹ right`.
+@isnad1 id=eq.0h2v.s4.7afb77559aa6 from=translated src=- shape=98ee21a6 vocab=1aa5ea20
+-/
 theorem split_orientedBoundary_right
     (P : FiniteCyclicPresentation) (cut : P2Cut P) :
     (split P cut).orientedBoundary
@@ -377,14 +473,18 @@ theorem split_orientedBoundary_right
   simp only [split_boundary_right]
   exact oriented_storedWord cut.face.orientation _
 
-/-- Retaining a word preserves whether it is empty. -/
+/-- Retaining a word preserves whether it is empty.
+@isnad1 id=iff.0h2v.s5.fc6c5352ce4d from=translated src=- shape=02122dd7 vocab=56d8ca2a
+-/
 @[simp]
 theorem retainWord_eq_nil_iff {n : ℕ}
     (word : List (SignedDart (Fin n))) :
     retainWord word = [] ↔ word = [] := by
   exact List.map_eq_nil_iff
 
-/-- Retaining a word preserves the multiplicity of every old edge. -/
+/-- Retaining a word preserves the multiplicity of every old edge.
+@isnad1 id=eq.0h3v.s6.06ab37ecf337 from=translated src=- shape=00b639c3 vocab=96a77da9
+-/
 theorem count_retainWord_castSucc {n : ℕ} (e : Fin n)
     (word : List (SignedDart (Fin n))) :
     ((retainWord word).map edgeOfDart).count e.castSucc =
@@ -394,7 +494,9 @@ theorem count_retainWord_castSucc {n : ℕ} (e : Fin n)
       Fin.castSucc (Fin.castSucc_injective n) e
   simpa [retainWord, List.map_map, Function.comp_def] using hcount
 
-/-- Reversing the stored traversal does not change unoriented edge multiplicities. -/
+/-- Reversing the stored traversal does not change unoriented edge multiplicities.
+@isnad1 id=eq.0h4v.s5.a8089bee3760 from=translated src=- shape=f9d83991 vocab=458246e5
+-/
 theorem count_storedWord (orientation : Bool) {α : Type*} [DecidableEq α]
     (word : List (SignedDart α)) (e : α) :
     ((storedWord orientation word).map edgeOfDart).count e =
@@ -404,7 +506,9 @@ theorem count_storedWord (orientation : Bool) {α : Type*} [DecidableEq α]
   · rw [storedWord_true, map_edgeOfDart_inverseWord]
     exact (List.reverse_perm _).count_eq e
 
-/-- The fresh edge does not occur in a retained old word. -/
+/-- The fresh edge does not occur in a retained old word.
+@isnad1 id=not.0h2v.s6.54da7062efdc from=translated src=- shape=b739dd75 vocab=c4a3d512
+-/
 theorem freshEdge_not_mem_retainWord
     (P : FiniteCyclicPresentation) (word : List P.Dart) :
     freshEdge P ∉ (retainWord word).map edgeOfDart := by
@@ -415,6 +519,9 @@ theorem freshEdge_not_mem_retainWord
     exact P1.firstSubedge_ne_freshEdge (edgeOfDart old)
   exact hlast (P1.edgeOfDart_castSuccDart old ▸ hedge)
 
+/--
+@isnad1 id=not.0h2v.s6.d4e06d5fade8 from=translated src=- shape=18239d98 vocab=5209a70d
+-/
 @[simp]
 theorem pos_freshEdge_not_mem_retainWord
     (P : FiniteCyclicPresentation) (word : List P.Dart) :
@@ -423,6 +530,9 @@ theorem pos_freshEdge_not_mem_retainWord
   exact freshEdge_not_mem_retainWord P word
     (List.mem_map.mpr ⟨.pos (freshEdge P), h, rfl⟩)
 
+/--
+@isnad1 id=not.0h2v.s6.906391789b65 from=translated src=- shape=18239d98 vocab=d8b6d74a
+-/
 @[simp]
 theorem neg_freshEdge_not_mem_retainWord
     (P : FiniteCyclicPresentation) (word : List P.Dart) :
@@ -431,6 +541,9 @@ theorem neg_freshEdge_not_mem_retainWord
   exact freshEdge_not_mem_retainWord P word
     (List.mem_map.mpr ⟨.neg (freshEdge P), h, rfl⟩)
 
+/--
+@isnad1 id=not.0h2v.s6.f4b2e70d3e09 from=translated src=- shape=b3de4a05 vocab=32990b09
+-/
 @[simp]
 theorem pos_freshEdge_not_mem_inverse_retainWord
     (P : FiniteCyclicPresentation) (word : List P.Dart) :
@@ -442,6 +555,9 @@ theorem pos_freshEdge_not_mem_inverse_retainWord
   rw [map_edgeOfDart_inverseWord] at hedge
   exact freshEdge_not_mem_retainWord P word (List.mem_reverse.mp hedge)
 
+/--
+@isnad1 id=not.0h2v.s6.a13270e42233 from=translated src=- shape=b3de4a05 vocab=978c74e0
+-/
 @[simp]
 theorem neg_freshEdge_not_mem_inverse_retainWord
     (P : FiniteCyclicPresentation) (word : List P.Dart) :
@@ -463,6 +579,9 @@ def rightFreshDart (P : FiniteCyclicPresentation) (cut : P2Cut P) :
     SignedDart (Fin (P.edgeCount + 1)) :=
   (selectedFreshDart P cut).flip
 
+/--
+@isnad1 id=eq.0h2v.s5.9ddf07197b5d from=translated src=- shape=4f85ec9b vocab=103ed9c6
+-/
 @[simp]
 theorem edgeOfDart_selectedFreshDart
     (P : FiniteCyclicPresentation) (cut : P2Cut P) :
@@ -470,12 +589,18 @@ theorem edgeOfDart_selectedFreshDart
   cases h : cut.face.orientation <;>
     simp [selectedFreshDart, h, edgeOfDart]
 
+/--
+@isnad1 id=eq.0h2v.s5.c0b8b57c6470 from=translated src=- shape=4f85ec9b vocab=5c48a207
+-/
 @[simp]
 theorem edgeOfDart_rightFreshDart
     (P : FiniteCyclicPresentation) (cut : P2Cut P) :
     edgeOfDart (rightFreshDart P cut) = freshEdge P := by
   rw [rightFreshDart, edgeOfDart_flip, edgeOfDart_selectedFreshDart]
 
+/--
+@isnad1 id=eq.1h2v.s7.64f006c48fd7 from=translated src=- shape=6b3f60e1 vocab=56ebe6d9
+-/
 theorem selectedBoundary_of_orientation_false
     (P : FiniteCyclicPresentation) (cut : P2Cut P)
     (h : cut.face.orientation = false) :
@@ -483,6 +608,9 @@ theorem selectedBoundary_of_orientation_false
       retainWord cut.left ++ [.pos (freshEdge P)] := by
   simp [selectedBoundary, selectedOrientedBoundary, storedWord, h]
 
+/--
+@isnad1 id=eq.1h2v.s6.0e4d017b16d5 from=translated src=- shape=ee7db3c4 vocab=52754fe1
+-/
 theorem selectedBoundary_of_orientation_true
     (P : FiniteCyclicPresentation) (cut : P2Cut P)
     (h : cut.face.orientation = true) :
@@ -491,6 +619,9 @@ theorem selectedBoundary_of_orientation_true
   simp [selectedBoundary, selectedOrientedBoundary, storedWord, h,
     inverseWord, SignedDart.flip]
 
+/--
+@isnad1 id=eq.1h2v.s6.c5b6c9e71fa1 from=translated src=- shape=84606973 vocab=5711e687
+-/
 theorem rightBoundary_of_orientation_false
     (P : FiniteCyclicPresentation) (cut : P2Cut P)
     (h : cut.face.orientation = false) :
@@ -498,6 +629,9 @@ theorem rightBoundary_of_orientation_false
       .neg (freshEdge P) :: retainWord cut.right := by
   simp [rightBoundary, rightOrientedBoundary, storedWord, h]
 
+/--
+@isnad1 id=eq.1h2v.s7.231fda6883e8 from=translated src=- shape=6bf52ffb vocab=b2fc9f78
+-/
 theorem rightBoundary_of_orientation_true
     (P : FiniteCyclicPresentation) (cut : P2Cut P)
     (h : cut.face.orientation = true) :
@@ -506,7 +640,9 @@ theorem rightBoundary_of_orientation_true
   simp [rightBoundary, rightOrientedBoundary, storedWord, h,
     inverseWord, SignedDart.flip]
 
-/-- Reversing the cut exchanges its selected child with the original right child. -/
+/-- Reversing the cut exchanges its selected child with the original right child.
+@isnad1 id=eq.0h2v.s4.1e7bb7e03e5d from=translated src=- shape=4604f981 vocab=5336f838
+-/
 @[simp]
 theorem selectedBoundary_flip
     (P : FiniteCyclicPresentation) (cut : P2Cut P) :
@@ -523,7 +659,9 @@ theorem selectedBoundary_flip
     rw [rightBoundary_of_orientation_true P cut h]
     simp [P2Cut.flip]
 
-/-- Reversing the cut exchanges its right child with the original selected child. -/
+/-- Reversing the cut exchanges its right child with the original selected child.
+@isnad1 id=eq.0h2v.s4.54e334867395 from=translated src=- shape=4604f981 vocab=5336f838
+-/
 @[simp]
 theorem rightBoundary_flip
     (P : FiniteCyclicPresentation) (cut : P2Cut P) :
@@ -531,6 +669,9 @@ theorem rightBoundary_flip
   simpa only [P2Cut.flip_flip] using
     (selectedBoundary_flip P cut.flip).symm
 
+/--
+@isnad1 id=mem.0h2v.s5.e64a222420b2 from=translated src=- shape=e31eb530 vocab=c6cb2848
+-/
 theorem selectedFreshDart_mem_selectedBoundary
     (P : FiniteCyclicPresentation) (cut : P2Cut P) :
     selectedFreshDart P cut ∈ selectedBoundary P cut := by
@@ -540,6 +681,9 @@ theorem selectedFreshDart_mem_selectedBoundary
   · rw [selectedBoundary_of_orientation_true P cut h]
     simp [selectedFreshDart, h]
 
+/--
+@isnad1 id=not.0h2v.s5.53a6acdbdcd5 from=translated src=- shape=1a318e1a vocab=90be2a53
+-/
 theorem selectedFreshDart_not_mem_rightBoundary
     (P : FiniteCyclicPresentation) (cut : P2Cut P) :
     selectedFreshDart P cut ∉ rightBoundary P cut := by
@@ -549,6 +693,9 @@ theorem selectedFreshDart_not_mem_rightBoundary
   · rw [rightBoundary_of_orientation_true P cut h]
     simp [selectedFreshDart, h]
 
+/--
+@isnad1 id=mem.0h2v.s5.1d4fd363b3f4 from=translated src=- shape=e31eb530 vocab=8533205a
+-/
 theorem rightFreshDart_mem_rightBoundary
     (P : FiniteCyclicPresentation) (cut : P2Cut P) :
     rightFreshDart P cut ∈ rightBoundary P cut := by
@@ -558,6 +705,9 @@ theorem rightFreshDart_mem_rightBoundary
   · rw [rightBoundary_of_orientation_true P cut h]
     simp [rightFreshDart, selectedFreshDart, h, SignedDart.flip]
 
+/--
+@isnad1 id=not.0h2v.s5.308f200b6517 from=translated src=- shape=1a318e1a vocab=9b96cb8e
+-/
 theorem rightFreshDart_not_mem_selectedBoundary
     (P : FiniteCyclicPresentation) (cut : P2Cut P) :
     rightFreshDart P cut ∉ selectedBoundary P cut := by
@@ -567,19 +717,27 @@ theorem rightFreshDart_not_mem_selectedBoundary
   · rw [selectedBoundary_of_orientation_true P cut h]
     simp [rightFreshDart, selectedFreshDart, h, SignedDart.flip]
 
+/--
+@isnad1 id=not.0h3v.s6.a436c2d4620d from=translated src=- shape=8a543988 vocab=513a936f
+-/
 theorem selectedFreshDart_not_mem_retainWord
     (P : FiniteCyclicPresentation) (cut : P2Cut P) (word : List P.Dart) :
     selectedFreshDart P cut ∉ retainWord word := by
   cases h : cut.face.orientation <;>
     simp [selectedFreshDart, h]
 
+/--
+@isnad1 id=not.0h3v.s6.d361bb2de956 from=translated src=- shape=8a543988 vocab=a3f2cd5a
+-/
 theorem rightFreshDart_not_mem_retainWord
     (P : FiniteCyclicPresentation) (cut : P2Cut P) (word : List P.Dart) :
     rightFreshDart P cut ∉ retainWord word := by
   cases h : cut.face.orientation <;>
     simp [rightFreshDart, selectedFreshDart, h, SignedDart.flip]
 
-/-- The selected child receives the old-edge occurrences in the left cut piece. -/
+/-- The selected child receives the old-edge occurrences in the left cut piece.
+@isnad1 id=eq.0h3v.s5.5f606c8af9ea from=translated src=- shape=58d00176 vocab=3e5cf739
+-/
 theorem faceEdgeMultiplicity_split_selected_castSucc
     (P : FiniteCyclicPresentation) (cut : P2Cut P) (e : P.Edge) :
     (split P cut).faceEdgeMultiplicity (oldFace P cut cut.face.face) e.castSucc =
@@ -598,7 +756,9 @@ theorem faceEdgeMultiplicity_split_selected_castSucc
       simp [selectedOrientedBoundary, edgeOfDart,
         count_retainWord_castSucc, hne']
 
-/-- The right child receives the old-edge occurrences in the right cut piece. -/
+/-- The right child receives the old-edge occurrences in the right cut piece.
+@isnad1 id=eq.0h3v.s5.16b1f95dd13a from=translated src=- shape=320fa41a vocab=9b307059
+-/
 theorem faceEdgeMultiplicity_split_right_castSucc
     (P : FiniteCyclicPresentation) (cut : P2Cut P) (e : P.Edge) :
     (split P cut).faceEdgeMultiplicity (rightFace P cut) e.castSucc =
@@ -617,7 +777,9 @@ theorem faceEdgeMultiplicity_split_right_castSucc
       simp [rightOrientedBoundary, edgeOfDart,
         count_retainWord_castSucc, hne']
 
-/-- Every unselected face retains its old-edge multiplicities. -/
+/-- Every unselected face retains its old-edge multiplicities.
+@isnad1 id=eq.1h4v.s5.f976b6733fd9 from=translated src=- shape=aa8d2d9c vocab=978f42c2
+-/
 theorem faceEdgeMultiplicity_split_old_of_ne
     (P : FiniteCyclicPresentation) (cut : P2Cut P) {f : P.Face}
     (h : f ≠ cut.face.face) (e : P.Edge) :
@@ -627,7 +789,9 @@ theorem faceEdgeMultiplicity_split_old_of_ne
   rw [split_boundary_old_of_ne P cut h]
   exact count_retainWord_castSucc e (P.boundary f)
 
-/-- The selected child contains the fresh edge exactly once. -/
+/-- The selected child contains the fresh edge exactly once.
+@isnad1 id=eq.0h2v.s4.701ab89a9dd9 from=translated src=- shape=ab7135bc vocab=f7cbe342
+-/
 @[simp]
 theorem faceEdgeMultiplicity_split_selected_freshEdge
     (P : FiniteCyclicPresentation) (cut : P2Cut P) :
@@ -645,7 +809,9 @@ theorem faceEdgeMultiplicity_split_selected_freshEdge
         List.count_eq_zero.mpr (freshEdge_not_mem_retainWord P cut.left)
       simp [selectedOrientedBoundary, edgeOfDart, hzero]
 
-/-- The right child contains the fresh edge exactly once. -/
+/-- The right child contains the fresh edge exactly once.
+@isnad1 id=eq.0h2v.s4.333d610c83c1 from=translated src=- shape=463a4afa vocab=20d8720b
+-/
 @[simp]
 theorem faceEdgeMultiplicity_split_right_freshEdge
     (P : FiniteCyclicPresentation) (cut : P2Cut P) :
@@ -662,7 +828,9 @@ theorem faceEdgeMultiplicity_split_right_freshEdge
         List.count_eq_zero.mpr (freshEdge_not_mem_retainWord P cut.right)
       simp [rightOrientedBoundary, edgeOfDart, hzero]
 
-/-- An unselected face contains no occurrence of the fresh edge. -/
+/-- An unselected face contains no occurrence of the fresh edge.
+@isnad1 id=eq.1h3v.s5.c2bc8879c2db from=translated src=- shape=1b3ae597 vocab=8f2ef403
+-/
 theorem faceEdgeMultiplicity_split_old_freshEdge_of_ne
     (P : FiniteCyclicPresentation) (cut : P2Cut P) {f : P.Face}
     (h : f ≠ cut.face.face) :
@@ -671,7 +839,9 @@ theorem faceEdgeMultiplicity_split_old_freshEdge_of_ne
   rw [split_boundary_old_of_ne P cut h]
   exact List.count_eq_zero.mpr (freshEdge_not_mem_retainWord P (P.boundary f))
 
-/-- The selected source face's multiplicity is the sum of the two cut-piece counts. -/
+/-- The selected source face's multiplicity is the sum of the two cut-piece counts.
+@isnad1 id=eq.0h3v.s6.199fec93bedd from=translated src=- shape=0482209a vocab=85120bd6
+-/
 theorem faceEdgeMultiplicity_cut_eq_add
     (P : FiniteCyclicPresentation) (cut : P2Cut P) (e : P.Edge) :
     P.faceEdgeMultiplicity cut.face.face e =
@@ -717,7 +887,9 @@ private theorem sum_replace_add {ι : Type*} [Fintype ι] [DecidableEq ι]
     _ = ∑ x, values x :=
       Finset.add_sum_erase Finset.univ values (Finset.mem_univ selected)
 
-/-- P2 preserves the total multiplicity of every retained old edge. -/
+/-- P2 preserves the total multiplicity of every retained old edge.
+@isnad1 id=eq.0h3v.s4.ab6c46c42482 from=translated src=- shape=bf3dca4b vocab=599439fd
+-/
 theorem edgeMultiplicity_split_castSucc
     (P : FiniteCyclicPresentation) (cut : P2Cut P) (e : P.Edge) :
     P.edgeMultiplicity e =
@@ -762,7 +934,9 @@ theorem edgeMultiplicity_split_castSucc
     ((cut.right.map edgeOfDart).count e)
     (faceEdgeMultiplicity_cut_eq_add P cut e)
 
-/-- The fresh cutting edge occurs exactly once in each child and nowhere else. -/
+/-- The fresh cutting edge occurs exactly once in each child and nowhere else.
+@isnad1 id=eq.0h2v.s4.036150a20c0e from=translated src=- shape=cfafc54a vocab=42c4505b
+-/
 @[simp]
 theorem edgeMultiplicity_split_freshEdge
     (P : FiniteCyclicPresentation) (cut : P2Cut P) :
@@ -799,7 +973,9 @@ theorem edgeMultiplicity_split_freshEdge
   rw [hold]
   simp
 
-/-- Retaining old edge names preserves and reflects cyclic rotation. -/
+/-- Retaining old edge names preserves and reflects cyclic rotation.
+@isnad1 id=iff.0h3v.s5.f74ae2e2258c from=translated src=- shape=cb2cb564 vocab=6b759161
+-/
 @[simp]
 theorem retainWord_isRotated_iff {n : ℕ}
     (left right : List (SignedDart (Fin n))) :
@@ -812,7 +988,9 @@ theorem retainWord_isRotated_iff {n : ℕ}
   · intro h
     simpa only [retainWord] using h.map P1.castSuccDart
 
-/-- P2 preserves ordinary finite-presentation incidence validity. -/
+/-- P2 preserves ordinary finite-presentation incidence validity.
+@isnad1 id=issurfac.1h2v.s3.db79a5289e22 from=translated src=- shape=8f4fd3ab vocab=af8dfd12
+-/
 theorem split_isSurfaceValid
     (P : FiniteCyclicPresentation) (cut : P2Cut P)
     (h : P.IsSurfaceValid) :
@@ -924,7 +1102,9 @@ theorem split_isSurfaceValid
       rw [edgeMultiplicity_split_castSucc P cut old] at hmultiplicity
       exact hmultiplicity
 
-/-- Edge membership is independent of the chosen traversal orientation of a face. -/
+/-- Edge membership is independent of the chosen traversal orientation of a face.
+@isnad1 id=iff.0h3v.s5.85d847eeffef from=translated src=- shape=55926649 vocab=149b13b7
+-/
 theorem edge_mem_orientedBoundary_iff
     (P : FiniteCyclicPresentation) (face : P.OrientedFace) (e : P.Edge) :
     e ∈ (P.orientedBoundary face).map edgeOfDart ↔
@@ -936,7 +1116,9 @@ theorem edge_mem_orientedBoundary_iff
       · rw [orientedBoundary, ite_eq_left rfl, map_edgeOfDart_inverseWord]
         exact List.mem_reverse
 
-/-- An edge of the selected face occurs in one of the two cut pieces. -/
+/-- An edge of the selected face occurs in one of the two cut pieces.
+@isnad1 id=iff.0h3v.s6.b4d1818446d1 from=translated src=- shape=e9ca968e vocab=21f67556
+-/
 theorem edge_mem_cut_pieces_iff
     (P : FiniteCyclicPresentation) (cut : P2Cut P) (e : P.Edge) :
     e ∈ cut.left.map edgeOfDart ∨ e ∈ cut.right.map edgeOfDart ↔
@@ -950,7 +1132,9 @@ theorem edge_mem_cut_pieces_iff
     _ ↔ e ∈ (P.boundary cut.face.face).map edgeOfDart :=
       edge_mem_orientedBoundary_iff P cut.face e
 
-/-- Membership of an old edge is retained after enlarging the edge type. -/
+/-- Membership of an old edge is retained after enlarging the edge type.
+@isnad1 id=mem.1h3v.s6.ee659131f907 from=translated src=- shape=adc042bb vocab=125822b0
+-/
 theorem castSucc_edge_mem_retainWord
     {n : ℕ} {e : Fin n} {word : List (SignedDart (Fin n))}
     (h : e ∈ word.map edgeOfDart) :
@@ -960,7 +1144,9 @@ theorem castSucc_edge_mem_retainWord
     ⟨P1.castSuccDart d, List.mem_map.mpr ⟨d, hd, rfl⟩,
       P1.edgeOfDart_castSuccDart d⟩
 
-/-- Storing a word in the opposite traversal preserves unoriented edge membership. -/
+/-- Storing a word in the opposite traversal preserves unoriented edge membership.
+@isnad1 id=iff.0h4v.s5.5d7991199ff8 from=translated src=- shape=f784cb64 vocab=1071c131
+-/
 theorem edge_mem_storedWord_iff
     {α : Type*} (orientation : Bool)
     (word : List (SignedDart α)) (e : α) :
@@ -971,6 +1157,9 @@ theorem edge_mem_storedWord_iff
   · rw [storedWord_true, map_edgeOfDart_inverseWord]
     exact List.mem_reverse
 
+/--
+@isnad1 id=mem.1h3v.s7.5450fab58556 from=translated src=- shape=62c19e1e vocab=fc40e452
+-/
 theorem castSucc_edge_mem_selectedBoundary
     (P : FiniteCyclicPresentation) (cut : P2Cut P) {e : P.Edge}
     (h : e ∈ cut.left.map edgeOfDart) :
@@ -980,6 +1169,9 @@ theorem castSucc_edge_mem_selectedBoundary
     List.mem_append, List.mem_singleton]
   exact Or.inl (castSucc_edge_mem_retainWord h)
 
+/--
+@isnad1 id=mem.1h3v.s7.0e5734ff72f7 from=translated src=- shape=62c19e1e vocab=e88a7e71
+-/
 theorem castSucc_edge_mem_rightBoundary
     (P : FiniteCyclicPresentation) (cut : P2Cut P) {e : P.Edge}
     (h : e ∈ cut.right.map edgeOfDart) :
@@ -988,7 +1180,9 @@ theorem castSucc_edge_mem_rightBoundary
   simp only [rightOrientedBoundary, List.map_cons, List.mem_cons]
   exact Or.inr (castSucc_edge_mem_retainWord h)
 
-/-- The two child faces are adjacent through the fresh cutting edge. -/
+/-- The two child faces are adjacent through the fresh cutting edge.
+@isnad1 id=faceadja.0h2v.s4.5382d32d4a8d from=translated src=- shape=c659dc6b vocab=f1d7767d
+-/
 theorem split_children_faceAdjacent
     (P : FiniteCyclicPresentation) (cut : P2Cut P) :
     (split P cut).FaceAdjacent
@@ -1021,7 +1215,9 @@ private theorem faceChain_symm
   | single h => exact Relation.ReflTransGen.single (faceAdjacent_symm h)
   | trans h₁ h₂ ih₁ ih₂ => exact ih₂.trans ih₁
 
-/-- A source-face edge occurs in a child reachable from the retained face position. -/
+/-- A source-face edge occurs in a child reachable from the retained face position.
+@isnad1 id=ex.1h4v.s6.05f72a477079 from=translated src=- shape=d856e12e vocab=02f6499f
+-/
 theorem exists_child_edge
     (P : FiniteCyclicPresentation) (cut : P2Cut P)
     (f : P.Face) (e : P.Edge)
@@ -1045,7 +1241,9 @@ theorem exists_child_edge
     rw [split_boundary_old_of_ne P cut hface]
     exact castSucc_edge_mem_retainWord h
 
-/-- A source adjacency lifts to a target path between the retained face positions. -/
+/-- A source adjacency lifts to a target path between the retained face positions.
+@isnad1 id=refltran.1h4v.s5.3c4f05b7f71b from=translated src=- shape=00437190 vocab=779fd4e0
+-/
 theorem map_faceAdjacent_chain
     (P : FiniteCyclicPresentation) (cut : P2Cut P) {f g : P.Face}
     (h : P.FaceAdjacent f g) :
@@ -1058,7 +1256,9 @@ theorem map_faceAdjacent_chain
     ((Relation.ReflTransGen.single ⟨e.castSucc, hq, hr⟩).trans
       (faceChain_symm hgr))
 
-/-- A source face-adjacency path lifts to a target path. -/
+/-- A source face-adjacency path lifts to a target path.
+@isnad1 id=refltran.1h4v.s5.54337bbdda98 from=translated src=- shape=77383e4a vocab=779fd4e0
+-/
 theorem map_faceChain
     (P : FiniteCyclicPresentation) (cut : P2Cut P) {f g : P.Face}
     (h : Relation.ReflTransGen P.FaceAdjacent f g) :
@@ -1092,7 +1292,9 @@ private theorem oldFace_to_target
   · exact ⟨cut.face.face,
       Relation.ReflTransGen.single (split_children_faceAdjacent P cut)⟩
 
-/-- P2 preserves connectivity of the face-edge incidence graph. -/
+/-- P2 preserves connectivity of the face-edge incidence graph.
+@isnad1 id=isconnec.1h2v.s3.5cd032a27df8 from=translated src=- shape=8f4fd3ab vocab=594065f0
+-/
 theorem split_isConnected
     (P : FiniteCyclicPresentation) (cut : P2Cut P)
     (h : P.IsConnected) :
@@ -1112,6 +1314,9 @@ def collapseFace
   else
     cut.face.face
 
+/--
+@isnad1 id=eq.0h3v.s4.5d7724f24b88 from=translated src=- shape=c2334928 vocab=1de031c0
+-/
 @[simp]
 theorem collapseFace_oldFace
     (P : FiniteCyclicPresentation) (cut : P2Cut P) (f : P.Face) :
@@ -1119,6 +1324,9 @@ theorem collapseFace_oldFace
   apply Fin.ext
   simp [collapseFace, oldFace]
 
+/--
+@isnad1 id=eq.0h2v.s4.a597c1af4758 from=translated src=- shape=3dba19ea vocab=caa0eb23
+-/
 @[simp]
 theorem collapseFace_rightFace
     (P : FiniteCyclicPresentation) (cut : P2Cut P) :
@@ -1180,7 +1388,9 @@ private theorem collapseFace_eq_of_freshEdge_mem
     omega
   · exact collapseFace_rightFace P cut
 
-/-- Collapsing the child faces sends target adjacency to a source adjacency path. -/
+/-- Collapsing the child faces sends target adjacency to a source adjacency path.
+@isnad1 id=refltran.1h4v.s5.d03c60e5c2bd from=translated src=- shape=b1e1173d vocab=99b9b1d7
+-/
 theorem collapse_faceAdjacent_chain
     (P : FiniteCyclicPresentation) (cut : P2Cut P)
     {q r : (split P cut).Face}
@@ -1198,7 +1408,9 @@ theorem collapse_faceAdjacent_chain
       ⟨e, oldEdge_mem_collapseFace P cut q e hqb,
         oldEdge_mem_collapseFace P cut r e hrb⟩
 
-/-- Collapsing the child faces sends target adjacency paths to source adjacency paths. -/
+/-- Collapsing the child faces sends target adjacency paths to source adjacency paths.
+@isnad1 id=refltran.1h4v.s5.a0734821853f from=translated src=- shape=b1e428ec vocab=99b9b1d7
+-/
 theorem collapse_faceChain
     (P : FiniteCyclicPresentation) (cut : P2Cut P)
     {q r : (split P cut).Face}
@@ -1210,7 +1422,9 @@ theorem collapse_faceChain
   | single hadj => exact collapse_faceAdjacent_chain P cut hadj
   | trans _ _ ih₁ ih₂ => exact ih₁.trans ih₂
 
-/-- A P2 split is connected only if its source presentation is connected. -/
+/-- A P2 split is connected only if its source presentation is connected.
+@isnad1 id=isconnec.1h2v.s3.96acc5da5281 from=translated src=- shape=ef7f1a42 vocab=594065f0
+-/
 theorem isConnected_of_split
     (P : FiniteCyclicPresentation) (cut : P2Cut P)
     (h : (split P cut).IsConnected) :
@@ -1222,7 +1436,9 @@ theorem isConnected_of_split
     have hmapped := collapse_faceChain P cut hchain
     simpa only [collapseFace_oldFace] using hmapped
 
-/-- Every P2 split of an exceptional empty-word presentation is ordinarily valid. -/
+/-- Every P2 split of an exceptional empty-word presentation is ordinarily valid.
+@isnad1 id=issurfac.1h2v.s3.4f5eb0df19c9 from=translated src=- shape=c3da16c1 vocab=61f9be5e
+-/
 theorem split_isSurfaceValid_of_isEmptyWordSphere
     (P : FiniteCyclicPresentation) (cut : P2Cut P)
     (h : P.IsEmptyWordSphere) :
@@ -1278,7 +1494,9 @@ theorem split_isSurfaceValid_of_isEmptyWordSphere
     subst e
     exact Or.inr (edgeMultiplicity_split_freshEdge P cut)
 
-/-- P2 preserves Gallier validity, including the exceptional empty-word branch. -/
+/-- P2 preserves Gallier validity, including the exceptional empty-word branch.
+@isnad1 id=isgallie.1h2v.s3.842eb5233f93 from=translated src=- shape=8f4fd3ab vocab=1095359c
+-/
 theorem split_isGallierValid
     (P : FiniteCyclicPresentation) (cut : P2Cut P)
     (h : P.IsGallierValid) :
@@ -1299,18 +1517,25 @@ def emptyWordSphereCut : P2Cut emptyWordSphere :=
 def emptyWordSphereLastCut : P2Cut emptyWordSphere :=
   P2Cut.canonical (.pos 0) (Fin.last 0)
 
+/--
+@isnad1 id=eq.0h0v.s2.23d4b215305a from=translated src=- shape=836e6cbb vocab=8d328fa7
+-/
 @[simp]
 theorem emptyWordSphereLastCut_eq :
     emptyWordSphereLastCut = emptyWordSphereCut :=
   rfl
 
-/-- P2 turns the exceptional empty-word sphere presentation into the two-monogon presentation. -/
+/-- P2 turns the exceptional empty-word sphere presentation into the two-monogon presentation.
+@isnad1 id=eq.0h0v.s2.d3f21c613adb from=translated src=- shape=583fb3b9 vocab=3fc3c823
+-/
 @[simp]
 theorem split_emptyWordSphere :
     split emptyWordSphere emptyWordSphereCut = twoMonogonSphere :=
   rfl
 
-/-- The endpoint-at-the-right spelling gives the same exact regression. -/
+/-- The endpoint-at-the-right spelling gives the same exact regression.
+@isnad1 id=eq.0h0v.s2.e7bcac2c49cb from=translated src=- shape=583fb3b9 vocab=1f6c3cec
+-/
 @[simp]
 theorem split_emptyWordSphere_last :
     split emptyWordSphere emptyWordSphereLastCut = twoMonogonSphere :=
@@ -1332,40 +1557,52 @@ def P2Subdivision (P Q : FiniteCyclicPresentation) : Prop :=
 
 namespace P2Subdivision
 
-/-- A canonical nondegenerate split is a P2 subdivision. -/
+/-- A canonical nondegenerate split is a P2 subdivision.
+@isnad1 id=p2subdiv.1h2v.s3.18984709545e from=translated src=- shape=08ded1e7 vocab=1a8e8a52
+-/
 theorem canonical (P : FiniteCyclicPresentation) (cut : P2Cut P)
     (hcut : cut.IsNondegenerate) :
     P2Subdivision P (P2.split P cut) :=
   ⟨cut, Or.inl hcut, ⟨SignedPresentationIso.refl _⟩⟩
 
-/-- The raw split of an exceptional empty-word sphere is an allowed exceptional P2 step. -/
+/-- The raw split of an exceptional empty-word sphere is an allowed exceptional P2 step.
+@isnad1 id=p2subdiv.1h2v.s3.6605dcca0e1c from=translated src=- shape=301c870d vocab=7e27fbfe
+-/
 theorem canonicalEmptyWordSphere (P : FiniteCyclicPresentation) (cut : P2Cut P)
     (hP : P.IsEmptyWordSphere) :
     P2Subdivision P (P2.split P cut) :=
   ⟨cut, Or.inr hP, ⟨SignedPresentationIso.refl _⟩⟩
 
-/-- P2 subdivisions preserve ordinary incidence validity. -/
+/-- P2 subdivisions preserve ordinary incidence validity.
+@isnad1 id=issurfac.2h2v.s3.5a073d6fff81 from=translated src=- shape=a72c41e2 vocab=5f3bb7e7
+-/
 theorem isSurfaceValid {P Q : FiniteCyclicPresentation}
     (hPQ : P2Subdivision P Q) (h : P.IsSurfaceValid) :
     Q.IsSurfaceValid := by
   rcases hPQ with ⟨cut, _hcut, ⟨e⟩⟩
   exact e.isSurfaceValid (P2.split_isSurfaceValid P cut h)
 
-/-- P2 subdivisions preserve face-incidence connectivity. -/
+/-- P2 subdivisions preserve face-incidence connectivity.
+@isnad1 id=isconnec.2h2v.s3.b9faa8740216 from=translated src=- shape=a72c41e2 vocab=911e2b62
+-/
 theorem isConnected {P Q : FiniteCyclicPresentation}
     (hPQ : P2Subdivision P Q) (h : P.IsConnected) :
     Q.IsConnected := by
   rcases hPQ with ⟨cut, _hcut, ⟨e⟩⟩
   exact e.isConnected (P2.split_isConnected P cut h)
 
-/-- P2 subdivisions preserve Gallier validity. -/
+/-- P2 subdivisions preserve Gallier validity.
+@isnad1 id=isgallie.2h2v.s3.142aa8299b0a from=translated src=- shape=a72c41e2 vocab=d6095dab
+-/
 theorem isGallierValid {P Q : FiniteCyclicPresentation}
     (hPQ : P2Subdivision P Q) (h : P.IsGallierValid) :
     Q.IsGallierValid := by
   rcases hPQ with ⟨cut, _hcut, ⟨e⟩⟩
   exact e.isGallierValid (P2.split_isGallierValid P cut h)
 
-/-- The exceptional sphere presentation subdivides to the two-monogon sphere presentation. -/
+/-- The exceptional sphere presentation subdivides to the two-monogon sphere presentation.
+@isnad1 id=p2subdiv.0h0v.s1.a136153764be from=translated src=- shape=25b03439 vocab=ddc253d8
+-/
 theorem emptyWordSphere_twoMonogonSphere :
     P2Subdivision emptyWordSphere twoMonogonSphere := by
   simpa only [P2.split_emptyWordSphere] using

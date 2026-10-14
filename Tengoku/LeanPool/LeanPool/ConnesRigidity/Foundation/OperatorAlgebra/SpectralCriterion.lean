@@ -59,6 +59,9 @@ def dualCharacterAction
 
 omit [MeasurableSpace (PontryaginDual (Multiplicative A))]
   [BorelSpace (PontryaginDual (Multiplicative A))] in
+/--
+@isnad1 id=eq.0h4v.s7.bf7d572a0193 from=translated src=- shape=d3eeea15 vocab=bd27b7d7
+-/
 @[simp] theorem dualCharacterAction_trivial
     (action : H →* Multiplicative (AddAut A)) (h : H) :
     dualCharacterAction action h (1 : DiscreteCharacterSpace A) = 1 := by
@@ -76,7 +79,9 @@ private def dualActionBaseContinuous
 
 omit [MeasurableSpace (DiscreteCharacterSpace A)]
   [BorelSpace (DiscreteCharacterSpace A)] in
-/-- The inverse-dual action is continuous. Paper: §4. -/
+/-- The inverse-dual action is continuous. Paper: §4.
+@isnad1 id=continuo.0h4v.s7.5444886995c4 from=translated src=- shape=2ed778fd vocab=ed27f738
+-/
 theorem continuous_dualCharacterAction
     (action : H →* Multiplicative (AddAut A)) (h : H) :
     Continuous (dualCharacterAction action h) := by
@@ -85,7 +90,9 @@ theorem continuous_dualCharacterAction
     PontryaginDual.map (dualActionBaseContinuous action h⁻¹) χ)
   exact (PontryaginDual.map (dualActionBaseContinuous action h⁻¹)).continuous_toFun
 
-/-- The inverse-dual action is measurable. Paper: §4. -/
+/-- The inverse-dual action is measurable. Paper: §4.
+@isnad1 id=measurab.0h4v.s7.127cd6c5dfaa from=translated src=- shape=c961d4c2 vocab=8411edd5
+-/
 theorem measurable_dualCharacterAction
     (action : H →* Multiplicative (AddAut A)) (h : H) :
     Measurable (dualCharacterAction action h) :=
@@ -107,7 +114,9 @@ def spectralTrivialAtom
 
 omit [DiscreteTopology A] [MeasurableSpace (DiscreteCharacterSpace A)]
   [BorelSpace (DiscreteCharacterSpace A)] in
-/-- Character evaluation is continuous on the compact dual. Paper: §4. -/
+/-- Character evaluation is continuous on the compact dual. Paper: §4.
+@isnad1 id=continuo.0h2v.s7.468462aa73f4 from=translated src=- shape=3399e0d1 vocab=9c22ab54
+-/
 theorem continuous_character_evaluation (a : A) :
     Continuous (fun χ : DiscreteCharacterSpace A ↦
       ((χ (Multiplicative.ofAdd a) : Circle) : ℂ)) := by
@@ -129,13 +138,18 @@ def spectralEnergyTest (a : A) :
 
 omit [MeasurableSpace (DiscreteCharacterSpace A)]
   [BorelSpace (DiscreteCharacterSpace A)] in
+/--
+@isnad1 id=eq.0h3v.s7.4a07780439a3 from=translated src=- shape=bc7a1335 vocab=cf9858df
+-/
 @[simp] theorem spectralEnergyTest_apply
     (a : A) (χ : DiscreteCharacterSpace A) :
     spectralEnergyTest a χ =
       ‖((χ (Multiplicative.ofAdd a) : Circle) : ℂ) - 1‖ ^ 2 := rfl
 
 omit [DiscreteTopology A] in
-/-- The spectral displacement integrand is integrable against every probability measure. -/
+/-- The spectral displacement integrand is integrable against every probability measure.
+@isnad1 id=integrab.0h3v.s8.d9eb580ca045 from=translated src=- shape=e24900e1 vocab=2c2d2132
+-/
 theorem integrable_spectralEnergyTest
     (μ : ProbabilityMeasure (DiscreteCharacterSpace A)) (a : A) :
     Integrable (fun χ : DiscreteCharacterSpace A ↦
@@ -218,6 +232,9 @@ def HasFiniteSpectralDetection
         ∑ a ∈ J, spectralDetectionEnergy μ a
 
 omit [BorelSpace (DiscreteCharacterSpace A)] in
+/--
+@isnad1 id=ex.4h9v.s7.fa6be6a6abd6 from=translated src=- shape=dfe08d01 vocab=04122fd3
+-/
 theorem exists_positive_spectral_atom
     (E : SplitAbelianExtension A G H)
     {K : Type v} [NormedAddCommGroup K]
@@ -239,6 +256,9 @@ theorem exists_positive_spectral_atom
   nlinarith
 
 omit [BorelSpace (DiscreteCharacterSpace A)] in
+/--
+@isnad1 id=ex.4h9v.s7.3f175729642b from=translated src=- shape=58faf793 vocab=28b6f917
+-/
 theorem spectral_criterion_representation
     (E : SplitAbelianExtension A G H)
     {K : Type v} [NormedAddCommGroup K]
@@ -258,6 +278,9 @@ theorem spectral_criterion_representation
     E.invariant_of_kernel_and_quotient π η hkernel hquotient⟩
 
 omit [BorelSpace (DiscreteCharacterSpace A)] in
+/--
+@isnad1 id=haskazhd.3h7v.s6.cef3b174164f from=translated src=- shape=ac3b00ab vocab=f2388707
+-/
 theorem spectral_criterion
     (E : SplitAbelianExtension A G H)
     (hH : HasKazhdanPropertyT.{u, v} H)

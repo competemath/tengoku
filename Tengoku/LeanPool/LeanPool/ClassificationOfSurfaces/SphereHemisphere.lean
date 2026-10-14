@@ -33,7 +33,9 @@ open scoped ComplexConjugate
 
 namespace PolygonCell
 
-/-- The squared radius of a point in an indexed polygon cell is at most one. -/
+/-- The squared radius of a point in an indexed polygon cell is at most one.
+@isnad1 id=le.0h2v.s5.6c8be5f2c015 from=translated src=- shape=0525f742 vocab=f2bc1c8e
+-/
 theorem normSq_le_one {n : ℕ} (z : PolygonCell n) : Complex.normSq z.val ≤ 1 := by
   rw [Complex.normSq_eq_norm_sq, sq_le_one_iff_abs_le_one, abs_norm]
   simpa only [Metric.mem_closedBall, Complex.dist_eq, sub_zero] using z.property
@@ -42,15 +44,24 @@ theorem normSq_le_one {n : ℕ} (z : PolygonCell n) : Complex.normSq z.val ≤ 1
 noncomputable def hemisphereHeight {n : ℕ} (z : PolygonCell n) : ℝ :=
   Real.sqrt (1 - Complex.normSq z.val)
 
+/--
+@isnad1 id=le.0h2v.s4.6306ef3cbbec from=translated src=- shape=9363a417 vocab=cce0d8e6
+-/
 theorem hemisphereHeight_nonneg {n : ℕ} (z : PolygonCell n) :
     0 ≤ hemisphereHeight z :=
   Real.sqrt_nonneg _
 
+/--
+@isnad1 id=eq.0h2v.s6.daf8f90cabea from=translated src=- shape=16cad704 vocab=99933333
+-/
 @[simp]
 theorem hemisphereHeight_sq {n : ℕ} (z : PolygonCell n) :
     hemisphereHeight z ^ 2 = 1 - Complex.normSq z.val := by
   exact Real.sq_sqrt (sub_nonneg.mpr (normSq_le_one z))
 
+/--
+@isnad1 id=continuo.0h1v.s3.873ddb490cf2 from=translated src=- shape=64d36d98 vocab=25fcdc60
+-/
 @[fun_prop]
 theorem continuous_hemisphereHeight {n : ℕ} :
     Continuous (hemisphereHeight : PolygonCell n → ℝ) := by
@@ -68,6 +79,9 @@ noncomputable def lowerHemisphereVector (z : PolygonCell 1) :
     EuclideanSpace ℝ (Fin 3) :=
   !₂[(conj z.val).re, (conj z.val).im, -hemisphereHeight z]
 
+/--
+@isnad1 id=eq.0h1v.s6.87ccf7f3240f from=translated src=- shape=6c2faa1f vocab=1325dd26
+-/
 theorem upperHemisphereVector_norm (z : PolygonCell 1) :
     ‖upperHemisphereVector z‖ = 1 := by
   have hsquare : ‖upperHemisphereVector z‖ ^ 2 = 1 := by
@@ -76,6 +90,9 @@ theorem upperHemisphereVector_norm (z : PolygonCell 1) :
     ring
   nlinarith [norm_nonneg (upperHemisphereVector z)]
 
+/--
+@isnad1 id=eq.0h1v.s6.0e86e1a113a6 from=translated src=- shape=6c2faa1f vocab=2ab311d3
+-/
 theorem lowerHemisphereVector_norm (z : PolygonCell 1) :
     ‖lowerHemisphereVector z‖ = 1 := by
   have hsquare : ‖lowerHemisphereVector z‖ ^ 2 = 1 := by
@@ -84,11 +101,17 @@ theorem lowerHemisphereVector_norm (z : PolygonCell 1) :
     ring
   nlinarith [norm_nonneg (lowerHemisphereVector z)]
 
+/--
+@isnad1 id=continuo.0h0v.s5.dc5f00d4bd9f from=translated src=- shape=83dbeb77 vocab=6300fd60
+-/
 @[fun_prop]
 theorem continuous_upperHemisphereVector : Continuous upperHemisphereVector := by
   unfold upperHemisphereVector
   fun_prop
 
+/--
+@isnad1 id=continuo.0h0v.s5.8136722c9219 from=translated src=- shape=83dbeb77 vocab=4fe4f05b
+-/
 @[fun_prop]
 theorem continuous_lowerHemisphereVector : Continuous lowerHemisphereVector := by
   unfold lowerHemisphereVector
@@ -112,6 +135,9 @@ noncomputable def lowerHemisphere : C(PolygonCell 1, SphereRepresentative) where
     rw [Metric.mem_sphere]
     simpa only [dist_eq_norm, sub_zero] using lowerHemisphereVector_norm z
 
+/--
+@isnad1 id=eq.0h1v.s6.8f021d1dd66c from=translated src=- shape=215a9bdc vocab=4a5b45d7
+-/
 @[simp]
 theorem hemisphereHeight_side_monogon (t : unitInterval) :
     hemisphereHeight (side (0 : Fin 1) t) = 0 := by
@@ -121,7 +147,9 @@ theorem hemisphereHeight_side_monogon (t : unitInterval) :
   rw [Complex.normSq_eq_norm_sq, hnorm]
   norm_num
 
-/-- The positive-to-negative monogon pairing has the same upper and lower hemisphere image. -/
+/-- The positive-to-negative monogon pairing has the same upper and lower hemisphere image.
+@isnad1 id=eq.0h1v.s10.59e0c6a2d669 from=translated src=- shape=0b002cff vocab=cf371efa
+-/
 theorem upperHemisphere_side_eq_lowerHemisphere_side_symm (t : unitInterval) :
     upperHemisphere (side (0 : Fin 1) t) =
       lowerHemisphere (side (0 : Fin 1) (unitInterval.symm t)) := by
@@ -133,7 +161,9 @@ theorem upperHemisphere_side_eq_lowerHemisphere_side_symm (t : unitInterval) :
   ext i
   fin_cases i <;> simp
 
-/-- The swapped monogon pairing has the same lower and upper hemisphere image. -/
+/-- The swapped monogon pairing has the same lower and upper hemisphere image.
+@isnad1 id=eq.0h1v.s10.00d91d18d029 from=translated src=- shape=0b002cff vocab=cf371efa
+-/
 theorem lowerHemisphere_side_eq_upperHemisphere_side_symm (t : unitInterval) :
     lowerHemisphere (side (0 : Fin 1) t) =
       upperHemisphere (side (0 : Fin 1) (unitInterval.symm t)) := by
@@ -144,7 +174,9 @@ end PolygonCell
 
 namespace SurfaceCellComplex
 
-/-- Every boundary occurrence of the sphere is one of its two monogon occurrences. -/
+/-- Every boundary occurrence of the sphere is one of its two monogon occurrences.
+@isnad1 id=or.0h1v.s3.c271228b49d6 from=translated src=- shape=3078c585 vocab=eb714e73
+-/
 theorem sphereBoundaryOccurrence_eq (occurrence : sphere.BoundaryOccurrence) :
     occurrence = spherePositiveOccurrence ∨ occurrence = sphereNegativeOccurrence := by
   rcases occurrence with ⟨face, index⟩
@@ -158,7 +190,9 @@ theorem sphereBoundaryOccurrence_eq (occurrence : sphere.BoundaryOccurrence) :
     subst index
     exact Or.inr rfl
 
-/-- The two directed forms of the unique sphere side pairing exhaust its identifications. -/
+/-- The two directed forms of the unique sphere side pairing exhaust its identifications.
+@isnad1 id=iff.0h1v.s5.62ac08b06cf0 from=translated src=- shape=30f75e16 vocab=fe5fbed6
+-/
 theorem mem_sphere_polygonalIdentifications_iff
     (identification :
       PolygonGluing.Identification sphere.Face sphere.faceBoundaryLength) :
@@ -197,17 +231,25 @@ noncomputable abbrev spherePreMap : C(sphere.PolygonalPreRealization, SphereRepr
     · exact PolygonCell.upperHemisphere.continuous
     · exact PolygonCell.lowerHemisphere.continuous
 
+/--
+@isnad1 id=eq.0h1v.s10.40ded7c86ad5 from=translated src=- shape=079b1de2 vocab=9adc6222
+-/
 @[simp]
 theorem spherePreMap_false (z : PolygonCell 1) :
     spherePreMap ⟨false, z⟩ = PolygonCell.upperHemisphere z :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s10.b87888f9753d from=translated src=- shape=079b1de2 vocab=e23d3125
+-/
 @[simp]
 theorem spherePreMap_true (z : PolygonCell 1) :
     spherePreMap ⟨true, z⟩ = PolygonCell.lowerHemisphere z :=
   rfl
 
-/-- The facewise map respects the canonical directed sphere boundary pairing. -/
+/-- The facewise map respects the canonical directed sphere boundary pairing.
+@isnad1 id=eq.0h1v.s10.37477872c2e8 from=translated src=- shape=a0d38375 vocab=8659c506
+-/
 theorem spherePreMap_sphereBoundaryPairing (t : unitInterval) :
     spherePreMap (sphereBoundaryPairing.identification.source.point t) =
       spherePreMap
@@ -218,7 +260,9 @@ theorem spherePreMap_sphereBoundaryPairing (t : unitInterval) :
       (PolygonCell.side (0 : Fin 1) (unitInterval.symm t))
   exact PolygonCell.upperHemisphere_side_eq_lowerHemisphere_side_symm t
 
-/-- The facewise map respects the swapped directed sphere boundary pairing. -/
+/-- The facewise map respects the swapped directed sphere boundary pairing.
+@isnad1 id=eq.0h1v.s10.e21f5711d23f from=translated src=- shape=cc2a5aaa vocab=82a6ab20
+-/
 theorem spherePreMap_swapSphereBoundaryPairing (t : unitInterval) :
     spherePreMap
         ((swapIdentification sphereBoundaryPairing.identification).source.point t) =
@@ -230,7 +274,9 @@ theorem spherePreMap_swapSphereBoundaryPairing (t : unitInterval) :
       (PolygonCell.side (0 : Fin 1) (unitInterval.symm t))
   exact PolygonCell.lowerHemisphere_side_eq_upperHemisphere_side_symm t
 
-/-- The facewise sphere map identifies the endpoints of every raw polygon gluing generator. -/
+/-- The facewise sphere map identifies the endpoints of every raw polygon gluing generator.
+@isnad1 id=eq.1h2v.s10.a68a555b0132 from=translated src=- shape=92637ad5 vocab=6b4067c9
+-/
 theorem spherePreMap_eq_of_generator
     {x y : sphere.PolygonalPreRealization}
     (hxy :

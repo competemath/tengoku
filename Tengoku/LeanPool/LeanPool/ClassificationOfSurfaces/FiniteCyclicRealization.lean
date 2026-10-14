@@ -54,12 +54,18 @@ def dart {P : FiniteCyclicPresentation} (o : P.BoundaryOccurrence) : P.Dart :=
 def edge {P : FiniteCyclicPresentation} (o : P.BoundaryOccurrence) : P.Edge :=
   edgeOfDart o.dart
 
+/--
+@isnad1 id=eq.0h3v.s5.7b284faa936c from=translated src=- shape=780b47fa vocab=a4af150d
+-/
 @[simp]
 theorem dart_mk (P : FiniteCyclicPresentation) (f : P.Face)
     (i : Fin (P.boundary f).length) :
     (show P.BoundaryOccurrence from ⟨f, i⟩).dart = (P.boundary f).get i :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.ccf329461bc1 from=translated src=- shape=c42c6452 vocab=3a7533a1
+-/
 @[simp]
 theorem edge_mk (P : FiniteCyclicPresentation) (f : P.Face)
     (i : Fin (P.boundary f).length) :
@@ -74,11 +80,17 @@ def occurrenceSide (P : FiniteCyclicPresentation) (o : P.BoundaryOccurrence) :
     PolygonGluing.Side P.Face fun f => (P.boundary f).length :=
   ⟨o.1, o.2⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.13c8c58b661e from=translated src=- shape=951e22d4 vocab=829c9525
+-/
 @[simp]
 theorem occurrenceSide_face (P : FiniteCyclicPresentation) (o : P.BoundaryOccurrence) :
     (P.occurrenceSide o).face = o.1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.09cae24fab74 from=translated src=- shape=4af7c034 vocab=84188b7a
+-/
 @[simp]
 theorem occurrenceSide_index (P : FiniteCyclicPresentation) (o : P.BoundaryOccurrence) :
     (P.occurrenceSide o).index = o.2 :=
@@ -90,6 +102,9 @@ noncomputable def edgeOccurrences (P : FiniteCyclicPresentation) (e : P.Edge) :
   classical
   exact Finset.univ.filter fun o => o.edge = e
 
+/--
+@isnad1 id=iff.0h3v.s5.6044a31d60d2 from=translated src=- shape=47613944 vocab=df98d394
+-/
 @[simp]
 theorem mem_edgeOccurrences (P : FiniteCyclicPresentation) (e : P.Edge)
     (o : P.BoundaryOccurrence) :
@@ -113,7 +128,9 @@ private theorem boundaryIndexCount_eq_faceEdgeMultiplicity
   simpa [v, List.ofFn_comp'] using
     Fin.card_filter_univ_eq_vector_get_eq_count e v
 
-/-- Total edge multiplicity is exactly the cardinality of the corresponding occurrence fiber. -/
+/-- Total edge multiplicity is exactly the cardinality of the corresponding occurrence fiber.
+@isnad1 id=eq.0h2v.s4.0c0c7391c0e7 from=translated src=- shape=ddbadb94 vocab=0e2fc7a0
+-/
 theorem edgeMultiplicity_eq_card_edgeOccurrences
     (P : FiniteCyclicPresentation) (e : P.Edge) :
     P.edgeMultiplicity e = (P.edgeOccurrences e).card := by
@@ -150,12 +167,17 @@ theorem edgeMultiplicity_eq_card_edgeOccurrences
       rw [hall]
       rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.2a50c753e80f from=translated src=- shape=454dc2d6 vocab=0e2fc7a0
+-/
 @[simp]
 theorem card_edgeOccurrences (P : FiniteCyclicPresentation) (e : P.Edge) :
     (P.edgeOccurrences e).card = P.edgeMultiplicity e :=
   (P.edgeMultiplicity_eq_card_edgeOccurrences e).symm
 
-/-- Two distinct occurrences of the same edge certify that the edge is internal. -/
+/-- Two distinct occurrences of the same edge certify that the edge is internal.
+@isnad1 id=not.2h3v.s4.bd456542e7bf from=translated src=- shape=f51b14ba vocab=d7d42b4a
+-/
 theorem not_isBoundaryEdge_of_ne_of_edge_eq
     {P : FiniteCyclicPresentation} {o p : P.BoundaryOccurrence}
     (hop : o ≠ p) (hedge : p.edge = o.edge) :
@@ -193,7 +215,9 @@ structure BoundaryPairing (P : FiniteCyclicPresentation) where
 
 namespace IsSurfaceValid
 
-/-- A non-boundary edge of a valid presentation occurs exactly twice. -/
+/-- A non-boundary edge of a valid presentation occurs exactly twice.
+@isnad1 id=eq.2h2v.s4.67de2b62ebf4 from=translated src=- shape=849814cb vocab=f666de74
+-/
 theorem edgeMultiplicity_eq_two_of_not_boundary
     {P : FiniteCyclicPresentation} (h : P.IsSurfaceValid) {e : P.Edge}
     (he : ¬P.IsBoundaryEdge e) :
@@ -202,7 +226,9 @@ theorem edgeMultiplicity_eq_two_of_not_boundary
   · exact False.elim (he hone)
   · exact htwo
 
-/-- Every internal occurrence has a unique distinct partner carrying the same unoriented edge. -/
+/-- Every internal occurrence has a unique distinct partner carrying the same unoriented edge.
+@isnad1 id=existsun.2h2v.s5.4af215f418c3 from=translated src=- shape=9dc2d50a vocab=622015dc
+-/
 theorem exists_unique_partner
     {P : FiniteCyclicPresentation} (h : P.IsSurfaceValid)
     (source : P.BoundaryOccurrence)
@@ -236,7 +262,9 @@ theorem exists_unique_partner
     · exact htarget₁
     · exact False.elim (htarget.1 (hsource₂.trans htarget₂.symm))
 
-/-- Every internal boundary occurrence is the source of a compatible polygon-side pairing. -/
+/-- Every internal boundary occurrence is the source of a compatible polygon-side pairing.
+@isnad1 id=ex.2h2v.s4.e94a1bb9370d from=translated src=- shape=ee158e70 vocab=a8164078
+-/
 theorem exists_pairing_source
     {P : FiniteCyclicPresentation} (h : P.IsSurfaceValid)
     (source : P.BoundaryOccurrence)
@@ -263,16 +291,25 @@ def identification {P : FiniteCyclicPresentation} (pairing : P.BoundaryPairing) 
   target := P.occurrenceSide pairing.target
   direction := pairing.direction
 
+/--
+@isnad1 id=eq.0h2v.s5.c2bb8dd01fda from=translated src=- shape=31098650 vocab=8615fb9b
+-/
 @[simp]
 theorem identification_source {P : FiniteCyclicPresentation} (pairing : P.BoundaryPairing) :
     pairing.identification.source = P.occurrenceSide pairing.source :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.8cbad4ceaede from=translated src=- shape=31098650 vocab=4698996b
+-/
 @[simp]
 theorem identification_target {P : FiniteCyclicPresentation} (pairing : P.BoundaryPairing) :
     pairing.identification.target = P.occurrenceSide pairing.target :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.2c2d8fa144b9 from=translated src=- shape=dbcdd684 vocab=c0a38fb4
+-/
 @[simp]
 theorem identification_direction {P : FiniteCyclicPresentation} (pairing : P.BoundaryPairing) :
     pairing.identification.direction = pairing.direction :=
@@ -286,6 +323,9 @@ def polygonalIdentifications
     Set (PolygonGluing.Identification P.Face fun f => (P.boundary f).length) :=
   Set.range BoundaryPairing.identification
 
+/--
+@isnad1 id=mem.1h2v.s5.f3de223dbb66 from=translated src=- shape=5c64688c vocab=33ec6bdc
+-/
 @[simp]
 theorem pairing_identification_mem
     {P : FiniteCyclicPresentation} (valid : P.IsSurfaceValid)
@@ -293,7 +333,9 @@ theorem pairing_identification_mem
     pairing.identification ∈ P.polygonalIdentifications valid :=
   ⟨pairing, rfl⟩
 
-/-- Every internal occurrence of a valid presentation starts a prescribed identification. -/
+/-- Every internal occurrence of a valid presentation starts a prescribed identification.
+@isnad1 id=ex.2h2v.s6.aabcba1c21ac from=translated src=- shape=29dd2871 vocab=11dab442
+-/
 theorem IsSurfaceValid.exists_identification_source
     {P : FiniteCyclicPresentation} (h : P.IsSurfaceValid)
     (source : P.BoundaryOccurrence)
@@ -325,17 +367,25 @@ def polygonalMk
     P.PolygonalPreRealization → P.PolygonalRealization valid :=
   PolygonGluing.mk (P.polygonalIdentifications valid)
 
+/--
+@isnad1 id=continuo.1h1v.s6.dfb3c2a70635 from=translated src=- shape=8927bd27 vocab=0f3894df
+-/
 theorem continuous_polygonalMk
     (P : FiniteCyclicPresentation) (valid : P.IsSurfaceValid) :
     Continuous (P.polygonalMk valid) :=
   PolygonGluing.continuous_mk (P.polygonalIdentifications valid)
 
+/--
+@isnad1 id=isquotie.1h1v.s6.edbf970ee3c4 from=translated src=- shape=8927bd27 vocab=c4d3c8a2
+-/
 theorem isQuotientMap_polygonalMk
     (P : FiniteCyclicPresentation) (valid : P.IsSurfaceValid) :
     _root_.Topology.IsQuotientMap (P.polygonalMk valid) :=
   PolygonGluing.isQuotientMap_mk (P.polygonalIdentifications valid)
 
-/-- Every compatible pairing identifies the corresponding side points in the quotient. -/
+/-- Every compatible pairing identifies the corresponding side points in the quotient.
+@isnad1 id=eq.1h3v.s7.54a9bf59def4 from=translated src=- shape=78b1f95b vocab=cf666fb9
+-/
 theorem polygonalMk_pairing_eq
     {P : FiniteCyclicPresentation} (valid : P.IsSurfaceValid)
     (pairing : P.BoundaryPairing) (t : unitInterval) :
@@ -385,6 +435,9 @@ def invQuotient
     Q.PolygonalRealization validQ → P.PolygonalRealization validP :=
   Quotient.lift data.invPre data.inv_respects
 
+/--
+@isnad1 id=eq.2h4v.s5.3972c5428ddc from=translated src=- shape=935c5322 vocab=28868c63
+-/
 @[simp]
 theorem toQuotient_polygonalMk
     {P Q : FiniteCyclicPresentation} {validP : P.IsSurfaceValid}
@@ -393,6 +446,9 @@ theorem toQuotient_polygonalMk
     data.toQuotient (P.polygonalMk validP x) = data.toPre x :=
   rfl
 
+/--
+@isnad1 id=eq.2h4v.s5.3ec1430b39c8 from=translated src=- shape=34e884c0 vocab=a0d0fdd1
+-/
 @[simp]
 theorem invQuotient_polygonalMk
     {P Q : FiniteCyclicPresentation} {validP : P.IsSurfaceValid}
@@ -401,12 +457,18 @@ theorem invQuotient_polygonalMk
     data.invQuotient (Q.polygonalMk validQ y) = data.invPre y :=
   rfl
 
+/--
+@isnad1 id=continuo.2h3v.s7.902bffaac0aa from=translated src=- shape=50834365 vocab=6bbcfa07
+-/
 theorem continuous_toQuotient
     {P Q : FiniteCyclicPresentation} {validP : P.IsSurfaceValid}
     {validQ : Q.IsSurfaceValid} (data : RealizationEquivData P Q validP validQ) :
     Continuous data.toQuotient :=
   data.continuous_toPre.quotient_lift data.to_respects
 
+/--
+@isnad1 id=continuo.2h3v.s7.834a6eef2d44 from=translated src=- shape=9d6f4d07 vocab=4a1bf747
+-/
 theorem continuous_invQuotient
     {P Q : FiniteCyclicPresentation} {validP : P.IsSurfaceValid}
     {validQ : Q.IsSurfaceValid} (data : RealizationEquivData P Q validP validQ) :
@@ -439,7 +501,9 @@ def PolygonallyEquivalent
     (validQ : Q.IsSurfaceValid) : Prop :=
   Nonempty (P.PolygonalRealization validP ≃ₜ Q.PolygonalRealization validQ)
 
-/-- A cut-and-paste certificate proves polygonal equivalence. -/
+/-- A cut-and-paste certificate proves polygonal equivalence.
+@isnad1 id=polygona.2h3v.s4.01279259cad5 from=translated src=- shape=9b3950b6 vocab=c26e2298
+-/
 theorem RealizationEquivData.polygonallyEquivalent
     {P Q : FiniteCyclicPresentation} {validP : P.IsSurfaceValid}
     {validQ : Q.IsSurfaceValid} (data : RealizationEquivData P Q validP validQ) :

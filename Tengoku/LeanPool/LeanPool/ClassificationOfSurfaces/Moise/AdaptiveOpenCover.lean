@@ -53,7 +53,9 @@ def safety : K.AdaptiveSafety U where
     rintro n m s t hts ⟨i, hi⟩
     exact ⟨i, hts.trans hi⟩
 
-/-- Subordination to an open cover is locally attainable under repeated midpoint subdivision. -/
+/-- Subordination to an open cover is locally attainable under repeated midpoint subdivision.
+@isnad1 id=isadmiss.0h3v.s4.78f66b33e5b3 from=translated src=- shape=b87405bf vocab=7d6add9d
+-/
 theorem safety_isAdmissible :
     @AdaptiveSafety.IsAdmissible K U C.safety := by
   let : K.AdaptiveSafety U := C.safety
@@ -100,21 +102,27 @@ noncomputable abbrev locallyFiniteTriangleComplex (hU : IsOpen U) :
   letI : AdaptiveSafety.IsAdmissible (K := K) (U := U) := C.safety_isAdmissible
   exact K.adaptiveLocallyFiniteTriangleComplex U hU
 
-/-- The cover-subordinate adaptive complex covers all of `U`. -/
+/-- The cover-subordinate adaptive complex covers all of `U`.
+@isnad1 id=eq.1h3v.s7.e640fe936eb1 from=translated src=- shape=0f4b10a4 vocab=8bfe92d7
+-/
 theorem locallyFiniteTriangleComplex_support (hU : IsOpen U) :
     (locallyFiniteTriangleComplex K U C hU).support = Set.univ := by
   let : K.AdaptiveSafety U := C.safety
   let : AdaptiveSafety.IsAdmissible (K := K) (U := U) := C.safety_isAdmissible
   exact K.adaptiveLocallyFiniteTriangleComplex_support U hU
 
-/-- Distinct faces of the cover-subordinate adaptive complex carry distinct vertex triples. -/
+/-- Distinct faces of the cover-subordinate adaptive complex carry distinct vertex triples.
+@isnad1 id=injectiv.1h3v.s8.2a20fdef9360 from=translated src=- shape=76fab10b vocab=495100ef
+-/
 theorem faceVertices_injective (hU : IsOpen U) :
     Function.Injective (locallyFiniteTriangleComplex K U C hU).faceVertices := by
   let : K.AdaptiveSafety U := C.safety
   let : AdaptiveSafety.IsAdmissible (K := K) (U := U) := C.safety_isAdmissible
   exact K.adaptiveGlobalFanFaceVertices_injective U hU
 
-/-- Every adaptive tile selected by `C` lies in one member of the cover. -/
+/-- Every adaptive tile selected by `C` lies in one member of the cover.
+@isnad1 id=ex.0h4v.s5.a6b04d43b948 from=translated src=- shape=b934cf8a vocab=c500f4dc
+-/
 theorem exists_cover_set_of_adaptiveFace
     (t : @IntrinsicTwoComplex.AdaptiveFace K U C.safety) :
     ∃ i, @IntrinsicTwoComplex.adaptiveFaceCarrier K U C.safety t ⊆ C.set i := by
@@ -123,7 +131,9 @@ theorem exists_cover_set_of_adaptiveFace
   · exact t.2
   · exact t.2.1
 
-/-- Every closed triangle of the conforming fan triangulation lies in one cover member. -/
+/-- Every closed triangle of the conforming fan triangulation lies in one cover member.
+@isnad1 id=ex.1h4v.s8.4347d5bdd53d from=translated src=- shape=fcd00b0b vocab=24d28983
+-/
 theorem exists_cover_set_of_complex_face (hU : IsOpen U)
     (f : (locallyFiniteTriangleComplex K U C hU).Face) :
     ∃ i, Subtype.val ''

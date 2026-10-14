@@ -41,6 +41,9 @@ noncomputable def replacementGraphOriginalMap (p : Plane) : Plane := by
     (hcont := hcont) (hinj := hinj) (D := D) (C := C)
   exact if hp : p ∈ G.support then h (e.symm ⟨p, hp⟩).1 else 0
 
+/--
+@isnad1 id=eq.2h5v.s9.a5e59914e243 from=translated src=- shape=0f201512 vocab=697e9b36
+-/
 @[simp] theorem replacementGraphOriginalMap_apply
     (p : (K.replacementGraphComplex
       (hcont := hcont) (hinj := hinj) (D := D) (C := C)).support) :
@@ -50,6 +53,9 @@ noncomputable def replacementGraphOriginalMap (p : Plane) : Plane := by
         (hcont := hcont) (hinj := hinj) (D := D) (C := C)).symm p).1 := by
   simp [replacementGraphOriginalMap, p.2]
 
+/--
+@isnad1 id=continuo.2h4v.s7.7e3d6c995329 from=translated src=- shape=160a2b09 vocab=fc03d5f0
+-/
 theorem continuousOn_replacementGraphOriginalMap :
     ContinuousOn
       (K.replacementGraphOriginalMap
@@ -67,6 +73,9 @@ theorem continuousOn_replacementGraphOriginalMap :
   funext p
   exact K.replacementGraphOriginalMap_apply p
 
+/--
+@isnad1 id=injon.2h4v.s7.1a92cb997cb0 from=translated src=- shape=160a2b09 vocab=c3a37ab9
+-/
 theorem replacementGraphOriginalMap_injOn :
     Set.InjOn
       (K.replacementGraphOriginalMap
@@ -111,6 +120,9 @@ noncomputable def intrinsicMap {ε : ℝ} (A : K.CloseGraphApproximation
     K.realization → Plane :=
   A.planeMap ∘ K.graphReplacementMap hcont hinj D C
 
+/--
+@isnad1 id=continuo.2h6v.s7.a1ec922d0dd7 from=translated src=- shape=414b9263 vocab=5e19897d
+-/
 theorem continuousOn_intrinsicMap {ε : ℝ} (A : K.CloseGraphApproximation
     (hcont := hcont) (hinj := hinj) (D := D) (C := C) ε) :
     ContinuousOn A.intrinsicMap K.oneSkeleton := by
@@ -120,6 +132,9 @@ theorem continuousOn_intrinsicMap {ε : ℝ} (A : K.CloseGraphApproximation
   rw [K.replacementGraphComplex_support_eq_image]
   exact ⟨x, hx, rfl⟩
 
+/--
+@isnad1 id=injon.2h6v.s7.719d5c4a7757 from=translated src=- shape=414b9263 vocab=00fe71e9
+-/
 theorem injOn_intrinsicMap {ε : ℝ} (A : K.CloseGraphApproximation
     (hcont := hcont) (hinj := hinj) (D := D) (C := C) ε) :
     Set.InjOn A.intrinsicMap K.oneSkeleton := by
@@ -136,7 +151,9 @@ end CloseGraphApproximation
 
 /-- Moise Ch. 6, Thm. 2 for an intrinsic finite one-skeleton: after one auxiliary
 polygonalization, the graph admits an arbitrarily close PL embedding, simultaneously PL on all
-three-edge face cycles. -/
+three-edge face cycles.
+@isnad1 id=nonempty.3h5v.s7.71dcc2657fe6 from=translated src=- shape=0796a511 vocab=35e1f280
+-/
 theorem exists_closeGraphApproximation {ε : ℝ} (hε : 0 < ε) :
     Nonempty (K.CloseGraphApproximation
       (hcont := hcont) (hinj := hinj) (D := D) (C := C) ε) := by

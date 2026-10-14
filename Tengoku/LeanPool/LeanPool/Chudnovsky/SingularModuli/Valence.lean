@@ -71,7 +71,9 @@ open scoped Real Manifold MatrixGroups Modular Topology
 
 /-- Every `τ : ℍ` is `SL(2,ℤ)`-equivalent to a point of the closed fundamental domain `𝒟`,
 and `j` is constant along this move. Wrapper of `ModularGroup.exists_smul_mem_fd` and
-`j_smul`; used by the surjectivity argument (move a would-be limit point into `𝒟`). -/
+`j_smul`; used by the surjectivity argument (move a would-be limit point into `𝒟`).
+@isnad1 id=ex.0h1v.s8.ba5b5c0d2f9f from=translated src=- shape=4ab7a940 vocab=dfebf270
+-/
 theorem exists_smul_mem_fd_j (τ : ℍ) :
     ∃ γ : SL(2, ℤ), γ • τ ∈ ModularGroup.fd ∧ j (γ • τ) = j τ := by
   obtain ⟨γ, hγ⟩ := ModularGroup.exists_smul_mem_fd τ
@@ -79,7 +81,9 @@ theorem exists_smul_mem_fd_j (τ : ℍ) :
 
 /-! ## Lattice reformulation of `j`-equality -/
 
-/-- `j τ₁ = j τ₂ ↔ J τ₁ = J τ₂` (the factor `1728` is a unit). -/
+/-- `j τ₁ = j τ₂ ↔ J τ₁ = J τ₂` (the factor `1728` is a unit).
+@isnad1 id=iff.0h2v.s4.eb609d724abb from=translated src=- shape=6a8628ce vocab=7486d803
+-/
 theorem j_eq_iff_J (τ₁ τ₂ : ℍ) : j τ₁ = j τ₂ ↔ J τ₁ = J τ₂ := by
   rw [j_def, j_def]
   constructor
@@ -87,21 +91,27 @@ theorem j_eq_iff_J (τ₁ τ₂ : ℍ) : j τ₁ = j τ₂ ↔ J τ₁ = J τ₂
   · exact fun h ↦ by rw [h]
 
 /-- `j τ₁ = j τ₂` iff Klein's absolute invariants of the lattices `L_{τ₁}`, `L_{τ₂}` agree.
-This is the entry point for the lattice-rigidity route to injectivity (§4.3). -/
+This is the entry point for the lattice-rigidity route to injectivity (§4.3).
+@isnad1 id=iff.0h2v.s4.9ce12c51d0bb from=translated src=- shape=28d9fc86 vocab=fccde8eb
+-/
 theorem j_eq_iff_periodPair_J (τ₁ τ₂ : ℍ) : j τ₁ = j τ₂ ↔ (Lτ τ₁).J = (Lτ τ₂).J := by
   rw [j_eq_iff_J, J_eq_J_Lτ, J_eq_J_Lτ]
 
 /-! ## The weighted-projective `(g₂³ : g₃²)` identity -/
 
 /-- `j τ₁ = j τ₂ ⇒ E₄(τ₁)³·E₆(τ₂)² = E₄(τ₂)³·E₆(τ₁)²`. Cross-multiplying `J τ₁ = J τ₂`
-kills the `E₄³·E₄³` terms and leaves the weighted-projective equality of §4.3. -/
+kills the `E₄³·E₄³` terms and leaves the weighted-projective equality of §4.3.
+@isnad1 id=eq.1h2v.s10.ba607a06de50 from=translated src=- shape=6270a7ac vocab=5d36c6a6
+-/
 theorem E₄E₆_proj_eq_of_j_eq {τ₁ τ₂ : ℍ} (h : j τ₁ = j τ₂) :
     E₄ τ₁ ^ 3 * E₆ τ₂ ^ 2 = E₄ τ₂ ^ 3 * E₆ τ₁ ^ 2 := by
   rw [j_eq_iff_J, J, J,
     div_eq_div_iff (E₄_cube_sub_E₆_sq_ne_zero τ₁) (E₄_cube_sub_E₆_sq_ne_zero τ₂)] at h
   linear_combination -h
 
-/-- The lattice form of `E₄E₆_proj_eq_of_j_eq`: `g₂(L₁)³·g₃(L₂)² = g₂(L₂)³·g₃(L₁)²`. -/
+/-- The lattice form of `E₄E₆_proj_eq_of_j_eq`: `g₂(L₁)³·g₃(L₂)² = g₂(L₂)³·g₃(L₁)²`.
+@isnad1 id=eq.1h2v.s6.fbec7f915826 from=translated src=- shape=520b019a vocab=0c43e872
+-/
 theorem g₂g₃_proj_eq_of_j_eq {τ₁ τ₂ : ℍ} (h : j τ₁ = j τ₂) :
     (Lτ τ₁).g₂ ^ 3 * (Lτ τ₂).g₃ ^ 2 = (Lτ τ₂).g₂ ^ 3 * (Lτ τ₁).g₃ ^ 2 := by
   have hE := E₄E₆_proj_eq_of_j_eq h
@@ -118,7 +128,9 @@ theorem g₂g₃_proj_eq_of_j_eq {τ₁ τ₂ : ℍ} (h : j τ₁ = j τ₂) :
 closed). -/
 
 /-- The auxiliary projective relation extracted from `L₁.J = L₂.J` (both discriminants `≠ 0`):
-`g₂(L₁)³·g₃(L₂)² = g₂(L₂)³·g₃(L₁)²`. -/
+`g₂(L₁)³·g₃(L₂)² = g₂(L₂)³·g₃(L₁)²`.
+@isnad1 id=eq.3h2v.s7.24e459f90086 from=translated src=- shape=1328f1bd vocab=2267739e
+-/
 theorem g₂cube_g₃sq_eq_of_periodPair_J {L₁ L₂ : PeriodPair}
     (hd₁ : L₁.discr ≠ 0) (hd₂ : L₂.discr ≠ 0) (hJ : L₁.J = L₂.J) :
     L₁.g₂ ^ 3 * L₂.g₃ ^ 2 = L₂.g₂ ^ 3 * L₁.g₃ ^ 2 := by
@@ -128,7 +140,9 @@ theorem g₂cube_g₃sq_eq_of_periodPair_J {L₁ L₂ : PeriodPair}
 
 /-- **Lattice-rigidity step 1** (§4.3). If two lattices have the same Klein invariant (with
 nonzero discriminants) then there is a homothety `a : ℂˣ` scaling `L₂` so that its `g₂` and
-`g₃` match those of `L₁`. -/
+`g₃` match those of `L₁`.
+@isnad1 id=ex.3h2v.s6.c88b86d9905f from=translated src=- shape=d8389d44 vocab=39959ed5
+-/
 theorem exists_units_smul_g₂_g₃ (L₁ L₂ : PeriodPair)
     (hd₁ : L₁.discr ≠ 0) (hd₂ : L₂.discr ≠ 0) (hJ : L₁.J = L₂.J) :
     ∃ a : ℂˣ, (a • L₂).g₂ = L₁.g₂ ∧ (a • L₂).g₃ = L₁.g₃ := by
@@ -220,7 +234,9 @@ theorem exists_units_smul_g₂_g₃ (L₁ L₂ : PeriodPair)
 
 /-! ## Injectivity mod `Γ` -/
 
-/-- `(Lτ τ).discr ≠ 0` (the discriminant of the lattice `ℤ + ℤτ` is nonzero). -/
+/-- `(Lτ τ).discr ≠ 0` (the discriminant of the lattice `ℤ + ℤτ` is nonzero).
+@isnad1 id=ne.0h1v.s3.88e8c816c474 from=translated src=- shape=f6b6ad72 vocab=9e682fb7
+-/
 theorem discr_Lτ_ne_zero (τ : ℍ) : (Lτ τ).discr ≠ 0 := by
   rw [discr_Lτ]
   refine mul_ne_zero ?_ (E₄_cube_sub_E₆_sq_ne_zero τ)
@@ -259,7 +275,9 @@ Mathlib assets: `PeriodPair.weierstrassPSeries`, `PeriodPair.weierstrassP`,
 /-- **Injectivity mod `Γ`, gated on the lattice-recovery core.** Once the core (equal `(g₂,g₃)`
 of homothetic lattices ⇒ base points `Γ`-equivalent — see the `TODO` above for its route) is
 available, `j τ₁ = j τ₂` forces `τ₂ = γ • τ₁` for some `γ ∈ SL(2,ℤ)`. The scaling `a` is
-produced here in full by `exists_units_smul_g₂_g₃`. -/
+produced here in full by `exists_units_smul_g₂_g₃`.
+@isnad1 id=ex.2h2v.s8.1c72d424220b from=translated src=- shape=380e4799 vocab=9c60fe93
+-/
 theorem j_injective_mod_Γ_of_lattice_core
     (lattice_core : ∀ (σ₁ σ₂ : ℍ) (a : ℂˣ),
       (a • Lτ σ₂).g₂ = (Lτ σ₁).g₂ → (a • Lτ σ₂).g₃ = (Lτ σ₁).g₃ →
@@ -300,14 +318,18 @@ open scoped Topology
 
 namespace PeriodPair
 
-/-- The lattice of a `PeriodPair` is countable (it is an image of `ℤ × ℤ`). -/
+/-- The lattice of a `PeriodPair` is countable (it is an image of `ℤ × ℤ`).
+@isnad1 id=countabl.0h1v.s4.dd4182c448cc from=translated src=- shape=9e325049 vocab=bddbee40
+-/
 lemma lattice_countable (L : PeriodPair) : (↑L.lattice : Set ℂ).Countable := by
   have : Countable L.lattice := Countable.of_equiv (ℤ × ℤ) (L.latticeEquivProd.toEquiv.symm)
   exact Set.countable_coe_iff.mp this
 
 attribute [local fun_prop] AnalyticAt.contDiffAt
 
-/-- `iteratedDeriv` of `z ↦ z² · f z` at `0`: only the `i = 2` Leibniz term survives. -/
+/-- `iteratedDeriv` of `z ↦ z² · f z` at `0`: only the `i = 2` Leibniz term survives.
+@isnad1 id=eq.1h2v.s7.aac6e5762e31 from=translated src=- shape=9919327e vocab=7f29d72e
+-/
 lemma iteratedDeriv_sq_mul (f : ℂ → ℂ) (hf : AnalyticAt ℂ f 0) (m : ℕ) :
     iteratedDeriv m (fun z => z ^ 2 * f z) 0
       = ((m : ℂ) * ((m : ℂ) - 1)) * iteratedDeriv (m - 2) f 0 := by
@@ -330,7 +352,9 @@ lemma iteratedDeriv_sq_mul (f : ℂ → ℂ) (hf : AnalyticAt ℂ f 0) (m : ℕ)
     have hlt : m < 2 := by simpa [Finset.mem_range] using hm2
     interval_cases m <;> simp
 
-/-- `iteratedDeriv (m+2) f = iteratedDeriv m (iteratedDeriv 2 f)`. -/
+/-- `iteratedDeriv (m+2) f = iteratedDeriv m (iteratedDeriv 2 f)`.
+@isnad1 id=eq.0h2v.s6.27afd1c5550e from=translated src=- shape=ca6841ee vocab=f56c4f13
+-/
 lemma iteratedDeriv_add_two (m : ℕ) (f : ℂ → ℂ) :
     iteratedDeriv (m + 2) f = iteratedDeriv m (iteratedDeriv 2 f) := by
   have h2f : iteratedDeriv 2 f = deriv (deriv f) := by rw [iteratedDeriv_succ, iteratedDeriv_one]
@@ -345,7 +369,9 @@ turns — after the shared `g₂`-terms cancel — into the *linear* relation
 `z²·w'' = z²·6·w·(h₁+h₂) + 12·w` near `0`. Taking `m`-th Taylor coefficients at `0` yields
 the classical Eisenstein recursion with coefficient `m(m−1) − 12 = (m−4)(m+3)`; strong
 induction (with the resonances `m = 0, 1, 4` handled by `g₂ = g₂`, `G₃ = G₅ = 0`, and
-`g₃ = g₃`) kills every Taylor coefficient of `w`, so `w ≡ 0` near `0`. -/
+`g₃ = g₃`) kills every Taylor coefficient of `w`, so `w ≡ 0` near `0`.
+@isnad1 id=eventual.2h2v.s5.64f059e79aa1 from=translated src=- shape=fbc5afc4 vocab=8b389fcc
+-/
 theorem weierstrassP_eventuallyEq_of_g₂_g₃ (L₁ L₂ : PeriodPair)
     (h2 : L₁.g₂ = L₂.g₂) (h3 : L₁.g₃ = L₂.g₃) :
     L₁.weierstrassP =ᶠ[𝓝[≠] (0 : ℂ)] L₂.weierstrassP := by
@@ -511,7 +537,9 @@ theorem weierstrassP_eventuallyEq_of_g₂_g₃ (L₁ L₂ : PeriodPair)
 
 /-- If `℘₁ = ℘₂` off the union of the two lattices, then `L₁ ⊆ L₂`: a point of `L₁ ∖ L₂`
 would be a double pole of `℘₁` at which `℘₂` is analytic, contradicting equality of the
-meromorphic orders (which only depend on punctured-neighbourhood germs). -/
+meromorphic orders (which only depend on punctured-neighbourhood germs).
+@isnad1 id=le.1h2v.s6.a72cbe5f0238 from=translated src=- shape=7684a1b9 vocab=adfc027b
+-/
 lemma lattice_subset_of_eqOn (L₁ L₂ : PeriodPair)
     (heqOn : Set.EqOn L₁.weierstrassP L₂.weierstrassP (↑L₁.lattice ∪ ↑L₂.lattice)ᶜ) :
     L₁.lattice ≤ L₂.lattice := by
@@ -537,7 +565,9 @@ lemma lattice_subset_of_eqOn (L₁ L₂ : PeriodPair)
 
 /-- **Steps 2–3 of the lattice-recovery core**: if `℘₁ = ℘₂` on a punctured neighbourhood of
 `0`, then `L₁ = L₂`. Identity theorem on the connected complement of the two (countable)
-lattices, then pole-set comparison. -/
+lattices, then pole-set comparison.
+@isnad1 id=eq.1h2v.s5.964e030eb841 from=translated src=- shape=259a46f6 vocab=fd2e1d7d
+-/
 theorem lattice_eq_of_weierstrassP_eventuallyEq (L₁ L₂ : PeriodPair)
     (h : L₁.weierstrassP =ᶠ[𝓝[≠] (0 : ℂ)] L₂.weierstrassP) :
     L₁.lattice = L₂.lattice := by
@@ -577,7 +607,9 @@ end PeriodPair
 open Complex in
 /-- Orientation / imaginary-part identity: if `b = m₁ + n₁·s` and `b·t = m₂ + n₂·s`, then
 `(m₁n₂ − n₁m₂)·Im s = |b|²·Im t`. Applied twice (to a homothety and its inverse) it forces
-the two change-of-basis determinants to be positive with product `1`. -/
+the two change-of-basis determinants to be positive with product `1`.
+@isnad1 id=eq.2h7v.s7.ac0860d73c7f from=translated src=- shape=f616e25c vocab=4800a9ab
+-/
 lemma orient_eq {b s t : ℂ} {m₁ n₁ m₂ n₂ : ℤ}
     (h1 : b = ↑m₁ + ↑n₁ * s) (h2 : b * t = ↑m₂ + ↑n₂ * s) :
     ((m₁ * n₂ - n₁ * m₂ : ℤ) : ℝ) * s.im = Complex.normSq b * t.im := by
@@ -596,7 +628,9 @@ lemma orient_eq {b s t : ℂ} {m₁ n₁ m₂ n₂ : ℤ}
 /-- **Step 4 of the lattice-recovery core**: if the lattice of `L_{σ₁}` equals the lattice of
 the homothety `a • L_{σ₂}`, then `σ₂ = γ • σ₁` for some `γ ∈ SL(2, ℤ)`. The two bases
 `(1, σ₁)` and `(a, a·σ₂)` of the common lattice are related by integer matrices in both
-directions; `orient_eq` forces both determinants to be `1`, and the Möbius formula finishes. -/
+directions; `orient_eq` forces both determinants to be `1`, and the Möbius formula finishes.
+@isnad1 id=ex.1h3v.s7.3119a1d587d5 from=translated src=- shape=3ba26b73 vocab=a115ab2c
+-/
 theorem exists_sl2_of_lattice_eq {σ₁ σ₂ : ℍ} {a : ℂˣ}
     (hlat : (Lτ σ₁).lattice = (a • Lτ σ₂).lattice) :
     ∃ γ : SL(2, ℤ), σ₂ = γ • σ₁ := by
@@ -700,7 +734,9 @@ theorem exists_sl2_of_lattice_eq {σ₁ σ₂ : ℍ} {a : ℂˣ}
 
 /-- **The lattice-recovery core** (the hypothesis of `j_injective_mod_Γ_of_lattice_core`,
 now a theorem): a homothety matching `g₂` and `g₃` forces the base points to be
-`Γ`-equivalent. Chains steps 1–4 above. -/
+`Γ`-equivalent. Chains steps 1–4 above.
+@isnad1 id=ex.2h3v.s8.7bd990188870 from=translated src=- shape=eb2b077c vocab=f4ef067d
+-/
 theorem lattice_recovery_core (σ₁ σ₂ : ℍ) (a : ℂˣ)
     (hg2 : (a • Lτ σ₂).g₂ = (Lτ σ₁).g₂) (hg3 : (a • Lτ σ₂).g₃ = (Lτ σ₁).g₃) :
     ∃ γ : SL(2, ℤ), σ₂ = γ • σ₁ := by
@@ -709,7 +745,9 @@ theorem lattice_recovery_core (σ₁ σ₂ : ℍ) (a : ℂˣ)
   exact exists_sl2_of_lattice_eq hlat
 
 /-- **Injectivity of `j` mod `Γ`** (§4.3, unconditional): `j τ₁ = j τ₂` forces
-`τ₂ = γ • τ₁` for some `γ ∈ SL(2, ℤ)`. -/
+`τ₂ = γ • τ₁` for some `γ ∈ SL(2, ℤ)`.
+@isnad1 id=ex.1h2v.s7.d6bdf22a2611 from=translated src=- shape=d8b9d3f7 vocab=a51138eb
+-/
 theorem j_injective_mod_Γ {τ₁ τ₂ : ℍ} (h : j τ₁ = j τ₂) :
     ∃ γ : SL(2, ℤ), τ₂ = γ • τ₁ :=
   j_injective_mod_Γ_of_lattice_core lattice_recovery_core h
@@ -735,7 +773,9 @@ of `ℂ`.
 
 /-- Two explicit points of `ℍ` at which `j` takes different values (the nonconstancy witness
 for the open mapping theorem). Uses the cusp bracketing `theonaeherJ_lower`/`theonaeherJ_upper`:
-at `im = 3` the lower bound `0.737·e^{6π}` exceeds the upper bound `1.321·e^{4π}` at `im = 2`. -/
+at `im = 3` the lower bound `0.737·e^{6π}` exceeds the upper bound `1.321·e^{4π}` at `im = 2`.
+@isnad1 id=ex.0h0v.s3.8a8e1bcaf3d4 from=translated src=- shape=6f8a2cf9 vocab=af4becf6
+-/
 theorem j_two_values : ∃ τ₁ τ₂ : ℍ, j τ₁ ≠ j τ₂ := by
   set τa : ℍ := UpperHalfPlane.mk ⟨0, 3⟩ (by norm_num) with hτa
   set τb : ℍ := UpperHalfPlane.mk ⟨0, 2⟩ (by norm_num) with hτb
@@ -771,7 +811,9 @@ theorem j_two_values : ∃ τ₁ τ₂ : ℍ, j τ₁ ≠ j τ₂ := by
   rw [h] at hchain
   exact lt_irrefl _ hchain
 
-/-- `Set.range j = (j ∘ ofComplex) '' {z : ℂ | 0 < z.im}`, the `ℂ`-picture of the image. -/
+/-- `Set.range j = (j ∘ ofComplex) '' {z : ℂ | 0 < z.im}`, the `ℂ`-picture of the image.
+@isnad1 id=eq.0h0v.s5.f5b6dd1651d5 from=translated src=- shape=d0af2d59 vocab=c2f674aa
+-/
 theorem range_j_eq_image :
     (j ∘ ofComplex) '' upperHalfPlaneSet = Set.range (j : ℍ → ℂ) := by
   ext c
@@ -781,7 +823,9 @@ theorem range_j_eq_image :
   · rintro ⟨τ, rfl⟩
     exact ⟨↑τ, τ.2, by rw [Function.comp_apply, ofComplex_apply]⟩
 
-/-- **The image of `j` is open** (open mapping theorem for the nonconstant holomorphic `j`). -/
+/-- **The image of `j` is open** (open mapping theorem for the nonconstant holomorphic `j`).
+@isnad1 id=isopen.0h0v.s4.8f1fef392584 from=translated src=- shape=aba4b0e5 vocab=e6e99cd9
+-/
 theorem isOpen_range_j : IsOpen (Set.range (j : ℍ → ℂ)) := by
   have hdiff : DifferentiableOn ℂ (j ∘ ofComplex) upperHalfPlaneSet :=
     UpperHalfPlane.mdifferentiable_iff.mp mdifferentiable_j
@@ -803,7 +847,9 @@ theorem isOpen_range_j : IsOpen (Set.range (j : ℍ → ℂ)) := by
 
 /-- **The image of `j` is closed**: a limit `w` of `j`-values is a `j`-value. Move the
 approximating points into `𝒟`, bound their imaginary parts (above by the cusp estimate, below
-by `𝒟`), extract a convergent subsequence in a compact truncation of `𝒟`, and use continuity. -/
+by `𝒟`), extract a convergent subsequence in a compact truncation of `𝒟`, and use continuity.
+@isnad1 id=isclosed.0h0v.s4.2ad3702aa66a from=translated src=- shape=aba4b0e5 vocab=193d36a7
+-/
 theorem isClosed_range_j : IsClosed (Set.range (j : ℍ → ℂ)) := by
   rw [← isSeqClosed_iff_isClosed]
   intro y w hy hlim
@@ -902,7 +948,9 @@ theorem isClosed_range_j : IsClosed (Set.range (j : ℍ → ℂ)) := by
 
 /-- **Surjectivity of the modular `j`-function** (§4.3, unconditional): every complex number is
 a `j`-value. The image `Set.range j` is nonempty, open (`isOpen_range_j`) and closed
-(`isClosed_range_j`) in the preconnected space `ℂ`, hence all of `ℂ`. -/
+(`isClosed_range_j`) in the preconnected space `ℂ`, hence all of `ℂ`.
+@isnad1 id=surjecti.0h0v.s2.47cb9cda760e from=translated src=- shape=54c8eceb vocab=72cc2040
+-/
 theorem j_surjective : Function.Surjective (j : ℍ → ℂ) := by
   intro w
   have hcl : IsClopen (Set.range (j : ℍ → ℂ)) := ⟨isClosed_range_j, isOpen_range_j⟩

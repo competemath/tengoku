@@ -48,6 +48,9 @@ to the weak topology on `E` (`WeakSpace 𝕜 E`). -/
 noncomputable def weakDualToWeak : WeakDual 𝕜 E → WeakSpace 𝕜 E :=
   fun f => (InnerProductSpace.toDual 𝕜 E).symm (WeakDual.toStrongDual f)
 
+/--
+@isnad1 id=continuo.0h2v.s8.e6138e662404 from=translated src=- shape=0d19b5a2 vocab=26c03b2d
+-/
 lemma continuous_weakToWeakDual : Continuous (weakToWeakDual (𝕜 := 𝕜) (E := E)) := by
   refine WeakDual.continuous_of_continuous_eval (𝕜 := 𝕜) (E := E)
     (g := weakToWeakDual (𝕜 := 𝕜) (E := E)) ?_
@@ -115,6 +118,9 @@ private lemma eval_weakDualToWeak (l : E →L[𝕜] 𝕜) (f : WeakDual 𝕜 E) 
     _ = (starRingEnd 𝕜) (f ((InnerProductSpace.toDual 𝕜 E).symm l)) := by
           exact (starRingEnd_apply (R := 𝕜) (f ((InnerProductSpace.toDual 𝕜 E).symm l))).symm
 
+/--
+@isnad1 id=continuo.0h2v.s8.5c1f17c052c7 from=translated src=- shape=0d19b5a2 vocab=d6c0f413
+-/
 lemma continuous_weakDualToWeak : Continuous (weakDualToWeak (𝕜 := 𝕜) (E := E)) := by
   refine WeakBilin.continuous_of_continuous_eval (B := (topDualPairing 𝕜 E).flip)
     (g := weakDualToWeak (𝕜 := 𝕜) (E := E)) ?_
@@ -187,7 +193,9 @@ private lemma weakDualToWeak_image_weakDualClosedBall (r : ℝ) :
     simp only [Set.mem_preimage]
     exact mem_closedBall_zero_iff.2 h_toDual_norm
 
-/-- In a Hilbert space `E`, the norm-closed ball is compact for the weak topology. -/
+/-- In a Hilbert space `E`, the norm-closed ball is compact for the weak topology.
+@isnad1 id=iscompac.0h3v.s7.6b70b19d626a from=translated src=- shape=72807f13 vocab=ea9d13cf
+-/
 theorem isCompact_weakClosedBall (r : ℝ) : IsCompact (weakClosedBall (𝕜 := 𝕜) (E := E) r) := by
   have hK : IsCompact (weakDualClosedBall (𝕜 := 𝕜) (E := E) r) := by
     simpa [weakDualClosedBall] using

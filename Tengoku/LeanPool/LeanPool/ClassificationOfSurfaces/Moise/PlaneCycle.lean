@@ -26,7 +26,9 @@ namespace PlaneComplex
 
 variable (K : PlaneComplex) {v : K.Vertex}
 
-/-- The geometric segment carried by an edge of the vertex graph. -/
+/-- The geometric segment carried by an edge of the vertex graph.
+@isnad1 id=eq.1h3v.s7.375ee4119ce4 from=translated src=- shape=237a4cbc vocab=6aee7df5
+-/
 theorem cellCarrier_pair_of_adj {u w : K.Vertex} (_ : K.vertexGraph.Adj u w) :
     K.cellCarrier {u, w} = segment ℝ (K.position u) (K.position w) := by
   rw [PlaneComplex.cellCarrier]
@@ -45,10 +47,16 @@ noncomputable def walkGeometricPath {u w : K.Vertex}
   | cons h p ih =>
       exact (Path.segment (K.position _) (K.position _)).trans ih
 
+/--
+@isnad1 id=eq.0h2v.s6.9028a3e49ee8 from=translated src=- shape=f7a8c46e vocab=51fc9fa7
+-/
 @[simp] theorem walkGeometricPath_nil (u : K.Vertex) :
     K.walkGeometricPath (SimpleGraph.Walk.nil : K.vertexGraph.Walk u u) =
       Path.refl (K.position u) := rfl
 
+/--
+@isnad1 id=eq.1h5v.s8.9058733ab5a4 from=translated src=- shape=e0c93521 vocab=d18032d8
+-/
 @[simp] theorem walkGeometricPath_cons {u w z : K.Vertex}
     (h : K.vertexGraph.Adj u w) (p : K.vertexGraph.Walk w z) :
     K.walkGeometricPath (SimpleGraph.Walk.cons h p) =
@@ -56,7 +64,9 @@ noncomputable def walkGeometricPath {u w : K.Vertex}
         (K.walkGeometricPath p) := rfl
 
 /-- The geometric path of a walk stays in the support of the complex, provided its final vertex
-is an actual zero-face. -/
+is an actual zero-face.
+@isnad1 id=le.1h4v.s7.5b3f3ff63417 from=translated src=- shape=ef6b538d vocab=ceea6439
+-/
 theorem range_walkGeometricPath_subset_support {u w : K.Vertex}
     (p : K.vertexGraph.Walk u w)
     (hw : ({w} : Finset K.Vertex) ∈ K.simplexes) :
@@ -73,7 +83,9 @@ theorem range_walkGeometricPath_subset_support {u w : K.Vertex}
       exact Set.union_subset
         (K.cellCarrier_subset_support h.2) (ih hw)
 
-/-- Every straight edge of a walk occurs in the range of its geometric path. -/
+/-- Every straight edge of a walk occurs in the range of its geometric path.
+@isnad1 id=le.0h5v.s8.c627d789e9bd from=translated src=- shape=2d024659 vocab=12e30313
+-/
 theorem walkSegment_subset_range {u w : K.Vertex} (p : K.vertexGraph.Walk u w)
     (i : Fin p.length) :
     segment ℝ (K.position (p.getVert i.val))
@@ -94,7 +106,9 @@ theorem walkSegment_subset_range {u w : K.Vertex} (p : K.vertexGraph.Walk u w)
           simpa only [Fin.val_succ, SimpleGraph.Walk.getVert_cons_succ,
             Nat.add_assoc, Nat.add_left_comm, Nat.add_comm] using ih i
 
-/-- A nonconstant walk's geometric path is covered by its finitely many straight edges. -/
+/-- A nonconstant walk's geometric path is covered by its finitely many straight edges.
+@isnad1 id=ex.2h5v.s8.7b5443b2d8d2 from=translated src=- shape=111f1892 vocab=13e63deb
+-/
 theorem exists_walkSegment_of_mem_range {u w : K.Vertex}
     (p : K.vertexGraph.Walk u w) (hp : 0 < p.length) {x : Plane}
     (hx : x ∈ Set.range (K.walkGeometricPath p)) :
@@ -124,7 +138,9 @@ theorem exists_walkSegment_of_mem_range {u w : K.Vertex}
           simpa only [Fin.val_succ, SimpleGraph.Walk.getVert_cons_succ,
             Nat.add_assoc, Nat.add_left_comm, Nat.add_comm] using hi
 
-/-- Concatenating graph walks unions the ranges of their canonical geometric paths. -/
+/-- Concatenating graph walks unions the ranges of their canonical geometric paths.
+@isnad1 id=eq.0h6v.s8.d207797511db from=translated src=- shape=d0ed4282 vocab=ccd55d10
+-/
 theorem range_walkGeometricPath_append {u v w : K.Vertex}
     (p : K.vertexGraph.Walk u v) (q : K.vertexGraph.Walk v w) :
     Set.range (K.walkGeometricPath (p.append q)) =
@@ -141,7 +157,9 @@ theorem range_walkGeometricPath_append {u v w : K.Vertex}
         K.walkGeometricPath_cons, Path.trans_range, Path.trans_range, ih,
         Set.union_assoc]
 
-/-- Changing only a walk's dependent endpoint witnesses does not change its geometric range. -/
+/-- Changing only a walk's dependent endpoint witnesses does not change its geometric range.
+@isnad1 id=eq.2h6v.s8.5a6b0fda2980 from=translated src=- shape=9fde9f0f vocab=86d33335
+-/
 theorem range_walkGeometricPath_copy {u v u' v' : K.Vertex}
     (p : K.vertexGraph.Walk u v) (hu : u = u') (hv : v = v') :
     Set.range (K.walkGeometricPath (p.copy hu hv)) =
@@ -151,7 +169,9 @@ theorem range_walkGeometricPath_copy {u v u' v' : K.Vertex}
   rfl
 
 /-- Mapping a walk from a carrier restriction back to the ambient plane complex preserves its
-geometric range. -/
+geometric range.
+@isnad1 id=eq.1h5v.s8.4f4a9e955e3a from=translated src=- shape=5cda8556 vocab=85a251f8
+-/
 theorem range_walkGeometricPath_mapLe_restrictedTo (C : Set Plane)
     {u v : (K.restrictedTo C).Vertex}
     (p : (K.restrictedTo C).vertexGraph.Walk u v)
@@ -200,17 +220,25 @@ def Path.copy {X : Type*} [TopologicalSpace X] {a b a' b' : X}
   source' := p.source.trans ha
   target' := p.target.trans hb
 
+/--
+@isnad1 id=eq.2h7v.s6.fc320cc618f6 from=translated src=- shape=eff05845 vocab=089a3740
+-/
 @[simp] theorem Path.copy_apply {X : Type*} [TopologicalSpace X] {a b a' b' : X}
     (p : Path a b) (ha : a = a') (hb : b = b') (t : unitInterval) :
     Path.copy p ha hb t = p t := rfl
 
+/--
+@isnad1 id=eq.2h6v.s6.cbc6d56fc1dc from=translated src=- shape=823bdb21 vocab=52ce61a5
+-/
 @[simp] theorem Path.copy_range {X : Type*} [TopologicalSpace X] {a b a' b' : X}
     (p : Path a b) (ha : a = a') (hb : b = b') :
     Set.range (Path.copy p ha hb) = Set.range p := rfl
 
 /-- A path contained in an embedded arc and joining the same endpoints covers that entire arc.
 This is the order-convexity of connected subsets of the unit interval, transported through the
-arc homeomorphism. -/
+arc homeomorphism.
+@isnad1 id=eq.2h5v.s7.ce31a494c678 from=translated src=- shape=d544a764 vocab=87150ea8
+-/
 theorem Path.range_eq_of_subset_of_injective {X : Type*} [TopologicalSpace X] [T2Space X]
     {a b : X} (arc path : Path a b) (harc : Function.Injective arc)
     (hsub : Set.range path ⊆ Set.range arc) :
@@ -431,7 +459,9 @@ noncomputable def polygonalCircleOfCycle (p : K.vertexGraph.Walk v v) (hp : p.Is
     simpa [PlaneComplex.cellCarrier] using hface
 
 /-- The polygonal carrier associated to a graph cycle is exactly the range of the canonical
-piecewise-linear path around that cycle. -/
+piecewise-linear path around that cycle.
+@isnad1 id=eq.1h3v.s7.af7168f07d28 from=translated src=- shape=fd23c14a vocab=50215f3f
+-/
 theorem polygonalCircleOfCycle_carrier_eq_range_walkGeometricPath
     (p : K.vertexGraph.Walk v v) (hp : p.IsCycle) :
     (K.polygonalCircleOfCycle p hp).carrier =

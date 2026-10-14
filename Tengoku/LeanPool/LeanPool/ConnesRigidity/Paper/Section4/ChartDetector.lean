@@ -56,11 +56,16 @@ def cross (a b : A) : C :=
     abel
   ⟩
 
+/--
+@isnad1 id=eq.0h2v.s11.57fcf69ca188 from=translated src=- shape=9ad25f58 vocab=7a644d5d
+-/
 @[simp] theorem cross_apply (a b : A) :
     (cross a b : TensorAA) = a ⊗ₜ[k] b + b ⊗ₜ[k] a := rfl
 
 /-- The square of a sum splits into squares and the symmetric cross term.
-Paper: §4. -/
+Paper: §4.
+@isnad1 id=eq.0h2v.s13.4499d5e8be5a from=translated src=- shape=7e39b91e vocab=df941270
+-/
 theorem diagonal_add (a b : A) :
     PaperKernel.diagonal (a + b) =
       PaperKernel.diagonal a + PaperKernel.diagonal b + cross a b := by
@@ -75,6 +80,9 @@ theorem diagonal_add (a b : A) :
 def upper {ι : Type*} [Fintype ι] [LinearOrder ι] (i : ι) : Finset ι :=
   Finset.univ.filter (i < ·)
 
+/--
+@isnad1 id=eq.0h2v.s10.d31edde88f00 from=translated src=- shape=c0506b0a vocab=808a895a
+-/
 theorem sum_pair_upper {ι : Type*} [Fintype ι] [LinearOrder ι]
     (T : ι → ι → TensorAA) :
     ∑ i, ∑ j, T i j =
@@ -132,6 +140,9 @@ theorem sum_pair_upper {ι : Type*} [Fintype ι] [LinearOrder ι]
     _ = ∑ i, T i i + ∑ i, ∑ j ∈ upper i, (T i j + T j i) := by
       simp only [upper, Finset.sum_filter]
 
+/--
+@isnad1 id=eq.0h3v.s14.4e3dc5f9a570 from=translated src=- shape=adfefa06 vocab=37be78c2
+-/
 theorem diagonal_sum_expansion {ι : Type*} [Fintype ι] [LinearOrder ι]
     (b : A) (u : ι → A) :
     PaperKernel.diagonal (b + ∑ i, u i) =
@@ -171,6 +182,9 @@ def chartIndexOfCoefficients (N : ℕ) (s : Fin 3)
     PaperFiniteCharts.ChartIndex N :=
   (s, (fun i => x (Sum.inl i)), (fun i => x (Sum.inr i)))
 
+/--
+@isnad1 id=eq.0h3v.s7.de7ce4d62647 from=translated src=- shape=98395119 vocab=02d337e0
+-/
 theorem chartPoint_ofCoefficients_eq_sum (N : ℕ) (s : Fin 3)
     (x : PaperFiniteCharts.CoeffIndex N → F) :
     PaperFiniteCharts.chartPoint N (chartIndexOfCoefficients N s x) =
@@ -181,6 +195,9 @@ theorem chartPoint_ofCoefficients_eq_sum (N : ℕ) (s : Fin 3)
     PaperFiniteCharts.coefficientVector]
   simp only [add_assoc]
 
+/--
+@isnad1 id=eq.0h3v.s12.8ffccb90a2b6 from=translated src=- shape=f8346aa3 vocab=4c3a65b6
+-/
 @[simp] theorem cross_smul_left (r : F) (a b : A) :
     cross (r • a) b = r • cross a b := by
   apply Subtype.ext
@@ -192,6 +209,9 @@ theorem chartPoint_ofCoefficients_eq_sum (N : ℕ) (s : Fin 3)
           rw [← TensorProduct.smul_tmul', TensorProduct.tmul_smul]
     _ = r • (a ⊗ₜ[k] b + b ⊗ₜ[k] a) := by rw [smul_add]
 
+/--
+@isnad1 id=eq.0h3v.s12.6216c3098409 from=translated src=- shape=0a980c0a vocab=4c3a65b6
+-/
 @[simp] theorem cross_smul_right (r : F) (a b : A) :
     cross a (r • b) = r • cross a b := by
   apply Subtype.ext
@@ -203,6 +223,9 @@ theorem chartPoint_ofCoefficients_eq_sum (N : ℕ) (s : Fin 3)
           rw [TensorProduct.tmul_smul, ← TensorProduct.smul_tmul']
     _ = r • (a ⊗ₜ[k] b + b ⊗ₜ[k] a) := by rw [smul_add]
 
+/--
+@isnad1 id=eq.0h2v.s12.d1d4e844e175 from=translated src=- shape=149928f3 vocab=126d95de
+-/
 @[simp] theorem diagonal_smul (r : F) (a : A) :
     PaperKernel.diagonal (r • a) = r • PaperKernel.diagonal a := by
   apply Subtype.ext
@@ -249,6 +272,9 @@ def chartQuadraticData (χ : C →ₗ[k] k) (N : ℕ) (s : Fin 3) :
           (PaperFiniteCharts.coefficientVector N s j))
       else 0 }
 
+/--
+@isnad1 id=eq.0h4v.s8.6fd370cb5a93 from=translated src=- shape=6827f493 vocab=ff544205
+-/
 theorem upper_quadratic_sum {ι : Type*} [Fintype ι] [LinearOrder ι]
     (d : ι → F) (c : ι → ι → F) (x : ι → F) :
     (∑ i, ∑ j,
@@ -289,6 +315,9 @@ theorem upper_quadratic_sum {ι : Type*} [Fintype ι] [LinearOrder ι]
         ∑ i, ∑ j ∈ upper i, c i j * x i * x j := by
       simp only [upper, Finset.sum_filter]
 
+/--
+@isnad1 id=eq.0h4v.s11.928ee3568db8 from=translated src=- shape=ff0c151a vocab=849441c9
+-/
 theorem chartEvaluation_eq_quadraticData_eval (χ : C →ₗ[k] k)
     (N : ℕ) (s : Fin 3) (x : PaperFiniteCharts.CoeffIndex N → F) :
     (chartQuadraticData χ N s).eval x = chartEvaluation χ N s x := by
@@ -336,11 +365,17 @@ theorem chartEvaluation_eq_quadraticData_eval (χ : C →ₗ[k] k)
       simp only [mul_comm, mul_left_comm, mul_assoc]
       abel
 
+/--
+@isnad1 id=isquadra.0h3v.s11.fdde5c0a684a from=translated src=- shape=aaa1c038 vocab=768a2e09
+-/
 theorem chartEvaluation_isQuadratic (χ : C →ₗ[k] k) (N : ℕ) (s : Fin 3) :
     BooleanPolynomial.IsQuadratic (chartEvaluation χ N s) := by
   exact ⟨chartQuadraticData χ N s,
     chartEvaluation_eq_quadraticData_eval χ N s⟩
 
+/--
+@isnad1 id=le.2h2v.s6.1219a663506b from=translated src=- shape=4815af3e vocab=4fe75104
+-/
 theorem quadratic_support_card_bound
     {ι : Type*} [Fintype ι] [DecidableEq ι] (P : (ι → F) → F)
     (hdeg : BooleanPolynomial.IsQuadratic P) (hP : P ≠ 0) :
@@ -382,6 +417,9 @@ def chartEvalSupport (χ : C →ₗ[k] k) (N : ℕ) :
   classical
   exact Finset.univ.filter (fun i => chartEvalValue χ N i ≠ 0)
 
+/--
+@isnad1 id=le.1h2v.s11.0edc96b23081 from=translated src=- shape=02399e59 vocab=284ba749
+-/
 theorem chart_support_card_bound (χ : C →ₗ[k] k) (N : ℕ)
     (hactive : (chartEvalSupport χ N).Nonempty) :
     Fintype.card (ChartEvalIndex N) ≤

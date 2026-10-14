@@ -99,6 +99,9 @@ variable {S : Type*} [TopologicalSpace S] (T : PartialTriangulation S)
   faces := T.faces
   faces_card := T.faces_card
 
+/--
+@isnad1 id=eq.0h2v.s4.f9d99dbc818a from=translated src=- shape=e8b780fe vocab=fb219caf
+-/
 @[simp] theorem toIntrinsic_faces : T.toIntrinsic.faces = T.faces := rfl
 
 /-- The part of `S` covered by the partial triangulation. -/
@@ -110,11 +113,16 @@ def embedIntoDomain {U : Set S} (hU : T.support ⊆ U) :
     T.toIntrinsic.realization → U :=
   fun x => ⟨T.embed x, hU ⟨x, rfl⟩⟩
 
+/--
+@isnad1 id=isembedd.1h3v.s7.8b98781f88e9 from=translated src=- shape=5fda8798 vocab=154f3bcd
+-/
 theorem isEmbedding_embedIntoDomain {U : Set S} (hU : T.support ⊆ U) :
     _root_.Topology.IsEmbedding (T.embedIntoDomain hU) :=
   T.isEmbedding.codRestrict U (fun x => hU ⟨x, rfl⟩)
 
-/-- The support of a partial triangulation is compact. -/
+/-- The support of a partial triangulation is compact.
+@isnad1 id=iscompac.0h2v.s4.2a8d084f91d0 from=translated src=- shape=ed10201d vocab=2731b693
+-/
 theorem isCompact_support : IsCompact T.support :=
   isCompact_range T.isEmbedding.continuous
 
@@ -129,10 +137,16 @@ abbrev reembed (f : T.toIntrinsic.realization → S)
   embed := f
   isEmbedding := hf
 
+/--
+@isnad1 id=eq.1h3v.s6.8a76d7d0cb1a from=translated src=- shape=c434e333 vocab=073cfe11
+-/
 @[simp] theorem reembed_toIntrinsic (f : T.toIntrinsic.realization → S)
     (hf : _root_.Topology.IsEmbedding f) :
     (T.reembed f hf).toIntrinsic = T.toIntrinsic := rfl
 
+/--
+@isnad1 id=eq.1h3v.s7.24f950dbf4ec from=translated src=- shape=cf03c943 vocab=6c5155e5
+-/
 theorem reembed_support (f : T.toIntrinsic.realization → S)
     (hf : _root_.Topology.IsEmbedding f) :
     (T.reembed f hf).support = Set.range f := rfl
@@ -147,6 +161,9 @@ noncomputable abbrev replaceOnOpen (U : Set T.toIntrinsic.realization)
   T.reembed (frontierGlue U g T.embed)
     he
 
+/--
+@isnad1 id=eq.1h4v.s7.90bac42b49b9 from=translated src=- shape=26323dd8 vocab=89d91231
+-/
 theorem replaceOnOpen_support (U : Set T.toIntrinsic.realization)
     (g : T.toIntrinsic.realization → S)
     (he : _root_.Topology.IsEmbedding (frontierGlue U g T.embed)) :
@@ -157,7 +174,9 @@ theorem replaceOnOpen_support (U : Set T.toIntrinsic.realization)
 
 /-- A replacement which fixes every old preimage of a closed buffer retains the interior of
 that buffer in its range.  This is the small topological observation that lets the relative
-straightening preserve all previously absorbed Radó cores without any ambient isotopy. -/
+straightening preserve all previously absorbed Radó cores without any ambient isotopy.
+@isnad1 id=le.3h6v.s7.ef3107683dcd from=translated src=- shape=9b240dcc vocab=87591e27
+-/
 theorem subset_interior_range_frontierGlue_of_fixedOn
     (U : Set (GeometricRealization T.Vertex T.faces))
     (g : GeometricRealization T.Vertex T.faces → S)
@@ -180,7 +199,9 @@ theorem subset_interior_range_frontierGlue_of_fixedOn
 /-- At ambient-interior points one does not need a neighborhood contained in the fixed set.
 Pointwise agreement suffices, because invariance of domain makes the corresponding local sheet
 of the new embedding open.  The separate closed-buffer lemma above remains necessary on the
-manifold boundary. -/
+manifold boundary.
+@isnad1 id=le.4h5v.s8.f3f4ddcfbf0b from=translated src=- shape=1b5fdf6c vocab=4ce0fa6b
+-/
 theorem subset_interior_range_frontierGlue_of_fixedOn_of_isInteriorPoint
     [ChartedSpace (EuclideanHalfSpace 2) S]
     (U : Set (GeometricRealization T.Vertex T.faces))
@@ -221,12 +242,17 @@ def restrictFaces (p : Finset T.Vertex → Prop) [DecidablePred p] : PartialTria
   embed := T.embed ∘ T.toIntrinsic.restrictFacesInclusion p
   isEmbedding := T.isEmbedding.comp (T.toIntrinsic.isEmbedding_restrictFacesInclusion p)
 
+/--
+@isnad1 id=le.0h3v.s5.84a341845c19 from=translated src=- shape=6fe0e257 vocab=34145e99
+-/
 theorem restrictFaces_support_subset (p : Finset T.Vertex → Prop) [DecidablePred p] :
     (T.restrictFaces p).support ⊆ T.support := by
   rintro x ⟨y, rfl⟩
   exact ⟨T.toIntrinsic.restrictFacesInclusion p y, rfl⟩
 
-/-- Exact support formula for a finite face restriction. -/
+/-- Exact support formula for a finite face restriction.
+@isnad1 id=eq.0h3v.s7.5fc00da72453 from=translated src=- shape=e6c4fbd0 vocab=80088cb3
+-/
 theorem restrictFaces_support (p : Finset T.Vertex → Prop)
     [decidableP : DecidablePred p] :
     (T.restrictFaces p).support =
@@ -255,10 +281,15 @@ noncomputable def refine (R : T.toIntrinsic.Subdivision) : PartialTriangulation 
   embed := T.embed ∘ R.homeo
   isEmbedding := T.isEmbedding.comp R.homeo.isEmbedding
 
+/--
+@isnad1 id=eq.0h3v.s4.6117cb5f577b from=translated src=- shape=584fc2d7 vocab=d7a2114e
+-/
 @[simp] theorem refine_toIntrinsic (R : T.toIntrinsic.Subdivision) :
     (T.refine R).toIntrinsic = R.refined := rfl
 
-/-- Faithful subdivision changes the finite triangulation data but not its ambient support. -/
+/-- Faithful subdivision changes the finite triangulation data but not its ambient support.
+@isnad1 id=eq.0h3v.s4.9961408b61d2 from=translated src=- shape=0bf599ac vocab=7d162792
+-/
 theorem refine_support (R : T.toIntrinsic.Subdivision) :
     (T.refine R).support = T.support := by
   apply Set.Subset.antisymm
@@ -273,7 +304,9 @@ finite face restriction of a faithful refinement which still lies in that open s
 
 This is the finite collar extracted from Moise Ch. 8, Thm. 2.  It is the compact ingredient of
 the Radó step; the full proof additionally needs the noncompact, locally finite collar whose
-mesh tends to zero at its frontier. -/
+mesh tends to zero at its frontier.
+@isnad1 id=ex.4h4v.s8.1e25fa5bb4dd from=translated src=- shape=ac6cd257 vocab=a5dc38a4
+-/
 theorem exists_refinedSubcomplex_between {C U : Set S}
     (hC : IsCompact C) (hCT : C ⊆ T.support) (hU : IsOpen U) (hCU : C ⊆ U) :
     ∃ (R : T.toIntrinsic.Subdivision)
@@ -320,6 +353,9 @@ def edges : Finset (Finset T.Vertex) :=
 abbrev IsDualConnected : Prop :=
   TriangleFamily.IsDualConnected T.faces
 
+/--
+@isnad1 id=eq.1h3v.s6.3a180fb532d8 from=translated src=- shape=a7af7210 vocab=f9cb7054
+-/
 theorem card_of_mem_edges {e : Finset T.Vertex} (he : e ∈ T.edges) : e.card = 2 := by
   rcases Finset.mem_biUnion.mp he with ⟨t, ht, het⟩
   exact (Finset.mem_powersetCard.mp het).2
@@ -355,7 +391,9 @@ def BoundaryFacewiseRegularEmbedding
 
 /-- In a nondegenerate affine triangle lying in the closed half-plane, the zero-normal locus is
 the convex hull of exactly those vertices on the boundary line.  Affine independence rules out
-all three vertices lying on that line, so this is an exposed face of cardinality at most two. -/
+all three vertices lying on that line, so this is an exposed face of cardinality at most two.
+@isnad1 id=ex.2h2v.s9.d2dc611b8321 from=translated src=- shape=10dfe485 vocab=1c70316d
+-/
 theorem planeComplex_baryEval_coordZero_exposed
     (K : PlaneComplex) {t : Finset K.Vertex} (ht : t ∈ K.cells)
     (hnonneg : ∀ v ∈ t, 0 ≤ K.position v 0) :
@@ -429,7 +467,9 @@ theorem planeComplex_baryEval_coordZero_exposed
     · rw [hx v hvb, zero_mul]
 
 /-- The barycentric realization of a plane triangle mesh lying in a boundary-faithful chart is
-facewise boundary regular. -/
+facewise boundary regular.
+@isnad1 id=boundary.2h3v.s8.1587632d69ad from=translated src=- shape=d21f7898 vocab=5e18532f
+-/
 theorem TriangleMesh.boundaryFacewiseRegularEmbedding_chart
     {S : Type*} [TopologicalSpace S]
     [ChartedSpace (EuclideanHalfSpace 2) S]
@@ -506,7 +546,9 @@ theorem TriangleMesh.boundaryFacewiseRegularEmbedding_chart
         ∀ v ∉ b, x.1 v = 0 at hb'
     exact hchart.trans hb'
 
-/-- Boundary-face regularity depends only on which source points map to the ambient boundary. -/
+/-- Boundary-face regularity depends only on which source points map to the ambient boundary.
+@isnad1 id=boundary.2h5v.s8.a3db49dc35d6 from=translated src=- shape=64226803 vocab=f9885fa3
+-/
 theorem boundaryFacewiseRegularEmbedding_congr
     {S : Type*} [TopologicalSpace S]
     [ChartedSpace (EuclideanHalfSpace 2) S]
@@ -525,7 +567,9 @@ theorem boundaryFacewiseRegularEmbedding_congr
   intro x hxt
   exact (hee x).trans (hb x hxt)
 
-/-- Facewise boundary regularity is invariant under an injective relabeling of the vertex type. -/
+/-- Facewise boundary regularity is invariant under an injective relabeling of the vertex type.
+@isnad1 id=boundary.1h6v.s9.7225ba6af422 from=translated src=- shape=66973d73 vocab=100e79a0
+-/
 theorem boundaryFacewiseRegularEmbedding_relabel
     {S : Type*} [TopologicalSpace S]
     [ChartedSpace (EuclideanHalfSpace 2) S]
@@ -584,7 +628,9 @@ theorem boundaryFacewiseRegularEmbedding_relabel
     exact hvb (ι.injective hwv ▸ hwb)
 
 /-- The images of the three vertices of a refined face under a faithful affine subdivision are
-affinely independent in the old barycentric coordinate space. -/
+affinely independent in the old barycentric coordinate space.
+@isnad1 id=affinein.0h3v.s9.e422762d6176 from=translated src=- shape=17f5e450 vocab=fcf383c8
+-/
 theorem IntrinsicTwoComplex.Subdivision.affineIndependent_vertexImages
     {K : IntrinsicTwoComplex} (R : K.Subdivision)
     (t : R.refined.Face) :
@@ -658,7 +704,9 @@ theorem IntrinsicTwoComplex.Subdivision.affineIndependent_vertexImages
   rfl
 
 /-- A barycentric point supported on `b` lies in the convex hull of the corresponding unit
-coordinate vectors. -/
+coordinate vectors.
+@isnad1 id=mem.1h3v.s8.1fa9a1e2c98c from=translated src=- shape=5dedb0b8 vocab=fda14a66
+-/
 theorem IntrinsicTwoComplex.mem_convexHull_unitVectors_of_mem_faceCarrier
     (K : IntrinsicTwoComplex) (b : Finset K.Vertex)
     (x : K.realization) (hx : x ∈ K.faceCarrier b) :
@@ -696,7 +744,9 @@ theorem IntrinsicTwoComplex.mem_convexHull_unitVectors_of_mem_faceCarrier
   · intro v hv
     exact Finset.mem_coe.mpr (Finset.mem_image.mpr ⟨v, hv, rfl⟩)
 
-/-- Facewise boundary regularity survives every faithful affine intrinsic subdivision. -/
+/-- Facewise boundary regularity survives every faithful affine intrinsic subdivision.
+@isnad1 id=boundary.1h3v.s5.d869465e86d1 from=translated src=- shape=8a4732e1 vocab=a6caa39f
+-/
 theorem boundaryFacewiseRegular_refine
     {S : Type*} [TopologicalSpace S]
     [ChartedSpace (EuclideanHalfSpace 2) S]
@@ -901,7 +951,9 @@ noncomputable abbrev ofPlaneComplex {S : Type*} [TopologicalSpace S]
   embed := e ∘ K.realizationHomeomorph hpure
   isEmbedding := he.comp (K.realizationHomeomorph hpure).isEmbedding
 
-/-- The transported plane patch covers exactly the ambient range of its support embedding. -/
+/-- The transported plane patch covers exactly the ambient range of its support embedding.
+@isnad1 id=eq.2h3v.s6.68388e1a8e5b from=translated src=- shape=4aa536c7 vocab=2f097234
+-/
 theorem ofPlaneComplex_support {S : Type*} [TopologicalSpace S]
     (K : PlaneComplex) (hpure : K.IsPure2)
     (e : K.support → S) (he : _root_.Topology.IsEmbedding e) :
@@ -921,14 +973,18 @@ def empty (S : Type*) [TopologicalSpace S] : PartialTriangulation S where
   embed := fun x => isEmptyElim x
   isEmbedding := Topology.IsEmbedding.of_subsingleton _
 
-/-- The empty partial triangulation is vacuously dual-connected. -/
+/-- The empty partial triangulation is vacuously dual-connected.
+@isnad1 id=isdualco.0h1v.s3.b6b6a026e668 from=translated src=- shape=84bfdc15 vocab=a9e88867
+-/
 theorem empty_isDualConnected (S : Type*) [TopologicalSpace S] :
     (empty S).IsDualConnected := by
   rintro ⟨f, hf⟩
   change f ∈ (∅ : Finset (Finset Empty)) at hf
   exact (Finset.notMem_empty f hf).elim
 
-/-- A partial triangulation with no faces covers nothing: its realization is empty. -/
+/-- A partial triangulation with no faces covers nothing: its realization is empty.
+@isnad1 id=eq.1h2v.s5.61f10b21df91 from=translated src=- shape=072549ff vocab=bb655615
+-/
 theorem support_eq_empty_of_faces_eq_empty {S : Type*} [TopologicalSpace S]
     (T : PartialTriangulation S) (h : T.faces = ∅) : T.support = ∅ := by
   ext x
@@ -938,6 +994,9 @@ theorem support_eq_empty_of_faces_eq_empty {S : Type*} [TopologicalSpace S]
   rw [h] at ht
   exact absurd ht (Finset.notMem_empty t)
 
+/--
+@isnad1 id=eq.0h1v.s4.0a1d00ece122 from=translated src=- shape=146920d8 vocab=9d31c433
+-/
 @[simp] theorem empty_support (S : Type*) [TopologicalSpace S] :
     (empty S).support = ∅ :=
   support_eq_empty_of_faces_eq_empty _ rfl
@@ -960,6 +1019,9 @@ noncomputable def toPartialTriangulation [Finite K.Face] [T2Space S] :
       embed := Subtype.val ∘ G.homeo
       isEmbedding := _root_.Topology.IsEmbedding.subtypeVal.comp G.homeo.isEmbedding }
 
+/--
+@isnad1 id=eq.0h2v.s5.735258432c67 from=translated src=- shape=7216ec8e vocab=8b330932
+-/
 theorem toPartialTriangulation_support [Finite K.Face] [T2Space S] :
     K.toPartialTriangulation.support = K.support := by
   let G := K.finiteSupportGeometricTriangulation
@@ -984,6 +1046,9 @@ def partialChartMap (T : PartialTriangulation S) (hdom : T.support ⊆ c.domain)
     T.toIntrinsic.realization → Plane :=
   fun x => (c.chart (T.embedIntoDomain hdom x) : Plane)
 
+/--
+@isnad1 id=isembedd.1h3v.s7.5a7120e6aa37 from=translated src=- shape=6d86ccdb vocab=c0762366
+-/
 theorem isEmbedding_partialChartMap (T : PartialTriangulation S)
     (hdom : T.support ⊆ c.domain) :
     _root_.Topology.IsEmbedding (c.partialChartMap T hdom) :=
@@ -994,6 +1059,9 @@ theorem isEmbedding_partialChartMap (T : PartialTriangulation S)
 def patchToModelRegion : c.kind.patchComplex.support → c.kind.modelRegion :=
   fun x => ⟨x.1, c.kind.patchComplex_support_subset_modelRegion x.2⟩
 
+/--
+@isnad1 id=isembedd.0h2v.s7.f5c0fc0dc2bc from=translated src=- shape=9e0e0040 vocab=fe7e3c6e
+-/
 theorem isEmbedding_patchToModelRegion :
     _root_.Topology.IsEmbedding c.patchToModelRegion :=
   _root_.Topology.IsEmbedding.subtypeVal.codRestrict _ _
@@ -1002,6 +1070,9 @@ theorem isEmbedding_patchToModelRegion :
 def patchEmbed : c.kind.patchComplex.support → S :=
   fun x => (c.chart.symm (c.patchToModelRegion x)).1
 
+/--
+@isnad1 id=isembedd.0h2v.s6.fc0c8334d7c5 from=translated src=- shape=fedbd3bc vocab=b764ab0c
+-/
 theorem isEmbedding_patchEmbed : _root_.Topology.IsEmbedding c.patchEmbed :=
   _root_.Topology.IsEmbedding.subtypeVal.comp
     (c.chart.symm.isEmbedding.comp c.isEmbedding_patchToModelRegion)
@@ -1011,17 +1082,25 @@ noncomputable abbrev patchPartialTriangulation : PartialTriangulation S :=
   PartialTriangulation.ofPlaneComplex c.kind.patchComplex c.kind.patchComplex_pure
     c.patchEmbed c.isEmbedding_patchEmbed
 
-/-- The concrete partial triangulation supplied by one chart has a connected dual graph. -/
+/-- The concrete partial triangulation supplied by one chart has a connected dual graph.
+@isnad1 id=isdualco.0h2v.s4.61ac90c5b27f from=translated src=- shape=ed10201d vocab=8fe1ff32
+-/
 theorem patchPartialTriangulation_isDualConnected :
     c.patchPartialTriangulation.IsDualConnected := by
   change TriangleFamily.IsDualConnected c.kind.patchComplex.cells
   exact c.kind.patchComplex_isDualConnected
 
+/--
+@isnad1 id=eq.0h2v.s5.58538ea338ef from=translated src=- shape=e13141f8 vocab=ae18f447
+-/
 theorem patchPartialTriangulation_support :
     c.patchPartialTriangulation.support = Set.range c.patchEmbed :=
   PartialTriangulation.ofPlaneComplex_support c.kind.patchComplex
     c.kind.patchComplex_pure c.patchEmbed c.isEmbedding_patchEmbed
 
+/--
+@isnad1 id=mem.0h3v.s5.81b6f70f47ca from=translated src=- shape=adee4ba7 vocab=dde01713
+-/
 theorem patchPartialTriangulation_embed_mem_domain
     (x : c.patchPartialTriangulation.toIntrinsic.realization) :
     c.patchPartialTriangulation.embed x ∈ c.domain := by
@@ -1034,6 +1113,9 @@ theorem patchPartialTriangulation_embed_mem_domain
       (c.patchToModelRegion
         (c.kind.patchComplex.realizationHomeomorph c.kind.patchComplex_pure x))).2
 
+/--
+@isnad1 id=eq.0h3v.s8.c2e03913f012 from=translated src=- shape=a7dd26d4 vocab=7497d841
+-/
 theorem patchPartialTriangulation_chart_coord
     (x : c.patchPartialTriangulation.toIntrinsic.realization) :
     (c.chart
@@ -1054,6 +1136,9 @@ theorem patchPartialTriangulation_chart_coord
   exact (congrArg (fun z : c.kind.modelRegion => (z : Plane)) h).trans
     (c.kind.patchComplex.realizationHomeomorph_apply c.kind.patchComplex_pure x)
 
+/--
+@isnad1 id=iff.2h3v.s9.2fc38ac3210d from=translated src=- shape=b2fb2064 vocab=75e27f3b
+-/
 theorem BoundaryFaithful.mem_boundary_iff_isModelBoundary
     [ChartedSpace (EuclideanHalfSpace 2) S] (hc : c.BoundaryFaithful)
     (y : S) (hy : y ∈ c.domain) :
@@ -1080,7 +1165,9 @@ theorem BoundaryFaithful.mem_boundary_iff_isModelBoundary
     rw [hmodel]
     simpa only [p] using hc.2 hkHalf y hy
 
-/-- The concrete chart patch covers the marked chart core. -/
+/-- The concrete chart patch covers the marked chart core.
+@isnad1 id=le.0h2v.s4.e234d823defe from=translated src=- shape=27b1f6da vocab=692c9e6d
+-/
 theorem core_subset_patchPartialTriangulation_support :
     c.core ⊆ c.patchPartialTriangulation.support := by
   rw [c.patchPartialTriangulation_support]
@@ -1097,6 +1184,9 @@ theorem core_subset_patchPartialTriangulation_support :
 def patchInModelRegion : Set c.kind.modelRegion :=
   {p | (p : Plane) ∈ c.kind.patchComplex.support}
 
+/--
+@isnad1 id=eq.0h2v.s5.573fb6087fe7 from=translated src=- shape=29b4e3d2 vocab=24962594
+-/
 theorem range_patchToModelRegion :
     Set.range c.patchToModelRegion = c.patchInModelRegion := by
   ext p
@@ -1107,7 +1197,9 @@ theorem range_patchToModelRegion :
     let q : c.kind.patchComplex.support := ⟨p.1, hp⟩
     exact ⟨q, Subtype.ext rfl⟩
 
-/-- Exact chart-domain description of the transported patch support. -/
+/-- Exact chart-domain description of the transported patch support.
+@isnad1 id=eq.0h2v.s8.acc7cdf4f228 from=translated src=- shape=674ac18d vocab=0423fe51
+-/
 theorem patchPartialTriangulation_support_eq_chartImage :
     c.patchPartialTriangulation.support =
       Subtype.val '' (c.chart.symm '' c.patchInModelRegion) := by
@@ -1121,7 +1213,9 @@ theorem patchPartialTriangulation_support_eq_chartImage :
     let q : c.kind.patchComplex.support := ⟨p.1, hp⟩
     exact ⟨q, congrArg Subtype.val (congrArg c.chart.symm (Subtype.ext rfl))⟩
 
-/-- The marked core lies in the ambient topological interior of the concrete chart patch. -/
+/-- The marked core lies in the ambient topological interior of the concrete chart patch.
+@isnad1 id=le.0h2v.s4.0a0b816f9def from=translated src=- shape=2ad4a581 vocab=6e67ecc9
+-/
 theorem core_subset_interior_patchPartialTriangulation_support :
     c.core ⊆ interior c.patchPartialTriangulation.support := by
   intro y hy
@@ -1143,7 +1237,9 @@ theorem core_subset_interior_patchPartialTriangulation_support :
   exact congrArg Subtype.val (c.chart.symm_apply_apply ⟨y, hyDomain⟩)
 
 /-- The fixed disk/half-disk patch has no boundary chords.  In a half-disk face its boundary
-face is obtained by deleting the unique positive-normal vertex `1`; in a disk face it is empty. -/
+face is obtained by deleting the unique positive-normal vertex `1`; in a disk face it is empty.
+@isnad1 id=boundary.1h2v.s5.7b765214c285 from=translated src=- shape=95660ab0 vocab=4451dad7
+-/
 theorem patchPartialTriangulation_boundaryFacewiseRegular
     [ChartedSpace (EuclideanHalfSpace 2) S] (hc : c.BoundaryFaithful) :
     c.patchPartialTriangulation.BoundaryFacewiseRegular := by
@@ -1183,7 +1279,9 @@ the model region is a closed subset of this disk; the later bordered approximati
 that half-disk rather than use the extra side. -/
 def perturbationRegion (_k : ChartKind) : Set Plane := Metric.ball 0 1
 
-/-- A disk or half-disk model is locally compact in its subtype topology. -/
+/-- A disk or half-disk model is locally compact in its subtype topology.
+@isnad1 id=locallyc.0h1v.s5.6c9f35f4372f from=translated src=- shape=90e8939d vocab=897b3167
+-/
 theorem modelRegionLocallyCompactSpace (k : ChartKind) :
     LocallyCompactSpace k.modelRegion := by
   cases k with
@@ -1195,9 +1293,15 @@ theorem modelRegionLocallyCompactSpace (k : ChartKind) :
         Metric.isOpen_ball, isClosed_le continuous_const continuous_coordZero, ?_⟩
       rfl
 
+/--
+@isnad1 id=isopen.0h1v.s5.e8c2740fa544 from=translated src=- shape=1a6c1393 vocab=dde19613
+-/
 theorem isOpen_perturbationRegion (k : ChartKind) : IsOpen k.perturbationRegion :=
   Metric.isOpen_ball
 
+/--
+@isnad1 id=le.0h1v.s3.6e4f428046db from=translated src=- shape=ffc59986 vocab=1721b3d3
+-/
 theorem modelRegion_subset_perturbationRegion (k : ChartKind) :
     k.modelRegion ⊆ k.perturbationRegion := by
   cases k <;> intro p hp
@@ -1205,7 +1309,9 @@ theorem modelRegion_subset_perturbationRegion (k : ChartKind) :
   · exact hp.1
 
 /-- Inside the open perturbation disk, the closure of the model region adds nothing: closure
-only touches the unit sphere and, for a half-disk, the model already contains its edge line. -/
+only touches the unit sphere and, for a half-disk, the model already contains its edge line.
+@isnad1 id=le.0h1v.s7.e66bb83b1d25 from=translated src=- shape=b3cdecba vocab=0aedab39
+-/
 theorem ball_inter_closure_modelRegion_subset (k : ChartKind) :
     Metric.ball (0 : Plane) 1 ∩ closure k.modelRegion ⊆ k.modelRegion := by
   cases k with
@@ -1224,6 +1330,9 @@ theorem ball_inter_closure_modelRegion_subset (k : ChartKind) :
 def modelInPerturbation (k : ChartKind) : Set k.perturbationRegion :=
   {p | p.1 ∈ k.modelRegion}
 
+/--
+@isnad1 id=isclosed.0h1v.s5.7589a385e382 from=translated src=- shape=5a85d845 vocab=20ed87e7
+-/
 theorem isClosed_modelInPerturbation (k : ChartKind) :
     IsClosed k.modelInPerturbation := by
   cases k with
@@ -1261,6 +1370,9 @@ def modelToPerturbation (k : ChartKind) :
     k.modelRegion → k.perturbationRegion :=
   fun p ↦ ⟨p.1, k.modelRegion_subset_perturbationRegion p.2⟩
 
+/--
+@isnad1 id=isclosed.0h1v.s6.ebfa0db4e2ff from=translated src=- shape=6c05829b vocab=223fe344
+-/
 theorem isClosedEmbedding_modelToPerturbation (k : ChartKind) :
     _root_.Topology.IsClosedEmbedding k.modelToPerturbation := by
   have h := (k.isClosed_modelInPerturbation.isClosedEmbedding_subtypeVal).comp
@@ -1277,7 +1389,9 @@ theorem isClosedEmbedding_modelToPerturbation (k : ChartKind) :
 def patchInPerturbation (k : ChartKind) : Set k.perturbationRegion :=
   {p | p.1 ∈ k.patchComplex.support}
 
-/-- The chart patch remains compact after lifting it to the perturbation-region subtype. -/
+/-- The chart patch remains compact after lifting it to the perturbation-region subtype.
+@isnad1 id=iscompac.0h1v.s5.d0111290a801 from=translated src=- shape=5a85d845 vocab=ccdfb3c1
+-/
 theorem isCompact_patchInPerturbation (k : ChartKind) :
     IsCompact k.patchInPerturbation := by
   apply _root_.Topology.IsEmbedding.subtypeVal.isInducing.isCompact_preimage'
@@ -1297,6 +1411,9 @@ def chartOverlap (T : PartialTriangulation S) (c : MoiseChart S) :
     Set T.toIntrinsic.realization :=
   T.embed ⁻¹' c.domain
 
+/--
+@isnad1 id=isopen.0h3v.s6.1d16836e2537 from=translated src=- shape=bde58d4d vocab=581f6071
+-/
 theorem isOpen_chartOverlap (T : PartialTriangulation S) (c : MoiseChart S) :
     IsOpen (T.chartOverlap c) :=
   c.isOpen_domain.preimage T.isEmbedding.continuous
@@ -1306,6 +1423,9 @@ def chartOverlapToDomain (T : PartialTriangulation S) (c : MoiseChart S) :
     T.chartOverlap c → c.domain :=
   fun x ↦ ⟨T.embed x.1, x.2⟩
 
+/--
+@isnad1 id=isembedd.0h3v.s7.b65788a30a98 from=translated src=- shape=8c5dbf4c vocab=1cb758de
+-/
 theorem isEmbedding_chartOverlapToDomain (T : PartialTriangulation S)
     (c : MoiseChart S) :
     _root_.Topology.IsEmbedding (T.chartOverlapToDomain c) :=
@@ -1317,6 +1437,9 @@ def chartOverlapMap (T : PartialTriangulation S) (c : MoiseChart S) :
     T.chartOverlap c → Plane :=
   fun x ↦ (c.chart (T.chartOverlapToDomain c x) : Plane)
 
+/--
+@isnad1 id=isembedd.0h3v.s7.490cfe7131c1 from=translated src=- shape=9976c372 vocab=fdcb2b91
+-/
 theorem isEmbedding_chartOverlapMap (T : PartialTriangulation S)
     (c : MoiseChart S) :
     _root_.Topology.IsEmbedding (T.chartOverlapMap c) :=
@@ -1334,6 +1457,9 @@ noncomputable def adaptiveOverlapChartMap (T : PartialTriangulation S)
     (c : MoiseChart S) : (T.adaptiveOverlapComplex c).support → Plane :=
   fun p ↦ T.chartOverlapMap c p.1
 
+/--
+@isnad1 id=isembedd.0h3v.s9.8351ea5e522e from=translated src=- shape=128bd835 vocab=1ad7af64
+-/
 theorem isEmbedding_adaptiveOverlapChartMap (T : PartialTriangulation S)
     (c : MoiseChart S) :
     _root_.Topology.IsEmbedding (T.adaptiveOverlapChartMap c) :=
@@ -1345,6 +1471,9 @@ def chartOverlapModelMap (T : PartialTriangulation S) (c : MoiseChart S) :
     T.chartOverlap c → c.kind.modelRegion :=
   fun x ↦ c.chart (T.chartOverlapToDomain c x)
 
+/--
+@isnad1 id=isembedd.0h3v.s7.d82d743df423 from=translated src=- shape=32703ba5 vocab=75398358
+-/
 theorem isEmbedding_chartOverlapModelMap (T : PartialTriangulation S)
     (c : MoiseChart S) :
     _root_.Topology.IsEmbedding (T.chartOverlapModelMap c) :=
@@ -1355,13 +1484,18 @@ def chartOverlapPerturbationMap (T : PartialTriangulation S) (c : MoiseChart S) 
     T.chartOverlap c → c.kind.perturbationRegion :=
   c.kind.modelToPerturbation ∘ T.chartOverlapModelMap c
 
+/--
+@isnad1 id=isembedd.0h3v.s7.63c322add847 from=translated src=- shape=32703ba5 vocab=f616619c
+-/
 theorem isEmbedding_chartOverlapPerturbationMap (T : PartialTriangulation S)
     (c : MoiseChart S) :
     _root_.Topology.IsEmbedding (T.chartOverlapPerturbationMap c) :=
   c.kind.isClosedEmbedding_modelToPerturbation.isEmbedding.comp
     (T.isEmbedding_chartOverlapModelMap c)
 
-/-- The old polyhedral overlap is closed in the chart model. -/
+/-- The old polyhedral overlap is closed in the chart model.
+@isnad1 id=isclosed.0h3v.s7.dc168baedf82 from=translated src=- shape=add3877e vocab=c9a331e4
+-/
 theorem isClosedEmbedding_chartOverlapModelMap [T2Space S]
     (T : PartialTriangulation S) (c : MoiseChart S) :
     _root_.Topology.IsClosedEmbedding (T.chartOverlapModelMap c) := by
@@ -1388,6 +1522,9 @@ theorem isClosedEmbedding_chartOverlapModelMap [T2Space S]
   rw [hrange]
   exact c.chart.isClosedMap A hAclosed
 
+/--
+@isnad1 id=isclosed.0h3v.s7.ad6a3a50c0ba from=translated src=- shape=add3877e vocab=1de2527a
+-/
 theorem isClosedEmbedding_chartOverlapPerturbationMap [T2Space S]
     (T : PartialTriangulation S) (c : MoiseChart S) :
     _root_.Topology.IsClosedEmbedding (T.chartOverlapPerturbationMap c) :=
@@ -1400,6 +1537,9 @@ noncomputable def adaptiveOverlapToOverlap (T : PartialTriangulation S)
     (c : MoiseChart S) : (T.adaptiveOverlapComplex c).support → T.chartOverlap c :=
   Subtype.val
 
+/--
+@isnad1 id=isclosed.0h3v.s9.f3476e6b9ab9 from=translated src=- shape=c35608ce vocab=ba2bbfbf
+-/
 theorem isClosedEmbedding_adaptiveOverlapToOverlap (T : PartialTriangulation S)
     (c : MoiseChart S) :
     _root_.Topology.IsClosedEmbedding (T.adaptiveOverlapToOverlap c) := by
@@ -1418,6 +1558,9 @@ noncomputable def adaptiveOverlapPerturbationMap (T : PartialTriangulation S)
     (T.adaptiveOverlapComplex c).support → c.kind.perturbationRegion :=
   T.chartOverlapPerturbationMap c ∘ T.adaptiveOverlapToOverlap c
 
+/--
+@isnad1 id=isclosed.0h3v.s9.93c9a01c027d from=translated src=- shape=d5f6a9eb vocab=933b7f75
+-/
 theorem isClosedEmbedding_adaptiveOverlapPerturbationMap [T2Space S]
     (T : PartialTriangulation S) (c : MoiseChart S) :
     _root_.Topology.IsClosedEmbedding (T.adaptiveOverlapPerturbationMap c) :=
@@ -1446,7 +1589,9 @@ noncomputable def adaptiveOverlapGraphRealization [T2Space S]
       exact (T.isClosedEmbedding_adaptiveOverlapPerturbationMap c).isClosed_range)
 
 /-- Crossing-weld plan, item 1, first entry condition: distinct faces of the adaptive overlap
-complex carry distinct vertex triples. -/
+complex carry distinct vertex triples.
+@isnad1 id=injectiv.0h3v.s8.96c32d6272bc from=translated src=- shape=4bb4d70d vocab=2f8fe67e
+-/
 theorem injective_faceVertices_adaptiveOverlapComplex (T : PartialTriangulation S)
     (c : MoiseChart S) :
     Function.Injective (T.adaptiveOverlapComplex c).faceVertices :=
@@ -1456,7 +1601,9 @@ theorem injective_faceVertices_adaptiveOverlapComplex (T : PartialTriangulation 
 /-- Crossing-weld plan, item 1, second entry condition, in honest existential form: a strongly
 positive tolerance on the chart overlap whose region-safe reduction separates every vertex of
 the adaptive overlap complex from every face not containing it, in chart coordinates.  This is
-the locally finite analogue of the finite `exists_uniform_vertex_face_separation`. -/
+the locally finite analogue of the finite `exists_uniform_vertex_face_separation`.
+@isnad1 id=ex.0h3v.s9.970a76eecf7f from=translated src=- shape=559c4554 vocab=0180a4f0
+-/
 theorem exists_separating_control_adaptiveOverlap [T2Space S]
     (T : PartialTriangulation S) (c : MoiseChart S) :
     ∃ phi : T.chartOverlap c → ℝ,
@@ -1491,7 +1638,9 @@ theorem exists_separating_control_adaptiveOverlap [T2Space S]
 /-- Crossing-weld plan, item 2, disjointness half: a replacement taking its overlap values in
 the chart domain never collides with the old embedding outside the overlap.  Together with
 `range_frontierGlue`, this is the crossing-disjointness input of
-`isEmbedding_frontierGlue_of_matches`. -/
+`isEmbedding_frontierGlue_of_matches`.
+@isnad1 id=disjoint.1h4v.s7.4da66531e215 from=translated src=- shape=c5475662 vocab=16155c33
+-/
 theorem disjoint_image_chartOverlap_embed_compl (T : PartialTriangulation S)
     (c : MoiseChart S) {g : T.toIntrinsic.realization → S}
     (hg : ∀ x ∈ T.chartOverlap c, g x ∈ c.domain) :
@@ -1512,7 +1661,9 @@ shear plane-close points apart near its frontier (compose a chart with the twist
 `(r, θ) ↦ (r, θ + 1/(1-r))` of the disk: a radial displacement of a quarter of the distance to
 the sphere is torn to unbounded angular displacement).  The modulus must therefore be extracted
 from the chart homeomorphism itself.  This is the metric-target version; the surface version
-`exists_chartMatchingControl` metrizes the compact second-countable surface and applies it. -/
+`exists_chartMatchingControl` metrizes the compact second-countable surface and applies it.
+@isnad1 id=ex.0h3v.s10.0b42bb59f813 from=translated src=- shape=33d0ad61 vocab=5c6166b7
+-/
 theorem exists_chartMatchingControl_of_metricSpace {S' : Type*} [MetricSpace S']
     (T : PartialTriangulation S') (c : MoiseChart S') :
     ∃ mu : T.chartOverlap c → ℝ,
@@ -1714,7 +1865,9 @@ private theorem matchesAtFrontier_and_disjoint_of_compl_not_nonempty
 
 /-- Relative form of the chart matching control.  On an arbitrary open subset of the chart
 overlap, one control simultaneously makes the replacement converge to the old embedding at the
-new frontier and keeps its image disjoint from the unchanged complement. -/
+new frontier and keeps its image disjoint from the unchanged complement.
+@isnad1 id=ex.2h4v.s10.e3049817db28 from=translated src=- shape=2bed9067 vocab=97edc21b
+-/
 theorem exists_chartMatchingControlOn_of_metricSpace
     {S' : Type*} [MetricSpace S']
     (T : PartialTriangulation S') (c : MoiseChart S')
@@ -1931,7 +2084,9 @@ theorem exists_chartMatchingControlOn_of_metricSpace
 
 /-- Crossing-weld plan, item 2, matching half, on the ambient surface.  The statement is
 metric-free; the compact second-countable surface is metrized and the metric-target version is
-applied at the compatible metric. -/
+applied at the compatible metric.
+@isnad1 id=ex.0h3v.s9.4ce29aa4a3dd from=translated src=- shape=c17148e0 vocab=1edc20a5
+-/
 theorem exists_chartMatchingControl [T2Space S] [CompactSpace S]
     [SecondCountableTopology S] (T : PartialTriangulation S) (c : MoiseChart S) :
     ∃ mu : T.chartOverlap c → ℝ,
@@ -2044,6 +2199,9 @@ noncomputable def sourceFaceMap
     Q.complex.ClosedFace f → X :=
   Q.sourceHomeomorph.symm ∘ faceToSupport (K := Q.complex) f
 
+/--
+@isnad1 id=eq.0h5v.s10.3f9dd3a9c86d from=translated src=- shape=7185e659 vocab=7a190df6
+-/
 theorem sourceHomeomorph_sourceFaceMap
     (Q : PolygonalReplacementPresentation X V) (f : Q.complex.Face)
     (x : Q.complex.ClosedFace f) :
@@ -2051,7 +2209,9 @@ theorem sourceHomeomorph_sourceFaceMap
       faceToSupport (K := Q.complex) f x := by
   exact Q.sourceHomeomorph.apply_symm_apply _
 
-/-- Each canonical source face parametrization is an embedding. -/
+/-- Each canonical source face parametrization is an embedding.
+@isnad1 id=isembedd.0h4v.s12.8b02b20c8321 from=translated src=- shape=c75bb432 vocab=e0e17bb5
+-/
 theorem isEmbedding_sourceFaceMap [T2Space V]
     (Q : PolygonalReplacementPresentation X V) (f : Q.complex.Face) :
     _root_.Topology.IsEmbedding (Q.sourceFaceMap f) := by
@@ -2060,7 +2220,9 @@ theorem isEmbedding_sourceFaceMap [T2Space V]
 
 /-- Two canonical source-face points agree exactly when their zero-extended barycentric
 coordinates agree.  This is the source-side face-to-face law inherited from the retained
-replacement complex. -/
+replacement complex.
+@isnad1 id=iff.0h7v.s10.333a54ae63c7 from=translated src=- shape=7f60e200 vocab=41e64eac
+-/
 theorem sourceFaceMap_eq_iff
     (Q : PolygonalReplacementPresentation X V)
     {f g : Q.complex.Face}
@@ -2078,7 +2240,9 @@ theorem sourceFaceMap_eq_iff
     apply Subtype.ext
     exact Q.complex.faceMap_eq_iff.mpr h
 
-/-- The canonical source parametrization has exactly the retained source face as its range. -/
+/-- The canonical source parametrization has exactly the retained source face as its range.
+@isnad1 id=eq.0h5v.s11.a15862f775a2 from=translated src=- shape=2a41b0c1 vocab=574a34e6
+-/
 theorem range_val_sourceFaceMap
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     (Q : PolygonalReplacementPresentation U V) (f : Q.complex.Face) :
@@ -2101,7 +2265,9 @@ theorem range_val_sourceFaceMap
     exact congrArg Subtype.val (Q.sourceHomeomorph.symm_apply_apply ⟨x, hxU⟩)
 
 /-- Only finitely many polygonal replacement faces meet a compact chart set.  This is the
-finiteness cut used before passing to the common supporting-line arrangement. -/
+finiteness cut used before passing to the common supporting-line arrangement.
+@isnad1 id=finite.1h4v.s8.8826fe36c78c from=translated src=- shape=2c6cb305 vocab=1b761079
+-/
 theorem finite_facesMeeting
     (Q : PolygonalReplacementPresentation X V) {C : Set V}
     (hC : IsCompact C) :
@@ -2125,7 +2291,9 @@ noncomputable instance facesMeetingDecidableEq
   Classical.decEq _
 
 /-- A compact part of a locally finite replacement support is carried by the finitely many
-faces which meet it.  This is the exact compact-to-finite cut used in Moise's condition (b). -/
+faces which meet it.  This is the exact compact-to-finite cut used in Moise's condition (b).
+@isnad1 id=le.1h4v.s9.e1f0d181402a from=translated src=- shape=21d49b47 vocab=7acd8879
+-/
 theorem support_inter_subset_iUnion_facesMeeting
     (Q : PolygonalReplacementPresentation X V) {C : Set V}
     (hC : IsCompact C) :
@@ -2138,7 +2306,9 @@ theorem support_inter_subset_iUnion_facesMeeting
   exact Set.mem_iUnion.mpr ⟨F, hxf⟩
 
 /-- On the selected finite family, the preceding carrier union is the union of the retained
-polygonal closed disks. -/
+polygonal closed disks.
+@isnad1 id=le.1h4v.s9.85396c685ef7 from=translated src=- shape=86f90b73 vocab=da145eea
+-/
 theorem support_inter_subset_selectedClosedRegion
     (Q : PolygonalReplacementPresentation X V) {C : Set V}
     (hC : IsCompact C) :
@@ -2174,6 +2344,9 @@ noncomputable def tilesMeeting
     Finset A.Tile :=
   Finset.univ.image fun f : Q.FacesMeeting C hC ↦ A.tile f.1
 
+/--
+@isnad1 id=iff.1h7v.s10.b291bdae3988 from=translated src=- shape=74f6dd26 vocab=d76db878
+-/
 theorem mem_tilesMeeting_iff
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -2200,6 +2373,9 @@ abbrev TileFacesMeeting
     (C : Set V) (hC : IsCompact C) :=
   {f : Q.complex.Face // f ∈ A.tileFaceFinsetMeeting C hC}
 
+/--
+@isnad1 id=iff.1h7v.s10.ae36b63f7421 from=translated src=- shape=3cd8ef2a vocab=bb134bfb
+-/
 theorem mem_tileFaceFinsetMeeting_iff
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -2209,7 +2385,9 @@ theorem mem_tileFaceFinsetMeeting_iff
       ∃ t ∈ A.tilesMeeting C hC, f ∈ A.tileFaces t := by
   simp [PolygonalReplacementSourceAtlas.tileFaceFinsetMeeting]
 
-/-- Every face meeting `C` belongs to the whole-tile closure of the selected family. -/
+/-- Every face meeting `C` belongs to the whole-tile closure of the selected family.
+@isnad1 id=mem.1h7v.s10.aaf33787b2ae from=translated src=- shape=b772b1df vocab=8daba6e4
+-/
 theorem faceMeeting_mem_tileFaceFinsetMeeting
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -2222,7 +2400,9 @@ theorem faceMeeting_mem_tileFaceFinsetMeeting
   · exact (A.mem_tileFaces (A.tile f.1) f.1).2 rfl
 
 /-- Closing under the adaptive tiles touched by `C` is exactly the union of their named
-replacement faces. -/
+replacement faces.
+@isnad1 id=eq.1h6v.s10.e9656c895a65 from=translated src=- shape=7c6d7d3b vocab=9379fcd3
+-/
 theorem sourceTilesMeeting_eq_faces
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -2252,7 +2432,9 @@ theorem sourceTilesMeeting_eq_faces
     exact Set.mem_iUnion.mpr ⟨f', hxf⟩
 
 /-- The source selected by an arbitrary compact coordinate set is a literal finite subcomplex
-at one common midpoint level of the original intrinsic triangulation. -/
+at one common midpoint level of the original intrinsic triangulation.
+@isnad1 id=eq.1h6v.s10.644164edbda1 from=translated src=- shape=bfe704e3 vocab=8b7b213b
+-/
 theorem sourceTileFacesMeeting_eq_levelFaces
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -2265,6 +2447,9 @@ theorem sourceTileFacesMeeting_eq_levelFaces
   rw [← A.sourceTilesMeeting_eq_faces C hC]
   exact A.sourceTiles_eq_levelFaces (A.tilesMeeting C hC)
 
+/--
+@isnad1 id=iscompac.1h6v.s10.8d8819bdc1be from=translated src=- shape=070a3ee5 vocab=f541ebb7
+-/
 theorem isCompact_sourceTileFacesMeeting
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -2274,6 +2459,9 @@ theorem isCompact_sourceTileFacesMeeting
   rw [A.sourceTileFacesMeeting_eq_levelFaces C hC]
   exact isCompact_iUnion fun u ↦ K.isCompact_levelFaceCarrier u.1
 
+/--
+@isnad1 id=le.1h6v.s10.2a5a63d0bba8 from=translated src=- shape=3948e7ae vocab=4bf3a1c4
+-/
 theorem sourceTileFacesMeeting_subset_open
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -2284,7 +2472,9 @@ theorem sourceTileFacesMeeting_subset_open
   obtain ⟨f, hxFace⟩ := Set.mem_iUnion.mp hx
   exact hxFace.choose
 
-/-- The coordinate preimage of `C` is contained in its whole-tile source closure. -/
+/-- The coordinate preimage of `C` is contained in its whole-tile source closure.
+@isnad1 id=le.1h6v.s11.61eef778a765 from=translated src=- shape=4cbcc3bc vocab=d9402ed4
+-/
 theorem coordinatePreimage_subset_sourceTileFacesMeeting
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -2312,6 +2502,9 @@ noncomputable def patchTiles
     Finset A.Tile :=
   Finset.univ.image fun f : Q.PatchFaces k ↦ A.tile f.1
 
+/--
+@isnad1 id=iff.0h6v.s10.198d338d7547 from=translated src=- shape=48525ea8 vocab=06e3a3e3
+-/
 theorem mem_patchTiles_iff
     {K : IntrinsicTwoComplex} {U : Set K.realization} {k : ChartKind}
     {Q : PolygonalReplacementPresentation U k.perturbationRegion}
@@ -2335,6 +2528,9 @@ abbrev PatchTileFaces
     (A : PolygonalReplacementSourceAtlas K U k.perturbationRegion Q) :=
   {f : Q.complex.Face // f ∈ A.patchTileFaceFinset}
 
+/--
+@isnad1 id=iff.0h6v.s10.f8e97daaf21b from=translated src=- shape=edc28af8 vocab=8c651205
+-/
 theorem mem_patchTileFaceFinset_iff
     {K : IntrinsicTwoComplex} {U : Set K.realization} {k : ChartKind}
     {Q : PolygonalReplacementPresentation U k.perturbationRegion}
@@ -2344,7 +2540,9 @@ theorem mem_patchTileFaceFinset_iff
       ∃ t ∈ A.patchTiles, f ∈ A.tileFaces t := by
   simp [PolygonalReplacementSourceAtlas.patchTileFaceFinset]
 
-/-- Every face which meets the patch belongs to the whole-tile closure. -/
+/-- Every face which meets the patch belongs to the whole-tile closure.
+@isnad1 id=mem.0h6v.s10.242b1f93a6f3 from=translated src=- shape=fb071a5a vocab=5c18e94c
+-/
 theorem patchFace_mem_patchTileFaceFinset
     {K : IntrinsicTwoComplex} {U : Set K.realization} {k : ChartKind}
     {Q : PolygonalReplacementPresentation U k.perturbationRegion}
@@ -2357,7 +2555,9 @@ theorem patchFace_mem_patchTileFaceFinset
   · exact (A.mem_tileFaces (A.tile f.1) f.1).2 rfl
 
 /-- Closing under touched adaptive tiles changes the finite coordinate family, but its source is
-still exactly the union of those finitely many named tiles. -/
+still exactly the union of those finitely many named tiles.
+@isnad1 id=eq.0h5v.s10.a7dc1577ae66 from=translated src=- shape=08aefa7b vocab=baa6c8c3
+-/
 theorem sourcePatchTiles_eq_faces
     {K : IntrinsicTwoComplex} {U : Set K.realization} {k : ChartKind}
     {Q : PolygonalReplacementPresentation U k.perturbationRegion}
@@ -2383,7 +2583,9 @@ theorem sourcePatchTiles_eq_faces
     exact Set.mem_iUnion.mpr ⟨f', hxf⟩
 
 /-- The whole-tile closure is therefore a literal finite subcomplex at one common midpoint
-level of the original intrinsic triangulation. -/
+level of the original intrinsic triangulation.
+@isnad1 id=eq.0h5v.s10.43f8f0a46908 from=translated src=- shape=9f6e1249 vocab=ca5e7ecb
+-/
 theorem sourcePatchTileFaces_eq_levelFaces
     {K : IntrinsicTwoComplex} {U : Set K.realization} {k : ChartKind}
     {Q : PolygonalReplacementPresentation U k.perturbationRegion}
@@ -2397,7 +2599,9 @@ theorem sourcePatchTileFaces_eq_levelFaces
 
 /-- The tile-closed source selected for the finite weld is compact.  This is the compact
 subpolyhedron on which the later relative boundary extension is allowed to change the old
-triangulation. -/
+triangulation.
+@isnad1 id=iscompac.0h5v.s10.0b7e52f03a29 from=translated src=- shape=4d0dba8e vocab=f0f02c81
+-/
 theorem isCompact_sourcePatchTileFaces
     {K : IntrinsicTwoComplex} {U : Set K.realization} {k : ChartKind}
     {Q : PolygonalReplacementPresentation U k.perturbationRegion}
@@ -2407,7 +2611,9 @@ theorem isCompact_sourcePatchTileFaces
   exact isCompact_iUnion fun u ↦ K.isCompact_levelFaceCarrier u.1
 
 /-- Every point of the tile-closed source subcomplex still lies in the open region on which
-the controlled replacement was constructed. -/
+the controlled replacement was constructed.
+@isnad1 id=le.0h5v.s10.384312a593a8 from=translated src=- shape=fb6fd950 vocab=4831133d
+-/
 theorem sourcePatchTileFaces_subset_open
     {K : IntrinsicTwoComplex} {U : Set K.realization} {k : ChartKind}
     {Q : PolygonalReplacementPresentation U k.perturbationRegion}
@@ -2419,7 +2625,9 @@ theorem sourcePatchTileFaces_subset_open
 
 /-- The whole old trace over the fixed patch is carried by the tile-closed source selection.
 This is the source-side coverage needed before cutting the old complex along its finite
-attaching boundary. -/
+attaching boundary.
+@isnad1 id=le.0h5v.s11.cf02a7647fbd from=translated src=- shape=c3eb0f06 vocab=ca2fa60a
+-/
 theorem coordinatePreimage_patch_subset_sourcePatchTileFaces
     {K : IntrinsicTwoComplex} {U : Set K.realization} {k : ChartKind}
     {Q : PolygonalReplacementPresentation U k.perturbationRegion}
@@ -2450,7 +2658,9 @@ def patchFacePolygon (k : ChartKind)
 
 /-- The fixed patch lies in the enclosing triangle used for the finite family of all
 replacement faces which meet it.  The point is that every chart patch lies in the unit ball,
-while `PolygonalFamily.enclosingRadius` is at least one. -/
+while `PolygonalFamily.enclosingRadius` is at least one.
+@isnad1 id=le.0h3v.s5.829b5f12aafe from=translated src=- shape=5e8df023 vocab=714a1ac1
+-/
 theorem patchComplex_support_subset_arrangementMesh
     (k : ChartKind)
     (Q : PolygonalReplacementPresentation X k.perturbationRegion) :
@@ -2469,7 +2679,9 @@ theorem patchComplex_support_subset_arrangementMesh
     (PolygonalFamily.enclosingRadius_pos (Q.patchFacePolygon k))
 
 /-- The old replacement trace over the fixed patch is contained in the finite polygonal family
-selected above. -/
+selected above.
+@isnad1 id=le.0h3v.s7.ab6bc51f0b68 from=translated src=- shape=945b287e vocab=f8e2fd03
+-/
 theorem support_inter_patch_subset_closedRegion
     (k : ChartKind)
     (Q : PolygonalReplacementPresentation X k.perturbationRegion) :
@@ -2495,6 +2707,9 @@ noncomputable def patchNewMesh (k : ChartKind)
   PolygonalFamily.targetSynchronizedMesh (Q.patchFacePolygon k)
     (patchTriangleMesh k)
 
+/--
+@isnad1 id=eq.0h3v.s5.e1ffb826d302 from=translated src=- shape=78c09ddf vocab=90fc1362
+-/
 theorem patchOldMesh_support (k : ChartKind)
     (Q : PolygonalReplacementPresentation X k.perturbationRegion) :
     (Q.patchOldMesh k).toPlaneComplex.support =
@@ -2504,6 +2719,9 @@ theorem patchOldMesh_support (k : ChartKind)
     (PolygonalFamily.selectedSynchronizedMesh_support
       (Q.patchFacePolygon k) (patchTriangleMesh k) (fun _ ↦ True))
 
+/--
+@isnad1 id=eq.0h3v.s4.763ecd950c13 from=translated src=- shape=d34789d3 vocab=ba7d6300
+-/
 theorem patchNewMesh_support (k : ChartKind)
     (Q : PolygonalReplacementPresentation X k.perturbationRegion) :
     (Q.patchNewMesh k).toPlaneComplex.support = k.patchComplex.support := by
@@ -2518,7 +2736,9 @@ theorem patchNewMesh_support (k : ChartKind)
       (k.patchComplex.toTriangleMesh_support k.patchComplex_pure)
 
 /-- Both coordinate sides are restrictions of one ambient triangle mesh, so every retained
-maximal face is a triangle. -/
+maximal face is a triangle.
+@isnad1 id=eq.1h4v.s7.636a5a90b5e9 from=translated src=- shape=6d8df71e vocab=04791d87
+-/
 theorem patchMeshes_triangle_card (k : ChartKind)
     (Q : PolygonalReplacementPresentation X k.perturbationRegion) :
     ∀ t ∈ (Q.patchOldMesh k).triangles ∪ (Q.patchNewMesh k).triangles,
@@ -2528,7 +2748,9 @@ theorem patchMeshes_triangle_card (k : ChartKind)
   · exact (Q.patchOldMesh k).card_triangle t htOld
   · exact (Q.patchNewMesh k).card_triangle t htNew
 
-/-- The two finite coordinate sides satisfy the joint surface edge-incidence bound. -/
+/-- The two finite coordinate sides satisfy the joint surface edge-incidence bound.
+@isnad1 id=le.1h4v.s7.5630c9bf8542 from=translated src=- shape=247f0eea vocab=d799402f
+-/
 theorem patchMeshes_joint_edge_valence (k : ChartKind)
     (Q : PolygonalReplacementPresentation X k.perturbationRegion)
     (e : Finset (Q.patchOldMesh k).Vertex) (he : e.card = 2) :
@@ -2537,6 +2759,9 @@ theorem patchMeshes_joint_edge_valence (k : ChartKind)
   exact PolygonalFamily.synchronizedMeshes_joint_edge_valence
     (Q.patchFacePolygon k) (patchTriangleMesh k) (fun _ ↦ True) e he
 
+/--
+@isnad1 id=le.1h4v.s8.ca85c9c912c0 from=translated src=- shape=f3dfae58 vocab=6cf991d5
+-/
 theorem patchMeshes_surface_edge_valence (k : ChartKind)
     (Q : PolygonalReplacementPresentation X k.perturbationRegion) :
     ∀ e ∈ ((Q.patchOldMesh k).triangles ∪
@@ -2549,7 +2774,9 @@ theorem patchMeshes_surface_edge_valence (k : ChartKind)
 
 /-- The two coordinate embeddings agree exactly when their common barycentric coordinates do.
 This is both interface clauses (`hagree` and `hsep`) of the later ambient weld, before composing
-with the chart homeomorphism. -/
+with the chart homeomorphism.
+@isnad1 id=iff.0h5v.s7.8c470ce212f3 from=translated src=- shape=b4c2b662 vocab=e8a3cfaa
+-/
 theorem patchMeshes_coordinateEmbed_eq_iff (k : ChartKind)
     (Q : PolygonalReplacementPresentation X k.perturbationRegion)
     (x : GeometricRealization (Q.patchOldMesh k).Vertex
@@ -2571,7 +2798,9 @@ theorem patchMeshes_coordinateEmbed_eq_iff (k : ChartKind)
       (Q.patchFacePolygon k) (patchTriangleMesh k)).mp ht).1
 
 /-- If the retained source coordinates land in a closed model region, the whole replacement
-support does too. -/
+support does too.
+@isnad1 id=le.1h5v.s9.96825b9e0a0e from=translated src=- shape=53a59de0 vocab=24c45dd9
+-/
 theorem support_subset_modelRegion_of_coordinate (k : ChartKind)
     (Q : PolygonalReplacementPresentation X V)
     (g' : X → k.modelRegion)
@@ -2587,7 +2816,9 @@ theorem support_subset_modelRegion_of_coordinate (k : ChartKind)
   exact (g' y).2
 
 /-- Consequently every selected face polygon used by the finite patch arrangement lies in the
-chart model, including the half-plane condition in the bordered case. -/
+chart model, including the half-plane condition in the bordered case.
+@isnad1 id=le.1h4v.s9.4ff13cd8e3ec from=translated src=- shape=49dc3623 vocab=c939c0bd
+-/
 theorem patchFaceClosedRegion_subset_modelRegion (k : ChartKind)
     (Q : PolygonalReplacementPresentation X k.perturbationRegion)
     (g' : X → k.modelRegion)
@@ -2629,6 +2860,9 @@ noncomputable def patchNewSurfaceEmbed {S : Type*} [TopologicalSpace S]
       rw [Q.patchNewMesh_support c.kind]
       exact c.kind.patchComplex_support_subset_modelRegion) x)).1
 
+/--
+@isnad1 id=isembedd.1h5v.s10.98eddd804cad from=translated src=- shape=df0025d2 vocab=65de4cf7
+-/
 theorem isEmbedding_patchOldSurfaceEmbed {S : Type*} [TopologicalSpace S]
     (c : MoiseChart S)
     (Q : PolygonalReplacementPresentation X c.kind.perturbationRegion)
@@ -2652,6 +2886,9 @@ theorem isEmbedding_patchOldSurfaceEmbed {S : Type*} [TopologicalSpace S]
   rw [heq] at h
   exact h
 
+/--
+@isnad1 id=isembedd.0h4v.s7.6d5c368a703c from=translated src=- shape=645bdcd3 vocab=7854786a
+-/
 theorem isEmbedding_patchNewSurfaceEmbed {S : Type*} [TopologicalSpace S]
     (c : MoiseChart S)
     (Q : PolygonalReplacementPresentation X c.kind.perturbationRegion) :
@@ -2673,7 +2910,9 @@ theorem isEmbedding_patchNewSurfaceEmbed {S : Type*} [TopologicalSpace S]
   exact h
 
 /-- After transport by the chart, equality of old- and new-side points is still exactly equality
-of their common barycentric coordinate functions. -/
+of their common barycentric coordinate functions.
+@isnad1 id=iff.1h7v.s10.11765e75678e from=translated src=- shape=d3c5de2b vocab=56c4767e
+-/
 theorem patchSurfaceEmbed_eq_iff {S : Type*} [TopologicalSpace S]
     (c : MoiseChart S)
     (Q : PolygonalReplacementPresentation X c.kind.perturbationRegion)
@@ -2703,7 +2942,9 @@ theorem patchSurfaceEmbed_eq_iff {S : Type*} [TopologicalSpace S]
 
 /-- The finite compact part of the crossing construction already has exactly the common-vertex
 interface consumed by `PartialTriangulation.exists_glued`.  What remains in the global Radó
-step is to extend its old side over the complement of the selected adaptive faces. -/
+step is to extend its old side over the complement of the selected adaptive faces.
+@isnad1 id=ex.1h5v.s10.cf6181aef890 from=translated src=- shape=227346fe vocab=952896bf
+-/
 theorem exists_patch_local_weld {S : Type*} [TopologicalSpace S]
     (c : MoiseChart S)
     (Q : PolygonalReplacementPresentation X c.kind.perturbationRegion)
@@ -2746,6 +2987,9 @@ noncomputable def singlePolygonMesh (J : ι → PolygonalCircle)
     (N : TriangleMesh) (i : ι) : TriangleMesh :=
   PolygonalFamily.selectedSynchronizedMesh J N (fun j ↦ j = i)
 
+/--
+@isnad1 id=eq.0h4v.s4.b12433d49fb6 from=translated src=- shape=052b5b9a vocab=de3d796f
+-/
 theorem singlePolygonMesh_support (J : ι → PolygonalCircle)
     (N : TriangleMesh) (i : ι) :
     (singlePolygonMesh J N i).toPlaneComplex.support = (J i).closedRegion := by
@@ -2760,7 +3004,9 @@ theorem singlePolygonMesh_support (J : ι → PolygonalCircle)
     exact Set.mem_iUnion.mpr ⟨i, Set.mem_iUnion.mpr ⟨rfl, hx⟩⟩
 
 /-- Every fixed chart patch lies in the enclosing arrangement used to synchronize it with an
-arbitrary finite polygonal family. -/
+arbitrary finite polygonal family.
+@isnad1 id=le.0h3v.s4.b76389ecefd7 from=translated src=- shape=9f4afc39 vocab=5f430dad
+-/
 theorem patchComplex_support_subset_arrangementMesh (k : ChartKind)
     (J : ι → PolygonalCircle) :
     k.patchComplex.support ⊆
@@ -2786,6 +3032,9 @@ noncomputable def synchronizedPatchNewMesh (k : ChartKind)
     (J : ι → PolygonalCircle) : TriangleMesh :=
   PolygonalFamily.targetSynchronizedMesh J k.patchComplex.toTriangleMesh
 
+/--
+@isnad1 id=eq.0h3v.s4.6820fbbe4d66 from=translated src=- shape=a3edc5b5 vocab=a02f9d5c
+-/
 theorem synchronizedPatchOldMesh_support (k : ChartKind)
     (J : ι → PolygonalCircle) :
     (synchronizedPatchOldMesh k J).toPlaneComplex.support =
@@ -2795,6 +3044,9 @@ theorem synchronizedPatchOldMesh_support (k : ChartKind)
     (PolygonalFamily.selectedSynchronizedMesh_support J k.patchComplex.toTriangleMesh
       (fun _ ↦ True))
 
+/--
+@isnad1 id=eq.0h3v.s4.12580b69b242 from=translated src=- shape=287f74ef vocab=360c3ef1
+-/
 theorem synchronizedPatchNewMesh_support (k : ChartKind)
     (J : ι → PolygonalCircle) :
     (synchronizedPatchNewMesh k J).toPlaneComplex.support = k.patchComplex.support := by
@@ -2806,6 +3058,9 @@ theorem synchronizedPatchNewMesh_support (k : ChartKind)
     k.patchComplex.toTriangleMesh hsub).trans
     (k.patchComplex.toTriangleMesh_support k.patchComplex_pure)
 
+/--
+@isnad1 id=eq.1h4v.s7.88d35f8bb0ea from=translated src=- shape=a8dddc52 vocab=2fb2938a
+-/
 theorem synchronizedPatchMeshes_triangle_card (k : ChartKind)
     (J : ι → PolygonalCircle) :
     ∀ t ∈ (synchronizedPatchOldMesh k J).triangles ∪
@@ -2816,6 +3071,9 @@ theorem synchronizedPatchMeshes_triangle_card (k : ChartKind)
   · exact (synchronizedPatchOldMesh k J).card_triangle t htOld
   · exact (synchronizedPatchNewMesh k J).card_triangle t htNew
 
+/--
+@isnad1 id=le.1h4v.s8.01905a24f4e6 from=translated src=- shape=265ab6b1 vocab=aab54c6f
+-/
 theorem synchronizedPatchMeshes_surface_edge_valence (k : ChartKind)
     (J : ι → PolygonalCircle) :
     ∀ e ∈ ((synchronizedPatchOldMesh k J).triangles ∪
@@ -2829,7 +3087,9 @@ theorem synchronizedPatchMeshes_surface_edge_valence (k : ChartKind)
     (fun _ ↦ True) e (Finset.mem_powersetCard.mp het).2
 
 /-- Both restrictions of the synchronized arrangement use literally the same ambient vertex
-coordinates. -/
+coordinates.
+@isnad1 id=iff.0h5v.s7.1f5b01202745 from=translated src=- shape=454665dd vocab=ae7157bd
+-/
 theorem synchronizedPatchMeshes_coordinateEmbed_eq_iff (k : ChartKind)
     (J : ι → PolygonalCircle)
     (x : GeometricRealization (synchronizedPatchOldMesh k J).Vertex
@@ -2872,6 +3132,9 @@ noncomputable def synchronizedPatchNewSurfaceEmbed
       rw [synchronizedPatchNewMesh_support]
       exact c.kind.patchComplex_support_subset_modelRegion) x)).1
 
+/--
+@isnad1 id=isembedd.1h4v.s7.ba48a4a8151f from=translated src=- shape=1b9211a8 vocab=be9e99d3
+-/
 theorem isEmbedding_synchronizedPatchOldSurfaceEmbed
     {S : Type*} [TopologicalSpace S] (c : MoiseChart S)
     (J : ι → PolygonalCircle)
@@ -2893,6 +3156,9 @@ theorem isEmbedding_synchronizedPatchOldSurfaceEmbed
   rw [heq] at h
   exact h
 
+/--
+@isnad1 id=isembedd.0h4v.s7.c42b695cba89 from=translated src=- shape=1b9ae168 vocab=b636b09d
+-/
 theorem isEmbedding_synchronizedPatchNewSurfaceEmbed
     {S : Type*} [TopologicalSpace S] (c : MoiseChart S)
     (J : ι → PolygonalCircle) :
@@ -2914,6 +3180,9 @@ theorem isEmbedding_synchronizedPatchNewSurfaceEmbed
   rw [heq] at h
   exact h
 
+/--
+@isnad1 id=iff.1h6v.s8.b2d1116bc3d2 from=translated src=- shape=8d49f97d vocab=bca6121d
+-/
 theorem synchronizedPatchSurfaceEmbed_eq_iff
     {S : Type*} [TopologicalSpace S] (c : MoiseChart S)
     (J : ι → PolygonalCircle)
@@ -2941,7 +3210,9 @@ theorem synchronizedPatchSurfaceEmbed_eq_iff
     exact Subtype.ext hplane
 
 omit [Fintype ι] in
-/-- Generic finite synchronized weld for a polygonal old-side family and the fixed chart patch. -/
+/-- Generic finite synchronized weld for a polygonal old-side family and the fixed chart patch.
+@isnad1 id=ex.1h4v.s9.c611bf74f88b from=translated src=- shape=27d3cd96 vocab=c64021ec
+-/
 theorem exists_synchronizedPatch_local_weld
     {S : Type*} [TopologicalSpace S] [Finite ι] (c : MoiseChart S)
     (J : ι → PolygonalCircle)
@@ -2989,18 +3260,27 @@ noncomputable def oldMesh (J : ι → PolygonalCircle) (N : TriangleMesh) : Tria
 noncomputable def newMesh (J : ι → PolygonalCircle) (N : TriangleMesh) : TriangleMesh :=
   PolygonalFamily.targetSynchronizedMesh J N
 
+/--
+@isnad1 id=eq.0h3v.s4.ccb26bd30c92 from=translated src=- shape=fd9c16e5 vocab=ef1354c9
+-/
 theorem oldMesh_support (J : ι → PolygonalCircle) (N : TriangleMesh) :
     (oldMesh J N).toPlaneComplex.support = PolygonalFamily.closedRegion J := by
   simpa [oldMesh, PolygonalFamily.selectedClosedRegion,
     PolygonalFamily.closedRegion] using
     (PolygonalFamily.selectedSynchronizedMesh_support J N (fun _ ↦ True))
 
+/--
+@isnad1 id=eq.1h3v.s5.cde245852963 from=translated src=- shape=0475812a vocab=4a20a87e
+-/
 theorem newMesh_support (J : ι → PolygonalCircle) (N : TriangleMesh)
     (hN : N.toPlaneComplex.support ⊆
       (PolygonalFamily.arrangementMesh J).toPlaneComplex.support) :
     (newMesh J N).toPlaneComplex.support = N.toPlaneComplex.support :=
   PolygonalFamily.targetSynchronizedMesh_support J N hN
 
+/--
+@isnad1 id=eq.1h4v.s7.61a5adebc765 from=translated src=- shape=83e3adcb vocab=d9d5a936
+-/
 theorem meshes_triangle_card (J : ι → PolygonalCircle) (N : TriangleMesh) :
     ∀ t ∈ (oldMesh J N).triangles ∪ (newMesh J N).triangles,
       t.card = 3 := by
@@ -3009,6 +3289,9 @@ theorem meshes_triangle_card (J : ι → PolygonalCircle) (N : TriangleMesh) :
   · exact (oldMesh J N).card_triangle t htOld
   · exact (newMesh J N).card_triangle t htNew
 
+/--
+@isnad1 id=le.1h4v.s8.d4362d1cdcd2 from=translated src=- shape=fdf716fc vocab=64fec89c
+-/
 theorem meshes_surface_edge_valence (J : ι → PolygonalCircle) (N : TriangleMesh) :
     ∀ e ∈ ((oldMesh J N).triangles ∪
         (newMesh J N).triangles).biUnion fun t ↦ t.powersetCard 2,
@@ -3020,7 +3303,9 @@ theorem meshes_surface_edge_valence (J : ι → PolygonalCircle) (N : TriangleMe
     (fun _ ↦ True) e (Finset.mem_powersetCard.mp het).2
 
 /-- The two restrictions use the same ambient arrangement vertices, so equality in the plane
-is exactly equality of their zero-extended barycentric coordinate functions. -/
+is exactly equality of their zero-extended barycentric coordinate functions.
+@isnad1 id=iff.0h5v.s7.21b5a3de5dee from=translated src=- shape=1c3ade3d vocab=72d2a3b1
+-/
 theorem meshes_coordinateEmbed_eq_iff (J : ι → PolygonalCircle) (N : TriangleMesh)
     (x : GeometricRealization (oldMesh J N).Vertex (oldMesh J N).triangles)
     (y : GeometricRealization (newMesh J N).Vertex (newMesh J N).triangles) :
@@ -3059,6 +3344,9 @@ noncomputable def newSurfaceEmbed
       rw [newMesh_support J N harr]
       exact hmodel) x)).1
 
+/--
+@isnad1 id=isembedd.1h5v.s7.5635f8b39eb6 from=translated src=- shape=ca54a0e2 vocab=1063fc7b
+-/
 theorem isEmbedding_oldSurfaceEmbed
     {S : Type*} [TopologicalSpace S] (c : MoiseChart S)
     (J : ι → PolygonalCircle) (N : TriangleMesh)
@@ -3078,6 +3366,9 @@ theorem isEmbedding_oldSurfaceEmbed
   rw [heq] at h
   exact h
 
+/--
+@isnad1 id=isembedd.2h5v.s7.fc3dcd71d2af from=translated src=- shape=871e2a93 vocab=29245f5d
+-/
 theorem isEmbedding_newSurfaceEmbed
     {S : Type*} [TopologicalSpace S] (c : MoiseChart S)
     (J : ι → PolygonalCircle) (N : TriangleMesh)
@@ -3099,7 +3390,9 @@ theorem isEmbedding_newSurfaceEmbed
   rw [heq] at h
   exact h
 
-/-- The target surface embedding has exactly the chart image of the prescribed mesh support. -/
+/-- The target surface embedding has exactly the chart image of the prescribed mesh support.
+@isnad1 id=eq.2h5v.s9.63b090b9a148 from=translated src=- shape=78488266 vocab=3df7b17b
+-/
 theorem range_newSurfaceEmbed
     {S : Type*} [TopologicalSpace S] (c : MoiseChart S)
     (J : ι → PolygonalCircle) (N : TriangleMesh)
@@ -3133,7 +3426,9 @@ theorem range_newSurfaceEmbed
     exact Subtype.ext hx
 
 /-- Relative interior of the target mesh in the chart model maps to ambient interior in the
-surface.  For half-disk charts this includes points on the model boundary line. -/
+surface.  For half-disk charts this includes points on the model boundary line.
+@isnad1 id=le.2h5v.s9.df5f12764473 from=translated src=- shape=a1e6e78c vocab=cdcaae66
+-/
 theorem modelInterior_subset_interior_range_newSurfaceEmbed
     {S : Type*} [TopologicalSpace S] (c : MoiseChart S)
     (J : ι → PolygonalCircle) (N : TriangleMesh)
@@ -3160,6 +3455,9 @@ theorem modelInterior_subset_interior_range_newSurfaceEmbed
     exact ⟨p, hp, rfl⟩
   exact ⟨c.chart.symm p, hzInterior, rfl⟩
 
+/--
+@isnad1 id=iff.3h7v.s8.0c22dfac7fc3 from=translated src=- shape=930cd285 vocab=d7595c6d
+-/
 theorem surfaceEmbed_eq_iff
     {S : Type*} [TopologicalSpace S] (c : MoiseChart S)
     (J : ι → PolygonalCircle) (N : TriangleMesh)
@@ -3186,7 +3484,9 @@ theorem surfaceEmbed_eq_iff
     exact Subtype.ext hplane
 
 /-- Generic finite synchronized weld for a polygonal old-side family and any prescribed finite
-target mesh lying in the chart model. -/
+target mesh lying in the chart model.
+@isnad1 id=ex.3h5v.s9.3c41be6f559b from=translated src=- shape=4cd6b48e vocab=97ce03ee
+-/
 theorem exists_local_weld
     {S : Type*} [TopologicalSpace S] (c : MoiseChart S)
     (J : ι → PolygonalCircle) (N : TriangleMesh)
@@ -3236,6 +3536,9 @@ noncomputable def newMesh (J : ι → PolygonalCircle) (N : TriangleMesh)
     (lines : List (Plane →ᵃ[ℝ] ℝ)) : TriangleMesh :=
   PolygonalFamily.targetRelativeSynchronizedMesh J N lines
 
+/--
+@isnad1 id=eq.0h4v.s8.47dde832b927 from=translated src=- shape=119d9214 vocab=b405e91e
+-/
 theorem oldMesh_support (J : ι → PolygonalCircle) (N : TriangleMesh)
     (lines : List (Plane →ᵃ[ℝ] ℝ)) :
     (oldMesh J N lines).toPlaneComplex.support =
@@ -3245,6 +3548,9 @@ theorem oldMesh_support (J : ι → PolygonalCircle) (N : TriangleMesh)
     (PolygonalFamily.selectedRelativeSynchronizedMesh_support
       J N lines (fun _ ↦ True))
 
+/--
+@isnad1 id=eq.1h4v.s8.990356e67f70 from=translated src=- shape=22590d39 vocab=35631b2d
+-/
 theorem newMesh_support (J : ι → PolygonalCircle) (N : TriangleMesh)
     (lines : List (Plane →ᵃ[ℝ] ℝ))
     (hN : N.toPlaneComplex.support ⊆
@@ -3252,6 +3558,9 @@ theorem newMesh_support (J : ι → PolygonalCircle) (N : TriangleMesh)
     (newMesh J N lines).toPlaneComplex.support = N.toPlaneComplex.support :=
   PolygonalFamily.targetRelativeSynchronizedMesh_support J N lines hN
 
+/--
+@isnad1 id=eq.1h5v.s8.4845abc80083 from=translated src=- shape=49af4af6 vocab=bf553f4b
+-/
 theorem meshes_triangle_card (J : ι → PolygonalCircle) (N : TriangleMesh)
     (lines : List (Plane →ᵃ[ℝ] ℝ)) :
     ∀ t ∈ (oldMesh J N lines).triangles ∪ (newMesh J N lines).triangles,
@@ -3261,6 +3570,9 @@ theorem meshes_triangle_card (J : ι → PolygonalCircle) (N : TriangleMesh)
   · exact (oldMesh J N lines).card_triangle t htOld
   · exact (newMesh J N lines).card_triangle t htNew
 
+/--
+@isnad1 id=le.1h5v.s9.3869055605ce from=translated src=- shape=5edff4ae vocab=0e554586
+-/
 theorem meshes_surface_edge_valence
     (J : ι → PolygonalCircle) (N : TriangleMesh)
     (lines : List (Plane →ᵃ[ℝ] ℝ)) :
@@ -3293,6 +3605,9 @@ def newFaceToAmbient (J : ι → PolygonalCircle) (N : TriangleMesh)
     (PolygonalFamily.targetRelativeSynchronizedMesh_triangle_mem
       J N lines).mp f.2 |>.1⟩
 
+/--
+@isnad1 id=eq.0h5v.s9.a564a029e067 from=translated src=- shape=5b9b376d vocab=b6f72cc2
+-/
 @[simp]
 theorem oldFaceToAmbient_val (J : ι → PolygonalCircle) (N : TriangleMesh)
     (lines : List (Plane →ᵃ[ℝ] ℝ))
@@ -3300,6 +3615,9 @@ theorem oldFaceToAmbient_val (J : ι → PolygonalCircle) (N : TriangleMesh)
     (oldFaceToAmbient J N lines f).1 = f.1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.7d4fbe781a25 from=translated src=- shape=5b9b376d vocab=d20505bd
+-/
 @[simp]
 theorem newFaceToAmbient_val (J : ι → PolygonalCircle) (N : TriangleMesh)
     (lines : List (Plane →ᵃ[ℝ] ℝ))
@@ -3308,7 +3626,9 @@ theorem newFaceToAmbient_val (J : ι → PolygonalCircle) (N : TriangleMesh)
   rfl
 
 /-- Ambient-adjacent chambers retained on opposite sides give a genuine cross-edge certificate
-for the two synchronized submeshes. -/
+for the two synchronized submeshes.
+@isnad1 id=hascross.1h6v.s8.01f2fb91b942 from=translated src=- shape=71eae7f9 vocab=bcba8742
+-/
 theorem hasCrossEdge_of_ambientAdjacent
     (J : ι → PolygonalCircle) (N : TriangleMesh)
     (lines : List (Plane →ᵃ[ℝ] ℝ))
@@ -3323,7 +3643,9 @@ theorem hasCrossEdge_of_ambientAdjacent
   rcases hadj with ⟨edge, hedgeCard, hedgeOld, hedgeNew⟩
   exact ⟨fOld, fNew, edge, hedgeCard, hedgeOld, hedgeNew⟩
 
-/-- A chamber retained by both synchronized submeshes supplies a cross-edge certificate. -/
+/-- A chamber retained by both synchronized submeshes supplies a cross-edge certificate.
+@isnad1 id=hascross.2h5v.s8.623fd5f93cf8 from=translated src=- shape=ebbb1a1d vocab=b4ddc825
+-/
 theorem hasCrossEdge_of_common_triangle
     (J : ι → PolygonalCircle) (N : TriangleMesh)
     (lines : List (Plane →ᵃ[ℝ] ℝ))
@@ -3338,7 +3660,9 @@ theorem hasCrossEdge_of_common_triangle
   exact ⟨⟨t, hOld⟩, ⟨t, hNew⟩, edge, hedgeCard, hedge, hedge⟩
 
 /-- Both relative members retain the vertex type of their one ambient arrangement, so planar
-equality is precisely equality of zero-extended barycentric coordinates. -/
+equality is precisely equality of zero-extended barycentric coordinates.
+@isnad1 id=iff.0h6v.s9.9c36272512e6 from=translated src=- shape=fa886e4e vocab=d3f8364b
+-/
 theorem meshes_coordinateEmbed_eq_iff
     (J : ι → PolygonalCircle) (N : TriangleMesh)
     (lines : List (Plane →ᵃ[ℝ] ℝ))
@@ -3386,6 +3710,9 @@ noncomputable def newSurfaceEmbed
       rw [newMesh_support J N lines harr]
       exact hmodel) x)).1
 
+/--
+@isnad1 id=isembedd.1h6v.s9.01c97c55b409 from=translated src=- shape=52e8dad6 vocab=6e6cdf7f
+-/
 theorem isEmbedding_oldSurfaceEmbed
     {S : Type*} [TopologicalSpace S] (c : MoiseChart S)
     (J : ι → PolygonalCircle) (N : TriangleMesh)
@@ -3407,6 +3734,9 @@ theorem isEmbedding_oldSurfaceEmbed
   rw [heq] at h
   exact h
 
+/--
+@isnad1 id=isembedd.2h6v.s9.00b27ddc6fd9 from=translated src=- shape=f6faacf9 vocab=89c4adde
+-/
 theorem isEmbedding_newSurfaceEmbed
     {S : Type*} [TopologicalSpace S] (c : MoiseChart S)
     (J : ι → PolygonalCircle) (N : TriangleMesh)
@@ -3431,6 +3761,9 @@ theorem isEmbedding_newSurfaceEmbed
   rw [heq] at h
   exact h
 
+/--
+@isnad1 id=eq.2h6v.s9.a7453259823a from=translated src=- shape=8444866d vocab=eee3db12
+-/
 theorem range_newSurfaceEmbed
     {S : Type*} [TopologicalSpace S] (c : MoiseChart S)
     (J : ι → PolygonalCircle) (N : TriangleMesh)
@@ -3467,6 +3800,9 @@ theorem range_newSurfaceEmbed
     apply congrArg c.chart.symm
     exact Subtype.ext hx
 
+/--
+@isnad1 id=le.2h6v.s9.dd1e5294cb82 from=translated src=- shape=2b8d23ad vocab=11559be1
+-/
 theorem modelInterior_subset_interior_range_newSurfaceEmbed
     {S : Type*} [TopologicalSpace S] (c : MoiseChart S)
     (J : ι → PolygonalCircle) (N : TriangleMesh)
@@ -3496,6 +3832,9 @@ theorem modelInterior_subset_interior_range_newSurfaceEmbed
     exact ⟨p, hp, rfl⟩
   exact ⟨c.chart.symm p, hzInterior, rfl⟩
 
+/--
+@isnad1 id=iff.3h8v.s9.8bf6966910af from=translated src=- shape=bb981cb9 vocab=86cf3149
+-/
 theorem surfaceEmbed_eq_iff
     {S : Type*} [TopologicalSpace S] (c : MoiseChart S)
     (J : ι → PolygonalCircle) (N : TriangleMesh)
@@ -3584,6 +3923,9 @@ noncomputable def tileFaceMeetingCertificateLines
   (Finset.univ : Finset (A.TileFacesMeeting C hC)).toList.flatMap fun f ↦
     ((A.tileFaceMeetingPullback C hC N f).target.toTriangleMesh).coordinateLines
 
+/--
+@isnad1 id=mem.2h9v.s11.c5b85db63bf1 from=translated src=- shape=4e098b09 vocab=beb4bd43
+-/
 theorem tileFaceMeetingPullback_coordinateLine_mem
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -3607,6 +3949,9 @@ noncomputable def tileFaceMeetingLines
     List (Plane →ᵃ[ℝ] ℝ) :=
   A.tileFaceMeetingCertificateLines C hC N ++ extraLines
 
+/--
+@isnad1 id=mem.2h10v.s11.abbbbdcb7a54 from=translated src=- shape=38021867 vocab=3b366c16
+-/
 theorem tileFaceMeetingPullback_coordinateLine_mem_lines
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -3629,6 +3974,9 @@ noncomputable def coordinateAnchorLines
     [BrokenLineData.verticalLine (p a),
       BrokenLineData.horizontalLine (p a)]
 
+/--
+@isnad1 id=mem.0h3v.s10.2155299c709e from=translated src=- shape=87a63cc8 vocab=989a0467
+-/
 theorem verticalLine_mem_coordinateAnchorLines
     {α : Type*} [Fintype α] (p : α → Plane) (a : α) :
     BrokenLineData.verticalLine (p a) ∈ coordinateAnchorLines p := by
@@ -3636,6 +3984,9 @@ theorem verticalLine_mem_coordinateAnchorLines
   rw [coordinateAnchorLines, List.mem_flatMap]
   exact ⟨a, by simp, by simp⟩
 
+/--
+@isnad1 id=mem.0h3v.s10.ed60a351c5ef from=translated src=- shape=87a63cc8 vocab=77f7424a
+-/
 theorem horizontalLine_mem_coordinateAnchorLines
     {α : Type*} [Fintype α] (p : α → Plane) (a : α) :
     BrokenLineData.horizontalLine (p a) ∈ coordinateAnchorLines p := by
@@ -3665,6 +4016,9 @@ noncomputable def tileFacesMeetingRelativeNewMesh
     (A.tileFacePolygonMeeting C hC) N
     (A.tileFaceMeetingLines C hC N extraLines)
 
+/--
+@isnad1 id=eq.1h8v.s9.f5d1eafb346c from=translated src=- shape=ebab31b9 vocab=264bc757
+-/
 theorem tileFacesMeetingRelativeOldMesh_support
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -3675,6 +4029,9 @@ theorem tileFacesMeetingRelativeOldMesh_support
       PolygonalFamily.closedRegion (A.tileFacePolygonMeeting C hC) :=
   RelativeSynchronizedTarget.oldMesh_support _ _ _
 
+/--
+@isnad1 id=eq.2h8v.s9.4672dfb5ed24 from=translated src=- shape=a837286c vocab=969a432e
+-/
 theorem tileFacesMeetingRelativeNewMesh_support
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -3690,7 +4047,9 @@ theorem tileFacesMeetingRelativeNewMesh_support
 
 /-- A relative synchronized chamber lying in one selected polygon is contained in a maximal
 target triangle of that face's retained pullback certificate.  This is the precise payoff of
-putting every certificate coordinate line into the one common arrangement. -/
+putting every certificate coordinate line into the one common arrangement.
+@isnad1 id=ex.3h10v.s13.0d46aa9f906c from=translated src=- shape=ed227113 vocab=7c7523b8
+-/
 theorem exists_pullbackTargetTriangle_of_relativeOldTriangle
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -3743,7 +4102,9 @@ theorem exists_pullbackTargetTriangle_of_relativeOldTriangle
   exact ⟨W.1, W.2, hTW⟩
 
 /-- The compactly selected polygonal union remains in the coordinate region of the
-replacement presentation. -/
+replacement presentation.
+@isnad1 id=le.1h6v.s7.bd5c547d4bc3 from=translated src=- shape=c129990e vocab=7b66687f
+-/
 theorem tileFacePolygonMeeting_closedRegion_subset_region
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -3755,7 +4116,9 @@ theorem tileFacePolygonMeeting_closedRegion_subset_region
   exact Q.faceClosedRegion_subset f.1 hxf
 
 /-- The same polygonal union, lifted to the coordinate-region subtype, lies in the support of
-the global polygonal replacement complex. -/
+the global polygonal replacement complex.
+@isnad1 id=le.1h6v.s8.4a38d0626ccb from=translated src=- shape=8f5871b6 vocab=5a4aae80
+-/
 theorem tileFacePolygonMeeting_subset_complex_support
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -3772,7 +4135,9 @@ theorem tileFacePolygonMeeting_subset_complex_support
   exact hxf
 
 /-- The coordinate union of a compactly selected tile family is exactly the image of its
-common-level source subcomplex. -/
+common-level source subcomplex.
+@isnad1 id=eq.1h6v.s11.e07ce003b047 from=translated src=- shape=58c22159 vocab=7394c437
+-/
 theorem sourceTileFacesMeeting_eq_coordinatePreimage
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -3822,6 +4187,9 @@ noncomputable def tileFacesMeetingRelativeOldCoordinateSupport
     exact ⟨pV,
       A.tileFacePolygonMeeting_subset_complex_support C hC hpClosed⟩
 
+/--
+@isnad1 id=isembedd.1h8v.s10.acdaa4cf4dcb from=translated src=- shape=0c313738 vocab=b1cfa387
+-/
 theorem isEmbedding_tileFacesMeetingRelativeOldCoordinateSupport
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -3868,6 +4236,9 @@ noncomputable def tileFacesMeetingRelativeSourceEmbed
   Subtype.val ∘ Q.sourceHomeomorph.symm ∘
     A.tileFacesMeetingRelativeOldCoordinateSupport C hC N extraLines
 
+/--
+@isnad1 id=isembedd.1h8v.s9.c1f63cc9a703 from=translated src=- shape=2ce4b077 vocab=ef5d7715
+-/
 theorem isEmbedding_tileFacesMeetingRelativeSourceEmbed
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -3882,7 +4253,9 @@ theorem isEmbedding_tileFacesMeetingRelativeSourceEmbed
         C hC N extraLines))
 
 /-- Changing only the finite line refinement does not change the source point represented by
-one fixed planar coordinate. -/
+one fixed planar coordinate.
+@isnad1 id=eq.2h11v.s9.c722068133f8 from=translated src=- shape=d9ae6415 vocab=52ce229e
+-/
 theorem tileFacesMeetingRelativeSourceEmbed_eq_of_coordinateEmbed_eq
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -3927,6 +4300,9 @@ noncomputable abbrev tileFacesMeetingRelativeSourceComplex
       faces := M.triangles
       faces_card := M.card_triangle }
 
+/--
+@isnad1 id=eq.1h8v.s9.506d22d374e1 from=translated src=- shape=a0a3768d vocab=b146327e
+-/
 @[simp] theorem tileFacesMeetingRelativeSourceComplex_faces
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -3967,6 +4343,9 @@ noncomputable def tileFacesMeetingRelativeSourceVertexPointInOpen
       ((A.tileFacesMeetingRelativeSourceComplex
         C hC N extraLines).vertexPoint v))
 
+/--
+@isnad1 id=eq.1h9v.s9.5df9fdd16a2d from=translated src=- shape=02c9b0a8 vocab=f1404e8c
+-/
 @[simp] theorem tileFacesMeetingRelativeSourceVertexPointInOpen_val
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -3981,7 +4360,9 @@ noncomputable def tileFacesMeetingRelativeSourceVertexPointInOpen
   rfl
 
 /-- In replacement coordinates, a used local source vertex is its literal plane-mesh
-vertex. -/
+vertex.
+@isnad1 id=eq.1h9v.s11.94f7e4fa274d from=translated src=- shape=b0c81185 vocab=f39a85b8
+-/
 theorem sourceHomeomorph_relativeSourceVertexPointInOpen
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -4011,6 +4392,9 @@ theorem sourceHomeomorph_relativeSourceVertexPointInOpen
     simp [hw]
   · simp
 
+/--
+@isnad1 id=injectiv.1h8v.s9.17952da746fb from=translated src=- shape=51c28b05 vocab=1d699073
+-/
 theorem injective_tileFacesMeetingRelativeSourceVertexPoint
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -4025,7 +4409,9 @@ theorem injective_tileFacesMeetingRelativeSourceVertexPoint
       C hC N extraLines).injective_vertexPoint
 
 /-- The certificate cuts change only the triangulation, not the selected whole-tile source
-support. -/
+support.
+@isnad1 id=eq.1h8v.s10.95c7903ba6bc from=translated src=- shape=f8809add vocab=70b6c0df
+-/
 theorem range_tileFacesMeetingRelativeSourceEmbed
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -4078,6 +4464,9 @@ theorem range_tileFacesMeetingRelativeSourceEmbed
     exact congrArg Subtype.val
       (Q.sourceHomeomorph.symm_apply_apply ⟨x, hxU⟩)
 
+/--
+@isnad1 id=eq.1h8v.s9.46e531408bc0 from=translated src=- shape=5527c310 vocab=384a27cf
+-/
 theorem range_tileFacesMeetingRelativeSourceEmbed_eq_levelFaces
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -4093,7 +4482,9 @@ theorem range_tileFacesMeetingRelativeSourceEmbed_eq_levelFaces
     (A.sourceTileFacesMeeting_eq_levelFaces C hC)
 
 /-- On every certificate-cut synchronized triangle, the pulled-back source embedding is one
-affine function in the original intrinsic barycentric coordinates. -/
+affine function in the original intrinsic barycentric coordinates.
+@isnad1 id=ex.2h9v.s10.ac7204f63ce2 from=translated src=- shape=dc122f6c vocab=c408a8aa
+-/
 theorem tileFacesMeetingRelativeSourceEmbed_affineOn_triangle
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -4185,7 +4576,9 @@ theorem tileFacesMeetingRelativeSourceEmbed_affineOn_triangle
     (A.tileFaceMeetingCertificate C hC f).inverseOn p = ainv p
   exact hainv hpTarget
 
-/-- Every relative source triangle lies in one original maximal face. -/
+/-- Every relative source triangle lies in one original maximal face.
+@isnad1 id=ex.2h9v.s9.b234bde20b45 from=translated src=- shape=c0021088 vocab=cefcd710
+-/
 theorem exists_parentFace_of_relativeOldTriangle
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -4249,7 +4642,9 @@ noncomputable def relativeOldTriangleParent
     (A.exists_parentFace_of_relativeOldTriangle
       C hC N extraLines t.2)
 
-/-- The chosen parent contains the complete image of the relative source triangle. -/
+/-- The chosen parent contains the complete image of the relative source triangle.
+@isnad1 id=mem.2h10v.s9.8dfe3f377ee6 from=translated src=- shape=6938fc92 vocab=6509a030
+-/
 theorem relativeOldTriangleParent_contains
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -4284,7 +4679,9 @@ noncomputable def relativeOldTriangleSourceAffine
     (A.tileFacesMeetingRelativeSourceEmbed_affineOn_triangle
       C hC N extraLines t.2)
 
-/-- The chosen source affine formula agrees with the source embedding on its triangle. -/
+/-- The chosen source affine formula agrees with the source embedding on its triangle.
+@isnad1 id=eq.2h10v.s10.a58c690cca35 from=translated src=- shape=09378417 vocab=9caa8a2a
+-/
 theorem relativeOldTriangleSourceAffine_eq
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -4304,7 +4701,9 @@ theorem relativeOldTriangleSourceAffine_eq
       C hC N extraLines t.2) x hx
 
 /-- On one relative source triangle, the source map is the affine combination of its three
-actual source-vertex images. -/
+actual source-vertex images.
+@isnad1 id=eq.2h10v.s11.2ee9b2285281 from=translated src=- shape=cb763643 vocab=39133eca
+-/
 theorem relativeSourceFaceMap_eq_vertex_sum
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -4426,6 +4825,9 @@ noncomputable def relativeOldTrianglePoint
         M.sum_triangleCoords t p.1⟩,
       t.1, t.2, M.triangleCoords_support t p.1⟩
 
+/--
+@isnad1 id=eq.1h10v.s9.2b8d0ae86c14 from=translated src=- shape=8bdce48c vocab=e68d41cb
+-/
 @[simp] theorem relativeOldTrianglePoint_coordinateEmbed
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -4442,6 +4844,9 @@ noncomputable def relativeOldTrianglePoint
   let M := A.tileFacesMeetingRelativeOldMesh C hC N extraLines
   exact M.baryEval_triangleCoords t p.1
 
+/--
+@isnad1 id=eq.1h10v.s10.bfb512b85458 from=translated src=- shape=77f06d26 vocab=89dbd0b1
+-/
 theorem relativeOldTrianglePoint_val_eq_triangleCoords
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -4458,6 +4863,9 @@ theorem relativeOldTrianglePoint_val_eq_triangleCoords
         C hC N extraLines).triangleCoords t p.1 :=
   rfl
 
+/--
+@isnad1 id=eq.2h11v.s9.80c4c03e0583 from=translated src=- shape=2888dfcd vocab=93602388
+-/
 theorem relativeOldTrianglePoint_supported
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -4493,6 +4901,9 @@ noncomputable def relativeOldTriangleParentPlaneAffine
       ((A.tileFacesMeetingRelativeOldMesh
         C hC N extraLines).triangleCoords t))
 
+/--
+@isnad1 id=eq.1h10v.s11.6913d72f4ce9 from=translated src=- shape=1ebfa1ab vocab=679d1b27
+-/
 theorem relativeOldTriangleParentPlaneAffine_eq
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -4533,7 +4944,9 @@ theorem relativeOldTriangleParentPlaneAffine_eq
         (A.relativeOldTrianglePoint_supported
           C hC N extraLines t p)).symm
 
-/-- The parent-plane formula is locally injective on its source triangle. -/
+/-- The parent-plane formula is locally injective on its source triangle.
+@isnad1 id=injon.1h9v.s10.956e465d569e from=translated src=- shape=69165d04 vocab=de966eae
+-/
 theorem relativeOldTriangleParentPlaneAffine_injOn
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -4602,7 +5015,9 @@ theorem relativeOldTriangleParentPlaneAffine_injOn
         C hC N extraLines t qq
 
 /-- Consequently, the parent-plane formula is a global affine equivalence at the level of
-functions. -/
+functions.
+@isnad1 id=injectiv.1h9v.s10.7c16ed913021 from=translated src=- shape=63f93061 vocab=d34f6fe6
+-/
 theorem relativeOldTriangleParentPlaneAffine_injective
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -4625,6 +5040,9 @@ theorem relativeOldTriangleParentPlaneAffine_injective
   exact A.relativeOldTriangleParentPlaneAffine_injOn
     C hC N extraLines t
 
+/--
+@isnad1 id=surjecti.1h9v.s10.8fba4909d624 from=translated src=- shape=63f93061 vocab=75ce699e
+-/
 theorem relativeOldTriangleParentPlaneAffine_surjective
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -4654,6 +5072,9 @@ noncomputable def levelFaceParent
     (Classical.choose_spec
       ((K.safeSubdivision n).subordinate s.1 s.2)).1⟩
 
+/--
+@isnad1 id=mem.1h4v.s9.e3de1e0fd0b9 from=translated src=- shape=d64899e8 vocab=681f2243
+-/
 theorem levelFaceParent_contains
     (K : IntrinsicTwoComplex) {n : ℕ} (s : K.LevelFace n)
     (x : (K.safeSubdivision n).refined.realization)
@@ -4671,6 +5092,9 @@ noncomputable def levelFaceSourceAffine
       (K.Vertex → ℝ) :=
   Classical.choose ((K.safeSubdivision n).affineOnFace s.1 s.2)
 
+/--
+@isnad1 id=eq.1h4v.s9.479f5431a2a7 from=translated src=- shape=eecf1606 vocab=eba3439c
+-/
 theorem levelFaceSourceAffine_eq
     (K : IntrinsicTwoComplex) {n : ℕ} (s : K.LevelFace n)
     (x : (K.safeSubdivision n).refined.realization)
@@ -4689,6 +5113,9 @@ noncomputable def levelFaceParentPlaneAffine
     ((levelFaceSourceAffine K s).comp
       ((K.safeSubdivision n).refined.facePlaneInverseAffine s))
 
+/--
+@isnad1 id=eq.0h4v.s11.4deb386895af from=translated src=- shape=ca41ea0f vocab=60d8f6dd
+-/
 theorem levelFaceParentPlaneAffine_eq
     (K : IntrinsicTwoComplex) {n : ℕ} (s : K.LevelFace n)
     (p : standardTrianglePlaneComplex.support) :
@@ -4713,7 +5140,9 @@ theorem levelFaceParentPlaneAffine_eq
     _ = (R.homeo x.1).1 :=
       (levelFaceSourceAffine_eq K s x.1 x.2).symm
 
-/-- The parent-plane formula for a level face is injective on the standard closed triangle. -/
+/-- The parent-plane formula for a level face is injective on the standard closed triangle.
+@isnad1 id=injon.0h3v.s10.39513151d935 from=translated src=- shape=30e6c6c6 vocab=6c01161a
+-/
 theorem levelFaceParentPlaneAffine_injOn
     (K : IntrinsicTwoComplex) {n : ℕ} (s : K.LevelFace n) :
     Set.InjOn (levelFaceParentPlaneAffine K s)
@@ -4755,6 +5184,9 @@ theorem levelFaceParentPlaneAffine_injOn
       exact congrArg Subtype.val
         ((R.refined.facePlaneHomeomorph s).apply_symm_apply qq)
 
+/--
+@isnad1 id=injectiv.0h3v.s10.c7f0de302ac6 from=translated src=- shape=da29cd61 vocab=ad6cfc1e
+-/
 theorem levelFaceParentPlaneAffine_injective
     (K : IntrinsicTwoComplex) {n : ℕ} (s : K.LevelFace n) :
     Function.Injective (levelFaceParentPlaneAffine K s) := by
@@ -4763,6 +5195,9 @@ theorem levelFaceParentPlaneAffine_injective
   rw [← standardTrianglePlaneComplex_support]
   exact levelFaceParentPlaneAffine_injOn K s
 
+/--
+@isnad1 id=surjecti.0h3v.s10.a3a1d7fc8c6b from=translated src=- shape=da29cd61 vocab=90c39de4
+-/
 theorem levelFaceParentPlaneAffine_surjective
     (K : IntrinsicTwoComplex) {n : ℕ} (s : K.LevelFace n) :
     Function.Surjective (levelFaceParentPlaneAffine K s) := by
@@ -4783,6 +5218,9 @@ noncomputable def levelFaceParentCoord
         rw [← standardTrianglePlaneComplex_support]
         exact levelFaceParentPlaneAffine_injOn K s))).coord k
 
+/--
+@isnad1 id=eq.0h5v.s10.0eb0cc9b6d76 from=translated src=- shape=926325c4 vocab=0478aede
+-/
 @[simp] theorem levelFaceParentCoord_vertex
     (K : IntrinsicTwoComplex) {n : ℕ} (s : K.LevelFace n)
     (k i : Fin 3) :
@@ -4791,6 +5229,9 @@ noncomputable def levelFaceParentCoord
         if k = i then 1 else 0 := by
   exact AffineBasis.coord_apply _ _ _
 
+/--
+@isnad1 id=surjecti.0h4v.s9.0f3d4acd5640 from=translated src=- shape=df9563c9 vocab=90235e9d
+-/
 theorem levelFaceParentCoord_surjective
     (K : IntrinsicTwoComplex) {n : ℕ} (s : K.LevelFace n)
     (k : Fin 3) :
@@ -4804,6 +5245,9 @@ theorem levelFaceParentCoord_surjective
           rw [← standardTrianglePlaneComplex_support]
           exact levelFaceParentPlaneAffine_injOn K s))).surjective_coord k
 
+/--
+@isnad1 id=le.0h5v.s10.71d3e231657c from=translated src=- shape=7a2ff6f8 vocab=f4aa7ec9
+-/
 theorem levelFaceParentCoord_nonneg
     (K : IntrinsicTwoComplex) {n : ℕ} (s : K.LevelFace n)
     (k : Fin 3) (p : standardTrianglePlaneComplex.support) :
@@ -4837,7 +5281,9 @@ theorem levelFaceParentCoord_nonneg
 
 /-- A point in the relative interior of an original maximal face cannot also belong to a
 distinct original maximal face.  The relative interior is detected in the canonical standard
-plane chart. -/
+plane chart.
+@isnad1 id=eq.3h4v.s9.06e4a3def470 from=translated src=- shape=e072b1a4 vocab=b8f7cff5
+-/
 theorem face_eq_of_mem_faceCarriers_of_facePlane_mem_interior
     (K : IntrinsicTwoComplex) (t u : K.Face) (x : K.realization)
     (hxt : x ∈ K.faceCarrier t.1) (hxu : x ∈ K.faceCarrier u.1)
@@ -4917,6 +5363,9 @@ noncomputable def relativeLevelAlignmentLines
       else
         []
 
+/--
+@isnad1 id=mem.2h12v.s11.b5ba090d5b48 from=translated src=- shape=4dfc9042 vocab=b7cc4543
+-/
 theorem relativeLevelAlignmentLine_mem
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -4944,6 +5393,9 @@ theorem relativeLevelAlignmentLine_mem
   apply List.mem_map.mpr
   exact ⟨k, Finset.mem_toList.mpr (Finset.mem_univ k), rfl⟩
 
+/--
+@isnad1 id=surjecti.1h12v.s10.154a69a4a3aa from=translated src=- shape=cafef7f9 vocab=5e2cfea1
+-/
 theorem relativeLevelAlignmentLine_surjective
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -4991,6 +5443,9 @@ noncomputable def tileFacesMeetingOldCoordinateSupport
     exact ⟨pV,
       A.tileFacePolygonMeeting_subset_complex_support C hC hpClosed⟩
 
+/--
+@isnad1 id=isembedd.1h7v.s11.c39a43a73002 from=translated src=- shape=f1b27cf8 vocab=a654fe6a
+-/
 theorem isEmbedding_tileFacesMeetingOldCoordinateSupport
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -5034,6 +5489,9 @@ noncomputable def tileFacesMeetingSourceEmbed
   Subtype.val ∘ Q.sourceHomeomorph.symm ∘
     A.tileFacesMeetingOldCoordinateSupport C hC N
 
+/--
+@isnad1 id=isembedd.1h7v.s11.a055d29f5c83 from=translated src=- shape=cd9d75ce vocab=24a347aa
+-/
 theorem isEmbedding_tileFacesMeetingSourceEmbed
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -5045,7 +5503,9 @@ theorem isEmbedding_tileFacesMeetingSourceEmbed
       (A.isEmbedding_tileFacesMeetingOldCoordinateSupport C hC N))
 
 /-- The synchronized old mesh pulls back onto exactly the finite whole-tile source
-subcomplex. -/
+subcomplex.
+@isnad1 id=eq.1h7v.s10.3d16cd6e86d0 from=translated src=- shape=a787acbb vocab=f04246c8
+-/
 theorem range_tileFacesMeetingSourceEmbed
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -5095,7 +5555,9 @@ theorem range_tileFacesMeetingSourceEmbed
     rw [hsupportEq]
     exact congrArg Subtype.val (Q.sourceHomeomorph.symm_apply_apply ⟨x, hxU⟩)
 
-/-- In intrinsic terms, the range is a literal subcomplex of one finite midpoint level. -/
+/-- In intrinsic terms, the range is a literal subcomplex of one finite midpoint level.
+@isnad1 id=eq.1h7v.s10.161569a68579 from=translated src=- shape=9925b0ee vocab=54f7500e
+-/
 theorem range_tileFacesMeetingSourceEmbed_eq_levelFaces
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
     {Q : PolygonalReplacementPresentation U V}
@@ -5109,7 +5571,9 @@ theorem range_tileFacesMeetingSourceEmbed_eq_levelFaces
     (A.sourceTileFacesMeeting_eq_levelFaces C hC)
 
 /-- Every polygon in a compactly selected tile family lies in the chart model whenever the
-retained coordinate homeomorphism does. -/
+retained coordinate homeomorphism does.
+@isnad1 id=le.2h9v.s10.ef44b623acbb from=translated src=- shape=46d027a1 vocab=58d132ac
+-/
 theorem tileFacePolygonMeeting_closedRegion_subset_modelRegion
     {S : Type*} [TopologicalSpace S]
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
@@ -5133,7 +5597,9 @@ theorem tileFacePolygonMeeting_closedRegion_subset_modelRegion
   exact Q.support_subset_modelRegion_of_coordinate c.kind g' hcoord hzSupport
 
 /-- A compactly selected whole-tile family admits a synchronized local weld with any prescribed
-finite target mesh in the same chart model. -/
+finite target mesh in the same chart model.
+@isnad1 id=ex.4h10v.s11.a9b6abae5735 from=translated src=- shape=b6e09834 vocab=0e02f322
+-/
 theorem exists_tileFacesMeeting_local_weld
     {S : Type*} [TopologicalSpace S]
     {K : IntrinsicTwoComplex} {U : Set K.realization} {V : Set Plane}
@@ -5200,7 +5666,9 @@ noncomputable def patchTileFacePullback
     (SynchronizedPatch.singlePolygonMesh_support A.patchTileFacePolygon N f)
 
 /-- The exact coordinate union of the tile-closed family is the image, under the retained source
-homeomorphism, of its exact common-level source subcomplex. -/
+homeomorphism, of its exact common-level source subcomplex.
+@isnad1 id=eq.0h5v.s11.eda5bdb83e6a from=translated src=- shape=2b8627c8 vocab=8e047d21
+-/
 theorem sourcePatchTileFaces_eq_coordinatePreimage
     {K : IntrinsicTwoComplex} {U : Set K.realization} {k : ChartKind}
     {Q : PolygonalReplacementPresentation U k.perturbationRegion}
@@ -5224,7 +5692,9 @@ theorem sourcePatchTileFaces_eq_coordinatePreimage
     exact hxPolygon
 
 /-- Every polygon in the tile-closed family still lies in the chart model (including the
-half-plane condition in the bordered case). -/
+half-plane condition in the bordered case).
+@isnad1 id=le.1h6v.s10.6fceecaee62f from=translated src=- shape=cf3bf47d vocab=e1d4917d
+-/
 theorem patchTileFaceClosedRegion_subset_modelRegion
     {K : IntrinsicTwoComplex} {U : Set K.realization} {k : ChartKind}
     {Q : PolygonalReplacementPresentation U k.perturbationRegion}
@@ -5244,7 +5714,9 @@ theorem patchTileFaceClosedRegion_subset_modelRegion
   exact Q.support_subset_modelRegion_of_coordinate k g' hcoord hzSupport
 
 /-- The corrected finite local weld: its old side is closed under whole adaptive source tiles,
-so it is exactly supported on a finite common-level source subcomplex. -/
+so it is exactly supported on a finite common-level source subcomplex.
+@isnad1 id=ex.1h7v.s11.3b31972dca29 from=translated src=- shape=dd351de5 vocab=2c1b6952
+-/
 theorem exists_patchTile_local_weld
     {S : Type*} [TopologicalSpace S]
     {K : IntrinsicTwoComplex} {U : Set K.realization}
@@ -5594,7 +6066,9 @@ private theorem straightenedChartOpen_coordZero_iff_boundary
   exact hzero'.trans (hchart.trans hmodel).symm
 
 /-- Assemble the controlled polygonal replacement over an arbitrary open chart region whose
-coordinate image is closed relative to the chosen plane perturbation region. -/
+coordinate image is closed relative to the chosen plane perturbation region.
+@isnad1 id=ex.8h5v.s12.731ed5ac05dc from=translated src=- shape=3af9bbe8 vocab=c724ea0e
+-/
 theorem exists_straightenedChartOpen
     {S' : Type*} [TopologicalSpace S'] [T2Space S'] [CompactSpace S']
     [SecondCountableTopology S']
@@ -5780,7 +6254,9 @@ theorem exists_straightenedChartOpen
 /-- Straighten the old complex in a chart while fixing every source point whose old image lies
 in a prescribed closed protected set.  The perturbation region is obtained by deleting the
 protected chart trace; closedness of the full overlap embedding makes the restricted trace
-closed in that new open region. -/
+closed in that new open region.
+@isnad1 id=ex.3h4v.s12.474cc8e56719 from=translated src=- shape=7d7804ab vocab=61bfd65e
+-/
 theorem exists_straightenedChartAway
     {S' : Type*} [TopologicalSpace S'] [T2Space S'] [CompactSpace S']
     [SecondCountableTopology S']
@@ -5972,7 +6448,9 @@ injection from a compact space into a Hausdorff space, hence an embedding.  The 
 hypothesis is passed through to the glued complex.  The conclusion retains an equivalence from
 the glued vertex type to `V` under which its face family relabels to `F₁ ∪ F₂`, so later incidence
 certificates can use the two source-family proofs without reconstructing provenance from the
-embedding. -/
+embedding.
+@isnad1 id=ex.7h6v.s9.e97fbc4f5d50 from=translated src=- shape=da8df41d vocab=b56751b0
+-/
 theorem PartialTriangulation.exists_glued {S : Type*} [TopologicalSpace S] [T2Space S]
     [ChartedSpace (EuclideanHalfSpace 2) S]
     (V : Type) [Fintype V] [DecidableEq V]
@@ -6126,7 +6604,9 @@ theorem PartialTriangulation.exists_glued {S : Type*} [TopologicalSpace S] [T2Sp
       exact hb x₂ hxt'
 
 /-- A glued partial triangulation is dual-connected once both source families are dual-connected
-and one source face on each side shares an edge in the union family. -/
+and one source face on each side shares an edge in the union family.
+@isnad1 id=isdualco.4h4v.s6.3391ced441ac from=translated src=- shape=273e56b3 vocab=a9f11a47
+-/
 theorem PartialTriangulation.isDualConnected_of_faces_eq_union
     {S : Type*} [TopologicalSpace S] (T : PartialTriangulation S)
     {F₁ F₂ : Finset (Finset T.Vertex)} (hfaces : T.faces = F₁ ∪ F₂)
@@ -6165,6 +6645,9 @@ structure RadoInvariant {S : Type*} [TopologicalSpace S]
   boundaryFacewiseRegular : T.BoundaryFacewiseRegular
   coresInside : A ⊆ interior T.support
 
+/--
+@isnad1 id=le.1h3v.s5.25b10ce1605a from=translated src=- shape=230ce0d6 vocab=97124b5e
+-/
 theorem RadoInvariant.coresCovered {S : Type*} [TopologicalSpace S]
     [ChartedSpace (EuclideanHalfSpace 2) S]
     {T : PartialTriangulation S} {A : Set S} (hT : RadoInvariant T A) :
@@ -6173,7 +6656,9 @@ theorem RadoInvariant.coresCovered {S : Type*} [TopologicalSpace S]
 
 /-- The already absorbed compact set has a closed buffer still lying in the ambient interior of
 the old support.  Protecting this whole buffer during chart straightening, rather than merely
-protecting `A` pointwise, makes preservation of the Radó interior invariant immediate. -/
+protecting `A` pointwise, makes preservation of the Radó interior invariant immediate.
+@isnad1 id=ex.1h3v.s6.bbad6eb7810e from=translated src=- shape=a93dc0e3 vocab=12ff84e5
+-/
 theorem RadoInvariant.exists_closedBuffer {S : Type*} [TopologicalSpace S]
     [T2Space S] [CompactSpace S]
     [ChartedSpace (EuclideanHalfSpace 2) S]
@@ -6190,7 +6675,9 @@ theorem RadoInvariant.exists_closedBuffer {S : Type*} [TopologicalSpace S]
     _ ⊆ interior (closure V) := interior_mono subset_closure
 
 /-- Enlarge the recorded absorbed set without changing the triangulation when the added set is
-already in the interior of its support. -/
+already in the interior of its support.
+@isnad1 id=radoinva.3h4v.s6.bab87bccbf71 from=translated src=- shape=4ad90291 vocab=dfc8c5e3
+-/
 theorem RadoInvariant.absorb_of_subset {S : Type*} [TopologicalSpace S]
     [ChartedSpace (EuclideanHalfSpace 2) S]
     {T : PartialTriangulation S} {A B : Set S} (hT : RadoInvariant T A)
@@ -6202,7 +6689,9 @@ theorem RadoInvariant.absorb_of_subset {S : Type*} [TopologicalSpace S]
   coresInside := Set.union_subset hT.coresInside hB
 
 /-- A single chart has a concrete finite partial triangulation satisfying the bordered Rado
-invariant.  This is the honest nonempty base patch used by the induction step. -/
+invariant.  This is the honest nonempty base patch used by the induction step.
+@isnad1 id=radoinva.1h2v.s5.5d9a02f8e791 from=translated src=- shape=8af40062 vocab=394b0365
+-/
 theorem radoInvariant_chartPatch {S : Type*} [TopologicalSpace S]
     [ChartedSpace (EuclideanHalfSpace 2) S]
     (c : MoiseChart S) (hc : c.BoundaryFaithful) :
@@ -6217,7 +6706,9 @@ theorem radoInvariant_chartPatch {S : Type*} [TopologicalSpace S]
   coresInside := c.core_subset_interior_patchPartialTriangulation_support
 
 /-- If the fixed patch of the new chart already contains the previously absorbed region in its
-ambient interior, that patch alone is a valid next induction stage. -/
+ambient interior, that patch alone is a valid next induction stage.
+@isnad1 id=radoinva.3h3v.s6.244d80b65e95 from=translated src=- shape=6747a9c5 vocab=e2673139
+-/
 theorem radoInvariant_chartPatch_absorb {S : Type*} [TopologicalSpace S]
     [ChartedSpace (EuclideanHalfSpace 2) S]
     (c : MoiseChart S) (hc : c.BoundaryFaithful)
@@ -6228,7 +6719,9 @@ theorem radoInvariant_chartPatch_absorb {S : Type*} [TopologicalSpace S]
     (radoInvariant_chartPatch c hc).absorb_of_subset hAcompact hA
 
 /-- The empty partial triangulation satisfies the invariant for the empty region: the base case
-of the Radó induction. -/
+of the Radó induction.
+@isnad1 id=radoinva.0h1v.s5.2372e18d54f0 from=translated src=- shape=b0772ffe vocab=a5c59e77
+-/
 theorem radoInvariant_empty (S : Type*) [TopologicalSpace S]
     [ChartedSpace (EuclideanHalfSpace 2) S] :
     RadoInvariant (PartialTriangulation.empty S) ∅ where
@@ -6255,7 +6748,9 @@ variable [IsManifold (modelWithCornersEuclideanHalfSpace 2) 0 S]
 omit [T2Space S] [IsManifold (modelWithCornersEuclideanHalfSpace 2) 0 S] in
 /-- A compact Eval surface has a finite cover by interiors of boundary-faithful Moise chart
 cores.  Because the ambient surface is connected, the graph joining two cores when their
-interiors overlap is connected as well. -/
+interiors overlap is connected as well.
+@isnad1 id=ex.0h1v.s6.36b4dffb4d2e from=translated src=- shape=cd7ff717 vocab=b118efb7
+-/
 theorem moise_finite_chart_open_cover :
     ∃ (m : ℕ) (charts : Fin m → MoiseChart S),
       (⋃ i, interior (charts i).core) = Set.univ ∧
@@ -6301,7 +6796,9 @@ omit [T2Space S] [ConnectedSpace S]
   [IsManifold (modelWithCornersEuclideanHalfSpace 2) 0 S] in
 /-- A compact Eval surface has a finite cover by boundary-faithful Moise chart cores (Moise
 Ch. 8, Thm. 1, plus compactness).  Proved by a finite subcover of the core interiors from the
-local chart extraction (`exists_moiseChart_core_mem_nhds`, `Moise/ChartExtraction.lean`). -/
+local chart extraction (`exists_moiseChart_core_mem_nhds`, `Moise/ChartExtraction.lean`).
+@isnad1 id=ex.0h1v.s6.e89912a37700 from=translated src=- shape=6808e4d2 vocab=9a236f16
+-/
 theorem moise_finite_chart_cover :
     ∃ (m : ℕ) (charts : Fin m → MoiseChart S),
       (⋃ i, (charts i).core) = Set.univ ∧
@@ -6327,7 +6824,9 @@ omit [T2Space S] [ConnectedSpace S]
 /-- Compact Eval surfaces are second countable.  We derive this from the finite Moise chart
 cover instead of asking typeclass search to infer second countability of the half-space model:
 each chart domain is homeomorphic to a second-countable disk or half-disk, and finitely many
-open chart domains cover the surface. -/
+open chart domains cover the surface.
+@isnad1 id=secondco.0h1v.s4.775c5d8548ef from=translated src=- shape=db9193a0 vocab=3fd6eb1d
+-/
 theorem moise_secondCountableTopology : SecondCountableTopology S := by
   obtain ⟨m, charts, hcover, _⟩ := moise_finite_chart_cover S
   let U : Fin m → Set S := fun i ↦ (charts i).domain
@@ -6381,7 +6880,9 @@ def PartialTriangulation.BoundaryPreservingStraightening
 
 omit [ConnectedSpace S]
   [IsManifold (modelWithCornersEuclideanHalfSpace 2) 0 S] in
-/-- The relative polygonal straightening preserves the ambient boundary stratum. -/
+/-- The relative polygonal straightening preserves the ambient boundary stratum.
+@isnad1 id=boundary.2h3v.s5.b8c829cf0920 from=translated src=- shape=ebce179e vocab=d8cbacd8
+-/
 theorem PartialTriangulation.exists_boundaryPreservingStraightening
     (T : PartialTriangulation S) (c : MoiseChart S) (hc : c.BoundaryFaithful)
     (hboundary : T.BoundaryFacewiseRegular) :
@@ -6441,7 +6942,9 @@ with the unchanged old embedding across the overlap frontier.
 This is the analytic half of Moise's crossing step.  The replacement stays in the chart model
 (including the closed half-plane in the bordered case), converges to the old embedding at the
 frontier, and is disjoint from the unchanged image outside the overlap.  Consequently the
-frontier paste is again an embedding of the original finite intrinsic complex. -/
+frontier paste is again an embedding of the original finite intrinsic complex.
+@isnad1 id=ex.0h3v.s11.5bd141a83927 from=translated src=- shape=523f489b vocab=c7f36f07
+-/
 theorem PartialTriangulation.exists_straightenedChartOverlap
     (T : PartialTriangulation S) (c : MoiseChart S) :
     ∃ (Q : PolygonalReplacementPresentation (T.chartOverlap c)
@@ -6606,7 +7109,9 @@ open PartialTriangulation.PolygonalReplacementSourceAtlas
 
 /-- If a convex average lies strictly inside a gap avoided by every positively weighted value,
 then some positive weight occurs on each side of the gap.  Keeping this order argument separate
-prevents the crossing-weld elaborator from repeatedly reducing its large dependent local types. -/
+prevents the crossing-weld elaborator from repeatedly reducing its large dependent local types.
+@isnad1 id=and.5h6v.s7.efbc0c7318b9 from=translated src=- shape=d835e5e4 vocab=6189ada4
+-/
 theorem exists_positive_weight_on_both_sides_of_gap
     {ι : Type*} [Fintype ι]
     (weight value : ι → ℝ) (a b z : ℝ)

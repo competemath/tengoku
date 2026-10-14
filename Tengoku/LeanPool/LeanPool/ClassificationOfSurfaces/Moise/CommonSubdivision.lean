@@ -27,7 +27,9 @@ namespace Moise
 vertices to an affinely independent triple.
 
 The hypothesis is deliberately local.  This is the form needed when a facewise-affine
-embedding is known to be injective only on the simplex on which its affine formula is valid. -/
+embedding is known to be injective only on the simplex on which its affine formula is valid.
+@isnad1 id=affinein.2h3v.s11.a1a3536a2827 from=translated src=- shape=cde9ccb5 vocab=a9941018
+-/
 theorem affineIndependent_comp_of_injOn_convexHull
     {V : Type*} [AddCommGroup V] [Module ℝ V]
     (p : Fin 3 → Plane) (hp : AffineIndependent ℝ p)
@@ -122,7 +124,9 @@ theorem affineIndependent_comp_of_injOn_convexHull
   exact (mul_left_cancel₀ hr.ne' (by linarith : r * w₁ i = r * w₂ i))
 
 /-- In the plane, local injectivity of an affine map on one nondegenerate triangle already
-forces global injectivity. -/
+forces global injectivity.
+@isnad1 id=injectiv.2h2v.s11.2acab5b1361d from=translated src=- shape=ce554a65 vocab=67f2d144
+-/
 theorem affineMap_injective_of_injOn_convexHull
     (p : Fin 3 → Plane) (hp : AffineIndependent ℝ p)
     (f : Plane →ᵃ[ℝ] Plane)
@@ -140,7 +144,9 @@ theorem affineMap_injective_of_injOn_convexHull
   rw [hfe]
   exact e.injective
 
-/-- The same local hypothesis makes a planar affine map surjective. -/
+/-- The same local hypothesis makes a planar affine map surjective.
+@isnad1 id=surjecti.2h2v.s11.9c645dad4090 from=translated src=- shape=ce554a65 vocab=cb86ec3f
+-/
 theorem affineMap_surjective_of_injOn_convexHull
     (p : Fin 3 → Plane) (hp : AffineIndependent ℝ p)
     (f : Plane →ᵃ[ℝ] Plane)
@@ -178,6 +184,9 @@ noncomputable def triangleCoords (T : M.Triangle) :
     else
       AffineMap.const ℝ Plane 0
 
+/--
+@isnad1 id=eq.1h4v.s11.1b7616d4e98f from=translated src=- shape=2c3277b5 vocab=72778215
+-/
 @[simp] theorem triangleCoords_apply_of_mem (T : M.Triangle)
     {v : M.Vertex} (hv : v ∈ T.1) (p : Plane) :
     M.triangleCoords T p v =
@@ -188,16 +197,25 @@ noncomputable def triangleCoords (T : M.Triangle) :
   classical
   simp [triangleCoords, hv]
 
+/--
+@isnad1 id=eq.1h4v.s9.bb271a247ab6 from=translated src=- shape=024e5abe vocab=8c5d99d5
+-/
 @[simp] theorem triangleCoords_apply_of_notMem (T : M.Triangle)
     {v : M.Vertex} (hv : v ∉ T.1) (p : Plane) :
     M.triangleCoords T p v = 0 := by
   classical
   simp [triangleCoords, hv]
 
+/--
+@isnad1 id=eq.1h4v.s9.6b3d65eaf13b from=translated src=- shape=a28052c0 vocab=8c5d99d5
+-/
 theorem triangleCoords_support (T : M.Triangle) (p : Plane) :
     ∀ v ∉ T.1, M.triangleCoords T p v = 0 :=
   fun _ hv => M.triangleCoords_apply_of_notMem T hv p
 
+/--
+@isnad1 id=eq.0h3v.s9.ffc2c878d48f from=translated src=- shape=c28f56c3 vocab=8df5db0d
+-/
 theorem sum_triangleCoords (T : M.Triangle) (p : Plane) :
     ∑ v, M.triangleCoords T p v = 1 := by
   classical
@@ -221,6 +239,9 @@ theorem sum_triangleCoords (T : M.Triangle) (p : Plane) :
       (M.triangleEquiv T).sum_comp (fun i => b.coord i p)
     _ = 1 := b.sum_coord_apply_eq_one p
 
+/--
+@isnad1 id=eq.0h3v.s9.680746bada1d from=translated src=- shape=6e41a1f7 vocab=4f3f8811
+-/
 theorem baryEval_triangleCoords (T : M.Triangle) (p : Plane) :
     M.toPlaneComplex.baryEval (M.triangleCoords T p) = p := by
   classical
@@ -257,6 +278,9 @@ theorem baryEval_triangleCoords (T : M.Triangle) (p : Plane) :
       change ∑ i : Fin 3, b.coord i p • b i = p
       exact b.linear_combination_coord_eq_self p
 
+/--
+@isnad1 id=le.1h4v.s9.c3b69a9401f0 from=translated src=- shape=f1443945 vocab=ff46ccaf
+-/
 theorem triangleCoords_nonneg_of_mem (T : M.Triangle) {p : Plane}
     (hp : p ∈ M.triangleCarrier T.1) (v : M.Vertex) :
     0 ≤ M.triangleCoords T p v := by
@@ -272,6 +296,9 @@ noncomputable def coordinateLines : List (Plane →ᵃ[ℝ] ℝ) :=
   (Finset.univ : Finset M.Triangle).toList.flatMap fun t =>
     (Finset.univ : Finset (Fin 3)).toList.map (M.oppositeCoord t)
 
+/--
+@isnad1 id=mem.0h3v.s10.4a276c6c726b from=translated src=- shape=7d23b4b5 vocab=ba28de5b
+-/
 theorem oppositeCoord_mem_coordinateLines (t : M.Triangle) (k : Fin 3) :
     M.oppositeCoord t k ∈ M.coordinateLines := by
   simp [coordinateLines]
@@ -280,20 +307,31 @@ theorem oppositeCoord_mem_coordinateLines (t : M.Triangle) (k : Fin 3) :
 noncomputable def refineTo (M N : TriangleMesh) : TriangleMesh :=
   M.refineByLines N.coordinateLines
 
+/--
+@isnad1 id=eq.0h2v.s3.b4c39f7ce969 from=translated src=- shape=911651fa vocab=d0f7e977
+-/
 theorem refineTo_support (N : TriangleMesh) :
     (M.refineTo N).toPlaneComplex.support = M.toPlaneComplex.support :=
   M.refineByLines_support N.coordinateLines
 
+/--
+@isnad1 id=subdivid.0h2v.s3.63b08784bea4 from=translated src=- shape=8bcd41a1 vocab=ebc51e68
+-/
 theorem refineTo_subdivides_left (N : TriangleMesh) :
     (M.refineTo N).toPlaneComplex.Subdivides M.toPlaneComplex :=
   M.refineByLines_subdivides N.coordinateLines
 
+/--
+@isnad1 id=ismonoch.0h4v.s4.0abedefe023b from=translated src=- shape=f5c2bf54 vocab=5e41d358
+-/
 theorem refineTo_isMonochromatic (N : TriangleMesh) (t : N.Triangle) (k : Fin 3) :
     (M.refineTo N).IsMonochromatic (N.oppositeCoord t k) :=
   M.refineByLines_isMonochromatic_of_mem N.coordinateLines
     (N.oppositeCoord_mem_coordinateLines t k)
 
-/-- The interior of a nonnegative affine half-space is its strictly positive half-space. -/
+/-- The interior of a nonnegative affine half-space is its strictly positive half-space.
+@isnad1 id=eq.1h1v.s11.0b54488dfc26 from=translated src=- shape=30b419c1 vocab=d4fa5879
+-/
 theorem interior_affine_nonneg_of_surjective (f : Plane →ᵃ[ℝ] ℝ)
     (hf : Function.Surjective f) :
     interior {x | 0 ≤ f x} = {x | 0 < f x} := by
@@ -301,7 +339,9 @@ theorem interior_affine_nonneg_of_surjective (f : Plane →ᵃ[ℝ] ℝ)
   rw [← (f.isOpenMap f.continuous_of_finiteDimensional hf).preimage_interior_eq_interior_preimage
       f.continuous_of_finiteDimensional, interior_Ici]
 
-/-- The interior of a nonpositive affine half-space is its strictly negative half-space. -/
+/-- The interior of a nonpositive affine half-space is its strictly negative half-space.
+@isnad1 id=eq.1h1v.s11.4f96b9b0e01e from=translated src=- shape=ac8d97ec vocab=d4fa5879
+-/
 theorem interior_affine_nonpos_of_surjective (f : Plane →ᵃ[ℝ] ℝ)
     (hf : Function.Surjective f) :
     interior {x | f x ≤ 0} = {x | f x < 0} := by
@@ -310,7 +350,9 @@ theorem interior_affine_nonpos_of_surjective (f : Plane →ᵃ[ℝ] ℝ)
       f.continuous_of_finiteDimensional, interior_Iic]
 
 /-- Every maximal chamber of `M.refineTo N` lies in a maximal triangle of `N`, provided the
-two original meshes have the same support. -/
+two original meshes have the same support.
+@isnad1 id=ex.1h3v.s6.4bbf23d9d593 from=translated src=- shape=ba6baf88 vocab=a2cce17e
+-/
 theorem exists_target_triangle_of_refineTo
     (N : TriangleMesh) (hsupport : M.toPlaneComplex.support = N.toPlaneComplex.support)
     (T : (M.refineTo N).Triangle) :
@@ -388,7 +430,9 @@ theorem exists_target_triangle_of_refineTo
     exact (not_lt_of_ge hxnonpos) hxpos
 
 /-- A chamber cut by at least all target coordinate lines and whose interior meets the target
-support lies in one target triangle. -/
+support lies in one target triangle.
+@isnad1 id=ex.2h4v.s11.35984236bc09 from=translated src=- shape=89c9aedb vocab=ed149340
+-/
 theorem exists_target_triangle_of_refineByLines_of_interior_inter_support
     (N : TriangleMesh) (lines : List (Plane →ᵃ[ℝ] ℝ))
     (hlines : ∀ a ∈ N.coordinateLines, a ∈ lines)
@@ -465,7 +509,9 @@ theorem exists_target_triangle_of_refineByLines_of_interior_inter_support
     exact False.elim ((not_lt_of_ge hxnonpos) (hxCoordPos k))
 
 /-- A chamber whose interior meets the target support lies in one target triangle.  Unlike
-`exists_target_triangle_of_refineTo`, the source and target supports need not agree. -/
+`exists_target_triangle_of_refineTo`, the source and target supports need not agree.
+@isnad1 id=ex.1h3v.s7.ab8b27fbb724 from=translated src=- shape=4651f641 vocab=d61ce412
+-/
 theorem exists_target_triangle_of_refineTo_of_interior_inter_support
     (N : TriangleMesh) (T : (M.refineTo N).Triangle)
     (hhit : (interior ((M.refineTo N).triangleCarrier T.1) ∩
@@ -485,6 +531,9 @@ noncomputable def refineToSupport (N : TriangleMesh) : TriangleMesh :=
       (interior ((M.refineTo N).triangleCarrier t) ∩
         N.toPlaneComplex.support).Nonempty
 
+/--
+@isnad1 id=iff.0h3v.s7.762ca291ce54 from=translated src=- shape=c8dbe320 vocab=d86b4a0b
+-/
 theorem refineToSupport_triangle_mem (N : TriangleMesh)
     {t : Finset (M.refineToSupport N).Vertex} :
     t ∈ (M.refineToSupport N).triangles ↔
@@ -495,7 +544,9 @@ theorem refineToSupport_triangle_mem (N : TriangleMesh)
   exact (M.refineTo N).mem_restrictTriangles_triangles _
 
 /-- If the source mesh contains the target support, restricting their line refinement recovers
-the target support exactly. -/
+the target support exactly.
+@isnad1 id=eq.1h2v.s4.27b2eeb59513 from=translated src=- shape=9a2d42e9 vocab=f9a4e5c1
+-/
 theorem refineToSupport_support (N : TriangleMesh)
     (hsub : N.toPlaneComplex.support ⊆ M.toPlaneComplex.support) :
     (M.refineToSupport N).toPlaneComplex.support =
@@ -555,7 +606,9 @@ theorem refineToSupport_support (N : TriangleMesh)
     rw [← N.closure_interior_triangleCarrier U] at hxu
     exact closure_minimal hinterior L.toPlaneComplex.isCompact_support.isClosed hxu
 
-/-- The support-restricted refinement is a genuine subdivision of the smaller target mesh. -/
+/-- The support-restricted refinement is a genuine subdivision of the smaller target mesh.
+@isnad1 id=subdivid.1h2v.s4.9f00db76c455 from=translated src=- shape=2709e327 vocab=24d6703b
+-/
 theorem refineToSupport_subdivides (N : TriangleMesh)
     (hsub : N.toPlaneComplex.support ⊆ M.toPlaneComplex.support) :
     (M.refineToSupport N).toPlaneComplex.Subdivides N.toPlaneComplex := by
@@ -571,7 +624,9 @@ theorem refineToSupport_subdivides (N : TriangleMesh)
     · exact Finset.card_pos.mp (by rw [N.card_triangle U.1 U.2]; omega)
     · exact (convexHull_mono (Set.image_mono hst)).trans hTU
 
-/-- `M.refineTo N` is a subdivision of `N` when the two meshes have the same support. -/
+/-- `M.refineTo N` is a subdivision of `N` when the two meshes have the same support.
+@isnad1 id=subdivid.1h2v.s4.1c9bd44c4d67 from=translated src=- shape=6730d577 vocab=7d51c5ff
+-/
 theorem refineTo_subdivides_right (N : TriangleMesh)
     (hsupport : M.toPlaneComplex.support = N.toPlaneComplex.support) :
     (M.refineTo N).toPlaneComplex.Subdivides N.toPlaneComplex := by
@@ -585,7 +640,9 @@ theorem refineTo_subdivides_right (N : TriangleMesh)
     · exact Finset.card_pos.mp (by rw [N.card_triangle U.1 U.2]; omega)
     · exact (convexHull_mono (Set.image_mono hst)).trans hTU
 
-/-- Two finite plane triangle meshes with equal support have an explicit common subdivision. -/
+/-- Two finite plane triangle meshes with equal support have an explicit common subdivision.
+@isnad1 id=ex.1h2v.s4.a5f0a004366e from=translated src=- shape=db4cd7bb vocab=6d953873
+-/
 theorem exists_common_subdivision (N : TriangleMesh)
     (hsupport : M.toPlaneComplex.support = N.toPlaneComplex.support) :
     ∃ R : TriangleMesh,
@@ -611,11 +668,19 @@ noncomputable def toTriangleMesh : TriangleMesh where
   triangle_inter := fun s hs t ht =>
     K.face_inter s (K.mem_simplexes_of_mem_cells hs) t (K.mem_simplexes_of_mem_cells ht)
 
+/--
+@isnad1 id=eq.0h1v.s3.27df5fb73fbc from=translated src=- shape=39790fbd vocab=49180a3c
+-/
 @[simp] theorem toTriangleMesh_position : K.toTriangleMesh.position = K.position := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.32b2b36c9d51 from=translated src=- shape=78cca9a3 vocab=441a2149
+-/
 @[simp] theorem toTriangleMesh_triangles : K.toTriangleMesh.triangles = K.cells := rfl
 
-/-- Passing a pure two-dimensional complex to its maximal-triangle mesh preserves support. -/
+/-- Passing a pure two-dimensional complex to its maximal-triangle mesh preserves support.
+@isnad1 id=eq.1h1v.s3.71b3529e008c from=translated src=- shape=a377bdd3 vocab=09950c5e
+-/
 theorem toTriangleMesh_support (hpure : K.IsPure2) :
     K.toTriangleMesh.toPlaneComplex.support = K.support := by
   rw [TriangleMesh.toPlaneComplex_support]
@@ -632,7 +697,9 @@ theorem toTriangleMesh_support (hpure : K.IsPure2) :
     have htcell : t ∈ K.cells := Finset.mem_filter.mpr ⟨ht, htcard⟩
     exact ⟨t, htcell, convexHull_mono (Set.image_mono hst) hxs⟩
 
-/-- The maximal-triangle mesh of a pure complex is a subdivision of the original complex. -/
+/-- The maximal-triangle mesh of a pure complex is a subdivision of the original complex.
+@isnad1 id=subdivid.1h1v.s3.5ac26c0060c4 from=translated src=- shape=b9a97a7d vocab=d66216d7
+-/
 theorem toTriangleMesh_toPlaneComplex_subdivides (hpure : K.IsPure2) :
     K.toTriangleMesh.toPlaneComplex.Subdivides K := by
   constructor
@@ -642,7 +709,9 @@ theorem toTriangleMesh_toPlaneComplex_subdivides (hpure : K.IsPure2) :
     exact ⟨t, K.mem_simplexes_of_mem_cells ht,
       convexHull_mono (Set.image_mono hst)⟩
 
-/-- Pure finite plane complexes with equal support have a common triangle-mesh subdivision. -/
+/-- Pure finite plane complexes with equal support have a common triangle-mesh subdivision.
+@isnad1 id=ex.3h2v.s4.cea8e5071200 from=translated src=- shape=096828c1 vocab=f018a136
+-/
 theorem exists_common_subdivision {K L : PlaneComplex}
     (hKpure : K.IsPure2) (hLpure : L.IsPure2) (hsupport : K.support = L.support) :
     ∃ R : TriangleMesh,
@@ -669,7 +738,9 @@ theorem exists_common_subdivision {K L : PlaneComplex}
 end PlaneComplex
 
 /-- An affine self-map of the plane which is injective on a set with nonempty interior is
-injective everywhere. -/
+injective everywhere.
+@isnad1 id=injectiv.2h2v.s11.a3f52cc2fb80 from=translated src=- shape=6636d02f vocab=04a56eef
+-/
 theorem affineMap_injective_of_injOn_of_interior_nonempty
     (g : Plane →ᵃ[ℝ] Plane) {A : Set Plane} (hA : (interior A).Nonempty)
     (hinj : Set.InjOn g A) : Function.Injective g := by
@@ -784,6 +855,9 @@ noncomputable def mapComplexOn (f : Plane → Plane)
     · have hempty : s ∩ t = ∅ := Finset.not_nonempty_iff_eq_empty.mp hne
       simp [hempty, PlaneComplex.cellCarrier]
 
+/--
+@isnad1 id=eq.4h3v.s6.ab5700c7b53a from=translated src=- shape=4b9dbe3d vocab=5eef0e85
+-/
 theorem mapComplexOn_cellCarrier (f : Plane → Plane)
     (hvertex : ∀ v : K.Vertex, K.position v ∈ K.support)
     (hinj : Set.InjOn f K.support)
@@ -795,6 +869,9 @@ theorem mapComplexOn_cellCarrier (f : Plane → Plane)
   rw [Set.image_comp]
   exact IsAffineOn.image_convexHull (haffine s hs)
 
+/--
+@isnad1 id=eq.3h2v.s6.1113086cefe0 from=translated src=- shape=3d1696f6 vocab=5eef0e85
+-/
 theorem mapComplexOn_support (f : Plane → Plane)
     (hvertex : ∀ v : K.Vertex, K.position v ∈ K.support)
     (hinj : Set.InjOn f K.support)
@@ -813,6 +890,9 @@ theorem mapComplexOn_support (f : Plane → Plane)
       rw [K.mapComplexOn_cellCarrier f hvertex hinj haffine hs]
       exact ⟨y, hys, rfl⟩⟩
 
+/--
+@isnad1 id=ispure2.4h2v.s6.0f3fc3627544 from=translated src=- shape=e2a3ddf4 vocab=e3be19dd
+-/
 theorem IsPure2.mapComplexOn (hpure : K.IsPure2) (f : Plane → Plane)
     (hvertex : ∀ v : K.Vertex, K.position v ∈ K.support)
     (hinj : Set.InjOn f K.support)
@@ -893,6 +973,9 @@ noncomputable def mapComplex (f : Plane → Plane)
     · have hempty : s ∩ t = ∅ := Finset.not_nonempty_iff_eq_empty.mp hne
       simp [hempty, PlaneComplex.cellCarrier]
 
+/--
+@isnad1 id=eq.3h3v.s6.0d744d49e66f from=translated src=- shape=42db94c7 vocab=cb7efa91
+-/
 theorem mapComplex_cellCarrier (f : Plane → Plane)
     (hinj : Function.Injective f)
     (haffine : ∀ s ∈ K.simplexes, IsAffineOn f (K.cellCarrier s))
@@ -902,6 +985,9 @@ theorem mapComplex_cellCarrier (f : Plane → Plane)
   rw [Set.image_comp]
   exact IsAffineOn.image_convexHull (haffine s hs)
 
+/--
+@isnad1 id=eq.2h2v.s5.728f5a4fb140 from=translated src=- shape=ac304ee0 vocab=389427a6
+-/
 theorem mapComplex_support (f : Plane → Plane)
     (hinj : Function.Injective f)
     (haffine : ∀ s ∈ K.simplexes, IsAffineOn f (K.cellCarrier s)) :
@@ -919,6 +1005,9 @@ theorem mapComplex_support (f : Plane → Plane)
       rw [K.mapComplex_cellCarrier f hinj haffine hs]
       exact ⟨y, hys, rfl⟩⟩
 
+/--
+@isnad1 id=ispure2.3h2v.s5.c264eee5fb1f from=translated src=- shape=484b5280 vocab=ac002b95
+-/
 theorem IsPure2.mapComplex (hpure : K.IsPure2) (f : Plane → Plane)
     (hinj : Function.Injective f)
     (haffine : ∀ s ∈ K.simplexes, IsAffineOn f (K.cellCarrier s)) :
@@ -927,7 +1016,9 @@ theorem IsPure2.mapComplex (hpure : K.IsPure2) (f : Plane → Plane)
   exact hpure s hs
 
 /-- On every subdivision of the image complex, the inverse homeomorphism is affine facewise.
-The proof enlarges each image face to a 2-face, where its affine witness is globally invertible. -/
+The proof enlarges each image face to a 2-face, where its affine witness is globally invertible.
+@isnad1 id=isaffine.4h4v.s9.b0f874deeb13 from=translated src=- shape=90884e13 vocab=ebcfc4e9
+-/
 theorem inverse_affineOn_of_subdivides_mapComplex
     (hpure : K.IsPure2) (h : Plane ≃ₜ Plane)
     (haffine : ∀ s ∈ K.simplexes, IsAffineOn h (K.cellCarrier s))

@@ -96,16 +96,25 @@ end CompositionAlgebra
 
 /-! ### The conjugation on the three associative carriers -/
 
+/--
+@isnad1 id=eq.0h1v.s4.bb4f1d0308e1 from=translated src=- shape=9023e767 vocab=a30aa5dd
+-/
 @[simp] theorem Real.cstar_eq (r : ℝ) : cstar r = r := by
   have h : ip r (1 : ℝ) = r := by change r * 1 = r; ring
   rw [cstar_apply, h]; simp; ring
 
+/--
+@isnad1 id=eq.0h1v.s5.c5a388864b02 from=translated src=- shape=b0e0b73a vocab=f704daa2
+-/
 @[simp] theorem Complex.cstar_eq (z : ℂ) : cstar z = ⟨z.re, -z.im⟩ := by
   have h : ip z (1 : ℂ) = z.re := by change z.re * 1 + z.im * 0 = z.re; ring
   rw [cstar_apply, h]
   apply Complex.ext <;> simp
   ring
 
+/--
+@isnad1 id=eq.0h1v.s7.379e2c86739f from=translated src=- shape=ceb1a382 vocab=97a32832
+-/
 theorem Quaternion.cstar_eq (q : ℍ[ℝ]) :
     cstar q = ⟨q.re, -q.imI, -q.imJ, -q.imK⟩ := by
   have h : ip q (1 : ℍ[ℝ]) = q.re := by
@@ -134,15 +143,27 @@ example (a b : ℍ[ℝ]) : (cstar a * b).re = a.re*b.re + a.imI*b.imI + a.imJ*b.
 atomic, so the four Mathlib lemmas fire and the octonion `map_mul` below reduces to
 coordinates. -/
 
+/--
+@isnad1 id=eq.0h1v.s6.d5495c8dd55a from=translated src=- shape=ecfbd54d vocab=e4e0127d
+-/
 @[simp] theorem Quaternion.cstar_re (q : ℍ[ℝ]) : (cstar q).re = q.re := by
   rw [Quaternion.cstar_eq]
 
+/--
+@isnad1 id=eq.0h1v.s6.14e112f7d7be from=translated src=- shape=c940454e vocab=8c140729
+-/
 @[simp] theorem Quaternion.cstar_imI (q : ℍ[ℝ]) : (cstar q).imI = -q.imI := by
   rw [Quaternion.cstar_eq]
 
+/--
+@isnad1 id=eq.0h1v.s6.f51848a5345a from=translated src=- shape=c940454e vocab=3eca5f0a
+-/
 @[simp] theorem Quaternion.cstar_imJ (q : ℍ[ℝ]) : (cstar q).imJ = -q.imJ := by
   rw [Quaternion.cstar_eq]
 
+/--
+@isnad1 id=eq.0h1v.s6.e243ae23dabf from=translated src=- shape=c940454e vocab=46bd7258
+-/
 @[simp] theorem Quaternion.cstar_imK (q : ℍ[ℝ]) : (cstar q).imK = -q.imK := by
   rw [Quaternion.cstar_eq]
 
@@ -151,6 +172,9 @@ coordinates. -/
 `Composition/Instances.lean` supplies `Real.nf_eq` and `Complex.nf_eq`; these are the two
 missing companions. -/
 
+/--
+@isnad1 id=eq.0h1v.s8.03d9baaf6cdb from=translated src=- shape=ecc609e9 vocab=dc7e2683
+-/
 theorem Quaternion.nf_eq (q : ℍ[ℝ]) :
     nf q = q.re * q.re + q.imI * q.imI + q.imJ * q.imJ + q.imK * q.imK := rfl
 
@@ -167,7 +191,13 @@ def cdRealEquiv : CD ℝ ≃ₗ[ℝ] ℂ where
   left_inv x := by apply CD.ext <;> rfl
   right_inv z := by apply Complex.ext <;> rfl
 
+/--
+@isnad1 id=eq.0h1v.s8.71ad6f2acb55 from=translated src=- shape=1dc13ebd vocab=23007d99
+-/
 @[simp] theorem cdRealEquiv_re (x : CD ℝ) : (cdRealEquiv x).re = x.fst := rfl
+/--
+@isnad1 id=eq.0h1v.s8.2267f89c03f0 from=translated src=- shape=1dc13ebd vocab=da42609c
+-/
 @[simp] theorem cdRealEquiv_im (x : CD ℝ) : (cdRealEquiv x).im = x.snd := rfl
 
 /-! ### `CD ℂ ≃ ℍ` -/
@@ -187,9 +217,21 @@ def cdComplexEquiv : CD ℂ ≃ₗ[ℝ] ℍ[ℝ] where
   left_inv x := by apply CD.ext <;> apply Complex.ext <;> rfl
   right_inv q := by ext <;> rfl
 
+/--
+@isnad1 id=eq.0h1v.s8.cfb3a829376d from=translated src=- shape=2c016bbd vocab=8b81d40d
+-/
 @[simp] theorem cdComplexEquiv_re (x : CD ℂ) : (cdComplexEquiv x).re = x.fst.re := rfl
+/--
+@isnad1 id=eq.0h1v.s8.76ae51f0908c from=translated src=- shape=2c016bbd vocab=b5ceb293
+-/
 @[simp] theorem cdComplexEquiv_imI (x : CD ℂ) : (cdComplexEquiv x).imI = x.fst.im := rfl
+/--
+@isnad1 id=eq.0h1v.s8.a4198128c458 from=translated src=- shape=2c016bbd vocab=637b8cad
+-/
 @[simp] theorem cdComplexEquiv_imJ (x : CD ℂ) : (cdComplexEquiv x).imJ = x.snd.re := rfl
+/--
+@isnad1 id=eq.0h1v.s8.0c4cf448ac5f from=translated src=- shape=2c016bbd vocab=8130b991
+-/
 @[simp] theorem cdComplexEquiv_imK (x : CD ℂ) : (cdComplexEquiv x).imK = x.snd.im := rfl
 
 /-! ### `CD ℍ ≃ 𝕆` -/
@@ -211,6 +253,9 @@ def cdQuaternionEquiv : CD ℍ[ℝ] ≃ₗ[ℝ] Octonion where
   left_inv x := by apply CD.ext <;> ext <;> first | rfl | exact neg_neg _
   right_inv o := by ext i; fin_cases i <;> first | rfl | exact neg_neg _
 
+/--
+@isnad1 id=eq.0h1v.s9.a858e3075749 from=translated src=- shape=200f0c8e vocab=e96c46d1
+-/
 @[simp] theorem cdQuaternionEquiv_coords (x : CD ℍ[ℝ]) :
     (cdQuaternionEquiv x).coords = ![x.fst.re, x.fst.imI, x.fst.imJ, x.snd.re,
       x.fst.imK, x.snd.imJ, -x.snd.imK, x.snd.imI] := rfl

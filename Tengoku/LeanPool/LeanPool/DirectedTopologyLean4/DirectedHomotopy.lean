@@ -70,6 +70,9 @@ instance : DihomotopyLike (Dihomotopy f₀ f₁) f₀ f₁ where
   map_zero_left f := f.map_zero_left
   map_one_left f := f.map_one_left
 
+/--
+@isnad1 id=eq.1h6v.s6.f835913147b3 from=translated src=- shape=75bc1642 vocab=6bbd6db5
+-/
 @[ext] theorem ext {f g : Dihomotopy f₀ f₁} (h : ∀ x, f x = g x) : f = g := DFunLike.ext _ _ h
 
 namespace Simps
@@ -83,15 +86,30 @@ end Simps
 initialize_simps_projections Dihomotopy (toDirectedMap_toContinuousMap_toFun → apply,
     -toDirectedMap_toContinuousMap)
 
+/--
+@isnad1 id=eq.0h6v.s6.4cd76594bc68 from=translated src=- shape=e2bd5806 vocab=dcd8a92a
+-/
 @[simp] lemma apply_zero (F : Dihomotopy f₀ f₁) (a : X) : F (0, a) = f₀ a := F.map_zero_left a
+/--
+@isnad1 id=eq.0h6v.s6.228aad113035 from=translated src=- shape=b06975d5 vocab=dcd8a92a
+-/
 @[simp] lemma apply_one (F : Dihomotopy f₀ f₁) (a : X) : F (1, a) = f₁ a := F.map_one_left a
+/--
+@isnad1 id=eq.0h5v.s7.dc53df9c0aa5 from=translated src=- shape=6e584346 vocab=ee7e173c
+-/
 @[simp] lemma coe_to_continuous_map (F : Dihomotopy f₀ f₁) : ⇑F.toContinuousMap = F := rfl
+/--
+@isnad1 id=eq.0h5v.s6.62a4ef2d72f7 from=translated src=- shape=eb809f44 vocab=4f63c3dc
+-/
 @[simp] lemma coe_to_directed_map (F : Dihomotopy f₀ f₁) : ⇑F.toDirectedMap = F := rfl
 
 /-- Currying a dihomotopy to a map fron `I` to `D(X,Y)`.
 -/
 def curry (F : Dihomotopy f₀ f₁) : I → D(X,Y) := fun t => DirectedMap.prodConstFst ↑F t
 
+/--
+@isnad1 id=eq.0h7v.s6.b635fa82fed3 from=translated src=- shape=142cf7d4 vocab=d34a908a
+-/
 @[simp]
 lemma curry_apply (F : Dihomotopy f₀ f₁) (t : I) (x : X) : F.curry t x = F (t, x) := rfl
 
@@ -99,6 +117,9 @@ lemma curry_apply (F : Dihomotopy f₀ f₁) (t : I) (x : X) : F.curry t x = F (
 -/
 def currySnd (F : Dihomotopy f₀ f₁) : X → D(I,Y) := fun x => DirectedMap.prodConstSnd ↑F x
 
+/--
+@isnad1 id=eq.0h7v.s6.057b89641445 from=translated src=- shape=699fbaab vocab=a44b1038
+-/
 @[simp]
 lemma curry_snd_apply (F : Dihomotopy f₀ f₁) (x : X) (t : I) : F.currySnd x t = F (t, x) := rfl
 
@@ -148,6 +169,7 @@ def evalAtRight {X : Type*} {Y : Type*} [DirectedSpace X] [DirectedSpace Y] {f g
           ⟨DirectedUnitInterval.isDipath_identityPath, isDipath_constant _⟩ <;> simp
 
 /-- Given a directed map `f`, we can define a `Dihomotopy f f` by `F (t, x) = f x`
+@isnad1 id=directed.0h3v.s7.a81d6cd20e5b from=translated src=- shape=f9c175ae vocab=343e3acf
 -/
 lemma directed_refl (f : D(X,Y))
     : Directed (↑(ContinuousMap.Homotopy.refl (↑f : C(X, Y))) : C(I × X, Y)) :=
@@ -188,22 +210,34 @@ def SecondPartStretch (ht₁ : 2⁻¹ ≤ (t₁ : ℝ)) : Dipath (0 : I) ⟨2 * 
 
 variable {f₂ : D(X,Y)} (F : Dihomotopy f₀ f₁) (G : Dihomotopy f₁ f₂) (t : I) (x : X)
 
+/--
+@isnad1 id=eq.1h9v.s8.037e6ebdcce0 from=translated src=- shape=f7223c8b vocab=0b627f29
+-/
 lemma trans_apply_half_left (ht : t = halfI) : (dihomToHom F).trans (dihomToHom G) (t, x)
     = F (1, x) := by
   rw [ContinuousMap.Homotopy.trans_apply]
   simp_all
 
+/--
+@isnad1 id=eq.1h9v.s8.1eaad3a080b5 from=translated src=- shape=e3da50e4 vocab=0b627f29
+-/
 lemma trans_apply_half_right (ht : t = halfI) : (dihomToHom F).trans (dihomToHom G) (t, x)
     = G (0, x) := by
   rw [ContinuousMap.Homotopy.trans_apply]
   simp_all
 
+/--
+@isnad1 id=eq.1h9v.s8.b9e5cc59ab5a from=translated src=- shape=2d34c198 vocab=c3445283
+-/
 lemma trans_apply_left (t : I) (x : X) (ht : (t : ℝ) ≤ 2⁻¹) :
   (dihomToHom F).trans (dihomToHom G) (t, x) = F (⟨2 * t, double_mem_I ht⟩, x) := by
   rw [ContinuousMap.Homotopy.trans_apply]
   simp [ht]
   rfl
 
+/--
+@isnad1 id=eq.1h9v.s8.cfcc321d0c10 from=translated src=- shape=75c18984 vocab=de01aff4
+-/
 lemma trans_apply_right (t : I) (x : X) (ht : 2⁻¹ ≤ (t : ℝ)) :
   (dihomToHom F).trans (dihomToHom G) (t, x) = G (⟨2 * t - 1, double_sub_one_mem_I ht⟩, x) := by
   rw [ContinuousMap.Homotopy.trans_apply]
@@ -212,6 +246,9 @@ lemma trans_apply_right (t : I) (x : X) (ht : 2⁻¹ ≤ (t : ℝ)) :
   · simp [show (t : ℝ) = 2⁻¹ by linarith]
   · rfl
 
+/--
+@isnad1 id=isdipath.2h10v.s9.194a10e7761b from=translated src=- shape=4d9d2ace vocab=baf764ee
+-/
 lemma trans_first_case {a₀ a₁ : I × X} {γ : Path a₀ a₁} (γ_dipath : IsDipath γ)
     (ht₁ : (a₁.1 : ℝ) ≤ 2⁻¹) :
   IsDipath (γ.map ((dihomToHom F).trans (dihomToHom G)).continuous_toFun) := by
@@ -240,6 +277,9 @@ lemma trans_first_case {a₀ a₁ : I × X} {γ : Path a₀ a₁} (γ_dipath : I
   rw [hpath]
   exact (p'.cast (h t₀ x₀ this) (h t₁ x₁ ht₁)).dipath_toPath
 
+/--
+@isnad1 id=isdipath.2h10v.s9.c2ba32ef3a7b from=translated src=- shape=523ebfb7 vocab=baf764ee
+-/
 lemma trans_second_case {a₀ a₁ : I × X} {γ : Path a₀ a₁} (γ_dipath : IsDipath γ)
     (ht₀ : 2⁻¹ ≤ (a₀.1 : ℝ)) :
   IsDipath (γ.map ((dihomToHom F).trans (dihomToHom G)).continuous_toFun) := by
@@ -378,6 +418,9 @@ def trans {f₂ : D(X,Y)} (F : Dihomotopy f₀ f₁) (G : Dihomotopy f₁ f₂) 
               rfl
         _ = (r₁.trans r₂).reparam φ φ₀ φ₁ t := rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.1b3580d19c0a from=translated src=- shape=eb4ebc73 vocab=ac0d5bef
+-/
 lemma trans_apply {f₀ f₁ f₂ : D(X,Y)} (F : Dihomotopy f₀ f₁) (G : Dihomotopy f₁ f₂) (x : I × X) :
   (F.trans G) x =
   if h : (x.1 : ℝ) ≤ 1/2 then
@@ -430,6 +473,9 @@ def Dihomotopic (f₀ f₁ : D(X,Y)) : Prop := (Relation.EqvGen PreDihomotopic) 
 
 namespace Dihomotopic
 
+/--
+@isnad1 id=equivale.0h2v.s4.74ff02b044d8 from=translated src=- shape=27c2c40e vocab=4806fa03
+-/
 lemma equivalence : Equivalence (@Dihomotopic X Y _ _) := by apply Relation.EqvGen.is_equivalence
 
 end Dihomotopic
@@ -457,9 +503,15 @@ instance : DihomotopyLike (DihomotopyWith f₀ f₁ P) f₀ f₁ where
   map_zero_left F := F.map_zero_left
   map_one_left F := F.map_one_left
 
+/--
+@isnad1 id=injectiv.0h5v.s6.5f2905eb887e from=translated src=- shape=3504e98a vocab=02ad6e3f
+-/
 theorem coeFn_injective : @Function.Injective (DihomotopyWith f₀ f₁ P) (I × X → Y) (⇑) :=
   DFunLike.coe_injective
 
+/--
+@isnad1 id=eq.1h7v.s7.3f2f52afd14d from=translated src=- shape=a6ba6a09 vocab=59073a1d
+-/
 @[ext]
 lemma ext {F G : DihomotopyWith f₀ f₁ P} (h : ∀ x, F x = G x) : F = G :=
 coeFn_injective <| funext h
@@ -476,21 +528,39 @@ initialize_simps_projections DihomotopyWith (toDihomotopy_toDirectedMap_toContin
     → apply,
     -toDihomotopy_toDirectedMap_toContinuousMap)
 
+/--
+@isnad1 id=continuo.0h6v.s6.145c83bdb856 from=translated src=- shape=e61ed747 vocab=82504425
+-/
 @[continuity]
 protected lemma continuous (F : DihomotopyWith f₀ f₁ P) : Continuous F := F.continuous_toFun
 
+/--
+@isnad1 id=eq.0h7v.s6.8f49ebc6bcbe from=translated src=- shape=087da44c vocab=6c7c83c9
+-/
 @[simp]
 lemma apply_zero (F : DihomotopyWith f₀ f₁ P) (x : X) : F (0, x) = f₀ x := F.map_zero_left x
 
+/--
+@isnad1 id=eq.0h7v.s6.5100f813d944 from=translated src=- shape=0e78df54 vocab=6c7c83c9
+-/
 @[simp]
 lemma apply_one (F : DihomotopyWith f₀ f₁ P) (x : X) : F (1, x) = f₁ x := F.map_one_left x
 
+/--
+@isnad1 id=eq.0h6v.s7.00ceac73feae from=translated src=- shape=4f6d15c4 vocab=714898a1
+-/
 @[simp]
 lemma coe_to_continuous_map (F : DihomotopyWith f₀ f₁ P) : ⇑F.toContinuousMap = F := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.a6d155b95298 from=translated src=- shape=29da410d vocab=d5a504c5
+-/
 @[simp]
 lemma coe_to_dihomotopy (F : DihomotopyWith f₀ f₁ P) : ⇑F.toDihomotopy = F := rfl
 
+/--
+@isnad1 id=var.0h7v.s5.e5a215e848da from=translated src=- shape=dcd63d06 vocab=bbd458ca
+-/
 lemma prop (F : DihomotopyWith f₀ f₁ P) (t : I) : P (F.toDihomotopy.curry t) := F.prop' t
 
 /-- Given a directed map `f`, and a proof `h : P f`, we can define a `DihomotopyWith f f P` by `F
@@ -534,6 +604,9 @@ def trans {f₀ f₁ f₂ : D(X,Y)} (F : DihomotopyWith f₀ f₁ P) (G : Dihomo
       rw [←ContinuousMap.Homotopy.extend_apply_coe G.toDihomotopy.dihomToHom _ x]
 }
 
+/--
+@isnad1 id=eq.0h9v.s8.061d4591434b from=translated src=- shape=f01cffd0 vocab=287fa495
+-/
 lemma trans_apply {f₀ f₁ f₂ : D(X,Y)} (F : DihomotopyWith f₀ f₁ P) (G : DihomotopyWith f₁ f₂ P)
   (x : I × X) : (F.trans G) x =
   if h : (x.1 : ℝ) ≤ 1/2 then
@@ -581,6 +654,9 @@ lemma eq_fst (F : DihomotopyRel f₀ f₁ S) (t : I) {x : X} (hx : x ∈ S) : F 
 lemma eq_snd (F : DihomotopyRel f₀ f₁ S) (t : I) {x : X} (hx : x ∈ S) : F (t, x) = f₁ x := by
   rw [F.eq_fst t hx, ← F.eq_fst 1 hx, F.apply_one]
 
+/--
+@isnad1 id=eq.1h7v.s6.a2b912f58911 from=translated src=- shape=e9f4e625 vocab=dc0b1f1d
+-/
 lemma fst_eq_snd (F : DihomotopyRel f₀ f₁ S) {x : X} (hx : x ∈ S) : f₀ x = f₁ x :=
   F.eq_fst 0 hx ▸ F.eq_snd 0 hx
 
@@ -618,6 +694,9 @@ def trans (F : DihomotopyRel f₀ f₁ S) (G : DihomotopyRel f₁ f₂ S) : Diho
       rw [←ContinuousMap.Homotopy.extend_apply_coe G.toDihomotopy.dihomToHom _ x]
 }
 
+/--
+@isnad1 id=eq.0h9v.s9.c394e4603018 from=translated src=- shape=8c7252fd vocab=d968b15d
+-/
 lemma trans_apply (F : DihomotopyRel f₀ f₁ S) (G : DihomotopyRel f₁ f₂ S)
   (x : I × X) : (F.trans G) x =
   if h : (x.1 : ℝ) ≤ 1/2 then
@@ -657,6 +736,9 @@ namespace DihomotopicRel
 
 variable {S : Set X}
 
+/--
+@isnad1 id=equivale.0h3v.s5.0a57d8f29538 from=translated src=- shape=55d248d3 vocab=af9b4d8f
+-/
 lemma equivalence : Equivalence (fun f g : D(X,Y) => DihomotopicRel S f g)
     := by apply Relation.EqvGen.is_equivalence
 

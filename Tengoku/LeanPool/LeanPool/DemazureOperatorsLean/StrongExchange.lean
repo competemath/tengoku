@@ -45,6 +45,9 @@ def conjOfReflection (t : cs.Reflection) (w : W) : cs.Reflection :=
 def eta (i : B) (t : cs.Reflection) : ZMod 2 :=
   if (s i = t.1) then 1 else 0
 
+/--
+@isnad1 id=eq.0h6v.s5.da29053d6ad2 from=translated src=- shape=ff5ee238 vocab=971fee30
+-/
 lemma eta_eq_eta_of_simpleConj (i : B) (t : cs.Reflection) :
     cs.eta i t = cs.eta i (cs.conjOfReflection t (s i)) := by
   rw [eta, eta]
@@ -65,6 +68,9 @@ lemma eta_eq_eta_of_simpleConj (i : B) (t : cs.Reflection) :
 def permutationMap (i : B) : cs.Reflection × ZMod 2 → cs.Reflection × ZMod 2 :=
   fun (t , z) => (cs.conjOfReflection t (s i), z + cs.eta i t)
 
+/--
+@isnad1 id=eq.0h5v.s6.24c82f4ba564 from=translated src=- shape=433af07c vocab=06db62ab
+-/
 theorem permutationMap_orderTwo (i : B) : cs.permutationMap i ∘ cs.permutationMap i = id := by
   funext ⟨t, z⟩
   simp only [permutationMap, Function.comp_apply, id_eq]
@@ -75,6 +81,9 @@ theorem permutationMap_orderTwo (i : B) : cs.permutationMap i ∘ cs.permutation
     rw [show (2 : ZMod 2) = 0 by decide]
     simp
 
+/--
+@isnad1 id=eq.1h7v.s7.3b759d3f4c80 from=translated src=- shape=ec3f7e76 vocab=227a807f
+-/
 lemma leftInvSeq_repeats : ∀ (k : ℕ) (h : k < M i j),
     (cs.leftInvSeq (alternatingWord i j (2 * M i j)))[M i j + k]'(by
       simp
@@ -105,6 +114,9 @@ lemma leftInvSeq_repeats : ∀ (k : ℕ) (h : k < M i j),
   rw[NatPowAssoc.npow_add]
   simp
 
+/--
+@isnad1 id=eq.1h7v.s7.3b759d3f4c80 from=translated src=- shape=ec3f7e76 vocab=227a807f
+-/
 lemma leftInvSeq_repeats' : ∀ (k : ℕ) (h : k < M i j),
     (cs.leftInvSeq (alternatingWord i j (2 * M i j)))[M i j + k]'(by
       simp
@@ -115,6 +127,9 @@ lemma leftInvSeq_repeats' : ∀ (k : ℕ) (h : k < M i j),
   intro k h'
   exact leftInvSeq_repeats cs k h'
 
+/--
+@isnad1 id=even.0h7v.s5.44c54d4d14cd from=translated src=- shape=37e217a1 vocab=893a32fd
+-/
 lemma nReflectionOccurrences_even_braidWord (t : cs.Reflection) :
   Even (reflectionMemLeftInvSeqCount cs (alternatingWord i j (2 * M i j)) t) := by
   suffices
@@ -172,6 +187,9 @@ lemma nReflectionOccurrences_even_braidWord (t : cs.Reflection) :
       exact Nat.add_sub_of_le (Nat.le_of_not_gt h)
     simp[this]
 
+/--
+@isnad1 id=eq.0h7v.s6.362a5bac4fd9 from=translated src=- shape=04db9e84 vocab=edea065c
+-/
 lemma parityReflectionOccurrences_braidWord (t : cs.Reflection) :
   reflectionMemLeftInvSeqParity cs (alternatingWord i j (2 * M i j)) t = 0 := by
   suffices Even (reflectionMemLeftInvSeqCount cs (alternatingWord i j (2 * M i j)) t) from by
@@ -179,6 +197,9 @@ lemma parityReflectionOccurrences_braidWord (t : cs.Reflection) :
     apply ZMod.natCast_eq_zero_iff_even.mpr this
   exact nReflectionOccurrences_even_braidWord cs t
 
+/--
+@isnad1 id=eq.0h4v.s5.37b7a4ffeefb from=translated src=- shape=b4d9c6b6 vocab=1192201e
+-/
 lemma alternatingWord_reverse :
     (alternatingWord i j (2 * p)).reverse = alternatingWord j i (2 * p) := by
   induction p with
@@ -196,6 +217,9 @@ lemma alternatingWord_reverse :
 instance instMul : Mul (cs.Reflection × ZMod 2 → cs.Reflection × ZMod 2) where
   mul := fun f g => f ∘ g
 
+/--
+@isnad1 id=eq.0h6v.s8.c6700a6da629 from=translated src=- shape=c401a381 vocab=0f2383a7
+-/
 lemma mulDef (f g : cs.Reflection × ZMod 2 → cs.Reflection × ZMod 2) : f * g = f ∘ g := rfl
 
 instance : Monoid (cs.Reflection × ZMod 2 → cs.Reflection × ZMod 2) where
@@ -227,12 +251,18 @@ def permutationMapOfList (l : List B) : cs.Reflection × ZMod 2 → cs.Reflectio
   | [] => id
   | a :: t => cs.permutationMap a * permutationMapOfList t
 
+/--
+@isnad1 id=isreflec.1h6v.s6.9fef1f2fb4a5 from=translated src=- shape=ca607cc4 vocab=8a8a83f9
+-/
 lemma isReflection_conj_inv_mul_mul (ht : cs.IsReflection t) (w : W) :
   cs.IsReflection (w⁻¹ * t * w) := by
   have : w = w⁻¹⁻¹ := by simp
   nth_rewrite 2 [this]
   apply IsReflection.conj ht w⁻¹
 
+/--
+@isnad1 id=eq.0h7v.s6.ca9c93a64aa2 from=translated src=- shape=b347e2af vocab=051f026d
+-/
 lemma permutationMap_ofList_mk_1 (l : List B) :
   (permutationMapOfList cs l ⟨t,z⟩).1 = cs.conjOfReflection t (π l) := by
   induction l with
@@ -247,6 +277,9 @@ lemma permutationMap_ofList_mk_1 (l : List B) :
       _ = cs.conjOfReflection t (π (a :: l)) := by
         simp[permutationMap, conjOfReflection, h, cs.wordProd_cons, mul_assoc]
 
+/--
+@isnad1 id=eq.0h7v.s7.7369682886b3 from=translated src=- shape=55ed12fd vocab=058800c1
+-/
 lemma permutationMap_ofList_mk_2 (l : List B) :
     (permutationMapOfList cs l ⟨t,z⟩).2 =
       z + reflectionMemLeftInvSeqParity cs l.reverse t := by
@@ -286,11 +319,17 @@ lemma permutationMap_ofList_mk_2 (l : List B) :
         simp [mul_assoc]
       rw [ite_eq_right lhs_ne, ite_eq_right h']
 
+/--
+@isnad1 id=eq.0h7v.s7.ab8a0084a709 from=translated src=- shape=7dde0aaf vocab=e808bcbc
+-/
 lemma permutationMap_ofList_mk (l : List B) (t : cs.Reflection) (z : ZMod 2) :
   (permutationMapOfList cs l ⟨t,z⟩) = ⟨cs.conjOfReflection t (π l),
    z + reflectionMemLeftInvSeqParity cs l.reverse t⟩ := by
   rw[← permutationMap_ofList_mk_1, ← permutationMap_ofList_mk_2]
 
+/--
+@isnad1 id=isliftab.0h4v.s5.6d517aaaca32 from=translated src=- shape=8cb34afc vocab=a454cc98
+-/
 theorem permutationMap_isLiftable : M.IsLiftable (cs.permutationMap) := by
   intro i j
   have h (p : ℕ) :
@@ -325,6 +364,9 @@ theorem permutationMap_isLiftable : M.IsLiftable (cs.permutationMap) := by
 def permutationMapLift : W →* cs.Reflection × ZMod 2 → cs.Reflection × ZMod 2 :=
   cs.lift ⟨cs.permutationMap, permutationMap_isLiftable cs⟩
 
+/--
+@isnad1 id=eq.0h7v.s8.4b46bdec254e from=translated src=- shape=275e1943 vocab=99cbc6e8
+-/
 theorem permutationMap_lift_mk_ofList (l : List B) (t : cs.Reflection) (z : ZMod 2) :
   permutationMapLift cs (cs.wordProd l) ⟨t,z⟩ = permutationMapOfList cs l ⟨t,z⟩ := by
   induction l with
@@ -338,6 +380,9 @@ theorem permutationMap_lift_mk_ofList (l : List B) (t : cs.Reflection) (z : ZMod
     rw[← h]
     simp[permutationMapLift]
 
+/--
+@isnad1 id=eq.1h8v.s6.60983481f14d from=translated src=- shape=45b1c32f vocab=0f134ee4
+-/
 theorem permutationMap_ext (l l' : List B) (t : cs.Reflection) (z : ZMod 2) (h : π l = π l') :
   permutationMapOfList cs l ⟨t,z⟩ = permutationMapOfList cs l' ⟨t,z⟩ := by
   rw[← permutationMap_lift_mk_ofList]
@@ -348,6 +393,9 @@ theorem permutationMap_ext (l l' : List B) (t : cs.Reflection) (z : ZMod 2) (h :
 def parityReflectionOccurrencesLift (w : W) (t : cs.Reflection) : ZMod 2 :=
   (permutationMapLift cs w⁻¹ ⟨t,0⟩).2
 
+/--
+@isnad1 id=eq.0h6v.s5.65cb2a4893b5 from=translated src=- shape=2658384f vocab=312b6760
+-/
 theorem parityReflectionOccurrences_lift_mk (l : List B) (t : cs.Reflection) :
     parityReflectionOccurrencesLift cs (cs.wordProd l) t =
       reflectionMemLeftInvSeqParity cs l t := by
@@ -357,6 +405,9 @@ theorem parityReflectionOccurrences_lift_mk (l : List B) (t : cs.Reflection) :
   rw[permutationMap_ofList_mk cs l.reverse t 0]
   simp
 
+/--
+@isnad1 id=eq.0h7v.s8.35876ca8a558 from=translated src=- shape=79e10142 vocab=53d1f54a
+-/
 theorem permutationMap_lift_mk (w : W) (t : cs.Reflection) (z : ZMod 2) :
     permutationMapLift cs w ⟨t,z⟩ =
       ⟨⟨w * t.1 * w⁻¹, IsReflection.conj t.2 w⟩,
@@ -369,6 +420,9 @@ theorem permutationMap_lift_mk (w : W) (t : cs.Reflection) (z : ZMod 2) :
     rw[permutationMap_lift_mk_ofList cs l t z]
     simp[permutationMap_ofList_mk]
 
+/--
+@isnad1 id=eq.1h7v.s6.733b6022f86d from=translated src=- shape=e9b18c3d vocab=4dea5f3e
+-/
 theorem parityReflectionOccurrences_ext (l l' : List B) (t : cs.Reflection) (h : π l = π l') :
   reflectionMemLeftInvSeqParity cs l t = reflectionMemLeftInvSeqParity cs l' t := by
   calc
@@ -378,15 +432,24 @@ theorem parityReflectionOccurrences_ext (l l' : List B) (t : cs.Reflection) (h :
     _ = parityReflectionOccurrencesLift cs (cs.wordProd l') t := by rw[h]
     _ = reflectionMemLeftInvSeqParity cs l' t := by rw[parityReflectionOccurrences_lift_mk]
 
+/--
+@isnad1 id=iff.0h1v.s6.92d33ae7af18 from=translated src=- shape=fdc3f9b6 vocab=3753a4f8
+-/
 lemma odd_iff_parity_eq_one (n : ℕ) : Odd n ↔ (n : ZMod 2) = 1 := by
   simpa [eq_comm] using (ZMod.natCast_eq_one_iff_odd (n := n)).symm
 
+/--
+@isnad1 id=lt.1h1v.s4.1301aa1446d6 from=translated src=- shape=3c5e5b42 vocab=dff12b68
+-/
 lemma gt_one_of_odd (n : ℕ) : Odd n → n > 0 := by
   intro h
   rcases h with ⟨m, rfl⟩
   suffices m ≥ 0 from by linarith
   exact Nat.zero_le m
 
+/--
+@isnad1 id=mem.1h6v.s6.3129c32916e2 from=translated src=- shape=c8bb571e vocab=fdfd5871
+-/
 lemma isInLeftInvSeq_of_parityReflectionOccurrences_eq_one
     (l : List B) (t : cs.Reflection)
     (h : reflectionMemLeftInvSeqParity cs l t = 1) :
@@ -397,6 +460,9 @@ lemma isInLeftInvSeq_of_parityReflectionOccurrences_eq_one
   rw[reflectionMemLeftInvSeqCount] at h
   exact List.count_pos_iff.mp h
 
+/--
+@isnad1 id=isleftin.1h6v.s6.d57f33acbb61 from=translated src=- shape=48f370a4 vocab=687a592a
+-/
 lemma isLeftInversion_of_parityReflectionOccurrences_eq_one (l : List B) (t : cs.Reflection) :
   reflectionMemLeftInvSeqParity cs l t = 1 → cs.IsLeftInversion (cs.wordProd l) t.1 := by
   intro h
@@ -406,6 +472,9 @@ lemma isLeftInversion_of_parityReflectionOccurrences_eq_one (l : List B) (t : cs
   rw[cs.parityReflectionOccurrences_ext l u t hu] at h
   exact isInLeftInvSeq_of_parityReflectionOccurrences_eq_one cs u t h
 
+/--
+@isnad1 id=isleftin.1h6v.s6.c809026ab083 from=translated src=- shape=a6114845 vocab=89fe6878
+-/
 lemma isLeftInversion_of_parityReflectionOccurrences_lift_eq_one (w : W) (t : cs.Reflection) :
   parityReflectionOccurrencesLift cs w t = 1 → cs.IsLeftInversion w t.1 := by
   intro h
@@ -413,6 +482,9 @@ lemma isLeftInversion_of_parityReflectionOccurrences_lift_eq_one (w : W) (t : cs
   rw[parityReflectionOccurrences_lift_mk] at h
   apply isLeftInversion_of_parityReflectionOccurrences_eq_one cs l t h
 
+/--
+@isnad1 id=ex.1h6v.s6.f6d901174f00 from=translated src=- shape=4e79289a vocab=b7147174
+-/
 lemma eraseIdx_of_mul_leftInvSeq (l : List B) (t : cs.Reflection) (h : t.1 ∈ cs.leftInvSeq l) :
   ∃ (k : Fin l.length), t.1 * π l = π (l.eraseIdx k) := by
     have : ∃ (k : Fin (cs.leftInvSeq l).length), (cs.leftInvSeq l).get k = t.1 := List.get_of_mem h
@@ -422,10 +494,16 @@ lemma eraseIdx_of_mul_leftInvSeq (l : List B) (t : cs.Reflection) (h : t.1 ∈ c
     rw[← getD_leftInvSeq_mul_wordProd cs l k]
     simp [List.getElem?_eq_getElem k.2]
 
+/--
+@isnad1 id=eq.0h5v.s8.5499ecb0b7aa from=translated src=- shape=f7ac18f2 vocab=671ec38f
+-/
 lemma permutationMap_lift_simple (p : B) :
   permutationMapLift cs (cs.simple p) = cs.permutationMap p := by
   simp[permutationMapLift]
 
+/--
+@isnad1 id=eq.0h6v.s8.1641a33dae97 from=translated src=- shape=dbe1341a vocab=fffb3379
+-/
 lemma permutationMap_lift_of_reflection (t : cs.Reflection) : ∀ (z : ZMod 2),
   permutationMapLift cs t.1 (t, z) = ⟨t, z + 1⟩ := by
   rcases t with ⟨t, t_refl⟩
@@ -497,6 +575,9 @@ lemma permutationMap_lift_of_reflection (t : cs.Reflection) : ∀ (z : ZMod 2),
         rw [ite_eq_right first_ne, ite_eq_right second_ne]
         simp
 
+/--
+@isnad1 id=iff.0h6v.s6.cabdf25fdd39 from=translated src=- shape=cd9ff83b vocab=687a592a
+-/
 lemma isLeftInversion_iff_parityReflectionOccurrences_eq_one (l : List B) (t : cs.Reflection) :
   cs.IsLeftInversion (cs.wordProd l) t.1 ↔ reflectionMemLeftInvSeqParity cs l t = 1 := by
   constructor
@@ -538,6 +619,9 @@ lemma isLeftInversion_iff_parityReflectionOccurrences_eq_one (l : List B) (t : c
         simp[parityReflectionOccurrences_lift_mk, h'']
   · exact isLeftInversion_of_parityReflectionOccurrences_eq_one cs l t
 
+/--
+@isnad1 id=ex.1h6v.s6.bd87be40e406 from=translated src=- shape=5ee5078a vocab=4c97e7d4
+-/
 theorem strongExchangeProperty (l : List B) (t : cs.Reflection)
 (h' : cs.IsLeftInversion (cs.wordProd l) t.1) :
   ∃ (k : Fin l.length), t.1 * π l = π (l.eraseIdx k) := by

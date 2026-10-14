@@ -65,20 +65,29 @@ Kept definitionally equal to the `1728 * J τ` appearing in `SingularModuli.lean
 statements. -/
 def j (τ : ℍ) : ℂ := 1728 * J τ
 
+/--
+@isnad1 id=eq.0h1v.s4.41a2a7495bb1 from=translated src=- shape=9fc36aa0 vocab=ff14050a
+-/
 @[simp] lemma j_def (τ : ℍ) : j τ = 1728 * J τ := rfl
 
-/-- `j = E₄³/Δ`. -/
+/-- `j = E₄³/Δ`.
+@isnad1 id=eq.0h1v.s8.a1875d354ea1 from=translated src=- shape=228d3e4a vocab=767c31ad
+-/
 lemma j_eq (τ : ℍ) : j τ = E₄ τ ^ 3 / discriminant τ := by
   rw [j_def, mul_J_eq]
 
-/-- The algebraic backbone `j·Δ = E₄³`. -/
+/-- The algebraic backbone `j·Δ = E₄³`.
+@isnad1 id=eq.0h1v.s8.af334df76f57 from=translated src=- shape=d840ea99 vocab=d3763fa9
+-/
 lemma j_mul_discriminant (τ : ℍ) : j τ * discriminant τ = E₄ τ ^ 3 := by
   rw [j_eq, div_mul_cancel₀ _ (discriminant_ne_zero τ)]
 
 /-! ## Modular invariance -/
 
 /-- The `SL(2,ℤ)` transformation law of a level-one modular form of weight `k`:
-`f (γ • τ) = (denom γ τ)ᵏ · f τ`. (General `γ` version of `Ramanujan.modularForm_S_smul`.) -/
+`f (γ • τ) = (denom γ τ)ᵏ · f τ`. (General `γ` version of `Ramanujan.modularForm_S_smul`.)
+@isnad1 id=eq.0h4v.s10.f2b1ab9de963 from=translated src=- shape=8478886c vocab=1d20e6de
+-/
 lemma modularForm_SL_smul {k : ℤ} (f : ModularForm 𝒮ℒ k) (γ : SL(2, ℤ)) (τ : ℍ) :
     f (γ • τ) = (denom γ τ) ^ k * f τ := by
   have h0 : (⇑f) ∣[k] γ = ⇑f :=
@@ -88,7 +97,9 @@ lemma modularForm_SL_smul {k : ℤ} (f : ModularForm 𝒮ℒ k) (γ : SL(2, ℤ)
     div_eq_iff (zpow_ne_zero k (denom_ne_zero γ τ))] at h
   rw [h, mul_comm]
 
-/-- Klein's `J` is `SL(2,ℤ)`-invariant. -/
+/-- Klein's `J` is `SL(2,ℤ)`-invariant.
+@isnad1 id=eq.0h2v.s7.a5f1526c9e73 from=translated src=- shape=5b9dc79e vocab=6400d305
+-/
 theorem J_smul (γ : SL(2, ℤ)) (τ : ℍ) : J (γ • τ) = J τ := by
   have hd : denom γ τ ≠ 0 := denom_ne_zero γ τ
   have hE₄ : E₄ (γ • τ) = denom γ τ ^ 4 * E₄ τ := by
@@ -101,11 +112,15 @@ theorem J_smul (γ : SL(2, ℤ)) (τ : ℍ) : J (γ • τ) = J τ := by
   norm_num only [Nat.reduceMul]
   rw [← mul_sub, mul_div_mul_left _ _ (pow_ne_zero 12 hd)]
 
-/-- The `j`-invariant is `SL(2,ℤ)`-invariant: `j (γ • τ) = j τ`. -/
+/-- The `j`-invariant is `SL(2,ℤ)`-invariant: `j (γ • τ) = j τ`.
+@isnad1 id=eq.0h2v.s7.b39061d3a9d1 from=translated src=- shape=5b9dc79e vocab=a51138eb
+-/
 theorem j_smul (γ : SL(2, ℤ)) (τ : ℍ) : j (γ • τ) = j τ := by
   rw [j_def, j_def, J_smul]
 
-/-- `T`-invariance: `j (τ + 1) = j τ`. -/
+/-- `T`-invariance: `j (τ + 1) = j τ`.
+@isnad1 id=eq.0h1v.s5.e13e05cc3a4f from=translated src=- shape=ba65eac2 vocab=c2ddc949
+-/
 theorem j_vadd_one (τ : ℍ) : j ((1 : ℝ) +ᵥ τ) = j τ := by
   have hE₄ : E₄ ((1 : ℝ) +ᵥ τ) = E₄ τ :=
     SlashInvariantForm.vAdd_apply_of_mem_strictPeriods E₄ τ one_mem_strictPeriods_SL
@@ -113,19 +128,25 @@ theorem j_vadd_one (τ : ℍ) : j ((1 : ℝ) +ᵥ τ) = j τ := by
     SlashInvariantForm.vAdd_apply_of_mem_strictPeriods E₆ τ one_mem_strictPeriods_SL
   rw [j_def, j_def, J, J, hE₄, hE₆]
 
-/-- `S`-invariance: `j (-1/τ) = j τ`. -/
+/-- `S`-invariance: `j (-1/τ) = j τ`.
+@isnad1 id=eq.0h1v.s7.ad6c2eebb735 from=translated src=- shape=c7db8980 vocab=4b16d69d
+-/
 theorem j_S_smul (τ : ℍ) : j (ModularGroup.S • τ) = j τ := j_smul ModularGroup.S τ
 
 /-! ## Analyticity -/
 
-/-- Klein's `J` is holomorphic on `ℍ`. -/
+/-- Klein's `J` is holomorphic on `ℍ`.
+@isnad1 id=mdiffere.0h0v.s6.2d621b970b63 from=translated src=- shape=2bc3ab7e vocab=29a95e3d
+-/
 lemma mdifferentiable_J : MDiff (fun τ : ℍ ↦ J τ) := by
   have hnum : MDiff (fun τ : ℍ ↦ E₄ τ ^ 3) := (ModularFormClass.holo E₄).pow 3
   have hden : MDiff (fun τ : ℍ ↦ E₄ τ ^ 3 - E₆ τ ^ 2) :=
     ((ModularFormClass.holo E₄).pow 3).sub ((ModularFormClass.holo E₆).pow 2)
   exact hnum.div hden (fun τ ↦ E₄_cube_sub_E₆_sq_ne_zero τ)
 
-/-- The `j`-invariant is holomorphic on `ℍ`. -/
+/-- The `j`-invariant is holomorphic on `ℍ`.
+@isnad1 id=mdiffere.0h0v.s6.2bc4873e9e9b from=translated src=- shape=2bc3ab7e vocab=aafa6e4c
+-/
 lemma mdifferentiable_j : MDiff (fun τ : ℍ ↦ j τ) :=
   (mdifferentiable_const).mul mdifferentiable_J
 
@@ -134,7 +155,9 @@ lemma mdifferentiable_j : MDiff (fun τ : ℍ ↦ j τ) :=
 The ℤ-side building blocks of `(B1)`: `E₄` (hence `E₄³`) has integer q-expansion
 coefficients. These feed the ℤ-refinement `ModularPolynomialZ.lean` downstream. -/
 
-/-- Every q-expansion coefficient of `E₄` is an integer (`1` at `n = 0`, `240·σ₃(n)` else). -/
+/-- Every q-expansion coefficient of `E₄` is an integer (`1` at `n = 0`, `240·σ₃(n)` else).
+@isnad1 id=ex.0h1v.s8.b24e55d4cbb4 from=translated src=- shape=2db1d8e0 vocab=6b5ff9f3
+-/
 lemma E₄_qExpansion_coeff_int (n : ℕ) :
     ∃ c : ℤ, (qExpansion 1 E₄).coeff n = (c : ℂ) := by
   have h := EisensteinSeries.E_qExpansion_coeff (k := 4) (by norm_num) (by decide) n
@@ -148,7 +171,9 @@ lemma E₄_qExpansion_coeff_int (n : ℕ) :
     norm_num
 
 /-- Every q-expansion coefficient of the cube `(qExpansion E₄)³` — i.e. of `E₄³` — is an
-integer. This is the numerator side of `j = E₄³/Δ`. -/
+integer. This is the numerator side of `j = E₄³/Δ`.
+@isnad1 id=ex.0h1v.s8.8760e2aab3cd from=translated src=- shape=bdd153f6 vocab=7bf58e27
+-/
 lemma E₄_qExpansion_pow_three_coeff_int (n : ℕ) :
     ∃ c : ℤ, ((qExpansion 1 E₄) ^ 3).coeff n = (c : ℂ) := by
   choose c hc using E₄_qExpansion_coeff_int
@@ -300,7 +325,9 @@ private lemma qExpansion_E₆pow_eq :
     map_pow]
 
 /-- **`Δ` has integer q-expansion coefficients**: Mathlib's `qExpansion 1 Δ` is the
-`ℤ`-power-series `deltaInt`, cast to `ℂ`. -/
+`ℤ`-power-series `deltaInt`, cast to `ℂ`.
+@isnad1 id=eq.0h0v.s6.2c004b4d5787 from=translated src=- shape=aa2e1253 vocab=7b7dac98
+-/
 theorem qExpansion_discriminant_int :
     qExpansion 1 discriminant = PowerSeries.map (Int.castRingHom ℂ) deltaInt := by
   have hfun : (⇑(E₄.pow 3) : ℍ → ℂ) - ⇑(E₆.pow 2) = (1728 : ℂ) • discriminant := by
@@ -316,7 +343,9 @@ theorem qExpansion_discriminant_int :
   rw [PowerSeries.coeff_map]
   exact mul_left_cancel₀ (by norm_num : (1728 : ℂ) ≠ 0) h1
 
-/-- `Δ` vanishes at the cusp: constant q-expansion coefficient `0`. -/
+/-- `Δ` vanishes at the cusp: constant q-expansion coefficient `0`.
+@isnad1 id=eq.0h0v.s6.3bbafa98c748 from=translated src=- shape=c0fd5483 vocab=ac5dc9e6
+-/
 theorem deltaInt_coeff_zero : PowerSeries.coeff 0 deltaInt = 0 := by
   have h := deltaInt_spec 0
   have h0 : PowerSeries.coeff 0 (E4Z ^ 3 - E6Z ^ 2) = 0 := by
@@ -325,7 +354,9 @@ theorem deltaInt_coeff_zero : PowerSeries.coeff 0 deltaInt = 0 := by
   rw [h0] at h
   omega
 
-/-- `Δ = q + O(q²)`: the leading q-expansion coefficient of `Δ` is `1`. -/
+/-- `Δ = q + O(q²)`: the leading q-expansion coefficient of `Δ` is `1`.
+@isnad1 id=eq.0h0v.s6.4e6f7cb5a165 from=translated src=- shape=c0fd5483 vocab=ac5dc9e6
+-/
 theorem deltaInt_coeff_one : PowerSeries.coeff 1 deltaInt = 1 := by
   have h := congrArg (PowerSeries.coeff 1) qExpansion_discriminant_int
   rw [ModularForm.discriminant_qExpansion_coeff_one, PowerSeries.coeff_map, eq_intCast] at h
@@ -334,6 +365,9 @@ theorem deltaInt_coeff_one : PowerSeries.coeff 1 deltaInt = 1 := by
 /-- The unit part `Δ/q ∈ ℤ⟦q⟧`: `deltaInt = X · deltaTail` with `deltaTail(0) = 1`. -/
 def deltaTail : PowerSeries ℤ := PowerSeries.mk fun n ↦ PowerSeries.coeff (n + 1) deltaInt
 
+/--
+@isnad1 id=eq.0h0v.s4.dfbc2b923edc from=translated src=- shape=18d86f16 vocab=37447c33
+-/
 theorem deltaInt_eq_X_mul_deltaTail : deltaInt = PowerSeries.X * deltaTail := by
   ext m
   cases m with
@@ -342,6 +376,9 @@ theorem deltaInt_eq_X_mul_deltaTail : deltaInt = PowerSeries.X * deltaTail := by
       PowerSeries.constantCoeff_X, zero_mul]
   | succ n => rw [PowerSeries.coeff_succ_X_mul, deltaTail, PowerSeries.coeff_mk]
 
+/--
+@isnad1 id=eq.0h0v.s5.df92e7e43aca from=translated src=- shape=8b3e5d3e vocab=9306f150
+-/
 theorem constantCoeff_deltaTail : PowerSeries.constantCoeff deltaTail = 1 := by
   rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply, deltaTail, PowerSeries.coeff_mk]
   exact deltaInt_coeff_one
@@ -350,7 +387,9 @@ theorem constantCoeff_deltaTail : PowerSeries.constantCoeff deltaTail = 1 := by
 series `1 + 744q + 196884q² + …`. -/
 def jqInt : PowerSeries ℤ := E4Z ^ 3 * deltaTail.invOfUnit 1
 
-/-- `j·q ∈ 1 + q·ℤ⟦q⟧`, formal part: the constant coefficient of `jqInt` is `1`. -/
+/-- `j·q ∈ 1 + q·ℤ⟦q⟧`, formal part: the constant coefficient of `jqInt` is `1`.
+@isnad1 id=eq.0h0v.s5.493f48549948 from=translated src=- shape=8b3e5d3e vocab=d6b89c84
+-/
 theorem constantCoeff_jqInt : PowerSeries.constantCoeff jqInt = 1 := by
   rw [jqInt, map_mul, map_pow, PowerSeries.constantCoeff_invOfUnit]
   have h4 : PowerSeries.constantCoeff E4Z = 1 := by
@@ -360,7 +399,9 @@ theorem constantCoeff_jqInt : PowerSeries.constantCoeff jqInt = 1 := by
 
 /-! ### The analytic side: `τ ↦ q τ` and `τ ↦ j τ · q τ` -/
 
-/-- The nome is `1`-periodic on `ℍ`. -/
+/-- The nome is `1`-periodic on `ℍ`.
+@isnad1 id=eq.0h1v.s5.c49a23d288c0 from=translated src=- shape=ba65eac2 vocab=72c706b0
+-/
 lemma q_vadd_one (τ : ℍ) : q ((1 : ℝ) +ᵥ τ) = q τ := by
   rw [q_eq, q_eq]
   have hcoe : ((((1 : ℝ) +ᵥ τ) : ℍ) : ℂ) = 1 + (τ : ℂ) := by
@@ -370,7 +411,9 @@ lemma q_vadd_one (τ : ℍ) : q ((1 : ℝ) +ᵥ τ) = q τ := by
 private lemma periodic_qfun : Function.Periodic ((fun τ : ℍ ↦ q τ) ∘ ofComplex) 1 :=
   periodic_comp_ofComplex_of_vadd q_vadd_one
 
-/-- The nome `q : ℍ → ℂ` is holomorphic. -/
+/-- The nome `q : ℍ → ℂ` is holomorphic.
+@isnad1 id=mdiffere.0h0v.s6.349e4c965239 from=translated src=- shape=2bc3ab7e vocab=dd75836d
+-/
 lemma mdifferentiable_q : MDiff (fun τ : ℍ ↦ q τ) := by
   have heq : (fun τ : ℍ ↦ q τ)
       = (fun z : ℂ ↦ Complex.exp (2 * ↑π * Complex.I * z)) ∘ (fun τ : ℍ ↦ (τ : ℂ)) := by
@@ -428,7 +471,9 @@ private lemma jq_vadd_one (τ : ℍ) : j ((1 : ℝ) +ᵥ τ) * q ((1 : ℝ) +ᵥ
 private lemma periodic_jq : Function.Periodic ((fun τ : ℍ ↦ j τ * q τ) ∘ ofComplex) 1 :=
   periodic_comp_ofComplex_of_vadd jq_vadd_one
 
-/-- `j·q` is holomorphic on `ℍ`. -/
+/-- `j·q` is holomorphic on `ℍ`.
+@isnad1 id=mdiffere.0h0v.s6.3a6d813c0dfa from=translated src=- shape=8120d025 vocab=2ed22972
+-/
 lemma mdifferentiable_j_mul_q : MDiff (fun τ : ℍ ↦ j τ * q τ) :=
   mdifferentiable_j.mul mdifferentiable_q
 
@@ -485,7 +530,9 @@ private lemma qExpansion_jq_mul_discriminant :
 
 /-- **(B1) headline, q-expansion form**: the q-expansion of `j·q` is the integer power
 series `jqInt` (so `j·q ∈ 1 + q·ℤ⟦q⟧`, and `j` has a simple pole with residue-coefficient
-`1` at the cusp). -/
+`1` at the cusp).
+@isnad1 id=eq.0h0v.s6.f41d8707a141 from=translated src=- shape=e6bc2581 vocab=788ffb0f
+-/
 theorem qExpansion_j_mul_q :
     qExpansion 1 (fun τ : ℍ ↦ j τ * q τ) = PowerSeries.map (Int.castRingHom ℂ) jqInt := by
   have hkey := qExpansion_jq_mul_discriminant
@@ -512,7 +559,9 @@ theorem qExpansion_j_mul_q :
     _ = PowerSeries.map (Int.castRingHom ℂ) jqInt := by rw [jqInt, map_mul]
 
 /-- **(B1) headline, convergent-sum form**: for every `τ ∈ ℍ`,
-`j(τ)·q(τ) = ∑ c(n)·q(τ)ⁿ` with the integer coefficients `c = jqInt.coeff`. -/
+`j(τ)·q(τ) = ∑ c(n)·q(τ)ⁿ` with the integer coefficients `c = jqInt.coeff`.
+@isnad1 id=hassum.0h1v.s7.14c080283350 from=translated src=- shape=f186f41b vocab=19b70aac
+-/
 theorem hasSum_j_mul_q (τ : ℍ) :
     HasSum (fun n : ℕ ↦ ((PowerSeries.coeff n jqInt : ℤ) : ℂ) * q τ ^ n) (j τ * q τ) := by
   have h := hasSum_qExpansion one_pos periodic_jq mdifferentiable_j_mul_q
@@ -527,13 +576,17 @@ theorem hasSum_j_mul_q (τ : ℍ) :
   rw [heq]
   exact h
 
-/-- Every q-expansion coefficient of `j·q` is an integer. -/
+/-- Every q-expansion coefficient of `j·q` is an integer.
+@isnad1 id=ex.0h1v.s6.236db2d52e08 from=translated src=- shape=ec69108f vocab=2925bf5a
+-/
 theorem j_mul_q_qExpansion_coeff_int (n : ℕ) :
     ∃ c : ℤ, PowerSeries.coeff n (qExpansion 1 (fun τ : ℍ ↦ j τ * q τ)) = (c : ℂ) :=
   ⟨PowerSeries.coeff n jqInt, by rw [qExpansion_j_mul_q, PowerSeries.coeff_map]; rfl⟩
 
 /-- The q-expansion of `j·q` has constant coefficient `1` (equivalently, `j ~ 1/q` at the
-cusp with leading coefficient `1` — the pole-order-1 structure needed downstream). -/
+cusp with leading coefficient `1` — the pole-order-1 structure needed downstream).
+@isnad1 id=eq.0h0v.s6.1b7fdc177ad3 from=translated src=- shape=a575bcf3 vocab=ac895607
+-/
 theorem j_mul_q_qExpansion_coeff_zero :
     PowerSeries.coeff 0 (qExpansion 1 (fun τ : ℍ ↦ j τ * q τ)) = 1 := by
   rw [qExpansion_j_mul_q, PowerSeries.coeff_map,
@@ -541,7 +594,9 @@ theorem j_mul_q_qExpansion_coeff_zero :
   simp
 
 /-- **(B1) headline, existential packaging**: `j·q ∈ 1 + q·ℤ⟦q⟧` — there are integers
-`c 0 = 1, c 1 = 744, c 2 = 196884, …` with `j τ · q τ = ∑ c n · q τ ^ n` for all `τ : ℍ`. -/
+`c 0 = 1, c 1 = 744, c 2 = 196884, …` with `j τ · q τ = ∑ c n · q τ ^ n` for all `τ : ℍ`.
+@isnad1 id=ex.0h0v.s6.c11761c45baf from=translated src=- shape=d6dbd413 vocab=248ad1bd
+-/
 theorem j_mul_q_hasSum_int :
     ∃ c : ℕ → ℤ, c 0 = 1 ∧
       ∀ τ : ℍ, HasSum (fun n : ℕ ↦ (c n : ℂ) * q τ ^ n) (j τ * q τ) :=

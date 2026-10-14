@@ -53,7 +53,9 @@ variable {ι : Type*} [DecidableEq ι]
 variable (fam : Family ι)
 
 /-- **Saturation propagates to roots.** If the window `(a,b]` is saturated
-    (`N = b-a`), then every root's subtree is itself saturated. -/
+    (`N = b-a`), then every root's subtree is itself saturated.
+@isnad1 id=eq.2h5v.s6.ff6fd5ca373b from=translated src=- shape=1ff11c62 vocab=44db92e1
+-/
 lemma root_saturated {a b : ℕ} (hsat : N fam a b = b - a) :
     ∀ r ∈ Roots fam a b, N fam (fam.lo r) (fam.hi r) = fam.hi r - fam.lo r := by
   -- The master chain, but tracking equality.
@@ -98,7 +100,9 @@ lemma root_saturated {a b : ℕ} (hsat : N fam a b = b - a) :
     omega
 
 /-- **Every edge is tight.** If the window `(a,b]` is saturated, then every edge contained in
-    it has a saturated own-window (`N(lo e, hi e) = hi e - lo e`, i.e. `g(e) = h(e) - 1`). -/
+    it has a saturated own-window (`N(lo e, hi e) = hi e - lo e`, i.e. `g(e) = h(e) - 1`).
+@isnad1 id=eq.3h6v.s6.2b1c931278ff from=translated src=- shape=b7ab2e20 vocab=6a59003a
+-/
 lemma edge_tight_of_saturated :
     ∀ w : ℕ, ∀ a b : ℕ, b - a = w → N fam a b = b - a →
       ∀ e ∈ contained fam a b, N fam (fam.lo e) (fam.hi e) = fam.hi e - fam.lo e := by
@@ -134,7 +138,9 @@ For a saturated window `(a,b]` whose top edge `e0` exists (interval exactly `(a,
 shares the bottom `a` up to the gap; `bLeft`/`bSeam` ⇒ `col e0 < col r`) and a right run (each
 shares the top `b` down to the gap; `bRight`/`bSeam` ⇒ `col r < col e0`). -/
 
-/-- Saturated window with a top edge: the root subtree widths sum to exactly `b - a - 1`. -/
+/-- Saturated window with a top edge: the root subtree widths sum to exactly `b - a - 1`.
+@isnad1 id=eq.3h4v.s6.e65391281344 from=translated src=- shape=c3df2a05 vocab=bbaf8da3
+-/
 lemma roots_width_sum_eq {a b : ℕ} (hab : a < b) (hsat : N fam a b = b - a)
     (htop : (topEdges fam a b).Nonempty) :
     ∑ r ∈ Roots fam a b, (fam.hi r - fam.lo r) = b - a - 1 := by
@@ -153,7 +159,9 @@ lemma roots_width_sum_eq {a b : ℕ} (hab : a < b) (hsat : N fam a b = b - a)
   omega
 
 /-- The root level-intervals of a saturated top-edged window miss exactly one level `g*`:
-    there is a unique `g ∈ (a,b]` covered by no root. -/
+    there is a unique `g ∈ (a,b]` covered by no root.
+@isnad1 id=ex.3h4v.s6.c0fe7fa7ae87 from=translated src=- shape=0dd40334 vocab=5804d92c
+-/
 lemma exists_gap {a b : ℕ} (hab : a < b) (hsat : N fam a b = b - a)
     (htop : (topEdges fam a b).Nonempty) :
     ∃ g, a < g ∧ g ≤ b ∧ (∀ r ∈ Roots fam a b, ¬ (fam.lo r < g ∧ g ≤ fam.hi r)) := by
@@ -186,7 +194,9 @@ lemma exists_gap {a b : ℕ} (hab : a < b) (hsat : N fam a b = b - a)
   refine ⟨g, hgIoc.1, hgIoc.2, ?_⟩
   simp_all
 
-/-- Every level in `(a,b]` except the gap `g` (with `a < g ≤ b`) is covered by some root. -/
+/-- Every level in `(a,b]` except the gap `g` (with `a < g ≤ b`) is covered by some root.
+@isnad1 id=ex.9h6v.s7.b3d5b3e8710e from=translated src=- shape=34cca0bc vocab=5804d92c
+-/
 lemma covered_of_ne_gap {a b g : ℕ} (htop : (topEdges fam a b).Nonempty)
     (hsat : N fam a b = b - a) (hab : a < b)
     (hg1 : a < g) (hg2 : g ≤ b)
@@ -224,7 +234,9 @@ lemma covered_of_ne_gap {a b g : ℕ} (htop : (topEdges fam a b).Nonempty)
   simp_all
 
 /-- Distinct roots covering adjacent levels seam: if `r''` covers `s` and `r` covers a level just
-    above `s` (with `lo r < s+1`), and `r'' ≠ r`, then `hi r'' = lo r`.  (Used in the seam scan.) -/
+    above `s` (with `lo r < s+1`), and `r'' ≠ r`, then `hi r'' = lo r`.  (Used in the seam scan.)
+@isnad1 id=eq.6h7v.s6.78e9bf28e057 from=translated src=- shape=3c6f0104 vocab=60ced95a
+-/
 lemma seam_of_adjacent {a b : ℕ} {r'' r : ι} (hr'' : r'' ∈ Roots fam a b) (hr : r ∈ Roots fam a b)
     {s : ℕ} (hs1 : fam.lo r'' < s) (hs2 : s ≤ fam.hi r'')
     (hrhi : s + 1 ≤ fam.hi r) (hadj : fam.lo r = s) : fam.hi r'' = s := by
@@ -235,7 +247,9 @@ lemma seam_of_adjacent {a b : ℕ} {r'' r : ι} (hr'' : r'' ∈ Roots fam a b) (
   · omega
 
 /-- **COLUMN-SEPARATION (abstract).** For a saturated window `(a,b]` with a top edge `e0`, every
-    root has column `≠ col e0`. -/
+    root has column `≠ col e0`.
+@isnad1 id=ne.6h6v.s6.26bba9e853df from=translated src=- shape=fa7fef86 vocab=dab4fc80
+-/
 lemma column_sep {a b : ℕ} (hab : a < b) (hsat : N fam a b = b - a)
     {e0 : ι} (he0E : e0 ∈ fam.E) (he0lo : fam.lo e0 = a) (he0hi : fam.hi e0 = b) :
     ∀ r ∈ Roots fam a b, fam.col r ≠ fam.col e0 := by
@@ -328,7 +342,9 @@ lemma column_sep {a b : ℕ} (hab : a < b) (hsat : N fam a b = b - a)
 
 /-- **DIRECTIONAL COLUMN-SEPARATION (abstract).**  As `column_sep`, but exposes the gap `g`
     together with the run-direction columns: left roots (top below the gap) have `col e0 < col r`,
-    right roots (bottom above the gap) have `col r < col e0`. -/
+    right roots (bottom above the gap) have `col r < col e0`.
+@isnad1 id=ex.5h5v.s7.0980f6aedd0a from=translated src=- shape=f8b51444 vocab=91b84e18
+-/
 lemma column_sep_with_gap {a b : ℕ} (hab : a < b) (hsat : N fam a b = b - a)
     {e0 : ι} (he0E : e0 ∈ fam.E) (he0lo : fam.lo e0 = a) (he0hi : fam.hi e0 = b) :
     ∃ g, a < g ∧ g ≤ b ∧ (∀ r ∈ Roots fam a b, ¬ (fam.lo r < g ∧ g ≤ fam.hi r)) ∧
@@ -420,7 +436,9 @@ variable {d m : ℕ}
 
 /-- Each block of a portrait is the host set of any of its survivors.  More precisely: if
     `x ∈ eraseMin S` and `S ∈ P` then `hostSet P x = S` (the survivor's recovered home is its
-    block, by portrait disjointness). -/
+    block, by portrait disjointness).
+@isnad1 id=eq.3h5v.s7.329668ce659b from=translated src=- shape=07e3a4c9 vocab=16433f68
+-/
 lemma hostSet_eq_of_mem_eraseMin {P : Finset (Finset (ZMod (d * m)))} (hP : Portrait d m P)
     {S : Finset (ZMod (d * m))} (hS : S ∈ P) {x : ZMod (d * m)} (hxe : x ∈ eraseMin S) :
     hostSet P x (mem_T.mpr ⟨S, hS, hxe⟩) = S := by
@@ -433,7 +451,9 @@ lemma hostSet_eq_of_mem_eraseMin {P : Finset (Finset (ZMod (d * m)))} (hP : Port
   have hdisj := hP.2.1 _ hhost _ hS (by exact fun h => hne h)
   exact (Finset.disjoint_left.mp hdisj hxH) hxS
 
-/-- **`P` is recovered as the image of its survivors' host sets.** -/
+/-- **`P` is recovered as the image of its survivors' host sets.**
+@isnad1 id=eq.1h3v.s8.656298809dff from=translated src=- shape=540c6bcb vocab=280e305b
+-/
 lemma portrait_eq_image_hostSet {P : Finset (Finset (ZMod (d * m)))} (hP : Portrait d m P) :
     P = (T P).attach.image (fun x => hostSet P x.1 x.2) := by
   apply Finset.ext
@@ -464,14 +484,18 @@ We instantiate the abstract TIGHTNESS at the real `survivorFamily`.  The window 
 is saturated (`N = d-1`) because every survivor's level lies in `[0, d-1]` — `0 ≤ loV` and
 `hiV ≤ d-1`, so all `d-1` edges are contained, and the window width is `d-1`. -/
 
-/-- Every survivor's level is `< d` (hence `hiV x ≤ d - 1`). -/
+/-- Every survivor's level is `< d` (hence `hiV x ≤ d - 1`).
+@isnad1 id=lt.1h3v.s5.768be0aa5714 from=translated src=- shape=78c530bd vocab=f436ee57
+-/
 lemma hiV_lt_d [NeZero (d * m)] (_hm : 0 < m) (x : ZMod (d * m)) : hiV x < d := by
   unfold hiV
   have hval : x.val < d * m := ZMod.val_lt x
   have hval' : x.val < m * d := lt_of_lt_of_le hval (le_of_eq (Nat.mul_comm d m))
   exact Nat.div_lt_of_lt_mul hval'
 
-/-- The window `(0, d-1]` contains every edge of the survivor family. -/
+/-- The window `(0, d-1]` contains every edge of the survivor family.
+@isnad1 id=eq.3h3v.s6.08fea1392c4b from=translated src=- shape=8c8f62d5 vocab=5a85385b
+-/
 lemma survivorFamily_contained_eq [NeZero (d * m)] (hd : 0 < d) (hm : 0 < m)
     {P : Finset (Finset (ZMod (d * m)))} (hP : Portrait d m P) :
     AbstractLaminar.contained (survivorFamily hd hm hP) 0 (d - 1) = T P := by
@@ -484,7 +508,9 @@ lemma survivorFamily_contained_eq [NeZero (d * m)] (hd : 0 < d) (hm : 0 < m)
   have := hiV_lt_d (d := d) (m := m) hm e
   omega
 
-/-- **Geometric saturation.** `N (survivorFamily) 0 (d-1) = d - 1`. -/
+/-- **Geometric saturation.** `N (survivorFamily) 0 (d-1) = d - 1`.
+@isnad1 id=eq.3h3v.s7.bac8b2394626 from=translated src=- shape=e025d4d4 vocab=2b5cf893
+-/
 lemma survivorFamily_saturated [NeZero (d * m)] (hd : 0 < d) (hm : 0 < m)
     {P : Finset (Finset (ZMod (d * m)))} (hP : Portrait d m P) :
     AbstractLaminar.N (survivorFamily hd hm hP) 0 (d - 1) = (d - 1) - 0 := by
@@ -493,7 +519,9 @@ lemma survivorFamily_saturated [NeZero (d * m)] (hd : 0 < d) (hm : 0 < m)
   omega
 
 /-- **Geometric TIGHTNESS (g(e) = h(e) - 1).** Every survivor edge `e` has a saturated own
-    window: `N(loV e, hiV e) = hiV e - loV e`. -/
+    window: `N(loV e, hiV e) = hiV e - loV e`.
+@isnad1 id=eq.4h4v.s7.43e4313b239d from=translated src=- shape=a8598fb1 vocab=098c0ab8
+-/
 theorem edge_tight_geom [NeZero (d * m)] (hd : 0 < d) (hm : 0 < m)
     {P : Finset (Finset (ZMod (d * m)))} (hP : Portrait d m P)
     {e : ZMod (d * m)} (he : e ∈ T P) :
@@ -507,7 +535,9 @@ theorem edge_tight_geom [NeZero (d * m)] (hd : 0 < d) (hm : 0 < m)
   exact this
 
 /-- **Geometric COLUMN-SEPARATION.** For a survivor edge `e` with a nondegenerate own window,
-    every maximal nested tile (root of `(loV e, hiV e]`) has column `≠ colV e`. -/
+    every maximal nested tile (root of `(loV e, hiV e]`) has column `≠ colV e`.
+@isnad1 id=ne.6h5v.s8.1ff7d0f62292 from=translated src=- shape=9d3d1289 vocab=a956c0f6
+-/
 theorem column_sep_geom [NeZero (d * m)] (hd : 0 < d) (hm : 0 < m)
     {P : Finset (Finset (ZMod (d * m)))} (hP : Portrait d m P)
     {e : ZMod (d * m)} (he : e ∈ T P) (hwin : loV P e < hiV e) :
@@ -520,7 +550,9 @@ theorem column_sep_geom [NeZero (d * m)] (hd : 0 < d) (hm : 0 < m)
   exact AbstractLaminar.column_sep fam hwin hsat heE rfl rfl
 
 /-- **Geometric DIRECTIONAL COLUMN-SEPARATION.**  Exposes the gap level and the run-direction
-    columns at the survivor family. -/
+    columns at the survivor family.
+@isnad1 id=ex.5h4v.s9.f92ce831e513 from=translated src=- shape=93ab28c6 vocab=3e802853
+-/
 theorem column_sep_geom_dir [NeZero (d * m)] (hd : 0 < d) (hm : 0 < m)
     {P : Finset (Finset (ZMod (d * m)))} (hP : Portrait d m P)
     {e : ZMod (d * m)} (he : e ∈ T P) (hwin : loV P e < hiV e) :
@@ -546,9 +578,15 @@ says distinct blocks' spans are laminar (nested or disjoint), proved directly fr
 noncomputable def maxVal {N : ℕ} (S : Finset (ZMod N)) (h : S.Nonempty) : ZMod N :=
   (Finset.exists_max_image S (fun x => x.val) h).choose
 
+/--
+@isnad1 id=mem.1h2v.s4.dc9a75a69d02 from=translated src=- shape=8436a707 vocab=4d342a98
+-/
 lemma maxVal_mem {N : ℕ} (S : Finset (ZMod N)) (h : S.Nonempty) : maxVal S h ∈ S :=
   (Finset.exists_max_image S (fun x => x.val) h).choose_spec.1
 
+/--
+@isnad1 id=le.2h3v.s5.f4985aed7158 from=translated src=- shape=b664a53c vocab=dfc7e319
+-/
 lemma maxVal_ge {N : ℕ} (S : Finset (ZMod N)) (h : S.Nonempty) :
     ∀ x ∈ S, x.val ≤ (maxVal S h).val :=
   (Finset.exists_max_image S (fun x => x.val) h).choose_spec.2
@@ -559,7 +597,9 @@ noncomputable def spanLo {N : ℕ} (S : Finset (ZMod N)) (h : S.Nonempty) : ℕ 
 noncomputable def spanHi {N : ℕ} (S : Finset (ZMod N)) (h : S.Nonempty) : ℕ := (maxVal S h).val
 
 /-- **Lemma 2 (span laminarity).** Distinct blocks of a portrait have laminar spans: nested or
-    disjoint (no proper `.val`-overlap `spanLo A < spanLo B < spanHi A < spanHi B`). -/
+    disjoint (no proper `.val`-overlap `spanLo A < spanLo B < spanHi A < spanHi B`).
+@isnad1 id=not.6h5v.s8.4291516ab794 from=translated src=- shape=4f9cfd77 vocab=215e3925
+-/
 theorem span_laminar {P : Finset (Finset (ZMod (d * m)))} (hP : Portrait d m P)
     {A B : Finset (ZMod (d * m))} (hA : A ∈ P) (hB : B ∈ P) (hAB : A ≠ B)
     (hAne : A.Nonempty) (hBne : B.Nonempty) :
@@ -573,7 +613,9 @@ theorem span_laminar {P : Finset (Finset (ZMod (d * m)))} (hP : Portrait d m P)
       h1 h2 h3
   exact (hP.2.2.1 A hA B hB hAB) hL
 
-/-- **Lemma 2 (hull edge).** Every block element's `.val` lies within the span. -/
+/-- **Lemma 2 (hull edge).** Every block element's `.val` lies within the span.
+@isnad1 id=and.2h3v.s5.7c6a115d6435 from=translated src=- shape=0b1e1f21 vocab=77d58043
+-/
 lemma mem_span {N : ℕ} {S : Finset (ZMod N)} (h : S.Nonempty) {x : ZMod N} (hx : x ∈ S) :
     spanLo S h ≤ x.val ∧ x.val ≤ spanHi S h :=
   ⟨minVal_le S h x hx, maxVal_ge S h x hx⟩
@@ -588,7 +630,9 @@ phrased in the edge model.  Proved from `column_sep_geom` + the rootS machinery.
 /-- **BRIDGE (edge form).** If a survivor `b2` (same column as `u`) has its edge strictly nested
     inside `u`'s edge, then there is a survivor `g` of a DIFFERENT column whose edge encloses
     `b2`'s and is nested in `u`'s: `loV u ≤ loV g ≤ loV b2`, `hiV b2 ≤ hiV g ≤ hiV u`,
-    `colV g ≠ colV u`, and `g ≠ b2`. -/
+    `colV g ≠ colV u`, and `g ≠ b2`.
+@isnad1 id=ex.8h5v.s8.0395cd501696 from=translated src=- shape=441bc585 vocab=5e3f3eb2
+-/
 theorem bridge_edge [NeZero (d * m)] (hd : 0 < d) (hm : 0 < m)
     {P : Finset (Finset (ZMod (d * m)))} (hP : Portrait d m P)
     {u b2 : ZMod (d * m)} (hu : u ∈ T P) (hb2 : b2 ∈ T P)
@@ -650,7 +694,9 @@ plus Forward's `predIn_immediate` / `no_alt` / `predIn_max`. -/
 
 /-! #### Helper lemmas for `predIn_forced`. -/
 
-/-- Same-fiber `.val` comparison is the level comparison (strict). -/
+/-- Same-fiber `.val` comparison is the level comparison (strict).
+@isnad1 id=lt.2h4v.s7.9193fdfe18e5 from=translated src=- shape=7a4cf223 vocab=46688a54
+-/
 lemma level_lt_of_val_lt [NeZero (d * m)] {x y : ZMod (d * m)}
     (hfib : x.val % m = y.val % m) (h : x.val < y.val) : x.val / m < y.val / m := by
   rcases lt_or_eq_of_le ((val_le_iff_level_le_of_sameFiber hfib).mp h.le) with hlt | heq
@@ -658,7 +704,9 @@ lemma level_lt_of_val_lt [NeZero (d * m)] {x y : ZMod (d * m)}
   · exact absurd (congrArg ZMod.val (level_injOn_fiber hfib heq)) (Nat.ne_of_lt h)
 
 /-- A strict root `g` of `x`'s window (so `loV P x ≤ loV P g`, `hiV g ≤ hiV x`,
-    `colV g ≠ colV x`) has `g.val < x.val`. -/
+    `colV g ≠ colV x`) has `g.val < x.val`.
+@isnad1 id=lt.8h5v.s8.3a78c4711402 from=translated src=- shape=3478f043 vocab=02ffafba
+-/
 lemma root_val_lt [NeZero (d * m)] (hd : 0 < d) (hm : 0 < m)
     {P : Finset (Finset (ZMod (d * m)))} (hP : Portrait d m P)
     {g x : ZMod (d * m)} (hg : g ∈ T P) (hx : x ∈ T P)
@@ -684,7 +732,9 @@ lemma root_val_lt [NeZero (d * m)] (hd : 0 < d) (hm : 0 < m)
     This is the formalized **Structural Lemma / Bridge** content: the value `v₀ = colV x + ℓ*m`
     (a same-fiber position strictly inside `x`'s edge) is crossed by some maximal nested tile of a
     different column.  Proved from saturation (`edge_tight_geom`), column-separation
-    (`column_sep_geom`), and the gap/cover/seam machinery. -/
+    (`column_sep_geom`), and the gap/cover/seam machinery.
+@isnad1 id=ex.6h5v.s8.1ebd16b6630e from=translated src=- shape=f3ada78d vocab=06e1a506
+-/
 lemma spanning_edge [NeZero (d * m)] (hd : 0 < d) (hm : 0 < m)
     {P : Finset (Finset (ZMod (d * m)))} (hP : Portrait d m P) {x : ZMod (d * m)} (hx : x ∈ T P)
     {ℓ : ℕ} (hℓ1 : loV P x < ℓ) (hℓ2 : ℓ < hiV x) :
@@ -759,6 +809,9 @@ lemma spanning_edge [NeZero (d * m)] (hd : 0 < d) (hm : 0 < m)
       rw [hrv]; omega
     · exact root_val_lt hd hm hP hrE hx hra hrb hcolne
 
+/--
+@isnad1 id=eq.7h5v.s8.cad33ed12614 from=translated src=- shape=efcc676f vocab=0b5d6eac
+-/
 theorem predIn_forced [NeZero (d * m)] (hd : 0 < d) (hm : 0 < m)
     {P₁ P₂ : Finset (Finset (ZMod (d * m)))} (h₁ : Portrait d m P₁) (h₂ : Portrait d m P₂)
     (hT : T P₁ = T P₂) {x : ZMod (d * m)} (hx₁ : x ∈ T P₁) (hx₂ : x ∈ T P₂) :
@@ -824,18 +877,24 @@ the immediate-predecessor (`edgeStep`) relation, together with its unique non-su
 (the "root").  Since `T P` and (by `predIn_forced`) the `predIn` map agree across `P₁, P₂`, the
 `edgeStep` relation agrees, hence components and roots agree, hence host blocks agree. -/
 
-/-- `hostSet P u` is THE block containing the survivor `u`. -/
+/-- `hostSet P u` is THE block containing the survivor `u`.
+@isnad1 id=eq.4h5v.s7.3b86bc38b50e from=translated src=- shape=cbcc6459 vocab=a17e05f1
+-/
 lemma hostSet_eq_of_mem {P : Finset (Finset (ZMod (d * m)))} (hP : Portrait d m P)
     {u : ZMod (d * m)} (hu : u ∈ T P) {S : Finset (ZMod (d * m))} (hSP : S ∈ P) (huS : u ∈ S) :
     hostSet P u hu = S := by
   by_contra hne
   exact (Finset.disjoint_left.mp (hP.2.1 _ (hostSet_mem hu) _ hSP hne) (mem_hostSet hu)) huS
 
-/-- `minVal` only depends on the set (proof-irrelevant nonemptiness witness). -/
+/-- `minVal` only depends on the set (proof-irrelevant nonemptiness witness).
+@isnad1 id=eq.3h3v.s5.7dfabdc5b35c from=translated src=- shape=ece0ad8d vocab=c256503c
+-/
 lemma minVal_congr {N : ℕ} {S S' : Finset (ZMod N)} (hS : S.Nonempty) (hS' : S'.Nonempty)
     (h : S = S') : minVal S hS = minVal S' hS' := by subst h; rfl
 
-/-- The dropped point of a block is not a survivor of `P` (blocks are disjoint). -/
+/-- The dropped point of a block is not a survivor of `P` (blocks are disjoint).
+@isnad1 id=not.3h4v.s7.92f1eab95a76 from=translated src=- shape=b5734f40 vocab=0c459acb
+-/
 lemma minVal_host_not_mem_T {P : Finset (Finset (ZMod (d * m)))} (hP : Portrait d m P)
     {x : ZMod (d * m)} (hx : x ∈ T P) (hne : (hostSet P x hx).Nonempty) :
     minVal (hostSet P x hx) hne ∉ T P := by
@@ -857,10 +916,16 @@ lemma minVal_host_not_mem_T {P : Finset (Finset (ZMod (d * m)))} (hP : Portrait 
 def edgeStep [NeZero (d * m)] (P : Finset (Finset (ZMod (d * m)))) (u v : ZMod (d * m)) : Prop :=
   ∃ (hu : u ∈ T P) (hv : v ∈ T P), predIn P u hu = v ∨ predIn P v hv = u
 
+/--
+@isnad1 id=edgestep.1h5v.s6.5416807bda2d from=translated src=- shape=56dece51 vocab=5bec1504
+-/
 lemma edgeStep_symm [NeZero (d * m)] {P : Finset (Finset (ZMod (d * m)))}
     {u v : ZMod (d * m)} (h : edgeStep P u v) : edgeStep P v u := by
   obtain ⟨hu, hv, hcase⟩ := h; exact ⟨hv, hu, hcase.symm⟩
 
+/--
+@isnad1 id=refltran.1h5v.s6.9d442b1fe960 from=translated src=- shape=12a10714 vocab=3918059e
+-/
 lemma reach_symm [NeZero (d * m)] {P : Finset (Finset (ZMod (d * m)))}
     {u v : ZMod (d * m)} (h : Relation.ReflTransGen (edgeStep P) u v) :
     Relation.ReflTransGen (edgeStep P) v u := by
@@ -868,7 +933,9 @@ lemma reach_symm [NeZero (d * m)] {P : Finset (Finset (ZMod (d * m)))}
   | refl => exact Relation.ReflTransGen.refl
   | @tail b c _ hbc ih => exact Relation.ReflTransGen.head (edgeStep_symm hbc) ih
 
-/-- An `edgeStep` keeps you in the same host (the predecessor lives in the same block). -/
+/-- An `edgeStep` keeps you in the same host (the predecessor lives in the same block).
+@isnad1 id=eq.4h5v.s7.f056aedaf947 from=translated src=- shape=e9ebf076 vocab=87ea3b15
+-/
 lemma edgeStep_sameHost [NeZero (d * m)] {P : Finset (Finset (ZMod (d * m)))} (hP : Portrait d m P)
     {u v : ZMod (d * m)} (hstep : edgeStep P u v) (hu : u ∈ T P) (hv : v ∈ T P) :
     hostSet P u hu = hostSet P v hv := by
@@ -879,13 +946,17 @@ lemma edgeStep_sameHost [NeZero (d * m)] {P : Finset (Finset (ZMod (d * m)))} (h
   · have : u ∈ hostSet P v hv := by rw [← hpv]; exact predIn_mem_host hv
     exact hostSet_eq_of_mem hP hu (hostSet_mem hv) this
 
-/-- For a survivor `u` whose predecessor is itself a survivor, they share a host. -/
+/-- For a survivor `u` whose predecessor is itself a survivor, they share a host.
+@isnad1 id=eq.3h4v.s7.8d353a8b6f43 from=translated src=- shape=070866f0 vocab=4d9e8608
+-/
 lemma hostSet_predIn [NeZero (d * m)] {P : Finset (Finset (ZMod (d * m)))} (hP : Portrait d m P)
     {u : ZMod (d * m)} (hu : u ∈ T P) (hpu : predIn P u hu ∈ T P) :
     hostSet P (predIn P u hu) hpu = hostSet P u hu :=
   hostSet_eq_of_mem hP hpu (hostSet_mem hu) (predIn_mem_host hu)
 
-/-- Survivors reachable from `x` by `edgeStep` share `x`'s host. -/
+/-- Survivors reachable from `x` by `edgeStep` share `x`'s host.
+@isnad1 id=eq.4h5v.s7.0235145f0f78 from=translated src=- shape=3e54eaff vocab=bf4242da
+-/
 lemma reach_sameHost [NeZero (d * m)] {P : Finset (Finset (ZMod (d * m)))} (hP : Portrait d m P)
     {x z : ZMod (d * m)} (hx : x ∈ T P)
     (hreach : Relation.ReflTransGen (edgeStep P) x z) (hz : z ∈ T P) :
@@ -898,7 +969,9 @@ lemma reach_sameHost [NeZero (d * m)] {P : Finset (Finset (ZMod (d * m)))} (hP :
       edgeStep_sameHost hP ⟨hb, hc', hcase⟩ hb hc'
     simp_all
 
-/-- Every survivor `z` reaches the bottom survivor `q` of its block (predecessor a non-survivor). -/
+/-- Every survivor `z` reaches the bottom survivor `q` of its block (predecessor a non-survivor).
+@isnad1 id=ex.3h5v.s8.1a022d337107 from=translated src=- shape=c0210c30 vocab=9d528cc7
+-/
 lemma reach_to_low [NeZero (d * m)] {P : Finset (Finset (ZMod (d * m)))} (hP : Portrait d m P) :
     ∀ n : ℕ, ∀ z : ZMod (d*m), z.val = n → (hz : z ∈ T P) →
       ∃ q, ∃ hq : q ∈ T P, predIn P q hq ∉ T P ∧
@@ -915,7 +988,9 @@ lemma reach_to_low [NeZero (d * m)] {P : Finset (Finset (ZMod (d * m)))} (hP : P
         Relation.ReflTransGen.head ⟨hz, hpT, Or.inl rfl⟩ hqreach⟩
     · exact ⟨z, hz, hpT, rfl, Relation.ReflTransGen.refl⟩
 
-/-- Two survivors in the same host reach the SAME bottom survivor; hence are mutually reachable. -/
+/-- Two survivors in the same host reach the SAME bottom survivor; hence are mutually reachable.
+@isnad1 id=refltran.4h5v.s7.58d1e4191b5f from=translated src=- shape=daa1fd20 vocab=bf4242da
+-/
 lemma reach_of_sameHost [NeZero (d * m)] {P : Finset (Finset (ZMod (d * m)))} (hP : Portrait d m P)
     {x z : ZMod (d * m)} (hx : x ∈ T P) (hz : z ∈ T P)
     (hhost : hostSet P z hz = hostSet P x hx) :
@@ -948,7 +1023,9 @@ lemma reach_of_sameHost [NeZero (d * m)] {P : Finset (Finset (ZMod (d * m)))} (h
   subst hqeq
   exact hqzreach.trans (reach_symm hqxreach)
 
-/-- With forced predecessors and equal survivor sets, the `edgeStep` relations agree. -/
+/-- With forced predecessors and equal survivor sets, the `edgeStep` relations agree.
+@isnad1 id=edgestep.6h6v.s7.d852587ad5b0 from=translated src=- shape=f8a6f867 vocab=6a7856e7
+-/
 lemma edgeStep_forced [NeZero (d * m)] (hd : 0 < d) (hm : 0 < m)
     {P₁ P₂ : Finset (Finset (ZMod (d * m)))} (h₁ : Portrait d m P₁) (h₂ : Portrait d m P₂)
     (hT : T P₁ = T P₂) {u v : ZMod (d * m)} (hstep : edgeStep P₁ u v) : edgeStep P₂ u v := by
@@ -960,7 +1037,9 @@ lemma edgeStep_forced [NeZero (d * m)] (hd : 0 < d) (hm : 0 < m)
   · left; rw [← predIn_forced hd hm h₁ h₂ hT hu₁ hu₂]; exact hpu
   · right; rw [← predIn_forced hd hm h₁ h₂ hT hv₁ hv₂]; exact hpv
 
-/-- Reachability transfers between portraits with forced predecessors. -/
+/-- Reachability transfers between portraits with forced predecessors.
+@isnad1 id=refltran.6h6v.s7.f78340f58ee0 from=translated src=- shape=23dfb0e4 vocab=7478c80e
+-/
 lemma reach_forced [NeZero (d * m)] (hd : 0 < d) (hm : 0 < m)
     {P₁ P₂ : Finset (Finset (ZMod (d * m)))} (h₁ : Portrait d m P₁) (h₂ : Portrait d m P₂)
     (hT : T P₁ = T P₂) {u v : ZMod (d * m)}
@@ -1010,7 +1089,9 @@ PROVED and available: `edge_tight_geom` (TIGHTNESS), `column_sep_geom` (COLUMN-S
 This theorem is now SORRY-FREE: stage (2) (component recovery) is fully proved here from
 `predIn_forced` (stage 1, the single remaining `sorry`).  A block is recovered as the
 `edgeStep`-component of its survivors together with its unique non-survivor `minVal` root; both
-are forced because `T P` and the `predIn` map agree across `P₁, P₂`. -/
+are forced because `T P` and the `predIn` map agree across `P₁, P₂`.
+@isnad1 id=eq.7h5v.s8.54ad3c1d66f7 from=translated src=- shape=fef917cb vocab=380abdb7
+-/
 theorem hostSet_forced [NeZero (d * m)] (hd : 0 < d) (hm : 0 < m)
     {P₁ P₂ : Finset (Finset (ZMod (d * m)))} (h₁ : Portrait d m P₁) (h₂ : Portrait d m P₂)
     (hT : T P₁ = T P₂) {x : ZMod (d * m)} (hx₁ : x ∈ T P₁) (hx₂ : x ∈ T P₂) :
@@ -1054,7 +1135,9 @@ theorem hostSet_forced [NeZero (d * m)] (hd : 0 < d) (hm : 0 < m)
 
 /-! ### B-assembly: `T` injective. -/
 
-/-- **INJECTIVITY (implication form).** Two portraits with equal survivor sets are equal. -/
+/-- **INJECTIVITY (implication form).** Two portraits with equal survivor sets are equal.
+@isnad1 id=eq.5h4v.s6.e0ddc96a1a8a from=translated src=- shape=7ae86ac7 vocab=61f0ab42
+-/
 theorem T_inj (hd : 0 < d) (hm : 0 < m)
     {P₁ P₂ : Finset (Finset (ZMod (d * m)))} (h₁ : Portrait d m P₁) (h₂ : Portrait d m P₂)
     (hT : T P₁ = T P₂) : P₁ = P₂ := by
@@ -1076,7 +1159,9 @@ theorem T_inj (hd : 0 < d) (hm : 0 < m)
     rw [← hSeq]
     exact hostSet_forced hd hm h₁ h₂ hT hx₁ hx₂
 
-/-- **INJECTIVITY (`Set.InjOn` form, the stated target).** -/
+/-- **INJECTIVITY (`Set.InjOn` form, the stated target).**
+@isnad1 id=injon.2h2v.s6.9ee69a688efd from=translated src=- shape=a7159310 vocab=c1a35a75
+-/
 theorem T_injOn (hd : 0 < d) (hm : 0 < m) :
     Set.InjOn (T (N := d*m)) {P | Portrait d m P} :=
   fun _P₁ h₁ _P₂ h₂ hT => T_inj hd hm h₁ h₂ hT

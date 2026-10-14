@@ -50,36 +50,51 @@ instance : SetLike AspSet (ℤ × ℤ) where
     intro a b h
     cases a; simp_all
 
+/--
+@isnad1 id=iff.0h3v.s5.6f98e71c6675 from=translated src=- shape=21ccc9bf vocab=6fe58e5f
+-/
 @[simp] lemma mem_AspSet (asps : AspSet) (u v : ℤ) :
     ⟨u, v⟩ ∈ asps ↔ ⟨u, v⟩ ∈ asps.I := Iff.rfl
 
 namespace AspSet
 
-/-- Two `AspSet`s are equal if their underlying sets of boxes are equal. -/
+/-- Two `AspSet`s are equal if their underlying sets of boxes are equal.
+@isnad1 id=eq.1h2v.s4.dcd8946eba9d from=translated src=- shape=2b102c87 vocab=47b28dc6
+-/
 theorem ext {A B : AspSet} (hI : A.I = B.I) : A = B := by
   cases A
   simp_all
 
-/-- Every inversion box of an abstract ASP set is directed upward. -/
+/-- Every inversion box of an abstract ASP set is directed upward.
+@isnad1 id=lt.1h3v.s4.103d59c958d5 from=translated src=- shape=fe209899 vocab=e030b147
+-/
 theorem directed (asps : AspSet) : ∀ u v : ℤ, ⟨u, v⟩ ∈ asps → u < v :=
   asps.prop.directed
 
-/-- Abstract ASP inversion sets are transitively closed. -/
+/-- Abstract ASP inversion sets are transitively closed.
+@isnad1 id=mem.2h4v.s5.122540593819 from=translated src=- shape=510ae8ae vocab=3a72b549
+-/
 theorem closed (asps : AspSet) :
     ∀ u v w : ℤ, (u, v) ∈ asps → (v, w) ∈ asps → ⟨u, w⟩ ∈ asps :=
   asps.prop.closed
 
-/-- Abstract ASP inversion sets are transitively coclosed. -/
+/-- Abstract ASP inversion sets are transitively coclosed.
+@isnad1 id=not.4h4v.s6.87874f666ae8 from=translated src=- shape=d62b73c0 vocab=e030b147
+-/
 theorem coclosed (asps : AspSet) :
     ∀ u v w : ℤ, u < v → v < w → (u, v) ∉ asps → (v, w) ∉ asps → ⟨u, w⟩ ∉ asps :=
   asps.prop.coclosed
 
-/-- Each row of an abstract ASP inversion set is finite. -/
+/-- Each row of an abstract ASP inversion set is finite.
+@isnad1 id=finite.0h2v.s4.dc416fbf7d30 from=translated src=- shape=144499aa vocab=bd84b76a
+-/
 theorem finiteOutdegree (asps : AspSet) :
     ∀ u : ℤ, { v : ℤ | ⟨u, v⟩ ∈ asps }.Finite :=
   asps.prop.finiteOutdegree
 
-/-- Each column of an abstract ASP inversion set is finite. -/
+/-- Each column of an abstract ASP inversion set is finite.
+@isnad1 id=finite.0h2v.s4.6329b5eb4195 from=translated src=- shape=08441a67 vocab=bd84b76a
+-/
 theorem finiteIndegree (asps : AspSet) :
     ∀ v : ℤ, { u : ℤ | ⟨u, v⟩ ∈ asps }.Finite :=
   asps.prop.finiteIndegree
@@ -158,7 +173,9 @@ instance (asps : AspSet) : IsStrictTotalOrder ℤ asps.postLt where
   irrefl := not_post_lt_self asps
   trans _ _ _ := post_lt_trans asps
 
-/-- The inversion set of an ASP permutation forms an ASP set. -/
+/-- The inversion set of an ASP permutation forms an ASP set.
+@isnad1 id=aspsetpr.0h1v.s2.6a3efb3438e0 from=translated src=- shape=36b3d148 vocab=22c12f0b
+-/
 lemma AspSet_InvSet_of_AspPerm (τ : AspPerm) : AspSet_prop (invSet τ) := by
   constructor
   · intro u v uv_inv
@@ -193,10 +210,16 @@ noncomputable abbrev inset (asps : AspSet) (n : ℤ) : Finset ℤ :=
 noncomputable abbrev outset (asps : AspSet) (n : ℤ) : Finset ℤ :=
   (asps.finiteOutdegree n).toFinset
 
+/--
+@isnad1 id=iff.0h3v.s5.2495113147c1 from=translated src=- shape=dfae6ae6 vocab=3e62018d
+-/
 lemma mem_inset (asps : AspSet) (n x : ℤ) :
     x ∈ asps.inset n ↔ ⟨x, n⟩ ∈ asps := by
   simp only [inset, Set.Finite.mem_toFinset, Set.mem_ofPred_eq, mem_AspSet]
 
+/--
+@isnad1 id=iff.0h3v.s5.9054baac89f4 from=translated src=- shape=d1b2ee3a vocab=bd08bb26
+-/
 lemma mem_outset (asps : AspSet) (n x : ℤ) :
     x ∈ asps.outset n ↔ ⟨n, x⟩ ∈ asps := by
   simp only [outset, Set.Finite.mem_toFinset, Set.mem_ofPred_eq, mem_AspSet]
@@ -515,7 +538,9 @@ inversion data, yielding an `AspPerm`. -/
 section OfAspSet
 variable (asps : AspSet) (χ : ℤ)
 
-/-- The reconstructed function from an inversion set has that inversion set. -/
+/-- The reconstructed function from an inversion set has that inversion set.
+@isnad1 id=eq.0h2v.s4.04d5c0e73efd from=translated src=- shape=7096191c vocab=4c1152bb
+-/
 theorem invSet_func : invSet (asps.recon χ) = asps := by
   ext ⟨u, v⟩
   wlog u_lt_v : u < v
@@ -625,7 +650,9 @@ private theorem func_surjective : Function.Surjective (asps.recon χ) := by
 private theorem func_bijective : Function.Bijective (asps.recon χ) :=
   ⟨func_injective χ asps, func_surjective asps χ⟩
 
-/-- The function reconstructed from an ASP set is an ASP permutation. -/
+/-- The function reconstructed from an ASP set is an ASP permutation.
+@isnad1 id=isasp.0h2v.s3.18c5389b7541 from=translated src=- shape=c57da3d9 vocab=c4b686b2
+-/
 theorem func_asp : isAsp (asps.recon χ) := by
   let τ := asps.recon χ
   let se := southeastSet τ (τ 0) 1
@@ -648,8 +675,14 @@ theorem func_asp : isAsp (asps.recon χ) := by
 noncomputable def toAspPerm : AspPerm :=
   ⟨asps.recon χ, (by exact func_bijective asps χ), (by exact func_asp asps χ)⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.936c851f2e4e from=translated src=- shape=7908e215 vocab=30c4dcba
+-/
 lemma invSet_of_toAspPerm : invSet (toAspPerm asps χ)= asps := invSet_func asps χ
 
+/--
+@isnad1 id=eq.0h3v.s4.df94c4bd822d from=translated src=- shape=c4193728 vocab=8cef615d
+-/
 lemma inset_of_toAspPerm (n : ℤ) : (toAspPerm asps χ).inset n = asps.inset n := by
   ext x
   have h1 : x ∈ (toAspPerm asps χ).inset n ↔ ⟨x, n⟩ ∈ invSet (toAspPerm asps χ) := by
@@ -660,6 +693,9 @@ lemma inset_of_toAspPerm (n : ℤ) : (toAspPerm asps χ).inset n = asps.inset n 
     simp
   simp_all
 
+/--
+@isnad1 id=eq.0h3v.s4.a09003369dfe from=translated src=- shape=c4193728 vocab=012b57a9
+-/
 lemma outset_of_toAspPerm (n : ℤ) : (toAspPerm asps χ).outset n = asps.outset n := by
   ext x
   have h1 : x ∈ (toAspPerm asps χ).outset n ↔ ⟨n, x⟩ ∈ invSet (toAspPerm asps χ) := by
@@ -670,6 +706,9 @@ lemma outset_of_toAspPerm (n : ℤ) : (toAspPerm asps χ).outset n = asps.outset
     simp
   simp_all
 
+/--
+@isnad1 id=eq.0h2v.s3.7f5cc581775f from=translated src=- shape=6021be03 vocab=0500800c
+-/
 lemma chi_of_toAspPerm : (toAspPerm asps χ).χ = χ := by
   let σ := toAspPerm asps χ
   have h1 : σ 0 = (asps.outset 0).card - (asps.inset 0).card - χ := by
@@ -710,16 +749,28 @@ noncomputable def aspPermEquivAspSet :
       exact invSet_of_toAspPerm asps χ
     · simpa using chi_of_toAspPerm asps χ
 
+/--
+@isnad1 id=eq.0h1v.s5.84c63858d6e2 from=translated src=- shape=1d7e6e1f vocab=23cdb9f5
+-/
 @[simp] lemma AspPerm_equiv_AspSet_toFun_fst (τ : AspPerm) :
     ((aspPermEquivAspSet τ).1 : Set (ℤ × ℤ)) = invSet τ := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.7d73df3cb57d from=translated src=- shape=d2d6585e vocab=99c91418
+-/
 @[simp] lemma AspPerm_equiv_AspSet_toFun_snd (τ : AspPerm) :
     (aspPermEquivAspSet τ).2 = τ.χ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.67c65b46847f from=translated src=- shape=64c1337f vocab=d8a56ab2
+-/
 @[simp] lemma inv_set_AspPerm_equiv_AspSet_invFun (asps : AspSet) (χ : ℤ) :
     invSet (aspPermEquivAspSet.symm (asps, χ)) = asps :=
   invSet_of_toAspPerm asps χ
 
+/--
+@isnad1 id=eq.0h2v.s5.0c0f1da6b3eb from=translated src=- shape=ac76efa5 vocab=23da25ad
+-/
 @[simp] lemma chi_AspPerm_equiv_AspSet_invFun (asps : AspSet) (χ : ℤ) :
     (aspPermEquivAspSet.symm (asps, χ)).χ = χ :=
   chi_of_toAspPerm asps χ
@@ -728,6 +779,9 @@ noncomputable def aspPermEquivAspSet :
 A set $I \subseteq \mathbb{Z} \times \mathbb{Z}$ is the inversion set of an ASP permutation
 with shift parameter $\chi$ if and only if it satisfies the ASP set properties.
 *Theorem 2.13* (`thm:aspSetReconstruction`) from [An extended Demazure product](https://arxiv.org/abs/2206.14227). -/
+/--
+@isnad1 id=iff.0h2v.s4.689a5d53ed18 from=translated src=- shape=d0702d6f vocab=aa5b5c59
+-/
 theorem invSets_of_AspPerms (I : Set (ℤ × ℤ)) (χ : ℤ) :
   (∃ τ : AspPerm, invSet τ = I ∧ τ.χ = χ) ↔  (AspSet_prop I) := by
   constructor

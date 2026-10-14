@@ -53,6 +53,9 @@ def unitaryToModuleRepresentation
     simp
 
 /- The finite-group averaging operator has the expected vector formula. Paper: §4. -/
+/--
+@isnad1 id=eq.0h4v.s12.05af95edfe28 from=translated src=- shape=a4618f26 vocab=69b058f1
+-/
 lemma averageMap_apply {G H : Type*} [Group G]
     [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
     [Fintype G] (π : UnitaryRep G H) (ξ : H) :
@@ -62,6 +65,9 @@ lemma averageMap_apply {G H : Type*} [Group G]
     unitaryToModuleRepresentation, map_sum]
 
 /- The averaging error is the average of the individual displacement errors. Paper: §4. -/
+/--
+@isnad1 id=eq.0h4v.s12.7bbb8d67935e from=translated src=- shape=8fdc8367 vocab=49a3c2cc
+-/
 lemma averageMap_sub_apply {G H : Type*} [Group G]
     [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
     [Fintype G] (π : UnitaryRep G H) (ξ : H) :
@@ -77,6 +83,9 @@ lemma averageMap_sub_apply {G H : Type*} [Group G]
   simp
 
 /- Every finite countable discrete group has Property-(T). Paper: §4. -/
+/--
+@isnad1 id=haskazhd.0h1v.s3.2b6c019f9bd9 from=translated src=- shape=77e6bbc5 vocab=747a7e35
+-/
 theorem hasKazhdanPropertyT_of_fintype
     (G : CountableDiscreteGroup) [Finite (G : Type)] :
     HasKazhdanPropertyT G := by

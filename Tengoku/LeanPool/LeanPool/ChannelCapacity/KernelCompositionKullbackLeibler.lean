@@ -43,7 +43,9 @@ namespace InformationTheory
 
 variable {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
 
-/-- Kullback-Leibler divergence is invariant under a measurable equivalence. -/
+/-- Kullback-Leibler divergence is invariant under a measurable equivalence.
+@isnad1 id=eq.0h5v.s6.d992a128e05d from=translated src=- shape=2bb7895e vocab=0b01dffb
+-/
 lemma klDiv_map_measurableEquiv (e : α ≃ᵐ β) (μ ν : Measure α)
     [SigmaFinite μ] [SigmaFinite ν] [IsFiniteMeasure μ] [IsFiniteMeasure ν] :
     klDiv (μ.map e) (ν.map e) = klDiv μ ν := by
@@ -68,7 +70,9 @@ namespace ProbabilityTheory
 variable {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
 
 /-- The Radon-Nikodym derivative of `μ ⊗ₘ κ` with respect to `μ ⊗ₘ η` is the pointwise
-Radon-Nikodym derivative of the kernels. -/
+Radon-Nikodym derivative of the kernels.
+@isnad1 id=eventual.0h5v.s7.867ae3e46f4f from=translated src=- shape=6f5f21d8 vocab=b8ff1ecf
+-/
 theorem rnDeriv_compProd_right
     [MeasurableSpace.CountableOrCountablyGenerated α β]
     {μ : Measure α} {κ η : Kernel α β}
@@ -96,7 +100,9 @@ theorem rnDeriv_compProd_right
   exact (Measure.eq_rnDeriv (κ.measurable_rnDeriv η) hs hadd).symm
 
 /-- The Kullback-Leibler divergence of `μ ⊗ₘ κ` with respect to `μ ⊗ₘ η` is the integral of the
-pointwise kernel divergences. -/
+pointwise kernel divergences.
+@isnad1 id=eq.1h5v.s7.180955c0bd9e from=translated src=- shape=decd2f6c vocab=ea4b43a8
+-/
 theorem klDiv_compProd_right
     [MeasurableSpace.CountableOrCountablyGenerated α β]
     {μ : Measure α} {κ η : Kernel α β}

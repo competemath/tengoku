@@ -25,25 +25,33 @@ namespace OpenAIPort
 
 universe u v
 
-/-- Public OpenAI reindexing computation. Paper: §3. -/
+/-- Public OpenAI reindexing computation. Paper: §3.
+@isnad1 id=eq.0h5v.s11.9999ce8b04dd from=translated src=- shape=26cf9e00 vocab=25076416
+-/
 @[simp] theorem l2Reindex_apply {α : Type u} {β : Type v} (e : α ≃ β)
     (f : GroupL2 α) (j : β) :
     l2Reindex e f j = f (e.symm j) :=
   rfl
 
-/-- Public OpenAI reindexing symmetry. Paper: §3. -/
+/-- Public OpenAI reindexing symmetry. Paper: §3.
+@isnad1 id=eq.0h3v.s10.ddd9918f2ba7 from=translated src=- shape=4a6dae55 vocab=3a9ccbe9
+-/
 @[simp] theorem l2Reindex_symm {α : Type u} {β : Type v} (e : α ≃ β) :
     (l2Reindex e).symm = l2Reindex e.symm := by
   ext f i
   rfl
 
-/-- Public OpenAI left-regular computation. Paper: §3. -/
+/-- Public OpenAI left-regular computation. Paper: §3.
+@isnad1 id=eq.0h4v.s14.bd62212a1f2e from=translated src=- shape=e94007b1 vocab=e680b5e1
+-/
 @[simp] theorem leftRegularUnitary_apply {G : Type u} [Group G]
     (g : G) (f : GroupL2 G) (h : G) :
     (leftRegularUnitary g : GroupL2 G →L[ℂ] GroupL2 G) f h = f (g⁻¹ * h) := by
   rfl
 
-/-- Public OpenAI transfer of almost-invariant vectors. Paper: §4. -/
+/-- Public OpenAI transfer of almost-invariant vectors. Paper: §4.
+@isnad1 id=hasalmos.1h5v.s11.2e81291dd6d1 from=translated src=- shape=cb1d987c vocab=81e8b616
+-/
 theorem hasAlmostInvariantUnitVectors_comp
     {G H : Type u} {K : Type v} [Group G] [Group H]
     [NormedAddCommGroup K] [InnerProductSpace ℂ K] [CompleteSpace K]
@@ -58,7 +66,9 @@ theorem hasAlmostInvariantUnitVectors_comp
   intro g hg
   exact hclose (f g) (Finset.mem_image.mpr ⟨g, hg, rfl⟩)
 
-/-- Public OpenAI property-(T) quotient transfer. Paper: §4. -/
+/-- Public OpenAI property-(T) quotient transfer. Paper: §4.
+@isnad1 id=haskazhd.2h3v.s6.8b24767ce2d5 from=translated src=- shape=289d81c0 vocab=eaf7c32c
+-/
 theorem hasKazhdanPropertyT_of_surjective
     (G H : CountableDiscreteGroup.{u})
     (f : G →* H) (hf : Function.Surjective f)
@@ -73,7 +83,9 @@ theorem hasKazhdanPropertyT_of_surjective
   obtain ⟨g, rfl⟩ := hf h
   exact hinv g
 
-/-- Public OpenAI property-(T) transport across a group equivalence. Paper: §4. -/
+/-- Public OpenAI property-(T) transport across a group equivalence. Paper: §4.
+@isnad1 id=iff.0h3v.s5.34799eec5369 from=translated src=- shape=0f259ed3 vocab=effa8669
+-/
 theorem hasKazhdanPropertyT_iff_of_mulEquiv
     (G H : CountableDiscreteGroup.{u}) (e : G ≃* H) :
     HasKazhdanPropertyT.{u, v} G ↔ HasKazhdanPropertyT.{u, v} H := by

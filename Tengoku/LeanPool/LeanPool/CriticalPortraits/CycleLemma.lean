@@ -28,12 +28,20 @@ variable {n : ℕ}
 /-- Partial sums of `a`. -/
 def Q (a : ℕ → ℤ) (k : ℕ) : ℤ := ∑ j ∈ Finset.range k, a j
 
+/--
+@isnad1 id=eq.0h1v.s4.ab66d5741932 from=translated src=- shape=777ad2f6 vocab=d3884acd
+-/
 lemma Q_zero (a : ℕ → ℤ) : Q a 0 = 0 := by simp [Q]
 
+/--
+@isnad1 id=eq.0h2v.s5.e09db7c43fe9 from=translated src=- shape=e1ce081a vocab=f829fba2
+-/
 lemma Q_succ (a : ℕ → ℤ) (k : ℕ) : Q a (k + 1) = Q a k + a k := by
   simp [Q, Finset.sum_range_succ]
 
-/-- A window of length `n` of a period-`n` sequence sums to the period sum. -/
+/-- A window of length `n` of a period-`n` sequence sums to the period sum.
+@isnad1 id=eq.1h3v.s6.fa076069a87b from=translated src=- shape=d0fcfcb8 vocab=090e5fd1
+-/
 lemma window_sum (a : ℕ → ℤ) (hper : ∀ k, a (k + n) = a k)
     (k : ℕ) : Q a (k + n) - Q a k = Q a n - Q a 0 := by
   induction k with
@@ -45,7 +53,9 @@ lemma window_sum (a : ℕ → ℤ) (hper : ∀ k, a (k + n) = a k)
     rw [e1, Q_succ a k, hper k]
     linarith [ih]
 
-/-- Periodicity of the partial sums: `Q (k+n) = Q k + (period sum)`. -/
+/-- Periodicity of the partial sums: `Q (k+n) = Q k + (period sum)`.
+@isnad1 id=eq.2h3v.s6.7e8cc7e85a5a from=translated src=- shape=16182b53 vocab=f829fba2
+-/
 lemma Q_periodic (a : ℕ → ℤ) (hper : ∀ k, a (k + n) = a k) (hsum : Q a n = 1)
     (k : ℕ) : Q a (k + n) = Q a k + 1 := by
   have := window_sum a hper k
@@ -57,7 +67,9 @@ lemma Q_periodic (a : ℕ → ℤ) (hper : ∀ k, a (k + n) = a k) (hsum : Q a n
 def Good (n : ℕ) (a : ℕ → ℤ) (i : ℕ) : Prop := ∀ t, i < t → t < i + n → Q a i < Q a t
 
 /-- **The cycle lemma (Raney), sum = 1.** For a period-`n` integer sequence with period-sum `1`,
-    exactly one shift `i ∈ [0,n)` is good. The witness is the *last* argmin of `Q` over `[0,n)`. -/
+    exactly one shift `i ∈ [0,n)` is good. The witness is the *last* argmin of `Q` over `[0,n)`.
+@isnad1 id=existsun.3h2v.s5.a3e3346aaeb0 from=translated src=- shape=f85a2038 vocab=ccb629a3
+-/
 theorem cycle_lemma (a : ℕ → ℤ) (hn : 0 < n) (hper : ∀ k, a (k + n) = a k)
     (hsum : Q a n = 1) : ∃! i, i < n ∧ Good n a i := by
   classical

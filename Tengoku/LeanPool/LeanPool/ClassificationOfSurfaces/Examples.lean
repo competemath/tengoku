@@ -125,14 +125,18 @@ def mobiusStripCellComplex : SurfaceCellComplex :=
   SurfaceCellComplex.oneFacePresentation MobiusStripEdge
     [pos MobiusStripEdge.a, pos MobiusStripEdge.a, pos MobiusStripEdge.h]
 
-/-- The annulus has the full length-six, two-contour boundary word. -/
+/-- The annulus has the full length-six, two-contour boundary word.
+@isnad1 id=eq.0h0v.s5.6fc8289e020c from=translated src=- shape=d0f9105d vocab=730c48cd
+-/
 theorem annulusCellComplex_boundary :
     annulusCellComplex.boundary PUnit.unit =
       [pos AnnulusEdge.d₀, pos AnnulusEdge.c₀, neg AnnulusEdge.d₀,
         pos AnnulusEdge.d₁, pos AnnulusEdge.c₁, neg AnnulusEdge.d₁] := by
   rfl
 
-/-- Regression check: edge-orbit multiplicity accepts the non-orientable word `a a`. -/
+/-- Regression check: edge-orbit multiplicity accepts the non-orientable word `a a`.
+@isnad1 id=issurfac.0h0v.s1.2d9ad4cc6deb from=translated src=- shape=49959d42 vocab=e20debb5
+-/
 theorem projectivePlaneCellComplex_isSurfaceValid :
     projectivePlaneCellComplex.IsSurfaceValid := by
   apply SurfaceCellComplex.oneFacePresentation_isSurfaceValid
@@ -142,7 +146,9 @@ theorem projectivePlaneCellComplex_isSurfaceValid :
 
 /-! ## Occurrence-pairing validity -/
 
-/-- The disk word has one boundary occurrence and no internal pairings. -/
+/-- The disk word has one boundary occurrence and no internal pairings.
+@isnad1 id=occurren.0h0v.s1.25cba47fcd51 from=translated src=- shape=49959d42 vocab=2690c9a0
+-/
 theorem diskCellComplex_occurrencePairingValid :
     diskCellComplex.OccurrencePairingValid := by
   apply SurfaceCellComplex.oneFacePresentation_occurrencePairingValid
@@ -151,7 +157,9 @@ theorem diskCellComplex_occurrencePairingValid :
     cases e
     decide
 
-/-- The corrected annulus word has two internal seam pairs and two boundary occurrences. -/
+/-- The corrected annulus word has two internal seam pairs and two boundary occurrences.
+@isnad1 id=occurren.0h0v.s1.efbaaa9f9121 from=translated src=- shape=49959d42 vocab=9a0dc9d5
+-/
 theorem annulusCellComplex_occurrencePairingValid :
     annulusCellComplex.OccurrencePairingValid := by
   apply SurfaceCellComplex.oneFacePresentation_occurrencePairingValid
@@ -159,7 +167,9 @@ theorem annulusCellComplex_occurrencePairingValid :
   · intro e
     cases e <;> decide
 
-/-- The torus word pairs both of its edge names internally. -/
+/-- The torus word pairs both of its edge names internally.
+@isnad1 id=occurren.0h0v.s1.e754b444190e from=translated src=- shape=49959d42 vocab=ec9690d6
+-/
 theorem torusCellComplex_occurrencePairingValid :
     torusCellComplex.OccurrencePairingValid := by
   apply SurfaceCellComplex.oneFacePresentation_occurrencePairingValid
@@ -167,7 +177,9 @@ theorem torusCellComplex_occurrencePairingValid :
   · intro e
     cases e <;> decide
 
-/-- The two copies of the projective-plane edge form one internal pair. -/
+/-- The two copies of the projective-plane edge form one internal pair.
+@isnad1 id=occurren.0h0v.s1.8ab9bd3242ed from=translated src=- shape=49959d42 vocab=2043a322
+-/
 theorem projectivePlaneCellComplex_occurrencePairingValid :
     projectivePlaneCellComplex.OccurrencePairingValid := by
   apply SurfaceCellComplex.oneFacePresentation_occurrencePairingValid
@@ -176,7 +188,9 @@ theorem projectivePlaneCellComplex_occurrencePairingValid :
     cases e
     decide
 
-/-- The Mobius-strip word has one internal pair and one boundary occurrence. -/
+/-- The Mobius-strip word has one internal pair and one boundary occurrence.
+@isnad1 id=occurren.0h0v.s1.3bbf784a6782 from=translated src=- shape=49959d42 vocab=64fc9f63
+-/
 theorem mobiusStripCellComplex_occurrencePairingValid :
     mobiusStripCellComplex.OccurrencePairingValid := by
   apply SurfaceCellComplex.oneFacePresentation_occurrencePairingValid
@@ -184,19 +198,27 @@ theorem mobiusStripCellComplex_occurrencePairingValid :
   · intro e
     cases e <;> decide
 
-/-- Incidence validity of the disk presentation. -/
+/-- Incidence validity of the disk presentation.
+@isnad1 id=issurfac.0h0v.s1.61b6ce2ce7bb from=translated src=- shape=49959d42 vocab=06f1573d
+-/
 theorem diskCellComplex_isSurfaceValid : diskCellComplex.IsSurfaceValid :=
   diskCellComplex_occurrencePairingValid.surface_valid
 
-/-- Incidence validity of the corrected annulus presentation. -/
+/-- Incidence validity of the corrected annulus presentation.
+@isnad1 id=issurfac.0h0v.s1.b2681a333b05 from=translated src=- shape=49959d42 vocab=393fd527
+-/
 theorem annulusCellComplex_isSurfaceValid : annulusCellComplex.IsSurfaceValid :=
   annulusCellComplex_occurrencePairingValid.surface_valid
 
-/-- Incidence validity of the torus presentation. -/
+/-- Incidence validity of the torus presentation.
+@isnad1 id=issurfac.0h0v.s1.9ca72370a6a2 from=translated src=- shape=49959d42 vocab=37be3c11
+-/
 theorem torusCellComplex_isSurfaceValid : torusCellComplex.IsSurfaceValid :=
   torusCellComplex_occurrencePairingValid.surface_valid
 
-/-- Incidence validity of the Mobius-strip presentation. -/
+/-- Incidence validity of the Mobius-strip presentation.
+@isnad1 id=issurfac.0h0v.s1.e27aa2de1125 from=translated src=- shape=49959d42 vocab=7af994a4
+-/
 theorem mobiusStripCellComplex_isSurfaceValid : mobiusStripCellComplex.IsSurfaceValid :=
   mobiusStripCellComplex_occurrencePairingValid.surface_valid
 

@@ -43,7 +43,9 @@ def MovesNonzero (H V : Type*) [Zero V] [SMul H V] : Prop :=
   ∀ v : V, v ≠ 0 → ∃ h : H, h • v ≠ v
 
 /-- For an irreducible module, one moved vector implies that every nonzero
-vector is moved. -/
+vector is moved.
+@isnad1 id=movesnon.2h3v.s8.506cde9d9701 from=translated src=- shape=db883982 vocab=989ff56a
+-/
 theorem movesNonzero_of_irreducible
     (hirr : Representation.IsIrreducible
       (Representation.ofDistribMulAction F H V))
@@ -90,7 +92,9 @@ theorem movesNonzero_of_irreducible
   exact hhw (hwfixed h)
 
 /-- A faithful irreducible action of a nontrivial group moves every nonzero
-vector. -/
+vector.
+@isnad1 id=movesnon.1h3v.s8.7babb743af75 from=translated src=- shape=95a02eec vocab=75d6f769
+-/
 theorem movesNonzero_of_irreducible_faithful
     [Nontrivial H] [FaithfulSMul H V]
     (hirr : Representation.IsIrreducible
@@ -147,7 +151,9 @@ private theorem top_smul_single [DecidableEq ι]
     simp [hpre, hj]
 
 /-- The coordinate-moving condition passes from a component action to its
-permutation-wreath product action. -/
+permutation-wreath product action.
+@isnad1 id=movesnon.1h4v.s8.87dfe1c3160b from=translated src=- shape=a3edb671 vocab=a6fa6e66
+-/
 theorem movesNonzero (hmove : MovesNonzero H V) :
     MovesNonzero (Saxl.PermWreath H Q ι) (ι → V) := by
   classical
@@ -168,7 +174,9 @@ theorem movesNonzero (hmove : MovesNonzero H V) :
   simpa using hi
 
 /-- A finite transitive permutation wreath product of an irreducible component
-that moves every nonzero vector is irreducible in its product action. -/
+that moves every nonzero vector is irreducible in its product action.
+@isnad1 id=isirredu.3h5v.s8.69f5ecac7ac1 from=translated src=- shape=8497311b vocab=fa7ee6bc
+-/
 theorem isIrreducible_of_movesNonzero
     [Finite ι] [Nonempty ι] [Nontrivial V]
     (hcomponent : Representation.IsIrreducible
@@ -266,7 +274,9 @@ theorem isIrreducible_of_movesNonzero
       Submodule.sum_mem W.toSubmodule (fun j _ ↦ hsingle j (y j))
     simpa only [LinearMap.sum_single_apply] using hsum
 
-/-- Faithful-action form of `isIrreducible_of_movesNonzero`. -/
+/-- Faithful-action form of `isIrreducible_of_movesNonzero`.
+@isnad1 id=isirredu.2h5v.s8.80327406b8bc from=translated src=- shape=0d7a3946 vocab=88abbed4
+-/
 theorem isIrreducible_of_faithful
     [Finite ι] [Nonempty ι] [Nontrivial H] [Nontrivial V]
     [FaithfulSMul H V]

@@ -56,41 +56,57 @@ octonionic matrices is built over.
 namespace Octonion
 
 /-- The `Mul` instance is the explicit `Octonion.mul`.  Bridges the `*`-notation
-statements below to the `mul`-form ones used throughout `Octonions.lean`. -/
+statements below to the `mul`-form ones used throughout `Octonions.lean`.
+@isnad1 id=eq.0h2v.s4.be3827dba27c from=translated src=- shape=34900cef vocab=c8a77fb2
+-/
 theorem mul_def (x y : Octonion) : x * y = mul x y := rfl
 
 /-- The trace form is symmetric: the real part of a product does not see the order of the
-factors, even though `𝕆` is not commutative.  Equivalently, `re` kills every commutator. -/
+factors, even though `𝕆` is not commutative.  Equivalently, `re` kills every commutator.
+@isnad1 id=eq.0h2v.s3.b2e28458d263 from=translated src=- shape=e2f651ba vocab=39e5eae2
+-/
 theorem re_mul_comm (x y : Octonion) : re (mul x y) = re (mul y x) := by
   simp only [re, mul, Fin.isValue]; norm_num; ring
 
 /-- The trace form is **associative**: the real part of a triple product does not see the
 bracketing, even though `𝕆` is not associative (`Octonion.non_associative`).
-Equivalently, `re` kills every associator. -/
+Equivalently, `re` kills every associator.
+@isnad1 id=eq.0h3v.s4.623f83f5d884 from=translated src=- shape=5fe4b3f9 vocab=39e5eae2
+-/
 theorem re_mul_assoc (x y z : Octonion) :
     re (mul (mul x y) z) = re (mul x (mul y z)) := by
   simp only [re, mul, Fin.isValue]; norm_num; ring
 
-/-- `re_mul_comm` in `*` notation. -/
+/-- `re_mul_comm` in `*` notation.
+@isnad1 id=eq.0h2v.s4.6078b69286fe from=translated src=- shape=829aae70 vocab=7d09cd32
+-/
 theorem re_hmul_comm (x y : Octonion) : re (x * y) = re (y * x) := re_mul_comm x y
 
-/-- `re_mul_assoc` in `*` notation. -/
+/-- `re_mul_assoc` in `*` notation.
+@isnad1 id=eq.0h3v.s5.51d35ee9d725 from=translated src=- shape=52872f84 vocab=7d09cd32
+-/
 theorem re_hmul_assoc (x y z : Octonion) : re ((x * y) * z) = re (x * (y * z)) :=
   re_mul_assoc x y z
 
-/-- Conjugation fixes the real part. -/
+/-- Conjugation fixes the real part.
+@isnad1 id=eq.0h1v.s3.731ba5cdd1b9 from=translated src=- shape=8d4cac31 vocab=f23ee802
+-/
 @[simp] theorem re_conj (x : Octonion) : re (conj x) = re x := by
   simp only [re, conj]; norm_num
 
 /-- Symmetry of the trace form `⟨x, y⟩ = re (x * conj y)`, in the conjugated shape the Albert
 inner product actually uses.  Derived from `conj_mul` and `conj_conj` rather than
-recomputed. -/
+recomputed.
+@isnad1 id=eq.0h2v.s4.4c24b7a8de3e from=translated src=- shape=4f7f20a0 vocab=e9c77642
+-/
 theorem re_mul_conj_comm (x y : Octonion) :
     re (mul x (conj y)) = re (mul y (conj x)) := by
   rw [← re_conj (mul x (conj y)), conj_mul, conj_conj]
 
 /-- Positive-definiteness of the trace form: `⟨x, x⟩ = N(x)`.  This is `Octonion.mul_conj`
-read at coordinate `0`. -/
+read at coordinate `0`.
+@isnad1 id=eq.0h1v.s3.8f1ee5f26ff8 from=translated src=- shape=80a2c6cc vocab=4655ff2f
+-/
 theorem re_mul_conj_self (x : Octonion) : re (mul x (conj x)) = normSq x := by
   rw [mul_conj]; simp only [re, one, HSMul.hSMul, SMul.smul]; norm_num
 

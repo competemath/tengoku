@@ -79,26 +79,41 @@ def generalizedHypergeometric (x : 𝔸) : 𝔸 :=
 @[inherit_doc]
 notation "₃F₂" => generalizedHypergeometric
 
+/--
+@isnad1 id=eq.0h9v.s7.97ddb124673b from=translated src=- shape=0074d39f vocab=6096ea5d
+-/
 theorem generalizedHypergeometricSeries_apply_eq (x : 𝔸) (n : ℕ) :
     (generalizedHypergeometricSeries 𝔸 α β γ δ ε n fun _ => x) =
       generalizedHypergeometricCoefficient α β γ δ ε n • x ^ n := by
   rw [generalizedHypergeometricSeries, ofScalars_apply_eq]
 
+/--
+@isnad1 id=eq.0h8v.s7.21eb7c57b487 from=translated src=- shape=3b1aac79 vocab=b07d5957
+-/
 theorem generalizedHypergeometric_sum_eq (x : 𝔸) :
     (generalizedHypergeometricSeries 𝔸 α β γ δ ε).sum x =
       ∑' n : ℕ, generalizedHypergeometricCoefficient α β γ δ ε n • x ^ n :=
   tsum_congr fun n => generalizedHypergeometricSeries_apply_eq α β γ δ ε x n
 
+/--
+@isnad1 id=eq.0h7v.s6.ecb1b3c3ced8 from=translated src=- shape=d9e41324 vocab=e3e5111d
+-/
 theorem generalizedHypergeometric_eq_tsum : ₃F₂ α β γ δ ε =
     fun x : 𝔸 => ∑' n : ℕ, generalizedHypergeometricCoefficient α β γ δ ε n • x ^ n :=
   funext (generalizedHypergeometric_sum_eq α β γ δ ε)
 
+/--
+@isnad1 id=eq.0h8v.s7.ee29697349d5 from=translated src=- shape=7564c2a0 vocab=b425d379
+-/
 theorem generalizedHypergeometricSeries_apply_zero (n : ℕ) :
     (generalizedHypergeometricSeries 𝔸 α β γ δ ε n fun _ => 0) =
       Pi.single (M := fun _ => 𝔸) 0 1 n := by
   rw [generalizedHypergeometricSeries, ofScalars_apply_eq]
   cases n <;> simp [generalizedHypergeometricCoefficient]
 
+/--
+@isnad1 id=eq.0h7v.s6.e1d6087bd2e7 from=translated src=- shape=69dad90d vocab=bbc26e53
+-/
 @[simp]
 theorem generalizedHypergeometric_zero : ₃F₂ α β γ δ ε (0 : 𝔸) = 1 := by
   simp [generalizedHypergeometric_eq_tsum, ← generalizedHypergeometricSeries_apply_eq,
@@ -110,7 +125,9 @@ end Field
 
 open Filter Topology in
 /-- The radius of convergence of `generalizedHypergeometricSeries` is unity if none of the
-parameters are non-positive integers, mirroring `ordinaryHypergeometricSeries_radius_eq_one`. -/
+parameters are non-positive integers, mirroring `ordinaryHypergeometricSeries_radius_eq_one`.
+@isnad1 id=eq.1h7v.s8.3ed77214db71 from=translated src=- shape=3ce4917a vocab=261f04ce
+-/
 theorem generalizedHypergeometricSeries_radius_eq_one {𝕂 : Type*} (𝔸 : Type*) [RCLike 𝕂]
     [NormedDivisionRing 𝔸] [NormedAlgebra 𝕂 𝔸] (α β γ δ ε : 𝕂)
     (h : ∀ kn : ℕ, (kn : 𝕂) ≠ -α ∧ (kn : 𝕂) ≠ -β ∧ (kn : 𝕂) ≠ -γ ∧ (kn : 𝕂) ≠ -δ ∧
@@ -190,7 +207,9 @@ theorem generalizedHypergeometricSeries_radius_eq_one {𝕂 : Type*} (𝔸 : Typ
 open Filter Topology in
 /-- Paper Thm. `satzkonv`: the generalized hypergeometric series converges absolutely for
 `‖z‖ < 1` (ratio test). The `₂F₁` analogue is Mathlib's
-`ordinaryHypergeometricSeries_radius_eq_one`. -/
+`ordinaryHypergeometricSeries_radius_eq_one`.
+@isnad1 id=summable.1h6v.s6.1818d65a1a45 from=translated src=- shape=1a40da28 vocab=ce7281d2
+-/
 theorem generalizedHypergeometric_summable (α β γ δ ε : ℂ) {z : ℂ} (hz : ‖z‖ < 1) :
     Summable fun n : ℕ => generalizedHypergeometricCoefficient α β γ δ ε n * z ^ n := by
   by_cases hnz : ∀ kn : ℕ, (kn : ℂ) ≠ -α ∧ (kn : ℂ) ≠ -β ∧ (kn : ℂ) ≠ -γ ∧ (kn : ℂ) ≠ -δ ∧
@@ -424,7 +443,9 @@ private theorem clausen_coeff_general (a b : ℂ)
 `(₂F₁(a, b; a+b+1/2; z))² = ₃F₂(2a, 2b, a+b; 2a+2b, a+b+1/2; z)`.
 
 The non-degeneracy hypotheses `h₁`, `h₂` on the lower parameters are implicit in the paper
-(they hold in the only instance used, `a = 1/12`, `b = 5/12`). -/
+(they hold in the only instance used, `a = 1/12`, `b = 5/12`).
+@isnad1 id=eq.3h3v.s8.669080830c81 from=translated src=- shape=94c92b80 vocab=cca231cb
+-/
 theorem clausen_formula (a b : ℂ)
     (h₁ : ∀ k : ℕ, (k : ℂ) ≠ -(a + b + 1 / 2)) (h₂ : ∀ k : ℕ, (k : ℂ) ≠ -(2 * a + 2 * b))
     {z : ℂ} (hz : ‖z‖ < 1) :
@@ -457,7 +478,9 @@ theorem clausen_formula (a b : ℂ)
   rw [Finset.sum_congr rfl hz_pow, ← Finset.sum_mul, clausen_coeff_general a b h₁ h₂ n]
 
 /-- Evaluating an ascending Pochhammer polynomial at a rational point commutes with the
-`ℚ → ℂ` coercion. -/
+`ℚ → ℂ` coercion.
+@isnad1 id=eq.0h2v.s4.273c17d52418 from=translated src=- shape=7da0db75 vocab=b6b9007d
+-/
 theorem ascPochhammer_eval_ratCast (n : ℕ) (q : ℚ) :
     (((ascPochhammer ℚ n).eval q : ℚ) : ℂ) = (ascPochhammer ℂ n).eval (q : ℂ) := by
   induction n with
@@ -467,14 +490,18 @@ theorem ascPochhammer_eval_ratCast (n : ℕ) (q : ℚ) :
     push_cast [ih]
     ring
 
-/-- The `₂F₁` coefficient commutes with the `ℚ → ℂ` coercion. -/
+/-- The `₂F₁` coefficient commutes with the `ℚ → ℂ` coercion.
+@isnad1 id=eq.0h4v.s5.2b748c59a3ad from=translated src=- shape=478ab6eb vocab=b8c9821b
+-/
 theorem ordinaryHypergeometricCoefficient_ratCast (a b c : ℚ) (n : ℕ) :
     ((ordinaryHypergeometricCoefficient a b c n : ℚ) : ℂ) =
       ordinaryHypergeometricCoefficient (a : ℂ) (b : ℂ) (c : ℂ) n := by
   simp only [ordinaryHypergeometricCoefficient, Rat.cast_mul, Rat.cast_inv, Rat.cast_natCast,
     ascPochhammer_eval_ratCast]
 
-/-- The `₃F₂` coefficient commutes with the `ℚ → ℂ` coercion. -/
+/-- The `₃F₂` coefficient commutes with the `ℚ → ℂ` coercion.
+@isnad1 id=eq.0h6v.s5.ffe2f9c00fb4 from=translated src=- shape=97ad79d1 vocab=e617ae53
+-/
 theorem generalizedHypergeometricCoefficient_ratCast (α β γ δ ε : ℚ) (n : ℕ) :
     ((generalizedHypergeometricCoefficient α β γ δ ε n : ℚ) : ℂ) =
       generalizedHypergeometricCoefficient (α : ℂ) (β : ℂ) (γ : ℂ) (δ : ℂ) (ε : ℂ) n := by
@@ -482,7 +509,9 @@ theorem generalizedHypergeometricCoefficient_ratCast (α β γ δ ε : ℚ) (n :
     ascPochhammer_eval_ratCast]
 
 /-- If none of `a, b, c` is a non-positive integer, the `₂F₁` series is absolutely convergent
-for `‖z‖ < 1` (norm-summable coefficients). Mirrors `generalizedHypergeometric_summable`. -/
+for `‖z‖ < 1` (norm-summable coefficients). Mirrors `generalizedHypergeometric_summable`.
+@isnad1 id=summable.2h4v.s6.24764a31c5da from=translated src=- shape=e0a4638a vocab=c0007374
+-/
 theorem ordinaryHypergeometric_norm_summable (a b c : ℂ)
     (h : ∀ kn : ℕ, (kn : ℂ) ≠ -a ∧ (kn : ℂ) ≠ -b ∧ (kn : ℂ) ≠ -c) {z : ℂ} (hz : ‖z‖ < 1) :
     Summable fun n : ℕ => ‖ordinaryHypergeometricCoefficient a b c n * z ^ n‖ := by
@@ -629,7 +658,9 @@ private theorem ee_eq_dd (n : ℕ) : ee n = dd n := by
 stated over `ℚ`. The left-hand side is the `n`-th Cauchy-product coefficient of
 `(₂F₁(1/12, 5/12; 1; ·))²` and the right-hand side is the `n`-th coefficient of
 `₃F₂(1/6, 5/6, 1/2; 1, 1; ·)`. Equivalently, writing `cₖ = (1/12)ₖ(5/12)ₖ/(k!)²` and
-`dₙ = (6n)!/((3n)!(n!)³·1728ⁿ)`, this is `∑_{k=0}^n cₖ c_{n-k} = dₙ`. -/
+`dₙ = (6n)!/((3n)!(n!)³·1728ⁿ)`, this is `∑_{k=0}^n cₖ c_{n-k} = dₙ`.
+@isnad1 id=eq.0h1v.s7.1b9a0e3473bc from=translated src=- shape=49182996 vocab=bb54131a
+-/
 theorem clausen_coeff_identity (n : ℕ) :
     ∑ k ∈ Finset.range (n + 1),
         ordinaryHypergeometricCoefficient (1 / 12 : ℚ) (5 / 12) 1 k *
@@ -641,7 +672,9 @@ theorem clausen_coeff_identity (n : ℕ) :
 `(₂F₁(1/12, 5/12; 1; z))² = ₃F₂(1/6, 5/6, 1/2; 1, 1; z)` for `‖z‖ < 1`.
 
 The analytic reduction (Cauchy product of the square, coefficient comparison) is carried out
-here; the remaining arithmetic core is `clausen_coeff_identity`. -/
+here; the remaining arithmetic core is `clausen_coeff_identity`.
+@isnad1 id=eq.1h1v.s5.f7bff1967377 from=translated src=- shape=cc498daf vocab=b31ec373
+-/
 theorem hyp2F1_sq_eq_hyp3F2 {z : ℂ} (hz : ‖z‖ < 1) : hyp2F1 z ^ 2 = hyp3F2 z := by
   -- Non-degeneracy of the lower parameter `c = 1` (and of `a = 1/12`, `b = 5/12`).
   have hnd : ∀ kn : ℕ, (kn : ℂ) ≠ -(1 / 12) ∧ (kn : ℂ) ≠ -(5 / 12) ∧ (kn : ℂ) ≠ -1 := by
@@ -704,7 +737,9 @@ theorem hyp2F1_sq_eq_hyp3F2 {z : ℂ} (hz : ‖z‖ < 1) : hyp2F1 z ^ 2 = hyp3F2
   rw [hsumcast, hgencast, hq]
 
 /-- The Pochhammer/factorial identity from the proof of paper Thm. `darst`:
-`(1/6)ₙ · (1/2)ₙ · (5/6)ₙ = (6n)! / ((3n)! · 12^(3n))`, stated over `ℚ`. -/
+`(1/6)ₙ · (1/2)ₙ · (5/6)ₙ = (6n)! / ((3n)! · 12^(3n))`, stated over `ℚ`.
+@isnad1 id=eq.0h1v.s7.06153b45101d from=translated src=- shape=fc44a616 vocab=01c1cbf8
+-/
 theorem ascPochhammer_prod_eq_factorial (n : ℕ) :
     (ascPochhammer ℚ n).eval (1 / 6 : ℚ) * (ascPochhammer ℚ n).eval (1 / 2 : ℚ) *
       (ascPochhammer ℚ n).eval (5 / 6 : ℚ)
@@ -738,7 +773,9 @@ theorem ascPochhammer_prod_eq_factorial (n : ℕ) :
 
 /-- Paper Thm. `darst` (chapter 9, `140_MainTheorem.tex`): for `‖z‖ < 1`,
 `(₂F₁(1/12, 5/12; 1; z))² = ∑ (6n)!/((3n)!(n!)³) · zⁿ/12^(3n)`.
-Note `12^(3n) = 1728^n`. -/
+Note `12^(3n) = 1728^n`.
+@isnad1 id=eq.1h1v.s7.be56f42595e6 from=translated src=- shape=8fcb27e5 vocab=2461105d
+-/
 theorem hyp2F1_sq_eq_tsum {z : ℂ} (hz : ‖z‖ < 1) :
     hyp2F1 z ^ 2
       = ∑' n : ℕ, ((6 * n)! : ℂ) / (((3 * n)! : ℂ) * (n ! : ℂ) ^ 3) * (z ^ n / 12 ^ (3 * n)) := by
