@@ -28,7 +28,9 @@ open MeasureTheory Set
 approximated from inside by a compact subset, in measure. For any finite Borel measure
 `μ`, any analytic `s`, and any `r < μ.real s`, there is a compact `K ⊆ s` with
 `μ.real K > r`. The Choquet capacitability theorem (Kechris 30.13), specialised to the
-measure-as-capacity instance. -/
+measure-as-capacity instance.
+@isnad1 id=ex.2h4v.s6.0594f125af36 from=translated src=- shape=1c1668bc vocab=c7cf2769
+-/
 theorem MeasureTheory.AnalyticSet.exists_isCompact_measureReal_gt
     {α : Type*}
     [TopologicalSpace α] [MeasurableSpace α] [BorelSpace α] [PolishSpace α]
@@ -87,7 +89,9 @@ kernel rests on. The learning-theoretic significance is that the symmetrization 
 event, which is analytic in the Borel-parameterized setting, is automatically
 null-measurable; this is enough to run the symmetrization argument under
 `NullMeasurableSet` regularity, sidestepping the stronger `MeasurableSet` requirement of
-the existing literature. Candidate for upstream contribution to Mathlib. -/
+the existing literature. Candidate for upstream contribution to Mathlib.
+@isnad1 id=nullmeas.1h3v.s5.f359d278d88e from=translated src=- shape=77c5ba85 vocab=6d0354ed
+-/
 theorem analyticSet_nullMeasurableSet
     {α : Type*}
     [TopologicalSpace α] [MeasurableSpace α] [BorelSpace α] [PolishSpace α]

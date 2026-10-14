@@ -45,7 +45,9 @@ noncomputable def MeasureTheory.compactCap
   sSup {r : ENNReal | ∃ K : Set α, IsCompact K ∧ K ⊆ s ∧ r = μ K}
 
 /-- Compact capacity is monotone in its set argument: enlarging `s` enlarges the family
-of compact subsets and so the supremum. -/
+of compact subsets and so the supremum.
+@isnad1 id=le.1h4v.s5.8c20906879f3 from=translated src=- shape=16c6e47e vocab=0d554cf3
+-/
 theorem MeasureTheory.compactCap_mono
     {α : Type*} [TopologicalSpace α] [MeasurableSpace α]
     {μ : MeasureTheory.Measure α} {s t : Set α} (hst : s ⊆ t) :
@@ -78,7 +80,9 @@ structure MeasureTheory.IsChoquetCapacity
 and the increasing-union axiom are immediate from `measure_mono` and `measure_iUnion`;
 the decreasing-closed-intersection axiom uses Mathlib's `Antitone.measure_iInter` for
 finite measures on closed sets. The instance that lets the abstract capacitability
-machinery be applied to ordinary probability measures. -/
+machinery be applied to ordinary probability measures.
+@isnad1 id=ischoque.0h2v.s5.1d930b68a9d8 from=translated src=- shape=d93d1dae vocab=2b490476
+-/
 theorem MeasureTheory.measure_isChoquetCapacity
     {α : Type*}
     [TopologicalSpace α] [MeasurableSpace α] [BorelSpace α]
@@ -98,7 +102,9 @@ theorem MeasureTheory.measure_isChoquetCapacity
 gives `≤`, and the existing inner regularity of finite Borel measures on Polish spaces
 (`MeasurableSet.exists_isCompact_lt_add`) gives `≥`. The easy half of the
 capacitability statement; the analytic-set half requires the cylinder construction in
-the rest of the file. -/
+the rest of the file.
+@isnad1 id=eq.1h3v.s5.633ce326a4b3 from=translated src=- shape=75783ff4 vocab=2e124ad2
+-/
 theorem MeasureTheory.MeasurableSet.compactCap_eq
     {α : Type*}
     [TopologicalSpace α] [MeasurableSpace α] [BorelSpace α] [PolishSpace α]
@@ -290,7 +296,9 @@ private lemma iInter_closure_image_cyl_eq
     The proof parametrizes the analytic set as `f(ℕ^ℕ)` for continuous `f`, builds
     `N : ℕ → ℕ` by induction using `iUnion_nat` at each coordinate, then uses
     `iInter_closed` on the closures of cylinder images and a truncation/compactness
-    argument to show `⋂ closure(f '' Cyl N n) = f '' Bnd N` (compact). -/
+    argument to show `⋂ closure(f '' Cyl N n) = f '' Bnd N` (compact).
+@isnad1 id=eq.2h3v.s6.0bc50989090c from=translated src=- shape=8bd85085 vocab=b72111f2
+-/
 theorem MeasureTheory.AnalyticSet.cap_eq_iSup_isCompact
     {α : Type*}
     [TopologicalSpace α] [PolishSpace α]
@@ -403,7 +411,9 @@ theorem MeasureTheory.AnalyticSet.cap_eq_iSup_isCompact
 
 /-! ## Analytic sets: compact capacity = measure -/
 
-/-- For analytic sets, compact capacity = measure. -/
+/-- For analytic sets, compact capacity = measure.
+@isnad1 id=eq.1h3v.s5.fd1c0b683be1 from=translated src=- shape=75783ff4 vocab=e8a19ae7
+-/
 theorem MeasureTheory.AnalyticSet.compactCap_eq
     {α : Type*}
     [TopologicalSpace α] [MeasurableSpace α] [BorelSpace α] [PolishSpace α]

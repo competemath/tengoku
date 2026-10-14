@@ -22,12 +22,16 @@ Each existential statement below uses the explicit, verified construction.
 namespace FourAP
 
 /-- The main theorem before the final shift: a permutation of `ℕ₀` with no
-four-term arithmetic progression in increasing positions. -/
+four-term arithmetic progression in increasing positions.
+@isnad1 id=ex.0h0v.s4.21f32175694c from=translated src=- shape=ed574c4a vocab=37e33293
+-/
 theorem exists_fourAPFree_permutation : ∃ f : ℕ ≃ ℕ, SequenceAPFree f :=
   ⟨explicitPermutation, explicitPermutation_apFree⟩
 
 /-- The main theorem after adding one to every value, retaining zero-based
-positions for compatibility with Lean lists and sequences. -/
+positions for compatibility with Lean lists and sequences.
+@isnad1 id=ex.0h0v.s7.8cc06a0ecc56 from=translated src=- shape=63c149ab vocab=9b516d8c
+-/
 theorem exists_fourAPFree_positive_sequence :
     ∃ f : ℕ ≃ ℕ+, ∀ i j k l : ℕ,
       i < j → j < k → k < l → ∀ a r : ℤ, r ≠ 0 →
@@ -40,7 +44,9 @@ integers containing no subsequence `a, a+r, a+2r, a+3r` with `r ≠ 0` in `ℤ`.
 
 A Lean equivalence supplies both injectivity and surjectivity: no value is
 repeated or omitted. The indices here are positive integers, matching the
-paper's convention `a₁ a₂ …`. Negative common differences are included. -/
+paper's convention `a₁ a₂ …`. Negative common differences are included.
+@isnad1 id=ex.0h0v.s7.71849f08d50f from=translated src=- shape=55f62a29 vocab=bea4bc40
+-/
 theorem exists_fourAPFree_positive_permutation :
     ∃ f : ℕ+ ≃ ℕ+, ∀ i j k l : ℕ+,
       i < j → j < k → k < l → ∀ a r : ℤ, r ≠ 0 →

@@ -61,21 +61,42 @@ instance : ToString (Formula α) := ⟨toStr⟩
 
 end «lp_section_1»
 
+/--
+@isnad1 id=iff.0h5v.s5.d895747b1592 from=translated src=- shape=356e8d20 vocab=c5698735
+-/
 @[simp] lemma and_inj (φ₁ ψ₁ φ₂ ψ₂ : Formula α) :
     φ₁ ⋏ φ₂ = ψ₁ ⋏ ψ₂ ↔ φ₁ = ψ₁ ∧ φ₂ = ψ₂ := by simp[Wedge.wedge]
 
+/--
+@isnad1 id=iff.0h5v.s5.b6ed4a27c7cc from=translated src=- shape=356e8d20 vocab=0c4df813
+-/
 @[simp] lemma or_inj (φ₁ ψ₁ φ₂ ψ₂ : Formula α) :
     φ₁ ⋎ φ₂ = ψ₁ ⋎ ψ₂ ↔ φ₁ = ψ₁ ∧ φ₂ = ψ₂ := by simp[Vee.vee]
 
+/--
+@isnad1 id=iff.0h5v.s5.26ebf3f5551b from=translated src=- shape=356e8d20 vocab=1e8d47a2
+-/
 @[simp] lemma imp_inj (φ₁ ψ₁ φ₂ ψ₂ : Formula α) :
     φ₁ ==> φ₂ = ψ₁ ==> ψ₂ ↔ φ₁ = ψ₁ ∧ φ₂ = ψ₂ := by simp[Arrow.arrow]
 
+/--
+@isnad1 id=iff.0h3v.s5.8f8134597752 from=translated src=- shape=af747b6b vocab=10e6ee17
+-/
 @[simp] lemma neg_inj (φ ψ : Formula α) : ∼φ = ∼ψ ↔ φ = ψ := by simp[Tilde.tilde]
 
+/--
+@isnad1 id=eq.0h2v.s5.3c2f603d2a71 from=translated src=- shape=672fb964 vocab=0f24ae1b
+-/
 lemma neg_def (φ : Formula α) : ∼φ = φ ==> ⊥ := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.dd271699ed94 from=translated src=- shape=75fde5cb vocab=0a04c803
+-/
 lemma top_def : (⊤ : Formula α) = ⊥ ==> ⊥ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.97a4f720ee37 from=translated src=- shape=8067ab0c vocab=38900fc2
+-/
 lemma iff_def (φ ψ : Formula α) : φ <=> ψ = (φ ==> ψ) ⋏ (ψ ==> φ) := by rfl
 
 /-- Imported declaration from the Incompleteness formalization. -/
@@ -86,27 +107,51 @@ def complexity : Formula α → ℕ
 | φ ⋏ ψ   => max φ.complexity ψ.complexity + 1
 | φ ⋎ ψ   => max φ.complexity ψ.complexity + 1
 
+/--
+@isnad1 id=eq.0h1v.s4.acb676cd8092 from=translated src=- shape=d9710dfd vocab=a70cb60f
+-/
 @[simp] lemma complexity_bot : complexity (⊥ : Formula α) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.50f9b3fe35ca from=translated src=- shape=d0dfd432 vocab=932417ad
+-/
 @[simp] lemma complexity_atom (a : α) : complexity (atom a) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.de561ceecc45 from=translated src=- shape=85137ebf vocab=85b8a981
+-/
 @[simp] lemma complexity_imp (φ ψ : Formula α) :
     complexity (φ ==> ψ) = max φ.complexity ψ.complexity + 1 :=
   rfl
+/--
+@isnad1 id=eq.0h3v.s5.ed286f47e84f from=translated src=- shape=8fb0926f vocab=db37d416
+-/
 @[simp] lemma complexity_imp' (φ ψ : Formula α) :
     complexity (imp φ ψ) = max φ.complexity ψ.complexity + 1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.42c76aaca3cc from=translated src=- shape=85137ebf vocab=ca0884f7
+-/
 @[simp] lemma complexity_and (φ ψ : Formula α) :
     complexity (φ ⋏ ψ) = max φ.complexity ψ.complexity + 1 :=
   rfl
+/--
+@isnad1 id=eq.0h3v.s5.dfb4356cbcc7 from=translated src=- shape=8fb0926f vocab=72aace89
+-/
 @[simp] lemma complexity_and' (φ ψ : Formula α) :
     complexity (and φ ψ) = max φ.complexity ψ.complexity + 1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.01dfa94f9684 from=translated src=- shape=85137ebf vocab=451f5a39
+-/
 @[simp] lemma complexity_or (φ ψ : Formula α) :
     complexity (φ ⋎ ψ) = max φ.complexity ψ.complexity + 1 :=
   rfl
+/--
+@isnad1 id=eq.0h3v.s5.e9dfaf3e8f36 from=translated src=- shape=8fb0926f vocab=5eb5f1da
+-/
 @[simp] lemma complexity_or' (φ ψ : Formula α) :
     complexity (or φ ψ) = max φ.complexity ψ.complexity + 1 :=
   rfl

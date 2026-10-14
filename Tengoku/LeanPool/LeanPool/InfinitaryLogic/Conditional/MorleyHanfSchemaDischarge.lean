@@ -125,7 +125,9 @@ private theorem realize_templateSentence_expandSymb {L : Language.{0, 0}}
 /-- **The honest Morley–Hanf residual holds — no symbol-countability assumptions**: the schema
 construction runs in the simultaneous symbol-generated sublanguage of `φ` (both sorts countable,
 proved not assumed) at an injective `ℕ`-sequence of the source, and its model expands back to
-`L'[[J]]`; the degenerate `IsEmpty J` case is served by the source model itself. -/
+`L'[[J]]`; the degenerate `IsEmpty J` case is served by the source model itself.
+@isnad1 id=morleyse.0h1v.s2.68383261b3ad from=translated src=- shape=5c11bb93 vocab=de4ca30e
+-/
 theorem morleySeedTailTemplateRealizable_holds {L' : Language.{0, 0}} :
     MorleySeedTailTemplateRealizable (L' := L') := by
   intro φ M instM a J instJ hSize hφreal hPair _hTail
@@ -212,7 +214,9 @@ theorem morleySeedTailTemplateRealizable_holds {L' : Language.{0, 0}} :
 
 /-- **The Morley–Hanf theorem**: `ℶ_{ω₁}` is a Hanf bound for every `L_{ω₁ω}` sentence — over an
 arbitrary language, with no countability or other side hypotheses. If an `L_{ω₁ω}` sentence has
-a model of size at least `ℶ_{ω₁}`, it has models of arbitrarily large cardinality. -/
+a model of size at least `ℶ_{ω₁}`, it has models of arbitrarily large cardinality.
+@isnad1 id=ishanfbo.0h2v.s5.75eebf0991ba from=translated src=- shape=d5baae12 vocab=d8baddfb
+-/
 theorem morley_hanf {L' : Language.{0, 0}} (φ : L'.Sentenceω) :
     IsHanfBound φ (Cardinal.beth (Ordinal.omega 1)) :=
   morley_hanf_of_seed_realizable morleySeedTailTemplateRealizable_holds φ

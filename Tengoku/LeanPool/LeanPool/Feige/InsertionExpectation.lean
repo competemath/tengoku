@@ -48,7 +48,9 @@ noncomputable def revealedLastPayoff {n : ℕ}
     p * g (insert (Fin.last n) (liftChainState S))
 
 /-- An increasing Boolean-lattice payoff is increasing on every insertion
-pair `Cᵣ ⊆ Hᵣ`. -/
+pair `Cᵣ ⊆ Hᵣ`.
+@isnad1 id=le.1h4v.s6.d7e5b5dae17a from=translated src=- shape=f8ed0f6d vocab=103dfad9
+-/
 theorem insertionLowerPayoff_le_upperPayoff {n : ℕ}
     (σ : Equiv.Perm (Fin n)) {g : Finset (Fin (n + 1)) → ℝ}
     (hg : Monotone g) (r : ℕ) :
@@ -60,7 +62,9 @@ theorem insertionLowerPayoff_le_upperPayoff {n : ℕ}
   · simp [insertionLowerPayoff, insertionUpperPayoff, hr]
 
 /-- Each level term in the abstract insertion score is the corresponding
-term of the concrete inserted Boolean-chain expectation. -/
+term of the concrete inserted Boolean-chain expectation.
+@isnad1 id=eq.0h7v.s7.a8ee7890dcdb from=translated src=- shape=c9570454 vocab=b61a1b3a
+-/
 theorem insertionLevelScore_eq_booleanChainTerm {n : ℕ}
     (γ β : Fin (n + 1) → ℝ) (σ : Equiv.Perm (Fin n))
     (J : Fin (n + 1)) (g : Finset (Fin (n + 1)) → ℝ)

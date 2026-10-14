@@ -64,14 +64,18 @@ The stable definitions and elementary lemmas are imported from
 /-- Pull a scalar out of a finite sum.  This is the only finite-sum scalar rule
 used below; the block-operator proof invokes it through `matVec`, `tMatVec`, and
 `dot` scalar-multiplication lemmas, rather than by broad rewriting inside the
-large product goal. -/
+large product goal.
+@isnad1 id=eq.0h3v.s5.2a077a70bd85 from=translated src=- shape=7411ebfc vocab=00f59c33
+-/
 theorem finset_sum_smul_simple {ι : Type*} [Fintype ι]
     (a : ℝ) (f : ι → ℝ) :
     (∑ x : ι, a * f x) = a * ∑ x : ι, f x := by
   simpa using
     (Finset.mul_sum (s := (Finset.univ : Finset ι)) (f := f) (a := a)).symm
 
-/-- Scalar multiplication in the vector argument of `matVec`. -/
+/-- Scalar multiplication in the vector argument of `matVec`.
+@isnad1 id=eq.0h6v.s5.0f1e2b7cabe4 from=translated src=- shape=2b33c286 vocab=ec9ad62c
+-/
 theorem matVec_smul_apply {m n : Nat}
     (A : Matrix (Fin m) (Fin n) ℝ) (a : ℝ) (x : Vec n) (i : Fin m) :
     matVec A (fun j : Fin n => a * x j) i = a * matVec A x i := by
@@ -85,7 +89,9 @@ theorem matVec_smul_apply {m n : Nat}
     _ = a * ∑ j : Fin n, A i j * x j := by
             exact finset_sum_smul_simple a (fun j : Fin n => A i j * x j)
 
-/-- Scalar multiplication in the vector argument of `tMatVec`. -/
+/-- Scalar multiplication in the vector argument of `tMatVec`.
+@isnad1 id=eq.0h6v.s5.f4924fe82876 from=translated src=- shape=5128cdf8 vocab=7466a2e4
+-/
 theorem tMatVec_smul_apply {m n : Nat}
     (A : Matrix (Fin m) (Fin n) ℝ) (a : ℝ) (y : Vec m) (j : Fin n) :
     tMatVec A (fun i : Fin m => a * y i) j = a * tMatVec A y j := by
@@ -99,7 +105,9 @@ theorem tMatVec_smul_apply {m n : Nat}
     _ = a * ∑ i : Fin m, A i j * y i := by
             exact finset_sum_smul_simple a (fun i : Fin m => A i j * y i)
 
-/-- Scalar multiplication in the second argument of `dot`. -/
+/-- Scalar multiplication in the second argument of `dot`.
+@isnad1 id=eq.0h4v.s5.365849cab0e8 from=translated src=- shape=24143b54 vocab=e5d50ea2
+-/
 theorem dot_smul_right {n : Nat} (u v : Vec n) (a : ℝ) :
     dot u (fun i : Fin n => a * v i) = a * dot u v := by
   unfold dot
@@ -113,42 +121,76 @@ theorem dot_smul_right {n : Nat} (u v : Vec n) (a : ℝ) :
             exact finset_sum_smul_simple a (fun i : Fin n => u i * v i)
 
 /-- Component projections for scalar multiplication on the HLP block product space.  These
-lemmas keep the Newton-block linearity proof away from broad `simp`. -/
+lemmas keep the Newton-block linearity proof away from broad `simp`.
+@isnad1 id=eq.0h5v.s7.5413aeabe052 from=translated src=- shape=62938e0b vocab=8f28de43
+-/
 @[simp] theorem HLPBlockSpace_smul_dy {m n : Nat} (a : ℝ) (u : HLPBlockSpace m n)
     (i : Fin m) : (a • u : HLPBlockSpace m n).1 i = a * u.1 i := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.4bbb64a57a15 from=translated src=- shape=024cc708 vocab=f2d1b5f4
+-/
 @[simp] theorem HLPBlockSpace_smul_dx {m n : Nat} (a : ℝ) (u : HLPBlockSpace m n)
     (j : Fin n) : (a • u : HLPBlockSpace m n).2.1 j = a * u.2.1 j := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.b8e05087eca0 from=translated src=- shape=68a3b970 vocab=f2d1b5f4
+-/
 @[simp] theorem HLPBlockSpace_smul_dtau {m n : Nat} (a : ℝ) (u : HLPBlockSpace m n) :
     (a • u : HLPBlockSpace m n).2.2.1 = a * u.2.2.1 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.25bdd0d82646 from=translated src=- shape=8d2ca3e0 vocab=f2d1b5f4
+-/
 @[simp] theorem HLPBlockSpace_smul_dtheta {m n : Nat} (a : ℝ) (u : HLPBlockSpace m n) :
     (a • u : HLPBlockSpace m n).2.2.2.1 = a * u.2.2.2.1 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.80e07d5755f5 from=translated src=- shape=fea9856c vocab=f2d1b5f4
+-/
 @[simp] theorem HLPBlockSpace_smul_ds {m n : Nat} (a : ℝ) (u : HLPBlockSpace m n)
     (j : Fin n) : (a • u : HLPBlockSpace m n).2.2.2.2.1 j = a * u.2.2.2.2.1 j := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.a90185b14877 from=translated src=- shape=5767d33a vocab=b976295b
+-/
 @[simp] theorem HLPBlockSpace_smul_dkappa {m n : Nat} (a : ℝ) (u : HLPBlockSpace m n) :
     (a • u : HLPBlockSpace m n).2.2.2.2.2 = a * u.2.2.2.2.2 := rfl
 
-/-- Component projections for addition on the HLP block product space. -/
+/-- Component projections for addition on the HLP block product space.
+@isnad1 id=eq.0h5v.s7.46dd4b2d4c0e from=translated src=- shape=7e9d0fa8 vocab=093eeeec
+-/
 @[simp] theorem HLPBlockSpace_add_dy {m n : Nat} (u v : HLPBlockSpace m n)
     (i : Fin m) : (u + v : HLPBlockSpace m n).1 i = u.1 i + v.1 i := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.2628ff724b9b from=translated src=- shape=78d371df vocab=6864be53
+-/
 @[simp] theorem HLPBlockSpace_add_dx {m n : Nat} (u v : HLPBlockSpace m n)
     (j : Fin n) : (u + v : HLPBlockSpace m n).2.1 j = u.2.1 j + v.2.1 j := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.0f2229bffada from=translated src=- shape=c59a61f4 vocab=6864be53
+-/
 @[simp] theorem HLPBlockSpace_add_dtau {m n : Nat} (u v : HLPBlockSpace m n) :
     (u + v : HLPBlockSpace m n).2.2.1 = u.2.2.1 + v.2.2.1 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.1d578acf4521 from=translated src=- shape=15ef793b vocab=6864be53
+-/
 @[simp] theorem HLPBlockSpace_add_dtheta {m n : Nat} (u v : HLPBlockSpace m n) :
     (u + v : HLPBlockSpace m n).2.2.2.1 = u.2.2.2.1 + v.2.2.2.1 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.2772a46904c9 from=translated src=- shape=62378df1 vocab=6864be53
+-/
 @[simp] theorem HLPBlockSpace_add_ds {m n : Nat} (u v : HLPBlockSpace m n)
     (j : Fin n) : (u + v : HLPBlockSpace m n).2.2.2.2.1 j =
       u.2.2.2.2.1 j + v.2.2.2.2.1 j := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.9269aa2c3619 from=translated src=- shape=eab0aec4 vocab=abf951e9
+-/
 @[simp] theorem HLPBlockSpace_add_dkappa {m n : Nat} (u v : HLPBlockSpace m n) :
     (u + v : HLPBlockSpace m n).2.2.2.2.2 = u.2.2.2.2.2 + v.2.2.2.2.2 := rfl
 
@@ -252,7 +294,9 @@ def HLPNewtonBlockOperator {m n : Nat} (P : LPData m n) (w : HSState n) :
         HLPBlockSpace_smul_dkappa, Prod.smul_mk, smul_eq_mul, RingHom.id_apply]
       ring
 
-/-- Zero residual of the block operator is exactly the homogeneous Newton block. -/
+/-- Zero residual of the block operator is exactly the homogeneous Newton block.
+@isnad1 id=iff.0h5v.s10.f06688c1d7a4 from=translated src=- shape=baa23023 vocab=67aaa836
+-/
 theorem HLPNewtonBlockOperator_eq_zero_iff_homogeneous {m n : Nat}
     (P : LPData m n) (w : HSState n) (D : HLPFullDirection m n) :
     HLPNewtonBlockOperator P w (HLPFullDirection.toBlockVector D) = 0 ↔
@@ -272,7 +316,9 @@ theorem HLPNewtonBlockOperator_eq_zero_iff_homogeneous {m n : Nat}
         (Prod.ext h.normalizing_block
           (Prod.ext (funext h.complementarity_block) h.scalar_complementarity_block))))
 
-/-- Hitting the inhomogeneous right-hand side is exactly solving the Newton block. -/
+/-- Hitting the inhomogeneous right-hand side is exactly solving the Newton block.
+@isnad1 id=iff.0h6v.s10.68631d118a96 from=translated src=- shape=291fbb2d vocab=3b8f8e19
+-/
 theorem HLPNewtonBlockOperator_eq_rhs_iff_block_system {m n : Nat}
     (P : LPData m n) (w : HSState n) (γ : ℝ) (D : HLPFullDirection m n) :
     HLPNewtonBlockOperator P w (HLPFullDirection.toBlockVector D)
@@ -297,7 +343,9 @@ theorem HLPNewtonBlockOperator_eq_rhs_iff_block_system {m n : Nat}
         (Prod.ext h.normalizing_block
           (Prod.ext (funext h.complementarity_block) h.scalar_complementarity_block))))
 
-/-- In a finite-dimensional vector space, an injective linear self-map is surjective. -/
+/-- In a finite-dimensional vector space, an injective linear self-map is surjective.
+@isnad1 id=surjecti.1h2v.s7.a4b03f2ecd37 from=translated src=- shape=48e51615 vocab=fdd36375
+-/
 theorem finiteDimensional_surjective_of_injective_self
     {V : Type*} [AddCommGroup V] [Module ℝ V] [FiniteDimensional ℝ V]
     (L : V →ₗ[ℝ] V) (hinj : Function.Injective L) : Function.Surjective L := by
@@ -306,7 +354,9 @@ theorem finiteDimensional_surjective_of_injective_self
 
 /-- The concrete HLP nullspace equations imply the reduced skew-operator
 nullspace condition.  This is the explicit place where the skew-symmetry of the
-YTM HLP coefficient matrix must be formalized. -/
+YTM HLP coefficient matrix must be formalized.
+@isnad1 id=hlpnulld.1h4v.s4.57024ba66925 from=translated src=- shape=c9f3dae1 vocab=3c072ffd
+-/
 theorem HLPNullDirection_from_full_nullspace {m n : Nat}
     (P : LPData m n) (D : HLPFullDirection m n)
     (hnull : HLPNullspaceEquations P D) :
@@ -421,7 +471,9 @@ def HLPSchurResidual {m n : Nat} (P : LPData m n) (D : HLPFullDirection m n) : V
 def HLPThetaDiag {n : Nat} (w : HSState n) : Vec n :=
   fun j => w.x j / w.s j
 
-/-- The homogeneous dual block gives `ds = -r`. -/
+/-- The homogeneous dual block gives `ds = -r`.
+@isnad1 id=eq.1h6v.s5.d5eaf7398ad1 from=translated src=- shape=f25460b2 vocab=e108b966
+-/
 theorem HLPHomogeneous.ds_eq_neg_schurResidual {m n : Nat}
     (P : LPData m n) (w : HSState n) (D : HLPFullDirection m n)
     (hD : HLPNewtonHomogeneousBlockSystem P w D) :
@@ -431,7 +483,9 @@ theorem HLPHomogeneous.ds_eq_neg_schurResidual {m n : Nat}
   unfold HLPSchurResidual
   linarith
 
-/-- The scalar complementarity block eliminates `dκ`. -/
+/-- The scalar complementarity block eliminates `dκ`.
+@isnad1 id=eq.2h5v.s5.958818f1791c from=translated src=- shape=728306b1 vocab=9cca23fa
+-/
 theorem HLPHomogeneous.dkappa_eq_neg_ratio_dtau {m n : Nat}
     (P : LPData m n) (w : HSState n) (D : HLPFullDirection m n)
     (hw : Interior w) (hD : HLPNewtonHomogeneousBlockSystem P w D) :
@@ -443,7 +497,9 @@ theorem HLPHomogeneous.dkappa_eq_neg_ratio_dtau {m n : Nat}
   linarith
 
 /-- The complementarity block and the eliminated dual slack give
-`dx = Θ r`, the usual first step in forming the Schur complement. -/
+`dx = Θ r`, the usual first step in forming the Schur complement.
+@isnad1 id=eq.2h6v.s5.929cae0a1cd4 from=translated src=- shape=25f2ebaf vocab=e3ed3855
+-/
 theorem HLPHomogeneous.dx_eq_theta_mul_schurResidual {m n : Nat}
     (P : LPData m n) (w : HSState n) (D : HLPFullDirection m n)
     (hw : Interior w) (hD : HLPNewtonHomogeneousBlockSystem P w D) :
@@ -464,7 +520,9 @@ After eliminating `ds`, `dx`, and `dκ` through the positive diagonal
 complementarity block, the homogeneous HLP orthogonality relation becomes
 `∑ᵢ (xᵢ/sᵢ) rᵢ² + (κ/τ) dτ² = 0`.
 This is the finite-dimensional inner-product identity used in the standard
-interior-point nonsingularity argument. -/
+interior-point nonsingularity argument.
+@isnad1 id=eq.2h5v.s7.77bf65e6ec3f from=translated src=- shape=22d597cb vocab=834550d3
+-/
 theorem HLPHomogeneous.schur_complementarity_identity {m n : Nat}
     (P : LPData m n) (w : HSState n) (D : HLPFullDirection m n)
     (hw : Interior w) (hD : HLPNewtonHomogeneousBlockSystem P w D) :
@@ -520,7 +578,9 @@ If all diagonal Schur weights are strictly positive and `eta > 0`, then the iden
 `∑ᵢ thetaᵢ rᵢ² + eta t² = 0` forces every residual component `rᵢ` and the scalar
 `t` to vanish.  This is the positive-diagonal part of the interior-point
 nonsingularity argument, rather than positive-definiteness of the whole
-`(dy, dτ, dθ)` Schur matrix. -/
+`(dy, dτ, dθ)` Schur matrix.
+@isnad1 id=and.3h5v.s7.8291df58a1ca from=translated src=- shape=67d2c415 vocab=21ec9603
+-/
 theorem finite_sum_pos_sq_plus_pos_sq_eq_zero {n : Nat}
     (theta r : Vec n) (eta t : ℝ)
     (htheta : ∀ j : Fin n, 0 < theta j) (heta : 0 < eta)
@@ -553,7 +613,9 @@ theorem finite_sum_pos_sq_plus_pos_sq_eq_zero {n : Nat}
     exact sq_eq_zero_iff.mp ht_square_zero
 
 /-- The reduced complementarity identity forces the Schur residual and `dτ` to be
-zero. -/
+zero.
+@isnad1 id=and.2h5v.s5.317af20c104d from=translated src=- shape=291c4e4c vocab=b544916b
+-/
 theorem HLPHomogeneous.schur_residual_zero_and_dtau_zero {m n : Nat}
     (P : LPData m n) (w : HSState n) (D : HLPFullDirection m n)
     (hw : Interior w) (hD : HLPNewtonHomogeneousBlockSystem P w D) :
@@ -571,7 +633,9 @@ theorem HLPHomogeneous.schur_residual_zero_and_dtau_zero {m n : Nat}
     htheta_pos heta_pos hschur
 
 /-- Once the Schur residual and `dτ` vanish, the reduced primal and scalar directions
-vanish. -/
+vanish.
+@isnad1 id=and.4h5v.s6.275c530cf5f9 from=translated src=- shape=dec5f0a4 vocab=0db7d8dd
+-/
 theorem HLPHomogeneous.dx_dkappa_ds_zero_from_schur_core {m n : Nat}
     (P : LPData m n) (w : HSState n) (D : HLPFullDirection m n)
     (hw : Interior w) (hD : HLPNewtonHomogeneousBlockSystem P w D)
@@ -591,7 +655,9 @@ theorem HLPHomogeneous.dx_dkappa_ds_zero_from_schur_core {m n : Nat}
     simp_all
 
 /-- Final algebra after the Schur core has vanished: the definitions of `bbar`, `cbar`,
-and `zbar` imply `dθ = 0`; then full row rank gives `dy = 0`. -/
+and `zbar` imply `dθ = 0`; then full row rank gives `dy = 0`.
+@isnad1 id=and.6h5v.s6.b4e3d9d153e6 from=translated src=- shape=6041094e vocab=024df76e
+-/
 theorem HLPHomogeneous.dtheta_dy_zero_from_schur_core {m n : Nat}
     (P : LPData m n) (std : LPStandardAssumptions P)
     (w : HSState n) (D : HLPFullDirection m n)
@@ -720,7 +786,9 @@ blocks.  With `r = Aᵀdy - c dτ + cbar dθ`, this gives `dx = Θ r`, where
 `Θ = S^{-1}X` is positive diagonal.  The Schur-complement identity is then
 `∑ᵢ Θᵢ rᵢ² + (κ/τ)dτ² = 0`, so `r = 0` and `dτ = 0`.  The remaining HLP equations,
 together with the definitions of `bbar`, `cbar`, and `zbar`, give `dθ = 0`, and full
-row rank removes `dy`. -/
+row rank removes `dy`.
+@isnad1 id=and.3h5v.s6.6656da8e5934 from=translated src=- shape=83d05322 vocab=d495ccba
+-/
 theorem HLP_newton_block_kernel_trivial_from_full_row_rank {m n : Nat}
     (P : LPData m n) (std : LPStandardAssumptions P)
     (w : HSState n) (hw : Interior w) :
@@ -740,7 +808,9 @@ theorem HLP_newton_block_kernel_trivial_from_full_row_rank {m n : Nat}
 
 The HLP Newton block system is square.  Once the homogeneous block operator has
 trivial kernel, finite-dimensional linear algebra gives surjectivity, hence existence of
-a solution for the inhomogeneous Newton right-hand side. -/
+a solution for the inhomogeneous Newton right-hand side.
+@isnad1 id=ex.1h5v.s7.953f4926aaae from=translated src=- shape=774b71a2 vocab=aee5f31d
+-/
 theorem HLP_newton_block_system_solvable_from_kernel_trivial {m n : Nat}
     (P : LPData m n) (w : HSState n) (γ : ℝ)
     (hker : ∀ D : HLPFullDirection m n,
@@ -795,7 +865,9 @@ for search-direction existence.
 
 Mathematically, this is proved by eliminating `ds` and `dκ` with the positive diagonal
 coefficients `xᵢ` and `τ`, and then using full row rank of `A` together with the
-self-dual/skew-symmetric HLP block structure. -/
+self-dual/skew-symmetric HLP block structure.
+@isnad1 id=ex.2h5v.s5.b884aba9eb0b from=translated src=- shape=d862c442 vocab=51c6cdba
+-/
 theorem HLP_newton_block_system_solvable_from_full_row_rank {m n : Nat}
     (P : LPData m n) (std : LPStandardAssumptions P)
     (w : HSState n) (hw : Interior w) (γ : ℝ) :
@@ -804,7 +876,9 @@ theorem HLP_newton_block_system_solvable_from_full_row_rank {m n : Nat}
   exact HLP_newton_block_system_solvable_from_kernel_trivial P w γ hker
 
 /-- A full HLP direction equation gives the reduced direction equation used by the
-rest of the proof skeleton. -/
+rest of the proof skeleton.
+@isnad1 id=hsddirec.1h6v.s5.e6a81e8d595f from=translated src=- shape=48cf7e73 vocab=1a8bea8c
+-/
 theorem reduced_direction_equation_from_full {m n : Nat}
     (P : LPData m n) (w : HSState n) (D : HLPFullDirection m n) (γ : ℝ)
     (hD : HLPFullDirectionEquation P w D γ) :
@@ -827,7 +901,9 @@ structure HLPFullNewtonLinearAlgebra {m n : Nat} (P : LPData m n) : Prop where
     ∀ (w : HSState n), Interior w → ∀ (γ : ℝ), ∃ D : HLPFullDirection m n,
       HLPFullDirectionEquation P w D γ
 
-/-- Main concrete Newton solvability obligation for the YTM HLP system. -/
+/-- Main concrete Newton solvability obligation for the YTM HLP system.
+@isnad1 id=hlpfulln.1h3v.s4.cb771af141df from=translated src=- shape=614c4c68 vocab=d504a0ef
+-/
 theorem HLP_full_newton_linear_algebra_from_full_row_rank {m n : Nat}
     (P : LPData m n)
     (std : LPStandardAssumptions P) :
@@ -838,7 +914,9 @@ theorem HLP_full_newton_linear_algebra_from_full_row_rank {m n : Nat}
   exact ⟨D, (full_direction_equation_iff_block_system P w D γ).2 hDblock⟩
 
 /-- Summing the componentwise complementarity equations, including the scalar
-`τκ` equation, gives the aggregate first-order gap identity. -/
+`τκ` equation, gives the aggregate first-order gap identity.
+@isnad1 id=eq.2h4v.s7.f975a4085d2c from=translated src=- shape=44d1d80c vocab=15713332
+-/
 theorem aggregate_eq_from_component_eq {n : Nat}
     (w : HSState n) (d : HSDirection n) (γ : ℝ)
     (hcomp : ∀ i,
@@ -896,14 +974,18 @@ theorem aggregate_eq_from_component_eq {n : Nat}
             ring
 
 /-- The skew-symmetry consequence is derived from the bundled HLP nullspace
-relation.  This is the separated-variable version of Theorem 5(ii) in YTM. -/
+relation.  This is the separated-variable version of Theorem 5(ii) in YTM.
+@isnad1 id=hsdskewo.1h2v.s3.e4d5397cbf06 from=translated src=- shape=b28a8773 vocab=07b7f3f3
+-/
 theorem skew_orthogonal_from_HLP_nullspace {n : Nat}
     (d : HSDirection n) (hQ : HLPNullDirection d) :
     HSDSkewOrthogonal d := by
   exact ⟨hQ.cross_zero⟩
 
 /-- The componentwise search-direction equation implies the aggregate
-complementarity equation. -/
+complementarity equation.
+@isnad1 id=hsdcompl.1h4v.s4.608a739588a2 from=translated src=- shape=bef19262 vocab=c2a2e3a4
+-/
 theorem complementarity_direction_from_equation {n : Nat}
     (w : HSState n) (d : HSDirection n) (γ : ℝ)
     (heq : HSDDirectionEquation w d γ) :
@@ -911,7 +993,9 @@ theorem complementarity_direction_from_equation {n : Nat}
   refine ⟨heq.component_eq, heq.scalar_eq, ?_⟩
   exact aggregate_eq_from_component_eq w d γ heq.component_eq heq.scalar_eq
 
-/-- A solution of the HLP search-direction system gives a valid step direction. -/
+/-- A solution of the HLP search-direction system gives a valid step direction.
+@isnad1 id=hsdstepd.1h4v.s4.ae299a41d2cd from=translated src=- shape=bef19262 vocab=2c4e89c7
+-/
 theorem step_direction_from_direction_equation {n : Nat}
     (w : HSState n) (d : HSDirection n) (γ : ℝ)
     (heq : HSDDirectionEquation w d γ) :
@@ -934,7 +1018,9 @@ structure HLPNewtonLinearAlgebra {m n : Nat} (P : LPData m n) : Prop where
     ∀ (w : HSState n), Interior w → ∀ (γ : ℝ), ∃ d : HSDirection n, HSDDirectionEquation w d γ
 
 /-- The concrete full Newton linear algebra induces the reduced linear algebra used
-by the existing convergence skeleton. -/
+by the existing convergence skeleton.
+@isnad1 id=hlpnewto.1h3v.s4.f2f6e70cca7a from=translated src=- shape=614c4c68 vocab=cc76fe43
+-/
 theorem reduced_newton_linear_algebra_from_full {m n : Nat}
     (P : LPData m n)
     (fullAlg : HLPFullNewtonLinearAlgebra P) :
@@ -949,7 +1035,9 @@ theorem reduced_newton_linear_algebra_from_full {m n : Nat}
 This is the place where the full-row-rank assumption on `A` should be used to prove
 that the concrete Ye--Todd--Mizuno Newton system has a solution at each interior
 iterate.  The current skeleton routes this obligation through the explicit full-system
-solvability statement above. -/
+solvability statement above.
+@isnad1 id=hlpnewto.1h3v.s4.62f50fbb165f from=translated src=- shape=614c4c68 vocab=d72ac073
+-/
 theorem HLP_newton_linear_algebra_from_full_row_rank {m n : Nat}
     (P : LPData m n)
     (std : LPStandardAssumptions P) :
@@ -965,7 +1053,9 @@ structure HLPDirectionSystemSolvable {n : Nat}
     (w : HSState n) (γ : ℝ) : Prop where
   exists_direction : ∃ d : HSDirection n, HSDDirectionEquation w d γ
 
-/-- Full-row-rank linear algebra supplies a solution of the search-direction system. -/
+/-- Full-row-rank linear algebra supplies a solution of the search-direction system.
+@isnad1 id=hlpdirec.3h5v.s4.624ce1660a3c from=translated src=- shape=3174a9bb vocab=52e76efa
+-/
 theorem direction_system_solvable_from_full_row_rank {m n : Nat}
     (P : LPData m n) (std : LPStandardAssumptions P)
     (linAlg : HLPNewtonLinearAlgebra P)
@@ -974,7 +1064,9 @@ theorem direction_system_solvable_from_full_row_rank {m n : Nat}
   exact ⟨linAlg.direction_system_solvable std w hw γ⟩
 
 /-- Once solvability of the HLP Newton system is available, existence of a search
-direction is immediate. -/
+direction is immediate.
+@isnad1 id=ex.1h3v.s4.325c83daa1f4 from=translated src=- shape=c8af0c52 vocab=d1ca0192
+-/
 theorem search_direction_exists_from_HLP_solvability {n : Nat}
     (w : HSState n) (γ : ℝ)
     (hsolv : HLPDirectionSystemSolvable w γ) :
@@ -987,14 +1079,18 @@ noncomputable def chooseSearchDirection {n : Nat}
     (hex : ∃ d : HSDirection n, HSDDirectionEquation w d γ) : HSDirection n :=
   Classical.choose hex
 
-/-- The selected search direction satisfies the search-direction equations. -/
+/-- The selected search direction satisfies the search-direction equations.
+@isnad1 id=hsddirec.1h3v.s4.9ec1ebaf7222 from=translated src=- shape=5b8bf0ae vocab=8981b538
+-/
 theorem chooseSearchDirection_spec {n : Nat}
     (w : HSState n) (γ : ℝ)
     (hex : ∃ d : HSDirection n, HSDDirectionEquation w d γ) :
     HSDDirectionEquation w (chooseSearchDirection w γ hex) γ :=
   Classical.choose_spec hex
 
-/-- The selected search direction is a valid step direction. -/
+/-- The selected search direction is a valid step direction.
+@isnad1 id=hsdstepd.1h3v.s4.d72fd6f6f9c4 from=translated src=- shape=f0de2728 vocab=b9b92d72
+-/
 theorem chosen_step_direction {n : Nat}
     (w : HSState n) (γ : ℝ)
     (hex : ∃ d : HSDirection n, HSDDirectionEquation w d γ) :
@@ -1002,7 +1098,9 @@ theorem chosen_step_direction {n : Nat}
   exact step_direction_from_direction_equation w (chooseSearchDirection w γ hex) γ
     (chooseSearchDirection_spec w γ hex)
 
-/-- Linearity of a finite sum with respect to the update `v + α dv`. -/
+/-- Linearity of a finite sum with respect to the update `v + α dv`.
+@isnad1 id=eq.0h5v.s6.d065904a954c from=translated src=- shape=214ce377 vocab=7c4a952d
+-/
 theorem sum_mul_add_smul {n : Nat}
     (u v dv : Vec n) (α : ℝ) :
     (∑ i, u i * (v i + α * dv i)) =
@@ -1018,12 +1116,17 @@ theorem sum_mul_add_smul {n : Nat}
     _ = (∑ i, u i * v i) + α * (∑ i, u i * dv i) := by
             rw [Finset.mul_sum]
 
-/-- Linearity of the second argument of `dot` for the update `v + α dv`. -/
+/-- Linearity of the second argument of `dot` for the update `v + α dv`.
+@isnad1 id=eq.0h5v.s6.e26c2a577d84 from=translated src=- shape=5d585a41 vocab=867b7aa8
+-/
 theorem dot_add_smul {n : Nat} (u v dv : Vec n) (α : ℝ) :
     dot u (fun i => v i + α * dv i) = dot u v + α * dot u dv := by
   unfold dot
   exact sum_mul_add_smul u v dv α
 
+/--
+@isnad1 id=eq.0h3v.s4.c2f67e9697e5 from=translated src=- shape=7a5478ec vocab=aeacfdd3
+-/
 theorem dot_comm {n : Nat} (u v : Vec n) :
     dot u v = dot v u := by
   unfold dot
@@ -1031,7 +1134,9 @@ theorem dot_comm {n : Nat} (u v : Vec n) :
   intro i _
   ring
 
-/-- Linearity of the first argument of `dot` for the update `u + α du`. -/
+/-- Linearity of the first argument of `dot` for the update `u + α du`.
+@isnad1 id=eq.0h5v.s6.e5aa4522b38f from=translated src=- shape=c5784b46 vocab=867b7aa8
+-/
 theorem dot_add_smul_left {n : Nat} (u du v : Vec n) (α : ℝ) :
     dot (fun i => u i + α * du i) v = dot u v + α * dot du v := by
   calc
@@ -1043,7 +1148,9 @@ theorem dot_add_smul_left {n : Nat} (u du v : Vec n) (α : ℝ) :
     _ = dot u v + α * dot du v := by
             rw [dot_comm v u, dot_comm v du]
 
-/-- Expansion of `dot (u + α du) (v + α dv)`. -/
+/-- Expansion of `dot (u + α du) (v + α dv)`.
+@isnad1 id=eq.0h6v.s7.bc5b40991b08 from=translated src=- shape=b85e10e7 vocab=0e05c35d
+-/
 theorem dot_pair_add_smul {n : Nat}
     (u v du dv : Vec n) (α : ℝ) :
     dot (fun i => u i + α * du i) (fun i => v i + α * dv i) =
@@ -1060,7 +1167,9 @@ theorem dot_pair_add_smul {n : Nat}
     _ = dot u v + α * (dot du v + dot u dv) + α ^ 2 * dot du dv := by
             ring
 
-/-- Algebraic expansion of the complementarity gap under a line step. -/
+/-- Algebraic expansion of the complementarity gap under a line step.
+@isnad1 id=eq.0h4v.s6.8eaaa2a064b2 from=translated src=- shape=2fcae29b vocab=e50fc782
+-/
 theorem gap_addStep_expansion {n : Nat}
     (w : HSState n) (d : HSDirection n) (α : ℝ) :
     gap (addStep w d α)
@@ -1070,7 +1179,9 @@ theorem gap_addStep_expansion {n : Nat}
   rw [dot_pair_add_smul]
   ring_nf
 
-/-- Gap update for a direction satisfying the HLP nullspace and complementarity equations. -/
+/-- Gap update for a direction satisfying the HLP nullspace and complementarity equations.
+@isnad1 id=eq.1h5v.s6.d3030536aff9 from=translated src=- shape=cb411711 vocab=44132ad3
+-/
 theorem gap_addStep_of_HSDStepDirection {n : Nat}
     (w : HSState n) (d : HSDirection n) (α γ : ℝ)
     (hdir : HSDStepDirection w d γ) :

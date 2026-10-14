@@ -31,10 +31,16 @@ chain. -/
 noncomputable def expectation (g : ℕ → ℝ) : ℝ :=
   ∑ j ∈ Finset.range (m + 1), chainMass C.K j * g j
 
+/--
+@isnad1 id=eq.0h2v.s4.339533944fce from=translated src=- shape=3e46e687 vocab=362b1bf1
+-/
 theorem expectation_one : C.expectation (fun _ ↦ 1) = 1 := by
   simp only [expectation, mul_one]
   exact C.total_mass
 
+/--
+@isnad1 id=le.1h3v.s5.a17927aaee7b from=translated src=- shape=785014e5 vocab=8169ef46
+-/
 theorem expectation_nonneg {g : ℕ → ℝ} (hg : ∀ j < m + 1, 0 ≤ g j) :
     0 ≤ C.expectation g := by
   unfold expectation
@@ -46,7 +52,9 @@ noncomputable def rejectionIndicator (α : ℝ) (j : ℕ) : ℝ :=
   if C.K j ≤ α then 1 else 0
 
 /-- Expectation of the rejection indicator is exactly the previously
-defined rejection mass. -/
+defined rejection mass.
+@isnad1 id=eq.0h3v.s4.131d71a1b1d0 from=translated src=- shape=ddbcc9ba vocab=63bb6b29
+-/
 theorem expectation_rejectionIndicator (α : ℝ) :
     C.expectation (C.rejectionIndicator α) = C.rejectedMass α := by
   classical
@@ -56,7 +64,9 @@ theorem expectation_rejectionIndicator (α : ℝ) :
   intro j _
   by_cases hj : C.K j ≤ α <;> simp [hj]
 
-/-- Exact calibration in expectation form. -/
+/-- Exact calibration in expectation form.
+@isnad1 id=le.1h3v.s4.4fd378dd76b0 from=translated src=- shape=d820540c vocab=e87693e1
+-/
 theorem expectation_rejection_le {α : ℝ} (hα : 0 ≤ α) :
     C.expectation (C.rejectionIndicator α) ≤ α := by
   rw [C.expectation_rejectionIndicator]

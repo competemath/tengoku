@@ -17,6 +17,9 @@ import Tengoku.LeanPool.LeanPool.HadwigerNelsonBounds.PartsGadgetEdgeVerificatio
 
 namespace HadwigerNelsonBounds
 
+/--
+@isnad1 id=partsgad.1h2v.s5.0c9f44a75565 from=translated src=- shape=518845f8 vocab=4d866cce
+-/
 lemma partsGadget_edgeCase {vertex neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors vertex) :
     PartsGadgetEdgeCase vertex neighbor := by

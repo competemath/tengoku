@@ -47,7 +47,9 @@ def commonFactors {ι : Type*} [Fintype ι] [DecidableEq ι]
     (stateFactor γ β hγ hβ S)
 
 /-- Every genuine insertion-edge common density satisfies the exact
-four-point hypothesis consumed by the likelihood-ratio proof. -/
+four-point hypothesis consumed by the likelihood-ratio proof.
+@isnad1 id=fourpoin.2h5v.s5.92cd40989566 from=translated src=- shape=ef44b2e4 vocab=b7e4609d
+-/
 theorem fourPointLogConcave_commonFactors
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (γ β : ι → ℝ) (hγ : ∀ i, 0 < γ i) (hβ : ∀ i, 0 < β i)
@@ -57,7 +59,9 @@ theorem fourPointLogConcave_commonFactors
         (commonFactors γ β hγ hβ S changed)) :=
   fourPointLogConcave_finiteSignedExpSumDensity _
 
-/-- Translation-TP2 form of the same insertion-edge conclusion. -/
+/-- Translation-TP2 form of the same insertion-edge conclusion.
+@isnad1 id=translat.2h5v.s5.28316af7fea6 from=translated src=- shape=ef44b2e4 vocab=b3d80eaa
+-/
 theorem translationTP2_commonFactors
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (γ β : ι → ℝ) (hγ : ∀ i, 0 < γ i) (hβ : ∀ i, 0 < β i)

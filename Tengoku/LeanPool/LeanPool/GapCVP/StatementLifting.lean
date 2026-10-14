@@ -37,7 +37,9 @@ def liftStatement (stack : K → K') (label : Λ → Λ')
   | .halt => onHalt
 
 /-- A stack/state embedding that commutes with reads and updates transports an entire
-statement execution. Only the caller's goto and halt configurations need separate proofs. -/
+statement execution. Only the caller's goto and halt configurations need separate proofs.
+@isnad1 id=eq.6h18v.s8.2f7e1036c81f from=translated src=- shape=6b06c9ba vocab=20d7f4fc
+-/
 theorem liftStatement_stepAux [DecidableEq K] [DecidableEq K']
     (stack : K → K') (label : Λ → Λ')
     (read : σ' → σ) (write : σ' → σ → σ') (onHalt : TM2.Stmt Γ Λ' σ')

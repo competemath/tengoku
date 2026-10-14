@@ -111,7 +111,9 @@ private theorem finitaryFragment_compactIn {L : Language.{u, v}} {T : L.Theoryω
 
 /-- **Universe-zero compatibility endpoint.**  This retains the published result type while the
 underlying first-order argument is universe-general; use `finitaryFragment_compactIn` when the
-language or resulting carrier lives above universe zero. -/
+language or resulting carrier lives above universe zero.
+@isnad1 id=issatisf.2h2v.s4.41522a2bd8d5 from=translated src=- shape=17114601 vocab=3337767b
+-/
 theorem finitaryFragment_compact {T : L.Theoryω} (hT : T ⊆ finitaryFragment L)
     (hfin : T.IsFinitelySatisfiable) : T.IsSatisfiable :=
   finitaryFragment_compactIn hT hfin

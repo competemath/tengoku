@@ -50,7 +50,9 @@ namespace GranvilleMoore
 
 /-- **Recursion for the coefficients**: `c_{j+1,i+1} = c_{j,i} + p^j c_{j,i+1}`.
 
-Stated at `i + 1` so that the paper's `c_{j,i-1}` is subtraction-free. -/
+Stated at `i + 1` so that the paper's `c_{j,i-1}` is subtraction-free.
+@isnad1 id=eq.0h3v.s6.b41aaba42193 from=translated src=- shape=c1792c6e vocab=513c2070
+-/
 theorem cCoeff_succ (p j i : ℕ) :
     cCoeff p (j + 1) (i + 1) = cCoeff p j i + (p : ℤ) ^ j * cCoeff p j (i + 1) := by
   simp only [cCoeff, cPoly_succ]
@@ -71,7 +73,9 @@ private theorem neg_one_pow_sub_mul {j i : ℕ} (h : i ≤ j) :
 
 Substituting `-z` into the defining product of `cPoly` and pulling out `(-1)^j`. Evaluated
 at `z = p^n` this is what turns the collapsed coefficient into a product of differences of
-powers of `p`. -/
+powers of `p`.
+@isnad1 id=eq.0h3v.s6.feed495a4d39 from=translated src=- shape=9d11749a vocab=d3cf9a81
+-/
 theorem signedCCoeff_sum_eq_prod (p j : ℕ) (z : ℤ) :
     ∑ i ∈ range (j + 1), (-1 : ℤ) ^ (j - i) * cCoeff p j i * z ^ i
       = ∏ r ∈ range j, (z - (p : ℤ) ^ r) := by
@@ -99,7 +103,9 @@ theorem signedCCoeff_sum_eq_prod (p j : ℕ) (z : ℤ) :
 /-! ### Products of differences of powers of `p` -/
 
 /-- **The `p`-power difference product vanishes** for `n < j`: the factor at `r = n` is
-`p^n - p^n = 0`. -/
+`p^n - p^n = 0`.
+@isnad1 id=eq.1h3v.s6.48628babad7f from=translated src=- shape=ae5f1753 vocab=a6184cf5
+-/
 theorem prod_pow_sub_pow_eq_zero {p n j : ℕ} (h : n < j) :
     ∏ r ∈ range j, ((p : ℤ) ^ n - (p : ℤ) ^ r) = 0 :=
   Finset.prod_eq_zero (mem_range.mpr h) (by ring)
@@ -109,7 +115,9 @@ theorem prod_pow_sub_pow_eq_zero {p n j : ℕ} (h : n < j) :
 
 This is the paper's `∏_{r<j}(p^{m-r} - 1)` with its power of `p` made explicit; the
 exponent `∑ r ∈ range j, r` equals `C(j,2)` by `Finset.sum_range_id` and
-`Nat.choose_two_right`. -/
+`Nat.choose_two_right`.
+@isnad1 id=eq.1h3v.s7.02d04560cd1e from=translated src=- shape=17ed4aeb vocab=a4943b33
+-/
 theorem prod_pow_sub_pow_eq_pow_mul {p n j : ℕ} (h : j ≤ n) :
     ∏ r ∈ range j, ((p : ℤ) ^ n - (p : ℤ) ^ r)
       = (p : ℤ) ^ (∑ r ∈ range j, r) * ∏ r ∈ range j, ((p : ℤ) ^ (n - r) - 1) := by
@@ -126,7 +134,9 @@ theorem prod_pow_sub_pow_eq_pow_mul {p n j : ℕ} (h : j ≤ n) :
 
 The `i`-th rung of the reduction ladder contributes `C(d-i,2)`; re-indexing by `c = d - i` turns
 the ladder's total into this sum, which is how `GranvilleMoore.sum_range_sub_choose_two` — that
-total in the ladder's own indexing — is proved. -/
+total in the ladder's own indexing — is proved.
+@isnad1 id=eq.0h1v.s5.3d830d34fdda from=translated src=- shape=8dd604ae vocab=7a05e5cf
+-/
 theorem sum_range_choose_two (d : ℕ) :
     ∑ c ∈ range (d + 1), Nat.choose c 2 = Nat.choose (d + 1) 3 := by
   induction d with

@@ -39,25 +39,35 @@ def log (c : Conf es) : Set es.Event :=
 
 namespace Log
 
-/-- If e is in the log of c, then e is in c. -/
+/-- If e is in the log of c, then e is in c.
+@isnad1 id=le.0h2v.s4.7d94e8fb9ea1 from=translated src=- shape=fbf855a0 vocab=4c61978f
+-/
 lemma log_subset {c : Conf es} : log es c ⊆ c.1 := fun _ ⟨h, _⟩ => h
 
-/-- If e is in the log of c, then e is logged. -/
+/-- If e is in the log of c, then e is logged.
+@isnad1 id=logged.1h3v.s4.c00638b1383c from=translated src=- shape=1a78f53b vocab=bc39d90d
+-/
 lemma log_logged {c : Conf es} {e : es.Event} (h : e ∈ log es c) : logged es e := by
   simp only [log, Set.mem_ofPred_eq] at h
   exact ⟨h.2.choose, h.2.choose_spec.2⟩
 
-/-- The log is a subset of the configuration. -/
+/-- The log is a subset of the configuration.
+@isnad1 id=iff.0h3v.s6.6fa8b02fc3cb from=translated src=- shape=bb3ca35d vocab=7cb59a78
+-/
 lemma log_mem_iff {c : Conf es} {e : es.Event} :
     e ∈ log es c ↔ e ∈ c.1 ∧ ∃ e' ∉ c.1, e ## e' :=
   Iff.rfl
 
-/-- e is logged if it has minimal conflict with some event. -/
+/-- e is logged if it has minimal conflict with some event.
+@isnad1 id=iff.0h2v.s4.557486e37f7d from=translated src=- shape=b1bb9795 vocab=64160402
+-/
 lemma logged_iff {e : es.Event} : logged es e ↔ ∃ e', e ## e' :=
   Iff.rfl
 
 /-- By symmetry of minimal conflict, if e is logged, then any e' with e ## e'
-    also has minimal conflict with some event. -/
+    also has minimal conflict with some event.
+@isnad1 id=logged.1h3v.s4.0b7c671b7442 from=translated src=- shape=a43a2635 vocab=64160402
+-/
 lemma logged_symm {e e' : es.Event} (h : e ## e') :
     logged es e' :=
   ⟨e, es.minimalConflict_symm h⟩
@@ -66,7 +76,9 @@ lemma logged_symm {e e' : es.Event} (h : e ## e') :
 local infixl:50 " # " => es.conflict
 
 /-- If e is in the log of c and e' has minimal conflict with e,
-    then either e' is not in c, or there exists another e'' not in c with e ## e''. -/
+    then either e' is not in c, or there exists another e'' not in c with e ## e''.
+@isnad1 id=ex.1h3v.s5.31112ae5fe43 from=translated src=- shape=be135d1e vocab=7cb59a78
+-/
 lemma log_has_conflict_outside {c : Conf es} {e : es.Event} (he : e ∈ log es c) :
     ∃ e' ∉ c.1, e ## e' := by
   simp_all
@@ -84,17 +96,23 @@ def compatibleWithLog (σ : Computations es) (l : Set es.Event) : Prop :=
 /-- Notation for computation compatible with log. -/
 local infixl:50 " ⊨ " => compatibleWithLog es
 
-/-- Extract the first condition: all events in the log are in the computation. -/
+/-- Extract the first condition: all events in the log are in the computation.
+@isnad1 id=le.1h3v.s5.f0af087a3346 from=translated src=- shape=dbd44f4d vocab=fc561d30
+-/
 lemma compatibleWithLog_log_subset {σ : Computations es} {l : Set es.Event}
     (h : σ ⊨ l) : l ⊆ σ.1.1 :=
   h.1
 
-/-- Extract the second condition: events in the computation are consistent with the log. -/
+/-- Extract the second condition: events in the computation are consistent with the log.
+@isnad1 id=not.3h5v.s6.7f461715bae5 from=translated src=- shape=a1e5de31 vocab=c9c49cce
+-/
 lemma compatibleWithLog_consistent {σ : Computations es} {l : Set es.Event}
     (h : σ ⊨ l) {e e' : es.Event} (he : e ∈ σ.1.1) (he' : e' ∈ l) : ¬ (e # e') :=
   h.2.1 e he e' he'
 
-/-- Extract the third condition: conflicting events in the computation are in the log. -/
+/-- Extract the third condition: conflicting events in the computation are in the log.
+@isnad1 id=mem.3h5v.s6.99664165e1bc from=translated src=- shape=8b2b08f8 vocab=c9c49cce
+-/
 lemma compatibleWithLog_conflict_in_log {σ : Computations es} {l : Set es.Event}
     (h : σ ⊨ l) {e e' : es.Event} (he : e ∈ σ.1.1) (hconf : e # e') : e ∈ l :=
   h.2.2 e he e' hconf
@@ -108,7 +126,9 @@ def CompatibleComputations.val {l : Set es.Event} (σ : CompatibleComputations e
     Computations es :=
   σ.1
 
-/-- Extract the compatibility proof. -/
+/-- Extract the compatibility proof.
+@isnad1 id=compatib.0h3v.s4.71d07d40f515 from=translated src=- shape=e87db80a vocab=ae665fba
+-/
 lemma CompatibleComputations.compatible {l : Set es.Event} (σ : CompatibleComputations es l) :
     σ.val ⊨ l :=
   σ.2

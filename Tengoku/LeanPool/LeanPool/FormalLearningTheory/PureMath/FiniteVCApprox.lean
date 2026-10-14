@@ -44,14 +44,18 @@ def boolTestExpectation {H : Type*} [Fintype H]
     (μ : FinitePMF H) (f : H → Bool) : ℝ :=
   trueExpectation μ (fun h => if f h then (1 : ℝ) else 0)
 
-/-- A convex combination of values in `{0, 1}` is nonnegative. -/
+/-- A convex combination of values in `{0, 1}` is nonnegative.
+@isnad1 id=le.0h3v.s4.30c8b870e62a from=translated src=- shape=627796c3 vocab=ceb396e8
+-/
 lemma boolTestExpectation_nonneg {H : Type*} [Fintype H]
     (μ : FinitePMF H) (f : H → Bool) :
     0 ≤ boolTestExpectation μ f :=
   Finset.sum_nonneg fun h _ =>
     mul_nonneg (μ.prob_nonneg h) (by simp only; split_ifs <;> norm_num)
 
-/-- A convex combination of values in `{0, 1}` is at most `1`. -/
+/-- A convex combination of values in `{0, 1}` is at most `1`.
+@isnad1 id=le.0h3v.s4.24cb092dfdf6 from=translated src=- shape=59de9939 vocab=ceb396e8
+-/
 lemma boolTestExpectation_le_one {H : Type*} [Fintype H]
     (μ : FinitePMF H) (f : H → Bool) :
     boolTestExpectation μ f ≤ 1 := by
@@ -74,19 +78,25 @@ def tvDistance {H : Type*} [Fintype H]
     (μ ν : FinitePMF H) : ℝ :=
   ∑ h : H, |μ.prob h - ν.prob h|
 
-/-- Total variation distance is nonnegative. -/
+/-- Total variation distance is nonnegative.
+@isnad1 id=le.0h3v.s4.c3611a7519d3 from=translated src=- shape=f29d4371 vocab=9add899f
+-/
 lemma tvDistance_nonneg {H : Type*} [Fintype H]
     (μ ν : FinitePMF H) :
     0 ≤ tvDistance μ ν :=
   Finset.sum_nonneg fun _ _ => abs_nonneg _
 
-/-- Total variation distance is symmetric. -/
+/-- Total variation distance is symmetric.
+@isnad1 id=eq.0h3v.s4.e14f5e00de84 from=translated src=- shape=04554202 vocab=55218dd4
+-/
 lemma tvDistance_comm {H : Type*} [Fintype H]
     (μ ν : FinitePMF H) :
     tvDistance μ ν = tvDistance ν μ := by
   simp only [tvDistance, abs_sub_comm]
 
-/-- Total variation distance from a distribution to itself is zero. -/
+/-- Total variation distance from a distribution to itself is zero.
+@isnad1 id=eq.0h2v.s4.31e1c619b24f from=translated src=- shape=b81717d3 vocab=55218dd4
+-/
 lemma tvDistance_self {H : Type*} [Fintype H]
     (μ : FinitePMF H) :
     tvDistance μ μ = 0 := by
@@ -98,7 +108,9 @@ lemma tvDistance_self {H : Type*} [Fintype H]
 `f`, `|E_μ[f] - E_ν[f]| ≤ δ`. This is the inequality that lets the approximate-minimax
 route to compression replace a target distribution by an empirical distribution: any
 high-probability event under `μ` is approximately high-probability under `ν`, with
-slack controlled by the TV distance. -/
+slack controlled by the TV distance.
+@isnad1 id=le.1h5v.s5.5563b3f8e361 from=translated src=- shape=88fa432e vocab=e5a64a24
+-/
 theorem expectation_approx_of_tv {H : Type*} [Fintype H]
     (μ ν : FinitePMF H) (f : H → Bool) (δ : ℝ)
     (hδ : tvDistance μ ν ≤ δ) :
@@ -123,7 +135,9 @@ theorem expectation_approx_of_tv {H : Type*} [Fintype H]
 /-- Uniform variant of `expectation_approx_of_tv`: a single `tvDistance` bound suffices
 for every test in any finite family simultaneously, with no union bound. The form
 actually used by the compression characterisation, where the family is the restricted
-concept class. -/
+concept class.
+@isnad1 id=le.2h6v.s6.c2f50c3c1242 from=translated src=- shape=4a62a313 vocab=fbeceabc
+-/
 theorem tv_bound_implies_all_tests {H : Type*} [Fintype H]
     (μ ν : FinitePMF H) (ε : ℝ)
     (hε : tvDistance μ ν ≤ ε)
@@ -136,7 +150,9 @@ theorem tv_bound_implies_all_tests {H : Type*} [Fintype H]
 /-- Bridges the `FinitePMF` view and the sample-average view: the expectation of a
 `Bool`-valued test under the empirical PMF of a sample equals the sample average
 `(1/T) ∑_t f (s_t)`. This lets the MWU updates and the approximation transfer
-principle live in the same distributional framework. -/
+principle live in the same distributional framework.
+@isnad1 id=eq.1h4v.s6.b8a1e235d2a0 from=translated src=- shape=09cfca0c vocab=af2cb822
+-/
 lemma boolTestExpectation_empirical_eq_avg
     {H : Type*} [Fintype H] [DecidableEq H]
     {T : ℕ} (hT : 0 < T) (hs : Fin T → H) (f : H → Bool) :
@@ -168,7 +184,9 @@ lemma boolTestExpectation_empirical_eq_avg
 
 /-- Identifies the game-theoretic payoff (a row distribution against a fixed column in
 the Bool game) with the corresponding test expectation. The translation that lets the
-MWU regret bound be applied directly to the compression problem. -/
+MWU regret bound be applied directly to the compression problem.
+@isnad1 id=eq.0h5v.s5.b04f588b1215 from=translated src=- shape=f1301054 vocab=7bf4043c
+-/
 lemma boolGamePayoff_eq_boolTestExpectation
     {R : Type*} [Fintype R]
     {C : Type*} (M : R → C → Bool) (p : FinitePMF R) (c : C) :

@@ -62,7 +62,9 @@ namespace FirstOrder.Language
 
 namespace Term
 
-/-- `Term.liftAt 0 m t = t` for any term `t`. -/
+/-- `Term.liftAt 0 m t = t` for any term `t`.
+@isnad1 id=eq.0h3v.s5.3f32cd210de1 from=translated src=- shape=de2ed321 vocab=8a6b0288
+-/
 theorem liftAt_zero {n m : ℕ}
     (t : LZFC.Term (ℕ ⊕ Fin n)) : liftAt 0 m t = t := by
   unfold liftAt
@@ -78,7 +80,9 @@ end Term
 
 namespace BoundedFormula
 
-/-- `liftAt 0 m ϕ = ϕ` for any bounded formula `ϕ`. -/
+/-- `liftAt 0 m ϕ = ϕ` for any bounded formula `ϕ`.
+@isnad1 id=eq.0h3v.s5.c7112fc75fcd from=translated src=- shape=b6ebc427 vocab=5c52cfc0
+-/
 theorem liftAt_zero {n m : ℕ}
     (ϕ : LZFC.BoundedFormula ℕ n) : liftAt 0 m ϕ = ϕ := by
   unfold liftAt
@@ -109,7 +113,9 @@ variable {V : Type u}
 
 -- Lemmas that require LZFC or ModelSets are placed here.
 
-/-- Specialization of `makeTsN` to a single `bv'' n`. -/
+/-- Specialization of `makeTsN` to a single `bv'' n`.
+@isnad1 id=eq.0h5v.s7.32a274b4468c from=translated src=- shape=e7ae3647 vocab=8eeb24bd
+-/
 theorem realize_fixedSnoc_makeTsN_1 [ModelSets V] {n : ℕ} {s : ℕ → V}
     {xs : Fin n → V} {x : V} : (fun k ↦ Term.realize
     (Sum.elim s (fixedSnoc xs x)) (makeTsN ![bv'' n] k))
@@ -120,7 +126,9 @@ theorem realize_fixedSnoc_makeTsN_1 [ModelSets V] {n : ℕ} {s : ℕ → V}
   · simp_all
   · simp_all
 
-/-- Specialization of `makeTsN` to two arbitrary terms `t₁, t₂`. -/
+/-- Specialization of `makeTsN` to two arbitrary terms `t₁, t₂`.
+@isnad1 id=eq.0h6v.s7.9199ea43d2be from=translated src=- shape=02593ebc vocab=fa88667c
+-/
 theorem realize_fixedSnoc_makeTsN_2 [ModelSets V] {n : ℕ} {s : ℕ → V}
     {xs : Fin n → V} {t₁ t₂ : LZFC.Term (ℕ ⊕ Fin n)} : (fun (k : ℕ) ↦
     Term.realize (Sum.elim s xs) (makeTsN ![t₁, t₂] k)) =
@@ -139,7 +147,9 @@ theorem realize_fixedSnoc_makeTsN_2 [ModelSets V] {n : ℕ} {s : ℕ → V}
     rw [ite_eq_right (by omega)]
     simp_all
 
-/-- General `makeTsN` realization in terms of `replaceInitialValues`. -/
+/-- General `makeTsN` realization in terms of `replaceInitialValues`.
+@isnad1 id=eq.0h6v.s6.59691adefb83 from=translated src=- shape=0f34156e vocab=2f9ee98d
+-/
 theorem realize_fixedSnoc_makeTsN [ModelSets V] {n m : ℕ} {s : ℕ → V}
     {xs : Fin n → V} {ts : Fin (m + 1) → LZFC.Term (ℕ ⊕ Fin n)} :
     (fun k ↦ Term.realize (Sum.elim s xs)  (makeTsN ts k)) =
@@ -175,18 +185,27 @@ class ModelEmptyset (V : Type u) extends ModelSets V where
   emptyset_exists : ∀ {n : ℕ} (s : ℕ → V) (xs : Fin n → V),
     (∃'(intIsEmptyset' (bv' 0))).Realize s xs
 
+/--
+@isnad1 id=iff.0h5v.s5.e3ffa2f61141 from=translated src=- shape=de747830 vocab=b10a23d8
+-/
 theorem realize_is_emptyset [ModelEmptyset V] {n : ℕ} (s : ℕ → V)
     (xs : Fin n → V) (a : V) : intIsEmptyset.Realize (replaceInitialValues s
     ![a]) xs ↔ ExtIsEmptyset a := by
   rw [intIsEmptyset, ExtIsEmptyset]
   simp
 
+/--
+@isnad1 id=iff.0h4v.s5.db948f931ca7 from=translated src=- shape=4a08e9ca vocab=83a691ec
+-/
 @[simp]
 theorem realize_is_emptyset' [ModelEmptyset V] {n : ℕ} (s : ℕ → V)
     (xs : Fin n → V) : intIsEmptyset.Realize s xs ↔ ExtIsEmptyset (s 0) := by
   rw [intIsEmptyset, ExtIsEmptyset]
   simp [snoc_conv]
 
+/--
+@isnad1 id=iff.0h5v.s6.c5a2ff0c5261 from=translated src=- shape=db3aa6c2 vocab=daea34d4
+-/
 @[simp]
 theorem realize_is_emptyset'' [ModelEmptyset V] {n : ℕ} (s : ℕ → V)
     (xs : Fin n → V) (t : LZFC.Term (ℕ ⊕ Fin n)) :
@@ -194,7 +213,9 @@ theorem realize_is_emptyset'' [ModelEmptyset V] {n : ℕ} (s : ℕ → V)
   rw [intIsEmptyset', ExtIsEmptyset]
   simp
 
-/-- The emptyset exists. -/
+/-- The emptyset exists.
+@isnad1 id=ex.0h1v.s3.e2c9a8c952fb from=translated src=- shape=1bfa7afd vocab=74cc19a2
+-/
 theorem ext_emptyset_exists [ModelEmptyset V] : ∃ (emp : V), ExtIsEmptyset emp := by
   obtain ⟨e, h_e⟩ := realize_ex.mp
     (ModelEmptyset.emptyset_exists (default : ℕ → V) default)
@@ -203,13 +224,17 @@ theorem ext_emptyset_exists [ModelEmptyset V] : ∃ (emp : V), ExtIsEmptyset emp
   rw [show (0 : Fin 1) = Fin.last 0 from rfl, snoc_conv, snoc_last] at h_e
   exact h_e
 
-/-- The emptyset is unique. -/
+/-- The emptyset is unique.
+@isnad1 id=eq.2h3v.s4.6770a1f90342 from=translated src=- shape=93929c05 vocab=74cc19a2
+-/
 theorem ext_emptyset_unique [ModelEmptyset V] {a b : V} :
     ExtIsEmptyset a → ExtIsEmptyset b → a = b := by
   intro h_a h_b
   exact ModelSets.extensionality fun z ↦ iff_of_false (h_a z) (h_b z)
 
-/-- The emptyset is unique internally. -/
+/-- The emptyset is unique internally.
+@isnad1 id=realize.0h4v.s9.34c39d8e2eb1 from=translated src=- shape=ca358a50 vocab=3a182c00
+-/
 theorem int_emptyset_unique [ModelEmptyset V] {n : ℕ} {s : ℕ → V} {xs : Fin n → V} :
     (∀'∀'(intIsEmptyset' (bv' 0) ⟹ intIsEmptyset' (bv' 1) ⟹
       bv' 0 =' bv' 1)).Realize s xs := by
@@ -249,6 +274,9 @@ def ExtIsSingleton [ModelPairing V] (a b : V) : Prop := ∀ (x : V), (x ∈ b) �
 /-- Describe c is an unordered pair of a and b. -/
 def ExtIsPair [ModelPairing V] (a b c : V) : Prop := ∀ (x : V), (x ∈ c) ↔ (x = a ∨ x = b)
 
+/--
+@isnad1 id=iff.0h4v.s5.385e232c50e3 from=translated src=- shape=3385eeaf vocab=4dc79ce3
+-/
 @[simp]
 theorem realize_is_singleton [ModelPairing V] {n : ℕ} (s : ℕ → V)
     (xs : Fin n → V) : intIsSingleton.Realize s xs ↔
@@ -256,6 +284,9 @@ theorem realize_is_singleton [ModelPairing V] {n : ℕ} (s : ℕ → V)
   rw [intIsSingleton, ExtIsSingleton]
   simp
 
+/--
+@isnad1 id=iff.0h6v.s6.fc22293bb564 from=translated src=- shape=d254951d vocab=153e4bab
+-/
 @[simp]
 theorem realize_is_singleton' [ModelPairing V] {n : ℕ} (s : ℕ → V)
     (xs : Fin n → V) (t₁ t₂ : LZFC.Term (ℕ ⊕ Fin n)) :
@@ -264,44 +295,59 @@ theorem realize_is_singleton' [ModelPairing V] {n : ℕ} (s : ℕ → V)
   rw [intIsSingleton']
   simp_all
 
+/--
+@isnad1 id=iff.0h4v.s5.4d95363a6f94 from=translated src=- shape=e6442cec vocab=d7f64d40
+-/
 @[simp]
 theorem realize_is_pair [ModelPairing V] {n : ℕ} (s : ℕ → V)
     (xs : Fin n → V) : intIsPair.Realize s xs ↔ ExtIsPair (s 0) (s 1) (s 2) := by
   rw [intIsPair, ExtIsPair]
   simp
 
-/-- Pairing Axiom described externally. -/
+/-- Pairing Axiom described externally.
+@isnad1 id=ex.0h3v.s4.eed4015139e7 from=translated src=- shape=e64d5ae5 vocab=4c7106e5
+-/
 theorem ext_pairing [ModelPairing V] (a b : V) :
     ∃ (c : V), ExtIsPair a b c := by
   suffices h : ∀ (x y : V), ∃ (z : V), ExtIsPair x y z by exact h a b
   have h0 := ModelPairing.pairing (default : ℕ → V) default
   simpa [realize_liftAt'] using h0
 
-/-- The singleton is unique. -/
+/-- The singleton is unique.
+@isnad1 id=eq.2h4v.s4.fc558091658e from=translated src=- shape=3b21c9c1 vocab=fa8ee141
+-/
 theorem ext_singleton_unique [ModelPairing V] {a b b' : V} :
     ExtIsSingleton a b → ExtIsSingleton a b' → b = b' := by
   intro h_b h_b'
   exact ModelSets.extensionality fun z ↦ (h_b z).trans (h_b' z).symm
 
-/-- {a} = {b} implies a = b. -/
+/-- {a} = {b} implies a = b.
+@isnad1 id=eq.2h4v.s4.a472a2c48968 from=translated src=- shape=a8d24077 vocab=fa8ee141
+-/
 theorem ext_singleton_inj [ModelPairing V] {a a' b : V} :
     ExtIsSingleton a b → ExtIsSingleton a' b → a = a' := by
   intro h_a h_a'
   exact ((h_a a).symm.trans (h_a' a)).mp rfl
 
-/-- {a, a} = {a}. -/
+/-- {a, a} = {a}.
+@isnad1 id=iff.0h3v.s4.eada11ce495d from=translated src=- shape=7ff979e3 vocab=a16f5c8f
+-/
 theorem singleton_by_pair [ModelPairing V] {a b : V} :
     ExtIsSingleton a b ↔ ExtIsPair a a b := by
   unfold ExtIsSingleton ExtIsPair
   exact forall_congr' fun x ↦ by rw [or_self]
 
-/-- The unordered pair is unique. -/
+/-- The unordered pair is unique.
+@isnad1 id=eq.2h5v.s4.6ae338e580d2 from=translated src=- shape=b6730af4 vocab=4c7106e5
+-/
 theorem ext_pair_unique [ModelPairing V] {a b c c' : V} :
     (ExtIsPair a b c) → (ExtIsPair a b c') → c = c' := by
   intro h_c h_c'
   exact ModelSets.extensionality fun z ↦ (h_c z).trans (h_c' z).symm
 
-/-- Pairing is injective up to ordering. -/
+/-- Pairing is injective up to ordering.
+@isnad1 id=or.2h6v.s5.725ee8ebd49f from=translated src=- shape=8ef8edb3 vocab=4c7106e5
+-/
 theorem ext_pairing_inj [ModelPairing V] {a b a' b' c : V} :
     (ExtIsPair a b c) → (ExtIsPair a' b' c) →
     (a = a' ∧ b = b') ∨ (a = b' ∧ b = a') := by
@@ -320,13 +366,17 @@ theorem ext_pairing_inj [ModelPairing V] {a b a' b' c : V} :
     · simp_all
     · simp_all
 
-/-- Every element has a singleton. -/
+/-- Every element has a singleton.
+@isnad1 id=ex.0h2v.s4.d5df7e33cf52 from=translated src=- shape=7b660bab vocab=fa8ee141
+-/
 theorem ext_singleton [ModelPairing V] : ∀ (a : V), ∃ (b : V), ExtIsSingleton a b := by
   intro a
   obtain ⟨b, hb⟩ := ext_pairing a a
   exact ⟨b, singleton_by_pair.mpr hb⟩
 
-/-- {a} = {b, c} implies a=b=c. -/
+/-- {a} = {b, c} implies a=b=c.
+@isnad1 id=and.2h5v.s5.0262f692e699 from=translated src=- shape=42a75de5 vocab=a16f5c8f
+-/
 theorem singleton_eq_pair [ModelPairing V] {a b c x : V} :
     ExtIsSingleton a x → ExtIsPair b c x → a = b ∧ a = c := by
   intro h_a h_bc
@@ -344,6 +394,9 @@ def intIsOrderedPair {n : ℕ} : LZFC.BoundedFormula ℕ n :=
 def ExtIsOrderedPair [ModelPairing V] (a b c : V) :=
   ∀ (x : V), (x ∈ c) ↔ (ExtIsSingleton a x) ∨ (ExtIsPair a b x)
 
+/--
+@isnad1 id=iff.0h4v.s5.11b715ef74ef from=translated src=- shape=e6442cec vocab=94359c9a
+-/
 @[simp]
 theorem realize_is_ordered_pair [ModelPairing V] {n : ℕ} (s : ℕ → V)
     (xs : Fin n → V) : intIsOrderedPair.Realize s xs ↔
@@ -351,7 +404,9 @@ theorem realize_is_ordered_pair [ModelPairing V] {n : ℕ} (s : ℕ → V)
   rw [intIsOrderedPair, ExtIsOrderedPair]
   simp [realize_liftAt']
 
-/-- The ordered pair exists. -/
+/-- The ordered pair exists.
+@isnad1 id=ex.0h3v.s4.6b448d6dfa69 from=translated src=- shape=e64d5ae5 vocab=90eaf6c9
+-/
 theorem ext_ordered_pair [ModelPairing V] (a b : V) :
     ∃ (c : V), ExtIsOrderedPair a b c := by
   obtain ⟨d1, h_d1⟩ := ext_singleton a
@@ -365,13 +420,17 @@ theorem ext_ordered_pair [ModelPairing V] (a b : V) :
     ⟨fun h1 ↦ h1 ▸ h_d2, fun h1 ↦ ext_pair_unique h1 h_d2⟩
   rw [h_d1', h_d2']
 
-/-- The ordered pair is unique. -/
+/-- The ordered pair is unique.
+@isnad1 id=eq.2h5v.s4.a1f3ae777a54 from=translated src=- shape=b6730af4 vocab=90eaf6c9
+-/
 theorem ext_ordered_pair_unique [ModelPairing V] (a b c c' : V) :
     ExtIsOrderedPair a b c → ExtIsOrderedPair a b c' → c = c' := by
   intro h_c h_c'
   exact ModelSets.extensionality fun z ↦ (h_c z).trans (h_c' z).symm
 
-/-- The ordered pair is injective. -/
+/-- The ordered pair is injective.
+@isnad1 id=and.2h6v.s5.f5750a2ef893 from=translated src=- shape=9f9d9636 vocab=90eaf6c9
+-/
 theorem ext_ordered_pair_inj [ModelPairing V] (a b a' b' c : V) :
     ExtIsOrderedPair a b c → ExtIsOrderedPair a' b' c → a = a' ∧ b = b' := by
   rw [ExtIsOrderedPair, ExtIsOrderedPair]
@@ -414,7 +473,9 @@ theorem ext_ordered_pair_inj [ModelPairing V] (a b a' b' c : V) :
       · exact h3.right
       · rw [h3.right, h1.symm, h3.left]
 
-/-- The ordered pair is injective internally. -/
+/-- The ordered pair is injective internally.
+@isnad1 id=realize.0h3v.s10.bc94c3be5da0 from=translated src=- shape=d7ba56b2 vocab=e493c754
+-/
 theorem int_ordered_pair_inj [ModelPairing V] (s : ℕ → V) (xs : Fin 0 → V) :
     (∀'∀'∀'∀'∀'(
     intIsOrderedPair.liftAndReplaceFV 5 0 ![bv 5 0, bv 5 1, bv 5 4]
@@ -429,13 +490,17 @@ theorem int_ordered_pair_inj [ModelPairing V] (s : ℕ → V) (xs : Fin 0 → V)
 /-- Model with both emptyset and pairing. -/
 class ModelEP (V : Type u) extends ModelEmptyset V, ModelPairing V
 
-/-- A singleton can be formed for any emptyset element. -/
+/-- A singleton can be formed for any emptyset element.
+@isnad1 id=ex.1h2v.s4.796984923e74 from=translated src=- shape=e21bf606 vocab=4711a893
+-/
 theorem ext_singleton_of_emptyset [ModelEP V] : ∀ (e : V),
     ExtIsEmptyset e → ∃ (a : V), ExtIsSingleton e a := by
   intro e _he
   exact ext_singleton e
 
-/-- A singleton can be formed for the emptyset internally. -/
+/-- A singleton can be formed for the emptyset internally.
+@isnad1 id=realize.0h3v.s8.a0f38dd83aba from=translated src=- shape=078f3c7e vocab=5ade7813
+-/
 theorem int_singleton_of_emptyset [ModelEP V] (s : ℕ → V) (xs : Fin 0 → V) :
     (∀'(intIsEmptyset.liftAndReplaceFV 1 0 ![bv 1 0]
     ⟹∃'(intIsSingleton.liftAndReplaceFV 2 0 ![bv 2 0, bv 2 1]))).Realize s xs := by
@@ -465,7 +530,9 @@ class ModelUnion (V : Type u) extends ModelSets V where
 /-- Model with emptyset, pairing, and union. -/
 class ModelEPU (V : Type u) extends ModelEmptyset V, ModelPairing V, ModelUnion V
 
-/-- The union of `(a, b)` equals `{a, b}`. -/
+/-- The union of `(a, b)` equals `{a, b}`.
+@isnad1 id=extispai.2h5v.s5.e2345db016a3 from=translated src=- shape=c1f6254e vocab=39b80f02
+-/
 theorem union_of_ordered_pair [ModelEPU V] {a b c d : V} :
     ExtIsOrderedPair a b c → ExtIsUnion c d → ExtIsPair a b d := by
   intro h_abc h_cd x
@@ -508,6 +575,9 @@ def ExtNotIsSubset [ModelSets V] (a b : V) := ¬ ∀ (x : V), (x ∈ a → x ∈
 than a bare notation because a bare `⊆` notation is shadowed by the core one. -/
 instance instHasSubsetOfModelSets [ModelSets V] : HasSubset V := ⟨ExtIsSubset⟩
 
+/--
+@isnad1 id=iff.0h3v.s4.cc086badcfbd from=translated src=- shape=865b2251 vocab=c78690ed
+-/
 @[simp]
 theorem subset_iff_extIsSubset [ModelSets V] (a b : V) : a ⊆ b ↔ ExtIsSubset a b := Iff.rfl
 
@@ -535,12 +605,18 @@ class ModelPowerset (V : Type u) extends ModelSets V where
 class ModelEPUP (V : Type u) extends ModelEmptyset V, ModelPairing V,
     ModelUnion V, ModelPowerset V
 
+/--
+@isnad1 id=iff.0h4v.s5.17168eafb453 from=translated src=- shape=3385eeaf vocab=88b4198d
+-/
 @[simp]
 theorem realize_is_subset [ModelPowerset V] {n : ℕ} (s : ℕ → V) (xs : Fin n → V) :
     intIsSubset.Realize s xs ↔ ExtIsSubset (s 0) (s 1) := by
   rw [intIsSubset, ExtIsSubset]
   simp
 
+/--
+@isnad1 id=iff.0h6v.s6.91da2fd2ae1a from=translated src=- shape=d254951d vocab=75fa0f8a
+-/
 @[simp]
 theorem realize_is_subset' [ModelPowerset V] {n : ℕ} (s : ℕ → V)
     (xs : Fin n → V) (t₁ t₂ : LZFC.Term (ℕ ⊕ Fin n)) :
@@ -549,6 +625,9 @@ theorem realize_is_subset' [ModelPowerset V] {n : ℕ} (s : ℕ → V)
   unfold intIsSubset' makeTsN intIsSubset ExtIsSubset
   simp
 
+/--
+@isnad1 id=iff.0h4v.s5.3b15714741f5 from=translated src=- shape=3385eeaf vocab=4a861623
+-/
 @[simp]
 theorem realize_is_powerset [ModelPowerset V] {n : ℕ} (s : ℕ → V)
     (xs : Fin n → V) : intIsPowerset.Realize s xs ↔ ExtIsPowerset (s 0) (s 1) := by
@@ -556,6 +635,9 @@ theorem realize_is_powerset [ModelPowerset V] {n : ℕ} (s : ℕ → V)
   unfold intIsSubset ExtIsSubset
   simp [realize_liftAt']
 
+/--
+@isnad1 id=iff.0h6v.s6.5c277aff11bd from=translated src=- shape=d254951d vocab=e571669d
+-/
 @[simp]
 theorem realize_is_powerset' [ModelPowerset V] {n : ℕ} (s : ℕ → V)
     (xs : Fin n → V) (t₁ t₂ : LZFC.Term (ℕ ⊕ Fin n)) :
@@ -564,19 +646,25 @@ theorem realize_is_powerset' [ModelPowerset V] {n : ℕ} (s : ℕ → V)
   rw [intIsPowerset']
   simp_all
 
-/-- Every set is a subset of itself. -/
+/-- Every set is a subset of itself.
+@isnad1 id=subset.0h2v.s4.85dc42b39605 from=translated src=- shape=e6608552 vocab=66c3ce49
+-/
 theorem subset_self [ModelEPUP V] : ∀ (a : V), a ⊆ a := by
   intro a x h
   exact h
 
-/-- Every set is a subset of itself internally. -/
+/-- Every set is a subset of itself internally.
+@isnad1 id=realize.0h3v.s6.cfc5185e58e0 from=translated src=- shape=791fdb3b vocab=66f8bdd9
+-/
 theorem int_subset_self [ModelEPUP V] {s : ℕ → V} {xs : Fin 0 → V} :
     (∀' (bv 1 0 ⊆' bv 1 0)).Realize s xs := by
   simp only [Nat.reduceAdd, Fin.isValue, realize_all, Nat.succ_eq_add_one, snoc_conv,
     realize_is_subset', realize_bv]
   apply subset_self
 
-/-- P(∅)={∅} -/
+/-- P(∅)={∅}
+@isnad1 id=extissin.2h3v.s5.cebe52115c54 from=translated src=- shape=885f7099 vocab=a4014151
+-/
 theorem powerset_of_emptyset [ModelEPUP V] : ∀ (emp a : V),
     ExtIsEmptyset emp → ExtIsPowerset emp a → ExtIsSingleton emp a := by
   intro emp a
@@ -597,7 +685,9 @@ theorem powerset_of_emptyset [ModelEPUP V] : ∀ (emp a : V),
     rw [h1]
     apply subset_self
 
-/-- P(∅)={∅} internally. -/
+/-- P(∅)={∅} internally.
+@isnad1 id=realize.0h3v.s9.50edab7f7859 from=translated src=- shape=32e99187 vocab=d962848e
+-/
 theorem int_powerset_of_emptyset [ModelEPUP V] {s : ℕ → V}
     {xs : Fin 0 → V} : (∀'∀'(intIsEmptyset' (bv' 0) ⟹
     intIsPowerset' (bv' 0) (bv' 1) ⟹ intIsSingleton' (bv' 0) (bv' 1))).Realize s xs := by
@@ -618,6 +708,9 @@ def intIsSuccessor' {n : ℕ} (t₁ t₂ : LZFC.Term (ℕ ⊕ Fin n)) :
 /-- Externally, `b` is a successor of `a`. -/
 def ExtIsSuccessor [ModelSets V] (a b : V) := ∀ (x : V), x ∈ b ↔ (x ∈ a ∨ x = a)
 
+/--
+@isnad1 id=iff.0h4v.s5.d5562c69e08a from=translated src=- shape=3385eeaf vocab=86f4f11c
+-/
 @[simp]
 theorem realize_is_successor [ModelPowerset V] {n : ℕ} (s : ℕ → V)
     (xs : Fin n → V) : intIsSuccessor.Realize s xs ↔
@@ -625,6 +718,9 @@ theorem realize_is_successor [ModelPowerset V] {n : ℕ} (s : ℕ → V)
   rw [intIsSuccessor, ExtIsSuccessor]
   simp
 
+/--
+@isnad1 id=iff.0h6v.s6.3d393a21a477 from=translated src=- shape=d254951d vocab=44c447c7
+-/
 @[simp]
 theorem realize_is_successor' [ModelPowerset V] {n : ℕ} (s : ℕ → V)
     (xs : Fin n → V) (t₁ t₂ : LZFC.Term (ℕ ⊕ Fin n)) :
@@ -649,13 +745,17 @@ def ExtIsInductive [ModelEmptyset V] (a : V) :=
   (∀ (emp : V), ExtIsEmptyset emp → emp ∈ a) ∧
   (∀ (x : V), x ∈ a → ∀ (y : V), ExtIsSuccessor x y → y ∈ a)
 
-/-- ∅ belongs to every inductive set. -/
+/-- ∅ belongs to every inductive set.
+@isnad1 id=iseltof.2h3v.s5.54635129a329 from=translated src=- shape=9ec019a3 vocab=1bae8735
+-/
 theorem ext_emp_in_inductive [ModelEPUP V] {emp a : V} :
     ExtIsEmptyset emp → ExtIsInductive a → emp ∈ a := by
   intro h_emp h_a
   exact h_a.left emp h_emp
 
-/-- If a is inductive and x∈a, then S(x)∈a. -/
+/-- If a is inductive and x∈a, then S(x)∈a.
+@isnad1 id=iseltof.3h4v.s5.c0e6fbef0c29 from=translated src=- shape=3fa5ad6b vocab=c70527ed
+-/
 theorem ext_inductive_one_step [ModelEPUP V] {a y : V} (x : V) :
     ExtIsInductive a → x ∈ a → ExtIsSuccessor x y → y ∈ a := by
   intro h_a h_xa h_xy
@@ -702,6 +802,9 @@ def ExtIsSeparation [ModelSets V] {n : ℕ} (s : ℕ → V) (xs : Fin n → V)
     (ϕ : LZFC.BoundedFormula ℕ n) (a b : V) : Prop := ∀ (x : V),
   (x ∈ b) ↔ (x ∈ a ∧ ϕ.Realize (replaceInitialValues s ![x]) xs)
 
+/--
+@isnad1 id=iff.0h5v.s5.81cccb8c3b06 from=translated src=- shape=9af6e202 vocab=b627d8f6
+-/
 @[simp]
 theorem realize_separation [ModelSets V] {n : ℕ} (s : ℕ → V)
     (xs : Fin n → V) (ϕ : LZFC.BoundedFormula ℕ n) :
@@ -709,6 +812,9 @@ theorem realize_separation [ModelSets V] {n : ℕ} (s : ℕ → V)
   unfold intIsSeparation ExtIsSeparation
   simp [realize_fixedSnoc_makeTsN_1]
 
+/--
+@isnad1 id=iff.0h7v.s6.2ef300edce2c from=translated src=- shape=2cb8f187 vocab=29795b1e
+-/
 @[simp]
 theorem realize_separation'_no_lift [ModelSets V] {n : ℕ}
     (ϕ : LZFC.BoundedFormula ℕ n) (t₁ t₂ : LZFC.Term (ℕ ⊕ Fin n))
@@ -718,6 +824,9 @@ theorem realize_separation'_no_lift [ModelSets V] {n : ℕ}
   unfold intIsSeparation' ExtIsSeparation
   simp [realize_fixedSnoc_makeTsN_1]
 
+/--
+@isnad1 id=iff.1h8v.s7.5defca87c774 from=translated src=- shape=8a415bb0 vocab=74b86576
+-/
 @[simp]
 theorem realize_separation'_lift [ModelSets V] {n : ℕ}
     (ϕ : LZFC.BoundedFormula ℕ n) (n' : ℕ) (h_n' : n' > 0)
@@ -737,7 +846,9 @@ theorem realize_separation'_lift [ModelSets V] {n : ℕ}
       realize_liftAt' (h_n_prime_nezero := h_n') xs (le_refl n)]
   simp_all
 
-/-- A lifted `ExtIsSeparation` is equivalent to the unlifted one with restricted context. -/
+/-- A lifted `ExtIsSeparation` is equivalent to the unlifted one with restricted context.
+@isnad1 id=iff.1h8v.s6.94ed1d2b85b6 from=translated src=- shape=3725fe7f vocab=0107d1b6
+-/
 theorem lift_ExtIsSeparation [ModelSets V] {n n' : ℕ} {h_n' : n' > 0}
     {s : ℕ → V} {xs : Fin (n + n') → V} {ϕ : LZFC.BoundedFormula ℕ n}
     {a b : V} : ExtIsSeparation s xs (ϕ.liftAt n' n) a b ↔
@@ -773,7 +884,9 @@ def intIsOmega' {n : ℕ} (t : LZFC.Term (ℕ ⊕ Fin n)) :
 def ExtIsOmega [ModelEPUPI V] (a : V) := ExtIsInductive a ∧
   (∀ (b : V), ExtIsInductive b → a ⊆ b)
 
-/-- ω is closed under the successor operation. -/
+/-- ω is closed under the successor operation.
+@isnad1 id=iseltof.3h4v.s5.2b8fbf7ecbbf from=translated src=- shape=056d196a vocab=a1dcbd5d
+-/
 theorem omega_closed_under_succ [ModelEPUPIC V] : ∀ (omega : V),
     ExtIsOmega omega → ∀ (x y : V), (x ∈ omega → ExtIsSuccessor x y →
     y ∈ omega) := by

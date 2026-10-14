@@ -33,7 +33,9 @@ noncomputable section
 
 variable {Ω : Type*} [MeasurableSpace Ω]
 
-/-- Chernoff bound via cgf: For any t ≥ 0, P(X ≥ ε) ≤ exp(cgf(t) - t·ε). -/
+/-- Chernoff bound via cgf: For any t ≥ 0, P(X ≥ ε) ≤ exp(cgf(t) - t·ε).
+@isnad1 id=le.2h5v.s6.ad6915ba18c4 from=translated src=- shape=9a536019 vocab=e0a1f290
+-/
 theorem chernoff_bound_cgf {μ : Measure Ω} [IsFiniteMeasure μ]
     {X : Ω → ℝ} {ε t : ℝ} (ht : 0 ≤ t)
     (h_int : Integrable (fun ω => exp (t * X ω)) μ) :
@@ -41,7 +43,9 @@ theorem chernoff_bound_cgf {μ : Measure Ω} [IsFiniteMeasure μ]
   ProbabilityTheory.measure_ge_le_exp_cgf ε ht h_int
 
 /-- Chernoff bound optimized for sub-Gaussian random variables.
-    If cgf(X, t) ≤ t²σ²/2, then P(X ≥ u) ≤ exp(-u²/(2σ²)). -/
+    If cgf(X, t) ≤ t²σ²/2, then P(X ≥ u) ≤ exp(-u²/(2σ²)).
+@isnad1 id=le.4h5v.s7.acf7967a0200 from=translated src=- shape=f1cb0d83 vocab=cb4a3a63
+-/
 theorem chernoff_bound_subGaussian {μ : Measure Ω} [IsFiniteMeasure μ]
     {X : Ω → ℝ} {σ u : ℝ} (hσ : 0 < σ) (hu : 0 < u)
     (h_sgb : ∀ t : ℝ, ProbabilityTheory.cgf X μ t ≤ t^2 * σ^2 / 2)

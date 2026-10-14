@@ -30,7 +30,9 @@ private theorem rowTwoOptions_eq :
     (rowOptions 2).reverse = List.ofFn (fun index => packedRow (rowTwoMask index)) := by
   decide
 
-/-- Every legal first row has one of the 35 explicit masks. -/
+/-- Every legal first row has one of the 35 explicit masks.
+@isnad1 id=ex.0h1v.s5.490bccce6602 from=translated src=- shape=6b61e637 vocab=aefd1201
+-/
 theorem exists_rowOneIndex (Q : OctagonIncidence) :
     ∃ index : Fin 35, Q.targets 1 = packedRow (rowOneMask index) := by
   have hmem : Q.targets 1 ∈ (rowOptions 1).reverse := by
@@ -39,7 +41,9 @@ theorem exists_rowOneIndex (Q : OctagonIncidence) :
   obtain ⟨index, hindex⟩ := hmem
   exact ⟨index, hindex.symm⟩
 
-/-- Every legal second row has one of the 35 explicit masks. -/
+/-- Every legal second row has one of the 35 explicit masks.
+@isnad1 id=ex.0h1v.s5.cd3bfc1313fc from=translated src=- shape=6b61e637 vocab=749f5a95
+-/
 theorem exists_rowTwoIndex (Q : OctagonIncidence) :
     ∃ index : Fin 35, Q.targets 2 = packedRow (rowTwoMask index) := by
   have hmem : Q.targets 2 ∈ (rowOptions 2).reverse := by
@@ -114,7 +118,9 @@ def rowSymmetryCertificate : Fin 35 → RowSymmetryCertificate := ![
   { orbit := 6, forwardCode := 16427208, inverseCode := 16430344 }
 ]
 
-/-- Kernel audit of all 35 explicit symmetry certificates. -/
+/-- Kernel audit of all 35 explicit symmetry certificates.
+@isnad1 id=valid.0h1v.s3.b892eca0db00 from=translated src=- shape=ecacdb7d vocab=c7fc3a60
+-/
 theorem rowSymmetryCertificate_valid (index : Fin 35) :
     (rowSymmetryCertificate index).Valid (rowOneMask index) := by
   fin_cases index <;> decide
@@ -141,7 +147,9 @@ private theorem map_eq_of_membership
     refine ⟨equivalence.symm vertex, ?_, by simp⟩
     exact (hmembership (equivalence.symm vertex)).mpr (by simpa using htarget)
 
-/-- Relabel a normalized system so that row one is one of seven canonical rows. -/
+/-- Relabel a normalized system so that row one is one of seven canonical rows.
+@isnad1 id=ex.4h3v.s8.53e47191521d from=translated src=- shape=dea4a009 vocab=63a98620
+-/
 theorem canonicalize_rowOne
     {p : Vertex → Plane} {Q : OctagonIncidence}
     (hC : ConvexIndependent ℝ p) (hR : Realises p Q) (hN : Q.Normalized)

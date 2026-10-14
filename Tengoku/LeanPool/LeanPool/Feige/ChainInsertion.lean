@@ -29,16 +29,25 @@ namespace Feige
 def liftChainState {n : ℕ} (S : Finset (Fin n)) : Finset (Fin (n + 1)) :=
   S.map Fin.castSuccEmb
 
+/--
+@isnad1 id=iff.0h3v.s6.14f46795cca3 from=translated src=- shape=b990fb3a vocab=5f682b48
+-/
 @[simp]
 theorem mem_liftChainState {n : ℕ} (S : Finset (Fin n)) (i : Fin n) :
     i.castSucc ∈ liftChainState S ↔ i ∈ S := by
   simp [liftChainState]
 
+/--
+@isnad1 id=not.0h2v.s6.06fbf8a58f0b from=translated src=- shape=4b4f6c49 vocab=681f553f
+-/
 @[simp]
 theorem last_not_mem_liftChainState {n : ℕ} (S : Finset (Fin n)) :
     Fin.last n ∉ liftChainState S := by
   simp [liftChainState]
 
+/--
+@isnad1 id=eq.0h2v.s4.a8b975632921 from=translated src=- shape=b6cad4f7 vocab=75eea84c
+-/
 @[simp]
 theorem card_liftChainState {n : ℕ} (S : Finset (Fin n)) :
     (liftChainState S).card = S.card := by
@@ -52,18 +61,27 @@ def insertChainPerm {n : ℕ} (σ : Equiv.Perm (Fin n)) (J : Fin (n + 1)) :
   (finSuccEquiv' J).trans
     ((Equiv.optionCongr σ).trans (finSuccEquiv' (Fin.last n)).symm)
 
+/--
+@isnad1 id=eq.0h3v.s7.4103edf9dbe8 from=translated src=- shape=bc45f742 vocab=45cfa82b
+-/
 @[simp]
 theorem insertChainPerm_at {n : ℕ} (σ : Equiv.Perm (Fin n))
     (J : Fin (n + 1)) :
     insertChainPerm σ J J = Fin.last n := by
   simp [insertChainPerm]
 
+/--
+@isnad1 id=eq.0h4v.s7.a77549c2d139 from=translated src=- shape=50ebb101 vocab=d1d3b906
+-/
 @[simp]
 theorem insertChainPerm_succAbove {n : ℕ} (σ : Equiv.Perm (Fin n))
     (J : Fin (n + 1)) (i : Fin n) :
     insertChainPerm σ J (J.succAbove i) = (σ i).castSucc := by
   simp [insertChainPerm]
 
+/--
+@isnad1 id=eq.0h3v.s7.be732589ce18 from=translated src=- shape=fac26662 vocab=8cfa5df7
+-/
 @[simp]
 theorem insertChainPerm_symm_last {n : ℕ}
     (σ : Equiv.Perm (Fin n)) (J : Fin (n + 1)) :
@@ -71,6 +89,9 @@ theorem insertChainPerm_symm_last {n : ℕ}
   apply (insertChainPerm σ J).injective
   simp
 
+/--
+@isnad1 id=eq.0h4v.s8.b3bbc55e92ea from=translated src=- shape=b45aeaf9 vocab=603b95b8
+-/
 @[simp]
 theorem insertChainPerm_symm_castSucc {n : ℕ}
     (σ : Equiv.Perm (Fin n)) (J : Fin (n + 1)) (i : Fin n) :
@@ -117,7 +138,9 @@ def insertedChainState {n : ℕ} (σ : Equiv.Perm (Fin n))
     insert (Fin.last n) <| liftChainState (chainState σ
       ⟨j.val - 1, by omega⟩)
 
-/-- The enlarged chain state before the insertion rank. -/
+/-- The enlarged chain state before the insertion rank.
+@isnad1 id=eq.1h4v.s6.28459fa2e80d from=translated src=- shape=a0eb8a73 vocab=969b5f8c
+-/
 theorem insertedChainState_before {n : ℕ} (σ : Equiv.Perm (Fin n))
     (J r : Fin (n + 1)) (hr : r ≤ J) :
     insertedChainState σ J r.castSucc =
@@ -126,7 +149,9 @@ theorem insertedChainState_before {n : ℕ} (σ : Equiv.Perm (Fin n))
   congr 2
 
 /-- After the insertion rank, the new state consists of the corresponding
-old state together with the inserted element. -/
+old state together with the inserted element.
+@isnad1 id=eq.1h4v.s7.13b996da6eab from=translated src=- shape=f506de4b vocab=37dbc055
+-/
 theorem insertedChainState_after {n : ℕ} (σ : Equiv.Perm (Fin n))
     (J r : Fin (n + 1)) (hr : J ≤ r) :
     insertedChainState σ J r.succ =
@@ -137,6 +162,9 @@ theorem insertedChainState_after {n : ℕ} (σ : Equiv.Perm (Fin n))
     have : r.val + 1 ≤ r.val := le_trans h hr
     omega
 
+/--
+@isnad1 id=eq.0h3v.s6.093f06176fa1 from=translated src=- shape=5548b3da vocab=71d13174
+-/
 @[simp]
 theorem insertedChainState_zero {n : ℕ} (σ : Equiv.Perm (Fin n))
     (J : Fin (n + 1)) :
@@ -144,6 +172,9 @@ theorem insertedChainState_zero {n : ℕ} (σ : Equiv.Perm (Fin n))
   have h0 : (0 : Fin (n + 1)) ≤ J := Fin.zero_le J
   simpa [liftChainState] using insertedChainState_before σ J 0 h0
 
+/--
+@isnad1 id=eq.0h3v.s6.a39acb0f0c34 from=translated src=- shape=96050e5d vocab=a45dcc62
+-/
 @[simp]
 theorem insertedChainState_last {n : ℕ} (σ : Equiv.Perm (Fin n))
     (J : Fin (n + 1)) :
@@ -157,6 +188,9 @@ theorem insertedChainState_last {n : ℕ} (σ : Equiv.Perm (Fin n))
   · obtain ⟨k, rfl⟩ := Fin.exists_castSucc_eq.mpr hi
     simp
 
+/--
+@isnad1 id=eq.0h4v.s6.0f9620493c88 from=translated src=- shape=fe9b3b1d vocab=70556966
+-/
 @[simp]
 theorem card_insertedChainState {n : ℕ} (σ : Equiv.Perm (Fin n))
     (J : Fin (n + 1)) (j : Fin (n + 2)) :
@@ -169,7 +203,9 @@ theorem card_insertedChainState {n : ℕ} (σ : Equiv.Perm (Fin n))
     omega
 
 /-- Before the insertion rank, `insertChainPerm` produces the lifted old
-chain state. -/
+chain state.
+@isnad1 id=eq.1h4v.s6.e486307e635d from=translated src=- shape=979b1705 vocab=9e5f76a0
+-/
 theorem chainState_insertChainPerm_before {n : ℕ}
     (σ : Equiv.Perm (Fin n)) (J r : Fin (n + 1)) (hr : r ≤ J) :
     chainState (insertChainPerm σ J) r.castSucc =
@@ -188,7 +224,9 @@ theorem chainState_insertChainPerm_before {n : ℕ}
     exact succAbove_val_lt_of_le J r hr (σ.symm i)
 
 /-- After the insertion rank, `insertChainPerm` produces the lifted old
-chain state with the new coordinate adjoined. -/
+chain state with the new coordinate adjoined.
+@isnad1 id=eq.1h4v.s7.46060ad8b072 from=translated src=- shape=7d3b2925 vocab=50bb115f
+-/
 theorem chainState_insertChainPerm_after {n : ℕ}
     (σ : Equiv.Perm (Fin n)) (J r : Fin (n + 1)) (hr : J ≤ r) :
     chainState (insertChainPerm σ J) r.succ =
@@ -207,7 +245,9 @@ theorem chainState_insertChainPerm_after {n : ℕ}
     exact succAbove_val_lt_succ_of_le J r hr (σ.symm i)
 
 /-- The direct inserted-state formula agrees at every level with the
-maximal chain encoded by the inserted permutation. -/
+maximal chain encoded by the inserted permutation.
+@isnad1 id=eq.0h4v.s6.cf9fcf9896f9 from=translated src=- shape=028b7f09 vocab=facba310
+-/
 theorem chainState_insertChainPerm_eq_insertedChainState {n : ℕ}
     (σ : Equiv.Perm (Fin n)) (J : Fin (n + 1)) (j : Fin (n + 2)) :
     chainState (insertChainPerm σ J) j =

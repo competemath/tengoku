@@ -215,7 +215,9 @@ def matVec {m n : Nat} (A : Matrix (Fin m) (Fin n) ℝ) (x : Vec n) : Vec m :=
 def tMatVec {m n : Nat} (A : Matrix (Fin m) (Fin n) ℝ) (y : Vec m) : Vec n :=
   fun j => ∑ i, A i j * y i
 
-/-- Finite-dimensional adjointness of `matVec` and `tMatVec`. -/
+/-- Finite-dimensional adjointness of `matVec` and `tMatVec`.
+@isnad1 id=eq.0h5v.s5.2ee0bcbffb2e from=translated src=- shape=79b4b446 vocab=5c077659
+-/
 theorem dot_tMatVec_eq_dot_matVec {m n : Nat}
     (A : Matrix (Fin m) (Fin n) ℝ) (y : Vec m) (x : Vec n) :
     dot x (tMatVec A y) = dot y (matVec A x) := by
@@ -335,7 +337,9 @@ structure HLPNewtonBlockSystem {m n : Nat}
 
 /-- The block-system formulation is equivalent to the previous bundled full
 direction equation.  This direction is useful because the block system exposes the
-Newton matrix whose nonsingularity must be proved from full row rank and interiority. -/
+Newton matrix whose nonsingularity must be proved from full row rank and interiority.
+@isnad1 id=iff.0h6v.s5.d82dcf88a712 from=translated src=- shape=242e1c8d vocab=bfccbde2
+-/
 theorem full_direction_equation_iff_block_system {m n : Nat}
     (P : LPData m n) (w : HSState n) (D : HLPFullDirection m n) (γ : ℝ) :
     HLPFullDirectionEquation P w D γ ↔ HLPNewtonBlockSystem P w D γ := by
@@ -402,12 +406,18 @@ def HLPFullDirection.ofBlockVector {m n : Nat} (u : HLPBlockSpace m n) :
     ds := u.2.2.2.2.1
     dkappa := u.2.2.2.2.2 }
 
+/--
+@isnad1 id=eq.0h3v.s4.db35c5fd7d51 from=translated src=- shape=db68ba20 vocab=043361c0
+-/
 @[simp] theorem HLPFullDirection.of_toBlockVector {m n : Nat}
     (D : HLPFullDirection m n) :
     HLPFullDirection.ofBlockVector (HLPFullDirection.toBlockVector D) = D := by
   cases D
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.03b3b655f016 from=translated src=- shape=db68ba20 vocab=410298fa
+-/
 @[simp] theorem HLPFullDirection.to_ofBlockVector {m n : Nat}
     (u : HLPBlockSpace m n) :
     HLPFullDirection.toBlockVector (HLPFullDirection.ofBlockVector u) = u := by

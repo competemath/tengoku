@@ -63,6 +63,9 @@ def and {n : ℕ} (ϕ1 ϕ2 : L.BoundedFormula α n) : L.BoundedFormula α n :=  
 
 @[inherit_doc] infix : 64 "∧'" => BoundedFormula.and
 
+/--
+@isnad1 id=iff.0h7v.s5.de8273678251 from=translated src=- shape=25246f67 vocab=5603a42c
+-/
 @[simp]
 theorem realize_or [L.Structure V] {n : ℕ}
     {ϕ ψ : L.BoundedFormula ℕ n} {s : ℕ → V} {xs : Fin n → V} :
@@ -70,6 +73,9 @@ theorem realize_or [L.Structure V] {n : ℕ}
   rw [BoundedFormula.or]
   simp only [realize_imp, realize_not, or_iff_not_imp_left]
 
+/--
+@isnad1 id=iff.0h7v.s5.1f931b6c95f5 from=translated src=- shape=25246f67 vocab=776da821
+-/
 @[simp]
 theorem realize_and [L.Structure V] {n : ℕ}
     {ϕ ψ : L.BoundedFormula ℕ n} {s : ℕ → V} {xs : Fin n → V} :
@@ -139,6 +145,9 @@ variable {V : Type u} [L.Structure V]
 
 namespace Term
 
+/--
+@isnad1 id=eq.0h7v.s6.973f6c7667a7 from=translated src=- shape=f58afe8d vocab=953901a6
+-/
 @[simp]
 theorem realize_replaceFV {n : ℕ} {s : ℕ → V} {xs : Fin n → V}
     {t : L.Term (ℕ ⊕ Fin n)} {tsN : ℕ → L.Term (ℕ ⊕ Fin n)} :
@@ -148,6 +157,9 @@ theorem realize_replaceFV {n : ℕ} {s : ℕ → V} {xs : Fin n → V}
   | var i => rcases i with k | k <;> simp [Term.replaceFV]
   | func _f _ts _ih => simp only [Term.replaceFV, Term.realize_func, _ih]
 
+/--
+@isnad1 id=eq.0h7v.s6.ff03c2790146 from=translated src=- shape=e2789d6b vocab=39933c64
+-/
 theorem realize_liftAt'_one {n : ℕ} {s : ℕ → V} {xs : Fin n → V}
     {t : L.Term (ℕ ⊕ Fin n)} {a : V} :
     Term.realize (Sum.elim s (Fin.snoc xs a)) (Term.liftAt 1 n t)
@@ -156,7 +168,9 @@ theorem realize_liftAt'_one {n : ℕ} {s : ℕ → V} {xs : Fin n → V}
 
 /-- Realization of `liftAt n' n t` agrees with realization of `t` when the
   extra context values `xs1` extend `xs` along `castAdd`. Lifts the hypothesis
-  `n + n' ≤ n + 1` from `realize_liftAt` to `m ≤ n`. -/
+  `n + n' ≤ n + 1` from `realize_liftAt` to `m ≤ n`.
+@isnad1 id=eq.1h8v.s6.764dae5f5d06 from=translated src=- shape=a8636729 vocab=f3719f5a
+-/
 theorem realize_liftAt' {n n' : ℕ} {s : ℕ → V} {xs : Fin n → V}
     {xs1 : Fin (n + n') → V} {t : L.Term (ℕ ⊕ Fin n)} :
     (∀ (k : Fin n), xs1 (k.castAdd n')= xs k) →
@@ -175,6 +189,9 @@ end Term
 
 namespace BoundedFormula
 
+/--
+@isnad1 id=iff.0h7v.s6.871d0d81bde4 from=translated src=- shape=66da48e6 vocab=46b3a555
+-/
 @[simp]
 theorem realize_replaceFV {n : ℕ} {s : ℕ → V} {xs : Fin n → V}
     {ϕ : L.BoundedFormula ℕ n} {tsN : ℕ → L.Term (ℕ ⊕ Fin n)} :
@@ -212,7 +229,9 @@ end BoundedFormula
 
 /-- Lifted realization invariant: a formula's realization at lifted context
   matches its realization at the original context, under the hypothesis
-  `m ≤ n`. -/
+  `m ≤ n`.
+@isnad1 id=iff.2h8v.s7.4785d1750bb6 from=translated src=- shape=0e93b628 vocab=0bc9b443
+-/
 theorem realize_liftAt' {n' m : ℕ} {h_n_prime_nezero : n' > 0} {s : ℕ → V} :
     ∀ {n : ℕ} {φ : L.BoundedFormula ℕ n} (xs : Fin (n + n') → V), m ≤ n →
     ((liftAt n' m φ).Realize s xs ↔ φ.Realize s (xs ∘ fun (i : Fin n) =>
@@ -345,22 +364,30 @@ theorem realize_liftAt' {n' m : ℕ} {h_n_prime_nezero : n' > 0} {s : ℕ → V}
     apply ih1
     omega
 
-/-- `replaceInitialValues s ![a] 0 = a`. -/
+/-- `replaceInitialValues s ![a] 0 = a`.
+@isnad1 id=eq.0h3v.s5.09f6731803be from=translated src=- shape=48371c61 vocab=45438060
+-/
 @[simp]
 theorem replaceInitialValues_1_0 {s : ℕ → V} {a : V} :
     replaceInitialValues s ![a] 0 = a := by rfl
 
-/-- `replaceInitialValues s ![a, b] 0 = a`. -/
+/-- `replaceInitialValues s ![a, b] 0 = a`.
+@isnad1 id=eq.0h4v.s5.2eb0baadb0f6 from=translated src=- shape=6815c14b vocab=e6207bdd
+-/
 @[simp]
 theorem replaceInitialValues_2_0 {s : ℕ → V} {a b : V} :
     replaceInitialValues s ![a, b] 0 = a := by rfl
 
-/-- `replaceInitialValues s ![a, b] 1 = b`. -/
+/-- `replaceInitialValues s ![a, b] 1 = b`.
+@isnad1 id=eq.0h4v.s5.39dd885d5f29 from=translated src=- shape=f5197548 vocab=e6207bdd
+-/
 @[simp]
 theorem replaceInitialValues_2_1 {s : ℕ → V} {a b : V} :
     replaceInitialValues s ![a, b] 1 = b := by rfl
 
-/-- `makeTsN ts k = ts (Fin.ofNat (m+1) k)` when `k < m + 1`. -/
+/-- `makeTsN ts k = ts (Fin.ofNat (m+1) k)` when `k < m + 1`.
+@isnad1 id=eq.1h5v.s6.48262dac7792 from=translated src=- shape=bd1842ad vocab=407a5ea2
+-/
 @[simp]
 theorem realize_makeTsN {n m k : ℕ} {ts : Fin (m + 1) → L.Term (ℕ ⊕ Fin n)}
     {h : k < m + 1} : makeTsN ts k = ts (Fin.ofNat (m+1) k) := by

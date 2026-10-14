@@ -55,10 +55,16 @@ def Chain3' : List α → Prop
 
 variable {R}
 
+/--
+@isnad1 id=iff.0h6v.s5.bf8bb7db91e3 from=translated src=- shape=64813643 vocab=c78e184d
+-/
 @[simp]
 theorem chain3_cons {a b c : α} {l : List α} : Chain3 R a b (c :: l) ↔ R a b c ∧ Chain3 R b c l :=
   ⟨fun p => by cases p with | cons n p => exact ⟨n, p⟩, fun ⟨n, p⟩ => p.cons n⟩
 
+/--
+@isnad1 id=chain3.0h4v.s4.f1fe895dd975 from=translated src=- shape=af5eee8a vocab=d2b1e1c5
+-/
 @[simp]
 theorem chain3_nil {a b : α} : Chain3 R a b [] := Chain3.nil
 

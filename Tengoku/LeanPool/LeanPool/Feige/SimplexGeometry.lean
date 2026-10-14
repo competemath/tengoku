@@ -36,10 +36,16 @@ one coordinate from the standard simplex on `Option ι`. -/
 def fullSimplex (ι : Type*) [Fintype ι] : Set (ι → ℝ) :=
   {x | (∀ i, 0 ≤ x i) ∧ ∑ i, x i ≤ 1}
 
+/--
+@isnad1 id=iff.0h2v.s5.1299a8efa10f from=translated src=- shape=2dc3dada vocab=07b72af0
+-/
 theorem mem_fullSimplex_iff {x : ι → ℝ} :
     x ∈ fullSimplex ι ↔ (∀ i, 0 ≤ x i) ∧ ∑ i, x i ≤ 1 :=
   Iff.rfl
 
+/--
+@isnad1 id=convex.0h1v.s4.0964aa7624e3 from=translated src=- shape=e1838753 vocab=635f0f19
+-/
 theorem convex_fullSimplex : Convex ℝ (fullSimplex ι) := by
   intro x hx y hy a b ha hb hab
   rw [mem_fullSimplex_iff] at hx hy ⊢
@@ -55,6 +61,9 @@ theorem convex_fullSimplex : Convex ℝ (fullSimplex ι) := by
           (mul_le_mul_of_nonneg_left hy.2 hb)
       _ = 1 := by simpa using hab
 
+/--
+@isnad1 id=isclosed.0h1v.s4.e5e17e17b978 from=translated src=- shape=fea4225f vocab=156cb72a
+-/
 theorem isClosed_fullSimplex : IsClosed (fullSimplex ι) := by
   let coordinateSum : (ι → ℝ) → ℝ := fun x ↦ ∑ i, x i
   have hsum : Continuous coordinateSum :=
@@ -66,6 +75,9 @@ theorem isClosed_fullSimplex : IsClosed (fullSimplex ι) := by
     isClosed_Iic.preimage hsum
   exact hnonneg.inter hsum_le
 
+/--
+@isnad1 id=le.0h1v.s5.e8ccc4698308 from=translated src=- shape=613fc126 vocab=68a0c610
+-/
 theorem fullSimplex_subset_Icc :
     fullSimplex ι ⊆ Set.Icc (0 : ι → ℝ) 1 := by
   intro x hx
@@ -77,12 +89,21 @@ theorem fullSimplex_subset_Icc :
       x i ≤ ∑ j, x j := Finset.single_le_sum (fun j _ ↦ hx.1 j) (Finset.mem_univ i)
       _ ≤ 1 := hx.2
 
+/--
+@isnad1 id=iscompac.0h1v.s4.454744618d79 from=translated src=- shape=fea4225f vocab=7dc51295
+-/
 theorem isCompact_fullSimplex : IsCompact (fullSimplex ι) :=
   IsCompact.of_isClosed_subset isCompact_Icc isClosed_fullSimplex fullSimplex_subset_Icc
 
+/--
+@isnad1 id=measurab.0h1v.s4.f7cd3d9658b1 from=translated src=- shape=fea4225f vocab=37d72eac
+-/
 theorem measurableSet_fullSimplex : MeasurableSet (fullSimplex ι) :=
   isClosed_fullSimplex.measurableSet
 
+/--
+@isnad1 id=lt.0h1v.s6.1c0ca68f09aa from=translated src=- shape=cc393290 vocab=5d8408df
+-/
 theorem volume_fullSimplex_lt_top :
     volume (fullSimplex ι) < ∞ :=
   isCompact_fullSimplex.measure_lt_top
@@ -93,16 +114,25 @@ coordinates, as well as the deleted coordinate, all equal
 noncomputable def simplexCentroid (ι : Type*) [Fintype ι] : ι → ℝ :=
   fun _ ↦ ((Fintype.card ι : ℝ) + 1)⁻¹
 
+/--
+@isnad1 id=eq.0h2v.s5.fb2ca091b84f from=translated src=- shape=660aed44 vocab=570b02a8
+-/
 @[simp]
 theorem simplexCentroid_apply (i : ι) :
     simplexCentroid ι i = ((Fintype.card ι : ℝ) + 1)⁻¹ :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.73f592060c3c from=translated src=- shape=87f655b3 vocab=f4c1b68f
+-/
 theorem sum_simplexCentroid :
     ∑ i : ι, simplexCentroid ι i =
       (Fintype.card ι : ℝ) / ((Fintype.card ι : ℝ) + 1) := by
   simp [simplexCentroid, div_eq_mul_inv]
 
+/--
+@isnad1 id=mem.0h1v.s4.8d9d85f3d890 from=translated src=- shape=4af8fe29 vocab=b16bffc9
+-/
 theorem simplexCentroid_mem_fullSimplex :
     simplexCentroid ι ∈ fullSimplex ι := by
   rw [mem_fullSimplex_iff]
@@ -116,7 +146,9 @@ theorem simplexCentroid_mem_fullSimplex :
 
 /-- The coordinate box from zero to the centroid is contained in the
 simplex.  It supplies a simple positive-volume subset without requiring the
-exact volume formula for a simplex. -/
+exact volume formula for a simplex.
+@isnad1 id=le.0h1v.s5.3d75c2edd827 from=translated src=- shape=911b7803 vocab=a9367544
+-/
 theorem Icc_zero_centroid_subset_fullSimplex :
     Set.Icc (0 : ι → ℝ) (simplexCentroid ι) ⊆ fullSimplex ι := by
   intro x hx
@@ -128,6 +160,9 @@ theorem Icc_zero_centroid_subset_fullSimplex :
         Finset.sum_le_sum fun i _ ↦ hx.2 i
       _ ≤ 1 := simplexCentroid_mem_fullSimplex (ι := ι) |>.2
 
+/--
+@isnad1 id=lt.0h1v.s6.2a219312ff55 from=translated src=- shape=34ded7e4 vocab=3df1d5bf
+-/
 theorem volume_fullSimplex_pos :
     0 < volume (fullSimplex ι) := by
   apply lt_of_lt_of_le (b := volume (Set.Icc (0 : ι → ℝ) (simplexCentroid ι)))
@@ -145,18 +180,25 @@ the coefficient vector `y`. -/
 def simplexLinearForm (y x : ι → ℝ) : ℝ :=
   ∑ i, y i * x i
 
+/--
+@isnad1 id=eq.0h3v.s5.57e6dc76fd6f from=translated src=- shape=04605ebe vocab=576f9a85
+-/
 theorem simplexLinearForm_apply (y x : ι → ℝ) :
     simplexLinearForm y x = ∑ i, y i * x i :=
   rfl
 
-/-- Evaluation of `L_y` at the centroid. -/
+/-- Evaluation of `L_y` at the centroid.
+@isnad1 id=eq.0h2v.s5.e73251766b08 from=translated src=- shape=657f547c vocab=78f266ea
+-/
 theorem simplexLinearForm_centroid (y : ι → ℝ) :
     simplexLinearForm y (simplexCentroid ι) =
       (∑ i, y i) / ((Fintype.card ι : ℝ) + 1) := by
   simp [simplexLinearForm, simplexCentroid, div_eq_mul_inv, Finset.sum_mul]
 
 /-- In the `δ = 1` normalization used in §2.2, `∑ i, y i ≥ card ι + 1`
-means that the centroid lies in the upper halfspace `1 ≤ L_y`. -/
+means that the centroid lies in the upper halfspace `1 ≤ L_y`.
+@isnad1 id=le.1h2v.s5.050fb5d4e13d from=translated src=- shape=6a3ce848 vocab=8534afde
+-/
 theorem one_le_simplexLinearForm_centroid (y : ι → ℝ)
     (hy : (Fintype.card ι : ℝ) + 1 ≤ ∑ i, y i) :
     1 ≤ simplexLinearForm y (simplexCentroid ι) := by

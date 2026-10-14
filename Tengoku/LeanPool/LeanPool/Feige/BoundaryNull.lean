@@ -25,7 +25,9 @@ open MeasureTheory ProbabilityTheory Set
 
 namespace Feige
 
-/-- The pushed-forward nonnegative exponential law has no atoms. -/
+/-- The pushed-forward nonnegative exponential law has no atoms.
+@isnad1 id=eq.0h1v.s4.47d0a4710b0f from=translated src=- shape=778ca0af vocab=6b7d9ebc
+-/
 theorem nnexpMeasure_singleton (x : NNReal) :
     nnexpMeasure {x} = 0 := by
   let : IsProbabilityMeasure (expMeasure 1) :=

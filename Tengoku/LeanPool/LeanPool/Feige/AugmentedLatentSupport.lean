@@ -20,6 +20,9 @@ namespace Feige
 
 noncomputable section
 
+/--
+@isnad1 id=measurab.0h0v.s3.cb085f7589b0 from=translated src=- shape=66b19da4 vocab=96dd49b8
+-/
 theorem measurableSet_augmentedParamNonnegative :
     MeasurableSet {p : AugmentedTwoPointParams |
       AugmentedParamNonnegative p} := by
@@ -33,6 +36,9 @@ theorem measurableSet_augmentedParamNonnegative :
       (measurableSet_lt measurable_const
         (measurable_snd.comp measurable_subtype_coe))
 
+/--
+@isnad1 id=measurab.0h1v.s5.367a96d742a8 from=translated src=- shape=6039c054 vocab=d267859e
+-/
 theorem measurableSet_augmentedParamsNonnegative (n : ℕ) :
     MeasurableSet {p : Fin n → AugmentedTwoPointParams |
       AugmentedParamsNonnegative p} := by
@@ -48,6 +54,9 @@ theorem measurableSet_augmentedParamsNonnegative (n : ℕ) :
     measurableSet_augmentedParamNonnegative.preimage
       (measurable_pi_apply i)
 
+/--
+@isnad1 id=eventual.1h2v.s6.fb95c7781f7c from=translated src=- shape=d6a237ae vocab=e4ebdaa3
+-/
 theorem ae_latentPair_first_nonnegative
     {μ : Measure ℝ} [SFinite μ] (hsupport : μ (Iio 0) = 0)
     (M : ℝ) :
@@ -69,6 +78,9 @@ theorem ae_latentPair_first_nonnegative
     (withDensity_absolutelyContinuous
       (belowAboveProduct μ) (latentPairDensity M)).ae_le
 
+/--
+@isnad1 id=eventual.1h2v.s7.51f72a95fbc5 from=translated src=- shape=2e3d54e3 vocab=787819c2
+-/
 theorem ae_latentParams_nonnegative
     {μ : Measure ℝ} [SFinite μ] (hsupport : μ (Iio 0) = 0)
     (M : ℝ) :
@@ -91,6 +103,9 @@ theorem ae_latentParams_nonnegative
     with p hp0 hpstrict
   simp [pairToParams, hpstrict, hp0, hpstrict.2]
 
+/--
+@isnad1 id=eventual.1h1v.s6.24b3349fec11 from=translated src=- shape=0ffd270e vocab=0dabc62a
+-/
 theorem ae_augmentedLatent_nonnegative
     {μ : Measure ℝ} [SFinite μ]
     (hsupport : μ (Iio 0) = 0) :
@@ -111,6 +126,9 @@ theorem ae_augmentedLatent_nonnegative
         measurableSet_augmentedParamNonnegative]
       exact ae_latentParams_nonnegative hsupport (belowMoment μ)
 
+/--
+@isnad1 id=eventual.3h2v.s7.79aba9a59d40 from=translated src=- shape=ee0c97ea vocab=7eeba666
+-/
 theorem ae_recursiveAugmentedLatent_nonnegative
     (n : ℕ) (μ : Fin n → Measure ℝ)
     [∀ i, IsProbabilityMeasure (μ i)]

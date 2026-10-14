@@ -46,6 +46,9 @@ def ternaryDoubleCarryCount (digits : List ℕ) : ℕ :=
 def prefixTernaryDoubleCarryCount (depth n : ℕ) : ℕ :=
   ternaryDoubleCarryCount ((Nat.digits 3 n).take depth)
 
+/--
+@isnad1 id=le.0h2v.s4.d6e9a233b410 from=translated src=- shape=61d108d3 vocab=2137d944
+-/
 lemma count_two_le_ternaryDoubleCarryCountAux
     (digits : List ℕ) (carry : ℕ) :
     digits.count 2 ≤ ternaryDoubleCarryCountAux digits carry := by
@@ -63,7 +66,9 @@ lemma count_two_le_ternaryDoubleCarryCountAux
           le_trans (ih (ternaryDoubleCarryStep carry digit))
             (Nat.le_add_left _ _)
 
-/-- Two digit-`2`s in a prefix force at least two ternary doubling carries. -/
+/-- Two digit-`2`s in a prefix force at least two ternary doubling carries.
+@isnad1 id=le.1h2v.s4.4f8905c28c4e from=translated src=- shape=856cf3b1 vocab=ca013405
+-/
 theorem two_le_prefixTernaryDoubleCarryCount_of_hasTwoTernaryTwosBelow
     {depth n : ℕ} (h : hasTwoTernaryTwosBelow depth n) :
     2 ≤ prefixTernaryDoubleCarryCount depth n := by
@@ -73,6 +78,9 @@ theorem two_le_prefixTernaryDoubleCarryCount_of_hasTwoTernaryTwosBelow
         count_two_le_ternaryDoubleCarryCountAux
           ((Nat.digits 3 n).take depth) 0)
 
+/--
+@isnad1 id=le.0h3v.s4.31ede796a7a0 from=translated src=- shape=e94aa0b7 vocab=0cf51c31
+-/
 lemma ternaryDoubleCarryCountAux_take_le
     (depth : ℕ) (digits : List ℕ) (carry : ℕ) :
     ternaryDoubleCarryCountAux (digits.take depth) carry ≤
@@ -87,7 +95,9 @@ lemma ternaryDoubleCarryCountAux_take_le
           exact Nat.add_le_add_left
             (ih digits (ternaryDoubleCarryStep carry digit)) _
 
-/-- A prefix cannot contain more doubling carries than the complete word. -/
+/-- A prefix cannot contain more doubling carries than the complete word.
+@isnad1 id=le.0h2v.s4.6235b3be45a1 from=translated src=- shape=e775bdb8 vocab=78969291
+-/
 theorem prefixTernaryDoubleCarryCount_le (depth n : ℕ) :
     prefixTernaryDoubleCarryCount depth n ≤
       ternaryDoubleCarryCount (Nat.digits 3 n) := by

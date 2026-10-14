@@ -18,7 +18,9 @@ values like x * b^e where x is in [1, b) and e is an integer.
 
 variable {C : FloatCfg}
 
-/-- For 1 ≤ x, (x * b^e) has an exponent at least e. -/
+/-- For 1 ≤ x, (x * b^e) has an exponent at least e.
+@isnad1 id=le.2h3v.s6.75dc545338a8 from=translated src=- shape=3a06fda9 vocab=2587ce54
+-/
 lemma le_log_of_ge_1 {b : ℕ} {e : ℤ} (h : 1 < b) {x : ℚ} (h' : 1 ≤ x) :
   e ≤ Int.log b (x * b ^ e) := by
   suffices b^e ≤ x * b^e by
@@ -29,7 +31,9 @@ lemma le_log_of_ge_1 {b : ℕ} {e : ℤ} (h : 1 < b) {x : ℚ} (h' : 1 ≤ x) :
   nth_rw 1 [<-one_mul ((b : ℚ)^e)]
   exact (mul_le_mul_iff_left₀ (zpow_pos (by positivity) e)).mpr h'
 
-/-- When 1 ≤ x < 2, x*b^e has exponent exactly e. -/
+/-- When 1 ≤ x < 2, x*b^e has exponent exactly e.
+@isnad1 id=eq.3h3v.s6.24a6a438b419 from=translated src=- shape=37baaac4 vocab=2587ce54
+-/
 lemma log_one_to_two_eq {b : ℕ} {e : ℤ} (h : 1 < b) {x : ℚ} (h' : 1 ≤ x) (h'' : x < b) :
   Int.log b (x * b ^ e) = e := by
   have bpos : (0 : ℚ) < b := by norm_cast; linarith
@@ -47,7 +51,9 @@ lemma log_one_to_two_eq {b : ℕ} {e : ℤ} (h : 1 < b) {x : ℚ} (h' : 1 ≤ x)
     exact (mul_lt_mul_iff_right₀ (zpow_pos bpos e)).mpr h''
   exact le_log_of_ge_1 h h'
 
-/-- When 0 < x < 1, then x*2^e has exponent < e. -/
+/-- When 0 < x < 1, then x*2^e has exponent < e.
+@isnad1 id=lt.2h2v.s6.f7c325223711 from=translated src=- shape=de7c3c16 vocab=9efcaeb5
+-/
 lemma log_zero_to_one_lt (x : ℚ) (e : ℤ) (h : 0 < x) (h' : x < 1) :
   Int.log 2 |x * 2 ^ e| < e := by
   rw [<-Int.lt_zpow_iff_log_lt (by norm_num)]
@@ -56,20 +62,32 @@ lemma log_zero_to_one_lt (x : ℚ) (e : ℤ) (h : 0 < x) (h' : x < 1) :
     rwa [mul_lt_iff_lt_one_left (by positivity)]
   positivity
 
+/--
+@isnad1 id=le.0h2v.s5.e00c1989c080 from=translated src=- shape=9b9b6f28 vocab=bcf46731
+-/
 lemma mantissa_ge_one {m : ℕ} : 1 ≤ ((m : ℚ) / C.prec + 1) := by
   suffices 0 ≤ (m : ℚ) / C.prec by linarith
   positivity
 
+/--
+@isnad1 id=lt.1h2v.s5.eec11e430de1 from=translated src=- shape=5cf91ac8 vocab=a88886a8
+-/
 lemma mantissa_lt_two {m : ℕ} (h : m < C.prec) : ((m : ℚ) / C.prec + 1) < 2 := by
   suffices (m : ℚ) / C.prec < 1 by linarith
   apply (div_lt_one (by norm_cast; exact C.prec_pos)).mpr
   norm_cast
 
+/--
+@isnad1 id=eq.1h3v.s6.48ae7912b903 from=translated src=- shape=5e007cec vocab=3866cc69
+-/
 lemma q_exp_eq_exp {e : ℤ} {m : ℕ} (h : m < C.prec) :
   Int.log 2 |((m : ℚ) / ↑C.prec + 1) * 2 ^ e| = e := by
   rw [abs_of_nonneg (by positivity)]
   exact log_one_to_two_eq (by norm_num) mantissa_ge_one (mantissa_lt_two h)
 
+/--
+@isnad1 id=eq.1h3v.s7.6cad337e69e6 from=translated src=- shape=0150b424 vocab=4a31bb05
+-/
 lemma q_mantissa_eq_mantissa {e : ℤ} {m : ℕ} (h : m < C.prec) :
     |(((m : ℚ)/C.prec) + 1) * 2^e| * (2^(Int.log 2 |(((m : ℚ)/C.prec) + 1) * 2^e|))⁻¹
       = (m : ℚ) / C.prec + 1 := by
@@ -77,6 +95,9 @@ lemma q_mantissa_eq_mantissa {e : ℤ} {m : ℕ} (h : m < C.prec) :
     mul_inv_cancel₀, mul_one]
   positivity
 
+/--
+@isnad1 id=and.1h1v.s7.0e3aa3118c17 from=translated src=- shape=440e7ef6 vocab=c88ea8c5
+-/
 lemma mantissa_size_aux (q : ℚ) (h : q ≠ 0) : 1 ≤ |q| * (2 ^ Int.log 2 |q|)⁻¹ ∧
   |q| * (2 ^ Int.log 2 |q|)⁻¹ < 2 := by
   constructor
@@ -90,6 +111,9 @@ lemma mantissa_size_aux (q : ℚ) (h : q ≠ 0) : 1 ≤ |q| * (2 ^ Int.log 2 |q|
     exact (mul_inv_lt_iff₀ (zpow_pos rfl _ : (0 : ℚ) < 2 ^ Int.log 2 |q|)).2 this
   apply Int.lt_zpow_succ_log_self (by norm_num : 1 < 2)
 
+/--
+@isnad1 id=lt.3h2v.s5.0c1b346d41ad from=translated src=- shape=c8b5e54b vocab=ca4535ac
+-/
 lemma small_floor_aux {q : ℚ} {n : ℕ} (h : q < 1) (h' : 0 ≤ q) (n_pos : 0 < n) :
   ⌊q * n⌋.natAbs < n := by
   suffices ⌊q * n⌋.natAbs < (n : ℤ) by
@@ -99,6 +123,9 @@ lemma small_floor_aux {q : ℚ} {n : ℕ} (h : q < 1) (h' : 0 ≤ q) (n_pos : 0 
     exact Int.floor_lt.mpr this
   exact (mul_lt_iff_lt_one_left (by norm_cast : 0 < (n : ℚ))).2 h
 
+/--
+@isnad1 id=le.3h2v.s5.538f6eeedf20 from=translated src=- shape=e7282a07 vocab=2e2bc5ce
+-/
 lemma small_ceil {q : ℚ} {n : ℕ} (h : q ≤ 1) (h' : 0 ≤ q) (n_nonneg : 0 ≤ n) :
   ⌈q * n⌉.natAbs ≤ n := by
   suffices ⌈q * n⌉.natAbs ≤ (n : ℤ) by
@@ -107,12 +134,18 @@ lemma small_ceil {q : ℚ} {n : ℕ} (h : q ≤ 1) (h' : 0 ≤ q) (n_nonneg : 0 
   apply Int.ceil_le.mpr
   exact mul_le_of_le_one_left (by norm_cast) h
 
+/--
+@isnad1 id=le.1h2v.s6.7e636d4b567c from=translated src=- shape=e602b272 vocab=8df0fb2e
+-/
 lemma mantissa_nonneg (C : FloatCfg) (q : ℚ) (q_nezero : q ≠ 0) :
   0 ≤ (|q| * ((2 : ℚ)^Int.log 2 |q|)⁻¹ - 1) * C.prec := by
   apply mul_nonneg
   · linarith [(mantissa_size_aux q q_nezero).1]
   exact_mod_cast le_of_lt C.prec_pos
 
+/--
+@isnad1 id=var.2h7v.s7.1f295732b3b0 from=translated src=- shape=af02f200 vocab=9a086b09
+-/
 lemma casesQPlane (P : ℚ → ℚ → Prop)
   (h1 : ∀ q1 > 0, ∀ q2 > 0, P q1 q2)
   (h2 : ∀ q1 < 0, ∀ q2 > 0, P q1 q2)

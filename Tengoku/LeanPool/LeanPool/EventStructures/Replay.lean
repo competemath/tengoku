@@ -65,31 +65,41 @@ def minReplaySet (l : Set es.Event) : Set es.Event :=
 def maxReplaySet (l : Set es.Event) : Set es.Event :=
   minReplaySet es l ∪ {e : es.Event | ∀ e₁ e₂ : es.Event, e₁ ## e₂ ∧ e₁ ≤ e → e₁ ∈ l}
 
-/-- The downset is closed under taking predecessors. -/
+/-- The downset is closed under taking predecessors.
+@isnad1 id=mem.2h4v.s5.529aa3038c2a from=translated src=- shape=41ac5107 vocab=98f889e3
+-/
 lemma downset_closed {e x y : es.Event} (hxy : x ≤ y) (hy : y ∈ downset es e) :
     x ∈ downset es e :=
   le_trans hxy hy
 
-/-- The minimum replay set contains the log. -/
+/-- The minimum replay set contains the log.
+@isnad1 id=le.0h2v.s4.a72242a1813d from=translated src=- shape=50af71e7 vocab=114a7403
+-/
 lemma minReplaySet_contains_log {l : Set es.Event} : l ⊆ minReplaySet es l := by
   intro e he
   simp only [minReplaySet, downset, Set.mem_iUnion, Set.mem_ofPred_eq, exists_prop]
   exact ⟨e, he, le_rfl⟩
 
-/-- The minimum replay set is closed under predecessors. -/
+/-- The minimum replay set is closed under predecessors.
+@isnad1 id=mem.2h4v.s5.1d71397cd449 from=translated src=- shape=c250e091 vocab=36f4c95d
+-/
 lemma minReplaySet_closed {l : Set es.Event} {x y : es.Event}
     (hy : y ≤ x) (hx : x ∈ minReplaySet es l) : y ∈ minReplaySet es l := by
   simp only [minReplaySet, downset, Set.mem_iUnion, Set.mem_ofPred_eq, exists_prop] at hx ⊢
   obtain ⟨e, he, hxe⟩ := hx
   exact ⟨e, he, le_trans hy hxe⟩
 
-/-- The maximum replay set contains the minimum replay set. -/
+/-- The maximum replay set contains the minimum replay set.
+@isnad1 id=le.0h2v.s4.424e0cfc44f4 from=translated src=- shape=30055e22 vocab=3031ff66
+-/
 lemma minReplaySet_subset_maxReplaySet {l : Set es.Event} :
     minReplaySet es l ⊆ maxReplaySet es l :=
   Set.subset_union_left
 
 /-- If e is in l and x ≤ e, and l is conflict-free,
-    then x is compatible with all events in l. -/
+    then x is compatible with all events in l.
+@isnad1 id=not.4h5v.s6.76e2da5c1eb4 from=translated src=- shape=109f94f2 vocab=84f32505
+-/
 lemma downset_compatible_with_log {l : Set es.Event} {e x : es.Event}
     (he : e ∈ l) (hxe : x ≤ e)
     (hl_conflict_free : ∀ {e₁ e₂}, e₁ ∈ l → e₂ ∈ l → ¬(e₁ # e₂)) :
@@ -98,7 +108,9 @@ lemma downset_compatible_with_log {l : Set es.Event} {e x : es.Event}
   exact hl_conflict_free he he'
     (es.conflict_symm (es.conflict_hereditary (es.conflict_symm hconf) hxe))
 
-/-- The minimum replay set is compatible with the log. -/
+/-- The minimum replay set is compatible with the log.
+@isnad1 id=not.3h4v.s6.e7e2412184d4 from=translated src=- shape=76c7809a vocab=cac5507f
+-/
 lemma minReplaySet_compatible_with_log {l : Set es.Event}
     (hl_conflict_free : ∀ {e₁ e₂}, e₁ ∈ l → e₂ ∈ l → ¬(e₁ # e₂)) :
     ∀ x ∈ minReplaySet es l, ∀ e ∈ l, ¬(x # e) := by
@@ -108,7 +120,9 @@ lemma minReplaySet_compatible_with_log {l : Set es.Event}
   exact downset_compatible_with_log es he' hxe' hl_conflict_free e he
 
 /-- The minimum replay set is the smallest configuration compatible with a log.
-    Any computation with configuration equal to minReplaySet is a minimal replay. -/
+    Any computation with configuration equal to minReplaySet is a minimal replay.
+@isnad1 id=isminrep.2h3v.s5.88777d6f1455 from=translated src=- shape=37c3b792 vocab=0e4a7306
+-/
 lemma minReplaySet_is_minimal_replay {l : Set es.Event} {σ : Computations es}
     (h_conf : (conf es σ).1 = minReplaySet es l)
     (h_compat : σ ⊨ l) :
@@ -122,7 +136,9 @@ lemma minReplaySet_is_minimal_replay {l : Set es.Event} {σ : Computations es}
   exact (conf es σ').2.2 (h'_compat.1 e he) hxe
 
 /-- The maximum replay set is the largest configuration compatible with a log.
-    Any computation with configuration equal to maxReplaySet is a maximal replay. -/
+    Any computation with configuration equal to maxReplaySet is a maximal replay.
+@isnad1 id=ismaxrep.2h3v.s5.6d42f3ec5501 from=translated src=- shape=37c3b792 vocab=7dfc41c8
+-/
 lemma maxReplaySet_is_maximal_replay {l : Set es.Event} {σ : Computations es}
     (h_conf : (conf es σ).1 = maxReplaySet es l)
     (h_compat : σ ⊨ l) :
@@ -143,7 +159,9 @@ lemma maxReplaySet_is_maximal_replay {l : Set es.Event} {σ : Computations es}
     exact h'_compat.2.2 e₁ ((conf es σ').2.2 hx hle) e₂ hmc.1
 
 /-- Any two minimal replays of a log have equal configurations.
-    Since both are minimal, each configuration is a subset of the other by definition. -/
+    Since both are minimal, each configuration is a subset of the other by definition.
+@isnad1 id=eq.2h4v.s5.59f5a3ea5020 from=translated src=- shape=af10fcf2 vocab=f8c438cf
+-/
 lemma minReplay_unique_config {l : Set es.Event} {σ₁ σ₂ : Computations es}
     (h₁ : isMinReplay es l σ₁) (h₂ : isMinReplay es l σ₂) :
     (conf es σ₁).1 = (conf es σ₂).1 := by
@@ -152,7 +170,9 @@ lemma minReplay_unique_config {l : Set es.Event} {σ₁ σ₂ : Computations es}
   exact ⟨fun hx => h₁.2 σ₂ h₂.1 hx, fun hx => h₂.2 σ₁ h₁.1 hx⟩
 
 /-- Any two maximal replays of a log have equal configurations.
-    Since both are maximal, each configuration is a superset of the other by definition. -/
+    Since both are maximal, each configuration is a superset of the other by definition.
+@isnad1 id=eq.2h4v.s5.e45b214f1eb1 from=translated src=- shape=af10fcf2 vocab=a8390c9d
+-/
 lemma maxReplay_unique_config {l : Set es.Event} {σ₁ σ₂ : Computations es}
     (h₁ : isMaxReplay es l σ₁) (h₂ : isMaxReplay es l σ₂) :
     (conf es σ₁).1 = (conf es σ₂).1 := by
@@ -163,7 +183,9 @@ lemma maxReplay_unique_config {l : Set es.Event} {σ₁ σ₂ : Computations es}
 /-- Conditional existence of the minimal replay: *if* some computation
     compatible with the log reaches the minimum replay set, then a minimal
     replay exists. This is a characterization lemma, not an unconditional
-    existence theorem; minimality follows from minReplaySet_is_minimal_replay. -/
+    existence theorem; minimality follows from minReplaySet_is_minimal_replay.
+@isnad1 id=ex.1h2v.s5.5b28ee320a59 from=translated src=- shape=92f92c31 vocab=0e4a7306
+-/
 lemma minReplay_exists (l : Set es.Event)
     (hexists : ∃ σ : Computations es, (conf es σ).1 = minReplaySet es l ∧ σ ⊨ l) :
     ∃ σ : Computations es, isMinReplay es l σ := by
@@ -173,7 +195,9 @@ lemma minReplay_exists (l : Set es.Event)
 /-- Conditional existence of the maximal replay: *if* some computation
     compatible with the log reaches the maximum replay set, then a maximal
     replay exists. This is a characterization lemma, not an unconditional
-    existence theorem; maximality follows from maxReplaySet_is_maximal_replay. -/
+    existence theorem; maximality follows from maxReplaySet_is_maximal_replay.
+@isnad1 id=ex.1h2v.s5.0aa23d8869b0 from=translated src=- shape=92f92c31 vocab=7dfc41c8
+-/
 lemma maxReplay_exists (l : Set es.Event)
     (hexists : ∃ σ : Computations es, (conf es σ).1 = maxReplaySet es l ∧ σ ⊨ l) :
     ∃ σ : Computations es, isMaxReplay es l σ := by
@@ -181,7 +205,9 @@ lemma maxReplay_exists (l : Set es.Event)
   exact ⟨σ, maxReplaySet_is_maximal_replay es h_conf h_compat⟩
 
 /-- Uniqueness of the minimal replay: any two minimal replays of a log reach
-    the same configuration. -/
+    the same configuration.
+@isnad1 id=eq.2h4v.s4.5ccb58e00198 from=translated src=- shape=2c298ed6 vocab=eea4969b
+-/
 lemma minReplay_unique {l : Set es.Event} {σ₁ σ₂ : Computations es}
     (h₁ : isMinReplay es l σ₁) (h₂ : isMinReplay es l σ₂) :
     conf es σ₁ = conf es σ₂ := by
@@ -189,7 +215,9 @@ lemma minReplay_unique {l : Set es.Event} {σ₁ σ₂ : Computations es}
   exact minReplay_unique_config es h₁ h₂
 
 /-- Uniqueness of the maximal replay: any two maximal replays of a log reach
-    the same configuration. -/
+    the same configuration.
+@isnad1 id=eq.2h4v.s4.b315ac776cb4 from=translated src=- shape=2c298ed6 vocab=80c51dc2
+-/
 lemma maxReplay_unique {l : Set es.Event} {σ₁ σ₂ : Computations es}
     (h₁ : isMaxReplay es l σ₁) (h₂ : isMaxReplay es l σ₂) :
     conf es σ₁ = conf es σ₂ := by

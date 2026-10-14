@@ -28,7 +28,9 @@ namespace ExponentialStein
 
 /-- A uniformly unit-bounded continuous function, composed with an
 affine path and multiplied by the exponential density, is integrable on
-the positive half-line. -/
+the positive half-line.
+@isnad1 id=integrab.2h3v.s6.23f57ea04abe from=translated src=- shape=6a240f71 vocab=a4a959b7
+-/
 theorem integrableOn_comp_mul_exp
     {φ : ℝ → ℝ} (hφ : Continuous φ) (hbound : ∀ x, ‖φ x‖ ≤ 1)
     (y a : ℝ) :
@@ -42,7 +44,9 @@ theorem integrableOn_comp_mul_exp
       mul_le_mul_of_nonneg_right (hbound (y + a * e)) (exp_pos _).le
 
 /-- The same exponential damping forces the affine composite to vanish
-at infinity. -/
+at infinity.
+@isnad1 id=tendsto.1h3v.s6.c219ef54613a from=translated src=- shape=90ae417d vocab=57d975b0
+-/
 theorem tendsto_comp_mul_exp_atTop
     {φ : ℝ → ℝ} (hbound : ∀ x, ‖φ x‖ ≤ 1) (y a : ℝ) :
     Tendsto (fun e : ℝ => φ (y + a * e) * exp (-e)) atTop (𝓝 0) := by
@@ -67,6 +71,7 @@ For a differentiable function `φ`, this says
 The hypotheses are deliberately stated as the precise weighted
 integrability and boundary requirements.  Bounded `φ` and bounded `φ'`
 satisfy them, as do many unbounded test functions.
+@isnad1 id=eq.5h4v.s8.52f342805fa1 from=translated src=- shape=5f7127b9 vocab=54adf069
 -/
 theorem integral_Ioi_comp_exp_sub
     {φ φ' : ℝ → ℝ} {y a : ℝ}
@@ -128,6 +133,7 @@ theorem integral_Ioi_comp_exp_sub
 This is the two-sided identity before averaging over the law of `Y`.  The
 first four analytic hypotheses are the one-sided requirements for `y + aE`;
 the next four are those for `y - bE`.
+@isnad1 id=eq.9h5v.s9.42b38c1dc945 from=translated src=- shape=04e9cc74 vocab=54adf069
 -/
 theorem two_sided_integral_Ioi
     {φ φ' : ℝ → ℝ} {y a b : ℝ}
@@ -172,7 +178,9 @@ theorem two_sided_integral_Ioi
 point `k` in the positive half-line.  The finite interval theorem does
 not require differentiability at its right endpoint, and the improper
 tail theorem does not require it at its left endpoint, so the two pieces
-join using continuity alone. -/
+join using continuity alone.
+@isnad1 id=eq.11h7v.s9.7d70f13a8327 from=translated src=- shape=998ccbde vocab=1ad67b0c
+-/
 theorem integral_Ioi_mul_deriv_one_kink
     {u v u' v' : ℝ → ℝ} {k a' b' : ℝ}
     (hk : 0 < k)

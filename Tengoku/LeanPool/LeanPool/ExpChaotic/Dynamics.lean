@@ -44,7 +44,9 @@ def EscapesToInfinity (z : ℂ) : Prop :=
 /-- The escaping set of the complex exponential map. -/
 def escapingSetExp : Set ℂ := {z | EscapesToInfinity z}
 
-/-- Every real point escapes to infinity under iteration of the exponential map. -/
+/-- Every real point escapes to infinity under iteration of the exponential map.
+@isnad1 id=escapest.1h1v.s3.249d8588ddb3 from=translated src=- shape=f05a8d98 vocab=ed32ab05
+-/
 theorem escapesToInfinity_of_im_eq_zero {z : ℂ} (hz : z.im = 0) :
     EscapesToInfinity z := by
   intro R
@@ -56,7 +58,9 @@ theorem escapesToInfinity_of_im_eq_zero {z : ℂ} (hz : z.im = 0) :
     linarith
   exact hR.trans <| (le_abs_self _).trans (Complex.abs_re_le_norm _)
 
-/-- Any point whose orbit reaches the real axis subsequently escapes to infinity. -/
+/-- Any point whose orbit reaches the real axis subsequently escapes to infinity.
+@isnad1 id=escapest.1h2v.s3.548821b8271d from=translated src=- shape=0e03f5f4 vocab=7e93a163
+-/
 theorem escapesToInfinity_of_eventually_onRealAxis {z : ℂ} {m : ℕ}
     (hm : OnRealAxis (expIterate m z)) : EscapesToInfinity z := by
   have htail := escapesToInfinity_of_im_eq_zero hm
@@ -73,13 +77,17 @@ theorem escapesToInfinity_of_eventually_onRealAxis {z : ℂ} {m : ℕ}
       congr 2
       omega
 
-/-- **Theorem 4.1.** The escaping set of the complex exponential map is dense in the plane. -/
+/-- **Theorem 4.1.** The escaping set of the complex exponential map is dense in the plane.
+@isnad1 id=dense.0h0v.s4.cb4ba8e2e78e from=translated src=- shape=25b03439 vocab=812ea643
+-/
 theorem dense_escapingSet_exp : Dense escapingSetExp := by
   apply dense_iterated_preimages_real_axis.mono
   rintro z ⟨m, hm⟩
   exact escapesToInfinity_of_eventually_onRealAxis hm
 
-/-- **Theorem 5.1.** The complex exponential map is topologically transitive. -/
+/-- **Theorem 5.1.** The complex exponential map is topologically transitive.
+@isnad1 id=istopolo.0h0v.s4.606f2cd22560 from=translated src=- shape=0b0a4f6e vocab=78e1916b
+-/
 theorem topologically_transitive_exp :
     MulAction.IsTopologicallyTransitive (IterateMulAct Complex.exp) ℂ := by
   refine ⟨?_⟩
@@ -92,7 +100,9 @@ theorem topologically_transitive_exp :
 def orbitVisitSet (U : Set ℂ) : Set ℂ :=
   ⋃ n : ℕ, expIterate n ⁻¹' U
 
-/-- The orbit-visit set of a nonempty open set is itself open and dense. -/
+/-- The orbit-visit set of a nonempty open set is itself open and dense.
+@isnad1 id=and.2h1v.s5.ab954ace9812 from=translated src=- shape=9c73a922 vocab=b33676be
+-/
 theorem isOpen_dense_orbitVisitSet {U : Set ℂ} (hU : IsOpen U) (hUne : U.Nonempty) :
     IsOpen (orbitVisitSet U) ∧ Dense (orbitVisitSet U) := by
   constructor
@@ -108,7 +118,9 @@ theorem isOpen_dense_orbitVisitSet {U : Set ℂ} (hU : IsOpen U) (hUne : U.Nonem
 def denseOrbitSetExp : Set ℂ :=
   {z | Dense (MulAction.orbit (IterateMulAct Complex.exp) z)}
 
-/-- Visiting every member of mathlib's countable basis is equivalent to having dense orbit. -/
+/-- Visiting every member of mathlib's countable basis is equivalent to having dense orbit.
+@isnad1 id=iff.0h1v.s6.65c758bc6a03 from=translated src=- shape=a5d9c194 vocab=d22198be
+-/
 theorem mem_denseOrbitSetExp_iff_visit_countableBasis {z : ℂ} :
     z ∈ denseOrbitSetExp ↔
       z ∈ ⋂ U : TopologicalSpace.countableBasis ℂ, orbitVisitSet U := by
@@ -131,7 +143,9 @@ theorem mem_denseOrbitSetExp_iff_visit_countableBasis {z : ℂ} :
     obtain ⟨n, hn⟩ := mem_iUnion.mp hzU
     exact ⟨expIterate n z, hn, ⟨n⟩, rfl⟩
 
-/-- **Corollary 5.6.** Points with dense forward orbit are dense in the plane. -/
+/-- **Corollary 5.6.** Points with dense forward orbit are dense in the plane.
+@isnad1 id=dense.0h0v.s4.020159f0a5d7 from=translated src=- shape=25b03439 vocab=ad3bd35f
+-/
 theorem dense_denseOrbitSet_exp : Dense denseOrbitSetExp := by
   let _ : Countable (TopologicalSpace.countableBasis ℂ) :=
     (TopologicalSpace.countable_countableBasis ℂ).to_subtype
@@ -147,7 +161,9 @@ theorem dense_denseOrbitSet_exp : Dense denseOrbitSetExp := by
   intro z hz
   exact mem_denseOrbitSetExp_iff_visit_countableBasis.mpr hz
 
-/-- Removing a countable set still leaves a dense set of points with dense orbit. -/
+/-- Removing a countable set still leaves a dense set of points with dense orbit.
+@isnad1 id=dense.1h1v.s4.9107962375c1 from=translated src=- shape=b01a97ac vocab=7957fe06
+-/
 theorem dense_denseOrbitSet_exp_diff_countable {C : Set ℂ} (hC : C.Countable) :
     Dense (denseOrbitSetExp \ C) := by
   let _ : Countable (TopologicalSpace.countableBasis ℂ) :=
@@ -182,7 +198,9 @@ theorem dense_denseOrbitSet_exp_diff_countable {C : Set ℂ} (hC : C.Countable) 
     have hzcompl := mem_iInter.mp hz (Sum.inr (⟨z, hzC⟩ : C))
     exact hzcompl (by simp)
 
-/-- **Corollary 5.6.** The set of points with dense orbit is uncountable. -/
+/-- **Corollary 5.6.** The set of points with dense orbit is uncountable.
+@isnad1 id=not.0h0v.s2.40b9e8354373 from=translated src=- shape=049cd614 vocab=8491f34e
+-/
 theorem not_countable_denseOrbitSet_exp : ¬ denseOrbitSetExp.Countable := by
   intro hcount
   obtain ⟨z, hz, hznot⟩ :=
@@ -194,7 +212,9 @@ def IsDevaneyChaotic (f : ℂ → ℂ) : Prop :=
   Continuous f ∧ Dense (Function.periodicPts f) ∧
     MulAction.IsTopologicallyTransitive (IterateMulAct f) ℂ
 
-/-- **Theorem 1.2.** The complex exponential map is chaotic in Devaney's sense. -/
+/-- **Theorem 1.2.** The complex exponential map is chaotic in Devaney's sense.
+@isnad1 id=isdevane.0h0v.s1.a5ce8f8bcb5a from=translated src=- shape=49959d42 vocab=296243d7
+-/
 theorem devaney_chaotic_exp : IsDevaneyChaotic Complex.exp := by
   exact ⟨Complex.continuous_exp, dense_periodicPts_exp, topologically_transitive_exp⟩
 

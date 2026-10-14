@@ -78,33 +78,59 @@ def demand (i : Fin 3) : ℤ := if i = 0 then 15 else if i = 1 then 10 else 15
 /-- `d_max`, the largest demand. -/
 def maximumDemand : ℤ := 15
 
+/--
+@isnad1 id=and.0h0v.s5.769e67d02231 from=translated src=- shape=6060fb34 vocab=3c08f178
+-/
 theorem maximumDemand_is_max :
     (∀ i, demand i ≤ maximumDemand) ∧ (∃ i, demand i = maximumDemand) := by decide
 
+/--
+@isnad1 id=lt.0h1v.s4.b0236d61f54b from=translated src=- shape=de9abb23 vocab=ed4fc05c
+-/
 theorem demand_pos : ∀ i, 0 < demand i := by decide
 
+/--
+@isnad1 id=le.0h1v.s3.64937d500cbe from=translated src=- shape=b9369acb vocab=a7d7d7ac
+-/
 theorem arcCost_nonneg : ∀ a, 0 ≤ arcCost a := by decide
 
+/--
+@isnad1 id=le.0h1v.s3.d78d820b926e from=translated src=- shape=b9369acb vocab=e7bea336
+-/
 theorem fractionalFlow_nonneg : ∀ a, 0 ≤ fractionalFlow a := by decide
 
+/--
+@isnad1 id=injectiv.0h0v.s3.1e4f4f4dd191 from=translated src=- shape=bfe16b09 vocab=741f263f
+-/
 theorem terminal_injective : Function.Injective terminal := by decide
 
+/--
+@isnad1 id=ne.0h1v.s3.69fa1c02858a from=translated src=- shape=1b7cfd8e vocab=017968a5
+-/
 theorem terminal_ne_source : ∀ i, terminal i ≠ Vertex.s := by decide
 
-/-- The instance is a *simple* digraph: no two arcs share both endpoints. -/
+/-- The instance is a *simple* digraph: no two arcs share both endpoints.
+@isnad1 id=injectiv.0h0v.s3.2c584d9d2fcc from=translated src=- shape=afadb468 vocab=1cf5b67c
+-/
 theorem arcs_simple : Function.Injective (fun a : Arc => (tail a, head a)) := by decide
 
-/-- The instance has no self-loops. -/
+/-- The instance has no self-loops.
+@isnad1 id=ne.0h1v.s3.121cf30a5897 from=translated src=- shape=b70c6bb1 vocab=e9ed597e
+-/
 theorem no_self_loops : ∀ a : Arc, tail a ≠ head a := by decide
 
 /-- Flow conservation at every vertex other than the source: inflow − outflow = demand
-absorbed there (which is `0` at non-terminals). -/
+absorbed there (which is `0` at non-terminals).
+@isnad1 id=eq.1h1v.s6.58359df81ed8 from=translated src=- shape=7c400392 vocab=2e40376f
+-/
 theorem flow_feasible : ∀ z : Vertex, z ≠ Vertex.s →
     (∑ a : Arc, if head a = z then fractionalFlow a else 0)
       - (∑ a : Arc, if tail a = z then fractionalFlow a else 0)
       = ∑ i : Fin 3, if terminal i = z then demand i else 0 := by decide
 
-/-- Flow conservation at the source: net outflow = total demand. -/
+/-- Flow conservation at the source: net outflow = total demand.
+@isnad1 id=eq.0h0v.s6.691ab6b79934 from=translated src=- shape=bb80919a vocab=af30896b
+-/
 theorem conservation_source :
     (∑ a : Arc, if tail a = Vertex.s then fractionalFlow a else 0)
       - (∑ a : Arc, if head a = Vertex.s then fractionalFlow a else 0)
@@ -123,7 +149,9 @@ def CapacityGood (p : Fin 3 → List Arc) : Prop :=
 /-- Cost of a routing. -/
 def routingCost (p : Fin 3 → List Arc) : ℤ := ∑ a : Arc, arcCost a * unsplittableLoad demand p a
 
-/-- The cost of the fractional flow. -/
+/-- The cost of the fractional flow.
+@isnad1 id=eq.0h0v.s4.fb943943c65b from=translated src=- shape=c94735f7 vocab=de620aa6
+-/
 theorem fractional_cost : (∑ a : Arc, arcCost a * fractionalFlow a) = 58 := by decide
 
 /-! ## 3.  Path completeness: the digraph has exactly six s-t_i walks -/
@@ -131,11 +159,17 @@ theorem fractional_cost : (∑ a : Arc, arcCost a * fractionalFlow a) = 58 := by
 /-- All nine arcs, in the order used for walk enumeration. -/
 def allArcs : List Arc := [.st1, .st2, .su, .ut3, .uv, .vt1, .vw, .wt2, .wt3]
 
+/--
+@isnad1 id=mem.0h1v.s3.e8288b6b7e1f from=translated src=- shape=dc4ac6e8 vocab=24baa3a2
+-/
 theorem mem_allArcs : ∀ e : Arc, e ∈ allArcs := by decide
 
 /-- Arcs leaving `x`. -/
 def outOf (x : Vertex) : List Arc := allArcs.filter (fun e => decide (tail e = x))
 
+/--
+@isnad1 id=mem.1h2v.s4.d1a958ca2563 from=translated src=- shape=04825f13 vocab=cf588f8e
+-/
 theorem mem_outOf {e : Arc} {x : Vertex} (h : tail e = x) : e ∈ outOf x :=
   List.mem_filter.mpr ⟨mem_allArcs e, by simp [h]⟩
 
@@ -145,6 +179,9 @@ def walksFrom : ℕ → Vertex → List (List Arc × Vertex)
   | n + 1, x => ([], x) :: (outOf x).flatMap (fun e =>
       (walksFrom n (head e)).map (fun q => (e :: q.1, q.2)))
 
+/--
+@isnad1 id=mem.2h4v.s5.527d4ee5aacc from=translated src=- shape=1241b5ba vocab=fc929bd4
+-/
 theorem walksFrom_complete : ∀ (n : ℕ) (x : Vertex) (l : List Arc) (y : Vertex),
     l.length ≤ n → IsWalk tail head x l y → (l, y) ∈ walksFrom n x := by
   intro n
@@ -169,10 +206,19 @@ theorem walksFrom_complete : ∀ (n : ℕ) (x : Vertex) (l : List Arc) (y : Vert
 def rank : Vertex → ℕ
   | .s => 0 | .u => 1 | .v => 2 | .w => 3 | .t1 => 4 | .t2 => 4 | .t3 => 4
 
+/--
+@isnad1 id=lt.0h1v.s3.34f2ab7681a0 from=translated src=- shape=bc817a25 vocab=791ae1aa
+-/
 theorem rank_arc : ∀ e : Arc, rank (tail e) < rank (head e) := by decide
 
+/--
+@isnad1 id=le.0h1v.s3.7fb239f5d5e1 from=translated src=- shape=a311c14d vocab=094cf40e
+-/
 theorem rank_le_four : ∀ z : Vertex, rank z ≤ 4 := by decide
 
+/--
+@isnad1 id=le.1h3v.s5.2eb050d790c3 from=translated src=- shape=9bfb32b3 vocab=9cf20aef
+-/
 theorem walk_len : ∀ (x : Vertex) (l : List Arc) (y : Vertex),
     IsWalk tail head x l y → l.length + rank x ≤ rank y := by
   intro x l
@@ -187,6 +233,9 @@ theorem walk_len : ∀ (x : Vertex) (l : List Arc) (y : Vertex),
     simp only [List.length_cons] at *
     omega
 
+/--
+@isnad1 id=mem.1h2v.s5.69b59f5c4be3 from=translated src=- shape=fcaa97e7 vocab=7f5a15e0
+-/
 theorem walk_from_s_mem (l : List Arc) (y : Vertex) (h : IsWalk tail head Vertex.s l y) :
     (l, y) ∈ walksFrom 4 Vertex.s := by
   have hb := walk_len _ _ _ h
@@ -195,7 +244,9 @@ theorem walk_from_s_mem (l : List Arc) (y : Vertex) (h : IsWalk tail head Vertex
   refine walksFrom_complete 4 _ _ _ ?_ h
   omega
 
-/-- The explicit enumeration of all walks of length ≤ 4 out of the source. -/
+/-- The explicit enumeration of all walks of length ≤ 4 out of the source.
+@isnad1 id=eq.0h0v.s7.062852daabb3 from=translated src=- shape=b93ecb6b vocab=e9144f3c
+-/
 theorem walksFrom_s_eq : walksFrom 4 Vertex.s =
     [([], Vertex.s),
      ([Arc.st1], Vertex.t1),
@@ -221,18 +272,27 @@ def expensivePathThree : List Arc := [.su, .ut3]
 /-- The zero-cost path to the third terminal. -/
 def zeroCostPathThree : List Arc := [.su, .uv, .vw, .wt3]
 
+/--
+@isnad1 id=or.1h1v.s4.68932fd13abd from=translated src=- shape=0796f667 vocab=cf2eda7f
+-/
 theorem paths_t1 (l : List Arc) (h : IsWalk tail head Vertex.s l Vertex.t1) :
     l = expensivePathOne ∨ l = zeroCostPathOne := by
   have hm := walk_from_s_mem l Vertex.t1 h
   rw [walksFrom_s_eq] at hm
   simpa [expensivePathOne, zeroCostPathOne] using hm
 
+/--
+@isnad1 id=or.1h1v.s4.0f63095073e3 from=translated src=- shape=0796f667 vocab=63ebf262
+-/
 theorem paths_t2 (l : List Arc) (h : IsWalk tail head Vertex.s l Vertex.t2) :
     l = expensivePathTwo ∨ l = zeroCostPathTwo := by
   have hm := walk_from_s_mem l Vertex.t2 h
   rw [walksFrom_s_eq] at hm
   simpa [expensivePathTwo, zeroCostPathTwo] using hm
 
+/--
+@isnad1 id=or.1h1v.s4.11b2317f3145 from=translated src=- shape=0796f667 vocab=f030f0ac
+-/
 theorem paths_t3 (l : List Arc) (h : IsWalk tail head Vertex.s l Vertex.t3) :
     l = expensivePathThree ∨ l = zeroCostPathThree := by
   have hm := walk_from_s_mem l Vertex.t3 h
@@ -249,7 +309,9 @@ def zeroCostPath (i : Fin 3) : List Arc :=
 /-- **Path completeness.**  For each commodity `i`, the arc-lists forming a walk from the
 source `s` to the terminal `t_i` are *exactly* the two listed paths.  This is derived from
 the arc list — via the enumeration `walksFrom` together with the topological rank bounding
-every walk by 4 arcs — and not assumed. -/
+every walk by 4 arcs — and not assumed.
+@isnad1 id=iff.0h2v.s5.3f7e7f2a17d1 from=translated src=- shape=6e365098 vocab=0e6b5b05
+-/
 theorem path_complete (i : Fin 3) (l : List Arc) :
     IsWalk tail head Vertex.s l (terminal i) ↔ (l = expensivePath i ∨ l = zeroCostPath i) := by
   constructor
@@ -261,19 +323,25 @@ theorem path_complete (i : Fin 3) (l : List Arc) :
   · intro h
     fin_cases i <;> rcases h with rfl | rfl <;> decide
 
-/-- Every routing in the counterexample uses arc-simple paths. -/
+/-- Every routing in the counterexample uses arc-simple paths.
+@isnad1 id=nodup.1h2v.s4.ed536d9b3609 from=translated src=- shape=f95b5631 vocab=5dcf786d
+-/
 theorem routing_paths_nodup (p : Fin 3 → List Arc) (h : IsRouting p) : ∀ i, (p i).Nodup := by
   intro i
   rcases (path_complete i (p i)).mp (h i) with he | hz
   · rw [he]; fin_cases i <;> decide
   · rw [hz]; fin_cases i <;> decide
 
-/-- The traversal-counting load agrees with upstream's membership formula on every routing. -/
+/-- The traversal-counting load agrees with upstream's membership formula on every routing.
+@isnad1 id=eq.1h2v.s6.1ef0304ae42d from=translated src=- shape=45114d4f vocab=d4a38b8e
+-/
 theorem routing_load_eq_sum (p : Fin 3 → List Arc) (h : IsRouting p) (a : Arc) :
     unsplittableLoad demand p a = ∑ i : Fin 3, if a ∈ p i then demand i else 0 :=
   unsplittableLoad_eq_sum_of_nodup demand p a (routing_paths_nodup p h)
 
-/-- Conversely, all six really are walks. -/
+/-- Conversely, all six really are walks.
+@isnad1 id=and.0h0v.s5.ddd112d2bdfa from=translated src=- shape=51251a25 vocab=1f5112d6
+-/
 theorem the_six_are_walks :
     IsWalk tail head Vertex.s expensivePathOne Vertex.t1 ∧
     IsWalk tail head Vertex.s zeroCostPathOne Vertex.t1 ∧
@@ -286,7 +354,9 @@ theorem the_six_are_walks :
 def vertexSequence (x : Vertex) (l : List Arc) : List Vertex := x :: l.map head
 
 /-- Each of the six s-t_i walks is a *simple path* (no repeated vertex), so restricting
-Conjecture 1.3 to simple paths would not help. -/
+Conjecture 1.3 to simple paths would not help.
+@isnad1 id=and.0h0v.s5.392e53f5b8e8 from=translated src=- shape=6225609c vocab=806e97f2
+-/
 theorem the_six_walks_are_simple :
     (vertexSequence Vertex.s expensivePathOne).Nodup ∧
     (vertexSequence Vertex.s zeroCostPathOne).Nodup ∧
@@ -304,16 +374,24 @@ def loadThree (q0 q1 q2 : List Arc) (a : Arc) : ℤ :=
 /-- Routing cost expressed in terms of the three chosen paths. -/
 def routingCostThree (q0 q1 q2 : List Arc) : ℤ := ∑ a : Arc, arcCost a * loadThree q0 q1 q2 a
 
+/--
+@isnad1 id=eq.0h2v.s6.02a8a795d162 from=translated src=- shape=7da31c15 vocab=6e55a6b2
+-/
 theorem unsplittableLoad_eq (p : Fin 3 → List Arc) (a : Arc) :
     unsplittableLoad demand p a = loadThree (p 0) (p 1) (p 2) a := by
   simp only [unsplittableLoad, loadThree, Fin.sum_univ_three]
 
+/--
+@isnad1 id=eq.0h1v.s6.0b36fe7188ab from=translated src=- shape=cf0c3982 vocab=943cd6bc
+-/
 theorem routingCost_eq (p : Fin 3 → List Arc) :
     routingCost p = routingCostThree (p 0) (p 1) (p 2) :=
   Finset.sum_congr rfl fun a _ => by rw [unsplittableLoad_eq]
 
 /-- **The eight-case kernel check.**  Over the eight combinations of path choices, every
-capacity-good one costs at least 60. -/
+capacity-good one costs at least 60.
+@isnad1 id=le.4h3v.s6.688fb4884f09 from=translated src=- shape=6dbf9daf vocab=35ff8df8
+-/
 theorem enum_check :
     ∀ q0 ∈ [expensivePathOne, zeroCostPathOne],
     ∀ q1 ∈ [expensivePathTwo, zeroCostPathTwo],
@@ -323,7 +401,9 @@ theorem enum_check :
 
 /-- **Layer A (main).**  Every unsplittable routing of the three demands along arbitrary
 walks out of `s` whose arc loads stay within `x(a) + d_max` costs at least 60 — strictly
-more than the fractional cost 58. -/
+more than the fractional cost 58.
+@isnad1 id=le.2h1v.s4.0dfed64d21bf from=translated src=- shape=fdeea47c vocab=e5632681
+-/
 theorem min_cost_capacity_good (p : Fin 3 → List Arc) (hr : IsRouting p) (hc : CapacityGood p) :
     60 ≤ routingCost p := by
   have h0 : p 0 ∈ [expensivePathOne, zeroCostPathOne] := by
@@ -346,11 +426,17 @@ def allExpensiveRoute : Fin 3 → List Arc := expensivePath
 def optimalRoute : Fin 3 → List Arc :=
   fun i => if i = 0 then expensivePathOne else if i = 1 then expensivePathTwo else zeroCostPathThree
 
+/--
+@isnad1 id=and.0h0v.s2.e65ae731845b from=translated src=- shape=617b039e vocab=32e3d83c
+-/
 theorem exists_capacity_good : IsRouting allExpensiveRoute ∧ CapacityGood allExpensiveRoute := by
   constructor
   · intro i; revert i; decide
   · intro a; revert a; decide
 
+/--
+@isnad1 id=and.0h0v.s3.cd80524bc812 from=translated src=- shape=895310dd vocab=cbe34f07
+-/
 theorem cost_sixty_attained :
     IsRouting optimalRoute ∧ CapacityGood optimalRoute ∧ routingCost optimalRoute = 60 := by
   refine ⟨?_, ?_, by decide⟩
@@ -361,7 +447,9 @@ theorem cost_sixty_attained :
 (the capacity clause (i) on its own): an unsplittable routing with
 `flow_P(a) ≤ x(a) + d_max` for every arc `a` exists.  So the refutation isolates
 clause (ii), the cost clause — it is not an artifact of an unsatisfiable capacity
-requirement. -/
+requirement.
+@isnad1 id=ex.0h0v.s5.e2fa05cb7ef4 from=translated src=- shape=780c9602 vocab=988d034c
+-/
 theorem dgg_theorem_holds_here :
     ∃ p : Fin 3 → List Arc, IsRouting p ∧
     ∀ a : Arc, unsplittableLoad demand p a ≤ fractionalFlow a + maximumDemand :=
@@ -374,7 +462,9 @@ def allZeroCostRoute : Fin 3 → List Arc := zeroCostPath
 clause -- is *also* satisfiable on its own here: the all-`Z` routing costs `0 ≤ 58 = c^T x`.
 So neither clause is individually unsatisfiable at this instance; only their conjunction
 fails, which is what makes the instance a counterexample to Conjecture 1.3 rather than to
-either half of it. -/
+either half of it.
+@isnad1 id=and.0h0v.s4.9de4530d5e13 from=translated src=- shape=1df0c445 vocab=24892f32
+-/
 theorem cost_clause_alone_satisfiable :
     IsRouting allZeroCostRoute ∧
     routingCost allZeroCostRoute ≤ ∑ a : Arc, arcCost a * fractionalFlow a := by
@@ -388,7 +478,9 @@ arXiv:2308.02651.  Theorem 1.8 of that paper grants a two-sided violation of `2�
 together with the cost bound, and its conclusion *is* satisfied here: the all-`Z` routing
 keeps every arc load within `2·d_max = 30` of `x` on both sides and costs `0 ≤ 58`.  The
 counterexample therefore refutes the `d_max` grade only, exactly as Conjecture 1.3 states
-it. -/
+it.
+@isnad1 id=and.0h0v.s6.38521c0e5449 from=translated src=- shape=2745f664 vocab=414c7749
+-/
 theorem two_dmax_conclusion_holds_here :
     IsRouting allZeroCostRoute ∧
     (∀ a : Arc, fractionalFlow a - 2 * maximumDemand ≤ unsplittableLoad demand allZeroCostRoute a ∧
@@ -399,7 +491,9 @@ theorem two_dmax_conclusion_holds_here :
   · intro a; revert a; decide
   · decide
 
-/-- 60 is exactly the optimum: it is a lower bound and it is attained. -/
+/-- 60 is exactly the optimum: it is a lower bound and it is attained.
+@isnad1 id=and.0h0v.s5.d936e0fa05dd from=translated src=- shape=1d811e9e vocab=e5632681
+-/
 theorem optimum_is_sixty :
     (∀ p : Fin 3 → List Arc, IsRouting p → CapacityGood p → 60 ≤ routingCost p) ∧
     (∃ p : Fin 3 → List Arc, IsRouting p ∧ CapacityGood p ∧ routingCost p = 60) :=
@@ -451,7 +545,9 @@ def GoemansCostConjecture (R : Type) [CommRing R] [LinearOrder R] : Prop :=
 /-- **The Full form is the weaker Prop.**  It is `GoemansCostConjecture` with four hypotheses
 added (simple, loopless, acyclic, `x ≤ u`), so the bare conjecture implies it.  Hence
 `¬ GoemansCostConjectureFull` is the stronger statement, and it implies
-`¬ GoemansCostConjecture`. -/
+`¬ GoemansCostConjecture`.
+@isnad1 id=goemansc.1h1v.s4.96a0234dd512 from=translated src=- shape=be294b85 vocab=10516e71
+-/
 theorem GoemansCostConjectureFull_of_GoemansCostConjecture
     (R : Type) [CommRing R] [LinearOrder R]
     (h : GoemansCostConjecture R) : GoemansCostConjectureFull R := by
@@ -477,7 +573,9 @@ private theorem unsplittableLoad_cast {K E : Type} [Fintype K] [DecidableEq E]
   simp only [unsplittableLoad, nsmul_eq_mul, Int.cast_sum, Int.cast_mul, Int.cast_natCast]
 
 /-- If the conjecture held over `R`, it would hold over `ℤ` (an integral instance is an
-`R`-instance, and the conclusion pulls back along the order embedding `ℤ ↪ R`). -/
+`R`-instance, and the conclusion pulls back along the order embedding `ℤ ↪ R`).
+@isnad1 id=goemansc.1h1v.s5.e91d93958e72 from=translated src=- shape=d0eaa770 vocab=67dfcadb
+-/
 theorem GoemansCostConjecture_int_of (h : GoemansCostConjecture R) : GoemansCostConjecture ℤ := by
   intro W E K _ _ _ _ _ tail head src term d dmax x c hinj hns hpos hle hex hc hx hcons hsrc
   obtain ⟨P, hw, hcap, hcost⟩ :=
@@ -506,7 +604,9 @@ theorem GoemansCostConjecture_int_of (h : GoemansCostConjecture R) : GoemansCost
 /-- The same transfer for the literature-faithful form: if the Full conjecture held over
 `R`, it would hold over `ℤ`.  The four extra hypotheses (simple, loopless, acyclic,
 `x ≤ u`) transfer verbatim -- the first three do not mention the ring at all, and `x ≤ u`
-pushes forward along the order embedding `ℤ ↪ R`. -/
+pushes forward along the order embedding `ℤ ↪ R`.
+@isnad1 id=goemansc.1h1v.s5.20d6378bcd6a from=translated src=- shape=d0eaa770 vocab=1b2c8833
+-/
 theorem GoemansCostConjectureFull_int_of (h : GoemansCostConjectureFull R) :
     GoemansCostConjectureFull ℤ := by
   intro W E K _ _ _ _ _ tail head src term d dmax x c u hsimple hloop hacyc hxu
@@ -540,7 +640,9 @@ end Transfer
 /-- **Layer B (main), literature-faithful form, over `ℤ`.**  The counterexample instance
 discharges every hypothesis of `GoemansCostConjectureFull`: it is simple (`arcs_simple`),
 loopless (`no_self_loops`), acyclic (`⟨rank, rank_arc⟩`), and takes `u := x` (the worst
-case the primary source identifies), so `x ≤ u` holds by reflexivity. -/
+case the primary source identifies), so `x ≤ u` holds by reflexivity.
+@isnad1 id=not.0h0v.s2.b159210809f2 from=translated src=- shape=87ceb31f vocab=fb24adcf
+-/
 theorem not_GoemansCostConjectureFull_int : ¬ GoemansCostConjectureFull ℤ := by
   intro h
   obtain ⟨P, hw, hcap, hcost⟩ :=
@@ -556,12 +658,16 @@ theorem not_GoemansCostConjectureFull_int : ¬ GoemansCostConjectureFull ℤ := 
 
 /-- **Layer B (main), literature-faithful form, general coefficient ring.**  Goemans' cost
 conjecture -- capacities restored, digraph simple, loopless and acyclic -- is false over
-every linearly ordered commutative ring. -/
+every linearly ordered commutative ring.
+@isnad1 id=not.0h1v.s4.5237ddf12e57 from=translated src=- shape=f1d55fb0 vocab=98752971
+-/
 theorem not_GoemansCostConjectureFull (R : Type) [CommRing R] [LinearOrder R]
     [IsStrictOrderedRing R] : ¬ GoemansCostConjectureFull R :=
   fun h => not_GoemansCostConjectureFull_int (GoemansCostConjectureFull_int_of h)
 
-/-- The literature-faithful form over `ℚ`, the setting of Conjecture 1.3. -/
+/-- The literature-faithful form over `ℚ`, the setting of Conjecture 1.3.
+@isnad1 id=not.0h0v.s2.ae9d255d51c5 from=translated src=- shape=87ceb31f vocab=4e899343
+-/
 theorem not_GoemansCostConjectureFull_rat : ¬ GoemansCostConjectureFull ℚ :=
   not_GoemansCostConjectureFull ℚ
 
@@ -571,22 +677,30 @@ is **false** over `ℚ`, in the form that keeps every piece of the literature's 
 capacities `u` with `x ≤ u`, and a simple, loopless, acyclic digraph.
 
 `dgg_cost_conjecture_false` below is the same refutation for the bare form
-`GoemansCostConjecture` and is kept as the searchable alias. -/
+`GoemansCostConjecture` and is kept as the searchable alias.
+@isnad1 id=not.0h0v.s2.ae9d255d51c5 from=translated src=- shape=87ceb31f vocab=4e899343
+-/
 theorem goemans_cost_conjecture_false : ¬ GoemansCostConjectureFull ℚ :=
   not_GoemansCostConjectureFull ℚ
 
-/-- The headline over the reals. -/
+/-- The headline over the reals.
+@isnad1 id=not.0h0v.s2.ad013722d7bd from=translated src=- shape=87ceb31f vocab=55e972ae
+-/
 theorem goemans_cost_conjecture_false_real : ¬ GoemansCostConjectureFull ℝ :=
   not_GoemansCostConjectureFull ℝ
 
-/-- **Layer B, bare form.**  Goemans' cost conjecture is false over `ℤ`. -/
+/-- **Layer B, bare form.**  Goemans' cost conjecture is false over `ℤ`.
+@isnad1 id=not.0h0v.s2.e908d51858d8 from=translated src=- shape=87ceb31f vocab=a6f3f314
+-/
 theorem not_GoemansCostConjecture_int : ¬ GoemansCostConjecture ℤ :=
   fun h => not_GoemansCostConjectureFull_int
     (GoemansCostConjectureFull_of_GoemansCostConjecture ℤ h)
 
 /-- **Layer B, bare form, general coefficient ring.**  Goemans' cost conjecture is false
 over every linearly ordered commutative ring — in particular over `ℚ`, the setting of
-Conjecture 1.3 of arXiv:2308.02651, and over `ℝ`. -/
+Conjecture 1.3 of arXiv:2308.02651, and over `ℝ`.
+@isnad1 id=not.0h1v.s4.fdb7c2ff17b4 from=translated src=- shape=f1d55fb0 vocab=26bd0062
+-/
 theorem not_GoemansCostConjecture (R : Type) [CommRing R] [LinearOrder R] [IsStrictOrderedRing R] :
     ¬ GoemansCostConjecture R :=
   fun h => not_GoemansCostConjecture_int (GoemansCostConjecture_int_of h)
@@ -594,14 +708,20 @@ theorem not_GoemansCostConjecture (R : Type) [CommRing R] [LinearOrder R] [IsStr
 /-- The bare form over `ℚ`; the searchable alias of the headline
 `goemans_cost_conjecture_false`.  (It also follows from the headline without re-running the
 instance, via `GoemansCostConjectureFull_of_GoemansCostConjecture` — see
-`dgg_cost_conjecture_false_of_headline` — since the Full form is the weaker Prop.) -/
+`dgg_cost_conjecture_false_of_headline` — since the Full form is the weaker Prop.)
+@isnad1 id=not.0h0v.s2.faef08496010 from=translated src=- shape=87ceb31f vocab=4534374f
+-/
 theorem dgg_cost_conjecture_false : ¬ GoemansCostConjecture ℚ := not_GoemansCostConjecture ℚ
 
-/-- The same over the reals. -/
+/-- The same over the reals.
+@isnad1 id=not.0h0v.s2.33be95dd2ca1 from=translated src=- shape=87ceb31f vocab=45aef588
+-/
 theorem dgg_cost_conjecture_false_real : ¬ GoemansCostConjecture ℝ := not_GoemansCostConjecture ℝ
 
 /-- The headline implies the bare-form refutation, with no second appeal to the instance:
-the Full form is the weaker Prop, so refuting it refutes the bare one. -/
+the Full form is the weaker Prop, so refuting it refutes the bare one.
+@isnad1 id=not.0h0v.s2.faef08496010 from=translated src=- shape=87ceb31f vocab=4534374f
+-/
 theorem dgg_cost_conjecture_false_of_headline : ¬ GoemansCostConjecture ℚ :=
   fun h => goemans_cost_conjecture_false (GoemansCostConjectureFull_of_GoemansCostConjecture ℚ h)
 

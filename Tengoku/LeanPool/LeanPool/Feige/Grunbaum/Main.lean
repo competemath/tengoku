@@ -27,6 +27,9 @@ noncomputable section
 
 namespace Grunbaum
 
+/--
+@isnad1 id=eq.2h4v.s10.c2ba35dc4bf9 from=translated src=- shape=e8b7515f vocab=26933dbc
+-/
 lemma truncDomain_eq_Ici_of_isMinOn {d : ℕ} {C : Set (Euc d)}
     {ℓ : Euc d →L[ℝ] ℝ} {x₀ : Euc d}
     (hx₀ : x₀ ∈ C) (hmin : IsMinOn ℓ C x₀) :
@@ -42,6 +45,9 @@ lemma truncDomain_eq_Ici_of_isMinOn {d : ℕ} {C : Set (Euc d)}
     change (trunc C ℓ t).Nonempty
     exact ⟨x₀, hx₀, ht⟩
 
+/--
+@isnad1 id=eq.0h4v.s12.bc1ed18a80fc from=translated src=- shape=da1e4c37 vocab=167d70fe
+-/
 lemma cdf_map_uniformVolume_eq_truncVolumeRatio {d : ℕ}
     (C : Set (Euc d)) (ℓ : Euc d →L[ℝ] ℝ) (t : ℝ)
     [IsProbabilityMeasure ((uniformVolume C).map ℓ)] :
@@ -55,6 +61,9 @@ lemma cdf_map_uniformVolume_eq_truncVolumeRatio {d : ℕ}
     Measure.restrict_apply hm, smul_eq_mul, trunc, div_eq_mul_inv]
   rw [inter_comm, mul_comm]
 
+/--
+@isnad1 id=eq.0h4v.s11.6fad40a7110e from=translated src=- shape=3fc100dd vocab=251d1f9f
+-/
 lemma cdfRoot_eq_cdf_rpow_map_uniformVolume {d : ℕ}
     (C : Set (Euc d)) (ℓ : Euc d →L[ℝ] ℝ) (t : ℝ)
     [IsProbabilityMeasure ((uniformVolume C).map ℓ)] :
@@ -66,6 +75,9 @@ lemma cdfRoot_eq_cdf_rpow_map_uniformVolume {d : ℕ}
   rw [ENNReal.toReal_rpow]
   simp only [Nat.cast_add, Nat.cast_one]
 
+/--
+@isnad1 id=eventual.1h4v.s11.1683053b1fa3 from=translated src=- shape=e9c59bbf vocab=77a22ec5
+-/
 lemma ae_map_uniformVolume_mem_Ici_of_isMinOn {d : ℕ}
     (C : FullDimensionalConvexBody d) (ℓ : Euc d →L[ℝ] ℝ)
     {x₀ : Euc d} (hmin : IsMinOn ℓ (C : Set (Euc d)) x₀) :
@@ -86,6 +98,9 @@ lemma ae_map_uniformVolume_mem_Ici_of_isMinOn {d : ℕ}
     exact hx.1 (hmin hx.2)
   rw [hempty, measure_empty]
 
+/--
+@isnad1 id=integrab.0h3v.s10.490ec6f08a17 from=translated src=- shape=f9375695 vocab=ac330fb9
+-/
 lemma integrable_id_map_uniformVolume {d : ℕ}
     (C : FullDimensionalConvexBody d) (ℓ : Euc d →L[ℝ] ℝ) :
     Integrable (fun t : ℝ ↦ t)

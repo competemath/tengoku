@@ -36,7 +36,9 @@ noncomputable section
 variable {Ω : Type*} [MeasurableSpace Ω]
 
 /-- Jensen's inequality for exp: exp(E[X]) ≤ E[exp(X)].
-    This uses ConvexOn.map_integral_le from Mathlib.Analysis.Convex.Integral. -/
+    This uses ConvexOn.map_integral_le from Mathlib.Analysis.Convex.Integral.
+@isnad1 id=le.2h3v.s6.0f6db5051e35 from=translated src=- shape=77c78bf5 vocab=abe76493
+-/
 theorem jensen_exp {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} (hX_int : Integrable X μ) (hexpX_int : Integrable (fun ω => exp (X ω)) μ) :
     exp (∫ ω, X ω ∂μ) ≤ ∫ ω, exp (X ω) ∂μ := by
@@ -46,7 +48,9 @@ theorem jensen_exp {μ : Measure Ω} [IsProbabilityMeasure μ]
   exact hconv.map_integral_le hcont hclosed (by simp) hX_int hexpX_int
 
 /-- MGF bound: E[X] ≤ (1/t) · log E[exp(tX)] for t > 0.
-    This follows from Jensen's inequality for the convex function exp. -/
+    This follows from Jensen's inequality for the convex function exp.
+@isnad1 id=le.3h4v.s7.721e95e82276 from=translated src=- shape=85e02e53 vocab=d9640538
+-/
 theorem mean_le_log_mgf {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} (hX_int : Integrable X μ)
     {t : ℝ} (ht : 0 < t) (hexpX_int : Integrable (fun ω => exp (t * X ω)) μ) :
@@ -66,7 +70,9 @@ theorem mean_le_log_mgf {μ : Measure Ω} [IsProbabilityMeasure μ]
       _ = (1/t) * log (∫ ω, exp (t * X ω) ∂μ) := by ring
   exact h3
 
-/-- Integrability of all real exponential moments implies integrability of the variable. -/
+/-- Integrability of all real exponential moments implies integrability of the variable.
+@isnad1 id=integrab.1h3v.s6.11fbe643dca9 from=translated src=- shape=dfb4c7a9 vocab=d3f7d3e3
+-/
 lemma integrable_of_integrable_exp_all {Y : Ω → ℝ} {μ : Measure Ω}
     (h : ∀ t : ℝ, Integrable (fun ω => exp (t * Y ω)) μ) :
     Integrable Y μ := by
@@ -79,7 +85,9 @@ lemma integrable_of_integrable_exp_all {Y : Ω → ℝ} {μ : Measure Ω}
     exact Set.mem_univ _
   exact ProbabilityTheory.integrable_of_mem_interior_integrableExpSet h_interior
 
-/-- Convexity bounds the exponential of a sum by the average of doubled exponentials. -/
+/-- Convexity bounds the exponential of a sum by the average of doubled exponentials.
+@isnad1 id=le.0h2v.s6.7eea4290d2f0 from=translated src=- shape=605ff4d7 vocab=5e246283
+-/
 lemma exp_add_le_average_exp_two (a b : ℝ) :
     exp (a + b) ≤ (exp (2 * a) + exp (2 * b)) / 2 := by
   have hconv := convexOn_exp.2 (Set.mem_univ (2 * a)) (Set.mem_univ (2 * b))
@@ -97,7 +105,9 @@ lemma exp_add_le_average_exp_two (a b : ℝ) :
 
 This is the integral form of `exp_add_le_average_exp_two`: integrability and an
 upper bound at the doubled parameter for each summand give the same upper bound
-for their sum at the original parameter. No independence assumption is needed. -/
+for their sum at the original parameter. No independence assumption is needed.
+@isnad1 id=and.6h6v.s8.4823447b9c36 from=translated src=- shape=ef7c2325 vocab=742d4f07
+-/
 lemma integrable_exp_add_and_integral_le {μ : Measure Ω} {Y Z : Ω → ℝ} {l B : ℝ}
     (hY_ae : AEMeasurable Y μ) (hZ_ae : AEMeasurable Z μ)
     (hY_int : Integrable (fun ω => exp ((2 * l) * Y ω)) μ)

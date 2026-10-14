@@ -55,6 +55,9 @@ def ofNat (n : ℕ) : ℕ → Option (Semiterm L ξ n)
       | none => none
     | _ => none
 
+/--
+@isnad1 id=eq.0h4v.s5.7e1add67e86b from=translated src=- shape=cdd2cdbc vocab=b68c56ad
+-/
 lemma ofNat_toNat {n : ℕ} : ∀ t : Semiterm L ξ n, ofNat n (toNat t) = some t
   | #z => by simp [toNat, ofNat]
   | &x => by simp [toNat, ofNat]

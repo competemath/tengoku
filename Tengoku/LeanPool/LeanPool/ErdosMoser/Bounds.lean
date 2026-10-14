@@ -23,7 +23,9 @@ namespace LeanPool.ErdosMoser
 open Finset
 
 /-- If a nonempty finite set of natural numbers has distinct subset sums, then
-`4 ^ |A| - 1 ≤ 3 * |A| * max(A) ^ 2`. -/
+`4 ^ |A| - 1 ≤ 3 * |A| * max(A) ^ 2`.
+@isnad1 id=le.2h1v.s6.63c3687fd32f from=translated src=- shape=61886ae1 vocab=65f8df08
+-/
 theorem erdosMoserMaxBound {A : Finset ℕ} (hA : A.Nonempty)
     (h : HasDistinctSubsetSums A) :
     (4 : ℝ) ^ A.card - 1 ≤
@@ -42,7 +44,9 @@ theorem erdosMoserMaxBound {A : Finset ℕ} (hA : A.Nonempty)
   linarith
 
 /-- Square-root form of the finite largest-element bound:
-`sqrt ((4 ^ |A| - 1) / (3 * |A|)) ≤ max(A)`. -/
+`sqrt ((4 ^ |A| - 1) / (3 * |A|)) ≤ max(A)`.
+@isnad1 id=le.2h1v.s6.95e0464e4a02 from=translated src=- shape=42ca6f58 vocab=8c209ecb
+-/
 theorem erdosMoserMaxSqrt {A : Finset ℕ} (hA : A.Nonempty)
     (h : HasDistinctSubsetSums A) :
     Real.sqrt (((4 : ℝ) ^ A.card - 1) / (3 * A.card)) ≤

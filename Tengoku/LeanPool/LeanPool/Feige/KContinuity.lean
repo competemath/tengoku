@@ -33,13 +33,18 @@ variable {ι : Type*} [Fintype ι]
 def kLinear (y : ι → ℝ) (e : Option ι → NNReal) : ℝ :=
   ∑ i, (y i - 1) * (e (some i) : ℝ)
 
+/--
+@isnad1 id=continuo.0h2v.s5.c7ad0426c6dd from=translated src=- shape=879518d1 vocab=dc068a84
+-/
 theorem continuous_kLinear (e : Option ι → NNReal) :
     Continuous (fun y : ι → ℝ ↦ kLinear y e) := by
   unfold kLinear
   fun_prop
 
 /-- Away from the boundary, membership in `kEvent` is eventually constant
-under convergence of the parameter vector. -/
+under convergence of the parameter vector.
+@isnad1 id=eventual.2h5v.s6.c3d1bb9cfc4a from=translated src=- shape=911ed9bc vocab=3345912f
+-/
 theorem eventually_mem_kEvent_iff
     {L : Filter ℕ} {yseq : ℕ → ι → ℝ} {y : ι → ℝ}
     (hy : Tendsto yseq L (𝓝 y)) (e : Option ι → NNReal)
@@ -61,6 +66,9 @@ theorem eventually_mem_kEvent_iff
 def kBoundary (y : ι → ℝ) : Set (Option ι → NNReal) :=
   {e | kLinear y e = (e none : ℝ)}
 
+/--
+@isnad1 id=measurab.0h2v.s4.2c48d7bd94ea from=translated src=- shape=03c5547a vocab=0f9e59b3
+-/
 theorem measurableSet_kBoundary (y : ι → ℝ) :
     MeasurableSet (kBoundary y) := by
   unfold kBoundary kLinear
@@ -84,7 +92,9 @@ theorem measurableSet_kBoundary (y : ι → ℝ) :
   exact (measurableSet_le hf hg).inter (measurableSet_le hg hf)
 
 /-- Almost-everywhere stabilization of the moving indicators, assuming only
-the geometrically isolated boundary-null statement. -/
+the geometrically isolated boundary-null statement.
+@isnad1 id=eventual.2h3v.s7.868b6775d1e9 from=translated src=- shape=896c2ea5 vocab=46366149
+-/
 theorem ae_eventually_mem_kEvent_iff
     {yseq : ℕ → ι → ℝ} {y : ι → ℝ}
     (hy : Tendsto yseq atTop (𝓝 y))

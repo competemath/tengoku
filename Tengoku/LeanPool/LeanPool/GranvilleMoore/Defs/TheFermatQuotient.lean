@@ -54,7 +54,9 @@ abbrev fermatUnit (p : ℕ) (x : ℤ) : ℤ := x ^ (p - 1)
 For `p` prime with `p ∤ x` this rational number is an integer. -/
 def fermatQuotient (p : ℕ) (x : ℤ) : ℚ := ((fermatUnit p x - 1 : ℤ) : ℚ) / (p : ℚ)
 
-/-- The Fermat quotient written out with the numerator cast to `ℚ` termwise. -/
+/-- The Fermat quotient written out with the numerator cast to `ℚ` termwise.
+@isnad1 id=eq.0h2v.s5.b0f14c60c1c4 from=translated src=- shape=3ba757f2 vocab=1bed41f6
+-/
 theorem fermatQuotient_eq_div (p : ℕ) (x : ℤ) :
     fermatQuotient p x = ((x : ℚ) ^ (p - 1) - 1) / (p : ℚ) := by
   rw [fermatQuotient]
@@ -63,12 +65,16 @@ theorem fermatQuotient_eq_div (p : ℕ) (x : ℤ) :
 
 /-- Cancelling the denominator in the Fermat quotient: this is the identity
 `x ^ (p - 1) = 1 + p * q_p(x)` in `ℚ`, and the only property of `fermatQuotient`
-its consumers need. -/
+its consumers need.
+@isnad1 id=eq.1h2v.s6.f90db910d4fb from=translated src=- shape=fe61eea4 vocab=e247b179
+-/
 theorem natCast_mul_fermatQuotient {p : ℕ} (hp : p ≠ 0) (x : ℤ) :
     (p : ℚ) * fermatQuotient p x = (x : ℚ) ^ (p - 1) - 1 := by
   rw [fermatQuotient_eq_div, mul_div_cancel₀ _ (Nat.cast_ne_zero.mpr hp)]
 
-/-- The Fermat quotient of `1` vanishes: `q_p(1) = 0`. -/
+/-- The Fermat quotient of `1` vanishes: `q_p(1) = 0`.
+@isnad1 id=eq.0h1v.s4.4d044ccff876 from=translated src=- shape=59ae2d96 vocab=b6f28ce1
+-/
 @[simp]
 theorem fermatQuotient_one (p : ℕ) : fermatQuotient p 1 = 0 := by
   rw [fermatQuotient_eq_div]
@@ -81,27 +87,37 @@ It is the exponent for which `(x ^ (p - 1)) ^ e_k = x ^ (p ^ k - 1)`, since
 def frobeniusExponent (p k : ℕ) : ℕ := ∑ r ∈ range k, p ^ r
 
 /-- The Frobenius exponent is the truncated geometric sum, which is how Mathlib's
-geometric-sum API applies to it. -/
+geometric-sum API applies to it.
+@isnad1 id=eq.0h2v.s4.9b6784948b6a from=translated src=- shape=dcc7b5aa vocab=f2eddf4f
+-/
 theorem frobeniusExponent_eq_sum (p k : ℕ) :
     frobeniusExponent p k = ∑ r ∈ range k, p ^ r := rfl
 
-/-- The Frobenius exponent of the empty tower vanishes: `e_0 = 0`. -/
+/-- The Frobenius exponent of the empty tower vanishes: `e_0 = 0`.
+@isnad1 id=eq.0h1v.s4.1f1035567f6d from=translated src=- shape=1d838610 vocab=5e4ea37b
+-/
 @[simp]
 theorem frobeniusExponent_zero (p : ℕ) : frobeniusExponent p 0 = 0 := by
   rw [frobeniusExponent_eq_sum, range_zero, sum_empty]
 
-/-- The first Frobenius exponent is `1`: `e_1 = 1`. -/
+/-- The first Frobenius exponent is `1`: `e_1 = 1`.
+@isnad1 id=eq.0h1v.s4.273f793d2e3d from=translated src=- shape=1d838610 vocab=5e4ea37b
+-/
 @[simp]
 theorem frobeniusExponent_one (p : ℕ) : frobeniusExponent p 1 = 1 := by
   rw [frobeniusExponent_eq_sum]
   simp
 
-/-- The recursion `e_{k+1} = e_k + p ^ k` defining the Frobenius exponent. -/
+/-- The recursion `e_{k+1} = e_k + p ^ k` defining the Frobenius exponent.
+@isnad1 id=eq.0h2v.s5.51a09fc7e927 from=translated src=- shape=ce6e45c1 vocab=52fe19a6
+-/
 theorem frobeniusExponent_succ (p k : ℕ) :
     frobeniusExponent p (k + 1) = frobeniusExponent p k + p ^ k := by
   rw [frobeniusExponent_eq_sum, frobeniusExponent_eq_sum, sum_range_succ]
 
-/-- Peeling the recursion off the bottom instead: `e_{k+1} = 1 + p * e_k`. -/
+/-- Peeling the recursion off the bottom instead: `e_{k+1} = 1 + p * e_k`.
+@isnad1 id=eq.0h2v.s5.98b64e0a3b32 from=translated src=- shape=e18b43e7 vocab=e6ee4c28
+-/
 theorem frobeniusExponent_succ' (p k : ℕ) :
     frobeniusExponent p (k + 1) = 1 + p * frobeniusExponent p k := by
   rw [frobeniusExponent_eq_sum, frobeniusExponent_eq_sum, geom_sum_succ, add_comm]

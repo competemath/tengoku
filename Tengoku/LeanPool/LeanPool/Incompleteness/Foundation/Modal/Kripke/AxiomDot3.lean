@@ -20,6 +20,9 @@ namespace Kripke
 
 variable {F : Kripke.Frame}
 
+/--
+@isnad1 id=realize.1h1v.s5.de37e4f0ba96 from=translated src=- shape=9cf6f3a4 vocab=04a47a29
+-/
 lemma connected_of_validate_dot3 (hCon : Connected F) : F ⊧ (Axioms.Dot3 (.atom 0) (.atom 1)) := by
   rintro V x;
   apply Satisfies.or_def.mpr;
@@ -34,6 +37,9 @@ lemma connected_of_validate_dot3 (hCon : Connected F) : F ⊧ (Axioms.Dot3 (.ato
   | inl Ryz => have := hp z Ryz; contradiction;
   | inr Rzy => have := hq y Rzy; contradiction;
 
+/--
+@isnad1 id=connecte.1h1v.s5.7dca77fb906c from=translated src=- shape=c6ab71fc vocab=04a47a29
+-/
 lemma validate_dot3_of_connected : F ⊧ (Axioms.Dot3 (.atom 0) (.atom 1)) → Connected F := by
   contrapose;
   intro hCon;

@@ -66,20 +66,38 @@ instance semantics :
 
 variable {F : Kripke.FiniteFrame}
 
+/--
+@isnad1 id=iff.0h2v.s4.19f4d26f277e from=translated src=- shape=d962512f vocab=b63b0ac9
+-/
 @[simp] protected lemma models_iff : F ⊧ φ ↔ Kripke.ValidOnFiniteFrame F φ := iff_of_eq rfl
 
+/--
+@isnad1 id=iff.0h2v.s5.d8b856c6b153 from=translated src=- shape=c6fec093 vocab=5f474904
+-/
 lemma models_set_iff : F ⊧* Φ ↔ ∀ φ ∈ Φ, F ⊧ φ := by simp [Semantics.realizeSet_iff];
 
+/--
+@isnad1 id=realize.0h1v.s4.c5ab5715b13b from=translated src=- shape=75b9ccd3 vocab=9b8d4137
+-/
 protected lemma top_def : F ⊧ ⊤ := by simp [ValidOnFiniteFrame];
 
+/--
+@isnad1 id=not.0h1v.s4.ef8a8349a8d5 from=translated src=- shape=6fb7f272 vocab=c5c1f78f
+-/
 protected lemma bot_def : ¬F ⊧ ⊥ := by simp [ValidOnFiniteFrame];
 
+/--
+@isnad1 id=iff.0h2v.s5.6a945462b102 from=translated src=- shape=240946cf vocab=f8ad95a2
+-/
 lemma iff_not_exists_valuation : (¬F ⊧ φ) ↔ (∃ V : Kripke.Valuation F.toFrame, ¬(⟨F.toFrame, V⟩ :
     Kripke.Model) ⊧ φ) :=
   ValidOnFrame.iff_not_exists_valuation
 
 alias ⟨exists_valuation_of_not, not_of_exists_valuation⟩ := iff_not_exists_valuation
 
+/--
+@isnad1 id=iff.0h2v.s5.e57fd56589db from=translated src=- shape=cc55c75d vocab=327294ed
+-/
 lemma iff_not_exists_valuation_world : (¬F ⊧ φ) ↔ (∃ V : Kripke.Valuation F.toFrame, ∃ x :
     (⟨F.toFrame, V⟩ :
     Kripke.Model).World, ¬Satisfies _ x φ) :=
@@ -101,8 +119,14 @@ protected instance semantics :
 
 variable {C : Kripke.FiniteFrameClass}
 
+/--
+@isnad1 id=iff.0h2v.s4.c540800caf5d from=translated src=- shape=63d62e0b vocab=321f63b6
+-/
 @[simp] protected lemma models_iff : C ⊧ φ ↔ Formula.Kripke.ValidOnFrameClass C φ := iff_of_eq rfl
 
+/--
+@isnad1 id=iff.0h2v.s5.81cd04f76a99 from=translated src=- shape=1c137132 vocab=4ac1fd38
+-/
 lemma iff_not_exists_frame : (¬C ⊧ φ) ↔ (∃ F ∈ C, ¬F ⊧ φ) := by
   have h := ValidOnFrameClass.iff_not_exists_frame (φ := φ) (C := C.toFrameClass);
   rw [show (¬C ⊧ φ) = (¬C.toFrameClass ⊧ φ) from rfl, h];
@@ -130,10 +154,16 @@ class FiniteDefinedBy (C Γ) extends FiniteFrameClass.DefinedBy C Γ where
 /-- Imported declaration from the Incompleteness formalization. -/
 abbrev DefinedByFormula (C) (φ : Formula ℕ) := FiniteFrameClass.DefinedBy C {φ}
 
+/--
+@isnad1 id=definedb.1h2v.s4.b27ec423a155 from=translated src=- shape=ab8af8f8 vocab=0b2e0160
+-/
 lemma definedByFormula_of_iff_mem_validate (h : ∀ F, F ∈ C ↔ F ⊧ φ) : DefinedByFormula C φ := by
   constructor;
   simpa;
 
+/--
+@isnad1 id=definedb.0h4v.s5.c9421361c99e from=translated src=- shape=35291cc0 vocab=7f0616af
+-/
 instance definedBy_inter
   (C₁ Γ₁) [h₁ : DefinedBy C₁ Γ₁]
   (C₂ Γ₂) [h₂ : DefinedBy C₂ Γ₂]
@@ -172,6 +202,9 @@ namespace FiniteFrameClass
 
 variable {C : Kripke.FiniteFrameClass}
 
+/--
+@isnad1 id=definedb.1h2v.s5.3af63eb28a62 from=translated src=- shape=86cd7cc9 vocab=f0806206
+-/
 lemma definedBy_with_axiomK (defines : C.DefinedBy Γ) :
     DefinedBy C (insert (Axioms.K (.atom 0) (.atom 1)) Γ) := by
   convert FiniteFrameClass.definedBy_inter AllFiniteFrameClass

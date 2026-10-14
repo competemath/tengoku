@@ -30,7 +30,9 @@ namespace ExponentialJuliaSetMisiurewicz
 
 noncomputable section
 
-/-- Every sufficiently late image of a nonempty open set meets the negative real axis. -/
+/-- Every sufficiently late image of a nonempty open set meets the negative real axis.
+@isnad1 id=ex.2h1v.s6.1ad4b8a9e385 from=translated src=- shape=de4d9901 vocab=51613a14
+-/
 theorem eventually_hits_negative_realAxis {U : Set ℂ} (hU : IsOpen U) (hUne : U.Nonempty) :
     ∃ N : ℕ, ∀ n ≥ N, ∃ z ∈ U, (expIterate n z).im = 0 ∧ (expIterate n z).re < 0 := by
   obtain ⟨N, hN⟩ := eventually_hits_nonzero hU hUne (w := -1) (by norm_num)
@@ -38,7 +40,9 @@ theorem eventually_hits_negative_realAxis {U : Set ℂ} (hU : IsOpen U) (hUne : 
   obtain ⟨z, hz, heq⟩ := hN n hn
   exact ⟨z, hz, by simp [heq]⟩
 
-/-- **Theorem 4.3.** Infinitely many iterated images meet the negative real axis. -/
+/-- **Theorem 4.3.** Infinitely many iterated images meet the negative real axis.
+@isnad1 id=infinite.2h1v.s6.2f94d652c093 from=translated src=- shape=cd81feba vocab=12f60fc1
+-/
 theorem infinitely_often_hits_negative_realAxis {U : Set ℂ}
     (hU : IsOpen U) (hUne : U.Nonempty) :
     {n : ℕ | ∃ z ∈ U, (expIterate n z).im = 0 ∧ (expIterate n z).re < 0}.Infinite := by
@@ -46,7 +50,9 @@ theorem infinitely_often_hits_negative_realAxis {U : Set ℂ}
   exact (Set.Ici_infinite N).mono (fun n hn => hN n hn)
 
 /-- **Corollary 4.4 and Exercise 8.7.** The paper's spherical sensitivity condition holds
-for every pair of positive constants, at every sufficiently late time. -/
+for every pair of positive constants, at every sufficiently late time.
+@isnad1 id=ex.4h3v.s6.354edf995aef from=translated src=- shape=14c21a24 vocab=52031c16
+-/
 theorem spherical_sensitive_dependence_paper {U : Set ℂ}
     (hU : IsOpen U) (hUne : U.Nonempty) {R δ : ℝ} (hR : 0 < R) (hδ : 0 < δ) :
     ∃ N : ℕ, ∀ n ≥ N, ∃ z ∈ U, ∃ w ∈ U,
@@ -68,7 +74,9 @@ theorem spherical_sensitive_dependence_paper {U : Set ℂ}
     simp [hab, Complex.norm_real, abs_of_pos hδ]
 
 /-- **Observation 5.2, first clause.** Real parts tend to positive infinity
-along escaping orbits. -/
+along escaping orbits.
+@isnad1 id=tendsto.1h1v.s4.f06ebd19e0ff from=translated src=- shape=1baba42b vocab=cba068ff
+-/
 theorem EscapesToInfinity.tendsto_re {z : ℂ} (hz : EscapesToInfinity z) :
     Tendsto (fun n => (expIterate n z).re) atTop atTop := by
   apply Filter.tendsto_atTop.2
@@ -79,7 +87,9 @@ theorem EscapesToInfinity.tendsto_re {z : ℂ} (hz : EscapesToInfinity z) :
   simpa only [expIterate_succ, Complex.norm_exp, Real.exp_le_exp] using h
 
 /-- **Observation 5.2, second clause.** Derivative norms tend to infinity along escaping orbits.
-After finitely many factors, every factor in the chain rule has norm at least two. -/
+After finitely many factors, every factor in the chain rule has norm at least two.
+@isnad1 id=tendsto.1h1v.s5.762afaee03f8 from=translated src=- shape=4e2c332b vocab=cb9d38ad
+-/
 theorem EscapesToInfinity.tendsto_norm_deriv {z : ℂ} (hz : EscapesToInfinity z) :
     Tendsto (fun n => ‖deriv (expIterate n) z‖) atTop atTop := by
   obtain ⟨N, hN⟩ := hz 2

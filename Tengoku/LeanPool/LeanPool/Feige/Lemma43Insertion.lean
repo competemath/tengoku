@@ -25,6 +25,9 @@ open MeasureTheory
 namespace Feige
 namespace Lemma43
 
+/--
+@isnad1 id=le.0h3v.s4.948327f107f5 from=translated src=- shape=c911c8a3 vocab=79fa21e6
+-/
 theorem theta_nonneg (ν : Measure ℝ) (c d : ℝ) :
     0 ≤ theta ν c d := by
   unfold theta w u v
@@ -45,7 +48,9 @@ def RealizesInsertionEdge
   interpolation (j + 1) = theta νM c d
 
 /-- The factorized local transfer identity is exactly the identity required
-on one chain-insertion edge. -/
+on one chain-insertion edge.
+@isnad1 id=eq.2h10v.s8.9862415b0d4a from=translated src=- shape=970fbb00 vocab=288665db
+-/
 theorem insertionTransfer_eq_of_realizesInsertionEdge
     {upper old width interpolation : ℕ → ℝ} {j : ℕ}
     {νP νM : Measure ℝ} {a c d : ℝ}
@@ -66,7 +71,9 @@ theorem insertionTransfer_eq_of_realizesInsertionEdge
   exact hid
 
 /-- The order and denominator conclusions of the local transfer result pass
-verbatim to adjacent entries of the insertion sequences. -/
+verbatim to adjacent entries of the insertion sequences.
+@isnad1 id=and.3h9v.s6.3995d5f3387f from=translated src=- shape=6ac83418 vocab=da4d24dd
+-/
 theorem insertion_order_widths_of_realizesInsertionEdge
     {upper old width interpolation : ℕ → ℝ} {j : ℕ}
     {νP νM : Measure ℝ} {c d : ℝ}
@@ -85,7 +92,9 @@ theorem insertion_order_widths_of_realizesInsertionEdge
     exact hwP
 
 /-- A full `CompleteConclusion` immediately supplies every analytic fact
-needed by the insertion algorithm on a realized edge. -/
+needed by the insertion algorithm on a realized edge.
+@isnad1 id=and.2h10v.s7.d3e6ffb640ab from=translated src=- shape=2adfe1a0 vocab=c3c56c5a
+-/
 theorem insertion_conclusions_of_complete
     {upper old width interpolation : ℕ → ℝ} {j : ℕ}
     {f : ℝ → ENNReal} {a b c d : ℝ}
@@ -105,7 +114,9 @@ theorem insertion_conclusions_of_complete
     hreal horder hwP
 
 /-- The local transfer result for finite signed-exponential common parts,
-now exposed directly in the insertion-sequence interface. -/
+now exposed directly in the insertion-sequence interface.
+@isnad1 id=and.5h10v.s7.1f8b243089f7 from=translated src=- shape=5a7efc39 vocab=4849d1f4
+-/
 theorem finiteSignedExp_insertion_conclusions
     (Fs : List LikelihoodRatio.SignedExpFactor)
     {upper old width interpolation : ℕ → ℝ} {j : ℕ}
@@ -132,7 +143,9 @@ theorem finiteSignedExp_insertion_conclusions
 `-E₀`.  The factorized transfer identity still holds for its arbitrary
 common law; support on the nonpositive half-line makes the negative
 endpoint's interpolation parameter zero, which is all the order information
-needed there. -/
+needed there.
+@isnad1 id=and.4h8v.s7.7865b21ad8cc from=translated src=- shape=0262bc57 vocab=905148b8
+-/
 theorem terminal_insertion_conclusions
     (μ : Measure ℝ) [IsProbabilityMeasure μ]
     (hpos : μ (Set.Ioi 0) = 0)

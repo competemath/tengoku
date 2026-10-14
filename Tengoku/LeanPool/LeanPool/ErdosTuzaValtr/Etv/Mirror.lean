@@ -22,6 +22,9 @@ open OrderDual
 
 variable {α : Type _} [LinearOrder α] {C : Config α}
 
+/--
+@isnad1 id=iff.0h6v.s6.03e3d321f1c8 from=translated src=- shape=696a0131 vocab=603aff24
+-/
 theorem Mirror.hasLaced {n : ℕ} {S : Finset α} (p q : α) :
     C.Mirror.HasLaced n S.Mirror (toDual q) (toDual p) ↔ C.HasLaced n S p q := by
   constructor
@@ -48,12 +51,18 @@ theorem Mirror.hasLaced {n : ℕ} {S : Finset α} (p q : α) :
     repeat' rw [List.Mirror_mem_getLast, List.Mirror_mem_head]
     simp only [List.Mirror_in, Option.mem_def]; simp at h; rw [Nat.add_comm b a]; tauto
 
+/--
+@isnad1 id=iff.0h8v.s7.d8bf656611d4 from=translated src=- shape=b6ea9f22 vocab=cd39a5a3
+-/
 theorem Mirror.hasInterweavedLaced {n : ℕ} {S : Finset α} (p q r s : α) :
     C.Mirror.HasInterweavedLaced n S.Mirror (toDual s) (toDual r) (toDual q) (toDual p) ↔
       C.HasInterweavedLaced n S p q r s := by
   simp [Config.HasInterweavedLaced, Mirror.hasLaced]
   tauto
 
+/--
+@isnad1 id=iff.0h5v.s5.8d3b622c25b5 from=translated src=- shape=8f60ed3f vocab=86eb5fad
+-/
 theorem Mirror.hasJoin {a b : ℕ} {S : Finset α} : C.Mirror.HasJoin b a S.Mirror ↔ C.HasJoin a b S :=
   by
   constructor

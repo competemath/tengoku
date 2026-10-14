@@ -63,6 +63,9 @@ variable {α : Type*}
 def RelIndependent (G : Set (α × α)) (A : Set α) : Prop :=
   ∀ ⦃a⦄, a ∈ A → ∀ ⦃b⦄, b ∈ A → (a, b) ∉ G
 
+/--
+@isnad1 id=relindep.2h4v.s4.f0b9699ef2f7 from=translated src=- shape=a62ef908 vocab=411393ab
+-/
 theorem RelIndependent.mono {G : Set (α × α)} {A B : Set α} (hBA : B ⊆ A)
     (hA : RelIndependent G A) : RelIndependent G B :=
   fun _ ha _ hb => hA (hBA ha) (hBA hb)
@@ -164,11 +167,17 @@ def SmallFam (G : Set (α × α)) {ι : Type*} (Φ : Set (ι → α)) : Prop :=
   ∃ C : ℕ → Set α, (∀ k, MeasurableSet (C k) ∧ RelIndependent G (C k)) ∧
     ∀ φ ∈ Φ, ∃ i : ι, ∃ k : ℕ, φ i ∈ C k
 
+/--
+@isnad1 id=smallfam.2h5v.s5.71e7e7fc8ac1 from=translated src=- shape=86293563 vocab=4fb22302
+-/
 theorem SmallFam.mono {G : Set (α × α)} {ι : Type*} {Φ Ψ : Set (ι → α)}
     (hΨΦ : Ψ ⊆ Φ) (h : SmallFam G Φ) : SmallFam G Ψ := by
   obtain ⟨C, hC, hcap⟩ := h
   exact ⟨C, hC, fun φ hφ => hcap φ (hΨΦ hφ)⟩
 
+/--
+@isnad1 id=smallfam.0h3v.s4.c6ae35d198e4 from=translated src=- shape=9cda8f3e vocab=61b534b2
+-/
 theorem SmallFam.empty {G : Set (α × α)} {ι : Type*} :
     SmallFam G (∅ : Set (ι → α)) :=
   ⟨fun _ => ∅, fun _ => ⟨MeasurableSet.empty, fun _ h => h.elim⟩, fun _ h => h.elim⟩
@@ -185,7 +194,9 @@ private theorem SmallFam.iUnion_of_forall {G : Set (α × α)} {ι : Type*} {Ψ 
 
 /-- **Positivity pigeonhole**: a non-small family covered by countably many pieces has a
 non-small piece. Used to refine positive families by vertex-value and witness-prefix
-constraints. -/
+constraints.
+@isnad1 id=ex.2h5v.s6.fd218fea1c6e from=translated src=- shape=f5e6f90e vocab=0584873c
+-/
 theorem exists_not_smallFam_inter {G : Set (α × α)} {ι : Type*} {Φ : Set (ι → α)}
     (hΦ : ¬ SmallFam G Φ) {Ψ : ℕ → Set (ι → α)} (hcov : Φ ⊆ ⋃ n, Ψ n) :
     ∃ n, ¬ SmallFam G (Φ ∩ Ψ n) := by
@@ -200,7 +211,9 @@ theorem exists_not_smallFam_inter {G : Set (α × α)} {ι : Type*} {Φ : Set (�
   rw [hΦeq]
   exact SmallFam.iUnion_of_forall h
 
-/-- Non-small families are nonempty. -/
+/-- Non-small families are nonempty.
+@isnad1 id=nonempty.1h4v.s4.91676187f600 from=translated src=- shape=5f297a64 vocab=a327f1ad
+-/
 theorem nonempty_of_not_smallFam {G : Set (α × α)} {ι : Type*} {Φ : Set (ι → α)}
     (hΦ : ¬ SmallFam G Φ) : Φ.Nonempty := by
   by_contra h
@@ -221,7 +234,9 @@ private theorem rel_of_relIndependent_compl (r : Setoid α) {C : Set α}
 
 /-- **The seed**: if a Borel equivalence relation has uncountably many classes, then the
 full family of assignments is not small for the complement graph — a countable capture
-family of independent (hence single-class) Borel sets would make the quotient countable. -/
+family of independent (hence single-class) Borel sets would make the quotient countable.
+@isnad1 id=not.1h3v.s5.9aa5d369d847 from=translated src=- shape=497b497f vocab=4ff03dbe
+-/
 theorem not_smallFam_univ {ι : Type*} [_nonemptyι : Nonempty ι] (r : Setoid α)
     (hunc : ¬ Countable (Quotient r)) :
     ¬ SmallFam {p : α × α | ¬ r.r p.1 p.2} (univ : Set (ι → α)) := by
@@ -251,7 +266,9 @@ theorem not_smallFam_univ {ι : Type*} [_nonemptyι : Nonempty ι] (r : Setoid �
     exact Quotient.sound (rel_of_relIndependent_compl r (hC k).2 hne.choose_spec hk)
   exact hsurj.countable
 
-/-- Smallness is binary additive. -/
+/-- Smallness is binary additive.
+@isnad1 id=smallfam.2h5v.s5.7d9654ad6fe4 from=translated src=- shape=8c3a2a8b vocab=37313683
+-/
 theorem SmallFam.union {G : Set (α × α)} {ι : Type*} {Φ₁ Φ₂ : Set (ι → α)}
     (h₁ : SmallFam G Φ₁) (h₂ : SmallFam G Φ₂) : SmallFam G (Φ₁ ∪ Φ₂) := by
   have hcov : Φ₁ ∪ Φ₂ = ⋃ n : ℕ, if n = 0 then Φ₁ else Φ₂ := by
@@ -279,16 +296,25 @@ namespace MeasureTheory
 
 variable {α : Type*} [TopologicalSpace α]
 
+/--
+@isnad1 id=analytic.2h3v.s5.94954f56fbda from=translated src=- shape=536dba1b vocab=ef97c442
+-/
 protected theorem AnalyticSet.inter [T2Space α] {A B : Set α}
     (hA : AnalyticSet A) (hB : AnalyticSet B) : AnalyticSet (A ∩ B) := by
   rw [Set.inter_eq_iInter]
   exact AnalyticSet.iInter fun b => by cases b <;> simpa
 
+/--
+@isnad1 id=analytic.2h3v.s5.8859d8a21a55 from=translated src=- shape=a1d8fda7 vocab=7e8e764c
+-/
 protected theorem AnalyticSet.inter_measurableSet [PolishSpace α] [MeasurableSpace α]
     [BorelSpace α] {A B : Set α} (hA : AnalyticSet A) (hB : MeasurableSet B) :
     AnalyticSet (A ∩ B) :=
   hA.inter hB.analyticSet
 
+/--
+@isnad1 id=analytic.2h4v.s5.15a413bd5902 from=translated src=- shape=1a6e51f2 vocab=be9d228b
+-/
 protected theorem AnalyticSet.prod {β : Type*} [TopologicalSpace β] {A : Set α} {B : Set β}
     (hA : AnalyticSet A) (hB : AnalyticSet B) : AnalyticSet (A ×ˢ B) := by
   obtain ⟨X, hXt, hXp, f, hf, rfl⟩ := analyticSet_iff_exists_polishSpace_range.mp hA
@@ -310,7 +336,9 @@ variable {G : Set (α × α)} {ι κ : Type*}
 
 omit [TopologicalSpace α] [PolishSpace α] [BorelSpace α] in
 /-- Capture transfer for the plain combination (a level with no fresh cross constraint):
-combining pairs from a positive family yields a positive family. -/
+combining pairs from a positive family yields a positive family.
+@isnad1 id=not.2h6v.s7.bbc42ebad58b from=translated src=- shape=69c9da02 vocab=0a1ba770
+-/
 theorem not_smallFam_comb_pairs {Φ : Set (ι → α)} (hΦ : ¬ SmallFam G Φ)
     (comb : (ι → α) → (ι → α) → κ → α)
     (hvals : ∀ φ₀ φ₁ : ι → α, ∀ v : κ,
@@ -331,7 +359,9 @@ avoiding its union would form a positive analytic subfamily `Φ'` (positivity by
 analyticity since the avoided set is Borel); no two members of `Φ'` can satisfy the cross
 constraint (the combination would escape the capture), so the values of `Φ'` at `s` form an
 analytic `G`-independent set, and the KST superset lemma yields a single Borel independent
-set capturing `Φ'` — contradiction. -/
+set capturing `Φ'` — contradiction.
+@isnad1 id=not.4h7v.s7.77db53a54f18 from=translated src=- shape=43ad197f vocab=f18f0306
+-/
 theorem not_smallFam_comb_cross [Countable ι] (hG : AnalyticSet G)
     {Φ : Set (ι → α)} (hΦa : AnalyticSet Φ) (hΦ : ¬ SmallFam G Φ) (s : ι)
     (comb : (ι → α) → (ι → α) → κ → α)
@@ -377,7 +407,9 @@ theorem not_smallFam_comb_cross [Countable ι] (hG : AnalyticSet G)
     fun φ hφ => ⟨s, 0, hAB' ⟨φ, hφ, rfl⟩⟩⟩
 
 omit [PolishSpace α] [MeasurableSpace α] [BorelSpace α] in
-/-- Analyticity of the plain combined family. -/
+/-- Analyticity of the plain combined family.
+@isnad1 id=analytic.2h5v.s7.1d1573f4db85 from=translated src=- shape=469a85e9 vocab=01e0a8ae
+-/
 theorem analyticSet_comb_pairs {Φ : Set (ι → α)} (hΦa : AnalyticSet Φ)
     (comb : (ι → α) → (ι → α) → κ → α)
     (hcomb : Continuous fun p : (ι → α) × (ι → α) => comb p.1 p.2) :
@@ -394,7 +426,9 @@ theorem analyticSet_comb_pairs {Φ : Set (ι → α)} (hΦa : AnalyticSet Φ)
   exact (hΦa.prod hΦa).image_of_continuous hcomb
 
 omit [MeasurableSpace α] [BorelSpace α] in
-/-- Analyticity of the combined family with a fresh edge constraint. -/
+/-- Analyticity of the combined family with a fresh edge constraint.
+@isnad1 id=analytic.3h7v.s7.d049b19f2fb5 from=translated src=- shape=44752ade vocab=c36bb25e
+-/
 theorem analyticSet_comb_cross [Countable ι] (hG : AnalyticSet G)
     {Φ : Set (ι → α)} (hΦa : AnalyticSet Φ) (s : ι)
     (comb : (ι → α) → (ι → α) → κ → α)

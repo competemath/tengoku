@@ -38,12 +38,18 @@ noncomputable def terminalCommonLaw {n : ℕ}
   Measure.map (terminalCommonSignedSum β)
     (Measure.pi fun _ : Fin n ↦ nnexpMeasure)
 
+/--
+@isnad1 id=measurab.0h2v.s5.21dd1fcfd88e from=translated src=- shape=8b4fd764 vocab=cb75d736
+-/
 theorem measurable_terminalCommonSignedSum {n : ℕ}
     (β : Fin (n + 1) → ℝ) :
     Measurable (terminalCommonSignedSum β) := by
   unfold terminalCommonSignedSum
   fun_prop
 
+/--
+@isnad1 id=eq.1h2v.s6.bfaf4f781e4f from=translated src=- shape=cf901ac0 vocab=69e3a638
+-/
 theorem terminalCommonLaw_Ioi_zero {n : ℕ}
     (β : Fin (n + 1) → ℝ) (hβ : ∀ i, 0 < β i) :
     terminalCommonLaw β (Ioi 0) = 0 := by

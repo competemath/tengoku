@@ -52,10 +52,19 @@ variable {T : FiniteTransitiveTree} {x y : T.World}
 
 instance : Coe (T.World) (T↧.World) := ⟨Sum.inr⟩
 
+/--
+@isnad1 id=ne.0h2v.s4.621b27c14c56 from=translated src=- shape=c3cb8b59 vocab=d2d97ee4
+-/
 @[simp] lemma root_not_original : (Sum.inr x) ≠ T↧.root := by simp [SimpleExtension]
 
+/--
+@isnad1 id=eq.0h1v.s4.f46a624085ba from=translated src=- shape=5ae97da3 vocab=ba48da80
+-/
 lemma root_eq : (Sum.inl ()) = T↧.root := by simp [SimpleExtension];
 
+/--
+@isnad1 id=rel.1h3v.s5.c51d67ff740b from=translated src=- shape=2f77df7c vocab=0b9e4759
+-/
 lemma forth (h : x ≺ y) : T↧.Rel x y := by simpa [SimpleExtension];
 
 /-- Imported declaration from the Incompleteness formalization. -/
@@ -67,6 +76,9 @@ def pMorphism : T.toFrame →ₚ (T↧.toFrame) where
     | .inl r => simp [Frame.Rel', SimpleExtension] at h;
     | .inr y => exact ⟨y, rfl, h⟩;
 
+/--
+@isnad1 id=or.1h2v.s5.690abd1a83d6 from=translated src=- shape=c17ecffc vocab=42b5edb5
+-/
 lemma through_original_root {x : T↧.World} (h : T↧.root ≺ x) :
     x = T.root ∨ (Sum.inr T.root ≺ x) := by
   match x with
@@ -104,6 +116,9 @@ def pMorphism : M.toModel →ₚ (M↧.toModel) :=
   Model.PseudoEpimorphism.ofAtomic (FiniteTransitiveTree.SimpleExtension.pMorphism) <| by
   simp [FiniteTransitiveTree.SimpleExtension.pMorphism];
 
+/--
+@isnad1 id=modalequ.0h2v.s4.47a6298897c6 from=translated src=- shape=93202a10 vocab=a0668c24
+-/
 lemma modal_equivalence_original_world {x : M.toModel.World} :
     ModalEquivalent (M₁ := M.toModel) (M₂ := (M↧).toModel) x (Sum.inr x) := by
   apply Model.PseudoEpimorphism.modal_equivalence pMorphism;

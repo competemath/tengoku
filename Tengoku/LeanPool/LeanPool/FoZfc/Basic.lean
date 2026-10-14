@@ -119,18 +119,25 @@ def notIsEltOf [ModelSets V] (a b : V) : Prop :=
 @[inherit_doc ModelSets.isEltOf] infix : 120 " ∈ " => ModelSets.isEltOf
 @[inherit_doc notIsEltOf] infix : 120 " ∉ " => notIsEltOf
 
-/-- Realize a free varaible. -/
+/-- Realize a free varaible.
+@isnad1 id=eq.0h5v.s5.e21bbe2014a0 from=translated src=- shape=222569a3 vocab=da9bec93
+-/
 @[simp]
 theorem realize_fv [ModelSets V] {n : ℕ} {s : ℕ → V} {xs : Fin n → V} (k : ℕ) :
     Language.Term.realize (Sum.elim s xs) (fv n k) = s k := by
   exact rfl
 
-/-- Realize a bounded variable with the type ℕ. -/
+/-- Realize a bounded variable with the type ℕ.
+@isnad1 id=eq.0h5v.s5.acd43fc86b72 from=translated src=- shape=316dda68 vocab=b5192ebd
+-/
 @[simp]
 theorem realize_bv [ModelSets V] {n : ℕ} (s : ℕ → V) (xs : Fin n → V) (k : Fin n) :
     Language.Term.realize (Sum.elim s xs) (bv n k) = xs k := by
   simp [bv]
 
+/--
+@isnad1 id=iff.0h6v.s6.2389696d6220 from=translated src=- shape=d254951d vocab=0e43a598
+-/
 @[simp]
 theorem realize_in [ModelSets V] {n : ℕ} {s : ℕ → V} {xs : Fin n → V}
     {t₁ t₂ : LZFC.Term (ℕ ⊕ Fin n)} :
@@ -139,6 +146,9 @@ theorem realize_in [ModelSets V] {n : ℕ} {s : ℕ → V} {xs : Fin n → V}
   rw [ModelSets.interpret_is_elt_of]
   apply realize_rel₂
 
+/--
+@isnad1 id=iff.0h6v.s6.59d50646ed13 from=translated src=- shape=d254951d vocab=907ca2e2
+-/
 @[simp]
 theorem realize_nin [ModelSets V] {n : ℕ} {s : ℕ → V} {xs : Fin n → V}
     {t₁ t₂ : LZFC.Term (ℕ ⊕ Fin n)} :
@@ -146,6 +156,9 @@ theorem realize_nin [ModelSets V] {n : ℕ} {s : ℕ → V} {xs : Fin n → V}
       Term.realize (Sum.elim s xs) t₁ ∉ Term.realize (Sum.elim s xs) t₂ := by
   apply not_congr realize_in
 
+/--
+@isnad1 id=iff.0h6v.s6.905bf376573e from=translated src=- shape=d254951d vocab=20d3ff78
+-/
 @[simp]
 theorem realize_neq [ModelSets V] {n : ℕ} {s : ℕ → V} {xs : Fin n → V}
     {t₁ t₂ : LZFC.Term (ℕ ⊕ Fin n)} :
@@ -165,19 +178,25 @@ def bv' {n : ℕ} (k : Fin n) : Language.LZFC.Term (ℕ ⊕ Fin n) := Language.T
 def bv'' {n : ℕ} [NeZero n] (k : ℕ) : Language.LZFC.Term (ℕ ⊕ Fin n) :=
     Language.Term.var (Sum.inr (Fin.ofNat n k))
 
-/-- Realize a free varaible. -/
+/-- Realize a free varaible.
+@isnad1 id=eq.0h5v.s5.dd6d159e7cd3 from=translated src=- shape=222569a3 vocab=60b4007d
+-/
 @[simp]
 theorem realize_fv' [ModelSets V] {n : ℕ} {s : ℕ → V} {xs : Fin n → V} (k : ℕ) :
     Language.Term.realize (Sum.elim s xs) (fv' k) = s k := by
   exact rfl
 
-/-- Realize bv' with the type ℕ. -/
+/-- Realize bv' with the type ℕ.
+@isnad1 id=eq.0h5v.s5.9feed7891a55 from=translated src=- shape=316dda68 vocab=c95a12c8
+-/
 @[simp]
 theorem realize_bv' [ModelSets V] {n : ℕ} (s : ℕ → V) (xs : Fin n → V) (k : Fin n) :
     Language.Term.realize (Sum.elim s xs) (bv' k) = xs k := by
   simp [bv']
 
-/-- Realize bv'' with the type ℕ. -/
+/-- Realize bv'' with the type ℕ.
+@isnad1 id=eq.0h5v.s5.c940524acfbe from=translated src=- shape=a0cce457 vocab=7875a644
+-/
 @[simp]
 theorem realize_bv'' [ModelSets V] {n : ℕ} [NeZero n] (s : ℕ → V) (xs : Fin n → V) (k : ℕ) :
     Language.Term.realize (Sum.elim s xs) (bv'' k) = xs (Fin.ofNat n k) := by

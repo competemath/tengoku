@@ -26,13 +26,17 @@ is injective. -/
 def HasDistinctSubsetSums (A : Finset ℕ) : Prop :=
   ∀ S ∈ A.powerset, ∀ T ∈ A.powerset, S.sum id = T.sum id → S = T
 
-/-- The powerset of a finite set has cardinality `2 ^ A.card`. -/
+/-- The powerset of a finite set has cardinality `2 ^ A.card`.
+@isnad1 id=eq.0h1v.s4.ec88e47b066d from=translated src=- shape=524bcbcf vocab=fd6968d2
+-/
 theorem powersetCardEqTwoPow (A : Finset ℕ) :
     A.powerset.card = 2 ^ A.card := by
   rw [Finset.card_powerset]
 
 /-- The sum of the squared elements of a nonempty finite set is at most its
-cardinality times the square of its largest element. -/
+cardinality times the square of its largest element.
+@isnad1 id=le.1h1v.s6.9dcd16600cc6 from=translated src=- shape=705e32cf vocab=12c8c2c3
+-/
 lemma sumSquaresLeCardMulMaxSquare {A : Finset ℕ} (hA : A.Nonempty) :
     ∑ a ∈ A, (a : ℝ) ^ 2 ≤ A.card * ((A.max' hA : ℕ) : ℝ) ^ 2 := by
   have hPointwise : ∀ a ∈ A, (a : ℝ) ^ 2 ≤ ((A.max' hA : ℕ) : ℝ) ^ 2 := by

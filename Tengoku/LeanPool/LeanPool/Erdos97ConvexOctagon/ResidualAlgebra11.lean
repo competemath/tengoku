@@ -545,7 +545,9 @@ private lemma residual11_gt_contradiction
   have hzero := hC ({2, 4, 6, 7} : Set Vertex) 0 hmem
   simp at hzero
 
-/-- The unique realizable residual class cannot occur in convex position. -/
+/-- The unique realizable residual class cannot occur in convex position.
+@isnad1 id=not.1h1v.s7.aac5f1c15862 from=translated src=- shape=ba372123 vocab=9badbeef
+-/
 theorem residualRepresentative11_not_convex_realises
     {p : Vertex → Plane} (hC : ConvexIndependent ℝ p) :
     ¬ Realises p residualRepresentative11 := by

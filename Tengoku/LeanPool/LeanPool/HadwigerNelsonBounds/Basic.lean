@@ -30,7 +30,9 @@ abbrev R2 : Type := EuclideanSpace ℝ (Fin 2)
 def unitDistanceGraph : SimpleGraph R2 :=
   SimpleGraph.fromRel (fun p q => dist p q = 1)
 
-/-- Adjacency unfolds to: distinct points at distance exactly 1. -/
+/-- Adjacency unfolds to: distinct points at distance exactly 1.
+@isnad1 id=iff.0h2v.s6.27678f44bd38 from=translated src=- shape=b8dabb90 vocab=d9acfe9e
+-/
 @[simp] lemma unitDistanceGraph_adj (p q : R2) :
     unitDistanceGraph.Adj p q ↔ p ≠ q ∧ (dist p q = 1 ∨ dist q p = 1) := by
   unfold unitDistanceGraph
@@ -50,20 +52,30 @@ noncomputable def isbellLatticePoint (i j : ℤ) : R2 :=
     ![(i : ℝ) * isbellLatticeStep + (j : ℝ) * (isbellLatticeStep / 2),
       (j : ℝ) * (isbellLatticeStep * Real.sqrt 3 / 2)]
 
+/--
+@isnad1 id=eq.0h2v.s7.648629c6d0be from=translated src=- shape=47efd7e4 vocab=6b2d14e4
+-/
 @[simp] lemma isbellLatticePoint_zero (i j : ℤ) :
     (isbellLatticePoint i j) 0
       = (i : ℝ) * isbellLatticeStep + (j : ℝ) * (isbellLatticeStep / 2) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.16194041b626 from=translated src=- shape=40c1e961 vocab=d12bf25e
+-/
 @[simp] lemma isbellLatticePoint_one (i j : ℤ) :
     (isbellLatticePoint i j) 1
       = (j : ℝ) * (isbellLatticeStep * Real.sqrt 3 / 2) := rfl
 
 /-- `√3 * √3 = 3`, hoisted to file scope for use in the squared-distance
-    computation. -/
+    computation.
+@isnad1 id=eq.0h0v.s5.ecd331b20520 from=translated src=- shape=e70fad26 vocab=733e2c61
+-/
 lemma sqrt_three_mul_self : Real.sqrt 3 * Real.sqrt 3 = 3 :=
   Real.mul_self_sqrt (by norm_num)
 
-/-- Squared Euclidean distance between two lattice points. -/
+/-- Squared Euclidean distance between two lattice points.
+@isnad1 id=eq.0h4v.s7.2b355cbcce76 from=translated src=- shape=852317c0 vocab=aa1c9e02
+-/
 lemma isbellLatticePoint_dist_sq (i j i' j' : ℤ) :
     dist (isbellLatticePoint i j) (isbellLatticePoint i' j') ^ 2
       = isbellLatticeStep ^ 2 *
@@ -104,7 +116,9 @@ lattice-coordinate parameter space.
 -/
 
 /-- Squared Euclidean distance from a point `p : R²` to a lattice point.
-    Helper formula expressed directly in terms of `p 0`, `p 1`, `i`, `j`. -/
+    Helper formula expressed directly in terms of `p 0`, `p 1`, `i`, `j`.
+@isnad1 id=eq.0h3v.s9.4706035feaf0 from=translated src=- shape=684472b7 vocab=851e683f
+-/
 lemma dist_point_lattice_sq_cart (p : R2) (i j : ℤ) :
     dist p (isbellLatticePoint i j) ^ 2
       = (p 0 - ((i : ℝ) * isbellLatticeStep + (j : ℝ) * (isbellLatticeStep / 2))) ^ 2
@@ -114,7 +128,9 @@ lemma dist_point_lattice_sq_cart (p : R2) (i j : ℤ) :
     Real.dist_eq, sq_abs]
 
 /-- The Voronoi covering bound `Q(u, v) ≤ 1/3` holds in the centroid region
-    of the triangle with vertices `(0,0), (1,0), (0,1)`. -/
+    of the triangle with vertices `(0,0), (1,0), (0,1)`.
+@isnad1 id=le.4h2v.s7.bb386b936e58 from=translated src=- shape=2a039c11 vocab=e624faf6
+-/
 lemma Q_le_third_origin {α β : ℝ} (hα : 0 ≤ α) (hβ : 0 ≤ β)
     (h1 : 2 * α + β ≤ 1) (h2 : α + 2 * β ≤ 1) :
     α ^ 2 + α * β + β ^ 2 ≤ 1 / 3 := by

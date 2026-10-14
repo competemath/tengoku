@@ -41,22 +41,37 @@ the endpoint quotient is handled by a small saturation lemma.
 def graphHalf : I :=
   ⟨(1 : ℝ) / 2, by constructor <;> norm_num⟩
 
+/--
+@isnad1 id=eq.0h0v.s5.34e7132aa214 from=translated src=- shape=35126999 vocab=3a18691c
+-/
 @[simp]
 theorem graphHalf_coe : (graphHalf : ℝ) = (1 : ℝ) / 2 := rfl
 
+/--
+@isnad1 id=lt.0h0v.s5.ff40657333ff from=translated src=- shape=6acf4bff vocab=b15b69a7
+-/
 @[simp]
 theorem graphHalf_pos : (0 : I) < graphHalf := by
   change (0 : ℝ) < (1 : ℝ) / 2
   norm_num
 
+/--
+@isnad1 id=lt.0h0v.s5.671a5434cd2f from=translated src=- shape=6b8fdc29 vocab=b15b69a7
+-/
 @[simp]
 theorem graphHalf_lt_one : graphHalf < (1 : I) := by
   change (1 : ℝ) / 2 < 1
   norm_num
 
+/--
+@isnad1 id=not.0h0v.s5.d5c50d326445 from=translated src=- shape=ed1d0c5a vocab=b15b69a7
+-/
 theorem graphHalf_not_lt_zero : ¬graphHalf < (0 : I) := by
   exact not_lt_of_ge (le_of_lt graphHalf_pos)
 
+/--
+@isnad1 id=not.0h0v.s5.b9fafe82b671 from=translated src=- shape=d523f4ed vocab=b15b69a7
+-/
 @[simp]
 theorem one_not_lt_graphHalf : ¬(1 : I) < graphHalf := by
   exact not_lt_of_ge (le_of_lt graphHalf_lt_one)
@@ -70,6 +85,9 @@ def graphVertexStarPre {V : Type u} [Quiver.{u} V] (v : V) :
           (e.left = v ∧ z.2 < graphHalf) ∨
             (e.right = v ∧ graphHalf < z.2)}
 
+/--
+@isnad1 id=isopen.0h2v.s6.fb6399ffd4bd from=translated src=- shape=e5bc1d1f vocab=b20cefad
+-/
 theorem graphVertexStarPre_isOpen {V : Type u} [Quiver.{u} V]
     (v : V) : IsOpen (graphVertexStarPre v) := by
   rw [isOpen_sum_iff]
@@ -92,6 +110,9 @@ theorem graphVertexStarPre_isOpen {V : Type u} [Quiver.{u} V]
       · simp only [hleft, hright, false_and, false_or]
         exact isOpen_empty
 
+/--
+@isnad1 id=iff.1h4v.s5.68802d26c5a5 from=translated src=- shape=dd0027e6 vocab=2b514eb9
+-/
 theorem graphVertexStarPre_saturated {V : Type u} [Quiver.{u} V]
     (v : V) {x y : graphRealizationPre V}
     (h : Relation.EqvGen (graphRealizationGenerator (V := V)) x y) :
@@ -105,6 +126,9 @@ theorem graphVertexStarPre_saturated {V : Type u} [Quiver.{u} V]
   | symm x y h ih => exact ih.symm
   | trans x y z hxy hyz ihxy ihyz => exact ihxy.trans ihyz
 
+/--
+@isnad1 id=disjoint.1h3v.s6.57c4f6a9730c from=translated src=- shape=1a1ab218 vocab=f1fc44f9
+-/
 theorem graphVertexStarPre_disjoint {V : Type u} [Quiver.{u} V]
     {v w : V} (hvw : v ≠ w) :
     Disjoint (graphVertexStarPre v) (graphVertexStarPre w) := by
@@ -133,16 +157,25 @@ def graphVertexStar {V : Type u} [Quiver.{u} V] (v : V) :
     Set (graphRealization V) :=
   graphRealizationQuotient '' graphVertexStarPre v
 
+/--
+@isnad1 id=isopen.0h2v.s6.6853a16532a8 from=translated src=- shape=e5bc1d1f vocab=4d63fb35
+-/
 theorem graphVertexStar_isOpen {V : Type u} [Quiver.{u} V]
     (v : V) : IsOpen (graphVertexStar v) :=
   graphRealization_image_isOpen_of_saturated
     (graphVertexStarPre_saturated v) (graphVertexStarPre_isOpen v)
 
+/--
+@isnad1 id=eq.0h2v.s4.a7ff653637e3 from=translated src=- shape=8fc1de0f vocab=74600b35
+-/
 theorem graphVertexStar_preimage {V : Type u} [Quiver.{u} V]
     (v : V) :
     graphRealizationQuotient ⁻¹' graphVertexStar v = graphVertexStarPre v :=
   graphRealization_image_preimage_eq_of_saturated (graphVertexStarPre_saturated v)
 
+/--
+@isnad1 id=mem.0h2v.s4.21c3f3d08018 from=translated src=- shape=8f2f347b vocab=8a88464c
+-/
 theorem graphVertex_mem_graphVertexStar {V : Type u} [Quiver.{u} V]
     (v : V) : graphVertex v ∈ graphVertexStar v := by
   exact ⟨Sum.inl (graphDiscreteVertex v), by simp [graphVertexStarPre], rfl⟩
@@ -154,6 +187,9 @@ def graphEdgeInteriorPre {V : Type u} [Quiver.{u} V]
     | Sum.inl _ => False
     | Sum.inr z => z.1 = graphDiscreteEdge e ∧ z.2 ∈ Ioo (0 : I) 1}
 
+/--
+@isnad1 id=isopen.0h2v.s6.a794264ade79 from=translated src=- shape=d45d0cce vocab=bd1b6667
+-/
 theorem graphEdgeInteriorPre_isOpen {V : Type u} [Quiver.{u} V]
     (e : Quiver.Total V) : IsOpen (graphEdgeInteriorPre e) := by
   rw [isOpen_sum_iff]
@@ -169,6 +205,9 @@ theorem graphEdgeInteriorPre_isOpen {V : Type u} [Quiver.{u} V]
       exact isOpen_Ioo
     · simp [graphEdgeInteriorPre, h]
 
+/--
+@isnad1 id=iff.1h4v.s5.f7a479d5dd2f from=translated src=- shape=b700a8c4 vocab=8d3be558
+-/
 theorem graphEdgeInteriorPre_saturated {V : Type u} [Quiver.{u} V]
     (e : Quiver.Total V) {x y : graphRealizationPre V}
     (h : Relation.EqvGen (graphRealizationGenerator (V := V)) x y) :
@@ -185,16 +224,25 @@ def graphEdgeInterior {V : Type u} [Quiver.{u} V]
     (e : Quiver.Total V) : Set (graphRealization V) :=
   graphRealizationQuotient '' graphEdgeInteriorPre e
 
+/--
+@isnad1 id=isopen.0h2v.s6.af3642c8710f from=translated src=- shape=d45d0cce vocab=baa1ff2d
+-/
 theorem graphEdgeInterior_isOpen {V : Type u} [Quiver.{u} V]
     (e : Quiver.Total V) : IsOpen (graphEdgeInterior e) :=
   graphRealization_image_isOpen_of_saturated
     (graphEdgeInteriorPre_saturated e) (graphEdgeInteriorPre_isOpen e)
 
+/--
+@isnad1 id=eq.0h2v.s5.990a9b476ad5 from=translated src=- shape=b1e51b9c vocab=83e41b53
+-/
 theorem graphEdgeInterior_preimage {V : Type u} [Quiver.{u} V]
     (e : Quiver.Total V) :
     graphRealizationQuotient ⁻¹' graphEdgeInterior e = graphEdgeInteriorPre e :=
   graphRealization_image_preimage_eq_of_saturated (graphEdgeInteriorPre_saturated e)
 
+/--
+@isnad1 id=mem.2h3v.s8.82cd5c7fbafb from=translated src=- shape=7e3b02a0 vocab=113eaf2f
+-/
 theorem graphEdgePath_mem_graphEdgeInterior {V : Type u} [Quiver.{u} V]
     (e : Quiver.Total V) {t : I} (ht0 : 0 < t) (ht1 : t < 1) :
     graphEdgePath e t ∈ graphEdgeInterior e := by
@@ -208,6 +256,9 @@ def graphRealizationInteriorLabel {V : Type u} [Quiver.{u} V]
       if z.2 = 0 ∨ z.2 = 1 then none
       else some (graphEdgeUnderlying z.1, z.2)
 
+/--
+@isnad1 id=eq.1h3v.s5.30fc7a40a3b2 from=translated src=- shape=a15b8149 vocab=bf14b290
+-/
 theorem graphRealizationGenerator_interiorLabel {V : Type u}
     [Quiver.{u} V] {x y : graphRealizationPre V}
     (h : graphRealizationGenerator x y) :
@@ -216,6 +267,9 @@ theorem graphRealizationGenerator_interiorLabel {V : Type u}
   | source e => simp [graphRealizationInteriorLabel]
   | target e => simp [graphRealizationInteriorLabel]
 
+/--
+@isnad1 id=eq.1h3v.s5.f8d97509213a from=translated src=- shape=d01d448e vocab=16f82d4f
+-/
 theorem graphRealization_eqvGen_interiorLabel {V : Type u}
     [Quiver.{u} V] {x y : graphRealizationPre V}
     (h : Relation.EqvGen (graphRealizationGenerator (V := V)) x y) :
@@ -226,6 +280,9 @@ theorem graphRealization_eqvGen_interiorLabel {V : Type u}
   | symm x y h ih => exact ih.symm
   | trans x y z hxy hyz ihxy ihyz => exact ihxy.trans ihyz
 
+/--
+@isnad1 id=and.5h5v.s7.291bcc3be38e from=translated src=- shape=a2a8144f vocab=67eb41f5
+-/
 theorem graphRealization_interior_eqvGen_eq {V : Type u}
     [Quiver.{u} V] {e e' : Quiver.Total V} {t t' : I}
     (ht0 : 0 < t) (ht1 : t < 1) (ht0' : 0 < t') (ht1' : t' < 1)
@@ -242,6 +299,9 @@ theorem graphRealization_interior_eqvGen_eq {V : Type u}
     false_or, ↓reduceIte, Option.some.injEq] at hl
   exact Prod.ext_iff.mp hl
 
+/--
+@isnad1 id=or.1h4v.s6.55da64a6fd8f from=translated src=- shape=32193373 vocab=c1755d1a
+-/
 theorem graphRealization_vertex_edge_endpoint {V : Type u} [Quiver.{u} V]
     {v : V} {e : Quiver.Total V} {t : I}
     (h : graphRealizationQuotient (Sum.inl (graphDiscreteVertex v)) =
@@ -255,6 +315,9 @@ theorem graphRealization_vertex_edge_endpoint {V : Type u} [Quiver.{u} V]
   simp [graphRealizationEndpointLabelQuotient_mk,
     graphRealizationEndpointLabel, ht0, ht1] at hl
 
+/--
+@isnad1 id=eq.2h4v.s6.e43100c5867a from=translated src=- shape=dcd30e03 vocab=fa8f7400
+-/
 theorem graphRealization_vertex_edge_source {V : Type u} [Quiver.{u} V]
     {v : V} {e : Quiver.Total V} {t : I}
     (h : graphRealizationQuotient (Sum.inl (graphDiscreteVertex v)) =
@@ -264,6 +327,9 @@ theorem graphRealization_vertex_edge_source {V : Type u} [Quiver.{u} V]
     graphRealizationEndpointLabel, ht, ↓reduceIte, Option.some.injEq] using
       congrArg graphRealizationEndpointLabelQuotient h
 
+/--
+@isnad1 id=eq.2h4v.s6.6e5871e98d21 from=translated src=- shape=dcd30e03 vocab=ff2cf0bd
+-/
 theorem graphRealization_vertex_edge_target {V : Type u} [Quiver.{u} V]
     {v : V} {e : Quiver.Total V} {t : I}
     (h : graphRealizationQuotient (Sum.inl (graphDiscreteVertex v)) =
@@ -285,11 +351,17 @@ def graphCoverRealizationProjection {V : Type u} [Quiver.{u} V] (root : V) :
     graphCoverRealization root → graphRealization V :=
   graphRealizationMap (graphCoverProjection root)
 
+/--
+@isnad1 id=continuo.0h2v.s8.a25deee9993b from=translated src=- shape=7133f268 vocab=4a3fb3e0
+-/
 theorem continuous_graphCoverRealizationProjection
     {V : Type u} [Quiver.{u} V] (root : V) :
     Continuous (graphCoverRealizationProjection root) :=
   continuous_graphRealizationMap (graphCoverProjection root)
 
+/--
+@isnad1 id=eq.0h4v.s5.3ac59dfea9b9 from=translated src=- shape=eff26680 vocab=5ff0add1
+-/
 @[simp]
 theorem graphRealizationMap_quotient {V W : Type u} [Quiver.{u} V]
     [Quiver.{u} W] (F : V ⥤q W) (x : graphRealizationPre V) :
@@ -301,6 +373,9 @@ def graphCoverRootVertex {V : Type u} [Quiver.{u} V] (root : V) :
     graphCoverVertex root :=
   ⟨root, 𝟙 _⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.86cc1bf94434 from=translated src=- shape=5ffe0580 vocab=d7281be3
+-/
 @[simp]
 theorem graphCoverRootVertex_projection {V : Type u} [Quiver.{u} V]
     (root : V) : (graphCoverRootVertex root).1 = root := rfl
@@ -312,6 +387,9 @@ def graphCoverVertexOver {V : Type u} [Quiver.{u} V] (root v : V) :=
 instance graphCoverVertexOverTopology {V : Type u} [Quiver.{u} V]
     (root v : V) : TopologicalSpace (graphCoverVertexOver root v) := ⊥
 
+/--
+@isnad1 id=discrete.0h3v.s4.790796b17108 from=translated src=- shape=c4dc9e0a vocab=b27f7986
+-/
 instance graphCoverVertexOver_discrete {V : Type u} [Quiver.{u} V]
     (root v : V) : DiscreteTopology (graphCoverVertexOver root v) := by
   exact discreteTopology_bot _
@@ -324,6 +402,9 @@ def graphCoverSymmetricFreeGroupoidMap {V : Type u} [Quiver.{u} V]
   Quiver.Symmetrify.lift
     ((graphCoverProjection root) ⋙q (Quiver.FreeGroupoid.of V))
 
+/--
+@isnad1 id=eq.0h5v.s10.51a076ff9182 from=translated src=- shape=9a1f1910 vocab=44ca510d
+-/
 theorem graphCoverSymmetricFreeGroupoidMap_map_pos
     {V : Type u} [Quiver.{u} V] (root : V) {x y : graphCoverVertex root}
     (e : x ⟶ y) :
@@ -331,6 +412,9 @@ theorem graphCoverSymmetricFreeGroupoidMap_map_pos
       (Quiver.FreeGroupoid.of V).map e.1 := by
   rfl
 
+/--
+@isnad1 id=nonempty.0h3v.s4.f5c0134860e6 from=translated src=- shape=638b65ba vocab=ce22872c
+-/
 theorem graphCoverVertexOver_nonempty {V : Type u} [Quiver.{u} V]
     [WeaklyConnected V] (root v : V) :
     Nonempty (graphCoverVertexOver root v) := by
@@ -344,6 +428,9 @@ theorem graphCoverVertexOver_nonempty {V : Type u} [Quiver.{u} V]
   change q.1.1 = v at hq'
   exact hq'
 
+/--
+@isnad1 id=eq.0h3v.s7.f5d625cda05a from=translated src=- shape=a9d9ccf7 vocab=a24ad3e8
+-/
 theorem graphCoverPreMap_vertexStar_preimage {V : Type u} [Quiver.{u} V]
     {root v : V} :
     graphRealizationPreMap (graphCoverProjection root) ⁻¹'
@@ -398,6 +485,9 @@ theorem graphCoverPreMap_vertexStar_preimage {V : Type u} [Quiver.{u} V]
               e.right.1 = x.1.1 := congrArg Sigma.fst hx.1
               _ = v := x.2), hx.2⟩
 
+/--
+@isnad1 id=iff.1h5v.s8.5c380ce6196d from=translated src=- shape=33c7fdba vocab=2618aa67
+-/
 theorem graphCoverVertexStarPre_union_saturated {V : Type u}
     [Quiver.{u} V] {root v : V}
     {x y : graphRealizationPre (graphCoverVertex root)}
@@ -413,6 +503,9 @@ theorem graphCoverVertexStarPre_union_saturated {V : Type u}
     rcases Set.mem_iUnion.mp hy with ⟨z, hz⟩
     exact Set.mem_iUnion.mpr ⟨z, (graphVertexStarPre_saturated z.1 h).mpr hz⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.67fe20ef1fee from=translated src=- shape=de2a02dc vocab=23dcf4db
+-/
 theorem graphCoverRealizationProjection_vertexStar_preimage
     {V : Type u} [Quiver.{u} V] {root v : V} :
     graphCoverRealizationProjection root ⁻¹' graphVertexStar v =
@@ -460,6 +553,9 @@ theorem graphCoverRealizationProjection_vertexStar_preimage
     rw [graphRealizationMap_quotient]
     exact ⟨graphRealizationPreMap (graphCoverProjection root) z, hpre, rfl⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.07ee2b7bf2d1 from=translated src=- shape=712ae83c vocab=54394b87
+-/
 @[simp]
 theorem graphCoverPreMap_vertex {V : Type u} [Quiver.{u} V]
     (root : V) (x : graphCoverVertex root) :
@@ -467,6 +563,9 @@ theorem graphCoverPreMap_vertex {V : Type u} [Quiver.{u} V]
         (Sum.inl (graphDiscreteVertex x)) =
       Sum.inl (graphDiscreteVertex x.1) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.642b3a89110d from=translated src=- shape=35114a94 vocab=064aa2b6
+-/
 @[simp]
 theorem graphCoverPreMap_edge {V : Type u} [Quiver.{u} V]
     (root : V) (e : Quiver.Total (graphCoverVertex root)) (t : I) :
@@ -475,6 +574,9 @@ theorem graphCoverPreMap_edge {V : Type u} [Quiver.{u} V]
       Sum.inr ⟨graphDiscreteEdge
         ⟨e.left.1, e.right.1, e.hom.1⟩, t⟩ := rfl
 
+/--
+@isnad1 id=disjoint.1h3v.s6.72d77654d74a from=translated src=- shape=1a1ab218 vocab=e60ae2d6
+-/
 theorem graphVertexStar_disjoint {V : Type u} [Quiver.{u} V]
     {v w : V} (hvw : v ≠ w) :
     Disjoint (graphVertexStar v) (graphVertexStar w) := by
@@ -488,6 +590,9 @@ theorem graphVertexStar_disjoint {V : Type u} [Quiver.{u} V]
   exact (Set.disjoint_left.mp
     (graphVertexStarPre_disjoint (v := w) (w := v) hvw.symm)) hb hba
 
+/--
+@isnad1 id=injectiv.0h2v.s5.6aec5efca8f6 from=translated src=- shape=2d039a78 vocab=f94f79b1
+-/
 theorem graphStar_total_injective {V : Type u} [Quiver.{u} V]
     {x : V} : Function.Injective (fun s : Quiver.Star x =>
       (⟨x, s.1, s.2⟩ : Quiver.Total V)) := by
@@ -495,6 +600,9 @@ theorem graphStar_total_injective {V : Type u} [Quiver.{u} V]
   cases h
   rfl
 
+/--
+@isnad1 id=injectiv.0h2v.s5.e0a4931751b1 from=translated src=- shape=ebf50df6 vocab=4feaee88
+-/
 theorem graphCostar_total_injective {V : Type u} [Quiver.{u} V]
     {x : V} : Function.Injective (fun s : Quiver.Costar x =>
       (⟨s.1, x, s.2⟩ : Quiver.Total V)) := by
@@ -502,6 +610,9 @@ theorem graphCostar_total_injective {V : Type u} [Quiver.{u} V]
   cases h
   rfl
 
+/--
+@isnad1 id=eq.3h5v.s11.763aa51391e7 from=translated src=- shape=4bdbe9c0 vocab=2c276d97
+-/
 theorem graphCoverStarEquiv_map_eq_of_total_eq
     {V : Type u} [Quiver.{u} V] {root : V}
     (x : graphCoverVertex root)
@@ -527,6 +638,9 @@ theorem graphCoverStarEquiv_map_eq_of_total_eq
     have hh := (Quiver.Total.ext_iff.mp htot).2.2
     exact hecast.trans (hh.trans hfcast.symm)
 
+/--
+@isnad1 id=eq.3h5v.s11.9187a00f3459 from=translated src=- shape=cd21534c vocab=14b350ff
+-/
 theorem graphCoverCostarEquiv_map_eq_of_total_eq
     {V : Type u} [Quiver.{u} V] {root : V}
     (x : graphCoverVertex root)
@@ -552,6 +666,9 @@ theorem graphCoverCostarEquiv_map_eq_of_total_eq
     have hh := (Quiver.Total.ext_iff.mp htot).2.2
     exact hecast.trans (hh.trans hfcast.symm)
 
+/--
+@isnad1 id=eq.3h5v.s8.7ab593a0036d from=translated src=- shape=6f047de6 vocab=397fdf71
+-/
 theorem graphCover_total_eq_of_star_eq
     {V : Type u} [Quiver.{u} V] {root : V}
     (x : graphCoverVertex root)
@@ -571,6 +688,9 @@ theorem graphCover_total_eq_of_star_eq
   exact Quiver.Total.ext (he.trans hf.symm) hright
     (hecast.symm.trans (hhom.trans hfcast))
 
+/--
+@isnad1 id=eq.3h5v.s8.f2dd41306e31 from=translated src=- shape=5363d5bc vocab=397fdf71
+-/
 theorem graphCover_total_eq_of_costar_eq
     {V : Type u} [Quiver.{u} V] {root : V}
     (x : graphCoverVertex root)
@@ -590,6 +710,9 @@ theorem graphCover_total_eq_of_costar_eq
   exact Quiver.Total.ext hleft (he.trans hf.symm)
     (hecast.symm.trans (hhom.trans hfcast))
 
+/--
+@isnad1 id=ex.1h4v.s10.582718eb42cb from=translated src=- shape=198031ea vocab=2cb630cb
+-/
 theorem graphCover_source_lift
     {V : Type u} [Quiver.{u} V] {root : V}
     (x : graphCoverVertex root) (e : Quiver.Total V)
@@ -611,6 +734,9 @@ theorem graphCover_source_lift
   exact hhom.trans (by
     exact eqRec_heq (φ := fun z : V => z ⟶ e.right) h.symm e.hom)
 
+/--
+@isnad1 id=ex.1h4v.s10.94fc17a6705e from=translated src=- shape=d76b1695 vocab=2cb630cb
+-/
 theorem graphCover_target_lift
     {V : Type u} [Quiver.{u} V] {root : V}
     (x : graphCoverVertex root) (e : Quiver.Total V)
@@ -807,6 +933,9 @@ private theorem graphCoverRealizationProjection_vertexStar_injective_edges
           simpa [ce, cf, ha₀.1, hf] using hcostar)
         simp [hedge, hteq]
 
+/--
+@isnad1 id=injon.0h4v.s6.b4fdf3f8fa62 from=translated src=- shape=e2279805 vocab=994e92a4
+-/
 theorem graphCoverRealizationProjection_vertexStar_injective
     {V : Type u} [Quiver.{u} V] {root v : V}
     (x : graphCoverVertexOver root v) :
@@ -871,6 +1000,9 @@ theorem graphCoverRealizationProjection_vertexStar_injective
           exact graphCoverRealizationProjection_vertexStar_injective_edges
             x e f t t' ha₀ hb₀ hbase'
 
+/--
+@isnad1 id=surjon.0h4v.s6.3a91189ab3ff from=translated src=- shape=32f3b4f8 vocab=d84be00c
+-/
 theorem graphCoverRealizationProjection_vertexStar_surjective
     {V : Type u} [Quiver.{u} V]
     {root v : V} (x : graphCoverVertexOver root v) :
@@ -975,6 +1107,9 @@ private theorem graphCoverRealizationProjection_edgeHalf_isOpen
     rw [hempty]
     exact isOpen_empty
 
+/--
+@isnad1 id=iff.1h5v.s8.656ff47e331e from=translated src=- shape=ef644af2 vocab=19602f4f
+-/
 theorem graphCoverRealizationProjection_vertexStar_open_iff
     {V : Type u} [Quiver.{u} V]
     {root v : V} (x : graphCoverVertexOver root v)
@@ -1079,7 +1214,9 @@ theorem graphCoverRealizationProjection_vertexStar_open_iff
         exact hsource'.union htarget'
     exact graphRealization_isOpen_iff.mpr hbase_pre
 
-/-- The forward open-set implication used by the vertex-star trivialization. -/
+/-- The forward open-set implication used by the vertex-star trivialization.
+@isnad1 id=isopen.2h5v.s8.370884102109 from=translated src=- shape=e1ad49d8 vocab=19602f4f
+-/
 theorem graphCoverRealizationProjection_vertexStar_open
     {V : Type u} [Quiver.{u} V]
     {root v : V} (x : graphCoverVertexOver root v)
@@ -1103,11 +1240,17 @@ instance graphCoverEdgeOverTopology {V : Type u} [Quiver.{u} V]
     (root : V) (e : Quiver.Total V) :
     TopologicalSpace (graphCoverEdgeOver root e) := ⊥
 
+/--
+@isnad1 id=discrete.0h3v.s4.7a112948270a from=translated src=- shape=92bea4f3 vocab=e7f6c004
+-/
 instance graphCoverEdgeOver_discrete {V : Type u} [Quiver.{u} V]
     (root : V) (e : Quiver.Total V) :
     DiscreteTopology (graphCoverEdgeOver root e) := by
   exact discreteTopology_bot _
 
+/--
+@isnad1 id=disjoint.1h3v.s6.7c32c422cb0f from=translated src=- shape=e1b93318 vocab=51fdb6ba
+-/
 theorem graphEdgeInterior_disjoint {V : Type u} [Quiver.{u} V]
     {e f : Quiver.Total V} (hef : e ≠ f) :
     Disjoint (graphEdgeInterior e) (graphEdgeInterior f) := by
@@ -1134,6 +1277,9 @@ theorem graphEdgeInterior_disjoint {V : Type u} [Quiver.{u} V]
       have h := congrArg graphEdgeUnderlying (hbe.symm.trans hbf)
       simpa [graphEdgeUnderlying, graphDiscreteEdge] using h
 
+/--
+@isnad1 id=nonempty.0h3v.s4.340a704d25ae from=translated src=- shape=edea7f50 vocab=68c4f28c
+-/
 theorem graphCoverEdgeOver_nonempty {V : Type u} [Quiver.{u} V]
     [WeaklyConnected V] {root : V} (e : Quiver.Total V) :
     Nonempty (graphCoverEdgeOver root e) := by
@@ -1141,6 +1287,9 @@ theorem graphCoverEdgeOver_nonempty {V : Type u} [Quiver.{u} V]
   obtain ⟨d, _, hd⟩ := graphCover_source_lift x.1 e x.2
   exact ⟨⟨d, by simpa [graphCoverEdgeProjection] using hd⟩⟩
 
+/--
+@isnad1 id=injon.0h3v.s5.5ce70bbbad2d from=translated src=- shape=0b2c0a07 vocab=4d495a6f
+-/
 theorem graphCoverRealizationProjection_edgeInterior_injective
     {V : Type u} [Quiver.{u} V] {root : V}
     (d : Quiver.Total (graphCoverVertex root)) :
@@ -1181,6 +1330,9 @@ theorem graphCoverRealizationProjection_edgeInterior_injective
             hta.1 hta.2 htb.1 htb.2 (Quotient.exact hbase)
           simp [hteq.2]
 
+/--
+@isnad1 id=surjon.0h4v.s6.08bb8e7ec7e9 from=translated src=- shape=812d79a3 vocab=f02e3ac7
+-/
 theorem graphCoverRealizationProjection_edgeInterior_surjective
     {V : Type u} [Quiver.{u} V]
     {root : V} {e : Quiver.Total V}
@@ -1206,6 +1358,9 @@ theorem graphCoverRealizationProjection_edgeInterior_surjective
           _ = graphEdgePath e t := by rw [d.2]
           _ = y := hzy
 
+/--
+@isnad1 id=iff.1h5v.s8.ff5ba5a0cea6 from=translated src=- shape=c93b9447 vocab=2aa32d73
+-/
 theorem graphCoverRealizationProjection_edgeInterior_open_iff
     {V : Type u} [Quiver.{u} V]
     {root : V} {e : Quiver.Total V}
@@ -1388,6 +1543,9 @@ private theorem graphCoverRealizationProjection_edgeInterior_preimage_reverse
   change graphCoverRealizationProjection root z ∈ graphEdgeInterior e
   exact (congrArg (graphCoverRealizationProjection root) hwz) ▸ hpw
 
+/--
+@isnad1 id=eq.0h3v.s6.9e5c667c039a from=translated src=- shape=e76d0706 vocab=953406c0
+-/
 theorem graphCoverRealizationProjection_edgeInterior_preimage
     {V : Type u} [Quiver.{u} V]
     {root : V} (e : Quiver.Total V) :
@@ -1400,6 +1558,9 @@ theorem graphCoverRealizationProjection_edgeInterior_preimage
 /-! The local charts above assemble into an honest covering map.  Vertices use
 the lifted stars, while the open interval cells use their lifted interiors. -/
 
+/--
+@isnad1 id=iscoveri.0h2v.s8.b06cbbfa5d4e from=translated src=- shape=c752d90b vocab=86b44c59
+-/
 theorem graphCoverRealizationProjection_isCovering
     {V : Type u} [Quiver.{u} V] [WeaklyConnected V]
     (root : V) :

@@ -20,19 +20,34 @@ variable {α : Type _}
 
 section ListIn
 
+/--
+@isnad1 id=in.2h4v.s5.5771b5aa5383 from=translated src=- shape=cc435a3d vocab=0c699f51
+-/
 theorem List.in_superset {l : List α} {S T : Finset α} (h : S ⊆ T) : l.In S → l.In T :=
   fun l_in_S _ al => h (l_in_S _ al)
 
+/--
+@isnad1 id=in.2h4v.s4.e57180a290ea from=translated src=- shape=37443c93 vocab=e7b5ef10
+-/
 theorem List.subset_in {l1 l2 : List α} {S : Finset α} (h : l1 ⊆ l2) (h_l2 : l2.In S) : l1.In S :=
   fun a ha => h_l2 a (h ha)
 
+/--
+@isnad1 id=in.0h2v.s3.7d0e9f70c1e2 from=translated src=- shape=a73e189b vocab=ea23032f
+-/
 @[simp]
 theorem List.nil_in {S : Finset α} : [].In S := by simp [List.In]
 
+/--
+@isnad1 id=iff.0h4v.s5.80ee7c313845 from=translated src=- shape=bf0412fd vocab=5de3af71
+-/
 @[simp]
 theorem List.cons_in {a : α} {l : List α} {S : Finset α} : (a :: l).In S ↔ a ∈ S ∧ l.In S := by
   simp [List.In]
 
+/--
+@isnad1 id=iff.0h4v.s5.954711f4d0cf from=translated src=- shape=5edfa601 vocab=5d86f605
+-/
 @[simp]
 theorem List.append_in {l1 l2 : List α} {S : Finset α} : (l1 ++ l2).In S ↔ l1.In S ∧ l2.In S := by
   constructor
@@ -46,13 +61,22 @@ theorem List.append_in {l1 l2 : List α} {S : Finset α} : (l1 ++ l2).In S ↔ l
     · exact h1 a al1
     · exact h2 a al2
 
+/--
+@isnad1 id=iff.0h3v.s4.dc8e2b028713 from=translated src=- shape=d1aa4cb8 vocab=425270f6
+-/
 @[simp]
 theorem List.reverse_in {l : List α} {S : Finset α} : l.reverse.In S ↔ l.In S := by simp [List.In]
 
 end ListIn
 
+/--
+@isnad1 id=eq.0h2v.s4.f2a01ed22641 from=translated src=- shape=d82fd520 vocab=81c9f96a
+-/
 theorem List.reverse_getLast {l : List α} : l.reverse.getLast? = l.head? := by cases l <;> simp
 
+/--
+@isnad1 id=eq.0h2v.s4.824e76dd5ce2 from=translated src=- shape=d82fd520 vocab=81c9f96a
+-/
 theorem List.reverse_head {l : List α} : l.reverse.head? = l.getLast? := by
   convert List.reverse_getLast.symm; simp
 
@@ -60,26 +84,44 @@ section Mirror
 
 open OrderDual
 
+/--
+@isnad1 id=eq.0h1v.s3.1a9b44fb468d from=translated src=- shape=54ac7aa7 vocab=01d71837
+-/
 @[simp]
 theorem List.Mirror_nil : ([] : List α).Mirror = [] :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.f6b36f535112 from=translated src=- shape=5fc8b653 vocab=b2c43e09
+-/
 @[simp]
 theorem List.Mirror_singleton {a : α} : [a].Mirror = [toDual a] :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.774349ac9d04 from=translated src=- shape=5477ed18 vocab=53801c71
+-/
 @[simp]
 theorem List.Mirror_cons {a : α} {l : List α} : (a :: l).Mirror = l.Mirror ++ [toDual a] := by
   simp [List.Mirror]
 
+/--
+@isnad1 id=eq.0h3v.s5.b280190f95a0 from=translated src=- shape=6a588f17 vocab=1aefdb5e
+-/
 @[simp]
 theorem List.Mirror_append {l1 l2 : List α} : (l1 ++ l2).Mirror = l2.Mirror ++ l1.Mirror := by
   simp [List.Mirror]
 
+/--
+@isnad1 id=eq.0h1v.s3.9b9016f0858b from=translated src=- shape=c1167d68 vocab=73403690
+-/
 @[simp]
 theorem List.ofMirror_nil : ([] : List αᵒᵈ).ofMirror = [] :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.120d6fb5aab4 from=translated src=- shape=9bcc0c0c vocab=e2d10d1d
+-/
 @[simp]
 theorem List.ofMirrorMirror {l : List αᵒᵈ} : l.ofMirror.Mirror = l := by
   induction l with
@@ -88,6 +130,9 @@ theorem List.ofMirrorMirror {l : List αᵒᵈ} : l.ofMirror.Mirror = l := by
     rw [List.ofMirror, List.Mirror] at ih ⊢
     simp_all
 
+/--
+@isnad1 id=eq.0h2v.s4.45c19bbc89b8 from=translated src=- shape=72570f23 vocab=d53ace36
+-/
 @[simp]
 theorem Finset.ofMirrorMirror [LinearOrder α] {S : Finset αᵒᵈ} : S.ofMirror.Mirror = S :=
   by
@@ -95,44 +140,77 @@ theorem Finset.ofMirrorMirror [LinearOrder α] {S : Finset αᵒᵈ} : S.ofMirro
   rw [Finset.image_image]
   simp only [Function.comp_def, OrderDual.toDual_ofDual, Finset.image_id']
 
+/--
+@isnad1 id=eq.0h2v.s4.53fd1e04f277 from=translated src=- shape=7b7f08c2 vocab=1acdab6a
+-/
 @[simp]
 theorem List.Mirror_length {l : List α} : l.Mirror.length = l.length := by rw [List.Mirror]; simp
 
+/--
+@isnad1 id=iff.0h2v.s6.2ca78e970079 from=translated src=- shape=ef84248d vocab=da6e2da6
+-/
 theorem List.chain'_mirror [LinearOrder α] {l : List α} :
     List.IsChain (· < ·) l.Mirror ↔ List.IsChain (· < ·) l := by
   simp_rw [List.Mirror, List.isChain_reverse, List.isChain_map, toDual_lt_toDual]
 
+/--
+@isnad1 id=eq.0h2v.s5.1491fd7e3b94 from=translated src=- shape=31ceda68 vocab=436f10f2
+-/
 theorem List.Mirror_getLast {l : List α} : l.Mirror.getLast? = Option.map toDual l.head? := by
   rw [List.Mirror, List.reverse_getLast, List.head?_map]
 
+/--
+@isnad1 id=eq.0h2v.s5.51189f0c8ab8 from=translated src=- shape=31ceda68 vocab=436f10f2
+-/
 theorem List.Mirror_head {l : List α} : l.Mirror.head? = Option.map toDual l.getLast? := by
   rw [List.Mirror, List.reverse_head, List.getLast?_map]
 
+/--
+@isnad1 id=eq.0h2v.s5.5fbc4917616f from=translated src=- shape=97af617e vocab=19ff1e4b
+-/
 theorem List.ofMirror_getLast {l : List αᵒᵈ} :
     l.ofMirror.getLast? = Option.map ofDual l.head? := by
   rw [List.ofMirror, List.reverse_getLast, List.head?_map]
 
+/--
+@isnad1 id=eq.0h2v.s5.e0959ededd95 from=translated src=- shape=97af617e vocab=19ff1e4b
+-/
 theorem List.ofMirror_head {l : List αᵒᵈ} :
     l.ofMirror.head? = Option.map ofDual l.getLast? := by
   rw [List.ofMirror, List.reverse_head, List.getLast?_map]
 
+/--
+@isnad1 id=iff.0h3v.s5.170b0e99e55f from=translated src=- shape=56ed0a60 vocab=2b4df70a
+-/
 theorem List.Mirror_mem_getLast {a : α} {l : List α} :
     toDual a ∈ l.Mirror.getLast? ↔ a ∈ l.head? := by
   rw [List.Mirror_getLast, Option.mem_map_of_injective toDual.injective]
 
+/--
+@isnad1 id=iff.0h3v.s5.cd5984fa61c9 from=translated src=- shape=56ed0a60 vocab=2b4df70a
+-/
 theorem List.Mirror_mem_head {a : α} {l : List α} :
     toDual a ∈ l.Mirror.head? ↔ a ∈ l.getLast? := by
   rw [List.Mirror_head, Option.mem_map_of_injective toDual.injective]
 
+/--
+@isnad1 id=iff.0h3v.s4.457164a7c438 from=translated src=- shape=1fc5b723 vocab=d6786d96
+-/
 @[simp]
 theorem List.Mirror_in [LinearOrder α] {l : List α} {S : Finset α} :
     l.Mirror.In S.Mirror ↔ l.In S := by
   rw [List.Mirror]; simp; constructor <;> simp [List.In, Finset.Mirror]
 
+/--
+@isnad1 id=iff.0h3v.s6.6fd906428b0a from=translated src=- shape=0cf4d3fa vocab=dc77df30
+-/
 @[simp]
 theorem Finset.memMirror [LinearOrder α] {a : α} {S : Finset α} : toDual a ∈ S.Mirror ↔ a ∈ S := by
   simp [Finset.Mirror]
 
+/--
+@isnad1 id=eq.0h2v.s4.de68304852b7 from=translated src=- shape=081d62cf vocab=ab0d575f
+-/
 @[simp]
 theorem Finset.Mirror_card [LinearOrder α] {S : Finset α} : S.Mirror.card = S.card :=
   by
@@ -142,6 +220,9 @@ theorem Finset.Mirror_card [LinearOrder α] {S : Finset α} : S.Mirror.card = S.
 
 end Mirror
 
+/--
+@isnad1 id=eq.0h5v.s5.d217a1ddb733 from=translated src=- shape=0e11b8b5 vocab=6071cf5d
+-/
 @[simp]
 theorem List.getLast?_cons_append_cons (a b : α) (l1 l2 : List α) :
     (a :: (l1 ++ b :: l2)).getLast? = (b :: l2).getLast? := by

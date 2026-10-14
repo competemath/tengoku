@@ -58,7 +58,9 @@ namespace GranvilleMoore
 /-- **The unit is principal**: for a prime `p` with `p ∤ x`, `p` divides `t_x - 1`.
 
 This is Fermat's little theorem in the form the Frobenius tower uses: `t_x = x ^ (p - 1)`
-is congruent to `1` modulo `p`, so it is a principal unit at `p`. -/
+is congruent to `1` modulo `p`, so it is a principal unit at `p`.
+@isnad1 id=dvd.2h2v.s5.dddc251effb2 from=translated src=- shape=9de5e02e vocab=9701331d
+-/
 theorem dvd_fermatUnit_sub_one {p : ℕ} (hp : p.Prime) {x : ℤ} (hx : ¬ (p : ℤ) ∣ x) :
     (p : ℤ) ∣ fermatUnit p x - 1 := by
   have : Fact p.Prime := ⟨hp⟩
@@ -71,7 +73,9 @@ theorem dvd_fermatUnit_sub_one {p : ℕ} (hp : p.Prime) {x : ℤ} (hx : ¬ (p : 
 `q_p(x)` is the cast of an integer.
 
 Integrality is phrased as the existence of an integer `q` with `q_p(x) = q`, since
-`fermatQuotient` is `ℚ`-valued by definition. -/
+`fermatQuotient` is `ℚ`-valued by definition.
+@isnad1 id=ex.2h2v.s4.020f4a726ee2 from=translated src=- shape=ae357b45 vocab=ddd59218
+-/
 theorem fermatQuotient_eq_intCast {p : ℕ} (hp : p.Prime) {x : ℤ} (hx : ¬ (p : ℤ) ∣ x) :
     ∃ q : ℤ, fermatQuotient p x = (q : ℚ) := by
   obtain ⟨q, hq⟩ := dvd_fermatUnit_sub_one hp hx
@@ -82,7 +86,9 @@ theorem fermatQuotient_eq_intCast {p : ℕ} (hp : p.Prime) {x : ℤ} (hx : ¬ (p
   field_simp
 
 /-- The unit `t_x = x ^ (p - 1)` is prime to `p` whenever `x` is: a prime dividing a power
-divides the base. -/
+divides the base.
+@isnad1 id=not.2h2v.s4.c83cc0a3a585 from=translated src=- shape=90519977 vocab=f719e4c1
+-/
 theorem not_dvd_fermatUnit {p : ℕ} (hp : p.Prime) {x : ℤ} (hx : ¬ (p : ℤ) ∣ x) :
     ¬ (p : ℤ) ∣ fermatUnit p x :=
   fun h => hx ((Nat.prime_iff_prime_int.mp hp).dvd_of_dvd_pow h)
@@ -94,7 +100,9 @@ theorem not_dvd_fermatUnit {p : ℕ} (hp : p.Prime) {x : ℤ} (hx : ¬ (p : ℤ)
 
 This is lifting the exponent applied to `t_x` and `1`: the `p`-adic valuation of
 `t_x ^ (p ^ k) - 1` exceeds that of `t_x - 1` by exactly `k`, and `t_x - 1` is already
-divisible by `p` by `GranvilleMoore.dvd_fermatUnit_sub_one`. -/
+divisible by `p` by `GranvilleMoore.dvd_fermatUnit_sub_one`.
+@isnad1 id=dvd.3h3v.s6.4e7239adeb1f from=translated src=- shape=addc32a8 vocab=919874a7
+-/
 theorem pow_dvd_fermatUnit_pow_sub_one {p : ℕ} (hp : p.Prime) (hodd : Odd p) {x : ℤ}
     (hx : ¬ (p : ℤ) ∣ x) (k : ℕ) : (p : ℤ) ^ (k + 1) ∣ fermatUnit p x ^ p ^ k - 1 := by
   have hp' : Prime ((p : ℤ)) := Nat.prime_iff_prime_int.mp hp
@@ -113,7 +121,9 @@ theorem pow_dvd_fermatUnit_pow_sub_one {p : ℕ} (hp : p.Prime) (hodd : Odd p) {
 number `g_k(x)` is the cast of an integer.
 
 The numerator of `GranvilleMoore.unitQuot` is divisible by the denominator `p ^ (k + 1)` by
-`GranvilleMoore.pow_dvd_fermatUnit_pow_sub_one`. -/
+`GranvilleMoore.pow_dvd_fermatUnit_pow_sub_one`.
+@isnad1 id=ex.3h3v.s5.9a348c579345 from=translated src=- shape=0c50d2f1 vocab=87b34db5
+-/
 theorem unitQuot_eq_intCast {p : ℕ} (hp : p.Prime) (hodd : Odd p) {x : ℤ}
     (hx : ¬ (p : ℤ) ∣ x) (k : ℕ) : ∃ g : ℤ, unitQuot p x k = (g : ℚ) := by
   obtain ⟨g, hg⟩ := pow_dvd_fermatUnit_pow_sub_one hp hodd hx k
@@ -130,7 +140,9 @@ theorem unitQuot_eq_intCast {p : ℕ} (hp : p.Prime) (hodd : Odd p) {x : ℤ}
 `GranvilleMoore.pow_eq_one_add_pow_mul_unitQuot` is this identity in `ℚ`; combined with an
 integer `g` representing `g_k(x)` — which exists by `GranvilleMoore.unitQuot_eq_intCast` —
 it becomes an identity between integers, which is the form consumers of the tower use. Only
-`p ≠ 0` is needed: the hypotheses making `g` exist are carried by `hg`. -/
+`p ≠ 0` is needed: the hypotheses making `g` exist are carried by `hg`.
+@isnad1 id=eq.2h4v.s6.7f923c32e834 from=translated src=- shape=4eae70d2 vocab=5114d22c
+-/
 theorem fermatUnit_pow_eq_one_add_pow_mul {p : ℕ} (hp : p ≠ 0) {x : ℤ} {k : ℕ} {g : ℤ}
     (hg : unitQuot p x k = (g : ℚ)) :
     fermatUnit p x ^ p ^ k = 1 + (p : ℤ) ^ (k + 1) * g := by
@@ -215,7 +227,9 @@ private theorem exists_witness_dvd_sub {p : ℕ} (hp : p.Prime) (hp3 : 3 ≤ p) 
 The integers `g` and `q` are the ones provided by `GranvilleMoore.unitQuot_eq_intCast` and
 `GranvilleMoore.fermatQuotient_eq_intCast`; they are unique, so the hypotheses `hg` and `hq` pin
 them down. No hypothesis `p ∤ x` is needed here: it is what makes `g` and `q` exist, and `hg` and
-`hq` already assert that. -/
+`hq` already assert that.
+@isnad1 id=dvd.4h5v.s5.a7ff5248f0d5 from=translated src=- shape=9661dacd vocab=5d379b5f
+-/
 theorem dvd_unitQuot_sub_fermatQuotient {p : ℕ} (hp : p.Prime) (hodd : Odd p) {x : ℤ}
     {k : ℕ} {g q : ℤ} (hg : unitQuot p x k = (g : ℚ))
     (hq : fermatQuotient p x = (q : ℚ)) : (p : ℤ) ∣ g - q := by

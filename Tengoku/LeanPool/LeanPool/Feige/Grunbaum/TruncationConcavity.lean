@@ -38,11 +38,17 @@ noncomputable def cdfRoot {d : ℕ} (C : Set (Euc d))
 def truncDomain {d : ℕ} (C : Set (Euc d)) (ℓ : Euc d →L[ℝ] ℝ) : Set ℝ :=
   {t | (trunc C ℓ t).Nonempty}
 
+/--
+@isnad1 id=iscompac.1h4v.s8.aa21421c7373 from=translated src=- shape=4ca11d7a vocab=0f185ea4
+-/
 lemma isCompact_trunc {d : ℕ} {C : Set (Euc d)} (hC : IsCompact C)
     (ℓ : Euc d →L[ℝ] ℝ) (t : ℝ) :
     IsCompact (trunc C ℓ t) :=
   hC.inter_right (isClosed_Iic.preimage ℓ.continuous)
 
+/--
+@isnad1 id=ne.1h4v.s10.a9d72c20f68b from=translated src=- shape=e70c0752 vocab=1aba80b3
+-/
 lemma volume_trunc_ne_top {d : ℕ} {C : Set (Euc d)} (hC : IsCompact C)
     (ℓ : Euc d →L[ℝ] ℝ) (t : ℝ) :
     volume (trunc C ℓ t) ≠ ⊤ :=
@@ -61,6 +67,9 @@ private lemma weighted_trunc_subset {d : ℕ} {C : Set (Euc d)}
   exact add_le_add (mul_le_mul_of_nonneg_left hx.2 ha)
     (mul_le_mul_of_nonneg_left hy.2 hb)
 
+/--
+@isnad1 id=convex.1h3v.s8.a4077f9b56e4 from=translated src=- shape=8a3271dd vocab=80413bd0
+-/
 theorem convex_truncDomain {d : ℕ} {C : Set (Euc d)}
     (hCconv : Convex ℝ C) (ℓ : Euc d →L[ℝ] ℝ) :
     Convex ℝ (truncDomain C ℓ) := by
@@ -74,6 +83,9 @@ theorem convex_truncDomain {d : ℕ} {C : Set (Euc d)}
     weighted_trunc_subset hCconv ℓ ha hb hab
       (add_mem_add (smul_mem_smul_set hx) (smul_mem_smul_set hy))⟩
 
+/--
+@isnad1 id=eq.0h4v.s10.b7371ee4f297 from=translated src=- shape=d26bff8b vocab=81ff85ca
+-/
 lemma cdfRoot_eq {d : ℕ} (C : Set (Euc d))
     (ℓ : Euc d →L[ℝ] ℝ) (t : ℝ) :
     cdfRoot C ℓ t =

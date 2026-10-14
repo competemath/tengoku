@@ -58,6 +58,7 @@ variable {F : Type*} [Field F] [Fintype F]
 
 /--
 Cardinality of projective space minus a point: `|P^n(F) \ {α}| = (q^{n+1} - q) / (q - 1)`.
+@isnad1 id=eq.0h3v.s9.4da2660b82d7 from=translated src=- shape=dc663b30 vocab=f98c1eb2
 -/
 lemma card_projectivization_minus_point (n : ℕ) (α : Projectivization F (Fin (n + 1) → F)) :
     Nat.card {x : Projectivization F (Fin (n + 1) → F) // x ≠ α} =
@@ -85,7 +86,9 @@ lemma card_projectivization_minus_point (n : ℕ) (α : Projectivization F (Fin 
   rw [eq_comm, Nat.div_eq_iff_eq_mul_left hqsub ⟨P - 1, by rw [mul_comm]; exact h_eq⟩]
   exact h_eq
 
-/-- The cardinality of `P^n(F)` in the form used by the sharpness example. -/
+/-- The cardinality of `P^n(F)` in the form used by the sharpness example.
+@isnad1 id=eq.0h2v.s7.e48a61b64bea from=translated src=- shape=ec65dca6 vocab=cb930b6a
+-/
 lemma card_projectivization_eq_bound_add_one (n : ℕ) :
     Nat.card (Projectivization F (Fin (n + 1) → F)) =
     (Fintype.card F ^ (n + 1) - Fintype.card F) / (Fintype.card F - 1) + 1 := by
@@ -120,6 +123,7 @@ private lemma card_affine_le_projective_bound (n : ℕ) (hn : 0 < n) :
 /--
 Auxiliary form of Theorem 1: a map into `F^(n+1)` over a small finite set admits
 a linear projection to `F^n` whose kernel misses all nonzero image points.
+@isnad1 id=ex.1h4v.s10.1a7b4b21e13f from=translated src=- shape=fa96ce1d vocab=8b953409
 -/
 lemma theorem_1_aux {X : Type*} [Finite X] (n : ℕ) (f : X → (Fin (n + 1) → F))
     (hX : Nat.card X ≤
@@ -182,6 +186,7 @@ lemma theorem_1_aux {X : Type*} [Finite X] (n : ℕ) (f : X → (Fin (n + 1) →
 /--
 Base case of Theorem 1: `n + 1` equations over a small finite set can be replaced
 by at most `n` equations in their span.
+@isnad1 id=ex.3h4v.s8.9f39319237d2 from=translated src=- shape=6a7f0179 vocab=9b865247
 -/
 lemma theorem_1_base_case {X : Type*} [Finite X] (n : ℕ) (S : Set (X → F))
     (hS : S.Finite) (h_card : S.ncard = n + 1)
@@ -244,6 +249,7 @@ lemma theorem_1_base_case {X : Type*} [Finite X] (n : ℕ) (S : Set (X → F))
 /--
 Theorem 1: over a small finite set, any finite family of more than `n` functions can
 be reduced to at most `n` functions in its span without changing its zero set.
+@isnad1 id=ex.3h4v.s8.2cdd88e10371 from=translated src=- shape=ba2c81ae vocab=15e7d604
 -/
 theorem theorem_1 {X : Type*} [Finite X] (n : ℕ) (S : Set (X → F)) (hS : S.Finite)
     (hn : S.ncard > n)
@@ -341,6 +347,7 @@ private lemma exists_lift_of_subset_span_image {K V W : Type*} [Field K]
 /--
 Corollary 2: zero loci in affine `n`-space over a finite field can be defined using
 at most `n` members of the original span.
+@isnad1 id=ex.2h5v.s9.ff08dc375b40 from=translated src=- shape=1607f831 vocab=99326c1c
 -/
 theorem corollary_2 {K : Type*} [Field K] [Finite K] (n : ℕ) (hn : n > 0)
     (V : Type*) [AddCommGroup V] [Module K V]
@@ -368,6 +375,7 @@ theorem corollary_2 {K : Type*} [Field K] [Finite K] (n : ℕ) (hn : n > 0)
 /--
 Corollary 3: a nonempty projective zero locus in `P^n(F)` can be defined using at
 most `n` members of the original span.
+@isnad1 id=ex.2h5v.s12.50df159a1f29 from=translated src=- shape=5046a6e2 vocab=45f9eacb
 -/
 theorem corollary_3 {K : Type*} [Field K] [Finite K] (n : ℕ)
     (V : Type*) [AddCommGroup V] [Module K V]
@@ -439,6 +447,7 @@ theorem corollary_3 {K : Type*} [Field K] [Finite K] (n : ℕ)
 
 /--
 Proposition 1: the cardinality bound in Theorem 1 is sharp.
+@isnad1 id=ex.1h2v.s10.6c0c2821bac7 from=translated src=- shape=e3c0dac8 vocab=bb93bd29
 -/
 theorem prop_1 (n : ℕ) (hn : n > 0) :
     ∃ (X : Set (Fin (n + 1) → F)) (f : Fin (n + 1) → X → F),
@@ -492,6 +501,7 @@ theorem prop_1 (n : ℕ) (hn : n > 0) :
 /--
 The coordinate functions on affine `n`-space need `n` equations to cut out the origin:
 any `n - 1` linear combinations have at least `|F|` common zeros.
+@isnad1 id=other.1h2v.s9.a7c80bf9b2f0 from=translated src=- shape=ea969725 vocab=1af10b2c
 -/
 theorem remark_example (n : ℕ) (hn : n > 0) :
     let f : Fin n → (Fin n → F) → F := fun i x => x i

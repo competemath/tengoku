@@ -24,6 +24,9 @@ namespace Feige
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=integrab.0h0v.s4.a3f351fccde0 from=translated src=- shape=e14394ff vocab=1ba8213c
+-/
 theorem integrable_unitExponentialDensity :
     Integrable unitExponentialDensity := by
   change Integrable ((Ici (0 : ℝ)).indicator
@@ -34,7 +37,9 @@ theorem integrable_unitExponentialDensity :
     (s := (1 : ℝ)) (by positivity)
 
 /-- The product density of `n` independent unit exponentials is
-integrable on the coordinate function space. -/
+integrable on the coordinate function space.
+@isnad1 id=integrab.0h1v.s6.43ea1cb0213f from=translated src=- shape=f8e34163 vocab=032f611f
+-/
 theorem integrable_pi_unitExponentialDensity :
     Integrable
       (fun x : Fin n → ℝ ↦ ∏ i, unitExponentialDensity (x i)) := by
@@ -47,6 +52,9 @@ noncomputable def jointUnitExponentialDensity
   unitExponentialDensity e.1 *
     ∏ i, unitExponentialDensity (e.2 i)
 
+/--
+@isnad1 id=integrab.0h1v.s6.6b2e0eccb87e from=translated src=- shape=69092187 vocab=6d264814
+-/
 theorem integrable_jointUnitExponentialDensity :
     Integrable (jointUnitExponentialDensity :
       (ℝ × (Fin n → ℝ)) → ℝ) := by
@@ -54,6 +62,9 @@ theorem integrable_jointUnitExponentialDensity :
   exact Integrable.mul_prod integrable_unitExponentialDensity
     integrable_pi_unitExponentialDensity
 
+/--
+@isnad1 id=eq.0h1v.s6.0fce9c7d01b3 from=translated src=- shape=7f87cd98 vocab=c4a34c21
+-/
 theorem integral_jointUnitExponentialDensity :
     ∫ e : ℝ × (Fin n → ℝ), jointUnitExponentialDensity e = 1 := by
   change ∫ e : ℝ × (Fin n → ℝ),
@@ -67,6 +78,9 @@ theorem integral_jointUnitExponentialDensity :
   rw [integral_unitExponentialDensity,
     integral_pi_unitExponentialDensity, one_mul]
 
+/--
+@isnad1 id=le.0h2v.s4.d992beb1198b from=translated src=- shape=11472c08 vocab=298fc6f5
+-/
 theorem jointUnitExponentialDensity_nonneg
     (e : ℝ × (Fin n → ℝ)) :
     0 ≤ jointUnitExponentialDensity e := by
@@ -79,7 +93,9 @@ theorem jointUnitExponentialDensity_nonneg
         exact (indicator_nonneg fun _ _ ↦ (Real.exp_pos _).le) (e.2 _))
 
 /-- `ENNReal` form of normalization of the full independent exponential
-product density. -/
+product density.
+@isnad1 id=eq.0h1v.s6.ed4f31345c06 from=translated src=- shape=396a3e71 vocab=a9dc079f
+-/
 theorem lintegral_ofReal_jointUnitExponentialDensity :
     ∫⁻ e : ℝ × (Fin n → ℝ),
         ENNReal.ofReal (jointUnitExponentialDensity e) = 1 := by
@@ -90,7 +106,9 @@ theorem lintegral_ofReal_jointUnitExponentialDensity :
   simp
 
 /-- The sole point removed when passing from the closed nonnegative
-orthant to `positiveExponentialOrthant` is Lebesgue-null. -/
+orthant to `positiveExponentialOrthant` is Lebesgue-null.
+@isnad1 id=eq.0h1v.s7.e894b63c67c1 from=translated src=- shape=48de02a5 vocab=b88cecf2
+-/
 theorem volume_singleton_zeroExponentialVector :
     (volume : Measure (ℝ × (Fin n → ℝ)))
       ({(0, fun _ ↦ 0)} : Set (ℝ × (Fin n → ℝ))) = 0 := by
@@ -103,6 +121,9 @@ theorem volume_singleton_zeroExponentialVector :
   rw [Measure.prod_prod, Real.volume_singleton]
   exact zero_mul _
 
+/--
+@isnad1 id=lt.3h2v.s6.e5d6b65a6e1c from=translated src=- shape=f5a006cd vocab=d6391009
+-/
 theorem nonnegative_nonzero_exponentialTotal_pos
     {e : ℝ × (Fin n → ℝ)} (h0 : 0 ≤ e.1)
     (hi : ∀ i, 0 ≤ e.2 i) (hne : e ≠ (0, fun _ ↦ 0)) :
@@ -128,6 +149,9 @@ theorem nonnegative_nonzero_exponentialTotal_pos
     apply hne
     ext <;> simp [he1, hei]
 
+/--
+@isnad1 id=eq.2h2v.s5.57a54df428d3 from=translated src=- shape=a7a9131f vocab=7334ce76
+-/
 theorem jointUnitExponentialDensity_eq_exp_neg_total
     (e : ℝ × (Fin n → ℝ)) (h0 : 0 ≤ e.1)
     (hi : ∀ i, 0 ≤ e.2 i) :
@@ -141,6 +165,9 @@ theorem jointUnitExponentialDensity_eq_exp_neg_total
   rw [Finset.sum_neg_distrib]
   ring
 
+/--
+@isnad1 id=eq.1h2v.s5.0f80290d7116 from=translated src=- shape=1e34674f vocab=8096e74e
+-/
 theorem jointUnitExponentialDensity_eq_zero_of_neg
     (e : ℝ × (Fin n → ℝ))
     (hneg : e.1 < 0 ∨ ∃ i, e.2 i < 0) :
@@ -152,6 +179,9 @@ theorem jointUnitExponentialDensity_eq_zero_of_neg
     · simp
     · simp [Set.indicator, not_le_of_gt hneg]
 
+/--
+@isnad1 id=eq.0h1v.s6.6099b86fc9c9 from=translated src=- shape=d119d881 vocab=fe63f1bc
+-/
 theorem lintegral_positiveExponentialOrthant_exp_neg_total :
     ∫⁻ e in positiveExponentialOrthant (n := n),
         ENNReal.ofReal (Real.exp (-exponentialTotal e)) ∂volume = 1 := by
@@ -192,6 +222,9 @@ theorem lintegral_positiveExponentialOrthant_exp_neg_total :
         simp
     _ = 1 := lintegral_ofReal_jointUnitExponentialDensity
 
+/--
+@isnad1 id=eq.0h1v.s6.5a3a5b851f39 from=translated src=- shape=5438ac82 vocab=10e446a4
+-/
 theorem factorial_mul_volume_fullSimplex :
     (n.factorial : ℝ≥0∞) * volume (fullSimplex (Fin n)) = 1 := by
   have h := lintegral_normalizedExponential_eq_simplex (n := n)
@@ -202,7 +235,9 @@ theorem factorial_mul_volume_fullSimplex :
   rw [hl] at h
   simpa [normalizedExponentialSimplexMeasure] using h.symm
 
-/-- Exact Lebesgue volume of the standard full simplex. -/
+/-- Exact Lebesgue volume of the standard full simplex.
+@isnad1 id=eq.0h1v.s6.6043edeb33ee from=translated src=- shape=086cd5e9 vocab=3d226d7b
+-/
 theorem volume_fullSimplex_eq_factorial_inv :
     volume (fullSimplex (Fin n)) =
       (n.factorial : ℝ≥0∞)⁻¹ := by

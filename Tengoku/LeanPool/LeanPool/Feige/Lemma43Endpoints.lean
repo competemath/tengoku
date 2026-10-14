@@ -26,6 +26,9 @@ open ProbabilityTheory TransferStein TransferTestFunctions
 local instance : IsProbabilityMeasure (expMeasure 1) :=
   isProbabilityMeasure_expMeasure one_pos
 
+/--
+@isnad1 id=eq.0h1v.s6.45df253ab098 from=translated src=- shape=2bc9adab vocab=7d76b3a1
+-/
 theorem expMeasure_one_Iic (t : ℝ) :
     expMeasure 1 (Iic t) =
       ENNReal.ofReal (if 0 ≤ t then 1 - exp (-t) else 0) := by
@@ -33,7 +36,9 @@ theorem expMeasure_one_Iic (t : ℝ) :
   simp
 
 /-- Subtracting `bE` and taking the nonnegative tail applies the
-`φ_b` endpoint transform to the original law. -/
+`φ_b` endpoint transform to the original law.
+@isnad1 id=eq.1h2v.s4.360d9eab3190 from=translated src=- shape=63ac5806 vocab=7e0d547f
+-/
 theorem F_zMinusLaw_eq_A
     (μ : Measure ℝ) [IsFiniteMeasure μ] {b : ℝ} (hb : 0 < b) :
     Lemma43.F (zMinusLaw μ b) = Lemma43.A μ b := by
@@ -74,6 +79,9 @@ theorem F_zMinusLaw_eq_A
   exact ENNReal.toReal_ofReal
     (integral_nonneg (transferPhi_nonneg b))
 
+/--
+@isnad1 id=eq.0h1v.s5.c37a385ed04e from=translated src=- shape=01876be5 vocab=8326b98b
+-/
 theorem expMeasure_one_Ici_all (t : ℝ) :
     expMeasure 1 (Ici t) =
       ENNReal.ofReal (if t < 0 then 1 else exp (-t)) := by
@@ -96,7 +104,9 @@ theorem expMeasure_one_Ici_all (t : ℝ) :
     rw [ExponentialTransfer.expMeasure_one_Ici (le_of_not_gt ht)]
 
 /-- Adding `aE` and taking the nonnegative tail applies the `ψ_a`
-endpoint transform to the original law. -/
+endpoint transform to the original law.
+@isnad1 id=eq.1h2v.s4.e192466625ea from=translated src=- shape=63ac5806 vocab=9dd6ff7f
+-/
 theorem F_zPlusLaw_eq_B
     (μ : Measure ℝ) [IsFiniteMeasure μ] {a : ℝ} (ha : 0 < a) :
     Lemma43.F (zPlusLaw μ a) = Lemma43.B μ a := by

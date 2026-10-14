@@ -28,10 +28,15 @@ open Filter Topology
 noncomputable def sharpConstant (n : ℕ) : ℝ :=
   ((n : ℝ) / (n + 1)) ^ n
 
+/--
+@isnad1 id=eq.0h0v.s3.062ff480bed7 from=translated src=- shape=1ac31801 vocab=492ad340
+-/
 @[simp] theorem sharpConstant_zero : sharpConstant 0 = 1 := by
   simp [sharpConstant]
 
-/-- The sharp constant is positive in every dimension, including dimension zero. -/
+/-- The sharp constant is positive in every dimension, including dimension zero.
+@isnad1 id=lt.0h1v.s3.ef1764b3ad4b from=translated src=- shape=b9369acb vocab=f349ea12
+-/
 theorem sharpConstant_pos (n : ℕ) : 0 < sharpConstant n := by
   cases n with
   | zero => simp
@@ -39,11 +44,15 @@ theorem sharpConstant_pos (n : ℕ) : 0 < sharpConstant n := by
       simp only [sharpConstant]
       positivity
 
-/-- The sharp constant is nonnegative. -/
+/-- The sharp constant is nonnegative.
+@isnad1 id=le.0h1v.s3.e75cd15f1258 from=translated src=- shape=b9369acb vocab=afd6d015
+-/
 theorem sharpConstant_nonneg (n : ℕ) : 0 ≤ sharpConstant n :=
   (sharpConstant_pos n).le
 
-/-- The sharp constant is at most one. -/
+/-- The sharp constant is at most one.
+@isnad1 id=le.0h1v.s3.b87eae8d80c0 from=translated src=- shape=a311c14d vocab=afd6d015
+-/
 theorem sharpConstant_le_one (n : ℕ) : sharpConstant n ≤ 1 := by
   simp only [sharpConstant]
   apply pow_le_one₀
@@ -58,7 +67,9 @@ private theorem sharpConstant_eq_inv (n : ℕ) (hn : n ≠ 0) :
   congr 1
   field_simp
 
-/-- The finite-dimensional sharp constant is strictly larger than `exp (-1)`. -/
+/-- The finite-dimensional sharp constant is strictly larger than `exp (-1)`.
+@isnad1 id=lt.1h1v.s4.d991b5b7beb8 from=translated src=- shape=87f2a3f7 vocab=cafb00fe
+-/
 theorem exp_neg_one_lt_sharpConstant {n : ℕ} (hn : 1 ≤ n) :
     Real.exp (-1) < sharpConstant n := by
   have hn0 : n ≠ 0 := Nat.ne_of_gt hn
@@ -77,7 +88,9 @@ theorem exp_neg_one_lt_sharpConstant {n : ℕ} (hn : 1 ≤ n) :
   apply inv_lt_inv₀ (Real.exp_pos 1) (by positivity) |>.2
   exact hbase.trans_eq hexp
 
-/-- The finite-dimensional sharp constants converge to `exp (-1)`. -/
+/-- The finite-dimensional sharp constants converge to `exp (-1)`.
+@isnad1 id=tendsto.0h0v.s4.860828075e85 from=translated src=- shape=3772a883 vocab=b0766522
+-/
 theorem tendsto_sharpConstant :
     Tendsto sharpConstant atTop (𝓝 (Real.exp (-1))) := by
   have h :=

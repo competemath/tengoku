@@ -26,10 +26,16 @@ lemma _root_.List.IsChain.nodup_of_trans_irreflex
   rw [List.isChain_iff_pairwise] at h_chain
   exact R_irrefl.irrefl d (by simpa using h_chain.sublist hsub)
 
+/--
+@isnad1 id=finite.0h1v.s3.a9bd3a66aa92 from=translated src=- shape=de7c0d26 vocab=869b3bbf
+-/
 instance finiteNodupList [Finite α] : Finite { l : List α // l.Nodup } := by
   classical
   exact (@fintypeNodupList α (Fintype.ofFinite α)).finite
 
+/--
+@isnad1 id=finite.2h2v.s4.ff0798e26910 from=translated src=- shape=bf5e474f vocab=b04c847b
+-/
 lemma chains_finite [Finite α] (R_trans : IsTrans α R) (R_irrefl : Std.Irrefl R) :
     Finite { l : List α // l.IsChain R } := by
   classical

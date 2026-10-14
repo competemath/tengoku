@@ -36,7 +36,9 @@ axis, then all but finitely many images meet the disc of radius `exp 4`.
 
 Contrapositive of Lemma 5: only finitely many images can sit inside the right half-plane, and
 if the image at time `n` misses the disc then the image at time `n - 1` lay in the half-plane,
-since `‖exp z‖ = exp (Re z)`. -/
+since `‖exp z‖ = exp (Re z)`.
+@isnad1 id=ex.4h1v.s6.83b8fff4d1bd from=translated src=- shape=9c0d0323 vocab=2db4fe8d
+-/
 theorem lemma6_eventually_meets_disc
     {V : Set ℂ} (hVopen : IsOpen V) (hVconn : IsConnected V) (hVne : V.Nonempty)
     (hnoreal : ∀ (n : ℕ), ∀ z ∈ V, (expIterate n z).im ≠ 0) :
@@ -68,7 +70,9 @@ theorem lemma6_eventually_meets_disc
   rw [expIterate_succ, Complex.norm_exp]
   exact Real.exp_le_exp.mpr hre
 
-/-- Two sequences in compact sets admit a *common* convergent subsequence. -/
+/-- Two sequences in compact sets admit a *common* convergent subsequence.
+@isnad1 id=ex.4h6v.s7.2d01b61155b5 from=translated src=- shape=b204a0e8 vocab=78acffe6
+-/
 theorem exists_double_subseq {X Y : Type*} [MetricSpace X] [MetricSpace Y]
     {s : Set X} {t : Set Y} (hs : IsCompact s) (ht : IsCompact t)
     {a : ℕ → X} {b : ℕ → Y} (ha : ∀ n, a n ∈ s) (hb : ∀ n, b n ∈ t) :
@@ -82,7 +86,9 @@ theorem exists_double_subseq {X Y : Type*} [MetricSpace X] [MetricSpace Y]
   · exact hlim₂
 
 /-- Along all large times, the ball contains a point whose image stays in the disc of radius
-`exp 4`. -/
+`exp 4`.
+@isnad1 id=ex.3h3v.s6.bebb5e4d0e41 from=translated src=- shape=bd4dd342 vocab=381f5a88
+-/
 theorem exists_disc_points
     {V : Set ℂ}
     (hnoreal : ∀ (n : ℕ), ∀ z ∈ V, (expIterate n z).im ≠ 0)
@@ -101,7 +107,9 @@ theorem exists_disc_points
 
 /-! ### Reduction of the lower half-plane case by conjugation -/
 
-/-- Conjugation commutes with the iterates of `exp`. -/
+/-- Conjugation commutes with the iterates of `exp`.
+@isnad1 id=eq.0h2v.s6.3cdc717db9cf from=translated src=- shape=d97ebfc9 vocab=96325a2e
+-/
 theorem expIterate_conj (n : ℕ) (z : ℂ) :
     expIterate n ((starRingEnd ℂ) z) = (starRingEnd ℂ) (expIterate n z) := by
   induction n with
@@ -110,7 +118,9 @@ theorem expIterate_conj (n : ℕ) (z : ℂ) :
       rw [expIterate_succ, expIterate_succ, ih]
       exact Complex.exp_conj _
 
-/-- Conjugation is an involution, so the image of a set is its preimage. -/
+/-- Conjugation is an involution, so the image of a set is its preimage.
+@isnad1 id=eq.0h1v.s6.9f0fb19c47bd from=translated src=- shape=0542c142 vocab=282ae079
+-/
 theorem conj_image_eq_preimage (V : Set ℂ) :
     (starRingEnd ℂ) '' V = (starRingEnd ℂ) ⁻¹' V := by
   ext z
@@ -120,22 +130,30 @@ theorem conj_image_eq_preimage (V : Set ℂ) :
   · intro hz
     exact ⟨(starRingEnd ℂ) z, hz, by simp⟩
 
-/-- Complex conjugation sends open sets to open sets. -/
+/-- Complex conjugation sends open sets to open sets.
+@isnad1 id=isopen.1h1v.s6.1d42576e3e56 from=translated src=- shape=9ff5bdba vocab=26ea4a6e
+-/
 theorem isOpen_conj_image {V : Set ℂ} (hV : IsOpen V) :
     IsOpen ((starRingEnd ℂ) '' V) := by
   rw [conj_image_eq_preimage]
   exact hV.preimage Complex.continuous_conj
 
-/-- Complex conjugation sends connected sets to connected sets. -/
+/-- Complex conjugation sends connected sets to connected sets.
+@isnad1 id=isconnec.1h1v.s6.b9f2135db1e9 from=translated src=- shape=9ff5bdba vocab=bea9196f
+-/
 theorem isConnected_conj_image {V : Set ℂ} (hV : IsConnected V) :
     IsConnected ((starRingEnd ℂ) '' V) :=
   hV.image _ Complex.continuous_conj.continuousOn
 
-/-- The conjugate image of a nonempty set is nonempty. -/
+/-- The conjugate image of a nonempty set is nonempty.
+@isnad1 id=nonempty.1h1v.s5.a9b55180c96e from=translated src=- shape=9ff5bdba vocab=e43570ca
+-/
 theorem nonempty_conj_image {V : Set ℂ} (hV : V.Nonempty) :
     ((starRingEnd ℂ) '' V).Nonempty := hV.image _
 
-/-- No image of the conjugate meets the real axis if none of `V`'s images does. -/
+/-- No image of the conjugate meets the real axis if none of `V`'s images does.
+@isnad1 id=ne.2h3v.s6.b8c6b2971bb7 from=translated src=- shape=24fbcfec vocab=070add68
+-/
 theorem noreal_conj_image {V : Set ℂ}
     (hnoreal : ∀ (n : ℕ), ∀ z ∈ V, (expIterate n z).im ≠ 0) :
     ∀ (n : ℕ), ∀ z ∈ (starRingEnd ℂ) '' V, (expIterate n z).im ≠ 0 := by
@@ -145,7 +163,9 @@ theorem noreal_conj_image {V : Set ℂ}
   exact hnoreal n y hy hval
 
 /-- Times at which `V` lands in the lower half-plane are times at which the conjugate lands
-in the upper one. -/
+in the upper one.
+@isnad1 id=lt.2h3v.s6.d96f6679cfb9 from=translated src=- shape=6768cd6a vocab=e00218ab
+-/
 theorem conj_image_up_of_down {V : Set ℂ} {n : ℕ}
     (h : ∀ z ∈ V, (expIterate n z).im < 0) :
     ∀ z ∈ (starRingEnd ℂ) '' V, 0 < (expIterate n z).im := by
@@ -155,7 +175,9 @@ theorem conj_image_up_of_down {V : Set ℂ} {n : ℕ}
   exact h y hy
 
 /-- **The conjugation reduction.** If the conjugate set has an image meeting the real axis,
-so does the original. -/
+so does the original.
+@isnad1 id=eventual.1h1v.s5.15e6e71af083 from=translated src=- shape=3624b302 vocab=326a38c5
+-/
 theorem eventuallyMeetsRealAxis_of_conj {V : Set ℂ}
     (h : EventuallyMeetsRealAxis ((starRingEnd ℂ) '' V)) :
     EventuallyMeetsRealAxis V := by
@@ -167,7 +189,9 @@ theorem eventuallyMeetsRealAxis_of_conj {V : Set ℂ}
   have : -(expIterate n y).im = 0 := hval
   linarith
 
-/-- The orbit of a real point stays real and its real part grows by at least `1` each step. -/
+/-- The orbit of a real point stays real and its real part grows by at least `1` each step.
+@isnad1 id=and.1h2v.s5.5881a033c1ec from=translated src=- shape=56ccf1dd vocab=a8625b9c
+-/
 theorem expIterate_real_orbit {p : ℂ} (hp : p.im = 0) (m : ℕ) :
     (expIterate m p).im = 0 ∧ p.re + m ≤ (expIterate m p).re := by
   induction m with
@@ -181,7 +205,9 @@ theorem expIterate_real_orbit {p : ℂ} (hp : p.im = 0) (m : ℕ) :
         push_cast
         linarith
 
-/-- A real point's orbit escapes to the right: some iterate has real part exceeding `4`. -/
+/-- A real point's orbit escapes to the right: some iterate has real part exceeding `4`.
+@isnad1 id=ex.1h1v.s5.507ba27a026b from=translated src=- shape=63925ce7 vocab=360886d2
+-/
 theorem exists_re_gt_four_of_real {p : ℂ} (hp : p.im = 0) :
     ∃ m : ℕ, 4 < (expIterate m p).re := by
   obtain ⟨m, hm⟩ := exists_nat_gt (4 - p.re)
@@ -192,7 +218,9 @@ theorem exists_re_gt_four_of_real {p : ℂ} (hp : p.im = 0) :
 /-- **Accumulation.** If infinitely many images of `V` lie in the upper half-plane and none
 meets the real axis, there is a finite point `p` and a centre `y` such that arbitrarily small
 balls about `y` are carried, at arbitrarily late times, into arbitrarily small neighbourhoods
-of `p`. This is weak Montel in the form Lemma 6 consumes. -/
+of `p`. This is weak Montel in the form Lemma 6 consumes.
+@isnad1 id=ex.5h2v.s7.1db3c5dc1cdb from=translated src=- shape=a71dc27f vocab=a7710069
+-/
 theorem lemma6_accumulation_up
     {V : Set ℂ} (hVopen : IsOpen V) (hVne : V.Nonempty)
     (hnoreal : ∀ (n : ℕ), ∀ z ∈ V, (expIterate n z).im ≠ 0)
@@ -319,15 +347,21 @@ theorem lemma6_accumulation_up
               - (p - Complex.I) / (p + Complex.I)‖ := norm_sub_le_norm_sub_add_norm_sub _ _ _
       _ < ε := by linarith
 
-/-- The central strip is closed, since the absolute imaginary-part function is continuous. -/
+/-- The central strip is closed, since the absolute imaginary-part function is continuous.
+@isnad1 id=isclosed.0h0v.s4.61132b3c0c18 from=translated src=- shape=25b03439 vocab=d31c03f8
+-/
 theorem isClosed_centralStrip : IsClosed centralStrip :=
   isClosed_le (continuous_abs.comp Complex.continuous_im) continuous_const
 
-/-- The half-plane `Re z > 4` is open. -/
+/-- The half-plane `Re z > 4` is open.
+@isnad1 id=isopen.0h0v.s4.5aa9b4618e4f from=translated src=- shape=25b03439 vocab=1529df36
+-/
 theorem isOpen_rightHalfPlane : IsOpen rightHalfPlane :=
   isOpen_lt continuous_const Complex.continuous_re
 
-/-- The upper half-plane case of Lemma 6 is contradictory. -/
+/-- The upper half-plane case of Lemma 6 is contradictory.
+@isnad1 id=false.5h2v.s6.55f4b73267e3 from=translated src=- shape=d32422b5 vocab=a369ada0
+-/
 theorem lemma6_contradiction_up
     {V : Set ℂ} (hVopen : IsOpen V) (hVne : V.Nonempty)
     (hnoreal : ∀ (n : ℕ), ∀ z ∈ V, (expIterate n z).im ≠ 0)
@@ -385,7 +419,9 @@ Harrison uses Montel's fundamental normality test for families omitting two valu
 images here omit the whole real axis and are connected, each lies in one open half-plane, so a
 Cayley transform makes the family bounded and the Cauchy estimate suffices: see
 `equicontinuous_cayleyUp` and `lemma6_accumulation_up`. The lower half-plane case reduces to
-the upper one by conjugation. -/
+the upper one by conjugation.
+@isnad1 id=eventual.3h1v.s5.121e7eefa6b2 from=translated src=- shape=973d226f vocab=2baf0fc5
+-/
 theorem lemma6_every_domain_eventually_meets_real_axis
     {V : Set ℂ} (hVopen : IsOpen V) (hVconn : IsConnected V) (hVne : V.Nonempty) :
     EventuallyMeetsRealAxis V := by

@@ -39,7 +39,9 @@ def SequenceAPFree (f : ℕ → ℕ) : Prop :=
 
 /-- Once one stage is a prefix of its successor, it is a prefix of every
 later stage. This is the “No entry, once placed, is ever moved” assertion in
-the final proof of the paper. -/
+the final proof of the paper.
+@isnad1 id=isprefix.2h3v.s5.1537bcfdb14e from=translated src=- shape=9688ea6b vocab=fb973e77
+-/
 theorem safeStages_prefix (P : ℕ → List ℕ)
     (hstep : ∀ n, (P n).IsPrefix (P (n + 1))) {m n : ℕ} (hmn : m ≤ n) :
     (P m).IsPrefix (P n) := by
@@ -49,7 +51,9 @@ theorem safeStages_prefix (P : ℕ → List ℕ)
 
 /-- Exhaustive targets give a concrete length bound: a word containing
 `0, …, n-1` has at least `n` entries. Thus every requested position can be
-reached after a bounded number of stages in the computability remark. -/
+reached after a bounded number of stages in the computability remark.
+@isnad1 id=le.1h2v.s5.39b0646f55a2 from=translated src=- shape=99585400 vocab=197330c3
+-/
 theorem safeStages_length (P : ℕ → List ℕ)
     (hcover : ∀ n t, t < n → t ∈ P n) (n : ℕ) : n ≤ (P n).length := by
   have hsub : List.range n ⊆ P n := by
@@ -59,7 +63,9 @@ theorem safeStages_length (P : ℕ → List ℕ)
 
 /-- Reading a position at the bounded stage `i + 1` gives the same value as
 reading it at any stage where it is already present. This is the finite-stage
-stabilization argument underlying the computational procedure in the remark. -/
+stabilization argument underlying the computational procedure in the remark.
+@isnad1 id=eq.3h3v.s6.f78613e8913f from=translated src=- shape=80add9b5 vocab=6b7e3b94
+-/
 theorem safeStages_value_eq_getElem (P : ℕ → List ℕ)
     (hstep : ∀ n, (P n).IsPrefix (P (n + 1)))
     (hcover : ∀ n t, t < n → t ∈ P n)
@@ -76,7 +82,9 @@ theorem safeStages_value_eq_getElem (P : ℕ → List ℕ)
 
 /-- A value has the same position in every stage in which it occurs.
 This is the inverse form of the paper's assertion that placed entries never
-move, and makes the inverse permutation computable without choosing preimages. -/
+move, and makes the inverse permutation computable without choosing preimages.
+@isnad1 id=eq.3h3v.s6.8f81cfbab17d from=translated src=- shape=d8f7f322 vocab=ccee07e5
+-/
 theorem safeStages_idxOf_eq (P : ℕ → List ℕ)
     (hstep : ∀ n, (P n).IsPrefix (P (n + 1)))
     (hcover : ∀ n t, t < n → t ∈ P n)
@@ -116,7 +124,9 @@ def permutationOfSafeStages (R : ℕ → ℕ → Prop) (P : ℕ → List ℕ)
       (List.getElem_idxOf hi)
 
 /-- The bounded evaluation rule for the forward permutation in the paper's
-computability remark. Coverage proves that the default value is never used. -/
+computability remark. Coverage proves that the default value is never used.
+@isnad1 id=eq.3h3v.s6.130c1f59ee67 from=translated src=- shape=46c194e9 vocab=dd565c60
+-/
 @[simp] theorem permutationOfSafeStages_apply
     (R : ℕ → ℕ → Prop) (P : ℕ → List ℕ)
     (hsafe : ∀ n, Safe R (P n))
@@ -126,7 +136,9 @@ computability remark. Coverage proves that the default value is never used. -/
 
 /-- The inverse permutation is a finite search in the stage that is
 guaranteed to contain the value. This strengthens the computability remark
-by supplying an explicit inverse as well as an explicit forward map. -/
+by supplying an explicit inverse as well as an explicit forward map.
+@isnad1 id=eq.3h3v.s6.a702fd1fed32 from=translated src=- shape=6d7d2c22 vocab=c2e9a1c7
+-/
 @[simp] theorem permutationOfSafeStages_symm_apply
     (R : ℕ → ℕ → Prop) (P : ℕ → List ℕ)
     (hsafe : ∀ n, Safe R (P n))
@@ -136,7 +148,9 @@ by supplying an explicit inverse as well as an explicit forward map. -/
 
 /-- The precise stopping rule from the paper's remark: the value at position
 `i` can be read from any finite stage whose length is greater than `i`.
-Later stages have exactly the same entry at that position. -/
+Later stages have exactly the same entry at that position.
+@isnad1 id=eq.4h4v.s6.ca6565b519e2 from=translated src=- shape=2967e96e vocab=10d844c8
+-/
 theorem permutationOfSafeStages_eq_getElem
     (R : ℕ → ℕ → Prop) (P : ℕ → List ℕ)
     (hsafe : ∀ n, Safe R (P n))
@@ -149,7 +163,9 @@ theorem permutationOfSafeStages_eq_getElem
 /-- The finite-stage contradiction in the last proof of the paper, applied
 to the explicitly computable permutation. All four entries of a hypothetical
 progression lie in a single safe stage, where their positions give the same
-three comparisons in the completion. -/
+three comparisons in the completion.
+@isnad1 id=sequence.3h2v.s6.f15604668757 from=translated src=- shape=ce5fb955 vocab=76873b38
+-/
 theorem permutationOfSafeStages_apFree
     (R : ℕ → ℕ → Prop) (P : ℕ → List ℕ)
     (hsafe : ∀ n, Safe R (P n))

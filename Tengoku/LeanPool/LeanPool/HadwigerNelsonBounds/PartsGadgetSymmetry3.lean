@@ -14,6 +14,9 @@ public import Tengoku
 
 namespace HadwigerNelsonBounds
 
+/--
+@isnad1 id=mem.1h1v.s6.9d45efd4c889 from=translated src=- shape=0a9de518 vocab=60785ee8
+-/
 lemma partsGadgetNegationNeighbor57 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 57) :
     partsGadgetNegation neighbor ∈
@@ -23,6 +26,9 @@ lemma partsGadgetNegationNeighbor57 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=or.1h1v.s8.16e5670a016d from=translated src=- shape=010a2727 vocab=ca59a351
+-/
 lemma partsGadgetNegationTriple57 {pair : Fin 73 × Fin 73}
     (hpair : pair ∈ partsGadgetTriplePairs 57) :
     (partsGadgetNegation pair.1, partsGadgetNegation pair.2) ∈
@@ -34,6 +40,9 @@ lemma partsGadgetNegationTriple57 {pair : Fin 73 × Fin 73}
   rcases hpair with rfl
   all_goals decide
 
+/--
+@isnad1 id=valid.1h1v.s5.4871987b2d49 from=translated src=- shape=4d44e7ff vocab=6466247a
+-/
 lemma partsGadgetTriangleWitnessValid57
     {witness : PartsGadgetTriangleWitnessData}
     (hwitness : witness ∈ partsGadgetTriangleWitnesses 57) : witness.Valid 57 := by
@@ -44,6 +53,9 @@ lemma partsGadgetTriangleWitnessValid57
   rcases hwitness with rfl
   all_goals decide
 
+/--
+@isnad1 id=mem.1h1v.s6.58a4f709c755 from=translated src=- shape=0a9de518 vocab=60785ee8
+-/
 lemma partsGadgetNegationNeighbor58 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 58) :
     partsGadgetNegation neighbor ∈
@@ -53,6 +65,9 @@ lemma partsGadgetNegationNeighbor58 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=or.1h1v.s8.9b58743861b3 from=translated src=- shape=010a2727 vocab=ca59a351
+-/
 lemma partsGadgetNegationTriple58 {pair : Fin 73 × Fin 73}
     (hpair : pair ∈ partsGadgetTriplePairs 58) :
     (partsGadgetNegation pair.1, partsGadgetNegation pair.2) ∈
@@ -64,6 +79,9 @@ lemma partsGadgetNegationTriple58 {pair : Fin 73 × Fin 73}
   rcases hpair with rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=valid.1h1v.s5.6c4e30bf2240 from=translated src=- shape=4d44e7ff vocab=6466247a
+-/
 lemma partsGadgetTriangleWitnessValid58
     {witness : PartsGadgetTriangleWitnessData}
     (hwitness : witness ∈ partsGadgetTriangleWitnesses 58) : witness.Valid 58 := by
@@ -75,6 +93,9 @@ lemma partsGadgetTriangleWitnessValid58
   rcases hwitness with rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=mem.1h1v.s6.152c804a4380 from=translated src=- shape=0a9de518 vocab=60785ee8
+-/
 lemma partsGadgetNegationNeighbor59 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 59) :
     partsGadgetNegation neighbor ∈
@@ -84,6 +105,9 @@ lemma partsGadgetNegationNeighbor59 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=or.1h1v.s8.3ef6b181bdee from=translated src=- shape=010a2727 vocab=ca59a351
+-/
 lemma partsGadgetNegationTriple59 {pair : Fin 73 × Fin 73}
     (hpair : pair ∈ partsGadgetTriplePairs 59) :
     (partsGadgetNegation pair.1, partsGadgetNegation pair.2) ∈
@@ -95,6 +119,9 @@ lemma partsGadgetNegationTriple59 {pair : Fin 73 × Fin 73}
   rcases hpair with rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=valid.1h1v.s5.d9ffc37df86e from=translated src=- shape=4d44e7ff vocab=6466247a
+-/
 lemma partsGadgetTriangleWitnessValid59
     {witness : PartsGadgetTriangleWitnessData}
     (hwitness : witness ∈ partsGadgetTriangleWitnesses 59) : witness.Valid 59 := by
@@ -108,6 +135,9 @@ lemma partsGadgetTriangleWitnessValid59
   rcases hwitness with rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=mem.1h1v.s6.3548b635b4be from=translated src=- shape=0a9de518 vocab=60785ee8
+-/
 lemma partsGadgetNegationNeighbor60 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 60) :
     partsGadgetNegation neighbor ∈
@@ -117,6 +147,9 @@ lemma partsGadgetNegationNeighbor60 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=or.1h1v.s8.e5927e0211fd from=translated src=- shape=010a2727 vocab=ca59a351
+-/
 lemma partsGadgetNegationTriple60 {pair : Fin 73 × Fin 73}
     (hpair : pair ∈ partsGadgetTriplePairs 60) :
     (partsGadgetNegation pair.1, partsGadgetNegation pair.2) ∈
@@ -128,6 +161,9 @@ lemma partsGadgetNegationTriple60 {pair : Fin 73 × Fin 73}
   rcases hpair with rfl | rfl | rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=valid.1h1v.s5.e0c9f49af504 from=translated src=- shape=4d44e7ff vocab=6466247a
+-/
 lemma partsGadgetTriangleWitnessValid60
     {witness : PartsGadgetTriangleWitnessData}
     (hwitness : witness ∈ partsGadgetTriangleWitnesses 60) : witness.Valid 60 := by
@@ -143,6 +179,9 @@ lemma partsGadgetTriangleWitnessValid60
   rcases hwitness with rfl | rfl | rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=mem.1h1v.s6.327fff2d291b from=translated src=- shape=0a9de518 vocab=60785ee8
+-/
 lemma partsGadgetNegationNeighbor61 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 61) :
     partsGadgetNegation neighbor ∈
@@ -152,6 +191,9 @@ lemma partsGadgetNegationNeighbor61 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=or.1h1v.s8.4c714bd222ef from=translated src=- shape=010a2727 vocab=ca59a351
+-/
 lemma partsGadgetNegationTriple61 {pair : Fin 73 × Fin 73}
     (hpair : pair ∈ partsGadgetTriplePairs 61) :
     (partsGadgetNegation pair.1, partsGadgetNegation pair.2) ∈
@@ -163,6 +205,9 @@ lemma partsGadgetNegationTriple61 {pair : Fin 73 × Fin 73}
   rcases hpair with rfl | rfl | rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=valid.1h1v.s5.cafa57c5292a from=translated src=- shape=4d44e7ff vocab=6466247a
+-/
 lemma partsGadgetTriangleWitnessValid61
     {witness : PartsGadgetTriangleWitnessData}
     (hwitness : witness ∈ partsGadgetTriangleWitnesses 61) : witness.Valid 61 := by
@@ -178,6 +223,9 @@ lemma partsGadgetTriangleWitnessValid61
   rcases hwitness with rfl | rfl | rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=mem.1h1v.s6.3b14424af9f4 from=translated src=- shape=0a9de518 vocab=60785ee8
+-/
 lemma partsGadgetNegationNeighbor62 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 62) :
     partsGadgetNegation neighbor ∈
@@ -187,6 +235,9 @@ lemma partsGadgetNegationNeighbor62 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=or.1h1v.s8.de6600152f5a from=translated src=- shape=010a2727 vocab=ca59a351
+-/
 lemma partsGadgetNegationTriple62 {pair : Fin 73 × Fin 73}
     (hpair : pair ∈ partsGadgetTriplePairs 62) :
     (partsGadgetNegation pair.1, partsGadgetNegation pair.2) ∈
@@ -198,6 +249,9 @@ lemma partsGadgetNegationTriple62 {pair : Fin 73 × Fin 73}
   rcases hpair with rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=valid.1h1v.s5.14b37f1478fc from=translated src=- shape=4d44e7ff vocab=6466247a
+-/
 lemma partsGadgetTriangleWitnessValid62
     {witness : PartsGadgetTriangleWitnessData}
     (hwitness : witness ∈ partsGadgetTriangleWitnesses 62) : witness.Valid 62 := by
@@ -211,6 +265,9 @@ lemma partsGadgetTriangleWitnessValid62
   rcases hwitness with rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=mem.1h1v.s6.cd3f78262482 from=translated src=- shape=0a9de518 vocab=60785ee8
+-/
 lemma partsGadgetNegationNeighbor63 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 63) :
     partsGadgetNegation neighbor ∈
@@ -220,6 +277,9 @@ lemma partsGadgetNegationNeighbor63 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=or.1h1v.s8.44a467858b82 from=translated src=- shape=010a2727 vocab=ca59a351
+-/
 lemma partsGadgetNegationTriple63 {pair : Fin 73 × Fin 73}
     (hpair : pair ∈ partsGadgetTriplePairs 63) :
     (partsGadgetNegation pair.1, partsGadgetNegation pair.2) ∈
@@ -231,6 +291,9 @@ lemma partsGadgetNegationTriple63 {pair : Fin 73 × Fin 73}
   rcases hpair with rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=valid.1h1v.s5.d2a0b5e6a7c2 from=translated src=- shape=4d44e7ff vocab=6466247a
+-/
 lemma partsGadgetTriangleWitnessValid63
     {witness : PartsGadgetTriangleWitnessData}
     (hwitness : witness ∈ partsGadgetTriangleWitnesses 63) : witness.Valid 63 := by
@@ -242,6 +305,9 @@ lemma partsGadgetTriangleWitnessValid63
   rcases hwitness with rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=mem.1h1v.s6.6f59a7294491 from=translated src=- shape=0a9de518 vocab=60785ee8
+-/
 lemma partsGadgetNegationNeighbor64 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 64) :
     partsGadgetNegation neighbor ∈
@@ -251,6 +317,9 @@ lemma partsGadgetNegationNeighbor64 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=or.1h1v.s8.8cab1582d60e from=translated src=- shape=010a2727 vocab=ca59a351
+-/
 lemma partsGadgetNegationTriple64 {pair : Fin 73 × Fin 73}
     (hpair : pair ∈ partsGadgetTriplePairs 64) :
     (partsGadgetNegation pair.1, partsGadgetNegation pair.2) ∈
@@ -262,6 +331,9 @@ lemma partsGadgetNegationTriple64 {pair : Fin 73 × Fin 73}
   rcases hpair with rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=valid.1h1v.s5.dc1504de6d01 from=translated src=- shape=4d44e7ff vocab=6466247a
+-/
 lemma partsGadgetTriangleWitnessValid64
     {witness : PartsGadgetTriangleWitnessData}
     (hwitness : witness ∈ partsGadgetTriangleWitnesses 64) : witness.Valid 64 := by
@@ -273,6 +345,9 @@ lemma partsGadgetTriangleWitnessValid64
   rcases hwitness with rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=mem.1h1v.s6.b3d6000610cb from=translated src=- shape=0a9de518 vocab=60785ee8
+-/
 lemma partsGadgetNegationNeighbor65 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 65) :
     partsGadgetNegation neighbor ∈
@@ -282,6 +357,9 @@ lemma partsGadgetNegationNeighbor65 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=or.1h1v.s8.1ebe273c5cab from=translated src=- shape=010a2727 vocab=ca59a351
+-/
 lemma partsGadgetNegationTriple65 {pair : Fin 73 × Fin 73}
     (hpair : pair ∈ partsGadgetTriplePairs 65) :
     (partsGadgetNegation pair.1, partsGadgetNegation pair.2) ∈
@@ -293,6 +371,9 @@ lemma partsGadgetNegationTriple65 {pair : Fin 73 × Fin 73}
   rcases hpair with rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=valid.1h1v.s5.e069773ab9b5 from=translated src=- shape=4d44e7ff vocab=6466247a
+-/
 lemma partsGadgetTriangleWitnessValid65
     {witness : PartsGadgetTriangleWitnessData}
     (hwitness : witness ∈ partsGadgetTriangleWitnesses 65) : witness.Valid 65 := by
@@ -305,6 +386,9 @@ lemma partsGadgetTriangleWitnessValid65
   rcases hwitness with rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=mem.1h1v.s6.2ebb0c63cb7e from=translated src=- shape=0a9de518 vocab=60785ee8
+-/
 lemma partsGadgetNegationNeighbor66 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 66) :
     partsGadgetNegation neighbor ∈
@@ -314,6 +398,9 @@ lemma partsGadgetNegationNeighbor66 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=or.1h1v.s8.612c7705c2d0 from=translated src=- shape=010a2727 vocab=ca59a351
+-/
 lemma partsGadgetNegationTriple66 {pair : Fin 73 × Fin 73}
     (hpair : pair ∈ partsGadgetTriplePairs 66) :
     (partsGadgetNegation pair.1, partsGadgetNegation pair.2) ∈
@@ -325,6 +412,9 @@ lemma partsGadgetNegationTriple66 {pair : Fin 73 × Fin 73}
   rcases hpair with rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=valid.1h1v.s5.abf433d66bbe from=translated src=- shape=4d44e7ff vocab=6466247a
+-/
 lemma partsGadgetTriangleWitnessValid66
     {witness : PartsGadgetTriangleWitnessData}
     (hwitness : witness ∈ partsGadgetTriangleWitnesses 66) : witness.Valid 66 := by
@@ -338,6 +428,9 @@ lemma partsGadgetTriangleWitnessValid66
   rcases hwitness with rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=mem.1h1v.s6.d1eeb860422f from=translated src=- shape=0a9de518 vocab=60785ee8
+-/
 lemma partsGadgetNegationNeighbor67 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 67) :
     partsGadgetNegation neighbor ∈
@@ -347,6 +440,9 @@ lemma partsGadgetNegationNeighbor67 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=or.1h1v.s8.934c2117dbcc from=translated src=- shape=010a2727 vocab=ca59a351
+-/
 lemma partsGadgetNegationTriple67 {pair : Fin 73 × Fin 73}
     (hpair : pair ∈ partsGadgetTriplePairs 67) :
     (partsGadgetNegation pair.1, partsGadgetNegation pair.2) ∈
@@ -358,6 +454,9 @@ lemma partsGadgetNegationTriple67 {pair : Fin 73 × Fin 73}
   rcases hpair with rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=valid.1h1v.s5.0c176b96e9f4 from=translated src=- shape=4d44e7ff vocab=6466247a
+-/
 lemma partsGadgetTriangleWitnessValid67
     {witness : PartsGadgetTriangleWitnessData}
     (hwitness : witness ∈ partsGadgetTriangleWitnesses 67) : witness.Valid 67 := by
@@ -370,6 +469,9 @@ lemma partsGadgetTriangleWitnessValid67
   rcases hwitness with rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=mem.1h1v.s6.f6adcf51af7f from=translated src=- shape=0a9de518 vocab=60785ee8
+-/
 lemma partsGadgetNegationNeighbor68 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 68) :
     partsGadgetNegation neighbor ∈
@@ -379,6 +481,9 @@ lemma partsGadgetNegationNeighbor68 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=or.1h1v.s8.72aec027db34 from=translated src=- shape=010a2727 vocab=ca59a351
+-/
 lemma partsGadgetNegationTriple68 {pair : Fin 73 × Fin 73}
     (hpair : pair ∈ partsGadgetTriplePairs 68) :
     (partsGadgetNegation pair.1, partsGadgetNegation pair.2) ∈
@@ -390,6 +495,9 @@ lemma partsGadgetNegationTriple68 {pair : Fin 73 × Fin 73}
   rcases hpair with rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=valid.1h1v.s5.683b1274165c from=translated src=- shape=4d44e7ff vocab=6466247a
+-/
 lemma partsGadgetTriangleWitnessValid68
     {witness : PartsGadgetTriangleWitnessData}
     (hwitness : witness ∈ partsGadgetTriangleWitnesses 68) : witness.Valid 68 := by
@@ -401,6 +509,9 @@ lemma partsGadgetTriangleWitnessValid68
   rcases hwitness with rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=mem.1h1v.s6.956370d07c84 from=translated src=- shape=0a9de518 vocab=60785ee8
+-/
 lemma partsGadgetNegationNeighbor69 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 69) :
     partsGadgetNegation neighbor ∈
@@ -410,6 +521,9 @@ lemma partsGadgetNegationNeighbor69 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=or.1h1v.s8.18d37bea6de3 from=translated src=- shape=010a2727 vocab=ca59a351
+-/
 lemma partsGadgetNegationTriple69 {pair : Fin 73 × Fin 73}
     (hpair : pair ∈ partsGadgetTriplePairs 69) :
     (partsGadgetNegation pair.1, partsGadgetNegation pair.2) ∈
@@ -421,6 +535,9 @@ lemma partsGadgetNegationTriple69 {pair : Fin 73 × Fin 73}
   rcases hpair with rfl
   all_goals decide
 
+/--
+@isnad1 id=valid.1h1v.s5.2c9218969aee from=translated src=- shape=4d44e7ff vocab=6466247a
+-/
 lemma partsGadgetTriangleWitnessValid69
     {witness : PartsGadgetTriangleWitnessData}
     (hwitness : witness ∈ partsGadgetTriangleWitnesses 69) : witness.Valid 69 := by
@@ -431,6 +548,9 @@ lemma partsGadgetTriangleWitnessValid69
   rcases hwitness with rfl
   all_goals decide
 
+/--
+@isnad1 id=mem.1h1v.s6.9d71e4807d93 from=translated src=- shape=0a9de518 vocab=60785ee8
+-/
 lemma partsGadgetNegationNeighbor70 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 70) :
     partsGadgetNegation neighbor ∈
@@ -440,6 +560,9 @@ lemma partsGadgetNegationNeighbor70 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=or.1h1v.s8.2e64dad0468c from=translated src=- shape=010a2727 vocab=ca59a351
+-/
 lemma partsGadgetNegationTriple70 {pair : Fin 73 × Fin 73}
     (hpair : pair ∈ partsGadgetTriplePairs 70) :
     (partsGadgetNegation pair.1, partsGadgetNegation pair.2) ∈
@@ -451,6 +574,9 @@ lemma partsGadgetNegationTriple70 {pair : Fin 73 × Fin 73}
   rcases hpair with rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=valid.1h1v.s5.6858d7e8c2f2 from=translated src=- shape=4d44e7ff vocab=6466247a
+-/
 lemma partsGadgetTriangleWitnessValid70
     {witness : PartsGadgetTriangleWitnessData}
     (hwitness : witness ∈ partsGadgetTriangleWitnesses 70) : witness.Valid 70 := by
@@ -462,6 +588,9 @@ lemma partsGadgetTriangleWitnessValid70
   rcases hwitness with rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=mem.1h1v.s6.d8c84c5df20e from=translated src=- shape=0a9de518 vocab=60785ee8
+-/
 lemma partsGadgetNegationNeighbor71 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 71) :
     partsGadgetNegation neighbor ∈
@@ -471,6 +600,9 @@ lemma partsGadgetNegationNeighbor71 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=or.1h1v.s8.ab69e329dd05 from=translated src=- shape=010a2727 vocab=ca59a351
+-/
 lemma partsGadgetNegationTriple71 {pair : Fin 73 × Fin 73}
     (hpair : pair ∈ partsGadgetTriplePairs 71) :
     (partsGadgetNegation pair.1, partsGadgetNegation pair.2) ∈
@@ -482,6 +614,9 @@ lemma partsGadgetNegationTriple71 {pair : Fin 73 × Fin 73}
   rcases hpair with rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=valid.1h1v.s5.78dd1ca88a40 from=translated src=- shape=4d44e7ff vocab=6466247a
+-/
 lemma partsGadgetTriangleWitnessValid71
     {witness : PartsGadgetTriangleWitnessData}
     (hwitness : witness ∈ partsGadgetTriangleWitnesses 71) : witness.Valid 71 := by
@@ -493,6 +628,9 @@ lemma partsGadgetTriangleWitnessValid71
   rcases hwitness with rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=mem.1h1v.s6.e4f6dc338a47 from=translated src=- shape=0a9de518 vocab=60785ee8
+-/
 lemma partsGadgetNegationNeighbor72 {neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors 72) :
     partsGadgetNegation neighbor ∈
@@ -502,6 +640,9 @@ lemma partsGadgetNegationNeighbor72 {neighbor : Fin 73}
   rcases hadj with rfl | rfl | rfl
   all_goals decide
 
+/--
+@isnad1 id=or.1h1v.s8.b5d95e31c08b from=translated src=- shape=010a2727 vocab=ca59a351
+-/
 lemma partsGadgetNegationTriple72 {pair : Fin 73 × Fin 73}
     (hpair : pair ∈ partsGadgetTriplePairs 72) :
     (partsGadgetNegation pair.1, partsGadgetNegation pair.2) ∈
@@ -513,6 +654,9 @@ lemma partsGadgetNegationTriple72 {pair : Fin 73 × Fin 73}
   rcases hpair with rfl
   all_goals decide
 
+/--
+@isnad1 id=valid.1h1v.s5.68ddecc08edf from=translated src=- shape=4d44e7ff vocab=6466247a
+-/
 lemma partsGadgetTriangleWitnessValid72
     {witness : PartsGadgetTriangleWitnessData}
     (hwitness : witness ∈ partsGadgetTriangleWitnesses 72) : witness.Valid 72 := by

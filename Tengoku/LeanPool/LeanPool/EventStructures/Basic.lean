@@ -45,10 +45,14 @@ local infixl:50 " # " => es.conflict
 @[simp]
 def consistent (e₁ e₂ : es.Event) : Prop := ¬ (e₁ # e₂)
 
-/-- Consistency is reflexive. -/
+/-- Consistency is reflexive.
+@isnad1 id=consiste.0h2v.s3.d8195a9c6f09 from=translated src=- shape=f3577ae2 vocab=6af3c5aa
+-/
 lemma consistent_refl : ∀ e, es.consistent e e := es.conflict_irrefl
 
-/-- Consistency is symmetric. -/
+/-- Consistency is symmetric.
+@isnad1 id=consiste.1h3v.s4.4c32ad3d91a3 from=translated src=- shape=26022270 vocab=6af3c5aa
+-/
 lemma consistent_symm : ∀ ⦃e₁ e₂⦄, es.consistent e₁ e₂ → es.consistent e₂ e₁ :=
   fun _ _ h h' => h (es.conflict_symm h')
 
@@ -59,11 +63,15 @@ def concurrent (e₁ e₂ : es.Event) : Prop :=
   es.consistent e₁ e₂ ∧ ¬ (e₁ ≤ e₂) ∧ ¬ (e₂ ≤ e₁)
 local infixl:50 " ⋈ " => es.concurrent
 
-/-- Concurrency is irreflexive. -/
+/-- Concurrency is irreflexive.
+@isnad1 id=not.0h2v.s3.bf04b1281246 from=translated src=- shape=b327dfc8 vocab=cb02013f
+-/
 lemma concurrent_irrefl : ∀ e, ¬ es.concurrent e e :=
   fun _ ⟨_, hNotLe, _⟩ => hNotLe le_rfl
 
-/-- Concurrency is symmetric. -/
+/-- Concurrency is symmetric.
+@isnad1 id=concurre.1h3v.s4.ab5e0852df52 from=translated src=- shape=26022270 vocab=cb02013f
+-/
 lemma concurrent_symm : ∀ ⦃e₁ e₂⦄, es.concurrent e₁ e₂ → es.concurrent e₂ e₁ :=
   fun _ _ ⟨hCons, hNotLe12, hNotLe21⟩ => ⟨(consistent_symm es) hCons, hNotLe21, hNotLe12⟩
 
@@ -78,19 +86,25 @@ def minimalConflict (e₁ e₂ : es.Event) : Prop :=
 /-- Notation for minimal conflict. -/
 local infixl:50 " ## " => es.minimalConflict
 
-/-- Minimal conflict is symmetric. -/
+/-- Minimal conflict is symmetric.
+@isnad1 id=minimalc.1h3v.s4.f709caefecb6 from=translated src=- shape=26022270 vocab=7983db93
+-/
 lemma minimalConflict_symm : ∀ ⦃e₁ e₂⦄, es.minimalConflict e₁ e₂ → es.minimalConflict e₂ e₁ := by
   intro e₁ e₂ ⟨hConf, hMin⟩
   exact ⟨es.conflict_symm hConf,
     fun e₂' e₁' he₂ he₁ hConf' => (hMin e₁' e₂' he₁ he₂ (es.conflict_symm hConf')).symm⟩
 
-/-- If (e₁, e₂) is a minimal conflict, then e₁ and e₂ conflict. -/
+/-- If (e₁, e₂) is a minimal conflict, then e₁ and e₂ conflict.
+@isnad1 id=conflict.1h3v.s4.52c59335f649 from=translated src=- shape=b257a80e vocab=b1811ae1
+-/
 lemma minimalConflict_conflict {e₁ e₂ : es.Event} (h : es.minimalConflict e₁ e₂) :
     es.conflict e₁ e₂ :=
   h.1
 
 /-- If (e₁, e₂) is a minimal conflict and e₁' ≤ e₁, e₂' ≤ e₂ with e₁' ## e₂',
-    then e₁' = e₁ and e₂' = e₂. -/
+    then e₁' = e₁ and e₂' = e₂.
+@isnad1 id=and.4h5v.s5.62601c48cf46 from=translated src=- shape=bdab22f6 vocab=bfb4b5c1
+-/
 lemma minimalConflict_minimal {e₁ e₂ e₁' e₂' : es.Event} (h : es.minimalConflict e₁ e₂)
     (he₁ : e₁' ≤ e₁) (he₂ : e₂' ≤ e₂) (hConf : es.conflict e₁' e₂') :
     e₁' = e₁ ∧ e₂' = e₂ :=

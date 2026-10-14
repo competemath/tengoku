@@ -16,7 +16,9 @@ namespace Erdos97Octagon
 open scoped InnerProductSpace
 open Module
 
-/-- Three vectors with the regular-simplex Gram matrix are linearly independent. -/
+/-- Three vectors with the regular-simplex Gram matrix are linearly independent.
+@isnad1 id=linearin.7h5v.s7.fe4f6f4d82e0 from=translated src=- shape=07898025 vocab=4da0f278
+-/
 theorem linearIndependent_of_regular_gram
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     {u v w : E} {s : ℝ} (hs : 0 < s)
@@ -47,7 +49,9 @@ theorem linearIndependent_of_regular_gram
   intro i
   fin_cases i <;> assumption
 
-/-- Four distinct planar points cannot have all six distances equal. -/
+/-- Four distinct planar points cannot have all six distances equal.
+@isnad1 id=false.7h5v.s8.ba36e4dc3bd8 from=translated src=- shape=acfb8d93 vocab=ee1cf0bf
+-/
 theorem four_points_not_pairwise_equidistant
     {a b c d : Plane} {r : ℝ}
     (had : a ≠ d)

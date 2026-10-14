@@ -662,7 +662,9 @@ private theorem fusionTower_spec [Nonempty α] (hG : AnalyticSet G) (hg : Contin
   (exists_fusionStage_succ hG hg hrange (fusionTower G g hG hg hrange hpos n)).choose_spec
 
 /-- **The fusion limit**: a continuous map of Cantor space all of whose
-`GSGraph canonicalS` edge pairs land in `G`. -/
+`GSGraph canonicalS` edge pairs land in `G`.
+@isnad1 id=ex.5h3v.s8.02f327144364 from=translated src=- shape=56be69b5 vocab=85c7141e
+-/
 theorem exists_gsGraph_hom [Nonempty α] (hG : AnalyticSet G) (hg : Continuous g)
     (hrange : Set.range g = G)
     (hpos : ¬ SmallFam G (univ : Set ((Fin 0 → Bool) → α)))

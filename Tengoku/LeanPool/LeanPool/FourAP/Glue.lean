@@ -27,7 +27,9 @@ namespace FourAP
 
 /-- Putting further entries after a finite word preserves the fact that each
 entry of that word precedes each entry outside it.  This is the comparison
-between the new odd block and the new even block in Lemma 2. -/
+between the new odd block and the new even block in Lemma 2.
+@isnad1 id=completi.2h5v.s5.853b98993fff from=translated src=- shape=33865bcb vocab=2dacef9e
+-/
 theorem completion_append_before {R : ℕ → ℕ → Prop} {A B : List ℕ}
     {y x : ℕ} (hy : y ∈ A) (hx : x ∉ A) : Completion R (A ++ B) y x := by
   apply Or.inl
@@ -42,6 +44,7 @@ The two recursive calls have already provided safe extensions of `P₀` and
 First we identify the parity restrictions of the new completion, then prove
 the odd-before-even comparison displayed as equation (2) in the paper.
 The final arithmetic-progression contradiction is `safe_of_parity_and_guard`.
+@isnad1 id=safe.5h4v.s7.220bebab947d from=translated src=- shape=f94c6163 vocab=ecc24cce
 -/
 theorem safe_splice {P E O : List ℕ}
     (hP : Safe bits P)

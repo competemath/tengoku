@@ -104,6 +104,9 @@ variable {𝓚 : K} {Γ Δ : List F} {φ ψ φ₁ φ₂ φ₃ φ₄ : F}
 /-- Imported declaration from the Incompleteness formalization. -/
 def ofEq (b : 𝓚 ⟹ Γ) (h : Γ = Δ) : 𝓚 ⟹ Δ := h ▸ b
 
+/--
+@isnad1 id=derivabl.2h5v.s5.29984bc70f6b from=translated src=- shape=e0f5cdbf vocab=cfac8274
+-/
 lemma of_eq (b : 𝓚 ⟹! Γ) (h : Γ = Δ) : 𝓚 ⟹! Δ := h ▸ b
 
 /-- Imported declaration from the Incompleteness formalization. -/
@@ -159,6 +162,9 @@ def byAxm [Tait.Axiomatized F K] (φ) (h : φ ∈ 𝓚) (hΓ : φ ∈ Γ := by s
 def ofAxiomSubset [Tait.Axiomatized F K] (h : 𝓚 ⊆ 𝓛) : 𝓚 ⟹ Γ → 𝓛 ⟹ Γ :=
   Tait.Axiomatized.trans fun _ hq ↦ Tait.Axiomatized.root (Collection.subset_iff.mp h _ hq)
 
+/--
+@isnad1 id=derivabl.2h5v.s6.368a4572a41f from=translated src=- shape=67311bcd vocab=f4f3d56a
+-/
 lemma of_axiom_subset [Tait.Axiomatized F K] (h : 𝓚 ⊆ 𝓛) :
     𝓚 ⟹! Γ → 𝓛 ⟹! Γ :=
   fun b ↦ ⟨ofAxiomSubset h b.get⟩
@@ -169,9 +175,15 @@ instance [Tait.Axiomatized F K] : Entailment.Axiomatized K where
   prfAxm := fun hf ↦ Tait.Axiomatized.root <| hf
   weakening := Tait.ofAxiomSubset
 
+/--
+@isnad1 id=iff.0h3v.s5.8d7b90d999fa from=translated src=- shape=1ecf4578 vocab=204d7d0e
+-/
 lemma provable_bot_iff_derivable_nil [Tait.Cut F K] : 𝓚 ⟹! [] ↔ 𝓚 ⊢! ⊥ :=
   ⟨fun b ↦ wk! b (by simp), fun b ↦ cut! b (by simpa using verum! _ _)⟩
 
+/--
+@isnad1 id=weakerth.1h4v.s5.f4af1de63850 from=translated src=- shape=f8e5c801 vocab=77792e71
+-/
 lemma waekerThan_of_subset [Tait.Axiomatized F K] (h : 𝓚 ⊆ 𝓛) :
     𝓚 wkn 𝓛 :=
   ⟨fun _ ↦ Entailment.Axiomatized.weakening! h⟩
@@ -182,11 +194,17 @@ instance [Tait.Axiomatized F K] : Entailment.StrongCut K K where
 instance [Tait.Cut F K] : DeductiveExplosion K where
   dexp {𝓚 b φ} := wk (Tait.Cut.cut b (by simpa using verum _ _)) (by simp)
 
+/--
+@isnad1 id=iff.0h3v.s5.8bfeb27ad063 from=translated src=- shape=d94c184f vocab=3e89b5b4
+-/
 lemma inconsistent_iff_provable [Tait.Cut F K] :
     Inconsistent 𝓚 ↔ 𝓚 ⟹! [] :=
   ⟨fun b ↦ ⟨cut (inconsistent_iff_provable_bot.mp b).get (by simpa using verum _ _)⟩,
    fun h ↦ inconsistent_iff_provable_bot.mpr (wk! h (by simp))⟩
 
+/--
+@isnad1 id=iff.0h3v.s5.b2c9f3b9ec05 from=translated src=- shape=a54a1bd2 vocab=87047e29
+-/
 lemma consistent_iff_unprovable [Tait.Cut F K] :
     Consistent 𝓚 ↔ IsEmpty (𝓚 ⟹ []) :=
   not_iff_not.mp <| by simp [not_consistent_iff_inconsistent, inconsistent_iff_provable]

@@ -80,7 +80,9 @@ def conflictCovers84 : Array ConflictCover :=
   ⟨6, 140738026279040, 34355544058, [7, 12, 20, 29, 47]⟩,
   ⟨7, 70370086359040, 34357614546, [12, 28, 30, 46]⟩]
 
-/-- Every entry in conflict-cover group 84 passes its audit. -/
+/-- Every entry in conflict-cover group 84 passes its audit.
+@isnad1 id=eq.0h0v.s3.13bc42e0c80f from=translated src=- shape=0547e772 vocab=5f331b22
+-/
 theorem conflictCovers84_valid :
     conflictCovers84.toList.all ConflictCover.validB = true := by
   decide
@@ -150,7 +152,9 @@ def conflictCovers85 : Array ConflictCover :=
   ⟨6, 140875198892032, 34359734007, [11, 20, 21, 28, 37, 47]⟩,
   ⟨5, 36028797288466564, 34359738367, [2, 7, 11, 14, 20, 28, 55]⟩]
 
-/-- Every entry in conflict-cover group 85 passes its audit. -/
+/-- Every entry in conflict-cover group 85 passes its audit.
+@isnad1 id=eq.0h0v.s3.511424bac8a8 from=translated src=- shape=0547e772 vocab=7dd8d686
+-/
 theorem conflictCovers85_valid :
     conflictCovers85.toList.all ConflictCover.validB = true := by
   decide
@@ -221,7 +225,9 @@ def conflictCovers86 : Array ConflictCover :=
   ⟨6, 140737757315104, 34334555829, [5, 19, 28, 47]⟩,
   ⟨5, 36029071905261588, 34359738367, [2, 4, 11, 23, 38, 55]⟩]
 
-/-- Every entry in conflict-cover group 86 passes its audit. -/
+/-- Every entry in conflict-cover group 86 passes its audit.
+@isnad1 id=eq.0h0v.s3.340be051dfb5 from=translated src=- shape=0547e772 vocab=1cc754ac
+-/
 theorem conflictCovers86_valid :
     conflictCovers86.toList.all ConflictCover.validB = true := by
   decide
@@ -250,7 +256,9 @@ def conflictCovers87 : Array ConflictCover :=
   ⟨6, 140737757851648, 34355537846, [12, 13, 20, 28, 47]⟩,
   ⟨5, 36028798101098508, 34359738367, [2, 3, 12, 23, 30, 55]⟩]
 
-/-- Every entry in conflict-cover group 87 passes its audit. -/
+/-- Every entry in conflict-cover group 87 passes its audit.
+@isnad1 id=eq.0h0v.s3.830e3faf8976 from=translated src=- shape=0547e772 vocab=58299a25
+-/
 theorem conflictCovers87_valid :
     conflictCovers87.toList.all ConflictCover.validB = true := by
   decide

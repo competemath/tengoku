@@ -23,7 +23,9 @@ namespace GKPCarry
 open Nat
 
 /-- The two-adic valuation of `Nat.centralBinom n` is the binary popcount of
-`n`. -/
+`n`.
+@isnad1 id=eq.0h1v.s4.43977382761b from=translated src=- shape=061d2058 vocab=afc18113
+-/
 theorem padicValNat_two_centralBinom (n : ℕ) :
     padicValNat 2 (Nat.centralBinom n) = (Nat.digits 2 n).sum := by
   rw [Nat.centralBinom_eq_two_mul_choose]
@@ -40,7 +42,9 @@ theorem padicValNat_two_centralBinom (n : ℕ) :
   · rw [hkummer, Nat.digits_base_mul (by decide : 1 < 2) hnpos]
     simp
 
-/-- Binary popcount at least two forces divisibility by four. -/
+/-- Binary popcount at least two forces divisibility by four.
+@isnad1 id=dvd.1h1v.s5.e1ad9902d1dd from=translated src=- shape=1cbf462f vocab=98f13464
+-/
 theorem four_dvd_centralBinom_of_binary_popcount_ge_two
     {n : ℕ} (hpop : 2 ≤ (Nat.digits 2 n).sum) :
     4 ∣ Nat.centralBinom n := by
@@ -51,7 +55,9 @@ theorem four_dvd_centralBinom_of_binary_popcount_ge_two
   simpa using hpow
 
 /-- A natural number with binary popcount at most one is zero or a power of
-two. -/
+two.
+@isnad1 id=or.1h1v.s5.14c1d5ba6277 from=translated src=- shape=b85d1e07 vocab=590a7e55
+-/
 theorem popcount_le_one_zero_or_pow_two
     (n : ℕ) (hpop : (Nat.digits 2 n).sum ≤ 1) :
     n = 0 ∨ ∃ k : ℕ, n = 2 ^ k := by
@@ -92,7 +98,9 @@ theorem popcount_le_one_zero_or_pow_two
           have hn_one : n = 1 := by omega
           exact Or.inr ⟨0, by simp [hn_one]⟩
 
-/-- Every power of two has binary popcount one. -/
+/-- Every power of two has binary popcount one.
+@isnad1 id=eq.0h1v.s5.b0c94030bda5 from=translated src=- shape=5b216f7e vocab=cb4ae39f
+-/
 theorem popcount_pow_two (k : ℕ) :
     (Nat.digits 2 (2 ^ k)).sum = 1 := by
   have hfactor : (2 : ℕ) ^ k = 2 ^ k * 1 := by ring
@@ -100,7 +108,9 @@ theorem popcount_pow_two (k : ℕ) :
   simp
 
 /-- Every positive non-power of two satisfies the divisibility-by-four branch
-of GKP. -/
+of GKP.
+@isnad1 id=dvd.2h1v.s5.4e868aee6bd5 from=translated src=- shape=a3df408b vocab=10f804a1
+-/
 theorem four_dvd_centralBinom_of_not_power_of_two
     {n : ℕ} (hn : 0 < n) (hnp : ¬ ∃ k : ℕ, n = 2 ^ k) :
     4 ∣ Nat.centralBinom n := by
@@ -112,7 +122,9 @@ theorem four_dvd_centralBinom_of_not_power_of_two
   · exact hn.ne' hzero
   · exact hnp hpower
 
-/-- The full GKP conjecture follows from its power-of-two restriction. -/
+/-- The full GKP conjecture follows from its power-of-two restriction.
+@isnad1 id=gkpconje.1h0v.s1.95bfe0dbe806 from=translated src=- shape=1d48f1ac vocab=26e1aa6a
+-/
 theorem gkpConjecture_of_powerOfTwo (h : gkpPowerOfTwoConjecture) :
     gkpConjecture := by
   intro n hn4 hn64 hn256
@@ -135,7 +147,9 @@ theorem gkpConjecture_of_powerOfTwo (h : gkpPowerOfTwoConjecture) :
     exact Or.inr (h k hk2 hk6 hk8)
   · exact Or.inl (four_dvd_centralBinom_of_not_power_of_two (by omega) hp2)
 
-/-- The power-of-two restriction follows from the full GKP conjecture. -/
+/-- The power-of-two restriction follows from the full GKP conjecture.
+@isnad1 id=gkppower.1h0v.s1.bffd6ef8e6be from=translated src=- shape=1d48f1ac vocab=26e1aa6a
+-/
 theorem gkpPowerOfTwoConjecture_of_gkp (h : gkpConjecture) :
     gkpPowerOfTwoConjecture := by
   intro k hk2 hk6 hk8
@@ -164,7 +178,9 @@ theorem gkpPowerOfTwoConjecture_of_gkp (h : gkpConjecture) :
     omega
   · exact h9
 
-/-- GKP is equivalent to its restriction to powers of two. -/
+/-- GKP is equivalent to its restriction to powers of two.
+@isnad1 id=iff.0h0v.s1.772dac15d958 from=translated src=- shape=25b03439 vocab=26e1aa6a
+-/
 theorem gkpConjecture_iff_powerOfTwo :
     gkpConjecture ↔ gkpPowerOfTwoConjecture :=
   ⟨gkpPowerOfTwoConjecture_of_gkp, gkpConjecture_of_powerOfTwo⟩

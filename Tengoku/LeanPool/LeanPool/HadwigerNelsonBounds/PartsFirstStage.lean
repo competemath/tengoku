@@ -499,7 +499,9 @@ private theorem partsBaseCertificate34_verify :
 private theorem partsBaseCertificate35_verify :
     (partsBaseCertificate 35).Verifies := by decide +kernel
 
-/-- Every stored base tree passes the checker before applying root symmetries. -/
+/-- Every stored base tree passes the checker before applying root symmetries.
+@isnad1 id=verifies.0h1v.s3.880d554e72f0 from=translated src=- shape=b770544b vocab=9a21284e
+-/
 theorem partsBaseCertificate_verifies (base : Fin 36) :
     (partsBaseCertificate base).Verifies := by
   fin_cases base
@@ -551,6 +553,9 @@ instance (base : Fin 36) (symmetry : Fin 6) (swap : Bool) :
   unfold PartsCertificateVariantVerifies
   infer_instance
 
+/--
+@isnad1 id=false.3h7v.s5.0e7af83c24e5 from=translated src=- shape=9437d727 vocab=9cd46d0d
+-/
 lemma partsVerifiesVariantNodeB_unsat {symmetry : Fin 6} {swap : Bool}
     {nodes : Array (Array PartsTreeNode)} {coloring : Fin 481 → Fin 4}
     (hproper : PartsProper coloring) :
@@ -590,7 +595,9 @@ lemma partsVerifiesVariantNodeB_unsat {symmetry : Fin 6} {swap : Bool}
               · rfl
               · exact hextended assignment hin
 
-/-- Soundness of any checked symmetry-expanded Parts tree. -/
+/-- Soundness of any checked symmetry-expanded Parts tree.
+@isnad1 id=false.3h4v.s5.f09685f61205 from=translated src=- shape=8788b4c4 vocab=2ebee7c7
+-/
 theorem partsCertificateVariant_not_colorable {base : Fin 36}
     {symmetry : Fin 6} {swap : Bool}
     (hverify : PartsCertificateVariantVerifies base symmetry swap)
@@ -599,347 +606,584 @@ theorem partsCertificateVariant_not_colorable {base : Fin 36}
       (partsTransformPath symmetry swap (partsBaseCertificate base).roots)) : False := by
   exact partsVerifiesVariantNodeB_unsat hproper hverify hroots
 
+/--
+@isnad1 id=partscer.0h2v.s4.7d35a237d878 from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants0_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 0 symmetry swap := by
   exact partsCertificateVariant_verifies_core 0
 
+/--
+@isnad1 id=partscer.0h1v.s5.92e8f0116061 from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant1_0_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 1 0 swap := by
   exact partsCertificateVariant_verifies_core 1 0
 
+/--
+@isnad1 id=partscer.0h1v.s5.9be03b2492c8 from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant1_1_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 1 1 swap := by
   exact partsCertificateVariant_verifies_core 1 1
 
+/--
+@isnad1 id=partscer.0h1v.s5.8978ac743d11 from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant1_2_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 1 2 swap := by
   exact partsCertificateVariant_verifies_core 1 2
 
+/--
+@isnad1 id=partscer.0h1v.s5.f4b5ed10c43a from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant1_3_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 1 3 swap := by
   exact partsCertificateVariant_verifies_core 1 3
 
+/--
+@isnad1 id=partscer.0h1v.s5.1ad41b7aa8aa from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant1_4_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 1 4 swap := by
   exact partsCertificateVariant_verifies_core 1 4
 
+/--
+@isnad1 id=partscer.0h1v.s5.8fe12b9f2cc9 from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant1_5_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 1 5 swap := by
   exact partsCertificateVariant_verifies_core 1 5
 
+/--
+@isnad1 id=partscer.0h2v.s4.cc7484d3b263 from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants1_verify (symmetry : Fin 6) (swap : Bool) :
     PartsCertificateVariantVerifies 1 symmetry swap := by
   exact partsCertificateVariant_verifies_core 1 symmetry swap
 
+/--
+@isnad1 id=partscer.0h2v.s4.495455f78740 from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants2_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 2 symmetry swap := by
   exact partsCertificateVariant_verifies_core 2
 
+/--
+@isnad1 id=partscer.0h2v.s4.f9899e718d94 from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants3_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 3 symmetry swap := by
   exact partsCertificateVariant_verifies_core 3
 
+/--
+@isnad1 id=partscer.0h2v.s4.c81297a1b533 from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants4_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 4 symmetry swap := by
   exact partsCertificateVariant_verifies_core 4
 
+/--
+@isnad1 id=partscer.0h2v.s4.4384e3999ab5 from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants5_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 5 symmetry swap := by
   exact partsCertificateVariant_verifies_core 5
 
+/--
+@isnad1 id=partscer.0h2v.s4.6781415d9bd4 from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants6_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 6 symmetry swap := by
   exact partsCertificateVariant_verifies_core 6
 
+/--
+@isnad1 id=partscer.0h2v.s4.c0fc0ac4c238 from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants7_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 7 symmetry swap := by
   exact partsCertificateVariant_verifies_core 7
 
+/--
+@isnad1 id=partscer.0h1v.s5.14b2a6c51430 from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant8_0_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 8 0 swap := by
   exact partsCertificateVariant_verifies_core 8 0
 
+/--
+@isnad1 id=partscer.0h1v.s5.9e9b106459d9 from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant8_1_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 8 1 swap := by
   exact partsCertificateVariant_verifies_core 8 1
 
+/--
+@isnad1 id=partscer.0h1v.s5.bb8131a9c460 from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant8_2_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 8 2 swap := by
   exact partsCertificateVariant_verifies_core 8 2
 
+/--
+@isnad1 id=partscer.0h1v.s5.b20298a15067 from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant8_3_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 8 3 swap := by
   exact partsCertificateVariant_verifies_core 8 3
 
+/--
+@isnad1 id=partscer.0h1v.s5.8b94098ce4c4 from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant8_4_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 8 4 swap := by
   exact partsCertificateVariant_verifies_core 8 4
 
+/--
+@isnad1 id=partscer.0h1v.s5.a5a86f9d8ed0 from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant8_5_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 8 5 swap := by
   exact partsCertificateVariant_verifies_core 8 5
 
+/--
+@isnad1 id=partscer.0h2v.s4.f5e0c1d2cd46 from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants8_verify (symmetry : Fin 6) (swap : Bool) :
     PartsCertificateVariantVerifies 8 symmetry swap := by
   exact partsCertificateVariant_verifies_core 8 symmetry swap
 
+/--
+@isnad1 id=partscer.0h2v.s4.8e199aad6ad0 from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants9_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 9 symmetry swap := by
   exact partsCertificateVariant_verifies_core 9
 
+/--
+@isnad1 id=partscer.0h2v.s4.75af06c7a1ba from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants10_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 10 symmetry swap := by
   exact partsCertificateVariant_verifies_core 10
 
+/--
+@isnad1 id=partscer.0h2v.s4.dfd096523195 from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants11_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 11 symmetry swap := by
   exact partsCertificateVariant_verifies_core 11
 
+/--
+@isnad1 id=partscer.0h2v.s4.650465b2691a from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants12_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 12 symmetry swap := by
   exact partsCertificateVariant_verifies_core 12
 
+/--
+@isnad1 id=partscer.0h2v.s4.037af100fdfb from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants13_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 13 symmetry swap := by
   exact partsCertificateVariant_verifies_core 13
 
+/--
+@isnad1 id=partscer.0h2v.s4.7e702e209582 from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants14_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 14 symmetry swap := by
   exact partsCertificateVariant_verifies_core 14
 
+/--
+@isnad1 id=partscer.0h2v.s4.aa7ea9c7df49 from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants15_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 15 symmetry swap := by
   exact partsCertificateVariant_verifies_core 15
 
+/--
+@isnad1 id=partscer.0h1v.s5.c63c1fcd6b9d from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant16_0_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 16 0 swap := by
   exact partsCertificateVariant_verifies_core 16 0
 
+/--
+@isnad1 id=partscer.0h1v.s5.197cbaa5a4ed from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant16_1_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 16 1 swap := by
   exact partsCertificateVariant_verifies_core 16 1
 
+/--
+@isnad1 id=partscer.0h1v.s5.8523b5e92641 from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant16_2_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 16 2 swap := by
   exact partsCertificateVariant_verifies_core 16 2
 
+/--
+@isnad1 id=partscer.0h1v.s5.3460bd558152 from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant16_3_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 16 3 swap := by
   exact partsCertificateVariant_verifies_core 16 3
 
+/--
+@isnad1 id=partscer.0h1v.s5.2ec78fc59dd3 from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant16_4_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 16 4 swap := by
   exact partsCertificateVariant_verifies_core 16 4
 
+/--
+@isnad1 id=partscer.0h1v.s5.20c176bd91ab from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant16_5_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 16 5 swap := by
   exact partsCertificateVariant_verifies_core 16 5
 
+/--
+@isnad1 id=partscer.0h2v.s4.ea1b33b310d6 from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants16_verify (symmetry : Fin 6) (swap : Bool) :
     PartsCertificateVariantVerifies 16 symmetry swap := by
   exact partsCertificateVariant_verifies_core 16 symmetry swap
 
+/--
+@isnad1 id=partscer.0h1v.s5.25a518faba98 from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant17_0_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 17 0 swap := by
   exact partsCertificateVariant_verifies_core 17 0
 
+/--
+@isnad1 id=partscer.0h1v.s5.a4c90f80d121 from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant17_1_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 17 1 swap := by
   exact partsCertificateVariant_verifies_core 17 1
 
+/--
+@isnad1 id=partscer.0h1v.s5.7a519ff011ca from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant17_2_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 17 2 swap := by
   exact partsCertificateVariant_verifies_core 17 2
 
+/--
+@isnad1 id=partscer.0h1v.s5.b96742e63c7f from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant17_3_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 17 3 swap := by
   exact partsCertificateVariant_verifies_core 17 3
 
+/--
+@isnad1 id=partscer.0h1v.s5.9edac264cc0b from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant17_4_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 17 4 swap := by
   exact partsCertificateVariant_verifies_core 17 4
 
+/--
+@isnad1 id=partscer.0h1v.s5.df95d978393e from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant17_5_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 17 5 swap := by
   exact partsCertificateVariant_verifies_core 17 5
 
+/--
+@isnad1 id=partscer.0h2v.s4.11574a78e141 from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants17_verify (symmetry : Fin 6) (swap : Bool) :
     PartsCertificateVariantVerifies 17 symmetry swap := by
   exact partsCertificateVariant_verifies_core 17 symmetry swap
 
+/--
+@isnad1 id=partscer.0h2v.s4.e0d600bf86bf from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants18_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 18 symmetry swap := by
   exact partsCertificateVariant_verifies_core 18
 
+/--
+@isnad1 id=partscer.0h2v.s4.29147e448034 from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants19_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 19 symmetry swap := by
   exact partsCertificateVariant_verifies_core 19
 
+/--
+@isnad1 id=partscer.0h2v.s4.1e57b1e7c6bd from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants20_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 20 symmetry swap := by
   exact partsCertificateVariant_verifies_core 20
 
+/--
+@isnad1 id=partscer.0h2v.s4.188b7d6d1521 from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants21_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 21 symmetry swap := by
   exact partsCertificateVariant_verifies_core 21
 
+/--
+@isnad1 id=partscer.0h2v.s4.04d6bddeb754 from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants22_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 22 symmetry swap := by
   exact partsCertificateVariant_verifies_core 22
 
+/--
+@isnad1 id=partscer.0h2v.s4.acfacb497f07 from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants23_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 23 symmetry swap := by
   exact partsCertificateVariant_verifies_core 23
 
+/--
+@isnad1 id=partscer.0h1v.s5.89241fe005f4 from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant24_0_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 24 0 swap := by
   exact partsCertificateVariant_verifies_core 24 0
 
+/--
+@isnad1 id=partscer.0h1v.s5.3916737a813e from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant24_1_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 24 1 swap := by
   exact partsCertificateVariant_verifies_core 24 1
 
+/--
+@isnad1 id=partscer.0h1v.s5.3f5d67109146 from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant24_2_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 24 2 swap := by
   exact partsCertificateVariant_verifies_core 24 2
 
+/--
+@isnad1 id=partscer.0h1v.s5.a92e989922b4 from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant24_3_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 24 3 swap := by
   exact partsCertificateVariant_verifies_core 24 3
 
+/--
+@isnad1 id=partscer.0h1v.s5.7f826e6302eb from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant24_4_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 24 4 swap := by
   exact partsCertificateVariant_verifies_core 24 4
 
+/--
+@isnad1 id=partscer.0h1v.s5.ce2cdaf18a2a from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant24_5_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 24 5 swap := by
   exact partsCertificateVariant_verifies_core 24 5
 
+/--
+@isnad1 id=partscer.0h2v.s4.2d95aedee66e from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants24_verify (symmetry : Fin 6) (swap : Bool) :
     PartsCertificateVariantVerifies 24 symmetry swap := by
   exact partsCertificateVariant_verifies_core 24 symmetry swap
 
+/--
+@isnad1 id=partscer.0h1v.s5.a2662d30f174 from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant25_0_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 25 0 swap := by
   exact partsCertificateVariant_verifies_core 25 0
 
+/--
+@isnad1 id=partscer.0h1v.s5.cab79b60ea1d from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant25_1_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 25 1 swap := by
   exact partsCertificateVariant_verifies_core 25 1
 
+/--
+@isnad1 id=partscer.0h1v.s5.46b1a6fafd3d from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant25_2_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 25 2 swap := by
   exact partsCertificateVariant_verifies_core 25 2
 
+/--
+@isnad1 id=partscer.0h1v.s5.cf857d32842b from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant25_3_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 25 3 swap := by
   exact partsCertificateVariant_verifies_core 25 3
 
+/--
+@isnad1 id=partscer.0h1v.s5.d8860eeb5df3 from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant25_4_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 25 4 swap := by
   exact partsCertificateVariant_verifies_core 25 4
 
+/--
+@isnad1 id=partscer.0h1v.s5.7a92d9940266 from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant25_5_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 25 5 swap := by
   exact partsCertificateVariant_verifies_core 25 5
 
+/--
+@isnad1 id=partscer.0h2v.s4.d61793000dfe from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants25_verify (symmetry : Fin 6) (swap : Bool) :
     PartsCertificateVariantVerifies 25 symmetry swap := by
   exact partsCertificateVariant_verifies_core 25 symmetry swap
 
+/--
+@isnad1 id=partscer.0h2v.s4.788a52bc22ce from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants26_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 26 symmetry swap := by
   exact partsCertificateVariant_verifies_core 26
 
+/--
+@isnad1 id=partscer.0h2v.s4.eafa37fe539a from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants27_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 27 symmetry swap := by
   exact partsCertificateVariant_verifies_core 27
 
+/--
+@isnad1 id=partscer.0h2v.s4.2b7523779834 from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants28_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 28 symmetry swap := by
   exact partsCertificateVariant_verifies_core 28
 
+/--
+@isnad1 id=partscer.0h2v.s4.8b8166abaea8 from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants29_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 29 symmetry swap := by
   exact partsCertificateVariant_verifies_core 29
 
+/--
+@isnad1 id=partscer.0h2v.s4.c66572a36d2f from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants30_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 30 symmetry swap := by
   exact partsCertificateVariant_verifies_core 30
 
+/--
+@isnad1 id=partscer.0h2v.s4.3c03f527cca0 from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants31_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 31 symmetry swap := by
   exact partsCertificateVariant_verifies_core 31
 
+/--
+@isnad1 id=partscer.0h2v.s4.05e7b68b0173 from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants32_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 32 symmetry swap := by
   exact partsCertificateVariant_verifies_core 32
 
+/--
+@isnad1 id=partscer.0h2v.s4.4212a26c3318 from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants33_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 33 symmetry swap := by
   exact partsCertificateVariant_verifies_core 33
 
+/--
+@isnad1 id=partscer.0h1v.s5.19f115a7b6bf from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant34_0_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 34 0 swap := by
   exact partsCertificateVariant_verifies_core 34 0
 
+/--
+@isnad1 id=partscer.0h1v.s5.7ebbd7911fad from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant34_1_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 34 1 swap := by
   exact partsCertificateVariant_verifies_core 34 1
 
+/--
+@isnad1 id=partscer.0h1v.s5.3c33b2b7f5d6 from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant34_2_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 34 2 swap := by
   exact partsCertificateVariant_verifies_core 34 2
 
+/--
+@isnad1 id=partscer.0h1v.s5.bac2e63a2eb3 from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant34_3_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 34 3 swap := by
   exact partsCertificateVariant_verifies_core 34 3
 
+/--
+@isnad1 id=partscer.0h1v.s5.46c7cc566865 from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant34_4_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 34 4 swap := by
   exact partsCertificateVariant_verifies_core 34 4
 
+/--
+@isnad1 id=partscer.0h1v.s5.b7b530b9d17d from=translated src=- shape=bc8a7a04 vocab=81b89273
+-/
 theorem partsCertificateVariant34_5_verify :
     ∀ swap : Bool, PartsCertificateVariantVerifies 34 5 swap := by
   exact partsCertificateVariant_verifies_core 34 5
 
+/--
+@isnad1 id=partscer.0h2v.s4.534ea05ce775 from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants34_verify (symmetry : Fin 6) (swap : Bool) :
     PartsCertificateVariantVerifies 34 symmetry swap := by
   exact partsCertificateVariant_verifies_core 34 symmetry swap
 
+/--
+@isnad1 id=partscer.0h2v.s4.1a912bdfa016 from=translated src=- shape=79c2dc05 vocab=81b89273
+-/
 theorem partsCertificateVariants35_verify :
     ∀ symmetry : Fin 6, ∀ swap : Bool,
       PartsCertificateVariantVerifies 35 symmetry swap := by
   exact partsCertificateVariant_verifies_core 35
 
+/--
+@isnad1 id=partscer.0h3v.s4.8bf44d153270 from=translated src=- shape=d3ffc6e2 vocab=81b89273
+-/
 theorem partsCertificateVariant_verifies (base : Fin 36)
     (symmetry : Fin 6) (swap : Bool) :
     PartsCertificateVariantVerifies base symmetry swap := by

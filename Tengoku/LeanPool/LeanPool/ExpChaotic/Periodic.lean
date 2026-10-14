@@ -43,7 +43,9 @@ for construction, and differentiability of the inverse at its fixed point then
 gives the strict multiplier bound.
 -/
 
-/-- A noncritical holomorphic map has a Lipschitz inverse on a small image disk. -/
+/-- A noncritical holomorphic map has a Lipschitz inverse on a small image disk.
+@isnad1 id=ex.2h2v.s7.3412498c9fa4 from=translated src=- shape=3afc4c22 vocab=569c3722
+-/
 theorem exists_lipschitz_local_inverse {f : ℂ → ℂ} {a : ℂ}
     (hf : HasStrictDerivAt f (deriv f a) a) (hne : deriv f a ≠ 0) :
     ∃ g : ℂ → ℂ, ∃ C : ℝ≥0, ∃ s : ℝ, 0 < s ∧
@@ -64,7 +66,9 @@ Inverse identities below are asserted only on the indicated disks, where this br
 abbrev logIterate (n : ℕ) : ℂ → ℂ := Complex.log^[n]
 
 /-- The principal logarithm contracts by a factor of at most `1/2` on a radius-eight
-disk about `exp x`, for real `x ≥ 10`. This disk lies in `Re z ≥ 2`, so `|1/z| ≤ 1/2`. -/
+disk about `exp x`, for real `x ≥ 10`. This disk lies in `Re z ≥ 2`, so `|1/z| ≤ 1/2`.
+@isnad1 id=lipschit.2h1v.s6.00f08c237cca from=translated src=- shape=7c07b5aa vocab=cfeb2134
+-/
 theorem log_lipschitz_real_ball {x : ℂ} (hx : x.im = 0) (hx10 : 10 ≤ x.re) :
     LipschitzOnWith (1 / 2) Complex.log (ball (Complex.exp x) 8) := by
   have hrez : ∀ z ∈ ball (Complex.exp x) 8, (2 : ℝ) ≤ z.re := by
@@ -84,7 +88,9 @@ theorem log_lipschitz_real_ball {x : ℂ} (hx : x.im = 0) (hx10 : 10 ≤ x.re) :
   exact one_div_le_one_div_of_le (by norm_num) ((hrez z hz).trans (Complex.re_le_norm z))
 
 /-- The principal logarithm sends the radius-eight disk about `exp x` into the
-radius-eight disk about `x`, for real `x ≥ 10`. -/
+radius-eight disk about `x`, for real `x ≥ 10`.
+@isnad1 id=mapsto.2h1v.s6.3ca0cbee52f4 from=translated src=- shape=398a9352 vocab=61843c4e
+-/
 theorem log_maps_real_ball {x : ℂ} (hx : x.im = 0) (hx10 : 10 ≤ x.re) :
     MapsTo Complex.log (ball (Complex.exp x) 8) (ball x 8) := by
   intro z hz
@@ -98,7 +104,9 @@ theorem log_maps_real_ball {x : ℂ} (hx : x.im = 0) (hx10 : 10 ≤ x.re) :
   norm_num at h
   linarith
 
-/-- Principal logarithms pull disks back along a far right real orbit. -/
+/-- Principal logarithms pull disks back along a far right real orbit.
+@isnad1 id=and.2h2v.s7.543a6581302b from=translated src=- shape=aa31ad8e vocab=2524fa11
+-/
 theorem logIterate_real_ball {x : ℂ} (hx : x.im = 0) (hx10 : 10 ≤ x.re) (n : ℕ) :
     logIterate n (expIterate n x) = x ∧
     MapsTo (logIterate n) (ball (expIterate n x) 8) (ball x 8) ∧
@@ -136,7 +144,9 @@ theorem logIterate_real_ball {x : ℂ} (hx : x.im = 0) (hx10 : 10 ≤ x.re) (n :
           linarith [Nat.cast_nonneg (α := ℝ) (n + 1)]
         rw [hli, comp_apply, expIterate_succ, ih.2.2.2 _ hzin, Complex.exp_log hz0]
 
-/-- The principal logarithm is `1`-Lipschitz on the closed half-plane `Im z ≥ 1`. -/
+/-- The principal logarithm is `1`-Lipschitz on the closed half-plane `Im z ≥ 1`.
+@isnad1 id=lipschit.0h0v.s5.df571822cfb2 from=translated src=- shape=a845002c vocab=bb447fa0
+-/
 theorem log_lipschitz_upper :
     LipschitzOnWith 1 Complex.log {z : ℂ | 1 ≤ z.im} := by
   apply (convex_halfSpace_im_ge 1).lipschitzOnWith_of_nnnorm_hasDerivWithin_le
@@ -149,7 +159,9 @@ theorem log_lipschitz_upper :
   exact inv_le_one_of_one_le₀ (hz.trans (Complex.im_le_norm z))
 
 /-- The closing step in Lemma 6.2. A bounded branch of logarithm can be translated
-vertically and logged again into any radius-eight disk sufficiently far to the right. -/
+vertically and logged again into any radius-eight disk sufficiently far to the right.
+@isnad1 id=ex.3h4v.s7.5d729fa3967b from=translated src=- shape=e73f0b13 vocab=55ea7658
+-/
 theorem exists_closing_inverse {D : Set ℂ} {a : ℂ} {L : ℂ → ℂ} {C : ℝ≥0}
     (hL : LipschitzOnWith C L D)
     (hclose : ∀ z ∈ D, ‖L z - L a‖ ≤ 1)
@@ -237,7 +249,9 @@ theorem exists_closing_inverse {D : Set ℂ} {a : ℂ} {L : ℂ → ℂ} {C : �
     simpa only [comp_apply, expIterate_succ, expIterate_zero,
       Complex.exp_log (htne z hz)] using hT
 
-/-- A strictly contracting inverse branch produces a repelling fixed point. -/
+/-- A strictly contracting inverse branch produces a repelling fixed point.
+@isnad1 id=ex.6h4v.s8.b55a89e4e7e6 from=translated src=- shape=b545557b vocab=350b300f
+-/
 theorem exists_repelling_fixedPoint_of_inverse
     {f h : ℂ → ℂ} {a : ℂ} {r : ℝ} (hr : 0 < r)
     (hlip : LipschitzOnWith (1 / 2) h (closedBall a r))
@@ -279,7 +293,9 @@ theorem exists_repelling_fixedPoint_of_inverse
   · norm_num at hmul
     linarith
 
-/-- A uniform family of two-step inverse branches on a small closed disk. -/
+/-- A uniform family of two-step inverse branches on a small closed disk.
+@isnad1 id=ex.2h2v.s7.52c9acd72d33 from=translated src=- shape=a1841aa1 vocab=8f20849a
+-/
 theorem closing_inverse_on_small_ball {a : ℂ} (ha : a ≠ 0) {ε : ℝ} (hε : 0 < ε) :
     ∃ r : ℝ, 0 < r ∧ r ≤ ε ∧ ∃ C : ℝ≥0, ∃ ρ : ℝ,
       ∀ x : ℝ, ρ ≤ x → ∃ ψ : ℂ → ℂ,
@@ -310,7 +326,9 @@ theorem closing_inverse_on_small_ball {a : ℂ} (ha : a ≠ 0) {ε : ℝ} (hε :
     (hL.mono hsub) hsmall (fun z hz => hinv z (hsub hz))
   exact ⟨r, hr, hrε, C, ρ, hρ⟩
 
-/-- A point mapping to a far right real point is approximated by repelling periodic points. -/
+/-- A point mapping to a far right real point is approximated by repelling periodic points.
+@isnad1 id=ex.3h3v.s7.02a667581a95 from=translated src=- shape=d84eef55 vocab=bf0f68ae
+-/
 theorem exists_repelling_near_real_preimage {a : ℂ} (ha : a ≠ 0)
     {m : ℕ} (hm : expIterate m a = 10) {ε : ℝ} (hε : 0 < ε) :
     ∃ p ∈ ball a ε, ∃ N : ℕ,
@@ -396,7 +414,9 @@ theorem exists_repelling_near_real_preimage {a : ℂ} (ha : a ≠ 0)
       (differentiable_expIterate _) (deriv_expIterate_ne_zero _)
   exact ⟨p, (ball_subset_ball hrε) hp, 2 + n + m, by omega, hperiod, hrepel⟩
 
-/-- A nonempty open subset of the plane contains a nonzero point. -/
+/-- A nonempty open subset of the plane contains a nonzero point.
+@isnad1 id=ex.2h1v.s5.4d50e10287d2 from=translated src=- shape=a61cdba1 vocab=a7723dd0
+-/
 theorem exists_nonzero_mem_open {U : Set ℂ} (hU : IsOpen U) (hUne : U.Nonempty) :
     ∃ z ∈ U, z ≠ 0 := by
   obtain ⟨z, hz⟩ := hUne
@@ -409,7 +429,9 @@ theorem exists_nonzero_mem_open {U : Set ℂ} (hU : IsOpen U) (hUne : U.Nonempty
     · exact Complex.ofReal_ne_zero.mpr (ne_of_gt (half_pos hr))
   · exact ⟨z, hz, hzero⟩
 
-/-- **Theorem 6.1.** Every nonempty open set contains a repelling periodic point. -/
+/-- **Theorem 6.1.** Every nonempty open set contains a repelling periodic point.
+@isnad1 id=ex.2h1v.s6.4f61084d751e from=translated src=- shape=1b2130df vocab=55954bb2
+-/
 theorem exists_repelling_periodic_mem_open {U : Set ℂ} (hU : IsOpen U) (hUne : U.Nonempty) :
     ∃ p ∈ U, ∃ n : ℕ,
       0 < n ∧ expIterate n p = p ∧ 1 < ‖deriv (expIterate n) p‖ := by
@@ -424,7 +446,9 @@ theorem exists_repelling_periodic_mem_open {U : Set ℂ} (hU : IsOpen U) (hUne :
   obtain ⟨p, hp, n, hn, hperiod, hrepel⟩ := exists_repelling_near_real_preimage ha0 hm hε
   exact ⟨p, hball hp, n, hn, hperiod, hrepel⟩
 
-/-- Repelling periodic points of the exponential are dense in the complex plane. -/
+/-- Repelling periodic points of the exponential are dense in the complex plane.
+@isnad1 id=dense.0h0v.s6.552e06dfdb2f from=translated src=- shape=4b4d6b5f vocab=bda27be8
+-/
 theorem dense_repelling_periodic_points :
     Dense {p : ℂ | ∃ n : ℕ,
       0 < n ∧ expIterate n p = p ∧ 1 < ‖deriv (expIterate n) p‖} := by
@@ -433,14 +457,18 @@ theorem dense_repelling_periodic_points :
   obtain ⟨p, hp, hperiod⟩ := exists_repelling_periodic_mem_open hU hUne
   exact ⟨p, hp, hperiod⟩
 
-/-- Periodic points of the exponential are dense in the plane. -/
+/-- Periodic points of the exponential are dense in the plane.
+@isnad1 id=dense.0h0v.s5.0e846238b544 from=translated src=- shape=c44f882a vocab=a57820c5
+-/
 theorem dense_periodic_points :
     Dense {p : ℂ | ∃ n : ℕ, 0 < n ∧ expIterate n p = p} := by
   apply dense_repelling_periodic_points.mono
   rintro p ⟨n, hn, hperiod, _⟩
   exact ⟨n, hn, hperiod⟩
 
-/-- The periodic-point benchmark using mathlib's standard `periodicPts` set. -/
+/-- The periodic-point benchmark using mathlib's standard `periodicPts` set.
+@isnad1 id=dense.0h0v.s4.417cfdc986ab from=translated src=- shape=be2594e7 vocab=3b4598b7
+-/
 theorem dense_periodicPts_exp : Dense (Function.periodicPts Complex.exp) := by
   apply dense_periodic_points.mono
   rintro p ⟨n, hn, hp⟩

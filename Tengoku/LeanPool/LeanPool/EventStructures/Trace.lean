@@ -40,11 +40,15 @@ local infixr:60 " ≈ₜ " => TraceEquiv es
 
 namespace Trace
 
-/-- Trace equivalence is reflexive. -/
+/-- Trace equivalence is reflexive.
+@isnad1 id=traceequ.0h2v.s3.ed3e6754e085 from=translated src=- shape=538ae144 vocab=755877e1
+-/
 lemma traceEquiv_refl : ∀ t, TraceEquiv es t t :=
   TraceEquiv.refl
 
-/-- Trace equivalence is transitive. -/
+/-- Trace equivalence is transitive.
+@isnad1 id=traceequ.2h4v.s4.8bbbd226b560 from=translated src=- shape=e735b1f4 vocab=755877e1
+-/
 lemma traceEquiv_trans : ∀ ⦃t₁ t₂ t₃⦄,
     TraceEquiv es t₁ t₂ → TraceEquiv es t₂ t₃ → TraceEquiv es t₁ t₃ := by
   intro t₁ t₂ t₃ h₁₂ h₂₃
@@ -52,7 +56,9 @@ lemma traceEquiv_trans : ∀ ⦃t₁ t₂ t₃⦄,
   | refl _ => exact h₂₃
   | swap ind _ ih => exact TraceEquiv.swap ind (ih h₂₃)
 
-/-- Trace equivalence is symmetric. -/
+/-- Trace equivalence is symmetric.
+@isnad1 id=traceequ.1h3v.s4.0f338d0965f1 from=translated src=- shape=617eec71 vocab=755877e1
+-/
 lemma traceEquiv_symm : ∀ ⦃t₁ t₂⦄, TraceEquiv es t₁ t₂ → TraceEquiv es t₂ t₁ := by
   intro t₁ t₂ h
   induction h with
@@ -60,7 +66,9 @@ lemma traceEquiv_symm : ∀ ⦃t₁ t₂⦄, TraceEquiv es t₁ t₂ → TraceEq
   | @swap e₁ e₂ t₁' t₂' t₃' ind _ ih =>
     exact traceEquiv_trans es ih (TraceEquiv.swap (es.concurrent_symm ind) (TraceEquiv.refl _))
 
-/-- Trace equivalence is an equivalence relation. -/
+/-- Trace equivalence is an equivalence relation.
+@isnad1 id=equivale.0h1v.s3.6f1c73b6ffec from=translated src=- shape=1aa159a0 vocab=7e8cf917
+-/
 lemma traceEquivEquivalence : Equivalence (TraceEquiv es) where
   refl := @traceEquiv_refl es
   symm := @traceEquiv_symm es
@@ -70,7 +78,9 @@ lemma traceEquivEquivalence : Equivalence (TraceEquiv es) where
 instance : Trans (TraceEquiv es) (TraceEquiv es) (TraceEquiv es) where
   trans h₁₂ h₂₃ := traceEquiv_trans es h₁₂ h₂₃
 
-/-- Trace equivalence is a left congruence for append. -/
+/-- Trace equivalence is a left congruence for append.
+@isnad1 id=traceequ.1h4v.s5.86e936426087 from=translated src=- shape=55a7d790 vocab=96af59ac
+-/
 lemma traceEquiv_append_left {t₁ t₂ : List es.Event} (h : t₁ ≈ₜ t₂) (t : List es.Event) :
     (t ++ t₁) ≈ₜ (t ++ t₂) := by
   induction h generalizing t with
@@ -82,7 +92,9 @@ lemma traceEquiv_append_left {t₁ t₂ : List es.Event} (h : t₁ ≈ₜ t₂) 
       _ = (t ++ (t₁' ++ e₁ :: e₂ :: t₂')) := by simp
       _ ≈ₜ (t ++ t₃') := ih t
 
-/-- Trace equivalence is a right congruence for append. -/
+/-- Trace equivalence is a right congruence for append.
+@isnad1 id=traceequ.1h4v.s5.8d9c15df6926 from=translated src=- shape=409cc8e1 vocab=96af59ac
+-/
 lemma traceEquiv_append_right {t₁ t₂ : List es.Event} (h : t₁ ≈ₜ t₂) (t : List es.Event) :
     (t₁ ++ t) ≈ₜ (t₂ ++ t) := by
   induction h with
@@ -94,7 +106,9 @@ lemma traceEquiv_append_right {t₁ t₂ : List es.Event} (h : t₁ ≈ₜ t₂)
       _ = (t₁' ++ e₁ :: e₂ :: t₂' ++ t) := by simp
       _ ≈ₜ (t₃' ++ t) := ih
 
-/-- Trace equivalence is a congruence for append. -/
+/-- Trace equivalence is a congruence for append.
+@isnad1 id=traceequ.2h5v.s6.8357bbe16a39 from=translated src=- shape=8f63f578 vocab=96af59ac
+-/
 lemma traceEquiv_append {t₁ t₂ t₃ t₄ : List es.Event}
     (h₁ : t₁ ≈ₜ t₂) (h₂ : t₃ ≈ₜ t₄) : (t₁ ++ t₃) ≈ₜ (t₂ ++ t₄) :=
   traceEquiv_trans es (traceEquiv_append_right es h₁ t₃) (traceEquiv_append_left es h₂ t₂)
@@ -121,19 +135,25 @@ instance : Mul (TraceMonoid es) where
 instance : One (TraceMonoid es) where
   one := mk es []
 
-/-- Left identity law for trace monoid. -/
+/-- Left identity law for trace monoid.
+@isnad1 id=eq.0h2v.s4.5a1f8044cd14 from=translated src=- shape=520aa125 vocab=a2c6b2ba
+-/
 lemma one_mul (x : TraceMonoid es) : 1 * x = x := by
   obtain ⟨t, rfl⟩ := Quotient.exists_rep x
   change mk es ([] ++ t) = mk es t
   simp
 
-/-- Right identity law for trace monoid. -/
+/-- Right identity law for trace monoid.
+@isnad1 id=eq.0h2v.s4.1afcbd0b641c from=translated src=- shape=2d46009d vocab=a2c6b2ba
+-/
 lemma mul_one (x : TraceMonoid es) : x * 1 = x := by
   obtain ⟨t, rfl⟩ := Quotient.exists_rep x
   change mk es (t ++ []) = mk es t
   simp
 
-/-- Associativity law for trace monoid. -/
+/-- Associativity law for trace monoid.
+@isnad1 id=eq.0h4v.s6.35aff1af4497 from=translated src=- shape=89ecf9a8 vocab=a2c6b2ba
+-/
 lemma mul_assoc (x y z : TraceMonoid es) : (x * y) * z = x * (y * z) := by
   obtain ⟨t₁, rfl⟩ := Quotient.exists_rep x
   obtain ⟨t₂, rfl⟩ := Quotient.exists_rep y
@@ -147,7 +167,9 @@ instance : Monoid (TraceMonoid es) where
   one_mul := one_mul es
   mul_one := mul_one es
 
-/-- If the concurrency relation is full, the head of the list can be moved to the end -/
+/-- If the concurrency relation is full, the head of the list can be moved to the end
+@isnad1 id=traceequ.1h3v.s5.b8a721048ba3 from=translated src=- shape=1eda7734 vocab=9e3e63e5
+-/
 lemma move_head_full
     (hfull : ∀ e₁ e₂ : es.Event, e₁ ⋈ e₂) :
     ∀ (e : es.Event) (t : List es.Event),
@@ -163,7 +185,9 @@ lemma move_head_full
       _ ≈ₜ (e' :: (t' ++ [e])) := traceEquiv_append_left es ih [e']
       _ = ((e' :: t') ++ [e]) := by simp
 
-/-- If the concurrency relation is full, the monoid is commutative. -/
+/-- If the concurrency relation is full, the monoid is commutative.
+@isnad1 id=traceequ.1h3v.s5.7a9eccb129ce from=translated src=- shape=b1b05f26 vocab=44c53add
+-/
 lemma mul_comm_full
     (hfull : ∀ e₁ e₂ : es.Event, e₁ ⋈ e₂)
     : ∀ t₁ t₂ : List es.Event, TraceEquiv es (t₁ ++ t₂) (t₂ ++ t₁) := by
@@ -184,7 +208,9 @@ lemma mul_comm_full
       _ ≈ₜ (t₂ ++ [e] ++ t₁') := traceEquiv_append_right es (move_head_full es hfull e t₂) t₁'
       _ = (t₂ ++ ([e] ++ t₁')) := by simp
 
-/-- If the concurrency relation is empty, trace equivalence is just list equality. -/
+/-- If the concurrency relation is empty, trace equivalence is just list equality.
+@isnad1 id=eq.2h3v.s5.f901824ff5c5 from=translated src=- shape=e716bb53 vocab=b207336a
+-/
 lemma traceEquiv_eq_empty
     (hempty : ∀ e₁ e₂ : es.Event, ¬ e₁ ⋈ e₂)
     {t₁ t₂ : List es.Event} (h : TraceEquiv es t₁ t₂) : t₁ = t₂ := by
@@ -194,7 +220,9 @@ lemma traceEquiv_eq_empty
     exact False.elim ((hempty e₁ e₂) ind)
 
 /-- If the concurrency relation is empty and there are at least two distinct events,
-    then the monoid is not commutative. -/
+    then the monoid is not commutative.
+@isnad1 id=ex.2h1v.s6.2c892336cfd3 from=translated src=- shape=1e229bb8 vocab=44c53add
+-/
 lemma mul_not_comm_empty
     (hempty : ∀ e₁ e₂ : es.Event, ¬ e₁ ⋈ e₂)
     (hdistinct : ∃ e₁ e₂ : es.Event, e₁ ≠ e₂) :

@@ -28,7 +28,9 @@ def cm4 (A B C D E F : ℝ) : ℝ :=
     2 * B * E * F - 2 * C ^ 2 * D - 2 * C * D ^ 2 + 2 * C * D * E +
     2 * C * D * F - 2 * D * E * F
 
-/-- Polarisation expresses an inner product through three squared distances. -/
+/-- Polarisation expresses an inner product through three squared distances.
+@isnad1 id=eq.0h3v.s8.6a5a8d6752f8 from=translated src=- shape=53ff2b98 vocab=5280f317
+-/
 theorem inner_sub_sub_eq
     (a b c : Plane) :
     ⟪b - a, c - a⟫_ℝ = (sqDist a b + sqDist a c - sqDist b c) / 2 := by
@@ -39,7 +41,9 @@ theorem inner_sub_sub_eq
   rw [dist_comm b a, dist_comm c a] at h
   nlinarith
 
-/-- Four planar points have vanishing Cayley--Menger determinant. -/
+/-- Four planar points have vanishing Cayley--Menger determinant.
+@isnad1 id=eq.0h4v.s5.4da170cc6907 from=translated src=- shape=59ffad79 vocab=95eec07a
+-/
 theorem cm4_sqDist_eq_zero (a b c d : Plane) :
     cm4 (sqDist a b) (sqDist a c) (sqDist a d)
       (sqDist b c) (sqDist b d) (sqDist c d) = 0 := by
@@ -75,7 +79,9 @@ theorem cm4_sqDist_eq_zero (a b c d : Plane) :
   linarith
 
 /-- The Cayley--Menger identity remains zero after dividing all squared
-distances by one common nonzero scale. -/
+distances by one common nonzero scale.
+@isnad1 id=eq.1h5v.s6.c78e70580048 from=translated src=- shape=64763c46 vocab=ca9f827f
+-/
 theorem cm4_normalized_eq_zero
     (a b c d : Plane) {s : ℝ} (hs : s ≠ 0) :
     cm4 (sqDist a b / s) (sqDist a c / s) (sqDist a d / s)

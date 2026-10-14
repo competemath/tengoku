@@ -54,13 +54,17 @@ def iteratedFermatQuot (p : ℕ) : ℕ → ℕ → ℤ → ℚ
   | j + 1, k, x =>
       (iteratedFermatQuot p j (k + 1) x - iteratedFermatQuot p j k x) / (p : ℚ) ^ (k + 1)
 
-/-- The bottom of the tower: `F^{(0)}_k(x) = x^(p^k)`. -/
+/-- The bottom of the tower: `F^{(0)}_k(x) = x^(p^k)`.
+@isnad1 id=eq.0h3v.s5.0d310db93cdd from=translated src=- shape=716c5fbb vocab=4cd241b1
+-/
 @[simp]
 theorem iteratedFermatQuot_zero (p k : ℕ) (x : ℤ) :
     iteratedFermatQuot p 0 k x = (x : ℚ) ^ p ^ k := rfl
 
 /-- The divided-difference recursion: `F^{(j+1)}_k(x)` is
-`(F^{(j)}_{k+1}(x) - F^{(j)}_k(x)) / p^(k+1)`. -/
+`(F^{(j)}_{k+1}(x) - F^{(j)}_k(x)) / p^(k+1)`.
+@isnad1 id=eq.0h4v.s6.abad9b6be384 from=translated src=- shape=7650582b vocab=f99bc63e
+-/
 @[simp]
 theorem iteratedFermatQuot_succ (p j k : ℕ) (x : ℤ) :
     iteratedFermatQuot p (j + 1) k x =
@@ -76,34 +80,48 @@ noncomputable def cPoly (p j : ℕ) : ℤ[X] := ∏ r ∈ Finset.range j, (X + C
 /-- The coefficient `c_{j,i}(p)` of `X^i` in `∏_{r<j}(X + p^r)`. -/
 noncomputable def cCoeff (p j i : ℕ) : ℤ := (cPoly p j).coeff i
 
-/-- The empty falling `p`-power product is `1`. -/
+/-- The empty falling `p`-power product is `1`.
+@isnad1 id=eq.0h1v.s4.45cebd32fd17 from=translated src=- shape=a2cd355f vocab=20b2c62d
+-/
 @[simp] theorem cPoly_zero (p : ℕ) : cPoly p 0 = 1 := by simp [cPoly]
 
-/-- The falling `p`-power product gains the factor `X + p^j` at step `j`. -/
+/-- The falling `p`-power product gains the factor `X + p^j` at step `j`.
+@isnad1 id=eq.0h2v.s6.f3a308b44526 from=translated src=- shape=539ffc87 vocab=dba31711
+-/
 theorem cPoly_succ (p j : ℕ) : cPoly p (j + 1) = cPoly p j * (X + C ((p : ℤ) ^ j)) := by
   simp [cPoly, Finset.prod_range_succ]
 
-/-- The falling `p`-power product is monic, being a product of monic linear factors. -/
+/-- The falling `p`-power product is monic, being a product of monic linear factors.
+@isnad1 id=monic.0h2v.s3.5e5784487a09 from=translated src=- shape=215a98a0 vocab=23b964da
+-/
 theorem monic_cPoly (p j : ℕ) : (cPoly p j).Monic :=
   monic_prod_of_monic _ _ fun _ _ => monic_X_add_C _
 
-/-- The falling `p`-power product `∏_{r<j}(X + p^r)` has degree `j`. -/
+/-- The falling `p`-power product `∏_{r<j}(X + p^r)` has degree `j`.
+@isnad1 id=eq.0h2v.s3.0303a40ef1a6 from=translated src=- shape=62eb3d69 vocab=1af084d5
+-/
 @[simp] theorem natDegree_cPoly (p j : ℕ) : (cPoly p j).natDegree = j := by
   rw [cPoly, natDegree_prod_of_monic _ _ fun r _ => monic_X_add_C ((p : ℤ) ^ r)]
   simp only [natDegree_X_add_C, Finset.sum_const, Finset.card_range, smul_eq_mul, mul_one]
 
-/-- The coefficients `c_{j,i}(p)` vanish above the degree: `c_{j,i}(p) = 0` for `i > j`. -/
+/-- The coefficients `c_{j,i}(p)` vanish above the degree: `c_{j,i}(p) = 0` for `i > j`.
+@isnad1 id=eq.1h3v.s4.1fb24b07f89c from=translated src=- shape=b774f2c7 vocab=6b840617
+-/
 theorem cCoeff_eq_zero_of_lt {p j i : ℕ} (h : j < i) : cCoeff p j i = 0 :=
   coeff_eq_zero_of_natDegree_lt (by rwa [natDegree_cPoly])
 
 /-- The top coefficient of the falling `p`-power product is `1`: the product is monic of
-degree `j`. -/
+degree `j`.
+@isnad1 id=eq.0h2v.s3.fc641e2c9724 from=translated src=- shape=f5a3d3ad vocab=63236fec
+-/
 @[simp] theorem cCoeff_self (p j : ℕ) : cCoeff p j j = 1 := by
   have := (monic_cPoly p j).coeff_natDegree
   rwa [natDegree_cPoly] at this
 
 /-- The defining identity of the coefficients `c_{j,i}(p)`, in the form
-`∏_{r<j}(X + p^r) = ∑_{i ≤ j} c_{j,i}(p) X^i`. -/
+`∏_{r<j}(X + p^r) = ∑_{i ≤ j} c_{j,i}(p) X^i`.
+@isnad1 id=eq.0h2v.s7.6f69a4bc263d from=translated src=- shape=e3deeb41 vocab=603d5c19
+-/
 theorem cPoly_eq_sum (p j : ℕ) :
     cPoly p j = ∑ i ∈ Finset.range (j + 1), C (cCoeff p j i) * X ^ i := by
   rw [(cPoly p j).as_sum_range' (j + 1) (by simp)]
@@ -119,19 +137,25 @@ dividing `x` is `GranvilleMoore.unitQuot_eq_intCast`. -/
 def unitQuot (p : ℕ) (x : ℤ) (k : ℕ) : ℚ :=
   ((x ^ ((p - 1) * p ^ k) - 1 : ℤ) : ℚ) / (p : ℚ) ^ (k + 1)
 
-/-- `g_k(x)` written with the unit `t_x = x^{p-1}` visible. -/
+/-- `g_k(x)` written with the unit `t_x = x^{p-1}` visible.
+@isnad1 id=eq.0h3v.s6.ee5e812f087c from=translated src=- shape=28ccd40d vocab=e50f60f5
+-/
 theorem unitQuot_eq (p : ℕ) (x : ℤ) (k : ℕ) :
     unitQuot p x k = (((x ^ (p - 1)) ^ p ^ k - 1 : ℤ) : ℚ) / (p : ℚ) ^ (k + 1) := by
   rw [unitQuot, pow_mul]
 
-/-- The bottom unit quotient is the Fermat quotient: `g_0(x) = (x^{p-1} - 1)/p`. -/
+/-- The bottom unit quotient is the Fermat quotient: `g_0(x) = (x^{p-1} - 1)/p`.
+@isnad1 id=eq.0h2v.s6.db5e4a41abba from=translated src=- shape=07a2c97e vocab=40064474
+-/
 @[simp] theorem unitQuot_zero (p : ℕ) (x : ℤ) :
     unitQuot p x 0 = ((x ^ (p - 1) - 1 : ℤ) : ℚ) / (p : ℚ) := by
   simp [unitQuot]
 
 /-- The characterising property of `g_k(x)`: `t_x^{p^k} = 1 + p^{k+1} g_k(x)`, as an
 identity in `ℚ`. This is the form consumers rewrite with, so that `unitQuot` never has to
-be unfolded. -/
+be unfolded.
+@isnad1 id=eq.1h3v.s6.5a73ecfd5e82 from=translated src=- shape=cd659590 vocab=2ddb1d9e
+-/
 theorem pow_eq_one_add_pow_mul_unitQuot {p : ℕ} (hp : p ≠ 0) (x : ℤ) (k : ℕ) :
     ((x : ℚ) ^ (p - 1)) ^ p ^ k = 1 + (p : ℚ) ^ (k + 1) * unitQuot p x k := by
   have hp' : (p : ℚ) ^ (k + 1) ≠ 0 := pow_ne_zero _ (Nat.cast_ne_zero.mpr hp)
@@ -152,10 +176,14 @@ noncomputable def binomPoly (p m : ℕ) : ℚ[X] :=
 (`binomPolyCoeff_eq_zero_of_lt`), so no bound on `n` is built into the definition. -/
 noncomputable def binomPolyCoeff (p m n : ℕ) : ℚ := (binomPoly p m).coeff n
 
-/-- The empty rescaled binomial polynomial is `1`. -/
+/-- The empty rescaled binomial polynomial is `1`.
+@isnad1 id=eq.0h1v.s4.5f4a387cdc99 from=translated src=- shape=a2cd355f vocab=37224b36
+-/
 @[simp] theorem binomPoly_zero (p : ℕ) : binomPoly p 0 = 1 := by simp [binomPoly]
 
-/-- The product formula for `B_m`: `B_m(z) = (1/m!) ∏_{s<m} ((z-1)/(p-1) - s)`. -/
+/-- The product formula for `B_m`: `B_m(z) = (1/m!) ∏_{s<m} ((z-1)/(p-1) - s)`.
+@isnad1 id=eq.0h3v.s6.e528544a0240 from=translated src=- shape=c4d9f3cd vocab=460e17e1
+-/
 theorem eval_binomPoly (p m : ℕ) (z : ℚ) :
     (binomPoly p m).eval z =
       (m.factorial : ℚ)⁻¹ * ∏ s ∈ Finset.range m, ((z - 1) / ((p : ℚ) - 1) - s) := by
@@ -163,7 +191,9 @@ theorem eval_binomPoly (p m : ℕ) (z : ℚ) :
     descPochhammer_eval_eq_prod_range, smul_eq_mul, div_eq_inv_mul]
 
 /-- The rescaled binomial polynomial `B_m` has degree at most `m`, being a rescaled
-composition of a degree-`m` polynomial with a linear one. -/
+composition of a degree-`m` polynomial with a linear one.
+@isnad1 id=le.0h2v.s3.301e3df9da17 from=translated src=- shape=62eb3d69 vocab=6fb9e584
+-/
 theorem natDegree_binomPoly_le (p m : ℕ) : (binomPoly p m).natDegree ≤ m := by
   refine (natDegree_smul_le _ _).trans (natDegree_comp_le.trans ?_)
   rw [descPochhammer_natDegree]
@@ -171,11 +201,15 @@ theorem natDegree_binomPoly_le (p m : ℕ) : (binomPoly p m).natDegree ≤ m := 
     (natDegree_smul_le _ _).trans (by compute_degree)
   simpa using Nat.mul_le_mul_left m h1
 
-/-- The coefficients of `B_m` vanish above the degree: `β_{m,n} = 0` for `n > m`. -/
+/-- The coefficients of `B_m` vanish above the degree: `β_{m,n} = 0` for `n > m`.
+@isnad1 id=eq.1h3v.s4.3cd887233ebf from=translated src=- shape=b774f2c7 vocab=869b5bae
+-/
 theorem binomPolyCoeff_eq_zero_of_lt {p m n : ℕ} (h : m < n) : binomPolyCoeff p m n = 0 :=
   coeff_eq_zero_of_natDegree_lt ((natDegree_binomPoly_le p m).trans_lt h)
 
-/-- `B_m` is the polynomial with coefficients `β_{m,n}` for `n ≤ m`. -/
+/-- `B_m` is the polynomial with coefficients `β_{m,n}` for `n ≤ m`.
+@isnad1 id=eq.0h2v.s7.38741bf136c2 from=translated src=- shape=e3deeb41 vocab=8a62c6be
+-/
 theorem binomPoly_eq_sum (p m : ℕ) :
     binomPoly p m = ∑ n ∈ Finset.range (m + 1), C (binomPolyCoeff p m n) * X ^ n := by
   rw [(binomPoly p m).as_sum_range' (m + 1)
@@ -198,7 +232,9 @@ noncomputable def collapsedCoeff (p j m : ℕ) : ℚ :=
     (-1) ^ (j - i) * (cCoeff p j i : ℚ) * ((∑ r ∈ Finset.range i, p ^ r).choose m : ℚ)
 
 /-- The collapsed coefficient at `j = 0` is the indicator of `m = 0`: `A_0(m)` is `1` for
-`m = 0` and `0` otherwise. -/
+`m = 0` and `0` otherwise.
+@isnad1 id=eq.0h2v.s5.d2f24a775b19 from=translated src=- shape=0f35ed36 vocab=73822a63
+-/
 @[simp] theorem collapsedCoeff_zero_left (p m : ℕ) :
     collapsedCoeff p 0 m = if m = 0 then 1 else 0 := by
   rcases m with _ | m <;> simp [collapsedCoeff]

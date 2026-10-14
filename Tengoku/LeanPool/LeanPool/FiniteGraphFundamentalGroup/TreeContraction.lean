@@ -57,6 +57,9 @@ noncomputable def graphTreeRootPath (b : V) :
   graphRealizationDirectedPath
     (default : Quiver.Path (Quiver.root V) b)
 
+/--
+@isnad1 id=eq.0h4v.s8.879a5d36e801 from=translated src=- shape=ba20337e vocab=6a30037b
+-/
 theorem graphTreeRootPath_cons {a b : V} (e : a ⟶ b) :
     graphTreeRootPath b =
       (graphTreeRootPath a).trans (graphRealizationForwardPath e) := by
@@ -89,6 +92,9 @@ private theorem continuous_treeContractionCoordinate :
   apply Continuous.subtype_mk
   fun_prop
 
+/--
+@isnad1 id=eq.0h1v.s6.d3de15124a4b from=translated src=- shape=97d04639 vocab=00bcec32
+-/
 @[simp]
 theorem treeContractionCoordinate_zero_right (t : I) :
     treeContractionCoordinate t 0 = ⟨(1 + (t : ℝ)) / 2, by
@@ -96,6 +102,9 @@ theorem treeContractionCoordinate_zero_right (t : I) :
   apply Subtype.ext
   simp [treeContractionCoordinate]
 
+/--
+@isnad1 id=eq.0h1v.s6.ecbfab1fdfbd from=translated src=- shape=82a670ae vocab=5e59fdfe
+-/
 @[simp]
 theorem treeContractionCoordinate_zero_left (s : I) :
     treeContractionCoordinate 0 s = ⟨(1 - (s : ℝ)) / 2, by
@@ -104,6 +113,9 @@ theorem treeContractionCoordinate_zero_left (s : I) :
   simp [treeContractionCoordinate]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s5.d27f2466ede4 from=translated src=- shape=a784d5a2 vocab=692fa180
+-/
 @[simp]
 theorem treeContractionCoordinate_one_left (s : I) :
     treeContractionCoordinate 1 s = ⟨1 - (s : ℝ), by
@@ -111,6 +123,9 @@ theorem treeContractionCoordinate_one_left (s : I) :
   apply Subtype.ext
   simp [treeContractionCoordinate]
 
+/--
+@isnad1 id=eq.0h1v.s5.736e83d89cb1 from=translated src=- shape=e7fdb8e8 vocab=5d15256c
+-/
 @[simp]
 theorem treeContractionCoordinate_one_right (t : I) :
     treeContractionCoordinate t 1 = 0 := by
@@ -127,11 +142,17 @@ def graphTreeEdgeContraction (e : Quiver.Total V) : C(I × I, graphRealization V
 def graphTreeVertexContraction (v : V) : C(I, graphRealization V) :=
   (graphTreeRootPath v).symm.toContinuousMap
 
+/--
+@isnad1 id=eq.0h3v.s9.95238e508246 from=translated src=- shape=f912a29b vocab=ac8a99ad
+-/
 @[simp]
 theorem graphTreeVertexContraction_apply (v : V) (s : I) :
     graphTreeVertexContraction v s = graphTreeRootPath v (σ s) := by
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.d99d707826b0 from=translated src=- shape=8bc15060 vocab=9954eda9
+-/
 @[simp]
 theorem graphTreeEdgeContraction_zero_right (e : Quiver.Total V) (t : I) :
     graphTreeEdgeContraction e (t, 0) = graphEdgePath e t := by
@@ -158,6 +179,9 @@ theorem graphTreeEdgeContraction_zero_right (e : Quiver.Total V) (t : I) :
     rw [treeContractionCoordinate_zero_right]
     ring
 
+/--
+@isnad1 id=eq.0h3v.s9.d109d4199794 from=translated src=- shape=d999c484 vocab=4c89b9d1
+-/
 @[simp]
 theorem graphTreeEdgeContraction_zero_left (e : Quiver.Total V) (s : I) :
     graphTreeEdgeContraction e (0, s) = graphTreeVertexContraction e.left s := by
@@ -176,6 +200,9 @@ theorem graphTreeEdgeContraction_zero_left (e : Quiver.Total V) (s : I) :
   norm_num [unitInterval.coe_symm_eq]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s9.82beaaf3c613 from=translated src=- shape=d999c484 vocab=a682c5fb
+-/
 @[simp]
 theorem graphTreeEdgeContraction_one_left (e : Quiver.Total V) (s : I) :
     graphTreeEdgeContraction e (1, s) = graphTreeVertexContraction e.right s := by
@@ -184,6 +211,9 @@ theorem graphTreeEdgeContraction_one_left (e : Quiver.Total V) (s : I) :
   rw [treeContractionCoordinate_one_left]
   congr 1
 
+/--
+@isnad1 id=eq.0h3v.s8.7b3d942ffc2e from=translated src=- shape=c317f8e5 vocab=518ba836
+-/
 @[simp]
 theorem graphTreeEdgeContraction_one_right (e : Quiver.Total V) (t : I) :
     graphTreeEdgeContraction e (t, 1) = graphVertex (Quiver.root V) := by
@@ -246,6 +276,9 @@ def graphTreeContractionPre :
     (Z := I)
   exact pieces.comp ⟨distribute, distribute.continuous⟩
 
+/--
+@isnad1 id=eq.0h3v.s9.fcf4c6653e8d from=translated src=- shape=82d46507 vocab=c17c7053
+-/
 @[simp]
 theorem graphTreeContractionPre_vertex
     (v : WithDiscreteTopology V) (s : I) :
@@ -254,6 +287,9 @@ theorem graphTreeContractionPre_vertex
   simp [graphTreeContractionPre, graphTreeContractionPieces,
     graphTreeVertexFamilyUncurry, graphTreeVertexFamily]
 
+/--
+@isnad1 id=eq.0h4v.s9.87ebb906fef9 from=translated src=- shape=99834cf7 vocab=3a9bf512
+-/
 @[simp]
 theorem graphTreeContractionPre_edge
     (e : WithDiscreteTopology (Quiver.Total V)) (t s : I) :
@@ -262,6 +298,9 @@ theorem graphTreeContractionPre_edge
   simp [graphTreeContractionPre, graphTreeContractionPieces,
     graphTreeEdgeFamilyUncurry, graphTreeEdgeFamily]
 
+/--
+@isnad1 id=eq.1h4v.s10.142427ef43ed from=translated src=- shape=58f6fd1f vocab=5806b965
+-/
 theorem graphTreeContractionPre_respects
     {x y : graphRealizationPre V}
     (h : Relation.EqvGen (graphRealizationGenerator (V := V)) x y) (s : I) :
@@ -296,6 +335,9 @@ def graphTreeContraction :
   rw [hcomp]
   exact (graphTreeContractionPre (V := V)).continuous
 
+/--
+@isnad1 id=eq.0h3v.s10.add4387ef6f9 from=translated src=- shape=42511fb0 vocab=89c70f30
+-/
 @[simp]
 theorem graphTreeContraction_quotient
     (x : graphRealizationPre V) (s : I) :
@@ -306,6 +348,9 @@ theorem graphTreeContraction_quotient
     graphTreeContractionPre (x, s)
   exact Quotient.lift_mk _ _ _
 
+/--
+@isnad1 id=eq.0h3v.s9.9a34094b8809 from=translated src=- shape=9e30360e vocab=97e0f1fa
+-/
 @[simp]
 theorem graphTreeContraction_vertex
     (v : WithDiscreteTopology V) (s : I) :
@@ -315,6 +360,9 @@ theorem graphTreeContraction_vertex
   rw [graphTreeContraction_quotient]
   exact graphTreeContractionPre_vertex v s
 
+/--
+@isnad1 id=eq.0h4v.s9.29ce6ea19793 from=translated src=- shape=a60d5d61 vocab=845fc449
+-/
 theorem graphTreeContraction_edge
     (e : WithDiscreteTopology (Quiver.Total V)) (t s : I) :
     graphTreeContraction
@@ -323,6 +371,9 @@ theorem graphTreeContraction_edge
   rw [graphTreeContraction_quotient]
   exact graphTreeContractionPre_edge e t s
 
+/--
+@isnad1 id=eq.0h2v.s9.c67081caf210 from=translated src=- shape=cf29d570 vocab=49d09352
+-/
 theorem graphTreeContraction_zero (x : graphRealization V) :
     graphTreeContraction (x, 0) = x := by
   refine Quotient.inductionOn x ?_
@@ -346,6 +397,9 @@ theorem graphTreeContraction_zero (x : graphRealization V) :
         graphTreeEdgeContraction_zero_right]
       rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.5a9cab24c83c from=translated src=- shape=ee21487a vocab=96d223ec
+-/
 theorem graphTreeContraction_one (x : graphRealization V) :
     graphTreeContraction (x, 1) = graphVertex (Quiver.root V) := by
   refine Quotient.inductionOn x ?_
@@ -368,7 +422,9 @@ theorem graphTreeContraction_one (x : graphRealization V) :
       rw [graphTreeContraction_quotient, graphTreeContractionPre_edge,
         graphTreeEdgeContraction_one_right]
 
-/-- An arborescence realization is contractible. -/
+/-- An arborescence realization is contractible.
+@isnad1 id=contract.0h1v.s6.72d505bea54c from=translated src=- shape=9499e9bc vocab=30edb953
+-/
 noncomputable instance graphRealization_contractible :
     ContractibleSpace (graphRealization V) where
   hequiv_unit' := by
@@ -399,6 +455,9 @@ noncomputable instance graphRealization_contractible :
 
 end QuotientContraction
 
+/--
+@isnad1 id=simplyco.0h1v.s6.6ffca728f502 from=translated src=- shape=9499e9bc vocab=ae7f2a1d
+-/
 theorem graphRealization_tree_simplyConnected :
     SimplyConnectedSpace (graphRealization V) := by
   infer_instance

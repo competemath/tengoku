@@ -75,7 +75,9 @@ def ExtIsImage [ModelSets V] {n : ℕ} (s : ℕ → V) (xs : Fin n → V)
     (ϕ : LZFC.BoundedFormula ℕ n) (a b : V) := ∀ (y : V),
   (y ∈ b ↔ ∃ (x : V), x ∈ a ∧ ϕ.Realize (replaceInitialValues s ![x, y]) xs)
 
-/-- `replaceInitialValues` composed with a larger replacement collapses. -/
+/-- `replaceInitialValues` composed with a larger replacement collapses.
+@isnad1 id=eq.1h6v.s6.6cd00633d21a from=translated src=- shape=4b6e2c59 vocab=7502b714
+-/
 @[simp]
 theorem replaceInitialValues_replaceInitialValues {n m : ℕ} {h : n ≤ m}
     {s : ℕ → V} {xs1 : Fin (n + 1) → V} {xs2 : Fin (m + 1) → V} :

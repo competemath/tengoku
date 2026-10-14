@@ -49,6 +49,9 @@ def AugmentedParamsNonnegative {n : ℕ}
     (p : Fin n → AugmentedTwoPointParams) : Prop :=
   ∀ i, AugmentedParamNonnegative (p i)
 
+/--
+@isnad1 id=le.0h3v.s4.f0f8f14fb1f3 from=translated src=- shape=f97438ae vocab=7a9cfcb7
+-/
 theorem augmentedGamma_nonneg {n : ℕ}
     {p : Fin n → AugmentedTwoPointParams} :
     ∀ i, 0 ≤ augmentedGamma (p i) := by
@@ -59,6 +62,9 @@ theorem augmentedGamma_nonneg {n : ℕ}
       change 0 ≤ 1 - q.1.1
       exact sub_nonneg.mpr q.2.1
 
+/--
+@isnad1 id=le.1h3v.s4.c2c4fa2a33f9 from=translated src=- shape=49cf1357 vocab=b0340caa
+-/
 theorem augmentedGamma_le_one {n : ℕ}
     {p : Fin n → AugmentedTwoPointParams}
     (hp : AugmentedParamsNonnegative p) :
@@ -72,6 +78,9 @@ theorem augmentedGamma_le_one {n : ℕ}
       change 1 - q.1.1 ≤ 1
       linarith [hp.1]
 
+/--
+@isnad1 id=lt.1h3v.s4.96ee2934c1c9 from=translated src=- shape=7f73cd05 vocab=fcfac50e
+-/
 theorem augmentedBeta_pos {n : ℕ}
     {p : Fin n → AugmentedTwoPointParams}
     (hp : AugmentedParamsNonnegative p) :
@@ -86,7 +95,9 @@ theorem augmentedBeta_pos {n : ℕ}
       linarith [hp.2]
 
 /-- Both branches of the augmented kernel are exactly the canonical
-mean-one two-point measure for their `γ,β` parameters. -/
+mean-one two-point measure for their `γ,β` parameters.
+@isnad1 id=eq.0h1v.s5.0a90cb9e0360 from=translated src=- shape=0ec94a63 vocab=cf7c3652
+-/
 theorem augmentedTwoPointKernel_eq_twoPointMeasure
     (p : AugmentedTwoPointParams) :
     augmentedTwoPointKernel p =
@@ -104,6 +115,9 @@ theorem augmentedTwoPointKernel_eq_twoPointMeasure
       · simp [augmentedGamma, lowValue]
       · simp [augmentedBeta, highValue]
 
+/--
+@isnad1 id=eq.0h2v.s5.9611a2166dd3 from=translated src=- shape=ef3515fe vocab=072a1ba7
+-/
 theorem augmentedConditionalProduct_eq_twoPointProduct {n : ℕ}
     (p : Fin n → AugmentedTwoPointParams) :
     augmentedConditionalProduct p =

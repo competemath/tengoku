@@ -33,6 +33,9 @@ def meanOneAugmentedLatent (μ : Measure ℝ) :
   else
     augmentedLatentMeasure μ (belowMoment μ)
 
+/--
+@isnad1 id=isprobab.2h1v.s6.1d78065eac12 from=translated src=- shape=ac606027 vocab=ea46b02a
+-/
 theorem meanOneAugmentedLatent_isProbability
     {μ : Measure ℝ} [IsProbabilityMeasure μ]
     (hμ : Integrable (fun x : ℝ ↦ x) μ)
@@ -45,6 +48,9 @@ theorem meanOneAugmentedLatent_isProbability
     exact augmentedLatentMeasure_isProbability hμ hmean
       (lt_of_le_of_ne belowMoment_nonneg (Ne.symm hM))
 
+/--
+@isnad1 id=eq.2h1v.s6.df5f7e70a1cd from=translated src=- shape=3ff47eae vocab=56fefc66
+-/
 theorem augmentedTwoPointKernel_comp_meanOneLatent
     {μ : Measure ℝ} [IsProbabilityMeasure μ]
     (hμ : Integrable (fun x : ℝ ↦ x) μ)
@@ -63,7 +69,9 @@ theorem augmentedTwoPointKernel_comp_meanOneLatent
 
 /-- Every finite product of mean-one laws is a mixture of the conditionally
 independent augmented two-point systems, including all degenerate `δ₁`
-coordinates. -/
+coordinates.
+@isnad1 id=eq.2h2v.s8.8efe44cb1f01 from=translated src=- shape=55656043 vocab=85772053
+-/
 theorem pi_eq_recursiveMeanOneAugmented_mixture
     (n : ℕ) (μ : Fin n → Measure ℝ)
     [∀ i, IsProbabilityMeasure (μ i)]

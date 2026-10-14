@@ -24,6 +24,9 @@ open MeasureTheory Set
 
 namespace Grunbaum
 
+/--
+@isnad1 id=eq.0h2v.s10.384526b61eea from=translated src=- shape=c14bf502 vocab=09c3b8cf
+-/
 theorem simplexSet_image_piLpCongrLeft (n : ℕ) (σ : Equiv.Perm (Fin n)) :
     LinearIsometryEquiv.piLpCongrLeft 2 ℝ ℝ σ '' simplexSet n =
       simplexSet n := by
@@ -54,6 +57,9 @@ theorem simplexSet_image_piLpCongrLeft (n : ℕ) (σ : Equiv.Perm (Fin n)) :
       rw [Equiv.sum_comp σ]
       simpa [coordinateSum_apply] using hy.2
 
+/--
+@isnad1 id=eq.0h3v.s9.8bae0b9a41ef from=translated src=- shape=426d6b9a vocab=449468ba
+-/
 theorem integral_simplex_coordinate_eq (n : ℕ) (i j : Fin n) :
     (∫ x in simplexSet n, x i ∂volume) =
       ∫ x in simplexSet n, x j ∂volume := by
@@ -68,6 +74,9 @@ theorem integral_simplex_coordinate_eq (n : ℕ) (i j : Fin n) :
   simpa [L, σ, LinearIsometryEquiv.piLpCongrLeft_apply,
     Equiv.piCongrLeft'] using hchange
 
+/--
+@isnad1 id=eq.0h3v.s6.5df94aed1bc9 from=translated src=- shape=040b28b4 vocab=74185c76
+-/
 theorem simplexCentroid_coordinate_eq (n : ℕ) (i j : Fin n) :
     simplexCentroid n i = simplexCentroid n j := by
   have h_id : Integrable (fun x : SimplexE n ↦ x)
@@ -89,7 +98,9 @@ theorem simplexCentroid_coordinate_eq (n : ℕ) (i j : Fin n) :
   rw [hi, hj, integral_simplex_coordinate_eq n i j]
 
 /-- Every coordinate of the volume centroid of the standard `n`-simplex
-equals `1 / (n + 1)`. -/
+equals `1 / (n + 1)`.
+@isnad1 id=eq.0h2v.s5.60d752f71eca from=translated src=- shape=1206152a vocab=0259ef67
+-/
 theorem simplexCentroid_apply (n : ℕ) (i : Fin n) :
     simplexCentroid n i = ((n : ℝ) + 1)⁻¹ := by
   have hn : 0 < n := lt_of_le_of_lt (Nat.zero_le i.val) i.isLt

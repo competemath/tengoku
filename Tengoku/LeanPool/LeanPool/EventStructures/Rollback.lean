@@ -44,19 +44,31 @@ def Rollbacks (c : Conf es) (e : es.Event) : Set (Conf es) :=
 def RollbackCandidates (c : Conf es) (e : es.Event) : Set (Conf es) :=
   {m | m.1 ⊆ c.1 ∧ e ∉ m.1}
 
+/--
+@isnad1 id=le.1h4v.s5.f61359afd9d5 from=translated src=- shape=854a0db0 vocab=2adeaa4b
+-/
 @[simp] lemma rollback_subset {c : Conf es} {e : es.Event} {m : Conf es}
     (h : isRollback es c e m) : m.1 ⊆ c.1 :=
   h.1
 
+/--
+@isnad1 id=not.1h4v.s5.428e4a2abd0c from=translated src=- shape=b37948bd vocab=96e53fca
+-/
 @[simp] lemma rollback_not_mem {c : Conf es} {e : es.Event} {m : Conf es}
     (h : isRollback es c e m) : e ∉ m.1 :=
   h.2.1
 
+/--
+@isnad1 id=le.4h5v.s7.9ee5bf3d1768 from=translated src=- shape=9fbd2170 vocab=e5342209
+-/
 lemma rollback_maximal {c : Conf es} {e : es.Event} {m : Conf es}
     (h : isRollback es c e m) :
     ∀ m' : Conf es, m'.1 ⊆ c.1 → e ∉ m'.1 → m.1 ⊆ m'.1 → m'.1 ⊆ m.1 :=
   h.2.2
 
+/--
+@isnad1 id=iff.0h4v.s6.2958cd16542c from=translated src=- shape=c029b60e vocab=c1c9eaa3
+-/
 lemma isRollback_iff_maximal {c : Conf es} {e : es.Event} {m : Conf es} :
     isRollback es c e m ↔ m ∈ RollbackCandidates es c e ∧
       ∀ m' : Conf es, m' ∈ RollbackCandidates es c e → m.1 ⊆ m'.1 → m'.1 ⊆ m.1 := by
@@ -67,12 +79,17 @@ lemma isRollback_iff_maximal {c : Conf es} {e : es.Event} {m : Conf es} :
     exact ⟨hmsub, hmnot, fun m' hm'sub hm'not hsubset =>
       hmax m' ⟨hm'sub, hm'not⟩ hsubset⟩
 
+/--
+@isnad1 id=le.1h4v.s5.0ff08c29b3eb from=translated src=- shape=9fc87dd6 vocab=5b7aa7bc
+-/
 lemma rollback_subset_future {c : Conf es} {e : es.Event} {m : Conf es}
     (h : isRollback es c e m) : m.1 ⊆ c.1 \ es.future e := by
   intro x hx
   exact ⟨h.1 hx, fun hxFuture => h.2.1 ((m.2).2 hx hxFuture)⟩
 
-/-- Removing the future of `e` from a configuration keeps it a configuration. -/
+/-- Removing the future of `e` from a configuration keeps it a configuration.
+@isnad1 id=isconf.0h3v.s5.304fa0c25bf4 from=translated src=- shape=0e2dcb08 vocab=56499284
+-/
 lemma rollback_future_isConf {c : Conf es} {e : es.Event} :
     isConf es (c.1 \ es.future e) := by
   refine ⟨fun ⟨h₁c, _⟩ ⟨h₂c, _⟩ => c.2.1 h₁c h₂c, ?_⟩
@@ -83,15 +100,23 @@ lemma rollback_future_isConf {c : Conf es} {e : es.Event} :
 def rollbackFuture (c : Conf es) (e : es.Event) : Conf es :=
   ⟨c.1 \ es.future e, rollback_future_isConf (es := es) (c := c)⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.5ea055ae05dd from=translated src=- shape=c07e0544 vocab=bef0f1b5
+-/
 @[simp] lemma rollbackFuture_val (c : Conf es) (e : es.Event) :
     (@rollbackFuture es c e).1 = c.1 \ es.future e :=
   rfl
 
+/--
+@isnad1 id=iff.0h4v.s6.a531c51e3e34 from=translated src=- shape=a1f2802e vocab=5599a005
+-/
 lemma rollbackFuture_mem {c : Conf es} {e : es.Event} {x : es.Event} :
     x ∈ (@rollbackFuture es c e).1 ↔ x ∈ c.1 ∧ x ∉ es.future e :=
   Iff.rfl
 
-/-- Redoability: `e` is enabled in `rollback(c,e)` when `e ∈ c`. -/
+/-- Redoability: `e` is enabled in `rollback(c,e)` when `e ∈ c`.
+@isnad1 id=enables.1h3v.s5.dc00cea1c44d from=translated src=- shape=3db05d8c vocab=212b88cc
+-/
 lemma rollback_redoable {c : Conf es} {e : es.Event} (he : e ∈ c.1) :
     (@rollbackFuture es c e).1 ⊢ e := by
   refine ⟨rollback_future_isConf (es := es) (c := c), fun hmem => hmem.2 le_rfl,
@@ -100,12 +125,16 @@ lemma rollback_redoable {c : Conf es} {e : es.Event} (he : e ∈ c.1) :
   intro x hx
   exact ⟨c.2.2 he (le_of_lt hx), fun h => not_le_of_gt hx h⟩
 
-/-- Causal safety: Rollback removes exactly the causal consequences of `e`. -/
+/-- Causal safety: Rollback removes exactly the causal consequences of `e`.
+@isnad1 id=not.1h4v.s5.fc537e4a8b40 from=translated src=- shape=dd3b11a1 vocab=5599a005
+-/
 lemma rollback_causal_safety {c : Conf es} {e : es.Event} {x : es.Event} :
     x ∈ (@rollbackFuture es c e).1 → x ∉ es.future e :=
   fun hx => hx.2
 
-/-- The canonical rollback is a rollback for `c` and `e`. -/
+/-- The canonical rollback is a rollback for `c` and `e`.
+@isnad1 id=isrollba.0h3v.s4.5d6fc4e82c82 from=translated src=- shape=e80e4379 vocab=1564bd1d
+-/
 lemma rollback_future {c : Conf es} {e : es.Event} :
     isRollback es c e (@rollbackFuture es c e) := by
   -- Subset of c, e not in rollback, and maximality.
@@ -113,7 +142,9 @@ lemma rollback_future {c : Conf es} {e : es.Event} :
   intro m' hm'sub hm'not _ _ hx
   exact ⟨hm'sub hx, fun h => hm'not (m'.2.2 hx h)⟩
 
-/-- Any rollback coincides with the canonical rollback. -/
+/-- Any rollback coincides with the canonical rollback.
+@isnad1 id=eq.1h4v.s5.ab20255153ce from=translated src=- shape=9fc87dd6 vocab=57c2a151
+-/
 @[simp] lemma rollback_eq_future {c : Conf es} {e : es.Event} {m : Conf es}
     (h : isRollback es c e m) : m.1 = c.1 \ es.future e := by
   refine Set.Subset.antisymm (rollback_subset_future (es := es) h) ?_
@@ -121,14 +152,18 @@ lemma rollback_future {c : Conf es} {e : es.Event} :
   exact h.2.2 (@rollbackFuture es c e) (fun x hx => hx.1) (fun he => he.2 le_rfl)
     (rollback_subset_future (es := es) h)
 
-/-- Rollbacks are unique when they exist. -/
+/-- Rollbacks are unique when they exist.
+@isnad1 id=eq.2h5v.s4.d2baffdc9e88 from=translated src=- shape=51753444 vocab=ffe3b839
+-/
 lemma rollback_unique {c : Conf es} {e : es.Event}
     {m₁ m₂ : Conf es} (h₁ : isRollback es c e m₁) (h₂ : isRollback es c e m₂) :
     m₁ = m₂ := by
   apply Subtype.ext
   rw [rollback_eq_future (es := es) h₁, rollback_eq_future (es := es) h₂]
 
-/-- The rollback is the maximum element among rollback candidates. -/
+/-- The rollback is the maximum element among rollback candidates.
+@isnad1 id=le.2h5v.s6.784d25a72590 from=translated src=- shape=c5817e19 vocab=c1c9eaa3
+-/
 lemma rollback_maximum {c : Conf es} {e : es.Event} {m : Conf es}
     (h : isRollback es c e m) :
     ∀ m' : Conf es, m' ∈ RollbackCandidates es c e → m'.1 ⊆ m.1 := by
@@ -139,7 +174,9 @@ lemma rollback_maximum {c : Conf es} {e : es.Event} {m : Conf es}
 
 /-- Helper: An event in the future that is not yet in a partial configuration is
     enabled there, provided the partial configuration contains its strict past
-    and is consistent. -/
+    and is consistent.
+@isnad1 id=enables.5h5v.s7.712c1abf1e93 from=translated src=- shape=d7b1bf13 vocab=38e6e926
+-/
 lemma event_enabled_when_past_present {c : Conf es} {e x : es.Event}
     (hx : x ∈ c.1 ∩ es.future e) (c' : Conf es)
     (hxnot : x ∉ c'.1)
@@ -159,7 +196,9 @@ lemma event_enabled_when_past_present {c : Conf es} {e x : es.Event}
 
 /-- Constructive: given a `Finset` representation `cF` of the underlying configuration `c`,
     there is an executable list from the rollback configuration to `c`.
-    Uses decidable equality and decidable strict order on events. -/
+    Uses decidable equality and decidable strict order on events.
+@isnad1 id=nonempty.1h4v.s6.b5789ee234ec from=translated src=- shape=e16a3567 vocab=714ace48
+-/
 theorem execList_exists_finite [DecidableEventStructure es] {c : Conf es} {e : es.Event}
     (cF : Finset es.Event) (hcF : ∀ x, x ∈ cF ↔ x ∈ c.1) :
     Nonempty (Σ t : List es.Event, Path.ExecList es (@rollbackFuture es c e) t c) := by
@@ -228,7 +267,9 @@ theorem execList_exists_finite [DecidableEventStructure es] {c : Conf es} {e : e
       exact ⟨⟨x :: t, Path.ExecList.cons x henab hexec⟩⟩
 
 /-- Correctness: the original configuration `c` is reachable from `rollback(c,e)`
-    when `c.1` admits a `Finset` representation. -/
+    when `c.1` admits a `Finset` representation.
+@isnad1 id=nonempty.1h4v.s6.00d0407b60ad from=translated src=- shape=34df5270 vocab=90fec0fe
+-/
 lemma rollback_correctness_finite [DecidableEventStructure es] {c : Conf es} {e : es.Event}
     (cF : Finset es.Event) (hcF : ∀ x, x ∈ cF ↔ x ∈ c.1) :
     Nonempty (Path es (@rollbackFuture es c e) c) := by
@@ -236,7 +277,9 @@ lemma rollback_correctness_finite [DecidableEventStructure es] {c : Conf es} {e 
   exact ⟨Path.execListToPath (es := es) hExec⟩
 
 /-- Minimality of Rollback - Any path from a redo-candidate configuration `c'` to `c` is at
-    least as long as the number of events in `c` causally after `e`. -/
+    least as long as the number of events in `c` causally after `e`.
+@isnad1 id=le.2h5v.s6.130c428f040b from=translated src=- shape=4326cb6e vocab=8afacefa
+-/
 lemma rollback_minimality {c : Conf es} {e : es.Event}
     {c' : Conf es} (_hredo : c'.1 ⊢ e) (hsafe : ∀ x ∈ c'.1, x ∉ es.future e)
     (p' : Path es c' c) :

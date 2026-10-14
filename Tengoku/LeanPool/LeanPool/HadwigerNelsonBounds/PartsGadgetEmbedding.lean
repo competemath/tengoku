@@ -27,6 +27,9 @@ noncomputable def partsGadgetColoring
     (planeColoring : unitDistanceGraph.Coloring (Fin 4)) : Fin 73 → Fin 4 :=
   fun vertex => planeColoring (partsGadgetPoint vertex)
 
+/--
+@isnad1 id=partsgad.0h1v.s3.c4c9b7711866 from=translated src=- shape=83bedc8d vocab=8adf7e17
+-/
 lemma partsGadgetColoring_valid
     (planeColoring : unitDistanceGraph.Coloring (Fin 4)) :
     PartsGadgetValid (partsGadgetColoring planeColoring) := by
@@ -57,7 +60,9 @@ lemma partsGadgetColoring_valid
     exact hmono
 
 /-- The explicitly embedded doubled patch forces its opposite endpoints to
-have equal colors in every proper four-coloring of the plane. -/
+have equal colors in every proper four-coloring of the plane.
+@isnad1 id=eq.0h1v.s7.31e230a98346 from=translated src=- shape=ed55c540 vocab=30c07c8e
+-/
 theorem parts_doubled_patch_forces_monochromatic_pair
     (planeColoring : unitDistanceGraph.Coloring (Fin 4)) :
     planeColoring (partsGadgetPoint 5) =
@@ -65,15 +70,23 @@ theorem parts_doubled_patch_forces_monochromatic_pair
   exact parts_gadget_forces_monochromatic_pair
     (partsGadgetColoring_valid planeColoring)
 
+/--
+@isnad1 id=eq.0h0v.s5.1b0dacc5fffc from=translated src=- shape=f942bd63 vocab=f26c423f
+-/
 lemma partsGadgetPoint_five :
     partsGadgetPoint 5 = partsAxialPoint (-2) 0 := by
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.7a65cced941a from=translated src=- shape=7bd9679a vocab=9209994e
+-/
 lemma partsGadgetPoint_thirtyOne :
     partsGadgetPoint 31 = partsAxialPoint 2 0 := by
   rfl
 
-/-- The forced pair in axial coordinates; its Euclidean distance is four. -/
+/-- The forced pair in axial coordinates; its Euclidean distance is four.
+@isnad1 id=eq.0h1v.s7.16f30d74f64f from=translated src=- shape=f2f04317 vocab=9184b7c1
+-/
 theorem parts_axial_pair_forces_monochromatic
     (planeColoring : unitDistanceGraph.Coloring (Fin 4)) :
     planeColoring (partsAxialPoint (-2) 0) =
@@ -82,7 +95,9 @@ theorem parts_axial_pair_forces_monochromatic
     parts_doubled_patch_forces_monochromatic_pair planeColoring
 
 /-- Every distance-preserving image of the doubled patch forces the
-corresponding distance-four pair to be monochromatic. -/
+corresponding distance-four pair to be monochromatic.
+@isnad1 id=eq.1h2v.s7.24d6db02985f from=translated src=- shape=214ac59a vocab=a9190aac
+-/
 theorem parts_axial_pair_forces_under_motion
     (planeColoring : unitDistanceGraph.Coloring (Fin 4)) (motion : R2 → R2)
     (hdist : ∀ p q, dist (motion p) (motion q) = dist p q) :

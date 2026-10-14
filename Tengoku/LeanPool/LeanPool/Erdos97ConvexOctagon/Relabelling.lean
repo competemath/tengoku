@@ -16,11 +16,15 @@ namespace Erdos97Octagon
 /-- The canonical first witness row used by the finite classification. -/
 def standardTargets : Finset Vertex := {1, 2, 3, 4}
 
-/-- The canonical witness row has four vertices. -/
+/-- The canonical witness row has four vertices.
+@isnad1 id=eq.0h0v.s3.244ce5546d14 from=translated src=- shape=b3c4969c vocab=2f28cb84
+-/
 @[simp] theorem card_standardTargets : standardTargets.card = 4 := by
   decide
 
-/-- The canonical witness row does not contain its centre. -/
+/-- The canonical witness row does not contain its centre.
+@isnad1 id=not.0h0v.s4.665373a28db8 from=translated src=- shape=55a69007 vocab=6cc6d7c5
+-/
 @[simp] theorem zero_notMem_standardTargets : (0 : Vertex) ∉ standardTargets := by
   decide
 
@@ -70,7 +74,9 @@ private theorem exists_perm_fix_zero_map
     · intro hx
       exact Finset.mem_map.mpr ⟨x, hx, hτ x hx⟩
 
-/-- Every octagon incidence system is isomorphic to one with canonical row zero. -/
+/-- Every octagon incidence system is isomorphic to one with canonical row zero.
+@isnad1 id=ex.0h1v.s3.cb5244d4a96c from=translated src=- shape=879a76fb vocab=4b56b5d0
+-/
 theorem exists_normalized_relabel (Q : OctagonIncidence) :
     ∃ e : Vertex ≃ Vertex, (Q.relabel e).Normalized := by
   obtain ⟨e, he0, hmap⟩ :=
@@ -87,7 +93,9 @@ end OctagonIncidence
 def relabelPoints (p : Vertex → Plane) (e : Vertex ≃ Vertex) : Vertex → Plane :=
   p ∘ e.symm
 
-/-- Equal-distance realisability is invariant under simultaneous relabelling. -/
+/-- Equal-distance realisability is invariant under simultaneous relabelling.
+@isnad1 id=realises.1h3v.s4.0c4f44429588 from=translated src=- shape=1cd43369 vocab=08da0fa8
+-/
 theorem realises_relabel
     {p : Vertex → Plane} {Q : OctagonIncidence} (hR : Realises p Q)
     (e : Vertex ≃ Vertex) :
@@ -99,13 +107,17 @@ theorem realises_relabel
     simpa [OctagonIncidence.relabel] using hw
   simpa [relabelPoints] using hr (e.symm w) hw'
 
-/-- Convex independence is invariant under relabelling. -/
+/-- Convex independence is invariant under relabelling.
+@isnad1 id=convexin.1h2v.s8.b6d1d3b7cff9 from=translated src=- shape=7dead265 vocab=395a1484
+-/
 theorem convexIndependent_relabel
     {p : Vertex → Plane} (hC : ConvexIndependent ℝ p) (e : Vertex ≃ Vertex) :
     ConvexIndependent ℝ (relabelPoints p e) := by
   simpa [relabelPoints] using hC.comp_embedding e.symm.toEmbedding
 
-/-- A failed convex octagon has a normalized balanced pair-sparse realisation. -/
+/-- A failed convex octagon has a normalized balanced pair-sparse realisation.
+@isnad1 id=ex.2h1v.s8.8351134d0bfc from=translated src=- shape=e3334d31 vocab=5d7aa508
+-/
 theorem normalized_reduction_of_all_hasFour
     {p : Vertex → Plane} (hC : ConvexIndependent ℝ p)
     (h : ∀ v, HasFourEquidistant p v) :

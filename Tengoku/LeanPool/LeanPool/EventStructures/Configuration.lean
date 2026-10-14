@@ -48,11 +48,15 @@ def enables (c : Set es.Event) (e : es.Event) : Prop :=
 /-- Notation for the enabling relation. -/
 local infix:50 " ⊢ " => enables es
 
-/-- An enabled event is not already in the configuration. -/
+/-- An enabled event is not already in the configuration.
+@isnad1 id=not.1h3v.s4.8a07febd795f from=translated src=- shape=2d4791ce vocab=08971e03
+-/
 lemma enables_not_mem {c : Set es.Event} {e : es.Event} (h : c ⊢ e) : e ∉ c :=
   h.2.1
 
-/-- If a configuration c enables an event e, then c ∪ {e} is also a configuration. -/
+/-- If a configuration c enables an event e, then c ∪ {e} is also a configuration.
+@isnad1 id=isconf.1h3v.s5.0c4b4c15b2cd from=translated src=- shape=064dc8e0 vocab=aeca2afc
+-/
 lemma enables_extension {c : Set es.Event} {e : es.Event} (h : c ⊢ e) :
     isConf es (c ∪ {e}) := by
   obtain ⟨⟨hConflictFree, hDownClosed⟩, -, hConsistent, hPast⟩ := h

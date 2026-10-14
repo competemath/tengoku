@@ -64,7 +64,9 @@ variable {d : ℕ}
 
 /-- **The row difference identity** (`lem_row_difference`): the recursion defining
 `iteratedFermatQuot`, cleared of its denominator. Raising the subscript by one changes
-`F⁽ᵃ⁾` by `p^(b+1)` times the next `F⁽ᵃ⁺¹⁾`. -/
+`F⁽ᵃ⁾` by `p^(b+1)` times the next `F⁽ᵃ⁺¹⁾`.
+@isnad1 id=eq.1h4v.s6.fd8fc4f11b55 from=translated src=- shape=acc9bfee vocab=dcd7507a
+-/
 theorem iteratedFermatQuot_sub_iteratedFermatQuot {p : ℕ} (hp : p ≠ 0) (a b : ℕ) (x : ℤ) :
     iteratedFermatQuot p a (b + 1) x - iteratedFermatQuot p a b x
       = (p : ℚ) ^ (b + 1) * iteratedFermatQuot p (a + 1) b x := by
@@ -76,7 +78,9 @@ theorem iteratedFermatQuot_sub_iteratedFermatQuot {p : ℕ} (hp : p ≠ 0) (a b 
 /-- **The ladder starts at the Moore matrix** (`lem_ladder_start`): the rows of `L 0` are
 `F⁽⁰⁾_0, …, F⁽⁰⁾_(d-1)`, and `F⁽⁰⁾_k(x) = x^(p^k)` is the Moore matrix entry. The
 comparison is stated over `ℚ`, where the ladder lives, so the integer Moore matrix appears
-through its entrywise image. -/
+through its entrywise image.
+@isnad1 id=eq.0h3v.s5.527c529ad0bf from=translated src=- shape=f646aece vocab=618cbfd1
+-/
 theorem ladderMatrix_zero (p : ℕ) (x : Fin d → ℤ) :
     ladderMatrix p x 0 = (mooreMatrix p x).map (fun z : ℤ => (z : ℚ)) := by
   ext r j
@@ -84,7 +88,9 @@ theorem ladderMatrix_zero (p : ℕ) (x : Fin d → ℤ) :
 
 /-- **Entries of the last ladder matrix** (`lem_ladder_last_entries`): at the last rung the
 trailing block of growing subscripts is empty, so the row at index `r` of `L (d-1)` is
-`F⁽ʳ⁾_0`. -/
+`F⁽ʳ⁾_0`.
+@isnad1 id=eq.0h5v.s5.1f04f75a54f4 from=translated src=- shape=f858e5a9 vocab=e376ac0f
+-/
 theorem ladderMatrix_last_apply (p : ℕ) (x : Fin d → ℤ) (r j : Fin d) :
     ladderMatrix p x (d - 1) r j = iteratedFermatQuot p (r : ℕ) 0 (x j) := by
   have hr : (r : ℕ) ≤ d - 1 := by have := r.isLt; omega
@@ -215,7 +221,9 @@ private theorem det_ladderStep_zero_eq (p : ℕ) (x : Fin d → ℤ) (i : ℕ) :
 exactly `p^C(d-i,2)`.
 
 This is usually stated for `d ≥ 2` and `i ≤ d - 2`; no such bound is needed, since for
-`d ≤ i + 1` both sides read `det (L i) = det (L i)`. -/
+`d ≤ i + 1` both sides read `det (L i) = det (L i)`.
+@isnad1 id=eq.1h4v.s6.801482da02ea from=translated src=- shape=211b1ee7 vocab=a2004b64
+-/
 theorem det_ladderMatrix_step {p : ℕ} (hp : p ≠ 0) (x : Fin d → ℤ) (i : ℕ) :
     (ladderMatrix p x i).det
       = (p : ℚ) ^ Nat.choose (d - i) 2 * (ladderMatrix p x (i + 1)).det := by
@@ -238,7 +246,9 @@ private theorem det_ladderMatrix_zero_eq {p : ℕ} (hp : p ≠ 0) (x : Fin d →
 
 This is the total power of `p` that the ladder extracts: rung `i` contributes `C(n-i,2)`. It
 follows from the hockey stick `GranvilleMoore.sum_range_choose_two` by the re-indexing `c = n - i`;
-the two terms `C(1,2)` and `C(0,2)` that the reflected range adds both vanish. -/
+the two terms `C(1,2)` and `C(0,2)` that the reflected range adds both vanish.
+@isnad1 id=eq.0h1v.s5.7d62df9722d5 from=translated src=- shape=7e235543 vocab=12574cfb
+-/
 theorem sum_range_sub_choose_two (n : ℕ) :
     ∑ i ∈ range (n - 1), Nat.choose (n - i) 2 = Nat.choose (n + 1) 3 := by
   rcases Nat.eq_zero_or_pos n with rfl | hn
@@ -259,7 +269,9 @@ theorem sum_range_sub_choose_two (n : ℕ) :
 `ladderMatrix_zero` identifies `L 0` with the Moore matrix over `ℚ`, `det_ladderMatrix_step`
 supplies the `d - 1` rungs, and the exponents add up to `C(d+1,3)` by
 `sum_range_choose_two`. For `d = 0` and `d = 1` there are no rungs and the exponent is `0`,
-so the identity is an equality of the two ends. -/
+so the identity is an equality of the two ends.
+@isnad1 id=eq.1h3v.s6.303463db7980 from=translated src=- shape=d404feec vocab=c1684b18
+-/
 theorem det_mooreMatrix_eq_pow_mul_det_ladderMatrix {p : ℕ} (hp : p ≠ 0) (x : Fin d → ℤ) :
     ((mooreMatrix p x).det : ℚ)
       = (p : ℚ) ^ Nat.choose (d + 1) 3 * (ladderMatrix p x (d - 1)).det := by

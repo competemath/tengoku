@@ -35,13 +35,17 @@ abbrev exponentialMap : ℂ → ℂ := Complex.exp
 /-- The `n`-th iterate of the complex exponential map. -/
 abbrev expIterate (n : ℕ) : ℂ → ℂ := exponentialMap^[n]
 
-/-- The zeroth iterate is the identity map. -/
+/-- The zeroth iterate is the identity map.
+@isnad1 id=eq.0h1v.s3.7ef3ec513eab from=translated src=- shape=5b483ac0 vocab=f6f8f460
+-/
 @[simp]
 theorem expIterate_zero (z : ℂ) :
     expIterate 0 z = z := by
   rfl
 
-/-- Apply one more exponential after the `n`-th iterate. -/
+/-- Apply one more exponential after the `n`-th iterate.
+@isnad1 id=eq.0h2v.s4.d489ca719f90 from=translated src=- shape=442880ac vocab=5ad4a0f6
+-/
 @[simp]
 theorem expIterate_succ (n : ℕ) (z : ℂ) :
     expIterate (n + 1) z =
@@ -67,7 +71,9 @@ def EventuallyMeetsRealAxis (V : Set ℂ) : Prop :=
 /-! ## Basic analytic infrastructure corresponding to the HOL preliminaries -/
 
 /-- Chain rule for the exponential, corresponding to
-`HAS_COMPLEX_DERIVATIVE_CEXP_COMPOSE` in HOL Light. -/
+`HAS_COMPLEX_DERIVATIVE_CEXP_COMPOSE` in HOL Light.
+@isnad1 id=hasderiv.1h3v.s6.4e235cfd6305 from=translated src=- shape=50dc4c59 vocab=025671dc
+-/
 theorem hasDerivAt_exp_comp {f : ℂ → ℂ} {f' z : ℂ}
     (hf : HasDerivAt f f' z) :
     HasDerivAt (Complex.exp ∘ f)
@@ -75,14 +81,18 @@ theorem hasDerivAt_exp_comp {f : ℂ → ℂ} {f' z : ℂ}
   simpa [mul_comm] using
     (Complex.hasDerivAt_exp (f z)).comp z hf
 
-/-- Composition with the exponential preserves complex differentiability at a point. -/
+/-- Composition with the exponential preserves complex differentiability at a point.
+@isnad1 id=differen.1h2v.s7.1667c068f76d from=translated src=- shape=5488e77f vocab=60b66032
+-/
 theorem differentiableAt_exp_comp
     {f : ℂ → ℂ} {z : ℂ}
     (hf : DifferentiableAt ℂ f z) :
     DifferentiableAt ℂ (fun w => Complex.exp (f w)) z := by
   exact Complex.differentiableAt_exp.comp z hf
 
-/-- Every iterate of the exponential is complex differentiable. -/
+/-- Every iterate of the exponential is complex differentiable.
+@isnad1 id=differen.0h1v.s6.ad8c8d4aa77a from=translated src=- shape=e86db131 vocab=5751a460
+-/
 theorem differentiable_expIterate (n : ℕ) :
     Differentiable ℂ (expIterate n) := by
   induction n with
@@ -91,12 +101,16 @@ theorem differentiable_expIterate (n : ℕ) :
       simpa [expIterate, Function.iterate_succ_apply] using
         ih.comp Complex.differentiable_exp
 
-/-- Every iterate of the exponential is continuous. -/
+/-- Every iterate of the exponential is continuous.
+@isnad1 id=continuo.0h1v.s5.59a1c7cba38c from=translated src=- shape=8735051e vocab=259314ea
+-/
 theorem continuous_expIterate (n : ℕ) :
     Continuous (expIterate n) :=
   (differentiable_expIterate n).continuous
 
-/-- Every iterate of the exponential is complex differentiable on every set. -/
+/-- Every iterate of the exponential is complex differentiable on every set.
+@isnad1 id=differen.0h2v.s6.a8d9489e9169 from=translated src=- shape=9df716e6 vocab=4476b700
+-/
 theorem differentiableOn_expIterate (n : ℕ) (s : Set ℂ) :
     DifferentiableOn ℂ (expIterate n) s :=
   (differentiable_expIterate n).differentiableOn

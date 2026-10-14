@@ -24,7 +24,9 @@ namespace Feige
 noncomputable section
 
 /-- Evaluation of the two-point law on a Borel set is measurable in both
-support points. -/
+support points.
+@isnad1 id=measurab.1h1v.s5.3c628cdaccb3 from=translated src=- shape=b34c3e42 vocab=bcd0f329
+-/
 theorem measurable_twoPointMeasure_apply {B : Set ℝ} (hB : MeasurableSet B) :
     Measurable (fun p : ℝ × ℝ ↦ twoPointMeasure p.1 p.2 B) := by
   simp only [twoPointMeasure, Measure.add_apply, Measure.smul_apply,
@@ -48,15 +50,24 @@ noncomputable def twoPointKernel : Kernel TwoPointParams ℝ where
     intro B hB
     exact (measurable_twoPointMeasure_apply hB).comp measurable_subtype_coe
 
+/--
+@isnad1 id=eq.0h1v.s7.e1428b6b84c4 from=translated src=- shape=aaa873a9 vocab=616146ec
+-/
 @[simp] theorem twoPointKernel_apply (p : TwoPointParams) :
     twoPointKernel p = twoPointMeasure p.1.1 p.1.2 :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.20f3bddd1a05 from=translated src=- shape=a5cf9408 vocab=a4b4534a
+-/
 theorem twoPointKernel_mean (p : TwoPointParams) :
     (∫ z : ℝ, z ∂(twoPointKernel p)) = 1 := by
   rw [twoPointKernel_apply]
   exact twoPointMeasure_mean p.2.1 p.2.2.1 p.2.2.2
 
+/--
+@isnad1 id=eq.1h1v.s6.433811551459 from=translated src=- shape=0b1bcfb4 vocab=b793b9df
+-/
 theorem twoPointKernel_nonnegative_support (p : TwoPointParams)
     (hx : 0 ≤ p.1.1) :
     twoPointKernel p (Iio 0) = 0 := by
@@ -71,7 +82,9 @@ then sampling from their two-point law. -/
 noncomputable def kernelTwoPointMixture (ν : Measure TwoPointParams) : Measure ℝ :=
   twoPointKernel ∘ₘ ν
 
-/-- The `Measure.bind` formula for the two-point mixture. -/
+/-- The `Measure.bind` formula for the two-point mixture.
+@isnad1 id=eq.1h2v.s7.6387154fac37 from=translated src=- shape=11a27963 vocab=da1b6443
+-/
 theorem kernelTwoPointMixture_apply (ν : Measure TwoPointParams)
     {B : Set ℝ} (hB : MeasurableSet B) :
     kernelTwoPointMixture ν B =
@@ -79,7 +92,9 @@ theorem kernelTwoPointMixture_apply (ν : Measure TwoPointParams)
   rw [kernelTwoPointMixture, Measure.bind_apply hB twoPointKernel.aemeasurable]
   rfl
 
-/-- Averaging a pointwise probability bound over latent parameters. -/
+/-- Averaging a pointwise probability bound over latent parameters.
+@isnad1 id=le.2h3v.s7.8a9120c13645 from=translated src=- shape=23dbefde vocab=431ac244
+-/
 theorem kernelTwoPointMixture_apply_le
     (ν : Measure TwoPointParams) [IsProbabilityMeasure ν]
     {B : Set ℝ} (hB : MeasurableSet B) {c : ENNReal}
@@ -95,11 +110,16 @@ theorem kernelTwoPointMixture_apply_le
 def strictPairSet : Set (ℝ × ℝ) :=
   {p | p.1 < 1 ∧ 1 < p.2}
 
+/--
+@isnad1 id=measurab.0h0v.s3.a7d82e5a6c06 from=translated src=- shape=0b0a4f6e vocab=a434b2f6
+-/
 theorem measurableSet_strictPairSet : MeasurableSet strictPairSet := by
   exact (measurableSet_lt measurable_fst measurable_const).inter
     (measurableSet_lt measurable_const measurable_snd)
 
-/-- Every strict below-above pair is an admissible two-point parameter. -/
+/-- Every strict below-above pair is an admissible two-point parameter.
+@isnad1 id=and.1h1v.s5.7700e6b90f15 from=translated src=- shape=f7f168c3 vocab=76e5c0a0
+-/
 theorem strictPairSet_admissible {p : ℝ × ℝ} (hp : p ∈ strictPairSet) :
     p.1 ≤ 1 ∧ 1 ≤ p.2 ∧ p.1 < p.2 :=
   ⟨hp.1.le, hp.2.le, hp.1.trans hp.2⟩
@@ -115,6 +135,9 @@ noncomputable def pairToParams (p : ℝ × ℝ) : TwoPointParams :=
   if hp : p ∈ strictPairSet then ⟨p, strictPairSet_admissible hp⟩
   else ⟨(0, 2), by norm_num⟩
 
+/--
+@isnad1 id=measurab.0h0v.s3.81378ea65687 from=translated src=- shape=f7148d33 vocab=174f8e3d
+-/
 theorem measurable_pairToParams : Measurable pairToParams := by
   let f : ℝ × ℝ → ℝ × ℝ :=
     fun p ↦ if p ∈ strictPairSet then p else (0, 2)
@@ -144,6 +167,9 @@ noncomputable def belowAboveProduct (μ : Measure ℝ) : Measure (ℝ × ℝ) :=
 noncomputable def latentPairDensity (M : ℝ) (p : ℝ × ℝ) : ENNReal :=
   (ENNReal.ofReal M)⁻¹ * ENNReal.ofReal (p.2 - p.1)
 
+/--
+@isnad1 id=measurab.0h1v.s3.d9aad1ffe403 from=translated src=- shape=818344e9 vocab=7d302df6
+-/
 theorem measurable_latentPairDensity (M : ℝ) :
     Measurable (latentPairDensity M) := by
   unfold latentPairDensity
@@ -154,11 +180,17 @@ noncomputable def latentPairMeasure (μ : Measure ℝ) (M : ℝ) :
     Measure (ℝ × ℝ) :=
   (belowAboveProduct μ).withDensity (latentPairDensity M)
 
+/--
+@isnad1 id=eq.0h0v.s5.c966e4847bb1 from=translated src=- shape=732ec8f0 vocab=2ee7802e
+-/
 theorem strictPairSet_eq_prod :
     strictPairSet = Iio (1 : ℝ) ×ˢ Ioi (1 : ℝ) := by
   ext p
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.b8c175b9ddf3 from=translated src=- shape=89a25fdc vocab=2b1cd563
+-/
 theorem belowAboveProduct_compl_strictPairSet (μ : Measure ℝ) [SFinite μ] :
     belowAboveProduct μ strictPairSetᶜ = 0 := by
   rw [belowAboveProduct, Measure.prod_restrict,
@@ -167,7 +199,9 @@ theorem belowAboveProduct_compl_strictPairSet (μ : Measure ℝ) [SFinite μ] :
   simp
 
 /-- The weighted latent pair measure has no mass outside the strict
-below×above parameter region. -/
+below×above parameter region.
+@isnad1 id=eq.0h2v.s5.d9224f280a22 from=translated src=- shape=ff6b11de vocab=27b7752c
+-/
 theorem latentPairMeasure_compl_strictPairSet (μ : Measure ℝ) [SFinite μ] (M : ℝ) :
     latentPairMeasure μ M strictPairSetᶜ = 0 := by
   rw [latentPairMeasure, withDensity_apply _ measurableSet_strictPairSet.compl]
@@ -180,6 +214,9 @@ noncomputable def latentParamsMeasure (μ : Measure ℝ) (M : ℝ) :
     Measure TwoPointParams :=
   (latentPairMeasure μ M).map pairToParams
 
+/--
+@isnad1 id=eq.1h3v.s6.a810d606ef3b from=translated src=- shape=9785355e vocab=93c37aea
+-/
 theorem latentParamsMeasure_apply (μ : Measure ℝ) (M : ℝ)
     {A : Set TwoPointParams} (hA : MeasurableSet A) :
     latentParamsMeasure μ M A =
@@ -193,7 +230,9 @@ noncomputable def nondegenerateKernelMixture (μ : Measure ℝ) (M : ℝ) :
   kernelTwoPointMixture (latentParamsMeasure μ M)
 
 /-- The absolute-value definition of the lower moment is the usual
-restricted first moment below one. -/
+restricted first moment below one.
+@isnad1 id=eq.0h1v.s5.1823d7f5e34e from=translated src=- shape=92c603f9 vocab=ce69b115
+-/
 theorem belowMoment_eq_integral_Iio (μ : Measure ℝ) :
     belowMoment μ = ∫ x in Iio (1 : ℝ), 1 - x ∂μ := by
   rw [← integral_indicator measurableSet_Iio]
@@ -211,7 +250,9 @@ theorem belowMoment_eq_integral_Iio (μ : Measure ℝ) :
     ring
 
 /-- The absolute-value definition of the upper moment is the usual
-restricted first moment above one. -/
+restricted first moment above one.
+@isnad1 id=eq.0h1v.s5.4a366cc007ce from=translated src=- shape=f26e2063 vocab=56be09fe
+-/
 theorem aboveMoment_eq_integral_Ioi (μ : Measure ℝ) :
     aboveMoment μ = ∫ y in Ioi (1 : ℝ), y - 1 ∂μ := by
   rw [← integral_indicator measurableSet_Ioi]
@@ -228,6 +269,9 @@ theorem aboveMoment_eq_integral_Ioi (μ : Measure ℝ) :
     rw [abs_of_nonpos (sub_nonpos.mpr (le_of_not_gt hy))]
     ring
 
+/--
+@isnad1 id=eq.1h1v.s6.cb78bd4e21d8 from=translated src=- shape=1c6d0f38 vocab=49e7759e
+-/
 theorem ofReal_belowMoment_eq_lintegral_Iio
     {μ : Measure ℝ} [IsFiniteMeasure μ]
     (hμ : Integrable (fun x : ℝ ↦ x) μ) :
@@ -239,6 +283,9 @@ theorem ofReal_belowMoment_eq_lintegral_Iio
   · filter_upwards [ae_restrict_mem measurableSet_Iio] with x hx
     exact sub_nonneg.mpr hx.le
 
+/--
+@isnad1 id=eq.1h1v.s6.71c84dd08451 from=translated src=- shape=4ffdf005 vocab=ce3a1a81
+-/
 theorem ofReal_aboveMoment_eq_lintegral_Ioi
     {μ : Measure ℝ} [IsFiniteMeasure μ]
     (hμ : Integrable (fun x : ℝ ↦ x) μ) :
@@ -251,7 +298,9 @@ theorem ofReal_aboveMoment_eq_lintegral_Ioi
     exact sub_nonneg.mpr hy.le
 
 /-- Tonelli expansion of the total mass of the nondegenerate latent pair
-measure. -/
+measure.
+@isnad1 id=eq.1h2v.s7.ce73f77ef392 from=translated src=- shape=7b606208 vocab=bc665564
+-/
 theorem latentPairMeasure_univ
     {μ : Measure ℝ} [IsFiniteMeasure μ]
     (hμ : Integrable (fun x : ℝ ↦ x) μ) (M : ℝ) :
@@ -328,6 +377,9 @@ theorem latentPairMeasure_univ
       ← ofReal_belowMoment_eq_lintegral_Iio hμ]
   · fun_prop
 
+/--
+@isnad1 id=eq.0h1v.s6.2569f014ee63 from=translated src=- shape=87923d90 vocab=46fbac5e
+-/
 theorem mass_below_add_above
     (μ : Measure ℝ) [IsProbabilityMeasure μ] :
     μ (Iio 1) + μ (Ioi 1) = 1 - μ {1} := by
@@ -344,7 +396,9 @@ theorem mass_below_add_above
     _ = 1 := hparts
 
 /-- In the mean-one positive-moment branch, the nondegenerate latent
-component has precisely the mass outside the atom at one. -/
+component has precisely the mass outside the atom at one.
+@isnad1 id=eq.3h1v.s7.45920f5b0656 from=translated src=- shape=b9a190a7 vocab=618ee2d5
+-/
 theorem latentPairMeasure_univ_meanOne
     {μ : Measure ℝ} [IsProbabilityMeasure μ]
     (hμ : Integrable (fun x : ℝ ↦ x) μ)
@@ -371,6 +425,9 @@ two-point component. -/
 noncomputable def fullKernelMixture (μ : Measure ℝ) (M : ℝ) : Measure ℝ :=
   μ {1} • Measure.dirac 1 + nondegenerateKernelMixture μ M
 
+/--
+@isnad1 id=eq.3h1v.s7.c2a28d004050 from=translated src=- shape=ca21d95c vocab=11423ff2
+-/
 theorem nondegenerateKernelMixture_univ
     {μ : Measure ℝ} [IsProbabilityMeasure μ]
     (hμ : Integrable (fun x : ℝ ↦ x) μ)
@@ -397,6 +454,9 @@ theorem nondegenerateKernelMixture_univ
         exact measure_univ]
   rw [hmap, latentPairMeasure_univ_meanOne hμ hmean hM]
 
+/--
+@isnad1 id=isprobab.3h1v.s6.2ea5215d6606 from=translated src=- shape=31c16d1f vocab=de2fff5b
+-/
 theorem fullKernelMixture_isProbability
     {μ : Measure ℝ} [IsProbabilityMeasure μ]
     (hμ : Integrable (fun x : ℝ ↦ x) μ)
@@ -416,7 +476,9 @@ theorem fullKernelMixture_isProbability
 
 /-- Pull the nondegenerate kernel mixture back from the parameter subtype to
 the original weighted pair measure.  This is the change-of-variables layer
-in the Borel-set verification of the two-point mixture formula. -/
+in the Borel-set verification of the two-point mixture formula.
+@isnad1 id=eq.1h3v.s7.3320b466575f from=translated src=- shape=3e0d504b vocab=a6c70010
+-/
 theorem nondegenerateKernelMixture_apply_pair
     (μ : Measure ℝ) (M : ℝ) {B : Set ℝ} (hB : MeasurableSet B) :
     nondegenerateKernelMixture μ M B =
@@ -430,6 +492,9 @@ theorem nondegenerateKernelMixture_apply_pair
     exact (measurable_twoPointMeasure_apply hB).comp measurable_subtype_coe
   rw [lintegral_map hf measurable_pairToParams]
 
+/--
+@isnad1 id=eq.1h3v.s6.2ba1a347076c from=translated src=- shape=a6e93713 vocab=150bdac7
+-/
 theorem nondegenerateKernelMixture_apply_strict
     (μ : Measure ℝ) [SFinite μ] (M : ℝ)
     {B : Set ℝ} (hB : MeasurableSet B) :
@@ -443,6 +508,9 @@ theorem nondegenerateKernelMixture_apply_strict
   have hps : p ∈ strictPairSet := by simpa only [compl_compl] using hp
   simp [pairToParams, hps]
 
+/--
+@isnad1 id=eq.2h3v.s7.bc86548d4a6d from=translated src=- shape=c7e4e219 vocab=46ce54f0
+-/
 theorem nondegenerateKernelMixture_apply_expanded
     {μ : Measure ℝ} [IsFiniteMeasure μ]
     (hμ : Integrable (fun x : ℝ ↦ x) μ) (M : ℝ)
@@ -565,7 +633,9 @@ theorem nondegenerateKernelMixture_apply_expanded
   rw [hfirst, hsecond, mul_comm (μ.restrict (Iio 1) B)]
 
 /-- The measurable-kernel construction agrees with the direct expansion of
-the two-point mixture formula. -/
+the two-point mixture formula.
+@isnad1 id=eq.1h2v.s5.c90897da298b from=translated src=- shape=1abbc339 vocab=dc556394
+-/
 theorem fullKernelMixture_eq_expanded
     {μ : Measure ℝ} [IsFiniteMeasure μ]
     (hμ : Integrable (fun x : ℝ ↦ x) μ) (M : ℝ) :
@@ -577,7 +647,9 @@ theorem fullKernelMixture_eq_expanded
 
 /-- For a mean-one probability law with a nonzero lower moment, sampling the
 latent pair and then the corresponding two-point law reconstructs the
-original law. -/
+original law.
+@isnad1 id=eq.3h1v.s6.7f7646feb5f5 from=translated src=- shape=d4e61119 vocab=de2fff5b
+-/
 theorem fullKernelMixture_eq
     {μ : Measure ℝ} [IsProbabilityMeasure μ]
     (hμ : Integrable (fun x : ℝ ↦ x) μ)

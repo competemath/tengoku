@@ -18,6 +18,9 @@ public import Tengoku
 
 namespace HadwigerNelsonBounds
 
+/--
+@isnad1 id=mem.1h2v.s6.9d8b83b5ae5d from=translated src=- shape=abf94094 vocab=60785ee8
+-/
 lemma partsGadgetNegation_neighbor {vertex neighbor : Fin 73}
     (hadj : neighbor ∈ partsGadgetNeighbors vertex) :
     partsGadgetNegation neighbor ∈
@@ -97,6 +100,9 @@ lemma partsGadgetNegation_neighbor {vertex neighbor : Fin 73}
   · exact partsGadgetNegationNeighbor71 hadj
   · exact partsGadgetNegationNeighbor72 hadj
 
+/--
+@isnad1 id=or.1h2v.s7.52946af181d0 from=translated src=- shape=37264e96 vocab=ca59a351
+-/
 lemma partsGadgetNegation_triple {vertex : Fin 73}
     {pair : Fin 73 × Fin 73}
     (hpair : pair ∈ partsGadgetTriplePairs vertex) :
@@ -179,6 +185,9 @@ lemma partsGadgetNegation_triple {vertex : Fin 73}
   · exact partsGadgetNegationTriple71 hpair
   · exact partsGadgetNegationTriple72 hpair
 
+/--
+@isnad1 id=valid.1h2v.s4.7dd329c2020a from=translated src=- shape=1f684b74 vocab=6466247a
+-/
 lemma partsGadgetTriangleWitness_valid {vertex : Fin 73}
     {witness : PartsGadgetTriangleWitnessData}
     (hwitness : witness ∈ partsGadgetTriangleWitnesses vertex) :

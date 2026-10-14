@@ -36,6 +36,9 @@ def BoundedFormulaω.IsFirstOrder (φ : L.BoundedFormulaω α n) : Prop :=
 
 namespace BoundedFormulaω
 
+/--
+@isnad1 id=iff.0h5v.s5.ca1a986918a2 from=translated src=- shape=0ff2e6ef vocab=10ec0a0a
+-/
 @[simp] theorem isFirstOrder_imp_iff {φ ψ : L.BoundedFormulaω α n} :
     (φ.imp ψ).IsFirstOrder ↔ φ.IsFirstOrder ∧ ψ.IsFirstOrder := by
   constructor
@@ -52,6 +55,9 @@ namespace BoundedFormulaω
   · rintro ⟨⟨a, rfl⟩, ⟨b, rfl⟩⟩
     exact ⟨a.imp b, rfl⟩
 
+/--
+@isnad1 id=iff.0h4v.s5.1e30e80c2298 from=translated src=- shape=01d2233d vocab=077f3600
+-/
 @[simp] theorem isFirstOrder_all_iff {φ : L.BoundedFormulaω α (n + 1)} :
     φ.all.IsFirstOrder ↔ φ.IsFirstOrder := by
   constructor
@@ -68,13 +74,17 @@ namespace BoundedFormulaω
   · rintro ⟨a, rfl⟩
     exact ⟨a.all, rfl⟩
 
-/-- **No infinitary conjunction is first-order.**  This is the fact HF's closure fields need. -/
+/-- **No infinitary conjunction is first-order.**  This is the fact HF's closure fields need.
+@isnad1 id=not.0h4v.s4.5ae9d8b28ef8 from=translated src=- shape=e2bca94d vocab=826beeab
+-/
 @[simp] theorem not_isFirstOrder_iInf (φs : ℕ → L.BoundedFormulaω α n) :
     ¬ (BoundedFormulaω.iInf φs).IsFirstOrder := by
   rintro ⟨φ₀, hφ₀⟩
   cases φ₀ <;> exact absurd hφ₀ (by simp [BoundedFormula.toLω])
 
-/-- **No infinitary disjunction is first-order.** -/
+/-- **No infinitary disjunction is first-order.**
+@isnad1 id=not.0h4v.s4.a2aa3b442221 from=translated src=- shape=e2bca94d vocab=69cee323
+-/
 @[simp] theorem not_isFirstOrder_iSup (φs : ℕ → L.BoundedFormulaω α n) :
     ¬ (BoundedFormulaω.iSup φs).IsFirstOrder := by
   rintro ⟨φ₀, hφ₀⟩

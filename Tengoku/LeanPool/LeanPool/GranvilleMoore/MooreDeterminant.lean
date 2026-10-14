@@ -113,7 +113,9 @@ ladder is an integer.
 Integrality is phrased as the existence of an integer whose cast is the value, matching
 `GranvilleMoore.exists_intCast_iteratedFermatQuot`. Every entry of `L (d-1)` is an iterated
 Fermat quotient of superscript at most `p - 1`, hence an integer, and a determinant is a
-polynomial with integer coefficients in its entries. -/
+polynomial with integer coefficients in its entries.
+@isnad1 id=ex.4h3v.s6.069cb776d0e8 from=translated src=- shape=66bf1338 vocab=313d68f2
+-/
 theorem exists_intCast_det_ladderMatrix_last (hp : p.Prime) (hodd : Odd p) (hdp : d ≤ p)
     {x : Fin d → ℤ} (hx : ∀ j, ¬ (p : ℤ) ∣ x j) :
     ∃ D : ℤ, (ladderMatrix p x (d - 1)).det = (D : ℚ) := by
@@ -182,7 +184,9 @@ The congruence is stated as an equality in `ZMod p` between the images of the in
 Since every row index `r` satisfies `r ≤ d - 1 ≤ p - 2`,
 `GranvilleMoore.dvd_factorial_mul_sub_mul_pow` applies to every entry; scaling row `r` by `r!`
 therefore turns the reduction of `L (d-1)` into the matrix with entries `x_j q_p(x_j)^r`, which is
-the shape `GranvilleMoore.det_of_eq_mul_pow` evaluates. -/
+the shape `GranvilleMoore.det_of_eq_mul_pow` evaluates.
+@isnad1 id=eq.7h5v.s8.568dd1c0509d from=translated src=- shape=464a4a2e vocab=d9edaf77
+-/
 theorem prod_factorial_mul_intCast_det_ladderMatrix_last (hp : p.Prime) (hodd : Odd p)
     (_hd : 1 ≤ d) (hdp : d ≤ p - 1) {x : Fin d → ℤ} (hx : ∀ j, ¬ (p : ℤ) ∣ x j) {D : ℤ}
     (hD : (ladderMatrix p x (d - 1)).det = (D : ℚ)) {q : Fin d → ℤ}
@@ -212,7 +216,9 @@ expansion has a second surviving term: there
 Vandermonde shape with its bottom row replaced by the bottom row minus the row of index `1`, and
 `GranvilleMoore.det_of_eq_mul_pow_updateRow_sub` says that this row operation changes nothing. A
 weaker form allows an unspecified unit `ε` in place of `∏_i i!`; the sharp form of the exceptional
-congruence makes `ε = ∏_i i!` exactly. -/
+congruence makes `ε = ∏_i i!` exactly.
+@isnad1 id=eq.6h5v.s8.76c93885f3f4 from=translated src=- shape=1f0414c4 vocab=56b7ff05
+-/
 theorem prod_factorial_mul_intCast_det_ladderMatrix_last_of_eq (hp : p.Prime) (hodd : Odd p)
     (hdp : d = p) {x : Fin d → ℤ} (hx : ∀ j, ¬ (p : ℤ) ∣ x j) {D : ℤ}
     (hD : (ladderMatrix p x (d - 1)).det = (D : ℚ)) {q : Fin d → ℤ}
@@ -267,7 +273,9 @@ Both scaling factors of the two preceding lemmas are units modulo `p`: each `i!`
 `i ≤ d - 1 ≤ p - 1` is prime to `p` by `Nat.Prime.dvd_factorial`, and each `x_j` is prime to
 `p` by hypothesis. So the residue of `det L_{d-1}` is nonzero exactly when the Vandermonde
 product is, and `GranvilleMoore.det_of_eq_mul_pow_ne_zero_iff` — over the field `ZMod p`,
-which is a domain — turns that into injectivity. -/
+which is a domain — turns that into injectivity.
+@isnad1 id=iff.7h5v.s7.9a486040e58f from=translated src=- shape=49599e91 vocab=8591ba73
+-/
 theorem not_dvd_det_ladderMatrix_last_iff (hp : p.Prime) (hodd : Odd p) (hd : 1 ≤ d)
     (hdp : d ≤ p) {x : Fin d → ℤ} (hx : ∀ j, ¬ (p : ℤ) ∣ x j) {D : ℤ}
     (hD : (ladderMatrix p x (d - 1)).det = (D : ℚ)) {q : Fin d → ℤ}
@@ -313,7 +321,9 @@ theorem not_dvd_det_ladderMatrix_last_iff (hp : p.Prime) (hodd : Odd p) (hd : 1 
 
 This is `GranvilleMoore.det_mooreMatrix_eq_pow_mul_det_ladderMatrix`, which lives in `ℚ`
 because the ladder does, pushed back down to `ℤ` by injectivity of the cast. Both main
-theorems read off this identity. -/
+theorems read off this identity.
+@isnad1 id=eq.2h4v.s6.e7970f920263 from=translated src=- shape=a8c5a045 vocab=9cf8ef34
+-/
 theorem det_mooreMatrix_eq_pow_mul (hp : p.Prime) {x : Fin d → ℤ} {D : ℤ}
     (hD : (ladderMatrix p x (d - 1)).det = (D : ℚ)) :
     (mooreMatrix p x).det = (p : ℤ) ^ Nat.choose (d + 1) 3 * D := by
@@ -330,7 +340,9 @@ explain why `1 ≤ d` and `det M ≠ 0` are carried but unused.
 
 `GranvilleMoore.det_mooreMatrix_eq_pow_mul` exhibits `det M` as `p^C(d+1,3)` times the
 integer `D` of `GranvilleMoore.exists_intCast_det_ladderMatrix_last`, which is the
-divisibility. -/
+divisibility.
+@isnad1 id=dvd.6h3v.s6.9fc6c24de7b8 from=translated src=- shape=d2abf71a vocab=86d32b45
+-/
 theorem pow_dvd_det_mooreMatrix (hp : p.Prime) (hodd : Odd p) (_hd : 1 ≤ d) (hdp : d ≤ p)
     {x : Fin d → ℤ} (hx : ∀ j, ¬ (p : ℤ) ∣ x j) (_hdet : (mooreMatrix p x).det ≠ 0) :
     (p : ℤ) ^ Nat.choose (d + 1) 3 ∣ (mooreMatrix p x).det := by
@@ -352,7 +364,9 @@ By `GranvilleMoore.det_mooreMatrix_eq_pow_mul`, `det M = p^C(d+1,3) D`, so one f
 of `p` divides `det M` exactly when `p ∣ D`; the claim is therefore
 `GranvilleMoore.not_dvd_det_ladderMatrix_last_iff`. The range is the paper's `d ≤ p`, the
 boundary case `d = p` being covered by
-`GranvilleMoore.prod_factorial_mul_intCast_det_ladderMatrix_last_of_eq`. -/
+`GranvilleMoore.prod_factorial_mul_intCast_det_ladderMatrix_last_of_eq`.
+@isnad1 id=iff.7h4v.s7.35334fe64b05 from=translated src=- shape=75cffee5 vocab=9354ede3
+-/
 theorem not_pow_succ_dvd_det_mooreMatrix_iff (hp : p.Prime) (hodd : Odd p) (hd : 1 ≤ d)
     (hdp : d ≤ p) {x : Fin d → ℤ} (hx : ∀ j, ¬ (p : ℤ) ∣ x j) {q : Fin d → ℤ}
     (hq : ∀ j, fermatQuotient p (x j) = (q j : ℚ)) (_hdet : (mooreMatrix p x).det ≠ 0) :

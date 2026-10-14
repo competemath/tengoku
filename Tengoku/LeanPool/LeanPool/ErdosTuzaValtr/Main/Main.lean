@@ -27,6 +27,9 @@ variable {γ : Type _} [LinearOrder γ] (C : Config γ)
 
 open OrderDual
 
+/--
+@isnad1 id=maingoal.1h3v.s4.0f57113bfc76 from=translated src=- shape=818164f8 vocab=c6dd6d1d
+-/
 theorem Config.Mirror_mainGoal (n : ℕ) : C.MainGoal n → C.Mirror.MainGoal n :=
   by
   intro h Sm hSm cap4_free cup_free
@@ -54,6 +57,9 @@ private theorem hasLaced_pair {S : Finset γ} {x y : γ} (x_mem : x ∈ S) (y_me
   · rw [List.getLast?_cons_cons, List.getLast?_singleton]; rfl
   · rw [List.head?_cons]; rfl
 
+/--
+@isnad1 id=maingoal.0h3v.s4.003bd7dbae20 from=translated src=- shape=c33140c6 vocab=72769446
+-/
 theorem Config.main_lemma (n : ℕ) : C.MainGoal n := by
   induction n with
   | zero =>
@@ -99,6 +105,9 @@ theorem Config.main_lemma (n : ℕ) : C.MainGoal n := by
 
 namespace ErdosTuzaValtr
 
+/--
+@isnad1 id=or.1h4v.s6.1f4ca0c577b6 from=translated src=- shape=53de5ce6 vocab=fd87d105
+-/
 theorem main (n : ℕ) (C : Config γ) (S : Finset γ) (hS : Nat.choose (n + 2) 2 + 2 ≤ S.card) :
     C.HasNCap 4 S ∨ C.HasNGon (n + 3) S := by
   by_cases has_cap4 : C.HasNCap 4 S

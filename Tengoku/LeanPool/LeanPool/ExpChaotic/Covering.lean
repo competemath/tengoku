@@ -35,7 +35,9 @@ Since Lemma 6 already supplies an orbit reaching the real axis in every open dis
 we only need expansion along real orbits, rather than general escaping orbits.
 -/
 
-/-- A small disk centred on the real axis is expanded by a prescribed factor. -/
+/-- A small disk centred on the real axis is expanded by a prescribed factor.
+@isnad1 id=le.5h3v.s6.a98032a230eb from=translated src=- shape=1559a0d7 vocab=402442e1
+-/
 theorem exp_ball_real_expands {x : ℂ} (hx : x.im = 0)
     {r m : ℝ} (hr : 0 < r) (hr1 : r ≤ 1) (hm : 0 ≤ m)
     (hxm : m ≤ x.re) :
@@ -64,7 +66,9 @@ theorem exp_ball_real_expands {x : ℂ} (hx : x.im = 0)
       linarith
     linarith [Real.add_one_le_exp z.re]
 
-/-- Iterated images of a disk on a sufficiently far right real orbit contain unit disks. -/
+/-- Iterated images of a disk on a sufficiently far right real orbit contain unit disks.
+@isnad1 id=ex.3h2v.s6.c32843e34d33 from=translated src=- shape=415e43b5 vocab=bdfcf5c1
+-/
 theorem eventually_unit_ball_subset_iterate_real {x : ℂ} (hx : x.im = 0)
     (hx2 : 2 ≤ x.re) {r : ℝ} (hr : 0 < r) :
     ∃ N : ℕ, ∀ n ≥ N, ball (expIterate n x) 1 ⊆ expIterate n '' ball x r := by
@@ -104,7 +108,9 @@ theorem eventually_unit_ball_subset_iterate_real {x : ℂ} (hx : x.im = 0)
   simpa only [min_eq_right hlarge] using hballs n
 
 /-- Two exponentials of a radius-eight disk sufficiently far along the real axis
-cover any prescribed annulus. Integer translates of a logarithm supply the preimages. -/
+cover any prescribed annulus. Integer translates of a logarithm supply the preimages.
+@isnad1 id=mem.3h3v.s6.7a13ab338525 from=translated src=- shape=3e8d3259 vocab=166884d5
+-/
 theorem mem_exp_exp_ball_real {w : ℂ} (hw : w ≠ 0) {M x : ℝ}
     (hwM : |Real.log ‖w‖| ≤ M) (hx : M + 2 * Real.pi ≤ x) :
     w ∈ expIterate 2 '' ball (x : ℂ) 8 := by
@@ -163,7 +169,9 @@ theorem mem_exp_exp_ball_real {w : ℂ} (hw : w ≠ 0) {M x : ℝ}
         _ = w := Complex.exp_log hw
     simpa only [expIterate_succ, expIterate_zero, Complex.exp_log htne] using hexpt
 
-/-- Compactness makes the preceding elementary covering estimate uniform. -/
+/-- Compactness makes the preceding elementary covering estimate uniform.
+@isnad1 id=ex.2h1v.s6.aa0123d44dd4 from=translated src=- shape=44b92627 vocab=0faadde9
+-/
 theorem compact_subset_exp_exp_ball_real {K : Set ℂ}
     (hK : IsCompact K) (hK0 : (0 : ℂ) ∉ K) :
     ∃ ρ : ℝ, ∀ x : ℝ, ρ ≤ x → K ⊆ expIterate 2 '' ball (x : ℂ) 8 := by
@@ -177,7 +185,9 @@ theorem compact_subset_exp_exp_ball_real {K : Set ℂ}
   exact mem_exp_exp_ball_real (fun h => hK0 (h ▸ hw)) (hM ⟨w, hw, rfl⟩) hx
 
 /-- Every sufficiently late image of a disk centred on a far right real point
-covers a given compact subset of the punctured plane. -/
+covers a given compact subset of the punctured plane.
+@isnad1 id=ex.5h3v.s6.d9dc43d982a2 from=translated src=- shape=6a482838 vocab=4081c788
+-/
 theorem eventually_covers_compact_of_real_ball {K : Set ℂ}
     (hK : IsCompact K) (hK0 : (0 : ℂ) ∉ K)
     {x : ℂ} (hx : x.im = 0) (hx2 : 2 ≤ x.re) {r : ℝ} (hr : 0 < r) :
@@ -225,7 +235,9 @@ theorem eventually_covers_compact_of_real_ball {K : Set ℂ}
 
 /-- **Corollary 5.5 (open sets spread everywhere).** Every sufficiently late
 iterated image of a nonempty open set contains any given compact set omitting zero.
-Only real-axis Lemma 6 and the quantitative open-mapping Lemma 3 are needed. -/
+Only real-axis Lemma 6 and the quantitative open-mapping Lemma 3 are needed.
+@isnad1 id=ex.4h2v.s6.9deecf295dbd from=translated src=- shape=79950c3a vocab=9d2c1c3c
+-/
 theorem eventually_covers_compact
     {U K : Set ℂ} (hU : IsOpen U) (hUne : U.Nonempty)
     (hK : IsCompact K) (hK0 : (0 : ℂ) ∉ K) :
@@ -256,13 +268,17 @@ theorem eventually_covers_compact
       exact Function.iterate_add_apply exponentialMap (N + k) (j + m) z
     _ = w := by rw [hzb, hbw]
 
-/-- The compact covering theorem specialised to an open ball of positive radius. -/
+/-- The compact covering theorem specialised to an open ball of positive radius.
+@isnad1 id=ex.3h3v.s6.f00020d303ae from=translated src=- shape=ad3c1fac vocab=7e9fe024
+-/
 theorem eventually_covers_compact_ball {c : ℂ} {r : ℝ} (hr : 0 < r)
     {K : Set ℂ} (hK : IsCompact K) (hK0 : (0 : ℂ) ∉ K) :
     ∃ N : ℕ, ∀ n ≥ N, K ⊆ expIterate n '' ball c r :=
   eventually_covers_compact isOpen_ball ⟨c, mem_ball_self hr⟩ hK hK0
 
-/-- Every nonzero point belongs to every sufficiently late image of an open set. -/
+/-- Every nonzero point belongs to every sufficiently late image of an open set.
+@isnad1 id=ex.3h2v.s6.5039284484cc from=translated src=- shape=bfc14f88 vocab=18d026ec
+-/
 theorem eventually_hits_nonzero {U : Set ℂ} (hU : IsOpen U) (hUne : U.Nonempty)
     {w : ℂ} (hw : w ≠ 0) :
     ∃ N : ℕ, ∀ n ≥ N, ∃ z ∈ U, expIterate n z = w := by
@@ -270,7 +286,9 @@ theorem eventually_hits_nonzero {U : Set ℂ} (hU : IsOpen U) (hUne : U.Nonempty
     (isCompact_singleton (x := w)) (by simpa using hw.symm)
   exact ⟨N, fun n hn => hN n hn (Set.mem_singleton w)⟩
 
-/-- The point-hitting formulation, with an explicitly positive iterate. -/
+/-- The point-hitting formulation, with an explicitly positive iterate.
+@isnad1 id=ex.3h2v.s6.b86a4930fdf0 from=translated src=- shape=2607da80 vocab=77301e43
+-/
 theorem exists_iterate_eq_nonzero {U : Set ℂ} (hU : IsOpen U) (hUne : U.Nonempty)
     {w : ℂ} (hw : w ≠ 0) :
     ∃ n : ℕ, 0 < n ∧ ∃ z ∈ U, expIterate n z = w := by
@@ -279,7 +297,9 @@ theorem exists_iterate_eq_nonzero {U : Set ℂ} (hU : IsOpen U) (hUne : U.Nonemp
 
 /-- **Lemma 6, negative-axis form.** This now follows from the Section 5 theorem
 by taking the nonzero target to be `-1`. The connectedness hypothesis is retained
-for compatibility with the original statement. -/
+for compatibility with the original statement.
+@isnad1 id=eventual.3h1v.s5.b67e9d8117b5 from=translated src=- shape=973d226f vocab=b77300c3
+-/
 theorem lemma6_every_domain_eventually_meets_negative_real_axis
     {V : Set ℂ} (hVopen : IsOpen V) (_hVconn : IsConnected V) (hVne : V.Nonempty) :
     EventuallyMeetsNegativeRealAxis V := by
@@ -289,7 +309,9 @@ theorem lemma6_every_domain_eventually_meets_negative_real_axis
   rw [heq]
   norm_num
 
-/-- The full iterated preimage of every nonzero point is dense in the plane. -/
+/-- The full iterated preimage of every nonzero point is dense in the plane.
+@isnad1 id=dense.1h1v.s5.1fbeedd4f707 from=translated src=- shape=ed77eded vocab=5d50ac2f
+-/
 theorem dense_iterated_preimages_nonzero {w : ℂ} (hw : w ≠ 0) :
     Dense {z : ℂ | ∃ n : ℕ, expIterate n z = w} := by
   apply dense_iff_inter_open.mpr
@@ -297,7 +319,9 @@ theorem dense_iterated_preimages_nonzero {w : ℂ} (hw : w ≠ 0) :
   obtain ⟨n, _, z, hz, hzw⟩ := exists_iterate_eq_nonzero hU hUne hw
   exact ⟨z, hz, n, hzw⟩
 
-/-- The backward orbit of the real axis is dense. -/
+/-- The backward orbit of the real axis is dense.
+@isnad1 id=dense.0h0v.s4.6d162dfa37ef from=translated src=- shape=94a0622a vocab=6d52ae57
+-/
 theorem dense_iterated_preimages_real_axis :
     Dense {z : ℂ | ∃ n : ℕ, OnRealAxis (expIterate n z)} := by
   apply (dense_iterated_preimages_nonzero (w := 1) one_ne_zero).mono

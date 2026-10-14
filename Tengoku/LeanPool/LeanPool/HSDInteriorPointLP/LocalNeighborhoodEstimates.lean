@@ -60,7 +60,9 @@ complementarity arguments, and all warning-clean fixed lemmas.
 
 /-! ## Corrector-side algebra already derivable from the HSD equations -/
 
-/-- The scalar quadratic estimate shared by the vector and scalar corrector pairs. -/
+/-- The scalar quadratic estimate shared by the vector and scalar corrector pairs.
+@isnad1 id=le.1h5v.s7.0a5bac74ed53 from=translated src=- shape=4a35e301 vocab=c0564ed8
+-/
 theorem complementarity_second_order_upper {x s dx ds μ : ℝ}
     (h : x * ds + s * dx = μ - x * s) :
     4 * (x * s) * (dx * ds) ≤ (μ - x * s) ^ 2 := by
@@ -69,7 +71,9 @@ theorem complementarity_second_order_upper {x s dx ds μ : ℝ}
     _ ≤ (x * ds + s * dx) ^ 2 := four_mul_le_sq_add _ _
     _ = (μ - x * s) ^ 2 := congrArg (fun a : ℝ => a ^ 2) h
 
-/-- Convert a squared centrality deviation to the corresponding product lower bound. -/
+/-- Convert a squared centrality deviation to the corresponding product lower bound.
+@isnad1 id=le.2h3v.s6.a0d1f05c7744 from=translated src=- shape=c882dbc9 vocab=2ee782f6
+-/
 theorem product_lower_of_deviation_sq {μ z β : ℝ} (hβ : 0 ≤ β * μ)
     (h : (μ - z) ^ 2 ≤ (β * μ) ^ 2) : (1 - β) * μ ≤ z := by
   have hdeviation := (abs_le.mp (abs_le_of_sq_le_sq h hβ)).2
@@ -77,7 +81,9 @@ theorem product_lower_of_deviation_sq {μ z β : ℝ} (hβ : 0 ≤ β * μ)
 
 /-- A full corrector step preserves the homogenized complementarity gap, hence also
 preserves `mu`.  This is only the gap algebra; the central-neighborhood estimate is
-handled separately below. -/
+handled separately below.
+@isnad1 id=eq.1h3v.s5.ff4ef475c44d from=translated src=- shape=47844ac8 vocab=ab8124d7
+-/
 theorem corrector_mu_full_step {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hdir : HSDStepDirection w d 1) :
@@ -86,7 +92,9 @@ theorem corrector_mu_full_step {n : Nat}
   rw [gap_addStep_of_HSDStepDirection w d 1 1 hdir]
   ring
 
-/-- Product identity for the vector complementarity pairs after a full corrector step. -/
+/-- Product identity for the vector complementarity pairs after a full corrector step.
+@isnad1 id=eq.1h4v.s6.329f2094b12a from=translated src=- shape=5f042622 vocab=087c0ce6
+-/
 theorem corrector_component_product_full_step {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hdir : HSDStepDirection w d 1) (i : Fin n) :
@@ -105,7 +113,9 @@ theorem corrector_component_product_full_step {n : Nat}
     _ = mu w + d.dx i * d.ds i := by
             ring
 
-/-- Product identity for the scalar complementarity pair after a full corrector step. -/
+/-- Product identity for the scalar complementarity pair after a full corrector step.
+@isnad1 id=eq.1h3v.s6.68a9b897ed45 from=translated src=- shape=9cc9ff92 vocab=ceb1c0dc
+-/
 theorem corrector_scalar_product_full_step {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hdir : HSDStepDirection w d 1) :
@@ -125,7 +135,9 @@ theorem corrector_scalar_product_full_step {n : Nat}
             ring
 
 /-- After a full corrector step, the new centrality residual is exactly the squared
-norm of the second-order complementarity products. -/
+norm of the second-order complementarity products.
+@isnad1 id=eq.1h3v.s7.87a39cd41686 from=translated src=- shape=ef108c82 vocab=c6f7fb20
+-/
 theorem corrector_centerSq_full_step_eq_cross_sq {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hdir : HSDStepDirection w d 1) :
@@ -140,13 +152,17 @@ theorem corrector_centerSq_full_step_eq_cross_sq {n : Nat}
 
 /-! ## Elementary estimates for the corrector obligation -/
 
-/-- The homogenized dimension `n + 1` is strictly positive. -/
+/-- The homogenized dimension `n + 1` is strictly positive.
+@isnad1 id=lt.0h1v.s3.ba2eb1adf391 from=translated src=- shape=b9369acb vocab=90c3b2a0
+-/
 theorem hdim_pos (n : Nat) : 0 < hdim n := by
   unfold hdim
   have hn : (0 : ℝ) ≤ (n : ℝ) := by exact_mod_cast Nat.zero_le n
   linarith
 
-/-- Interior points have positive complementarity gap. -/
+/-- Interior points have positive complementarity gap.
+@isnad1 id=lt.1h2v.s4.754b687b38ac from=translated src=- shape=a178c38b vocab=65ba89d6
+-/
 theorem gap_pos_of_interior {n : Nat} (w : HSState n)
     (hinterior : Interior w) : 0 < gap w := by
   rcases hinterior with ⟨hxpos, htpos, hspos, hkpos⟩
@@ -158,14 +174,18 @@ theorem gap_pos_of_interior {n : Nat} (w : HSState n)
   unfold gap hdot
   linarith
 
-/-- Interior points have positive duality measure. -/
+/-- Interior points have positive duality measure.
+@isnad1 id=lt.1h2v.s4.4195e90af24c from=translated src=- shape=a178c38b vocab=1b0d9501
+-/
 theorem mu_pos_of_interior {n : Nat} (w : HSState n)
     (hinterior : Interior w) : 0 < mu w := by
   unfold mu
   exact div_pos (gap_pos_of_interior w hinterior) (hdim_pos n)
 
 /-- The skew-orthogonality part of a step direction, written as the finite sum of
-second-order complementarity products. -/
+second-order complementarity products.
+@isnad1 id=eq.1h3v.s6.75a3ed61ace1 from=translated src=- shape=92e6ac8c vocab=fb19d085
+-/
 theorem corrector_second_order_sum_zero {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hdir : HSDStepDirection w d 1) :
@@ -174,7 +194,9 @@ theorem corrector_second_order_sum_zero {n : Nat}
 
 /-- Componentwise quadratic estimate obtained from the corrector linearized
 complementarity equation.  This is the elementary identity
-`(x Δs - s Δx)^2 = (μ - xs)^2 - 4xs ΔxΔs` together with nonnegativity of squares. -/
+`(x Δs - s Δx)^2 = (μ - xs)^2 - 4xs ΔxΔs` together with nonnegativity of squares.
+@isnad1 id=le.1h4v.s6.d6a4507c6474 from=translated src=- shape=e7acdd45 vocab=9f7c9c61
+-/
 theorem corrector_component_second_order_upper {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hdir : HSDStepDirection w d 1) (i : Fin n) :
@@ -183,7 +205,9 @@ theorem corrector_component_second_order_upper {n : Nat}
   apply complementarity_second_order_upper
   simpa only [one_mul] using hdir.compl.component_eq i
 
-/-- Scalar analogue of `corrector_component_second_order_upper`. -/
+/-- Scalar analogue of `corrector_component_second_order_upper`.
+@isnad1 id=le.1h3v.s6.ac0093859a95 from=translated src=- shape=fe612c7b vocab=9c92ff65
+-/
 theorem corrector_scalar_second_order_upper {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hdir : HSDStepDirection w d 1) :
@@ -193,20 +217,26 @@ theorem corrector_scalar_second_order_upper {n : Nat}
   simpa only [one_mul] using hdir.compl.scalar_eq
 
 /-- Extract the centrality bound from an `HSDNeighborhood`.  Keeping this as a
-separate lemma prevents later proofs from repeatedly destructing the nested `And`. -/
+separate lemma prevents later proofs from repeatedly destructing the nested `And`.
+@isnad1 id=le.1h3v.s5.a670206ce2ae from=translated src=- shape=5dfcaee2 vocab=d673d46b
+-/
 theorem neighborhood_centerSq_le {n : Nat} (β : ℝ) (w : HSState n)
     (hneigh : HSDNeighborhood β w) :
     centerSq w.x w.tau w.s w.kappa (mu w) ≤ (β * mu w) ^ 2 := by
   exact hneigh.2.2.2
 
-/-- A point in a central neighborhood has positive `mu`. -/
+/-- A point in a central neighborhood has positive `mu`.
+@isnad1 id=lt.1h3v.s4.01f34430fda9 from=translated src=- shape=fcd3b9ad vocab=9504cee6
+-/
 theorem mu_pos_of_neighborhood {n : Nat} (β : ℝ) (w : HSState n)
     (hneigh : HSDNeighborhood β w) :
     0 < mu w := by
   exact mu_pos_of_interior w hneigh.1
 
 /-- Each vector complementarity product has squared deviation bounded by the whole
-centrality residual. -/
+centrality residual.
+@isnad1 id=le.1h4v.s6.c742beb70368 from=translated src=- shape=c092c53d vocab=6a7b023c
+-/
 theorem neighborhood_component_dev_sq_le_bound {n : Nat} (β : ℝ)
     (w : HSState n) (hneigh : HSDNeighborhood β w) (i : Fin n) :
     (mu w - w.x i * w.s i) ^ 2 ≤ (β * mu w) ^ 2 := by
@@ -217,7 +247,9 @@ theorem neighborhood_component_dev_sq_le_bound {n : Nat} (β : ℝ)
       (neighborhood_centerSq_le β w hneigh))
 
 /-- The scalar complementarity product has squared deviation bounded by the whole
-centrality residual. -/
+centrality residual.
+@isnad1 id=le.1h3v.s6.f41c0abb0daf from=translated src=- shape=c60fb381 vocab=a86e2319
+-/
 theorem neighborhood_scalar_dev_sq_le_bound {n : Nat} (β : ℝ)
     (w : HSState n) (hneigh : HSDNeighborhood β w) :
     (mu w - w.tau * w.kappa) ^ 2 ≤ (β * mu w) ^ 2 := by
@@ -228,7 +260,9 @@ theorem neighborhood_scalar_dev_sq_le_bound {n : Nat} (β : ℝ)
 
 /-- In the wide neighborhood, every vector complementarity product is at least
 `mu/2`.  This keeps the scalar `τκ` separate from the `Fin n` sum, as in the
-separated proof plan. -/
+separated proof plan.
+@isnad1 id=le.1h3v.s5.35b3027f4d31 from=translated src=- shape=b3582faa vocab=c1ef0fc7
+-/
 theorem neighborhood_component_product_lower_wide {n : Nat}
     (w : HSState n) (hneigh : HSDNeighborhood ytmBetaWide w) (i : Fin n) :
     mu w / 2 ≤ w.x i * w.s i := by
@@ -238,7 +272,9 @@ theorem neighborhood_component_product_lower_wide {n : Nat}
   norm_num only [ytmBetaWide, show (1 : ℝ) - 1 / 2 = 1 / 2 by norm_num] at hlower
   simpa only [one_div_mul_eq_div] using hlower
 
-/-- Scalar analogue of `neighborhood_component_product_lower_wide`. -/
+/-- Scalar analogue of `neighborhood_component_product_lower_wide`.
+@isnad1 id=le.1h2v.s5.8743a0db120b from=translated src=- shape=dd1ad2e8 vocab=fe77943f
+-/
 theorem neighborhood_scalar_product_lower_wide {n : Nat}
     (w : HSState n) (hneigh : HSDNeighborhood ytmBetaWide w) :
     mu w / 2 ≤ w.tau * w.kappa := by
@@ -252,7 +288,9 @@ theorem neighborhood_scalar_product_lower_wide {n : Nat}
 small elementary definition instead of using an order-theory abstraction. -/
 def posPart (a : ℝ) : ℝ := if 0 ≤ a then a else 0
 
-/-- A positive denominator turns a product upper bound into a positive-part bound. -/
+/-- A positive denominator turns a product upper bound into a positive-part bound.
+@isnad1 id=le.3h3v.s5.c93f3f8fb1cc from=translated src=- shape=cc5b2b82 vocab=0cdb4b63
+-/
 theorem posPart_le_of_mul_le {a b c : ℝ} (ha : 0 < a) (hc : 0 ≤ c)
     (h : a * b ≤ c) : posPart b ≤ c / a := by
   unfold posPart
@@ -261,7 +299,9 @@ theorem posPart_le_of_mul_le {a b c : ℝ} (ha : 0 < a) (hc : 0 ≤ c)
   · exact div_nonneg hc ha.le
 
 /-- Absolute value expressed through the positive part.  This identity is useful for
-turning the skew relation `Σ δᵢ + η = 0` into an `ℓ₁` bound. -/
+turning the skew relation `Σ δᵢ + η = 0` into an `ℓ₁` bound.
+@isnad1 id=eq.0h1v.s5.90baf691e436 from=translated src=- shape=8a2f9c08 vocab=02e8583f
+-/
 theorem abs_eq_two_posPart_sub (a : ℝ) :
     |a| = 2 * posPart a - a := by
   unfold posPart
@@ -277,7 +317,9 @@ theorem abs_eq_two_posPart_sub (a : ℝ) :
 /-- The positive part of each vector second-order complementarity product is bounded
 by the corresponding squared centrality deviation divided by `2 mu`.  This is the
 componentwise bridge from the corrector identity to the positive-part summation
-argument. -/
+argument.
+@isnad1 id=le.2h4v.s6.19c4ef441781 from=translated src=- shape=0f02d8dc vocab=aa4ffaea
+-/
 theorem corrector_component_posPart_bound {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hneigh : HSDNeighborhood ytmBetaWide w)
@@ -295,7 +337,9 @@ theorem corrector_component_posPart_bound {n : Nat}
   · rw [posPart, ite_eq_right hproduct]
     exact div_nonneg (sq_nonneg _) (mul_nonneg (by norm_num) hmu.le)
 
-/-- Scalar analogue of `corrector_component_posPart_bound`. -/
+/-- Scalar analogue of `corrector_component_posPart_bound`.
+@isnad1 id=le.2h3v.s6.774e0cfdd83e from=translated src=- shape=ffd907fa vocab=e098c2ec
+-/
 theorem corrector_scalar_posPart_bound {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hneigh : HSDNeighborhood ytmBetaWide w)
@@ -315,7 +359,9 @@ theorem corrector_scalar_posPart_bound {n : Nat}
 
 /-- Summed positive-part bound, still keeping the vector and scalar pieces separate.
 This is the key estimate needed before converting the zero-sum relation into an
-absolute-value bound. -/
+absolute-value bound.
+@isnad1 id=le.2h3v.s6.a67222f6e605 from=translated src=- shape=078f602b vocab=99592831
+-/
 theorem corrector_positive_part_sum_bound {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hneigh : HSDNeighborhood ytmBetaWide w)
@@ -341,7 +387,9 @@ theorem corrector_positive_part_sum_bound {n : Nat}
       ring
 
 /-- If a finite family together with one scalar has zero total sum, then the sum of
-absolute values is twice the sum of positive parts. -/
+absolute values is twice the sum of positive parts.
+@isnad1 id=eq.1h3v.s6.c8a9114fdf9a from=translated src=- shape=30f1e45d vocab=7370e0ac
+-/
 theorem abs_sum_add_abs_eq_two_posPart_sum_of_sum_add_zero {n : Nat}
     (a : Fin n → ℝ) (η : ℝ)
     (hzero : (∑ i : Fin n, a i) + η = 0) :
@@ -353,7 +401,9 @@ theorem abs_sum_add_abs_eq_two_posPart_sum_of_sum_add_zero {n : Nat}
   nlinarith
 
 /-- The positive-part bound plus zero-sum relation gives an ℓ₁ bound for the
-second-order complementarity products. -/
+second-order complementarity products.
+@isnad1 id=le.2h3v.s6.a4af73442bd2 from=translated src=- shape=a6149440 vocab=76632f82
+-/
 theorem corrector_cross_l1_bound {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hneigh : HSDNeighborhood ytmBetaWide w)
@@ -372,7 +422,9 @@ theorem corrector_cross_l1_bound {n : Nat}
     _ = mu w / 4 := by ring
 
 /-- A square-sum is bounded by the square of the corresponding ℓ₁ norm.  The scalar
-term is kept separate from the `Fin n` sum to match the HSDE notation. -/
+term is kept separate from the `Fin n` sum to match the HSDE notation.
+@isnad1 id=le.0h3v.s6.73d592677b1b from=translated src=- shape=84a7f7f4 vocab=161305c2
+-/
 theorem sum_sq_add_sq_le_l1_sq {n : Nat} (a : Fin n → ℝ) (η : ℝ) :
     (∑ i : Fin n, (a i) ^ 2) + η ^ 2 ≤
       ((∑ i : Fin n, |a i|) + |η|) ^ 2 := by
@@ -388,7 +440,9 @@ theorem sum_sq_add_sq_le_l1_sq {n : Nat} (a : Fin n → ℝ) (η : ℝ) :
         (mul_nonneg (mul_nonneg (show (0 : ℝ) ≤ 2 by norm_num)
           (Finset.sum_nonneg (fun i _ => abs_nonneg (a i)))) (abs_nonneg η))) le_rfl
 
-/-- The ℓ₁ bound implies the YTM square-sum bound for the corrector products. -/
+/-- The ℓ₁ bound implies the YTM square-sum bound for the corrector products.
+@isnad1 id=le.2h3v.s7.2126d4979fbe from=translated src=- shape=39c8c24b vocab=cc1f8bac
+-/
 theorem corrector_cross_sq_sum_bound {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hneigh : HSDNeighborhood ytmBetaWide w)
@@ -402,7 +456,9 @@ theorem corrector_cross_sq_sum_bound {n : Nat}
       (corrector_cross_l1_bound w d hneigh hdir) 2)
 
 /-- Each vector second-order product is individually bounded by `mu/4` in absolute
-value. -/
+value.
+@isnad1 id=le.2h4v.s6.47e6296e45cd from=translated src=- shape=d08f874d vocab=3df44a33
+-/
 theorem corrector_component_cross_abs_le_quarter_mu {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hneigh : HSDNeighborhood ytmBetaWide w)
@@ -414,7 +470,9 @@ theorem corrector_component_cross_abs_le_quarter_mu {n : Nat}
       (corrector_cross_l1_bound w d hneigh hdir))
 
 /-- The scalar second-order product is individually bounded by `mu/4` in absolute
-value. -/
+value.
+@isnad1 id=le.2h3v.s6.ff84f46d6417 from=translated src=- shape=fb5704e9 vocab=8863f621
+-/
 theorem corrector_scalar_cross_abs_le_quarter_mu {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hneigh : HSDNeighborhood ytmBetaWide w)
@@ -425,7 +483,9 @@ theorem corrector_scalar_cross_abs_le_quarter_mu {n : Nat}
     (corrector_cross_l1_bound w d hneigh hdir)
 
 /-- If two factors have positive product and a positive weighted sum with positive
-weights, then both factors are positive. -/
+weights, then both factors are positive.
+@isnad1 id=and.4h4v.s6.7f95b8ae920f from=translated src=- shape=e659ebc3 vocab=348220d6
+-/
 theorem factors_pos_of_mul_pos_and_weighted_sum_pos {a b wa wb : ℝ}
     (hwa : 0 < wa) (hwb : 0 < wb)
     (hmul : 0 < a * b)
@@ -436,7 +496,9 @@ theorem factors_pos_of_mul_pos_and_weighted_sum_pos {a b wa wb : ℝ}
   · exact False.elim ((add_neg (mul_neg_of_pos_of_neg hwb ha)
       (mul_neg_of_pos_of_neg hwa hb)).not_gt hsum)
 
-/-- Positivity of each vector pair after the full corrector step. -/
+/-- Positivity of each vector pair after the full corrector step.
+@isnad1 id=and.2h4v.s6.88cefa370788 from=translated src=- shape=1ce2ec06 vocab=d8964013
+-/
 theorem corrector_component_pair_pos_full_step {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hneigh : HSDNeighborhood ytmBetaWide w)
@@ -473,7 +535,9 @@ theorem corrector_component_pair_pos_full_step {n : Nat}
   exact factors_pos_of_mul_pos_and_weighted_sum_pos
     (hxpos i) (hspos i) hprod hweighted
 
-/-- Positivity of the scalar pair after the full corrector step. -/
+/-- Positivity of the scalar pair after the full corrector step.
+@isnad1 id=and.2h3v.s6.452125d7a6b1 from=translated src=- shape=bc2f1804 vocab=9915523e
+-/
 theorem corrector_scalar_pair_pos_full_step {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hneigh : HSDNeighborhood ytmBetaWide w)
@@ -510,7 +574,9 @@ theorem corrector_scalar_pair_pos_full_step {n : Nat}
   exact factors_pos_of_mul_pos_and_weighted_sum_pos
     htpos hkpos hprod hweighted
 
-/-- The full corrector step remains in the positive orthant. -/
+/-- The full corrector step remains in the positive orthant.
+@isnad1 id=interior.2h3v.s5.4848e49e2fcd from=translated src=- shape=53162c4e vocab=5f95e077
+-/
 theorem corrector_full_step_interior {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hneigh : HSDNeighborhood ytmBetaWide w)
@@ -549,7 +615,9 @@ centrality residual.  Hence all full-step products stay positive and
 
 The rest of the Lean file has already reduced the corrector theorem to exactly this
 statement.  This lemma is intentionally isolated so that the remaining paper estimate
-is no longer mixed with the bookkeeping around `centerSq` and `mu`. -/
+is no longer mixed with the bookkeeping around `centerSq` and `mu`.
+@isnad1 id=and.2h3v.s7.efdf2fc3ec4e from=translated src=- shape=cf3a568e vocab=3b334990
+-/
 theorem YTM_corrector_scaled_estimate {n : Nat}
     (w : HSState n) (d : HSDirection n) :
     HSDNeighborhood ytmBetaWide w →
@@ -569,7 +637,9 @@ theorem YTM_corrector_scaled_estimate {n : Nat}
 
 Unlike the previous version, this theorem itself no longer contains the paper-level
 analytic obligation: after `YTM_corrector_scaled_estimate`, the proof is just the
-algebraic identities already established above. -/
+algebraic identities already established above.
+@isnad1 id=and.2h3v.s7.543ebb0224a8 from=translated src=- shape=090ce57f vocab=1e0e2588
+-/
 theorem YTM_corrector_interior_and_center_bound {n : Nat}
     (w : HSState n) (d : HSDirection n) :
     HSDNeighborhood ytmBetaWide w →
@@ -588,7 +658,9 @@ theorem YTM_corrector_interior_and_center_bound {n : Nat}
   exact hsecond
 
 /-- Corrector full-step local estimate, now reduced to the explicit analytic bound
-`YTM_corrector_interior_and_center_bound`; no placeholder remains in this wrapper. -/
+`YTM_corrector_interior_and_center_bound`; no placeholder remains in this wrapper.
+@isnad1 id=and.2h3v.s5.0882c0317d82 from=translated src=- shape=2cf7329c vocab=6c3f56c5
+-/
 theorem YTM_corrector_full_step_local_estimate {n : Nat}
     (w : HSState n) (d : HSDirection n) :
     HSDNeighborhood ytmBetaWide w →
@@ -607,12 +679,16 @@ theorem YTM_corrector_full_step_local_estimate {n : Nat}
 
 /-! ## Predictor-side elementary step-size and product identities -/
 
-/-- The fixed YTM predictor step constant is positive. -/
+/-- The fixed YTM predictor step constant is positive.
+@isnad1 id=lt.0h0v.s3.c8e03b2e3642 from=translated src=- shape=ff3a10fc vocab=efd6d485
+-/
 theorem ytmStepConstant_pos : 0 < ytmStepConstant := by
   unfold ytmStepConstant
   positivity
 
-/-- The fixed YTM predictor step constant is at most one. -/
+/-- The fixed YTM predictor step constant is at most one.
+@isnad1 id=le.0h0v.s3.8c7721b665e8 from=translated src=- shape=ffdda526 vocab=5db5e290
+-/
 theorem ytmStepConstant_le_one : ytmStepConstant ≤ 1 := by
   unfold ytmStepConstant
   have hsqrt_ge_one : (1 : ℝ) ≤ Real.sqrt (8 : ℝ) := by
@@ -622,33 +698,45 @@ theorem ytmStepConstant_le_one : ytmStepConstant ≤ 1 := by
   rw [div_le_iff₀ hden_pos]
   nlinarith [hsqrt_ge_one]
 
-/-- The homogenized dimension is at least one. -/
+/-- The homogenized dimension is at least one.
+@isnad1 id=le.0h1v.s3.3228bda55442 from=translated src=- shape=b9369acb vocab=b62127bf
+-/
 theorem one_le_hdim (n : Nat) : (1 : ℝ) ≤ hdim n := by
   unfold hdim
   simp_all
 
-/-- The square root of the homogenized dimension is positive. -/
+/-- The square root of the homogenized dimension is positive.
+@isnad1 id=lt.0h1v.s3.3f604c6c2af9 from=translated src=- shape=25e12683 vocab=7dbcd403
+-/
 theorem sqrt_hdim_pos (n : Nat) : 0 < Real.sqrt (hdim n) := by
   exact Real.sqrt_pos.2 (hdim_pos n)
 
-/-- The square root of the homogenized dimension is at least one. -/
+/-- The square root of the homogenized dimension is at least one.
+@isnad1 id=le.0h1v.s3.74fc7861a24a from=translated src=- shape=25e12683 vocab=a621acf3
+-/
 theorem one_le_sqrt_hdim (n : Nat) : (1 : ℝ) ≤ Real.sqrt (hdim n) := by
   have h := Real.sqrt_le_sqrt (one_le_hdim n)
   simpa using h
 
-/-- Positivity of the fixed predictor step length. -/
+/-- Positivity of the fixed predictor step length.
+@isnad1 id=lt.0h1v.s4.bfdf7518b505 from=translated src=- shape=b44156fc vocab=07f99e5e
+-/
 theorem predictor_alpha_fixed_pos (n : Nat) :
     0 < ytmStepConstant / Real.sqrt (hdim n) := by
   exact div_pos ytmStepConstant_pos (sqrt_hdim_pos n)
 
-/-- The fixed predictor step length is at most one. -/
+/-- The fixed predictor step length is at most one.
+@isnad1 id=le.0h1v.s4.c801d7a963f2 from=translated src=- shape=2143741b vocab=b1b7e938
+-/
 theorem predictor_alpha_fixed_le_one (n : Nat) :
     ytmStepConstant / Real.sqrt (hdim n) ≤ 1 := by
   exact (div_le_one (sqrt_hdim_pos n)).2
     (ytmStepConstant_le_one.trans (one_le_sqrt_hdim n))
 
 /-- Predictor step formula for `mu`.  For `γ = 0`, the homogenized gap and hence
-`mu` are multiplied by `1 - α`. -/
+`mu` are multiplied by `1 - α`.
+@isnad1 id=eq.1h4v.s5.b68929905ac9 from=translated src=- shape=7c3161d6 vocab=e6bc3cce
+-/
 theorem predictor_mu_step {n : Nat}
     (w : HSState n) (d : HSDirection n) (α : ℝ)
     (hdir : HSDStepDirection w d 0) :
@@ -657,7 +745,9 @@ theorem predictor_mu_step {n : Nat}
   rw [gap_addStep_of_HSDStepDirection w d α 0 hdir]
   ring
 
-/-- Predictor product identity for each vector complementarity pair. -/
+/-- Predictor product identity for each vector complementarity pair.
+@isnad1 id=eq.1h5v.s7.02077f92d01c from=translated src=- shape=9a4bc211 vocab=c2b5d8b0
+-/
 theorem predictor_component_product_step {n : Nat}
     (w : HSState n) (d : HSDirection n) (α : ℝ)
     (hdir : HSDStepDirection w d 0) (i : Fin n) :
@@ -676,7 +766,9 @@ theorem predictor_component_product_step {n : Nat}
     _ = (1 - α) * (w.x i * w.s i) + α ^ 2 * (d.dx i * d.ds i) := by
             ring
 
-/-- Predictor product identity for the scalar complementarity pair. -/
+/-- Predictor product identity for the scalar complementarity pair.
+@isnad1 id=eq.1h4v.s6.809108ce5784 from=translated src=- shape=98c19815 vocab=5dfa6fc3
+-/
 theorem predictor_scalar_product_step {n : Nat}
     (w : HSState n) (d : HSDirection n) (α : ℝ)
     (hdir : HSDStepDirection w d 0) :
@@ -701,7 +793,9 @@ theorem predictor_scalar_product_step {n : Nat}
 
 Together with positivity of the product after the step, this identity lets us recover
 positivity of each individual factor.  This is useful because the remaining YTM
-estimate naturally controls the products. -/
+estimate naturally controls the products.
+@isnad1 id=eq.1h5v.s6.4b16e1cc7f2d from=translated src=- shape=95ac5e3e vocab=5a19e3fd
+-/
 theorem predictor_component_weighted_sum_step {n : Nat}
     (w : HSState n) (d : HSDirection n) (α : ℝ)
     (hdir : HSDStepDirection w d 0) (i : Fin n) :
@@ -721,7 +815,9 @@ theorem predictor_component_weighted_sum_step {n : Nat}
     _ = (2 - α) * (w.x i * w.s i) := by
             ring
 
-/-- Predictor weighted-sum identity for the scalar pair. -/
+/-- Predictor weighted-sum identity for the scalar pair.
+@isnad1 id=eq.1h4v.s6.7df20614d503 from=translated src=- shape=982d7100 vocab=6b9d1ce9
+-/
 theorem predictor_scalar_weighted_sum_step {n : Nat}
     (w : HSState n) (d : HSDirection n) (α : ℝ)
     (hdir : HSDStepDirection w d 0) :
@@ -742,7 +838,9 @@ theorem predictor_scalar_weighted_sum_step {n : Nat}
             ring
 
 /-- If the predictor step keeps the product of one vector complementarity pair
-positive, then the two factors themselves are positive. -/
+positive, then the two factors themselves are positive.
+@isnad1 id=and.4h5v.s6.70d4a325abf8 from=translated src=- shape=c518020b vocab=31a80981
+-/
 theorem predictor_component_pair_pos_of_product_pos {n : Nat}
     (w : HSState n) (d : HSDirection n) (α : ℝ)
     (hinterior : Interior w)
@@ -761,7 +859,9 @@ theorem predictor_component_pair_pos_of_product_pos {n : Nat}
   exact factors_pos_of_mul_pos_and_weighted_sum_pos
     (hxpos i) (hspos i) hprod hweighted
 
-/-- Scalar analogue of `predictor_component_pair_pos_of_product_pos`. -/
+/-- Scalar analogue of `predictor_component_pair_pos_of_product_pos`.
+@isnad1 id=and.4h4v.s6.23e3b1bb2794 from=translated src=- shape=c4e37e47 vocab=15bc47fb
+-/
 theorem predictor_scalar_pair_pos_of_product_pos {n : Nat}
     (w : HSState n) (d : HSDirection n) (α : ℝ)
     (hinterior : Interior w)
@@ -781,7 +881,9 @@ theorem predictor_scalar_pair_pos_of_product_pos {n : Nat}
     htpos hkpos hprod hweighted
 
 /-- Product positivity for all complementarity pairs implies that the predictor step
-stays in the interior. -/
+stays in the interior.
+@isnad1 id=interior.5h4v.s6.e5fd0bbfd186 from=translated src=- shape=15612575 vocab=25233d0b
+-/
 theorem predictor_step_interior_of_product_pos {n : Nat}
     (w : HSState n) (d : HSDirection n) (α : ℝ)
     (hinterior : Interior w)
@@ -803,7 +905,9 @@ theorem predictor_step_interior_of_product_pos {n : Nat}
 /-- Predictor residual identity for each vector complementarity pair.  This is the
 main bookkeeping formula needed for the remaining neighborhood estimate: the new
 centrality residual is the old residual contracted by `1 - α`, plus the second-order
-predictor product. -/
+predictor product.
+@isnad1 id=eq.1h5v.s7.2e1521ccb5c8 from=translated src=- shape=2698eb08 vocab=1a7aa7d3
+-/
 theorem predictor_component_center_residual_step {n : Nat}
     (w : HSState n) (d : HSDirection n) (α : ℝ)
     (hdir : HSDStepDirection w d 0) (i : Fin n) :
@@ -815,7 +919,9 @@ theorem predictor_component_center_residual_step {n : Nat}
   rw [predictor_mu_step w d α hdir]
   ring
 
-/-- Scalar version of the predictor residual identity. -/
+/-- Scalar version of the predictor residual identity.
+@isnad1 id=eq.1h4v.s7.6ba242fb7a22 from=translated src=- shape=e370b944 vocab=6b96e182
+-/
 theorem predictor_scalar_center_residual_step {n : Nat}
     (w : HSState n) (d : HSDirection n) (α : ℝ)
     (hdir : HSDStepDirection w d 0) :
@@ -829,7 +935,9 @@ theorem predictor_scalar_center_residual_step {n : Nat}
 
 /-- Exact expansion of the predictor centrality residual after an arbitrary
 predictor step.  No estimate is used here; this only isolates the expression that
-has to be bounded in the remaining YTM predictor argument. -/
+has to be bounded in the remaining YTM predictor argument.
+@isnad1 id=eq.1h4v.s8.9b84964ef949 from=translated src=- shape=b0453fc3 vocab=567332e2
+-/
 theorem predictor_centerSq_step_eq {n : Nat}
     (w : HSState n) (d : HSDirection n) (α : ℝ)
     (hdir : HSDStepDirection w d 0) :
@@ -860,7 +968,9 @@ theorem predictor_centerSq_step_eq {n : Nat}
   unfold centerSq
   exact congrArg₂ (fun a b : ℝ => a + b) hsum hscalar
 
-/-- Fixed-step specialization of `predictor_mu_step`. -/
+/-- Fixed-step specialization of `predictor_mu_step`.
+@isnad1 id=eq.1h3v.s6.e00fdd3e3a0a from=translated src=- shape=926f9eb9 vocab=6b11e2c7
+-/
 theorem predictor_fixed_mu_step {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hdir : HSDStepDirection w d 0) :
@@ -869,7 +979,9 @@ theorem predictor_fixed_mu_step {n : Nat}
   simpa using
     predictor_mu_step w d (ytmStepConstant / Real.sqrt (hdim n)) hdir
 
-/-- Fixed-step specialization of the vector predictor product identity. -/
+/-- Fixed-step specialization of the vector predictor product identity.
+@isnad1 id=eq.1h4v.s7.eac924e56aff from=translated src=- shape=c8c3226c vocab=2092457d
+-/
 theorem predictor_fixed_component_product_step {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hdir : HSDStepDirection w d 0) (i : Fin n) :
@@ -883,7 +995,9 @@ theorem predictor_fixed_component_product_step {n : Nat}
     predictor_component_product_step w d
       (ytmStepConstant / Real.sqrt (hdim n)) hdir i
 
-/-- Fixed-step specialization of the scalar predictor product identity. -/
+/-- Fixed-step specialization of the scalar predictor product identity.
+@isnad1 id=eq.1h3v.s7.15bbd94a3619 from=translated src=- shape=268ade66 vocab=506309b4
+-/
 theorem predictor_fixed_scalar_product_step {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hdir : HSDStepDirection w d 0) :
@@ -897,7 +1011,9 @@ theorem predictor_fixed_scalar_product_step {n : Nat}
     predictor_scalar_product_step w d
       (ytmStepConstant / Real.sqrt (hdim n)) hdir
 
-/-- Fixed-step specialization of the exact predictor centrality-residual expansion. -/
+/-- Fixed-step specialization of the exact predictor centrality-residual expansion.
+@isnad1 id=eq.1h3v.s8.037b5de1f13e from=translated src=- shape=5ded3dea vocab=4386514b
+-/
 theorem predictor_fixed_centerSq_step_eq {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hdir : HSDStepDirection w d 0) :
@@ -949,7 +1065,9 @@ structure YTMPredictorEstimate (n : Nat) : Prop where
 
 /-- A lower bound on the second-order predictor products implies positivity of all
 fixed-step vector complementarity products.  This is purely algebraic: the product
-identity says `x⁺ᵢs⁺ᵢ = (1 - α) xᵢsᵢ + α² ΔxᵢΔsᵢ`. -/
+identity says `x⁺ᵢs⁺ᵢ = (1 - α) xᵢsᵢ + α² ΔxᵢΔsᵢ`.
+@isnad1 id=lt.2h4v.s7.1fbae025b2df from=translated src=- shape=63fa0810 vocab=de3ae611
+-/
 theorem predictor_fixed_component_product_pos_of_cross_lower {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hdir : HSDStepDirection w d 0)
@@ -965,7 +1083,9 @@ theorem predictor_fixed_component_product_pos_of_cross_lower {n : Nat}
   rw [predictor_fixed_component_product_step w d hdir i]
   nlinarith [hcross i]
 
-/-- Scalar analogue of `predictor_fixed_component_product_pos_of_cross_lower`. -/
+/-- Scalar analogue of `predictor_fixed_component_product_pos_of_cross_lower`.
+@isnad1 id=lt.2h3v.s7.b1acb52c5bab from=translated src=- shape=b901d30b vocab=4b657c1b
+-/
 theorem predictor_fixed_scalar_product_pos_of_cross_lower {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hdir : HSDStepDirection w d 0)
@@ -980,7 +1100,9 @@ theorem predictor_fixed_scalar_product_pos_of_cross_lower {n : Nat}
   nlinarith [hcross]
 
 /-- If the fixed predictor step keeps both factors of a vector pair positive, then
-its second-order product cannot cancel the first-order complementarity product. -/
+its second-order product cannot cancel the first-order complementarity product.
+@isnad1 id=lt.2h4v.s7.f76b6e970301 from=translated src=- shape=d48d8e59 vocab=de3ae611
+-/
 theorem predictor_fixed_component_cross_lower_of_step_product_pos {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hdir : HSDStepDirection w d 0) (i : Fin n)
@@ -994,7 +1116,9 @@ theorem predictor_fixed_component_cross_lower_of_step_product_pos {n : Nat}
   rw [predictor_fixed_component_product_step w d hdir i] at hprod
   nlinarith
 
-/-- Scalar analogue of `predictor_fixed_component_cross_lower_of_step_product_pos`. -/
+/-- Scalar analogue of `predictor_fixed_component_cross_lower_of_step_product_pos`.
+@isnad1 id=lt.2h3v.s7.214bc83ec916 from=translated src=- shape=e9201b2e vocab=4b657c1b
+-/
 theorem predictor_fixed_scalar_cross_lower_of_step_product_pos {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hdir : HSDStepDirection w d 0)
@@ -1009,7 +1133,9 @@ theorem predictor_fixed_scalar_cross_lower_of_step_product_pos {n : Nat}
   nlinarith
 
 /-- Relative componentwise bounds imply positivity of a vector complementarity
-product after the fixed predictor step. -/
+product after the fixed predictor step.
+@isnad1 id=lt.2h4v.s7.3f7ff3dc2537 from=translated src=- shape=9549f94c vocab=5e95aab2
+-/
 theorem predictor_fixed_component_product_pos_of_relative_bounds {n : Nat}
     (w : HSState n) (d : HSDirection n) (i : Fin n)
     (hxrel : |(ytmStepConstant / Real.sqrt (hdim n)) * d.dx i| < w.x i)
@@ -1025,7 +1151,9 @@ theorem predictor_fixed_component_product_pos_of_relative_bounds {n : Nat}
     linarith
   exact mul_pos hxpos hspos
 
-/-- Scalar analogue of `predictor_fixed_component_product_pos_of_relative_bounds`. -/
+/-- Scalar analogue of `predictor_fixed_component_product_pos_of_relative_bounds`.
+@isnad1 id=lt.2h3v.s7.c2f7b3f2f39a from=translated src=- shape=18a1b560 vocab=d8ccc46d
+-/
 theorem predictor_fixed_scalar_product_pos_of_relative_bounds {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (htrel : |(ytmStepConstant / Real.sqrt (hdim n)) * d.dtau| < w.tau)
@@ -1041,7 +1169,9 @@ theorem predictor_fixed_scalar_product_pos_of_relative_bounds {n : Nat}
     linarith
   exact mul_pos htpos hkpos
 
-/-- Elementary conversion from a scaled relative bound to an unscaled relative bound. -/
+/-- Elementary conversion from a scaled relative bound to an unscaled relative bound.
+@isnad1 id=lt.2h3v.s6.04c69111c5d1 from=translated src=- shape=084f6e1b vocab=2a5c3b4b
+-/
 theorem abs_step_lt_of_scaled_abs_lt_one
     (x a α : ℝ) (hx : 0 < x)
     (hscaled : |α * (a / x)| < 1) :
@@ -1170,7 +1300,9 @@ structure PredictorFixedScaledDirectionBounds {n : Nat}
         ((1 - ytmStepConstant / Real.sqrt (hdim n)) * mu w)) ^ 2
 
 /-- Convert the natural scaled-norm bounds into the relative-step bounds used in
-the positivity bookkeeping. -/
+the positivity bookkeeping.
+@isnad1 id=predicto.2h3v.s4.ed7d0804dad5 from=translated src=- shape=9ac3a24c vocab=762767e2
+-/
 theorem predictor_fixed_scaled_norm_bounds_to_direction_bounds {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hneigh : HSDNeighborhood ytmBetaTight w)
@@ -1197,7 +1329,9 @@ theorem predictor_fixed_scaled_norm_bounds_to_direction_bounds {n : Nat}
       w.kappa d.dkappa (ytmStepConstant / Real.sqrt (hdim n))
       hkpos hbounds.scaled_kappa
 
-/-- Convert the named core estimate back to the expanded scaled-norm package. -/
+/-- Convert the named core estimate back to the expanded scaled-norm package.
+@isnad1 id=predicto.1h3v.s4.aa7438dc2ff5 from=translated src=- shape=0ec8e9ec vocab=fb0a8fb7
+-/
 theorem predictor_fixed_scaled_core_to_norm_bounds {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hcore : PredictorFixedScaledCoreBounds w d) :
