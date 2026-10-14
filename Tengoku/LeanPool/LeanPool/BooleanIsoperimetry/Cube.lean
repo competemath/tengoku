@@ -32,6 +32,9 @@ noncomputable def hDist {n : ℕ} (x y : Cube n) : ℕ :=
 noncomputable def neighborhood {n : ℕ} (r : ℕ) (A : Finset (Cube n)) : Finset (Cube n) :=
   Finset.univ.filter (fun v => ∃ u ∈ A, hDist u v ≤ r)
 
+/--
+@isnad1 id=iff.0h4v.s6.492ad8bd5297 from=translated src=- shape=7ef53c7c vocab=79921c4d
+-/
 @[simp]
 lemma mem_neighborhood_iff {n r : ℕ} {A : Finset (Cube n)} {v : Cube n} :
   v ∈ neighborhood r A ↔ ∃ u ∈ A, hDist u v ≤ r := by
@@ -57,6 +60,9 @@ def simplicialLt {n : ℕ} (x y : Cube n) : Prop :=
 -- BLOCK 1: INJECTIVITY OF ENCODING
 -- ==========================================
 
+/--
+@isnad1 id=lt.0h1v.s5.9afaf68bcf71 from=translated src=- shape=6094d0c2 vocab=a9c36630
+-/
 lemma sum_pow_two_lt (n : ℕ) : (∑ i ∈ Finset.range n, 2^i) < 2^n := by
   rw [Nat.geomSum_eq] <;> norm_num
 
@@ -74,6 +80,9 @@ private lemma ofDigits_map_eq_sum (n : ℕ) (S : Finset ℕ) :
       by_cases hm : m ∈ S <;> simp [hm]
       ring
 
+/--
+@isnad1 id=eq.1h3v.s4.d72f53c9b989 from=translated src=- shape=8cfbd3f6 vocab=e482d205
+-/
 lemma cubeToNat_inj {n : ℕ} {x y : Cube n} (h : cubeToNat x = cubeToNat y) : x = y := by
   revert x y
   have h_unique_binary :
@@ -151,11 +160,17 @@ lemma cubeToNat_inj {n : ℕ} {x y : Cube n} (h : cubeToNat x = cubeToNat y) : x
 -- ORDER PROPERTIES
 -- ==========================================
 
+/--
+@isnad1 id=simplici.0h2v.s3.3ebe37ebb811 from=translated src=- shape=f3577ae2 vocab=ca399b02
+-/
 lemma simplicialLe_refl {n : ℕ} (a : Cube n) : simplicialLe a a := by
   unfold simplicialLe
   right
   exact ⟨rfl, le_rfl⟩
 
+/--
+@isnad1 id=simplici.2h4v.s4.e1d30b170bf7 from=translated src=- shape=de5dbc67 vocab=ca399b02
+-/
 lemma simplicialLe_trans {n : ℕ} (a b c : Cube n)
     (hab : simplicialLe a b) (hbc : simplicialLe b c) : simplicialLe a c := by
   unfold simplicialLe at *
@@ -170,6 +185,9 @@ lemma simplicialLe_trans {n : ℕ} (a b c : Cube n)
       · omega
       · exact le_trans hbc_nat hab_nat
 
+/--
+@isnad1 id=eq.2h3v.s4.9eed7907f5b7 from=translated src=- shape=25abf759 vocab=ca399b02
+-/
 lemma simplicialLe_antisymm {n : ℕ} (a b : Cube n)
     (hab : simplicialLe a b) (hba : simplicialLe b a) : a = b := by
   unfold simplicialLe at hab hba
@@ -182,6 +200,9 @@ lemma simplicialLe_antisymm {n : ℕ} (a b : Cube n)
     · have h_nat_eq : cubeToNat a = cubeToNat b := le_antisymm h_nat_le2 h_nat_le
       exact cubeToNat_inj h_nat_eq
 
+/--
+@isnad1 id=or.0h3v.s4.c210a8366b6c from=translated src=- shape=38cd846a vocab=ca399b02
+-/
 lemma simplicialLe_total {n : ℕ} (a b : Cube n) : simplicialLe a b ∨ simplicialLe b a := by
   unfold simplicialLe
   rcases lt_trichotomy a.card b.card with h_lt | h_eq | h_gt
@@ -208,6 +229,9 @@ noncomputable def simplicialInitSeg (n : ℕ) (k : ℕ) : Finset (Cube n) :=
 /-
 Rank is bounded by the size of the cube.
 -/
+/--
+@isnad1 id=lt.0h2v.s4.b5502f52b0f9 from=translated src=- shape=23736ffc vocab=9da332c8
+-/
 lemma rank_lt_two_pow {n : ℕ} (x : Cube n) : rank x < 2 ^ n := by
   classical
   have hlt : rank x < (Finset.univ : Finset (Cube n)).card := by
@@ -219,6 +243,9 @@ lemma rank_lt_two_pow {n : ℕ} (x : Cube n) : rank x < 2 ^ n := by
 /-
 Rank is strictly monotone for the strict simplicial order.
 -/
+/--
+@isnad1 id=lt.1h3v.s4.3ac5e216d5e0 from=translated src=- shape=28459da8 vocab=9a524287
+-/
 lemma rank_strictMono {n : ℕ} {x y : Cube n} (h : simplicialLt x y) :
     rank x < rank y := by
   classical
@@ -229,6 +256,9 @@ lemma rank_strictMono {n : ℕ} {x y : Cube n} (h : simplicialLt x y) :
   unfold simplicialLe at *
   grind
 
+/--
+@isnad1 id=lt.1h3v.s5.738a86a6bd13 from=translated src=- shape=d6853c81 vocab=12054d60
+-/
 lemma rank_lt_of_mem_simplicialInitSeg {n : ℕ} {k : ℕ} {x : Cube n}
     (hx : x ∈ simplicialInitSeg n k) :
     rank x < k := by
@@ -238,6 +268,9 @@ lemma rank_lt_of_mem_simplicialInitSeg {n : ℕ} {k : ℕ} {x : Cube n}
 
 /-
 Rank is injective.
+-/
+/--
+@isnad1 id=injectiv.0h1v.s3.a40714c0e6f6 from=translated src=- shape=9ef37d6b vocab=77401fb6
 -/
 lemma rank_injective {n : ℕ} : Function.Injective (@rank n) := by
   intros x y hxy
@@ -254,6 +287,9 @@ lemma rank_injective {n : ℕ} : Function.Injective (@rank n) := by
 /-
 The ranks are exactly 0, 1, ..., 2^n - 1.
 -/
+/--
+@isnad1 id=eq.0h1v.s5.b10de7ff9653 from=translated src=- shape=69f511a3 vocab=622f6147
+-/
 lemma rank_image_eq {n : ℕ} :
     Finset.univ.image (@rank n) = Finset.range (2 ^ n) := by
   fapply Finset.eq_of_subset_of_card_le
@@ -262,6 +298,9 @@ lemma rank_image_eq {n : ℕ} :
 
 /-
 The cardinality of an initial segment.
+-/
+/--
+@isnad1 id=eq.0h2v.s5.8fa607e0014f from=translated src=- shape=a059ca79 vocab=e6ba2024
 -/
 lemma card_simplicialInitSeg {n k : ℕ} :
     (simplicialInitSeg n k).card = min k (2 ^ n) := by
@@ -303,6 +342,9 @@ noncomputable def slice1 {n : ℕ} (A : Finset (Cube (n + 1))) : Finset (Cube n)
 
 /-
 Lemma 11.1: Size of set equals sum of slice sizes
+-/
+/--
+@isnad1 id=eq.0h2v.s5.4b7b1927701f from=translated src=- shape=73b56f50 vocab=0b6f1ac4
 -/
 lemma slice_card_add {n : ℕ} (A : Finset (Cube (n + 1))) :
     (slice0 A).card + (slice1 A).card = A.card := by
@@ -352,6 +394,9 @@ lemma slice_card_add {n : ℕ} (A : Finset (Cube (n + 1))) :
 Helpers for neighborhood_succ
 ==========================================
 -/
+/--
+@isnad1 id=eq.0h3v.s5.87702d1b0bc9 from=translated src=- shape=c8ae5f16 vocab=77dc0ca1
+-/
 lemma hDist_embed0_embed0 {n : ℕ} (x y : Cube n) :
     hDist (embed0 x) (embed0 y) = hDist x y := by
   unfold hDist
@@ -360,6 +405,9 @@ lemma hDist_embed0_embed0 {n : ℕ} (x y : Cube n) :
     Finset.mem_image]
   unfold embed0; aesop
 
+/--
+@isnad1 id=eq.0h3v.s5.cf1017f65a53 from=translated src=- shape=c8ae5f16 vocab=b9e282dc
+-/
 lemma hDist_embed1_embed1 {n : ℕ} (x y : Cube n) :
     hDist (embed1 x) (embed1 y) = hDist x y := by
   unfold hDist embed1
@@ -368,6 +416,9 @@ lemma hDist_embed1_embed1 {n : ℕ} (x y : Cube n) :
   simp +decide [symmDiff]
   aesop
 
+/--
+@isnad1 id=eq.0h3v.s5.a0d6bed61d46 from=translated src=- shape=aed18418 vocab=c86fd8ce
+-/
 lemma hDist_embed0_embed1 {n : ℕ} (x y : Cube n) :
     hDist (embed0 x) (embed1 y) = hDist x y + 1 := by
   unfold hDist
@@ -384,6 +435,9 @@ lemma hDist_embed0_embed1 {n : ℕ} (x y : Cube n) :
   rw [h_symmDiff, Finset.card_union_of_disjoint] <;>
     norm_num [Finset.card_image_of_injective _ (Fin.castSucc_injective n)]
 
+/--
+@isnad1 id=eq.0h2v.s6.3351a4fdc974 from=translated src=- shape=3d9bafcd vocab=4e8f85d2
+-/
 lemma slice0_neighborhood {n : ℕ} (A : Finset (Cube (n + 1))) :
     slice0 (neighborhood 1 A) = neighborhood 1 (slice0 A) ∪ slice1 A := by
   ext x
@@ -426,6 +480,9 @@ lemma slice0_neighborhood {n : ℕ} (A : Finset (Cube (n + 1))) :
       simp +decide [hDist, embed0, embed1]
       simp +decide [symmDiff]
 
+/--
+@isnad1 id=eq.0h2v.s6.0ebd36c59d4a from=translated src=- shape=3d9bafcd vocab=4e8f85d2
+-/
 lemma slice1_neighborhood {n : ℕ} (A : Finset (Cube (n + 1))) :
     slice1 (neighborhood 1 A) = neighborhood 1 (slice1 A) ∪ slice0 A := by
   ext v
@@ -471,6 +528,9 @@ lemma slice1_neighborhood {n : ℕ} (A : Finset (Cube (n + 1))) :
 /-
 Lemma 11.2: Boundary Decomposition
 -/
+/--
+@isnad1 id=eq.0h2v.s7.5d1b9e7aec76 from=translated src=- shape=a99a77b7 vocab=6a329d7c
+-/
 lemma neighborhood_succ {n : ℕ} (A : Finset (Cube (n + 1))) :
     (neighborhood 1 A).card =
     (neighborhood 1 (slice0 A) ∪ slice1 A).card +
@@ -486,9 +546,15 @@ noncomputable def H (n k : ℕ) : ℕ :=
   (neighborhood 1 (simplicialInitSeg n k)).card
 
 -- Basic algebraic properties of H
+/--
+@isnad1 id=eq.0h1v.s4.ef78c44ce914 from=translated src=- shape=1d838610 vocab=98702be8
+-/
 lemma H_zero (n : ℕ) : H n 0 = 0 := by
   simp [H, simplicialInitSeg, neighborhood]
 
+/--
+@isnad1 id=le.1h3v.s4.1db74cd1063d from=translated src=- shape=32f89d1d vocab=224629da
+-/
 lemma H_mono {n a b : ℕ} (h : a ≤ b) : H n a ≤ H n b := by
   unfold H
   apply Finset.card_le_card
@@ -499,11 +565,17 @@ lemma H_mono {n a b : ℕ} (h : a ≤ b) : H n a ≤ H n b := by
   simp only [simplicialInitSeg, Finset.mem_filter, Finset.mem_univ, true_and] at hu ⊢
   exact Nat.lt_of_lt_of_le hu h
 
+/--
+@isnad1 id=le.0h2v.s4.da3bd2eed670 from=translated src=- shape=a458b0eb vocab=5e9abdb2
+-/
 lemma H_le_cube (n k : ℕ) : H n k ≤ 2 ^ n := by
   have h : (neighborhood 1 (simplicialInitSeg n k)).card ≤ Fintype.card (Cube n) :=
     Finset.card_le_univ _
   simpa [H, Cube, Fintype.card_finset] using h
 
+/--
+@isnad1 id=le.1h2v.s5.20376cf55b90 from=translated src=- shape=798b56aa vocab=5e9abdb2
+-/
 lemma H_ge_self (n k : ℕ) (hk : k ≤ 2 ^ n) : k ≤ H n k := by
   exact le_trans (by simp +decide [card_simplicialInitSeg, hk]) <|
     Finset.card_mono <| show simplicialInitSeg n k ⊆ neighborhood 1 (simplicialInitSeg n k) from
@@ -511,16 +583,25 @@ lemma H_ge_self (n k : ℕ) (hk : k ≤ 2 ^ n) : k ≤ H n k := by
         rw [mem_neighborhood_iff]
         exact ⟨x, hx, by simp +decide [hDist]⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.b094d00ff716 from=translated src=- shape=c03d7ee6 vocab=0a6c78b1
+-/
 lemma H_full (n : ℕ) : H n (2 ^ n) = 2 ^ n := by
   exact le_antisymm (H_le_cube n (2 ^ n)) (H_ge_self n (2 ^ n) (le_rfl))
 
 -- Translation of set unions to algebraic maximums
+/--
+@isnad1 id=le.1h3v.s5.1cd4d030f2a2 from=translated src=- shape=1869839d vocab=14d5e2ee
+-/
 lemma initSeg_nested {n : ℕ} {k m : ℕ} (h : k ≤ m) :
     simplicialInitSeg n k ⊆ simplicialInitSeg n m := by
   intro x hx
   simp only [simplicialInitSeg, Finset.mem_filter, Finset.mem_univ, true_and] at hx ⊢
   exact Nat.lt_of_lt_of_le hx h
 
+/--
+@isnad1 id=eq.2h3v.s6.1056bc1e73d2 from=translated src=- shape=42700a66 vocab=98de9f29
+-/
 lemma card_initSeg_union {n a b : ℕ} (ha : a ≤ 2 ^ n) (hb : b ≤ 2 ^ n) :
     (simplicialInitSeg n a ∪ simplicialInitSeg n b).card = max a b := by
   cases le_total a b <;>
@@ -536,6 +617,9 @@ Order-ideal characterization of neighborhoods
 
 Rank is monotone for the (non-strict) simplicial order.
 -/
+/--
+@isnad1 id=le.1h3v.s4.fd6a8ba903c2 from=translated src=- shape=28459da8 vocab=cc57e290
+-/
 lemma rank_mono {n : ℕ} {a b : Cube n} (h : simplicialLe a b) : rank a ≤ rank b := by
   by_cases hab : a = b
   · rw [hab]
@@ -550,6 +634,9 @@ noncomputable def gShift {n : ℕ} (v : Cube n) : Cube n :=
 
 /-
 gShift stays inside the closed radius-1 Hamming ball.
+-/
+/--
+@isnad1 id=le.0h2v.s4.eb3a3ec25e4f from=translated src=- shape=6f3dc5cd vocab=beef3802
 -/
 lemma hDist_gShift_le {n : ℕ} (v : Cube n) : hDist (gShift v) v ≤ 1 := by
   unfold hDist gShift
@@ -567,6 +654,9 @@ lemma hDist_gShift_le {n : ℕ} (v : Cube n) : hDist (gShift v) v ≤ 1 := by
 
 /-
 gShift is the smallest element (in simplicial order) of the closed Hamming ball.
+-/
+/--
+@isnad1 id=simplici.1h3v.s4.95c1b0727e1b from=translated src=- shape=e9525959 vocab=2f237392
 -/
 lemma gShift_le_ball {n : ℕ} {u v : Cube n} (h : hDist u v ≤ 1) :
     simplicialLe (gShift v) u := by
@@ -614,6 +704,9 @@ lemma gShift_le_ball {n : ℕ} {u v : Cube n} (h : hDist u v ≤ 1) :
 /-
 Membership in the neighborhood of an initial segment is governed by gShift.
 -/
+/--
+@isnad1 id=iff.0h3v.s5.de11ad5c1c7d from=translated src=- shape=03b8ecee vocab=f856d983
+-/
 lemma mem_neighborhood_initSeg_iff {n k : ℕ} {v : Cube n} :
     v ∈ neighborhood 1 (simplicialInitSeg n k) ↔ rank (gShift v) < k := by
   by_contra h_neq
@@ -625,6 +718,9 @@ lemma mem_neighborhood_initSeg_iff {n k : ℕ} {v : Cube n} :
 /-
 gShift preserves cardinality minus one (it removes exactly the minimum when nonempty).
 -/
+/--
+@isnad1 id=eq.0h2v.s4.1a430b93ae47 from=translated src=- shape=78bac895 vocab=a7010eb9
+-/
 lemma card_gShift {n : ℕ} (v : Cube n) : (gShift v).card = v.card - 1 := by
   rcases Finset.eq_empty_or_nonempty v with (rfl | hne) <;>
     simp_all +decide only [gShift, Finset.not_nonempty_empty, ↓reduceDIte, Finset.card_empty,
@@ -634,12 +730,18 @@ lemma card_gShift {n : ℕ} (v : Cube n) : (gShift v).card = v.card - 1 := by
 /-
 Removing an element decreases the binary value by the corresponding power of two.
 -/
+/--
+@isnad1 id=eq.1h3v.s6.fc7d6d547adf from=translated src=- shape=7fcae67d vocab=bb9db922
+-/
 lemma cubeToNat_erase {n : ℕ} {x : Cube n} {a : Fin n} (ha : a ∈ x) :
     cubeToNat x = cubeToNat (x.erase a) + 2 ^ (a : ℕ) := by
   unfold cubeToNat; rw [← Finset.sum_erase_add _ _ ha]
 
 /-
 If all active bits are below `M`, the binary value is below `2 ^ M`.
+-/
+/--
+@isnad1 id=lt.1h3v.s5.0d7d5fbdc33c from=translated src=- shape=7d55bc4f vocab=0fd23fb0
 -/
 lemma cubeToNat_lt_two_pow {n M : ℕ} {x : Cube n} (h : ∀ i ∈ x, (i : ℕ) < M) :
     cubeToNat x < 2 ^ M := by
@@ -658,6 +760,9 @@ lemma cubeToNat_lt_two_pow {n M : ℕ} {x : Cube n} (h : ∀ i ∈ x, (i : ℕ) 
 /-
 gShift never increases the binary value.
 -/
+/--
+@isnad1 id=le.0h2v.s4.e9bf9d5c0bd8 from=translated src=- shape=6046d1bd vocab=0488247b
+-/
 lemma cubeToNat_gShift_le {n : ℕ} (x : Cube n) : cubeToNat (gShift x) ≤ cubeToNat x := by
   unfold gShift; by_cases hx : x.Nonempty <;>
     simp_all +decide only [Finset.not_nonempty_iff_eq_empty, Finset.not_nonempty_empty,
@@ -666,6 +771,9 @@ lemma cubeToNat_gShift_le {n : ℕ} (x : Cube n) : cubeToNat (gShift x) ≤ cube
 
 /-
 Peeling: gShift commutes with removing the maximum element (cardinality ≥ 2).
+-/
+/--
+@isnad1 id=eq.2h2v.s6.862ed6d39be7 from=translated src=- shape=a17f3de3 vocab=0266eb98
 -/
 lemma cubeToNat_gShift_erase_max {n : ℕ} {x : Cube n} (hx : x.Nonempty) (h2 : 2 ≤ x.card) :
     cubeToNat (gShift x) =
@@ -694,6 +802,9 @@ lemma cubeToNat_gShift_erase_max {n : ℕ} {x : Cube n} (hx : x.Nonempty) (h2 : 
 The arithmetic core: among equal-cardinality vertices, removing the minimum element is
 monotone for the binary value `cubeToNat`.  Proved by induction on cardinality, peeling off
 the common largest element.
+-/
+/--
+@isnad1 id=le.3h4v.s5.5f2eb7dd7dd0 from=translated src=- shape=eba77791 vocab=7b6b6ceb
 -/
 lemma cubeToNat_gShift_mono {n : ℕ} :
     ∀ (m : ℕ) (s t : Cube n), s.card = m → t.card = m → cubeToNat t ≤ cubeToNat s →
@@ -768,6 +879,9 @@ lemma cubeToNat_gShift_mono {n : ℕ} :
           · linarith
 
 -- gShift is monotone for the simplicial order.
+/--
+@isnad1 id=simplici.1h3v.s4.1e8bde862624 from=translated src=- shape=53b46bf4 vocab=f0d2c7b9
+-/
 lemma gShift_monotone {n : ℕ} {w v : Cube n} (h : simplicialLe w v) :
     simplicialLe (gShift w) (gShift v) := by
   have hwv : w.card ≤ v.card := by rcases h with hlt | ⟨heq, _⟩ <;> omega
@@ -790,6 +904,9 @@ lemma gShift_monotone {n : ℕ} {w v : Cube n} (h : simplicialLe w v) :
 /-
 A downward-closed set is an initial segment of its own cardinality.
 -/
+/--
+@isnad1 id=eq.1h2v.s6.cde83a3207b4 from=translated src=- shape=8a04acef vocab=ffe2c6f8
+-/
 lemma downwardClosed_eq_initSeg {n : ℕ} {S : Finset (Cube n)}
     (hS : ∀ x y, simplicialLe x y → y ∈ S → x ∈ S) :
     S = simplicialInitSeg n S.card := by
@@ -807,6 +924,9 @@ lemma downwardClosed_eq_initSeg {n : ℕ} {S : Finset (Cube n)}
     (by simp [card_simplicialInitSeg])
 
 -- Structural theorem: The boundary of an initial segment is an initial segment
+/--
+@isnad1 id=eq.0h2v.s4.5b21199320c9 from=translated src=- shape=153f5bb7 vocab=8b08ef83
+-/
 lemma neighborhood_initSeg_eq {n k : ℕ} :
     neighborhood 1 (simplicialInitSeg n k) = simplicialInitSeg n (H n k) := by
   have hdc : ∀ x y, simplicialLe x y → y ∈ neighborhood 1 (simplicialInitSeg n k) →
@@ -823,20 +943,32 @@ The Algebraic Core of Harper's Theorem
 
 Embedding facts: embed0 preserves cardinality and binary value.
 -/
+/--
+@isnad1 id=eq.0h2v.s4.acfff7d5e45c from=translated src=- shape=a660e907 vocab=0630d95b
+-/
 lemma embed0_card {n : ℕ} (x : Cube n) : (embed0 x).card = x.card := by
   unfold embed0
   exact Finset.card_image_of_injective _ (Fin.castSucc_injective n)
 
+/--
+@isnad1 id=eq.0h2v.s4.f223f5c3916d from=translated src=- shape=278ca375 vocab=41299d7a
+-/
 lemma embed0_cubeToNat {n : ℕ} (x : Cube n) : cubeToNat (embed0 x) = cubeToNat x := by
   simp [cubeToNat, embed0]
 
 /-
 embed1 adds one element (the last coordinate) and the top power of two.
 -/
+/--
+@isnad1 id=eq.0h2v.s5.320b1d7a1f22 from=translated src=- shape=00659b2b vocab=d37178b0
+-/
 lemma embed1_card {n : ℕ} (x : Cube n) : (embed1 x).card = x.card + 1 := by
   unfold embed1
   simp [Finset.card_image_of_injective _ (Fin.castSucc_injective n)]
 
+/--
+@isnad1 id=eq.0h2v.s5.154169be8de3 from=translated src=- shape=192b367f vocab=df17fc5c
+-/
 lemma embed1_cubeToNat {n : ℕ} (x : Cube n) : cubeToNat (embed1 x) = cubeToNat x + 2 ^ n := by
   unfold cubeToNat embed1
   have hlast : Fin.last n ∉ Finset.image Fin.castSucc x := by
@@ -854,11 +986,17 @@ lemma embed1_cubeToNat {n : ℕ} (x : Cube n) : cubeToNat (embed1 x) = cubeToNat
 /-
 Both embeddings are monotone for the simplicial order.
 -/
+/--
+@isnad1 id=simplici.1h3v.s5.3e5be6db36a8 from=translated src=- shape=5d682baa vocab=4e837537
+-/
 lemma embed0_mono {n : ℕ} {x y : Cube n} (h : simplicialLe x y) :
     simplicialLe (embed0 x) (embed0 y) := by
   unfold simplicialLe at *
   rw [embed0_card, embed0_card, embed0_cubeToNat, embed0_cubeToNat]; aesop
 
+/--
+@isnad1 id=simplici.1h3v.s5.64d2b58bcc91 from=translated src=- shape=5d682baa vocab=0a3564cf
+-/
 lemma embed1_mono {n : ℕ} {x y : Cube n} (h : simplicialLe x y) :
     simplicialLe (embed1 x) (embed1 y) := by
   unfold simplicialLe at *
@@ -866,6 +1004,9 @@ lemma embed1_mono {n : ℕ} {x y : Cube n} (h : simplicialLe x y) :
 
 /-
 The slices of an initial segment are themselves initial segments.
+-/
+/--
+@isnad1 id=eq.0h2v.s5.6b9665c61147 from=translated src=- shape=1a9f6f2f vocab=05014747
 -/
 lemma slice0_initSeg_eq {n k : ℕ} :
     slice0 (simplicialInitSeg (n + 1) k) =
@@ -875,6 +1016,9 @@ lemma slice0_initSeg_eq {n k : ℕ} :
   simp_all +decide only [slice0, Finset.mem_filter, Finset.mem_univ, true_and]
   exact lt_of_le_of_lt (rank_mono (embed0_mono h_le) ) h_mem)
 
+/--
+@isnad1 id=eq.0h2v.s5.f862205a63fa from=translated src=- shape=1a9f6f2f vocab=f69d3d77
+-/
 lemma slice1_initSeg_eq {n k : ℕ} :
     slice1 (simplicialInitSeg (n + 1) k) =
       simplicialInitSeg n (slice1 (simplicialInitSeg (n + 1) k)).card := by
@@ -886,6 +1030,9 @@ lemma slice1_initSeg_eq {n k : ℕ} :
 
 /-
 The boundary of an initial segment in dimension n+1, expressed via its slices.
+-/
+/--
+@isnad1 id=eq.0h2v.s6.943a8f50ed7e from=translated src=- shape=d26e046a vocab=3f672357
 -/
 lemma H_succ_slice {n k : ℕ} :
     H (n + 1) k =

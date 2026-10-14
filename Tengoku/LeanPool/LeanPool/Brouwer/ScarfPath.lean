@@ -55,35 +55,53 @@ def GiEdge (c : T → I) (i : I) (v w : GiCell T I) : Prop :=
       IST.isDoorof v.1 v.2 w.1 w.2)
 
 omit [Inhabited T] [Fintype T] [Fintype I] in
+/--
+@isnad1 id=giedge.1h6v.s5.6fb0b3e6d303 from=translated src=- shape=cc9bbea4 vocab=13eb20fe
+-/
 lemma GiEdge.symm {c : T → I} {i : I} {v w : GiCell T I}
     (h : GiEdge (IST := IST) c i v w) :
     GiEdge (IST := IST) c i w v :=
   h.elim Or.inr Or.inl
 
 omit [Inhabited T] [Fintype T] [Fintype I] in
+/--
+@isnad1 id=givertex.1h6v.s5.c700c7e4b955 from=translated src=- shape=599b866b vocab=5c8e97fe
+-/
 lemma GiEdge.left_vertex {c : T → I} {i : I} {v w : GiCell T I}
     (h : GiEdge (IST := IST) c i v w) :
     GiVertex (IST := IST) c i v :=
   h.elim (fun h => Or.inl h.1) (fun h => Or.inr h.2.1)
 
 omit [Inhabited T] [Fintype T] [Fintype I] in
+/--
+@isnad1 id=givertex.1h6v.s5.c8e801d95650 from=translated src=- shape=1b60d73d vocab=5c8e97fe
+-/
 lemma GiEdge.right_vertex {c : T → I} {i : I} {v w : GiCell T I}
     (h : GiEdge (IST := IST) c i v w) :
     GiVertex (IST := IST) c i w :=
   (GiEdge.symm h).left_vertex
 
 omit [Inhabited T] [Fintype T] [Fintype I] [DecidableEq T] in
+/--
+@isnad1 id=isroom.1h5v.s5.33d6a7669132 from=translated src=- shape=072f2076 vocab=9b5f727a
+-/
 lemma GiRoomVertex.room {c : T → I} {i : I} {v : GiCell T I}
     (h : GiRoomVertex (IST := IST) c i v) :
     IST.isRoom v.1 v.2 :=
   h.elim IST.room_of_colorful (·.1)
 
 omit [Inhabited T] [Fintype T] [Fintype I] [DecidableEq T] in
+/--
+@isnad1 id=isdoor.1h5v.s5.61db1e854d8e from=translated src=- shape=072f2076 vocab=1d1e0fca
+-/
 lemma GiDoorVertex.door {c : T → I} {i : I} {v : GiCell T I}
     (h : GiDoorVertex (IST := IST) c i v) :
     IST.isDoor v.1 v.2 := h.1
 
 omit [Inhabited T] [Fintype T] [Fintype I] in
+/--
+@isnad1 id=not.0h5v.s5.2c47f830f685 from=translated src=- shape=9cd75d4e vocab=13eb20fe
+-/
 lemma GiEdge.irrefl {c : T → I} {i : I} (v : GiCell T I) :
     ¬ GiEdge (IST := IST) c i v v := by
   intro h
@@ -101,6 +119,9 @@ def GiNeighbors (c : T → I) (i : I) (v : GiCell T I) : Finset (GiCell T I) :=
   (GiGraph (IST := IST) c i).neighborFinset v
 
 omit [Inhabited T] in
+/--
+@isnad1 id=iff.0h6v.s6.e4d49c0f85a6 from=translated src=- shape=d6ffe8cb vocab=ee0f3250
+-/
 lemma mem_GiNeighbors {c : T → I} {i : I} {v w : GiCell T I} :
     w ∈ GiNeighbors (IST := IST) c i v ↔ GiEdge (IST := IST) c i v w := by
   exact SimpleGraph.mem_neighborFinset (GiGraph (IST := IST) c i) v w
@@ -114,18 +135,27 @@ def GiEndpoint (c : T → I) (i : I) (v : GiCell T I) : Prop :=
   GiVertex (IST := IST) c i v ∧ GiDegree (IST := IST) c i v = 1
 
 omit [Inhabited T] [Fintype T] [Fintype I] [DecidableEq T] [DecidableEq I] in
+/--
+@isnad1 id=not.1h4v.s4.42bb8f61d95f from=translated src=- shape=3ec442cd vocab=98e2910a
+-/
 lemma not_room_of_door {τ : Finset T} {D : Finset I}
     (hDoor : IST.isDoor τ D) :
     ¬ IST.isRoom τ D := by
   simp_all
 
 omit [Inhabited T] [Fintype T] [Fintype I] [DecidableEq T] in
+/--
+@isnad1 id=not.1h5v.s5.fb0284dfa17e from=translated src=- shape=fc7db3fc vocab=ef8ac4b1
+-/
 lemma not_colorful_of_door {c : T → I} {τ : Finset T} {D : Finset I}
     (hDoor : IST.isDoor τ D) :
     ¬ IST.isColorful c τ D :=
   fun hColorful => not_room_of_door hDoor (IST.room_of_colorful hColorful)
 
 omit [Inhabited T] [Fintype T] [Fintype I] [DecidableEq T] in
+/--
+@isnad1 id=not.1h6v.s5.86b9f9e7ee3d from=translated src=- shape=b2960574 vocab=168c8a59
+-/
 lemma not_GiRoomVertex_of_door {c : T → I} {i : I} {τ : Finset T} {D : Finset I}
     (hDoor : IST.isDoor τ D) :
     ¬ GiRoomVertex (IST := IST) c i (τ, D) :=
@@ -133,18 +163,27 @@ lemma not_GiRoomVertex_of_door {c : T → I} {i : I} {τ : Finset T} {D : Finset
     (fun hTypedRoom => not_room_of_door hDoor hTypedRoom.1)
 
 omit [Inhabited T] [Fintype T] [Fintype I] [DecidableEq T] [DecidableEq I] in
+/--
+@isnad1 id=not.1h4v.s4.040a4d52aed6 from=translated src=- shape=3ec442cd vocab=98e2910a
+-/
 lemma not_door_of_room {σ : Finset T} {C : Finset I}
     (hRoom : IST.isRoom σ C) :
     ¬ IST.isDoor σ C :=
   fun hDoor => not_room_of_door hDoor hRoom
 
 omit [Inhabited T] [Fintype T] [Fintype I] [DecidableEq T] in
+/--
+@isnad1 id=not.1h6v.s5.449431575449 from=translated src=- shape=b2960574 vocab=7d308f6f
+-/
 lemma not_GiDoorVertex_of_room {c : T → I} {i : I} {σ : Finset T} {C : Finset I}
     (hRoom : IST.isRoom σ C) :
     ¬ GiDoorVertex (IST := IST) c i (σ, C) :=
   fun hDoorVertex => not_door_of_room hRoom hDoorVertex.1
 
 omit [Inhabited T] [Fintype T] [Fintype I] in
+/--
+@isnad1 id=isdoor.1h6v.s5.91640c1a3119 from=translated src=- shape=d5e56857 vocab=ddf9a62e
+-/
 lemma isDoor_of_Doorof {τ σ : Finset T} {D C : Finset I}
     (hDoorof : IST.isDoorof τ D σ C) :
     IST.isDoor τ D := by
@@ -153,6 +192,9 @@ lemma isDoor_of_Doorof {τ σ : Finset T} {D C : Finset I}
   | odoor _ hDoor _ _ _ _ => exact hDoor
 
 omit [Inhabited T] [Fintype T] [Fintype I] in
+/--
+@isnad1 id=giroomve.2h8v.s6.4149d35dcad9 from=translated src=- shape=c1a83485 vocab=1f100867
+-/
 lemma GiRoomVertex_of_incident_typed_door {c : T → I} {i : I}
     {τ σ : Finset T} {D C : Finset I}
     (hTypedDoor : IST.isTypedNC c i τ D)
@@ -162,6 +204,9 @@ lemma GiRoomVertex_of_incident_typed_door {c : T → I} {i : I}
     (fun hTypedRoom => Or.inr ⟨IST.isRoom_of_Door hDoorof, hTypedRoom⟩) Or.inl
 
 omit [Inhabited T] in
+/--
+@isnad1 id=eq.2h6v.s6.08509f28f9d5 from=translated src=- shape=8e388891 vocab=fb21341a
+-/
 theorem GiDegree_internalDoor {c : T → I} {i : I} {τ : Finset T} {D : Finset I}
     (hInternal : IST.isInternalDoor τ D) (hTyped : IST.isTypedNC c i τ D) :
     GiDegree (IST := IST) c i (τ, D) = 2 := by
@@ -192,6 +237,9 @@ theorem GiDegree_internalDoor {c : T → I} {i : I} {τ : Finset T} {D : Finset 
   exact Finset.card_pair hNe
 
 omit [Inhabited T] in
+/--
+@isnad1 id=eq.2h6v.s6.3fb37515c305 from=translated src=- shape=8e388891 vocab=89da0931
+-/
 theorem GiDegree_typedNCRoom {c : T → I} {i : I} {σ : Finset T} {C : Finset I}
     (hRoom : IST.isRoom σ C) (hTyped : IST.isTypedNC c i σ C) :
     GiDegree (IST := IST) c i (σ, C) = 2 := by
@@ -222,6 +270,9 @@ theorem GiDegree_typedNCRoom {c : T → I} {i : I} {σ : Finset T} {C : Finset I
   rw [GiDegree, hNeighbors]
   exact Finset.card_pair hNe
 
+/--
+@isnad1 id=eq.2h6v.s6.2c51ae897a72 from=translated src=- shape=f035db22 vocab=ceac3868
+-/
 theorem GiDegree_outsideDoor {c : T → I} {i : I} {τ : Finset T} {D : Finset I}
     (hOutside : IST.isOutsideDoor τ D) (hTyped : IST.isTypedNC c i τ D) :
     GiDegree (IST := IST) c i (τ, D) = 1 := by
@@ -298,6 +349,9 @@ theorem GiDegree_outsideDoor {c : T → I} {i : I} {τ : Finset T} {D : Finset I
   simp
 
 omit [Inhabited T] in
+/--
+@isnad1 id=eq.1h6v.s6.41721f10bd9e from=translated src=- shape=b1527d6a vocab=6c5b2655
+-/
 theorem GiDegree_colorfulRoom {c : T → I} {i : I} {σ : Finset T} {C : Finset I}
     (hColorful : IST.isColorful c σ C) :
     GiDegree (IST := IST) c i (σ, C) = 1 := by
@@ -471,6 +525,9 @@ def GiDegreeCharacterization (c : T → I) (i : I) : Prop :=
     (GiDoorVertex (IST := IST) c i v ∧ IST.isOutsideDoor v.1 v.2) ∨
       IST.isColorful c v.1 v.2)
 
+/--
+@isnad1 id=gidegree.0h4v.s5.f03171e7a507 from=translated src=- shape=833f8465 vocab=7e1cf948
+-/
 theorem GiDegreeCharacterization_holds (c : T → I) (i : I) :
     GiDegreeCharacterization (IST := IST) c i := by
   constructor
@@ -527,6 +584,9 @@ def GiComponentStructure (c : T → I) (i : I) : Prop :=
         IST.isColorful c v.1 v.2)
 
 omit [Inhabited T] in
+/--
+@isnad1 id=gipathst.1h4v.s5.9258bbb4db48 from=translated src=- shape=dad3e45f vocab=56e1093e
+-/
 theorem GiPathStructure_of_degreeCharacterization {c : T → I} {i : I}
     (hdegStmt : GiDegreeCharacterization (IST := IST) c i) :
     GiPathStructure (IST := IST) c i := by
@@ -544,6 +604,9 @@ theorem GiPathStructure_of_degreeCharacterization {c : T → I} {i : I}
     simp
 
 omit [Inhabited T] in
+/--
+@isnad1 id=gicompon.2h4v.s5.413603fb339f from=translated src=- shape=d6c27cf3 vocab=11f9f3ac
+-/
 theorem GiComponentStructure_of_components_are_paths_or_cycles {c : T → I} {i : I}
     (hdegStmt : GiDegreeCharacterization (IST := IST) c i)
     (hcomponents :
@@ -555,6 +618,7 @@ theorem GiComponentStructure_of_components_are_paths_or_cycles {c : T → I} {i 
 Generic graph-theoretic step 1: in a finite connected component of a graph of
 degree at most two, choose a path whose support is maximal inside that
 component.
+@isnad1 id=ex.1h3v.s7.c9127d966ff8 from=translated src=- shape=0eae32e2 vocab=48db46a0
 -/
 theorem exists_maximal_component_path_of_degree_le_two
     {α : Type*} [Fintype α] (G : SimpleGraph α)
@@ -591,6 +655,7 @@ theorem exists_maximal_component_path_of_degree_le_two
 /--
 Generic graph-theoretic step 2b: if a component path has no edge escaping its
 support inside the component, then its support is the whole component.
+@isnad1 id=eq.2h6v.s6.c5270600e392 from=translated src=- shape=3a51d74c vocab=8dc2a986
 -/
 theorem component_path_support_eq_component_of_no_escape
     {α : Type*} (G : SimpleGraph α)
@@ -625,6 +690,9 @@ theorem component_path_support_eq_component_of_no_escape
 /- Generic graph-theoretic step 3: if a maximal component path in a degree-at-most
 two graph has a closing edge not already used by the path, then the component
 is a cycle.  The extra edge condition excludes the two-vertex path case. -/
+/--
+@isnad1 id=simplegr.4h6v.s6.d85d42180ced from=translated src=- shape=42f528d0 vocab=9105a991
+-/
 theorem component_cycle_of_maximal_path_closes
     {α : Type*} (G : SimpleGraph α)
     {component : G.ConnectedComponent} {u v : α} {p : G.Walk u v}
@@ -646,7 +714,9 @@ theorem component_cycle_of_maximal_path_closes
     · intro hx
       simpa only [SimpleGraph.Walk.support_cons, List.mem_cons, Set.mem_ofPred_eq] using Or.inr hx
 
-/-- A path whose support is exactly a component represents that component as a path. -/
+/-- A path whose support is exactly a component represents that component as a path.
+@isnad1 id=simplegr.2h6v.s5.1a1ef3cdb41e from=translated src=- shape=0b0608e3 vocab=42ce5502
+-/
 theorem component_path_of_support_eq_component
     {α : Type*} (G : SimpleGraph α)
     {component : G.ConnectedComponent} {u v : α} {p : G.Walk u v}

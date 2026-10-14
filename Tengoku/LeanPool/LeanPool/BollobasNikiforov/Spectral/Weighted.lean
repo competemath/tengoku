@@ -35,10 +35,16 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 variable {B : Matrix n n ℝ}
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=eq.0h2v.s5.80d26ad9d765 from=translated src=- shape=309d615d vocab=e8b695a1
+-/
 lemma sum_sq_eq_dotProduct (x : n → ℝ) : ∑ i, x i ^ 2 = x ⬝ᵥ x := by
   simp [dotProduct, pow_two]
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=eq.1h4v.s6.000c22740135 from=translated src=- shape=081df84e vocab=9b9adfe5
+-/
 lemma isHermitian_dotProduct_mulVec (hB : B.IsHermitian) (x y : n → ℝ) :
     x ⬝ᵥ B *ᵥ y = (B *ᵥ x) ⬝ᵥ y := by
   have hBT : Bᵀ = B := by
@@ -46,11 +52,17 @@ lemma isHermitian_dotProduct_mulVec (hB : B.IsHermitian) (x y : n → ℝ) :
   rw [dotProduct_mulVec, ← vecMul_transpose, hBT]
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=eq.0h4v.s6.9f02a5d50a4f from=translated src=- shape=43a40f69 vocab=91cceea3
+-/
 lemma inner_smul_vecMulVec (r : ℝ) (C : Matrix n n ℝ) (u : n → ℝ) :
     inner C (r • vecMulVec u u) = r * (u ⬝ᵥ C *ᵥ u) := by
   rw [inner_smul_right, inner_vecMulVec]
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=eq.0h4v.s6.a3db8a45412e from=translated src=- shape=4f028681 vocab=9ab93bf8
+-/
 lemma vecMulVec_mulVec (u v x : n → ℝ) :
     vecMulVec u v *ᵥ x = (v ⬝ᵥ x) • u := by
   ext i
@@ -61,6 +73,9 @@ lemma vecMulVec_mulVec (u v x : n → ℝ) :
   · ring
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=eq.0h3v.s5.f2373820f61d from=translated src=- shape=40a4eddb vocab=9aec9bb7
+-/
 lemma inner_vecMulVec_vecMulVec (u v : n → ℝ) :
     inner (vecMulVec u u) (vecMulVec v v) = (u ⬝ᵥ v) ^ 2 := by
   rw [inner_vecMulVec, vecMulVec_mulVec, dotProduct_smul, smul_eq_mul, mul_comm,
@@ -77,27 +92,42 @@ noncomputable def lambdaSecondIndex : n :=
   (Fintype.equivOfCardEq (Fintype.card_fin (Fintype.card n))) ⟨1, Fintype.one_lt_card⟩
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=ne.0h1v.s4.58724da28fdd from=translated src=- shape=5b894d8a vocab=80a62366
+-/
 lemma lambdaMaxIndex_ne_lambdaSecondIndex : lambdaMaxIndex (n := n) ≠ lambdaSecondIndex := by
   intro h
   have := congrArg Fin.val
     ((Fintype.equivOfCardEq (Fintype.card_fin (Fintype.card n))).injective h)
   exact Nat.zero_ne_one this
 
+/--
+@isnad1 id=eq.1h2v.s6.33e35add3023 from=translated src=- shape=14dfd1a6 vocab=bc20e282
+-/
 lemma eigenvalues_lambdaMaxIndex (hB : B.IsHermitian) :
     hB.eigenvalues lambdaMaxIndex = lambdaMax hB := by
   simp [lambdaMaxIndex, IsHermitian.eigenvalues, lambdaMax, eigs₀]
 
+/--
+@isnad1 id=eq.1h2v.s6.1e67108e9356 from=translated src=- shape=14dfd1a6 vocab=63ccfe09
+-/
 lemma eigenvalues_lambdaSecondIndex (hB : B.IsHermitian) :
     hB.eigenvalues lambdaSecondIndex = lambdaSecond hB := by
   simp [lambdaSecondIndex, IsHermitian.eigenvalues, lambdaSecond, eigs₀]
 
 omit [Nontrivial n] in
+/--
+@isnad1 id=eq.1h3v.s8.45a62954d752 from=translated src=- shape=d4d1c3be vocab=24a9fec2
+-/
 lemma eigenvectorBasis_sum_sq (hB : B.IsHermitian) (i : n) :
     ∑ k, (hB.eigenvectorBasis i : n → ℝ) k ^ 2 = 1 := by
   have hn : ‖hB.eigenvectorBasis i‖ = 1 := (hB.eigenvectorBasis).orthonormal.1 i
   rw [← EuclideanSpace.real_norm_sq_eq, hn, one_pow]
 
 omit [Nontrivial n] in
+/--
+@isnad1 id=eq.2h4v.s8.4b3ca7d06ec6 from=translated src=- shape=7a88da2a vocab=cb31165e
+-/
 lemma eigenvectorBasis_dotProduct (hB : B.IsHermitian) {i j : n} (hij : i ≠ j) :
     (hB.eigenvectorBasis i : n → ℝ) ⬝ᵥ (hB.eigenvectorBasis j : n → ℝ) = 0 := by
   have h0 : ⟪hB.eigenvectorBasis i, hB.eigenvectorBasis j⟫_ℝ = 0 :=
@@ -105,7 +135,9 @@ lemma eigenvectorBasis_dotProduct (hB : B.IsHermitian) {i j : n} (hij : i ≠ j)
   rw [EuclideanSpace.inner_eq_star_dotProduct] at h0
   simpa [dotProduct_comm] using h0
 
-/-- A unit eigenvector for `λ₂` orthogonal to a unit `λ_max`-eigenvector, when `λ₂ > 0`. -/
+/-- A unit eigenvector for `λ₂` orthogonal to a unit `λ_max`-eigenvector, when `λ₂ > 0`.
+@isnad1 id=ex.4h3v.s8.b5295d040b3e from=translated src=- shape=7c6211f7 vocab=6fdbdb3f
+-/
 lemma exists_second_eigenvec (hB : B.IsHermitian)
     {u : n → ℝ} (hu : B *ᵥ u = lambdaMax hB • u) (hu1 : ∑ i, u i ^ 2 = 1)
     (_hb : 0 < lambdaSecond hB) :
@@ -257,6 +289,9 @@ namespace SpectralSlice
 variable {hB : B.IsHermitian} {hnn : ∀ i j, 0 ≤ B i j}
 variable (s : SpectralSlice hB hnn)
 
+/--
+@isnad1 id=le.2h3v.s6.e6325c985154 from=translated src=- shape=0d8e92e2 vocab=75f4ca31
+-/
 lemma a_nonneg : 0 ≤ s.a := by
   have huu : s.u ⬝ᵥ s.u = 1 := by simpa [sum_sq_eq_dotProduct] using s.hu_unit
   have : s.a = s.u ⬝ᵥ B *ᵥ s.u := by
@@ -265,14 +300,22 @@ lemma a_nonneg : 0 ≤ s.a := by
   refine Finset.sum_nonneg fun j _ => Finset.sum_nonneg fun i _ => ?_
   exact mul_nonneg (mul_nonneg (s.hu_nonneg i) (hnn i j)) (s.hu_nonneg j)
 
+/--
+@isnad1 id=le.2h3v.s6.1a2adc33f9dd from=translated src=- shape=0d8e92e2 vocab=975353aa
+-/
 lemma b_nonneg : 0 ≤ s.b := by
   rw [s.hb]
   exact le_max_right _ _
 
+/--
+@isnad1 id=eq.2h3v.s7.17f560e167da from=translated src=- shape=3abdfe6a vocab=946efcd2
+-/
 lemma hv_dot : s.v ⬝ᵥ s.v = if 0 < s.b then 1 else 0 := by
   simpa [sum_sq_eq_dotProduct] using s.hv_sq
 
-/-- **SP04.** The spectral slice is positive semidefinite. -/
+/-- **SP04.** The spectral slice is positive semidefinite.
+@isnad1 id=possemid.2h3v.s6.7e4eee39d408 from=translated src=- shape=a96ed122 vocab=27d85f79
+-/
 lemma posSemidef : s.X.PosSemidef := by
   have huu : (vecMulVec s.u s.u).PosSemidef := by
     simpa using posSemidef_vecMulVec_self_star (R := ℝ) s.u
@@ -281,13 +324,18 @@ lemma posSemidef : s.X.PosSemidef := by
   rw [s.hX]
   exact (huu.smul s.a_nonneg).add (hvv.smul s.b_nonneg)
 
+/--
+@isnad1 id=eq.2h4v.s7.128f13c5dcee from=translated src=- shape=2259f29e vocab=e1075bad
+-/
 lemma col_eq (j : n) :
     s.X.col j = (s.a * s.u j) • s.u + (s.b * s.v j) • s.v := by
   ext i
   simp [s.hX, col_apply, vecMulVec_apply, smul_eq_mul]
   ring
 
-/-- **SP04.** The spectral slice has rank at most two. -/
+/-- **SP04.** The spectral slice has rank at most two.
+@isnad1 id=le.2h3v.s6.14df91da64cc from=translated src=- shape=a0e2b791 vocab=5c43fd54
+-/
 lemma rank_le_two : s.X.rank ≤ 2 := by
   classical
   rw [rank_eq_finrank_span_cols]
@@ -306,6 +354,9 @@ lemma rank_le_two : s.X.rank ≤ 2 := by
     exact (Finset.card_insert_le _ _).trans (by simp)
   exact this
 
+/--
+@isnad1 id=eq.2h3v.s7.2e81d52d4649 from=translated src=- shape=affba271 vocab=dc4fdb5d
+-/
 lemma inner_B_X_eq_sq : inner B s.X = s.a ^ 2 + s.b ^ 2 := by
   have huu : s.u ⬝ᵥ s.u = 1 := by simpa [sum_sq_eq_dotProduct] using s.hu_unit
   rw [s.hX, inner_add_right, inner_smul_vecMulVec, inner_smul_vecMulVec, s.hu_eigen, s.hv_eigen,
@@ -315,6 +366,9 @@ lemma inner_B_X_eq_sq : inner B s.X = s.a ^ 2 + s.b ^ 2 := by
   · have hb0 : s.b = 0 := le_antisymm (le_of_not_gt hb) s.b_nonneg
     simp [hb0, pow_two]
 
+/--
+@isnad1 id=eq.2h3v.s7.46bfe9e4a21d from=translated src=- shape=81bd8d9f vocab=dc4fdb5d
+-/
 lemma inner_X_X_eq_sq : inner s.X s.X = s.a ^ 2 + s.b ^ 2 := by
   have huu : s.u ⬝ᵥ s.u = 1 := by simpa [sum_sq_eq_dotProduct] using s.hu_unit
   have hAA : inner (vecMulVec s.u s.u) (vecMulVec s.u s.u) = 1 := by
@@ -333,18 +387,29 @@ lemma inner_X_X_eq_sq : inner s.X s.X = s.a ^ 2 + s.b ^ 2 := by
   · have hb0 : s.b = 0 := le_antisymm (le_of_not_gt hb) s.b_nonneg
     simp [hb0, pow_two]
 
-/-- **SP05.** `⟨B, X⟩ = ⟨X, X⟩ = F B`. -/
+/-- **SP05.** `⟨B, X⟩ = ⟨X, X⟩ = F B`.
+@isnad1 id=eq.2h3v.s6.4640f71de503 from=translated src=- shape=36bab9aa vocab=0a144312
+-/
 lemma inner_B_X : inner B s.X = F hB := by
   have ha' : 0 ≤ lambdaMax hB := by simpa [s.ha] using s.a_nonneg
   rw [s.inner_B_X_eq_sq, F_eq, s.ha, s.hb, max_eq_left ha']
 
+/--
+@isnad1 id=eq.2h3v.s6.d24f0c19cd68 from=translated src=- shape=a7f4a7cc vocab=0a144312
+-/
 lemma inner_X_X : inner s.X s.X = F hB := by
   have ha' : 0 ≤ lambdaMax hB := by simpa [s.ha] using s.a_nonneg
   rw [s.inner_X_X_eq_sq, F_eq, s.ha, s.hb, max_eq_left ha']
 
+/--
+@isnad1 id=eq.2h3v.s6.9502d823a4a6 from=translated src=- shape=cabd2ab3 vocab=1ca1a2db
+-/
 lemma inner_B_X_eq_inner_X_X : inner B s.X = inner s.X s.X :=
   s.inner_B_X.trans s.inner_X_X.symm
 
+/--
+@isnad1 id=lt.3h3v.s6.1881446d615d from=translated src=- shape=bbe52e66 vocab=8fc6e544
+-/
 lemma lambdaMax_pos_of_ne_zero (hB0 : B ≠ 0) : 0 < s.a := by
   refine lt_of_le_of_ne s.a_nonneg ?_
   intro ha0
@@ -374,7 +439,9 @@ lemma lambdaMax_pos_of_ne_zero (hB0 : B ≠ 0) : 0 < s.a := by
     simpa using this i (Finset.mem_univ _)
   exact hB0 ((IsHermitian.eigenvalues_eq_zero_iff hB).mp hz)
 
-/-- **SP05.** If `B ≠ 0` then the common Frobenius mass is positive. -/
+/-- **SP05.** If `B ≠ 0` then the common Frobenius mass is positive.
+@isnad1 id=lt.3h3v.s7.7d187d36f45c from=translated src=- shape=a38ad354 vocab=0fe006b0
+-/
 lemma inner_pos (hB0 : B ≠ 0) : 0 < inner s.X s.X := by
   rw [s.inner_X_X_eq_sq]
   have ha : 0 < s.a := s.lambdaMax_pos_of_ne_zero hB0
@@ -384,12 +451,16 @@ lemma inner_pos (hB0 : B ≠ 0) : 0 < inner s.X s.X := by
 noncomputable def embed (i : n) : Fin 2 → ℝ :=
   ![Real.sqrt s.a * s.u i, Real.sqrt s.b * s.v i]
 
-/-- **SP06.** The first coordinate is nonnegative. -/
+/-- **SP06.** The first coordinate is nonnegative.
+@isnad1 id=le.2h4v.s6.458a1938afbf from=translated src=- shape=0773e531 vocab=d20f6d13
+-/
 lemma embed_nonneg_fst (i : n) : 0 ≤ s.embed i 0 := by
   simp only [embed, Fin.isValue, cons_val_zero]
   exact mul_nonneg (Real.sqrt_nonneg _) (s.hu_nonneg i)
 
-/-- **SP06.** `X` is the Gram matrix of the planar embedding. -/
+/-- **SP06.** `X` is the Gram matrix of the planar embedding.
+@isnad1 id=eq.2h5v.s7.0c202f98f9ea from=translated src=- shape=f4de40ac vocab=ebceeff4
+-/
 lemma gram (i j : n) : s.X i j = s.embed i ⬝ᵥ s.embed j := by
   have ha : Real.sqrt s.a * Real.sqrt s.a = s.a := Real.mul_self_sqrt s.a_nonneg
   have hb : Real.sqrt s.b * Real.sqrt s.b = s.b := Real.mul_self_sqrt s.b_nonneg
@@ -417,7 +488,9 @@ variable {G : SimpleGraph n} [DecidableRel G.Adj]
 
 omit [Nontrivial n] [DecidableEq n] in
 /-- **SP09.** If `B` is supported on the edges of `G` and entrywise nonnegative,
-then pairing against `X` is dominated by pairing against `A_G ⊙ X₊`. -/
+then pairing against `X` is dominated by pairing against `A_G ⊙ X₊`.
+@isnad1 id=le.3h4v.s6.9c71ed67549a from=translated src=- shape=f71daf05 vocab=8a1de43c
+-/
 lemma inner_le_inner_hadamard_posPart {X : Matrix n n ℝ}
     (hnn : ∀ i j, 0 ≤ B i j) (hdiag : ∀ i, B i i = 0)
     (hsupp : ∀ i j, ¬ G.Adj i j → B i j = 0) :
@@ -435,7 +508,9 @@ lemma inner_le_inner_hadamard_posPart {X : Matrix n n ℝ}
     · simp [hsupp i j hij, SimpleGraph.adjMatrix_apply, hij]
 
 omit [Nontrivial n] [DecidableEq n] in
-/-- **SP10.** Cauchy–Schwarz for the Frobenius pairing against `A_G ⊙ X₊`. -/
+/-- **SP10.** Cauchy–Schwarz for the Frobenius pairing against `A_G ⊙ X₊`.
+@isnad1 id=le.0h4v.s6.6848dae2facb from=translated src=- shape=20f90463 vocab=389d7d29
+-/
 lemma inner_hadamard_posPart_le_sqrt (X : Matrix n n ℝ) :
     inner B (G.adjMatrix ℝ ⊙ posPart X) ≤
       Real.sqrt (inner B B) *

@@ -34,7 +34,9 @@ noncomputable section
 namespace CKN.Core.Step4
 
 /-- The power integral over a product box is the time integral of its spatial
-slices.  No positivity hypothesis is needed on the exponent `P`. -/
+slices.  No positivity hypothesis is needed on the exponent `P`.
+@isnad1 id=eq.1h4v.s8.717cc9e106d4 from=translated src=- shape=3cd677c7 vocab=c6bb6982
+-/
 theorem prodPowerIntegral_eq_lintegral_slices
     {P : ℝ} {g : ParabolicPoint → ℝ} {E : Set Vec3} {F : Set ℝ}
     (hmeas : AEMeasurable g (volume.restrict (E ×ˢ F))) :

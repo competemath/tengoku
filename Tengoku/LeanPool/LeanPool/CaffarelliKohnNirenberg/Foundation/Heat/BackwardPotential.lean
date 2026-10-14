@@ -47,6 +47,9 @@ def backwardTestPotential (ζ : Vec3 × ℝ → ℝ) (v : Vec3 × ℝ) : ℝ :=
   MeasureTheory.convolution backwardTestKernel ζ
     (ContinuousLinearMap.lsmul ℝ ℝ) backwardProductVolume v
 
+/--
+@isnad1 id=locallyi.0h0v.s6.fe849580d9fa from=translated src=- shape=342b83b0 vocab=2c55b766
+-/
 lemma heatKernelPlus_locallyIntegrable_prod :
     LocallyIntegrable (fun p : Vec3 × ℝ =>
       heatKernelPlus (show ParabolicPoint from p)) backwardProductVolume := by
@@ -82,6 +85,9 @@ lemma heatKernelPlus_locallyIntegrable_prod :
   apply isOpen_univ.prod isOpen_Iio |>.mem_nhds
   exact ⟨Set.mem_univ _, (lt_add_one p.2).trans_le (le_max_right _ _)⟩
 
+/--
+@isnad1 id=locallyi.0h0v.s6.233ba8538664 from=translated src=- shape=7980d2d3 vocab=2e20c932
+-/
 lemma backwardTestKernel_locallyIntegrable :
     LocallyIntegrable backwardTestKernel backwardProductVolume := by
   intro p
@@ -121,6 +127,9 @@ lemma backwardTestKernel_locallyIntegrable :
     rfl
   simpa only [hfun] using hc'
 
+/--
+@isnad1 id=contdiff.2h1v.s8.2412be484883 from=translated src=- shape=f643062b vocab=4c60544b
+-/
 theorem backwardTestPotential_smooth
     {ζ : Vec3 × ℝ → ℝ} (hζ : ContDiff ℝ (⊤ : ℕ∞) ζ)
     (hζc : HasCompactSupport ζ) :
@@ -129,6 +138,9 @@ theorem backwardTestPotential_smooth
   exact hζc.contDiff_convolution_right
     (L := ContinuousLinearMap.lsmul ℝ ℝ) backwardTestKernel_locallyIntegrable hζ
 
+/--
+@isnad1 id=hasfderi.2h2v.s11.64af95723158 from=translated src=- shape=ce5fe8ab vocab=fa213274
+-/
 theorem backwardTestPotential_hasFDerivAt
     {ζ : Vec3 × ℝ → ℝ} (hζ : ContDiff ℝ (⊤ : ℕ∞) ζ)
     (hζc : HasCompactSupport ζ) (v : Vec3 × ℝ) :
@@ -147,6 +159,9 @@ theorem backwardTestPotential_hasFDerivAt
     (L := ContinuousLinearMap.lsmul ℝ ℝ)
     backwardTestKernel_locallyIntegrable (hζ.of_le (by norm_num)) v
 
+/--
+@isnad1 id=contdiff.1h2v.s8.125ae8d95049 from=translated src=- shape=1f58ba05 vocab=dd55052d
+-/
 lemma test_slice_contDiff {ζ : Vec3 × ℝ → ℝ}
     (hζ : ContDiff ℝ (⊤ : ℕ∞) ζ) (t : ℝ) :
     ContDiff ℝ (⊤ : ℕ∞) (fun y : Vec3 => ζ (y, t)) := by
@@ -154,6 +169,9 @@ lemma test_slice_contDiff {ζ : Vec3 × ℝ → ℝ}
     exact contDiff_id.prodMk contDiff_const
   simpa [Function.comp_def] using hζ.comp hm
 
+/--
+@isnad1 id=hascompa.1h2v.s6.089c33eba792 from=translated src=- shape=95d178dc vocab=b2e1d968
+-/
 lemma test_slice_hasCompactSupport {ζ : Vec3 × ℝ → ℝ}
     (hζc : HasCompactSupport ζ) (t : ℝ) :
     HasCompactSupport (fun y : Vec3 => ζ (y, t)) := by
@@ -167,6 +185,9 @@ lemma test_slice_hasCompactSupport {ζ : Vec3 × ℝ → ℝ}
     exact hne
   exact hy ⟨(y, t), hmem, rfl⟩
 
+/--
+@isnad1 id=tendsto.2h3v.s8.c1f6a082ba03 from=translated src=- shape=9cbdc9e6 vocab=f993aadf
+-/
 theorem heatConv_time_shift_tendsto
     {ζ : Vec3 × ℝ → ℝ} (hζ : ContDiff ℝ (⊤ : ℕ∞) ζ)
     (hζc : HasCompactSupport ζ) (x : Vec3) (t : ℝ) :
@@ -285,6 +306,9 @@ theorem heatConv_time_shift_tendsto
   have hsum := hdiff_tendsto.add hfixed
   simpa [u₀, sub_eq_add_neg, add_assoc, add_left_comm, add_comm] using hsum
 
+/--
+@isnad1 id=eq.1h3v.s9.bf37c27e510f from=translated src=- shape=8a91cde5 vocab=ce2264f0
+-/
 lemma timePartial_eq_fderiv_apply
     {F : Vec3 × ℝ → ℝ} (hF : ContDiff ℝ (⊤ : ℕ∞) F)
     (x : Vec3) (t : ℝ) :
@@ -316,6 +340,9 @@ lemma timePartial_eq_fderiv_apply
   rw [hcf]
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s9.15c9c8071904 from=translated src=- shape=e517205e vocab=eca9c54f
+-/
 lemma spatialPartial_eq_fderiv_apply
     {F : Vec3 × ℝ → ℝ} (hF : ContDiff ℝ (⊤ : ℕ∞) F)
     (i : Fin 3) (x : Vec3) (t : ℝ) :
@@ -347,6 +374,9 @@ lemma spatialPartial_eq_fderiv_apply
   rw [hcf]
   rfl
 
+/--
+@isnad1 id=eq.2h3v.s8.4e1e1bb5fa98 from=translated src=- shape=32115ef3 vocab=58e6a272
+-/
 lemma backwardTestPotential_timePartial
     {ζ : Vec3 × ℝ → ℝ} (hζ : ContDiff ℝ (⊤ : ℕ∞) ζ)
     (hζc : HasCompactSupport ζ) (x : Vec3) (t : ℝ) :
@@ -379,6 +409,9 @@ lemma backwardTestPotential_timePartial
         CKN.timePartial (show ParabolicPoint → ℝ from ζ) (x - p.1, t - p.2)
       exact hcoord.symm
 
+/--
+@isnad1 id=eq.2h4v.s8.e4aee813b981 from=translated src=- shape=dc0a0aa6 vocab=cb19c8df
+-/
 lemma backwardTestPotential_spatialPartial
     {ζ : Vec3 × ℝ → ℝ} (hζ : ContDiff ℝ (⊤ : ℕ∞) ζ)
     (hζc : HasCompactSupport ζ) (i : Fin 3) (x : Vec3) (t : ℝ) :
@@ -414,6 +447,9 @@ lemma backwardTestPotential_spatialPartial
           (x - p.1, t - p.2)
       exact hcoord.symm
 
+/--
+@isnad1 id=eq.2h5v.s8.a2c4ecd1a7a3 from=translated src=- shape=b4a09d11 vocab=7b42a132
+-/
 lemma backwardTestPotential_spatialSecondPartial
     {ζ : Vec3 × ℝ → ℝ} (hζ : ContDiff ℝ (⊤ : ℕ∞) ζ)
     (hζc : HasCompactSupport ζ) (i j : Fin 3) (x : Vec3) (t : ℝ) :
@@ -473,6 +509,9 @@ def backwardHeatPotentialSpatial (i : Fin 3) (ζ : ParabolicPoint → ℝ)
     (v : ParabolicPoint) : ℝ :=
   -(∫ z, backwardHeatSpatialKernel i z v * ζ z)
 
+/--
+@isnad1 id=eq.0h2v.s4.c673e0c4a9f1 from=translated src=- shape=c8bf5bbb vocab=534ffe8f
+-/
 theorem backwardTestPotential_eq_backwardHeatPotential
     (ζ : Vec3 × ℝ → ℝ) (v : Vec3 × ℝ) :
     backwardTestPotential ζ v =
@@ -521,17 +560,26 @@ theorem backwardTestPotential_eq_backwardHeatPotential
           ∂backwardProductVolume := by
       simpa [sub_eq_add_neg, add_comm, add_left_comm, add_assoc] using h₂
 
+/--
+@isnad1 id=eq.1h2v.s5.e6fbf203e616 from=translated src=- shape=aa02ce95 vocab=b3247dd3
+-/
 lemma backwardHeatKernel_eq_zero_of_nonpos {z v : ParabolicPoint}
     (h : z.2 - v.2 ≤ 0) : backwardHeatKernel z v = 0 := by
   unfold backwardHeatKernel
   exact heatKernelPlus_eq_zero_of_nonpos h
 
+/--
+@isnad1 id=eq.1h3v.s5.36a7a6f5048e from=translated src=- shape=3eb7f8ed vocab=c61473e6
+-/
 lemma backwardHeatSpatialKernel_eq_zero_of_nonpos {i : Fin 3}
     {z v : ParabolicPoint} (h : z.2 - v.2 ≤ 0) :
     backwardHeatSpatialKernel i z v = 0 := by
   unfold backwardHeatSpatialKernel
   rw [heatKernelSpaceDerivative, ite_eq_right (not_lt.mpr h)]
 
+/--
+@isnad1 id=eq.2h3v.s5.33a26a949584 from=translated src=- shape=71c998bf vocab=61a532bb
+-/
 lemma backwardHeatPotential_eq_zero_of_future
     {ζ : ParabolicPoint → ℝ} {T : ℝ} {v : ParabolicPoint}
     (hv : T ≤ v.2) (hζ : ∀ z, T ≤ z.2 → ζ z = 0) :
@@ -548,6 +596,9 @@ lemma backwardHeatPotential_eq_zero_of_future
     rw [hζ z htime']
     simp
 
+/--
+@isnad1 id=eq.2h4v.s5.0892815a7618 from=translated src=- shape=af87760b vocab=ab48ae92
+-/
 lemma backwardHeatPotentialSpatial_eq_zero_of_future
     {i : Fin 3} {ζ : ParabolicPoint → ℝ} {T : ℝ} {v : ParabolicPoint}
     (hv : T ≤ v.2) (hζ : ∀ z, T ≤ z.2 → ζ z = 0) :

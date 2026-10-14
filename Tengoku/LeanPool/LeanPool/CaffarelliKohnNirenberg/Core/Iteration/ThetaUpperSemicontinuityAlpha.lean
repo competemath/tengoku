@@ -26,7 +26,9 @@ namespace CKN
 
 /-- The time-slice energy restricted to the ball of radius `r` stays bounded
 above near the base point, uniformly along the one-sided time parameter used in
-the Step 2 transfer argument. -/
+the Step 2 transfer argument.
+@isnad1 id=isbounde.8h11v.s9.ac3c12d91fe0 from=translated src=- shape=569302c4 vocab=30195e47
+-/
 lemma theta_usc_timeSliceEnergy_bounded
     {Ω : Set Vec3} {I : Set ℝ} {q : ℝ}
     {u : ParabolicPoint → Vec3} {Du : ParabolicPoint → Fin 3 → Vec3}

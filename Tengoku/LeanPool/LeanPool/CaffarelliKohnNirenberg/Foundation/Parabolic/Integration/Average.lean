@@ -45,13 +45,17 @@ private theorem norm_vec3_sub_le_euclideanNorm (x y : Vec3) :
 
 /-! ### Measures and cylinder Fubini -/
 
-/-- The volume measure on `ParabolicPoint` is the product of spatial and time volume. -/
+/-- The volume measure on `ParabolicPoint` is the product of spatial and time volume.
+@isnad1 id=eq.0h0v.s6.3bf42e6dd100 from=translated src=- shape=b6ff55a2 vocab=42c2779d
+-/
 theorem volume_parabolicPoint_eq_prod :
     (volume : Measure ParabolicPoint) =
       (volume : Measure Vec3).prod (volume : Measure ℝ) :=
   rfl
 
-/-- A positive-radius Euclidean spatial ball has positive volume. -/
+/-- A positive-radius Euclidean spatial ball has positive volume.
+@isnad1 id=lt.1h2v.s7.25738505ee77 from=translated src=- shape=1f6f2e9a vocab=16c26544
+-/
 theorem volume_vec3Ball_pos {x : Vec3} {r : ℝ} (hr : 0 < r) :
     0 < volume (vec3Ball x r) := by
   have hopen : IsOpen (vec3Ball x r) := by
@@ -59,7 +63,9 @@ theorem volume_vec3Ball_pos {x : Vec3} {r : ℝ} (hr : 0 < r) :
     exact isOpen_lt (continuous_vec3EuclideanNorm_sub x) continuous_const
   exact hopen.measure_pos volume ⟨x, by simp [vec3EuclideanNorm_zero, hr]⟩
 
-/-- A Euclidean spatial ball has finite volume. -/
+/-- A Euclidean spatial ball has finite volume.
+@isnad1 id=lt.0h2v.s6.360fd676f753 from=translated src=- shape=561b125e vocab=1dbfe3f9
+-/
 theorem volume_vec3Ball_lt_top {x : Vec3} {r : ℝ} :
     volume (vec3Ball x r) < ∞ := by
   have hsub : vec3Ball x r ⊆ Metric.ball x r := by
@@ -72,14 +78,18 @@ theorem volume_vec3Ball_lt_top {x : Vec3} {r : ℝ} :
   exact (measure_mono hsub).trans_lt
     (measure_ball_lt_top (μ := volume) (x := x) (r := r))
 
-/-- A positive-radius parabolic cylinder has positive volume. -/
+/-- A positive-radius parabolic cylinder has positive volume.
+@isnad1 id=lt.1h3v.s5.5741daa60f90 from=translated src=- shape=07db46c2 vocab=d539879e
+-/
 theorem volume_parabolicCylinder_pos {x : Vec3} {t r : ℝ} (hr : 0 < r) :
     0 < volume (parabolicCylinder x t r) := by
   rw [volume_parabolicCylinder]
   exact ENNReal.mul_pos (ne_of_gt (volume_vec3Ball_pos hr))
     (ne_of_gt (ENNReal.ofReal_pos.mpr (sq_pos_of_pos hr)))
 
-/-- A parabolic cylinder has finite volume. -/
+/-- A parabolic cylinder has finite volume.
+@isnad1 id=lt.0h3v.s5.867ea696ef87 from=translated src=- shape=32a9db26 vocab=3315deb1
+-/
 theorem volume_parabolicCylinder_lt_top {x : Vec3} {t r : ℝ} :
     volume (parabolicCylinder x t r) < ∞ := by
   rw [volume_parabolicCylinder]
@@ -87,7 +97,9 @@ theorem volume_parabolicCylinder_lt_top {x : Vec3} {t r : ℝ} :
     (volume_vec3Ball_lt_top (x := x) (r := r))
     ENNReal.ofReal_lt_top
 
-/-- Fubini's theorem on a parabolic cylinder for Bochner-integrable functions. -/
+/-- Fubini's theorem on a parabolic cylinder for Bochner-integrable functions.
+@isnad1 id=eq.1h4v.s8.1ed3420fc8fd from=translated src=- shape=ea201605 vocab=bf9b1d1e
+-/
 theorem integral_parabolicCylinder {x : Vec3} {t r : ℝ}
     {g : ParabolicPoint → ℝ}
     (hg : IntegrableOn g (parabolicCylinder x t r) volume) :
@@ -115,7 +127,9 @@ theorem integral_parabolicCylinder {x : Vec3} {t r : ℝ}
       rw [setIntegral_prod _ hgs]
       rfl
 
-/-- Tonelli's theorem on a parabolic cylinder for nonnegative extended-real functions. -/
+/-- Tonelli's theorem on a parabolic cylinder for nonnegative extended-real functions.
+@isnad1 id=eq.1h4v.s7.5d9c3f35a62d from=translated src=- shape=b6332816 vocab=4e6053aa
+-/
 theorem lintegral_parabolicCylinder {x : Vec3} {t r : ℝ}
     {g : ParabolicPoint → ℝ≥0∞}
     (hg : AEMeasurable g (volume.restrict (parabolicCylinder x t r))) :
@@ -129,7 +143,9 @@ theorem lintegral_parabolicCylinder {x : Vec3} {t r : ℝ}
 
 /-! ### Generic averages -/
 
-/-- The set average is the integral against the reciprocal real measure. -/
+/-- The set average is the integral against the reciprocal real measure.
+@isnad1 id=eq.0h5v.s7.dda15c965519 from=translated src=- shape=874c528e vocab=2abaf814
+-/
 theorem setAverage_eq_toReal_inv_smul {α E : Type*} [MeasurableSpace α]
     [NormedAddCommGroup E]
     [NormedSpace ℝ E] (μ : Measure α) (s : Set α) (f : α → E) :
@@ -137,7 +153,9 @@ theorem setAverage_eq_toReal_inv_smul {α E : Type*} [MeasurableSpace α]
   simpa [MeasureTheory.measureReal_def] using
     (MeasureTheory.setAverage_eq μ f s)
 
-/-- Set averages are additive when both summands are integrable. -/
+/-- Set averages are additive when both summands are integrable.
+@isnad1 id=eq.2h5v.s7.78691ac1a3fc from=translated src=- shape=c1e02886 vocab=e810f781
+-/
 theorem setAverage_add_of_integrableOn {α : Type*} [MeasurableSpace α]
     {μ : Measure α}
     {s : Set α} {f g : α → ℝ}
@@ -146,7 +164,9 @@ theorem setAverage_add_of_integrableOn {α : Type*} [MeasurableSpace α]
       ⨍ x in s, f x ∂μ + ⨍ x in s, g x ∂μ :=
   MeasureTheory.setAverage_add hf hg
 
-/-- Set averages commute with subtraction under integrability. -/
+/-- Set averages commute with subtraction under integrability.
+@isnad1 id=eq.2h5v.s7.a9ab6a36ebbb from=translated src=- shape=c1e02886 vocab=d7d3ffb7
+-/
 theorem setAverage_sub_of_integrableOn {α : Type*} [MeasurableSpace α]
     {μ : Measure α}
     {s : Set α} {f g : α → ℝ}
@@ -155,21 +175,27 @@ theorem setAverage_sub_of_integrableOn {α : Type*} [MeasurableSpace α]
       ⨍ x in s, f x ∂μ - ⨍ x in s, g x ∂μ :=
   MeasureTheory.setAverage_sub hf hg
 
-/-- The average of a constant on a positive finite-measure set is that constant. -/
+/-- The average of a constant on a positive finite-measure set is that constant.
+@isnad1 id=eq.2h4v.s6.fcd2de0a10c7 from=translated src=- shape=e18984b3 vocab=01c89c83
+-/
 theorem setAverage_const_of_pos_of_lt_top {α : Type*} [MeasurableSpace α]
     {μ : Measure α}
     {s : Set α} (hsPos : 0 < μ s) (hsTop : μ s < ∞) (c : ℝ) :
     ⨍ _x in s, c ∂μ = c := by
   exact MeasureTheory.setAverage_const hsPos.ne' hsTop.ne c
 
-/-- Set averages preserve nonnegativity almost everywhere. -/
+/-- Set averages preserve nonnegativity almost everywhere.
+@isnad1 id=le.1h4v.s6.dc54678dfbb8 from=translated src=- shape=a0a00a69 vocab=67110500
+-/
 theorem setAverage_nonneg_of_ae {α : Type*} [MeasurableSpace α]
     {μ : Measure α}
     {s : Set α} {f : α → ℝ} (hf : 0 ≤ᵐ[μ.restrict s] f) :
     0 ≤ ⨍ x in s, f x ∂μ :=
   MeasureTheory.average_nonneg_of_ae hf
 
-/-- The norm of an average is bounded by the average of the norm. -/
+/-- The norm of an average is bounded by the average of the norm.
+@isnad1 id=le.0h5v.s6.efb94763978f from=translated src=- shape=94e89ca7 vocab=88b3992f
+-/
 theorem setAverage_norm_le {α E : Type*} [MeasurableSpace α]
     [NormedAddCommGroup E] [NormedSpace ℝ E]
     (μ : Measure α) (s : Set α) (f : α → E) :
@@ -181,7 +207,9 @@ theorem setAverage_norm_le {α E : Type*} [MeasurableSpace α]
       (μ := μ.restrict s) f)
     (inv_nonneg.mpr MeasureTheory.measureReal_nonneg)
 
-/-- Set averages are monotone almost everywhere. -/
+/-- Set averages are monotone almost everywhere.
+@isnad1 id=le.3h5v.s7.e2523ee13374 from=translated src=- shape=203933ab vocab=b7e4f34f
+-/
 theorem setAverage_mono_of_ae {α : Type*} [MeasurableSpace α]
     {μ : Measure α}
     {s : Set α} {f g : α → ℝ}

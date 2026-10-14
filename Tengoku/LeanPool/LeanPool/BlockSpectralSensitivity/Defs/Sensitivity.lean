@@ -34,7 +34,9 @@ Adapted for Lean Pool from `Timeroot/BS_Lam` at commit
 Mathlib has the `iSupIndep` analogue (`iSupIndep.injOn`) but not the `PairwiseDisjoint` one;
 it belongs next to `Set.injOn_iff_pairwise_ne` in `Mathlib/Data/Set/Pairwise/Basic.lean`. -/
 
-/-- A pairwise disjoint family of nonzero elements is injective on its index set. -/
+/-- A pairwise disjoint family of nonzero elements is injective on its index set.
+@isnad1 id=injon.2h4v.s6.83ab362dceb6 from=translated src=- shape=0edd8c66 vocab=4fe421df
+-/
 theorem Set.PairwiseDisjoint.injOn {ι α : Type*} [Lattice α] [OrderBot α] {f : ι → α}
     {s : Set ι} (h : s.PairwiseDisjoint f) (hne : ∀ i ∈ s, f i ≠ ⊥) : s.InjOn f := by
   intro i hi j hj hij
@@ -58,18 +60,25 @@ instance (f : Input V → Bool) (x : Input V) (v : V) : Decidable (SensitiveCoor
 def sensCoords (f : Input V → Bool) (x : Input V) : Finset V :=
   Finset.univ.filter fun v ↦ SensitiveCoord f x v
 
+/--
+@isnad1 id=iff.0h4v.s5.178cd1cc4fd7 from=translated src=- shape=72c19125 vocab=fac7b4d5
+-/
 lemma mem_sensCoords {f : Input V → Bool} {x : Input V} {v : V} :
     v ∈ sensCoords f x ↔ SensitiveCoord f x v := Finset.mem_filter_univ v
 
 /-- `s(f,x)`: the number of sensitive coordinates at `x`. -/
 def sensAt (f : Input V → Bool) (x : Input V) : ℕ := (sensCoords f x).card
 
-/-- Any `Finset` containing every sensitive coordinate at `x` bounds `s(f,x)`. -/
+/-- Any `Finset` containing every sensitive coordinate at `x` bounds `s(f,x)`.
+@isnad1 id=le.1h4v.s5.8a850516357a from=translated src=- shape=01ffecf1 vocab=bab1b4af
+-/
 lemma sensAt_le_card {f : Input V → Bool} {x : Input V} {s : Finset V}
     (h : sensCoords f x ⊆ s) : sensAt f x ≤ s.card :=
   Finset.card_le_card h
 
-/-- If every coordinate is sensitive at `x` then `s(f,x)` counts all coordinates. -/
+/-- If every coordinate is sensitive at `x` then `s(f,x)` counts all coordinates.
+@isnad1 id=eq.1h3v.s5.c5f5091f91cc from=translated src=- shape=aeb130aa vocab=401c0517
+-/
 lemma sensAt_eq_card_univ {f : Input V → Bool} {x : Input V} (h : ∀ v, SensitiveCoord f x v) :
     sensAt f x = Fintype.card V := by
   rw [sensAt, sensCoords, Finset.filter_true_of_mem fun v _ ↦ h v, Finset.card_univ]
@@ -77,9 +86,15 @@ lemma sensAt_eq_card_univ {f : Input V → Bool} {x : Input V} (h : ∀ v, Sensi
 /-- `s(f)`: the sensitivity of `f`. -/
 def sens (f : Input V → Bool) : ℕ := Finset.univ.sup (sensAt f)
 
+/--
+@isnad1 id=le.0h3v.s4.818c53ab9cf9 from=translated src=- shape=2069506e vocab=63b51cde
+-/
 lemma sensAt_le_sens (f : Input V → Bool) (x : Input V) : sensAt f x ≤ sens f :=
   Finset.le_sup (Finset.mem_univ x)
 
+/--
+@isnad1 id=le.1h3v.s5.1c1f09a65fd3 from=translated src=- shape=a04b2a77 vocab=63b51cde
+-/
 lemma sens_le (f : Input V → Bool) {n : ℕ} (h : ∀ x, sensAt f x ≤ n) : sens f ≤ n :=
   Finset.sup_le fun x _ ↦ h x
 
@@ -90,7 +105,9 @@ structure IsSensitiveBlock (f : Input V → Bool) (x : Input V) (A : Finset V) :
 
 omit [Fintype V] in
 /-- The usual way to exhibit a sensitive block: a nonempty `A` that turns `f` from `false`
-to `true`. -/
+to `true`.
+@isnad1 id=issensit.3h4v.s5.0791b7738189 from=translated src=- shape=f2959090 vocab=95c069c5
+-/
 lemma isSensitiveBlock_of_eq_true {f : Input V → Bool} {x : Input V} {A : Finset V}
     (hA : A.Nonempty) (hx : f x = false) (hflip : f (flipSet x A) = true) :
     IsSensitiveBlock f x A :=
@@ -106,6 +123,9 @@ def blockFamilyCards (f : Input V → Bool) (x : Input V) : Set ℕ :=
   {n | ∃ 𝓑 : Finset (Finset V), IsBlockFamily f x 𝓑 ∧ 𝓑.card = n}
 
 omit [Fintype V] in
+/--
+@isnad1 id=bddabove.0h3v.s4.f54fe1eabb11 from=translated src=- shape=f9625b23 vocab=650e1666
+-/
 lemma blockFamilyCards_bddAbove [Finite V] (f : Input V → Bool) (x : Input V) :
     BddAbove (blockFamilyCards f x) := by
   let := Fintype.ofFinite V
@@ -120,21 +140,30 @@ noncomputable def bsAt (f : Input V → Bool) (x : Input V) : ℕ := sSup (block
 noncomputable def bs (f : Input V → Bool) : ℕ := Finset.univ.sup (bsAt f)
 
 omit [Fintype V] in
-/-- Exhibiting a family of pairwise disjoint sensitive blocks bounds `bsAt` from below. -/
+/-- Exhibiting a family of pairwise disjoint sensitive blocks bounds `bsAt` from below.
+@isnad1 id=le.1h4v.s5.c23f9c7055f3 from=translated src=- shape=653641d7 vocab=92734b53
+-/
 lemma le_bsAt_of_family [Finite V] {f : Input V → Bool} {x : Input V} {𝓑 : Finset (Finset V)}
     (h : IsBlockFamily f x 𝓑) : 𝓑.card ≤ bsAt f x :=
   le_csSup (blockFamilyCards_bddAbove f x) ⟨𝓑, h, rfl⟩
 
+/--
+@isnad1 id=le.0h3v.s4.cfb8e40ebe97 from=translated src=- shape=2069506e vocab=ba153ad1
+-/
 lemma bsAt_le_bs (f : Input V → Bool) (x : Input V) : bsAt f x ≤ bs f :=
   Finset.le_sup (Finset.mem_univ x)
 
-/-- The main lower-bound interface for block sensitivity. -/
+/-- The main lower-bound interface for block sensitivity.
+@isnad1 id=le.1h4v.s5.38e03f165307 from=translated src=- shape=74f2177b vocab=1b3d2ef3
+-/
 lemma le_bs_of_family {f : Input V → Bool} {x : Input V} {𝓑 : Finset (Finset V)}
     (h : IsBlockFamily f x 𝓑) : 𝓑.card ≤ bs f :=
   (le_bsAt_of_family h).trans (bsAt_le_bs f x)
 
 omit [Fintype V] in
-/-- Sensitive blocks indexed by a `Finset ι` and pairwise disjoint on it form a block family. -/
+/-- Sensitive blocks indexed by a `Finset ι` and pairwise disjoint on it form a block family.
+@isnad1 id=isblockf.2h6v.s6.a8fa3bb9584f from=translated src=- shape=6957de14 vocab=dc3ca4d1
+-/
 lemma isBlockFamily_image {ι : Type*} {f : Input V → Bool} {x : Input V} {B : ι → Finset V}
     {s : Finset ι} (hsens : ∀ i ∈ s, IsSensitiveBlock f x (B i))
     (hdisj : (s : Set ι).PairwiseDisjoint B) :
@@ -148,7 +177,9 @@ lemma isBlockFamily_image {ι : Type*} {f : Input V → Bool} {x : Input V} {B :
     exact hdisj hi hj fun h ↦ hne (congrArg B h)
 
 /-- An indexed family of pairwise disjoint sensitive blocks bounds `bs` from below.  The blocks
-are automatically pairwise distinct, being nonempty and pairwise disjoint. -/
+are automatically pairwise distinct, being nonempty and pairwise disjoint.
+@isnad1 id=le.2h6v.s6.29962e32c869 from=translated src=- shape=ae74f369 vocab=11dbffc1
+-/
 lemma card_le_bs_of_blocks {ι : Type*} {f : Input V → Bool} {x : Input V} {B : ι → Finset V}
     {s : Finset ι} (hsens : ∀ i ∈ s, IsSensitiveBlock f x (B i))
     (hdisj : (s : Set ι).PairwiseDisjoint B) : s.card ≤ bs f := by

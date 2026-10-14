@@ -34,6 +34,9 @@ def IsParabolicMaximalMajorant (f : ParabolicPoint → ℝ)
 /-- The Morrey exponent in the Hedberg inequality. -/
 def hedbergMorreyExponent (β q : ℝ) : ℝ := β * q / 5
 
+/--
+@isnad1 id=eq.0h4v.s6.acf1a048d663 from=translated src=- shape=16df09c7 vocab=11ffd13e
+-/
 theorem parabolicRieszPotential_split {β : ℝ} {f : ParabolicPoint → ℝ}
     (z : ParabolicPoint) {R : ℝ} :
     parabolicRieszPotential β f z =
@@ -67,6 +70,9 @@ theorem parabolicRieszPotential_split {β : ℝ} {f : ParabolicPoint → ℝ}
     _ = (∫⁻ w in s, g w) + (∫⁻ w in t, g w) := lintegral_union ht hdisj
     _ = _ := by rfl
 
+/--
+@isnad1 id=le.2h6v.s7.8c4107a185cb from=translated src=- shape=98ec281f vocab=11ffd13e
+-/
 theorem parabolicRieszPotential_split_le {β : ℝ} {f : ParabolicPoint → ℝ}
     (z : ParabolicPoint) {R : ℝ}
     {A B : ℝ≥0∞}

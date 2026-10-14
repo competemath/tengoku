@@ -21,7 +21,9 @@ open CKN.Foundation.Parabolic
 
 namespace CKN.Core.Endgame
 
-/-- Intersecting the spatial factor with an open set preserves a local box. -/
+/-- Intersecting the spatial factor with an open set preserves a local box.
+@isnad1 id=localbox.2h5v.s5.8ebf7d231095 from=translated src=- shape=050e80e3 vocab=ea6a3bd7
+-/
 theorem localBox_inter_spatial_open
     {Ω U V : Set Vec3} {I J : Set ℝ}
     (hbox : localBox Ω I U J) (hV : IsOpen V) :
@@ -31,7 +33,9 @@ theorem localBox_inter_spatial_open
     hbox.2.1.of_isClosed_subset isClosed_closure hclosure,
     hclosure.trans hbox.2.2.1, hbox.2.2.2⟩
 
-/-- A spatial support bound is compatible with restriction of its local box. -/
+/-- A spatial support bound is compatible with restriction of its local box.
+@isnad1 id=le.2h4v.s7.89136d39d329 from=translated src=- shape=79c2d77c vocab=d376b64b
+-/
 theorem support_subset_inter_spatial_box
     {φ : Vec3 × ℝ → ℝ} {U V : Set Vec3} {J : Set ℝ}
     (hbox : tsupport φ ⊆ U ×ˢ J)

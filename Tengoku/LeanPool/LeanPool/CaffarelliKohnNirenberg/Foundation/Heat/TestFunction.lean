@@ -28,6 +28,9 @@ open CKN.Foundation.Parabolic
 def backwardHeatTestFunction (r : ℝ) (x : Vec3) (t : ℝ) : ℝ :=
   r ^ 2 * heatKernel x (r ^ 2 - t)
 
+/--
+@isnad1 id=le.2h3v.s5.d40b5ff3ca16 from=translated src=- shape=4903795f vocab=e1db2992
+-/
 lemma backwardHeatTestFunction_nonneg {r : ℝ} {x : Vec3} {t : ℝ}
     (_ : 0 < r) (_ : t < r ^ 2) :
     0 ≤ backwardHeatTestFunction r x t := by

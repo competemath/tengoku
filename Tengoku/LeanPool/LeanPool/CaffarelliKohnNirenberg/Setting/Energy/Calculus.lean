@@ -23,6 +23,9 @@ noncomputable section
 
 namespace CKN
 
+/--
+@isnad1 id=mem.2h4v.s8.e380a8ab3ab7 from=translated src=- shape=4ba0592f vocab=9ef9d889
+-/
 lemma spaceTimeTestFunction_mul_smooth
     {Ω : Set Vec3} {I : Set ℝ}
     {ψ χ : Vec3 × ℝ → ℝ}
@@ -33,6 +36,9 @@ lemma spaceTimeTestFunction_mul_smooth
   refine ⟨hψ_diff.mul hχ, hψ_compact.mul_right (f' := χ), ?_⟩
   exact (tsupport_mul_subset_left (f := ψ) (g := χ)).trans hψ_support
 
+/--
+@isnad1 id=contdiff.1h2v.s8.98e02c541744 from=translated src=- shape=311eaee5 vocab=10e7a6df
+-/
 lemma spatialPartial_contDiff
     {ψ : Vec3 × ℝ → ℝ} (hψ : ContDiff ℝ (⊤ : ℕ∞) ψ)
     (i : Fin 3) :
@@ -52,6 +58,9 @@ lemma spatialPartial_contDiff
     (by simp)
   simpa only [F, spatialPartial, Function.uncurry] using hderiv
 
+/--
+@isnad1 id=eq.1h4v.s7.b2b388ff2fbb from=translated src=- shape=ae3b2069 vocab=e800c825
+-/
 lemma spatialPartial_mul_time
     {ψ : Vec3 × ℝ → ℝ} {χ : ℝ → ℝ}
     (hψ : ContDiff ℝ (⊤ : ℕ∞) ψ)
@@ -76,6 +85,9 @@ lemma spatialPartial_mul_time
   simp only [_root_.add_apply, _root_.smul_apply, smul_eq_mul,
     _root_.zero_apply, zero_mul, mul_comm, zero_add]
 
+/--
+@isnad1 id=eq.2h3v.s8.beae773cc0f7 from=translated src=- shape=5293f430 vocab=07d8f2d8
+-/
 lemma timePartial_mul_time
     {ψ : Vec3 × ℝ → ℝ} {χ : ℝ → ℝ}
     (hψ : ContDiff ℝ (⊤ : ℕ∞) ψ)
@@ -94,6 +106,9 @@ lemma timePartial_mul_time
   simp only [_root_.add_apply, _root_.smul_apply, smul_eq_mul, deriv]
   ring
 
+/--
+@isnad1 id=eq.1h5v.s7.139489726313 from=translated src=- shape=1d1c159f vocab=95d772ed
+-/
 lemma spatialSecondPartial_mul_time
     {ψ : Vec3 × ℝ → ℝ} {χ : ℝ → ℝ}
     (hψ : ContDiff ℝ (⊤ : ℕ∞) ψ)
@@ -113,6 +128,9 @@ lemma spatialSecondPartial_mul_time
   rw [hinner]
   exact spatialPartial_mul_time (spatialPartial_contDiff hψ i) j z
 
+/--
+@isnad1 id=eq.2h6v.s8.e459c6222d99 from=translated src=- shape=04701749 vocab=bc6d3a9e
+-/
 lemma localEnergyRhs_mul_time
     {u : Vec3 × ℝ → Vec3} {p : Vec3 × ℝ → ℝ}
     {f : Vec3 × ℝ → Vec3} {ψ : Vec3 × ℝ → ℝ}

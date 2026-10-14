@@ -64,7 +64,9 @@ private theorem sliceMollifierDeriv_eq_zero {d : ℕ} (n : ℕ) (i : Fin d)
 is locally integrable on an open set `Ω` against the kernels `κ n i` centred at
 the points of a dense set `Q` determines the pairing against any transform `T`
 of a compactly supported test function `ψ`, provided the two are linked by the
-mollification identity `hid`. -/
+mollification identity `hid`.
+@isnad1 id=eq.12h8v.s9.91b9060bbc45 from=translated src=- shape=bbfa9373 vocab=5e8901d5
+-/
 theorem slice_pairing_zero_of_mollifier_family {d : ℕ} {ι : Type*} [Fintype ι]
     {Ω : Set (Vec d)} (hΩ : IsOpen Ω) {Q : Set (Vec d)} (hQ : Dense Q)
     {g : Vec d → ι → ℝ}
@@ -290,7 +292,9 @@ theorem slice_pairing_zero_of_mollifier_family {d : ℕ} {ι : Type*} [Fintype �
 distributional divergence pairing of a field `g` that is locally integrable on
 an open set `Ω` vanishes against every mollifier bump centred at a point of a
 dense set `Q` and small enough to fit inside `Ω`, then it vanishes against every
-smooth compactly supported test function supported in `Ω`. -/
+smooth compactly supported test function supported in `Ω`.
+@isnad1 id=eq.7h5v.s10.27e92bc06ee0 from=translated src=- shape=ff52d637 vocab=c251164a
+-/
 theorem slice_divergence_zero_of_mollifier_family {d : ℕ}
     {Ω : Set (Vec d)} (hΩ : IsOpen Ω) {Q : Set (Vec d)} (hQ : Dense Q)
     {g : Vec d → Fin d → ℝ}
@@ -328,7 +332,9 @@ theorem slice_divergence_zero_of_mollifier_family {d : ℕ}
 integral of a function `F` that is locally integrable on an open set `Ω` against
 every small mollifier bump centred at a point of a dense set `Q` vanishes, then
 `∫ F ψ` vanishes for every continuous compactly supported `ψ` supported in
-`Ω`. -/
+`Ω`.
+@isnad1 id=eq.7h5v.s8.0d057152da00 from=translated src=- shape=0df844bb vocab=2ba3f380
+-/
 theorem slice_integral_mul_zero_of_mollifier_family {d : ℕ}
     {Ω : Set (Vec d)} (hΩ : IsOpen Ω) {Q : Set (Vec d)} (hQ : Dense Q)
     {F : Vec d → ℝ}

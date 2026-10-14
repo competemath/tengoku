@@ -28,7 +28,9 @@ noncomputable section
 
 namespace CKN.Core.Endgame
 
-/-- Restriction preserves a quantitative Hölder bound. -/
+/-- Restriction preserves a quantitative Hölder bound.
+@isnad1 id=paraboli.2h5v.s5.6779f2756102 from=translated src=- shape=4eb2c89b vocab=6aff366e
+-/
 theorem holder_norm_mono {U V : Set ParabolicPoint} {g : ParabolicPoint → Vec3}
     {γ C : ℝ} (h : ParabolicHolderVecNormLE U g γ C) (hVU : V ⊆ U) :
     ParabolicHolderVecNormLE V g γ C := by
@@ -36,7 +38,9 @@ theorem holder_norm_mono {U V : Set ParabolicPoint} {g : ParabolicPoint → Vec3
   exact ⟨B, K, hB, hK, hC, fun z hz => hb z (hVU hz),
     fun z hz w hw => hk z (hVU hz) w (hVU hw)⟩
 
-/-- Forgetting the numerical bound gives the qualitative Hölder predicate. -/
+/-- Forgetting the numerical bound gives the qualitative Hölder predicate.
+@isnad1 id=paraboli.1h4v.s4.1a16ba000fc3 from=translated src=- shape=8edc3ada vocab=aca0f297
+-/
 theorem holder_on_of_norm {U : Set ParabolicPoint} {g : ParabolicPoint → Vec3}
     {γ C : ℝ} (h : ParabolicHolderVecNormLE U g γ C) :
     ParabolicHolderVecOn U g γ := by
@@ -52,7 +56,9 @@ private instance : Measure.IsOpenPosMeasure (volume : Measure ParabolicPoint) wh
       exact ⟨parabolicHomeomorph z, hz⟩
     exact ho.measure_ne_zero (volume : Measure (Vec3 × ℝ)) hn
 
-/-- Positive-exponent parabolic Hölder representatives are continuous. -/
+/-- Positive-exponent parabolic Hölder representatives are continuous.
+@isnad1 id=continuo.2h3v.s6.e1fd2762b25b from=translated src=- shape=ce80577f vocab=368a16b7
+-/
 theorem holder_on_continuousOn {U : Set ParabolicPoint} {g : ParabolicPoint → Vec3}
     {γ : ℝ} (hγ : 0 < γ) (h : ParabolicHolderVecOn U g γ) : ContinuousOn g U := by
   obtain ⟨B, K, _hB, hK, _hb, hk⟩ := h
@@ -73,7 +79,9 @@ theorem holder_on_continuousOn {U : Set ParabolicPoint} {g : ParabolicPoint → 
   exact (PiLp.continuous_ofLp 2 (fun _ : Fin 3 => ℝ)).comp_continuousOn
     (hh.continuousOn hγ)
 
-/-- Almost-everywhere representatives agree at every point of their open overlap. -/
+/-- Almost-everywhere representatives agree at every point of their open overlap.
+@isnad1 id=eqon.8h7v.s7.830d637c5ad6 from=translated src=- shape=72dbbdb1 vocab=1d78da6b
+-/
 theorem holder_representatives_eqOn_overlap
     {U V : Set ParabolicPoint} {u g h : ParabolicPoint → Vec3} {γ δ : ℝ}
     (hU : IsOpen U) (hV : IsOpen V) (hγ : 0 < γ) (hδ : 0 < δ)
@@ -89,7 +97,9 @@ theorem holder_representatives_eqOn_overlap
     ((holder_on_continuousOn hγ hg).mono inter_subset_left)
     ((holder_on_continuousOn hδ hh).mono inter_subset_right)
 
-/-- A Hölder representative on an open neighborhood proves regularity there. -/
+/-- A Hölder representative on an open neighborhood proves regularity there.
+@isnad1 id=isregula.7h7v.s6.743e681e9d37 from=translated src=- shape=ad096728 vocab=6fab2c27
+-/
 theorem regular_point_of_holder_on_open
     {Ω : Set Vec3} {I : Set ℝ} {U : Set ParabolicPoint}
     {u w : ParabolicPoint → Vec3} {z : ParabolicPoint} {γ : ℝ}
@@ -99,7 +109,9 @@ theorem regular_point_of_holder_on_open
     IsRegularPoint Ω I u z :=
   ⟨hUΩ hz, U, hU, hz, hUΩ, γ, hγ, hγ1, w, hwu, hw⟩
 
-/-- Restrict a representative to an open subregion to obtain regular points. -/
+/-- Restrict a representative to an open subregion to obtain regular points.
+@isnad1 id=isregula.8h9v.s6.13630ff3e1c3 from=translated src=- shape=7d8ff99f vocab=61a25cad
+-/
 theorem regular_point_of_holder_norm
     {Ω : Set Vec3} {I : Set ℝ} {U V : Set ParabolicPoint}
     {u w : ParabolicPoint → Vec3} {z : ParabolicPoint} {γ C : ℝ}
@@ -112,7 +124,9 @@ theorem regular_point_of_holder_norm
     (holder_on_of_norm (holder_norm_mono hw hVU))
 
 /-- A countable open cover admits a single representative agreeing with every
-local positive-exponent Hölder representative pointwise on its domain. -/
+local positive-exponent Hölder representative pointwise on its domain.
+@isnad1 id=ex.4h5v.s7.5c45ee724663 from=translated src=- shape=86318ac2 vocab=c8663040
+-/
 theorem exists_holder_gluing {ι : Type*} [Countable ι]
     (U : ι → Set ParabolicPoint) (w : ι → ParabolicPoint → Vec3)
     {u : ParabolicPoint → Vec3} {γ : ℝ} (hγ : 0 < γ)
@@ -144,7 +158,9 @@ private theorem euclidean_norm_sub_le (a b : Vec3) :
 
 /-- Quantitative gluing with a uniform cover radius. The radius hypothesis is
 pure geometry: every sufficiently close pair in the target region lies in
-one common cover member. No global representative or global estimate is assumed. -/
+one common cover member. No global representative or global estimate is assumed.
+@isnad1 id=ex.8h8v.s8.6db721db8eea from=translated src=- shape=dcc186d9 vocab=388ab056
+-/
 theorem exists_holder_norm_gluing {ι : Type*} [Countable ι]
     (U : ι → Set ParabolicPoint) (w : ι → ParabolicPoint → Vec3)
     {u : ParabolicPoint → Vec3} {V : Set ParabolicPoint} {γ C δ : ℝ}

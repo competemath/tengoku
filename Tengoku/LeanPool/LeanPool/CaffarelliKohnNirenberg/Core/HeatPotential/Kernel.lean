@@ -67,6 +67,9 @@ private lemma rhoTwo_pos_of_time {x : Vec3} {t : ℝ} (ht : 0 < t) :
   exact add_pos_of_nonneg_of_pos (vec3EuclideanNorm_nonneg _)
     (Real.sqrt_pos.2 ht)
 
+/--
+@isnad1 id=le.2h3v.s6.6a698b35d2ce from=translated src=- shape=4797d510 vocab=72bdecb4
+-/
 lemma heatPotentialKernel_abs_le {w v : ParabolicPoint} {R : ℝ}
     (hR : 0 < R) (hsep : R ≤ rhoTwo (w.1 - v.1) (w.2 - v.2)) :
     |heatPotentialKernel w v| ≤ 1000 / R ^ 3 := by
@@ -84,6 +87,9 @@ lemma heatPotentialKernel_abs_le {w v : ParabolicPoint} {R : ℝ}
   · rw [heatKernel_eq_zero_of_nonpos (le_of_not_gt ht), abs_zero]
     positivity
 
+/--
+@isnad1 id=le.2h4v.s7.eb95eb8a602b from=translated src=- shape=ac234aee vocab=4f88f7bf
+-/
 lemma heatPotentialSpatialKernel_abs_le {i : Fin 3} {w v : ParabolicPoint}
     {R : ℝ} (hR : 0 < R)
     (hsep : R ≤ rhoTwo (w.1 - v.1) (w.2 - v.2)) :
@@ -102,6 +108,9 @@ lemma heatPotentialSpatialKernel_abs_le {i : Fin 3} {w v : ParabolicPoint}
   · rw [heatKernelSpaceDerivative, ite_eq_right ht, abs_zero]
     positivity
 
+/--
+@isnad1 id=le.2h4v.s7.1b83a7840789 from=translated src=- shape=ab2d4456 vocab=1197d255
+-/
 lemma heatPotentialSpatialTimeKernel_abs_le {i : Fin 3}
     {w v : ParabolicPoint} {R : ℝ} (hR : 0 < R)
     (hsep : R ≤ rhoTwo (w.1 - v.1) (w.2 - v.2)) :

@@ -272,6 +272,9 @@ variable (R : Type u) (S : Type u) [DivisionRing R] [DivisionRing S]
 variable (e : ModuleCat.{u} R ≌ ModuleCat.{u} S)
 
 -- This is a lemma on purpose, **don't** attempt to look at its definition
+/--
+@isnad1 id=nonempty.0h2v.s6.33dcabcb309f from=translated src=- shape=74a0d38c vocab=3893778a
+-/
 lemma division_ring_exists_unique_isSimpleModule
     (S : Type u) [DivisionRing S] (N : Type*) [AddCommGroup N] [Module S N] [IsSimpleModule S N] :
     Nonempty (N ≃ₗ[S] S) := by
@@ -312,6 +315,9 @@ lemma division_ring_exists_unique_isSimpleModule
     · intro x y hxy; ext; simpa using hxy
     · intro x; exact ⟨Finsupp.single ⟨i, by simp⟩ x, by simp⟩
 
+/--
+@isnad1 id=iff.0h2v.s8.06c64da17461 from=translated src=- shape=3444c6a9 vocab=3e14a904
+-/
 lemma isSimpleModule_iff_injective_or_eq_zero
     (R : Type u) [Ring R] (M : ModuleCat R) :
     IsSimpleModule R M ↔
@@ -368,6 +374,9 @@ variable (K : Type u) [Field K]
 
 namespace IsSimpleModule
 
+/--
+@isnad1 id=issimple.0h4v.s7.a16290c1fbec from=translated src=- shape=4598f162 vocab=510d81f6
+-/
 lemma functor
     (R S : Type u) [Ring R] [Ring S] (e : ModuleCat.{v} R ≌ ModuleCat.{v} S)
     (M : ModuleCat.{v} R) [simple_module : IsSimpleModule R M] :
@@ -395,11 +404,17 @@ end division_ring
 end IsMoritaEquivalent
 
 omit [Inhabited ι] in
+/--
+@isnad1 id=eq.0h5v.s8.e4fe6f9875ea from=translated src=- shape=9e1d5bbf vocab=028d0b2d
+-/
 lemma matrix_smul_vec_def {M : Type*} [AddCommGroup M] [Module R M] (N : M[ι, R])
     (v : ι → M) :
     N • v = fun i ↦ ∑ j : ι, N i j • v j := rfl
 
 omit [Inhabited ι] in
+/--
+@isnad1 id=eq.0h5v.s8.59f168309d55 from=translated src=- shape=b6cc4fb0 vocab=028d0b2d
+-/
 lemma matrix_smul_vec_def' {M : Type*} [AddCommGroup M] [Module R M] (N : M[ι, R])
     (v : ι → M) :
     N • v = ∑ j : ι, fun i ↦ N i j • v j := by
@@ -408,6 +423,9 @@ lemma matrix_smul_vec_def' {M : Type*} [AddCommGroup M] [Module R M] (N : M[ι, 
   simp
 
 omit [Inhabited ι] in
+/--
+@isnad1 id=eq.0h6v.s8.44fb2ef9b31e from=translated src=- shape=51349f5d vocab=028d0b2d
+-/
 lemma matrix_smul_vec_apply {M : Type*} [AddCommGroup M] [Module R M] (N : M[ι, R])
     (v : ι → M) (i : ι) :
     (N • v) i = ∑ j : ι, N i j • v j := rfl

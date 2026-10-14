@@ -39,6 +39,9 @@ private theorem support_fderiv_apply_subset_tsupport
   rw [hderivzero]
   simp
 
+/--
+@isnad1 id=hasweakp.7h6v.s9.fb20571e313e from=translated src=- shape=d35c3f5e vocab=2c6c1cdf
+-/
 theorem HasWeakPartialDerivOn.mul_smooth_zeroExtend
     {d : ℕ} {U : Set (Vec d)} (hU : IsOpen U)
     {i : Fin d} {u gi : Vec d → ℝ}
@@ -169,6 +172,9 @@ theorem HasWeakPartialDerivOn.mul_smooth_zeroExtend
       apply setIntegral_eq_integral_of_forall_compl_eq_zero
       exact hrightOutside
 
+/--
+@isnad1 id=hasweakg.7h5v.s8.52e19327b55a from=translated src=- shape=17c333c5 vocab=b7eda5cc
+-/
 theorem HasWeakGradientOn.mul_smooth_zeroExtend
     {d : ℕ} {U : Set (Vec d)} (hU : IsOpen U)
     {u : Vec d → ℝ} {g : Vec d → Vec d}
@@ -184,6 +190,9 @@ theorem HasWeakGradientOn.mul_smooth_zeroExtend
     hη hηCompact hηU
   simpa [classicalGradient, Pi.smul_apply, smul_eq_mul] using hi
 
+/--
+@isnad1 id=hasweakp.3h6v.s6.795157da6340 from=translated src=- shape=c4b50205 vocab=dc8711ea
+-/
 theorem HasWeakPartialDerivOn.mono {d : ℕ}
     {U V : Set (Vec d)} (hVOpen : IsOpen V) (hVU : V ⊆ U)
     {i : Fin d} {u gi : Vec d → ℝ}
@@ -191,6 +200,9 @@ theorem HasWeakPartialDerivOn.mono {d : ℕ}
     HasWeakPartialDerivOn V i u gi :=
   h.restrict hVOpen hVU
 
+/--
+@isnad1 id=hasweakg.3h5v.s5.696579647eb8 from=translated src=- shape=dd20a516 vocab=37c2cead
+-/
 theorem HasWeakGradientOn.mono {d : ℕ}
     {U V : Set (Vec d)} (hVOpen : IsOpen V) (hVU : V ⊆ U)
     {u : Vec d → ℝ} {Du : Vec d → Vec d}

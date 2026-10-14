@@ -27,6 +27,9 @@ def triangular : ℕ → ℕ
   | 0 => 0
   | index + 1 => triangular index + index + 1
 
+/--
+@isnad1 id=le.0h1v.s3.cf0f232ae345 from=translated src=- shape=e63234f4 vocab=86060dc7
+-/
 lemma self_le_triangular (index : ℕ) : index ≤ triangular index := by
   induction index with
   | zero => simp [triangular]
@@ -34,6 +37,9 @@ lemma self_le_triangular (index : ℕ) : index ≤ triangular index := by
       simp only [triangular]
       omega
 
+/--
+@isnad1 id=monotone.0h0v.s2.8d4d99cac294 from=translated src=- shape=e3d48bcb vocab=8fb629d6
+-/
 lemma triangular_mono : Monotone triangular := by
   intro first second hle
   induction second, hle using Nat.le_induction with
@@ -42,6 +48,9 @@ lemma triangular_mono : Monotone triangular := by
       simp only [triangular]
       omega
 
+/--
+@isnad1 id=strictmo.0h0v.s2.198041e91671 from=translated src=- shape=e3d48bcb vocab=2a7687aa
+-/
 lemma triangular_strictMono : StrictMono triangular := by
   intro first second hlt
   have hstep : triangular first < triangular (first + 1) := by
@@ -49,10 +58,16 @@ lemma triangular_strictMono : StrictMono triangular := by
     omega
   exact hstep.trans_le (triangular_mono (by omega))
 
+/--
+@isnad1 id=eq.0h1v.s5.ed3d058aadab from=translated src=- shape=83d22853 vocab=075d007c
+-/
 lemma triangular_add_index (index : ℕ) :
     triangular index + index + 1 = triangular (index + 1) := by
   rfl
 
+/--
+@isnad1 id=ex.0h1v.s4.2a8ed6fe37cd from=translated src=- shape=2928fd4f vocab=794ae413
+-/
 theorem guideWitness (dimension : ℕ) :
     ∃ width, dimension - 1 ≤ triangular width :=
   ⟨dimension, (Nat.sub_le dimension 1).trans (self_le_triangular dimension)⟩
@@ -61,10 +76,16 @@ theorem guideWitness (dimension : ℕ) :
 noncomputable def guide (dimension : ℕ) : ℕ :=
   Nat.find (guideWitness dimension)
 
+/--
+@isnad1 id=le.0h1v.s4.c4e53f837ae0 from=translated src=- shape=5db7ae1d vocab=544da817
+-/
 lemma guide_upper (dimension : ℕ) :
     dimension - 1 ≤ triangular (guide dimension) :=
   Nat.find_spec (guideWitness dimension)
 
+/--
+@isnad1 id=lt.1h1v.s4.8d703c317dd8 from=translated src=- shape=a8dc2df9 vocab=c307602b
+-/
 lemma guide_pos {dimension : ℕ} (hdimension : 2 ≤ dimension) :
     0 < guide dimension := by
   by_contra hnot
@@ -73,6 +94,9 @@ lemma guide_pos {dimension : ℕ} (hdimension : 2 ≤ dimension) :
   simp [hzero, triangular] at this
   omega
 
+/--
+@isnad1 id=le.1h1v.s5.8d7fdd71007a from=translated src=- shape=43c8e586 vocab=25c6e2e0
+-/
 lemma guide_lower {dimension : ℕ} (hdimension : 2 ≤ dimension) :
     triangular (guide dimension - 1) + 2 ≤ dimension := by
   have hpositive := guide_pos hdimension
@@ -82,6 +106,9 @@ lemma guide_lower {dimension : ℕ} (hdimension : 2 ≤ dimension) :
   have hnot : ¬ dimension - 1 ≤ triangular (guide dimension - 1) := hminimal
   omega
 
+/--
+@isnad1 id=le.1h1v.s4.b5a47983c123 from=translated src=- shape=71fa8a4a vocab=22cbf563
+-/
 lemma guide_le_dimension {dimension : ℕ} (hdimension : 2 ≤ dimension) :
     guide dimension ≤ dimension := by
   have hpositive := guide_pos hdimension
@@ -89,6 +116,9 @@ lemma guide_le_dimension {dimension : ℕ} (hdimension : 2 ≤ dimension) :
   have htriangular := self_le_triangular (guide dimension - 1)
   omega
 
+/--
+@isnad1 id=le.2h2v.s5.c1c43194e95c from=translated src=- shape=6bdaffe8 vocab=6509b461
+-/
 lemma correction_deep_bound {dimension index : ℕ}
     (hdimension : 2 ≤ dimension)
     (hindex : index < guide dimension - 1) :
@@ -100,6 +130,9 @@ lemma correction_deep_bound {dimension index : ℕ}
   have hstep := triangular_add_index index
   omega
 
+/--
+@isnad1 id=le.2h2v.s5.c048c7d57665 from=translated src=- shape=1c0882a9 vocab=0cf2d2bc
+-/
 lemma negative_index_ge_guide {dimension index : ℕ}
     (hdimension : 2 ≤ dimension)
     (hindex : index < guide dimension - 1) :
@@ -158,11 +191,17 @@ noncomputable def principal (offset : ℕ) : Relation (offset + 2) :=
     ∑ index : Fin (guide (offset + 2) - 1),
       basis (negativeIndex offset index)
 
+/--
+@isnad1 id=eq.0h3v.s5.96bac6ec52ce from=translated src=- shape=e4bc9e79 vocab=81f60d65
+-/
 lemma coordinateSum_sub {n : ℕ} (first second : Relation n) :
     coordinateSum (first - second) =
       coordinateSum first - coordinateSum second := by
   simp [coordinateSum, Finset.sum_sub_distrib]
 
+/--
+@isnad1 id=eq.0h4v.s5.64d33dae730c from=translated src=- shape=714d0069 vocab=d2b23c95
+-/
 lemma coordinateSum_finset_sum {n : ℕ} {α : Type}
     (set : Finset α) (relations : α → Relation n) :
     coordinateSum (∑ index ∈ set, relations index) =
@@ -173,12 +212,18 @@ lemma coordinateSum_finset_sum {n : ℕ} {α : Type}
   | @insert element set hnotMember inductionHypothesis =>
       simp [hnotMember, coordinateSum_add, inductionHypothesis]
 
+/--
+@isnad1 id=eq.0h2v.s4.7de199dcccb1 from=translated src=- shape=b9731c66 vocab=3a77ff8f
+-/
 @[simp]
 lemma coordinateSum_basis {n : ℕ} (coordinate : Fin n) :
     coordinateSum (basis coordinate) = 1 := by
   classical
   simp [coordinateSum, basis]
 
+/--
+@isnad1 id=eq.0h1v.s4.fd058b17a0e0 from=translated src=- shape=e018fdef vocab=1b1edb15
+-/
 lemma principal_coordinateSum (offset : ℕ) :
     coordinateSum (principal offset) = 1 := by
   rw [principal, coordinateSum_sub]
@@ -187,12 +232,18 @@ lemma principal_coordinateSum (offset : ℕ) :
   have hpositive := guide_pos (dimension := offset + 2) (by omega)
   omega
 
+/--
+@isnad1 id=injectiv.0h1v.s5.7e499bc2584f from=translated src=- shape=e45e2559 vocab=d48e0663
+-/
 lemma positiveIndex_injective (offset : ℕ) :
     Function.Injective (positiveIndex offset) := by
   intro first second hequal
   apply Fin.ext
   simpa [positiveIndex] using congrArg Fin.val hequal
 
+/--
+@isnad1 id=injectiv.0h1v.s5.9ea1a23661cf from=translated src=- shape=727c1718 vocab=f75eb307
+-/
 lemma negativeIndex_injective (offset : ℕ) :
     Function.Injective (negativeIndex offset) := by
   intro first second hequal
@@ -208,6 +259,9 @@ lemma negativeIndex_injective (offset : ℕ) :
   apply Fin.ext
   exact triangular_strictMono.injective htriangular
 
+/--
+@isnad1 id=ne.0h3v.s6.cfbc91824750 from=translated src=- shape=f5176903 vocab=8c838663
+-/
 lemma positiveIndex_ne_negativeIndex (offset : ℕ)
     (positive : Fin (guide (offset + 2)))
     (negative : Fin (guide (offset + 2) - 1)) :
@@ -219,6 +273,9 @@ lemma positiveIndex_ne_negativeIndex (offset : ℕ)
     (index := negative.val) (by omega) negative.isLt
   omega
 
+/--
+@isnad1 id=eq.0h5v.s5.014c3e201cda from=translated src=- shape=c0f2f9c0 vocab=807e01f9
+-/
 lemma relation_finset_sum_apply {n : ℕ} {α : Type}
     (set : Finset α) (relations : α → Relation n) (coordinate : Fin n) :
     (∑ index ∈ set, relations index) coordinate =
@@ -229,6 +286,9 @@ lemma relation_finset_sum_apply {n : ℕ} {α : Type}
   | @insert element set hnotMember inductionHypothesis =>
       simp [hnotMember, inductionHypothesis]
 
+/--
+@isnad1 id=eq.1h4v.s6.80318c661889 from=translated src=- shape=49218df3 vocab=afda4b81
+-/
 lemma sum_basis_apply {sourceDimension targetDimension : ℕ}
     (embedding : Fin sourceDimension → Fin targetDimension)
     (hinjective : Function.Injective embedding)
@@ -246,6 +306,9 @@ lemma sum_basis_apply {sourceDimension targetDimension : ℕ}
     _ = if coordinate ∈ Finset.univ.image embedding then 1 else 0 := by
       simp [basis]
 
+/--
+@isnad1 id=or.0h2v.s5.db4156d8c959 from=translated src=- shape=1db078bd vocab=3b4c4d9b
+-/
 lemma principal_entry (offset : ℕ) (coordinate : Fin (offset + 2)) :
     principal offset coordinate = -1 ∨
       principal offset coordinate = 0 ∨
@@ -269,6 +332,9 @@ lemma principal_entry (offset : ℕ) (coordinate : Fin (offset + 2)) :
     · simp [hpositive, hnegative]
     · simp [hpositive, hnegative]
 
+/--
+@isnad1 id=eq.0h3v.s7.48c5fa0a6a7a from=translated src=- shape=136ae563 vocab=4e813625
+-/
 lemma lift_sub {n : ℕ} (first second : Relation n) :
     lift (first - second) = lift first - lift second := by
   funext coordinate
@@ -277,6 +343,9 @@ lemma lift_sub {n : ℕ} (first second : Relation n) :
     ring
   · simp [lift]
 
+/--
+@isnad1 id=eq.1h3v.s7.3e0791e3c9c1 from=translated src=- shape=e3cff6e1 vocab=edbf862d
+-/
 lemma iteratedLift_basis_eq {n : ℕ} (coordinate : Fin n) :
     ∀ {steps : ℕ} (hsteps : 0 < steps),
       iteratedLift (basis coordinate) steps =
@@ -321,6 +390,9 @@ lemma iteratedLift_basis_eq {n : ℕ} (coordinate : Fin n) :
       rw [hpositive, hnegative]
       abel
 
+/--
+@isnad1 id=eq.1h4v.s4.9a712157f4a4 from=translated src=- shape=993f0616 vocab=fd4f311e
+-/
 @[simp]
 lemma castRelation_apply {firstDimension secondDimension : ℕ}
     (hdimension : firstDimension = secondDimension)
@@ -330,6 +402,9 @@ lemma castRelation_apply {firstDimension secondDimension : ℕ}
   subst secondDimension
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.44313ee548ec from=translated src=- shape=221deb64 vocab=7ca93f78
+-/
 lemma castRelation_sub {firstDimension secondDimension : ℕ}
     (hdimension : firstDimension = secondDimension)
     (first second : Relation firstDimension) :
@@ -338,6 +413,9 @@ lemma castRelation_sub {firstDimension secondDimension : ℕ}
   subst secondDimension
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s4.5c0876b5b7d0 from=translated src=- shape=61a23ae5 vocab=1e5210b4
+-/
 lemma castRelation_basis {firstDimension secondDimension : ℕ}
     (hdimension : firstDimension = secondDimension)
     (coordinate : Fin firstDimension) :
@@ -346,6 +424,9 @@ lemma castRelation_basis {firstDimension secondDimension : ℕ}
   subst secondDimension
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.1db8c326b794 from=translated src=- shape=38ced62a vocab=a5c9d088
+-/
 lemma correctionFor_target (offset : ℕ)
     (index : Fin (guide (offset + 2) - 1)) :
     (correctionFor offset index).target =
@@ -368,6 +449,9 @@ lemma correctionFor_target (offset : ℕ)
       (index := index.val) (by omega) index.isLt
     omega
 
+/--
+@isnad1 id=eq.0h1v.s9.655eca132eb3 from=translated src=- shape=7867c3a4 vocab=af5e67c9
+-/
 lemma corrections_target_sum (offset : ℕ) :
     ((corrections offset).map Correction.target).sum =
       ∑ index : Fin (guide (offset + 2) - 1),
@@ -378,6 +462,9 @@ lemma corrections_target_sum (offset : ℕ) :
             omega⟩ : Fin (offset + 2))) := by
   simp [corrections, List.sum_ofFn, correctionFor_target]
 
+/--
+@isnad1 id=eq.0h1v.s8.ea26605c0df6 from=translated src=- shape=5706000f vocab=8c5547d0
+-/
 lemma principal_corrections_decomposition (offset : ℕ) :
     principal offset +
         ((corrections offset).map Correction.target).sum =
@@ -423,14 +510,23 @@ noncomputable def conwayGuyDifference (index : ℕ) : ℕ :=
 noncomputable def conwayGuyHeight (dimension : ℕ) : ℤ :=
   ∑ index ∈ Finset.range dimension, (conwayGuyDifference index : ℤ)
 
+/--
+@isnad1 id=eq.0h0v.s3.cfabd1aacae5 from=translated src=- shape=1ac31801 vocab=f0277c4d
+-/
 @[simp]
 lemma conwayGuyHeight_zero : conwayGuyHeight 0 = 0 := by
   simp [conwayGuyHeight]
 
+/--
+@isnad1 id=eq.0h0v.s3.3a8239d86b1e from=translated src=- shape=1ac31801 vocab=f0277c4d
+-/
 @[simp]
 lemma conwayGuyHeight_one : conwayGuyHeight 1 = 1 := by
   simp [conwayGuyHeight, conwayGuyDifference, difference]
 
+/--
+@isnad1 id=eq.0h1v.s5.24d5ab710e4b from=translated src=- shape=5ad2a8fb vocab=0285f6ed
+-/
 lemma conwayGuyHeight_succ (dimension : ℕ) :
     conwayGuyHeight (dimension + 1) =
       conwayGuyHeight dimension + conwayGuyDifference dimension := by
@@ -463,6 +559,9 @@ def ConwayGuyArithmetic.head (data : ConwayGuyArithmetic)
     (dimension : ℕ) : ℤ :=
   data.height (dimension + 1) - data.height dimension
 
+/--
+@isnad1 id=eq.0h2v.s5.a37f09f52cd4 from=translated src=- shape=bf8eff84 vocab=181922bf
+-/
 lemma ConwayGuyArithmetic.weights_step (data : ConwayGuyArithmetic)
     (dimension : ℕ) :
     data.weights (dimension + 1) =
@@ -487,11 +586,17 @@ def ConwayGuyArithmetic.tower (data : ConwayGuyArithmetic) : WeightTower where
   head := data.head
   step := data.weights_step
 
+/--
+@isnad1 id=eq.0h4v.s5.85c8cbf7a3c1 from=translated src=- shape=6a42c977 vocab=c9d3d571
+-/
 lemma dot_sub {n : ℕ} (first second weights : Relation n) :
     dot (first - second) weights =
       dot first weights - dot second weights := by
   simp [dot, sub_mul, Finset.sum_sub_distrib]
 
+/--
+@isnad1 id=eq.0h5v.s5.c7883dbbadca from=translated src=- shape=b8c79988 vocab=5b68b6a4
+-/
 lemma dot_finset_sum {n : ℕ} {α : Type}
     (set : Finset α) (relations : α → Relation n) (weights : Relation n) :
     dot (∑ index ∈ set, relations index) weights =
@@ -502,6 +607,9 @@ lemma dot_finset_sum {n : ℕ} {α : Type}
   | @insert element set hnotMember inductionHypothesis =>
       simp [hnotMember, dot_add, inductionHypothesis]
 
+/--
+@isnad1 id=eq.1h1v.s8.ede9e81de3c4 from=translated src=- shape=a230876c vocab=27b17ea4
+-/
 lemma principal_dot (offset : ℕ)
     (hblock :
       conwayGuyHeight (offset + 2) -

@@ -38,10 +38,16 @@ namespace Basis
 /-- The coordinate basis vector on `Fin n`. -/
 noncomputable def e (i : Fin n) : Fin n → ℝ := Pi.single i (1 : ℝ)
 
+/--
+@isnad1 id=eq.0h2v.s4.79ec608d55d6 from=translated src=- shape=8288012b vocab=2c1a53c4
+-/
 lemma sum_e (i : Fin n) : (∑ k : Fin n, e (n := n) i k) = 1 := by
   classical
   simp [e]
 
+/--
+@isnad1 id=eq.0h3v.s5.00ea7d012c01 from=translated src=- shape=9c64146b vocab=f41f85b8
+-/
 lemma sum_sub_e (i j : Fin n) : (∑ k : Fin n, (e (n := n) i k - e (n := n) j k)) = 0 := by
   classical
   simp [e]
@@ -53,18 +59,30 @@ noncomputable def dij (i j : Fin n) : V n :=
     exact (tangentSpace.mem_iff (α := Fin n)
       (u := fun k => e (n := n) i k - e (n := n) j k)).2 (sum_sub_e (n := n) i j)⟩
 
+/--
+@isnad1 id=eq.0h4v.s7.e921c45bfce2 from=translated src=- shape=b690cd96 vocab=8d059c6b
+-/
 @[simp] lemma dij_coe (i j : Fin n) (k : Fin n) :
     (dij (n := n) i j : Fin n → ℝ) k = e (n := n) i k - e (n := n) j k :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.9871806b5110 from=translated src=- shape=e20c0f3a vocab=119ea1b4
+-/
 @[simp] lemma dij_self (i : Fin n) : dij (n := n) i i = 0 := by
   ext k
   simp [dij_coe]
 
+/--
+@isnad1 id=eq.0h3v.s6.18cbaefc4970 from=translated src=- shape=31e7edb7 vocab=1fbd39cc
+-/
 lemma dij_neg (i j : Fin n) : dij (n := n) i j = -dij (n := n) j i := by
   ext k
   simp [dij_coe, sub_eq_add_neg, add_comm]
 
+/--
+@isnad1 id=eq.0h4v.s6.d0a15ff45bd3 from=translated src=- shape=e79c53b5 vocab=7a050edc
+-/
 lemma dij_add (i j k : Fin n) : dij (n := n) i k = dij (n := n) i j + dij (n := n) j k := by
   ext t
   simp [dij_coe, sub_eq_add_neg, add_assoc]
@@ -79,6 +97,9 @@ open _root_.LeanPool.CencovPetz.TangentFin.Basis
 noncomputable abbrev κ (σ : Equiv.Perm (Fin n)) : MarkovMorphism (Fin n) (Fin n) :=
   MarkovMorphism.deterministic (α := Fin n) (β := Fin n) (g := (σ : Fin n → Fin n)) σ.surjective
 
+/--
+@isnad1 id=eq.0h4v.s8.75da9ba101f1 from=translated src=- shape=6cb31bbf vocab=22071881
+-/
 lemma κ_tangentPushforward_apply (σ : Equiv.Perm (Fin n)) (u : V n) (k : Fin n) :
     ((κ (n := n) σ).tangentPushforward u : Fin n → ℝ) k = (u : Fin n → ℝ) (σ.symm k) := by
   classical
@@ -86,6 +107,9 @@ lemma κ_tangentPushforward_apply (σ : Equiv.Perm (Fin n)) (u : V n) (k : Fin n
     (MarkovMorphism.deterministic_tangentPushforward_apply_of_equiv (α := Fin n) (β := Fin n)
       (e := σ) (u := u) (b := k))
 
+/--
+@isnad1 id=eq.0h4v.s6.47bc557be706 from=translated src=- shape=88095be0 vocab=7860986c
+-/
 lemma κ_pushforward_apply (σ : Equiv.Perm (Fin n)) (p : Simplex (Fin n)) (k : Fin n) :
     ((κ (n := n) σ).pushforward p).p k = p.p (σ.symm k) := by
   classical
@@ -93,6 +117,9 @@ lemma κ_pushforward_apply (σ : Equiv.Perm (Fin n)) (p : Simplex (Fin n)) (k : 
     (MarkovMorphism.deterministic_pushforward_apply_of_equiv (α := Fin n) (β := Fin n)
       (e := σ) (p := p) (b := k))
 
+/--
+@isnad1 id=eq.0h4v.s6.5a1854b5909c from=translated src=- shape=ba79c25c vocab=a84425dc
+-/
 lemma e_apply_symm (σ : Equiv.Perm (Fin n)) (i k : Fin n) :
     e (n := n) i (σ.symm k) = e (n := n) (σ i) k := by
   classical
@@ -107,6 +134,9 @@ lemma e_apply_symm (σ : Equiv.Perm (Fin n)) (i k : Fin n) :
       simpa using congrArg σ h
     simp [e, hk, hki]
 
+/--
+@isnad1 id=eq.0h2v.s5.5376054d07f8 from=translated src=- shape=325c742b vocab=a3cd2489
+-/
 lemma κ_pushforward_uniform {n : ℕ} [Nonempty (Fin n)] (σ : Equiv.Perm (Fin n)) :
     (κ (n := n) σ).pushforward (Simplex.uniform (α := Fin n)) = Simplex.uniform (α := Fin n) := by
   classical
@@ -114,6 +144,9 @@ lemma κ_pushforward_uniform {n : ℕ} [Nonempty (Fin n)] (σ : Equiv.Perm (Fin 
   rw [κ_pushforward_apply]
   simp [Simplex.uniform_apply]
 
+/--
+@isnad1 id=eq.0h4v.s7.40599781fba4 from=translated src=- shape=c48d18bd vocab=6772a8b3
+-/
 lemma κ_tangentPushforward_dij (σ : Equiv.Perm (Fin n)) (i j : Fin n) :
     (κ (n := n) σ).tangentPushforward (Basis.dij (n := n) i j) =
       Basis.dij (n := n) (σ i) (σ j) := by
@@ -122,6 +155,9 @@ lemma κ_tangentPushforward_dij (σ : Equiv.Perm (Fin n)) (i j : Fin n) :
   rw [κ_tangentPushforward_apply]
   simp [Basis.dij_coe, e_apply_symm]
 
+/--
+@isnad1 id=eq.0h5v.s12.ad0f10d605dc from=translated src=- shape=c200e093 vocab=6022cd79
+-/
 lemma metric_uniform_invariant {n : ℕ} (G : MonotoneMetricFamily) [Nonempty (Fin n)]
     (σ : Equiv.Perm (Fin n)) (u v : V n) :
     G.g (α := Fin n) (Simplex.uniform (α := Fin n))
@@ -145,15 +181,24 @@ variable {n : ℕ} (G : MonotoneMetricFamily) [Nonempty (Fin n)]
 noncomputable abbrev B : LinearMap.BilinForm ℝ (V n) :=
   G.g (α := Fin n) (Simplex.uniform (α := Fin n))
 
+/--
+@isnad1 id=eq.0h4v.s10.d0d5965eb0a2 from=translated src=- shape=4ce0cd2c vocab=4bc42da0
+-/
 lemma B_symm (u v : V n) : B (G := G) (n := n) u v = B (G := G) (n := n) v u := by
   simpa [B] using (G.symm (α := Fin n) (p := Simplex.uniform (α := Fin n)) u v)
 
+/--
+@isnad1 id=eq.0h5v.s10.4e79d1be0513 from=translated src=- shape=ee3e9cdb vocab=6b9a5385
+-/
 lemma B_invariant (σ : Equiv.Perm (Fin n)) (u v : V n) :
     B (G := G) (n := n)
         ((κ (n := n) σ).tangentPushforward u) ((κ (n := n) σ).tangentPushforward v)
       = B (G := G) (n := n) u v := by
   simpa [B] using (Perm.metric_uniform_invariant (G := G) (σ := σ) u v)
 
+/--
+@isnad1 id=eq.0h7v.s10.a4f7ec63e3b2 from=translated src=- shape=0f2d375d vocab=37d7176e
+-/
 lemma B_dij_dij_eq_of_perm (σ : Equiv.Perm (Fin n)) (i j k l : Fin n) :
     B (G := G) (n := n) (dij (n := n) (σ i) (σ j)) (dij (n := n) (σ k) (σ l))
       = B (G := G) (n := n) (dij (n := n) i j) (dij (n := n) k l) := by
@@ -161,6 +206,9 @@ lemma B_dij_dij_eq_of_perm (σ : Equiv.Perm (Fin n)) (i j k l : Fin n) :
   have h := B_invariant (G := G) (n := n) (σ := σ) (u := dij (n := n) i j) (v := dij (n := n) k l)
   simpa [Perm.κ_tangentPushforward_dij] using h
 
+/--
+@isnad1 id=eq.4h6v.s9.56fe7730cbdb from=translated src=- shape=d96216c1 vocab=ab39241e
+-/
 lemma B_dij_dij_eq_zero_of_disjoint (i j k l : Fin n)
     (hik : i ≠ k) (hil : i ≠ l) (hjk : j ≠ k) (hjl : j ≠ l) :
     B (G := G) (n := n) (dij (n := n) i j) (dij (n := n) k l) = 0 := by
@@ -189,6 +237,9 @@ lemma B_dij_dij_eq_zero_of_disjoint (i j k l : Fin n)
     simp_all
   linarith
 
+/--
+@isnad1 id=eq.3h5v.s10.d1985b33bebc from=translated src=- shape=a5a8d144 vocab=2f925271
+-/
 lemma B_dij_dij_eq_neg_half_self (i j k : Fin n) (hij : i ≠ j) (hjk : j ≠ k) (hik : i ≠ k) :
     B (G := G) (n := n) (dij (n := n) i j) (dij (n := n) j k) =
       -(1 / 2 : ℝ) * B (G := G) (n := n) (dij (n := n) i j) (dij (n := n) i j) := by
@@ -258,6 +309,9 @@ lemma B_dij_dij_eq_neg_half_self (i j k : Fin n) (hij : i ≠ j) (hjk : j ≠ k)
   have hx' : x = -(1 / 2 : ℝ) * a := by linarith [hEq']
   simpa [a, x] using hx'
 
+/--
+@isnad1 id=eq.3h5v.s10.cf0d83a7a46d from=translated src=- shape=b8117681 vocab=723adae4
+-/
 lemma B_dij_dij_eq_half_self (i j k : Fin n) (hij : i ≠ j) (hjk : j ≠ k) (hik : i ≠ k) :
     B (G := G) (n := n) (dij (n := n) i j) (dij (n := n) i k) =
       (1 / 2 : ℝ) * B (G := G) (n := n) (dij (n := n) i j) (dij (n := n) i j) := by

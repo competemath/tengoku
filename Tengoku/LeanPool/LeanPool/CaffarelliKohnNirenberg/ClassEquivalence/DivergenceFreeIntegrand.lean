@@ -39,7 +39,9 @@ variable {u : ParabolicPoint → Vec3} {Du : ParabolicPoint → Fin 3 → Vec3}
 variable {p : ParabolicPoint → ℝ} {f : ParabolicPoint → Vec3}
 
 /-- Each component of the velocity is integrable on a compact subset of the
-carrier: it is square integrable there, and the restricted measure is finite. -/
+carrier: it is square integrable there, and the restricted measure is finite.
+@isnad1 id=integrab.3h9v.s6.8fa43c268af3 from=translated src=- shape=aae06a70 vocab=7582742f
+-/
 theorem velocity_component_integrableOn_compact_of_data
     (hdata : IsSuitableWeakSolutionData Ω I q u Du p f)
     {K : Set ParabolicPoint} (hK : IsCompact K) (hKsub : K ⊆ spaceTimeSet Ω I)
@@ -51,7 +53,9 @@ theorem velocity_component_integrableOn_compact_of_data
     (ContinuousLinearMap.proj i : Vec3 →L[ℝ] ℝ)).integrable (by norm_num)
 
 /-- The integrand of the divergence-free clause of `def:sws` is integrable on
-the closed support of the test function.  Only the data clauses are used. -/
+the closed support of the test function.  Only the data clauses are used.
+@isnad1 id=integrab.2h8v.s7.0e11d1a5a211 from=translated src=- shape=fec6db68 vocab=6db6d623
+-/
 theorem divergenceFree_integrand_integrableOn_of_data
     (hdata : IsSuitableWeakSolutionData Ω I q u Du p f)
     {ψ : Vec3 × ℝ → ℝ} (hψ : ψ ∈ spaceTimeTestFunction (V := ℝ) Ω I) :

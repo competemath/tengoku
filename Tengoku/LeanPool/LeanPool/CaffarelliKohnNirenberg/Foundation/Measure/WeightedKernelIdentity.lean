@@ -20,7 +20,9 @@ open scoped ENNReal
 namespace CKN.Foundation.Measure
 
 /-- An algebraic identity in extended reals used in the strong-type maximal estimates:
-rewriting `C / (t/2) * A * t^(p-1)` as `2*C * (t^(p-2) * A)`. -/
+rewriting `C / (t/2) * A * t^(p-1)` as `2*C * (t^(p-2) * A)`.
+@isnad1 id=eq.1h4v.s7.9e61124f8b51 from=translated src=- shape=ef842254 vocab=76ff3f60
+-/
 theorem div_ofReal_half_mul_ofReal_rpow_sub_one {C A : ℝ≥0∞} {t p : ℝ} (ht : 0 < t) :
     (C / ENNReal.ofReal (t / 2) * A) * ENNReal.ofReal (t ^ (p - 1)) =
       (2 * C) * (ENNReal.ofReal (t ^ (p - 2)) * A) := by

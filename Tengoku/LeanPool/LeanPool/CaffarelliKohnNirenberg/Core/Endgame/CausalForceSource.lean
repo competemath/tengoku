@@ -32,7 +32,9 @@ def causalForceComponent (φ : ParabolicPoint → ℝ) (f : ParabolicPoint → V
     (i : Fin 3) : ParabolicPoint → ℝ :=
   {z : ParabolicPoint | z.2 ≤ 0}.indicator (fun z => φ z * f z i)
 
-/-- The causal force component vanishes outside the unit cylinder. -/
+/-- The causal force component vanishes outside the unit cylinder.
+@isnad1 id=eq.2h4v.s7.99e14b1b885b from=translated src=- shape=2cbedaf4 vocab=7fab119a
+-/
 theorem causalForceComponent_zero_outside_unit
     {φ : ParabolicPoint → ℝ} {f : ParabolicPoint → Vec3}
     (hsupp : ∀ z, z.2 ≤ 0 → z ∉ parabolicCylinder (0 : Vec3) 0 1 → φ z = 0)
@@ -44,7 +46,9 @@ theorem causalForceComponent_zero_outside_unit
   · exact indicator_of_notMem ht _
 
 /-- Global measurability of the causal force uses only local measurability
-of the original force on the unit cylinder. -/
+of the original force on the unit cylinder.
+@isnad1 id=aemeasur.3h3v.s7.76451027771f from=translated src=- shape=4c63bde1 vocab=9c9bdde9
+-/
 theorem causalForceComponent_aemeasurable
     {φ : ParabolicPoint → ℝ} {f : ParabolicPoint → Vec3}
     (hφ : AEMeasurable φ volume)
@@ -70,7 +74,9 @@ theorem causalForceComponent_aemeasurable
   rwa [heq] at hi
 
 /-- A cutoff taking values in `[0,1]` in the past yields pointwise force
-domination, including after extension by zero. -/
+domination, including after extension by zero.
+@isnad1 id=le.1h4v.s6.265db05e3548 from=translated src=- shape=b94372e5 vocab=a8bf7e8e
+-/
 theorem abs_causalForceComponent_le
     {φ : ParabolicPoint → ℝ} {f : ParabolicPoint → Vec3}
     (hφ : ∀ z, z.2 ≤ 0 → 0 ≤ φ z ∧ φ z ≤ 1)
@@ -87,7 +93,9 @@ theorem abs_causalForceComponent_le
     exact vec3EuclideanNorm_nonneg _
 
 /-- The concrete causal cutoff force component satisfies the uniform paper
-source Morrey bound. -/
+source Morrey bound.
+@isnad1 id=le.6h7v.s8.801a26757610 from=translated src=- shape=67d99616 vocab=cfe259c2
+-/
 theorem causalForceComponent_paper_morrey_le
     (q ε₀ : ℝ) (hq : 5 / 2 < q)
     {φ : ParabolicPoint → ℝ} {u f : ParabolicPoint → Vec3} {p : ParabolicPoint → ℝ}
@@ -109,7 +117,9 @@ theorem causalForceComponent_paper_morrey_le
     (fun _ hz => causalForceComponent_zero_outside_unit hsupp i hz)
 
 /-- Suitable-solution local energy data supply all force measurability needed
-for the concrete causal source estimate. -/
+for the concrete causal source estimate.
+@isnad1 id=and.7h10v.s8.39b1f8d99813 from=translated src=- shape=5c2b1356 vocab=622b0b71
+-/
 theorem causal_force_source_of_suitableWeakSolution
     (q ε₀ : ℝ) (hq : 5 / 2 < q)
     {Ω : Set Vec3} {I : Set ℝ} {φ : ParabolicPoint → ℝ}

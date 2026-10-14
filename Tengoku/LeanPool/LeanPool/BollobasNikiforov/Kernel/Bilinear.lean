@@ -29,10 +29,16 @@ variable {k : ℕ} (t : Fin k → ℝ) (q : Fin k → ℝ)
 
 /-! ### Fin 3 expansions -/
 
+/--
+@isnad1 id=eq.0h3v.s7.b46a6785ba0b from=translated src=- shape=997d2479 vocab=d30d66f8
+-/
 lemma mulVec_fin3 (M : Matrix (Fin 3) (Fin 3) ℝ) (z : Fin 3 → ℝ) (i : Fin 3) :
     (M *ᵥ z) i = M i 0 * z 0 + M i 1 * z 1 + M i 2 * z 2 := by
   simp [mulVec, dotProduct, Fin.sum_univ_three]
 
+/--
+@isnad1 id=eq.0h3v.s9.3b49566ca944 from=translated src=- shape=33cd214d vocab=b6132dc4
+-/
 lemma dotProduct_mulVec_fin3 (M : Matrix (Fin 3) (Fin 3) ℝ) (z w : Fin 3 → ℝ) :
     z ⬝ᵥ M *ᵥ w =
       z 0 * (M 0 0 * w 0 + M 0 1 * w 1 + M 0 2 * w 2) +
@@ -40,7 +46,9 @@ lemma dotProduct_mulVec_fin3 (M : Matrix (Fin 3) (Fin 3) ℝ) (z w : Fin 3 → �
       z 2 * (M 2 0 * w 0 + M 2 1 * w 1 + M 2 2 * w 2) := by
   simp [dotProduct, mulVec_fin3, Fin.sum_univ_three]
 
-/-- Completing the square in coordinate `2` for a real symmetric `3×3` form. -/
+/-- Completing the square in coordinate `2` for a real symmetric `3×3` form.
+@isnad1 id=eq.2h3v.s10.d8115b8dad15 from=translated src=- shape=43c1993f vocab=23d3e8f8
+-/
 lemma bilinear_complete_last (M : Matrix (Fin 3) (Fin 3) ℝ) (hM : M.IsHermitian)
     (z w : Fin 3 → ℝ) (h22 : M 2 2 ≠ 0) :
     z ⬝ᵥ M *ᵥ w =
@@ -58,6 +66,9 @@ lemma bilinear_complete_last (M : Matrix (Fin 3) (Fin 3) ℝ) (hM : M.IsHermitia
 
 /-! ### KR08: pivot `𝒦 2 2` -/
 
+/--
+@isnad1 id=eq.1h3v.s6.f5e76b517178 from=translated src=- shape=78b8e53a vocab=96cc8b47
+-/
 lemma inv_𝒜_two_two (hq : ∀ i, 0 < q i) :
     (𝒜 t q)⁻¹ 2 2 = D2 t q / Δ t q := by
   have hΔ : Δ t q ≠ 0 := (Δ_pos t q hq).ne'
@@ -72,6 +83,9 @@ lemma inv_𝒜_two_two (hq : ∀ i, 0 < q i) :
   rw [hadj]
   field_simp [hΔ]
 
+/--
+@isnad1 id=eq.2h4v.s6.1fb93e61fdad from=translated src=- shape=3befdb79 vocab=df0f3d6d
+-/
 lemma 𝒦_two_two (γ : ℝ) (hq : ∀ i, 0 < q i) (hγ : 0 < γ) :
     𝒦 t q γ 2 2 = D2 t q / Δ t q := by
   have he : Pi.single 0 (1 : ℝ) ⬝ᵥ Pi.single (2 : Fin 3) 1 = 0 := by simp
@@ -92,6 +106,9 @@ lemma 𝒦_two_two (γ : ℝ) (hq : ∀ i, 0 < q i) (hγ : 0 < γ) :
 
 /-! ### Leading `2×2` block of `𝒜` -/
 
+/--
+@isnad1 id=eq.1h3v.s7.4a4dee4be08d from=translated src=- shape=574146ea vocab=c49d2256
+-/
 lemma leading2_𝒜_inv_one_one (hq : ∀ i, 0 < q i) :
     ((𝒜 t q).submatrix Fin.castSucc Fin.castSucc)⁻¹ 1 1 = a0 t q / D2 t q := by
   have hD : D2 t q ≠ 0 := (D2_pos t q hq).ne'
@@ -100,6 +117,9 @@ lemma leading2_𝒜_inv_one_one (hq : ∀ i, 0 < q i) :
   simp [submatrix_apply, 𝒜_00]
   field_simp [hD]
 
+/--
+@isnad1 id=eq.1h3v.s7.0f610fb4d6cd from=translated src=- shape=9ec20887 vocab=fac565d6
+-/
 lemma leading2_𝒜_inv_one_zero (hq : ∀ i, 0 < q i) :
     ((𝒜 t q).submatrix Fin.castSucc Fin.castSucc)⁻¹ 1 0 =
       Real.sqrt 2 * m t q 1 / D2 t q := by
@@ -109,7 +129,9 @@ lemma leading2_𝒜_inv_one_zero (hq : ∀ i, 0 < q i) :
   simp [submatrix_apply, 𝒜_10]
   field_simp [hD]
 
-/-- The `{0,1}` Schur complement of `𝒜⁻¹` is `(𝒜[{0,1}])⁻¹`. -/
+/-- The `{0,1}` Schur complement of `𝒜⁻¹` is `(𝒜[{0,1}])⁻¹`.
+@isnad1 id=eq.1h3v.s9.a8e6dfe5a1bf from=translated src=- shape=29b18607 vocab=b68819f7
+-/
 lemma leading2_mul_schur_inv_𝒜 (hq : ∀ i, 0 < q i) :
     (𝒜 t q).submatrix Fin.castSucc Fin.castSucc *
         Matrix.of (fun i j : Fin 2 ↦
@@ -164,6 +186,9 @@ lemma leading2_mul_schur_inv_𝒜 (hq : ∀ i, 0 < q i) :
   simp only [c1]
   simpa [Fin.castSucc_inj] using hgoal
 
+/--
+@isnad1 id=eq.1h5v.s8.473c6cab0e7e from=translated src=- shape=1fc1fdab vocab=27103bd3
+-/
 lemma schur_inv_𝒜 (hq : ∀ i, 0 < q i) (i j : Fin 2) :
     (𝒜 t q)⁻¹ i.castSucc j.castSucc -
         (𝒜 t q)⁻¹ i.castSucc 2 * (𝒜 t q)⁻¹ 2 j.castSucc / (𝒜 t q)⁻¹ 2 2 =
@@ -173,15 +198,24 @@ lemma schur_inv_𝒜 (hq : ∀ i, 0 < q i) (i j : Fin 2) :
 
 /-! ### KR09: `{0,1}` block of `𝒦⁻¹ = 𝒦Mat` -/
 
+/--
+@isnad1 id=eq.0h3v.s5.a4b4de6aa64a from=translated src=- shape=16576c7a vocab=d8ce7f8b
+-/
 lemma Vvec_one : Vvec t q 1 = -Real.sqrt 2 * m t q 1 := by
   rw [Vvec, mulVec_single_one, col_apply, 𝒜_10]
 
+/--
+@isnad1 id=eq.1h4v.s6.be173a17853e from=translated src=- shape=68a89252 vocab=f1ab79de
+-/
 lemma 𝒦Mat_zero_zero (γ : ℝ) (hγ : 0 < γ) :
     𝒦Mat t q γ 0 0 = a0 t q * (γ + a0 t q) / γ := by
   unfold 𝒦Mat
   simp only [Matrix.add_apply, Matrix.smul_apply, vecMulVec_apply, 𝒜_00, Vvec_zero, smul_eq_mul]
   field_simp [hγ.ne']
 
+/--
+@isnad1 id=eq.1h4v.s6.06d2a5d733d6 from=translated src=- shape=5b37f4e5 vocab=d977803c
+-/
 lemma 𝒦Mat_one_zero (γ : ℝ) (hγ : 0 < γ) :
     𝒦Mat t q γ 1 0 = -Real.sqrt 2 * m t q 1 * (γ + a0 t q) / γ := by
   unfold 𝒦Mat
@@ -190,6 +224,9 @@ lemma 𝒦Mat_one_zero (γ : ℝ) (hγ : 0 < γ) :
   field_simp [hγ.ne']
   ring
 
+/--
+@isnad1 id=eq.1h4v.s6.ddfeeb7abed7 from=translated src=- shape=5b37f4e5 vocab=d977803c
+-/
 lemma 𝒦Mat_zero_one (γ : ℝ) (hγ : 0 < γ) :
     𝒦Mat t q γ 0 1 = -Real.sqrt 2 * m t q 1 * (γ + a0 t q) / γ := by
   unfold 𝒦Mat
@@ -198,6 +235,9 @@ lemma 𝒦Mat_zero_one (γ : ℝ) (hγ : 0 < γ) :
   field_simp [hγ.ne']
   ring
 
+/--
+@isnad1 id=eq.1h4v.s7.47d1d5a5898e from=translated src=- shape=90c1f374 vocab=310a626d
+-/
 lemma 𝒦Mat_one_one (γ : ℝ) (hγ : 0 < γ) :
     𝒦Mat t q γ 1 1 = 1 + 2 * m t q 2 + 2 * m t q 1 ^ 2 / γ := by
   unfold 𝒦Mat
@@ -206,6 +246,9 @@ lemma 𝒦Mat_one_one (γ : ℝ) (hγ : 0 < γ) :
   field_simp [hγ.ne']
   rw [hsq]
 
+/--
+@isnad1 id=eq.2h4v.s7.ea55c2efce48 from=translated src=- shape=ecc51587 vocab=d42aec83
+-/
 lemma 𝒦Mat01_det (γ : ℝ) (_hq : ∀ i, 0 < q i) (hγ : 0 < γ) :
     ((𝒦Mat t q γ).submatrix Fin.castSucc Fin.castSucc).det =
       D2 t q * (γ + a0 t q) / γ := by
@@ -220,6 +263,9 @@ lemma 𝒦Mat01_det (γ : ℝ) (_hq : ∀ i, 0 < q i) (hγ : 0 < γ) :
   simp [D2, a0]
   ring
 
+/--
+@isnad1 id=eq.2h4v.s7.644715505104 from=translated src=- shape=f7f7045c vocab=e7741eb5
+-/
 lemma 𝒦Mat01_inv_one_one (γ : ℝ) (hq : ∀ i, 0 < q i) (hγ : 0 < γ) :
     ((𝒦Mat t q γ).submatrix Fin.castSucc Fin.castSucc)⁻¹ 1 1 = a0 t q / D2 t q := by
   have hD : D2 t q ≠ 0 := (D2_pos t q hq).ne'
@@ -229,6 +275,9 @@ lemma 𝒦Mat01_inv_one_one (γ : ℝ) (hq : ∀ i, 0 < q i) (hγ : 0 < γ) :
   simp [submatrix_apply, 𝒦Mat_zero_zero t q γ hγ]
   field_simp [hD, hγ.ne', hγa]
 
+/--
+@isnad1 id=eq.2h4v.s7.ad2e633776a4 from=translated src=- shape=0320e172 vocab=d1e46e7e
+-/
 lemma 𝒦Mat01_inv_one_zero (γ : ℝ) (hq : ∀ i, 0 < q i) (hγ : 0 < γ) :
     ((𝒦Mat t q γ).submatrix Fin.castSucc Fin.castSucc)⁻¹ 1 0 =
       Real.sqrt 2 * m t q 1 / D2 t q := by
@@ -239,6 +288,9 @@ lemma 𝒦Mat01_inv_one_zero (γ : ℝ) (hq : ∀ i, 0 < q i) (hγ : 0 < γ) :
   simp [submatrix_apply, 𝒦Mat_one_zero t q γ hγ]
   field_simp [hD, hγ.ne', hγa]
 
+/--
+@isnad1 id=eq.2h4v.s8.f467a06477a8 from=translated src=- shape=dad469e1 vocab=e90473aa
+-/
 lemma 𝒦Mat01_inv_ratio (γ : ℝ) (hq : ∀ i, 0 < q i) (hγ : 0 < γ) :
     ((𝒦Mat t q γ).submatrix Fin.castSucc Fin.castSucc)⁻¹ 1 0 /
         ((𝒦Mat t q γ).submatrix Fin.castSucc Fin.castSucc)⁻¹ 1 1 =
@@ -250,6 +302,9 @@ lemma 𝒦Mat01_inv_ratio (γ : ℝ) (hq : ∀ i, 0 < q i) (hγ : 0 < γ) :
 
 /-! ### KR10: last pivot -/
 
+/--
+@isnad1 id=eq.2h4v.s7.f1153b90d5f1 from=translated src=- shape=0a923664 vocab=f1ab79de
+-/
 lemma inv_𝒦Mat_zero_zero (γ : ℝ) (hq : ∀ i, 0 < q i) (hγ : 0 < γ) :
     1 / 𝒦Mat t q γ 0 0 = γ / (a0 t q * (γ + a0 t q)) := by
   rw [𝒦Mat_zero_zero t q γ hγ]
@@ -259,9 +314,15 @@ lemma inv_𝒦Mat_zero_zero (γ : ℝ) (hq : ∀ i, 0 < q i) (hγ : 0 < γ) :
 
 /-! ### Inverse bilinear form of `𝒜` -/
 
+/--
+@isnad1 id=ishermit.1h3v.s6.ad2b1a90bdb8 from=translated src=- shape=e835f233 vocab=ba5a5662
+-/
 lemma inv_𝒜_isHermitian (hq : ∀ i, 0 < q i) : ((𝒜 t q)⁻¹).IsHermitian :=
   (𝒜_posDef t q hq).isHermitian.inv
 
+/--
+@isnad1 id=eq.1h7v.s9.8b93813213ad from=translated src=- shape=563999b2 vocab=f1e9aba0
+-/
 lemma leading2_inv_bilinear (hq : ∀ i, 0 < q i) (z0 z1 w0 w1 : ℝ) :
     z0 * w0 * ((𝒜 t q).submatrix Fin.castSucc Fin.castSucc)⁻¹ 0 0 +
       z0 * w1 * ((𝒜 t q).submatrix Fin.castSucc Fin.castSucc)⁻¹ 0 1 +
@@ -293,6 +354,9 @@ lemma leading2_inv_bilinear (hq : ∀ i, 0 < q i) (z0 z1 w0 w1 : ℝ) :
   simp [D2]
   ring
 
+/--
+@isnad1 id=eq.1h5v.s9.3b864f8db24e from=translated src=- shape=cbe17a7a vocab=7d60f345
+-/
 lemma dotProduct_inv_𝒜 (hq : ∀ i, 0 < q i) (z w : Fin 3 → ℝ) :
     z ⬝ᵥ (𝒜 t q)⁻¹ *ᵥ w =
       Δ t q * ((𝒜 t q)⁻¹ *ᵥ z) 2 * (Δ t q * ((𝒜 t q)⁻¹ *ᵥ w) 2) / (Δ t q * D2 t q) +
@@ -337,6 +401,9 @@ lemma dotProduct_inv_𝒜 (hq : ∀ i, 0 < q i) (z w : Fin 3 → ℝ) :
 
 /-! ### KR11: `eq:bilinear` -/
 
+/--
+@isnad1 id=eq.2h6v.s8.0a050541b3cc from=translated src=- shape=d4d90832 vocab=f320902e
+-/
 lemma dotProduct_𝒦_eq_inv_𝒜 (γ : ℝ) (hq : ∀ i, 0 < q i) (hγ : 0 < γ)
     (z w : Fin 3 → ℝ) :
     z ⬝ᵥ 𝒦 t q γ *ᵥ w =
@@ -347,6 +414,9 @@ lemma dotProduct_𝒦_eq_inv_𝒜 (γ : ℝ) (hq : ∀ i, 0 < q i) (hγ : 0 < γ
   simp [single_dotProduct, smul_eq_mul]
   field_simp [hγa]
 
+/--
+@isnad1 id=eq.2h6v.s9.0d42178fbbd5 from=translated src=- shape=fa001548 vocab=2c5eecbb
+-/
 lemma 𝒦_bilinear (γ : ℝ) (hq : ∀ i, 0 < q i) (hγ : 0 < γ) (z w : Fin 3 → ℝ) :
     z ⬝ᵥ 𝒦 t q γ *ᵥ w =
       Δ t q * ((𝒜 t q)⁻¹ *ᵥ z) 2 * (Δ t q * ((𝒜 t q)⁻¹ *ᵥ w) 2) / (Δ t q * D2 t q) +
@@ -361,9 +431,15 @@ lemma 𝒦_bilinear (γ : ℝ) (hq : ∀ i, 0 < q i) (hγ : 0 < γ) (z w : Fin 3
 
 /-! ### KR12: substituting `U` -/
 
+/--
+@isnad1 id=eq.0h4v.s6.65cc9d1bb8f7 from=translated src=- shape=f843b7be vocab=e38900eb
+-/
 lemma bhat_zero (x : ℝ) : bhat t q x 0 = x ^ 2 + h t q x := by
   simp [bhat, b, h, Finset.sum_apply, v_zero, smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h4v.s6.add418be1b7d from=translated src=- shape=8a328581 vocab=a794994f
+-/
 lemma bhat_one (x : ℝ) :
     bhat t q x 1 = Real.sqrt 2 * x - Real.sqrt 2 * h1 t q x := by
   simp only [bhat, b, Pi.add_apply, Finset.sum_apply, Pi.smul_apply, v_one, smul_eq_mul]
@@ -377,18 +453,27 @@ lemma bhat_one (x : ℝ) :
           rw [← Finset.mul_sum]
           ring
 
+/--
+@isnad1 id=eq.1h5v.s7.afe72d4e8d2f from=translated src=- shape=93191c7e vocab=de12fccf
+-/
 lemma N_eq_Δ_inv_U (γ : ℝ) (hq : ∀ i, 0 < q i) (x : ℝ) :
     N t q x = Δ t q * ((𝒜 t q)⁻¹ *ᵥ U t q γ x) 2 := by
   simp only [N, U, mulVec_add, mulVec_smul]
   rw [𝒜_inv_mulVec_Vvec t q hq]
   simp
 
+/--
+@isnad1 id=eq.1h5v.s6.fdd129ab73d9 from=translated src=- shape=d685deea vocab=7506388f
+-/
 lemma U_zero (γ x : ℝ) (hγ : 0 < γ) :
     U t q γ x 0 = Z t q γ x / γ := by
   simp only [U, Z, Pi.add_apply, Pi.smul_apply, bhat_zero, Vvec_zero, smul_eq_mul]
   field_simp [hγ.ne']
   ring
 
+/--
+@isnad1 id=eq.1h5v.s7.86f58992cf56 from=translated src=- shape=3787fb08 vocab=f03d6299
+-/
 lemma U_weighted (γ x : ℝ) (hγ : 0 < γ) :
     a0 t q * U t q γ x 1 + Real.sqrt 2 * m t q 1 * U t q γ x 0 =
       Real.sqrt 2 * P t q x := by
@@ -399,6 +484,9 @@ lemma U_weighted (γ x : ℝ) (hγ : 0 < γ) :
 
 /-! ### KR13: `eq:factor` -/
 
+/--
+@isnad1 id=eq.2h6v.s8.51f4fb0ef236 from=translated src=- shape=91b228c9 vocab=451cb22b
+-/
 lemma 𝒦_factor (γ : ℝ) (hq : ∀ i, 0 < q i) (hγ : 0 < γ) (x y : ℝ) :
     U t q γ x ⬝ᵥ 𝒦 t q γ *ᵥ U t q γ y =
       N t q x * N t q y / (Δ t q * D2 t q) +

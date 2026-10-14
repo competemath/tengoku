@@ -32,7 +32,9 @@ namespace CKN
 /-- Paper label `lem:S-closed`: the set of regular points is open.  If `z₀` is
 regular, the open set `N` supplied by `def:regular` consists of regular points,
 because it is contained in `spaceTimeSet Ω I` and its witness `w` and exponent
-`γ` serve every point of `N` equally. -/
+`γ` serve every point of `N` equally.
+@isnad1 id=isopen.0h3v.s4.19ef4624408a from=translated src=- shape=e8393a31 vocab=05bd69aa
+-/
 theorem isOpen_regularSet (Ω : Set Vec3) (I : Set ℝ)
     (u : ParabolicPoint → Vec3) : IsOpen {z | IsRegularPoint Ω I u z} := by
   rw [isOpen_iff_mem_nhds]
@@ -42,7 +44,9 @@ theorem isOpen_regularSet (Ω : Set Vec3) (I : Set ℝ)
   exact ⟨hNsub hz₁, N, hNopen, hz₁, hNsub, γ, hγ, hγ1, w, hwu, hholder⟩
 
 /-- Paper label `def:regular`: the singular set is the complement of the
-regular set inside the space-time carrier `spaceTimeSet Ω I`. -/
+regular set inside the space-time carrier `spaceTimeSet Ω I`.
+@isnad1 id=eq.0h3v.s5.5efda45f179a from=translated src=- shape=c6a34c46 vocab=6dfe3b20
+-/
 theorem singularSet_eq_diff (Ω : Set Vec3) (I : Set ℝ)
     (u : ParabolicPoint → Vec3) :
     SingularSet Ω I u = spaceTimeSet Ω I \ {z | IsRegularPoint Ω I u z} := by
@@ -51,7 +55,9 @@ theorem singularSet_eq_diff (Ω : Set Vec3) (I : Set ℝ)
 
 /-- Paper label `lem:S-closed`: the singular set is relatively closed in the
 space-time carrier `spaceTimeSet Ω I`, that is, it is the trace on the carrier
-of a closed set.  The closed set is the complement of the regular set. -/
+of a closed set.  The closed set is the complement of the regular set.
+@isnad1 id=ex.0h3v.s5.e9d61e69261b from=translated src=- shape=910e428c vocab=da61c3bb
+-/
 theorem isClosed_singularSet_within (Ω : Set Vec3) (I : Set ℝ)
     (u : ParabolicPoint → Vec3) :
     ∃ C : Set ParabolicPoint, IsClosed C ∧

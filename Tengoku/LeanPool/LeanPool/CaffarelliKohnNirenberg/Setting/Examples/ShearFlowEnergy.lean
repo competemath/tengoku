@@ -91,7 +91,9 @@ private theorem scalar_energy {ψ : Vec3 × ℝ → ℝ}
         | (all_goals decide; done)
         | (all_goals tauto; done)
 
-/-- The energy identity holds for every compactly supported smooth scalar test. -/
+/-- The energy identity holds for every compactly supported smooth scalar test.
+@isnad1 id=and.1h1v.s9.6a2f30bef4c0 from=translated src=- shape=5b6e4b21 vocab=dba77caf
+-/
 theorem shearFlow_energyIdentity (ψ : Vec3 × ℝ → ℝ)
     (hψ : ψ ∈ spaceTimeTestFunction (V := ℝ) Set.univ (Ioo 0 1)) :
     IntegrableOn (fun z => spatialGradientSq shearFlow shearFlowGrad z * ψ z)

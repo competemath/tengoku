@@ -260,6 +260,9 @@ private lemma tendsto_approx (p : Simplex α) :
       change Filter.map (fun n : ℕ => (approx (p := p) n).p) Filter.atTop ≤ 𝓝 p.p
       exact tendsto_approx_p (p := p))
 
+/--
+@isnad1 id=dense.0h1v.s4.4fc584abca6a from=translated src=- shape=1f67485d vocab=651cfebb
+-/
 lemma dense_setOf_isRational : Dense {p : Simplex α | IsRational (α := α) p} := by
   classical
   intro p

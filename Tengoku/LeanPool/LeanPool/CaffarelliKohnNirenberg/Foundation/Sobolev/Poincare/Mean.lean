@@ -20,6 +20,9 @@ analytic segment estimate.
 
 namespace CKN
 
+/--
+@isnad1 id=eq.2h4v.s8.701f93a1ed6a from=translated src=- shape=d171e7e8 vocab=4e9eaf4e
+-/
 theorem sub_integralAverage_eq_volumeAverage_sub
     {d : ℕ} {U : Set (Vec d)}
     [MeasureTheory.IsFiniteMeasure (volumeOn U)]
@@ -64,6 +67,9 @@ theorem sub_integralAverage_eq_volumeAverage_sub
           ∫ y in U, (u x - u y) ∂MeasureTheory.volume := by
             rw [MeasureTheory.integral_sub hconstInt.integrable hu.integrable]
 
+/--
+@isnad1 id=le.2h4v.s8.dbb34b5b32f6 from=translated src=- shape=c8139f8f vocab=da883166
+-/
 theorem norm_sub_integralAverage_le_volumeAverage_integral_norm_sub
     {d : ℕ} {U : Set (Vec d)}
     [MeasureTheory.IsFiniteMeasure (volumeOn U)]

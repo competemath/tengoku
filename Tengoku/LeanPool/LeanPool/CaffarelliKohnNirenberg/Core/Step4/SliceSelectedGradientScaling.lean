@@ -138,7 +138,9 @@ private lemma real_scaling_bound {ρ C : ℝ} (hρ : 0 < ρ) (hC : 0 ≤ C) :
 carries the weight `ρ ^ (-3)` on the half ball `B_{ρ/2}(x₀)`, and its
 `5/6`-power against the spatial measure is bounded by the single factor
 `ρ ^ (-1/2)` that appears in the display.  Concretely,
-`C ρ ^ (-3) · |B_{ρ/2}(x₀)| ^ (5/6) ≤ C ρ ^ (-1/2)` for `ρ > 0` and `C ≥ 0`. -/
+`C ρ ^ (-3) · |B_{ρ/2}(x₀)| ^ (5/6) ≤ C ρ ^ (-1/2)` for `ρ > 0` and `C ≥ 0`.
+@isnad1 id=le.2h3v.s8.6142e6d6f426 from=translated src=- shape=9f8ed478 vocab=3037f345
+-/
 theorem halfBall_volume_rpow_five_sixths_mul_inv_cube_le
     (x₀ : Vec3) {ρ C : ℝ} (hρ : 0 < ρ) (hC : 0 ≤ C) :
     ENNReal.ofReal (C * (ρ ^ 3)⁻¹) *

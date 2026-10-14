@@ -40,6 +40,9 @@ private lemma vec3ScaleLinear_det (a : ℝ) :
     LinearMap.det (doublingVec3ScaleLinear a) = a ^ 3 := by
   simp [doublingVec3ScaleLinear, LinearMap.det_smul, LinearMap.det_id]
 
+/--
+@isnad1 id=eq.1h2v.s8.2098f6b635f4 from=translated src=- shape=68eb3569 vocab=56b4b048
+-/
 lemma volume_vec3Ball_scale {a r : ℝ} (ha : 0 < a) :
     volume (vec3Ball 0 (a * r)) = ENNReal.ofReal (a ^ 3) * volume (vec3Ball 0 r) := by
   let f := doublingVec3ScaleLinear a⁻¹
@@ -71,6 +74,9 @@ lemma volume_vec3Ball_scale {a r : ℝ} (ha : 0 < a) :
   simpa [f, abs_of_pos (inv_pos.mpr ha), abs_of_pos ha, inv_pow, ha.ne',
     ENNReal.ofReal_inv_of_pos ha3, ENNReal.ofReal_pow ha.le] using hmeasure
 
+/--
+@isnad1 id=eq.1h4v.s6.5052b5f01ae3 from=translated src=- shape=6cc2889d vocab=64875a54
+-/
 lemma volume_parabolicCylinder_radius_scale {x : Vec3} {t r a : ℝ} (ha : 0 < a) :
     volume (parabolicCylinder x t (a * r)) =
       ENNReal.ofReal (a ^ 5) * volume (parabolicCylinder x t r) := by
@@ -83,6 +89,9 @@ lemma volume_parabolicCylinder_radius_scale {x : Vec3} {t r a : ℝ} (ha : 0 < a
     _ = _ := by
       rw [← ENNReal.ofReal_mul (by positivity : 0 ≤ a ^ 3), ← pow_add]
 
+/--
+@isnad1 id=eq.0h4v.s5.5f23fa7c8e52 from=translated src=- shape=66290733 vocab=3dd61984
+-/
 lemma volume_parabolicCylinder_time (x : Vec3) (t₁ t₂ r : ℝ) :
     volume (parabolicCylinder x t₁ r) = volume (parabolicCylinder x t₂ r) := by
   rw [volume_parabolicCylinder, volume_parabolicCylinder]

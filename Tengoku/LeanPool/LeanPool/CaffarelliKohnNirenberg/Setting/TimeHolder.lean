@@ -147,7 +147,9 @@ private lemma lintegral_ofReal_rpow_eq_enorm_rpow {μ : Measure ℝ}
   rw [Real.enorm_eq_ofReal hs]
 
 /-- Hölder's inequality on a short backward interval, in the two forms used
-in the pressure estimates. -/
+in the pressure estimates.
+@isnad1 id=and.4h4v.s9.442cdff3993f from=translated src=- shape=fa409295 vocab=b09cb17b
+-/
 theorem time_holder {t₀ r ρ : ℝ} (hr : 0 < r) (hrr : r ≤ ρ / 2)
     {g : ℝ → ℝ}
     (hg : AEStronglyMeasurable g
@@ -209,7 +211,9 @@ theorem time_holder {t₀ r ρ : ℝ} (hr : 0 < r) (hrr : r ≤ ρ / 2)
         ring_nf
 
 /-- Hölder's inequality on a short backward interval with an arbitrary
-exponent `q ≥ 3/2`. -/
+exponent `q ≥ 3/2`.
+@isnad1 id=le.5h5v.s8.10db1a4b316a from=translated src=- shape=1c5263e5 vocab=b09cb17b
+-/
 theorem time_holder_q {t₀ r ρ q : ℝ} (hr : 0 < r) (hrr : r ≤ ρ / 2)
     (hq : 3 / 2 ≤ q)
     {g : ℝ → ℝ}

@@ -47,12 +47,18 @@ def rescaledSpace (μ : ℝ) (x₀ : Vec3) (Ω : Set Vec3) : Set Vec3 :=
 def rescaledTime (μ : ℝ) (t₀ : ℝ) (I : Set ℝ) : Set ℝ :=
   scalingTime μ t₀ ⁻¹' I
 
+/--
+@isnad1 id=eq.0h2v.s5.0e893557e3d1 from=translated src=- shape=e800f8b3 vocab=b27fa512
+-/
 theorem scalingParabolic_eq (μ : ℝ) (z₀ : ParabolicPoint) :
     scalingParabolic μ z₀ =
       fun z => (scalingSpace μ z₀.1 z.1, scalingTime μ z₀.2 z.2) := by
   funext z
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.3fd5b4b30e10 from=translated src=- shape=24a328fd vocab=0c9f3175
+-/
 theorem rescaledSpaceTimeSet_eq_preimage (μ : ℝ) (z₀ : ParabolicPoint)
     (Ω : Set Vec3) (I : Set ℝ) :
     spaceTimeSet (rescaledSpace μ z₀.1 Ω) (rescaledTime μ z₀.2 I) =
@@ -71,14 +77,23 @@ private theorem scalingTime_continuous (μ : ℝ) (t₀ : ℝ) :
   change Continuous (fun s : ℝ => t₀ + μ ^ 2 * s)
   fun_prop
 
+/--
+@isnad1 id=isopen.1h3v.s6.097514ba5b4d from=translated src=- shape=02a4fa13 vocab=a5c87cea
+-/
 theorem rescaledSpace_isOpen {μ : ℝ} (x₀ : Vec3) {Ω : Set Vec3}
     (hΩ : IsOpen Ω) : IsOpen (rescaledSpace μ x₀ Ω) :=
   hΩ.preimage (scalingSpace_continuous μ x₀)
 
+/--
+@isnad1 id=isopen.1h3v.s4.7b8362f6a859 from=translated src=- shape=69e8fdd7 vocab=3e52ff66
+-/
 theorem rescaledTime_isOpen {μ : ℝ} (t₀ : ℝ) {I : Set ℝ}
     (hI : IsOpen I) : IsOpen (rescaledTime μ t₀ I) :=
   hI.preimage (scalingTime_continuous μ t₀)
 
+/--
+@isnad1 id=ordconne.2h3v.s4.dcac095b05d1 from=translated src=- shape=8714683b vocab=314dab71
+-/
 theorem rescaledTime_ordConnected {μ : ℝ} (_ : 0 < μ) (t₀ : ℝ)
     {I : Set ℝ} (hI : I.OrdConnected) :
     (rescaledTime μ t₀ I).OrdConnected := by
@@ -145,6 +160,9 @@ private theorem scalingTimeInv_monotone {μ : ℝ} (_ : 0 < μ) (t₀ : ℝ) :
   exact mul_le_mul_of_nonneg_left (sub_le_sub_right hab t₀)
     (inv_nonneg.mpr (sq_nonneg μ))
 
+/--
+@isnad1 id=localbox.2h6v.s6.b5a5ee2210c5 from=translated src=- shape=4b900e02 vocab=79f910a6
+-/
 theorem localBox_forward {μ : ℝ} (hμ : 0 < μ) (z₀ : ParabolicPoint)
     {Ω : Set Vec3} {I : Set ℝ} {Ω' : Set Vec3} {J : Set ℝ}
     (hbox : localBox (rescaledSpace μ z₀.1 Ω)

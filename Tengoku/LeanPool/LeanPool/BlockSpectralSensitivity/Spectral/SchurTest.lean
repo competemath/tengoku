@@ -32,13 +32,17 @@ namespace Matrix
 variable {m n : Type*} [Fintype m] [Fintype n] [DecidableEq n] {C : ℝ}
 
 /-- Over `ℝ` the transpose coincides with the conjugate transpose, so it preserves the L2
-operator norm. -/
+operator norm.
+@isnad1 id=eq.0h3v.s6.6bfaed97bf43 from=translated src=- shape=b48d8e84 vocab=39a6b91e
+-/
 theorem l2_opNorm_transpose [DecidableEq m] (A : Matrix m n ℝ) : ‖Aᵀ‖ = ‖A‖ := by
   rw [← conjTranspose_eq_transpose_of_trivial, l2_opNorm_conjTranspose]
 
 /-- Converse of `Matrix.l2_opNorm_mulVec`: if every Euclidean vector `v` satisfies
 `‖A *ᵥ v‖ ≤ C * ‖v‖`, then the L2 operator norm of `A` is at most `C`.  This is the entry point
-for the Schur test of Section 11.3 of `bs_lambda.txt`. -/
+for the Schur test of Section 11.3 of `bs_lambda.txt`.
+@isnad1 id=le.2h4v.s10.674e0ae02c0c from=translated src=- shape=8e94ed47 vocab=f35036e2
+-/
 theorem l2_opNorm_le_of_norm_mulVec_le (A : Matrix m n ℝ) (hC : 0 ≤ C)
     (h : ∀ v : EuclideanSpace ℝ n, ‖(EuclideanSpace.equiv m ℝ).symm (A *ᵥ v)‖ ≤ C * ‖v‖) :
     ‖A‖ ≤ C := by
@@ -47,7 +51,9 @@ theorem l2_opNorm_le_of_norm_mulVec_le (A : Matrix m n ℝ) (hC : 0 ≤ C)
 
 /-- Sum-level form of `Matrix.l2_opNorm_le_of_norm_mulVec_le`: it suffices to bound
 `∑ i, (A *ᵥ v) i ^ 2` by `C ^ 2 * ∑ j, v j ^ 2` for every plain vector `v`.  Used for the Schur
-test in Section 11.3 of `bs_lambda.txt`. -/
+test in Section 11.3 of `bs_lambda.txt`.
+@isnad1 id=le.2h4v.s7.e4703f0ad00e from=translated src=- shape=93330ac8 vocab=029955b7
+-/
 theorem l2_opNorm_le_of_sum_sq_mulVec_le (A : Matrix m n ℝ) (hC : 0 ≤ C)
     (h : ∀ v : n → ℝ, ∑ i, (A *ᵥ v) i ^ 2 ≤ C ^ 2 * ∑ j, v j ^ 2) :
     ‖A‖ ≤ C :=
@@ -56,7 +62,9 @@ theorem l2_opNorm_le_of_sum_sq_mulVec_le (A : Matrix m n ℝ) (hC : 0 ≤ C)
       simpa [EuclideanSpace.norm_sq_eq, mul_pow] using h _
 
 /-- Sum form of `Matrix.l2_opNorm_mulVec`: the defining operator bound, with both norms
-squared and written out as sums. -/
+squared and written out as sums.
+@isnad1 id=le.0h4v.s7.0cf6726da7b9 from=translated src=- shape=dfade989 vocab=029955b7
+-/
 theorem sum_sq_mulVec_le (A : Matrix m n ℝ) (v : n → ℝ) :
     ∑ i, (A *ᵥ v) i ^ 2 ≤ ‖A‖ ^ 2 * ∑ j, v j ^ 2 := by
   have h := l2_opNorm_mulVec A ((EuclideanSpace.equiv n ℝ).symm v)
@@ -65,7 +73,9 @@ theorem sum_sq_mulVec_le (A : Matrix m n ℝ) (v : n → ℝ) :
 /-- **Schur test.**  For a matrix `R` with nonnegative entries whose row sums are bounded by `a`
 and whose column sums are bounded by `b`, the L2 operator norm satisfies `‖R‖ ≤ sqrt (a * b)`.
 This is the "standard induced-norm inequality" `‖R‖₂ ≤ sqrt (‖R‖₁ ‖R‖∞)` invoked at the end of
-Section 11.3 of `bs_lambda.txt`. -/
+Section 11.3 of `bs_lambda.txt`.
+@isnad1 id=le.3h5v.s6.45913b736c7d from=translated src=- shape=ef0b56d6 vocab=1a1e047a
+-/
 theorem l2_opNorm_le_sqrt_of_row_col_sums (R : Matrix m n ℝ) (hR : ∀ i j, 0 ≤ R i j) {a b : ℝ}
     (hrow : ∀ i, ∑ j, R i j ≤ a) (hcol : ∀ j, ∑ i, R i j ≤ b) :
     ‖R‖ ≤ Real.sqrt (a * b) := by

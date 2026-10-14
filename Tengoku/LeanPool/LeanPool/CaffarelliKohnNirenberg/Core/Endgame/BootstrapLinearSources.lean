@@ -27,7 +27,9 @@ noncomputable section
 
 namespace CKN.Core.Endgame
 
-/-- The support of the past product lies in the intermediate cylinder. -/
+/-- The support of the past product lies in the intermediate cylinder.
+@isnad1 id=eq.2h3v.s7.30efc4df3288 from=translated src=- shape=8700adac vocab=2c6112c3
+-/
 theorem bootstrap_pastMultiplierSource_zero_outside_intermediate
     {a f : ParabolicPoint → ℝ}
     (hsupp : ∀ z, z.2 ≤ 0 → z ∉ parabolicCylinder (0 : Vec3) 0 (11 / 16) → a z = 0)
@@ -39,7 +41,9 @@ theorem bootstrap_pastMultiplierSource_zero_outside_intermediate
   · exact indicator_of_notMem ht _
 
 /-- The causal product is measurable without a global measurability
-assumption on the original input. -/
+assumption on the original input.
+@isnad1 id=aemeasur.3h2v.s7.fcb6ace191c5 from=translated src=- shape=83dde968 vocab=aaef16cf
+-/
 theorem bootstrap_pastMultiplierSource_aemeasurable
     {a f : ParabolicPoint → ℝ}
     (ha : AEMeasurable a volume)
@@ -63,7 +67,9 @@ theorem bootstrap_pastMultiplierSource_aemeasurable
   exact (ha.mul hf).indicator hPast
 
 /-- A bounded past multiplier preserves a Morrey exponent pair with its
-explicit multiplier factor. -/
+explicit multiplier factor.
+@isnad1 id=le.4h5v.s7.db62a7532d31 from=translated src=- shape=1a9fc559 vocab=6324aca8
+-/
 theorem bootstrap_pastMultiplierSource_morrey_le
     (P τ C : ℝ) (hP : 0 < P) (hC : 0 ≤ C)
     (a f : ParabolicPoint → ℝ)
@@ -93,7 +99,9 @@ theorem bootstrap_pastMultiplierSource_morrey_le
     (parabolicCylinder (0 : Vec3) 0 (11 / 16)) b f hb hbs
 
 /-- A cutoff of absolute value at most one preserves the pressure-gradient
-source exponent and its numerical bound. -/
+source exponent and its numerical bound.
+@isnad1 id=and.5h3v.s8.a1e2e21f71af from=translated src=- shape=5a204bb1 vocab=ff264685
+-/
 theorem bootstrap_causal_linear_pressure_source_morrey_le
     (KP : ℝ≥0∞) (a f : ParabolicPoint → ℝ)
     (ha : AEMeasurable a volume)

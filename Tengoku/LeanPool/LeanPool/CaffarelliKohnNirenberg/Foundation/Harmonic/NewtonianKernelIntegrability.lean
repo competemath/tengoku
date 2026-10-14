@@ -20,13 +20,17 @@ open MeasureTheory MeasureTheory.Measure CKN.Foundation.Parabolic
 namespace CKN.Foundation.Heat
 
 /-- The Newtonian kernel `newtonianKernel z = 1/(4π|z|₂)` is locally integrable
-    with respect to Lebesgue measure on `ℝ³`. -/
+    with respect to Lebesgue measure on `ℝ³`.
+@isnad1 id=locallyi.0h0v.s6.454ca83e06b9 from=translated src=- shape=fa180b53 vocab=a130dc97
+-/
 theorem locallyIntegrable_newtonianKernel :
     LocallyIntegrable newtonianKernel volume := by
   exact _root_.CKN.Foundation.Heat.newtonianKernel_locallyIntegrable
 
 /-- For any `x : ℝ³`, the translated kernel `y ↦ newtonianKernel (x - y)` is also
-    locally integrable with respect to Lebesgue measure. -/
+    locally integrable with respect to Lebesgue measure.
+@isnad1 id=locallyi.0h1v.s7.0a5419351200 from=translated src=- shape=ced91fa6 vocab=74cf95d2
+-/
 theorem locallyIntegrable_newtonianKernel_sub (x : Vec3) :
     LocallyIntegrable (fun y : Vec3 => newtonianKernel (x - y)) volume := by
   have hmp := Measure.measurePreserving_sub_left (volume : Measure Vec3) x

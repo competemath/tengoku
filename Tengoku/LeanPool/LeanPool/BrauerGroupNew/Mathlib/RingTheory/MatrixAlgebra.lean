@@ -25,6 +25,9 @@ def matrixEquivTensor' (n R A : Type*) [CommSemiring R] [CommSemiring A]
     ext i j
     simp [matrixEquivTensor, Matrix.algebraMap_eq_diagonal, Matrix.diagonal_apply, Matrix.one_apply]
 
+/--
+@isnad1 id=eq.0h5v.s9.2d4e71214b50 from=translated src=- shape=d8201f4e vocab=050ac56b
+-/
 @[simp] lemma matrixEquivTensor'_symm_apply (n R A : Type*) [CommSemiring R] [CommSemiring A]
     [Algebra R A] [Fintype n] [DecidableEq n] (a : A) (m : Matrix n n R) :
     (matrixEquivTensor' n R A).symm (a ⊗ₜ m) = a • (m.map (algebraMap R A)) := rfl

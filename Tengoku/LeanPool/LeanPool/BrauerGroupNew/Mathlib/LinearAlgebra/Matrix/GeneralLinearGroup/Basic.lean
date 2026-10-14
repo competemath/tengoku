@@ -18,6 +18,9 @@ This file restores a similarity invariance lemma for matrix characteristic polyn
 variable {F : Type*} [Field F]
 
 open Matrix Polynomial in
+/--
+@isnad1 id=eq.1h5v.s8.c2fe4e4a9d9b from=translated src=- shape=466c3648 vocab=10774e97
+-/
 lemma Matrix.charpoly.similar_eq (n : ℕ) (u : (Matrix (Fin n) (Fin n) F)ˣ)
     (A B : Matrix (Fin n) (Fin n) F) (h : A = u * B * u⁻¹) :
     A.charpoly = B.charpoly := by

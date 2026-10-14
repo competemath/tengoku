@@ -35,6 +35,9 @@ def heatPotentialShellValue (F : ParabolicPoint → ℝ)
   (∫ v in S, heatPotentialKernel w v * F v) +
     ∑ i, ∫ v in S, heatPotentialSpatialKernel i w v * G i v
 
+/--
+@isnad1 id=le.6h6v.s8.753c872fc1ac from=translated src=- shape=fc20d9a1 vocab=d8a21482
+-/
 lemma heatPotential_single_kernel_shell_bound {K : ParabolicPoint → ParabolicPoint → ℝ}
     {f : ParabolicPoint → ℝ} {S : Set ParabolicPoint}
     {p p' : ParabolicPoint} {C : ℝ}
@@ -67,6 +70,9 @@ lemma heatPotential_single_kernel_shell_bound {K : ParabolicPoint → ParabolicP
       MeasureTheory.integral_mono_ae hdiff.norm hmajor hbound
     _ = C * ∫ v in S, |f v| := by rw [integral_const_mul]
 
+/--
+@isnad1 id=le.5h4v.s7.b90e3fd3dca6 from=translated src=- shape=7eb9cb4e vocab=6481c5be
+-/
 lemma heatPotential_far_shell_bound {γ : ℝ} (hγ : γ < 1) {A : ℕ → ℝ}
     {C r : ℝ} (_ : 0 ≤ C) (_ : 0 ≤ r)
     (hA : ∀ j : ℕ, 0 ≤ A j)
@@ -117,6 +123,9 @@ lemma heatPotential_far_shell_bound {γ : ℝ} (hγ : γ < 1) {A : ℕ → ℝ}
       rw [heat_morrey_geometric_series hγ]
     _ = C * (1 - (2 : ℝ) ^ (γ - 1))⁻¹ * r ^ γ := by ring
 
+/--
+@isnad1 id=le.6h6v.s8.ae0e3cb5cf4b from=translated src=- shape=32d6ad2c vocab=3c2f95c9
+-/
 lemma heatPotential_near_far_sum_bound {γ : ℝ} (hγ : γ < 1)
     {Anear : ℝ} {A : ℕ → ℝ} {Cnear Cfar r : ℝ}
     (hnear : Anear ≤ Cnear * r ^ γ)
@@ -133,6 +142,9 @@ lemma heatPotential_near_far_sum_bound {γ : ℝ} (hγ : γ < 1)
       add_le_add hnear hfar'
     _ = (Cnear + Cfar * (1 - (2 : ℝ) ^ (γ - 1))⁻¹) * r ^ γ := by ring
 
+/--
+@isnad1 id=le.5h4v.s8.59ceb29eca5c from=translated src=- shape=74051eba vocab=3c2f95c9
+-/
 lemma heatPotential_far_shell_sum_from_six {γ : ℝ} (hγ : γ < 1)
     {A : ℕ → ℝ} {C r : ℝ} (hC : 0 ≤ C) (hr : 0 ≤ r)
     (hA : ∀ j : ℕ, 0 ≤ A j)

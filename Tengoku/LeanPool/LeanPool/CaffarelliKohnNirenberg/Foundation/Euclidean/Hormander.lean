@@ -273,7 +273,9 @@ private lemma lintegral_rpow_neg_four {y : Vec3} (hy : y ≠ 0) :
 
 /-- **Hörmander condition.**  If `K` is differentiable off the origin with
 `|∇K| ≤ C₂ |x|⁻⁴`, then for every `y ≠ 0` the integral of `|K (x - y) - K x|`
-over the region `|x| > 2 |y|` is at most `64 π C₂`, uniformly in `y`. -/
+over the region `|x| > 2 |y|` is at most `64 π C₂`, uniformly in `y`.
+@isnad1 id=le.4h3v.s9.1ba0871bb707 from=translated src=- shape=63026508 vocab=0bef35c0
+-/
 theorem hormander_integral_bound {K : Vec3 → ℝ} {C₂ : ℝ} (hC₂ : 0 ≤ C₂)
     (hdiff : ∀ x, x ≠ 0 → DifferentiableAt ℝ K x)
     (hgrad : ∀ x, x ≠ 0 → ‖fderiv ℝ K x‖ ≤ C₂ * (vec3EuclideanNorm x) ^ (-(4 : ℝ)))

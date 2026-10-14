@@ -39,20 +39,27 @@ def IsTotallyNonneg (A : Matrix m n ℝ) : Prop :=
 
 /-! ### TN02: size-one minors and nondecreasing index maps -/
 
-/-- A monotone injective map out of a linear order is strictly increasing. -/
+/-- A monotone injective map out of a linear order is strictly increasing.
+@isnad1 id=strictmo.2h3v.s5.22b1611dfd2c from=translated src=- shape=9c6ecd3f vocab=115db13a
+-/
 lemma strictMono_of_monotone_injective {α β : Type*}
     [LinearOrder α] [PartialOrder β] {f : α → β}
     (hmono : Monotone f) (hinj : Injective f) : StrictMono f :=
   hmono.strictMono_of_injective hinj
 
 /-- Totally nonnegative matrices are entrywise nonnegative (the `k = 1`
-minors). -/
+minors).
+@isnad1 id=le.1h5v.s5.acd2174d09a7 from=translated src=- shape=6634da39 vocab=b7799c82
+-/
 lemma IsTotallyNonneg.apply {A : Matrix m n ℝ} (hA : IsTotallyNonneg A)
     (i : m) (j : n) : 0 ≤ A i j := by
   simpa [det_fin_one, submatrix_apply] using
     hA 1 (fun _ ↦ i) (fun _ ↦ j) (Subsingleton.strictMono _) (Subsingleton.strictMono _)
 
 omit [LinearOrder m] [LinearOrder n] in
+/--
+@isnad1 id=eq.1h6v.s5.005d330cace3 from=translated src=- shape=6df3f667 vocab=900c2ea4
+-/
 lemma det_submatrix_eq_zero_of_not_injective {k : ℕ}
     (A : Matrix m n ℝ) {I : Fin k → m} {J : Fin k → n}
     (h : ¬ Injective I ∨ ¬ Injective J) : (A.submatrix I J).det = 0 := by
@@ -64,7 +71,9 @@ lemma det_submatrix_eq_zero_of_not_injective {k : ℕ}
 
 /-- If `A` is totally nonnegative and `I`, `J` are merely nondecreasing, the
 corresponding minor is still nonnegative: a repeated index forces determinant
-`0` when `k ≥ 2`, and an injective monotone map is strictly increasing. -/
+`0` when `k ≥ 2`, and an injective monotone map is strictly increasing.
+@isnad1 id=le.3h6v.s6.f6e5a0289838 from=translated src=- shape=1fe04b34 vocab=efae6c6a
+-/
 lemma IsTotallyNonneg.det_submatrix_monotone {A : Matrix m n ℝ}
     (hA : IsTotallyNonneg A) {k : ℕ} {I : Fin k → m} {J : Fin k → n}
     (hI : Monotone I) (hJ : Monotone J) : 0 ≤ (A.submatrix I J).det := by
@@ -89,6 +98,9 @@ instance decidablePredStrictMonoFin3 {r : ℕ} :
 noncomputable instance {r : ℕ} : Fintype (StrictMonoFin3 r) :=
   Subtype.fintype _
 
+/--
+@isnad1 id=eq.1h2v.s5.4fa671624849 from=translated src=- shape=e7450bd6 vocab=33edd9a9
+-/
 lemma det_eq_zero_of_rank_lt {r : ℕ} {A : Matrix (Fin r) (Fin r) ℝ}
     (h : A.rank < r) : A.det = 0 := by
   by_contra h0
@@ -97,6 +109,9 @@ lemma det_eq_zero_of_rank_lt {r : ℕ} {A : Matrix (Fin r) (Fin r) ℝ}
   simp only [Fintype.card_fin] at hr
   omega
 
+/--
+@isnad1 id=eq.1h3v.s6.ba58c74eef6e from=translated src=- shape=964474ee vocab=f7536138
+-/
 lemma det_mul_eq_zero_of_three_lt {r : ℕ} (hr : 3 < r)
     (P : Matrix (Fin r) (Fin 3) ℝ) (Q : Matrix (Fin 3) (Fin r) ℝ) :
     (P * Q).det = 0 := by
@@ -105,15 +120,24 @@ lemma det_mul_eq_zero_of_three_lt {r : ℕ} (hr : 3 < r)
     (rank_mul_le_left P Q).trans P.rank_le_width
   omega
 
+/--
+@isnad1 id=isempty.1h1v.s3.526aeda69acd from=translated src=- shape=c1538fc1 vocab=002f6273
+-/
 lemma isEmpty_strictMonoFin3_of_three_lt {r : ℕ} (hr : 3 < r) :
     IsEmpty (StrictMonoFin3 r) :=
   ⟨fun ⟨f, hf⟩ ↦
     Fintype.not_injective_of_card_lt f (by simpa [Fintype.card_fin] using hr) hf.injective⟩
 
+/--
+@isnad1 id=eq.1h2v.s5.4b2528d8f492 from=translated src=- shape=7333a306 vocab=3d95bad8
+-/
 lemma strictMono_eq_id {k : ℕ} {f : Fin k → Fin k} (hf : StrictMono f) : f = id := by
   ext i
   exact le_antisymm hf.apply_le hf.le_apply
 
+/--
+@isnad1 id=ex.1h1v.s6.8a22c8d4da8a from=translated src=- shape=ba96133e vocab=9789a292
+-/
 lemma exists_eq_succAbove_of_strictMono {f : Fin 2 → Fin 3} (hf : StrictMono f) :
     ∃ k : Fin 3, f = Fin.succAbove k := by
   have hinj := hf.injective
@@ -149,6 +173,9 @@ for `k : Fin 3` (skip one of `{0,1,2}`). -/
 def succAboveStrictMono (k : Fin 3) : StrictMonoFin3 2 :=
   ⟨Fin.succAbove k, Fin.strictMono_succAbove k⟩
 
+/--
+@isnad1 id=bijectiv.0h0v.s3.946fe1fc50be from=translated src=- shape=37e7d28e vocab=85702163
+-/
 lemma succAboveStrictMono_bijective : Bijective succAboveStrictMono := by
   refine ⟨fun a b h ↦ ?_, fun S ↦ ?_⟩
   · simpa [succAboveStrictMono, Fin.succAbove_left_inj] using congrArg Subtype.val h
@@ -160,6 +187,9 @@ subsingleton). -/
 def constStrictMono (k : Fin 3) : StrictMonoFin3 1 :=
   ⟨fun _ ↦ k, Subsingleton.strictMono _⟩
 
+/--
+@isnad1 id=bijectiv.0h0v.s3.6aea6f7da2c6 from=translated src=- shape=37e7d28e vocab=e3f1ab34
+-/
 lemma constStrictMono_bijective : Bijective constStrictMono := by
   refine ⟨fun a b h ↦ ?_, fun S ↦ ?_⟩
   · simpa [constStrictMono] using congrArg (fun t : StrictMonoFin3 1 ↦ t.1 0) h
@@ -179,7 +209,9 @@ private lemma succAbove_fin3_two_zero :
 private lemma succAbove_fin3_two_one :
     Fin.succAbove (2 : Fin 3) (1 : Fin 2) = 1 := by decide
 
-/-- Direct expansion of a `2 × 2` determinant of a product through width `3`. -/
+/-- Direct expansion of a `2 × 2` determinant of a product through width `3`.
+@isnad1 id=eq.0h2v.s9.2b74e87f373f from=translated src=- shape=598d663b vocab=5f8ad368
+-/
 lemma det_mul_width3_two (P : Matrix (Fin 2) (Fin 3) ℝ)
     (Q : Matrix (Fin 3) (Fin 2) ℝ) :
     (P * Q).det =
@@ -191,7 +223,9 @@ lemma det_mul_width3_two (P : Matrix (Fin 2) (Fin 3) ℝ)
     succAbove_fin3_one_one, succAbove_fin3_two_zero, succAbove_fin3_two_one]
   ring
 
-/-- Cauchy–Binet for `P * Q` with middle index `Fin 3`. -/
+/-- Cauchy–Binet for `P * Q` with middle index `Fin 3`.
+@isnad1 id=eq.0h3v.s8.18cc3e2c1bec from=translated src=- shape=67e047f5 vocab=c49f9781
+-/
 lemma det_mul_eq_sum_strictMono_width3 {r : ℕ}
     (P : Matrix (Fin r) (Fin 3) ℝ) (Q : Matrix (Fin 3) (Fin r) ℝ) :
     (P * Q).det =
@@ -222,6 +256,9 @@ lemma det_mul_eq_sum_strictMono_width3 {r : ℕ}
 
 variable {ι κ : Type*}
 
+/--
+@isnad1 id=eq.0h7v.s7.d7b07d127fb1 from=translated src=- shape=729cc50a vocab=70b718ee
+-/
 lemma submatrix_mul_transpose {r : ℕ}
     (X : Matrix ι (Fin 3) ℝ) (Y : Matrix κ (Fin 3) ℝ)
     (I : Fin r → ι) (J : Fin r → κ) :
@@ -230,7 +267,9 @@ lemma submatrix_mul_transpose {r : ℕ}
   simp [submatrix_apply, mul_apply, transpose_apply]
 
 /-- Square minors of size greater than `3` of a product `X * Yᵀ` vanish,
-since the factors have only three columns (rank at most `3`). -/
+since the factors have only three columns (rank at most `3`).
+@isnad1 id=eq.1h7v.s6.06714862e81c from=translated src=- shape=df734ad1 vocab=c372fdef
+-/
 lemma det_submatrix_mul_transpose_eq_zero_of_lt {r : ℕ} (hr : 3 < r)
     (X : Matrix ι (Fin 3) ℝ) (Y : Matrix κ (Fin 3) ℝ)
     (I : Fin r → ι) (J : Fin r → κ) :
@@ -242,7 +281,9 @@ lemma det_submatrix_mul_transpose_eq_zero_of_lt {r : ℕ} (hr : 3 < r)
 runs over the strictly increasing maps `Fin r → Fin 3` (equivalently, the
 `C(3, r)` increasing embeddings, enumerated as the unique empty map, the
 three constants, `Fin.succAbove`, and `id`). For `r > 3` both sides are
-zero. -/
+zero.
+@isnad1 id=eq.0h7v.s8.aaa021db96fe from=translated src=- shape=1a90ed7a vocab=33afe857
+-/
 lemma det_submatrix_mul_transpose_eq_sum_strictMono {r : ℕ}
     (X : Matrix ι (Fin 3) ℝ) (Y : Matrix κ (Fin 3) ℝ)
     (I : Fin r → ι) (J : Fin r → κ) :
@@ -258,7 +299,9 @@ lemma det_submatrix_mul_transpose_eq_sum_strictMono {r : ℕ}
 
 /-- The product `X * Yᵀ` of two three-column totally nonnegative matrices is
 totally nonnegative. Size `r > 3` minors vanish by rank; smaller minors are
-nonnegative sums of products of TN minors via Cauchy–Binet. -/
+nonnegative sums of products of TN minors via Cauchy–Binet.
+@isnad1 id=istotall.2h4v.s6.59466a2c529f from=translated src=- shape=341821ce vocab=b7f77ecc
+-/
 lemma IsTotallyNonneg.mul_transpose [LinearOrder ι] [LinearOrder κ]
     {X : Matrix ι (Fin 3) ℝ} {Y : Matrix κ (Fin 3) ℝ}
     (hX : IsTotallyNonneg X) (hY : IsTotallyNonneg Y) :

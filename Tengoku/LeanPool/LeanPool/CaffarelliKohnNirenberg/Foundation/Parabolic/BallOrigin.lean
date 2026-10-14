@@ -20,7 +20,9 @@ noncomputable section
 namespace CKN.Foundation.Parabolic
 
 /-- The open ball of radius `ρ` about `x` is contained in the metric closed ball about the origin
-    of radius `|x|₂ + ρ`, where `|·|₂` is the Euclidean norm on `Vec3`. -/
+    of radius `|x|₂ + ρ`, where `|·|₂` is the Euclidean norm on `Vec3`.
+@isnad1 id=le.0h2v.s6.d041db90eeea from=translated src=- shape=79fc162a vocab=f51a1f85
+-/
 theorem vec3Ball_subset_closedBall_zero (x : Vec3) (ρ : ℝ) :
     vec3Ball x ρ ⊆ Metric.closedBall (0 : Vec3) (vec3EuclideanNorm x + ρ) := by
   intro y hy

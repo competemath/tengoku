@@ -142,6 +142,9 @@ private theorem integrable_segmentBlend_norm_fderiv_mul_norm_sub_prod_of_isSobol
   simpa [MeasureTheory.IntegrableOn, MeasureTheory.Measure.prod_restrict] using
     hprod_int.mono_set hsub
 
+/--
+@isnad1 id=integrab.2h4v.s9.24db1eb6a019 from=translated src=- shape=0542f862 vocab=efb8961e
+-/
 theorem integrableOn_integral_norm_fderiv_mul_norm_sub_along_segment_of_isSobolevRegularDomain
     {d : ℕ} {U : Set (Vec d)} (hU : IsSobolevRegularDomain U)
     {u : Vec d → ℝ} (huDiff : ContDiff ℝ 1 u) (x : Vec d) :
@@ -155,6 +158,9 @@ theorem integrableOn_integral_norm_fderiv_mul_norm_sub_along_segment_of_isSobole
   have hcompact : IsCompact (closure U) := hU.isBoundedDomain.isBounded.isCompact_closure
   exact (hcont.continuousOn.integrableOn_compact hcompact).mono_set subset_closure
 
+/--
+@isnad1 id=le.4h4v.s10.ba43a5e6bd81 from=translated src=- shape=de75bd84 vocab=6ec42fdf
+-/
 theorem norm_sub_integralAverage_le_volumeAverage_integral_norm_fderiv_mul_norm_sub_along_segment
     {d : ℕ} {U : Set (Vec d)} [MeasureTheory.IsFiniteMeasure (volumeMeasureOn U)]
     {u : Vec d → ℝ} (hu : MeasureTheory.IntegrableOn u U)
@@ -200,6 +206,9 @@ theorem norm_sub_integralAverage_le_volumeAverage_integral_norm_fderiv_mul_norm_
           ∂MeasureTheory.volume := by
             exact mul_le_mul_of_nonneg_left hint hμinv_nonneg
 
+/--
+@isnad1 id=le.4h4v.s9.48c5a7783216 from=translated src=- shape=68c292f3 vocab=2d29263c
+-/
 theorem norm_sub_average_le_gradient_segment_integral
     {d : ℕ} {U : Set (Vec d)} [MeasureTheory.IsFiniteMeasure (volumeMeasureOn U)]
     (hU : IsSobolevRegularDomain U) {u : Vec d → ℝ}
@@ -246,6 +255,9 @@ private theorem setIntegral_intervalIntegral_norm_fderiv_mul_norm_sub_along_segm
       (f := fun t y => ‖fderiv ℝ u (segmentBlend x t y)‖ * ‖x - y‖)
       hprod_int').symm
 
+/--
+@isnad1 id=le.3h4v.s10.02f88b0b2cd3 from=translated src=- shape=5115eaf8 vocab=a23bbd87
+-/
 theorem intervalIntegral_gradient_segment_le_riesz_integral
     {d : ℕ} [NeZero d] {U : Set (Vec d)} (hU : IsOpenBoundedConvexDomain U)
     {u : Vec d → ℝ} (huDiff : ContDiff ℝ 1 u) {x : Vec d} (hx : x ∈ U) :
@@ -332,6 +344,9 @@ theorem intervalIntegral_gradient_segment_le_riesz_integral
           ∫ z in U, ‖fderiv ℝ u z‖ * rieszKernel x z ∂MeasureTheory.volume := by
             simp [φ]
 
+/--
+@isnad1 id=le.3h4v.s10.4a7664abfab6 from=translated src=- shape=4ee501c0 vocab=a23bbd87
+-/
 theorem integral_gradient_segment_le_riesz_integral
     {d : ℕ} [NeZero d] {U : Set (Vec d)} (hU : IsOpenBoundedConvexDomain U)
     {u : Vec d → ℝ} (huDiff : ContDiff ℝ 1 u) {x : Vec d} (hx : x ∈ U) :
@@ -347,6 +362,9 @@ theorem integral_gradient_segment_le_riesz_integral
     intervalIntegral_gradient_segment_le_riesz_integral
       (d := d) hU huDiff hx
 
+/--
+@isnad1 id=le.5h4v.s9.2f97fa768812 from=translated src=- shape=0f83d66c vocab=2b7cb700
+-/
 theorem norm_sub_average_le_gradient_riesz_integral
     {d : ℕ} [NeZero d] {U : Set (Vec d)} [MeasureTheory.IsFiniteMeasure (volumeMeasureOn U)]
     (hU : IsOpenBoundedConvexDomain U) {u : Vec d → ℝ}
@@ -441,6 +459,9 @@ private theorem integrableOn_norm_sub_integralAverage_rpow_of_isSobolevRegularDo
   have hcompact : IsCompact (closure U) := hU.isBoundedDomain.isBounded.isCompact_closure
   exact (hcont.continuousOn.integrableOn_compact hcompact).mono_set subset_closure
 
+/--
+@isnad1 id=le.5h4v.s10.ed1f673ad49f from=translated src=- shape=58010fe9 vocab=9ade9355
+-/
 theorem integral_rpow_norm_sub_integralAverage_le_bound_of_isOpenBoundedConvexDomain
     {d : ℕ} [NeZero d] {U : Set (Vec d)} [MeasureTheory.IsFiniteMeasure (volumeMeasureOn U)]
     (hU : IsOpenBoundedConvexDomain U) {u : Vec d → ℝ}

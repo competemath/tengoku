@@ -68,7 +68,9 @@ boundary of a full ball of radius `r-1` plus the first `t` vertices of layer `r`
 equals the next full ball `binomPrefix N (r+1)` plus the upper shadow
 `upperShadow N r t`.  This is sorry-free: it is just the definition of
 `upperShadow` together with the monotonicity bound
-`binomPrefix N (r+1) = H N (binomPrefix N r) ≤ H N (binomPrefix N r + t)`. -/
+`binomPrefix N (r+1) = H N (binomPrefix N r) ≤ H N (binomPrefix N r + t)`.
+@isnad1 id=eq.1h3v.s5.cfe4fd7d4677 from=translated src=- shape=6cf2cc17 vocab=2eeb2865
+-/
 theorem H_shadow_closed_form (N r t : ℕ) (hr : 1 ≤ r) :
     H N (binomPrefix N r + t) = binomPrefix N (r + 1) + upperShadow N r t := by
   unfold upperShadow
@@ -77,12 +79,16 @@ theorem H_shadow_closed_form (N r t : ℕ) (hr : 1 ≤ r) :
     H_mono (Nat.le_add_right _ _)
   omega
 
-/-- The upper shadow of an empty partial layer is empty. -/
+/-- The upper shadow of an empty partial layer is empty.
+@isnad1 id=eq.1h2v.s4.e42701e6f257 from=translated src=- shape=b135f1e8 vocab=27b2fbcf
+-/
 theorem upperShadow_zero (N r : ℕ) (hr : 1 ≤ r) : upperShadow N r 0 = 0 := by
   unfold upperShadow
   rw [Nat.add_zero, H_binomPrefix N r hr, Nat.sub_self]
 
-/-- The upper shadow is monotone in the partial-layer parameter `t`. -/
+/-- The upper shadow is monotone in the partial-layer parameter `t`.
+@isnad1 id=le.1h4v.s4.977e228ce11c from=translated src=- shape=299e37de vocab=27b2fbcf
+-/
 theorem upperShadow_mono (N r : ℕ) {t t' : ℕ} (h : t ≤ t') :
     upperShadow N r t ≤ upperShadow N r t' := by
   unfold upperShadow
@@ -90,7 +96,9 @@ theorem upperShadow_mono (N r : ℕ) {t t' : ℕ} (h : t ≤ t') :
 
 /-- A complete layer has upper shadow equal to the full next layer
 `Nat.choose N (r+1)`: the upper shadow of all of layer `r` is all of layer
-`r+1`. -/
+`r+1`.
+@isnad1 id=eq.1h2v.s5.93ccd7ca66c0 from=translated src=- shape=3c5e4839 vocab=71e630ab
+-/
 theorem upperShadow_full (N r : ℕ) (hr : 1 ≤ r) :
     upperShadow N r (Nat.choose N r) = Nat.choose N (r + 1) := by
   unfold upperShadow
@@ -101,7 +109,9 @@ theorem upperShadow_full (N r : ℕ) (hr : 1 ≤ r) :
 
 /-- Kruskal–Katona/Macaulay upper bound: the upper shadow of a partial layer
 never exceeds the full next layer.  Sorry-free monotone consequence of
-`upperShadow_full`. -/
+`upperShadow_full`.
+@isnad1 id=le.2h3v.s5.058986d546f5 from=translated src=- shape=8ceb7e39 vocab=71e630ab
+-/
 theorem upperShadow_le_choose (N r t : ℕ) (hr : 1 ≤ r)
     (ht : t ≤ Nat.choose N r) :
     upperShadow N r t ≤ Nat.choose N (r + 1) := by
@@ -131,7 +141,9 @@ cross-boundary cost is at most the cross-boundary cost of the arbitrary split
 This is the remaining PDF-layer theorem: the paired Up/Down compression plus the
 Macaulay/Kruskal–Katona shadow comparison in the nondegenerate branch.  The
 `q = 0` branch is proved separately below by direct cascade arithmetic, and the
-full exchange theorem is assembled from the two branches. -/
+full exchange theorem is assembled from the two branches.
+@isnad1 id=le.4h5v.s6.891e5080d706 from=translated src=- shape=9b3df351 vocab=3acce346
+-/
 theorem H_exchange_max_form_pos {N p q a b : ℕ}
     (hpq : CascadeSplit N (a + b) p q) (ha : a ≤ 2 ^ N) (hb : b ≤ 2 ^ N)
     (_hq_pos : 1 ≤ q) :
@@ -150,19 +162,25 @@ theorem H_exchange_max_form_pos {N p q a b : ℕ}
   exact h_FF
 
 /-- The top coordinate `Fin.last n` never lies in the image of `Fin.castSucc`,
-since `Fin.castSucc i < Fin.last n` always. -/
+since `Fin.castSucc i < Fin.last n` always.
+@isnad1 id=not.0h2v.s6.7f9368960c8f from=translated src=- shape=3db9020c vocab=bae48cf0
+-/
 lemma last_not_mem_image_castSucc {n : ℕ} (x : Cube n) :
     Fin.last n ∉ x.image Fin.castSucc := by
   simp only [Finset.mem_image, not_exists, not_and]
   intro i _ h
   exact (Fin.castSucc_lt_last i).ne h
 
-/-- `embed0` is injective: it is `Finset.image` along the injective `Fin.castSucc`. -/
+/-- `embed0` is injective: it is `Finset.image` along the injective `Fin.castSucc`.
+@isnad1 id=injectiv.0h1v.s4.a31922570173 from=translated src=- shape=07441fa7 vocab=cd121eba
+-/
 lemma embed0_injective {n : ℕ} : Function.Injective (@embed0 n) :=
   Finset.image_injective (Fin.castSucc_injective n)
 
 /-- `embed1` is injective: it inserts the top coordinate into the image of the
-injective `Fin.castSucc`, and that top coordinate is never already present. -/
+injective `Fin.castSucc`, and that top coordinate is never already present.
+@isnad1 id=injectiv.0h1v.s4.32f1ccfb76a8 from=translated src=- shape=07441fa7 vocab=f50f26ab
+-/
 lemma embed1_injective {n : ℕ} : Function.Injective (@embed1 n) := by
   intro x y h
   unfold embed1 at h
@@ -171,6 +189,9 @@ lemma embed1_injective {n : ℕ} : Function.Injective (@embed1 n) := by
     simpa [Finset.erase_insert, last_not_mem_image_castSucc] using this
   exact Finset.image_injective (Fin.castSucc_injective n) key
 
+/--
+@isnad1 id=eq.0h3v.s8.902b842a4620 from=translated src=- shape=e8ad508a vocab=d9144cad
+-/
 lemma slice0_union_embed {N a b : ℕ} :
     slice0 ((simplicialInitSeg N a).image embed0 ∪ (simplicialInitSeg N b).image embed1) =
       simplicialInitSeg N a := by
@@ -186,6 +207,9 @@ lemma slice0_union_embed {N a b : ℕ} :
   · intro hx
     exact Or.inl ⟨x, hx, rfl⟩
 
+/--
+@isnad1 id=eq.0h3v.s8.5c42e604f84e from=translated src=- shape=d6b13fab vocab=76dc9511
+-/
 lemma slice1_union_embed {N a b : ℕ} :
     slice1 ((simplicialInitSeg N a).image embed0 ∪ (simplicialInitSeg N b).image embed1) =
       simplicialInitSeg N b := by
@@ -201,6 +225,9 @@ lemma slice1_union_embed {N a b : ℕ} :
   · intro hx
     exact Or.inr ⟨x, hx, rfl⟩
 
+/--
+@isnad1 id=disjoint.0h3v.s7.f0748d493d9b from=translated src=- shape=b8ac632f vocab=90494769
+-/
 lemma disjoint_embed {N a b : ℕ} :
     Disjoint ((simplicialInitSeg N a).image embed0) ((simplicialInitSeg N b).image embed1) := by
   rw [Finset.disjoint_left]
@@ -212,10 +239,16 @@ lemma disjoint_embed {N a b : ℕ} :
   rw [hy, ← hx] at hlast
   exact (last_not_mem_image_castSucc x) hlast
 
+/--
+@isnad1 id=eq.1h2v.s7.cdfe99964ef9 from=translated src=- shape=6dc870f1 vocab=f6309626
+-/
 lemma card_embed0 {N a : ℕ} (ha : a ≤ 2 ^ N) :
     ((simplicialInitSeg N a).image embed0).card = a := by
   rw [Finset.card_image_of_injective _ embed0_injective, card_simplicialInitSeg, min_eq_left ha]
 
+/--
+@isnad1 id=eq.1h2v.s7.78c1b2dd50a7 from=translated src=- shape=6dc870f1 vocab=612b403e
+-/
 lemma card_embed1 {N b : ℕ} (hb : b ≤ 2 ^ N) :
     ((simplicialInitSeg N b).image embed1).card = b := by
   rw [Finset.card_image_of_injective _ embed1_injective, card_simplicialInitSeg, min_eq_left hb]
@@ -228,7 +261,9 @@ minimal.  Via `H_shadow_closed_form` this is the upper-shadow comparison
 modulo whole layers (see `H_shadow_LE_sum_as_upperShadow`).  This is the genuine
 Kruskal–Katona/Macaulay leaf; it is true (verified against the exact cascade model
 of `H`, all split dimensions `N ≤ 4`) but its proof is the Frankl–Füredi shadow
-calculation, which is now fully formalized and sorry-free. -/
+calculation, which is now fully formalized and sorry-free.
+@isnad1 id=le.6h5v.s6.38b3e3ba21f7 from=translated src=- shape=0f7c6b2c vocab=532b7a33
+-/
 theorem H_shadow_LE_sum {N a b p q : ℕ}
     (ha : a ≤ 2 ^ N) (hb : b ≤ 2 ^ N)
     (hcasc : CascadeSplit N (a + b) p q)
@@ -247,7 +282,9 @@ outer boundary `max (H N b) a` collapses to `a`), the canonical boundary sum is
 bounded by `H N a + a`.  As with the LE leaf, via `H_shadow_closed_form` this is a
 sum comparison of `upperShadow` quantities with the GT slack `a`.  This is the
 genuine GT shadow-deficit leaf of Frankl–Füredi; true (cascade-model verified) but
-now fully formalized and sorry-free. -/
+now fully formalized and sorry-free.
+@isnad1 id=le.6h5v.s6.1936bca4bf33 from=translated src=- shape=a6f710eb vocab=36a318bd
+-/
 theorem H_shadow_GT_sum {N a b p q : ℕ}
     (ha : a ≤ 2 ^ N) (hb : b ≤ 2 ^ N)
     (hcasc : CascadeSplit N (a + b) p q)
@@ -260,6 +297,9 @@ theorem H_shadow_GT_sum {N a b p q : ℕ}
       boundaryCost_eq_case_gt ha hba hcase] at hmax
   exact hmax
 
+/--
+@isnad1 id=le.6h4v.s7.0bca67eb31d9 from=translated src=- shape=cba14c8d vocab=3acce346
+-/
 lemma H_exchange_max_form_q_zero {N a b p : ℕ}
     (ha : a ≤ 2 ^ N) (hb : b ≤ 2 ^ N) (hp : p ≤ 2 ^ N)
     (hb_le_a : b ≤ a)
@@ -268,7 +308,9 @@ lemma H_exchange_max_form_q_zero {N a b p : ℕ}
   harper_bc_min_q_zero_core N ha hb hp hb_le_a hpq hcasc
 
 /-- Regime-free max-form exchange theorem, assembled from the proved degenerate
-`q = 0` branch and the positive Frankl–Füredi/Macaulay leaf. -/
+`q = 0` branch and the positive Frankl–Füredi/Macaulay leaf.
+@isnad1 id=le.4h6v.s6.1d567eff75e5 from=translated src=- shape=3972fbae vocab=3acce346
+-/
 theorem H_exchange_max_form {N s p q a b : ℕ}
     (hpq : CascadeSplit N s p q) (ha : a ≤ 2 ^ N) (hb : b ≤ 2 ^ N)
     (hab : a + b = s) :
@@ -305,7 +347,9 @@ Kruskal–Katona–Macaulay shadow comparison — now stated as a pure scalar
 inequality in three naturals.  It is strictly narrower than the family-level
 `harper_vertex_iso` below (which is *proved* from it via the slice induction),
 and is equivalent (through `H_succ_cascade`) to the finite-checked max-form
-exchange step. -/
+exchange step.
+@isnad1 id=le.2h3v.s6.aedd22a7a760 from=translated src=- shape=a4d1f832 vocab=2a1acc16
+-/
 theorem harper_split_min {n x y : ℕ} (hx : x ≤ 2 ^ n) (hy : y ≤ 2 ^ n) :
     H (n + 1) (x + y) ≤ max (H n x) y + max (H n y) x := by
   have hcasc := exists_cascade_split n (x + y) (by omega)
@@ -323,7 +367,9 @@ This is the Frankl–Füredi/PDF master statement, generalising the initial-segm
 identity `H` to arbitrary families.  It is proved here by the standard
 slice induction on `N`: `neighborhood_succ` decomposes the boundary across the
 two coordinate slices, the induction hypothesis bounds each slice, and the single
-cross-slice crux is `harper_split_min`. -/
+cross-slice crux is `harper_split_min`.
+@isnad1 id=le.0h2v.s4.27ef8f4749aa from=translated src=- shape=92cbbf7c vocab=e48d64f1
+-/
 theorem harper_vertex_iso (N : ℕ) (A : Finset (Cube N)) :
     H N A.card ≤ (neighborhood 1 A).card := by
   induction N with
@@ -375,7 +421,9 @@ of `binomPrefix` whole-layer terms plus `upperShadow` partial-layer terms.  This
 makes precise that `H_shadow_LE_sum` / `H_shadow_GT_sum` are pure upper-shadow
 (Kruskal–Katona/Macaulay) inequalities, and lets the leaves be checked
 empirically by tabulating `upperShadow`.  It is a direct consequence of
-`H_shadow_closed_form`, hence sorry-free. -/
+`H_shadow_closed_form`, hence sorry-free.
+@isnad1 id=iff.8h13v.s8.56b830e0a43d from=translated src=- shape=1512dedf vocab=2eeb2865
+-/
 theorem H_shadow_LE_sum_as_upperShadow {N a b p q ra rb rp rq ta tb tp tq : ℕ}
     (hra : 1 ≤ ra) (hrb : 1 ≤ rb) (hrp : 1 ≤ rp) (hrq : 1 ≤ rq)
     (hae : a = binomPrefix N ra + ta) (hbe : b = binomPrefix N rb + tb)

@@ -35,7 +35,9 @@ theorems.
 -/
 
 /-- If a function `b` vanishes outside a set `A`, then its support is contained
-in the closure of `A`. -/
+in the closure of `A`.
+@isnad1 id=le.1h2v.s6.dc2798edf06a from=translated src=- shape=26587d3a vocab=77299d16
+-/
 theorem support_subset_closure_of_zero_outside {b : Vec3 → ℝ} {A : Set Vec3}
     (hbA : ∀ y ∉ A, b y = 0) : Function.support b ⊆ closure A := by
   intro y hy
@@ -43,14 +45,18 @@ theorem support_subset_closure_of_zero_outside {b : Vec3 → ℝ} {A : Set Vec3}
   exact hy (hbA y (fun ha => hya (subset_closure ha)))
 
 /-- The topological support of the normalized mollifier kernel of radius `ε > 0`
-in any dimension `d` is exactly the closed ball of radius `ε` centred at `0`. -/
+in any dimension `d` is exactly the closed ball of radius `ε` centred at `0`.
+@isnad1 id=eq.1h2v.s6.a373fde95175 from=translated src=- shape=5b0ac1ff vocab=70c669a2
+-/
 theorem mollifier_tsupp_eq_closedBall {d : ℕ} {ε : ℝ} (hε : 0 < ε) :
     tsupport (mollifier (d := d) ε hε) = Metric.closedBall 0 ε := by
   exact (standardMollifier (d := d) ε hε).tsupport_normed_eq
 
 /-- The support of `mollify b ε hε` is contained in the Minkowski sum of the
 closed ball of radius `δ` and the closure of `A`, provided `b` vanishes outside
-`A` and `ε ≤ δ`. -/
+`A` and `ε ≤ δ`.
+@isnad1 id=le.3h4v.s7.b6c4258ff6e4 from=translated src=- shape=1f999169 vocab=b00b494c
+-/
 theorem mollify_support_subset {b : Vec3 → ℝ} {A : Set Vec3} {δ ε : ℝ}
     (hε : 0 < ε)
     (hbA : ∀ y ∉ A, b y = 0) (hεA : ε ≤ δ) :
@@ -70,7 +76,9 @@ theorem mollify_support_subset {b : Vec3 → ℝ} {A : Set Vec3} {δ ε : ℝ}
       · exact support_subset_closure_of_zero_outside hbA
 
 /-- The Minkowski sum of a closed ball of radius `δ/12` and the closure of a
-bounded set `A` is compact. -/
+bounded set `A` is compact.
+@isnad1 id=iscompac.1h2v.s7.8e05b366c7a7 from=translated src=- shape=33947c6d vocab=80bf367e
+-/
 theorem thickening_compact {A : Set Vec3} (hAb : Bornology.IsBounded A)
     {δ : ℝ} :
     IsCompact (Metric.closedBall (0 : Vec3) (δ / 12) + closure A) := by
@@ -78,7 +86,9 @@ theorem thickening_compact {A : Set Vec3} (hAb : Bornology.IsBounded A)
 
 /-- If points in `U` are at Euclidean distance at least `δ` from `A`, then every
 point of the thickening `closed ball (δ/12) + closure A` is at distance at least
-`δ/2` from every point of `U`. -/
+`δ/2` from every point of `U`.
+@isnad1 id=le.3h5v.s8.daf7b0652342 from=translated src=- shape=c17d743f vocab=705ce2e2
+-/
 theorem thickening_separated {A U : Set Vec3} {δ : ℝ}
     (hsep : ∀ x ∈ U, ∀ y ∈ A, δ ≤ vec3EuclideanNorm (x - y)) :
     ∀ x ∈ U, ∀ y ∈ Metric.closedBall (0 : Vec3) (δ / 12) + closure A,

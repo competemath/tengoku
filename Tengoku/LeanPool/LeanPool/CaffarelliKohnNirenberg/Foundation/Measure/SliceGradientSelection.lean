@@ -66,7 +66,9 @@ namespace CKN
 
 /-- Between a compact set and an open neighbourhood there is an open set `W` whose closure is a
 compact subset of the neighbourhood, and a radius `δ` such that every closed ball of radius at
-most `δ` centred on the compact set is contained in `W`. -/
+most `δ` centred on the compact set is contained in `W`.
+@isnad1 id=ex.3h3v.s7.e901d579570a from=translated src=- shape=3601d0e3 vocab=9dfcd0a8
+-/
 theorem exists_open_between_of_isCompact {d : ℕ} {s t : Set (Vec d)} (hs : IsCompact s)
     (ht : IsOpen t) (hst : s ⊆ t) :
     ∃ (W : Set (Vec d)) (δ : ℝ), 0 < δ ∧ IsOpen W ∧ s ⊆ W ∧ IsCompact (closure W) ∧
@@ -82,7 +84,9 @@ theorem exists_open_between_of_isCompact {d : ℕ} {s t : Set (Vec d)} (hs : IsC
     rw [Metric.mem_thickening_iff]
     exact ⟨x, hx, lt_of_le_of_lt hy (by linarith only [hεδ, hδpos])⟩
 
-/-- A spatial slice of a compact space-time set is compact. -/
+/-- A spatial slice of a compact space-time set is compact.
+@isnad1 id=iscompac.1h2v.s6.16b51d7f79a6 from=translated src=- shape=1f231dfc vocab=4fc05df5
+-/
 theorem isCompact_slice_of_isCompact {K : Set (Vec3 × ℝ)} (hK : IsCompact K) (t : ℝ) :
     IsCompact {x : Vec3 | (x, t) ∈ K} := by
   have hEq : {x : Vec3 | (x, t) ∈ K}
@@ -100,7 +104,9 @@ theorem isCompact_slice_of_isCompact {K : Set (Vec3 × ℝ)} (hK : IsCompact K) 
   rw [hEq]
   exact (hK.inter_right (isClosed_singleton.preimage continuous_snd)).image continuous_fst
 
-/-- The spatial slice of a space-time test function is a spatial test function. -/
+/-- The spatial slice of a space-time test function is a spatial test function.
+@isnad1 id=and.3h4v.s9.095c36efc827 from=translated src=- shape=53b1890d vocab=9a2ad514
+-/
 theorem slice_testFunction {Ψ : Vec3 × ℝ → ℝ} {B' : Set Vec3} {J : Set ℝ}
     (hΨ : ContDiff ℝ (⊤ : ℕ∞) Ψ) (hΨc : HasCompactSupport Ψ) (hΨs : tsupport Ψ ⊆ B' ×ˢ J)
     (t : ℝ) :
@@ -122,7 +128,9 @@ theorem slice_testFunction {Ψ : Vec3 × ℝ → ℝ} {B' : Set Vec3} {J : Set �
   exact (hΨs hx).1
 
 /-- The iterated space-time identity becomes an identity of integrals over the product box as
-soon as both integrands are integrable there. -/
+soon as both integrands are integrable there.
+@isnad1 id=eq.3h4v.s9.f9617a63e7a4 from=translated src=- shape=22be8a35 vocab=24e90840
+-/
 theorem setIntegral_prod_eq_of_iterated {B' : Set Vec3} {J : Set ℝ}
     {F H : Vec3 × ℝ → ℝ}
     (hF : IntegrableOn F (B' ×ˢ J) volume) (hH : IntegrableOn H (B' ×ˢ J) volume)
@@ -283,7 +291,9 @@ the iterated space-time integration-by-parts identity against test functions sup
 inner box, and the same identity over the product box whenever both integrands are integrable
 there.  The slice hypothesis is the one produced by `lem:delta-p`: the test-function identity of
 `HasWeakPartialDerivOn`, holding for almost every time with a locally integrable derivative on
-the outer set `B`. -/
+the outer set `B`.
+@isnad1 id=ex.6h5v.s11.e70801d3afbb from=translated src=- shape=708e9ae6 vocab=33a5bf7e
+-/
 theorem exists_spacetime_weak_gradient_of_slices (k : Fin 3)
     {B B' : Set Vec3} {J : Set ℝ} {p : Vec3 × ℝ → ℝ}
     (hB : IsOpen B) (hB' : MeasurableSet B') (hB'c : IsCompact (closure B'))

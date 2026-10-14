@@ -42,7 +42,9 @@ interval `[-n, n]` whose closed `1 / (n + 1)`-ball is contained in `I`. -/
 def originClauseCore (I : Set ℝ) (n : ℕ) : Set ℝ :=
   OriginInstance.exhaustionCore I n
 
-/-- An open order-connected interval has an increasing compact exhaustion. -/
+/-- An open order-connected interval has an increasing compact exhaustion.
+@isnad1 id=ex.2h1v.s7.076961cdfc33 from=translated src=- shape=26b48f66 vocab=4bba9265
+-/
 theorem originClauseTimeExhaustion {I : Set ℝ}
     (hopen : IsOpen I) (hord : I.OrdConnected) :
     ∃ J : ℕ → Set ℝ,

@@ -51,7 +51,9 @@ def kernelPotential {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F]
     (K : Vec3 → F) (g : Vec3 → ℝ) (x : Vec3) : F :=
   ∫ y : Vec3, g y • K (x - y)
 
-/-- Integrability of the potential integrand under a uniform bound on the density support. -/
+/-- Integrability of the potential integrand under a uniform bound on the density support.
+@isnad1 id=integrab.4h6v.s8.b69ec21175f1 from=translated src=- shape=09c4e495 vocab=c4e8d48f
+-/
 theorem integrable_smul_kernel_shift {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F]
     {K : Vec3 → F} {g : Vec3 → ℝ} {A : Set Vec3} {M : ℝ} {x : Vec3}
     (hKc : ContinuousOn K {z : Vec3 | z ≠ 0}) (hg : Integrable g volume)
@@ -67,7 +69,9 @@ theorem integrable_smul_kernel_shift {F : Type*} [NormedAddCommGroup F] [NormedS
   · rw [hg0 y hy]
     simp
 
-/-- Differentiation under the integral sign for a potential, away from the density support. -/
+/-- Differentiation under the integral sign for a potential, away from the density support.
+@isnad1 id=hasfderi.10h9v.s11.16e55e98505c from=translated src=- shape=d3dd32ff vocab=acf6115f
+-/
 theorem hasFDerivAt_kernelPotential {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F]
     {K : Vec3 → F} {g : Vec3 → ℝ} {A U : Set Vec3} {δ M₀ M₁ : ℝ}
     (hKdiff : ∀ z : Vec3, z ≠ 0 → DifferentiableAt ℝ K z)
@@ -124,19 +128,25 @@ section KernelData
 
 variable {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F] {K : Vec3 → F}
 
-/-- A kernel of every finite order off the origin is differentiable there. -/
+/-- A kernel of every finite order off the origin is differentiable there.
+@isnad1 id=differen.2h3v.s8.7f6e7d6cbaf2 from=translated src=- shape=92116096 vocab=f9d1762a
+-/
 theorem differentiableAt_of_kernelSmooth
     (hsmooth : ∀ (n : ℕ) (z : Vec3), z ≠ 0 → ContDiffAt ℝ n K z)
     (z : Vec3) (hz : z ≠ 0) : DifferentiableAt ℝ K z :=
   (hsmooth 1 z hz).differentiableAt (by simp)
 
-/-- A kernel of every finite order off the origin is continuous there. -/
+/-- A kernel of every finite order off the origin is continuous there.
+@isnad1 id=continuo.1h2v.s7.8a53cc0d0bcf from=translated src=- shape=421e8eea vocab=94aa64b6
+-/
 theorem continuousOn_of_kernelSmooth
     (hsmooth : ∀ (n : ℕ) (z : Vec3), z ≠ 0 → ContDiffAt ℝ n K z) :
     ContinuousOn K {z : Vec3 | z ≠ 0} := fun z hz =>
   (hsmooth 0 z hz).continuousAt.continuousWithinAt
 
-/-- The derivative of a kernel of every finite order off the origin has the same property. -/
+/-- The derivative of a kernel of every finite order off the origin has the same property.
+@isnad1 id=contdiff.2h4v.s9.da4d155ed0ed from=translated src=- shape=8f1870b4 vocab=b26b9884
+-/
 theorem contDiffAt_fderiv_of_kernelSmooth
     (hsmooth : ∀ (n : ℕ) (z : Vec3), z ≠ 0 → ContDiffAt ℝ n K z)
     (n : ℕ) (z : Vec3) (hz : z ≠ 0) : ContDiffAt ℝ n (fderiv ℝ K) z := by
@@ -148,7 +158,9 @@ theorem contDiffAt_fderiv_of_kernelSmooth
     exact hsmooth (n + 1) z hz
   exact h.fderiv_right_succ
 
-/-- The zeroth-order kernel bound at Euclidean distance at least `δ`. -/
+/-- The zeroth-order kernel bound at Euclidean distance at least `δ`.
+@isnad1 id=le.4h6v.s9.535360f0bd44 from=translated src=- shape=c0d42d0d vocab=a52e073c
+-/
 theorem kernelBound_zero {C : ℕ → ℝ} {m : ℕ} {δ : ℝ} (hC : ∀ j, 0 ≤ C j)
     (hbound : ∀ (j : ℕ) (z : Vec3), z ≠ 0 →
       ‖iteratedFDeriv ℝ j K z‖ ≤ C j * (vec3EuclideanNorm z ^ (m + j))⁻¹)
@@ -164,7 +176,9 @@ theorem kernelBound_zero {C : ℕ → ℝ} {m : ℕ} {δ : ℝ} (hC : ∀ j, 0 �
     exact inv_pow_le_inv_pow_of_le hδ hz m
   exact mul_le_mul_of_nonneg_left hmono (hC 0)
 
-/-- The first-order kernel bound at Euclidean distance at least `δ / 2`. -/
+/-- The first-order kernel bound at Euclidean distance at least `δ / 2`.
+@isnad1 id=le.4h6v.s10.8cc8a916ad49 from=translated src=- shape=80ebc6fb vocab=d3abd159
+-/
 theorem kernelBound_one {C : ℕ → ℝ} {m : ℕ} {δ : ℝ} (hC : ∀ j, 0 ≤ C j)
     (hbound : ∀ (j : ℕ) (z : Vec3), z ≠ 0 →
       ‖iteratedFDeriv ℝ j K z‖ ≤ C j * (vec3EuclideanNorm z ^ (m + j))⁻¹)
@@ -179,7 +193,9 @@ theorem kernelBound_one {C : ℕ → ℝ} {m : ℕ} {δ : ℝ} (hC : ∀ j, 0 �
   exact h.trans (mul_le_mul_of_nonneg_left
     (inv_pow_le_inv_pow_of_le hhalf hz (m + 1)) (hC 1))
 
-/-- The all-order bounds pass from a kernel to its derivative, with the exponent shifted. -/
+/-- The all-order bounds pass from a kernel to its derivative, with the exponent shifted.
+@isnad1 id=le.2h6v.s11.11c7811b9059 from=translated src=- shape=a9e1616b vocab=ee723581
+-/
 theorem iteratedFDeriv_fderiv_bound {C : ℕ → ℝ} {m : ℕ}
     (hbound : ∀ (j : ℕ) (z : Vec3), z ≠ 0 →
       ‖iteratedFDeriv ℝ j K z‖ ≤ C j * (vec3EuclideanNorm z ^ (m + j))⁻¹) :
@@ -199,7 +215,9 @@ section Potential
 variable {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F] {K : Vec3 → F}
   {C : ℕ → ℝ} {m : ℕ} {g : Vec3 → ℝ} {A U : Set Vec3} {δ : ℝ}
 
-/-- The potential differentiates under the integral sign at every point of `U`. -/
+/-- The potential differentiates under the integral sign at every point of `U`.
+@isnad1 id=hasfderi.8h9v.s10.58ed0df08354 from=translated src=- shape=e7379138 vocab=c75daa7e
+-/
 theorem hasFDerivAt_kernelPotential_of_data (hC : ∀ j, 0 ≤ C j)
     (hsmooth : ∀ (i : ℕ) (z : Vec3), z ≠ 0 → ContDiffAt ℝ i K z)
     (hbound : ∀ (j : ℕ) (z : Vec3), z ≠ 0 →
@@ -213,7 +231,9 @@ theorem hasFDerivAt_kernelPotential_of_data (hC : ∀ j, 0 ≤ C j)
     (continuousOn_of_kernelSmooth (contDiffAt_fderiv_of_kernelSmooth hsmooth))
     (kernelBound_zero hC hbound hδ) (kernelBound_one hC hbound hδ) hg hg0 hδ hsep hx
 
-/-- The potential is differentiable on `U`. -/
+/-- The potential is differentiable on `U`.
+@isnad1 id=differen.7h8v.s10.ab532c14a785 from=translated src=- shape=ff73f711 vocab=a0edf0bf
+-/
 theorem differentiableOn_kernelPotential (hC : ∀ j, 0 ≤ C j)
     (hsmooth : ∀ (i : ℕ) (z : Vec3), z ≠ 0 → ContDiffAt ℝ i K z)
     (hbound : ∀ (j : ℕ) (z : Vec3), z ≠ 0 →
@@ -224,7 +244,9 @@ theorem differentiableOn_kernelPotential (hC : ∀ j, 0 ≤ C j)
   (hasFDerivAt_kernelPotential_of_data hC hsmooth hbound hg hg0 hδ hsep
     hz).differentiableAt.differentiableWithinAt
 
-/-- On `U` the derivative of the potential is the potential of the differentiated kernel. -/
+/-- On `U` the derivative of the potential is the potential of the differentiated kernel.
+@isnad1 id=eqon.7h8v.s10.2770091126d3 from=translated src=- shape=7cbc842d vocab=09d97543
+-/
 theorem fderiv_kernelPotential_eqOn (hC : ∀ j, 0 ≤ C j)
     (hsmooth : ∀ (i : ℕ) (z : Vec3), z ≠ 0 → ContDiffAt ℝ i K z)
     (hbound : ∀ (j : ℕ) (z : Vec3), z ≠ 0 →
@@ -316,7 +338,9 @@ private theorem norm_iteratedFDeriv_kernelPotential_le_aux
         _ = C (k + 1) * (δ ^ (m + (k + 1)))⁻¹ * ∫ y : Vec3, ‖g y‖ := by
             rw [show m + 1 + k = m + (k + 1) by ring]
 
-/-- A real-valued potential written with the kernel on the left, as in the pressure terms. -/
+/-- A real-valued potential written with the kernel on the left, as in the pressure terms.
+@isnad1 id=eq.0h3v.s7.f1585b210cb0 from=translated src=- shape=05e34d42 vocab=fca651c8
+-/
 theorem kernelPotential_real_eq (K : Vec3 → ℝ) (g : Vec3 → ℝ) (x : Vec3) :
     kernelPotential K g x = ∫ y : Vec3, K (x - y) * g y := by
   rw [kernelPotential]
@@ -325,7 +349,9 @@ theorem kernelPotential_real_eq (K : Vec3 → ℝ) (g : Vec3 → ℝ) (x : Vec3)
   rw [smul_eq_mul, mul_comm]
 
 /-- The potential of a separated density has every finite differentiability order on `U`;
-this is the smoothness half of `eq:har-Ck`. -/
+this is the smoothness half of `eq:har-Ck`.
+@isnad1 id=contdiff.8h9v.s10.014d2dde7e4b from=translated src=- shape=506db2d9 vocab=7a6ecb94
+-/
 theorem contDiffOn_kernelPotential {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F]
     {K : Vec3 → F} {C : ℕ → ℝ} {m : ℕ} {g : Vec3 → ℝ} {A U : Set Vec3} {δ : ℝ}
     (hC : ∀ j, 0 ≤ C j)
@@ -338,7 +364,9 @@ theorem contDiffOn_kernelPotential {F : Type*} [NormedAddCommGroup F] [NormedSpa
   contDiffOn_kernelPotential_aux hg hU hg0 hδ hsep n hC hsmooth hbound
 
 /-- The all-order size of the potential of a separated density; this is the bound half of
-`eq:har-Ck`. -/
+`eq:har-Ck`.
+@isnad1 id=le.9h10v.s10.dddf5ce4d85b from=translated src=- shape=975a8ebd vocab=1994ae3d
+-/
 theorem norm_iteratedFDeriv_kernelPotential_le {F : Type*} [NormedAddCommGroup F]
     [NormedSpace ℝ F] {K : Vec3 → F} {C : ℕ → ℝ} {m : ℕ} {g : Vec3 → ℝ} {A U : Set Vec3}
     {δ : ℝ} (hC : ∀ j, 0 ≤ C j)

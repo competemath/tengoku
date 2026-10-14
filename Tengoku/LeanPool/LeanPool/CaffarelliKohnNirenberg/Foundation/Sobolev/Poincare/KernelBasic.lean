@@ -34,11 +34,17 @@ domain `L¹` size is controlled by the radius of `IsBoundedDomain`.
 noncomputable def rieszKernel {d : ℕ} (x y : Vec d) : ℝ :=
   ‖x - y‖ ^ (1 - (d : ℝ))
 
+/--
+@isnad1 id=le.0h3v.s4.86b78b0c564a from=translated src=- shape=73bb348e vocab=832ad38f
+-/
 theorem rieszKernel_nonneg {d : ℕ} (x y : Vec d) :
     0 ≤ rieszKernel x y := by
   unfold rieszKernel
   exact Real.rpow_nonneg (norm_nonneg _) _
 
+/--
+@isnad1 id=eq.0h3v.s4.1560fb0c63e9 from=translated src=- shape=7a5478ec vocab=61a91943
+-/
 theorem rieszKernel_symm {d : ℕ} (x y : Vec d) :
     rieszKernel x y = rieszKernel y x := by
   simp [rieszKernel, norm_sub_rev]
@@ -48,7 +54,9 @@ section NeZero
 variable {d : ℕ} [NeZero d]
 
 /-- Cache `Nontrivial (Vec d)` once per section so tactic-level typeclass
-searches don't rediscover the NeZero → Nonempty → Nontrivial chain. -/
+searches don't rediscover the NeZero → Nonempty → Nontrivial chain.
+@isnad1 id=nontrivi.0h1v.s3.0ec108827e41 from=translated src=- shape=a4efea94 vocab=21d42c5f
+-/
 instance instNontrivialVecNeZero : Nontrivial (Vec d) := inferInstance
 
 private theorem integral_norm_rpow_one_sub_dim_ball {R : ℝ} (hR : 0 < R) :
@@ -108,6 +116,9 @@ private theorem integral_norm_rpow_one_sub_dim_ball {R : ℝ} (hR : 0 < R) :
   simp [Measure.real]
   ring
 
+/--
+@isnad1 id=integrab.1h2v.s7.a21a7eaa72c4 from=translated src=- shape=7f21f942 vocab=13057658
+-/
 theorem rieszKernel_integrableOn_ball {R : ℝ} (_ : 0 < R) :
     MeasureTheory.IntegrableOn
       (fun x : Vec d => ‖x‖ ^ (1 - (d : ℝ)))
@@ -154,6 +165,9 @@ theorem rieszKernel_integrableOn_ball {R : ℝ} (_ : 0 < R) :
     exact hInd_int.congr_fun heq.symm measurableSet_Ioi
   exact (MeasureTheory.integrable_fun_norm_addHaar (μ := MeasureTheory.volume) (f := g)).mpr h1d
 
+/--
+@isnad1 id=integrab.2h3v.s7.6dd129ac8c74 from=translated src=- shape=fbdc8664 vocab=5bb1b87c
+-/
 theorem integrableOn_rieszKernel_ball
     {R : ℝ} (hR : 0 < R) (x : Vec d) (hx : x ∈ Metric.ball (0 : Vec d) R) :
     MeasureTheory.IntegrableOn (fun y : Vec d => rieszKernel x y)
@@ -186,6 +200,9 @@ theorem integrableOn_rieszKernel_ball
         simp [norm_neg]))
   exact hBigInt.mono_set hBsub
 
+/--
+@isnad1 id=le.2h3v.s8.877f8865c92c from=translated src=- shape=faab3c72 vocab=b2ef2b34
+-/
 theorem integral_rieszKernel_ball_le
     {R : ℝ} (hR : 0 < R) (x : Vec d) (hx : x ∈ Metric.ball (0 : Vec d) R) :
     ∫ y in Metric.ball (0 : Vec d) R, rieszKernel x y ∂MeasureTheory.volume ≤
@@ -247,6 +264,9 @@ section BoundedDomain
 
 variable {d : ℕ} {U : Set (Vec d)} [NeZero d]
 
+/--
+@isnad1 id=integrab.2h3v.s6.4fc7a96dc4a8 from=translated src=- shape=1ee75558 vocab=f808b008
+-/
 theorem IsBoundedDomain.integrableOn_rieszKernel
     (hU : IsBoundedDomain U) {x : Vec d} (hx : x ∈ U) :
     MeasureTheory.IntegrableOn (fun y : Vec d => rieszKernel x y) U MeasureTheory.volume := by
@@ -266,6 +286,9 @@ theorem IsBoundedDomain.integrableOn_rieszKernel
     integrableOn_rieszKernel_ball (d := d) (by linarith only [hCpos] : 0 < 2 * C) x hxBall
   exact hIntBall.mono_set hsub
 
+/--
+@isnad1 id=le.2h3v.s8.33e6fdd41478 from=translated src=- shape=64197164 vocab=a1c6d594
+-/
 theorem IsBoundedDomain.integral_rieszKernel_le
     (hU : IsBoundedDomain U) {x : Vec d} (hx : x ∈ U) :
     ∫ y in U, rieszKernel x y ∂MeasureTheory.volume ≤
@@ -297,11 +320,17 @@ theorem IsBoundedDomain.integral_rieszKernel_le
           (4 * Classical.choose hU) := by
             ring
 
+/--
+@isnad1 id=integrab.2h3v.s6.7e989be4d4b8 from=translated src=- shape=f3f58f0c vocab=f808b008
+-/
 theorem IsBoundedDomain.integrableOn_rieszKernel_right
     (hU : IsBoundedDomain U) {y : Vec d} (hy : y ∈ U) :
     MeasureTheory.IntegrableOn (fun x : Vec d => rieszKernel x y) U MeasureTheory.volume := by
   simpa [rieszKernel_symm] using hU.integrableOn_rieszKernel (x := y) hy
 
+/--
+@isnad1 id=le.2h3v.s8.695c1bfcae98 from=translated src=- shape=fff6fc19 vocab=a1c6d594
+-/
 theorem IsBoundedDomain.integral_rieszKernel_right_le
     (hU : IsBoundedDomain U) {y : Vec d} (hy : y ∈ U) :
     ∫ x in U, rieszKernel x y ∂MeasureTheory.volume ≤
@@ -309,6 +338,9 @@ theorem IsBoundedDomain.integral_rieszKernel_right_le
         (4 * Classical.choose hU) := by
   simpa [rieszKernel_symm] using hU.integral_rieszKernel_le (x := y) hy
 
+/--
+@isnad1 id=integrab.1h2v.s7.519081459e33 from=translated src=- shape=e174c06d vocab=12c8adcd
+-/
 theorem integrableOn_prod_rieszKernel_of_isSobolevRegularDomain
     (hU : IsSobolevRegularDomain U) :
     MeasureTheory.IntegrableOn

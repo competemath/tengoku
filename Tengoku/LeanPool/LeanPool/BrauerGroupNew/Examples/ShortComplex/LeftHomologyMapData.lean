@@ -33,19 +33,25 @@ abbrev φK : ↥(LinearMap.ker (ModuleCat.Hom.hom S₁.g)) →ₗ[R]
 /-- The underlying element of `S.moduleCatToCycles x` is `S.f x`.
 
 `ShortComplex.moduleCatToCycles` is a `LinearMap.codRestrict` whose membership proof is only
-type-correct at default transparency, so `LinearMap.codRestrict_apply` cannot fire on it. -/
+type-correct at default transparency, so `LinearMap.codRestrict_apply` cannot fire on it.
+@isnad1 id=eq.0h3v.s12.16d9fdf0a3f8 from=translated src=- shape=e80ee478 vocab=cfc322b6
+-/
 @[simp]
 lemma ShortComplex.moduleCatToCycles_coe (S : ShortComplex (ModuleCat.{v} R)) (x : S.X₁) :
     (S.moduleCatToCycles x : S.X₂) = ModuleCat.Hom.hom S.f x := rfl
 
-/-- The map on cycles carries boundaries to boundaries. -/
+/-- The map on cycles carries boundaries to boundaries.
+@isnad1 id=eq.0h5v.s14.92eb312d94a9 from=translated src=- shape=aab62a7e vocab=42495345
+-/
 lemma φK_moduleCatToCycles (x : S₁.X₁) :
     φK R S₁ S₂ f (S₁.moduleCatToCycles x) = S₂.moduleCatToCycles (f.τ₁ x) := by
   ext
   have h := LinearMap.ext_iff.1 ((ModuleCat.hom_ext_iff.1 f.comm₁₂).symm) x
   simpa [φK] using h
 
-/-- The map on cycles descends to the quotient by boundaries. -/
+/-- The map on cycles descends to the quotient by boundaries.
+@isnad1 id=le.0h4v.s13.df66a16b95ac from=translated src=- shape=6a300589 vocab=d4273409
+-/
 lemma φK_maps_moduleCatToCycles_range :
     S₁.moduleCatToCycles.range ≤
       Submodule.comap (φK R S₁ S₂ f) S₂.moduleCatToCycles.range := by
@@ -78,7 +84,9 @@ def LeftHomologyMapData.ofModuleCat :
       Submodule.Quotient.mk ((φK R S₁ S₂ f) ⟨x, hx⟩)
     rw [Submodule.mapQ_apply]
 
-/-- A concrete quotient criterion for quasi-isomorphisms of short complexes of modules. -/
+/-- A concrete quotient criterion for quasi-isomorphisms of short complexes of modules.
+@isnad1 id=iff.0h4v.s13.d9b89b2434bb from=translated src=- shape=b43d3127 vocab=35e1d8ac
+-/
 theorem ShortComplex.IsQuasiIsoAt_iff_moduleCat :
     ShortComplex.QuasiIso f ↔
       (∀ a : S₁.X₂, ModuleCat.Hom.hom S₁.g a = 0 →

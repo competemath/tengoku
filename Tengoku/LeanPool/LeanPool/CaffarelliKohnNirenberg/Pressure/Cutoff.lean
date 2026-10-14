@@ -194,20 +194,32 @@ private lemma unitBallCutoff_tsupport_subset :
 def mollifiedBallCutoff (x₀ : Vec 3) {ρ : ℝ} (_hρ : 0 < ρ) : Vec 3 → ℝ :=
   fun x => unitBallCutoff (ρ⁻¹ • (x - x₀))
 
+/--
+@isnad1 id=contdiff.1h2v.s7.d5b2f6bdc658 from=translated src=- shape=90292668 vocab=742b71d9
+-/
 theorem mollifiedBallCutoff_smooth (x₀ : Vec 3) {ρ : ℝ} (hρ : 0 < ρ) :
     ContDiff ℝ (⊤ : ℕ∞) (mollifiedBallCutoff x₀ hρ) := by
   unfold mollifiedBallCutoff
   apply unitBallCutoff_smooth.comp
   fun_prop
 
+/--
+@isnad1 id=le.1h3v.s5.55aa660db42d from=translated src=- shape=0707a1ad vocab=c5030431
+-/
 theorem mollifiedBallCutoff_nonneg (x₀ : Vec 3) {ρ : ℝ} (hρ : 0 < ρ)
     (x : Vec 3) : 0 ≤ mollifiedBallCutoff x₀ hρ x := by
   exact unitBallCutoff_nonneg _
 
+/--
+@isnad1 id=le.1h3v.s5.e71f74e86189 from=translated src=- shape=7147e88f vocab=c5030431
+-/
 theorem mollifiedBallCutoff_le_one (x₀ : Vec 3) {ρ : ℝ} (hρ : 0 < ρ)
     (x : Vec 3) : mollifiedBallCutoff x₀ hρ x ≤ 1 := by
   exact unitBallCutoff_le_one _
 
+/--
+@isnad1 id=eq.2h3v.s6.876d1e27fdcb from=translated src=- shape=a0a644b0 vocab=f27a1736
+-/
 theorem mollifiedBallCutoff_eq_one_on_inner (x₀ : Vec 3) {ρ : ℝ}
     (hρ : 0 < ρ) {x : Vec 3}
     (hx : x ∈ euclideanBall x₀ (13 * ρ / 20)) :
@@ -244,6 +256,9 @@ private lemma mollifiedBallCutoff_eq_zero_of_not_mem_closedBall (x₀ : Vec 3)
       _ = 73 * ρ / 100 := by ring
   exact hle
 
+/--
+@isnad1 id=hascompa.1h2v.s5.fa88457b6dcd from=translated src=- shape=f6be2dab vocab=efb1baaf
+-/
 theorem mollifiedBallCutoff_hasCompactSupport (x₀ : Vec 3) {ρ : ℝ}
     (hρ : 0 < ρ) : HasCompactSupport (mollifiedBallCutoff x₀ hρ) := by
   refine HasCompactSupport.intro
@@ -261,6 +276,9 @@ private lemma mollifiedBallCutoff_tsupport_subset_closedBall (x₀ : Vec 3)
     exact hx (mollifiedBallCutoff_eq_zero_of_not_mem_closedBall x₀ hρ hnot)
   · exact isClosed_euclideanClosedBall x₀ _
 
+/--
+@isnad1 id=le.1h2v.s6.1400b417af65 from=translated src=- shape=55530e8b vocab=8b82d6ae
+-/
 theorem mollifiedBallCutoff_tsupport_subset_outer (x₀ : Vec 3)
     {ρ : ℝ} (hρ : 0 < ρ) :
     tsupport (mollifiedBallCutoff x₀ hρ) ⊆
@@ -561,6 +579,9 @@ private lemma mollifiedBallCutoff_hessian_eq_zero_of_not_mem_outer
   rw [mollifiedBallCutoff_hessian_formula]
   simp [unitHessian_eq_zero_of_not_mem_closedBall hscaled]
 
+/--
+@isnad1 id=and.2h3v.s10.954a6d61c859 from=translated src=- shape=f22cc5bd vocab=c16bb7df
+-/
 theorem mollifiedBallCutoff_derivatives_vanish_outside_annulus
     (x₀ : Vec 3) {ρ : ℝ} (hρ : 0 < ρ) {x : Vec 3}
     (hx : x ∉ euclideanBall x₀ (3 * ρ / 4) \
@@ -576,6 +597,9 @@ theorem mollifiedBallCutoff_derivatives_vanish_outside_annulus
   · exact ⟨mollifiedBallCutoff_gradient_eq_zero_of_not_mem_outer x₀ hρ houter,
       mollifiedBallCutoff_hessian_eq_zero_of_not_mem_outer x₀ hρ houter⟩
 
+/--
+@isnad1 id=le.5h5v.s8.8ebd75c94ee8 from=translated src=- shape=a94d9ac0 vocab=bc6f6888
+-/
 theorem cutoff_annulus_distance (x₀ : Vec 3) {ρ r : ℝ} (hρ : 0 < ρ) (hr : 0 < r)
     (hrr : r ≤ ρ / 2) {x y : Vec 3}
     (hx : x ∈ euclideanBall x₀ r)
@@ -613,6 +637,9 @@ theorem cutoff_annulus_distance (x₀ : Vec 3) {ρ r : ℝ} (hρ : 0 < ρ) (hr :
   rw [hnorm] at hdist
   exact hdist
 
+/--
+@isnad1 id=le.1h3v.s5.23fb1915da36 from=translated src=- shape=8ae49671 vocab=90b71b6f
+-/
 theorem mollifiedBallCutoff_gradient_bound (x₀ : Vec 3) {ρ : ℝ}
     (hρ : 0 < ρ) (x : Vec 3) :
     vecEuclideanNorm (classicalGradient (mollifiedBallCutoff x₀ hρ) x) ≤
@@ -627,6 +654,9 @@ theorem mollifiedBallCutoff_gradient_bound (x₀ : Vec 3) {ρ : ℝ}
     _ = cutoffGradientConstant / ρ := by
       field_simp [hρ.ne']
 
+/--
+@isnad1 id=le.1h3v.s9.2ae96710c2f4 from=translated src=- shape=98a7a2b7 vocab=5d7e08e2
+-/
 theorem mollifiedBallCutoff_second_derivative_bound (x₀ : Vec 3) {ρ : ℝ}
     (hρ : 0 < ρ) (x : Vec 3) :
     ‖fderiv ℝ (classicalGradient (mollifiedBallCutoff x₀ hρ)) x‖ ≤

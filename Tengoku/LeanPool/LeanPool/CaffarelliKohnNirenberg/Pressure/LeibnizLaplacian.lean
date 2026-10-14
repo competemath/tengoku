@@ -53,6 +53,9 @@ def spatialGradDot (f g : Vec3 → ℝ) : Vec3 → ℝ :=
 def mixedSecond (f : Vec3 → ℝ) (i j : Fin 3) : Vec3 → ℝ :=
   fun x => spatialDeriv (spatialDeriv f j) i x
 
+/--
+@isnad1 id=contdiff.1h2v.s7.409b79bc82d2 from=translated src=- shape=ad6c1da6 vocab=b1e1a196
+-/
 lemma contDiff_spatialDeriv_smooth {f : Vec3 → ℝ}
     (hf : ContDiff ℝ (⊤ : ℕ∞) f) (i : Fin 3) :
     ContDiff ℝ (⊤ : ℕ∞) (spatialDeriv f i) := by
@@ -65,6 +68,9 @@ lemma contDiff_spatialDeriv_smooth {f : Vec3 → ℝ}
     simpa using h
   exact hcomp
 
+/--
+@isnad1 id=contdiff.1h1v.s7.98eeaaa56b6b from=translated src=- shape=a4071fd8 vocab=32b48eb2
+-/
 lemma contDiff_spatialLaplacian_smooth {f : Vec3 → ℝ}
     (hf : ContDiff ℝ (⊤ : ℕ∞) f) :
     ContDiff ℝ (⊤ : ℕ∞) (spatialLaplacian f) := by
@@ -74,6 +80,9 @@ lemma contDiff_spatialLaplacian_smooth {f : Vec3 → ℝ}
       contDiff_spatialDeriv_smooth (contDiff_spatialDeriv_smooth hf i) i)
   exact h
 
+/--
+@isnad1 id=contdiff.2h2v.s8.a68c7774b40c from=translated src=- shape=21173f4d vocab=fad4c311
+-/
 lemma contDiff_spatialGradDot_smooth {f g : Vec3 → ℝ}
     (hf : ContDiff ℝ (⊤ : ℕ∞) f) (hg : ContDiff ℝ (⊤ : ℕ∞) g) :
     ContDiff ℝ (⊤ : ℕ∞) (spatialGradDot f g) := by
@@ -83,11 +92,17 @@ lemma contDiff_spatialGradDot_smooth {f g : Vec3 → ℝ}
       (contDiff_spatialDeriv_smooth hf i).mul (contDiff_spatialDeriv_smooth hg i))
   exact h
 
+/--
+@isnad1 id=contdiff.1h3v.s8.5fd5bfd7bde4 from=translated src=- shape=959e0d47 vocab=97ce20ea
+-/
 lemma contDiff_mixedSecond_smooth {f : Vec3 → ℝ}
     (hf : ContDiff ℝ (⊤ : ℕ∞) f) (i j : Fin 3) :
     ContDiff ℝ (⊤ : ℕ∞) (mixedSecond f i j) :=
   contDiff_spatialDeriv_smooth (contDiff_spatialDeriv_smooth hf j) i
 
+/--
+@isnad1 id=eq.2h4v.s8.11f6032aa348 from=translated src=- shape=3823e381 vocab=cabe0ee0
+-/
 lemma spatialDeriv_add {f g : Vec3 → ℝ} {x : Vec3}
     (hf : DifferentiableAt ℝ f x) (hg : DifferentiableAt ℝ g x) (i : Fin 3) :
     spatialDeriv (fun y => f y + g y) i x = spatialDeriv f i x + spatialDeriv g i x := by
@@ -96,6 +111,9 @@ lemma spatialDeriv_add {f g : Vec3 → ℝ} {x : Vec3}
   simp only [spatialDeriv]
   exact h
 
+/--
+@isnad1 id=eq.2h4v.s8.d70bb15bbee1 from=translated src=- shape=974872b6 vocab=e3d73a68
+-/
 lemma spatialDeriv_mul {f g : Vec3 → ℝ} {x : Vec3}
     (hf : DifferentiableAt ℝ f x) (hg : DifferentiableAt ℝ g x) (i : Fin 3) :
     spatialDeriv (fun y => f y * g y) i x =
@@ -107,7 +125,9 @@ lemma spatialDeriv_mul {f g : Vec3 → ℝ} {x : Vec3}
   ring
 
 /-- The pointwise second-order product rule `∂_i ∂_j (η φ)` of `eq:leibniz-lap`
-and `eq:commute`. -/
+and `eq:commute`.
+@isnad1 id=eq.2h5v.s8.c1f90f4f234c from=translated src=- shape=fdbc1688 vocab=8d50dffd
+-/
 theorem spatialSecondDeriv_mul_smooth {η φ : Vec3 → ℝ}
     (hη : ContDiff ℝ (⊤ : ℕ∞) η) (hφ : ContDiff ℝ (⊤ : ℕ∞) φ) (i j : Fin 3) (x : Vec3) :
     mixedSecond (fun y => η y * φ y) i j x =
@@ -148,7 +168,9 @@ theorem spatialSecondDeriv_mul_smooth {η φ : Vec3 → ℝ}
   ring
 
 /-- The pointwise Leibniz rule `eq:leibniz-lap` for the spatial Laplacian:
-`Δ(η φ) = η Δφ + 2 ∇η · ∇φ + φ Δη`. -/
+`Δ(η φ) = η Δφ + 2 ∇η · ∇φ + φ Δη`.
+@isnad1 id=eq.2h2v.s8.748643c30329 from=translated src=- shape=fec0d1d3 vocab=f735b9b3
+-/
 theorem spatialLaplacian_mul_smooth {η φ : Vec3 → ℝ}
     (hη : ContDiff ℝ (⊤ : ℕ∞) η) (hφ : ContDiff ℝ (⊤ : ℕ∞) φ) :
     spatialLaplacian (fun x => η x * φ x)

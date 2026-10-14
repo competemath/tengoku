@@ -27,6 +27,7 @@ At this exponent the construction becomes very concrete: we can take
 `u(x,y) = x*y`, with derivatives `du_dx = y` and `du_dy = x`.
 This theorem checks, one by one, that this choice satisfies the full list of
 majorant requirements (growth, tangency, domination of `v`, and sign behavior).
+@isnad1 id=ex.1h1v.s9.81dd91f7d7fc from=translated src=- shape=527fa996 vocab=3afbcb78
 -/
 theorem exists_majorant_p_eq_2 (p : ℝ) (hp : p = 2) :
      ∃ u du_dx du_dy : ℝ → ℝ → ℝ, ∃ C : ℝ,

@@ -17,7 +17,9 @@ open CKN.Foundation.Parabolic CKN.ShearCalculus
 namespace CKN
 namespace ShearCalculus
 
-/-- Restriction does not change an integral supported on a test support. -/
+/-- Restriction does not change an integral supported on a test support.
+@isnad1 id=eq.2h3v.s8.36da1c6eef1b from=translated src=- shape=beb8c883 vocab=20ce7ac0
+-/
 theorem integral_restrict_test {F G : Vec3 × ℝ → ℝ} {U : Set (Vec3 × ℝ)}
     (hsub : tsupport G ⊆ U) (hzero : ∀ z ∉ tsupport G, F z = 0) :
     (∫ z in U, F z) = ∫ z, F z := by
@@ -25,19 +27,25 @@ theorem integral_restrict_test {F G : Vec3 × ℝ → ℝ} {U : Set (Vec3 × ℝ
   intro z hz
   exact hzero z (fun h => hz (hsub h))
 
-/-- A spatial test derivative vanishes off the support of the test. -/
+/-- A spatial test derivative vanishes off the support of the test.
+@isnad1 id=eq.2h3v.s8.17d7b6d707c3 from=translated src=- shape=0e9836b2 vocab=e7d03894
+-/
 theorem spatial_zero {G : Vec3 × ℝ → ℝ}
     (hG : ContDiff ℝ (⊤ : ℕ∞) G) {z : Vec3 × ℝ}
     (hz : z ∉ tsupport G) (i : Fin 3) : spatialPartial G i z = 0 :=
   image_eq_zero_of_notMem_tsupport (fun h => hz (spatial_support hG i h))
 
-/-- A time test derivative vanishes off the support of the test. -/
+/-- A time test derivative vanishes off the support of the test.
+@isnad1 id=eq.2h2v.s8.92e76816d63c from=translated src=- shape=1f148661 vocab=ee0fea39
+-/
 theorem time_zero {G : Vec3 × ℝ → ℝ}
     (hG : ContDiff ℝ (⊤ : ℕ∞) G) {z : Vec3 × ℝ}
     (hz : z ∉ tsupport G) : timePartial G z = 0 :=
   image_eq_zero_of_notMem_tsupport (fun h => hz (time_support hG h))
 
-/-- A coordinate of a vector test has support contained in the vector support. -/
+/-- A coordinate of a vector test has support contained in the vector support.
+@isnad1 id=le.0h2v.s7.cb3834a1f365 from=translated src=- shape=ad7575f1 vocab=54350d67
+-/
 theorem coordinate_support (φ : Vec3 × ℝ → Vec3) (i : Fin 3) :
     tsupport (fun z => φ z i) ⊆ tsupport φ := by
   apply closure_mono
@@ -82,7 +90,9 @@ private theorem scalar_momentum {ψ : Vec3 × ℝ → ℝ}
   rw [hsub, integral_neg, ht', hx', hy']
   ring
 
-/-- The incompressibility test identity, including its integrability clause. -/
+/-- The incompressibility test identity, including its integrability clause.
+@isnad1 id=and.1h1v.s7.dac8f65aac36 from=translated src=- shape=de3a5bd8 vocab=8196d1db
+-/
 theorem shearFlow_divergence (ψ : Vec3 × ℝ → ℝ)
     (hψ : ψ ∈ spaceTimeTestFunction (V := ℝ) Set.univ (Ioo 0 1)) :
     IntegrableOn (fun z => ∑ i, shearFlow z i * spatialPartial ψ i z)
@@ -103,7 +113,9 @@ theorem shearFlow_divergence (ψ : Vec3 × ℝ → ℝ)
     hψ.2.2 (fun z hz => by rw [spatial_zero hψ.1 hz]; ring)).trans
       (scalar_divergence hψ.1 hψ.2.1)
 
-/-- The momentum test identity with zero pressure and zero force. -/
+/-- The momentum test identity with zero pressure and zero force.
+@isnad1 id=and.1h1v.s9.e68de63d454a from=translated src=- shape=8cc29a4c vocab=c2f3d2ef
+-/
 theorem shearFlow_momentum (φ : Vec3 × ℝ → Vec3)
     (hφ : φ ∈ spaceTimeTestFunction (V := Vec3) Set.univ (Ioo 0 1)) :
     IntegrableOn (fun z =>

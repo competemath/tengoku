@@ -27,7 +27,9 @@ variable {f : ℝ → ℝ}
 /-! ### TN14: monotonicity of `f` and of `f t / t` -/
 
 /-- Convexity on `[0, ∞)` together with `f 0 = 0` makes `t ↦ f t / t`
-nondecreasing on `(0, ∞)`. -/
+nondecreasing on `(0, ∞)`.
+@isnad1 id=monotone.2h1v.s6.c586831fbf5e from=translated src=- shape=4df24b6f vocab=c8281cb0
+-/
 lemma convexOn_Ici_zero_div_monotoneOn
     (hf : ConvexOn ℝ (Ici (0 : ℝ)) f) (hf0 : f 0 = 0) :
     MonotoneOn (fun t ↦ f t / t) (Ioi 0) := by
@@ -44,7 +46,9 @@ lemma convexOn_Ici_zero_div_monotoneOn
     linarith
 
 /-- A nonnegative convex function on `[0, ∞)` with `f 0 = 0` is nondecreasing
-there. -/
+there.
+@isnad1 id=monotone.3h1v.s6.52933752e449 from=translated src=- shape=ccb90087 vocab=6de73554
+-/
 lemma convexOn_Ici_zero_monotoneOn
     (hf : ConvexOn ℝ (Ici (0 : ℝ)) f) (hf0 : f 0 = 0)
     (hfnn : ∀ x, 0 ≤ x → 0 ≤ f x) :
@@ -66,8 +70,17 @@ lemma convexOn_Ici_zero_monotoneOn
 /-- The feature row `(1, t, f t)`. -/
 def row3 (f : ℝ → ℝ) (t : ℝ) : Fin 3 → ℝ := ![1, t, f t]
 
+/--
+@isnad1 id=eq.0h2v.s5.f11f717758db from=translated src=- shape=df85cdc2 vocab=0c3f4945
+-/
 @[simp] lemma row3_zero (f : ℝ → ℝ) (t : ℝ) : row3 f t 0 = 1 := rfl
+/--
+@isnad1 id=eq.0h2v.s4.d42e476b4825 from=translated src=- shape=88eec4f2 vocab=0c3f4945
+-/
 @[simp] lemma row3_one (f : ℝ → ℝ) (t : ℝ) : row3 f t 1 = t := rfl
+/--
+@isnad1 id=eq.0h2v.s4.270a4e51ef8d from=translated src=- shape=95139849 vocab=0c3f4945
+-/
 @[simp] lemma row3_two (f : ℝ → ℝ) (t : ℝ) : row3 f t 2 = f t := by
   simp [row3, cons_val_two, vecHead, vecTail]
 
@@ -75,6 +88,9 @@ def row3 (f : ℝ → ℝ) (t : ℝ) : Fin 3 → ℝ := ![1, t, f t]
 def convexRowMatrix {ι : Type*} (f : ℝ → ℝ) (t : ι → ℝ) : Matrix ι (Fin 3) ℝ :=
   fun i j ↦ row3 f (t i) j
 
+/--
+@isnad1 id=le.2h3v.s5.0569e0a01453 from=translated src=- shape=6ea5717d vocab=fcea51f3
+-/
 lemma row3_nonneg (hfnn : ∀ x, 0 ≤ x → 0 ≤ f x) {t : ℝ} (ht : 0 < t) (j : Fin 3) :
     0 ≤ row3 f t j := by
   fin_cases j
@@ -83,7 +99,9 @@ lemma row3_nonneg (hfnn : ∀ x, 0 ≤ x → 0 ≤ f x) {t : ℝ} (ht : 0 < t) (
   · exact hfnn t ht.le
 
 /-- Every `1 × 1` and `2 × 2` minor of two increasing rows `(1, t, f t)`,
-`(1, u, f u)` is nonnegative. -/
+`(1, u, f u)` is nonnegative.
+@isnad1 id=and.5h3v.s7.f10bf231710c from=translated src=- shape=f9298dfc vocab=6171442f
+-/
 lemma row3_one_two_minors_nonneg
     (hf : ConvexOn ℝ (Ici (0 : ℝ)) f) (hf0 : f 0 = 0)
     (hfnn : ∀ x, 0 ≤ x → 0 ≤ f x) {t u : ℝ}
@@ -101,7 +119,9 @@ lemma row3_one_two_minors_nonneg
 /-! ### TN16: the `3 × 3` minor -/
 
 /-- Three-slope comparison: for `0 < t < u < v` the displayed `3 × 3` minor
-expression is nonnegative. -/
+expression is nonnegative.
+@isnad1 id=le.4h4v.s7.15401cfd0235 from=translated src=- shape=569356e6 vocab=206b243d
+-/
 lemma convex_three_slope
     (hf : ConvexOn ℝ (Ici (0 : ℝ)) f) {t u v : ℝ}
     (ht : 0 < t) (htu : t < u) (huv : u < v) :
@@ -121,6 +141,9 @@ def row3Triple (t u v : ℝ) : Matrix (Fin 3) (Fin 3) ℝ :=
 def row3Pair (t u : ℝ) (J : Fin 2 → Fin 3) : Matrix (Fin 2) (Fin 2) ℝ :=
   of ![row3 f t ∘ J, row3 f u ∘ J]
 
+/--
+@isnad1 id=eq.0h4v.s6.aa60d7beef94 from=translated src=- shape=582c3276 vocab=01634c68
+-/
 lemma det_row3Triple (t u v : ℝ) :
     (row3Triple (f := f) t u v).det =
       (u - t) * (f v - f t) - (v - t) * (f u - f t) := by
@@ -131,6 +154,9 @@ lemma det_row3Triple (t u v : ℝ) :
 
 /-! ### TN17: `lem:convex` -/
 
+/--
+@isnad1 id=le.6h4v.s7.64ad4da13694 from=translated src=- shape=a2f6e733 vocab=86d03c1b
+-/
 lemma det_convexRowMatrix_two
     (hf : ConvexOn ℝ (Ici (0 : ℝ)) f) (hf0 : f 0 = 0)
     (hfnn : ∀ x, 0 ≤ x → 0 ≤ f x)
@@ -155,6 +181,9 @@ lemma det_convexRowMatrix_two
     simp [row3Pair, of_apply, h0, h1, row3_zero, row3_one]
     linarith [hminors.2.1]
 
+/--
+@isnad1 id=le.4h4v.s6.2be621fefdd8 from=translated src=- shape=eaa28648 vocab=64a086a3
+-/
 lemma det_convexRowMatrix_three
     (hf : ConvexOn ℝ (Ici (0 : ℝ)) f) {t u v : ℝ}
     (ht : 0 < t) (htu : t ≤ u) (huv : u ≤ v) :
@@ -167,7 +196,9 @@ lemma det_convexRowMatrix_three
     · exact convex_three_slope hf ht htu huv
 
 /-- Lemma `lem:convex`: rows `(1, tᵢ, f tᵢ)` of a nonnegative convex `f`
-vanishing at `0` form a totally nonnegative matrix, for `0 < t₁ ≤ ⋯ ≤ tₖ`. -/
+vanishing at `0` form a totally nonnegative matrix, for `0 < t₁ ≤ ⋯ ≤ tₖ`.
+@isnad1 id=istotall.5h3v.s7.2665e74c9836 from=translated src=- shape=c4216d7f vocab=ec883e59
+-/
 lemma isTotallyNonneg_convexRowMatrix
     (hf : ConvexOn ℝ (Ici (0 : ℝ)) f) (hf0 : f 0 = 0)
     (hfnn : ∀ x, 0 ≤ x → 0 ≤ f x) {k : ℕ} {t : Fin k → ℝ}

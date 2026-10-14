@@ -41,7 +41,9 @@ namespace CKN
 The hypothesis is the vector-valued cylinder estimate produced by the analytic lift.  It
 is stated as a cube of the desired right-hand side, with the input scale
 quantities evaluated at `2 * r`.  The single-ball analytic estimate is available
-as `CKN.interpolationBall_three_finite` in `CKN.Setting.InterpolationBall`. -/
+as `CKN.interpolationBall_three_finite` in `CKN.Setting.InterpolationBall`.
+@isnad1 id=le.8h10v.s9.9bac03b83d5b from=translated src=- shape=148ee8a4 vocab=d1374f0e
+-/
 theorem gamma_le_of_scale_normalized_interpolation
     {Ω : Set Vec3} {I : Set ℝ} {q : ℝ}
     {u : ParabolicPoint → Vec3} {Du : ParabolicPoint → Fin 3 → Vec3}

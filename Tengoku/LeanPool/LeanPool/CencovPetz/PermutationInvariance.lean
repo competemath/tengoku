@@ -37,6 +37,9 @@ variable {α β : Type u} [Fintype α] [Fintype β]
 
 namespace MarkovMorphism
 
+/--
+@isnad1 id=eq.1h4v.s5.4d5c55e3d030 from=translated src=- shape=9abf1bea vocab=166da065
+-/
 lemma deterministic_pushforward_eq_simplex_pushforward [DecidableEq β] (g : α → β)
     (hg : Function.Surjective g) (p : Simplex α) :
     (MarkovMorphism.deterministic (α := α) (β := β) g hg).pushforward p =
@@ -45,6 +48,9 @@ lemma deterministic_pushforward_eq_simplex_pushforward [DecidableEq β] (g : α 
   simpa [Simplex.pushforward_apply] using
     (MarkovMorphism.deterministic_pushforward_apply (α := α) (β := β) (g := g) (hg := hg) p b)
 
+/--
+@isnad1 id=eq.1h4v.s7.bee5b51edb02 from=translated src=- shape=1f201928 vocab=fc3c7b82
+-/
 lemma deterministic_tangentPushforward_eq_tangentPushforward [DecidableEq β] (g : α → β)
     (hg : Function.Surjective g) (u : tangentSpace (α := α)) :
     (MarkovMorphism.deterministic (α := α) (β := β) g hg).tangentPushforward u =
@@ -54,6 +60,9 @@ lemma deterministic_tangentPushforward_eq_tangentPushforward [DecidableEq β] (g
     (MarkovMorphism.deterministic_tangentPushforward_apply
       (α := α) (β := β) (g := g) (hg := hg) u b)
 
+/--
+@isnad1 id=eq.0h5v.s6.d56bab770d91 from=translated src=- shape=0ae79fcc vocab=a75fe512
+-/
 lemma deterministic_pushforward_apply_of_equiv
     (e : α ≃ β) (p : Simplex α) (b : β) :
     ((MarkovMorphism.deterministic (α := α) (β := β)
@@ -75,6 +84,9 @@ lemma deterministic_pushforward_apply_of_equiv
                   (hg := e.surjective) p b)
     _ = p.p (e.symm b) := by simp [hs]
 
+/--
+@isnad1 id=eq.0h5v.s8.ad4bea12fb4a from=translated src=- shape=a2c95183 vocab=09bae83b
+-/
 lemma deterministic_tangentPushforward_apply_of_equiv
     (e : α ≃ β) (u : tangentSpace (α := α)) (b : β) :
     ((MarkovMorphism.deterministic (α := α) (β := β)
@@ -99,6 +111,9 @@ lemma deterministic_tangentPushforward_apply_of_equiv
                   (hg := e.surjective) u b)
     _ = (u : α → ℝ) (e.symm b) := by simp [hs]
 
+/--
+@isnad1 id=eq.0h4v.s6.8f71a2a15a4f from=translated src=- shape=639e5c63 vocab=fe5d771f
+-/
 lemma deterministic_pushforward_comp_symm
     (e : α ≃ β) (p : Simplex α) :
     (MarkovMorphism.deterministic (α := β) (β := α)
@@ -139,6 +154,9 @@ lemma deterministic_pushforward_comp_symm
               (α := α) (β := β) (e := e)
               (p := p) (b := e a))
 
+/--
+@isnad1 id=eq.0h4v.s8.e0e33ff0a2a5 from=translated src=- shape=21c24c51 vocab=e410b350
+-/
 lemma deterministic_tangentPushforward_comp_symm
     (e : α ≃ β) (u : tangentSpace (α := α)) :
     (MarkovMorphism.deterministic (α := β) (β := α)
@@ -185,6 +203,9 @@ end MarkovMorphism
 
 namespace MonotoneMetricFamily
 
+/--
+@isnad1 id=eq.0h5v.s9.89264789274b from=translated src=- shape=77dd55bd vocab=432148f1
+-/
 lemma comp_eq_of_equiv
     (G : MonotoneMetricFamily) (e : α ≃ β) (p : Simplex α) :
     (G.g (α := β)

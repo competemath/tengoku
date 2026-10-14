@@ -221,6 +221,9 @@ instance instAlgebraEndOfIsScalarTowerLeanPool (M : Type v) [AddCommGroup M] [Mo
     rfl
 
 omit [IsSimpleRing A] in
+/--
+@isnad1 id=ex.0h2v.s6.449f58f26446 from=translated src=- shape=d976fc6b vocab=f5e9a674
+-/
 lemma exists_gen (M : Type v) [AddCommGroup M]
     [Module A M] [IsSimpleModule A M] :
     ∃ m : M, m ≠ 0 ∧ ∀ m', ∃ a : A, m' = a • m := by
@@ -242,10 +245,16 @@ noncomputable def gen (M : Type v) [AddCommGroup M]
     (exists_gen A M).choose
 
 omit [IsSimpleRing A] in
+/--
+@isnad1 id=ne.0h2v.s5.f152ed8195e5 from=translated src=- shape=dd5db546 vocab=0fd535f4
+-/
 lemma gen_ne_zero (M : Type v) [AddCommGroup M] [Module A M] [IsSimpleModule A M] :
     gen A M ≠ 0 := (exists_gen A M).choose_spec.1
 
 omit [IsSimpleRing A] in
+/--
+@isnad1 id=ex.0h3v.s6.5e950dc2e4e3 from=translated src=- shape=f97e8b91 vocab=0323542b
+-/
 lemma gen_spec (M : Type v) [AddCommGroup M]
     [Module A M] [IsSimpleModule A M] (m' : M) :
     ∃ a : A, m' = a • gen A M := (exists_gen A M).choose_spec.2 m'
@@ -262,6 +271,9 @@ def toEndEnd (M : Type v) [AddCommGroup M] [Module A M] :
   map_smul' := by intros; ext; simp [mul_smul]
 
 omit [IsSimpleRing A] in
+/--
+@isnad1 id=eq.0h4v.s9.95a6405e1074 from=translated src=- shape=df09a32f vocab=e4465660
+-/
 @[simp]
 lemma toEndEnd_apply (M : Type v) [AddCommGroup M] [Module A M] (a : A) (m : M) :
     toEndEnd A M a m = a • m := rfl
@@ -283,6 +295,9 @@ instance (M : Type v) [AddCommGroup M] [Module A M] [IsSimpleModule A M] :
   exists_pair_ne := ⟨0, 1, fun eq ↦ gen_ne_zero A M congr($eq (gen A M)).symm⟩
 
 omit [FiniteDimensional k A] in
+/--
+@isnad1 id=injectiv.0h3v.s9.66a3a01a7dec from=translated src=- shape=fedfda4f vocab=56142420
+-/
 lemma toEndEnd_injective
     (M : Type v) [AddCommGroup M] [Module A M] [IsSimpleModule A M]
     [Module k M] [IsScalarTower k A M] :
@@ -294,6 +309,9 @@ class IsBalanced (M : Type v) [AddCommGroup M] [Module A M] : Prop where
   surj : Function.Surjective (toEndEnd A M)
 
 omit [IsSimpleRing A] in
+/--
+@isnad1 id=isbalanc.1h4v.s6.ee66794a9109 from=translated src=- shape=57bddf9b vocab=9393d5ee
+-/
 lemma IsBalanced.congr_aux (M N : Type v) [AddCommGroup M] [AddCommGroup N] [Module A M]
     [Module A N] (l : M ≃ₗ[A] N) (h : IsBalanced A M) : IsBalanced A N := by
   refine ⟨fun a => ?_⟩
@@ -316,6 +334,9 @@ lemma IsBalanced.congr_aux (M N : Type v) [AddCommGroup M] [AddCommGroup N] [Mod
   simpa using hb'
 
 omit [IsSimpleRing A] in
+/--
+@isnad1 id=iff.0h4v.s6.2cefd8f20664 from=translated src=- shape=e2daf1d0 vocab=9393d5ee
+-/
 lemma IsBalanced.congr {M N : Type v} [AddCommGroup M] [AddCommGroup N] [Module A M] [Module A N]
     (l : M ≃ₗ[A] N) : IsBalanced A M ↔ IsBalanced A N := by
   constructor

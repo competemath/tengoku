@@ -22,7 +22,9 @@ noncomputable section
 namespace CKN.Foundation.Parabolic
 
 /-- The Euclidean norm on `Vec3` satisfies the triangle inequality for three points:
-`|x - z| ≤ |x - y| + |y - z|`. -/
+`|x - z| ≤ |x - y| + |y - z|`.
+@isnad1 id=le.0h3v.s6.45fa746dcf60 from=translated src=- shape=0b02ab07 vocab=06e74943
+-/
 theorem vec3EuclideanNorm_sub_le_add_sub (x y z : Vec3) :
     vec3EuclideanNorm (x - z) ≤ vec3EuclideanNorm (x - y) + vec3EuclideanNorm (y - z) := by
   have h : x - z = (x - y) + (y - z) := (sub_add_sub_cancel x y z).symm

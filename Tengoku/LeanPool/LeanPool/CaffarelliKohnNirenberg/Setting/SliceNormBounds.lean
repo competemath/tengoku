@@ -88,7 +88,9 @@ private lemma lintegral_ofReal_ne_top_of_integrableOn {s : Set ParabolicPoint}
 /-! ### The time-slice energy identity for `alpha` -/
 
 /-- Paper equation `eq:slice-norm-bounds`, velocity line: the essential supremum
-of the time-slice energy of `u` over the cylinder is `r * α(z,r)²`. -/
+of the time-slice energy of `u` over the cylinder is `r * α(z,r)²`.
+@isnad1 id=eq.2h3v.s6.e585afeb1263 from=translated src=- shape=e6d05df5 vocab=1081296c
+-/
 theorem timeSliceEnergyEssSup_eq_ofReal_alpha_sq
     (u : ParabolicPoint → Vec3) (z : ParabolicPoint) {r : ℝ} (hr : 0 < r)
     (hfin : timeSliceEnergyEssSup z.1 z.2 r (fun w => vec3EuclideanNorm (u w)) ≠ ⊤) :
@@ -103,7 +105,9 @@ theorem timeSliceEnergyEssSup_eq_ofReal_alpha_sq
 /-! ### The Dirichlet energy identity for `beta` -/
 
 /-- Paper equation `eq:slice-norm-bounds`, gradient line: the Dirichlet energy of
-`u` over the cylinder is `r * β(z,r)²`. -/
+`u` over the cylinder is `r * β(z,r)²`.
+@isnad1 id=eq.2h4v.s7.a65294335096 from=translated src=- shape=c854f9ca vocab=bd64c20f
+-/
 theorem lintegral_spatialGradientSq_eq_ofReal_beta_sq
     (u : ParabolicPoint → Vec3) (Du : ParabolicPoint → Fin 3 → Vec3)
     (z : ParabolicPoint) {r : ℝ} (hr : 0 < r)
@@ -120,7 +124,9 @@ theorem lintegral_spatialGradientSq_eq_ofReal_beta_sq
   rw [hmul, ENNReal.ofReal_toReal hfin]
 
 /-- The real Bochner form of the gradient line of `eq:slice-norm-bounds`: the
-Dirichlet energy of `u` over the cylinder is `r * β(z,r)²`. -/
+Dirichlet energy of `u` over the cylinder is `r * β(z,r)²`.
+@isnad1 id=eq.2h4v.s7.0007b5eda860 from=translated src=- shape=50e9b190 vocab=2a82ab27
+-/
 theorem integral_spatialGradientSq_eq_beta_sq
     (u : ParabolicPoint → Vec3) (Du : ParabolicPoint → Fin 3 → Vec3)
     (z : ParabolicPoint) {r : ℝ} (hr : 0 < r)
@@ -137,7 +143,9 @@ theorem integral_spatialGradientSq_eq_beta_sq
 /-! ### The pressure integral identity for `delta` -/
 
 /-- Paper equation `eq:slice-norm-bounds`, pressure line: the pressure integral
-`∫∫_{Q_r} |p|^{3/2}` is `r² * δ(z,r)³`. -/
+`∫∫_{Q_r} |p|^{3/2}` is `r² * δ(z,r)³`.
+@isnad1 id=eq.2h3v.s7.44285aa2b464 from=translated src=- shape=e7cbac0e vocab=0493a08a
+-/
 theorem lintegral_abs_pow_eq_ofReal_delta_cube
     (p : ParabolicPoint → ℝ) (z : ParabolicPoint) {r : ℝ} (hr : 0 < r)
     (hfin : (∫⁻ w in parabolicCylinder z.1 z.2 r,
@@ -156,7 +164,9 @@ theorem lintegral_abs_pow_eq_ofReal_delta_cube
   rw [hmul, ENNReal.ofReal_toReal hfin]
 
 /-- The real Bochner form of the pressure line of `eq:slice-norm-bounds`: the
-pressure integral `∫∫_{Q_r} |p|^{3/2}` is `r² * δ(z,r)³`. -/
+pressure integral `∫∫_{Q_r} |p|^{3/2}` is `r² * δ(z,r)³`.
+@isnad1 id=eq.2h3v.s7.d1978e5e4b25 from=translated src=- shape=92803686 vocab=8831eb6c
+-/
 theorem integral_abs_pow_eq_delta_cube
     (p : ParabolicPoint → ℝ) (z : ParabolicPoint) {r : ℝ} (hr : 0 < r)
     (hint : IntegrableOn (fun w => |p w| ^ (3 / 2 : ℝ))
@@ -179,7 +189,9 @@ theorem integral_abs_pow_eq_delta_cube
 /-! ### The force integral identity for `lambda` -/
 
 /-- Paper equation `eq:slice-norm-bounds`, force line: with `σ = 3 - 5/q`, the
-force integral `∫∫_{Q_r} |f|^q` is `(r^{-σ} λ(z,r))^q`. -/
+force integral `∫∫_{Q_r} |f|^q` is `(r^{-σ} λ(z,r))^q`.
+@isnad1 id=eq.3h4v.s7.6bd79870f044 from=translated src=- shape=3b5c5364 vocab=cc85bf47
+-/
 theorem lintegral_vec3EuclideanNorm_pow_eq_ofReal_lambda_pow
     (q : ℝ) (f : ParabolicPoint → Vec3) (z : ParabolicPoint) {r : ℝ}
     (hr : 0 < r) (hq : 0 < q)
@@ -221,7 +233,9 @@ theorem lintegral_vec3EuclideanNorm_pow_eq_ofReal_lambda_pow
 
 /-- Paper equation `eq:slice-norm-bounds`, velocity line, for a suitable weak
 solution whose cylinder has closure in the carrier: the essential supremum of the
-time-slice energy of `u` is `r * α(z,r)²`. -/
+time-slice energy of `u` is `r * α(z,r)²`.
+@isnad1 id=eq.3h9v.s7.7c4bfe966889 from=translated src=- shape=84f60ca0 vocab=c22c3f94
+-/
 theorem sws_timeSliceEnergyEssSup_eq_ofReal_alpha_sq
     {Ω : Set Vec3} {I : Set ℝ} {q : ℝ}
     {u : ParabolicPoint → Vec3} {Du : ParabolicPoint → Fin 3 → Vec3}
@@ -235,7 +249,9 @@ theorem sws_timeSliceEnergyEssSup_eq_ofReal_alpha_sq
 
 /-- Paper equation `eq:slice-norm-bounds`, gradient line, for a suitable weak
 solution whose cylinder has closure in the carrier: the Dirichlet energy of `u`
-is `r * β(z,r)²`. -/
+is `r * β(z,r)²`.
+@isnad1 id=eq.3h9v.s7.a6e21979aaad from=translated src=- shape=77c8119e vocab=92dfa2a2
+-/
 theorem sws_lintegral_spatialGradientSq_eq_ofReal_beta_sq
     {Ω : Set Vec3} {I : Set ℝ} {q : ℝ}
     {u : ParabolicPoint → Vec3} {Du : ParabolicPoint → Fin 3 → Vec3}
@@ -250,7 +266,9 @@ theorem sws_lintegral_spatialGradientSq_eq_ofReal_beta_sq
 
 /-- Paper equation `eq:slice-norm-bounds`, pressure line, for a suitable weak
 solution whose cylinder has closure in the carrier: the pressure integral
-`∫∫_{Q_r} |p|^{3/2}` is `r² * δ(z,r)³`. -/
+`∫∫_{Q_r} |p|^{3/2}` is `r² * δ(z,r)³`.
+@isnad1 id=eq.3h9v.s7.a860a65934b7 from=translated src=- shape=27238da9 vocab=21137815
+-/
 theorem sws_lintegral_abs_pow_eq_ofReal_delta_cube
     {Ω : Set Vec3} {I : Set ℝ} {q : ℝ}
     {u : ParabolicPoint → Vec3} {Du : ParabolicPoint → Fin 3 → Vec3}
@@ -265,7 +283,9 @@ theorem sws_lintegral_abs_pow_eq_ofReal_delta_cube
 
 /-- Paper equation `eq:slice-norm-bounds`, force line, for a suitable weak
 solution whose cylinder has closure in the carrier: with `σ = 3 - 5/q`, the force
-integral `∫∫_{Q_r} |f|^q` is `(r^{-σ} λ(z,r))^q`. -/
+integral `∫∫_{Q_r} |f|^q` is `(r^{-σ} λ(z,r))^q`.
+@isnad1 id=eq.3h9v.s7.53e590e9846c from=translated src=- shape=9e9ce2fd vocab=202ed095
+-/
 theorem sws_lintegral_vec3EuclideanNorm_pow_eq_ofReal_lambda_pow
     {Ω : Set Vec3} {I : Set ℝ} {q : ℝ}
     {u : ParabolicPoint → Vec3} {Du : ParabolicPoint → Fin 3 → Vec3}
@@ -283,7 +303,9 @@ theorem sws_lintegral_vec3EuclideanNorm_pow_eq_ofReal_lambda_pow
 
 /-- Paper equation `eq:slice-norm-bounds`, pressure line, in real Bochner form for
 a suitable weak solution: the pressure integral `∫∫_{Q_r} |p|^{3/2}` is
-`r² * δ(z,r)³`. -/
+`r² * δ(z,r)³`.
+@isnad1 id=eq.3h9v.s7.9d61a17a69f7 from=translated src=- shape=c759d6c2 vocab=1bfdaf9b
+-/
 theorem sws_integral_abs_pow_eq_delta_cube
     {Ω : Set Vec3} {I : Set ℝ} {q : ℝ}
     {u : ParabolicPoint → Vec3} {Du : ParabolicPoint → Fin 3 → Vec3}

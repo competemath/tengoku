@@ -29,6 +29,9 @@ variable {α : Type u} [Fintype α]
 
 namespace MonotoneMetricFamily
 
+/--
+@isnad1 id=eq.1h4v.s9.d3d49eaffed1 from=translated src=- shape=c01e66bb vocab=cabf565a
+-/
 lemma comp_eq_of_split (G : MonotoneMetricFamily)
     (m : α → ℕ) (hm : ∀ a, 0 < m a) (p : Simplex α) :
     (G.g (α := MarkovMorphism.SplitTarget (α := α) m)

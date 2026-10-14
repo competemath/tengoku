@@ -35,7 +35,9 @@ noncomputable section
 namespace CKN
 
 /-- A convolution-type integral against a continuous kernel, taken in the first factor only,
-is jointly measurable in both factors. -/
+is jointly measurable in both factors.
+@isnad1 id=strongly.2h3v.s7.afdad2c58052 from=translated src=- shape=81e5a7b2 vocab=58549248
+-/
 theorem stronglyMeasurable_slice_kernel_integral {d : ℕ} {K : Vec d → ℝ}
     (hK : Continuous K) {P : Vec d × ℝ → ℝ} (hP : MeasureTheory.StronglyMeasurable P) :
     MeasureTheory.StronglyMeasurable
@@ -47,7 +49,9 @@ theorem stronglyMeasurable_slice_kernel_integral {d : ℕ} {K : Vec d → ℝ}
     exact (hK.measurable.comp measurable_snd).mul (hP.measurable.comp (by fun_prop))
   exact MeasureTheory.StronglyMeasurable.integral_prod_right' (ν := MeasureTheory.volume) hf
 
-/-- Slicing a product-almost-everywhere statement in the second factor. -/
+/-- Slicing a product-almost-everywhere statement in the second factor.
+@isnad1 id=eventual.1h5v.s6.d9efac36e052 from=translated src=- shape=73c2d981 vocab=235cddf5
+-/
 theorem ae_ae_of_ae_prod_snd {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
     {μ : MeasureTheory.Measure α} {ν : MeasureTheory.Measure β}
     [MeasureTheory.SFinite μ] [MeasureTheory.SFinite ν] {p : α × β → Prop}
@@ -58,7 +62,9 @@ theorem ae_ae_of_ae_prod_snd {α β : Type*} [MeasurableSpace α] [MeasurableSpa
     (MeasureTheory.Measure.ae_ae_of_ae_prod (μ := ν) (ν := μ)
       (p := fun w => p (Prod.swap w)) h')
 
-/-- Assembling a product-almost-everywhere membership from slices in the second factor. -/
+/-- Assembling a product-almost-everywhere membership from slices in the second factor.
+@isnad1 id=eventual.2h5v.s7.1fd128c8c5b1 from=translated src=- shape=4e93111d vocab=e5210441
+-/
 theorem ae_prod_of_ae_ae_snd {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
     {μ : MeasureTheory.Measure α} {ν : MeasureTheory.Measure β}
     [MeasureTheory.SFinite μ] [MeasureTheory.SFinite ν] {s : Set (α × β)}

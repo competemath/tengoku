@@ -35,7 +35,9 @@ are locally integrable on `U`, then `g` is the `i`th weak partial derivative of
 `u` on `U`.
 
 The cover members are not required to be contained in `U`; only that they cover
-`U` and that the identity holds on each of them. -/
+`U` and that the identity holds on each of them.
+@isnad1 id=hasweakp.6h7v.s7.a330cd8bd679 from=translated src=- shape=acf2190d vocab=cd922ec2
+-/
 theorem hasWeakPartialDerivOn_of_isOpen_cover {d : ℕ} {ι : Type*}
     {U : Set (Vec d)} {V : ι → Set (Vec d)} {i : Fin d} {u g : Vec d → ℝ}
     (hU : MeasurableSet U) (hV : ∀ b, IsOpen (V b))

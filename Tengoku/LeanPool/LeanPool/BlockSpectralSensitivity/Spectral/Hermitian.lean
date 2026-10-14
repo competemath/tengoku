@@ -39,7 +39,9 @@ open scoped Matrix Matrix.Norms.L2Operator
 variable {n : Type*} [Fintype n] [DecidableEq n] {A : Matrix n n ℝ}
 
 /-- The L2 operator norm of a symmetric matrix is bounded by any bound on the absolute values
-of its eigenvalues. -/
+of its eigenvalues.
+@isnad1 id=le.2h3v.s6.94b5517c4094 from=translated src=- shape=097ebb0d vocab=ac5cf243
+-/
 theorem l2_opNorm_le_of_abs_eigenvalues_le [Nonempty n] (hA : A.IsHermitian) {c : ℝ}
     (hc : ∀ i, |hA.eigenvalues i| ≤ c) : ‖A‖ ≤ c := by
   have hc0 : 0 ≤ c := (abs_nonneg _).trans (hc (Classical.arbitrary n))
@@ -50,7 +52,9 @@ theorem l2_opNorm_le_of_abs_eigenvalues_le [Nonempty n] (hA : A.IsHermitian) {c 
   intro i
   simpa using hc i
 
-/-- Every eigenvalue of a symmetric matrix is at most the largest eigenvalue. -/
+/-- Every eigenvalue of a symmetric matrix is at most the largest eigenvalue.
+@isnad1 id=le.3h4v.s7.21b05050821f from=translated src=- shape=70a22006 vocab=c807ef58
+-/
 theorem le_ciSup_eigenvalues (hA : A.IsHermitian) {μ : ℝ} {v : n → ℝ} (hv : v ≠ 0)
     (hev : A *ᵥ v = μ • v) : μ ≤ ⨆ i, hA.eigenvalues i := by
   have hmem : μ ∈ spectrum ℝ A := by
@@ -61,7 +65,9 @@ theorem le_ciSup_eigenvalues (hA : A.IsHermitian) {μ : ℝ} {v : n → ℝ} (hv
   obtain ⟨i, rfl⟩ := hmem
   exact le_ciSup (Finite.bddAbove_range _) i
 
-/-- The largest eigenvalue of a symmetric matrix is at most its L2 operator norm. -/
+/-- The largest eigenvalue of a symmetric matrix is at most its L2 operator norm.
+@isnad1 id=le.1h2v.s6.cfcf7054d167 from=translated src=- shape=69df3cbe vocab=36f1fc7b
+-/
 theorem ciSup_eigenvalues_le_l2_opNorm [Nonempty n] (hA : A.IsHermitian) :
     ⨆ i, hA.eigenvalues i ≤ ‖A‖ := by
   refine ciSup_le fun i ↦ ?_
@@ -70,7 +76,9 @@ theorem ciSup_eigenvalues_le_l2_opNorm [Nonempty n] (hA : A.IsHermitian) :
   rw [hA.mulVec_eigenvectorBasis i, hb, mul_one] at h
   exact (le_abs_self _).trans (by simpa [norm_smul, hb] using h)
 
-/-- The largest eigenvalue of a symmetric matrix is attained by an eigenvector. -/
+/-- The largest eigenvalue of a symmetric matrix is attained by an eigenvector.
+@isnad1 id=ex.1h2v.s7.dbd8a590332c from=translated src=- shape=9c2ca7a6 vocab=0460a8cb
+-/
 theorem exists_eigenvector_ciSup_eigenvalues [Nonempty n] (hA : A.IsHermitian) :
     ∃ v : n → ℝ, v ≠ 0 ∧ A *ᵥ v = (⨆ i, hA.eigenvalues i) • v := by
   obtain ⟨i, hi⟩ := exists_eq_ciSup_of_finite (f := hA.eigenvalues)

@@ -40,7 +40,9 @@ namespace CKN.Foundation.Heat
 This is the reflection symmetry used to convert the displacement `x - z`
 appearing in the triangle inequality into the sup-norm difference `z - x` in
 `half_le_vec3EuclideanNorm_sub`, part of the potential estimates of
-`cor:CZ-harmonic`. -/
+`cor:CZ-harmonic`.
+@isnad1 id=eq.0h2v.s6.c14178bc21be from=translated src=- shape=829aae70 vocab=4f315a8b
+-/
 theorem vec3EuclideanNorm_sub_comm (a b : Vec3) :
     vec3EuclideanNorm (a - b) = vec3EuclideanNorm (b - a) := by
   have h : a - b = (-1 : ℝ) • (b - a) := by
@@ -52,7 +54,9 @@ theorem vec3EuclideanNorm_sub_comm (a b : Vec3) :
 Writing `x - y = (x - z) + (z - y)` and applying the triangle inequality shows
 that `vec3EuclideanNorm (z - y)` can fall short of `δ` by at most
 `vec3EuclideanNorm (x - z)`, and the latter is bounded by `3 ‖z - x‖ < δ / 2`.
-This is the geometric input to the potential estimates of `cor:CZ-harmonic`. -/
+This is the geometric input to the potential estimates of `cor:CZ-harmonic`.
+@isnad1 id=le.3h4v.s7.fa31ae5c1c59 from=translated src=- shape=d7dc3d79 vocab=38de4296
+-/
 theorem half_le_vec3EuclideanNorm_sub {x z y : Vec3} {δ : ℝ} (hδ : 0 < δ)
     (hz : ‖z - x‖ < δ / 6) (h : δ ≤ vec3EuclideanNorm (x - y)) :
     δ / 2 ≤ vec3EuclideanNorm (z - y) := by
@@ -77,7 +81,9 @@ theorem half_le_vec3EuclideanNorm_sub {x z y : Vec3} {δ : ℝ} (hδ : 0 < δ)
 
 For `0 < δ ≤ t` and any exponent `n`, the inverse power `(t ^ n)⁻¹` is at most
 `(δ ^ n)⁻¹`; this is the elementary monotonicity behind the all-order kernel
-bounds of `cor:CZ-harmonic`. -/
+bounds of `cor:CZ-harmonic`.
+@isnad1 id=le.2h3v.s5.39a045eb2cad from=translated src=- shape=5960ef5b vocab=429f7cae
+-/
 theorem inv_pow_le_inv_pow_of_le {δ t : ℝ} (hδ : 0 < δ) (h : δ ≤ t) (n : ℕ) :
     (t ^ n)⁻¹ ≤ (δ ^ n)⁻¹ := by
   have hpow : δ ^ n ≤ t ^ n := pow_le_pow_left₀ hδ.le h n
@@ -89,7 +95,9 @@ The set `S = {y | y ≠ x}` is open and its complement is the singleton `{x}`,
 which is null.  Hence `fun y => K (x - y)` is continuous on `S`, so almost
 everywhere strongly measurable against `volume`, and the product with the
 scalar factor `g` is measurable as well.  This is the measurability input to
-the potential estimates of `cor:CZ-harmonic`. -/
+the potential estimates of `cor:CZ-harmonic`.
+@isnad1 id=aestrong.2h4v.s8.50c9f6e4f797 from=translated src=- shape=07694231 vocab=d74cbdc9
+-/
 theorem aestronglyMeasurable_smul_kernel_shift {F : Type*} [NormedAddCommGroup F]
     [NormedSpace ℝ F] {K : Vec3 → F} (hK : ContinuousOn K {z : Vec3 | z ≠ 0})
     {g : Vec3 → ℝ} (hg : AEStronglyMeasurable g volume) (x : Vec3) :

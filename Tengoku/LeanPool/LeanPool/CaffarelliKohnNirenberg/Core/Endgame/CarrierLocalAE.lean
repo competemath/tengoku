@@ -23,7 +23,9 @@ open CKN.Foundation.Parabolic CKN.Foundation.Parabolic.Morrey
 noncomputable section
 namespace CKN.Core.Endgame
 
-/-- Almost-everywhere equal scalar functions have the same cylinder Morrey norm. -/
+/-- Almost-everywhere equal scalar functions have the same cylinder Morrey norm.
+@isnad1 id=eq.1h4v.s5.19b26be8183c from=translated src=- shape=0948bcf7 vocab=eacb862a
+-/
 theorem morreyNorm_eq_of_ae_eq {P τ : ℝ} {f g : ParabolicPoint → ℝ}
     (hfg : f =ᵐ[volume] g) : morreyNorm P τ f = morreyNorm P τ g := by
   unfold morreyNorm
@@ -37,7 +39,9 @@ theorem morreyNorm_eq_of_ae_eq {P τ : ℝ} {f g : ParabolicPoint → ℝ}
   filter_upwards [ae_restrict_of_ae hfg] with w hw
   simp only [hw]
 
-/-- A carrier-local representative bounds the indicated scalar Morrey norm. -/
+/-- A carrier-local representative bounds the indicated scalar Morrey norm.
+@isnad1 id=le.3h5v.s6.c749c2133d59 from=translated src=- shape=4a6f4637 vocab=f64bbd2d
+-/
 theorem morreyNorm_indicator_le_of_ae_eq_restrict {P τ : ℝ} (hP : 0 ≤ P)
     {Q : Set ParabolicPoint} (hQ : MeasurableSet Q)
     {u v : ParabolicPoint → ℝ} (huv : u =ᵐ[volume.restrict Q] v) :
@@ -45,7 +49,9 @@ theorem morreyNorm_indicator_le_of_ae_eq_restrict {P τ : ℝ} (hP : 0 ≤ P)
   rw [morreyNorm_eq_of_ae_eq ((ae_eq_restrict_iff_indicator_ae_eq hQ).mp huv)]
   exact morreyNorm_indicator_le hP Q v
 
-/-- Component bounds transfer without imposing global equality to the representative. -/
+/-- Component bounds transfer without imposing global equality to the representative.
+@isnad1 id=le.3h6v.s6.ba08d909b49c from=translated src=- shape=4f4183dc vocab=b1322c77
+-/
 theorem morreyNorm_component_indicator_le_of_ae_eq_restrict
     {P τ : ℝ} (hP : 0 ≤ P) {Q : Set ParabolicPoint} (hQ : MeasurableSet Q)
     {u v : ParabolicPoint → Vec3} (huv : u =ᵐ[volume.restrict Q] v)
@@ -56,7 +62,9 @@ theorem morreyNorm_component_indicator_le_of_ae_eq_restrict
   filter_upwards [huv] with z hz
   exact congrFun hz i
 
-/-- A global Euclidean-norm bound controls every indicated component. -/
+/-- A global Euclidean-norm bound controls every indicated component.
+@isnad1 id=le.3h6v.s6.5293f91271de from=translated src=- shape=f91d1588 vocab=5f2cfdf0
+-/
 theorem morreyNorm_component_indicator_le_norm_of_ae_eq_restrict
     {P τ : ℝ} (hP : 0 ≤ P) {Q : Set ParabolicPoint} (hQ : MeasurableSet Q)
     {u v : ParabolicPoint → Vec3} (huv : u =ᵐ[volume.restrict Q] v)

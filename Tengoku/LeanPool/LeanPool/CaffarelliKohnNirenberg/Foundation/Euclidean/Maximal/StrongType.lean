@@ -58,6 +58,9 @@ def weightedTailIntegrand (f : Vec3 → ℝ≥0∞) (p : ℝ)
   ENNReal.ofReal (positiveRpow p t) *
     ({z | ENNReal.ofReal (t / 2) < f z}.indicator f) z
 
+/--
+@isnad1 id=le.0h2v.s6.c71b3c4e9c79 from=translated src=- shape=7c255b2f vocab=c98e6f25
+-/
 theorem maximalFunction_le_essSup
     (f : Vec3 → ℝ≥0∞) (z : Vec3) :
     maximalFunction f z ≤ essSup f volume := by

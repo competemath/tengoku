@@ -37,7 +37,9 @@ namespace CKN.Core.Step4
 /-- The subadditivity of the power `6/5` for three terms, with the explicit constant `4`: the
 `6/5`-th power of `a + b + c` is bounded by four times the sum of the `6/5`-th powers. It is
 obtained from `(x + y) ^ p ≤ 2 ^ (p - 1) * (x ^ p + y ^ p)` applied twice, together with the
-numerical bound `2 ^ (6/5 - 1) ≤ 2`. -/
+numerical bound `2 ^ (6/5 - 1) ≤ 2`.
+@isnad1 id=le.0h3v.s7.363aaa2b0803 from=translated src=- shape=0d3d0a77 vocab=bce4ac8a
+-/
 theorem three_add_rpow_six_fifths_le (a b c : ℝ≥0∞) :
     (a + b + c) ^ (6 / 5 : ℝ) ≤ 4 * (a ^ (6 / 5 : ℝ) + b ^ (6 / 5 : ℝ) + c ^ (6 / 5 : ℝ)) := by
   have htwo : (2 : ℝ≥0∞) ^ (6 / 5 - 1 : ℝ) ≤ 2 := by
@@ -68,7 +70,9 @@ noncomputable section
 namespace CKN.Core.Step4
 
 /-- A lower power of a nonnegative function costs only the total mass: the
-elementary split at the level one, used throughout `prop:bootstrap`. -/
+elementary split at the level one, used throughout `prop:bootstrap`.
+@isnad1 id=le.2h5v.s6.a2970f581ce2 from=translated src=- shape=7e9f23e3 vocab=c075ae3a
+-/
 theorem lintegral_rpow_le_measure_add_lintegral_rpow
     {α : Type*} [MeasurableSpace α] (μ : Measure α)
     (h : α → ℝ≥0∞) {r t : ℝ} (hr : 0 ≤ r) (hrt : r ≤ t) :
@@ -83,7 +87,9 @@ theorem lintegral_rpow_le_measure_add_lintegral_rpow
         rw [lintegral_add_left measurable_const, lintegral_one]
 
 /-- Young's inequality in `ℝ≥0∞`: an interpolated product never exceeds the sum
-of its two endpoints. -/
+of its two endpoints.
+@isnad1 id=le.2h3v.s6.4363c5b7d876 from=translated src=- shape=9d107855 vocab=663877e6
+-/
 theorem rpow_mul_rpow_le_add (x y : ℝ≥0∞) {θ : ℝ} (h0 : 0 ≤ θ) (h1 : θ ≤ 1) :
     x ^ θ * y ^ (1 - θ) ≤ x + y := by
   have hx : x ^ θ ≤ (x + y) ^ θ := ENNReal.rpow_le_rpow le_self_add h0
@@ -103,7 +109,9 @@ theorem rpow_mul_rpow_le_add (x y : ℝ≥0∞) {θ : ℝ} (h0 : 0 ≤ θ) (h1 :
       simp
 
 /-- Hölder's inequality at the exponents of `eq:pressure-gradient-decomposition`: the
-`6/5` mass of a product is controlled by the cube and the square masses. -/
+`6/5` mass of a product is controlled by the cube and the square masses.
+@isnad1 id=le.2h4v.s7.831d974e36c1 from=translated src=- shape=d9efa307 vocab=8d5a645d
+-/
 theorem lintegral_mul_six_fifths_le
     {α : Type*} [MeasurableSpace α] {μ : Measure α} {a b : α → ℝ≥0∞}
     (ha : AEMeasurable a μ) (hb : AEMeasurable b μ) :
@@ -128,7 +136,9 @@ theorem lintegral_mul_six_fifths_le
   · norm_num
 
 /-- The three-term majorant of `eq:pressure-gradient-decomposition` has an explicit `6/5`
-time mass built from the three slice integrals. -/
+time mass built from the three slice integrals.
+@isnad1 id=le.8h12v.s9.24f66a2d1eb8 from=translated src=- shape=6c070383 vocab=105909c6
+-/
 theorem slice_majorant_time_mass_le
     {J : Set ℝ} {M a d F : ℝ → ℝ≥0∞} {c₁ c₂ c₃ : ℝ≥0∞} {qq : ℝ}
     (ha : AEMeasurable a (volume.restrict J)) (hd : AEMeasurable d (volume.restrict J))

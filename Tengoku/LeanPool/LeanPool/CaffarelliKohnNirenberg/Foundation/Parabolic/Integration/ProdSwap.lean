@@ -27,7 +27,9 @@ namespace CKN.Foundation.Parabolic.Integration
 /-- Tonelli's theorem for set integrals on a product of a spatial set `S ⊆ Vec3`
 and a time interval `T ⊆ ℝ`: the integral of a nonnegative measurable function over
 the cylinder `S ×ˢ T` equals the iterated integral with the time variable outermost,
-using the product Lebesgue measure on `Vec3 × ℝ`. -/
+using the product Lebesgue measure on `Vec3 × ℝ`.
+@isnad1 id=eq.1h3v.s8.ed49de5e5d61 from=translated src=- shape=52c83243 vocab=e27ffb4b
+-/
 theorem prod_lintegral_swap_cyl {S : Set Vec3} {T : Set ℝ}
     {F : Vec3 × ℝ → ℝ≥0∞}
     (hF : AEMeasurable F ((volume.restrict S).prod (volume.restrict T))) :

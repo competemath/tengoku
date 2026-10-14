@@ -36,35 +36,55 @@ variable {V : Type*} [Fintype V]
 noncomputable def adj (f : Input V → Bool) : Matrix (Input V) (Input V) ℝ :=
   Matrix.of fun x y => if hammingDist x y = 1 ∧ f x ≠ f y then (1 : ℝ) else 0
 
+/--
+@isnad1 id=eq.0h4v.s6.a349e95a4a3f from=translated src=- shape=b125fd56 vocab=4482734e
+-/
 lemma adj_apply (f : Input V → Bool) (x y : Input V) :
     adj f x y = if hammingDist x y = 1 ∧ f x ≠ f y then (1 : ℝ) else 0 := rfl
 
-/-- The sensitivity adjacency matrix has nonnegative entries. -/
+/-- The sensitivity adjacency matrix has nonnegative entries.
+@isnad1 id=le.0h4v.s4.9a25184958dc from=translated src=- shape=130fad2c vocab=28109287
+-/
 lemma adj_nonneg (f : Input V → Bool) (x y : Input V) : 0 ≤ adj f x y := by
   rw [adj_apply]
   positivity
 
+/--
+@isnad1 id=iff.0h4v.s5.41a2901c5b2e from=translated src=- shape=c7d6a24e vocab=f5b2e1f5
+-/
 lemma adj_apply_eq_one_iff {f : Input V → Bool} {x y : Input V} :
     adj f x y = 1 ↔ hammingDist x y = 1 ∧ f x ≠ f y := by
   simp [adj_apply]
 
-/-- Two inputs on the same side of `f` are never adjacent in the sensitivity graph. -/
+/-- Two inputs on the same side of `f` are never adjacent in the sensitivity graph.
+@isnad1 id=eq.1h4v.s5.71d698a92708 from=translated src=- shape=0a639dc2 vocab=87335f8a
+-/
 lemma adj_eq_zero_of_apply_eq (f : Input V → Bool) {x y : Input V} (h : f x = f y) :
     adj f x y = 0 := by
   simp [adj_apply, h]
 
-/-- Adjacent inputs take different `f`-values. -/
+/-- Adjacent inputs take different `f`-values.
+@isnad1 id=ne.1h4v.s5.b57b0fecb43e from=translated src=- shape=4529f1cc vocab=87335f8a
+-/
 lemma apply_ne_of_adj_ne_zero (f : Input V → Bool) {x y : Input V} (h : adj f x y ≠ 0) :
     f x ≠ f y :=
   fun hf ↦ h (adj_eq_zero_of_apply_eq f hf)
 
-/-- The adjacency matrix of the sensitivity graph is symmetric. -/
+/-- The adjacency matrix of the sensitivity graph is symmetric.
+@isnad1 id=eq.0h4v.s4.1d0e2d3ad6fd from=translated src=- shape=f9632e1b vocab=87335f8a
+-/
 lemma adj_comm (f : Input V → Bool) (x y : Input V) : adj f x y = adj f y x := by
   simp [adj_apply, hammingDist_comm y x, ne_comm]
 
+/--
+@isnad1 id=eq.0h2v.s4.789b64312732 from=translated src=- shape=c3a7cd52 vocab=0961ec0b
+-/
 lemma transpose_adj (f : Input V → Bool) : (adj f)ᵀ = adj f :=
   Matrix.ext fun x y ↦ adj_comm f y x
 
+/--
+@isnad1 id=ishermit.0h2v.s5.7c8c54c8c1d5 from=translated src=- shape=332833b0 vocab=30a62e48
+-/
 lemma isHermitian_adj (f : Input V → Bool) : (adj f).IsHermitian :=
   (Matrix.conjTranspose_eq_transpose_of_trivial (adj f)).trans (transpose_adj f)
 
@@ -75,12 +95,16 @@ variable [DecidableEq V]
 def nbrs (f : Input V → Bool) (x : Input V) : Finset (Input V) :=
   Finset.univ.filter fun y => hammingDist x y = 1 ∧ f x ≠ f y
 
-/-- `y` is a neighbour of `x` exactly when they are Hamming neighbours separated by `f`. -/
+/-- `y` is a neighbour of `x` exactly when they are Hamming neighbours separated by `f`.
+@isnad1 id=iff.0h4v.s6.41aa4a060e4e from=translated src=- shape=d29bef23 vocab=e80ef899
+-/
 lemma mem_nbrs {f : Input V → Bool} {x y : Input V} :
     y ∈ nbrs f x ↔ hammingDist x y = 1 ∧ f x ≠ f y := by
   simp [nbrs]
 
-/-- The neighbours of `x` are exactly the one-coordinate flips at sensitive coordinates. -/
+/-- The neighbours of `x` are exactly the one-coordinate flips at sensitive coordinates.
+@isnad1 id=eq.0h3v.s6.202a15cb960e from=translated src=- shape=5598d4ef vocab=b55d08e1
+-/
 lemma nbrs_eq_image (f : Input V → Bool) (x : Input V) :
     nbrs f x = (sensCoords f x).image fun v => flipSet x {v} := by
   ext y
@@ -92,26 +116,36 @@ lemma nbrs_eq_image (f : Input V → Bool) (x : Input V) :
   · rintro ⟨v, hv, rfl⟩
     exact ⟨hammingDist_flipSet_singleton x v, hv.symm⟩
 
-/-- The degree of `x` in `G_f` is `s(f,x)`. -/
+/-- The degree of `x` in `G_f` is `s(f,x)`.
+@isnad1 id=eq.0h3v.s5.071f5d82dc86 from=translated src=- shape=1f39c567 vocab=9a6fb2b3
+-/
 @[simp] lemma card_nbrs (f : Input V → Bool) (x : Input V) : (nbrs f x).card = sensAt f x := by
   rw [nbrs_eq_image, Finset.card_image_of_injective _ (flipSet_singleton_injective x), sensAt]
 
-/-- `adj f x y` is the indicator of `y` being a neighbour of `x` in `G_f`. -/
+/-- `adj f x y` is the indicator of `y` being a neighbour of `x` in `G_f`.
+@isnad1 id=eq.0h4v.s6.c539257567e4 from=translated src=- shape=4a4af680 vocab=586847ee
+-/
 lemma adj_apply_eq_ite_mem_nbrs (f : Input V → Bool) (x y : Input V) :
     adj f x y = if y ∈ nbrs f x then 1 else 0 := by
   simp [adj_apply, mem_nbrs]
 
-/-- Every row of `adj f` sums to the sensitivity at that point. -/
+/-- Every row of `adj f` sums to the sensitivity at that point.
+@isnad1 id=eq.0h3v.s5.a821a8523903 from=translated src=- shape=680bfa04 vocab=732b87f3
+-/
 @[simp] lemma sum_adj_row (f : Input V → Bool) (x : Input V) :
     ∑ y, adj f x y = (sensAt f x : ℝ) := by
   simp [adj_apply_eq_ite_mem_nbrs, Finset.sum_ite_mem]
 
 /-- Column sums of the sensitivity adjacency matrix: it is symmetric (`adj_comm`), so they
-agree with the row sums of `sum_adj_row`. -/
+agree with the row sums of `sum_adj_row`.
+@isnad1 id=eq.0h3v.s5.606c3166ee97 from=translated src=- shape=be5aebca vocab=732b87f3
+-/
 lemma sum_adj_col (f : Input V → Bool) (y : Input V) : ∑ x, adj f x y = (sensAt f y : ℝ) := by
   simpa [adj_comm f y] using sum_adj_row f y
 
-/-- The trace of the sensitivity adjacency matrix vanishes: no input is its own neighbour. -/
+/-- The trace of the sensitivity adjacency matrix vanishes: no input is its own neighbour.
+@isnad1 id=eq.0h2v.s5.4bad97ffde85 from=translated src=- shape=e4f0e2d4 vocab=b951007f
+-/
 lemma trace_adj (f : Input V → Bool) : (adj f).trace = 0 := by
   refine Finset.sum_eq_zero fun x _ ↦ ?_
   simp [Matrix.diag_apply, adj_apply]
@@ -120,7 +154,9 @@ lemma trace_adj (f : Input V → Bool) : (adj f).trace = 0 := by
 noncomputable def lam (f : Input V → Bool) : ℝ := ⨆ i, (isHermitian_adj f).eigenvalues i
 
 /-- `lambda(f) ≥ 0`: the eigenvalues of `adj f` sum to `trace (adj f) = 0`, so at least one of
-them, hence their supremum, is nonnegative (Section 11.1 of `bs_lambda.txt`). -/
+them, hence their supremum, is nonnegative (Section 11.1 of `bs_lambda.txt`).
+@isnad1 id=le.0h2v.s4.c1563a6e02fd from=translated src=- shape=f3707392 vocab=b462beed
+-/
 theorem lam_nonneg (f : Input V → Bool) : 0 ≤ lam f := by
   have htr : ∑ i, (isHermitian_adj f).eigenvalues i = 0 := by
     simpa [trace_adj] using (isHermitian_adj f).trace_eq_sum_eigenvalues.symm
@@ -129,7 +165,9 @@ theorem lam_nonneg (f : Input V → Bool) : 0 ≤ lam f := by
   obtain ⟨i, -, hi⟩ := Finset.exists_le_of_sum_le Finset.univ_nonempty hle
   exact hi.trans (le_ciSup (Finite.bddAbove_range _) i)
 
-/-- `lambda(f)` is at most the L2 operator norm of the adjacency matrix (Section 11.1). -/
+/-- `lambda(f)` is at most the L2 operator norm of the adjacency matrix (Section 11.1).
+@isnad1 id=le.0h2v.s6.861f7adf92e6 from=translated src=- shape=d3d6ec94 vocab=d3d46f26
+-/
 theorem lam_le_l2_opNorm_adj (f : Input V → Bool) : lam f ≤ ‖adj f‖ :=
   (isHermitian_adj f).ciSup_eigenvalues_le_l2_opNorm
 

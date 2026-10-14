@@ -23,6 +23,9 @@ variable {F R S : Type*} [Ring R] [Ring S] [FunLike F R S] [RingHomClass F R S]
 
 attribute [simp] mem_comap
 
+/--
+@isnad1 id=injectiv.1h4v.s7.662c28eba24f from=translated src=- shape=d01aca25 vocab=860dd7bf
+-/
 lemma comap_injective (f : F) (hf : Surjective f) : Injective (comap f) := by
   simp [Function.Injective, SetLike.ext_iff, hf.forall]
 

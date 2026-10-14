@@ -172,7 +172,9 @@ private lemma ofReal_spatialGradientSq_le (u : ParabolicPoint → Vec3)
 /-- A parabolic cylinder whose closure lies in the open carrier `Ω × I` is
 contained in a local box `Ω' × J`.  The box is obtained by thickening the
 compact closed slices of the cylinder; the carrier is open, so a positive
-thickening radius keeps it inside. -/
+thickening radius keeps it inside.
+@isnad1 id=ex.4h5v.s6.cdd0af5b2912 from=translated src=- shape=132bfaad vocab=fae3cab7
+-/
 theorem exists_localBox_of_closure_subset {Ω : Set Vec3} {I : Set ℝ}
     (hΩ : IsOpen Ω) (hI : IsOpen I) {x : Vec3} {t r : ℝ} (hr : 0 < r)
     (hsub : closure (parabolicCylinder x t r) ⊆ spaceTimeSet Ω I) :
@@ -256,7 +258,9 @@ private lemma sws_local_box_data
 
 /-- On a cylinder whose closure lies in the carrier, the `def:sws` time-slice
 energy estimate bounds the essential supremum of the Euclidean time-slice energy
-occurring in `lem:monotonicity` for `α`. -/
+occurring in `lem:monotonicity` for `α`.
+@isnad1 id=lt.3h9v.s6.e19d1e9cf1ee from=translated src=- shape=88dfab2a vocab=542e0191
+-/
 theorem sws_timeSliceEnergyEssSup_lt_top
     (h : IsSuitableWeakSolutionIntegrable Ω I q u Du p f)
     {z : ParabolicPoint} {r : ℝ} (hr : 0 < r)
@@ -303,7 +307,9 @@ theorem sws_timeSliceEnergyEssSup_lt_top
   exact lt_of_le_of_lt hmono (ENNReal.mul_lt_top (by norm_num) hEssSup)
 
 /-- Restatement of `sws_timeSliceEnergyEssSup_lt_top` in the `≠ ⊤` form in which
-the hypothesis appears in `lem:monotonicity`. -/
+the hypothesis appears in `lem:monotonicity`.
+@isnad1 id=ne.3h9v.s6.00c3dac87de2 from=translated src=- shape=f7349d2f vocab=542e0191
+-/
 theorem sws_timeSliceEnergyEssSup_ne_top
     (h : IsSuitableWeakSolutionIntegrable Ω I q u Du p f)
     {z : ParabolicPoint} {r : ℝ} (hr : 0 < r)
@@ -314,7 +320,9 @@ theorem sws_timeSliceEnergyEssSup_ne_top
 /-! ### Finiteness of the gradient, pressure and force integrals -/
 
 /-- The Dirichlet-energy integral of `lem:monotonicity` for `β` is finite on a
-cylinder whose closure lies in the carrier. -/
+cylinder whose closure lies in the carrier.
+@isnad1 id=lt.3h9v.s6.8c8fd9c68ebc from=translated src=- shape=ec4f6fd5 vocab=d58f9a5a
+-/
 theorem sws_gradient_integral_lt_top
     (h : IsSuitableWeakSolutionIntegrable Ω I q u Du p f)
     {z : ParabolicPoint} {r : ℝ} (hr : 0 < r)
@@ -340,7 +348,9 @@ theorem sws_gradient_integral_lt_top
     _ < ⊤ := ENNReal.mul_lt_top (by norm_num) henergy
 
 /-- The pressure integral of `lem:monotonicity` for `δ` is finite on a cylinder
-whose closure lies in the carrier. -/
+whose closure lies in the carrier.
+@isnad1 id=lt.3h9v.s7.b51abf06d4ea from=translated src=- shape=b9fdc81f vocab=0bde12d8
+-/
 theorem sws_pressure_integral_lt_top
     (h : IsSuitableWeakSolutionIntegrable Ω I q u Du p f)
     {z : ParabolicPoint} {r : ℝ} (hr : 0 < r)
@@ -360,7 +370,9 @@ theorem sws_pressure_integral_lt_top
   exact lt_of_le_of_lt (lintegral_mono_set hcyl) hbox_int
 
 /-- The force integral of `lem:monotonicity` for `λ` is finite on a cylinder
-whose closure lies in the carrier, for the exponent `q > 0` of `def:sws`. -/
+whose closure lies in the carrier, for the exponent `q > 0` of `def:sws`.
+@isnad1 id=lt.3h9v.s7.f14da6262338 from=translated src=- shape=5c3013bc vocab=45724375
+-/
 theorem sws_force_integral_lt_top
     (h : IsSuitableWeakSolutionIntegrable Ω I q u Du p f)
     {z : ParabolicPoint} {r : ℝ} (hr : 0 < r)
@@ -393,7 +405,9 @@ theorem sws_force_integral_lt_top
 /-! ### Hypothesis-free monotonicity for suitable weak solutions -/
 
 /-- `lem:monotonicity` for the velocity energy `α`, with the finiteness
-hypothesis supplied by `def:sws`. -/
+hypothesis supplied by `def:sws`.
+@isnad1 id=le.4h10v.s7.528a3440c52a from=translated src=- shape=47226664 vocab=6b0731b5
+-/
 theorem alpha_mono_radius_of_sws
     (h : IsSuitableWeakSolutionIntegrable Ω I q u Du p f) (z : ParabolicPoint)
     {r₁ r₂ : ℝ} (hr₁ : 0 < r₁) (hrr : r₁ ≤ r₂)
@@ -403,7 +417,9 @@ theorem alpha_mono_radius_of_sws
     (sws_timeSliceEnergyEssSup_ne_top h (z := z) (lt_of_lt_of_le hr₁ hrr) hsub)
 
 /-- `lem:monotonicity` for the gradient quantity `β`, with the finiteness
-hypothesis supplied by `def:sws`. -/
+hypothesis supplied by `def:sws`.
+@isnad1 id=le.4h10v.s7.2aa681a1d862 from=translated src=- shape=2f92f378 vocab=c26287e1
+-/
 theorem beta_mono_radius_of_sws
     (h : IsSuitableWeakSolutionIntegrable Ω I q u Du p f) (z : ParabolicPoint)
     {r₁ r₂ : ℝ} (hr₁ : 0 < r₁) (hrr : r₁ ≤ r₂)
@@ -413,7 +429,9 @@ theorem beta_mono_radius_of_sws
     (ne_of_lt (sws_gradient_integral_lt_top h (z := z) (lt_of_lt_of_le hr₁ hrr) hsub))
 
 /-- `lem:monotonicity` for the pressure quantity `δ` in squared form, with the
-finiteness hypothesis supplied by `def:sws`. -/
+finiteness hypothesis supplied by `def:sws`.
+@isnad1 id=le.4h10v.s7.421c46bde02e from=translated src=- shape=1bf3a09c vocab=082ada92
+-/
 theorem delta_sq_mono_radius_of_sws
     (h : IsSuitableWeakSolutionIntegrable Ω I q u Du p f) (z : ParabolicPoint)
     {r₁ r₂ : ℝ} (hr₁ : 0 < r₁) (hrr : r₁ ≤ r₂)
@@ -423,7 +441,9 @@ theorem delta_sq_mono_radius_of_sws
     (ne_of_lt (sws_pressure_integral_lt_top h (z := z) (lt_of_lt_of_le hr₁ hrr) hsub))
 
 /-- `lem:monotonicity` for the force quantity `λ`, with the finiteness
-hypothesis supplied by `def:sws`. -/
+hypothesis supplied by `def:sws`.
+@isnad1 id=le.4h10v.s7.3365788799dc from=translated src=- shape=f1af2857 vocab=c580ed5b
+-/
 theorem lambda_mono_radius_of_sws
     (h : IsSuitableWeakSolutionIntegrable Ω I q u Du p f) (z : ParabolicPoint)
     {r₁ r₂ : ℝ} (hr₁ : 0 < r₁) (hrr : r₁ ≤ r₂)

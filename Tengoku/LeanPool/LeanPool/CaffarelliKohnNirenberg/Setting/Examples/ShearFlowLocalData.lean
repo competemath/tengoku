@@ -30,7 +30,9 @@ private theorem amplitude_bound (s a : ℝ) (hs : 0 ≤ s) (ha : |a| ≤ 1) :
     Real.exp (-s) * |a| ≤ 1 * 1 := mul_le_mul he ha (abs_nonneg _) (by norm_num)
     _ = 1 := one_mul 1
 
-/-- Uniform velocity bound in nonnegative time. -/
+/-- Uniform velocity bound in nonnegative time.
+@isnad1 id=le.1h2v.s6.c8efb48b95fb from=translated src=- shape=52416a8b vocab=b85c2138
+-/
 theorem shearFlow_norm_le_one (x : Vec3) (s : ℝ) (hs : 0 ≤ s) :
     ‖shearFlow (x, s)‖ ≤ 1 := by
   apply (pi_norm_le_iff_of_nonneg (by norm_num : (0 : ℝ) ≤ 1)).mpr
@@ -40,7 +42,9 @@ theorem shearFlow_norm_le_one (x : Vec3) (s : ℝ) (hs : 0 ≤ s) :
       amplitude_bound s (Real.sin (x 1)) hs (Real.abs_sin_le_one _)
   · simp [shearFlow, hi]
 
-/-- Uniform explicit-gradient bound in nonnegative time. -/
+/-- Uniform explicit-gradient bound in nonnegative time.
+@isnad1 id=le.1h2v.s6.1f988f17ad80 from=translated src=- shape=12dd7166 vocab=dbd97469
+-/
 theorem shearFlowGrad_norm_le_one (x : Vec3) (s : ℝ) (hs : 0 ≤ s) :
     ‖shearFlowGrad (x, s)‖ ≤ 1 := by
   apply (pi_norm_le_iff_of_nonneg (by norm_num : (0 : ℝ) ≤ 1)).mpr
@@ -62,7 +66,9 @@ private theorem enorm_sq_le_one {E : Type*} [NormedAddCommGroup E]
       ENNReal.rpow_le_rpow he (by norm_num)
     _ = 1 := by simp
 
-/-- All local measurability, finite-energy, and weak-gradient clauses. -/
+/-- All local measurability, finite-energy, and weak-gradient clauses.
+@isnad1 id=and.1h2v.s10.9a20d0f01837 from=translated src=- shape=0dccf05d vocab=51e810ae
+-/
 theorem shearFlow_localData (Ω' : Set Vec3) (J : Set ℝ)
     (hbox : localBox Set.univ (Ioo 0 1) Ω' J) :
     AEStronglyMeasurable shearFlow (volume.restrict (spaceTimeSet Ω' J)) ∧

@@ -26,7 +26,9 @@ namespace CKN
 
 /-- A weak partial derivative may be replaced by any function that agrees with
 it almost everywhere on the domain: the defining integral identity only sees
-the values of the derivative through the ambient measure restricted to `U`. -/
+the values of the derivative through the ambient measure restricted to `U`.
+@isnad1 id=hasweakp.2h6v.s6.11ce7f7c491e from=translated src=- shape=93620509 vocab=8f2f78e2
+-/
 theorem HasWeakPartialDerivOn.congr_deriv_ae {d : ℕ} {U : Set (Vec d)}
     {i : Fin d} {u g h : Vec d → ℝ}
     (hgh : g =ᵐ[volume.restrict U] h)
@@ -41,7 +43,9 @@ theorem HasWeakPartialDerivOn.congr_deriv_ae {d : ℕ} {U : Set (Vec d)}
 
 /-- A locally integrable function times a compactly supported continuous
 function is integrable on a measurable domain containing the support of the
-continuous factor. -/
+continuous factor.
+@isnad1 id=integrab.5h4v.s8.1a6eac969f0f from=translated src=- shape=a4b636fd vocab=b3fd54a5
+-/
 theorem integrableOn_mul_continuous_of_locallyIntegrableOn {d : ℕ} {U : Set (Vec d)}
     (hU : MeasurableSet U) {u c : Vec d → ℝ}
     (hu : LocallyIntegrableOn u U volume)
@@ -58,7 +62,9 @@ theorem integrableOn_mul_continuous_of_locallyIntegrableOn {d : ℕ} {U : Set (V
 
 /-- A set integral of a function that vanishes off a set `S` agrees on any two
 ambient sets containing `S`: the integrand is invisible outside `S`, so neither
-ambient set contributes anything beyond it. -/
+ambient set contributes anything beyond it.
+@isnad1 id=eq.3h5v.s7.e42f76c3dfdd from=translated src=- shape=bafd4dc0 vocab=4fde179c
+-/
 theorem setIntegral_eq_of_support_subset {d : ℕ} {A B S : Set (Vec d)}
     {F : Vec d → ℝ} (hzero : ∀ x, x ∉ S → F x = 0) (hA : S ⊆ A) (hB : S ⊆ B) :
     ∫ x in A, F x ∂volume = ∫ x in B, F x ∂volume := by

@@ -33,7 +33,9 @@ noncomputable section
 
 namespace CKN.Foundation.Heat
 
-/-- Iterated derivatives at a point of an open set only depend on the function there. -/
+/-- Iterated derivatives at a point of an open set only depend on the function there.
+@isnad1 id=eq.3h6v.s9.b3ade3de7803 from=translated src=- shape=065463a6 vocab=de99dea5
+-/
 theorem iteratedFDeriv_eq_of_eqOn_isOpen {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F]
     {f g : Vec3 → F} {U : Set Vec3} (hU : IsOpen U) (hfg : Set.EqOn f g U) (n : ℕ)
     {x : Vec3} (hx : x ∈ U) :
@@ -42,7 +44,9 @@ theorem iteratedFDeriv_eq_of_eqOn_isOpen {F : Type*} [NormedAddCommGroup F] [Nor
     ((iteratedFDerivWithin_congr hfg hx n).trans
       (iteratedFDerivWithin_of_isOpen (𝕜 := ℝ) n hU hx))
 
-/-- A function of order `n + 1` on an open set has a differentiable `n`-th derivative there. -/
+/-- A function of order `n + 1` on an open set has a differentiable `n`-th derivative there.
+@isnad1 id=differen.3h5v.s10.93360b425a9c from=translated src=- shape=ce24d9a7 vocab=98a26eb3
+-/
 theorem differentiableAt_iteratedFDeriv_of_isOpen {F : Type*} [NormedAddCommGroup F]
     [NormedSpace ℝ F] {f : Vec3 → F} {U : Set Vec3} (hU : IsOpen U) (n : ℕ)
     (hf : ContDiffOn ℝ (n + 1 : ℕ) f U) {x : Vec3} (hx : x ∈ U) :
@@ -54,7 +58,9 @@ theorem differentiableAt_iteratedFDeriv_of_isOpen {F : Type*} [NormedAddCommGrou
     hdiff.congr fun y hy => (iteratedFDerivWithin_of_isOpen (𝕜 := ℝ) n hU hy).symm
   exact hdiff'.differentiableAt (hU.mem_nhds hx)
 
-/-- A function of order `n` on an open set has a continuous `n`-th derivative there. -/
+/-- A function of order `n` on an open set has a continuous `n`-th derivative there.
+@isnad1 id=continuo.2h4v.s9.1c2808294e17 from=translated src=- shape=0ea90cf7 vocab=94f97e9c
+-/
 theorem continuousOn_iteratedFDeriv_of_isOpen {F : Type*} [NormedAddCommGroup F]
     [NormedSpace ℝ F] {f : Vec3 → F} {U : Set Vec3} (hU : IsOpen U) (n : ℕ)
     (hf : ContDiffOn ℝ (n : ℕ) f U) :

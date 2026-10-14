@@ -26,6 +26,9 @@ noncomputable section
 
 namespace CKN.Foundation.Euclidean
 
+/--
+@isnad1 id=countabl.0h0v.s1.962b4ae87854 from=translated src=- shape=49959d42 vocab=112d1305
+-/
 instance dyadicIndexCountable : Countable DyadicIndex := by
   obtain ⟨f, hf⟩ := Countable.exists_injective_nat (ℤ × DyadicCorner)
   apply Countable.mk
@@ -552,6 +555,9 @@ private theorem dyadicMaximal_pairwise
         exact hRhigh
       exact hQmax n (Nat.pos_of_ne_zero hn) hhigh
 
+/--
+@isnad1 id=le.0h2v.s4.74881b9069dc from=translated src=- shape=4311f2f5 vocab=829bfc6d
+-/
 theorem abs_dyadicAverage_le_dyadicAbsAverage
     {F : Vec3 → ℝ} (Q : DyadicIndex) :
     |dyadicAverage F Q| ≤ dyadicAbsAverage F Q := by
@@ -617,6 +623,9 @@ private theorem dyadic_maximal_good_part_bound_ae
         _ ≤ 8 * height := by nlinarith only [hheight]
     simpa [dyadicGoodPart, hxmem] using hbound
 
+/--
+@isnad1 id=other.2h2v.s9.5608b0d3a5c8 from=translated src=- shape=890b452d vocab=6ffa772d
+-/
 theorem dyadicMaximalCubes_spec
     {F : Vec3 → ℝ} (hF : Integrable F) {height : ℝ} (hheight : 0 < height) :
     let D := dyadicMaximalCubes F height
@@ -686,28 +695,43 @@ structure CZDecomposition (F : Vec3 → ℝ) (height : ℝ) where
       ∫⁻ x in dyadicCubeSet Q.1, ENNReal.ofReal |dyadicBadPart F Q.1 x|) ≤
         2 * dyadicL1Norm F
 
+/--
+@isnad1 id=eq.1h3v.s4.bab25c8727ae from=translated src=- shape=36be844e vocab=1f63011c
+-/
 theorem dyadicGoodPart_eq_of_not_mem {F : Vec3 → ℝ} {D : Set DyadicIndex}
     {x : Vec3} (hx : ¬dyadicCubeMember D x) :
     dyadicGoodPart F D x = F x := by
   simp [dyadicGoodPart, hx]
 
+/--
+@isnad1 id=le.0h2v.s4.8dcd82df83e1 from=translated src=- shape=b8e76cf2 vocab=c7a33e3c
+-/
 theorem dyadicBadPart_support_subset {F : Vec3 → ℝ} (Q : DyadicIndex) :
     Function.support (dyadicBadPart F Q) ⊆ dyadicCubeSet Q := by
   intro x hx
   by_contra hxc
   simp [dyadicBadPart, hxc] at hx
 
+/--
+@isnad1 id=eventual.0h3v.s7.2a3f8c2ad6ab from=translated src=- shape=eb6e9eda vocab=ab2dd2c2
+-/
 theorem CZDecomposition.off_cubes_bound {F : Vec3 → ℝ} {height : ℝ}
     (D : CZDecomposition F height) :
     ∀ᵐ x ∂volume,
       x ∉ ⋃ Q ∈ D.cubes, dyadicCubeSet Q → |F x| ≤ height :=
   D.off_cubes_le_ae
 
+/--
+@isnad1 id=eventual.0h3v.s7.d0c9daa1c405 from=translated src=- shape=39700732 vocab=16b01d1e
+-/
 theorem CZDecomposition.good_part_bound {F : Vec3 → ℝ} {height : ℝ}
     (D : CZDecomposition F height) :
     ∀ᵐ x ∂volume, |dyadicGoodPart F D.cubes x| ≤ 8 * height :=
   D.good_part_bound_ae
 
+/--
+@isnad1 id=eq.1h4v.s7.0d5164d8de0d from=translated src=- shape=8df325a7 vocab=2ee111de
+-/
 theorem CZDecomposition.bad_part_mean {F : Vec3 → ℝ} {height : ℝ}
     (D : CZDecomposition F height) {Q : DyadicIndex} (hQ : Q ∈ D.cubes) :
     ∫ x in dyadicCubeSet Q, dyadicBadPart F Q x = 0 :=

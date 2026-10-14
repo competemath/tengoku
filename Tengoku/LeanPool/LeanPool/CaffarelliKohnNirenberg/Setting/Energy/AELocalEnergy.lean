@@ -104,6 +104,9 @@ private lemma localEnergyRhs_eq_zero_of_not_mem_tsupport
     spatialSecondPartial_eq_zero_of_not_mem_tsupport hψ hz i i
   simp [localEnergyRhs, hψ0, ht, hs, hss]
 
+/--
+@isnad1 id=eq.2h5v.s8.cba3ca1ddd80 from=translated src=- shape=634657bf vocab=ad3bd446
+-/
 theorem localEnergyRhs_eq_zero_of_not_mem_tsupport_public
     {u : Vec3 × ℝ → Vec3} {p : Vec3 × ℝ → ℝ}
     {f : Vec3 × ℝ → Vec3} {ψ : Vec3 × ℝ → ℝ}
@@ -170,6 +173,9 @@ private lemma diss_integrable_and_rhs_integrable
     (integrableOn_iff_integrable_of_support_subset hrhs_support).mp hrhs', ?_⟩
   exact he
 
+/--
+@isnad1 id=and.3h8v.s8.b0282c8e301e from=translated src=- shape=dff0839b vocab=3ed09fc4
+-/
 theorem suitableWeakSolution_energy_integrable
     {Ω : Set Vec3} {I : Set ℝ} {q : ℝ}
     {u : ParabolicPoint → Vec3}

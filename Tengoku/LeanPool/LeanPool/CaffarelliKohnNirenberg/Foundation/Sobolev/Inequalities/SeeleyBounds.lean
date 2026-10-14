@@ -115,6 +115,9 @@ private theorem seeleyBounds_den_inv_sq_le {x : Vec 3}
   rw [abs_pow]
   simpa only [one_pow] using (sq_le_sq₀ (abs_nonneg _) (by norm_num)).2 hi
 
+/--
+@isnad1 id=le.1h1v.s9.1030eb28e2ff from=translated src=- shape=112aa297 vocab=305b2738
+-/
 theorem seeleyReflectionOne_fderiv_norm_le {x : Vec 3}
     (hx : x ∈ seeleyClosedAnnulus) :
     ‖fderiv ℝ seeleyReflectionOne x‖ ≤ 25 := by
@@ -153,6 +156,9 @@ theorem seeleyReflectionOne_fderiv_norm_le {x : Vec 3}
         _ = 25 * ‖z‖ := by ring_nf
         _ ≤ _ := le_rfl
 
+/--
+@isnad1 id=le.1h1v.s9.fcceb0ff024b from=translated src=- shape=112aa297 vocab=c78bdb4f
+-/
 theorem seeleyReflectionTwo_fderiv_norm_le {x : Vec 3}
     (hx : x ∈ seeleyClosedAnnulus) :
     ‖fderiv ℝ seeleyReflectionTwo x‖ ≤ 169 := by

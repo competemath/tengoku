@@ -24,7 +24,9 @@ noncomputable section
 namespace CKN.Core.Step4
 
 /-- Spatial Hölder, raised to the source exponent, retains the ball's
-volume to the power `1/5`. -/
+volume to the power `1/5`.
+@isnad1 id=le.1h2v.s9.42fb638b6f58 from=translated src=- shape=100fbdf7 vocab=4be33507
+-/
 theorem pressure_source_spatial_mass_power_bound
     {G : Vec3 → ℝ} {B : Set Vec3}
     (hG : AEMeasurable G (volume.restrict B)) :
@@ -45,7 +47,9 @@ theorem pressure_source_spatial_mass_power_bound
   exact mul_comm _ _
 
 /-- A smaller cell time window is controlled by the full parabolic cylinder
-at the source ball's radius. -/
+at the source ball's radius.
+@isnad1 id=le.3h5v.s8.e8568a7f56b2 from=translated src=- shape=4dbb37aa vocab=4818323c
+-/
 theorem pressure_source_spatial_mass_time_power_bound
     {F : ParabolicPoint → ℝ} (hF : AEMeasurable F volume)
     {x : Vec3} {t r ρ : ℝ} (hr : 0 < r) (hrρ : r ≤ ρ) :
@@ -85,7 +89,9 @@ theorem pressure_source_spatial_mass_time_power_bound
       simp only [Real.enorm_eq_ofReal_abs]
 
 /-- The inverse-cube exterior kernel factor converts the integrated source
-mass into the Morrey tail power `ρ^{5/3 - 5/κ}`. -/
+mass into the Morrey tail power `ρ^{5/3 - 5/κ}`.
+@isnad1 id=le.3h6v.s9.37ce0d14e116 from=translated src=- shape=fb00795f vocab=82d04249
+-/
 theorem pressure_source_exterior_mass_time_bound
     {κ : ℝ} {F : ParabolicPoint → ℝ} (hF : AEMeasurable F volume)
     {x : Vec3} {t r ρ : ℝ} (hr : 0 < r) (hrρ : r ≤ ρ) :
@@ -132,7 +138,9 @@ theorem pressure_source_exterior_mass_time_bound
     _ ≤ _ := mul_le_mul_right hc _
 
 /-- Removing the Morrey normalization recovers the source's cell mass
-with its exact positive radius power. -/
+with its exact positive radius power.
+@isnad1 id=le.1h4v.s7.a4ea5da4e229 from=translated src=- shape=1a202249 vocab=68d7ff65
+-/
 theorem pressure_source_cylinder_power_root_bound
     {κ : ℝ} (F : ParabolicPoint → ℝ) (z : ParabolicPoint)
     {ρ : ℝ} (hρ : 0 < ρ) :

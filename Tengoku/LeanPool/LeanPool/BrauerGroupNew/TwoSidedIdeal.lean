@@ -49,12 +49,18 @@ def span' (s : Set R) : TwoSidedIdeal R := .mk'
     rintro _ b ⟨n, finn, xL, xR, y, rfl⟩
     exact ⟨n, finn, xL, fun x ↦ xR x * b, y, by simp [Finset.sum_mul, mul_assoc]⟩)
 
+/--
+@isnad1 id=iff.0h3v.s7.1674cf09d622 from=translated src=- shape=ce782fc4 vocab=68799d47
+-/
 lemma mem_span'_iff_exists_fin (s : Set R) (x : R) :
     x ∈ span' s ↔
     ∃ (ι : Type) (_ : Fintype ι) (xL : ι → R) (xR : ι → R) (y : ι → s),
     x = ∑ i : ι, xL i * (y i : R) * xR i := by
   simp only [span', mem_mk', Set.mem_ofPred_eq]
 
+/--
+@isnad1 id=iff.0h3v.s7.d520132797e3 from=translated src=- shape=ce782fc4 vocab=782ed49a
+-/
 lemma mem_span_iff_exists_fin (s : Set R) (x : R) :
     x ∈ span s ↔
     ∃ (ι : Type) (_ : Fintype ι) (xL : ι → R) (xR : ι → R) (y : ι → s),
@@ -80,6 +86,9 @@ lemma mem_span_iff_exists_fin (s : Set R) (x : R) :
     exact ⟨(span' s).ringCon, fun a b H ↦ ⟨PUnit, inferInstance, fun _ ↦ 1, fun _ ↦ 1,
       fun _ ↦ ⟨a - b, by simp [H]⟩, by simp⟩, hI⟩
 
+/--
+@isnad1 id=iff.0h3v.s7.a85d35002bcd from=translated src=- shape=b3301999 vocab=ffbd0cb8
+-/
 lemma mem_span_ideal_iff_exists_fin (s : Ideal R) (x : R) :
     x ∈ span s ↔
     ∃ (ι : Type) (_ : Fintype ι) (xR : ι → R) (y : ι → s),
@@ -91,9 +100,15 @@ lemma mem_span_ideal_iff_exists_fin (s : Ideal R) (x : R) :
   · rintro ⟨n, fin, xR, y, rfl⟩
     exact ⟨n, fin, 1, xR, y, by simp⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.cb00265599d7 from=translated src=- shape=20d492fb vocab=29465cef
+-/
 lemma coe_bot_set : ((⊥ : TwoSidedIdeal R) : Set R) = {0} := by
   simp_all
 
+/--
+@isnad1 id=eq.0h1v.s5.6a83b0cc5e8c from=translated src=- shape=2100d262 vocab=b7de7ed7
+-/
 lemma coe_top_set : ((⊤ : TwoSidedIdeal R) : Set R) = Set.univ := by
   simp_all
 

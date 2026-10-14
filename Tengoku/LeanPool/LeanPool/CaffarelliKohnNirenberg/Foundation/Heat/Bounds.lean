@@ -28,6 +28,9 @@ namespace CKN.Foundation.Heat
 
 open CKN.Foundation.Parabolic
 
+/--
+@isnad1 id=le.0h2v.s4.10214af97440 from=translated src=- shape=a4c675b7 vocab=2a67bc8f
+-/
 lemma abs_vec3_component_le_norm (x : Vec3) (i : Fin 3) :
     |x i| ≤ vec3EuclideanNorm x := by
   have hi : (x i) ^ 2 ≤ ∑ j, x j ^ 2 := by
@@ -135,6 +138,9 @@ private lemma heatKernel_time_gradient_abs_le {x : Vec3} {t : ℝ}
     _ = vec3EuclideanNorm x / (2 * t ^ 2) * heatKernel x t *
         (((∑ j, x j ^ 2) / (4 * t) + (5 : ℝ) / 2)) := by ring
 
+/--
+@isnad1 id=le.1h2v.s5.8d32e7387dce from=translated src=- shape=61521ffb vocab=65dfd3b7
+-/
 lemma heatKernel_gradient_rho_four_le {x : Vec3} {t : ℝ} (ht : 0 < t) :
     rhoTwo x t ^ 4 * heatKernelGradientNorm x t ≤ 300000 := by
   let s : ℝ := vec3EuclideanNorm x
@@ -213,6 +219,9 @@ lemma heatKernel_gradient_rho_four_le {x : Vec3} {t : ℝ} (ht : 0 < t) :
         (by positivity)
     _ ≤ 300000 := by norm_num
 
+/--
+@isnad1 id=le.1h2v.s5.56b4d807aa67 from=translated src=- shape=4c12d7cf vocab=08a78337
+-/
 lemma heatKernel_time_derivative_rho_five_le {x : Vec3} {t : ℝ} (ht : 0 < t) :
     rhoTwo x t ^ 5 * |heatKernelTimeDerivative x t| ≤ 10000000 := by
   let s : ℝ := vec3EuclideanNorm x
@@ -279,6 +288,9 @@ lemma heatKernel_time_derivative_rho_five_le {x : Vec3} {t : ℝ} (ht : 0 < t) :
         (by positivity)
     _ ≤ 10000000 := by norm_num
 
+/--
+@isnad1 id=le.1h2v.s5.9abbc92ca2e4 from=translated src=- shape=61521ffb vocab=188b3b5a
+-/
 lemma heatKernel_time_gradient_rho_six_le {x : Vec3} {t : ℝ} (ht : 0 < t) :
     rhoTwo x t ^ 6 * heatKernelTimeGradientNorm x t ≤ 30000000000 := by
   let s : ℝ := vec3EuclideanNorm x
@@ -360,6 +372,9 @@ lemma heatKernel_time_gradient_rho_six_le {x : Vec3} {t : ℝ} (ht : 0 < t) :
         (by positivity)
     _ ≤ 30000000000 := by norm_num
 
+/--
+@isnad1 id=le.1h2v.s5.96a4164c318f from=translated src=- shape=61521ffb vocab=78e3c8ad
+-/
 lemma heatKernel_rho_cube_le {x : Vec3} {t : ℝ} (ht : 0 < t) :
     rhoTwo x t ^ 3 * heatKernel x t ≤ 1000 := by
   let s : ℝ := vec3EuclideanNorm x
@@ -419,6 +434,9 @@ private lemma rhoTwo_pos {x : Vec3} {t : ℝ} (ht : 0 < t) : 0 < rhoTwo x t := b
   unfold rhoTwo
   exact add_pos_of_nonneg_of_pos (vec3EuclideanNorm_nonneg x) (Real.sqrt_pos.2 ht)
 
+/--
+@isnad1 id=le.1h2v.s5.0e27e4daae1d from=translated src=- shape=67861505 vocab=775d6ac1
+-/
 lemma heatKernel_le_rho_inv_cube {x : Vec3} {t : ℝ} (ht : 0 < t) :
     heatKernel x t ≤ 1000 / rhoTwo x t ^ 3 := by
   apply (le_div_iff₀ (pow_pos (rhoTwo_pos ht) 3)).2
@@ -426,6 +444,9 @@ lemma heatKernel_le_rho_inv_cube {x : Vec3} {t : ℝ} (ht : 0 < t) :
     heatKernel x t * rhoTwo x t ^ 3 = rhoTwo x t ^ 3 * heatKernel x t := by ring
     _ ≤ 1000 := heatKernel_rho_cube_le ht
 
+/--
+@isnad1 id=le.1h2v.s5.0b9d682ea848 from=translated src=- shape=67861505 vocab=cdb07921
+-/
 lemma heatKernelGradientNorm_le_rho_inv_four {x : Vec3} {t : ℝ} (ht : 0 < t) :
     heatKernelGradientNorm x t ≤ 300000 / rhoTwo x t ^ 4 := by
   apply (le_div_iff₀ (pow_pos (rhoTwo_pos ht) 4)).2
@@ -434,6 +455,9 @@ lemma heatKernelGradientNorm_le_rho_inv_four {x : Vec3} {t : ℝ} (ht : 0 < t) :
         rhoTwo x t ^ 4 * heatKernelGradientNorm x t := by ring
     _ ≤ 300000 := heatKernel_gradient_rho_four_le ht
 
+/--
+@isnad1 id=le.1h2v.s5.062f8b52289b from=translated src=- shape=612528ef vocab=c9ab6057
+-/
 lemma heatKernelTimeDerivative_le_rho_inv_five {x : Vec3} {t : ℝ} (ht : 0 < t) :
     |heatKernelTimeDerivative x t| ≤ 10000000 / rhoTwo x t ^ 5 := by
   apply (le_div_iff₀ (pow_pos (rhoTwo_pos ht) 5)).2
@@ -442,6 +466,9 @@ lemma heatKernelTimeDerivative_le_rho_inv_five {x : Vec3} {t : ℝ} (ht : 0 < t)
         rhoTwo x t ^ 5 * |heatKernelTimeDerivative x t| := by ring
     _ ≤ 10000000 := heatKernel_time_derivative_rho_five_le ht
 
+/--
+@isnad1 id=le.1h2v.s5.932298d3a135 from=translated src=- shape=67861505 vocab=e6fd363d
+-/
 lemma heatKernelTimeGradientNorm_le_rho_inv_six {x : Vec3} {t : ℝ} (ht : 0 < t) :
     heatKernelTimeGradientNorm x t ≤ 30000000000 / rhoTwo x t ^ 6 := by
   apply (le_div_iff₀ (pow_pos (rhoTwo_pos ht) 6)).2
@@ -450,6 +477,9 @@ lemma heatKernelTimeGradientNorm_le_rho_inv_six {x : Vec3} {t : ℝ} (ht : 0 < t
         rhoTwo x t ^ 6 * heatKernelTimeGradientNorm x t := by ring
     _ ≤ 30000000000 := heatKernel_time_gradient_rho_six_le ht
 
+/--
+@isnad1 id=le.1h3v.s6.ae4a93b1a9a4 from=translated src=- shape=de567952 vocab=0f6170f7
+-/
 lemma heatKernelSpaceDerivative_abs_le_rho_inv_four {x : Vec3} {t : ℝ}
     (ht : 0 < t) (i : Fin 3) :
     |heatKernelSpaceDerivative x t i| ≤ 300000 / rhoTwo x t ^ 4 := by

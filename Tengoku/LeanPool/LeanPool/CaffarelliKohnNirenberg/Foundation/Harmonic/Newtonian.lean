@@ -31,6 +31,9 @@ namespace CKN.Foundation.Heat
 
 open CKN.Foundation.Parabolic
 
+/--
+@isnad1 id=eq.1h1v.s6.243db9651b51 from=translated src=- shape=6129e06f vocab=73b769a2
+-/
 lemma heatKernel_integral_Ioi {x : Vec3} (hx : x ≠ 0) :
     ∫ t : ℝ in Ioi 0, heatKernel x t =
       1 / (4 * Real.pi * vec3EuclideanNorm x) := by

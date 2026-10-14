@@ -38,7 +38,9 @@ private theorem mollify_eq_integral {d : ℕ} (u : Vec d → ℝ) {ε : ℝ} (h�
 /-- **Pointwise bound for a mollification.** If `u` is continuous and bounded above in absolute
 value by `M`, then its normalized mollification at scale `ε` obeys the same bound at every point:
 `|mollify u ε hε x| ≤ M`. This is the elementary bound under the Caffarelli–Kohn–Nirenberg
-normalized kernel used in the slice-distribution estimates. -/
+normalized kernel used in the slice-distribution estimates.
+@isnad1 id=le.3h5v.s6.18e9d9813f64 from=translated src=- shape=14fad221 vocab=9ce91096
+-/
 theorem abs_mollify_le {d : ℕ} {u : Vec d → ℝ} (hu : Continuous u) {M : ℝ}
     (hM : ∀ x : Vec d, |u x| ≤ M) {ε : ℝ} (hε : 0 < ε) (x : Vec d) :
     |mollify u ε hε x| ≤ M := by
@@ -82,7 +84,9 @@ theorem abs_mollify_le {d : ℕ} {u : Vec d → ℝ} (hu : Continuous u) {M : �
 /-- **Support of a mollification.** The support of `mollify u ε hε` is contained in the closed
 `ε`-neighbourhood of the topological support of `u`: outside `cthickening ε (tsupport u)` the
 mollification vanishes, because the Caffarelli–Kohn–Nirenberg kernel only sees the values of `u`
-on the radius-`ε` ball around the point. -/
+on the radius-`ε` ball around the point.
+@isnad1 id=le.1h3v.s6.f2afe084caf1 from=translated src=- shape=945af09e vocab=c3732e10
+-/
 theorem support_mollify_subset {d : ℕ} {u : Vec d → ℝ} {ε : ℝ} (hε : 0 < ε) :
     Function.support (mollify u ε hε) ⊆ Metric.cthickening ε (tsupport u) := by
   intro x hx

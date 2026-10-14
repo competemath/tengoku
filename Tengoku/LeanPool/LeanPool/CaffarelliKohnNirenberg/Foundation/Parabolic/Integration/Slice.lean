@@ -33,14 +33,18 @@ def spatialAverage (x : Vec3) (r s : ℝ) (g : ParabolicPoint → ℝ) : ℝ :=
 def cylinderAverage (x : Vec3) (t r : ℝ) (g : ParabolicPoint → ℝ) : ℝ :=
   ⨍ z in parabolicCylinder x t r, g z
 
-/-- The spatial average is the normalized spatial integral. -/
+/-- The spatial average is the normalized spatial integral.
+@isnad1 id=eq.0h4v.s8.966171de611a from=translated src=- shape=b0c5fab5 vocab=046d75f5
+-/
 theorem spatialAverage_eq_toReal_inv_smul (x : Vec3) (r s : ℝ)
     (g : ParabolicPoint → ℝ) :
     spatialAverage x r s g =
       (volume (vec3Ball x r)).toReal⁻¹ • ∫ y in vec3Ball x r, g (y, s) := by
   exact setAverage_eq_toReal_inv_smul volume (vec3Ball x r) (fun y => g (y, s))
 
-/-- The spatial average is bounded by the average of the absolute value. -/
+/-- The spatial average is bounded by the average of the absolute value.
+@isnad1 id=le.0h4v.s7.5fec9d582fb3 from=translated src=- shape=771c8137 vocab=32704321
+-/
 theorem spatialAverage_abs_le {x : Vec3} {r s : ℝ} {g : ParabolicPoint → ℝ} :
     |spatialAverage x r s g| ≤
       ⨍ y in vec3Ball x r, |g (y, s)| := by
@@ -54,7 +58,9 @@ theorem spatialAverage_abs_le {x : Vec3} {r s : ℝ} {g : ParabolicPoint → ℝ
         (fun y : Vec3 => g (y, s))))
     (inv_nonneg.mpr MeasureTheory.measureReal_nonneg)
 
-/-- Jensen's inequality for a nonnegative real power of a set average. -/
+/-- Jensen's inequality for a nonnegative real power of a set average.
+@isnad1 id=le.5h5v.s7.61ef3c382f79 from=translated src=- shape=be9d2f82 vocab=68c51e3a
+-/
 theorem setAverage_abs_rpow_le {α : Type*} [MeasurableSpace α]
     {μ : Measure α} {s : Set α} {f : α → ℝ} {p : ℝ}
     (hp : 1 ≤ p) (hsPos : 0 < μ s) (hsTop : μ s < ∞)
@@ -67,7 +73,9 @@ theorem setAverage_abs_rpow_le {α : Type*} [MeasurableSpace α]
     hf hfp
   simpa only [Function.comp_apply] using h
 
-/-- Jensen's inequality for the norm of a vector-valued set average. -/
+/-- Jensen's inequality for the norm of a vector-valued set average.
+@isnad1 id=le.5h6v.s7.9dd9c13657a1 from=translated src=- shape=de678410 vocab=6ef12cae
+-/
 theorem setAverage_norm_rpow_le {α E : Type*} [MeasurableSpace α]
     [NormedAddCommGroup E] [NormedSpace ℝ E]
     {μ : Measure α} {s : Set α} {f : α → E} {p : ℝ}
@@ -101,7 +109,9 @@ private theorem setLAverage_const_mul_add {α : Type*} [MeasurableSpace α]
   rw [mul_comm d (μ s), mul_div_assoc, ENNReal.mul_div_cancel hsPos.ne' hsTop.ne]
   rw [mul_add]
 
-/-- Mean oscillation is bounded by `2^p` times the oscillation around any constant. -/
+/-- Mean oscillation is bounded by `2^p` times the oscillation around any constant.
+@isnad1 id=le.5h7v.s8.52c046d2916b from=translated src=- shape=d172ca11 vocab=78a56f1e
+-/
 theorem setLaverage_norm_sub_setAverage_rpow_le {α E : Type*} [MeasurableSpace α]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
     {μ : Measure α} {s : Set α} {f : α → E} {p : ℝ} {c : E}
@@ -197,7 +207,9 @@ theorem setLaverage_norm_sub_setAverage_rpow_le {α E : Type*} [MeasurableSpace 
           congr 2
           ring
 
-/-- Scalar mean oscillation is bounded by `2^p` times oscillation around a constant. -/
+/-- Scalar mean oscillation is bounded by `2^p` times oscillation around a constant.
+@isnad1 id=le.5h6v.s8.225a93cf85bb from=translated src=- shape=47845ba5 vocab=153f3257
+-/
 theorem setLaverage_abs_sub_setAverage_rpow_le {α : Type*} [MeasurableSpace α]
     {μ : Measure α} {s : Set α} {f : α → ℝ} {p c : ℝ}
     (hp : 1 ≤ p) (hsPos : 0 < μ s) (hsTop : μ s < ∞)
@@ -208,7 +220,9 @@ theorem setLaverage_abs_sub_setAverage_rpow_le {α : Type*} [MeasurableSpace α]
   simpa only [Real.norm_eq_abs] using
     (setLaverage_norm_sub_setAverage_rpow_le hp hsPos hsTop hf hfp)
 
-/-- Scalar mean oscillation on a positive-radius spatial ball. -/
+/-- Scalar mean oscillation on a positive-radius spatial ball.
+@isnad1 id=le.4h6v.s9.71379f59ab5c from=translated src=- shape=102f7951 vocab=c8f9474b
+-/
 theorem ball_setLaverage_abs_sub_spatialAverage_rpow_le {x : Vec3} {r s : ℝ} {g : ParabolicPoint →
   ℝ}
     {p c : ℝ} (hp : 1 ≤ p) (hr : 0 < r)
@@ -220,7 +234,9 @@ theorem ball_setLaverage_abs_sub_spatialAverage_rpow_le {x : Vec3} {r s : ℝ} {
   exact setLaverage_abs_sub_setAverage_rpow_le hp (volume_vec3Ball_pos hr)
     (volume_vec3Ball_lt_top (x := x) (r := r)) hg hgp
 
-/-- Normalized scalar Hölder monotonicity on a finite positive-measure set. -/
+/-- Normalized scalar Hölder monotonicity on a finite positive-measure set.
+@isnad1 id=le.6h6v.s8.5f2bcd1d3231 from=translated src=- shape=497870ce vocab=595c58a8
+-/
 theorem setAverage_abs_rpow_norm_mono {α : Type*} [MeasurableSpace α]
     {μ : Measure α} {s : Set α} {f : α → ℝ} {p q : ℝ}
     (hq1 : 1 ≤ q) (hqp : q ≤ p) (hsPos : 0 < μ s) (hsTop : μ s < ∞)
@@ -274,7 +290,9 @@ theorem setAverage_abs_rpow_norm_mono {α : Type*} [MeasurableSpace α]
   convert hJ using 1
   field_simp [hq0.ne']
 
-/-- The absolute value of a set average is bounded by the normalized `Lᵖ` mean. -/
+/-- The absolute value of a set average is bounded by the normalized `Lᵖ` mean.
+@isnad1 id=le.5h5v.s7.022b2014fc17 from=translated src=- shape=cd2bb84e vocab=595c58a8
+-/
 theorem setAverage_abs_le_rpow_mean {α : Type*} [MeasurableSpace α]
     {μ : Measure α} {s : Set α} {f : α → ℝ} {p : ℝ}
     (hp : 1 ≤ p) (hsPos : 0 < μ s) (hsTop : μ s < ∞)
@@ -289,7 +307,9 @@ theorem setAverage_abs_le_rpow_mean {α : Type*} [MeasurableSpace α]
         (setAverage_abs_rpow_norm_mono (q := 1) (p := p) (by norm_num)
           hp hsPos hsTop hf hfp)
 
-/-- The spatial `L²` lintegral is monotone with the ball radius. -/
+/-- The spatial `L²` lintegral is monotone with the ball radius.
+@isnad1 id=le.1h5v.s8.1a957ab9a6f5 from=translated src=- shape=b7ff44e5 vocab=2b1cddc7
+-/
 theorem ball_lintegral_norm_sq_mono_radius {x : Vec3} {r₁ r₂ s : ℝ}
     (hrr : r₁ ≤ r₂) (g : ParabolicPoint → ℝ) :
     ∫⁻ y in vec3Ball x r₁, ‖g (y, s)‖ₑ ^ (2 : ℝ) ≤

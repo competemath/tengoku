@@ -57,6 +57,9 @@ private lemma two_le_card_prod {n m : ℕ} (hn : 2 ≤ n) (hm : 0 < m) :
   simpa [Fintype.card_prod, Fintype.card_fin] using
     (le_trans hn (Nat.le_mul_of_pos_right n hm))
 
+/--
+@isnad1 id=eq.2h3v.s5.d2940bbc5a7e from=translated src=- shape=b037c342 vocab=7c4671c4
+-/
 theorem uniformScalar_eq_of_mul (G : MonotoneMetricFamily) {n m : ℕ} (hn : 2 ≤ n) (hm : 0 < m) :
     uniformScalar G (Fintype.card (Fin n × Fin m))
       (by exact two_le_card_prod (n := n) (m := m) hn hm)
@@ -213,6 +216,9 @@ theorem uniformScalar_eq_of_mul (G : MonotoneMetricFamily) {n m : ℕ} (hn : 2 �
     mul_right_cancel₀ hFne this
   simpa [β, N] using hscalar
 
+/--
+@isnad1 id=eq.1h2v.s4.2ef5fcab263f from=translated src=- shape=d91ce3ce vocab=1145ff3c
+-/
 theorem uniformScalar_eq_uniformScalar_two (G : MonotoneMetricFamily) {n : ℕ} (hn : 2 ≤ n) :
     uniformScalar G n hn = uniformScalar G 2 (by decide) := by
   classical

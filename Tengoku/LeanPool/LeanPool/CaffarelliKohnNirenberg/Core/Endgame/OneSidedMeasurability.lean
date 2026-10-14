@@ -28,7 +28,9 @@ namespace CKN.Core.Endgame
 
 /-- A globally a.e. measurable coefficient supported on a measurable set
 turns a scalar field measurable only on that set into a globally a.e.
-measurable product. -/
+measurable product.
+@isnad1 id=aemeasur.4h3v.s6.4c16dc6927d7 from=translated src=- shape=a134ce74 vocab=fca757ed
+-/
 theorem aemeasurable_mul_of_restrict_of_zero_outside
     {S : Set ParabolicPoint} (hS : MeasurableSet S)
     {a g : ParabolicPoint → ℝ}
@@ -46,7 +48,9 @@ theorem aemeasurable_mul_of_restrict_of_zero_outside
 
 /-- Every component of the velocity, weak gradient, pressure, and force,
 indicated to the intermediate one-sided cylinder, is globally a.e.
-measurable. All measurability is supplied by the local solution clauses. -/
+measurable. All measurability is supplied by the local solution clauses.
+@isnad1 id=and.2h7v.s8.3ca9a8a9c3fc from=translated src=- shape=5bdf57f1 vocab=f12f5b0f
+-/
 theorem one_sided_indicated_components_aemeasurable
     {Ω : Set Vec3} {I : Set ℝ} {q : ℝ}
     {u : ParabolicPoint → Vec3} {Du : ParabolicPoint → Fin 3 → Vec3}

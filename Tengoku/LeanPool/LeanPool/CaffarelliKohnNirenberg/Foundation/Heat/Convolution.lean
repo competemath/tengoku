@@ -41,13 +41,17 @@ noncomputable def heatConv (t : ℝ) (u : Vec3 → ℝ) : Vec3 → ℝ :=
   MeasureTheory.convolution (fun y : Vec3 => heatKernel y t) u
     (ContinuousLinearMap.lsmul ℝ ℝ) volume
 
-/-- Pointwise integral form of `heatConv`. -/
+/-- Pointwise integral form of `heatConv`.
+@isnad1 id=eq.0h3v.s7.7d861aed8348 from=translated src=- shape=56331142 vocab=7f40f480
+-/
 theorem heatConv_eq_integral (t : ℝ) (u : Vec3 → ℝ) (x : Vec3) :
     heatConv t u x = ∫ y : Vec3, heatKernel y t * u (x - y) := by
   rw [heatConv, MeasureTheory.convolution_lsmul]
   rfl
 
-/-- Heat-kernel scaling in the spatial variable. -/
+/-- Heat-kernel scaling in the spatial variable.
+@isnad1 id=eq.1h2v.s6.4b8a3fc5f736 from=translated src=- shape=74919da3 vocab=a1ceaa60
+-/
 theorem heatKernel_scaling {x : Vec3} {t : ℝ} (ht : 0 < t) :
     heatKernel x t = (Real.sqrt t)⁻¹ ^ (3 : ℕ) *
       heatKernel ((Real.sqrt t)⁻¹ • x) 1 := by
@@ -84,7 +88,9 @@ theorem heatKernel_scaling {x : Vec3} {t : ℝ} (ht : 0 < t) :
   rw [← hbase']
   ring_nf
 
-/-- The Gaussian profile has vanishing polynomially weighted tails. -/
+/-- The Gaussian profile has vanishing polynomially weighted tails.
+@isnad1 id=tendsto.0h0v.s6.3d2689efa7b2 from=translated src=- shape=d4bbd887 vocab=e3831fbb
+-/
 theorem heatKernel_profile_tendsto_zero_cobounded :
     Tendsto (fun z : Vec3 => ‖z‖ ^ (3 : ℝ) * heatKernel z 1)
       (Bornology.cobounded Vec3) (𝓝 0) := by
@@ -135,7 +141,9 @@ theorem heatKernel_profile_tendsto_zero_cobounded :
         gcongr
       _ = s ^ (3 : ℝ) * Real.exp (-(1 / 4 : ℝ) * s) := by ring_nf
 
-/-- The heat-kernel profile tail in the natural-number power form. -/
+/-- The heat-kernel profile tail in the natural-number power form.
+@isnad1 id=tendsto.0h0v.s6.88ac67bff9ae from=translated src=- shape=2592ad42 vocab=e3831fbb
+-/
 theorem heatKernel_profile_tendsto_zero_cobounded_nat :
     Tendsto (fun z : Vec3 => ‖z‖ ^ (3 : ℕ) * heatKernel z 1)
       (Bornology.cobounded Vec3) (𝓝 0) := by
@@ -143,7 +151,9 @@ theorem heatKernel_profile_tendsto_zero_cobounded_nat :
   norm_num [Real.rpow_natCast]
 
 /-- Compactly supported heat convolution converges pointwise to its input at
-positive times tending to zero. -/
+positive times tending to zero.
+@isnad1 id=tendsto.2h2v.s7.e5863a558794 from=translated src=- shape=3d688d3c vocab=74d2f279
+-/
 theorem heatConv_tendsto_self_nhdsWithin_zero_smooth {u : Vec3 → ℝ}
     (hu : ContDiff ℝ (⊤ : ℕ∞) u) (huSupport : HasCompactSupport u) (x : Vec3) :
     Tendsto (fun t : ℝ => heatConv t u x) (𝓝[>] 0) (𝓝 (u x)) := by
@@ -181,7 +191,9 @@ theorem heatConv_tendsto_self_nhdsWithin_zero_smooth {u : Vec3 → ℝ}
   rw [heatKernel_scaling (x := x - y) ht]
   simp only [Module.finrank_fin_fun]
 
-/-- The heat kernel is bounded by its spatially constant prefactor. -/
+/-- The heat kernel is bounded by its spatially constant prefactor.
+@isnad1 id=le.1h2v.s6.4204124b5260 from=translated src=- shape=1a7509f3 vocab=1de2c113
+-/
 theorem heatKernel_le_prefactor {y : Vec3} {t : ℝ} (ht : 0 < t) :
     heatKernel y t ≤ (4 * Real.pi * t) ^ (-(3 : ℝ) / 2) := by
   rw [heatKernel_eq_formula_sum ht]
@@ -198,7 +210,9 @@ theorem heatKernel_le_prefactor {y : Vec3} {t : ℝ} (ht : 0 < t) :
         (by positivity : 0 ≤ (4 * Real.pi * t) ^ (-(3 : ℝ) / 2))
     _ = (4 * Real.pi * t) ^ (-(3 : ℝ) / 2) := by ring
 
-/-- A compactly supported convolution has the standard large-time bound. -/
+/-- A compactly supported convolution has the standard large-time bound.
+@isnad1 id=le.3h3v.s8.8454ef9a6326 from=translated src=- shape=eb044b3b vocab=3f55cff5
+-/
 theorem heatConv_abs_le_prefactor_mul_integral_smooth {u : Vec3 → ℝ}
     (hu : ContDiff ℝ (⊤ : ℕ∞) u) (huSupport : HasCompactSupport u) {t : ℝ}
     (ht : 0 < t) (x : Vec3) :
@@ -244,7 +258,9 @@ theorem heatConv_abs_le_prefactor_mul_integral_smooth {u : Vec3 → ℝ}
     _ = (4 * Real.pi * t) ^ (-(3 : ℝ) / 2) * ∫ y : Vec3, ‖u y‖ := by
       rw [integral_const_mul]
 
-/-- The heat kernel tends pointwise to zero at large time. -/
+/-- The heat kernel tends pointwise to zero at large time.
+@isnad1 id=tendsto.0h1v.s4.9c4eb1e2ccb0 from=translated src=- shape=c2ca3b9c vocab=1724583f
+-/
 theorem heatKernel_tendsto_zero_atTop (y : Vec3) :
     Tendsto (fun t : ℝ => heatKernel y t) atTop (𝓝 0) := by
   have hbase : Tendsto (fun t : ℝ => 4 * Real.pi * t) atTop atTop := by
@@ -275,7 +291,9 @@ theorem heatKernel_tendsto_zero_atTop (y : Vec3) :
       _ = (4 * Real.pi * t) ^ (-(3 : ℝ) / 2) := by ring
 
 /-- Heat convolution of a compactly supported continuous function vanishes at
-large time. -/
+large time.
+@isnad1 id=tendsto.2h2v.s7.47cbff935b19 from=translated src=- shape=e4d37b7f vocab=0d337f3f
+-/
 theorem heatConv_tendsto_zero_atTop_smooth {u : Vec3 → ℝ}
     (hu : ContDiff ℝ (⊤ : ℕ∞) u) (huSupport : HasCompactSupport u) (x : Vec3) :
     Tendsto (fun t : ℝ => heatConv t u x) atTop (𝓝 0) := by

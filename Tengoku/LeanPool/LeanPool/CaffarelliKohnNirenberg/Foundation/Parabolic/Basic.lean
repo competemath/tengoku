@@ -34,8 +34,14 @@ abbrev L2Vec3 := PiLp 2 (fun _ : Fin 3 => ℝ)
 /-- Space-time points, given the parabolic metric below rather than the product metric. -/
 def ParabolicPoint := Vec3 × ℝ
 
+/--
+@isnad1 id=lt.0h0v.s5.c5efbe6b1e27 from=translated src=- shape=5ee22617 vocab=b02f647b
+-/
 theorem half_pos : 0 < (1 / 2 : ℝ) := by norm_num
 
+/--
+@isnad1 id=le.0h0v.s5.2d3c72780838 from=translated src=- shape=7f6a8e6b vocab=951fdf53
+-/
 theorem half_le_one : (1 / 2 : ℝ) ≤ 1 := by norm_num
 
 /-- Time equipped with the square-root snowflake metric. -/
@@ -61,6 +67,9 @@ def parabolicMeasurableEquiv : ParabolicPoint ≃ᵐ L2Vec3 × SnowTime :=
 def parabolicMap (p : ParabolicPoint) :
     L2Vec3 × SnowTime := parabolicMeasurableEquiv p
 
+/--
+@isnad1 id=injectiv.0h0v.s2.926a21274fc6 from=translated src=- shape=583fb3b9 vocab=43ce50e2
+-/
 lemma parabolicMap_injective : Function.Injective parabolicMap := by
   intro p q h
   exact parabolicMeasurableEquiv.injective h
@@ -76,6 +85,9 @@ instance : BorelSpace ParabolicPoint :=
   MeasurableEmbedding.borelSpace parabolicMeasurableEquiv.measurableEmbedding
     (Topology.IsInducing.induced parabolicMap)
 
+/--
+@isnad1 id=eq.0h1v.s6.76bf29ae6824 from=translated src=- shape=220fd7d4 vocab=2cb7b1e6
+-/
 lemma vec3EuclideanNorm_eq_l2 (v : Vec3) :
     vec3EuclideanNorm v = ‖WithLp.toLp 2 v‖ := by
   rw [vec3EuclideanNorm, PiLp.norm_eq_of_L2]
@@ -85,12 +97,21 @@ lemma vec3EuclideanNorm_eq_l2 (v : Vec3) :
   intro i hi
   rw [sq_abs]
 
+/--
+@isnad1 id=le.0h1v.s3.5bf8f8931707 from=translated src=- shape=b9369acb vocab=a3f20d52
+-/
 lemma vec3EuclideanNorm_nonneg (v : Vec3) : 0 ≤ vec3EuclideanNorm v := by
   exact Real.sqrt_nonneg _
 
+/--
+@isnad1 id=eq.0h0v.s5.e005f7be7474 from=translated src=- shape=1ac31801 vocab=3f56e89c
+-/
 lemma vec3EuclideanNorm_zero : vec3EuclideanNorm (0 : Vec3) = 0 := by
   simp [vec3EuclideanNorm]
 
+/--
+@isnad1 id=eq.0h2v.s5.57be138c05ef from=translated src=- shape=81171e50 vocab=ed9a875e
+-/
 lemma vec3EuclideanNorm_smul (a : ℝ) (v : Vec3) :
     vec3EuclideanNorm (a • v) = |a| * vec3EuclideanNorm v := by
   rw [vec3EuclideanNorm_eq_l2, WithLp.toLp_smul, norm_smul, Real.norm_eq_abs,
@@ -100,6 +121,9 @@ lemma vec3EuclideanNorm_smul (a : ℝ) (v : Vec3) :
 def parabolicDist (p q : ParabolicPoint) : ℝ :=
   max (vec3EuclideanNorm (p.1 - q.1)) (Real.sqrt |p.2 - q.2|)
 
+/--
+@isnad1 id=eq.0h2v.s4.e14162eab9d2 from=translated src=- shape=4974a109 vocab=4e0d65c3
+-/
 lemma dist_eq_parabolicDist (p q : ParabolicPoint) :
     dist p q = parabolicDist p q := by
   simp only [parabolicDist, vec3EuclideanNorm_eq_l2, Real.sqrt_eq_rpow]
@@ -113,19 +137,31 @@ def vec3Ball (x : Vec3) (r : ℝ) : Set Vec3 :=
 def parabolicCylinder (x : Vec3) (t r : ℝ) : Set ParabolicPoint :=
   vec3Ball x r ×ˢ Ioc (t - r ^ 2) t
 
+/--
+@isnad1 id=iff.0h3v.s5.236d7864a0a8 from=translated src=- shape=c3555f3b vocab=914bff83
+-/
 @[simp] lemma mem_vec3Ball {x y : Vec3} {r : ℝ} :
     y ∈ vec3Ball x r ↔ vec3EuclideanNorm (y - x) < r := Iff.rfl
 
+/--
+@isnad1 id=iff.0h5v.s6.31e2f2244c6f from=translated src=- shape=185d2bcc vocab=87ec462b
+-/
 @[simp] lemma mem_parabolicCylinder {x y : Vec3} {t s r : ℝ} :
     (y, s) ∈ parabolicCylinder x t r ↔
       vec3EuclideanNorm (y - x) < r ∧ t - r ^ 2 < s ∧ s ≤ t := by
   rfl
 
+/--
+@isnad1 id=le.1h3v.s4.0bec9a92e168 from=translated src=- shape=9a6dd29f vocab=f0354dd4
+-/
 lemma vec3Ball_mono {x : Vec3} {r₁ r₂ : ℝ} (hr : r₁ ≤ r₂) :
     vec3Ball x r₁ ⊆ vec3Ball x r₂ := by
   intro y hy
   exact hy.trans_le hr
 
+/--
+@isnad1 id=le.2h4v.s5.e768144397c5 from=translated src=- shape=affe701e vocab=d9727960
+-/
 lemma parabolicCylinder_mono {x : Vec3} {t r₁ r₂ : ℝ} (hr₁ : 0 ≤ r₁) (hr : r₁ ≤ r₂) :
     parabolicCylinder x t r₁ ⊆ parabolicCylinder x t r₂ := by
   intro p hp
@@ -143,6 +179,9 @@ def parabolicTranslate (a : Vec3) (τ : ℝ) (p : ParabolicPoint) : ParabolicPoi
 def parabolicScale (a : ℝ) (p : ParabolicPoint) : ParabolicPoint :=
   (a • p.1, a ^ 2 * p.2)
 
+/--
+@isnad1 id=eq.0h5v.s6.2d3a5cf510db from=translated src=- shape=ed7c1d35 vocab=a912aceb
+-/
 lemma parabolicCylinder_translate (a x : Vec3) (τ t r : ℝ) :
     parabolicTranslate a τ '' parabolicCylinder x t r =
       parabolicCylinder (a + x) (τ + t) r := by
@@ -168,6 +207,9 @@ lemma parabolicCylinder_translate (a x : Vec3) (τ t r : ℝ) :
       · simpa [add_assoc, add_left_comm, add_comm] using hp₃
     · apply Prod.ext <;> simp [parabolicTranslate, sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.1h4v.s6.f07ef614f92e from=translated src=- shape=5a335c5e vocab=1a57fb85
+-/
 lemma parabolicCylinder_scale {x : Vec3} {t r a : ℝ} (ha : 0 < a) :
     parabolicScale a '' parabolicCylinder x t r =
       parabolicCylinder (a • x) (a ^ 2 * t) (a * r) := by
@@ -221,12 +263,18 @@ lemma parabolicCylinder_scale {x : Vec3} {t r a : ℝ} (ha : 0 < a) :
 
 instance : MeasureSpace ParabolicPoint := inferInstanceAs (MeasureSpace (Vec3 × ℝ))
 
+/--
+@isnad1 id=measurab.0h2v.s5.f9fcad598c73 from=translated src=- shape=1ed02776 vocab=61a9dceb
+-/
 lemma vec3Ball_measurable (x : Vec3) (r : ℝ) : MeasurableSet (vec3Ball x r) := by
   have hmeas : Measurable (fun y : Vec3 => vec3EuclideanNorm (y - x)) := by
     unfold vec3EuclideanNorm
     fun_prop
   exact hmeas measurableSet_Iio
 
+/--
+@isnad1 id=eq.0h2v.s7.da7047ca5e79 from=translated src=- shape=7e148c2b vocab=ff668a36
+-/
 lemma volume_vec3Ball (x : Vec3) (r : ℝ) :
     volume (vec3Ball x r) = volume (vec3Ball 0 r) := by
   have hpre : (fun y : Vec3 => x + y) ⁻¹' vec3Ball x r = vec3Ball 0 r := by
@@ -238,6 +286,9 @@ lemma volume_vec3Ball (x : Vec3) (r : ℝ) :
   rw [hpre] at h
   exact h.symm
 
+/--
+@isnad1 id=eq.0h3v.s7.c7aaf627c594 from=translated src=- shape=e2f11ad6 vocab=993664f5
+-/
 lemma volume_parabolicCylinder (x : Vec3) (t r : ℝ) :
     volume (parabolicCylinder x t r) =
       volume (vec3Ball x r) * ENNReal.ofReal (r ^ 2) := by
@@ -250,6 +301,9 @@ lemma volume_parabolicCylinder (x : Vec3) (t r : ℝ) :
   congr 2
   ring
 
+/--
+@isnad1 id=eq.0h3v.s7.78a50e113bdc from=translated src=- shape=b135937d vocab=993664f5
+-/
 lemma volume_parabolicCylinder_zero (x : Vec3) (t r : ℝ) :
     volume (parabolicCylinder x t r) =
       volume (vec3Ball 0 r) * ENNReal.ofReal (r ^ 2) := by

@@ -28,6 +28,9 @@ namespace CKN
 
 noncomputable section
 
+/--
+@isnad1 id=tendsto.4h4v.s8.29f331c8f492 from=translated src=- shape=3b7eee8d vocab=1ba82a47
+-/
 theorem lpNorm_tendsto_of_diff
     {μ : Measure Vec3} {p : ℝ≥0∞} (hp : 1 ≤ p)
     {f : Vec3 → ℝ} {g : ℕ → Vec3 → ℝ}
@@ -59,6 +62,9 @@ theorem lpNorm_tendsto_of_diff
     (neg_le_sub_iff_le_add).2 (by simpa [add_comm] using h₁'),
     (sub_le_iff_le_add).2 (by simpa [add_comm] using h₂')⟩
 
+/--
+@isnad1 id=continuo.0h0v.s5.116624bf4c87 from=translated src=- shape=54c8eceb vocab=584236dd
+-/
 theorem continuous_vec3EuclideanNorm :
     Continuous (vec3EuclideanNorm : Vec3 → ℝ) := by
   change Continuous (fun z : Vec3 => Real.sqrt (∑ i : Fin 3, (z i) ^ 2))
@@ -67,6 +73,9 @@ theorem continuous_vec3EuclideanNorm :
   intro i hi
   exact ((continuous_apply i).pow 2)
 
+/--
+@isnad1 id=eq.1h2v.s4.ce3bb5ead899 from=translated src=- shape=715d6c2f vocab=5e284c63
+-/
 theorem vec3Ball_eq_euclideanBall' {x₀ : Vec3} {r : ℝ} (hr : 0 < r) :
     vec3Ball x₀ r = euclideanBall x₀ r := by
   ext x
@@ -78,12 +87,18 @@ private theorem native_vec3_norm_eq (x : Vec3) :
     vec3EuclideanNorm x = vecEuclideanNorm x := by
   simp [vec3EuclideanNorm, vecEuclideanNorm, vecNormSq, vecDot, pow_two]
 
+/--
+@isnad1 id=le.0h2v.s5.43043b2c1139 from=translated src=- shape=0438c7a3 vocab=4ea4a37e
+-/
 theorem native_euclidean_norm_add_le (x y : Vec3) :
     vec3EuclideanNorm (x + y) ≤ vec3EuclideanNorm x + vec3EuclideanNorm y := by
   rw [vec3EuclideanNorm_eq_l2, vec3EuclideanNorm_eq_l2,
     vec3EuclideanNorm_eq_l2, WithLp.toLp_add]
   exact norm_add_le _ _
 
+/--
+@isnad1 id=le.0h1v.s5.db4d40e3fe2a from=translated src=- shape=fcad3e9f vocab=a3ca6814
+-/
 theorem native_norm_le_euclidean_norm (x : Vec3) :
     ‖x‖ ≤ vec3EuclideanNorm x := by
   rw [Pi.norm_def]
@@ -96,6 +111,9 @@ theorem native_norm_le_euclidean_norm (x : Vec3) :
     exact_mod_cast hi'
   exact_mod_cast hnn
 
+/--
+@isnad1 id=le.0h1v.s5.aa6e4f1164e8 from=translated src=- shape=73f798ee vocab=695dce09
+-/
 theorem native_euclidean_norm_le_sqrt_three_norm (x : Vec3) :
     vec3EuclideanNorm x ≤ Real.sqrt 3 * ‖x‖ := by
   have hsq : vec3EuclideanNorm x ^ 2 ≤ (Real.sqrt 3 * ‖x‖) ^ 2 := by

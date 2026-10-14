@@ -21,7 +21,9 @@ open MeasureTheory Set
 namespace CKN
 
 /-- If `f` is locally integrable on an open set `U` and `q` is continuous with compact support
-whose topological support is contained in `U`, then the product `f * q` is integrable on `U`. -/
+whose topological support is contained in `U`, then the product `f * q` is integrable on `U`.
+@isnad1 id=integrab.5h4v.s8.7cc4925174d5 from=translated src=- shape=217089b0 vocab=726ef3e7
+-/
 theorem integrableOn_mul_continuous_of_tsupport_subset
     {d : ℕ} {U : Set (Vec d)} (hU : IsOpen U)
     {f q : Vec d → ℝ} (hf : LocallyIntegrableOn f U volume)

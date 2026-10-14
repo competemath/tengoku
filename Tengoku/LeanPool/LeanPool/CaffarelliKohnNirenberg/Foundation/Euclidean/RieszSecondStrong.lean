@@ -34,7 +34,9 @@ def rieszSecondInterpolationConstant (A₁ A₂ p : ℝ) : ℝ :=
   p * (2 ^ p * (A₁ / (p - 1) + A₂ ^ 2 / (2 - p)))
 
 /- A linear operator has the pointwise sublinearity required by interpolation. -/
-/-- Convert pointwise additivity into the exact sublinearity interface. -/
+/-- Convert pointwise additivity into the exact sublinearity interface.
+@isnad1 id=le.1h4v.s7.c70c8333499b from=translated src=- shape=76bfe1a2 vocab=2d904461
+-/
 theorem rieszSecond_sublinear_of_additive
     {T : (Vec3 → ℝ) → (Vec3 → ℝ)}
     (hTadd : ∀ f g (x : Vec3), T (f + g) x = T f x + T g x) :
@@ -44,7 +46,9 @@ theorem rieszSecond_sublinear_of_additive
   exact abs_add_le _ _
 
 /- The measurable convolution proof is independent of the endpoint estimates. -/
-/-- A measurable scalar convolution kernel gives a measurable convolution output. -/
+/-- A measurable scalar convolution kernel gives a measurable convolution output.
+@isnad1 id=measurab.2h2v.s8.d5d620b2f1b7 from=translated src=- shape=d267d890 vocab=ab10330d
+-/
 theorem rieszSecond_measurable_of_convolution
     {K : Vec3 → ℝ} (hK : Measurable K) :
     ∀ f, Measurable f →
@@ -61,7 +65,9 @@ theorem rieszSecond_measurable_of_convolution
       ∫ t : Vec3, f t * K (x - t)) := hprod.integral_prod_right'
   exact hi.measurable
 
-/-- Convolution respects almost-everywhere equality of its input. -/
+/-- Convolution respects almost-everywhere equality of its input.
+@isnad1 id=eq.1h3v.s8.24ec235c5a99 from=translated src=- shape=fb236f6c vocab=94da6b34
+-/
 theorem rieszSecond_convolution_congr
     {K f g : Vec3 → ℝ} (hfg : f =ᵐ[volume] g) :
     MeasureTheory.convolution f K
@@ -74,7 +80,9 @@ theorem rieszSecond_convolution_congr
 /- The pointwise convolution estimate records the integrability needed for the
    literal Bochner convolution; the endpoint operator may instead be its Lp
    extension, whose additivity is supplied to the preceding bridge. -/
-/-- The literal convolution is sublinear wherever the two input integrals exist. -/
+/-- The literal convolution is sublinear wherever the two input integrals exist.
+@isnad1 id=le.2h4v.s9.e9fa088293bf from=translated src=- shape=6941eb80 vocab=f50b2211
+-/
 theorem rieszSecond_convolution_sublinear_of_integrable
     {K f g : Vec3 → ℝ} {x : Vec3}
     (hf : Integrable (fun y => f y * K (x - y)) volume)
@@ -96,7 +104,9 @@ theorem rieszSecond_convolution_sublinear_of_integrable
   rw [hfun, integral_add hf hg]
   exact abs_add_le _ _
 
-/-- The strong `(p,p)` integral estimate from the two endpoint estimates. -/
+/-- The strong `(p,p)` integral estimate from the two endpoint estimates.
+@isnad1 id=le.8h5v.s9.ba3d9810cb81 from=translated src=- shape=bbb1c9e4 vocab=2f4179b3
+-/
 theorem rieszSecond_strong_type_of_inputs
     {T : (Vec3 → ℝ) → (Vec3 → ℝ)} {A₁ A₂ p : ℝ}
     (hTsub : ∀ f g (x : Vec3), |T (f + g) x| ≤ |T f x| + |T g x|)
@@ -119,7 +129,9 @@ theorem rieszSecond_strong_type_of_inputs
    separate helper so the endpoint assembly above stays in the form used by
    the interpolation theorem. -/
 
-/-- The integral estimate at exponent `3 / 2`. -/
+/-- The integral estimate at exponent `3 / 2`.
+@isnad1 id=le.6h4v.s9.2985621805ce from=translated src=- shape=3b5b56a9 vocab=2f4179b3
+-/
 theorem rieszSecond_strong_type_threeHalves
     {T : (Vec3 → ℝ) → (Vec3 → ℝ)} {A₁ A₂ : ℝ}
     (hTsub : ∀ f g (x : Vec3), |T (f + g) x| ≤ |T f x| + |T g x|)
@@ -137,7 +149,9 @@ theorem rieszSecond_strong_type_threeHalves
   exact rieszSecond_strong_type_of_inputs hTsub hTmeas hWeak11 hL2 hA₁
     (by norm_num) (by norm_num) hg
 
-/-- The integral estimate at exponent `6 / 5`. -/
+/-- The integral estimate at exponent `6 / 5`.
+@isnad1 id=le.6h4v.s9.fb8d67848cc7 from=translated src=- shape=3b5b56a9 vocab=2f4179b3
+-/
 theorem rieszSecond_strong_type_sixFifths
     {T : (Vec3 → ℝ) → (Vec3 → ℝ)} {A₁ A₂ : ℝ}
     (hTsub : ∀ f g (x : Vec3), |T (f + g) x| ≤ |T f x| + |T g x|)

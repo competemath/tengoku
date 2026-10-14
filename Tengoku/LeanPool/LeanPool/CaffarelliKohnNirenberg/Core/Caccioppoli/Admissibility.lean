@@ -90,7 +90,9 @@ private lemma backwardHeat_cutoff_contDiff
 
 The hypotheses expose the cutoff properties supplied by the space-time cutoff
 construction: compact support, location in the domain, time support at or before
-`t₀`, and nonnegativity. -/
+`t₀`, and nonnegativity.
+@isnad1 id=and.6h6v.s8.6195d107a16b from=translated src=- shape=315058cf vocab=99699572
+-/
 theorem backwardHeat_cutoff_testFunction
     {Ω : Set Vec3} {I : Set ℝ} (η : Vec3 × ℝ → ℝ)
     (x₀ : Vec3) (t₀ r : ℝ) (hr : 0 < r)

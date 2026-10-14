@@ -30,6 +30,9 @@ universe u
 
 namespace MonotoneMetricFamily
 
+/--
+@isnad1 id=eq.2h6v.s9.a6d430e1ce28 from=translated src=- shape=1316aec0 vocab=27c8db3e
+-/
 lemma comp_eq_of_left_inverse (G : MonotoneMetricFamily) {α β : Type u} [Fintype α] [Fintype β]
     (κ : MarkovMorphism α β) (κ' : MarkovMorphism β α) (p : Simplex α)
     (hp : κ'.pushforward (κ.pushforward p) = p)

@@ -328,6 +328,9 @@ private theorem intervalIntegrable_inv_pow_if_le_mul
         (hs := measure_Ioc_lt_top.ne)).congr_fun
         hzero.symm measurableSet_Ioc
 
+/--
+@isnad1 id=le.1h4v.s8.0dd4305e8393 from=translated src=- shape=3bb173e5 vocab=6a1ab2a8
+-/
 theorem intervalIntegral_inv_pow_if_norm_sub_le_mul_le_rieszKernel
     {x z : Vec d} {R : ℝ} (hR : 0 < R) :
     ∫ t in (0 : ℝ)..1,
@@ -513,6 +516,9 @@ private theorem setIntegral_indicator_closedBall_eq_setIntegral_inter_closedBall
     (MeasureTheory.setIntegral_indicator (μ := MeasureTheory.volume) (s := U)
       (t := Metric.closedBall x r) (f := fun z => ψ z * ‖x - z‖) measurableSet_closedBall)
 
+/--
+@isnad1 id=le.5h5v.s9.0d9763812813 from=translated src=- shape=14e9df4f vocab=d8e80eaf
+-/
 theorem setIntegral_inv_pow_setIntegral_inter_closedBall_le_rieszKernel
     {U : Set (Vec d)} (hU_meas : MeasurableSet U)
     {x : Vec d} {R : ℝ} (hR : 0 < R) {φ : Vec d → ℝ}
@@ -653,6 +659,9 @@ theorem setIntegral_inv_pow_setIntegral_inter_closedBall_le_rieszKernel
           ∫ z in U, φ z * rieszKernel x z ∂MeasureTheory.volume := by
             simp [C]
 
+/--
+@isnad1 id=interval.5h5v.s8.89a82cb8cc09 from=translated src=- shape=391b805e vocab=9a9ee8ab
+-/
 theorem intervalIntegrable_inv_pow_setIntegral_inter_closedBall
     {U : Set (Vec d)} (hU_meas : MeasurableSet U)
     {x : Vec d} {R : ℝ} (hR : 0 < R) {φ : Vec d → ℝ}
@@ -737,6 +746,9 @@ theorem intervalIntegrable_inv_pow_setIntegral_inter_closedBall
   rw [intervalIntegrable_iff_integrableOn_Ioc_of_le zero_le_one]
   simpa [MeasureTheory.IntegrableOn, μI] using houter_int'
 
+/--
+@isnad1 id=le.5h5v.s9.d8489ff20f89 from=translated src=- shape=e968e60c vocab=aea1e850
+-/
 theorem intervalIntegral_inv_pow_setIntegral_inter_closedBall_le_rieszKernel
     {U : Set (Vec d)} (hU_meas : MeasurableSet U)
     {x : Vec d} {R : ℝ} (hR : 0 < R) {φ : Vec d → ℝ}
