@@ -32,6 +32,9 @@ def BoundedRule.minimum {T : ℝ≥0} (θ η : BoundedRule 𝓕 T) : BoundedRule
     simp only [mem_ofPred_eq,WithTop.coe_le_coe,min_le_iff,mem_union]
   le_horizon := fun ω => (min_le_left _ _).trans (θ.le_horizon ω)
 
+/--
+@isnad1 id=tendsto.3h7v.s7.d1b53529b434 from=translated src=- shape=3d86d061 vocab=ae31bc0f
+-/
 theorem expected_gridValue_tendsto {P : Measure Ω} [IsFiniteMeasure P] {U : ℝ≥0 → Ω → ℝ}
     (hU : Supermartingale U 𝓕 P) (hc : ∀ ω, Continuous (fun t => U t ω))
     {C : ℝ} (hb : ∀ t ω, ‖U t ω‖ ≤ C) {T : ℝ≥0} (θ : BoundedRule 𝓕 T) :
@@ -47,6 +50,9 @@ theorem expected_gridValue_tendsto {P : Measure Ω} [IsFiniteMeasure P] {U : ℝ
     (integrable_const C) (fun _ => Eventually.of_forall (fun ω => hb _ ω))
     (Eventually.of_forall (fun ω => ((hc ω).tendsto (θ.time ω)).comp (gridValue_time_tendsto θ ω)))
 
+/--
+@isnad1 id=le.4h8v.s7.ea7f0539774e from=translated src=- shape=4a142115 vocab=85572d47
+-/
 theorem expected_stoppedValue_le_of_le {P : Measure Ω} [IsFiniteMeasure P] {U : ℝ≥0 → Ω → ℝ}
     (hU : Supermartingale U 𝓕 P) (hc : ∀ ω, Continuous (fun t => U t ω))
     {C : ℝ} (hb : ∀ t ω, ‖U t ω‖ ≤ C) {T : ℝ≥0}

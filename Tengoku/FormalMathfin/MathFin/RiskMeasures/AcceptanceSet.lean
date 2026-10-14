@@ -41,32 +41,44 @@ structure IsCoherentRisk {ι : Type*} [Fintype ι] (ρ : (ι → ℝ) → ℝ) :
 namespace IsCoherentRisk
 variable {ι : Type*} [Fintype ι] {ρ : (ι → ℝ) → ℝ}
 
-/-- `ρ 0 = 0` (positive homogeneity at `l = 2`). -/
+/-- `ρ 0 = 0` (positive homogeneity at `l = 2`).
+@isnad1 id=eq.1h2v.s5.76d55eb3c928 from=translated src=- shape=d6e7daaa vocab=06e27169
+-/
 lemma rho_zero (hρ : IsCoherentRisk ρ) : ρ 0 = 0 := by
   have h := hρ.posHom 2 (by norm_num) 0
   rw [smul_zero] at h; linarith
 
-/-- A coherent risk measure is convex (subadditive + positively homogeneous). -/
+/-- A coherent risk measure is convex (subadditive + positively homogeneous).
+@isnad1 id=convexon.1h2v.s5.33d0b88169d4 from=translated src=- shape=7aeeed92 vocab=d27ce6b0
+-/
 lemma convexOn (hρ : IsCoherentRisk ρ) : ConvexOn ℝ Set.univ ρ := by
   refine ⟨convex_univ, fun x _ y _ a b ha hb _ ↦ ?_⟩
   have hsub := hρ.subadditive (a • x) (b • y)
   rw [hρ.posHom a ha, hρ.posHom b hb] at hsub
   simpa [smul_eq_mul] using hsub
 
-/-- A finite-state coherent risk measure is continuous (a finite convex function on `ℝ^ι`). -/
+/-- A finite-state coherent risk measure is continuous (a finite convex function on `ℝ^ι`).
+@isnad1 id=continuo.1h2v.s5.23a6e32293e9 from=translated src=- shape=d9e12840 vocab=593d9156
+-/
 lemma continuous (hρ : IsCoherentRisk ρ) : Continuous ρ := by
   rw [← continuousOn_univ]
   exact hρ.convexOn.continuousOn isOpen_univ
 
-/-- The acceptance set `{X | ρ X ≤ 0}` is closed (ρ is continuous). -/
+/-- The acceptance set `{X | ρ X ≤ 0}` is closed (ρ is continuous).
+@isnad1 id=isclosed.1h2v.s5.40d5274d8189 from=translated src=- shape=aa858ba5 vocab=42f69ffa
+-/
 lemma acceptance_closed (hρ : IsCoherentRisk ρ) : IsClosed {X : ι → ℝ | ρ X ≤ 0} :=
   isClosed_le hρ.continuous continuous_const
 
-/-- `0` is acceptable. -/
+/-- `0` is acceptable.
+@isnad1 id=mem.1h2v.s6.4760ff411a54 from=translated src=- shape=d156dd7b vocab=7ee25644
+-/
 lemma zero_mem (hρ : IsCoherentRisk ρ) : (0 : ι → ℝ) ∈ {X : ι → ℝ | ρ X ≤ 0} := by
   show ρ 0 ≤ 0; rw [hρ.rho_zero]
 
-/-- The acceptance set is a cone (positive homogeneity). -/
+/-- The acceptance set is a cone (positive homogeneity).
+@isnad1 id=mem.3h4v.s6.59c2806a3da7 from=translated src=- shape=1f1d79c1 vocab=62e5dcdb
+-/
 lemma cone (hρ : IsCoherentRisk ρ) :
     ∀ ⦃x⦄, x ∈ {X : ι → ℝ | ρ X ≤ 0} → ∀ ⦃c : ℝ⦄, 0 ≤ c → c • x ∈ {X : ι → ℝ | ρ X ≤ 0} := by
   intro x hx c hc
@@ -74,7 +86,9 @@ lemma cone (hρ : IsCoherentRisk ρ) :
   rw [hρ.posHom c hc]
   exact mul_nonpos_of_nonneg_of_nonpos hc hx
 
-/-- The acceptance set is convex. -/
+/-- The acceptance set is convex.
+@isnad1 id=convex.1h2v.s5.9674d981cad6 from=translated src=- shape=b35b8fcb vocab=f3697603
+-/
 lemma convex_acceptance (hρ : IsCoherentRisk ρ) : Convex ℝ {X : ι → ℝ | ρ X ≤ 0} := by
   intro X hX Y hY a b ha hb _
   show ρ (a • X + b • Y) ≤ 0
@@ -85,7 +99,9 @@ lemma convex_acceptance (hρ : IsCoherentRisk ρ) : Convex ℝ {X : ι → ℝ |
         have h2 : b * ρ Y ≤ 0 := mul_nonpos_of_nonneg_of_nonpos hb hY
         linarith
 
-/-- Every nonnegative position is acceptable (monotonicity). -/
+/-- Every nonnegative position is acceptable (monotonicity).
+@isnad1 id=mem.2h3v.s6.233da12a8e96 from=translated src=- shape=6cb8b2e2 vocab=7ee25644
+-/
 lemma nonneg_mem (hρ : IsCoherentRisk ρ) {X : ι → ℝ} (hX : ∀ i, 0 ≤ X i) :
     X ∈ {X : ι → ℝ | ρ X ≤ 0} := by
   show ρ X ≤ 0
@@ -103,7 +119,9 @@ def representingSet {ι : Type*} [Fintype ι] (ρ : (ι → ℝ) → ℝ) : Set 
 measure `ρ` is the supremum of expected loss over its representing probability measures: `ρ X` is the
 least upper bound of `{∑ qᵢ (-Xᵢ) | q ∈ representingSet ρ}`. The upper bound is cash-invariance; the
 least-upper-bound is the point-from-cone separation of the rejected position `X + (ρX - ε)·1` from the
-acceptance cone, normalised to a representing density. -/
+acceptance cone, normalised to a representing density.
+@isnad1 id=islub.1h3v.s6.db2e63c228b2 from=translated src=- shape=2ffff809 vocab=e5c470ab
+-/
 theorem coherentRisk_isLUB {ι : Type*} [Fintype ι] {ρ : (ι → ℝ) → ℝ}
     (hρ : IsCoherentRisk ρ) (X : ι → ℝ) :
     IsLUB ((fun q ↦ ∑ i, q i * (- X i)) '' representingSet ρ) (ρ X) := by

@@ -98,23 +98,49 @@ def LZeros (hs : LSeam χ) : ZeroConfig where
 section seam_rfl
 variable (hs : LSeam χ) (T₁ T₂ : ℝ)
 
+/--
+@isnad1 id=eq.1h2v.s5.3d8af3310805 from=translated src=- shape=4cf14589 vocab=b71634ae
+-/
 @[simp] lemma LZeros_carrier : (LZeros hs).carrier = {ρ | IsNontrivialZeroL χ ρ} := rfl
+/--
+@isnad1 id=eq.1h2v.s5.e908970b72bc from=translated src=- shape=48a4ea0e vocab=6c5ee037
+-/
 @[simp] lemma LZeros_mult : (LZeros hs).mult = zeroMultL χ := rfl
+/--
+@isnad1 id=eq.1h2v.s5.65add22f024b from=translated src=- shape=8db8a4d7 vocab=0a925e0e
+-/
 @[simp] lemma LZeros_simple : (LZeros hs).simple = {ρ | zeroMultL χ ρ = 1} := rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.d0d7d8cc55ff from=translated src=- shape=7052e5a4 vocab=cd0775aa
+-/
 lemma LZeros_window : (LZeros hs).window T₁ T₂ = zerosInL χ T₁ T₂ := by
   ext ρ; simp [ZeroConfig.window, zerosInL]
 
+/--
+@isnad1 id=eq.1h4v.s5.2c3a0a34fb81 from=translated src=- shape=b2c4974f vocab=f6fe5259
+-/
 @[simp] lemma LZeros_N : (LZeros hs).N T₁ T₂ = NcountL χ T₁ T₂ := by
   simp [ZeroConfig.N, NcountL, LZeros_window]
+/--
+@isnad1 id=eq.1h4v.s5.c1c08abd83fb from=translated src=- shape=b2c4974f vocab=8eb21239
+-/
 @[simp] lemma LZeros_Nd : (LZeros hs).Nd T₁ T₂ = NdistL χ T₁ T₂ := by
   simp [ZeroConfig.Nd, NdistL, LZeros_window]
+/--
+@isnad1 id=eq.1h4v.s5.d2cc02400fff from=translated src=- shape=b2c4974f vocab=96eab413
+-/
 @[simp] lemma LZeros_N0star : (LZeros hs).N0star T₁ T₂ = N0starL χ T₁ T₂ := by
   simp [ZeroConfig.N0star, N0starL, LZeros_window, ZeroConfig.onLine]
+/--
+@isnad1 id=eq.1h4v.s5.46defb8e9bc9 from=translated src=- shape=b2c4974f vocab=db45adf1
+-/
 @[simp] lemma LZeros_N0s : (LZeros hs).N0s T₁ T₂ = N0simpleL χ T₁ T₂ := by
   simp [ZeroConfig.N0s, N0simpleL, LZeros_window, ZeroConfig.onLine]
 
-/-- [eq:trivialchain] for L(s,χ), from the abstract `ZeroConfig.trivial_chain`. -/
+/-- [eq:trivialchain] for L(s,χ), from the abstract `ZeroConfig.trivial_chain`.
+@isnad1 id=and.1h4v.s6.3f3a548b8b30 from=translated src=- shape=2848ed8c vocab=8158505b
+-/
 theorem trivial_chainL (hs : LSeam χ) (T₁ T₂ : ℝ) :
     N0simpleL χ T₁ T₂ ≤ N0starL χ T₁ T₂ ∧ N0starL χ T₁ T₂ ≤ N0L χ T₁ T₂ ∧
       N0L χ T₁ T₂ ≤ NcountL χ T₁ T₂ ∧ N0simpleL χ T₁ T₂ ≤ NsimpleL χ T₁ T₂ ∧

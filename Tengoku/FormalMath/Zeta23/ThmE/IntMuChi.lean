@@ -30,7 +30,9 @@ section Generic
 
 variable {g : ℝ → ℝ}
 
-/-- Explicit-constant form of `int_g_of_stirling` (constants depend only on the Stirling constant C). -/
+/-- Explicit-constant form of `int_g_of_stirling` (constants depend only on the Stirling constant C).
+@isnad1 id=le.3h3v.s8.8d82b150b085 from=translated src=- shape=0ed8cd19 vocab=98e1644e
+-/
 theorem int_g_explicit (hcont : Continuous g) {C : ℝ}
     (hC : ∀ τ : ℝ, 1 ≤ |τ| →
       |g τ - (1 / (2 * Real.pi)) * Real.log (|τ| / (2 * Real.pi))| ≤ C / τ ^ 2)
@@ -115,7 +117,9 @@ theorem int_g_explicit (hcont : Continuous g) {C : ℝ}
         nlinarith
 
 set_option maxHeartbeats 1600000 in
-/-- Explicit-constant form of `int_g_sq_of_stirling` (constants depend only on the Stirling constant C). -/
+/-- Explicit-constant form of `int_g_sq_of_stirling` (constants depend only on the Stirling constant C).
+@isnad1 id=le.3h3v.s9.f9434c4205cf from=translated src=- shape=cc19ba98 vocab=616196a3
+-/
 theorem int_g_sq_explicit (hcont : Continuous g) {C : ℝ}
     (hC : ∀ τ : ℝ, 1 ≤ |τ| →
       |g τ - (1 / (2 * Real.pi)) * Real.log (|τ| / (2 * Real.pi))| ≤ C / τ ^ 2)
@@ -411,7 +415,9 @@ theorem int_g_sq_explicit (hcont : Continuous g) {C : ℝ}
         rw [hX]
         ring
 
-/-- **[eq:muints].1 given Stirling**: ∫_T^{2T} g = Tℓ₁/(2π) + O(1/T)  (∃-form, from `int_g_explicit`). -/
+/-- **[eq:muints].1 given Stirling**: ∫_T^{2T} g = Tℓ₁/(2π) + O(1/T)  (∃-form, from `int_g_explicit`).
+@isnad1 id=ex.2h1v.s8.7778c9e3e51d from=translated src=- shape=124818f0 vocab=98e1644e
+-/
 theorem int_g_of_stirling (hcont : Continuous g)
     (hst : ∃ C : ℝ, ∀ τ : ℝ, 1 ≤ |τ| →
       |g τ - (1 / (2 * Real.pi)) * Real.log (|τ| / (2 * Real.pi))| ≤ C / τ ^ 2) :
@@ -420,7 +426,9 @@ theorem int_g_of_stirling (hcont : Continuous g)
   obtain ⟨C, hC⟩ := hst
   exact ⟨C, 1, fun T hT => int_g_explicit hcont hC hT⟩
 
-/-- **[eq:muints].2 given Stirling**: ∫_T^{2T} g² = (Tℓ₁²/4π²)(1 + O(ℓ⁻²))  (∃-form, from `int_g_sq_explicit`). -/
+/-- **[eq:muints].2 given Stirling**: ∫_T^{2T} g² = (Tℓ₁²/4π²)(1 + O(ℓ⁻²))  (∃-form, from `int_g_sq_explicit`).
+@isnad1 id=ex.2h1v.s8.7e877b7fed11 from=translated src=- shape=258d53c7 vocab=b8fa91f3
+-/
 theorem int_g_sq_of_stirling (hcont : Continuous g)
     (hst : ∃ C : ℝ, ∀ τ : ℝ, 1 ≤ |τ| →
       |g τ - (1 / (2 * Real.pi)) * Real.log (|τ| / (2 * Real.pi))| ≤ C / τ ^ 2) :
@@ -436,6 +444,9 @@ end Generic
 
 variable {κ q : ℕ}
 
+/--
+@isnad1 id=eq.2h2v.s5.77f34e54f630 from=translated src=- shape=dff9e595 vocab=67da38b9
+-/
 lemma ell1q_eq (hq : 1 ≤ q) {T : ℝ} (hT : 0 < T) : ell1q q T = ell1 T + Real.log q := by
   unfold ell1q ell1 l
   have hq0 : (0 : ℝ) < q := by exact_mod_cast hq
@@ -446,7 +457,9 @@ lemma ell1q_eq (hq : 1 ≤ q) {T : ℝ} (hT : 0 < T) : ell1q q T = ell1 T + Real
 /-! ## q-uniform versions for μ_χ (constants depend only on the Stirling constant) -/
 
 /-- **q-uniform GammaFactsChiBounded.int_mu**: given the Stirling constant C (q-free), the error
-constant is C and the threshold is 1, for every κ, q ≥ 1. -/
+constant is C and the threshold is 1, for every κ, q ≥ 1.
+@isnad1 id=le.4h4v.s8.3006d527db93 from=translated src=- shape=c612af25 vocab=6f99fdf3
+-/
 theorem int_muq_uniform (C : ℝ) : ∀ (κ q : ℕ), 1 ≤ q → Continuous (muq κ q) →
     (∀ τ : ℝ, 1 ≤ |τ| →
       |muq κ q τ - (1 / (2 * Real.pi)) * Real.log (q * |τ| / (2 * Real.pi))| ≤ C / τ ^ 2) →
@@ -493,7 +506,9 @@ set_option maxHeartbeats 800000 in
 /-- **q-uniform GammaFactsChiBounded.int_mu_sq**: constants depend only on the Stirling constant C:
 threshold T₀(C) := max (2π e⁴) (32π²(C(1+C)+1)) (≥ 2π e² and ≥ 1 automatically), error constant
 K(C) := 8(1+2log²2)+1 + 4π·|C|. The log q of μ_χ never multiplies: 2c₀·|E₂| ≤ 2c₀C/T is absorbed by
-ell1q ≥ 2π·c₀ (i.e. ell1q ≥ log q). -/
+ell1q ≥ 2π·c₀ (i.e. ell1q ≥ log q).
+@isnad1 id=le.4h4v.s9.5fa201b545ad from=translated src=- shape=6d5a3dea vocab=b30e7a7f
+-/
 theorem int_muq_sq_uniform (C : ℝ) : ∀ (κ q : ℕ), 1 ≤ q → Continuous (muq κ q) →
     (∀ τ : ℝ, 1 ≤ |τ| →
       |muq κ q τ - (1 / (2 * Real.pi)) * Real.log (q * |τ| / (2 * Real.pi))| ≤ C / τ ^ 2) →
@@ -638,7 +653,9 @@ theorem int_muq_sq_uniform (C : ℝ) : ∀ (κ q : ℕ), 1 ≤ q → Continuous 
 
 /-! ## μ_χ at fixed q (∃-forms, from the q-uniform versions) -/
 
-/-- **GammaFactsChi.int_mu** from continuity + the Stirling field of μ_χ. -/
+/-- **GammaFactsChi.int_mu** from continuity + the Stirling field of μ_χ.
+@isnad1 id=ex.3h2v.s8.d049a6b17f3e from=translated src=- shape=6c893dce vocab=6f99fdf3
+-/
 theorem int_muq_of_stirling (hq : 1 ≤ q) (hcont : Continuous (muq κ q))
     (hst : ∃ C : ℝ, ∀ τ : ℝ, 1 ≤ |τ| →
       |muq κ q τ - (1 / (2 * Real.pi)) * Real.log (q * |τ| / (2 * Real.pi))| ≤ C / τ ^ 2) :
@@ -647,7 +664,9 @@ theorem int_muq_of_stirling (hq : 1 ≤ q) (hcont : Continuous (muq κ q))
   obtain ⟨C, hC⟩ := hst
   exact ⟨C, 1, fun T hT => int_muq_uniform C κ q hq hcont hC T hT⟩
 
-/-- **GammaFactsChi.int_mu_sq** from continuity + the Stirling field of μ_χ. -/
+/-- **GammaFactsChi.int_mu_sq** from continuity + the Stirling field of μ_χ.
+@isnad1 id=ex.3h2v.s8.b5e2bca671b6 from=translated src=- shape=4ed82f72 vocab=7e82904e
+-/
 theorem int_muq_sq_of_stirling (hq : 1 ≤ q) (hcont : Continuous (muq κ q))
     (hst : ∃ C : ℝ, ∀ τ : ℝ, 1 ≤ |τ| →
       |muq κ q τ - (1 / (2 * Real.pi)) * Real.log (q * |τ| / (2 * Real.pi))| ≤ C / τ ^ 2) :

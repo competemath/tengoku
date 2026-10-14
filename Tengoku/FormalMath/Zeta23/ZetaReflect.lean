@@ -51,7 +51,9 @@ private lemma zeta_conj_of_one_lt_re {s : ℂ} (hs : 1 < s.re) :
         rw [star_div₀, star_one, hpow]
         simp
 
-/-- **Schwarz reflection for ζ**: ζ(s̄) = ζ(s)̄ away from the pole. -/
+/-- **Schwarz reflection for ζ**: ζ(s̄) = ζ(s)̄ away from the pole.
+@isnad1 id=eq.1h1v.s6.df315ebf0c1f from=translated src=- shape=63c71e92 vocab=061faaef
+-/
 theorem riemannZeta_conj {s : ℂ} (hs : s ≠ 1) :
     riemannZeta (conj s) = conj (riemannZeta s) := by
   have hrank : 1 < Module.rank ℝ ℂ := by
@@ -105,7 +107,9 @@ private lemma analyticAt_conj_conj {f : ℂ → ℂ} {w : ℂ} (hf : AnalyticAt 
   rw [Complex.conj_conj] at h2
   exact h2
 
-/-- The vanishing order of z ↦ conj (f (conj z)) at conj w equals that of f at w. -/
+/-- The vanishing order of z ↦ conj (f (conj z)) at conj w equals that of f at w.
+@isnad1 id=eq.0h2v.s7.15403dccc0aa from=translated src=- shape=b2e0255f vocab=3761ef47
+-/
 theorem analyticOrderAt_conj_conj (f : ℂ → ℂ) (w : ℂ) :
     analyticOrderAt (fun z => conj (f (conj z))) (conj w) = analyticOrderAt f w := by
   by_cases hf : AnalyticAt ℂ f w
@@ -133,7 +137,9 @@ theorem analyticOrderAt_conj_conj (f : ℂ → ℂ) (w : ℂ) :
         simp only [Complex.conj_conj])
     rw [analyticOrderAt_of_not_analyticAt hf, analyticOrderAt_of_not_analyticAt hf']
 
-/-- Order of ζ is conjugation-symmetric away from the pole. -/
+/-- Order of ζ is conjugation-symmetric away from the pole.
+@isnad1 id=eq.1h1v.s6.416ec705af2a from=translated src=- shape=9984e335 vocab=ce65277e
+-/
 theorem analyticOrderAt_zeta_conj {w : ℂ} (hw : w ≠ 1) :
     analyticOrderAt riemannZeta (conj w) = analyticOrderAt riemannZeta w := by
   have hne : conj w ≠ 1 := by
@@ -213,7 +219,9 @@ private lemma analyticAt_Efac {s : ℂ} (h0 : 0 < s.re) : AnalyticAt ℂ Efac s 
   exact (h4.mul h2).mul h3
 
 /-- Order transport through the functional equation: for w in the open strip,
-ord_{1−w} ζ = ord_w ζ. -/
+ord_{1−w} ζ = ord_w ζ.
+@isnad1 id=eq.2h1v.s6.d06c2c002169 from=translated src=- shape=3f536ca1 vocab=7514a882
+-/
 theorem analyticOrderAt_zeta_one_sub {w : ℂ} (h0 : 0 < w.re) (h1 : w.re < 1) :
     analyticOrderAt riemannZeta (1 - w) = analyticOrderAt riemannZeta w := by
   have hopen : IsOpen {z : ℂ | 0 < z.re ∧ z.re < 1} :=
@@ -267,7 +275,9 @@ theorem analyticOrderAt_zeta_one_sub {w : ℂ} (h0 : 0 < w.re) (h1 : w.re < 1) :
 
 /-! ### 4. The ZetaSeam reflection fields -/
 
-/-- H-symm (set): ρ ↦ 1 − ρ̄ maps nontrivial zeros to nontrivial zeros. -/
+/-- H-symm (set): ρ ↦ 1 − ρ̄ maps nontrivial zeros to nontrivial zeros.
+@isnad1 id=isnontri.1h1v.s3.963ab0aeb06d from=translated src=- shape=2c86d966 vocab=f45d1d3d
+-/
 theorem zeta_reflect_zero : ∀ ρ, IsNontrivialZero ρ → IsNontrivialZero (reflect ρ) := by
   rintro ρ ⟨hzero, h0, h1⟩
   have hρne : ∀ n : ℕ, ρ ≠ -n := by
@@ -303,7 +313,9 @@ theorem zeta_reflect_zero : ∀ ρ, IsNontrivialZero ρ → IsNontrivialZero (re
     simp only [Complex.sub_re, Complex.one_re, Complex.conj_re]
     linarith
 
-/-- H-symm (multiplicity): m_{1−ρ̄} = m_ρ. -/
+/-- H-symm (multiplicity): m_{1−ρ̄} = m_ρ.
+@isnad1 id=eq.1h1v.s3.9c42a35de9ac from=translated src=- shape=9dcd86d6 vocab=267e99fa
+-/
 theorem zeta_mult_reflect : ∀ ρ, IsNontrivialZero ρ → zeroMult (reflect ρ) = zeroMult ρ := by
   rintro ρ ⟨_, h0, h1⟩
   have h1subne : (1 : ℂ) - ρ ≠ 1 := by

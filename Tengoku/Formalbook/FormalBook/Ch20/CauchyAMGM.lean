@@ -10,6 +10,9 @@ open Classical
 
 /-! ### Cauchy forward-backward AM-GM helpers for Proof ₁ -/
 
+/--
+@isnad1 id=le.0h2v.s5.94918fe7ce67 from=translated src=- shape=75af56af vocab=e624faf6
+-/
 lemma cauchy_amgm_base (a b : ℝ) :
     a * b ≤ ((a + b) / 2) ^ 2 := by nlinarith [sq_nonneg (a - b)]
 
@@ -17,10 +20,16 @@ lemma cauchy_amgm_base (a b : ℝ) :
 def CauchyAMGM (n : ℕ) : Prop :=
   ∀ (a : Fin n → ℝ), (∀ i, 0 ≤ a i) → ∏ i, a i ≤ ((∑ i, a i) / n) ^ n
 
+/--
+@isnad1 id=cauchyam.0h0v.s2.31a06dc617b8 from=translated src=- shape=e590c3e1 vocab=8b0fb03e
+-/
 lemma cauchy_amgm_two : CauchyAMGM 2 := by
   intro a _; simp only [Fin.prod_univ_two, Fin.sum_univ_two]; exact cauchy_amgm_base _ _
 
 set_option maxHeartbeats 800000 in
+/--
+@isnad1 id=cauchyam.2h1v.s4.baaca5b78dc1 from=translated src=- shape=411089ad vocab=c0b5befa
+-/
 lemma cauchy_amgm_doubling (n : ℕ) (hn : 0 < n) (h : CauchyAMGM n) :
     CauchyAMGM (n + n) := by
   intro a hpos
@@ -49,6 +58,9 @@ lemma cauchy_amgm_doubling (n : ℕ) (hn : 0 < n) (h : CauchyAMGM n) :
     _ = ((∑ i, a i) / (↑n + ↑n)) ^ (n + n) := by
         congr 2; exact (Fin.sum_univ_add a).symm
 
+/--
+@isnad1 id=cauchyam.1h1v.s4.6346b41ea6e8 from=translated src=- shape=dfae491e vocab=81057033
+-/
 lemma cauchy_amgm_pow2 : ∀ k : ℕ, 0 < k → CauchyAMGM (2 ^ k) := by
   intro k hk
   induction k with
@@ -60,6 +72,9 @@ lemma cauchy_amgm_pow2 : ∀ k : ℕ, 0 < k → CauchyAMGM (2 ^ k) := by
       rw [this]; exact cauchy_amgm_doubling _ (by positivity) (ihk (by omega))
 
 set_option maxHeartbeats 1600000 in
+/--
+@isnad1 id=cauchyam.2h1v.s4.fcbc74333791 from=translated src=- shape=d19d3b03 vocab=c0b5befa
+-/
 lemma cauchy_amgm_backward (n : ℕ) (hn : 0 < n) (h : CauchyAMGM (n + 1)) :
     CauchyAMGM n := by
   intro a hpos
@@ -87,6 +102,9 @@ lemma cauchy_amgm_backward (n : ℕ) (hn : 0 < n) (h : CauchyAMGM (n + 1)) :
     rw [hA0]; simp [Fintype.card_fin, zero_pow (by omega : n ≠ 0)]
   · exact le_of_mul_le_mul_right key (lt_of_le_of_ne hA_nn (Ne.symm hA0))
 
+/--
+@isnad1 id=cauchyam.2h2v.s4.e2df397c85fb from=translated src=- shape=083eb0e6 vocab=c0b5befa
+-/
 lemma cauchy_amgm_backward_iter (d n : ℕ) (hn : 0 < n) (h : CauchyAMGM (n + d)) :
     CauchyAMGM n := by
   induction d with
@@ -96,7 +114,9 @@ lemma cauchy_amgm_backward_iter (d n : ℕ) (hn : 0 < n) (h : CauchyAMGM (n + d)
     exact cauchy_amgm_backward (n + d) (by omega) (by rw [add_assoc]; exact h)
 
 /-- **Cauchy's AM-GM inequality**: for n ≥ 1 and nonneg reals, ∏aᵢ ≤ (∑aᵢ/n)ⁿ.
-    Proved by forward doubling P(2)→P(4)→...→P(2^k), then backward P(2^k)→...→P(n). -/
+    Proved by forward doubling P(2)→P(4)→...→P(2^k), then backward P(2^k)→...→P(n).
+@isnad1 id=cauchyam.1h1v.s3.876091164d9d from=translated src=- shape=2d2cffd0 vocab=97159f36
+-/
 lemma cauchy_amgm (n : ℕ) (hn : 0 < n) : CauchyAMGM n := by
   obtain ⟨k, hk, hkn⟩ : ∃ k, 0 < k ∧ n ≤ 2 ^ k :=
     ⟨n, by omega, Nat.lt_two_pow_self.le⟩
@@ -104,6 +124,9 @@ lemma cauchy_amgm (n : ℕ) (hn : 0 < n) : CauchyAMGM n := by
     (by convert cauchy_amgm_pow2 k hk using 1; omega)
 
 set_option maxHeartbeats 1600000 in
+/--
+@isnad1 id=le.2h2v.s6.2ed37229f858 from=translated src=- shape=ad9ca8f6 vocab=f736de5f
+-/
 lemma cauchy_amgm_fintype {α : Type*} [Fintype α]
     (hcard : 0 < Fintype.card α)
     (a : α → ℝ) (hpos : ∀ i, 0 ≤ a i) :
@@ -118,6 +141,9 @@ lemma cauchy_amgm_fintype {α : Type*} [Fintype α]
   exact cauchy_amgm n hcard (fun i => a (e.symm i)) (fun i => hpos _)
 
 set_option maxHeartbeats 800000 in
+/--
+@isnad1 id=le.4h3v.s6.2ff02a820129 from=translated src=- shape=f19ed192 vocab=60ff2d59
+-/
 lemma cauchy_amgm_rpow {n : ℕ} (hn : 0 < n)
     (x y : ℝ) (hx : 0 ≤ x) (hy : 0 ≤ y) (h : x ≤ y ^ n) :
     x ^ ((1 : ℝ) / n) ≤ y := by

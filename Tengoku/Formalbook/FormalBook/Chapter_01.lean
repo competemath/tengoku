@@ -21,6 +21,9 @@ open BigOperators
 ### Euclid's Proof
 
 -/
+/--
+@isnad1 id=ex.1h1v.s5.772705a56ff3 from=translated src=- shape=864b1068 vocab=be303f15
+-/
 theorem infinity_of_primes₁ (S : Finset ℕ) (h : ∀ q ∈ S, Nat.Prime q):
   ∃ (p : ℕ), Nat.Prime p ∧ p ∉ S := by
   let n := 1 + ∏ q ∈ S, q
@@ -47,6 +50,9 @@ local notation "F" => fermatNumber
 -- We actually prove something slighly stronger that what is in the book:
 -- also for n = 0, the statement is true.
 -- This is in mathlib as `fermatNumber_product`
+/--
+@isnad1 id=eq.0h1v.s4.d432d5f49ae9 from=translated src=- shape=990a3166 vocab=98fe650f
+-/
 lemma fermatProduct (n : ℕ) : ∏ k ∈ range n, F k = F n - 2 := by
   induction n with
   | zero => trivial
@@ -58,6 +64,9 @@ lemma fermatProduct (n : ℕ) : ∏ k ∈ range n, F k = F n - 2 := by
     omega
 
 -- This is in mathlib as coprime_fermatNumber_fermatNumber
+/--
+@isnad1 id=coprime.1h2v.s3.c5b79e108cf7 from=translated src=- shape=e389098a vocab=2875b9d9
+-/
 theorem infinity_of_primes₂  (k n : ℕ) (h : k < n) : Coprime (F n) (F k) := by
   let m := (F n).gcd (F k)
   have h_n : m ∣ F n := (F n).gcd_dvd_left (F k)
@@ -81,19 +90,31 @@ theorem infinity_of_primes₂  (k n : ℕ) (h : k < n) : Coprime (F n) (F k) := 
 
 using Mersenne numbers
 -/
+/--
+@isnad1 id=ne.0h1v.s5.169b4afcdd69 from=translated src=- shape=afd64b52 vocab=2cfccca2
+-/
 lemma ZMod.one_ne_zero (q : ℕ) [Fact (1 < q)] : (1 : ZMod q) ≠ 0 := by
   intro h
   have := ZMod.val_one q ▸ (ZMod.val_eq_zero (1 : ZMod q)).mpr h
   linarith
 
+/--
+@isnad1 id=ne.0h1v.s5.6399181ea285 from=translated src=- shape=afd64b52 vocab=2cfccca2
+-/
 lemma ZMod.two_ne_one (q : ℕ)  [Fact (1 < q)] : (2 : ZMod q) ≠ 1 := by
   intro h1
   have h : (2 - 1 : ZMod q) = 0 := Iff.mpr sub_eq_zero h1
   norm_num at h
 
+/--
+@isnad1 id=le.1h2v.s5.143d5db072bd from=translated src=- shape=aa0a716a vocab=cf369417
+-/
 lemma sub_one_le_sub_one {n m : ℕ} : n ≤ m → n - 1 ≤ m - 1 :=
   fun h ↦ pred_le_pred h
 
+/--
+@isnad1 id=not.0h0v.s4.4859e0b44141 from=translated src=- shape=9e08551e vocab=30ca7223
+-/
 theorem infinity_of_primes₃:
   ¬ (∃ (p : ℕ), Nat.Prime p ∧ (∀ (q : ℕ), (Nat.Prime q) → q ≤ p)) := by
   simp only [not_exists, not_and, not_forall, not_le, exists_prop]
@@ -183,6 +204,9 @@ noncomputable def invRealHom : ℕ →*₀ ℝ :=
     map_mul' := by
       grind }
 
+/--
+@isnad1 id=eq.0h1v.s4.6beaa3b884f3 from=translated src=- shape=6f3f8ff8 vocab=e06c4876
+-/
 lemma S1_eq_smoothNumbers (x : ℝ) : S₁ x = Nat.smoothNumbers (⌊x⌋₊ + 1) := by
   ext n
   simp only [S₁, Nat.smoothNumbers, Set.mem_ofPred_eq]
@@ -214,6 +238,9 @@ lemma S1_eq_smoothNumbers (x : ℝ) : S₁ x = Nat.smoothNumbers (⌊x⌋₊ + 1
       omega
     exact le_trans (Nat.cast_le.mpr hp_le) (Nat.floor_le hx0)
 
+/--
+@isnad1 id=lt.1h1v.s5.f15a161ab69e from=translated src=- shape=3071a3d3 vocab=c6fa9c89
+-/
 lemma norm_invRealHom_prime_lt_one (p : ℕ) (hp : Nat.Prime p) : ‖invRealHom p‖ < 1 := by
   erw [Real.norm_of_nonneg]
   · exact inv_lt_one_of_one_lt₀ <| mod_cast hp.one_lt
@@ -227,6 +254,9 @@ noncomputable def invRealMonoidHom : ℕ →* ℝ :=
       intros x y
       simp [mul_comm] }
 
+/--
+@isnad1 id=summable.0h1v.s5.cedbca5c5b72 from=translated src=- shape=dee38f49 vocab=bc7ba3d8
+-/
 lemma summable_invRealHom_smoothNumbers (N : ℕ) : Summable (fun (m : Nat.smoothNumbers N) ↦ ‖invRealHom m‖) := by
   have h : ∀ {p : ℕ}, Nat.Prime p → ‖invRealMonoidHom p‖ < 1 := by
     intro p hp
@@ -236,6 +266,9 @@ lemma summable_invRealHom_smoothNumbers (N : ℕ) : Summable (fun (m : Nat.smoot
   have := (EulerProduct.summable_and_hasSum_smoothNumbers_prod_primesBelow_geometric (f := invRealMonoidHom) h N).1
   exact this
 
+/--
+@isnad1 id=summable.3h3v.s6.c3de52c2e848 from=translated src=- shape=94b74c7b vocab=52bce249
+-/
 theorem f_abs_summable (x : ℝ) (n : ℕ) (hxge : x ≥ ↑n) (hxlt : x < ↑n + 1)
   (f : ArithmeticFunction ℝ) (hf : f.toFun = (S₁ x).indicator fun y ↦ (↑y)⁻¹) :
   Summable fun x ↦ ‖f x‖ := by
@@ -260,6 +293,9 @@ theorem f_abs_summable (x : ℝ) (n : ℕ) (hxge : x ≥ ↑n) (hxlt : x < ↑n 
   rw [h_eq]
   exact h_ind
 
+/--
+@isnad1 id=ex.0h1v.s4.b78b8d7fe77a from=translated src=- shape=dbb59951 vocab=d2cf7363
+-/
 lemma exists_image_primes_eq_primesBelow (n : ℕ) :
   ∃ (s : Finset Nat.Primes), s.image (fun p : Nat.Primes ↦ p.1) = n.primesBelow := by
   unfold Nat.Primes
@@ -272,6 +308,9 @@ lemma exists_image_primes_eq_primesBelow (n : ℕ) :
   · intro ha
     exact ⟨⟨a, ha.2⟩, ha, rfl⟩
 
+/--
+@isnad1 id=ex.1h2v.s5.4055221442fb from=translated src=- shape=e90caeed vocab=11fba6ed
+-/
 lemma arithmetic_f (x: ℝ) (n: ℕ) (hxlt : x < n + 1) : ∃ f: ArithmeticFunction ℝ, f.toFun = (S₁ x).indicator (fun y ↦ (↑y)⁻¹) := by {
     exists ZeroHom.mk ((S₁ x).indicator (fun y: ℕ ↦ (y: ℝ)⁻¹)) (by
   {
@@ -298,6 +337,9 @@ lemma arithmetic_f (x: ℝ) (n: ℕ) (hxlt : x < n + 1) : ∃ f: ArithmeticFunct
   })
   }
 
+/--
+@isnad1 id=eq.2h2v.s7.74b94f132f74 from=translated src=- shape=5c92f39e vocab=47daf2fa
+-/
 theorem euler_product_rearrangement (x: ℝ) (n: ℕ) (hxge : x ≥ n) (hxlt : x < n + 1): ∑' m : (S₁ x), (m : ℝ)⁻¹ = (∏ p ∈ primesBelow (⌊x⌋.natAbs+1), (∑' k : ℕ, (p ^ k : ℝ)⁻¹)) := by {
   have:= _root_.tsum_subtype (S₁ x) (fun y => (y:ℝ)⁻¹)
   rewrite [this]
@@ -408,6 +450,9 @@ theorem euler_product_rearrangement (x: ℝ) (n: ℕ) (hxge : x ≥ n) (hxlt : x
   exact this
 }
 
+/--
+@isnad1 id=le.2h2v.s5.e4d5d659baad from=translated src=- shape=63a48969 vocab=ca4171e7
+-/
 theorem log_riemann_bound (x: ℝ) (n: ℕ) (hxge : x ≥ n) (hxlt : x < n + 1): Real.log x ≤ ∑ k ∈ Icc 1 n, (k : ℝ)⁻¹ := by {
   -- We'll use the fact that $\log x \leq \sum_{i=1}^n \frac{1}{i}$ for $x \leq n+1$.
   have h_log_le_sum : Real.log x ≤ Real.log (n + 1) := by
@@ -430,6 +475,9 @@ theorem log_riemann_bound (x: ℝ) (n: ℕ) (hxge : x ≥ n) (hxlt : x < n + 1):
   simpa using h_log_le_sum n
 }
 
+/--
+@isnad1 id=le.2h2v.s6.b5c68d240d14 from=translated src=- shape=14740b8c vocab=1732a33d
+-/
 lemma H_P4_1 {k p: ℝ} (hk: k > 0) (hp: p ≥ k + 1): p / (p - 1) ≤ (k + 1) / k := by
   have h_k_nonzero: k ≠ 0 := ne_iff_lt_or_gt.mpr (Or.inr hk)
   have h_p_pred_pos: p - 1 > 0 := by linarith
@@ -440,6 +488,9 @@ lemma H_P4_1 {k p: ℝ} (hk: k > 0) (hp: p ≥ k + 1): p / (p - 1) ≤ (k + 1) /
     @le_sub_iff_add_le]
   exact hp
 
+/--
+@isnad1 id=eq.1h1v.s6.796b8e74823d from=translated src=- shape=957e2682 vocab=6c00f26e
+-/
 lemma prod_Icc_succ_div (n : ℕ) (hn : 2 ≤ n) : (∏ x ∈ Icc 1 n, ((x + 1) : ℝ) / x) = n + 1 := by
   rw [← Finset.Ico_succ_right_eq_Icc]
   induction n with
@@ -455,6 +506,9 @@ lemma prod_Icc_succ_div (n : ℕ) (hn : 2 ≤ n) : (∏ x ∈ Icc 1 n, ((x + 1) 
     rw [h h2]
     norm_num
 
+/--
+@isnad1 id=le.0h1v.s6.0477eb3e2216 from=translated src=- shape=137c776f vocab=6c00f26e
+-/
 lemma prod_Icc_le (n: ℕ) : (∏ x ∈ Icc 1 n, ((x + 1) : ℝ) / x) ≤ n + 1 := by {
   have: n < 2 ∨ 2 ≤ n := by omega
   rcases this with (case | case)
@@ -465,6 +519,9 @@ lemma prod_Icc_le (n: ℕ) : (∏ x ∈ Icc 1 n, ((x + 1) : ℝ) / x) ≤ n + 1 
 
 }
 
+/--
+@isnad1 id=le.0h1v.s6.37d05c75f47f from=translated src=- shape=fc8f151a vocab=61863bb6
+-/
 lemma prime_counting_lemma (x : ℝ) :
   ∏ k ∈ Icc 1 (primeCountingReal x), ((nth Nat.Prime k):ℝ) / (↑(nth Nat.Prime k) - 1) ≤
     ∏ k ∈ Icc 1 (primeCountingReal x), (k + (1:ℝ)) / ↑k := by
@@ -489,6 +546,9 @@ def N : ℤ → ℤ → Set ℤ := fun a b ↦ {a + n * b | n : ℤ}
 /-- A set `O` is open if it is empty or if for any `a ∈ O`, it contains an arithmetic progression centered at `a`. -/
 def isOpen : Set ℤ → Prop := fun O ↦ O = ∅ ∨ ∀ a ∈ O, ∃ b > 0, N a b ⊆ O
 
+/--
+@isnad1 id=infinite.0h0v.s3.be446de1cb9c from=translated src=- shape=66b19da4 vocab=040ecd32
+-/
 theorem infinity_of_primes₅ : { p : ℕ | p.Prime }.Infinite := by
   let TopoSpace : TopologicalSpace ℤ := {
     IsOpen := isOpen

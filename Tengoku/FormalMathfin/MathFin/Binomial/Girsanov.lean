@@ -61,7 +61,9 @@ noncomputable def binomialRN (p q : ℝ) : Bool → ℝ
 `p · (q/p) + (1 − p) · ((1 − q)/(1 − p)) = 1`.
 
 This is the universal "the change of measure preserves total mass"
-property, here in two-state form. -/
+property, here in two-state form.
+@isnad1 id=eq.2h2v.s6.6133933ff85b from=translated src=- shape=fa67ccb2 vocab=96c623e1
+-/
 theorem binomialRN_expectation_one (p q : ℝ)
     (hp : p ≠ 0) (hp1 : p ≠ 1) :
     p * binomialRN p q true + (1 - p) * binomialRN p q false = 1 := by
@@ -76,7 +78,9 @@ where `Z = dQ/dP`:
 
   `E^Q[V] = q · V_u + (1−q) · V_d = E^P[Z · V] = p · (q/p) · V_u + (1−p) · ((1−q)/(1−p)) · V_d`.
 
-(Both sides simplify to `q · V_u + (1 − q) · V_d`.) -/
+(Both sides simplify to `q · V_u + (1 − q) · V_d`.)
+@isnad1 id=eq.2h4v.s7.2a8ab90bc002 from=translated src=- shape=85c32576 vocab=96c623e1
+-/
 theorem binomial_riskNeutral_via_RN (p q V_u V_d : ℝ)
     (hp : p ≠ 0) (hp1 : p ≠ 1) :
     q * V_u + (1 - q) * V_d =

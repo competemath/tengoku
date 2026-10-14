@@ -48,7 +48,9 @@ where `d_i = bsdi F K 0 σ T`.
 
 Real derivation: applies `bs_call_formula` with `r = 0` (no
 intra-formula discounting) and multiplies through by the external
-discount factor `e^{-rT}`. -/
+discount factor `e^{-rT}`.
+@isnad1 id=eq.1h9v.s7.eaaebbe9a6ca from=translated src=- shape=8dd3f1d6 vocab=9e4aad64
+-/
 theorem black_futures_formula {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
     {F K σ T : ℝ} {Z : Ω → ℝ}
@@ -69,7 +71,9 @@ expected futures-call payoff equals `bsVGarman` at `A = F · e^{−rT}`,
 `DF = e^{−rT}` — the forward numéraire. Routes `black_futures_formula`
 through `BlackScholes/GarmanNormalForm`'s `black76_RHS_eq_bsVGarman`, making
 the "Black-76 is the same formula as standard BS" unification load-bearing
-from the consumer side. -/
+from the consumer side.
+@isnad1 id=eq.1h9v.s7.adad939a0227 from=translated src=- shape=782a7206 vocab=3f8dc6e3
+-/
 theorem black_futures_price_eq_bsVGarman {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
     {F K σ T : ℝ} {Z : Ω → ℝ}
@@ -97,7 +101,9 @@ noncomputable def blackReceiverSwaption (A F K σ T : ℝ) : ℝ :=
   A * (K * Phi (-(bsd2 F K 0 σ T)) - F * Phi (-(bsd1 F K 0 σ T)))
 
 /-- **Payer-receiver swaption parity**: `V^payer − V^receiver = A · (F − K)`.
-The same `Phi`-symmetry proof as put-call parity, scaled by the annuity. -/
+The same `Phi`-symmetry proof as put-call parity, scaled by the annuity.
+@isnad1 id=eq.0h5v.s5.e9d46ec15f8a from=translated src=- shape=75211415 vocab=f8ad581c
+-/
 theorem swaption_payer_receiver_parity (A F K σ T : ℝ) :
     blackPayerSwaption A F K σ T - blackReceiverSwaption A F K σ T =
       A * (F - K) := by
@@ -110,7 +116,9 @@ theorem swaption_payer_receiver_parity (A F K σ T : ℝ) :
 = bsVGarman (F·A) K A σ T`, the annuity `A` in the discount-factor slot and
 `F·A` the asset. Makes explicit that `GarmanNormalForm`'s docstring earmark for
 the swaption is a genuine instance (`A_annuity·F` asset, `A_annuity` discount),
-so the payer/receiver parity above is the Garman-level parity in disguise. -/
+so the payer/receiver parity above is the Garman-level parity in disguise.
+@isnad1 id=eq.1h5v.s5.677fb821743b from=translated src=- shape=c2c5adb7 vocab=fdcd4bd4
+-/
 theorem blackPayerSwaption_eq_bsVGarman (A F K σ T : ℝ) (hA : 0 < A) :
     blackPayerSwaption A F K σ T = bsVGarman (F * A) K A σ T := by
   have hd1 : bsd1 F K 0 σ T = gbsd1 (F * A) K A σ T := by
@@ -147,18 +155,24 @@ noncomputable def blackFloorlet (F K σ T α : ℝ) : ℝ :=
 
 /-- **The caplet is a payer swaption in disguise**: same Black-76 shape, with the
 accrual factor `α` where the swaption carries its annuity `A`. The two
-instruments differ in their numéraire story, not in their formula. -/
+instruments differ in their numéraire story, not in their formula.
+@isnad1 id=eq.0h5v.s4.62a88c815bee from=translated src=- shape=c8ecd407 vocab=41bc6552
+-/
 theorem blackCaplet_eq_blackPayerSwaption (F K σ T α : ℝ) :
     blackCaplet F K σ T α = blackPayerSwaption α F K σ T := rfl
 
-/-- **The floorlet is a receiver swaption in disguise**, by the same reading. -/
+/-- **The floorlet is a receiver swaption in disguise**, by the same reading.
+@isnad1 id=eq.0h5v.s4.13b4241f20a4 from=translated src=- shape=c8ecd407 vocab=cbb7565c
+-/
 theorem blackFloorlet_eq_blackReceiverSwaption (F K σ T α : ℝ) :
     blackFloorlet F K σ T α = blackReceiverSwaption α F K σ T := rfl
 
 /-- **Caplet-floorlet parity**: `V^caplet − V^floorlet = α · (F − K)`, the
 forward-rate analogue of put-call parity. Given the structural identity above it
 *is* payer-receiver parity, so it is that theorem applied rather than the same
-`Phi`-symmetry argument run a second time. -/
+`Phi`-symmetry argument run a second time.
+@isnad1 id=eq.0h5v.s5.d8506a481cde from=translated src=- shape=0d70c857 vocab=e4970300
+-/
 theorem caplet_floorlet_parity (F K σ T α : ℝ) :
     blackCaplet F K σ T α - blackFloorlet F K σ T α = α * (F - K) :=
   swaption_payer_receiver_parity α F K σ T

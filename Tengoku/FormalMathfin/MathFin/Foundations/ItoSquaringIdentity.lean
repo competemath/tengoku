@@ -42,7 +42,9 @@ namespace MathFin
 
 /-- For `f(x) = x²`, with `f'(x) = 2x` and `f''(x) = 2`, the discrete Taylor
 remainder vanishes identically — `x ↦ x²` *is* its own second-order Taylor
-expansion at every point. -/
+expansion at every point.
+@isnad1 id=eq.0h2v.s5.d0707d2e136c from=translated src=- shape=0207a259 vocab=00b3b72f
+-/
 lemma discreteTaylorRemainder_sq (Xk Xkp1 : ℝ) :
     discreteTaylorRemainder (fun x ↦ x ^ 2) (fun x ↦ 2 * x) (fun _ ↦ 2) Xk Xkp1 = 0 := by
   unfold discreteTaylorRemainder
@@ -53,7 +55,9 @@ lemma discreteTaylorRemainder_sq (Xk Xkp1 : ℝ) :
   `X_N² − X_0² = 2 · ∑_{k<N} X_k · ΔX_k + ∑_{k<N} (ΔX_k)²`.
 
 Specialisation of `discrete_ito_formula` to `f(x) = x²` (where the Taylor
-remainder is identically `0` — `discreteTaylorRemainder_sq`). -/
+remainder is identically `0` — `discreteTaylorRemainder_sq`).
+@isnad1 id=eq.0h2v.s7.e7f0702a8e6b from=translated src=- shape=339034ac vocab=caf3bb20
+-/
 theorem discrete_squaring_identity (N : ℕ) (X : ℕ → ℝ) :
     X N ^ 2 - X 0 ^ 2 =
       2 * (∑ k ∈ Finset.range N, X k * (X (k + 1) - X k)) +
@@ -79,7 +83,9 @@ theorem discrete_squaring_identity (N : ℕ) (X : ℕ → ℝ) :
 
 /-- **Discrete Itô-squaring rearranged** (the form that directly tracks
 `B_T² − B_0²`): writes `X_N²` as `X_0²` plus the Itô-sum-with-itself plus
-the quadratic variation along the partition. -/
+the quadratic variation along the partition.
+@isnad1 id=eq.0h2v.s7.2dc2d94833f7 from=translated src=- shape=46b61239 vocab=caf3bb20
+-/
 theorem discrete_squaring_identity' (N : ℕ) (X : ℕ → ℝ) :
     X N ^ 2 = X 0 ^ 2 +
       2 * (∑ k ∈ Finset.range N, X k * (X (k + 1) - X k)) +

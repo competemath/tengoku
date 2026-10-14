@@ -75,7 +75,9 @@ private theorem hasSum_pw_mul_id (r : ℝ≥0) :
   refine (hasSum_nat_add_iff' 1).mp ?_
   simpa using hshift
 
-/-- **Poisson mean**: `∫ n, (n : ℝ) ∂poissonMeasure r = r`. -/
+/-- **Poisson mean**: `∫ n, (n : ℝ) ∂poissonMeasure r = r`.
+@isnad1 id=eq.0h1v.s4.c72c59d2f7ea from=translated src=- shape=6ef05e15 vocab=d020d26c
+-/
 theorem poissonMeasure_integral_id (r : ℝ≥0) :
     ∫ n, (n : ℝ) ∂(poissonMeasure r) = (r : ℝ) := by
   rw [integral_poissonMeasure]
@@ -105,7 +107,9 @@ private theorem hasSum_pw_mul_sq (r : ℝ≥0) :
   refine (hasSum_nat_add_iff' 1).mp ?_
   simpa using hshift
 
-/-- **Poisson second moment**: `∫ n, (n : ℝ)^2 ∂poissonMeasure r = r^2 + r`. -/
+/-- **Poisson second moment**: `∫ n, (n : ℝ)^2 ∂poissonMeasure r = r^2 + r`.
+@isnad1 id=eq.0h1v.s6.f0fb2881bd32 from=translated src=- shape=cf14407c vocab=4606b326
+-/
 theorem poissonMeasure_integral_sq (r : ℝ≥0) :
     ∫ n, (n : ℝ) ^ 2 ∂(poissonMeasure r) = (r : ℝ) ^ 2 + (r : ℝ) := by
   rw [integral_poissonMeasure]
@@ -160,7 +164,9 @@ noncomputable def PoissonRandomMeasure.compensated {P : Measure Ω} [IsProbabili
     (B : Set (ℝ × E)) (ω : Ω) : ℝ :=
   (N.N ω B).toReal - (referenceIntensity ν B).toReal
 
-/-- The compensated increment `Ñ(B)` is measurable. -/
+/-- The compensated increment `Ñ(B)` is measurable.
+@isnad1 id=measurab.1h6v.s6.d27e76dc15bf from=translated src=- shape=21dacf28 vocab=095b72e3
+-/
 theorem PoissonRandomMeasure.measurable_compensated {P : Measure Ω} [IsProbabilityMeasure P]
     {ν : Measure E} [SigmaFinite ν] (N : PoissonRandomMeasure P ν) {B : Set (ℝ × E)}
     (hB : MeasurableSet B) : Measurable (N.compensated B) :=
@@ -211,7 +217,9 @@ private theorem hasSum_pw_compensated_sq (r : ℝ≥0) :
     funext n; ring
   rw [hfun]; exact h
 
-/-- **Compensated increment is mean-zero**: `𝔼[Ñ(B)] = 0` (finite-intensity `B`). -/
+/-- **Compensated increment is mean-zero**: `𝔼[Ñ(B)] = 0` (finite-intensity `B`).
+@isnad1 id=eq.2h6v.s7.8ba3e69dfac5 from=translated src=- shape=42555e34 vocab=bdddfff0
+-/
 theorem compensated_integral_zero (N : PoissonRandomMeasure P ν) {B : Set (ℝ × E)}
     (hB : MeasurableSet B) (hfin : referenceIntensity ν B ≠ ⊤) :
     ∫ ω, N.compensated B ω ∂P = 0 := by
@@ -224,7 +232,9 @@ theorem compensated_integral_zero (N : PoissonRandomMeasure P ν) {B : Set (ℝ 
   exact (hasSum_pw_compensated (referenceIntensity ν B).toNNReal).tsum_eq
 
 /-- **Compensated increment second moment**: `𝔼[Ñ(B)²] = ν̂(B)` (finite-intensity `B`) —
-this is the diagonal energy the Itô–Lévy isometry sums. -/
+this is the diagonal energy the Itô–Lévy isometry sums.
+@isnad1 id=eq.2h6v.s7.914cb66002c7 from=translated src=- shape=39515ac6 vocab=0caff613
+-/
 theorem compensated_integral_sq (N : PoissonRandomMeasure P ν) {B : Set (ℝ × E)}
     (hB : MeasurableSet B) (hfin : referenceIntensity ν B ≠ ⊤) :
     ∫ ω, (N.compensated B ω) ^ 2 ∂P = (referenceIntensity ν B).toReal := by
@@ -239,7 +249,9 @@ theorem compensated_integral_sq (N : PoissonRandomMeasure P ν) {B : Set (ℝ ×
 /-- **The compensated increment is `L²`**: `Ñ(D) ∈ L²(P)` for finite-intensity `D`. Its law is
 `Poisson(ν̂ D)` pushed through `n ↦ n − ν̂ D`, whose second moment is finite — concretely
 `∑ₙ c_r(n)·(n − r)² = r < ∞` (`hasSum_pw_compensated_sq`). This is the `L²`-membership each
-simple-integrand term of the Itô–Lévy isometry needs. -/
+simple-integrand term of the Itô–Lévy isometry needs.
+@isnad1 id=memlp.2h6v.s7.c58923507484 from=translated src=- shape=52f5d748 vocab=98a7298e
+-/
 theorem memLp_compensated (N : PoissonRandomMeasure P ν) {D : Set (ℝ × E)}
     (hD : MeasurableSet D) (hfin : referenceIntensity ν D ≠ ⊤) :
     MemLp (N.compensated D) 2 P := by

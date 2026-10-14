@@ -28,6 +28,9 @@ open scoped Topology BoundedContinuousFunction
 noncomputable def causalBoundarySub {a : ℝ} (f g : CausalBoundaryData a) : CausalBoundaryData a :=
   ⟨f.1-g.1,fun t ht => by change f.1 t-g.1 t = 0; rw [f.2 t ht,g.2 t ht,sub_self]⟩
 
+/--
+@isnad1 id=eq.0h4v.s7.38bb0f736165 from=translated src=- shape=22ca9c09 vocab=063e4d42
+-/
 theorem causalBoundarySub_dist {a : ℝ} (f g h : CausalBoundaryData a) :
     dist (causalBoundarySub f g) (causalBoundarySub f h) = dist g h := by
   simp only [Subtype.dist_eq,causalBoundarySub,dist_eq_norm]
@@ -42,6 +45,9 @@ noncomputable def coupledBoundaryStep {a : ℝ} (χ : ℝ →ᵇ ℝ) (L : ℝ)
   (causalBoundarySub g₀ (crossBoundaryCausal χ L p.2),
     causalBoundarySub g₁ (crossBoundaryCausal χ L p.1))
 
+/--
+@isnad1 id=contract.4h6v.s8.b118e5727674 from=translated src=- shape=0727930c vocab=dd44dcde
+-/
 theorem coupledBoundaryStep_contracting {a D L : ℝ} (hL : 0 < L) (hD : 0 ≤ D)
     (χ : ℝ →ᵇ ℝ) (hχ : ∀ t, ‖χ t‖ ≤ 1) (hstop : ∀ t, a+D < t → χ t = 0)
     (g₀ g₁ : CausalBoundaryData a) :
@@ -56,6 +62,9 @@ theorem coupledBoundaryStep_contracting {a D L : ℝ} (hL : 0 < L) (hD : 0 ≤ D
   · exact (crossBoundaryCausal_dist hL χ hχ hstop p.1 q.1).trans
       (mul_le_mul_of_nonneg_left (le_max_left _ _) (boundaryArrivalMass_nonneg hL))
 
+/--
+@isnad1 id=ex.4h6v.s9.04a059b171f3 from=translated src=- shape=b8acf657 vocab=2ae8cd27
+-/
 theorem exists_coupled_boundary_inputs {a D L : ℝ} (hL : 0 < L) (hD : 0 ≤ D)
     (χ : ℝ →ᵇ ℝ) (hχ : ∀ t, ‖χ t‖ ≤ 1) (hstop : ∀ t, a+D < t → χ t = 0)
     (g₀ g₁ : CausalBoundaryData a) :
@@ -75,6 +84,9 @@ theorem exists_coupled_boundary_inputs {a D L : ℝ} (hL : 0 < L) (hD : 0 ≤ D)
     change g₁.1 t-χ t*heatBoundaryExtension p.1.1 L t = p.2.1 t at he
     linarith
 
+/--
+@isnad1 id=ex.7h6v.s10.4bac5afea877 from=translated src=- shape=9b6f1124 vocab=5ead9b4f
+-/
 theorem exists_coupled_compact_boundary_inputs {a D L : ℝ} (hL : 0 < L) (hD : 0 ≤ D)
     (χ : ℝ →ᵇ ℝ) (hχ : ∀ t, ‖χ t‖ ≤ 1) (hstop : ∀ t, a+D < t → χ t = 0)
     (hcχ : HasCompactSupport (χ : ℝ → ℝ)) (g₀ g₁ : CausalBoundaryData a)

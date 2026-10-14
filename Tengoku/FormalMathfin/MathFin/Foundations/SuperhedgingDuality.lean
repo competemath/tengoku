@@ -43,7 +43,9 @@ def SuperReplicates (z : Fin M → Fin N → ℝ) (Y : Fin N → ℝ) (x : ℝ) 
 
 /-- **The fundamental superhedging bound.** Every EMM price of a claim is at most every
 super-replication cost: under any martingale measure, the claim's expected value cannot exceed the
-cost of any portfolio that dominates it. The dual side of the no-arbitrage pricing interval. -/
+cost of any portfolio that dominates it. The dual side of the no-arbitrage pricing interval.
+@isnad1 id=le.2h7v.s6.6dc9834ece88 from=translated src=- shape=737547d7 vocab=f0a888d9
+-/
 theorem emm_le_superReplication (z : Fin M → Fin N → ℝ) (Y : Fin N → ℝ)
     {q : Fin N → ℝ} (hq : q ∈ EMMSet z) {x : ℝ} {θ : Fin M → ℝ}
     (hsr : SuperReplicates z Y x θ) :

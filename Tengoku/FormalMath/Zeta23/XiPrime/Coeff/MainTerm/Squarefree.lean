@@ -27,16 +27,22 @@ namespace XiPrime
 
 /-! ### squarefree bookkeeping -/
 
-/-- A0: ω N = #(prime factors of N). -/
+/-- A0: ω N = #(prime factors of N).
+@isnad1 id=eq.0h1v.s4.d97056ce1eb5 from=translated src=- shape=ec2a5b57 vocab=d153508a
+-/
 lemma cardDistinctFactors_eq_card_primeFactors (N : ℕ) : ω N = N.primeFactors.card := by
   rw [ArithmeticFunction.cardDistinctFactors_apply, Nat.primeFactors, List.card_toFinset]
 
-/-- a prime-power divisor of a squarefree number is a prime. -/
+/-- a prime-power divisor of a squarefree number is a prime.
+@isnad1 id=prime.3h2v.s4.614ba83743ea from=translated src=- shape=ff68c564 vocab=dae6198c
+-/
 lemma prime_of_isPrimePow_dvd_squarefree {N d : ℕ} (hN : Squarefree N) (hd : d ∣ N)
     (hpp : IsPrimePow d) : d.Prime :=
   Nat.squarefree_and_prime_pow_iff_prime.mp ⟨hN.squarefree_of_dvd hd, hpp⟩
 
-/-- for p a prime factor of squarefree N: the prime factors of N/p. -/
+/-- for p a prime factor of squarefree N: the prime factors of N/p.
+@isnad1 id=eq.2h2v.s5.9fe137fcebac from=translated src=- shape=18d3ace9 vocab=0442e8ac
+-/
 lemma primeFactors_div_of_mem {N p : ℕ} (hN : Squarefree N) (hp : p ∈ N.primeFactors) :
     (N / p).primeFactors = N.primeFactors.erase p := by
   have hpP : p.Prime := Nat.prime_of_mem_primeFactors hp
@@ -46,10 +52,16 @@ lemma primeFactors_div_of_mem {N p : ℕ} (hN : Squarefree N) (hp : p ∈ N.prim
   rw [hg, hpP.primeFactors, sdiff_singleton_eq_erase] at h
   exact h
 
+/--
+@isnad1 id=squarefr.2h2v.s5.49a0746129f6 from=translated src=- shape=3b528ee7 vocab=97aed47c
+-/
 lemma squarefree_div_of_mem {N p : ℕ} (hN : Squarefree N) (hp : p ∈ N.primeFactors) :
     Squarefree (N / p) :=
   hN.squarefree_of_dvd (Nat.div_dvd_of_dvd (Nat.dvd_of_mem_primeFactors hp))
 
+/--
+@isnad1 id=eq.2h2v.s6.0d2781170f0d from=translated src=- shape=52ea8edc vocab=14f91d23
+-/
 lemma cardDistinctFactors_div_of_mem {N p : ℕ} (hN : Squarefree N) (hp : p ∈ N.primeFactors) :
     ω (N / p) + 1 = ω N := by
   rw [cardDistinctFactors_eq_card_primeFactors, cardDistinctFactors_eq_card_primeFactors,
@@ -57,20 +69,26 @@ lemma cardDistinctFactors_div_of_mem {N p : ℕ} (hN : Squarefree N) (hp : p ∈
   have : 0 < N.primeFactors.card := card_pos.mpr ⟨p, hp⟩
   omega
 
-/-- ω N ≠ 1 means N is not a prime power, so Λ N = 0. -/
+/-- ω N ≠ 1 means N is not a prime power, so Λ N = 0.
+@isnad1 id=eq.1h1v.s5.fa9fe830dd5f from=translated src=- shape=1a2f8446 vocab=851cfb26
+-/
 lemma vonMangoldt_eq_zero_of_cardDistinctFactors_ne_one {N : ℕ} (h : ω N ≠ 1) : Λ N = 0 := by
   rw [ArithmeticFunction.vonMangoldt_eq_zero_iff]
   intro hpp
   exact h (ArithmeticFunction.cardDistinctFactors_eq_one_iff.mpr hpp)
 
-/-- for squarefree N, Ω N = ω N. -/
+/-- for squarefree N, Ω N = ω N.
+@isnad1 id=eq.1h1v.s5.19e99b99dd2e from=translated src=- shape=c7da0f29 vocab=a83986e3
+-/
 lemma cardFactors_eq_cardDistinctFactors_of_squarefree {N : ℕ} (hN : Squarefree N) : Ω N = ω N :=
   ((ArithmeticFunction.cardDistinctFactors_eq_cardFactors_iff_squarefree hN.ne_zero).mpr hN).symm
 
 /-! ### the generic evaluation -/
 
 /-- **Dirichlet powers at squarefree N.**  If f is supported on prime powers then, for N squarefree,
-(f^{∗k})(N) = k!·∏_{p|N} f(p) when ω N = k, and 0 otherwise. -/
+(f^{∗k})(N) = k!·∏_{p|N} f(p) when ω N = k, and 0 otherwise.
+@isnad1 id=eq.2h3v.s7.b82c1b819782 from=translated src=- shape=80d1334a vocab=9ec51e53
+-/
 theorem pow_apply_squarefree {f : ArithmeticFunction ℝ} (hf : ∀ n, ¬IsPrimePow n → f n = 0) :
     ∀ (k : ℕ) {N : ℕ}, Squarefree N →
       (f ^ k) N = if ω N = k then (k.factorial : ℝ) * ∏ p ∈ N.primeFactors, f p else 0
@@ -114,13 +132,21 @@ theorem pow_apply_squarefree {f : ArithmeticFunction ℝ} (hf : ∀ n, ¬IsPrime
       · rw [ite_eq_left hk, ite_eq_left hk, hk, Nat.factorial_succ]; push_cast; ring
       · rw [ite_eq_right hk, ite_eq_right hk, mul_zero]
 
+/--
+@isnad1 id=eq.1h1v.s4.af56cd591f77 from=translated src=- shape=657d215f vocab=8ebd04fd
+-/
 lemma vonMangoldt_supported (n : ℕ) (h : ¬IsPrimePow n) : Λ n = 0 :=
   ArithmeticFunction.vonMangoldt_eq_zero_iff.mpr h
 
+/--
+@isnad1 id=eq.1h1v.s4.6373e2a0dc7a from=translated src=- shape=657d215f vocab=ade35221
+-/
 lemma lamLog_supported (n : ℕ) (h : ¬IsPrimePow n) : lamLog n = 0 := by
   rw [lamLog_apply, vonMangoldt_supported n h, zero_mul]
 
-/-- A1. -/
+/-- A1.
+@isnad1 id=eq.1h2v.s6.fafdab1f7928 from=translated src=- shape=084ae3ba vocab=42bdaf52
+-/
 theorem lamPow_apply_squarefree {N : ℕ} (hN : Squarefree N) (k : ℕ) :
     (Λ ^ k) N = if ω N = k then (k.factorial : ℝ) * ∏ p ∈ N.primeFactors, Real.log p else 0 := by
   rw [pow_apply_squarefree vonMangoldt_supported k hN]
@@ -130,7 +156,9 @@ theorem lamPow_apply_squarefree {N : ℕ} (hN : Squarefree N) (k : ℕ) :
       ArithmeticFunction.vonMangoldt_apply_prime (Nat.prime_of_mem_primeFactors hp)
   · rfl
 
-/-- A2. -/
+/-- A2.
+@isnad1 id=eq.1h2v.s7.107cef03d85d from=translated src=- shape=eec90040 vocab=9a28c74e
+-/
 theorem lamLogPow_apply_squarefree {N : ℕ} (hN : Squarefree N) (k : ℕ) :
     (lamLog ^ k) N =
       if ω N = k then (k.factorial : ℝ) * ∏ p ∈ N.primeFactors, Real.log p ^ 2 else 0 := by
@@ -141,14 +169,18 @@ theorem lamLogPow_apply_squarefree {N : ℕ} (hN : Squarefree N) (k : ℕ) :
     rw [lamLog_apply, ArithmeticFunction.vonMangoldt_apply_prime (Nat.prime_of_mem_primeFactors hp), sq]
   · rfl
 
-/-- Σ_{p | N} log p = log N for squarefree N. -/
+/-- Σ_{p | N} log p = log N for squarefree N.
+@isnad1 id=eq.1h1v.s4.102c1e3ce124 from=translated src=- shape=28004e74 vocab=3e99c32d
+-/
 lemma sum_primeFactors_log_of_squarefree {N : ℕ} (hN : Squarefree N) :
     ∑ p ∈ N.primeFactors, Real.log p = Real.log N := by
   rw [← Real.log_prod (fun p hp => ?_)]
   · rw [← Nat.cast_prod, Nat.prod_primeFactors_of_squarefree hN]
   · exact_mod_cast (Nat.prime_of_mem_primeFactors hp).ne_zero
 
-/-- A3: [(Λ·log) ∗ Λ^{∗j}](N) = j!·log N·∏_{p|N} log p if ω N = j+1, else 0  (N squarefree). -/
+/-- A3: [(Λ·log) ∗ Λ^{∗j}](N) = j!·log N·∏_{p|N} log p if ω N = j+1, else 0  (N squarefree).
+@isnad1 id=eq.1h2v.s7.429f70027bde from=translated src=- shape=66bbe523 vocab=cac52ff4
+-/
 theorem lamLogConv_apply_squarefree {N : ℕ} (hN : Squarefree N) (j : ℕ) :
     lamLogConv j N =
       if ω N = j + 1 then (j.factorial : ℝ) * Real.log N * ∏ p ∈ N.primeFactors, Real.log p
@@ -190,7 +222,9 @@ theorem lamLogConv_apply_squarefree {N : ℕ} (hN : Squarefree N) (j : ℕ) :
 
 /-! ### C(N; Λ⋆) at squarefree N -/
 
-/-- A4: for squarefree N with k = ω N ≥ 2:  C(N;Λ⋆) = (k−1)!·Λ⋆^{−k}·log N·∏_{p|N} log p. -/
+/-- A4: for squarefree N with k = ω N ≥ 2:  C(N;Λ⋆) = (k−1)!·Λ⋆^{−k}·log N·∏_{p|N} log p.
+@isnad1 id=eq.2h2v.s7.194b3223d60a from=translated src=- shape=a371647a vocab=390f981b
+-/
 theorem xiCoeff_squarefree {N : ℕ} (hN : Squarefree N) (hk : 2 ≤ ω N) (Λs : ℂ) :
     xiCoeff Λs N = ((ω N - 1).factorial : ℂ) * (Λs⁻¹) ^ (ω N) * (Real.log N : ℂ)
                      * ((∏ p ∈ N.primeFactors, Real.log p : ℝ) : ℂ) := by
@@ -206,7 +240,9 @@ theorem xiCoeff_squarefree {N : ℕ} (hN : Squarefree N) (hk : 2 ≤ ω N) (Λs 
   · intro j _ hj
     rw [lamLogConv_apply_squarefree hN, ite_eq_right (by omega), Complex.ofReal_zero, mul_zero]
 
-/-- C(p;Λ⋆) = −log p + Λ⋆^{−1} log²p. -/
+/-- C(p;Λ⋆) = −log p + Λ⋆^{−1} log²p.
+@isnad1 id=eq.1h2v.s6.d3785ad708ae from=translated src=- shape=a78a636e vocab=b1f83ed5
+-/
 theorem xiCoeff_prime {p : ℕ} (hp : p.Prime) (Λs : ℂ) :
     xiCoeff Λs p = -(Real.log p : ℂ) + Λs⁻¹ * (Real.log p : ℂ) ^ 2 := by
   unfold xiCoeff
@@ -216,7 +252,9 @@ theorem xiCoeff_prime {p : ℕ} (hp : p.Prime) (Λs : ℂ) :
   push_cast
   ring
 
-/-- ‖C(N;Λ⋆)‖² for squarefree N with ω N ≥ 2, in terms of (Λ·log)^{∗ω N}(N). -/
+/-- ‖C(N;Λ⋆)‖² for squarefree N with ω N ≥ 2, in terms of (Λ·log)^{∗ω N}(N).
+@isnad1 id=eq.3h2v.s8.1ebbc2581da1 from=translated src=- shape=d7d8e535 vocab=b97c3315
+-/
 theorem norm_sq_xiCoeff_squarefree {N : ℕ} (hN : Squarefree N) (hk : 2 ≤ ω N) (Λs : ℂ)
     (hΛ : Λs ≠ 0) :
     ‖xiCoeff Λs N‖ ^ 2 = (‖Λs‖ ^ 2)⁻¹ ^ (ω N) * ((((ω N - 1).factorial : ℝ) ^ 2) / (ω N).factorial)

@@ -28,6 +28,9 @@ namespace MathFin.BlackScholes.AmericanPut.Boundary
 open Set Filter
 open scoped Topology ContDiff
 
+/--
+@isnad1 id=hasderiv.2h3v.s8.c78392dc87b8 from=translated src=- shape=29bcf6ab vocab=007a78ef
+-/
 theorem curve_hasDeriv {U : ℝ → ℝ → ℝ} {b : ℝ → ℝ} {t : ℝ}
     (hU : DifferentiableAt ℝ (fun z : ℝ × ℝ => U z.1 z.2) (b t,t))
     (hb : DifferentiableAt ℝ b t) :
@@ -51,7 +54,9 @@ namespace DividendPutSolution
 
 /-- The time derivative of a smooth spatial test is nonnegative at a
 backward maximum along the free boundary, provided it has the payoff slope.
-The derivative is of the test, not of the price across the boundary. -/
+The derivative is of the test, not of the price across the boundary.
+@isnad1 id=le.5h6v.s8.982c9810f662 from=translated src=- shape=c661bd5a vocab=96639f6e
+-/
 theorem boundary_test_time_nonneg {k h : ℝ} {p U : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
     (hp : DividendPutSolution k h p b) {t : ℝ} (ht : 0 < t)
     (hU : DifferentiableAt ℝ (fun z : ℝ × ℝ => U z.1 z.2) (b t,t))
@@ -73,7 +78,9 @@ theorem boundary_test_time_nonneg {k h : ℝ} {p U : ℝ → ℝ → ℝ} {b : �
 
 /-- A smooth function cannot satisfy the pricing subsolution inequality
 at an exercise-boundary contact maximum above the price. This is the
-boundary-contact case needed for an obstacle comparison principle. -/
+boundary-contact case needed for an obstacle comparison principle.
+@isnad1 id=lt.7h6v.s8.a54fc215f3c5 from=translated src=- shape=88aee4bb vocab=5d316829
+-/
 theorem boundary_test_residual_pos {k h : ℝ} {p U : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
     (hp : DividendPutSolution k h p b) {t : ℝ} (ht : 0 < t)
     (hU : DifferentiableAt ℝ (fun z : ℝ × ℝ => U z.1 z.2) (b t,t))

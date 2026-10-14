@@ -26,6 +26,9 @@ namespace MathFin.BlackScholes.AmericanPut.Boundary.Comparison
 open Filter
 open scoped Topology
 
+/--
+@isnad1 id=le.2h3v.s6.2708c229329a from=translated src=- shape=f4f940a6 vocab=034c827e
+-/
 theorem rootProfile_exp_lower {u v : ℝ} (hu : 0 < u) (hv : v < 0) (z : ℝ) :
     (-v / (u - v)) * Real.exp (u * z) ≤ rootProfile u v z := by
   have heq : rootProfile u v z = (u / (u - v)) * Real.exp (v * z) +
@@ -35,6 +38,9 @@ theorem rootProfile_exp_lower {u v : ℝ} (hu : 0 < u) (hv : v < 0) (z : ℝ) :
   have hn : 0 ≤ (u / (u - v)) * Real.exp (v * z) := by positivity
   linarith
 
+/--
+@isnad1 id=le.3h3v.s5.d8df49983055 from=translated src=- shape=15cead64 vocab=908443f8
+-/
 theorem rootProfile_exp_upper {u v z : ℝ} (hu : 0 < u) (hv : v < 0) (hz : 0 ≤ z) :
     rootProfile u v z ≤ Real.exp (u * z) := by
   have huv : 0 < u - v := by linarith
@@ -48,11 +54,17 @@ theorem rootProfile_exp_upper {u v z : ℝ} (hu : 0 < u) (hv : v < 0) (hz : 0 �
 noncomputable def leadingWeight (β ρ : ℝ) : ℝ :=
   -negativeRoot β ρ / (positiveRoot β ρ - negativeRoot β ρ)
 
+/--
+@isnad1 id=lt.1h2v.s4.3bf8d91312ca from=translated src=- shape=61bdc3e7 vocab=7bf1724a
+-/
 theorem leadingWeight_pos {β ρ : ℝ} (hρ : 0 < ρ) : 0 < leadingWeight β ρ := by
   obtain ⟨hu, hv⟩ := roots_signs (β := β) hρ
   unfold leadingWeight
   exact div_pos (neg_pos.mpr hv) (by linarith)
 
+/--
+@isnad1 id=le.1h3v.s5.fa21dcb6fc15 from=translated src=- shape=1a9e52d0 vocab=5592356b
+-/
 theorem profile_exp_lower {β ρ : ℝ} (hρ : 0 < ρ) (z : ℝ) :
     leadingWeight β ρ * Real.exp (positiveRoot β ρ * z) ≤ profile β ρ z := by
   obtain ⟨hu, hv⟩ := roots_signs (β := β) hρ
@@ -62,18 +74,27 @@ theorem profile_exp_lower {β ρ : ℝ} (hρ : 0 < ρ) (z : ℝ) :
 has another positive root. Its actual growth exponent is therefore zero. -/
 noncomputable def growthRate (β ρ : ℝ) : ℝ := if ρ = 0 then 0 else positiveRoot β ρ
 
+/--
+@isnad1 id=le.1h2v.s4.b7adbb55b070 from=translated src=- shape=61bdc3e7 vocab=2bc85db3
+-/
 theorem growthRate_nonneg {β ρ : ℝ} (hρ : 0 ≤ ρ) : 0 ≤ growthRate β ρ := by
   by_cases hz : ρ = 0
   · simp [growthRate, hz]
   · simpa only [growthRate, hz, ↓reduceIte] using
       (roots_signs (β := β) (lt_of_le_of_ne hρ (Ne.symm hz))).1.le
 
+/--
+@isnad1 id=eq.1h2v.s6.597a7f5716cd from=translated src=- shape=4e742287 vocab=c1088c55
+-/
 theorem growthRate_equation {β ρ : ℝ} (hρ : 0 ≤ ρ) :
     growthRate β ρ ^ 2 + β * growthRate β ρ - ρ = 0 := by
   by_cases hz : ρ = 0
   · simp [growthRate, hz]
   · simpa only [growthRate, hz, ↓reduceIte] using (roots_equations (β := β) hρ).1
 
+/--
+@isnad1 id=le.2h3v.s5.b53b6ec7f9e3 from=translated src=- shape=3681394a vocab=210dd717
+-/
 theorem profile_exp_upper {β ρ z : ℝ} (hρ : 0 ≤ ρ) (hz : 0 ≤ z) :
     profile β ρ z ≤ Real.exp (growthRate β ρ * z) := by
   by_cases hr : ρ = 0
@@ -82,7 +103,9 @@ theorem profile_exp_upper {β ρ z : ℝ} (hρ : 0 ≤ ρ) (hz : 0 ≤ z) :
     simpa only [profile, growthRate, hr, ↓reduceIte] using rootProfile_exp_upper hu hv hz
 
 /-- A purely pointwise tail estimate. The only price input is `0<=p(x,t)<=1`;
-the remaining hypotheses describe the explicit exponential profiles. -/
+the remaining hypotheses describe the explicit exponential profiles.
+@isnad1 id=le.12h10v.s8.cb71cba6bc28 from=translated src=- shape=5e5029c1 vocab=651fba03
+-/
 theorem normalizedDifference_exp_bound {p : ℝ → ℝ → ℝ} {f g : ℝ → ℝ}
     {A lam μ c d x t : ℝ} (hA : 0 < A) (hlam : 0 < lam) (hgap : μ + 1 < lam)
     (hf : ∀ z, A * Real.exp (lam * z) ≤ f z)
@@ -134,6 +157,9 @@ noncomputable def straightDifference (p : ℝ → ℝ → ℝ) (k h c d : ℝ) :
   normalizedDifference p (profile (k - h - 1 - c) k)
     (profile (k - h - 1 + 2 - c) h) c d
 
+/--
+@isnad1 id=ex.3h6v.s7.6e0502dcafde from=translated src=- shape=1ee85f75 vocab=8dfe9238
+-/
 theorem straightDifference_tail_estimate {k h c d : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
     (hp : ContinuousBoundaryPutSolution k h p b) (hc : 0 < c) (hd : d ≤ 0) :
     ∃ C lam δ : ℝ, 0 < C ∧ 0 < lam ∧ 0 < δ ∧
@@ -154,7 +180,9 @@ theorem straightDifference_tail_estimate {k h c d : ℝ} {p : ℝ → ℝ → �
     (fun _ hz => profile_exp_upper hp.dividend_nonneg hz) hc.le hd hx ht
     ((putPayoff_nonneg x).trans (hp.dominates x t ht)) (hp.bounded x t ht)
 
-/-- Uniform-in-time version of (17), expressed without an interchange of limits. -/
+/-- Uniform-in-time version of (17), expressed without an interchange of limits.
+@isnad1 id=ex.4h7v.s6.2dd41293ba64 from=translated src=- shape=a1c38a62 vocab=e51b551d
+-/
 theorem straightDifference_uniform_tail {k h c d : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
     (hp : ContinuousBoundaryPutSolution k h p b) (hc : 0 < c) (hd : d ≤ 0)
     {ε : ℝ} (hε : 0 < ε) :
@@ -176,7 +204,9 @@ theorem straightDifference_uniform_tail {k h c d : ℝ} {p : ℝ → ℝ → ℝ
   exact (hbound x hx0 t ht).trans_lt (hX x ((le_max_right _ _).trans hx))
 
 /-- A single positive right endpoint works for every nonnegative time, even
-before any epsilon shift is applied. -/
+before any epsilon shift is applied.
+@isnad1 id=ex.3h6v.s6.63a5e88057d1 from=translated src=- shape=c3904286 vocab=f8eacefc
+-/
 theorem straightDifference_right_negative {k h c d : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
     (hp : ContinuousBoundaryPutSolution k h p b) (hc : 0 < c) (hd : d ≤ 0) :
     ∃ X : ℝ, 0 < X ∧ ∀ x, X ≤ x → ∀ t, 0 ≤ t → straightDifference p k h c d x t < 0 := by
@@ -187,7 +217,9 @@ theorem straightDifference_right_negative {k h c d : ℝ} {p : ℝ → ℝ → �
   linarith
 
 /-- Zero-dividend checkpoint, with the original solution contract and the
-constant second profile. This is tail control, not a curvature theorem. -/
+constant second profile. This is tail control, not a curvature theorem.
+@isnad1 id=ex.4h6v.s7.48c34ff787cc from=translated src=- shape=0ec68802 vocab=a48324df
+-/
 theorem zeroDividend_uniform_tail {k c d : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
     (hp : NormalizedPutSolution k p b) (hc : 0 < c) (hd : d ≤ 0)
     {ε : ℝ} (hε : 0 < ε) :

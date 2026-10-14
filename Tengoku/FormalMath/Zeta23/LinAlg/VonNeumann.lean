@@ -55,7 +55,9 @@ def normSqMatrix (W : Matrix n n 𝕜) : Matrix n n ℝ :=
 section Bilinear
 
 /-- For a unitary matrix `W`, the entrywise-squared-norm matrix
-`(i, j) ↦ ‖Wᵢⱼ‖²` is doubly stochastic over `ℝ`. -/
+`(i, j) ↦ ‖Wᵢⱼ‖²` is doubly stochastic over `ℝ`.
+@isnad1 id=mem.1h3v.s7.fd7108d9f8ad from=translated src=- shape=1d68cded vocab=7c7882eb
+-/
 lemma normSqMatrix_mem_doublyStochastic_of_unitary
     {W : Matrix n n 𝕜} (hW : W ∈ Matrix.unitaryGroup n 𝕜) :
     normSqMatrix W ∈ doublyStochastic ℝ n := by
@@ -73,7 +75,9 @@ lemma normSqMatrix_mem_doublyStochastic_of_unitary
       RCLike.conj_mul, map_sum] using h2
 
 /-- For Hermitian `A, B`, writing `W = Uₐᴴ Uᵦ` for the eigenvector unitaries,
-`Re tr(AB) = ∑ₖₗ λₖ(A) · ‖Wₖₗ‖² · λₗ(B)`. -/
+`Re tr(AB) = ∑ₖₗ λₖ(A) · ‖Wₖₗ‖² · λₗ(B)`.
+@isnad1 id=eq.2h4v.s9.21c988e19a3b from=translated src=- shape=4bffb87e vocab=e89d89af
+-/
 lemma re_trace_mul_eq_eigenvalue_bilinear {A B : Matrix n n 𝕜}
     (hA : A.IsHermitian) (hB : B.IsHermitian) :
     RCLike.re (A * B).trace =
@@ -138,7 +142,9 @@ lemma _root_.Antitone.monovary_antitone {ι α : Type*} [LinearOrder ι] [Preord
 
 Proof: `∑ₖₗ aₖ Sₖₗ bₗ = ∑ₖ aₖ (S *ᵥ b)ₖ = a ⬝ (S *ᵥ b)`. By Birkhoff,
 `S *ᵥ b = ∑_σ w_σ · (b ∘ σ)` (via `permMatrix_mulVec`). For each `σ`,
-`∑ₖ aₖ b(σ k) ≤ ∑ₖ aₖ bₖ` by rearrangement. Average with weights `w_σ`. -/
+`∑ₖ aₖ b(σ k) ≤ ∑ₖ aₖ bₖ` by rearrangement. Average with weights `w_σ`.
+@isnad1 id=le.2h4v.s7.ef2bdc78ed43 from=translated src=- shape=e7a7b8e9 vocab=204d44ea
+-/
 lemma bilinear_doublyStochastic_le_of_monovary {a b : n → ℝ}
     (hab : Monovary a b) {S : Matrix n n ℝ} (hS : S ∈ doublyStochastic ℝ n) :
     ∑ k, ∑ l, a k * S k l * b l ≤ ∑ k, a k * b k := by
@@ -166,7 +172,9 @@ lemma bilinear_doublyStochastic_le_of_monovary {a b : n → ℝ}
 end Rearrangement
 
 /-- **Von Neumann's trace inequality** (Hermitian case). For Hermitian `A, B`
-with eigenvalues sorted in decreasing order, `Re tr(AB) ≤ ∑ᵢ aᵢ bᵢ`. -/
+with eigenvalues sorted in decreasing order, `Re tr(AB) ≤ ∑ᵢ aᵢ bᵢ`.
+@isnad1 id=le.2h4v.s8.f137a9ba4858 from=translated src=- shape=15ca6cfd vocab=22ad2046
+-/
 theorem vonNeumann_trace_ineq {A B : Matrix n n 𝕜}
     (hA : A.IsHermitian) (hB : B.IsHermitian) :
     RCLike.re (A * B).trace

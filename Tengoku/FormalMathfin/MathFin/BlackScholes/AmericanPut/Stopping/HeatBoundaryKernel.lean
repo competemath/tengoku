@@ -30,31 +30,49 @@ open scoped Topology ContDiff
 /-- The half-line heat boundary kernel `H(t,x) = x/t * heatKernel t x`. -/
 noncomputable def heatBoundaryKernel (t x : ℝ) : ℝ := x/t*heatKernel t x
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.1b30a1bbea4d from=translated src=- shape=360128e6 vocab=7a10d89d
+-/
 theorem heatKernel_hasDeriv_time {t : ℝ} (ht : 0 < t) (x : ℝ) :
     HasDerivAt (fun s => heatKernel s x) (heatKernel t x*(x^2-t)/(2*t^2)) t := by
   convert! (hasFDerivAt_heatKernel ht x).comp_hasDerivAt t
     ((hasDerivAt_id t).prodMk (hasDerivAt_const t x)) using 1
   simp
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.233f0811e3d9 from=translated src=- shape=c5a5512e vocab=c05eed2d
+-/
 theorem heatKernel_hasDeriv_space {t : ℝ} (ht : 0 < t) (x : ℝ) :
     HasDerivAt (heatKernel t) (-(x/t)*heatKernel t x) x := by
   convert! (hasFDerivAt_heatKernel ht x).comp_hasDerivAt x
     ((hasDerivAt_const x t).prodMk (hasDerivAt_id x)) using 1
   simp
 
+/--
+@isnad1 id=contdiff.1h2v.s6.c8c5bd930bb8 from=translated src=- shape=6ad48b34 vocab=40341288
+-/
 theorem heatBoundaryKernel_smoothAt {t x : ℝ} (ht : 0 < t) :
     ContDiffAt ℝ ∞ (fun z : ℝ × ℝ => heatBoundaryKernel z.1 z.2) (t,x) :=
   (contDiffAt_snd.div contDiffAt_fst ht.ne').mul (heatKernel_smoothAt ht)
 
+/--
+@isnad1 id=lt.2h2v.s5.2995ff3ea06c from=translated src=- shape=6c67d60b vocab=61123501
+-/
 theorem heatBoundaryKernel_pos {t x : ℝ} (ht : 0 < t) (hx : 0 < x) :
     0 < heatBoundaryKernel t x := by
   unfold heatBoundaryKernel heatKernel
   positivity
 
+/--
+@isnad1 id=eq.0h2v.s4.6623e44861d2 from=translated src=- shape=52cedbb1 vocab=f04aa084
+-/
 theorem heatBoundaryKernel_odd (t x : ℝ) : heatBoundaryKernel t (-x) = -heatBoundaryKernel t x := by
   simp [heatBoundaryKernel,heatKernel]
   ring
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.03e7b5057e5b from=translated src=- shape=497a608b vocab=c6789330
+-/
 theorem heatBoundaryKernel_hasDeriv_space {t : ℝ} (ht : 0 < t) (x : ℝ) :
     HasDerivAt (heatBoundaryKernel t) ((t-x^2)/t^2*heatKernel t x) x := by
   convert! ((hasDerivAt_id x).div_const t).mul (heatKernel_hasDeriv_space ht x) using 1
@@ -62,6 +80,9 @@ theorem heatBoundaryKernel_hasDeriv_space {t : ℝ} (ht : 0 < t) (x : ℝ) :
   field_simp
   ring
 
+/--
+@isnad1 id=hasderiv.1h2v.s7.baaf6acc8688 from=translated src=- shape=e5014aa1 vocab=ead81dcb
+-/
 theorem heatBoundaryKernel_hasDeriv_space2 {t : ℝ} (ht : 0 < t) (x : ℝ) :
     HasDerivAt (deriv (heatBoundaryKernel t))
       (x*(x^2-3*t)/t^3*heatKernel t x) x := by
@@ -74,6 +95,9 @@ theorem heatBoundaryKernel_hasDeriv_space2 {t : ℝ} (ht : 0 < t) (x : ℝ) :
   field_simp
   ring
 
+/--
+@isnad1 id=hasderiv.1h2v.s7.f56a065873e6 from=translated src=- shape=81246409 vocab=c6789330
+-/
 theorem heatBoundaryKernel_hasDeriv_time {t : ℝ} (ht : 0 < t) (x : ℝ) :
     HasDerivAt (fun s => heatBoundaryKernel s x)
       (x*(x^2-3*t)/(2*t^3)*heatKernel t x) t := by
@@ -83,11 +107,17 @@ theorem heatBoundaryKernel_hasDeriv_time {t : ℝ} (ht : 0 < t) (x : ℝ) :
   field_simp
   ring
 
+/--
+@isnad1 id=eq.1h2v.s7.69590e5668f1 from=translated src=- shape=54f445bc vocab=d11fd4d8
+-/
 theorem heatBoundaryKernel_equation {t : ℝ} (ht : 0 < t) (x : ℝ) :
     deriv (fun s => heatBoundaryKernel s x) t = (1/2)*deriv (deriv (heatBoundaryKernel t)) x := by
   rw [(heatBoundaryKernel_hasDeriv_time ht x).deriv,(heatBoundaryKernel_hasDeriv_space2 ht x).deriv]
   ring
 
+/--
+@isnad1 id=eq.1h2v.s7.09be4f37cb6b from=translated src=- shape=04a17e4c vocab=99651e36
+-/
 theorem heatBoundaryKernel_inverse_square (x : ℝ) {y : ℝ} (hy : 0 < y) :
     (2*y^(-3 : ℝ))*heatBoundaryKernel (y^(-2 : ℝ)) x =
       (2*x/Real.sqrt (2*Real.pi))*Real.exp (-(x^2/2)*y^2) := by
@@ -100,7 +130,9 @@ theorem heatBoundaryKernel_inverse_square (x : ℝ) {y : ℝ} (hy : 0 < y) :
   rw [hs,he]
   field_simp
 
-/-- Unit mass in elapsed time is the normalization needed for a boundary trace. -/
+/-- Unit mass in elapsed time is the normalization needed for a boundary trace.
+@isnad1 id=eq.1h1v.s5.dd140e9a1354 from=translated src=- shape=ba1be487 vocab=6d799654
+-/
 theorem heatBoundaryKernel_integral {x : ℝ} (hx : 0 < x) :
     (∫ t in Ioi 0, heatBoundaryKernel t x) = 1 := by
   have he := integral_comp_rpow_Ioi (fun t => heatBoundaryKernel t x)
@@ -120,6 +152,9 @@ theorem heatBoundaryKernel_integral {x : ℝ} (hx : 0 < x) :
   have hsne : Real.sqrt (2*Real.pi) ≠ 0 := ne_of_gt (Real.sqrt_pos.mpr (by positivity))
   field_simp
 
+/--
+@isnad1 id=integrab.1h1v.s5.6961aafce7d4 from=translated src=- shape=74a2506d vocab=ea893434
+-/
 theorem heatBoundaryKernel_integrable {x : ℝ} (hx : 0 < x) :
     IntegrableOn (fun t => heatBoundaryKernel t x) (Ioi 0) := by
   by_contra hn
@@ -127,7 +162,9 @@ theorem heatBoundaryKernel_integrable {x : ℝ} (hx : 0 < x) :
   rw [integral_undef hn] at he
   norm_num at he
 
-/-- Parabolic scaling turns the boundary kernels into a fixed probability density. -/
+/-- Parabolic scaling turns the boundary kernels into a fixed probability density.
+@isnad1 id=eq.2h2v.s6.8339d48cf631 from=translated src=- shape=1695a2a2 vocab=84b15e7b
+-/
 theorem heatBoundaryKernel_scale {x t : ℝ} (hx : 0 < x) (ht : 0 < t) :
     x^2 * heatBoundaryKernel (x^2*t) x = heatBoundaryKernel t 1 := by
   have hs : Real.sqrt (2*Real.pi*(x^2*t)) = x*Real.sqrt (2*Real.pi*t) := by

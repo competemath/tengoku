@@ -32,7 +32,9 @@ def twoSidedStrip (L R : ℝ → ℝ) (T : ℝ) : Set (ℝ × ℝ) :=
   {z | 0 ≤ z.2 ∧ z.2 ≤ T ∧ L z.2 ≤ z.1 ∧ z.1 ≤ R z.2}
 
 /-- Continuous endpoints give a compact finite-time strip even when its
-width vanishes, as it does for the square-root strip at expiry. -/
+width vanishes, as it does for the square-root strip at expiry.
+@isnad1 id=iscompac.3h3v.s6.1033c2ed8516 from=translated src=- shape=989ff078 vocab=210a7fac
+-/
 theorem twoSidedStrip_isCompact {L R : ℝ → ℝ} {T : ℝ}
     (hL : Continuous L) (hR : Continuous R)
     (hLR : ∀ t ∈ Icc 0 T, L t ≤ R t) : IsCompact (twoSidedStrip L R T) := by
@@ -62,7 +64,9 @@ theorem twoSidedStrip_isCompact {L R : ℝ → ℝ} {T : ℝ}
 
 /-- A positive maximum off the free boundary contradicts the two classical
 PDE inequalities. The strictly positive killing rate handles a weak
-subsolution inequality without a time perturbation. -/
+subsolution inequality without a time perturbation.
+@isnad1 id=false.8h7v.s8.0261a3167870 from=translated src=- shape=5e4f6344 vocab=dc3a835a
+-/
 theorem DividendPutSolution.no_positive_max_off_boundary
     {k h : ℝ} {p U : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
     (hp : DividendPutSolution k h p b) {x t : ℝ} (ht : 0 < t) (hxb : x ≠ b t)
@@ -103,7 +107,9 @@ theorem DividendPutSolution.no_positive_max_off_boundary
 /-- Smooth pricing subsolutions below the price on the parabolic boundary
 stay below it throughout a compact moving strip, even when it crosses the
 exercise region. Compactness of the chosen strip is an explicit topological
-premise; no comparison result is assumed in the pricing contract. -/
+premise; no comparison result is assumed in the pricing contract.
+@isnad1 id=le.11h9v.s9.54b10072e26a from=translated src=- shape=1dc3b8ed vocab=d13bce55
+-/
 theorem DividendPutSolution.obstacle_comparison_of_local_tests
     {k h T : ℝ} {p U : ℝ → ℝ → ℝ} {b L R : ℝ → ℝ}
     (hp : DividendPutSolution k h p b)
@@ -177,7 +183,9 @@ theorem DividendPutSolution.obstacle_comparison_of_local_tests
 
 /-- The globally smooth spatial-test formulation remains available. The
 stronger local version above only needs smoothness and the PDE inequality at
-points where the candidate exceeds the price. -/
+points where the candidate exceeds the price.
+@isnad1 id=le.12h9v.s9.d8803667bcd8 from=translated src=- shape=ac0a8ee2 vocab=9450ecdd
+-/
 theorem DividendPutSolution.obstacle_comparison
     {k h T : ℝ} {p U : ℝ → ℝ → ℝ} {b L R : ℝ → ℝ}
     (hp : DividendPutSolution k h p b)
@@ -199,7 +207,9 @@ theorem DividendPutSolution.obstacle_comparison
 
 /-- Zero-dividend milestone on the original normalized solution contract.
 This specializes the newly proved obstacle comparison, without using a
-published comparison theorem as an axiom. -/
+published comparison theorem as an axiom.
+@isnad1 id=le.12h8v.s9.d0d55a5d1842 from=translated src=- shape=5d009bfd vocab=63f05eac
+-/
 theorem zeroDividend_obstacle_comparison
     {k T : ℝ} {p U : ℝ → ℝ → ℝ} {b L R : ℝ → ℝ}
     (hp : NormalizedPutSolution k p b)

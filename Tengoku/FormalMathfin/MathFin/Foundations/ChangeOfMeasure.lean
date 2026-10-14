@@ -54,7 +54,9 @@ This is exactly the simple-θ Girsanov situation, where the tilted-density ident
 Doléans martingale `E^{a−c}` by a forward Wald factor). The mechanism is unchanged: `∫_A D_u dQ =
 ∫_A Z_u D_u dP` (withDensity conversion + Bayes pull-out, using `hmix`, `hZ`, `hDsm`, none of which
 touch `M`), then `Z_u D_u =ᵐ M_u` and `M`'s martingale property close the loop. No stochastic
-calculus, only conditional expectations. -/
+calculus, only conditional expectations.
+@isnad1 id=eq.10h11v.s8.cb215f671785 from=translated src=- shape=a7d01715 vocab=c75e1224
+-/
 theorem changeOfMeasure_setIntegral_eq_of_ae_martingale
     {Ω : Type*} {mΩ : MeasurableSpace Ω} {P : Measure Ω}
     {𝓕 : Filtration ℝ≥0 mΩ} [SigmaFiniteFiltration P 𝓕]
@@ -97,7 +99,9 @@ theorem changeOfMeasure_setIntegral_eq_of_ae_martingale
 `changeOfMeasure_setIntegral_eq_of_ae_martingale` where the product `Z · D` is itself a
 `P`-martingale (take `M := Z · D`, so the `=ᵐ` hypothesis is reflexivity): then `D` is a martingale
 under `Q := P.withDensity (Z_T)` on `[0,T]`. This is the constant-θ Girsanov situation, where
-`Z · D = Wald(a−θ)` is a genuine martingale everywhere. -/
+`Z · D = Wald(a−θ)` is a genuine martingale everywhere.
+@isnad1 id=eq.9h10v.s8.4de7aecc3f58 from=translated src=- shape=3d01705f vocab=e6759f37
+-/
 theorem changeOfMeasure_setIntegral_eq
     {Ω : Type*} {mΩ : MeasurableSpace Ω} {P : Measure Ω}
     {𝓕 : Filtration ℝ≥0 mΩ} [SigmaFiniteFiltration P 𝓕]

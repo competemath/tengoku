@@ -40,7 +40,9 @@ namespace MathFin
 open Finset
 
 /-- **Annuity-due geometric closed form**: `Σ_{k=0}^{n-1} v^k = (1 − v^n)/(1 − v)`
-for `v ≠ 1`. -/
+for `v ≠ 1`.
+@isnad1 id=eq.1h2v.s6.471baac32c5a from=translated src=- shape=075b162b vocab=028eddcd
+-/
 theorem annuityDue_closed_form (v : ℝ) (n : ℕ) (hv : v ≠ 1) :
     ∑ k ∈ Finset.range n, v ^ k = (1 - v ^ n) / (1 - v) := by
   have h_one_sub_ne : (1 : ℝ) - v ≠ 0 := sub_ne_zero.mpr (Ne.symm hv)
@@ -51,7 +53,9 @@ theorem annuityDue_closed_form (v : ℝ) (n : ℕ) (hv : v ≠ 1) :
 
 /-- **Net premium principle**: `P · A = B ⟺ P = B / A` for `A ≠ 0` — the
 defining algebra of the net premium. This is Mathlib's `eq_div_iff`
-(symmetrised), cited rather than re-proved. -/
+(symmetrised), cited rather than re-proved.
+@isnad1 id=iff.1h3v.s5.7ec735722126 from=translated src=- shape=b8660efb vocab=525158d4
+-/
 theorem net_premium_principle (P A B : ℝ) (hA : A ≠ 0) :
     P * A = B ↔ P = B / A :=
   (eq_div_iff hA).symm

@@ -35,6 +35,9 @@ def halfContour (F : ℂ → ℂ) (T₁ T₂ : ℝ) : ℂ :=
   (∫ σ in (1/2:ℝ)..2, F (σ + T₁ * I)) + (∫ t in T₁..T₂, F (2 + t * I)) * I
     - ∫ σ in (1/2:ℝ)..2, F (σ + T₂ * I)
 
+/--
+@isnad1 id=eq.6h4v.s8.01fb027ce131 from=translated src=- shape=d79b9ea1 vocab=8bf36241
+-/
 lemma halfContour_add (F G : ℂ → ℂ) (T₁ T₂ : ℝ)
     (hb : IntervalIntegrable (fun σ : ℝ => F (σ + T₁ * I)) MeasureTheory.volume (1/2) 2)
     (hb' : IntervalIntegrable (fun σ : ℝ => G (σ + T₁ * I)) MeasureTheory.volume (1/2) 2)

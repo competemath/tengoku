@@ -64,7 +64,9 @@ noncomputable def convexityNumerator (s : Finset ι) (t : ι → ℕ) (c : ι �
     = (t_i : ℝ) · (−(t_i + 1) · c_i / (1 + y)^(t_i + 2))
     = −(t_i : ℝ) · ((t_i : ℝ) + 1) · c_i / (1 + y)^(t_i + 2)`.
 
-Summing over cashflows: `d/dy ModNum = −ConvNum`. -/
+Summing over cashflows: `d/dy ModNum = −ConvNum`.
+@isnad1 id=hasderiv.1h5v.s6.d3769f5a3af6 from=translated src=- shape=19342afb vocab=a9a2b0b2
+-/
 theorem hasDerivAt_modifiedNumerator
     (s : Finset ι) (t : ι → ℕ) (c : ι → ℝ) {y : ℝ} (hy : 1 + y ≠ 0) :
     HasDerivAt (fun y' ↦ modifiedNumerator s t c y')
@@ -96,7 +98,9 @@ derivative of `P'(y) = −ModNum(y)`.
 Combined with `hasDerivAt_bondPriceDisc` (from `DurationSensitivity`), this
 gives the full discrete yield Taylor expansion of the bond price:
 
-  `P(y + Δy) ≈ P(y) − ModNum(y) · Δy + ½ · ConvNum(y) · (Δy)²`. -/
+  `P(y + Δy) ≈ P(y) − ModNum(y) · Δy + ½ · ConvNum(y) · (Δy)²`.
+@isnad1 id=hasderiv.1h5v.s6.2d2da9396a47 from=translated src=- shape=a115201f vocab=a9a2b0b2
+-/
 theorem hasDerivAt_bondPriceDisc_secondDeriv
     (s : Finset ι) (t : ι → ℕ) (c : ι → ℝ) {y : ℝ} (hy : 1 + y ≠ 0) :
     HasDerivAt (fun y' ↦ -modifiedNumerator s t c y')
@@ -107,7 +111,9 @@ theorem hasDerivAt_bondPriceDisc_secondDeriv
 
 /-- **Convexity-sensitivity identity**: `P''(y)/P(y) = C(y) = ConvNum/P`. The
 percentage second derivative of price equals convexity, completing the
-duration-convexity yield Taylor expansion. -/
+duration-convexity yield Taylor expansion.
+@isnad1 id=ex.1h5v.s6.e89b12009b43 from=translated src=- shape=47927eac vocab=abc4d926
+-/
 theorem bondPriceDisc_secondDeriv_eq_convexity_times_price
     (s : Finset ι) (t : ι → ℕ) (c : ι → ℝ) {y : ℝ}
     (hy : 1 + y ≠ 0) :

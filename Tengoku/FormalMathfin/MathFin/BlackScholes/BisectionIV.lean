@@ -39,7 +39,9 @@ open Real
 /-- **Bisection-method bracket existence for implied volatility**: by strict
 monotonicity of `bsV` in `σ` and the intermediate value theorem, any target
 price strictly between `bsV(σ_lo)` and `bsV(σ_hi)` is achieved at a unique
-intermediate volatility `σ ∈ (σ_lo, σ_hi)`. -/
+intermediate volatility `σ ∈ (σ_lo, σ_hi)`.
+@isnad1 id=existsun.4h4v.s6.4a480929f4b7 from=translated src=- shape=ba61b8c2 vocab=61887b99
+-/
 lemma impliedVol_bracket_exists
     {f : ℝ → ℝ} {σ_lo σ_hi C_obs : ℝ}
     (h_lo_lt_hi : σ_lo < σ_hi)

@@ -47,7 +47,9 @@ exp(−T·R(T))`, the instantaneous forward rate at horizon `T` is exactly this
 derivative `F'(T) = R(T) + T·R'(T)` — so this single lemma *is* the
 non-flat-curve forward-rate formula (in the `−log P` parametrisation; the
 version against the actual discount factor is `forwardRate_eq_neg_log_discount`
-below). -/
+below).
+@isnad1 id=hasderiv.1h3v.s6.2bbbbf13479f from=translated src=- shape=b5e6f36a vocab=fa4bb436
+-/
 theorem hasDerivAt_T_mul_spotRate {R : ℝ → ℝ} {R'_T T : ℝ}
     (hR : HasDerivAt R R'_T T) :
     HasDerivAt (fun t ↦ t * R t) (R T + T * R'_T) T := by
@@ -61,7 +63,9 @@ zero-coupon bond is `P(T) = exp(−T · R(T))`; the instantaneous forward rate
 `−d/dT log P(T)` equals `R(T) + T · R'(T)`. Unlike `hasDerivAt_T_mul_spotRate`,
 this states the result against the *actual* discount factor rather than the
 `−log P` shortcut, by routing the calculus lemma through the
-`rate_eq_neg_log_deriv` principle. -/
+`rate_eq_neg_log_deriv` principle.
+@isnad1 id=hasderiv.1h3v.s6.2a8468f00b69 from=translated src=- shape=1ccd5570 vocab=e786ac7c
+-/
 theorem forwardRate_eq_neg_log_discount {R : ℝ → ℝ} {R'_T T : ℝ}
     (hR : HasDerivAt R R'_T T) :
     HasDerivAt (fun t ↦ -(Real.log (Real.exp (-(t * R t))))) (R T + T * R'_T) T :=

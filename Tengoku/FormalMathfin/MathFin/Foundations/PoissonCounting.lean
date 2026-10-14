@@ -187,7 +187,9 @@ counting process they generate (`N t = k` iff the `k`-th arrival has happened
 by `t` but the `(k+1)`-st has not). Then `N t ∼ Poisson(rate · t)`.
 
 The proof composes the Erlang law of the arrival times (the Gamma convolution
-identity) with the Gamma-CDF difference identity. -/
+identity) with the Gamma-CDF difference identity.
+@isnad1 id=eq.7h7v.s7.f3fc6fb32d6a from=translated src=- shape=8ed392d9 vocab=1bfd8540
+-/
 theorem map_count_eq_poissonMeasure [IsProbabilityMeasure μ]
     {rate : ℝ≥0} (hrate : 0 < rate)
     {ξ : ℕ → Ω → ℝ} (hmeas : ∀ i, Measurable (ξ i))

@@ -23,7 +23,9 @@ namespace WeilEF
 
 open Complex
 
-/-- conjugation symmetry of the digamma function off the poles. -/
+/-- conjugation symmetry of the digamma function off the poles.
+@isnad1 id=eq.1h1v.s6.ac888c5e4998 from=translated src=- shape=238ab6e6 vocab=2637faf0
+-/
 theorem digamma_conj {z : ℂ} (hz : z ∈ Complex.integerComplement) :
     Complex.digamma (starRingEnd ℂ z) = starRingEnd ℂ (Complex.digamma z) := by
   have hz' : starRingEnd ℂ z ∈ Complex.integerComplement := by

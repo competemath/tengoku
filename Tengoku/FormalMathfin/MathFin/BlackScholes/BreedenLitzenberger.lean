@@ -69,7 +69,9 @@ noncomputable def lognormalTerminalPDF (S_0 r σ T K : ℝ) : ℝ :=
 /-- **Breeden-Litzenberger formula** under the Black-Scholes model: the
 discounted PDF of `S_T` at `K` equals the second strike-derivative of the
 call price. Stated as the derivative of the first strike-derivative
-`-(e^{-rT}·Φ(d_2))` of `bsV`. -/
+`-(e^{-rT}·Φ(d_2))` of `bsV`.
+@isnad1 id=hasderiv.4h5v.s7.a9b211d9ef0e from=translated src=- shape=c60f051c vocab=204aab41
+-/
 theorem breedenLitzenberger {S_0 r σ : ℝ} (hS : 0 < S_0) (hσ : 0 < σ)
     {K T : ℝ} (hK : 0 < K) (hT : 0 < T) :
     HasDerivAt (fun k ↦ -(Real.exp (-(r * T)) * Phi (bsd2 S_0 k r σ T)))
@@ -88,7 +90,9 @@ convexity in `K`. The same convexity that gives `butterfly_payoff_nonneg`
 discretely gives `0 ≤ ∂²_K bsV` infinitesimally, and Breeden-Litzenberger
 identifies this with `e^{-rT} · f_{S_T}(K)`. So `f_{S_T} ≥ 0` is the
 non-negativity of the implied probability density — as it must be, since
-it *is* a probability density. -/
+it *is* a probability density.
+@isnad1 id=le.3h5v.s5.9ebcdb85bcd8 from=translated src=- shape=0584cfd4 vocab=f43e9d32
+-/
 theorem lognormalTerminalPDF_nonneg
     {S_0 r σ T K : ℝ} (hK : 0 < K) (hσ : 0 < σ) (hT : 0 < T) :
     0 ≤ lognormalTerminalPDF S_0 r σ T K := by
@@ -113,7 +117,9 @@ gives PDF non-negativity as a structural consequence of price-convexity. -/
 
 /-- **Algebraic identity bridging strike convexity to the implied PDF**:
 the second strike-derivative of the BS call price equals `e^{-rT}` times the
-lognormal terminal PDF. -/
+lognormal terminal PDF.
+@isnad1 id=eq.4h5v.s7.b4deac5327a8 from=translated src=- shape=c083bd52 vocab=6fd4216e
+-/
 theorem deriv2_bsV_eq_exp_neg_rT_pdf
     {S_0 r σ : ℝ} (hS₀ : 0 < S_0) (hσ : 0 < σ)
     {K T : ℝ} (hK : 0 < K) (hT : 0 < T) :
@@ -154,7 +160,9 @@ The derivation chain made explicit:
 
 The complementary `lognormalTerminalPDF_nonneg` proof above is shorter
 (direct gaussian-PDF positivity); this proof is the *structural* statement
-that the PDF inherits its sign from `bsV`-convexity. Both routes converge. -/
+that the PDF inherits its sign from `bsV`-convexity. Both routes converge.
+@isnad1 id=le.4h5v.s6.596d72cb9786 from=translated src=- shape=dcf2e95f vocab=f43e9d32
+-/
 theorem lognormalTerminalPDF_nonneg_via_strike_convexity
     {S_0 r σ T K : ℝ} (hS₀ : 0 < S_0) (hK : 0 < K) (hσ : 0 < σ) (hT : 0 < T) :
     0 ≤ lognormalTerminalPDF S_0 r σ T K := by
@@ -193,7 +201,9 @@ state only the differential. -/
 
 /-- **Differential change-of-variables identity** between the lognormal PDF
 of `S_T` and the standard-normal PDF:
-`f(K) · K · σ · √T = ϕ(bsd2(K))`. -/
+`f(K) · K · σ · √T = ϕ(bsd2(K))`.
+@isnad1 id=eq.3h5v.s6.67edf87e508d from=translated src=- shape=360c6d3c vocab=6e009c3c
+-/
 theorem lognormalTerminalPDF_change_of_variables
     {S_0 r σ T K : ℝ} (hK : 0 < K) (hσ : 0 < σ) (hT : 0 < T) :
     lognormalTerminalPDF S_0 r σ T K * (K * σ * Real.sqrt T) =

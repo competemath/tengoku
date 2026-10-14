@@ -29,7 +29,9 @@ open MeasureTheory
 
 /-- A measurable, strictly-positive, `P`-integrable density `g` with `∫ g ∂P = 1` makes
 `Q = P.withDensity (fun ω ↦ ENNReal.ofReal (g ω))` a probability measure equivalent to `P`:
-`IsProbabilityMeasure Q`, `Q ≪ P`, and `P ≪ Q`. -/
+`IsProbabilityMeasure Q`, `Q ≪ P`, and `P ≪ Q`.
+@isnad1 id=and.4h4v.s7.5f49af327883 from=translated src=- shape=7987057e vocab=223dca22
+-/
 theorem isEquivProbMeasure_withDensity {Ω : Type*} {mΩ : MeasurableSpace Ω} (P : Measure Ω)
     {g : Ω → ℝ} (hmeas : Measurable g) (hpos : ∀ ω, 0 < g ω) (hint : Integrable g P)
     (hsum : ∫ ω, g ω ∂P = 1) :

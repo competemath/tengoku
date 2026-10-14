@@ -13,7 +13,9 @@ noncomputable section
 
 /-- Auxiliary lemma containing the bulk of the proof of the following: every nonzero polynomial
   `p(x) \in F[x_1, \dots, x_n]` of degree `d` has at most `dq^{n-1}` roots in `F^n`, where `q` is
-  the cardinality of the field.-/
+  the cardinality of the field.
+@isnad1 id=le.2h3v.s10.393704a01aa5 from=translated src=- shape=178f2c7e vocab=00118d10
+-/
 lemma lemma_35_1_aux {F : Type*} [Field F] [Fintype F] [DecidableEq F] (n : ℕ)
   (IH : ∀ (p : MvPolynomial (Fin n) F) (_ : p ≠ 0),
     Fintype.card {x : Fin n → F // MvPolynomial.eval x p = 0} ≤
@@ -140,7 +142,9 @@ lemma lemma_35_1_aux {F : Type*} [Field F] [Fintype F] [DecidableEq F] (n : ℕ)
 
 /-- Every nonzero polynomial `p(x) \in F[x_1, \dots, x_n]` of degree `d` has at most `dq^{n-1}`
   roots in `F^n`, where `q` is the cardinality of the field.
-  A version of this is already in Mathlib as `Mathlib.Algebra.MyPolynomial.SchwartzZippel`. -/
+  A version of this is already in Mathlib as `Mathlib.Algebra.MyPolynomial.SchwartzZippel`.
+@isnad1 id=le.1h3v.s9.228d7cadf14e from=translated src=- shape=b6223aed vocab=8f5233f9
+-/
 theorem lemma_35_1 {F : Type*} [Field F] [Fintype F] [DecidableEq F] {n : ℕ}
   {p : MvPolynomial (Fin n) F} (hp : p ≠ 0) :
     Fintype.card {x : Fin n → F // MvPolynomial.eval x p = 0} ≤
@@ -169,7 +173,9 @@ theorem lemma_35_1 {F : Type*} [Field F] [Fintype F] [DecidableEq F] {n : ℕ}
 @[nolint defsWithUnderscore]
 def exponents_le {n : ℕ} (d : ℕ) : Set (Fin n →₀ ℕ) := {s | s.sum (fun _ k => k) ≤ d}
 
-/-- The set of exponents with sum at most `d` is finite. -/
+/-- The set of exponents with sum at most `d` is finite.
+@isnad1 id=finite.0h2v.s3.1a7069f9eebc from=translated src=- shape=098bc5c8 vocab=8354886b
+-/
 lemma exponents_le_finite (n d : ℕ) : (exponents_le (n := n) d).Finite := by
   have h_finite : Set.Finite {s : Fin n → ℕ | ∀ i, s i ≤ d} := by
     exact Set.finite_iff_bddAbove.mpr ⟨ fun _ => d, fun s hs => hs ⟩;
@@ -185,7 +191,9 @@ noncomputable instance instFintypeExponentsLe (n d : ℕ) : Fintype (exponents_l
   (exponents_le_finite n d).fintype
 
 /-- The number of `n`-tuples of non-negative integers with sum at most `d` is `\binom{n+d}{n}`.
-  TODO: this is not strictly the argument in the book. -/
+  TODO: this is not strictly the argument in the book.
+@isnad1 id=eq.0h2v.s5.c2032efa58b1 from=translated src=- shape=7e78f486 vocab=b29fe07d
+-/
 lemma card_exponents_le (n d : ℕ) :
   Fintype.card (exponents_le (n := n) d) = (n + d).choose n := by
   rw [ Fintype.card_of_subtype ];
@@ -246,7 +254,9 @@ lemma card_exponents_le (n d : ℕ) :
       · ext i; simp +decide;
 
 /-- The subspace of polynomials of degree at most `d` is the span of the monomials of degree at
-  most `d`. -/
+  most `d`.
+@isnad1 id=eq.0h3v.s8.1ebaa7368b91 from=translated src=- shape=67488a84 vocab=c62bdb83
+-/
 lemma restrictTotalDegree_eq_span {F : Type*} [Field F] (n d : ℕ) :
     MvPolynomial.restrictTotalDegree (Fin n) F d =
     Submodule.span F ((MvPolynomial.basisMonomials (Fin n) F) '' (exponents_le d)) := by
@@ -261,7 +271,9 @@ lemma restrictTotalDegree_eq_span {F : Type*} [Field F] (n d : ℕ) :
     rintro _ ⟨ s, hs, rfl ⟩;
     simp +decide [ MvPolynomial.mem_restrictTotalDegree, hs.out ]
 
-/-- The dimension of the space of polynomials of degree at most `d` is `\binom{n+d}{n}`. -/
+/-- The dimension of the space of polynomials of degree at most `d` is `\binom{n+d}{n}`.
+@isnad1 id=eq.0h3v.s8.5819b62cf5a6 from=translated src=- shape=14c4ac65 vocab=9dda20ba
+-/
 lemma dim_restrictTotalDegree (F : Type*) [Field F] (n d : ℕ) :
     Module.finrank F (MvPolynomial.restrictTotalDegree (Fin n) F d) = (n + d).choose n := by
   have : Fintype ↑(⇑(MvPolynomial.basisMonomials (Fin n) F) '' exponents_le d) := by
@@ -274,7 +286,9 @@ lemma dim_restrictTotalDegree (F : Type*) [Field F] (n d : ℕ) :
       ( Set.image_subset_iff.mpr fun x hx => by aesop )
 
 /-- For every set `E \subseteq F^n` of size `|E| < \binom{n+d}{n}`, there is a nonzero polynomial
-  `p(x) \in F[x_1, \dots, x_n]` of degree at most `d` that vanishes on `E`. -/
+  `p(x) \in F[x_1, \dots, x_n]` of degree at most `d` that vanishes on `E`.
+@isnad1 id=ex.1h4v.s9.a2bfd0e17c06 from=translated src=- shape=d5ac5491 vocab=b9932a16
+-/
 theorem lemma_35_2 {F : Type*} [Field F] [Fintype F] {n d : ℕ} {E : Set (Fin n → F)}
     (hE : (@Set.toFinset _ E (Fintype.ofFinite ↑E)).card < (n + d).choose n) :
     ∃ p : MvPolynomial (Fin n) F, p ∈ MvPolynomial.restrictTotalDegree (Fin n) F d ∧ p ≠ 0 ∧
@@ -313,7 +327,9 @@ def linePoly {F : Type*} [CommSemiring F] {n : ℕ} (w v : Fin n → F) (p : MvP
     (fun i => Polynomial.C (w i) + Polynomial.C (v i) * Polynomial.X) p
 
 /-- Evaluating the restriction of a polynomial to a line at a parameter `t` is the same as
-  evaluating the polynomial at the point on the line corresponding to `t`. -/
+  evaluating the polynomial at the point on the line corresponding to `t`.
+@isnad1 id=eq.0h6v.s7.8d8e32f4e73d from=translated src=- shape=dca6155b vocab=9f20a374
+-/
 lemma eval_linePoly {F : Type*} [CommSemiring F] {n : ℕ} (w v : Fin n → F)
   (p : MvPolynomial (Fin n) F) (t : F) :
     (linePoly w v p).eval t = MvPolynomial.eval (w + t • v) p := by
@@ -323,7 +339,9 @@ lemma eval_linePoly {F : Type*} [CommSemiring F] {n : ℕ} (w v : Fin n → F)
   ac_rfl
 
 /-- The coefficient of `t^d` in `p(w+tv)` is equal to the evaluation of the homogeneous component
-  of degree `d` of `p` at `v`, provided `p` has total degree at most `d`. -/
+  of degree `d` of `p` at `v`, provided `p` has total degree at most `d`.
+@isnad1 id=eq.1h6v.s8.04799dc97612 from=translated src=- shape=5336c4aa vocab=9df74ff2
+-/
 lemma coeff_linePoly_eq_homogeneousComponent_eval {F : Type*} [CommSemiring F] {n : ℕ}
     (w v : Fin n → F) (p : MvPolynomial (Fin n) F) (d : ℕ) (hd : p.totalDegree ≤ d) :
     (linePoly w v p).coeff d = MvPolynomial.eval v (MvPolynomial.homogeneousComponent d p) := by
@@ -383,7 +401,9 @@ lemma coeff_linePoly_eq_homogeneousComponent_eval {F : Type*} [CommSemiring F] {
     simp_all +decide [ MvPolynomial.coeff_weightedHomogeneousComponent ] ;
 
 /-- The degree of the restriction of a polynomial to a line is at most the total degree of the
-  polynomial. -/
+  polynomial.
+@isnad1 id=le.0h5v.s5.769c9926322e from=translated src=- shape=4f80c8ad vocab=bd24d81f
+-/
 lemma natDegree_linePoly_le {F : Type*} [CommSemiring F] {n : ℕ} (w v : Fin n → F)
     (p : MvPolynomial (Fin n) F) :
     (linePoly w v p).natDegree ≤ p.totalDegree := by
@@ -400,7 +420,9 @@ lemma natDegree_linePoly_le {F : Type*} [CommSemiring F] {n : ℕ} (w v : Fin n 
   · rfl
 
 /-- If a polynomial `p` has degree less than `|F|` and vanishes on a line `w + tv`, then the
-  homogeneous component of `p` of degree `\deg p` vanishes at the direction vector `v`. -/
+  homogeneous component of `p` of degree `\deg p` vanishes at the direction vector `v`.
+@isnad1 id=eq.2h5v.s9.e6f2014d9c32 from=translated src=- shape=5888d514 vocab=8068c513
+-/
 lemma eval_homogeneousComponent_eq_zero_of_forall_eval_line_eq_zero
     {F : Type*} [Field F] [Fintype F] {n : ℕ} (p : MvPolynomial (Fin n) F)
     (h_deg : p.totalDegree < Fintype.card F)
@@ -418,7 +440,9 @@ lemma eval_homogeneousComponent_eq_zero_of_forall_eval_line_eq_zero
   have := coeff_linePoly_eq_homogeneousComponent_eval w v p p.totalDegree le_rfl; aesop;
 
 /-- If `n > 0` and `K` is a Kakeya set, and `p` is a polynomial of degree `< |F|` vanishing on `K`,
-  then the top homogeneous component of `p` vanishes everywhere. -/
+  then the top homogeneous component of `p` vanishes everywhere.
+@isnad1 id=eq.4h5v.s9.c7625e579f84 from=translated src=- shape=24d73708 vocab=a38a9f75
+-/
 lemma eval_homogeneousComponent_eq_zero_of_vanishes_on_Kakeya
     {F : Type*} [Field F] [Fintype F] [DecidableEq F] {n : ℕ} (hn : n > 0)
     {K : Set (Fin n → F)} (hK : IsKakeyaSet F K)
@@ -442,7 +466,9 @@ lemma eval_homogeneousComponent_eq_zero_of_vanishes_on_Kakeya
         (fun t => h_vanish (w + t • v) (hw t))
 
 /-- If `K` is a Kakeya set in `F^n`, then `|K| \ge \binom{|F|+n-1}{n}`. For the alternative
-  statement `|K| \ge \frac{|F|^n}{n!}`, see `theorem_35_3'`.  -/
+  statement `|K| \ge \frac{|F|^n}{n!}`, see `theorem_35_3'`.
+@isnad1 id=le.1h3v.s6.776701183470 from=translated src=- shape=5a7506df vocab=836e7a62
+-/
 theorem theorem_35_3 {F : Type*} [Field F] [Fintype F] [DecidableEq F] {n : ℕ} [NeZero n]
     {K : Set (Fin n → F)} (hK : IsKakeyaSet F K) :
     (Fintype.card F + n - 1).choose n ≤ (@Set.toFinset _ K (Fintype.ofFinite ↑K)).card := by
@@ -506,7 +532,9 @@ theorem theorem_35_3 {F : Type*} [Field F] [Fintype F] [DecidableEq F] {n : ℕ}
       exact this.not_gt ( mul_lt_mul_of_pos_right hp_deg ( pow_pos ( Fintype.card_pos ) _ ) )
 
 /-- The second inequality in the statement of the finite Kakeya problem, phrased for general
-  natural numbers `n ≠ 0` and `k`. -/
+  natural numbers `n ≠ 0` and `k`.
+@isnad1 id=le.0h2v.s5.0158e585fe95 from=translated src=- shape=659709cd vocab=378523a7
+-/
 lemma le_binom_sum (k n : ℕ) [NeZero n] : k^n ≤ (k + n - 1).choose n * Nat.factorial n := by
   have h_binom : Nat.choose (k + n - 1) n * Nat.factorial n =
     ∏ i ∈ Finset.range n, (k + n - 1 - i) := by
@@ -518,7 +546,9 @@ lemma le_binom_sum (k n : ℕ) [NeZero n] : k^n ≤ (k + n - 1).choose n * Nat.f
       linarith [ Finset.mem_range.mp hi, Nat.sub_add_cancel
         ( show 1 ≤ k + n from by linarith [ NeZero.pos n ] ) ] ) )
 
-/-- If `K` is a Kakeya set in `F^n`, then  `|K| \ge \frac{|F|^n}{n!}`.  -/
+/-- If `K` is a Kakeya set in `F^n`, then  `|K| \ge \frac{|F|^n}{n!}`.
+@isnad1 id=le.1h3v.s6.a031c6b91705 from=translated src=- shape=55cda5ae vocab=d5288f5d
+-/
 theorem theorem_35_3' {F : Type*} [Field F] [Fintype F] [DecidableEq F] {n : ℕ} [NeZero n]
     {K : Set (Fin n → F)} (hK : IsKakeyaSet F K) :
     (Fintype.card F)^n ≤ (@Set.toFinset _ K (Fintype.ofFinite ↑K)).card * Nat.factorial n :=

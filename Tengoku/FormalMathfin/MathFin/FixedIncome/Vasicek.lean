@@ -58,14 +58,18 @@ open Real
 noncomputable def vasicekDeterministic (r₀ θ κ t : ℝ) : ℝ :=
   θ + (r₀ - θ) * Real.exp (-(κ * t))
 
-/-- **Initial condition**: `r(0) = r₀`. -/
+/-- **Initial condition**: `r(0) = r₀`.
+@isnad1 id=eq.0h3v.s4.83439f912e7b from=translated src=- shape=66861e1c vocab=f11cf68a
+-/
 lemma vasicekDeterministic_at_zero (r₀ θ κ : ℝ) :
     vasicekDeterministic r₀ θ κ 0 = r₀ := by
   unfold vasicekDeterministic
   simp
 
 /-- **Vasicek deterministic ODE solution**: the closed form satisfies
-`dr/dt = κ · (θ − r(t))`. -/
+`dr/dt = κ · (θ − r(t))`.
+@isnad1 id=hasderiv.0h4v.s5.2dbffb177de6 from=translated src=- shape=3a4cd484 vocab=c89a30cf
+-/
 theorem vasicekDeterministic_solves_ODE (r₀ θ κ t : ℝ) :
     HasDerivAt (vasicekDeterministic r₀ θ κ)
       (κ * (θ - vasicekDeterministic r₀ θ κ t)) t := by
@@ -84,7 +88,9 @@ theorem vasicekDeterministic_solves_ODE (r₀ θ κ t : ℝ) :
   convert h using 1 <;> first | rfl | ring
 
 /-- **Long-run mean reversion**: `r(t) → θ` as `t → ∞`, for `κ > 0`. The gap
-`(r₀ − θ) e^{−κt}` decays exponentially: `κt → ∞`, so `e^{−κt} → 0`. -/
+`(r₀ − θ) e^{−κt}` decays exponentially: `κt → ∞`, so `e^{−κt} → 0`.
+@isnad1 id=tendsto.1h3v.s5.7b3191f346d1 from=translated src=- shape=88bcf64e vocab=6977c2f5
+-/
 theorem vasicekDeterministic_tendsto_mean (r₀ θ κ : ℝ) (hκ : 0 < κ) :
     Filter.Tendsto (vasicekDeterministic r₀ θ κ) Filter.atTop (nhds θ) := by
   have h1 : Filter.Tendsto (fun t : ℝ ↦ κ * t) Filter.atTop Filter.atTop :=
@@ -102,7 +108,9 @@ gap from the long-run mean is half its initial value. Depends only on `κ`. -/
 noncomputable def meanReversionHalfLife (κ : ℝ) : ℝ := Real.log 2 / κ
 
 /-- **At the half-life**, the Vasicek deterministic trajectory has closed
-exactly half the gap from `θ`: `r(t₁ₐ) − θ = (r₀ − θ) / 2`. -/
+exactly half the gap from `θ`: `r(t₁ₐ) − θ = (r₀ − θ) / 2`.
+@isnad1 id=eq.1h3v.s5.1fdf7ba44b55 from=translated src=- shape=534dd0c9 vocab=465ea329
+-/
 theorem vasicekDeterministic_at_halfLife (r₀ θ κ : ℝ) (hκ : 0 < κ) :
     vasicekDeterministic r₀ θ κ (meanReversionHalfLife κ) - θ =
       (r₀ - θ) / 2 := by

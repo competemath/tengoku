@@ -33,7 +33,9 @@ Specialization of `bsV` to zero drift, times an external discount `e^{-rT}`. -/
 noncomputable def blackV (K σ : ℝ) (r F T : ℝ) : ℝ :=
   Real.exp (-(r * T)) * bsV K 0 σ F T
 
-/-- **Black-76 delta**: `∂_F V_B = e^{-rT} · Φ(d₁)`. -/
+/-- **Black-76 delta**: `∂_F V_B = e^{-rT} · Φ(d₁)`.
+@isnad1 id=hasderiv.4h5v.s6.c5ab3306e225 from=translated src=- shape=58914169 vocab=7d337f70
+-/
 lemma hasDerivAt_blackV_F {K σ : ℝ} (hK : 0 < K) (hσ : 0 < σ) (r : ℝ)
     {F T : ℝ} (hF : 0 < F) (hT : 0 < T) :
     HasDerivAt (fun f ↦ blackV K σ r f T) (Real.exp (-(r * T)) * Phi (bsd1 F K 0 σ T)) F := by
@@ -41,7 +43,9 @@ lemma hasDerivAt_blackV_F {K σ : ℝ} (hK : 0 < K) (hσ : 0 < σ) (r : ℝ)
   have h := h_bs.const_mul (Real.exp (-(r * T)))
   exact h
 
-/-- **Black-76 gamma**: `∂²_F V_B = e^{-rT} · ϕ(d₁) / (F σ √T)`. -/
+/-- **Black-76 gamma**: `∂²_F V_B = e^{-rT} · ϕ(d₁) / (F σ √T)`.
+@isnad1 id=hasderiv.4h5v.s7.5bfd7731cc32 from=translated src=- shape=85e167a4 vocab=77ce8120
+-/
 lemma hasDerivAt_blackV_FF {K σ : ℝ} (hK : 0 < K) (hσ : 0 < σ) (r : ℝ)
     {F T : ℝ} (hF : 0 < F) (hT : 0 < T) :
     HasDerivAt (fun f ↦ Real.exp (-(r * T)) * Phi (bsd1 f K 0 σ T))
@@ -55,7 +59,9 @@ lemma hasDerivAt_blackV_FF {K σ : ℝ} (hK : 0 < K) (hσ : 0 < σ) (r : ℝ)
 
 Same shape as the other Black-76 Greeks: the discount factor does not depend on
 `F`, so it rides through the differentiation as a constant multiplier on the
-zero-drift BS speed. -/
+zero-drift BS speed.
+@isnad1 id=hasderiv.4h5v.s8.4530d97b370a from=translated src=- shape=a0df6d1e vocab=3b07dfb5
+-/
 lemma hasDerivAt_blackV_FFF {K σ : ℝ} (hK : 0 < K) (hσ : 0 < σ) (r : ℝ)
     {F T : ℝ} (hF : 0 < F) (hT : 0 < T) :
     HasDerivAt (fun f ↦ Real.exp (-(r * T)) *
@@ -64,7 +70,9 @@ lemma hasDerivAt_blackV_FFF {K σ : ℝ} (hK : 0 < K) (hσ : 0 < σ) (r : ℝ)
         (bsd1 F K 0 σ T + σ * Real.sqrt T) / (F ^ 2 * σ ^ 2 * T))) F :=
   (hasDerivAt_bsV_SSS (r := 0) hK hσ hF hT).const_mul (Real.exp (-(r * T)))
 
-/-- **Black-76 vega**: `∂_σ V_B = e^{-rT} · F · ϕ(d₁) · √T`. -/
+/-- **Black-76 vega**: `∂_σ V_B = e^{-rT} · F · ϕ(d₁) · √T`.
+@isnad1 id=hasderiv.4h5v.s7.13380297ca2b from=translated src=- shape=33e0ef53 vocab=fbd52296
+-/
 lemma hasDerivAt_blackV_sigma {K : ℝ} (hK : 0 < K) (r : ℝ)
     {F σ T : ℝ} (hF : 0 < F) (hσ : 0 < σ) (hT : 0 < T) :
     HasDerivAt (fun s ↦ blackV K s r F T)
@@ -77,7 +85,9 @@ lemma hasDerivAt_blackV_sigma {K : ℝ} (hK : 0 < K) (r : ℝ)
 /-- **Black-76 rho**: `∂_r V_B = -T · V_B`.
 
 `V_B = e^{-rT} · bsV(K, 0, σ, F, T)`; the inner bsV is `r`-independent (zero-drift
-futures setup), so only the discount factor contributes. Clean closed form. -/
+futures setup), so only the discount factor contributes. Clean closed form.
+@isnad1 id=hasderiv.0h5v.s6.af68840ab7c3 from=translated src=- shape=2648ea0c vocab=a86acb03
+-/
 lemma hasDerivAt_blackV_r (K σ F T : ℝ) (r : ℝ) :
     HasDerivAt (fun r' ↦ blackV K σ r' F T)
       (-T * blackV K σ r F T) r := by
@@ -95,7 +105,9 @@ lemma hasDerivAt_blackV_r (K σ F T : ℝ) (r : ℝ) :
 
 Product rule on `V_B = e^{-rT} · bsV(K, 0, σ, F, T)`:
 * `∂_T e^{-rT} = -r · e^{-rT}`
-* `∂_T bsV(K, 0, σ, F, T) = σ · F · ϕ(d₁) / (2√T)` from `hasDerivAt_bsV_tau` at `r = 0`. -/
+* `∂_T bsV(K, 0, σ, F, T) = σ · F · ϕ(d₁) / (2√T)` from `hasDerivAt_bsV_tau` at `r = 0`.
+@isnad1 id=hasderiv.4h5v.s7.a65b2bfde6a1 from=translated src=- shape=e39bc054 vocab=55947cd4
+-/
 lemma hasDerivAt_blackV_T {K σ : ℝ} (hK : 0 < K) (hσ : 0 < σ) (r : ℝ)
     {F T : ℝ} (hF : 0 < F) (hT : 0 < T) :
     HasDerivAt (fun t ↦ blackV K σ r F t)

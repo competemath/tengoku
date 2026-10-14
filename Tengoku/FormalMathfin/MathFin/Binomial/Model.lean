@@ -51,15 +51,21 @@ structure BinomialNoArb (u d r : ℝ) : Prop where
   d_lt : d < Real.exp r
   lt_u : Real.exp r < u
 
-/-- Under no-arbitrage, `u > d`. -/
+/-- Under no-arbitrage, `u > d`.
+@isnad1 id=lt.1h3v.s4.660adfb40ea1 from=translated src=- shape=2f86892d vocab=a4e05443
+-/
 lemma BinomialNoArb.d_lt_u {u d r : ℝ} (h : BinomialNoArb u d r) : d < u :=
   lt_trans h.d_lt h.lt_u
 
-/-- Under no-arbitrage, `u > 0`. -/
+/-- Under no-arbitrage, `u > 0`.
+@isnad1 id=lt.1h3v.s4.e3bd1b2647e7 from=translated src=- shape=5cc5ac7a vocab=a4e05443
+-/
 lemma BinomialNoArb.u_pos {u d r : ℝ} (h : BinomialNoArb u d r) : 0 < u :=
   lt_trans h.d_pos h.d_lt_u
 
-/-- Under no-arbitrage, the risk-neutral up-probability is in `(0, 1)`. -/
+/-- Under no-arbitrage, the risk-neutral up-probability is in `(0, 1)`.
+@isnad1 id=mem.1h3v.s5.64a46ddc2952 from=translated src=- shape=49725960 vocab=6932bfcf
+-/
 lemma crrUpProb_mem_Ioo {u d r : ℝ} (h : BinomialNoArb u d r) :
     crrUpProb u d r ∈ Set.Ioo 0 1 := by
   have h_ud : 0 < u - d := by linarith [h.d_lt_u]
@@ -69,7 +75,9 @@ lemma crrUpProb_mem_Ioo {u d r : ℝ} (h : BinomialNoArb u d r) :
   · unfold crrUpProb
     rw [div_lt_one h_ud]; linarith [h.lt_u]
 
-/-- The probability `1 - q = (u - e^r) / (u - d)`. -/
+/-- The probability `1 - q = (u - e^r) / (u - d)`.
+@isnad1 id=eq.1h3v.s5.73847cf51699 from=translated src=- shape=9fd6d358 vocab=7a35854b
+-/
 lemma one_sub_crrUpProb {u d r : ℝ} (h : BinomialNoArb u d r) :
     1 - crrUpProb u d r = (u - Real.exp r) / (u - d) := by
   unfold crrUpProb
@@ -93,7 +101,9 @@ state `S_0 · u`) and `V_d` (down state `S_0 · d`) is replicated by
     B = e^{-r}(u · V_d - d · V_u) / (u - d)  in bonds (at time 0 value).
 
 The cost of this replicating portfolio at time 0 equals
-`binomialOptionPriceOnePeriod`. -/
+`binomialOptionPriceOnePeriod`.
+@isnad1 id=other.2h6v.s7.451033c741c8 from=translated src=- shape=7a97958c vocab=00110e1c
+-/
 theorem replicating_portfolio_cost {S_0 u d r V_u V_d : ℝ}
     (hS_0 : 0 < S_0) (h : BinomialNoArb u d r) :
     let Δ : ℝ := (V_u - V_d) / (S_0 * (u - d))
@@ -110,7 +120,9 @@ theorem replicating_portfolio_cost {S_0 u d r V_u V_d : ℝ}
   linear_combination -(V_u - V_d) * h_exp_id
 
 /-- **Replication payoff: up state.** The replicating portfolio pays `V_u`
-when the asset goes up. -/
+when the asset goes up.
+@isnad1 id=other.2h6v.s7.4249d62d0c82 from=translated src=- shape=68b3b937 vocab=cdf6ee61
+-/
 theorem replicating_payoff_up {S_0 u d r V_u V_d : ℝ}
     (hS_0 : 0 < S_0) (h : BinomialNoArb u d r) :
     let Δ : ℝ := (V_u - V_d) / (S_0 * (u - d))
@@ -127,7 +139,9 @@ theorem replicating_payoff_up {S_0 u d r V_u V_d : ℝ}
   linear_combination (u * V_d - d * V_u) * h_exp_inv
 
 /-- **Replication payoff: down state.** The replicating portfolio pays `V_d`
-when the asset goes down. -/
+when the asset goes down.
+@isnad1 id=other.2h6v.s7.b09c5bf0f5f9 from=translated src=- shape=199ad449 vocab=cdf6ee61
+-/
 theorem replicating_payoff_down {S_0 u d r V_u V_d : ℝ}
     (hS_0 : 0 < S_0) (h : BinomialNoArb u d r) :
     let Δ : ℝ := (V_u - V_d) / (S_0 * (u - d))
@@ -158,13 +172,17 @@ noncomputable def binomialPrice (u d r : ℝ) (g : ℝ → ℝ) : ℕ → ℝ �
         (crrUpProb u d r * binomialPrice u d r g n (S * u) +
          (1 - crrUpProb u d r) * binomialPrice u d r g n (S * d))
 
-/-- At maturity (`n = 0`) the binomial price is the payoff `g S`. -/
+/-- At maturity (`n = 0`) the binomial price is the payoff `g S`.
+@isnad1 id=eq.0h5v.s4.17b35ad0997d from=translated src=- shape=04d361bc vocab=eb36e9c7
+-/
 @[simp]
 lemma binomialPrice_zero (u d r : ℝ) (g : ℝ → ℝ) (S : ℝ) :
     binomialPrice u d r g 0 S = g S := rfl
 
 /-- One-step backward recursion: the price at `n+1` is the discounted risk-neutral
-average of the prices at the up/down successors. -/
+average of the prices at the up/down successors.
+@isnad1 id=eq.0h6v.s6.fcd5aa54f571 from=translated src=- shape=99f0c0e0 vocab=edabe10d
+-/
 lemma binomialPrice_succ (u d r : ℝ) (g : ℝ → ℝ) (n : ℕ) (S : ℝ) :
     binomialPrice u d r g (n + 1) S =
       Real.exp (-r) *
@@ -173,7 +191,9 @@ lemma binomialPrice_succ (u d r : ℝ) (g : ℝ → ℝ) (n : ℕ) (S : ℝ) :
 
 /-- **One-step consistency**: `binomialPrice u d r g (n+1) S` equals
 `binomialOptionPriceOnePeriod u d r V_u V_d` where `V_u, V_d` are the
-sub-tree prices for `n` more steps starting from `S·u` and `S·d`. -/
+sub-tree prices for `n` more steps starting from `S·u` and `S·d`.
+@isnad1 id=eq.0h6v.s6.9aa185bed224 from=translated src=- shape=3d4c7bbd vocab=bc8076b1
+-/
 theorem binomialPrice_succ_eq_onePeriod (u d r : ℝ) (g : ℝ → ℝ) (n : ℕ) (S : ℝ) :
     binomialPrice u d r g (n + 1) S =
       binomialOptionPriceOnePeriod u d r
@@ -181,7 +201,9 @@ theorem binomialPrice_succ_eq_onePeriod (u d r : ℝ) (g : ℝ → ℝ) (n : ℕ
         (binomialPrice u d r g n (S * d)) := by
   rw [binomialPrice_succ, binomialOptionPriceOnePeriod]
 
-/-- **Linearity of the binomial price** in the payoff function. -/
+/-- **Linearity of the binomial price** in the payoff function.
+@isnad1 id=eq.0h7v.s5.884852b57632 from=translated src=- shape=66e9e0fc vocab=eb2166de
+-/
 lemma binomialPrice_add (u d r : ℝ) (g h : ℝ → ℝ) (n : ℕ) (S : ℝ) :
     binomialPrice u d r (fun x ↦ g x + h x) n S =
       binomialPrice u d r g n S + binomialPrice u d r h n S := by
@@ -192,7 +214,9 @@ lemma binomialPrice_add (u d r : ℝ) (g h : ℝ → ℝ) (n : ℕ) (S : ℝ) :
     rw [ih (S * u), ih (S * d)]
     ring
 
-/-- **Scalar homogeneity of the binomial price** in the payoff function. -/
+/-- **Scalar homogeneity of the binomial price** in the payoff function.
+@isnad1 id=eq.0h7v.s5.1bf1b83c43de from=translated src=- shape=f3b59018 vocab=abd099d3
+-/
 lemma binomialPrice_smul (u d r c : ℝ) (g : ℝ → ℝ) (n : ℕ) (S : ℝ) :
     binomialPrice u d r (fun x ↦ c * g x) n S = c * binomialPrice u d r g n S := by
   induction n generalizing S with
@@ -203,7 +227,9 @@ lemma binomialPrice_smul (u d r c : ℝ) (g : ℝ → ℝ) (n : ℕ) (S : ℝ) :
     ring
 
 /-- **Constant-payoff price**: a deterministic payoff `c` at maturity has time-0
-price `e^{-rn} · c` for `n` steps. -/
+price `e^{-rn} · c` for `n` steps.
+@isnad1 id=eq.1h6v.s5.f1adc05d0f09 from=translated src=- shape=720d8c94 vocab=6e90d912
+-/
 theorem binomialPrice_const (u d r c : ℝ) (_h : BinomialNoArb u d r) (n : ℕ) (S : ℝ) :
     binomialPrice u d r (fun _ ↦ c) n S = Real.exp (-(n : ℝ) * r) * c := by
   induction n generalizing S with
@@ -225,7 +251,9 @@ theorem binomialPrice_const (u d r c : ℝ) (_h : BinomialNoArb u d r) (n : ℕ)
       _ = Real.exp (-((n + 1 : ℕ) : ℝ) * r) * c := by rw [mul_one, h_factor]
 
 /-- **One-step risk-neutral martingale identity** for the binomial up-probability:
-`p · u + (1 − p) · d = eʳ`. -/
+`p · u + (1 − p) · d = eʳ`.
+@isnad1 id=eq.1h3v.s5.a17c2d9fed31 from=translated src=- shape=8fdea789 vocab=11296364
+-/
 lemma crrUpProb_mul_up_add (u d r : ℝ) (h : BinomialNoArb u d r) :
     crrUpProb u d r * u + (1 - crrUpProb u d r) * d = Real.exp r := by
   have hud : u - d ≠ 0 := sub_ne_zero.mpr h.d_lt_u.ne'
@@ -235,7 +263,9 @@ lemma crrUpProb_mul_up_add (u d r : ℝ) (h : BinomialNoArb u d r) :
 
 /-- **Stock-price martingale value**: pricing the payoff `g(S) = S` (the underlying
 itself) returns `S` — the discounted stock price is a martingale under the
-risk-neutral probability. -/
+risk-neutral probability.
+@isnad1 id=eq.1h5v.s4.85e3b1942f92 from=translated src=- shape=ec0d6f4d vocab=bfb40e18
+-/
 theorem binomialPrice_id (u d r : ℝ) (h : BinomialNoArb u d r) (n : ℕ) (S : ℝ) :
     binomialPrice u d r (fun x ↦ x) n S = S := by
   have hmart := crrUpProb_mul_up_add u d r h

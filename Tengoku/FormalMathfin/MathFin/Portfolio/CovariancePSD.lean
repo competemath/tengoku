@@ -55,7 +55,9 @@ random returns, is exactly the variance of the portfolio return `∑ wᵢ Rᵢ`:
 
 Mathlib's `variance_sum'` unfolds the portfolio variance into the double sum
 of covariances; the `smul` lemmas peel the weights. No PSD assumption appears
-anywhere. -/
+anywhere.
+@isnad1 id=eq.1h7v.s7.1bd3c61a8f3b from=translated src=- shape=03a5641b vocab=86de74e2
+-/
 theorem portfolioVarN_covariance_eq_variance
     (s : Finset ι) (w : ι → ℝ) (R : ι → Ω → ℝ)
     (hR : ∀ i ∈ s, MemLp (R i) 2 μ) :
@@ -72,7 +74,9 @@ theorem portfolioVarN_covariance_eq_variance
 /-- **Covariance kernels are PSD** — the hypothesis of
 `portfolioVarN_nonneg_of_psd`, discharged from first principles: for any
 weights `v`, the quadratic form `∑∑ vᵢ vⱼ cov(Rᵢ, Rⱼ)` is the variance of
-`∑ vᵢ Rᵢ`, hence non-negative. -/
+`∑ vᵢ Rᵢ`, hence non-negative.
+@isnad1 id=le.1h7v.s7.cf40ff5478d2 from=translated src=- shape=b186cc64 vocab=bf607fa6
+-/
 theorem covariance_kernel_psd
     (s : Finset ι) (R : ι → Ω → ℝ)
     (hR : ∀ i ∈ s, MemLp (R i) 2 μ) :
@@ -85,7 +89,9 @@ theorem covariance_kernel_psd
 
 /-- **N-asset portfolio variance non-negativity from random returns**: with the
 genuine covariance kernel of square-integrable returns, the Markowitz portfolio
-variance is non-negative — because it *is* the variance `Var[∑ wᵢ Rᵢ] ≥ 0`. -/
+variance is non-negative — because it *is* the variance `Var[∑ wᵢ Rᵢ] ≥ 0`.
+@isnad1 id=le.1h7v.s7.3f2981ab104b from=translated src=- shape=35207bda vocab=d52b67ee
+-/
 theorem portfolioVarN_covariance_nonneg
     (s : Finset ι) (w : ι → ℝ) (R : ι → Ω → ℝ)
     (hR : ∀ i ∈ s, MemLp (R i) 2 μ) :
@@ -95,7 +101,9 @@ theorem portfolioVarN_covariance_nonneg
 /-- **`portfolioVariance` is the Markowitz double sum**: the `marginalVariance`-
 based `portfolioVariance` (`CAPMEquilibrium`) and `portfolioVarN`
 (`MarkowitzNAsset`) are the same quadratic form, so PSD facts transfer between
-the two namings (the `w i·` factor is just pushed inside the inner sum). -/
+the two namings (the `w i·` factor is just pushed inside the inner sum).
+@isnad1 id=eq.0h4v.s4.c053dd799d39 from=translated src=- shape=60f91243 vocab=f0e03b50
+-/
 lemma portfolioVariance_eq_portfolioVarN {ι : Type*}
     (s : Finset ι) (Sg : ι → ι → ℝ) (w : ι → ℝ) :
     portfolioVariance s Sg w = portfolioVarN s w Sg := by
@@ -107,7 +115,9 @@ lemma portfolioVariance_eq_portfolioVarN {ι : Type*}
 /-- **`portfolioVariance` non-negativity from random returns**: the genuine
 covariance-kernel PSD fact (`covariance_kernel_psd`, a self-dot variance),
 transported to the `marginalVariance`-based `portfolioVariance` naming that the
-CAPM / Lagrangian / risk-parity files use. -/
+CAPM / Lagrangian / risk-parity files use.
+@isnad1 id=le.1h7v.s7.041c09220071 from=translated src=- shape=9c41d72a vocab=753b241a
+-/
 theorem portfolioVariance_covariance_nonneg
     (s : Finset ι) (w : ι → ℝ) (R : ι → Ω → ℝ)
     (hR : ∀ i ∈ s, MemLp (R i) 2 μ) :

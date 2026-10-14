@@ -33,6 +33,9 @@ log spot `x₀+(r-q-σ^2/2)*t+σ*w`, remaining normalized time `σ^2/2*(T-t)`, d
 noncomputable def brownianPriceKernel (p : ℝ → ℝ → ℝ) (K r q σ x₀ T t w : ℝ) : ℝ :=
   Real.exp (-r*t)*(K*p (x₀+(r-q-σ^2/2)*t+σ*w) (σ^2/2*(T-t)))
 
+/--
+@isnad1 id=hasderiv.1h8v.s8.4681d74d95bd from=translated src=- shape=55419274 vocab=0288a250
+-/
 theorem affinePrice_hasDeriv_time {p : ℝ → ℝ → ℝ} {x₀ β σ a T t w : ℝ}
     (hp : DifferentiableAt ℝ (fun z : ℝ × ℝ => p z.1 z.2) (x₀+β*t+σ*w,a*(T-t))) :
     HasDerivAt (fun s => p (x₀+β*s+σ*w) (a*(T-s)))
@@ -58,6 +61,9 @@ theorem affinePrice_hasDeriv_time {p : ℝ → ℝ → ℝ} {x₀ β σ a T t w 
   rw [show ((β,-a) : ℝ × ℝ) = β • (1,0)-a • (0,1) by ext <;> simp]
   simp only [map_sub,map_smul,smul_eq_mul]
 
+/--
+@isnad1 id=hasderiv.1h9v.s9.821dd63d76a2 from=translated src=- shape=6b395deb vocab=75dbd650
+-/
 theorem brownianPriceKernel_hasDeriv_time {p : ℝ → ℝ → ℝ} {K r q σ x₀ T t w : ℝ}
     (hp : DifferentiableAt ℝ (fun z : ℝ × ℝ => p z.1 z.2)
       (x₀+(r-q-σ^2/2)*t+σ*w,σ^2/2*(T-t))) :
@@ -71,6 +77,9 @@ theorem brownianPriceKernel_hasDeriv_time {p : ℝ → ℝ → ℝ} {K r q σ x�
   dsimp [brownianPriceKernel]
   ring
 
+/--
+@isnad1 id=eq.0h9v.s8.9f66d0058920 from=translated src=- shape=132d9fc3 vocab=1e339498
+-/
 theorem brownianPriceKernel_deriv_space (p : ℝ → ℝ → ℝ) (K r q σ x₀ T t w : ℝ) :
     deriv (fun y => brownianPriceKernel p K r q σ x₀ T t y) w =
       Real.exp (-r*t)*K*σ*deriv (fun x => p x (σ^2/2*(T-t))) (x₀+(r-q-σ^2/2)*t+σ*w) := by
@@ -82,6 +91,9 @@ theorem brownianPriceKernel_deriv_space (p : ℝ → ℝ → ℝ) (K r q σ x₀
   simp only [smul_eq_mul]
   ring
 
+/--
+@isnad1 id=eq.0h9v.s8.6054ef3602e8 from=translated src=- shape=b43cfabb vocab=1e339498
+-/
 theorem brownianPriceKernel_deriv2_space (p : ℝ → ℝ → ℝ) (K r q σ x₀ T t w : ℝ) :
     deriv (deriv (fun y => brownianPriceKernel p K r q σ x₀ T t y)) w =
       Real.exp (-r*t)*K*σ^2*deriv (deriv (fun x => p x (σ^2/2*(T-t))))
@@ -97,6 +109,9 @@ theorem brownianPriceKernel_deriv2_space (p : ℝ → ℝ → ℝ) (K r q σ x�
   simp only [smul_eq_mul]
   ring
 
+/--
+@isnad1 id=contdiff.4h10v.s8.2b13768893c3 from=translated src=- shape=7e86c7c6 vocab=43e6b655
+-/
 theorem brownianPriceKernel_contDiffAt {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
     {K r q σ x₀ T t w : ℝ}
     (hp : DividendPutSolution (normalizedRate r σ) (normalizedRate q σ) p b)
@@ -113,7 +128,9 @@ theorem brownianPriceKernel_contDiffAt {p : ℝ → ℝ → ℝ} {b : ℝ → �
     (contDiffAt_const.mul hcomp)
 
 /-- The exact normalized pricing equation cancels the physical discounted
-Brownian drift. This is asserted only inside continuation, not at its edge. -/
+Brownian drift. This is asserted only inside continuation, not at its edge.
+@isnad1 id=eq.4h10v.s8.7a0692d7c057 from=translated src=- shape=654f6ee8 vocab=6bcfb03a
+-/
 theorem brownianPriceKernel_heat_equation {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
     {K r q σ x₀ T t w : ℝ}
     (hp : DividendPutSolution (normalizedRate r σ) (normalizedRate q σ) p b)
@@ -129,6 +146,9 @@ theorem brownianPriceKernel_heat_equation {p : ℝ → ℝ → ℝ} {b : ℝ →
   field_simp
   ring
 
+/--
+@isnad1 id=eq.1h11v.s6.beed03c94abb from=translated src=- shape=99fc5797 vocab=1c87985b
+-/
 theorem classicalCandidate_eq_kernel {Ω : Type*} (W : ℝ≥0 → Ω → ℝ)
     (p : ℝ → ℝ → ℝ) (K r q σ S : ℝ) {T t : ℝ≥0} (ht : t ≤ T) (outcome : Ω) :
     classicalCandidate W K r q σ S p T t outcome =

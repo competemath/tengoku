@@ -32,6 +32,9 @@ open scoped Topology ContDiff
 noncomputable def dividendSpatialOperator (k h : ℝ) (f : ℝ → ℝ) (x : ℝ) : ℝ :=
   deriv (deriv f) x + (k - h - 1) * deriv f x - k * f x
 
+/--
+@isnad1 id=and.4h3v.s6.563cac7a5a92 from=translated src=- shape=1eae94fc vocab=77452cea
+-/
 theorem normalized_dividend_regime {r q σ : ℝ}
     (hr : 0 < r) (hq : 0 ≤ q) (hqr : q ≤ r) (hσ : 0 < σ) :
     0 < normalizedRate r σ ∧ 0 ≤ normalizedRate q σ ∧
@@ -42,7 +45,9 @@ theorem normalized_dividend_regime {r q σ : ℝ}
   · unfold normalizedRate
     gcongr
 
-/-- Liu's physical restriction is exactly `h+1 ≤ k` after normalization. -/
+/-- Liu's physical restriction is exactly `h+1 ≤ k` after normalization.
+@isnad1 id=iff.1h3v.s6.0e8393cb728d from=translated src=- shape=641b4a37 vocab=a148cca3
+-/
 theorem liu_condition_normalization {r q σ : ℝ} (hσ : 0 < σ) :
     normalizedRate q σ + 1 ≤ normalizedRate r σ ↔ q + σ ^ 2 / 2 ≤ r := by
   have hs : 0 < σ ^ 2 := sq_pos_of_pos hσ
@@ -50,6 +55,9 @@ theorem liu_condition_normalization {r q σ : ℝ} (hσ : 0 < σ) :
   rw [← div_self hs.ne', ← add_div, div_le_div_iff_of_pos_right hs]
   constructor <;> intro h <;> nlinarith
 
+/--
+@isnad1 id=eq.0h3v.s4.e4d838e79a6c from=translated src=- shape=75e45dd9 vocab=5be010bf
+-/
 @[simp] theorem dividendSpatialOperator_zero (k : ℝ) (f : ℝ → ℝ) (x : ℝ) :
     dividendSpatialOperator k 0 f x = spatialOperator k f x := by
   simp [dividendSpatialOperator, spatialOperator]
@@ -83,6 +91,9 @@ namespace DividendPutSolution
 
 variable {k h : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
 
+/--
+@isnad1 id=le.2h5v.s5.4c5c230cf88a from=translated src=- shape=88244986 vocab=f896ec9d
+-/
 theorem boundary_nonpos (hp : DividendPutSolution k h p b) {t : ℝ} (ht : 0 < t) :
     b t ≤ 0 := by
   have hv := (putPayoff_nonneg (b t)).trans (hp.dominates (b t) t ht.le)
@@ -90,7 +101,9 @@ theorem boundary_nonpos (hp : DividendPutSolution k h p b) {t : ℝ} (ht : 0 < t
   exact Real.exp_le_one_iff.mp (by linarith)
 
 /-- Interior smoothness at a space-time point follows from the moving-domain
-contract and continuity of the boundary; no smoothness across it is assumed. -/
+contract and continuity of the boundary; no smoothness across it is assumed.
+@isnad1 id=contdiff.3h6v.s6.d25ab6a47e58 from=translated src=- shape=c6d32c09 vocab=dbbf334b
+-/
 theorem price_contDiffAt (hp : DividendPutSolution k h p b)
     {x t : ℝ} (ht : 0 < t) (hx : b t < x) :
     ContDiffAt ℝ ∞ (fun z : ℝ × ℝ => p z.1 z.2) (x, t) := by
@@ -105,7 +118,9 @@ theorem price_contDiffAt (hp : DividendPutSolution k h p b)
 
 end DividendPutSolution
 
-/-- No changed model is hidden in the zero-dividend specialization. -/
+/-- No changed model is hidden in the zero-dividend specialization.
+@isnad1 id=iff.0h3v.s4.32bb719ab996 from=translated src=- shape=e7d8c094 vocab=f95c78f6
+-/
 theorem dividendPutSolution_zero_iff {k : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ} :
     DividendPutSolution k 0 p b ↔ NormalizedPutSolution k p b := by
   constructor
@@ -166,7 +181,9 @@ def LiuRangeCurvatureClaim : Prop :=
       ∀ t, 0 < t → 0 ≤ deriv (deriv b) t
 
 /-- A reduction between the claims. Their proofs are supplied separately in
-`ComparisonConclusion.lean`. -/
+`ComparisonConclusion.lean`.
+@isnad1 id=and.1h0v.s2.592bc30b8357 from=translated src=- shape=da6c7ba4 vocab=07089d89
+-/
 theorem dividendCurvature_specializations (hmain : DividendCurvatureClaim) :
     ZeroDividendWeakCurvatureClaim ∧ LiuRangeCurvatureClaim := by
   constructor
@@ -177,7 +194,9 @@ theorem dividendCurvature_specializations (hmain : DividendCurvatureClaim) :
 
 /-- The published strict theorem would imply the weak zero-dividend milestone.
 The strict hypothesis remains open; the weak claim is now proved by the
-alternative comparison route in `ComparisonConclusion.lean`. -/
+alternative comparison route in `ComparisonConclusion.lean`.
+@isnad1 id=zerodivi.1h0v.s1.85735eb4bfc4 from=translated src=- shape=1d48f1ac vocab=1ba9cc64
+-/
 theorem publishedCurvature_implies_weak (hccjz : NormalizedCurvatureClaim) :
     ZeroDividendWeakCurvatureClaim := by
   intro k p b hb t ht

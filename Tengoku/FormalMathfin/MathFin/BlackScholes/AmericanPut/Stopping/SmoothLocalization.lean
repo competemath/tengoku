@@ -28,6 +28,9 @@ namespace MathFin.BlackScholes.AmericanPut.Stopping
 open Set Filter Metric
 open scoped Topology ContDiff
 
+/--
+@isnad1 id=ex.1h2v.s7.583756bef373 from=translated src=- shape=a7f4a280 vocab=740a1a4d
+-/
 theorem exists_compact_localization {F : ℝ × ℝ → ℝ} {z : ℝ × ℝ}
     (hF : ContDiffAt ℝ ∞ F z) :
     ∃ G : ℝ × ℝ → ℝ, ContDiff ℝ 3 G ∧ HasCompactSupport G ∧ G =ᶠ[𝓝 z] F := by
@@ -55,6 +58,9 @@ theorem exists_compact_localization {F : ℝ × ℝ → ℝ} {z : ℝ × ℝ}
     simp only [Pi.one_apply] at hy
     rw [hy,one_mul]
 
+/--
+@isnad1 id=ex.4h10v.s8.4fda0edca82b from=translated src=- shape=4ab7cc77 vocab=d5bfb135
+-/
 theorem brownianPriceKernel_localization {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
     {K r q σ x₀ T t w : ℝ}
     (hp : Boundary.DividendPutSolution (Boundary.normalizedRate r σ) (Boundary.normalizedRate q σ) p b)

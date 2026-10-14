@@ -90,7 +90,9 @@ return is `Σ_i q_i · (Σ_k θ_k · z k i) = Σ_k θ_k · (Σ_i q_i · z k i) =
 Σ_k θ_k · 0 = 0`. If the portfolio's payoff is non-negative in every
 state and strictly positive in at least one, the `q`-weighted sum is
 strictly positive (positive `q_i` times positive payoff at `i₀`),
-contradiction. -/
+contradiction.
+@isnad1 id=not.1h3v.s4.179cfb97ee9e from=translated src=- shape=b828c03a vocab=50cfce6a
+-/
 theorem noArbitrage_of_emm_multi {N M : ℕ} (z : Fin M → Fin N → ℝ)
     (h_emm : HasEMM_multi_state z) :
     ¬ HasArbitrage_multi_state z := by
@@ -123,7 +125,9 @@ theorem noArbitrage_of_emm_multi {N M : ℕ} (z : Fin M → Fin N → ℝ)
 attainable-payoff subspace `span {z k}` is disjoint from the standard simplex
 (no arbitrage), so `exists_pos_dual_of_disjoint_stdSimplex` yields a
 strictly-positive dual `q` with `∑ i, q i · z k i = 0` for every asset `k`;
-normalising `q` to a probability is the equivalent martingale measure. -/
+normalising `q` to a probability is the equivalent martingale measure.
+@isnad1 id=hasemmmu.1h3v.s4.fa4d95b7d90f from=translated src=- shape=61d2d813 vocab=b32f546a
+-/
 theorem hasEMM_multi_of_not_hasArbitrage {N M : ℕ} [NeZero N]
     (z : Fin M → Fin N → ℝ) (h : ¬ HasArbitrage_multi_state z) :
     HasEMM_multi_state z := by
@@ -158,7 +162,9 @@ theorem hasEMM_multi_of_not_hasArbitrage {N M : ℕ} [NeZero N]
     rw [Finset.sum_congr rfl (fun i _ ↦ hcongr i), ← Finset.sum_div, hzk k, zero_div]
 
 /-- **Multi-state FTAP biconditional**: an EMM exists iff there is no
-arbitrage. -/
+arbitrage.
+@isnad1 id=iff.0h3v.s4.a73515f5bf90 from=translated src=- shape=d36b5886 vocab=b32f546a
+-/
 theorem hasEMM_multi_iff_not_hasArbitrage {N M : ℕ} [NeZero N]
     (z : Fin M → Fin N → ℝ) :
     HasEMM_multi_state z ↔ ¬ HasArbitrage_multi_state z :=

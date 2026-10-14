@@ -26,33 +26,53 @@ open Complex Filter Topology MeasureTheory intervalIntegral Set
 /-! ### ℂ-specialized interval-integral constant rules (the RCLike-generic Mathlib versions do
 not match ℂ's default instance path under `rw`; cf. Zeta23.integral_const_mul_C) -/
 
+/--
+@isnad1 id=eq.0h4v.s6.f2f9dfbc5514 from=translated src=- shape=6a3cc486 vocab=ae1210b0
+-/
 theorem intervalIntegral_mul_const_C (c : ℂ) (f : ℝ → ℂ) (a b : ℝ) :
     ∫ x in a..b, f x * c = (∫ x in a..b, f x) * c :=
   intervalIntegral.integral_mul_const c f
 
+/--
+@isnad1 id=eq.0h4v.s6.66ba187e3bdb from=translated src=- shape=b47aec32 vocab=ae1210b0
+-/
 theorem intervalIntegral_const_mul_C (c : ℂ) (f : ℝ → ℂ) (a b : ℝ) :
     ∫ x in a..b, c * f x = c * ∫ x in a..b, f x :=
   intervalIntegral.integral_const_mul c f
 
 /-! ### Elementary bounds for points in the right half-plane -/
 
-/-- for `x ≥ 0` real and `0 < re w`: `‖x + w‖ ≥ |im w|`. -/
+/-- for `x ≥ 0` real and `0 < re w`: `‖x + w‖ ≥ |im w|`.
+@isnad1 id=le.0h2v.s4.7be80c8e6e1e from=translated src=- shape=3316d2ea vocab=70ead841
+-/
 theorem abs_im_le_norm_add {w : ℂ} (x : ℝ) : |w.im| ≤ ‖(x : ℂ) + w‖ := by
   have := Complex.abs_im_le_norm ((x : ℂ) + w)
   simpa using this
 
+/--
+@isnad1 id=lt.2h2v.s5.6f6b2dfb1b21 from=translated src=- shape=b0b1b4b8 vocab=3b966754
+-/
 theorem re_add_pos {w : ℂ} (hw : 0 < w.re) {x : ℝ} (hx : 0 ≤ x) : 0 < ((x : ℂ) + w).re := by
   simp; linarith
 
+/--
+@isnad1 id=mem.2h2v.s5.9c5988cbd35b from=translated src=- shape=97842298 vocab=73c0b117
+-/
 theorem add_mem_slitPlane {w : ℂ} (hw : 0 < w.re) {x : ℝ} (hx : 0 ≤ x) :
     (x : ℂ) + w ∈ Complex.slitPlane :=
   Complex.mem_slitPlane_iff.mpr (Or.inl (re_add_pos hw hx))
 
+/--
+@isnad1 id=ne.2h2v.s5.fa998fa9de00 from=translated src=- shape=19238829 vocab=3b966754
+-/
 theorem add_ne_zero {w : ℂ} (hw : 0 < w.re) {x : ℝ} (hx : 0 ≤ x) : (x : ℂ) + w ≠ 0 :=
   fun h => by have := re_add_pos hw hx; rw [h] at this; simp at this
 
 /-! ### The antiderivative `F(x) = log(x + w)` on `[0, ∞)` -/
 
+/--
+@isnad1 id=hasderiv.2h2v.s6.f60e752233e3 from=translated src=- shape=cf689f15 vocab=1cadf1c8
+-/
 theorem hasDerivAt_log_add {w : ℂ} (hw : 0 < w.re) {x : ℝ} (hx : 0 ≤ x) :
     HasDerivAt (fun y : ℝ => Complex.log ((y : ℂ) + w)) (((x : ℂ) + w)⁻¹) x := by
   have h1 : HasDerivAt (fun z : ℂ => Complex.log (z + w)) (((x : ℂ) + w)⁻¹) (x : ℂ) := by
@@ -61,7 +81,9 @@ theorem hasDerivAt_log_add {w : ℂ} (hw : 0 < w.re) {x : ℝ} (hx : 0 ≤ x) :
     simpa [Function.comp_def] using this
   exact h1.comp_ofReal
 
-/-- FTC: `∫_m^{m+1} dx/(x+w) = log(m+1+w) − log(m+w)` for `m ≥ 0`. -/
+/-- FTC: `∫_m^{m+1} dx/(x+w) = log(m+1+w) − log(m+w)` for `m ≥ 0`.
+@isnad1 id=eq.2h2v.s6.8ed7966e7197 from=translated src=- shape=acc83080 vocab=efc4574d
+-/
 theorem integral_inv_add_eq_log_sub {w : ℂ} (hw : 0 < w.re) {m : ℝ} (hm : 0 ≤ m) :
     ∫ x in m..(m + 1), ((x : ℂ) + w)⁻¹
       = Complex.log (((m + 1 : ℝ) : ℂ) + w) - Complex.log ((m : ℂ) + w) := by
@@ -78,7 +100,9 @@ theorem integral_inv_add_eq_log_sub {w : ℂ} (hw : 0 < w.re) {m : ℝ} (hm : 0 
 
 /-! ### The per-interval expansion -/
 
-/-- exact algebra: `1/(x+w) = 1/(m+w) − (x−m)/(m+w)² + (x−m)²/((m+w)²(x+w))`. -/
+/-- exact algebra: `1/(x+w) = 1/(m+w) − (x−m)/(m+w)² + (x−m)²/((m+w)²(x+w))`.
+@isnad1 id=eq.2h3v.s7.91896985e99f from=translated src=- shape=ba23bd9c vocab=8b98f799
+-/
 theorem inv_add_expand {w : ℂ} {x m : ℝ} (hxw : (x : ℂ) + w ≠ 0) (hmw : (m : ℂ) + w ≠ 0) :
     ((x : ℂ) + w)⁻¹
       = ((m : ℂ) + w)⁻¹ - ((x - m : ℝ) : ℂ) / ((m : ℂ) + w) ^ 2
@@ -91,7 +115,9 @@ theorem inv_add_expand {w : ℂ} {x m : ℝ} (hxw : (x : ℂ) + w ≠ 0) (hmw : 
 def eps (w : ℂ) (m : ℝ) : ℂ :=
   ∫ x in m..(m + 1), ((x - m : ℝ) : ℂ) ^ 2 / (((m : ℂ) + w) ^ 2 * ((x : ℂ) + w))
 
-/-- `∫_m^{m+1} dx/(x+w) = 1/(m+w) − 1/(2(m+w)²) + ε_m`. -/
+/-- `∫_m^{m+1} dx/(x+w) = 1/(m+w) − 1/(2(m+w)²) + ε_m`.
+@isnad1 id=eq.2h2v.s7.a8cc431c41df from=translated src=- shape=471457bd vocab=029e4d2b
+-/
 theorem integral_inv_add_eq {w : ℂ} (hw : 0 < w.re) {m : ℝ} (hm : 0 ≤ m) :
     ∫ x in m..(m + 1), ((x : ℂ) + w)⁻¹
       = ((m : ℂ) + w)⁻¹ - (1 / 2 : ℂ) / ((m : ℂ) + w) ^ 2 + eps w m := by
@@ -129,7 +155,9 @@ theorem integral_inv_add_eq {w : ℂ} (hw : 0 < w.re) {m : ℝ} (hm : 0 ≤ m) :
   push_cast
   ring
 
-/-- bound: `‖ε_m‖ ≤ 1/(3 ‖m+w‖² |im w|)`. -/
+/-- bound: `‖ε_m‖ ≤ 1/(3 ‖m+w‖² |im w|)`.
+@isnad1 id=le.3h2v.s7.2a69f852d674 from=translated src=- shape=e6c1034f vocab=7fee1a9c
+-/
 theorem norm_eps_le {w : ℂ} (hw : 0 < w.re) (ht : 1 / 2 ≤ |w.im|) {m : ℝ} (hm : 0 ≤ m) :
     ‖eps w m‖ ≤ 1 / (3 * ‖(m : ℂ) + w‖ ^ 2 * |w.im|) := by
   have hmw := add_ne_zero hw hm
@@ -166,24 +194,40 @@ theorem norm_eps_le {w : ℂ} (hw : 0 < w.re) (ht : 1 / 2 ≤ |w.im|) {m : ℝ} 
 section Seq
 variable {w : ℂ}
 
+/--
+@isnad1 id=lt.1h2v.s5.cf83962b53d7 from=translated src=- shape=b42e2b34 vocab=6d5603b3
+-/
 theorem natp1_re_pos (hw : 0 < w.re) (n : ℕ) : 0 < ((n : ℂ) + 1 + w).re := by
   simp; positivity
 
+/--
+@isnad1 id=ne.1h2v.s5.8c0dc1b8a082 from=translated src=- shape=d7839769 vocab=6d5603b3
+-/
 theorem natp1_ne_zero (hw : 0 < w.re) (n : ℕ) : (n : ℂ) + 1 + w ≠ 0 := fun h => by
   have := natp1_re_pos hw n; rw [h] at this; simp at this
 
+/--
+@isnad1 id=le.0h2v.s5.fe9318f580c4 from=translated src=- shape=010604fe vocab=433fdac4
+-/
 theorem abs_im_le_norm_natp1 (n : ℕ) : |w.im| ≤ ‖(n : ℂ) + 1 + w‖ := by
   have := Complex.abs_im_le_norm ((n : ℂ) + 1 + w); simpa using this
 
+/--
+@isnad1 id=le.1h2v.s6.0893e3e31c8a from=translated src=- shape=09cd0055 vocab=cfa6ab8b
+-/
 theorem natp1_le_norm (hw : 0 < w.re) (n : ℕ) : (n : ℝ) + 1 ≤ ‖(n : ℂ) + 1 + w‖ := by
   have h := Complex.re_le_norm ((n : ℂ) + 1 + w)
   simp at h; linarith
 
-/-- cast alignment with the real-parametrized lemmas. -/
+/-- cast alignment with the real-parametrized lemmas.
+@isnad1 id=eq.0h2v.s5.67dbd49c1f75 from=translated src=- shape=ec977df0 vocab=bd4ad8e8
+-/
 theorem natp1_cast (n : ℕ) : (n : ℂ) + 1 + w = ((((n : ℝ) + 1 : ℝ)) : ℂ) + w := by
   push_cast; ring
 
-/-- (I1) `1/z_n = [log z_{n+1} − log z_n] + (1/2)/z_n² − ε_{n+1}`. -/
+/-- (I1) `1/z_n = [log z_{n+1} − log z_n] + (1/2)/z_n² − ε_{n+1}`.
+@isnad1 id=eq.1h2v.s7.256f91c5d45d from=translated src=- shape=c2b6ecf6 vocab=dbe1e216
+-/
 theorem inv_natp1_eq (hw : 0 < w.re) (n : ℕ) :
     ((n : ℂ) + 1 + w)⁻¹
       = (Complex.log (((n + 1 : ℕ) : ℂ) + 1 + w) - Complex.log ((n : ℂ) + 1 + w))
@@ -200,7 +244,9 @@ theorem inv_natp1_eq (hw : 0 < w.re) (n : ℕ) :
 /-- the second-order telescoping remainder `ρ_n := 1/(z_n² z_{n+1})`. -/
 def rho (w : ℂ) (n : ℕ) : ℂ := 1 / (((n : ℂ) + 1 + w) ^ 2 * ((n : ℂ) + 2 + w))
 
-/-- (I2) `1/z_n² = (1/z_n − 1/z_{n+1}) + ρ_n`. -/
+/-- (I2) `1/z_n² = (1/z_n − 1/z_{n+1}) + ρ_n`.
+@isnad1 id=eq.1h2v.s7.2c3aad51becc from=translated src=- shape=6eab4800 vocab=0893b0d4
+-/
 theorem inv_natp1_sq_eq (hw : 0 < w.re) (n : ℕ) :
     1 / ((n : ℂ) + 1 + w) ^ 2
       = (((n : ℂ) + 1 + w)⁻¹ - (((n + 1 : ℕ) : ℂ) + 1 + w)⁻¹) + rho w n := by
@@ -212,6 +258,9 @@ theorem inv_natp1_sq_eq (hw : 0 < w.re) (n : ℕ) :
   field_simp
   ring
 
+/--
+@isnad1 id=le.2h2v.s7.d36840641af3 from=translated src=- shape=b1e9a13b vocab=4e112156
+-/
 theorem norm_rho_le (hw : 0 < w.re) (ht : 1 / 2 ≤ |w.im|) (n : ℕ) :
     ‖rho w n‖ ≤ 1 / (‖(n : ℂ) + 1 + w‖ ^ 2 * |w.im|) := by
   have h1 := natp1_ne_zero hw n
@@ -223,13 +272,18 @@ theorem norm_rho_le (hw : 0 < w.re) (ht : 1 / 2 ≤ |w.im|) (n : ℕ) :
   apply div_le_div_of_nonneg_left zero_le_one (by positivity)
   exact mul_le_mul_of_nonneg_left hn2 (by positivity)
 
+/--
+@isnad1 id=le.2h2v.s7.645372c2bc31 from=translated src=- shape=4d04030a vocab=96c695b5
+-/
 theorem norm_eps_natp1_le (hw : 0 < w.re) (ht : 1 / 2 ≤ |w.im|) (n : ℕ) :
     ‖eps w ((n : ℝ) + 1)‖ ≤ 1 / (3 * ‖(n : ℂ) + 1 + w‖ ^ 2 * |w.im|) := by
   have := norm_eps_le hw ht (m := (n : ℝ) + 1) (by positivity)
   rw [show ((((n : ℝ) + 1 : ℝ)) : ℂ) + w = (n : ℂ) + 1 + w by push_cast; ring] at this
   exact this
 
-/-- (I3) the partial sums of the digamma series, rearranged. -/
+/-- (I3) the partial sums of the digamma series, rearranged.
+@isnad1 id=eq.1h2v.s8.2fbc0566e99b from=translated src=- shape=ffd930f6 vocab=1f247190
+-/
 theorem partial_sum_eq (hw : 0 < w.re) (N : ℕ) :
     ∑ n ∈ Finset.range N, (1 / ((n : ℂ) + 1) - 1 / (w + n + 1))
       = (∑ n ∈ Finset.range N, 1 / ((n : ℂ) + 1))
@@ -255,6 +309,9 @@ theorem partial_sum_eq (hw : 0 < w.re) (N : ℕ) :
 
 /-! ### Bounds: `Σ_{n<N} 1/‖z_n‖² ≤ 2/|im w|` by a real telescoping -/
 
+/--
+@isnad1 id=le.1h2v.s6.834c234f5985 from=translated src=- shape=a6b6b39f vocab=e33241c3
+-/
 theorem norm_sq_natp1_ge (hw : 0 < w.re) (n : ℕ) :
     ((n : ℝ) + 1) ^ 2 + w.im ^ 2 ≤ ‖(n : ℂ) + 1 + w‖ ^ 2 := by
   rw [Complex.sq_norm, Complex.normSq_apply]
@@ -263,6 +320,9 @@ theorem norm_sq_natp1_ge (hw : 0 < w.re) (n : ℕ) :
   rw [hre, him]
   nlinarith
 
+/--
+@isnad1 id=le.2h2v.s7.5ed17be0f1ff from=translated src=- shape=3ecdb5f6 vocab=89afde88
+-/
 theorem inv_norm_sq_le_telescope (hw : 0 < w.re) (ht : 1 / 2 ≤ |w.im|) (n : ℕ) :
     1 / ‖(n : ℂ) + 1 + w‖ ^ 2 ≤ 2 * (1 / ((n : ℝ) + |w.im|) - 1 / ((n : ℝ) + 1 + |w.im|)) := by
   have h1 := norm_sq_natp1_ge hw n
@@ -279,6 +339,9 @@ theorem inv_norm_sq_le_telescope (hw : 0 < w.re) (ht : 1 / 2 ≤ |w.im|) (n : �
         rw [hsq, ← div_eq_mul_one_div, div_le_div_iff₀ (by positivity) (by positivity)]
         nlinarith [sq_nonneg ((n : ℝ) + 1 - |w.im|)]
 
+/--
+@isnad1 id=le.2h2v.s7.0a27b88a0dc2 from=translated src=- shape=f70e940c vocab=68f9a611
+-/
 theorem sum_inv_norm_sq_le (hw : 0 < w.re) (ht : 1 / 2 ≤ |w.im|) (N : ℕ) :
     ∑ n ∈ Finset.range N, 1 / ‖(n : ℂ) + 1 + w‖ ^ 2 ≤ 2 / |w.im| := by
   have ht0 : 0 < |w.im| := by linarith
@@ -298,6 +361,9 @@ theorem sum_inv_norm_sq_le (hw : 0 < w.re) (ht : 1 / 2 ≤ |w.im|) (N : ℕ) :
 
 /-! ### Summability of the remainders and tsum bounds -/
 
+/--
+@isnad1 id=summable.1h1v.s6.d7d78a30d811 from=translated src=- shape=7e9c3310 vocab=41fbdb02
+-/
 theorem summable_inv_norm_sq (hw : 0 < w.re) :
     Summable (fun n : ℕ => 1 / ‖(n : ℂ) + 1 + w‖ ^ 2) := by
   have hs : Summable (fun n : ℕ => 1 / ((n : ℝ) + 1) ^ 2) := by
@@ -307,11 +373,17 @@ theorem summable_inv_norm_sq (hw : 0 < w.re) :
   exact div_le_div_of_nonneg_left zero_le_one (by positivity)
     (pow_le_pow_left₀ (by positivity) (natp1_le_norm hw n) 2)
 
+/--
+@isnad1 id=summable.2h1v.s6.e45b492a70ec from=translated src=- shape=7fa3a247 vocab=e86a9af9
+-/
 theorem summable_rho (hw : 0 < w.re) (ht : 1 / 2 ≤ |w.im|) : Summable (rho w) := by
   refine Summable.of_norm_bounded ((summable_inv_norm_sq hw).mul_left (1 / |w.im|)) fun n => ?_
   refine le_trans (norm_rho_le hw ht n) (le_of_eq ?_)
   field_simp
 
+/--
+@isnad1 id=summable.2h1v.s6.07603b5602be from=translated src=- shape=4580c434 vocab=df270df8
+-/
 theorem summable_eps (hw : 0 < w.re) (ht : 1 / 2 ≤ |w.im|) :
     Summable (fun n : ℕ => eps w ((n : ℝ) + 1)) := by
   refine Summable.of_norm_bounded ((summable_inv_norm_sq hw).mul_left (1 / (3 * |w.im|)))
@@ -319,12 +391,18 @@ theorem summable_eps (hw : 0 < w.re) (ht : 1 / 2 ≤ |w.im|) :
   refine le_trans (norm_eps_natp1_le hw ht n) (le_of_eq ?_)
   field_simp
 
+/--
+@isnad1 id=summable.2h1v.s6.bbce3e8f885e from=translated src=- shape=83dab7d6 vocab=a370f613
+-/
 theorem summable_norm_rho (hw : 0 < w.re) (ht : 1 / 2 ≤ |w.im|) : Summable (fun n => ‖rho w n‖) := by
   refine Summable.of_nonneg_of_le (fun n => norm_nonneg _) (fun n => ?_)
     ((summable_inv_norm_sq hw).mul_left (1 / |w.im|))
   refine le_trans (norm_rho_le hw ht n) (le_of_eq ?_)
   field_simp
 
+/--
+@isnad1 id=summable.2h1v.s6.6979599ded11 from=translated src=- shape=e9188ec4 vocab=6b73e207
+-/
 theorem summable_norm_eps (hw : 0 < w.re) (ht : 1 / 2 ≤ |w.im|) :
     Summable (fun n : ℕ => ‖eps w ((n : ℝ) + 1)‖) := by
   refine Summable.of_nonneg_of_le (fun n => norm_nonneg _) (fun n => ?_)
@@ -332,10 +410,16 @@ theorem summable_norm_eps (hw : 0 < w.re) (ht : 1 / 2 ≤ |w.im|) :
   refine le_trans (norm_eps_natp1_le hw ht n) (le_of_eq ?_)
   field_simp
 
+/--
+@isnad1 id=le.2h1v.s7.f08b3e5baafc from=translated src=- shape=490dcfea vocab=ff156cb1
+-/
 theorem tsum_inv_norm_sq_le (hw : 0 < w.re) (ht : 1 / 2 ≤ |w.im|) :
     ∑' n : ℕ, 1 / ‖(n : ℂ) + 1 + w‖ ^ 2 ≤ 2 / |w.im| :=
   Real.tsum_le_of_sum_range_le (fun n => by positivity) (sum_inv_norm_sq_le hw ht)
 
+/--
+@isnad1 id=le.2h1v.s6.d226d7f59d12 from=translated src=- shape=367d70f4 vocab=5c2df749
+-/
 theorem norm_tsum_rho_le (hw : 0 < w.re) (ht : 1 / 2 ≤ |w.im|) :
     ‖∑' n, rho w n‖ ≤ 2 / w.im ^ 2 := by
   have ht0 : 0 < |w.im| := by linarith
@@ -350,6 +434,9 @@ theorem norm_tsum_rho_le (hw : 0 < w.re) (ht : 1 / 2 ≤ |w.im|) :
     _ ≤ (1 / |w.im|) * (2 / |w.im|) := by gcongr
     _ = 2 / w.im ^ 2 := by rw [← sq_abs]; field_simp
 
+/--
+@isnad1 id=le.2h1v.s7.86b84dc4ecb9 from=translated src=- shape=5d8b6ec5 vocab=6f7e446d
+-/
 theorem norm_tsum_eps_le (hw : 0 < w.re) (ht : 1 / 2 ≤ |w.im|) :
     ‖∑' n : ℕ, eps w ((n : ℝ) + 1)‖ ≤ (2 / 3) / w.im ^ 2 := by
   have ht0 : 0 < |w.im| := by linarith
@@ -367,7 +454,9 @@ theorem norm_tsum_eps_le (hw : 0 < w.re) (ht : 1 / 2 ≤ |w.im|) :
 
 /-! ### Limits -/
 
-/-- `Σ_{n<N} 1/(n+1) − log(N+1+w) → γ`. -/
+/-- `Σ_{n<N} 1/(n+1) − log(N+1+w) → γ`.
+@isnad1 id=tendsto.1h1v.s6.8be3372317f6 from=translated src=- shape=b4a2b731 vocab=774800e7
+-/
 theorem tendsto_harmonic_sub_clog (hw : 0 < w.re) :
     Tendsto (fun N : ℕ => (∑ n ∈ Finset.range N, 1 / ((n : ℂ) + 1))
       - Complex.log ((N : ℂ) + 1 + w)) atTop (𝓝 (Real.eulerMascheroniConstant : ℂ)) := by
@@ -411,6 +500,9 @@ theorem tendsto_harmonic_sub_clog (hw : 0 < w.re) :
     simpa [Function.comp_def] using this
   simpa using h1.sub h2
 
+/--
+@isnad1 id=tendsto.1h1v.s6.cfda616b9aa6 from=translated src=- shape=8942a301 vocab=895d8e8a
+-/
 theorem tendsto_inv_natp1 (hw : 0 < w.re) :
     Tendsto (fun N : ℕ => ((N : ℂ) + 1 + w)⁻¹) atTop (𝓝 0) := by
   rw [tendsto_zero_iff_norm_tendsto_zero]
@@ -424,7 +516,9 @@ theorem tendsto_inv_natp1 (hw : 0 < w.re) :
 
 /-! ### The exact identity and the Stirling bound -/
 
-/-- **Exact**: `ψ(w) = log(1+w) − 1/w − 1/(2(1+w)) − ½Σρ + Σε` for `0 < re w`, `|im w| ≥ 1`. -/
+/-- **Exact**: `ψ(w) = log(1+w) − 1/w − 1/(2(1+w)) − ½Σρ + Σε` for `0 < re w`, `|im w| ≥ 1`.
+@isnad1 id=eq.2h1v.s7.d1231921fdda from=translated src=- shape=f2b744b7 vocab=a88f8cf1
+-/
 theorem digamma_eq (hw : 0 < w.re) (ht : 1 / 2 ≤ |w.im|) :
     Complex.digamma w = Complex.log (1 + w) - 1 / w - (1 / 2 : ℂ) * (1 + w)⁻¹
       - (1 / 2 : ℂ) * (∑' n, rho w n) + ∑' n : ℕ, eps w ((n : ℝ) + 1) := by
@@ -456,7 +550,9 @@ theorem digamma_eq (hw : 0 < w.re) (ht : 1 / 2 ≤ |w.im|) :
   rw [sub_zero] at this
   linear_combination this
 
-/-- `log(1+w) − log w = 1/w − 1/(2w²) + ε_0`. -/
+/-- `log(1+w) − log w = 1/w − 1/(2w²) + ε_0`.
+@isnad1 id=eq.1h1v.s6.338f4cef866d from=translated src=- shape=bc83def3 vocab=a34895ec
+-/
 theorem log_one_add_sub_log (hw : 0 < w.re) :
     Complex.log (1 + w) - Complex.log w = w⁻¹ - (1 / 2 : ℂ) / w ^ 2 + eps w 0 := by
   have h1 := integral_inv_add_eq hw (m := 0) le_rfl
@@ -464,6 +560,9 @@ theorem log_one_add_sub_log (hw : 0 < w.re) :
   rw [h2] at h1
   simpa [add_comm] using h1
 
+/--
+@isnad1 id=le.2h1v.s6.f509612ee4b1 from=translated src=- shape=f94a42ed vocab=a26f0a48
+-/
 theorem norm_eps_zero_le (hw : 0 < w.re) (ht : 1 / 2 ≤ |w.im|) : ‖eps w 0‖ ≤ (1 / 3) / |w.im| ^ 3 := by
   have h := norm_eps_le hw ht (m := 0) le_rfl
   have ht0 : 0 < |w.im| := by linarith
@@ -476,7 +575,9 @@ theorem norm_eps_zero_le (hw : 0 < w.re) (ht : 1 / 2 ≤ |w.im|) : ‖eps w 0‖
     _ = (1 / 3) / |w.im| ^ 3 := by field_simp
 
 /-- **Stirling for ψ on the right half-plane strip**:
-`‖ψ(w) − log w + 1/(2w)‖ ≤ 3 / (im w)²` for `0 < re w`, `|im w| ≥ 1/2`. -/
+`‖ψ(w) − log w + 1/(2w)‖ ≤ 3 / (im w)²` for `0 < re w`, `|im w| ≥ 1/2`.
+@isnad1 id=le.2h1v.s7.eb9e2a991844 from=translated src=- shape=0d2849ee vocab=0b38b492
+-/
 theorem digamma_stirling (hw : 0 < w.re) (ht : 1 / 2 ≤ |w.im|) :
     ‖Complex.digamma w - Complex.log w + (1 / 2 : ℂ) / w‖ ≤ 3 / w.im ^ 2 := by
   have hw0 : w ≠ 0 := fun h => by rw [h] at hw; simp at hw
@@ -543,7 +644,9 @@ end Seq
 section RePart
 
 /-- `|Re ψ(a+it) − ½ log(a²+t²)| ≤ 4/t²` for `0 < a ≤ 1`, `|t| ≥ 1/2`
-(Re log w = log ‖w‖ = ½log(a²+t²); |Re 1/(2w)| = a/(2(a²+t²)) ≤ 1/(2t²)). -/
+(Re log w = log ‖w‖ = ½log(a²+t²); |Re 1/(2w)| = a/(2(a²+t²)) ≤ 1/(2t²)).
+@isnad1 id=le.3h2v.s7.095cd8aa7146 from=translated src=- shape=8b8197f7 vocab=a5a2a4d1
+-/
 theorem re_digamma_stirling {a : ℝ} (ha0 : 0 < a) (ha1 : a ≤ 1) {t : ℝ} (ht : 1 / 2 ≤ |t|) :
     |(Complex.digamma ((a : ℂ) + Complex.I * t)).re - (1 / 2) * Real.log (a ^ 2 + t ^ 2)|
       ≤ 4 / t ^ 2 := by
@@ -581,7 +684,9 @@ theorem re_digamma_stirling {a : ℝ} (ha0 : 0 < a) (ha1 : a ≤ 1) {t : ℝ} (h
     _ ≤ 3 / t ^ 2 + 1 / t ^ 2 := add_le_add h1 h2
     _ = 4 / t ^ 2 := by ring
 
-/-- and with `log |t|` in place of `½log(a²+t²)`: error `≤ (4 + a²/2)/t² ≤ 5/t²`. -/
+/-- and with `log |t|` in place of `½log(a²+t²)`: error `≤ (4 + a²/2)/t² ≤ 5/t²`.
+@isnad1 id=le.3h2v.s7.cb3fadde7245 from=translated src=- shape=825743d6 vocab=a5a2a4d1
+-/
 theorem re_digamma_stirling' {a : ℝ} (ha0 : 0 < a) (ha1 : a ≤ 1) {t : ℝ} (ht : 1 / 2 ≤ |t|) :
     |(Complex.digamma ((a : ℂ) + Complex.I * t)).re - Real.log (abs t)| ≤ 5 / t ^ 2 := by
   have h := re_digamma_stirling ha0 ha1 ht
@@ -609,7 +714,9 @@ theorem re_digamma_stirling' {a : ℝ} (ha0 : 0 < a) (ha1 : a ≤ 1) {t : ℝ} (
     _ = 5 / t ^ 2 := by ring
 
 /-- **H-Γ [eq:mufacts], Stirling clause** in the exact shape of `Zeta23.GammaFacts.stirling`:
-`|μ(τ) − (1/2π) log(|τ|/2π)| ≤ C/τ²` for `|τ| ≥ 1`, with `C = 20/(2π) ≤ 4`. -/
+`|μ(τ) − (1/2π) log(|τ|/2π)| ≤ C/τ²` for `|τ| ≥ 1`, with `C = 20/(2π) ≤ 4`.
+@isnad1 id=ex.0h0v.s7.b5a4df567ceb from=translated src=- shape=7bf1c670 vocab=b61878f5
+-/
 theorem mu_stirling : ∃ C : ℝ, ∀ τ : ℝ, 1 ≤ |τ| →
     |Zeta23.mu τ - (1 / (2 * Real.pi)) * Real.log (|τ| / (2 * Real.pi))| ≤ C / τ ^ 2 := by
   refine ⟨20 / (2 * Real.pi), fun τ hτ => ?_⟩

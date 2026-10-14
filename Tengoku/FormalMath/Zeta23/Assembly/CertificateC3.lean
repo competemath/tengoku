@@ -19,7 +19,9 @@ noncomputable section
 namespace Zeta23
 namespace Assembly
 
-/-- the c = 3 fixed-T algebra with the 5·NII window term. -/
+/-- the c = 3 fixed-T algebra with the 5·NII window term.
+@isnad1 id=le.4h9v.s8.216ca1b86795 from=translated src=- shape=77634e97 vocab=1df984aa
+-/
 theorem count_lower_moment_c3_five
     {lower N NII trGh frGh B κ R₁ R₂ : ℝ} (hB : 0 ≤ B)
     (h0 : 6 * trGh - frGh - 3 * N - 5 * NII - B * (6 + 2 * Real.sqrt frGh + B) ≤ 2 * lower)
@@ -29,7 +31,9 @@ theorem count_lower_moment_c3_five
   have h2 : Real.sqrt frGh ≤ Real.sqrt (κ * N + R₂) := Real.sqrt_le_sqrt hfr
   nlinarith [h0, htr, h2, hB, mul_le_mul_of_nonneg_left h2 hB]
 
-/-- **the c = 3 count certificate.** -/
+/-- **the c = 3 count certificate.**
+@isnad1 id=ex.8h6v.s9.585653e5dafb from=translated src=- shape=512974de vocab=4647c4fa
+-/
 theorem count_certificate_c3 (Z : ZeroConfig) (P : Params) (κ : ℝ) (lower : ℝ → ℝ)
     (θ₀ : ℝ → ℝ)
     (h0 : ∀ᶠ T in atTop, 6 * rtrace (P.hat T (Z.Gz P T)) - frobSq (P.hat T (Z.Gz P T))

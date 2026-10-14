@@ -930,7 +930,9 @@ of the running maximum `f*_n(ω) = max_{k ≤ n} f_k(ω)` is bounded by
 This is the strong-type companion to `MeasureTheory.maximal_ineq`. The proof
 combines a layer-cake decomposition, the weak-type maximal inequality, Fubini,
 Hölder's inequality, and a truncation argument to handle the case where the
-left-hand side could a priori be infinite. -/
+left-hand side could a priori be infinite.
+@isnad1 id=le.3h6v.s7.5a8217cba5c4 from=translated src=- shape=6f773674 vocab=e42e5381
+-/
 theorem maximal_ineq_Lp
     [IsFiniteMeasure μ] {𝒢 : Filtration ℕ m0} {f : ℕ → Ω → ℝ} {p : ℝ}
     (hsub : Submartingale f 𝒢 μ) (hnonneg : ∀ n ω, 0 ≤ f n ω)
@@ -1000,7 +1002,9 @@ For a Banach-valued martingale `f : ℕ → Ω → E` and `1 < p`,
 `‖max_{k ≤ n} ‖f_k‖‖_{L^p} ≤ (p / (p - 1)) · ‖f_n‖_{L^p}`.
 
 Derived from `MeasureTheory.maximal_ineq_Lp` by applying it to the non-negative
-real-valued submartingale `‖f‖`. -/
+real-valued submartingale `‖f‖`.
+@isnad1 id=le.2h7v.s7.8eab81acdaf9 from=translated src=- shape=fee47f6e vocab=ac43f1b2
+-/
 theorem Martingale.eLpNorm_norm_runMax_le
     [IsFiniteMeasure μ] {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [CompleteSpace E] {𝒢 : Filtration ℕ m0} {f : ℕ → Ω → E} {p : ℝ}

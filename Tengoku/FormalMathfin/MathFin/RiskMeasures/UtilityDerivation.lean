@@ -82,7 +82,9 @@ Since both `E[u(W+X)] ≥ u(W)` and `E[u(W+Y)] ≥ u(W)`, the convex combination
 is `≥ u(W)`.
 
 This is the formal expression: **risk aversion ⟹ subadditivity** of the
-induced risk measure. -/
+induced risk measure.
+@isnad1 id=acceptab.6h8v.s7.4fff012d286e from=translated src=- shape=2508c96e vocab=5925256a
+-/
 theorem acceptableUnderUtility_convex
     {ι : Type*} (s : Finset ι) (p : ι → ℝ) (u : ℝ → ℝ) (W : ℝ)
     (hp_nonneg : ∀ i ∈ s, 0 ≤ p i)
@@ -134,7 +136,9 @@ Proof: pointwise monotonicity gives `u(W + X i + c) ≥ u(W + X i)`. Summing
 with `p i ≥ 0` and using `E[u(W + X)] ≥ u(W)` gives `E[u(W + X + c)] ≥ u(W)`.
 
 This is the formal expression: **wealth monotonicity ⟹ translation
-property** of the induced risk measure `ρ(X) = inf{m : X + m ∈ A}`. -/
+property** of the induced risk measure `ρ(X) = inf{m : X + m ∈ A}`.
+@isnad1 id=acceptab.4h7v.s6.3053eacfe6b5 from=translated src=- shape=8f30fa05 vocab=c32bfa6a
+-/
 theorem acceptableUnderUtility_monotone_translation
     {ι : Type*} (s : Finset ι) (p : ι → ℝ) (u : ℝ → ℝ) (W : ℝ)
     (hp_nonneg : ∀ i ∈ s, 0 ≤ p i)
@@ -154,7 +158,9 @@ theorem acceptableUnderUtility_monotone_translation
   linarith
 
 /-- **Constant 0 is acceptable**: doing nothing doesn't reduce expected
-utility below baseline. -/
+utility below baseline.
+@isnad1 id=acceptab.1h5v.s5.4b2efaaa3794 from=translated src=- shape=1cebf58e vocab=8b8bf9d7
+-/
 theorem acceptableUnderUtility_zero
     {ι : Type*} (s : Finset ι) (p : ι → ℝ) (u : ℝ → ℝ) (W : ℝ)
     (h_p_sum : ∑ i ∈ s, p i = 1) :

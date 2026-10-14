@@ -51,23 +51,32 @@ Its norm IS the distance from `z` to the line `ℝ ∙ w`. -/
 noncomputable def perp (w z : V) : V := z - ((⟪z, w⟫ / ⟪w, w⟫) : ℝ) • w
 
 /-- `perp w` is **linear** in `z`: this is what makes the distance to the line affine,
-and it is the pivot of the whole proof. -/
+and it is the pivot of the whole proof.
+@isnad1 id=eq.0h4v.s6.464c97d21d67 from=translated src=- shape=35da64ed vocab=01243a49
+-/
 theorem perp_add (w z₁ z₂ : V) : perp w (z₁ + z₂) = perp w z₁ + perp w z₂ := by
   simp only [perp, inner_add_left, add_div, add_smul]
   abel
 
+/--
+@isnad1 id=eq.0h4v.s7.77c6b0e862f8 from=translated src=- shape=efc99c82 vocab=15a690c3
+-/
 theorem perp_smul (w : V) (c : ℝ) (z : V) : perp w (c • z) = c • perp w z := by
   simp only [perp, real_inner_smul_left, smul_sub, smul_smul]
   congr 1
   rw [mul_div_assoc]
 
-/-- The orthogonal component of `w` with respect to itself vanishes. -/
+/-- The orthogonal component of `w` with respect to itself vanishes.
+@isnad1 id=eq.1h2v.s5.c78d7f4553ef from=translated src=- shape=98523b98 vocab=9840ac31
+-/
 theorem perp_self {w : V} (hw : w ≠ 0) : perp w w = 0 := by
   have h : ⟪w, w⟫ ≠ (0 : ℝ) := by
     simpa [real_inner_self_eq_norm_sq] using (norm_ne_zero_iff.mpr hw)
   rw [perp, div_self h, one_smul, sub_self]
 
-/-- **Pythagoras for the orthogonal component.** -/
+/-- **Pythagoras for the orthogonal component.**
+@isnad1 id=eq.1h3v.s7.b0abca9f1c12 from=translated src=- shape=9b44bcde vocab=6632636a
+-/
 theorem norm_perp_sq {w : V} (hw : w ≠ 0) (z : V) :
     ‖perp w z‖ ^ 2 = ‖z‖ ^ 2 - ⟪z, w⟫ ^ 2 / ‖w‖ ^ 2 := by
   have hn : ‖w‖ ≠ 0 := norm_ne_zero_iff.mpr hw
@@ -93,7 +102,9 @@ Claim: the distance from `u` to the line through `p` and `v` is **strictly small
 /-- **Kelly's move.** The distance from `q` to the line `p v` is strictly smaller than `d`.
 
 This is where the theorem is decided: `⟪a, w⟫ = ‖a‖² > 0` says that `p` is NOT the foot of
-the perpendicular dropped from `q`, and the inequality becomes strict. -/
+the perpendicular dropped from `q`, and the inequality becomes strict.
+@isnad1 id=lt.4h4v.s7.14eca1e7c6f5 from=translated src=- shape=4eb711c2 vocab=0e3c0d07
+-/
 theorem norm_perp_lt {a e : V} {t : ℝ} (ha : a ≠ 0) (he : e ≠ 0) (ht : t ≠ 0)
     (hperp : ⟪a, e⟫ = (0 : ℝ)) :
     ‖perp (a + t • e) a‖ < ‖a‖ := by
@@ -134,7 +145,9 @@ theorem norm_perp_lt {a e : V} {t : ℝ} (ha : a ≠ 0) (he : e ≠ 0) (ht : t �
 /-- **Kelly's lemma, full form.** Every point `u` between the projection `q` and `v`
 is at distance from the line `p v` STRICTLY less than `d = ‖a‖`.
 
-The linearity of `perp` does the rest: `u - p = (1-s) • a + s • w`, and `perp w w = 0`. -/
+The linearity of `perp` does the rest: `u - p = (1-s) • a + s • w`, and `perp w w = 0`.
+@isnad1 id=lt.6h5v.s8.a700bc1c734c from=translated src=- shape=ea2d757f vocab=1653ffad
+-/
 theorem kelly {a e : V} {t s : ℝ} (ha : a ≠ 0) (he : e ≠ 0) (ht : t ≠ 0)
     (hperp : ⟪a, e⟫ = (0 : ℝ)) (hs0 : 0 ≤ s) (hs1 : s ≤ 1) :
     ‖perp (a + t • e) (a + (s * t) • e)‖ < ‖a‖ := by
@@ -164,7 +177,9 @@ theorem kelly {a e : V} {t s : ℝ} (ha : a ≠ 0) (he : e ≠ 0) (ht : t ≠ 0)
 belongs to the set of configurations.
 
 Argument: if `A + x•e = c • (A + y•e)`, projecting onto `A` (orthogonal to `e`) gives
-`(1-c)‖A‖² = 0`, so `c = 1`; and then `x = y`, contradicting the hypothesis. -/
+`(1-c)‖A‖² = 0`, so `c = 1`; and then `x = y`, contradicting the hypothesis.
+@isnad1 id=not.4h5v.s8.c7d77c81a3f4 from=translated src=- shape=b41b7fed vocab=d6bbeab5
+-/
 theorem not_mem_line {A e : V} {x y : ℝ} (hA : A ≠ 0) (he : e ≠ 0)
     (hperp : ⟪A, e⟫ = (0 : ℝ)) (hxy : x ≠ y) :
     ¬ ∃ c : ℝ, A + x • e = c • (A + y • e) := by
@@ -209,7 +224,9 @@ noncomputable def distToLine (p a b : P) : ℝ := ‖perp (b -ᵥ a : V) (p -ᵥ
 
 /-! ### The dictionary: `perp` ↔ membership in the line -/
 
-/-- `perp w z = 0` exactly when `z` is a multiple of `w`. -/
+/-- `perp w z = 0` exactly when `z` is a multiple of `w`.
+@isnad1 id=iff.1h3v.s7.f1feffabbe0b from=translated src=- shape=58119ad1 vocab=15a690c3
+-/
 theorem perp_eq_zero_iff {w z : V} (hw : w ≠ 0) :
     perp w z = 0 ↔ ∃ c : ℝ, z = c • w := by
   constructor
@@ -221,7 +238,9 @@ theorem perp_eq_zero_iff {w z : V} (hw : w ≠ 0) :
     rw [perp, real_inner_smul_left, mul_div_assoc, div_self hww, mul_one, sub_self]
 
 /-- A point lies on the line through `a` and `b` (with `a ≠ b`) exactly when the vector
-`p -ᵥ a` is a multiple of `b -ᵥ a`. -/
+`p -ᵥ a` is a multiple of `b -ᵥ a`.
+@isnad1 id=iff.0h5v.s8.99fce4d690fc from=translated src=- shape=ae04599f vocab=e00b1ef3
+-/
 theorem mem_lineThrough_iff {p a b : P} :
     p ∈ lineThrough (V := V) a b ↔ ∃ c : ℝ, (p -ᵥ a : V) = c • (b -ᵥ a : V) := by
   have h : p = (p -ᵥ a : V) +ᵥ a := (vsub_vadd p a).symm
@@ -229,7 +248,9 @@ theorem mem_lineThrough_iff {p a b : P} :
   simp only [vadd_vsub]
   exact ⟨fun ⟨r, hr⟩ => ⟨r, hr.symm⟩, fun ⟨c, hc⟩ => ⟨c, hc.symm⟩⟩
 
-/-- **The dictionary.** The distance to the line vanishes exactly on the points of the line. -/
+/-- **The dictionary.** The distance to the line vanishes exactly on the points of the line.
+@isnad1 id=iff.1h5v.s7.704a5f504ae6 from=translated src=- shape=fb7cd862 vocab=d44f6770
+-/
 theorem distToLine_eq_zero_iff {p a b : P} (hab : a ≠ b) :
     distToLine (V := V) p a b = 0 ↔ p ∈ lineThrough (V := V) a b := by
   have hw : (b -ᵥ a : V) ≠ 0 := fun h => hab (by
@@ -237,7 +258,9 @@ theorem distToLine_eq_zero_iff {p a b : P} (hab : a ≠ b) :
     exact this.symm)
   rw [distToLine, norm_eq_zero, perp_eq_zero_iff hw, mem_lineThrough_iff]
 
-/-- The distance is positive for points off the line. -/
+/-- The distance is positive for points off the line.
+@isnad1 id=lt.2h5v.s7.f57f0dc660b1 from=translated src=- shape=c7f7f837 vocab=0c9bd9dd
+-/
 theorem distToLine_pos {p a b : P} (hab : a ≠ b) (hp : p ∉ lineThrough (V := V) a b) :
     0 < distToLine (V := V) p a b := by
   rcases (norm_nonneg (perp (b -ᵥ a : V) (p -ᵥ a : V))).lt_or_eq with h | h
@@ -256,7 +279,9 @@ Sylvester–Gallai theorem is **false** in the complex plane (the Hesse configur
 namespace Pigeonhole
 
 /-- If `x` and `y` have the same sign, are distinct, and `|x| ≤ |y|`, then `y ≠ 0` and
-`x / y ∈ [0, 1]`. -/
+`x / y ∈ [0, 1]`.
+@isnad1 id=and.3h2v.s6.e08ea03a1c1f from=translated src=- shape=18d50aa3 vocab=90fdfa6a
+-/
 theorem ratio_mem {x y : ℝ} (hxy : x ≠ y) (habs : |x| ≤ |y|)
     (hsign : (0 ≤ x ∧ 0 ≤ y) ∨ (x ≤ 0 ∧ y ≤ 0)) :
     y ≠ 0 ∧ 0 ≤ x / y ∧ x / y ≤ 1 := by
@@ -288,7 +313,9 @@ and `y`, with `y ≠ 0` and `x / y ∈ [0, 1]`.
 
 Geometrically: among three distinct points on a line, two lie on the same side of the
 projection `q` (the origin of the parameters), with the first **between** `q` and the
-second. This is where the proof uses ℝ and not ℂ: it speaks of sign and of order. -/
+second. This is where the proof uses ℝ and not ℂ: it speaks of sign and of order.
+@isnad1 id=ex.3h3v.s6.a17966f7ac89 from=translated src=- shape=4a18fec7 vocab=b4456214
+-/
 theorem three {t₁ t₂ t₃ : ℝ} (h12 : t₁ ≠ t₂) (h13 : t₁ ≠ t₃) (h23 : t₂ ≠ t₃) :
     ∃ x y : ℝ, (x = t₁ ∨ x = t₂ ∨ x = t₃) ∧ (y = t₁ ∨ y = t₂ ∨ y = t₃) ∧
       x ≠ y ∧ y ≠ 0 ∧ 0 ≤ x / y ∧ x / y ≤ 1 := by
@@ -328,7 +355,9 @@ namespace SylvesterGallai
 
 /-! ### The two lemmas that close the bookkeeping -/
 
-/-- If every point of `S` lies on the line through `a` and `b`, then `S` is collinear. -/
+/-- If every point of `S` lies on the line through `a` and `b`, then `S` is collinear.
+@isnad1 id=collinea.1h5v.s7.3291fda63173 from=translated src=- shape=2df4debd vocab=c475e9a4
+-/
 theorem collinear_of_subset_line {S : Set P} {a b : P}
     (h : ∀ p ∈ S, p ∈ lineThrough (V := V) a b) : Collinear ℝ S := by
   rw [collinear_iff_exists_forall_eq_smul_vadd]
@@ -336,7 +365,9 @@ theorem collinear_of_subset_line {S : Set P} {a b : P}
   obtain ⟨c, hc⟩ := (mem_lineThrough_iff (V := V)).mp (h p hp)
   exact ⟨c, by rw [← hc, vsub_vadd]⟩
 
-/-- A non-collinear set contains two distinct points. -/
+/-- A non-collinear set contains two distinct points.
+@isnad1 id=ex.1h3v.s6.5ade1a551ac2 from=translated src=- shape=6805a674 vocab=46081989
+-/
 theorem exists_ne_of_not_collinear {S : Set P} (hncol : ¬ Collinear ℝ S) :
     ∃ a ∈ S, ∃ b ∈ S, a ≠ b := by
   by_contra h
@@ -355,7 +386,9 @@ theorem exists_ne_of_not_collinear {S : Set P} (hncol : ¬ Collinear ℝ S) :
 def IsOrdinaryLine (S : Set P) (a b : P) : Prop :=
   a ∈ S ∧ b ∈ S ∧ a ≠ b ∧ ∀ c ∈ S, c ∈ lineThrough (V := V) a b → c = a ∨ c = b
 
-/-- If the line through `a` and `b` is not ordinary, it contains a third point of `S`. -/
+/-- If the line through `a` and `b` is not ordinary, it contains a third point of `S`.
+@isnad1 id=ex.4h5v.s7.0669f1440575 from=translated src=- shape=9a71b2f3 vocab=60b771b2
+-/
 theorem exists_third {S : Set P} {a b : P} (ha : a ∈ S) (hb : b ∈ S) (hab : a ≠ b)
     (h : ¬ IsOrdinaryLine (V := V) S a b) :
     ∃ c ∈ S, c ∈ lineThrough (V := V) a b ∧ c ≠ a ∧ c ≠ b := by
@@ -376,7 +409,9 @@ third. Among all triples (point, pair) with the point off the line of the pair �
 and nonempty set, because the points are not all collinear — take one of **minimal
 distance**. At least three points lie on the line; two of them fall on the same side of
 the projection of the point (pigeonhole principle), and from there one builds a triple
-that is **strictly closer**. -/
+that is **strictly closer**.
+@isnad1 id=ex.2h3v.s6.9c1b71ba7463 from=translated src=- shape=e358d991 vocab=4e894186
+-/
 theorem sylvester_gallai (S : Set P) (hfin : S.Finite) (hncol : ¬ Collinear ℝ S) :
     ∃ a ∈ S, ∃ b ∈ S, IsOrdinaryLine (V := V) S a b := by
   by_contra hcon

@@ -28,15 +28,24 @@ open scoped ContDiff
 noncomputable def localizationBarrier (k h x t : ℝ) : ℝ :=
   Real.exp ((2+|k-h-1|)*t)*(1+x^2)
 
+/--
+@isnad1 id=lt.0h4v.s4.21b0b7a31729 from=translated src=- shape=a76df7ca vocab=3a82268d
+-/
 theorem localizationBarrier_pos (k h x t : ℝ) : 0 < localizationBarrier k h x t := by
   unfold localizationBarrier
   positivity
 
+/--
+@isnad1 id=contdiff.0h2v.s6.69c147982083 from=translated src=- shape=962e1f68 vocab=8893b919
+-/
 theorem localizationBarrier_contDiff (k h : ℝ) :
     ContDiff ℝ 2 (fun z : ℝ × ℝ => localizationBarrier k h z.1 z.2) := by
   unfold localizationBarrier
   fun_prop
 
+/--
+@isnad1 id=hasderiv.0h4v.s6.1a3d8492566c from=translated src=- shape=2143ae56 vocab=31bdb924
+-/
 theorem localizationBarrier_hasDeriv_x (k h x t : ℝ) :
     HasDerivAt (fun y => localizationBarrier k h y t)
       (Real.exp ((2+|k-h-1|)*t)*(2*x)) x := by
@@ -45,6 +54,9 @@ theorem localizationBarrier_hasDeriv_x (k h x t : ℝ) :
   simp only [id_eq]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s7.c8a20c81ea49 from=translated src=- shape=d0dba4c1 vocab=020a23a1
+-/
 theorem localizationBarrier_deriv2_x (k h x t : ℝ) :
     deriv (deriv (fun y => localizationBarrier k h y t)) x =
       2*Real.exp ((2+|k-h-1|)*t) := by
@@ -54,6 +66,9 @@ theorem localizationBarrier_deriv2_x (k h x t : ℝ) :
   convert! (((hasDerivAt_id x).const_mul 2).const_mul (Real.exp ((2+|k-h-1|)*t))).deriv using 1
   ring
 
+/--
+@isnad1 id=hasderiv.0h4v.s7.dee356b20679 from=translated src=- shape=23136e1c vocab=ea1510da
+-/
 theorem localizationBarrier_hasDeriv_t (k h x t : ℝ) :
     HasDerivAt (localizationBarrier k h x)
       (Real.exp ((2+|k-h-1|)*t)*(2+|k-h-1|)*(1+x^2)) t := by
@@ -61,12 +76,18 @@ theorem localizationBarrier_hasDeriv_t (k h x t : ℝ) :
   simp only [id_eq]
   ring
 
+/--
+@isnad1 id=le.1h4v.s5.0f6889f9d9ef from=translated src=- shape=2bf2e28b vocab=f61e649a
+-/
 theorem localizationBarrier_ge_quad (k h x : ℝ) {t : ℝ} (ht : 0 ≤ t) :
     1+x^2 ≤ localizationBarrier k h x t := by
   have he : 1 ≤ Real.exp ((2+|k-h-1|)*t) := Real.one_le_exp_iff.mpr (by positivity)
   unfold localizationBarrier
   nlinarith [sq_nonneg x]
 
+/--
+@isnad1 id=le.1h4v.s6.7e06cb60db61 from=translated src=- shape=62a483b5 vocab=4806046d
+-/
 theorem localizationBarrier_supersolution {k h : ℝ} (hk : 0 ≤ k) (x t : ℝ) :
     dividendSpatialOperator k h (fun y => localizationBarrier k h y t) x ≤
       deriv (localizationBarrier k h x) t := by

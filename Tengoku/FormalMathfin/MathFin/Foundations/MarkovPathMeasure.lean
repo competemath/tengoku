@@ -79,6 +79,9 @@ def pathCylinder (path : ℕ → ι) (n : ℕ) : Set (ℕ → ι) :=
   {ω | ∀ k ≤ n, ω k = path k}
 
 omit [Countable ι] in
+/--
+@isnad1 id=measurab.0h3v.s4.6a94ac31dbc4 from=translated src=- shape=104c99bd vocab=2b18a634
+-/
 lemma measurableSet_pathCylinder (path : ℕ → ι) (n : ℕ) :
     MeasurableSet (pathCylinder path n) := by
   have h : pathCylinder path n
@@ -90,7 +93,9 @@ lemma measurableSet_pathCylinder (path : ℕ → ι) (n : ℕ) :
     (fun k _ ↦ (measurable_pi_apply k) (measurableSet_singleton _))
 
 omit [MeasurableSpace ι] [MeasurableSingletonClass ι] [Countable ι] in
-/-- The cylinder is the `frestrictLe`-preimage of a single restricted path. -/
+/-- The cylinder is the `frestrictLe`-preimage of a single restricted path.
+@isnad1 id=eq.0h3v.s7.6cf6076833eb from=translated src=- shape=af6a5539 vocab=85d88984
+-/
 lemma frestrictLe_preimage_singleton (path : ℕ → ι) (n : ℕ) :
     frestrictLe (π := fun _ ↦ ι) n ⁻¹' {fun i : Iic n ↦ path ↑i}
       = pathCylinder path n := by
@@ -100,7 +105,9 @@ lemma frestrictLe_preimage_singleton (path : ℕ → ι) (n : ℕ) :
 
 omit [MeasurableSpace ι] [MeasurableSingletonClass ι] [Countable ι] in
 /-- Splitting the `(n+1)`-cylinder through the pair map
-`ω ↦ (history up to n, state at n+1)`. -/
+`ω ↦ (history up to n, state at n+1)`.
+@isnad1 id=eq.0h3v.s8.780e90d5bd92 from=translated src=- shape=3074e00e vocab=caf9511b
+-/
 lemma pairMap_preimage_singleton_prod (path : ℕ → ι) (n : ℕ) :
     (fun ω : ℕ → ι ↦ (frestrictLe n ω, ω (n + 1))) ⁻¹'
         ({fun i : Iic n ↦ path ↑i} ×ˢ {path (n + 1)})
@@ -117,7 +124,9 @@ lemma pairMap_preimage_singleton_prod (path : ℕ → ι) (n : ℕ) :
     exact ⟨fun k hk ↦ h k (by omega), h (n + 1) le_rfl⟩
 
 /-- Comp-product of a measure and a kernel on a rectangle with singleton
-base: `(μ ⊗ₘ κ)({a} ×ˢ t) = μ {a} · κ a t`. -/
+base: `(μ ⊗ₘ κ)({a} ×ˢ t) = μ {a} · κ a t`.
+@isnad1 id=eq.1h8v.s7.3d9b9305d267 from=translated src=- shape=67c593a9 vocab=17714ef6
+-/
 lemma compProd_singleton_prod {α β : Type*} {mα : MeasurableSpace α}
     {mβ : MeasurableSpace β} [MeasurableSingletonClass α]
     (μ : Measure α) [SFinite μ] (κ : Kernel α β) [IsSFiniteKernel κ]
@@ -127,7 +136,9 @@ lemma compProd_singleton_prod {α β : Type*} {mα : MeasurableSpace α}
     Measure.restrict_singleton, lintegral_smul_measure, lintegral_dirac,
     smul_eq_mul]
 
-/-- Base case: the time-0 cylinder has the initial probability. -/
+/-- Base case: the time-0 cylinder has the initial probability.
+@isnad1 id=eq.0h4v.s6.004b17dc716b from=translated src=- shape=ba5feb8c vocab=ba379c75
+-/
 lemma markovPathMeasure_cylinder_zero (init : PMF ι) (P : ι → PMF ι)
     (path : ℕ → ι) :
     markovPathMeasure init P (pathCylinder path 0) = init (path 0) := by
@@ -149,7 +160,9 @@ lemma markovPathMeasure_cylinder_zero (init : PMF ι) (P : ι → PMF ι)
 
 /-- Inductive step: adjoining one transition multiplies the cylinder
 probability by the one-step transition probability — the comp-product
-recursion of the Ionescu–Tulcea marginals, evaluated on a rectangle. -/
+recursion of the Ionescu–Tulcea marginals, evaluated on a rectangle.
+@isnad1 id=eq.0h5v.s7.7bdf296e9af8 from=translated src=- shape=43419e0c vocab=3afd67a2
+-/
 lemma markovPathMeasure_cylinder_succ (init : PMF ι) (P : ι → PMF ι)
     (path : ℕ → ι) (n : ℕ) :
     markovPathMeasure init P (pathCylinder path (n + 1))
@@ -184,7 +197,9 @@ transition probabilities:
 Derived from the construction — the kernels read only the last coordinate,
 and the factorization falls out of the comp-product recursion of the
 marginals. Not a definition: the left side is a measure of a set of
-infinite trajectories. -/
+infinite trajectories.
+@isnad1 id=eq.0h5v.s7.59240dcb12b7 from=translated src=- shape=3e7d9f1c vocab=bd7f5882
+-/
 theorem markovPathMeasure_cylinder (init : PMF ι) (P : ι → PMF ι)
     (path : ℕ → ι) (n : ℕ) :
     markovPathMeasure init P (pathCylinder path n)

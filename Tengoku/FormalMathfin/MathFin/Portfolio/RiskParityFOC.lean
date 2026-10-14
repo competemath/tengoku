@@ -65,7 +65,9 @@ def riskContribution {ι : Type*} (s : Finset ι) (Sg : ι → ι → ℝ)
     (w : ι → ℝ) (i : ι) : ℝ :=
   w i * marginalVariance s Sg w i
 
-/-- **Sum-of-risk-contributions identity**: `∑_i RC_i = Var(w) = w · (Σw)`. -/
+/-- **Sum-of-risk-contributions identity**: `∑_i RC_i = Var(w) = w · (Σw)`.
+@isnad1 id=eq.0h4v.s5.f17c4c4b8bb8 from=translated src=- shape=3540e8a1 vocab=14c7bb09
+-/
 lemma sum_riskContribution_eq_variance
     {ι : Type*} (s : Finset ι) (Sg : ι → ι → ℝ) (w : ι → ℝ) :
     ∑ i ∈ s, riskContribution s Sg w i = portfolioVariance s Sg w := by
@@ -92,7 +94,9 @@ FOC**. The critical-point condition
   `(Σw)_i = b_i / w_i` for all `i ∈ s` with `w_i ≠ 0`,
 
 (which is the FOC of `(1/2) w^T Σ w − ∑_i b_i log(w_i)`) implies the
-risk-budget identity `w_i · (Σw)_i = b_i`. -/
+risk-budget identity `w_i · (Σw)_i = b_i`.
+@isnad1 id=isriskbu.2h5v.s6.bfac1706de9b from=translated src=- shape=a1711e9d vocab=017f40ff
+-/
 theorem isRiskBudget_of_log_barrier_FOC
     {ι : Type*} (s : Finset ι) (Sg : ι → ι → ℝ)
     (w b : ι → ℝ)
@@ -105,7 +109,9 @@ theorem isRiskBudget_of_log_barrier_FOC
 
 /-- **Risk parity from uniform-budget log-barrier FOC**: if the FOC holds
 with the *same* constant `c` for every asset (uniform risk budget), then
-the portfolio satisfies the equal-risk-contribution property. -/
+the portfolio satisfies the equal-risk-contribution property.
+@isnad1 id=isriskpa.2h5v.s6.dbdaf14f87c3 from=translated src=- shape=4884385c vocab=39f76598
+-/
 theorem isRiskParity_of_uniform_log_barrier_FOC
     {ι : Type*} (s : Finset ι) (Sg : ι → ι → ℝ)
     (w : ι → ℝ) (c : ℝ)
@@ -120,7 +126,9 @@ theorem isRiskParity_of_uniform_log_barrier_FOC
 
 /-- **Cross-product characterisation of risk parity**: `RC_i = RC_j` is
 literally `w_i · (Σw)_i = w_j · (Σw)_j`. This is the form used in numerical
-solvers (project onto the equal-contribution hyperplane). -/
+solvers (project onto the equal-contribution hyperplane).
+@isnad1 id=iff.0h4v.s6.b135c3ac4193 from=translated src=- shape=1b0c3465 vocab=0e2ed57a
+-/
 theorem isRiskParity_iff_cross_product
     {ι : Type*} (s : Finset ι) (Sg : ι → ι → ℝ) (w : ι → ℝ) :
     IsRiskParity s Sg w ↔
@@ -130,7 +138,9 @@ theorem isRiskParity_iff_cross_product
   rfl
 
 /-- **Risk parity implies each `RC_i = Var(w) / |s|`**: at a risk-parity
-portfolio, every asset contributes `1/N`-th of the total variance. -/
+portfolio, every asset contributes `1/N`-th of the total variance.
+@isnad1 id=eq.3h5v.s6.b1a539244027 from=translated src=- shape=c60f087b vocab=ba0324c6
+-/
 theorem riskContribution_eq_variance_div_card_of_riskParity
     {ι : Type*} (s : Finset ι) (Sg : ι → ι → ℝ)
     (w : ι → ℝ) (i : ι) (hi : i ∈ s) (hs : s.Nonempty)
@@ -167,7 +177,9 @@ base point yields
   `∂L/∂w_j = (Σw)_j − b_j / w_j`.
 
 The quadratic term contributes `(Σw)_j` (its `w_j`-gradient is `2·(Σw)_j` by
-symmetry of `Σ`, halved), and the log-barrier term contributes `− b_j / w_j`. -/
+symmetry of `Σ`, halved), and the log-barrier term contributes `− b_j / w_j`.
+@isnad1 id=hasderiv.3h6v.s7.012d7f0c1115 from=translated src=- shape=86cfd19d vocab=61604e58
+-/
 theorem hasDerivAt_logBarrierObj_update
     {ι : Type*} [DecidableEq ι] (s : Finset ι) (Sg : ι → ι → ℝ) (b w : ι → ℝ)
     (j : ι) (hj : j ∈ s) (hSg : ∀ a c, Sg a c = Sg c a) (hwj : w j ≠ 0) :
@@ -294,7 +306,9 @@ theorem hasDerivAt_logBarrierObj_update
 objective is stationary in the `w_j`-direction (`HasDerivAt … 0`) *iff* the
 risk-parity FOC `(Σw)_j = b_j / w_j` holds. This is the first-principles
 statement — the FOC *assumed* in `isRiskBudget_of_log_barrier_FOC` is exactly
-the condition for `w` to be a critical point of `L`. -/
+the condition for `w` to be a critical point of `L`.
+@isnad1 id=iff.3h6v.s7.a60db618d7c3 from=translated src=- shape=1cdfd48b vocab=da977737
+-/
 theorem logBarrierObj_critical_iff_FOC
     {ι : Type*} [DecidableEq ι] (s : Finset ι) (Sg : ι → ι → ℝ) (b w : ι → ℝ)
     (j : ι) (hj : j ∈ s) (hSg : ∀ a c, Sg a c = Sg c a) (hwj : w j ≠ 0) :

@@ -61,7 +61,9 @@ noncomputable def chooserPrice (S_0 K r σ T t_1 : ℝ) : ℝ :=
   bsV K r σ S_0 T + bsP (K * Real.exp (-(r * (T - t_1)))) r σ S_0 t_1
 
 /-- **Chooser payoff decomposition with the BS-style discounted strike**:
-specialisation of `chooser_via_pcp` to `K_disc = K · e^{−r(T − t_1)}`. -/
+specialisation of `chooser_via_pcp` to `K_disc = K · e^{−r(T − t_1)}`.
+@isnad1 id=eq.1h7v.s6.ea1f038c779f from=translated src=- shape=9504395c vocab=a3e99f32
+-/
 theorem chooserPayoff_decompose_BS
     (C P S K r T t_1 : ℝ)
     (hPCP : C - P = S - K * Real.exp (-(r * (T - t_1)))) :
@@ -75,7 +77,9 @@ of the chooser payoff `max(C, P)` decomposes as `E[C] + E[max(0, K_disc − S)]`
 
 This is the first integration step in the chooser-pricing chain: combined
 with risk-neutral pricing of each piece (`E_Q[e^{−r·t_1} · C_{t_1}] =
-bsV(K, T)` etc.), it produces `chooserPrice = bsV + bsP`. -/
+bsV(K, T)` etc.), it produces `chooserPrice = bsV + bsP`.
+@isnad1 id=eq.3h7v.s7.46474104abf0 from=translated src=- shape=9cc94cdc vocab=52636035
+-/
 theorem chooser_integral_decomp
     {Ω : Type*} {mΩ : MeasurableSpace Ω} (Q : Measure Ω)
     (C P S : Ω → ℝ) (K_disc : ℝ)
@@ -95,7 +99,9 @@ theorem chooser_integral_decomp
                 K_disc · e^{−r·t_1} · Φ(−d_2^{put}) − S_0 · Φ(−d_1^{put})`,
 where the `^{call}` parameters use strike `K`, maturity `T`, and the
 `^{put}` parameters use strike `K_disc = K · e^{−r(T − t_1)}`, maturity
-`t_1`. This makes the explicit closed form visible. -/
+`t_1`. This makes the explicit closed form visible.
+@isnad1 id=eq.0h6v.s7.4819bc149e01 from=translated src=- shape=4053a6c6 vocab=25a886cb
+-/
 theorem chooserPrice_expanded (S_0 K r σ T t_1 : ℝ) :
     chooserPrice S_0 K r σ T t_1 =
       (S_0 * Phi (bsd1 S_0 K r σ T) -

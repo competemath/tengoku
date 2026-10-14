@@ -23,7 +23,9 @@ open Complex Filter Topology
 
 variable {a : ℝ}
 
-/-- Points a + it with a ∈ (0,1) avoid the integers. -/
+/-- Points a + it with a ∈ (0,1) avoid the integers.
+@isnad1 id=mem.2h2v.s5.017173f3e336 from=translated src=- shape=e309f49e vocab=b0d1885a
+-/
 lemma abscissa_mem (ha0 : 0 < a) (ha1 : a < 1) (t : ℝ) :
     ((a : ℂ) + Complex.I * (t : ℂ)) ∈ Complex.integerComplement := by
   rintro ⟨k, hk⟩
@@ -37,7 +39,9 @@ lemma abscissa_mem (ha0 : 0 < a) (ha1 : a < 1) (t : ℝ) :
     exact_mod_cast h
   omega
 
-/-- The real part of the n-th series term on the vertical line Re = a. -/
+/-- The real part of the n-th series term on the vertical line Re = a.
+@isnad1 id=eq.0h3v.s7.3b0a11b02721 from=translated src=- shape=20bca956 vocab=7e9d7e30
+-/
 lemma re_term_eq (t : ℝ) (n : ℕ) :
     ((1 : ℂ) / ((n : ℂ) + 1) - 1 / (((a : ℂ) + Complex.I * t) + n + 1)).re
       = 1 / ((n : ℝ) + 1) - ((n : ℝ) + 1 + a) / (((n : ℝ) + 1 + a) ^ 2 + t ^ 2) := by
@@ -56,7 +60,9 @@ lemma re_term_eq (t : ℝ) (n : ℕ) :
     rw [hre, Complex.normSq_apply, hre, him]
     ring
 
-/-- Re(1/z) on the line. -/
+/-- Re(1/z) on the line.
+@isnad1 id=eq.0h2v.s6.fdfd36c83046 from=translated src=- shape=342a3ca7 vocab=8cbd1687
+-/
 lemma re_inv_eq (t : ℝ) :
     ((1 : ℂ) / ((a : ℂ) + Complex.I * t)).re = a / (a ^ 2 + t ^ 2) := by
   rw [one_div, Complex.inv_re]
@@ -65,7 +71,9 @@ lemma re_inv_eq (t : ℝ) :
   rw [hre, Complex.normSq_apply, hre, him]
   ring
 
-/-- Summability of the real series. -/
+/-- Summability of the real series.
+@isnad1 id=summable.2h2v.s7.8360f1cd656c from=translated src=- shape=86fa0fb2 vocab=764de6f7
+-/
 lemma summable_re_terms (ha0 : 0 < a) (ha1 : a < 1) (t : ℝ) :
     Summable (fun n : ℕ =>
       1 / ((n : ℝ) + 1) - ((n : ℝ) + 1 + a) / (((n : ℝ) + 1 + a) ^ 2 + t ^ 2)) := by
@@ -75,7 +83,9 @@ lemma summable_re_terms (ha0 : 0 < a) (ha1 : a < 1) (t : ℝ) :
   exact re_term_eq t n
 
 /-- **The real digamma series on vertical lines** (the paper's display in [eq:mufacts]):
-Re ψ(a+it) = −γ − a/(a²+t²) + Σₙ (1/(n+1) − (n+1+a)/((n+1+a)²+t²)). -/
+Re ψ(a+it) = −γ − a/(a²+t²) + Σₙ (1/(n+1) − (n+1+a)/((n+1+a)²+t²)).
+@isnad1 id=eq.2h2v.s8.6635c13b7527 from=translated src=- shape=a710fd8f vocab=886b0210
+-/
 theorem re_digamma_vertical (ha0 : 0 < a) (ha1 : a < 1) (t : ℝ) :
     (Complex.digamma ((a : ℂ) + Complex.I * t)).re
       = -Real.eulerMascheroniConstant - a / (a ^ 2 + t ^ 2)
@@ -102,7 +112,9 @@ theorem re_digamma_vertical (ha0 : 0 < a) (ha1 : a < 1) (t : ℝ) :
 
 /-! ### Monotonicity on the vertical line, and the μ order facts -/
 
-/-- Re ψ(a + it) is monotone in t on t ≥ 0. -/
+/-- Re ψ(a + it) is monotone in t on t ≥ 0.
+@isnad1 id=monotone.2h1v.s5.1a671cff7762 from=translated src=- shape=5563eb6b vocab=ebc5c1f3
+-/
 theorem re_digamma_mono (ha0 : 0 < a) (ha1 : a < 1) :
     MonotoneOn (fun t : ℝ => (Complex.digamma ((a : ℂ) + Complex.I * t)).re)
       (Set.Ici (0 : ℝ)) := by
@@ -126,7 +138,9 @@ theorem re_digamma_mono (ha0 : 0 < a) (ha1 : a < 1) :
     (summable_re_terms ha0 ha1 t₂)
   linarith
 
-/-- Bridge to Zeta23.mu: μ(τ) in terms of the parametrized line at a = 1/4, t = τ/2. -/
+/-- Bridge to Zeta23.mu: μ(τ) in terms of the parametrized line at a = 1/4, t = τ/2.
+@isnad1 id=eq.0h1v.s7.b6ce63968ca3 from=translated src=- shape=6fd0001e vocab=ceeaa827
+-/
 lemma mu_eq (τ : ℝ) :
     Zeta23.mu τ = (1 / (2 * Real.pi))
         * (Complex.digamma ((((1 : ℝ) / 4 : ℝ) : ℂ) + Complex.I * ((τ / 2 : ℝ) : ℂ))).re
@@ -136,7 +150,9 @@ lemma mu_eq (τ : ℝ) :
   push_cast
   ring
 
-/-- [eq:mufacts] "increasing in |τ|": μ is monotone on τ ≥ 0. -/
+/-- [eq:mufacts] "increasing in |τ|": μ is monotone on τ ≥ 0.
+@isnad1 id=monotone.0h0v.s3.7a6918a97352 from=translated src=- shape=f2a09be3 vocab=28fe84c9
+-/
 theorem mu_monotoneOn : MonotoneOn Zeta23.mu (Set.Ici (0 : ℝ)) := by
   intro t₁ h₁ t₂ h₂ h12
   rw [mu_eq, mu_eq]
@@ -149,7 +165,9 @@ theorem mu_monotoneOn : MonotoneOn Zeta23.mu (Set.Ici (0 : ℝ)) := by
   have := mul_le_mul_of_nonneg_left hmono h2π
   linarith
 
-/-- [eq:mufacts] "μ ≥ μ(0)". -/
+/-- [eq:mufacts] "μ ≥ μ(0)".
+@isnad1 id=le.0h1v.s3.4e3cdd3d7aea from=translated src=- shape=5763fdc8 vocab=29beeb4f
+-/
 theorem mu_zero_le (τ : ℝ) : Zeta23.mu 0 ≤ Zeta23.mu τ := by
   have heven := Zeta23.mu_even
   rcases le_total 0 τ with h | h
@@ -158,7 +176,9 @@ theorem mu_zero_le (τ : ℝ) : Zeta23.mu 0 ≤ Zeta23.mu τ := by
     rw [h1]
     exact mu_monotoneOn (Set.mem_Ici.mpr le_rfl) (Set.mem_Ici.mpr (by linarith)) (by linarith)
 
-/-- [eq:mufacts] "μ(0) > −1". -/
+/-- [eq:mufacts] "μ(0) > −1".
+@isnad1 id=lt.0h0v.s4.445048737d09 from=translated src=- shape=20e1579f vocab=bf89a4b5
+-/
 theorem neg_one_lt_mu_zero : (-1 : ℝ) < Zeta23.mu 0 := by
   rw [mu_eq]
   rw [show ((0 : ℝ) / 2 : ℝ) = (0 : ℝ) by norm_num]
@@ -211,7 +231,9 @@ theorem neg_one_lt_mu_zero : (-1 : ℝ) < Zeta23.mu 0 := by
 
 /-! ### The derivative bound μ′ ≪ 1/|τ|  (via the trigamma series) -/
 
-/-- Trigamma tail bound on the quarter line: Σ'ₙ ((1/4+n)² + t²)⁻¹ ≤ 12/|t| for |t| ≥ 1/2. -/
+/-- Trigamma tail bound on the quarter line: Σ'ₙ ((1/4+n)² + t²)⁻¹ ≤ 12/|t| for |t| ≥ 1/2.
+@isnad1 id=le.1h1v.s7.4d5f2d0bc49f from=translated src=- shape=4e1c3665 vocab=64f977de
+-/
 lemma trigamma_tail_le {t : ℝ} (ht : 1 / 2 ≤ |t|) :
     ∑' n : ℕ, (((1 / 4 : ℝ) + n) ^ 2 + t ^ 2)⁻¹ ≤ 12 / |t| := by
   have ht0 : (0 : ℝ) < |t| := by linarith
@@ -337,7 +359,9 @@ lemma trigamma_tail_le {t : ℝ} (ht : 1 / 2 ≤ |t|) :
         have : (0 : ℝ) ≤ |t|⁻¹ := by positivity
         linarith
 
-/-- Summability of the quarter-line trigamma comparison series. -/
+/-- Summability of the quarter-line trigamma comparison series.
+@isnad1 id=summable.0h1v.s6.c6b09730c3d5 from=translated src=- shape=afd2aafb vocab=06104efb
+-/
 lemma summable_quarter_line (t : ℝ) :
     Summable (fun n : ℕ => (((1 / 4 : ℝ) + n) ^ 2 + t ^ 2)⁻¹) := by
   refine Summable.of_norm_bounded_eventually
@@ -355,7 +379,9 @@ lemma summable_quarter_line (t : ℝ) :
     nlinarith
 
 set_option backward.isDefEq.respectTransparency false in
-/-- [eq:mufacts] "μ′(τ) ≪ |τ|⁻¹" (the GammaFacts.deriv_bound field shape). -/
+/-- [eq:mufacts] "μ′(τ) ≪ |τ|⁻¹" (the GammaFacts.deriv_bound field shape).
+@isnad1 id=ex.0h0v.s6.39eed87984e3 from=translated src=- shape=f8f18ad8 vocab=199c3995
+-/
 theorem mu_deriv_bound : ∃ C : ℝ, ∀ τ : ℝ, 1 ≤ |τ| → |deriv Zeta23.mu τ| ≤ C / |τ| := by
   refine ⟨24 / Real.pi, fun τ hτ => ?_⟩
   have hτ0 : (0 : ℝ) < |τ| := by linarith

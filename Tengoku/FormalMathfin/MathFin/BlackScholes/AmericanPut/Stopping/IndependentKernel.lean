@@ -22,6 +22,9 @@ open Set Filter MeasureTheory ProbabilityTheory
 variable {Ω : Type*} {m : MeasurableSpace Ω} [mΩ : MeasurableSpace Ω]
   {P : Measure Ω} [IsProbabilityMeasure P]
 
+/--
+@isnad1 id=eq.5h6v.s7.34d1eb81a377 from=translated src=- shape=105ba60e vocab=e37c3b9a
+-/
 theorem integral_pair_of_indep_bounded {A : Ω → ℝ × ℝ} {Y : Ω → ℝ}
     (hA : Measurable A) (hY : Measurable Y) (hi : IndepFun A Y P)
     {G : (ℝ × ℝ) × ℝ → ℝ} (hG : Measurable G) {C : ℝ} (hb : ∀ z, ‖G z‖ ≤ C) :
@@ -32,6 +35,9 @@ theorem integral_pair_of_indep_bounded {A : Ω → ℝ × ℝ} {Y : Ω → ℝ}
     hi.map_prod_eq_prod_map_map hA.aemeasurable hY.aemeasurable,
     integral_prod _ hint,integral_map hA.aemeasurable hG.stronglyMeasurable.integral_prod_right'.aestronglyMeasurable]
 
+/--
+@isnad1 id=eventual.6h7v.s7.f5746ddb9ebb from=translated src=- shape=d09c954b vocab=b64c2577
+-/
 theorem condExp_independent_kernel (hm : m ≤ mΩ)
     {X Y : Ω → ℝ} (hX : Measurable[m] X) (hY : Measurable Y)
     (hi : Indep (MeasurableSpace.comap Y (borel ℝ)) m P)

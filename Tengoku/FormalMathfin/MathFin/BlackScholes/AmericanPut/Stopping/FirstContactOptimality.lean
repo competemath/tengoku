@@ -29,6 +29,9 @@ open scoped NNReal Topology
 variable {Ω : Type*} [MeasurableSpace Ω] {P : Measure Ω} [IsProbabilityMeasure P]
   {𝓕 : Filtration ℝ≥0 ‹MeasurableSpace Ω›} {U Z : ℝ≥0 → Ω → ℝ} {C D : ℝ} {T : ℝ≥0}
 
+/--
+@isnad1 id=eq.9h10v.s8.8e5458d31ab3 from=translated src=- shape=4d1e5f1d vocab=9f48f511
+-/
 theorem expected_firstContact_eq_initial
     (hU : Supermartingale U 𝓕 P) (hUc : ∀ ω, Continuous (fun t => U t ω))
     (hUb : ∀ t ω, ‖U t ω‖ ≤ C) (hZm : Measurable Z.uncurry)
@@ -72,6 +75,9 @@ theorem expected_firstContact_eq_initial
     (fun ω => hdom _ ((θ (ns n)).le_horizon ω) ω)).trans
       (expected_stoppedValue_le_of_le hU hUc hUb (η n) (θ (ns n)) (fun _ => min_le_left _ _))
 
+/--
+@isnad1 id=eq.10h10v.s8.9a2e5471ff5c from=translated src=- shape=fe201d24 vocab=e2a08e6d
+-/
 theorem firstContact_expectedReward_eq_initial
     (hU : Supermartingale U 𝓕 P) (hUc : ∀ ω, Continuous (fun t => U t ω))
     (hUb : ∀ t ω, ‖U t ω‖ ≤ C) (hZm : Measurable Z.uncurry)

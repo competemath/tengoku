@@ -67,16 +67,26 @@ def sumA2g (X : ℝ) (g : ℝ → ℝ) : ℝ :=
 section Basics
 variable {p : Setting} {F : LocalFun}
 
-/-- `log X = L` (`X := e^L`). -/
+/-- `log X = L` (`X := e^L`).
+@isnad1 id=eq.0h1v.s3.33a2fe653efb from=translated src=- shape=7718e021 vocab=7389c9ec
+-/
 lemma Setting.log_X (p : Setting) : Real.log p.X = p.L := Real.log_exp _
 
-/-- `X = e^L ≥ 1 + L`; with `L ≥ 8` [eq:wrange] this gives `X ≥ 2` and `L ≤ X`. -/
+/-- `X = e^L ≥ 1 + L`; with `L ≥ 8` [eq:wrange] this gives `X ≥ 2` and `L ≤ X`.
+@isnad1 id=le.1h3v.s4.88ad8df4a3e4 from=translated src=- shape=43b3dd32 vocab=8c8389f3
+-/
 lemma LocalHypsCore.L_add_one_le_X (_hF : LocalHypsCore cϱ p F) : p.L + 1 ≤ p.X :=
   Real.add_one_le_exp _
 
+/--
+@isnad1 id=le.1h3v.s4.4a4db9835a00 from=translated src=- shape=d0acad91 vocab=751c89b7
+-/
 lemma LocalHypsCore.two_le_X (hF : LocalHypsCore cϱ p F) : 2 ≤ p.X := by
   linarith [hF.L_add_one_le_X, hF.eight_le_L]
 
+/--
+@isnad1 id=le.1h3v.s4.56898769cb68 from=translated src=- shape=611e34d0 vocab=ed772e5c
+-/
 lemma LocalHypsCore.L_le_X (hF : LocalHypsCore cϱ p F) : p.L ≤ p.X := by
   linarith [hF.L_add_one_le_X]
 
@@ -90,6 +100,9 @@ end Basics
 section Sandwich
 variable {p : Setting} {F : LocalFun}
 
+/--
+@isnad1 id=ex.2h2v.s6.33e99975e9c4 from=translated src=- shape=a485a86c vocab=3eba6264
+-/
 theorem sum_a2g_upper' (hcheb : Zeta23.ChebyshevMertens) (_hlam : 0 < lam ∧ lam ≤ 1) :
     ∃ C : ℝ, EventuallyAtCore cϱ lam (fun p F =>
       sumA2g p.X F.g ≤ p.L ^ 3 / 6 + C * p.L ^ 2) := by
@@ -114,6 +127,9 @@ theorem sum_a2g_upper' (hcheb : Zeta23.ChebyshevMertens) (_hlam : 0 < lam ∧ la
   unfold primeRange at h1
   linarith
 
+/--
+@isnad1 id=ex.2h2v.s7.c81d8b9927c3 from=translated src=- shape=7d3eae69 vocab=87d76a8a
+-/
 theorem sum_a2g_lower' (hcheb : Zeta23.ChebyshevMertens) (_hlam : 0 < lam ∧ lam ≤ 1) :
     ∃ C : ℝ, EventuallyAt cϱ lam (fun p F =>
       (p.L - 2 * p.w) ^ 3 / 6 - C * p.L ^ 2 ≤ sumA2g p.X F.g) := by
@@ -168,7 +184,9 @@ section Assembly
 variable {Φ : ℝ → ℝ} {T : ℝ}
 
 /-- diagonal / off-diagonal split of a double sum ("𝒟 collects the terms n=m …, 𝒪₁ the terms n≠m",
-§5.4). -/
+§5.4).
+@isnad1 id=eq.0h2v.s6.4d0f99acdb49 from=translated src=- shape=557c296c vocab=de558b21
+-/
 lemma sum_sum_eq_diag_add_offdiag (S : Finset ℕ) (f : ℕ → ℕ → ℝ) :
     ∑ n ∈ S, ∑ m ∈ S, f n m
       = ∑ n ∈ S, f n n + ∑ n ∈ S, ∑ m ∈ S, (if n = m then 0 else f n m) := by
@@ -180,7 +198,9 @@ lemma sum_sum_eq_diag_add_offdiag (S : Finset ℕ) (f : ℕ → ℕ → ℝ) :
 
 /-- **[eq:MPP]** (§5.4): bilinearity in the prime sum, then the per-pair decomposition:
   𝓜[P_X,P_X] = (1/2π²)·( Σ_n a_n² A⁻(y_n,y_n)  +  Σ_{n≠m} a_n a_m A⁻(y_n,y_m)  +  Σ_{n,m} a_n a_m A⁺(y_n,y_m) )
-             =        𝒟-part              +          𝒪₁                   +          𝒪₂ . -/
+             =        𝒟-part              +          𝒪₁                   +          𝒪₂ .
+@isnad1 id=eq.2h3v.s8.5eafdcfb6d47 from=translated src=- shape=3174471c vocab=b57dbc0c
+-/
 lemma Mform_PX_PX (hT : 0 ≤ T) (hΦ : Continuous Φ) (X : ℝ) :
     Mform Φ T (Zeta23.PX X) (Zeta23.PX X)
       = (1 / (2 * π ^ 2)) *
@@ -244,7 +264,9 @@ lemma Mform_PX_PX (hT : 0 ≤ T) (hΦ : Continuous Φ) (X : ℝ) :
   ring
 
 /-- **𝒟** (§5.4): with [eq:Phi2FT] ∫Φ²cos(xy) = 2πg(y),
-  |(1/2π²)Σ_n a_n² A⁻(y_n,y_n) − (T/π) Σ_n a_n² g(y_n)| ≤ (1/2π²)·(Σ_n a_n²)·∫Φ²|x|. -/
+  |(1/2π²)Σ_n a_n² A⁻(y_n,y_n) − (T/π) Σ_n a_n² g(y_n)| ≤ (1/2π²)·(Σ_n a_n²)·∫Φ²|x|.
+@isnad1 id=le.5h4v.s9.7a921ed910ac from=translated src=- shape=7ba09828 vocab=f2b28eb2
+-/
 lemma diag_estimate (hT : 0 ≤ T) (hΦ : Continuous Φ) (hΦ2 : Integrable fun x => Φ x ^ 2)
     (hΦabs : Integrable fun x => Φ x ^ 2 * |x|) {g : ℝ → ℝ}
     (hFT : ∀ y, ∫ x, Φ x ^ 2 * Real.cos (x * y) = 2 * π * g y) (X : ℝ) :
@@ -277,7 +299,9 @@ lemma diag_estimate (hT : 0 ≤ T) (hΦ : Continuous Φ) (hΦ2 : Integrable fun 
 /-- **𝒪₂** (§5.4): "|∫(nm)^{iτ'}dτ'| ≤ 2/log(nm) ≤ 2/log 4 for all n,m, so
 |𝒪₂| ≤ (1/2π²)(Σ a_n)²·2πbL·2/log4 ≪ XL" — pre-Chebyshev form:
   |Σ_{n,m} a_n a_m A⁺(y_n,y_m)| ≤ (∫Φ²/log 2)·(Σ_n a_n)².   (Terms with n=1 or m=1 vanish as Λ(1)=0;
-otherwise y_n + y_m ≥ 2 log 2.) -/
+otherwise y_n + y_m ≥ 2 log 2.)
+@isnad1 id=le.2h3v.s7.86052108928f from=translated src=- shape=aa09cf3b vocab=a8cada95
+-/
 lemma O2_estimate (hΦ : Continuous Φ) (hΦ2 : Integrable fun x => Φ x ^ 2) (X T : ℝ) :
     |∑ n ∈ primeRange X, ∑ m ∈ primeRange X, acoef n * acoef m * Aplus Φ T (Real.log n) (Real.log m)|
       ≤ (∫ x, Φ x ^ 2) / Real.log 2 * (∑ n ∈ primeRange X, acoef n) ^ 2 := by
@@ -327,7 +351,9 @@ section Results
 "𝓜[P_X,P_X] = (T/π) Σ_{n≤X} Λ(n)²/n · g(log n) + O(L²X)".
 Here 𝓜[P_X,P_X] = `Mform F.Phi p.T (Zeta23.PX p.X) (Zeta23.PX p.X)` (§5.4, [eq:Pdef]).
 Inputs: H-cheb [lem:cheb] and H-MV [lem:MV] (any constant), plus the taper facts `LocalHyps`.
-Shape: ∃ C, for T ≥ T₀(λ, cϱ, the H-constants). -/
+Shape: ∃ C, for T ≥ T₀(λ, cϱ, the H-constants).
+@isnad1 id=ex.3h2v.s7.eedfdc2f003a from=translated src=- shape=a80ea4aa vocab=73efdae0
+-/
 theorem prop_PP (hcheb : Zeta23.ChebyshevMertens) (hMV : ∃ C : ℝ, 0 < C ∧ Zeta23.MVHilbert C)
     (hlam : 0 < lam ∧ lam ≤ 1) :
     ∃ C : ℝ, EventuallyAtCore cϱ lam (fun p F =>
@@ -460,14 +486,18 @@ theorem prop_PP (hcheb : Zeta23.ChebyshevMertens) (hMV : ∃ C : ℝ, 0 < C ∧ 
 
 /-- **[prop:PP], the g-sandwich, lower half** (§5.4, verbatim):
 "(L−2w)³/6 + O(L²) = Σ_{n≤Xe^{−2w}} a_n²(L−2w−y_n) ≤ Σ_{n≤X} a_n² g(y_n)",
-"by [eq:gbounds] and [eq:cheb2] (note a_n² = Λ(n)²/n)".  One-sided, explicit-slack form. -/
+"by [eq:gbounds] and [eq:cheb2] (note a_n² = Λ(n)²/n)".  One-sided, explicit-slack form.
+@isnad1 id=ex.2h2v.s7.c81d8b9927c3 from=translated src=- shape=7d3eae69 vocab=87d76a8a
+-/
 theorem sum_a2g_lower (hcheb : Zeta23.ChebyshevMertens) (hlam : 0 < lam ∧ lam ≤ 1) :
     ∃ C : ℝ, EventuallyAt cϱ lam (fun p F =>
       (p.L - 2 * p.w) ^ 3 / 6 - C * p.L ^ 2 ≤ sumA2g p.X F.g) :=
   sum_a2g_lower' hcheb hlam
 
 /-- **[prop:PP], the g-sandwich, upper half** (§5.4, verbatim):
-"Σ_{n≤X} a_n² g(y_n) ≤ Σ_{n≤X} a_n²(L−y_n) = L³/6 + O(L²)". -/
+"Σ_{n≤X} a_n² g(y_n) ≤ Σ_{n≤X} a_n²(L−y_n) = L³/6 + O(L²)".
+@isnad1 id=ex.2h2v.s6.33e99975e9c4 from=translated src=- shape=a485a86c vocab=3eba6264
+-/
 theorem sum_a2g_upper (hcheb : Zeta23.ChebyshevMertens) (hlam : 0 < lam ∧ lam ≤ 1) :
     ∃ C : ℝ, EventuallyAtCore cϱ lam (fun p F =>
       sumA2g p.X F.g ≤ p.L ^ 3 / 6 + C * p.L ^ 2) :=

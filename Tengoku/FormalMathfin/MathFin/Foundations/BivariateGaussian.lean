@@ -57,7 +57,9 @@ private noncomputable def linearShift (β : ℝ) : ℝ × ℝ →L[ℝ] ℝ × �
     linearShift β p = (p.1 - β * p.2, p.2) := by
   simp [linearShift]
 
-/-- Conditional expectation formula for a bivariate Gaussian. -/
+/-- Conditional expectation formula for a bivariate Gaussian.
+@isnad1 id=eventual.1h10v.s7.d5da07ce631c from=translated src=- shape=5d998864 vocab=2faf284f
+-/
 theorem conditional_expectation_formula
     (h : BivariateGaussianHyp P X Y μ_X μ_Y σ_X σ_Y ρ) :
     (P[X | MeasurableSpace.comap Y inferInstance])

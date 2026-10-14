@@ -31,7 +31,9 @@ open Real
 
 /-- **Gaussian VaR additivity at perfect positive correlation** (`ρ = 1`):
 the joint stdev becomes `σ₁ + σ₂` and the subadditivity inequality is an
-equality. -/
+equality.
+@isnad1 id=eq.2h5v.s7.cbd8086a3831 from=translated src=- shape=51fbb516 vocab=b23d953d
+-/
 lemma gaussianVaR_additive_at_rho_one {μ₁ μ₂ σ₁ σ₂ z : ℝ}
     (h₁ : 0 ≤ σ₁) (h₂ : 0 ≤ σ₂) :
     gaussianVaR (μ₁ + μ₂)
@@ -44,7 +46,9 @@ lemma gaussianVaR_additive_at_rho_one {μ₁ μ₂ σ₁ σ₂ z : ℝ}
   rw [Real.sqrt_sq h_sum_nn]
   ring
 
-/-- **Gaussian CVaR additivity at perfect positive correlation** (`ρ = 1`). -/
+/-- **Gaussian CVaR additivity at perfect positive correlation** (`ρ = 1`).
+@isnad1 id=eq.2h6v.s7.269c9cd80da1 from=translated src=- shape=9fa801d8 vocab=8c35214f
+-/
 lemma gaussianCVaR_additive_at_rho_one {μ₁ μ₂ σ₁ σ₂ z α : ℝ}
     (h₁ : 0 ≤ σ₁) (h₂ : 0 ≤ σ₂) :
     gaussianCVaR (μ₁ + μ₂)

@@ -47,7 +47,9 @@ open MeasureTheory ProbabilityTheory Real
 
     We state it parametrically: for `S > 0, K > 0, σ > 0, τ > 0`, with
     `d₁ = (log(S/K) + (r + σ²/2) τ) / (σ√τ)` and `d₂ = d₁ - σ√τ`,
-    `S · ϕ(d₁) = K · exp(-rτ) · ϕ(d₂)`. -/
+    `S · ϕ(d₁) = K · exp(-rτ) · ϕ(d₂)`.
+@isnad1 id=eq.4h5v.s7.9996d5faf5a0 from=translated src=- shape=b12126d1 vocab=0662dab5
+-/
 lemma bs_identity {S K r σ τ : ℝ} (hS : 0 < S) (hK : 0 < K) (hσ : 0 < σ) (hτ : 0 < τ) :
     S * gaussianPDFReal 0 1 (bsd1 S K r σ τ)
       = K * Real.exp (-(r * τ)) * gaussianPDFReal 0 1 (bsd2 S K r σ τ) := by
@@ -103,7 +105,9 @@ lemma bs_identity {S K r σ τ : ℝ} (hS : 0 < S) (hK : 0 < K) (hσ : 0 < σ) (
 
 /-! ### Partial derivatives of `bsd1`, `bsd2` w.r.t. `S` -/
 
-/-- `∂_S d₁(S, K, r, σ, τ) = 1 / (S · σ · √τ)`. -/
+/-- `∂_S d₁(S, K, r, σ, τ) = 1 / (S · σ · √τ)`.
+@isnad1 id=hasderiv.4h5v.s6.8e9aa2f25b1f from=translated src=- shape=b9ba9207 vocab=ab88f72c
+-/
 lemma hasDerivAt_bsd1_S {K r σ τ : ℝ} (hK : 0 < K) (hσ : 0 < σ) (hτ : 0 < τ)
     {S : ℝ} (hS : 0 < S) :
     HasDerivAt (fun s ↦ bsd1 s K r σ τ) (1 / (S * σ * Real.sqrt τ)) S := by
@@ -133,7 +137,9 @@ lemma hasDerivAt_bsd1_S {K r σ τ : ℝ} (hK : 0 < K) (hσ : 0 < σ) (hτ : 0 <
   exact h_div_στ
 
 /-- `∂_S d₂(S, K, r, σ, τ) = 1 / (S · σ · √τ)` (same as `∂_S d₁` since `d₂ − d₁` is
-`S`-independent). -/
+`S`-independent).
+@isnad1 id=hasderiv.4h5v.s6.58273b274d9b from=translated src=- shape=b9ba9207 vocab=b4b72d6d
+-/
 lemma hasDerivAt_bsd2_S {K r σ τ : ℝ} (hK : 0 < K) (hσ : 0 < σ) (hτ : 0 < τ)
     {S : ℝ} (hS : 0 < S) :
     HasDerivAt (fun s ↦ bsd2 s K r σ τ) (1 / (S * σ * Real.sqrt τ)) S := by
@@ -146,7 +152,9 @@ lemma hasDerivAt_bsd2_S {K r σ τ : ℝ} (hK : 0 < K) (hσ : 0 < σ) (hτ : 0 <
 
 /-! ### Partial derivatives of `bsd1`, `bsd2` w.r.t. `τ` -/
 
-/-- `∂_τ d₁(S, K, r, σ, τ) = ((r + σ²/2)τ − log(S/K)) / (2 σ τ √τ)`. -/
+/-- `∂_τ d₁(S, K, r, σ, τ) = ((r + σ²/2)τ − log(S/K)) / (2 σ τ √τ)`.
+@isnad1 id=hasderiv.2h5v.s7.237ff0869d02 from=translated src=- shape=8d3a47b4 vocab=8fc88d91
+-/
 lemma hasDerivAt_bsd1_tau (S K r σ : ℝ) (hσ : 0 < σ)
     {τ : ℝ} (hτ : 0 < τ) :
     HasDerivAt (fun t ↦ bsd1 S K r σ t)
@@ -184,7 +192,9 @@ lemma hasDerivAt_bsd1_tau (S K r σ : ℝ) (hσ : 0 < σ)
   rw [h_sqrt_sq]
   ring
 
-/-- `∂_τ d₂(S, K, r, σ, τ) = ∂_τ d₁ − σ/(2√τ)`. -/
+/-- `∂_τ d₂(S, K, r, σ, τ) = ∂_τ d₁ − σ/(2√τ)`.
+@isnad1 id=hasderiv.2h5v.s7.b170b042d75b from=translated src=- shape=e8599c79 vocab=3829e6e4
+-/
 lemma hasDerivAt_bsd2_tau (S K r σ : ℝ) (hσ : 0 < σ)
     {τ : ℝ} (hτ : 0 < τ) :
     HasDerivAt (fun t ↦ bsd2 S K r σ t)
@@ -204,7 +214,9 @@ lemma hasDerivAt_bsd2_tau (S K r σ : ℝ) (hσ : 0 < σ)
 
 /-! ### Partial derivatives of `bsd1`, `bsd2` w.r.t. `σ` -/
 
-/-- `∂_σ d₁(S, K, r, σ, τ) = (σ²τ/2 − log(S/K) − rτ) / (σ²√τ)`. -/
+/-- `∂_σ d₁(S, K, r, σ, τ) = (σ²τ/2 − log(S/K) − rτ) / (σ²√τ)`.
+@isnad1 id=hasderiv.2h5v.s7.26a9b7b5fb1e from=translated src=- shape=b26ac84b vocab=29b7c538
+-/
 lemma hasDerivAt_bsd1_sigma (S K r : ℝ) {σ : ℝ} (hσ : 0 < σ)
     {τ : ℝ} (hτ : 0 < τ) :
     HasDerivAt (fun s ↦ bsd1 S K r s τ)
@@ -238,7 +250,9 @@ lemma hasDerivAt_bsd1_sigma (S K r : ℝ) {σ : ℝ} (hσ : 0 < σ)
   field_simp
   ring
 
-/-- `∂_σ d₂ = ∂_σ d₁ − √τ` (since `d₂ = d₁ − σ√τ`). -/
+/-- `∂_σ d₂ = ∂_σ d₁ − √τ` (since `d₂ = d₁ − σ√τ`).
+@isnad1 id=hasderiv.2h5v.s7.b5eeb5820d0a from=translated src=- shape=522aec3c vocab=6e34857b
+-/
 lemma hasDerivAt_bsd2_sigma (S K r : ℝ) {σ : ℝ} (hσ : 0 < σ)
     {τ : ℝ} (hτ : 0 < τ) :
     HasDerivAt (fun s ↦ bsd2 S K r s τ)
@@ -256,7 +270,9 @@ lemma hasDerivAt_bsd2_sigma (S K r : ℝ) {σ : ℝ} (hσ : 0 < σ)
 
 /-! ### Partial derivatives of `bsd1`, `bsd2` w.r.t. `r` -/
 
-/-- `∂_r d₁(S, K, r, σ, τ) = √τ / σ`. -/
+/-- `∂_r d₁(S, K, r, σ, τ) = √τ / σ`.
+@isnad1 id=hasderiv.2h5v.s6.774290369047 from=translated src=- shape=50872a74 vocab=73777339
+-/
 lemma hasDerivAt_bsd1_r (S K σ τ : ℝ) (hσ : 0 < σ) (hτ : 0 < τ)
     (r : ℝ) :
     HasDerivAt (fun r' ↦ bsd1 S K r' σ τ) (Real.sqrt τ / σ) r := by
@@ -285,7 +301,9 @@ lemma hasDerivAt_bsd1_r (S K σ τ : ℝ) (hσ : 0 < σ) (hτ : 0 < τ)
   field_simp
   linarith [h_τ_eq]
 
-/-- `∂_r d₂ = ∂_r d₁ = √τ / σ` (since `d₂ − d₁` is `r`-independent). -/
+/-- `∂_r d₂ = ∂_r d₁ = √τ / σ` (since `d₂ − d₁` is `r`-independent).
+@isnad1 id=hasderiv.2h5v.s6.45cf833b6727 from=translated src=- shape=50872a74 vocab=1cf7c246
+-/
 lemma hasDerivAt_bsd2_r (S K σ τ : ℝ) (hσ : 0 < σ) (hτ : 0 < τ)
     (r : ℝ) :
     HasDerivAt (fun r' ↦ bsd2 S K r' σ τ) (Real.sqrt τ / σ) r := by
@@ -302,7 +320,9 @@ lemma hasDerivAt_bsd2_r (S K σ τ : ℝ) (hσ : 0 < σ) (hτ : 0 < τ)
 noncomputable def bsV (K r σ : ℝ) (S τ : ℝ) : ℝ :=
   S * Phi (bsd1 S K r σ τ) - K * Real.exp (-(r * τ)) * Phi (bsd2 S K r σ τ)
 
-/-- **Delta**: `∂_S V = Φ(d₁)` — the magic identity makes everything else cancel. -/
+/-- **Delta**: `∂_S V = Φ(d₁)` — the magic identity makes everything else cancel.
+@isnad1 id=hasderiv.4h5v.s6.4abf97f2cb2e from=translated src=- shape=0e429739 vocab=06bee519
+-/
 lemma hasDerivAt_bsV_S {K r σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
     {S τ : ℝ} (hS : 0 < S) (hτ : 0 < τ) :
     HasDerivAt (fun s ↦ bsV K r σ s τ) (Phi (bsd1 S K r σ τ)) S := by
@@ -334,7 +354,9 @@ lemma hasDerivAt_bsV_S {K r σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
   linear_combination -h_bs
 
 /-- **Gamma**: `∂²_S V = ϕ(d₁) / (S σ √τ)`. This is `∂_S [Phi(d₁(S))]` since
-`∂_S V = Phi(d₁)` (the `hasDerivAt_bsV_S` result). -/
+`∂_S V = Phi(d₁)` (the `hasDerivAt_bsV_S` result).
+@isnad1 id=hasderiv.4h5v.s7.2d0e5c7e22fc from=translated src=- shape=c9717cb6 vocab=23c45fc5
+-/
 lemma hasDerivAt_bsV_SS {K r σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
     {S τ : ℝ} (hS : 0 < S) (hτ : 0 < τ) :
     HasDerivAt (fun s ↦ Phi (bsd1 s K r σ τ))
@@ -347,7 +369,9 @@ lemma hasDerivAt_bsV_SS {K r σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
 /-- **Theta (without τ → t sign flip)**: `∂_τ V = σ S ϕ(d₁) / (2 √τ) + r K e^{-rτ} Φ(d₂)`.
 The combination of product/chain rules + the magic identity (`K e^{-rτ} ϕ(d₂) = S ϕ(d₁)`)
 collapses the `pdf(d₂) ∂_τ d₂` term into `−S ϕ(d₁) ∂_τ d₂`, leaving
-`S ϕ(d₁) (∂_τ d₁ − ∂_τ d₂) = S ϕ(d₁) · σ/(2√τ)`. -/
+`S ϕ(d₁) (∂_τ d₁ − ∂_τ d₂) = S ϕ(d₁) · σ/(2√τ)`.
+@isnad1 id=hasderiv.4h5v.s7.6c727881a1dc from=translated src=- shape=dc9fa74c vocab=6a4adf48
+-/
 lemma hasDerivAt_bsV_tau {K r σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
     {S τ : ℝ} (hS : 0 < S) (hτ : 0 < τ) :
     HasDerivAt (fun t ↦ bsV K r σ S t)
@@ -393,7 +417,9 @@ lemma hasDerivAt_bsV_tau {K r σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
   linear_combination
     (σ ^ 2 * τ - 2 * τ * r + 2 * Real.log (S / K)) * h_bs
 
-/-- **Theta**: `∂_t V = -∂_τ V` via the chain rule on `τ = T − t`. -/
+/-- **Theta**: `∂_t V = -∂_τ V` via the chain rule on `τ = T − t`.
+@isnad1 id=hasderiv.4h6v.s7.68eed2fb4d92 from=translated src=- shape=7895d7b2 vocab=f86d951e
+-/
 lemma hasDerivAt_bsV_t {K T r σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
     {S t : ℝ} (hS : 0 < S) (ht_T : t < T) :
     HasDerivAt (fun t' ↦ bsV K r σ S (T - t'))
@@ -415,7 +441,9 @@ lemma hasDerivAt_bsV_t {K T r σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
 The product/chain rules yield `S · pdf(d₁) · ∂_σ d₁ − K e^{-rτ} · pdf(d₂) · ∂_σ d₂`.
 Since `d₂ = d₁ − σ√τ`, we have `∂_σ d₂ = ∂_σ d₁ − √τ`. After substitution the
 `∂_σ d₁` terms collapse via the magic identity `S · ϕ(d₁) = K e^{-rτ} · ϕ(d₂)`,
-leaving `K e^{-rτ} · ϕ(d₂) · √τ = S · ϕ(d₁) · √τ`. -/
+leaving `K e^{-rτ} · ϕ(d₂) · √τ = S · ϕ(d₁) · √τ`.
+@isnad1 id=hasderiv.4h5v.s6.ee1c7bf6a125 from=translated src=- shape=e64547d2 vocab=915c3ebb
+-/
 lemma hasDerivAt_bsV_sigma {K r : ℝ} (hK : 0 < K)
     {S σ τ : ℝ} (hS : 0 < S) (hσ : 0 < σ) (hτ : 0 < τ) :
     HasDerivAt (fun s ↦ bsV K r s S τ)
@@ -451,7 +479,9 @@ lemma hasDerivAt_bsV_sigma {K r : ℝ} (hK : 0 < K)
 
 Again the magic identity collapses the `∂_r d₁`, `∂_r d₂` chain-rule contributions,
 because `∂_r d₁ = ∂_r d₂ = √τ/σ` (the difference `d₁ − d₂` is `r`-independent).
-The remaining surviving term comes from `∂_r [exp(-rτ)] = −τ · exp(-rτ)`. -/
+The remaining surviving term comes from `∂_r [exp(-rτ)] = −τ · exp(-rτ)`.
+@isnad1 id=hasderiv.4h5v.s7.1c7035df6109 from=translated src=- shape=bf5e3068 vocab=76d8d9b8
+-/
 lemma hasDerivAt_bsV_r {K σ τ : ℝ} (hK : 0 < K) (hσ : 0 < σ) (hτ : 0 < τ)
     {S : ℝ} (hS : 0 < S) (r : ℝ) :
     HasDerivAt (fun r' ↦ bsV K r' σ S τ)
@@ -496,7 +526,9 @@ lemma hasDerivAt_bsV_r {K σ τ : ℝ} (hK : 0 < K) (hσ : 0 < σ) (hτ : 0 < τ
 
 /-- **Black–Scholes PDE** (forward direction): the European call price
 `V(S, t) = S · Φ(d₁) − K · e^{-r(T−t)} · Φ(d₂)` satisfies
-`∂_t V + (1/2) σ² S² ∂²_S V + r S ∂_S V − r V = 0` for `0 < S, t < T, 0 < K, 0 < σ`. -/
+`∂_t V + (1/2) σ² S² ∂²_S V + r S ∂_S V − r V = 0` for `0 < S, t < T, 0 < K, 0 < σ`.
+@isnad1 id=eq.3h6v.s8.dd79ea98dcb0 from=translated src=- shape=53bed9ed vocab=f608e640
+-/
 theorem bs_pde_holds {K T r σ : ℝ} (hσ : 0 < σ)
     {S t : ℝ} (hS : 0 < S) (ht_T : t < T) :
     -(σ * S * gaussianPDFReal 0 1 (bsd1 S K r σ (T - t)) / (2 * Real.sqrt (T - t))

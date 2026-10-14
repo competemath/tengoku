@@ -98,7 +98,9 @@ def ycoef (n : ℕ) : ℝ := Real.log n
 spelled `Finset.Ioc 0 ⌊X⌋₊` as in Zeta23/Defs.lean's `PX` and Mathlib's `Chebyshev.psi`. -/
 def primeRange (X : ℝ) : Finset ℕ := Finset.Ioc 0 ⌊X⌋₊
 
-/-- `Zeta23.PX` in the `a_n, y_n` notation of §5: `P_X(τ) = −(1/π) Σ_{n≤X} a_n cos(τ y_n)`. -/
+/-- `Zeta23.PX` in the `a_n, y_n` notation of §5: `P_X(τ) = −(1/π) Σ_{n≤X} a_n cos(τ y_n)`.
+@isnad1 id=eq.0h2v.s5.9f73ce977743 from=translated src=- shape=d031cc01 vocab=745836e1
+-/
 lemma PX_eq (X τ : ℝ) :
     Zeta23.PX X τ = -(1 / Real.pi) * ∑ n ∈ primeRange X, acoef n * Real.cos (τ * ycoef n) := rfl
 

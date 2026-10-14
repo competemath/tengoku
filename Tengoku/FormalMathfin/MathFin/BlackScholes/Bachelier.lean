@@ -47,7 +47,9 @@ The standard-normal PDF derivative (`hasDerivAt_neg_gaussianPDFReal_zero_one`,
 /-- The function `z ↦ z · ϕ(0, 1, z)` is integrable on `ℝ` (against Lebesgue).
 Derived by transferring `Integrable id (gaussianReal 0 1)` (the existence of the
 first moment of `N(0, 1)`) through the withDensity identification of
-`gaussianReal`. -/
+`gaussianReal`.
+@isnad1 id=integrab.0h0v.s5.6e5a71aefee1 from=translated src=- shape=be8c720e vocab=6cfa4ce3
+-/
 lemma integrable_id_mul_gaussianPDFReal_volume :
     Integrable (fun z : ℝ ↦ z * gaussianPDFReal 0 1 z) volume := by
   have h_id_integrable : Integrable (id : ℝ → ℝ) (gaussianReal (0 : ℝ) 1) := by
@@ -76,7 +78,9 @@ lemma integrable_id_mul_gaussianPDFReal_volume :
 
 Proved via FTC for improper integrals (`integral_Ioi_of_hasDerivAt_of_tendsto`)
 using the antiderivative `z ↦ -ϕ(z)` of `z ↦ z · ϕ(z)`, and the fact that
-`ϕ(z) → 0` as `z → ∞`. -/
+`ϕ(z) → 0` as `z → ∞`.
+@isnad1 id=eq.0h1v.s6.901c3cd26a8c from=translated src=- shape=d0eae5b1 vocab=ebb67da4
+-/
 lemma integral_id_mul_gaussianPDFReal_Ioi (a : ℝ) :
     ∫ z in Set.Ioi a, z * gaussianPDFReal 0 1 z = gaussianPDFReal 0 1 a := by
   -- Antiderivative of z · ϕ(0,1,z) is -ϕ(0,1,z)
@@ -180,7 +184,9 @@ where `d = (S_0 - K) / (σ √T)`.
 Real derivation: HasLaw transfer to standard normal,
 `max(S_T - K, 0) = 1_{Ioi(-d)}(z) · σ √T · (z + d)`,
 then split into `σ √T · ϕ(d)` (the truncated first moment via FTC) and
-`(S_0 - K) · Φ(d)` (the cumulative-tail probability). -/
+`(S_0 - K) · Φ(d)` (the cumulative-tail probability).
+@isnad1 id=eq.1h8v.s7.f9c0bcf99051 from=translated src=- shape=09dde9bf vocab=34a1ff68
+-/
 theorem bachelier_call_formula {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
     {S_0 K σ T : ℝ} {Z : Ω → ℝ}

@@ -44,12 +44,18 @@ namespace DividendPutSolution
 
 variable {k h : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
 
+/--
+@isnad1 id=continuo.2h5v.s6.2c9f029fd8d5 from=translated src=- shape=5db1cf98 vocab=0e0b3c51
+-/
 theorem timeIncrement_continuousOn (hp : DividendPutSolution k h p b) {δ : ℝ} (hδ : 0 ≤ δ) :
     ContinuousOn (fun z : ℝ × ℝ => timeIncrement p δ z.1 z.2) {z | 0 ≤ z.2} := by
   exact (hp.price_continuous.comp
     (show ContinuousOn (fun z : ℝ × ℝ => (z.1,z.2+δ)) {z | 0 ≤ z.2} by fun_prop)
     (fun _ hz => add_nonneg hz hδ)).sub hp.price_continuous
 
+/--
+@isnad1 id=contdiff.4h7v.s7.798d7e6deb54 from=translated src=- shape=5769cf56 vocab=3f1b234d
+-/
 theorem timeIncrement_contDiffAt (hp : DividendPutSolution k h p b)
     {δ x t : ℝ} (hδ : 0 ≤ δ) (ht : 0 < t) (hx : b t < x) :
     ContDiffAt ℝ 2 (fun z : ℝ × ℝ => timeIncrement p δ z.1 z.2) (x,t) := by
@@ -61,6 +67,9 @@ theorem timeIncrement_contDiffAt (hp : DividendPutSolution k h p b)
       (show ContDiffAt ℝ 2 (fun z : ℝ × ℝ => (z.1,z.2+δ)) (x,t) by fun_prop)
   exact h₁.sub ((hp.price_contDiffAt ht hx).of_le (WithTop.coe_le_coe.mpr le_top))
 
+/--
+@isnad1 id=eq.4h7v.s6.efce7b90f4da from=translated src=- shape=aa452aaf vocab=1e7cb288
+-/
 theorem timeIncrement_equation (hp : DividendPutSolution k h p b)
     {δ x t : ℝ} (hδ : 0 ≤ δ) (ht : 0 < t) (hx : b t < x) :
     deriv (timeIncrement p δ x) t =
@@ -96,12 +105,18 @@ theorem timeIncrement_equation (hp : DividendPutSolution k h p b)
   unfold dividendSpatialOperator
   ring
 
+/--
+@isnad1 id=continuo.2h5v.s6.ef43c1bae46b from=translated src=- shape=06a017f1 vocab=6ab0dea0
+-/
 theorem incrementGauge_continuousOn (hp : DividendPutSolution k h p b) {δ : ℝ} (hδ : 0 ≤ δ) :
     ContinuousOn (fun z : ℝ × ℝ => incrementGauge p k h δ z.1 z.2) {z | 0 ≤ z.2} := by
   have hf := profile_data (β := k-h-1) hp.rate_pos.le
   exact (hp.timeIncrement_continuousOn hδ).div
     ((hf.smooth.continuous.comp continuous_fst).continuousOn) (fun z _ => (hf.pos z.1).ne')
 
+/--
+@isnad1 id=contdiff.4h7v.s7.545fb6cadb5f from=translated src=- shape=4bfc96eb vocab=cecd004f
+-/
 theorem incrementGauge_contDiffAt (hp : DividendPutSolution k h p b)
     {δ x t : ℝ} (hδ : 0 ≤ δ) (ht : 0 < t) (hx : b t < x) :
     ContDiffAt ℝ 2 (fun z : ℝ × ℝ => incrementGauge p k h δ z.1 z.2) (x,t) := by
@@ -110,6 +125,9 @@ theorem incrementGauge_contDiffAt (hp : DividendPutSolution k h p b)
     ((hf.smooth.of_le (WithTop.coe_le_coe.mpr le_top)).contDiffAt.comp (x,t) contDiffAt_fst)
     (hf.pos x).ne'
 
+/--
+@isnad1 id=eq.4h7v.s7.358800806e82 from=translated src=- shape=a48491ed vocab=3f3d029a
+-/
 theorem incrementGauge_equation (hp : DividendPutSolution k h p b)
     {δ x t : ℝ} (hδ : 0 ≤ δ) (ht : 0 < t) (hx : b t < x) :
     deriv (incrementGauge p k h δ x) t =
@@ -131,11 +149,17 @@ theorem incrementGauge_equation (hp : DividendPutSolution k h p b)
   rw [hfun] at he
   simpa only [zero_mul,add_zero,sub_zero,incrementDrift,logSlope,mul_div_assoc] using he
 
+/--
+@isnad1 id=le.3h7v.s6.b6e64aa29f6a from=translated src=- shape=d482c08b vocab=f2ee3cc2
+-/
 theorem incrementGauge_nonneg (hp : DividendPutSolution k h p b)
     {δ t : ℝ} (hδ : 0 ≤ δ) (ht : 0 ≤ t) (x : ℝ) : 0 ≤ incrementGauge p k h δ x t :=
   div_nonneg (sub_nonneg.mpr (hp.price_mono_time x ht (by linarith)))
     ((profile_data hp.rate_pos.le).pos x).le
 
+/--
+@isnad1 id=lt.3h6v.s6.27f53204feb8 from=translated src=- shape=c1412646 vocab=83664ccd
+-/
 theorem incrementGauge_initial_pos (hp : DividendPutSolution k h p b)
     {δ x : ℝ} (hδ : 0 < δ) (hx : 0 < x) : 0 < incrementGauge p k h δ x 0 := by
   apply div_pos _ ((profile_data hp.rate_pos.le).pos x)
@@ -145,6 +169,9 @@ theorem incrementGauge_initial_pos (hp : DividendPutSolution k h p b)
 
 end DividendPutSolution
 
+/--
+@isnad1 id=ex.1h2v.s5.951ccf8a4113 from=translated src=- shape=c2fd6939 vocab=58531f03
+-/
 theorem incrementDrift_bounded {k h : ℝ} (hk : 0 < k) :
     ∃ M : ℝ, ∀ x, |incrementDrift k h x| ≤ M := by
   obtain ⟨B,_,hB⟩ := profile_slope_and_deriv_bounded (β := k-h-1) hk

@@ -29,7 +29,9 @@ set_option backward.isDefEq.respectTransparency false
 namespace Zeta23
 namespace EF
 
-/-- A compactly supported function on ℝ is supported in some `[−Λ, Λ]`. -/
+/-- A compactly supported function on ℝ is supported in some `[−Λ, Λ]`.
+@isnad1 id=ex.1h1v.s5.252f4d114984 from=translated src=- shape=06d62604 vocab=d4c3aa62
+-/
 theorem exists_abs_le_of_hasCompactSupport {k : ℝ → ℂ} (hkc : HasCompactSupport k) :
     ∃ Λ : ℝ, ∀ u, k u ≠ 0 → |u| ≤ Λ := by
   obtain ⟨R, hR⟩ := hkc.isCompact.isBounded.subset_closedBall 0
@@ -38,7 +40,9 @@ theorem exists_abs_le_of_hasCompactSupport {k : ℝ → ℂ} (hkc : HasCompactSu
   simpa [Real.norm_eq_abs] using this
 
 /-- [eq:hfbound] on the real line, both orders, in terms of Mathlib's `𝓕`:
-`‖𝓕 k w‖ (1 + w²) ≤ ‖k‖₁ + ‖k''‖₁/(4π²)`. -/
+`‖𝓕 k w‖ (1 + w²) ≤ ‖k‖₁ + ‖k''‖₁/(4π²)`.
+@isnad1 id=le.2h3v.s8.19e817d2ddd5 from=translated src=- shape=97e3c79d vocab=33141bf6
+-/
 theorem norm_fourier_mul_one_add_sq_le {k : ℝ → ℂ} (hk : ContDiff ℝ 2 k) {Λ : ℝ}
     (hΛ : ∀ u, k u ≠ 0 → |u| ≤ Λ) (w : ℝ) :
     ‖𝓕 k w‖ * (1 + w ^ 2)
@@ -62,10 +66,15 @@ theorem norm_fourier_mul_one_add_sq_le {k : ℝ → ℂ} (hk : ContDiff ℝ 2 k)
       = ‖paperFT k ((-(2 * π * w) : ℝ) : ℂ)‖ + ‖paperFT k ((-(2 * π * w) : ℝ) : ℂ)‖ * w ^ 2 := by ring
     _ ≤ _ := add_le_add h1 h2'
 
+/--
+@isnad1 id=continuo.1h1v.s6.b5be480c5420 from=translated src=- shape=24873076 vocab=9e444e7d
+-/
 theorem continuous_fourier_of_integrable {k : ℝ → ℂ} (hki : Integrable k) : Continuous (𝓕 k) :=
   VectorFourier.fourierIntegral_continuous Real.continuous_fourierChar (by exact continuous_inner) hki
 
-/-- `k ∈ C_c²(ℝ)` ⇒ `𝓕 k` integrable (App. A: "h(r) ≪_k (1+|r|)^{-2}"). -/
+/-- `k ∈ C_c²(ℝ)` ⇒ `𝓕 k` integrable (App. A: "h(r) ≪_k (1+|r|)^{-2}").
+@isnad1 id=integrab.2h1v.s6.ddf2f9e2cd1a from=translated src=- shape=eca87f7d vocab=db4915c5
+-/
 theorem integrable_fourier_of_contDiff_two {k : ℝ → ℂ} (hk : ContDiff ℝ 2 k)
     (hkc : HasCompactSupport k) : Integrable (𝓕 k) := by
   obtain ⟨Λ, hΛ⟩ := exists_abs_le_of_hasCompactSupport hkc
@@ -76,7 +85,9 @@ theorem integrable_fourier_of_contDiff_two {k : ℝ → ℂ} (hk : ContDiff ℝ 
   rw [← div_eq_mul_inv, le_div_iff₀ (by positivity)]
   exact norm_fourier_mul_one_add_sq_le hk hΛ w
 
-/-- [eq:hfbound] on the real line for the paper transform: `‖h_k(τ)‖(1+τ²) ≤ ‖k‖₁ + ‖k''‖₁`. -/
+/-- [eq:hfbound] on the real line for the paper transform: `‖h_k(τ)‖(1+τ²) ≤ ‖k‖₁ + ‖k''‖₁`.
+@isnad1 id=le.2h3v.s8.885ebbbbf48b from=translated src=- shape=ec6c2add vocab=ee9cdd16
+-/
 theorem norm_paperFT_mul_one_add_sq_le {k : ℝ → ℂ} (hk : ContDiff ℝ 2 k) {Λ : ℝ}
     (hΛ : ∀ u, k u ≠ 0 → |u| ≤ Λ) (τ : ℝ) :
     ‖paperFT k τ‖ * (1 + τ ^ 2) ≤ (∫ u, ‖k u‖) + ∫ u, ‖deriv (deriv k) u‖ := by
@@ -90,7 +101,9 @@ theorem norm_paperFT_mul_one_add_sq_le {k : ℝ → ℂ} (hk : ContDiff ℝ 2 k)
     _ ≤ _ := add_le_add h1 h2
 
 /-- From H-Γ: `|μ(τ)| ≤ K₂ (1+|τ|)^{1/2}` for all τ (continuity on [−1,1]; Stirling [eq:mufacts]
-`μ(τ) = (1/2π)log(|τ|/2π) + O(τ^{-2})` and `log x ≤ 2x^{1/2}` for |τ| ≥ 1). -/
+`μ(τ) = (1/2π)log(|τ|/2π) + O(τ^{-2})` and `log x ≤ 2x^{1/2}` for |τ| ≥ 1).
+@isnad1 id=ex.1h0v.s6.7f4fe5ac4ee1 from=translated src=- shape=993dcbe1 vocab=dc8d8a8a
+-/
 theorem abs_mu_le_of_gammaFacts (hΓ : GammaFacts) :
     ∃ K₂ : ℝ, 0 ≤ K₂ ∧ ∀ τ : ℝ, |mu τ| ≤ K₂ * (1 + |τ|) ^ (1 / 2 : ℝ) := by
   obtain ⟨C, hC⟩ := hΓ.stirling
@@ -154,7 +167,9 @@ theorem abs_mu_le_of_gammaFacts (hΓ : GammaFacts) :
       _ ≤ K₂ * b := by
         gcongr; rw [hK₂]; linarith [le_max_right M 0]
 
-/-- `k ∈ C_c²(ℝ)` and H-Γ ⇒ `h_k · μ` integrable on ℝ (dominated by `K (1+|τ|)^{−3/2}`). -/
+/-- `k ∈ C_c²(ℝ)` and H-Γ ⇒ `h_k · μ` integrable on ℝ (dominated by `K (1+|τ|)^{−3/2}`).
+@isnad1 id=integrab.3h1v.s6.74173e850ed9 from=translated src=- shape=5f80afc5 vocab=76931823
+-/
 theorem integrable_paperFT_mul_mu {k : ℝ → ℂ} (hk : ContDiff ℝ 2 k) (hkc : HasCompactSupport k)
     (hΓ : GammaFacts) : Integrable (fun τ : ℝ => paperFT k τ * (mu τ : ℂ)) := by
   obtain ⟨Λ, hΛ⟩ := exists_abs_le_of_hasCompactSupport hkc
@@ -187,7 +202,9 @@ theorem integrable_paperFT_mul_mu {k : ℝ → ℂ} (hk : ContDiff ℝ 2 k) (hkc
 
 /-- **The bridge.**  The literature-form explicit formula [eq:EFstd] (`EF_lit`) together with the
 Stirling-type facts H-Γ for μ (already a field of `PaperInputs`) implies the paper's
-[prop:EF]/[eq:EF] exactly as `Zeta23.ExplicitFormulaPaper` (Hypotheses.lean) states it (App. A). -/
+[prop:EF]/[eq:EF] exactly as `Zeta23.ExplicitFormulaPaper` (Hypotheses.lean) states it (App. A).
+@isnad1 id=explicit.2h1v.s3.00bb34d2b7e6 from=translated src=- shape=d6bc7b51 vocab=95f79417
+-/
 theorem explicitFormulaPaper_of_lit (Z : ZeroConfig) (hEF : EF_lit Z) (hΓ : GammaFacts) :
     ExplicitFormulaPaper Z := by
   intro L hL f g hf hg hfs hgs

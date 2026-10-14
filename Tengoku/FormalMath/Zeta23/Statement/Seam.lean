@@ -22,17 +22,23 @@ noncomputable section
 
 namespace Zeta23
 
-/-- ζ is analytic on ℂ ∖ {1}. -/
+/-- ζ is analytic on ℂ ∖ {1}.
+@isnad1 id=analytic.0h0v.s5.6659dc41ae5e from=translated src=- shape=f6c2c18d vocab=3c0d52e7
+-/
 lemma riemannZeta_analyticOnNhd_compl_one : AnalyticOnNhd ℂ riemannZeta ({1}ᶜ : Set ℂ) := by
   apply DifferentiableOn.analyticOnNhd _ isOpen_compl_singleton
   intro s hs
   exact (differentiableAt_riemannZeta hs).differentiableWithinAt
 
-/-- ℂ ∖ {1} is connected. -/
+/-- ℂ ∖ {1} is connected.
+@isnad1 id=isconnec.0h0v.s5.4c306a1633e1 from=translated src=- shape=ac17e632 vocab=634041ee
+-/
 lemma isConnected_compl_one : IsConnected ({1}ᶜ : Set ℂ) :=
   isConnected_compl_singleton_of_one_lt_rank (by simp [Complex.rank_real_complex]) 1
 
-/-- ζ is not locally identically zero anywhere on ℂ ∖ {1}. -/
+/-- ζ is not locally identically zero anywhere on ℂ ∖ {1}.
+@isnad1 id=ne.1h1v.s5.f77b6917ab82 from=translated src=- shape=b327232a vocab=5f4f39b1
+-/
 lemma analyticOrderAt_riemannZeta_ne_top {s : ℂ} (hs : s ≠ 1) :
     analyticOrderAt riemannZeta s ≠ ⊤ := by
   have h2 : (2 : ℂ) ∈ ({1}ᶜ : Set ℂ) := by norm_num
@@ -42,7 +48,9 @@ lemma analyticOrderAt_riemannZeta_ne_top {s : ℂ} (hs : s ≠ 1) :
     (riemannZeta_ne_zero_of_one_lt_re (by norm_num))]
   exact ENat.zero_ne_top
 
-/-- Seam obligation H-fin. -/
+/-- Seam obligation H-fin.
+@isnad1 id=le.1h1v.s3.23eada01e757 from=translated src=- shape=a124ee4e vocab=4b1c7493
+-/
 theorem ZetaSeam.one_le_mult_holds : ∀ ρ, IsNontrivialZero ρ → 1 ≤ zeroMult ρ := by
   intro ρ h
   have hρ1 : ρ ≠ 1 := h.not_trivial.2
@@ -55,7 +63,9 @@ theorem ZetaSeam.one_le_mult_holds : ∀ ρ, IsNontrivialZero ρ → 1 ≤ zeroM
   simp only [ENat.toNat_natCast, ne_eq, Nat.cast_eq_zero] at hne0 ⊢
   omega
 
-/-- The zeros of ζ (away from 1) are locally finite on all of ℂ. -/
+/-- The zeros of ζ (away from 1) are locally finite on all of ℂ.
+@isnad1 id=ex.0h1v.s6.8b0c5b2ab007 from=translated src=- shape=d9a22a70 vocab=31eab2fb
+-/
 lemma riemannZeta_zeros_locallyFinite (z : ℂ) :
     ∃ t ∈ 𝓝 z, (t ∩ {ρ : ℂ | ρ ≠ 1 ∧ riemannZeta ρ = 0}).Finite := by
   by_cases hz : z = 1
@@ -83,7 +93,9 @@ lemma riemannZeta_zeros_locallyFinite (z : ℂ) :
       rintro s ⟨hst, hs1, hs0⟩
       exact ⟨hst, hs1, by simpa using hs0⟩
 
-/-- Seam obligation: local finiteness of the nontrivial zeros in ordinate windows. -/
+/-- Seam obligation: local finiteness of the nontrivial zeros in ordinate windows.
+@isnad1 id=finite.0h2v.s5.89fa3e210729 from=translated src=- shape=53476d59 vocab=926416a7
+-/
 theorem ZetaSeam.finite_window_holds (T₁ T₂ : ℝ) :
     ({ρ | IsNontrivialZero ρ} ∩ {ρ | T₁ < ρ.im ∧ ρ.im ≤ T₂}).Finite := by
   set K : Set ℂ := (Icc 0 1) ×ℂ (Icc T₁ T₂) with hK
@@ -100,7 +112,9 @@ theorem ZetaSeam.finite_window_holds (T₁ T₂ : ℝ) :
   exact mem_iUnion₂.mpr ⟨z, hzI, hρz, hρ.not_trivial.2, hρ.1⟩
 
 /-- With H-fin and finiteness discharged above, a ZetaSeam needs only the two reflection facts
-(functional equation + conjugation symmetry). -/
+(functional equation + conjugation symmetry).
+@isnad1 id=zetaseam.2h0v.s4.90936b06a12d from=translated src=- shape=8a718515 vocab=5c353bf8
+-/
 theorem ZetaSeam.of_reflect
     (h₁ : ∀ ρ, IsNontrivialZero ρ → IsNontrivialZero (reflect ρ))
     (h₂ : ∀ ρ, IsNontrivialZero ρ → zeroMult (reflect ρ) = zeroMult ρ) : ZetaSeam :=

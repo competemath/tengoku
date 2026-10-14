@@ -64,7 +64,9 @@ private instance vasicek_finite_restrict (T : ℝ≥0) :
       exact ENNReal.ofReal_lt_top⟩
 
 /-- The kernel is in `L²((0, T])` (continuous, bounded by `1` on the support
-for `κ ≥ 0`). -/
+for `κ ≥ 0`).
+@isnad1 id=memlp.1h2v.s6.806c6692f6c6 from=translated src=- shape=40e7bd1b vocab=60dba671
+-/
 lemma vasicekKernel_memLp (κ : ℝ) (hκ : 0 ≤ κ) (T : ℝ≥0) :
     MemLp (vasicekKernel κ T) 2 (volume.restrict (Set.Ioc (0 : ℝ) (T : ℝ))) := by
   refine (memLp_top_of_bound (by unfold vasicekKernel; fun_prop) 1 ?_).mono_exponent le_top
@@ -84,7 +86,9 @@ noncomputable def vasicekKernelLp (κ : ℝ) (hκ : 0 ≤ κ) (T : ℝ≥0) :
 
 /-- **The Riemann integral fixing the variance**:
 `∫₀ᵀ (e^{−κ(T−s)})² ds = (1 − e^{−2κT})/(2κ)`, by the FTC with antiderivative
-`s ↦ e^{−2κ(T−s)}/(2κ)`. -/
+`s ↦ e^{−2κ(T−s)}/(2κ)`.
+@isnad1 id=eq.1h2v.s7.7f3a70c422fe from=translated src=- shape=242d25de vocab=59dfbd5c
+-/
 lemma vasicekKernel_integral_sq (κ : ℝ) (hκ : κ ≠ 0) (T : ℝ≥0) :
     ∫ s in Set.Ioc (0 : ℝ) (T : ℝ), (vasicekKernel κ T s) ^ 2 ∂volume
       = (1 - Real.exp (-(2 * κ * T))) / (2 * κ) := by
@@ -127,7 +131,9 @@ noncomputable def vasicekDiffusionTerm (hB : IsPreBrownianReal B μ) (κ σ : �
 /-- **Vasicek terminal law, derived.** The genuine short rate
 `r_T = vasicekSDEMean + σ ∫₀ᵀ e^{−κ(T−s)} dB_s` (the SDE solution) has the
 Gaussian law `N(vasicekSDEMean, vasicekSDEVariance)` — the closed form `VasicekSDE.lean`
-posited is now a theorem. -/
+posited is now a theorem.
+@isnad1 id=haslaw.2h9v.s13.6e70f2bc26dd from=translated src=- shape=5abd686d vocab=e60162cf
+-/
 theorem vasicekShortRate_hasLaw_gaussian (hB : IsPreBrownianReal B μ)
     (r₀ θ σ : ℝ) {κ : ℝ} (hκ : 0 < κ) (T : ℝ≥0) :
     HasLaw (fun ω ↦ vasicekSDEMean r₀ θ κ (T : ℝ)

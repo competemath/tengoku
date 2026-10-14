@@ -47,7 +47,9 @@ variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} {B : ℝ → Ω →
 measure. Derived from the algebraic decomposition
 `(X_t − X_s)² = a² + 2aσ(B_t − B_s) + σ²(B_t − B_s)²` (with `a = (r −
 σ²/2)(t − s)`) and the integrability of constants, of `(B_t − B_s)`, and
-of `(B_t − B_s)²`. -/
+of `(B_t − B_s)²`.
+@isnad1 id=integrab.3h8v.s6.cb4061be2f54 from=translated src=- shape=ffaf2968 vocab=cf315dd5
+-/
 theorem integrable_bsLogPrice_sq_increment
     [IsFiniteMeasure μ]
     (hB : BrownianQuadraticVariation μ B) (S_0 r σ : ℝ)
@@ -80,7 +82,9 @@ Proof: apply Phase 32's per-increment identity to each summand (length
 `T/(n+1)`), sum `n+1` identical contributions, and arithmetic.
 
 The drift contribution vanishes as `n → ∞`, giving the QV characterisation
-of the variance-swap fair strike (`lim_n (1/T) · E[Σ ...] = σ²`). -/
+of the variance-swap fair strike (`lim_n (1/T) · E[Σ ...] = σ²`).
+@isnad1 id=eq.2h8v.s8.7a9ab2261e0b from=translated src=- shape=2bd3b0a0 vocab=117d04ff
+-/
 theorem expected_bsLogPrice_equipartition_sum
     [IsProbabilityMeasure μ]
     (hB : BrownianQuadraticVariation μ B) (S_0 r σ : ℝ)

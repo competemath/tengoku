@@ -20,6 +20,9 @@ namespace MathFin.BlackScholes.AmericanPut.Boundary
 open Set
 open scoped ContDiff
 
+/--
+@isnad1 id=le.5h5v.s6.c841437545f8 from=translated src=- shape=0996092d vocab=3f7942c7
+-/
 theorem three_point_bound_of_positive_superlevels {F : ℝ → ℝ} {S : Set ℝ}
     (hlevels : ∀ ε : ℝ, 0 < ε → OrdConnected {x | x ∈ S ∧ ε < F x})
     {x y z : ℝ} (hx : x ∈ S) (hz : z ∈ S) (hxy : x ≤ y) (hyz : y ≤ z) :
@@ -35,7 +38,9 @@ theorem three_point_bound_of_positive_superlevels {F : ℝ → ℝ} {S : Set ℝ
   linarith [le_max_left (F y) 0,hh.2]
 
 /-- The positive part remains unimodal, by the proved three-point maximum
-principle. This bypasses both zero-count initialization and Sturm propagation. -/
+principle. This bypasses both zero-count initialization and Sturm propagation.
+@isnad1 id=le.14h9v.s9.2080fb3f54d9 from=translated src=- shape=28664063 vocab=c394172d
+-/
 theorem parabolic_three_point_bound {U D : ℝ → ℝ → ℝ} {b : ℝ → ℝ} {R T : ℝ}
     (hb : ContinuousOn b (Icc 0 T)) (hbR : ∀ t ∈ Icc 0 T, b t ≤ R)
     (hU : ContinuousOn (fun z : ℝ × ℝ => U z.1 z.2) (movingStrip b R 0 T))

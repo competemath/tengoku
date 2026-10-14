@@ -107,7 +107,9 @@ function of the standard-normal sample. -/
 noncomputable def bsTerminal (S_0 r σ T z : ℝ) : ℝ :=
   S_0 * Real.exp ((r - σ^2 / 2) * T + σ * Real.sqrt T * z)
 
-/-- Alternative form for `d₂`: `bsd2 = (log(S_0/K) + (r − σ²/2)T) / (σ√T)`. -/
+/-- Alternative form for `d₂`: `bsd2 = (log(S_0/K) + (r − σ²/2)T) / (σ√T)`.
+@isnad1 id=eq.2h5v.s7.541db199ab37 from=translated src=- shape=3d7cedce vocab=6f028f23
+-/
 lemma bsd2_eq {S_0 K r σ T : ℝ} (hσ : 0 < σ) (hT : 0 < T) :
     bsd2 S_0 K r σ T = (Real.log (S_0 / K) + (r - σ^2 / 2) * T) / (σ * Real.sqrt T) := by
   have hσsqT_pos : 0 < σ * Real.sqrt T := mul_pos hσ (Real.sqrt_pos.mpr hT)
@@ -118,7 +120,9 @@ lemma bsd2_eq {S_0 K r σ T : ℝ} (hσ : 0 < σ) (hT : 0 < T) :
   -- not `nlinarith` (the repo's "nlinarith is for inequalities" doctrine).
   linear_combination (-2 * σ ^ 2) * h_sqT_sq
 
-/-- Exercise-region identification: `S_T(z) > K ↔ z > −d_2`. -/
+/-- Exercise-region identification: `S_T(z) > K ↔ z > −d_2`.
+@isnad1 id=iff.4h6v.s6.fc39e6e2cb31 from=translated src=- shape=eb040ab6 vocab=6f144c42
+-/
 lemma bsTerminal_gt_K_iff {S_0 K r σ T : ℝ}
     (hS_0 : 0 < S_0) (hK : 0 < K) (hσ : 0 < σ) (hT : 0 < T) (z : ℝ) :
     bsTerminal S_0 r σ T z > K ↔ z > -bsd2 S_0 K r σ T := by
@@ -174,7 +178,9 @@ expectation to the standard normal), `integral_gaussianReal_eq_integral_smul`
 `integral_exp_mul_gaussianPDFReal_Ioi` for the asset-payoff piece (completing
 the square: `∫ exp(σ√T·z) · pdf = exp(σ²T/2) · Φ(d_1)`),
 `gaussianReal_Ioi_toReal` for the strike piece (`∫ pdf = Φ(d_2)`), and the
-final algebraic identity `(r − σ²/2)T + σ²T/2 = rT`. -/
+final algebraic identity `(r − σ²/2)T + σ²T/2 = rT`.
+@isnad1 id=eq.1h9v.s7.6d4fb26bf78e from=translated src=- shape=6dae6f2b vocab=9e4aad64
+-/
 theorem bs_call_formula {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
     {S_0 K r σ T : ℝ} {Z : Ω → ℝ}

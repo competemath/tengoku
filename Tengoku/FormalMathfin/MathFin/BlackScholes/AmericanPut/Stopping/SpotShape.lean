@@ -28,6 +28,9 @@ open scoped NNReal
 
 variable {Ω : Type*}
 
+/--
+@isnad1 id=antitone.0h8v.s5.fcb07ac94d13 from=translated src=- shape=471fc33e vocab=591b2360
+-/
 theorem putReward_antitone (W : ℝ≥0 → Ω → ℝ) (K r q σ : ℝ) (θ : Ω → ℝ≥0) (ω : Ω) :
     Antitone (fun S => putReward W K r q σ S θ ω) := by
   intro x y hxy
@@ -35,6 +38,9 @@ theorem putReward_antitone (W : ℝ≥0 → Ω → ℝ) (K r q σ : ℝ) (θ : �
     (max_le_max (sub_le_sub_left (mul_le_mul_of_nonneg_right hxy (Real.exp_pos _).le) K) le_rfl)
     (Real.exp_pos _).le
 
+/--
+@isnad1 id=le.3h12v.s7.54745b1204fa from=translated src=- shape=33f15935 vocab=c2e1f065
+-/
 theorem putReward_convex (W : ℝ≥0 → Ω → ℝ) (K r q σ : ℝ) (θ : Ω → ℝ≥0) (ω : Ω)
     (x y : ℝ) {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) (hab : a+b=1) :
     putReward W K r q σ (a*x+b*y) θ ω ≤
@@ -60,6 +66,9 @@ variable [MeasurableSpace Ω] {P : Measure Ω} [IsProbabilityMeasure P]
   {𝓕 : Filtration ℝ≥0 ‹MeasurableSpace Ω›} {W : ℝ≥0 → Ω → ℝ}
   {K r q σ : ℝ} {T : ℝ≥0}
 
+/--
+@isnad1 id=antitone.3h9v.s6.f3e78a3ea961 from=translated src=- shape=dcab1ae7 vocab=122f104b
+-/
 theorem value_antitone_spot (hW : Measurable W.uncurry) (hK : 0 ≤ K) (hr : 0 ≤ r) :
     AntitoneOn (fun S => americanPutValue P 𝓕 W K r q σ S T) (Ici 0) := by
   intro x hx y hy hxy
@@ -70,6 +79,9 @@ theorem value_antitone_spot (hW : Measurable W.uncurry) (hK : 0 ≤ K) (hr : 0 �
     (fun ω => putReward_antitone W K r q σ θ.time ω hxy)).trans
       (expectedReward_le_value hW hK hr hx θ)
 
+/--
+@isnad1 id=convexon.3h9v.s6.72a39e653fd4 from=translated src=- shape=e85eb8a4 vocab=46508461
+-/
 theorem value_convexOn_spot (hW : Measurable W.uncurry) (hK : 0 ≤ K) (hr : 0 ≤ r) :
     ConvexOn ℝ (Ici 0) (fun S => americanPutValue P 𝓕 W K r q σ S T) := by
   refine ⟨convex_Ici 0,?_⟩

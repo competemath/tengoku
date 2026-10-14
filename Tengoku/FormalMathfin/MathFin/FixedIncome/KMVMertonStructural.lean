@@ -53,7 +53,9 @@ hypothesis for firm asset value `V_T = bsTerminal V_0 r σ_V T (Z ·)`,
 
 The RHS is *one minus the risk-neutral survival probability*. Combined with
 `riskNeutralProb_S_T_gt_K`, this gives `kmvPD` the genuine probabilistic
-interpretation it was advertised to have. -/
+interpretation it was advertised to have.
+@isnad1 id=eq.3h9v.s6.b3870c6097c0 from=translated src=- shape=7ed3c4d1 vocab=0a3c6eca
+-/
 theorem kmvPD_eq_one_sub_survival_probability
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
@@ -79,7 +81,9 @@ measure of the no-default event itself through the lognormal tail
 (`riskNeutralProb_S_T_gt_K`), not merely the CDF symmetry
 `1 − Φ(−DD) = Φ(DD)` recorded in `KMVMerton.lean`. Complements
 `kmvPD_eq_one_sub_survival_probability` (the PD identification) with the
-closed form on the survival side. -/
+closed form on the survival side.
+@isnad1 id=eq.3h9v.s6.ad26a74828ac from=translated src=- shape=99af7a3d vocab=403527d9
+-/
 theorem survival_probability_eq_Phi_distanceToDefault
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
@@ -101,7 +105,9 @@ This is *not a new derivation*: it is `bs_call_formula` applied with
 finance-specific variable renaming. The first-principles content is the
 recognition that the structural credit model is *literally* a BS call
 problem — no extra mathematical machinery is needed beyond the lognormal
-hypothesis on `V_T`. -/
+hypothesis on `V_T`.
+@isnad1 id=eq.1h9v.s7.6d4fb26bf78e from=translated src=- shape=6dae6f2b vocab=9e4aad64
+-/
 theorem merton_equity_eq_bs_call
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]

@@ -88,7 +88,9 @@ noncomputable def bsVGarman (A K DF σ T : ℝ) : ℝ :=
 
 /-! ### Standard BS is a Garman instance -/
 
-/-- **Log-algebra bridge**: `log(S / (K · e^{−rτ})) = log(S/K) + rτ`. -/
+/-- **Log-algebra bridge**: `log(S / (K · e^{−rτ})) = log(S/K) + rτ`.
+@isnad1 id=eq.2h4v.s6.fc9fa9c2b460 from=translated src=- shape=55640dcf vocab=71b0ee4e
+-/
 lemma log_div_mul_exp_neg (S K r τ : ℝ) (hS : 0 < S) (hK : 0 < K) :
     Real.log (S / (K * Real.exp (-(r * τ)))) = Real.log (S / K) + r * τ := by
   have hexp_ne : Real.exp (-(r * τ)) ≠ 0 := (Real.exp_pos _).ne'
@@ -98,7 +100,9 @@ lemma log_div_mul_exp_neg (S K r τ : ℝ) (hS : 0 < S) (hK : 0 < K) :
   rw [Real.log_div hS.ne' hK.ne']
   ring
 
-/-- **Standard BS `bsd1` matches the Garman normal form** at `DF = e^{−rτ}`. -/
+/-- **Standard BS `bsd1` matches the Garman normal form** at `DF = e^{−rτ}`.
+@isnad1 id=eq.2h5v.s5.357cc1147028 from=translated src=- shape=653f65c9 vocab=8986fe29
+-/
 lemma bsd1_eq_gbsd1_standard (S K r σ τ : ℝ) (hS : 0 < S) (hK : 0 < K) :
     bsd1 S K r σ τ = gbsd1 S K (Real.exp (-(r * τ))) σ τ := by
   unfold bsd1 gbsd1
@@ -106,7 +110,9 @@ lemma bsd1_eq_gbsd1_standard (S K r σ τ : ℝ) (hS : 0 < S) (hK : 0 < K) :
   rw [log_div_mul_exp_neg S K r τ hS hK]
   ring
 
-/-- **Standard BS `bsd2` matches the Garman normal form**. -/
+/-- **Standard BS `bsd2` matches the Garman normal form**.
+@isnad1 id=eq.2h5v.s5.245c310082a9 from=translated src=- shape=653f65c9 vocab=dcb8b76b
+-/
 lemma bsd2_eq_gbsd2_standard (S K r σ τ : ℝ) (hS : 0 < S) (hK : 0 < K) :
     bsd2 S K r σ τ = gbsd2 S K (Real.exp (-(r * τ))) σ τ := by
   unfold bsd2 gbsd2
@@ -115,7 +121,9 @@ lemma bsd2_eq_gbsd2_standard (S K r σ τ : ℝ) (hS : 0 < S) (hK : 0 < K) :
 /-- **`bsV` is a Garman instance**: the standard BS call price equals
 `bsVGarman S K (e^{−rτ}) σ τ`. This is the load-bearing fact that makes
 the Garman form the actual structural object underlying BS pricing — not
-just a cosmetic rename. -/
+just a cosmetic rename.
+@isnad1 id=eq.2h5v.s5.6514b37ac7b9 from=translated src=- shape=e04e1211 vocab=9acd7135
+-/
 theorem bsV_eq_bsVGarman_standard (K r σ S τ : ℝ) (hS : 0 < S) (hK : 0 < K) :
     bsV K r σ S τ = bsVGarman S K (Real.exp (-(r * τ))) σ τ := by
   unfold bsV bsVGarman
@@ -124,7 +132,9 @@ theorem bsV_eq_bsVGarman_standard (K r σ S τ : ℝ) (hS : 0 < S) (hK : 0 < K) 
 
 /-! ### Black-76 is a Garman instance -/
 
-/-- **Log-algebra bridge** for Black-76: `log((F·e^{−rT}) / (K·e^{−rT})) = log(F/K)`. -/
+/-- **Log-algebra bridge** for Black-76: `log((F·e^{−rT}) / (K·e^{−rT})) = log(F/K)`.
+@isnad1 id=eq.2h4v.s6.7d0f4957bf85 from=translated src=- shape=1a03cd54 vocab=d6fa9552
+-/
 lemma log_FDF_div_KDF (F K r T : ℝ) (hF : 0 < F) (hK : 0 < K) :
     Real.log (F * Real.exp (-(r * T)) / (K * Real.exp (-(r * T)))) =
       Real.log (F / K) := by
@@ -133,7 +143,9 @@ lemma log_FDF_div_KDF (F K r T : ℝ) (hF : 0 < F) (hK : 0 < K) :
     field_simp]
 
 /-- **`bsd1 F K 0 σ T` matches Garman's `gbsd1`** at Black-76 parameters
-`A = F · e^{−rT}`, `DF = e^{−rT}`. -/
+`A = F · e^{−rT}`, `DF = e^{−rT}`.
+@isnad1 id=eq.2h5v.s6.a3f95308e0f7 from=translated src=- shape=b86292ee vocab=8986fe29
+-/
 lemma bsd1_eq_gbsd1_black76 (F K r σ T : ℝ) (hF : 0 < F) (hK : 0 < K) :
     bsd1 F K 0 σ T =
       gbsd1 (F * Real.exp (-(r * T))) K (Real.exp (-(r * T))) σ T := by
@@ -143,7 +155,9 @@ lemma bsd1_eq_gbsd1_black76 (F K r σ T : ℝ) (hF : 0 < F) (hK : 0 < K) :
   rw [Real.log_div hF.ne' hK.ne']
   ring
 
-/-- **`bsd2` Black-76 / Garman match**. -/
+/-- **`bsd2` Black-76 / Garman match**.
+@isnad1 id=eq.2h5v.s6.e94502cda13f from=translated src=- shape=b86292ee vocab=dcb8b76b
+-/
 lemma bsd2_eq_gbsd2_black76 (F K r σ T : ℝ) (hF : 0 < F) (hK : 0 < K) :
     bsd2 F K 0 σ T =
       gbsd2 (F * Real.exp (-(r * T))) K (Real.exp (-(r * T))) σ T := by
@@ -154,7 +168,9 @@ lemma bsd2_eq_gbsd2_black76 (F K r σ T : ℝ) (hF : 0 < F) (hK : 0 < K) :
 `black_futures_formula` equals `bsVGarman` at `A = F · e^{−rT}`, `DF = e^{−rT}`.
 
 So the Black-76 closed form is *not* a separate pricing theorem — it is the
-same formula as standard BS, viewed through a different (forward) numéraire. -/
+same formula as standard BS, viewed through a different (forward) numéraire.
+@isnad1 id=eq.2h5v.s7.9d40056b7d16 from=translated src=- shape=97865a4d vocab=9d453344
+-/
 theorem black76_RHS_eq_bsVGarman (F K r σ T : ℝ) (hF : 0 < F) (hK : 0 < K) :
     Real.exp (-(r * T)) *
         (F * Phi (bsd1 F K 0 σ T) - K * Phi (bsd2 F K 0 σ T)) =
@@ -167,7 +183,9 @@ theorem black76_RHS_eq_bsVGarman (F K r σ T : ℝ) (hF : 0 < F) (hK : 0 < K) :
 /-! ### BS-Merton (continuous dividends) is a Garman instance -/
 
 /-- **Log-algebra bridge for BS-Merton**: `log((S·e^{−qT}) / (K·e^{−rT})) =
-log(S/K) + (r − q)T`. -/
+log(S/K) + (r − q)T`.
+@isnad1 id=eq.2h5v.s6.fc507c570b3d from=translated src=- shape=9a66d7bd vocab=a3ff7e04
+-/
 lemma log_SexpNegQ_div_KexpNegR (S K r q T : ℝ) (hS : 0 < S) (hK : 0 < K) :
     Real.log (S * Real.exp (-(q * T)) / (K * Real.exp (-(r * T)))) =
       Real.log (S / K) + (r - q) * T := by
@@ -180,7 +198,9 @@ lemma log_SexpNegQ_div_KexpNegR (S K r q T : ℝ) (hS : 0 < S) (hK : 0 < K) :
   ring
 
 /-- **`bsd1 S K (r-q) σ T` matches Garman's `gbsd1`** at BS-Merton dividend
-parameters `A = S · e^{−qT}`, `DF = e^{−rT}`. -/
+parameters `A = S · e^{−qT}`, `DF = e^{−rT}`.
+@isnad1 id=eq.2h6v.s6.938e3c8b3f36 from=translated src=- shape=31ce8e51 vocab=c09fb35e
+-/
 lemma bsd1_eq_gbsd1_dividends (S K r q σ T : ℝ) (hS : 0 < S) (hK : 0 < K) :
     bsd1 S K (r - q) σ T =
       gbsd1 (S * Real.exp (-(q * T))) K (Real.exp (-(r * T))) σ T := by
@@ -190,7 +210,9 @@ lemma bsd1_eq_gbsd1_dividends (S K r q σ T : ℝ) (hS : 0 < S) (hK : 0 < K) :
   rw [Real.log_div hS.ne' hK.ne']
   ring
 
-/-- **`bsd2` BS-Merton / Garman match**. -/
+/-- **`bsd2` BS-Merton / Garman match**.
+@isnad1 id=eq.2h6v.s6.7020cb8aef6d from=translated src=- shape=31ce8e51 vocab=2f8a22a0
+-/
 lemma bsd2_eq_gbsd2_dividends (S K r q σ T : ℝ) (hS : 0 < S) (hK : 0 < K) :
     bsd2 S K (r - q) σ T =
       gbsd2 (S * Real.exp (-(q * T))) K (Real.exp (-(r * T))) σ T := by
@@ -199,7 +221,9 @@ lemma bsd2_eq_gbsd2_dividends (S K r q σ T : ℝ) (hS : 0 < S) (hK : 0 < K) :
 
 /-- **BS-Merton dividend formula is a Garman instance**: the explicit RHS
 of `bs_dividends_call_formula` equals `bsVGarman` at `A = S · e^{−qT}`,
-`DF = e^{−rT}`. -/
+`DF = e^{−rT}`.
+@isnad1 id=eq.2h6v.s7.7f97af2cdbf4 from=translated src=- shape=5d04c7a5 vocab=9d453344
+-/
 theorem bs_dividends_RHS_eq_bsVGarman (S K r q σ T : ℝ) (hS : 0 < S) (hK : 0 < K) :
     S * Real.exp (-(q * T)) * Phi (bsd1 S K (r - q) σ T) -
         K * Real.exp (-(r * T)) * Phi (bsd2 S K (r - q) σ T) =

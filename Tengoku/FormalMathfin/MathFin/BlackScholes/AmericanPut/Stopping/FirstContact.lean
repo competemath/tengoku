@@ -29,6 +29,9 @@ open scoped NNReal ENNReal
 variable {Ω : Type*} [MeasurableSpace Ω]
   {𝓕 : Filtration ℝ≥0 ‹MeasurableSpace Ω›} {Z : ℝ≥0 → Ω → ℝ}
 
+/--
+@isnad1 id=measurab.4h5v.s7.822702b2d1e3 from=translated src=- shape=49203243 vocab=99cc9a2a
+-/
 theorem measurable_zero_hit (hadapt : Adapted 𝓕 Z)
     (hcont : ∀ ω, Continuous (fun t => Z t ω))
     (hnonneg : ∀ t ω, 0 ≤ Z t ω) (u t : ℝ≥0) (hut : u ≤ t) :
@@ -68,6 +71,9 @@ noncomputable def firstContactTime (Z : ℝ≥0 → Ω → ℝ) (T : ℝ≥0) (�
   sInf {t | t ≤ T ∧ Z t ω = 0}
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=and.2h4v.s6.ef64829813ef from=translated src=- shape=354b2379 vocab=ad208dac
+-/
 theorem firstContactTime_mem (hcont : ∀ ω, Continuous (fun t => Z t ω))
     {T : ℝ≥0} (hterminal : ∀ ω, Z T ω = 0) (ω : Ω) :
     firstContactTime Z T ω ≤ T ∧ Z (firstContactTime Z T ω) ω = 0 := by
@@ -76,6 +82,9 @@ theorem firstContactTime_mem (hcont : ∀ ω, Continuous (fun t => Z t ω))
   exact hc.csInf_mem ⟨T,le_rfl,hterminal ω⟩ ⟨0,fun _ _ => zero_le⟩
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=iff.2h5v.s6.968b91850c36 from=translated src=- shape=a1c53812 vocab=954f8642
+-/
 theorem firstContactTime_le_iff (hcont : ∀ ω, Continuous (fun t => Z t ω))
     {T : ℝ≥0} (hterminal : ∀ ω, Z T ω = 0) (ω : Ω) (t : ℝ≥0) :
     firstContactTime Z T ω ≤ t ↔ ∃ s ∈ Icc 0 (min t T), Z s ω = 0 := by
@@ -100,6 +109,9 @@ noncomputable def firstContactRule (hadapt : Adapted 𝓕 Z)
   le_horizon := fun ω => (firstContactTime_mem hcont hterminal ω).1
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=lt.4h5v.s6.4b8a6af522f9 from=translated src=- shape=4975bedb vocab=6a838952
+-/
 theorem firstContactTime_pos_before (hcont : ∀ ω, Continuous (fun t => Z t ω))
     (hnonneg : ∀ t ω, 0 ≤ Z t ω) {T : ℝ≥0} (hterminal : ∀ ω, Z T ω = 0)
     {t : ℝ≥0} (ω : Ω) (ht : t < firstContactTime Z T ω) : 0 < Z t ω := by

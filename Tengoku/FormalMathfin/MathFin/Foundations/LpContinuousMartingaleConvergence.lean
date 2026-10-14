@@ -181,7 +181,9 @@ private lemma discreteSampleLimit_integrable
     bound (via Doob's `L^p` inequality applied to the increment martingale
     `(M_t - M_n)_{t ∈ [n, n+1]}`). For `p > 1`, the `L^p` convergence
     follows from a.s. convergence + uniform integrability in `L^p`. Both
-    extensions are documented as follow-on work. -/
+    extensions are documented as follow-on work.
+@isnad1 id=ex.3h6v.s7.486221ed04ce from=translated src=- shape=8d5b5a9d vocab=4ef4300d
+-/
 theorem lp_continuous_martingale_converges_at_naturals
     {μ : Measure Ω} [IsFiniteMeasure μ] {𝓕 : Filtration ℝ mΩ}
     {M : ℝ → Ω → ℝ} {p : ℝ} (hp : 1 ≤ p)

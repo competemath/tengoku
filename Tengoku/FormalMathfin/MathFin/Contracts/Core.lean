@@ -114,11 +114,17 @@ noncomputable def Contract.pathPV (D : ℝ≥0 → ℝ) (s : Scenario ι)
     (c : Contract ι) : ℝ :=
   ((c.cashflows s).map fun p ↦ D p.1 * p.2).sum
 
+/--
+@isnad1 id=eq.0h5v.s5.e4d5f7cf6016 from=translated src=- shape=b0a01649 vocab=81d4452c
+-/
 theorem Contract.pathPV_both (D : ℝ≥0 → ℝ) (s : Scenario ι)
     (a b : Contract ι) :
     (Contract.both a b).pathPV D s = a.pathPV D s + b.pathPV D s := by
   simp [pathPV, cashflows]
 
+/--
+@isnad1 id=eq.0h5v.s5.1c030982c06b from=translated src=- shape=2724b64a vocab=4f6e6f03
+-/
 theorem Contract.pathPV_scale (D : ℝ≥0 → ℝ) (s : Scenario ι)
     (c : ℝ) (a : Contract ι) :
     (Contract.scale c a).pathPV D s = c * a.pathPV D s := by

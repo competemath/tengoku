@@ -32,6 +32,9 @@ namespace chapter3
 -/
 example (a p : ℕ) (h : p ∣ a) (g : a < p): a = 0 := eq_zero_of_dvd_of_lt h g
 
+/--
+@isnad1 id=dvd.4h5v.s6.024f535f92f0 from=translated src=- shape=3ad2d067 vocab=bd7a1f11
+-/
 theorem prime_div_descFactorial (n k m l p : ℕ) (h_klen : k ≤ n)
   (h_p : p.Prime) (h_p_div_binom : p ∣ choose n k) (H : choose n k = m^l) :
   p^l ∣ n.descFactorial k := by

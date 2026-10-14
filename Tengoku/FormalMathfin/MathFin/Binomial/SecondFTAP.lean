@@ -43,7 +43,9 @@ open Real
 /-- **Second FTAP (single-period binomial form)**: under no-arbitrage
 (`d < e^r < u`), the risk-neutral measure is uniquely characterised by the
 martingale condition `q · u + (1 − q) · d = e^r`. The unique solution is
-`crrUpProb u d r = (e^r − d) / (u − d)`. -/
+`crrUpProb u d r = (e^r − d) / (u − d)`.
+@isnad1 id=existsun.1h3v.s5.fb75caf1dbaa from=translated src=- shape=558f90ac vocab=c91ea3f2
+-/
 theorem second_FTAP_single_period {u d r : ℝ} (h : BinomialNoArb u d r) :
     ∃! q : ℝ, q * u + (1 - q) * d = Real.exp r := by
   have h_ud : 0 < u - d := sub_pos.mpr h.d_lt_u
@@ -89,7 +91,9 @@ the unique sequence `q : Fin n → ℝ` of per-step risk-neutral probabilities
 satisfying the one-step martingale condition `q_k · u + (1 − q_k) · d = e^r`
 at every `k ∈ Fin n` is the constant sequence `q_k ≡ crrUpProb u d r`.
 
-Direct chained application of `second_FTAP_single_period` at each `k`. -/
+Direct chained application of `second_FTAP_single_period` at each `k`.
+@isnad1 id=existsun.1h4v.s6.835082cec292 from=translated src=- shape=d8bf29df vocab=7c864ba4
+-/
 theorem multi_period_FTAP_marginals {u d r : ℝ} (h : BinomialNoArb u d r) (n : ℕ) :
     ∃! (q : Fin n → ℝ), ∀ k : Fin n, q k * u + (1 - q k) * d = Real.exp r := by
   have h_p : crrUpProb u d r * u + (1 - crrUpProb u d r) * d = Real.exp r := by

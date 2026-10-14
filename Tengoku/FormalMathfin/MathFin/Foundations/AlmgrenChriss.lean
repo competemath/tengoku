@@ -57,21 +57,27 @@ slow at the start and accelerates near `T`. -/
 noncomputable def almgrenChrissPath (X_0 κ T t : ℝ) : ℝ :=
   X_0 * Real.sinh (κ * (T - t)) / Real.sinh (κ * T)
 
-/-- **Initial condition**: `X(0) = X_0`. -/
+/-- **Initial condition**: `X(0) = X_0`.
+@isnad1 id=eq.1h3v.s5.c0e4451f278b from=translated src=- shape=92efa25d vocab=5d348811
+-/
 theorem almgrenChrissPath_at_zero (X_0 κ T : ℝ) (hT : Real.sinh (κ * T) ≠ 0) :
     almgrenChrissPath X_0 κ T 0 = X_0 := by
   unfold almgrenChrissPath
   rw [sub_zero]
   field_simp
 
-/-- **Terminal condition**: `X(T) = 0`. -/
+/-- **Terminal condition**: `X(T) = 0`.
+@isnad1 id=eq.0h3v.s4.24dcf8eef8ab from=translated src=- shape=fe91e4b7 vocab=939adccf
+-/
 theorem almgrenChrissPath_at_terminal (X_0 κ T : ℝ) :
     almgrenChrissPath X_0 κ T T = 0 := by
   unfold almgrenChrissPath
   rw [sub_self, mul_zero, Real.sinh_zero]
   simp
 
-/-- **First derivative**: `X'(t) = −X_0 · κ · cosh(κ (T − t)) / sinh(κ T)`. -/
+/-- **First derivative**: `X'(t) = −X_0 · κ · cosh(κ (T − t)) / sinh(κ T)`.
+@isnad1 id=hasderiv.1h4v.s6.547375a501b5 from=translated src=- shape=5b641fdb vocab=64e849e7
+-/
 theorem hasDerivAt_almgrenChrissPath (X_0 κ T : ℝ)
     (hT : Real.sinh (κ * T) ≠ 0) (t : ℝ) :
     HasDerivAt (almgrenChrissPath X_0 κ T)
@@ -93,7 +99,9 @@ theorem hasDerivAt_almgrenChrissPath (X_0 κ T : ℝ)
 /-- **Almgren-Chriss EL equation**: the closed-form trajectory satisfies
 `X''(t) = κ² · X(t)` (the Euler-Lagrange equation of the cost functional).
 The second derivative — obtained by differentiating the first — has the
-same `sinh(κ (T − t))` shape multiplied by `κ²`. -/
+same `sinh(κ (T − t))` shape multiplied by `κ²`.
+@isnad1 id=hasderiv.1h4v.s7.2c58736c0890 from=translated src=- shape=215f0b4c vocab=e6e2374c
+-/
 theorem almgrenChrissPath_satisfies_EL (X_0 κ T : ℝ)
     (hT : Real.sinh (κ * T) ≠ 0) (t : ℝ) :
     HasDerivAt (fun s : ℝ ↦

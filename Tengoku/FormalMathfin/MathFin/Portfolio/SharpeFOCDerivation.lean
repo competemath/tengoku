@@ -71,14 +71,18 @@ noncomputable def marginalVarTwo (w σ₁ σ₂ ρ : ℝ) : ℝ :=
 noncomputable def sharpeSqTwo (w r₁ r₂ σ₁ σ₂ ρ : ℝ) : ℝ :=
   (expectedReturnTwo w r₁ r₂)^2 / (varianceTwo w σ₁ σ₂ ρ)
 
-/-- **Self-dot identity for V**: `V(w) = w · (Σw)₁ + (1 − w) · (Σw)₂`. -/
+/-- **Self-dot identity for V**: `V(w) = w · (Σw)₁ + (1 − w) · (Σw)₂`.
+@isnad1 id=eq.0h4v.s5.25d4038c377d from=translated src=- shape=ab4ba882 vocab=3568b608
+-/
 lemma varianceTwo_eq_w_dot_Sigma_w (w σ₁ σ₂ ρ : ℝ) :
     varianceTwo w σ₁ σ₂ ρ =
       w * marginalVarOne w σ₁ σ₂ ρ + (1 - w) * marginalVarTwo w σ₁ σ₂ ρ := by
   unfold varianceTwo marginalVarOne marginalVarTwo
   ring
 
-/-- **Derivative of `E(w) = w r₁ + (1 − w) r₂`** is `r₁ − r₂`. -/
+/-- **Derivative of `E(w) = w r₁ + (1 − w) r₂`** is `r₁ − r₂`.
+@isnad1 id=hasderiv.0h3v.s5.dbfd51bd5a82 from=translated src=- shape=253cb56e vocab=142232fa
+-/
 lemma hasDerivAt_expectedReturnTwo (w r₁ r₂ : ℝ) :
     HasDerivAt (fun w' ↦ expectedReturnTwo w' r₁ r₂) (r₁ - r₂) w := by
   unfold expectedReturnTwo
@@ -94,7 +98,9 @@ lemma hasDerivAt_expectedReturnTwo (w r₁ r₂ : ℝ) :
 
 /-- **Derivative of `V(w) = w² σ₁² + (1−w)² σ₂² + 2 w (1−w) ρ σ₁ σ₂`** is
 `V'(w) = 2 · ((Σw)₁ − (Σw)₂)`. Proof: polynomial rewrite of `V` in the form
-`A w² + B w + C`, then `(A w² + B w + C)' = 2 A w + B`. -/
+`A w² + B w + C`, then `(A w² + B w + C)' = 2 A w + B`.
+@isnad1 id=hasderiv.0h4v.s6.92fa53ce94da from=translated src=- shape=45990109 vocab=e249e0ef
+-/
 lemma hasDerivAt_varianceTwo (w σ₁ σ₂ ρ : ℝ) :
     HasDerivAt (fun w' ↦ varianceTwo w' σ₁ σ₂ ρ)
                (2 * (marginalVarOne w σ₁ σ₂ ρ - marginalVarTwo w σ₁ σ₂ ρ)) w := by
@@ -115,14 +121,18 @@ lemma hasDerivAt_varianceTwo (w σ₁ σ₂ ρ : ℝ) :
   have h := (h_term1.add h_term2).add h_term3
   convert h using 1 <;> first | rfl | (unfold marginalVarOne marginalVarTwo; ring)
 
-/-- **Derivative of `E²(w)`** is `2 E (r₁ − r₂)`. -/
+/-- **Derivative of `E²(w)`** is `2 E (r₁ − r₂)`.
+@isnad1 id=hasderiv.0h3v.s6.5aaf2f2636da from=translated src=- shape=4cab7ddc vocab=39c2f0a4
+-/
 lemma hasDerivAt_expectedReturnTwo_sq (w r₁ r₂ : ℝ) :
     HasDerivAt (fun w' ↦ (expectedReturnTwo w' r₁ r₂)^2)
                (2 * expectedReturnTwo w r₁ r₂ * (r₁ - r₂)) w := by
   have h := (hasDerivAt_expectedReturnTwo w r₁ r₂).pow 2
   convert h using 1 <;> first | rfl | (push_cast; ring)
 
-/-- **Derivative of `Sh²(w) = E²/V`**: textbook formula `Sh²'(w) = (2EE'V − E²V')/V²`. -/
+/-- **Derivative of `Sh²(w) = E²/V`**: textbook formula `Sh²'(w) = (2EE'V − E²V')/V²`.
+@isnad1 id=hasderiv.1h6v.s7.e701e710c483 from=translated src=- shape=56f55f93 vocab=d0a423bf
+-/
 theorem hasDerivAt_sharpeSqTwo (w r₁ r₂ σ₁ σ₂ ρ : ℝ)
     (hV : varianceTwo w σ₁ σ₂ ρ ≠ 0) :
     HasDerivAt (fun w' ↦ sharpeSqTwo w' r₁ r₂ σ₁ σ₂ ρ)
@@ -144,7 +154,9 @@ the numerator to zero (with `E ≠ 0`) reduces to `r₁ (Σw)₂ = r₂ (Σw)₁
 
 The identity is proved by `ring` after unfolding all definitions; the
 non-trivial cancellation is that `(r₁ − r₂) V − E ((Σw)₁ − (Σw)₂)` simplifies
-exactly to `r₁ (Σw)₂ − r₂ (Σw)₁`. -/
+exactly to `r₁ (Σw)₂ − r₂ (Σw)₁`.
+@isnad1 id=eq.0h6v.s7.0bf275eeff96 from=translated src=- shape=e4a9d6a2 vocab=c978ab51
+-/
 theorem sharpeSqTwo_deriv_numerator_factored (w r₁ r₂ σ₁ σ₂ ρ : ℝ) :
     2 * expectedReturnTwo w r₁ r₂ * (r₁ - r₂) * varianceTwo w σ₁ σ₂ ρ -
         (expectedReturnTwo w r₁ r₂)^2 *
@@ -160,7 +172,9 @@ Sharpe-ratio squared has a critical point at `w` (i.e., `HasDerivAt Sh² 0 w`)
 
 This is the first-principles derivation: the FOC arises as the
 critical-point condition of a real maximization problem, not as a stated
-algebraic identity. -/
+algebraic identity.
+@isnad1 id=iff.2h6v.s6.bda265d982ec from=translated src=- shape=e76c304f vocab=8f7c91f6
+-/
 theorem sharpeSqTwo_critical_iff_crossProduct_FOC
     (w r₁ r₂ σ₁ σ₂ ρ : ℝ) (hV : varianceTwo w σ₁ σ₂ ρ ≠ 0)
     (hE : expectedReturnTwo w r₁ r₂ ≠ 0) :

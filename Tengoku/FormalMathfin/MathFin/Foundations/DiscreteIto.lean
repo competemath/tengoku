@@ -93,7 +93,9 @@ Proof: telescoping `f(X_N) − f(X_0) = Σ (f(X_{k+1}) − f(X_k))` via
 `Finset.sum_range_sub`, then substituting the definition of `R_k` into
 each summand, then `Finset.sum_add_distrib` + `Finset.mul_sum`. No
 probabilistic content; the Itô correction `(1/2) f''(X_k)·(ΔX_k)²`
-appears purely algebraically. -/
+appears purely algebraically.
+@isnad1 id=eq.0h5v.s7.670aa0f63aa1 from=translated src=- shape=2ff51077 vocab=2a30b1a3
+-/
 theorem discrete_ito_formula
     (N : ℕ) (X : ℕ → ℝ) (f f' f'' : ℝ → ℝ) :
     f (X N) - f (X 0) =

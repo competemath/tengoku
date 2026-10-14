@@ -23,7 +23,9 @@ namespace WeilEF
 
 open Complex Filter Topology
 
-/-- Γℝ(s) = π^{−s/2} Γ(s/2) is complex-differentiable at every s with Re s > 0. -/
+/-- Γℝ(s) = π^{−s/2} Γ(s/2) is complex-differentiable at every s with Re s > 0.
+@isnad1 id=differen.1h1v.s6.73a3112ac517 from=translated src=- shape=f4fff64d vocab=32bdf864
+-/
 lemma differentiableAt_Gammaℝ {s : ℂ} (hs : 0 < s.re) : DifferentiableAt ℂ Gammaℝ s := by
   have h1 : DifferentiableAt ℂ (fun u : ℂ => (Real.pi : ℂ) ^ (-u / 2)) s :=
     (differentiableAt_id.neg.div_const (2 : ℂ)).const_cpow
@@ -38,13 +40,17 @@ lemma differentiableAt_Gammaℝ {s : ℂ} (hs : 0 < s.re) : DifferentiableAt ℂ
   rw [this]
   exact h1.mul h2
 
-/-- Γℝ is analytic at every point of the right half-plane. -/
+/-- Γℝ is analytic at every point of the right half-plane.
+@isnad1 id=analytic.1h1v.s5.cea52a4b0131 from=translated src=- shape=f4fff64d vocab=fe46e5da
+-/
 lemma analyticAt_Gammaℝ {s : ℂ} (hs : 0 < s.re) : AnalyticAt ℂ Gammaℝ s := by
   have hopen : IsOpen {u : ℂ | 0 < u.re} := isOpen_lt continuous_const Complex.continuous_re
   exact DifferentiableOn.analyticAt (fun u hu => (differentiableAt_Gammaℝ hu).differentiableWithinAt)
     (hopen.mem_nhds hs)
 
-/-- On the right half-plane, Λ = Γℝ · ζ (as germs). -/
+/-- On the right half-plane, Λ = Γℝ · ζ (as germs).
+@isnad1 id=eventual.1h1v.s5.40753e3c4f02 from=translated src=- shape=f60eff8a vocab=2a1997cc
+-/
 lemma completedZeta_eventuallyEq_mul {s : ℂ} (hs : 0 < s.re) :
     completedRiemannZeta =ᶠ[𝓝 s] fun u => Gammaℝ u * riemannZeta u := by
   have hopen : IsOpen {u : ℂ | 0 < u.re} := isOpen_lt continuous_const Complex.continuous_re
@@ -54,13 +60,17 @@ lemma completedZeta_eventuallyEq_mul {s : ℂ} (hs : 0 < s.re) :
   rw [riemannZeta_def_of_ne_zero hu0]
   field_simp
 
-/-- ζ is analytic at every s ≠ 1. -/
+/-- ζ is analytic at every s ≠ 1.
+@isnad1 id=analytic.1h1v.s5.3f12b4d108f2 from=translated src=- shape=d04ac3e0 vocab=05d6f41e
+-/
 lemma analyticAt_riemannZeta {s : ℂ} (hs : s ≠ 1) : AnalyticAt ℂ riemannZeta s :=
   DifferentiableOn.analyticAt (s := ({1}ᶜ : Set ℂ))
     (fun _ hu => (differentiableAt_riemannZeta hu).differentiableWithinAt)
     (isOpen_compl_singleton.mem_nhds hs)
 
-/-- On the right half-plane away from 1 and from the zeros of ζ:  Λ'/Λ = Γℝ'/Γℝ + ζ'/ζ. -/
+/-- On the right half-plane away from 1 and from the zeros of ζ:  Λ'/Λ = Γℝ'/Γℝ + ζ'/ζ.
+@isnad1 id=eq.3h1v.s6.d218bcbfe0d3 from=translated src=- shape=f2e25073 vocab=1491a70a
+-/
 theorem logDeriv_completedZeta (s : ℂ) (hs1 : s ≠ 1)
     (hζ : riemannZeta s ≠ 0) (hstrip : 0 < s.re) :
     logDeriv completedRiemannZeta s = logDeriv Complex.Gammaℝ s + logDeriv riemannZeta s := by
@@ -71,7 +81,9 @@ theorem logDeriv_completedZeta (s : ℂ) (hs1 : s ≠ 1)
   exact logDeriv_mul s (Gammaℝ_ne_zero_of_re_pos hstrip) hζ (differentiableAt_Gammaℝ hstrip)
     (differentiableAt_riemannZeta hs1)
 
-/-- Functional equation for the log-derivative: Λ'/Λ(1−s) = −Λ'/Λ(s)  (from Λ(1−s) = Λ(s)). -/
+/-- Functional equation for the log-derivative: Λ'/Λ(1−s) = −Λ'/Λ(s)  (from Λ(1−s) = Λ(s)).
+@isnad1 id=eq.2h1v.s6.61859654593a from=translated src=- shape=2b29d479 vocab=47a06a46
+-/
 theorem logDeriv_completedZeta_one_sub (s : ℂ) (hs0 : s ≠ 0) (hs1 : s ≠ 1) :
     logDeriv completedRiemannZeta (1 - s) = -logDeriv completedRiemannZeta s := by
   have hcomp : completedRiemannZeta = completedRiemannZeta ∘ (fun u : ℂ => 1 - u) := by
@@ -88,7 +100,9 @@ theorem logDeriv_completedZeta_one_sub (s : ℂ) (hs0 : s ≠ 0) (hs1 : s ≠ 1)
   ring
 
 /-- In the open critical strip the zeros of Λ are exactly the nontrivial zeros of ζ, with the same
-analytic order (Γℝ is analytic and nonvanishing there). -/
+analytic order (Γℝ is analytic and nonvanishing there).
+@isnad1 id=and.2h1v.s6.2bf22366a3f9 from=translated src=- shape=d6512819 vocab=c30dd8b1
+-/
 theorem completedZeta_zeros_strip {ρ : ℂ} (h : 0 < ρ.re) (h' : ρ.re < 1) :
     (completedRiemannZeta ρ = 0 ↔ IsNontrivialZero ρ) ∧
     analyticOrderAt completedRiemannZeta ρ = analyticOrderAt riemannZeta ρ := by

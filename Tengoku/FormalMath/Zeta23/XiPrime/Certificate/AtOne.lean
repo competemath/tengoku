@@ -30,16 +30,24 @@ namespace XiPrime
 
 /-! ### generic λ = 1 algebra -/
 
+/--
+@isnad1 id=eq.0h2v.s6.c118404220a5 from=translated src=- shape=fcbacc16 vocab=1932a3cb
+-/
 theorem jWin_one (D v : ℝ → ℝ) : jWin D 1 v = 2 * ∫ r in (0:ℝ)..1, (D r * vConv v r) := by
   unfold jWin; simp only [one_mul]
 
+/--
+@isnad1 id=eq.0h1v.s7.aa0fda69e92c from=translated src=- shape=4c82ff32 vocab=62908750
+-/
 theorem kappaXi_one (v : ℝ → ℝ) :
     kappaXi 1 v = ((∫ s in (-(1:ℝ)/2)..(1/2), v s ^ 2) + jWin D1 1 v)
       / (∫ s in (-(1:ℝ)/2)..(1/2), v s) ^ 2 := by
   unfold kappaXi cWin
   rw [one_mul, one_mul, one_div, inv_div]
 
-/-- comparison of 𝒥 at λ = 1 under a pointwise bound with constant slack on [0,1]. -/
+/-- comparison of 𝒥 at λ = 1 under a pointwise bound with constant slack on [0,1].
+@isnad1 id=le.6h5v.s8.71283982b9d3 from=translated src=- shape=0eca2c6a vocab=084ff07b
+-/
 theorem jWin_one_le_of_le {D E w : ℝ → ℝ} (hD : ContinuousOn D (Icc 0 1))
     (hE : ContinuousOn E (Icc 0 1)) (hw : ContinuousOn w (Icc 0 1))
     (hw0 : ∀ r ∈ Icc (0:ℝ) 1, 0 ≤ w r) {e : ℝ} (hle : ∀ r ∈ Icc (0:ℝ) 1, D r ≤ E r + e)
@@ -67,11 +75,17 @@ theorem jWin_one_le_of_le {D E w : ℝ → ℝ} (hD : ContinuousOn D (Icc 0 1))
 
 /-! ### 2∫₀¹(v⋆v) = (∫v)² for the two windows (Fubini instances, by direct evaluation) -/
 
+/--
+@isnad1 id=eq.0h0v.s6.6a1e943804d5 from=translated src=- shape=7e7bae79 vocab=e99d10ac
+-/
 theorem two_integral_vConv_vFlat : 2 * ∫ r in (0:ℝ)..1, (1 - r) = (1:ℝ) := by
   have h : (fun r : ℝ => 1 - r) = polyEval [1, -1] := by
     ext r; simp [polyEval, Finset.sum_range_succ]; ring
   rw [h, integral_polyEval]; simp [polyInt, Finset.sum_range_succ]; norm_num
 
+/--
+@isnad1 id=eq.0h0v.s6.3fc4be3b3506 from=translated src=- shape=9a565dab vocab=51fa7f02
+-/
 theorem two_integral_convQ : 2 * ∫ r in (0:ℝ)..1, convQ r = (2777 / 3000 : ℝ) ^ 2 := by
   have h : (fun r : ℝ => convQ r)
       = polyEval [518783/600000, -729/1600, -522523/262500, 7082/1875, -47209/12500, 30551/18750,
@@ -86,6 +100,9 @@ def kap9Flat : ℝ := 100905635384 / 88388425125
 /-- the quartic κ₉. -/
 def kap9Quartic : ℝ := 277244140547469154168336 / 245053976636191319722125
 
+/--
+@isnad1 id=le.0h0v.s5.1366284de04a from=translated src=- shape=e1b9c205 vocab=9b19c02e
+-/
 theorem jWin_D1_one_vFlat_le : jWin D1 1 vFlat ≤ 12517210259 / 88388425125 + eps9 := by
   have h := jWin_one_le_of_le (v := vFlat) (w := fun r => 1 - r) (continuousOn_D1 _)
     (continuous_D1trunc 9).continuousOn (by fun_prop) (fun r hr => by linarith [hr.2])
@@ -93,6 +110,9 @@ theorem jWin_D1_one_vFlat_le : jWin D1 1 vFlat ≤ 12517210259 / 88388425125 + e
   rw [jWin_trunc9_vFlat, two_integral_vConv_vFlat, mul_one] at h
   exact h
 
+/--
+@isnad1 id=le.0h0v.s5.6a477ca30569 from=translated src=- shape=92923ffe vocab=cf596e04
+-/
 theorem le_jWin_D1_one_vFlat : 12517210259 / 88388425125 ≤ jWin D1 1 vFlat := by
   have h := jWin_one_le_of_le (v := vFlat) (w := fun r => 1 - r)
     (continuous_D1trunc 9).continuousOn (continuousOn_D1 _) (by fun_prop)
@@ -101,6 +121,9 @@ theorem le_jWin_D1_one_vFlat : 12517210259 / 88388425125 ≤ jWin D1 1 vFlat := 
   rw [jWin_trunc9_vFlat] at h
   linarith
 
+/--
+@isnad1 id=le.0h0v.s6.81ca336b5adf from=translated src=- shape=b5450475 vocab=f605b277
+-/
 theorem jWin_D1_one_vQuartic_le :
     jWin D1 1 vQuartic ≤ 29965280330934234270211 / 285991090937677125000000
       + eps9 * (2777 / 3000 : ℝ) ^ 2 := by
@@ -110,6 +133,9 @@ theorem jWin_D1_one_vQuartic_le :
   rw [jWin_trunc9_vQuartic, two_integral_convQ] at h
   exact h
 
+/--
+@isnad1 id=le.0h0v.s5.d29c267be5e3 from=translated src=- shape=92923ffe vocab=22ee2f1c
+-/
 theorem le_jWin_D1_one_vQuartic :
     29965280330934234270211 / 285991090937677125000000 ≤ jWin D1 1 vQuartic := by
   have h := jWin_one_le_of_le (v := vQuartic) (w := convQ)
@@ -119,7 +145,9 @@ theorem le_jWin_D1_one_vQuartic :
   rw [jWin_trunc9_vQuartic] at h
   linarith
 
-/-- **flat window:** κ₉ ≤ κ₁(1, vFlat) ≤ κ₉ + ε₉. -/
+/-- **flat window:** κ₉ ≤ κ₁(1, vFlat) ≤ κ₉ + ε₉.
+@isnad1 id=mem.0h0v.s4.24ec290c7018 from=translated src=- shape=6e74eb48 vocab=b559331c
+-/
 theorem kappaXi_one_vFlat_mem : kappaXi 1 vFlat ∈ Icc kap9Flat (kap9Flat + eps9) := by
   rw [kappaXi_one, integral_vFlat, integral_vFlat_sq]
   unfold kap9Flat
@@ -127,7 +155,9 @@ theorem kappaXi_one_vFlat_mem : kappaXi 1 vFlat ∈ Icc kap9Flat (kap9Flat + eps
   · have := le_jWin_D1_one_vFlat; norm_num at this ⊢; linarith
   · have := jWin_D1_one_vFlat_le; norm_num at this ⊢; linarith
 
-/-- **quartic window:** κ₉ ≤ κ₁(1, vQuartic) ≤ κ₉ + ε₉. -/
+/-- **quartic window:** κ₉ ≤ κ₁(1, vQuartic) ≤ κ₉ + ε₉.
+@isnad1 id=mem.0h0v.s4.10ae94ab59ba from=translated src=- shape=6e74eb48 vocab=5c10ada9
+-/
 theorem kappaXi_one_vQuartic_mem :
     kappaXi 1 vQuartic ∈ Icc kap9Quartic (kap9Quartic + eps9) := by
   rw [kappaXi_one, integral_vQuartic, integral_vQuartic_sq]
@@ -139,34 +169,53 @@ theorem kappaXi_one_vQuartic_mem :
   · rw [div_le_iff₀ ha]
     have := jWin_D1_one_vQuartic_le; norm_num at this ⊢; linarith
 
+/--
+@isnad1 id=le.0h0v.s4.cf0119c752a7 from=translated src=- shape=664c2572 vocab=1a80828a
+-/
 theorem kappaXi_one_vFlat_le : kappaXi 1 vFlat ≤ kap9Flat + eps9 := kappaXi_one_vFlat_mem.2
+/--
+@isnad1 id=le.0h0v.s4.bac59a71f446 from=translated src=- shape=664c2572 vocab=3b6b14f7
+-/
 theorem kappaXi_one_vQuartic_le : kappaXi 1 vQuartic ≤ kap9Quartic + eps9 :=
   kappaXi_one_vQuartic_mem.2
 
 /-! ### the sharp certified decimals at λ = 1 -/
 
-/-- **2 − κ₁(1, flat) ≥ 0.85838371**  [XF′: "≥ 0.858383"]. -/
+/-- **2 − κ₁(1, flat) ≥ 0.85838371**  [XF′: "≥ 0.858383"].
+@isnad1 id=le.0h0v.s5.fea49effdbc9 from=translated src=- shape=e5d26c04 vocab=50c5f67e
+-/
 theorem cert_flat_one : (0.85838371 : ℝ) ≤ 2 - kappaXi 1 vFlat := by
   have h := kappaXi_one_vFlat_le; unfold kap9Flat eps9 at h; norm_num at h ⊢; linarith
 
-/-- **3/2 − κ₁(1, flat)/2 ≥ 0.92919185**  [XF′: "≥ 0.929191"]. -/
+/-- **3/2 − κ₁(1, flat)/2 ≥ 0.92919185**  [XF′: "≥ 0.929191"].
+@isnad1 id=le.0h0v.s6.1bff2a6d3fdb from=translated src=- shape=b5a3f178 vocab=04c07469
+-/
 theorem cert_flat_dist_one : (0.92919185 : ℝ) ≤ 3 / 2 - kappaXi 1 vFlat / 2 := by
   have h := kappaXi_one_vFlat_le; unfold kap9Flat eps9 at h; norm_num at h ⊢; linarith
 
-/-- **2 − κ₁(1, quartic) ≥ 0.86864017**  [XF′: "≥ 0.868640"]. -/
+/-- **2 − κ₁(1, quartic) ≥ 0.86864017**  [XF′: "≥ 0.868640"].
+@isnad1 id=le.0h0v.s5.14b7fd4217d3 from=translated src=- shape=e5d26c04 vocab=686834c2
+-/
 theorem cert_quartic_one : (0.86864017 : ℝ) ≤ 2 - kappaXi 1 vQuartic := by
   have h := kappaXi_one_vQuartic_le; unfold kap9Quartic eps9 at h; norm_num at h ⊢; linarith
 
-/-- **3/2 − κ₁(1, quartic)/2 ≥ 0.93432008**  [XF′: "≥ 0.934320"]. -/
+/-- **3/2 − κ₁(1, quartic)/2 ≥ 0.93432008**  [XF′: "≥ 0.934320"].
+@isnad1 id=le.0h0v.s6.1ab8c54dbeaa from=translated src=- shape=b5a3f178 vocab=7fa4e08e
+-/
 theorem cert_quartic_dist_one : (0.93432008 : ℝ) ≤ 3 / 2 - kappaXi 1 vQuartic / 2 := by
   have h := kappaXi_one_vQuartic_le; unfold kap9Quartic eps9 at h; norm_num at h ⊢; linarith
 
 /-- strict forms at the FIVE-decimal interface constants (used with continuity in λ to produce
-CertFlat / CertQuartic of Statement.lean). -/
+CertFlat / CertQuartic of Statement.lean).
+@isnad1 id=and.0h0v.s6.2b60e1807396 from=translated src=- shape=fa8441c7 vocab=10869310
+-/
 theorem cert_flat_one_strict :
     (0.85838 : ℝ) < 2 - kappaXi 1 vFlat ∧ (0.92919 : ℝ) < 3 / 2 - kappaXi 1 vFlat / 2 := by
   constructor <;> linarith [cert_flat_one, cert_flat_dist_one]
 
+/--
+@isnad1 id=and.0h0v.s6.5004121a765f from=translated src=- shape=fa8441c7 vocab=56e82664
+-/
 theorem cert_quartic_one_strict :
     (0.86864 : ℝ) < 2 - kappaXi 1 vQuartic ∧ (0.93432 : ℝ) < 3 / 2 - kappaXi 1 vQuartic / 2 := by
   constructor <;> linarith [cert_quartic_one, cert_quartic_dist_one]

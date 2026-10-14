@@ -49,7 +49,9 @@ noncomputable def bondPortfolioConv
   ∑ i ∈ s, w i * (T i - t) ^ 2 * Real.exp (-(r * (T i - t)))
 
 /-- **Derivative of duration-times-value w.r.t. rate**:
-`∂_r (Dur_P · P) = −Conv_P · P`. -/
+`∂_r (Dur_P · P) = −Conv_P · P`.
+@isnad1 id=hasderiv.0h6v.s6.632fcc53f4c3 from=translated src=- shape=a3f4f4bb vocab=4c2047fd
+-/
 lemma hasDerivAt_bondPortfolioDur_r
     {ι : Type*} (s : Finset ι) (w T : ι → ℝ) (t r : ℝ) :
     HasDerivAt (fun r' ↦ bondPortfolioDur s w T t r')
@@ -69,7 +71,9 @@ lemma hasDerivAt_bondPortfolioDur_r
   exact h_raw
 
 /-- **Second derivative of portfolio value w.r.t. rate**:
-`∂²P/∂r² = Conv_P · P` (equivalently `∂_r (−Dur_P · P) = Conv_P · P`). -/
+`∂²P/∂r² = Conv_P · P` (equivalently `∂_r (−Dur_P · P) = Conv_P · P`).
+@isnad1 id=hasderiv.0h6v.s6.123ccf64b0a4 from=translated src=- shape=6a6163c1 vocab=4c2047fd
+-/
 lemma hasDerivAt_neg_bondPortfolioDur_r
     {ι : Type*} (s : Finset ι) (w T : ι → ℝ) (t r : ℝ) :
     HasDerivAt (fun r' ↦ -bondPortfolioDur s w T t r')
@@ -79,7 +83,9 @@ lemma hasDerivAt_neg_bondPortfolioDur_r
   exact h
 
 /-- **Single-bond convexity**: a single-bond portfolio's convexity-times-value
-equals `w · (T − t)² · exp(−r(T − t))`. -/
+equals `w · (T − t)² · exp(−r(T − t))`.
+@isnad1 id=eq.0h6v.s6.40a7039980f4 from=translated src=- shape=923e88fa vocab=18aeb169
+-/
 lemma bondPortfolio_single_bond_conv
     {ι : Type*} (i : ι) (w T : ι → ℝ) (t r : ℝ) :
     bondPortfolioConv {i} w T t r =
@@ -91,7 +97,9 @@ lemma bondPortfolio_single_bond_conv
 convexity-times-value of the asset portfolio match those of the liability,
 then both the first and second derivatives of `P_A − P_L` vanish at the
 current rate. The first-order condition is `bondPortfolio_immunization_first_order`;
-this lemma covers the second-order condition. -/
+this lemma covers the second-order condition.
+@isnad1 id=hasderiv.1h10v.s6.eb54f29fdbe9 from=translated src=- shape=4942590c vocab=4f120054
+-/
 lemma bondPortfolio_immunization_second_order
     {ι κ : Type*}
     (sA : Finset ι) (wA TA : ι → ℝ)

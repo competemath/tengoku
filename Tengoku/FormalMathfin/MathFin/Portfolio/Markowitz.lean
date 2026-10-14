@@ -62,7 +62,9 @@ noncomputable def minPortfolioVarTwo (σ₁ σ₂ ρ : ℝ) : ℝ :=
   σ₁ ^ 2 * σ₂ ^ 2 * (1 - ρ ^ 2) / minVarDenom σ₁ σ₂ ρ
 
 /-- Two-asset portfolio variance has the closed-form factorization
-`Var(w) = D · (w − w*)² + V_min`. -/
+`Var(w) = D · (w − w*)² + V_min`.
+@isnad1 id=eq.1h4v.s6.00fde1b69780 from=translated src=- shape=bc391728 vocab=90f6d737
+-/
 lemma portfolioVarTwo_eq_quad {σ₁ σ₂ ρ : ℝ}
     (hD : minVarDenom σ₁ σ₂ ρ ≠ 0) (w : ℝ) :
     portfolioVarTwo σ₁ σ₂ ρ w =
@@ -73,7 +75,9 @@ lemma portfolioVarTwo_eq_quad {σ₁ σ₂ ρ : ℝ}
   unfold minVarDenom
   ring
 
-/-- Two-asset portfolio variance attains the explicit minimum `V_min` at `w = w*`. -/
+/-- Two-asset portfolio variance attains the explicit minimum `V_min` at `w = w*`.
+@isnad1 id=eq.1h3v.s5.695e1a1d47cc from=translated src=- shape=42141129 vocab=d19e2731
+-/
 lemma portfolioVarTwo_at_minVarWeight {σ₁ σ₂ ρ : ℝ}
     (hD : minVarDenom σ₁ σ₂ ρ ≠ 0) :
     portfolioVarTwo σ₁ σ₂ ρ (minVarWeightTwo σ₁ σ₂ ρ) =
@@ -82,7 +86,9 @@ lemma portfolioVarTwo_at_minVarWeight {σ₁ σ₂ ρ : ℝ}
   simp [sub_self]
 
 /-- For any weight, the portfolio variance is at least `V_min`, provided the
-denominator `D` is positive (the standard non-degeneracy condition). -/
+denominator `D` is positive (the standard non-degeneracy condition).
+@isnad1 id=le.1h4v.s5.1d1950454cae from=translated src=- shape=95fa96c8 vocab=5849a746
+-/
 lemma portfolioVarTwo_ge_min {σ₁ σ₂ ρ : ℝ}
     (hD : 0 < minVarDenom σ₁ σ₂ ρ) (w : ℝ) :
     minPortfolioVarTwo σ₁ σ₂ ρ ≤ portfolioVarTwo σ₁ σ₂ ρ w := by
@@ -93,7 +99,9 @@ lemma portfolioVarTwo_ge_min {σ₁ σ₂ ρ : ℝ}
   linarith
 
 /-- **Perfect-hedge corollary**: when `ρ = -1` and both volatilities are
-positive, the minimum portfolio variance equals zero. -/
+positive, the minimum portfolio variance equals zero.
+@isnad1 id=eq.0h2v.s4.3b066983edfb from=translated src=- shape=67a10eed vocab=14ead638
+-/
 lemma minPortfolioVarTwo_perfect_anticorr (σ₁ σ₂ : ℝ) :
     minPortfolioVarTwo σ₁ σ₂ (-1) = 0 := by
   unfold minPortfolioVarTwo

@@ -81,7 +81,9 @@ there is no arbitrage.
 
 Proof: under EMM, any portfolio satisfies `q_up · (θ z_up) + q_down · (θ
 z_down) = θ · 0 = 0`. If both terms are non-negative and one is strictly
-positive, the EMM-weighted sum is strictly positive — contradiction. -/
+positive, the EMM-weighted sum is strictly positive — contradiction.
+@isnad1 id=not.1h2v.s3.9ae8cabb6242 from=translated src=- shape=080e7217 vocab=355f52aa
+-/
 theorem noArbitrage_of_emm (z_up z_down : ℝ)
     (h_emm : HasEMM_two_state z_up z_down) :
     ¬ HasArbitrage_two_state z_up z_down := by
@@ -118,7 +120,9 @@ noncomputable def emmWeightDown (z_up z_down : ℝ) : ℝ :=
 /-- **Backward FTAP — EMM construction** (Nagy 2026, Theorem 7.3): if
 `z_up > 0` and `z_down < 0`, the named weights
 `emmWeightUp = −z_down / (z_up − z_down)`, `emmWeightDown = z_up / (z_up −
-z_down)` form an EMM. -/
+z_down)` form an EMM.
+@isnad1 id=hasemmtw.2h2v.s4.bc606c6a4dea from=translated src=- shape=3f158bdc vocab=ff40c4e1
+-/
 theorem emm_of_signs (z_up z_down : ℝ)
     (h_up_pos : 0 < z_up) (h_down_neg : z_down < 0) :
     HasEMM_two_state z_up z_down := by
@@ -133,7 +137,9 @@ theorem emm_of_signs (z_up z_down : ℝ)
     ring
 
 /-- **Companion variant** of `emm_of_signs`: with `z_up < 0` and `z_down >
-0`, the same construction (with roles reversed) yields an EMM. -/
+0`, the same construction (with roles reversed) yields an EMM.
+@isnad1 id=hasemmtw.2h2v.s4.65584416b3f1 from=translated src=- shape=be13d4a8 vocab=ff40c4e1
+-/
 theorem emm_of_signs_swapped (z_up z_down : ℝ)
     (h_up_neg : z_up < 0) (h_down_pos : 0 < z_down) :
     HasEMM_two_state z_up z_down := by
@@ -145,7 +151,9 @@ theorem emm_of_signs_swapped (z_up z_down : ℝ)
   · field_simp; ring
 
 /-- **Trivial market**: when `z_up = z_down = 0`, the uniform measure
-`(1/2, 1/2)` is an EMM and there is no arbitrage. -/
+`(1/2, 1/2)` is an EMM and there is no arbitrage.
+@isnad1 id=hasemmtw.0h0v.s3.fc21616f2443 from=translated src=- shape=6d6f5044 vocab=72beacb2
+-/
 theorem emm_of_trivial_market :
     HasEMM_two_state 0 0 :=
   ⟨1 / 2, 1 / 2, by norm_num, by norm_num, by norm_num, by norm_num⟩

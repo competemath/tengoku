@@ -31,15 +31,21 @@ variable {ι : Type*} [Fintype ι] [Nonempty ι]
 noncomputable def worstCase (X : ι → ℝ) : ℝ :=
   Finset.univ.sup' Finset.univ_nonempty (fun i ↦ - X i)
 
-/-- Each `-Xᵢ` lower-bounds the worst-case loss `worstCase X`. -/
+/-- Each `-Xᵢ` lower-bounds the worst-case loss `worstCase X`.
+@isnad1 id=le.0h3v.s4.b4c3ff642742 from=translated src=- shape=20e2f647 vocab=bc800793
+-/
 lemma le_worstCase (X : ι → ℝ) (i : ι) : - X i ≤ worstCase X :=
   Finset.le_sup' (fun i ↦ - X i) (Finset.mem_univ i)
 
-/-- Any uniform upper bound on the `-Xᵢ` bounds `worstCase X` above. -/
+/-- Any uniform upper bound on the `-Xᵢ` bounds `worstCase X` above.
+@isnad1 id=le.1h3v.s5.62cd946fada5 from=translated src=- shape=64bf70f6 vocab=bc800793
+-/
 lemma worstCase_le {X : ι → ℝ} {a : ℝ} (h : ∀ i, - X i ≤ a) : worstCase X ≤ a :=
   Finset.sup'_le Finset.univ_nonempty (fun i ↦ - X i) (fun i _ ↦ h i)
 
-/-- Worst-case loss satisfies the four ADEH coherent-risk axioms. -/
+/-- Worst-case loss satisfies the four ADEH coherent-risk axioms.
+@isnad1 id=iscohere.0h1v.s3.372bdf94e032 from=translated src=- shape=4c9b52a8 vocab=e9ec0302
+-/
 lemma worstCase_isCoherent : IsCoherentRisk (worstCase (ι := ι)) := by
   refine ⟨?_, ?_, ?_, ?_⟩
   · intro X Y hXY
@@ -73,7 +79,9 @@ lemma worstCase_isCoherent : IsCoherentRisk (worstCase (ι := ι)) := by
     simp only [Pi.add_apply, neg_add_rev]
     linarith
 
-/-- The representing set of worst-case loss is the entire probability simplex. -/
+/-- The representing set of worst-case loss is the entire probability simplex.
+@isnad1 id=eq.0h1v.s4.72f1eba597fb from=translated src=- shape=6b05ef2f vocab=a3dffff4
+-/
 lemma representingSet_worstCase :
     representingSet (worstCase (ι := ι)) = stdSimplex ℝ ι := by
   ext q
@@ -87,7 +95,9 @@ lemma representingSet_worstCase :
     linarith
 
 /-- **Worst-case loss is the supremum of expected loss over the entire probability simplex** —
-the concrete instance of the ADEH representation. -/
+the concrete instance of the ADEH representation.
+@isnad1 id=islub.0h2v.s5.31bb6fb208b3 from=translated src=- shape=b8a77fbf vocab=973d7e54
+-/
 theorem worstCase_isLUB (X : ι → ℝ) :
     IsLUB ((fun q ↦ ∑ i, q i * (- X i)) '' stdSimplex ℝ ι) (worstCase X) := by
   rw [← representingSet_worstCase]

@@ -25,6 +25,9 @@ namespace MathFin.BlackScholes.AmericanPut.Stopping
 open Set Filter Metric
 open scoped Topology
 
+/--
+@isnad1 id=ex.6h3v.s7.dd35460cfd1a from=translated src=- shape=a79b9365 vocab=2e8da5fc
+-/
 theorem exists_smooth_compact_minorant {f : ℝ → ℝ}
     (hf : Continuous f) (hf0 : ∀ x, 0 ≤ f x) (hf1 : ∀ x, f x ≤ 1)
     {R ε : ℝ} (hR : 0 < R) (hε : 0 < ε) (hε1 : ε ≤ 1) :
@@ -82,6 +85,9 @@ theorem exists_smooth_compact_minorant {f : ℝ → ℝ}
     rw [hφ1,mul_one,abs_le]
     constructor <;> linarith
 
+/--
+@isnad1 id=ex.3h1v.s7.0dde8aa6d47f from=translated src=- shape=62efb618 vocab=c912673f
+-/
 theorem exists_smooth_compact_minorant_sequence {f : ℝ → ℝ}
     (hf : Continuous f) (hf0 : ∀ x, 0 ≤ f x) (hf1 : ∀ x, f x ≤ 1) :
     ∃ m : ℕ → ℝ → ℝ, (∀ n, ContDiff ℝ 2 (m n)) ∧

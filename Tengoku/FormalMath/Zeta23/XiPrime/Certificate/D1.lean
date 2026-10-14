@@ -33,15 +33,26 @@ namespace XiPrime
 
 /-! ### the coefficients -/
 
+/--
+@isnad1 id=lt.0h1v.s3.675eb1a24462 from=translated src=- shape=b9369acb vocab=8cda7cc8
+-/
 theorem D1coeff_pos (k : ℕ) : 0 < D1coeff k := by
   unfold D1coeff; positivity
 
+/--
+@isnad1 id=le.0h1v.s3.ce5af479e532 from=translated src=- shape=b9369acb vocab=d42bb716
+-/
 theorem D1coeff_nonneg (k : ℕ) : 0 ≤ D1coeff k := (D1coeff_pos k).le
 
+/--
+@isnad1 id=eq.0h0v.s4.2ed570ff865a from=translated src=- shape=1ac31801 vocab=5929db07
+-/
 theorem D1coeff_zero : D1coeff 0 = 4 := by
   norm_num [D1coeff, Nat.factorial]
 
-/-- the ratio recursion: D1coeff (k+1) = D1coeff k · 2(k+1)/((k+2)(2k+3)). -/
+/-- the ratio recursion: D1coeff (k+1) = D1coeff k · 2(k+1)/((k+2)(2k+3)).
+@isnad1 id=eq.0h1v.s7.c38a49076cc7 from=translated src=- shape=f3497280 vocab=fac8af0e
+-/
 theorem D1coeff_succ (k : ℕ) :
     D1coeff (k + 1) = D1coeff k * (2 * (k + 1) / ((k + 2) * (2 * k + 3))) := by
   unfold D1coeff
@@ -59,7 +70,9 @@ theorem D1coeff_succ (k : ℕ) :
   field_simp
   ring
 
-/-- the ratio is at most 1/3 (its value at k = 0). -/
+/-- the ratio is at most 1/3 (its value at k = 0).
+@isnad1 id=le.0h1v.s5.e27262eff876 from=translated src=- shape=d5f44acb vocab=2d498457
+-/
 theorem D1coeff_succ_le_third (k : ℕ) : D1coeff (k + 1) ≤ D1coeff k / 3 := by
   rw [D1coeff_succ]
   have hk : (0 : ℝ) ≤ k := Nat.cast_nonneg k
@@ -71,7 +84,9 @@ theorem D1coeff_succ_le_third (k : ℕ) : D1coeff (k + 1) ≤ D1coeff k / 3 := b
       ≤ D1coeff k * (1 / 3) := mul_le_mul_of_nonneg_left hr (D1coeff_nonneg k)
     _ = D1coeff k / 3 := by ring
 
-/-- for k ≥ 9 the ratio is at most 20/231 (its value at k = 9; the ratio decreases in k). -/
+/-- for k ≥ 9 the ratio is at most 20/231 (its value at k = 9; the ratio decreases in k).
+@isnad1 id=le.1h1v.s5.354eb8794227 from=translated src=- shape=5530690e vocab=10d2a6e0
+-/
 theorem D1coeff_succ_le (k : ℕ) (hk : 9 ≤ k) : D1coeff (k + 1) ≤ D1coeff k * (20 / 231) := by
   rw [D1coeff_succ]
   apply mul_le_mul_of_nonneg_left _ (D1coeff_nonneg k)
@@ -80,7 +95,9 @@ theorem D1coeff_succ_le (k : ℕ) (hk : 9 ≤ k) : D1coeff (k + 1) ≤ D1coeff k
   rw [div_le_div_iff₀ hpos (by norm_num)]
   nlinarith
 
-/-- geometric domination of the tail coefficients. -/
+/-- geometric domination of the tail coefficients.
+@isnad1 id=le.0h1v.s6.638e7b62eb1a from=translated src=- shape=72802149 vocab=a9a61deb
+-/
 theorem D1coeff_tail_le (j : ℕ) : D1coeff (9 + j) ≤ D1coeff 9 * (20 / 231) ^ j := by
   induction j with
   | zero => simp
@@ -93,10 +110,15 @@ theorem D1coeff_tail_le (j : ℕ) : D1coeff (9 + j) ≤ D1coeff 9 * (20 / 231) ^
           mul_le_mul_of_nonneg_right ih (by norm_num)
       _ = D1coeff 9 * (20 / 231) ^ (j + 1) := by ring
 
+/--
+@isnad1 id=eq.0h0v.s5.a788886a0eb4 from=translated src=- shape=4683683d vocab=84682551
+-/
 theorem D1coeff_nine : D1coeff 9 = 1024 / 3273645375 := by
   norm_num [D1coeff, Nat.factorial]
 
-/-- the factorial comparison D1coeff k ≤ 2·4^{k+1}/(k+1)!  (from k!·(k+2)! ∣ (2k+2)!). -/
+/-- the factorial comparison D1coeff k ≤ 2·4^{k+1}/(k+1)!  (from k!·(k+2)! ∣ (2k+2)!).
+@isnad1 id=le.0h1v.s6.dfe0c0527964 from=translated src=- shape=4fa8f0eb vocab=203fd8de
+-/
 theorem D1coeff_le (k : ℕ) : D1coeff k ≤ 2 * 4 ^ (k + 1) / (Nat.factorial (k + 1) : ℝ) := by
   unfold D1coeff
   have hdvd : Nat.factorial k * Nat.factorial (k + 2) ∣ Nat.factorial (2 * k + 2) := by
@@ -122,13 +144,18 @@ theorem D1coeff_le (k : ℕ) : D1coeff k ≤ 2 * 4 ^ (k + 1) / (Nat.factorial (k
 /-- the general term of the D₁ series. -/
 def D1term (k : ℕ) (s : ℝ) : ℝ := D1coeff k * s ^ (2 * k + 3)
 
+/--
+@isnad1 id=le.1h3v.s6.73397247a070 from=translated src=- shape=61b3392e vocab=9d18adac
+-/
 theorem norm_D1term_le (k : ℕ) {s R : ℝ} (h : |s| ≤ R) :
     ‖D1term k s‖ ≤ D1coeff k * R ^ (2 * k + 3) := by
   have hR : 0 ≤ R := (abs_nonneg s).trans h
   rw [Real.norm_eq_abs, D1term, abs_mul, abs_of_pos (D1coeff_pos k), abs_pow]
   exact mul_le_mul_of_nonneg_left (pow_le_pow_left₀ (abs_nonneg s) h _) (D1coeff_nonneg k)
 
-/-- the majorant Σ_k D1coeff k · R^{2k+3} converges (comparison with 2R·Σ (4R²)^{k+1}/(k+1)!). -/
+/-- the majorant Σ_k D1coeff k · R^{2k+3} converges (comparison with 2R·Σ (4R²)^{k+1}/(k+1)!).
+@isnad1 id=summable.0h1v.s5.bc374ef744e1 from=translated src=- shape=e63edc7c vocab=da5b73a6
+-/
 theorem summable_D1coeff_mul_pow (R : ℝ) : Summable (fun k => D1coeff k * R ^ (2 * k + 3)) := by
   have hexp : Summable (fun n : ℕ => (4 * R ^ 2) ^ n / (Nat.factorial n : ℝ)) :=
     Real.summable_pow_div_factorial (4 * R ^ 2)
@@ -149,12 +176,20 @@ theorem summable_D1coeff_mul_pow (R : ℝ) : Summable (fun k => D1coeff k * R ^ 
     _ = 2 * |R| * ((4 * R ^ 2) ^ (k + 1) / (Nat.factorial (k + 1) : ℝ)) := by
         rw [mul_pow]; field_simp
 
+/--
+@isnad1 id=summable.0h1v.s4.bb08c8daf348 from=translated src=- shape=0b46e227 vocab=b8aca28b
+-/
 theorem summable_D1term (s : ℝ) : Summable (fun k => D1term k s) :=
   summable_D1coeff_mul_pow s
 
+/--
+@isnad1 id=eq.0h1v.s6.c1b53252c1d5 from=translated src=- shape=be108772 vocab=6da156d4
+-/
 theorem D1_eq_tsum_D1term (s : ℝ) : D1 s = s - 4 * s ^ 2 + ∑' k, D1term k s := rfl
 
-/-- D₁ is continuous on every [−R, R], hence on ℝ. -/
+/-- D₁ is continuous on every [−R, R], hence on ℝ.
+@isnad1 id=continuo.0h1v.s4.411291171758 from=translated src=- shape=0feac69a vocab=2616cd59
+-/
 theorem continuousOn_D1_Icc (R : ℝ) : ContinuousOn D1 (Icc (-R) R) := by
   have htail : ContinuousOn (fun s => ∑' k, D1term k s) (Icc (-R) R) := by
     refine continuousOn_tsum (u := fun k => D1coeff k * |R| ^ (2 * k + 3)) ?_
@@ -166,6 +201,9 @@ theorem continuousOn_D1_Icc (R : ℝ) : ContinuousOn D1 (Icc (-R) R) := by
   have hpoly : ContinuousOn (fun s : ℝ => s - 4 * s ^ 2) (Icc (-R) R) := by fun_prop
   exact (hpoly.add htail).congr fun s _ => rfl
 
+/--
+@isnad1 id=continuo.0h0v.s3.260561294b91 from=translated src=- shape=e3d48bcb vocab=9401984a
+-/
 theorem continuous_D1 : Continuous D1 := by
   rw [continuous_iff_continuousAt]
   intro s
@@ -175,41 +213,64 @@ theorem continuous_D1 : Continuous D1 := by
   · linarith [neg_abs_le s]
   · linarith [le_abs_self s]
 
+/--
+@isnad1 id=continuo.0h1v.s4.825eaeeea970 from=translated src=- shape=89f438f7 vocab=a723d053
+-/
 theorem continuousOn_D1 (S : Set ℝ) : ContinuousOn D1 S := continuous_D1.continuousOn
 
 /-! ### truncation and tail -/
 
+/--
+@isnad1 id=eq.0h2v.s6.b60052004ddc from=translated src=- shape=ff9a5ffe vocab=069fd777
+-/
 theorem D1trunc_eq (K : ℕ) (s : ℝ) :
     D1trunc K s = s - 4 * s ^ 2 + ∑ k ∈ Finset.range K, D1term k s := rfl
 
-/-- D₁ = (its K-truncation) + (the tail from K on). -/
+/-- D₁ = (its K-truncation) + (the tail from K on).
+@isnad1 id=eq.0h2v.s5.f55aa4bffe44 from=translated src=- shape=735d5c7e vocab=883f18fb
+-/
 theorem D1_eq_trunc_add_tail (K : ℕ) (s : ℝ) :
     D1 s = D1trunc K s + ∑' k, D1term (k + K) s := by
   rw [D1_eq_tsum_D1term, D1trunc_eq, ← (summable_D1term s).sum_add_tsum_nat_add K]
   ring
 
+/--
+@isnad1 id=le.1h2v.s4.be9996132510 from=translated src=- shape=696abc3b vocab=5ad83098
+-/
 theorem D1term_nonneg (k : ℕ) {s : ℝ} (hs : 0 ≤ s) : 0 ≤ D1term k s :=
   mul_nonneg (D1coeff_nonneg k) (pow_nonneg hs _)
 
+/--
+@isnad1 id=le.1h2v.s5.1f83f80ff902 from=translated src=- shape=6ad2aa1f vocab=ddef4615
+-/
 theorem D1tail_nonneg (K : ℕ) {s : ℝ} (hs : 0 ≤ s) : 0 ≤ ∑' k, D1term (k + K) s :=
   tsum_nonneg fun _ => D1term_nonneg _ hs
 
-/-- truncations UNDER-estimate D₁ on [0, ∞). -/
+/-- truncations UNDER-estimate D₁ on [0, ∞).
+@isnad1 id=le.1h2v.s4.5090fedbc17f from=translated src=- shape=228c1226 vocab=19b6cae7
+-/
 theorem D1trunc_le_D1 (K : ℕ) {s : ℝ} (hs : 0 ≤ s) : D1trunc K s ≤ D1 s := by
   rw [D1_eq_trunc_add_tail K]
   linarith [D1tail_nonneg K hs]
 
-/-- D1trunc 1 s = s(1 − 2s)². -/
+/-- D1trunc 1 s = s(1 − 2s)².
+@isnad1 id=eq.0h1v.s6.d62031088351 from=translated src=- shape=75cf55d6 vocab=90d0c054
+-/
 theorem D1trunc_one (s : ℝ) : D1trunc 1 s = s * (1 - 2 * s) ^ 2 := by
   simp [D1trunc_eq, D1term, D1coeff_zero]
   ring
 
-/-- D₁ ≥ 0 on [0, ∞)  (D₁ = s(1−2s)² + a series of nonnegative terms). -/
+/-- D₁ ≥ 0 on [0, ∞)  (D₁ = s(1−2s)² + a series of nonnegative terms).
+@isnad1 id=le.1h1v.s4.bf79f2f64812 from=translated src=- shape=35bd48ee vocab=704124eb
+-/
 theorem D1_nonneg {s : ℝ} (hs : 0 ≤ s) : 0 ≤ D1 s := by
   have h := D1trunc_le_D1 1 hs
   rw [D1trunc_one] at h
   exact le_trans (by positivity) h
 
+/--
+@isnad1 id=eq.0h0v.s3.6ef4111d2493 from=translated src=- shape=3c26ae4f vocab=dd907b9e
+-/
 theorem D1_zero : D1 0 = 0 := by
   rw [D1_eq_trunc_add_tail 0]
   simp [D1trunc_eq, D1term]
@@ -217,15 +278,25 @@ theorem D1_zero : D1 0 = 0 := by
 /-- the certified tail constant ε₉ := D1coeff 9 · Σ_j (20/231)^j = (1024/3273645375)·(231/211). -/
 def eps9 : ℝ := 1024 / 2990212875
 
+/--
+@isnad1 id=eq.0h0v.s5.624857ad088f from=translated src=- shape=6c50eb45 vocab=6a9d224e
+-/
 theorem eps9_eq : eps9 = D1coeff 9 * (1 - 20 / 231)⁻¹ := by
   rw [D1coeff_nine, eps9]; norm_num
 
+/--
+@isnad1 id=lt.0h0v.s3.8f90b89af39a from=translated src=- shape=ff3a10fc vocab=c710132a
+-/
 theorem eps9_pos : 0 < eps9 := by unfold eps9; norm_num
 
-/-- ε₉ < 3.425·10⁻⁷ (the paper quotes ε₉ ≤ 3.43·10⁻⁷). -/
+/-- ε₉ < 3.425·10⁻⁷ (the paper quotes ε₉ ≤ 3.43·10⁻⁷).
+@isnad1 id=lt.0h0v.s5.ad6221d6657f from=translated src=- shape=1f220f17 vocab=f5981d4b
+-/
 theorem eps9_lt : eps9 < 3425 / 10 ^ 10 := by unfold eps9; norm_num
 
-/-- on [0,1] the tail from k = 9 on is at most ε₉. -/
+/-- on [0,1] the tail from k = 9 on is at most ε₉.
+@isnad1 id=le.2h1v.s5.ce1739cb7876 from=translated src=- shape=d4d09b3b vocab=9edc371f
+-/
 theorem D1tail9_le {s : ℝ} (hs0 : 0 ≤ s) (hs1 : s ≤ 1) : ∑' k, D1term (k + 9) s ≤ eps9 := by
   have hgeo : Summable (fun j : ℕ => D1coeff 9 * (20 / 231 : ℝ) ^ j) :=
     (summable_geometric_of_lt_one (by norm_num) (by norm_num)).mul_left _
@@ -243,30 +314,44 @@ theorem D1tail9_le {s : ℝ} (hs0 : 0 ≤ s) (hs1 : s ≤ 1) : ∑' k, D1term (k
     _ = D1coeff 9 * (1 - 20 / 231)⁻¹ := by rw [tsum_geometric_of_lt_one (by norm_num) (by norm_num)]
     _ = eps9 := eps9_eq.symm
 
-/-- **the certified two-sided control of D₁ on [0,1]:**  D1trunc 9 ≤ D₁ ≤ D1trunc 9 + ε₉. -/
+/-- **the certified two-sided control of D₁ on [0,1]:**  D1trunc 9 ≤ D₁ ≤ D1trunc 9 + ε₉.
+@isnad1 id=le.2h1v.s5.3a4b6e8cb217 from=translated src=- shape=34652076 vocab=4217e1d8
+-/
 theorem D1_le_D1trunc9_add {s : ℝ} (hs0 : 0 ≤ s) (hs1 : s ≤ 1) : D1 s ≤ D1trunc 9 s + eps9 := by
   rw [D1_eq_trunc_add_tail 9]
   linarith [D1tail9_le hs0 hs1]
 
+/--
+@isnad1 id=mem.2h1v.s5.b0d529bc00b8 from=translated src=- shape=1b261a04 vocab=97930475
+-/
 theorem D1_mem_Icc {s : ℝ} (hs0 : 0 ≤ s) (hs1 : s ≤ 1) :
     D1 s ∈ Icc (D1trunc 9 s) (D1trunc 9 s + eps9) :=
   ⟨D1trunc_le_D1 9 hs0, D1_le_D1trunc9_add hs0 hs1⟩
 
-/-- D1trunc K is a polynomial, hence continuous. -/
+/-- D1trunc K is a polynomial, hence continuous.
+@isnad1 id=continuo.0h1v.s4.59edfaedef64 from=translated src=- shape=8735051e vocab=471509db
+-/
 theorem continuous_D1trunc (K : ℕ) : Continuous (D1trunc K) := by
   unfold D1trunc; fun_prop
 
 /-! ### exports for the diagonal law (Coeff.lean H3) -/
 
+/--
+@isnad1 id=summable.0h0v.s3.65213d53b35e from=translated src=- shape=ef4b497d vocab=9706b08a
+-/
 theorem summable_D1coeff : Summable D1coeff := by
   have h := summable_D1coeff_mul_pow 1
   simpa using h
 
-/-- the coefficient tail Σ_{k ≥ K} D1coeff k → 0. -/
+/-- the coefficient tail Σ_{k ≥ K} D1coeff k → 0.
+@isnad1 id=tendsto.0h0v.s5.96af6f58f269 from=translated src=- shape=ef21164b vocab=8adc34e9
+-/
 theorem tendsto_D1coeff_tail : Tendsto (fun K => ∑' k, D1coeff (k + K)) atTop (nhds 0) :=
   tendsto_sum_nat_add D1coeff
 
-/-- on [0,1] the function tail is dominated by the coefficient tail, uniformly in s. -/
+/-- on [0,1] the function tail is dominated by the coefficient tail, uniformly in s.
+@isnad1 id=le.2h2v.s6.e5a170352ceb from=translated src=- shape=7b670df0 vocab=0a3a212a
+-/
 theorem D1tail_le_coeff_tail (K : ℕ) {s : ℝ} (hs0 : 0 ≤ s) (hs1 : s ≤ 1) :
     ∑' k, D1term (k + K) s ≤ ∑' k, D1coeff (k + K) := by
   have h1 : Summable (fun k => D1term (k + K) s) := (summable_nat_add_iff K).mpr (summable_D1term s)
@@ -277,13 +362,17 @@ theorem D1tail_le_coeff_tail (K : ℕ) {s : ℝ} (hs0 : 0 ≤ s) (hs1 : s ≤ 1)
         mul_le_mul_of_nonneg_left (pow_le_one₀ hs0 hs1) (D1coeff_nonneg _)
     _ = D1coeff (k + K) := mul_one _
 
-/-- |D₁ − D1trunc K| ≤ Σ_{k≥K} D1coeff k on [0,1] (uniform truncation error, → 0 as K → ∞). -/
+/-- |D₁ − D1trunc K| ≤ Σ_{k≥K} D1coeff k on [0,1] (uniform truncation error, → 0 as K → ∞).
+@isnad1 id=le.2h2v.s6.53d16ae13208 from=translated src=- shape=bd93029b vocab=7e09c4d5
+-/
 theorem abs_D1_sub_D1trunc_le (K : ℕ) {s : ℝ} (hs0 : 0 ≤ s) (hs1 : s ≤ 1) :
     |D1 s - D1trunc K s| ≤ ∑' k, D1coeff (k + K) := by
   rw [D1_eq_trunc_add_tail K, add_sub_cancel_left, abs_of_nonneg (D1tail_nonneg K hs0)]
   exact D1tail_le_coeff_tail K hs0 hs1
 
-/-- ∫₀ˢ D1term k = D1coeff k · s^{2k+4}/(2k+4). -/
+/-- ∫₀ˢ D1term k = D1coeff k · s^{2k+4}/(2k+4).
+@isnad1 id=eq.0h2v.s6.0072921cb54e from=translated src=- shape=eec7927e vocab=8f7677a2
+-/
 theorem integral_D1term (k : ℕ) (s : ℝ) :
     ∫ u in (0:ℝ)..s, D1term k u = D1coeff k * s ^ (2 * k + 4) / (2 * k + 4) := by
   unfold D1term
@@ -295,7 +384,9 @@ theorem integral_D1term (k : ℕ) (s : ℝ) :
   rw [e]
   ring
 
-/-- termwise integration of the truncation (finite sum; no convergence issues). -/
+/-- termwise integration of the truncation (finite sum; no convergence issues).
+@isnad1 id=eq.0h2v.s7.2fd9e2bc37aa from=translated src=- shape=ebe6b4ed vocab=fd31d86a
+-/
 theorem integral_D1trunc (K : ℕ) (s : ℝ) :
     ∫ u in (0:ℝ)..s, D1trunc K u
       = s ^ 2 / 2 - 4 * s ^ 3 / 3 + ∑ k ∈ Finset.range K, D1coeff k * s ^ (2 * k + 4) / (2 * k + 4) := by
@@ -315,7 +406,9 @@ theorem integral_D1trunc (K : ℕ) (s : ℝ) :
       (continuous_const.mul (continuous_pow _))).intervalIntegrable _ _
 
 /-- **uniform diagonal-law main term:** for s ∈ [0,1],
-|∫₀ˢ D₁ − ∫₀ˢ D1trunc K| ≤ Σ_{k≥K} D1coeff k  (→ 0), with ∫₀ˢ D1trunc K explicit above. -/
+|∫₀ˢ D₁ − ∫₀ˢ D1trunc K| ≤ Σ_{k≥K} D1coeff k  (→ 0), with ∫₀ˢ D1trunc K explicit above.
+@isnad1 id=le.2h2v.s6.1f9d9fef137b from=translated src=- shape=084f5bca vocab=54b88266
+-/
 theorem abs_integral_D1_sub_le (K : ℕ) {s : ℝ} (hs0 : 0 ≤ s) (hs1 : s ≤ 1) :
     |(∫ u in (0:ℝ)..s, D1 u) - ∫ u in (0:ℝ)..s, D1trunc K u| ≤ ∑' k, D1coeff (k + K) := by
   rw [← intervalIntegral.integral_sub (continuous_D1.intervalIntegrable _ _)

@@ -63,7 +63,9 @@ structure IsEMM (Q : Measure Ω) : Prop where
 omit [IsProbabilityMeasure P] in
 /-- **Forward direction**: an equivalent martingale measure precludes arbitrage.
 Under `Q`, a non-negative discounted gain integrates to `θ · E_Q[Y] = 0`, so it is
-`0` a.e.; equivalence transports this back to `P`. -/
+`0` a.e.; equivalence transports this back to `P`.
+@isnad1 id=noarbitr.1h5v.s4.3f5f98a765f4 from=translated src=- shape=023fddbe vocab=d47f0ae9
+-/
 theorem noArbitrage_of_isEMM {Q : Measure Ω} (hQ : IsEMM P Y Q) : NoArbitrage P Y := by
   haveI := hQ.prob
   intro θ hpos
@@ -79,7 +81,9 @@ integrable `Y` with a strictly-positive expected gain on `{Y ≥ 0}` and a
 strictly-negative one on its complement, the two-region density
 `Z = λ·𝟙_{Y≥0} + μ·𝟙_{Y<0}` — with `λ, μ > 0` chosen so the up- and down-moves
 balance (`λ·∫_{Y≥0}Y = −μ·∫_{Y<0}Y`) and `Z` normalises — gives an EMM
-`Q = P.withDensity Z`: re-weight up vs down until `Y` is fair. -/
+`Q = P.withDensity Z`: re-weight up vs down until `Y` is fair.
+@isnad1 id=ex.4h4v.s7.33004f005634 from=translated src=- shape=59f50a46 vocab=7b75b3c8
+-/
 theorem exists_isEMM_of_pos_tails (hY : Measurable Y) (hYint : Integrable Y P)
     (ha : 0 < ∫ ω in {ω | 0 ≤ Y ω}, Y ω ∂P)
     (hb : ∫ ω in {ω | 0 ≤ Y ω}ᶜ, Y ω ∂P < 0) :
@@ -168,7 +172,9 @@ EMM. The scalar no-arbitrage *dichotomy*: a one-signed `Y` (`Y ≥ 0` a.e. or `Y
 a.e.) is killed by the position `θ = ±1`, so if `Y ≢ 0` then it is strictly
 positive on a set of positive measure and strictly negative on another — whence
 `∫_{Y≥0} Y > 0` and `∫_{Y<0} Y < 0`, and the balancing density applies. The
-degenerate `Y =ᵐ 0` case takes `Q = P`. -/
+degenerate `Y =ᵐ 0` case takes `Q = P`.
+@isnad1 id=ex.3h4v.s6.85bd76424f40 from=translated src=- shape=93dd0330 vocab=5a6700e5
+-/
 theorem exists_isEMM_of_noArbitrage_integrable (hY : Measurable Y) (hYint : Integrable Y P)
     (hNA : NoArbitrage P Y) : ∃ Q, IsEMM P Y Q := by
   -- the two halves of the no-arbitrage dichotomy: a one-signed `Y` is null
@@ -227,7 +233,9 @@ EMM for any measurable `Y`. Pass to the equivalent probability measure
 `w = (1 + |Y|)⁻¹ ∈ (0,1]`, `κ = ∫ w ∂P ∈ (0,1]`: under `P̃` the variable `Y` is
 integrable (`|Y · d| ≤ κ⁻¹` is bounded), and no-arbitrage — an a.e. notion — is
 preserved by the equivalence `P̃ ~ P`. The integrable backward direction yields an
-EMM `Q ~ P̃`, and `Q ~ P` by transitivity. -/
+EMM `Q ~ P̃`, and `Q ~ P` by transitivity.
+@isnad1 id=ex.2h4v.s5.ab4866cd52bf from=translated src=- shape=adc03749 vocab=170211a1
+-/
 theorem exists_isEMM_of_noArbitrage (hY : Measurable Y) (hNA : NoArbitrage P Y) :
     ∃ Q, IsEMM P Y Q := by
   -- bounded strictly-positive weight `w = (1 + |Y|)⁻¹ ∈ (0, 1]`
@@ -293,7 +301,9 @@ space, *no arbitrage* holds if and only if there exists an *equivalent martingal
 measure*: a `Q ~ P` under which `Y` is integrable and `E_Q[Y] = 0`. This is the
 Föllmer–Schied / one-period Dalang–Morton–Willinger theorem — the genuine
 measure-theoretic step beyond the finite-`Ω` Harrison–Pliska result of
-`Foundations/FTAPDiscrete.lean`. -/
+`Foundations/FTAPDiscrete.lean`.
+@isnad1 id=iff.1h4v.s5.e5374b1947a8 from=translated src=- shape=ba254b91 vocab=170211a1
+-/
 theorem ftap_one_period (hY : Measurable Y) :
     NoArbitrage P Y ↔ ∃ Q, IsEMM P Y Q :=
   ⟨fun hNA ↦ exists_isEMM_of_noArbitrage P Y hY hNA,

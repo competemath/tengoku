@@ -52,7 +52,9 @@ namespace BrownianQuadraticVariation
 
 variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} {B : ℝ → Ω → ℝ}
 
-/-- The increment `B t − B s` is measurable. -/
+/-- The increment `B t − B s` is measurable.
+@isnad1 id=measurab.1h5v.s5.2835d2eb13d7 from=translated src=- shape=cd868aaf vocab=904f58e3
+-/
 theorem measurable_increment (hB : BrownianQuadraticVariation μ B)
     (s t : ℝ) : Measurable (fun ω ↦ B t ω - B s ω) :=
   (hB.measurable t).sub (hB.measurable s)
@@ -63,7 +65,9 @@ private lemma integrable_sq_gaussianReal_zero (v : ℝ≥0) :
   have h_lp : MemLp (id : ℝ → ℝ) 2 (gaussianReal 0 v) := memLp_id_gaussianReal 2
   exact h_lp.integrable_sq
 
-/-- For `s ≤ t`, the squared increment `(B t − B s)²` has expectation `t − s`. -/
+/-- For `s ≤ t`, the squared increment `(B t − B s)²` has expectation `t − s`.
+@isnad1 id=eq.3h5v.s6.2570cb0aab75 from=translated src=- shape=e0fdd0a0 vocab=bdd48bd2
+-/
 theorem integral_sq_increment (hB : BrownianQuadraticVariation μ B)
     {s t : ℝ} (hs : 0 ≤ s) (hst : s ≤ t) :
     ∫ ω, (B t ω - B s ω) ^ 2 ∂μ = t - s := by
@@ -75,7 +79,9 @@ theorem integral_sq_increment (hB : BrownianQuadraticVariation μ B)
     integral_map h_aem (by fun_prop)
   rw [← h_map_int, h_map, MathFin.integral_sq_gaussianReal, hv]
 
-/-- The squared increment is integrable. -/
+/-- The squared increment is integrable.
+@isnad1 id=integrab.3h5v.s6.87d5a8dce456 from=translated src=- shape=2c88b21a vocab=a85fac97
+-/
 theorem integrable_sq_increment (hB : BrownianQuadraticVariation μ B)
     {s t : ℝ} (hs : 0 ≤ s) (hst : s ≤ t) :
     Integrable (fun ω ↦ (B t ω - B s ω) ^ 2) μ := by
@@ -89,7 +95,9 @@ theorem integrable_sq_increment (hB : BrownianQuadraticVariation μ B)
 
 /-- **Mean of BM increment is zero**: `E[B_t − B_s] = 0` for `s ≤ t`.
 Pushforward law is `gaussianReal 0 v` with `v = t − s`; the first moment of
-a centred Gaussian is `0`. -/
+a centred Gaussian is `0`.
+@isnad1 id=eq.3h5v.s6.c5aa6e453ff4 from=translated src=- shape=1f8a045c vocab=15e70e2b
+-/
 theorem integral_increment (hB : BrownianQuadraticVariation μ B)
     {s t : ℝ} (hs : 0 ≤ s) (hst : s ≤ t) :
     ∫ ω, (B t ω - B s ω) ∂μ = 0 := by
@@ -101,7 +109,9 @@ theorem integral_increment (hB : BrownianQuadraticVariation μ B)
     integral_map h_aem (by fun_prop)
   rw [← h_map_int, h_map, integral_id_gaussianReal]
 
-/-- Integrability of the BM increment `B_t − B_s` under a finite measure. -/
+/-- Integrability of the BM increment `B_t − B_s` under a finite measure.
+@isnad1 id=integrab.3h5v.s6.ee42e0010a5d from=translated src=- shape=77400d28 vocab=dafef5c9
+-/
 theorem integrable_increment
     (hB : BrownianQuadraticVariation μ B) {s t : ℝ} (hs : 0 ≤ s) (hst : s ≤ t) :
     Integrable (fun ω ↦ B t ω - B s ω) μ := by
@@ -171,7 +181,9 @@ private lemma tendsto_nt_div_succ (t : ℝ) :
 
 /-- Saporito Theorem 6.1.1, in L¹ form: for a process with measurable sections and
 Gaussian increments, the squared-increment sums along the equipartition of `[0, t]`
-with `n + 1` subintervals have expectation tending to `t` as `n → ∞`. -/
+with `n + 1` subintervals have expectation tending to `t` as `n → ∞`.
+@isnad1 id=tendsto.2h4v.s7.9def79cdf4f9 from=translated src=- shape=ca4e006b vocab=a5f59c48
+-/
 theorem qv_equals_t (hB : BrownianQuadraticVariation μ B)
     {t : ℝ} (ht : 0 ≤ t) :
     Filter.Tendsto
@@ -192,7 +204,9 @@ variance-swap tower can be driven from a single `IsPreBrownianReal` hypothesis
 (plus evaluation-measurability — `IsPreBrownianReal` supplies only a.e.
 measurability). The increment law is read off `IsPreBrownianReal.hasLaw_sub` with
 arguments `t' s'` (subject `B t' − B s'`, no negation), mirroring
-`Foundations.WienerIntegral.hasLaw_increment`. -/
+`Foundations.WienerIntegral.hasLaw_increment`.
+@isnad1 id=brownian.2h3v.s5.a39911fc31cd from=translated src=- shape=97a4405d vocab=7b8aae84
+-/
 theorem brownianQuadraticVariation_of_isPreBrownianReal
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} {B : ℝ≥0 → Ω → ℝ}
     (hB : IsPreBrownianReal B μ) (hBmeas : ∀ u : ℝ≥0, Measurable (B u)) :

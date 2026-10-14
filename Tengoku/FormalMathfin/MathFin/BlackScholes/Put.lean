@@ -34,7 +34,9 @@ open scoped NNReal ENNReal
 
 /-! ### Left-tail completing-the-square (Iic counterpart of `_Ioi` lemma) -/
 
-/-- `Q(Iic a) = Φ(a)` for standard normal. Just `Phi_def` unfolded. -/
+/-- `Q(Iic a) = Φ(a)` for standard normal. Just `Phi_def` unfolded.
+@isnad1 id=eq.0h1v.s5.4cc26c37c9e9 from=translated src=- shape=12449371 vocab=0fc45e77
+-/
 lemma gaussianReal_Iic_toReal (a : ℝ) :
     (gaussianReal 0 1 (Set.Iic a)).toReal = Phi a := rfl
 
@@ -42,7 +44,9 @@ lemma gaussianReal_Iic_toReal (a : ℝ) :
 primitive:
   `∫ z in Iic a, exp(c·z) · gaussianPDFReal 0 1 z dz = exp(c²/2) · Φ(a − c)`.
 
-Combines `exp_mul_gaussianPDFReal_zero_one` with `gaussianReal_map_add_const`. -/
+Combines `exp_mul_gaussianPDFReal_zero_one` with `gaussianReal_map_add_const`.
+@isnad1 id=eq.0h2v.s6.be667662b545 from=translated src=- shape=360c8133 vocab=3189fde5
+-/
 lemma integral_exp_mul_gaussianPDFReal_Iic (a c : ℝ) :
     ∫ z in Set.Iic a, Real.exp (c * z) * gaussianPDFReal 0 1 z
       = Real.exp (c^2 / 2) * Phi (a - c) := by
@@ -95,7 +99,9 @@ Real derivation: HasLaw transfer + `max → indicator` on the exercise region
 `{S_T(z) < K} = Iic(-d_2)` + `integral_exp_mul_gaussianPDFReal_Iic` on the
 asset-side piece + `gaussianReal_Iic_toReal` on the strike-side piece + the
 BS martingale algebra `(r - σ²/2)T + σ²T/2 = rT`. The identification
-`-d_2 - σ√T = -d_1` (using `d_1 - d_2 = σ√T`) finishes the asset piece. -/
+`-d_2 - σ√T = -d_1` (using `d_1 - d_2 = σ√T`) finishes the asset piece.
+@isnad1 id=eq.1h9v.s7.799c0cba1f85 from=translated src=- shape=3e5aa9ea vocab=9e4aad64
+-/
 theorem bs_put_formula {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
     {S_0 K r σ T : ℝ} {Z : Ω → ℝ}
@@ -187,7 +193,9 @@ risk-neutral lognormal hypothesis:
   `C − P = S_0 − K · e^{-rT}`.
 
 A direct algebraic corollary of `bs_call_formula` + `bs_put_formula` + the
-symmetry identity `Φ(x) + Φ(-x) = 1`. -/
+symmetry identity `Φ(x) + Φ(-x) = 1`.
+@isnad1 id=eq.1h9v.s7.8909d2cec37a from=translated src=- shape=76200893 vocab=a3dc48d9
+-/
 theorem bs_put_call_parity {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
     {S_0 K r σ T : ℝ} {Z : Ω → ℝ}

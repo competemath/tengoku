@@ -49,7 +49,9 @@ open MeasureTheory ProbabilityTheory Real
 open scoped NNReal ENNReal
 
 /-- **Log-moment integrand identity**: after the `S_0` cancellation,
-`log((S_0 · e^{rT}) / (S_0 · exp((r − σ²/2)T + σ√T·z))) = σ²T/2 − σ√T·z`. -/
+`log((S_0 · e^{rT}) / (S_0 · exp((r − σ²/2)T + σ√T·z))) = σ²T/2 − σ√T·z`.
+@isnad1 id=eq.1h5v.s7.f496b518bf85 from=translated src=- shape=b596f368 vocab=9abc32ef
+-/
 lemma log_forward_div_bsTerminal_eq {S_0 : ℝ} (hS : 0 < S_0) (r σ T z : ℝ) :
     Real.log ((S_0 * Real.exp (r * T)) /
               (S_0 * Real.exp ((r - σ^2/2) * T + σ * Real.sqrt T * z)))
@@ -60,7 +62,9 @@ lemma log_forward_div_bsTerminal_eq {S_0 : ℝ} (hS : 0 < S_0) (r σ T z : ℝ) 
   ring
 
 /-- **Log-moment integral identity**: `∫ z, log(F/S_T(z)) ∂(gaussianReal 0 1)
-= σ² T / 2`. -/
+= σ² T / 2`.
+@isnad1 id=eq.1h4v.s7.8eea1ab1c22b from=translated src=- shape=d37839f5 vocab=03046dc9
+-/
 lemma integral_log_forward_div_bsTerminal_eq {S_0 : ℝ} (hS : 0 < S_0)
     (r σ T : ℝ) :
     ∫ z, Real.log ((S_0 * Real.exp (r * T)) /
@@ -93,7 +97,9 @@ replication piece scales to give the squared volatility.
 `F = S_0 · e^{rT}`). Combined with the zero excess-return moment
 `E[(S_T − F)/F] = 0` (from `expected_terminal_eq_forward`), this gives the
 full Demeterfi-Derman-Kamal log-replication identity for the variance swap
-fair strike. -/
+fair strike.
+@isnad1 id=eq.2h4v.s7.6ad078c856e2 from=translated src=- shape=1713ea01 vocab=03046dc9
+-/
 theorem varianceSwap_log_contribution {S_0 : ℝ} (hS : 0 < S_0)
     (r σ T : ℝ) (hT : T ≠ 0) :
     (2 / T) *
@@ -104,7 +110,9 @@ theorem varianceSwap_log_contribution {S_0 : ℝ} (hS : 0 < S_0)
   field_simp
 
 /-- **Terminal price is the forward in expectation** — the standard-normal-driver
-form of `Forward.expected_terminal_eq_forward`: `E[S_T] = F = S_0·e^{rT}`. -/
+form of `Forward.expected_terminal_eq_forward`: `E[S_T] = F = S_0·e^{rT}`.
+@isnad1 id=eq.1h4v.s7.35baebaadfd4 from=translated src=- shape=b6591fec vocab=9bf7f467
+-/
 lemma integral_bsTerminal_eq_forward (S_0 r σ T : ℝ) (hT : 0 ≤ T) :
     ∫ z, S_0 * Real.exp ((r - σ ^ 2 / 2) * T + σ * Real.sqrt T * z) ∂(gaussianReal 0 1)
       = S_0 * Real.exp (r * T) := by
@@ -123,7 +131,9 @@ lemma integral_bsTerminal_eq_forward (S_0 r σ T : ℝ) (hT : 0 ≤ T) :
         rw [mul_pow, Real.sq_sqrt hT]; ring]
 
 /-- **Zero excess-return moment**: `E[(S_T − F)/F] = 0`, immediate from
-`E[S_T] = F` (`integral_bsTerminal_eq_forward`). -/
+`E[S_T] = F` (`integral_bsTerminal_eq_forward`).
+@isnad1 id=eq.1h4v.s7.7499dd161fd6 from=translated src=- shape=a42bc6b5 vocab=9bf7f467
+-/
 lemma integral_excess_return_eq_zero (S_0 r σ T : ℝ) (hT : 0 ≤ T) :
     ∫ z, (S_0 * Real.exp ((r - σ ^ 2 / 2) * T + σ * Real.sqrt T * z)
             - S_0 * Real.exp (r * T)) / (S_0 * Real.exp (r * T)) ∂(gaussianReal 0 1) = 0 := by
@@ -142,7 +152,9 @@ lemma integral_excess_return_eq_zero (S_0 r σ T : ℝ) (hT : 0 ≤ T) :
 
 /-- **Variance swap fair strike** (Demeterfi-Derman-Kamal, full log-replication
 identity): `(2/T) · E[log(F/S_T) + (S_T − F)/F] = σ²`. Assembles the log
-contribution with the zero excess-return moment `E[(S_T − F)/F] = 0`. -/
+contribution with the zero excess-return moment `E[(S_T − F)/F] = 0`.
+@isnad1 id=eq.2h4v.s8.d7b4eea3af1c from=translated src=- shape=6ac3c77f vocab=03046dc9
+-/
 theorem varianceSwap_fairStrike {S_0 : ℝ} (hS : 0 < S_0) (r σ T : ℝ) (hT : 0 < T) :
     (2 / T) *
         ((∫ z, Real.log ((S_0 * Real.exp (r * T)) /

@@ -38,7 +38,9 @@ variable {𝕜 𝕜₂ E Eₗ F : Type*}
 /-- If `e` has dense range and `f` is a pointwise isometry along `e`
 (`‖f x‖ = ‖e x‖`), then the `extendOfNorm` extension of `f` along `e` is a global
 isometry `‖f.extendOfNorm e y‖ = ‖y‖`. The shared kernel of the Wiener,
-Itô-CLM, predictable-Itô, and Itô–Lévy `L²` isometries. -/
+Itô-CLM, predictable-Itô, and Itô–Lévy `L²` isometries.
+@isnad1 id=eq.2h9v.s9.2b0f9678f0f4 from=translated src=- shape=328e33d1 vocab=f24019a5
+-/
 theorem norm_extendOfNorm_eq_of_isometry
     (h_dense : DenseRange e) (h_isom : ∀ x, ‖f x‖ = ‖e x‖) (y : Eₗ) :
     ‖f.extendOfNorm e y‖ = ‖y‖ := by

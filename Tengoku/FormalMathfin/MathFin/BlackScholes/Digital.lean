@@ -63,7 +63,9 @@ the risk-neutral measure is
 Real derivation: HasLaw transfer to standard normal, identify
 `{S_T(z) > K} = Ioi(-d_2)` via `bsTerminal_gt_K_iff`, then
 `∫ 1_{Ioi(-d_2)}(z) · pdf(0,1,z) dz = (gaussianReal 0 1 (Ioi(-d_2))).toReal
-= Φ(d_2)` via `gaussianReal_Ioi_toReal`. -/
+= Φ(d_2)` via `gaussianReal_Ioi_toReal`.
+@isnad1 id=eq.1h9v.s7.aaa1fbe5802e from=translated src=- shape=f3b148e7 vocab=53354097
+-/
 theorem bs_cash_or_nothing_formula {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
     {S_0 K r σ T : ℝ} {Z : Ω → ℝ}
@@ -121,7 +123,9 @@ the risk-neutral measure is `V_asset = S_0 · Φ(d_1)`.
 Real derivation: HasLaw transfer + identify `{S_T > K} = Ioi(-d_2)` +
 `integral_exp_mul_gaussianPDFReal_Ioi` for the `exp(ν_log · z) · pdf`
 integrand on the exercise region. The BS martingale algebra
-`(r - σ²/2)T + σ²T/2 = rT` and `ν_log - (-d_2) = d_1` close the proof. -/
+`(r - σ²/2)T + σ²T/2 = rT` and `ν_log - (-d_2) = d_1` close the proof.
+@isnad1 id=eq.1h9v.s6.bf7cf512692e from=translated src=- shape=b9f5fd97 vocab=5e8a4189
+-/
 theorem bs_asset_or_nothing_formula {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
     {S_0 K r σ T : ℝ} {Z : Ω → ℝ}
@@ -206,7 +210,9 @@ theorem bs_asset_or_nothing_formula {Ω : Type*} {mΩ : MeasurableSpace Ω}
   `C = (S_0 · Φ(d_1)) − K · (e^{-rT} · Φ(d_2))`.
 
 A direct algebraic consequence of `bs_call_formula`,
-`bs_asset_or_nothing_formula`, and `bs_cash_or_nothing_formula`. -/
+`bs_asset_or_nothing_formula`, and `bs_cash_or_nothing_formula`.
+@isnad1 id=eq.1h9v.s7.c519bfba2a12 from=translated src=- shape=10b0fa52 vocab=0620c80c
+-/
 theorem bs_call_eq_asset_minus_K_cash {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
     {S_0 K r σ T : ℝ} {Z : Ω → ℝ}

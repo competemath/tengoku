@@ -43,7 +43,9 @@ noncomputable def bsAssetDigital (K r σ : ℝ) (S τ : ℝ) : ℝ :=
 
 /-- **Cash-or-nothing delta**: `∂_S V_cash = e^{-rτ} ϕ(d₂) / (S σ √τ)`.
 
-Direct chain rule on `Φ ∘ d₂(S)`. -/
+Direct chain rule on `Φ ∘ d₂(S)`.
+@isnad1 id=hasderiv.4h5v.s7.3c20370fd0a1 from=translated src=- shape=ef8b9140 vocab=80fc66fd
+-/
 lemma hasDerivAt_bsCashDigital_S {K r σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
     {S τ : ℝ} (hS : 0 < S) (hτ : 0 < τ) :
     HasDerivAt (fun s ↦ bsCashDigital K r σ s τ)
@@ -58,7 +60,9 @@ lemma hasDerivAt_bsCashDigital_S {K r σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
 /-- **Asset-or-nothing delta**: `∂_S V_asset = Φ(d₁) + ϕ(d₁) / (σ √τ)`.
 
 The chain rule gives `Φ(d₁) + S · ϕ(d₁) · ∂_S d₁ = Φ(d₁) + S · ϕ(d₁) · 1/(S σ √τ)
-= Φ(d₁) + ϕ(d₁) / (σ √τ)`. -/
+= Φ(d₁) + ϕ(d₁) / (σ √τ)`.
+@isnad1 id=hasderiv.4h5v.s7.114b6196959a from=translated src=- shape=be1bdccc vocab=8fc82d84
+-/
 lemma hasDerivAt_bsAssetDigital_S {K r σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
     {S τ : ℝ} (hS : 0 < S) (hτ : 0 < τ) :
     HasDerivAt (fun s ↦ bsAssetDigital K r σ s τ)
@@ -80,7 +84,9 @@ lemma hasDerivAt_bsAssetDigital_S {K r σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
 
 Differentiating δ_asset = Φ(d₁) + ϕ(d₁)/(σ√τ): the Φ-term contributes
 `ϕ(d₁) · ∂_S d₁ = ϕ(d₁)/(Sσ√τ)`, and the ϕ-term contributes
-`-d₁ ϕ(d₁) · ∂_S d₁ / (σ√τ) = -d₁ ϕ(d₁)/(Sσ²τ)`. Sum via `σ√τ − d₁ = -d₂`. -/
+`-d₁ ϕ(d₁) · ∂_S d₁ / (σ√τ) = -d₁ ϕ(d₁)/(Sσ²τ)`. Sum via `σ√τ − d₁ = -d₂`.
+@isnad1 id=hasderiv.4h5v.s7.3ded5d416d31 from=translated src=- shape=fb4c25cd vocab=106ce61c
+-/
 lemma hasDerivAt_bsAssetDigital_SS {K r σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
     {S τ : ℝ} (hS : 0 < S) (hτ : 0 < τ) :
     HasDerivAt
@@ -111,7 +117,9 @@ lemma hasDerivAt_bsAssetDigital_SS {K r σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
 
 Direct chain rule. The Lean form of `∂_τ d₁` is `((r + σ²/2)τ − log(S/K)) / (2 σ τ √τ)`;
 this equals the textbook clean form `(r + σ²/2)/(σ√τ) − d₁/(2τ)` by algebraic
-identity (left to the consumer). -/
+identity (left to the consumer).
+@isnad1 id=hasderiv.2h5v.s7.e7d8ae7d5569 from=translated src=- shape=ee8ca51e vocab=599f81a6
+-/
 lemma hasDerivAt_bsAssetDigital_tau (S K r σ : ℝ) (hσ : 0 < σ) {τ : ℝ} (hτ : 0 < τ) :
     HasDerivAt (fun t ↦ bsAssetDigital K r σ S t)
       (S * gaussianPDFReal 0 1 (bsd1 S K r σ τ) *
@@ -127,7 +135,9 @@ lemma hasDerivAt_bsAssetDigital_tau (S K r σ : ℝ) (hσ : 0 < σ) {τ : ℝ} (
 
 Product rule on `V_cash(τ) = e^{-rτ} · Φ(d₂(τ))`:
 * `∂_τ e^{-rτ} = -r · e^{-rτ}`
-* `∂_τ Φ(d₂(τ)) = ϕ(d₂) · ∂_τ d₂`. -/
+* `∂_τ Φ(d₂(τ)) = ϕ(d₂) · ∂_τ d₂`.
+@isnad1 id=hasderiv.2h5v.s8.e5d62d06ca36 from=translated src=- shape=0e1e532c vocab=b48a079e
+-/
 lemma hasDerivAt_bsCashDigital_tau (S K r σ : ℝ) (hσ : 0 < σ) {τ : ℝ} (hτ : 0 < τ) :
     HasDerivAt (fun t ↦ bsCashDigital K r σ S t)
       (-r * Real.exp (-(r * τ)) * Phi (bsd2 S K r σ τ) +
@@ -150,7 +160,9 @@ lemma hasDerivAt_bsCashDigital_tau (S K r σ : ℝ) (hσ : 0 < σ) {τ : ℝ} (h
 /-- **Asset-or-nothing vega**: `∂_σ V_asset = -S · ϕ(d₁) · d₂ / σ`.
 
 Chain rule on `Φ ∘ d₁`. The Lean form of `∂_σ d₁` is
-`(σ²τ/2 − log(S/K) − rτ)/(σ²√τ)`, which equals `-d₂/σ` via `bsd2_eq`. -/
+`(σ²τ/2 − log(S/K) − rτ)/(σ²√τ)`, which equals `-d₂/σ` via `bsd2_eq`.
+@isnad1 id=hasderiv.2h5v.s6.d5f0e4c896ca from=translated src=- shape=a2bf8441 vocab=1cb6f13c
+-/
 lemma hasDerivAt_bsAssetDigital_sigma (S K r : ℝ) {σ τ : ℝ} (hσ : 0 < σ) (hτ : 0 < τ) :
     HasDerivAt (fun σ' ↦ bsAssetDigital K r σ' S τ)
       (-(S * gaussianPDFReal 0 1 (bsd1 S K r σ τ) * bsd2 S K r σ τ / σ)) σ := by
@@ -170,7 +182,9 @@ lemma hasDerivAt_bsAssetDigital_sigma (S K r : ℝ) {σ τ : ℝ} (hσ : 0 < σ)
 /-- **Cash-or-nothing vega**: `∂_σ V_cash = -e^{-rτ} · ϕ(d₂) · d₁ / σ`.
 
 Chain rule on `Φ ∘ d₂`. The Lean form of `∂_σ d₂ = ∂_σ d₁ − √τ` equals `-d₁/σ`
-via `bsd2_eq` plus the identity `bsd2 + σ√τ = bsd1`. -/
+via `bsd2_eq` plus the identity `bsd2 + σ√τ = bsd1`.
+@isnad1 id=hasderiv.2h5v.s7.584834c834ad from=translated src=- shape=7c868ecb vocab=57dd677a
+-/
 lemma hasDerivAt_bsCashDigital_sigma (S K : ℝ) {r σ τ : ℝ} (hσ : 0 < σ) (hτ : 0 < τ) :
     HasDerivAt (fun σ' ↦ bsCashDigital K r σ' S τ)
       (-(Real.exp (-(r * τ)) * gaussianPDFReal 0 1 (bsd2 S K r σ τ) *
@@ -192,7 +206,9 @@ lemma hasDerivAt_bsCashDigital_sigma (S K : ℝ) {r σ τ : ℝ} (hσ : 0 < σ) 
 
 /-- **Asset-or-nothing rho**: `∂_r V_asset = S · ϕ(d₁) · √τ / σ`.
 
-Direct chain rule since `∂_r d₁ = √τ/σ` (the difference `d₁ − d₂` is `r`-independent). -/
+Direct chain rule since `∂_r d₁ = √τ/σ` (the difference `d₁ − d₂` is `r`-independent).
+@isnad1 id=hasderiv.2h5v.s6.d840fed02b5c from=translated src=- shape=a53b6ddf vocab=8cda3172
+-/
 lemma hasDerivAt_bsAssetDigital_r (S K σ : ℝ) (hσ : 0 < σ) {τ : ℝ} (hτ : 0 < τ) (r : ℝ) :
     HasDerivAt (fun r' ↦ bsAssetDigital K r' σ S τ)
       (S * gaussianPDFReal 0 1 (bsd1 S K r σ τ) * (Real.sqrt τ / σ)) r := by
@@ -207,7 +223,9 @@ lemma hasDerivAt_bsAssetDigital_r (S K σ : ℝ) (hσ : 0 < σ) {τ : ℝ} (hτ 
 
 Product rule on `V_cash(r) = e^{-rτ} · Φ(d₂(r))`:
 * `∂_r e^{-rτ} = -τ · e^{-rτ}`
-* `∂_r Φ(d₂(r)) = ϕ(d₂) · √τ/σ`. -/
+* `∂_r Φ(d₂(r)) = ϕ(d₂) · √τ/σ`.
+@isnad1 id=hasderiv.2h5v.s7.92321e7f1e13 from=translated src=- shape=7032d0c9 vocab=8c90c790
+-/
 lemma hasDerivAt_bsCashDigital_r (S K σ : ℝ) (hσ : 0 < σ) {τ : ℝ} (hτ : 0 < τ) (r : ℝ) :
     HasDerivAt (fun r' ↦ bsCashDigital K r' σ S τ)
       (Real.exp (-(r * τ)) *
@@ -233,7 +251,9 @@ Differentiating δ_cash(s) = `e^{-rτ} · ϕ(d₂(s)) / (s · σ · √τ)` as a
 * `f'(S) = e^{-rτ} · (-d₂ · ϕ(d₂)) · (1/(S σ √τ))`
 * `g'(S) = σ · √τ`
 * `(f/g)'(S) = (f' · g − f · g') / g²`
-* Numerator algebraically collapses via `d₂ + σ√τ = d₁`. -/
+* Numerator algebraically collapses via `d₂ + σ√τ = d₁`.
+@isnad1 id=hasderiv.4h5v.s8.d28e15569cf0 from=translated src=- shape=44cddba9 vocab=701eaf68
+-/
 lemma hasDerivAt_bsCashDigital_SS {K r σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
     {S τ : ℝ} (hS : 0 < S) (hτ : 0 < τ) :
     HasDerivAt

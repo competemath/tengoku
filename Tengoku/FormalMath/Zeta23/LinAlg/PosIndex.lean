@@ -50,12 +50,17 @@ strictly above `θ`. `posIndexAbove hA 0 = posIndex hA`. -/
 def posIndexAbove {A : Matrix n n 𝕜} (hA : A.IsHermitian) (θ : ℝ) : ℕ :=
   #{i | θ < hA.eigenvalues i}
 
+/--
+@isnad1 id=le.1h3v.s6.8cc5bd5e1fe1 from=translated src=- shape=e0bc0072 vocab=830f7524
+-/
 lemma posIndex_le_card {A : Matrix n n 𝕜} (hA : A.IsHermitian) :
     posIndex hA ≤ Fintype.card n :=
   (card_filter_le _ _).trans_eq card_univ
 
 /-- For a PSD Hermitian matrix the positive index is the rank (every nonzero
-eigenvalue is positive). -/
+eigenvalue is positive).
+@isnad1 id=eq.1h3v.s6.177c4908b85d from=translated src=- shape=b4b7df51 vocab=5e5bf64f
+-/
 lemma posIndex_eq_rank_of_posSemidef {A : Matrix n n 𝕜} (hA : A.PosSemidef) :
     posIndex hA.isHermitian = A.rank := by
   rw [hA.isHermitian.rank_eq_card_non_zero_eigs, Fintype.card_subtype]
@@ -72,6 +77,9 @@ def rtrace (A : Matrix n n 𝕜) : ℝ := RCLike.re A.trace
 /-- Squared Frobenius norm, `‖A‖_F² = Re tr(AᴴA) = ∑ᵢⱼ |Aᵢⱼ|²`. -/
 def frobSq (A : Matrix n n 𝕜) : ℝ := RCLike.re (Aᴴ * A).trace
 
+/--
+@isnad1 id=eq.1h3v.s6.0a7fccaf8c08 from=translated src=- shape=3c943499 vocab=7e058011
+-/
 lemma rtrace_eq_sum_eigenvalues {A : Matrix n n 𝕜} (hA : A.IsHermitian) :
     rtrace A = ∑ i, hA.eigenvalues i := by
   unfold rtrace
@@ -87,17 +95,25 @@ variable {A : Matrix n n 𝕜} (hA : A.IsHermitian)
 def eigEquiv : Fin (Fintype.card n) ≃ n :=
   Fintype.equivOfCardEq (Fintype.card_fin _)
 
+/--
+@isnad1 id=eq.1h4v.s7.4d31dcefb787 from=translated src=- shape=270e0e64 vocab=3e41c95d
+-/
 lemma eigenvalues_eigEquiv (k : Fin (Fintype.card n)) :
     hA.eigenvalues (eigEquiv (n := n) k) = hA.eigenvalues₀ k := by
   simp [Matrix.IsHermitian.eigenvalues, eigEquiv]
 
 /-- Any sum over `n` of a function of the eigenvalues equals the corresponding
-sum over `Fin (card n)` of the function applied to `eigenvalues₀`. -/
+sum over `Fin (card n)` of the function applied to `eigenvalues₀`.
+@isnad1 id=eq.1h5v.s7.3a1d9f62cfc1 from=translated src=- shape=1e99875a vocab=0ed0c889
+-/
 lemma sum_eigenvalues_reindex {α : Type*} [AddCommMonoid α] (g : ℝ → α) :
     ∑ i, g (hA.eigenvalues i) = ∑ k, g (hA.eigenvalues₀ k) := by
   rw [← (eigEquiv (n := n)).sum_comp]
   simp only [eigenvalues_eigEquiv]
 
+/--
+@isnad1 id=eq.1h4v.s7.022043693c09 from=translated src=- shape=f8d35cc6 vocab=eb96dca1
+-/
 lemma card_eigenvalues_reindex (p : ℝ → Prop) [DecidablePred p] :
     #{i | p (hA.eigenvalues i)} = #{k | p (hA.eigenvalues₀ k)} := by
   apply Finset.card_nbij' (eigEquiv (n := n)).symm (eigEquiv (n := n))
@@ -113,7 +129,9 @@ lemma card_eigenvalues_reindex (p : ℝ → Prop) [DecidablePred p] :
 end Reindex
 
 open Unitary in
-/-- For a Hermitian matrix, `‖A‖_F² = ∑ᵢ λᵢ²` (sum of squared eigenvalues). -/
+/-- For a Hermitian matrix, `‖A‖_F² = ∑ᵢ λᵢ²` (sum of squared eigenvalues).
+@isnad1 id=eq.1h3v.s6.9e06549a8f92 from=translated src=- shape=328737d3 vocab=89a51b0c
+-/
 lemma frobSq_hermitian_eq_sum_sq_eigenvalues {A : Matrix n n 𝕜} (hA : A.IsHermitian) :
     frobSq A = ∑ i, (hA.eigenvalues i) ^ 2 := by
   -- A = U D Uᴴ ⟹ AᴴA = A² = U D² Uᴴ ⟹ tr(AᴴA) = ∑ λᵢ²

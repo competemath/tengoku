@@ -32,6 +32,9 @@ structure DiscreteRule (𝓕 : Filtration ℕ ‹MeasurableSpace Ω›) (N : ℕ
 def DiscreteRule.zero (𝓕 : Filtration ℕ ‹MeasurableSpace Ω›) (N : ℕ) : DiscreteRule 𝓕 N :=
   ⟨fun _ => 0,isStoppingTime_const 𝓕 0,fun _ => Nat.zero_le _⟩
 
+/--
+@isnad1 id=nonempty.0h3v.s4.111b4e1138ef from=translated src=- shape=885cb606 vocab=702d9efa
+-/
 instance discreteRule_nonempty (𝓕 : Filtration ℕ ‹MeasurableSpace Ω›) (N : ℕ) :
     Nonempty (DiscreteRule 𝓕 N) := ⟨DiscreteRule.zero 𝓕 N⟩
 
@@ -46,6 +49,9 @@ noncomputable def finiteBellmanRule {P : Measure Ω} {𝓕 : Filtration ℕ ‹M
     {Z : ℕ → Ω → ℝ} (ha : Adapted 𝓕 Z) (N : ℕ) : DiscreteRule 𝓕 N :=
   ⟨finiteBellmanContact P 𝓕 Z N,finiteBellmanContact_stopping ha N,finiteBellmanContact_le N⟩
 
+/--
+@isnad1 id=eq.2h5v.s6.82e29b703df9 from=translated src=- shape=c3d08857 vocab=f5be2ddc
+-/
 theorem discreteStoppingValue_eq_bellman {P : Measure Ω} [IsProbabilityMeasure P]
     {𝓕 : Filtration ℕ ‹MeasurableSpace Ω›} {Z : ℕ → Ω → ℝ}
     (ha : Adapted 𝓕 Z) (hi : ∀ i, Integrable (Z i) P) (N : ℕ) :
@@ -61,6 +67,9 @@ theorem discreteStoppingValue_eq_bellman {P : Measure Ω} [IsProbabilityMeasure 
   · rw [← finiteBellmanContact_expected_payoff ha hi N]
     exact le_csSup hb ⟨finiteBellmanRule ha N,rfl⟩
 
+/--
+@isnad1 id=eq.2h5v.s6.c143258fe8e7 from=translated src=- shape=bde87ecb vocab=6d6d06af
+-/
 theorem finiteBellmanRule_attains_value {P : Measure Ω} [IsProbabilityMeasure P]
     {𝓕 : Filtration ℕ ‹MeasurableSpace Ω›} {Z : ℕ → Ω → ℝ}
     (ha : Adapted 𝓕 Z) (hi : ∀ i, Integrable (Z i) P) (N : ℕ) :

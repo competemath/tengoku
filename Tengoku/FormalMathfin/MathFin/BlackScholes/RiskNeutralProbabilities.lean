@@ -66,7 +66,9 @@ Proof: the exercise region `{S_T(z) > K}` is identified with
 `{z > −bsd2}` by `bsTerminal_gt_K_iff`. The risk-neutral probability of
 this set is `Q(Z > −bsd2)`, which by `HasLaw` transfer equals
 `(gaussianReal 0 1)(Ioi (−bsd2))`. By `gaussianReal_Ioi_toReal`, this is
-`Φ(−(−bsd2)) = Φ(bsd2)`. -/
+`Φ(−(−bsd2)) = Φ(bsd2)`.
+@isnad1 id=eq.1h9v.s6.7c3db38be616 from=translated src=- shape=d26cbd01 vocab=323d65bc
+-/
 theorem riskNeutralProb_S_T_gt_K
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]

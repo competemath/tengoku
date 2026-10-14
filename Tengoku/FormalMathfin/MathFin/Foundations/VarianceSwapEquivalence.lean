@@ -75,7 +75,9 @@ increment sum, not a placeholder. `hB` is load-bearing (it feeds the QV-limit
 theorem), and `hT : 0 < T` feeds both conjuncts — its `≠ 0` half the log
 form, its `≤` half the QV limit. This is the real model-level equivalence of
 the static-replication and realised-variance characterisations of the fair
-strike. -/
+strike.
+@isnad1 id=and.3h7v.s8.6556100003e4 from=translated src=- shape=84b15abd vocab=7c50f5f1
+-/
 theorem varianceSwap_log_eq_QV_limit_value
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {B : ℝ → Ω → ℝ} (hB : BrownianQuadraticVariation μ B)

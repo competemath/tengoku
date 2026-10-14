@@ -106,7 +106,9 @@ noncomputable def swapOutput (x y Δx : ℝ) : ℝ :=
 
 where `Δy := swapOutput x y Δx`. This is the defining property of the
 CPMM — no arbitrage / no money-printing under the algorithmic
-exchange rate. -/
+exchange rate.
+@isnad1 id=eq.2h3v.s6.d7c64562b845 from=translated src=- shape=f4fcb804 vocab=b540d9fc
+-/
 theorem swap_preserves_invariant
     (x y Δx : ℝ) (hx : 0 < x) (hΔx : 0 < Δx) :
     (x + Δx) * (y - swapOutput x y Δx) = x * y := by
@@ -116,7 +118,9 @@ theorem swap_preserves_invariant
   ring
 
 /-- **Swap output is strictly positive** when input is positive (and
-reserves are positive). -/
+reserves are positive).
+@isnad1 id=lt.3h3v.s5.d9602a0b033e from=translated src=- shape=1b4cbc0d vocab=80c111de
+-/
 theorem swap_output_pos
     (x y Δx : ℝ) (hx : 0 < x) (hy : 0 < y) (hΔx : 0 < Δx) :
     0 < swapOutput x y Δx := by
@@ -126,7 +130,9 @@ theorem swap_output_pos
 
 /-- **Swap output bounded by reserve**: `Δy < y` — the AMM cannot be
 drained by any single (finite) trade. The deficit is exactly the positive
-remainder `y·x / (x + Δx)`. -/
+remainder `y·x / (x + Δx)`.
+@isnad1 id=lt.3h3v.s5.b7ff77479cab from=translated src=- shape=9793e98e vocab=80c111de
+-/
 theorem swap_output_lt_y
     (x y Δx : ℝ) (hx : 0 < x) (hΔx : 0 < Δx) (hy : 0 < y) :
     swapOutput x y Δx < y := by
@@ -139,7 +145,9 @@ theorem swap_output_lt_y
 /-- **Marginal price identity**: at infinitesimal input, the exchange
 rate `Δy / Δx` equals `y / (x + Δx)`, which tends to `y / x` as
 `Δx → 0⁺` (the "spot" internal price of the AMM, matching the ratio of
-reserves). -/
+reserves).
+@isnad1 id=eq.2h3v.s5.25c9a7cf09f8 from=translated src=- shape=743954f2 vocab=e0cd3399
+-/
 lemma marginal_exchange_rate
     (x y Δx : ℝ) (hx : 0 < x) (hΔx : 0 < Δx) :
     swapOutput x y Δx / Δx = y / (x + Δx) := by

@@ -29,6 +29,9 @@ open scoped Topology ContDiff
 /-- Value at `0` of the tangent to `b` at `t`: `b t - t * deriv b t`. -/
 noncomputable def tangentIntercept (b : ℝ → ℝ) (t : ℝ) : ℝ := b t - t * deriv b t
 
+/--
+@isnad1 id=hasderiv.2h2v.s7.2aa393442798 from=translated src=- shape=108f9e72 vocab=b1d022ff
+-/
 theorem tangentIntercept_hasDeriv {b : ℝ → ℝ} (hb : ContDiffOn ℝ ∞ b (Ioi 0))
     {t : ℝ} (ht : 0 < t) : HasDerivAt (tangentIntercept b) (-t * deriv (deriv b) t) t := by
   have hs : ContDiffAt ℝ 2 b t :=
@@ -39,6 +42,9 @@ theorem tangentIntercept_hasDeriv {b : ℝ → ℝ} (hb : ContDiffOn ℝ ∞ b (
   simp only [id_eq]
   ring
 
+/--
+@isnad1 id=hasderiv.2h2v.s7.09d535ca72e7 from=translated src=- shape=8e0fa6ee vocab=1937db3c
+-/
 theorem boundaryRatio_hasDeriv {b : ℝ → ℝ} (hb : ContDiffOn ℝ ∞ b (Ioi 0))
     {t : ℝ} (ht : 0 < t) :
     HasDerivAt (fun s => b s / s) (-tangentIntercept b t / t ^ 2) t := by
@@ -49,7 +55,9 @@ theorem boundaryRatio_hasDeriv {b : ℝ → ℝ} (hb : ContDiffOn ℝ ∞ b (Ioi
 
 /-- If a differentiable function cannot increase while negative, a negative
 value persists forward. Multiplication by `exp(t)` permits the strict scalar
-fencing theorem to be used at a fixed negative barrier. -/
+fencing theorem to be used at a fixed negative barrier.
+@isnad1 id=lt.5h3v.s7.ddb04affe202 from=translated src=- shape=d84033e2 vocab=60838abf
+-/
 theorem negative_stays_negative_of_deriv_nonpos {D : ℝ → ℝ}
     (hD : ∀ t, 0 < t → DifferentiableAt ℝ D t)
     (hd : ∀ t, 0 < t → D t < 0 → deriv D t ≤ 0)
@@ -78,7 +86,9 @@ theorem negative_stays_negative_of_deriv_nonpos {D : ℝ → ℝ}
   linarith
 
 /-- The near-expiry ratio limit produces a negative tangent intercept before
-every positive time, by the ordinary mean value theorem. -/
+every positive time, by the ordinary mean value theorem.
+@isnad1 id=ex.3h2v.s7.cdc8f0ecada4 from=translated src=- shape=0db9b7de vocab=55eada9d
+-/
 theorem exists_negative_intercept_before {b : ℝ → ℝ}
     (hb : ContDiffOn ℝ ∞ b (Ioi 0))
     (hlim : Tendsto (fun t => b t / t) (𝓝[>] 0) atBot) {T : ℝ} (hT : 0 < T) :
@@ -103,7 +113,9 @@ theorem exists_negative_intercept_before {b : ℝ → ℝ}
 
 /-- To establish global nonnegative curvature, it suffices to establish it
 at negative-intercept tangents. This is Step 1's reduction, not a curvature
-assumption on the pricing solution. -/
+assumption on the pricing solution.
+@isnad1 id=le.4h2v.s8.d92355343760 from=translated src=- shape=e98f13d4 vocab=901b81ea
+-/
 theorem curvature_nonneg_of_negative_intercepts {b : ℝ → ℝ}
     (hb : ContDiffOn ℝ ∞ b (Ioi 0))
     (hlim : Tendsto (fun t => b t / t) (𝓝[>] 0) atBot)

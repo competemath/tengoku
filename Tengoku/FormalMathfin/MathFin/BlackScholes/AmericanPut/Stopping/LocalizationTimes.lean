@@ -29,10 +29,16 @@ open scoped NNReal Topology
 /-- The margin `((n : ℝ)+1)⁻¹` of the `n`-th localization. -/
 noncomputable def localizationEps (n : ℕ) : ℝ := ((n : ℝ)+1)⁻¹
 
+/--
+@isnad1 id=lt.0h1v.s3.7bb9135b18f5 from=translated src=- shape=b9369acb vocab=5b65a90b
+-/
 theorem localizationEps_pos (n : ℕ) : 0 < localizationEps n := by
   unfold localizationEps
   positivity
 
+/--
+@isnad1 id=tendsto.0h0v.s4.51b06e769a5a from=translated src=- shape=8e2810f0 vocab=a0461c16
+-/
 theorem localizationEps_tendsto : Tendsto localizationEps atTop (𝓝 0) :=
   tendsto_inv_atTop_zero.comp (tendsto_atTop_add_const_right atTop 1 tendsto_natCast_atTop_atTop)
 
@@ -47,12 +53,18 @@ noncomputable def localizationMargin (Z W : ℝ≥0 → Ω → ℝ) (T : ℝ≥0
     (min ((n : ℝ)+1-|W t ω|) ((T : ℝ)-(t : ℝ)-localizationEps n)))
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=continuo.2h6v.s6.b115cfe5e7be from=translated src=- shape=3d286b15 vocab=c323b493
+-/
 theorem localizationMargin_continuous
     (hZ : ∀ ω, Continuous (fun t => Z t ω)) (hW : ∀ ω, Continuous (fun t => W t ω))
     (T : ℝ≥0) (n : ℕ) (ω : Ω) : Continuous (fun t => localizationMargin Z W T n t ω) := by
   unfold localizationMargin
   fun_prop
 
+/--
+@isnad1 id=adapted.2h6v.s6.252bcfa5a67f from=translated src=- shape=4a6a6a23 vocab=56bdc40e
+-/
 theorem localizationMargin_adapted (hZ : Adapted 𝓕 Z) (hW : Adapted 𝓕 W)
     (T : ℝ≥0) (n : ℕ) : Adapted 𝓕 (localizationMargin Z W T n) := by
   intro t
@@ -63,10 +75,16 @@ theorem localizationMargin_adapted (hZ : Adapted 𝓕 Z) (hW : Adapted 𝓕 W)
     ((measurable_const.sub hwt.abs).min measurable_const))
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.0h7v.s5.93e36e01ee38 from=translated src=- shape=a5c7de33 vocab=a223ee7b
+-/
 theorem localizationMargin_nonneg (Z W : ℝ≥0 → Ω → ℝ) (T : ℝ≥0) (n : ℕ) (t : ℝ≥0) (ω : Ω) :
     0 ≤ localizationMargin Z W T n t ω := le_max_left _ _
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.0h6v.s5.17b9d790219d from=translated src=- shape=d4944595 vocab=f52cccf9
+-/
 theorem localizationMargin_terminal (Z W : ℝ≥0 → Ω → ℝ) (T : ℝ≥0) (n : ℕ) (ω : Ω) :
     localizationMargin Z W T n T ω = 0 := by
   apply max_eq_left
@@ -82,6 +100,9 @@ noncomputable def interiorRule (hZ : Adapted 𝓕 Z) (hW : Adapted 𝓕 W)
     (localizationMargin_continuous hcZ hcW T n)
     (localizationMargin_nonneg Z W T n) T (localizationMargin_terminal Z W T n)
 
+/--
+@isnad1 id=and.5h8v.s7.28da53d828fd from=translated src=- shape=98641c36 vocab=8840de23
+-/
 theorem interiorRule_before (hZ : Adapted 𝓕 Z) (hW : Adapted 𝓕 W)
     (hcZ : ∀ ω, Continuous (fun t => Z t ω)) (hcW : ∀ ω, Continuous (fun t => W t ω))
     {T t : ℝ≥0} {n : ℕ} (ω : Ω) (ht : t < (interiorRule hZ hW hcZ hcW T n).time ω) :
@@ -94,7 +115,9 @@ theorem interiorRule_before (hZ : Adapted 𝓕 Z) (hW : Adapted 𝓕 W)
   exact ⟨by linarith [hh.1],by linarith [hh.2.1],by linarith [hh.2.2]⟩
 
 /-- At a positive exit time the closed margins still hold. The positivity
-condition is essential: an initially violated margin causes immediate stopping. -/
+condition is essential: an initially violated margin causes immediate stopping.
+@isnad1 id=other.5h7v.s7.01e2238910ed from=translated src=- shape=6ec4519b vocab=d8bd556b
+-/
 theorem interiorRule_at_positive_exit (hZ : Adapted 𝓕 Z) (hW : Adapted 𝓕 W)
     (hcZ : ∀ ω, Continuous (fun t => Z t ω)) (hcW : ∀ ω, Continuous (fun t => W t ω))
     {T : ℝ≥0} {n : ℕ} (ω : Ω)
@@ -120,6 +143,9 @@ theorem interiorRule_at_positive_exit (hZ : Adapted 𝓕 Z) (hW : Adapted 𝓕 W
     (fun t ht => by linarith [(interiorRule_before hZ hW hcZ hcW ω ht).2.2])
   exact ⟨hz,by linarith,by linarith⟩
 
+/--
+@isnad1 id=le.5h7v.s7.eaf7ba75a537 from=translated src=- shape=284b37db vocab=ffd11c6d
+-/
 theorem interiorRule_le_contact (hZ : Adapted 𝓕 Z) (hW : Adapted 𝓕 W)
     (hcZ : ∀ ω, Continuous (fun t => Z t ω)) (hcW : ∀ ω, Continuous (fun t => W t ω))
     {T : ℝ≥0} (hterminal : ∀ ω, Z T ω = 0) (n : ℕ) (ω : Ω) :
@@ -131,6 +157,9 @@ theorem interiorRule_le_contact (hZ : Adapted 𝓕 Z) (hW : Adapted 𝓕 W)
   apply max_eq_left
   exact (min_le_left _ _).trans (by rw [hzero]; linarith [localizationEps_pos n])
 
+/--
+@isnad1 id=eventual.7h7v.s7.b13c5f9fcd31 from=translated src=- shape=7da7b5f1 vocab=6833bfd0
+-/
 theorem interiorRule_eventually_after (hZ : Adapted 𝓕 Z) (hW : Adapted 𝓕 W)
     (hcZ : ∀ ω, Continuous (fun t => Z t ω)) (hcW : ∀ ω, Continuous (fun t => W t ω))
     (hnonneg : ∀ t ω, 0 ≤ Z t ω) {T : ℝ≥0} (hterminal : ∀ ω, Z T ω = 0)
@@ -166,6 +195,9 @@ theorem interiorRule_eventually_after (hZ : Adapted 𝓕 Z) (hW : Adapted 𝓕 W
         linarith
   exact (ne_of_gt hpositive) hzero
 
+/--
+@isnad1 id=tendsto.6h6v.s7.70a12ea7339a from=translated src=- shape=54f186eb vocab=14f4e6bb
+-/
 theorem interiorRule_tendsto_contact (hZ : Adapted 𝓕 Z) (hW : Adapted 𝓕 W)
     (hcZ : ∀ ω, Continuous (fun t => Z t ω)) (hcW : ∀ ω, Continuous (fun t => W t ω))
     (hnonneg : ∀ t ω, 0 ≤ Z t ω) {T : ℝ≥0} (hterminal : ∀ ω, Z T ω = 0) (ω : Ω) :

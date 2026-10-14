@@ -29,10 +29,16 @@ open scoped ContDiff
 noncomputable def rootProfile (u v z : ℝ) : ℝ :=
   (u * Real.exp (v * z) - v * Real.exp (u * z)) / (u - v)
 
+/--
+@isnad1 id=contdiff.0h2v.s5.a3ff5f656341 from=translated src=- shape=7c676072 vocab=8297317b
+-/
 theorem rootProfile_smooth (u v : ℝ) : ContDiff ℝ ∞ (rootProfile u v) := by
   unfold rootProfile
   fun_prop
 
+/--
+@isnad1 id=hasderiv.0h3v.s6.a632bdc3c145 from=translated src=- shape=bec578ab vocab=2387172c
+-/
 theorem rootProfile_hasDerivAt (u v z : ℝ) :
     HasDerivAt (rootProfile u v)
       ((u * (Real.exp (v * z) * v) - v * (Real.exp (u * z) * u)) / (u - v)) z := by
@@ -40,11 +46,17 @@ theorem rootProfile_hasDerivAt (u v z : ℝ) :
   simpa only [id_eq, mul_one, Pi.sub_apply] using (((((hasDerivAt_id z).const_mul v).exp).const_mul u).sub
     ((((hasDerivAt_id z).const_mul u).exp).const_mul v)).div_const (u - v)
 
+/--
+@isnad1 id=eq.0h3v.s6.92b357d26394 from=translated src=- shape=aa4959d5 vocab=f29b012a
+-/
 theorem rootProfile_deriv (u v z : ℝ) :
     deriv (rootProfile u v) z =
       (u * (Real.exp (v * z) * v) - v * (Real.exp (u * z) * u)) / (u - v) :=
   (rootProfile_hasDerivAt u v z).deriv
 
+/--
+@isnad1 id=eq.0h3v.s7.188788415c19 from=translated src=- shape=659dd0e8 vocab=f29b012a
+-/
 theorem rootProfile_deriv2 (u v z : ℝ) :
     deriv (deriv (rootProfile u v)) z =
       (u * (Real.exp (v * z) * v * v) -
@@ -56,14 +68,22 @@ theorem rootProfile_deriv2 (u v z : ℝ) :
     (((((hasDerivAt_id z).const_mul u).exp).mul_const u).const_mul v)).div_const
       (u - v)).deriv
 
+/--
+@isnad1 id=eq.1h2v.s4.d0325ab75be9 from=translated src=- shape=afd4a37e vocab=300c656b
+-/
 theorem rootProfile_zero {u v : ℝ} (huv : u ≠ v) : rootProfile u v 0 = 1 := by
   simp [rootProfile, sub_ne_zero.mpr huv]
 
+/--
+@isnad1 id=eq.0h2v.s5.2fa00b3be6a2 from=translated src=- shape=4acb42d8 vocab=4191a196
+-/
 theorem rootProfile_deriv_zero (u v : ℝ) : deriv (rootProfile u v) 0 = 0 := by
   rw [rootProfile_deriv]
   simp [mul_comm]
 
-/-- The exponential tangent inequality proves the global minimum at zero. -/
+/-- The exponential tangent inequality proves the global minimum at zero.
+@isnad1 id=le.2h3v.s5.e220cd84e314 from=translated src=- shape=27d84e87 vocab=01133b35
+-/
 theorem rootProfile_ge_one {u v : ℝ} (hu : 0 < u) (hv : v < 0) (z : ℝ) :
     1 ≤ rootProfile u v z := by
   have huv : 0 < u - v := sub_pos.mpr (hv.trans hu)
@@ -72,6 +92,9 @@ theorem rootProfile_ge_one {u v : ℝ} (hu : 0 < u) (hv : v < 0) (z : ℝ) :
   have h₂ := mul_le_mul_of_nonpos_left (Real.add_one_le_exp (u * z)) hv.le
   nlinarith
 
+/--
+@isnad1 id=eq.2h5v.s7.97d743a328db from=translated src=- shape=e46e9467 vocab=86bf7d9d
+-/
 theorem rootProfile_ode {u v β ρ : ℝ}
     (hu : u ^ 2 + β * u - ρ = 0) (hv : v ^ 2 + β * v - ρ = 0) (z : ℝ) :
     deriv (deriv (rootProfile u v)) z + β * deriv (rootProfile u v) z -
@@ -93,6 +116,9 @@ noncomputable def positiveRoot (β ρ : ℝ) : ℝ :=
 noncomputable def negativeRoot (β ρ : ℝ) : ℝ :=
   (-β - Real.sqrt (β ^ 2 + 4 * ρ)) / 2
 
+/--
+@isnad1 id=and.1h2v.s6.9a6c0935b3c3 from=translated src=- shape=27e4211b vocab=fbf54c8f
+-/
 theorem roots_equations {β ρ : ℝ} (hρ : 0 ≤ ρ) :
     positiveRoot β ρ ^ 2 + β * positiveRoot β ρ - ρ = 0 ∧
     negativeRoot β ρ ^ 2 + β * negativeRoot β ρ - ρ = 0 := by
@@ -100,6 +126,9 @@ theorem roots_equations {β ρ : ℝ} (hρ : 0 ≤ ρ) :
   unfold positiveRoot negativeRoot
   constructor <;> nlinarith
 
+/--
+@isnad1 id=and.1h2v.s5.6d0b658c6bd3 from=translated src=- shape=fc6bfe37 vocab=4e4e169d
+-/
 theorem roots_signs {β ρ : ℝ} (hρ : 0 < ρ) :
     0 < positiveRoot β ρ ∧ negativeRoot β ρ < 0 := by
   have hsq := Real.sq_sqrt (show 0 ≤ β ^ 2 + 4 * ρ by positivity)
@@ -107,6 +136,9 @@ theorem roots_signs {β ρ : ℝ} (hρ : 0 < ρ) :
   unfold positiveRoot negativeRoot
   constructor <;> nlinarith
 
+/--
+@isnad1 id=and.1h2v.s5.49570b4a2c0a from=translated src=- shape=7ad2df13 vocab=c3ccc2b6
+-/
 theorem roots_sum_product {β ρ : ℝ} (hρ : 0 ≤ ρ) :
     positiveRoot β ρ + negativeRoot β ρ = -β ∧
       positiveRoot β ρ * negativeRoot β ρ = -ρ := by
@@ -126,6 +158,9 @@ structure ProfileData (β ρ : ℝ) (F : ℝ → ℝ) : Prop where
   slope : deriv F 0 = 0
   ge_one : ∀ z, 1 ≤ F z
 
+/--
+@isnad1 id=profiled.1h2v.s4.a18b5e8568ee from=translated src=- shape=2395f9dc vocab=e206552f
+-/
 theorem profile_data {β ρ : ℝ} (hρ : 0 ≤ ρ) : ProfileData β ρ (profile β ρ) := by
   by_cases hz : ρ = 0
   · subst ρ
@@ -145,14 +180,23 @@ namespace ProfileData
 
 variable {β ρ : ℝ} {F : ℝ → ℝ}
 
+/--
+@isnad1 id=hasderiv.1h4v.s6.8f320d63f628 from=translated src=- shape=ee35a94f vocab=8576d68f
+-/
 theorem hasDeriv (h : ProfileData β ρ F) (z : ℝ) : HasDerivAt F (deriv F z) z :=
   (h.smooth.differentiable (by simp)).differentiableAt.hasDerivAt
 
+/--
+@isnad1 id=hasderiv.1h4v.s7.2a7fdc2a99da from=translated src=- shape=3305d660 vocab=8576d68f
+-/
 theorem hasDeriv_deriv (h : ProfileData β ρ F) (z : ℝ) :
     HasDerivAt (deriv F) (deriv (deriv F) z) z :=
   (((contDiff_infty_iff_deriv.mp h.smooth).2).differentiable
     (by simp)).differentiableAt.hasDerivAt
 
+/--
+@isnad1 id=lt.1h4v.s4.003f329e3e11 from=translated src=- shape=0d26bc77 vocab=6b8c7b60
+-/
 theorem pos (h : ProfileData β ρ F) (z : ℝ) : 0 < F z := lt_of_lt_of_le zero_lt_one (h.ge_one z)
 
 end ProfileData
@@ -163,6 +207,9 @@ noncomputable def price (f g : ℝ → ℝ) (c d x t : ℝ) : ℝ :=
 
 variable {k h α c d : ℝ} {f g : ℝ → ℝ}
 
+/--
+@isnad1 id=hasderiv.2h9v.s8.0a721b10eb75 from=translated src=- shape=45bdc7ef vocab=7ebae9b7
+-/
 theorem price_hasDeriv_x (hf : ProfileData (α - c) k f)
     (hg : ProfileData (α + 2 - c) h g) (x t : ℝ) :
     HasDerivAt (fun y => price f g c d y t)
@@ -176,6 +223,9 @@ theorem price_hasDeriv_x (hf : ProfileData (α - c) k f)
   convert! hd using 1
   ring
 
+/--
+@isnad1 id=hasderiv.2h9v.s7.88f33c6dcd3c from=translated src=- shape=dbb158bf vocab=7ebae9b7
+-/
 theorem price_hasDeriv_t (hf : ProfileData (α - c) k f)
     (hg : ProfileData (α + 2 - c) h g) (x t : ℝ) :
     HasDerivAt (price f g c d x)
@@ -188,6 +238,9 @@ theorem price_hasDeriv_t (hf : ProfileData (α - c) k f)
   convert! hd using 1
   ring
 
+/--
+@isnad1 id=eq.2h9v.s8.6aa72e31e3e5 from=translated src=- shape=ae1ac74c vocab=f3196a7f
+-/
 theorem price_deriv2_x (hf : ProfileData (α - c) k f)
     (hg : ProfileData (α + 2 - c) h g) (x t : ℝ) :
     deriv (deriv (fun y => price f g c d y t)) x =
@@ -205,7 +258,9 @@ theorem price_deriv2_x (hf : ProfileData (α - c) k f)
   convert! hd.deriv using 1
   ring
 
-/-- Step 2: the comparison satisfies the pricing equation exactly. -/
+/-- Step 2: the comparison satisfies the pricing equation exactly.
+@isnad1 id=eq.3h9v.s8.50842eed0150 from=translated src=- shape=ea36b5ef vocab=53a0c12e
+-/
 theorem price_equation (hα : α = k - h - 1)
     (hf : ProfileData (α - c) k f) (hg : ProfileData (α + 2 - c) h g) (x t : ℝ) :
     deriv (price f g c d x) t =
@@ -218,11 +273,17 @@ theorem price_equation (hα : α = k - h - 1)
     Real.exp x * hg.equation (x + c * t - d) +
     Real.exp x * g (x + c * t - d) * hα
 
+/--
+@isnad1 id=eq.2h8v.s6.fdb83e08556a from=translated src=- shape=a024548c vocab=90e33919
+-/
 theorem price_value_on_line (hf : ProfileData (α - c) k f)
     (hg : ProfileData (α + 2 - c) h g) (t : ℝ) :
     price f g c d (d - c * t) t = 1 - Real.exp (d - c * t) := by
   simp [price, hf.value, hg.value]
 
+/--
+@isnad1 id=hasderiv.2h8v.s7.e1918a98c28c from=translated src=- shape=bd63497b vocab=a2310722
+-/
 theorem price_smooth_fit_on_line (hf : ProfileData (α - c) k f)
     (hg : ProfileData (α + 2 - c) h g) (t : ℝ) :
     HasDerivAt (fun x => price f g c d x t) (-Real.exp (d - c * t)) (d - c * t) := by
@@ -233,6 +294,9 @@ theorem price_smooth_fit_on_line (hf : ProfileData (α - c) k f)
 noncomputable def excess (f g : ℝ → ℝ) (ℓ z : ℝ) : ℝ :=
   f z - 1 - Real.exp (ℓ + z) * (g z - 1)
 
+/--
+@isnad1 id=hasderiv.2h8v.s7.70fea60449f9 from=translated src=- shape=260bcfb0 vocab=581a28ea
+-/
 theorem excess_hasDeriv (hf : ProfileData (α - c) k f)
     (hg : ProfileData (α + 2 - c) h g) (ℓ z : ℝ) :
     HasDerivAt (excess f g ℓ)
@@ -242,6 +306,9 @@ theorem excess_hasDeriv (hf : ProfileData (α - c) k f)
   simp only [id_eq]
   ring
 
+/--
+@isnad1 id=eq.2h8v.s8.df5f22aa4f97 from=translated src=- shape=739fcbee vocab=d6db10e6
+-/
 theorem excess_deriv2 (hf : ProfileData (α - c) k f)
     (hg : ProfileData (α + 2 - c) h g) (ℓ z : ℝ) :
     deriv (deriv (excess f g ℓ)) z = deriv (deriv f) z - Real.exp (ℓ + z) *
@@ -254,7 +321,9 @@ theorem excess_deriv2 (hf : ProfileData (α - c) k f)
   simp only [id_eq, mul_one, Pi.add_apply]
   ring
 
-/-- Identity (8), including the sign of the dividend and line-speed terms. -/
+/-- Identity (8), including the sign of the dividend and line-speed terms.
+@isnad1 id=eq.3h8v.s8.85464606bd00 from=translated src=- shape=565634f5 vocab=d6db10e6
+-/
 theorem excess_equation (hα : α = k - h - 1)
     (hf : ProfileData (α - c) k f) (hg : ProfileData (α + 2 - c) h g) (ℓ z : ℝ) :
     deriv (deriv (excess f g ℓ)) z + (α - c) * deriv (excess f g ℓ) z -
@@ -265,12 +334,18 @@ theorem excess_equation (hα : α = k - h - 1)
   linear_combination hf.equation z - Real.exp (ℓ + z) * hg.equation z +
     Real.exp (ℓ + z) * (1 - g z) * hα
 
+/--
+@isnad1 id=and.2h7v.s6.5d709e4f138a from=translated src=- shape=1dd500d4 vocab=28f09113
+-/
 theorem excess_initial (hf : ProfileData (α - c) k f)
     (hg : ProfileData (α + 2 - c) h g) (ℓ : ℝ) :
     excess f g ℓ 0 = 0 ∧ deriv (excess f g ℓ) 0 = 0 := by
   rw [(excess_hasDeriv hf hg ℓ 0).deriv]
   simp [excess, hf.value, hg.value, hf.slope, hg.slope]
 
+/--
+@isnad1 id=le.7h8v.s8.4647fd6e4579 from=translated src=- shape=82d0535e vocab=768f63b1
+-/
 theorem excess_forcing_nonneg (hα : α = k - h - 1)
     (hf : ProfileData (α - c) k f) (hg : ProfileData (α + 2 - c) h g)
     (hh : 0 ≤ h) (hhk : h ≤ k) (hc : 0 ≤ c) {ℓ z : ℝ} (hx : ℓ + z ≤ 0) :
@@ -282,7 +357,9 @@ theorem excess_forcing_nonneg (hα : α = k - h - 1)
   have hp : 0 ≤ c * Real.exp (ℓ + z) * (g z - 1) := by positivity
   linarith
 
-/-- Step 3 on BOTH sides of the line, proved using integrating factors. -/
+/-- Step 3 on BOTH sides of the line, proved using integrating factors.
+@isnad1 id=le.8h8v.s7.eff8331f959e from=translated src=- shape=cd845cc6 vocab=22e2fb74
+-/
 theorem excess_nonneg (hα : α = k - h - 1)
     (hf : ProfileData (α - c) k f) (hg : ProfileData (α + 2 - c) h g)
     (hh : 0 ≤ h) (hhk : h ≤ k) (hc : 0 ≤ c)
@@ -303,7 +380,9 @@ theorem excess_nonneg (hα : α = k - h - 1)
   have hforce := excess_forcing_nonneg hα hf hg hh hhk hc hxy
   nlinarith
 
-/-- The comparison dominates the intrinsic expression everywhere below strike. -/
+/-- The comparison dominates the intrinsic expression everywhere below strike.
+@isnad1 id=le.9h9v.s7.2c9799b5a253 from=translated src=- shape=ab360aaa vocab=f8b53eb7
+-/
 theorem price_dominates_intrinsic (hα : α = k - h - 1)
     (hf : ProfileData (α - c) k f) (hg : ProfileData (α + 2 - c) h g)
     (hh : 0 ≤ h) (hhk : h ≤ k) (hc : 0 ≤ c) (hd : d ≤ 0)
@@ -320,6 +399,9 @@ theorem price_dominates_intrinsic (hα : α = k - h - 1)
 /-- Logarithmic slope; its denominator is strictly positive for these profiles. -/
 noncomputable def logSlope (F : ℝ → ℝ) (z : ℝ) : ℝ := deriv F z / F z
 
+/--
+@isnad1 id=hasderiv.1h4v.s6.78a55ea2ffda from=translated src=- shape=7c120021 vocab=bb9ba4d2
+-/
 theorem logSlope_hasDeriv {β ρ : ℝ} {F : ℝ → ℝ} (hF : ProfileData β ρ F) (z : ℝ) :
     HasDerivAt (logSlope F) (ρ - β * logSlope F z - logSlope F z ^ 2) z := by
   have hn := (hF.pos z).ne'
@@ -328,7 +410,9 @@ theorem logSlope_hasDeriv {β ρ : ℝ} {F : ℝ → ℝ} (hF : ProfileData β �
   field_simp
   linear_combination -F z * hF.equation z
 
-/-- Identity (16) as an actual derivative statement, not just a jet identity. -/
+/-- Identity (16) as an actual derivative statement, not just a jet identity.
+@isnad1 id=hasderiv.4h7v.s7.ac839d518545 from=translated src=- shape=5a87e5e8 vocab=1662f0b3
+-/
 theorem slope_gap_crosses_up (hα : α = k - h - 1)
     (hf : ProfileData (α - c) k f) (hg : ProfileData (α + 2 - c) h g)
     {z : ℝ} (hzero : logSlope f z - logSlope g z - 1 = 0) :
@@ -338,6 +422,9 @@ theorem slope_gap_crosses_up (hα : α = k - h - 1)
   rw [hm, hα]
   ring
 
+/--
+@isnad1 id=eq.2h6v.s6.b093aa3aac07 from=translated src=- shape=ab0fce8b vocab=60021af4
+-/
 theorem slope_gap_initial (hf : ProfileData (α - c) k f)
     (hg : ProfileData (α + 2 - c) h g) :
     logSlope f 0 - logSlope g 0 - 1 = -1 := by
@@ -347,10 +434,16 @@ theorem slope_gap_initial (hf : ProfileData (α - c) k f)
 noncomputable def initialRatio (f g : ℝ → ℝ) (z : ℝ) : ℝ :=
   Real.exp (-z) * f z / g z
 
+/--
+@isnad1 id=lt.2h7v.s6.838bf14f6efb from=translated src=- shape=b223f5ea vocab=f21a11d0
+-/
 theorem initialRatio_pos (hf : ProfileData (α - c) k f)
     (hg : ProfileData (α + 2 - c) h g) (z : ℝ) : 0 < initialRatio f g z :=
   div_pos (mul_pos (Real.exp_pos _) (hf.pos z)) (hg.pos z)
 
+/--
+@isnad1 id=hasderiv.2h7v.s7.0396c78196a2 from=translated src=- shape=47f05b1f vocab=3b78de2d
+-/
 theorem initialRatio_hasDeriv (hf : ProfileData (α - c) k f)
     (hg : ProfileData (α + 2 - c) h g) (z : ℝ) :
     HasDerivAt (initialRatio f g)
@@ -362,7 +455,9 @@ theorem initialRatio_hasDeriv (hf : ProfileData (α - c) k f)
   ring
 
 /-- The positive characteristic exponent of `f` strictly dominates that of
-`exp(x) * g`. For `h=0`, use `μ=0` because `g` is constant. -/
+`exp(x) * g`. For `h=0`, use `μ=0` because `g` is constant.
+@isnad1 id=lt.5h5v.s7.fbdf99e2f222 from=translated src=- shape=21d0dfaa vocab=3cc747ba
+-/
 theorem positive_root_gap (hα : α = k - h - 1) (hk : 0 < k) (hc : 0 < c)
     {μ : ℝ} (hμ : 0 ≤ μ) (heq : μ ^ 2 + (α + 2 - c) * μ - h = 0) :
     μ + 1 < positiveRoot (α - c) k := by
@@ -386,7 +481,9 @@ theorem positive_root_gap (hα : α = k - h - 1) (hk : 0 < k) (hc : 0 < c)
 noncomputable def straightPrice (k h c d : ℝ) : ℝ → ℝ → ℝ :=
   price (profile (k - h - 1 - c) k) (profile (k - h - 1 + 2 - c) h) c d
 
-/-- Step 2 with no profile existence assumptions remaining. -/
+/-- Step 2 with no profile existence assumptions remaining.
+@isnad1 id=eq.2h6v.s7.b119aea46a4f from=translated src=- shape=531cb6dc vocab=63c35116
+-/
 theorem straightPrice_equation {k h : ℝ} (hk : 0 < k) (hh : 0 ≤ h) (c d x t : ℝ) :
     deriv (straightPrice k h c d x) t =
       deriv (deriv (fun y => straightPrice k h c d y t)) x +
@@ -394,6 +491,9 @@ theorem straightPrice_equation {k h : ℝ} (hk : 0 < k) (hh : 0 ≤ h) (c d x t 
           k * straightPrice k h c d x t :=
   price_equation rfl (profile_data hk.le) (profile_data hh) x t
 
+/--
+@isnad1 id=and.2h5v.s7.a8e157644f07 from=translated src=- shape=0d6f055b vocab=a3f26639
+-/
 theorem straightPrice_fit {k h : ℝ} (hk : 0 < k) (hh : 0 ≤ h) (c d t : ℝ) :
     straightPrice k h c d (d - c * t) t = 1 - Real.exp (d - c * t) ∧
     HasDerivAt (fun x => straightPrice k h c d x t)
@@ -401,11 +501,16 @@ theorem straightPrice_fit {k h : ℝ} (hk : 0 < k) (hh : 0 ≤ h) (c d t : ℝ) 
   ⟨price_value_on_line (profile_data hk.le) (profile_data hh) t,
     price_smooth_fit_on_line (profile_data hk.le) (profile_data hh) t⟩
 
-/-- The zero-dividend comparison has just one nonconstant profile. -/
+/-- The zero-dividend comparison has just one nonconstant profile.
+@isnad1 id=eq.0h5v.s6.52e140ba9786 from=translated src=- shape=83985df6 vocab=555de2e1
+-/
 theorem straightPrice_zero_dividend (k c d x t : ℝ) :
     straightPrice k 0 c d x t = profile (k - 1 - c) k (x + c * t - d) - Real.exp x := by
   simp [straightPrice, price, profile]
 
+/--
+@isnad1 id=le.6h6v.s6.4efe7437a0b8 from=translated src=- shape=0abe12df vocab=dd3bd56c
+-/
 theorem straightPrice_dominates {k h c d x t : ℝ}
     (hh : 0 ≤ h) (hhk : h ≤ k) (hc : 0 ≤ c) (hd : d ≤ 0)
     (ht : 0 ≤ t) (hx : x ≤ 0) :
@@ -413,14 +518,18 @@ theorem straightPrice_dominates {k h c d x t : ℝ}
   price_dominates_intrinsic rfl (profile_data (hh.trans hhk)) (profile_data hh)
     hh hhk hc hd ht hx
 
-/-- Explicit zero-dividend milestone for the comparison construction. -/
+/-- Explicit zero-dividend milestone for the comparison construction.
+@isnad1 id=le.5h5v.s6.848e857200e8 from=translated src=- shape=5832973b vocab=978fe75b
+-/
 theorem straightPrice_zero_dividend_dominates {k c d x t : ℝ}
     (hk : 0 < k) (hc : 0 ≤ c) (hd : d ≤ 0) (ht : 0 ≤ t) (hx : x ≤ 0) :
     1 - Real.exp x ≤ straightPrice k 0 c d x t :=
   straightPrice_dominates le_rfl hk.le hc hd ht hx
 
 /-- Explicit specialization to Liu's normalized parameter range. This is a
-comparison lemma, NOT yet the boundary-convexity theorem in that range. -/
+comparison lemma, NOT yet the boundary-convexity theorem in that range.
+@isnad1 id=le.6h6v.s6.81a09150504d from=translated src=- shape=30a4da48 vocab=32350c41
+-/
 theorem straightPrice_liu_range_dominates {k h c d x t : ℝ}
     (hh : 0 ≤ h) (hliu : h + 1 ≤ k) (hc : 0 ≤ c) (hd : d ≤ 0)
     (ht : 0 ≤ t) (hx : x ≤ 0) :

@@ -39,7 +39,9 @@ open Complex
 
 open scoped ContDiff
 
-/-- Γ'/Γ commutes with complex conjugation (from Γ(z̄) = Γ(z)̄). -/
+/-- Γ'/Γ commutes with complex conjugation (from Γ(z̄) = Γ(z)̄).
+@isnad1 id=eq.0h1v.s6.6eb3a5779cf5 from=translated src=- shape=808f42d9 vocab=f19f794d
+-/
 theorem digamma_conj (z : ℂ) :
     Complex.digamma ((starRingEnd ℂ) z) = (starRingEnd ℂ) (Complex.digamma z) := by
   have hG : (starRingEnd ℂ) ∘ Complex.Gamma ∘ (starRingEnd ℂ) = Complex.Gamma := by
@@ -54,7 +56,9 @@ theorem digamma_conj (z : ℂ) :
   simp only [Complex.digamma_def, logDeriv_apply]
   rw [hd, Complex.Gamma_conj, ← map_div₀]
 
-/-- [eq:mufacts], "μ is even": μ(−τ) = μ(τ). -/
+/-- [eq:mufacts], "μ is even": μ(−τ) = μ(τ).
+@isnad1 id=eq.0h1v.s3.4ba2fc43364a from=translated src=- shape=cd419dad vocab=41e4fc0b
+-/
 theorem mu_even (τ : ℝ) : mu (-τ) = mu τ := by
   unfold mu
   have harg : (1 / 4 + Complex.I * ((-τ : ℝ) : ℂ) / 2 : ℂ)
@@ -90,7 +94,9 @@ private lemma analyticAt_digamma {z : ℂ} (hz : 0 < z.re) :
 -- IsScalarTower ℝ ℂ ℂ (cf. Analysis/CStarAlgebra/ContinuousFunctionalCalculus/
 -- RealImaginaryPart.lean, "fails to find IsScalarTower ℝ ℂ A").
 set_option backward.isDefEq.respectTransparency false in
-/-- [eq:mufacts], "μ is smooth": μ ∈ C^∞(ℝ). -/
+/-- [eq:mufacts], "μ is smooth": μ ∈ C^∞(ℝ).
+@isnad1 id=contdiff.0h0v.s5.b81a8189f614 from=translated src=- shape=3cea26be vocab=2edd3b7f
+-/
 theorem mu_smooth : ContDiff ℝ ∞ mu := by
   have hc : ContDiff ℝ ∞ (fun τ : ℝ => (1 / 4 + Complex.I * (τ : ℂ) / 2 : ℂ)) := by
     have h1 : ContDiff ℝ ∞ (fun τ : ℝ => (τ : ℂ)) := Complex.ofRealCLM.contDiff

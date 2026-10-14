@@ -77,7 +77,9 @@ contribution sums to `(r − σ²/2)² · T² / (n + 1) → 0`, so
   `lim_n E[Σ (X_{t_{k+1}} − X_{t_k})²] = σ² · T`,
 
 the QV / realised-variance characterisation of the variance-swap fair
-strike (deferred to a follow-up phase). -/
+strike (deferred to a follow-up phase).
+@isnad1 id=eq.3h8v.s7.026dbe0b80f6 from=translated src=- shape=0b696002 vocab=d27f1fda
+-/
 theorem expected_bsLogPrice_sq_increment
     [IsProbabilityMeasure μ]
     (hB : BrownianQuadraticVariation μ B)

@@ -19,7 +19,9 @@ noncomputable section
   Since we need to apply this to the sphere, which is in particular closed, we may take the closure
   in the ambient space `E`, which is more convenient to formalize.
   Since the open sets of `S` are obtained by intersecting open sets of `E` with `S`, this is indeed
-  what is required. -/
+  what is required.
+@isnad1 id=disjoint.3h3v.s7.73515f4b3e61 from=translated src=- shape=b90e4788 vocab=b3725242
+-/
 lemma closure_inter_sphere_disjoint_neg_of_open_inter_sphere {E : Type*} [NormedAddCommGroup E]
     (U : Set E) (h_open : IsOpen U) (S : Set E)
     (hS_symm : ∀ x ∈ S, -x ∈ S) (h_disjoint : Disjoint (U ∩ S) {x | -x ∈ U ∩ S}) :
@@ -40,7 +42,9 @@ lemma closure_inter_sphere_disjoint_neg_of_open_inter_sphere {E : Type*} [Normed
 def KneserGraph (n k : ℕ) : SimpleGraph {s : Finset (Fin n) // s.card = k} :=
   SimpleGraph.fromRel (fun v w => Disjoint v.val w.val)
 
-/-- If `n < 2k`, the Kneser graph has no edges. -/
+/-- If `n < 2k`, the Kneser graph has no edges.
+@isnad1 id=eq.1h2v.s6.5d60f77a295c from=translated src=- shape=e6b9d9b8 vocab=84ddd424
+-/
 lemma KneserGraph_no_edges_of_lt_two_mul (n k : ℕ) (h : n < 2 * k) :
     (KneserGraph n k).edgeSet = ∅ := by
       ext ⟨s, hs⟩;
@@ -52,7 +56,9 @@ lemma KneserGraph_no_edges_of_lt_two_mul (n k : ℕ) (h : n < 2 * k) :
       have := Finset.card_le_univ ( A ∪ B ) ; simp_all +decide [Finset.disjoint_iff_inter_eq_empty]
       grind
 
-/-- The chromatic number of the Kneser graph `K(2k+d, k)` is at most `d+2`. -/
+/-- The chromatic number of the Kneser graph `K(2k+d, k)` is at most `d+2`.
+@isnad1 id=le.2h3v.s6.60c441beac11 from=translated src=- shape=1022bde3 vocab=2e230ed7
+-/
 lemma KneserGraph_chromaticNumber_le (n k d : ℕ) (hk : 1 ≤ k) (h : n = 2 * k + d) :
     (KneserGraph n k).chromaticNumber ≤ d + 2 := by
   let color : Finset (Fin n) → Fin (d + 2) := fun A =>
@@ -126,7 +132,9 @@ def momentCurve (d : ℕ) (t : ℝ) : EuclideanSpace ℝ (Fin d) :=
   (WithLp.equiv 2 _).symm (fun (i : Fin d) => t ^ (i : ℕ))
 
 /-- Points on the moment curve are in general position. In particular, there exist a set of points
-  in general position. We do this to construct the points explicitly for the proof. -/
+  in general position. We do this to construct the points explicitly for the proof.
+@isnad1 id=linearin.1h2v.s7.a54b2ca5c27f from=translated src=- shape=d66dfe0c vocab=0eac239c
+-/
 lemma momentCurve_general_position {d : ℕ} {s : Finset ℝ} (hs : s.card ≤ d) :
     LinearIndependent ℝ (fun x : s => momentCurve d x) := by
   have h_vandermonde_inv : ∀ (c : Fin s.card → ℝ),
@@ -175,7 +183,9 @@ def open_set_for_subsets {d : ℕ} (V : Set (Finset (EuclideanSpace ℝ (Fin d))
   { x | ∃ A ∈ V, ∀ y ∈ A, inner (𝕜 := ℝ) x y > 0 }
 
 /-- The set of points `x` such that the open hemisphere defined by `x` contains some set `A` from
-  `V` is open. -/
+  `V` is open.
+@isnad1 id=isopen.0h2v.s5.53372f09c5e1 from=translated src=- shape=a9e82abd vocab=943c71fd
+-/
 lemma is_open_open_set_for_subsets {d : ℕ} (V : Set (Finset (EuclideanSpace ℝ (Fin d)))) :
     IsOpen (open_set_for_subsets V) := by
       convert isOpen_biUnion fun A hA => ?_;
@@ -192,7 +202,9 @@ lemma is_open_open_set_for_subsets {d : ℕ} (V : Set (Finset (EuclideanSpace �
 
 /-- If `P` is a set of `2k+d` points in general position in `R^{d+2}`, and `C` is the set of points
   `x` such that no `k`-subset of `P` lies in the open hemisphere of `x`, then `C` contains no
-  antipodal points. -/
+  antipodal points.
+@isnad1 id=false.6h5v.s10.2aedf299e925 from=translated src=- shape=cdc2b917 vocab=a68b24d1
+-/
 lemma no_antipodal_in_C {k d : ℕ} (P : Finset (EuclideanSpace ℝ (Fin (d + 2))))
     (hP_card : P.card = 2 * k + d) (hP_gp : GeneralPosition P)
     (C : Set (EuclideanSpace ℝ (Fin (d + 2))))
@@ -250,6 +262,9 @@ lemma no_antipodal_in_C {k d : ℕ} (P : Finset (EuclideanSpace ℝ (Fin (d + 2)
         (by linarith) ⟩
 
 /- If `x` and `-x` are both in the open set defined by `V`, then `V` contains two disjoint sets. -/
+/--
+@isnad1 id=ex.2h3v.s7.0258c6727978 from=translated src=- shape=d8a6d14e vocab=4fcc3a40
+-/
 lemma antipodal_in_open_set_implies_disjoint_sets {d : ℕ}
     (V : Set (Finset (EuclideanSpace ℝ (Fin d)))) (x : EuclideanSpace ℝ (Fin d))
     (hx : x ∈ open_set_for_subsets V) (hnegx : -x ∈ open_set_for_subsets V) :
@@ -268,7 +283,9 @@ def kneser_C {d : ℕ} (P : Finset (EuclideanSpace ℝ (Fin d))) (k : ℕ) :
   Set (EuclideanSpace ℝ (Fin d)) :=
   { x | ∀ A ⊆ P, A.card = k → ∃ y ∈ A, inner (𝕜 := ℝ) x y ≤ 0 }
 
-/-- The union of the open sets `O_i` and the set `C` covers the entire space. -/
+/-- The union of the open sets `O_i` and the set `C` covers the entire space.
+@isnad1 id=eq.1h5v.s7.5aa63b921af6 from=translated src=- shape=395ee997 vocab=05da1d0e
+-/
 lemma kneser_cover_eq_univ {d k n : ℕ} (P : Finset (EuclideanSpace ℝ (Fin d)))
     (V : Fin n → Set (Finset (EuclideanSpace ℝ (Fin d))))
     (h_partition : (⋃ i, V i) = { A | A ⊆ P ∧ A.card = k }) :
@@ -283,7 +300,9 @@ lemma kneser_cover_eq_univ {d k n : ℕ} (P : Finset (EuclideanSpace ℝ (Fin d)
             obtain ⟨ y, hy₁, hy₂ ⟩ := h i A hi
             exact ⟨ y, hy₁, hy₂ ⟩
 
-/-- The set `C` defined for the Kneser graph proof is closed. -/
+/-- The set `C` defined for the Kneser graph proof is closed.
+@isnad1 id=isclosed.0h3v.s5.e0947349f95c from=translated src=- shape=c43e9011 vocab=1b0432b6
+-/
 lemma is_closed_kneser_C {d k : ℕ} (P : Finset (EuclideanSpace ℝ (Fin d))) :
     IsClosed (kneser_C P k) := by
       set V := { A : Finset (EuclideanSpace ℝ (Fin d)) | A ⊆ P ∧ A.card = k } with hV;
@@ -302,7 +321,9 @@ def GeometricKneserGraph {d : ℕ} (P : Finset (EuclideanSpace ℝ (Fin d))) (k 
 
 /- The chromatic number of the geometric Kneser graph on `P` is strictly greater than `d+1`. -/
 
-/-- Isomorphic graphs have the same chromatic number. -/
+/-- Isomorphic graphs have the same chromatic number.
+@isnad1 id=eq.0h5v.s4.26878a36d61d from=translated src=- shape=4714b7d0 vocab=85c8e3bb
+-/
 lemma SimpleGraph.Iso.chromaticNumber_eq {V W : Type*} {G : SimpleGraph V} {H : SimpleGraph W}
   (e : G ≃g H) : G.chromaticNumber = H.chromaticNumber := by
       refine' le_antisymm _ _;
@@ -322,7 +343,9 @@ lemma SimpleGraph.Iso.chromaticNumber_eq {V W : Type*} {G : SimpleGraph V} {H : 
 def momentCurvePoints (n d : ℕ) : Finset (EuclideanSpace ℝ (Fin d)) :=
   (Finset.univ : Finset (Fin n)).image (fun (i : Fin n) => momentCurve d (i : ℝ))
 
-/-- The set of points on the moment curve has size `n`, provided `d \geq 2`. -/
+/-- The set of points on the moment curve has size `n`, provided `d \geq 2`.
+@isnad1 id=eq.1h2v.s4.01cb285bc5ef from=translated src=- shape=8c2d04de vocab=652a0011
+-/
 lemma momentCurvePoints_card (n d : ℕ) (hd : 2 ≤ d) : (momentCurvePoints n d).card = n := by
   rw [momentCurvePoints, Finset.card_image_of_injective]
   · simp
@@ -336,7 +359,9 @@ lemma momentCurvePoints_card (n d : ℕ) (hd : 2 ≤ d) : (momentCurvePoints n d
     simp only [pow_one] at h1
     exact Fin.ext (by exact_mod_cast h1)
 
-/-- The points on the moment curve are in general position. -/
+/-- The points on the moment curve are in general position.
+@isnad1 id=generalp.0h2v.s5.52bcf11273f6 from=translated src=- shape=8be9fca4 vocab=81bb241f
+-/
 lemma momentCurvePoints_generalPosition (n d : ℕ) :
     GeneralPosition (momentCurvePoints n (d + 2)) := by
       intro s hs hcard

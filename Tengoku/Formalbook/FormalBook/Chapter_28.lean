@@ -57,6 +57,9 @@ end ErdosSzekeres
 
 namespace chapter28
 
+/--
+@isnad1 id=ex.1h3v.s5.7c32fcce9587 from=translated src=- shape=23840e59 vocab=1173123d
+-/
 theorem pigeon_hole_principle (n r : ℕ) (h : r < n) (object_to_boxes : Fin n → Fin r) :
   ∃ box : Fin r, ∃ object₁ object₂ : Fin n,
   object₁ ≠ object₂ ∧
@@ -84,7 +87,9 @@ which uses darts (oriented edges) as the intermediate counting object. Our proof
 follows the book's double-counting argument more faithfully: we count incidence
 pairs (v, e) with v ∈ e, swap the summation order via
 `Finset.sum_card_bipartiteAbove_eq_sum_card_bipartiteBelow`, then observe each edge
-contributes exactly 2. -/
+contributes exactly 2.
+@isnad1 id=eq.0h2v.s6.d5710287d05c from=translated src=- shape=f02e6a74 vocab=2a31397b
+-/
 lemma handshaking : ∑ v, d(v) = 2 * #E := by
   calc  ∑ v, d(v)
     _ = ∑ v, #I(v)             := by simp [G.card_incidenceFinset_eq_degree]
@@ -103,7 +108,9 @@ lemma handshaking : ∑ v, d(v) = 2 * #E := by
 section claims
 
 /-- **Claim 1 (Coprime pair):** From any n+1 numbers in {0,...,2n-1} (representing {1,...,2n}),
-two must be coprime (as values +1). -/
+two must be coprime (as values +1).
+@isnad1 id=ex.1h2v.s8.9c7c8f226b48 from=translated src=- shape=4ddac036 vocab=4f50b0a8
+-/
 theorem claim1_coprime (n : ℕ)
     (S : Finset (Fin (2 * n))) (hS : n < S.card) :
     ∃ a ∈ S, ∃ b ∈ S, a ≠ b ∧ Nat.Coprime (a.val + 1) (b.val + 1) := by
@@ -122,7 +129,9 @@ theorem claim1_coprime (n : ℕ)
     rw [hcons]
     exact (Nat.coprime_self_add_right.mpr (Nat.coprime_one_right _)).symm
 
-/-- Claim 2: From {1, 2, ..., 2n}, any n+1 chosen numbers contain two where one divides the other. -/
+/-- Claim 2: From {1, 2, ..., 2n}, any n+1 chosen numbers contain two where one divides the other.
+@isnad1 id=ex.3h2v.s6.ad842cdd39cc from=translated src=- shape=9087b7be vocab=39119a8c
+-/
 theorem claim2_divisible (n : ℕ) (hn : 0 < n) (S : Finset ℕ)
     (hS_sub : ∀ x ∈ S, 1 ≤ x ∧ x ≤ 2 * n)
     (hS_card : S.card = n + 1) :
@@ -156,7 +165,9 @@ theorem claim2_divisible (n : ℕ) (hn : 0 < n) (S : Finset ℕ)
   · exact ⟨b, hb, a, ha, Ne.symm hne, h⟩
 
 /-- **Claim 4 (Contiguous sum divisible by n):** Given n integers, there exists a nonempty
-contiguous subsequence whose sum is divisible by n. -/
+contiguous subsequence whose sum is divisible by n.
+@isnad1 id=ex.1h2v.s6.5ab1402769c5 from=translated src=- shape=aa853a73 vocab=de73e4ec
+-/
 theorem claim4_contiguous_sum (n : ℕ) (hn : 0 < n) (a : Fin n → ℤ) :
     ∃ (l r : Fin n), l ≤ r ∧ (n : ℤ) ∣ ∑ i ∈ Finset.Icc l r, a i := by
   set s : Fin (n + 1) → ℤ :=
@@ -201,7 +212,9 @@ end claims
 
 /-- Double counting: the sum over rows of the number of related columns equals
 the sum over columns of the number of related rows. This is a direct wrapper
-around Mathlib's `Finset.sum_card_bipartiteAbove_eq_sum_card_bipartiteBelow`. -/
+around Mathlib's `Finset.sum_card_bipartiteAbove_eq_sum_card_bipartiteBelow`.
+@isnad1 id=eq.0h5v.s6.58360e526b49 from=translated src=- shape=136dd174 vocab=214dbf5b
+-/
 theorem double_counting {α β : Type*}
     (R : Finset α) (C : Finset β) (r : α → β → Prop) [∀ a b, Decidable (r a b)] :
     (∑ p ∈ R, (Finset.bipartiteAbove r C p).card) =
@@ -214,7 +227,9 @@ theorem double_counting {α β : Type*}
 
 This is the key combinatorial inequality: each pair of vertices can have at most one
 common neighbor (otherwise they'd form a 4-cycle), so the number of "cherries"
-(paths of length 2) is at most the number of vertex pairs. -/
+(paths of length 2) is at most the number of vertex pairs.
+@isnad1 id=le.1h2v.s7.80588b8ba0f9 from=translated src=- shape=72f9374f vocab=0676dcb2
+-/
 theorem sum_choose_deg_le_choose_card
     {V : Type*} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]
@@ -266,7 +281,9 @@ theorem sum_choose_deg_le_choose_card
 |E| ≤ ⌊n/4 · (1 + √(4n − 3))⌋.
 
 The proof uses `sum_choose_deg_le_choose_card` together with the handshaking lemma
-and Cauchy–Schwarz / Jensen. -/
+and Cauchy–Schwarz / Jensen.
+@isnad1 id=le.2h3v.s7.7ca214c78602 from=translated src=- shape=55c96e12 vocab=d3f7efb0
+-/
 theorem c4_free_edge_bound
     {V : Type*} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]
@@ -394,7 +411,9 @@ theorem c4_free_edge_bound
     Σ_{j=1}^{n} (number of divisors of j) = Σ_{i=1}^{n} ⌊n/i⌋.
 
     Both sides count pairs (i, j) with 1 ≤ i ≤ n, 1 ≤ j ≤ n, and i ∣ j.
-    LHS groups by j (divisors of j), RHS groups by i (multiples of i up to n). -/
+    LHS groups by j (divisors of j), RHS groups by i (multiples of i up to n).
+@isnad1 id=eq.0h1v.s5.f26f1466c0b8 from=translated src=- shape=e5e79ba3 vocab=3bac2580
+-/
 theorem sum_divisor_count (n : ℕ) :
     ∑ j ∈ Finset.Icc 1 n, (Nat.divisors j).card = ∑ i ∈ Finset.Icc 1 n, n / i := by
   have key := Finset.sum_card_bipartiteAbove_eq_sum_card_bipartiteBelow (· ∣ ·)
@@ -427,7 +446,9 @@ theorem sum_divisor_count (n : ℕ) :
     exact Nat.Ioc_filter_dvd_card_eq_div n i
 
 /-- The average number of divisors is bounded by the harmonic sum:
-  `∑ j in [1,n], t(j) ≤ n * Hₙ` where `t(j) = #(divisors j)` and `Hₙ = ∑ 1/i`. -/
+  `∑ j in [1,n], t(j) ≤ n * Hₙ` where `t(j) = #(divisors j)` and `Hₙ = ∑ 1/i`.
+@isnad1 id=le.0h1v.s6.9de4d41993d3 from=translated src=- shape=8c1892b0 vocab=8f901977
+-/
 theorem avg_divisor_count_le_harmonic (n : ℕ) :
     (∑ j ∈ Finset.Icc 1 n, (Nat.divisors j).card : ℚ) ≤
     ↑n * ∑ i ∈ Finset.Icc 1 n, (1 : ℚ) / ↑i := by
@@ -444,7 +465,9 @@ theorem avg_divisor_count_le_harmonic (n : ℕ) :
         rw [Finset.mul_sum]
         congr 1; ext i; ring
 
-/-- Lower bound: ∑ t(j) > n·Hₙ − n, i.e., t̄(n) > Hₙ − 1 > log n − 1. -/
+/-- Lower bound: ∑ t(j) > n·Hₙ − n, i.e., t̄(n) > Hₙ − 1 > log n − 1.
+@isnad1 id=lt.1h1v.s6.cb77959f5baf from=translated src=- shape=ee262021 vocab=54b48bdd
+-/
 theorem avg_divisor_count_lower_bound (n : ℕ) (hn : 0 < n) :
     ↑n * ∑ i ∈ Finset.Icc 1 n, (1 : ℚ) / ↑i - ↑n <
     (∑ j ∈ Finset.Icc 1 n, (Nat.divisors j).card : ℚ) := by
@@ -496,7 +519,9 @@ namespace KnDimension
 end KnDimension
 
 /-! ## 6. Sperner's Lemma -/
-/-- Transfer from simplex to disk. -/
+/-- Transfer from simplex to disk.
+@isnad1 id=ex.2h1v.s8.75ffddbc8a88 from=translated src=- shape=6b825703 vocab=08998104
+-/
 theorem brouwer_fixed_point_2d_from_sperner
     (f : EuclideanSpace ℝ (Fin 2) → EuclideanSpace ℝ (Fin 2))
     (hf : Continuous f) (hB : ∀ x, ‖x‖ ≤ 1 → ‖f x‖ ≤ 1) :
@@ -506,6 +531,9 @@ theorem brouwer_fixed_point_2d_from_sperner
   exact brouwer_fixed_point_2d_from_complex f hf hB
 
 /-! ## Brouwer's fixed point theorem (n = 2) -/
+/--
+@isnad1 id=ex.2h1v.s8.75ffddbc8a88 from=translated src=- shape=6b825703 vocab=08998104
+-/
 theorem brouwer_fixed_point_2d
     (f : EuclideanSpace ℝ (Fin 2) → EuclideanSpace ℝ (Fin 2))
     (hf : Continuous f) (hB : ∀ x, ‖x‖ ≤ 1 → ‖f x‖ ≤ 1) :
@@ -548,7 +576,9 @@ noncomputable def reimanGraph : SimpleGraph (PG2 p) where
 
 /-- The number of vertices of Gp is p² + p + 1.
     Note: The tex assumes p is an odd prime, but oddness is not needed for the cardinality
-    formula — only that p is a prime (hence ZMod p is a field). -/
+    formula — only that p is a prime (hence ZMod p is a field).
+@isnad1 id=eq.0h1v.s5.2b50c1095757 from=translated src=- shape=83572966 vocab=cb5e9584
+-/
 theorem reimanGraph_card_vertices :
     Nat.card (PG2 p) = p ^ 2 + p + 1 := by
   have hfr : Module.finrank (ZMod p) (Fin 3 → ZMod p) = 3 := by
@@ -561,7 +591,9 @@ theorem reimanGraph_card_vertices :
     then x = cross a c.  This is the uniqueness of the intersection of two
     hyperplanes (each hyperplane is the set of points orthogonal to a given point).
     Proof: by the BAC-CAB identity, w × (u × v) = (w·v)u − (u·w)v = 0 when
-    w·u = 0 and w·v = 0, so the representatives are proportional. -/
+    w·u = 0 and w·v = 0, so the representatives are proportional.
+@isnad1 id=eq.3h4v.s8.b1ad28ea7ad8 from=translated src=- shape=a6dd478e vocab=85a970e6
+-/
 lemma orthogonal_both_eq_cross {F : Type*} [Field F] [DecidableEq F]
     {a c : ℙ F (Fin 3 → F)} (hac : a ≠ c)
     {x : ℙ F (Fin 3 → F)} (hxa : Projectivization.orthogonal x a)
@@ -587,7 +619,9 @@ lemma orthogonal_both_eq_cross {F : Type*} [Field F] [DecidableEq F]
 
     Note: The tex states this for 4 *distinct* vertices (6 pairwise ≠ conditions), but the
     proof only needs a ≠ c and b ≠ d.  The other four ≠ conditions follow from Adj being
-    irreflexive (loopless graph). -/
+    irreflexive (loopless graph).
+@isnad1 id=not.2h5v.s6.3db649ac18d4 from=translated src=- shape=4744dfba vocab=54a5448b
+-/
 theorem reimanGraph_no_C4 :
     ∀ (a b c d : PG2 p),
       a ≠ c → b ≠ d →
@@ -603,7 +637,9 @@ theorem reimanGraph_no_C4 :
   exact hbd (hb.trans hd.symm)
 
 open Classical in
-/-- The projective hyperplane orthogonal to a point has p+1 elements. -/
+/-- The projective hyperplane orthogonal to a point has p+1 elements.
+@isnad1 id=eq.0h2v.s6.838aa4c05a6a from=translated src=- shape=53d05cf3 vocab=ffa435a2
+-/
 lemma orthogonal_set_card [Fintype (PG2 p)]
     (v : PG2 p) :
     (Finset.univ.filter (fun w : PG2 p => Projectivization.orthogonal v w)).card = p + 1 := by
@@ -647,7 +683,9 @@ lemma orthogonal_set_card [Fintype (PG2 p)]
 open Classical in
 /-- Each vertex's degree: p if self-orthogonal, p+1 otherwise.
     The orthogonal hyperplane of [v] in PG(2,p) has p+1 projective points.
-    If v·v = 0, then [v] is among them and the degree is p; otherwise p+1. -/
+    If v·v = 0, then [v] is among them and the degree is p; otherwise p+1.
+@isnad1 id=eq.0h2v.s7.91d944fcdb6c from=translated src=- shape=34b70acb vocab=396b0c13
+-/
 lemma reimanGraph_degree_eq [Fintype (PG2 p)] [DecidableEq (PG2 p)]
     [DecidableRel (reimanGraph p).Adj] (v : PG2 p) :
     (reimanGraph p).degree v =

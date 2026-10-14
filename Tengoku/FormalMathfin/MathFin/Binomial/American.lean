@@ -51,12 +51,16 @@ noncomputable def americanPrice (u d r : ℝ) (g : ℝ → ℝ) : ℕ → ℝ �
         (americanPrice u d r g n (S * u))
         (americanPrice u d r g n (S * d)))
 
-/-- At maturity (`n = 0`), the American price equals the intrinsic payoff. -/
+/-- At maturity (`n = 0`), the American price equals the intrinsic payoff.
+@isnad1 id=eq.0h5v.s4.77c30fea6a30 from=translated src=- shape=04d361bc vocab=a47ea2e8
+-/
 @[simp]
 lemma americanPrice_zero (u d r : ℝ) (g : ℝ → ℝ) (S : ℝ) :
     americanPrice u d r g 0 S = g S := rfl
 
-/-- One-step Bellman: `V_{n+1}(S) = max(g(S), one-period continuation)`. -/
+/-- One-step Bellman: `V_{n+1}(S) = max(g(S), one-period continuation)`.
+@isnad1 id=eq.0h6v.s6.5f50a84274a2 from=translated src=- shape=ccb0d6d0 vocab=1a5db1cf
+-/
 lemma americanPrice_succ (u d r : ℝ) (g : ℝ → ℝ) (n : ℕ) (S : ℝ) :
     americanPrice u d r g (n + 1) S = max (g S)
       (binomialOptionPriceOnePeriod u d r
@@ -66,7 +70,9 @@ lemma americanPrice_succ (u d r : ℝ) (g : ℝ → ℝ) (n : ℕ) (S : ℝ) :
 /-- **Intrinsic-value bound**: `g(S) ≤ V_n(S)` for all `n, S`.
 
 Immediate: at step 0 they are equal; at later steps the recursion takes a `max`
-that contains `g S` as a candidate. -/
+that contains `g S` as a candidate.
+@isnad1 id=le.0h6v.s4.e0acdd6c7f0f from=translated src=- shape=937fcaaa vocab=e8491cdb
+-/
 lemma americanPrice_ge_intrinsic (u d r : ℝ) (g : ℝ → ℝ) (n : ℕ) (S : ℝ) :
     g S ≤ americanPrice u d r g n S := by
   cases n with
@@ -79,7 +85,9 @@ discounted American price process is a supermartingale under the risk-neutral
 measure.
 
 Immediate from the Bellman max: `V_{n+1}(S) = max(g(S), continuation(n+1, S))
-≥ continuation(n+1, S)`. -/
+≥ continuation(n+1, S)`.
+@isnad1 id=le.0h6v.s6.b3dccf72b666 from=translated src=- shape=eff70372 vocab=4b20ee13
+-/
 lemma americanPrice_supermartingale (u d r : ℝ) (g : ℝ → ℝ) (n : ℕ) (S : ℝ) :
     binomialOptionPriceOnePeriod u d r
       (americanPrice u d r g n (S * u))
@@ -89,7 +97,9 @@ lemma americanPrice_supermartingale (u d r : ℝ) (g : ℝ → ℝ) (n : ℕ) (S
 
 /-- Monotonicity of the one-period continuation: if `V_u ≤ V_u'` and
 `V_d ≤ V_d'`, then the one-period prices satisfy the same ordering.
-Required for the European → American domination proof. -/
+Required for the European → American domination proof.
+@isnad1 id=le.3h7v.s5.5aa049fc5606 from=translated src=- shape=f21994c7 vocab=93fd0a44
+-/
 lemma binomialOptionPriceOnePeriod_mono {u d r V_u V_u' V_d V_d' : ℝ}
     (h : BinomialNoArb u d r) (hu : V_u ≤ V_u') (hd : V_d ≤ V_d') :
     binomialOptionPriceOnePeriod u d r V_u V_d
@@ -115,7 +125,9 @@ price dominates the European price at every step and every spot.
 Proof: induction on the step count. At `n = 0` both equal `g(S)`. The
 inductive step uses the supermartingale property (`V_{n+1}^{Am} ≥
 continuation^{Am}`), monotonicity of the continuation in its arguments, and
-the European recursion `V_{n+1}^{Eu} = continuation^{Eu}`. -/
+the European recursion `V_{n+1}^{Eu} = continuation^{Eu}`.
+@isnad1 id=le.1h6v.s5.d3fc2554c6ab from=translated src=- shape=a1826646 vocab=1a74eed7
+-/
 theorem binomialPrice_le_americanPrice {u d r : ℝ} (h : BinomialNoArb u d r)
     (g : ℝ → ℝ) (n : ℕ) (S : ℝ) :
     binomialPrice u d r g n S ≤ americanPrice u d r g n S := by

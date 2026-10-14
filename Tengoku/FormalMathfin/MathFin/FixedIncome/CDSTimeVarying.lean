@@ -65,7 +65,9 @@ weighted by default density `h(s) · S(s)` and discount) iff
   `c · annuity(T) = (1 − R) · losses(T)`.
 
 For non-zero annuity, this is equivalent to the fair-spread formula
-`c = (1 − R) · losses / annuity`. -/
+`c = (1 − R) · losses / annuity`.
+@isnad1 id=iff.1h4v.s6.7e935898636b from=translated src=- shape=0230c481 vocab=a37a6b07
+-/
 theorem cdsFairSpread_TV_cash_flow_balance
     (c R annuity losses : ℝ) (h_annuity_ne : annuity ≠ 0) :
     c * annuity = (1 - R) * losses ↔ c = (1 - R) * losses / annuity := by
@@ -77,7 +79,9 @@ period `i` of duration `Δt_i`, the cumulative survival is
   `∏_i exp(-h_i · Δt_i) = exp(-∑_i h_i · Δt_i)`.
 
 This is the discrete realisation of the continuous formula
-`S(T) = exp(-∫_0^T h(u) du)` for step-constant `h`. -/
+`S(T) = exp(-∫_0^T h(u) du)` for step-constant `h`.
+@isnad1 id=eq.0h3v.s6.32b926a8eb63 from=translated src=- shape=e847dd54 vocab=3730bccd
+-/
 theorem survival_product_eq_exp_sum (n : ℕ) (h Δt : Fin n → ℝ) :
     (∏ i, Real.exp (-(h i * Δt i))) = Real.exp (-(∑ i, h i * Δt i)) := by
   rw [← Real.exp_sum]

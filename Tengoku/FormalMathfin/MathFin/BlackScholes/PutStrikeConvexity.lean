@@ -36,7 +36,9 @@ open Real ProbabilityTheory
 /-- **Put-price convexity in `K`**: `∂²_K bsP = e^{-rτ} · ϕ(d₂) / (K σ √τ)`,
 identical to the call-price convexity (`hasDerivAt_bsV_KK`). The proof goes
 through the put strike-derivative `∂_K bsP = e^{-rτ} · Φ(−d₂)` from
-`BlackScholes.StrikeGreeks`. -/
+`BlackScholes.StrikeGreeks`.
+@isnad1 id=hasderiv.4h5v.s7.7b23c19ad3b6 from=translated src=- shape=05129f0b vocab=abcec99e
+-/
 lemma hasDerivAt_bsP_KK {S r σ : ℝ} (hS : 0 < S) (hσ : 0 < σ)
     {K τ : ℝ} (hK : 0 < K) (hτ : 0 < τ) :
     HasDerivAt (fun k ↦ Real.exp (-(r * τ)) * Phi (-bsd2 S k r σ τ))

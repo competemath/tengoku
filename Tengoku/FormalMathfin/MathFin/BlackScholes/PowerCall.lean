@@ -76,7 +76,9 @@ noncomputable def bsPowerEffectiveSpot (S_0 r σ T : ℝ) (a : ℕ) : ℝ :=
 /-- **Structural reduction identity**: the powered terminal `(S_T)^a` *is* a
 standard BS terminal, with effective spot `bsPowerEffectiveSpot` and
 effective volatility `aσ`. This is the algebraic core that lets us reduce
-power-option pricing to `bs_call_formula`. -/
+power-option pricing to `bs_call_formula`.
+@isnad1 id=eq.0h6v.s5.bedd919eb205 from=translated src=- shape=c7ef227a vocab=6fb599ec
+-/
 theorem bsPowerTerminal_eq_bsTerminal_effective
     (S_0 r σ T : ℝ) (a : ℕ) (z : ℝ) :
     bsPowerTerminal S_0 r σ T a z =
@@ -91,7 +93,9 @@ theorem bsPowerTerminal_eq_bsTerminal_effective
 /-- **`bsCallHyp` lifts to the powered setup**: if the standard BS hypothesis
 holds for `(S_0, K, r, σ, T, Z)`, then it also holds for the effective-spot
 and effective-volatility tuple `(Š_0, K', r, aσ, T, Z)` for any positive
-strike `K'` and any positive exponent `a`. -/
+strike `K'` and any positive exponent `a`.
+@isnad1 id=bscallhy.3h11v.s6.f601edd10121 from=translated src=- shape=49d580aa vocab=ae2c3a60
+-/
 theorem bsCallHyp_powered {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
     {S_0 K r σ T : ℝ} {Z : Ω → ℝ} {K' : ℝ}
@@ -116,7 +120,9 @@ effective spot `Š_0` and effective volatility `aσ`:
 where `(d̃_1, d̃_2)` are `(bsd1, bsd2)` at `(Š_0, K, r, aσ, T)`.
 
 Proof: rewrite the integrand via `bsPowerTerminal_eq_bsTerminal_effective`
-and apply `bs_call_formula` to the lifted hypothesis. -/
+and apply `bs_call_formula` to the lifted hypothesis.
+@isnad1 id=eq.3h10v.s7.a40ea610c347 from=translated src=- shape=18ee18b7 vocab=25fecaad
+-/
 theorem bs_power_call_formula
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
@@ -144,7 +150,9 @@ theorem bs_power_call_formula
   exact bs_call_formula h'
 
 /-- **Specialisation `a = 1` recovers the standard BS call price** at the
-level of effective spot: `Š_0 = S_0` when `a = 1`. -/
+level of effective spot: `Š_0 = S_0` when `a = 1`.
+@isnad1 id=eq.0h4v.s4.bc54c58ff5dc from=translated src=- shape=4db347a9 vocab=647df6a2
+-/
 lemma bsPowerEffectiveSpot_one (S_0 r σ T : ℝ) :
     bsPowerEffectiveSpot S_0 r σ T 1 = S_0 := by
   unfold bsPowerEffectiveSpot

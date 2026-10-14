@@ -53,7 +53,9 @@ open scoped NNReal ENNReal
 This is the risk-neutral expectation of the terminal asset price, which is
 the no-arbitrage forward price `F` for delivery at time `T`. Derivation:
 HasLaw transfer to standard normal + `integral_exp_mul_gaussianPDFReal_univ`
-(Gaussian MGF) + BS algebra `(r - σ²/2)T + σ²T/2 = rT`. -/
+(Gaussian MGF) + BS algebra `(r - σ²/2)T + σ²T/2 = rT`.
+@isnad1 id=eq.1h9v.s6.a0ecf33eca4c from=translated src=- shape=9e7380a9 vocab=aaa7d94b
+-/
 theorem expected_terminal_eq_forward
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
@@ -96,7 +98,9 @@ theorem expected_terminal_eq_forward
 
 /-- **Discounted terminal price equals spot**: under `BSCallHyp`,
     `E_Q[e^{-rT} S_T] = S_0`. This is the integrated form of the
-    risk-neutral martingale property at maturity. -/
+    risk-neutral martingale property at maturity.
+@isnad1 id=eq.1h9v.s6.6b058769bed3 from=translated src=- shape=f289180e vocab=cd516dad
+-/
 theorem discounted_terminal_eq_S0
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]

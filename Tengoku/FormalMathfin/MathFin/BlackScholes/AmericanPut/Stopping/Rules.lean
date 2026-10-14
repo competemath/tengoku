@@ -39,6 +39,9 @@ namespace BoundedRule
 
 variable {𝓕 : Filtration ℝ≥0 ‹MeasurableSpace Ω›} {T U : ℝ≥0}
 
+/--
+@isnad1 id=measurab.0h4v.s5.bdb87b528dad from=translated src=- shape=a959a4da vocab=a3a90f4a
+-/
 theorem measurable_time (θ : BoundedRule 𝓕 T) : Measurable θ.time := by
   apply measurable_of_Iic
   intro t
@@ -64,6 +67,9 @@ def extend (θ : BoundedRule 𝓕 T) (hTU : T ≤ U) : BoundedRule 𝓕 U where
   stopping := θ.stopping
   le_horizon := fun ω => (θ.le_horizon ω).trans hTU
 
+/--
+@isnad1 id=eq.0h4v.s5.d65bd856b208 from=translated src=- shape=3be8d67f vocab=c078e8eb
+-/
 theorem time_eq_zero (θ : BoundedRule 𝓕 0) (ω : Ω) : θ.time ω = 0 :=
   le_antisymm (θ.le_horizon ω) zero_le
 
@@ -84,6 +90,9 @@ noncomputable def ofWithTop (τ : Ω → WithTop ℝ≥0) (hτ : IsStoppingTime 
     exact_mod_cast (show ((τ ω).untop (ne_top_of_le_ne_top WithTop.coe_ne_top (hbound ω)) : WithTop ℝ≥0) ≤ T by
       simpa only [WithTop.coe_untop] using hbound ω)
 
+/--
+@isnad1 id=eq.2h5v.s6.801f74b28a7d from=translated src=- shape=d587e786 vocab=e6de11d0
+-/
 theorem ofWithTop_coe_time (τ : Ω → WithTop ℝ≥0) (hτ : IsStoppingTime 𝓕 τ)
     (hbound : ∀ ω, τ ω ≤ T) (ω : Ω) : ((ofWithTop τ hτ hbound).time ω : WithTop ℝ≥0) = τ ω :=
   WithTop.coe_untop _ _

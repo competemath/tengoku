@@ -41,14 +41,18 @@ namespace XiPrime
 
 /-! ## §1. Sanity anchors for ξ -/
 
-/-- ξ is entire. -/
+/-- ξ is entire.
+@isnad1 id=differen.0h0v.s6.7af89aa77ece from=translated src=- shape=aa9fb30a vocab=ee70708a
+-/
 theorem xi_differentiable : Differentiable ℂ xi := by
   unfold xi
   exact (((differentiable_id.mul (differentiable_id.sub_const 1)).div_const 2).mul
     differentiable_completedZeta₀).add_const _
 
 /-- ξ(s) = ½ s(s−1)·Λ(s) for s ∉ {0,1}  (Λ = completedRiemannZeta = π^{-s/2}Γ(s/2)ζ(s)); this pins the
-signs in Mathlib's completedRiemannZeta_eq (Λ = Λ₀ − 1/s − 1/(1−s)). -/
+signs in Mathlib's completedRiemannZeta_eq (Λ = Λ₀ − 1/s − 1/(1−s)).
+@isnad1 id=eq.2h1v.s6.dcd014b77292 from=translated src=- shape=afa5c117 vocab=3e9ecc28
+-/
 theorem xi_eq (s : ℂ) (hs0 : s ≠ 0) (hs1 : s ≠ 1) :
     xi s = s * (s - 1) / 2 * completedRiemannZeta s := by
   unfold xi
@@ -57,13 +61,17 @@ theorem xi_eq (s : ℂ) (hs0 : s ≠ 0) (hs1 : s ≠ 1) :
   field_simp
   ring
 
-/-- the functional equation ξ(1−s) = ξ(s). -/
+/-- the functional equation ξ(1−s) = ξ(s).
+@isnad1 id=eq.0h1v.s4.1bee4d9e433d from=translated src=- shape=0d0922af vocab=de1519e1
+-/
 theorem xi_one_sub (s : ℂ) : xi (1 - s) = xi s := by
   unfold xi
   rw [completedRiemannZeta₀_one_sub]
   ring
 
-/-- ξ′ is entire (derivative of an entire function: analytic ⇒ derivative analytic). -/
+/-- ξ′ is entire (derivative of an entire function: analytic ⇒ derivative analytic).
+@isnad1 id=differen.0h0v.s6.5b8c2a2cf184 from=translated src=- shape=aa9fb30a vocab=62f7c0bd
+-/
 theorem xiDeriv_differentiable : Differentiable ℂ xiDeriv := fun z =>
   ((xi_differentiable.analyticAt z).deriv).differentiableAt
 
@@ -110,19 +118,43 @@ def xiDerivZeros (hF2 : XiDerivZerosInStrip) (hs : XiDerivSeam) : ZeroConfig whe
 section seam_rfl
 variable (hF2 : XiDerivZerosInStrip) (hs : XiDerivSeam) (T₁ T₂ : ℝ)
 
+/--
+@isnad1 id=eq.2h0v.s4.1f7c158b0115 from=translated src=- shape=3fbaeb26 vocab=ec81851a
+-/
 @[simp] lemma xiDerivZeros_carrier : (xiDerivZeros hF2 hs).carrier = {ρ | IsXiDerivZero ρ} := rfl
+/--
+@isnad1 id=eq.2h0v.s3.0e15afb26c9c from=translated src=- shape=fbcdfbf2 vocab=5d33a609
+-/
 @[simp] lemma xiDerivZeros_mult : (xiDerivZeros hF2 hs).mult = xiDerivMult := rfl
+/--
+@isnad1 id=eq.2h0v.s4.4e4dfc5d93de from=translated src=- shape=2ea2cfa5 vocab=0391887b
+-/
 @[simp] lemma xiDerivZeros_simple : (xiDerivZeros hF2 hs).simple = {ρ | xiDerivMult ρ = 1} := rfl
 
+/--
+@isnad1 id=eq.2h2v.s4.f1e2075a473e from=translated src=- shape=d09291ce vocab=c72166d4
+-/
 lemma xiDerivZeros_window : (xiDerivZeros hF2 hs).window T₁ T₂ = zerosIn T₁ T₂ := by
   ext ρ; simp [ZeroConfig.window, zerosIn]
 
+/--
+@isnad1 id=eq.2h2v.s4.cca44aae0e22 from=translated src=- shape=b21db8ca vocab=822daf4d
+-/
 @[simp] lemma xiDerivZeros_N : (xiDerivZeros hF2 hs).N T₁ T₂ = Ncount T₁ T₂ := by
   simp [ZeroConfig.N, Ncount, xiDerivZeros_window]
+/--
+@isnad1 id=eq.2h2v.s4.1beadc634783 from=translated src=- shape=b21db8ca vocab=27fb7b69
+-/
 @[simp] lemma xiDerivZeros_Nd : (xiDerivZeros hF2 hs).Nd T₁ T₂ = Ndist T₁ T₂ := by
   simp [ZeroConfig.Nd, Ndist, xiDerivZeros_window]
+/--
+@isnad1 id=eq.2h2v.s4.26ac009024a6 from=translated src=- shape=b21db8ca vocab=196720bb
+-/
 @[simp] lemma xiDerivZeros_N0 : (xiDerivZeros hF2 hs).N0 T₁ T₂ = N0 T₁ T₂ := by
   simp [ZeroConfig.N0, N0, xiDerivZeros_window, ZeroConfig.onLine]
+/--
+@isnad1 id=eq.2h2v.s4.9d1e1f709d9a from=translated src=- shape=b21db8ca vocab=eab3b3b1
+-/
 @[simp] lemma xiDerivZeros_N0s : (xiDerivZeros hF2 hs).N0s T₁ T₂ = N0simple T₁ T₂ := by
   simp [ZeroConfig.N0s, N0simple, xiDerivZeros_window, ZeroConfig.onLine]
 
@@ -341,6 +373,9 @@ structure WSeam (t₀ : ℝ) : Prop where
   mult_reflect : ∀ ρ, IsWZero ρ → t₀ ≤ |ρ.im| → wMult (reflect ρ) = wMult ρ
   finite_window : ∀ T₁ T₂ : ℝ, ({ρ | IsWZero ρ ∧ t₀ ≤ |ρ.im|} ∩ {ρ | T₁ < ρ.im ∧ ρ.im ≤ T₂}).Finite
 
+/--
+@isnad1 id=eq.0h1v.s3.73b60e362492 from=translated src=- shape=8d4cac31 vocab=87726b18
+-/
 lemma reflect_im (ρ : ℂ) : (reflect ρ).im = ρ.im := by simp [reflect]
 
 /-- the zeros of W at height |Im| ≥ t₀ as a ZeroConfig (carrier EXCLUDES the real zeros/poles and the
@@ -357,7 +392,9 @@ def wZeros {t₀ : ℝ} (hZ : WZerosInStrip t₀) (hs : WSeam t₀) : ZeroConfig
 section wseam
 variable {t₀ : ℝ} (hZ : WZerosInStrip t₀) (hs : WSeam t₀)
 
-/-- for windows above t₀ the configuration's window is ALL zeros of W there. -/
+/-- for windows above t₀ the configuration's window is ALL zeros of W there.
+@isnad1 id=eq.3h3v.s4.c1cf648b10bf from=translated src=- shape=9bc5efef vocab=7dd11c85
+-/
 lemma wZeros_window {T₁ T₂ : ℝ} (h : t₀ ≤ T₁) :
     (wZeros hZ hs).window T₁ T₂ = zerosInW T₁ T₂ := by
   ext ρ
@@ -369,10 +406,19 @@ lemma wZeros_window {T₁ T₂ : ℝ} (h : t₀ ≤ T₁) :
     have hpos : 0 < ρ.im := by linarith [hs.pos, hw.1]
     exact ⟨⟨hρ, by rw [abs_of_pos hpos]; linarith [hw.1]⟩, hw⟩
 
+/--
+@isnad1 id=eq.3h3v.s4.9b2598c6cb66 from=translated src=- shape=c5320a21 vocab=ff54e5df
+-/
 lemma wZeros_N {T₁ T₂ : ℝ} (h : t₀ ≤ T₁) : (wZeros hZ hs).N T₁ T₂ = NcountW T₁ T₂ := by
   simp [ZeroConfig.N, NcountW, wZeros_window hZ hs h]; rfl
+/--
+@isnad1 id=eq.3h3v.s4.29bb80aa3e07 from=translated src=- shape=c5320a21 vocab=ed3d4c06
+-/
 lemma wZeros_Nd {T₁ T₂ : ℝ} (h : t₀ ≤ T₁) : (wZeros hZ hs).Nd T₁ T₂ = NdistW T₁ T₂ := by
   simp [ZeroConfig.Nd, NdistW, wZeros_window hZ hs h]
+/--
+@isnad1 id=eq.3h3v.s4.d744d6a8507a from=translated src=- shape=c5320a21 vocab=6ef60012
+-/
 lemma wZeros_N0s {T₁ T₂ : ℝ} (h : t₀ ≤ T₁) : (wZeros hZ hs).N0s T₁ T₂ = N0simpleW T₁ T₂ := by
   simp [ZeroConfig.N0s, N0simpleW, wZeros_window hZ hs h, ZeroConfig.onLine, ZeroConfig.simple]; rfl
 

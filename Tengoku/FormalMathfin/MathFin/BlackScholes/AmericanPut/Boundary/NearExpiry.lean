@@ -29,7 +29,9 @@ open scoped Topology
 namespace DividendPutSolution
 
 /-- A quantitative, non-sharp square-root bound sufficient for tangent
-intercept selection. The existence of its time window is proved. -/
+intercept selection. The existence of its time window is proved.
+@isnad1 id=ex.1h4v.s6.c13dd53ee477 from=translated src=- shape=5092c47d vocab=36dc7a57
+-/
 theorem exists_boundary_sqrt_bound {k h : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
     (hp : DividendPutSolution k h p b) :
     ∃ T : ℝ, 0 < T ∧ ∀ t, 0 < t → t ≤ T → b t < -Real.sqrt t / 64 := by
@@ -54,7 +56,9 @@ theorem exists_boundary_sqrt_bound {k h : ℝ} {p : ℝ → ℝ → ℝ} {b : �
   linarith
 
 /-- Every fixed line through the origin lies in continuation
-at sufficiently small positive times. -/
+at sufficiently small positive times.
+@isnad1 id=eventual.1h5v.s6.3bceb68b37e5 from=translated src=- shape=35a0129e vocab=fed6b506
+-/
 theorem boundary_below_linear_eventually {k h : ℝ}
     {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ} (hp : DividendPutSolution k h p b)
     (M : ℝ) : ∀ᶠ t in 𝓝[>] (0 : ℝ), b t < -M*t := by
@@ -72,7 +76,9 @@ theorem boundary_below_linear_eventually {k h : ℝ}
   exact (hbound t htpos htT.le).trans (by linarith)
 
 /-- Step 1's expiry input, proved directly from the pricing-solution
-contract. This is not an assumed European-price asymptotic. -/
+contract. This is not an assumed European-price asymptotic.
+@isnad1 id=tendsto.1h4v.s5.d648d52ee7eb from=translated src=- shape=8b9ecc00 vocab=76924c8a
+-/
 theorem boundary_ratio_tendsto_atBot {k h : ℝ}
     {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ} (hp : DividendPutSolution k h p b) :
     Tendsto (fun t => b t/t) (𝓝[>] 0) atBot := by
@@ -85,7 +91,9 @@ theorem boundary_ratio_tendsto_atBot {k h : ℝ}
 
 end DividendPutSolution
 
-/-- The same checked expiry input on the original zero-dividend contract. -/
+/-- The same checked expiry input on the original zero-dividend contract.
+@isnad1 id=tendsto.1h3v.s5.39e513b1acca from=translated src=- shape=e7710ad1 vocab=b4d98b9b
+-/
 theorem zeroDividend_boundary_ratio_tendsto_atBot {k : ℝ}
     {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ} (hp : NormalizedPutSolution k p b) :
     Tendsto (fun t => b t/t) (𝓝[>] 0) atBot :=

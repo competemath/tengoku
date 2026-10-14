@@ -83,7 +83,9 @@ Proof: induction on `n`. The base case `n = 0` uses `hV_g 0 S`. The
 inductive step uses (a) `hV_g (n+1) S` to bound the intrinsic side of the
 Bellman `max`, and (b) `hV_super n S` plus monotonicity of the one-step
 operator (`binomialOptionPriceOnePeriod_mono`) plus the IH to bound the
-continuation side. -/
+continuation side.
+@isnad1 id=le.3h7v.s6.e3c1a23b53a3 from=translated src=- shape=119aa7c3 vocab=ddbc5055
+-/
 theorem americanPrice_le_of_supermartingale_dominating
     {u d r : ℝ} (h : BinomialNoArb u d r) (g : ℝ → ℝ) (V : ℕ → ℝ → ℝ)
     (hV_g : ∀ n S, g S ≤ V n S)
@@ -112,7 +114,9 @@ the smallest function `V : ℕ → ℝ → ℝ` that simultaneously dominates th
 payoff and satisfies the one-step supermartingale property.
 
 The statement makes the universal characterization visible: for *any* V
-satisfying the two properties, `americanPrice ≤ V`. -/
+satisfying the two properties, `americanPrice ≤ V`.
+@isnad1 id=and.1h4v.s7.228c7bc15e9e from=translated src=- shape=42d054a7 vocab=ddbc5055
+-/
 theorem americanPrice_is_snell_envelope
     {u d r : ℝ} (h : BinomialNoArb u d r) (g : ℝ → ℝ) :
     (∀ n S, g S ≤ americanPrice u d r g n S) ∧
@@ -142,7 +146,9 @@ variable {q : ℝ} {Z U : ℕ → (ℕ → Bool) → ℝ}
 noncomputable def spotPath (S₀ u d : ℝ) (k : ℕ) (ω : ℕ → Bool) : ℝ :=
   S₀ * ∏ i ∈ Finset.range k, (if ω i then u else d)
 
-/-- One-step spot recursion along the `k`-th flip. -/
+/-- One-step spot recursion along the `k`-th flip.
+@isnad1 id=eq.0h6v.s6.97c54cd6ba59 from=translated src=- shape=b4b2da5c vocab=71d44581
+-/
 lemma spotPath_update_succ (S₀ u d : ℝ) (k : ℕ) (ω : ℕ → Bool) (b : Bool) :
     spotPath S₀ u d (k + 1) (Function.update ω k b)
       = spotPath S₀ u d k ω * (if b then u else d) := by
@@ -155,17 +161,23 @@ lemma spotPath_update_succ (S₀ u d : ℝ) (k : ℕ) (ω : ℕ → Bool) (b : B
   rw [h_prefix]
   simp [mul_assoc]
 
-/-- Up-child spot: `S_{k+1}(ω, k-th flip up) = S_k(ω) · u`. -/
+/-- Up-child spot: `S_{k+1}(ω, k-th flip up) = S_k(ω) · u`.
+@isnad1 id=eq.0h5v.s5.e82214b7352e from=translated src=- shape=1046923d vocab=09fc8f57
+-/
 lemma spotPath_update_succ_true (S₀ u d : ℝ) (k : ℕ) (ω : ℕ → Bool) :
     spotPath S₀ u d (k + 1) (Function.update ω k true) = spotPath S₀ u d k ω * u := by
   simpa using spotPath_update_succ S₀ u d k ω true
 
-/-- Down-child spot: `S_{k+1}(ω, k-th flip down) = S_k(ω) · d`. -/
+/-- Down-child spot: `S_{k+1}(ω, k-th flip down) = S_k(ω) · d`.
+@isnad1 id=eq.0h5v.s5.d74526a9d600 from=translated src=- shape=b9f2c023 vocab=b57dd15e
+-/
 lemma spotPath_update_succ_false (S₀ u d : ℝ) (k : ℕ) (ω : ℕ → Bool) :
     spotPath S₀ u d (k + 1) (Function.update ω k false) = spotPath S₀ u d k ω * d := by
   simpa using spotPath_update_succ S₀ u d k ω false
 
-/-- The spot path is adapted: `S_k` depends only on the first `k` flips. -/
+/-- The spot path is adapted: `S_k` depends only on the first `k` flips.
+@isnad1 id=pathadap.0h4v.s3.1193642db750 from=translated src=- shape=c87d6b32 vocab=7a56c8d5
+-/
 lemma pathAdaptedAt_spotPath (S₀ u d : ℝ) (k : ℕ) :
     PathAdaptedAt k (spotPath S₀ u d k) := fun ω ω' h ↦ by
   unfold spotPath
@@ -187,7 +199,9 @@ indexed by absolute time `k`. -/
 noncomputable def snell (q : ℝ) (Z : ℕ → (ℕ → Bool) → ℝ) (N k : ℕ) (ω : ℕ → Bool) : ℝ :=
   snellAux q Z (N - k) k ω
 
-/-- **Dominance clause**: the envelope dominates the payoff at every node. -/
+/-- **Dominance clause**: the envelope dominates the payoff at every node.
+@isnad1 id=le.0h5v.s4.ca0594fa2b77 from=translated src=- shape=24feabf9 vocab=1dc7f694
+-/
 theorem snellAux_ge_payoff (q : ℝ) (Z : ℕ → (ℕ → Bool) → ℝ) (j k : ℕ) (ω : ℕ → Bool) :
     Z k ω ≤ snellAux q Z j k ω := by
   cases j with
@@ -195,7 +209,9 @@ theorem snellAux_ge_payoff (q : ℝ) (Z : ℕ → (ℕ → Bool) → ℝ) (j k :
   | succ j => exact le_max_left _ _
 
 /-- **Supermartingale clause**: the node-average of the next-step envelope is
-at most the current envelope — `E[V_{k+1} | ℱ_k] ≤ V_k` in node-average form. -/
+at most the current envelope — `E[V_{k+1} | ℱ_k] ≤ V_k` in node-average form.
+@isnad1 id=le.0h5v.s6.c901683368de from=translated src=- shape=762901da vocab=5058fcca
+-/
 theorem snellAux_supermartingale (q : ℝ) (Z : ℕ → (ℕ → Bool) → ℝ) (j k : ℕ) (ω : ℕ → Bool) :
     q * snellAux q Z j (k + 1) (Function.update ω k true)
       + (1 - q) * snellAux q Z j (k + 1) (Function.update ω k false)
@@ -204,7 +220,9 @@ theorem snellAux_supermartingale (q : ℝ) (Z : ℕ → (ℕ → Bool) → ℝ) 
 
 /-- **Adaptedness clause**: the envelope at time `k` depends only on the first
 `k` flips — it is `ℱ_k`-measurable, the filtration content of the Snell
-theorem. -/
+theorem.
+@isnad1 id=pathadap.1h4v.s4.9835289185d6 from=translated src=- shape=dea58f92 vocab=4bb1272c
+-/
 theorem pathAdaptedAt_snellAux (hZ : ∀ n, PathAdaptedAt n (Z n)) :
     ∀ j k, PathAdaptedAt k (snellAux q Z j k) := by
   intro j
@@ -232,7 +250,9 @@ Bellman max is squeezed because `U` beats the payoff directly and beats the
 continuation by the inductive hypothesis averaged through the node
 (convexity: `q ∈ [0,1]`) plus `U`'s own supermartingale property.
 (Adaptedness of `U` is not needed for the bound — only for reading the node
-average as a conditional expectation.) -/
+average as a conditional expectation.)
+@isnad1 id=le.4h6v.s7.f31b81a95476 from=translated src=- shape=671c579c vocab=5058fcca
+-/
 theorem snellAux_le_of_supermartingale_of_ge (hq0 : 0 ≤ q) (hq1 : q ≤ 1)
     (hU_super : ∀ k ω, q * U (k + 1) (Function.update ω k true)
         + (1 - q) * U (k + 1) (Function.update ω k false) ≤ U k ω)
@@ -261,7 +281,9 @@ scalar American price:
 
 Induction on remaining steps; the discount factors recombine
 (`e^{−rk}·e^{−r} = e^{−r(k+1)}`) and the positive factor `e^{−rk}` passes
-through the Bellman `max`. -/
+through the Bellman `max`.
+@isnad1 id=eq.0h8v.s6.89762d4f7412 from=translated src=- shape=0378da85 vocab=e63b4bd2
+-/
 theorem snellAux_eq_discounted_americanPrice (u d r : ℝ) (g : ℝ → ℝ) (S₀ : ℝ) :
     ∀ j k ω,
       snellAux (crrUpProb u d r)
@@ -304,7 +326,9 @@ value is at most the current discounted value —
   `q·X_{k+1}(up) + (1−q)·X_{k+1}(down) ≤ X_k`,  `X_k(ω) = e^{−rk}·V_{N−k}(S_k(ω))`.
 
 This is the genuine path-process, conditional-expectation form behind the
-scalar Bellman-max dominance. -/
+scalar Bellman-max dominance.
+@isnad1 id=le.1h8v.s8.35fa49c18e65 from=translated src=- shape=50d9299c vocab=f81da937
+-/
 theorem discounted_americanPrice_supermartingale (u d r : ℝ) (g : ℝ → ℝ) (S₀ : ℝ)
     {N k : ℕ} (hk : k < N) (ω : ℕ → Bool) :
     crrUpProb u d r * (Real.exp (-r * (k + 1 : ℕ)) *
@@ -336,7 +360,9 @@ theorem discounted_americanPrice_supermartingale (u d r : ℝ) (g : ℝ → ℝ)
 
 /-- **The discounted intrinsic payoff is dominated by the American value
 process** along every path — the dominance clause of the Snell
-characterization, evaluated at the scalar Bellman recursion. -/
+characterization, evaluated at the scalar Bellman recursion.
+@isnad1 id=le.0h8v.s6.cfc785a67f02 from=translated src=- shape=917e6fe2 vocab=6025a12a
+-/
 theorem discounted_intrinsic_le_americanPrice (u d r : ℝ) (g : ℝ → ℝ) (S₀ : ℝ)
     (N k : ℕ) (ω : ℕ → Bool) :
     Real.exp (-r * k) * g (spotPath S₀ u d k ω)
@@ -351,7 +377,9 @@ payoff dominates the discounted American price along every path. Together with
 `discounted_americanPrice_supermartingale` and
 `discounted_intrinsic_le_americanPrice`, this characterizes the American value
 process as the **smallest supermartingale above the discounted payoff** — the
-Snell envelope — over arbitrary path-processes. -/
+Snell envelope — over arbitrary path-processes.
+@isnad1 id=le.3h9v.s7.08c7a2051f79 from=translated src=- shape=e7789934 vocab=cd08bf7b
+-/
 theorem americanPrice_snell_minimal (u d r : ℝ) (g : ℝ → ℝ) (S₀ : ℝ)
     (hna : BinomialNoArb u d r) {U : ℕ → (ℕ → Bool) → ℝ}
     (hU_super : ∀ (k : ℕ) (ω : ℕ → Bool),
@@ -368,7 +396,9 @@ theorem americanPrice_snell_minimal (u d r : ℝ) (g : ℝ → ℝ) (S₀ : ℝ)
 /-- **Adaptedness of the discounted American value process**: the discounted
 value at time `k` depends only on the first `k` flips — its
 `ℱ_k`-measurability, the filtration clause of the Snell characterization at
-the American price. -/
+the American price.
+@isnad1 id=pathadap.0h7v.s6.f51ae98cd788 from=translated src=- shape=a88ac1e2 vocab=170a84c4
+-/
 lemma pathAdaptedAt_discounted_americanPrice (u d r : ℝ) (g : ℝ → ℝ) (S₀ : ℝ)
     (N k : ℕ) :
     PathAdaptedAt k (fun ω ↦ Real.exp (-r * k) *

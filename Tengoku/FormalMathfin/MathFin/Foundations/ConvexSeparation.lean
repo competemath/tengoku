@@ -37,7 +37,9 @@ namespace MathFin
 
 /-- **Separating-dual kernel.** A subspace `V` of the finite-dimensional space
 `ι → ℝ` that meets the standard simplex only outside itself admits a
-strictly-positive vector `q` whose induced functional annihilates `V`. -/
+strictly-positive vector `q` whose induced functional annihilates `V`.
+@isnad1 id=ex.1h2v.s8.499d83fa024d from=translated src=- shape=620a1287 vocab=cd9a8ebd
+-/
 theorem exists_pos_dual_of_disjoint_stdSimplex
     {ι : Type*} [Fintype ι]
     (V : Submodule ℝ (ι → ℝ)) (hV : ∀ v ∈ V, v ∉ stdSimplex ℝ ι) :

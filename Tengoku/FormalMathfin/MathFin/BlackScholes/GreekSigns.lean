@@ -53,18 +53,24 @@ open scoped NNReal ENNReal
 
 /-! ## Delta sign constraints -/
 
-/-- **Call delta is non-negative**: `0 ≤ Φ(d_1)`. -/
+/-- **Call delta is non-negative**: `0 ≤ Φ(d_1)`.
+@isnad1 id=le.0h5v.s4.f4fc67509231 from=translated src=- shape=b3e1fa7c vocab=9a293eff
+-/
 theorem bsV_delta_nonneg (S K r σ τ : ℝ) : 0 ≤ Phi (bsd1 S K r σ τ) :=
   Phi_nonneg _
 
-/-- **Call delta is at most 1**: `Φ(d_1) ≤ 1`. -/
+/-- **Call delta is at most 1**: `Φ(d_1) ≤ 1`.
+@isnad1 id=le.0h5v.s4.d245bebf3091 from=translated src=- shape=238bd189 vocab=9a293eff
+-/
 theorem bsV_delta_le_one (S K r σ τ : ℝ) : Phi (bsd1 S K r σ τ) ≤ 1 :=
   Phi_le_one _
 
 /-! ## Gamma sign constraint -/
 
 /-- **Call gamma is strictly positive**: `∂²_S V = ϕ(d_1) / (S σ √τ) > 0`
-for `S, σ, τ > 0`. The call price is strictly convex in spot. -/
+for `S, σ, τ > 0`. The call price is strictly convex in spot.
+@isnad1 id=lt.4h5v.s6.9b999512cef5 from=translated src=- shape=c5d2cea2 vocab=2b60a2a3
+-/
 theorem bsV_gamma_pos {K r σ : ℝ} (_hK : 0 < K) (hσ : 0 < σ)
     {S τ : ℝ} (hS : 0 < S) (hτ : 0 < τ) :
     0 < gaussianPDFReal 0 1 (bsd1 S K r σ τ) / (S * σ * Real.sqrt τ) := by
@@ -77,7 +83,9 @@ theorem bsV_gamma_pos {K r σ : ℝ} (_hK : 0 < K) (hσ : 0 < σ)
 /-! ## Rho sign constraint -/
 
 /-- **Call rho is non-negative**: `∂_r V = K · τ · e^{−rτ} · Φ(d_2) ≥ 0`
-for `K ≥ 0` and `τ ≥ 0`. The call price increases in the risk-free rate. -/
+for `K ≥ 0` and `τ ≥ 0`. The call price increases in the risk-free rate.
+@isnad1 id=le.2h5v.s6.161759c8707d from=translated src=- shape=e558d530 vocab=58f0f29c
+-/
 theorem bsV_rho_nonneg {K τ : ℝ} (hK : 0 ≤ K) (hτ : 0 ≤ τ) (S r σ : ℝ) :
     0 ≤ K * τ * Real.exp (-(r * τ)) * Phi (bsd2 S K r σ τ) := by
   have h_exp_nn : 0 ≤ Real.exp (-(r * τ)) := (Real.exp_pos _).le
@@ -88,7 +96,9 @@ theorem bsV_rho_nonneg {K τ : ℝ} (hK : 0 ≤ K) (hτ : 0 ≤ τ) (S r σ : �
 
 /-- **Partial in strike is non-positive**: `∂_K V = −e^{−rτ} · Φ(d_2) ≤ 0`.
 The call price decreases in the strike (a more out-of-the-money option
-is worth less). -/
+is worth less).
+@isnad1 id=le.0h5v.s5.4b3e3892e01c from=translated src=- shape=b92cd0d1 vocab=58f0f29c
+-/
 theorem bsV_partial_K_nonpos (S K r σ τ : ℝ) :
     -(Real.exp (-(r * τ)) * Phi (bsd2 S K r σ τ)) ≤ 0 := by
   have h_exp_nn : 0 ≤ Real.exp (-(r * τ)) := (Real.exp_pos _).le
@@ -100,7 +110,9 @@ theorem bsV_partial_K_nonpos (S K r σ τ : ℝ) :
 (K · σ · √τ) ≥ 0` for `K, σ, τ > 0`. This is the *infinitesimal* face of
 butterfly non-negativity (`butterfly_payoff_nonneg`); via Breeden-Litzenberger
 it equals `e^{−rτ}` times the implied PDF, which must be non-negative because
-it *is* a probability density. -/
+it *is* a probability density.
+@isnad1 id=le.3h5v.s6.3d4fe00d0411 from=translated src=- shape=b2b119be vocab=22ba2e6e
+-/
 theorem bsV_partial_KK_nonneg {K σ τ : ℝ} (hK : 0 < K) (hσ : 0 < σ) (hτ : 0 < τ)
     (S r : ℝ) :
     0 ≤ Real.exp (-(r * τ)) * gaussianPDFReal 0 1 (bsd2 S K r σ τ) /

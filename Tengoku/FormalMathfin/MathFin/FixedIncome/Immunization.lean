@@ -56,7 +56,9 @@ noncomputable def bondPortfolioDur
   ∑ i ∈ s, w i * (T i - t) * Real.exp (-(r * (T i - t)))
 
 /-- **First-order rate sensitivity**: `∂P/∂r = −D_P · P` (here equivalently
-`−bondPortfolioDur`). -/
+`−bondPortfolioDur`).
+@isnad1 id=hasderiv.0h6v.s6.ee1917e4af5c from=translated src=- shape=a3f4f4bb vocab=42645617
+-/
 lemma hasDerivAt_bondPortfolioValue_r
     {ι : Type*} (s : Finset ι) (w T : ι → ℝ) (t r : ℝ) :
     HasDerivAt (fun r' ↦ bondPortfolioValue s w T t r')
@@ -75,7 +77,9 @@ lemma hasDerivAt_bondPortfolioValue_r
   rw [Finset.sum_neg_distrib] at h_raw
   exact h_raw
 
-/-- **Single-bond portfolio duration**: matches the ZCB duration `(T − t)`. -/
+/-- **Single-bond portfolio duration**: matches the ZCB duration `(T − t)`.
+@isnad1 id=eq.0h6v.s6.d3488c16c97f from=translated src=- shape=b24ffa0d vocab=f86a5206
+-/
 lemma bondPortfolio_single_bond_dur
     {ι : Type*} (i : ι) (w T : ι → ℝ) (t r : ℝ) :
     bondPortfolioDur {i} w T t r =
@@ -83,7 +87,9 @@ lemma bondPortfolio_single_bond_dur
   unfold bondPortfolioDur
   simp
 
-/-- Single-bond portfolio value matches the ZCB price `w · exp(−r(T − t))`. -/
+/-- Single-bond portfolio value matches the ZCB price `w · exp(−r(T − t))`.
+@isnad1 id=eq.0h6v.s6.9e083446890e from=translated src=- shape=98db2f0b vocab=fb68b2cd
+-/
 lemma bondPortfolio_single_bond_value
     {ι : Type*} (i : ι) (w T : ι → ℝ) (t r : ℝ) :
     bondPortfolioValue {i} w T t r = w i * Real.exp (-(r * (T i - t))) := by
@@ -92,7 +98,9 @@ lemma bondPortfolio_single_bond_value
 
 /-- **First-order immunization**: if the duration-weighted asset value equals
 the duration-weighted liability value, then the net portfolio's first-order
-rate sensitivity is zero. -/
+rate sensitivity is zero.
+@isnad1 id=hasderiv.1h10v.s6.e1063134f544 from=translated src=- shape=96053b88 vocab=80155c65
+-/
 lemma bondPortfolio_immunization_first_order
     {ι κ : Type*}
     (sA : Finset ι) (wA TA : ι → ℝ)

@@ -50,7 +50,9 @@ noncomputable def posteriorVariance1d (s0sq s1sq : ℝ) : ℝ :=
 
 /-- **Posterior mean is precision-weighted**: equivalence of the symmetric
 form `(s1sqπ + s0sqQ)/(s0sq + s1sq)` with the standard precision-weighted form
-`(π/s0sq + Q/s1sq)/(1/s0sq + 1/s1sq)`. -/
+`(π/s0sq + Q/s1sq)/(1/s0sq + 1/s1sq)`.
+@isnad1 id=eq.2h4v.s6.a74881056c60 from=translated src=- shape=f8686bf3 vocab=2f7ec6d2
+-/
 theorem blackLitterman_mean_eq_precision_weighted
     (π Q s0sq s1sq : ℝ) (h₀ : 0 < s0sq) (h₁ : 0 < s1sq) :
     posteriorMean1d π Q s0sq s1sq =
@@ -63,7 +65,9 @@ theorem blackLitterman_mean_eq_precision_weighted
   ring
 
 /-- **Posterior variance is harmonic combination of inputs**: equivalence
-`s0sqs1sq/(s0sq+s1sq) = 1/(1/s0sq + 1/s1sq)`, i.e. precision is additive. -/
+`s0sqs1sq/(s0sq+s1sq) = 1/(1/s0sq + 1/s1sq)`, i.e. precision is additive.
+@isnad1 id=eq.2h2v.s6.ae63022e92a9 from=translated src=- shape=1b7032d0 vocab=26e579a2
+-/
 theorem blackLitterman_var_eq_inv_sum_precision
     (s0sq s1sq : ℝ) (h₀ : 0 < s0sq) (h₁ : 0 < s1sq) :
     posteriorVariance1d s0sq s1sq = 1 / (1 / s0sq + 1 / s1sq) := by
@@ -74,7 +78,9 @@ theorem blackLitterman_var_eq_inv_sum_precision
   ring
 
 /-- **Convex combination form**: posterior mean lies between the prior `π`
-and the view `Q`, with weights `λ := s0sq/(s0sq+s1sq)` and `1−λ`. -/
+and the view `Q`, with weights `λ := s0sq/(s0sq+s1sq)` and `1−λ`.
+@isnad1 id=eq.1h4v.s6.7ef3d83ac945 from=translated src=- shape=f141fdf9 vocab=56224f92
+-/
 theorem blackLitterman_mean_convex_combination
     (π Q s0sq s1sq : ℝ) (h_sum : s0sq + s1sq ≠ 0) :
     posteriorMean1d π Q s0sq s1sq =

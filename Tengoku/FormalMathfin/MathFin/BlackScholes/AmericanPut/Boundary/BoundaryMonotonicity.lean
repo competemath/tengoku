@@ -34,6 +34,9 @@ namespace DividendPutSolution
 
 variable {k h : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
 
+/--
+@isnad1 id=antitone.1h4v.s5.96e3afec5e4c from=translated src=- shape=ba15f855 vocab=55c52b81
+-/
 theorem boundary_antitoneOn (hp : DividendPutSolution k h p b) : AntitoneOn b (Ici 0) := by
   intro s hs t ht hst
   change 0 ≤ s at hs
@@ -52,6 +55,9 @@ theorem boundary_antitoneOn (hp : DividendPutSolution k h p b) : AntitoneOn b (I
     have hpayoff : 1-Real.exp (b t) ≤ putPayoff (b t) := le_max_left _ _
     linarith
 
+/--
+@isnad1 id=le.2h5v.s6.baf4db0f6007 from=translated src=- shape=91220534 vocab=d275a023
+-/
 theorem boundary_deriv_nonpos (hp : DividendPutSolution k h p b) {t : ℝ} (ht : 0 < t) :
     deriv b t ≤ 0 := by
   have hh := hp.boundary_antitoneOn.derivWithin_nonpos (x := t)
@@ -59,7 +65,9 @@ theorem boundary_deriv_nonpos (hp : DividendPutSolution k h p b) {t : ℝ} (ht :
 
 /-- At any hypothetical negative-curvature point the speed is strictly
 negative. Thus the curvature contradiction does not need strict speed as an
-independent global assumption. -/
+independent global assumption.
+@isnad1 id=lt.3h5v.s7.9199e73f9e11 from=translated src=- shape=6baa01b3 vocab=ddac159c
+-/
 theorem boundary_deriv_neg_of_curvature_neg (hp : DividendPutSolution k h p b)
     {t : ℝ} (ht : 0 < t) (hcurv : deriv (deriv b) t < 0) : deriv b t < 0 := by
   apply lt_of_le_of_ne (hp.boundary_deriv_nonpos ht)
@@ -73,11 +81,17 @@ theorem boundary_deriv_neg_of_curvature_neg (hp : DividendPutSolution k h p b)
 
 end DividendPutSolution
 
+/--
+@isnad1 id=le.3h6v.s5.04c86ce30d99 from=translated src=- shape=d015dec2 vocab=7ac289af
+-/
 theorem zeroDividend_price_mono_time {k : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
     (hp : NormalizedPutSolution k p b) (x : ℝ) {s t : ℝ} (hs : 0 ≤ s) (hst : s ≤ t) :
     p x s ≤ p x t :=
   (dividendPutSolution_zero_iff.mpr hp).price_mono_time x hs hst
 
+/--
+@isnad1 id=antitone.1h3v.s5.a18807f5a029 from=translated src=- shape=bb159733 vocab=9b0d6429
+-/
 theorem zeroDividend_boundary_antitoneOn {k : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
     (hp : NormalizedPutSolution k p b) : AntitoneOn b (Ici 0) :=
   (dividendPutSolution_zero_iff.mpr hp).boundary_antitoneOn

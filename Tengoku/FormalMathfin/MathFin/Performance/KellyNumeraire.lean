@@ -58,26 +58,34 @@ variable {p b : ℝ}
 
 /-- **Growth-optimal winning wealth** `W*₊ = 1 + f*·b = p·(b+1)`. This is the Kelly
 first-order condition (`kellyGrowth_deriv_at_kelly`) made explicit: the physical `p`
-appears as the whole factor, which is what lets it cancel in the deflation below. -/
+appears as the whole factor, which is what lets it cancel in the deflation below.
+@isnad1 id=eq.1h2v.s5.daa127aa2e24 from=translated src=- shape=2077c840 vocab=9811bc09
+-/
 lemma kellyGOPWealth_win (hb : b ≠ 0) :
     1 + kellyFraction p b * b = p * (b + 1) := by
   unfold kellyFraction; field_simp; ring
 
-/-- **Growth-optimal losing wealth** `W*₋ = 1 - f* = (1-p)·(b+1)/b`. -/
+/-- **Growth-optimal losing wealth** `W*₋ = 1 - f* = (1-p)·(b+1)/b`.
+@isnad1 id=eq.1h2v.s6.048030204318 from=translated src=- shape=156fbd41 vocab=e0552003
+-/
 lemma kellyGOPWealth_lose (hb : b ≠ 0) :
     1 - kellyFraction p b = (1 - p) * (b + 1) / b := by
   unfold kellyFraction; field_simp; ring
 
 /-- **GOP-deflated winning probability** `q₊ = p / W*₊ = 1/(b+1)`: the physical `p`,
 deflated by the growth-optimal wealth, is the fair-odds risk-neutral probability —
-independent of `p`. -/
+independent of `p`.
+@isnad1 id=eq.2h2v.s6.d639596ac59d from=translated src=- shape=860822c0 vocab=ff851cc1
+-/
 lemma kellyDeflatedProb_win (hp : 0 < p) (hb : 0 < b) :
     p / (1 + kellyFraction p b * b) = 1 / (b + 1) := by
   rw [kellyGOPWealth_win hb.ne']
   rw [div_eq_div_iff (by positivity) (by positivity)]
   ring
 
-/-- **GOP-deflated losing probability** `q₋ = (1-p) / W*₋ = b/(b+1)`. -/
+/-- **GOP-deflated losing probability** `q₋ = (1-p) / W*₋ = b/(b+1)`.
+@isnad1 id=eq.2h2v.s6.e9700dba3c7d from=translated src=- shape=dc021f2f vocab=5012e9cd
+-/
 lemma kellyDeflatedProb_lose (hp1 : p < 1) (hb : 0 < b) :
     (1 - p) / (1 - kellyFraction p b) = b / (b + 1) := by
   have hq : 0 < 1 - p := by linarith
@@ -85,7 +93,9 @@ lemma kellyDeflatedProb_lose (hp1 : p < 1) (hb : 0 < b) :
   rw [div_div_eq_mul_div, div_eq_div_iff (by positivity) (by positivity)]
   ring
 
-/-- **The GOP-deflated probabilities form a probability measure**: `q₊ + q₋ = 1`. -/
+/-- **The GOP-deflated probabilities form a probability measure**: `q₊ + q₋ = 1`.
+@isnad1 id=eq.3h2v.s6.6df73358b833 from=translated src=- shape=42aecd38 vocab=c281fada
+-/
 theorem kellyDeflatedProb_sum_one (hp : 0 < p) (hp1 : p < 1) (hb : 0 < b) :
     p / (1 + kellyFraction p b * b) + (1 - p) / (1 - kellyFraction p b) = 1 := by
   rw [kellyDeflatedProb_win hp hb, kellyDeflatedProb_lose hp1 hb]
@@ -103,7 +113,9 @@ i.e. the discounted asset is a `q`-martingale — `q` is the equivalent martinga
 measure. This is the (discrete, two-outcome) **numéraire-portfolio ⟹ EMM** identity: the
 growth-optimal portfolio is the numéraire whose deflator turns the physical measure into
 the EMM, the risk-neutrality being exactly the vanishing of the Kelly first-order
-condition (`kellyGrowth_deriv_at_kelly`). -/
+condition (`kellyGrowth_deriv_at_kelly`).
+@isnad1 id=eq.3h2v.s7.6f147b8fb80c from=translated src=- shape=3b5f2769 vocab=a97af3a1
+-/
 theorem kellyNumeraire_isRiskNeutral (hp : 0 < p) (hp1 : p < 1) (hb : 0 < b) :
     p / (1 + kellyFraction p b * b) * b
       + (1 - p) / (1 - kellyFraction p b) * (-1) = 0 := by

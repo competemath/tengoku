@@ -33,6 +33,9 @@ variable {Ω : Type*} [MeasurableSpace Ω]
   {𝓕 : Filtration ℝ≥0 ‹MeasurableSpace Ω›} {W : ℝ≥0 → Ω → ℝ}
   {k h K r q σ S : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
 
+/--
+@isnad1 id=adapted.2h13v.s6.d84b92e38c1a from=translated src=- shape=472b6c90 vocab=21f78f64
+-/
 theorem classicalCandidate_adapted (hp : DividendPutSolution k h p b)
     (hW : Adapted 𝓕 W) (T : ℝ≥0) : Adapted 𝓕 (classicalCandidate W K r q σ S p T) := by
   intro t
@@ -52,6 +55,9 @@ passes maturity. -/
 noncomputable def frozenPutReward (W : ℝ≥0 → Ω → ℝ) (K r q σ S : ℝ) (T t : ℝ≥0) : Ω → ℝ :=
   putReward W K r q σ S (fun _ => min t T)
 
+/--
+@isnad1 id=adapted.1h9v.s6.f2c1f051acd3 from=translated src=- shape=c7742d42 vocab=420b45f6
+-/
 theorem frozenPutReward_adapted (hW : Adapted 𝓕 W) (T : ℝ≥0) :
     Adapted 𝓕 (frozenPutReward W K r q σ S T) := by
   intro t
@@ -62,6 +68,9 @@ theorem frozenPutReward_adapted (hW : Adapted 𝓕 W) (T : ℝ≥0) :
   fun_prop
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=continuo.1h9v.s5.e37af251ab6e from=translated src=- shape=11b92610 vocab=60b10097
+-/
 theorem frozenPutReward_continuous (hW : ∀ ω, Continuous (fun t => W t ω)) (T : ℝ≥0) (ω : Ω) :
     Continuous (fun t => frozenPutReward W K r q σ S T t ω) := by
   unfold frozenPutReward putReward MathFin.gbmValue
@@ -73,17 +82,26 @@ noncomputable def classicalGap (W : ℝ≥0 → Ω → ℝ) (K r q σ S : ℝ)
     (p : ℝ → ℝ → ℝ) (T t : ℝ≥0) (ω : Ω) : ℝ :=
   classicalCandidate W K r q σ S p T t ω - frozenPutReward W K r q σ S T t ω
 
+/--
+@isnad1 id=adapted.2h13v.s6.7da20c6fc184 from=translated src=- shape=472b6c90 vocab=e2c38d33
+-/
 theorem classicalGap_adapted (hp : DividendPutSolution k h p b)
     (hW : Adapted 𝓕 W) (T : ℝ≥0) : Adapted 𝓕 (classicalGap W K r q σ S p T) :=
   fun t => (classicalCandidate_adapted hp hW T t).sub (frozenPutReward_adapted hW T t)
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=continuo.2h13v.s6.71f8b4fc2119 from=translated src=- shape=071acee9 vocab=31e204bc
+-/
 theorem classicalGap_continuous (hp : DividendPutSolution k h p b)
     (hW : ∀ ω, Continuous (fun t => W t ω)) (T : ℝ≥0) (ω : Ω) :
     Continuous (fun t => classicalGap W K r q σ S p T t ω) :=
   (classicalCandidate_continuous hp hW T ω).sub (frozenPutReward_continuous hW T ω)
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.3h14v.s6.44b062e04d5d from=translated src=- shape=6cbac675 vocab=ccc13720
+-/
 theorem classicalGap_nonneg (hp : DividendPutSolution k h p b)
     (hK : 0 < K) (hS : 0 < S) (T t : ℝ≥0) (ω : Ω) :
     0 ≤ classicalGap W K r q σ S p T t ω := by
@@ -91,6 +109,9 @@ theorem classicalGap_nonneg (hp : DividendPutSolution k h p b)
   simpa [classicalGap,frozenPutReward,classicalCandidate,min_assoc] using sub_nonneg.mpr hh
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.3h13v.s6.949e293df920 from=translated src=- shape=40e3ae7b vocab=02734628
+-/
 theorem classicalGap_terminal (hp : DividendPutSolution k h p b)
     (hK : 0 < K) (hS : 0 < S) (T : ℝ≥0) (ω : Ω) :
     classicalGap W K r q σ S p T T ω = 0 := by
@@ -105,6 +126,9 @@ noncomputable def classicalContactRule (hp : DividendPutSolution k h p b)
     (classicalGap_adapted hp hadapt T) (classicalGap_continuous hp hpaths T)
     (classicalGap_nonneg hp hK hS T) T (classicalGap_terminal hp hK hS T)
 
+/--
+@isnad1 id=other.5h14v.s7.bcfef08100c6 from=translated src=- shape=a5991832 vocab=cf8c158f
+-/
 theorem classicalContactRule_contact (hp : DividendPutSolution k h p b)
     (hadapt : Adapted 𝓕 W) (hpaths : ∀ ω, Continuous (fun t => W t ω))
     (hK : 0 < K) (hS : 0 < S) (T : ℝ≥0) (ω : Ω) :
@@ -119,6 +143,9 @@ theorem classicalContactRule_contact (hp : DividendPutSolution k h p b)
   exact hh
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=iff.5h14v.s7.7df2f880b40d from=translated src=- shape=43bb792b vocab=8342162a
+-/
 theorem classicalGap_zero_iff (hp : DividendPutSolution k h p b)
     (hK : 0 < K) (hS : 0 < S) (hσ : 0 < σ) {T t : ℝ≥0} (ht : t < T) (ω : Ω) :
     classicalGap W K r q σ S p T t ω = 0 ↔
@@ -130,6 +157,9 @@ theorem classicalGap_zero_iff (hp : DividendPutSolution k h p b)
   rw [← scaled_classical_payoff W hK hS t ω,
     mul_right_inj' (Real.exp_pos _).ne',mul_right_inj' hK.ne',hp.contact_iff htime]
 
+/--
+@isnad1 id=and.7h15v.s7.4e9cc994d975 from=translated src=- shape=551027dd vocab=d96bdf12
+-/
 theorem classicalContactRule_continuation (hp : DividendPutSolution k h p b)
     (hadapt : Adapted 𝓕 W) (hpaths : ∀ ω, Continuous (fun t => W t ω))
     (hK : 0 < K) (hS : 0 < S) (hσ : 0 < σ) {T t : ℝ≥0} (ω : Ω)
@@ -147,7 +177,9 @@ theorem classicalContactRule_continuation (hp : DividendPutSolution k h p b)
 
 /-- The explicit first-contact rule discharges the admissibility and contact
 premises of verification. Only the candidate's two stochastic properties are
-left here, and neither is silently inferred from the classical PDE. -/
+left here, and neither is silently inferred from the classical PDE.
+@isnad1 id=eq.10h14v.s8.c1e27069cb9f from=translated src=- shape=9be8fd60 vocab=85fe5969
+-/
 theorem classical_price_eq_value_of_contact_verification
     {P : Measure Ω} [IsProbabilityMeasure P] {T : ℝ≥0}
     (hp : DividendPutSolution k h p b) (hW : Measurable W.uncurry) (hadapt : Adapted 𝓕 W)

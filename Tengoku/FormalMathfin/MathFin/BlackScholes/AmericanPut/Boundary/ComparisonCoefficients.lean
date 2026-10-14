@@ -26,6 +26,9 @@ namespace MathFin.BlackScholes.AmericanPut.Boundary.Comparison
 
 open scoped ContDiff
 
+/--
+@isnad1 id=and.2h3v.s5.975c4dd2b231 from=translated src=- shape=d9e938c9 vocab=fa800a23
+-/
 theorem rootProfile_slope_bounds {u v : ℝ} (hu : 0 < u) (hv : v < 0) (z : ℝ) :
     v < logSlope (rootProfile u v) z ∧ logSlope (rootProfile u v) z < u := by
   have huv : u - v ≠ 0 := ne_of_gt (by linarith)
@@ -48,12 +51,18 @@ theorem rootProfile_slope_bounds {u v : ℝ} (hu : 0 < u) (hv : v < 0) (z : ℝ)
   · have hp : 0 < u * Real.exp (v * z) := by positivity
     linarith
 
+/--
+@isnad1 id=and.1h3v.s5.29451f6aca94 from=translated src=- shape=05464f3d vocab=6dcf3d43
+-/
 theorem profile_slope_bounds {β ρ : ℝ} (hρ : 0 < ρ) (z : ℝ) :
     negativeRoot β ρ < logSlope (profile β ρ) z ∧
       logSlope (profile β ρ) z < positiveRoot β ρ := by
   obtain ⟨hu, hv⟩ := roots_signs (β := β) hρ
   simpa only [profile, hρ.ne', ↓reduceIte] using rootProfile_slope_bounds hu hv z
 
+/--
+@isnad1 id=ex.1h2v.s6.f8c570c7bb29 from=translated src=- shape=e78109c8 vocab=65eecddb
+-/
 theorem profile_slope_and_deriv_bounded {β ρ : ℝ} (hρ : 0 < ρ) :
     ∃ B : ℝ, 0 < B ∧ ∀ z,
       |logSlope (profile β ρ) z| ≤ B ∧ |deriv (logSlope (profile β ρ)) z| ≤ B := by
@@ -88,11 +97,17 @@ theorem profile_slope_and_deriv_bounded {β ρ : ℝ} (hρ : 0 < ρ) :
 noncomputable def normalizedDrift (α c d : ℝ) (f : ℝ → ℝ) (x t : ℝ) : ℝ :=
   α + 2 * logSlope f (x + c * t - d)
 
+/--
+@isnad1 id=eq.0h6v.s7.79fe71e417d1 from=translated src=- shape=c1f6ad3c vocab=469beca5
+-/
 theorem normalizedDrift_eq (α c d : ℝ) (f : ℝ → ℝ) (x t : ℝ) :
     normalizedDrift α c d f x t = α + 2 * deriv f (x + c * t - d) / f (x + c * t - d) := by
   unfold normalizedDrift logSlope
   ring
 
+/--
+@isnad1 id=hasderiv.1h8v.s7.6c01dc36565f from=translated src=- shape=8e98f0d7 vocab=38bdfe25
+-/
 theorem normalizedDrift_hasDeriv_x {β ρ : ℝ} {f : ℝ → ℝ}
     (hf : ProfileData β ρ f) (α c d x t : ℝ) :
     HasDerivAt (fun y => normalizedDrift α c d f y t)
@@ -102,6 +117,9 @@ theorem normalizedDrift_hasDeriv_x {β ρ : ℝ} {f : ℝ → ℝ}
     using 1
   simp
 
+/--
+@isnad1 id=hasderiv.1h8v.s7.c558f7109a0c from=translated src=- shape=80fa45be vocab=38bdfe25
+-/
 theorem normalizedDrift_hasDeriv_t {β ρ : ℝ} {f : ℝ → ℝ}
     (hf : ProfileData β ρ f) (α c d x t : ℝ) :
     HasDerivAt (normalizedDrift α c d f x)
@@ -112,7 +130,9 @@ theorem normalizedDrift_hasDeriv_t {β ρ : ℝ} {f : ℝ → ℝ}
   ring
 
 /-- The coefficient and both derivatives appearing in the zero-number
-hypotheses have one uniform bound on the entire space-time plane. -/
+hypotheses have one uniform bound on the entire space-time plane.
+@isnad1 id=ex.1h5v.s7.bf027bd89c0b from=translated src=- shape=9b073c03 vocab=398086e7
+-/
 theorem normalizedDrift_bounded {β ρ : ℝ} (hρ : 0 < ρ) (α c d : ℝ) :
     ∃ C : ℝ, 0 < C ∧ ∀ x t,
       |normalizedDrift α c d (profile β ρ) x t| ≤ C ∧

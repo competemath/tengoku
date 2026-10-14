@@ -29,10 +29,16 @@ open scoped NNReal Topology
 noncomputable def exerciseGrid (T δ : ℝ≥0) : Finset ℝ≥0 :=
   (Finset.range (⌈T/δ⌉₊+1)).image (fun i : ℕ => min ((i : ℝ≥0)*δ) T)
 
+/--
+@isnad1 id=mem.0h2v.s4.2f687f8c208b from=translated src=- shape=ae9d7ef5 vocab=b4b1012d
+-/
 theorem zero_mem_exerciseGrid (T δ : ℝ≥0) : 0 ∈ exerciseGrid T δ := by
   apply Finset.mem_image.mpr
   exact ⟨0,Finset.mem_range.mpr (Nat.zero_lt_succ _),by simp⟩
 
+/--
+@isnad1 id=mem.1h2v.s5.27bde8cb00f5 from=translated src=- shape=cfe7f81f vocab=0b23773f
+-/
 theorem maturity_mem_exerciseGrid (T : ℝ≥0) {δ : ℝ≥0} (hδ : 0 < δ) :
     T ∈ exerciseGrid T δ := by
   have hT : T ≤ (⌈T/δ⌉₊ : ℝ≥0)*δ := (div_le_iff₀ hδ).mp (Nat.le_ceil (T/δ))
@@ -41,6 +47,9 @@ theorem maturity_mem_exerciseGrid (T : ℝ≥0) {δ : ℝ≥0} (hδ : 0 < δ) :
 
 variable {Ω : Type*} [MeasurableSpace Ω] {𝓕 : Filtration ℝ≥0 ‹MeasurableSpace Ω›} {T δ : ℝ≥0}
 
+/--
+@isnad1 id=isstoppi.1h5v.s6.a9a31cf32c44 from=translated src=- shape=96e31eff vocab=78c407cf
+-/
 theorem rounded_time_stopping (θ : BoundedRule 𝓕 T) (hδ : 0 < δ) :
     IsStoppingTime 𝓕 (fun ω => ((min ((gridIndex θ δ ω : ℝ≥0)*δ) T : ℝ≥0) : WithTop ℝ≥0)) := by
   intro t
@@ -69,20 +78,32 @@ noncomputable def BoundedRule.roundUp (θ : BoundedRule 𝓕 T) (hδ : 0 < δ) :
   stopping := rounded_time_stopping θ hδ
   le_horizon := fun _ => min_le_right _ _
 
+/--
+@isnad1 id=le.1h6v.s6.078be5cfc598 from=translated src=- shape=a421022d vocab=c07a46c5
+-/
 theorem BoundedRule.le_roundUp (θ : BoundedRule 𝓕 T) (hδ : 0 < δ) (ω : Ω) :
     θ.time ω ≤ (θ.roundUp hδ).time ω :=
   le_min ((div_le_iff₀ hδ).mp (Nat.le_ceil (θ.time ω/δ))) (θ.le_horizon ω)
 
+/--
+@isnad1 id=mem.1h6v.s6.f6d5b6c851d3 from=translated src=- shape=0af45f9f vocab=6ebcb47b
+-/
 theorem BoundedRule.roundUp_mem_grid (θ : BoundedRule 𝓕 T) (hδ : 0 < δ) (ω : Ω) :
     (θ.roundUp hδ).time ω ∈ exerciseGrid T δ := by
   apply Finset.mem_image.mpr
   exact ⟨gridIndex θ δ ω,Finset.mem_range.mpr (Nat.lt_succ_of_le (gridIndex_bounded θ ω)),rfl⟩
 
+/--
+@isnad1 id=tendsto.0h5v.s5.022515d5e98c from=translated src=- shape=d4fbea7f vocab=7eb41bd6
+-/
 theorem BoundedRule.roundUp_time_tendsto (θ : BoundedRule 𝓕 T) (ω : Ω) :
     Tendsto (fun n => (θ.roundUp (gridStep_pos n)).time ω) atTop (𝓝 (θ.time ω)) := by
   have hh := (gridValue_time_tendsto θ ω).min (tendsto_const_nhds (x := T))
   simpa only [BoundedRule.roundUp,min_eq_left (θ.le_horizon ω)] using hh
 
+/--
+@isnad1 id=tendsto.5h11v.s7.5834016248e7 from=translated src=- shape=d07699f9 vocab=a3565cf4
+-/
 theorem expectedReward_roundUp_tendsto {P : Measure Ω} [IsProbabilityMeasure P]
     {W : ℝ≥0 → Ω → ℝ} (hW : Measurable W.uncurry)
     (hpaths : ∀ ω, Continuous (fun t => W t ω))

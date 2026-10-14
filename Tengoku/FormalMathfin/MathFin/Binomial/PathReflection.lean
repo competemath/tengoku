@@ -78,7 +78,9 @@ variable {n : ℕ}
 /-- Step value: `+1` if `true` (up), `−1` if `false` (down). -/
 def walkStep (b : Bool) : ℤ := if b then 1 else -1
 
-/-- **Step-value negation under boolean flip**: `walkStep !b = -walkStep b`. -/
+/-- **Step-value negation under boolean flip**: `walkStep !b = -walkStep b`.
+@isnad1 id=eq.0h1v.s3.741058433c3e from=translated src=- shape=d2189a58 vocab=513545ba
+-/
 lemma walkStep_not (b : Bool) : walkStep (!b) = -walkStep b := by
   unfold walkStep
   cases b <;> simp
@@ -91,6 +93,9 @@ def walkPos (ω : Fin n → Bool) (k : ℕ) : ℤ :=
   ∑ i ∈ (Finset.univ : Finset (Fin n)).filter (fun (i : Fin n) ↦ i.val < k),
     walkStep (ω i)
 
+/--
+@isnad1 id=eq.0h2v.s4.ce99a85c9167 from=translated src=- shape=4510f478 vocab=6d7c1110
+-/
 @[simp]
 lemma walkPos_zero (ω : Fin n → Bool) : walkPos ω 0 = 0 := by
   unfold walkPos
@@ -101,7 +106,9 @@ def reflectAfter (τ : ℕ) (ω : Fin n → Bool) : Fin n → Bool :=
   fun (i : Fin n) ↦ if i.val < τ then ω i else !(ω i)
 
 /-- **Reflection at fixed `τ` is involutive**: applying it twice recovers the
-original path. -/
+original path.
+@isnad1 id=involuti.0h2v.s3.10dfa48c81d2 from=translated src=- shape=6b41d89c vocab=8c2d0026
+-/
 lemma reflectAfter_involutive (τ : ℕ) :
     Function.Involutive (reflectAfter τ : (Fin n → Bool) → Fin n → Bool) := by
   intro ω
@@ -113,7 +120,9 @@ lemma reflectAfter_involutive (τ : ℕ) :
 
 /-- **Positions before `τ` are unchanged**: for `k ≤ τ`, the reflected walk's
 position equals the original's. (The flip only takes effect from index `τ`
-onwards.) -/
+onwards.)
+@isnad1 id=eq.1h4v.s4.bfc7aed54aeb from=translated src=- shape=fb21d49d vocab=58da1b70
+-/
 lemma walkPos_reflectAfter_le (τ : ℕ) (ω : Fin n → Bool) {k : ℕ} (hk : k ≤ τ) :
     walkPos (reflectAfter τ ω) k = walkPos ω k := by
   unfold walkPos
@@ -138,7 +147,9 @@ reflection, contributing `walkPos ω τ`) and the suffix `{τ ≤ i.val < k}`
   `walkPos ω k         = (prefix) + (suffix of ω)`
   `walkPos ω τ         = (prefix)`
 
-gives `walkPos (reflect) k = 2·walkPos ω τ − walkPos ω k`. -/
+gives `walkPos (reflect) k = 2·walkPos ω τ − walkPos ω k`.
+@isnad1 id=eq.1h4v.s5.45c617cce169 from=translated src=- shape=e5e9d6fb vocab=85207218
+-/
 lemma walkPos_reflectAfter_ge (τ : ℕ) (ω : Fin n → Bool) {k : ℕ} (hτk : τ ≤ k) :
     walkPos (reflectAfter τ ω) k = 2 * walkPos ω τ - walkPos ω k := by
   let Pτ : Finset (Fin n) := Finset.univ.filter (fun (i : Fin n) ↦ i.val < τ)
@@ -196,7 +207,9 @@ reflected path ends at `2a − b`.
 
 This statement drives the counting argument in barrier-option pricing: a
 path-to-`b`-touching-`a` and a path-to-`(2a−b)` are in bijection via
-reflection at the first hitting time of `a`. -/
+reflection at the first hitting time of `a`.
+@isnad1 id=eq.3h5v.s6.49d2e78586f1 from=translated src=- shape=729c0982 vocab=85207218
+-/
 theorem walkPos_reflectAfter_endpoint (τ : ℕ) (ω : Fin n → Bool) (hτ : τ ≤ n)
     (a b : ℤ) (h_hit : walkPos ω τ = a) (h_end : walkPos ω n = b) :
     walkPos (reflectAfter τ ω) n = 2 * a - b := by
@@ -241,22 +254,33 @@ abbrev HitsLevel (a : ℤ) (ω : Fin n → Bool) : Prop := (hittingSet ω a).Non
 noncomputable def firstHit (ω : Fin n → Bool) (a : ℤ) (h : HitsLevel a ω) : ℕ :=
   (hittingSet ω a).min' h
 
+/--
+@isnad1 id=mem.1h3v.s5.8462a067b4e2 from=translated src=- shape=fd9bdfec vocab=e4c04f6a
+-/
 lemma firstHit_mem_hittingSet (ω : Fin n → Bool) (a : ℤ) (h : HitsLevel a ω) :
     firstHit ω a h ∈ hittingSet ω a :=
   (hittingSet ω a).min'_mem h
 
+/--
+@isnad1 id=le.1h3v.s4.0a5ce6be26cb from=translated src=- shape=75fe8fe8 vocab=5f06004d
+-/
 lemma firstHit_le (ω : Fin n → Bool) (a : ℤ) (h : HitsLevel a ω) :
     firstHit ω a h ≤ n := by
   have h_lt : firstHit ω a h < n + 1 :=
     Finset.mem_range.mp (Finset.mem_filter.mp (firstHit_mem_hittingSet ω a h)).1
   omega
 
+/--
+@isnad1 id=eq.1h3v.s4.08ed35c32e84 from=translated src=- shape=c22e79de vocab=44ee38dc
+-/
 lemma walkPos_firstHit (ω : Fin n → Bool) (a : ℤ) (h : HitsLevel a ω) :
     walkPos ω (firstHit ω a h) = a :=
   (Finset.mem_filter.mp (firstHit_mem_hittingSet ω a h)).2
 
 /-- **Minimality of the first hit**: any `k ≤ n` with `walkPos ω k = a` is at
-least `firstHit ω a`. -/
+least `firstHit ω a`.
+@isnad1 id=le.3h4v.s5.b311c340abda from=translated src=- shape=4a5f43fa vocab=c9838d94
+-/
 lemma firstHit_le_of_hit (ω : Fin n → Bool) (a : ℤ) (h : HitsLevel a ω)
     {k : ℕ} (hk : k ≤ n) (h_eq : walkPos ω k = a) : firstHit ω a h ≤ k := by
   apply Finset.min'_le
@@ -264,7 +288,9 @@ lemma firstHit_le_of_hit (ω : Fin n → Bool) (a : ℤ) (h : HitsLevel a ω)
   exact ⟨by omega, h_eq⟩
 
 /-- **Reflected path hits level `a`** when the original does. The reflected
-hits at the same `firstHit` time (proven separately below). -/
+hits at the same `firstHit` time (proven separately below).
+@isnad1 id=hitsleve.1h3v.s4.ec8f9acd70c9 from=translated src=- shape=da381ed3 vocab=0abfb2bc
+-/
 lemma HitsLevel.reflectAfter_firstHit (ω : Fin n → Bool) (a : ℤ) (h : HitsLevel a ω) :
     HitsLevel a (reflectAfter (firstHit ω a h) ω) := by
   refine ⟨firstHit ω a h, ?_⟩
@@ -280,7 +306,9 @@ for the involution property of `reflectAtFirstHit`.
 Proof: both bounds.
 * `firstHit σ a ≤ τ` because `σ` hits `a` at `τ` (positions agree up to `τ`).
 * `firstHit σ a ≥ τ` because positions on `[0, τ)` agree with `ω`, where `ω`
-  doesn't hit `a` (minimality of `τ`). -/
+  doesn't hit `a` (minimality of `τ`).
+@isnad1 id=eq.1h3v.s5.8b9976d2bef5 from=translated src=- shape=ba9cf11d vocab=111a9ae3
+-/
 theorem firstHit_reflectAfter_firstHit (ω : Fin n → Bool) (a : ℤ) (h : HitsLevel a ω) :
     firstHit (reflectAfter (firstHit ω a h) ω) a
         (HitsLevel.reflectAfter_firstHit ω a h) = firstHit ω a h := by
@@ -319,7 +347,9 @@ the original path.
 
 Proof: on the hit-set, `firstHit` is invariant under reflection
 (`firstHit_reflectAfter_firstHit`), and `reflectAfter τ` is involutive
-(`reflectAfter_involutive`). Off the hit-set, the map is identity. -/
+(`reflectAfter_involutive`). Off the hit-set, the map is identity.
+@isnad1 id=involuti.0h2v.s3.2ccbde788984 from=translated src=- shape=cbca34e5 vocab=2575eec0
+-/
 theorem reflectAtFirstHit_involutive (a : ℤ) :
     Function.Involutive (reflectAtFirstHit (n := n) a) := by
   intro ω
@@ -341,7 +371,9 @@ theorem reflectAtFirstHit_involutive (a : ℤ) :
     rw [dite_eq_right h1, dite_eq_right h1]
 
 /-- **Endpoint flip under reflection at first hit**: if `ω` hits `a` and ends
-at `b`, then `reflectAtFirstHit a ω` ends at `2a − b`. -/
+at `b`, then `reflectAtFirstHit a ω` ends at `2a − b`.
+@isnad1 id=eq.2h4v.s5.9e6179e52098 from=translated src=- shape=d33d089e vocab=8226b578
+-/
 theorem walkPos_reflectAtFirstHit_endpoint (ω : Fin n → Bool) (a b : ℤ)
     (h : HitsLevel a ω) (h_end : walkPos ω n = b) :
     walkPos (reflectAtFirstHit a ω) n = 2 * a - b := by
@@ -369,7 +401,9 @@ immediate corollary and is not separately stated here.
 -/
 
 /-- **Step relation**: the walk's position at time `k + 1` equals the position
-at `k` plus the step value at index `k`. -/
+at `k` plus the step value at index `k`.
+@isnad1 id=eq.1h3v.s5.b66e0987c966 from=translated src=- shape=8edfb451 vocab=c80b9bc5
+-/
 lemma walkPos_succ (ω : Fin n → Bool) {k : ℕ} (hk : k < n) :
     walkPos ω (k + 1) = walkPos ω k + walkStep (ω ⟨k, hk⟩) := by
   unfold walkPos
@@ -403,7 +437,9 @@ Proof: take `τ` = smallest `k ≤ n` with `walkPos ω k ≥ a`. Either `τ = 0`
 with `walkPos ω (τ−1) < a` (minimality) and `walkPos ω τ ≥ a`. Since each
 step is `±1`, `walkPos τ = walkPos (τ−1) ± 1`; the `-1` case would give
 `walkPos τ < a`, contradicting `≥ a`; the `+1` case gives
-`walkPos τ = walkPos (τ−1) + 1 ≤ a`, combined with `≥ a` gives `= a`. -/
+`walkPos τ = walkPos (τ−1) + 1 ≤ a`, combined with `≥ a` gives `= a`.
+@isnad1 id=hitsleve.2h3v.s5.087b7d16e289 from=translated src=- shape=fa7ebb0c vocab=2100ff7b
+-/
 theorem HitsLevel_of_walkPos_endpoint_ge (ω : Fin n → Bool) (a : ℤ)
     (ha : 0 ≤ a) (h_end : a ≤ walkPos ω n) : HitsLevel a ω := by
   -- Use Finset.min' on the set of k ≤ n with walkPos ω k ≥ a.
@@ -462,7 +498,9 @@ theorem HitsLevel_of_walkPos_endpoint_ge (ω : Fin n → Bool) (a : ℤ)
   exact ⟨by omega, h_eq⟩
 
 /-- **Endpoint-above-barrier ⟹ hits barrier** (alias / corollary).
-Same as `HitsLevel_of_walkPos_endpoint_ge`, stated as a one-line use. -/
+Same as `HitsLevel_of_walkPos_endpoint_ge`, stated as a one-line use.
+@isnad1 id=hitsleve.2h3v.s5.3d558139e504 from=translated src=- shape=5d559c2e vocab=b327722f
+-/
 lemma HitsLevel_of_endpoint_gt {ω : Fin n → Bool} {a : ℤ} (ha : 0 ≤ a)
     (h : a < walkPos ω n) : HitsLevel a ω :=
   HitsLevel_of_walkPos_endpoint_ge ω a ha (le_of_lt h)
@@ -544,10 +582,16 @@ level `a` (with `τ` the first hit time), else `none`. -/
 noncomputable def firstHit? (ω : Fin n → Bool) (a : ℤ) : Option ℕ :=
   if h : HitsLevel a ω then some (firstHit ω a h) else none
 
+/--
+@isnad1 id=eq.1h3v.s4.bb3662beee37 from=translated src=- shape=2521669e vocab=e8e27d31
+-/
 lemma firstHit?_eq_some_of_hitsLevel (ω : Fin n → Bool) (a : ℤ)
     (h : HitsLevel a ω) : firstHit? ω a = some (firstHit ω a h) := by
   unfold firstHit?; rw [dite_eq_left h]
 
+/--
+@isnad1 id=iff.0h3v.s4.727dc2036554 from=translated src=- shape=301147fa vocab=73a509f7
+-/
 lemma firstHit?_eq_none_iff_not_hitsLevel (ω : Fin n → Bool) (a : ℤ) :
     firstHit? ω a = none ↔ ¬ HitsLevel a ω := by
   refine ⟨fun h h_hit ↦ ?_, fun h_not_hit ↦ ?_⟩
@@ -556,6 +600,9 @@ lemma firstHit?_eq_none_iff_not_hitsLevel (ω : Fin n → Bool) (a : ℤ) :
     exact Option.some_ne_none _ h
   · unfold firstHit?; exact dite_eq_right h_not_hit
 
+/--
+@isnad1 id=iff.0h3v.s4.8c20102fa6be from=translated src=- shape=7a0924f0 vocab=89ddf5eb
+-/
 lemma firstHit?_isSome_iff (ω : Fin n → Bool) (a : ℤ) :
     (firstHit? ω a).isSome ↔ HitsLevel a ω := by
   refine ⟨fun h ↦ ?_, fun h_hit ↦ ?_⟩

@@ -35,6 +35,9 @@ discounted by `exp (-r*θ ω)`. -/
 noncomputable def putReward (W : ℝ≥0 → Ω → ℝ) (K r q σ S : ℝ) (θ : Ω → ℝ≥0) (ω : Ω) : ℝ :=
   Real.exp (-r*(θ ω : ℝ))*max (K-MathFin.gbmValue S (r-q) σ (θ ω) (W (θ ω) ω)) 0
 
+/--
+@isnad1 id=measurab.2h8v.s5.2670a3524629 from=translated src=- shape=52b33a92 vocab=759e435a
+-/
 theorem putReward_measurable {W : ℝ≥0 → Ω → ℝ} (hW : Measurable W.uncurry)
     (K r q σ S : ℝ) {θ : Ω → ℝ≥0} (hθ : Measurable θ) :
     Measurable (putReward W K r q σ S θ) := by
@@ -44,11 +47,17 @@ theorem putReward_measurable {W : ℝ≥0 → Ω → ℝ} (hW : Measurable W.unc
   fun_prop
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.0h9v.s5.521d44afb9b5 from=translated src=- shape=9fc2c8cb vocab=10d3390e
+-/
 theorem putReward_nonneg (W : ℝ≥0 → Ω → ℝ) (K r q σ S : ℝ) (θ : Ω → ℝ≥0) (ω : Ω) :
     0 ≤ putReward W K r q σ S θ ω :=
   mul_nonneg (Real.exp_pos _).le (le_max_right _ _)
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.3h9v.s6.c6610e4b1f55 from=translated src=- shape=c73f577c vocab=10d3390e
+-/
 theorem putReward_le_strike (W : ℝ≥0 → Ω → ℝ) {K r q σ S : ℝ}
     (hK : 0 ≤ K) (hr : 0 ≤ r) (hS : 0 ≤ S) (θ : Ω → ℝ≥0) (ω : Ω) :
     putReward W K r q σ S θ ω ≤ K := by
@@ -64,6 +73,9 @@ theorem putReward_le_strike (W : ℝ≥0 → Ω → ℝ) {K r q σ S : ℝ}
       mul_le_mul_of_nonneg_right he (le_max_right _ _)
     _ ≤ K := by simpa only [one_mul] using hpay
 
+/--
+@isnad1 id=integrab.5h9v.s6.37666704d584 from=translated src=- shape=73f063b1 vocab=323defd8
+-/
 theorem putReward_integrable {W : ℝ≥0 → Ω → ℝ} (hW : Measurable W.uncurry)
     (P : Measure Ω) [IsFiniteMeasure P] {K r q σ S : ℝ}
     (hK : 0 ≤ K) (hr : 0 ≤ r) (hS : 0 ≤ S) {θ : Ω → ℝ≥0} (hθ : Measurable θ) :
@@ -72,6 +84,9 @@ theorem putReward_integrable {W : ℝ≥0 → Ω → ℝ} (hW : Measurable W.unc
     (Filter.Eventually.of_forall (putReward_nonneg W K r q σ S θ))
     (Filter.Eventually.of_forall (putReward_le_strike W hK hr hS θ))
 
+/--
+@isnad1 id=eventual.1h8v.s6.4bd121c0b222 from=translated src=- shape=861eb085 vocab=dafae146
+-/
 theorem putReward_zero_ae {W : ℝ≥0 → Ω → ℝ} {P : Measure Ω}
     (hzero : ∀ᵐ ω ∂P, W 0 ω = 0) (K r q σ S : ℝ) :
     putReward W K r q σ S (fun _ => 0) =ᵐ[P] fun _ => max (K-S) 0 := by

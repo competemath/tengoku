@@ -40,11 +40,17 @@ noncomputable def gridIndex {𝓕 : Filtration ℝ≥0 ‹MeasurableSpace Ω›}
     (θ : BoundedRule 𝓕 T) (δ : ℝ≥0) (ω : Ω) : ℕ :=
   ⌈θ.time ω / δ⌉₊
 
+/--
+@isnad1 id=iff.1h7v.s6.f9797ed5b808 from=translated src=- shape=86da04b7 vocab=7a16e93d
+-/
 theorem gridIndex_le_iff {𝓕 : Filtration ℝ≥0 ‹MeasurableSpace Ω›} {T δ : ℝ≥0}
     (θ : BoundedRule 𝓕 T) (hδ : 0 < δ) (ω : Ω) (i : ℕ) :
     gridIndex θ δ ω ≤ i ↔ θ.time ω ≤ (i : ℝ≥0)*δ := by
   simp only [gridIndex,Nat.ceil_le,div_le_iff₀ hδ]
 
+/--
+@isnad1 id=isstoppi.1h5v.s5.219ac92a1d27 from=translated src=- shape=98960912 vocab=c15fc156
+-/
 theorem gridIndex_stopping {𝓕 : Filtration ℝ≥0 ‹MeasurableSpace Ω›} {T δ : ℝ≥0}
     (θ : BoundedRule 𝓕 T) (hδ : 0 < δ) :
     IsStoppingTime (gridFiltration 𝓕 δ) (fun ω => (gridIndex θ δ ω : ℕ∞)) := by
@@ -52,10 +58,16 @@ theorem gridIndex_stopping {𝓕 : Filtration ℝ≥0 ‹MeasurableSpace Ω›} 
   change MeasurableSet[𝓕 ((i : ℝ≥0)*δ)] {ω | (gridIndex θ δ ω : ℕ∞) ≤ i}
   simpa only [ENat.natCast_le_natCast,WithTop.coe_le_coe,gridIndex_le_iff θ hδ] using θ.stopping ((i : ℝ≥0)*δ)
 
+/--
+@isnad1 id=le.0h6v.s5.c5f6253adf33 from=translated src=- shape=62f0a02d vocab=b122f427
+-/
 theorem gridIndex_bounded {𝓕 : Filtration ℝ≥0 ‹MeasurableSpace Ω›} {T δ : ℝ≥0}
     (θ : BoundedRule 𝓕 T) (ω : Ω) : gridIndex θ δ ω ≤ ⌈T/δ⌉₊ :=
   Nat.ceil_mono (div_le_div_of_nonneg_right (θ.le_horizon ω) zero_le)
 
+/--
+@isnad1 id=supermar.1h5v.s6.46375259267b from=translated src=- shape=7f8549ea vocab=2c278e7e
+-/
 theorem supermartingale_grid {𝓕 : Filtration ℝ≥0 ‹MeasurableSpace Ω›}
     {P : Measure Ω} {U : ℝ≥0 → Ω → ℝ} (hU : Supermartingale U 𝓕 P) (δ : ℝ≥0) :
     Supermartingale (fun i : ℕ => U ((i : ℝ≥0)*δ)) (gridFiltration 𝓕 δ) P := by
@@ -63,6 +75,9 @@ theorem supermartingale_grid {𝓕 : Filtration ℝ≥0 ‹MeasurableSpace Ω›
   intro i j hij
   exact hU.2.1 _ _ (mul_le_mul_of_nonneg_right (by exact_mod_cast hij) zero_le)
 
+/--
+@isnad1 id=le.2h7v.s7.4dd7586a25d9 from=translated src=- shape=45625c82 vocab=82f659c7
+-/
 theorem expected_gridValue_le {𝓕 : Filtration ℝ≥0 ‹MeasurableSpace Ω›}
     {P : Measure Ω} [IsFiniteMeasure P] {U : ℝ≥0 → Ω → ℝ}
     (hU : Supermartingale U 𝓕 P) {T δ : ℝ≥0}
@@ -77,10 +92,16 @@ theorem expected_gridValue_le {𝓕 : Filtration ℝ≥0 ‹MeasurableSpace Ω�
 /-- The mesh `((n : ℝ≥0)+1)⁻¹` of the `n`-th grid refinement. -/
 noncomputable def gridStep (n : ℕ) : ℝ≥0 := ((n : ℝ≥0)+1)⁻¹
 
+/--
+@isnad1 id=lt.0h1v.s4.31e199723f28 from=translated src=- shape=b9369acb vocab=a1da25e3
+-/
 theorem gridStep_pos (n : ℕ) : 0 < gridStep n := by
   unfold gridStep
   positivity
 
+/--
+@isnad1 id=tendsto.0h5v.s6.5767996eade4 from=translated src=- shape=1ddfe54f vocab=561e5c1a
+-/
 theorem gridValue_time_tendsto {𝓕 : Filtration ℝ≥0 ‹MeasurableSpace Ω›} {T : ℝ≥0}
     (θ : BoundedRule 𝓕 T) (ω : Ω) :
     Tendsto (fun n => (gridIndex θ (gridStep n) ω : ℝ≥0)*gridStep n)
@@ -96,12 +117,17 @@ theorem gridValue_time_tendsto {𝓕 : Filtration ℝ≥0 ‹MeasurableSpace Ω�
       exact_mod_cast Nat.le_ceil x
   simpa [Function.comp_def,gridIndex,gridStep,div_eq_mul_inv,hceil] using hh
 
+/--
+@isnad1 id=measurab.0h5v.s5.b8083e551b0c from=translated src=- shape=a1a95495 vocab=af21960c
+-/
 theorem gridIndex_measurable {𝓕 : Filtration ℝ≥0 ‹MeasurableSpace Ω›} {T δ : ℝ≥0}
     (θ : BoundedRule 𝓕 T) : Measurable (gridIndex θ δ) :=
   Nat.measurable_ceil.comp (θ.measurable_time.div_const δ)
 
 /-- Bounded continuous-path optional stopping. This is derived from discrete
-optional stopping, not assumed as an axiom or as a pricing-contract field. -/
+optional stopping, not assumed as an axiom or as a pricing-contract field.
+@isnad1 id=le.3h7v.s7.d4dae881ab63 from=translated src=- shape=1c1ad4f3 vocab=85572d47
+-/
 theorem expected_stoppedValue_le_initial {𝓕 : Filtration ℝ≥0 ‹MeasurableSpace Ω›}
     {P : Measure Ω} [IsFiniteMeasure P] {U : ℝ≥0 → Ω → ℝ}
     (hU : Supermartingale U 𝓕 P) (hcont : ∀ ω, Continuous (fun t => U t ω))
@@ -123,6 +149,9 @@ theorem expected_stoppedValue_le_initial {𝓕 : Filtration ℝ≥0 ‹Measurabl
   exact le_of_tendsto hlim (Filter.Eventually.of_forall
     (fun n => expected_gridValue_le hU θ (gridStep_pos n)))
 
+/--
+@isnad1 id=eq.3h7v.s7.0b1d30877fb7 from=translated src=- shape=909b7cfc vocab=b3a6dd77
+-/
 theorem expected_stoppedValue_eq_initial {𝓕 : Filtration ℝ≥0 ‹MeasurableSpace Ω›}
     {P : Measure Ω} [IsFiniteMeasure P] {U : ℝ≥0 → Ω → ℝ}
     (hU : Martingale U 𝓕 P) (hcont : ∀ ω, Continuous (fun t => U t ω))

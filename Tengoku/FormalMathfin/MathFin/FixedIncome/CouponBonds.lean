@@ -44,7 +44,9 @@ noncomputable def annuityValue (n : ℕ) (c r Δt : ℝ) : ℝ :=
   ∑ i ∈ Finset.range n, c * Real.exp (-(r * ((↑i + 1) * Δt)))
 
 /-- **Annuity closed form** via the geometric-series identity:
-`A_n(c, r, Δt) = c · e^{-rΔt} · (1 − x^n) / (1 − x)`, with `x = e^{-rΔt}`. -/
+`A_n(c, r, Δt) = c · e^{-rΔt} · (1 − x^n) / (1 − x)`, with `x = e^{-rΔt}`.
+@isnad1 id=eq.1h4v.s7.cc808ac5d6a2 from=translated src=- shape=243e9401 vocab=10caf0f5
+-/
 lemma annuityValue_closed_form (n : ℕ) (c r Δt : ℝ)
     (h : Real.exp (-(r * Δt)) ≠ 1) :
     annuityValue n c r Δt =
@@ -69,7 +71,9 @@ lemma annuityValue_closed_form (n : ℕ) (c r Δt : ℝ)
   ring
 
 /-- **Forward = spot under a flat curve**: under a constant short rate `r`, the
-instantaneous forward rate `-∂_T log B(t, T)` equals `r` at every horizon. -/
+instantaneous forward rate `-∂_T log B(t, T)` equals `r` at every horizon.
+@isnad1 id=hasderiv.0h3v.s5.a08159a5bd37 from=translated src=- shape=5bf52d08 vocab=0a513a76
+-/
 lemma hasDerivAt_neg_log_zcb_T (r t T : ℝ) :
     HasDerivAt (fun T' ↦ -Real.log (zcb r t T')) r T := by
   have h_eq : ∀ T' : ℝ, -Real.log (zcb r t T') = r * (T' - t) := by
@@ -86,7 +90,9 @@ lemma hasDerivAt_neg_log_zcb_T (r t T : ℝ) :
 if all coupons are positive and all payment times are strictly in the future,
 the bond price is strictly decreasing in the yield. This is the parameter
 form of the YTM-uniqueness property — any positive price corresponds to at
-most one yield. -/
+most one yield.
+@isnad1 id=strictan.3h5v.s6.db449dbf23e2 from=translated src=- shape=c715835c vocab=ccb0ed5f
+-/
 lemma couponBondPrice_strictAnti
     {ι : Type*} (s : Finset ι) (c T : ι → ℝ) (t : ℝ)
     (h_pos : ∀ i ∈ s, 0 < c i)

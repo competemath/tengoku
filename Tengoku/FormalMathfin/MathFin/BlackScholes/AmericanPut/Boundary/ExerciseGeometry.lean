@@ -29,13 +29,18 @@ open scoped Topology ContDiff
 
 variable {k h : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
 
+/--
+@isnad1 id=le.2h6v.s5.614c2ffc2666 from=translated src=- shape=77aa198e vocab=841e4acb
+-/
 theorem price_nonneg (hp : DividendPutSolution k h p b) (x : ℝ)
     {t : ℝ} (ht : 0 ≤ t) : 0 ≤ p x t :=
   (putPayoff_nonneg x).trans (hp.dominates x t ht)
 
 /-- The two one-sided derivatives agree, so the spatial derivative exists
 on the whole line at contact. This does not assert joint or second-order
-smoothness across the free boundary. -/
+smoothness across the free boundary.
+@isnad1 id=hasderiv.2h5v.s6.afc64115ddbc from=translated src=- shape=1328da94 vocab=32fdd298
+-/
 theorem price_hasDerivAt_boundary (hp : DividendPutSolution k h p b)
     {t : ℝ} (ht : 0 < t) :
     HasDerivAt (fun x => p x t) (-Real.exp (b t)) (b t) := by
@@ -46,7 +51,9 @@ theorem price_hasDerivAt_boundary (hp : DividendPutSolution k h p b)
   simpa only [Iic_union_Ici, hasDerivWithinAt_univ] using hu
 
 /-- A zero exercise boundary would make a nonnegative price attain zero
-with derivative minus one, contradicting the first derivative test. -/
+with derivative minus one, contradicting the first derivative test.
+@isnad1 id=lt.2h5v.s5.595263db9075 from=translated src=- shape=6bbab187 vocab=ebff1ea4
+-/
 theorem boundary_neg (hp : DividendPutSolution k h p b)
     {t : ℝ} (ht : 0 < t) : b t < 0 := by
   apply lt_of_le_of_ne (hp.boundary_nonpos ht)
@@ -63,7 +70,9 @@ theorem boundary_neg (hp : DividendPutSolution k h p b)
   norm_num at hd
 
 /-- The exercise-side forcing is strictly positive, even when `h=k`.
-This strictness uses the just-proved strict separation from the strike. -/
+This strictness uses the just-proved strict separation from the strike.
+@isnad1 id=lt.2h5v.s5.5b5d3c466863 from=translated src=- shape=48d51e35 vocab=42462cc3
+-/
 theorem boundary_forcing_pos (hp : DividendPutSolution k h p b)
     {t : ℝ} (ht : 0 < t) : 0 < k - h * Real.exp (b t) := by
   have he : Real.exp (b t) < 1 := Real.exp_lt_one_iff.mpr (hp.boundary_neg ht)
@@ -73,7 +82,9 @@ theorem boundary_forcing_pos (hp : DividendPutSolution k h p b)
   linarith
 
 /-- In the open exercise region the price is locally the smooth payoff,
-jointly in space and time. Nothing is extended through the free boundary. -/
+jointly in space and time. Nothing is extended through the free boundary.
+@isnad1 id=eventual.3h6v.s6.3a5aff3e867d from=translated src=- shape=34a0dbe6 vocab=5b1d2892
+-/
 theorem price_eventuallyEq_exercise (hp : DividendPutSolution k h p b)
     {x t : ℝ} (ht : 0 < t) (hx : x < b t) :
     (fun z : ℝ × ℝ => p z.1 z.2) =ᶠ[𝓝 (x,t)] (fun z => 1 - Real.exp z.1) := by
@@ -86,6 +97,9 @@ theorem price_eventuallyEq_exercise (hp : DividendPutSolution k h p b)
   filter_upwards [hinside,htime] with z hz hzt
   exact hp.exercise z.1 z.2 hzt hz.le
 
+/--
+@isnad1 id=contdiff.3h6v.s6.48e435b2601f from=translated src=- shape=b52e27ef vocab=dbbf334b
+-/
 theorem price_contDiffAt_exercise (hp : DividendPutSolution k h p b)
     {x t : ℝ} (ht : 0 < t) (hx : x < b t) :
     ContDiffAt ℝ ∞ (fun z : ℝ × ℝ => p z.1 z.2) (x,t) := by
@@ -93,7 +107,9 @@ theorem price_contDiffAt_exercise (hp : DividendPutSolution k h p b)
   exact hpayoff.congr_of_eventuallyEq (hp.price_eventuallyEq_exercise ht hx)
 
 /-- Away from the boundary the price is a classical supersolution on BOTH
-sides of the obstacle. The exercise-side residual is `k-h*exp x`. -/
+sides of the obstacle. The exercise-side residual is `k-h*exp x`.
+@isnad1 id=and.3h6v.s7.0d88eda80988 from=translated src=- shape=138354d5 vocab=f813174f
+-/
 theorem price_supersolution_off_boundary (hp : DividendPutSolution k h p b)
     {x t : ℝ} (ht : 0 < t) (hx : x ≠ b t) :
     ContDiffAt ℝ ∞ (fun z : ℝ × ℝ => p z.1 z.2) (x,t) ∧

@@ -33,22 +33,32 @@ noncomputable def normalizedTime (σ expiry T : ℝ) : ℝ :=
 noncomputable def stockBoundary (E σ expiry : ℝ) (s : ℝ → ℝ) (T : ℝ) : ℝ :=
   E * Real.exp (s (normalizedTime σ expiry T))
 
+/--
+@isnad1 id=lt.2h3v.s5.cb7bd22fce9a from=translated src=- shape=20277e94 vocab=76113657
+-/
 theorem normalizedTime_pos {σ expiry T : ℝ} (hσ : 0 < σ) (hT : T < expiry) :
     0 < normalizedTime σ expiry T := by
   exact mul_pos (div_pos (sq_pos_of_pos hσ) (by norm_num)) (sub_pos.mpr hT)
 
-/-- At expiry the convention `s(0) = 0` gives `S_f(T_F) = E`. -/
+/-- At expiry the convention `s(0) = 0` gives `S_f(T_F) = E`.
+@isnad1 id=eq.1h4v.s5.f69cc7069b02 from=translated src=- shape=aab92240 vocab=a9baa34e
+-/
 theorem stockBoundary_expiry (E σ expiry : ℝ) {s : ℝ → ℝ} (hs : s 0 = 0) :
     stockBoundary E σ expiry s expiry = E := by
   simp [stockBoundary, normalizedTime, hs]
 
+/--
+@isnad1 id=hasderiv.0h3v.s6.1bd44cd73757 from=translated src=- shape=e232dc7c vocab=a764168a
+-/
 theorem hasDerivAt_normalizedTime (σ expiry T : ℝ) :
     HasDerivAt (normalizedTime σ expiry) (-(σ ^ 2 / 2)) T := by
   change HasDerivAt (fun U : ℝ => σ ^ 2 / 2 * (expiry - U)) (-(σ ^ 2 / 2)) T
   convert! ((hasDerivAt_id T).const_sub expiry).const_mul (σ ^ 2 / 2) using 1
   ring
 
-/-- The first derivative under the paper's time reversal and exponential map. -/
+/-- The first derivative under the paper's time reversal and exponential map.
+@isnad1 id=hasderiv.1h6v.s7.da71eb718125 from=translated src=- shape=faaa5378 vocab=9f89417d
+-/
 theorem hasDerivAt_stockBoundary (E σ expiry T : ℝ) {s : ℝ → ℝ} {ds : ℝ}
     (hs : HasDerivAt s ds (normalizedTime σ expiry T)) :
     HasDerivAt (stockBoundary E σ expiry s)
@@ -61,6 +71,7 @@ theorem hasDerivAt_stockBoundary (E σ expiry T : ℝ) {s : ℝ → ℝ} {ds : �
 No assertion about convexity or optimal stopping is hidden in these hypotheses.
 The derivative of `s` is needed on positive times to identify the derivative of
 `stockBoundary` in a neighbourhood of `T`; the second derivative is local.
+@isnad1 id=eq.4h7v.s8.6ee4ef9e4483 from=translated src=- shape=87b7aab7 vocab=ae6887be
 -/
 theorem deriv2_stockBoundary (E σ expiry : ℝ) {s ds : ℝ → ℝ} {dds T : ℝ}
     (hσ : 0 < σ) (hT : T < expiry)
@@ -84,6 +95,7 @@ theorem deriv2_stockBoundary (E σ expiry : ℝ) {s ds : ℝ → ℝ} {dds T : �
 
 /-- Strict positivity of log-boundary curvature implies stock-boundary curvature.
 This is only the coordinate implication, not a proof of the hypothesis `0 < dds`.
+@isnad1 id=lt.6h7v.s7.3f9c56bf4a22 from=translated src=- shape=eaff49b3 vocab=edd62e87
 -/
 theorem deriv2_stockBoundary_pos {E σ expiry T dds : ℝ} {s ds : ℝ → ℝ}
     (hE : 0 < E) (hσ : 0 < σ) (hT : T < expiry)
@@ -95,7 +107,9 @@ theorem deriv2_stockBoundary_pos {E σ expiry T dds : ℝ} {s ds : ℝ → ℝ}
 
 /-- Weak log curvature plus nonzero log-boundary speed gives STRICT stock
 curvature. This is the coordinate implication used by the proposed extension;
-it does not strengthen weak log curvature to strict log curvature. -/
+it does not strengthen weak log curvature to strict log curvature.
+@isnad1 id=lt.7h7v.s7.b4472399ce52 from=translated src=- shape=bf67ba3e vocab=f73ea248
+-/
 theorem deriv2_stockBoundary_pos_of_nonneg {E σ expiry T dds : ℝ} {s ds : ℝ → ℝ}
     (hE : 0 < E) (hσ : 0 < σ) (hT : T < expiry)
     (hs : ∀ t, 0 < t → HasDerivAt s (ds t) t)
@@ -110,6 +124,7 @@ theorem deriv2_stockBoundary_pos_of_nonneg {E σ expiry T dds : ℝ} {s ds : ℝ
 /-- Ordinary convexity is preserved by the coordinate change, including expiry
 if the candidate log-boundary is convex on the closed nonnegative half-line.
 This does not assume differentiability at expiry, where the paper has a singularity.
+@isnad1 id=convexon.2h4v.s6.1d889df4407f from=translated src=- shape=bfc4fdb5 vocab=49cbc3de
 -/
 theorem stockBoundary_convexOn {E σ expiry : ℝ} {s : ℝ → ℝ}
     (hE : 0 ≤ E) (hs : ConvexOn ℝ (Set.Ici 0) s) :

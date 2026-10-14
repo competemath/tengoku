@@ -41,19 +41,30 @@ variable {q : ℕ} [NeZero q] {χ : DirichletCharacter ℂ q}
 
 /-! ### 0. Generalities -/
 
-/-- A primitive character mod q > 1 is nontrivial. -/
+/-- A primitive character mod q > 1 is nontrivial.
+@isnad1 id=ne.2h2v.s6.a9e3905e5471 from=translated src=- shape=d72c9ab5 vocab=52d6641b
+-/
 lemma ne_one_of_primitive (hq : 1 < q) (hprim : χ.IsPrimitive) : χ ≠ 1 := by
   intro h
   rw [IsPrimitive, h, conductor_one] at hprim
   omega
 
 omit [NeZero q] in
+/--
+@isnad1 id=ne.1h2v.s7.e0f9dc73a708 from=translated src=- shape=566a0699 vocab=c1673a6e
+-/
 lemma inv_ne_one (hχ1 : χ ≠ 1) : χ⁻¹ ≠ 1 := by
   simpa [inv_eq_one] using hχ1
 
+/--
+@isnad1 id=ne.1h2v.s6.42cc946c9149 from=translated src=- shape=dc208418 vocab=f2cfb790
+-/
 lemma LFunction_two_ne_zero (hχ1 : χ ≠ 1) : χ.LFunction 2 ≠ 0 :=
   LFunction_ne_zero_of_one_le_re χ (Or.inl hχ1) (by norm_num)
 
+/--
+@isnad1 id=analytic.1h2v.s6.dc344f6d7b69 from=translated src=- shape=3dc9b54c vocab=14002e48
+-/
 lemma LFunction_analyticOnNhd (hχ1 : χ ≠ 1) : AnalyticOnNhd ℂ χ.LFunction univ :=
   (differentiable_LFunction hχ1).differentiableOn.analyticOnNhd isOpen_univ
 
@@ -87,7 +98,9 @@ private lemma LFunction_conj_of_one_lt_re {s : ℂ} (hs : 1 < s.re) :
           simp only [← starRingEnd_apply]
           rw [hpow]
 
-/-- **Schwarz reflection for Dirichlet L**: `L(s̄, χ) = conj L(s, χ⁻¹)` (everywhere; χ ≠ 1). -/
+/-- **Schwarz reflection for Dirichlet L**: `L(s̄, χ) = conj L(s, χ⁻¹)` (everywhere; χ ≠ 1).
+@isnad1 id=eq.1h3v.s7.69bbe459db41 from=translated src=- shape=a45c8def vocab=b9e9d6b4
+-/
 theorem LFunction_conj (hχ1 : χ ≠ 1) (s : ℂ) :
     χ.LFunction (conj s) = conj ((χ⁻¹).LFunction s) := by
   have hL : AnalyticOnNhd ℂ χ.LFunction univ := LFunction_analyticOnNhd hχ1
@@ -111,6 +124,9 @@ theorem LFunction_conj (hχ1 : χ ≠ 1) (s : ℂ) :
 
 /-! ### 2. Order transport under conjugation -/
 
+/--
+@isnad1 id=eq.1h3v.s7.7de760d6f2f1 from=translated src=- shape=853940b6 vocab=5370ff1f
+-/
 theorem analyticOrderAt_LFunction_conj (hχ1 : χ ≠ 1) (w : ℂ) :
     analyticOrderAt χ.LFunction (conj w) = analyticOrderAt (χ⁻¹).LFunction w := by
   have hcong : (fun z => conj ((χ⁻¹).LFunction (conj z))) =ᶠ[nhds (conj w)] χ.LFunction := by
@@ -125,6 +141,9 @@ theorem analyticOrderAt_LFunction_conj (hχ1 : χ ≠ 1) (w : ℂ) :
 /-! ### 3. The Γ-factor and the FE prefactor in the strip -/
 
 omit [NeZero q] in
+/--
+@isnad1 id=and.1h3v.s6.aaaf6c693c41 from=translated src=- shape=68168483 vocab=56dd8fa9
+-/
 lemma gammaFactor_analyticAt {w : ℂ} (h0 : 0 < w.re) :
     AnalyticAt ℂ (gammaFactor χ) w ∧ gammaFactor χ w ≠ 0 := by
   have key : ∀ a : ℂ, 0 < (w + a).re → AnalyticAt ℂ (fun z => Gammaℝ (z + a)) w ∧
@@ -175,7 +194,9 @@ lemma gammaFactor_analyticAt {w : ℂ} (h0 : 0 < w.re) :
       simp [ho.gammaFactor_def]
     · simpa [ho.gammaFactor_def] using h.2
 
-/-- `Λ = γ·L` on the right half plane (`q > 1`), as an eventual equality near strip points. -/
+/-- `Λ = γ·L` on the right half plane (`q > 1`), as an eventual equality near strip points.
+@isnad1 id=eventual.2h3v.s6.0fc20079e9f6 from=translated src=- shape=0643d57d vocab=c4da68c5
+-/
 lemma completed_eq_gamma_mul_L (hq : 1 < q) {w : ℂ} (h0 : 0 < w.re) :
     completedLFunction χ =ᶠ[nhds w] gammaFactor χ * χ.LFunction := by
   have hopen : IsOpen {z : ℂ | 0 < z.re} := isOpen_lt continuous_const Complex.continuous_re
@@ -193,7 +214,9 @@ lemma completed_eq_gamma_mul_L (hq : 1 < q) {w : ℂ} (h0 : 0 < w.re) :
   field_simp
 
 /-- **W(χ) ≠ 0** for primitive χ mod q > 1 — derived from the functional equation and
-L(2,χ) ≠ 0 (no Gauss-sum input). -/
+L(2,χ) ≠ 0 (no Gauss-sum input).
+@isnad1 id=ne.2h2v.s5.530db76bf812 from=translated src=- shape=e4e75a0a vocab=7595215a
+-/
 theorem rootNumber_ne_zero (hq : 1 < q) (hprim : χ.IsPrimitive) : rootNumber χ ≠ 0 := by
   intro hW
   have hχ1 := ne_one_of_primitive hq hprim
@@ -216,7 +239,9 @@ theorem rootNumber_ne_zero (hq : 1 < q) (hprim : χ.IsPrimitive) : rootNumber χ
 
 /-! ### 4. Order transport through the functional equation -/
 
-/-- For `w` in the open strip: `ord_{1−w} L(·,χ) = ord_w L(·,χ⁻¹)`. -/
+/-- For `w` in the open strip: `ord_{1−w} L(·,χ) = ord_w L(·,χ⁻¹)`.
+@isnad1 id=eq.4h3v.s7.e102c5a012ff from=translated src=- shape=cbfbd1fa vocab=23f83e99
+-/
 theorem analyticOrderAt_LFunction_one_sub (hq : 1 < q) (hprim : χ.IsPrimitive)
     {w : ℂ} (h0 : 0 < w.re) (h1 : w.re < 1) :
     analyticOrderAt χ.LFunction (1 - w) = analyticOrderAt (χ⁻¹).LFunction w := by
@@ -267,7 +292,9 @@ theorem analyticOrderAt_LFunction_one_sub (hq : 1 < q) (hprim : χ.IsPrimitive)
 
 /-! ### 5. The LSeam fields -/
 
-/-- multiplicity invariance under `ρ ↦ 1 − ρ̄`. -/
+/-- multiplicity invariance under `ρ ↦ 1 − ρ̄`.
+@isnad1 id=eq.3h3v.s5.9d9c4e1a6a18 from=translated src=- shape=c9608a90 vocab=909d7618
+-/
 theorem L_mult_reflect (hq : 1 < q) (hprim : χ.IsPrimitive) :
     ∀ ρ, IsNontrivialZeroL χ ρ → zeroMultL χ (reflect ρ) = zeroMultL χ ρ := by
   rintro ρ ⟨hzero, h0, h1⟩
@@ -279,7 +306,9 @@ theorem L_mult_reflect (hq : 1 < q) (hprim : χ.IsPrimitive) :
   rw [hrefl_eq, analyticOrderAt_LFunction_one_sub hq hprim hc0 hc1,
     analyticOrderAt_LFunction_conj (χ := χ⁻¹) (inv_ne_one hχ1) ρ, inv_inv]
 
-/-- zero-set invariance under `ρ ↦ 1 − ρ̄`. -/
+/-- zero-set invariance under `ρ ↦ 1 − ρ̄`.
+@isnad1 id=isnontri.3h3v.s5.fdd391b17d49 from=translated src=- shape=e2cafe95 vocab=49fa07c6
+-/
 theorem L_reflect_zero (hq : 1 < q) (hprim : χ.IsPrimitive) :
     ∀ ρ, IsNontrivialZeroL χ ρ → IsNontrivialZeroL χ (reflect ρ) := by
   rintro ρ ⟨hzero, h0, h1⟩
@@ -314,7 +343,9 @@ theorem L_reflect_zero (hq : 1 < q) (hprim : χ.IsPrimitive) :
     simp only [Zeta23.reflect, Complex.sub_re, Complex.one_re, Complex.conj_re]
     linarith
 
-/-- H-fin for L(s,χ). -/
+/-- H-fin for L(s,χ).
+@isnad1 id=le.3h3v.s5.9838d03b4c3e from=translated src=- shape=b4ae209d vocab=7bba337f
+-/
 theorem LSeam_one_le_mult (hq : 1 < q) (hprim : χ.IsPrimitive) :
     ∀ ρ, IsNontrivialZeroL χ ρ → 1 ≤ zeroMultL χ ρ := by
   intro ρ h
@@ -333,7 +364,9 @@ theorem LSeam_one_le_mult (hq : 1 < q) (hprim : χ.IsPrimitive) :
   simp only [ENat.toNat_natCast, ne_eq, Nat.cast_eq_zero] at hne0 ⊢
   omega
 
-/-- local finiteness of the zeros of L(·,χ) in ordinate windows. -/
+/-- local finiteness of the zeros of L(·,χ) in ordinate windows.
+@isnad1 id=finite.2h4v.s6.0699252a2dc4 from=translated src=- shape=94fc55ba vocab=70f3e17e
+-/
 theorem LSeam_finite_window (hq : 1 < q) (hprim : χ.IsPrimitive) (T₁ T₂ : ℝ) :
     ({ρ | IsNontrivialZeroL χ ρ} ∩ {ρ | T₁ < ρ.im ∧ ρ.im ≤ T₂}).Finite := by
   have hχ1 := ne_one_of_primitive hq hprim
@@ -359,7 +392,9 @@ theorem LSeam_finite_window (hq : 1 < q) (hprim : χ.IsPrimitive) (T₁ T₂ : �
   obtain ⟨z, hzI, hρz⟩ := mem_iUnion₂.mp (hcover hρK)
   exact mem_iUnion₂.mpr ⟨z, hzI, hρz, hρ.1⟩
 
-/-- **The seam, discharged**: a primitive χ mod q > 1 satisfies all four LSeam obligations. -/
+/-- **The seam, discharged**: a primitive χ mod q > 1 satisfies all four LSeam obligations.
+@isnad1 id=lseam.2h2v.s5.1fd3b2144c76 from=translated src=- shape=4838a637 vocab=8720b167
+-/
 theorem LSeam_of (hq : 1 < q) (hprim : χ.IsPrimitive) : LSeam χ :=
   ⟨LSeam_one_le_mult hq hprim, L_reflect_zero hq hprim, L_mult_reflect hq hprim,
     LSeam_finite_window hq hprim⟩

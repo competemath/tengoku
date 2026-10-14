@@ -44,30 +44,40 @@ namespace MathFin
 
 open Real ProbabilityTheory
 
-/-- **VaR translation invariance**: `VaR(L + c) = VaR(L) + c`. -/
+/-- **VaR translation invariance**: `VaR(L + c) = VaR(L) + c`.
+@isnad1 id=eq.0h4v.s5.ed6faee7a290 from=translated src=- shape=bc40929d vocab=993e64a3
+-/
 lemma gaussianVaR_translation (μ σ z c : ℝ) :
     gaussianVaR (μ + c) σ z = gaussianVaR μ σ z + c := by
   unfold gaussianVaR; ring
 
-/-- **CVaR translation invariance**: `CVaR(L + c) = CVaR(L) + c`. -/
+/-- **CVaR translation invariance**: `CVaR(L + c) = CVaR(L) + c`.
+@isnad1 id=eq.0h5v.s5.f15f07423780 from=translated src=- shape=8be348a8 vocab=7c107402
+-/
 lemma gaussianCVaR_translation (μ σ z α c : ℝ) :
     gaussianCVaR (μ + c) σ z α = gaussianCVaR μ σ z α + c := by
   unfold gaussianCVaR; ring
 
 /-- **VaR positive homogeneity**: `VaR(λ·L) = λ·VaR(L)` for `λ ≥ 0`. The volatility
-scales by `|λ|·σ`, so the hypothesis `0 ≤ λ` is load-bearing (it discharges `|λ| = λ`). -/
+scales by `|λ|·σ`, so the hypothesis `0 ≤ λ` is load-bearing (it discharges `|λ| = λ`).
+@isnad1 id=eq.1h4v.s5.7b8e04ce1c68 from=translated src=- shape=aa201163 vocab=2ff11d62
+-/
 lemma gaussianVaR_positiveHomogeneity (μ σ z : ℝ) {l : ℝ} (hl : 0 ≤ l) :
     gaussianVaR (l * μ) (|l| * σ) z = l * gaussianVaR μ σ z := by
   unfold gaussianVaR; rw [abs_of_nonneg hl]; ring
 
 /-- **CVaR positive homogeneity**: `CVaR(λ·L) = λ·CVaR(L)` for `λ ≥ 0` (volatility
-scales by `|λ|·σ`, so `0 ≤ λ` is load-bearing). -/
+scales by `|λ|·σ`, so `0 ≤ λ` is load-bearing).
+@isnad1 id=eq.1h5v.s5.5ec6638f485b from=translated src=- shape=36014049 vocab=b09f74be
+-/
 lemma gaussianCVaR_positiveHomogeneity (μ σ z α : ℝ) {l : ℝ} (hl : 0 ≤ l) :
     gaussianCVaR (l * μ) (|l| * σ) z α = l * gaussianCVaR μ σ z α := by
   unfold gaussianCVaR; rw [abs_of_nonneg hl]; ring
 
 /-- **VaR monotonicity in mean** at the same volatility and right-tail quantile:
-if `μ₁ ≤ μ₂` and `σ ≥ 0`, then `VaR(L₁) ≤ VaR(L₂)`. -/
+if `μ₁ ≤ μ₂` and `σ ≥ 0`, then `VaR(L₁) ≤ VaR(L₂)`.
+@isnad1 id=le.1h4v.s4.57ec3b112456 from=translated src=- shape=560a20ef vocab=5ba8a7d9
+-/
 lemma gaussianVaR_monotone_mean {μ₁ μ₂ σ z : ℝ}
     (hμ : μ₁ ≤ μ₂) :
     gaussianVaR μ₁ σ z ≤ gaussianVaR μ₂ σ z := by
@@ -75,7 +85,9 @@ lemma gaussianVaR_monotone_mean {μ₁ μ₂ σ z : ℝ}
   linarith
 
 /-- **CVaR monotonicity in mean** at the same volatility: if `μ₁ ≤ μ₂`, then
-`CVaR(L₁) ≤ CVaR(L₂)`. -/
+`CVaR(L₁) ≤ CVaR(L₂)`.
+@isnad1 id=le.1h5v.s4.f4b231615db1 from=translated src=- shape=c06ee3a9 vocab=e5a73a8b
+-/
 lemma gaussianCVaR_monotone_mean {μ₁ μ₂ σ z α : ℝ}
     (hμ : μ₁ ≤ μ₂) :
     gaussianCVaR μ₁ σ z α ≤ gaussianCVaR μ₂ σ z α := by
@@ -84,7 +96,9 @@ lemma gaussianCVaR_monotone_mean {μ₁ μ₂ σ z α : ℝ}
 
 /-- **Joint-standard-deviation triangle inequality**:
 `√(σ₁² + 2 ρ σ₁ σ₂ + σ₂²) ≤ σ₁ + σ₂` whenever `|ρ| ≤ 1` and `σ_i ≥ 0`. This is
-the substantive inequality behind gaussian subadditivity. -/
+the substantive inequality behind gaussian subadditivity.
+@isnad1 id=le.3h3v.s7.da9e7216a9cd from=translated src=- shape=6177f94e vocab=1c908215
+-/
 lemma joint_stdev_le {σ₁ σ₂ ρ : ℝ}
     (h₁ : 0 ≤ σ₁) (h₂ : 0 ≤ σ₂) (hρ : ρ ≤ 1) :
     Real.sqrt (σ₁ ^ 2 + 2 * ρ * σ₁ * σ₂ + σ₂ ^ 2) ≤ σ₁ + σ₂ := by
@@ -98,7 +112,9 @@ lemma joint_stdev_le {σ₁ σ₂ ρ : ℝ}
 
 /-- **Gaussian VaR subadditivity**: for joint-gaussian `L₁ + L₂ ~ N(μ₁ + μ₂, σ₊²)`
 with `σ₊ = √(σ₁² + 2 ρ σ₁ σ₂ + σ₂²)` and `|ρ| ≤ 1`, `σ_i ≥ 0`, `z ≥ 0`:
-`VaR(L₁ + L₂) ≤ VaR(L₁) + VaR(L₂)`. -/
+`VaR(L₁ + L₂) ≤ VaR(L₁) + VaR(L₂)`.
+@isnad1 id=le.4h6v.s7.c1873c5c4632 from=translated src=- shape=019c0ee5 vocab=b23d953d
+-/
 lemma gaussianVaR_subadditive {μ₁ μ₂ σ₁ σ₂ ρ z : ℝ}
     (h₁ : 0 ≤ σ₁) (h₂ : 0 ≤ σ₂) (hρ : ρ ≤ 1) (hz : 0 ≤ z) :
     gaussianVaR (μ₁ + μ₂)
@@ -110,7 +126,9 @@ lemma gaussianVaR_subadditive {μ₁ μ₂ σ₁ σ₂ ρ z : ℝ}
   nlinarith
 
 /-- **Gaussian CVaR subadditivity**: same setup as `gaussianVaR_subadditive`,
-plus the level `α < 1`. -/
+plus the level `α < 1`.
+@isnad1 id=le.4h7v.s7.64820b30774b from=translated src=- shape=b9e02feb vocab=95cf7069
+-/
 lemma gaussianCVaR_subadditive {μ₁ μ₂ σ₁ σ₂ ρ z α : ℝ}
     (h₁ : 0 ≤ σ₁) (h₂ : 0 ≤ σ₂) (hρ : ρ ≤ 1) (hα : α < 1) :
     gaussianCVaR (μ₁ + μ₂)

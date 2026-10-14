@@ -65,7 +65,9 @@ noncomputable def kellyReturnMeasure (p b f : ℝ) : Measure ℝ :=
 
 /-- **Multi-period Kelly first-order condition**: the optimal fraction is
 independent of the horizon `n` — maximizing `n · kellyGrowth` is the same
-single-period problem, so Kelly is myopic. -/
+single-period problem, so Kelly is myopic.
+@isnad1 id=hasderiv.3h3v.s6.4138aedccd96 from=translated src=- shape=14c9ca19 vocab=afac6d8a
+-/
 lemma kelly_n_periods_deriv_at_kelly (n : ℕ) {p b : ℝ}
     (hp : 0 < p) (hp1 : p < 1) (hb : 0 < b) :
     HasDerivAt (fun f ↦ (n : ℝ) * kellyGrowth p b f) 0 (kellyFraction p b) := by
@@ -73,14 +75,18 @@ lemma kelly_n_periods_deriv_at_kelly (n : ℕ) {p b : ℝ}
   have h_mul := h.const_mul (n : ℝ)
   simpa using h_mul
 
-/-- **Kelly fraction < 1** for proper probabilities and positive payoff. -/
+/-- **Kelly fraction < 1** for proper probabilities and positive payoff.
+@isnad1 id=lt.2h2v.s5.3ec53f9c15e5 from=translated src=- shape=493c7085 vocab=89dd9d4e
+-/
 lemma kellyFraction_lt_one {p b : ℝ} (hp : p < 1) (hb : 0 < b) :
     kellyFraction p b < 1 := by
   unfold kellyFraction
   rw [div_lt_one hb]
   nlinarith
 
-/-- **Kelly fraction = 0 iff break-even bet** (`p · (b + 1) = 1`). -/
+/-- **Kelly fraction = 0 iff break-even bet** (`p · (b + 1) = 1`).
+@isnad1 id=iff.1h2v.s5.935873781a49 from=translated src=- shape=c074f56f vocab=9811bc09
+-/
 lemma kellyFraction_eq_zero_iff (p : ℝ) {b : ℝ} (hb : b ≠ 0) :
     kellyFraction p b = 0 ↔ p * (b + 1) = 1 := by
   unfold kellyFraction
@@ -91,7 +97,9 @@ lemma kellyFraction_eq_zero_iff (p : ℝ) {b : ℝ} (hb : b ≠ 0) :
     · exact absurd h hb
   · intro h; left; linarith
 
-/-- **Kelly fraction > 0 iff favorable bet** (`p · (b + 1) > 1`). -/
+/-- **Kelly fraction > 0 iff favorable bet** (`p · (b + 1) > 1`).
+@isnad1 id=iff.1h2v.s5.02392ae456d8 from=translated src=- shape=7cb24a05 vocab=5ec9f487
+-/
 lemma kellyFraction_pos_iff (p : ℝ) {b : ℝ} (hb : 0 < b) :
     0 < kellyFraction p b ↔ 1 < p * (b + 1) := by
   unfold kellyFraction

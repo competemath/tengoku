@@ -74,7 +74,9 @@ def lo (i : StepIndex T) : ℝ := (i.1.1 : ℝ)
 /-- Upper endpoint of the interval, as a real. -/
 def hi (i : StepIndex T) : ℝ := (i.1.2 : ℝ)
 
-/-- The right endpoint `hi i` of a `StepIndex` is `≤ T`. -/
+/-- The right endpoint `hi i` of a `StepIndex` is `≤ T`.
+@isnad1 id=le.0h2v.s3.9e833c795341 from=translated src=- shape=df9e97da vocab=0f20a121
+-/
 lemma hi_le_T (i : StepIndex T) : i.hi ≤ (T : ℝ) := by
   unfold hi
   exact_mod_cast i.2.2
@@ -82,18 +84,24 @@ lemma hi_le_T (i : StepIndex T) : i.hi ≤ (T : ℝ) := by
 /-- The half-open interval `(lo, hi]` as a subset of ℝ. -/
 def interval (i : StepIndex T) : Set ℝ := Set.Ioc i.lo i.hi
 
-/-- The `StepIndex` interval `(lo, hi]` is measurable. -/
+/-- The `StepIndex` interval `(lo, hi]` is measurable.
+@isnad1 id=measurab.0h2v.s3.a244f09f6cf5 from=translated src=- shape=595ce0b1 vocab=4d97109f
+-/
 lemma measurableSet_interval (i : StepIndex T) :
     MeasurableSet (i.interval) := measurableSet_Ioc
 
-/-- The interval represented by a `StepIndex T` is contained in `(0, T]`. -/
+/-- The interval represented by a `StepIndex T` is contained in `(0, T]`.
+@isnad1 id=le.0h2v.s4.0beca56922f4 from=translated src=- shape=794a4d9a vocab=a8b86864
+-/
 lemma interval_subset_Ioc_zero_T (i : StepIndex T) :
     i.interval ⊆ Set.Ioc (0 : ℝ) (T : ℝ) := by
   rintro x ⟨hx_lo, hx_hi⟩
   exact ⟨lt_of_le_of_lt (i.1.1 : ℝ≥0).coe_nonneg hx_lo,
     hx_hi.trans i.hi_le_T⟩
 
-/-- The `StepIndex` interval has finite Lebesgue measure. -/
+/-- The `StepIndex` interval has finite Lebesgue measure.
+@isnad1 id=ne.0h2v.s5.5da0c663af7d from=translated src=- shape=b3b1abd2 vocab=bb5b80e4
+-/
 lemma volume_interval_lt_top (i : StepIndex T) :
     (volume i.interval) ≠ ∞ := by
   rw [interval, Real.volume_Ioc]
@@ -103,7 +111,9 @@ end StepIndex
 
 /-! ### Lp elements: step indicator and Wiener increment -/
 
-/-- Helper: measure of an interval under the restricted volume is finite. -/
+/-- Helper: measure of an interval under the restricted volume is finite.
+@isnad1 id=ne.0h2v.s5.8e7ddf21ff21 from=translated src=- shape=bfdbb7f9 vocab=4779ce20
+-/
 lemma StepIndex.restrict_interval_ne_top {T : ℝ≥0} (i : StepIndex T) :
     (volume.restrict (Set.Ioc (0 : ℝ) (T : ℝ))) i.interval ≠ ∞ := by
   rw [Measure.restrict_apply i.measurableSet_interval,
@@ -115,7 +125,9 @@ noncomputable def stepIndicatorLp (T : ℝ≥0) (i : StepIndex T) :
     Lp ℝ 2 (volume.restrict (Set.Ioc (0 : ℝ) (T : ℝ))) :=
   indicatorConstLp 2 i.measurableSet_interval i.restrict_interval_ne_top (1 : ℝ)
 
-/-- The Wiener increment `B(hi) - B(lo)` is in `L²(μ)`. -/
+/-- The Wiener increment `B(hi) - B(lo)` is in `L²(μ)`.
+@isnad1 id=memlp.1h6v.s7.be7e2ed2732b from=translated src=- shape=281a4f27 vocab=43b7081a
+-/
 lemma memLp_increment_two (hB : IsPreBrownianReal B μ) {T : ℝ≥0} (i : StepIndex T) :
     MemLp (fun ω ↦ B i.1.2 ω - B i.1.1 ω) 2 μ :=
   hB.isGaussianProcess.hasGaussianLaw_sub.memLp_two
@@ -148,7 +160,9 @@ For `s ≤ t, u ≤ v ∈ ℝ≥0`,
 The right hand side is written as `max 0 (min t v - max s u)`. -/
 
 /-- `∫ ω, B s ω * B t ω ∂μ = min s t` for pre-Brownian motion `B` with zero start,
-using `IsPreBrownianReal.covariance_eval` and `covariance_eq_sub` (the means are zero). -/
+using `IsPreBrownianReal.covariance_eval` and `covariance_eq_sub` (the means are zero).
+@isnad1 id=eq.1h6v.s6.712d298323c1 from=translated src=- shape=49503f70 vocab=f2b6ebef
+-/
 lemma integral_mul_eval (hB : IsPreBrownianReal B μ) (s t : ℝ≥0) :
     ∫ ω, B s ω * B t ω ∂μ = ((min s t : ℝ≥0) : ℝ) := by
   have hBs : MemLp (B s) 2 μ := (hB.isGaussianProcess.hasGaussianLaw_eval s).memLp_two
@@ -178,7 +192,9 @@ private lemma covariance_increment_arithmetic
 
 /-- Covariance identity for BM increments:
 `E[(B_t - B_s)(B_v - B_u)] = vol((s, t] ∩ (u, v])`,
-expressed via `max 0 (min t v - max s u)`. -/
+expressed via `max 0 (min t v - max s u)`.
+@isnad1 id=eq.3h8v.s7.f412bbe12eba from=translated src=- shape=b923487d vocab=60848655
+-/
 lemma covariance_increment_aux (hB : IsPreBrownianReal B μ)
     (s t u v : ℝ≥0) (hst : s ≤ t) (huv : u ≤ v) :
     ∫ ω, (B t ω - B s ω) * (B v ω - B u ω) ∂μ =
@@ -268,6 +284,9 @@ private lemma inner_wienerIncrementLp_eq (hB : IsPreBrownianReal B μ)
         ENNReal.toReal_ofReal', max_comm]
   rw [hLHS, hRHS]
 
+/--
+@isnad1 id=eq.1h6v.s11.326a0bf7175e from=translated src=- shape=c16777d9 vocab=5a2af91a
+-/
 theorem wiener_assembly_isometry (hB : IsPreBrownianReal B μ) (T : ℝ≥0)
     (f : StepIndex T →₀ ℝ) :
     ‖wienerAssembly B hB T f‖ = ‖stepAssembly T f‖ := by
@@ -384,7 +403,9 @@ private lemma setIntegral_eq_zero_of_orthogonal {T : ℝ≥0}
 /-- The map `stepAssembly T` has dense range in
 `Lp ℝ 2 (volume.restrict (Set.Ioc 0 T))`. The proof identifies the orthogonal
 complement with `⊥` using `setIntegral_eq_zero_of_orthogonal` and
-`Lp.ae_eq_zero_of_forall_setIntegral_eq_zero`. -/
+`Lp.ae_eq_zero_of_forall_setIntegral_eq_zero`.
+@isnad1 id=denseran.0h1v.s12.584637fe395d from=translated src=- shape=0ce96bb3 vocab=f8b67682
+-/
 theorem stepAssembly_denseRange (T : ℝ≥0) :
     DenseRange (stepAssembly T) := by
   haveI : IsFiniteMeasure (volume.restrict (Set.Ioc (0 : ℝ) (T : ℝ))) :=
@@ -413,7 +434,9 @@ noncomputable def wienerIntegralLp (B : ℝ≥0 → Ω → ℝ)
   (wienerAssembly B hB T).extendOfNorm (stepAssembly T)
 
 /-- Itô isometry, norm form. For every `f ∈ L²([0, T])`,
-`‖wienerIntegralLp f‖ = ‖f‖`. -/
+`‖wienerIntegralLp f‖ = ‖f‖`.
+@isnad1 id=eq.1h6v.s13.24760bd1c771 from=translated src=- shape=f37d498e vocab=05e9757f
+-/
 theorem wienerIntegralLp_norm (hB : IsPreBrownianReal B μ) (T : ℝ≥0)
     (f : Lp ℝ 2 (volume.restrict (Set.Ioc (0 : ℝ) (T : ℝ)))) :
     ‖wienerIntegralLp B hB T f‖ = ‖f‖ := by
@@ -423,7 +446,9 @@ theorem wienerIntegralLp_norm (hB : IsPreBrownianReal B μ) (T : ℝ≥0)
 
 /-- Helper: for any `g : Lp ℝ 2 ν`, `‖g‖² = ∫ ω, (g ω)² ∂ν`. (Public so the
 Gaussian-law companion `Foundations/WienerIntegralGaussian.lean` reuses it on
-both the Ω-side and the time-side measures.) -/
+both the Ω-side and the time-side measures.)
+@isnad1 id=eq.0h4v.s9.56065a3e080a from=translated src=- shape=89f70214 vocab=a3f32626
+-/
 lemma Lp_real_two_norm_sq {α : Type*} {mα : MeasurableSpace α} (ν : Measure α)
     (g : Lp ℝ 2 ν) : ‖g‖ ^ 2 = ∫ ω, (g ω) ^ 2 ∂ν := by
   have h : ⟪g, g⟫_ℝ = ‖g‖ ^ 2 := real_inner_self_eq_norm_sq g
@@ -435,7 +460,9 @@ lemma Lp_real_two_norm_sq {α : Type*} {mα : MeasurableSpace α} (ν : Measure 
   ring
 
 /-- Itô isometry, integral form. For every `f ∈ L²([0, T])`,
-`∫ ω, (wienerIntegralLp f ω)² ∂μ = ∫ s in (0, T], (f s)² ∂volume`. -/
+`∫ ω, (wienerIntegralLp f ω)² ∂μ = ∫ s in (0, T], (f s)² ∂volume`.
+@isnad1 id=eq.1h6v.s13.510b12ea7359 from=translated src=- shape=e87d5a61 vocab=debd6bc6
+-/
 theorem wienerIntegralLp_integral_sq (hB : IsPreBrownianReal B μ) (T : ℝ≥0)
     (f : Lp ℝ 2 (volume.restrict (Set.Ioc (0 : ℝ) (T : ℝ)))) :
     ∫ ω, (wienerIntegralLp B hB T f ω) ^ 2 ∂μ =

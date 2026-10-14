@@ -106,7 +106,9 @@ portfolio for some target return satisfies this for some `(lam_1, lam_2)`.
 
 Proof: substitute the FOC into the directional-derivative sum and use the
 perturbation's orthogonality to the constraint normals (`∑ δw = 0` kills
-the `lam_1` term, `∑ μ δw = 0` kills the `lam_2 μ` term). -/
+the `lam_1` term, `∑ μ δw = 0` kills the `lam_2 μ` term).
+@isnad1 id=isconstr.1h7v.s6.81abd8dc7261 from=translated src=- shape=76b145e6 vocab=17df1f34
+-/
 theorem isCriticalPoint_of_lagrangian_FOC
     {ι : Type*} (s : Finset ι) (Sg : ι → ι → ℝ) (μ w : ι → ℝ)
     (lam_1 lam_2 : ℝ)
@@ -134,7 +136,9 @@ theorem isCriticalPoint_of_lagrangian_FOC
 /-- **Self-dot identity for the variance objective**: `(1/2) w^T Σ w` (the
 variance objective, up to constant 1/2) equals `(1/2) · ∑_i w_i · (Σw)_i`.
 This is the same self-dot identity used in `Portfolio/SharpeFOCDerivation.lean`,
-restated for N assets. -/
+restated for N assets.
+@isnad1 id=eq.0h4v.s6.a93d54b2bb3f from=translated src=- shape=9b4f0e22 vocab=71d2a205
+-/
 lemma variance_objective_eq_self_dot
     {ι : Type*} (s : Finset ι) (Sg : ι → ι → ℝ) (w : ι → ℝ) :
     (1 / 2 : ℝ) * portfolioVariance s Sg w =
@@ -152,7 +156,9 @@ quadratic in `t`, the linear coefficient is `(1/2) · [(δw)^T Σ w + w^T Σ δw
 which for symmetric `Σ` equals `(Σw)^T δw`.
 
 (The actual `HasDerivAt` statement uses the parameterised path; the
-identity below states the polynomial coefficient algebraically.) -/
+identity below states the polynomial coefficient algebraically.)
+@isnad1 id=eq.1h5v.s7.1b7b8624478f from=translated src=- shape=f1aef961 vocab=f1c54529
+-/
 lemma quadratic_form_perturb_linear_coeff
     {ι : Type*} (s : Finset ι) (Sg : ι → ι → ℝ) (w δw : ι → ℝ)
     (h_symm : ∀ i ∈ s, ∀ j ∈ s, Sg i j = Sg j i) :
@@ -190,7 +196,9 @@ lemma quadratic_form_perturb_linear_coeff
 specialising to the case `lam_1 = 0` (no budget constraint, only expected-
 return constraint), the FOC becomes `Σw = lam_2 · μ`, recovering the
 cross-product tangent characterisation `IsTangentPortfolioN` from
-`Portfolio/TangentPortfolio.lean`. -/
+`Portfolio/TangentPortfolio.lean`.
+@isnad1 id=istangen.1h6v.s5.a3a7cdb853b4 from=translated src=- shape=52386a05 vocab=00031387
+-/
 theorem isTangent_of_lagrangian_no_budget
     {ι : Type*} (s : Finset ι) (μ w : ι → ℝ) (Sg : ι → ι → ℝ)
     (lam_2 : ℝ)

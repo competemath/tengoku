@@ -29,6 +29,9 @@ open Set Filter MeasureTheory
 open MathFin.FeynmanKacHeatEquation
 open scoped Topology ContDiff Convolution
 
+/--
+@isnad1 id=contdiff.4h3v.s8.52c96a2be2df from=translated src=- shape=c791f6b3 vocab=f2638e33
+-/
 theorem contDiffOn_compact_parameter_integral {H : (ℝ × ℝ) → ℝ → ℝ}
     {U : Set (ℝ × ℝ)} {C : Set ℝ} (hU : IsOpen U) (hC : IsCompact C)
     (hzero : ∀ z y, z ∈ U → y ∉ C → H z y = 0)
@@ -41,11 +44,17 @@ theorem contDiffOn_compact_parameter_integral {H : (ℝ × ℝ) → ℝ → ℝ}
   change ContDiffOn ℝ 2 (fun z => ∫ y, H z y*1) U at hh
   simpa only [mul_one] using hh
 
+/--
+@isnad1 id=contdiff.1h2v.s6.04230183a7b4 from=translated src=- shape=87ed6316 vocab=1bb652c4
+-/
 theorem heatKernel_contDiffAt {t x : ℝ} (ht : 0 < t) :
     ContDiffAt ℝ 2 (fun z : ℝ × ℝ => heatKernel z.1 z.2) (t,x) := by
   unfold heatKernel
   fun_prop (disch := positivity)
 
+/--
+@isnad1 id=contdiff.2h1v.s7.d2b32be82d65 from=translated src=- shape=7822f2b6 vocab=207681a1
+-/
 theorem compact_heatFlow_contDiff {f : ℝ → ℝ} (hf : ContDiff ℝ 2 f) (hc : HasCompactSupport f) :
     ContDiffOn ℝ 2 (fun z : ℝ × ℝ => feynmanU f z.1 z.2) {z | 0 < z.1} := by
   apply contDiffOn_compact_parameter_integral (isOpen_lt continuous_const continuous_fst) hc
@@ -57,6 +66,9 @@ theorem compact_heatFlow_contDiff {f : ℝ → ℝ} (hf : ContDiff ℝ 2 f) (hc 
       (show ContDiffAt ℝ 2 (fun z : (ℝ × ℝ) × ℝ => (z.1.1,z.2-z.1.2)) z by fun_prop)
     exact ((hf.contDiffAt.comp z contDiffAt_snd).mul hk).contDiffWithinAt
 
+/--
+@isnad1 id=ex.2h1v.s6.a151492847ae from=translated src=- shape=93680630 vocab=bc017522
+-/
 theorem compact_exponential_bound {f : ℝ → ℝ} (hf : Continuous f) (hc : HasCompactSupport f) :
     ∃ C : ℝ, 0 < C ∧ ∀ x, |f x| ≤ C*Real.exp x := by
   let F : ℝ → ℝ := fun x => |f x| * Real.exp (-x)
@@ -68,6 +80,9 @@ theorem compact_exponential_bound {f : ℝ → ℝ} (hf : Continuous f) (hc : Ha
     (Real.exp_pos x).le
   simpa [F,← mul_assoc,Real.exp_neg,mul_assoc] using hh
 
+/--
+@isnad1 id=eq.3h3v.s7.710d6e02a2a3 from=translated src=- shape=4ac80a9f vocab=61452e13
+-/
 theorem compact_heatFlow_equation {f : ℝ → ℝ} (hf : Continuous f) (hc : HasCompactSupport f)
     {t : ℝ} (ht : 0 < t) (x : ℝ) :
     deriv (fun s => feynmanU f s x) t = (1/2)*deriv (deriv (feynmanU f t)) x := by

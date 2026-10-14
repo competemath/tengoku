@@ -25,7 +25,9 @@ namespace chapter30
 
 /-! ## Theorem 1: Sperner's theorem -/
 
-/-- **Sperner's theorem.** -/
+/-- **Sperner's theorem.**
+@isnad1 id=le.1h2v.s6.a90e25b62d7c from=translated src=- shape=529e8ba0 vocab=19eabba4
+-/
 theorem sperner {α : Type*} [Fintype α]
     (𝒜 : Finset (Finset α)) (h𝒜 : IsAntichain (· ⊆ ·) (SetLike.coe 𝒜)) :
     𝒜.card ≤ (Fintype.card α).choose (Fintype.card α / 2) :=
@@ -40,7 +42,9 @@ If `n ≥ 2k`, then the maximum size of an intersecting k-uniform family
 of subsets of `Fin n` is `C(n-1, k-1)`.
 
 The double counting gives `|𝒜| · n · k! · (n-k)! ≤ k · n!`.
-Since `C(n-1, k-1) · n · k! · (n-k)! = k · n!`, we get `|𝒜| ≤ C(n-1, k-1)`. -/
+Since `C(n-1, k-1) · n · k! · (n-k)! = k · n!`, we get `|𝒜| ≤ C(n-1, k-1)`.
+@isnad1 id=le.3h3v.s6.a393ff358cfb from=translated src=- shape=48ca92f2 vocab=99b0b398
+-/
 theorem erdos_ko_rado {n : ℕ} {𝒜 : Finset (Finset (Fin n))} {k : ℕ}
     (h𝒜 : (𝒜 : Set (Finset (Fin n))).Intersecting)
     (hSized : (𝒜 : Set (Finset (Fin n))).Sized k)
@@ -84,7 +88,9 @@ arbitrary index types via a compactness argument
 (`Finset.all_card_le_biUnion_card_iff_existsInjective`).
 -/
 
-/-- **Hall's marriage theorem.** -/
+/-- **Hall's marriage theorem.**
+@isnad1 id=iff.0h3v.s5.ef06fa5c04fe from=translated src=- shape=4b5e714d vocab=efa26fb3
+-/
 theorem hall_marriage {ι : Type*} {α : Type*} [DecidableEq α]
     (t : ι → Finset α) :
     (∀ s : Finset ι, s.card ≤ (s.biUnion t).card) ↔

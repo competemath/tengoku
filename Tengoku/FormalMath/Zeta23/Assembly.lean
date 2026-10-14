@@ -68,7 +68,9 @@ variable {𝕜 : Type*} [RCLike 𝕜]
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- For any Hermitian matrix, `n₊(A) ≤ rank A` (positive eigenvalues are nonzero eigenvalues).
-Used in prop:zeroside: "`n₊^θ(G̃) ≤ n₊(Ã) ≤ rank Ã ≤ #𝒵(I′)`". -/
+Used in prop:zeroside: "`n₊^θ(G̃) ≤ n₊(Ã) ≤ rank Ã ≤ #𝒵(I′)`".
+@isnad1 id=le.1h3v.s6.cd9814458512 from=translated src=- shape=907fce5c vocab=c2f886b4
+-/
 lemma posIndex_le_rank {A : Matrix n n 𝕜} (hA : A.IsHermitian) : posIndex hA ≤ A.rank := by
   rw [hA.rank_eq_card_non_zero_eigs, Fintype.card_subtype]
   unfold posIndex
@@ -86,7 +88,9 @@ with the counting fact `N_on(I′) + 2p ≤ N(I′)` ([eq:Ncount] and the line a
 in the paper: lem:ranktrace at `c = 2` (`RHLinalg.rank_trace_ineq_two`) gives
 `r ≥ 2 tr P + 4 tr Q − 4b − ‖P+Q‖_F² = 4 tr Â − 2(tr P + 2b) − ‖Â‖_F²`, and `tr P + 2b ≤ N(I′)`.
 
-UNITS: hat units `Â = A/(aL²)` only [eq:hatunits]. -/
+UNITS: hat units `Â = A/(aL²)` only [eq:hatunits].
+@isnad1 id=le.7h9v.s8.ef97627c6127 from=translated src=- shape=4b6b4b0a vocab=83bee844
+-/
 theorem zeroside_rank_core {Ahat P Q : Matrix n n 𝕜}
     (hPQ : Ahat = P + Q) (hP : P.PosSemidef) (hQ : Q.IsHermitian)
     {r b : ℕ} (hrank : P.rank ≤ r) (hpos : posIndex hQ ≤ b)
@@ -110,6 +114,9 @@ open scoped Matrix.Norms.Frobenius
 variable {𝕜 : Type*} [RCLike 𝕜]
 variable {n : Type*} [Fintype n]
 
+/--
+@isnad1 id=eq.0h3v.s6.e951d6949074 from=translated src=- shape=d2a0635b vocab=e4275b1c
+-/
 lemma frobSq_eq_sum_norm_sq (A : Matrix n n 𝕜) : frobSq A = ∑ i, ∑ j, ‖A i j‖ ^ 2 := by
   unfold frobSq
   simp only [trace, diag_apply, mul_apply, conjTranspose_apply, map_sum, RCLike.star_def]
@@ -117,21 +124,30 @@ lemma frobSq_eq_sum_norm_sq (A : Matrix n n 𝕜) : frobSq A = ∑ i, ∑ j, ‖
   refine sum_congr rfl fun i _ => sum_congr rfl fun j _ => ?_
   rw [RCLike.conj_mul, ← RCLike.ofReal_pow, RCLike.ofReal_re]
 
-/-- `RHLinalg.frobSq A = ‖A‖_F ²` (Mathlib's Frobenius norm, scoped instance). -/
+/-- `RHLinalg.frobSq A = ‖A‖_F ²` (Mathlib's Frobenius norm, scoped instance).
+@isnad1 id=eq.0h3v.s6.e50cc5e90a25 from=translated src=- shape=50bedbdd vocab=9e506d00
+-/
 lemma frobSq_eq_norm_sq (A : Matrix n n 𝕜) : frobSq A = ‖A‖ ^ 2 := by
   rw [frobSq_eq_sum_norm_sq, frobenius_norm_def]
   simp_rw [Real.rpow_two]
   rw [← Real.sqrt_eq_rpow, Real.sq_sqrt (by positivity)]
 
+/--
+@isnad1 id=le.0h3v.s4.713b5601f8b4 from=translated src=- shape=a0e4516f vocab=dcd8efe3
+-/
 lemma frobSq_nonneg (A : Matrix n n 𝕜) : 0 ≤ frobSq A := by
   rw [frobSq_eq_sum_norm_sq]; positivity
 
-/-- `‖A‖_F = √(frobSq A)`. -/
+/-- `‖A‖_F = √(frobSq A)`.
+@isnad1 id=eq.0h3v.s5.6f2e89e386b8 from=translated src=- shape=e65d38c3 vocab=51ab1483
+-/
 lemma norm_eq_sqrt_frobSq (A : Matrix n n 𝕜) : ‖A‖ = Real.sqrt (frobSq A) := by
   rw [frobSq_eq_norm_sq, Real.sqrt_sq (norm_nonneg _)]
 
 /-- Triangle inequality in the form used by prop:zeroside-rank:
-`‖G − E‖_F² ≤ (‖G‖_F + ‖E‖_F)²`, written with `frobSq` and `√`. -/
+`‖G − E‖_F² ≤ (‖G‖_F + ‖E‖_F)²`, written with `frobSq` and `√`.
+@isnad1 id=le.0h4v.s6.4cd844eaae94 from=translated src=- shape=55141dd6 vocab=e81898c8
+-/
 lemma frobSq_sub_le (G E : Matrix n n 𝕜) :
     frobSq (G - E) ≤ (Real.sqrt (frobSq G) + Real.sqrt (frobSq E)) ^ 2 := by
   rw [frobSq_eq_norm_sq, ← norm_eq_sqrt_frobSq, ← norm_eq_sqrt_frobSq]
@@ -143,7 +159,9 @@ lemma frobSq_sub_le (G E : Matrix n n 𝕜) :
 
 Here the `O(·)` is made explicit: with `B ≥ 0` any common bound for `|tr Ê|` and `‖Ê‖_F`
 (prop:tail supplies `B = ‖Ê‖₁ ≤ 2θ₀/L`), the loss is exactly `B (4 + 2‖Ĝ‖_F + B)`.
-UNITS: hat units. -/
+UNITS: hat units.
+@isnad1 id=le.4h6v.s8.4c6c3dad757b from=translated src=- shape=643800be vocab=cfe27e9a
+-/
 theorem four_tr_sub_frobSq_perturb {Ghat Ahat Ehat : Matrix n n 𝕜}
     (hGAE : Ghat = Ahat + Ehat) {B : ℝ} (hB : 0 ≤ B)
     (htrE : |rtrace Ehat| ≤ B) (hfrE : frobSq Ehat ≤ B ^ 2) :
@@ -174,7 +192,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 Inputs, as in the paper's proof: lem:weyl (`RHLinalg.weyl_posIndexAbove_le`, needs
 `|λᵢ(Ẽ)| ≤ θ` for all `i`, which is `‖Ẽ‖ ≤ θ₀ ≤ θ`), prop:block(i) (`n₊(Ã) ≤ s₁+s₂+p`,
 `rank Ã ≤ #𝒵(I′)`), and [eq:Ncount] (`N(I′) ≥ s₁ + 2s₂ + 2p`).
-UNITS: tilde units `G̃ = Ã + Ẽ`. -/
+UNITS: tilde units `G̃ = Ã + Ẽ`.
+@isnad1 id=and.6h10v.s8.a12cdb2418ba from=translated src=- shape=34616c05 vocab=804f2f06
+-/
 theorem zeroside_core {At Et : Matrix n n 𝕜}
     (hAt : At.IsHermitian) (hEt : Et.IsHermitian)
     {θ : ℝ} (hθ : ∀ i, |hEt.eigenvalues i| ≤ θ)
@@ -190,7 +210,9 @@ theorem zeroside_core {At Et : Matrix n n 𝕜}
   · exact hweyl.trans ((posIndex_le_rank hAt).trans hblock_rank)
 
 /-- `posIndexAbove` depends only on the matrix, not on the particular Hermitian-ness proof
-(convenience for rewriting `G̃ = Ã + Ẽ`). -/
+(convenience for rewriting `G̃ = Ã + Ẽ`).
+@isnad1 id=eq.3h5v.s7.d7689cf1e828 from=translated src=- shape=41d7f966 vocab=1c34638e
+-/
 lemma posIndexAbove_congr {A B : Matrix n n 𝕜} (hA : A.IsHermitian) (hB : B.IsHermitian)
     (h : A = B) (θ : ℝ) : posIndexAbove hA θ = posIndexAbove hB θ := by
   subst h; rfl
@@ -199,7 +221,9 @@ lemma posIndexAbove_congr {A B : Matrix n n 𝕜} (hA : A.IsHermitian) (hB : B.I
 applied to `R = G̃`, `θ = θ₀`: if `tr G̃ > θ₀ d` then
 `n₊^{θ₀}(G̃) ≥ (tr G̃ − θ₀ d)² / tr G̃²`.  (`d = Fintype.card n`; `tr G̃² = ‖G̃‖_F² = frobSq G̃` for
 Hermitian `G̃`.  This is `cauchySchwarz_count` verbatim, re-exported under the paper's equation
-name.)  UNITS: tilde units. -/
+name.)  UNITS: tilde units.
+@isnad1 id=le.3h4v.s7.15a4452fd3bf from=translated src=- shape=080a68b2 vocab=66d67e3c
+-/
 theorem nplus_lower {Gt : Matrix n n 𝕜} (hGt : Gt.IsHermitian) {θ : ℝ} (hθ : 0 ≤ θ)
     (htr : θ * Fintype.card n < rtrace Gt) :
     (rtrace Gt - θ * Fintype.card n) ^ 2 / frobSq Gt ≤ (posIndexAbove hGt θ : ℝ) :=
@@ -218,29 +242,47 @@ open Real
 /-- The constant `c₀ := 2 log 2 − 1 = ℓ₁ − l` (paper §1 Notation / [eq:RvM]); `0 < c₀ < 1`. -/
 def c₀ : ℝ := 2 * Real.log 2 - 1
 
+/--
+@isnad1 id=lt.0h0v.s3.ed7aba9f5106 from=translated src=- shape=ff3a10fc vocab=1e04460a
+-/
 lemma c₀_pos : 0 < c₀ := by
   have := Real.log_two_gt_d9; unfold c₀; linarith
 
+/--
+@isnad1 id=lt.0h0v.s3.c23daba1af58 from=translated src=- shape=ffdda526 vocab=1e04460a
+-/
 lemma c₀_lt_one : c₀ < 1 := by
   have := Real.log_two_lt_d9; unfold c₀; linarith
 
+/--
+@isnad1 id=eq.0h1v.s4.0a78acec3662 from=translated src=- shape=c39157c7 vocab=e86f71b9
+-/
 lemma ell1_eq (T : ℝ) : ell1 T = l T + c₀ := by simp only [ell1, c₀]; ring
 
+/--
+@isnad1 id=lt.1h1v.s4.417086fba2f3 from=translated src=- shape=3eced894 vocab=9a84cc55
+-/
 lemma ell1_pos {T : ℝ} (hl : 0 < l T) : 0 < ell1 T := by
   rw [ell1_eq]; have := c₀_pos; linarith
 
-/-- `λ₁ = λ l / (l + c₀)` — unfolded form of `Params.lam1` [eq:ratio]. -/
+/-- `λ₁ = λ l / (l + c₀)` — unfolded form of `Params.lam1` [eq:ratio].
+@isnad1 id=eq.0h2v.s5.fc5bdba6d707 from=translated src=- shape=c43747b6 vocab=71a9dea0
+-/
 lemma lam1_eq (P : Params) (T : ℝ) : P.lam1 T = P.lam * l T / (l T + c₀) := by
   simp only [Params.lam1, Params.L, ell1_eq]
 
-/-- `0 ≤ λ − λ₁`, i.e. `λ₁ ≤ λ` (paper §6: "`0 ≤ λ − λ₁ ≤ λ/l`"), for `l > 0`, `λ ≥ 0`. -/
+/-- `0 ≤ λ − λ₁`, i.e. `λ₁ ≤ λ` (paper §6: "`0 ≤ λ − λ₁ ≤ λ/l`"), for `l > 0`, `λ ≥ 0`.
+@isnad1 id=le.2h2v.s5.d69a71c7f133 from=translated src=- shape=b7aa2739 vocab=97c49ab3
+-/
 lemma lam1_le (P : Params) (T : ℝ) (hlam : 0 ≤ P.lam) (hl : 0 < l T) : P.lam1 T ≤ P.lam := by
   rw [lam1_eq]
   have hc := c₀_pos
   rw [div_le_iff₀ (by linarith)]
   nlinarith
 
-/-- `λ − λ₁ ≤ λ / l` (paper §6); indeed `λ − λ₁ = λ c₀/(l + c₀)` with `c₀ < 1`. -/
+/-- `λ − λ₁ ≤ λ / l` (paper §6); indeed `λ − λ₁ = λ c₀/(l + c₀)` with `c₀ < 1`.
+@isnad1 id=le.2h2v.s5.d55504559f30 from=translated src=- shape=de7797de vocab=d325dd6e
+-/
 lemma sub_lam1_le (P : Params) (T : ℝ) (hlam : 0 ≤ P.lam) (hl : 0 < l T) :
     P.lam - P.lam1 T ≤ P.lam / l T := by
   rw [lam1_eq]
@@ -252,13 +294,18 @@ lemma sub_lam1_le (P : Params) (T : ℝ) (hlam : 0 ≤ P.lam) (hl : 0 < l T) :
   calc P.lam * c₀ * l T = P.lam * (c₀ * l T) := by ring
     _ ≤ P.lam * (l T + c₀) := mul_le_mul_of_nonneg_left h2 hlam
 
+/--
+@isnad1 id=lt.2h2v.s5.c48415485a38 from=translated src=- shape=00cf4ad1 vocab=83fefa5f
+-/
 lemma lam1_pos (P : Params) (T : ℝ) (hlam : 0 < P.lam) (hl : 0 < l T) : 0 < P.lam1 T := by
   rw [lam1_eq]; have hc := c₀_pos; positivity
 
 /-- **`H(λ₁) ≥ H(λ) − 1/(λ l)`** (the paper §6, proof of Thm A: "Since `H′(x) = x⁻² − 1/3 ∈ (0,∞)`
 is decreasing on `(0,1]` and `0 ≤ λ − λ₁ ≤ λ/l`, we have `H(λ₁) ≥ H(λ) − 1/(λl)`").
 We prove it via the exact identity `H(λ) − H(λ₁) = c₀/(λ l) − (λ − λ₁)/3` and `c₀ = 2 log 2 − 1 < 1`.
-(Note `λ₁ = L/ℓ₁ ≠ λ`.) -/
+(Note `λ₁ = L/ℓ₁ ≠ λ`.)
+@isnad1 id=le.2h2v.s6.1dc43f6cf430 from=translated src=- shape=90b0f124 vocab=0ea19521
+-/
 theorem Hfun_lam1_ge (P : Params) (T : ℝ) (hlam : 0 < P.lam) (hl : 0 < l T) :
     Hfun P.lam - 1 / (P.lam * l T) ≤ Hfun (P.lam1 T) := by
   have hc := c₀_pos; have hc1 := c₀_lt_one
@@ -274,7 +321,9 @@ theorem Hfun_lam1_ge (P : Params) (T : ℝ) (hlam : 0 < P.lam) (hl : 0 < l T) :
   linarith
 
 /-- Lipschitz bound for `F` on `[0,1]`: `F(y) − F(x) ≤ y − x` for `0 ≤ x ≤ y ≤ 1`
-(paper: "`F′(x) = (1−x²/3)/(1+x²/3)² ∈ (0,1]` on `[0,1]`"), proved by algebra. -/
+(paper: "`F′(x) = (1−x²/3)/(1+x²/3)² ∈ (0,1]` on `[0,1]`"), proved by algebra.
+@isnad1 id=le.3h2v.s5.d52ced933746 from=translated src=- shape=e9d75cb1 vocab=2bbe767d
+-/
 lemma Ffun_sub_le (x y : ℝ) (hx : 0 ≤ x) (hxy : x ≤ y) (_hy : y ≤ 1) : Ffun y - Ffun x ≤ y - x := by
   simp only [Ffun]
   rw [div_sub_div _ _ (by positivity) (by positivity), div_le_iff₀ (by positivity)]
@@ -282,7 +331,9 @@ lemma Ffun_sub_le (x y : ℝ) (hx : 0 ≤ x) (hxy : x ≤ y) (_hy : y ≤ 1) : F
     sq_nonneg x, sq_nonneg y, mul_nonneg hx (hx.trans hxy), mul_le_mul hxy hxy hx (hx.trans hxy)]
 
 /-- **`F(λ₁) ≥ F(λ) − 1/l`** (the paper §6, proof of Thm B: "`F′(x) = (1−x²/3)/(1+x²/3)² ∈ (0,1]`
-on `[0,1]` and `0 ≤ λ − λ₁ ≤ 1/l`, so `F(λ₁) ≥ F(λ) − 1/l`"). -/
+on `[0,1]` and `0 ≤ λ − λ₁ ≤ 1/l`, so `F(λ₁) ≥ F(λ) − 1/l`").
+@isnad1 id=le.3h2v.s6.87a4bd1f0c21 from=translated src=- shape=fbc971f3 vocab=549eb943
+-/
 theorem Ffun_lam1_ge (P : Params) (T : ℝ) (hlam : 0 < P.lam) (hlam1 : P.lam ≤ 1) (hl : 0 < l T) :
     Ffun P.lam - 1 / l T ≤ Ffun (P.lam1 T) := by
   have hle := lam1_le P T hlam.le hl
@@ -293,7 +344,9 @@ theorem Ffun_lam1_ge (P : Params) (T : ℝ) (hlam : 0 < P.lam) (hlam1 : P.lam �
   linarith
 
 /-- `sup_{λ<1} H(λ) = 2/3`, in the quantitative form used for the `λ → 1⁻` step:
-for `λ ∈ [1/2, 1]`, `H(λ) ≥ 2/3 − (5/3)(1 − λ)`. -/
+for `λ ∈ [1/2, 1]`, `H(λ) ≥ 2/3 − (5/3)(1 − λ)`.
+@isnad1 id=le.2h1v.s6.40f49429728b from=translated src=- shape=fd2c5f1f vocab=2facfdee
+-/
 lemma Hfun_ge_near_one (lam : ℝ) (h1 : 1 / 2 ≤ lam) (h2 : lam ≤ 1) :
     2 / 3 - 5 / 3 * (1 - lam) ≤ Hfun lam := by
   simp only [Hfun]
@@ -302,7 +355,9 @@ lemma Hfun_ge_near_one (lam : ℝ) (h1 : 1 / 2 ≤ lam) (h2 : lam ≤ 1) :
     rw [div_le_iff₀ hlam]; nlinarith
   linarith
 
-/-- For `λ ∈ [0, 1]`, `F(λ) ≥ 3/4 − (1 − λ)` (for the `λ → 1⁻` step of Thm B/C). -/
+/-- For `λ ∈ [0, 1]`, `F(λ) ≥ 3/4 − (1 − λ)` (for the `λ → 1⁻` step of Thm B/C).
+@isnad1 id=le.2h1v.s6.d79f4c5bc262 from=translated src=- shape=901b59d9 vocab=75e1c1d8
+-/
 lemma Ffun_ge_near_one (lam : ℝ) (h1 : 0 ≤ lam) (h2 : lam ≤ 1) :
     3 / 4 - (1 - lam) ≤ Ffun lam := by
   have := Ffun_sub_le lam 1 h1 h2 le_rfl
@@ -323,7 +378,9 @@ section FixedT
 "`N₀*(T,2T) ≥ 4 tr Ĝ − ‖Ĝ‖_F² − 2N(T,2T) − O(θ₀L⁻¹(1+‖Ĝ‖_F) + D₀ l)`", here with the `O(·)`
 replaced by the explicit `3 N(I′∖I) + B(4 + 2‖Ĝ‖_F + B)`.
 Inputs: `hcount` = "`s₁+s₂ ≤ N₀*(T,2T) + N(I′∖I)`"; `hcore` = `zeroside_rank_core` with
-`N(I′) = N(T,2T) + N(I′∖I)`; `hpert` = `four_tr_sub_frobSq_perturb`. -/
+`N(I′) = N(T,2T) + N(I′∖I)`; `hpert` = `four_tr_sub_frobSq_perturb`.
+@isnad1 id=le.3h9v.s8.f33a4c0cbd3e from=translated src=- shape=fd25fe30 vocab=f56f8fc3
+-/
 theorem N0star_lower_explicit
     {N0star s12 : ℕ} {N NII trGh frGh trAh frAh B : ℝ}
     (hcount : (s12 : ℝ) ≤ N0star + NII)
@@ -335,7 +392,9 @@ theorem N0star_lower_explicit
 /-- **§6 proof of Thm A, the "`(H(λ₁) − O(𝓔′_T)) N`" line made explicit.**
 With `cλ := 1/λ₁ + λ₁/3` (so `4 − cλ − 2 = H(λ₁)`), if `|tr Ĝ − N| ≤ R₁`
 ("`tr Ĝ = N + O(√X/a)`") and `‖Ĝ‖_F² ≤ cλ N + R₂` ("`‖Ĝ‖_F² ≤ (1/λ₁+λ₁/3)N(1+O(𝓔′_T))`"), then
-`N₀*(T,2T) ≥ H(λ₁) N − [4R₁ + R₂ + 3N(I′∖I) + B(4 + 2√(cλ N + R₂) + B)]`. -/
+`N₀*(T,2T) ≥ H(λ₁) N − [4R₁ + R₂ + 3N(I′∖I) + B(4 + 2√(cλ N + R₂) + B)]`.
+@isnad1 id=le.4h9v.s8.68b81b83d776 from=translated src=- shape=352a6b9f vocab=79584fc5
+-/
 theorem N0star_lower_H
     {N0star N NII trGh frGh B lam₁ R₁ R₂ : ℝ} (hB : 0 ≤ B)
     (h0 : 4 * trGh - frGh - 2 * N - 3 * NII - B * (4 + 2 * Real.sqrt frGh + B) ≤ N0star)
@@ -359,11 +418,17 @@ open Complex
 
 variable {m : Type*} [Fintype m]
 
+/--
+@isnad1 id=eq.0h3v.s5.1376c91b4552 from=translated src=- shape=86fb7930 vocab=42fd6502
+-/
 lemma rtrace_smul_ofReal (c : ℝ) (M : Matrix m m ℂ) : rtrace ((c : ℂ) • M) = c * rtrace M := by
   unfold rtrace
   rw [Matrix.trace_smul, smul_eq_mul]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s6.04f382df9bbd from=translated src=- shape=76e656cf vocab=22cc9e10
+-/
 lemma frobSq_smul_ofReal (c : ℝ) (M : Matrix m m ℂ) :
     frobSq ((c : ℂ) • M) = c ^ 2 * frobSq M := by
   rw [frobSq_eq_sum_norm_sq, frobSq_eq_sum_norm_sq, mul_sum]
@@ -375,17 +440,23 @@ lemma frobSq_smul_ofReal (c : ℝ) (M : Matrix m m ℂ) :
 variable (P : Params) (T : ℝ)
 
 omit [Fintype m] in
-/-- `G̃ = L⁻¹ • G` with the scalar written as a real cast. -/
+/-- `G̃ = L⁻¹ • G` with the scalar written as a real cast.
+@isnad1 id=eq.0h4v.s5.d0c9b20021d6 from=translated src=- shape=3e502ba9 vocab=b2c286ff
+-/
 lemma tilde_eq (M : Matrix m m ℂ) : P.tilde T M = (((P.L T)⁻¹ : ℝ) : ℂ) • M := by
   simp [Params.tilde]
 
 omit [Fintype m] in
-/-- `Ĝ = (aL²)⁻¹ • G` with the scalar written as a real cast [eq:hatunits]. -/
+/-- `Ĝ = (aL²)⁻¹ • G` with the scalar written as a real cast [eq:hatunits].
+@isnad1 id=eq.0h4v.s6.6864c9314d50 from=translated src=- shape=be36d0ef vocab=a0e7bf27
+-/
 lemma hat_eq (M : Matrix m m ℂ) : P.hat T M = (((P.a T * P.L T ^ 2)⁻¹ : ℝ) : ℂ) • M := by
   simp [Params.hat]
 
 omit [Fintype m] in
-/-- `Ĝ = (aL)⁻¹ • G̃`: hat units are tilde units divided by `aL` ([eq:hatunits] vs [eq:Gdef]). -/
+/-- `Ĝ = (aL)⁻¹ • G̃`: hat units are tilde units divided by `aL` ([eq:hatunits] vs [eq:Gdef]).
+@isnad1 id=eq.0h4v.s6.41331a9293f0 from=translated src=- shape=b2f0c696 vocab=13d6ec04
+-/
 lemma hat_eq_smul_tilde (M : Matrix m m ℂ) :
     P.hat T M = (((P.a T * P.L T)⁻¹ : ℝ) : ℂ) • P.tilde T M := by
   rw [hat_eq, tilde_eq, smul_smul, ← ofReal_mul]
@@ -393,24 +464,32 @@ lemma hat_eq_smul_tilde (M : Matrix m m ℂ) :
   push_cast
   ring
 
-/-- "`tr Ĝ = tr G̃ /(aL)`" (paper §6). -/
+/-- "`tr Ĝ = tr G̃ /(aL)`" (paper §6).
+@isnad1 id=eq.0h4v.s5.eb9d745227b6 from=translated src=- shape=8adc7867 vocab=4d1038a7
+-/
 lemma rtrace_hat (M : Matrix m m ℂ) :
     rtrace (P.hat T M) = (P.a T * P.L T)⁻¹ * rtrace (P.tilde T M) := by
   rw [hat_eq_smul_tilde, rtrace_smul_ofReal]
 
-/-- "`‖Ĝ‖_F² = tr G̃² /(aL)²`" (paper §6), with `tr G̃² = ‖G̃‖_F²`. -/
+/-- "`‖Ĝ‖_F² = tr G̃² /(aL)²`" (paper §6), with `tr G̃² = ‖G̃‖_F²`.
+@isnad1 id=eq.0h4v.s6.f8f0ab5a53d4 from=translated src=- shape=bcb1c119 vocab=d0f4eaa6
+-/
 lemma frobSq_hat (M : Matrix m m ℂ) :
     frobSq (P.hat T M) = ((P.a T * P.L T)⁻¹) ^ 2 * frobSq (P.tilde T M) := by
   rw [hat_eq_smul_tilde, frobSq_smul_ofReal]
 
 /-- The prime-side trace computed entrywise: `rtrace (G̃ᵖʳⁱᵐᵉ) = P.trGtilde T`
-(Defs: `trGtilde := L⁻¹ Σ_k G_{kk}`). -/
+(Defs: `trGtilde := L⁻¹ Σ_k G_{kk}`).
+@isnad1 id=eq.0h2v.s4.6c8cc7fb9821 from=translated src=- shape=6c0fa3c4 vocab=9a4432aa
+-/
 lemma rtrace_tilde_Gp : rtrace (P.tilde T (P.Gp T)) = P.trGtilde T := by
   rw [tilde_eq, rtrace_smul_ofReal]
   simp [Params.trGtilde, rtrace, Matrix.trace, Params.Gp]
 
 /-- The prime-side Frobenius norm computed entrywise: `frobSq (G̃ᵖʳⁱᵐᵉ) = P.trGtildeSq T`
-(Defs: `trGtildeSq := (L⁻¹)² Σ_{k,l} G_{kl}²`). -/
+(Defs: `trGtildeSq := (L⁻¹)² Σ_{k,l} G_{kl}²`).
+@isnad1 id=eq.0h2v.s4.dcc5bf499bcd from=translated src=- shape=6c0fa3c4 vocab=4fd4d150
+-/
 lemma frobSq_tilde_Gp : frobSq (P.tilde T (P.Gp T)) = P.trGtildeSq T := by
   rw [tilde_eq, frobSq_smul_ofReal, frobSq_eq_sum_norm_sq]
   simp [Params.trGtildeSq, Params.Gp, sq_abs]
@@ -421,7 +500,9 @@ section TraceInputs
 
 /-- **"`tr Ĝ = N + O(√X/a)` (note that the taper constant `a` cancels)"** (paper §6 / prop:trace).
 From [eq:tr1] first form `|tr G̃ − a L N| ≤ C·L·√X`:
-`|tr G̃/(aL) − N| ≤ C √X / a` — the main term is exactly `N`, independent of `a`. -/
+`|tr G̃/(aL) − N| ≤ C √X / a` — the main term is exactly `N`, independent of `a`.
+@isnad1 id=le.3h6v.s7.d93265a4d25f from=translated src=- shape=5990bfd2 vocab=2e9bb92d
+-/
 theorem trGhat_sub_N_le {a L N trGt C sqX : ℝ} (ha : 0 < a) (hL : 0 < L)
     (h : |trGt - a * L * N| ≤ C * (L * sqX)) :
     |(a * L)⁻¹ * trGt - N| ≤ C * sqX / a := by
@@ -432,7 +513,9 @@ theorem trGhat_sub_N_le {a L N trGt C sqX : ℝ} (ha : 0 < a) (hL : 0 < L)
     _ = C * sqX / a * (a * L) := by field_simp
 
 /-- The algebra behind "`‖Ĝ‖_F² ≤ (T/(2πLa²))(ℓ₁² + L²/3)(1+O(𝓔′)) = … = (1/λ₁ + λ₁/3) N (1+O(𝓔′))`":
-`(aL)⁻² · (TL/2π)(ℓ₁² + L²/3) = a⁻² · (1/λ₁ + λ₁/3) · (Tℓ₁/2π)` exactly, where `λ₁ = L/ℓ₁`. -/
+`(aL)⁻² · (TL/2π)(ℓ₁² + L²/3) = a⁻² · (1/λ₁ + λ₁/3) · (Tℓ₁/2π)` exactly, where `λ₁ = L/ℓ₁`.
+@isnad1 id=eq.3h4v.s8.0f8687c709be from=translated src=- shape=39a37dbb vocab=5bed3da2
+-/
 lemma mainTr2_hat_identity {a L T ℓ₁ : ℝ} (ha : a ≠ 0) (hL : L ≠ 0) (hℓ₁ : ℓ₁ ≠ 0) :
     ((a * L)⁻¹) ^ 2 * (T * L / (2 * Real.pi) * (ℓ₁ ^ 2 + L ^ 2 / 3))
       = (a ^ 2)⁻¹ * (1 / (L / ℓ₁) + (L / ℓ₁) / 3) * (T * ℓ₁ / (2 * Real.pi)) := by
@@ -441,7 +524,9 @@ lemma mainTr2_hat_identity {a L T ℓ₁ : ℝ} (ha : a ≠ 0) (hL : L ≠ 0) (h
 /-- **"`‖Ĝ‖_F² ≤ (1/λ₁ + λ₁/3) N (1 + O(𝓔′_T))`" made explicit.**  From [eq:tr2] (second form,
 upper half) `tr G̃² ≤ (1 + C𝓔)(TL/2π)(ℓ₁² + L²/3)` and Riemann–von Mangoldt in the form
 `Tℓ₁/2π ≤ N + R_N` [eq:RvM], with `K := (1 + C𝓔)/a²` and `cλ := 1/λ₁ + λ₁/3`:
-`‖Ĝ‖_F² = tr G̃²/(aL)² ≤ cλ N + cλ((K − 1) N + K R_N)`.  (The second summand is the explicit `R₂`.) -/
+`‖Ĝ‖_F² = tr G̃²/(aL)² ≤ cλ N + cλ((K − 1) N + K R_N)`.  (The second summand is the explicit `R₂`.)
+@isnad1 id=le.6h9v.s9.5ee89efaa9a7 from=translated src=- shape=b70a2b7b vocab=1faf4223
+-/
 theorem frobGhat_le {a L T ℓ₁ trG2 C calE N RN : ℝ} (ha : 0 < a) (hL : 0 < L) (hℓ₁ : 0 < ℓ₁)
     (hK : 0 ≤ 1 + C * calE)
     (htr2 : trG2 - T * L / (2 * Real.pi) * (ℓ₁ ^ 2 + L ^ 2 / 3)
@@ -481,7 +566,9 @@ E3: `λ → 1⁻`;  E4: dyadic summation `N₀*(T,2T) ⇒ N₀*(T)` (paper §6, 
 section Asymptotic
 open Filter Asymptotics Topology
 
-/-- E2. An `o(N)` error term yields the `ε`-form. -/
+/-- E2. An `o(N)` error term yields the `ε`-form.
+@isnad1 id=ex.4h5v.s7.af13ce0cb76c from=translated src=- shape=45238c8a vocab=726ef484
+-/
 theorem eps_form_of_isLittleO {H₀ : ℝ} {N lower err : ℝ → ℝ}
     (hmain : ∀ᶠ T in atTop, H₀ * N T - err T ≤ lower T)
     (hN : ∀ᶠ T in atTop, 0 ≤ N T) (herr : err =o[atTop] N) :
@@ -496,7 +583,9 @@ theorem eps_form_of_isLittleO {H₀ : ℝ} {N lower err : ℝ → ℝ}
   linarith
 
 /-- E1. The explicit error term of `N0star_lower_H` is `o(N)`, given:
-`N → ∞`; `R₁, R₂, N(I′∖I) = o(N)`; `B → 0`; `cλ = 1/λ₁ + λ₁/3` eventually in `[0, K]`. -/
+`N → ∞`; `R₁, R₂, N(I′∖I) = o(N)`; `B → 0`; `cλ = 1/λ₁ + λ₁/3` eventually in `[0, K]`.
+@isnad1 id=islittle.6h7v.s8.257f0b78d046 from=translated src=- shape=5cad43f0 vocab=cdfae939
+-/
 theorem err_isLittleO {N R₁ R₂ NII B cl : ℝ → ℝ} {K : ℝ}
     (hN : Tendsto N atTop atTop)
     (hR₁ : R₁ =o[atTop] N) (hR₂ : R₂ =o[atTop] N) (hNII : NII =o[atTop] N)
@@ -536,7 +625,9 @@ theorem err_isLittleO {N R₁ R₂ NII B cl : ℝ → ℝ} {K : ℝ}
   exact (((hR₁.const_mul_left 4).add hR₂).add (hNII.const_mul_left 3)).add hlast
 
 /-- **sup over λ ∈ [1/2, 1)** (the common `λ → 1⁻` step): if the `ε`-form holds with constant `c(λ)`
-for every `λ ∈ [1/2, 1)` and `C − η ≤ c(λ)` for some such `λ`, for every `η > 0`, then it holds with constant `C`. -/
+for every `λ ∈ [1/2, 1)` and `C − η ≤ c(λ)` for some such `λ`, for every `η > 0`, then it holds with constant `C`.
+@isnad1 id=ex.4h5v.s7.eaa60296b86f from=translated src=- shape=3086d654 vocab=b2a4051f
+-/
 theorem eps_form_sup_half {c : ℝ → ℝ} {C : ℝ}
     (hc : ∀ η > (0:ℝ), ∃ lam : ℝ, 1 / 2 ≤ lam ∧ lam < 1 ∧ C - η ≤ c lam)
     {N lower : ℝ → ℝ} (hN : ∀ T, 0 ≤ N T)
@@ -548,13 +639,17 @@ theorem eps_form_sup_half {c : ℝ → ℝ} {C : ℝ}
   obtain ⟨T₀, hT₀⟩ := h lam h0 h1 (ε / 2) (by linarith)
   exact ⟨T₀, fun T hT => le_trans (mul_le_mul_of_nonneg_right (by linarith) (hN T)) (hT₀ T hT)⟩
 
-/-- a point of `[1/2, 1)` within `δ` of `1`. -/
+/-- a point of `[1/2, 1)` within `δ` of `1`.
+@isnad1 id=ex.1h1v.s6.127587ce957b from=translated src=- shape=b2c7554f vocab=dea537f2
+-/
 lemma exists_lam_near_one {δ : ℝ} (hδ : 0 < δ) : ∃ lam : ℝ, 1 / 2 ≤ lam ∧ lam < 1 ∧ 1 - lam ≤ δ :=
   ⟨max (1 / 2) (1 - δ), le_max_left _ _, max_lt (by norm_num) (by linarith),
     by have := le_max_right (1 / 2) (1 - δ); linarith⟩
 
 /-- E3. The `λ → 1⁻` step: if for every `λ ∈ [1/2, 1)` the `ε`-form holds with
-constant `H(λ)`, then it holds with constant `2/3 = sup_{λ<1} H(λ)`. -/
+constant `H(λ)`, then it holds with constant `2/3 = sup_{λ<1} H(λ)`.
+@isnad1 id=ex.3h3v.s7.7002b1244a82 from=translated src=- shape=5416b23c vocab=48ee41b7
+-/
 theorem eps_form_twoThirds {N lower : ℝ → ℝ} (hN : ∀ T, 0 ≤ N T)
     (h : ∀ lam : ℝ, 1 / 2 ≤ lam → lam < 1 →
       ∀ ε > 0, ∃ T₀, ∀ T ≥ T₀, (Hfun lam - ε) * N T ≤ lower T) :
@@ -563,7 +658,9 @@ theorem eps_form_twoThirds {N lower : ℝ → ℝ} (hN : ∀ T, 0 ≤ N T)
     obtain ⟨lam, h1, h2, h3⟩ := exists_lam_near_one (show 0 < 3 * η / 5 by linarith)
     exact ⟨lam, h1, h2, by linarith [Hfun_ge_near_one lam h1 h2.le]⟩) hN h
 
-/-- Same for `F`: constant `3/4 = sup_{λ<1} F(λ)` (Thm C), given the `ε`-forms with `F(λ)`. -/
+/-- Same for `F`: constant `3/4 = sup_{λ<1} F(λ)` (Thm C), given the `ε`-forms with `F(λ)`.
+@isnad1 id=ex.3h3v.s7.81ea4ddb79c0 from=translated src=- shape=5416b23c vocab=da5c34f9
+-/
 theorem eps_form_threeQuarters {N lower : ℝ → ℝ} (hN : ∀ T, 0 ≤ N T)
     (h : ∀ lam : ℝ, 1 / 2 ≤ lam → lam < 1 →
       ∀ ε > 0, ∃ T₀, ∀ T ≥ T₀, (Ffun lam - ε) * N T ≤ lower T) :
@@ -572,7 +669,9 @@ theorem eps_form_threeQuarters {N lower : ℝ → ℝ} (hN : ∀ T, 0 ≤ N T)
     obtain ⟨lam, h1, h2, h3⟩ := exists_lam_near_one hη
     exact ⟨lam, h1, h2, by linarith [Ffun_ge_near_one lam (by linarith) h2.le]⟩) hN h
 
-/-- Same for `2F − 1`: constant `1/2 = sup_{λ<1} (2F(λ) − 1)` (Thm B). -/
+/-- Same for `2F − 1`: constant `1/2 = sup_{λ<1} (2F(λ) − 1)` (Thm B).
+@isnad1 id=ex.3h3v.s7.bac373f266df from=translated src=- shape=74c091ba vocab=da5c34f9
+-/
 theorem eps_form_half {N lower : ℝ → ℝ} (hN : ∀ T, 0 ≤ N T)
     (h : ∀ lam : ℝ, 1 / 2 ≤ lam → lam < 1 →
       ∀ ε > 0, ∃ T₀, ∀ T ≥ T₀, (2 * Ffun lam - 1 - ε) * N T ≤ lower T) :
@@ -585,7 +684,9 @@ theorem eps_form_half {N lower : ℝ → ℝ} (hN : ∀ T, 0 ≤ N T)
 `N₀*(T)/N(T)` by summing over dyadic intervals: given `ε>0` choose `T₁` with
 `N₀*(t,2t) ≥ (2/3−ε)N(t,2t)` for `t ≥ T₁`; for `T ≥ 2T₁` and `J` maximal with `T2^{−J} ≥ T₁`,
 `N₀*(T) ≥ Σ_{j=1}^{J} N₀*(T2^{−j},T2^{−j+1}) ≥ (2/3−ε)(N(T)−N(T2^{−J})) ≥ (2/3−ε)N(T) − O_ε(1)`.")
-Abstract form: `f, g` interval-additive and nonnegative, `g(0,T) → ∞`. -/
+Abstract form: `f, g` interval-additive and nonnegative, `g(0,T) → ∞`.
+@isnad1 id=ex.7h4v.s8.7651cb30300b from=translated src=- shape=f2f04532 vocab=8b1f4c86
+-/
 theorem dyadic {f g : ℝ → ℝ → ℝ} {c : ℝ}
     (hf_add : ∀ a b c : ℝ, a ≤ b → b ≤ c → f a c = f a b + f b c)
     (hg_add : ∀ a b c : ℝ, a ≤ b → b ≤ c → g a c = g a b + g b c)
@@ -677,36 +778,57 @@ F3: `thmA_abstract` — Theorem A at fixed `λ < 1` for an abstract `ZeroConfig`
 section Growth
 open Filter Asymptotics Topology Real
 
-/-- `l(T) = log(T/2π) → ∞`. -/
+/-- `l(T) = log(T/2π) → ∞`.
+@isnad1 id=tendsto.0h0v.s3.45be38d210ce from=translated src=- shape=41b74a9e vocab=83ac5670
+-/
 lemma tendsto_l_atTop : Tendsto l atTop atTop :=
   Real.tendsto_log_atTop.comp (tendsto_id.atTop_div_const (by positivity))
 
+/--
+@isnad1 id=eventual.0h0v.s4.5c2fb6ec72cf from=translated src=- shape=012bd729 vocab=0ae39e52
+-/
 lemma eventually_l_pos : ∀ᶠ T in atTop, 0 < l T := tendsto_l_atTop.eventually_gt_atTop 0
 
+/--
+@isnad1 id=eventual.0h0v.s4.6f97b8217539 from=translated src=- shape=012bd729 vocab=cc3dbc8c
+-/
 lemma eventually_one_le_l : ∀ᶠ T in atTop, 1 ≤ l T := tendsto_l_atTop.eventually_ge_atTop 1
 
-/-- `L = λ l → ∞` for `λ > 0`. -/
+/-- `L = λ l → ∞` for `λ > 0`.
+@isnad1 id=tendsto.1h1v.s4.0048d95e9d77 from=translated src=- shape=c61658d1 vocab=02aa44a4
+-/
 lemma tendsto_L_atTop (P : Params) (hlam : 0 < P.lam) : Tendsto P.L atTop atTop :=
   tendsto_l_atTop.const_mul_atTop hlam
 
-/-- `log T = l T + log 2π` for `T > 0`. -/
+/-- `log T = l T + log 2π` for `T > 0`.
+@isnad1 id=eq.1h1v.s5.9cd631c68645 from=translated src=- shape=eab5aab3 vocab=082c12b6
+-/
 lemma log_eq_l_add {T : ℝ} (hT : 0 < T) : Real.log T = l T + Real.log (2 * π) := by
   rw [l, Real.log_div hT.ne' (by positivity)]; ring
 
-/-- `log T ≤ 2 l T` eventually. -/
+/-- `log T ≤ 2 l T` eventually.
+@isnad1 id=eventual.0h0v.s4.a0333440bb47 from=translated src=- shape=e7994ca5 vocab=04caadee
+-/
 lemma eventually_log_le_two_l : ∀ᶠ T in atTop, Real.log T ≤ 2 * l T := by
   filter_upwards [tendsto_l_atTop.eventually_ge_atTop (Real.log (2 * π)), eventually_gt_atTop 0]
     with T h1 h2
   rw [log_eq_l_add h2]; linarith
 
+/--
+@isnad1 id=eventual.0h0v.s4.80627b03a44f from=translated src=- shape=012bd729 vocab=5fe58eaa
+-/
 lemma eventually_log_nonneg : ∀ᶠ T in atTop, 0 ≤ Real.log T :=
   Real.tendsto_log_atTop.eventually_ge_atTop 0
 
-/-- `T l(T) → ∞`. -/
+/-- `T l(T) → ∞`.
+@isnad1 id=tendsto.0h0v.s4.a63f30feaf61 from=translated src=- shape=bb7970b8 vocab=ff08061b
+-/
 lemma tendsto_Tl_atTop : Tendsto (fun T => T * l T) atTop atTop :=
   tendsto_id.atTop_mul_atTop₀ tendsto_l_atTop
 
-/-- H-RvM ⇒ `N(T,2T) ≥ T l /(4π)` eventually.  ([eq:RvM]: `N = Tℓ₁/2π + O(log T)`, `ℓ₁ ≥ l`.) -/
+/-- H-RvM ⇒ `N(T,2T) ≥ T l /(4π)` eventually.  ([eq:RvM]: `N = Tℓ₁/2π + O(log T)`, `ℓ₁ ≥ l`.)
+@isnad1 id=eventual.1h1v.s6.c0718ffab948 from=translated src=- shape=4a1b1d6f vocab=4306603b
+-/
 lemma eventually_N_ge (Z : ZeroConfig) (hR : RiemannVonMangoldt Z) :
     ∀ᶠ T in atTop, T * l T / (4 * π) ≤ (Z.N T (2 * T) : ℝ) := by
   obtain ⟨C, T₀, h⟩ := hR.main
@@ -727,7 +849,9 @@ lemma eventually_N_ge (Z : ZeroConfig) (hR : RiemannVonMangoldt Z) :
   have : T / (2 * π) * l T = 2 * (T * l T / (4 * π)) := by ring
   linarith
 
-/-- H-RvM ⇒ `N(T,2T) ≤ T l` eventually. -/
+/-- H-RvM ⇒ `N(T,2T) ≤ T l` eventually.
+@isnad1 id=eventual.1h1v.s5.af17447e6756 from=translated src=- shape=f561cb38 vocab=49d0fa58
+-/
 lemma eventually_N_le (Z : ZeroConfig) (hR : RiemannVonMangoldt Z) :
     ∀ᶠ T in atTop, (Z.N T (2 * T) : ℝ) ≤ T * l T := by
   obtain ⟨C, T₀, h⟩ := hR.main
@@ -748,12 +872,16 @@ lemma eventually_N_le (Z : ZeroConfig) (hR : RiemannVonMangoldt Z) :
     linarith [Real.pi_gt_three]
   nlinarith [abs_nonneg C]
 
-/-- H-RvM ⇒ `N(T,2T) → ∞`. -/
+/-- H-RvM ⇒ `N(T,2T) → ∞`.
+@isnad1 id=tendsto.1h1v.s5.01dfcc358a6a from=translated src=- shape=407acb09 vocab=9ff92d63
+-/
 lemma tendsto_N_atTop (Z : ZeroConfig) (hR : RiemannVonMangoldt Z) :
     Tendsto (fun T => (Z.N T (2 * T) : ℝ)) atTop atTop :=
   tendsto_atTop_mono' _ (eventually_N_ge Z hR) (tendsto_Tl_atTop.atTop_div_const (by positivity))
 
-/-- `T l = O(N)` under H-RvM, so `o(T l) ⊆ o(N)`. -/
+/-- `T l = O(N)` under H-RvM, so `o(T l) ⊆ o(N)`.
+@isnad1 id=islittle.2h2v.s6.c2b55aff2c4d from=translated src=- shape=f9beb298 vocab=d28c66aa
+-/
 lemma isLittleO_N_of_isLittleO_Tl (Z : ZeroConfig) (hR : RiemannVonMangoldt Z) {f : ℝ → ℝ}
     (hf : f =o[atTop] fun T => T * l T) : f =o[atTop] fun T => (Z.N T (2 * T) : ℝ) := by
   refine hf.trans_isBigO (IsBigO.of_bound (4 * π) ?_)
@@ -764,7 +892,9 @@ lemma isLittleO_N_of_isLittleO_Tl (Z : ZeroConfig) (hR : RiemannVonMangoldt Z) {
   calc T * l T = 4 * π * (T * l T / (4 * π)) := by field_simp
     _ ≤ 4 * π * (Z.N T (2 * T) : ℝ) := this
 
-/-- `l = o(T l)`. -/
+/-- `l = o(T l)`.
+@isnad1 id=islittle.0h0v.s4.baaf6f305bc7 from=translated src=- shape=549bbed2 vocab=a99c458e
+-/
 lemma isLittleO_l_Tl : l =o[atTop] fun T => T * l T := by
   refine (isLittleO_iff).2 fun c hc => ?_
   filter_upwards [eventually_ge_atTop c⁻¹, eventually_l_pos, eventually_gt_atTop 0] with T hT hl hT0
@@ -773,13 +903,17 @@ lemma isLittleO_l_Tl : l =o[atTop] fun T => T * l T := by
     have := mul_le_mul_of_nonneg_left hT hc.le; rwa [mul_inv_cancel₀ hc.ne'] at this
   nlinarith
 
-/-- `log T = o(T l)`. -/
+/-- `log T = o(T l)`.
+@isnad1 id=islittle.0h0v.s4.3256e6dde0bc from=translated src=- shape=e18c2685 vocab=abb6d216
+-/
 lemma isLittleO_log_Tl : Real.log =o[atTop] fun T => T * l T := by
   refine IsBigO.trans_isLittleO (IsBigO.of_bound 2 ?_) isLittleO_l_Tl
   filter_upwards [eventually_log_le_two_l, eventually_log_nonneg, eventually_l_pos] with T h h0 hl
   rw [Real.norm_eq_abs, Real.norm_eq_abs, abs_of_nonneg h0, abs_of_pos hl]; exact h
 
-/-- `√T · l = o(T l)`. -/
+/-- `√T · l = o(T l)`.
+@isnad1 id=islittle.0h0v.s5.ea28e1aacbe8 from=translated src=- shape=7e150483 vocab=2080a260
+-/
 lemma isLittleO_sqrt_mul_l_Tl : (fun T => Real.sqrt T * l T) =o[atTop] fun T => T * l T := by
   refine (isLittleO_iff).2 fun c hc => ?_
   filter_upwards [eventually_ge_atTop ((c⁻¹) ^ 2), eventually_l_pos, eventually_gt_atTop 0]
@@ -796,19 +930,26 @@ lemma isLittleO_sqrt_mul_l_Tl : (fun T => Real.sqrt T * l T) =o[atTop] fun T => 
   calc Real.sqrt T * l T ≤ c * T * l T := mul_le_mul_of_nonneg_right h3 hl.le
     _ = c * (T * l T) := by ring
 
-/-- `√X = (T/2π)^{λ/2}` ("`X = e^L = (T/2π)^λ`", §1 Notation). -/
+/-- `√X = (T/2π)^{λ/2}` ("`X = e^L = (T/2π)^λ`", §1 Notation).
+@isnad1 id=eq.1h2v.s6.ea43d8566f9d from=translated src=- shape=e902adfa vocab=ee571107
+-/
 lemma sqrtX_eq (P : Params) {T : ℝ} (hT : 0 < T) :
     Real.sqrt (P.X T) = (T / (2 * π)) ^ (P.lam / 2) := by
   rw [Params.X, ← Real.exp_half, Params.L, l, Real.rpow_def_of_pos (by positivity)]
   congr 1; ring
 
+/--
+@isnad1 id=tendsto.1h1v.s6.b4eb6755863a from=translated src=- shape=222d7d8e vocab=70c59f25
+-/
 lemma tendsto_rpow_halflam_sub_one (P : Params) (hlam1 : P.lam ≤ 1) :
     Tendsto (fun T : ℝ => T ^ (P.lam / 2 - 1)) atTop (𝓝 0) := by
   have : Tendsto (fun T : ℝ => T ^ (-(1 - P.lam / 2))) atTop (𝓝 0) :=
     tendsto_rpow_neg_atTop (by linarith)
   simpa [neg_sub] using this
 
-/-- `√X = (T/2π)^{λ/2} = o(T l)` for `λ ≤ 1` (indeed for `λ < 2`). -/
+/-- `√X = (T/2π)^{λ/2} = o(T l)` for `λ ≤ 1` (indeed for `λ < 2`).
+@isnad1 id=islittle.2h1v.s5.804ef62a762b from=translated src=- shape=af7f9846 vocab=1d026501
+-/
 lemma isLittleO_sqrtX_Tl (P : Params) (hlam : 0 < P.lam) (hlam1 : P.lam ≤ 1) :
     (fun T => Real.sqrt (P.X T)) =o[atTop] fun T => T * l T := by
   refine (isLittleO_iff).2 fun c hc => ?_
@@ -827,7 +968,9 @@ lemma isLittleO_sqrtX_Tl (P : Params) (hlam : 0 < P.lam) (hlam1 : P.lam ≤ 1) :
     _ ≤ c * T * l T := mul_le_mul_of_nonneg_left hl (by positivity)
     _ = c * (T * l T) := by ring
 
-/-- `l · T^{λ/2−1} / L = T^{λ/2−1}/λ → 0` (the size of `θ₀/L`, prop:tail). -/
+/-- `l · T^{λ/2−1} / L = T^{λ/2−1}/λ → 0` (the size of `θ₀/L`, prop:tail).
+@isnad1 id=tendsto.2h1v.s6.50924668b51f from=translated src=- shape=0801fab9 vocab=a8fea554
+-/
 lemma tendsto_theta_over_L (P : Params) (hlam : 0 < P.lam) (hlam1 : P.lam ≤ 1) :
     Tendsto (fun T => l T * T ^ (P.lam / 2 - 1) / P.L T) atTop (𝓝 0) := by
   have h1 := tendsto_rpow_halflam_sub_one P hlam1
@@ -838,7 +981,9 @@ lemma tendsto_theta_over_L (P : Params) (hlam : 0 < P.lam) (hlam1 : P.lam ≤ 1)
   rw [tendsto_congr' h2]
   simpa using h1.const_mul P.lam⁻¹
 
-/-- `cλ = 1/λ₁ + λ₁/3` is eventually in `[0, 2/λ + 1/3]` (since `λ/2 ≤ λ₁ ≤ λ ≤ 1` once `l ≥ c₀`). -/
+/-- `cλ = 1/λ₁ + λ₁/3` is eventually in `[0, 2/λ + 1/3]` (since `λ/2 ≤ λ₁ ≤ λ ≤ 1` once `l ≥ c₀`).
+@isnad1 id=eventual.2h1v.s7.6979345bf6d5 from=translated src=- shape=79ace0d0 vocab=91728e30
+-/
 lemma eventually_clam_bounds (P : Params) (hlam : 0 < P.lam) (hlam1 : P.lam ≤ 1) :
     ∀ᶠ T in atTop, 0 ≤ 1 / P.lam1 T + P.lam1 T / 3 ∧ 1 / P.lam1 T + P.lam1 T / 3 ≤ 2 / P.lam + 1 / 3 := by
   filter_upwards [tendsto_l_atTop.eventually_ge_atTop 1] with T hl
@@ -853,7 +998,9 @@ lemma eventually_clam_bounds (P : Params) (hlam : 0 < P.lam) (hlam1 : P.lam ≤ 
     rw [div_le_div_iff₀ hl1pos hlam]; linarith
   linarith
 
-/-- `a → 1` from [eq:abdef] `1 − 2w/L ≤ a ≤ 1` and `L → ∞`. -/
+/-- `a → 1` from [eq:abdef] `1 − 2w/L ≤ a ≤ 1` and `L → ∞`.
+@isnad1 id=tendsto.2h1v.s6.fb6ebb4a27e2 from=translated src=- shape=ccb0057c vocab=2c30a63d
+-/
 lemma tendsto_a_one (P : Params) (hlam : 0 < P.lam)
     (ha : ∀ᶠ T in atTop, 1 - 2 * P.w / P.L T ≤ P.a T ∧ P.a T ≤ 1) :
     Tendsto P.a atTop (𝓝 1) := by
@@ -876,6 +1023,9 @@ open Set
 
 variable (Z : ZeroConfig)
 
+/--
+@isnad1 id=eq.2h4v.s5.141053b66185 from=translated src=- shape=0fe6a4b4 vocab=10d849d9
+-/
 lemma window_union {a b c : ℝ} (hab : a ≤ b) (hbc : b ≤ c) :
     Z.window a c = Z.window a b ∪ Z.window b c := by
   ext ρ
@@ -889,24 +1039,33 @@ lemma window_union {a b c : ℝ} (hab : a ≤ b) (hbc : b ≤ c) :
     · exact ⟨h, h1, h2.trans hbc⟩
     · exact ⟨h, lt_of_le_of_lt hab h1, h2⟩
 
+/--
+@isnad1 id=disjoint.0h4v.s5.6cb2a1c4a6a0 from=translated src=- shape=8f94d4b1 vocab=5b066cb5
+-/
 lemma window_disjoint (a b c : ℝ) : Disjoint (Z.window a b) (Z.window b c) := by
   rw [Set.disjoint_left]
   rintro ρ ⟨_, _, h2⟩ ⟨_, h1, _⟩
   exact absurd h1 (not_lt.2 h2)
 
-/-- Interval additivity of `N` (with multiplicity). -/
+/-- Interval additivity of `N` (with multiplicity).
+@isnad1 id=eq.2h4v.s5.f25ae5e11f10 from=translated src=- shape=b905832d vocab=a5070748
+-/
 theorem N_add {a b c : ℝ} (hab : a ≤ b) (hbc : b ≤ c) : Z.N a c = Z.N a b + Z.N b c := by
   unfold ZeroConfig.N
   rw [window_union Z hab hbc, finsum_mem_union (window_disjoint Z a b c)
     (Z.window_finite a b) (Z.window_finite b c)]
 
-/-- Interval additivity of `N_d`. -/
+/-- Interval additivity of `N_d`.
+@isnad1 id=eq.2h4v.s5.ed7220862384 from=translated src=- shape=b905832d vocab=b6fcd91c
+-/
 theorem Nd_add {a b c : ℝ} (hab : a ≤ b) (hbc : b ≤ c) : Z.Nd a c = Z.Nd a b + Z.Nd b c := by
   unfold ZeroConfig.Nd
   rw [window_union Z hab hbc, Set.ncard_union_eq (window_disjoint Z a b c)
     (Z.window_finite a b) (Z.window_finite b c)]
 
-/-- Interval additivity of `N₀*`. -/
+/-- Interval additivity of `N₀*`.
+@isnad1 id=eq.2h4v.s5.477f56be26bc from=translated src=- shape=b905832d vocab=0f6f97e8
+-/
 theorem N0star_add {a b c : ℝ} (hab : a ≤ b) (hbc : b ≤ c) :
     Z.N0star a c = Z.N0star a b + Z.N0star b c := by
   unfold ZeroConfig.N0star
@@ -914,7 +1073,9 @@ theorem N0star_add {a b c : ℝ} (hab : a ≤ b) (hbc : b ≤ c) :
     Set.ncard_union_eq ((window_disjoint Z a b c).mono inter_subset_left inter_subset_left)
     ((Z.window_finite a b).subset inter_subset_left) ((Z.window_finite b c).subset inter_subset_left)]
 
-/-- Interval additivity of `N₀ˢ`. -/
+/-- Interval additivity of `N₀ˢ`.
+@isnad1 id=eq.2h4v.s5.137f4d2c6033 from=translated src=- shape=b905832d vocab=aa9402dd
+-/
 theorem N0s_add {a b c : ℝ} (hab : a ≤ b) (hbc : b ≤ c) :
     Z.N0s a c = Z.N0s a b + Z.N0s b c := by
   unfold ZeroConfig.N0s
@@ -924,19 +1085,30 @@ theorem N0s_add {a b c : ℝ} (hab : a ≤ b) (hbc : b ≤ c) :
     (((Z.window_finite a b).subset inter_subset_left).subset inter_subset_left)
     (((Z.window_finite b c).subset inter_subset_left).subset inter_subset_left)]
 
+/--
+@isnad1 id=eq.0h2v.s3.63af4284099e from=translated src=- shape=6f92c63f vocab=d2ac4c7f
+-/
 lemma N_self (a : ℝ) : Z.N a a = 0 := by
   have := N_add Z (le_refl a) (le_refl a); omega
 
+/--
+@isnad1 id=eq.0h2v.s3.730c1952046d from=translated src=- shape=6f92c63f vocab=06e1a60b
+-/
 lemma N0star_self (a : ℝ) : Z.N0star a a = 0 := by
   have := N0star_add Z (le_refl a) (le_refl a); omega
 
 variable (T : ℝ)
 
+/--
+@isnad1 id=le.0h1v.s3.ea1865fb9255 from=translated src=- shape=8a62b088 vocab=36a47ecc
+-/
 lemma D0_nonneg : 0 ≤ D0 T := Real.sqrt_nonneg _
 
 variable {T}
 
-/-- "`N(I′) = N(T,2T) + N(I′∖I)`" (proof of prop:zeroside-rank). -/
+/-- "`N(I′) = N(T,2T) + N(I′∖I)`" (proof of prop:zeroside-rank).
+@isnad1 id=eq.1h2v.s5.f38818073a91 from=translated src=- shape=f678ea52 vocab=cd9bec41
+-/
 theorem NIprime_eq (hT : 0 ≤ T) : Z.NIprime T = Z.N T (2 * T) + NII Z T := by
   unfold ZeroConfig.NIprime NII
   have h0 := D0_nonneg T
@@ -944,7 +1116,9 @@ theorem NIprime_eq (hT : 0 ≤ T) : Z.NIprime T = Z.N T (2 * T) + NII Z T := by
   ring
 
 /-- `𝒮₁ ∪ 𝒮₂ = 𝒵(I′) ∩ {β = 1/2}` (every zero has `m_ρ ≥ 1`), hence
-"`s₁ + s₂` = number of distinct on-line zeros with ordinate in `I′`" `= N₀*(T−D₀, 2T+D₀)`. -/
+"`s₁ + s₂` = number of distinct on-line zeros with ordinate in `I′`" `= N₀*(T−D₀, 2T+D₀)`.
+@isnad1 id=eq.0h2v.s5.7c78e3931eb5 from=translated src=- shape=f5cb920b vocab=c13f6aa3
+-/
 theorem s1_add_s2_eq : Z.s1 T + Z.s2 T = Z.N0star (T - D0 T) (2 * T + D0 T) := by
   unfold ZeroConfig.s1 ZeroConfig.s2 ZeroConfig.N0star
   have hfin : (Z.ZIprime T ∩ ZeroConfig.onLine).Finite :=
@@ -968,7 +1142,9 @@ theorem s1_add_s2_eq : Z.s1 T + Z.s2 T = Z.N0star (T - D0 T) (2 * T + D0 T) := b
     (hfin.subset (hunion ▸ subset_union_right)), hunion]
   rfl
 
-/-- "`s₁ + s₂ ≤ N₀*(T,2T) + N(I′∖I)`" (proof of prop:zeroside-rank). -/
+/-- "`s₁ + s₂ ≤ N₀*(T,2T) + N(I′∖I)`" (proof of prop:zeroside-rank).
+@isnad1 id=le.1h2v.s5.61cd11a75327 from=translated src=- shape=4af49f06 vocab=1942cb8b
+-/
 theorem s1_add_s2_le (hT : 0 ≤ T) : Z.s1 T + Z.s2 T ≤ Z.N0star T (2 * T) + NII Z T := by
   rw [s1_add_s2_eq]
   have h0 := D0_nonneg T
@@ -979,7 +1155,9 @@ theorem s1_add_s2_le (hT : 0 ≤ T) : Z.s1 T + Z.s2 T ≤ Z.N0star T (2 * T) + N
   have h2 := (Z.N0star_le_Nd (2 * T) (2 * T + D0 T)).trans (Z.Nd_le_N _ _)
   omega
 
-/-- "`s₁ ≤ N₀ˢ(T,2T) + N(I′∖I)`" (proof of prop:zeroside); `s₁ = N₀ˢ` over `I′` by definition. -/
+/-- "`s₁ ≤ N₀ˢ(T,2T) + N(I′∖I)`" (proof of prop:zeroside); `s₁ = N₀ˢ` over `I′` by definition.
+@isnad1 id=le.1h2v.s5.aff023dac001 from=translated src=- shape=d8ea4d3c vocab=0ec11955
+-/
 theorem s1_le (hT : 0 ≤ T) : Z.s1 T ≤ Z.N0s T (2 * T) + NII Z T := by
   have hs1 : Z.s1 T = Z.N0s (T - D0 T) (2 * T + D0 T) := rfl
   have h0 := D0_nonneg T
@@ -993,7 +1171,9 @@ theorem s1_le (hT : 0 ≤ T) : Z.s1 T ≤ Z.N0s T (2 * T) + NII Z T := by
     c2.1.trans (c2.2.1.trans c2.2.2.1)
   omega
 
-/-- "`#𝒵(I′) ≤ N_d(T,2T) + N(I′∖I)`" (proof of prop:zeroside). -/
+/-- "`#𝒵(I′) ≤ N_d(T,2T) + N(I′∖I)`" (proof of prop:zeroside).
+@isnad1 id=le.1h2v.s5.6a3f4126e672 from=translated src=- shape=073734f0 vocab=84ca776a
+-/
 theorem card_ZIprime_le (hT : 0 ≤ T) : (Z.ZIprime T).ncard ≤ Z.Nd T (2 * T) + NII Z T := by
   have h : (Z.ZIprime T).ncard = Z.Nd (T - D0 T) (2 * T + D0 T) := rfl
   have h0 := D0_nonneg T
@@ -1020,12 +1200,17 @@ variable (Z : ZeroConfig) (P : Params) (T : ℝ)
 
 variable {Z P T}
 
+/--
+@isnad1 id=eq.0h5v.s6.a2831aeed934 from=translated src=- shape=39b36d5b vocab=b5e32dfb
+-/
 lemma hat_add {m : Type*} (M N : Matrix m m ℂ) : P.hat T (M + N) = P.hat T M + P.hat T N := by
   simp [Params.hat, smul_add]
 
 /-- **Seam A — [eq:zeroside-rank], explicit, for the concrete matrices.**  For `T ≥ 0`, with
 `Ĝ := P.hat T (Z.Gz P T)`, `B₀ := θ₀/(aL)`, `N(I′∖I) = NII Z T`:
-`4 tr Ĝ − ‖Ĝ‖_F² − 2N(T,2T) − 3N(I′∖I) − B₀(4 + 2‖Ĝ‖_F + B₀) ≤ N₀*(T,2T)`. -/
+`4 tr Ĝ − ‖Ĝ‖_F² − 2N(T,2T) − 3N(I′∖I) − B₀(4 + 2‖Ĝ‖_F + B₀) ≤ N₀*(T,2T)`.
+@isnad1 id=le.5h4v.s8.366982b9b680 from=translated src=- shape=c20799a0 vocab=9ecfb651
+-/
 theorem seamA (hT : 0 ≤ T) (hB : BlockInputs Z P T) {θ₀ : ℝ} (hTl : TailInputs Z P T θ₀)
     (ha : 0 < P.a T) (hL : 0 < P.L T) :
     4 * rtrace (P.hat T (Z.Gz P T)) - frobSq (P.hat T (Z.Gz P T)) - 2 * (Z.N T (2 * T) : ℝ)
@@ -1049,7 +1234,9 @@ theorem seamA (hT : 0 ≤ T) (hB : BlockInputs Z P T) {θ₀ : ℝ} (hTl : TailI
   exact N0star_lower_explicit hcount' hcore hpert
 
 /-- **Seam A for Theorems B, C — [eq:zeroside2], for the concrete matrices.**  For `T ≥ 0` and
-`θ ≥ θ₀`: `2 n₊^θ(G̃) − N(T,2T) − 2N(I′∖I) ≤ N₀ˢ(T,2T)` and `n₊^θ(G̃) − N(I′∖I) ≤ N_d(T,2T)`. -/
+`θ ≥ θ₀`: `2 n₊^θ(G̃) − N(T,2T) − 2N(I′∖I) ≤ N₀ˢ(T,2T)` and `n₊^θ(G̃) − N(I′∖I) ≤ N_d(T,2T)`.
+@isnad1 id=and.5h5v.s8.df9c125d434e from=translated src=- shape=be1027a5 vocab=c3975ab5
+-/
 theorem seamA_BC (hT : 0 ≤ T) (hB : BlockInputs Z P T) {θ₀ θ : ℝ} (hTl : TailInputs Z P T θ₀)
     (hθ : θ₀ ≤ θ) (hGt : (P.tilde T (Z.Gz P T)).IsHermitian) :
     2 * (posIndexAbove hGt θ : ℝ) - (Z.N T (2 * T) : ℝ) - 2 * (NII Z T : ℝ) ≤ Z.N0s T (2 * T) ∧
@@ -1074,7 +1261,9 @@ theorem seamA_BC (hT : 0 ≤ T) (hB : BlockInputs Z P T) {θ₀ θ : ℝ} (hTl :
 Proposition prop:EF"), [eq:tr1]/[eq:tr2] at height `T` with constants `C₁, C₂`, and [eq:RvM] at `T`
 in the form `Tℓ₁/2π ≤ N + R_N`:
 `|tr Ĝ − N| ≤ C₁√X/a` (the taper constant cancels in the main term) and
-`‖Ĝ‖_F² ≤ cλ N + cλ((K−1)N + K R_N)`, `K = (1 + C₂𝓔_T)/a²`, `cλ = 1/λ₁ + λ₁/3`. -/
+`‖Ĝ‖_F² ≤ cλ N + cλ((K−1)N + K R_N)`, `K = (1 + C₂𝓔_T)/a²`, `cλ = 1/λ₁ + λ₁/3`.
+@isnad1 id=and.8h7v.s9.ab9b82c35080 from=translated src=- shape=20944bf0 vocab=51bf735a
+-/
 theorem seamB (hGzGp : Z.Gz P T = P.Gp T) (ha : 0 < P.a T) (hL : 0 < P.L T) (hℓ₁ : 0 < ell1 T)
     {C₁ C₂ ET RN : ℝ}
     (htr1 : |P.trGtilde T - P.a T * P.L T * (Z.N T (2 * T) : ℝ)| ≤ C₁ * (P.L T * Real.sqrt (P.X T)))
@@ -1105,17 +1294,23 @@ open Filter Asymptotics Topology
 
 -- `TracesBoundsE` (abstract error rate) and `TracesBounds.toE` live in Zeta23/TracesBoundsE.lean
 
-/-- little-o from a factor tending to zero. -/
+/-- little-o from a factor tending to zero.
+@isnad1 id=islittle.1h2v.s5.5c9f615835ef from=translated src=- shape=151d4d49 vocab=da746e81
+-/
 lemma isLittleO_of_tendsto_zero_mul {f g : ℝ → ℝ} (hf : Tendsto f atTop (𝓝 0)) :
     (fun T => f T * g T) =o[atTop] g := by
   simpa using ((isLittleO_one_iff ℝ).2 hf).mul_isBigO (isBigO_refl g atTop)
 
-/-- `O(1)` from an eventual absolute bound. -/
+/-- `O(1)` from an eventual absolute bound.
+@isnad1 id=isbigo.1h2v.s5.277344c08bed from=translated src=- shape=065e3bf5 vocab=0675229e
+-/
 lemma isBigO_one_of_abs_le {f : ℝ → ℝ} {C : ℝ} (h : ∀ᶠ T in atTop, |f T| ≤ C) :
     f =O[atTop] (fun _ => (1:ℝ)) :=
   IsBigO.of_bound C (by simpa using h)
 
-/-- `O(1) · o(N) = o(N)`. -/
+/-- `O(1) · o(N) = o(N)`.
+@isnad1 id=islittle.2h3v.s6.a763f22c53a8 from=translated src=- shape=774c34cb vocab=a695165c
+-/
 lemma isLittleO_of_bdd_mul {f g N : ℝ → ℝ} (hf : f =O[atTop] (fun _ => (1:ℝ)))
     (hg : g =o[atTop] N) : (fun T => f T * g T) =o[atTop] N := by
   simpa using hf.mul_isLittleO hg
@@ -1130,7 +1325,9 @@ the others enter through the inputs below) and the thm:traces package
 Named inputs:
 `hBlock` (prop:block, ZeroSide), `hTail`/`hθ₀` (prop:tail, Tail), `hNII` (boundary count
 `N(I′∖I) ≪ D₀ l`, Tail), `hGzGp` (the H-EF bridge `G^{zero} = G^{prime}`, [eq:Gdef]), `ha` ([eq:abdef],
-Taper), `hcalE` (`𝓔_T → 0`, PrimeSideB). -/
+Taper), `hcalE` (`𝓔_T → 0`, PrimeSideB).
+@isnad1 id=ex.12h5v.s8.1b653bc10a2c from=translated src=- shape=1a4b56d3 vocab=8ae51336
+-/
 theorem thmA_abstract_err (Z : ZeroConfig) (hRvM : RiemannVonMangoldt Z) (P : Params) (hP : P.Valid)
     (hlam : P.lam < 1) (Err : ℝ → ℝ)
     (hTr : TracesBoundsE P Err P.a P.trGtilde P.trGtildeSq (fun T => (Z.N T (2 * T) : ℝ)))
@@ -1278,7 +1475,9 @@ theorem thmA_abstract_err (Z : ZeroConfig) (hRvM : RiemannVonMangoldt Z) (P : Pa
   exact eps_form_of_isLittleO hmain (Eventually.of_forall fun T => Nat.cast_nonneg _) herr_o
 
 /-- **Theorem A at fixed `λ ∈ (0,1)`, abstract zero configuration** — the `Err := P.calE`
-specialization of `thmA_abstract_err`. -/
+specialization of `thmA_abstract_err`.
+@isnad1 id=ex.12h4v.s8.525a005936d5 from=translated src=- shape=a1239fd5 vocab=bff3ba04
+-/
 theorem thmA_abstract (Z : ZeroConfig) (H : PaperInputs Z) (P : Params) (hP : P.Valid)
     (hlam : P.lam < 1) (hTr : ThmTracesHyp P Z)
     (hBlock : ∀ᶠ T in atTop, BlockInputs Z P T)
@@ -1302,7 +1501,9 @@ open Filter Asymptotics Topology
 variable {m : Type*} [Fintype m]
 
 omit [Fintype m] in
-/-- A real-scalar multiple of a Hermitian matrix is Hermitian. -/
+/-- A real-scalar multiple of a Hermitian matrix is Hermitian.
+@isnad1 id=ishermit.1h3v.s6.99742f1a3029 from=translated src=- shape=209f7062 vocab=f42a63cd
+-/
 lemma isHermitian_ofReal_smul {M : Matrix m m ℂ} (hM : M.IsHermitian) (c : ℝ) :
     ((c : ℂ) • M).IsHermitian := by
   unfold Matrix.IsHermitian at *
@@ -1310,7 +1511,9 @@ lemma isHermitian_ofReal_smul {M : Matrix m m ℂ} (hM : M.IsHermitian) (c : ℝ
   simp
 
 /-- The prime-side matrix `G^{prime}_{kl} = ∫ φ̂(τ−τ_k)φ̂(τ−τ_l)ν_X(τ)dτ` is real symmetric, hence Hermitian
-(paper [eq:Gdef]: "The second expression shows that `G` is real symmetric"). -/
+(paper [eq:Gdef]: "The second expression shows that `G` is real symmetric").
+@isnad1 id=ishermit.0h2v.s5.bbdbe1ce7547 from=translated src=- shape=33e5716c vocab=8375b85d
+-/
 lemma Gp_isHermitian (P : Params) (T : ℝ) : (P.Gp T).IsHermitian := by
   apply Matrix.IsHermitian.ext
   intro k l
@@ -1318,16 +1521,27 @@ lemma Gp_isHermitian (P : Params) (T : ℝ) : (P.Gp T).IsHermitian := by
   congr 1; ext τ; ring
 
 omit [Fintype m] in
+/--
+@isnad1 id=ishermit.1h4v.s6.3c91d136f719 from=translated src=- shape=900373ac vocab=83ce2411
+-/
 lemma isHermitian_tilde (P : Params) (T : ℝ) {M : Matrix m m ℂ} (hM : M.IsHermitian) :
     (P.tilde T M).IsHermitian := by
   rw [tilde_eq]; exact isHermitian_ofReal_smul hM _
 
+/--
+@isnad1 id=eq.0h2v.s4.aa0ff9d95e8f from=translated src=- shape=cf079183 vocab=19ae87a6
+-/
 lemma card_fin_d (P : Params) (T : ℝ) : (Fintype.card (Fin (P.d T)) : ℝ) = P.d T := by simp
 
+/--
+@isnad1 id=le.1h2v.s6.5b82180715c7 from=translated src=- shape=77ccff4d vocab=b9774c49
+-/
 lemma d_le (P : Params) {T : ℝ} (h : 0 ≤ P.L T * T / (2 * Real.pi)) :
     (P.d T : ℝ) ≤ P.L T * T / (2 * Real.pi) := Nat.floor_le h
 
-/-- `𝓔_T ≥ 0` eventually (all three summands are nonnegative once `L > 0`, `l ≥ 1`, `T > 0`). -/
+/-- `𝓔_T ≥ 0` eventually (all three summands are nonnegative once `L > 0`, `l ≥ 1`, `T > 0`).
+@isnad1 id=eventual.2h1v.s5.77caabf70f68 from=translated src=- shape=5be5bb17 vocab=2da511ee
+-/
 lemma eventually_calE_nonneg (P : Params) (hlam : 0 < P.lam) (hw : 0 ≤ P.w) :
     ∀ᶠ T in atTop, 0 ≤ P.calE T := by
   filter_upwards [eventually_one_le_l, eventually_gt_atTop (0:ℝ)] with T hl hT
@@ -1337,7 +1551,9 @@ lemma eventually_calE_nonneg (P : Params) (hlam : 0 < P.lam) (hw : 0 ≤ P.w) :
   simp only [Params.calE]
   positivity
 
-/-- `0 ≤ F(x) ≤ 1` for `0 ≤ x ≤ 1` (indeed `F(x) ≤ x`). -/
+/-- `0 ≤ F(x) ≤ 1` for `0 ≤ x ≤ 1` (indeed `F(x) ≤ x`).
+@isnad1 id=and.2h1v.s5.ef2365c68cd7 from=translated src=- shape=a28a966f vocab=408bd026
+-/
 lemma Ffun_bounds {x : ℝ} (h0 : 0 ≤ x) (h1 : x ≤ 1) : 0 ≤ Ffun x ∧ Ffun x ≤ 1 := by
   simp only [Ffun]
   refine ⟨by positivity, ?_⟩
@@ -1345,7 +1561,9 @@ lemma Ffun_bounds {x : ℝ} (h0 : 0 ≤ x) (h1 : x ≤ 1) : 0 ≤ Ffun x ∧ Ffu
 
 /-- The algebra of [eq:nplus-lower]: with `Q := (tr G̃)²/tr G̃²` and `x := θ₀ d / tr G̃`,
 "`n₊^{θ₀}(G̃) ≥ (tr G̃ − θ₀ d)²/tr G̃² = Q (1 − x)²`" `≥ Q − 2xQ`; combined with [eq:ratio]
-`|Q − F(λ₁)N| ≤ C𝓔F(λ₁)N` this gives `n₊^{θ₀}(G̃) ≥ F(λ₁)N − [C𝓔F(λ₁)N + 2x(1+C𝓔)F(λ₁)N]`. -/
+`|Q − F(λ₁)N| ≤ C𝓔F(λ₁)N` this gives `n₊^{θ₀}(G̃) ≥ F(λ₁)N − [C𝓔F(λ₁)N + 2x(1+C𝓔)F(λ₁)N]`.
+@isnad1 id=le.5h6v.s7.77cdbf81a821 from=translated src=- shape=17033f78 vocab=36ea17d5
+-/
 theorem nplus_ge_explicit {nplus trG trG2 θd FN CE : ℝ}
     (hCS : (trG - θd) ^ 2 / trG2 ≤ nplus) (htr : 0 < trG) (hθd : 0 ≤ θd) (htrG2 : 0 ≤ trG2)
     (hratio : |trG ^ 2 / trG2 - FN| ≤ CE * FN) :
@@ -1368,7 +1586,9 @@ theorem nplus_ge_explicit {nplus trG trG2 θd FN CE : ℝ}
 There is `R = o(N)` with, eventually in `T`:  `(2F(λ) − 1)N − 2R ≤ N₀ˢ(T,2T)` and
 `F(λ)N − R ≤ N_d(T,2T)`  (paper §6, proofs of thm:B, thm:C: prop:tail `θ₀ ≪ lT^{λ/2−1}`, prop:trace
 `tr G̃ ≫ dl` hence `tr G̃ > θ₀d`, lem:CS + [eq:ratio] ⇒ [eq:nplus-lower], then [eq:zeroside2] and
-`F(λ₁) ≥ F(λ) − 1/l`).  Same displayed inputs as `thmA_abstract` (without `ha`). -/
+`F(λ₁) ≥ F(λ) − 1/l`).  Same displayed inputs as `thmA_abstract` (without `ha`).
+@isnad1 id=ex.11h4v.s8.7db5d5e2d170 from=translated src=- shape=9e402fcf vocab=80bb4e51
+-/
 theorem thmBC_core_err (Z : ZeroConfig) (hRvM : RiemannVonMangoldt Z) (P : Params) (hP : P.Valid)
     (hlam : P.lam < 1) (Err : ℝ → ℝ)
     (hTr : TracesBoundsE P Err P.a P.trGtilde P.trGtildeSq (fun T => (Z.N T (2 * T) : ℝ)))
@@ -1504,7 +1724,9 @@ theorem thmBC_core_err (Z : ZeroConfig) (hRvM : RiemannVonMangoldt Z) (P : Param
     constructor <;> nlinarith [hZ.1, hZ.2, hnp, hFN]
 
 /-- `thmBC_core`, the concrete-rate wrapper: `Err := P.calE`
-(the `Err`-parametric generalization is `thmBC_core_err` above). -/
+(the `Err`-parametric generalization is `thmBC_core_err` above).
+@isnad1 id=ex.10h3v.s8.5e90dbf725d2 from=translated src=- shape=c15f3b0d vocab=a87c6158
+-/
 theorem thmBC_core (Z : ZeroConfig) (H : PaperInputs Z) (P : Params) (hP : P.Valid)
     (hlam : P.lam < 1) (hTr : ThmTracesHyp P Z)
     (hBlock : ∀ᶠ T in atTop, BlockInputs Z P T)
@@ -1521,7 +1743,9 @@ theorem thmBC_core (Z : ZeroConfig) (H : PaperInputs Z) (P : Params) (hP : P.Val
     (eventually_calE_nonneg P hP.lam_pos (zero_le_one.trans hP.one_le_w)) hcalE
 
 /-- **Theorem B at fixed `λ ∈ (0,1)`, abstract zero configuration** (the paper [thm:B], `ε`-form):
-`N₀ˢ(T,2T) ≥ (2F(λ) − 1 − ε) N(T,2T)` for `T ≥ T₀`. -/
+`N₀ˢ(T,2T) ≥ (2F(λ) − 1 − ε) N(T,2T)` for `T ≥ T₀`.
+@isnad1 id=ex.11h4v.s8.1b21c0389d78 from=translated src=- shape=367f2593 vocab=b5f3712a
+-/
 theorem thmB_abstract (Z : ZeroConfig) (H : PaperInputs Z) (P : Params) (hP : P.Valid)
     (hlam : P.lam < 1) (hTr : ThmTracesHyp P Z)
     (hBlock : ∀ᶠ T in atTop, BlockInputs Z P T)
@@ -1538,7 +1762,9 @@ theorem thmB_abstract (Z : ZeroConfig) (H : PaperInputs Z) (P : Params) (hP : P.
   linarith [h.1]
 
 /-- **Theorem C at fixed `λ ∈ (0,1)`, abstract zero configuration** (the paper [thm:C], `ε`-form):
-`N_d(T,2T) ≥ (F(λ) − ε) N(T,2T)` for `T ≥ T₀`. -/
+`N_d(T,2T) ≥ (F(λ) − ε) N(T,2T)` for `T ≥ T₀`.
+@isnad1 id=ex.11h4v.s8.35560a3b718b from=translated src=- shape=4c214bce vocab=66287c9f
+-/
 theorem thmC_abstract (Z : ZeroConfig) (H : PaperInputs Z) (P : Params) (hP : P.Valid)
     (hlam : P.lam < 1) (hTr : ThmTracesHyp P Z)
     (hBlock : ∀ᶠ T in atTop, BlockInputs Z P T)
@@ -1559,7 +1785,9 @@ end MainBC
 section CalE
 open Filter Topology Real
 
-/-- `X = (T/2π)^λ ≤ T` once `T ≥ 2π` (for `λ ≤ 1`). -/
+/-- `X = (T/2π)^λ ≤ T` once `T ≥ 2π` (for `λ ≤ 1`).
+@isnad1 id=le.2h2v.s5.dc1e8a3f5934 from=translated src=- shape=bcd49001 vocab=1b37c90b
+-/
 lemma X_le_T (P : Params) (hlam1 : P.lam ≤ 1) {T : ℝ} (hT : 2 * π ≤ T) : P.X T ≤ T := by
   have hπ : 0 < 2 * π := by positivity
   have hb : 1 ≤ T / (2 * π) := by rwa [le_div_iff₀ hπ, one_mul]
@@ -1572,7 +1800,9 @@ lemma X_le_T (P : Params) (hlam1 : P.lam ≤ 1) {T : ℝ} (hT : 2 * π ≤ T) : 
 
 /-- **`𝓔_T → 0`** as `T → ∞`, for fixed `0 < λ ≤ 1` and fixed `w ≥ 0`
 (`𝓔_T := w/L + (l²+X) log l/(Tl) + T^{λ/2−1}`, [thm:traces]).  Bound used:
-`𝓔_T ≤ w/L + (log T)²/T + log l/l + T^{λ/2−1}` for `T ≥ 2π`, `l ≥ 1`. -/
+`𝓔_T ≤ w/L + (log T)²/T + log l/l + T^{λ/2−1}` for `T ≥ 2π`, `l ≥ 1`.
+@isnad1 id=tendsto.3h1v.s5.3a0eba754aa6 from=translated src=- shape=e3197da0 vocab=cd3f2caa
+-/
 theorem calE_tendsto_zero (P : Params) (hlam : 0 < P.lam) (hlam1 : P.lam ≤ 1) (hw : 0 ≤ P.w) :
     Tendsto P.calE atTop (𝓝 0) := by
   have h1 : Tendsto (fun T => P.w / P.L T) atTop (𝓝 0) :=

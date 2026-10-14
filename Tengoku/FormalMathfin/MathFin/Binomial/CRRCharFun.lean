@@ -64,7 +64,9 @@ open scoped Topology
 /-! ### Real second-order trig limits at `0` -/
 
 /-- `sin u / u → 1` as `u → 0` (`u ≠ 0`): the value at `0` of Mathlib's continuous
-`Real.sinc` (`sinc u = sin u / u` off `0`, `sinc 0 = 1`). -/
+`Real.sinc` (`sinc u = sin u / u` off `0`, `sinc 0 = 1`).
+@isnad1 id=tendsto.0h0v.s5.aa63196f82ac from=translated src=- shape=413bf0c6 vocab=655351be
+-/
 lemma tendsto_sin_div_one :
     Tendsto (fun u : ℝ ↦ Real.sin u / u) (𝓝[≠] 0) (𝓝 1) := by
   have h : Tendsto Real.sinc (𝓝[≠] (0 : ℝ)) (𝓝 (Real.sinc 0)) :=
@@ -75,7 +77,9 @@ lemma tendsto_sin_div_one :
   exact Real.sinc_of_ne_zero hu
 
 /-- `(1 − cos u)/u² → 1/2` as `u → 0` (`u ≠ 0`), via the half-angle identity
-`1 − cos u = 2 sin²(u/2)` and `sin v / v → 1`. -/
+`1 − cos u = 2 sin²(u/2)` and `sin v / v → 1`.
+@isnad1 id=tendsto.0h0v.s6.29f68ebe4a97 from=translated src=- shape=ac5c01db vocab=195b1370
+-/
 lemma tendsto_one_sub_cos_div_sq :
     Tendsto (fun u : ℝ ↦ (1 - Real.cos u) / u ^ 2) (𝓝[≠] 0) (𝓝 (1 / 2)) := by
   have h_half : Tendsto (fun u : ℝ ↦ u / 2) (𝓝[≠] 0) (𝓝[≠] 0) := by
@@ -119,7 +123,9 @@ noncomputable def crrStepCharFun (r σ T : ℝ) (n : ℕ) (t : ℝ) : ℂ :=
 
 /-- **Real/imaginary form of the per-step charFun**: since the increment takes
 the real values `±σ√Δt`, `φₙ(t) = cos θₙ + i (2pₙ−1) sin θₙ` with
-`θₙ = σ √(T/n) · t`. -/
+`θₙ = σ √(T/n) · t`.
+@isnad1 id=eq.0h5v.s7.c602d41b34ee from=translated src=- shape=8f8d5d10 vocab=f8904f55
+-/
 lemma crrStepCharFun_eq (r σ T : ℝ) (n : ℕ) (t : ℝ) :
     crrStepCharFun r σ T n t
       = ↑(Real.cos (σ * Real.sqrt (T / n) * t))
@@ -214,7 +220,9 @@ Cox–Ross–Rubinstein → Black–Scholes convergence theorem.
 The increment is real-valued (`±σ√Δt`), so `φₙ = cos θₙ + i (2pₙ−1) sin θₙ`;
 `n (φₙ − 1) → L := i t (r−σ²/2)T − ½ t²σ²T` (real and imaginary parts via the
 two scalar limits above), and `φₙⁿ = (1 + (φₙ−1))ⁿ → exp L` by Mathlib's
-`Complex.tendsto_one_add_pow_exp_of_tendsto`. -/
+`Complex.tendsto_one_add_pow_exp_of_tendsto`.
+@isnad1 id=tendsto.2h4v.s7.d0b848b55bd4 from=translated src=- shape=bb0a79e5 vocab=c9599bb7
+-/
 theorem crr_charFun_pow_tendsto (hσ : 0 < σ) (hT : 0 < T) (t : ℝ) :
     Tendsto (fun n : ℕ ↦ crrStepCharFun r σ T n t ^ n) atTop
       (𝓝 (Complex.exp (I * Complex.ofReal ((r - σ ^ 2 / 2) * T) * Complex.ofReal t
@@ -260,7 +268,9 @@ CRR log-return law is identified as the `n`-fold convolution of the step law —
 characteristic function is `crrStepCharFun`, so the convolution's is `crrStepCharFun ^ n`
 (`MeasureTheory.charFun_conv`) — `ProbabilityMeasure.tendsto_iff_tendsto_charFun`
 upgrades this pointwise charFun convergence to convergence in distribution, i.e. the
-CRR risk-neutral log-return converges in law to the Black–Scholes normal. -/
+CRR risk-neutral log-return converges in law to the Black–Scholes normal.
+@isnad1 id=tendsto.2h4v.s7.dbe8fa09953d from=translated src=- shape=a2d8e085 vocab=a3911388
+-/
 theorem crr_charFun_pow_tendsto_gaussian (hσ : 0 < σ) (hT : 0 < T) (t : ℝ) :
     Tendsto (fun n : ℕ ↦ crrStepCharFun r σ T n t ^ n) atTop
       (𝓝 (MeasureTheory.charFun
@@ -290,7 +300,9 @@ noncomputable def convPow (ν : Measure ℝ) : ℕ → Measure ℝ
   | 0 => Measure.dirac 0
   | n + 1 => convPow ν n ∗ ν
 
-/-- A convolution power of a probability measure is a probability measure. -/
+/-- A convolution power of a probability measure is a probability measure.
+@isnad1 id=isprobab.0h2v.s4.3a62eb26d24d from=translated src=- shape=12d9104b vocab=a80f8acb
+-/
 lemma convPow_isProbabilityMeasure (ν : Measure ℝ) [IsProbabilityMeasure ν] :
     ∀ n, IsProbabilityMeasure (convPow ν n)
   | 0 => by unfold convPow; infer_instance
@@ -301,7 +313,9 @@ lemma convPow_isProbabilityMeasure (ν : Measure ℝ) [IsProbabilityMeasure ν] 
 
 /-- **The characteristic function of an `n`-fold convolution is the `n`-th power**
 of the characteristic function — the measure-level statement that the charFun of a
-sum of `n` i.i.d. variables is `(charFun)ⁿ`. -/
+sum of `n` i.i.d. variables is `(charFun)ⁿ`.
+@isnad1 id=eq.0h3v.s6.784164b9fa05 from=translated src=- shape=f6cd6de8 vocab=86921504
+-/
 lemma charFun_convPow (ν : Measure ℝ) [IsProbabilityMeasure ν] (n : ℕ) (t : ℝ) :
     charFun (convPow ν n) t = (charFun ν t) ^ n := by
   induction n with
@@ -317,7 +331,9 @@ noncomputable def crrStepMeasure (r σ T : ℝ) (n : ℕ) : Measure ℝ :=
     + ENNReal.ofReal (1 - crrProb r σ T n) • Measure.dirac (-(σ * Real.sqrt (T / n)))
 
 /-- `crrStepMeasure` is a probability measure exactly when the step is arbitrage-free
-(`0 ≤ pₙ ≤ 1`). -/
+(`0 ≤ pₙ ≤ 1`).
+@isnad1 id=isprobab.2h4v.s5.c696e9950420 from=translated src=- shape=8bed240b vocab=7f7b187d
+-/
 lemma isProbabilityMeasure_crrStepMeasure {r σ T : ℝ} {n : ℕ}
     (hp0 : 0 ≤ crrProb r σ T n) (hp1 : crrProb r σ T n ≤ 1) :
     IsProbabilityMeasure (crrStepMeasure r σ T n) := by
@@ -329,7 +345,9 @@ lemma isProbabilityMeasure_crrStepMeasure {r σ T : ℝ} {n : ℕ}
     from by ring, ENNReal.ofReal_one]
 
 /-- **`crrStepCharFun` is the characteristic function of `crrStepMeasure`** (the
-actual CRR per-step log-return law), under no-arbitrage `0 ≤ pₙ ≤ 1`. -/
+actual CRR per-step log-return law), under no-arbitrage `0 ≤ pₙ ≤ 1`.
+@isnad1 id=eq.2h5v.s6.a10f35f0ee50 from=translated src=- shape=9ca97856 vocab=6c5a8cc9
+-/
 lemma charFun_crrStepMeasure {r σ T : ℝ} {n : ℕ} (t : ℝ)
     (hp0 : 0 ≤ crrProb r σ T n) (hp1 : crrProb r σ T n ≤ 1) :
     charFun (crrStepMeasure r σ T n) t = crrStepCharFun r σ T n t := by
@@ -365,7 +383,9 @@ This is the genuine distributional CLT for the binomial tree: the charFun-power
 convergence `crr_charFun_pow_tendsto_gaussian` is upgraded to weak convergence of
 probability measures by Lévy's continuity theorem
 (`ProbabilityMeasure.tendsto_of_tendsto_charFun`), using
-`charFun (convPow ν n) = (charFun ν)ⁿ` and `charFun (crrStepMeasure) = crrStepCharFun`. -/
+`charFun (convPow ν n) = (charFun ν)ⁿ` and `charFun (crrStepMeasure) = crrStepCharFun`.
+@isnad1 id=tendsto.3h3v.s6.0b625f81bb3a from=translated src=- shape=5d7a39b2 vocab=0e0d07e4
+-/
 theorem crr_tendsto_gaussian_inDistribution {r σ T : ℝ} (hσ : 0 < σ) (hT : 0 < T)
     (hp : ∀ n, 0 ≤ crrProb r σ T n ∧ crrProb r σ T n ≤ 1) :
     Tendsto (fun n : ℕ ↦ crrRowProbMeasure r σ T n (hp n).1 (hp n).2) atTop
@@ -384,7 +404,9 @@ theorem crr_tendsto_gaussian_inDistribution {r σ T : ℝ} (hσ : 0 < σ) (hT : 
 /-! ### CRR → BS price convergence (`binomialPrice → bs_call_price`) -/
 
 /-- A measurable payoff bounded on `(0,∞)`, composed with `x ↦ a·eˣ` for `a > 0`
-(so the argument stays positive), is integrable against any finite measure. -/
+(so the argument stays positive), is integrable against any finite measure.
+@isnad1 id=integrab.3h4v.s6.a5b51abc959f from=translated src=- shape=3c094421 vocab=c06da887
+-/
 lemma integrable_comp_exp_of_bdd {μ : Measure ℝ} [IsFiniteMeasure μ] {g : ℝ → ℝ}
     (hg : Measurable g) {C : ℝ} {a : ℝ} (ha : 0 < a) (hC : ∀ y, 0 < y → |g y| ≤ C) :
     Integrable (fun x ↦ g (a * Real.exp x)) μ :=
@@ -392,7 +414,9 @@ lemma integrable_comp_exp_of_bdd {μ : Measure ℝ} [IsFiniteMeasure μ] {g : �
     (ae_of_all _ fun x ↦ by rw [Real.norm_eq_abs]; exact hC _ (mul_pos ha (Real.exp_pos x)))
 
 /-- **Two-point integral against the CRR step law** (real-valued): for any `h`,
-`∫ h ∂(crrStepMeasure) = pₙ·h(σ√Δt) + (1−pₙ)·h(−σ√Δt)` under no-arbitrage `0 ≤ pₙ ≤ 1`. -/
+`∫ h ∂(crrStepMeasure) = pₙ·h(σ√Δt) + (1−pₙ)·h(−σ√Δt)` under no-arbitrage `0 ≤ pₙ ≤ 1`.
+@isnad1 id=eq.2h5v.s7.d5f655e2a95a from=translated src=- shape=797ae47a vocab=a8262977
+-/
 lemma integral_crrStepMeasure {r σ T : ℝ} {n : ℕ}
     (hp0 : 0 ≤ crrProb r σ T n) (hp1 : crrProb r σ T n ≤ 1) (h : ℝ → ℝ) :
     ∫ z, h z ∂(crrStepMeasure r σ T n)
@@ -410,7 +434,9 @@ the backward-recursion pricer to the probabilistic row-law form). For a bounded
 measurable payoff `g`, the `k`-step CRR binomial price of `g` equals `e^{−r'k}` times
 the expectation of `g(S·eˣ)` over the `k`-fold convolution of the per-step log-return
 law (`r' = crrPerStepRate`). Proof: induction on `k`, the recursion step matched to one
-convolution via `integral_conv` + the two-point step integral. -/
+convolution via `integral_conv` + the two-point step integral.
+@isnad1 id=eq.5h8v.s7.36e5e0af7230 from=translated src=- shape=c8b3def5 vocab=6a3a116d
+-/
 lemma binomialPrice_eq_integral_convPow {r σ T : ℝ} {n : ℕ}
     (hp0 : 0 ≤ crrProb r σ T n) (hp1 : crrProb r σ T n ≤ 1)
     {g : ℝ → ℝ} (hg : Measurable g) {C : ℝ} (hC : ∀ y, 0 < y → |g y| ≤ C) :
@@ -458,7 +484,9 @@ lemma binomialPrice_eq_integral_convPow {r σ T : ℝ} {n : ℕ}
 
 /-- **Put-call parity at the binomial level**: `call = put + (S − K·e^{−nr})`, from
 linearity of `binomialPrice` plus the stock-price (`binomialPrice_id`) and constant
-(`binomialPrice_const`) values. -/
+(`binomialPrice_const`) values.
+@isnad1 id=eq.1h6v.s6.dff302a89a0c from=translated src=- shape=980c8c70 vocab=708d47cd
+-/
 lemma binomialPrice_callPut_parity {u d r K : ℝ} (h : BinomialNoArb u d r) (n : ℕ) (S : ℝ) :
     binomialPrice u d r (fun x ↦ max (x - K) 0) n S
       = binomialPrice u d r (fun x ↦ max (K - x) 0) n S
@@ -478,7 +506,9 @@ lemma binomialPrice_callPut_parity {u d r K : ℝ} (h : BinomialNoArb u d r) (n 
   ring
 
 /-- **Stock-price MGF under the BS Gaussian**: `∫ S₀·eˣ d N((r−σ²/2)T, σ²T) = S₀·e^{rT}`
-(the martingale/forward identity for the discounted stock). -/
+(the martingale/forward identity for the discounted stock).
+@isnad1 id=eq.1h4v.s7.fcc09bf26dae from=translated src=- shape=21687330 vocab=c1a43521
+-/
 lemma integral_const_mul_exp_gaussian {r σ T S₀ : ℝ} (hT : 0 < T) :
     ∫ x, S₀ * Real.exp x ∂(gaussianReal ((r - σ ^ 2 / 2) * T) (σ ^ 2 * T).toNNReal)
       = S₀ * Real.exp (r * T) := by
@@ -494,7 +524,9 @@ lemma integral_const_mul_exp_gaussian {r σ T S₀ : ℝ} (hT : 0 < T) :
 
 /-- **The CRR put expectation converges weakly to the BS put expectation.** Since the
 put payoff `x ↦ max(K − S₀eˣ, 0)` is bounded and continuous, this is immediate from
-the convergence in distribution `crr_tendsto_gaussian_inDistribution`. -/
+the convergence in distribution `crr_tendsto_gaussian_inDistribution`.
+@isnad1 id=tendsto.4h5v.s8.579516bb7eeb from=translated src=- shape=e26a69ec vocab=c2c61ec5
+-/
 lemma tendsto_integral_put {r σ T S₀ K : ℝ} (hσ : 0 < σ) (hT : 0 < T) (hS₀ : 0 < S₀)
     (hna : ∀ n, 0 < n → BinomialNoArb (crrUp σ T n) (crrDown σ T n) (crrPerStepRate r T n)) :
     Tendsto (fun n : ℕ ↦ ∫ x, max (K - S₀ * Real.exp x) 0
@@ -531,7 +563,9 @@ forward, with `S_T = S₀ e^X`, `X ∼ N((r − σ²/2)T, σ²T)`.
 No uniform integrability is needed: the *put* payoff is bounded, so the binomial put
 price equals a discounted expectation (`binomialPrice_eq_integral_convPow`) that
 converges weakly (`tendsto_integral_put`); binomial put-call parity
-(`binomialPrice_callPut_parity`) lifts this to the (unbounded) call. -/
+(`binomialPrice_callPut_parity`) lifts this to the (unbounded) call.
+@isnad1 id=tendsto.4h5v.s8.f58557ed80c1 from=translated src=- shape=f1894d7c vocab=31980d24
+-/
 theorem binomialPrice_call_tendsto_bs {r σ T S₀ K : ℝ} (hσ : 0 < σ) (hT : 0 < T) (hS₀ : 0 < S₀)
     (hna : ∀ n, 0 < n → BinomialNoArb (crrUp σ T n) (crrDown σ T n) (crrPerStepRate r T n)) :
     Tendsto (fun n : ℕ ↦ binomialPrice (crrUp σ T n) (crrDown σ T n) (crrPerStepRate r T n)

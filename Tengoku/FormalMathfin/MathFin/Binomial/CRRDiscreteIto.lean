@@ -89,7 +89,9 @@ noncomputable def binomialLogReturnQV (r σ T : ℝ) (n : ℕ) : ℝ :=
 /-- **Algebraic per-step drift identity**: `q · log u + (1 − q) · log d
 = (2q − 1) · σ · √Δt`, where `log u = σ √Δt` and `log d = −σ √Δt` in the
 CRR parameterisation. This is the discrete-Itô drift coefficient of
-`log S_k → log S_{k+1}`. -/
+`log S_k → log S_{k+1}`.
+@isnad1 id=eq.0h4v.s6.928d09dff7fb from=translated src=- shape=31608d81 vocab=832676ad
+-/
 theorem binomial_drift_per_step_eq (r σ T : ℝ) (n : ℕ) :
     crrProb r σ T n * Real.log (crrUp σ T n) +
       (1 - crrProb r σ T n) * Real.log (crrDown σ T n) =
@@ -105,7 +107,9 @@ Computation: `Var = q · (log u)² + (1−q) · (log d)² − [q · log u + (1�
 = q · (σ√Δt)² + (1−q) · (−σ√Δt)² − ((2q−1)σ√Δt)²
 = σ²·Δt · (q + 1 − q − (2q−1)²)
 = σ²·Δt · (1 − (2q−1)²)
-= σ²·Δt · 4q(1−q)`. -/
+= σ²·Δt · 4q(1−q)`.
+@isnad1 id=eq.2h4v.s7.03ea5f75cba6 from=translated src=- shape=80917f73 vocab=513d6553
+-/
 theorem binomial_QV_per_step_eq (r σ T : ℝ) (n : ℕ) (hT : 0 < T) (hn : 1 ≤ n) :
     crrProb r σ T n * (Real.log (crrUp σ T n)) ^ 2 +
     (1 - crrProb r σ T n) * (Real.log (crrDown σ T n)) ^ 2 -
@@ -129,7 +133,9 @@ theorem binomial_QV_per_step_eq (r σ T : ℝ) (n : ℕ) (hT : 0 < T) (hn : 1 �
 
 /-- **Summed-over-n drift converges to BS drift**: `n · per_step_drift →
 (r − σ²/2)·T` as `n → ∞`. Direct consequence of `crr_drift_limit_n` from
-`Binomial/DriftLimit.lean`. -/
+`Binomial/DriftLimit.lean`.
+@isnad1 id=tendsto.2h3v.s6.ee9976a0b105 from=translated src=- shape=602fd7e4 vocab=573147d8
+-/
 theorem tendsto_sum_drift_atTop_BS_drift
     {σ T r : ℝ} (hσ : 0 < σ) (hT : 0 < T) :
     Tendsto (fun n : ℕ ↦ (n : ℝ) * binomialLogReturnDrift r σ T n)
@@ -144,7 +150,9 @@ theorem tendsto_sum_drift_atTop_BS_drift
 /-- **Summed-over-n QV converges to BS QV**: `n · per_step_QV → σ²·T` as
 `n → ∞`. Composes `crr_variance_limit` (which gives `4 σ² T · p · (1−p)
 → σ² T`) with the identity `n · per_step_QV = n · 4 p (1−p) · σ² · (T/n)
-= 4 σ² T · p · (1−p)`. -/
+= 4 σ² T · p · (1−p)`.
+@isnad1 id=tendsto.2h3v.s6.e58268f268c4 from=translated src=- shape=078dc5bc vocab=40cf3c41
+-/
 theorem tendsto_sum_QV_atTop_BS_QV
     {σ T r : ℝ} (hσ : 0 < σ) (hT : 0 < T) :
     Tendsto (fun n : ℕ ↦ (n : ℝ) * binomialLogReturnQV r σ T n)
@@ -163,7 +171,9 @@ to the BS log-price drift `(r − σ²/2)·T` and QV `σ²·T`. The full
 distributional convergence to the BS call price is proved separately in
 `Binomial/CRRCharFun.lean` (`binomialPrice_call_tendsto_bs`).
 
-Packaged as a single conjunction for downstream consumption. -/
+Packaged as a single conjunction for downstream consumption.
+@isnad1 id=and.2h3v.s7.e1e3157c6f44 from=translated src=- shape=4deb12bb vocab=241b9752
+-/
 theorem binomial_discrete_ito_convergence
     {σ T r : ℝ} (hσ : 0 < σ) (hT : 0 < T) :
     Tendsto (fun n : ℕ ↦ (n : ℝ) * binomialLogReturnDrift r σ T n)

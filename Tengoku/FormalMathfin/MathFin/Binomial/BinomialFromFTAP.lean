@@ -56,7 +56,9 @@ namespace MathFin
 
 /-- **Excess-return signs from `BinomialNoArb`**: under `d < e^r < u`,
 the up-state excess return `z_u = u − e^r > 0` and the down-state
-excess return `z_d = d − e^r < 0`. -/
+excess return `z_d = d − e^r < 0`.
+@isnad1 id=and.1h3v.s5.d0d5f5b57756 from=translated src=- shape=3e41ec98 vocab=1500a003
+-/
 theorem binomial_excess_return_signs {u d r : ℝ} (h : BinomialNoArb u d r) :
     0 < u - Real.exp r ∧ d - Real.exp r < 0 := by
   refine ⟨?_, ?_⟩
@@ -66,7 +68,9 @@ theorem binomial_excess_return_signs {u d r : ℝ} (h : BinomialNoArb u d r) :
 /-- **EMM existence in the binomial market** (Nagy 2026 §7 applied to the
 binomial excess-return market). Under `BinomialNoArb`, the excess-return
 vector `(u − e^r, d − e^r)` satisfies the sign condition of Nagy's
-backward FTAP (Theorem 7.3), so an EMM exists. -/
+backward FTAP (Theorem 7.3), so an EMM exists.
+@isnad1 id=hasemmtw.1h3v.s5.14ac5d7d919b from=translated src=- shape=02e57f67 vocab=d5ac2408
+-/
 theorem binomial_emm_exists {u d r : ℝ} (h : BinomialNoArb u d r) :
     HasEMM_two_state (u - Real.exp r) (d - Real.exp r) :=
   emm_of_signs (u - Real.exp r) (d - Real.exp r)
@@ -80,7 +84,9 @@ from the excess-return data via Nagy's backward FTAP formula. With
 
 The two characterisations of the risk-neutral up-probability — *binomial
 replicating-portfolio formula* (current `Binomial/Model.lean`) and
-*EMM constructed from no-arbitrage* (Phase 37 backward FTAP) — coincide. -/
+*EMM constructed from no-arbitrage* (Phase 37 backward FTAP) — coincide.
+@isnad1 id=eq.1h3v.s6.9c04c8692569 from=translated src=- shape=7c598e63 vocab=47a8a511
+-/
 theorem binomial_q_eq_emm {u d r : ℝ} (_h : BinomialNoArb u d r) :
     -(d - Real.exp r) / ((u - Real.exp r) - (d - Real.exp r)) =
       crrUpProb u d r := by
@@ -91,7 +97,9 @@ theorem binomial_q_eq_emm {u d r : ℝ} (_h : BinomialNoArb u d r) :
 
 /-- **No-arbitrage in the binomial market** (forward FTAP applied):
 `BinomialNoArb` ⟹ no portfolio can produce a sure non-negative excess
-return with at least one strictly positive outcome. -/
+return with at least one strictly positive outcome.
+@isnad1 id=not.1h3v.s5.cb0798092992 from=translated src=- shape=1b09f094 vocab=3bb8fc8e
+-/
 theorem binomial_no_arbitrage {u d r : ℝ} (h : BinomialNoArb u d r) :
     ¬ HasArbitrage_two_state (u - Real.exp r) (d - Real.exp r) :=
   noArbitrage_of_emm _ _ (binomial_emm_exists h)

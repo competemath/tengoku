@@ -63,7 +63,9 @@ structure TracesBoundsXi (P : Params) (aT bT JT trG trG2 Ncnt : ℝ → ℝ) : P
 
 /-! ## Little-o glue -/
 
-/-- domination by a vanishing multiple gives little-o: |g| ≤ E·h eventually with E → 0. -/
+/-- domination by a vanishing multiple gives little-o: |g| ≤ E·h eventually with E → 0.
+@isnad1 id=islittle.2h3v.s6.2c2d4757eb70 from=translated src=- shape=6bf57645 vocab=ecde223a
+-/
 lemma isLittleO_of_le_mul {g h E : ℝ → ℝ} (hE : Tendsto E atTop (𝓝 0))
     (hle : ∀ᶠ T in atTop, |g T| ≤ E T * h T) : g =o[atTop] h := by
   have h1 : g =O[atTop] (fun T => E T * h T) := by
@@ -76,7 +78,9 @@ lemma isLittleO_of_le_mul {g h E : ℝ → ℝ} (hE : Tendsto E atTop (𝓝 0))
     exact this.congr_right fun T => by simp
   exact h1.trans_isLittleO h2
 
-/-- an EvBound whose majorant is dominated by a vanishing multiple of h is little-o of h. -/
+/-- an EvBound whose majorant is dominated by a vanishing multiple of h is little-o of h.
+@isnad1 id=islittle.3h4v.s6.559e4911e09d from=translated src=- shape=6e5cbe0a vocab=5b4b4b4d
+-/
 lemma evBound_isLittleO_of_le_mul {f g h E : ℝ → ℝ} (hf : EvBound f g)
     (hE : Tendsto E atTop (𝓝 0)) (hle : ∀ᶠ T in atTop, g T ≤ E T * h T) : f =o[atTop] h := by
   obtain ⟨C, hC, hfC⟩ := hf.eventually_le
@@ -86,7 +90,9 @@ lemma evBound_isLittleO_of_le_mul {f g h E : ℝ → ℝ} (hf : EvBound f g)
     _ ≤ C * (E T * h T) := mul_le_mul_of_nonneg_left h2 hC.le
     _ = C * E T * h T := by ring
 
-/-- two-sided δ-form of an asymptotic equivalence with an eventually nonnegative right side. -/
+/-- two-sided δ-form of an asymptotic equivalence with an eventually nonnegative right side.
+@isnad1 id=eventual.3h3v.s6.178e40f4a4d8 from=translated src=- shape=23a2aef0 vocab=fd2f45c3
+-/
 lemma eventually_abs_sub_le_of_isEquivalent {u v : ℝ → ℝ} (h : u ~[atTop] v)
     (hv : ∀ᶠ T in atTop, 0 ≤ v T) {δ : ℝ} (hδ : 0 < δ) :
     ∀ᶠ T in atTop, |u T - v T| ≤ δ * v T := by
@@ -99,7 +105,9 @@ lemma eventually_abs_sub_le_of_isEquivalent {u v : ℝ → ℝ} (h : u ~[atTop] 
 section Rates
 variable (P : Params)
 
-/-- `l² X / T → 0` for `0 < λ < 1` (the one place `λ < 1` strictly is used: `X = (T/2π)^λ`). -/
+/-- `l² X / T → 0` for `0 < λ < 1` (the one place `λ < 1` strictly is used: `X = (T/2π)^λ`).
+@isnad1 id=tendsto.2h1v.s6.0fa161f03ba8 from=translated src=- shape=aa4789f5 vocab=724ba517
+-/
 lemma tendsto_l_sq_mul_X_div (hlam0 : 0 < P.lam) (hlam1 : P.lam < 1) :
     Tendsto (fun T => l T ^ 2 * P.X T / T) atTop (𝓝 0) := by
   have hs : 0 < (1 - P.lam) / 2 := by linarith
@@ -136,17 +144,23 @@ lemma tendsto_l_sq_mul_X_div (hlam0 : 0 < P.lam) (hlam1 : P.lam < 1) :
           rw [← Real.rpow_add hT0, div_eq_iff hT0.ne', ← Real.rpow_add_one hT0.ne']
           congr 1; ring
 
-/-- `T^{λ/2 − 1} → 0` (λ < 2). -/
+/-- `T^{λ/2 − 1} → 0` (λ < 2).
+@isnad1 id=tendsto.1h1v.s6.1ee4fff4a2a0 from=translated src=- shape=222d7d8e vocab=b24cd417
+-/
 lemma tendsto_rpow_half_lam_sub_one (hlam : P.lam < 2) :
     Tendsto (fun T : ℝ => T ^ (P.lam / 2 - 1)) atTop (𝓝 0) := by
   have : P.lam / 2 - 1 = -(1 - P.lam / 2) := by ring
   rw [this]; exact tendsto_rpow_neg_atTop (by linarith)
 
-/-- `1/l² → 0`. -/
+/-- `1/l² → 0`.
+@isnad1 id=tendsto.0h0v.s5.beccb9ae4d54 from=translated src=- shape=277058bb vocab=12056b7c
+-/
 lemma tendsto_inv_l_sq : Tendsto (fun T => (l T ^ 2)⁻¹) atTop (𝓝 0) :=
   tendsto_inv_atTop_zero.comp (tendsto_pow_atTop two_ne_zero |>.comp l_tendsto_atTop)
 
-/-- `1/T → 0` along atTop (named for uniformity). -/
+/-- `1/T → 0` along atTop (named for uniformity).
+@isnad1 id=tendsto.0h0v.s4.c6e15890fa4a from=translated src=- shape=78fb6441 vocab=72c70286
+-/
 lemma tendsto_inv_T : Tendsto (fun T : ℝ => T⁻¹) atTop (𝓝 0) := tendsto_inv_atTop_zero
 
 end Rates
@@ -288,7 +302,9 @@ private lemma Ncnt_lower : ∀ᶠ T in atTop, T * l T / (4 * π) ≤ D.Ncnt T :=
     rw [le_div_iff₀ (by positivity)]; nlinarith
   linarith
 
-/-- `N ~ T ℓ₁ / 2π`. -/
+/-- `N ~ T ℓ₁ / 2π`.
+@isnad1 id=isequiva.1h2v.s6.1e7d1cfc4ede from=translated src=- shape=16104786 vocab=b6373186
+-/
 lemma isEquivalent_Ncnt : D.Ncnt ~[atTop] (fun T => T * ell1 T / (2 * π)) := by
   show (D.Ncnt - fun T => T * ell1 T / (2 * π)) =o[atTop] (fun T => T * ell1 T / (2 * π))
   refine evBound_isLittleO_of_le_mul (g := l) (E := fun T => 2 * π * T⁻¹) h.rvm
@@ -299,7 +315,9 @@ lemma isEquivalent_Ncnt : D.Ncnt ~[atTop] (fun T => T * ell1 T / (2 * π)) := by
   rw [this]
   exact l_le_ell1 T
 
-/-- **[eq:tr1]'**: `tr G̃ ~ a L N`. -/
+/-- **[eq:tr1]'**: `tr G̃ ~ a L N`.
+@isnad1 id=isequiva.1h2v.s5.a4ca4dcebc5d from=translated src=- shape=d9911b4f vocab=c5daecbe
+-/
 theorem tr1' : D.trG ~[atTop] (fun T => D.aT T * P.L T * D.Ncnt T) := by
   show (D.trG - fun T => D.aT T * P.L T * D.Ncnt T) =o[atTop] _
   have hlam := h.lam_pos
@@ -393,7 +411,9 @@ private lemma Mstar_le : ∀ᶠ T in atTop,
         gcongr
     _ = _ := by ring
 
-/-- **[eq:tr2]**: `tr G̃² ~ (TL/2π)(b ℓ₁² + L² J_T)`. -/
+/-- **[eq:tr2]**: `tr G̃² ~ (TL/2π)(b ℓ₁² + L² J_T)`.
+@isnad1 id=isequiva.1h2v.s5.dbaee3f57ddd from=translated src=- shape=527e83bf vocab=6cafa7ef
+-/
 theorem tr2 : D.trG2 ~[atTop] mainTr2Xi P D.bT D.JT := by
   have hlam := h.lam_pos
   -- (A) the collected §5 remainder is o(M⋆)
@@ -465,7 +485,9 @@ private lemma nonzeros : ∀ᶠ T in atTop, T ≠ 0 ∧ P.L T ≠ 0 ∧ ell1 T �
     nlinarith [mul_nonneg (sq_nonneg (P.L T)) hJ0]
   exact ⟨by linarith, by linarith, by linarith, by linarith, hden.ne', by positivity⟩
 
-/-- **[eq:ratio-general]**: `(tr G̃)²/tr G̃² ~ cRatio(λ₁; a, b, J_T) · N`. -/
+/-- **[eq:ratio-general]**: `(tr G̃)²/tr G̃² ~ cRatio(λ₁; a, b, J_T) · N`.
+@isnad1 id=isequiva.1h2v.s6.f13b224f6432 from=translated src=- shape=2cd11d59 vocab=74ce1bef
+-/
 theorem ratio : (fun T => D.trG T ^ 2 / D.trG2 T)
     ~[atTop] (fun T => ThmD.cRatio (P.lam1 T) (D.aT T) (D.bT T) (D.JT T) * D.Ncnt T) := by
   have h1 := tr1' h
@@ -492,7 +514,9 @@ theorem ratio : (fun T => D.trG T ^ 2 / D.trG2 T)
   simp only [mainTr2Xi, Params.lam1]
   exact ratio_identity T (P.L T) (ell1 T) (D.aT T) (D.bT T) (D.JT T) (D.Ncnt T) hT hL hℓ hden
 
-/-- **hat-units second moment**: `tr G̃²/(aL)² ~ cRatio(λ₁; a, b, J_T)⁻¹ · N`. -/
+/-- **hat-units second moment**: `tr G̃²/(aL)² ~ cRatio(λ₁; a, b, J_T)⁻¹ · N`.
+@isnad1 id=isequiva.1h2v.s6.87a81cbc8bd4 from=translated src=- shape=47da9cd7 vocab=3532282d
+-/
 theorem frhat : (fun T => D.trG2 T / (D.aT T * P.L T) ^ 2)
     ~[atTop] (fun T => (ThmD.cRatio (P.lam1 T) (D.aT T) (D.bT T) (D.JT T))⁻¹ * D.Ncnt T) := by
   have h2 := tr2 h
@@ -512,7 +536,9 @@ theorem frhat : (fun T => D.trG2 T / (D.aT T * P.L T) ^ 2)
   simp only [mainTr2Xi, Params.lam1]
   exact frhat_identity T (P.L T) (ell1 T) (D.aT T) (D.bT T) (D.JT T) hL hℓ ha
 
-/-- **The ξ′ two-trace package, assembled** (statement declared in Interface.lean). -/
+/-- **The ξ′ two-trace package, assembled** (statement declared in Interface.lean).
+@isnad1 id=tracesbo.1h2v.s4.a33667d6df6c from=translated src=- shape=dfe0ee50 vocab=479ae854
+-/
 theorem tracesBoundsXi_of_factsXi : TracesBoundsXi P D.aT D.bT D.JT D.trG D.trG2 D.Ncnt where
   tr1' := tr1' h
   tr2 := tr2 h
@@ -530,6 +556,9 @@ With `tr M̂ᵀ = tr G̃/(aL)` and `‖M̂ᵀ‖²_F = tr G̃²/(aL)²`, and the
 section Moments
 variable {P : Params} {aT bT JT trG trG2 Ncnt : ℝ → ℝ}
 
+/--
+@isnad1 id=eventual.4h8v.s7.5d900ad935df from=translated src=- shape=fec7fe17 vocab=e38b69db
+-/
 theorem moments_trace (h : TracesBoundsXi P aT bT JT trG trG2 Ncnt)
     (hN0 : ∀ᶠ T in atTop, 0 ≤ Ncnt T) (haL : ∀ᶠ T in atTop, aT T * P.L T ≠ 0)
     {δ : ℝ} (hδ : 0 < δ) :
@@ -544,6 +573,9 @@ theorem moments_trace (h : TracesBoundsXi P aT bT JT trG trG2 Ncnt)
   filter_upwards [eventually_abs_sub_le_of_isEquivalent h1 hN0 hδ] with T hT
   constructor <;> nlinarith [(abs_le.mp hT).1, (abs_le.mp hT).2]
 
+/--
+@isnad1 id=eventual.5h9v.s7.db702b32af78 from=translated src=- shape=ad27c145 vocab=34b31fef
+-/
 theorem moments_frob (h : TracesBoundsXi P aT bT JT trG trG2 Ncnt)
     (hN0 : ∀ᶠ T in atTop, 0 ≤ Ncnt T) {c : ℝ} (hc0 : 0 < c)
     (hc : Tendsto (fun T => ThmD.cRatio (P.lam1 T) (aT T) (bT T) (JT T)) atTop (𝓝 c))

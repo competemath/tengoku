@@ -20,6 +20,9 @@ namespace MathFin.BlackScholes.AmericanPut.Stopping
 open Set Filter MeasureTheory
 open scoped NNReal ENNReal Topology
 
+/--
+@isnad1 id=tendsto.3h3v.s6.8c474901e767 from=translated src=- shape=94fa71fb vocab=69b0c0a6
+-/
 theorem min_time_tendsto_firstContact {g : ℝ≥0 → ℝ} (hc : Continuous g)
     {τ : ℝ≥0} (hp : ∀ t, t < τ → 0 < g t) {s : ℕ → ℝ≥0}
     (hs : Tendsto (fun n => g (s n)) atTop (𝓝 0)) :
@@ -37,6 +40,9 @@ theorem min_time_tendsto_firstContact {g : ℝ≥0 → ℝ} (hc : Continuous g)
   · intro b hb
     exact Eventually.of_forall (fun _ => (min_le_right _ _).trans_lt hb)
 
+/--
+@isnad1 id=ex.3h3v.s7.306cbe5e1148 from=translated src=- shape=05da1551 vocab=a9b32ffa
+-/
 theorem exists_subseq_gap_tendsto_zero {Ω : Type*} [MeasurableSpace Ω] {P : Measure Ω}
     {G : ℕ → Ω → ℝ} (hi : ∀ n, Integrable (G n) P) (hpos : ∀ n ω, 0 ≤ G n ω)
     (he : Tendsto (fun n => ∫ ω, G n ω ∂P) atTop (𝓝 0)) :

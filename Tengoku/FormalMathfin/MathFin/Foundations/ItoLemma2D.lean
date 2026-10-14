@@ -78,7 +78,9 @@ where `R_k = discreteTaylorRemainder2D …`. Proof: telescoping
 `f(t_N,X_N) − f(t_0,X_0) = ∑ (f(t_{k+1},X_{k+1}) − f(t_k,X_k))` via
 `Finset.sum_range_sub`, then substituting the definition of `R_k` into
 each summand. No probabilistic content; the time-drift term `∑ f_t·Δt`
-joins the 1D Itô structure purely algebraically. -/
+joins the 1D Itô structure purely algebraically.
+@isnad1 id=eq.0h7v.s8.9c899460c506 from=translated src=- shape=5c985887 vocab=fab3bd1d
+-/
 theorem discrete_ito_formula_2d
     (N : ℕ) (t X : ℕ → ℝ) (f f_t f_x f_xx : ℝ → ℝ → ℝ) :
     f (t N) (X N) - f (t 0) (X 0) =
@@ -120,7 +122,9 @@ noncomputable def itoDrift2D (f_t f_x f_xx μ_X σ_X : ℝ) : ℝ :=
   f_t + μ_X * f_x + (1 / 2) * σ_X ^ 2 * f_xx
 
 /-- With no time dependence (`f_t = 0`), `itoDrift2D` collapses to the 1D
-`itoDrift`. The two layers agree where they overlap. -/
+`itoDrift`. The two layers agree where they overlap.
+@isnad1 id=eq.0h4v.s4.b528364c97f8 from=translated src=- shape=958c03ce vocab=64a11c48
+-/
 lemma itoDrift2D_no_time (f_x f_xx μ_X σ_X : ℝ) :
     itoDrift2D 0 f_x f_xx μ_X σ_X = itoDrift f_x f_xx μ_X σ_X := by
   unfold itoDrift2D itoDrift
@@ -138,7 +142,9 @@ noncomputable def gbmValue (S₀ μ σ t x : ℝ) : ℝ :=
   S₀ * Real.exp ((μ - σ ^ 2 / 2) * t + σ * x)
 
 /-- **Space partial** `∂_x S = σ · S` — genuine `HasDerivAt`, via the
-`Real.exp` chain rule on the affine exponent. -/
+`Real.exp` chain rule on the affine exponent.
+@isnad1 id=hasderiv.0h5v.s5.50823bd19974 from=translated src=- shape=28170f52 vocab=45a31d0f
+-/
 lemma hasDerivAt_gbmValue_space (S₀ μ σ t x : ℝ) :
     HasDerivAt (fun y ↦ gbmValue S₀ μ σ t y) (σ * gbmValue S₀ μ σ t x) x := by
   -- inner exponent `y ↦ (μ − ½σ²) t + σ y` has derivative `σ`
@@ -150,7 +156,9 @@ lemma hasDerivAt_gbmValue_space (S₀ μ σ t x : ℝ) :
   unfold gbmValue
   convert h using 1 <;> first | rfl | ring
 
-/-- **Time partial** `∂_t S = (μ − ½σ²) · S` — genuine `HasDerivAt`. -/
+/-- **Time partial** `∂_t S = (μ − ½σ²) · S` — genuine `HasDerivAt`.
+@isnad1 id=hasderiv.0h5v.s6.6ef3c81aa48c from=translated src=- shape=a380691e vocab=3e8c42af
+-/
 lemma hasDerivAt_gbmValue_time (S₀ μ σ t x : ℝ) :
     HasDerivAt (fun s ↦ gbmValue S₀ μ σ s x)
       ((μ - σ ^ 2 / 2) * gbmValue S₀ μ σ t x) t := by
@@ -161,7 +169,9 @@ lemma hasDerivAt_gbmValue_time (S₀ μ σ t x : ℝ) :
   convert h using 1 <;> first | rfl | ring
 
 /-- **Second space partial** `∂_xx S = σ² · S` — the derivative of
-`∂_x S = σ · S` is `σ · (σ · S) = σ² · S`. -/
+`∂_x S = σ · S` is `σ · (σ · S) = σ² · S`.
+@isnad1 id=hasderiv.0h5v.s6.71871325f8b6 from=translated src=- shape=a45cafb3 vocab=1057c70e
+-/
 lemma hasDerivAt_gbmValue_space_space (S₀ μ σ t x : ℝ) :
     HasDerivAt (fun y ↦ σ * gbmValue S₀ μ σ t y)
       (σ ^ 2 * gbmValue S₀ μ σ t x) x := by
@@ -183,7 +193,9 @@ genuine SDE solution; that limit step is deferred — see module header).
 
 The `−½σ²` carried in the exponent cancels the `+½σ²` of the Itô second-order
 term — this cancellation *is* the Itô correction, and the reason a GBM with
-exponent drift `μ − ½σ²` has physical drift rate `μ`. -/
+exponent drift `μ − ½σ²` has physical drift rate `μ`.
+@isnad1 id=and.3h8v.s7.a9eacf9c60bb from=translated src=- shape=bf04f387 vocab=ba1ad237
+-/
 theorem gbm_solves_sde (S₀ μ σ t x : ℝ) {f_t f_x f_xx : ℝ}
     (h_t : HasDerivAt (fun s ↦ gbmValue S₀ μ σ s x) f_t t)
     (h_x : HasDerivAt (fun y ↦ gbmValue S₀ μ σ t y) f_x x)
@@ -201,7 +213,9 @@ theorem gbm_solves_sde (S₀ μ σ t x : ℝ) {f_t f_x f_xx : ℝ}
 /-- **Sanity check via the 1D `itoDrift_log_gbm`**: the GBM drift identity
 is consistent with the log-price drift `μ − ½σ²` (`ItoLemma.itoDrift_log_gbm`).
 Here we see the *forward* direction — the exp-form recovers physical drift
-`μ` — as the inverse of the log-form's `μ − ½σ²`. -/
+`μ` — as the inverse of the log-form's `μ − ½σ²`.
+@isnad1 id=eq.1h3v.s7.dbef2bbe0620 from=translated src=- shape=50256e62 vocab=2c71fa6a
+-/
 lemma gbm_drift_inverts_log (μ σ S : ℝ) (hS : S ≠ 0) :
     itoDrift (1 / S) (-1 / S ^ 2) (μ * S) (σ * S) + σ ^ 2 / 2 = μ := by
   rw [itoDrift_log_gbm μ σ S hS]

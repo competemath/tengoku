@@ -198,7 +198,9 @@ at `(t₀, y₀)` is the row functional `(a, b) ↦ ∂_t K · a + ∂_y K · b`
 `∂_y K = −(y/t)·K`). Built from the elementary calculus of `(√(2πt))⁻¹·exp(−y²/(2t))`; the two
 columns read off against the basis. This upgrades the two separately-proved partials to a *total*
 derivative — the one genuinely-2D ingredient that lets the price, differentiated along a curve
-`τ ↦ (v τ, w τ)` with both kernel arguments moving, collapse to a single chain rule. -/
+`τ ↦ (v τ, w τ)` with both kernel arguments moving, collapse to a single chain rule.
+@isnad1 id=hasfderi.1h2v.s9.1a129f69224e from=translated src=- shape=11230cfe vocab=73d6578b
+-/
 lemma hasFDerivAt_heatKernel {t₀ : ℝ} (ht₀ : 0 < t₀) (y₀ : ℝ) :
     HasFDerivAt (fun p : ℝ × ℝ ↦ heatKernel p.1 p.2)
       ((heatKernel t₀ y₀ * (y₀ ^ 2 - t₀) / (2 * t₀ ^ 2)) • ContinuousLinearMap.fst ℝ ℝ ℝ
@@ -233,7 +235,9 @@ lemma hasFDerivAt_heatKernel {t₀ : ℝ} (ht₀ : 0 < t₀) (y₀ : ℝ) :
 /-- **Derivative of the heat kernel along a curve** `s ↦ K(v s, z − w s)`. With both the variance
 `v s` and the centre `w s` moving, the chain rule on `hasFDerivAt_heatKernel` collapses to
 `v′·∂_t K + w′·∂_x K`. The kernel-level engine for the Black–Scholes `τ`-derivative, where
-`v τ = σ²τ` and `w τ = log S + (r − σ²/2)τ` move together. -/
+`v τ = σ²τ` and `w τ = log S + (r − σ²/2)τ` move together.
+@isnad1 id=hasderiv.3h6v.s8.2c305a1eafc4 from=translated src=- shape=6468d454 vocab=6e4651e3
+-/
 lemma hasDerivAt_heatKernel_comp {v w : ℝ → ℝ} {τ₀ vd wd : ℝ}
     (hv : HasDerivAt v vd τ₀) (hw : HasDerivAt w wd τ₀) (hvpos : 0 < v τ₀) (z : ℝ) :
     HasDerivAt (fun s ↦ heatKernel (v s) (z - w s))
@@ -263,12 +267,16 @@ private lemma heatKernel_t_eq_half_y_y {t : ℝ} (ht : 0 < t) (y : ℝ) :
 
 /-! ### Auxiliary integrability + nonnegativity for the heat kernel -/
 
-/-- The heat kernel is nonnegative. -/
+/-- The heat kernel is nonnegative.
+@isnad1 id=le.1h2v.s4.8f8f6cb31b49 from=translated src=- shape=1852429d vocab=aff010ae
+-/
 lemma heatKernel_nonneg {t : ℝ} (ht : 0 < t) (y : ℝ) : 0 ≤ heatKernel t y := by
   rw [heatKernel_eq_gaussianPDFReal ht]
   exact gaussianPDFReal_nonneg 0 _ y
 
-/-- For `t > 0`, the heat kernel is integrable in `y` over Lebesgue. -/
+/-- For `t > 0`, the heat kernel is integrable in `y` over Lebesgue.
+@isnad1 id=integrab.1h1v.s5.c319732633f8 from=translated src=- shape=b9fd2bdb vocab=cf221aff
+-/
 lemma integrable_heatKernel {t : ℝ} (ht : 0 < t) :
     Integrable (fun y ↦ heatKernel t y) volume := by
   have := integrable_gaussianPDFReal (0 : ℝ) t.toNNReal
@@ -294,13 +302,17 @@ private lemma integrable_mul_heatKernel_of_gaussian {t : ℝ} (ht : 0 < t) {g : 
     rw [ENNReal.toReal_ofReal (gaussianPDFReal_nonneg _ _ _)]
   rw [smul_eq_mul, hpdf]; ring
 
-/-- First moment: `y · K(t, ·)` is integrable. -/
+/-- First moment: `y · K(t, ·)` is integrable.
+@isnad1 id=integrab.1h1v.s5.c74ef39da0b8 from=translated src=- shape=e2c9bd1d vocab=550821f3
+-/
 lemma integrable_id_mul_heatKernel {t : ℝ} (ht : 0 < t) :
     Integrable (fun y ↦ y * heatKernel t y) volume :=
   integrable_mul_heatKernel_of_gaussian ht
     ((memLp_id_gaussianReal (μ := 0) (v := t.toNNReal) 1).integrable (by norm_num))
 
-/-- Second moment: `y² · K(t, ·)` is integrable. -/
+/-- Second moment: `y² · K(t, ·)` is integrable.
+@isnad1 id=integrab.1h1v.s6.64abb0db4391 from=translated src=- shape=7b4cbc75 vocab=4f41f246
+-/
 lemma integrable_sq_mul_heatKernel {t : ℝ} (ht : 0 < t) :
     Integrable (fun y ↦ y ^ 2 * heatKernel t y) volume :=
   integrable_mul_heatKernel_of_gaussian ht
@@ -362,7 +374,9 @@ private lemma ibp_heatKernel {t : ℝ} (ht : 0 < t) {f f' f'' : ℝ → ℝ}
     (fun x _ ↦ hf' x) (fun x _ ↦ hasDerivAt_heatKernel_y ht x) hi_f'_dK hi_f''_K hi_f'_K
   rw [ibp1, ibp2, neg_neg]
 
-/-- The heat kernel is continuous in the space variable (for any fixed time). -/
+/-- The heat kernel is continuous in the space variable (for any fixed time).
+@isnad1 id=continuo.0h1v.s4.226e7f803f1b from=translated src=- shape=f71d2a58 vocab=2d5d3236
+-/
 lemma continuous_heatKernel (s : ℝ) : Continuous (fun y ↦ heatKernel s y) := by
   unfold heatKernel; fun_prop
 
@@ -402,7 +416,9 @@ turns it into a finite combination of heat-kernel moments (`integrable_sq_mul_he
 `integrable_id_mul_heatKernel`, `integrable_heatKernel`) translated by `c+σ`
 (`Integrable.comp_sub_right`). This is the dominating function that lets the call payoff
 `(eᶻ − K)⁺ ≤ eᶻ` pass under the integral sign — the one genuinely new analytic ingredient for the
-kernel-side heat equation. -/
+kernel-side heat equation.
+@isnad1 id=integrab.1h3v.s6.605025f2102b from=translated src=- shape=dfc848ed vocab=35fb3970
+-/
 lemma integrable_exp_mul_poly_heatKernel {σ : ℝ} (hσ : 0 < σ) (c d : ℝ) :
     Integrable (fun z ↦ Real.exp z * (((z - c) ^ 2 + d) * heatKernel σ (z - c))) volume := by
   have hbase : Integrable (fun w : ℝ ↦
@@ -424,7 +440,9 @@ lemma integrable_exp_mul_poly_heatKernel {σ : ℝ} (hσ : 0 < σ) (c d : ℝ) :
 `h` continuous with `|h z| ≤ eᶻ`, the integrand `z ↦ h z · K(t, z−x)` is Lebesgue-integrable —
 dominated by the envelope `eᶻ·((z−x)²+1)·K(t, z−x)` of `integrable_exp_mul_poly_heatKernel`. The
 "value at the base point" integrability shared by the time- and first-space-derivative lemmas
-`hasDerivAt_feynmanU_t` / `hasDerivAt_feynmanU_x` below. -/
+`hasDerivAt_feynmanU_t` / `hasDerivAt_feynmanU_x` below.
+@isnad1 id=integrab.3h3v.s6.090890f2fd9d from=translated src=- shape=4e8a8dfc vocab=2e31a548
+-/
 lemma integrable_payoff_mul_heatKernel {t : ℝ} (ht : 0 < t) {h : ℝ → ℝ} (hhc : Continuous h)
     (hh : ∀ z, |h z| ≤ Real.exp z) (x : ℝ) :
     Integrable (fun z ↦ h z * heatKernel t (z - x)) volume := by
@@ -446,7 +464,9 @@ centred near `x` is dominated by a *wider* kernel centred at the fixed `x₀`:
 (here `(z−x)² ≥ ½(z−x₀)² − (x−x₀)² ≥ ½(z−x₀)² − δ²`), so
 `exp(−(z−x)²/(2t)) ≤ e^{δ²/(2t)}·exp(−(z−x₀)²/(4t))`, and `exp(−(z−x₀)²/(4t)) = √2·√(2πt)·K(2t,z−x₀)`.
 This is the spatial analogue of the temporal bound `K(s,·) ≤ √3·K(3t/2,·)` (`heatKernel_temporal_le`);
-it makes the `x`-derivatives' dominating function independent of `x` over `Metric.ball x₀ δ`. -/
+it makes the `x`-derivatives' dominating function independent of `x` over `Metric.ball x₀ δ`.
+@isnad1 id=le.2h5v.s7.9287124574c2 from=translated src=- shape=d2881c78 vocab=8eca087f
+-/
 lemma heatKernel_shift_le {t : ℝ} (ht : 0 < t) {x x₀ δ : ℝ}
     (hx : |x - x₀| < δ) (z : ℝ) :
     heatKernel t (z - x)
@@ -488,7 +508,9 @@ lemma heatKernel_shift_le {t : ℝ} (ht : 0 < t) {x x₀ δ : ℝ}
 /-- **Temporal monotonicity of the heat kernel.** On the time-window `(t/2, 3t/2)`,
 `K(s, y) ≤ √3 · K(3t/2, y)`: a smaller variance is dominated by the fixed wider one. The temporal
 analogue of `heatKernel_shift_le`, and the domination engine for the time-derivative lemmas
-`hasDerivAt_phi` / `hasDerivAt_feynmanU_t`. -/
+`hasDerivAt_phi` / `hasDerivAt_feynmanU_t`.
+@isnad1 id=le.3h3v.s7.506dc2914dcf from=translated src=- shape=45f5870b vocab=e896d903
+-/
 lemma heatKernel_temporal_le {t s : ℝ} (ht : 0 < t) (hs_lo : t / 2 < s) (hs_hi : s < 3 * t / 2)
     (y : ℝ) : heatKernel s y ≤ Real.sqrt 3 * heatKernel (3 * t / 2) y := by
   have hs_pos : 0 < s := by linarith
@@ -532,7 +554,9 @@ private lemma sq_sub_div_le {t s : ℝ} (ht : 0 < t) (hs_lo : t / 2 < s) (hs_hi 
 variance `v` stays in `(v₀/2, 3v₀/2)` and the centre `x` within `δ` of `x₀`,
 `K(v, z−x) ≤ √3·√2·e^{δ²/(3v₀)}·K(3v₀, z−x₀)`. The composition of `heatKernel_temporal_le` (variance)
 with `heatKernel_shift_le` (centre); the domination engine for differentiating the price along the
-curve `τ ↦ (σ²τ, log S + (r−σ²/2)τ)`, where both kernel arguments move with `τ`. -/
+curve `τ ↦ (σ²τ, log S + (r−σ²/2)τ)`, where both kernel arguments move with `τ`.
+@isnad1 id=le.4h6v.s7.47d5a5fa84e5 from=translated src=- shape=c4484d3d vocab=8eca087f
+-/
 lemma heatKernel_loc_le {v₀ v x x₀ δ : ℝ} (hv₀ : 0 < v₀)
     (hv_lo : v₀ / 2 < v) (hv_hi : v < 3 * v₀ / 2) (hx : |x - x₀| < δ) (z : ℝ) :
     heatKernel v (z - x)
@@ -590,7 +614,9 @@ integrable uniform dominating function for `h·φ′`, the integral is different
 `d/dp = ∫ h·φ′(p₀, ·)`. Specialising `φ` to `K(s, z−x)` (time) or `K(t, z−x')` (space, once and
 twice) recovers `hasDerivAt_phi` and `hasDerivAt_feynmanU_{t,x,xx}`, each supplying only its
 genuinely-distinct domination. The `h z`-factor is pulled through `HasDerivAt.const_mul`, so callers
-hand over the bare kernel-family derivative. -/
+hand over the bare kernel-family derivative.
+@isnad1 id=hasderiv.8h6v.s8.f87ff93e3b23 from=translated src=- shape=6ba365d1 vocab=2738a7d9
+-/
 theorem hasDerivAt_integral_mul_kernelFamily {h : ℝ → ℝ} (hhc : Continuous h)
     {φ φ' : ℝ → ℝ → ℝ} {p₀ r : ℝ} (hr : 0 < r)
     (hφc : ∀ p, Continuous (fun z ↦ φ p z)) (hφ'c : Continuous (fun z ↦ φ' p₀ z))
@@ -763,7 +789,9 @@ equals its `t→0` boundary value `f(0)` plus the integral of its time-derivativ
 (`hasDerivAt_phi_heatEq`), whose boundary value is the approximate-identity limit
 (`tendsto_integral_heatKernel_zero`), and whose derivative is interval-integrable (bounded by
 `½Cf″`). Under the standard Brownian hypotheses this reads `E[f(Bₜ)] = f(0) + ½∫₀ᵗ E[f″(Bₛ)] ds`
-via `feynmanU_eq_expectation`. -/
+via `feynmanU_eq_expectation`.
+@isnad1 id=eq.7h7v.s8.bab8660a7be7 from=translated src=- shape=5d368db9 vocab=3bf8043a
+-/
 theorem heatConvolution_eq_add_integral_deriv {t : ℝ} (ht : 0 < t) {f f' f'' : ℝ → ℝ}
     (hf : ∀ x, HasDerivAt f (f' x) x) (hf' : ∀ x, HasDerivAt f' (f'' x) x)
     (hf''c : Continuous f'') {Cf Cf' Cf'' : ℝ}
@@ -847,7 +875,9 @@ variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 /-- **Core transfer.** If `B_t` has law `N(0, t)` (`Measure.map (B t) μ = gaussianReal 0 t.toNNReal`),
 the heat-kernel form `feynmanU g t x` equals the expectation `E[g(x + B_t)]`. Factored out of
 `feynmanU_eq_expectation` so the same transfer serves both the increment-hypothesis bundle and the
-`IsPreBrownianReal` marginal law. -/
+`IsPreBrownianReal` marginal law.
+@isnad1 id=eq.4h6v.s6.a06218f423a2 from=translated src=- shape=dd7da0d0 vocab=33abcfe1
+-/
 theorem feynmanU_eq_integral_of_map
     {B : ℝ → Ω → ℝ} {g : ℝ → ℝ} {t : ℝ}
     (h_aem : AEMeasurable (B t) μ)
@@ -883,7 +913,9 @@ expectation `E[g(x + B_t)]`, assuming:
 * `B 0 = 0` a.s.
 * `B_t − B_0 ∼ N(0, t)` (Gaussian increments at the origin),
 * `B_t` is measurable,
-* `g` is continuous. -/
+* `g` is continuous.
+@isnad1 id=eq.5h6v.s7.a00271905afb from=translated src=- shape=aca04698 vocab=5a61505a
+-/
 theorem feynmanU_eq_expectation
     {B : ℝ → Ω → ℝ} {g : ℝ → ℝ}
     (hB_meas : ∀ t, Measurable (B t))
@@ -911,7 +943,9 @@ theorem feynmanU_eq_expectation
   exact feynmanU_eq_integral_of_map (hB_meas t).aemeasurable h_map_Bt hg_cont ht x
 
 /-- The boundary condition: at `t = 0`, the Feynman-Kac expectation equals `g(x)`
-(since `B 0 = 0` a.s. and `μ` is a probability measure). -/
+(since `B 0 = 0` a.s. and `μ` is a probability measure).
+@isnad1 id=eq.1h5v.s6.0feb3da06224 from=translated src=- shape=08b84adc vocab=ca18b5ec
+-/
 theorem feynmanKac_boundary [IsProbabilityMeasure μ]
     {B : ℝ → Ω → ℝ} {g : ℝ → ℝ}
     (hB_zero : ∀ᵐ ω ∂μ, B 0 ω = 0) (x : ℝ) :
@@ -926,7 +960,9 @@ theorem feynmanKac_boundary [IsProbabilityMeasure μ]
 `f ∈ C²_b`, `E[f(Bₜ)] = f(0) + ½·∫₀ᵗ E[f″(Bₛ)] ds` for `t > 0`. This is the expectation form of
 the analytic Feynman–Kac identity `heatConvolution_eq_add_integral_deriv`, transported across the
 bridge `feynmanU_eq_expectation` (`∫ g·K(r,·) = E[g(B_r)]`). The `½ f″` term is the signature of
-the quadratic variation of Brownian motion — the source of the Itô correction. -/
+the quadratic variation of Brownian motion — the source of the Itô correction.
+@isnad1 id=eq.10h10v.s8.cf7c7eaa9d74 from=translated src=- shape=9444555f vocab=9a21928c
+-/
 theorem expectation_ito
     {B : ℝ → Ω → ℝ}
     (hB_meas : ∀ t, Measurable (B t))
@@ -959,7 +995,9 @@ theorem expectation_ito
 (Degenne) reading of `expectation_ito`. For `f ∈ C²_b` and `t > 0`,
 `E[f(X_t)] = f(0) + ½·∫₀ᵗ E[f″(X_s)] ds`. The increment-law hypotheses are discharged from the
 marginal law `IsPreBrownianReal.hasLaw_eval` through the shared transfer `feynmanU_eq_integral_of_map`.
-(`X` is `ℝ≥0`-indexed; the `∫₀ᵗ` runs over real `s`, so `X` is read at `·.toNNReal`.) -/
+(`X` is `ℝ≥0`-indexed; the `∫₀ᵗ` runs over real `s`, so `X` is read at `·.toNNReal`.)
+@isnad1 id=eq.8h10v.s8.0de51062ea38 from=translated src=- shape=8149b986 vocab=d5ed455c
+-/
 theorem expectation_ito_isPreBrownian {X : ℝ≥0 → Ω → ℝ} (hX : IsPreBrownianReal X μ)
     {t : ℝ} (ht : 0 < t) {f f' f'' : ℝ → ℝ}
     (hf : ∀ x, HasDerivAt f (f' x) x) (hf' : ∀ x, HasDerivAt f' (f'' x) x)
@@ -1001,7 +1039,9 @@ continuous with `|h z| ≤ eᶻ` and `t > 0`,
 `hasDerivAt_phi`: the `s`-derivative is dominated, uniformly over `s ∈ (t/2, 3t/2)`, by the
 integrable envelope `(2√3/t²)·eᶻ·((z−x)²+3t/2)·K(3t/2, z−x)`, via the temporal monotonicity
 `K(s, w) ≤ √3·K(3t/2, w)`. Differentiating the kernel (not the payoff) is what frees `h` of any
-regularity beyond exponential growth — the call payoff's kink is irrelevant. -/
+regularity beyond exponential growth — the call payoff's kink is irrelevant.
+@isnad1 id=hasderiv.3h3v.s7.30b3271c140a from=translated src=- shape=f8bebe75 vocab=f37459f4
+-/
 theorem hasDerivAt_feynmanU_t {t : ℝ} (ht : 0 < t) {h : ℝ → ℝ} (hhc : Continuous h)
     (hh : ∀ z, |h z| ≤ Real.exp z) (x : ℝ) :
     HasDerivAt (fun s ↦ feynmanU h s x)
@@ -1052,7 +1092,9 @@ continuous with `|h z| ≤ eᶻ` and `t > 0`,
 `∂_x (feynmanU h t x) = ∫ z, h z · ((z−x)/t)·K(t, z−x) dz`. Differentiating the shifted kernel in
 `x` via `hasDerivAt_heatKernel_x`; dominated, uniformly over `x' ∈ ball x 1`, by the integrable
 envelope `(√2·e^{1/2t}/t)·eᶻ·((z−x)²+2)·K(2t, z−x)` (`integrable_exp_mul_poly_heatKernel` at σ=2t),
-via the spatial monotonicity `heatKernel_shift_le`. -/
+via the spatial monotonicity `heatKernel_shift_le`.
+@isnad1 id=hasderiv.3h3v.s7.8a30f56bf5ad from=translated src=- shape=96314a55 vocab=2e71f9c6
+-/
 theorem hasDerivAt_feynmanU_x {t : ℝ} (ht : 0 < t) {h : ℝ → ℝ} (hhc : Continuous h)
     (hh : ∀ z, |h z| ≤ Real.exp z) (x : ℝ) :
     HasDerivAt (fun x' ↦ feynmanU h t x')
@@ -1108,7 +1150,9 @@ theorem hasDerivAt_feynmanU_x {t : ℝ} (ht : 0 < t) {h : ℝ → ℝ} (hhc : Co
 /-- **Second space-derivative of the Feynman–Kac function**. The derivative of the first-space-
 derivative integral is `∫ z, h z · K(t, z−x)·((z−x)²−t)/t² dz`. Same template, now differentiating
 `hasDerivAt_heatKernel_x_x`; dominated over `x' ∈ ball x 1` by the envelope at `σ=2t, d=3+t`
-(using `|(z−x')²−t| ≤ 3((z−x)²+(3+t))`). -/
+(using `|(z−x')²−t| ≤ 3((z−x)²+(3+t))`).
+@isnad1 id=hasderiv.3h3v.s8.c9b0b4ad2b0f from=translated src=- shape=a18f4ae6 vocab=b16884c8
+-/
 theorem hasDerivAt_feynmanU_xx {t : ℝ} (ht : 0 < t) {h : ℝ → ℝ} (hhc : Continuous h)
     (hh : ∀ z, |h z| ≤ Real.exp z) (x : ℝ) :
     HasDerivAt (fun x' ↦ ∫ z, h z * ((z - x') / t * heatKernel t (z - x')) ∂volume)
@@ -1189,7 +1233,9 @@ theorem hasDerivAt_feynmanU_xx {t : ℝ} (ht : 0 < t) {h : ℝ → ℝ} (hhc : C
 `hasFDerivAt_heatKernel` load-bearing for pricing. Pointwise derivative: `hasDerivAt_heatKernel_comp`.
 The uniform domination on `s ∈ (τ/2, 3τ/2)` bounds the two terms *separately* by Gaussian-moment
 envelopes (`integrable_exp_mul_poly_heatKernel`) via `heatKernel_loc_le` + `curve_sq_ratio_le` /
-`curve_abs_ratio_le` — no single mega-constant — fed to `hasDerivAt_integral_mul_kernelFamily`. -/
+`curve_abs_ratio_le` — no single mega-constant — fed to `hasDerivAt_integral_mul_kernelFamily`.
+@isnad1 id=hasderiv.4h5v.s8.f98870b2dafb from=translated src=- shape=0a4b9b47 vocab=8b6b778b
+-/
 theorem hasDerivAt_feynmanU_comp {h : ℝ → ℝ} (hhc : Continuous h) (hh : ∀ z, |h z| ≤ Real.exp z)
     {α β x₀ τ : ℝ} (hα : 0 < α) (hτ : 0 < τ) :
     HasDerivAt (fun s ↦ feynmanU h (α * s) (x₀ + β * s))
@@ -1299,7 +1345,9 @@ theorem hasDerivAt_feynmanU_comp {h : ℝ → ℝ} (hhc : Continuous h) (hh : �
 *values*). Pointwise on the kernel: `K·((z−x)²−t)/(2t²) = ½·K·((z−x)²−t)/t²`. Combined with
 `hasDerivAt_feynmanU_t` (`∂_t u = ∫ h·K·((z−x)²−t)/(2t²)`) and `hasDerivAt_feynmanU_xx`
 (`∂_xx u = ∫ h·K·((z−x)²−t)/t²`) this is the heat equation for `u = feynmanU h`. Consumed by the
-Black–Scholes-PDE keystone `bsV_satisfies_bs_pde_via_feynmanKac` (`sc-bs-pde-feynman-kac`). -/
+Black–Scholes-PDE keystone `bsV_satisfies_bs_pde_via_feynmanKac` (`sc-bs-pde-feynman-kac`).
+@isnad1 id=eq.1h3v.s8.a29a5067582b from=translated src=- shape=b95bfe3e vocab=d28305a0
+-/
 theorem feynmanU_heat_equation {t : ℝ} (ht : 0 < t) (h : ℝ → ℝ) (x : ℝ) :
     (∫ z, h z * (heatKernel t (z - x) * ((z - x) ^ 2 - t) / (2 * t ^ 2)) ∂volume)
       = (1 / 2) * ∫ z, h z * (heatKernel t (z - x) * ((z - x) ^ 2 - t) / t ^ 2) ∂volume := by

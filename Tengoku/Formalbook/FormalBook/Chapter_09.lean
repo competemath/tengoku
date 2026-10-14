@@ -33,6 +33,9 @@ local notation "ofReal" => ENNReal.ofReal
 open Set ENNReal MeasureTheory Filter intervalIntegral
 
 set_option maxHeartbeats 1000000 in
+/--
+@isnad1 id=eq.0h0v.s6.ed72a8c67b50 from=translated src=- shape=e29c157c vocab=3233922f
+-/
 theorem euler_series : ∑' n : ℕ, ((n : ℝ) ^ 2)⁻¹ = π ^ 2 / 6 := by
   convert_to ∑' n : ℕ, (n : ℝ)⁻¹ ^ 2 = _ using 3 with n
   · simp

@@ -82,7 +82,9 @@ the pricing functional `K ↦ Σ q i · g i K` is itself convex in `K`.
 Proof: at any pair `K₁, K₂` and weights `α + β = 1` with `α, β ≥ 0`,
 each summand `q i · g i (αK₁ + βK₂)` is bounded by `α · (q i · g i K₁) +
 β · (q i · g i K₂)` by pointwise convexity (`g i`'s convexity inequality
-multiplied by `q i ≥ 0`). Summing preserves the inequality. -/
+multiplied by `q i ≥ 0`). Summing preserves the inequality.
+@isnad1 id=convexon.2h4v.s6.da4f02e37f40 from=translated src=- shape=cd94f24c vocab=6848353c
+-/
 theorem statePricePricing_convexOn
     (s : Finset ι) (q : ι → ℝ) (hq : ∀ i ∈ s, 0 ≤ q i)
     (g : ι → ℝ → ℝ) (hg : ∀ i ∈ s, ConvexOn ℝ (Set.univ : Set ℝ) (g i)) :
@@ -105,7 +107,9 @@ theorem statePricePricing_convexOn
         = a * (q i * g i K₁) + b * (q i * g i K₂) from by ring]
 
 /-- **The state-price pricing functional preserves convexity**: stated
-in terms of `statePricePricing` from `Foundations/StatePrices`. -/
+in terms of `statePricePricing` from `Foundations/StatePrices`.
+@isnad1 id=convexon.2h4v.s6.b57cd2a82f29 from=translated src=- shape=193cf9dd vocab=7d21a29a
+-/
 theorem statePricePricing_convexOn_inK
     (s : Finset ι) (q : ι → ℝ) (hq : ∀ i ∈ s, 0 ≤ q i)
     (g : ι → ℝ → ℝ) (hg : ∀ i ∈ s, ConvexOn ℝ (Set.univ : Set ℝ) (g i)) :
@@ -122,7 +126,9 @@ the call-price functional
 
 is convex in `K`. Direct corollary of the payoff being convex
 (`convexOn_call_payoff`) and the linear pricing functional preserving
-convexity (`statePricePricing_convexOn` above). -/
+convexity (`statePricePricing_convexOn` above).
+@isnad1 id=convexon.1h4v.s6.0802d66b923d from=translated src=- shape=e5f39dc3 vocab=97c38e25
+-/
 theorem callPrice_finiteState_convexOn_K (s : Finset ι)
     (S : ι → ℝ) (q : ι → ℝ) (hq : ∀ i ∈ s, 0 ≤ q i) :
     ConvexOn ℝ (Set.univ : Set ℝ)
@@ -143,7 +149,9 @@ the same inequality at the *payoff* level): butterfly non-negativity is
 preserved when passing from payoff to price via the (non-negative) linear
 pricing functional. Passing further to a continuous-density limit yields
 the **Breeden-Litzenberger non-negativity** of the implied PDF — the same
-fact at three scales (discrete payoff, discrete price, continuous density). -/
+fact at three scales (discrete payoff, discrete price, continuous density).
+@isnad1 id=le.1h6v.s7.0fc93d61b6b3 from=translated src=- shape=6b218056 vocab=55ba2d26
+-/
 theorem callPrice_finiteState_butterfly_nonneg (s : Finset ι)
     (S : ι → ℝ) (q : ι → ℝ) (hq : ∀ i ∈ s, 0 ≤ q i) (K₁ K₃ : ℝ) :
     0 ≤ (∑ i ∈ s, q i * max (S i - K₁) 0)

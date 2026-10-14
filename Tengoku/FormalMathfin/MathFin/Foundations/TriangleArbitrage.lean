@@ -38,7 +38,9 @@ def TriangleNoArb (S_AB S_BC S_CA : ℝ) : Prop :=
   S_AB * S_BC * S_CA = 1
 
 /-- **No-arb determines the third rate uniquely**: given `S_AB`, `S_BC` both
-non-zero, the no-arb constraint forces `S_CA = 1 / (S_AB · S_BC)`. -/
+non-zero, the no-arb constraint forces `S_CA = 1 / (S_AB · S_BC)`.
+@isnad1 id=existsun.2h2v.s5.155c5a237f64 from=translated src=- shape=a2101aba vocab=a8e9af33
+-/
 theorem triangleNoArb_solve_third {S_AB S_BC : ℝ}
     (h_ab : S_AB ≠ 0) (h_bc : S_BC ≠ 0) :
     ∃! S_CA : ℝ, TriangleNoArb S_AB S_BC S_CA := by

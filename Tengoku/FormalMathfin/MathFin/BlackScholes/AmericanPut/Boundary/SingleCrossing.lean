@@ -24,7 +24,9 @@ Public entry points include `nonneg_right_of_upward_zeros`, `nonpos_left_of_upwa
 
 namespace MathFin.BlackScholes.AmericanPut.Boundary
 
-/-- Once nonnegative, a function with strictly upward zero crossings stays so. -/
+/-- Once nonnegative, a function with strictly upward zero crossings stays so.
+@isnad1 id=le.4h3v.s7.a9efd005eb26 from=translated src=- shape=7bc1e20e vocab=7e397268
+-/
 theorem nonneg_right_of_upward_zeros {J : ℝ → ℝ} (hJ : Differentiable ℝ J)
     (hcross : ∀ x, J x = 0 → 0 < deriv J x)
     {a b : ℝ} (hab : a ≤ b) (ha : 0 ≤ J a) : 0 ≤ J b := by
@@ -38,7 +40,9 @@ theorem nonneg_right_of_upward_zeros {J : ℝ → ℝ} (hJ : Differentiable ℝ 
       exact neg_neg_of_pos (hcross x hx0)) ⟨hab, le_rfl⟩
   linarith
 
-/-- The corresponding backward invariant for the nonpositive half-line. -/
+/-- The corresponding backward invariant for the nonpositive half-line.
+@isnad1 id=le.4h3v.s7.7b1a1a161795 from=translated src=- shape=de8481f4 vocab=7e397268
+-/
 theorem nonpos_left_of_upward_zeros {J : ℝ → ℝ} (hJ : Differentiable ℝ J)
     (hcross : ∀ x, J x = 0 → 0 < deriv J x)
     {a b : ℝ} (hab : a ≤ b) (hb : J b ≤ 0) : J a ≤ 0 := by
@@ -55,7 +59,9 @@ theorem nonpos_left_of_upward_zeros {J : ℝ → ℝ} (hJ : Differentiable ℝ J
     (show -b ≤ -a by linarith) (show 0 ≤ K (-b) by simpa [K] using hb)
   simpa [K] using h
 
-/-- Strictly upward zero crossings allow at most one zero. -/
+/-- Strictly upward zero crossings allow at most one zero.
+@isnad1 id=eq.4h3v.s7.c133b171ff65 from=translated src=- shape=e41ada35 vocab=956706ca
+-/
 theorem upward_zero_unique {J : ℝ → ℝ} (hJ : Differentiable ℝ J)
     (hcross : ∀ x, J x = 0 → 0 < deriv J x)
     {a b : ℝ} (ha : J a = 0) (hb : J b = 0) : a = b := by
@@ -90,6 +96,9 @@ variable (hcross : ∀ x, J x = 0 → 0 < deriv J x)
 
 include hR hJ hRpos hfactor hcross
 
+/--
+@isnad1 id=le.7h4v.s8.5de6b3c78f1f from=translated src=- shape=1b822c0d vocab=4572911e
+-/
 theorem value_le_right_of_nonneg_factor {a b : ℝ} (hab : a ≤ b) (ha : 0 ≤ J a) :
     R a ≤ R b := by
   have hmono : MonotoneOn R (Set.Icc a b) := monotoneOn_of_deriv_nonneg
@@ -100,6 +109,9 @@ theorem value_le_right_of_nonneg_factor {a b : ℝ} (hab : a ≤ b) (ha : 0 ≤ 
       exact mul_nonneg (hRpos x).le (nonneg_right_of_upward_zeros hJ hcross hx'.1 ha))
   exact hmono ⟨le_rfl, hab⟩ ⟨hab, le_rfl⟩ hab
 
+/--
+@isnad1 id=le.7h4v.s8.f56c781d3e0e from=translated src=- shape=ba2483e1 vocab=4572911e
+-/
 theorem value_le_left_of_nonpos_factor {a b : ℝ} (hab : a ≤ b) (hb : J b ≤ 0) :
     R b ≤ R a := by
   have hanti : AntitoneOn R (Set.Icc a b) := antitoneOn_of_deriv_nonpos
@@ -111,7 +123,9 @@ theorem value_le_left_of_nonpos_factor {a b : ℝ} (hab : a ≤ b) (hb : J b ≤
         (nonpos_left_of_upward_zeros hJ hcross hx'.2 hb))
   exact hanti ⟨le_rfl, hab⟩ ⟨hab, le_rfl⟩ hab
 
-/-- The function cannot form a hill between two lower values. -/
+/-- The function cannot form a hill between two lower values.
+@isnad1 id=le.7h5v.s8.ad88a5874d16 from=translated src=- shape=bef1eb8d vocab=c9dbdd0a
+-/
 theorem value_between_le_max_of_upward_factor {x y z : ℝ}
     (hxy : x ≤ y) (hyz : y ≤ z) : R y ≤ max (R x) (R z) := by
   by_cases hy : 0 ≤ J y
@@ -120,6 +134,9 @@ theorem value_between_le_max_of_upward_factor {x y z : ℝ}
   · exact (value_le_left_of_nonpos_factor hR hJ hRpos hfactor hcross hxy
       (le_of_not_ge hy)).trans (le_max_left _ _)
 
+/--
+@isnad1 id=ordconne.5h3v.s7.d7174934b41a from=translated src=- shape=6d8d16e7 vocab=e02623e6
+-/
 theorem sublevel_ordConnected_of_upward_factor (L : ℝ) :
     Set.OrdConnected {x | R x < L} := by
   rw [Set.ordConnected_iff]
@@ -127,7 +144,9 @@ theorem sublevel_ordConnected_of_upward_factor (L : ℝ) :
   exact (value_between_le_max_of_upward_factor hR hJ hRpos hfactor hcross
     hy.1 hy.2).trans_lt (max_lt hx hz)
 
-/-- Every stationary point is a GLOBAL minimum, without assuming it exists. -/
+/-- Every stationary point is a GLOBAL minimum, without assuming it exists.
+@isnad1 id=le.6h4v.s8.50f7017394ca from=translated src=- shape=eaa8f5fd vocab=4572911e
+-/
 theorem global_min_of_upward_factor {z : ℝ} (hz : deriv R z = 0) (x : ℝ) :
     R z ≤ R x := by
   have hzJ : J z = 0 := by
@@ -137,7 +156,9 @@ theorem global_min_of_upward_factor {z : ℝ} (hz : deriv R z = 0) (x : ℝ) :
   · exact value_le_right_of_nonneg_factor hR hJ hRpos hfactor hcross hzx (le_of_eq hzJ.symm)
   · exact value_le_left_of_nonpos_factor hR hJ hRpos hfactor hcross hxz (le_of_eq hzJ)
 
-/-- A level with a value below it cannot contain a stationary point. -/
+/-- A level with a value below it cannot contain a stationary point.
+@isnad1 id=ne.6h3v.s8.971a14e91e13 from=translated src=- shape=fcb88e62 vocab=4e2ca0dd
+-/
 theorem deriv_ne_zero_of_exists_lower_of_upward_factor {z : ℝ}
     (hlower : ∃ x, R x < R z) : deriv R z ≠ 0 := by
   intro hz
@@ -145,7 +166,9 @@ theorem deriv_ne_zero_of_exists_lower_of_upward_factor {z : ℝ}
   exact (not_lt_of_ge (global_min_of_upward_factor hR hJ hRpos hfactor hcross hz x)) hx
 
 /-- Three ordered points cannot have the same value. Rolle's theorem would
-give two distinct zeros of the upward-crossing slope factor. -/
+give two distinct zeros of the upward-crossing slope factor.
+@isnad1 id=false.9h5v.s8.45132150b401 from=translated src=- shape=1f1f0fcb vocab=4e2ca0dd
+-/
 theorem no_three_equal_values_of_upward_factor {a b c : ℝ}
     (hab : a < b) (hbc : b < c) (heab : R a = R b) (hebc : R b = R c) : False := by
   obtain ⟨u, hu, hud⟩ := exists_deriv_eq_zero hab hR.continuous.continuousOn heab
@@ -162,7 +185,9 @@ theorem no_three_equal_values_of_upward_factor {a b c : ℝ}
 end PositiveFactor
 
 /-- A set of real numbers with no ordered triple is covered by two points.
-Unlike a bare `ncard` bound, this also rules out infinite sets. -/
+Unlike a bare `ncard` bound, this also rules out infinite sets.
+@isnad1 id=ex.1h1v.s6.35a9a7961320 from=translated src=- shape=f074830b vocab=921788ad
+-/
 theorem subset_pair_of_no_ordered_triple {s : Set ℝ}
     (h : ∀ a ∈ s, ∀ b ∈ s, ∀ c ∈ s, a < b → b < c → False) :
     ∃ a b : ℝ, s ⊆ {a, b} := by

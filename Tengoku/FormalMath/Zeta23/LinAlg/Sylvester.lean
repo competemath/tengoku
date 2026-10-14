@@ -48,6 +48,9 @@ def PosDefOn (A : Matrix n n 𝕜) (W : Submodule 𝕜 (n → 𝕜)) : Prop :=
   ∀ x ∈ W, x ≠ 0 → 0 < hermForm A x
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=eq.0h6v.s7.e23af124bc76 from=translated src=- shape=7aae8d18 vocab=c090aa0c
+-/
 lemma hermForm_conj {m : Type*} [Fintype m] [DecidableEq m]
     (Q : Matrix n n 𝕜) (B : Matrix n m 𝕜) (x : m → 𝕜) :
     hermForm (Bᴴ * Q * B) x = hermForm Q (B *ᵥ x) := by
@@ -57,19 +60,27 @@ lemma hermForm_conj {m : Type*} [Fintype m] [DecidableEq m]
     ← star_mulVec]
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=eq.0h5v.s6.986a0574029a from=translated src=- shape=38135fa3 vocab=272b0171
+-/
 lemma hermForm_add (A B : Matrix n n 𝕜) (x : n → 𝕜) :
     hermForm (A + B) x = hermForm A x + hermForm B x := by
   unfold hermForm
   simp [add_mulVec, dotProduct_add, map_add]
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=eq.0h5v.s6.babbd53a2fcc from=translated src=- shape=38135fa3 vocab=8ad17fa7
+-/
 lemma hermForm_sub (A B : Matrix n n 𝕜) (x : n → 𝕜) :
     hermForm (A - B) x = hermForm A x - hermForm B x := by
   unfold hermForm
   simp [sub_mulVec, dotProduct_sub, map_sub]
 
 omit [DecidableEq n] in
-/-- `hermForm A x ≥ 0` when `A` is PSD. -/
+/-- `hermForm A x ≥ 0` when `A` is PSD.
+@isnad1 id=le.1h4v.s5.2185beae40e7 from=translated src=- shape=6f78fedd vocab=c6f9094f
+-/
 lemma hermForm_nonneg_of_posSemidef {A : Matrix n n 𝕜} (hA : A.PosSemidef)
     (x : n → 𝕜) : 0 ≤ hermForm A x :=
   hA.re_dotProduct_nonneg x
@@ -78,7 +89,9 @@ lemma hermForm_nonneg_of_posSemidef {A : Matrix n n 𝕜} (hA : A.PosSemidef)
 Hermitian form is positive definite has dimension at most `posIndex hA`.
 
 This is the subspace characterization of `n₊` that makes `lem:inertia`
-trivial. -/
+trivial.
+@isnad1 id=le.2h4v.s9.1362bb05331c from=translated src=- shape=a53146b4 vocab=e9d3234a
+-/
 theorem finrank_le_posIndex_of_posDefOn {A : Matrix n n 𝕜} (hA : A.IsHermitian)
     {W : Submodule 𝕜 (n → 𝕜)} (hW : PosDefOn A W) :
     Module.finrank 𝕜 W ≤ posIndex hA := by
@@ -119,7 +132,9 @@ positive definite on `range A₊`, which has dimension `posIndex hA`.
 For `z = A₊ · y ∈ range A₊`, the eigenbasis coordinates `c := Uᴴz` satisfy
 `cᵢ = λᵢ⁺ · (Uᴴy)ᵢ`, so `cᵢ = 0` whenever `λᵢ ≤ 0`. Hence
 `zᴴAz = ∑ᵢ λᵢ|cᵢ|² = ∑_{λᵢ>0} λᵢ|cᵢ|²`, each term ≥ 0; and `z ≠ 0 ⟹ c ≠ 0`
-(U unitary) forces some positive term. -/
+(U unitary) forces some positive term.
+@isnad1 id=posdefon.1h3v.s8.a66a04cd9b73 from=translated src=- shape=5eb301ad vocab=6d7af6c8
+-/
 theorem posDefOn_range_hermPosPart {A : Matrix n n 𝕜} (hA : A.IsHermitian) :
     PosDefOn A (LinearMap.range (hermPosPart hA).mulVecLin) := by
   rintro _ ⟨y, rfl⟩ hne
@@ -177,14 +192,18 @@ theorem posDefOn_range_hermPosPart {A : Matrix n n 𝕜} (hA : A.IsHermitian) :
     rw [posPart_eq_self.mpr hevi.le]; exact pow_pos hevi 2
   exact mul_pos (mul_pos hevi hpp) hdi'
 
-/-- `hermForm I x = ∑ᵢ ‖xᵢ‖²` (the squared `ℓ²` norm). -/
+/-- `hermForm I x = ∑ᵢ ‖xᵢ‖²` (the squared `ℓ²` norm).
+@isnad1 id=eq.0h3v.s6.bab562c0604e from=translated src=- shape=539bd81a vocab=68879002
+-/
 lemma hermForm_one (x : n → 𝕜) :
     hermForm (1 : Matrix n n 𝕜) x = ∑ i, ‖x i‖ ^ 2 := by
   unfold hermForm
   simp only [one_mulVec, dotProduct, Pi.star_apply, RCLike.star_def, map_sum,
     RCLike.conj_mul, ← RCLike.ofReal_pow, RCLike.ofReal_re]
 
-/-- `∑ᵢ ‖cᵢ‖²` is preserved by the unitary change of variables `c = Uᴴx`. -/
+/-- `∑ᵢ ‖cᵢ‖²` is preserved by the unitary change of variables `c = Uᴴx`.
+@isnad1 id=eq.1h4v.s8.e4f993c3b0eb from=translated src=- shape=b39383f4 vocab=fcc7e386
+-/
 lemma sum_normSq_unitary_mulVec {A : Matrix n n 𝕜} (hA : A.IsHermitian)
     (x : n → 𝕜) :
     ∑ i, ‖(star (hA.eigenvectorUnitary : Matrix n n 𝕜) *ᵥ x) i‖ ^ 2
@@ -196,7 +215,9 @@ lemma sum_normSq_unitary_mulVec {A : Matrix n n 𝕜} (hA : A.IsHermitian)
   rw [show specMap hA 1 = (1 : Matrix n n 𝕜) by unfold specMap; simp]
 
 /-- `hermForm A x ≤ θ · ‖x‖²` whenever every eigenvalue of `A` is `≤ θ`.
-Equivalently, `A ⪯ θ·I`. -/
+Equivalently, `A ⪯ θ·I`.
+@isnad1 id=le.2h5v.s7.9529a919b31d from=translated src=- shape=acccade3 vocab=9dfc0788
+-/
 lemma hermForm_le_of_eigenvalues_le {A : Matrix n n 𝕜} (hA : A.IsHermitian)
     {θ : ℝ} (hθ : ∀ i, hA.eigenvalues i ≤ θ) (x : n → 𝕜) :
     hermForm A x ≤ θ * ∑ i, ‖x i‖ ^ 2 := by
@@ -211,7 +232,9 @@ the form satisfies `hermForm A x > θ · ‖x‖²` for `x ≠ 0`. The dimension
 this range is `posIndexAbove hA θ` (via `rank_specMap`).
 
 The proof is identical to `posDefOn_range_hermPosPart` (which is the `θ=0`
-case) with `λᵢ > 0` replaced by `λᵢ > θ`. -/
+case) with `λᵢ > 0` replaced by `λᵢ > θ`.
+@isnad1 id=lt.3h5v.s9.520264af90de from=translated src=- shape=b4b52f5c vocab=ffaa9783
+-/
 theorem hermForm_gt_on_range_truncPos {A : Matrix n n 𝕜} (hA : A.IsHermitian)
     (θ : ℝ) :
     ∀ x ∈ LinearMap.range (specMap hA (fun t => (t - θ)⁺)).mulVecLin, x ≠ 0 →
@@ -286,6 +309,9 @@ theorem hermForm_gt_on_range_truncPos {A : Matrix n n 𝕜} (hA : A.IsHermitian)
   rw [heq]
   exact mul_pos (sub_pos.mpr hevi) (mul_pos hgi hdi)
 
+/--
+@isnad1 id=eq.1h4v.s10.5070f678977e from=translated src=- shape=ecd039f1 vocab=6d599c09
+-/
 lemma finrank_range_truncPos {A : Matrix n n 𝕜} (hA : A.IsHermitian) (θ : ℝ) :
     Module.finrank 𝕜 (LinearMap.range (specMap hA (fun t => (t - θ)⁺)).mulVecLin)
       = posIndexAbove hA θ := by
@@ -295,12 +321,16 @@ lemma finrank_range_truncPos {A : Matrix n n 𝕜} (hA : A.IsHermitian) (θ : �
   simp only [mem_filter, mem_univ, true_and, ne_eq, posPart_eq_zero, not_le,
     sub_pos]
 
-/-- The dimension of `range A₊` is `posIndex hA`. -/
+/-- The dimension of `range A₊` is `posIndex hA`.
+@isnad1 id=eq.1h3v.s10.48d59c25d116 from=translated src=- shape=8ac79e96 vocab=dfa456b8
+-/
 lemma finrank_range_hermPosPart {A : Matrix n n 𝕜} (hA : A.IsHermitian) :
     Module.finrank 𝕜 (LinearMap.range (hermPosPart hA).mulVecLin) = posIndex hA := by
   rw [← rank_hermPosPart hA]; rfl
 
-/-- **Sylvester's law of inertia (subspace characterization)**. -/
+/-- **Sylvester's law of inertia (subspace characterization)**.
+@isnad1 id=ex.1h3v.s9.1e532f01c458 from=translated src=- shape=d516a042 vocab=c3977ee0
+-/
 theorem posIndex_eq_max_finrank_posDefOn {A : Matrix n n 𝕜} (hA : A.IsHermitian) :
     ∃ W : Submodule 𝕜 (n → 𝕜), PosDefOn A W ∧
       Module.finrank 𝕜 W = posIndex hA :=

@@ -26,6 +26,9 @@ namespace MathFin.BlackScholes.AmericanPut.Boundary
 open Set Filter
 open scoped Topology ContDiff
 
+/--
+@isnad1 id=eventual.3h2v.s7.fff55509dc20 from=translated src=- shape=17f1a91b vocab=dce7fdac
+-/
 theorem eventually_lt_tangent_of_second_deriv_neg {b : ℝ → ℝ} {T : ℝ}
     (hb : ContDiffOn ℝ ∞ b (Ioi 0)) (hT : 0 < T) (hneg : deriv (deriv b) T < 0) :
     ∀ᶠ t in 𝓝 T, t ≠ T → b t < b T + deriv b T * (t - T) := by

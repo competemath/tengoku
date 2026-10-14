@@ -43,13 +43,17 @@ def payerSwapValue (P0 Pn K A : ℝ) : ℝ := P0 - Pn - K * A
 noncomputable def parSwapRate (P0 Pn A : ℝ) : ℝ := (P0 - Pn) / A
 
 /-- The annuity of a nonempty schedule with positive daycount and positive
-discount factors is positive. -/
+discount factors is positive.
+@isnad1 id=lt.3h4v.s6.fd9288c46518 from=translated src=- shape=55b0c8c3 vocab=3ae72124
+-/
 theorem annuity_pos {ι : Type*} {δ : ℝ} {P : ι → ℝ} {s : Finset ι} (hδ : 0 < δ)
     (hP : ∀ i ∈ s, 0 < P i) (hs : s.Nonempty) : 0 < annuity δ P s :=
   mul_pos hδ (Finset.sum_pos hP hs)
 
 /-- **The par identity**: a payer swap is worth zero iff its fixed rate is the
-par swap rate — pure algebra, valid for any nonzero annuity. -/
+par swap rate — pure algebra, valid for any nonzero annuity.
+@isnad1 id=iff.1h4v.s5.e846f81ce2af from=translated src=- shape=5b7189c4 vocab=12e956f2
+-/
 theorem payerSwapValue_eq_zero_iff (P0 Pn K : ℝ) {A : ℝ} (hA : A ≠ 0) :
     payerSwapValue P0 Pn K A = 0 ↔ K = parSwapRate P0 Pn A := by
   show P0 - Pn - K * A = 0 ↔ K = (P0 - Pn) / A
@@ -58,7 +62,9 @@ theorem payerSwapValue_eq_zero_iff (P0 Pn K : ℝ) {A : ℝ} (hA : A ≠ 0) :
 
 /-- The par identity on the `zcb` curve: a positive daycount and a nonempty
 payment schedule make the annuity positive (`zcb` is a positive exponential),
-so no positivity hypotheses are needed. -/
+so no positivity hypotheses are needed.
+@isnad1 id=iff.2h8v.s6.377f91b423a6 from=translated src=- shape=5058c62f vocab=84f8c196
+-/
 theorem payerSwapValue_zcb_eq_zero_iff {ι : Type*} (r δ K T0 Tn : ℝ) (T : ι → ℝ)
     (s : Finset ι) (hδ : 0 < δ) (hs : s.Nonempty) :
     payerSwapValue (zcb r 0 T0) (zcb r 0 Tn) K (annuity δ (fun i ↦ zcb r 0 (T i)) s) = 0 ↔

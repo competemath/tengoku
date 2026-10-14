@@ -44,7 +44,9 @@ variable {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : Measure Ω}
 
 /-- **The `n`-claim aggregate MGF is the `n`-th power of the common claim MGF.** For i.i.d.
 claim sizes `X` (independent, identically distributed), the MGF of the `n`-claim aggregate
-`∑_{i<n} Xᵢ` is `M_X(t)ⁿ`. -/
+`∑_{i<n} Xᵢ` is `M_X(t)ⁿ`.
+@isnad1 id=eq.3h6v.s6.f95766fff11c from=translated src=- shape=baea9b89 vocab=38c0a439
+-/
 lemma mgf_range_sum_of_iid (t : ℝ) (X : ℕ → Ω → ℝ)
     (hindep : iIndepFun X μ) (hmeas : ∀ i, Measurable (X i))
     (hident : ∀ i, IdentDistrib (X i) (X 0) μ μ) (n : ℕ) :
@@ -59,7 +61,9 @@ lemma mgf_range_sum_of_iid (t : ℝ) (X : ℕ → Ω → ℝ)
 
 /-- **The compound-Poisson aggregate-loss MGF.** For a Poisson claim count `N ∼ Poisson(λ)`
 and i.i.d. claim sizes `Xᵢ`, the aggregate loss `S = ∑_{i<N} Xᵢ` has moment generating
-function `exp(λ·(M_X(t) − 1))` — the Poisson PGF evaluated at the common claim MGF. -/
+function `exp(λ·(M_X(t) − 1))` — the Poisson PGF evaluated at the common claim MGF.
+@isnad1 id=eq.3h6v.s7.eb43f4df3b00 from=translated src=- shape=25ece3c1 vocab=375ea5a2
+-/
 theorem compoundPoisson_mgf (lam : ℝ≥0) (t : ℝ) (X : ℕ → Ω → ℝ)
     (hindep : iIndepFun X μ) (hmeas : ∀ i, Measurable (X i))
     (hident : ∀ i, IdentDistrib (X i) (X 0) μ μ) :

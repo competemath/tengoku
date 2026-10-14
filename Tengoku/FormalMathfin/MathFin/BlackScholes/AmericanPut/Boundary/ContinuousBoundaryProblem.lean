@@ -48,6 +48,9 @@ structure ContinuousBoundaryPutSolution (k h : ℝ) (p : ℝ → ℝ → ℝ) (b
     (𝓝[>] (b t)) (𝓝 (-Real.exp (b t)))
   decay : ∀ t, 0 ≤ t → Tendsto (fun x => p x t) atTop (𝓝 0)
 
+/--
+@isnad1 id=continuo.1h4v.s4.caf309043c67 from=translated src=- shape=9e8e213b vocab=e2197dd5
+-/
 theorem DividendPutSolution.toContinuousBoundaryPutSolution {k h : ℝ}
     {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ} (hp : DividendPutSolution k h p b) :
     ContinuousBoundaryPutSolution k h p b where
@@ -76,6 +79,9 @@ namespace ContinuousBoundaryPutSolution
 
 variable {k h : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
 
+/--
+@isnad1 id=dividend.2h4v.s6.8747ece24af2 from=translated src=- shape=9dd8713f vocab=f7c5023f
+-/
 theorem toDividendPutSolution (hp : ContinuousBoundaryPutSolution k h p b)
     (hb : ContDiffOn ℝ ∞ b (Ioi 0)) : DividendPutSolution k h p b where
   rate_pos := hp.rate_pos
@@ -96,12 +102,18 @@ theorem toDividendPutSolution (hp : ContinuousBoundaryPutSolution k h p b)
   gradient_trace := hp.gradient_trace
   decay := hp.decay
 
+/--
+@isnad1 id=le.2h5v.s5.dd1bb75818f4 from=translated src=- shape=88244986 vocab=6847d59d
+-/
 theorem boundary_nonpos (hp : ContinuousBoundaryPutSolution k h p b) {t : ℝ} (ht : 0 < t) :
     b t ≤ 0 := by
   have hv := (putPayoff_nonneg (b t)).trans (hp.dominates (b t) t ht.le)
   rw [hp.exercise (b t) t ht le_rfl] at hv
   exact Real.exp_le_one_iff.mp (by linarith)
 
+/--
+@isnad1 id=contdiff.3h6v.s6.e6293d2719af from=translated src=- shape=c6d32c09 vocab=9d156243
+-/
 theorem price_contDiffAt (hp : ContinuousBoundaryPutSolution k h p b)
     {x t : ℝ} (ht : 0 < t) (hx : b t < x) :
     ContDiffAt ℝ ∞ (fun z : ℝ × ℝ => p z.1 z.2) (x,t) := by
@@ -115,6 +127,9 @@ theorem price_contDiffAt (hp : ContinuousBoundaryPutSolution k h p b)
 
 end ContinuousBoundaryPutSolution
 
+/--
+@isnad1 id=iff.0h4v.s6.8971cdba155e from=translated src=- shape=76234f81 vocab=f7c5023f
+-/
 theorem dividendPutSolution_iff_continuousBoundary_and_smooth {k h : ℝ}
     {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ} :
     DividendPutSolution k h p b ↔

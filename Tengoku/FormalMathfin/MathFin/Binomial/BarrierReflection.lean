@@ -39,7 +39,9 @@ variable {n : ℕ}
 
 /-- **Counting form of André's reflection principle.** For a barrier `0 < a` and terminal
 `b ≤ a`, the number of `n`-step ±1 paths that touch `a` and finish at `b` equals the number
-that finish at `2a − b`. Immediate from `reflectionPrincipleEquiv_below`. -/
+that finish at `2a − b`. Immediate from `reflectionPrincipleEquiv_below`.
+@isnad1 id=eq.2h3v.s6.9087605bd5da from=translated src=- shape=e8402e78 vocab=d7440e60
+-/
 theorem reflection_principle_card (a b : ℤ) (ha : 0 < a) (hb : b ≤ a) :
     Nat.card {ω : Fin n → Bool // HitsLevel a ω ∧ walkPos ω n = b}
       = Nat.card {ω : Fin n → Bool // walkPos ω n = 2 * a - b} :=
@@ -48,7 +50,9 @@ theorem reflection_principle_card (a b : ℤ) (ha : 0 < a) (hb : b ≤ a) :
 /-- **Barrier cash-or-nothing knock-in = vanilla digital at the reflected level** (symmetric
 tree). Under the symmetric `q = 1/2` binomial measure (each path weight `2⁻ⁿ`), the up-and-in
 digital paying `1` on `{touch a, finish b}` (with `b ≤ a`) has the same price as the vanilla
-digital paying `1` on `{finish 2a − b}`. -/
+digital paying `1` on `{finish 2a − b}`.
+@isnad1 id=eq.2h3v.s7.be1f897f6121 from=translated src=- shape=3756d50f vocab=7162c0c6
+-/
 theorem barrierDigital_knockIn_reflection (a b : ℤ) (ha : 0 < a) (hb : b ≤ a) :
     (Nat.card {ω : Fin n → Bool // HitsLevel a ω ∧ walkPos ω n = b} : ℝ) / 2 ^ n
       = (Nat.card {ω : Fin n → Bool // walkPos ω n = 2 * a - b} : ℝ) / 2 ^ n := by
@@ -100,7 +104,9 @@ is `2·#{end > a} + #{end = a}` — the discrete `P(max ≥ a) = 2·P(S_n > a) +
 Proof: trichotomise the hit-set by the terminal position. Paths ending `> a` or `= a` hit `a`
 automatically (`hitAboveEquiv`, `hitAtEquiv`, discrete IVT), and reflection at the first hit
 (`reflectHitLtGt`) bijects the below-barrier endpoints onto the above-barrier ones, so
-`#{hit a, end < a} = #{end > a}`. -/
+`#{hit a, end < a} = #{end > a}`.
+@isnad1 id=eq.1h2v.s6.69449b076f12 from=translated src=- shape=e4f6ec10 vocab=a1d2901a
+-/
 theorem binomial_maximal_distribution_card (a : ℤ) (ha : 0 < a) :
     Nat.card {ω : Fin n → Bool // HitsLevel a ω}
       = 2 * Nat.card {ω : Fin n → Bool // a < walkPos ω n}

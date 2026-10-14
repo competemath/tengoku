@@ -30,10 +30,15 @@ open Assembly
 /-- `c_q := log q + 2 log 2 − 1`; `c_1 = c₀`. -/
 def cq (q : ℕ) : ℝ := Real.log q + Assembly.c₀
 
+/--
+@isnad1 id=lt.1h1v.s4.487b908df084 from=translated src=- shape=f8216502 vocab=8c340746
+-/
 lemma cq_pos {q : ℕ} (hq : 1 ≤ q) : 0 < cq q :=
   add_pos_of_nonneg_of_pos (Real.log_nonneg (by exact_mod_cast hq)) c₀_pos
 
-/-- `ℓ_{1,χ}(T) = l(T) + c_q` for `T > 0`. -/
+/-- `ℓ_{1,χ}(T) = l(T) + c_q` for `T > 0`.
+@isnad1 id=eq.2h2v.s5.ef184e2782f8 from=translated src=- shape=b0fe9cc4 vocab=a976b4dc
+-/
 lemma ell1q_eq {q : ℕ} (hq : 1 ≤ q) {T : ℝ} (hT : 0 < T) : ell1q q T = l T + cq q := by
   have hq0 : (0:ℝ) < q := by exact_mod_cast hq
   unfold ell1q cq Assembly.c₀ l
@@ -41,9 +46,15 @@ lemma ell1q_eq {q : ℕ} (hq : 1 ≤ q) {T : ℝ} (hT : 0 < T) : ell1q q T = l T
     Real.log_mul hq0.ne' (by positivity)]
   ring
 
+/--
+@isnad1 id=lt.3h2v.s5.75b0b2e6ad67 from=translated src=- shape=541b0760 vocab=e7870fa7
+-/
 lemma ell1q_pos {q : ℕ} (hq : 1 ≤ q) {T : ℝ} (hT : 0 < T) (hl : 0 < l T) : 0 < ell1q q T := by
   rw [ell1q_eq hq hT]; linarith [cq_pos hq]
 
+/--
+@isnad1 id=eq.2h3v.s6.c06e759bf219 from=translated src=- shape=9a40d503 vocab=e3ea46b3
+-/
 lemma lam1q_eq (P : Params) {q : ℕ} (hq : 1 ≤ q) {T : ℝ} (hT : 0 < T) :
     lam1q P q T = P.lam * l T / (l T + cq q) := by
   unfold lam1q Params.L
@@ -52,6 +63,9 @@ lemma lam1q_eq (P : Params) {q : ℕ} (hq : 1 ≤ q) {T : ℝ} (hT : 0 < T) :
 section Lam1q
 variable (P : Params) {q : ℕ} {T : ℝ}
 
+/--
+@isnad1 id=le.4h3v.s5.1502cfec2fff from=translated src=- shape=298835a5 vocab=d406ee1c
+-/
 lemma lam1q_le (hq : 1 ≤ q) (hT : 0 < T) (hlam : 0 ≤ P.lam) (hl : 0 < l T) :
     lam1q P q T ≤ P.lam := by
   rw [lam1q_eq P hq hT]
@@ -59,6 +73,9 @@ lemma lam1q_le (hq : 1 ≤ q) (hT : 0 < T) (hlam : 0 ≤ P.lam) (hl : 0 < l T) :
   rw [div_le_iff₀ (by linarith)]
   nlinarith
 
+/--
+@isnad1 id=le.4h3v.s6.4c7a4e60f286 from=translated src=- shape=54b6b2e7 vocab=9f4c6871
+-/
 lemma sub_lam1q_le (hq : 1 ≤ q) (hT : 0 < T) (hlam : 0 ≤ P.lam) (hl : 0 < l T) :
     P.lam - lam1q P q T ≤ P.lam * cq q / l T := by
   rw [lam1q_eq P hq hT]
@@ -69,12 +86,17 @@ lemma sub_lam1q_le (hq : 1 ≤ q) (hT : 0 < T) (hlam : 0 ≤ P.lam) (hl : 0 < l 
   apply div_le_div_of_nonneg_left (by positivity) hl
   linarith
 
+/--
+@isnad1 id=lt.4h3v.s6.0408377196c6 from=translated src=- shape=b9f38c6a vocab=d406ee1c
+-/
 lemma lam1q_pos (hq : 1 ≤ q) (hT : 0 < T) (hlam : 0 < P.lam) (hl : 0 < l T) :
     0 < lam1q P q T := by
   rw [lam1q_eq P hq hT]; have hc := cq_pos hq; positivity
 
 /-- `H(λ_{1,χ}) ≥ H(λ) − c_q/(λ l)` (the §6 step "H(λ₁) ≥ H(λ) − 1/(λl)" with c₀ → c_q; exact
-identity `H(λ) − H(λ₁) = c_q/(λl) − (λ−λ₁)/3`). -/
+identity `H(λ) − H(λ₁) = c_q/(λl) − (λ−λ₁)/3`).
+@isnad1 id=le.4h3v.s6.2789258af9e3 from=translated src=- shape=a6c64af0 vocab=9f1db378
+-/
 theorem Hfun_lam1q_ge (hq : 1 ≤ q) (hT : 0 < T) (hlam : 0 < P.lam) (hl : 0 < l T) :
     Hfun P.lam - cq q / (P.lam * l T) ≤ Hfun (lam1q P q T) := by
   have hc := cq_pos hq
@@ -88,7 +110,9 @@ theorem Hfun_lam1q_ge (hq : 1 ≤ q) (hT : 0 < T) (hlam : 0 < P.lam) (hl : 0 < l
   have hle := lam1q_le P hq hT hlam.le hl
   linarith
 
-/-- `F(λ_{1,χ}) ≥ F(λ) − c_q/l`. -/
+/-- `F(λ_{1,χ}) ≥ F(λ) − c_q/l`.
+@isnad1 id=le.5h3v.s6.5bdbbdfbafdd from=translated src=- shape=31ac318d vocab=6e585989
+-/
 theorem Ffun_lam1q_ge (hq : 1 ≤ q) (hT : 0 < T) (hlam : 0 < P.lam) (hlam1 : P.lam ≤ 1)
     (hl : 0 < l T) :
     Ffun P.lam - cq q / l T ≤ Ffun (lam1q P q T) := by
@@ -109,7 +133,9 @@ end Lam1q
 section GrowthQ
 variable (q : ℕ) (Z : ZeroConfig)
 
-/-- H-RvM(χ) ⇒ `N_χ(T,2T) ≥ T l /(4π)` eventually. -/
+/-- H-RvM(χ) ⇒ `N_χ(T,2T) ≥ T l /(4π)` eventually.
+@isnad1 id=eventual.2h2v.s6.80d9f05c9732 from=translated src=- shape=829ca191 vocab=96e15bcb
+-/
 lemma eventually_N_ge_chi (hq : 1 ≤ q) (hR : RiemannVonMangoldtChi q Z) :
     ∀ᶠ T in atTop, T * l T / (4 * π) ≤ (Z.N T (2 * T) : ℝ) := by
   obtain ⟨C, T₀, h⟩ := hR.main
@@ -131,7 +157,9 @@ lemma eventually_N_ge_chi (hq : 1 ≤ q) (hR : RiemannVonMangoldtChi q Z) :
   linarith
 
 /-- H-RvM(χ) ⇒ `N_χ(T,2T) ≤ K_q · T l` eventually for some constant; `K_q = 1 + c_q` works
-(ℓ_{1,χ} ≤ (1 + c_q) l once l ≥ 1). -/
+(ℓ_{1,χ} ≤ (1 + c_q) l once l ≥ 1).
+@isnad1 id=eventual.2h2v.s6.65aaa995baf2 from=translated src=- shape=281b43a8 vocab=8db0b675
+-/
 lemma eventually_N_le_chi (hq : 1 ≤ q) (hR : RiemannVonMangoldtChi q Z) :
     ∀ᶠ T in atTop, (Z.N T (2 * T) : ℝ) ≤ (1 + cq q) * (T * l T) := by
   obtain ⟨C, T₀, h⟩ := hR.main
@@ -164,11 +192,17 @@ lemma eventually_N_le_chi (hq : 1 ≤ q) (hR : RiemannVonMangoldtChi q Z) :
   have hnn : 0 ≤ (1 + cq q) * (T * l T) := by nlinarith [mul_pos hT0 hlpos, cq_pos hq]
   linarith
 
+/--
+@isnad1 id=tendsto.2h2v.s5.01bdd981266b from=translated src=- shape=8d602c41 vocab=d496fc10
+-/
 lemma tendsto_N_atTop_chi (hq : 1 ≤ q) (hR : RiemannVonMangoldtChi q Z) :
     Tendsto (fun T => (Z.N T (2 * T) : ℝ)) atTop atTop :=
   tendsto_atTop_mono' _ (eventually_N_ge_chi q Z hq hR)
     (tendsto_Tl_atTop.atTop_div_const (by positivity))
 
+/--
+@isnad1 id=islittle.3h3v.s6.794efe311d33 from=translated src=- shape=094f935a vocab=2b458926
+-/
 lemma isLittleO_N_of_isLittleO_Tl_chi (hq : 1 ≤ q) (hR : RiemannVonMangoldtChi q Z) {f : ℝ → ℝ}
     (hf : f =o[atTop] fun T => T * l T) : f =o[atTop] fun T => (Z.N T (2 * T) : ℝ) := by
   refine hf.trans_isBigO (IsBigO.of_bound (4 * π) ?_)
@@ -180,7 +214,9 @@ lemma isLittleO_N_of_isLittleO_Tl_chi (hq : 1 ≤ q) (hR : RiemannVonMangoldtChi
   calc T * l T = 4 * π * (T * l T / (4 * π)) := by field_simp
     _ ≤ 4 * π * (Z.N T (2 * T) : ℝ) := this
 
-/-- `cλ_χ = 1/λ_{1,χ} + λ_{1,χ}/3` eventually in `[0, 2/λ + 1/3]`. -/
+/-- `cλ_χ = 1/λ_{1,χ} + λ_{1,χ}/3` eventually in `[0, 2/λ + 1/3]`.
+@isnad1 id=eventual.3h2v.s7.4308cba06ac4 from=translated src=- shape=a77f70e7 vocab=f1e82edd
+-/
 lemma eventually_clam_bounds_chi (P : Params) (hq : 1 ≤ q) (hlam : 0 < P.lam)
     (hlam1 : P.lam ≤ 1) :
     ∀ᶠ T in atTop,
@@ -216,17 +252,26 @@ matrix (entries real). -/
 def GpChi (T : ℝ) : Matrix (Fin (P.d T)) (Fin (P.d T)) ℂ :=
   fun k l => (GentryChi P κ q c T (k : ℤ) (l : ℤ) : ℂ)
 
+/--
+@isnad1 id=ishermit.0h5v.s5.52b93082a9fe from=translated src=- shape=0b91baee vocab=c017a086
+-/
 lemma GpChi_isHermitian (T : ℝ) : (GpChi P κ q c T).IsHermitian := by
   apply Matrix.IsHermitian.ext
   intro k l
   simp only [GpChi, Complex.star_def, Complex.conj_ofReal, Complex.ofReal_inj, GentryChi]
   congr 1; ext τ; ring
 
+/--
+@isnad1 id=eq.0h5v.s5.522a1ab9a5c3 from=translated src=- shape=1e641370 vocab=1e87af7c
+-/
 lemma rtrace_tilde_GpChi (T : ℝ) :
     RHLinalg.rtrace (P.tilde T (GpChi P κ q c T)) = trGtildeChi P κ q c T := by
   rw [Assembly.tilde_eq, Assembly.rtrace_smul_ofReal]
   simp [trGtildeChi, RHLinalg.rtrace, Matrix.trace, GpChi]
 
+/--
+@isnad1 id=eq.0h5v.s5.b1b64a280797 from=translated src=- shape=1e641370 vocab=1f27ae3b
+-/
 lemma frobSq_tilde_GpChi (T : ℝ) :
     RHLinalg.frobSq (P.tilde T (GpChi P κ q c T)) = trGtildeSqChi P κ q c T := by
   rw [Assembly.tilde_eq, Assembly.frobSq_smul_ofReal, Assembly.frobSq_eq_sum_norm_sq]
@@ -234,7 +279,9 @@ lemma frobSq_tilde_GpChi (T : ℝ) :
 
 /-- **Seam B for L(s,χ)** (mirror of `Assembly.seamB` with ℓ₁ → ℓ_{1,χ}, λ₁ → λ_{1,χ}): given the
 bridge `Z.Gz P T = GpChi`, [eq:tr1]/[eq:tr2]-χ at height T and RvM(χ) in the form
-`T ℓ_{1,χ}/2π ≤ N + RN`:  `|tr Ĝ − N| ≤ C₁√X/a` and the ‖Ĝ‖_F² bound with `cλ = 1/λ_{1,χ} + λ_{1,χ}/3`. -/
+`T ℓ_{1,χ}/2π ≤ N + RN`:  `|tr Ĝ − N| ≤ C₁√X/a` and the ‖Ĝ‖_F² bound with `cλ = 1/λ_{1,χ} + λ_{1,χ}/3`.
+@isnad1 id=and.8h10v.s9.aa4ac17bf29d from=translated src=- shape=674b8648 vocab=5912bbea
+-/
 theorem seamBChi {Z : ZeroConfig} {T : ℝ} (hGzGp : Z.Gz P T = GpChi P κ q c T)
     (ha : 0 < P.a T) (hL : 0 < P.L T) (hℓ₁ : 0 < ell1q q T)
     {C₁ C₂ ET RN : ℝ}
@@ -265,7 +312,9 @@ open Assembly Filter Asymptotics Topology
 
 /-- **Theorem E first bound at fixed `λ ∈ (0,1)`, abstract zero configuration** ([thm:E] with §6's
 proof; mirror of `Assembly.thmA_abstract` with ℓ₁ → ℓ_{1,χ}, λ₁ → λ_{1,χ}, ν_X → ν_{X,χ}).  Same
-abstract inputs; all constants may depend on q. -/
+abstract inputs; all constants may depend on q.
+@isnad1 id=ex.13h7v.s8.2c575058ab97 from=translated src=- shape=87fcab5d vocab=98acd775
+-/
 theorem thmE_A_abstract (Z : ZeroConfig) (κ : ℕ) {q : ℕ} (hq : 1 ≤ q) (cf : ℕ → ℂ)
     (P : Params) (hP : P.Valid) (hlam : P.lam < 1)
     (hRvM : RiemannVonMangoldtChi q Z)
@@ -415,7 +464,9 @@ section MainBCChi
 open Assembly Filter Asymptotics Topology
 
 /-- **Theorems E.B / E.C core at fixed `λ ∈ (0,1)`, abstract zero configuration** (mirror of
-`Assembly.thmBC_core` with the χ-scalars). -/
+`Assembly.thmBC_core` with the χ-scalars).
+@isnad1 id=ex.11h6v.s8.9526ae9c2a57 from=translated src=- shape=fef76e83 vocab=19211609
+-/
 theorem thmE_BC_core (Z : ZeroConfig) (κ : ℕ) {q : ℕ} (hq : 1 ≤ q) (cf : ℕ → ℂ)
     (P : Params) (hP : P.Valid) (hlam : P.lam < 1)
     (hRvM : RiemannVonMangoldtChi q Z)

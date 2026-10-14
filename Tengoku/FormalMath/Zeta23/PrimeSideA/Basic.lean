@@ -156,6 +156,9 @@ def EventuallyAt (cϱ lam : ℝ) (P : Setting → LocalFun → Prop) : Prop :=
 section MformLemmas
 variable {Φ : ℝ → ℝ} {T : ℝ}
 
+/--
+@isnad1 id=integrab.3h4v.s7.3677d845adb4 from=translated src=- shape=28ebc82b vocab=1ea9a0e3
+-/
 lemma Mform_integrableOn (hΦ : Continuous Φ) {u v : ℝ → ℝ} (hu : Continuous u)
     (hv : Continuous v) :
     IntegrableOn (fun q : ℝ × ℝ => (Φ (q.1 - q.2)) ^ 2 * u q.1 * v q.2)
@@ -164,6 +167,9 @@ lemma Mform_integrableOn (hΦ : Continuous Φ) {u v : ℝ → ℝ} (hu : Continu
   apply Continuous.continuousOn
   fun_prop
 
+/--
+@isnad1 id=eq.4h5v.s6.3e74bab73369 from=translated src=- shape=690c2847 vocab=9452c41a
+-/
 lemma Mform_add_left (hΦ : Continuous Φ) {u v w : ℝ → ℝ} (hu : Continuous u)
     (hv : Continuous v) (hw : Continuous w) :
     Mform Φ T (u + v) w = Mform Φ T u w + Mform Φ T v w := by
@@ -171,6 +177,9 @@ lemma Mform_add_left (hΦ : Continuous Φ) {u v w : ℝ → ℝ} (hu : Continuou
   rw [← integral_add (Mform_integrableOn hΦ hu hw) (Mform_integrableOn hΦ hv hw)]
   congr 1; funext q; simp only [Pi.add_apply]; ring
 
+/--
+@isnad1 id=eq.4h5v.s6.9464228b0379 from=translated src=- shape=b1c80537 vocab=9452c41a
+-/
 lemma Mform_add_right (hΦ : Continuous Φ) {u v w : ℝ → ℝ} (hu : Continuous u)
     (hv : Continuous v) (hw : Continuous w) :
     Mform Φ T w (u + v) = Mform Φ T w u + Mform Φ T w v := by
@@ -178,19 +187,27 @@ lemma Mform_add_right (hΦ : Continuous Φ) {u v w : ℝ → ℝ} (hu : Continuo
   rw [← integral_add (Mform_integrableOn hΦ hw hu) (Mform_integrableOn hΦ hw hv)]
   congr 1; funext q; simp only [Pi.add_apply]; ring
 
+/--
+@isnad1 id=eq.0h5v.s5.f268c229f399 from=translated src=- shape=947b04ec vocab=703b76f3
+-/
 lemma Mform_const_mul_left (c : ℝ) (u w : ℝ → ℝ) :
     Mform Φ T (fun x => c * u x) w = c * Mform Φ T u w := by
   unfold Mform
   rw [← integral_const_mul]
   congr 1; funext q; ring
 
+/--
+@isnad1 id=eq.0h5v.s5.125da454a23b from=translated src=- shape=c65e32ab vocab=703b76f3
+-/
 lemma Mform_const_mul_right (c : ℝ) (u w : ℝ → ℝ) :
     Mform Φ T w (fun x => c * u x) = c * Mform Φ T w u := by
   unfold Mform
   rw [← integral_const_mul]
   congr 1; funext q; ring
 
-/-- Symmetry `𝓜[u,v] = 𝓜[v,u]`: swap `(τ,τ') ↦ (τ',τ)` on the square and use that `Φ` is even. -/
+/-- Symmetry `𝓜[u,v] = 𝓜[v,u]`: swap `(τ,τ') ↦ (τ',τ)` on the square and use that `Φ` is even.
+@isnad1 id=eq.1h4v.s5.3fc0588dfe54 from=translated src=- shape=282f6c7d vocab=401f7821
+-/
 lemma Mform_comm (hΦe : ∀ r, Φ (-r) = Φ r) (u v : ℝ → ℝ) :
     Mform Φ T u v = Mform Φ T v u := by
   unfold Mform
@@ -200,7 +217,9 @@ lemma Mform_comm (hΦe : ∀ r, Φ (-r) = Φ r) (u v : ℝ → ℝ) :
   simp only [Prod.fst_swap, Prod.snd_swap]
   rw [show q.2 - q.1 = -(q.1 - q.2) by ring, hΦe]; ring
 
-/-- The trinomial expansion behind [eq:Msplit]. -/
+/-- The trinomial expansion behind [eq:Msplit].
+@isnad1 id=eq.5h5v.s8.68aa74b17f25 from=translated src=- shape=e02b09c2 vocab=799855f0
+-/
 lemma Mform_trinomial (hΦ : Continuous Φ) (hΦe : ∀ r, Φ (-r) = Φ r) {u v w : ℝ → ℝ}
     (hu : Continuous u) (hv : Continuous v) (hw : Continuous w) :
     Mform Φ T (u + v + w) (u + v + w) =
@@ -223,7 +242,9 @@ section SupBound
 variable {Φ : ℝ → ℝ} {T : ℝ}
 
 /-- `∫_S Φ(x−y)² dy ≤ ∫_ℝ Φ²` (translation invariance and `Φ² ≥ 0`); this is
-`sup_τ ∫_I Φ(τ−τ')² dτ' ≤ 2πbL` of §5.4. -/
+`sup_τ ∫_I Φ(τ−τ')² dτ' ≤ 2πbL` of §5.4.
+@isnad1 id=le.1h3v.s7.2603391c137f from=translated src=- shape=91914b5c vocab=3d7c2df5
+-/
 lemma setIntegral_sq_shift_le (hΦint : Integrable (fun x => Φ x ^ 2)) (S : Set ℝ) (x : ℝ) :
     ∫ y in S, Φ (x - y) ^ 2 ≤ ∫ y, Φ y ^ 2 := by
   calc ∫ y in S, Φ (x - y) ^ 2 ≤ ∫ y, Φ (x - y) ^ 2 :=
@@ -233,7 +254,9 @@ lemma setIntegral_sq_shift_le (hΦint : Integrable (fun x => Φ x ^ 2)) (S : Set
 
 /-- **Sup-bound for 𝓜** [prop:cross proof, §5.4: "the remaining three bounds follow by inserting
 these sup bounds into the definition of 𝓜[·,·] (an integral over a region of τ'-length T)"]:
-if `|u| ≤ B_u` and `|v| ≤ B_v` on `I = [T,2T]` then `|𝓜[u,v]| ≤ B_u B_v · T · ∫_ℝ Φ²`. -/
+if `|u| ≤ B_u` and `|v| ≤ B_v` on `I = [T,2T]` then `|𝓜[u,v]| ≤ B_u B_v · T · ∫_ℝ Φ²`.
+@isnad1 id=le.7h6v.s8.454884be37e1 from=translated src=- shape=8f573e1a vocab=d92f2515
+-/
 lemma abs_Mform_le (hT : 0 ≤ T) (hΦ : Continuous Φ) {u v : ℝ → ℝ} (hu : Continuous u)
     (hv : Continuous v) (hΦint : Integrable (fun x => Φ x ^ 2)) {Bu Bv : ℝ}
     (hBu : ∀ τ ∈ Set.Icc T (2 * T), |u τ| ≤ Bu) (hBv : ∀ τ ∈ Set.Icc T (2 * T), |v τ| ≤ Bv) :
@@ -278,6 +301,9 @@ lemma abs_Mform_le (hT : 0 ≤ T) (hΦ : Continuous Φ) {u v : ℝ → ℝ} (hu 
 
 end SupBound
 
+/--
+@isnad1 id=continuo.0h1v.s4.91db5eb3bb4c from=translated src=- shape=f736e2c1 vocab=6a52723a
+-/
 lemma PX_continuous (X : ℝ) : Continuous (Zeta23.PX X) := by
   unfold Zeta23.PX
   fun_prop
@@ -287,9 +313,14 @@ lemma PX_continuous (X : ℝ) : Continuous (Zeta23.PX X) := by
 section Regime
 variable {cϱ : ℝ} {p : Setting} {F : LocalFun}
 
+/--
+@isnad1 id=lt.0h1v.s3.8a433dbada3c from=translated src=- shape=b9369acb vocab=a3c9fe81
+-/
 lemma Setting.X_pos (p : Setting) : 0 < p.X := Real.exp_pos _
 
-/-- `l ≥ l₀` once `T ≥ 2π e^{l₀}`. -/
+/-- `l ≥ l₀` once `T ≥ 2π e^{l₀}`.
+@isnad1 id=le.1h2v.s5.87fe81eb334e from=translated src=- shape=e246a33d vocab=ba745f1c
+-/
 lemma Setting.le_l_of_T {p : Setting} {l₀ : ℝ} (hT : 2 * π * Real.exp l₀ ≤ p.T) : l₀ ≤ p.l := by
   have h2π : (0:ℝ) < 2 * π := by positivity
   have h : Real.exp l₀ ≤ p.T / (2 * π) := by rw [le_div_iff₀ h2π]; linarith
@@ -297,17 +328,24 @@ lemma Setting.le_l_of_T {p : Setting} {l₀ : ℝ} (hT : 2 * π * Real.exp l₀ 
     _ ≤ Real.log (p.T / (2 * π)) := Real.log_le_log (Real.exp_pos _) h
     _ = p.l := rfl
 
-/-- `T ≥ 2π` (in particular `T ≥ 1`, `T > 0`) once `T ≥ 2π e^{l₀}` with `l₀ ≥ 0`. -/
+/-- `T ≥ 2π` (in particular `T ≥ 1`, `T > 0`) once `T ≥ 2π e^{l₀}` with `l₀ ≥ 0`.
+@isnad1 id=le.2h2v.s6.7f78d415c1b3 from=translated src=- shape=3edce8c8 vocab=0c49e60e
+-/
 lemma Setting.twopi_le_T {p : Setting} {l₀ : ℝ} (hl₀ : 0 ≤ l₀) (hT : 2 * π * Real.exp l₀ ≤ p.T) :
     2 * π ≤ p.T := by
   have : (1:ℝ) ≤ Real.exp l₀ := Real.one_le_exp hl₀
   nlinarith [Real.pi_pos]
 
+/--
+@isnad1 id=le.2h2v.s5.b8932056ce26 from=translated src=- shape=63df1a82 vocab=0c49e60e
+-/
 lemma Setting.one_le_T {p : Setting} {l₀ : ℝ} (hl₀ : 0 ≤ l₀) (hT : 2 * π * Real.exp l₀ ≤ p.T) :
     1 ≤ p.T := by
   have := Setting.twopi_le_T hl₀ hT; linarith [Real.pi_gt_three]
 
-/-- `X ≥ x₀` once `T ≥ 2π exp(|x₀|/λ)` (`X = (T/2π)^λ → ∞`; this is the "T ≥ T₀(λ)" of §5). -/
+/-- `X ≥ x₀` once `T ≥ 2π exp(|x₀|/λ)` (`X = (T/2π)^λ → ∞`; this is the "T ≥ T₀(λ)" of §5).
+@isnad1 id=le.2h2v.s6.101ccdd9f883 from=translated src=- shape=bee74d29 vocab=07e08c43
+-/
 lemma Setting.le_X_of_T {p : Setting} (hlam : 0 < p.lam) {x₀ : ℝ}
     (hT : 2 * π * Real.exp (|x₀| / p.lam) ≤ p.T) : x₀ ≤ p.X := by
   have hl : |x₀| / p.lam ≤ p.l := Setting.le_l_of_T hT
@@ -317,19 +355,33 @@ lemma Setting.le_X_of_T {p : Setting} (hlam : 0 < p.lam) {x₀ : ℝ}
     _ ≤ Real.exp (p.lam * p.l) := by linarith [Real.add_one_le_exp (p.lam * p.l)]
     _ = p.X := rfl
 
+/--
+@isnad1 id=le.1h3v.s4.17f6a6b56c01 from=translated src=- shape=d0acad91 vocab=e780e0b6
+-/
 lemma LocalHyps.eight_le_L (hF : LocalHyps cϱ p F) : 8 ≤ p.L := by
   linarith [hF.one_le_w, hF.w_le]
 
+/--
+@isnad1 id=lt.1h3v.s4.d63bf753aef4 from=translated src=- shape=d0acad91 vocab=21e7efa2
+-/
 lemma LocalHyps.L_pos (hF : LocalHyps cϱ p F) : 0 < p.L := by linarith [hF.eight_le_L]
 
+/--
+@isnad1 id=lt.1h3v.s4.81b0d93ed4d6 from=translated src=- shape=d18b684f vocab=2bd13415
+-/
 lemma LocalHyps.b_pos (hF : LocalHyps cϱ p F) : 0 < F.b := by
   have h1 : 2 * p.w / p.L ≤ 1 / 4 := by
     rw [div_le_iff₀ hF.L_pos]; linarith [hF.w_le]
   linarith [hF.b_lower]
 
+/--
+@isnad1 id=lt.1h3v.s4.fc3fae3761e1 from=translated src=- shape=d18b684f vocab=07e65507
+-/
 lemma LocalHyps.a_pos (hF : LocalHyps cϱ p F) : 0 < F.a := hF.b_pos.trans_le hF.b_le_a
 
-/-- `∫Φ² = 2πbL ≤ 2πL`. -/
+/-- `∫Φ² = 2πbL ≤ 2πL`.
+@isnad1 id=le.1h3v.s6.d51b714af51e from=translated src=- shape=22f3536c vocab=97ac0a2d
+-/
 lemma LocalHyps.integral_Phi_sq_le (hF : LocalHyps cϱ p F) : ∫ x, F.Phi x ^ 2 ≤ 2 * π * p.L := by
   rw [hF.Phi_sq_integral]
   have hb1 : F.b ≤ 1 := hF.b_le_a.trans hF.a_le_one
@@ -338,7 +390,9 @@ lemma LocalHyps.integral_Phi_sq_le (hF : LocalHyps cϱ p F) : ∫ x, F.Phi x ^ 2
     _ ≤ (2 * π * p.L) * 1 := by gcongr
     _ = 2 * π * p.L := mul_one _
 
-/-- [eq:PiPfacts] on `I`: `|Π_X| ≤ 3√X/T` (§5.2, §5.4). -/
+/-- [eq:PiPfacts] on `I`: `|Π_X| ≤ 3√X/T` (§5.2, §5.4).
+@isnad1 id=le.3h4v.s6.b6e848f6f8a1 from=translated src=- shape=8492c8c2 vocab=ca771a8e
+-/
 lemma LocalHyps.PiX_le_on_I (hF : LocalHyps cϱ p F) (hT : 0 < p.T) :
     ∀ τ ∈ Set.Icc p.T (2 * p.T), |Zeta23.PiX p.X τ| ≤ 3 * Real.sqrt p.X / p.T := by
   intro τ hτ
@@ -443,7 +497,9 @@ structure LocalHypsCore (cϱ : ℝ) (p : Setting) (F : LocalFun) : Prop where
   PiX_bound : ∀ τ, |Zeta23.PiX p.X τ| ≤ 3 * Real.sqrt p.X / (1 + |τ|)
 
 /-- every flat-top taper datum satisfies the window-generic core:
-b ≥ 1 − 2w/L ≥ 3/4 ≥ 1/2 ([eq:abdef] + [eq:wrange]), g ≥ 0 (plateau bound). -/
+b ≥ 1 − 2w/L ≥ 3/4 ≥ 1/2 ([eq:abdef] + [eq:wrange]), g ≥ 0 (plateau bound).
+@isnad1 id=localhyp.1h3v.s3.36dae14a2c2e from=translated src=- shape=db0ee5d2 vocab=825017bb
+-/
 theorem LocalHyps.toCore {cϱ : ℝ} {p : Setting} {F : LocalFun} (hF : LocalHyps cϱ p F) :
     LocalHypsCore cϱ p F where
   four_le_cϱ := hF.four_le_cϱ
@@ -502,6 +558,9 @@ theorem LocalHyps.toCore {cϱ : ℝ} {p : Setting} {F : LocalFun} (hF : LocalHyp
 def EventuallyAtCore (cϱ lam : ℝ) (P : Setting → LocalFun → Prop) : Prop :=
   ∃ T₀ : ℝ, ∀ (p : Setting) (F : LocalFun), p.lam = lam → T₀ ≤ p.T → LocalHypsCore cϱ p F → P p F
 
+/--
+@isnad1 id=eventual.1h3v.s4.0128ee6dd7f1 from=translated src=- shape=01e0c736 vocab=0abfdb0c
+-/
 theorem EventuallyAtCore.to_eventuallyAt {cϱ lam : ℝ} {P : Setting → LocalFun → Prop}
     (h : EventuallyAtCore cϱ lam P) : EventuallyAt cϱ lam P := by
   obtain ⟨T₀, hT₀⟩ := h
@@ -509,17 +568,32 @@ theorem EventuallyAtCore.to_eventuallyAt {cϱ lam : ℝ} {P : Setting → LocalF
 
 /-! Core copies of the LocalHyps helper lemmas (same names under the Core namespace). -/
 
+/--
+@isnad1 id=le.1h3v.s4.58b1aed2824d from=translated src=- shape=d0acad91 vocab=49ea411a
+-/
 lemma LocalHypsCore.eight_le_L (hF : LocalHypsCore cϱ p F) : 8 ≤ p.L := by
   linarith [hF.one_le_w, hF.w_le]
 
+/--
+@isnad1 id=lt.1h3v.s4.437cf12d6d98 from=translated src=- shape=d0acad91 vocab=78a86f25
+-/
 lemma LocalHypsCore.L_pos (hF : LocalHypsCore cϱ p F) : 0 < p.L := by
   linarith [hF.eight_le_L]
 
+/--
+@isnad1 id=lt.1h3v.s4.17684a37c985 from=translated src=- shape=d18b684f vocab=99083af0
+-/
 lemma LocalHypsCore.b_pos (hF : LocalHypsCore cϱ p F) : 0 < F.b := by
   linarith [hF.b_ge_half]
 
+/--
+@isnad1 id=lt.1h3v.s4.237358ac83f1 from=translated src=- shape=d18b684f vocab=6fc0ad0e
+-/
 lemma LocalHypsCore.a_pos (hF : LocalHypsCore cϱ p F) : 0 < F.a := hF.b_pos.trans_le hF.b_le_a
 
+/--
+@isnad1 id=le.1h3v.s6.de7da4f49904 from=translated src=- shape=22f3536c vocab=7587318b
+-/
 lemma LocalHypsCore.integral_Phi_sq_le (hF : LocalHypsCore cϱ p F) :
     ∫ x, F.Phi x ^ 2 ≤ 2 * π * p.L := by
   rw [hF.Phi_sq_integral]
@@ -529,6 +603,9 @@ lemma LocalHypsCore.integral_Phi_sq_le (hF : LocalHypsCore cϱ p F) :
     _ ≤ (2 * π * p.L) * 1 := by gcongr
     _ = 2 * π * p.L := mul_one _
 
+/--
+@isnad1 id=le.3h4v.s6.59507a05061c from=translated src=- shape=8492c8c2 vocab=430c14ce
+-/
 lemma LocalHypsCore.PiX_le_on_I (hF : LocalHypsCore cϱ p F) (hT : 0 < p.T) :
     ∀ τ ∈ Set.Icc p.T (2 * p.T), |Zeta23.PiX p.X τ| ≤ 3 * Real.sqrt p.X / p.T := by
   intro τ hτ
@@ -537,9 +614,15 @@ lemma LocalHypsCore.PiX_le_on_I (hF : LocalHypsCore cϱ p F) (hT : 0 < p.T) :
   rw [abs_of_nonneg (by linarith [hτ.1])]
   linarith [hτ.1]
 
+/--
+@isnad1 id=le.1h4v.s4.19ab76685ffa from=translated src=- shape=13dd0708 vocab=b1065f6c
+-/
 lemma LocalHypsCore.Aphi_nonneg (hF : LocalHypsCore cϱ p F) (y : ℝ) : 0 ≤ F.Aphi y :=
   (hF.g_nonneg y).trans (hF.g_le_Aphi y)
 
+/--
+@isnad1 id=integrab.3h5v.s6.7399aabed9df from=translated src=- shape=3151b956 vocab=066fa595
+-/
 lemma LocalHypsCore.phiHat_sq_mul_integrable_of_bdd (hF : LocalHypsCore cϱ p F) {g : ℝ → ℝ}
     (hg : Continuous g) {c : ℝ} (hc : ∀ x, |g x| ≤ c) :
     Integrable (fun r => F.phiHat r ^ 2 * g r) := by
@@ -639,26 +722,43 @@ structure LocalHypsCoreW (cϱ : ℝ) (p : Setting) (F : LocalFun) : Prop where
   PiX_bound : ∀ τ, |Zeta23.PiX p.X τ| ≤ 3 * Real.sqrt p.X / (1 + |τ|)
 
 /-- every flat-top taper datum satisfies the window-generic core:
-b ≥ 1 − 2w/L ≥ 3/4 ≥ 1/2 ([eq:abdef] + [eq:wrange]), g ≥ 0 (plateau bound). -/
+b ≥ 1 − 2w/L ≥ 3/4 ≥ 1/2 ([eq:abdef] + [eq:wrange]), g ≥ 0 (plateau bound).
+@isnad1 id=localhyp.1h3v.s3.0b52a36e6348 from=translated src=- shape=db0ee5d2 vocab=0126ac46
+-/
 lemma LocalHypsCore.toCoreW {cϱ : ℝ} {p : Setting} {F : LocalFun} (hF : LocalHypsCore cϱ p F) :
     LocalHypsCoreW cϱ p F :=
   ⟨hF.four_le_cϱ, hF.lam_pos, hF.one_le_w, hF.w_le, hF.one_le_l, hF.phiHat_cont, hF.phiHat_even, hF.phiHat_le_L, hF.phiHat_le_inv, hF.phiHat_le_sq, hF.phiHat_sq_integrable, hF.phiHat_sq_mul_abs_integrable, hF.integral_phiHat_sq_mul_abs_le, hF.phiHat_sq_mul_sq_integrable, hF.integral_phiHat_sq_mul_sq_le, hF.phiHat_sq_integral, hF.phiHat_sq_fourier, hF.g_nonneg, hF.g_le_Aphi, hF.Aphi_le, hF.Phi_contDiff, hF.Phi_even, hF.Phi_le_L, hF.Phi_le_inv, hF.Phi_le_sq, hF.Phi_sq_integrable, hF.Phi_sq_mul_abs_integrable, hF.integral_Phi_sq_mul_abs_le, hF.Phi_sq_mul_sq_integrable, hF.integral_Phi_sq_mul_sq_le, hF.Phi_zero, hF.Phi_sq_integral, hF.Phi_sq_fourier, hF.poisson, hF.b_ge_half, hF.b_le_a, hF.a_le_one, hF.psi_integrable, hF.psi_sq_integrable, hF.integral_psi_Ioi_le, hF.integral_psi_sq_le, hF.phiHat_le_psi, hF.Phi_le_psi, hF.PiX_cont, hF.PiX_bound⟩
 
+/--
+@isnad1 id=le.1h3v.s4.d43214aa01e2 from=translated src=- shape=d0acad91 vocab=cb68b426
+-/
 lemma LocalHypsCoreW.eight_le_L {cϱ : ℝ} {p : Setting} {F : LocalFun}
     (hF : LocalHypsCoreW cϱ p F) : 8 ≤ p.L := by
   linarith [hF.one_le_w, hF.w_le]
 
+/--
+@isnad1 id=lt.1h3v.s4.fd72853bd4d9 from=translated src=- shape=d0acad91 vocab=b698e228
+-/
 lemma LocalHypsCoreW.L_pos {cϱ : ℝ} {p : Setting} {F : LocalFun}
     (hF : LocalHypsCoreW cϱ p F) : 0 < p.L := by
   linarith [hF.eight_le_L]
 
+/--
+@isnad1 id=lt.1h3v.s4.dc3a81c4d6d4 from=translated src=- shape=d18b684f vocab=dcaaaff2
+-/
 lemma LocalHypsCoreW.b_pos {cϱ : ℝ} {p : Setting} {F : LocalFun}
     (hF : LocalHypsCoreW cϱ p F) : 0 < F.b := by
   linarith [hF.b_ge_half]
 
+/--
+@isnad1 id=lt.1h3v.s4.0f1dfcb04f0f from=translated src=- shape=d18b684f vocab=68795f35
+-/
 lemma LocalHypsCoreW.a_pos {cϱ : ℝ} {p : Setting} {F : LocalFun}
     (hF : LocalHypsCoreW cϱ p F) : 0 < F.a := hF.b_pos.trans_le hF.b_le_a
 
+/--
+@isnad1 id=le.1h3v.s6.80b76a10e2a3 from=translated src=- shape=22f3536c vocab=e67aefdf
+-/
 lemma LocalHypsCoreW.integral_Phi_sq_le {cϱ : ℝ} {p : Setting} {F : LocalFun}
     (hF : LocalHypsCoreW cϱ p F) : ∫ x, F.Phi x ^ 2 ≤ 2 * π * p.L := by
   rw [hF.Phi_sq_integral]
@@ -668,10 +768,16 @@ lemma LocalHypsCoreW.integral_Phi_sq_le {cϱ : ℝ} {p : Setting} {F : LocalFun}
     _ ≤ (2 * π * p.L) * 1 := by gcongr
     _ = 2 * π * p.L := mul_one _
 
+/--
+@isnad1 id=le.1h4v.s4.0ee6ac5de4d5 from=translated src=- shape=13dd0708 vocab=b87ca863
+-/
 lemma LocalHypsCoreW.Aphi_nonneg {cϱ : ℝ} {p : Setting} {F : LocalFun}
     (hF : LocalHypsCoreW cϱ p F) (y : ℝ) : 0 ≤ F.Aphi y :=
   (hF.g_nonneg y).trans (hF.g_le_Aphi y)
 
+/--
+@isnad1 id=integrab.3h5v.s6.832682c26955 from=translated src=- shape=3151b956 vocab=5fe86baf
+-/
 lemma LocalHypsCoreW.phiHat_sq_mul_integrable_of_bdd {cϱ : ℝ} {p : Setting} {F : LocalFun}
     (hF : LocalHypsCoreW cϱ p F) {g : ℝ → ℝ}
     (hg : Continuous g) {c : ℝ} (hc : ∀ x, |g x| ≤ c) :
@@ -681,7 +787,9 @@ lemma LocalHypsCoreW.phiHat_sq_mul_integrable_of_bdd {cϱ : ℝ} {p : Setting} {
   simpa only [mul_comm] using this
 
 /-- H-cheb [eq:cheb1] ⇒ `|P_X(τ)| ≤ (1/π) Σ_{n≤X} Λ(n)/√n ≤ (3/π)√X ≤ √X` for `X ≥ x₀`
-([eq:PiPfacts] second half, §2.1; used as `|P_X| ≤ √X` at §5.4). -/
+([eq:PiPfacts] second half, §2.1; used as `|P_X| ≤ √X` at §5.4).
+@isnad1 id=ex.1h0v.s4.483992fdda22 from=translated src=- shape=02ae8a88 vocab=4890241b
+-/
 lemma PX_abs_le (hcheb : Zeta23.ChebyshevMertens) :
     ∃ x₀ : ℝ, ∀ X, x₀ ≤ X → ∀ τ, |Zeta23.PX X τ| ≤ Real.sqrt X := by
   obtain ⟨x₀, hx⟩ := hcheb.cheb1b
@@ -707,7 +815,9 @@ lemma PX_abs_le (hcheb : Zeta23.ChebyshevMertens) :
     _ = Real.sqrt X := one_mul _
 
 /-- H-Γ [eq:mufacts] ⇒ for `T ≥ T₀`: `|μ(τ)| ≤ l` on `I = [T,2T]` (the paper's `0 < μ ≤ l on I`,
-§5.4; only the two-sided bound is needed). -/
+§5.4; only the two-sided bound is needed).
+@isnad1 id=ex.1h0v.s5.1564d24a1e84 from=translated src=- shape=eab66220 vocab=7fb094d7
+-/
 lemma mu_abs_le_l (hΓ : Zeta23.GammaFacts) : ∃ T₀ : ℝ, ∀ p : Setting, T₀ ≤ p.T →
     ∀ τ ∈ Set.Icc p.T (2 * p.T), |Zeta23.mu τ| ≤ p.l := by
   obtain ⟨C, hC⟩ := hΓ.stirling
@@ -761,7 +871,9 @@ end Regime
 section TraceLemmas
 
 /-- Telescoping identity behind the Dirichlet-kernel bound (§5.2):
-`2 sin(θ/2) Σ_{k<d} cos(α + kθ) = sin(α + dθ − θ/2) − sin(α − θ/2)`. -/
+`2 sin(θ/2) Σ_{k<d} cos(α + kθ) = sin(α + dθ − θ/2) − sin(α − θ/2)`.
+@isnad1 id=eq.0h3v.s7.ce7b7b54a521 from=translated src=- shape=8a2881be vocab=457040d7
+-/
 lemma two_sin_mul_sum_cos (α θ : ℝ) (d : ℕ) :
     2 * Real.sin (θ / 2) * ∑ k ∈ Finset.range d, Real.cos (α + k * θ)
       = Real.sin (α + d * θ - θ / 2) - Real.sin (α - θ / 2) := by
@@ -776,7 +888,9 @@ lemma two_sin_mul_sum_cos (α θ : ℝ) (d : ℕ) :
     rw [h1, h2]; push_cast; ring_nf
 
 /-- §5.2 `|Σ_{k<d} e^{ikhy}| ≤ |sin(hy/2)|⁻¹`, in the division-free real form
-`|sin(θ/2)| · |Σ_{k<d} cos(α + kθ)| ≤ 1`. -/
+`|sin(θ/2)| · |Σ_{k<d} cos(α + kθ)| ≤ 1`.
+@isnad1 id=le.0h3v.s6.76e4c4a28889 from=translated src=- shape=3fc86bd2 vocab=42965a69
+-/
 lemma abs_sin_mul_abs_sum_cos_le (α θ : ℝ) (d : ℕ) :
     |Real.sin (θ / 2)| * |∑ k ∈ Finset.range d, Real.cos (α + k * θ)| ≤ 1 := by
   have h := two_sin_mul_sum_cos α θ d
@@ -788,7 +902,9 @@ lemma abs_sin_mul_abs_sum_cos_le (α θ : ℝ) (d : ℕ) :
   linarith
 
 /-- Jordan's inequality on `[0, π]`: for `0 ≤ y ≤ L`, `sin(πy/L) ≥ 2 min(y, L−y)/L` (§5.2:
-`|sin(πy/L)|⁻¹ ≤ L/(2 min(y, L−y))`). -/
+`|sin(πy/L)|⁻¹ ≤ L/(2 min(y, L−y))`).
+@isnad1 id=le.3h2v.s6.b4f0a3b971ad from=translated src=- shape=0bcd8b79 vocab=100c2af5
+-/
 lemma two_min_div_le_sin {y L : ℝ} (hL : 0 < L) (hy0 : 0 ≤ y) (hyL : y ≤ L) :
     2 * min y (L - y) / L ≤ Real.sin (π * y / L) := by
   rcases le_total y (L - y) with h | h
@@ -809,13 +925,18 @@ lemma two_min_div_le_sin {y L : ℝ} (hL : 0 < L) (hy0 : 0 ≤ y) (hyL : y ≤ L
 
 variable {cϱ : ℝ} {p : Setting} {F : LocalFun}
 
+/--
+@isnad1 id=le.1h4v.s4.7cced413abc4 from=translated src=- shape=13dd0708 vocab=78191efb
+-/
 lemma LocalHyps.Aphi_nonneg (hF : LocalHyps cϱ p F) (y : ℝ) : 0 ≤ F.Aphi y :=
   ((le_max_right _ _).trans (hF.g_lower y)).trans (hF.g_le_Aphi y)
 
 /-- The P-part pointwise bound of [prop:trace] (§5.2): for `y ≥ log 2`,
 `A_φ(y) |Σ_{k<d} cos(τ_k y)| ≤ L²/(2 log 2)`  (using `τ_k = T + kh`, `h = 2π/L`,
 `0 ≤ A_φ(y) ≤ (L−y)₊` [eq:gbounds], the Dirichlet-kernel bound and Jordan's inequality;
-for `y ≥ L` the left side vanishes). -/
+for `y ≥ L` the left side vanishes).
+@isnad1 id=le.2h4v.s6.3b68afe217be from=translated src=- shape=8f99ba8a vocab=08be5a4c
+-/
 lemma Aphi_mul_sum_cos_le (hF : LocalHypsCore cϱ p F) {y : ℝ} (hy : Real.log 2 ≤ y) :
     |F.Aphi y * ∑ k ∈ Finset.range p.d, Real.cos (p.tau k * y)| ≤ p.L ^ 2 / (2 * Real.log 2) := by
   have hL := hF.L_pos
@@ -870,7 +991,9 @@ lemma Aphi_mul_sum_cos_le (hF : LocalHypsCore cϱ p F) {y : ℝ} (hy : Real.log 
 
 /-- Unit-step Riemann sums of a monotone function (Mathlib) rescaled to step `h` and combined:
 for `μ` monotone and `≥ 0` on `[T−h, ∞)`, `0 < h ≤ T`, `d = ⌊T/h⌋` (§5.2:
-`h Σ_{k=0}^{d−1} μ(τ_k) = ∫_T^{2T} μ + O(h μ(2T))`, `recall T < T + dh ≤ 2T < T + (d+1)h`). -/
+`h Σ_{k=0}^{d−1} μ(τ_k) = ∫_T^{2T} μ + O(h μ(2T))`, `recall T < T + dh ≤ 2T < T + (d+1)h`).
+@isnad1 id=le.4h3v.s7.8a904273f5f4 from=translated src=- shape=cae03243 vocab=3da5c63e
+-/
 lemma riemann_sum_monotone {μ : ℝ → ℝ} {T h : ℝ} (hh : 0 < h) (hhT : h ≤ T)
     (hmono : MonotoneOn μ (Set.Ici (T - h))) (hnonneg : ∀ x, T - h ≤ x → 0 ≤ μ x) :
     |h * ∑ k ∈ Finset.range ⌊T / h⌋₊, μ (T + k * h) - ∫ x in T..(2 * T), μ x|
@@ -983,7 +1106,9 @@ section TraceAnalytic
 variable {cϱ : ℝ} {p : Setting} {F : LocalFun}
 
 /-- From H-Γ [eq:mufacts]: a crude global bound `|μ(τ)| ≤ M + |τ|` (used only to control the
-`|r| > τ_k/2` tails, §5.2 "|μ(τ_k+r) − μ(τ_k)| ≪ l + log(2+|r|)"). -/
+`|r| > τ_k/2` tails, §5.2 "|μ(τ_k+r) − μ(τ_k)| ≪ l + log(2+|r|)").
+@isnad1 id=ex.1h0v.s5.a6a3fe4b4600 from=translated src=- shape=45a6e841 vocab=af8e4eea
+-/
 lemma mu_linear_bound (hΓ : Zeta23.GammaFacts) : ∃ M : ℝ, 0 ≤ M ∧ ∀ τ, |Zeta23.mu τ| ≤ M + |τ| := by
   obtain ⟨C, hC⟩ := hΓ.stirling
   obtain ⟨M₁, hM₁⟩ := isCompact_Icc.exists_bound_of_continuousOn
@@ -1026,7 +1151,9 @@ lemma mu_linear_bound (hΓ : Zeta23.GammaFacts) : ∃ M : ℝ, 0 ≤ M ∧ ∀ �
 
 /-- From H-Γ [eq:mufacts] `μ' ≪ |τ|⁻¹` + the crude bound: for `t ≥ 2` and all `r`,
 `|μ(t+r) − μ(t)| ≤ (K|r| + 10r²)/t`.  (§5.2: `≪ |r|/T` for `|r| ≤ τ_k/2` by the mean value
-theorem; for `|r| > τ_k/2` we use `2|r|/t > 1` to absorb the crude bound into the `r²/t` term.) -/
+theorem; for `|r| > τ_k/2` we use `2|r|/t > 1` to absorb the crude bound into the `r²/t` term.)
+@isnad1 id=ex.1h0v.s6.ad85229cca35 from=translated src=- shape=3eb41734 vocab=aa5dcd85
+-/
 lemma mu_increment_bound (hΓ : Zeta23.GammaFacts) :
     ∃ K : ℝ, 0 ≤ K ∧ ∀ t : ℝ, 2 ≤ t → ∀ r : ℝ,
       |Zeta23.mu (t + r) - Zeta23.mu t| ≤ (K * |r| + 10 * r ^ 2) / t := by
@@ -1072,7 +1199,9 @@ lemma mu_increment_bound (hΓ : Zeta23.GammaFacts) :
           nlinarith [le_max_right (2 * |C₁|) (4 * M), abs_nonneg r]
 
 /-- [eq:PiPfacts] shifted (§5.2: `|Π_X(τ)| ≤ 6√X/T for |τ−τ_k| ≤ T/2`, and the tail absorbed via
-`(2|r|/t)² > 1`): for `t ≥ 2` and all `r`, `|Π_X(t+r)| ≤ 6√X/t + 12√X r²/t²`. -/
+`(2|r|/t)² > 1`): for `t ≥ 2` and all `r`, `|Π_X(t+r)| ≤ 6√X/t + 12√X r²/t²`.
+@isnad1 id=le.2h5v.s7.076803abc901 from=translated src=- shape=c1ede60b vocab=5aee0b8f
+-/
 lemma PiX_shift_bound (hF : LocalHypsCore cϱ p F) {t : ℝ} (ht : 2 ≤ t) (r : ℝ) :
     |Zeta23.PiX p.X (t + r)| ≤ 6 * Real.sqrt p.X / t + 12 * Real.sqrt p.X * r ^ 2 / t ^ 2 := by
   have ht0 : 0 < t := by linarith
@@ -1100,6 +1229,9 @@ lemma PiX_shift_bound (hF : LocalHypsCore cϱ p F) {t : ℝ} (ht : 2 ≤ t) (r :
     have : t ^ 2 ≤ 4 * r ^ 2 := by nlinarith [abs_nonneg r, sq_abs r]
     nlinarith
 
+/--
+@isnad1 id=integrab.3h5v.s6.e676d9191f08 from=translated src=- shape=3151b956 vocab=62ef40f6
+-/
 lemma LocalHyps.phiHat_sq_mul_integrable_of_bdd (hF : LocalHyps cϱ p F) {g : ℝ → ℝ}
     (hg : Continuous g) {c : ℝ} (hc : ∀ x, |g x| ≤ c) :
     Integrable (fun r => F.phiHat r ^ 2 * g r) := by
@@ -1107,7 +1239,9 @@ lemma LocalHyps.phiHat_sq_mul_integrable_of_bdd (hF : LocalHyps cϱ p F) {g : �
     (Filter.Eventually.of_forall (fun x => by rw [Real.norm_eq_abs]; exact hc x))
   simpa only [mul_comm] using this
 
-/-- `∫ φ̂(r)² sin(ry) dr = 0` (odd integrand; `φ̂` even). -/
+/-- `∫ φ̂(r)² sin(ry) dr = 0` (odd integrand; `φ̂` even).
+@isnad1 id=eq.1h4v.s6.882a0cb4a72d from=translated src=- shape=cd2c89db vocab=7a42fa89
+-/
 lemma integral_phiHat_sq_mul_sin (hF : LocalHypsCore cϱ p F) (y : ℝ) :
     ∫ r, F.phiHat r ^ 2 * Real.sin (r * y) = 0 := by
   have h := integral_neg_eq_self (fun r => F.phiHat r ^ 2 * Real.sin (r * y)) volume
@@ -1115,7 +1249,9 @@ lemma integral_phiHat_sq_mul_sin (hF : LocalHypsCore cϱ p F) (y : ℝ) :
   linarith
 
 /-- §5.2: `∫ φ̂(τ−τ_k)² cos(τy) dτ = 2π A_φ(y) cos(τ_k y)`, after the substitution `τ = t + r`:
-`∫ φ̂(r)² cos((t+r)y) dr = 2π A_φ(y) cos(ty)` (from `φ̂² = Â_φ` + inversion, field `phiHat_sq_fourier`). -/
+`∫ φ̂(r)² cos((t+r)y) dr = 2π A_φ(y) cos(ty)` (from `φ̂² = Â_φ` + inversion, field `phiHat_sq_fourier`).
+@isnad1 id=eq.1h5v.s6.18e81a1a52da from=translated src=- shape=526867cf vocab=ddc1f888
+-/
 lemma integral_phiHat_sq_mul_cos_shift (hF : LocalHypsCore cϱ p F) (t y : ℝ) :
     ∫ r, F.phiHat r ^ 2 * Real.cos ((t + r) * y) = 2 * π * F.Aphi y * Real.cos (t * y) := by
   have h1 : ∀ r, F.phiHat r ^ 2 * Real.cos ((t + r) * y)
@@ -1130,7 +1266,9 @@ lemma integral_phiHat_sq_mul_cos_shift (hF : LocalHypsCore cϱ p F) (t y : ℝ) 
   · exact (hF.phiHat_sq_mul_integrable_of_bdd (by fun_prop) (fun x => Real.abs_sin_le_one _)).const_mul _
 
 /-- **P-part of [prop:trace] at one grid point** (§5.2):
-`G^P_kk = ∫ φ̂(r)² P_X(τ_k+r) dr = −2 Σ_{n≤X} a_n A_φ(y_n) cos(τ_k y_n)`. -/
+`G^P_kk = ∫ φ̂(r)² P_X(τ_k+r) dr = −2 Σ_{n≤X} a_n A_φ(y_n) cos(τ_k y_n)`.
+@isnad1 id=eq.1h4v.s7.0b2e4514137d from=translated src=- shape=52e4e174 vocab=3d7717e9
+-/
 lemma P_part_eq (hF : LocalHypsCore cϱ p F) (t : ℝ) :
     ∫ r, F.phiHat r ^ 2 * Zeta23.PX p.X (t + r)
       = -2 * ∑ n ∈ primeRange p.X, acoef n * F.Aphi (ycoef n) * Real.cos (t * ycoef n) := by
@@ -1149,7 +1287,9 @@ lemma P_part_eq (hF : LocalHypsCore cϱ p F) (t : ℝ) :
 
 /-- **μ-part of [prop:trace] at one grid point** (§5.2: `G^μ_kk = 2πaL μ(τ_k) + O(log L/T)`):
 for `t ≥ 2`, `|∫ φ̂(r)² μ(t+r) dr − 2πaL·μ(t)| ≤ (K ∫φ̂²|r| + 10 ∫φ̂²r²)/t`, with `K` from
-`mu_increment_bound`. -/
+`mu_increment_bound`.
+@isnad1 id=le.4h5v.s8.0b6ce477c33f from=translated src=- shape=f187dafd vocab=c16fe7c3
+-/
 lemma mu_part_bound (hΓ : Zeta23.GammaFacts) (hF : LocalHypsCore cϱ p F) {K : ℝ}
     (hK : ∀ t : ℝ, 2 ≤ t → ∀ r : ℝ, |Zeta23.mu (t + r) - Zeta23.mu t| ≤ (K * |r| + 10 * r ^ 2) / t)
     {t : ℝ} (ht : 2 ≤ t) :
@@ -1193,7 +1333,9 @@ lemma mu_part_bound (hΓ : Zeta23.GammaFacts) (hF : LocalHypsCore cϱ p F) {K : 
           (hF.phiHat_sq_mul_sq_integrable.const_mul 10), integral_const_mul, integral_const_mul]
 
 /-- **Π-part of [prop:trace] at one grid point** (§5.2: `|G^Π_kk| ≤ 6√X·2πaL/T + O(√X T⁻³)`):
-for `t ≥ 2`, `|∫ φ̂(r)² Π_X(t+r) dr| ≤ (6√X/t)·2πaL + (12√X/t²)·∫φ̂²r²`. -/
+for `t ≥ 2`, `|∫ φ̂(r)² Π_X(t+r) dr| ≤ (6√X/t)·2πaL + (12√X/t²)·∫φ̂²r²`.
+@isnad1 id=le.2h4v.s8.b269c316209d from=translated src=- shape=55fa4e07 vocab=e171a86c
+-/
 lemma Pi_part_bound (hF : LocalHypsCore cϱ p F) {t : ℝ} (ht : 2 ≤ t) :
     |∫ r, F.phiHat r ^ 2 * Zeta23.PiX p.X (t + r)|
       ≤ (6 * Real.sqrt p.X / t) * (2 * π * F.a * p.L)
@@ -1216,14 +1358,18 @@ lemma Pi_part_bound (hF : LocalHypsCore cϱ p F) {t : ℝ} (ht : 2 ≤ t) :
           (hF.phiHat_sq_mul_sq_integrable.const_mul _), integral_const_mul, integral_const_mul,
           hF.phiHat_sq_integral]
 
-/-- Integrability of `φ̂(r)² Π_X(t+r)` (bounded × integrable). -/
+/-- Integrability of `φ̂(r)² Π_X(t+r)` (bounded × integrable).
+@isnad1 id=integrab.1h4v.s6.eaea12687c76 from=translated src=- shape=26209ed6 vocab=b8601ef6
+-/
 lemma Pi_part_integrable (hF : LocalHypsCore cϱ p F) (t : ℝ) :
     Integrable (fun r => F.phiHat r ^ 2 * Zeta23.PiX p.X (t + r)) := by
   refine hF.phiHat_sq_mul_integrable_of_bdd (hF.PiX_cont.comp (continuous_const_add t))
     (c := 3 * Real.sqrt p.X) (fun x => (hF.PiX_bound _).trans ?_)
   exact div_le_self (by positivity) (by linarith [abs_nonneg (t + x)])
 
-/-- Integrability of `φ̂(r)² P_X(t+r)` (bounded × integrable). -/
+/-- Integrability of `φ̂(r)² P_X(t+r)` (bounded × integrable).
+@isnad1 id=integrab.1h4v.s6.6e07c65c6528 from=translated src=- shape=26209ed6 vocab=70df9f36
+-/
 lemma P_part_integrable (hF : LocalHypsCore cϱ p F) (t : ℝ) :
     Integrable (fun r => F.phiHat r ^ 2 * Zeta23.PX p.X (t + r)) := by
   refine hF.phiHat_sq_mul_integrable_of_bdd ((PX_continuous p.X).comp (continuous_const_add t))
@@ -1238,7 +1384,9 @@ lemma P_part_integrable (hF : LocalHypsCore cϱ p F) (t : ℝ) :
         gcongr; exact Real.abs_cos_le_one _
     _ = acoef n := mul_one _
 
-/-- Integrability of `φ̂(r)² μ(t+r)` for `t > 0` (`|μ| ≤ M + |τ|` and `∫φ̂²|r| < ∞`). -/
+/-- Integrability of `φ̂(r)² μ(t+r)` for `t > 0` (`|μ| ≤ M + |τ|` and `∫φ̂²|r| < ∞`).
+@isnad1 id=integrab.3h4v.s6.8e9e72a3433b from=translated src=- shape=60138550 vocab=c5a52b10
+-/
 lemma mu_part_integrable (hΓ : Zeta23.GammaFacts) (hF : LocalHypsCore cϱ p F) {t : ℝ} (ht0 : 0 < t) :
     Integrable (fun r => F.phiHat r ^ 2 * Zeta23.mu (t + r)) := by
   obtain ⟨M, hM0, hM⟩ := mu_linear_bound hΓ
@@ -1260,7 +1408,9 @@ lemma mu_part_integrable (hΓ : Zeta23.GammaFacts) (hF : LocalHypsCore cϱ p F) 
     _ = (M + t) * F.phiHat r ^ 2 + F.phiHat r ^ 2 * |r| := by ring
 
 /-- **Decomposition of a diagonal entry** (§5.2: `G_kk = ∫ φ̂(τ−τ_k)² ν_X(τ)dτ =: G^μ_kk +
-G^Π_kk + G^P_kk according to (eq:nudef)`), after translating `τ = τ_k + r`. -/
+G^Π_kk + G^P_kk according to (eq:nudef)`), after translating `τ = τ_k + r`.
+@isnad1 id=eq.3h4v.s7.29b37b72b0a0 from=translated src=- shape=531ab48c vocab=324d7b2a
+-/
 lemma GentryA_diag_eq (hΓ : Zeta23.GammaFacts) (hF : LocalHypsCore cϱ p F) (k : ℤ)
     (hk : 0 < p.tau k) :
     GentryA p F k k = (∫ r, F.phiHat r ^ 2 * Zeta23.mu (p.tau k + r))
@@ -1284,7 +1434,9 @@ lemma GentryA_diag_eq (hΓ : Zeta23.GammaFacts) (hF : LocalHypsCore cϱ p F) (k 
     integral_add (mu_part_integrable hΓ hF hk) (Pi_part_integrable hF _)]
 
 /-- H-Γ ⇒ `μ ≥ 0` far out (Stirling): `∃ τ₀ ≥ 0, μ ≥ 0 on [τ₀, ∞)` (the paper's "μ is positive …
-on [T−h, 2T]", §5.2). -/
+on [T−h, 2T]", §5.2).
+@isnad1 id=ex.1h0v.s5.31c2febc87e4 from=translated src=- shape=7be7b6f8 vocab=58428e07
+-/
 lemma mu_nonneg_eventually (hΓ : Zeta23.GammaFacts) :
     ∃ τ₀ : ℝ, 0 ≤ τ₀ ∧ ∀ x, τ₀ ≤ x → 0 ≤ Zeta23.mu x := by
   obtain ⟨C, hC⟩ := hΓ.stirling
@@ -1306,7 +1458,9 @@ lemma mu_nonneg_eventually (hΓ : Zeta23.GammaFacts) :
     rw [div_mul_eq_mul_div, one_mul, le_div_iff₀ (by positivity)]; linarith
   linarith [(abs_le.1 hst).1]
 
-/-- **Sum of the P-parts** (§5.2): `|Σ_{k<d} G^P_kk| ≤ (L²/log 2) Σ_{n≤X} a_n`. -/
+/-- **Sum of the P-parts** (§5.2): `|Σ_{k<d} G^P_kk| ≤ (L²/log 2) Σ_{n≤X} a_n`.
+@isnad1 id=le.1h3v.s7.de809a01bc6c from=translated src=- shape=e3feffee vocab=edc1b64e
+-/
 lemma sum_P_part_bound (hF : LocalHypsCore cϱ p F) :
     |∑ k ∈ Finset.range p.d, ∫ r, F.phiHat r ^ 2 * Zeta23.PX p.X (p.tau k + r)|
       ≤ p.L ^ 2 / Real.log 2 * ∑ n ∈ primeRange p.X, acoef n := by
@@ -1344,18 +1498,29 @@ lemma sum_P_part_bound (hF : LocalHypsCore cϱ p F) :
     _ = p.L ^ 2 / Real.log 2 * ∑ n ∈ primeRange p.X, acoef n := by
         rw [← Finset.sum_mul]; field_simp
 
-/-- The grid: `τ_k ∈ [T, 2T]` for `0 ≤ k < d` (§2.2 "τ_0,…,τ_{d−1} ∈ [T,2T)"), and `d ≤ LT/2π`. -/
+/-- The grid: `τ_k ∈ [T, 2T]` for `0 ≤ k < d` (§2.2 "τ_0,…,τ_{d−1} ∈ [T,2T)"), and `d ≤ LT/2π`.
+@isnad1 id=le.1h1v.s6.dfb765eb4bb0 from=translated src=- shape=39ad70b8 vocab=ce41b9c1
+-/
 lemma Setting.d_le (p : Setting) (h : 0 ≤ p.L * p.T) : (p.d : ℝ) ≤ p.L * p.T / (2 * π) :=
   Nat.floor_le (by positivity)
 
+/--
+@isnad1 id=eq.1h1v.s5.80d8ae0fabf3 from=translated src=- shape=18a207f1 vocab=d3876a57
+-/
 lemma Setting.d_eq_floor (p : Setting) (hL : 0 < p.L) : p.d = ⌊p.T / p.h⌋₊ := by
   simp only [Setting.d, Setting.h]
   congr 1
   field_simp
 
+/--
+@isnad1 id=eq.0h2v.s5.1a83249c9b71 from=translated src=- shape=66bf4bac vocab=504c10ef
+-/
 lemma Setting.tau_natCast (p : Setting) (k : ℕ) : p.tau k = p.T + k * p.h := by
   simp [Setting.tau]
 
+/--
+@isnad1 id=and.3h2v.s6.171edb703341 from=translated src=- shape=16fa80e1 vocab=2f4170c1
+-/
 lemma Setting.tau_mem (p : Setting) (hL : 0 < p.L) (hT : 0 ≤ p.T) {k : ℕ} (hk : k ∈ Finset.range p.d) :
     p.T ≤ p.tau k ∧ p.tau k ≤ 2 * p.T := by
   rw [Setting.tau_natCast]

@@ -75,15 +75,22 @@ noncomputable def survive (P : Measure Ω) (X : Ω → ℝ) (t x : ℝ) : ℝ :=
 noncomputable def die (P : Measure Ω) (X : Ω → ℝ) (t x : ℝ) : ℝ :=
   1 - survive P X t x
 
+/--
+@isnad1 id=measurab.1h3v.s4.191ab1ad7751 from=translated src=- shape=616a32f7 vocab=f4b08209
+-/
 lemma measurableSet_alive (hX : Measurable X) (x : ℝ) : MeasurableSet (alive X x) :=
   measurableSet_lt measurable_const hX
 
 omit [MeasurableSpace Ω] in
-/-- `alive x` shrinks as `x` grows: reaching a later age is a sub-event. -/
+/-- `alive x` shrinks as `x` grows: reaching a later age is a sub-event.
+@isnad1 id=le.1h4v.s4.f7edc1384ca3 from=translated src=- shape=45428bcd vocab=fc370469
+-/
 lemma alive_subset_alive {x y : ℝ} (hxy : x ≤ y) : alive X y ⊆ alive X x :=
   fun _ hω ↦ lt_of_le_of_lt hxy hω
 
-/-- `S_X(0) = 1`: everyone is alive at age `0`, since `X > 0` almost surely. AFP: `ccdfX_0_1`. -/
+/-- `S_X(0) = 1`: everyone is alive at age `0`, since `X > 0` almost surely. AFP: `ccdfX_0_1`.
+@isnad1 id=eq.1h3v.s6.3544b1796b41 from=translated src=- shape=8ee3ed24 vocab=96ee558a
+-/
 lemma survivalFunction_zero [IsProbabilityMeasure P] (hpos : ∀ᵐ ω ∂P, 0 < X ω) :
     survivalFunction P X 0 = 1 := by
   have hcompl : P (alive X 0)ᶜ = 0 := measure_mono_null (fun _ hω ↦ hω) (ae_iff.mp hpos)
@@ -92,22 +99,30 @@ lemma survivalFunction_zero [IsProbabilityMeasure P] (hpos : ∀ᵐ ω ∂P, 0 <
     exact measure_congr (ae_eq_univ.mpr hcompl)
   rw [survivalFunction, h1, ENNReal.toReal_one]
 
-/-- The survival function is bounded by `1`. -/
+/-- The survival function is bounded by `1`.
+@isnad1 id=le.0h4v.s5.07aa5e3e0c95 from=translated src=- shape=10452168 vocab=d3d6990c
+-/
 lemma survivalFunction_le_one [IsProbabilityMeasure P] (t : ℝ) :
     survivalFunction P X t ≤ 1 := by
   rw [survivalFunction, ← ENNReal.toReal_one]
   exact ENNReal.toReal_mono ENNReal.one_ne_top prob_le_one
 
-/-- The survival function is nonnegative. -/
+/-- The survival function is nonnegative.
+@isnad1 id=le.0h4v.s4.a12cb3d860da from=translated src=- shape=514496de vocab=945a6891
+-/
 lemma survivalFunction_nonneg (t : ℝ) : 0 ≤ survivalFunction P X t :=
   ENNReal.toReal_nonneg
 
-/-- The survival function is nonincreasing in age. -/
+/-- The survival function is nonincreasing in age.
+@isnad1 id=antitone.0h3v.s4.cca641ace2ed from=translated src=- shape=524a6c0b vocab=7e65571c
+-/
 lemma survivalFunction_antitone [IsProbabilityMeasure P] : Antitone (survivalFunction P X) := by
   intro x y hxy
   exact ENNReal.toReal_mono (measure_ne_top P _) (measure_mono (alive_subset_alive hxy))
 
-/-- `₀pₓ = 1`: a life alive at age `x` survives `0` further years with certainty. AFP: `ccdfTx_0_1`. -/
+/-- `₀pₓ = 1`: a life alive at age `x` survives `0` further years with certainty. AFP: `ccdfTx_0_1`.
+@isnad1 id=eq.2h4v.s6.94dfe2b5aff9 from=translated src=- shape=7808efcf vocab=efbba1e2
+-/
 lemma survive_zero [IsProbabilityMeasure P] (hX : Measurable X) (x : ℝ)
     (hx : P (alive X x) ≠ 0) : survive P X 0 x = 1 := by
   rw [survive, add_zero, cond_apply (measurableSet_alive hX x), Set.inter_self,
@@ -115,7 +130,9 @@ lemma survive_zero [IsProbabilityMeasure P] (hX : Measurable X) (x : ℝ)
 
 /-- **The survival ratio** `tpₓ = S_X(x+t) / S_X(x)` for `t ≥ 0` — the survival-ratio keystone (AFP: `ccdfTx_ccdfX`).
 Conditioning on survival to age `x`, a further `t` years of survival has probability the ratio of
-the two unconditional survival probabilities. -/
+the two unconditional survival probabilities.
+@isnad1 id=eq.2h5v.s6.90eeccecfd14 from=translated src=- shape=56fb9025 vocab=ceecbb7f
+-/
 lemma survive_eq_survivalFunction_ratio (hX : Measurable X) (x : ℝ)
     {t : ℝ} (ht : 0 ≤ t) :
     survive P X t x = survivalFunction P X (x + t) / survivalFunction P X x := by
@@ -124,7 +141,9 @@ lemma survive_eq_survivalFunction_ratio (hX : Measurable X) (x : ℝ)
     Set.inter_eq_self_of_subset_right hsub, ENNReal.toReal_mul, ENNReal.toReal_inv]
   ring
 
-/-- `tpₓ + tqₓ = 1` — the survival/death dichotomy. -/
+/-- `tpₓ + tqₓ = 1` — the survival/death dichotomy.
+@isnad1 id=eq.0h5v.s5.a8a0797a2ef1 from=translated src=- shape=20607e56 vocab=66a93789
+-/
 lemma survive_add_die (t x : ℝ) : survive P X t x + die P X t x = 1 := by
   rw [die]; ring
 

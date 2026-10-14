@@ -38,6 +38,9 @@ namespace Zeta23
 
 namespace EvBound
 
+/--
+@isnad1 id=isbigo.1h2v.s4.d05ccdeebf78 from=translated src=- shape=e692e461 vocab=c85c0125
+-/
 lemma isBigO {f g : ℝ → ℝ} (h : EvBound f g) : f =O[atTop] g := by
   obtain ⟨C, hC, T₀, hT⟩ := h
   refine IsBigO.of_bound C ?_
@@ -45,7 +48,9 @@ lemma isBigO {f g : ℝ → ℝ} (h : EvBound f g) : f =O[atTop] g := by
   rw [Real.norm_eq_abs, Real.norm_eq_abs]
   exact (hT T hT').trans (mul_le_mul_of_nonneg_left (le_abs_self _) hC.le)
 
-/-- From `IsBigO` back to the explicit form, when the majorant is eventually nonnegative. -/
+/-- From `IsBigO` back to the explicit form, when the majorant is eventually nonnegative.
+@isnad1 id=evbound.2h2v.s5.f5665f2c4b0c from=translated src=- shape=acb64716 vocab=36a54a51
+-/
 lemma of_isBigO {f g : ℝ → ℝ} (h : f =O[atTop] g) (hg : ∀ᶠ T in atTop, 0 ≤ g T) :
     EvBound f g := by
   obtain ⟨C, hC, h⟩ := h.exists_pos
@@ -55,9 +60,15 @@ lemma of_isBigO {f g : ℝ → ℝ} (h : f =O[atTop] g) (hg : ∀ᶠ T in atTop,
   obtain ⟨h1, h2⟩ := hT₀ T hT
   simpa [Real.norm_eq_abs, abs_of_nonneg h2] using h1
 
+/--
+@isnad1 id=iff.1h2v.s5.2dadfaedd436 from=translated src=- shape=33f63df7 vocab=36a54a51
+-/
 lemma iff_isBigO {f g : ℝ → ℝ} (hg : ∀ᶠ T in atTop, 0 ≤ g T) :
     EvBound f g ↔ f =O[atTop] g := ⟨isBigO, fun h => of_isBigO h hg⟩
 
+/--
+@isnad1 id=evbound.2h3v.s5.77edea58db6c from=translated src=- shape=423621d7 vocab=b159f907
+-/
 lemma mono_right {f g g' : ℝ → ℝ} (h : EvBound f g) (hgg' : ∀ᶠ T in atTop, g T ≤ g' T) :
     EvBound f g' := by
   obtain ⟨C, hC, T₀, hT⟩ := h
@@ -65,7 +76,9 @@ lemma mono_right {f g g' : ℝ → ℝ} (h : EvBound f g) (hgg' : ∀ᶠ T in at
   refine ⟨C, hC, max T₀ T₁, fun T hT' => (hT T (le_of_max_le_left hT')).trans ?_⟩
   exact mul_le_mul_of_nonneg_left (hT₁ T (le_of_max_le_right hT')) hC.le
 
-/-- Weaken the majorant up to a constant: if `g ≤ c·g'` eventually then `EvBound f g → EvBound f g'`. -/
+/-- Weaken the majorant up to a constant: if `g ≤ c·g'` eventually then `EvBound f g → EvBound f g'`.
+@isnad1 id=evbound.3h4v.s5.1a04881e851b from=translated src=- shape=9fcc71f5 vocab=a11d71e7
+-/
 lemma mono_right' {f g g' : ℝ → ℝ} (h : EvBound f g) {c : ℝ} (hc : 0 < c)
     (hgg' : ∀ᶠ T in atTop, g T ≤ c * g' T) : EvBound f g' := by
   obtain ⟨C, hC, T₀, hT⟩ := h
@@ -74,17 +87,25 @@ lemma mono_right' {f g g' : ℝ → ℝ} (h : EvBound f g) {c : ℝ} (hc : 0 < c
   rw [mul_assoc]
   exact mul_le_mul_of_nonneg_left (hT₁ T (le_of_max_le_right hT')) hC.le
 
-/-- An eventual pointwise bound with an explicit constant gives an `EvBound`. -/
+/-- An eventual pointwise bound with an explicit constant gives an `EvBound`.
+@isnad1 id=evbound.2h3v.s5.74ccf8407d15 from=translated src=- shape=564aa6c9 vocab=1847a9b3
+-/
 lemma of_eventually_le {f g : ℝ → ℝ} {c : ℝ} (hc : 0 < c)
     (h : ∀ᶠ T in atTop, |f T| ≤ c * g T) : EvBound f g := by
   obtain ⟨T₀, hT₀⟩ := eventually_atTop.mp h
   exact ⟨c, hc, T₀, hT₀⟩
 
+/--
+@isnad1 id=ex.1h2v.s5.5494d52b1cb3 from=translated src=- shape=e91896d2 vocab=1847a9b3
+-/
 lemma eventually_le {f g : ℝ → ℝ} (h : EvBound f g) :
     ∃ C : ℝ, 0 < C ∧ ∀ᶠ T in atTop, |f T| ≤ C * g T := by
   obtain ⟨C, hC, T₀, hT⟩ := h
   exact ⟨C, hC, eventually_atTop.mpr ⟨T₀, hT⟩⟩
 
+/--
+@isnad1 id=evbound.2h3v.s5.26799dbf8788 from=translated src=- shape=2b866508 vocab=be9463e1
+-/
 lemma add {f₁ f₂ g : ℝ → ℝ} (h₁ : EvBound f₁ g) (h₂ : EvBound f₂ g) :
     EvBound (fun T => f₁ T + f₂ T) g := by
   obtain ⟨C₁, hC₁, h₁⟩ := h₁.eventually_le
@@ -95,6 +116,9 @@ lemma add {f₁ f₂ g : ℝ → ℝ} (h₁ : EvBound f₁ g) (h₂ : EvBound f�
     _ ≤ C₁ * g T + C₂ * g T := add_le_add a b
     _ = (C₁ + C₂) * g T := by ring
 
+/--
+@isnad1 id=evbound.2h3v.s5.9cc189856e0c from=translated src=- shape=2b866508 vocab=b9175fdc
+-/
 lemma sub {f₁ f₂ g : ℝ → ℝ} (h₁ : EvBound f₁ g) (h₂ : EvBound f₂ g) :
     EvBound (fun T => f₁ T - f₂ T) g := by
   obtain ⟨C₁, hC₁, h₁⟩ := h₁.eventually_le
@@ -105,6 +129,9 @@ lemma sub {f₁ f₂ g : ℝ → ℝ} (h₁ : EvBound f₁ g) (h₂ : EvBound f�
     _ ≤ C₁ * g T + C₂ * g T := add_le_add a b
     _ = (C₁ + C₂) * g T := by ring
 
+/--
+@isnad1 id=evbound.1h3v.s4.fc7f351fe4c2 from=translated src=- shape=f16ca298 vocab=663af77a
+-/
 lemma const_mul {f g : ℝ → ℝ} (h : EvBound f g) (c : ℝ) :
     EvBound (fun T => c * f T) g := by
   obtain ⟨C, hC, h⟩ := h.eventually_le
@@ -114,17 +141,24 @@ lemma const_mul {f g : ℝ → ℝ} (h : EvBound f g) (c : ℝ) :
   calc |c| * |f T| ≤ |c| * (C * g T) := mul_le_mul_of_nonneg_left a (abs_nonneg c)
     _ ≤ (|c| + 1) * (C * g T) := by nlinarith
 
-/-- Change `f` up to eventual pointwise domination. -/
+/-- Change `f` up to eventual pointwise domination.
+@isnad1 id=evbound.2h3v.s5.bcab3bf2f9be from=translated src=- shape=3d7e9c79 vocab=d7287546
+-/
 lemma of_abs_le {f f' g : ℝ → ℝ} (h : EvBound f g) (h' : ∀ᶠ T in atTop, |f' T| ≤ |f T|) :
     EvBound f' g := by
   obtain ⟨C, hC, h⟩ := h.eventually_le
   refine of_eventually_le hC ?_
   filter_upwards [h, h'] with T a b using b.trans a
 
+/--
+@isnad1 id=evbound.2h3v.s5.9f8e082010d0 from=translated src=- shape=855086ce vocab=e3cb2149
+-/
 lemma congr_left {f f' g : ℝ → ℝ} (h : EvBound f g) (h' : ∀ᶠ T in atTop, f' T = f T) :
     EvBound f' g := h.of_abs_le (h'.mono fun T hT => by rw [hT])
 
-/-- The majorant of an `EvBound` is eventually nonnegative. -/
+/-- The majorant of an `EvBound` is eventually nonnegative.
+@isnad1 id=eventual.1h2v.s4.e5b1af42b826 from=translated src=- shape=cff6296c vocab=b159f907
+-/
 lemma majorant_nonneg {f g : ℝ → ℝ} (h : EvBound f g) : ∀ᶠ T in atTop, 0 ≤ g T := by
   obtain ⟨C, hC, h⟩ := h.eventually_le
   filter_upwards [h] with T hT
@@ -136,65 +170,111 @@ end EvBound
 
 namespace PaperParams
 
+/--
+@isnad1 id=tendsto.0h0v.s3.45be38d210ce from=translated src=- shape=41b74a9e vocab=83ac5670
+-/
 lemma l_tendsto_atTop : Tendsto l atTop atTop := by
   unfold l
   exact Real.tendsto_log_atTop.comp (tendsto_id.atTop_div_const (by positivity))
 
+/--
+@isnad1 id=eq.0h1v.s5.2f9b37925471 from=translated src=- shape=d70dc613 vocab=38e74638
+-/
 lemma ell1_eq (T : ℝ) : ell1 T = l T + (2 * Real.log 2 - 1) := by unfold ell1; ring
 
-/-- `2 log 2 − 1 > 0`, so `ℓ₁ > l`. -/
+/-- `2 log 2 − 1 > 0`, so `ℓ₁ > l`.
+@isnad1 id=lt.0h0v.s5.16ea25c72570 from=translated src=- shape=dbe7e8c0 vocab=b6d0b9a9
+-/
 lemma two_log_two_sub_one_pos : 0 < 2 * Real.log 2 - 1 := by
   have := Real.log_two_gt_d9
   linarith
 
+/--
+@isnad1 id=lt.0h1v.s3.a87f248e9ed0 from=translated src=- shape=0fc427d2 vocab=9a84cc55
+-/
 lemma l_lt_ell1 (T : ℝ) : l T < ell1 T := by
   rw [ell1_eq]; linarith [two_log_two_sub_one_pos]
 
+/--
+@isnad1 id=tendsto.0h0v.s3.7093b305b1ca from=translated src=- shape=41b74a9e vocab=7f9965a7
+-/
 lemma ell1_tendsto_atTop : Tendsto ell1 atTop atTop :=
   tendsto_atTop_mono (fun T => (l_lt_ell1 T).le) l_tendsto_atTop
 
 variable (P : Params)
 
+/--
+@isnad1 id=lt.0h2v.s4.1ff3a5c34e2c from=translated src=- shape=787c1379 vocab=e1e4587e
+-/
 lemma X_pos (T : ℝ) : 0 < P.X T := Real.exp_pos _
 
-/-- `X = (T/2π)^λ` for `T > 0`. -/
+/-- `X = (T/2π)^λ` for `T > 0`.
+@isnad1 id=eq.1h2v.s5.fecf4f08ee2e from=translated src=- shape=01cd891c vocab=c38923c4
+-/
 lemma X_eq_rpow {T : ℝ} (hT : 0 < T) : P.X T = (T / (2 * π)) ^ P.lam := by
   unfold Params.X Params.L l
   rw [Real.rpow_def_of_pos (div_pos hT (by positivity)), mul_comm]
 
+/--
+@isnad1 id=tendsto.1h1v.s4.0048d95e9d77 from=translated src=- shape=c61658d1 vocab=02aa44a4
+-/
 lemma L_tendsto_atTop (hP : 0 < P.lam) : Tendsto P.L atTop atTop := by
   unfold Params.L
   exact l_tendsto_atTop.const_mul_atTop hP
 
+/--
+@isnad1 id=tendsto.0h0v.s3.77353aa5c28f from=translated src=- shape=60b1d915 vocab=760f804d
+-/
 lemma log_l_tendsto_atTop : Tendsto (fun T => Real.log (l T)) atTop atTop :=
   Real.tendsto_log_atTop.comp l_tendsto_atTop
 
+/--
+@isnad1 id=eventual.0h1v.s3.aa5a6b5fc74b from=translated src=- shape=e66203b3 vocab=cc3dbc8c
+-/
 lemma eventually_l_ge (c : ℝ) : ∀ᶠ T in atTop, c ≤ l T := l_tendsto_atTop.eventually_ge_atTop c
 
+/--
+@isnad1 id=eventual.0h1v.s4.ea19b0b4fba6 from=translated src=- shape=de88e3e6 vocab=c0d2779c
+-/
 lemma eventually_log_l_ge (c : ℝ) : ∀ᶠ T in atTop, c ≤ Real.log (l T) :=
   log_l_tendsto_atTop.eventually_ge_atTop c
 
+/--
+@isnad1 id=eventual.1h2v.s4.606afa39b31a from=translated src=- shape=c79b85dc vocab=c8486e23
+-/
 lemma eventually_L_ge (hlam : 0 < P.lam) (c : ℝ) : ∀ᶠ T in atTop, c ≤ P.L T :=
   (L_tendsto_atTop P hlam).eventually_ge_atTop c
 
+/--
+@isnad1 id=le.0h1v.s3.93645e0eff82 from=translated src=- shape=0fc427d2 vocab=2e4c64bd
+-/
 lemma l_le_ell1 (T : ℝ) : l T ≤ ell1 T := (l_lt_ell1 T).le
 
+/--
+@isnad1 id=eventual.0h0v.s4.c71b89e60431 from=translated src=- shape=e7994ca5 vocab=305e7e02
+-/
 lemma eventually_ell1_le_two_l : ∀ᶠ T in atTop, ell1 T ≤ 2 * l T := by
   filter_upwards [eventually_l_ge 1] with T h
   rw [ell1_eq]
   have := Real.log_two_lt_d9
   linarith
 
-/-- `L ≤ l` when `λ ≤ 1` and `l ≥ 0`. -/
+/-- `L ≤ l` when `λ ≤ 1` and `l ≥ 0`.
+@isnad1 id=le.2h2v.s5.176c969b55bd from=translated src=- shape=a1a84765 vocab=6a1cc27e
+-/
 lemma L_le_l (hlam1 : P.lam ≤ 1) {T : ℝ} (hl : 0 ≤ l T) : P.L T ≤ l T := by
   unfold Params.L; nlinarith
 
-/-- `√X = (T/2π)^{λ/2}`. -/
+/-- `√X = (T/2π)^{λ/2}`.
+@isnad1 id=eq.1h2v.s6.ea43d8566f9d from=translated src=- shape=e902adfa vocab=ee571107
+-/
 lemma sqrt_X_eq {T : ℝ} (hT : 0 < T) : Real.sqrt (P.X T) = (T / (2 * π)) ^ (P.lam / 2) := by
   rw [X_eq_rpow P hT, Real.sqrt_eq_rpow, ← Real.rpow_mul (by positivity)]
   ring_nf
 
-/-- `√X ≤ T^{λ/2}` for `T > 0` (as `T/2π ≤ T`). -/
+/-- `√X ≤ T^{λ/2}` for `T > 0` (as `T/2π ≤ T`).
+@isnad1 id=le.2h2v.s5.fb8f88f8b412 from=translated src=- shape=56eccae2 vocab=46314bb3
+-/
 lemma sqrt_X_le_rpow (hlam : 0 < P.lam) {T : ℝ} (hT : 0 < T) :
     Real.sqrt (P.X T) ≤ T ^ (P.lam / 2) := by
   rw [sqrt_X_eq P hT]
@@ -203,7 +283,9 @@ lemma sqrt_X_le_rpow (hlam : 0 < P.lam) {T : ℝ} (hT : 0 < T) :
   have := Real.pi_gt_three
   nlinarith
 
-/-- `X ≤ T` eventually (`λ ≤ 1`). -/
+/-- `X ≤ T` eventually (`λ ≤ 1`).
+@isnad1 id=eventual.2h1v.s5.cba982b6077d from=translated src=- shape=490a418c vocab=5c374ab8
+-/
 lemma eventually_X_le_T (_hlam : 0 < P.lam) (hlam1 : P.lam ≤ 1) : ∀ᶠ T in atTop, P.X T ≤ T := by
   filter_upwards [eventually_ge_atTop (2 * π)] with T hT
   have hπ := Real.pi_gt_three
@@ -215,16 +297,24 @@ lemma eventually_X_le_T (_hlam : 0 < P.lam) (hlam1 : P.lam ≤ 1) : ∀ᶠ T in 
     _ = T / (2 * π) := Real.rpow_one _
     _ ≤ T := by rw [div_le_iff₀ (by positivity)]; nlinarith
 
+/--
+@isnad1 id=eventual.1h1v.s5.de0a67d226ed from=translated src=- shape=9fa3a134 vocab=5c374ab8
+-/
 lemma eventually_one_le_X (hlam : 0 < P.lam) : ∀ᶠ T in atTop, 1 ≤ P.X T := by
   filter_upwards [eventually_L_ge P hlam 0] with T hL
   simpa [Params.X] using Real.one_le_exp hL
 
+/--
+@isnad1 id=eq.1h2v.s5.9f62eba674b3 from=translated src=- shape=9f39d1ca vocab=ebcaebb2
+-/
 lemma rpow_half_sub_one_mul {T : ℝ} (hT : 0 < T) (s : ℝ) : T ^ (s - 1) * T = T ^ s := by
   rw [Real.rpow_sub_one hT.ne', div_mul_cancel₀ _ hT.ne']
 
 variable {P}
 
-/-- each of the three summands of `𝓔_T` is eventually nonnegative -/
+/-- each of the three summands of `𝓔_T` is eventually nonnegative
+@isnad1 id=eventual.2h1v.s7.cfd6d9aa2496 from=translated src=- shape=8407223e vocab=e4d39267
+-/
 lemma calE_summands_nonneg (hlam : 0 < P.lam) (hw : 0 ≤ P.w) :
     ∀ᶠ T in atTop, 0 ≤ P.w / P.L T ∧
       0 ≤ (l T ^ 2 + P.X T) * Real.log (l T) / (T * l T) ∧ 0 ≤ T ^ (P.lam / 2 - 1) := by
@@ -233,31 +323,42 @@ lemma calE_summands_nonneg (hlam : 0 < P.lam) (hw : 0 ≤ P.w) :
   refine ⟨div_nonneg hw hL, div_nonneg (mul_nonneg (add_nonneg (sq_nonneg _) (X_pos P T).le)
     (Real.log_nonneg hl)) (mul_nonneg hT (by linarith)), Real.rpow_nonneg hT _⟩
 
-/-- `𝓔_T ≥ w / L` for `T` large. -/
+/-- `𝓔_T ≥ w / L` for `T` large.
+@isnad1 id=eventual.2h1v.s5.7c45f0cc7ca4 from=translated src=- shape=7ab04163 vocab=db6ec425
+-/
 lemma calE_ge_w_div_L (hlam : 0 < P.lam) (hw : 0 ≤ P.w) :
     ∀ᶠ T in atTop, P.w / P.L T ≤ P.calE T := by
   filter_upwards [calE_summands_nonneg hlam hw] with T ⟨_, h2, h3⟩
   unfold Params.calE; linarith
 
-/-- `𝓔_T ≥ T^{λ/2-1}` for `T` large. -/
+/-- `𝓔_T ≥ T^{λ/2-1}` for `T` large.
+@isnad1 id=eventual.2h1v.s6.100fdaf61fda from=translated src=- shape=18103515 vocab=58559c93
+-/
 lemma calE_ge_rpow (hlam : 0 < P.lam) (hw : 0 ≤ P.w) :
     ∀ᶠ T in atTop, T ^ (P.lam / 2 - 1) ≤ P.calE T := by
   filter_upwards [calE_summands_nonneg hlam hw] with T ⟨h1, h2, _⟩
   unfold Params.calE; linarith
 
-/-- `𝓔_T ≥ (l²+X) log l /(T l)` for `T` large. -/
+/-- `𝓔_T ≥ (l²+X) log l /(T l)` for `T` large.
+@isnad1 id=eventual.2h1v.s6.d992f63df352 from=translated src=- shape=770e186d vocab=e372079f
+-/
 lemma calE_ge_mid (hlam : 0 < P.lam) (hw : 0 ≤ P.w) :
     ∀ᶠ T in atTop, (l T ^ 2 + P.X T) * Real.log (l T) / (T * l T) ≤ P.calE T := by
   filter_upwards [calE_summands_nonneg hlam hw] with T ⟨h1, _, h3⟩
   unfold Params.calE; linarith
 
+/--
+@isnad1 id=eventual.2h1v.s5.77caabf70f68 from=translated src=- shape=5be5bb17 vocab=2da511ee
+-/
 lemma calE_nonneg_eventually (hlam : 0 < P.lam) (hw : 0 ≤ P.w) :
     ∀ᶠ T in atTop, 0 ≤ P.calE T := by
   filter_upwards [calE_summands_nonneg hlam hw] with T ⟨h1, h2, h3⟩
   unfold Params.calE; linarith
 
 /-- `𝓔_T → 0` as `T → ∞`, for every fixed `0 < λ ≤ 1` and `w` (the paper [thm:traces]:
-  "`𝓔_T ≪_λ w/L + T^{λ−1} log l` (λ<1), `𝓔_T ≪ w/L + log l / l` (λ=1)"; and `L = λ l → ∞`). -/
+  "`𝓔_T ≪_λ w/L + T^{λ−1} log l` (λ<1), `𝓔_T ≪ w/L + log l / l` (λ=1)"; and `L = λ l → ∞`).
+@isnad1 id=tendsto.3h1v.s5.3a0eba754aa6 from=translated src=- shape=e3197da0 vocab=cd3f2caa
+-/
 theorem calE_tendsto_zero (hlam : 0 < P.lam) (hlam1 : P.lam ≤ 1) (hw : 0 ≤ P.w) :
     Tendsto P.calE atTop (𝓝 0) := by
   -- w / L → 0
@@ -396,11 +497,15 @@ section assembly
 variable {D} (h : Facts D)
 include h
 
-/-- [eq:tr1], first equality — this is [prop:trace] verbatim. -/
+/-- [eq:tr1], first equality — this is [prop:trace] verbatim.
+@isnad1 id=evbound.1h2v.s6.a8a528b01751 from=translated src=- shape=5e21596f vocab=4963878e
+-/
 theorem tr1 : EvBound (fun T => D.trG T - D.aT T * P.L T * D.Ncnt T)
     (fun T => P.L T * Real.sqrt (P.X T)) := h.prop_trace
 
-/-- From [eq:RvM]: eventually `T l /(4π) ≤ N(T,2T)` (and hence `N > 0`). -/
+/-- From [eq:RvM]: eventually `T l /(4π) ≤ N(T,2T)` (and hence `N > 0`).
+@isnad1 id=eventual.1h2v.s5.f8acfafc5183 from=translated src=- shape=9be8fe1a vocab=77de83cc
+-/
 lemma Ncnt_lower : ∀ᶠ T in atTop, T * l T / (4 * π) ≤ D.Ncnt T := by
   obtain ⟨A, hA, hN⟩ := h.rvm.eventually_le
   filter_upwards [hN, eventually_ge_atTop (4 * π * A), eventually_l_ge 0] with T hN hTA hl
@@ -413,13 +518,18 @@ lemma Ncnt_lower : ∀ᶠ T in atTop, T * l T / (4 * π) ≤ D.Ncnt T := by
     rw [le_div_iff₀ (by positivity)]; nlinarith
   linarith
 
-/-- eventually `T ≤ 4π N(T,2T)`. -/
+/-- eventually `T ≤ 4π N(T,2T)`.
+@isnad1 id=eventual.1h2v.s5.a42a173c85be from=translated src=- shape=04fad535 vocab=0e19a0b6
+-/
 lemma T_le_Ncnt : ∀ᶠ T in atTop, T ≤ 4 * π * D.Ncnt T := by
   filter_upwards [Ncnt_lower h, eventually_l_ge 1, eventually_ge_atTop 0] with T hN hl hT
   have hπ := Real.pi_pos
   have : T * l T ≤ 4 * π * D.Ncnt T := by rw [div_le_iff₀ (by positivity)] at hN; linarith
   nlinarith
 
+/--
+@isnad1 id=eventual.1h2v.s4.f25fe19bec12 from=translated src=- shape=6cd0bd02 vocab=b9dd764f
+-/
 lemma Ncnt_pos : ∀ᶠ T in atTop, 0 < D.Ncnt T := by
   filter_upwards [Ncnt_lower h, eventually_l_ge 1, eventually_ge_atTop 1] with T hN hl hT
   have hπ := Real.pi_pos
@@ -427,7 +537,9 @@ lemma Ncnt_pos : ∀ᶠ T in atTop, 0 < D.Ncnt T := by
     |> fun h => by simpa using h
 
 /-- [eq:tr1], second equality: `tr G̃ = L N(T,2T)(1 + O(𝓔_T))`.
-  Paper: from `1 − 2w/L ≤ a ≤ 1`, `L N ≫ L T l` and `√X ≤ T^{λ/2}`. -/
+  Paper: from `1 − 2w/L ≤ a ≤ 1`, `L N ≫ L T l` and `√X ≤ T^{λ/2}`.
+@isnad1 id=evbound.1h2v.s5.655fd26a6a79 from=translated src=- shape=66046253 vocab=c29b2314
+-/
 theorem tr1' : EvBound (fun T => D.trG T - P.L T * D.Ncnt T)
     (fun T => P.calE T * (P.L T * D.Ncnt T)) := by
   obtain ⟨C₁, hC₁, h1⟩ := h.prop_trace.eventually_le
@@ -467,7 +579,9 @@ theorem tr1' : EvBound (fun T => D.trG T - P.L T * D.Ncnt T)
     _ ≤ 4 * π * C₁ * (E * (L * N)) + 2 * E * (L * N) := by linarith
     _ = (4 * π * C₁ + 2) * (E * (L * N)) := by ring
 
-/-- The common regime `T ≥ 1, l ≥ 1, log l ≥ 1, L ≥ 1, X ≥ 1, L ≤ l, X ≤ T` (eventually). -/
+/-- The common regime `T ≥ 1, l ≥ 1, log l ≥ 1, L ≥ 1, X ≥ 1, L ≤ l, X ≤ T` (eventually).
+@isnad1 id=eventual.1h2v.s6.27537c901113 from=translated src=- shape=b8736aae vocab=a27dc235
+-/
 lemma regime : ∀ᶠ T in atTop, 1 ≤ T ∧ 1 ≤ l T ∧ 1 ≤ Real.log (l T) ∧ 1 ≤ P.L T ∧ 1 ≤ P.X T ∧
     P.L T ≤ l T ∧ P.X T ≤ T := by
   have hlam := h.lam_pos
@@ -477,7 +591,9 @@ lemma regime : ∀ᶠ T in atTop, 1 ≤ T ∧ 1 ≤ l T ∧ 1 ≤ Real.log (l T)
   exact ⟨h1, h2, h3, h4, h5, L_le_l P h.lam_le_one (by linarith), h6⟩
 
 /-- [eq:tr2], first form:
-  `tr G̃² = 2π b L ∫_T^{2T} μ² + (T/π) Σ Λ(n)²/n g(log n) + O(L l log l (l²+X))`. -/
+  `tr G̃² = 2π b L ∫_T^{2T} μ² + (T/π) Σ Λ(n)²/n g(log n) + O(L l log l (l²+X))`.
+@isnad1 id=evbound.1h2v.s7.3d503906bff7 from=translated src=- shape=1bc421a2 vocab=38bec450
+-/
 theorem tr2_first : EvBound
     (fun T => D.trG2 T - (2 * π * D.bT T * P.L T * D.intMu2 T + T / π * D.sumL2g T))
     (fun T => P.L T * l T * Real.log (l T) * (l T ^ 2 + P.X T)) := by
@@ -537,7 +653,9 @@ theorem tr2_first : EvBound
 
 omit h in
 /-- The pointwise inequality behind [eq:tr2] (second form), with every quantity a real variable:
-all analytic content is in the hypotheses, and the constants `ℓ₁² + L²/3` are checked here. -/
+all analytic content is in the hypotheses, and the constants `ℓ₁² + L²/3` are checked here.
+@isnad1 id=le.22h15v.s10.0221d415702c from=translated src=- shape=9d87a1b4 vocab=13453071
+-/
 lemma tr2_pointwise (T L ℓ lT X E S I2 b G2 w CR Cμ Cu Cl : ℝ)
     (hT : 1 ≤ T) (hL : 1 ≤ L) (hl : 1 ≤ lT) (hlog : 1 ≤ Real.log lT) (hX : 1 ≤ X)
     (hℓl : lT ≤ ℓ) (hLl : L ≤ lT) (hw : 1 ≤ w) (hL2w : 2 * w ≤ L) (hb1 : 1 - 2 * w / L ≤ b) (hble1 : b ≤ 1)
@@ -646,7 +764,9 @@ lemma tr2_pointwise (T L ℓ lT X E S I2 b G2 w CR Cμ Cu Cl : ℝ)
           + 6 * (Cu + Cl + 2 * w) * (E * M₂)) := by gcongr
     _ = (2 * π * CR + Cμ + 2 + 6 * (Cu + Cl + 2 * w)) * (E * M₂) := by ring
 
-/-- [eq:tr2], second form: `tr G̃² = (T L/2π)(ℓ₁² + L²/3)(1 + O(𝓔_T))`. -/
+/-- [eq:tr2], second form: `tr G̃² = (T L/2π)(ℓ₁² + L²/3)(1 + O(𝓔_T))`.
+@isnad1 id=evbound.1h2v.s5.9e9689253346 from=translated src=- shape=fc2fbfbf vocab=31bf6820
+-/
 theorem tr2 : EvBound (fun T => D.trG2 T - P.mainTr2 T) (fun T => P.calE T * P.mainTr2 T) := by
   have hlam := h.lam_pos
   have hw1 := h.one_le_w
@@ -674,7 +794,9 @@ theorem tr2 : EvBound (fun T => D.trG2 T - P.mainTr2 T) (fun T => P.calE T * P.m
 omit h in
 /-- The pointwise inequality behind [eq:ratio], every quantity a real variable.  Here
 `Φ₀ := F(L/ℓ)·N` and the identity `F(λ₁) N · (TL/2π)(ℓ² + L²/3) = L² N · Tℓ/2π` is where the
-paper's `F(λ₁)`, `λ₁ = L/ℓ₁`, is checked. -/
+paper's `F(λ₁)`, `λ₁ = L/ℓ₁`, is checked.
+@isnad1 id=le.16h11v.s9.5db2345e6688 from=translated src=- shape=cbffef11 vocab=8e0885af
+-/
 lemma ratio_pointwise (T L ℓ lT E N G G2 A C₁ C₂ : ℝ)
     (hT : 1 ≤ T) (hL : 0 < L) (hℓ1 : 1 ≤ ℓ) (hℓl : lT ≤ ℓ) (hN0 : 0 < N) (hE0 : 0 ≤ E)
     (hET : 1 / T ≤ E) (hA : 0 ≤ A) (hC₁ : 0 ≤ C₁) (hC₂ : 0 ≤ C₂)
@@ -767,7 +889,9 @@ lemma ratio_pointwise (T L ℓ lT E N G G2 A C₁ C₂ : ℝ)
     _ = 2 * (2 * π * A + 5 * C₁ + C₂) * (E * Φ₀) * (M₂ / 2) := by ring
     _ ≤ 2 * (2 * π * A + 5 * C₁ + C₂) * (E * Φ₀) * G2 := by gcongr
 
-/-- [eq:ratio]: `(tr G̃)²/tr G̃² = F(λ₁) N(T,2T)(1 + O(𝓔_T))`, `λ₁ = L/ℓ₁`. -/
+/-- [eq:ratio]: `(tr G̃)²/tr G̃² = F(λ₁) N(T,2T)(1 + O(𝓔_T))`, `λ₁ = L/ℓ₁`.
+@isnad1 id=evbound.1h2v.s6.8271efd9c01d from=translated src=- shape=f35463f7 vocab=c6e1138e
+-/
 theorem ratio : EvBound (fun T => D.trG T ^ 2 / D.trG2 T - Ffun (P.lam1 T) * D.Ncnt T)
     (fun T => P.calE T * (Ffun (P.lam1 T) * D.Ncnt T)) := by
   have hlam := h.lam_pos
@@ -801,7 +925,9 @@ theorem ratio : EvBound (fun T => D.trG T ^ 2 / D.trG2 T - Ffun (P.lam1 T) * D.N
     hC₂.le hs1 hs2 hTA h1 h2 hN
 
 /-- **Theorem [thm:traces]** (§5 of the paper, "Summary"), assembled: the content
-`TracesBounds` holds for the data `D` under `Facts D`. -/
+`TracesBounds` holds for the data `D` under `Facts D`.
+@isnad1 id=tracesbo.1h2v.s4.3631eee0e60d from=translated src=- shape=11b400c1 vocab=b8d41021
+-/
 theorem tracesBounds_of_facts : TracesBounds P D.aT D.trG D.trG2 D.Ncnt where
   tr1 := tr1 h
   tr1' := tr1' h

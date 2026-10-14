@@ -26,7 +26,9 @@ Result:
 namespace MathFin
 
 /-- **Lookback call payoff lower bound**: if `S ≤ M` (the running max), then
-`max(S − K, 0) ≤ max(M − K, 0)`. -/
+`max(S − K, 0) ≤ max(M − K, 0)`.
+@isnad1 id=le.1h3v.s5.3aab1fa28ad0 from=translated src=- shape=c9e354dc vocab=64e44ed3
+-/
 lemma lookback_payoff_ge_vanilla (M S K : ℝ) (h : S ≤ M) :
     max (S - K) 0 ≤ max (M - K) 0 :=
   max_le_max (by linarith) le_rfl

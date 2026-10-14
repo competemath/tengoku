@@ -28,7 +28,9 @@ Result:
 namespace MathFin
 
 /-- **Capped call as a bull call spread**: for `K₁ ≤ K₂`,
-`min(max(S − K₁, 0), K₂ − K₁) = max(S − K₁, 0) − max(S − K₂, 0)`. -/
+`min(max(S − K₁, 0), K₂ − K₁) = max(S − K₁, 0) − max(S − K₂, 0)`.
+@isnad1 id=eq.1h3v.s6.b23c62fb182d from=translated src=- shape=e865d641 vocab=27cb3121
+-/
 lemma cappedCall_eq_bull_spread (S K₁ K₂ : ℝ) (h : K₁ ≤ K₂) :
     min (max (S - K₁) 0) (K₂ - K₁) =
       max (S - K₁) 0 - max (S - K₂) 0 := by

@@ -51,7 +51,9 @@ private lemma hasDerivAt_bsd1_sigma_clean (S K r : ℝ) {σ τ : ℝ}
 Strategy: vega-as-function-of-S is `S · ϕ(d₁(S)) · √τ`. Product rule:
 `d/dS = ϕ(d₁) √τ + S · ϕ'(d₁) · ∂_S d₁ · √τ`. With `ϕ'(d₁) = -d₁ ϕ(d₁)` and
 `∂_S d₁ = 1/(S σ √τ)`, the S's cancel:
-`= ϕ(d₁) √τ - d₁ ϕ(d₁) / σ = ϕ(d₁) (σ√τ − d₁) / σ = -ϕ(d₁) d₂ / σ`. -/
+`= ϕ(d₁) √τ - d₁ ϕ(d₁) / σ = ϕ(d₁) (σ√τ − d₁) / σ = -ϕ(d₁) d₂ / σ`.
+@isnad1 id=hasderiv.4h5v.s7.20ce62deda10 from=translated src=- shape=f9c4a0c2 vocab=91e6edc1
+-/
 lemma hasDerivAt_bsV_vanna {K r σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
     {S τ : ℝ} (hS : 0 < S) (hτ : 0 < τ) :
     HasDerivAt (fun s ↦ s * gaussianPDFReal 0 1 (bsd1 s K r σ τ) * Real.sqrt τ)
@@ -76,7 +78,9 @@ lemma hasDerivAt_bsV_vanna {K r σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
 Strategy: vega-as-function-of-σ is `S · ϕ(d₁(σ)) · √τ`. Chain rule via the
 clean derivative `∂_σ d₁ = -d₂/σ` (above) and `ϕ'(d₁) = -d₁ ϕ(d₁)`:
 `d/dσ[ϕ(d₁(σ))] = -d₁ ϕ(d₁) · (-d₂/σ) = d₁ d₂ ϕ(d₁) / σ`. Multiply by
-constants S and √τ. -/
+constants S and √τ.
+@isnad1 id=hasderiv.4h5v.s7.e31de8ac6da5 from=translated src=- shape=b679a2a1 vocab=c4ff295d
+-/
 lemma hasDerivAt_bsV_volga {K r : ℝ} (_hK : 0 < K)
     {S σ τ : ℝ} (hS : 0 < S) (hσ : 0 < σ) (hτ : 0 < τ) :
     HasDerivAt (fun s ↦ S * gaussianPDFReal 0 1 (bsd1 S K r s τ) * Real.sqrt τ)
@@ -93,7 +97,9 @@ lemma hasDerivAt_bsV_volga {K r : ℝ} (_hK : 0 < K)
 /-- **Charm**: `∂Δ/∂τ = ∂Φ(d₁)/∂τ = ϕ(d₁) · ((r + σ²/2)τ − log(S/K)) / (2στ√τ)`.
 
 The product/chain rules give `ϕ(d₁) · ∂_τ d₁`. The magic identity is not
-needed here: `∂_τ d₁` already has a clean closed form. -/
+needed here: `∂_τ d₁` already has a clean closed form.
+@isnad1 id=hasderiv.2h5v.s7.8690bb32e2e8 from=translated src=- shape=3c2cf48e vocab=e815275d
+-/
 lemma hasDerivAt_bsV_charm {K r σ : ℝ} (hσ : 0 < σ)
     {S τ : ℝ} (hτ : 0 < τ) :
     HasDerivAt (fun t ↦ Phi (bsd1 S K r σ t))
@@ -109,7 +115,9 @@ Gamma is the quotient `ϕ(d₁(S)) / (S σ √τ)` (`hasDerivAt_bsV_SS`), so spe
 one quotient rule away. Numerator derivative is `ϕ'(d₁) ∂_S d₁ = -d₁ ϕ(d₁)/(S σ √τ)`;
 denominator derivative is the constant `σ √τ`. The two contributions carry `d₁`
 and `σ√τ` respectively, which is where the `d₁ + σ√τ` numerator comes from —
-and note the denominator is `S² σ² τ`, not `S² σ √τ`. -/
+and note the denominator is `S² σ² τ`, not `S² σ √τ`.
+@isnad1 id=hasderiv.4h5v.s7.0ce498415099 from=translated src=- shape=418912c5 vocab=28c4cc1f
+-/
 lemma hasDerivAt_bsV_SSS {K r σ : ℝ} (hK : 0 < K) (hσ : 0 < σ)
     {S τ : ℝ} (hS : 0 < S) (hτ : 0 < τ) :
     HasDerivAt (fun s ↦ gaussianPDFReal 0 1 (bsd1 s K r σ τ) / (s * σ * Real.sqrt τ))

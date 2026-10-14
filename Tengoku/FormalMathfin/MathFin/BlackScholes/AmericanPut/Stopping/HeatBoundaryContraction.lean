@@ -30,12 +30,18 @@ open scoped Topology BoundedContinuousFunction
 noncomputable def boundaryArrivalMass (x D : ℝ) : ℝ :=
   ∫ s in Ioc 0 D, heatBoundaryKernel s x
 
+/--
+@isnad1 id=le.1h2v.s4.308f7730f635 from=translated src=- shape=b2bff40d vocab=74982877
+-/
 theorem boundaryArrivalMass_nonneg {x D : ℝ} (hx : 0 < x) :
     0 ≤ boundaryArrivalMass x D := by
   apply integral_nonneg_of_ae
   filter_upwards [ae_restrict_mem measurableSet_Ioc] with s hs
   exact (heatBoundaryKernel_pos hs.1 hx).le
 
+/--
+@isnad1 id=lt.2h2v.s5.73fabd38bae3 from=translated src=- shape=df10c736 vocab=74982877
+-/
 theorem boundaryArrivalMass_lt_one {x D : ℝ} (hx : 0 < x) (hD : 0 ≤ D) :
     boundaryArrivalMass x D < 1 := by
   have hi := heatBoundaryKernel_integrable hx
@@ -58,6 +64,9 @@ theorem boundaryArrivalMass_lt_one {x D : ℝ} (hx : 0 < x) (hD : 0 ≤ D) :
   dsimp [boundaryArrivalMass]
   linarith
 
+/--
+@isnad1 id=le.4h6v.s6.cc4f3e0c2eed from=translated src=- shape=d41bf74e vocab=f1a09a96
+-/
 theorem heatBoundaryExtension_finite_bound {g : ℝ → ℝ} {a D C x t : ℝ}
     (hx : 0 < x) (ht : t ≤ a+D)
     (hstart : ∀ s, s ≤ a → g s = 0) (hC : ∀ s, ‖g s‖ ≤ C) :
@@ -82,6 +91,9 @@ theorem heatBoundaryExtension_finite_bound {g : ℝ → ℝ} {a D C x t : ℝ}
       exact mul_le_mul_of_nonneg_left (hC _) (heatBoundaryKernel_pos hs.1 hx).le
     _ = boundaryArrivalMass x D*C := integral_mul_const _ _
 
+/--
+@isnad1 id=eq.0h4v.s7.39078f41771c from=translated src=- shape=7fe9e475 vocab=21ab3b5e
+-/
 theorem heatBoundaryExtension_sub (f g : ℝ →ᵇ ℝ) (x t : ℝ) :
     heatBoundaryExtension (fun s => f s-g s) x t =
       heatBoundaryExtension f x t-heatBoundaryExtension g x t := by
@@ -93,6 +105,9 @@ theorem heatBoundaryExtension_sub (f g : ℝ →ᵇ ℝ) (x t : ℝ) :
 /-- Bounded continuous boundary data that vanish at every time `t ≤ a`. -/
 abbrev CausalBoundaryData (a : ℝ) := {g : ℝ →ᵇ ℝ // ∀ t, t ≤ a → g t = 0}
 
+/--
+@isnad1 id=isclosed.0h1v.s6.382691871536 from=translated src=- shape=3efb3e34 vocab=53cc9bf2
+-/
 theorem isClosed_causalBoundaryData (a : ℝ) :
     IsClosed {g : ℝ →ᵇ ℝ | ∀ t, t ≤ a → g t = 0} := by
   simp only [ofPred_forall]
@@ -123,6 +138,9 @@ noncomputable def crossBoundaryCausal {a : ℝ} (χ : ℝ →ᵇ ℝ) (L : ℝ)
     change χ t*heatBoundaryExtension g.1 L t = 0
     rw [heatBoundaryExtension_causal g.2 L ht,mul_zero]⟩
 
+/--
+@isnad1 id=le.3h6v.s8.991387445f3b from=translated src=- shape=24e3cca6 vocab=b61095e0
+-/
 theorem crossBoundaryCausal_dist {a D L : ℝ} (hL : 0 < L)
     (χ : ℝ →ᵇ ℝ) (hχ : ∀ t, ‖χ t‖ ≤ 1)
     (hstop : ∀ t, a+D < t → χ t = 0) (f g : CausalBoundaryData a) :
@@ -147,6 +165,9 @@ theorem crossBoundaryCausal_dist {a D L : ℝ} (hL : 0 < L)
     simp only [zero_mul,sub_self,norm_zero]
     exact mul_nonneg (boundaryArrivalMass_nonneg hL) (norm_nonneg _)
 
+/--
+@isnad1 id=lipschit.3h4v.s8.043e13951e77 from=translated src=- shape=9588d5b6 vocab=cbf4aea6
+-/
 theorem crossBoundaryCausal_lipschitz {a D L : ℝ} (hL : 0 < L)
     (χ : ℝ →ᵇ ℝ) (hχ : ∀ t, ‖χ t‖ ≤ 1)
     (hstop : ∀ t, a+D < t → χ t = 0) :

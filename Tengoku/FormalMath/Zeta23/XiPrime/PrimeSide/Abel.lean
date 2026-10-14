@@ -28,7 +28,9 @@ namespace XiPrime
 
 /-- **Abel summation against a density.**  If the partial sums satisfy
 `|Σ_{k≤t} c_k − l²·∫_0^{log t/l} D| ≤ η` for `1 ≤ t ≤ e^L`, and `g ∈ C¹`, `|g′| ≤ 2`, `g ≡ 0` on `[L,∞)`,
-then `|Σ_{n≤e^L} c_n g(log n) − l·∫_0^L D(y/l) g(y) dy| ≤ 2ηL`. -/
+then `|Σ_{n≤e^L} c_n g(log n) − l·∫_0^L D(y/l) g(y) dy| ≤ 2ηL`.
+@isnad1 id=le.9h6v.s8.0ae74a77433b from=translated src=- shape=80859476 vocab=a46fca88
+-/
 theorem abel_sum_density {c : ℕ → ℝ} (hc0 : c 0 = 0) {D : ℝ → ℝ} (hD : Continuous D)
     {lT L η : ℝ} (hl : 0 < lT) (hL : 0 < L)
     (hS : ∀ t : ℝ, 1 ≤ t → t ≤ Real.exp L →

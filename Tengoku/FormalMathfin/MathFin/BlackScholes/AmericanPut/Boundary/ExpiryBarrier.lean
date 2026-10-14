@@ -31,9 +31,15 @@ vanishing at `x = Real.sqrt t`. -/
 noncomputable def expiryBarrier (x t : ℝ) : ℝ :=
   (Real.sqrt t - x)^2 / (16 * Real.sqrt t)
 
+/--
+@isnad1 id=eq.0h1v.s4.e749a09f1026 from=translated src=- shape=1d838610 vocab=b1376d1e
+-/
 @[simp] theorem expiryBarrier_zero (x : ℝ) : expiryBarrier x 0 = 0 := by
   simp [expiryBarrier]
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.a7f53565def0 from=translated src=- shape=1bda5b4f vocab=91e35e2f
+-/
 theorem expiryBarrier_hasDeriv_x (x : ℝ) {t : ℝ} (ht : 0 < t) :
     HasDerivAt (fun y => expiryBarrier y t) ((x - Real.sqrt t) / (8 * Real.sqrt t)) x := by
   have hs := Real.sqrt_pos.mpr ht
@@ -43,6 +49,9 @@ theorem expiryBarrier_hasDeriv_x (x : ℝ) {t : ℝ} (ht : 0 < t) :
   field_simp
   ring
 
+/--
+@isnad1 id=eq.1h2v.s6.c99f02cc2ff0 from=translated src=- shape=fbbbd990 vocab=a4bce3ca
+-/
 theorem expiryBarrier_deriv2_x (x : ℝ) {t : ℝ} (ht : 0 < t) :
     deriv (deriv (fun y => expiryBarrier y t)) x = 1 / (8 * Real.sqrt t) := by
   have he : deriv (fun y => expiryBarrier y t) = fun y => (y-Real.sqrt t)/(8*Real.sqrt t) :=
@@ -50,6 +59,9 @@ theorem expiryBarrier_deriv2_x (x : ℝ) {t : ℝ} (ht : 0 < t) :
   rw [he]
   exact ((hasDerivAt_id x).sub_const (Real.sqrt t) |>.div_const (8*Real.sqrt t)).deriv
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.9b60936383bf from=translated src=- shape=3ff44811 vocab=ef055deb
+-/
 theorem expiryBarrier_hasDeriv_t (x : ℝ) {t : ℝ} (ht : 0 < t) :
     HasDerivAt (expiryBarrier x)
       ((1 - x^2/t) / (32 * Real.sqrt t)) t := by
@@ -61,16 +73,25 @@ theorem expiryBarrier_hasDeriv_t (x : ℝ) {t : ℝ} (ht : 0 < t) :
   field_simp
   nlinarith [congrArg (fun y : ℝ => x^2*y) hs2]
 
+/--
+@isnad1 id=contdiff.1h2v.s6.897786bf9866 from=translated src=- shape=7f6325a0 vocab=8384fe85
+-/
 theorem expiryBarrier_contDiffAt {x t : ℝ} (ht : 0 < t) :
     ContDiffAt ℝ 2 (fun z : ℝ × ℝ => expiryBarrier z.1 z.2) (x,t) := by
   unfold expiryBarrier
   fun_prop (disch := positivity)
 
+/--
+@isnad1 id=contdiff.0h1v.s5.7125e611b07e from=translated src=- shape=5b2e4b1a vocab=566eec7a
+-/
 theorem expiryBarrier_contDiff_x (t : ℝ) :
     ContDiff ℝ 2 (fun x => expiryBarrier x t) := by
   unfold expiryBarrier
   fun_prop
 
+/--
+@isnad1 id=and.3h2v.s6.10bed5e30a45 from=translated src=- shape=6ab488c9 vocab=14f2b3f5
+-/
 theorem expiryBarrier_bounds {x t : ℝ} (ht : 0 ≤ t)
     (hl : -Real.sqrt t ≤ x) (hr : x ≤ Real.sqrt t) :
     0 ≤ expiryBarrier x t ∧ expiryBarrier x t ≤ Real.sqrt t / 4 := by
@@ -84,6 +105,9 @@ theorem expiryBarrier_bounds {x t : ℝ} (ht : 0 ≤ t)
     apply (div_le_iff₀ (show 0 < 16 * Real.sqrt t by positivity)).mpr
     nlinarith [sq_nonneg (Real.sqrt t + x)]
 
+/--
+@isnad1 id=le.2h2v.s5.4340715e5c59 from=translated src=- shape=77fb1626 vocab=a82df6f4
+-/
 theorem expiryBarrier_ge_sqrt {x t : ℝ} (ht : 0 < t) (hx : x ≤ 0) :
     Real.sqrt t / 16 ≤ expiryBarrier x t := by
   have hs : 0 < Real.sqrt t := Real.sqrt_pos.mpr ht
@@ -91,6 +115,9 @@ theorem expiryBarrier_ge_sqrt {x t : ℝ} (ht : 0 < t) (hx : x ≤ 0) :
   apply (le_div_iff₀ (show 0 < 16*Real.sqrt t by positivity)).mpr
   nlinarith [sq_nonneg x]
 
+/--
+@isnad1 id=continuo.0h1v.s5.4fdb4275cc1e from=translated src=- shape=9f960300 vocab=3da7afbc
+-/
 theorem expiryBarrier_continuousOn (T : ℝ) :
     ContinuousOn (fun z : ℝ × ℝ => expiryBarrier z.1 z.2)
       (twoSidedStrip (fun t => -Real.sqrt t) Real.sqrt T) := by
@@ -110,6 +137,9 @@ theorem expiryBarrier_continuousOn (T : ℝ) :
     exact squeeze_zero' (hb.mono (fun _ hw => hw.1)) (hb.mono (fun _ hw => hw.2)) hlim
   · exact (expiryBarrier_contDiffAt he).continuousAt.continuousWithinAt
 
+/--
+@isnad1 id=eq.1h1v.s5.177859cb982b from=translated src=- shape=edcdab10 vocab=14f2b3f5
+-/
 theorem expiryBarrier_left {t : ℝ} (ht : 0 ≤ t) :
     expiryBarrier (-Real.sqrt t) t = Real.sqrt t / 4 := by
   rcases eq_or_lt_of_le ht with he | he
@@ -119,10 +149,15 @@ theorem expiryBarrier_left {t : ℝ} (ht : 0 ≤ t) :
   field_simp
   ring
 
+/--
+@isnad1 id=eq.0h1v.s3.dee6f10b706d from=translated src=- shape=6e4c20ff vocab=28a0af09
+-/
 @[simp] theorem expiryBarrier_right (t : ℝ) : expiryBarrier (Real.sqrt t) t = 0 := by
   simp [expiryBarrier]
 
-/-- The left edge is below intrinsic value for times at most one. -/
+/-- The left edge is below intrinsic value for times at most one.
+@isnad1 id=le.2h1v.s5.7759ce05c5f0 from=translated src=- shape=7b9cf65b vocab=93f1bede
+-/
 theorem expiryBarrier_left_le_payoff {t : ℝ} (ht : 0 ≤ t) (ht1 : t ≤ 1) :
     expiryBarrier (-Real.sqrt t) t ≤ putPayoff (-Real.sqrt t) := by
   rw [expiryBarrier_left ht]
@@ -138,7 +173,9 @@ theorem expiryBarrier_left_le_payoff {t : ℝ} (ht : 0 ≤ t) (ht1 : t ≤ 1) :
   exact hbound.trans (le_max_left _ _)
 
 /-- For sufficiently small times the diffusion term dominates drift and
-killing on the whole shrinking strip. This is an actual derivative inequality. -/
+killing on the whole shrinking strip. This is an actual derivative inequality.
+@isnad1 id=le.6h4v.s7.03f5ce80bef5 from=translated src=- shape=c09d4e21 vocab=42896e9b
+-/
 theorem expiryBarrier_subsolution {k h x t : ℝ} (hk : 0 ≤ k)
     (ht : 0 < t) (ht1 : t ≤ 1)
     (hsmall : (|k-h-1|+k)*Real.sqrt t ≤ 1/4)
@@ -184,7 +221,9 @@ theorem expiryBarrier_subsolution {k h x t : ℝ} (hk : 0 ≤ k)
 namespace DividendPutSolution
 
 /-- The explicit shrinking-strip barrier is below the price on every
-sufficiently short strip. All comparison hypotheses are discharged here. -/
+sufficiently short strip. All comparison hypotheses are discharged here.
+@isnad1 id=le.4h6v.s7.95def19d34e3 from=translated src=- shape=44e34c34 vocab=be420a4e
+-/
 theorem expiryBarrier_le_price {k h T : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
     (hp : DividendPutSolution k h p b) (hT1 : T ≤ 1)
     (hsmall : (|k-h-1|+k)*Real.sqrt T ≤ 1/4) :
@@ -209,7 +248,9 @@ theorem expiryBarrier_le_price {k h T : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ 
     simpa using hp.price_nonneg (Real.sqrt t) ht
 
 /-- There is a genuine positive time window on which this price lower bound
-holds. The small-time restriction is constructed by continuity, not assumed. -/
+holds. The small-time restriction is constructed by continuity, not assumed.
+@isnad1 id=ex.1h4v.s6.a4676a8e03c3 from=translated src=- shape=cfbe0634 vocab=b33957ed
+-/
 theorem exists_expiryBarrier_window {k h : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
     (hp : DividendPutSolution k h p b) :
     ∃ T : ℝ, 0 < T ∧ ∀ z ∈ twoSidedStrip (fun t => -Real.sqrt t) Real.sqrt T,

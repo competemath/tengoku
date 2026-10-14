@@ -27,11 +27,17 @@ namespace MathFin.BlackScholes.AmericanPut.Boundary
 noncomputable def movingLineTransform (V : ℝ → ℝ → ℝ) (c d y t : ℝ) : ℝ :=
   V (y + (d - c * t)) t
 
+/--
+@isnad1 id=eq.0h5v.s6.8c4a26dc3a67 from=translated src=- shape=6869c24f vocab=68003e93
+-/
 theorem movingLineTransform_deriv_x (V : ℝ → ℝ → ℝ) (c d y t : ℝ) :
     deriv (fun z => movingLineTransform V c d z t) y =
       deriv (fun x => V x t) (y + (d - c * t)) := by
   simpa only [movingLineTransform] using deriv_comp_add_const (fun x : ℝ => V x t) (d - c * t) y
 
+/--
+@isnad1 id=eq.0h5v.s7.819a8cb8542b from=translated src=- shape=4beb3dc7 vocab=68003e93
+-/
 theorem movingLineTransform_deriv2_x (V : ℝ → ℝ → ℝ) (c d y t : ℝ) :
     deriv (deriv (fun z => movingLineTransform V c d z t)) y =
       deriv (deriv (fun x => V x t)) (y + (d - c * t)) := by
@@ -40,6 +46,9 @@ theorem movingLineTransform_deriv2_x (V : ℝ → ℝ → ℝ) (c d y t : ℝ) :
       funext (fun z => movingLineTransform_deriv_x V c d z t)]
   exact deriv_comp_add_const _ _ _
 
+/--
+@isnad1 id=hasderiv.1h5v.s8.5accbcec5989 from=translated src=- shape=0a3f2bb7 vocab=862a487e
+-/
 theorem movingLineTransform_hasDeriv_t {V : ℝ → ℝ → ℝ} {c d y t : ℝ}
     (hV : DifferentiableAt ℝ (fun z : ℝ × ℝ => V z.1 z.2) (y + (d - c * t),t)) :
     HasDerivAt (movingLineTransform V c d y)
@@ -62,6 +71,9 @@ theorem movingLineTransform_hasDeriv_t {V : ℝ → ℝ → ℝ} {c d y t : ℝ}
   rw [show ((-c,1) : ℝ × ℝ) = (0,1) - c • (1,0) by ext <;> simp]
   simp only [map_sub, map_smul, smul_eq_mul]
 
+/--
+@isnad1 id=eq.2h6v.s9.ed85c6127393 from=translated src=- shape=bfe0d18a vocab=3cc067e0
+-/
 theorem movingLineTransform_equation {V D : ℝ → ℝ → ℝ} {c d y t : ℝ}
     (hV : DifferentiableAt ℝ (fun z : ℝ × ℝ => V z.1 z.2) (y + (d - c * t),t))
     (heq : deriv (V (y + (d - c * t))) t =

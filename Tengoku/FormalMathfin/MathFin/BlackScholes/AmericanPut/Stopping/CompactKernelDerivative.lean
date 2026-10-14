@@ -24,6 +24,9 @@ namespace MathFin.BlackScholes.AmericanPut.Stopping
 open Set Filter MeasureTheory Metric
 open scoped Topology
 
+/--
+@isnad1 id=hasderiv.7h5v.s8.f9a8e028d78b from=translated src=- shape=87dba90d vocab=c1a070a6
+-/
 theorem compact_kernelIntegral_hasDeriv {g : ℝ → ℝ} (hg : Continuous g)
     (hc : HasCompactSupport g) {F F' : ℝ → ℝ → ℝ} {U : Set ℝ}
     (hU : IsOpen U)

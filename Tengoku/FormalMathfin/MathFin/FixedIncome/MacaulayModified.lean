@@ -50,7 +50,9 @@ noncomputable def modifiedNumerator (s : Finset ι) (t : ι → ℕ) (c : ι →
   ∑ i ∈ s, (t i : ℝ) * c i / (1 + y) ^ (t i + 1)
 
 /-- **Modified = Macaulay / (1 + y)** at the level of numerators, hence at the
-level of durations themselves. -/
+level of durations themselves.
+@isnad1 id=eq.1h5v.s6.cef8a15f2161 from=translated src=- shape=7c509cfe vocab=2c2106ad
+-/
 lemma modifiedNumerator_eq_macaulayNumerator_div
     (s : Finset ι) (t : ι → ℕ) (c : ι → ℝ) (y : ℝ) (hy : 1 + y ≠ 0) :
     modifiedNumerator s t c y =

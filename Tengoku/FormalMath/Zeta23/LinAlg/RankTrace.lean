@@ -48,17 +48,23 @@ section Elementary
 
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
-/-- Elementary scalar inequality `x² ≥ c·x − c²/4`, i.e. `(x − c/2)² ≥ 0`. -/
+/-- Elementary scalar inequality `x² ≥ c·x − c²/4`, i.e. `(x − c/2)² ≥ 0`.
+@isnad1 id=le.0h2v.s6.6a9698c0d26f from=translated src=- shape=ffbb2d82 vocab=5ce83074
+-/
 lemma sq_ge_linear (x c : ℝ) : c * x - c ^ 2 / 4 ≤ x ^ 2 := by
   nlinarith [sq_nonneg (x - c / 2)]
 
-/-- Elementary scalar inequality `x² ≥ 2c·x − c²`, i.e. `(x − c)² ≥ 0`. -/
+/-- Elementary scalar inequality `x² ≥ 2c·x − c²`, i.e. `(x − c)² ≥ 0`.
+@isnad1 id=le.0h2v.s6.3303c9996aa5 from=translated src=- shape=63f1b5cf vocab=2ee782f6
+-/
 lemma sq_ge_linear' (x c : ℝ) : 2 * c * x - c ^ 2 ≤ x ^ 2 := by
   nlinarith [sq_nonneg (x - c)]
 
 /-- **Sum estimate A** (first elementary estimate in the proof of [lem:ranktrace]). For `p, m ≥ 0` with at most `r`
 indices where `p` is nonzero, and `c ≥ 0`:
-`∑(pᵢ − mᵢ)² ≥ c·∑pᵢ − (c²/4)·r − 2c·∑mᵢ`. -/
+`∑(pᵢ − mᵢ)² ≥ c·∑pᵢ − (c²/4)·r − 2c·∑mᵢ`.
+@isnad1 id=le.3h5v.s7.aef2e01c423a from=translated src=- shape=fa72704f vocab=6e780290
+-/
 lemma sum_sq_diff_lower {p m : ι → ℝ} (hm : ∀ i, 0 ≤ m i)
     {r : ℕ} (hr : #{i | p i ≠ 0} ≤ r) {c : ℝ} (hc : 0 ≤ c) :
     c * (∑ i, p i) - c ^ 2 / 4 * r - 2 * c * (∑ i, m i) ≤ ∑ i, (p i - m i) ^ 2 := by
@@ -83,7 +89,9 @@ lemma sum_sq_diff_lower {p m : ι → ℝ} (hm : ∀ i, 0 ≤ m i)
   linarith
 
 /-- **Sum estimate B** (second elementary estimate in the proof of [lem:ranktrace]). For `q ≥ 0` with at most `b`
-indices where `q` is nonzero: `∑qᵢ² ≥ 2c·∑qᵢ − c²·b`. -/
+indices where `q` is nonzero: `∑qᵢ² ≥ 2c·∑qᵢ − c²·b`.
+@isnad1 id=le.1h4v.s7.57fa3a856ccf from=translated src=- shape=962aca42 vocab=a625a31d
+-/
 lemma sum_sq_lower_of_card_pos_le {q : ι → ℝ}
     {b : ℕ} (hb : #{i | q i ≠ 0} ≤ b) (c : ℝ) :
     2 * c * (∑ i, q i) - c ^ 2 * b ≤ ∑ i, (q i) ^ 2 := by
@@ -110,7 +118,9 @@ end Elementary
 
 /-- `tr(AB) ≥ 0` when `A, B ⪰ 0`. Proof: diagonalise `A = U D Uᴴ`; then
 `tr(AB) = tr((UᴴBU)D) = ∑ᵢ λᵢ · (UᴴBU)ᵢᵢ`, where each `λᵢ ≥ 0` (PSD
-eigenvalues) and each `(UᴴBU)ᵢᵢ ≥ 0` (diagonal of a PSD matrix). -/
+eigenvalues) and each `(UᴴBU)ᵢᵢ ≥ 0` (diagonal of a PSD matrix).
+@isnad1 id=le.2h4v.s8.caf3883f086f from=translated src=- shape=2f103433 vocab=392ad6aa
+-/
 lemma trace_mul_nonneg_of_posSemidef {A B : Matrix n n 𝕜}
     (hA : A.PosSemidef) (hB : B.PosSemidef) :
     0 ≤ RCLike.re (A * B).trace := by
@@ -128,13 +138,17 @@ lemma trace_mul_nonneg_of_posSemidef {A B : Matrix n n 𝕜}
   exact mul_nonneg (RCLike.nonneg_iff.mp hM.diag_nonneg).1 (hA.eigenvalues_nonneg i)
 
 omit [DecidableEq n] in
-/-- For Hermitian `A, B`: `Re tr(BA) = Re tr(AB)`. (In fact `tr(BA) = tr(AB)`.) -/
+/-- For Hermitian `A, B`: `Re tr(BA) = Re tr(AB)`. (In fact `tr(BA) = tr(AB)`.)
+@isnad1 id=eq.0h4v.s8.a3ccca04018d from=translated src=- shape=5a6c847b vocab=a7456647
+-/
 lemma re_trace_mul_comm (A B : Matrix n n 𝕜) :
     RCLike.re (B * A).trace = RCLike.re (A * B).trace := by
   rw [trace_mul_comm]
 
 omit [DecidableEq n] in
-/-- Frobenius-norm expansion for a sum of two Hermitian matrices. -/
+/-- Frobenius-norm expansion for a sum of two Hermitian matrices.
+@isnad1 id=eq.2h4v.s8.b01d6898befc from=translated src=- shape=cfbbeb88 vocab=3e636f5a
+-/
 lemma frobSq_add_hermitian {A B : Matrix n n 𝕜}
     (hA : A.IsHermitian) (hB : B.IsHermitian) :
     frobSq (A + B) = frobSq A + 2 * RCLike.re (A * B).trace + frobSq B := by
@@ -145,10 +159,16 @@ lemma frobSq_add_hermitian {A B : Matrix n n 𝕜}
   ring
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=eq.0h4v.s6.0523948dee44 from=translated src=- shape=2cc6545e vocab=dd270e40
+-/
 lemma rtrace_add (A B : Matrix n n 𝕜) : rtrace (A + B) = rtrace A + rtrace B := by
   simp [rtrace, trace_add, map_add]
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=eq.0h4v.s6.9e3d19ad59bd from=translated src=- shape=2cc6545e vocab=c6265478
+-/
 lemma rtrace_sub (A B : Matrix n n 𝕜) : rtrace (A - B) = rtrace A - rtrace B := by
   simp [rtrace, trace_sub, map_sub]
 
@@ -159,6 +179,7 @@ lemma rtrace_sub (A B : Matrix n n 𝕜) : rtrace (A - B) = rtrace A - rtrace B 
 Hypotheses: `P ⪰ 0` with `rank P ≤ r`; `Q` Hermitian with `n₊(Q) ≤ b`; `c > 0`.
 Conclusion:
   `c · tr P − (c²/4) · r + 2c · tr Q − c² · b ≤ ‖P + Q‖_F²`.
+@isnad1 id=le.5h7v.s8.aa851a837f50 from=translated src=- shape=f0348218 vocab=0666803e
 -/
 theorem rank_trace_ineq {P Q : Matrix n n 𝕜}
     (hP : P.PosSemidef) (hQ : Q.IsHermitian)
@@ -256,7 +277,9 @@ theorem rank_trace_ineq {P Q : Matrix n n 𝕜}
   linarith [hstep4, hstep5, hstep6, hPQp, hexpand, htraceQ]
 
 /-- **Rank–trace inequality, `c = 2` form** (paper `lem:ranktrace`,
-"in particular"). Rearranged: `r ≥ 2 tr P + 4 tr Q − 4b − ‖P+Q‖_F²`. -/
+"in particular"). Rearranged: `r ≥ 2 tr P + 4 tr Q − 4b − ‖P+Q‖_F²`.
+@isnad1 id=le.4h6v.s8.6e1f67ad1626 from=translated src=- shape=3d3e254f vocab=83bee844
+-/
 theorem rank_trace_ineq_two {P Q : Matrix n n 𝕜}
     (hP : P.PosSemidef) (hQ : Q.IsHermitian)
     {r b : ℕ} (hr : P.rank ≤ r) (hb : posIndex hQ ≤ b) :

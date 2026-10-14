@@ -70,7 +70,9 @@ standard-normal density. -/
 noncomputable def ruObjective (μ σ α c : ℝ) : ℝ :=
   c + (∫ x, max (μ + σ * x - c) 0 * gaussianPDFReal 0 1 x) / (1 - α)
 
-/-- **Gaussian tail mass in pdf form**: `∫_{Ioi a} ϕ(x) dx = 1 − Φ(a)`. -/
+/-- **Gaussian tail mass in pdf form**: `∫_{Ioi a} ϕ(x) dx = 1 − Φ(a)`.
+@isnad1 id=eq.0h1v.s6.b86f6bba3bc7 from=translated src=- shape=9872111f vocab=408f3e7b
+-/
 lemma integral_gaussianPDFReal_Ioi (a : ℝ) :
     ∫ x in Set.Ioi a, gaussianPDFReal 0 1 x = 1 - Phi a := by
   have h_meas : (gaussianReal (0 : ℝ) 1 (Set.Ioi a)).toReal
@@ -82,7 +84,9 @@ lemma integral_gaussianPDFReal_Ioi (a : ℝ) :
 
 /-- Integrability of the shortfall integrand `x ↦ max(μ + σx − c, 0)·ϕ(x)`:
 dominated by `(|μ − c| + |σ|·|x|)·ϕ(x)`, whose pieces are the Gaussian mass and
-the (absolute) first moment. -/
+the (absolute) first moment.
+@isnad1 id=integrab.0h3v.s6.b8d758b2f404 from=translated src=- shape=b3fd261c vocab=1383095d
+-/
 lemma integrable_shortfall (μ σ c : ℝ) :
     Integrable (fun x ↦ max (μ + σ * x - c) 0 * gaussianPDFReal 0 1 x) volume := by
   have h_meas : AEStronglyMeasurable
@@ -116,7 +120,9 @@ lemma integrable_shortfall (μ σ c : ℝ) :
 
 /-- **Standard-normal expected shortfall**: `E[(Z − z)⁺] = ϕ(z) − z·(1 − Φ(z))`.
 The positive part localizes the integral to the tail `Ioi z`, where it splits
-into the truncated first moment (`= ϕ(z)`) minus `z` times the tail mass. -/
+into the truncated first moment (`= ϕ(z)`) minus `z` times the tail mass.
+@isnad1 id=eq.0h1v.s6.8ff7d9175ff1 from=translated src=- shape=bb7dd4ba vocab=43fb82a5
+-/
 lemma integral_max_sub_mul_gaussianPDFReal (z : ℝ) :
     ∫ x, max (x - z) 0 * gaussianPDFReal 0 1 x
       = gaussianPDFReal 0 1 z - z * (1 - Phi z) := by
@@ -146,7 +152,9 @@ lemma integral_max_sub_mul_gaussianPDFReal (z : ℝ) :
 /-- **Affine-loss expected shortfall closed form**: for `L = μ + σ·Z` with
 `σ > 0` and `z_c = (c − μ)/σ`,
 
-  `E[(L − c)⁺] = σ·(ϕ(z_c) − z_c·(1 − Φ(z_c)))`. -/
+  `E[(L − c)⁺] = σ·(ϕ(z_c) − z_c·(1 − Φ(z_c)))`.
+@isnad1 id=eq.1h3v.s7.69bf6326d69e from=translated src=- shape=d276c2a7 vocab=1e999d67
+-/
 lemma integral_shortfall_gaussian (μ σ c : ℝ) (hσ : 0 < σ) :
     ∫ x, max (μ + σ * x - c) 0 * gaussianPDFReal 0 1 x
       = σ * (gaussianPDFReal 0 1 ((c - μ) / σ)
@@ -162,7 +170,9 @@ lemma integral_shortfall_gaussian (μ σ c : ℝ) (hσ : 0 < σ) :
 
 /-- **The R-U objective attains CVaR at VaR**: `g(VaR_α) = CVaR_α` when
 `Φ(z) = α < 1`. At `c = VaR = μ + σz` the shortfall threshold is exactly the
-quantile, so the certificate is tight and the `z·(1 − Φ(z))` terms cancel. -/
+quantile, so the certificate is tight and the `z·(1 − Φ(z))` terms cancel.
+@isnad1 id=eq.3h4v.s5.bd5fcbc9c749 from=translated src=- shape=544b9611 vocab=519a0dfa
+-/
 theorem ruObjective_at_gaussianVaR (μ σ z α : ℝ) (hσ : 0 < σ)
     (hzα : Phi z = α) (hα1 : α < 1) :
     ruObjective μ σ α (gaussianVaR μ σ z) = gaussianCVaR μ σ z α := by
@@ -179,7 +189,9 @@ every threshold `c`, `CVaR_α ≤ g(c)`.
 The proof is the pointwise certificate `(L − c)⁺ ≥ (L − c)·𝟙_{Z > z}`:
 integrating against `ϕ` gives `E[(L − c)⁺] ≥ (μ − c)(1 − α) + σ·ϕ(z)`, and the
 right side reassembles to `CVaR` after dividing by `1 − α`. No calculus, no
-convexity machinery — the `α`-tail event itself certifies the minimum. -/
+convexity machinery — the `α`-tail event itself certifies the minimum.
+@isnad1 id=le.2h5v.s5.5fb6c61e7fe8 from=translated src=- shape=920462dd vocab=279713b0
+-/
 theorem gaussianCVaR_le_ruObjective (μ σ z α c : ℝ)
     (hzα : Phi z = α) (hα1 : α < 1) :
     gaussianCVaR μ σ z α ≤ ruObjective μ σ α c := by
@@ -235,7 +247,9 @@ theorem gaussianCVaR_le_ruObjective (μ σ z α c : ℝ)
 
 /-- **The Rockafellar–Uryasev theorem for the Gaussian loss** (packaged):
 `CVaR_α` is the *least value* of the objective `g(c) = c + E[(L − c)⁺]/(1−α)`
-over all thresholds `c`, and the minimum is attained at `c = VaR_α`. -/
+over all thresholds `c`, and the minimum is attained at `c = VaR_α`.
+@isnad1 id=isleast.3h4v.s5.3ebb2525e6e9 from=translated src=- shape=2792a305 vocab=b5b3344a
+-/
 theorem gaussianCVaR_isLeast_ruObjective (μ σ z α : ℝ) (hσ : 0 < σ)
     (hzα : Phi z = α) (hα1 : α < 1) :
     IsLeast (Set.range (ruObjective μ σ α)) (gaussianCVaR μ σ z α) :=
@@ -249,7 +263,9 @@ content of this file): rearranging the gaussian closed forms,
 
 Pure `ring` rearrangement of the definitions — the same content as
 `gaussianCVaR_sub_VaR`, in additive form. The variational theorem it used to
-defer is now `gaussianCVaR_isLeast_ruObjective` above. -/
+defer is now `gaussianCVaR_isLeast_ruObjective` above.
+@isnad1 id=eq.0h4v.s6.fd0c27c38fa7 from=translated src=- shape=c9b57971 vocab=7b1d0b7d
+-/
 lemma gaussianCVaR_eq_VaR_plus_tail_term (μ σ z α : ℝ) :
     gaussianCVaR μ σ z α =
       gaussianVaR μ σ z +

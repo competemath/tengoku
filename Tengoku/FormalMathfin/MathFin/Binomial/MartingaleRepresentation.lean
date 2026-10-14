@@ -48,7 +48,9 @@ noncomputable def hedgeRatio (M S : ℕ → (ℕ → Bool) → ℝ) (n : ℕ) (�
 
 /-- **One-step representation (the node-wise delta hedge).** Under the risk-neutral one-step
 condition for `M` and `S` and non-degeneracy of `S`'s branching, the one-period change in `M`
-equals the hedge ratio times the one-period change in `S`, on every path. -/
+equals the hedge ratio times the one-period change in `S`, on every path.
+@isnad1 id=eq.3h5v.s8.fbd8391d7866 from=translated src=- shape=25724897 vocab=0a1f799f
+-/
 theorem repr_one_step
     (hM_mart : ∀ n ω, q * M (n + 1) (Function.update ω n true)
         + (1 - q) * M (n + 1) (Function.update ω n false) = M n ω)
@@ -80,7 +82,9 @@ theorem repr_one_step
 every martingale `M` is the discrete stochastic integral of the predictable hedge
 `hedgeRatio M S` against the discounted asset `S`:
 `M_N = M_0 + ∑_{k<N} H_k·(S_{k+1} − S_k)`, with `H` adapted (predictable). The binomial market is
-complete — every claim is replicable by a self-financing strategy. -/
+complete — every claim is replicable by a self-financing strategy.
+@isnad1 id=ex.5h3v.s8.389a12d516f5 from=translated src=- shape=afd39d45 vocab=94011b2d
+-/
 theorem binomial_martingale_representation
     (hM_adapt : ∀ n, PathAdaptedAt n (M n)) (hS_adapt : ∀ n, PathAdaptedAt n (S n))
     (hM_mart : ∀ n ω, q * M (n + 1) (Function.update ω n true)

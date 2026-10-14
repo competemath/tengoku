@@ -81,7 +81,9 @@ European call price
   `bsV = e^{−rT} · ∫ ω, max(S_T(Z ω) − K, 0) ∂Q
        = e^{−rT} · ∫ ω, 1_{S_T(Z ω) > K} · S_T(Z ω) ∂Q
          − K · e^{−rT} · Q({S_T > K})
-       = S_0 · Φ(d_1) − K · e^{−rT} · Φ(d_2)`. -/
+       = S_0 · Φ(d_1) − K · e^{−rT} · Φ(d_2)`.
+@isnad1 id=eq.1h9v.s6.23b21198ccb5 from=translated src=- shape=8740908e vocab=2cc331e7
+-/
 theorem bsCall_asset_piece_integral
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
@@ -152,7 +154,9 @@ noncomputable def stockNumeraireMeasure {Ω : Type*} {mΩ : MeasurableSpace Ω}
     (Q : Measure Ω) (S_0 r σ T : ℝ) (Z : Ω → ℝ) : Measure Ω :=
   Q.withDensity (stockNumeraireDensity S_0 r σ T Z)
 
-/-- **Stock-numeraire density is non-negative** (as a real). -/
+/-- **Stock-numeraire density is non-negative** (as a real).
+@isnad1 id=le.1h7v.s6.7585dc633bba from=translated src=- shape=02e3f1c8 vocab=2f487309
+-/
 lemma stockNumeraireDensity_real_nonneg
     {Ω : Type*}
     {S_0 r σ T : ℝ} (hS_0 : 0 < S_0) (Z : Ω → ℝ) (ω : Ω) :
@@ -177,7 +181,9 @@ This is the companion to `riskNeutralProb_S_T_gt_K`
 (`Q({S_T > K}) = Φ(d_2)`): under change of numeraire from money market to
 stock, the same exercise event has probability `Φ(d_1)`, not `Φ(d_2)`. The
 difference `Φ(d_1) − Φ(d_2)` measures the "value of optionality" beyond
-pure expected payoff. -/
+pure expected payoff.
+@isnad1 id=eq.1h9v.s6.040f804751f4 from=translated src=- shape=e7cf73d4 vocab=95d779b1
+-/
 theorem stockNumeraire_exercise_probability
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {Q : Measure Ω} [IsProbabilityMeasure Q]
@@ -235,7 +241,9 @@ exhibiting the Black–Scholes stock numéraire (`dQ^(S)/dQ = e^{−rT}·S_T/S�
 special case of the general change of numéraire `Foundations.Numeraire`
 (`dQ^N/dQ = (N_T·B₀)/(N₀·B_T)`). The two densities agree because `e^{−rT} = 1/e^{rT}`,
 and the leading `B₀ = 1` and the money-market `N₀ = S₀`, `B_T = e^{rT}` read off
-the ratio. -/
+the ratio.
+@isnad1 id=eq.0h8v.s6.50b758bcd743 from=translated src=- shape=9a6ca172 vocab=dbe3b4cf
+-/
 theorem stockNumeraireMeasure_eq_numeraireMeasure
     {Ω : Type*} {mΩ : MeasurableSpace Ω} (Q : Measure Ω)
     (S_0 r σ T : ℝ) (Z : Ω → ℝ) :

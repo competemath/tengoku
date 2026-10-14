@@ -46,7 +46,9 @@ characterization of the positive index (`finrank_le_posIndex_of_posDefOn`, Sylve
 hypothesis is stated as |λᵢ(E)| ≤ θ for every eigenvalue of E.
 The operator norm `‖E‖_op` is
 `Matrix.instNormedRing` (the `linftyOpNorm`), which for Hermitian matrices
-equals `max |λᵢ|`. -/
+equals `max |λᵢ|`.
+@isnad1 id=le.3h5v.s7.384e72ea2b24 from=translated src=- shape=76f88d9d vocab=d02755ee
+-/
 theorem weyl_posIndexAbove_le {A E : Matrix n n 𝕜}
     (hA : A.IsHermitian) (hE : E.IsHermitian) {θ : ℝ}
     (hθ : ∀ i, |hE.eigenvalues i| ≤ θ) :
@@ -85,7 +87,9 @@ eigenvalues only help). By Cauchy–Schwarz, `S² ≤ n₊^θ(R) · ∑_{λᵢ>�
 ≤ n₊^θ(R) · tr(R²)`.
 
 This is a pure real-eigenvalue statement; the proof is Cauchy–Schwarz on the
-eigenvalues above the threshold. -/
+eigenvalues above the threshold.
+@isnad1 id=le.3h4v.s7.15a4452fd3bf from=translated src=- shape=080a68b2 vocab=66d67e3c
+-/
 theorem cauchySchwarz_count {R : Matrix n n 𝕜} (hR : R.IsHermitian)
     {θ : ℝ} (hθ : 0 ≤ θ) (htr : θ * Fintype.card n < rtrace R) :
     (rtrace R - θ * Fintype.card n) ^ 2 / frobSq R

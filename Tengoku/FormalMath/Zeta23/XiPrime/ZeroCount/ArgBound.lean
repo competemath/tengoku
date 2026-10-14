@@ -23,7 +23,9 @@ namespace Zeta23
 namespace XiPrime
 namespace ZeroCount
 
-/-- **(A)** positive real part along a path ⇒ the argument varies by less than π. -/
+/-- **(A)** positive real part along a path ⇒ the argument varies by less than π.
+@isnad1 id=le.4h4v.s7.7eefb03df378 from=translated src=- shape=95575418 vocab=c94f2770
+-/
 theorem abs_im_integral_logDeriv_le_pi {g g' : ℝ → ℂ} {a b : ℝ} (hab : a ≤ b)
     (hderiv : ∀ x ∈ Icc a b, HasDerivAt g (g' x) x) (hcont : ContinuousOn g' (Icc a b))
     (hre : ∀ x ∈ Icc a b, 0 < (g x).re) :
@@ -53,17 +55,23 @@ theorem abs_im_integral_logDeriv_le_pi {g g' : ℝ → ℂ} {a b : ℝ} (hab : a
     _ ≤ Real.pi / 2 + Real.pi / 2 := add_le_add h1 h2
     _ = Real.pi := by ring
 
-/-- the vertical path t ↦ σ + it and its derivative i. -/
+/-- the vertical path t ↦ σ + it and its derivative i.
+@isnad1 id=hasderiv.0h2v.s6.947d3d5cfc80 from=translated src=- shape=1fb499f7 vocab=17647f1a
+-/
 lemma hasDerivAt_vertical (σ t : ℝ) : HasDerivAt (fun t : ℝ => (σ : ℂ) + t * I) I t := by
   have h1 : HasDerivAt (fun t : ℝ => (t : ℂ)) 1 t := Complex.ofRealCLM.hasDerivAt
   simpa using (h1.mul_const I).const_add (σ : ℂ)
 
-/-- the horizontal path σ ↦ σ + iT and its derivative 1. -/
+/-- the horizontal path σ ↦ σ + iT and its derivative 1.
+@isnad1 id=hasderiv.0h2v.s6.c1d1e6e18d0d from=translated src=- shape=f3c70076 vocab=17647f1a
+-/
 lemma hasDerivAt_horizontal (T σ : ℝ) : HasDerivAt (fun σ : ℝ => (σ : ℂ) + T * I) 1 σ := by
   have h1 : HasDerivAt (fun t : ℝ => (t : ℂ)) 1 σ := Complex.ofRealCLM.hasDerivAt
   simpa using h1.add_const ((T : ℂ) * I)
 
-/-- **(A), vertical segment**: f analytic with Re f > 0 along σ + i[T₁,T₂] ⇒ |Im ∫ f′/f(σ+it)·i dt| ≤ π. -/
+/-- **(A), vertical segment**: f analytic with Re f > 0 along σ + i[T₁,T₂] ⇒ |Im ∫ f′/f(σ+it)·i dt| ≤ π.
+@isnad1 id=le.3h4v.s7.1b1598de98e8 from=translated src=- shape=9ac3c711 vocab=16b138c8
+-/
 theorem abs_im_integral_logDeriv_vertical_le_pi {f : ℂ → ℂ} {σ T₁ T₂ : ℝ} (h12 : T₁ ≤ T₂)
     (hf : ∀ t ∈ Icc T₁ T₂, AnalyticAt ℂ f (σ + t * I))
     (hre : ∀ t ∈ Icc T₁ T₂, 0 < (f (σ + t * I)).re) :
@@ -85,7 +93,9 @@ theorem abs_im_integral_logDeriv_vertical_le_pi {f : ℂ → ℂ} {σ T₁ T₂ 
   rw [e] at key
   exact key
 
-/-- **(A), horizontal segment**: f analytic with Re f > 0 along [a,b] + iT ⇒ |Im ∫ f′/f(σ+iT) dσ| ≤ π. -/
+/-- **(A), horizontal segment**: f analytic with Re f > 0 along [a,b] + iT ⇒ |Im ∫ f′/f(σ+iT) dσ| ≤ π.
+@isnad1 id=le.3h4v.s7.ffd09cb02fd0 from=translated src=- shape=c9cb204f vocab=16b138c8
+-/
 theorem abs_im_integral_logDeriv_horizontal_le_pi {f : ℂ → ℂ} {T a b : ℝ} (hab : a ≤ b)
     (hf : ∀ σ ∈ Icc a b, AnalyticAt ℂ f (σ + T * I))
     (hre : ∀ σ ∈ Icc a b, 0 < (f (σ + T * I)).re) :
@@ -109,17 +119,25 @@ theorem abs_im_integral_logDeriv_horizontal_le_pi {f : ℂ → ℂ} {T a b : ℝ
 
 /-! ### (B) one partial-fraction term -/
 
+/--
+@isnad1 id=continuo.1h4v.s6.09b3527e59d1 from=translated src=- shape=b47aadd9 vocab=87dd8e76
+-/
 lemma continuousOn_inv_sub {a b T : ℝ} {ρ : ℂ} (hρ : ∀ σ ∈ uIcc a b, (σ : ℂ) + T * I ≠ ρ) :
     ContinuousOn (fun σ : ℝ => ((σ : ℂ) + T * I - ρ)⁻¹) (uIcc a b) := by
   apply ContinuousOn.inv₀ (by fun_prop)
   intro σ hσ
   exact sub_ne_zero.mpr (hρ σ hσ)
 
+/--
+@isnad1 id=interval.1h4v.s6.a3254401e119 from=translated src=- shape=4c37c930 vocab=ee595263
+-/
 theorem intervalIntegrable_inv_sub {a b T : ℝ} {ρ : ℂ} (hρ : ∀ σ ∈ uIcc a b, (σ : ℂ) + T * I ≠ ρ) :
     IntervalIntegrable (fun σ : ℝ => ((σ : ℂ) + T * I - ρ)⁻¹) volume a b :=
   (continuousOn_inv_sub hρ).intervalIntegrable
 
-/-- **(B)** |Im ∫_a^b dσ/(σ + iT − ρ)| ≤ π whenever ρ is not on the segment. -/
+/-- **(B)** |Im ∫_a^b dσ/(σ + iT − ρ)| ≤ π whenever ρ is not on the segment.
+@isnad1 id=le.2h4v.s6.6392001fe45c from=translated src=- shape=8719275c vocab=f0cb9fe6
+-/
 theorem abs_im_integral_inv_sub_le_pi {a b : ℝ} (hab : a ≤ b) (T : ℝ) (ρ : ℂ)
     (hρ : ∀ σ ∈ Icc a b, (σ : ℂ) + T * I ≠ ρ) :
     |(∫ σ in a..b, ((σ : ℂ) + T * I - ρ)⁻¹).im| ≤ Real.pi := by

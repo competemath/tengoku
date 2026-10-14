@@ -65,7 +65,9 @@ def gmBuy : Set (Fin 6) := {0, 1, 4}
 /-- The arriving trader is informed. -/
 def gmInformed : Set (Fin 6) := {0, 3}
 
-/-- On the parameter range that matters, every mass is nonnegative. -/
+/-- On the parameter range that matters, every mass is nonnegative.
+@isnad1 id=le.4h3v.s6.3903d1311a59 from=translated src=- shape=1c379e18 vocab=46795075
+-/
 theorem gmWeight_nonneg {θ p : ℝ} (hθ0 : 0 ≤ θ) (hθ1 : θ ≤ 1) (hp0 : 0 ≤ p) (hp1 : p ≤ 1) :
     ∀ i, 0 ≤ gmWeight θ p i := by
   intro i; fin_cases i <;> simp [gmWeight] <;> nlinarith

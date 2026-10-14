@@ -44,6 +44,9 @@ noncomputable def classicalCandidate (W : ℝ≥0 → Ω → ℝ) (K r q σ S : 
   Real.exp (-r*(s : ℝ))*
     (K*p (classicalLogSpot W K r q σ S s ω) (σ^2/2*((T : ℝ)-(s : ℝ))))
 
+/--
+@isnad1 id=eq.2h9v.s6.7cebb2f76691 from=translated src=- shape=184e3c58 vocab=e12574c0
+-/
 theorem scaled_classical_payoff (W : ℝ≥0 → Ω → ℝ) {K r q σ S : ℝ}
     (hK : 0 < K) (hS : 0 < S) (t : ℝ≥0) (ω : Ω) :
     K*putPayoff (classicalLogSpot W K r q σ S t ω) =
@@ -55,6 +58,9 @@ theorem scaled_classical_payoff (W : ℝ≥0 → Ω → ℝ) {K r q σ S : ℝ}
   unfold putPayoff
   rw [mul_max_of_nonneg _ _ hK.le,mul_zero,mul_sub,mul_one,he]
 
+/--
+@isnad1 id=and.3h14v.s6.1a2a58f90f70 from=translated src=- shape=a4795ee3 vocab=043be7ab
+-/
 theorem classicalCandidate_bounds {k h K r q σ S : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
     (hp : DividendPutSolution k h p b) (W : ℝ≥0 → Ω → ℝ)
     (hK : 0 ≤ K) (hr : 0 ≤ r) (T t : ℝ≥0) (ω : Ω) :
@@ -76,6 +82,9 @@ theorem classicalCandidate_bounds {k h K r q σ S : ℝ} {p : ℝ → ℝ → �
         mul_le_mul_of_nonneg_right he (mul_nonneg hK hlo)
       _ ≤ K := by simpa only [one_mul,mul_one] using mul_le_mul_of_nonneg_left hhi hK
 
+/--
+@isnad1 id=le.4h14v.s6.99ca35d8403e from=translated src=- shape=a15347c5 vocab=788e9755
+-/
 theorem classicalCandidate_dominates {k h K r q σ S : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
     (hp : DividendPutSolution k h p b) (W : ℝ≥0 → Ω → ℝ)
     (hK : 0 < K) (hS : 0 < S) {T t : ℝ≥0} (ht : t ≤ T) (ω : Ω) :
@@ -86,6 +95,9 @@ theorem classicalCandidate_dominates {k h K r q σ S : ℝ} {p : ℝ → ℝ →
     mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_left
       (hp.dominates (classicalLogSpot W K r q σ S t ω) _ htime) hK.le) (Real.exp_pos (-r*(t : ℝ))).le
 
+/--
+@isnad1 id=continuo.2h13v.s6.0196c0760853 from=translated src=- shape=e4e0a5d0 vocab=ceea303c
+-/
 theorem classicalCandidate_continuous {k h K r q σ S : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
     (hp : DividendPutSolution k h p b) {W : ℝ≥0 → Ω → ℝ}
     (hW : ∀ ω, Continuous (fun t => W t ω)) (T : ℝ≥0) (ω : Ω) :
@@ -103,6 +115,9 @@ theorem classicalCandidate_continuous {k h K r q σ S : ℝ} {p : ℝ → ℝ �
   exact (show Continuous (fun t : ℝ≥0 => Real.exp (-r*(min t T : ℝ))) by fun_prop).mul
     (continuous_const.mul hpcont)
 
+/--
+@isnad1 id=eq.3h13v.s6.3ee5f143e71f from=translated src=- shape=c4cb26d3 vocab=1acc17f2
+-/
 theorem classicalCandidate_maturity {k h K r q σ S : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
     (hp : DividendPutSolution k h p b) (W : ℝ≥0 → Ω → ℝ)
     (hK : 0 < K) (hS : 0 < S) (T : ℝ≥0) (ω : Ω) :
@@ -110,6 +125,9 @@ theorem classicalCandidate_maturity {k h K r q σ S : ℝ} {p : ℝ → ℝ → 
   simp only [classicalCandidate,min_self,sub_self,mul_zero,hp.initial,
     scaled_classical_payoff W hK hS,putReward]
 
+/--
+@isnad1 id=eventual.1h10v.s7.37bfd9511419 from=translated src=- shape=09026936 vocab=300494cc
+-/
 theorem classicalCandidate_initial [MeasurableSpace Ω] {P : Measure Ω}
     {W : ℝ≥0 → Ω → ℝ} (hzero : ∀ᵐ ω ∂P, W 0 ω = 0)
     (K r q σ S : ℝ) (p : ℝ → ℝ → ℝ) (T : ℝ≥0) :
@@ -120,7 +138,9 @@ theorem classicalCandidate_initial [MeasurableSpace Ω] {P : Measure Ω}
 
 /-- Classical price identification reduced to the actual candidate's two
 stochastic properties and an admissible contact rule. These hypotheses remain
-explicit: this is not yet PDE-to-stopping verification. -/
+explicit: this is not yet PDE-to-stopping verification.
+@isnad1 id=eq.10h15v.s8.9843fa634d09 from=translated src=- shape=f8db879c vocab=bc351156
+-/
 theorem classical_price_eq_value_of_verification [MeasurableSpace Ω]
     {P : Measure Ω} [IsProbabilityMeasure P]
     {𝓕 : Filtration ℝ≥0 ‹MeasurableSpace Ω›} {W : ℝ≥0 → Ω → ℝ}

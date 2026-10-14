@@ -58,7 +58,9 @@ Brownian process `W` under `Q`, the BS call price formula
 
   `e^{−rT} · E[max(S_T − K, 0)] = S_0 · Φ(d_1) − K · e^{−rT} · Φ(d_2)`
 
-holds for `S_T := bsTerminal S_0 r σ T (W T.toNNReal · / √T)`. -/
+holds for `S_T := bsTerminal S_0 r σ T (W T.toNNReal · / √T)`.
+@isnad1 id=eq.5h9v.s7.a4c75c7cd51b from=translated src=- shape=b9ff4803 vocab=1e4c3a8a
+-/
 theorem bs_call_formula_via_brownian
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     (Q : Measure Ω) [IsProbabilityMeasure Q]
@@ -71,7 +73,9 @@ theorem bs_call_formula_via_brownian
         K * Real.exp (-r * T) * Phi (bsd2 S_0 K r σ T) :=
   bs_call_formula (BSCallHyp.of_isPreBrownian Q W hW hS_0 hK hσ hT)
 
-/-- **BS put pricing formula from a pre-Brownian motion**. -/
+/-- **BS put pricing formula from a pre-Brownian motion**.
+@isnad1 id=eq.5h9v.s7.c2af20b82cde from=translated src=- shape=74ba68b0 vocab=1e4c3a8a
+-/
 theorem bs_put_formula_via_brownian
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     (Q : Measure Ω) [IsProbabilityMeasure Q]
@@ -84,7 +88,9 @@ theorem bs_put_formula_via_brownian
         S_0 * Phi (-(bsd1 S_0 K r σ T)) :=
   bs_put_formula (BSCallHyp.of_isPreBrownian Q W hW hS_0 hK hσ hT)
 
-/-- **Put-call parity from a pre-Brownian motion**. -/
+/-- **Put-call parity from a pre-Brownian motion**.
+@isnad1 id=eq.5h9v.s8.cd7f2355c5c5 from=translated src=- shape=92809714 vocab=b1c0e764
+-/
 theorem bs_put_call_parity_via_brownian
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     (Q : Measure Ω) [IsProbabilityMeasure Q]
@@ -98,7 +104,9 @@ theorem bs_put_call_parity_via_brownian
       = S_0 - K * Real.exp (-r * T) :=
   bs_put_call_parity (BSCallHyp.of_isPreBrownian Q W hW hS_0 hK hσ hT)
 
-/-- **Bachelier call pricing formula from a pre-Brownian motion**. -/
+/-- **Bachelier call pricing formula from a pre-Brownian motion**.
+@isnad1 id=eq.4h8v.s7.12393338b236 from=translated src=- shape=979b19ec vocab=4f94b952
+-/
 theorem bachelier_call_formula_via_brownian
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     (Q : Measure Ω) [IsProbabilityMeasure Q]
@@ -112,7 +120,9 @@ theorem bachelier_call_formula_via_brownian
           gaussianPDFReal 0 1 (bachelierD S_0 K σ T) :=
   bachelier_call_formula (BachelierHyp.of_isPreBrownian Q W hW hK hσ hT)
 
-/-- **Cash-or-nothing digital from a pre-Brownian motion**. -/
+/-- **Cash-or-nothing digital from a pre-Brownian motion**.
+@isnad1 id=eq.5h9v.s7.ecbe33a9ca88 from=translated src=- shape=2cfcbc04 vocab=292ad08b
+-/
 theorem bs_cash_or_nothing_formula_via_brownian
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     (Q : Measure Ω) [IsProbabilityMeasure Q]
@@ -125,7 +135,9 @@ theorem bs_cash_or_nothing_formula_via_brownian
       = Real.exp (-r * T) * Phi (bsd2 S_0 K r σ T) :=
   bs_cash_or_nothing_formula (BSCallHyp.of_isPreBrownian Q W hW hS_0 hK hσ hT)
 
-/-- **Asset-or-nothing digital from a pre-Brownian motion**. -/
+/-- **Asset-or-nothing digital from a pre-Brownian motion**.
+@isnad1 id=eq.5h9v.s7.734d18a91499 from=translated src=- shape=d5736e50 vocab=dcf20864
+-/
 theorem bs_asset_or_nothing_formula_via_brownian
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     (Q : Measure Ω) [IsProbabilityMeasure Q]
@@ -138,7 +150,9 @@ theorem bs_asset_or_nothing_formula_via_brownian
       = S_0 * Phi (bsd1 S_0 K r σ T) :=
   bs_asset_or_nothing_formula (BSCallHyp.of_isPreBrownian Q W hW hS_0 hK hσ hT)
 
-/-- **Powered call from a pre-Brownian motion**. -/
+/-- **Powered call from a pre-Brownian motion**.
+@isnad1 id=eq.6h10v.s8.3322b2ba84da from=translated src=- shape=48aaa93e vocab=882669ca
+-/
 theorem bs_power_call_formula_via_brownian
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     (Q : Measure Ω) [IsProbabilityMeasure Q]
@@ -155,7 +169,9 @@ theorem bs_power_call_formula_via_brownian
   bs_power_call_formula a ha hK (BSCallHyp.of_isPreBrownian Q W hW hS_0 hK hσ hT)
 
 /-- **BS-with-dividends call from a pre-Brownian motion**. The drift used
-in the marginal hypothesis is `r − q`. -/
+in the marginal hypothesis is `r − q`.
+@isnad1 id=eq.5h10v.s8.b6e361de25dc from=translated src=- shape=33795b6e vocab=1e4c3a8a
+-/
 theorem bs_dividends_call_formula_via_brownian
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     (Q : Measure Ω) [IsProbabilityMeasure Q]
@@ -170,7 +186,9 @@ theorem bs_dividends_call_formula_via_brownian
   bs_dividends_call_formula
     (BSCallHyp.of_isPreBrownian (r := r - q) Q W hW hS_0 hK hσ hT)
 
-/-- **Stock-numeraire exercise probability from a pre-Brownian motion**. -/
+/-- **Stock-numeraire exercise probability from a pre-Brownian motion**.
+@isnad1 id=eq.5h9v.s7.8657eb67568f from=translated src=- shape=d1d5a654 vocab=276d5852
+-/
 theorem stockNumeraire_exercise_probability_via_brownian
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     (Q : Measure Ω) [IsProbabilityMeasure Q]
@@ -184,7 +202,9 @@ theorem stockNumeraire_exercise_probability_via_brownian
   stockNumeraire_exercise_probability
     (BSCallHyp.of_isPreBrownian Q W hW hS_0 hK hσ hT)
 
-/-- **KMV-Merton default probability from a pre-Brownian motion**. -/
+/-- **KMV-Merton default probability from a pre-Brownian motion**.
+@isnad1 id=eq.5h9v.s7.d32be86c48fc from=translated src=- shape=6be95d03 vocab=7ef46f78
+-/
 theorem kmvPD_eq_one_sub_survival_probability_via_brownian
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     (Q : Measure Ω) [IsProbabilityMeasure Q]
@@ -197,7 +217,9 @@ theorem kmvPD_eq_one_sub_survival_probability_via_brownian
   kmvPD_eq_one_sub_survival_probability hV hF
     (BSCallHyp.of_isPreBrownian Q W hW hV hF hσ hT)
 
-/-- **Merton equity = call on firm assets, from a pre-Brownian motion**. -/
+/-- **Merton equity = call on firm assets, from a pre-Brownian motion**.
+@isnad1 id=eq.5h9v.s7.a4c75c7cd51b from=translated src=- shape=b9ff4803 vocab=1e4c3a8a
+-/
 theorem merton_equity_eq_bs_call_via_brownian
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     (Q : Measure Ω) [IsProbabilityMeasure Q]

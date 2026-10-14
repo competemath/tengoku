@@ -143,7 +143,9 @@ private lemma lintegral_gammaPDF_mul_exponentialPDF
 
 This identity (and any Gamma convolution) is absent from Mathlib; it is the
 measure-level packaging of `lintegral_gammaPDF_mul_exponentialPDF` via
-Tonelli and translation invariance of Lebesgue measure. -/
+Tonelli and translation invariance of Lebesgue measure.
+@isnad1 id=eq.2h2v.s5.331aa006f195 from=translated src=- shape=b44b2950 vocab=574c5c0a
+-/
 theorem gammaMeasure_conv_expMeasure (ha : 0 < a) (hr : 0 < r) :
     gammaMeasure a r ∗ expMeasure r = gammaMeasure (a + 1) r := by
   have hg : Measurable (gammaPDF a r) := (measurable_gammaPDFReal a r).ennreal_ofReal
@@ -218,7 +220,9 @@ variable {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : Measure Ω}
 textbook statement, `ℕ` for the arrival times of a Poisson process), the law
 of `∑ i ∈ s, X i` is `gammaMeasure s.card r`. Induction on `s`: the base case
 is `expMeasure = gammaMeasure 1` (definitional), the step is
-`gammaMeasure_conv_expMeasure` via `IndepFun.map_add_eq_map_conv_map`. -/
+`gammaMeasure_conv_expMeasure` via `IndepFun.map_add_eq_map_conv_map`.
+@isnad1 id=eq.5h7v.s6.016e71e5d8b1 from=translated src=- shape=b9af1b46 vocab=89d7e0c4
+-/
 theorem map_sum_iidExp [IsProbabilityMeasure μ] {r : ℝ} (hr : 0 < r)
     {ι : Type*} {X : ι → Ω → ℝ} (hmeas : ∀ i, Measurable (X i))
     (hlaw : ∀ i, Measure.map (X i) μ = expMeasure r)
@@ -250,7 +254,9 @@ theorem map_sum_iidExp [IsProbabilityMeasure μ] {r : ℝ} (hr : 0 < r)
 arrival time of a `Poisson(r)` process — the sum of `n ≥ 1` iid `Exp(r)`
 interarrival times — has the `Erlang(n, r) = gammaMeasure n r` law. Proved
 from the densities up via the Gamma convolution identity; no part of the
-conclusion is assumed. -/
+conclusion is assumed.
+@isnad1 id=eq.5h6v.s6.7b54ae11a420 from=translated src=- shape=3fe87ff5 vocab=41585242
+-/
 theorem sum_iidExp_law_gammaMeasure [IsProbabilityMeasure μ] {r : ℝ} (hr : 0 < r)
     {n : ℕ} (hn : n ≠ 0) {X : Fin n → Ω → ℝ} (hmeas : ∀ i, Measurable (X i))
     (hlaw : ∀ i, Measure.map (X i) μ = expMeasure r)

@@ -37,10 +37,16 @@ structure TracesBoundsE (P : Params) (Err aT trG trG2 Ncnt : ℝ → ℝ) : Prop
   ratio : EvBound (fun T => trG T ^ 2 / trG2 T - Ffun (P.lam1 T) * Ncnt T)
     (fun T => Err T * (Ffun (P.lam1 T) * Ncnt T))
 
+/--
+@isnad1 id=tracesbo.1h5v.s5.e4dbcb46019b from=translated src=- shape=ad48e972 vocab=3cb8a795
+-/
 lemma TracesBounds.toE {P : Params} {aT trG trG2 Ncnt : ℝ → ℝ}
     (h : TracesBounds P aT trG trG2 Ncnt) : TracesBoundsE P P.calE aT trG trG2 Ncnt :=
   ⟨h.tr1, h.tr1', h.tr2, h.ratio⟩
 
+/--
+@isnad1 id=tracesbo.1h5v.s5.e9bd33d22652 from=translated src=- shape=7bc61c56 vocab=3cb8a795
+-/
 lemma TracesBoundsE.toTracesBounds {P : Params} {aT trG trG2 Ncnt : ℝ → ℝ}
     (h : TracesBoundsE P P.calE aT trG trG2 Ncnt) : TracesBounds P aT trG trG2 Ncnt :=
   ⟨h.tr1, h.tr1', h.tr2, h.ratio⟩
@@ -49,6 +55,9 @@ lemma TracesBoundsE.toTracesBounds {P : Params} {aT trG trG2 Ncnt : ℝ → ℝ}
 def ThmTracesHypE (P : Params) (Err : ℝ → ℝ) (Z : ZeroConfig) : Prop :=
   TracesBoundsE P Err P.a P.trGtilde P.trGtildeSq (fun T => (Z.N T (2 * T) : ℝ))
 
+/--
+@isnad1 id=iff.0h2v.s3.d204921882fa from=translated src=- shape=40a20ec4 vocab=46a767a9
+-/
 lemma thmTracesHyp_iff_E (P : Params) (Z : ZeroConfig) :
     ThmTracesHyp P Z ↔ ThmTracesHypE P P.calE Z :=
   ⟨fun h => TracesBounds.toE h, fun h => h.toTracesBounds⟩

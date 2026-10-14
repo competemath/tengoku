@@ -32,7 +32,9 @@ Results:
 
 namespace MathFin
 
-/-- Generic chooser-style decomposition: `max C P = C + max 0 (P − C)`. -/
+/-- Generic chooser-style decomposition: `max C P = C + max 0 (P − C)`.
+@isnad1 id=eq.0h2v.s5.fccfc30ea047 from=translated src=- shape=809403ad vocab=a0cea0d4
+-/
 lemma chooser_payoff_decompose (C P : ℝ) :
     max C P = C + max 0 (P - C) := by
   by_cases h : C ≤ P
@@ -41,7 +43,9 @@ lemma chooser_payoff_decompose (C P : ℝ) :
     rw [max_eq_left h.le, max_eq_left (by linarith : P - C ≤ 0)]; ring
 
 /-- **Chooser option payoff** via put-call parity at the chooser date.
-If `C - P = S - K_disc` (PCP), then `max(C, P) = C + max(0, K_disc - S)`. -/
+If `C - P = S - K_disc` (PCP), then `max(C, P) = C + max(0, K_disc - S)`.
+@isnad1 id=eq.1h4v.s5.31a68c50f30d from=translated src=- shape=aa4f1bbb vocab=a0cea0d4
+-/
 lemma chooser_via_pcp (C P S K_disc : ℝ) (hPCP : C - P = S - K_disc) :
     max C P = C + max 0 (K_disc - S) := by
   rw [chooser_payoff_decompose]

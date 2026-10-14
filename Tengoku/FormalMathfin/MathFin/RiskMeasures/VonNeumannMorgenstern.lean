@@ -101,23 +101,31 @@ def prefersEU (s : Finset ι) (u : ι → ℝ) (p q : ι → ℝ) : Prop :=
 
 /-! ### The mixture algebra -/
 
-/-- Mixing with certainty on the first lottery returns it. -/
+/-- Mixing with certainty on the first lottery returns it.
+@isnad1 id=eq.0h3v.s4.64be860fdd1f from=translated src=- shape=a55082d2 vocab=ab5f452e
+-/
 theorem mix_one (p q : ι → ℝ) : mix 1 p q = p := by
   funext i
   simp [mix]
 
-/-- Mixing with certainty on the second lottery returns it. -/
+/-- Mixing with certainty on the second lottery returns it.
+@isnad1 id=eq.0h3v.s4.397c5aa49309 from=translated src=- shape=271386ce vocab=ab5f452e
+-/
 theorem mix_zero (p q : ι → ℝ) : mix 0 p q = q := by
   funext i
   simp [mix]
 
-/-- Mixing a lottery with itself is a no-op, at any weight. -/
+/-- Mixing a lottery with itself is a no-op, at any weight.
+@isnad1 id=eq.0h3v.s4.21d61c1c8e1b from=translated src=- shape=a75018aa vocab=ab5f452e
+-/
 theorem mix_self (α : ℝ) (p : ι → ℝ) : mix α p p = p := by
   funext i
   show α * p i + (1 - α) * p i = p i
   ring
 
-/-- Swapping the two lotteries complements the weight. -/
+/-- Swapping the two lotteries complements the weight.
+@isnad1 id=eq.0h4v.s5.5104fa87639a from=translated src=- shape=c495538d vocab=6b6fad65
+-/
 theorem mix_comm (α : ℝ) (p q : ι → ℝ) : mix α p q = mix (1 - α) q p := by
   funext i
   show α * p i + (1 - α) * q i = (1 - α) * q i + (1 - (1 - α)) * p i
@@ -125,7 +133,9 @@ theorem mix_comm (α : ℝ) (p q : ι → ℝ) : mix α p q = mix (1 - α) q p :
 
 /-- **Reduction of compound lotteries**: mixing `q` into a mixture of `p` and
 `q` just rescales the weight on `p`. The formal content of the "only the
-resulting distribution matters" assumption. -/
+resulting distribution matters" assumption.
+@isnad1 id=eq.0h5v.s5.5b18e270586f from=translated src=- shape=f56fef54 vocab=a046ba95
+-/
 theorem mix_compound (α β : ℝ) (p q : ι → ℝ) :
     mix α (mix β p q) q = mix (α * β) p q := by
   funext i
@@ -133,7 +143,9 @@ theorem mix_compound (α β : ℝ) (p q : ι → ℝ) :
       = α * β * p i + (1 - α * β) * q i
   ring
 
-/-- A mixture of nonnegative vectors at a weight in `[0, 1]` is nonnegative. -/
+/-- A mixture of nonnegative vectors at a weight in `[0, 1]` is nonnegative.
+@isnad1 id=le.4h5v.s6.57a186b4f6f3 from=translated src=- shape=fc7d5861 vocab=1a63fd02
+-/
 theorem mix_nonneg {α : ℝ} (hα : 0 ≤ α) (hα1 : α ≤ 1) {p q : ι → ℝ}
     (hp : ∀ i, 0 ≤ p i) (hq : ∀ i, 0 ≤ q i) (i : ι) :
     0 ≤ mix α p q i := by
@@ -141,7 +153,9 @@ theorem mix_nonneg {α : ℝ} (hα : 0 ≤ α) (hα1 : α ≤ 1) {p q : ι → �
   exact add_nonneg (mul_nonneg hα (hp i)) (mul_nonneg (by linarith) (hq i))
 
 /-- A mixture of probability vectors is a probability vector. Together with
-`mix_nonneg`, this is the closure of lotteries under mixing. -/
+`mix_nonneg`, this is the closure of lotteries under mixing.
+@isnad1 id=eq.2h5v.s6.df899bd43149 from=translated src=- shape=2ee719b8 vocab=9b3a6b89
+-/
 theorem sum_mix (s : Finset ι) (α : ℝ) {p q : ι → ℝ}
     (hp : ∑ i ∈ s, p i = 1) (hq : ∑ i ∈ s, q i = 1) :
     ∑ i ∈ s, mix α p q i = 1 := by
@@ -159,7 +173,9 @@ theorem sum_mix (s : Finset ι) (α : ℝ) {p q : ι → ℝ}
 
 Every axiom verified below is a corollary of this one identity. Note it needs
 *no* hypothesis on `p`, `q` or `α` — it is linearity of the sum, not a fact
-about probabilities. -/
+about probabilities.
+@isnad1 id=eq.0h6v.s6.792d92b08eb1 from=translated src=- shape=62163a46 vocab=034c6f9e
+-/
 theorem expectedUtility_mix (s : Finset ι) (u : ι → ℝ) (α : ℝ) (p q : ι → ℝ) :
     expectedUtility s u (mix α p q)
       = α * expectedUtility s u p + (1 - α) * expectedUtility s u q := by
@@ -169,17 +185,23 @@ theorem expectedUtility_mix (s : Finset ι) (u : ι → ℝ) (α : ℝ) (p q : �
 
 /-! ### The von Neumann–Morgenstern axioms, verified for `prefersEU` -/
 
-/-- **Completeness**: any two lotteries are comparable. -/
+/-- **Completeness**: any two lotteries are comparable.
+@isnad1 id=or.0h5v.s4.07cd8edb7e9a from=translated src=- shape=59ca009a vocab=1c596a42
+-/
 theorem prefersEU_total (s : Finset ι) (u : ι → ℝ) (p q : ι → ℝ) :
     prefersEU s u p q ∨ prefersEU s u q p :=
   le_total _ _
 
-/-- **Transitivity**. -/
+/-- **Transitivity**.
+@isnad1 id=preferse.2h6v.s5.1a1ea42e7c15 from=translated src=- shape=cfc54993 vocab=1c596a42
+-/
 theorem prefersEU_trans (s : Finset ι) (u : ι → ℝ) {p q r : ι → ℝ}
     (hpq : prefersEU s u p q) (hqr : prefersEU s u q r) : prefersEU s u p r :=
   le_trans hqr hpq
 
-/-- **Reflexivity**. -/
+/-- **Reflexivity**.
+@isnad1 id=preferse.0h4v.s4.014994cbd65d from=translated src=- shape=6956df79 vocab=1c596a42
+-/
 theorem prefersEU_refl (s : Finset ι) (u : ι → ℝ) (p : ι → ℝ) :
     prefersEU s u p p :=
   le_refl _
@@ -189,7 +211,9 @@ preference, at any nonnegative weight.
 
 This is the axiom the Allais paradox violates, and the one that forces the
 expected-utility form. It is immediate from `expectedUtility_mix`: the `r`
-term enters both sides identically and cancels. -/
+term enters both sides identically and cancels.
+@isnad1 id=preferse.2h7v.s5.d8562e73770e from=translated src=- shape=73f9d09d vocab=a7016d97
+-/
 theorem prefersEU_independence (s : Finset ι) (u : ι → ℝ) {α : ℝ} (hα : 0 ≤ α)
     {p q r : ι → ℝ} (h : prefersEU s u p q) :
     prefersEU s u (mix α p r) (mix α q r) := by
@@ -198,7 +222,9 @@ theorem prefersEU_independence (s : Finset ι) (u : ι → ℝ) {α : ℝ} (hα 
   exact add_le_add (mul_le_mul_of_nonneg_left h hα) le_rfl
 
 /-- **Strict independence**: a strict preference survives mixing with a common
-lottery, at any *positive* weight. -/
+lottery, at any *positive* weight.
+@isnad1 id=lt.2h7v.s6.aebb3dc37387 from=translated src=- shape=da045d1d vocab=9b35e214
+-/
 theorem prefersEU_strict_independence (s : Finset ι) (u : ι → ℝ) {α : ℝ}
     (hα : 0 < α) {p q r : ι → ℝ}
     (h : expectedUtility s u q < expectedUtility s u p) :
@@ -209,7 +235,9 @@ theorem prefersEU_strict_independence (s : Finset ι) (u : ι → ℝ) {α : ℝ
 /-- The scalar behind the Archimedean axiom: for reals `R < Q < P` there is a
 strict convex weight placing `Q` between `R` and `P`, namely `Q`'s position on
 the interval `[R, P]`. Stated on plain reals because that is all it is — the
-lottery content of continuity is entirely in `expectedUtility_mix`. -/
+lottery content of continuity is entirely in `expectedUtility_mix`.
+@isnad1 id=ex.2h3v.s6.494108a1daba from=translated src=- shape=0cf90abc vocab=2cec14dc
+-/
 theorem exists_mix_weight {P Q R : ℝ} (hpq : Q < P) (hqr : R < Q) :
     ∃ α : ℝ, 0 < α ∧ α < 1 ∧ α * P + (1 - α) * R = Q := by
   have hPR : 0 < P - R := by linarith
@@ -226,7 +254,9 @@ of the best and worst is exactly indifferent to the middle lottery.
 
 The witness is exhibited rather than obtained from a limit: the indifference
 weight is the position of `q` on the utility interval `[EU r, EU p]`, which is
-the calibration scalar the full representation theorem will read off. -/
+the calibration scalar the full representation theorem will read off.
+@isnad1 id=ex.2h6v.s6.abd75bb5d3d1 from=translated src=- shape=c5d35b78 vocab=9b35e214
+-/
 theorem prefersEU_continuity (s : Finset ι) (u : ι → ℝ) {p q r : ι → ℝ}
     (hpq : expectedUtility s u q < expectedUtility s u p)
     (hqr : expectedUtility s u r < expectedUtility s u q) :
@@ -244,7 +274,9 @@ the same way: `EU_{a u + b}(p) = a EU_u(p) + b`.
 
 The `∑ p = 1` hypothesis is exactly what turns the constant `b` into itself
 rather than into `b · ∑ p` — this is where the lottery's normalisation, unused
-by the mixture algebra above, finally does work. -/
+by the mixture algebra above, finally does work.
+@isnad1 id=eq.1h6v.s6.59937d8e3e39 from=translated src=- shape=657cca3e vocab=16431446
+-/
 theorem expectedUtility_affine (s : Finset ι) (u : ι → ℝ) (a b : ℝ) {p : ι → ℝ}
     (hp : ∑ i ∈ s, p i = 1) :
     expectedUtility s (fun i ↦ a * u i + b) p
@@ -262,7 +294,9 @@ theorem expectedUtility_affine (s : Finset ι) (u : ι → ℝ) (a b : ℝ) {p :
 The vNM utility is cardinal only up to origin and scale: `u` and `a·u + b` with
 `a > 0` induce the *same* preference relation, so no economic meaning attaches
 to the units of `u`. (Comparisons of utility *differences* do survive, which is
-what distinguishes vNM utility from the ordinal utility of consumer theory.) -/
+what distinguishes vNM utility from the ordinal utility of consumer theory.)
+@isnad1 id=iff.3h7v.s6.2d8fe3cadb3b from=translated src=- shape=bf97a482 vocab=960afc27
+-/
 theorem prefersEU_affine_invariant (s : Finset ι) (u : ι → ℝ) {a b : ℝ}
     (ha : 0 < a) {p q : ι → ℝ}
     (hp : ∑ i ∈ s, p i = 1) (hq : ∑ i ∈ s, q i = 1) :

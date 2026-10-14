@@ -24,6 +24,9 @@ namespace MathFin.BlackScholes.AmericanPut.Stopping
 open Set Filter
 open scoped Topology
 
+/--
+@isnad1 id=tendsto.3h3v.s7.155da4b570a3 from=translated src=- shape=a5e67a3e vocab=2e23b0fa
+-/
 theorem convex_deriv_tendsto_right {f : ℝ → ℝ} {b d : ℝ}
     (hc : ConvexOn ℝ (Ici b) f)
     (hfit : HasDerivWithinAt f d (Ici b) b)
